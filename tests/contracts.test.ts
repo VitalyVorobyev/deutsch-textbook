@@ -824,7 +824,44 @@ describe('cards: recognition | both', () => {
     // board and a course handout say to you — plus `Botschaft`, `aufnehmen` and `anzeigen`,
     // which each carry two unrelated senses one example cannot hold (the
     // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`).
-    expect(cards).toBe(entries * 2 - 448);
+    // Wortliste completion wave 2, decks 1–2 (2026-08-05) add fifty-eight across two
+    // unowned decks — `gefuehle-reflexive-verben-b1` (31 of 41) and
+    // `beziehungen-familie-b1` (27 of 41) — run through the same mechanical collision
+    // test as wave 1. Feelings collide as hard as time did, and for the same reason:
+    // `gefuehle-reflexive-a2` is an A2 deck about exactly this field, so `ärgern`,
+    // `beeilen`, `verlieben`, `Angst`, `froh`, `glücklich` and `nervös` are already sold
+    // as production cards and retire `aufregen`, `sich beeilen`, `fürchten`, `vergnügt`
+    // and `Nerv` between them. Outside it, `fühlen` (gesundheit-arzttermin) owns "to
+    // feel" (`spüren`), `lachen` owns "to laugh" one letter away from `lächeln`,
+    // `weinen` owns crying (`Träne`), `erschrecken` (erfahrungen-erzaehlen) owns the
+    // fright (`Schreck`), `Vergnügen` (kultur-freizeit) owns the pleasure
+    // (`sich vergnügen`), `verrückt` and `schuldig` (charakter-verhalten-b1) own
+    // `wahnsinnig` and `schuld`, `geheim` (eigenschaften-bewertung-b1) owns
+    // `Geheimnis`, `Glück` and `Pech` own `Unglück`, `Entschuldigung`
+    // (funktionswoerter-chunks) owns `Verzeihung`, `müde` owns `erschöpft`, `ablehnen`
+    // (regeln-verantwortung) owns `sich weigern` and `ausruhen` owns `Erholung`.
+    // `leid tun` is the sharpest of the pass so far: A2 ships the identical two words
+    // written solid (`leidtun`, verben-handlungen-a2-2), so the Wortliste's spelling
+    // can only be keyed, never carded again. `Schrecken` yields to `Schreck` inside
+    // the deck — the `ebenso`/`genauso` ruling from `ort-richtung-verweis-b1`.
+    // The family deck is owned before it opens by `menschen-familie` and
+    // `menschen-beziehungen-a2`: `Großmutter`/`Großvater` retire `Oma`/`Opa`, `Junge`
+    // retires `Bub`, `Verwandte` retires `Angehörige`, `Jugendliche` retires `Jugend`,
+    // and `Erwachsene` retires `erwachsen` — that last one named in the A2 entry's own
+    // note. `treffen` owns `begegnen`, `mitkommen` owns `begleiten`, `nett` and
+    // `freundlich` own `lieb`, `schwanger` owns `Schwangerschaft`, `sich verabschieden`
+    // (verben-kommunikation-ausdruck-b1) owns `Abschied`, and `Paar` plus this deck's
+    // own `Ehe` own `Ehepaar`. Four are ruled inside the deck: `Beziehung` takes the
+    // typed card from `Verhältnis`, `küssen` from `Kuss`, `Scheidung` from
+    // `sich scheiden lassen`, and `Altenheim`/`Altersheim` are one institution spelled
+    // two ways, so neither can be typed. `Babysitterin` is the pass's first Movierung
+    // pair: A2's `Babysitter` ships and its note already names the feminine, so the
+    // pair costs three cards rather than four. The rest are register — `sich nähern`,
+    // `erleichtern`, `winken`, `blass`, `Blick`, `betrunken`, `befreit`, `entschlossen`,
+    // `entspannend`, `Wunder`, `sich etwas gefallen lassen`, `Generation`, `Senioren`,
+    // `Familienstand`, `getrennt leben`, `geboren werden`, `Nachwuchs` and `umarmen` are
+    // what a form, a report and a narrative say to the learner, not what he says back.
+    expect(cards).toBe(entries * 2 - 506);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

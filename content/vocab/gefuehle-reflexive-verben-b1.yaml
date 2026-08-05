@@ -1,0 +1,853 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains two neighbouring
+# fields of data/goethe-b1-wortliste.txt: the reflexive verbs whose pronoun is part
+# of the verb rather than an object, and the words for what a person feels — the
+# feeling itself, the state it leaves behind, and the face and body that show it.
+id: gefuehle-reflexive-verben-b1
+title_de: "Gefühle und reflexive Verben"
+title_en: "Feelings and reflexive verbs"
+title_ru: "Чувства и возвратные глаголы"
+title_uk: "Почуття й зворотні дієслова"
+level: B1
+entries:
+  # --- Echte reflexive Verben: das Pronomen gehört zum Verb ---
+  - de: sich beeilen
+    ipa: "zɪç bəˈʔaɪ̯lən"
+    pos: verb
+    praesens_3sg: beeilt sich
+    partizip2: sich beeilt
+    aux: haben
+    valence: "sich + Akk"
+    # Recognition only: A2 ships `beeilen` ("to hurry, to hurry up") as a production
+    # card in gefuehle-reflexive-a2, with `sich beeilen` in its own accept list — the
+    # typed prompt is answered one deck over, and this entry exists to key the
+    # Wortliste's `sich beeilen` without dealing the same production card twice.
+    cards: recognition
+    en: to hurry up, to get a move on
+    ru: торопиться, поторопиться
+    uk: поспішати, поквапитися
+    example_de: Beeil dich, der Bus fährt in fünf Minuten!
+    example_en: Hurry up, the bus leaves in five minutes!
+    example_ru: Поторопись, автобус отходит через пять минут!
+    example_uk: Поквапся, автобус відходить за п’ять хвилин!
+    note:
+      en: 'A true reflexive: the pronoun is not an object, it is part of the verb, so there is no such thing as *ich beeile ohne mich*. The imperative is what you will hear most — Beeil dich! for one person, Beeilt euch! for several, Beeilen Sie sich! formally — and the pronoun moves with the person, never staying at sich. Two neighbours are not quite it: A2 es eilig haben states the fact (Ich habe es eilig), and schnell machen is the casual spoken order (Mach schnell!). The written twin eilen is in the zeit-b1 deck.'
+      ru: 'Настоящий возвратный глагол: местоимение здесь не дополнение, а часть глагола, поэтому «ich beeile ohne mich» невозможно. Чаще всего вы услышите повелительное наклонение — Beeil dich! одному, Beeilt euch! нескольким, Beeilen Sie sich! вежливо, — и местоимение меняется по лицу, а не остаётся в форме sich. Два соседа не совсем то же: обиходное es eilig haben уровня A2 констатирует факт (Ich habe es eilig), а schnell machen — разговорный приказ (Mach schnell!). Письменный двойник eilen лежит в колоде zeit-b1.'
+      uk: 'Справжнє зворотне дієслово: займенник тут не додаток, а частина дієслова, тому «ich beeile ohne mich» неможливе. Найчастіше ви почуєте наказовий спосіб — Beeil dich! одному, Beeilt euch! кільком, Beeilen Sie sich! ввічливо, — і займенник змінюється за особою, а не лишається у формі sich. Два сусіди не зовсім те саме: побутове es eilig haben рівня A2 констатує факт (Ich habe es eilig), а schnell machen — розмовний наказ (Mach schnell!). Писемний двійник eilen лежить у колоді zeit-b1.'
+
+  - de: sich irren
+    ipa: "zɪç ˈɪʁən"
+    pos: verb
+    praesens_3sg: irrt sich
+    partizip2: sich geirrt
+    aux: haben
+    valence: "sich + Akk"
+    accept: ["irren"]
+    en: to be mistaken, to be wrong about something
+    ru: ошибаться, заблуждаться
+    uk: помилятися, хибити
+    example_de: Wenn ich mich nicht irre, wohnt sie jetzt in Leipzig.
+    example_en: If I am not mistaken, she lives in Leipzig now.
+    example_ru: Если я не ошибаюсь, она теперь живёт в Лейпциге.
+    example_uk: Якщо я не помиляюся, вона тепер живе в Лейпцигу.
+    note:
+      en: 'The polite way to be wrong. Two chunks carry it: Wenn ich mich nicht irre as a hedge before a claim, and Ich habe mich geirrt as a plain admission afterwards. It is about a judgement, not an action — a wrong turning is sich verlaufen, a slip of the hand is a Fehler machen. The written phrase Irren ist menschlich uses the bare infinitive as a noun, which is the one place the pronoun disappears. The noun is der Irrtum.'
+      ru: 'Вежливый способ ошибиться. Держится на двух оборотах: Wenn ich mich nicht irre как оговорка перед утверждением и Ich habe mich geirrt как признание после. Речь о суждении, а не о действии: не туда свернуть — это sich verlaufen, промахнуться рукой — einen Fehler machen. В книжной фразе Irren ist menschlich инфинитив стоит как существительное, и это единственное место, где местоимение исчезает. Существительное — der Irrtum.'
+      uk: 'Ввічливий спосіб помилитися. Тримається на двох зворотах: Wenn ich mich nicht irre як застереження перед твердженням і Ich habe mich geirrt як визнання після. Ідеться про судження, а не про дію: звернути не туди — це sich verlaufen, схибити рукою — einen Fehler machen. У книжній фразі Irren ist menschlich інфінітив стоїть як іменник, і це єдине місце, де займенник зникає. Іменник — der Irrtum.'
+
+  - de: sich wundern
+    ipa: "zɪç ˈvʊndɐn"
+    pos: verb
+    praesens_3sg: wundert sich
+    partizip2: sich gewundert
+    aux: haben
+    valence: "sich + Akk; über + Akk"
+    accept: ["wundern"]
+    en: to find something odd, to be taken aback by it
+    ru: удивляться, недоумевать
+    uk: дивуватися, не розуміти
+    example_de: Ich habe mich gewundert, dass er so früh gegangen ist.
+    example_en: I found it odd that he left so early.
+    example_ru: Меня удивило, что он ушёл так рано.
+    example_uk: Мене здивувало, що він пішов так рано.
+    note:
+      en: 'The preposition is über + Akkusativ (Ich wundere mich über seine Antwort), and a dass-clause takes its place just as often. It is quieter than it looks: the feeling is puzzlement, sometimes with a note of disapproval, not delight. That is what separates it from überraschen, which is what an event does to a person (Die Nachricht hat mich überrascht) and needs no pronoun. Es würde mich wundern, wenn … is the standard way of saying you doubt something. Ich wundere mich über nichts mehr is the everyday shrug.'
+      ru: 'Предлог — über + Akkusativ (Ich wundere mich über seine Antwort), и придаточное с dass встречается не реже. Чувство тише, чем кажется: это недоумение, иногда с оттенком неодобрения, а не радость. Этим оно и отличается от überraschen — то делает с человеком событие (Die Nachricht hat mich überrascht), и местоимение там не нужно. Es würde mich wundern, wenn … — стандартный способ выразить сомнение. Ich wundere mich über nichts mehr — обиходное «я уже ничему не удивляюсь».'
+      uk: 'Прийменник — über + Akkusativ (Ich wundere mich über seine Antwort), і підрядне з dass трапляється не рідше. Почуття тихіше, ніж здається: це подив із відтінком нерозуміння, іноді й несхвалення, а не радість. Цим воно й відрізняється від überraschen — те робить із людиною подія (Die Nachricht hat mich überrascht), і займенник там не потрібен. Es würde mich wundern, wenn … — типовий спосіб висловити сумнів. Ich wundere mich über nichts mehr — побутове «я вже нічому не дивуюся».'
+
+  - de: sich verlaufen
+    ipa: "zɪç fɛɐ̯ˈlaʊ̯fn̩"
+    pos: verb
+    praesens_3sg: verläuft sich
+    partizip2: sich verlaufen
+    aux: haben
+    valence: "sich + Akk"
+    accept: ["verlaufen"]
+    en: to lose one's way, to get lost while walking
+    en_compact: "to get lost (on foot)"
+    ru: заблудиться, сбиться с пути (пешком)
+    uk: заблукати, збитися з дороги (пішки)
+    example_de: Wir haben uns im Wald verlaufen und sind erst spät zurückgekommen.
+    example_en: We got lost in the forest and only came back late.
+    example_ru: Мы заблудились в лесу и вернулись только поздно.
+    example_uk: Ми заблукали в лісі й повернулися лише пізно.
+    note:
+      en: 'Strictly on foot. The driver''s word is sich verfahren, and mixing them up is the standard slip — the ver- prefix marks both as going wrong, and laufen versus fahren decides which. Perfekt with haben, not sein, although it describes movement, because the reflexive pronoun is the accusative object: Ich habe mich verlaufen. Do not reach for verlieren here — that takes an object outside you (Ich habe den Schlüssel verloren), so *ich habe mich verloren* says something else entirely. A second, unrelated use is intransitive: Die Straße verläuft am Fluss entlang, the road runs along the river.'
+      ru: 'Строго пешком. Слово водителя — sich verfahren, и путаница между ними — типичная ошибка: приставка ver- в обоих означает «сделать не так», а laufen против fahren решает, каким способом. Perfekt с haben, а не с sein, хотя речь о движении, — потому что возвратное местоимение здесь прямое дополнение: Ich habe mich verlaufen. Не берите сюда verlieren: у него дополнение вне вас (Ich habe den Schlüssel verloren), так что «ich habe mich verloren» значит совсем другое. Есть и второе, несвязанное употребление, непереходное: Die Straße verläuft am Fluss entlang — дорога идёт вдоль реки.'
+      uk: 'Строго пішки. Слово водія — sich verfahren, і плутанина між ними — типова помилка: префікс ver- в обох означає «зробити не так», а laufen проти fahren вирішує, у який спосіб. Perfekt із haben, а не з sein, хоча йдеться про рух, — бо зворотний займенник тут прямий додаток: Ich habe mich verlaufen. Не беріть сюди verlieren: у нього додаток поза вами (Ich habe den Schlüssel verloren), тож «ich habe mich verloren» означає зовсім інше. Є й друге, непов’язане вживання, неперехідне: Die Straße verläuft am Fluss entlang — дорога йде вздовж річки.'
+
+  - de: sich nähern
+    ipa: "zɪç ˈnɛːɐn"
+    pos: verb
+    praesens_3sg: nähert sich
+    partizip2: sich genähert
+    aux: haben
+    valence: "sich + Akk; + Dat"
+    # Recognition only: narrative and report register. What a B1 learner produces for
+    # the same movement is A1 `kommen` with a preposition (Er kommt näher, Wir kommen
+    # dem Ziel näher) — this verb belongs to the sentence someone else wrote.
+    cards: recognition
+    en: to draw closer, to come nearer to something
+    ru: приближаться, подходить ближе
+    uk: наближатися, підходити ближче
+    example_de: Das Gewitter nähert sich langsam der Stadt.
+    example_en: The storm is slowly drawing closer to the town.
+    example_ru: Гроза медленно приближается к городу.
+    example_uk: Гроза поволі наближається до міста.
+    note:
+      en: 'Two objects in one sentence and they take different cases: the pronoun is accusative (mich, dich, sich) and the thing approached is a plain dative with no preposition — sich dem Haus nähern, sich dem Ende nähern. That bare dative is what makes it feel written; speech says näher kommen or einfach kommen. It works for time as well as space (Der Termin nähert sich) and for people meeting halfway (Die beiden Seiten haben sich genähert). The adjective behind it is nah, and the comparative näher is the everyday word.'
+      ru: 'Два дополнения в одном предложении, и падежи у них разные: местоимение — Akkusativ (mich, dich, sich), а то, к чему приближаются, — чистый Dativ без предлога: sich dem Haus nähern, sich dem Ende nähern. Этот бесприлоговый Dativ и делает глагол книжным; речь скажет näher kommen или просто kommen. Работает и во времени, не только в пространстве (Der Termin nähert sich), и о людях, идущих навстречу друг другу (Die beiden Seiten haben sich genähert). За ним стоит прилагательное nah, а обиходное слово — сравнительная степень näher.'
+      uk: 'Два додатки в одному реченні, і відмінки в них різні: займенник — Akkusativ (mich, dich, sich), а те, до чого наближаються, — чистий Dativ без прийменника: sich dem Haus nähern, sich dem Ende nähern. Цей безприйменниковий Dativ і робить дієслово книжним; мовлення скаже näher kommen або просто kommen. Працює і в часі, не лише в просторі (Der Termin nähert sich), і про людей, що йдуть назустріч одне одному (Die beiden Seiten haben sich genähert). За ним стоїть прикметник nah, а побутове слово — вищий ступінь näher.'
+
+  - de: sich weigern
+    ipa: "zɪç ˈvaɪ̯gɐn"
+    pos: verb
+    praesens_3sg: weigert sich
+    partizip2: sich geweigert
+    aux: haben
+    valence: "sich + Akk; zu + Infinitiv"
+    # Recognition only: `ablehnen` ("to turn down, to reject", regeln-verantwortung)
+    # is the shipped production card for saying no, and `nicht wollen` covers the rest.
+    cards: recognition
+    en: to refuse flatly, to say one will not do it
+    ru: отказываться, наотрез не соглашаться
+    uk: відмовлятися, навідріз не погоджуватися
+    example_de: Der Fahrer weigerte sich, ohne Fahrkarte weiterzufahren.
+    example_en: The driver refused to drive on without a ticket.
+    example_ru: Водитель отказался ехать дальше без билета.
+    example_uk: Водій відмовився їхати далі без квитка.
+    note:
+      en: 'It is stronger than a polite no: the person has been asked and will not do it. The frame is almost always a zu-infinitive — sich weigern, etwas zu tun — and it is one of the few verbs at B1 that hardly ever appears without one. ablehnen takes a noun instead (einen Vorschlag ablehnen, eine Einladung ablehnen) and is the neutral word for turning something down. Newspapers use the noun die Weigerung; the everyday sentence is simply Er will nicht.'
+      ru: 'Сильнее вежливого отказа: человека попросили, и он не станет этого делать. Конструкция почти всегда с zu-инфинитивом — sich weigern, etwas zu tun, — и это один из немногих глаголов уровня B1, который почти не встречается без него. У ablehnen дополнение существительное (einen Vorschlag ablehnen, eine Einladung ablehnen), и это нейтральное слово «отклонить». В газете встретится существительное die Weigerung; обиходное предложение — просто Er will nicht.'
+      uk: 'Сильніше за ввічливу відмову: людину попросили, і вона цього не робитиме. Конструкція майже завжди з zu-інфінітивом — sich weigern, etwas zu tun, — і це одне з небагатьох дієслів рівня B1, яке майже не трапляється без нього. У ablehnen додаток — іменник (einen Vorschlag ablehnen, eine Einladung ablehnen), і це нейтральне слово «відхилити». У газеті трапиться іменник die Weigerung; побутове речення — просто Er will nicht.'
+
+  - de: sich vergnügen
+    ipa: "zɪç fɛɐ̯ˈgnyːgn̩"
+    pos: verb
+    praesens_3sg: vergnügt sich
+    partizip2: sich vergnügt
+    aux: haben
+    valence: "sich + Akk; mit + Dat"
+    # Recognition only: `Vergnügen` ("pleasure, enjoyment", kultur-freizeit) ships as a
+    # production card, and A1 `Spaß haben` is what a learner actually says — the verb
+    # is a shade old-fashioned even for Germans.
+    cards: recognition
+    en: to amuse oneself, to spend the time pleasantly
+    ru: развлекаться, приятно проводить время
+    uk: розважатися, приємно проводити час
+    example_de: Die Kinder vergnügten sich stundenlang im Garten.
+    example_en: The children amused themselves in the garden for hours.
+    example_ru: Дети часами развлекались в саду.
+    example_uk: Діти годинами розважалися в саду.
+    note:
+      en: 'A slightly old-fashioned word that survives mostly in written narrative; what you say is Spaß haben or sich amüsieren. The family around it is very much alive, though: das Vergnügen (Mit Vergnügen! — with pleasure), viel Vergnügen! as a send-off, der Vergnügungspark for a funfair, and the adjective vergnügt below. Where it does take a complement it is mit + Dativ (Er vergnügte sich mit einem Buch).'
+      ru: 'Слово слегка старомодное и держится в основном в письменном повествовании; сказать же следует Spaß haben или sich amüsieren. Зато вся семья вокруг него жива: das Vergnügen (Mit Vergnügen! — «с удовольствием»), пожелание viel Vergnügen!, der Vergnügungspark — парк аттракционов, и прилагательное vergnügt ниже. Там, где дополнение всё же есть, это mit + Dativ (Er vergnügte sich mit einem Buch).'
+      uk: 'Слово трохи старомодне й тримається переважно в писемній оповіді; казати ж варто Spaß haben або sich amüsieren. Зате вся родина навколо нього жива: das Vergnügen (Mit Vergnügen! — «із задоволенням»), побажання viel Vergnügen!, der Vergnügungspark — парк розваг, і прикметник vergnügt нижче. Там, де додаток усе ж є, це mit + Dativ (Er vergnügte sich mit einem Buch).'
+
+  - de: sich etwas gefallen lassen
+    ipa: "zɪç ˈɛtvas gəˈfalən ˈlasn̩"
+    pos: phrase
+    # Recognition only: a four-part idiom whose parts do not mean what it means, and
+    # the production a B1 learner needs is `akzeptieren` (regeln-verantwortung) or the
+    # plain negation. A typed card would grade which of the four words was wanted.
+    cards: recognition
+    en: to put up with something, to let it be done to you
+    en_compact: "to put up with something"
+    ru: терпеть что-либо, мириться с чем-либо
+    uk: терпіти щось, миритися з чимось
+    example_de: Das muss ich mir nicht gefallen lassen!
+    example_en: I do not have to put up with that!
+    example_ru: Я не обязан это терпеть!
+    example_uk: Я не мушу цього терпіти!
+    note:
+      en: 'Almost always negated, and almost always said in anger — it is the German for drawing a line: Das lasse ich mir nicht gefallen. The pronoun is dative here (mir, dir, sich), not accusative, because the thing put up with is the accusative object. Note how far it has travelled from A1 gefallen, which means to please: on its own Das Bild gefällt mir is a compliment, and only the whole frame with lassen turns it into endurance. In the Perfekt lassen keeps its infinitive shape: Das habe ich mir lange gefallen lassen.'
+      ru: 'Почти всегда с отрицанием и почти всегда в сердцах — это немецкий способ провести черту: Das lasse ich mir nicht gefallen. Местоимение здесь в Dativ (mir, dir, sich), а не в Akkusativ, потому что прямое дополнение — то, что терпят. Обратите внимание, как далеко оборот ушёл от gefallen уровня A1 со значением «нравиться»: само по себе Das Bild gefällt mir — комплимент, и лишь вся конструкция с lassen делает из этого «терпеть». В Perfekt lassen сохраняет форму инфинитива: Das habe ich mir lange gefallen lassen.'
+      uk: 'Майже завжди із запереченням і майже завжди в серцях — це німецький спосіб провести межу: Das lasse ich mir nicht gefallen. Займенник тут у Dativ (mir, dir, sich), а не в Akkusativ, бо прямий додаток — те, що терплять. Зверніть увагу, як далеко зворот відійшов від gefallen рівня A1 зі значенням «подобатися»: саме по собі Das Bild gefällt mir — комплімент, і лише вся конструкція з lassen робить із цього «терпіти». У Perfekt lassen зберігає форму інфінітива: Das habe ich mir lange gefallen lassen.'
+
+  # --- Verben mit und ohne sich: jemanden aufregen, sich aufregen ---
+  - de: aufregen
+    ipa: "ˈaʊ̯fˌʁeːgn̩"
+    pos: verb
+    praesens_3sg: regt auf
+    partizip2: aufgeregt
+    aux: haben
+    valence: "+ Akk / sich"
+    # Recognition only: A2 ships `ärgern` ("to be annoyed, to get cross (about)") as a
+    # production card in gefuehle-reflexive-a2, with `sich ärgern` in its accept list —
+    # the same prompt, in another deck, where no accept list here can reach it.
+    cards: recognition
+    en: to upset somebody; to get worked up
+    en_compact: "to upset; to get worked up"
+    ru: волновать, выводить из себя; кипятиться
+    uk: хвилювати, виводити з рівноваги; сердитися
+    example_de: Reg dich nicht auf, wir finden eine Lösung.
+    example_en: Do not get worked up, we will find a solution.
+    example_ru: Не кипятись, мы найдём решение.
+    example_uk: Не сердься, ми знайдемо рішення.
+    note:
+      en: 'Two readings from one verb. Transitive it is what a thing does to a person — Die Nachricht hat ihn sehr aufgeregt — and reflexive it is what the person then does: sich über etwas aufregen, always with über + Akkusativ. Because both readings are real, the forms are written without sich. A2 sich ärgern is the near neighbour and the word to reach for in production; this one adds agitation to the annoyance, so it fits a raised voice better than a grumble. The participle aufgeregt has become an adjective of its own (Ich bin ganz aufgeregt — I am all excited), and die Aufregung is the noun.'
+      ru: 'Два чтения у одного глагола. Переходное — это то, что вещь делает с человеком (Die Nachricht hat ihn sehr aufgeregt), возвратное — то, что человек делает потом: sich über etwas aufregen, всегда с über + Akkusativ. Оба чтения настоящие, поэтому формы пишутся без sich. Ближайший сосед — sich ärgern уровня A2, и в производстве брать следует именно его; здесь к досаде добавлено возбуждение, так что слово скорее для повышенного голоса, чем для ворчания. Причастие aufgeregt стало самостоятельным прилагательным (Ich bin ganz aufgeregt — «я весь на нервах, в волнении»), а существительное — die Aufregung.'
+      uk: 'Два прочитання в одного дієслова. Перехідне — це те, що річ робить із людиною (Die Nachricht hat ihn sehr aufgeregt), зворотне — те, що людина робить потім: sich über etwas aufregen, завжди з über + Akkusativ. Обидва прочитання справжні, тому форми пишуться без sich. Найближчий сусід — sich ärgern рівня A2, і в продукуванні брати варто саме його; тут до досади додано збудження, тож слово радше для підвищеного голосу, ніж для бурчання. Дієприкметник aufgeregt став самостійним прикметником (Ich bin ganz aufgeregt — «я геть схвильований»), а іменник — die Aufregung.'
+
+  - de: beruhigen
+    ipa: "bəˈʁuːɪgn̩"
+    pos: verb
+    praesens_3sg: beruhigt
+    partizip2: beruhigt
+    aux: haben
+    valence: "+ Akk / sich"
+    en: to calm somebody down; to settle down again
+    ru: успокаивать; успокаиваться
+    uk: заспокоювати; заспокоюватися
+    example_de: Beruhige dich bitte und erzähl mir langsam, was passiert ist.
+    example_en: Please calm down and tell me slowly what happened.
+    example_ru: Успокойся, пожалуйста, и расскажи мне медленно, что случилось.
+    example_uk: Заспокойся, будь ласка, і розкажи мені поволі, що сталося.
+    note:
+      en: 'The exact counterweight to aufregen, and it works the same way in both directions: transitive with an accusative object (Die Mutter beruhigte das Kind) and reflexive for the person themselves (Beruhig dich!, Die Lage hat sich beruhigt). Because both readings are genuine the forms stay bare. It is built on the adjective ruhig, and the prefix be- is what makes it transitive — the same move as in beantworten from Antwort. Two useful chunks: Das beruhigt mich for relief at news, and beruhigend as an adjective (eine beruhigende Nachricht).'
+      ru: 'Точный противовес к aufregen, и работает так же в обе стороны: переходно с дополнением в Akkusativ (Die Mutter beruhigte das Kind) и возвратно о самом человеке (Beruhig dich!, Die Lage hat sich beruhigt). Оба чтения настоящие, поэтому формы остаются без sich. Построен на прилагательном ruhig, а приставка be- как раз и делает глагол переходным — тот же ход, что в beantworten от Antwort. Два полезных оборота: Das beruhigt mich — облегчение от новости, и прилагательное beruhigend (eine beruhigende Nachricht).'
+      uk: 'Точна противага до aufregen, і працює так само в обидва боки: перехідно з додатком у Akkusativ (Die Mutter beruhigte das Kind) і зворотно про саму людину (Beruhig dich!, Die Lage hat sich beruhigt). Обидва прочитання справжні, тому форми лишаються без sich. Побудоване на прикметнику ruhig, а префікс be- саме й робить дієслово перехідним — той самий хід, що в beantworten від Antwort. Два корисні звороти: Das beruhigt mich — полегшення від новини, і прикметник beruhigend (eine beruhigende Nachricht).'
+
+  - de: fürchten
+    ipa: "ˈfʏʁçtn̩"
+    pos: verb
+    praesens_3sg: fürchtet
+    partizip2: gefürchtet
+    aux: haben
+    valence: "+ Akk / sich vor + Dat"
+    # Recognition only: A2 ships `Angst` (gefuehle-reflexive-a2) and the chunk
+    # `Angst haben vor` is the production every learner needs — this verb is the
+    # written form of the same thing.
+    cards: recognition
+    en: to fear something; to be afraid of it
+    en_compact: "to fear; to be afraid"
+    ru: бояться, опасаться
+    uk: боятися, побоюватися
+    example_de: Ich fürchte, wir kommen zu spät zum Konzert.
+    example_en: I am afraid we will get to the concert too late.
+    example_ru: Боюсь, мы опоздаем на концерт.
+    example_uk: Боюся, ми запізнимося на концерт.
+    note:
+      en: 'Three shapes, and only one of them is common in speech. Transitive it takes an accusative object and belongs to writing: Er fürchtet die Prüfung. Reflexive it is sich vor etwas fürchten, mostly in stories about children and the dark. What everybody uses is the third one — Ich fürchte, … as a softener before bad news, exactly like English I am afraid. For all other purposes German says Angst haben vor + Dativ, which is what A2 teaches. The adjective furchtbar has drifted away from the meaning altogether and now simply means awful.'
+      ru: 'Три формы, и в речи распространена лишь одна. Переходно берёт Akkusativ и принадлежит письму: Er fürchtet die Prüfung. Возвратно — sich vor etwas fürchten, чаще в рассказах про детей и темноту. Все же пользуются третьим: Ich fürchte, … как смягчение перед плохой новостью, ровно как английское I am afraid. Во всех прочих случаях немецкий говорит Angst haben vor + Dativ, чему и учит A2. Прилагательное furchtbar ушло от значения совсем и теперь значит просто «ужасный».'
+      uk: 'Три форми, і в мовленні поширена лише одна. Перехідно бере Akkusativ і належить письму: Er fürchtet die Prüfung. Зворотно — sich vor etwas fürchten, частіше в оповідях про дітей і темряву. Усі ж користуються третьою: Ich fürchte, … як пом’якшення перед поганою новиною, точно як англійське I am afraid. У решті випадків німецька каже Angst haben vor + Dativ, чого й навчає A2. Прикметник furchtbar відійшов від значення зовсім і тепер означає просто «жахливий».'
+
+  - de: erleichtern
+    ipa: "ɛɐ̯ˈlaɪ̯çtɐn"
+    pos: verb
+    praesens_3sg: erleichtert
+    partizip2: erleichtert
+    aux: haben
+    valence: "+ Dat + Akk"
+    # Recognition only: the everyday production is `einfacher machen` or `helfen`
+    # (A1) — this is the verb of a written report, and its participle `erleichtert`
+    # is what the learner actually meets.
+    cards: recognition
+    en: to make something easier for somebody
+    ru: облегчать, упрощать (для кого-либо)
+    uk: полегшувати, спрощувати (для когось)
+    example_de: Der neue Aufzug erleichtert älteren Leuten den Weg nach oben.
+    example_en: The new lift makes the way upstairs easier for older people.
+    example_ru: Новый лифт облегчает пожилым людям подъём наверх.
+    example_uk: Новий ліфт полегшує літнім людям підйом нагору.
+    note:
+      en: 'Two objects: the person helped is dative and the thing made easier is accusative — jemandem etwas erleichtern. Built from leicht with er-, the prefix that turns an adjective into a verb of becoming or causing (erweitern from weit, ermöglichen from möglich). Its participle has become an adjective of feeling and is far more frequent than the verb: Ich bin erleichtert — I am relieved, said when a worry has lifted. Die Erleichterung is that same relief as a noun.'
+      ru: 'Два дополнения: тот, кому помогают, — в Dativ, а то, что облегчают, — в Akkusativ: jemandem etwas erleichtern. Образовано от leicht с приставкой er-, которая превращает прилагательное в глагол становления или причинения (erweitern от weit, ermöglichen от möglich). Его причастие стало прилагательным чувства и встречается куда чаще самого глагола: Ich bin erleichtert — «у меня отлегло», когда тревога ушла. Die Erleichterung — то же облегчение существительным.'
+      uk: 'Два додатки: той, кому допомагають, — у Dativ, а те, що полегшують, — у Akkusativ: jemandem etwas erleichtern. Утворене від leicht із префіксом er-, який перетворює прикметник на дієслово становлення або спричинення (erweitern від weit, ermöglichen від möglich). Його дієприкметник став прикметником почуття і трапляється значно частіше за саме дієслово: Ich bin erleichtert — «мені відлягло», коли тривога минула. Die Erleichterung — те саме полегшення іменником.'
+
+  # --- Starke Gefühle: hassen, leiden, lächeln ---
+  - de: hassen
+    ipa: "ˈhasn̩"
+    pos: verb
+    praesens_3sg: hasst
+    partizip2: gehasst
+    aux: haben
+    valence: "+ Akk"
+    en: to hate
+    ru: ненавидеть
+    uk: ненавидіти
+    example_de: Ich hasse es, im Regen auf den Bus zu warten.
+    example_en: I hate waiting for the bus in the rain.
+    example_ru: Ненавижу ждать автобус под дождём.
+    example_uk: Ненавиджу чекати на автобус під дощем.
+    note:
+      en: 'The straight opposite of lieben, and just as strong — German does not use it as loosely as English does about food or weather, so a dish you dislike is one you mag ich nicht. With an activity the frame is es hassen, etwas zu tun, and that es cannot be dropped. The du-form is hasst with one s written before the t (the stem already ends in ss). The noun der Hass has no plural, and hassen und lieben are the two poles a B1 text will set against each other.'
+      ru: 'Прямая противоположность lieben и такой же силы — немецкий употребляет его не так свободно, как английский о еде или погоде, так что нелюбимое блюдо — это то, которое mag ich nicht. С действием конструкция такая: es hassen, etwas zu tun, и это es опустить нельзя. Форма 2-го лица — hasst, с одним s перед t (основа и так кончается на ss). У существительного der Hass множественного числа нет, а hassen und lieben — два полюса, которые текст уровня B1 любит противопоставлять.'
+      uk: 'Пряма протилежність lieben і такої самої сили — німецька вживає його не так вільно, як англійська про їжу чи погоду, тож нелюбима страва — це та, яку mag ich nicht. З дією конструкція така: es hassen, etwas zu tun, і це es опустити не можна. Форма 2-ї особи — hasst, з одним s перед t (основа й так закінчується на ss). Іменник der Hass множини не має, а hassen und lieben — два полюси, які текст рівня B1 залюбки протиставляє.'
+
+  - de: leiden
+    ipa: "ˈlaɪ̯dn̩"
+    pos: verb
+    praesens_3sg: leidet
+    partizip2: gelitten
+    aux: haben
+    valence: "an / unter + Dat"
+    en: to suffer, to be badly affected by something
+    ru: страдать, тяжело переносить
+    uk: страждати, тяжко переносити
+    example_de: Viele Menschen in der Stadt leiden unter dem Lärm.
+    example_en: Many people in the town suffer from the noise.
+    example_ru: Многие в городе страдают от шума.
+    example_uk: Багато людей у місті потерпають від шуму.
+    note:
+      en: 'Strong verb: leiden – litt – gelitten, and the participle loses the d, which is the part that catches everyone out. Two prepositions divide the work — an + Dativ for an illness one has (Sie leidet an Diabetes), unter + Dativ for a condition one is exposed to (Er leidet unter dem Stress). A third use is negative and idiomatic: Ich kann ihn nicht leiden means I cannot stand him. The noun das Leid is misfortune in the grand sense, and it is the same word inside the phrase leid tun below.'
+      ru: 'Сильный глагол: leiden – litt – gelitten, и в причастии выпадает d — на этом спотыкаются все. Работу делят два предлога: an + Dativ о болезни, которая есть у человека (Sie leidet an Diabetes), и unter + Dativ об обстоятельствах, которым он подвергается (Er leidet unter dem Stress). Третье употребление — отрицательное и идиоматичное: Ich kann ihn nicht leiden значит «терпеть его не могу». Существительное das Leid — «горе» в высоком смысле, и это то же слово внутри оборота leid tun ниже.'
+      uk: 'Сильне дієслово: leiden – litt – gelitten, і в дієприкметнику випадає d — на цьому спотикаються всі. Роботу ділять два прийменники: an + Dativ про хворобу, яку людина має (Sie leidet an Diabetes), і unter + Dativ про обставини, яким вона піддається (Er leidet unter dem Stress). Третє вживання — заперечне та ідіоматичне: Ich kann ihn nicht leiden означає «терпіти його не можу». Іменник das Leid — «горе» у високому сенсі, і це те саме слово всередині звороту leid tun нижче.'
+
+  - de: leid tun
+    ipa: "ˈlaɪ̯t ˈtuːn"
+    pos: phrase
+    # Recognition only: A2 ships `leidtun` — the same words written solid — as a
+    # production card in verben-handlungen-a2-2 ("to be sorry, to feel sorry for").
+    # This entry keys the Wortliste's two-word spelling and must not deal a second
+    # production card for the identical prompt.
+    cards: recognition
+    en: to be sorry about something; to feel sorry for somebody
+    ru: сожалеть; жалеть кого-либо
+    uk: шкодувати; жаліти когось
+    example_de: Es tut mir leid, dass ich nicht anrufen konnte.
+    example_en: I am sorry that I could not call.
+    example_ru: Мне жаль, что я не смог позвонить.
+    example_uk: Мені шкода, що я не зміг зателефонувати.
+    note:
+      en: 'The person who is sorry stands in the dative and the sentence starts with an empty es — Es tut mir leid, Es tut ihm leid. Turn it round and the person becomes the object of pity: Der Hund tut mir leid, I feel sorry for the dog. Both spellings are current German; the Wortliste prints the two words apart, the 2006 reform allows leidtun written solid, and both are correct today. Do not confuse it with the apology Entschuldigung, which asks to be excused, while this one only reports the regret.'
+      ru: 'Тот, кому жаль, стоит в Dativ, а предложение начинается с пустого es: Es tut mir leid, Es tut ihm leid. Переверните — и человек становится объектом жалости: Der Hund tut mir leid, «мне жаль собаку». Оба написания — сегодняшний немецкий: Wortliste печатает два слова раздельно, реформа 2006 года разрешает слитное leidtun, и оба верны. Не смешивать с Entschuldigung: то просит извинения, а этот оборот лишь сообщает о сожалении.'
+      uk: 'Той, кому шкода, стоїть у Dativ, а речення починається з порожнього es: Es tut mir leid, Es tut ihm leid. Переверніть — і людина стає об’єктом жалю: Der Hund tut mir leid, «мені шкода собаку». Обидва написання — сьогоднішня німецька: Wortliste друкує два слова окремо, реформа 2006 року дозволяє злите leidtun, і обидва правильні. Не змішувати з Entschuldigung: те просить вибачення, а цей зворот лише повідомляє про жаль.'
+
+  - de: lächeln
+    ipa: "ˈlɛçl̩n"
+    pos: verb
+    praesens_3sg: lächelt
+    partizip2: gelächelt
+    aux: haben
+    # Recognition only: A1/A2 ships `lachen` ("to laugh", verben-grundwortschatz) as a
+    # production card, and the two are one letter apart — a typed prompt reading
+    # "to smile / to laugh" would grade which of them the author had in mind.
+    cards: recognition
+    en: to smile
+    ru: улыбаться
+    uk: усміхатися
+    example_de: Sie lächelte, als sie das Foto sah.
+    example_en: She smiled when she saw the photo.
+    example_ru: Она улыбнулась, когда увидела фотографию.
+    example_uk: Вона усміхнулася, коли побачила світлину.
+    note:
+      en: 'The quiet relative of lachen: laughing makes a sound, smiling does not, and the -eln ending is the diminutive that says so — the same suffix in klingeln and streicheln. Watch the present tense: ich lächle drops the e of the stem, while lächelst, lächelt keep it. Two chunks are worth having whole: über etwas lächeln, to smile at something, and jemanden anlächeln, to smile at a person. The noun das Lächeln is simply the infinitive capitalised, and das Lachen beside it works the same way.'
+      ru: 'Тихий родственник lachen: смех звучит, улыбка — нет, и суффикс -eln как раз об этом, тот же уменьшительный суффикс, что в klingeln и streicheln. Следите за настоящим временем: ich lächle теряет e основы, а lächelst, lächelt его сохраняют. Два оборота стоит взять целиком: über etwas lächeln — «улыбаться чему-либо» и jemanden anlächeln — «улыбнуться кому-либо». Существительное das Lächeln — это просто инфинитив с прописной буквы, и das Lachen рядом устроено так же.'
+      uk: 'Тихий родич lachen: сміх звучить, усмішка — ні, і суфікс -eln саме про це, той самий зменшувальний суфікс, що в klingeln і streicheln. Стежте за теперішнім часом: ich lächle втрачає e основи, а lächelst, lächelt його зберігають. Два звороти варто взяти цілими: über etwas lächeln — «усміхатися чомусь» і jemanden anlächeln — «усміхнутися комусь». Іменник das Lächeln — це просто інфінітив із великої літери, і das Lachen поряд влаштоване так само.'
+
+  - de: spüren
+    ipa: "ˈʃpyːʁən"
+    pos: verb
+    praesens_3sg: spürt
+    partizip2: gespürt
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: `fühlen` ("to feel a certain way, to feel well or unwell",
+    # gesundheit-arzttermin) is the shipped production card for feeling, and the two
+    # overlap across most of their range.
+    cards: recognition
+    en: to sense something, to notice it in the body
+    ru: чувствовать, ощущать (телом)
+    uk: відчувати, чути тілом
+    example_de: Nach dem langen Spaziergang spürte er jeden Muskel.
+    example_en: After the long walk he could feel every muscle.
+    example_ru: После долгой прогулки он чувствовал каждую мышцу.
+    example_uk: Після довгої прогулянки він відчував кожен м’яз.
+    note:
+      en: 'It always has an object — you sense something — while fühlen more often describes how you are (Ich fühle mich gut). Where they overlap, this one leans on the body and on things noticed rather than reasoned: Ich spüre den Wind, Man spürt, dass sie müde ist. The related noun die Spur means a trace or a lane on the motorway, and keine Spur! is a flat denial. The verb is also what a hunting dog does, which is where the trace sense comes from.'
+      ru: 'У него всегда есть дополнение — ощущают что-то, — тогда как fühlen чаще описывает состояние (Ich fühle mich gut). Там, где они пересекаются, это слово тяготеет к телу и к тому, что замечено, а не выведено: Ich spüre den Wind, Man spürt, dass sie müde ist. Родственное существительное die Spur — «след», а на автобане «полоса», и keine Spur! — категорическое отрицание. Тем же глаголом описывают работу охотничьей собаки, откуда и значение следа.'
+      uk: 'У нього завжди є додаток — відчувають щось, — тоді як fühlen частіше описує стан (Ich fühle mich gut). Там, де вони перетинаються, це слово тяжіє до тіла й до поміченого, а не виведеного: Ich spüre den Wind, Man spürt, dass sie müde ist. Споріднений іменник die Spur — «слід», а на автобані «смуга», і keine Spur! — категоричне заперечення. Тим самим дієсловом описують роботу мисливського собаки, звідки й значення сліду.'
+
+  # --- Die Gefühle als Nomen ---
+  - de: Gefühl
+    ipa: "gəˈfyːl"
+    pos: noun
+    gender: n
+    plural: "die Gefühle"
+    en: feeling, emotion
+    ru: чувство, ощущение
+    uk: почуття, відчуття
+    example_de: Ich hatte das Gefühl, dass etwas nicht stimmt.
+    example_en: I had the feeling that something was wrong.
+    example_ru: У меня было чувство, что что-то не так.
+    example_uk: У мене було відчуття, що щось не так.
+    note:
+      en: 'One noun for two English words: it covers both an emotion (Gefühle zeigen) and a physical sensation (ein Gefühl in den Fingern). The everyday chunk is das Gefühl haben, dass … — a hunch about something you cannot prove — and it is far commoner than glauben in speech. Compounds worth recognising: das Selbstgefühl, das Mitgefühl (sympathy), and gefühlsmäßig for a decision made on instinct. The adjective is gefühlvoll, and the verb behind it is fühlen.'
+      ru: 'Одно существительное на два русских: оно покрывает и эмоцию (Gefühle zeigen), и телесное ощущение (ein Gefühl in den Fingern). Обиходный оборот — das Gefühl haben, dass … — догадка, которую не докажешь, и в речи он куда частотнее, чем glauben. Составные слова, которые стоит узнавать: das Selbstgefühl, das Mitgefühl («сочувствие») и gefühlsmäßig — о решении, принятом по наитию. Прилагательное — gefühlvoll, а глагол за ним — fühlen.'
+      uk: 'Один іменник на два українські: він покриває і емоцію (Gefühle zeigen), і тілесне відчуття (ein Gefühl in den Fingern). Побутовий зворот — das Gefühl haben, dass … — здогад, якого не доведеш, і в мовленні він значно частотніший за glauben. Складні слова, які варто впізнавати: das Selbstgefühl, das Mitgefühl («співчуття») і gefühlsmäßig — про рішення, ухвалене за наїттям. Прикметник — gefühlvoll, а дієслово за ним — fühlen.'
+
+  - de: Freude
+    ipa: "ˈfʁɔʏ̯də"
+    pos: noun
+    gender: f
+    plural: "die Freuden"
+    en: joy, delight
+    ru: радость
+    uk: радість
+    example_de: Die Kinder machten der Großmutter mit dem Bild eine große Freude.
+    example_en: The children gave their grandmother great delight with the picture.
+    example_ru: Дети очень порадовали бабушку этим рисунком.
+    example_uk: Діти дуже втішили бабусю цим малюнком.
+    note:
+      en: 'The noun behind sich freuen, and it lives in chunks: jemandem eine Freude machen (to give somebody pleasure), Freude an etwas haben (to enjoy doing something, with an + Dativ), mit Freude and vor Freude. The plural die Freuden is rare and literary. Two neighbours divide the field — A2 Glück is luck as well as happiness and is about a state, Spaß is the fun of an activity, and this one is the warm feeling itself. Viel Freude! is a slightly formal Have fun!, where speech says Viel Spaß!'
+      ru: 'Существительное за глаголом sich freuen, и живёт оно в оборотах: jemandem eine Freude machen («порадовать кого-либо»), Freude an etwas haben («получать удовольствие от чего-либо», с an + Dativ), mit Freude и vor Freude. Множественное die Freuden редкое и книжное. Поле делят два соседа: Glück уровня A2 — это и удача, и счастье как состояние, Spaß — веселье от занятия, а это слово — само тёплое чувство. Viel Freude! — чуть более официальное «приятно провести время», где речь скажет Viel Spaß!'
+      uk: 'Іменник за дієсловом sich freuen, і живе він у зворотах: jemandem eine Freude machen («потішити когось»), Freude an etwas haben («мати втіху з чогось», з an + Dativ), mit Freude і vor Freude. Множина die Freuden рідкісна й книжна. Поле ділять два сусіди: Glück рівня A2 — це і щастя як стан, і удача, Spaß — веселощі від заняття, а це слово — саме тепле почуття. Viel Freude! — трохи офіційніше «приємно провести час», де мовлення скаже Viel Spaß!'
+
+  - de: Sorge
+    ipa: "ˈzɔʁgə"
+    pos: noun
+    gender: f
+    plural: "die Sorgen"
+    en: worry, concern
+    ru: забота, тревога
+    uk: турбота, тривога
+    example_de: Mach dir keine Sorgen, ich rufe an, sobald ich angekommen bin.
+    example_en: Do not worry, I will call as soon as I have arrived.
+    example_ru: Не волнуйся, я позвоню, как только приеду.
+    example_uk: Не хвилюйся, я зателефоную, щойно приїду.
+    note:
+      en: 'Usually plural in the living phrases: sich Sorgen machen um jemanden is how German says to worry — with a dative pronoun and the noun in the plural — and Keine Sorge! is the reassurance. The singular turns up in written German for responsibility rather than anxiety: die Sorge für die Kinder, and the verb sorgen für means to see to something (Ich sorge für das Essen). One family, two directions: besorgt is worried, besorgen is to get hold of something, and die Fürsorge is welfare in the official sense.'
+      ru: 'В живых оборотах обычно множественное число: sich Sorgen machen um jemanden — так немецкий говорит «волноваться», с местоимением в Dativ и существительным во множественном, — а Keine Sorge! — это «не беспокойтесь». Единственное число встречается в письменном языке и означает скорее ответственность, чем тревогу: die Sorge für die Kinder, а глагол sorgen für — «позаботиться о чём-либо» (Ich sorge für das Essen). Одна семья, два направления: besorgt — «встревоженный», besorgen — «раздобыть», а die Fürsorge — «социальная опека».'
+      uk: 'У живих зворотах зазвичай множина: sich Sorgen machen um jemanden — так німецька каже «хвилюватися», із займенником у Dativ та іменником у множині, — а Keine Sorge! — це «не турбуйтеся». Однина трапляється в писемній мові й означає радше відповідальність, ніж тривогу: die Sorge für die Kinder, а дієслово sorgen für — «подбати про щось» (Ich sorge für das Essen). Одна родина, два напрямки: besorgt — «стривожений», besorgen — «роздобути», а die Fürsorge — «соціальна опіка».'
+
+  - de: Gedanke
+    ipa: "gəˈdaŋkə"
+    pos: noun
+    gender: m
+    plural: "die Gedanken"
+    en: thought
+    ru: мысль
+    uk: думка
+    example_de: Der Gedanke an den Umzug gefällt mir immer besser.
+    example_en: The thought of moving house appeals to me more and more.
+    example_ru: Мысль о переезде нравится мне всё больше.
+    example_uk: Думка про переїзд подобається мені дедалі більше.
+    note:
+      en: 'An n-noun: every case except the nominative singular adds -n, and the genitive adds -ns — des Gedankens, dem Gedanken, den Gedanken. The chunk to learn beside Sorgen is sich Gedanken machen über etwas, to give something serious thought, which is worry''s calmer cousin. The preposition for what the thought is about is an + Akkusativ: der Gedanke an die Prüfung. Gedankenlos means thoughtless in the careless sense, and in Gedanken sein is to be lost in thought.'
+      ru: 'Слабое существительное (n-Deklination): во всех падежах, кроме именительного единственного, добавляется -n, а в родительном -ns: des Gedankens, dem Gedanken, den Gedanken. Оборот, который стоит выучить рядом с Sorgen, — sich Gedanken machen über etwas, «всерьёз задуматься о чём-либо», спокойный родственник тревоги. Предлог для предмета мысли — an + Akkusativ: der Gedanke an die Prüfung. Gedankenlos — «бездумный, невнимательный», а in Gedanken sein — «быть погружённым в мысли».'
+      uk: 'Слабкий іменник (n-Deklination): в усіх відмінках, крім називного однини, додається -n, а в родовому -ns: des Gedankens, dem Gedanken, den Gedanken. Зворот, який варто вивчити поряд із Sorgen, — sich Gedanken machen über etwas, «серйозно замислитися про щось», спокійний родич тривоги. Прийменник для предмета думки — an + Akkusativ: der Gedanke an die Prüfung. Gedankenlos — «бездумний, неуважний», а in Gedanken sein — «бути заглибленим у думки».'
+
+  - de: Geheimnis
+    ipa: "gəˈhaɪ̯mnɪs"
+    pos: noun
+    gender: n
+    plural: "die Geheimnisse"
+    # Recognition only: `geheim` ("secret, kept from everyone else") ships as a
+    # production card in eigenschaften-bewertung-b1, and a prompt reading "secret"
+    # cannot tell the learner whether the adjective or this noun is wanted.
+    cards: recognition
+    en: something kept hidden from other people
+    ru: тайна, секрет
+    uk: таємниця, секрет
+    example_de: Sie hat mir ein Geheimnis erzählt, das ich niemandem weitersagen darf.
+    example_en: She told me something I am not allowed to pass on to anybody.
+    example_ru: Она рассказала мне тайну, которую я никому не могу передать.
+    example_uk: Вона розповіла мені таємницю, яку я нікому не можу переказати.
+    note:
+      en: 'The -nis suffix builds neuter nouns from adjectives and verbs, and it doubles the s in the plural: Geheimnisse, like Ereignisse and Erlebnisse. The verbs around it are ein Geheimnis haben, bewahren (to keep) and verraten (to give away, in the verben-kommunikation-ausdruck-b1 deck). Two adjectives that look related are not the same: geheim describes a thing that is classified, heimlich describes an action done on the quiet, and only the second one fits Er hat heimlich geraucht.'
+      ru: 'Суффикс -nis строит существительные среднего рода от прилагательных и глаголов и удваивает s во множественном числе: Geheimnisse, как Ereignisse и Erlebnisse. Глаголы вокруг: ein Geheimnis haben, bewahren («хранить») и verraten («выдать», в колоде verben-kommunikation-ausdruck-b1). Два похожих прилагательных — не одно и то же: geheim описывает вещь как засекреченную, heimlich — действие, сделанное украдкой, и только второе подходит к Er hat heimlich geraucht.'
+      uk: 'Суфікс -nis будує іменники середнього роду від прикметників і дієслів і подвоює s у множині: Geheimnisse, як Ereignisse та Erlebnisse. Дієслова навколо: ein Geheimnis haben, bewahren («берегти») і verraten («виказати», у колоді verben-kommunikation-ausdruck-b1). Два схожі прикметники — не одне й те саме: geheim описує річ як засекречену, heimlich — дію, зроблену потайки, і лише друге пасує до Er hat heimlich geraucht.'
+
+  - de: Verzeihung
+    ipa: "fɛɐ̯ˈtsaɪ̯ʊŋ"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: A1/A2 ships `Entschuldigung` (funktionswoerter-chunks) as a
+    # production card for exactly this slot — excuse me, sorry — and the two are
+    # interchangeable in the phrases a learner needs.
+    cards: recognition
+    en: pardon, forgiveness
+    ru: прощение; извините
+    uk: пробачення; перепрошую
+    example_de: Verzeihung, ist dieser Platz noch frei?
+    example_en: Excuse me, is this seat still free?
+    example_ru: Извините, это место ещё свободно?
+    example_uk: Перепрошую, це місце ще вільне?
+    note:
+      en: 'As a one-word interjection it is the slightly more formal twin of A1 Entschuldigung, and both do double duty: getting a stranger''s attention and apologising for a small thing. As a real noun it means forgiveness and belongs to writing: jemanden um Verzeihung bitten. No plural. The verb is verzeihen with a dative person — Verzeihen Sie mir bitte — which is the pattern to notice, since A2 entschuldigen takes an accusative one instead. Wie bitte? is what you say when you simply did not hear.'
+      ru: 'Как междометие это чуть более официальный двойник Entschuldigung уровня A1, и оба делают двойную работу: привлечь внимание незнакомого человека и извиниться за мелочь. Как настоящее существительное значит «прощение» и принадлежит письму: jemanden um Verzeihung bitten. Множественного числа нет. Глагол — verzeihen с человеком в Dativ (Verzeihen Sie mir bitte), и на это стоит обратить внимание: у entschuldigen уровня A2 человек в Akkusativ. А если вы просто не расслышали, говорят Wie bitte?'
+      uk: 'Як вигук це трохи офіційніший двійник Entschuldigung рівня A1, і обидва роблять подвійну роботу: привернути увагу незнайомця й перепросити за дрібницю. Як справжній іменник означає «пробачення» і належить письму: jemanden um Verzeihung bitten. Множини немає. Дієслово — verzeihen з особою в Dativ (Verzeihen Sie mir bitte), і на це варто зважити: у entschuldigen рівня A2 особа в Akkusativ. А якщо ви просто не розчули, кажуть Wie bitte?'
+
+  - de: Unglück
+    ipa: "ˈʊnˌglʏk"
+    pos: noun
+    gender: n
+    plural: "die Unglücke"
+    # Recognition only: A2 ships `Glück` ("luck; happiness", gefuehle-reflexive-a2) and
+    # `Pech` ("bad luck", erfahrungen-erzaehlen) as production cards — between them
+    # they own the prompt, and this word is the written register above both.
+    cards: recognition
+    en: misfortune; a serious accident
+    ru: несчастье; несчастный случай
+    uk: нещастя; нещасний випадок
+    example_de: Bei dem Unglück auf der Autobahn wurden zum Glück nur zwei Menschen verletzt.
+    example_en: In the accident on the motorway only two people were injured, fortunately.
+    example_ru: При аварии на автобане, к счастью, пострадали лишь двое.
+    example_uk: Під час аварії на автобані, на щастя, постраждали лише двоє.
+    note:
+      en: 'Two meanings that pull in different directions. Abstractly it is the opposite of Glück, bad fortune in general — Unglück haben, im Unglück. Concretely it is a large accident in the news, bigger than an Unfall: das Zugunglück, das Grubenunglück. The everyday word for a run of bad luck is Pech (So ein Pech!). The adjective unglücklich means unhappy about something, and unglücklicherweise is the written unfortunately.'
+      ru: 'Два значения, тянущие в разные стороны. Отвлечённо это противоположность Glück, невезение вообще: Unglück haben, im Unglück. Конкретно — крупное происшествие в новостях, больше, чем Unfall: das Zugunglück, das Grubenunglück. Обиходное слово о полосе неудач — Pech (So ein Pech!). Прилагательное unglücklich значит «несчастный, огорчённый», а unglücklicherweise — письменное «к несчастью».'
+      uk: 'Два значення, що тягнуть у різні боки. Абстрактно це протилежність Glück, невезіння взагалі: Unglück haben, im Unglück. Конкретно — велика подія в новинах, більша за Unfall: das Zugunglück, das Grubenunglück. Побутове слово про смугу невдач — Pech (So ein Pech!). Прикметник unglücklich означає «нещасний, засмучений», а unglücklicherweise — писемне «на нещастя».'
+
+  - de: Wunder
+    ipa: "ˈvʊndɐ"
+    pos: noun
+    gender: n
+    plural: "die Wunder"
+    # Recognition only: what the learner needs to produce here is the chunk
+    # `kein Wunder`, and the noun otherwise belongs to fairy tales and news
+    # headlines — comprehension lexis rather than something a B1 learner says.
+    cards: recognition
+    en: miracle, something no one can explain
+    ru: чудо
+    uk: диво
+    example_de: Kein Wunder, dass er müde ist — er hat die ganze Nacht gearbeitet.
+    example_en: No wonder he is tired — he worked all night.
+    example_ru: Неудивительно, что он устал — он работал всю ночь.
+    example_uk: Не дивно, що він утомився — він працював цілу ніч.
+    note:
+      en: 'The phrase that keeps it alive is Kein Wunder, dass …, said whenever a result was obvious from the cause. Plural like the singular, no ending. It is the same stem as sich wundern above: the verb is the small everyday reaction, this noun is the large event. wunderbar and wunderschön use it as an intensifier and mean simply wonderful, while das Wunder itself stays literal — a miracle, a marvel, or the Wirtschaftswunder of the 1950s.'
+      ru: 'Живым его держит оборот Kein Wunder, dass … — так говорят, когда следствие очевидно из причины. Множественное совпадает с единственным, без окончания. Корень тот же, что у sich wundern выше: глагол — мелкая обиходная реакция, а это существительное — крупное событие. wunderbar и wunderschön используют его как усилитель и значат просто «чудесный», тогда как само das Wunder остаётся буквальным: чудо, диво или das Wirtschaftswunder пятидесятых.'
+      uk: 'Живим його тримає зворот Kein Wunder, dass … — так кажуть, коли наслідок очевидний із причини. Множина збігається з одниною, без закінчення. Корінь той самий, що в sich wundern вище: дієслово — дрібна побутова реакція, а цей іменник — велика подія. wunderbar і wunderschön використовують його як підсилювач і означають просто «чудовий», тоді як саме das Wunder лишається буквальним: диво або das Wirtschaftswunder п’ятдесятих.'
+
+  # --- Schreck, Träne, Blick: was den Gefühlen anzusehen ist ---
+  - de: Schreck
+    ipa: "ˈʃʁɛk"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: `erschrecken` ("to get a fright, to be startled",
+    # erfahrungen-erzaehlen) is the shipped production card for this moment, and A2
+    # `Angst` owns the wider prompt.
+    cards: recognition
+    en: a sudden fright, a start
+    ru: испуг, внезапный страх
+    uk: переляк, раптовий страх
+    example_de: Vor Schreck ließ sie die Tasse fallen.
+    example_en: She dropped the cup in fright.
+    example_ru: От испуга она уронила чашку.
+    example_uk: З переляку вона впустила чашку.
+    note:
+      en: 'One short moment, not a state: it is the jolt at the instant something happens. The phrases are vor Schreck (out of fright, as a cause) and einen Schreck bekommen or kriegen. It has no ordinary plural. Angst is the lasting fear that comes before or after; this is only the jump. The verb erschrecken splits in two — intransitive strong (ich erschrecke, erschrak, bin erschrocken) for getting the fright, weak transitive (Du hast mich erschreckt) for giving one.'
+      ru: 'Один короткий миг, а не состояние: это толчок в момент, когда что-то произошло. Обороты: vor Schreck («от испуга», как причина) и einen Schreck bekommen / kriegen. Обычного множественного числа нет. Angst — длящийся страх до или после, а это лишь вздрагивание. Глагол erschrecken раздваивается: непереходный сильный (ich erschrecke, erschrak, bin erschrocken) — «испугаться», слабый переходный (Du hast mich erschreckt) — «испугать».'
+      uk: 'Одна коротка мить, а не стан: це поштовх у момент, коли щось сталося. Звороти: vor Schreck («з переляку», як причина) і einen Schreck bekommen / kriegen. Звичайної множини немає. Angst — тривалий страх до або після, а це лише здригання. Дієслово erschrecken роздвоюється: неперехідне сильне (ich erschrecke, erschrak, bin erschrocken) — «злякатися», слабке перехідне (Du hast mich erschreckt) — «налякати».'
+
+  - de: Schrecken
+    ipa: "ˈʃʁɛkn̩"
+    pos: noun
+    gender: m
+    plural: "die Schrecken"
+    # Recognition only: the written, weightier form beside `Schreck` in this same
+    # deck — one prompt cannot ask for both, and neither is a word a B1 learner
+    # produces.
+    cards: recognition
+    en: horror, lasting terror
+    ru: ужас, длительный страх
+    uk: жах, тривалий страх
+    example_de: Die Bilder aus dem Krieg zeigen den Schrecken dieser Jahre.
+    example_en: The pictures from the war show the horror of those years.
+    example_ru: Снимки с войны показывают ужас тех лет.
+    example_uk: Світлини з війни показують жах тих років.
+    note:
+      en: 'The long form of Schreck, and the extra syllable buys weight rather than length of time alone: reports and history books use it for horror on a large scale, and it takes a plural (die Schrecken des Krieges). In the fixed phrase mit Schrecken feststellen it is still the sudden kind. Everyday German gets by with Angst and Schreck, so treat this one as reading vocabulary. The adjective schrecklich has worn down completely and now means no more than terrible or awful in ordinary complaints.'
+      ru: 'Длинная форма от Schreck, и лишний слог даёт вес, а не только длительность: отчёты и исторические книги употребляют его об ужасе большого масштаба, и множественное число у него есть (die Schrecken des Krieges). В устойчивом mit Schrecken feststellen речь всё ещё о внезапном. Обиходный немецкий обходится словами Angst и Schreck, так что это слово для чтения. Прилагательное schrecklich стёрлось совсем и в обычных жалобах значит не больше, чем «ужасный, кошмарный».'
+      uk: 'Довга форма від Schreck, і зайвий склад дає вагу, а не лише тривалість: звіти та історичні книжки вживають його про жах великого масштабу, і множина в нього є (die Schrecken des Krieges). У сталому mit Schrecken feststellen ідеться все ще про раптове. Побутова німецька обходиться словами Angst і Schreck, тож це слово для читання. Прикметник schrecklich стерся зовсім і у звичайних скаргах означає не більше, ніж «жахливий, кошмарний».'
+
+  - de: Träne
+    ipa: "ˈtʁɛːnə"
+    pos: noun
+    gender: f
+    plural: "die Tränen"
+    # Recognition only: A1/A2 ships `weinen` ("to cry", verben-grundwortschatz) as a
+    # production card, and that verb is what a learner says — the noun belongs to
+    # narrative prose.
+    cards: recognition
+    en: tear
+    ru: слеза
+    uk: сльоза
+    example_de: Sie hatte Tränen in den Augen, als sie die Geschichte erzählte.
+    example_en: She had tears in her eyes as she told the story.
+    example_ru: У неё были слёзы на глазах, когда она рассказывала эту историю.
+    example_uk: У неї були сльози на очах, коли вона розповідала цю історію.
+    note:
+      en: 'Nearly always plural in the living phrases: Tränen in den Augen haben, in Tränen ausbrechen (to burst into tears), unter Tränen. German cries the verb and shows the noun, so weinen carries the action and this word the picture. Do not confuse it with trennen, to separate, which differs by one letter and one vowel length. The compound das Tränengas is tear gas, and zu Tränen rührend means moving to the point of tears.'
+      ru: 'В живых оборотах почти всегда множественное число: Tränen in den Augen haben, in Tränen ausbrechen («расплакаться»), unter Tränen. Немецкий «плачет» глаголом и «показывает» существительным: действие несёт weinen, а картинку — это слово. Не путать с trennen («разделять»): разница в одной букве и в долготе гласного. Составное das Tränengas — «слезоточивый газ», а zu Tränen rührend — «трогательный до слёз».'
+      uk: 'У живих зворотах майже завжди множина: Tränen in den Augen haben, in Tränen ausbrechen («розплакатися»), unter Tränen. Німецька «плаче» дієсловом і «показує» іменником: дію несе weinen, а картинку — це слово. Не плутати з trennen («розділяти»): різниця в одній літері й у довготі голосного. Складне das Tränengas — «сльозогінний газ», а zu Tränen rührend — «зворушливий до сліз».'
+
+  - de: Nerv
+    ipa: "ˈnɛʁf"
+    pos: noun
+    gender: m
+    plural: "die Nerven"
+    # Recognition only: A2 ships `nervös` ("nervous, edgy", gefuehle-reflexive-a2) as a
+    # production card, and the only thing a learner needs to produce here is the fixed
+    # phrase `auf die Nerven gehen`, which no single-word prompt can ask for.
+    cards: recognition
+    en: nerve; composure when things get hard
+    ru: нерв; выдержка, самообладание
+    uk: нерв; витримка, самовладання
+    example_de: Der Lärm von der Baustelle geht mir auf die Nerven.
+    example_en: The noise from the building site is getting on my nerves.
+    example_ru: Шум со стройки действует мне на нервы.
+    example_uk: Шум із будівництва діє мені на нерви.
+    note:
+      en: 'The plural is die Nerven with -en, not -e, and it is the plural that does almost all the work: jemandem auf die Nerven gehen, die Nerven verlieren (to lose one''s composure), Nerven behalten, and the flat complaint Du nervst! from the verb nerven. The singular stays medical, as in der Zahnnerv. Note the pronunciation — the v is spoken f, which is unusual for a word this Latin-looking, and the adjective nervös keeps a v spoken as v.'
+      ru: 'Множественное — die Nerven на -en, а не на -e, и именно оно делает почти всю работу: jemandem auf die Nerven gehen, die Nerven verlieren («потерять самообладание»), Nerven behalten и резкое Du nervst! от глагола nerven. Единственное остаётся медицинским, как в der Zahnnerv. Обратите внимание на произношение: v звучит как f, что необычно для слова с такой латинской внешностью, а в прилагательном nervös v остаётся звонким.'
+      uk: 'Множина — die Nerven на -en, а не на -e, і саме вона робить майже всю роботу: jemandem auf die Nerven gehen, die Nerven verlieren («втратити самовладання»), Nerven behalten і різке Du nervst! від дієслова nerven. Однина лишається медичною, як у der Zahnnerv. Зверніть увагу на вимову: v звучить як f, що незвично для слова з такою латинською зовнішністю, а в прикметнику nervös v лишається дзвінким.'
+
+  - de: Blick
+    ipa: "ˈblɪk"
+    pos: noun
+    gender: m
+    plural: "die Blicke"
+    # Recognition only: A1 `sehen` and `schauen` (verben-grundwortschatz) are the
+    # shipped production cards for looking, and this noun lives in fixed phrases whose
+    # preposition a one-word prompt cannot ask for.
+    cards: recognition
+    en: a look on somebody's face; a view from a place
+    ru: взгляд; вид (из окна, с места)
+    uk: погляд; краєвид (з вікна, з місця)
+    example_de: Vom Balkon hat man einen schönen Blick auf die Berge.
+    example_en: From the balcony you have a lovely view of the mountains.
+    example_ru: С балкона открывается красивый вид на горы.
+    example_uk: З балкона відкривається гарний краєвид на гори.
+    note:
+      en: 'Two senses, one word. Of a person it is the expression in the eyes — ein böser Blick, jemandem einen Blick zuwerfen — and of a place it is what you can see from it, always with auf + Akkusativ. The chunks worth learning whole are auf den ersten Blick (at first sight), einen Blick werfen auf (to take a look at) and den Überblick behalten (to keep track). The verb blicken exists but is bookish; speech uses schauen, gucken and sehen.'
+      ru: 'Два значения в одном слове. О человеке это выражение глаз — ein böser Blick, jemandem einen Blick zuwerfen, — а о месте это то, что оттуда видно, всегда с auf + Akkusativ. Обороты, которые стоит взять целиком: auf den ersten Blick («на первый взгляд»), einen Blick werfen auf («взглянуть на») и den Überblick behalten («не терять общей картины»). Глагол blicken существует, но книжен; речь берёт schauen, gucken и sehen.'
+      uk: 'Два значення в одному слові. Про людину це вираз очей — ein böser Blick, jemandem einen Blick zuwerfen, — а про місце це те, що звідти видно, завжди з auf + Akkusativ. Звороти, які варто взяти цілими: auf den ersten Blick («на перший погляд»), einen Blick werfen auf («глянути на») і den Überblick behalten («не втрачати загальної картини»). Дієслово blicken існує, але книжне; мовлення бере schauen, gucken і sehen.'
+
+  - de: blass
+    ipa: "ˈblas"
+    pos: adj
+    # Recognition only: a describing word for a face in a story or at the doctor's;
+    # what a learner produces about their own state is A2 `krank`, `müde` or
+    # `schlecht` — all shipped production cards.
+    cards: recognition
+    en: pale, without colour in the face
+    ru: бледный
+    uk: блідий
+    example_de: Du bist ganz blass, hast du schlecht geschlafen?
+    example_en: You look quite pale, did you sleep badly?
+    example_ru: Ты совсем бледный, плохо спал?
+    example_uk: Ти зовсім блідий, погано спав?
+    note:
+      en: 'Chiefly about a face — blass werden is what fright or bad news does to somebody, and it is a standard line in a narrative. It also describes a washed-out colour (ein blasses Blau) and, figuratively, something with no character (eine blasse Erinnerung). It takes ordinary adjective endings. Two neighbours from other fields: bleich is the stronger, more literary word, and A2 hell describes light rather than the absence of colour.'
+      ru: 'Прежде всего о лице: blass werden — это то, что делает с человеком испуг или дурная новость, и это стандартная строка в повествовании. Описывает и выцветший цвет (ein blasses Blau), и, переносно, нечто невыразительное (eine blasse Erinnerung). Получает обычные окончания прилагательного. Два соседа из других полей: bleich — сильнее и книжнее, а hell уровня A2 описывает свет, а не отсутствие цвета.'
+      uk: 'Насамперед про обличчя: blass werden — це те, що робить із людиною переляк чи погана новина, і це стандартний рядок в оповіді. Описує й вицвілий колір (ein blasses Blau) і, переносно, щось невиразне (eine blasse Erinnerung). Отримує звичайні закінчення прикметника. Два сусіди з інших полів: bleich — сильніше й книжніше, а hell рівня A2 описує світло, а не відсутність кольору.'
+
+  - de: winken
+    ipa: "ˈvɪŋkn̩"
+    pos: verb
+    praesens_3sg: winkt
+    partizip2: gewinkt
+    aux: haben
+    # Recognition only: narrative lexis — you read it in a story about somebody
+    # leaving. What a B1 learner produces at the same moment is `Tschüs sagen` or
+    # A1 `grüßen`.
+    cards: recognition
+    en: to wave, to greet or signal with the hand
+    ru: махать рукой, подавать знак
+    uk: махати рукою, подавати знак
+    example_de: Die Großeltern winkten, bis der Zug nicht mehr zu sehen war.
+    example_en: The grandparents waved until the train was out of sight.
+    example_ru: Бабушка с дедушкой махали, пока поезд не скрылся из виду.
+    example_uk: Дідусь із бабусею махали, доки потяг не зник з очей.
+    note:
+      en: 'The person waved at goes in the dative (Er winkte mir), and the standard scenes are a departure at a station and a taxi being flagged down (ein Taxi herbeiwinken). The participle is gewinkt in careful German, although you will hear gewunken in the south and in speech. A second, figurative use turns up in headlines: Dem Sieger winkt ein Preis, a prize awaits the winner. The related noun der Wink is a hint, as in ein Wink mit dem Zaunpfahl for a very unsubtle one.'
+      ru: 'Тот, кому машут, стоит в Dativ (Er winkte mir), а типичные сцены — проводы на вокзале и подзываемое такси (ein Taxi herbeiwinken). Причастие в аккуратном немецком — gewinkt, хотя на юге и в речи слышится gewunken. Второе, переносное употребление встречается в заголовках: Dem Sieger winkt ein Preis — «победителя ждёт приз». Родственное существительное der Wink — «намёк», как в ein Wink mit dem Zaunpfahl о намёке весьма прозрачном.'
+      uk: 'Той, кому махають, стоїть у Dativ (Er winkte mir), а типові сцени — проводи на вокзалі й таксі, яке підкликають (ein Taxi herbeiwinken). Дієприкметник в акуратній німецькій — gewinkt, хоча на півдні та в мовленні чути gewunken. Друге, переносне вживання трапляється в заголовках: Dem Sieger winkt ein Preis — «переможця чекає приз». Споріднений іменник der Wink — «натяк», як у ein Wink mit dem Zaunpfahl про натяк вельми прозорий.'
+
+  # --- Zustände: von erschöpft bis entschlossen ---
+  - de: Erholung
+    ipa: "ɛɐ̯ˈhoːlʊŋ"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: A2 `sich ausruhen` (gesundheit-arzttermin) and `Urlaub` are the
+    # shipped production cards for resting — this noun belongs to a doctor's note or a
+    # holiday brochure.
+    cards: recognition
+    en: rest, recovery of strength
+    ru: отдых, восстановление сил
+    uk: відпочинок, відновлення сил
+    example_de: Nach der langen Krankheit braucht sie vor allem Erholung.
+    example_en: After the long illness she above all needs rest.
+    example_ru: После долгой болезни ей прежде всего нужен отдых.
+    example_uk: Після тривалої хвороби їй передусім потрібен відпочинок.
+    note:
+      en: 'No plural. It is the noun of sich erholen, and it means getting your strength back rather than simply not working — which is why a doctor writes it and a brochure advertises it: Erholung suchen, zur Erholung fahren, das Erholungsgebiet. A2 die Pause is the short break inside a working day, der Urlaub is the leave from work, and die Ruhe is quiet. The adjective erholsam describes a holiday or a night that did the job.'
+      ru: 'Множественного числа нет. Это существительное от sich erholen, и значит оно «восстановиться», а не просто «не работать» — потому его и пишет врач, и рекламирует буклет: Erholung suchen, zur Erholung fahren, das Erholungsgebiet. die Pause уровня A2 — короткий перерыв внутри рабочего дня, der Urlaub — отпуск, а die Ruhe — тишина и покой. Прилагательное erholsam описывает отпуск или ночь, которые своё дело сделали.'
+      uk: 'Множини немає. Це іменник від sich erholen, і означає він «відновитися», а не просто «не працювати» — тому його й пише лікар, і рекламує буклет: Erholung suchen, zur Erholung fahren, das Erholungsgebiet. die Pause рівня A2 — коротка перерва всередині робочого дня, der Urlaub — відпустка, а die Ruhe — тиша й спокій. Прикметник erholsam описує відпустку або ніч, які своє діло зробили.'
+
+  - de: entspannend
+    ipa: "ɛntˈʃpanənt"
+    pos: adj
+    # Recognition only: it is the present participle of `sich entspannen`, and what a
+    # learner produces is either that verb or A1 `ruhig` — a one-word prompt cannot
+    # ask for the participle rather than the verb.
+    cards: recognition
+    en: relaxing, doing you good after effort
+    ru: расслабляющий, успокаивающий
+    uk: розслабливий, заспокійливий
+    example_de: Ein Spaziergang am Abend ist für mich sehr entspannend.
+    example_en: A walk in the evening is very relaxing for me.
+    example_ru: Вечерняя прогулка для меня очень расслабляет.
+    example_uk: Вечірня прогулянка для мене дуже розслаблює.
+    note:
+      en: 'A present participle used as an adjective — infinitive plus -d — which is a small German pattern worth naming: entspannen gives entspannend, anstrengen gives anstrengend, and the two are opposites. It describes what the activity does to you. Careful with its passive twin: entspannt with -t is how the person feels or acts (Er wirkt entspannt), while this -d form is what causes the feeling. It takes ordinary endings before a noun: ein entspannender Abend.'
+      ru: 'Причастие настоящего времени в роли прилагательного — инфинитив плюс -d, — и это маленькая немецкая модель, которую стоит назвать: entspannen даёт entspannend, anstrengen даёт anstrengend, и они противоположны. Описывает то, что занятие делает с вами. Осторожно с его пассивным двойником: entspannt на -t — о том, как человек себя чувствует или держится (Er wirkt entspannt), тогда как форма на -d называет причину чувства. Перед существительным получает обычные окончания: ein entspannender Abend.'
+      uk: 'Дієприкметник теперішнього часу в ролі прикметника — інфінітив плюс -d, — і це невелика німецька модель, яку варто назвати: entspannen дає entspannend, anstrengen дає anstrengend, і вони протилежні. Описує те, що заняття робить із вами. Обережно з його пасивним двійником: entspannt на -t — про те, як людина почувається чи тримається (Er wirkt entspannt), тоді як форма на -d називає причину почуття. Перед іменником отримує звичайні закінчення: ein entspannender Abend.'
+
+  - de: erschöpft
+    ipa: "ɛɐ̯ˈʃœpft"
+    pos: adj
+    # Recognition only: A2 ships `müde` ("tired", kernwortschatz-a2) as a production
+    # card, and `total müde` is what a B1 learner actually says for this state.
+    cards: recognition
+    en: exhausted, with no strength left
+    ru: изнурённый, обессиленный
+    uk: виснажений, знесилений
+    example_de: Nach der Prüfung waren alle völlig erschöpft.
+    example_en: After the exam everybody was completely exhausted.
+    example_ru: После экзамена все были совершенно измотаны.
+    example_uk: Після іспиту всі були геть виснажені.
+    note:
+      en: 'A step beyond müde: tired can be slept off, this cannot, so it goes with völlig, total and ganz rather than with sehr. It is the participle of erschöpfen, to use something up, and the same verb is why a supply can be erschöpft too — die Vorräte sind erschöpft. The noun die Erschöpfung turns up in medical German. A near neighbour with a different tone is kaputt, which speech uses for the same feeling far more casually.'
+      ru: 'Ступень за müde: усталость можно отоспать, а это нет, поэтому слово идёт с völlig, total и ganz, а не с sehr. Это причастие от erschöpfen — «исчерпать», и тот же глагол объясняет, почему исчерпаться могут и запасы: die Vorräte sind erschöpft. Существительное die Erschöpfung встречается в медицинском немецком. Близкий сосед с другим тоном — kaputt, которым речь описывает то же состояние куда небрежнее.'
+      uk: 'Щабель за müde: утому можна відіспати, а це ні, тому слово йде з völlig, total і ganz, а не з sehr. Це дієприкметник від erschöpfen — «вичерпати», і те саме дієслово пояснює, чому вичерпатися можуть і запаси: die Vorräte sind erschöpft. Іменник die Erschöpfung трапляється в медичній німецькій. Близький сусід з іншим тоном — kaputt, яким мовлення описує той самий стан значно недбаліше.'
+
+  - de: betrunken
+    ipa: "bəˈtʁʊŋkn̩"
+    pos: adj
+    # Recognition only: comprehension lexis — you read it in a report or a news item.
+    # A1 `trinken` and the chunk `zu viel getrunken haben` are what a learner says.
+    cards: recognition
+    en: drunk, having had too much alcohol
+    ru: пьяный
+    uk: п’яний
+    example_de: Wer betrunken ist, darf auf keinen Fall Auto fahren.
+    example_en: Anybody who is drunk must on no account drive a car.
+    example_ru: Тому, кто пьян, ни в коем случае нельзя садиться за руль.
+    example_uk: Тому, хто п’яний, у жодному разі не можна сідати за кермо.
+    note:
+      en: 'Formally the participle of betrinken, but nobody uses that verb — the adjective stands on its own, and the everyday paraphrase is zu viel getrunken haben. Register matters here: this is the neutral word, blau is the casual one, and alkoholisiert is what a police report says. The opposite in traffic German is nüchtern, sober, which also means an empty stomach before a blood test.'
+      ru: 'Формально это причастие от betrinken, но самим глаголом никто не пользуется — прилагательное стоит само по себе, а обиходный пересказ — zu viel getrunken haben. Регистр здесь важен: это нейтральное слово, blau — разговорное, а alkoholisiert пишут в полицейском протоколе. Противоположность в «дорожном» немецком — nüchtern («трезвый»), которое означает ещё и «натощак» перед анализом крови.'
+      uk: 'Формально це дієприкметник від betrinken, але самим дієсловом ніхто не користується — прикметник стоїть сам по собі, а побутовий переказ — zu viel getrunken haben. Регістр тут важливий: це нейтральне слово, blau — розмовне, а alkoholisiert пишуть у поліцейському протоколі. Протилежність у «дорожній» німецькій — nüchtern («тверезий»), яке означає ще й «натще» перед аналізом крові.'
+
+  - de: vergnügt
+    ipa: "fɛɐ̯ˈgnyːkt"
+    pos: adj
+    # Recognition only: A2 ships `froh` ("glad, pleased") and `glücklich` ("happy") in
+    # gefuehle-reflexive-a2 as production cards — the prompt is owned twice over, and
+    # this word is the written register above both.
+    cards: recognition
+    en: cheerful, in good spirits
+    ru: весёлый, в хорошем настроении
+    uk: веселий, у доброму гуморі
+    example_de: Vergnügt erzählte er vom Wochenende am See.
+    example_en: In good spirits he told us about the weekend at the lake.
+    example_ru: В прекрасном настроении он рассказывал о выходных на озере.
+    example_uk: У чудовому гуморі він розповідав про вихідні на озері.
+    note:
+      en: 'The participle of the verb higher up in this deck, and it describes visible good humour rather than deep happiness — the sort you can see in somebody at a table. A2 froh is about being glad that something is so, glücklich is the deep and lasting one, and lustig describes what makes others laugh. It takes ordinary endings (ein vergnügter Abend) and works as an adverb without one, as in the example.'
+      ru: 'Причастие от глагола выше в этой колоде, и описывает оно видимое хорошее расположение духа, а не глубокое счастье, — такое, какое заметно за столом. froh уровня A2 — о радости, что нечто именно так, glücklich — глубокое и длительное, а lustig описывает того, кто смешит других. Получает обычные окончания (ein vergnügter Abend) и работает как наречие без них, как в примере.'
+      uk: 'Дієприкметник від дієслова вище в цій колоді, і описує він видимий добрий гумор, а не глибоке щастя, — такий, який помітно за столом. froh рівня A2 — про радість, що щось саме так, glücklich — глибоке й тривале, а lustig описує того, хто смішить інших. Отримує звичайні закінчення (ein vergnügter Abend) і працює як прислівник без них, як у прикладі.'
+
+  - de: wahnsinnig
+    ipa: "ˈvaːnˌzɪnɪç"
+    pos: adj
+    # Recognition only: `verrückt` ("crazy, mad") ships as a production card in
+    # charakter-verhalten-b1, and as an intensifier this word competes with A2 `sehr`
+    # and `total` — a one-word prompt cannot say which job is wanted.
+    cards: recognition
+    en: mad; as an intensifier, terribly, incredibly
+    ru: безумный; ужасно, невероятно (усилитель)
+    uk: божевільний; страшенно, неймовірно (підсилювач)
+    example_de: Auf der Straße war wahnsinnig viel Verkehr.
+    example_en: There was an incredible amount of traffic on the road.
+    example_ru: На дороге было ужасно много машин.
+    example_uk: На дорозі було страшенно багато машин.
+    note:
+      en: 'Two jobs from one word, and the second has almost swallowed the first. Literally it means insane (der Wahnsinn is madness), but nine times in ten it stands before an adjective or a quantity as a pure intensifier: wahnsinnig teuer, wahnsinnig nett, wahnsinnig viel. In that job it is spoken, emphatic and slightly worn, like English incredibly. Wahnsinn! on its own is an exclamation of amazement. charakter-verhalten-b1 verrückt is the everyday word for the literal sense.'
+      ru: 'Две работы у одного слова, и вторая почти поглотила первую. Буквально значит «безумный» (der Wahnsinn — «безумие»), но в девяти случаях из десяти стоит перед прилагательным или количеством как чистый усилитель: wahnsinnig teuer, wahnsinnig nett, wahnsinnig viel. В этой роли оно разговорное, эмфатическое и слегка затёртое. Wahnsinn! само по себе — восклицание изумления. verrückt из колоды charakter-verhalten-b1 — обиходное слово для буквального значения.'
+      uk: 'Дві роботи в одного слова, і друга майже поглинула першу. Буквально означає «божевільний» (der Wahnsinn — «божевілля»), але в дев’яти випадках із десяти стоїть перед прикметником чи кількістю як чистий підсилювач: wahnsinnig teuer, wahnsinnig nett, wahnsinnig viel. У цій ролі воно розмовне, емфатичне й трохи затерте. Wahnsinn! саме по собі — вигук здивування. verrückt із колоди charakter-verhalten-b1 — побутове слово для буквального значення.'
+
+  - de: befreit
+    ipa: "bəˈfʁaɪ̯t"
+    pos: adj
+    # Recognition only: two readings behind one form — the feeling of release and the
+    # official exemption — and a one-word prompt cannot say which. What a learner
+    # produces for the feeling is `erleichtert` or `froh` (A2).
+    cards: recognition
+    en: released from a burden; exempt from an obligation
+    ru: освобождённый (от груза, от обязанности)
+    uk: звільнений (від тягаря, від обов’язку)
+    example_de: Nach dem Gespräch fühlte sie sich befreit.
+    example_en: After the conversation she felt as if a weight had been lifted.
+    example_ru: После разговора у неё словно камень с души упал.
+    example_uk: Після розмови їй наче камінь із душі спав.
+    note:
+      en: 'The participle of befreien, and both of its readings are common. As a feeling it is the moment a weight lifts — sich befreit fühlen — and it sits one step beyond erleichtert. As an official word it means exempt, always with von + Dativ: vom Unterricht befreit, von der Gebühr befreit, and a doctor''s note is what gets you there. The noun die Befreiung covers liberation in history books as well as exemption on a form.'
+      ru: 'Причастие от befreien, и оба его чтения обиходны. Как чувство это миг, когда груз спадает, — sich befreit fühlen, — и стоит оно на ступень дальше, чем erleichtert. Как официальное слово значит «освобождённый от», всегда с von + Dativ: vom Unterricht befreit, von der Gebühr befreit, и добывается это справкой от врача. Существительное die Befreiung покрывает и «освобождение» в учебнике истории, и «освобождение от» в анкете.'
+      uk: 'Дієприкметник від befreien, і обидва його прочитання побутові. Як почуття це мить, коли тягар спадає, — sich befreit fühlen, — і стоїть воно на щабель далі, ніж erleichtert. Як офіційне слово означає «звільнений від», завжди з von + Dativ: vom Unterricht befreit, von der Gebühr befreit, і здобувається це довідкою від лікаря. Іменник die Befreiung покриває і «визволення» в підручнику історії, і «звільнення від» в анкеті.'
+
+  - de: entschlossen
+    ipa: "ɛntˈʃlɔsn̩"
+    pos: adj
+    # Recognition only: `sicher` (bewertung-a2) and `sich entscheiden` (infinitiv-mit-zu)
+    # are the shipped production cards near this prompt, and the everyday rendering is
+    # `fest entschieden` — a typed card would grade which of the two participles was
+    # wanted.
+    cards: recognition
+    en: determined, having made up one's mind
+    ru: решительный, твёрдо решивший
+    uk: рішучий, який твердо вирішив
+    example_de: Sie war fest entschlossen, den Kurs zu Ende zu machen.
+    example_en: She was firmly determined to finish the course.
+    example_ru: Она была твёрдо намерена доучиться до конца курса.
+    example_uk: Вона була твердо налаштована доучитися до кінця курсу.
+    note:
+      en: 'The participle of sich entschließen, and it describes a decision already taken and now visible in how somebody acts. The chunk is fest entschlossen sein, etwas zu tun. Two relatives divide the field and are easy to mix up: sich entscheiden is choosing between options, sich entschließen is resolving to act, and die Entscheidung is the choice while der Entschluss is the resolve. The negative is unentschlossen, undecided, which a text will use about a voter.'
+      ru: 'Причастие от sich entschließen, и описывает оно решение уже принятое и видное в поведении. Оборот — fest entschlossen sein, etwas zu tun. Два родственника делят поле, и их легко спутать: sich entscheiden — выбирать между вариантами, sich entschließen — решиться действовать, а die Entscheidung — выбор, тогда как der Entschluss — решимость. Отрицание — unentschlossen, «нерешительный», и текст употребит его про избирателя.'
+      uk: 'Дієприкметник від sich entschließen, і описує він рішення вже ухвалене й видне в поведінці. Зворот — fest entschlossen sein, etwas zu tun. Два родичі ділять поле, і їх легко сплутати: sich entscheiden — обирати між варіантами, sich entschließen — зважитися діяти, а die Entscheidung — вибір, тоді як der Entschluss — рішучість. Заперечення — unentschlossen, «нерішучий», і текст ужиє його про виборця.'
+
+  - de: schuld
+    ipa: "ˈʃʊlt"
+    pos: adj
+    # Recognition only: `schuldig` ("guilty; owing (money)") ships as a production card
+    # in charakter-verhalten-b1, and the two differ by one suffix and one syntax rule —
+    # a typed prompt would grade which of them the author had in mind.
+    cards: recognition
+    en: to blame, responsible for something bad
+    ru: виноватый, виновный (в чём-либо)
+    uk: винний, винуватий (у чомусь)
+    example_de: Niemand ist schuld an dem Unfall, die Straße war einfach zu glatt.
+    example_en: Nobody is to blame for the accident, the road was simply too slippery.
+    example_ru: Никто не виноват в аварии — дорога была просто слишком скользкой.
+    example_uk: Ніхто не винен в аварії — дорога була просто надто слизька.
+    note:
+      en: 'Written small and never before a noun: it only ever stands after sein or werden, and the thing you are to blame for takes an + Dativ. Its neighbour schuldig behaves like a normal adjective, takes endings, and covers both a court verdict (schuldig sprechen) and money owed (Ich bin dir zehn Euro schuldig). The noun die Schuld is guilt and, in the plural die Schulden, debts — one word doing both jobs, which is a genuine feature of German rather than a coincidence.'
+      ru: 'Пишется со строчной и никогда не стоит перед существительным: только после sein или werden, а то, в чём виноваты, идёт с an + Dativ. Сосед schuldig ведёт себя как обычное прилагательное, получает окончания и покрывает и приговор суда (schuldig sprechen), и денежный долг (Ich bin dir zehn Euro schuldig). Существительное die Schuld — «вина», а во множественном die Schulden — «долги»: одно слово на обе работы, и это настоящая особенность немецкого, а не случайность.'
+      uk: 'Пишеться з малої і ніколи не стоїть перед іменником: лише після sein або werden, а те, у чому винні, іде з an + Dativ. Сусід schuldig поводиться як звичайний прикметник, отримує закінчення й покриває і вирок суду (schuldig sprechen), і грошовий борг (Ich bin dir zehn Euro schuldig). Іменник die Schuld — «провина», а в множині die Schulden — «борги»: одне слово на обидві роботи, і це справжня особливість німецької, а не випадковість.'

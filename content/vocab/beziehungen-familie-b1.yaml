@@ -1,0 +1,829 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the people words of
+# data/goethe-b1-wortliste.txt: who belongs to whom, how a relationship starts and how
+# it ends, and the German a family form, a birth announcement and a divorce all use.
+id: beziehungen-familie-b1
+title_de: "Beziehungen und Familie"
+title_en: "Relationships and family"
+title_ru: "Отношения и семья"
+title_uk: "Стосунки та сім’я"
+level: B1
+entries:
+  # --- Wer zu wem gehört: die Verwandtschaft ---
+  - de: Neffe
+    ipa: "ˈnɛfə"
+    pos: noun
+    gender: m
+    plural: "die Neffen"
+    en: nephew
+    ru: племянник
+    uk: небіж, племінник
+    example_de: Mein Neffe kommt im Sommer für zwei Wochen zu uns.
+    example_en: My nephew is coming to stay with us for two weeks in the summer.
+    example_ru: Мой племянник приедет к нам летом на две недели.
+    example_uk: Мій небіж приїде до нас улітку на два тижні.
+    note:
+      en: 'An n-noun: it adds -n in every case except the nominative singular — dem Neffen, den Neffen, des Neffen — which is the same pattern as A2 Kollege and Kunde. Its sister word Nichte is an ordinary feminine noun and takes no such ending. German has no single word for the pair, so a text says meine Nichten und Neffen where English might say the kids. The parents'' side is not marked: the child of a brother and the child of a sister are both this word.'
+      ru: 'Слабое существительное (n-Deklination): во всех падежах, кроме именительного единственного, добавляется -n — dem Neffen, den Neffen, des Neffen, — та же модель, что у Kollege и Kunde уровня A2. Его сестра Nichte — обычное существительное женского рода и такого окончания не получает. Общего слова на пару у немецкого нет, поэтому текст скажет meine Nichten und Neffen. Сторона родства не различается: и сын брата, и сын сестры — одно и то же слово.'
+      uk: 'Слабкий іменник (n-Deklination): в усіх відмінках, крім називного однини, додається -n — dem Neffen, den Neffen, des Neffen, — та сама модель, що в Kollege і Kunde рівня A2. Його сестра Nichte — звичайний іменник жіночого роду й такого закінчення не отримує. Спільного слова на пару німецька не має, тому текст скаже meine Nichten und Neffen. Бік споріднення не розрізняється: і син брата, і син сестри — те саме слово.'
+
+  - de: Nichte
+    ipa: "ˈnɪçtə"
+    pos: noun
+    gender: f
+    plural: "die Nichten"
+    en: niece
+    ru: племянница
+    uk: небога, племінниця
+    example_de: Zur Hochzeit meiner Nichte fahren wir nach Bremen.
+    example_en: We are travelling to Bremen for my niece's wedding.
+    example_ru: На свадьбу племянницы мы едем в Бремен.
+    example_uk: На весілля небоги ми їдемо до Бремена.
+    note:
+      en: 'A regular feminine noun with the plural in -n, and unlike Neffe it changes for nothing else. Watch the spelling against two look-alikes: nicht (not) and nichts (nothing) are among the commonest words in German and differ from this one by a single letter each. The ch is spoken as the soft ich-Laut. There is no masculine formed from it — the pair is Nichte and Neffe, two separate words.'
+      ru: 'Обычное существительное женского рода с множественным на -n, и в отличие от Neffe больше ни в чём не меняется. Следите за написанием: nicht («не») и nichts («ничего») — из самых частых слов немецкого, и каждое отличается от этого одной буквой. ch произносится как мягкий ich-Laut. Мужская форма от него не образуется: пара — Nichte и Neffe, два отдельных слова.'
+      uk: 'Звичайний іменник жіночого роду з множиною на -n, і, на відміну від Neffe, більше ні в чому не змінюється. Стежте за написанням: nicht («не») і nichts («нічого») — з найчастіших слів німецької, і кожне відрізняється від цього однією літерою. ch вимовляється як м’який ich-Laut. Чоловіча форма від нього не утворюється: пара — Nichte й Neffe, два окремі слова.'
+
+  - de: Oma
+    ipa: "ˈoːma"
+    pos: noun
+    gender: f
+    plural: "die Omas"
+    # Recognition only: A1 ships `Großmutter` ("grandmother") as a production card in
+    # menschen-familie — the same prompt, in another deck, where no accept list here
+    # can reach it.
+    cards: recognition
+    en: granny, gran
+    ru: бабушка (ласково)
+    uk: бабуся (пестливо)
+    example_de: Am Sonntag backt die Oma immer einen Kuchen.
+    example_en: On Sundays granny always bakes a cake.
+    example_ru: По воскресеньям бабушка всегда печёт пирог.
+    example_uk: У неділю бабуся завжди пече пиріг.
+    note:
+      en: 'The warm, spoken word beside A1 Großmutter, and inside a family it is used as a name — Oma kommt heute, with no article at all, exactly as with Mama and Papa. The plural is die Omas with -s, the ending German gives to short familiar words and to foreign borrowings. Great-grandmother is die Uroma. Used about a stranger it sounds rude, so a text about age uses ältere Frau or Seniorin instead.'
+      ru: 'Тёплое разговорное слово рядом с Großmutter уровня A1, а внутри семьи оно работает как имя: Oma kommt heute — вообще без артикля, ровно как Mama и Papa. Множественное — die Omas на -s, окончание, которое немецкий даёт коротким домашним словам и заимствованиям. Прабабушка — die Uroma. О постороннем человеке звучит грубо, поэтому текст о возрасте скажет ältere Frau или Seniorin.'
+      uk: 'Тепле розмовне слово поряд із Großmutter рівня A1, а всередині родини воно працює як ім’я: Oma kommt heute — узагалі без артикля, точно як Mama і Papa. Множина — die Omas на -s, закінчення, яке німецька дає коротким домашнім словам і запозиченням. Прабабуся — die Uroma. Про сторонню людину звучить грубо, тому текст про вік скаже ältere Frau або Seniorin.'
+
+  - de: Opa
+    ipa: "ˈoːpa"
+    pos: noun
+    gender: m
+    plural: "die Opas"
+    # Recognition only: A1 ships `Großvater` ("grandfather") as a production card in
+    # menschen-familie, glossed letter for letter in all three languages.
+    cards: recognition
+    en: grandad, grandpa
+    ru: дедушка (ласково)
+    uk: дідусь (пестливо)
+    example_de: Mein Opa hat mir das Schachspielen beigebracht.
+    example_en: My grandad taught me how to play chess.
+    example_ru: Дедушка научил меня играть в шахматы.
+    example_uk: Дідусь навчив мене грати в шахи.
+    note:
+      en: 'Formed the same way as Oma and used the same way: as a name without an article inside the family, with the plural die Opas. Great-grandfather is der Uropa. Both words are short forms of the Großeltern pair, and A1 Großeltern is the neutral plural that covers all four. Do not build a plural in -en here: Omen and Open are not German words.'
+      ru: 'Устроено так же, как Oma, и употребляется так же: как имя без артикля внутри семьи, множественное — die Opas. Прадедушка — der Uropa. Оба слова — короткие формы к паре Großeltern, а Großeltern уровня A1 — нейтральное множественное на всех четверых. Множественного на -en здесь не бывает: Omen и Open — не немецкие слова.'
+      uk: 'Утворене так само, як Oma, і вживається так само: як ім’я без артикля всередині родини, множина — die Opas. Прадідусь — der Uropa. Обидва слова — короткі форми до пари Großeltern, а Großeltern рівня A1 — нейтральна множина на всіх чотирьох. Множини на -en тут не буває: Omen і Open — не німецькі слова.'
+
+  - de: Bub
+    ipa: "ˈbuːp"
+    pos: noun
+    gender: m
+    plural: "die Buben"
+    # Recognition only: A1 ships `Junge` ("boy") as a production card in
+    # menschen-familie, and that is the word the standard written language uses —
+    # this one is the southern and Austrian regional variant of the same prompt.
+    cards: recognition
+    en: boy (southern German, Austrian and Swiss usage)
+    en_compact: "boy (southern usage)"
+    ru: мальчик (юг Германии, Австрия, Швейцария)
+    uk: хлопчик (південь Німеччини, Австрія, Швейцарія)
+    example_de: Die Buben spielen hinter dem Haus Fußball.
+    example_en: The boys are playing football behind the house.
+    example_ru: Мальчики играют в футбол за домом.
+    example_uk: Хлопці грають у футбол за будинком.
+    note:
+      en: 'A regional word, not an old one: in Bavaria, Austria and Switzerland it is simply what a boy is called, while the north and standard writing use A1 Junge. Take it as a marker of where a text or a speaker comes from. The plural is die Buben with -en, and the diminutive Bübchen is affectionate. In a pack of cards der Bube is the jack everywhere in the German-speaking area, regional preference or not.'
+      ru: 'Слово областное, а не устаревшее: в Баварии, Австрии и Швейцарии мальчика зовут именно так, тогда как север и письменная норма берут Junge уровня A1. Воспринимайте его как признак того, откуда текст или говорящий. Множественное — die Buben на -en, уменьшительное Bübchen ласковое. В карточной колоде der Bube — «валет» по всему немецкоязычному пространству, независимо от областных предпочтений.'
+      uk: 'Слово обласне, а не застаріле: у Баварії, Австрії та Швейцарії хлопчика звуть саме так, тоді як північ і писемна норма беруть Junge рівня A1. Сприймайте його як ознаку того, звідки текст чи мовець. Множина — die Buben на -en, зменшувальне Bübchen пестливе. У картярській колоді der Bube — «валет» по всьому німецькомовному просторі, незалежно від обласних уподобань.'
+
+  - de: verwandt
+    ipa: "fɛɐ̯ˈvant"
+    pos: adj
+    en: related, belonging to the same family
+    ru: родственный, состоящий в родстве
+    uk: споріднений, який перебуває в родинних зв’язках
+    example_de: Wir sind nur weit verwandt, aber wir sehen uns jedes Jahr.
+    example_en: We are only distantly related, but we see each other every year.
+    example_ru: Мы лишь дальние родственники, но видимся каждый год.
+    example_uk: Ми лише далекі родичі, але бачимося щороку.
+    note:
+      en: 'The person you are related to goes with mit + Dativ: Ich bin mit ihr verwandt. Two adverbs grade it — nah verwandt and weit verwandt — and the noun die Verwandtschaft is the whole set of relatives taken together. It also works outside families: verwandte Sprachen are languages of one family, and eine verwandte Idee is a related one. A2 Verwandte in menschen-beziehungen-a2 is the adjectival noun made from it, which is why it declines like an adjective.'
+      ru: 'Тот, с кем состоят в родстве, идёт с mit + Dativ: Ich bin mit ihr verwandt. Степень задают два наречия — nah verwandt и weit verwandt, — а существительное die Verwandtschaft — вся родня разом. Работает и вне семьи: verwandte Sprachen — родственные языки, eine verwandte Idee — близкая мысль. Verwandte уровня A2 из колоды menschen-beziehungen-a2 — субстантивированное прилагательное от этого слова, потому оно и склоняется как прилагательное.'
+      uk: 'Той, із ким перебувають у спорідненні, іде з mit + Dativ: Ich bin mit ihr verwandt. Ступінь задають два прислівники — nah verwandt і weit verwandt, — а іменник die Verwandtschaft — уся рідня разом. Працює й поза сім’єю: verwandte Sprachen — споріднені мови, eine verwandte Idee — близька думка. Verwandte рівня A2 з колоди menschen-beziehungen-a2 — субстантивований прикметник від цього слова, тому воно й відмінюється як прикметник.'
+
+  - de: Angehörige
+    ipa: "ˈangəˌhøːʁɪgə"
+    pos: noun
+    gender: f
+    plural: "die Angehörigen"
+    # Recognition only: A2 ships `Verwandte` ("relative") as a production card in
+    # menschen-beziehungen-a2 with its full adjectival-noun accept list — this is the
+    # official register of the same prompt, and it is read on a form, never typed.
+    cards: recognition
+    en: next of kin, a member of a family or a group
+    ru: близкий родственник; член (семьи, группы)
+    uk: близький родич; член (родини, групи)
+    example_de: Nach dem Unfall wurden die Angehörigen sofort informiert.
+    example_en: After the accident the next of kin were informed immediately.
+    example_ru: После аварии близких родственников известили немедленно.
+    example_uk: Після аварії близьких родичів сповістили негайно.
+    note:
+      en: 'An adjectival noun, so the ending follows the article exactly as an adjective''s would: der Angehörige, ein Angehöriger, eine Angehörige, die Angehörigen, and after a bare preposition simply Angehörige. It comes from angehören, to belong to, so it also names membership of a group rather than a family: Staatsangehörige are nationals, and die Staatsangehörigkeit is the line on your ID card. Hospitals, police and insurers use it; a family talking about itself says Verwandte or meine Leute.'
+      ru: 'Субстантивированное прилагательное, поэтому окончание следует за артиклем ровно так же, как окончание прилагательного: der Angehörige, ein Angehöriger, eine Angehörige, die Angehörigen, а после голого предлога — просто Angehörige. Происходит от angehören («принадлежать к»), поэтому обозначает и принадлежность к группе, а не только к семье: Staatsangehörige — граждане, а die Staatsangehörigkeit — строка в удостоверении личности. Слово больниц, полиции и страховых; сама семья о себе скажет Verwandte или meine Leute.'
+      uk: 'Субстантивований прикметник, тому закінчення йде за артиклем так само, як закінчення прикметника: der Angehörige, ein Angehöriger, eine Angehörige, die Angehörigen, а після голого прийменника — просто Angehörige. Походить від angehören («належати до»), тому позначає й належність до групи, а не лише до сім’ї: Staatsangehörige — громадяни, а die Staatsangehörigkeit — рядок у посвідченні особи. Слово лікарень, поліції та страхових; сама родина про себе скаже Verwandte або meine Leute.'
+
+  - de: Generation
+    ipa: "genəʁaˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Generationen"
+    # Recognition only: the vocabulary of a newspaper feature or a sociology text.
+    # A B1 learner produces `meine Eltern`, `die Jungen` or `die Alten` for the same
+    # idea — all A1 words with shipped cards.
+    cards: recognition
+    en: generation, the people born around the same time
+    ru: поколение
+    uk: покоління
+    example_de: In vielen Familien wohnen heute nicht mehr drei Generationen unter einem Dach.
+    example_en: In many families three generations no longer live under one roof today.
+    example_ru: Во многих семьях сегодня уже не живут три поколения под одной крышей.
+    example_uk: У багатьох родинах сьогодні вже не живуть три покоління під одним дахом.
+    note:
+      en: 'Stress on the last syllable, as in every German noun ending in -tion, and that -tion is always feminine — die Situation, die Information, die Nation. The plural adds -en. Compounds carry a lot of the newspaper''s meaning: der Generationenvertrag is the pension bargain between young and old, and der Generationskonflikt is the clash between them. In a technical text the same word means a model generation of a device.'
+      ru: 'Ударение на последнем слоге, как у всякого немецкого существительного на -tion, и это -tion всегда женского рода: die Situation, die Information, die Nation. Множественное на -en. Много газетного смысла держится на составных словах: der Generationenvertrag — «договор поколений» о пенсиях, der Generationskonflikt — конфликт между ними. В техническом тексте то же слово значит поколение модели устройства.'
+      uk: 'Наголос на останньому складі, як у кожного німецького іменника на -tion, і це -tion завжди жіночого роду: die Situation, die Information, die Nation. Множина на -en. Багато газетного змісту тримається на складних словах: der Generationenvertrag — «договір поколінь» про пенсії, der Generationskonflikt — конфлікт між ними. У технічному тексті те саме слово означає покоління моделі пристрою.'
+
+  - de: Jugend
+    ipa: "ˈjuːgn̩t"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: A2 ships `Jugendliche` ("teenager, young person") as a
+    # production card in menschen-beziehungen-a2, and `jung` is A1 — a prompt reading
+    # "youth" cannot say which of the three is wanted.
+    cards: recognition
+    en: youth, the years of being young; young people as a group
+    en_compact: "youth; young people"
+    ru: юность, молодость; молодёжь
+    uk: юність, молодість; молодь
+    example_de: In seiner Jugend hat er in einer Band gespielt.
+    example_en: In his youth he played in a band.
+    example_ru: В юности он играл в группе.
+    example_uk: У юності він грав у гурті.
+    note:
+      en: 'No plural, and two readings in one word: the period of a life (in meiner Jugend) and the young people of a society taken together (Die Jugend von heute …), where German uses a singular verb for the group. Compounds are everywhere in official German: die Jugendherberge, das Jugendamt, der Jugendliche, jugendfrei on a film rating. Do not confuse it with jung, the adjective, or with die Jugendliche, one single young person.'
+      ru: 'Множественного числа нет, а чтений два: период жизни (in meiner Jugend) и молодёжь общества как целое (Die Jugend von heute …), причём глагол при этой группе стоит в единственном числе. Составные слова заполняют официальный немецкий: die Jugendherberge, das Jugendamt, der Jugendliche, пометка jugendfrei на фильме. Не путать ни с прилагательным jung, ни с die Jugendliche — одним отдельным подростком.'
+      uk: 'Множини немає, а прочитань два: період життя (in meiner Jugend) і молодь суспільства як ціле (Die Jugend von heute …), причому дієслово при цій групі стоїть в однині. Складні слова заповнюють офіційну німецьку: die Jugendherberge, das Jugendamt, der Jugendliche, позначка jugendfrei на фільмі. Не плутати ні з прикметником jung, ні з die Jugendliche — одним окремим підлітком.'
+
+  - de: erwachsen
+    ipa: "ɛɐ̯ˈvaksn̩"
+    pos: adj
+    # Recognition only: A2 ships `Erwachsene` ("adult") as a production card in
+    # menschen-beziehungen-a2, and that entry's own note names this adjective — a
+    # prompt reading "adult" cannot say which of the two is wanted.
+    cards: recognition
+    en: grown-up, no longer a child
+    ru: взрослый (о человеке)
+    uk: дорослий (про людину)
+    example_de: Ihre Kinder sind längst erwachsen und wohnen in anderen Städten.
+    example_en: Her children have long been grown up and live in other cities.
+    example_ru: Её дети давно взрослые и живут в других городах.
+    example_uk: Її діти давно дорослі й живуть в інших містах.
+    note:
+      en: 'Formally the participle of erwachsen, to grow, but that verb is gone from ordinary German and only the adjective is left. From it comes the adjectival noun A2 Erwachsene, an adult, and the two must not be swapped: Sie ist erwachsen describes her, Sie ist eine Erwachsene classes her. Two neighbours in the same field: volljährig is the legal one from eighteen onwards, and reif means mature in character rather than in years.'
+      ru: 'Формально это причастие от erwachsen — «вырастать», но сам глагол из обиходного немецкого ушёл, и осталось только прилагательное. От него образовано субстантивированное Erwachsene уровня A2 — «взрослый», и путать их нельзя: Sie ist erwachsen описывает её, Sie ist eine Erwachsene причисляет её к категории. Два соседа того же поля: volljährig — юридическое «совершеннолетний» с восемнадцати, а reif — «зрелый» по характеру, а не по годам.'
+      uk: 'Формально це дієприкметник від erwachsen — «виростати», але саме дієслово з побутової німецької зникло, і лишився тільки прикметник. Від нього утворено субстантивоване Erwachsene рівня A2 — «доросла людина», і плутати їх не можна: Sie ist erwachsen описує її, Sie ist eine Erwachsene зараховує її до категорії. Два сусіди того самого поля: volljährig — юридичне «повнолітній» із вісімнадцяти, а reif — «зрілий» за вдачею, а не за роками.'
+
+  - de: Senioren
+    ipa: "zeˈni̯oːʁən"
+    pos: phrase
+    # Recognition only: notice-and-brochure vocabulary — a discount, a course, a
+    # residence. A B1 learner produces `alte Leute` or `ältere Menschen`, both from
+    # A1 words with shipped cards.
+    cards: recognition
+    en: senior citizens, older people as a group
+    ru: пожилые люди, пенсионеры
+    uk: люди похилого віку, пенсіонери
+    example_de: Für Senioren kostet der Eintritt nur die Hälfte.
+    example_en: For senior citizens the entrance fee is only half.
+    example_ru: Для пожилых людей вход стоит вдвое дешевле.
+    example_uk: Для людей похилого віку вхід коштує удвічі дешевше.
+    note:
+      en: 'The Wortliste lists the plural, and that is how the word is used — on notices, in price lists and in brochures, almost always without an article after a preposition: für Senioren, Angebote für Senioren. The singular der Senior and die Seniorin exist and are polite rather than warm. Compounds are everywhere in that register: das Seniorenheim, der Seniorenteller in a restaurant, die Seniorenkarte. In a company or a sports club the same word means the senior members as against the juniors.'
+      ru: 'Wortliste даёт множественное число, и именно так слово и работает: на объявлениях, в прейскурантах и буклетах, почти всегда без артикля после предлога — für Senioren, Angebote für Senioren. Единственное der Senior и die Seniorin существует и звучит вежливо, а не тепло. Составные слова заполняют этот регистр: das Seniorenheim, der Seniorenteller в ресторане, die Seniorenkarte. В фирме или в спортклубе то же слово значит старших участников в противоположность юниорам.'
+      uk: 'Wortliste подає множину, і саме так слово й працює: на оголошеннях, у прайсах і буклетах, майже завжди без артикля після прийменника — für Senioren, Angebote für Senioren. Однина der Senior і die Seniorin існує і звучить ввічливо, а не тепло. Складні слова заповнюють цей регістр: das Seniorenheim, der Seniorenteller у ресторані, die Seniorenkarte. У фірмі чи в спортклубі те саме слово означає старших учасників на противагу юніорам.'
+
+  # --- Beziehung, Freundschaft, Vertrauen ---
+  - de: Beziehung
+    ipa: "bəˈtsiːʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Beziehungen"
+    # Gloss kept to the human sense only: "connection between things / связь" is
+    # Zusammenhang's and Verbindung's production prompt (lernen-zukunft,
+    # reisen-probleme) — the thing-sense stays in the note, answer side.
+    en: relationship between people
+    ru: отношения (между людьми)
+    uk: стосунки (між людьми)
+    example_de: Zu seinen Eltern hat er ein gutes Verhältnis, aber die Beziehung zu seiner Schwester ist schwierig.
+    example_en: He gets on well with his parents, but the relationship with his sister is difficult.
+    example_ru: С родителями у него хорошие отношения, а вот отношения с сестрой сложные.
+    example_uk: З батьками в нього добрі стосунки, а от стосунки із сестрою складні.
+    note:
+      en: 'Three uses worth keeping apart. Between two people it is a partnership — eine feste Beziehung haben means being in a couple, and the preposition is zu + Dativ for anybody else. Between things it is a link: in dieser Beziehung means in this respect. In the plural it can mean contacts that get things done, and Beziehungen haben is nearly a criticism. The verb behind it is sich beziehen auf, to refer to something.'
+      ru: 'Три употребления, которые стоит держать врозь. Между двумя людьми это партнёрство: eine feste Beziehung haben — «состоять в отношениях», а с кем угодно другим предлог zu + Dativ. Между вещами это связь: in dieser Beziehung — «в этом отношении». Во множественном числе может означать полезные связи, и Beziehungen haben звучит почти упрёком. За словом стоит глагол sich beziehen auf — «ссылаться на».'
+      uk: 'Три вживання, які варто тримати нарізно. Між двома людьми це партнерство: eine feste Beziehung haben — «бути в стосунках», а з будь-ким іншим прийменник zu + Dativ. Між речами це зв’язок: in dieser Beziehung — «у цьому відношенні». У множині може означати корисні знайомства, і Beziehungen haben звучить майже докором. За словом стоїть дієслово sich beziehen auf — «покликатися на».'
+
+  - de: Verhältnis
+    ipa: "fɛɐ̯ˈhɛltnɪs"
+    pos: noun
+    gender: n
+    plural: "die Verhältnisse"
+    # Recognition only: `Beziehung` in this same deck ships as the production card for
+    # "relationship", and in the everyday sense the two are interchangeable — one
+    # typed card per family, per the `ebenso`/`genauso` ruling in ort-richtung-verweis-b1.
+    cards: recognition
+    en: how two people or two figures stand to each other
+    ru: отношение (между людьми); соотношение
+    uk: ставлення (між людьми); співвідношення
+    example_de: Das Verhältnis zwischen Preis und Leistung ist bei diesem Angebot sehr gut.
+    example_en: The ratio of price to quality is very good with this offer.
+    example_ru: Соотношение цены и качества у этого предложения очень хорошее.
+    example_uk: Співвідношення ціни та якості в цій пропозиції дуже добре.
+    note:
+      en: 'Where Beziehung is the connection itself, this word is how it stands — good, bad, two to one. Between people it wants zu + Dativ (ein gutes Verhältnis zu jemandem haben); between numbers it is a ratio (im Verhältnis 2:1). The plural die Verhältnisse means the conditions somebody lives in — in guten Verhältnissen leben, die Wohnverhältnisse — and that plural is what a social report is full of. The -nis suffix doubles the s in the plural, exactly as in Geheimnis.'
+      ru: 'Если Beziehung — сама связь, то это слово — то, какова она: хорошая, плохая, два к одному. Между людьми требует zu + Dativ (ein gutes Verhältnis zu jemandem haben), между числами это пропорция (im Verhältnis 2:1). Множественное die Verhältnisse значит условия, в которых человек живёт: in guten Verhältnissen leben, die Wohnverhältnisse, — и именно этим множественным полон социальный отчёт. Суффикс -nis удваивает s во множественном, ровно как в Geheimnis.'
+      uk: 'Якщо Beziehung — сам зв’язок, то це слово — те, який він: добрий, поганий, два до одного. Між людьми вимагає zu + Dativ (ein gutes Verhältnis zu jemandem haben), між числами це пропорція (im Verhältnis 2:1). Множина die Verhältnisse означає умови, у яких людина живе: in guten Verhältnissen leben, die Wohnverhältnisse, — і саме цією множиною повний соціальний звіт. Суфікс -nis подвоює s у множині, точно як у Geheimnis.'
+
+  - de: Freundschaft
+    ipa: "ˈfʁɔʏ̯ntʃaft"
+    pos: noun
+    gender: f
+    plural: "die Freundschaften"
+    en: friendship
+    ru: дружба
+    uk: дружба
+    example_de: Aus der Freundschaft zwischen den beiden ist später eine Ehe geworden.
+    example_en: The friendship between the two later turned into a marriage.
+    example_ru: Из дружбы между ними позже выросла семья.
+    example_uk: З дружби між ними згодом виросла сім’я.
+    note:
+      en: 'Freund plus the suffix -schaft, which builds an abstract feminine noun out of a person or a state — die Nachbarschaft, die Mannschaft, die Gesellschaft. The verbs are eine Freundschaft schließen (to strike one up) and pflegen (to keep one going). Note that A1 Freund does double duty as friend and boyfriend, so eine Freundschaft is the safe way to say the relationship is not romantic; freundschaftlich as an adverb says the same about a tone.'
+      ru: 'Freund плюс суффикс -schaft, который строит из человека или состояния отвлечённое существительное женского рода: die Nachbarschaft, die Mannschaft, die Gesellschaft. Глаголы: eine Freundschaft schließen («завязать») и pflegen («поддерживать»). Заметьте, что Freund уровня A1 значит и «друг», и «парень», поэтому eine Freundschaft — надёжный способ сказать, что отношения не романтические; наречие freundschaftlich говорит то же о тоне.'
+      uk: 'Freund плюс суфікс -schaft, який будує з людини чи стану абстрактний іменник жіночого роду: die Nachbarschaft, die Mannschaft, die Gesellschaft. Дієслова: eine Freundschaft schließen («зав’язати») і pflegen («підтримувати»). Зауважте, що Freund рівня A1 означає і «друг», і «хлопець», тому eine Freundschaft — надійний спосіб сказати, що стосунки не романтичні; прислівник freundschaftlich каже те саме про тон.'
+
+  - de: vertrauen
+    ipa: "fɛɐ̯ˈtʁaʊ̯ən"
+    pos: verb
+    praesens_3sg: vertraut
+    partizip2: vertraut
+    aux: haben
+    valence: "+ Dat"
+    en: to trust somebody, to rely on them
+    ru: доверять кому-либо, полагаться
+    uk: довіряти комусь, покладатися
+    example_de: Ich vertraue dir, du schaffst das schon allein.
+    example_en: I trust you, you will manage it on your own.
+    example_ru: Я тебе доверяю, ты справишься сам.
+    example_uk: Я тобі довіряю, ти впораєшся сам.
+    note:
+      en: 'A plain dative verb — jemandem vertrauen — with no preposition, which is the shape to remember, since English trusts somebody directly. With a thing rather than a person it takes auf + Akkusativ: Ich vertraue auf mein Glück. The noun das Vertrauen is in the charakter-verhalten-b1 deck and takes zu (Vertrauen zu jemandem haben). Do not confuse the participle vertraut, which as an adjective means familiar: eine vertraute Stimme.'
+      ru: 'Простой дативный глагол — jemandem vertrauen, — без предлога, и именно эту форму стоит запомнить, потому что русский тоже даёт дательный, а вот английский обходится прямым дополнением. С вещью, а не с человеком, берёт auf + Akkusativ: Ich vertraue auf mein Glück. Существительное das Vertrauen лежит в колоде charakter-verhalten-b1 и требует zu (Vertrauen zu jemandem haben). Не путать с причастием vertraut: как прилагательное оно значит «привычный, знакомый» — eine vertraute Stimme.'
+      uk: 'Простий давальний дієслівний зразок — jemandem vertrauen, — без прийменника, і саме цю форму варто запам’ятати, бо англійська обходиться прямим додатком. З річчю, а не з людиною, бере auf + Akkusativ: Ich vertraue auf mein Glück. Іменник das Vertrauen лежить у колоді charakter-verhalten-b1 і вимагає zu (Vertrauen zu jemandem haben). Не плутати з дієприкметником vertraut: як прикметник він означає «звичний, знайомий» — eine vertraute Stimme.'
+
+  - de: begegnen
+    ipa: "bəˈgeːgnən"
+    pos: verb
+    praesens_3sg: begegnet
+    partizip2: begegnet
+    aux: sein
+    valence: "+ Dat"
+    # Recognition only: A1 ships `treffen` and A2 `sich treffen` (freunde-feste) as
+    # production cards, and a prompt reading "to meet" is answered there — this verb
+    # is the written register for meeting by chance.
+    cards: recognition
+    en: to run into somebody by chance
+    ru: встретить случайно, повстречать
+    uk: зустріти випадково, спіткати
+    example_de: Gestern bin ich meiner alten Lehrerin in der Stadt begegnet.
+    example_en: Yesterday I ran into my old teacher in town.
+    example_ru: Вчера я случайно встретил в городе свою бывшую учительницу.
+    example_uk: Учора я випадково зустрів у місті свою колишню вчительку.
+    note:
+      en: 'Two things to hold together: the person met is a plain dative, and the Perfekt takes sein — Ich bin ihm begegnet — which is unusual for a verb with an object and is exactly what makes it worth a card. The chance is built in: A1 treffen can be arranged (Wir treffen uns um acht), this one cannot. In writing it also means to respond to something: einer Gefahr begegnen, to meet a danger. The noun die Begegnung is an encounter.'
+      ru: 'Две вещи держим вместе: тот, кого встретили, стоит в чистом Dativ, а Perfekt берёт sein — Ich bin ihm begegnet, — что необычно для глагола с дополнением и как раз стоит карточки. Случайность встроена: treffen уровня A1 можно назначить (Wir treffen uns um acht), а это — нет. В письменном языке значит ещё «противостоять чему-либо»: einer Gefahr begegnen. Существительное die Begegnung — «встреча».'
+      uk: 'Дві речі тримаємо разом: той, кого зустріли, стоїть у чистому Dativ, а Perfekt бере sein — Ich bin ihm begegnet, — що незвично для дієслова з додатком і саме тому варте картки. Випадковість вбудована: treffen рівня A1 можна призначити (Wir treffen uns um acht), а це — ні. У писемній мові означає ще «протистояти чомусь»: einer Gefahr begegnen. Іменник die Begegnung — «зустріч».'
+
+  - de: begleiten
+    ipa: "bəˈglaɪ̯tn̩"
+    pos: verb
+    praesens_3sg: begleitet
+    partizip2: begleitet
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: A1 ships `mitkommen` ("to come along", trennbare-a1-verben) as
+    # a production card, and `mitgehen` covers the rest — this verb is the polite and
+    # written form of going with somebody.
+    cards: recognition
+    en: to go along with somebody, to see them there
+    ru: сопровождать, провожать
+    uk: супроводжувати, проводжати
+    example_de: Darf ich Sie zum Bahnhof begleiten?
+    example_en: May I walk you to the station?
+    example_ru: Можно я провожу вас до вокзала?
+    example_uk: Чи можу я провести вас до вокзалу?
+    note:
+      en: 'Accusative object and no preposition for the person — jemanden begleiten — while the destination takes zu or nach as usual. It is the courteous word: A1 mitkommen is what a friend does, this is what you offer a guest. It reaches beyond people too: eine Krankheit begleitet ihn seit Jahren, and in music jemanden am Klavier begleiten is to accompany a singer. The noun der Begleiter is the person who comes with you, and das Begleitschreiben is a covering letter.'
+      ru: 'Дополнение в Akkusativ и без предлога для человека — jemanden begleiten, — а направление берёт zu или nach как обычно. Это учтивое слово: mitkommen уровня A1 — то, что делает приятель, а это — то, что предлагают гостю. Работает и за пределами людей: eine Krankheit begleitet ihn seit Jahren, а в музыке jemanden am Klavier begleiten — «аккомпанировать». Существительное der Begleiter — спутник, а das Begleitschreiben — сопроводительное письмо.'
+      uk: 'Додаток у Akkusativ і без прийменника для людини — jemanden begleiten, — а напрямок бере zu або nach як звичайно. Це ґречне слово: mitkommen рівня A1 — те, що робить приятель, а це — те, що пропонують гостеві. Працює й поза людьми: eine Krankheit begleitet ihn seit Jahren, а в музиці jemanden am Klavier begleiten — «акомпанувати». Іменник der Begleiter — супутник, а das Begleitschreiben — супровідний лист.'
+
+  # --- Liebe: sich verlieben, küssen, umarmen ---
+  - de: Liebe
+    ipa: "ˈliːbə"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: love
+    ru: любовь
+    uk: любов, кохання
+    example_de: Die Liebe zur Musik hat er von seinem Vater.
+    example_en: His love of music comes from his father.
+    example_ru: Любовь к музыке у него от отца.
+    example_uk: Любов до музики в нього від батька.
+    note:
+      en: 'No plural in ordinary use. The preposition for what is loved is zu + Dativ: die Liebe zur Musik, die Liebe zu den Kindern. Two chunks are everywhere — Liebe auf den ersten Blick and aus Liebe zu jemandem — and one is a false friend of nothing but itself: Liebe Grüße at the end of a message is simply Best wishes, not a declaration. German uses one word where some languages use two, so the same noun covers a parent, a partner and a hobby.'
+      ru: 'В обычном употреблении множественного числа нет. Предлог для того, что любят, — zu + Dativ: die Liebe zur Musik, die Liebe zu den Kindern. Два оборота встречаются повсюду — Liebe auf den ersten Blick и aus Liebe zu jemandem, — а один только выглядит признанием: Liebe Grüße в конце сообщения значит просто «с наилучшими пожеланиями». Немецкий обходится одним словом там, где русский различает любовь и влюблённость, так что оно покрывает и родителя, и партнёра, и увлечение.'
+      uk: 'У звичайному вжитку множини немає. Прийменник для того, що люблять, — zu + Dativ: die Liebe zur Musik, die Liebe zu den Kindern. Два звороти трапляються всюди — Liebe auf den ersten Blick і aus Liebe zu jemandem, — а один лише виглядає освідченням: Liebe Grüße наприкінці повідомлення означає просто «з найкращими побажаннями». Німецька обходиться одним словом там, де українська розрізняє любов і кохання, тож воно покриває і батька, і партнера, і захоплення.'
+
+  - de: lieb
+    ipa: "ˈliːp"
+    pos: adj
+    # Recognition only: A2 ships `nett` (charakter-eigenschaften-a2) and A1
+    # `freundlich` (menschen-familie) as production cards for the same prompt, and the
+    # letter-writing use is a fixed formula rather than a word choice.
+    cards: recognition
+    en: kind and warm-hearted; dear (in a letter)
+    en_compact: "kind; dear"
+    ru: милый, добрый; дорогой (в письме)
+    uk: милий, добрий; дорогий (у листі)
+    example_de: Das war sehr lieb von dir, danke!
+    example_en: That was very kind of you, thank you!
+    example_ru: Это было очень мило с твоей стороны, спасибо!
+    example_uk: Це було дуже мило з твого боку, дякую!
+    note:
+      en: 'Three jobs. As a description of a person it is warmer than nett, and Das ist lieb von dir is the standard thank-you. At the head of a letter it is the fixed opening — Liebe Anna, Lieber Herr Weber — with the ending following the person''s gender, and it is warmer than Sehr geehrte. Third, jemanden lieb haben is the mild form of lieben, used inside families where lieben would be too strong. The comparative is unusual: lieber has drifted off to mean rather.'
+      ru: 'Три работы. О человеке оно теплее, чем nett, и Das ist lieb von dir — стандартная благодарность. В начале письма это устойчивое обращение — Liebe Anna, Lieber Herr Weber — с окончанием по роду адресата, и оно теплее, чем Sehr geehrte. Третье: jemanden lieb haben — смягчённая форма lieben, употребляемая внутри семьи, где lieben было бы слишком сильно. Сравнительная степень ушла в сторону: lieber теперь значит «лучше, охотнее».'
+      uk: 'Три роботи. Про людину воно тепліше, ніж nett, і Das ist lieb von dir — стандартна подяка. На початку листа це стале звертання — Liebe Anna, Lieber Herr Weber — із закінченням за родом адресата, і воно тепліше, ніж Sehr geehrte. Третє: jemanden lieb haben — пом’якшена форма lieben, уживана в родині, де lieben було б надто сильно. Вищий ступінь відійшов убік: lieber тепер означає «краще, охочіше».'
+
+  - de: sich verlieben
+    ipa: "zɪç fɛɐ̯ˈliːbn̩"
+    pos: verb
+    praesens_3sg: verliebt sich
+    partizip2: sich verliebt
+    aux: haben
+    valence: "sich + Akk; in + Akk"
+    # Recognition only: A2 ships `verlieben` ("to fall in love (with)") as a production
+    # card in gefuehle-reflexive-a2, with `sich verlieben` in its own accept list —
+    # this entry keys the Wortliste's spelling and must not deal a second card for
+    # the identical prompt.
+    cards: recognition
+    en: to fall in love with somebody
+    ru: влюбиться в кого-либо
+    uk: закохатися в когось
+    example_de: Sie hat sich in einen Kollegen aus dem Nachbarbüro verliebt.
+    example_en: She fell in love with a colleague from the office next door.
+    example_ru: Она влюбилась в коллегу из соседнего кабинета.
+    example_uk: Вона закохалася в колегу із сусіднього кабінету.
+    note:
+      en: 'The preposition is in + Akkusativ, and the accusative is the point: it marks the movement of falling, not a place of resting. Compare sich verlieben in jemanden with verliebt sein in jemanden — the second also takes the accusative, which is the exception a learner should simply memorise here. The ver- prefix marks the change of state, the same one in sich verlaufen or sich verfahren, and the family runs verlieben, verliebt, die Verliebtheit.'
+      ru: 'Предлог — in + Akkusativ, и Akkusativ здесь принципиален: он помечает само движение «влюбиться», а не место пребывания. Сравните sich verlieben in jemanden и verliebt sein in jemanden — второе тоже требует Akkusativ, и это исключение стоит просто запомнить. Приставка ver- помечает смену состояния, та же, что в sich verlaufen или sich verfahren, а семья такова: verlieben, verliebt, die Verliebtheit.'
+      uk: 'Прийменник — in + Akkusativ, і Akkusativ тут принциповий: він позначає сам рух «закохатися», а не місце перебування. Порівняйте sich verlieben in jemanden і verliebt sein in jemanden — друге теж вимагає Akkusativ, і цей виняток варто просто запам’ятати. Префікс ver- позначає зміну стану, той самий, що в sich verlaufen чи sich verfahren, а родина така: verlieben, verliebt, die Verliebtheit.'
+
+  - de: verliebt
+    ipa: "fɛɐ̯ˈliːpt"
+    pos: adj
+    # Recognition only: the participle of the verb directly above, whose production
+    # card is already owned by A2's `verlieben` — one prompt cannot ask for the verb
+    # and the adjective at once.
+    cards: recognition
+    en: in love with somebody
+    ru: влюблённый
+    uk: закоханий
+    example_de: Die beiden sind seit dem Sommer verliebt.
+    example_en: The two of them have been in love since the summer.
+    example_ru: Эти двое влюблены с лета.
+    example_uk: Ці двоє закохані з літа.
+    note:
+      en: 'The participle of sich verlieben used as a plain adjective, and it keeps the verb''s preposition: verliebt in jemanden sein, with the accusative. Before a noun it takes endings — ein verliebtes Paar, verliebte Blicke. The three-step chain a German love story runs on is worth having whole: verliebt, verlobt (engaged), verheiratet. The final -t is spoken as it is written; the b before it devoices to p.'
+      ru: 'Причастие от sich verlieben в роли обычного прилагательного, и предлог глагола оно сохраняет: verliebt in jemanden sein, с Akkusativ. Перед существительным получает окончания — ein verliebtes Paar, verliebte Blicke. Трёхступенчатую цепочку, на которой держится немецкая любовная история, стоит взять целиком: verliebt, verlobt («помолвлен»), verheiratet. Конечное -t произносится как пишется, а b перед ним оглушается в p.'
+      uk: 'Дієприкметник від sich verlieben у ролі звичайного прикметника, і прийменник дієслова він зберігає: verliebt in jemanden sein, з Akkusativ. Перед іменником отримує закінчення — ein verliebtes Paar, verliebte Blicke. Триступеневий ланцюжок, на якому тримається німецька любовна історія, варто взяти цілим: verliebt, verlobt («заручений»), verheiratet. Кінцеве -t вимовляється як пишеться, а b перед ним оглушується в p.'
+
+  - de: küssen
+    ipa: "ˈkʏsn̩"
+    pos: verb
+    praesens_3sg: küsst
+    partizip2: geküsst
+    aux: haben
+    valence: "+ Akk"
+    en: to kiss
+    ru: целовать
+    uk: цілувати
+    example_de: Zum Abschied küsste sie ihn und stieg in den Zug.
+    example_en: She kissed him goodbye and got on the train.
+    example_ru: На прощание она поцеловала его и села в поезд.
+    example_uk: На прощання вона поцілувала його й сіла в потяг.
+    note:
+      en: 'Accusative object for the person, and the place is auf + Akkusativ: auf die Wange, auf die Stirn. Reflexively and reciprocally sie küssen sich means they kiss each other, which is the ordinary way to say it of a couple. The du-form is küsst — the stem already ends in ss, so no further s joins it. Related: der Kuss below, and the old-fashioned greeting Küss die Hand, still heard in Austria.'
+      ru: 'Дополнение в Akkusativ для человека, а место — auf + Akkusativ: auf die Wange, auf die Stirn. Возвратно-взаимное sie küssen sich значит «они целуются», и о паре так и говорят. Форма 2-го лица — küsst: основа и так кончается на ss, лишнее s не прибавляется. Родня: der Kuss ниже и старомодное приветствие Küss die Hand, которое ещё слышно в Австрии.'
+      uk: 'Додаток у Akkusativ для людини, а місце — auf + Akkusativ: auf die Wange, auf die Stirn. Зворотно-взаємне sie küssen sich означає «вони цілуються», і про пару так і кажуть. Форма 2-ї особи — küsst: основа й так закінчується на ss, зайве s не додається. Рідня: der Kuss нижче й старомодне вітання Küss die Hand, яке ще чути в Австрії.'
+
+  - de: Kuss
+    ipa: "ˈkʊs"
+    pos: noun
+    gender: m
+    plural: "die Küsse"
+    # Recognition only: `küssen` in this same deck ships as the production card, and a
+    # prompt reading "kiss" cannot say whether the verb or the noun is wanted.
+    cards: recognition
+    en: kiss
+    ru: поцелуй
+    uk: поцілунок
+    example_de: Sie gab ihrem Sohn einen Kuss und ging zur Arbeit.
+    example_en: She gave her son a kiss and left for work.
+    example_ru: Она поцеловала сына и ушла на работу.
+    example_uk: Вона поцілувала сина й пішла на роботу.
+    note:
+      en: 'Short u in the singular, umlaut and long ü in the plural: der Kuss, die Küsse — the double s after a short vowel is exactly why the spelling changes. The verb is what German normally uses, so einen Kuss geben is a shade more deliberate than küssen. In a message Liebe Grüße und Küsse or just Küsschen ends a note between people who are close. Der Handkuss survives mainly in the idiom etwas mit Handkuss annehmen, to accept something gladly.'
+      ru: 'Краткое u в единственном числе, умлаут и долгое ü во множественном: der Kuss, die Küsse — двойное s после краткого гласного как раз и объясняет смену написания. Немецкий обычно пользуется глаголом, так что einen Kuss geben звучит чуть нарочитее, чем küssen. В сообщении Liebe Grüße und Küsse или просто Küsschen завершают записку между близкими. Der Handkuss выжил в основном в обороте etwas mit Handkuss annehmen — «принять с превеликой охотой».'
+      uk: 'Коротке u в однині, умлаут і довге ü у множині: der Kuss, die Küsse — подвійне s після короткого голосного якраз і пояснює зміну написання. Німецька зазвичай користується дієсловом, тож einen Kuss geben звучить трохи навмисніше, ніж küssen. У повідомленні Liebe Grüße und Küsse або просто Küsschen завершують записку між близькими. Der Handkuss вижив здебільшого у звороті etwas mit Handkuss annehmen — «прийняти з превеликою охотою».'
+
+  - de: umarmen
+    ipa: "ʊmˈʔaʁmən"
+    pos: verb
+    praesens_3sg: umarmt
+    partizip2: umarmt
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: narrative and greeting-card lexis. A B1 learner produces
+    # `in den Arm nehmen` from A1 words, and this verb is what a story uses.
+    cards: recognition
+    en: to hug, to put both arms around somebody
+    ru: обнимать
+    uk: обіймати
+    example_de: Am Bahnhof umarmte sie ihre Tochter lange.
+    example_en: At the station she hugged her daughter for a long time.
+    example_ru: На вокзале она долго обнимала дочь.
+    example_uk: На вокзалі вона довго обіймала доньку.
+    note:
+      en: 'An inseparable verb built on der Arm: the prefix um- stays put, the stress falls on the stem, and the Partizip II takes no ge- — er hat sie umarmt. That is the pattern for every inseparable prefix, and um- is one of the few that can go either way, so compare umziehen (separable, to move house), which stresses the prefix and does take ge-. The noun is die Umarmung; the everyday phrase is jemanden in den Arm nehmen.'
+      ru: 'Неотделяемый глагол, построенный на der Arm: приставка um- остаётся на месте, ударение падает на корень, а Partizip II обходится без ge- — er hat sie umarmt. Так ведут себя все неотделяемые приставки, а um- — одна из немногих, которая может и так и так: сравните umziehen («переезжать»), отделяемое, с ударением на приставке и с ge-. Существительное — die Umarmung, а обиходный оборот — jemanden in den Arm nehmen.'
+      uk: 'Невідокремлюване дієслово, побудоване на der Arm: префікс um- лишається на місці, наголос падає на корінь, а Partizip II обходиться без ge- — er hat sie umarmt. Так поводяться всі невідокремлювані префікси, а um- — один із небагатьох, що може і так, і так: порівняйте umziehen («переїжджати»), відокремлюване, з наголосом на префіксі й із ge-. Іменник — die Umarmung, а побутовий зворот — jemanden in den Arm nehmen.'
+
+  # --- Ehe, Trennung, Scheidung ---
+  - de: Ehe
+    ipa: "ˈeːə"
+    pos: noun
+    gender: f
+    plural: "die Ehen"
+    en: marriage as a state and as an institution
+    en_compact: "marriage"
+    ru: брак, супружество
+    uk: шлюб, подружжя
+    example_de: Nach zwanzig Jahren Ehe wollten sie noch einmal groß feiern.
+    example_en: After twenty years of marriage they wanted to celebrate in style once more.
+    example_ru: После двадцати лет брака они захотели снова отпраздновать с размахом.
+    example_uk: Після двадцяти років шлюбу вони захотіли ще раз відсвяткувати з розмахом.
+    note:
+      en: 'The state, not the ceremony: A2 die Hochzeit is the wedding day, this is the years that follow. Two vowels, two syllables — the h is silent and only lengthens the first e. Its compounds carry a great deal of official German: der Ehepartner, das Ehepaar, der Ehering, der Ehevertrag, and die Ehefrau beside der Ehemann. The verb is heiraten, and eine Ehe schließen is the phrase a registry office uses.'
+      ru: 'Состояние, а не церемония: die Hochzeit уровня A2 — день свадьбы, а это годы после. Два гласных, два слога — h не произносится, оно лишь удлиняет первое e. На его составных держится немалая часть официального немецкого: der Ehepartner, das Ehepaar, der Ehering, der Ehevertrag, а также die Ehefrau и der Ehemann. Глагол — heiraten, а eine Ehe schließen — формула загса.'
+      uk: 'Стан, а не церемонія: die Hochzeit рівня A2 — день весілля, а це роки після. Два голосні, два склади — h не вимовляється, воно лише подовжує перше e. На його складних словах тримається чимала частина офіційної німецької: der Ehepartner, das Ehepaar, der Ehering, der Ehevertrag, а також die Ehefrau і der Ehemann. Дієслово — heiraten, а eine Ehe schließen — формула РАЦСу.'
+
+  - de: Ehepaar
+    ipa: "ˈeːəˌpaːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Ehepaare"
+    # Recognition only: `Ehe` in this same deck and A2 `Paar` (zahlen-masse-a2) are
+    # both shipped production cards, and this word is simply the two of them joined —
+    # a compound the learner can read off its parts.
+    cards: recognition
+    en: a married couple
+    ru: супружеская пара
+    uk: подружня пара
+    example_de: Das Ehepaar aus der dritten Etage grüßt immer freundlich.
+    example_en: The married couple from the third floor always say hello politely.
+    example_ru: Супружеская пара с третьего этажа всегда приветливо здоровается.
+    example_uk: Подружня пара з третього поверху завжди привітно вітається.
+    note:
+      en: 'Ehe plus Paar, and the gender comes from the second element, as it always does in a German compound — das Paar, so das Ehepaar. Stress is on the first part. On an envelope or a guest list it works like a title: Ehepaar Schmidt, or the older Herrn und Frau Schmidt. Without the Ehe- the word is neutral about the paperwork: ein junges Paar may or may not be married, and das Paar also means a pair of shoes.'
+      ru: 'Ehe плюс Paar, и род берётся от второго элемента, как всегда в немецком сложном слове: das Paar, значит das Ehepaar. Ударение на первой части. На конверте или в списке гостей работает как титул: Ehepaar Schmidt или более старое Herrn und Frau Schmidt. Без Ehe- слово нейтрально к документам: ein junges Paar может быть и не расписано, а das Paar значит ещё и «пара обуви».'
+      uk: 'Ehe плюс Paar, і рід береться від другого елемента, як завжди в німецькому складному слові: das Paar, отже das Ehepaar. Наголос на першій частині. На конверті чи в списку гостей працює як титул: Ehepaar Schmidt або старіше Herrn und Frau Schmidt. Без Ehe- слово нейтральне до документів: ein junges Paar може бути й нерозписане, а das Paar означає ще й «пара взуття».'
+
+  - de: Familienstand
+    ipa: "faˈmiːli̯ənˌʃtant"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: a field on a form, read and ticked but never typed as a whole
+    # word. What a learner produces here is the answer — `ledig`, `verheiratet`,
+    # `geschieden` — not the label.
+    cards: recognition
+    en: marital status, the box on an official form
+    en_compact: "marital status"
+    ru: семейное положение (графа в анкете)
+    uk: сімейний стан (графа в анкеті)
+    example_de: Bitte tragen Sie Ihren Familienstand in das Formular ein.
+    example_en: Please enter your marital status on the form.
+    example_ru: Пожалуйста, укажите в бланке своё семейное положение.
+    example_uk: Будь ласка, зазначте у бланку свій сімейний стан.
+    note:
+      en: 'A form word, and the four answers matter more than the label: ledig (single, never married), verheiratet, geschieden (divorced), verwitwet (widowed). Note that ledig is not the same as Single — the first is the legal state on a form, the second is a way of living. Austria uses der Personenstand and Switzerland der Zivilstand for the identical field, which is the sort of variation a trinational word list makes visible. No plural.'
+      ru: 'Слово анкеты, и четыре ответа важнее самой графы: ledig («холост, не состоял в браке»), verheiratet, geschieden («разведён»), verwitwet («вдовец, вдова»). Заметьте, что ledig — не то же, что Single: первое — юридическое состояние в анкете, второе — образ жизни. В Австрии та же графа называется der Personenstand, в Швейцарии der Zivilstand, и такие расхождения как раз и делает видимыми трёхнациональный словник. Множественного числа нет.'
+      uk: 'Слово анкети, і чотири відповіді важливіші за саму графу: ledig («неодружений, не перебував у шлюбі»), verheiratet, geschieden («розлучений»), verwitwet («вдівець, удова»). Зауважте, що ledig — не те саме, що Single: перше — юридичний стан в анкеті, друге — спосіб життя. В Австрії та сама графа зветься der Personenstand, у Швейцарії der Zivilstand, і саме такі розбіжності робить видимими тринаціональний словник. Множини немає.'
+
+  - de: Trennung
+    ipa: "ˈtʁɛnʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Trennungen"
+    en: a couple splitting up; the act of keeping two things apart
+    en_compact: "separation, break-up"
+    ru: расставание, разрыв; разделение
+    uk: розлучення пари, розрив; розділення
+    example_de: Nach der Trennung ist er in eine kleinere Wohnung gezogen.
+    example_en: After the break-up he moved into a smaller flat.
+    example_ru: После расставания он переехал в квартиру поменьше.
+    example_uk: Після розриву він переїхав до меншого помешкання.
+    note:
+      en: 'The noun of trennen, and it is the step before a Scheidung, not the same thing: a couple can live in Trennung for a year and never divorce at all. German law even counts that year — das Trennungsjahr. Outside relationships the word is neutral and technical: die Mülltrennung is sorting rubbish, die Worttrennung is where a word breaks at the end of a line. The reflexive verb is sich trennen: Sie haben sich letztes Jahr getrennt.'
+      ru: 'Существительное от trennen, и это ступень перед Scheidung, а не то же самое: пара может год жить in Trennung и вовсе не развестись. Немецкое право даже считает этот год — das Trennungsjahr. Вне отношений слово нейтрально и технично: die Mülltrennung — сортировка мусора, die Worttrennung — перенос слова в конце строки. Возвратный глагол — sich trennen: Sie haben sich letztes Jahr getrennt.'
+      uk: 'Іменник від trennen, і це щабель перед Scheidung, а не те саме: пара може рік жити in Trennung і зовсім не розлучитися. Німецьке право навіть рахує цей рік — das Trennungsjahr. Поза стосунками слово нейтральне й технічне: die Mülltrennung — сортування сміття, die Worttrennung — перенос слова наприкінці рядка. Зворотне дієслово — sich trennen: Sie haben sich letztes Jahr getrennt.'
+
+  - de: getrennt leben
+    ipa: "gəˈtʁɛnt ˈleːbn̩"
+    pos: phrase
+    # Recognition only: a three-word chunk made of two shipped production cards
+    # (`trennen` in konsum-umwelt, `leben` in erste-schritte) — a typed prompt could
+    # not say which of the several correct renderings was wanted.
+    cards: recognition
+    en: to live apart while still being married
+    ru: жить раздельно (не расторгнув брак)
+    uk: жити окремо (не розірвавши шлюб)
+    example_de: Die Eltern leben seit zwei Jahren getrennt, sind aber noch verheiratet.
+    example_en: The parents have been living apart for two years but are still married.
+    example_ru: Родители уже два года живут раздельно, но всё ещё состоят в браке.
+    example_uk: Батьки вже два роки живуть окремо, але все ще перебувають у шлюбі.
+    note:
+      en: 'A legal and administrative state rather than a description of a flat: on a form and in a court it means the marriage is formally in its separation phase. German needs the year of it — das Trennungsjahr — before a divorce can be granted, which is why the phrase turns up so often in official texts. getrennt on its own is simply separately, as in getrennt zahlen at a restaurant table, and that is the everyday use a learner meets first.'
+      ru: 'Юридическое и административное состояние, а не описание квартиры: в анкете и в суде это значит, что брак формально находится в стадии раздельного проживания. Немецкому праву нужен год такого проживания — das Trennungsjahr, — прежде чем развод будет оформлен, потому оборот так часто и встречается в официальных текстах. Само getrennt значит просто «раздельно», как в getrennt zahlen за ресторанным столом, и с этим бытовым употреблением учащийся встречается первым.'
+      uk: 'Юридичний та адміністративний стан, а не опис помешкання: в анкеті й у суді це означає, що шлюб формально перебуває у стадії роздільного проживання. Німецькому праву потрібен рік такого проживання — das Trennungsjahr, — перш ніж розлучення буде оформлено, тому зворот так часто й трапляється в офіційних текстах. Саме getrennt означає просто «окремо», як у getrennt zahlen за ресторанним столом, і саме з цим побутовим ужитком учень стикається першим.'
+
+  - de: sich scheiden lassen
+    ipa: "zɪç ˈʃaɪ̯dn̩ ˈlasn̩"
+    pos: phrase
+    # Recognition only: a four-part frame whose word order and pronoun a single typed
+    # prompt cannot ask for. `Scheidung` below is this deck's production card for the
+    # same event.
+    cards: recognition
+    en: to get divorced
+    ru: разводиться, расторгать брак
+    uk: розлучатися, розривати шлюб
+    example_de: Sie haben sich nach zwei Jahren Trennung scheiden lassen.
+    example_en: They got divorced after two years of separation.
+    example_ru: Они развелись после двух лет раздельного проживания.
+    example_uk: Вони розлучилися після двох років роздільного проживання.
+    note:
+      en: 'German does not divorce, it has itself divorced: the frame is sich scheiden lassen, with lassen carrying the sense that a court does the deed. In the Perfekt lassen keeps its infinitive form and closes the sentence — Sie haben sich scheiden lassen — which is the same double-infinitive pattern as bei modal verbs. The bare verb scheiden means to part or separate and is otherwise literary. The result is die Scheidung, and the adjective is geschieden.'
+      ru: 'Немецкий не разводится, а «даёт себя развести»: конструкция — sich scheiden lassen, где lassen несёт мысль, что дело совершает суд. В Perfekt lassen сохраняет форму инфинитива и закрывает предложение — Sie haben sich scheiden lassen, — та же модель двойного инфинитива, что у модальных глаголов. Голый глагол scheiden значит «разделять, расставаться» и в остальном книжен. Результат — die Scheidung, а прилагательное — geschieden.'
+      uk: 'Німецька не розлучається, а «дає себе розлучити»: конструкція — sich scheiden lassen, де lassen несе думку, що справу чинить суд. У Perfekt lassen зберігає форму інфінітива й закриває речення — Sie haben sich scheiden lassen, — та сама модель подвійного інфінітива, що в модальних дієслів. Голе дієслово scheiden означає «розділяти, розлучати» і в решті випадків книжне. Результат — die Scheidung, а прикметник — geschieden.'
+
+  - de: Scheidung
+    ipa: "ˈʃaɪ̯dʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Scheidungen"
+    en: divorce
+    ru: развод, расторжение брака
+    uk: розлучення, розірвання шлюбу
+    example_de: Nach der Scheidung sind die Kinder bei der Mutter geblieben.
+    example_en: After the divorce the children stayed with their mother.
+    example_ru: После развода дети остались с матерью.
+    example_uk: Після розлучення діти залишилися з матір’ю.
+    note:
+      en: 'The formal end of a marriage, and the noun a form or a news item uses: die Scheidung einreichen (to file for one), nach der Scheidung, das Scheidungsurteil. It is the last step of the chain Trennung, Trennungsjahr, Scheidung. The adjective geschieden is one of the four answers in the Familienstand box above, and it describes the person: Er ist geschieden. Do not confuse it with die Entscheidung, a decision — the two share a stem and nothing else.'
+      ru: 'Формальное окончание брака и то существительное, которым пользуются анкета и новостная заметка: die Scheidung einreichen («подать на развод»), nach der Scheidung, das Scheidungsurteil. Это последняя ступень цепочки Trennung, Trennungsjahr, Scheidung. Прилагательное geschieden — один из четырёх ответов в графе Familienstand выше, и описывает оно человека: Er ist geschieden. Не путать с die Entscheidung («решение»): общий у них только корень.'
+      uk: 'Формальне завершення шлюбу і той іменник, яким користуються анкета й новинна замітка: die Scheidung einreichen («подати на розлучення»), nach der Scheidung, das Scheidungsurteil. Це останній щабель ланцюжка Trennung, Trennungsjahr, Scheidung. Прикметник geschieden — одна з чотирьох відповідей у графі Familienstand вище, і описує він людину: Er ist geschieden. Не плутати з die Entscheidung («рішення»): спільний у них лише корінь.'
+
+  - de: Abschied
+    ipa: "ˈapʃiːt"
+    pos: noun
+    gender: m
+    plural: "die Abschiede"
+    # Recognition only: `sich verabschieden` ("to say goodbye") ships as a production
+    # card in verben-kommunikation-ausdruck-b1, and the noun lives only inside fixed
+    # phrases whose preposition a one-word prompt cannot ask for.
+    cards: recognition
+    en: parting, the moment of saying goodbye
+    ru: прощание, расставание
+    uk: прощання, розставання
+    example_de: Der Abschied am Flughafen fiel allen schwer.
+    example_en: The goodbye at the airport was hard for everybody.
+    example_ru: Прощание в аэропорту далось всем тяжело.
+    example_uk: Прощання в аеропорту далося всім важко.
+    note:
+      en: 'It lives in chunks: Abschied nehmen von jemandem is the written way to say goodbye, zum Abschied marks what happens at that moment, and der Abschied fällt mir schwer says it is hard. The verb is sich verabschieden, and A1 Tschüs is what you actually say. Note the spelling and sound — the b is written but spoken p, because the syllable break falls after ab-. Der Abschiedsbrief and die Abschiedsfeier are its compounds.'
+      ru: 'Живёт в оборотах: Abschied nehmen von jemandem — письменный способ попрощаться, zum Abschied помечает то, что происходит в этот миг, а der Abschied fällt mir schwer говорит, что расставание тяжело. Глагол — sich verabschieden, а вслух говорят Tschüs уровня A1. Обратите внимание на написание и звук: b пишется, но произносится как p, потому что слоговая граница проходит после ab-. Составные: der Abschiedsbrief и die Abschiedsfeier.'
+      uk: 'Живе у зворотах: Abschied nehmen von jemandem — писемний спосіб попрощатися, zum Abschied позначає те, що відбувається цієї миті, а der Abschied fällt mir schwer каже, що розставання важке. Дієслово — sich verabschieden, а вголос кажуть Tschüs рівня A1. Зверніть увагу на написання і звук: b пишеться, але вимовляється як p, бо складова межа проходить після ab-. Складні слова: der Abschiedsbrief і die Abschiedsfeier.'
+
+  # --- Kinder bekommen und großziehen ---
+  - de: Geburt
+    ipa: "gəˈbuːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "die Geburten"
+    en: birth
+    ru: рождение, роды
+    uk: народження, пологи
+    example_de: Nach der Geburt des zweiten Kindes sind sie aufs Land gezogen.
+    example_en: After the birth of their second child they moved to the countryside.
+    example_ru: После рождения второго ребёнка они переехали за город.
+    example_uk: Після народження другої дитини вони переїхали за місто.
+    note:
+      en: 'One noun for both the event and the medical process, so a hospital and a family history use the same word. The compounds are what you meet on forms — A2 der Geburtstag, das Geburtsdatum, der Geburtsort, das Geburtsjahr — and note the joining s in all of them, which the bare noun does not have. Not to be confused with A2 der Geburtstag: this word is the day you were born, that one is its anniversary every year.'
+      ru: 'Одно существительное и на событие, и на медицинский процесс, так что больница и семейная хроника берут одно слово. На бланках встречаются его составные — der Geburtstag уровня A2, das Geburtsdatum, der Geburtsort, das Geburtsjahr, — и заметьте соединительное s во всех, которого у голого существительного нет. Не путать с der Geburtstag уровня A2: это слово о самом дне рождения, а то — о его ежегодной годовщине.'
+      uk: 'Один іменник і на подію, і на медичний процес, тож лікарня й родинна хроніка беруть одне слово. На бланках трапляються його складні форми — der Geburtstag рівня A2, das Geburtsdatum, der Geburtsort, das Geburtsjahr, — і зауважте сполучне s в усіх, якого голий іменник не має. Не плутати з der Geburtstag рівня A2: це слово про сам день народження, а те — про його щорічну річницю.'
+
+  - de: geboren werden
+    ipa: "gəˈboːʁən ˈveːɐ̯dn̩"
+    pos: phrase
+    # Recognition only: the passive frame the learner already knows in the fixed form
+    # `Ich bin … geboren`, taught with A1 `Geburtstag` — a typed prompt could not say
+    # whether the frame or the finished sentence was wanted.
+    cards: recognition
+    en: to be born
+    ru: родиться, появиться на свет
+    uk: народитися, з’явитися на світ
+    example_de: Sie ist in Hamburg geboren und in München aufgewachsen.
+    example_en: She was born in Hamburg and grew up in Munich.
+    example_ru: Она родилась в Гамбурге, а выросла в Мюнхене.
+    example_uk: Вона народилася в Гамбурзі, а виросла в Мюнхені.
+    note:
+      en: 'German has no verb for it — it uses a passive, and the tense splits in a way that catches everyone out. About a living person the ordinary form drops werden altogether: Ich bin 1990 geboren. About somebody no longer alive, or in a formal record, German writes wurde geboren: Goethe wurde 1749 geboren. Both are correct and neither is a mistake for the other. A woman''s maiden name appears as geborene Müller, abbreviated geb. on a document.'
+      ru: 'Отдельного глагола у немецкого нет — он берёт пассив, и время здесь распределяется так, что на этом спотыкаются все. О живом человеке обычная форма вовсе обходится без werden: Ich bin 1990 geboren. О том, кого уже нет, или в официальной записи пишут wurde geboren: Goethe wurde 1749 geboren. Обе формы верны, и ни одна не является ошибкой вместо другой. Девичья фамилия в документе стоит как geborene Müller, сокращённо geb.'
+      uk: 'Окремого дієслова німецька не має — вона бере пасив, і час тут розподіляється так, що на цьому спотикаються всі. Про живу людину звичайна форма взагалі обходиться без werden: Ich bin 1990 geboren. Про того, кого вже немає, або в офіційному записі пишуть wurde geboren: Goethe wurde 1749 geboren. Обидві форми правильні, і жодна не є помилкою замість іншої. Дівоче прізвище в документі стоїть як geborene Müller, скорочено geb.'
+
+  - de: Schwangerschaft
+    ipa: "ˈʃvaŋɐʃaft"
+    pos: noun
+    gender: f
+    plural: "die Schwangerschaften"
+    # Recognition only: A2 ships `schwanger` ("pregnant", charakter-eigenschaften-a2)
+    # as a production card, and that adjective is what a learner says — this noun
+    # belongs to a doctor's letter and an employment law text.
+    cards: recognition
+    en: pregnancy
+    ru: беременность
+    uk: вагітність
+    example_de: Während der Schwangerschaft soll sie nicht schwer heben.
+    example_en: During the pregnancy she is not supposed to lift anything heavy.
+    example_ru: Во время беременности ей нельзя поднимать тяжёлое.
+    example_uk: Під час вагітності їй не можна піднімати важке.
+    note:
+      en: 'The adjective schwanger plus -schaft, the same suffix as in Freundschaft above, and the same feminine gender follows. It is a word of medical and legal German: der Mutterschutz protects a job during it, der Schwangerschaftstest is bought at a Drogerie, and der Mutterpass is the booklet that records it. In everyday speech people simply say schwanger sein or, more warmly, ein Kind bekommen.'
+      ru: 'Прилагательное schwanger плюс -schaft — тот же суффикс, что в Freundschaft выше, и род тот же, женский. Это слово медицинского и юридического немецкого: der Mutterschutz защищает рабочее место в этот период, der Schwangerschaftstest покупают в Drogerie, а der Mutterpass — книжка, где всё записывают. В обиходной речи говорят просто schwanger sein или теплее — ein Kind bekommen.'
+      uk: 'Прикметник schwanger плюс -schaft — той самий суфікс, що у Freundschaft вище, і рід той самий, жіночий. Це слово медичної та юридичної німецької: der Mutterschutz захищає робоче місце в цей період, der Schwangerschaftstest купують у Drogerie, а der Mutterpass — книжечка, де все записують. У побутовому мовленні кажуть просто schwanger sein або тепліше — ein Kind bekommen.'
+
+  - de: Nachwuchs
+    ipa: "ˈnaːxˌvuːks"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: newspaper and company-report lexis. A B1 learner produces
+    # `Kinder` (A1) for the family sense and `junge Leute` for the other.
+    cards: recognition
+    en: the next lot coming up — children, or young people in a field
+    en_compact: "offspring; new blood"
+    ru: потомство, дети; молодая смена
+    uk: потомство, діти; молода зміна
+    example_de: Der Verein sucht dringend Nachwuchs für die Jugendmannschaft.
+    example_en: The club is urgently looking for new young players for its youth team.
+    example_ru: Клубу срочно нужна молодая смена для юношеской команды.
+    example_uk: Клубові терміново потрібна молода зміна для юнацької команди.
+    note:
+      en: 'No plural — it is a collective. Built from nach and wachsen, literally what grows up after, and it works in three registers at once: a family announcement (Nachwuchs bekommen, to have a baby), a sports club or a firm looking for new blood (der Nachwuchs, die Nachwuchskräfte), and gardening, where it is what grows back. About one''s own children it sounds jokey and mildly newspaperish, so a family talking normally says unsere Kinder.'
+      ru: 'Множественного числа нет — это собирательное. Составлено из nach и wachsen, буквально «то, что вырастает после», и работает сразу в трёх регистрах: семейное объявление (Nachwuchs bekommen — «ждать ребёнка»), спортклуб или фирма в поисках молодых кадров (der Nachwuchs, die Nachwuchskräfte) и садоводство, где это то, что отрастает заново. О собственных детях звучит шутливо и слегка по-газетному, так что в обычном разговоре семья скажет unsere Kinder.'
+      uk: 'Множини немає — це збірне. Складене з nach і wachsen, буквально «те, що виростає після», і працює одразу в трьох регістрах: родинне оголошення (Nachwuchs bekommen — «чекати на дитину»), спортклуб або фірма в пошуках молодих кадрів (der Nachwuchs, die Nachwuchskräfte) і садівництво, де це те, що відростає наново. Про власних дітей звучить жартівливо й трохи по-газетному, тож у звичайній розмові родина скаже unsere Kinder.'
+
+  - de: erziehen
+    ipa: "ɛɐ̯ˈtsiːən"
+    pos: verb
+    praesens_3sg: erzieht
+    partizip2: erzogen
+    aux: haben
+    valence: "+ Akk"
+    en: to bring up a child, to teach it how to behave
+    en_compact: "to bring up a child"
+    ru: воспитывать (ребёнка)
+    uk: виховувати (дитину)
+    example_de: Sie hat ihre drei Kinder allein erzogen.
+    example_en: She brought up her three children on her own.
+    example_ru: Она одна воспитала троих детей.
+    example_uk: Вона сама виховала трьох дітей.
+    note:
+      en: 'Strong verb: erziehen – erzog – erzogen, on the ziehen pattern, and the participle changes its vowel, which is the part to memorise. It is about manners and values, not about school subjects — teaching a skill is beibringen and teaching a class is unterrichten. The participles work as adjectives of judgement: gut erzogen is well brought up, schlecht erzogen is the opposite, and it is said of children rather than adults. Related: die Erziehung below and der Erzieher, the trained nursery teacher.'
+      ru: 'Сильный глагол: erziehen – erzog – erzogen, по модели ziehen, и в причастии меняется гласный — это и стоит запомнить. Речь о манерах и ценностях, а не о школьных предметах: научить умению — beibringen, вести занятия — unterrichten. Причастия работают как оценочные прилагательные: gut erzogen — «хорошо воспитанный», schlecht erzogen — наоборот, и говорят так о детях, а не о взрослых. Родня: die Erziehung ниже и der Erzieher — воспитатель с дипломом.'
+      uk: 'Сильне дієслово: erziehen – erzog – erzogen, за моделлю ziehen, і в дієприкметнику змінюється голосний — це й варто запам’ятати. Ідеться про манери й цінності, а не про шкільні предмети: навчити вміння — beibringen, вести заняття — unterrichten. Дієприкметники працюють як оцінні прикметники: gut erzogen — «добре вихований», schlecht erzogen — навпаки, і кажуть так про дітей, а не про дорослих. Рідня: die Erziehung нижче й der Erzieher — вихователь із дипломом.'
+
+  - de: Erziehung
+    ipa: "ɛɐ̯ˈtsiːʊŋ"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: upbringing, the way a child is raised
+    ru: воспитание
+    uk: виховання
+    example_de: Über die Erziehung der Kinder streiten die Eltern manchmal.
+    example_en: The parents sometimes argue about how to raise the children.
+    example_ru: О воспитании детей родители иногда спорят.
+    example_uk: Про виховання дітей батьки іноді сперечаються.
+    note:
+      en: 'No plural. It covers both what parents do at home and what an institution does professionally, which is why das Erziehungsgeld and der Erziehungsurlaub were once the official names of parental benefit and leave (today Elterngeld and Elternzeit). Keep it apart from A2 die Ausbildung, which is vocational training, and die Bildung, which is education in the broad sense — three different words where English often manages with one.'
+      ru: 'Множественного числа нет. Покрывает и то, что делают родители дома, и то, чем занимается учреждение профессионально, — потому das Erziehungsgeld и der Erziehungsurlaub когда-то и были официальными названиями родительского пособия и отпуска (сегодня Elterngeld и Elternzeit). Держите его отдельно от die Ausbildung уровня A2 — это профессиональное обучение, — и от die Bildung, «образование» в широком смысле: три разных слова там, где английский часто обходится одним.'
+      uk: 'Множини немає. Покриває і те, що роблять батьки вдома, і те, чим займається установа професійно, — тому das Erziehungsgeld і der Erziehungsurlaub колись і були офіційними назвами батьківської допомоги та відпустки (сьогодні Elterngeld і Elternzeit). Тримайте його окремо від die Ausbildung рівня A2 — це фахове навчання, — і від die Bildung, «освіта» в широкому сенсі: три різні слова там, де англійська часто обходиться одним.'
+
+  - de: Babysitterin
+    ipa: "ˈbeːbiˌzɪtəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Babysitterinnen"
+    # Recognition only: the feminine of A2's `Babysitter` (berufe-a2), whose own note
+    # already names this form — the pair costs three cards rather than four, per the
+    # Movierung rule for the B1 completion pass.
+    cards: recognition
+    en: a woman who looks after children for a few hours
+    en_compact: "babysitter (female)"
+    ru: няня на несколько часов, бэбиситтер (женщина)
+    uk: няня на кілька годин, бебісітерка
+    example_de: Für den Abend haben wir eine Babysitterin gefunden.
+    example_en: We have found a babysitter for the evening.
+    example_ru: На вечер мы нашли няню.
+    example_uk: На вечір ми знайшли няню.
+    note:
+      en: 'Movierung: the feminine of a German agent noun is built with -in and, where the stem has a vowel that can take one, an umlaut — der Arzt gives die Ärztin, der Babysitter gives this. The plural doubles the n: die Babysitterinnen. Stress stays where the loanword put it, on the first syllable. When the job is meant in general German still says der Babysitter, and a job advert today writes Babysitter/-in or Babysitter (m/w/d).'
+      ru: 'Мовирование: женская пара к немецкому существительному деятеля строится суффиксом -in, а где в основе есть подходящий гласный — ещё и умлаутом: der Arzt даёт die Ärztin, der Babysitter даёт это слово. Во множественном n удваивается: die Babysitterinnen. Ударение остаётся там, куда его поставило заимствование, — на первом слоге. Когда речь о занятии вообще, немецкий по-прежнему скажет der Babysitter, а объявление о работе сегодня напишет Babysitter/-in или Babysitter (m/w/d).'
+      uk: 'Мовація: жіноча пара до німецького іменника діяча будується суфіксом -in, а де в основі є придатний голосний — ще й умлаутом: der Arzt дає die Ärztin, der Babysitter дає це слово. У множині n подвоюється: die Babysitterinnen. Наголос лишається там, куди його поставило запозичення, — на першому складі. Коли йдеться про заняття взагалі, німецька й далі скаже der Babysitter, а оголошення про роботу сьогодні напише Babysitter/-in або Babysitter (m/w/d).'
+
+  # --- Wenn die Generation älter wird ---
+  - de: Altenheim
+    ipa: "ˈaltn̩ˌhaɪ̯m"
+    pos: noun
+    gender: n
+    plural: "die Altenheime"
+    # Recognition only: read on a sign and in a report. A B1 learner produces the
+    # everyday `Heim für alte Leute` or names the place, and `Altersheim` below says
+    # the same thing — one prompt cannot ask for both.
+    cards: recognition
+    en: a home where old people live and are cared for
+    en_compact: "old people's home"
+    ru: дом престарелых
+    uk: будинок для літніх людей
+    example_de: Ihre Großmutter wohnt seit dem Frühjahr in einem Altenheim.
+    example_en: Her grandmother has been living in an old people's home since the spring.
+    example_ru: Её бабушка с весны живёт в доме престарелых.
+    example_uk: Її бабуся з весни живе в будинку для літніх людей.
+    note:
+      en: 'Built from the plural of alt plus Heim, and it is the shorter of the two spellings the Wortliste lists — Altersheim is the other and means exactly the same. Today the official words are das Seniorenheim and das Pflegeheim, the second for a place with nursing care, and Altenheim now sounds a shade dated. Note the family of Heim words: das Kinderheim, das Studentenheim, das Tierheim, all places where somebody is housed by an institution rather than at home.'
+      ru: 'Построено из формы множественного числа alt и слова Heim, и это более короткое из двух написаний, которые даёт Wortliste, — второе Altersheim и значит ровно то же. Сегодня официальные слова — das Seniorenheim и das Pflegeheim (второе о заведении с медицинским уходом), а Altenheim звучит чуть старомодно. Обратите внимание на семью слов с Heim: das Kinderheim, das Studentenheim, das Tierheim — всюду место, где кого-то содержит учреждение, а не дом.'
+      uk: 'Побудоване з форми множини alt і слова Heim, і це коротше з двох написань, які подає Wortliste, — друге Altersheim і означає точно те саме. Сьогодні офіційні слова — das Seniorenheim і das Pflegeheim (друге про заклад із медичним доглядом), а Altenheim звучить трохи старомодно. Зверніть увагу на родину слів із Heim: das Kinderheim, das Studentenheim, das Tierheim — усюди місце, де когось утримує установа, а не дім.'
+
+  - de: Altersheim
+    ipa: "ˈaltɐsˌhaɪ̯m"
+    pos: noun
+    gender: n
+    plural: "die Altersheime"
+    # Recognition only: the same institution as `Altenheim` above, spelled the other
+    # way — two production cards would let two prompts grade one rendering correct,
+    # which is the `ebenso`/`genauso` defect ruled in ort-richtung-verweis-b1.
+    cards: recognition
+    en: a residence for elderly people
+    ru: дом престарелых (второй вариант написания)
+    uk: будинок для літніх людей (другий варіант написання)
+    example_de: Das neue Altersheim am Stadtrand hat einen großen Garten.
+    example_en: The new residence for elderly people on the edge of town has a large garden.
+    example_ru: У нового дома престарелых на окраине большой сад.
+    example_uk: Новий будинок для літніх людей на околиці має великий сад.
+    note:
+      en: 'The same place as Altenheim, joined differently: this one uses Alter, the age, with a linking s, while the other uses the plural of the adjective alt, the old people. Both are current German and neither is regional. Switzerland prefers this form; German care providers today prefer Seniorenheim over either. Keep the joining s in mind — it appears in Altersgruppe, Altersgrenze and Altersunterschied too, all built on the same first element.'
+      ru: 'То же самое заведение, что Altenheim, но соединено иначе: здесь взято Alter — «возраст» — с соединительным s, а там форма множественного числа прилагательного alt, «старые люди». Оба слова — сегодняшний немецкий, и ни одно не областное. Швейцария предпочитает эту форму; немецкие же учреждения ухода сегодня предпочитают обеим слово Seniorenheim. Помните про соединительное s: оно есть и в Altersgruppe, Altersgrenze, Altersunterschied — всё на том же первом элементе.'
+      uk: 'Той самий заклад, що Altenheim, але сполучено інакше: тут узято Alter — «вік» — зі сполучним s, а там форма множини прикметника alt, «старі люди». Обидва слова — сьогоднішня німецька, і жодне не обласне. Швейцарія віддає перевагу цій формі; німецькі ж заклади догляду сьогодні надають перевагу обом слово Seniorenheim. Пам’ятайте про сполучне s: воно є і в Altersgruppe, Altersgrenze, Altersunterschied — усе на тому самому першому елементі.'
