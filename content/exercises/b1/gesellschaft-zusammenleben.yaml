@@ -208,6 +208,7 @@ items:
       de: "Beide Wörter meinen dieselben Leute und verlangen entgegengesetzte Verbformen. alle ist Plural: sind gekommen. jeder ist Singular: will. Die Fassung mit richtigem Alle sind gekommen und trotzdem jeder wollen zeigt die übliche Richtung des Fehlers: Die Bedeutung ist eindeutig plural, und das plurale Verb rutscht hinter die Singularform."
 
   - id: uebersetzen-alle-jeder
+    revision: 2
     outcomes: [diskussion-folgen]
     type: translate
     focus: indefinitpronomen-erweitert
@@ -220,8 +221,13 @@ items:
     prompt_ru: "Здесь не все, но у каждого жильца есть голос."
     prompt_uk: "Тут не всі, але кожен мешканець має голос."
     answer: "Nicht alle sind hier, aber jeder Bewohner hat eine Stimme."
+    # Hier-fronting is ordinary V2 variation and even mirrors the Russian prompt's
+    # information structure; all four graded tokens keep their forms, so the tag's
+    # competence is intact — accepted per the 2026-08-05 ruling in
+    # data/grading-decisions.yaml.
     accept:
       - "Nicht alle sind da, aber jeder Bewohner hat eine Stimme."
+      - "Hier sind nicht alle, aber jeder Bewohner hat eine Stimme."
     key_tokens: ["alle", "sind", "jeder", "hat"]
     explain:
       en: "Graded are both quantifiers and both verbs, because the tag is exactly that agreement. alle is plural and takes sind; jeder is singular and takes hat, even though it covers every single tenant in the building. Write jeder Bewohner haben and the sentence has followed the meaning instead of the form."
