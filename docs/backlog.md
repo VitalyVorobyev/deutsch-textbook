@@ -121,15 +121,18 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   one. First step: make the writer idempotent, and add the comment-preceded case to its test.
 - **P24-9 · Article comprehensibility is felt, not measured** — perceived difficulty varies
   substantially between topics (owner, 2026-08-04) and no instrument sees it: `prose-shape` checks
-  paragraph *shape*, and CEFR discipline binds only at authoring time. Two measurable halves:
-  (a) an input-load report — `scripts/comprehensibility.ts <topic>` reading the German surface
-  (examples, tables, reading, items) against `taughtSurface()` truncated at the topic's spine
-  position plus the ≤level Wortliste, reporting ahead-of-the-learner tokens per section, sentence
-  length and Nebensatz density against level norms, and grammar-terminology density per
-  explanation half; (b) learner evidence — a per-topic pretest→first-blocked-practice accuracy
-  delta in `progress:audit`, since an article that taught reads as a positive delta. Outliers are
-  the product, never caps. First step: build (a) read-only, rank all topics, and check the ranking
-  against the owner's felt-difficulty list before trusting either.
+  paragraph *shape*, and CEFR discipline binds only at authoring time. **(a) is shipped**:
+  `bun scripts/comprehensibility.ts <level>/<topic-id>` reports ahead-of-the-learner tokens per
+  section with the words listed, sentence length and Nebensatz density, and terminology density per
+  explanation half; `--rank` ranks a level or all three against medians read off the corpus
+  (`src/lib/comprehensibility.ts`, [doc](authoring/coverage-instruments.md)). It is read-only and
+  gates nothing. Two things remain. **Calibrate before trusting it**: rank all 46 topics against
+  the owner's felt-difficulty list, because a ranking nobody has checked against the feeling it was
+  built to explain is still an assertion. The four known false-positive classes (proper names,
+  strong-verb ablaut, glossed reading words, per-language glosses inside German tables) are listed
+  in the doc and are only worth chasing if calibration says they move the order. Then **(b) learner
+  evidence** — a per-topic pretest→first-blocked-practice accuracy delta in `progress:audit`, since
+  an article that taught reads as a positive delta. Outliers are the product, never caps.
 - **P12-6 · Dictation focus attribution** — A1 is resolved; A2/B1 dictations keep `dictationSlip`,
   because extending the A1 silence to items without predicates dropped 145 of 291 free-typed tags
   and took `weakFocuses` from 7 to 1 — an inverted signal, not an honest gap

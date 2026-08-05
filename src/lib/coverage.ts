@@ -287,8 +287,12 @@ export function taughtSurface(root = process.cwd()): string {
  * six separate pairs of words. But a *sentence* capitalizes whatever starts it,
  * so a case-sensitive surface would report `der` unearned because the article
  * happens to open every table row. Different question, different answer.
+ *
+ * Exported for src/lib/comprehensibility.ts, which asks a different question of
+ * the same corpus and must ask it in the same tokens — two tokenizers would make
+ * the two instruments disagree about what a word is.
  */
-function normalize(s: string): string {
+export function normalize(s: string): string {
   return s
     .normalize('NFC')
     .toLowerCase()
