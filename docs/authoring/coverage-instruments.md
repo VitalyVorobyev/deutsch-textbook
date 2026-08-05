@@ -6,6 +6,11 @@ Two scripts decide every completeness number this project publishes: `scripts/co
 already gone wrong twice, in opposite directions: A1 claimed a word it never taught, and A2 was
 called content-complete at 67% of its own standard.
 
+A third, `scripts/comprehensibility.ts`, publishes nothing and gates nothing: it ranks topics by
+how much of their German the learner has not met yet. It is filed here because it shares the
+corpus, the tokenizer and the earned-claims discipline of the other two, and it is the section
+below.
+
 Lifted out of [`CLAUDE.md`](../../CLAUDE.md), which keeps the rules ("a `~` must be earned", "closing
 a gap lowers the tripwire in the same commit") and points here for how the instruments work and
 what they caught.
@@ -16,3 +21,76 @@ what they caught.
   **A `~` must be earned.** It counts toward the published figure, so it is checked, not trusted: `bun run validate` hard-fails unless the word actually occurs in the **taught surface** — a topic article body *with its `<En>`/`<Ru>` blocks stripped*, a reading, or a `practice`/`drill` item (`taughtSurface` in `src/lib/coverage.ts`). Pretests, checkpoints and probes do not count, on the same logic as the outcome rule below: they test rather than teach. The stripping is the point — A1 claimed `euer` for months while the possessive table stopped at the `sie` row and the word appeared only in English prose *about* German. If you cannot pay for a `~` with content, the word needs a flashcard instead.
   `--check-deck <file.yaml>` is the authoring guard for a Wortliste completion pass: it rejects any headword that is not on the level's current missing list — which is, by construction, a word no other deck owns. **Run it per deck before `bun run validate`**, or a few hundred new entries across a dozen files will collide on the cross-file duplicate check by accident.
 - `bun scripts/grammar-coverage.ts <A1|A2|B1> [--missing-only]` — **structural** coverage against `data/grammar-inventory.yaml`, the counterpart to the Wortliste's lexical figure. It exists because "A2 is content-complete" was asserted for months at what turned out to be **67%** of the A2 standard, with six structures (Infinitiv mit *zu*, Relativsätze, *als*/*wenn*, Konjunktionaladverbien, Futur I, Reflexiv im Dativ) unwritten — several of them scheduled to be taught inside *B1* units, where they would never have been visible as A2 debt. A point counts as taught only when a `practice` or `drill` item carries the focus tag that names its confusion — the same "earned, not asserted" bar as the Wortliste `~`; checkpoints, pretests and probes do not count, because a structure only ever tested was never taught. **A `preview: true` item does not count either**: the flag declares an intentional forward reference to a focus introduced later, so reading it as evidence contradicts what it says. `reference_only: true` + `taught_in:` is the escape hatch for real knowledge that names no confusion (the clock, ordinals) — use it sparingly, and note that the named topic must exist and its own level is what the point is measured at, so the hatch cannot buy a free pass either. `standard_level` is where the *exam* puts a point, so one taught later than the standard reports as `late` rather than passing silently. A1 now reports **22 covered, 0 late, 0 missing**: Perfekt, Imperativ, trennbare Verben, *darf/muss nicht* and *du*/*Sie* have genuine A1 instruction and practice; the broader participle system remains at A2. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit** — it is a tripwire, like the A2 spine length. **B1 has a real 32-point manifest, at 32/32 (100%) with units B1.1–B1.14 shipped** — it was authored at 0%, before any B1 content existed, precisely so the size of the job was visible: the proposed focus tags were deliberately unregistered, which is the normal way an unwritten structure shows up, and each became real in the commit that shipped the unit teaching it (35 of the 35 tags the B1 points name are registered, counting the union of their `focus:` lists against `focusIntroducedBy`; the last four — `indirekte-rede`, `angaben-reihenfolge`, `pronomen-stellung` and `partizip-adjektiv` — were registered by B1.14, the cumulative mediation unit that closes the level's grammar). B1's ratchet has therefore stopped being a countdown and become a ratchet of the A2 kind: the assertion in `tests/grammar-coverage.test.ts` now guards against a point being *added* to the inventory without the content to pay for it. Six structures once assumed to be B1 are taught at A2 and stay in the A2 section; the B1 points name only the *added depth* (the dative relative pronoun, the produced passive, *obwohl* as a conjunction) and each carries at least one tag no A1/A2 content already drills — otherwise an A2 tag would silently close a B1 gap, which is the same mistake that once hid six A2 structures inside planned B1 units.
+
+## Input load — `bun scripts/comprehensibility.ts`
+
+The third instrument, and the one that measures **nothing published**. Perceived difficulty varies
+a lot between topics (owner, 2026-08-04) and nothing saw it: `prose-shape` measures the explanation
+halves, and CEFR discipline ("an A2 article must be readable by an A2 learner") binds only at
+authoring time, by judgement, one file at a time. This measures the other side — the **German** the
+learner has to get through — against what the spine says they have met by then. Backlog P24-9(a).
+
+```
+bun scripts/comprehensibility.ts b1/geld-vertraege   # one topic, in detail
+bun scripts/comprehensibility.ts --rank B1           # one level, ranked
+bun scripts/comprehensibility.ts --rank              # all three levels
+```
+
+**It is read-only and has no threshold.** No validator hook, no test asserting a number, nothing on
+`/about`. There is deliberately no "acceptable" load: the report prints each level's **median** under
+its table, computed from the corpus, and every row is read against that. Outliers are the product.
+
+### What it counts
+
+A topic's spine position is its index in `content/atlas.yaml`'s `units:` order, levels concatenated
+A1 → A2 → B1. For the topic at position P the learner is assumed to know (1) the German of every
+topic at position < P — articles with **all four** halves stripped, readings with each
+`[[de::en::ru]]` gloss reduced to its German half, and `practice`/`drill` item German; (2) every
+form in every deck attached at position **≤ P**, own decks included, since a word the topic's own
+deck teaches is support rather than load; and (3) every headword of the Wortliste of each level
+≤ the topic's. A token of the topic's own German that is in none of the three, and survives a light
+inflection fold, is **ahead of the learner**. The full definition, and why `<De>` is stripped here
+while `taughtSurface()` strips only `<En>`/`<Ru>`, is the module doc of `src/lib/comprehensibility.ts`.
+
+The detailed report lists the distinct ahead tokens per section, most frequent first. That list is
+the actionable half — it names the words to gloss, to move into the deck, or to cut.
+
+### What the corpus says today
+
+From `bun scripts/comprehensibility.ts --rank`, level medians:
+
+| level | ahead/100 (article+reading) | mean words/sentence | Nebensatz/sentence | max terminology/100 |
+| --- | ---: | ---: | ---: | ---: |
+| A1 | 6.7 | 7.3 | 0.03 | 2.87 |
+| A2 | 3.9 | 8.4 | 0.10 | 5.30 |
+| B1 | 3.9 | 11.4 | 0.21 | 5.47 |
+
+Sentence length and subordination rise monotonically across the three levels and load does not,
+which is the shape a spine should have: later topics are syntactically harder and lexically no more
+unfamiliar, because the known set grows with them. The A1 median is the highest of the three for
+the same reason — the first topics have almost no prior surface to be measured against.
+
+### What the numbers cannot support
+
+The method is a heuristic and deliberately a generous one, so it **under**-reports load rather than
+inventing it. Four classes of false positive are known and none of them is worth chasing until the
+ranking has been calibrated against a felt-difficulty list:
+
+- **Proper names.** `Anna`, `Hamburg`, `Lindenweg`, `GmbH` are ahead of the learner by every rule
+  here and are no burden at all. They dominate some early A1 readings — five of the twelve distinct
+  ahead tokens in `akkusativ`'s reading are the names in it.
+- **Ablaut in a lexical strong verb.** The manifests list `geben` and `treffen`; a text shows `gibt`
+  and `trifft`, and the fold reaches umlaut (`fährt` → `fahren`) but not vowel change. The closed
+  class — the articles, the pronouns, and the finite forms of the auxiliaries and modals — is
+  handled by `FUNCTION_WORDS`, which exists because without it the first topic on the spine read
+  `ist` and `im` as words ahead of the learner.
+- **A glossed reading word still counts.** The gloss is the author's mitigation, so the reading
+  column partly measures how much was glossed. `geld-vertraege`'s reading reports 8.7 ahead per 100,
+  and four of its eight distinct ahead tokens carry a `[[…]]` gloss.
+- **Per-language glosses inside a German table.** `| Person | sein (to be / быть / бути) |` puts
+  English into the German surface. Cyrillic falls out in normalization; English does not.
+
+A small article makes all of this louder: article surfaces run from 47 to 668 tokens
+(`bun scripts/comprehensibility.ts --rank` prints the shares, the token counts are in the detailed
+report), so one ahead token in an A1 article moves its share by two points. Compare the pooled
+`all` column, not `artic` alone, when the article is short.
