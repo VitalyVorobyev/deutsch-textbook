@@ -895,7 +895,55 @@ describe('cards: recognition | both', () => {
     // `Einrichtung`, `städtisch`, `Aushilfe`, `halbtags`, `ausgebildet`, `Tätigkeit`,
     // `Betreuung`, `Profi`, `anwesend`, `abwesend`, `Mappe`, `Kopierer` and `Steward`
     // are what a form, a rota and an advert say to the learner, not what he says back.
-    expect(cards).toBe(entries * 2 - 572);
+    // Wortliste completion wave 2c, the three mixed decks (2026-08-05) add seventy-one
+    // across `koerper-medizin-b1` (22 of 41), `essen-lebensmittel-b1` (24 of 45) and
+    // `verkehr-auto-b1` (25 of 44), all three run through the same mechanical collision
+    // test as the waves before them. Three rulings account for most of it. **A shipped
+    // production card owns the prompt**, so the newcomer can only be keyed: A1
+    // `Tablette` retires `Pille`, `Medikament` retires `Medizin`, `Krankenhaus` retires
+    // `Klinik`, `krank` retires the adjectival noun `Kranke`, `Obst` retires `Frucht`
+    // and its separately-keyed plural `Früchte`, `Auto` retires `Pkw`, `Weg` retires
+    // `Strecke`, `Bahn` retires `Eisenbahn`; A2 `stark` retires `kräftig`,
+    // `erkältet sein` retires `erkältet`, `Ernährung` retires `Diät`, `untersuchen`
+    // retires `Untersuchung`, `Lebensmittel` retires `Nahrungsmittel`, `Essen` and
+    // `Gericht` retire `Mahlzeit`, `vorbereiten` and `kochen` retire `zubereiten`,
+    // `Lkw` retires both `Lastwagen` and its colloquial twin `Laster`, `Schild` retires
+    // `Verkehrszeichen`, and `anmachen`/`ausmachen` retire `schalten`. Three are the
+    // `Überstunde` case exactly — the shipped card is the same string plus one word, so
+    // the Wortliste's bare form can only be keyed: `Gute Besserung!` retires
+    // `Besserung`, `Guten Appetit!` retires `Appetit`, and A2 `Hähnchen` retires
+    // `Hühnchen` one umlaut away. **Two senses one prompt cannot name** — the
+    // `unheimlich`/`intensiv` ruling — retires `taub` (deaf and numb), `Geschmack`
+    // (the tongue and the judgement), `Fett` (noun and adjective), `Spur` (lane and
+    // trace), `Tempo` (pace and paper tissue), `Kennzeichen` (number plate and
+    // distinguishing feature), `überfahren`, `entgegenkommen` and `Bremse`. Three
+    // Movierung pairs cost three cards rather than four — `Patientin`, `Fußgängerin`
+    // and `Radfahrerin` beside their masculines — and seven same-referent pairs yield
+    // their one typed card inside their own deck: `Karotte` over `Möhre`, `Marmelade`
+    // over `Konfitüre`, `Sahne` over `Schlagsahne`, `Nachspeise` over `Dessert`,
+    // `Operation` over `operieren`, `bremsen` over `Bremse` and `transportieren` over
+    // `Transport`. `Zutaten` is `Fachleute` again, plural-only and untypeable. The rest
+    // is register — `Bart`, `Muskel`, `Atem`, `körperlich`, `Infektion`, `blind`,
+    // `stumm`, `Tod`, `tödlich`, `Therapie`, `Schnitzel`, `Margarine`, `Essig`,
+    // `Gewürz`, `Gebäck`, `Kloß`, `mager`, `haltbar`, `Kakao`, `Limonade`, `Fahrzeug`,
+    // `Kfz`, `Fußgängerzone`, `Gehsteig`, `Fahrbahn`, `Einbahnstraße`, `Einfahrt` and
+    // `Geschwindigkeitsbeschränkung` are what a diagnosis, a packet and a road sign say
+    // to the learner, not what he says back.
+    // Wortliste completion wave 2c, the three recognition-only decks (2026-08-05) add
+    // one hundred and eleven, and for the first time the ruling is per deck rather than
+    // per word: `wohnen-gebaeude-b1` (39 of 39) is the German of an estate agent's
+    // listing, a floor plan and a town guide, `haushalt-notfall-b1` (41 of 41) the
+    // German of a label, a warning sign and an instruction sheet, and
+    // `einkaufen-geld-b1` (31 of 31) the German of a bank form, a shop window and a
+    // leaflet through the door. All three are read, never produced: the sentence the
+    // learner builds about any of these situations comes out of A1 `wohnen`,
+    // `haushalt-geraete`, `einkaufen-geschaefte` and `kleidung-farben` and A2
+    // `wohnen-umzug`, `haushalt-geschirr-a2` and `einkaufen-geld-a2`, which already
+    // ship the typed cards. Two per-word notes survive that: two Movierung pairs cost
+    // three cards rather than four — `Einwohnerin` and `Käuferin` beside their
+    // masculines — and `Mieterin` ships without an adjacency at all, because B1 `Mieter`
+    // (leben-veraendern) already owns that headword in another file.
+    expect(cards).toBe(entries * 2 - 754);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

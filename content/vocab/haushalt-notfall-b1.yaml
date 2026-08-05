@@ -1,0 +1,776 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the household-and-
+# emergency field of data/goethe-b1-wortliste.txt: what gets cleaned and what is in
+# the way, what is mended with a hammer or a needle, what burns on purpose and what
+# burns by accident, and the German a warning sign and an emergency call use.
+# A1's `haushalt-geraete` owns the fitted machines and the cleaning verbs (Herd,
+# Heizung, Strom, Licht, Werkzeug, waschen, reparieren, schmutzig, sauber), A1's
+# `alltag-a1-ergaenzung` owns putzen, A2's `haushalt-geschirr-a2` owns the crockery
+# and the laundry (Teller, Glas, Messer, Wäsche, WC), A2's `koerper-pflege-a2` owns
+# the bathroom (Seife, Handtuch, Dusche), and A1's `reisen-urlaub` owns the services
+# you call (Polizei, Feuerwehr). This deck is the layer between them: the objects
+# those decks assume you can already name, and the vocabulary of the moment
+# something goes wrong.
+# Every entry is `cards: recognition` by the frozen wave-2c tiering. This is the
+# German of a label, a warning sign, an instruction sheet and a caretaker's notice —
+# read and understood, while the sentence the learner produces about the same
+# situation is built from the A1 and A2 words above, which already ship as typed
+# cards. The Austrian and Swiss siblings of two headwords here (Zündholz, Zünder)
+# are held back for the Varianten deck of wave 4; the `note` names them and nothing
+# more.
+id: haushalt-notfall-b1
+title_de: "Haushalt und Notfall"
+title_en: "The household and emergencies"
+title_ru: "Домашнее хозяйство и чрезвычайные ситуации"
+title_uk: "Домашнє господарство та надзвичайні ситуації"
+level: B1
+entries:
+  # --- Sauber machen und was im Weg ist ---
+  - de: abwaschen
+    ipa: "ˈapˌvaʃn̩"
+    pos: verb
+    praesens_3sg: wäscht ab
+    partizip2: abgewaschen
+    aux: haben
+    cards: recognition
+    en: to wash the used plates, pots and glasses after a meal
+    ru: мыть посуду после еды
+    uk: мити посуд після їжі
+    example_de: Heute wasche ich ab, morgen bist du dran.
+    example_en: I am doing the washing-up today, tomorrow it is your turn.
+    example_ru: Сегодня посуду мою я, завтра твоя очередь.
+    example_uk: Сьогодні посуд мию я, завтра твоя черга.
+    note:
+      en: 'Separable and strong, following A1 waschen through the vowel change — wäscht ab, wusch ab, hat abgewaschen. It is the northern word; in the south and in Austria people say spülen or abspülen for exactly the same job, and the machine is die Spülmaschine everywhere. No object is needed, because everyone knows what is meant. The noun der Abwasch is the pile waiting to be done.'
+      ru: 'Отделяемый и сильный, вслед за waschen уровня A1 меняет гласный — wäscht ab, wusch ab, hat abgewaschen. Это северное слово; на юге и в Австрии ту же работу называют spülen или abspülen, а машина везде die Spülmaschine. Дополнения не требуется — и так понятно, о чём речь. Существительное der Abwasch — та самая гора посуды, которая ждёт.'
+      uk: 'Відокремлюване й сильне, услід за waschen рівня A1 змінює голосний — wäscht ab, wusch ab, hat abgewaschen. Це північне слово; на півдні та в Австрії ту саму роботу звуть spülen або abspülen, а машина всюди die Spülmaschine. Додатка не потрібно — і так зрозуміло, про що йдеться. Іменник der Abwasch — та сама гора посуду, яка чекає.'
+
+  - de: staubsaugen
+    ipa: "ˈʃtaʊ̯pˌzaʊ̯gn̩"
+    pos: verb
+    praesens_3sg: staubsaugt
+    partizip2: gestaubsaugt
+    aux: haben
+    cards: recognition
+    en: to clean a floor or a carpet with a machine that sucks the dirt up
+    ru: чистить пол или ковёр машиной, которая всасывает грязь
+    uk: чистити підлогу чи килим машиною, яка всмоктує бруд
+    example_de: Am Samstag staubsauge ich die ganze Wohnung.
+    example_en: On Saturday I vacuum the whole flat.
+    example_ru: В субботу я пылесошу всю квартиру.
+    example_uk: У суботу я пилососю всю квартиру.
+    note:
+      en: 'Built from der Staub and saugen, and unusual in that it behaves as one inseparable word for most speakers — ich staubsauge, ich habe gestaubsaugt. The separated forms ich sauge Staub and ich habe Staub gesaugt are also standard and just as common, so a text may show either. The machine is der Staubsauger. Primary stress on Staub-, secondary on -saugen.'
+      ru: 'Собрано из der Staub и saugen и необычно тем, что для большинства говорящих ведёт себя как одно неотделяемое слово: ich staubsauge, ich habe gestaubsaugt. Разделённые формы ich sauge Staub и ich habe Staub gesaugt тоже нормативны и столь же часты, так что в тексте попадётся и то и другое. Машина — der Staubsauger. Главное ударение на Staub-, побочное на -saugen.'
+      uk: 'Зібране з der Staub і saugen і незвичне тим, що для більшості мовців поводиться як одне невідокремлюване слово: ich staubsauge, ich habe gestaubsaugt. Розділені форми ich sauge Staub і ich habe Staub gesaugt теж нормативні та так само часті, тож у тексті трапиться і те й те. Машина — der Staubsauger. Головний наголос на Staub-, побічний на -saugen.'
+
+  - de: Staub
+    ipa: "ˈʃtaʊ̯p"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the fine grey powder that settles on shelves and windowsills if nobody wipes them
+    ru: мелкая серая пыль, оседающая на полках и подоконниках, если их не протирать
+    uk: дрібний сірий пил, що осідає на полицях і підвіконнях, якщо їх не протирати
+    example_de: Auf dem Regal liegt schon wieder Staub.
+    example_en: There is dust on the shelf again.
+    example_ru: На полке снова пыль.
+    example_uk: На полиці знову пил.
+    note:
+      en: 'Masculine and a mass noun, so it takes no article of quantity and has no plural at all. The verbs beside it are Staub wischen, to dust, and staubsaugen above. The b at the end is devoiced to p, and the diphthong is the one of A1 das Haus. Figuratively sich aus dem Staub machen means to slip away before anybody notices.'
+      ru: 'Мужской род, неисчисляемое, поэтому счётного артикля при нём не бывает и множественного числа нет вовсе. Рядом стоят обороты Staub wischen — «вытирать пыль» и staubsaugen выше. Конечное b оглушается в p, дифтонг — как в das Haus уровня A1. В переносном смысле sich aus dem Staub machen значит «улизнуть, пока не заметили».'
+      uk: 'Чоловічий рід, незлічуване, тому лічильного артикля при ньому не буває і множини немає взагалі. Поряд стоять звороти Staub wischen — «витирати пил» і staubsaugen вище. Кінцеве b оглушується в p, дифтонг — як у das Haus рівня A1. У переносному сенсі sich aus dem Staub machen означає «вислизнути, поки не помітили».'
+
+  - de: Schmutz
+    ipa: "ˈʃmʊts"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: dirt in the neutral, general sense, as a cleaning product or a notice would name it
+    ru: грязь в нейтральном, общем смысле — так, как её назовёт средство для уборки или объявление
+    uk: бруд у нейтральному, загальному сенсі — так, як його назве засіб для прибирання чи оголошення
+    example_de: Das Mittel entfernt auch alten Schmutz.
+    example_en: The product removes old dirt as well.
+    example_ru: Средство удаляет и застарелую грязь.
+    example_uk: Засіб видаляє і застарілий бруд.
+    note:
+      en: 'The noun behind A1 schmutzig, and like it neutral in tone: a bottle of cleaner, a landlord''s letter and a school textbook all use this word. It has no plural. Der Dreck below says the same thing more bluntly and belongs to speech, not to a label — the pair is a register contrast worth hearing, because choosing the wrong one sounds either prissy or rude. The verb is schmutzig machen or verschmutzen.'
+      ru: 'Существительное, стоящее за schmutzig уровня A1, и такое же нейтральное по тону: этим словом пользуются и флакон чистящего средства, и письмо домовладельца, и школьный учебник. Множественного числа нет. der Dreck ниже говорит то же самое грубее и принадлежит устной речи, а не этикетке; различие в регистре стоит слышать, потому что неверный выбор звучит либо жеманно, либо резко. Глагол — schmutzig machen или verschmutzen.'
+      uk: 'Іменник, що стоїть за schmutzig рівня A1, і такий самий нейтральний за тоном: цим словом послуговуються і флакон засобу для чищення, і лист власника будинку, і шкільний підручник. Множини немає. der Dreck нижче каже те саме грубіше і належить усному мовленню, а не етикетці; різницю в регістрі варто чути, бо хибний вибір звучить або манірно, або різко. Дієслово — schmutzig machen або verschmutzen.'
+
+  - de: Dreck
+    ipa: "ˈdʁɛk"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: dirt as somebody complains about it, blunt and often with a note of anger
+    ru: грязь в устах того, кто на неё жалуется, — резко и часто с досадой
+    uk: бруд в устах того, хто на нього нарікає, — різко й часто з досадою
+    example_de: Zieh die Schuhe aus, du bringst den ganzen Dreck herein!
+    example_en: Take your shoes off, you are bringing all that muck in!
+    example_ru: Разуйся, ты всю грязь тащишь в дом!
+    example_uk: Роззуйся, ти весь бруд тягнеш до хати!
+    note:
+      en: 'Same referent as der Schmutz above, different register: this is the spoken, irritated word, the one a parent uses in the hallway and a cleaner uses about a bad job. No plural. It carries a family of dismissive idioms — Das geht dich einen Dreck an, that is none of your business, and Dreck am Stecken haben, to have something to hide. Never write it on a label or in a formal letter; there the word is Schmutz.'
+      ru: 'Обозначает то же, что der Schmutz выше, но регистр другой: это разговорное, раздражённое слово — то, которое говорит родитель в прихожей и уборщица о плохо сделанной работе. Множественного числа нет. За ним тянется семейство пренебрежительных оборотов: Das geht dich einen Dreck an — «не твоё дело», Dreck am Stecken haben — «иметь рыльце в пушку». На этикетке и в официальном письме его не пишут: там Schmutz.'
+      uk: 'Позначає те саме, що der Schmutz вище, але регістр інший: це розмовне, роздратоване слово — те, яке каже батько в передпокої і прибиральниця про погано зроблену роботу. Множини немає. За ним тягнеться родина зневажливих зворотів: Das geht dich einen Dreck an — «не твоя справа», Dreck am Stecken haben — «мати рильце в пушку». На етикетці й в офіційному листі його не пишуть: там Schmutz.'
+
+  - de: Fleck
+    ipa: "ˈflɛk"
+    pos: noun
+    gender: m
+    plural: "die Flecken"
+    cards: recognition
+    en: a small area of a surface that has been discoloured by something spilt on it
+    ru: небольшой участок поверхности, окрасившийся от того, что на него пролили
+    uk: невелика ділянка поверхні, що забарвилася від того, що на неї пролили
+    example_de: Der Fleck auf dem Hemd geht nicht mehr raus.
+    example_en: The stain on the shirt will not come out any more.
+    example_ru: Пятно на рубашке больше не выводится.
+    example_uk: Пляма на сорочці більше не виводиться.
+    note:
+      en: 'Masculine, and the plural is die Flecken with -en. Named by what made it — der Fettfleck, der Rotweinfleck, der Kaffeefleck — and removed with der Fleckentferner. The verbs are einen Fleck machen and, of the stain itself, herausgehen. A second, older sense is a spot of ground, which survives in ein schöner Fleck Erde and in the town names ending in -fleck.'
+      ru: 'Мужской род, множественное — die Flecken с -en. Называют его по причине: der Fettfleck, der Rotweinfleck, der Kaffeefleck, — а выводят при помощи der Fleckentferner. Обороты — einen Fleck machen, а о самом пятне говорят herausgehen. Второе, более старое значение — «клочок земли»; оно уцелело в ein schöner Fleck Erde и в названиях мест на -fleck.'
+      uk: 'Чоловічий рід, множина — die Flecken з -en. Називають її за причиною: der Fettfleck, der Rotweinfleck, der Kaffeefleck, — а виводять за допомогою der Fleckentferner. Звороти — einen Fleck machen, а про саму пляму кажуть herausgehen. Друге, давніше значення — «клапоть землі»; воно вціліло в ein schöner Fleck Erde і в назвах місць на -fleck.'
+
+  - de: Waschmittel
+    ipa: "ˈvaʃˌmɪtl̩"
+    pos: noun
+    gender: n
+    plural: "die Waschmittel"
+    cards: recognition
+    en: the powder or liquid you put into a washing machine to get clothes clean
+    ru: порошок или жидкость, которые засыпают в стиральную машину, чтобы отстирать вещи
+    uk: порошок або рідина, які засипають у пральну машину, щоб випрати речі
+    example_de: Nimm bitte weniger Waschmittel, das reicht völlig.
+    example_en: Please use less detergent, that is quite enough.
+    example_ru: Клади поменьше порошка, этого вполне хватит.
+    example_uk: Клади менше порошку, цього цілком вистачить.
+    note:
+      en: 'A1 waschen plus das Mittel, the means or agent — the same -mittel that builds das Lebensmittel and das Verkehrsmittel, which is worth noticing because it makes a dozen German words readable at once. Singular and plural are spelled alike. What goes into a dishwasher is das Spülmittel, and the softener beside it is der Weichspüler. A2 die Wäsche is the laundry itself.'
+      ru: 'waschen уровня A1 плюс das Mittel — «средство»; тот же элемент -mittel строит das Lebensmittel и das Verkehrsmittel, и это стоит заметить: сразу становится читаемым десяток немецких слов. Единственное и множественное пишутся одинаково. В посудомоечную машину идёт das Spülmittel, а кондиционер рядом — der Weichspüler. die Wäsche уровня A2 — само бельё.'
+      uk: 'waschen рівня A1 плюс das Mittel — «засіб»; той самий елемент -mittel будує das Lebensmittel і das Verkehrsmittel, і це варто помітити: одразу стає читабельним десяток німецьких слів. Однина і множина пишуться однаково. У посудомийну машину йде das Spülmittel, а кондиціонер поряд — der Weichspüler. die Wäsche рівня A2 — сама білизна.'
+
+  - de: Bürste
+    ipa: "ˈbʏʁstə"
+    pos: noun
+    gender: f
+    plural: "die Bürsten"
+    cards: recognition
+    en: a handled tool with stiff bristles, used to scrub something or to tidy hair
+    ru: щётка с жёсткой щетиной и ручкой, которой трут поверхность или расчёсывают волосы
+    uk: щітка з жорсткою щетиною і ручкою, якою труть поверхню або розчісують волосся
+    example_de: Nimm die Bürste, mit dem Tuch geht das nicht ab.
+    example_en: Take the brush, it will not come off with the cloth.
+    example_ru: Возьми щётку, тряпкой это не отойдёт.
+    example_uk: Візьми щітку, ганчіркою це не відійде.
+    note:
+      en: 'The verb is bürsten, and the family is named by its job — die Zahnbürste, die Haarbürste, die Schuhbürste, die Klobürste. Keep it apart from der Pinsel, which is the soft brush a painter or a decorator uses; German never mixes the two. The ü is short and the r is the uvular one, so the middle of the word is a real ʁs cluster.'
+      ru: 'Глагол — bürsten, а семейство называется по назначению: die Zahnbürste, die Haarbürste, die Schuhbürste, die Klobürste. Не смешивайте с der Pinsel — мягкой кистью художника или маляра; немецкий эти два предмета не путает. ü краткое, r увулярное, так что в середине слова стоит настоящее сочетание ʁs.'
+      uk: 'Дієслово — bürsten, а родина зветься за призначенням: die Zahnbürste, die Haarbürste, die Schuhbürste, die Klobürste. Не змішуйте з der Pinsel — м’яким пензлем художника чи маляра; німецька ці два предмети не плутає. ü коротке, r увулярне, тож усередині слова стоїть справжня сполука ʁs.'
+
+  # --- Was auf dem Tisch und im Schrank steht ---
+  - de: Schüssel
+    ipa: "ˈʃʏsl̩"
+    pos: noun
+    gender: f
+    plural: "die Schüsseln"
+    cards: recognition
+    en: a deep round container that food is mixed in or served from, bigger than a plate
+    ru: глубокая круглая посудина, в которой мешают или из которой подают еду, больше тарелки
+    uk: глибока кругла посудина, у якій мішають або з якої подають їжу, більша за тарілку
+    example_de: Der Salat steht in einer großen Schüssel auf dem Tisch.
+    example_en: The salad is on the table in a big bowl.
+    example_ru: Салат стоит на столе в большой миске.
+    example_uk: Салат стоїть на столі у великій мисці.
+    note:
+      en: 'Feminine, plural in -n. It sits between A2 der Teller, which is flat and personal, and A1 der Topf, which goes on the heat: a Schüssel is for mixing, serving and carrying, never for cooking in. Named by content in the kitchen — die Salatschüssel, die Suppenschüssel. A satellite dish is die Satellitenschüssel, from the same shape.'
+      ru: 'Женский род, множественное на -n. Стоит между der Teller уровня A2, который плоский и личный, и der Topf уровня A1, который ставят на огонь: Schüssel — для смешивания, подачи и переноски, но не для варки. На кухне называется по содержимому: die Salatschüssel, die Suppenschüssel. Спутниковая тарелка — die Satellitenschüssel, по той же форме.'
+      uk: 'Жіночий рід, множина на -n. Стоїть між der Teller рівня A2, який плаский і особистий, і der Topf рівня A1, який ставлять на вогонь: Schüssel — для змішування, подавання й перенесення, але не для варіння. На кухні зветься за вмістом: die Salatschüssel, die Suppenschüssel. Супутникова тарілка — die Satellitenschüssel, за тією самою формою.'
+
+  - de: Kanne
+    ipa: "ˈkanə"
+    pos: noun
+    gender: f
+    plural: "die Kannen"
+    cards: recognition
+    en: a tall container with a handle and a spout, for pouring a hot drink or water
+    ru: высокий сосуд с ручкой и носиком, из которого разливают горячий напиток или воду
+    uk: висока посудина з ручкою і носиком, з якої розливають гарячий напій або воду
+    example_de: Auf dem Tisch steht eine Kanne frischer Kaffee.
+    example_en: There is a pot of fresh coffee on the table.
+    example_ru: На столе стоит кофейник со свежим кофе.
+    example_uk: На столі стоїть кавник зі свіжою кавою.
+    note:
+      en: 'Feminine, plural in -n, and the compound says what is inside — die Kaffeekanne, die Teekanne, die Milchkanne, die Gießkanne for the watering can in a garden. As a measure it works like A2 die Tasse: eine Kanne Tee is what a café brings for two. Do not confuse it with die Dose (a tin) or die Flasche (a bottle), which are closed.'
+      ru: 'Женский род, множественное на -n, а составное слово говорит, что внутри: die Kaffeekanne, die Teekanne, die Milchkanne, а в саду die Gießkanne — лейка. Как мера работает так же, как die Tasse уровня A2: eine Kanne Tee — то, что кафе приносит на двоих. Не путайте с die Dose — банкой и die Flasche — бутылкой: те закрыты.'
+      uk: 'Жіночий рід, множина на -n, а складне слово каже, що всередині: die Kaffeekanne, die Teekanne, die Milchkanne, а в саду die Gießkanne — поливальниця. Як міра працює так само, як die Tasse рівня A2: eine Kanne Tee — те, що кав’ярня приносить на двох. Не плутайте з die Dose — банкою і die Flasche — пляшкою: ті закриті.'
+
+  - de: Vase
+    ipa: "ˈvaːzə"
+    pos: noun
+    gender: f
+    plural: "die Vasen"
+    cards: recognition
+    en: a tall narrow container of glass or china that cut flowers are stood in
+    ru: высокий узкий сосуд из стекла или фарфора, в который ставят срезанные цветы
+    uk: висока вузька посудина зі скла чи порцеляни, у яку ставлять зрізані квіти
+    example_de: Stell die Blumen bitte in die Vase auf dem Fensterbrett.
+    example_en: Please put the flowers in the vase on the windowsill.
+    example_ru: Поставь, пожалуйста, цветы в вазу на подоконнике.
+    example_uk: Постав, будь ласка, квіти у вазу на підвіконні.
+    note:
+      en: 'Feminine, plural in -n, and the German pronunciation is worth fixing early: the v is spoken v, not f, because the word came in from French, and the a is long. That makes it one of the small group where German v behaves as it does in Vase, Vitamin and Villa rather than as in Vater. Flowers go in die Vase with the accusative when you put them there and stand in der Vase with the dative afterwards.'
+      ru: 'Женский род, множественное на -n, и немецкое произношение стоит закрепить сразу: v здесь звучит как «в», а не как «ф», потому что слово пришло из французского, и a долгое. Это одна из немногих групп, где немецкое v ведёт себя как в Vase, Vitamin и Villa, а не как в Vater. Цветы ставят in die Vase с винительным, а стоят они потом in der Vase с дательным.'
+      uk: 'Жіночий рід, множина на -n, і німецьку вимову варто закріпити одразу: v тут звучить як «в», а не як «ф», бо слово прийшло з французької, і a довге. Це одна з небагатьох груп, де німецьке v поводиться як у Vase, Vitamin і Villa, а не як у Vater. Квіти ставлять in die Vase зі знахідним, а стоять вони потім in der Vase з давальним.'
+
+  - de: Spiegel
+    ipa: "ˈʃpiːgl̩"
+    pos: noun
+    gender: m
+    plural: "die Spiegel"
+    cards: recognition
+    en: a flat glass surface that gives back the picture of whatever stands in front of it
+    ru: плоская стеклянная поверхность, возвращающая изображение того, кто перед ней стоит
+    uk: пласка скляна поверхня, що повертає зображення того, хто перед нею стоїть
+    example_de: Im Bad hängt ein großer Spiegel über dem Waschbecken.
+    example_en: There is a large mirror over the basin in the bathroom.
+    example_ru: В ванной над раковиной висит большое зеркало.
+    example_uk: У ванній над раковиною висить велике дзеркало.
+    note:
+      en: 'Masculine, and singular and plural are spelled alike. In a car it is der Rückspiegel and der Außenspiegel, and a fried egg is das Spiegelei, named after the shiny yolk. The verb spiegeln means to reflect, and sich spiegeln to be reflected. Careful with the opening cluster: sp- before a vowel is spoken ʃp-, so the word begins as if written schp-.'
+      ru: 'Мужской род, единственное и множественное пишутся одинаково. В машине это der Rückspiegel и der Außenspiegel, а яичница-глазунья — das Spiegelei, по блестящему желтку. Глагол spiegeln значит «отражать», sich spiegeln — «отражаться». Осторожно с начальным сочетанием: sp- перед гласным звучит как ʃp-, то есть слово начинается будто написано schp-.'
+      uk: 'Чоловічий рід, однина і множина пишуться однаково. У машині це der Rückspiegel і der Außenspiegel, а яєчня-очко — das Spiegelei, за блискучим жовтком. Дієслово spiegeln означає «відбивати», sich spiegeln — «відбиватися». Обережно з початковою сполукою: sp- перед голосним звучить як ʃp-, тобто слово починається наче написане schp-.'
+
+  - de: Kissen
+    ipa: "ˈkɪsn̩"
+    pos: noun
+    gender: n
+    plural: "die Kissen"
+    cards: recognition
+    en: a soft filled bag you rest your head on in bed or put behind your back on a sofa
+    ru: мягкий набитый мешочек, на который кладут голову в постели или подкладывают под спину на диване
+    uk: м’який набитий мішечок, на який кладуть голову в ліжку або підкладають під спину на дивані
+    example_de: Kann ich bitte noch ein Kissen haben?
+    example_en: Could I have another pillow, please?
+    example_ru: Можно мне ещё одну подушку?
+    example_uk: Можна мені ще одну подушку?
+    note:
+      en: 'Neuter, and singular and plural are spelled alike. One word does two jobs that English separates, and a compound settles it where the sentence does not — das Kopfkissen is the pillow you sleep on, das Sofakissen the cushion you lean against. It is not to be confused with the verb küssen, to kiss, which differs only in the vowel. The blanket beside it is die Bettdecke.'
+      ru: 'Средний род, единственное и множественное пишутся одинаково. Одно слово делает две работы, которые русский разводит на «подушку» и «диванную подушку», и там, где предложение не проясняет, уточняет составное слово: das Kopfkissen — та, на которой спят, das Sofakissen — та, на которую опираются. Не путайте с глаголом küssen — «целовать»: разница только в гласном. Одеяло рядом — die Bettdecke.'
+      uk: 'Середній рід, однина і множина пишуться однаково. Одне слово виконує дві роботи, які українська розводить на «подушку» і «диванну подушку», і там, де речення не прояснює, уточнює складне слово: das Kopfkissen — та, на якій сплять, das Sofakissen — та, на яку спираються. Не плутайте з дієсловом küssen — «цілувати»: різниця лише в голосному. Ковдра поряд — die Bettdecke.'
+
+  - de: Schachtel
+    ipa: "ˈʃaxtl̩"
+    pos: noun
+    gender: f
+    plural: "die Schachteln"
+    cards: recognition
+    en: a small light box of thin card, of the kind cigarettes, matches or chocolates come in
+    ru: маленькая лёгкая коробка из тонкого картона, в какой продают сигареты, спички или конфеты
+    uk: маленька легка коробка з тонкого картону, у якій продають сигарети, сірники чи цукерки
+    example_de: Er hat eine Schachtel Pralinen mitgebracht.
+    example_en: He brought a box of chocolates.
+    example_ru: Он принёс коробку конфет.
+    example_uk: Він приніс коробку цукерок.
+    note:
+      en: 'Feminine, plural in -n, and it works as a measure word without any preposition — eine Schachtel Zigaretten, eine Schachtel Streichhölzer. The big sturdy box is der Karton and the crate is der Kasten, so German has three sizes where English mostly has one. Note the ch after a, the back one as in machen, and the syllabic l at the end.'
+      ru: 'Женский род, множественное на -n, и работает как счётное слово без всякого предлога: eine Schachtel Zigaretten, eine Schachtel Streichhölzer. Большая прочная коробка — der Karton, ящик — der Kasten, так что у немца три размера там, где по-русски чаще всего одна «коробка». Обратите внимание на ch после a — заднее, как в machen, — и на слоговое l в конце.'
+      uk: 'Жіночий рід, множина на -n, і працює як лічильне слово без жодного прийменника: eine Schachtel Zigaretten, eine Schachtel Streichhölzer. Велика міцна коробка — der Karton, ящик — der Kasten, тож у німця три розміри там, де українською найчастіше одна «коробка». Зверніть увагу на ch після a — заднє, як у machen, — і на складове l наприкінці.'
+
+  # --- Stoff und Nadel ---
+  - de: Tuch
+    ipa: "ˈtuːx"
+    pos: noun
+    gender: n
+    plural: "die Tücher"
+    cards: recognition
+    en: a rectangle of cloth used for wiping, drying, covering or wearing around the neck
+    ru: прямоугольный кусок ткани, которым вытирают, сушат, накрывают или который повязывают на шею
+    uk: прямокутний шматок тканини, яким витирають, сушать, накривають або який пов’язують на шию
+    example_de: Wisch das bitte mit einem feuchten Tuch weg.
+    example_en: Please wipe that off with a damp cloth.
+    example_ru: Вытри это, пожалуйста, влажной тряпкой.
+    example_uk: Витри це, будь ласка, вологою ганчіркою.
+    note:
+      en: 'Neuter, with an umlaut and -er in the plural. Alone it is the general piece of cloth; the compound names the job, and there are many — A2 das Handtuch for drying hands, das Halstuch worn at the neck, das Kopftuch on the head, das Geschirrtuch for drying dishes, and das Taschentuch below. Do not confuse it with der Stoff, which is fabric by the metre before anything is cut from it.'
+      ru: 'Средний род, во множественном умлаут и -er. Само по себе — общий кусок ткани; работу называет составное слово, и таких много: das Handtuch уровня A2 — вытирать руки, das Halstuch — на шею, das Kopftuch — на голову, das Geschirrtuch — для посуды, и das Taschentuch ниже. Не путайте с der Stoff — тканью в рулоне, из которой ещё ничего не выкроили.'
+      uk: 'Середній рід, у множині умлаут і -er. Саме по собі — загальний шматок тканини; роботу називає складне слово, і таких багато: das Handtuch рівня A2 — витирати руки, das Halstuch — на шию, das Kopftuch — на голову, das Geschirrtuch — для посуду, і das Taschentuch нижче. Не плутайте з der Stoff — тканиною в рулоні, з якої ще нічого не викроїли.'
+
+  - de: Taschentuch
+    ipa: "ˈtaʃn̩ˌtuːx"
+    pos: noun
+    gender: n
+    plural: "die Taschentücher"
+    cards: recognition
+    en: the small square of paper or cloth you carry with you to blow your nose on
+    ru: маленький платок из бумаги или ткани, который носят с собой, чтобы высморкаться
+    uk: маленька хустинка з паперу чи тканини, яку носять із собою, щоб висякатися
+    example_de: Hast du ein Taschentuch für mich?
+    example_en: Have you got a tissue for me?
+    example_ru: У тебя есть салфетка?
+    example_uk: У тебе є серветка?
+    note:
+      en: 'A1 die Tasche plus das Tuch above, and it means the pocket-sized one specifically. The paper kind is what a German actually hands you, and in speech many people simply say ein Tempo, after the brand, the way English once said Kleenex. Plural takes an umlaut and -er, following its second half. The verb it goes with is sich die Nase putzen.'
+      ru: 'die Tasche уровня A1 плюс das Tuch выше, и значит именно карманный. Дают вам чаще всего бумажный, а в разговоре многие просто скажут ein Tempo — по названию марки; этот случай уже отмечен в списке B1. Множественное берёт умлаут и -er вслед за второй половиной. Глагол при нём — sich die Nase putzen.'
+      uk: 'die Tasche рівня A1 плюс das Tuch вище, і означає саме кишенькову. Дають вам найчастіше паперову, а в розмові багато хто просто скаже ein Tempo — за назвою марки; цей випадок уже позначено у списку B1. Множина бере умлаут і -er услід за другою половиною. Дієслово при ньому — sich die Nase putzen.'
+
+  - de: Nadel
+    ipa: "ˈnaːdl̩"
+    pos: noun
+    gender: f
+    plural: "die Nadeln"
+    cards: recognition
+    en: a thin pointed piece of metal with an eye at one end, pushed through cloth to sew
+    ru: тонкая заострённая металлическая палочка с ушком, которой протыкают ткань при шитье
+    uk: тонка загострена металева паличка з вушком, якою проколюють тканину під час шиття
+    example_de: Kannst du mir eine Nadel und schwarzen Faden geben?
+    example_en: Can you give me a needle and black thread?
+    example_ru: Дай мне, пожалуйста, иголку и чёрную нитку.
+    example_uk: Дай мені, будь ласка, голку й чорну нитку.
+    note:
+      en: 'Feminine, plural in -n. The thread through the eye is der Faden. The same word covers a doctor''s needle (die Spritze is the syringe as a whole), the knitting needle die Stricknadel, the pin die Stecknadel and the pine needle die Tannennadel, so the compound is what tells you which one. The a is long and the l at the end is syllabic.'
+      ru: 'Женский род, множественное на -n. Нитка в ушке — der Faden. Тем же словом называют иглу у врача (шприц целиком — die Spritze), спицу die Stricknadel, булавку die Stecknadel и хвоинку die Tannennadel, так что различает их составное слово. a долгое, а конечное l слоговое.'
+      uk: 'Жіночий рід, множина на -n. Нитка у вушку — der Faden. Тим самим словом звуть голку в лікаря (шприц цілком — die Spritze), спицю die Stricknadel, шпильку die Stecknadel і хвоїнку die Tannennadel, тож розрізняє їх складне слово. a довге, а кінцеве l складове.'
+
+  - de: nähen
+    ipa: "ˈnɛːən"
+    pos: verb
+    praesens_3sg: näht
+    partizip2: genäht
+    aux: haben
+    cards: recognition
+    en: to join or mend cloth by pulling thread through it with a needle
+    ru: соединять или чинить ткань, протягивая через неё нитку с иглой
+    uk: з’єднувати або лагодити тканину, протягуючи крізь неї нитку з голкою
+    example_de: Meine Mutter näht die meisten Kleider selbst.
+    example_en: My mother sews most of her dresses herself.
+    example_ru: Мама шьёт большинство платьев сама.
+    example_uk: Мама шиє більшість суконь сама.
+    note:
+      en: 'Weak and regular, with haben. The machine is die Nähmaschine and the trade die Schneiderei. A surgeon uses the same verb — die Wunde wird genäht — which is one of the few places where a household word and a hospital word coincide exactly. Beside it, annähen is to sew something on, such as a button, and zunähen is to sew a hole shut. The ä is long.'
+      ru: 'Слабый и правильный, с haben. Машина — die Nähmaschine, ремесло — die Schneiderei. Хирург пользуется тем же глаголом: die Wunde wird genäht, — и это один из немногих случаев, когда бытовое слово и больничное совпадают точь-в-точь. Рядом annähen — «пришить» (например, пуговицу), zunähen — «зашить» дырку. ä долгое.'
+      uk: 'Слабке й правильне, із haben. Машина — die Nähmaschine, ремесло — die Schneiderei. Хірург користується тим самим дієсловом: die Wunde wird genäht, — і це один із небагатьох випадків, коли побутове слово і лікарняне збігаються точнісінько. Поряд annähen — «пришити» (наприклад, ґудзик), zunähen — «зашити» дірку. ä довге.'
+
+  # --- Werkzeug, Löcher und was kaputtgeht ---
+  - de: Hammer
+    ipa: "ˈhamɐ"
+    pos: noun
+    gender: m
+    plural: "die Hämmer"
+    cards: recognition
+    en: a heavy-headed tool on a handle, swung to drive metal pins into wood or wall
+    ru: инструмент с тяжёлой головкой на рукояти, которым забивают металлические стержни в дерево или стену
+    uk: інструмент із важкою голівкою на держаку, яким забивають металеві стрижні в дерево чи стіну
+    example_de: Hol bitte den Hammer aus dem Keller.
+    example_en: Please fetch the hammer from the cellar.
+    example_ru: Принеси, пожалуйста, молоток из подвала.
+    example_uk: Принеси, будь ласка, молоток із підвалу.
+    note:
+      en: 'Masculine, umlaut in the plural. It is the first item of A1 das Werkzeug and lives beside der Nagel below; the verb is hämmern. Colloquially the bare noun is high praise or high dismay — Das Konzert war der Hammer means it was fantastic, while Das ist ja ein Hammer! can mean the opposite depending on the face. In music der Flügel has Hämmer inside it.'
+      ru: 'Мужской род, во множественном умлаут. Живёт в ящике с инструментами рядом с der Nagel ниже, а глагол — hämmern. В разговорной речи голое слово выражает и восторг, и оторопь: Das Konzert war der Hammer значит «концерт был потрясающий», а Das ist ja ein Hammer! в зависимости от лица говорящего может значить обратное. В рояле внутри тоже Hämmer — молоточки.'
+      uk: 'Чоловічий рід, у множині умлаут. Живе у скриньці з інструментами поряд із der Nagel нижче, а дієслово — hämmern. У розмовному мовленні голе слово виражає і захват, і оторопіння: Das Konzert war der Hammer означає «концерт був приголомшливий», а Das ist ja ein Hammer! залежно від обличчя мовця може означати протилежне. У роялі всередині теж Hämmer — молоточки.'
+
+  - de: Nagel
+    ipa: "ˈnaːgl̩"
+    pos: noun
+    gender: m
+    plural: "die Nägel"
+    cards: recognition
+    en: a short pointed metal pin hammered into wood or a wall to hold something; also the hard plate on a finger or a toe
+    ru: короткий заострённый металлический стержень, забиваемый в дерево или стену, чтобы что-то держать; а также твёрдая пластинка на пальце
+    uk: короткий загострений металевий стрижень, що забивається в дерево чи стіну, щоб щось тримати; а також тверда пластинка на пальці
+    example_de: An diesem Nagel hängt schon lange nichts mehr.
+    example_en: Nothing has hung on this nail for a long time.
+    example_ru: На этом гвозде уже давно ничего не висит.
+    example_uk: На цьому цвяху вже давно нічого не висить.
+    note:
+      en: 'One word for the ironmonger''s nail and for the one on a finger, and only the sentence separates them — die Fingernägel schneiden, sich einen Nagel in den Fuß treten. Umlaut plural in both senses. The salon word is das Nagelstudio and the file die Nagelfeile. Idiom: etwas an den Nagel hängen means to give something up for good.'
+      ru: 'Одно слово и для гвоздя из скобяной лавки, и для ногтя, и различает их только предложение: die Fingernägel schneiden, sich einen Nagel in den Fuß treten. Множественное с умлаутом в обоих значениях. Салон называется das Nagelstudio, пилочка — die Nagelfeile. Оборот etwas an den Nagel hängen значит «бросить дело навсегда».'
+      uk: 'Одне слово і для цвяха зі скобяної крамниці, і для нігтя, і розрізняє їх лише речення: die Fingernägel schneiden, sich einen Nagel in den Fuß treten. Множина з умлаутом в обох значеннях. Салон зветься das Nagelstudio, пилочка — die Nagelfeile. Зворот etwas an den Nagel hängen означає «покинути справу назавжди».'
+
+  - de: Zange
+    ipa: "ˈtsaŋə"
+    pos: noun
+    gender: f
+    plural: "die Zangen"
+    cards: recognition
+    en: a hinged tool with two jaws, used to grip, bend or cut through something hard
+    ru: шарнирный инструмент с двумя губками, которым захватывают, гнут или перекусывают что-то твёрдое
+    uk: шарнірний інструмент із двома губками, яким захоплюють, гнуть або перекушують щось тверде
+    example_de: Ohne Zange bekomme ich den Nagel nicht heraus.
+    example_en: I cannot get the nail out without pliers.
+    example_ru: Без плоскогубцев я гвоздь не вытащу.
+    example_uk: Без плоскогубців я цвяха не витягну.
+    note:
+      en: 'Singular in German where English needs a plural — eine Zange, not a pair of anything. The kind is named by a compound: die Kombizange for pliers, die Beißzange for pincers, die Kneifzange for nippers, die Zuckerzange for sugar tongs. The z is spoken ts, and the ng is one nasal sound with no g after it.'
+      ru: 'В немецком единственное число там, где по-русски множественное: eine Zange — «плоскогубцы», а не «пара» чего-либо. Вид называет составное слово: die Kombizange — комбинированные, die Beißzange — кусачки, die Kneifzange — клещи, die Zuckerzange — щипцы для сахара. z читается как «ц», а ng — один носовой звук, без «г» после него.'
+      uk: 'У німецькій однина там, де українською множина: eine Zange — «плоскогубці», а не «пара» чогось. Вид називає складне слово: die Kombizange — комбіновані, die Beißzange — кусачки, die Kneifzange — обценьки, die Zuckerzange — щипці для цукру. z читається як «ц», а ng — один носовий звук, без «ґ» після нього.'
+
+  - de: Loch
+    ipa: "ˈlɔx"
+    pos: noun
+    gender: n
+    plural: "die Löcher"
+    cards: recognition
+    en: an opening going into or through a surface where the material is missing
+    ru: отверстие в поверхности или сквозь неё, там, где вещества нет
+    uk: отвір у поверхні або крізь неї, там, де речовини немає
+    example_de: In meinem Pullover ist ein Loch.
+    example_en: There is a hole in my jumper.
+    example_ru: У меня в свитере дырка.
+    example_uk: У мене в светрі дірка.
+    note:
+      en: 'Neuter, with an umlaut and -er in the plural. The verbs around it are ein Loch machen, bohren for drilling one and stopfen for darning one shut. It carries a common figurative use about money: ein Loch im Budget, and jemandem ein Loch in den Bauch fragen means to pester somebody with questions. The o is short and the ch is the back one, as in machen.'
+      ru: 'Средний род, во множественном умлаут и -er. Вокруг него глаголы ein Loch machen, bohren — «сверлить» и stopfen — «заштопать». Частое переносное употребление связано с деньгами: ein Loch im Budget, а jemandem ein Loch in den Bauch fragen значит «замучить вопросами». o краткое, ch — заднее, как в machen.'
+      uk: 'Середній рід, у множині умлаут і -er. Довкола нього дієслова ein Loch machen, bohren — «свердлити» і stopfen — «заштопати». Часте переносне вживання пов’язане з грошима: ein Loch im Budget, а jemandem ein Loch in den Bauch fragen означає «замучити питаннями». o коротке, ch — заднє, як у machen.'
+
+  - de: kaputtgehen
+    ipa: "kaˈpʊtˌgeːən"
+    pos: verb
+    praesens_3sg: geht kaputt
+    partizip2: kaputtgegangen
+    aux: sein
+    cards: recognition
+    en: to stop working or fall apart, without anybody being blamed for it
+    ru: перестать работать или развалиться — без указания на виновника
+    uk: перестати працювати або розвалитися — без вказівки на винуватця
+    example_de: Die Waschmaschine ist schon wieder kaputtgegangen.
+    example_en: The washing machine has broken down again.
+    example_ru: Стиральная машина опять сломалась.
+    example_uk: Пральна машина знову зламалася.
+    note:
+      en: 'A1 kaputt plus gehen, separable, and the auxiliary is sein because it describes a change of state rather than an action — ist kaputtgegangen, never hat. That is exactly what separates it from kaputtmachen below, where somebody does the breaking. German uses this pair where English says the thing broke against somebody broke it. Stress falls on -putt, so the primary mark sits inside the first half.'
+      ru: 'kaputt уровня A1 плюс gehen, глагол отделяемый, а вспомогательный — sein, потому что описывается смена состояния, а не действие: ist kaputtgegangen, но не hat. Именно это отличает его от kaputtmachen ниже, где ломает кто-то. Немецкий разводит эту пару там, где по-русски есть «сломалось» и «сломал». Ударение падает на -putt, поэтому главный знак стоит внутри первой половины.'
+      uk: 'kaputt рівня A1 плюс gehen, дієслово відокремлюване, а допоміжне — sein, бо описується зміна стану, а не дія: ist kaputtgegangen, але не hat. Саме це відрізняє його від kaputtmachen нижче, де ламає хтось. Німецька розводить цю пару там, де українською є «зламалося» і «зламав». Наголос падає на -putt, тому головний знак стоїть усередині першої половини.'
+
+  - de: kaputtmachen
+    ipa: "kaˈpʊtˌmaxn̩"
+    pos: verb
+    praesens_3sg: macht kaputt
+    partizip2: kaputtgemacht
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to break something so that it no longer works, whether on purpose or not
+    ru: сломать что-то так, что оно перестаёт работать, — намеренно или нет
+    uk: зламати щось так, що воно перестає працювати, — навмисне чи ні
+    example_de: Pass auf, dass du das Schloss nicht kaputtmachst.
+    example_en: Be careful not to break the lock.
+    example_ru: Смотри не сломай замок.
+    example_uk: Дивись не зламай замок.
+    note:
+      en: 'The transitive half of the pair, so it takes an accusative object and haben in the Perfekt — hat die Vase kaputtgemacht. It is the everyday spoken word; a written text or a report prefers zerstören for destroying and beschädigen for damaging. Reflexively sich kaputtmachen means to wear yourself out, usually with work. Stress on -putt, as in kaputtgehen above.'
+      ru: 'Переходная половина пары: требует винительного дополнения и haben в Perfekt — hat die Vase kaputtgemacht. Это обиходное разговорное слово; письменный текст или протокол предпочтёт zerstören — «уничтожить» и beschädigen — «повредить». В возвратном употреблении sich kaputtmachen значит «загонять себя», обычно работой. Ударение на -putt, как и в kaputtgehen выше.'
+      uk: 'Перехідна половина пари: вимагає знахідного додатка і haben у Perfekt — hat die Vase kaputtgemacht. Це побутове розмовне слово; письмовий текст або протокол віддасть перевагу zerstören — «знищити» і beschädigen — «пошкодити». У зворотному вжитку sich kaputtmachen означає «заганяти себе», зазвичай роботою. Наголос на -putt, як і в kaputtgehen вище.'
+
+  # --- Feuer und Licht ---
+  - de: Feuer
+    ipa: "ˈfɔʏ̯ɐ"
+    pos: noun
+    gender: n
+    plural: "die Feuer"
+    cards: recognition
+    en: burning flame, either the useful kind you light or the destructive kind that has to be put out
+    ru: горящее пламя — либо полезное, которое разводят, либо разрушительное, которое приходится тушить
+    uk: полум’я, що горить, — або корисне, яке розводять, або руйнівне, яке доводиться гасити
+    example_de: Im Erdgeschoss ist in der Nacht ein Feuer ausgebrochen.
+    example_en: A fire broke out on the ground floor during the night.
+    example_ru: Ночью на первом этаже начался пожар.
+    example_uk: Уночі на першому поверсі спалахнула пожежа.
+    note:
+      en: 'Neuter, and singular and plural are spelled alike. Two senses live side by side: the fire you make (ein Feuer machen, am Feuer sitzen) and the fire that destroys (ein Feuer bricht aus, ein Feuer löschen). The service is A1 die Feuerwehr and the emergency number is 112. A smoker asking for a light says only Haben Sie Feuer? — the word alone is the whole request.'
+      ru: 'Средний род, единственное и множественное пишутся одинаково. Рядом живут два значения: огонь, который разводят (ein Feuer machen, am Feuer sitzen), и огонь, который губит (ein Feuer bricht aus, ein Feuer löschen). Служба — die Feuerwehr уровня A1, экстренный номер 112. Курильщик, просящий прикурить, скажет только Haben Sie Feuer? — этого слова достаточно для всей просьбы.'
+      uk: 'Середній рід, однина і множина пишуться однаково. Поряд живуть два значення: вогонь, який розводять (ein Feuer machen, am Feuer sitzen), і вогонь, який нищить (ein Feuer bricht aus, ein Feuer löschen). Служба — die Feuerwehr рівня A1, екстрений номер 112. Курець, що просить припалити, скаже лише Haben Sie Feuer? — цього слова досить для всього прохання.'
+
+  - de: brennen
+    ipa: "ˈbʁɛnən"
+    pos: verb
+    praesens_3sg: brennt
+    partizip2: gebrannt
+    aux: haben
+    cards: recognition
+    en: to be on fire; also, of a light, to be switched on, and of a wound, to sting
+    ru: гореть; а также, о лампе, — быть включённой, а о ране — саднить
+    uk: горіти; а також, про лампу, — бути ввімкненою, а про рану — щеміти
+    example_de: Im ganzen Haus brennt noch Licht.
+    example_en: The lights are still on all over the house.
+    example_ru: Во всём доме ещё горит свет.
+    example_uk: У всьому будинку ще горить світло.
+    note:
+      en: 'Irregular in a way that catches learners out — brennt, brannte, hat gebrannt — with a in the past forms and no vowel change in the present. Three senses run in parallel: something is alight, a lamp is on (das Licht brennt, where English says the light is on), and a wound or the eyes sting. The Perfekt takes haben even though nobody does anything to an object. Verbrennen is to burn something up, and abbrennen is to burn down.'
+      ru: 'Неправильный так, что легко ошибиться: brennt, brannte, hat gebrannt — с a в прошедших формах и без чередования в настоящем. Три значения идут параллельно: что-то горит, лампа включена (das Licht brennt — ровно как по-русски «горит свет») и рана или глаза щиплют. В Perfekt стоит haben, хотя никакого объекта нет. verbrennen — «сжечь», abbrennen — «сгореть дотла».'
+      uk: 'Неправильне так, що легко схибити: brennt, brannte, hat gebrannt — з a в минулих формах і без чергування в теперішньому. Три значення йдуть паралельно: щось горить, лампа ввімкнена (das Licht brennt — точно як українською «горить світло») і рана або очі щемлять. У Perfekt стоїть haben, хоча жодного об’єкта немає. verbrennen — «спалити», abbrennen — «згоріти дотла».'
+
+  - de: Kerze
+    ipa: "ˈkɛʁtsə"
+    pos: noun
+    gender: f
+    plural: "die Kerzen"
+    cards: recognition
+    en: a stick of wax with a wick down the middle, lit for light or for atmosphere
+    ru: восковая палочка с фитилём внутри, которую зажигают ради света или ради уюта
+    uk: воскова паличка з ґнотом усередині, яку запалюють задля світла або задля затишку
+    example_de: Zum Essen haben wir zwei Kerzen angezündet.
+    example_en: We lit two candles for the meal.
+    example_ru: К ужину мы зажгли две свечи.
+    example_uk: До вечері ми запалили дві свічки.
+    note:
+      en: 'Feminine, plural in -n. The verb is anzünden, to light, and ausblasen or auspusten to blow out. German winter runs on them: der Adventskranz carries four, and a birthday cake carries one per year. In a car die Zündkerze is the spark plug, built from the same zünden. The r is uvular and the z is spoken ts.'
+      ru: 'Женский род, множественное на -n. Глагол — anzünden, «зажечь», а ausblasen или auspusten — «задуть». На них держится немецкая зима: на der Adventskranz их четыре, а на именинном торте столько, сколько лет. В машине die Zündkerze — свеча зажигания, от того же zünden. r увулярное, z читается как «ц».'
+      uk: 'Жіночий рід, множина на -n. Дієслово — anzünden, «запалити», а ausblasen або auspusten — «задмухати». На них тримається німецька зима: на der Adventskranz їх чотири, а на іменинному торті стільки, скільки років. У машині die Zündkerze — свічка запалювання, від того самого zünden. r увулярне, z читається як «ц».'
+
+  - de: Streichholz
+    ipa: "ˈʃtʁaɪ̯çˌhɔlts"
+    pos: noun
+    gender: n
+    plural: "die Streichhölzer"
+    cards: recognition
+    en: a short thin stick with a tip that catches fire when it is drawn across a rough strip
+    ru: короткая тонкая палочка с головкой, которая загорается, если чиркнуть ею о шершавую полоску
+    uk: коротка тонка паличка з голівкою, що займається, якщо черкнути нею об шорстку смужку
+    example_de: Ich brauche ein Streichholz für die Kerzen.
+    example_en: I need a match for the candles.
+    example_ru: Мне нужна спичка для свечей.
+    example_uk: Мені потрібен сірник для свічок.
+    note:
+      en: 'Built from streichen, to stroke, and das Holz, so the word says exactly what you do with it. Plural takes an umlaut and -er, and the box is die Streichholzschachtel. Das Feuerzeug below does the same job without being used up, which is why it has largely replaced this in a pocket. In Austria the ordinary word is das Zündholz, from zünden, and in Germany that spelling reads as slightly old-fashioned.'
+      ru: 'Сложено из streichen — «чиркать» и das Holz — «дерево», так что слово прямо называет действие. Множественное берёт умлаут и -er, коробок — die Streichholzschachtel. das Feuerzeug ниже делает ту же работу, не расходуя себя, поэтому в кармане почти вытеснило спички. В Австрии обиходное слово — das Zündholz, от zünden, а в Германии оно звучит слегка старомодно.'
+      uk: 'Складене зі streichen — «черкати» і das Holz — «дерево», тож слово прямо називає дію. Множина бере умлаут і -er, коробка — die Streichholzschachtel. das Feuerzeug нижче виконує ту саму роботу, не витрачаючи себе, тому в кишені майже витіснило сірники. В Австрії побутове слово — das Zündholz, від zünden, а в Німеччині воно звучить трохи старомодно.'
+
+  - de: Feuerzeug
+    ipa: "ˈfɔʏ̯ɐˌtsɔʏ̯k"
+    pos: noun
+    gender: n
+    plural: "die Feuerzeuge"
+    cards: recognition
+    en: the small refillable device that makes a flame at the press of a thumb
+    ru: маленькое устройство с запасом газа, дающее пламя при нажатии большим пальцем
+    uk: маленький пристрій із запасом газу, що дає полум’я при натисканні великим пальцем
+    example_de: Hast du ein Feuerzeug dabei?
+    example_en: Have you got a lighter on you?
+    example_ru: У тебя есть с собой зажигалка?
+    example_uk: У тебе є із собою запальничка?
+    note:
+      en: 'Das Feuer above plus -zeug, the ending that means gear or kit and builds das Werkzeug, das Spielzeug and das Fahrzeug from the same pattern. Neuter for that reason, and the plural is -e. Beside das Streichholz above it is the reusable one, and it is what somebody means at a bus stop when they ask Haben Sie Feuer? Primary stress on Feuer-, secondary on -zeug.'
+      ru: 'das Feuer выше плюс -zeug — окончание со значением «снаряжение, штуковина», по той же схеме дающее das Werkzeug, das Spielzeug и das Fahrzeug. Отсюда и средний род, множественное на -e. Рядом с das Streichholz выше это многоразовый вариант, и именно его имеют в виду на остановке, спрашивая Haben Sie Feuer? Главное ударение на Feuer-, побочное на -zeug.'
+      uk: 'das Feuer вище плюс -zeug — закінчення зі значенням «спорядження, штукенція», за тією самою схемою дає das Werkzeug, das Spielzeug і das Fahrzeug. Звідси й середній рід, множина на -e. Поряд із das Streichholz вище це багаторазовий варіант, і саме його мають на увазі на зупинці, питаючи Haben Sie Feuer? Головний наголос на Feuer-, побічний на -zeug.'
+
+  - de: Gas
+    ipa: "ˈgaːs"
+    pos: noun
+    gender: n
+    plural: "die Gase"
+    cards: recognition
+    en: the fuel that is piped into a home for cooking and heating; also any airlike substance
+    ru: топливо, которое подводят в дом по трубе для готовки и отопления; а также всякое газообразное вещество
+    uk: паливо, яке підводять у дім трубою для готування й опалення; а також будь-яка газоподібна речовина
+    example_de: Wir kochen mit Gas, geheizt wird mit Strom.
+    example_en: We cook with gas and heat with electricity.
+    example_ru: Готовим мы на газе, а отапливаемся электричеством.
+    example_uk: Готуємо ми на газі, а опалюємося електрикою.
+    note:
+      en: 'Neuter, with a long a. In a household context it is the mains supply, next to A1 der Strom for electricity, and the bill lists die Gasrechnung. In chemistry and in a weather report it is any gas at all, hence the plural. A driver''s Gas geben means to accelerate, which is the same word doing an unrelated job. Never use it for petrol — that is das Benzin.'
+      ru: 'Средний род, a долгое. В быту это то, что подводят в квартиру, рядом с der Strom уровня A1 — электричеством, а в счетах стоит die Gasrechnung. В химии и в прогнозе погоды это любой газ вообще, отсюда и множественное число. У водителя Gas geben значит «прибавить газу» — то же слово в совершенно другой работе. Бензин так не называют: это das Benzin.'
+      uk: 'Середній рід, a довге. У побуті це те, що підводять у квартиру, поряд із der Strom рівня A1 — електрикою, а в рахунках стоїть die Gasrechnung. У хімії та в прогнозі погоди це будь-який газ узагалі, звідси й множина. У водія Gas geben означає «піддати газу» — те саме слово в цілком іншій роботі. Бензин так не звуть: це das Benzin.'
+
+  # --- Wenn es gefährlich wird ---
+  - de: Gefahr
+    ipa: "gəˈfaːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Gefahren"
+    cards: recognition
+    en: the possibility that something bad will happen, named as a thing one can be in or out of
+    ru: возможность того, что случится беда, названная как нечто, в чём можно находиться или чего избежать
+    uk: можливість того, що станеться лихо, названа як щось, у чому можна перебувати або чого уникнути
+    example_de: Für die Nachbarn bestand keine Gefahr.
+    example_en: There was no danger for the neighbours.
+    example_ru: Для соседей опасности не было.
+    example_uk: Для сусідів небезпеки не було.
+    note:
+      en: 'The noun behind A2 gefährlich. Three chunks carry it: in Gefahr sein, to be in danger, außer Gefahr sein, to be out of it, which is what a hospital says about a patient, and auf eigene Gefahr, at your own risk, which is what a sign says. Das Risiko is the calculated kind an insurer prices; this word is the immediate kind. The plural die Gefahren is common in official warnings.'
+      ru: 'Существительное, стоящее за gefährlich уровня A2. Его держат три оборота: in Gefahr sein — «быть в опасности», außer Gefahr sein — «быть вне опасности», как говорят в больнице о пациенте, и auf eigene Gefahr — «на свой страх и риск», как пишут на табличке. das Risiko — просчитанный риск, который оценивает страховщик; это слово — непосредственная угроза. Множественное die Gefahren часто в официальных предупреждениях.'
+      uk: 'Іменник, що стоїть за gefährlich рівня A2. Його тримають три звороти: in Gefahr sein — «бути в небезпеці», außer Gefahr sein — «бути поза небезпекою», як кажуть у лікарні про пацієнта, і auf eigene Gefahr — «на власний страх і ризик», як пишуть на табличці. das Risiko — прорахований ризик, який оцінює страховик; це слово — безпосередня загроза. Множина die Gefahren часта в офіційних попередженнях.'
+
+  - de: Vorsicht
+    ipa: "ˈfoːɐ̯ˌzɪçt"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: the care taken in advance so that nothing goes wrong; also the single word that warns of a hazard
+    ru: осмотрительность, проявляемая заранее, чтобы ничего не случилось; а также одно слово, которым предупреждают об опасности
+    uk: обачність, виявлена заздалегідь, щоб нічого не сталося; а також одне слово, яким попереджають про небезпеку
+    example_de: Vorsicht, die Stufe ist sehr hoch!
+    example_en: Careful, the step is very high!
+    example_ru: Осторожно, ступенька очень высокая!
+    example_uk: Обережно, сходинка дуже висока!
+    note:
+      en: 'Feminine and without a plural, and most of its life is spent as a bare interjection: Vorsicht! is what a German shouts where English says careful or look out, and it is printed on a wet floor and a hot surface. In a sentence the chunk is mit Vorsicht or Vorsicht walten lassen. The adjective is vorsichtig, and it is what you call a careful driver. Not die Achtung, which warns of something already present.'
+      ru: 'Женский род, множественного нет, и большую часть жизни слово проводит как голое восклицание: Vorsicht! кричат там, где по-русски скажут «осторожно», и печатают на мокром полу и горячей поверхности. В предложении оборот — mit Vorsicht или Vorsicht walten lassen. Прилагательное — vorsichtig, именно так назовут аккуратного водителя. Это не die Achtung, которое предупреждает о том, что уже перед вами.'
+      uk: 'Жіночий рід, множини немає, і більшу частину життя слово проводить як голий вигук: Vorsicht! гукають там, де українською скажуть «обережно», і друкують на мокрій підлозі та гарячій поверхні. У реченні зворот — mit Vorsicht або Vorsicht walten lassen. Прикметник — vorsichtig, саме так назвуть акуратного водія. Це не die Achtung, яке попереджає про те, що вже перед вами.'
+
+  - de: elektrisch
+    ipa: "eˈlɛktʁɪʃ"
+    pos: adj
+    cards: recognition
+    en: worked by electricity rather than by hand, by fuel or by muscle
+    ru: работающий на электричестве, а не вручную, не на топливе и не мускульной силой
+    uk: що працює на електриці, а не вручну, не на паливі й не м’язовою силою
+    example_de: Der neue Herd ist elektrisch, der alte lief mit Gas.
+    example_en: The new cooker is electric, the old one ran on gas.
+    example_ru: Новая плита электрическая, старая работала на газе.
+    example_uk: Нова плита електрична, стара працювала на газі.
+    note:
+      en: 'A1 der Strom is the electricity itself and this is the adjective for anything that runs on it — ein elektrisches Gerät, eine elektrische Zahnbürste, elektrischer Strom in the fixed phrase a technician uses. Do not read it as elektronisch, which is a different word about circuits and computing. The noun for the field is die Elektrizität and the tradesman is der Elektriker.'
+      ru: 'der Strom уровня A1 — само электричество, а это прилагательное для всего, что на нём работает: ein elektrisches Gerät, eine elektrische Zahnbürste, а в устойчивом обороте техника — elektrischer Strom. Не читайте его как elektronisch: то другое слово, про схемы и вычисления. Область называется die Elektrizität, а мастер — der Elektriker.'
+      uk: 'der Strom рівня A1 — сама електрика, а це прикметник для всього, що на ній працює: ein elektrisches Gerät, eine elektrische Zahnbürste, а в усталеному звороті техніка — elektrischer Strom. Не читайте його як elektronisch: то інше слово, про схеми й обчислення. Галузь зветься die Elektrizität, а майстер — der Elektriker.'
+
+  - de: Alarm
+    ipa: "aˈlaʁm"
+    pos: noun
+    gender: m
+    plural: "die Alarme"
+    cards: recognition
+    en: a loud automatic warning signal, and the state of alert it puts everybody into
+    ru: громкий автоматический предупреждающий сигнал и состояние тревоги, в которое он всех приводит
+    uk: гучний автоматичний попереджувальний сигнал і стан тривоги, у який він усіх приводить
+    example_de: Mitten in der Nacht ging der Alarm los.
+    example_en: The alarm went off in the middle of the night.
+    example_ru: Среди ночи сработала сигнализация.
+    example_uk: Серед ночі спрацювала сигналізація.
+    note:
+      en: 'Masculine, stress on the second syllable. The verb that goes with it is losgehen, to go off, and Alarm schlagen means to raise the alarm. The compounds cover the household — der Rauchmelder is the smoke detector, die Alarmanlage the burglar alarm — while der Wecker is the alarm clock and is not this word at all, which is the trap for an English speaker.'
+      ru: 'Мужской род, ударение на втором слоге. Глагол при нём — losgehen, «сработать», а Alarm schlagen значит «поднять тревогу». Составные слова покрывают быт: der Rauchmelder — датчик дыма, die Alarmanlage — охранная сигнализация, — а будильник называется der Wecker и этим словом не является вовсе; вот здесь и ловушка для англоязычного.'
+      uk: 'Чоловічий рід, наголос на другому складі. Дієслово при ньому — losgehen, «спрацювати», а Alarm schlagen означає «зчинити тривогу». Складні слова покривають побут: der Rauchmelder — датчик диму, die Alarmanlage — охоронна сигналізація, — а будильник зветься der Wecker і цим словом не є взагалі; ось тут і пастка для англомовного.'
+
+  - de: Klingel
+    ipa: "ˈklɪŋl̩"
+    pos: noun
+    gender: f
+    plural: "die Klingeln"
+    cards: recognition
+    en: the button and bell at a front door that a visitor presses to be let in
+    ru: кнопка со звонком у входной двери, на которую нажимает пришедший, чтобы его впустили
+    uk: кнопка з дзвінком біля вхідних дверей, на яку натискає той, хто прийшов, щоб його впустили
+    example_de: Die Klingel funktioniert nicht, klopf bitte.
+    example_en: The doorbell is not working, please knock.
+    example_ru: Звонок не работает, постучи, пожалуйста.
+    example_uk: Дзвінок не працює, постукай, будь ласка.
+    note:
+      en: 'The verb is klingeln, and it works both for the visitor (an der Tür klingeln) and for the thing itself (das Telefon klingelt). On a German front door the button carries the surname rather than a flat number, which is why a delivery driver needs the name and not the floor. Do not confuse it with die Glocke, the bell in a church tower.'
+      ru: 'Глагол — klingeln, и он работает и для гостя (an der Tür klingeln), и для самого предмета (das Telefon klingelt). На немецкой входной двери кнопка подписана фамилией, а не номером квартиры, поэтому курьеру нужна фамилия, а не этаж. Не путайте с die Glocke — колоколом на колокольне.'
+      uk: 'Дієслово — klingeln, і воно працює і для гостя (an der Tür klingeln), і для самого предмета (das Telefon klingelt). На німецьких вхідних дверях кнопка підписана прізвищем, а не номером квартири, тому кур’єрові потрібне прізвище, а не поверх. Не плутайте з die Glocke — дзвоном на дзвіниці.'
+
+  - de: Notruf
+    ipa: "ˈnoːtˌʁuːf"
+    pos: noun
+    gender: m
+    plural: "die Notrufe"
+    cards: recognition
+    en: the call you make when help is needed at once, and the number you make it on
+    ru: вызов, который делают, когда помощь нужна немедленно, и номер, по которому его делают
+    uk: виклик, який роблять, коли допомога потрібна негайно, і номер, за яким його роблять
+    example_de: Wählen Sie im Notfall den Notruf 112.
+    example_en: In an emergency dial the emergency number 112.
+    example_ru: В экстренном случае звоните по номеру 112.
+    example_uk: У надзвичайному випадку телефонуйте на номер 112.
+    note:
+      en: 'Die Not, distress, plus der Ruf. Germany has two numbers and both are worth knowing: 112 reaches the fire service and the ambulance, 110 the police, and 112 works across the whole EU. The related words are der Notfall for the emergency itself and der Notdienst for the out-of-hours service a pharmacy runs. Primary stress on Not-, secondary on -ruf.'
+      ru: 'die Not — «беда» плюс der Ruf. В Германии два номера, и знать стоит оба: 112 — пожарные и скорая, 110 — полиция, причём 112 работает по всему ЕС. Рядом стоят der Notfall — сам экстренный случай и der Notdienst — дежурная служба, которую держит, например, аптека. Главное ударение на Not-, побочное на -ruf.'
+      uk: 'die Not — «біда» плюс der Ruf. У Німеччині два номери, і знати варто обидва: 112 — пожежники та швидка, 110 — поліція, причому 112 працює по всьому ЄС. Поряд стоять der Notfall — сам надзвичайний випадок і der Notdienst — чергова служба, яку тримає, наприклад, аптека. Головний наголос на Not-, побічний на -ruf.'
+
+  - de: Notausgang
+    ipa: "ˈnoːtˌʔaʊ̯sgaŋ"
+    pos: noun
+    gender: m
+    plural: "die Notausgänge"
+    cards: recognition
+    en: the door kept clear so that people can leave a building fast if something happens
+    ru: дверь, которую держат свободной, чтобы люди могли быстро выйти из здания, если что-то случится
+    uk: двері, які тримають вільними, щоб люди могли швидко вийти з будівлі, якщо щось станеться
+    example_de: Der Notausgang darf nicht zugestellt werden.
+    example_en: The emergency exit must not be blocked.
+    example_ru: Запасной выход нельзя загромождать.
+    example_uk: Запасний вихід не можна захаращувати.
+    note:
+      en: 'Die Not plus A1 der Ausgang, and it is one of the German words a learner meets before understanding it, because the green running-man sign carries it in every cinema, train and office. Beside it der Notausstieg is the emergency window on a bus. Note the glottal stop where the two halves meet, before the Aus-, which is what keeps the compound audible as two words.'
+      ru: 'die Not плюс der Ausgang уровня A1, и это одно из тех немецких слов, которые встречаешь раньше, чем понимаешь: зелёная табличка с бегущим человечком висит в каждом кинотеатре, поезде и офисе. Рядом der Notausstieg — аварийное окно в автобусе. Обратите внимание на гортанную смычку на стыке половин, перед Aus-: именно она делает сложное слово слышимым как два.'
+      uk: 'die Not плюс der Ausgang рівня A1, і це одне з тих німецьких слів, які зустрічаєш раніше, ніж розумієш: зелена табличка з чоловічком, що біжить, висить у кожному кінотеатрі, потязі та офісі. Поряд der Notausstieg — аварійне вікно в автобусі. Зверніть увагу на гортанну змичку на стику половин, перед Aus-: саме вона робить складне слово чутним як два.'
+
+  - de: Notaufnahme
+    ipa: "ˈnoːtˌʔaʊ̯fnaːmə"
+    pos: noun
+    gender: f
+    plural: "die Notaufnahmen"
+    cards: recognition
+    en: the hospital department that takes people in without an appointment when something is urgent
+    ru: отделение больницы, куда принимают без записи, когда дело срочное
+    uk: відділення лікарні, куди приймають без запису, коли справа термінова
+    example_de: Mit so einer Wunde muss man in die Notaufnahme.
+    example_en: With a wound like that you have to go to A&E.
+    example_ru: С такой раной надо ехать в приёмное отделение.
+    example_uk: Із такою раною треба їхати до приймального відділення.
+    note:
+      en: 'Die Not plus die Aufnahme, the taking-in. It is the department, not the vehicle — B1 der Krankenwagen brings you and this is where it stops. A2 die Sprechstunde is the opposite pole of German medicine, where nothing happens without an appointment, and this is the one place where that rule is suspended. Die Ambulanz means an outpatient clinic in German, never the vehicle, which is a false friend worth pinning down.'
+      ru: 'die Not плюс die Aufnahme — «приём». Это отделение, а не машина: der Krankenwagen уровня B1 привозит, а здесь останавливается. die Sprechstunde уровня A2 — противоположный полюс немецкой медицины, где без записи не бывает ничего, и здесь единственное место, где это правило отменено. Слово die Ambulanz по-немецки значит «поликлиника», а не машину, — ложный друг, который стоит закрепить.'
+      uk: 'die Not плюс die Aufnahme — «приймання». Це відділення, а не машина: der Krankenwagen рівня B1 привозить, а тут зупиняється. die Sprechstunde рівня A2 — протилежний полюс німецької медицини, де без запису не буває нічого, і тут єдине місце, де це правило скасовано. Слово die Ambulanz німецькою означає «поліклініка», а не машину, — хибний друг, якого варто закріпити.'
+
+  # --- Gebrauchsanweisung und Spielsachen ---
+  - de: Gebrauchsanweisung
+    ipa: "gəˈbʁaʊ̯xsˌʔanvaɪ̯zʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Gebrauchsanweisungen"
+    cards: recognition
+    en: the printed sheet in the box that tells you how the thing is to be used
+    ru: печатный листок в коробке, объясняющий, как пользоваться вещью
+    uk: друкований аркуш у коробці, що пояснює, як користуватися річчю
+    example_de: Lesen Sie bitte zuerst die Gebrauchsanweisung.
+    example_en: Please read the instructions for use first.
+    example_ru: Пожалуйста, сначала прочитайте инструкцию.
+    example_uk: Будь ласка, спершу прочитайте інструкцію.
+    note:
+      en: 'Der Gebrauch, use, plus die Anweisung, instruction — a four-syllable compound of the kind German builds without hesitation, and reading it as its two halves is the trick that makes such words easy. B1 die Bedienungsanleitung is the same document for a machine with buttons, and the two are used almost interchangeably. On medicine the sheet is der Beipackzettel. Primary stress on -brauchs-, secondary on -an-.'
+      ru: 'der Gebrauch — «применение» плюс die Anweisung — «указание»; четырёхсложное составное слово, какие немецкий строит не задумываясь, и умение читать его по половинам — тот приём, который делает такие слова лёгкими. die Bedienungsanleitung уровня B1 — тот же документ для машины с кнопками, и на практике их почти не различают. У лекарства этот листок называется der Beipackzettel. Главное ударение на -brauchs-, побочное на -an-.'
+      uk: 'der Gebrauch — «застосування» плюс die Anweisung — «вказівка»; чотирискладове складне слово, які німецька будує не задумуючись, і вміння читати його по половинах — той прийом, що робить такі слова легкими. die Bedienungsanleitung рівня B1 — той самий документ для машини з кнопками, і на практиці їх майже не розрізняють. У ліків цей аркуш зветься der Beipackzettel. Головний наголос на -brauchs-, побічний на -an-.'
+
+  - de: Spielzeug
+    ipa: "ˈʃpiːlˌtsɔʏ̯k"
+    pos: noun
+    gender: n
+    plural: "die Spielzeuge"
+    cards: recognition
+    en: things made for children to play with, taken together as a category
+    ru: вещи, сделанные для детской игры, взятые вместе как разряд
+    uk: речі, зроблені для дитячої гри, узяті разом як розряд
+    example_de: Räum bitte dein Spielzeug ins Regal.
+    example_en: Please put your toys away on the shelf.
+    example_ru: Убери, пожалуйста, свои игрушки на полку.
+    example_uk: Прибери, будь ласка, свої іграшки на полицю.
+    note:
+      en: 'A1 spielen plus -zeug, the same collective ending as in das Werkzeug and das Feuerzeug above. Because of that ending it is normally used as a mass noun for the whole heap — dein Spielzeug, viel Spielzeug — and a single item is usually named by its kind instead, das Spielzeugauto or die Puppe. The plural die Spielzeuge exists but is rare, and the collective die Spielsachen is just as common in speech. The shop is das Spielwarengeschäft.'
+      ru: 'spielen уровня A1 плюс -zeug — то же собирательное окончание, что в das Werkzeug и das Feuerzeug выше. Из-за этого окончания слово обычно употребляется как собирательное, про всю кучу сразу: dein Spielzeug, viel Spielzeug, — а отдельную игрушку назовут по её виду: das Spielzeugauto, die Puppe. В речи ein Spielzeug тоже говорят, а множественное die Spielzeuge существует, но редко. Магазин — das Spielwarengeschäft.'
+      uk: 'spielen рівня A1 плюс -zeug — те саме збірне закінчення, що в das Werkzeug і das Feuerzeug вище. Через це закінчення слово зазвичай уживається як збірне, про всю купу одразу: dein Spielzeug, viel Spielzeug, — а окрему іграшку назвуть за її видом: das Spielzeugauto, die Puppe. У мовленні ein Spielzeug теж кажуть, а множина die Spielzeuge існує, але рідко. Крамниця — das Spielwarengeschäft.'
+
+  - de: Puppe
+    ipa: "ˈpʊpə"
+    pos: noun
+    gender: f
+    plural: "die Puppen"
+    cards: recognition
+    en: a small model of a person that a child dresses, carries about and plays with
+    ru: маленькая фигурка человека, которую ребёнок одевает, носит и с которой играет
+    uk: маленька фігурка людини, яку дитина вдягає, носить і з якою грається
+    example_de: Das Kind nimmt die Puppe überall mit.
+    example_en: The child takes the doll everywhere.
+    example_ru: Ребёнок всюду берёт куклу с собой.
+    example_uk: Дитина всюди бере ляльку із собою.
+    note:
+      en: 'Feminine, plural in -n. The theatre kind is die Handpuppe or die Marionette, and das Puppenhaus is the doll''s house. Two further senses run alongside: in biology it is the pupa of an insect, and in a shop window die Schaufensterpuppe is the mannequin. The vowel is a short ʊ and both p sounds are fully articulated, so the word has nothing of the French poupée about it.'
+      ru: 'Женский род, множественное на -n. Театральная — die Handpuppe или die Marionette, а кукольный дом — das Puppenhaus. Рядом идут ещё два значения: в биологии это куколка насекомого, а в витрине die Schaufensterpuppe — манекен. Следите за гласным: краткое ʊ, и именно оно отделяет слово от похожего на вид der Papa.'
+      uk: 'Жіночий рід, множина на -n. Театральна — die Handpuppe або die Marionette, а ляльковий дім — das Puppenhaus. Поряд ідуть ще два значення: у біології це лялечка комахи, а у вітрині die Schaufensterpuppe — манекен. Стежте за голосним: коротке ʊ, і саме воно відділяє слово від схожого на вигляд der Papa.'

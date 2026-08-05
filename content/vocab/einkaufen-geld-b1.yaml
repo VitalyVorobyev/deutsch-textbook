@@ -1,0 +1,586 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the shopping-and-
+# money field of data/goethe-b1-wortliste.txt: the cash in a hand and the machine it
+# comes out of, the cards a German counter actually takes, the words a shop window
+# and an advert use to move goods, and the clothes a learner reads about rather than
+# buys.
+# A1's `einkaufen-geschaefte` owns the shop and the people in it (Geschäft, Laden,
+# Angebot, Kunde, Verkäuferin, Tasche), A1's `zahlen-daten-geld` owns the sums
+# (Euro, Cent), A1's `kleidung-farben` owns the wardrobe a learner names
+# (Hose, Hemd, Kleid, Mantel, Schuh, Strumpf), A2's `einkaufen-geld-a2` owns the
+# bank account (Konto, überweisen, sparen, bar), A2's `dinge-sachen-a2` owns the
+# small possessions (Ring, Kette, Anzug, Mütze), B1's `geld-vertraege` owns the
+# contract and the cash (Bargeld, Kreditkarte, Kosten) and B1's `konsum-umwelt`
+# owns the discount (Rabatt, Sonderangebot). This deck is what those seven leave
+# out: the paperwork of paying and the register of selling.
+# Every entry is `cards: recognition` by the frozen wave-2c tiering. This is the
+# German of a bank form, a shop window, a leaflet through the door and a catalogue
+# page — read and understood, while the sentence a learner produces at the counter
+# is built from the A1 and A2 words above, which already ship as typed cards. The
+# Austrian and Swiss siblings of several headwords here (Bancomat, Bankomat-Karte,
+# Kuvert) are held back for the Varianten deck of wave 4; the `note` names them and
+# nothing more.
+id: einkaufen-geld-b1
+title_de: "Einkaufen und Geld"
+title_en: "Shopping and money"
+title_ru: "Покупки и деньги"
+title_uk: "Покупки та гроші"
+level: B1
+entries:
+  # --- Geld in der Hand, auf dem Konto und auf der Karte ---
+  - de: Münze
+    ipa: "ˈmʏntsə"
+    pos: noun
+    gender: f
+    plural: "die Münzen"
+    cards: recognition
+    en: a small flat piece of metal used as money, stamped with its value
+    ru: небольшой плоский кусочек металла, служащий деньгами, с отчеканенным номиналом
+    uk: невеликий плаский шматочок металу, що служить грошима, з викарбуваним номіналом
+    example_de: Für den Einkaufswagen brauchst du eine Münze.
+    example_en: You need a coin for the shopping trolley.
+    example_ru: Для тележки нужна монета.
+    example_uk: Для візка потрібна монета.
+    note:
+      en: 'Feminine, plural in -n, and it is the technical half of B1 das Bargeld, which covers notes and coins together. In a shop the everyday word for loose change is das Kleingeld, and the change you get back is das Wechselgeld — a German asks Haben Sie es passend? rather than naming any of them. This word belongs to the machine slot, the collector''s album and the newspaper. The parking meter and the launderette both want one.'
+      ru: 'Женский род, множественное на -n, и это техническая половина того, что B1 называет das Bargeld: наличные — это банкноты плюс монеты. В магазине мелочь называют das Kleingeld, а сдачу — das Wechselgeld, причём немец скорее спросит Haben Sie es passend?, чем назовёт хоть одно из этих слов. Это слово принадлежит прорези автомата, альбому коллекционера и газете. Паркомату и прачечной самообслуживания нужна именно она.'
+      uk: 'Жіночий рід, множина на -n, і це технічна половина того, що B1 зве das Bargeld: готівка — це банкноти плюс монети. У крамниці дрібняки звуть das Kleingeld, а решту — das Wechselgeld, причому німець радше спитає Haben Sie es passend?, ніж назве бодай одне з цих слів. Це слово належить прорізу автомата, альбому колекціонера і газеті. Паркомату й пральні самообслуговування потрібна саме вона.'
+
+  - de: Schein
+    ipa: "ˈʃaɪ̯n"
+    pos: noun
+    gender: m
+    plural: "die Scheine"
+    cards: recognition
+    en: a banknote; also, in another use, a printed slip that certifies something officially
+    ru: банкнота; а в другом употреблении — печатная бумага, официально что-то удостоверяющая
+    uk: банкнота; а в іншому вжитку — друкований папір, що офіційно щось засвідчує
+    example_de: Haben Sie es kleiner? Ich kann den Schein nicht wechseln.
+    example_en: Have you got anything smaller? I cannot change the note.
+    example_ru: У вас нет помельче? Я не могу разменять эту купюру.
+    example_uk: У вас немає дрібніше? Я не можу розміняти цю купюру.
+    note:
+      en: 'Two live senses that share no ground. The money one is the note against die Münze above, and Germans size it in the plural — ein Zwanziger, zwei Fünfziger, or der Fünfzigeuroschein in full. The paperwork one is any slip that proves a fact: der Führerschein, der Krankenschein, der Gutschein for a voucher. A third sense, appearance, survives only in fixed phrases such as der Schein trügt, appearances deceive, and it comes from the verb scheinen rather than from either of the others.'
+      ru: 'Два живых значения, у которых нет общего поля. Денежное — купюра в противовес die Münze выше, и немцы называют её по номиналу: ein Zwanziger, zwei Fünfziger или полностью der Fünfzigeuroschein. Бумажное — всякий листок, удостоверяющий факт: der Führerschein, der Krankenschein, der Gutschein — подарочный сертификат. Третье значение, «видимость», уцелело только в устойчивых оборотах вроде der Schein trügt — «внешность обманчива», и происходит оно от глагола scheinen, а не от первых двух.'
+      uk: 'Два живі значення, у яких немає спільного поля. Грошове — купюра на противагу die Münze вище, і німці звуть її за номіналом: ein Zwanziger, zwei Fünfziger або повністю der Fünfzigeuroschein. Паперове — усякий аркуш, що засвідчує факт: der Führerschein, der Krankenschein, der Gutschein — подарунковий сертифікат. Третє значення, «видимість», уціліло лише в усталених зворотах на кшталт der Schein trügt — «зовнішність оманлива», і походить воно від дієслова scheinen, а не від перших двох.'
+
+  - de: Brieftasche
+    ipa: "ˈbʁiːfˌtaʃə"
+    pos: noun
+    gender: f
+    plural: "die Brieftaschen"
+    cards: recognition
+    en: a flat folding case for banknotes and cards, carried in an inside pocket
+    ru: плоский складной футляр для банкнот и карточек, который носят во внутреннем кармане
+    uk: плаский складаний футляр для банкнот і карток, який носять у внутрішній кишені
+    example_de: Er zog die Brieftasche aus der Jacke.
+    example_en: He took the wallet out of his jacket.
+    example_ru: Он достал бумажник из куртки.
+    example_uk: Він дістав гаманець із куртки.
+    note:
+      en: 'Der Brief plus A1 die Tasche, and the shape is in the name — flat and folding, for notes rather than coins, which is exactly what separates it from der Geldbeutel and das Portemonnaie, the rounded purse with a coin compartment that German women and men both carry. Die Geldbörse is the neutral word covering either. What a thief takes is der Taschendieb''s business, and the police report says die Brieftasche entwendet.'
+      ru: 'der Brief плюс die Tasche уровня A1, и форма заложена в названии: плоский, складывающийся, для купюр, а не для мелочи, — именно этим он отличается от der Geldbeutel и das Portemonnaie, круглого кошелька с отделением для монет, который носят и женщины, и мужчины. die Geldbörse — нейтральное слово, годное и для того, и для другого. Тот, кто его крадёт, — der Taschendieb, а в протоколе будет написано die Brieftasche entwendet.'
+      uk: 'der Brief плюс die Tasche рівня A1, і форма закладена в назві: плаский, складаний, для купюр, а не для дрібняків, — саме цим він відрізняється від der Geldbeutel і das Portemonnaie, круглого гаманця з відділенням для монет, який носять і жінки, і чоловіки. die Geldbörse — нейтральне слово, придатне і для того, і для того. Той, хто його краде, — der Taschendieb, а в протоколі буде написано die Brieftasche entwendet.'
+
+  - de: Geldautomat
+    ipa: "ˈgɛltʔaʊ̯toˌmaːt"
+    pos: noun
+    gender: m
+    plural: "die Geldautomaten"
+    cards: recognition
+    en: the machine in a wall that pays out cash against a card and a code
+    ru: машина в стене, выдающая наличные по карте и коду
+    uk: машина в стіні, що видає готівку за карткою і кодом
+    example_de: Am Bahnhof gibt es einen Geldautomaten.
+    example_en: There is a cash machine at the station.
+    example_ru: На вокзале есть банкомат.
+    example_uk: На вокзалі є банкомат.
+    note:
+      en: 'A1 das Geld plus der Automat, and like every German noun in -at it is a weak masculine: den Geldautomaten, dem Geldautomaten, with an -en in every case but the nominative singular. The verb that goes with it is abheben below. The screen calls the code die Geheimzahl or die PIN. Austria and Switzerland use different words for the same machine, which a traveller meets on the sign rather than in a sentence.'
+      ru: 'das Geld уровня A1 плюс der Automat, и, как всякое немецкое существительное на -at, оно слабого склонения: den Geldautomaten, dem Geldautomaten — с -en во всех падежах, кроме именительного единственного. Глагол при нём — abheben ниже. Код на экране называется die Geheimzahl или die PIN. В Австрии и Швейцарии ту же машину зовут иначе, и путешественник встречает это слово на вывеске, а не во фразе.'
+      uk: 'das Geld рівня A1 плюс der Automat, і, як усякий німецький іменник на -at, воно слабкої відміни: den Geldautomaten, dem Geldautomaten — з -en в усіх відмінках, крім називного однини. Дієслово при ньому — abheben нижче. Код на екрані зветься die Geheimzahl або die PIN. В Австрії та Швейцарії ту саму машину звуть інакше, і мандрівник зустрічає це слово на вивісці, а не у фразі.'
+
+  - de: ec-Karte
+    ipa: "eːˈtseːˌkaʁtə"
+    pos: noun
+    gender: f
+    plural: "die ec-Karten"
+    cards: recognition
+    en: the everyday German bank card that takes money straight off the account, not on credit
+    ru: обиходная немецкая банковская карта, списывающая деньги прямо со счёта, а не в кредит
+    uk: побутова німецька банківська картка, що списує гроші просто з рахунку, а не в кредит
+    example_de: Kann ich mit ec-Karte zahlen?
+    example_en: Can I pay by debit card?
+    example_ru: Можно оплатить дебетовой картой?
+    example_uk: Чи можна оплатити дебетовою карткою?
+    note:
+      en: 'The card in almost every German wallet, and the one small shops take when they take nothing else — B1 die Kreditkarte is far less widely accepted here than a visitor expects. The letters are spoken as letters, eː-tseː, with the compound stress falling inside them and a secondary beat on -Karte. The bank''s own current name for it is die Girocard, and the older Eurocheque behind the abbreviation is long gone. Austria and Switzerland call it something else again.'
+      ru: 'Карта, которая лежит почти в каждом немецком кошельке, и та единственная, которую принимают маленькие магазины, не принимающие больше ничего: die Kreditkarte уровня B1 здесь распространена куда меньше, чем ждёт приезжий. Буквы читаются по-буквенно, eː-tseː, главное ударение падает внутри них, побочное — на -Karte. Нынешнее банковское название — die Girocard, а стоявший за сокращением Eurocheque давно исчез. В Австрии и Швейцарии её зовут ещё иначе.'
+      uk: 'Картка, яка лежить майже в кожному німецькому гаманці, і та єдина, яку приймають маленькі крамниці, що не приймають більше нічого: die Kreditkarte рівня B1 тут поширена значно менше, ніж чекає приїжджий. Літери читаються по-літерно, eː-tseː, головний наголос падає всередині них, побічний — на -Karte. Нинішня банківська назва — die Girocard, а Eurocheque, що стояв за скороченням, давно зник. В Австрії та Швейцарії її звуть ще інакше.'
+
+  - de: Chipkarte
+    ipa: "ˈtʃɪpˌkaʁtə"
+    pos: noun
+    gender: f
+    plural: "die Chipkarten"
+    cards: recognition
+    en: any plastic card with a small metal contact on it that a reader has to be given
+    ru: любая пластиковая карта с металлическим контактом, которую нужно вставить в считыватель
+    uk: будь-яка пластикова картка з металевим контактом, яку треба вставити в зчитувач
+    example_de: Die Bibliothek gibt jedem Studenten eine Chipkarte.
+    example_en: The library gives every student a chip card.
+    example_ru: Библиотека выдаёт каждому студенту чиповую карту.
+    example_uk: Бібліотека видає кожному студентові чипову картку.
+    note:
+      en: 'The category word, not a particular card: the ec-Karte above is one, so are a health-insurance card, a student card, a canteen card and a hotel key. German pronounces the English chip with a real tʃ, so the word opens like Tschüss. Where a text needs to say the card is not contactless it writes mit Chip against kontaktlos or ohne Kontakt.'
+      ru: 'Это слово-категория, а не название конкретной карты: ec-Karte выше — одна из них, как и карта медстраховки, студенческий, карта столовой и ключ от гостиничного номера. Английское chip немец произносит с настоящим tʃ, так что слово открывается как Tschüss. Там, где текст должен сказать, что карта не бесконтактная, он пишет mit Chip против kontaktlos или ohne Kontakt.'
+      uk: 'Це слово-категорія, а не назва конкретної картки: ec-Karte вище — одна з них, як і картка медстраховки, студентський, картка їдальні й ключ від готельного номера. Англійське chip німець вимовляє зі справжнім tʃ, тож слово відкривається як Tschüss. Там, де текст має сказати, що картка не безконтактна, він пише mit Chip проти kontaktlos або ohne Kontakt.'
+
+  - de: abheben
+    ipa: "ˈapˌheːbn̩"
+    pos: verb
+    praesens_3sg: hebt ab
+    partizip2: abgehoben
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to take money out of an account, at a machine or over a counter
+    ru: снимать деньги со счёта — в банкомате или у кассы
+    uk: знімати гроші з рахунку — у банкоматі або в касі
+    example_de: Ich muss noch hundert Euro abheben.
+    example_en: I still need to withdraw a hundred euros.
+    example_ru: Мне нужно ещё снять сто евро.
+    example_uk: Мені треба ще зняти сто євро.
+    note:
+      en: 'Separable and strong, following heben — hebt ab, hob ab, hat abgehoben. Its exact opposite is die Einzahlung below, and the pair is what a bank statement is made of. Two further senses use the same verb: a plane abhebt when it leaves the ground, and sich abheben von etwas means to stand out against something. The old sense of answering the phone survives in den Hörer abheben.'
+      ru: 'Отделяемый и сильный, вслед за heben: hebt ab, hob ab, hat abgehoben. Прямая противоположность — die Einzahlung ниже, и из этой пары складывается выписка со счёта. Ещё два значения у того же глагола: самолёт abhebt, когда отрывается от земли, а sich abheben von etwas значит «выделяться на фоне чего-то». Старое значение «снять трубку» уцелело в обороте den Hörer abheben.'
+      uk: 'Відокремлюване й сильне, услід за heben: hebt ab, hob ab, hat abgehoben. Пряма протилежність — die Einzahlung нижче, і з цієї пари складається виписка з рахунку. Ще два значення в того самого дієслова: літак abhebt, коли відривається від землі, а sich abheben von etwas означає «вирізнятися на тлі чогось». Давнє значення «зняти слухавку» вціліло у звороті den Hörer abheben.'
+
+  - de: Einzahlung
+    ipa: "ˈaɪ̯nˌtsaːlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Einzahlungen"
+    cards: recognition
+    en: the paying of money into an account, and the entry that records it
+    ru: внесение денег на счёт и запись, которая это фиксирует
+    uk: внесення грошей на рахунок і запис, що це фіксує
+    example_de: Die Einzahlung ist erst am nächsten Tag auf dem Konto.
+    example_en: The deposit is not in the account until the next day.
+    example_ru: Внесённые деньги появляются на счету только на следующий день.
+    example_uk: Внесені гроші з’являються на рахунку лише наступного дня.
+    note:
+      en: 'The noun of einzahlen, and the counterpart of abheben above. It sits in a family that a German bank statement uses without explanation: die Auszahlung for a payout, die Überweisung for a transfer, die Abbuchung for a direct debit and die Gutschrift for a credit. Note the direction the prefixes carry — ein- money going in, aus- money going out, über- money going across.'
+      ru: 'Существительное от einzahlen и пара к abheben выше. Оно стоит в ряду, которым немецкая выписка пользуется без пояснений: die Auszahlung — выдача, die Überweisung — перевод, die Abbuchung — списание и die Gutschrift — зачисление. Обратите внимание на направление, которое несут приставки: ein- — деньги внутрь, aus- — наружу, über- — поперёк, к другому.'
+      uk: 'Іменник від einzahlen і пара до abheben вище. Воно стоїть у ряду, яким німецька виписка послуговується без пояснень: die Auszahlung — видача, die Überweisung — переказ, die Abbuchung — списання і die Gutschrift — зарахування. Зверніть увагу на напрямок, який несуть префікси: ein- — гроші всередину, aus- — назовні, über- — упоперек, до іншого.'
+
+  - de: Bankleitzahl
+    ipa: "ˈbaŋklaɪ̯tˌtsaːl"
+    pos: noun
+    gender: f
+    plural: "die Bankleitzahlen"
+    cards: recognition
+    en: the eight-digit number that identifies which bank an account is held at
+    ru: восьмизначный номер, указывающий, в каком банке открыт счёт
+    uk: восьмизначний номер, що вказує, у якому банку відкрито рахунок
+    example_de: Bitte geben Sie Kontonummer und Bankleitzahl an.
+    example_en: Please give the account number and the sort code.
+    example_ru: Укажите, пожалуйста, номер счёта и код банка.
+    example_uk: Зазначте, будь ласка, номер рахунку і код банку.
+    note:
+      en: 'A1 die Bank plus leiten, to route, plus A1 die Zahl, and the compound says what it does: it routes the money to the right institution. Since the euro payment area came in, both this and die Kontonummer have been folded into die IBAN, which a form now asks for instead. The word survives on older paperwork, on a shop''s invoice footer and in speech, which is why it is worth recognising even though nobody fills it in any more.'
+      ru: 'die Bank уровня A1 плюс leiten — «направлять» плюс die Zahl уровня A1, и составное слово прямо говорит о своей работе: оно направляет деньги в нужное учреждение. С введением единой европейской платёжной зоны и оно, и die Kontonummer вошли в die IBAN, которую теперь и спрашивает бланк. Слово держится на старых бумагах, в подвале счёта у фирмы и в устной речи — потому его и стоит узнавать, хотя вписывать его уже некуда.'
+      uk: 'die Bank рівня A1 плюс leiten — «спрямовувати» плюс die Zahl рівня A1, і складне слово прямо каже про свою роботу: воно спрямовує гроші до потрібної установи. Із запровадженням єдиної європейської платіжної зони і воно, і die Kontonummer увійшли до die IBAN, яку тепер і питає бланк. Слово тримається на старих паперах, у підвалі рахунку у фірми та в усному мовленні — тому його й варто впізнавати, хоча вписувати його вже нікуди.'
+
+  - de: Zinsen
+    ipa: "ˈtsɪnzn̩"
+    pos: phrase
+    cards: recognition
+    en: the money a bank adds to savings or charges on a loan, worked out as a percentage
+    ru: деньги, которые банк добавляет к вкладу или берёт за кредит, считая их в процентах
+    uk: гроші, які банк додає до вкладу або бере за кредит, рахуючи їх у відсотках
+    example_de: Für den Kredit zahlt sie drei Prozent Zinsen.
+    example_en: She pays three per cent interest on the loan.
+    example_ru: За кредит она платит три процента.
+    example_uk: За кредит вона платить три відсотки.
+    note:
+      en: 'The singular der Zins exists but is almost never used in this sense — money language always takes the plural, so Zinsen zahlen, Zinsen bekommen, hohe Zinsen. The rate is der Zinssatz and compound interest is der Zinseszins. In Switzerland and in southern Austria der Zins can still mean rent, which is its original medieval meaning and a genuine trap in an old text.'
+      ru: 'Единственное der Zins существует, но в этом значении почти не употребляется: денежный язык всегда берёт множественное — Zinsen zahlen, Zinsen bekommen, hohe Zinsen. Ставка — der Zinssatz, сложный процент — der Zinseszins. В Швейцарии и на юге Австрии der Zins до сих пор может значить «арендная плата» — это исходное средневековое значение и настоящая ловушка в старом тексте.'
+      uk: 'Однина der Zins існує, але в цьому значенні майже не вживається: грошова мова завжди бере множину — Zinsen zahlen, Zinsen bekommen, hohe Zinsen. Ставка — der Zinssatz, складний відсоток — der Zinseszins. У Швейцарії та на півдні Австрії der Zins досі може означати «орендна плата» — це вихідне середньовічне значення і справжня пастка в старому тексті.'
+
+  # --- Was ein Ding wert ist ---
+  - de: wert
+    ipa: "ˈveːɐ̯t"
+    pos: adj
+    valence: "+ Akk"
+    cards: recognition
+    en: worth the amount or the effort named beside it
+    ru: стоящий того, что при нём названо, — суммы или усилия
+    uk: вартий того, що при ньому названо, — суми або зусилля
+    example_de: Das alte Rad ist keine hundert Euro mehr wert.
+    example_en: The old bike is not worth a hundred euros any more.
+    example_ru: Старый велосипед уже не стоит и ста евро.
+    example_uk: Старий велосипед уже не вартий і ста євро.
+    note:
+      en: 'A predicative adjective that takes an accusative, which is unusual enough to be worth learning as a pattern: etwas ist einen Versuch wert, die Reise war jede Minute wert. It always follows what it measures and never stands before a noun. Do not confuse it with the verb kosten, which states a price rather than a judgement about one, and do not read it as the noun below, which is spelled with a capital and means something different.'
+      ru: 'Предикативное прилагательное, требующее винительного падежа, — случай достаточно необычный, чтобы выучить его как образец: etwas ist einen Versuch wert, die Reise war jede Minute wert. Оно всегда идёт после того, что оценивает, и никогда не стоит перед существительным. Не путайте с глаголом kosten, который называет цену, а не суждение о ней, и не читайте его как существительное ниже — то пишется с большой буквы и значит другое.'
+      uk: 'Предикативний прикметник, що вимагає знахідного відмінка, — випадок достатньо незвичний, щоб вивчити його як зразок: etwas ist einen Versuch wert, die Reise war jede Minute wert. Воно завжди йде після того, що оцінює, і ніколи не стоїть перед іменником. Не плутайте з дієсловом kosten, яке називає ціну, а не судження про неї, і не читайте його як іменник нижче — той пишеться з великої літери і означає інше.'
+
+  - de: Wert
+    ipa: "ˈveːɐ̯t"
+    pos: noun
+    gender: m
+    plural: "die Werte"
+    cards: recognition
+    en: what something amounts to, either in money or in importance; in the plural, the principles a society holds to
+    ru: то, во что нечто оценивается, — в деньгах или по значимости; во множественном числе — принципы, которых держится общество
+    uk: те, у що щось оцінюється, — у грошах або за значущістю; у множині — принципи, яких тримається суспільство
+    example_de: Der Wert des Hauses ist in zehn Jahren stark gestiegen.
+    example_en: The value of the house has risen sharply in ten years.
+    example_ru: Стоимость дома за десять лет сильно выросла.
+    example_uk: Вартість будинку за десять років сильно зросла.
+    note:
+      en: 'Masculine, plural die Werte, and the plural is where the second life of the word is: die Werte einer Gesellschaft are its values, and a political speech uses almost nothing else. In the singular it is an amount — der Wert eines Autos — or a measured figure in a laboratory report, die Blutwerte. The chunk Wert legen auf etwas means to consider something important. The adjective above is written small and takes an object; this one is a noun with a genitive after it.'
+      ru: 'Мужской род, множественное die Werte, и во множественном у слова вторая жизнь: die Werte einer Gesellschaft — ценности общества, и политическая речь почти ничем другим не пользуется. В единственном это величина — der Wert eines Autos — или измеренный показатель в анализе, die Blutwerte. Оборот Wert legen auf etwas значит «придавать чему-то значение». Прилагательное выше пишется с маленькой буквы и требует дополнения; здесь существительное, и после него идёт родительный падеж.'
+      uk: 'Чоловічий рід, множина die Werte, і в множині у слова друге життя: die Werte einer Gesellschaft — цінності суспільства, і політична промова майже нічим іншим не послуговується. В однині це величина — der Wert eines Autos — або виміряний показник в аналізі, die Blutwerte. Зворот Wert legen auf etwas означає «надавати чомусь значення». Прикметник вище пишеться з малої літери і вимагає додатка; тут іменник, і після нього йде родовий відмінок.'
+
+  - de: Verlust
+    ipa: "fɛɐ̯ˈlʊst"
+    pos: noun
+    gender: m
+    plural: "die Verluste"
+    cards: recognition
+    en: the fact of no longer having something one had, and the amount that fact costs
+    ru: то, что чего-то бывшего больше нет, и сумма, в которую это обходится
+    uk: те, що чогось колишнього більше немає, і сума, у яку це обходиться
+    example_de: Der Verlust der Karte muss sofort gemeldet werden.
+    example_en: The loss of the card has to be reported at once.
+    example_ru: О потере карты нужно сообщить немедленно.
+    example_uk: Про втрату картки треба повідомити негайно.
+    note:
+      en: 'The noun of verlieren, and the ver- prefix carries its usual sense of away or astray. A business text pairs it with der Gewinn — mit Verlust verkaufen, Verluste machen. A bank and an insurer use it of documents and cards, which is the sentence a learner is most likely to meet. Of a person it is the formal word for a death, ein schwerer Verlust. The prefix is unstressed and its r is the vocalised one.'
+      ru: 'Существительное от verlieren, и приставка ver- несёт свой обычный смысл «прочь, впустую». В деловом тексте оно стоит в паре с der Gewinn: mit Verlust verkaufen, Verluste machen. Банк и страховая говорят так о документах и картах — именно эта фраза встретится учащемуся скорее всего. О человеке это официальное слово о смерти: ein schwerer Verlust. Приставка безударна, а её r вокализуется.'
+      uk: 'Іменник від verlieren, і префікс ver- несе свій звичний сенс «геть, намарно». У діловому тексті воно стоїть у парі з der Gewinn: mit Verlust verkaufen, Verluste machen. Банк і страхова кажуть так про документи й картки — саме ця фраза трапиться учневі найшвидше. Про людину це офіційне слово про смерть: ein schwerer Verlust. Префікс ненаголошений, а його r вокалізується.'
+
+  - de: Bedarf
+    ipa: "bəˈdaʁf"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: how much of something is needed, stated as a quantity rather than as a wish
+    ru: то, сколько чего-то требуется, — как величина, а не как желание
+    uk: те, скільки чогось потрібно, — як величина, а не як бажання
+    example_de: Bei Bedarf können Sie das Formular später nachreichen.
+    example_en: If necessary you can hand the form in later.
+    example_ru: При необходимости бланк можно донести позже.
+    example_uk: За потреби бланк можна донести пізніше.
+    note:
+      en: 'Masculine, without a plural, and it is administrative and commercial German rather than everyday speech. Two chunks carry it: bei Bedarf, if required, which is what a form and a leaflet write, and Bedarf an etwas haben with the dative — Wir haben Bedarf an Fachkräften. It is not das Bedürfnis, which is a human need felt from inside, and not der Wunsch, which is what somebody would like. The verb behind it is bedürfen, now rare and taking the genitive.'
+      ru: 'Мужской род, без множественного, и это скорее административный и коммерческий немецкий, чем повседневная речь. Держат его два оборота: bei Bedarf — «при необходимости», как пишут бланк и памятка, и Bedarf an etwas haben с дательным: Wir haben Bedarf an Fachkräften. Это не das Bedürfnis — потребность, ощущаемая изнутри, — и не der Wunsch, то есть желание. За ним стоит глагол bedürfen, ныне редкий и требующий родительного падежа.'
+      uk: 'Чоловічий рід, без множини, і це радше адміністративна й комерційна німецька, ніж повсякденне мовлення. Тримають його два звороти: bei Bedarf — «за потреби», як пишуть бланк і пам’ятка, і Bedarf an etwas haben з давальним: Wir haben Bedarf an Fachkräften. Це не das Bedürfnis — потреба, відчута зсередини, — і не der Wunsch, тобто бажання. За ним стоїть дієслово bedürfen, нині рідкісне й таке, що вимагає родового відмінка.'
+
+  # --- Läden, Schaufenster und wer davorsteht ---
+  - de: Drogerie
+    ipa: "dʁogəˈʁiː"
+    pos: noun
+    gender: f
+    plural: "die Drogerien"
+    cards: recognition
+    en: a shop selling soap, shampoo, nappies and household goods, but no prescription medicine
+    ru: магазин, где продают мыло, шампунь, подгузники и бытовые товары, но не рецептурные лекарства
+    uk: крамниця, де продають мило, шампунь, підгузки та побутові товари, але не рецептурні ліки
+    example_de: Waschmittel bekommst du billiger in der Drogerie.
+    example_en: You get detergent more cheaply at the drugstore.
+    example_ru: Порошок дешевле купить в дрогерии.
+    example_uk: Порошок дешевше купити в дрогерії.
+    note:
+      en: 'The division matters in Germany and catches every newcomer out: A1 die Apotheke dispenses medicine and is staffed by pharmacists, this one sells everything around it and dispenses nothing — dm, Rossmann and Müller are the chains. Stress on the last syllable, as in every German noun in -ie. It is a false friend for an English speaker, since a drugstore in the American sense would be both shops at once.'
+      ru: 'Разделение в Германии существенно, и на нём спотыкается каждый приезжий: die Apotheke уровня A1 отпускает лекарства, и там работают фармацевты, а этот магазин торгует всем, что вокруг них, и не отпускает ничего; сети — dm, Rossmann и Müller. Ударение на последнем слоге, как у всех немецких существительных на -ie. Для англоязычного это ложный друг: американский drugstore совмещает оба магазина сразу.'
+      uk: 'Поділ у Німеччині суттєвий, і на ньому спотикається кожен приїжджий: die Apotheke рівня A1 відпускає ліки, і там працюють фармацевти, а ця крамниця торгує всім, що навколо них, і не відпускає нічого; мережі — dm, Rossmann і Müller. Наголос на останньому складі, як в усіх німецьких іменників на -ie. Для англомовного це хибний друг: американський drugstore поєднує обидві крамниці одразу.'
+
+  - de: Buchhandlung
+    ipa: "ˈbuːxˌhandlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Buchhandlungen"
+    cards: recognition
+    en: a shop that sells books
+    ru: магазин, торгующий книгами
+    uk: крамниця, що торгує книжками
+    example_de: In der Buchhandlung am Markt gibt es auch Karten.
+    example_en: The bookshop on the market square also sells maps.
+    example_ru: В книжном на рыночной площади есть и карты.
+    example_uk: У книгарні на ринковій площі є й мапи.
+    note:
+      en: 'A1 das Buch plus die Handlung in its commercial sense of a trading house — the same -handlung that once built die Eisenhandlung and die Weinhandlung, most of which have since become plain Geschäfte. Note that die Handlung on its own now means an action, or the plot of a film, so the compound is the only place a learner meets the old meaning. The library, which lends rather than sells, is A1 die Bibliothek.'
+      ru: 'das Buch уровня A1 плюс die Handlung в торговом значении «торговый дом» — тот же элемент -handlung когда-то строил die Eisenhandlung и die Weinhandlung, из которых большинство давно стали просто Geschäfte. Заметьте, что само die Handlung сегодня значит «действие» или «сюжет фильма», так что в составном слове учащийся и встречает старое значение. Библиотека, которая выдаёт, а не продаёт, — die Bibliothek уровня A1.'
+      uk: 'das Buch рівня A1 плюс die Handlung у торговому значенні «торговий дім» — той самий елемент -handlung колись будував die Eisenhandlung і die Weinhandlung, з яких більшість давно стали просто Geschäfte. Зауважте, що саме die Handlung сьогодні означає «дія» або «сюжет фільму», тож у складному слові учень і зустрічає давнє значення. Бібліотека, яка видає, а не продає, — die Bibliothek рівня A1.'
+
+  - de: Schaufenster
+    ipa: "ˈʃaʊ̯ˌfɛnstɐ"
+    pos: noun
+    gender: n
+    plural: "die Schaufenster"
+    cards: recognition
+    en: the big glass front of a shop, arranged so that passers-by can see the goods
+    ru: большая застеклённая витрина магазина, устроенная так, чтобы прохожие видели товар
+    uk: велика засклена вітрина крамниці, влаштована так, щоб перехожі бачили товар
+    example_de: Die Jacke im Schaufenster kostet zweihundert Euro.
+    example_en: The jacket in the window costs two hundred euros.
+    example_ru: Куртка на витрине стоит двести евро.
+    example_uk: Куртка на вітрині коштує двісті євро.
+    note:
+      en: 'Schauen, to look, plus A1 das Fenster, and singular and plural are spelled alike. The German for window-shopping is einen Schaufensterbummel machen, a walk taken for the windows alone, and it is one of the words a learner meets on a Sunday, when the shops are shut and the windows are all there is. The dummy inside is die Schaufensterpuppe. Primary stress on Schau-, secondary on -fenster.'
+      ru: 'schauen — «смотреть» плюс das Fenster уровня A1; единственное и множественное пишутся одинаково. «Разглядывать витрины» по-немецки — einen Schaufensterbummel machen, прогулка ради одних витрин, и это слово попадается учащемуся в воскресенье, когда магазины закрыты и остаются только витрины. Манекен внутри — die Schaufensterpuppe. Главное ударение на Schau-, побочное на -fenster.'
+      uk: 'schauen — «дивитися» плюс das Fenster рівня A1; однина і множина пишуться однаково. «Роздивлятися вітрини» німецькою — einen Schaufensterbummel machen, прогулянка заради самих вітрин, і це слово трапляється учневі в неділю, коли крамниці зачинені й лишаються тільки вітрини. Манекен усередині — die Schaufensterpuppe. Головний наголос на Schau-, побічний на -fenster.'
+
+  - de: Katalog
+    ipa: "kataˈloːk"
+    pos: noun
+    gender: m
+    plural: "die Kataloge"
+    cards: recognition
+    en: a printed or online list of goods with pictures, prices and order numbers
+    ru: печатный или сетевой перечень товаров с картинками, ценами и номерами для заказа
+    uk: друкований або мережевий перелік товарів із малюнками, цінами й номерами для замовлення
+    example_de: Den Preis findest du auf Seite acht im Katalog.
+    example_en: You will find the price on page eight of the catalogue.
+    example_ru: Цену найдёшь на восьмой странице каталога.
+    example_uk: Ціну знайдеш на восьмій сторінці каталогу.
+    note:
+      en: 'Masculine, plural in -e, and the stress is on the last syllable with the final g devoiced to k. The same word covers a travel brochure (der Reisekatalog), a library''s holdings (der Bibliothekskatalog) and an exhibition''s book (der Ausstellungskatalog). Ordering out of one is bestellen, and the firm that lives by it is der Versandhandel. Not das Verzeichnis, which is a bare list with no pictures.'
+      ru: 'Мужской род, множественное на -e, ударение на последнем слоге, а конечное g оглушается в k. Тем же словом называют туристический буклет (der Reisekatalog), фонд библиотеки (der Bibliothekskatalog) и книгу выставки (der Ausstellungskatalog). Заказывать по нему — bestellen, а фирма, которая этим живёт, — der Versandhandel. Это не das Verzeichnis — голый перечень без картинок.'
+      uk: 'Чоловічий рід, множина на -e, наголос на останньому складі, а кінцеве g оглушується в k. Тим самим словом звуть туристичний буклет (der Reisekatalog), фонд бібліотеки (der Bibliothekskatalog) і книгу виставки (der Ausstellungskatalog). Замовляти за ним — bestellen, а фірма, яка цим живе, — der Versandhandel. Це не das Verzeichnis — голий перелік без малюнків.'
+
+  - de: Käufer
+    ipa: "ˈkɔʏ̯fɐ"
+    pos: noun
+    gender: m
+    plural: "die Käufer"
+    cards: recognition
+    en: the man who buys something, named as the party to the deal rather than as a shop's visitor
+    ru: мужчина, который покупает, — названный как сторона сделки, а не как посетитель магазина
+    uk: чоловік, який купує, — названий як сторона угоди, а не як відвідувач крамниці
+    example_de: Für das Haus hat sich schnell ein Käufer gefunden.
+    example_en: A buyer for the house was found quickly.
+    example_ru: Покупатель на дом нашёлся быстро.
+    example_uk: Покупець на будинок знайшовся швидко.
+    note:
+      en: 'A1 kaufen plus -er, and singular and plural are spelled alike. A1 der Kunde is the shop''s regular, defined by the relationship; this one is defined by a single transaction, which is why an estate agent, a car advert and a contract all use it and a supermarket does not. The verb pair in a contract is der Käufer and der Verkäufer, and the paper between them is der Kaufvertrag. The feminine die Käuferin is the next entry.'
+      ru: 'kaufen уровня A1 плюс -er; единственное и множественное пишутся одинаково. der Kunde уровня A1 — постоянный клиент, определяемый отношениями; здесь же человек определён одной сделкой, поэтому это слово берут риелтор, объявление о продаже машины и договор, а супермаркет не берёт. Пара в договоре — der Käufer и der Verkäufer, а бумага между ними — der Kaufvertrag. Женская пара die Käuferin — следующая запись.'
+      uk: 'kaufen рівня A1 плюс -er; однина і множина пишуться однаково. der Kunde рівня A1 — постійний клієнт, визначений стосунками; тут же людина визначена однією угодою, тому це слово беруть ріелтор, оголошення про продаж машини і договір, а супермаркет не бере. Пара в договорі — der Käufer і der Verkäufer, а папір між ними — der Kaufvertrag. Жіноча пара die Käuferin — наступний запис.'
+
+  - de: Käuferin
+    ipa: "ˈkɔʏ̯fəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Käuferinnen"
+    cards: recognition
+    en: the woman who buys something, named as the party to the deal
+    ru: женщина, которая покупает, — названная как сторона сделки
+    uk: жінка, яка купує, — названа як сторона угоди
+    example_de: Die Käuferin möchte die Wohnung noch einmal sehen.
+    example_en: The buyer would like to see the flat once more.
+    example_ru: Покупательница хочет ещё раз посмотреть квартиру.
+    example_uk: Покупчиня хоче ще раз оглянути квартиру.
+    note:
+      en: 'The feminine of the entry above: -in on the stem, and the plural doubles the n. A contract that names both parties writes die Käuferin und der Käufer, or uses die Käuferpartei to avoid the choice altogether. Note that the umlaut is already in the masculine here, because it comes from kaufen''s stem vowel and not from the feminine ending, unlike der Arzt against die Ärztin.'
+      ru: 'Женская пара к записи выше: -in на основе, во множественном n удваивается. Договор, называющий обе стороны, напишет die Käuferin und der Käufer или возьмёт die Käuferpartei, чтобы обойтись без выбора. Обратите внимание: умлаут здесь есть уже в мужской форме, потому что он идёт от корневого гласного kaufen, а не от женского суффикса, — в отличие от пары der Arzt и die Ärztin.'
+      uk: 'Жіноча пара до запису вище: -in на основі, у множині n подвоюється. Договір, що називає обидві сторони, напише die Käuferin und der Käufer або візьме die Käuferpartei, щоб обійтися без вибору. Зверніть увагу: умлаут тут є вже в чоловічій формі, бо він іде від кореневого голосного kaufen, а не від жіночого суфікса, — на відміну від пари der Arzt і die Ärztin.'
+
+  # --- Wie geworben wird ---
+  - de: Reklame
+    ipa: "ʁeˈklaːmə"
+    pos: noun
+    gender: f
+    plural: "die Reklamen"
+    cards: recognition
+    en: advertising as somebody grumbling about it names it, loud and pushy and everywhere
+    ru: реклама в устах того, кто на неё ворчит, — крикливая, назойливая и повсюду
+    uk: реклама в устах того, хто на неї бурчить, — крикляна, настирлива і всюди
+    example_de: Im Briefkasten liegt nur Reklame.
+    example_en: There is nothing but junk mail in the letterbox.
+    example_ru: В почтовом ящике одна реклама.
+    example_uk: У поштовій скриньці сама реклама.
+    note:
+      en: 'B1 die Werbung is the neutral, professional word — an agency does Werbung and puts it on a budget line. This one is older and coloured: it belongs to speech, usually with a shrug, and it is what a householder calls the leaflets through the door. A sticker on a German letterbox reads Bitte keine Werbung, because the polite word is the one used in writing. Careful with reklamieren, which does not mean to advertise at all but to complain about faulty goods.'
+      ru: 'die Werbung уровня B1 — слово нейтральное и профессиональное: агентство делает Werbung и вписывает её в бюджет. Это же слово старше и окрашено: оно из устной речи, обычно с досадой, и именно так житель называет листовки, брошенные в дверь. На немецком почтовом ящике наклейка гласит Bitte keine Werbung, потому что в письменном виде берут вежливое слово. Осторожно с глаголом reklamieren: он значит не «рекламировать», а «предъявлять претензию по качеству».'
+      uk: 'die Werbung рівня B1 — слово нейтральне й фахове: агенція робить Werbung і вписує її в бюджет. Це ж слово старше й забарвлене: воно з усного мовлення, зазвичай із досадою, і саме так мешканець зве листівки, вкинуті у двері. На німецькій поштовій скриньці наліпка каже Bitte keine Werbung, бо на письмі беруть ввічливе слово. Обережно з дієсловом reklamieren: воно означає не «рекламувати», а «висувати претензію щодо якості».'
+
+  - de: Annonce
+    ipa: "aˈnɔ̃ːsə"
+    pos: noun
+    gender: f
+    plural: "die Annoncen"
+    cards: recognition
+    en: a paid notice in a newspaper, in the slightly dated word an older speaker uses
+    ru: платное объявление в газете — слегка устаревшим словом, каким пользуется говорящий постарше
+    uk: платне оголошення в газеті — трохи застарілим словом, яким послуговується мовець старшого віку
+    example_de: Sie hat die Wohnung über eine Annonce gefunden.
+    example_en: She found the flat through a newspaper ad.
+    example_ru: Квартиру она нашла по газетному объявлению.
+    example_uk: Квартиру вона знайшла за газетним оголошенням.
+    note:
+      en: 'A1 die Anzeige is the ordinary German for this and is what a paper''s own rate card calls it. This French loan sounds a generation older and slightly bookish, and it survives above all in the phrase eine Annonce aufgeben, to place one. Das Inserat below is the third member of the group and belongs to Austria and Switzerland. Pronunciation is French to the end: the o is nasal and the final -ce is a plain s before the German -e.'
+      ru: 'die Anzeige уровня A1 — обычное немецкое слово для этого, именно так пишет и прейскурант самой газеты. Это французское заимствование звучит на поколение старше и слегка книжно, и держится прежде всего в обороте eine Annonce aufgeben — «подать объявление». das Inserat ниже — третий член группы, он принадлежит Австрии и Швейцарии. Произношение до конца французское: o носовое, а конечное -ce звучит простым «с» перед немецким -e.'
+      uk: 'die Anzeige рівня A1 — звичайне німецьке слово для цього, саме так пише й прейскурант самої газети. Це французьке запозичення звучить на покоління старше і трохи книжно, і тримається передусім у звороті eine Annonce aufgeben — «подати оголошення». das Inserat нижче — третій член групи, він належить Австрії та Швейцарії. Вимова до кінця французька: o носове, а кінцеве -ce звучить простим «с» перед німецьким -e.'
+
+  - de: Inserat
+    ipa: "ɪnzeˈʁaːt"
+    pos: noun
+    gender: n
+    plural: "die Inserate"
+    cards: recognition
+    en: a paid notice in a paper, in the word Austrian and Swiss papers use as their own
+    ru: платное объявление в газете — словом, которое австрийские и швейцарские издания считают своим
+    uk: платне оголошення в газеті — словом, яке австрійські та швейцарські видання вважають своїм
+    example_de: Das Inserat erscheint am Samstag in der Zeitung.
+    example_en: The advertisement appears in Saturday's paper.
+    example_ru: Объявление выйдет в субботнем номере.
+    example_uk: Оголошення вийде в суботньому числі.
+    note:
+      en: 'Neuter, plural in -e, and the only one of the three that is not feminine, which is worth pinning because the group is otherwise easy to blur. In Germany it reads as slightly formal or Swiss; in Vienna and Zurich it is simply the word, and a paper''s advertising desk is die Inseratenannahme. The verb is inserieren, to place one. Alongside it, A1 die Anzeige is the everyday German and die Annonce above the old-fashioned choice.'
+      ru: 'Средний род, множественное на -e, и единственное из трёх не женского рода, — это стоит закрепить, потому что группа иначе легко сливается. В Германии слово звучит слегка официально или «по-швейцарски»; в Вене и Цюрихе это просто нужное слово, а отдел объявлений называется die Inseratenannahme. Глагол — inserieren, «подать объявление». Рядом die Anzeige уровня A1 — обиходное немецкое слово, а die Annonce выше — старомодный выбор.'
+      uk: 'Середній рід, множина на -e, і єдине з трьох не жіночого роду, — це варто закріпити, бо група інакше легко зливається. У Німеччині слово звучить трохи офіційно або «по-швейцарськи»; у Відні й Цюриху це просто потрібне слово, а відділ оголошень зветься die Inseratenannahme. Дієслово — inserieren, «подати оголошення». Поряд die Anzeige рівня A1 — побутове німецьке слово, а die Annonce вище — старомодний вибір.'
+
+  - de: Aktion
+    ipa: "akˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Aktionen"
+    cards: recognition
+    en: an organised undertaking with a purpose and a date; in Austrian and Swiss shops, also a period of reduced prices
+    ru: организованное мероприятие с целью и сроком; а в австрийских и швейцарских магазинах — ещё и период сниженных цен
+    uk: організований захід із метою і строком; а в австрійських та швейцарських крамницях — ще й період знижених цін
+    example_de: Die Schule macht eine Aktion für saubere Straßen.
+    example_en: The school is running a campaign for clean streets.
+    example_ru: Школа проводит акцию за чистые улицы.
+    example_uk: Школа проводить акцію за чисті вулиці.
+    note:
+      en: 'Feminine, stress on the -ion, and the tion is spoken tsion. The German sense is the organised undertaking — eine Aktion starten, eine Hilfsaktion, eine Protestaktion — and it says nothing about price. In Austria and Switzerland the retail sense is the everyday one instead, so a shelf label reading in Aktion means on offer, where a German shop would print B1 das Sonderangebot or im Angebot. It is not die Handlung, a single deed, and not die Tat, a deed with consequences.'
+      ru: 'Женский род, ударение на -ion, tion произносится «цион». Немецкое значение — организованное мероприятие: eine Aktion starten, eine Hilfsaktion, eine Protestaktion, — и о цене оно не говорит ничего. В Австрии и Швейцарии, наоборот, обиходно как раз торговое значение, так что ценник in Aktion значит «по акции», тогда как немецкий магазин напечатает das Sonderangebot уровня B1 или im Angebot. Это не die Handlung — отдельное действие — и не die Tat, поступок с последствиями.'
+      uk: 'Жіночий рід, наголос на -ion, tion вимовляється «ціон». Німецьке значення — організований захід: eine Aktion starten, eine Hilfsaktion, eine Protestaktion, — і про ціну воно не каже нічого. В Австрії та Швейцарії, навпаки, побутовим є саме торгове значення, тож цінник in Aktion означає «за акцією», тоді як німецька крамниця надрукує das Sonderangebot рівня B1 або im Angebot. Це не die Handlung — окрема дія — і не die Tat, вчинок із наслідками.'
+
+  # --- Was man anzieht und trägt ---
+  - de: Hut
+    ipa: "ˈhuːt"
+    pos: noun
+    gender: m
+    plural: "die Hüte"
+    cards: recognition
+    en: a stiff head covering with a brim all the way round, worn for weather or for show
+    ru: жёсткий головной убор с полями по всему кругу, который носят от погоды или напоказ
+    uk: жорсткий головний убір із крисами по всьому колу, який носять від погоди або напоказ
+    example_de: Ohne Hut wird dir in der Sonne schlecht.
+    example_en: You will feel ill in the sun without a hat.
+    example_ru: Без шляпы тебе на солнце станет плохо.
+    example_uk: Без капелюха тобі на сонці стане зле.
+    note:
+      en: 'Masculine, umlaut in the plural. The brim is what distinguishes it from A2 die Mütze, the soft knitted or peaked cap, and German keeps the two apart in a way English does not. Two idioms are worth recognising: Hut ab! is high praise, and etwas unter einen Hut bringen means to reconcile several demands at once. The u is long, unlike the short one in die Hütte.'
+      ru: 'Мужской род, во множественном умлаут. Отличают его от die Mütze уровня A2 — мягкой вязаной или с козырьком — именно поля, и немецкий разводит эти два слова так, как русский разводит «шляпу» и «шапку». Стоит узнавать два оборота: Hut ab! — «снимаю шляпу» и etwas unter einen Hut bringen — «совместить несколько требований сразу». u долгое, в отличие от краткого в die Hütte.'
+      uk: 'Чоловічий рід, у множині умлаут. Відрізняють його від die Mütze рівня A2 — м’якої в’язаної або з козирком — саме криси, і німецька розводить ці два слова так, як українська розводить «капелюх» і «шапку». Варто впізнавати два звороти: Hut ab! — «знімаю капелюха» і etwas unter einen Hut bringen — «поєднати кілька вимог одразу». u довге, на відміну від короткого в die Hütte.'
+
+  - de: Socke
+    ipa: "ˈzɔkə"
+    pos: noun
+    gender: f
+    plural: "die Socken"
+    cards: recognition
+    en: a short knitted covering for the foot, reaching to the ankle or just above it
+    ru: короткое вязаное изделие на ногу, доходящее до щиколотки или чуть выше
+    uk: коротка в’язана річ на ногу, що сягає щиколотки або трохи вище
+    example_de: Meine Socken sind schon wieder nass.
+    example_en: My socks are wet again.
+    example_ru: У меня опять мокрые носки.
+    example_uk: У мене знову мокрі шкарпетки.
+    note:
+      en: 'Length is the difference from A1 der Strumpf: a Socke stops at the ankle, a Strumpf goes up the leg, and die Strumpfhose is tights. Almost always plural in a real sentence, because they come in pairs. Two idioms use it and neither is about feet: sich auf die Socken machen means to get going, and von den Socken sein means to be astounded. The initial s before a vowel is voiced, so the word opens with z.'
+      ru: 'Разница с der Strumpf уровня A1 — в длине: Socke кончается у щиколотки, Strumpf поднимается по ноге, а die Strumpfhose — колготки. В живой фразе почти всегда во множественном: они парные. Два оборота с этим словом к ногам отношения не имеют: sich auf die Socken machen — «двинуться в путь», von den Socken sein — «обалдеть». Начальное s перед гласным звонкое, так что слово открывается звуком «з».'
+      uk: 'Різниця з der Strumpf рівня A1 — у довжині: Socke закінчується біля щиколотки, Strumpf підіймається по нозі, а die Strumpfhose — колготки. У живій фразі майже завжди в множині: вони парні. Два звороти з цим словом до ніг стосунку не мають: sich auf die Socken machen — «рушити в дорогу», von den Socken sein — «отетеріти». Початкове s перед голосним дзвінке, тож слово відкривається звуком «з».'
+
+  - de: Kostüm
+    ipa: "kɔsˈtyːm"
+    pos: noun
+    gender: n
+    plural: "die Kostüme"
+    cards: recognition
+    en: a woman's matching jacket and skirt worn to work or to a formal occasion; also an outfit worn to play a part
+    ru: женский комплект из жакета и юбки для работы или торжественного случая; а также наряд, в котором изображают кого-то
+    uk: жіночий комплект із жакета і спідниці для роботи чи урочистої нагоди; а також убрання, у якому вдають когось
+    example_de: Zur Hochzeit trug sie ein dunkelblaues Kostüm.
+    example_en: She wore a dark blue suit to the wedding.
+    example_ru: На свадьбу она надела тёмно-синий костюм.
+    example_uk: На весілля вона вдягла темно-синій костюм.
+    note:
+      en: 'The everyday German sense is the woman''s two-piece, and A2 der Anzug is its masculine counterpart — the two words are not interchangeable and neither covers the other. The theatrical sense is the second one and drives der Karneval and das Kostümfest, where a child asks for ein Kostüm and means a disguise. Neuter, stress on the -tüm, and the ü is long and rounded.'
+      ru: 'Обиходное немецкое значение — женская двойка, а der Anzug уровня A2 — её мужская пара; эти два слова не взаимозаменяемы, и ни одно не покрывает другое. Театральное значение — второе, на нём держатся der Karneval и das Kostümfest, где ребёнок просит ein Kostüm и имеет в виду переодевание. Средний род, ударение на -tüm, ü долгое и огублённое.'
+      uk: 'Побутове німецьке значення — жіноча двійка, а der Anzug рівня A2 — її чоловіча пара; ці два слова не взаємозамінні, і жодне не покриває інше. Театральне значення — друге, на ньому тримаються der Karneval і das Kostümfest, де дитина просить ein Kostüm і має на увазі перевдягання. Середній рід, наголос на -tüm, ü довге й огублене.'
+
+  - de: Uniform
+    ipa: "ˈuːnifɔʁm"
+    pos: noun
+    gender: f
+    plural: "die Uniformen"
+    cards: recognition
+    en: the prescribed clothing that shows at a glance which service or firm somebody belongs to
+    ru: предписанная одежда, по которой сразу видно, к какой службе или фирме человек принадлежит
+    uk: приписаний одяг, за яким одразу видно, до якої служби чи фірми людина належить
+    example_de: Der Fahrer trug die Uniform der Bahn.
+    example_en: The driver was wearing the railway's uniform.
+    example_ru: Водитель был в форме железной дороги.
+    example_uk: Водій був у формі залізниці.
+    note:
+      en: 'Feminine in German, unlike the adjective uniform it comes from, and the stress falls on the first syllable — the pronunciation uniˈfɔʁm is also standard but less common. It is what a soldier, a police officer, a nurse and a school in Britain wear; German schools have none, which is why the word turns up in a German text about Britain more often than about home. The clothing worn for a job without that symbolic weight is die Dienstkleidung or die Arbeitskleidung.'
+      ru: 'В немецком слово женского рода, в отличие от прилагательного uniform, от которого оно образовано, а ударение падает на первый слог; произношение uniˈfɔʁm тоже нормативно, но встречается реже. Её носят солдат, полицейский, медсестра и британский школьник; в немецких школах формы нет, поэтому в немецком тексте слово чаще возникает применительно к Британии, чем к своей стране. Рабочая одежда без этой символической нагрузки — die Dienstkleidung или die Arbeitskleidung.'
+      uk: 'У німецькій слово жіночого роду, на відміну від прикметника uniform, від якого воно утворене, а наголос падає на перший склад; вимова uniˈfɔʁm теж нормативна, але трапляється рідше. Її носять солдат, поліцейський, медсестра і британський школяр; у німецьких школах форми немає, тому в німецькому тексті слово частіше виникає щодо Британії, ніж щодо своєї країни. Робочий одяг без цього символічного навантаження — die Dienstkleidung або die Arbeitskleidung.'
+
+  - de: Schmuck
+    ipa: "ˈʃmʊk"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: rings, chains, earrings and the like, taken together as a category
+    ru: кольца, цепочки, серьги и тому подобное, взятые вместе как разряд
+    uk: каблучки, ланцюжки, сережки і таке інше, узяті разом як розряд
+    example_de: Sie trägt fast nie Schmuck.
+    example_en: She hardly ever wears jewellery.
+    example_ru: Украшения она почти не носит.
+    example_uk: Прикрас вона майже не носить.
+    note:
+      en: 'Masculine and a mass noun with no plural, so a single item has to be named — A2 der Ring, A2 die Kette, der Ohrring — or introduced as ein Schmuckstück. That is the pattern to notice, because German does this with a whole class of collective words. The verb schmücken means to decorate, and der Weihnachtsbaumschmuck is what goes on a Christmas tree, which has nothing to do with jewellery at all.'
+      ru: 'Мужской род, неисчисляемое, множественного нет, поэтому отдельную вещь приходится называть по имени: der Ring и die Kette уровня A2, der Ohrring, — либо вводить как ein Schmuckstück. Эту схему стоит заметить: немецкий поступает так с целым классом собирательных слов. Глагол schmücken значит «украшать», а der Weihnachtsbaumschmuck — ёлочные игрушки, к драгоценностям отношения не имеющие.'
+      uk: 'Чоловічий рід, незлічуване, множини немає, тому окрему річ доводиться називати на ім’я: der Ring і die Kette рівня A2, der Ohrring, — або вводити як ein Schmuckstück. Цю схему варто помітити: німецька чинить так із цілим класом збірних слів. Дієслово schmücken означає «прикрашати», а der Weihnachtsbaumschmuck — ялинкові прикраси, які до коштовностей стосунку не мають.'
+
+  - de: elegant
+    ipa: "eleˈgant"
+    pos: adj
+    cards: recognition
+    en: well cut and quietly expensive-looking, in a way that suits a formal occasion
+    ru: хорошо скроенный и сдержанно дорогой на вид — так, как подобает торжественному случаю
+    uk: добре скроєний і стримано дорогий на вигляд — так, як личить урочистій нагоді
+    example_de: Für das Konzert zieht er etwas Elegantes an.
+    example_en: He is putting on something elegant for the concert.
+    example_ru: На концерт он наденет что-нибудь элегантное.
+    example_uk: На концерт він одягне щось елегантне.
+    note:
+      en: 'Stress on the last syllable, and the g is the hard one. Of clothes it means formal and well made; of a solution or a movement it means neat and economical — eine elegante Lösung. Beside it schick below is younger and lighter, and A1 schön says only that something pleases. As a noun the adjective takes its endings and stands alone, etwas Elegantes, which is how a shop assistant offers it.'
+      ru: 'Ударение на последнем слоге, g твёрдое. Об одежде значит «нарядный и хорошо сшитый»; о решении или движении — «изящный и экономный»: eine elegante Lösung. Рядом стоящее schick ниже моложе и легче, а schön уровня A1 говорит лишь о том, что нечто нравится. Как существительное прилагательное берёт окончания и стоит само: etwas Elegantes, — именно так предложит продавец.'
+      uk: 'Наголос на останньому складі, g тверде. Про одяг означає «ошатний і добре пошитий»; про рішення чи рух — «витончений і економний»: eine elegante Lösung. Поряд розташоване schick нижче молодше й легше, а schön рівня A1 каже лише про те, що щось подобається. Як іменник прикметник бере закінчення і стоїть сам: etwas Elegantes, — саме так запропонує продавець.'
+
+  - de: schick
+    ipa: "ˈʃɪk"
+    pos: adj
+    cards: recognition
+    en: stylish in a light, current way, said with approval and without any weight
+    ru: стильный в лёгком, современном смысле — с одобрением и без всякой торжественности
+    uk: стильний у легкому, сучасному сенсі — зі схваленням і без жодної урочистості
+    example_de: Du siehst heute richtig schick aus!
+    example_en: You look really smart today!
+    example_ru: Ты сегодня выглядишь просто шикарно!
+    example_uk: Ти сьогодні маєш просто шикарний вигляд!
+    note:
+      en: 'A short, spoken word of approval, and it is used about people at least as much as about clothes: Du siehst schick aus. Beside elegant above it is lighter and less formal, and it can stretch to a flat, a café or an idea — eine schicke Wohnung. The noun der Schick means style in the abstract. Be careful not to hear it as the verb schicken, to send, which shares the letters and nothing else.'
+      ru: 'Короткое разговорное слово одобрения, и о людях его говорят не реже, чем об одежде: Du siehst schick aus. Рядом с elegant выше оно легче и менее торжественно и распространяется на квартиру, кафе или идею: eine schicke Wohnung. Существительное der Schick значит «шик» вообще. Не расслышьте его как глагол schicken — «посылать»: у них общие буквы и больше ничего.'
+      uk: 'Коротке розмовне слово схвалення, і про людей його кажуть не рідше, ніж про одяг: Du siehst schick aus. Поряд з elegant вище воно легше й менш урочисте і поширюється на квартиру, кав’ярню чи ідею: eine schicke Wohnung. Іменник der Schick означає «шик» узагалі. Не почуйте його як дієслово schicken — «посилати»: у них спільні літери й більше нічого.'

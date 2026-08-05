@@ -1,0 +1,872 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the road field of
+# data/goethe-b1-wortliste.txt: what moves along a street, who moves beside it, what
+# the signs and the markings demand, and what a driver actually does at the wheel.
+# A1's `stadt-wege` owns getting about a town (Straße, Weg, Bus, Auto, Fahrrad,
+# U-Bahn, Haltestelle), A1's `reisen-urlaub` owns the train and the traffic light
+# (Zug, Bahn, Fahrkarte, Ampel), and A2's `verkehr-unterwegs-a2` owns the motorway
+# and the workshop (Autobahn, Kreuzung, Baustelle, Unfall, Verkehr, Reifen, Motor,
+# Schild, Lkw, parken). This deck is the layer above them — the German of the
+# Führerschein leaflet and of a passenger saying where to turn.
+# The Austrian and Swiss siblings of several headwords here (Trottoir, Velo,
+# parkieren, Führerausweis) are held back for the Varianten deck of wave 4; where one
+# exists, this deck's `note` names it and nothing more.
+id: verkehr-auto-b1
+title_de: "Verkehr und Auto"
+title_en: "Traffic and the car"
+title_ru: "Транспорт и автомобиль"
+title_uk: "Транспорт та автомобіль"
+level: B1
+entries:
+  # --- Was auf der Straße und auf der Schiene fährt ---
+  - de: Fahrzeug
+    ipa: "ˈfaːɐ̯ˌtsɔʏ̯k"
+    pos: noun
+    gender: n
+    plural: "die Fahrzeuge"
+    # Recognition only: the category word a form, a sign and a police report use. A
+    # learner naming what is in front of them says A1 `Auto` or the kind itself.
+    cards: recognition
+    en: anything built to carry people or goods along a road, as a rule or a sign counts it
+    ru: всё, что построено для перевозки людей или грузов по дороге, — как это считает правило или знак
+    uk: усе, що збудоване для перевезення людей чи вантажів дорогою, — як це рахує правило або знак
+    example_de: Auf diesem Weg sind Fahrzeuge aller Art verboten.
+    example_en: Vehicles of every kind are prohibited on this path.
+    example_ru: На этой дороге запрещены любые транспортные средства.
+    example_uk: На цій дорозі заборонені будь-які транспортні засоби.
+    note:
+      en: 'Neuter, plural in -e, and it is deliberately vague: a car, a lorry, a motorbike and a bicycle are all one word here, which is exactly why a sign and an insurance form reach for it. A1 das Auto is what a person says about the thing in the drive. The -zeug ending means gear or stuff and builds a whole family the same way — das Flugzeug, das Werkzeug, das Spielzeug.'
+      ru: 'Средний род, множественное на -e, и расплывчатость здесь намеренная: легковая машина, грузовик, мотоцикл и велосипед — всё это одно слово, и именно поэтому за ним тянутся знак и страховой бланк. das Auto уровня A1 — то, что человек говорит про машину во дворе. Окончание -zeug значит «снаряжение, штука» и строит целое семейство: das Flugzeug, das Werkzeug, das Spielzeug.'
+      uk: 'Середній рід, множина на -e, і розпливчастість тут навмисна: легковик, вантажівка, мотоцикл і велосипед — усе це одне слово, і саме тому за ним тягнуться знак і страховий бланк. das Auto рівня A1 — те, що людина каже про машину на подвір’ї. Закінчення -zeug означає «спорядження, штука» і будує цілу родину: das Flugzeug, das Werkzeug, das Spielzeug.'
+
+  - de: Pkw
+    ipa: "ˈpeːkaːveː"
+    pos: noun
+    gender: m
+    plural: "die Pkws"
+    # Recognition only: A1 ships `Auto` ("car", stadt-wege) as the production card for
+    # exactly this prompt — this is the same object one register up.
+    cards: recognition
+    en: a car, in the abbreviation an official form and a traffic report use
+    ru: легковая машина в сокращении, которым пользуются официальный бланк и сводка о движении
+    uk: легковик у скороченні, яким послуговуються офіційний бланк і зведення про рух
+    example_de: An dem Unfall waren zwei Pkws und ein Bus beteiligt.
+    example_en: Two cars and a bus were involved in the accident.
+    example_ru: В аварии участвовали две легковые машины и автобус.
+    example_uk: У аварії брали участь два легковики й автобус.
+    note:
+      en: 'Short for Personenkraftwagen and spoken letter by letter, P-K-W, with the stress on the first — ˈpeːkaːveː. Nobody says the long form out loud, and nobody says this one in a conversation either: it belongs to the report, the insurance letter and the radio traffic bulletin, where the everyday word would be A1 das Auto. Masculine, from der Wagen, and A2 der Lkw is its heavy counterpart.'
+      ru: 'Сокращение от Personenkraftwagen, читается по буквам P-K-W с ударением на первой — ˈpeːkaːveː. Полную форму вслух не произносит никто, но и это сокращение в разговоре не звучит: оно принадлежит протоколу, письму страховщика и радиосводке о движении, где в быту сказали бы das Auto уровня A1. Мужского рода, от der Wagen, а der Lkw уровня A2 — его грузовая пара.'
+      uk: 'Скорочення від Personenkraftwagen, читається по літерах P-K-W з наголосом на першій — ˈpeːkaːveː. Повну форму вголос не вимовляє ніхто, але й це скорочення в розмові не звучить: воно належить протоколу, листу страховика й радіозведенню про рух, де в побуті сказали б das Auto рівня A1. Чоловічого роду, від der Wagen, а der Lkw рівня A2 — його вантажна пара.'
+
+  - de: Kfz
+    ipa: "kaːʔɛfˈtsɛt"
+    pos: noun
+    gender: n
+    plural: "die Kfz"
+    # Recognition only: pure officialese — it exists on forms, garage signs and
+    # insurance policies, and has no spoken life a learner would need to produce.
+    cards: recognition
+    en: any road vehicle with an engine, in the abbreviation German administration writes
+    ru: любое дорожное средство с двигателем — в сокращении, которым пишет немецкая администрация
+    uk: будь-який дорожній засіб із двигуном — у скороченні, яким пише німецька адміністрація
+    example_de: Die Kfz-Versicherung muss jedes Jahr neu bezahlt werden.
+    example_en: The vehicle insurance has to be paid again every year.
+    example_ru: Страховку на транспортное средство нужно оплачивать каждый год.
+    example_uk: Страховку на транспортний засіб треба сплачувати щороку.
+    note:
+      en: 'Spoken letter by letter with the stress on the last, kaː-ʔɛf-ˈtsɛt, and neuter because the long form ends in -zeug. It is administrative shorthand and almost never stands alone: what you meet is the compounds — die Kfz-Versicherung, der Kfz-Mechaniker, die Kfz-Zulassungsstelle where a car is registered, and das Kfz-Kennzeichen. Where a person is speaking rather than filing, the word is A1 das Auto.'
+      ru: 'Читается по буквам с ударением на последней, kaː-ʔɛf-ˈtsɛt, средний род — потому что полная форма кончается на -zeug. Это канцелярское сокращение, и в одиночку оно почти не стоит: встречаются составные — die Kfz-Versicherung, der Kfz-Mechaniker, die Kfz-Zulassungsstelle, где регистрируют машину, и das Kfz-Kennzeichen. Там, где человек говорит, а не подаёт бумагу, слово — das Auto уровня A1.'
+      uk: 'Читається по літерах із наголосом на останній, kaː-ʔɛf-ˈtsɛt, середній рід — бо повна форма закінчується на -zeug. Це канцелярське скорочення, і саме по собі воно майже не стоїть: трапляються складні — die Kfz-Versicherung, der Kfz-Mechaniker, die Kfz-Zulassungsstelle, де реєструють машину, і das Kfz-Kennzeichen. Там, де людина говорить, а не подає папір, слово — das Auto рівня A1.'
+
+  - de: Lastwagen
+    ipa: "ˈlastˌvaːgn̩"
+    pos: noun
+    gender: m
+    plural: "die Lastwagen"
+    # Recognition only: A2 ships `Lkw` ("lorry, truck", verkehr-unterwegs-a2) as the
+    # production card, and this is the same vehicle written out in full.
+    cards: recognition
+    en: the big goods vehicle of the motorway, written out rather than abbreviated
+    ru: большая грузовая машина на автобане, названная полным словом, а не сокращением
+    uk: велика вантажна машина на автобані, названа повним словом, а не скороченням
+    example_de: Vor der Baustelle stauen sich die Lastwagen.
+    example_en: The lorries are backed up in front of the roadworks.
+    example_ru: Перед стройплощадкой скопились грузовики.
+    example_uk: Перед будівельним майданчиком скупчилися вантажівки.
+    note:
+      en: 'The full word behind A2 der Lkw, and in speech the abbreviation has almost driven it out — a German says Lkw and writes Lastwagen. Masculine, from der Wagen, and the plural is spelled like the singular. The strict legal form is der Lastkraftwagen, which appears only in a statute. The driver is der Lkw-Fahrer, and the next entry is the short familiar word.'
+      ru: 'Полное слово, стоящее за der Lkw уровня A2, и в речи сокращение его почти вытеснило: немец говорит Lkw, а пишет Lastwagen. Мужской род, от der Wagen, множественное пишется как единственное. Строгая юридическая форма — der Lastkraftwagen, и она встречается только в законе. Водитель — der Lkw-Fahrer, а следующая запись — короткое разговорное слово.'
+      uk: 'Повне слово, що стоїть за der Lkw рівня A2, і в мовленні скорочення його майже витіснило: німець каже Lkw, а пише Lastwagen. Чоловічий рід, від der Wagen, множина пишеться як однина. Сувора юридична форма — der Lastkraftwagen, і вона трапляється лише в законі. Водій — der Lkw-Fahrer, а наступний запис — коротке розмовне слово.'
+
+  - de: Laster
+    ipa: "ˈlastɐ"
+    pos: noun
+    gender: m
+    plural: "die Laster"
+    # Recognition only: the same vehicle as the two entries above, in the most informal
+    # of the three names — one referent does not take a third production card.
+    cards: recognition
+    en: that same goods vehicle in the short, familiar word a driver uses
+    ru: та же грузовая машина в коротком разговорном слове, каким пользуется водитель
+    uk: та сама вантажна машина в короткому розмовному слові, яким послуговується водій
+    example_de: Ein alter Laster fuhr langsam den Berg hinauf.
+    example_en: An old truck was driving slowly up the hill.
+    example_ru: Старый грузовик медленно поднимался в гору.
+    example_uk: Старий грузовик повільно піднімався в гору.
+    note:
+      en: 'Colloquial and warm where Lastwagen is neutral and Lkw official — three words, one vehicle, three registers. Singular and plural are spelled alike. There is a homograph to keep well apart: das Laster with the neuter article is a vice or a bad habit, as in Rauchen ist sein einziges Laster, and it has nothing to do with the road. The article is the only thing that tells them apart.'
+      ru: 'Разговорное и тёплое там, где Lastwagen нейтрально, а Lkw официально: три слова, одна машина, три регистра. Единственное и множественное пишутся одинаково. Есть омограф, который надо строго различать: das Laster со средним артиклем — порок, дурная привычка, как в Rauchen ist sein einziges Laster, и к дороге отношения не имеет. Различает их только артикль.'
+      uk: 'Розмовне й тепле там, де Lastwagen нейтральне, а Lkw офіційне: три слова, одна машина, три регістри. Однина й множина пишуться однаково. Є омограф, який треба суворо розрізняти: das Laster із середнім артиклем — вада, погана звичка, як у Rauchen ist sein einziges Laster, і до дороги стосунку не має. Розрізняє їх лише артикль.'
+
+  - de: Motorrad
+    ipa: "moˈtoːɐ̯ˌʁaːt"
+    pos: noun
+    gender: n
+    plural: "die Motorräder"
+    en: the loud two-wheeled vehicle with an engine that a rider sits astride
+    ru: громкое двухколёсное средство с двигателем, на котором сидят верхом
+    uk: гучний двоколісний засіб із двигуном, на якому сидять верхи
+    example_de: Mein Nachbar fährt im Sommer jeden Tag Motorrad.
+    example_en: My neighbour rides his motorbike every day in summer.
+    example_ru: Летом мой сосед каждый день ездит на мотоцикле.
+    example_uk: Улітку мій сусід щодня їздить на мотоциклі.
+    note:
+      en: 'Neuter, and the plural takes an umlaut: die Motorräder. The verb frame is the same one A1 uses for a bicycle — Motorrad fahren, with no article, and mit dem Motorrad fahren when the vehicle is the means. A2 der Motorroller is the small scooter with a step-through frame, a different machine. The rider is der Motorradfahrer, and the compulsory hat is der Helm.'
+      ru: 'Средний род, множественное с умлаутом: die Motorräder. Конструкция та же, что на A1 для велосипеда: Motorrad fahren, без артикля, а mit dem Motorrad fahren — когда машина названа как средство. der Motorroller уровня A2 — маленький скутер с открытой рамой, другая машина. Водитель — der Motorradfahrer, а обязательный головной убор — der Helm.'
+      uk: 'Середній рід, множина з умлаутом: die Motorräder. Конструкція та сама, що на A1 для велосипеда: Motorrad fahren, без артикля, а mit dem Motorrad fahren — коли машину названо як засіб. der Motorroller рівня A2 — маленький скутер із відкритою рамою, інша машина. Водій — der Motorradfahrer, а обов’язковий головний убір — der Helm.'
+
+  - de: E-Bike
+    ipa: "ˈiːˌbaɪ̯k"
+    pos: noun
+    gender: n
+    plural: "die E-Bikes"
+    en: a bicycle with a small motor that pushes along while you pedal
+    ru: велосипед с небольшим мотором, который подталкивает, пока крутишь педали
+    uk: велосипед із невеликим мотором, що підштовхує, поки крутиш педалі
+    example_de: Mit dem E-Bike schaffe ich die Steigung ohne Probleme.
+    example_en: I manage the climb without any trouble on the e-bike.
+    example_ru: На электровелосипеде я одолеваю подъём без труда.
+    example_uk: На електровелосипеді я долаю підйом без труднощів.
+    note:
+      en: 'A recent loan, neuter because A1 das Fahrrad is, with the plural in -s. The E- is spoken as the German letter name, iː, and the second half stays English: ˈiːˌbaɪ̯k. Germans distinguish it from das Pedelec, which only helps while you pedal and needs no licence; in everyday speech the two have merged. Older relatives will still say das Elektrofahrrad. The charger is das Ladegerät.'
+      ru: 'Недавнее заимствование, средний род — потому что таково das Fahrrad уровня A1, — множественное на -s. E- читается как немецкое название буквы, iː, а вторая половина остаётся английской: ˈiːˌbaɪ̯k. Немцы отличают его от das Pedelec, который помогает только при вращении педалей и не требует прав; в быту эти два слова слились. Старшие родственники всё ещё скажут das Elektrofahrrad. Зарядка — das Ladegerät.'
+      uk: 'Нещодавнє запозичення, середній рід — бо таким є das Fahrrad рівня A1, — множина на -s. E- читається як німецька назва літери, iː, а друга половина лишається англійською: ˈiːˌbaɪ̯k. Німці відрізняють його від das Pedelec, який допомагає лише при обертанні педалей і не потребує прав; у побуті ці два слова злилися. Старші родичі досі скажуть das Elektrofahrrad. Зарядка — das Ladegerät.'
+
+  - de: S-Bahn
+    ipa: "ˈɛsˌbaːn"
+    pos: noun
+    gender: f
+    plural: "die S-Bahnen"
+    en: the city railway that runs mostly above ground and out into the suburbs
+    ru: городская железная дорога, которая идёт в основном по поверхности и уходит в пригороды
+    uk: міська залізниця, що йде переважно поверхнею і виходить у передмістя
+    example_de: Vom Flughafen fährt alle zehn Minuten eine S-Bahn in die Stadt.
+    example_en: There is a suburban train into town from the airport every ten minutes.
+    example_ru: От аэропорта в город каждые десять минут идёт городская электричка.
+    example_uk: Від летовища в місто щодесять хвилин іде міська електричка.
+    note:
+      en: 'Spoken as the letter plus the noun, ˈɛsˌbaːn, and feminine because die Bahn is. The S stands for Schnellbahn or Stadtbahn depending on whom you ask, and it is genuinely a different network from A1 die U-Bahn, which stays underground and inside the city: they share a ticket but not a map. Every German city plan colours the S green and the U blue, and the sentence you need is mit der S-Bahn fahren.'
+      ru: 'Читается как буква плюс существительное, ˈɛsˌbaːn, женский род — потому что такова die Bahn. S расшифровывают как Schnellbahn или Stadtbahn, смотря кого спросить, и это действительно другая сеть, чем die U-Bahn уровня A1, которая идёт под землёй и не выходит за город: билет у них общий, а карта разная. На любом немецком плане S зелёная, а U синяя, и нужная фраза — mit der S-Bahn fahren.'
+      uk: 'Читається як літера плюс іменник, ˈɛsˌbaːn, жіночий рід — бо такою є die Bahn. S розшифровують як Schnellbahn або Stadtbahn, залежно від того, кого спитати, і це справді інша мережа, ніж die U-Bahn рівня A1, що йде під землею й не виходить за місто: квиток у них спільний, а мапа різна. На будь-якому німецькому плані S зелена, а U синя, і потрібна фраза — mit der S-Bahn fahren.'
+
+  - de: Eisenbahn
+    ipa: "ˈaɪ̯zn̩ˌbaːn"
+    pos: noun
+    gender: f
+    plural: "die Eisenbahnen"
+    # Recognition only: A2 ships `Bahn` ("train; railway", reisen-urlaub) as the
+    # production card, and this is the same idea in the older, fuller word.
+    cards: recognition
+    en: the railway as a whole system of rails, trains and timetables, in the older word
+    ru: железная дорога как целая система рельсов, поездов и расписаний — в более старом слове
+    uk: залізниця як ціла система рейок, поїздів і розкладів — у давнішому слові
+    example_de: Sein Großvater hat sein ganzes Leben bei der Eisenbahn gearbeitet.
+    example_en: His grandfather worked for the railway all his life.
+    example_ru: Его дед всю жизнь проработал на железной дороге.
+    example_uk: Його дід усе життя пропрацював на залізниці.
+    note:
+      en: 'Literally the iron road, and modern German has shortened it to A2 die Bahn for almost every purpose — the national operator is die Deutsche Bahn and nobody adds the first half. This longer word survives in two places: talk about the institution as an employer, bei der Eisenbahn arbeiten, and the toy under a Christmas tree, die Modelleisenbahn. The crossing is der Bahnübergang.'
+      ru: 'Буквально «железная дорога», и современный немецкий почти везде сократил это до die Bahn уровня A2: национальный перевозчик — die Deutsche Bahn, и первую половину никто не добавляет. Более длинное слово уцелело в двух местах: разговор об учреждении как о работодателе — bei der Eisenbahn arbeiten — и игрушка под ёлкой, die Modelleisenbahn. Переезд — der Bahnübergang.'
+      uk: 'Буквально «залізна дорога», і сучасна німецька майже всюди скоротила це до die Bahn рівня A2: національний перевізник — die Deutsche Bahn, і першу половину ніхто не додає. Довше слово вціліло у двох місцях: розмова про установу як про роботодавця — bei der Eisenbahn arbeiten — і іграшка під ялинкою, die Modelleisenbahn. Переїзд — der Bahnübergang.'
+
+  - de: Fähre
+    ipa: "ˈfɛːʁə"
+    pos: noun
+    gender: f
+    plural: "die Fähren"
+    en: the boat that carries cars and people across water on a fixed short route
+    ru: судно, которое возит машины и людей через воду по короткому постоянному маршруту
+    uk: судно, що возить машини й людей через воду коротким постійним маршрутом
+    example_de: Nach Rügen kann man auch mit der Fähre fahren.
+    example_en: You can also get to Rügen by ferry.
+    example_ru: На Рюген можно добраться и на пароме.
+    example_uk: На Рюген можна дістатися й поромом.
+    note:
+      en: 'Feminine, plural in -n, from the old verb fahren — the same stem as A1 fahren, which is why the boat is named for the crossing rather than for itself. The frame is mit der Fähre fahren or die Fähre nehmen. A German river town will have a small one called die Autofähre or, if it takes only walkers, die Personenfähre. Do not confuse it with das Schiff, which goes anywhere.'
+      ru: 'Женский род, множественное на -n, от старого глагола fahren — того же корня, что fahren уровня A1, поэтому судно названо по переправе, а не по себе. Конструкция — mit der Fähre fahren или die Fähre nehmen. В немецком городе на реке будет маленькая die Autofähre или, если она берёт только пеших, die Personenfähre. Не путайте с das Schiff, которое идёт куда угодно.'
+      uk: 'Жіночий рід, множина на -n, від старого дієслова fahren — того самого кореня, що fahren рівня A1, тому судно назване за переправою, а не за собою. Конструкція — mit der Fähre fahren або die Fähre nehmen. У німецькому місті на річці буде маленька die Autofähre або, якщо вона бере лише піших, die Personenfähre. Не плутайте з das Schiff, яке йде куди завгодно.'
+
+  # --- Wer zu Fuß und wer auf zwei Rädern unterwegs ist ---
+  - de: Fußgänger
+    ipa: "ˈfuːsˌgɛŋɐ"
+    pos: noun
+    gender: m
+    plural: "die Fußgänger"
+    en: a man moving on foot in traffic, as the rules and the signs count him
+    ru: мужчина, который движется в потоке пешком, — как его считают правила и знаки
+    uk: чоловік, який рухається в потоці пішки, — як його рахують правила і знаки
+    example_de: An dieser Kreuzung haben Fußgänger immer Vorrang.
+    example_en: Pedestrians always have priority at this junction.
+    example_ru: На этом перекрёстке пешеход всегда имеет преимущество.
+    example_uk: На цьому перехресті пішохід завжди має перевагу.
+    note:
+      en: 'Built from A1 der Fuß plus gehen, so it says on-foot-goer literally. It belongs to the language of traffic and never to a walk in the woods — somebody strolling is der Spaziergänger. Singular and plural are spelled alike. The crossing they use is der Zebrastreifen, the light is die Fußgängerampel, and the feminine is the next entry.'
+      ru: 'Образовано от der Fuß уровня A1 и gehen, так что буквально это «идущий пешком». Слово принадлежит языку дорожного движения и никогда — прогулке по лесу: гуляющий — der Spaziergänger. Единственное и множественное пишутся одинаково. Переход, которым они пользуются, — der Zebrastreifen, светофор для них — die Fußgängerampel, а женская пара — следующая запись.'
+      uk: 'Утворене від der Fuß рівня A1 і gehen, тож буквально це «той, хто йде пішки». Слово належить мові дорожнього руху й ніколи — прогулянці лісом: той, хто гуляє, — der Spaziergänger. Однина й множина пишуться однаково. Перехід, яким вони користуються, — der Zebrastreifen, світлофор для них — die Fußgängerampel, а жіноча пара — наступний запис.'
+
+  - de: Fußgängerin
+    ipa: "ˈfuːsˌgɛŋəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Fußgängerinnen"
+    # Recognition only: the feminine of the entry above, whose note already names this
+    # form — the pair costs three cards rather than four, per the Movierung rule for
+    # the B1 completion pass.
+    cards: recognition
+    en: a woman moving on foot in traffic, in that same word of the rules
+    ru: женщина, которая движется в потоке пешком, — тем же словом правил
+    uk: жінка, яка рухається в потоці пішки, — тим самим словом правил
+    example_de: Eine Fußgängerin hatte den Unfall beobachtet.
+    example_en: A pedestrian had witnessed the accident.
+    example_ru: Свидетельницей аварии стала пешеход.
+    example_uk: Свідком аварії стала пішохідка.
+    note:
+      en: 'Regular Movierung with -in and a doubled n in the plural. Where a report needs one word for everybody it writes die Zufußgehenden or simply die Menschen zu Fuß, both of which have become common in German traffic planning; the neutral plural of the pair is still die Fußgänger. Note that no umlaut appears — the stem vowel is already ä in Gänger.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. Когда сводке нужно одно слово на всех, пишут die Zufußgehenden или просто die Menschen zu Fuß — оба оборота прижились в немецком транспортном планировании; нейтральное множественное пары по-прежнему die Fußgänger. Умлаут не появляется: в Gänger он уже стоит.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. Коли зведенню потрібне одне слово на всіх, пишуть die Zufußgehenden або просто die Menschen zu Fuß — обидва звороти прижилися в німецькому транспортному плануванні; нейтральна множина пари досі die Fußgänger. Умлаут не з’являється: у Gänger він уже стоїть.'
+
+  - de: Fußgängerzone
+    ipa: "ˈfuːsgɛŋɐˌtsoːnə"
+    pos: noun
+    gender: f
+    plural: "die Fußgängerzonen"
+    # Recognition only: town-planning and signage register — what a learner says to
+    # arrange a meeting is A1 `Zentrum` or the name of the street.
+    cards: recognition
+    en: a street in a town centre closed to cars, with shops along both sides
+    ru: улица в центре города, закрытая для машин, с магазинами по обеим сторонам
+    uk: вулиця в центрі міста, закрита для машин, із крамницями з обох боків
+    example_de: In der Fußgängerzone darf man nur zum Liefern fahren.
+    example_en: You may only drive in the pedestrian precinct to make deliveries.
+    example_ru: В пешеходной зоне можно ехать только для доставки.
+    example_uk: У пішохідній зоні можна їхати лише для доставки.
+    note:
+      en: 'Almost every German town of any size has one, and it is where the shops are, so the word turns up in directions constantly: Das Geschäft ist in der Fußgängerzone. The sign marking it is a blue circle with two walking figures. Deliveries are allowed at fixed hours, which is what die Lieferzeit on the sign means. Primary stress on Fuß-, secondary on -zone.'
+      ru: 'Такая есть почти в каждом немецком городе хоть какого-то размера, и именно там магазины, поэтому слово постоянно попадается в объяснениях дороги: Das Geschäft ist in der Fußgängerzone. Обозначает её синий круг с двумя идущими фигурками. Доставка разрешена в определённые часы — об этом и говорит die Lieferzeit на табличке. Главное ударение на Fuß-, побочное на -zone.'
+      uk: 'Така є майже в кожному німецькому місті бодай якогось розміру, і саме там крамниці, тому слово постійно трапляється в поясненнях дороги: Das Geschäft ist in der Fußgängerzone. Позначає її синє коло з двома фігурками, що йдуть. Доставку дозволено в певні години — про це й говорить die Lieferzeit на табличці. Головний наголос на Fuß-, побічний на -zone.'
+
+  - de: Gehsteig
+    ipa: "ˈgeːˌʃtaɪ̯k"
+    pos: noun
+    gender: m
+    plural: "die Gehsteige"
+    # Recognition only: one of three regional names for the same strip of pavement, and
+    # a learner giving directions says `rechts` or names the street.
+    cards: recognition
+    en: the raised strip beside a road where people walk and cars may not go
+    ru: приподнятая полоса вдоль дороги, где ходят люди и куда машинам нельзя
+    uk: піднята смуга вздовж дороги, де ходять люди і куди машинам не можна
+    example_de: Auf dem Gehsteig standen überall Fahrräder.
+    example_en: There were bicycles all over the pavement.
+    example_ru: На тротуаре повсюду стояли велосипеды.
+    example_uk: На тротуарі всюди стояли велосипеди.
+    note:
+      en: 'Germany has three words for this one strip and they divide by region: der Bürgersteig in the north and centre, this one in the south and Austria, and der Gehweg in official texts and traffic law. Switzerland says das Trottoir. None of them is wrong anywhere, and a driver will understand all three. The verb inside it is gehen, and der Steig is an old word for a path.'
+      ru: 'На эту одну полосу у немецкого три слова, и делятся они по областям: der Bürgersteig на севере и в центре, это — на юге и в Австрии, а der Gehweg — в официальных текстах и правилах движения. Швейцария говорит das Trottoir. Нигде ни одно из них не ошибка, и водитель поймёт все три. Внутри слова глагол gehen, а der Steig — старое слово для тропы.'
+      uk: 'На цю одну смугу німецька має три слова, і діляться вони за областями: der Bürgersteig на півночі та в центрі, це — на півдні та в Австрії, а der Gehweg — в офіційних текстах і правилах руху. Швейцарія каже das Trottoir. Ніде жодне з них не помилка, і водій зрозуміє всі три. Усередині слова дієслово gehen, а der Steig — старе слово для стежки.'
+
+  - de: Radfahrer
+    ipa: "ˈʁaːtˌfaːʁɐ"
+    pos: noun
+    gender: m
+    plural: "die Radfahrer"
+    en: a man riding a bicycle in traffic, as the rules and the signs count him
+    ru: мужчина, который едет в потоке на велосипеде, — как его считают правила и знаки
+    uk: чоловік, який їде в потоці на велосипеді, — як його рахують правила і знаки
+    example_de: Radfahrer müssen hier den rechten Weg benutzen.
+    example_en: Cyclists have to use the right-hand path here.
+    example_ru: Велосипедисты должны здесь пользоваться правой дорожкой.
+    example_uk: Велосипедисти мають тут користуватися правою доріжкою.
+    note:
+      en: 'Built from A2 das Rad and fahren. Singular and plural are spelled alike, and the d of Rad devoices to t before the f. The lane they belong on is der Radweg, marked red or with a white bicycle, and using it is compulsory where the round blue sign stands. The feminine is the next entry; Switzerland calls the whole activity Velo fahren.'
+      ru: 'Образовано от das Rad уровня A2 и fahren. Единственное и множественное пишутся одинаково, а d в Rad перед f оглушается в t. Полоса, которая им положена, — der Radweg, помеченная красным или белым велосипедом, и там, где стоит круглый синий знак, ехать по ней обязательно. Женская пара — следующая запись; в Швейцарии всё это занятие называют Velo fahren.'
+      uk: 'Утворене від das Rad рівня A2 і fahren. Однина й множина пишуться однаково, а d у Rad перед f оглушується в t. Смуга, яка їм належить, — der Radweg, позначена червоним або білим велосипедом, і там, де стоїть круглий синій знак, їхати нею обов’язково. Жіноча пара — наступний запис; у Швейцарії все це заняття називають Velo fahren.'
+
+  - de: Radfahrerin
+    ipa: "ˈʁaːtˌfaːʁəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Radfahrerinnen"
+    # Recognition only: the feminine of the entry above, whose note already names this
+    # form — the pair costs three cards rather than four, per the Movierung rule for
+    # the B1 completion pass.
+    cards: recognition
+    en: a woman riding a bicycle in traffic, in that same word of the rules
+    ru: женщина, которая едет в потоке на велосипеде, — тем же словом правил
+    uk: жінка, яка їде в потоці на велосипеді, — тим самим словом правил
+    example_de: Die Radfahrerin hatte einen Helm auf.
+    example_en: The cyclist was wearing a helmet.
+    example_ru: Велосипедистка была в шлеме.
+    example_uk: Велосипедистка була в шоломі.
+    note:
+      en: 'Regular Movierung with -in and a doubled n in the plural. Three r sounds fall in one word and all of them are uvular, which makes it a good one to say slowly. Traffic reports increasingly write die Radfahrenden for a mixed group, on the model of die Zufußgehenden; the older neutral plural is die Radfahrer.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. В одном слове три звука r, и все увулярные, так что его полезно проговаривать медленно. Транспортные сводки всё чаще пишут die Radfahrenden о смешанной группе — по образцу die Zufußgehenden; более старое нейтральное множественное — die Radfahrer.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. В одному слові три звуки r, і всі увулярні, тож його корисно промовляти повільно. Транспортні зведення дедалі частіше пишуть die Radfahrenden про змішану групу — за зразком die Zufußgehenden; давніша нейтральна множина — die Radfahrer.'
+
+  # --- Die Fahrbahn und ihre Schilder ---
+  - de: Fahrbahn
+    ipa: "ˈfaːɐ̯ˌbaːn"
+    pos: noun
+    gender: f
+    plural: "die Fahrbahnen"
+    # Recognition only: the technical half of a road, met in the Führerschein leaflet
+    # and on a warning sign. A learner names A1 `Straße`.
+    cards: recognition
+    en: the part of a road that vehicles run on, as against the strip beside it for walkers
+    ru: та часть дороги, по которой едут машины, — в отличие от полосы для пешеходов рядом
+    uk: та частина дороги, якою їдуть машини, — на відміну від смуги для пішоходів поряд
+    example_de: Bei Regen ist die Fahrbahn hier sehr glatt.
+    example_en: The carriageway is very slippery here when it rains.
+    example_ru: В дождь проезжая часть здесь очень скользкая.
+    example_uk: У дощ проїзна частина тут дуже слизька.
+    note:
+      en: 'A1 die Straße is the whole thing, kerb to kerb and with its name and its houses; this is only the asphalt cars use. It is the word on a warning sign — Fahrbahn glatt, Fahrbahn verengt — and in the Führerschein leaflet. The markings on it are die Fahrbahnmarkierung, and the strips it is divided into are the next entry.'
+      ru: 'die Straße уровня A1 — вся улица целиком, от бордюра до бордюра, с названием и домами; здесь же речь только об асфальте, по которому едут. Это слово предупреждающего щита — Fahrbahn glatt, Fahrbahn verengt — и брошюры к Führerschein. Разметка на ней — die Fahrbahnmarkierung, а полосы, на которые она поделена, — следующая запись.'
+      uk: 'die Straße рівня A1 — уся вулиця цілком, від бордюра до бордюра, з назвою та будинками; тут же йдеться лише про асфальт, яким їдуть. Це слово попереджувального щита — Fahrbahn glatt, Fahrbahn verengt — і брошури до Führerschein. Розмітка на ній — die Fahrbahnmarkierung, а смуги, на які її поділено, — наступний запис.'
+
+  - de: Spur
+    ipa: "ˈʃpuːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Spuren"
+    # Recognition only: it carries two unrelated senses one prompt cannot name — a lane
+    # of a road and a trace left behind — the `unheimlich`/`intensiv` ruling from
+    # eigenschaften-bewertung-b1.
+    cards: recognition
+    en: one of the marked strips a line of cars keeps to; also a mark left behind by something
+    ru: одна из размеченных полос, которой держится ряд машин; а также след, оставленный чем-то
+    uk: одна з розмічених смуг, якої тримається ряд машин; а також слід, залишений чимось
+    example_de: Auf der Autobahn müssen Sie jetzt die Spur wechseln.
+    example_en: You have to change lane on the motorway now.
+    example_ru: На автобане вам сейчас нужно перестроиться в другой ряд.
+    example_uk: На автобані вам зараз треба перебудуватися в інший ряд.
+    note:
+      en: 'Two senses with nothing between them. On a road it is a lane, and the phrases are die Spur wechseln and auf der rechten Spur bleiben — a three-lane motorway is dreispurig. Everywhere else it is a trace: Spuren im Schnee, keine Spur von ihm, and in a recipe eine Spur Salz is the smallest pinch. The sp- opens ʃp-, and the r at the end is the vocalised one.'
+      ru: 'Два значения, между которыми нет ничего общего. На дороге это полоса, и обороты — die Spur wechseln и auf der rechten Spur bleiben; трёхполосный автобан — dreispurig. Во всём остальном это след: Spuren im Schnee, keine Spur von ihm, а в рецепте eine Spur Salz — самая малая щепотка. Сочетание sp- открывается как ʃp-, а r на конце вокализованное.'
+      uk: 'Два значення, між якими немає нічого спільного. На дорозі це смуга, і звороти — die Spur wechseln і auf der rechten Spur bleiben; триполосний автобан — dreispurig. В усьому іншому це слід: Spuren im Schnee, keine Spur von ihm, а в рецепті eine Spur Salz — найменша дрібка. Сполука sp- відкривається як ʃp-, а r на кінці вокалізоване.'
+
+  - de: Kurve
+    ipa: "ˈkʊʁvə"
+    pos: noun
+    gender: f
+    plural: "die Kurven"
+    en: the place where a road stops running straight and swings to one side
+    ru: место, где дорога перестаёт идти прямо и уходит вбок
+    uk: місце, де дорога перестає йти прямо і повертає вбік
+    example_de: Fahr bitte langsamer, hinter der Kurve kommt eine Schule.
+    example_en: Please drive more slowly, there is a school after the bend.
+    example_ru: Пожалуйста, сбавь скорость, за поворотом школа.
+    example_uk: Будь ласка, збав швидкість, за поворотом школа.
+    note:
+      en: 'Feminine, plural in -n, and the v is spoken v because the word is a Latin loan. On a warning sign it comes with a direction — Kurve rechts — and a sharp one is eine enge Kurve. A second sense is any curved line, which is why a chart has die Fieberkurve and die Kurve der Preise. The verb is not from it: turning off a road is the entry abbiegen below.'
+      ru: 'Женский род, множественное на -n, а v звучит как «в», потому что слово — латинское заимствование. На предупреждающем знаке оно идёт с направлением — Kurve rechts, — а крутой поворот — eine enge Kurve. Второе значение — любая кривая линия, отсюда die Fieberkurve и die Kurve der Preise на графике. Глагол от него не образован: «свернуть» — это запись abbiegen ниже.'
+      uk: 'Жіночий рід, множина на -n, а v звучить як «в», бо слово — латинське запозичення. На попереджувальному знаку воно йде з напрямком — Kurve rechts, — а крутий поворот — eine enge Kurve. Друге значення — будь-яка крива лінія, звідси die Fieberkurve і die Kurve der Preise на графіку. Дієслово від нього не утворене: «звернути» — це запис abbiegen нижче.'
+
+  - de: Strecke
+    ipa: "ˈʃtʁɛkə"
+    pos: noun
+    gender: f
+    plural: "die Strecken"
+    # Recognition only: A1 ships `Weg` ("way; path", stadt-wege) as the production card
+    # in this field, and a prompt about a route cannot be kept clear of it.
+    cards: recognition
+    en: the run between two points on a journey — how far it is, and the road or line it follows
+    en_compact: the run between two points on a journey
+    ru: отрезок между двумя точками поездки — и его протяжённость, и сама дорога или линия
+    uk: відрізок між двома точками поїздки — і його протяжність, і сама дорога чи лінія
+    example_de: Die Strecke von Köln nach Bonn dauert etwa dreißig Minuten.
+    example_en: The run from Cologne to Bonn takes about thirty minutes.
+    example_ru: Дорога из Кёльна в Бонн занимает около тридцати минут.
+    example_uk: Дорога з Кельна до Бонна триває близько тридцяти хвилин.
+    note:
+      en: 'A1 der Weg is the path you take and can be about how to get somewhere; this word is the span itself, measured and named at both ends. It is what a railway calls a line — die Strecke ist gesperrt, a closure notice you will hear announced — and what a runner calls a distance, eine Strecke von zehn Kilometern. The verb behind it is strecken, to stretch.'
+      ru: 'der Weg уровня A1 — путь, которым идут, и слово может быть о том, как куда-то добраться; здесь же речь о самом отрезке, отмеренном и названном с обоих концов. Железная дорога называет так линию — die Strecke ist gesperrt, объявление о закрытии, которое вы услышите, — а бегун так называет дистанцию: eine Strecke von zehn Kilometern. За словом стоит глагол strecken, «растягивать».'
+      uk: 'der Weg рівня A1 — шлях, яким ідуть, і слово може бути про те, як кудись дістатися; тут же йдеться про сам відрізок, відміряний і названий з обох кінців. Залізниця називає так лінію — die Strecke ist gesperrt, оголошення про закриття, яке ви почуєте, — а бігун так називає дистанцію: eine Strecke von zehn Kilometern. За словом стоїть дієслово strecken, «розтягувати».'
+
+  - de: Einbahnstraße
+    ipa: "ˈaɪ̯nbaːnˌʃtʁaːsə"
+    pos: noun
+    gender: f
+    plural: "die Einbahnstraßen"
+    # Recognition only: sign register — a learner in the passenger seat says
+    # `Da darf man nicht rein` rather than naming the category.
+    cards: recognition
+    en: a street on which traffic may only move in one direction
+    ru: улица, по которой движение разрешено только в одну сторону
+    uk: вулиця, якою рух дозволено лише в один бік
+    example_de: Das ist eine Einbahnstraße, wir müssen außen herum.
+    example_en: That is a one-way street, we have to go round the outside.
+    example_ru: Это улица с односторонним движением, придётся объехать.
+    example_uk: Це вулиця з одностороннім рухом, доведеться об’їхати.
+    note:
+      en: 'Two signs mark it and they say opposite things to opposite ends of the same street: a blue rectangle with a white arrow at the entrance, and a round red circle with a white bar at the exit. Built from ein plus die Bahn plus die Straße, so the word is a three-part compound with the primary stress right at the front. Figuratively it is a situation with no way back: eine Einbahnstraße sein.'
+      ru: 'Обозначают её два знака, и с разных концов одной улицы они говорят противоположное: синий прямоугольник с белой стрелкой на въезде и круглый красный с белой полосой на выезде. Составлено из ein, die Bahn и die Straße, то есть трёхчастное сложное слово с главным ударением в самом начале. В переносном смысле это положение без пути назад: eine Einbahnstraße sein.'
+      uk: 'Позначають її два знаки, і з різних кінців однієї вулиці вони кажуть протилежне: синій прямокутник із білою стрілкою на в’їзді і круглий червоний із білою смугою на виїзді. Складено з ein, die Bahn і die Straße, тобто тричастинне складне слово з головним наголосом на самому початку. У переносному сенсі це становище без шляху назад: eine Einbahnstraße sein.'
+
+  - de: Ausfahrt
+    ipa: "ˈaʊ̯sˌfaːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "die Ausfahrten"
+    en: the way out for vehicles — the slip road off a motorway, or the gate out of a yard
+    en_compact: the way out for vehicles
+    ru: выезд для машин — съезд с автобана или ворота со двора
+    uk: виїзд для машин — з’їзд з автобана або ворота з подвір’я
+    example_de: Nimm bitte die nächste Ausfahrt und dann rechts.
+    example_en: Take the next exit please, and then right.
+    example_ru: Пожалуйста, съезжай на ближайшем съезде, а потом направо.
+    example_uk: Будь ласка, з’їжджай на найближчому з’їзді, а потім праворуч.
+    note:
+      en: 'A1 der Ausgang is the door people walk out of; this is the one vehicles drive out of, and the two are never swapped. On a motorway the sign counts them down at 300, 200 and 100 metres, and every German learns the joke that Ausfahrt must be the biggest town in the country. On a private gate the word means keep clear, and its opposite is the next entry.'
+      ru: 'der Ausgang уровня A1 — дверь, из которой выходят пешком; здесь же выезжают на машине, и эти два слова не путают. На автобане знак отсчитывает 300, 200 и 100 метров, и каждый немец знает шутку, будто Ausfahrt — самый большой город страны. На частных воротах слово значит «не загораживать», а противоположность ему — следующая запись.'
+      uk: 'der Ausgang рівня A1 — двері, з яких виходять пішки; тут же виїжджають машиною, і ці два слова не плутають. На автобані знак відлічує 300, 200 і 100 метрів, і кожен німець знає жарт, ніби Ausfahrt — найбільше місто країни. На приватних воротах слово означає «не загороджувати», а протилежність йому — наступний запис.'
+
+  - de: Einfahrt
+    ipa: "ˈaɪ̯nˌfaːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "die Einfahrten"
+    # Recognition only: it is above all a sign, and the sentence a learner produces
+    # about it is the one on the sign itself, `Einfahrt freihalten`, as a chunk.
+    cards: recognition
+    en: the way in for vehicles, and the sign that orders you to leave it clear
+    ru: въезд для машин и табличка, требующая его не загораживать
+    uk: в’їзд для машин і табличка, що вимагає його не загороджувати
+    example_de: Parken Sie bitte nicht vor der Einfahrt.
+    example_en: Please do not park in front of the entrance.
+    example_ru: Пожалуйста, не паркуйтесь перед въездом.
+    example_uk: Будь ласка, не паркуйтеся перед в’їздом.
+    note:
+      en: 'The mirror of the entry above, and A1 der Eingang is again the one for people on foot. In a German street the word is above all a yellow sign reading Einfahrt freihalten, and blocking one is the classic way to have a car towed. On a railway it is also a train coming into a station — die Einfahrt des Zuges, announced over the platform loudspeaker.'
+      ru: 'Зеркало записи выше, а der Eingang уровня A1 — снова тот, что для пеших. На немецкой улице это прежде всего жёлтая табличка с надписью Einfahrt freihalten, и загородить такой въезд — классический способ лишиться машины, которую увезёт эвакуатор. На железной дороге это ещё и прибытие поезда на станцию — die Einfahrt des Zuges, о чём объявляют по перрону.'
+      uk: 'Дзеркало запису вище, а der Eingang рівня A1 — знову той, що для піших. На німецькій вулиці це передусім жовта табличка з написом Einfahrt freihalten, і загородити такий в’їзд — класичний спосіб позбутися машини, яку відвезе евакуатор. На залізниці це ще й прибуття поїзда на станцію — die Einfahrt des Zuges, про що оголошують на пероні.'
+
+  - de: Verkehrszeichen
+    ipa: "fɛɐ̯ˈkeːɐ̯sˌtsaɪ̯çn̩"
+    pos: noun
+    gender: n
+    plural: "die Verkehrszeichen"
+    # Recognition only: A2 ships `Schild` ("sign (road sign, notice)",
+    # verkehr-unterwegs-a2) as the production card for the object at the roadside.
+    cards: recognition
+    en: one of the metal plates at the roadside that tell a driver what is allowed
+    ru: одна из металлических табличек у дороги, которые говорят водителю, что можно
+    uk: одна з металевих табличок біля дороги, що кажуть водієві, що можна
+    example_de: Dieses Verkehrszeichen bedeutet, dass hier Kinder spielen.
+    example_en: This road sign means that children play here.
+    example_ru: Этот дорожный знак означает, что здесь играют дети.
+    example_uk: Цей дорожній знак означає, що тут граються діти.
+    note:
+      en: 'The formal term used by the Straßenverkehrsordnung, the German rules of the road; in speech the same object is A2 das Schild, and everybody says Siehst du das Schild? The shapes are systematic and worth reading once: a red triangle warns, a red circle forbids, a blue circle instructs, and a blue rectangle informs. Built from A2 der Verkehr with a linking -s-.'
+      ru: 'Официальный термин из Straßenverkehrsordnung, немецких правил дорожного движения; в речи тот же предмет — das Schild уровня A2, и все говорят Siehst du das Schild? Формы устроены системно, и стоит прочесть об этом раз: красный треугольник предупреждает, красный круг запрещает, синий круг предписывает, синий прямоугольник сообщает. Образовано от der Verkehr уровня A2 со связующим -s-.'
+      uk: 'Офіційний термін зі Straßenverkehrsordnung, німецьких правил дорожнього руху; у мовленні той самий предмет — das Schild рівня A2, і всі кажуть Siehst du das Schild? Форми влаштовано системно, і варто прочитати про це раз: червоний трикутник попереджає, червоне коло забороняє, синє коло приписує, синій прямокутник повідомляє. Утворене від der Verkehr рівня A2 зі сполучним -s-.'
+
+  - de: Geschwindigkeitsbeschränkung
+    ipa: "gəˈʃvɪndɪçkaɪ̯tsbəˌʃʁɛŋkʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Geschwindigkeitsbeschränkungen"
+    # Recognition only: officialese of the first order — twenty-seven letters that a
+    # driver replaces with `Tempo 50` or the number on the sign.
+    cards: recognition
+    en: the upper limit on how fast traffic may go along a stretch of road
+    ru: верхний предел того, насколько быстро можно ехать на участке дороги
+    uk: верхня межа того, наскільки швидко можна їхати на ділянці дороги
+    example_de: Auf dieser Strecke gilt eine Geschwindigkeitsbeschränkung von 80.
+    example_en: A speed limit of 80 applies on this stretch.
+    example_ru: На этом участке действует ограничение скорости 80.
+    example_uk: На цій ділянці діє обмеження швидкості 80.
+    note:
+      en: 'Twenty-seven letters, and a good demonstration of how a German compound is built and read: B1 die Geschwindigkeit plus a linking -s- plus die Beschränkung, from beschränken, to restrict. Nobody says it at the wheel — a driver says Hier ist Tempo 50 or just reads the number. The everyday alternatives are das Tempolimit and die Höchstgeschwindigkeit, both shorter and both common in news.'
+      ru: 'Двадцать семь букв и наглядный урок того, как немецкое сложное слово строится и читается: die Geschwindigkeit уровня B1 плюс связующее -s- плюс die Beschränkung, от beschränken, «ограничивать». За рулём так никто не говорит: водитель скажет Hier ist Tempo 50 или просто прочтёт число. Обиходные замены — das Tempolimit и die Höchstgeschwindigkeit, оба короче и оба часты в новостях.'
+      uk: 'Двадцять сім літер і наочний урок того, як німецьке складне слово будується і читається: die Geschwindigkeit рівня B1 плюс сполучне -s- плюс die Beschränkung, від beschränken, «обмежувати». За кермом так ніхто не каже: водій скаже Hier ist Tempo 50 або просто прочитає число. Побутові заміни — das Tempolimit і die Höchstgeschwindigkeit, обидві коротші й обидві часті в новинах.'
+
+  - de: Tempo
+    ipa: "ˈtɛmpo"
+    pos: noun
+    gender: n
+    plural: "die Tempos"
+    # Recognition only: it carries two unrelated senses one prompt cannot name — the
+    # rate at which something moves, and, in Germany, a paper handkerchief — the
+    # `unheimlich`/`intensiv` ruling from eigenschaften-bewertung-b1.
+    cards: recognition
+    en: the rate at which something moves or gets done; also, in Germany, a paper tissue
+    ru: темп, с которым что-то движется или делается; а в Германии ещё и бумажный платок
+    uk: темп, з яким щось рухається або робиться; а в Німеччині ще й паперова хустинка
+    example_de: Auf dieser Straße gilt Tempo 30.
+    example_en: A thirty limit applies on this street.
+    example_ru: На этой улице действует ограничение 30.
+    example_uk: На цій вулиці діє обмеження 30.
+    note:
+      en: 'On a road it is short and practical — Tempo 30, das Tempolimit — where B1 die Geschwindigkeit is the measured quantity a report gives. Outside traffic it is any pace at all: das Tempo der Arbeit, and Tempo! shouted at somebody means hurry up. And then there is the brand: ein Tempo is what a German offers you when you sneeze, whoever made it. The plural for the tissue is Tempos.'
+      ru: 'На дороге оно короткое и деловое — Tempo 30, das Tempolimit, — тогда как die Geschwindigkeit уровня B1 — измеренная величина, которую приводит сводка. Вне движения это любой темп: das Tempo der Arbeit, а выкрикнутое Tempo! значит «быстрее». И есть ещё марка: ein Tempo — то, что немец протянет вам, когда вы чихнёте, кто бы его ни выпустил. Множественное для платка — Tempos.'
+      uk: 'На дорозі воно коротке й ділове — Tempo 30, das Tempolimit, — тоді як die Geschwindigkeit рівня B1 — виміряна величина, яку наводить зведення. Поза рухом це будь-який темп: das Tempo der Arbeit, а вигукнуте Tempo! означає «швидше». І є ще марка: ein Tempo — те, що німець простягне вам, коли ви чхнете, хто б його не випустив. Множина для хустинки — Tempos.'
+
+  - de: Vorfahrt
+    ipa: "ˈfoːɐ̯ˌfaːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: the right to drive on first where two roads meet
+    ru: право проехать первым там, где сходятся две дороги
+    uk: право проїхати першим там, де сходяться дві дороги
+    example_de: An dieser Kreuzung hat der Verkehr von rechts Vorfahrt.
+    example_en: Traffic from the right has priority at this junction.
+    example_ru: На этом перекрёстке преимущество у транспорта справа.
+    example_uk: На цьому перехресті перевага в транспорту праворуч.
+    note:
+      en: 'No plural, and it lives in three fixed phrases: Vorfahrt haben, Vorfahrt gewähren and jemandem die Vorfahrt nehmen, which is what a driver is accused of after a collision. The default rule in Germany is rechts vor links, unless a sign says otherwise, and the yellow diamond means you have it. Austria and Switzerland say der Vorrang for the same right.'
+      ru: 'Множественного нет, и слово живёт в трёх устойчивых оборотах: Vorfahrt haben, Vorfahrt gewähren и jemandem die Vorfahrt nehmen — последнее вменяют водителю после столкновения. По умолчанию в Германии действует rechts vor links, если знак не говорит иного, а жёлтый ромб означает, что преимущество ваше. Австрия и Швейцария называют то же право der Vorrang.'
+      uk: 'Множини немає, і слово живе в трьох усталених зворотах: Vorfahrt haben, Vorfahrt gewähren і jemandem die Vorfahrt nehmen — останнє ставлять на карб водієві після зіткнення. За замовчуванням у Німеччині діє rechts vor links, якщо знак не каже інакше, а жовтий ромб означає, що перевага ваша. Австрія та Швейцарія називають те саме право der Vorrang.'
+
+  # --- Was der Fahrer tut ---
+  - de: abbiegen
+    ipa: "ˈapˌbiːgn̩"
+    pos: verb
+    praesens_3sg: biegt ab
+    partizip2: abgebogen
+    aux: sein
+    en: to leave the road you are on by turning into another one
+    ru: сворачивать с дороги, по которой едешь, на другую
+    uk: звертати з дороги, якою їдеш, на іншу
+    example_de: An der Ampel müssen Sie links abbiegen.
+    example_en: You have to turn left at the traffic light.
+    example_ru: На светофоре вам нужно повернуть налево.
+    example_uk: На світлофорі вам треба повернути ліворуч.
+    note:
+      en: 'Separable and strong, with sein in the Perfekt because it is a change of place: Er ist rechts abgebogen. It is the word for directions, and it always comes with links, rechts or in die Straße. Do not use A2 wenden, which is turning the whole vehicle round to go back, or umdrehen, which is turning an object over. The sign warning of a turn is der Abbieger.'
+      ru: 'Отделяемый и сильный, в Perfekt с sein, потому что это перемена места: Er ist rechts abgebogen. Это слово объяснений дороги, и при нём всегда стоит links, rechts или in die Straße. Не берите wenden уровня A2 — это развернуть машину и поехать назад, — и не берите umdrehen, «перевернуть предмет». Знак, предупреждающий о повороте, — der Abbieger.'
+      uk: 'Відокремлюване й сильне, у Perfekt із sein, бо це зміна місця: Er ist rechts abgebogen. Це слово пояснень дороги, і при ньому завжди стоїть links, rechts або in die Straße. Не беріть wenden рівня A2 — це розвернути машину й поїхати назад, — і не беріть umdrehen, «перевернути предмет». Знак, що попереджає про поворот, — der Abbieger.'
+
+  - de: überholen
+    ipa: "yːbɐˈhoːlən"
+    pos: verb
+    praesens_3sg: überholt
+    partizip2: überholt
+    aux: haben
+    valence: "+ Akk"
+    en: to pass a slower vehicle and carry on ahead of it
+    ru: обгонять более медленную машину и уходить вперёд
+    uk: обганяти повільнішу машину й іти вперед
+    example_de: Auf dieser Strecke darf man nicht überholen.
+    example_en: Overtaking is not allowed on this stretch.
+    example_ru: На этом участке обгон запрещён.
+    example_uk: На цій ділянці обгін заборонено.
+    note:
+      en: 'Inseparable — the stress is on -ho-, the prefix stays put, and the Partizip II has no ge-: hat überholt. That matters, because a handful of German verbs in über- exist in both a separable and an inseparable form with different meanings, and this one is only ever inseparable. The sign forbidding it shows one red car beside one black. A second sense is figurative: eine überholte Idee is an outdated one.'
+      ru: 'Неотделяемый: ударение на -ho-, приставка не уходит, а в Partizip II нет ge- — hat überholt. Это важно, потому что у нескольких немецких глаголов на über- есть и отделяемая, и неотделяемая форма с разными значениями, а этот всегда только неотделяемый. Знак, запрещающий обгон, показывает красную машину рядом с чёрной. Второе значение переносное: eine überholte Idee — устаревшая мысль.'
+      uk: 'Невідокремлюване: наголос на -ho-, префікс не йде, а в Partizip II немає ge- — hat überholt. Це важливо, бо в кількох німецьких дієслів на über- є і відокремлювана, і невідокремлювана форма з різними значеннями, а це завжди лише невідокремлюване. Знак, що забороняє обгін, показує червону машину поряд із чорною. Друге значення переносне: eine überholte Idee — застаріла думка.'
+
+  - de: überqueren
+    ipa: "yːbɐˈkveːʁən"
+    pos: verb
+    praesens_3sg: überquert
+    partizip2: überquert
+    aux: haben
+    valence: "+ Akk"
+    en: to go across a street or a square from one side to the other
+    ru: пересекать улицу или площадь с одной стороны на другую
+    uk: перетинати вулицю чи площу з одного боку на інший
+    example_de: Überqueren Sie die Straße bitte an der Ampel.
+    example_en: Please cross the road at the traffic light.
+    example_ru: Пожалуйста, переходите улицу на светофоре.
+    example_uk: Будь ласка, переходьте вулицю на світлофорі.
+    note:
+      en: 'Inseparable, no ge- in the Partizip II, and it takes a direct object where English needs across: die Straße überqueren, not über die Straße. It works for anything with two sides — a river, a square, a border, an ocean. In casual speech Germans just say über die Straße gehen; this verb is the one on a sign and in a written instruction. The qu is spoken kv.'
+      ru: 'Неотделяемый, в Partizip II нет ge-, и дополнение при нём прямое там, где по-русски нужен предлог: die Straße überqueren. Работает со всем, у чего есть две стороны, — река, площадь, граница, океан. В обиходной речи немцы просто скажут über die Straße gehen; этот глагол — язык таблички и письменной инструкции. Сочетание qu произносится «кв».'
+      uk: 'Невідокремлюване, у Partizip II немає ge-, і додаток при ньому прямий там, де українською потрібен прийменник: die Straße überqueren. Працює з усім, що має два боки, — річка, площа, кордон, океан. У побутовому мовленні німці просто скажуть über die Straße gehen; це дієслово — мова таблички і письмової інструкції. Сполука qu вимовляється «кв».'
+
+  - de: überfahren
+    ipa: "yːbɐˈfaːʁən"
+    pos: verb
+    praesens_3sg: überfährt
+    partizip2: überfahren
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: two unrelated senses one prompt cannot name — to run somebody
+    # over, and to go past a stop or a red light by mistake — the `unheimlich` ruling
+    # from eigenschaften-bewertung-b1.
+    cards: recognition
+    en: to hit somebody or something with a vehicle and drive over them; also to go past a stop or a light by mistake
+    ru: сбить кого-то или что-то машиной и проехать по нему; а также по ошибке проехать остановку или знак
+    uk: збити когось або щось машиною і проїхати по ньому; а також помилково проїхати зупинку чи знак
+    example_de: Er hat vor Schreck fast eine rote Ampel überfahren.
+    example_en: He nearly went through a red light out of shock.
+    example_ru: От испуга он чуть не проехал на красный.
+    example_uk: З переляку він мало не проїхав на червоне.
+    note:
+      en: 'Inseparable here, with the stress on -fah- and no ge- in the Partizip II. The two senses are very far apart — einen Hund überfahren is the grim one and eine Haltestelle überfahren the everyday one — and only the object tells them apart. There is also a separable überfahren, stressed on über-, meaning to ferry somebody across; it is rare and belongs to boats.'
+      ru: 'Здесь глагол неотделяемый: ударение на -fah-, в Partizip II нет ge-. Два значения далеки друг от друга — einen Hund überfahren мрачное, а eine Haltestelle überfahren будничное, — и различает их только дополнение. Есть и отделяемый überfahren с ударением на über-, «перевезти на тот берег»; он редок и относится к лодкам.'
+      uk: 'Тут дієслово невідокремлюване: наголос на -fah-, у Partizip II немає ge-. Два значення далекі одне від одного — einen Hund überfahren похмуре, а eine Haltestelle überfahren буденне, — і розрізняє їх лише додаток. Є й відокремлюване überfahren з наголосом на über-, «перевезти на той берег»; воно рідкісне й стосується човнів.'
+
+  - de: entgegenkommen
+    ipa: "ɛntˈgeːgn̩ˌkɔmən"
+    pos: verb
+    praesens_3sg: kommt entgegen
+    partizip2: entgegengekommen
+    aux: sein
+    valence: "+ Dat"
+    # Recognition only: two unrelated senses one prompt cannot name — approaching from
+    # the other direction, and meeting somebody halfway in a disagreement.
+    cards: recognition
+    en: to move towards somebody from the opposite direction; also to meet somebody halfway
+    ru: двигаться навстречу кому-то с противоположной стороны; а также идти навстречу в споре
+    uk: рухатися назустріч комусь із протилежного боку; а також іти назустріч у суперечці
+    example_de: Ein Lkw kam uns auf der schmalen Straße entgegen.
+    example_en: A lorry came towards us on the narrow road.
+    example_ru: По узкой дороге нам навстречу ехал грузовик.
+    example_uk: Вузькою дорогою нам назустріч їхав грузовик.
+    note:
+      en: 'Separable, with sein, and it takes a dative person or vehicle: Ein Auto kam mir entgegen. The traffic sense is literal and the sign warns of it — der Gegenverkehr is what is coming the other way. The second sense is what a negotiation runs on: Wir können Ihnen beim Preis entgegenkommen, we can move towards you on the price, which is politeness rather than movement.'
+      ru: 'Отделяемый, с sein, а лицо или машина стоят в Dativ: Ein Auto kam mir entgegen. Дорожное значение прямое, и о нём предупреждает знак: der Gegenverkehr — встречное движение. Второе значение — то, на чём держатся переговоры: Wir können Ihnen beim Preis entgegenkommen — «мы можем пойти вам навстречу по цене»; это вежливость, а не перемещение.'
+      uk: 'Відокремлюване, із sein, а особа чи машина стоять у Dativ: Ein Auto kam mir entgegen. Дорожнє значення пряме, і про нього попереджає знак: der Gegenverkehr — зустрічний рух. Друге значення — те, на чому тримаються перемовини: Wir können Ihnen beim Preis entgegenkommen — «ми можемо піти вам назустріч щодо ціни»; це ввічливість, а не переміщення.'
+
+  - de: bremsen
+    ipa: "ˈbʁɛmzn̩"
+    pos: verb
+    praesens_3sg: bremst
+    partizip2: gebremst
+    aux: haben
+    en: to slow a vehicle down or bring it to a stop
+    ru: сбавлять ход машины или останавливать её
+    uk: сповільнювати хід машини або зупиняти її
+    example_de: Er musste plötzlich stark bremsen.
+    example_en: He had to brake hard all of a sudden.
+    example_ru: Ему пришлось резко затормозить.
+    example_uk: Йому довелося різко загальмувати.
+    note:
+      en: 'Weak and regular, with haben, and normally with no object at all — the driver brakes, the car does not get braked. The adverbs that go with it are stark, scharf and plötzlich. Figuratively it is what you do to a person or a process: Er lässt sich nicht bremsen, nobody can slow him down. The s between vowels is voiced, ˈbʁɛmzn̩, and the noun beside it is the next entry.'
+      ru: 'Слабый и правильный, с haben, и обычно вовсе без дополнения: тормозит водитель, а машину не «тормозят». Наречия при нём — stark, scharf, plötzlich. В переносном смысле так поступают с человеком или с процессом: Er lässt sich nicht bremsen — «его не остановить». s между гласными звонкое, ˈbʁɛmzn̩, а существительное рядом — следующая запись.'
+      uk: 'Слабке й правильне, із haben, і зазвичай узагалі без додатка: гальмує водій, а машину не «гальмують». Прислівники при ньому — stark, scharf, plötzlich. У переносному сенсі так чинять з людиною або з процесом: Er lässt sich nicht bremsen — «його не спинити». s між голосними дзвінке, ˈbʁɛmzn̩, а іменник поряд — наступний запис.'
+
+  - de: Bremse
+    ipa: "ˈbʁɛmzə"
+    pos: noun
+    gender: f
+    plural: "die Bremsen"
+    # Recognition only: the deck sells its typed card in this pair to the verb above,
+    # and the noun carries a second, unrelated sense as an insect.
+    cards: recognition
+    en: the part a driver presses to slow the vehicle; also a large biting fly
+    ru: узел, на который водитель нажимает, чтобы сбавить ход; а также крупная кусачая муха
+    uk: вузол, на який водій натискає, щоб сповільнити хід; а також велика кусюча муха
+    example_de: In der Werkstatt haben sie die Bremsen erneuert.
+    example_en: They replaced the brakes at the garage.
+    example_ru: В мастерской заменили тормоза.
+    example_uk: У майстерні замінили гальма.
+    note:
+      en: 'Almost always plural when a car is meant — die Bremsen quietschen, die Bremsen prüfen — because there are four of them. The pedal itself is das Bremspedal and the distance you need is der Bremsweg, which every Führerschein candidate has to calculate. The homonym is worth knowing so a sentence about a summer meadow does not confuse you: eine Bremse is also a horsefly.'
+      ru: 'Когда речь о машине, слово почти всегда во множественном — die Bremsen quietschen, die Bremsen prüfen, — потому что их четыре. Сама педаль — das Bremspedal, а нужное расстояние — der Bremsweg, который считает каждый кандидат на Führerschein. Омоним стоит знать, чтобы фраза про летний луг не сбила с толку: eine Bremse — это ещё и слепень.'
+      uk: 'Коли йдеться про машину, слово майже завжди в множині — die Bremsen quietschen, die Bremsen prüfen, — бо їх чотири. Сама педаль — das Bremspedal, а потрібна відстань — der Bremsweg, яку рахує кожен кандидат на Führerschein. Омонім варто знати, щоб фраза про літній луг не збила з пантелику: eine Bremse — це ще й ґедзь.'
+
+  - de: schalten
+    ipa: "ˈʃaltn̩"
+    pos: verb
+    praesens_3sg: schaltet
+    partizip2: geschaltet
+    aux: haben
+    # Recognition only: two unrelated senses one prompt cannot name — changing gear and
+    # switching a device — and A2 `anmachen`/`ausmachen` (verben-handlungen-a2-1) own
+    # the switching one as production cards.
+    cards: recognition
+    en: to move a car into another gear; also to set a device or a light to another state
+    ru: переводить машину на другую передачу; а также переключать прибор или свет в иное состояние
+    uk: переводити машину на іншу передачу; а також перемикати прилад чи світло в інший стан
+    example_de: Vor der Kurve müssen Sie in den zweiten Gang schalten.
+    example_en: You have to change into second gear before the bend.
+    example_ru: Перед поворотом нужно перейти на вторую передачу.
+    example_uk: Перед поворотом треба перейти на другу передачу.
+    note:
+      en: 'Weak, with haben. In a car the frame is in den dritten Gang schalten, and a car that does it for you is ein Automatik, as against ein Schaltwagen. Away from the road it is what a switch does — die Ampel schaltet auf Grün — and A2 anmachen and ausmachen are what people say about a lamp. A third, colloquial sense is to catch on: Er schaltet schnell.'
+      ru: 'Слабый, с haben. В машине конструкция — in den dritten Gang schalten, а машина, которая делает это сама, — ein Automatik в противоположность ein Schaltwagen. Вне дороги так работает переключатель: die Ampel schaltet auf Grün, — а про лампу говорят anmachen и ausmachen уровня A2. Третье, разговорное значение — «соображать»: Er schaltet schnell.'
+      uk: 'Слабке, із haben. У машині конструкція — in den dritten Gang schalten, а машина, що робить це сама, — ein Automatik на противагу ein Schaltwagen. Поза дорогою так працює перемикач: die Ampel schaltet auf Grün, — а про лампу кажуть anmachen і ausmachen рівня A2. Третє, розмовне значення — «кмітити»: Er schaltet schnell.'
+
+  - de: anschnallen
+    ipa: "ˈanˌʃnalən"
+    pos: verb
+    praesens_3sg: schnallt an
+    partizip2: angeschnallt
+    aux: haben
+    valence: "+ Akk / sich"
+    en: to fasten the belt across yourself or a child before setting off
+    ru: пристёгивать ремень на себе или на ребёнке перед тем, как тронуться
+    uk: пристібати пас на собі або на дитині перед тим, як рушити
+    example_de: Bitte schnallen Sie sich an, wir fahren gleich los.
+    example_en: Please fasten your seat belt, we are setting off in a moment.
+    example_ru: Пожалуйста, пристегнитесь, мы сейчас поедем.
+    example_uk: Будь ласка, пристебніться, ми зараз рушаємо.
+    note:
+      en: 'Separable and weak, and it works two ways: with sich for yourself — Ich schnalle mich an — and with an accusative object for somebody else, das Kind anschnallen. The belt is der Sicherheitsgurt or simply der Gurt, and the announcement on a plane uses this same verb. The stem is die Schnalle, a buckle, so the word is literally to buckle on.'
+      ru: 'Отделяемый и слабый, и работает двояко: с sich — о себе, Ich schnalle mich an, — и с дополнением в Akkusativ о другом: das Kind anschnallen. Ремень — der Sicherheitsgurt или просто der Gurt, и объявление в самолёте пользуется тем же глаголом. Основа — die Schnalle, «пряжка», так что слово буквально значит «застегнуть на пряжку».'
+      uk: 'Відокремлюване й слабке, і працює двояко: із sich — про себе, Ich schnalle mich an, — і з додатком у Akkusativ про іншого: das Kind anschnallen. Пас — der Sicherheitsgurt або просто der Gurt, і оголошення в літаку послуговується тим самим дієсловом. Основа — die Schnalle, «пряжка», тож слово буквально означає «застебнути на пряжку».'
+
+  - de: hupen
+    ipa: "ˈhuːpn̩"
+    pos: verb
+    praesens_3sg: hupt
+    partizip2: gehupt
+    aux: haben
+    # Recognition only: heard far more often than said, and German traffic law allows
+    # it only as a warning — a learner describing the scene says `Er war laut`.
+    cards: recognition
+    en: to make a vehicle's horn sound
+    ru: подавать звуковой сигнал машины
+    uk: подавати звуковий сигнал машини
+    example_de: Der Fahrer hinter uns hat zweimal gehupt.
+    example_en: The driver behind us hooted twice.
+    example_ru: Водитель позади нас дважды посигналил.
+    example_uk: Водій позаду нас двічі посигналив.
+    note:
+      en: 'Weak and regular, with haben and no object — you cannot hupen somebody, only hupen. German traffic law permits it as a warning outside built-up areas and treats a horn blown in anger as an offence, which is why German streets are quieter than most. The noun is die Hupe, the horn itself, and das Hupkonzert is a whole street of them at once.'
+      ru: 'Слабый и правильный, с haben и без дополнения: «просигналить кому-то» этим глаголом нельзя, можно только hupen. Немецкие правила разрешают сигнал как предупреждение вне населённых пунктов, а гудок в раздражении считают нарушением — потому немецкие улицы тише многих. Существительное — die Hupe, сам клаксон, а das Hupkonzert — целая улица гудков разом.'
+      uk: 'Слабке й правильне, із haben і без додатка: «посигналити комусь» цим дієсловом не можна, можна лише hupen. Німецькі правила дозволяють сигнал як попередження поза населеними пунктами, а гудок із роздратування вважають порушенням — тому німецькі вулиці тихіші за багато інших. Іменник — die Hupe, сам клаксон, а das Hupkonzert — ціла вулиця гудків разом.'
+
+  # --- Tanken, Papiere und was die Polizei hinterlässt ---
+  - de: tanken
+    ipa: "ˈtaŋkn̩"
+    pos: verb
+    praesens_3sg: tankt
+    partizip2: getankt
+    aux: haben
+    en: to fill a vehicle's tank with fuel before driving on
+    ru: заправлять бак машины топливом, прежде чем ехать дальше
+    uk: заправляти бак машини пальним, перш ніж їхати далі
+    example_de: Wir müssen noch tanken, bevor wir auf die Autobahn fahren.
+    example_en: We still have to fill up before we get on the motorway.
+    example_ru: Нам нужно ещё заправиться, прежде чем выехать на автобан.
+    example_uk: Нам треба ще заправитися, перш ніж виїхати на автобан.
+    note:
+      en: 'Weak, with haben, and usually with no object — a German says wir müssen tanken and nobody asks with what. When the fuel is named it becomes the object: Diesel tanken, Super tanken. Figuratively it is what a holiday gives you, Sonne tanken and Kraft tanken, which is warmer than it looks. The place is the next entry.'
+      ru: 'Слабый, с haben, и обычно без дополнения: немец скажет wir müssen tanken, и никто не спросит чем. Когда топливо названо, оно становится дополнением: Diesel tanken, Super tanken. В переносном смысле так говорят об отпуске — Sonne tanken, Kraft tanken, — и звучит это теплее, чем кажется. Место — следующая запись.'
+      uk: 'Слабке, із haben, і зазвичай без додатка: німець скаже wir müssen tanken, і ніхто не спитає чим. Коли пальне назване, воно стає додатком: Diesel tanken, Super tanken. У переносному сенсі так кажуть про відпустку — Sonne tanken, Kraft tanken, — і звучить це тепліше, ніж здається. Місце — наступний запис.'
+
+  - de: Tankstelle
+    ipa: "ˈtaŋkˌʃtɛlə"
+    pos: noun
+    gender: f
+    plural: "die Tankstellen"
+    en: the place beside a road where you stop to fill up and pay
+    ru: место у дороги, где останавливаются, чтобы заправиться и заплатить
+    uk: місце біля дороги, де зупиняються, щоб заправитися і заплатити
+    example_de: Die nächste Tankstelle ist erst in zwanzig Kilometern.
+    example_en: The next petrol station is not for another twenty kilometres.
+    example_ru: Ближайшая заправка только через двадцать километров.
+    example_uk: Найближча заправка лише за двадцять кілометрів.
+    note:
+      en: 'In Germany it is also the only shop open on a Sunday night, which is why the word turns up in sentences that have nothing to do with driving — an der Tankstelle noch Milch holen is a small national institution. Primary stress on Tank-, secondary on -stelle. The columns are die Zapfsäule and the payment goes at die Kasse inside, never at the pump.'
+      ru: 'В Германии это ещё и единственный магазин, открытый воскресным вечером, поэтому слово попадается во фразах, к вождению отношения не имеющих: an der Tankstelle noch Milch holen — маленький национальный обычай. Главное ударение на Tank-, побочное на -stelle. Колонки — die Zapfsäule, а платят внутри, на die Kasse, а не у колонки.'
+      uk: 'У Німеччині це ще й єдина крамниця, відчинена недільного вечора, тому слово трапляється у фразах, які до водіння стосунку не мають: an der Tankstelle noch Milch holen — маленький національний звичай. Головний наголос на Tank-, побічний на -stelle. Колонки — die Zapfsäule, а платять усередині, на die Kasse, а не біля колонки.'
+
+  - de: Benzin
+    ipa: "bɛnˈtsiːn"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: the fuel a petrol engine burns, sold by the litre at the pump
+    ru: топливо, на котором работает бензиновый двигатель, продаваемое литрами у колонки
+    uk: пальне, на якому працює бензиновий двигун, продаване літрами біля колонки
+    example_de: Das Benzin ist in diesem Monat wieder teurer geworden.
+    example_en: Petrol has gone up in price again this month.
+    example_ru: В этом месяце бензин снова подорожал.
+    example_uk: Цього місяця бензин знову подорожчав.
+    note:
+      en: 'Neuter, no plural, stress on the last syllable. A false friend for anyone who knows English: it is petrol, not benzene, and the chemical is das Benzol. German pumps label the grades Super and Super E10; der Diesel is a separate fuel with a separate nozzle, and putting one in the other is the mistake every hire-car counter warns about. The gauge is die Tankanzeige.'
+      ru: 'Средний род, множественного нет, ударение на последнем слоге. Для знающих английский это ложный друг: речь о бензине, а не о бензоле, который по-немецки das Benzol. Немецкие колонки помечены Super и Super E10; der Diesel — отдельное топливо с отдельным пистолетом, и залить одно вместо другого — ошибка, о которой предупреждает любая прокатная стойка. Указатель уровня — die Tankanzeige.'
+      uk: 'Середній рід, множини немає, наголос на останньому складі. Для тих, хто знає англійську, це фальшивий друг: ідеться про бензин, а не про бензол, який німецькою das Benzol. Німецькі колонки позначено Super і Super E10; der Diesel — окреме пальне з окремим пістолетом, і залити одне замість іншого — помилка, про яку попереджає будь-яка прокатна стійка. Покажчик рівня — die Tankanzeige.'
+
+  - de: Kennzeichen
+    ipa: "ˈkɛnˌtsaɪ̯çn̩"
+    pos: noun
+    gender: n
+    plural: "die Kennzeichen"
+    # Recognition only: two unrelated senses one prompt cannot name — a number plate
+    # and a distinguishing feature — and the plate itself is form vocabulary.
+    cards: recognition
+    en: the plate of letters and numbers a car is registered under; also any feature that identifies something
+    ru: табличка из букв и цифр, под которой зарегистрирована машина; а также любой отличительный признак
+    uk: табличка з літер і цифр, під якою зареєстровано машину; а також будь-яка відмітна ознака
+    example_de: Können Sie sich an das Kennzeichen des Wagens erinnern?
+    example_en: Can you remember the car's registration number?
+    example_ru: Вы можете вспомнить номер машины?
+    example_uk: Чи можете ви пригадати номер машини?
+    note:
+      en: 'A German plate is readable: the first letters are the district — M for München, B for Berlin, HH for Hamburg — so the word doubles as a hint about where a car is from. The everyday synonym is das Nummernschild, and the full official term is das Kfz-Kennzeichen. In the second sense it is a mark that tells things apart: ein Kennzeichen guter Arbeit. The verb is kennzeichnen, to mark.'
+      ru: 'Немецкий номер читается: первые буквы — округ, M для Мюнхена, B для Берлина, HH для Гамбурга, — так что слово заодно подсказывает, откуда машина. Обиходный синоним — das Nummernschild, а полный официальный термин — das Kfz-Kennzeichen. Во втором значении это признак, по которому вещи различают: ein Kennzeichen guter Arbeit. Глагол — kennzeichnen, «помечать».'
+      uk: 'Німецький номер читається: перші літери — округ, M для Мюнхена, B для Берліна, HH для Гамбурга, — тож слово заразом підказує, звідки машина. Побутовий синонім — das Nummernschild, а повний офіційний термін — das Kfz-Kennzeichen. У другому значенні це ознака, за якою речі розрізняють: ein Kennzeichen guter Arbeit. Дієслово — kennzeichnen, «позначати».'
+
+  - de: Strafzettel
+    ipa: "ˈʃtʁaːfˌtsɛtl̩"
+    pos: noun
+    gender: m
+    plural: "die Strafzettel"
+    en: the slip of paper a driver finds under the wiper after parking where they should not
+    ru: бумажка, которую водитель находит под дворником, припарковавшись там, где нельзя
+    uk: папірець, який водій знаходить під двірником, припаркувавшись там, де не можна
+    example_de: Ich habe schon wieder einen Strafzettel bekommen.
+    example_en: I have got another parking ticket.
+    example_ru: Я снова получил штрафную квитанцию.
+    example_uk: Я знову отримав штрафну квитанцію.
+    note:
+      en: 'Colloquial and vivid — literally a punishment slip — where the official letter that follows says das Verwarnungsgeld for a small sum and der Bußgeldbescheid for a larger one. The verb is bekommen or kriegen, never haben. Singular and plural are spelled alike. The wardens who issue them are die Politesse or, officially, der Ordnungsdienst.'
+      ru: 'Разговорное и наглядное — буквально «штрафной листок», — тогда как приходящее следом официальное письмо назовёт это das Verwarnungsgeld при малой сумме и der Bußgeldbescheid при большей. Глагол — bekommen или kriegen, но не haben. Единственное и множественное пишутся одинаково. Тех, кто их выписывает, зовут die Politesse, а официально — der Ordnungsdienst.'
+      uk: 'Розмовне й наочне — буквально «штрафний папірець», — тоді як офіційний лист, що приходить слідом, назве це das Verwarnungsgeld за малої суми і der Bußgeldbescheid за більшої. Дієслово — bekommen або kriegen, але не haben. Однина й множина пишуться однаково. Тих, хто їх виписує, звуть die Politesse, а офіційно — der Ordnungsdienst.'
+
+  - de: Transport
+    ipa: "tʁansˈpɔʁt"
+    pos: noun
+    gender: m
+    plural: "die Transporte"
+    # Recognition only: the deck sells its typed card in this pair to the verb below,
+    # and the noun is freight-and-logistics register a learner reads rather than says.
+    cards: recognition
+    en: the moving of goods over a distance, as a business or a bill of costs names it
+    ru: перевозка грузов на расстояние — так, как это называет фирма или счёт расходов
+    uk: перевезення вантажів на відстань — так, як це називає фірма чи рахунок витрат
+    example_de: Der Transport der Möbel kostet zweihundert Euro extra.
+    example_en: Transporting the furniture costs two hundred euros extra.
+    example_ru: Перевозка мебели стоит двести евро сверху.
+    example_uk: Перевезення меблів коштує двісті євро згори.
+    note:
+      en: 'Stress on the last syllable, and the plural counts individual runs: drei Transporte pro Woche. It is the word of a business and an invoice, while what a person moves about in is A2 das Verkehrsmittel and how they get somewhere is mit dem Auto or zu Fuß. Compounds fill a logistics website: das Transportunternehmen, die Transportkosten, der Transporter, which is a small van.'
+      ru: 'Ударение на последнем слоге, а множественное считает отдельные рейсы: drei Transporte pro Woche. Это слово фирмы и счёта, тогда как то, на чём человек передвигается, — das Verkehrsmittel уровня A2, а как он добирается — mit dem Auto или zu Fuß. Составные слова наполняют логистический сайт: das Transportunternehmen, die Transportkosten, der Transporter — небольшой фургон.'
+      uk: 'Наголос на останньому складі, а множина рахує окремі рейси: drei Transporte pro Woche. Це слово фірми й рахунку, тоді як те, чим людина пересувається, — das Verkehrsmittel рівня A2, а як вона дістається — mit dem Auto або zu Fuß. Складні слова наповнюють логістичний сайт: das Transportunternehmen, die Transportkosten, der Transporter — невеликий фургон.'
+
+  - de: transportieren
+    ipa: "tʁanspɔʁˈtiːʁən"
+    pos: verb
+    praesens_3sg: transportiert
+    partizip2: transportiert
+    aux: haben
+    valence: "+ Akk"
+    en: to carry goods or people from one place to another, usually by vehicle
+    ru: перевозить грузы или людей из одного места в другое, обычно транспортом
+    uk: перевозити вантажі або людей з одного місця в інше, зазвичай транспортом
+    example_de: Mit diesem Wagen können wir alles auf einmal transportieren.
+    example_en: We can carry everything in one go with this van.
+    example_ru: На этой машине мы можем перевезти всё за один раз.
+    example_uk: Цією машиною ми можемо перевезти все за один раз.
+    note:
+      en: 'A verb in -ieren, so the Partizip II has no ge-: hat transportiert. It needs an accusative object and is neutral about the means — a lorry, a lift, a pipe and a person''s two arms all do it. A2 bringen is what you do to one thing for one person; this is the word for a load. Figuratively an idea can be carried too: eine Botschaft transportieren.'
+      ru: 'Глагол на -ieren, поэтому в Partizip II нет ge-: hat transportiert. Ему нужно дополнение в Akkusativ, а к средству он безразличен: грузовик, лифт, труба и собственные руки — всё годится. bringen уровня A2 — принести одну вещь одному человеку, а это слово о грузе. В переносном смысле переносят и мысль: eine Botschaft transportieren.'
+      uk: 'Дієслово на -ieren, тому в Partizip II немає ge-: hat transportiert. Йому потрібен додаток у Akkusativ, а до засобу воно байдуже: вантажівка, ліфт, труба і власні руки — усе годиться. bringen рівня A2 — принести одну річ одній людині, а це слово про вантаж. У переносному сенсі переносять і думку: eine Botschaft transportieren.'
