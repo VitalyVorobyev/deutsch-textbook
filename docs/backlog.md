@@ -245,15 +245,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Product surfaces
 
-- **P24-1 · The first-run gate never mentions accounts, and pending has no learner-facing state** —
-  `src/components/FirstRunGate.tsx` names no account concept at all, while both OAuth providers are
-  implemented (`worker/auth/providers.ts:17`, `:89`, `:136`) and offered only on `/konto`. Add an
-  **optional** sign-in beside the local path, under the constraints in
-  [ADR 0004](adrs/0004-first-run-accounts-and-automatic-sync.md) — the local route stays one click
-  with no warning, no profile before discovery has run, and nothing gated while an account is
-  pending (reuse the copy at `src/components/account/AccountPanel.tsx:33`). First step: decide
-  whether the Worker needs `returnTo` handling for a sign-in that starts outside `/konto`, the only
-  server-side question in the entry.
 - **P24-5 · The one-pass derived cross-link graph, and a structured Referenz IA** — **subsumes
   P21-3**: no link from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
@@ -334,6 +325,12 @@ These require a measured learning or usability need. They do not block the curri
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
 [the 2026-07-26 archive](archive/2026-07-backlog-full.md).
 
+- **P24-1 (2026-08-05):** the first-run gate offers optional sign-in below the first-class local
+  path — providers from the session, absent when the deployment has none and in the desktop app;
+  OAuth display name prefills the editable name field and nothing more; pending stated with the
+  AccountPanel wording. The entry's one server-side question answered: **no Worker change** —
+  `safeReturnTo` already accepts any same-origin path, so the gate signs in with the current page
+  as `returnTo` and lands back in the gate.
 - **P24-2 (2026-08-05):** sync state visible in the profile menu — pending/blocked from the session
   the menu already fetches on open, bound/never/synced-N-ago from the persisted sync state, no
   network request added. No persisted error variant on purpose: outcomes are ephemeral, and a stale
