@@ -254,12 +254,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   pending (reuse the copy at `src/components/account/AccountPanel.tsx:33`). First step: decide
   whether the Worker needs `returnTo` handling for a sign-in that starts outside `/konto`, the only
   server-side question in the entry.
-- **P24-2 · Sync state is still invisible outside the Daten tab** — the force button is demoted
-  (P24-3 moved it to a text link beside *Zuletzt synchronisiert* in the account card), but the
-  learner still sees no sync state without opening Fortschritt → Daten — including a silent outage.
-  Remaining half: last-sync state in the profile menu (`src/components/ProfileSwitcher.tsx`), read
-  from `readSyncState` (`src/lib/sync-remote.ts`), with wording for never synced / synced N ago /
-  pending / error. First step: pick the wording per state.
 - **P24-5 · The one-pass derived cross-link graph, and a structured Referenz IA** — **subsumes
   P21-3**: no link from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
@@ -340,6 +334,10 @@ These require a measured learning or usability need. They do not block the curri
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
 [the 2026-07-26 archive](archive/2026-07-backlog-full.md).
 
+- **P24-2 (2026-08-05):** sync state visible in the profile menu — pending/blocked from the session
+  the menu already fetches on open, bound/never/synced-N-ago from the persisted sync state, no
+  network request added. No persisted error variant on purpose: outcomes are ephemeral, and a stale
+  "synced N ago" is the honest outage signal ADR 0004 wants. The force button was demoted in P24-3.
 - **P24-3 (2026-08-05):** the merged Fortschritt/Konto surface — Konto merged into the Daten tab
   (no fourth tab, per [ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md) as settled),
   `/konto` now a query-preserving redirect, one snapshot-load path whose cloud push follows account
