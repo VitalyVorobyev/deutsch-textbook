@@ -22,6 +22,11 @@ The course keeps five boundaries:
 
 **Closing B1 comes first, and nothing in the tracks below starts before it does.**
 
+*Amended 2026-08-05 (owner decision):* the direction tracks open now, with the B1 Wortliste tail
+(lexis waves 2–4) still owed — the remaining waves interleave as content PRs between the track PRs
+rather than blocking them. Track order: accounts/sync surface first, then mobile, then the
+extensive-reading corpus, then cross-links/Referenz.
+
 1. **Finish the B1 units and wave-1 lexis, in two substantial PRs.** The four remaining units are
    B1.11 `digitales-leben`, B1.12 `kultur-freizeit`, B1.13 `geld-vertraege` (genre units, no new
    grammar) and B1.14 `informationen-vermitteln`, which closes the level's grammar — the identities

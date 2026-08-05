@@ -254,23 +254,12 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   pending (reuse the copy at `src/components/account/AccountPanel.tsx:33`). First step: decide
   whether the Worker needs `returnTo` handling for a sign-in that starts outside `/konto`, the only
   server-side question in the entry.
-- **P24-2 · Sync is automatic and invisible; the only affordance is a force button** — the remote
-  leg runs on a 20 s debounce with a 60 s floor (`src/lib/autosync.ts:32`, `:34`), fires from all
-  ten `src/lib/store.ts` write paths, flushes on `pagehide` (`:61`) and pulls once per page load
-  (`src/components/ProfileSwitcher.tsx:47`), and the learner can observe none of it — including a
-  silent outage. Put last-sync state in the profile menu (`readSyncState` is already consumed by
-  `src/components/progress/ProgressPanel.tsx:18`) and demote *Jetzt synchronisieren*
-  (`src/lib/strings.ts:264`, wired at `src/components/account/AccountPanel.tsx:371`) to an escape
-  hatch. First step: pick the surface and the wording for never synced / synced N ago / pending.
-- **P24-3 · Design and implement the merged Fortschritt/Konto surface** — per
-  [ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md): `/progress` absorbs account and
-  sync, `/konto` becomes a redirect (it is the OAuth callback landing and the pairing-code entry, so
-  the URL must keep working), the nav keeps only Fortschritt. **The convergence is the load-bearing
-  half**: two snapshot-upload paths exist today (`src/components/progress/ProgressPanel.tsx:3` and
-  `src/components/account/AccountPanel.tsx:197`) with different copy and different post-conditions,
-  so whether a merged snapshot reaches the cloud depends on which page the learner was on. First
-  step: decide tab-vs-merged-Daten and write the state copy; keep `/progress` from gaining a fifth
-  tab of inlined data (P23-1).
+- **P24-2 · Sync state is still invisible outside the Daten tab** — the force button is demoted
+  (P24-3 moved it to a text link beside *Zuletzt synchronisiert* in the account card), but the
+  learner still sees no sync state without opening Fortschritt → Daten — including a silent outage.
+  Remaining half: last-sync state in the profile menu (`src/components/ProfileSwitcher.tsx`), read
+  from `readSyncState` (`src/lib/sync-remote.ts`), with wording for never synced / synced N ago /
+  pending / error. First step: pick the wording per state.
 - **P24-5 · The one-pass derived cross-link graph, and a structured Referenz IA** — **subsumes
   P21-3**: no link from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
@@ -350,6 +339,13 @@ These require a measured learning or usability need. They do not block the curri
 
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
 [the 2026-07-26 archive](archive/2026-07-backlog-full.md).
+
+- **P24-3 (2026-08-05):** the merged Fortschritt/Konto surface — Konto merged into the Daten tab
+  (no fourth tab, per [ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md) as settled),
+  `/konto` now a query-preserving redirect, one snapshot-load path whose cloud push follows account
+  state, and Übersicht reordered summary-first: activity card (stats + heatmap) on top, topic/POS
+  vocab detail and the session table behind disclosures, the developer intro paragraph cut to one
+  learner-facing line.
 
 - **P22-1 (2026-08-02):** the reviewed unit listening corpus, **published** — 41 artifacts across
   all live units, every one human-approved and hash-bound to the bytes that shipped, with 17

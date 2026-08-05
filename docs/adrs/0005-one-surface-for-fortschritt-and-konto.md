@@ -44,6 +44,10 @@ approval queue, the cloud copy and its deletion — moves onto the Fortschritt s
 beside the existing three or merged into Daten. Fortschritt becomes the single answer to "what does
 this app know about me, and where does it live".
 
+*Settled 2026-08-05 (P24-3):* merged into **Daten**, no fourth tab. Daten reads top-down as "your
+data and where it lives" — a *Dieses Gerät* section (export, the one snapshot-load control, the
+desktop sync folder) followed by the account surface composed as-is.
+
 ### `/konto` becomes a redirect
 
 The URL keeps working. It has been given out, it is the landing target of every OAuth callback, and
