@@ -380,7 +380,7 @@ export default function FlashcardSession({
           {pick(lang, UI.remaining)}: {queue.length}
         </p>
       </div>
-      <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
+      <div className="rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
         <p className="text-center text-xs uppercase tracking-wide text-stone-400">
           {listening
             ? t('flashcards.dirListen', uiLang)
@@ -414,7 +414,7 @@ export default function FlashcardSession({
         ) : (
           <p
             lang={card.dir === 'de-x' && !listening ? 'de' : undefined}
-            className="mt-4 text-center text-2xl font-bold sm:text-3xl"
+            className="mt-3 text-center text-xl font-bold sm:mt-4 sm:text-3xl"
           >
             {front}
             {card.dir === 'de-x' && !listening && (
@@ -425,7 +425,7 @@ export default function FlashcardSession({
 
         {typing ? (
           verdict === null ? (
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <div className="flex gap-2">
                 <input
                   ref={inputRef}
@@ -460,7 +460,7 @@ export default function FlashcardSession({
                   é were added, and 8×w-10 + 7×gap-2 is 376px — wider than the
                   card at a 320–375px viewport. Without wrapping the last keys
                   clip off, which is the very defect the extra keys fixed. */}
-              <div className="mt-2 flex flex-wrap justify-center gap-2">
+              <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:gap-2">
                 {GERMAN_INPUT_KEYS.map((ch) => (
                   <button
                     key={ch}
