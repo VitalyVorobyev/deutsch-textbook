@@ -283,18 +283,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   Referenz back into the topics — which exists nowhere else and is the cheaper half. Same pass
   regroups `src/pages/referenz/index.astro` (a flat grid of eight equal cards) by function. Where an
   editorial relation has no data behind it, add the datum, not a link.
-- **P24-7 · The seven-link nav horizontally scrolls on every phone** — `src/layouts/Base.astro:103`
-  is one `overflow-x-auto whitespace-nowrap` row that only becomes `sm:overflow-visible
-  sm:flex-wrap` at 640 px, over the seven links at `:23`–`:31`, so below 640 px the primary
-  navigation is a scroller with no affordance and the last links are off-screen. The **pattern**
-  goes to a design session; the constraint is no horizontal scroll under 640 px and no nav slot
-  added ([ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md) keeps the count at seven).
-  Second half of the entry: a full-surface mobile audit — tap targets, table overflow containers,
-  the exercise widgets, the session flow, PWA behaviour — walked once on a real phone. Named
-  starting points from the owner's iPhone screenshots (2026-08-04): on `/ueben/wiederholen` in
-  Tippen mode the production card spends most of the viewport on padding — the eight-key insert
-  bar wraps into two centred rows below a narrow input, and the whole card face fits in half the
-  screen it occupies.
 - **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
   `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
   137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and
@@ -337,6 +325,12 @@ These require a measured learning or usability need. They do not block the curri
 Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
 [the 2026-07-26 archive](archive/2026-07-backlog-full.md).
 
+- **P24-7 (2026-08-06):** below 640 px the seven-link nav is a `<details>` disclosure — the trigger
+  shows the active tab, the panel holds all seven links at equal weight (44 px targets, outside-tap
+  and Escape dismiss, works without JS), ≥640 px unchanged; plus the Tippen-card spacing tightened
+  (~35 px reclaimed) so prompt-through-insert-bar fits with the iOS keyboard up (real-device
+  confirmation rides on the owner's next walk, same caveat as P24-10). The audit half of the entry
+  shipped 2026-08-05 as [ux-audit-2026-08.md](quality/ux-audit-2026-08.md).
 - **P24-6 · P24-10 (2026-08-05):** the mobile quick wins — `autoCorrect="off"` on all five exercise
   inputs (plus `lang`/`autoCapitalize` on FormFill), `Write`'s textarea suppresses autocorrect while
   **spellcheck stays on deliberately** (advisory-only assist boundary; flagged in the code); and the
