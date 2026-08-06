@@ -368,16 +368,12 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
 }
 
 // Every headword lives in exactly one deck: a duplicate means the learner
-// grinds two SRS histories for one word and coverage counts it twice. The
-// allowlist freezes the five pairs that predate the rule — card identity is
-// <file-id>::<de>::<direction>, so consolidating them now would wipe history.
-const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
-  wohnen: 'erste-schritte+kernwortschatz-a2',
-  kommen: 'erste-schritte+perfekt-verben',
-  sprechen: 'erste-schritte+perfekt-verben',
-  Arzt: 'menschen-familie+termine-zeit',
-  Ärztin: 'menschen-familie+termine-zeit',
-};
+// grinds two SRS histories for one word and coverage counts it twice. Empty
+// since 2026-08-06: the five legacy pairs that predated the rule were all
+// consolidated by the A1 boundary migration (#128), so the corpus now has no
+// exceptions — the record stays as the one place a future deliberate pair
+// would have to be declared and argued for.
+const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
 {
   const decksOf = new Map<string, string[]>();
   for (const [id, { data }] of vocabFiles) {
