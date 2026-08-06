@@ -971,7 +971,28 @@ describe('cards: recognition | both', () => {
     // cost of adjacency alone; `Mitglied` is the counter-case the deck teaches (no
     // -in form exists); `Tote` ships as an adjectival noun like `Kranke`; `Abgase`
     // is `Zinsen` again, plural-only as `pos: phrase`.
-    expect(cards).toBe(entries * 2 - 1053);
+    // Wortliste completion wave 4a, eight recognition-only decks (2026-08-06), adds two
+    // hundred and forty-two: `sport-freizeit-b1` (42 of 42) is the match commentary and
+    // the club noticeboard, `tiere-wetter-b1` (41 of 41) the zoo sign and the forecast,
+    // `kultur-literatur-presse-b1` (21 of 21) the arts page and the theatre cloakroom,
+    // `reisen-laender-b1` (35 of 35) the departure board plus three country blocks,
+    // `natur-geografie-b1` (29 of 29) the map and the hiking guide,
+    // `material-stoffe-formen-b1` (29 of 29) the product description and the crossword's
+    // two directions, `koerperpflege-lebensstil-b1` (23 of 23) the bathroom shelf and
+    // the health leaflet, and `gastronomie-feste-b1` (22 of 22) the menu and the
+    // innkeeper's sign. All eight are read, never produced, and each note names the
+    // A1/A2 word the learner's own sentence uses instead. Fourteen Movierung pairs sit
+    // adjacent at the cost of adjacency alone (six in sport, two smokers, `Wirtin`,
+    // `Griechin`, `Türkin`, `Ukrainerin`, `Schriftstellerin`, `Heldin`); `Gegner` and
+    // `König` ship masculine-alone because the Wortliste lists only that form, and
+    // `Leserin` and `Passagierin` ship feminine-alone because `meinung-medien` and
+    // `reisen-probleme` already own their masculines in other files — the `Absenderin`
+    // ruling from 3a. Eight weak masculines run on the `Zeuge` model (`Hase`, `Affe`,
+    // `Bär`, `Löwe`, `Elefant`, `Held`, `Grieche`, `Türke`). Three multiword rows ship
+    // as `pos: phrase` on the `in Rente gehen/sein` precedent — `stehen bleiben`,
+    // `im Freien`, `Tee ziehen lassen` — `Griechenland` as an article-free proper noun
+    // on the `Deutschland` precedent, and `Prost` as `interj` on `okay`.
+    expect(cards).toBe(entries * 2 - 1295);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

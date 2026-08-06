@@ -1,0 +1,774 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains two neighbouring
+# fields of data/goethe-b1-wortliste.txt at once: the animals of its own `Tiere`
+# section, from the farmyard to the enclosure at the zoo and down to the insect that
+# stings, and the weather words the alphabetical list leaves scattered — the storm and
+# what it does, and the four nouns that name heat, warmth, cold and damp.
+# A2's `natur-tiere-a2` owns the animals a beginner meets first (Tier, Hund, Katze,
+# Pferd, Vogel, Zoo, Pflanze) and the weather adjectives around them (nass, trocken,
+# neblig, bewölkt, sonnig, windig) plus Gewitter, A1's `wetter-natur` owns the weather
+# itself (Wetter, Sonne, Regen, Schnee, Wind, Wolke, Grad, Klima, Luft, warm, kalt,
+# heiß, kühl, regnen, schneien), A1's `essen-trinken` owns Fisch, Milch and essen,
+# A1's `koerper-gesundheit` owns Fieber, B1's `meinung-medien` owns Wetterbericht and
+# B1's `haushalt-notfall-b1` owns Gefahr. This deck is what those six leave unnamed:
+# the animal a text names but a beginner never had to, and the word for what the sky
+# does rather than for what it is.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read, never written: the learner's own sentence about a thunderstorm or about the
+# cat comes out of A1 and A2 words, and everything here is what the forecast, the
+# label at the enclosure and the reading text say back at him.
+id: tiere-wetter-b1
+title_de: "Tiere & Wetter"
+title_en: "Animals and weather"
+title_ru: "Животные и погода"
+title_uk: "Тварини і погода"
+level: B1
+entries:
+  # --- Im Haus, auf dem Hof, auf der Weide ---
+  - de: Haustier
+    ipa: "ˈhaʊ̯sˌtiːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Haustiere"
+    cards: recognition
+    en: an animal kept in a home for company rather than for what it produces
+    ru: животное, которое держат дома ради общества, а не ради того, что оно даёт
+    uk: тварина, яку тримають удома заради товариства, а не заради того, що вона дає
+    example_de: In unserer Wohnung sind Haustiere nicht erlaubt.
+    example_en: Pets are not allowed in our flat.
+    example_ru: В нашей квартире держать животных нельзя.
+    example_uk: У нашій квартирі тримати тварин не можна.
+    note:
+      en: 'A1 das Haus in the deck `wohnen` plus A2 das Tier in the deck `natur-tiere-a2`, so it is neuter with a regular plural; primary stress on Haus-, secondary on -tier. Most of the time it means the pet — A2 der Hund and A2 die Katze in `natur-tiere-a2` are the two the word covers first. A zoologist uses it more widely for any domesticated animal, the cow and the sheep included, but a tenancy agreement asking about die Haustierhaltung means the dog.'
+      ru: 'das Haus уровня A1 из колоды `wohnen` плюс das Tier уровня A2 из колоды `natur-tiere-a2`, отсюда средний род и обычное множественное; главное ударение на Haus-, побочное на -tier. Чаще всего слово значит домашнего любимца: der Hund и die Katze уровня A2 из `natur-tiere-a2` — первое, что оно покрывает. Зоолог берёт его шире, включая корову и овцу как одомашненных, но договор найма, спрашивающий про die Haustierhaltung, имеет в виду собаку.'
+      uk: 'das Haus рівня A1 з колоди `wohnen` плюс das Tier рівня A2 з колоди `natur-tiere-a2`, звідси середній рід і звичайна множина; головний наголос на Haus-, побічний на -tier. Найчастіше слово означає домашнього улюбленця: der Hund і die Katze рівня A2 з `natur-tiere-a2` — перше, що воно покриває. Зоолог бере його ширше, включно з коровою та вівцею як одомашненими, але договір найму, що питає про die Haustierhaltung, має на увазі собаку.'
+
+  - de: Kuh
+    ipa: "ˈkuː"
+    pos: noun
+    gender: f
+    plural: "die Kühe"
+    cards: recognition
+    en: the large farm animal that gives milk
+    ru: крупное хозяйственное животное, дающее молоко
+    uk: велика господарська тварина, що дає молоко
+    example_de: Auf der Wiese stehen zwanzig Kühe.
+    example_en: There are twenty cows standing in the meadow.
+    example_ru: На лугу стоят двадцать коров.
+    example_uk: На луці стоять двадцять корів.
+    note:
+      en: 'Feminine, with an umlaut in the plural: die Kuh, die Kühe. A1 die Milch in the deck `essen-trinken` is what she gives. The species word is das Rind, which is why beef is das Rindfleisch and never "Kuhfleisch"; the male is der Bulle or der Stier and the young one das Kalb. In speech dumme Kuh is a coarse insult to a woman, so the word is not neutral when it is aimed at a person.'
+      ru: 'Женский род, во множественном умлаут: die Kuh, die Kühe. die Milch уровня A1 из колоды `essen-trinken` — то, что она даёт. Название вида — das Rind, потому говядина — das Rindfleisch, а не «Kuhfleisch»; самец — der Bulle или der Stier, детёныш — das Kalb. В речи dumme Kuh — грубое оскорбление в адрес женщины, так что о человеке слово далеко не нейтрально.'
+      uk: 'Жіночий рід, у множині умлаут: die Kuh, die Kühe. die Milch рівня A1 з колоди `essen-trinken` — те, що вона дає. Назва виду — das Rind, тому яловичина — das Rindfleisch, а не «Kuhfleisch»; самець — der Bulle або der Stier, малятко — das Kalb. У мовленні dumme Kuh — груба образа на адресу жінки, тож про людину слово аж ніяк не нейтральне.'
+
+  - de: Schaf
+    ipa: "ˈʃaːf"
+    pos: noun
+    gender: n
+    plural: "die Schafe"
+    cards: recognition
+    en: the farm animal kept for its wool and for its meat
+    ru: хозяйственное животное, которое держат ради шерсти и мяса
+    uk: господарська тварина, яку тримають заради вовни та м’яса
+    example_de: Die Schafe fressen den ganzen Tag.
+    example_en: The sheep graze all day long.
+    example_ru: Овцы едят весь день.
+    example_uk: Вівці їдять цілий день.
+    note:
+      en: 'Neuter, plural in -e and no umlaut: das Schaf, die Schafe, and German counts them one by one where English uses one form for both. What it gives is die Wolle; the young one is das Lamm, which is also the word on a menu. The idiom das schwarze Schaf names the one member of a family everybody else disapproves of, and calling a person ein Schaf is a mild way of calling them slow.'
+      ru: 'Средний род, множественное на -e без умлаута: das Schaf, die Schafe, — и немецкий, в отличие от английского, различает единственное и множественное. Даёт оно die Wolle; детёныш — das Lamm, и это же слово стоит в меню. Оборот das schwarze Schaf называет того единственного в семье, кем остальные недовольны, а назвать человека ein Schaf — мягкий способ сказать, что он несообразителен.'
+      uk: 'Середній рід, множина на -e без умлаута: das Schaf, die Schafe, — і німецька, на відміну від англійської, розрізняє однину і множину. Дає воно die Wolle; малятко — das Lamm, і це саме слово стоїть у меню. Зворот das schwarze Schaf називає того єдиного в родині, ким інші невдоволені, а назвати людину ein Schaf — м’який спосіб сказати, що вона нетямуща.'
+
+  - de: Hase
+    ipa: "ˈhaːzə"
+    pos: noun
+    gender: m
+    plural: "die Hasen"
+    cards: recognition
+    en: the long-eared field animal that runs fast and does not live in a burrow
+    ru: длинноухий полевой зверь, который быстро бегает и не живёт в норе
+    uk: довговухий польовий звір, що швидко бігає і не живе в норі
+    example_de: Auf dem Feld haben wir einen Hasen gesehen.
+    example_en: We saw a hare out in the field.
+    example_ru: В поле мы увидели зайца.
+    example_uk: У полі ми побачили зайця.
+    note:
+      en: 'A weak masculine, so -n everywhere except the nominative singular: der Hase, den Hasen, dem Hasen, des Hasen, die Hasen — the same declension as B1 der Zeuge in the deck `recht-kriminalitaet-b1` and A1 der Kollege in the deck `termine-a1`, and the trap is the same: the bare form is the one shape you rarely need. Beside it das Kaninchen is the smaller animal that does live in a burrow and is the one usually kept as a pet; German keeps the two apart more strictly than English does. Der Osterhase brings the eggs at Easter.'
+      ru: 'Слабое существительное мужского рода: -n везде, кроме именительного единственного — der Hase, den Hasen, dem Hasen, des Hasen, die Hasen, — то же склонение, что у der Zeuge уровня B1 из колоды `recht-kriminalitaet-b1` и der Kollege уровня A1 из колоды `termine-a1`, и ловушка та же: голая форма нужна реже всех. Рядом das Kaninchen — зверёк помельче, который как раз живёт в норе и которого держат дома; немецкий разводит эти два слова строже, чем русский разводит зайца и кролика в обиходной речи. Der Osterhase приносит на Пасху яйца.'
+      uk: 'Слабкий іменник чоловічого роду: -n усюди, крім називного однини — der Hase, den Hasen, dem Hasen, des Hasen, die Hasen, — те саме відмінювання, що в der Zeuge рівня B1 з колоди `recht-kriminalitaet-b1` і der Kollege рівня A1 з колоди `termine-a1`, і пастка та сама: гола форма потрібна найрідше. Поряд das Kaninchen — звірок дрібніший, який якраз живе в норі і якого тримають удома; німецька розводить ці два слова суворіше, ніж українська розводить зайця і кроля в побутовому мовленні. Der Osterhase приносить на Великдень яйця.'
+
+  - de: Affe
+    ipa: "ˈafə"
+    pos: noun
+    gender: m
+    plural: "die Affen"
+    cards: recognition
+    en: the tree-climbing animal with hands, from the small kinds to the great ones
+    ru: древесный зверь с хватательными лапами — от мелких видов до крупных
+    uk: деревний звір із хапкими лапами — від дрібних видів до великих
+    example_de: Im Tierpark haben die Affen die meisten Zuschauer.
+    example_en: At the wildlife park the monkeys draw the biggest audience.
+    example_ru: В зоопарке у обезьян больше всего зрителей.
+    example_uk: У звіропарку в мавп найбільше глядачів.
+    note:
+      en: 'A weak masculine like der Hase above: den Affen, dem Affen, des Affen, die Affen. German makes no everyday distinction between a monkey and an ape — both are der Affe, and the great ones are der Menschenaffe where the difference matters. Calling a person ein Affe is an insult, and the compounds keep that edge, so the word is not used lightly about people.'
+      ru: 'Слабое существительное мужского рода, как der Hase выше: den Affen, dem Affen, des Affen, die Affen. В обиходе немецкий не различает мартышку и человекообразную обезьяну — и то и другое der Affe, — а там, где различие важно, говорят der Menschenaffe. Назвать человека ein Affe — оскорбление, и сложные слова этот привкус сохраняют, так что о людях слово употребляют осторожно.'
+      uk: 'Слабкий іменник чоловічого роду, як der Hase вище: den Affen, dem Affen, des Affen, die Affen. У побуті німецька не розрізняє мавпочку і людиноподібну мавпу — і те й те der Affe, — а там, де різниця важлива, кажуть der Menschenaffe. Назвати людину ein Affe — образа, і складні слова цей присмак зберігають, тож про людей слово вживають обережно.'
+
+  - de: Bär
+    ipa: "ˈbɛːɐ̯"
+    pos: noun
+    gender: m
+    plural: "die Bären"
+    cards: recognition
+    en: the big heavy forest animal with thick fur, brown or white
+    ru: крупный тяжёлый лесной зверь с густым мехом — бурый или белый
+    uk: великий важкий лісовий звір із густим хутром — бурий або білий
+    example_de: In diesen Wäldern gibt es keine Bären mehr.
+    example_en: There are no bears left in these forests.
+    example_ru: В этих лесах медведей больше нет.
+    example_uk: У цих лісах ведмедів більше немає.
+    note:
+      en: 'A weak masculine even though it does not end in -e: der Bär, den Bären, dem Bären, des Bären, die Bären. The long ä and the vocalized r give ˈbɛːɐ̯. The polar one is der Eisbär and the toy one der Teddybär. Berlin carries a bear in its coat of arms, and the prizes of its film festival are called der Goldene Bär and der Silberne Bär.'
+      ru: 'Слабое существительное мужского рода, хотя и не оканчивается на -e: der Bär, den Bären, dem Bären, des Bären, die Bären. Долгое ä и вокализованное r дают ˈbɛːɐ̯. Белый — der Eisbär, игрушечный — der Teddybär. У Берлина медведь на гербе, а призы его кинофестиваля называются der Goldene Bär и der Silberne Bär.'
+      uk: 'Слабкий іменник чоловічого роду, хоча й не закінчується на -e: der Bär, den Bären, dem Bären, des Bären, die Bären. Довге ä і вокалізоване r дають ˈbɛːɐ̯. Білий — der Eisbär, іграшковий — der Teddybär. У Берліна ведмідь на гербі, а призи його кінофестивалю звуться der Goldene Bär і der Silberne Bär.'
+
+  - de: Löwe
+    ipa: "ˈløːvə"
+    pos: noun
+    gender: m
+    plural: "die Löwen"
+    cards: recognition
+    en: the big cat with a mane that hunts on open ground
+    ru: крупная кошка с гривой, охотящаяся на открытой местности
+    uk: великий кіт із гривою, що полює на відкритій місцевості
+    example_de: Der Löwe schläft fast den ganzen Tag.
+    example_en: The lion sleeps almost all day.
+    example_ru: Лев спит почти весь день.
+    example_uk: Лев спить майже цілий день.
+    note:
+      en: 'A weak masculine like der Affe and der Bär above: den Löwen, dem Löwen, des Löwen, die Löwen. The ö is long and the w is a v sound: ˈløːvə. The female is die Löwin. It is also a star sign, and German states one without an article — Ich bin Löwe — and a measure of courage: kämpfen wie ein Löwe.'
+      ru: 'Слабое существительное мужского рода, как der Affe и der Bär выше: den Löwen, dem Löwen, des Löwen, die Löwen. Ö долгое, а w звучит как v: ˈløːvə. Самка — die Löwin. Слово называет и знак зодиака, причём немецкий обходится без артикля — Ich bin Löwe, — и меру храбрости: kämpfen wie ein Löwe.'
+      uk: 'Слабкий іменник чоловічого роду, як der Affe і der Bär вище: den Löwen, dem Löwen, des Löwen, die Löwen. Ö довге, а w звучить як v: ˈløːvə. Самиця — die Löwin. Слово називає і знак зодіаку, причому німецька обходиться без артикля — Ich bin Löwe, — і міру хоробрості: kämpfen wie ein Löwe.'
+
+  - de: Elefant
+    ipa: "eleˈfant"
+    pos: noun
+    gender: m
+    plural: "die Elefanten"
+    cards: recognition
+    en: the largest land animal, with a trunk and heavy grey skin
+    ru: самое крупное сухопутное животное — с хоботом и толстой серой кожей
+    uk: найбільша суходільна тварина — із хоботом і товстою сірою шкірою
+    example_de: Der Elefant trinkt jeden Tag sehr viel Wasser.
+    example_en: An elephant drinks a great deal of water every day.
+    example_ru: Слон каждый день выпивает очень много воды.
+    example_uk: Слон щодня випиває дуже багато води.
+    note:
+      en: 'A weak masculine although it does not end in -e: den Elefanten, dem Elefanten, des Elefanten, die Elefanten — the same class as A2 der Polizist in the deck `berufe-a2`, where it is the foreign ending and the final stress that mark the declension rather than the shape of the nominative. The trunk is der Rüssel. The idiom aus einer Mücke einen Elefanten machen means to blow something out of all proportion, and die Mücke is further down in this deck.'
+      ru: 'Слабое существительное мужского рода, хотя и не на -e: den Elefanten, dem Elefanten, des Elefanten, die Elefanten, — тот же класс, что у der Polizist уровня A2 из колоды `berufe-a2`, где склонение помечает не вид именительного, а иноязычное окончание с ударением на конце. Хобот — der Rüssel. Оборот aus einer Mücke einen Elefanten machen значит «раздуть из мухи слона», а die Mücke стоит ниже в этой же колоде.'
+      uk: 'Слабкий іменник чоловічого роду, хоч і не на -e: den Elefanten, dem Elefanten, des Elefanten, die Elefanten, — той самий клас, що в der Polizist рівня A2 з колоди `berufe-a2`, де відмінювання позначає не вигляд називного, а чужомовне закінчення з наголосом на кінці. Хобот — der Rüssel. Зворот aus einer Mücke einen Elefanten machen означає «робити з мухи слона», а die Mücke стоїть нижче в цій самій колоді.'
+
+  - de: Giraffe
+    ipa: "giˈʁafə"
+    pos: noun
+    gender: f
+    plural: "die Giraffen"
+    cards: recognition
+    en: the tall African animal with a very long neck and long legs
+    ru: высокое африканское животное с очень длинной шеей и длинными ногами
+    uk: висока африканська тварина з дуже довгою шиєю та довгими ногами
+    example_de: Vor den Giraffen bleiben die Kinder am längsten stehen.
+    example_en: It is at the giraffes that the children stand longest.
+    example_ru: Дольше всего дети стоят у жирафов.
+    example_uk: Найдовше діти стоять біля жирафів.
+    note:
+      en: 'Feminine, with a regular -n plural, and it follows the rule that a noun ending in an unstressed -e is usually feminine — die Banane, die Tomate, die Giraffe. Stress on the middle syllable, and the g is the ordinary German plosive, giˈʁafə, not the French j-sound the spelling might suggest. It is one of the masculine-looking animals around it that is not: der Affe and der Löwe above are weak masculines, this one simply feminine.'
+      ru: 'Женский род, обычное множественное на -n, и слово подчиняется правилу, по которому существительное на безударное -e обычно женского рода: die Banane, die Tomate, die Giraffe. Ударение на среднем слоге, а g — обычный немецкий смычный, giˈʁafə, а не французское «ж», как можно подумать по написанию. Среди соседей это исключение: der Affe и der Löwe выше — слабые существительные мужского рода, а здесь просто женский.'
+      uk: 'Жіночий рід, звичайна множина на -n, і слово підлягає правилу, за яким іменник на ненаголошене -e зазвичай жіночого роду: die Banane, die Tomate, die Giraffe. Наголос на середньому складі, а g — звичайний німецький зімкнений, giˈʁafə, а не французьке «ж», як можна подумати з написання. Серед сусідів це виняток: der Affe і der Löwe вище — слабкі іменники чоловічого роду, а тут просто жіночий.'
+
+  - de: Krokodil
+    ipa: "kʁokoˈdiːl"
+    pos: noun
+    gender: n
+    plural: "die Krokodile"
+    cards: recognition
+    en: the long armoured reptile that lies in rivers with only its eyes above the water
+    ru: длинная рептилия в роговом панцире, лежащая в реке так, что видны одни глаза
+    uk: довга рептилія в роговому панцирі, що лежить у річці так, що видно самі очі
+    example_de: In diesem Fluss leben Krokodile, deshalb darf man dort nicht schwimmen.
+    example_en: There are crocodiles in this river, so swimming there is not allowed.
+    example_ru: В этой реке водятся крокодилы, поэтому там нельзя купаться.
+    example_uk: У цій річці водяться крокодили, тому там не можна купатися.
+    note:
+      en: 'Neuter, with a regular -e plural and the stress on the last syllable: kʁokoˈdiːl. It is a Greek word that reached German through Latin, like most of the animal names a zoo sign carries. The set phrase Krokodilstränen weinen means to shed tears nobody believes, and it is one of the few idioms a learner can carry over from another language unchanged.'
+      ru: 'Средний род, обычное множественное на -e, ударение на последнем слоге: kʁokoˈdiːl. Слово греческое, пришедшее в немецкий через латынь, как и большинство названий на табличках зоопарка. Устойчивый оборот Krokodilstränen weinen — это ровно русские «крокодиловы слёзы», один из немногих случаев, когда образ переносится без потерь.'
+      uk: 'Середній рід, звичайна множина на -e, наголос на останньому складі: kʁokoˈdiːl. Слово грецьке, що прийшло в німецьку через латину, як і більшість назв на табличках зоопарку. Усталений зворот Krokodilstränen weinen — це рівно українські «крокодилячі сльози», один із небагатьох випадків, коли образ переноситься без утрат.'
+
+  - de: Pinguin
+    ipa: "ˈpɪŋguiːn"
+    pos: noun
+    gender: m
+    plural: "die Pinguine"
+    cards: recognition
+    en: the black-and-white sea bird of the far south that swims instead of flying
+    ru: чёрно-белая морская птица дальнего юга, которая плавает, а не летает
+    uk: чорно-біла морська птаха далекого півдня, що плаває, а не літає
+    example_de: Die Pinguine im Zoo bekommen jeden Tag frischen Fisch.
+    example_en: The penguins at the zoo get fresh fish every day.
+    example_ru: Пингвины в зоопарке каждый день получают свежую рыбу.
+    example_uk: Пінгвіни в зоопарку щодня отримують свіжу рибу.
+    note:
+      en: 'Masculine, with a regular -e plural, and the stress falls on the first syllable: ˈpɪŋguiːn, where the gu is spoken g plus u. It is a bird — A2 der Vogel in the deck `natur-tiere-a2` — but one that cannot fly, which is why a German text so often introduces it as ein Vogel, der nicht fliegen kann. What it eats is A1 der Fisch in the deck `essen-trinken`, and A2 der Zoo in the deck `natur-tiere-a2` is where a learner will meet it.'
+      ru: 'Мужской род, обычное множественное на -e, ударение на первом слоге: ˈpɪŋguiːn, где gu звучит как g плюс u. Это птица — der Vogel уровня A2 из колоды `natur-tiere-a2`, — но нелетающая, потому немецкий текст так часто и представляет её как ein Vogel, der nicht fliegen kann. Ест она der Fisch уровня A1 из колоды `essen-trinken`, а der Zoo уровня A2 из колоды `natur-tiere-a2` — место, где учащийся её и увидит.'
+      uk: 'Чоловічий рід, звичайна множина на -e, наголос на першому складі: ˈpɪŋguiːn, де gu звучить як g плюс u. Це птаха — der Vogel рівня A2 з колоди `natur-tiere-a2`, — але нелітаюча, тому німецький текст так часто і подає її як ein Vogel, der nicht fliegen kann. Їсть вона der Fisch рівня A1 з колоди `essen-trinken`, а der Zoo рівня A2 з колоди `natur-tiere-a2` — місце, де учень її і побачить.'
+
+  - de: Ente
+    ipa: "ˈɛntə"
+    pos: noun
+    gender: f
+    plural: "die Enten"
+    cards: recognition
+    en: the broad-billed water bird that every pond and park lake is full of
+    ru: широконосая водоплавающая птица, которой полны пруды и парковые озёра
+    uk: широкодзьоба водоплавна птаха, якими повні ставки та паркові озера
+    example_de: Am See füttern viele Kinder die Enten.
+    example_en: Many children feed the ducks at the lake.
+    example_ru: На озере многие дети кормят уток.
+    example_uk: На озері багато дітей годують качок.
+    note:
+      en: 'Feminine, with a regular -n plural. On a menu it is the meat as well as the bird, and the young one is das Entchen. The second meaning is the one a B1 reader is likeliest to hit in print: eine Ente is a report that turns out to be invented, and the fuller form is die Zeitungsente.'
+      ru: 'Женский род, обычное множественное на -n. В меню слово называет и мясо, и птицу, а утёнок — das Entchen. Второе значение читатель уровня B1 скорее всего встретит в печати: eine Ente — это утка в смысле выдуманного сообщения, а полная форма — die Zeitungsente.'
+      uk: 'Жіночий рід, звичайна множина на -n. У меню слово називає і м’ясо, і птаху, а каченя — das Entchen. Друге значення читач рівня B1 радше за все зустріне в друці: eine Ente — це качка у сенсі вигаданого повідомлення, а повна форма — die Zeitungsente.'
+
+  - de: Maus
+    ipa: "ˈmaʊ̯s"
+    pos: noun
+    gender: f
+    plural: "die Mäuse"
+    cards: recognition
+    en: the small grey animal with a long thin tail; also the thing that moves a cursor
+    ru: маленький серый зверёк с длинным тонким хвостом; а также то, чем двигают курсор
+    uk: маленький сірий звірок із довгим тонким хвостом; а також те, чим рухають курсор
+    example_de: Die Katze hat eine Maus gefangen.
+    example_en: The cat has caught a mouse.
+    example_ru: Кошка поймала мышь.
+    example_uk: Кішка спіймала мишу.
+    note:
+      en: 'Feminine, with an umlaut in the plural: die Maus, die Mäuse — and the computer sense takes the same plural, so a shop sells zwei Mäuse for the desk. A1 der Computer in the deck `schule-arbeit` is what it is plugged into, and the chunk is mit der Maus klicken. The trap in the family is die Fledermaus, the bat, which is not a mouse at all.'
+      ru: 'Женский род, во множественном умлаут: die Maus, die Mäuse, — и компьютерное значение берёт то же множественное, так что в магазине продают zwei Mäuse для стола. der Computer уровня A1 из колоды `schule-arbeit` — то, к чему её подключают, а оборот — mit der Maus klicken. Ловушка в семействе — die Fledermaus, летучая мышь, которая мышью вовсе не является.'
+      uk: 'Жіночий рід, у множині умлаут: die Maus, die Mäuse, — і комп’ютерне значення бере ту саму множину, тож у крамниці продають zwei Mäuse для столу. der Computer рівня A1 з колоди `schule-arbeit` — те, до чого її під’єднують, а зворот — mit der Maus klicken. Пастка в родині — die Fledermaus, кажан, який мишею зовсім не є.'
+
+  - de: Schlange
+    ipa: "ˈʃlaŋə"
+    pos: noun
+    gender: f
+    plural: "die Schlangen"
+    cards: recognition
+    en: the long legless animal that moves by winding; also a line of people waiting
+    ru: длинное безногое животное, которое движется, извиваясь; а также очередь из людей
+    uk: довга безнога тварина, що рухається, звиваючись; а також черга з людей
+    example_de: Vor der Kasse stand eine lange Schlange.
+    example_en: There was a long queue at the till.
+    example_ru: У кассы стояла длинная очередь.
+    example_uk: Біля каси стояла довга черга.
+    note:
+      en: 'Feminine, regular -n plural, and the ng is one sound with no g after it: ˈʃlaŋə. The second sense is the one a learner needs every week — Schlange stehen is to queue, and A1 die Kasse in the deck `essen-trinken` is where the queue forms. The poisonous kinds are die Giftschlangen, built on das Gift below, and what a snake does is beißen, not stechen.'
+      ru: 'Женский род, обычное множественное на -n, а ng — один звук, никакого g после него: ˈʃlaŋə. Второе значение нужно учащемуся каждую неделю: Schlange stehen — «стоять в очереди», а die Kasse уровня A1 из колоды `essen-trinken` — то, где эта очередь и собирается. Ядовитые виды — die Giftschlangen, от das Gift ниже, а делает змея beißen, а не stechen.'
+      uk: 'Жіночий рід, звичайна множина на -n, а ng — один звук, жодного g після нього: ˈʃlaŋə. Друге значення потрібне учневі щотижня: Schlange stehen — «стояти в черзі», а die Kasse рівня A1 з колоди `essen-trinken` — те, де ця черга і збирається. Отруйні види — die Giftschlangen, від das Gift нижче, а робить змія beißen, а не stechen.'
+
+  - de: Schildkröte
+    ipa: "ˈʃɪltˌkʁøːtə"
+    pos: noun
+    gender: f
+    plural: "die Schildkröten"
+    cards: recognition
+    en: the slow reptile that carries a hard shell on its back
+    ru: медлительная рептилия, которая носит на спине твёрдый панцирь
+    uk: повільна рептилія, що носить на спині твердий панцир
+    example_de: Die Schildkröte im Tierpark ist über hundert Jahre alt.
+    example_en: The tortoise at the wildlife park is over a hundred years old.
+    example_ru: Черепахе в зоопарке больше ста лет.
+    example_uk: Черепасі у звіропарку понад сто років.
+    note:
+      en: 'A compound of der Schild, the shield, and die Kröte, the toad, so German names the animal after its shell first. It takes the gender of Kröte: die Schildkröte, plural die Schildkröten. Primary stress on Schild-, secondary on -kröte, and the -d of Schild is spoken t. One word covers both the land and the water animal; where the difference matters they are die Landschildkröte and die Wasserschildkröte.'
+      ru: 'Сложное слово из der Schild — «щит» — и die Kröte — «жаба», так что немецкий называет зверя прежде всего по панцирю. Род берётся у Kröte: die Schildkröte, множественное die Schildkröten. Главное ударение на Schild-, побочное на -kröte, а -d в Schild звучит как t. Одно слово покрывает и сухопутную, и водяную; где различие важно, говорят die Landschildkröte и die Wasserschildkröte.'
+      uk: 'Складне слово з der Schild — «щит» — і die Kröte — «жаба», тож німецька називає звіра передусім за панцирем. Рід береться в Kröte: die Schildkröte, множина die Schildkröten. Головний наголос на Schild-, побічний на -kröte, а -d у Schild звучить як t. Одне слово покриває і суходільну, і водяну; де різниця важлива, кажуть die Landschildkröte і die Wasserschildkröte.'
+
+  - de: Tierpark
+    ipa: "ˈtiːɐ̯ˌpaʁk"
+    pos: noun
+    gender: m
+    plural: "die Tierparks"
+    cards: recognition
+    en: a park where animals are kept in large enclosures for visitors to walk round
+    ru: парк, где животных держат в просторных вольерах и по которому гуляют посетители
+    uk: парк, де тварин тримають у просторих вольєрах і яким гуляють відвідувачі
+    example_de: Am Sonntag gehen wir mit den Kindern in den Tierpark.
+    example_en: On Sunday we are taking the children to the wildlife park.
+    example_ru: В воскресенье мы пойдём с детьми в зоопарк.
+    example_uk: У неділю ми підемо з дітьми до звіропарку.
+    note:
+      en: 'A2 das Tier in the deck `natur-tiere-a2` plus A1 der Park in the deck `freizeit-koennen`, so it takes the gender of Park and an -s plural. A2 der Zoo in the same deck as Tier is the other word, and German uses the two almost interchangeably; where a difference is felt, a Tierpark is the roomier and more park-like of them. Primary stress on Tier-, secondary on -park, and the -ier is spoken tiːɐ̯ with a vocalized r.'
+      ru: 'das Tier уровня A2 из колоды `natur-tiere-a2` плюс der Park уровня A1 из колоды `freizeit-koennen`, отсюда род от Park и множественное на -s. der Zoo уровня A2 из той же колоды, что и Tier, — второе слово, и немецкий употребляет их почти как равные; там, где разницу чувствуют, Tierpark просторнее и больше похож на парк. Главное ударение на Tier-, побочное на -park, а -ier звучит как tiːɐ̯ с вокализованным r.'
+      uk: 'das Tier рівня A2 з колоди `natur-tiere-a2` плюс der Park рівня A1 з колоди `freizeit-koennen`, звідси рід від Park і множина на -s. der Zoo рівня A2 з тієї самої колоди, що й Tier, — друге слово, і німецька вживає їх майже як рівні; там, де різницю відчувають, Tierpark просторіший і більше схожий на парк. Головний наголос на Tier-, побічний на -park, а -ier звучить як tiːɐ̯ з вокалізованим r.'
+
+  # --- Insekten, und was sie tun ---
+  - de: Insekt
+    ipa: "ɪnˈzɛkt"
+    pos: noun
+    gender: n
+    plural: "die Insekten"
+    cards: recognition
+    en: any of the small six-legged animals whose body falls into three parts
+    ru: любое из мелких шестиногих животных, чьё тело делится на три части
+    uk: будь-яка з дрібних шестиногих тварин, чиє тіло ділиться на три частини
+    example_de: Im Sommer sind abends viele Insekten am Licht.
+    example_en: In summer a lot of insects gather at the light in the evening.
+    example_ru: Летом по вечерам у лампы собирается много насекомых.
+    example_uk: Улітку ввечері біля лампи збирається багато комах.
+    note:
+      en: 'Neuter, with an -en plural and the stress on the second syllable; the s is voiced, ɪnˈzɛkt. This is the class word, and its three members in this deck are die Biene, die Fliege and die Mücke. A pharmacy sells das Insektenspray for the bites and a window carries das Fliegengitter to keep them out.'
+      ru: 'Средний род, множественное на -en, ударение на втором слоге; s звонкое: ɪnˈzɛkt. Это родовое слово, а три его представителя в этой колоде — die Biene, die Fliege и die Mücke. В аптеке продают das Insektenspray от укусов, а на окно ставят das Fliegengitter, чтобы они не залетали.'
+      uk: 'Середній рід, множина на -en, наголос на другому складі; s дзвінке: ɪnˈzɛkt. Це родове слово, а три його представники в цій колоді — die Biene, die Fliege і die Mücke. В аптеці продають das Insektenspray від укусів, а на вікно ставлять das Fliegengitter, щоб вони не залітали.'
+
+  - de: Biene
+    ipa: "ˈbiːnə"
+    pos: noun
+    gender: f
+    plural: "die Bienen"
+    cards: recognition
+    en: the striped insect that makes honey and stings only in defence
+    ru: полосатое насекомое, которое делает мёд и жалит только защищаясь
+    uk: смугаста комаха, що робить мед і жалить лише боронячись
+    example_de: Die Bienen fliegen von Blume zu Blume.
+    example_en: The bees fly from flower to flower.
+    example_ru: Пчёлы летают с цветка на цветок.
+    example_uk: Бджоли літають із квітки на квітку.
+    note:
+      en: 'Feminine, with a regular -n plural. What it makes is B1 der Honig in the deck `essen-lebensmittel-b1`, the keeper is der Imker, the hive is der Bienenstock and the whole colony das Bienenvolk. A1 die Blume in the deck `wetter-natur` is where it works. What it does is stechen, further down, and unlike die Mücke it does so only when it is threatened.'
+      ru: 'Женский род, обычное множественное на -n. Делает она der Honig уровня B1 из колоды `essen-lebensmittel-b1`, пасечник — der Imker, улей — der Bienenstock, а вся семья — das Bienenvolk. die Blume уровня A1 из колоды `wetter-natur` — то, на чём она работает. Делает она stechen ниже, и в отличие от die Mücke — только когда ей угрожают.'
+      uk: 'Жіночий рід, звичайна множина на -n. Робить вона der Honig рівня B1 з колоди `essen-lebensmittel-b1`, пасічник — der Imker, вулик — der Bienenstock, а вся сім’я — das Bienenvolk. die Blume рівня A1 з колоди `wetter-natur` — те, на чому вона працює. Робить вона stechen нижче, і на відміну від die Mücke — лише коли їй загрожують.'
+
+  - de: Fliege
+    ipa: "ˈfliːgə"
+    pos: noun
+    gender: f
+    plural: "die Fliegen"
+    cards: recognition
+    en: the small dark insect that lands on food and is hard to catch
+    ru: маленькое тёмное насекомое, которое садится на еду и которое трудно поймать
+    uk: маленька темна комаха, що сідає на їжу і яку важко впіймати
+    example_de: Eine Fliege sitzt auf dem Brot.
+    example_en: There is a fly sitting on the bread.
+    example_ru: На хлебе сидит муха.
+    example_uk: На хлібі сидить муха.
+    note:
+      en: 'Feminine, regular -n plural, formed from fliegen; the screen that keeps them out is das Fliegengitter. The second meaning is a bow tie, named for its shape: er trägt eine Fliege zum Anzug. Two idioms use the insect for smallness — zwei Fliegen mit einer Klappe schlagen for solving two problems at one stroke, and keiner Fliege etwas zuleide tun for somebody entirely harmless.'
+      ru: 'Женский род, обычное множественное на -n, образовано от fliegen; сетка от них — das Fliegengitter. Второе значение — галстук-бабочка, названный по форме: er trägt eine Fliege zum Anzug. Два оборота берут насекомое как меру малого: zwei Fliegen mit einer Klappe schlagen — решить два дела разом, и keiner Fliege etwas zuleide tun — о человеке совершенно безобидном.'
+      uk: 'Жіночий рід, звичайна множина на -n, утворене від fliegen; сітка від них — das Fliegengitter. Друге значення — краватка-метелик, названа за формою: er trägt eine Fliege zum Anzug. Два звороти беруть комаху як міру малого: zwei Fliegen mit einer Klappe schlagen — залагодити дві справи заразом, і keiner Fliege etwas zuleide tun — про людину цілком безневинну.'
+
+  - de: Mücke
+    ipa: "ˈmʏkə"
+    pos: noun
+    gender: f
+    plural: "die Mücken"
+    cards: recognition
+    en: the small biting insect of summer evenings that leaves an itching lump
+    ru: мелкое кусачее насекомое летних вечеров, от которого остаётся зудящий волдырь
+    uk: дрібна кусюча комаха літніх вечорів, від якої лишається сверблячий пухир
+    example_de: Am See haben mich die Mücken die ganze Nacht gestochen.
+    example_en: The mosquitoes bit me all night long by the lake.
+    example_ru: На озере комары кусали меня всю ночь.
+    example_uk: На озері комарі кусали мене цілу ніч.
+    note:
+      en: 'Feminine, regular -n plural, with a short ü. German says it stings rather than bites: die Mücke sticht, and the mark it leaves is der Mückenstich — beißen in this deck belongs to dogs and snakes, and an English-speaking learner has to swap the verb over. Austria and southern Germany say die Gelse for the same insect. The idiom aus einer Mücke einen Elefanten machen is in the Elefant note above.'
+      ru: 'Женский род, обычное множественное на -n, ü краткое. Немецкий говорит не «кусает», а «жалит»: die Mücke sticht, а след от неё — der Mückenstich; beißen в этой колоде принадлежит собакам и змеям, и русскоязычному учащемуся приходится менять привычный глагол. В Австрии и на юге Германии то же насекомое зовут die Gelse. Оборот aus einer Mücke einen Elefanten machen стоит в примечании к Elefant выше.'
+      uk: 'Жіночий рід, звичайна множина на -n, ü коротке. Німецька каже не «кусає», а «жалить»: die Mücke sticht, а слід від неї — der Mückenstich; beißen у цій колоді належить собакам і зміям, і україномовному учневі доводиться міняти звичне дієслово. В Австрії та на півдні Німеччини ту саму комаху звуть die Gelse. Зворот aus einer Mücke einen Elefanten machen стоїть у примітці до Elefant вище.'
+
+  - de: stechen
+    ipa: "ˈʃtɛçn̩"
+    pos: verb
+    praesens_3sg: sticht
+    partizip2: gestochen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to drive something thin and sharp into a body, as a bee or a needle does
+    ru: вонзить в тело что-то тонкое и острое — как пчела или игла
+    uk: угородити в тіло щось тонке й гостре — як бджола або голка
+    example_de: Eine Biene hat mich in den Arm gestochen.
+    example_en: A bee stung me on the arm.
+    example_ru: Пчела ужалила меня в руку.
+    example_uk: Бджола вжалила мене в руку.
+    note:
+      en: 'Strong, with e turning to i in the present and three stem vowels overall: sticht, stach, hat gestochen. This is the verb for insects — Mücken, Bienen und Wespen stechen — while teeth take beißen, next. Where the sting landed follows in plus the accusative: in den Arm, in den Finger. German also says it of strong sunshine: die Sonne sticht.'
+      ru: 'Сильный, с переходом e в i в настоящем и с тремя корневыми гласными: sticht, stach, hat gestochen. Это глагол насекомых — Mücken, Bienen und Wespen stechen, — а зубам принадлежит beißen, следующая запись. Место укуса вводится через in с винительным: in den Arm, in den Finger. Так же немецкий говорит и о палящем солнце: die Sonne sticht.'
+      uk: 'Сильне, з переходом e в i в теперішньому і з трьома кореневими голосними: sticht, stach, hat gestochen. Це дієслово комах — Mücken, Bienen und Wespen stechen, — а зубам належить beißen, наступний запис. Місце укусу вводиться через in зі знахідним: in den Arm, in den Finger. Так само німецька каже й про пекуче сонце: die Sonne sticht.'
+
+  - de: beißen
+    ipa: "ˈbaɪ̯sn̩"
+    pos: verb
+    praesens_3sg: beißt
+    partizip2: gebissen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to close the teeth on somebody or something
+    ru: сомкнуть зубы на ком-либо или чём-либо
+    uk: зімкнути зуби на комусь або чомусь
+    example_de: Der Hund hat das Kind gebissen.
+    example_en: The dog bit the child.
+    example_ru: Собака укусила ребёнка.
+    example_uk: Собака вкусив дитину.
+    note:
+      en: 'Strong: beißt, biss, hat gebissen, and the ß becomes ss in the past forms because the vowel shortens there. Teeth do this and insects do not — stechen above is theirs, and the two are not interchangeable in German. Where the bite landed follows in plus the accusative: Er hat mich in die Hand gebissen. Sharp food bites too: Der Senf beißt in der Nase.'
+      ru: 'Сильный: beißt, biss, hat gebissen, а ß переходит в ss в прошедших формах, потому что гласный там сокращается. Так делают зубы, а насекомые — нет: им принадлежит stechen выше, и в немецком эти два глагола не взаимозаменимы. Место укуса вводится через in с винительным: Er hat mich in die Hand gebissen. Острая еда тоже beißt: Der Senf beißt in der Nase.'
+      uk: 'Сильне: beißt, biss, hat gebissen, а ß переходить у ss у минулих формах, бо голосний там коротшає. Так роблять зуби, а комахи — ні: їм належить stechen вище, і в німецькій ці два дієслова не взаємозамінні. Місце укусу вводиться через in зі знахідним: Er hat mich in die Hand gebissen. Гостра їжа теж beißt: Der Senf beißt in der Nase.'
+
+  - de: Gift
+    ipa: "ˈgɪft"
+    pos: noun
+    gender: n
+    plural: "die Gifte"
+    cards: recognition
+    en: a substance that harms or kills a body which takes it in
+    ru: вещество, которое вредит организму или убивает его, попав внутрь
+    uk: речовина, що шкодить організмові або вбиває його, потрапивши всередину
+    example_de: Dieses Mittel ist ein Gift für Insekten.
+    example_en: This product is a poison for insects.
+    example_ru: Это средство — яд для насекомых.
+    example_uk: Цей засіб — отрута для комах.
+    note:
+      en: 'Neuter, with an -e plural for the different kinds. It is a false friend for an English reader: das Gift is poison, and a present is das Geschenk — the two words go back to the same root, giving, and German kept it as the euphemism for a dose administered. What a snake carries is das Schlangengift. B1 die Gefahr in the deck `haushalt-notfall-b1` is the danger; this is one of the things that makes it, and the adjective is giftig, next.'
+      ru: 'Средний род, множественное на -e для разных его видов. Для читающего по-английски это ложный друг: das Gift — «яд», а подарок — das Geschenk; оба слова восходят к одному корню «давать», и немецкий сохранил его как эвфемизм для «данной дозы». То, что несёт змея, — das Schlangengift. die Gefahr уровня B1 из колоды `haushalt-notfall-b1` — сама опасность; здесь одно из того, что её создаёт, а прилагательное — giftig, следующая запись.'
+      uk: 'Середній рід, множина на -e для різних його видів. Для того, хто читає англійською, це фальшивий друг: das Gift — «отрута», а подарунок — das Geschenk; обидва слова сягають одного кореня «давати», і німецька зберегла його як евфемізм для «даної дози». Те, що несе змія, — das Schlangengift. die Gefahr рівня B1 з колоди `haushalt-notfall-b1` — сама небезпека; тут одне з того, що її створює, а прикметник — giftig, наступний запис.'
+
+  - de: giftig
+    ipa: "ˈgɪftɪç"
+    pos: adj
+    cards: recognition
+    en: carrying poison, or working the way poison does
+    ru: содержащий яд или действующий подобно яду
+    uk: що містить отруту або діє подібно до отрути
+    example_de: Die Pflanze am Fenster ist giftig für Katzen.
+    example_en: The plant by the window is poisonous to cats.
+    example_ru: Растение на окне ядовито для кошек.
+    example_uk: Рослина на вікні отруйна для котів.
+    note:
+      en: 'Das Gift above plus -ig, with the ending spoken ɪç in standard German. It works on things — eine giftige Schlange, giftige Farben, giftige Abgase — and on people, where it means spiteful: eine giftige Bemerkung. A2 gefährlich in the deck `eigenschaften-dinge-a2` says that something can do harm; this word says by what means.'
+      ru: 'Das Gift выше плюс -ig, окончание в литературной норме звучит как ɪç. Работает и о вещах — eine giftige Schlange, giftige Farben, giftige Abgase, — и о людях, где значит «язвительный»: eine giftige Bemerkung. gefährlich уровня A2 из колоды `eigenschaften-dinge-a2` говорит, что нечто может навредить; это слово говорит, чем именно.'
+      uk: 'Das Gift вище плюс -ig, закінчення в літературній нормі звучить як ɪç. Працює і про речі — eine giftige Schlange, giftige Farben, giftige Abgase, — і про людей, де означає «ущипливий»: eine giftige Bemerkung. gefährlich рівня A2 з колоди `eigenschaften-dinge-a2` каже, що щось може зашкодити; це слово каже, чим саме.'
+
+  - de: wild
+    ipa: "ˈvɪlt"
+    pos: adj
+    cards: recognition
+    en: living without people and not tamed; also out of anybody's control
+    ru: живущий без людей и не прирученный; а также вышедший из-под всякого управления
+    uk: що живе без людей і не приручений; а також такий, що вийшов з-під будь-якого керування
+    example_de: In diesem Wald leben noch wilde Tiere.
+    example_en: There are still wild animals living in this forest.
+    example_ru: В этом лесу ещё водятся дикие животные.
+    example_uk: У цьому лісі ще водяться дикі тварини.
+    note:
+      en: 'The -d is spoken t in the bare form and returns as d before an ending: wild, but wilde Tiere. Its opposite in the first sense is das Haustier at the top of this deck. The second sense is behaviour — die Kinder waren völlig wild — and a third is doing something without permission: wild parken, wild campen. The noun das Wild, neuter, is game as a hunter and a menu mean it.'
+      ru: 'В голой форме -d звучит как t и возвращается как d перед окончанием: wild, но wilde Tiere. Противоположность в первом значении — das Haustier в начале этой колоды. Второе значение — о поведении: die Kinder waren völlig wild, — а третье о действии без разрешения: wild parken, wild campen. Существительное das Wild среднего рода — дичь в том смысле, в каком её понимают охотник и меню.'
+      uk: 'У голій формі -d звучить як t і повертається як d перед закінченням: wild, але wilde Tiere. Протилежність у першому значенні — das Haustier на початку цієї колоди. Друге значення — про поведінку: die Kinder waren völlig wild, — а третє про дію без дозволу: wild parken, wild campen. Іменник das Wild середнього роду — дичина в тому сенсі, у якому її розуміють мисливець і меню.'
+
+  # --- Was Tiere fressen, und wer es ihnen gibt ---
+  - de: fressen
+    ipa: "ˈfʁɛsn̩"
+    pos: verb
+    praesens_3sg: frisst
+    partizip2: gefressen
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to eat, when it is an animal doing it and not a person
+    ru: есть, когда речь идёт о животном, а не о человеке
+    uk: їсти, коли йдеться про тварину, а не про людину
+    example_de: Unsere Katze frisst nur am Abend.
+    example_en: Our cat only eats in the evening.
+    example_ru: Наша кошка ест только вечером.
+    example_uk: Наш кіт їсть тільки ввечері.
+    note:
+      en: 'Strong, with e turning to i in the present: frisst, fraß, hat gefressen. German splits the field by who is eating — A1 essen in the deck `essen-trinken` is for people, this verb for animals — and the choice is not free: a text that lets a dog essen reads as a mistake. Used of a person it is rude or deliberately vivid, which is why it turns up in jokes about appetite and in insults. It also means to consume: Das Auto frisst zu viel Benzin.'
+      ru: 'Сильный, с переходом e в i в настоящем: frisst, fraß, hat gefressen. Немецкий делит поле по едоку: essen уровня A1 из колоды `essen-trinken` — о людях, этот глагол — о животных, — и выбор не свободен: текст, где собака essen, читается как ошибка. О человеке слово грубо или нарочито резко — примерно как русское «жрать», — потому и живёт в шутках про аппетит и в брани. Есть и значение «потреблять»: Das Auto frisst zu viel Benzin.'
+      uk: 'Сильне, з переходом e в i в теперішньому: frisst, fraß, hat gefressen. Німецька ділить поле за їдцем: essen рівня A1 з колоди `essen-trinken` — про людей, це дієслово — про тварин, — і вибір не вільний: текст, де собака essen, читається як помилка. Про людину слово грубе або навмисне різке — приблизно як українське «жерти», — тому й живе в жартах про апетит і в лайці. Є й значення «споживати»: Das Auto frisst zu viel Benzin.'
+
+  - de: füttern
+    ipa: "ˈfʏtɐn"
+    pos: verb
+    praesens_3sg: füttert
+    partizip2: gefüttert
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to give an animal or a helpless person their food
+    ru: давать корм животному или пищу тому, кто не может есть сам
+    uk: давати корм тварині або їжу тому, хто не може їсти сам
+    example_de: Am See darf man die Enten nicht füttern.
+    example_en: Feeding the ducks at the lake is not allowed.
+    example_ru: На озере уток кормить нельзя.
+    example_uk: На озері качок годувати не можна.
+    note:
+      en: 'Weak: füttert, hat gefüttert. The accusative object is the eater and not the food — die Enten füttern, das Baby füttern — and what they are given follows mit: die Katze mit Fisch füttern. The noun is das Futter, the feed itself, and the bowl it goes in is der Napf. The verb beside it, for what the animal then does, is fressen above.'
+      ru: 'Слабый: füttert, hat gefüttert. Винительное дополнение — тот, кто ест, а не то, что едят: die Enten füttern, das Baby füttern, — а сам корм вводится через mit: die Katze mit Fisch füttern. Существительное — das Futter, сам корм, а миска — der Napf. Соседний глагол, для того, что животное делает потом, — fressen выше.'
+      uk: 'Слабке: füttert, hat gefüttert. Знахідний додаток — той, хто їсть, а не те, що їдять: die Enten füttern, das Baby füttern, — а сам корм уводиться через mit: die Katze mit Fisch füttern. Іменник — das Futter, сам корм, а миска — der Napf. Сусіднє дієслово, для того, що тварина робить потому, — fressen вище.'
+
+  # --- Das Gewitter und der Sturm ---
+  - de: blitzen
+    ipa: "ˈblɪtsn̩"
+    pos: verb
+    praesens_3sg: blitzt
+    partizip2: geblitzt
+    aux: haben
+    cards: recognition
+    en: to flash across the sky during a storm
+    ru: сверкать в грозовом небе
+    uk: спалахувати в грозовому небі
+    example_de: Es blitzt und donnert seit einer Stunde.
+    example_en: There has been lightning and thunder for an hour.
+    example_ru: Уже час сверкает молния и гремит гром.
+    example_uk: Уже годину блискає блискавка і гримить грім.
+    note:
+      en: 'A weather verb used impersonally: the subject is es and there is nothing else it could be — es blitzt, es hat geblitzt, exactly like A1 es regnet and A1 es schneit in the deck `wetter-natur`. Weak throughout. The noun is der Blitz, next, and the whole event is A2 das Gewitter in the deck `natur-tiere-a2`. A second, entirely everyday sense is the speed camera: Ich wurde auf der Autobahn geblitzt.'
+      ru: 'Погодный глагол в безличном употреблении: подлежащее — es, и другого быть не может: es blitzt, es hat geblitzt, — ровно как es regnet и es schneit уровня A1 из колоды `wetter-natur`. Во всех формах слабый. Существительное — der Blitz, следующая запись, а всё событие целиком — das Gewitter уровня A2 из колоды `natur-tiere-a2`. Второе, вполне бытовое значение — камера контроля скорости: Ich wurde auf der Autobahn geblitzt.'
+      uk: 'Погодне дієслово в безособовому вжитку: підмет — es, і іншого бути не може: es blitzt, es hat geblitzt, — точно як es regnet і es schneit рівня A1 з колоди `wetter-natur`. В усіх формах слабке. Іменник — der Blitz, наступний запис, а вся подія цілком — das Gewitter рівня A2 з колоди `natur-tiere-a2`. Друге, цілком побутове значення — камера контролю швидкості: Ich wurde auf der Autobahn geblitzt.'
+
+  - de: Blitz
+    ipa: "ˈblɪts"
+    pos: noun
+    gender: m
+    plural: "die Blitze"
+    cards: recognition
+    en: the bright line of light that crosses the sky in a storm
+    ru: яркая полоса света, пересекающая небо в грозу
+    uk: яскрава смуга світла, що перетинає небо під час грози
+    example_de: Der Blitz hat einen Baum vor dem Haus getroffen.
+    example_en: Lightning struck a tree in front of the house.
+    example_ru: Молния ударила в дерево перед домом.
+    example_uk: Блискавка вдарила в дерево перед будинком.
+    note:
+      en: 'Masculine, with an -e plural, and the tz is the ts sound. It arrives before the thunder because light travels faster than sound, and der Donner below is what follows. A2 das Gewitter in the deck `natur-tiere-a2` is the storm both belong to, and its own note already names the pair. A camera flash is der Blitz too, and wie ein Blitz means at great speed.'
+      ru: 'Мужской род, множественное на -e, а tz — звук ts. Приходит раньше грома, потому что свет быстрее звука, а следом идёт der Donner ниже. das Gewitter уровня A2 из колоды `natur-tiere-a2` — гроза, к которой оба принадлежат, и её собственное примечание уже называет эту пару. Фотовспышка — тоже der Blitz, а wie ein Blitz значит «с огромной скоростью».'
+      uk: 'Чоловічий рід, множина на -e, а tz — звук ts. Приходить раніше за грім, бо світло швидше за звук, а слідом іде der Donner нижче. das Gewitter рівня A2 з колоди `natur-tiere-a2` — гроза, до якої обидва належать, і її власна примітка вже називає цю пару. Фотоспалах — теж der Blitz, а wie ein Blitz означає «з величезною швидкістю».'
+
+  - de: donnern
+    ipa: "ˈdɔnɐn"
+    pos: verb
+    praesens_3sg: donnert
+    partizip2: gedonnert
+    aux: haben
+    cards: recognition
+    en: to roll and crash in the sky after a flash
+    ru: греметь в небе вслед за вспышкой
+    uk: гриміти в небі услід за спалахом
+    example_de: Es hat die ganze Nacht gedonnert.
+    example_en: It thundered all night.
+    example_ru: Гром гремел всю ночь.
+    example_uk: Грім гримів цілу ніч.
+    note:
+      en: 'Impersonal like blitzen above and weak throughout: es donnert, es hat gedonnert. It also serves for anything loud that moves, and there the subject is real: Der Zug donnerte durch den Bahnhof. The noun is der Donner, next, and A1 der Donnerstag in the deck `alltag-zeit` carries the same first element, from the old Germanic god of thunder.'
+      ru: 'Безличный, как blitzen выше, и слабый во всех формах: es donnert, es hat gedonnert. Годится он и для всего громкого, что движется, и там подлежащее настоящее: Der Zug donnerte durch den Bahnhof. Существительное — der Donner, следующая запись, а der Donnerstag уровня A1 из колоды `alltag-zeit` несёт тот же первый элемент — имя древнего германского бога грома.'
+      uk: 'Безособове, як blitzen вище, і слабке в усіх формах: es donnert, es hat gedonnert. Годиться воно й для всього гучного, що рухається, і там підмет справжній: Der Zug donnerte durch den Bahnhof. Іменник — der Donner, наступний запис, а der Donnerstag рівня A1 з колоди `alltag-zeit` несе той самий перший елемент — ім’я давнього германського бога грому.'
+
+  - de: Donner
+    ipa: "ˈdɔnɐ"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the deep rolling sound that follows a flash of lightning
+    ru: глухой раскатистый звук, который идёт вслед за вспышкой молнии
+    uk: глухий розкотистий звук, що йде услід за спалахом блискавки
+    example_de: Nach dem Blitz kam ein lauter Donner.
+    example_en: A loud clap of thunder followed the lightning.
+    example_ru: После молнии раздался громкий раскат грома.
+    example_uk: Після блискавки пролунав гучний розкіт грому.
+    note:
+      en: 'Masculine, and in practice singular only: Duden records a plural, but a text says viel Donner rather than counting them. The verb is donnern above. The compound das Donnerwetter is a scolding rather than a storm — es gab ein Donnerwetter — and as an exclamation it is a mild oath.'
+      ru: 'Мужской род и на практике только единственное: Duden фиксирует множественное, но текст скажет viel Donner, а не станет их считать. Глагол — donnern выше. Сложное слово das Donnerwetter — это разнос, а не гроза: es gab ein Donnerwetter, — а как возглас оно мягкое ругательство.'
+      uk: 'Чоловічий рід і на практиці лише однина: Duden фіксує множину, але текст скаже viel Donner, а не рахуватиме їх. Дієслово — donnern вище. Складне слово das Donnerwetter — це прочухан, а не гроза: es gab ein Donnerwetter, — а як вигук воно м’яка лайка.'
+
+  - de: hageln
+    ipa: "ˈhaːgl̩n"
+    pos: verb
+    praesens_3sg: hagelt
+    partizip2: gehagelt
+    aux: haben
+    cards: recognition
+    en: to fall as small balls of ice instead of as rain
+    ru: идти градом — мелкими ледяными шариками вместо дождя
+    uk: іти градом — дрібними крижаними кульками замість дощу
+    example_de: Gestern hat es kurz gehagelt.
+    example_en: There was a short hailstorm yesterday.
+    example_ru: Вчера недолго шёл град.
+    example_uk: Учора недовго йшов град.
+    note:
+      en: 'Impersonal like blitzen and donnern above: es hagelt, es hat gehagelt. The ice itself is der Hagel and one ball of it das Hagelkorn. Figuratively the verb takes a plural of whatever is coming down thick and fast: Es hagelte Kritik, Es hagelte Tore. The -eln ending gives a syllabic l after the g: ˈhaːgl̩n.'
+      ru: 'Безличный, как blitzen и donnern выше: es hagelt, es hat gehagelt. Сам лёд — der Hagel, а одна градина — das Hagelkorn. В переносном значении глагол берёт множественное того, что сыплется густо и часто: Es hagelte Kritik, Es hagelte Tore. Окончание -eln даёт слоговое l после g: ˈhaːgl̩n.'
+      uk: 'Безособове, як blitzen і donnern вище: es hagelt, es hat gehagelt. Сам лід — der Hagel, а одна градина — das Hagelkorn. У переносному значенні дієслово бере множину того, що сиплеться густо й часто: Es hagelte Kritik, Es hagelte Tore. Закінчення -eln дає складове l після g: ˈhaːgl̩n.'
+
+  - de: Sturm
+    ipa: "ˈʃtʊʁm"
+    pos: noun
+    gender: m
+    plural: "die Stürme"
+    cards: recognition
+    en: wind strong enough to do damage
+    ru: ветер такой силы, что причиняет ущерб
+    uk: вітер такої сили, що завдає шкоди
+    example_de: Bei dem Sturm sind viele Bäume gefallen.
+    example_en: A lot of trees came down in the storm.
+    example_ru: Во время бури упало много деревьев.
+    example_uk: Під час бурі впало багато дерев.
+    note:
+      en: 'Masculine, plural with an umlaut: der Sturm, die Stürme. A1 der Wind in the deck `wetter-natur` is any moving air; this word is the strength at which it becomes news, and the warning issued for it is die Sturmwarnung. The verb stürmen is impersonal about weather — es stürmt — and takes a subject about people storming a place. In football der Sturm is the attacking line and der Stürmer the forward.'
+      ru: 'Мужской род, во множественном умлаут: der Sturm, die Stürme. der Wind уровня A1 из колоды `wetter-natur` — всякий движущийся воздух; это слово — та сила, при которой он попадает в новости, а предупреждение о нём — die Sturmwarnung. Глагол stürmen о погоде безличен — es stürmt, — а о людях, берущих штурмом, имеет подлежащее. В футболе der Sturm — линия нападения, а der Stürmer — нападающий.'
+      uk: 'Чоловічий рід, у множині умлаут: der Sturm, die Stürme. der Wind рівня A1 з колоди `wetter-natur` — усяке рухоме повітря; це слово — та сила, за якої воно потрапляє в новини, а попередження про нього — die Sturmwarnung. Дієслово stürmen про погоду безособове — es stürmt, — а про людей, що беруть штурмом, має підмет. У футболі der Sturm — лінія нападу, а der Stürmer — нападник.'
+
+  # --- Wärme, Kälte, Feuchtigkeit ---
+  - de: Temperatur
+    ipa: "tɛmpəʁaˈtuːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Temperaturen"
+    cards: recognition
+    en: how warm or cold something is, stated as a number
+    ru: степень тепла или холода, выраженная числом
+    uk: ступінь тепла або холоду, виражений числом
+    example_de: Die Temperatur fällt heute Nacht unter null.
+    example_en: The temperature is falling below zero tonight.
+    example_ru: Сегодня ночью температура опустится ниже нуля.
+    example_uk: Сьогодні вночі температура опуститься нижче нуля.
+    note:
+      en: 'A Latin loan, feminine like every noun in -ur, with the stress on the last syllable and the final r vocalized: tɛmpəʁaˈtuːɐ̯. What it is measured in is A1 der Grad in the deck `wetter-natur`, whose own note carries the rule that Grad takes no plural ending after a number. The verbs are steigen and fallen. In medicine erhöhte Temperatur is a raised temperature, and A1 das Fieber in the deck `koerper-gesundheit` is the illness itself.'
+      ru: 'Латинское заимствование, женского рода — как всякое существительное на -ur, — с ударением на последнем слоге и вокализованным конечным r: tɛmpəʁaˈtuːɐ̯. Измеряется она в der Grad уровня A1 из колоды `wetter-natur`, чьё примечание уже несёт правило: после числительного Grad не берёт окончания множественного. Глаголы при ней — steigen и fallen. В медицине erhöhte Temperatur — повышенная температура, а das Fieber уровня A1 из колоды `koerper-gesundheit` — уже сама болезненная лихорадка.'
+      uk: 'Латинське запозичення, жіночого роду — як усякий іменник на -ur, — з наголосом на останньому складі й вокалізованим кінцевим r: tɛmpəʁaˈtuːɐ̯. Вимірюється вона в der Grad рівня A1 з колоди `wetter-natur`, чия примітка вже несе правило: після числівника Grad не бере закінчення множини. Дієслова при ній — steigen і fallen. У медицині erhöhte Temperatur — підвищена температура, а das Fieber рівня A1 з колоди `koerper-gesundheit` — уже сама хвороблива гарячка.'
+
+  - de: Hitze
+    ipa: "ˈhɪtsə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: an amount of heat that is more than comfortable, the kind that makes a day hard to get through
+    ru: жара — тепло в таком избытке, от которого день делается тяжёлым
+    uk: спека — тепло в такому надлишку, від якого день стає важким
+    example_de: Bei dieser Hitze bleiben wir lieber zu Hause.
+    example_en: In this heat we would rather stay at home.
+    example_ru: В такую жару мы лучше останемся дома.
+    example_uk: У таку спеку ми краще залишимося вдома.
+    note:
+      en: 'Feminine and uncountable, and it is the noun beside A1 heiß in the deck `wetter-natur`, as die Kälte below is the noun beside A1 kalt. It is always too much of a good thing: German says viel Hitze and never counts it. The official warning is die Hitzewelle. In a kitchen the word is the setting on a hob: bei starker Hitze braten.'
+      ru: 'Женский род, неисчисляемое, и это существительное при heiß уровня A1 из колоды `wetter-natur`, как die Kälte ниже — существительное при kalt уровня A1. Это всегда избыток: немец говорит viel Hitze и никогда её не считает. Официальное предупреждение — die Hitzewelle. На кухне слово называет силу огня: bei starker Hitze braten.'
+      uk: 'Жіночий рід, незлічуване, і це іменник при heiß рівня A1 з колоди `wetter-natur`, як die Kälte нижче — іменник при kalt рівня A1. Це завжди надлишок: німець каже viel Hitze і ніколи її не рахує. Офіційне попередження — die Hitzewelle. На кухні слово називає силу вогню: bei starker Hitze braten.'
+
+  - de: Wärme
+    ipa: "ˈvɛʁmə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: warmth as a comfortable amount of heat; also warmth of manner
+    ru: тепло в приятном количестве; а также душевная теплота
+    uk: тепло в приємній кількості; а також душевна теплота
+    example_de: Im Winter kommt die Wärme aus der Heizung.
+    example_en: In winter the warmth comes from the radiators.
+    example_ru: Зимой тепло идёт от батарей.
+    example_uk: Узимку тепло йде від батарей.
+    note:
+      en: 'Feminine and uncountable, formed from A1 warm in the deck `wetter-natur` with an umlaut and the -e that turns an adjective into the quality it names. The scale runs die Kälte, die Wärme, die Hitze, and only the middle one is comfortable. It describes people too: Sie hat ihn mit großer Wärme begrüßt. In a bill or a leaflet it is the physical quantity, and district heating is die Fernwärme.'
+      ru: 'Женский род, неисчисляемое, образовано от warm уровня A1 из колоды `wetter-natur` умлаутом и тем -e, которое превращает прилагательное в названное им качество. Шкала идёт die Kälte, die Wärme, die Hitze, и приятна только середина. Слово описывает и людей: Sie hat ihn mit großer Wärme begrüßt. В счёте или в проспекте это физическая величина, а централизованное отопление — die Fernwärme.'
+      uk: 'Жіночий рід, незлічуване, утворене від warm рівня A1 з колоди `wetter-natur` умлаутом і тим -e, яке перетворює прикметник на названу ним якість. Шкала йде die Kälte, die Wärme, die Hitze, і приємна тільки середина. Слово описує й людей: Sie hat ihn mit großer Wärme begrüßt. У рахунку чи в проспекті це фізична величина, а централізоване опалення — die Fernwärme.'
+
+  - de: Kälte
+    ipa: "ˈkɛltə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: cold as a condition, strong enough to be felt as a force
+    ru: холод как состояние, ощущаемое как сила
+    uk: холод як стан, відчутний як сила
+    example_de: Bei dieser Kälte will niemand nach draußen.
+    example_en: In this cold nobody wants to go outside.
+    example_ru: В такой холод никто не хочет на улицу.
+    example_uk: У такий холод ніхто не хоче надвір.
+    note:
+      en: 'Feminine and uncountable, from A1 kalt in the deck `wetter-natur` by the same umlaut-plus-e that made die Wärme above. Of people it names the absence of feeling: jemanden mit Kälte behandeln. A cold spell is die Kältewelle, and the sudden onset of one is der Kälteeinbruch — B1 der Einbruch in the deck `recht-kriminalitaet-b1` supplies the second half, and its own note already gives that compound.'
+      ru: 'Женский род, неисчисляемое, от kalt уровня A1 из колоды `wetter-natur` тем же умлаутом с -e, каким образована die Wärme выше. О людях слово называет отсутствие чувства: jemanden mit Kälte behandeln. Полоса холодов — die Kältewelle, а её внезапное наступление — der Kälteeinbruch: вторую половину даёт der Einbruch уровня B1 из колоды `recht-kriminalitaet-b1`, и его собственное примечание это сложное слово уже приводит.'
+      uk: 'Жіночий рід, незлічуване, від kalt рівня A1 з колоди `wetter-natur` тим самим умлаутом із -e, яким утворена die Wärme вище. Про людей слово називає відсутність почуття: jemanden mit Kälte behandeln. Смуга холодів — die Kältewelle, а її раптовий прихід — der Kälteeinbruch: другу половину дає der Einbruch рівня B1 з колоди `recht-kriminalitaet-b1`, і його власна примітка це складне слово вже наводить.'
+
+  - de: frieren
+    ipa: "ˈfʁiːʁən"
+    pos: verb
+    praesens_3sg: friert
+    partizip2: gefroren
+    aux: haben
+    cards: recognition
+    en: to feel cold; and, of water, to turn into ice
+    ru: мёрзнуть; а о воде — превращаться в лёд
+    uk: мерзнути; а про воду — перетворюватися на лід
+    example_de: Ich habe die ganze Nacht gefroren.
+    example_en: I was cold all night.
+    example_ru: Я мёрз всю ночь.
+    example_uk: Я мерз цілу ніч.
+    note:
+      en: 'Strong, with three stem vowels: friert, fror, gefroren. In the sense of feeling cold the auxiliary is haben — ich habe gefroren — and the same idea can be put impersonally with the person in the accusative: es friert mich, which is the older and more literary frame. Where water turns to ice the verb takes sein instead: Der See ist gefroren. In everyday speech mir ist kalt is the commoner way to say the first one.'
+      ru: 'Сильный, с тремя корневыми гласными: friert, fror, gefroren. В значении «мёрзнуть» вспомогательный глагол haben — ich habe gefroren, — а ту же мысль можно оформить безлично, с человеком в винительном: es friert mich; это оборот более старый и книжный. Там, где вода превращается в лёд, глагол берёт sein: Der See ist gefroren. В обиходе чаще говорят mir ist kalt.'
+      uk: 'Сильне, з трьома кореневими голосними: friert, fror, gefroren. У значенні «мерзнути» допоміжне дієслово haben — ich habe gefroren, — а ту саму думку можна оформити безособово, з людиною у знахідному: es friert mich; це зворот давніший і книжніший. Там, де вода перетворюється на лід, дієслово бере sein: Der See ist gefroren. У побуті частіше кажуть mir ist kalt.'
+
+  - de: feucht
+    ipa: "ˈfɔʏ̯çt"
+    pos: adj
+    cards: recognition
+    en: slightly wet, with water still in it
+    ru: слегка влажный, с оставшейся внутри водой
+    uk: злегка вологий, із водою, що лишилася всередині
+    example_de: Die Wäsche ist noch feucht.
+    example_en: The washing is still damp.
+    example_ru: Бельё ещё влажное.
+    example_uk: Білизна ще волога.
+    note:
+      en: 'It sits between A2 nass and A2 trocken in the deck `natur-tiere-a2`: nass is wet through, feucht is damp. Weather is feucht when the air carries water — feuchte Luft, ein feuchtes Klima, with A1 die Luft and A1 das Klima both in the deck `wetter-natur` — and so are walls, cloths and cellars. The noun is die Feuchtigkeit, which is what a forecast gives as a percentage. The eu is spoken ɔʏ̯.'
+      ru: 'Слово стоит между nass и trocken уровня A2 из колоды `natur-tiere-a2`: nass — мокрый насквозь, feucht — влажный. Погода feucht, когда в воздухе вода: feuchte Luft, ein feuchtes Klima, — и die Luft, и das Klima уровня A1 стоят в колоде `wetter-natur`; так же говорят о стенах, тряпках и подвалах. Существительное — die Feuchtigkeit, и именно её прогноз даёт в процентах. Сочетание eu звучит как ɔʏ̯.'
+      uk: 'Слово стоїть між nass і trocken рівня A2 з колоди `natur-tiere-a2`: nass — мокрий наскрізь, feucht — вологий. Погода feucht, коли в повітрі вода: feuchte Luft, ein feuchtes Klima, — і die Luft, і das Klima рівня A1 стоять у колоді `wetter-natur`; так само кажуть про стіни, ганчірки і підвали. Іменник — die Feuchtigkeit, і саме її прогноз дає у відсотках. Сполука eu звучить як ɔʏ̯.'
+
+  - de: Nebel
+    ipa: "ˈneːbl̩"
+    pos: noun
+    gender: m
+    plural: "die Nebel"
+    cards: recognition
+    en: thick cloud lying on the ground, so that little can be seen
+    ru: густое облако, лежащее у земли, из-за которого почти ничего не видно
+    uk: густа хмара, що лежить біля землі, через яку майже нічого не видно
+    example_de: Am Morgen war der Nebel so stark, dass man nichts sah.
+    example_en: The fog was so thick in the morning that nothing could be seen.
+    example_ru: Утром туман был таким густым, что ничего не было видно.
+    example_uk: Уранці туман був таким густим, що нічого не було видно.
+    note:
+      en: 'Masculine, and singular and plural are spelled alike. A2 neblig in the deck `natur-tiere-a2` is the adjective, and its own note already names this word and the stem vowel that drops out on the way to it. A driver meets die Nebelbank, a patch of it, and switches on die Nebelscheinwerfer. The -el ending gives a syllabic l: ˈneːbl̩.'
+      ru: 'Мужской род, единственное и множественное пишутся одинаково. neblig уровня A2 из колоды `natur-tiere-a2` — прилагательное, и его собственное примечание уже называет это слово и гласный корня, выпадающий по дороге к нему. Водитель встречает die Nebelbank — полосу тумана — и включает die Nebelscheinwerfer. Окончание -el даёт слоговое l: ˈneːbl̩.'
+      uk: 'Чоловічий рід, однина і множина пишуться однаково. neblig рівня A2 з колоди `natur-tiere-a2` — прикметник, і його власна примітка вже називає це слово і голосний кореня, що випадає дорогою до нього. Водій зустрічає die Nebelbank — смугу туману — і вмикає die Nebelscheinwerfer. Закінчення -el дає складове l: ˈneːbl̩.'
+
+  - de: Wettervorhersage
+    ipa: "ˈvɛtɐˌfoːɐ̯heːɐ̯zaːgə"
+    pos: noun
+    gender: f
+    plural: "die Wettervorhersagen"
+    cards: recognition
+    en: the statement of what the weather is expected to do over the coming days
+    ru: сообщение о том, какой погоды ждать в ближайшие дни
+    uk: повідомлення про те, якої погоди чекати найближчими днями
+    example_de: Nach der Wettervorhersage soll es morgen regnen.
+    example_en: According to the forecast it is going to rain tomorrow.
+    example_ru: По прогнозу завтра обещают дождь.
+    example_uk: За прогнозом завтра обіцяють дощ.
+    note:
+      en: 'A1 das Wetter in the deck `wetter-natur` plus die Vorhersage, from vorhersagen, to say in advance; it takes the gender of Vorhersage and a regular -n plural. B1 der Wetterbericht in the deck `meinung-medien` is the media item you watch or read, and its own note already sends the learner to die Vorhersage — this entry is that word, spelt out. Primary stress on Wetter-, and every r in the word is vocalized.'
+      ru: 'das Wetter уровня A1 из колоды `wetter-natur` плюс die Vorhersage — от vorhersagen, «предсказывать»; род берётся у Vorhersage, множественное обычное на -n. der Wetterbericht уровня B1 из колоды `meinung-medien` — это медийный выпуск, который смотрят или читают, и его собственное примечание уже отсылает учащегося к die Vorhersage: здесь это слово и стоит целиком. Главное ударение на Wetter-, а все r в слове вокализованы.'
+      uk: 'das Wetter рівня A1 з колоди `wetter-natur` плюс die Vorhersage — від vorhersagen, «передбачати»; рід береться у Vorhersage, множина звичайна на -n. der Wetterbericht рівня B1 з колоди `meinung-medien` — це медійний випуск, який дивляться або читають, і його власна примітка вже відсилає учня до die Vorhersage: тут це слово і стоїть цілком. Головний наголос на Wetter-, а всі r у слові вокалізовані.'

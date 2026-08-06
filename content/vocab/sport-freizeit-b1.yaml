@@ -1,0 +1,795 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the sport-and-free-time
+# field of data/goethe-b1-wortliste.txt: the kinds of sport and the places they are
+# done in, the people who do them and the people who train them, everything between
+# the starting line and the final whistle, and the free time that has no contest in
+# it at all.
+# A1's `freizeit-koennen` owns the base of the field (Sport, Spiel, spielen, Ball,
+# Fußball, Schwimmbad, Park, schwimmen, wandern), A2's `sport-freizeit-a2` owns the
+# club world around it (Mannschaft, Verein, Training, trainieren, Wettbewerb, Halle,
+# Sportplatz, Zelt, Tipp, Ski, Tennis, Basketball, Volleyball, sportlich, gewinnen,
+# joggen, reiten), A1's `perfekt-a1-verben` owns verlieren, A2's `kultur-unterhaltung-a2`
+# owns Fan and Rätsel, B1's `gesundheit-wohlbefinden` owns fit and Bewegung, and B1's
+# `wohnen-gebaeude-b1` owns Tor, which is where the ball goes. This deck is what those
+# six leave unnamed: the word for the kind of sport, the word for the person, and the
+# words a match report needs between the start and the result.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read, never written: the learner's own sentence about a Saturday afternoon comes out
+# of A1 and A2 words, and everything here is what the sports page, the club leaflet
+# and the live commentary say back at him.
+id: sport-freizeit-b1
+title_de: "Sport & Freizeit"
+title_en: "Sport and free time"
+title_ru: "Спорт и свободное время"
+title_uk: "Спорт і вільний час"
+level: B1
+entries:
+  # --- Sportarten und Sportgeräte ---
+  - de: Sportart
+    ipa: "ˈʃpɔʁtˌʔaːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "die Sportarten"
+    cards: recognition
+    en: one particular kind of sport, named as one among many
+    ru: отдельный вид спорта, названный как один из многих
+    uk: окремий вид спорту, названий як один із багатьох
+    example_de: Welche Sportart machst du am liebsten?
+    example_en: Which sport do you most like doing?
+    example_ru: Каким видом спорта ты занимаешься охотнее всего?
+    example_uk: Яким видом спорту ти займаєшся найохочіше?
+    note:
+      en: 'Sport plus die Art, kind, so the compound takes the gender of Art: die Sportart, plural die Sportarten. A1 der Sport in the deck `freizeit-koennen` names the activity as a whole; this word counts the varieties, which is why a questionnaire, a club leaflet and a school report all reach for it — Fußball, Tennis und Golf sind Sportarten. Primary stress on Sport-, a secondary one on -art, and a glottal stop between them because the second half begins with a vowel.'
+      ru: 'Sport плюс die Art — «вид», — поэтому род сложное слово берёт у Art: die Sportart, множественное die Sportarten. der Sport уровня A1 из колоды `freizeit-koennen` называет занятие в целом; это слово считает разновидности, потому за ним и тянутся анкета, клубный проспект и школьная характеристика: Fußball, Tennis und Golf sind Sportarten. Главное ударение на Sport-, побочное на -art, а между ними гортанная смычка, потому что вторая половина начинается с гласного.'
+      uk: 'Sport плюс die Art — «вид», — тому рід складне слово бере в Art: die Sportart, множина die Sportarten. der Sport рівня A1 з колоди `freizeit-koennen` називає заняття загалом; це слово рахує різновиди, тому по нього і тягнуться анкета, клубний проспект і шкільна характеристика: Fußball, Tennis und Golf sind Sportarten. Головний наголос на Sport-, побічний на -art, а між ними гортанна змичка, бо друга половина починається з голосного.'
+
+  - de: Golf
+    ipa: "ˈgɔlf"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the game played over a wide course, in which a small ball is struck into a series of holes
+    ru: игра на просторном поле, в которой маленький мяч загоняют в лунки
+    uk: гра на просторому полі, у якій маленький м’яч заганяють у лунки
+    example_de: Am Wochenende spielt er Golf.
+    example_en: He plays golf at the weekend.
+    example_ru: По выходным он играет в гольф.
+    example_uk: На вихідних він грає в гольф.
+    note:
+      en: 'Neuter as a game, and after spielen it stands without an article — Golf spielen — exactly like A1 Fußball in the deck `freizeit-koennen`. The article is what keeps it apart from der Golf, the gulf on a map: der Persische Golf. The place is der Golfplatz, the stick der Golfschläger, and the compound das Golfspiel is the next entry.'
+      ru: 'Как игра — среднего рода, и после spielen стоит без артикля: Golf spielen, ровно как Fußball уровня A1 из колоды `freizeit-koennen`. Именно артикль отделяет его от der Golf — залива на карте: der Persische Golf. Место — der Golfplatz, клюшка — der Golfschläger, а сложное слово das Golfspiel идёт следующей записью.'
+      uk: 'Як гра — середнього роду, і після spielen стоїть без артикля: Golf spielen, точно як Fußball рівня A1 з колоди `freizeit-koennen`. Саме артикль відділяє його від der Golf — затоки на мапі: der Persische Golf. Місце — der Golfplatz, ключка — der Golfschläger, а складне слово das Golfspiel іде наступним записом.'
+
+  - de: Golfspiel
+    ipa: "ˈgɔlfˌʃpiːl"
+    pos: noun
+    gender: n
+    plural: "die Golfspiele"
+    cards: recognition
+    en: the playing of golf, as an activity or as one single round of it
+    ru: сама игра в гольф — как занятие или как отдельная партия
+    uk: сама гра в гольф — як заняття або як окрема партія
+    example_de: Das Golfspiel dauerte fast vier Stunden.
+    example_en: The round of golf lasted almost four hours.
+    example_ru: Партия в гольф длилась почти четыре часа.
+    example_uk: Партія в гольф тривала майже чотири години.
+    note:
+      en: 'Golf above plus A1 das Spiel in the deck `freizeit-koennen`, so it is neuter with a regular -e plural. The bare Golf names the sport and takes neither article nor plural; this compound names the playing of it and takes both, which is what makes beim Golfspiel possible. German builds the same pair all over the field: das Kartenspiel, das Ballspiel, das Endspiel. Primary stress on Golf-, secondary on -spiel.'
+      ru: 'Golf выше плюс das Spiel уровня A1 из колоды `freizeit-koennen`, отсюда средний род и обычное множественное на -e. Голое Golf называет вид спорта и не берёт ни артикля, ни множественного; это сложное слово называет саму игру и берёт оба, чем и возможен оборот beim Golfspiel. Такую же пару немецкий строит по всему полю: das Kartenspiel, das Ballspiel, das Endspiel. Главное ударение на Golf-, побочное на -spiel.'
+      uk: 'Golf вище плюс das Spiel рівня A1 з колоди `freizeit-koennen`, звідси середній рід і звичайна множина на -e. Голе Golf називає вид спорту і не бере ні артикля, ні множини; це складне слово називає саму гру і бере обидва, чим і можливий зворот beim Golfspiel. Таку саму пару німецька будує по всьому полю: das Kartenspiel, das Ballspiel, das Endspiel. Головний наголос на Golf-, побічний на -spiel.'
+
+  - de: Gymnastik
+    ipa: "gʏmˈnastɪk"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: exercises done for suppleness and strength, usually in a group and often to music
+    ru: упражнения на гибкость и силу, обычно в группе и часто под музыку
+    uk: вправи на гнучкість і силу, зазвичай у групі й часто під музику
+    example_de: Meine Mutter macht jeden Morgen Gymnastik.
+    example_en: My mother does exercises every morning.
+    example_ru: Моя мама каждое утро делает зарядку.
+    example_uk: Моя мама щоранку робить руханку.
+    note:
+      en: 'Greek by way of Latin, feminine, and without a plural. The verb it goes with is machen: Gymnastik machen. The word is wider than the English "gymnastics": a keep-fit class at the community centre, a warm-up before a match and the programme a physiotherapist writes out are all Gymnastik, and the competitive sport with apparatus is das Turnen. Stress on the middle syllable, and the y is spoken as the short ü-vowel ʏ.'
+      ru: 'Греческое через латынь, женский род, без множественного. Глагол при нём — machen: Gymnastik machen. Слово шире русской «гимнастики» как вида спорта: и оздоровительная группа при доме культуры, и разминка перед матчем, и комплекс от физиотерапевта — всё это Gymnastik, а соревновательная гимнастика со снарядами называется das Turnen. Ударение на среднем слоге, а y звучит как краткий ü — ʏ.'
+      uk: 'Грецьке через латину, жіночий рід, без множини. Дієслово при ньому — machen: Gymnastik machen. Слово ширше за українську «гімнастику» як вид спорту: і оздоровча група при будинку культури, і розминка перед матчем, і комплекс від фізіотерапевта — усе це Gymnastik, а змагальна гімнастика зі снарядами зветься das Turnen. Наголос на середньому складі, а y звучить як короткий ü — ʏ.'
+
+  - de: Fitness
+    ipa: "ˈfɪtnɛs"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: the condition of a body trained enough to do what is asked of it without strain
+    ru: состояние тела, натренированного настолько, чтобы справляться с нагрузкой без надрыва
+    uk: стан тіла, натренованого настільки, щоб давати раду навантаженню без надриву
+    example_de: Für die Fitness gehe ich dreimal in der Woche schwimmen.
+    example_en: I go swimming three times a week to keep in shape.
+    example_ru: Ради формы я три раза в неделю хожу плавать.
+    example_uk: Задля форми я тричі на тиждень ходжу плавати.
+    note:
+      en: 'An English loan, feminine in German and without a plural, spoken with a short i and a clear final s. B1 fit in the deck `gesundheit-wohlbefinden` is the adjective beside it and B1 die Bewegung in the same deck is what produces it. Most of the time the word arrives inside a compound: das Fitnessstudio, das Fitnesscenter, das Fitnesstraining. The first of those really does carry three s in a row, because German now keeps every letter of both parts of a compound.'
+      ru: 'Английское заимствование, в немецком женского рода и без множественного, с кратким i и отчётливым конечным s. fit уровня B1 из колоды `gesundheit-wohlbefinden` — прилагательное рядом с ним, а die Bewegung уровня B1 из той же колоды — то, чем оно достигается. Чаще всего слово приходит внутри сложного: das Fitnessstudio, das Fitnesscenter, das Fitnesstraining. В первом действительно три s подряд: немецкое правописание сохраняет теперь все буквы обеих частей сложного слова.'
+      uk: 'Англійське запозичення, у німецькій жіночого роду і без множини, з коротким i та виразним кінцевим s. fit рівня B1 з колоди `gesundheit-wohlbefinden` — прикметник поряд із ним, а die Bewegung рівня B1 з тієї самої колоди — те, чим воно досягається. Найчастіше слово приходить усередині складного: das Fitnessstudio, das Fitnesscenter, das Fitnesstraining. У першому справді три s поспіль: німецький правопис зберігає тепер усі літери обох частин складного слова.'
+
+  - de: Mountainbike
+    ipa: "ˈmaʊ̯ntn̩ˌbaɪ̯k"
+    pos: noun
+    gender: n
+    plural: "die Mountainbikes"
+    cards: recognition
+    en: a sturdy bicycle with wide tyres, built for tracks rather than for roads
+    ru: крепкий велосипед с широкими покрышками, рассчитанный на бездорожье, а не на асфальт
+    uk: міцний велосипед із широкими покришками, розрахований на бездоріжжя, а не на асфальт
+    example_de: Mit dem Mountainbike fahren wir am Sonntag in den Wald.
+    example_en: On Sunday we are riding into the forest on our mountain bikes.
+    example_ru: В воскресенье мы поедем в лес на горных велосипедах.
+    example_uk: У неділю ми поїдемо до лісу на гірських велосипедах.
+    note:
+      en: 'An English loan taken whole, neuter like A1 das Fahrrad in the deck `stadt-wege`, with an English plural in -s. It is spoken as in English, with the -tain reduced to a syllabic n. A1 das Fahrrad is the everyday bicycle and A2 das Rad in the deck `verkehr-unterwegs-a2` its short form; this word names the type built for rough ground. The activity is das Mountainbiken.'
+      ru: 'Английское заимствование, взятое целиком, среднего рода — как das Fahrrad уровня A1 из колоды `stadt-wege`, — с английским множественным на -s. Произносится по-английски, а -tain стягивается в слоговое n. das Fahrrad уровня A1 — обычный велосипед, das Rad уровня A2 из колоды `verkehr-unterwegs-a2` — его короткая форма, а это слово называет тип, сделанный для бездорожья. Само занятие — das Mountainbiken.'
+      uk: 'Англійське запозичення, узяте цілком, середнього роду — як das Fahrrad рівня A1 з колоди `stadt-wege`, — з англійською множиною на -s. Вимовляється по-англійському, а -tain стягується у складове n. das Fahrrad рівня A1 — звичайний велосипед, das Rad рівня A2 з колоди `verkehr-unterwegs-a2` — його коротка форма, а це слово називає тип, зроблений для бездоріжжя. Саме заняття — das Mountainbiken.'
+
+  # --- Wo Sport stattfindet ---
+  - de: Stadion
+    ipa: "ˈʃtaːdi̯ɔn"
+    pos: noun
+    gender: n
+    plural: "die Stadien"
+    cards: recognition
+    en: a large open arena with tiers of seats around a pitch or a track
+    ru: большая открытая арена с ярусами трибун вокруг поля или дорожки
+    uk: велика відкрита арена з ярусами трибун навколо поля або доріжки
+    example_de: Das Stadion war am Samstag ganz voll.
+    example_en: The stadium was completely full on Saturday.
+    example_ru: В субботу стадион был битком.
+    example_uk: У суботу стадіон був ущерть повний.
+    note:
+      en: 'A Greek loan, neuter, and the plural is the trap: die Stadien, never "die Stadions" — the Greek -on ending takes the Greek plural, exactly as B1 das Gymnasium in the deck `bildung-schulsystem-b1` goes to die Gymnasien. It is the big open arena; A2 die Halle in the deck `sport-freizeit-a2` is the covered one and A2 der Sportplatz in the same deck the ordinary pitch behind a school. The i before the o is a glide and not a syllable of its own: ˈʃtaːdi̯ɔn.'
+      ru: 'Греческое заимствование, средний род, а ловушка — множественное: die Stadien, а не «die Stadions»: греческое окончание -on берёт греческое множественное, ровно как das Gymnasium уровня B1 из колоды `bildung-schulsystem-b1` даёт die Gymnasien. Это большая арена под открытым небом; die Halle уровня A2 из колоды `sport-freizeit-a2` — крытая, а der Sportplatz уровня A2 из той же колоды — обычная площадка за школой. I перед o — скольжение, а не отдельный слог: ˈʃtaːdi̯ɔn.'
+      uk: 'Грецьке запозичення, середній рід, а пастка — множина: die Stadien, а не «die Stadions»: грецьке закінчення -on бере грецьку множину, точно як das Gymnasium рівня B1 з колоди `bildung-schulsystem-b1` дає die Gymnasien. Це велика арена просто неба; die Halle рівня A2 з колоди `sport-freizeit-a2` — крита, а der Sportplatz рівня A2 з тієї самої колоди — звичайний майданчик за школою. I перед o — ковзання, а не окремий склад: ˈʃtaːdi̯ɔn.'
+
+  - de: Hallenbad
+    ipa: "ˈhalənˌbaːt"
+    pos: noun
+    gender: n
+    plural: "die Hallenbäder"
+    cards: recognition
+    en: a swimming pool inside a building, open the whole year round
+    ru: бассейн под крышей, работающий круглый год
+    uk: басейн під дахом, що працює цілий рік
+    example_de: Im Winter gehen wir ins Hallenbad.
+    example_en: In winter we go to the indoor pool.
+    example_ru: Зимой мы ходим в крытый бассейн.
+    example_uk: Узимку ми ходимо до критого басейну.
+    note:
+      en: 'A2 die Halle in the deck `sport-freizeit-a2` plus A1 das Bad in the deck `wohnen`, joined by the linking -n-, so it is neuter and the plural takes an umlaut: die Hallenbäder. Its counterpart out of doors is das Freibad, and A1 das Schwimmbad in the deck `freizeit-koennen` is the word that covers either. Primary stress on Hallen-, secondary on -bad, and the final -d is spoken t.'
+      ru: 'die Halle уровня A2 из колоды `sport-freizeit-a2` плюс das Bad уровня A1 из колоды `wohnen`, соединённые связкой -n-, отсюда средний род и умлаут во множественном: die Hallenbäder. Его пара под открытым небом — das Freibad, а das Schwimmbad уровня A1 из колоды `freizeit-koennen` покрывает и то и другое. Главное ударение на Hallen-, побочное на -bad, конечное -d звучит как t.'
+      uk: 'die Halle рівня A2 з колоди `sport-freizeit-a2` плюс das Bad рівня A1 з колоди `wohnen`, з’єднані сполучним -n-, звідси середній рід і умлаут у множині: die Hallenbäder. Його пара просто неба — das Freibad, а das Schwimmbad рівня A1 з колоди `freizeit-koennen` покриває і те й те. Головний наголос на Hallen-, побічний на -bad, кінцеве -d звучить як t.'
+
+  # --- Wer Sport treibt ---
+  - de: Sportler
+    ipa: "ˈʃpɔʁtlɐ"
+    pos: noun
+    gender: m
+    plural: "die Sportler"
+    cards: recognition
+    en: a man who does a sport, especially one who does it seriously
+    ru: мужчина, занимающийся спортом, особенно всерьёз
+    uk: чоловік, що займається спортом, особливо всерйоз
+    example_de: Die Sportler kommen jetzt ins Stadion.
+    example_en: The athletes are coming into the stadium now.
+    example_ru: Спортсмены сейчас выходят на стадион.
+    example_uk: Спортсмени зараз виходять на стадіон.
+    note:
+      en: 'A1 der Sport in the deck `freizeit-koennen` plus -ler, the suffix German uses for the person who does the thing: der Künstler, der Wissenschaftler, der Sportler. Singular and plural are spelled alike. It says nothing about money — the man who lives from it is der Profisportler two entries down. A2 sportlich in the deck `sport-freizeit-a2` is the adjective, and the feminine is die Sportlerin, next.'
+      ru: 'der Sport уровня A1 из колоды `freizeit-koennen` плюс -ler — суффикс для того, кто делает названное: der Künstler, der Wissenschaftler, der Sportler. Единственное и множественное пишутся одинаково. О деньгах слово не говорит ничего: тот, кто живёт этим, — der Profisportler двумя записями ниже. sportlich уровня A2 из колоды `sport-freizeit-a2` — прилагательное, а женская пара — die Sportlerin, следующая запись.'
+      uk: 'der Sport рівня A1 з колоди `freizeit-koennen` плюс -ler — суфікс для того, хто робить назване: der Künstler, der Wissenschaftler, der Sportler. Однина і множина пишуться однаково. Про гроші слово не каже нічого: той, хто живе з цього, — der Profisportler двома записами нижче. sportlich рівня A2 з колоди `sport-freizeit-a2` — прикметник, а жіноча пара — die Sportlerin, наступний запис.'
+
+  - de: Sportlerin
+    ipa: "ˈʃpɔʁtləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Sportlerinnen"
+    cards: recognition
+    en: a woman who does a sport, especially one who does it seriously
+    ru: женщина, занимающаяся спортом, особенно всерьёз
+    uk: жінка, що займається спортом, особливо всерйоз
+    example_de: Die beste Sportlerin des Jahres kommt aus unserer Stadt.
+    example_en: The sportswoman of the year comes from our town.
+    example_ru: Лучшая спортсменка года — из нашего города.
+    example_uk: Найкраща спортсменка року — з нашого міста.
+    note:
+      en: 'Regular Movierung with -in and no change to the stem; the plural doubles the n. For a mixed group German takes the masculine plural die Sportler, and a written programme that wants both prints Sportlerinnen und Sportler in full. The yearly award the example refers to exists in German-speaking countries under exactly that name, Sportlerin des Jahres.'
+      ru: 'Обычное мовирование на -in без изменений основы; во множественном n удваивается. Для смешанной группы немецкий берёт мужское множественное die Sportler, а печатная программа, которой нужны обе формы, пишет Sportlerinnen und Sportler целиком. Ежегодная награда из примера действительно так и называется в немецкоязычных странах: Sportlerin des Jahres.'
+      uk: 'Звичайна моція на -in без змін основи; у множині n подвоюється. Для змішаної групи німецька бере чоловічу множину die Sportler, а друкована програма, якій потрібні обидві форми, пише Sportlerinnen und Sportler цілком. Щорічна відзнака з прикладу справді так і зветься в німецькомовних країнах: Sportlerin des Jahres.'
+
+  - de: Profisportler
+    ipa: "ˈpʁoːfiˌʃpɔʁtlɐ"
+    pos: noun
+    gender: m
+    plural: "die Profisportler"
+    cards: recognition
+    en: a man who earns his living from his sport
+    ru: мужчина, который зарабатывает на жизнь своим спортом
+    uk: чоловік, що заробляє на життя своїм спортом
+    example_de: Als Profisportler trainiert er jeden Tag.
+    example_en: As a professional sportsman he trains every day.
+    example_ru: Как профессиональный спортсмен он тренируется каждый день.
+    example_uk: Як професійний спортсмен він тренується щодня.
+    note:
+      en: 'Der Profi, a short form of the English professional, plus der Sportler above; singular and plural are spelled alike. The opposite is der Amateur, and the man who does a lot of sport but is paid nothing for it is der Hobbysportler. Primary stress on Profi-, secondary on -sport-. The feminine is die Profisportlerin, next.'
+      ru: 'Der Profi — краткая форма английского professional — плюс der Sportler выше; единственное и множественное пишутся одинаково. Противоположность — der Amateur, а тот, кто много занимается спортом без всякой платы, — der Hobbysportler. Главное ударение на Profi-, побочное на -sport-. Женская пара — die Profisportlerin, следующая запись.'
+      uk: 'Der Profi — коротка форма англійського professional — плюс der Sportler вище; однина і множина пишуться однаково. Протилежність — der Amateur, а той, хто багато займається спортом без жодної плати, — der Hobbysportler. Головний наголос на Profi-, побічний на -sport-. Жіноча пара — die Profisportlerin, наступний запис.'
+
+  - de: Profisportlerin
+    ipa: "ˈpʁoːfiˌʃpɔʁtləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Profisportlerinnen"
+    cards: recognition
+    en: a woman who earns her living from her sport
+    ru: женщина, которая зарабатывает на жизнь своим спортом
+    uk: жінка, що заробляє на життя своїм спортом
+    example_de: Sie war zehn Jahre lang Profisportlerin.
+    example_en: She was a professional sportswoman for ten years.
+    example_ru: Десять лет она была профессиональной спортсменкой.
+    example_uk: Десять років вона була професійною спортсменкою.
+    note:
+      en: 'Regular Movierung with -in on the masculine above, plural with a doubled n; the two stresses stay where they were. After als German uses the bare noun with no article — als Profisportlerin arbeiten — and that is the frame the word most often appears in, because it states a status rather than names a person.'
+      ru: 'Обычное мовирование на -in от мужской формы выше, во множественном n удваивается; оба ударения остаются на месте. После als немецкий ставит существительное без артикля — als Profisportlerin arbeiten, — и именно в этом обороте слово встречается чаще всего, потому что оно называет статус, а не человека.'
+      uk: 'Звичайна моція на -in від чоловічої форми вище, у множині n подвоюється; обидва наголоси лишаються на місці. Після als німецька ставить іменник без артикля — als Profisportlerin arbeiten, — і саме в цьому звороті слово трапляється найчастіше, бо воно називає статус, а не людину.'
+
+  - de: Spieler
+    ipa: "ˈʃpiːlɐ"
+    pos: noun
+    gender: m
+    plural: "die Spieler"
+    cards: recognition
+    en: a man taking part in a game, on one of the sides
+    ru: мужчина, участвующий в игре на одной из сторон
+    uk: чоловік, що бере участь у грі на одному з боків
+    example_de: Unsere Mannschaft hat nur zehn Spieler.
+    example_en: Our team has only ten players.
+    example_ru: В нашей команде всего десять игроков.
+    example_uk: У нашій команді лише десять гравців.
+    note:
+      en: 'A1 spielen and A1 das Spiel in the deck `freizeit-koennen` plus -er; singular and plural are spelled alike, and the group they belong to is A2 die Mannschaft in the deck `sport-freizeit-a2`. Two other senses share the word: the musician, always inside a compound — der Klavierspieler — and the gambler, der Spieler at a card table, which is why die Spielsucht means an addiction to gambling. The feminine is die Spielerin, next.'
+      ru: 'spielen и das Spiel уровня A1 из колоды `freizeit-koennen` плюс -er; единственное и множественное пишутся одинаково, а команда, к которой они принадлежат, — die Mannschaft уровня A2 из колоды `sport-freizeit-a2`. У слова ещё два значения: музыкант — всегда внутри сложного слова, der Klavierspieler, — и игрок за карточным столом, откуда die Spielsucht, «игровая зависимость». Женская пара — die Spielerin, следующая запись.'
+      uk: 'spielen і das Spiel рівня A1 з колоди `freizeit-koennen` плюс -er; однина і множина пишуться однаково, а команда, до якої вони належать, — die Mannschaft рівня A2 з колоди `sport-freizeit-a2`. У слова ще два значення: музикант — завжди всередині складного слова, der Klavierspieler, — і гравець за картярським столом, звідки die Spielsucht, «ігрова залежність». Жіноча пара — die Spielerin, наступний запис.'
+
+  - de: Spielerin
+    ipa: "ˈʃpiːləʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Spielerinnen"
+    cards: recognition
+    en: a woman taking part in a game, on one of the sides
+    ru: женщина, участвующая в игре на одной из сторон
+    uk: жінка, що бере участь у грі на одному з боків
+    example_de: Die beste Spielerin der Mannschaft ist erst siebzehn.
+    example_en: The best player in the team is only seventeen.
+    example_ru: Лучшей в команде всего семнадцать.
+    example_uk: Найкращій гравчині команди лише сімнадцять.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n. In a live commentary the word usually arrives with a genitive behind it — die Spielerin der Woche, die beste Spielerin des Turniers — because what a report needs is not that she plays but where she ranks.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. В прямом репортаже за словом обычно идёт родительный падеж — die Spielerin der Woche, die beste Spielerin des Turniers, — потому что репортажу нужно не то, что она играет, а её место среди прочих.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. У прямому репортажі за словом зазвичай іде родовий відмінок — die Spielerin der Woche, die beste Spielerin des Turniers, — бо репортажеві потрібно не те, що вона грає, а її місце серед інших.'
+
+  - de: Trainer
+    ipa: "ˈtʁɛːnɐ"
+    pos: noun
+    gender: m
+    plural: "die Trainer"
+    cards: recognition
+    en: the man who prepares a team or an athlete and decides how they play
+    ru: мужчина, который готовит команду или спортсмена и решает, как они играют
+    uk: чоловік, що готує команду або спортсмена і вирішує, як вони грають
+    example_de: Der neue Trainer kommt aus Spanien.
+    example_en: The new coach comes from Spain.
+    example_ru: Новый тренер приехал из Испании.
+    example_uk: Новий тренер приїхав з Іспанії.
+    note:
+      en: 'An English loan whose German pronunciation keeps an ä-like vowel, ˈtʁɛːnɐ, exactly as A2 das Training in the deck `sport-freizeit-a2` does; A2 trainieren in the same deck is the verb. Singular and plural are spelled alike. German also says der Coach, borrowed later and used far outside sport, while der Trainer is the word of the team sheet. The national coach is der Bundestrainer. The feminine is die Trainerin, next.'
+      ru: 'Английское заимствование, чьё немецкое произношение сохраняет гласный вроде ä — ˈtʁɛːnɐ, — ровно как das Training уровня A2 из колоды `sport-freizeit-a2`; trainieren уровня A2 из той же колоды — глагол. Единственное и множественное пишутся одинаково. Немецкий знает и der Coach, заимствованное позже и употребляемое далеко за пределами спорта, тогда как der Trainer — слово протокола матча. Тренер сборной — der Bundestrainer. Женская пара — die Trainerin, следующая запись.'
+      uk: 'Англійське запозичення, чия німецька вимова зберігає голосний на кшталт ä — ˈtʁɛːnɐ, — точно як das Training рівня A2 з колоди `sport-freizeit-a2`; trainieren рівня A2 з тієї самої колоди — дієслово. Однина і множина пишуться однаково. Німецька знає й der Coach, запозичене пізніше і вживане далеко поза спортом, тоді як der Trainer — слово протоколу матчу. Тренер збірної — der Bundestrainer. Жіноча пара — die Trainerin, наступний запис.'
+
+  - de: Trainerin
+    ipa: "ˈtʁɛːnəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Trainerinnen"
+    cards: recognition
+    en: the woman who prepares a team or an athlete and decides how they play
+    ru: женщина, которая готовит команду или спортсмена и решает, как они играют
+    uk: жінка, що готує команду або спортсмена і вирішує, як вони грають
+    example_de: Unsere Trainerin erklärt jede Übung zweimal.
+    example_en: Our coach explains every exercise twice.
+    example_ru: Наша тренерша объясняет каждое упражнение дважды.
+    example_uk: Наша тренерка пояснює кожну вправу двічі.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n, and the ä of the masculine stays. In a club a member addresses her by name rather than by title, and the word turns up mostly in the third person: unsere Trainerin sagt, die Trainerin der Frauenmannschaft.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается, а ä мужской формы сохраняется. В клубе к ней обращаются по имени, а не по званию, и слово живёт главным образом в третьем лице: unsere Trainerin sagt, die Trainerin der Frauenmannschaft.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється, а ä чоловічої форми зберігається. У клубі до неї звертаються на ім’я, а не за званням, і слово живе передусім у третій особі: unsere Trainerin sagt, die Trainerin der Frauenmannschaft.'
+
+  - de: Gegner
+    ipa: "ˈgeːgnɐ"
+    pos: noun
+    gender: m
+    plural: "die Gegner"
+    cards: recognition
+    en: the person or the side playing against you; also somebody who is against a plan or an idea
+    ru: тот, кто играет против вас, — человек или команда; а также противник замысла или идеи
+    uk: той, хто грає проти вас, — людина або команда; а також противник задуму чи ідеї
+    example_de: Unser Gegner ist am Sonntag eine sehr starke Mannschaft.
+    example_en: Our opponents on Sunday are a very strong team.
+    example_ru: Наш соперник в воскресенье — очень сильная команда.
+    example_uk: Наш суперник у неділю — дуже сильна команда.
+    note:
+      en: 'Built on gegen, and singular and plural are spelled alike. The two senses share one shape: the opponent in a match and the opponent of a policy, ein Gegner der neuen Regel. B1 der Streit in the deck `regeln-verantwortung` is the quarrel itself; this word is the person on its other side. The adjective is gegnerisch, used almost only of the other team: die gegnerische Mannschaft. The feminine die Gegnerin is regular; the Wortliste lists only the masculine here.'
+      ru: 'Построено на gegen, единственное и множественное пишутся одинаково. Два значения делят одну форму: соперник в матче и противник курса — ein Gegner der neuen Regel. der Streit уровня B1 из колоды `regeln-verantwortung` — сама ссора; это слово — человек по другую её сторону. Прилагательное gegnerisch употребляют почти только о другой команде: die gegnerische Mannschaft. Женская пара die Gegnerin образуется обычно; Wortliste даёт здесь только мужскую.'
+      uk: 'Побудоване на gegen, однина і множина пишуться однаково. Два значення ділять одну форму: суперник у матчі й противник курсу — ein Gegner der neuen Regel. der Streit рівня B1 з колоди `regeln-verantwortung` — сама сварка; це слово — людина по інший її бік. Прикметник gegnerisch уживають майже тільки про іншу команду: die gegnerische Mannschaft. Жіноча пара die Gegnerin твориться звичайно; Wortliste подає тут лише чоловічу.'
+
+  # --- Vom Start bis zum Ergebnis ---
+  - de: starten
+    ipa: "ˈʃtaʁtn̩"
+    pos: verb
+    praesens_3sg: startet
+    partizip2: gestartet
+    aux: haben/sein
+    cards: recognition
+    en: to set off at the beginning of a race or a journey; also to set something going
+    ru: сорваться с места в начале забега или рейса; а также запустить что-либо
+    uk: зірватися з місця на початку забігу чи рейсу; а також запустити щось
+    example_de: Das Flugzeug ist pünktlich gestartet.
+    example_en: The plane took off on time.
+    example_ru: Самолёт вылетел вовремя.
+    example_uk: Літак вилетів вчасно.
+    note:
+      en: 'Weak, and the auxiliary follows the meaning. Moving off takes sein, because it is a change of place: der Läufer ist gestartet, das Flugzeug ist gestartet. Setting something going takes haben, because there is an object: Er hat den Motor gestartet, sie hat den Computer neu gestartet. A1 anfangen in the deck `trennbare-a1-verben` and A1 beginnen in the deck `alltag-zeit` say that an event begins; this verb belongs to the moment of leaving the line or the ground. The noun is der Start, next.'
+      ru: 'Слабый, а вспомогательный глагол выбирается по значению. Трогание с места берёт sein, потому что это перемена места: der Läufer ist gestartet, das Flugzeug ist gestartet. Запуск чего-либо берёт haben, потому что есть дополнение: Er hat den Motor gestartet, sie hat den Computer neu gestartet. anfangen уровня A1 из колоды `trennbare-a1-verben` и beginnen уровня A1 из колоды `alltag-zeit` говорят, что событие начинается; этот глагол принадлежит мгновению отрыва от линии или от земли. Существительное — der Start, следующая запись.'
+      uk: 'Слабке, а допоміжне дієслово обирається за значенням. Рушання з місця бере sein, бо це переміна місця: der Läufer ist gestartet, das Flugzeug ist gestartet. Запуск чогось бере haben, бо є додаток: Er hat den Motor gestartet, sie hat den Computer neu gestartet. anfangen рівня A1 з колоди `trennbare-a1-verben` і beginnen рівня A1 з колоди `alltag-zeit` кажуть, що подія починається; це дієслово належить миті відриву від лінії або від землі. Іменник — der Start, наступний запис.'
+
+  - de: Start
+    ipa: "ˈʃtaʁt"
+    pos: noun
+    gender: m
+    plural: "die Starts"
+    cards: recognition
+    en: the moment and the place at which a race or a flight begins; also the beginning of anything that then runs
+    ru: миг и место, с которых начинается забег или полёт; а также начало всего, что после этого идёт
+    uk: мить і місце, з яких починається забіг або політ; а також початок усього, що потому триває
+    example_de: Vor dem Start waren alle sehr nervös.
+    example_en: Everybody was very nervous before the start.
+    example_ru: Перед стартом все очень волновались.
+    example_uk: Перед стартом усі дуже хвилювалися.
+    note:
+      en: 'Masculine, with an English -s plural. The other end of the course is A2 das Ziel in the deck `reisen-verkehr`. A2 der Anfang in the deck `zeit-termine-a2` is the beginning of a stretch of time; this word is the point something is released from, which is why it also serves for a career or a year: ein guter Start ins neue Jahr, der Start ins Berufsleben. Chunks: am Start stehen, an den Start gehen.'
+      ru: 'Мужской род, множественное английское на -s. Другой конец дистанции — das Ziel уровня A2 из колоды `reisen-verkehr`. der Anfang уровня A2 из колоды `zeit-termine-a2` — начало отрезка времени; это же слово — точка, из которой выпускают, потому оно годится и для года, и для карьеры: ein guter Start ins neue Jahr, der Start ins Berufsleben. Обороты: am Start stehen, an den Start gehen.'
+      uk: 'Чоловічий рід, множина англійська на -s. Другий кінець дистанції — das Ziel рівня A2 з колоди `reisen-verkehr`. der Anfang рівня A2 з колоди `zeit-termine-a2` — початок відтинку часу; це ж слово — точка, з якої випускають, тому воно годиться і для року, і для кар’єри: ein guter Start ins neue Jahr, der Start ins Berufsleben. Звороти: am Start stehen, an den Start gehen.'
+
+  - de: Runde
+    ipa: "ˈʁʊndə"
+    pos: noun
+    gender: f
+    plural: "die Runden"
+    cards: recognition
+    en: one full circuit of a track or a course; also one stage of a competition, and the drinks one person buys for a whole table
+    ru: один полный круг по дорожке или трассе; а также этап соревнования и угощение, которое один заказывает на весь стол
+    uk: одне повне коло доріжкою або трасою; а також етап змагання і частування, яке один замовляє на цілий стіл
+    example_de: Er läuft jeden Morgen drei Runden um den See.
+    example_en: Every morning he runs three laps round the lake.
+    example_ru: Каждое утро он пробегает три круга вокруг озера.
+    example_uk: Щоранку він пробігає три кола навколо озера.
+    note:
+      en: 'From rund, and the three senses all keep the circle. A lap: eine Runde laufen, eine Runde drehen. A stage everybody passes through together: die zweite Runde, in die nächste Runde kommen — and a discussion has them too, eine weitere Verhandlungsrunde. And a round of drinks: eine Runde ausgeben. The word also names the circle of people themselves, in geselliger Runde.'
+      ru: 'От rund, и во всех трёх значениях остаётся круг. Круг дистанции: eine Runde laufen, eine Runde drehen. Этап, который проходят все вместе: die zweite Runde, in die nächste Runde kommen, — и у переговоров он тоже есть: eine weitere Verhandlungsrunde. И угощение: eine Runde ausgeben. Наконец, слово называет и сам круг людей: in geselliger Runde.'
+      uk: 'Від rund, і в усіх трьох значеннях лишається коло. Коло дистанції: eine Runde laufen, eine Runde drehen. Етап, який проходять усі разом: die zweite Runde, in die nächste Runde kommen, — і в переговорів він теж є: eine weitere Verhandlungsrunde. І частування: eine Runde ausgeben. Нарешті, слово називає й саме коло людей: in geselliger Runde.'
+
+  - de: stoppen
+    ipa: "ˈʃtɔpn̩"
+    pos: verb
+    praesens_3sg: stoppt
+    partizip2: gestoppt
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to bring something that is moving or running to a halt; also to time something with a watch
+    ru: остановить то, что движется или идёт; а также засечь время секундомером
+    uk: зупинити те, що рухається або триває; а також засікти час секундоміром
+    example_de: Der Regen hat das Spiel für eine Stunde gestoppt.
+    example_en: The rain stopped play for an hour.
+    example_ru: Дождь остановил игру на час.
+    example_uk: Дощ зупинив гру на годину.
+    note:
+      en: 'An English loan taken as a weak German verb: stoppt, hat gestoppt. Beside it A2 halten in the deck `verben-handlungen-a2-1` is what a vehicle does of its own accord and A1 aufhören in the deck `trennbare-a1-verben` is what an activity does; this verb takes an object and says that something was stopped from outside. Sport uses it for the watch too — die Zeit stoppen — and the watch itself is die Stoppuhr.'
+      ru: 'Английское заимствование, взятое как слабый немецкий глагол: stoppt, hat gestoppt. Рядом halten уровня A2 из колоды `verben-handlungen-a2-1` — то, что машина делает сама, а aufhören уровня A1 из колоды `trennbare-a1-verben` — то, что делает само занятие; этот же глагол требует дополнения и говорит, что остановили извне. Спорт берёт его и для секундомера: die Zeit stoppen, а сам прибор — die Stoppuhr.'
+      uk: 'Англійське запозичення, узяте як слабке німецьке дієслово: stoppt, hat gestoppt. Поряд halten рівня A2 з колоди `verben-handlungen-a2-1` — те, що машина робить сама, а aufhören рівня A1 з колоди `trennbare-a1-verben` — те, що робить саме заняття; це ж дієслово потребує додатка і каже, що зупинили ззовні. Спорт бере його й для секундоміра: die Zeit stoppen, а сам прилад — die Stoppuhr.'
+
+  - de: kämpfen
+    ipa: "ˈkɛmpfn̩"
+    pos: verb
+    praesens_3sg: kämpft
+    partizip2: gekämpft
+    aux: haben
+    valence: "um/gegen/für + Akk"
+    cards: recognition
+    en: to fight, with fists or with effort, for something or against somebody
+    ru: биться — кулаками или усилием — за что-то или против кого-то
+    uk: битися — кулаками або зусиллям — за щось або проти когось
+    example_de: Die Mannschaft hat bis zur letzten Minute gekämpft.
+    example_en: The team fought until the last minute.
+    example_ru: Команда билась до последней минуты.
+    example_uk: Команда билася до останньої хвилини.
+    note:
+      en: 'Weak: kämpft, hat gekämpft, and the umlaut belongs to the stem, not to any tense. Three prepositions divide the work: um plus the accusative for what is being fought over, gegen plus the accusative for what is being fought against, für plus the accusative for what is being fought for — um den Sieg kämpfen, gegen die Angst kämpfen, für seine Rechte kämpfen. In a B1 reading text it is far more often an effort than a blow. The noun is der Kampf, next.'
+      ru: 'Слабый: kämpft, hat gekämpft, а умлаут принадлежит основе, а не времени. Работу делят три предлога: um с винительным — за что борются, gegen с винительным — против чего, für с винительным — ради чего: um den Sieg kämpfen, gegen die Angst kämpfen, für seine Rechte kämpfen. В тексте уровня B1 это гораздо чаще усилие, чем удар. Существительное — der Kampf, следующая запись.'
+      uk: 'Слабке: kämpft, hat gekämpft, а умлаут належить основі, а не часові. Роботу ділять три прийменники: um зі знахідним — за що борються, gegen зі знахідним — проти чого, für зі знахідним — заради чого: um den Sieg kämpfen, gegen die Angst kämpfen, für seine Rechte kämpfen. У тексті рівня B1 це набагато частіше зусилля, ніж удар. Іменник — der Kampf, наступний запис.'
+
+  - de: Kampf
+    ipa: "ˈkampf"
+    pos: noun
+    gender: m
+    plural: "die Kämpfe"
+    cards: recognition
+    en: a fight, from a single bout in a ring to a long struggle against something
+    ru: борьба — от одного поединка на ринге до долгого противостояния
+    uk: боротьба — від одного поєдинку на ринзі до тривалого протистояння
+    example_de: Der Kampf um den ersten Platz war sehr spannend.
+    example_en: The fight for first place was very exciting.
+    example_ru: Борьба за первое место была очень напряжённой.
+    example_uk: Боротьба за перше місце була дуже напруженою.
+    note:
+      en: 'The noun to kämpfen above, with an umlaut in the plural. In sport it is the single bout and the fight for a place: der Kampf um den Titel. Outside it, the compounds are what a B1 reader meets — der Wettkampf, der Wahlkampf, der Arbeitskampf — and so is the phrase der Kampf gegen den Hunger. A2 der Wettbewerb in the deck `sport-freizeit-a2` is the organized contest with rules and a date; this word is the fighting inside it.'
+      ru: 'Существительное к kämpfen выше, во множественном умлаут. В спорте это отдельный поединок и борьба за место: der Kampf um den Titel. Вне спорта читателю уровня B1 попадаются прежде всего сложные слова — der Wettkampf, der Wahlkampf, der Arbeitskampf — и оборот der Kampf gegen den Hunger. der Wettbewerb уровня A2 из колоды `sport-freizeit-a2` — организованное состязание с правилами и датой; это слово — сама борьба внутри него.'
+      uk: 'Іменник до kämpfen вище, у множині умлаут. У спорті це окремий поєдинок і боротьба за місце: der Kampf um den Titel. Поза спортом читачеві рівня B1 трапляються передусім складні слова — der Wettkampf, der Wahlkampf, der Arbeitskampf — і зворот der Kampf gegen den Hunger. der Wettbewerb рівня A2 з колоди `sport-freizeit-a2` — організоване змагання з правилами і датою; це слово — сама боротьба всередині нього.'
+
+  - de: schießen
+    ipa: "ˈʃiːsn̩"
+    pos: verb
+    praesens_3sg: schießt
+    partizip2: geschossen
+    aux: haben
+    valence: "auf + Akk"
+    cards: recognition
+    en: to fire a weapon; in football, to send the ball with force, and so to score
+    ru: стрелять из оружия; в футболе — сильно ударить по мячу и тем самым забить
+    uk: стріляти зі зброї; у футболі — сильно вдарити по м’ячу і тим самим забити
+    example_de: Kurz vor dem Ende hat er das zweite Tor geschossen.
+    example_en: Shortly before the end he scored the second goal.
+    example_ru: Незадолго до конца он забил второй гол.
+    example_uk: Незадовго до кінця він забив другий гол.
+    note:
+      en: 'Strong, with three stem vowels: schießt, schoss, hat geschossen, and the ß becomes ss where the vowel shortens. What is shot at follows auf plus the accusative — auf das Tor schießen. The football sense is the one a B1 learner meets most: ein Tor schießen, and B1 das Tor in the deck `wohnen-gebaeude-b1` already carries both the gate and the goal. The verb switches to sein where the subject itself shoots along somewhere: Das Wasser ist aus dem Rohr geschossen.'
+      ru: 'Сильный, с тремя корневыми гласными: schießt, schoss, hat geschossen, а ß переходит в ss там, где гласный сокращается. Цель выстрела вводится через auf с винительным: auf das Tor schießen. Футбольное значение — то, что учащийся уровня B1 встретит чаще всего: ein Tor schießen, а das Tor уровня B1 из колоды `wohnen-gebaeude-b1` уже несёт и ворота, и гол. Глагол переходит на sein там, где сам подлежащее стремительно движется: Das Wasser ist aus dem Rohr geschossen.'
+      uk: 'Сильне, з трьома кореневими голосними: schießt, schoss, hat geschossen, а ß переходить у ss там, де голосний коротшає. Ціль пострілу вводиться через auf зі знахідним: auf das Tor schießen. Футбольне значення — те, що учень рівня B1 зустріне найчастіше: ein Tor schießen, а das Tor рівня B1 з колоди `wohnen-gebaeude-b1` уже несе і ворота, і гол. Дієслово переходить на sein там, де сам підмет стрімко рухається: Das Wasser ist aus dem Rohr geschossen.'
+
+  - de: siegen
+    ipa: "ˈziːgn̩"
+    pos: verb
+    praesens_3sg: siegt
+    partizip2: gesiegt
+    aux: haben
+    cards: recognition
+    en: to come out on top in a contest
+    ru: выйти победителем в состязании
+    uk: вийти переможцем у змаганні
+    example_de: Unsere Mannschaft hat mit drei zu eins gesiegt.
+    example_en: Our team won three to one.
+    example_ru: Наша команда победила три — один.
+    example_uk: Наша команда перемогла три — один.
+    note:
+      en: 'Weak: siegt, hat gesiegt, and it never takes an object. The score follows mit and the beaten side über plus the accusative: über den Gegner siegen. A2 gewinnen in the deck `sport-freizeit-a2` is the everyday word and does take one — das Spiel gewinnen; this one belongs to a report and a headline, and says only that somebody ended on top. The noun is der Sieg, next.'
+      ru: 'Слабый: siegt, hat gesiegt, и дополнения он не берёт никогда. Счёт вводится через mit, а побеждённая сторона — через über с винительным: über den Gegner siegen. gewinnen уровня A2 из колоды `sport-freizeit-a2` — обиходное слово, и дополнение у него есть: das Spiel gewinnen; это же принадлежит сводке и заголовку и говорит лишь, что кто-то оказался наверху. Существительное — der Sieg, следующая запись.'
+      uk: 'Слабке: siegt, hat gesiegt, і додатка воно не бере ніколи. Рахунок уводиться через mit, а переможений бік — через über зі знахідним: über den Gegner siegen. gewinnen рівня A2 з колоди `sport-freizeit-a2` — побутове слово, і додаток у нього є: das Spiel gewinnen; це ж належить зведенню і заголовкові і каже лише, що хтось опинився нагорі. Іменник — der Sieg, наступний запис.'
+
+  - de: Sieg
+    ipa: "ˈziːk"
+    pos: noun
+    gender: m
+    plural: "die Siege"
+    cards: recognition
+    en: the win itself, as a result somebody carries away
+    ru: сама победа как итог, который уносят с собой
+    uk: сама перемога як підсумок, який забирають із собою
+    example_de: Nach dem Sieg feierte die ganze Stadt.
+    example_en: After the victory the whole town celebrated.
+    example_ru: После победы праздновал весь город.
+    example_uk: Після перемоги святкувало все місто.
+    note:
+      en: 'Masculine, with an -e plural, and the final -g is spoken k. The opposite is die Niederlage. Chunks: ein knapper Sieg, ein klarer Sieg, ein Sieg über den Gegner, den Sieg holen. Outside sport it names any point at which one side has prevailed — ein Sieg der Vernunft — and in a league table the abbreviation S counts them.'
+      ru: 'Мужской род, множественное на -e, конечное -g звучит как k. Противоположность — die Niederlage. Обороты: ein knapper Sieg, ein klarer Sieg, ein Sieg über den Gegner, den Sieg holen. Вне спорта слово называет всякий случай, когда одна сторона взяла верх: ein Sieg der Vernunft, — а в турнирной таблице победы считает столбец S.'
+      uk: 'Чоловічий рід, множина на -e, кінцеве -g звучить як k. Протилежність — die Niederlage. Звороти: ein knapper Sieg, ein klarer Sieg, ein Sieg über den Gegner, den Sieg holen. Поза спортом слово називає всякий випадок, коли один бік узяв гору: ein Sieg der Vernunft, — а в турнірній таблиці перемоги рахує стовпчик S.'
+
+  - de: Sieger
+    ipa: "ˈziːgɐ"
+    pos: noun
+    gender: m
+    plural: "die Sieger"
+    cards: recognition
+    en: the man who has won, named as the one who ended first
+    ru: мужчина, который выиграл, названный как пришедший первым
+    uk: чоловік, який виграв, названий як той, хто прийшов першим
+    example_de: Am Ende kannte jeder den Namen des Siegers.
+    example_en: By the end everybody knew the winner's name.
+    example_ru: К концу имя победителя знали все.
+    example_uk: Наприкінці ім’я переможця знали всі.
+    note:
+      en: 'Der Sieg above plus -er; singular and plural are spelled alike. Chunks: der Sieger des Turniers, als Sieger vom Platz gehen, die Siegerehrung for the ceremony. B1 der Meister in the deck `arbeit-beruf-b1` is the champion of a whole season or a whole league, and its own note already names that second sense; this word is the winner of one contest. The feminine is die Siegerin, next.'
+      ru: 'Der Sieg выше плюс -er; единственное и множественное пишутся одинаково. Обороты: der Sieger des Turniers, als Sieger vom Platz gehen, а церемония — die Siegerehrung. der Meister уровня B1 из колоды `arbeit-beruf-b1` — чемпион целого сезона или всей лиги, и его собственное примечание уже называет это второе значение; здесь же — победитель одного состязания. Женская пара — die Siegerin, следующая запись.'
+      uk: 'Der Sieg вище плюс -er; однина і множина пишуться однаково. Звороти: der Sieger des Turniers, als Sieger vom Platz gehen, а церемонія — die Siegerehrung. der Meister рівня B1 з колоди `arbeit-beruf-b1` — чемпіон цілого сезону або всієї ліги, і його власна примітка вже називає це друге значення; тут же — переможець одного змагання. Жіноча пара — die Siegerin, наступний запис.'
+
+  - de: Siegerin
+    ipa: "ˈziːgəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Siegerinnen"
+    cards: recognition
+    en: the woman who has won, named as the one who ended first
+    ru: женщина, которая выиграла, названная как пришедшая первой
+    uk: жінка, яка виграла, названа як та, що прийшла першою
+    example_de: Die Siegerin ist erst zwanzig Jahre alt.
+    example_en: The winner is only twenty years old.
+    example_ru: Победительнице всего двадцать лет.
+    example_uk: Переможниці лише двадцять років.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n. For a mixed field German uses the masculine plural die Sieger, and a results list prints Siegerin only where it has to distinguish. What she takes home is der Pokal, the cup, or die Medaille.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. Для смешанного состава немецкий берёт мужское множественное die Sieger, а протокол результатов пишет Siegerin только там, где надо различить. То, что она увозит с собой, — der Pokal, кубок, или die Medaille.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. Для мішаного складу німецька бере чоловічу множину die Sieger, а протокол результатів пише Siegerin лише там, де треба розрізнити. Те, що вона везе із собою, — der Pokal, кубок, або die Medaille.'
+
+  - de: Verlierer
+    ipa: "fɛɐ̯ˈliːʁɐ"
+    pos: noun
+    gender: m
+    plural: "die Verlierer"
+    cards: recognition
+    en: the man who has lost; and, in a newspaper, anybody who comes off worse from a change
+    ru: мужчина, который проиграл; а в газете — всякий, кто оказался в проигрыше от перемены
+    uk: чоловік, який програв; а в газеті — усякий, хто опинився у програші від зміни
+    example_de: Als Verlierer hat er dem Sieger die Hand gegeben.
+    example_en: As the loser he shook the winner's hand.
+    example_ru: Проиграв, он подал победителю руку.
+    example_uk: Програвши, він подав переможцеві руку.
+    note:
+      en: 'A1 verlieren in the deck `perfekt-a1-verben` plus -er, with the ver- prefix spoken fɛɐ̯; singular and plural are spelled alike. Newspaper German takes it far outside sport: die Verlierer der Reform, and the fixed pair is Gewinner und Verlierer. Somebody who takes defeat well is ein guter Verlierer, and somebody who does not is ein schlechter Verlierer. The feminine is die Verliererin, next.'
+      ru: 'verlieren уровня A1 из колоды `perfekt-a1-verben` плюс -er, приставка ver- звучит как fɛɐ̯; единственное и множественное пишутся одинаково. Газетный немецкий уводит слово далеко за спорт: die Verlierer der Reform, — а устойчивая пара — Gewinner und Verlierer. Тот, кто достойно принимает поражение, — ein guter Verlierer, а кто нет — ein schlechter Verlierer. Женская пара — die Verliererin, следующая запись.'
+      uk: 'verlieren рівня A1 з колоди `perfekt-a1-verben` плюс -er, префікс ver- звучить як fɛɐ̯; однина і множина пишуться однаково. Газетна німецька виводить слово далеко за спорт: die Verlierer der Reform, — а усталена пара — Gewinner und Verlierer. Той, хто гідно приймає поразку, — ein guter Verlierer, а хто ні — ein schlechter Verlierer. Жіноча пара — die Verliererin, наступний запис.'
+
+  - de: Verliererin
+    ipa: "fɛɐ̯ˈliːʁəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Verliererinnen"
+    cards: recognition
+    en: the woman who has lost, named in the same way
+    ru: женщина, которая проиграла, названная так же
+    uk: жінка, яка програла, названа так само
+    example_de: Die Verliererin gratulierte der Siegerin.
+    example_en: The loser congratulated the winner.
+    example_ru: Проигравшая поздравила победительницу.
+    example_uk: Та, що програла, привітала переможницю.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n; the r of ver- is vocalized to ɐ̯ and the two others are the uvular ʁ. It is rarer in print than the masculine, partly because a report about a woman usually names her rather than her result. The verb in the example governs the dative: jemandem gratulieren.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается; r приставки ver- вокализуется в ɐ̯, а два других — увулярное ʁ. В печати слово встречается реже мужской формы, отчасти потому, что сообщение о женщине обычно называет её саму, а не её результат. Глагол в примере управляет дательным: jemandem gratulieren.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється; r префікса ver- вокалізується в ɐ̯, а два інші — увулярне ʁ. У друці слово трапляється рідше за чоловічу форму, почасти тому, що повідомлення про жінку зазвичай називає її саму, а не її результат. Дієслово у прикладі керує давальним: jemandem gratulieren.'
+
+  - de: unentschieden
+    ipa: "ˈʊnʔɛntˌʃiːdn̩"
+    pos: adj
+    cards: recognition
+    en: with neither side ahead when a game ends
+    ru: так, что к концу игры ни одна сторона не впереди
+    uk: так, що наприкінці гри жоден бік не попереду
+    example_de: Das Spiel endete unentschieden.
+    example_en: The game ended in a draw.
+    example_ru: Игра закончилась вничью.
+    example_uk: Гра завершилася внічию.
+    note:
+      en: 'un- plus entschieden, the Partizip II of entscheiden, so the word says literally that nothing was decided. It works as an adjective and as an adverb: ein unentschiedenes Spiel, das Spiel endete unentschieden. German also has the noun das Unentschieden for the result itself — ein Unentschieden holen — but the Wortliste row is this adjective, and it is what a live commentary uses. Primary stress on un-, with a glottal stop after it.'
+      ru: 'un- плюс entschieden, Partizip II от entscheiden, так что слово буквально говорит: ничего не решено. Работает и как прилагательное, и как наречие: ein unentschiedenes Spiel, das Spiel endete unentschieden. У немецкого есть и существительное das Unentschieden для самого результата — ein Unentschieden holen, — но в Wortliste стоит именно это прилагательное, и именно его берёт прямой репортаж. Главное ударение на un-, а после него гортанная смычка.'
+      uk: 'un- плюс entschieden, Partizip II від entscheiden, тож слово буквально каже: нічого не вирішено. Працює і як прикметник, і як прислівник: ein unentschiedenes Spiel, das Spiel endete unentschieden. Німецька має й іменник das Unentschieden для самого результату — ein Unentschieden holen, — але у Wortliste стоїть саме цей прикметник, і саме його бере прямий репортаж. Головний наголос на un-, а після нього гортанна змичка.'
+
+  - de: Rekord
+    ipa: "ʁeˈkɔʁt"
+    pos: noun
+    gender: m
+    plural: "die Rekorde"
+    cards: recognition
+    en: the best performance ever measured in a discipline, until somebody beats it
+    ru: лучший результат, когда-либо измеренный в дисциплине, — пока его не побьют
+    uk: найкращий результат, коли-небудь виміряний у дисципліні, — доки його не поб’ють
+    example_de: Sie hat den alten Rekord um zwei Sekunden verbessert.
+    example_en: She improved on the old record by two seconds.
+    example_ru: Она улучшила старый рекорд на две секунды.
+    example_uk: Вона поліпшила старий рекорд на дві секунди.
+    note:
+      en: 'Borrowed from English but fully Germanized in sound: ʁeˈkɔʁt, stress on the second syllable, final -d spoken t. The three verbs are einen Rekord aufstellen, brechen and halten. Outside sport it is any highest figure ever reached — der Rekord bei den Temperaturen — and as a first element it means "as never before": ein Rekordjahr, in Rekordzeit.'
+      ru: 'Заимствовано из английского, но полностью онемечено в звучании: ʁeˈkɔʁt, ударение на втором слоге, конечное -d как t. Три глагола при нём: einen Rekord aufstellen, brechen и halten. Вне спорта это всякая наивысшая величина: der Rekord bei den Temperaturen, — а первым элементом сложного слова оно значит «как никогда прежде»: ein Rekordjahr, in Rekordzeit.'
+      uk: 'Запозичено з англійської, але цілком онімечено у звучанні: ʁeˈkɔʁt, наголос на другому складі, кінцеве -d як t. Три дієслова при ньому: einen Rekord aufstellen, brechen і halten. Поза спортом це будь-яка найвища величина: der Rekord bei den Temperaturen, — а першим елементом складного слова воно означає «як ніколи доти»: ein Rekordjahr, in Rekordzeit.'
+
+  - de: fair
+    ipa: "ˈfɛːɐ̯"
+    pos: adj
+    cards: recognition
+    en: keeping to the rules and to what is decent, even where breaking them would pay
+    ru: соблюдающий правила и приличие даже там, где нарушить было бы выгодно
+    uk: що дотримується правил і пристойності навіть там, де порушити було б вигідно
+    example_de: Beide Mannschaften haben fair gespielt.
+    example_en: Both teams played fair.
+    example_ru: Обе команды играли честно.
+    example_uk: Обидві команди грали чесно.
+    note:
+      en: 'An English loan spoken with a long ä and a vocalized r: ˈfɛːɐ̯. It inflects like any German adjective before a noun — ein faires Angebot, faire Preise — and the negative is unfair. The noun German uses is die Fairness, spelt as in English. Beside it B1 gerecht in the deck `gesellschaft-zusammenleben` is about a distribution or a judgement being just; this word is about conduct, and it reaches well beyond sport into any dealing between people.'
+      ru: 'Английское заимствование с долгим ä и вокализованным r: ˈfɛːɐ̯. Перед существительным склоняется как любое немецкое прилагательное — ein faires Angebot, faire Preise, — а отрицание — unfair. Существительное немецкий берёт английское: die Fairness. Рядом gerecht уровня B1 из колоды `gesellschaft-zusammenleben` говорит о справедливости распределения или решения; это же слово — о поведении, и оно уходит далеко за пределы спорта в любые отношения между людьми.'
+      uk: 'Англійське запозичення з довгим ä і вокалізованим r: ˈfɛːɐ̯. Перед іменником відмінюється як будь-який німецький прикметник — ein faires Angebot, faire Preise, — а заперечення — unfair. Іменник німецька бере англійський: die Fairness. Поряд gerecht рівня B1 з колоди `gesellschaft-zusammenleben` говорить про справедливість розподілу або рішення; це ж слово — про поведінку, і воно сягає далеко поза спорт у будь-які стосунки між людьми.'
+
+  - de: wetten
+    ipa: "ˈvɛtn̩"
+    pos: verb
+    praesens_3sg: wettet
+    partizip2: gewettet
+    aux: haben
+    valence: "auf + Akk"
+    cards: recognition
+    en: to stake money on an outcome you claim to know in advance
+    ru: поставить деньги на исход, который берёшься предсказать
+    uk: поставити гроші на результат, який береш на себе передбачити
+    example_de: Er hat zwanzig Euro auf unsere Mannschaft gewettet.
+    example_en: He bet twenty euros on our team.
+    example_ru: Он поставил двадцать евро на нашу команду.
+    example_uk: Він поставив двадцять євро на нашу команду.
+    note:
+      en: 'Weak: wettet, hat gewettet. What is bet on follows auf plus the accusative; the person bet against follows mit. The noun is die Wette, the place is das Wettbüro. In conversation the verb is a hedge rather than a stake: Ich wette, dass er wieder zu spät kommt, and the challenge Wetten, dass …? is the fixed formula for it.'
+      ru: 'Слабый: wettet, hat gewettet. То, на что ставят, вводится через auf с винительным; тот, с кем спорят, — через mit. Существительное — die Wette, заведение — das Wettbüro. В разговоре глагол значит не ставку, а уверенность: Ich wette, dass er wieder zu spät kommt, — а вызов на спор оформляется формулой Wetten, dass …?'
+      uk: 'Слабке: wettet, hat gewettet. Те, на що ставлять, уводиться через auf зі знахідним; той, з ким б’ються об заклад, — через mit. Іменник — die Wette, заклад — das Wettbüro. У розмові дієслово означає не ставку, а певність: Ich wette, dass er wieder zu spät kommt, — а виклик на суперечку оформлюється формулою Wetten, dass …?'
+
+  # --- Freizeit ohne Wettkampf ---
+  - de: Camp
+    ipa: "ˈkɛmp"
+    pos: noun
+    gender: n
+    plural: "die Camps"
+    cards: recognition
+    en: a place where a group stays in tents or simple huts for a while, and the stay itself
+    ru: место, где группа какое-то время живёт в палатках или домиках, и само это пребывание
+    uk: місце, де група якийсь час живе в наметах або будиночках, і саме це перебування
+    example_de: Im Sommer fährt meine Tochter in ein Camp am See.
+    example_en: In summer my daughter goes to a camp by the lake.
+    example_ru: Летом моя дочь ездит в лагерь на озере.
+    example_uk: Улітку моя донька їздить у табір на озері.
+    note:
+      en: 'An English loan, neuter, plural in -s, spoken with a German short ä: ˈkɛmp. In German it means above all the organized stay with a programme — das Fußballcamp, das Sommercamp — while the older German word for the same thing is das Ferienlager or das Zeltlager. A2 das Zelt in the deck `sport-freizeit-a2` is what most of them are made of, and the verb is campen, next.'
+      ru: 'Английское заимствование, средний род, множественное на -s, произносится с немецким кратким ä: ˈkɛmp. В немецком оно означает прежде всего организованную смену с программой — das Fußballcamp, das Sommercamp, — тогда как старое немецкое слово для того же — das Ferienlager или das Zeltlager. das Zelt уровня A2 из колоды `sport-freizeit-a2` — то, из чего они большей частью и состоят, а глагол — campen, следующая запись.'
+      uk: 'Англійське запозичення, середній рід, множина на -s, вимовляється з німецьким коротким ä: ˈkɛmp. У німецькій воно означає передусім організовану зміну з програмою — das Fußballcamp, das Sommercamp, — тоді як старе німецьке слово для того самого — das Ferienlager або das Zeltlager. das Zelt рівня A2 з колоди `sport-freizeit-a2` — те, з чого вони здебільшого і складаються, а дієслово — campen, наступний запис.'
+
+  - de: campen
+    ipa: "ˈkɛmpn̩"
+    pos: verb
+    praesens_3sg: campt
+    partizip2: gecampt
+    aux: haben
+    cards: recognition
+    en: to spend a holiday living in a tent or a camper van
+    ru: проводить отпуск, живя в палатке или в автодоме
+    uk: проводити відпустку, живучи в наметі або в автодомі
+    example_de: Wir haben zwei Wochen am See gecampt.
+    example_en: We camped by the lake for two weeks.
+    example_ru: Мы две недели жили с палаткой на озере.
+    example_uk: Ми два тижні жили з наметом на озері.
+    note:
+      en: 'An English stem taken as an ordinary weak German verb, ge- and all: campt, hat gecampt. Beside it zelten, next, says the same thing but names the tent — campen also covers the caravan and the camper van, which is why a site for both is der Campingplatz. The noun for the activity is das Camping.'
+      ru: 'Английская основа, взятая как обычный слабый немецкий глагол, вместе с ge-: campt, hat gecampt. Рядом zelten, следующая запись, говорит о том же, но называет палатку, — campen же покрывает и прицеп, и автодом, потому площадка для всех сразу называется der Campingplatz. Существительное для самого занятия — das Camping.'
+      uk: 'Англійська основа, узята як звичайне слабке німецьке дієслово, разом із ge-: campt, hat gecampt. Поряд zelten, наступний запис, каже про те саме, але називає намет, — campen же покриває і причеп, і автодім, тому майданчик для всіх одразу зветься der Campingplatz. Іменник для самого заняття — das Camping.'
+
+  - de: zelten
+    ipa: "ˈtsɛltn̩"
+    pos: verb
+    praesens_3sg: zeltet
+    partizip2: gezeltet
+    aux: haben
+    cards: recognition
+    en: to spend a night or a holiday sleeping in a tent
+    ru: ночевать или проводить отпуск в палатке
+    uk: ночувати або проводити відпустку в наметі
+    example_de: Als Kind habe ich jeden Sommer im Garten gezeltet.
+    example_en: As a child I camped in the garden every summer.
+    example_ru: В детстве я каждое лето ночевал в палатке в саду.
+    example_uk: У дитинстві я щоліта ночував у наметі в саду.
+    note:
+      en: 'A2 das Zelt in the deck `sport-freizeit-a2` turned into a weak verb — zeltet, hat gezeltet — and that entry''s own note already names this word. The difference from campen above is what you sleep in: zelten is a tent and nothing else. German says wir gehen zelten for the plan and wir haben gezeltet for the memory; wild zelten, camping outside a site, is not allowed in most of Germany.'
+      ru: 'das Zelt уровня A2 из колоды `sport-freizeit-a2`, ставшее слабым глаголом: zeltet, hat gezeltet, — и примечание к той записи уже называет это слово. Отличие от campen выше — в том, где спишь: zelten — только палатка и ничего кроме. О замысле говорят wir gehen zelten, о воспоминании — wir haben gezeltet; а wild zelten, вне отведённой площадки, в большей части Германии запрещено.'
+      uk: 'das Zelt рівня A2 з колоди `sport-freizeit-a2`, що стало слабким дієсловом: zeltet, hat gezeltet, — і примітка до того запису вже називає це слово. Відмінність від campen вище — у тому, де спиш: zelten — тільки намет і нічого крім. Про задум кажуть wir gehen zelten, про спогад — wir haben gezeltet; а wild zelten, поза відведеним майданчиком, у більшій частині Німеччини заборонено.'
+
+  - de: Picknick
+    ipa: "ˈpɪknɪk"
+    pos: noun
+    gender: n
+    plural: "die Picknicks"
+    cards: recognition
+    en: a meal eaten outdoors, sitting on the ground, out of what was carried there
+    ru: еда на открытом воздухе, на земле, из того, что принесли с собой
+    uk: їжа просто неба, на землі, з того, що принесли із собою
+    example_de: Am Sonntag machen wir ein Picknick im Park.
+    example_en: On Sunday we are having a picnic in the park.
+    example_ru: В воскресенье мы устроим пикник в парке.
+    example_uk: У неділю ми влаштуємо пікнік у парку.
+    note:
+      en: 'Neuter, with the plural die Picknicks. The verb is machen: ein Picknick machen, and the basket is der Picknickkorb. Both i are short, which is what the ck after each of them marks. The usual places are A1 der Park in the deck `freizeit-koennen`, B1 die Wiese in the deck `gesellschaft-zusammenleben` and the bank of a river, das Ufer.'
+      ru: 'Средний род, множественное die Picknicks. Глагол при нём — machen: ein Picknick machen, а корзина — der Picknickkorb. Оба i краткие, и как раз это помечает ck после каждого. Обычные места — der Park уровня A1 из колоды `freizeit-koennen`, die Wiese уровня B1 из колоды `gesellschaft-zusammenleben` и берег реки, das Ufer.'
+      uk: 'Середній рід, множина die Picknicks. Дієслово при ньому — machen: ein Picknick machen, а кошик — der Picknickkorb. Обидва i короткі, і саме це позначає ck після кожного. Звичні місця — der Park рівня A1 з колоди `freizeit-koennen`, die Wiese рівня B1 з колоди `gesellschaft-zusammenleben` і берег річки, das Ufer.'
+
+  - de: Swimmingpool
+    ipa: "ˈsvɪmɪŋˌpuːl"
+    pos: noun
+    gender: m
+    plural: "die Swimmingpools"
+    cards: recognition
+    en: a built pool for swimming, in a garden or at a hotel
+    ru: выложенный бассейн для плавания — в саду или при отеле
+    uk: викладений басейн для плавання — у саду або при готелі
+    example_de: Das Hotel hat einen großen Swimmingpool.
+    example_en: The hotel has a large swimming pool.
+    example_ru: В отеле большой бассейн.
+    example_uk: У готелі великий басейн.
+    note:
+      en: 'An English loan kept whole and masculine, from der Pool, with an -s plural. The initial s is the English one, spoken s and not the German z: ˈsvɪmɪŋˌpuːl, primary stress on Swimming-, secondary on -pool. A1 das Schwimmbad in the deck `freizeit-koennen` is the public baths a town runs; this one is private or belongs to a hotel, and everyday German shortens it to der Pool.'
+      ru: 'Английское заимствование, взятое целиком и мужского рода — по der Pool, — с множественным на -s. Начальное s английское, звучит как s, а не как немецкое z: ˈsvɪmɪŋˌpuːl, главное ударение на Swimming-, побочное на -pool. das Schwimmbad уровня A1 из колоды `freizeit-koennen` — городской общественный бассейн; этот же частный или гостиничный, и в быту его сокращают до der Pool.'
+      uk: 'Англійське запозичення, узяте цілком і чоловічого роду — за der Pool, — з множиною на -s. Початкове s англійське, звучить як s, а не як німецьке z: ˈsvɪmɪŋˌpuːl, головний наголос на Swimming-, побічний на -pool. das Schwimmbad рівня A1 з колоди `freizeit-koennen` — міський громадський басейн; цей же приватний або готельний, і в побуті його скорочують до der Pool.'
+
+  - de: Bikini
+    ipa: "biˈkiːni"
+    pos: noun
+    gender: m
+    plural: "die Bikinis"
+    cards: recognition
+    en: a two-piece swimming costume for women
+    ru: женский купальник из двух частей
+    uk: жіночий купальник із двох частин
+    example_de: Sie hat sich für den Urlaub einen neuen Bikini gekauft.
+    example_en: She bought herself a new bikini for the holiday.
+    example_ru: Она купила себе новый купальник к отпуску.
+    example_uk: Вона купила собі новий купальник до відпустки.
+    note:
+      en: 'Masculine, with an -s plural and the stress on the middle syllable: biˈkiːni. The one-piece beside it is der Badeanzug and the men''s trunks are die Badehose. A1 die Kleidung in the deck `kleidung-farben` is the class word and A1 tragen in the same deck the verb for wearing it; swimwear as a whole is die Bademode.'
+      ru: 'Мужской род, множественное на -s, ударение на среднем слоге: biˈkiːni. Слитный купальник рядом — der Badeanzug, а мужские плавки — die Badehose. die Kleidung уровня A1 из колоды `kleidung-farben` — родовое слово, tragen уровня A1 из той же колоды — глагол «носить», а вся пляжная одежда вместе — die Bademode.'
+      uk: 'Чоловічий рід, множина на -s, наголос на середньому складі: biˈkiːni. Суцільний купальник поряд — der Badeanzug, а чоловічі плавки — die Badehose. die Kleidung рівня A1 з колоди `kleidung-farben` — родове слово, tragen рівня A1 з тієї самої колоди — дієслово «носити», а весь пляжний одяг разом — die Bademode.'
+
+  - de: Puzzle
+    ipa: "ˈpazl̩"
+    pos: noun
+    gender: n
+    plural: "die Puzzles"
+    cards: recognition
+    en: a picture cut into many small pieces that have to be fitted back together
+    ru: картинка, разрезанная на множество мелких кусочков, которые нужно сложить заново
+    uk: картинка, розрізана на безліч дрібних шматочків, які треба скласти наново
+    example_de: Das Puzzle auf dem Tisch hat tausend Teile.
+    example_en: The jigsaw on the table has a thousand pieces.
+    example_ru: В головоломке на столе тысяча кусочков.
+    example_uk: У головоломці на столі тисяча шматочків.
+    note:
+      en: 'An English loan, neuter, plural in -s, and the pronunciation is the trap: ˈpazl̩, with an a-vowel and a syllabic l, nothing like the letters as they stand. A2 das Rätsel in the deck `kultur-unterhaltung-a2` is the riddle you solve by thinking; this one is the box on the table, and the verb for working at it is puzzeln.'
+      ru: 'Английское заимствование, средний род, множественное на -s, а ловушка — произношение: ˈpazl̩, с гласным a и слоговым l, совсем не так, как выглядят буквы. das Rätsel уровня A2 из колоды `kultur-unterhaltung-a2` — загадка, которую решают головой; здесь же коробка на столе, а глагол для этого занятия — puzzeln.'
+      uk: 'Англійське запозичення, середній рід, множина на -s, а пастка — вимова: ˈpazl̩, з голосним a і складовим l, зовсім не так, як мають вигляд літери. das Rätsel рівня A2 з колоди `kultur-unterhaltung-a2` — загадка, яку розв’язують головою; тут же коробка на столі, а дієслово для цього заняття — puzzeln.'
+
+  - de: faulenzen
+    ipa: "ˈfaʊ̯lɛntsn̩"
+    pos: verb
+    praesens_3sg: faulenzt
+    partizip2: gefaulenzt
+    aux: haben
+    cards: recognition
+    en: to do nothing on purpose and enjoy it
+    ru: намеренно ничего не делать и получать от этого удовольствие
+    uk: навмисне нічого не робити й діставати від цього втіху
+    example_de: Im Urlaub möchte ich nur am Strand faulenzen.
+    example_en: On holiday all I want is to laze about on the beach.
+    example_ru: В отпуске мне хочется только лениться на пляже.
+    example_uk: У відпустці мені хочеться тільки лінуватися на пляжі.
+    note:
+      en: 'Built on A2 faul in the deck `charakter-eigenschaften-a2` with the suffix -enzen, and weak throughout: faulenzt, hat gefaulenzt. The tone is the opposite of the adjective''s: faul about a person is a reproach, while faulenzen after work or on holiday is something you are entitled to and sounds warm. B1 sich erholen in the deck `gesundheit-wohlbefinden` is recovering from something; this verb is doing nothing at all, and doing it deliberately.'
+      ru: 'Построено на faul уровня A2 из колоды `charakter-eigenschaften-a2` при помощи суффикса -enzen и слабо во всех формах: faulenzt, hat gefaulenzt. Тон противоположен прилагательному: faul о человеке — упрёк, а faulenzen после работы или в отпуске — то, на что человек имеет право, и звучит тепло. sich erholen уровня B1 из колоды `gesundheit-wohlbefinden` — восстанавливаться после чего-то; этот глагол — не делать ровно ничего, и делать это намеренно.'
+      uk: 'Побудоване на faul рівня A2 з колоди `charakter-eigenschaften-a2` за допомогою суфікса -enzen і слабке в усіх формах: faulenzt, hat gefaulenzt. Тон протилежний прикметникові: faul про людину — докір, а faulenzen після роботи або у відпустці — те, на що людина має право, і звучить тепло. sich erholen рівня B1 з колоди `gesundheit-wohlbefinden` — відновлюватися після чогось; це дієслово — не робити рівно нічого, і робити це навмисне.'

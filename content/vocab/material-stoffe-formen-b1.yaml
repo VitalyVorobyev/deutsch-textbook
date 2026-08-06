@@ -1,0 +1,527 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the material-and-shape
+# field of data/goethe-b1-wortliste.txt: what a thing is made of, what shape it has,
+# where its edge runs, and the adjectives a description needs once groß and klein have
+# run out. This is the German of a product page, an assembly instruction, a museum
+# label and a form that wants a cross in a box.
+# A1's `kleidung-farben` owns die Farbe and the colour words, A2's
+# `eigenschaften-dinge-a2` owns hoch, tief, rund and bunt, A2's
+# `charakter-eigenschaften-a2` owns dick and dünn, B1's `zahlen-mengen-masse-b1` owns
+# die Länge, die Breite and die Höhe as measurements, B1's `konsum-umwelt` owns das
+# Plastik and der Kunststoff, B1's `geld-vertraege` owns das Material as the line on a
+# written estimate, A2's `dinge-sachen-a2` owns das Ding and die Sache, and B1's
+# `haushalt-notfall-b1` owns die Nadel and nähen. This deck is what those eight leave
+# unnamed: the substance itself, the shape, the edge, and the angle a line runs at.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read, never written: the learner describes his own things out of A1 and A2 words, and
+# everything here is what a label, a catalogue and a set of instructions say back at him.
+id: material-stoffe-formen-b1
+title_de: "Material, Stoffe und Formen"
+title_en: "Materials, substances and shapes"
+title_ru: "Материалы, вещества и формы"
+title_uk: "Матеріали, речовини і форми"
+level: B1
+entries:
+  # --- Woraus etwas gemacht ist ---
+  - de: Stoff
+    ipa: "ˈʃtɔf"
+    pos: noun
+    gender: m
+    plural: "die Stoffe"
+    cards: recognition
+    en: 'woven cloth that clothes are made of; more widely the substance a thing consists of; and, at school, the material a course covers'
+    ru: 'тканое полотно, из которого шьют одежду; шире — вещество, из которого состоит предмет; а в школе то, что проходят по программе'
+    uk: 'ткане полотно, з якого шиють одяг; ширше — речовина, з якої складається предмет; а в школі те, що проходять за програмою'
+    example_de: Der Stoff für das Kleid kostet zwölf Euro pro Meter.
+    example_en: The fabric for the dress costs twelve euros a metre.
+    example_ru: Ткань на платье стоит двенадцать евро за метр.
+    example_uk: Тканина на сукню коштує дванадцять євро за метр.
+    note:
+      en: 'Masculine, plural in -e, and the st- is spoken ʃt. All three senses are common and the sentence has to sort them out. Cloth is the shop sense, and it is sewn with B1 die Nadel and B1 nähen in the deck `haushalt-notfall-b1`. The substance sense lives almost entirely in compounds: der Kunststoff, which B1 ships in the deck `konsum-umwelt`, plus der Rohstoff, der Schadstoff and der Sauerstoff. The school sense gives den Stoff wiederholen and Das kam im Stoff nicht vor. Beside it B1 das Material in the deck `geld-vertraege` is what a job is done with, the line on an estimate beside Arbeitszeit.'
+      ru: 'Мужской род, множественное на -e, st- звучит как ʃt. Все три значения ходовые, и различает их только предложение. Ткань — магазинное значение, и шьют её с помощью die Nadel и nähen уровня B1 из колоды `haushalt-notfall-b1`. Значение «вещество» живёт почти только в сложных словах: der Kunststoff, который есть на уровне B1 в колоде `konsum-umwelt`, а также der Rohstoff, der Schadstoff и der Sauerstoff. Школьное значение даёт den Stoff wiederholen и Das kam im Stoff nicht vor. Рядом das Material уровня B1 из колоды `geld-vertraege` — то, чем выполняют работу, строка сметы рядом с Arbeitszeit.'
+      uk: 'Чоловічий рід, множина на -e, st- звучить як ʃt. Усі три значення ходові, і розрізняє їх лише речення. Тканина — крамничне значення, і шиють її за допомогою die Nadel і nähen рівня B1 з колоди `haushalt-notfall-b1`. Значення «речовина» живе майже тільки у складних словах: der Kunststoff, який є на рівні B1 у колоді `konsum-umwelt`, а також der Rohstoff, der Schadstoff і der Sauerstoff. Шкільне значення дає den Stoff wiederholen і Das kam im Stoff nicht vor. Поряд das Material рівня B1 з колоди `geld-vertraege` — те, чим виконують роботу, рядок кошторису поряд з Arbeitszeit.'
+
+  - de: Holz
+    ipa: "ˈhɔlts"
+    pos: noun
+    gender: n
+    plural: "die Hölzer"
+    cards: recognition
+    en: the hard substance a tree is made of, sawn into boards and worked into furniture
+    ru: твёрдое вещество, из которого состоит дерево, распиленное на доски и пущенное на мебель
+    uk: тверда речовина, з якої складається дерево, розпиляна на дошки й пущена на меблі
+    example_de: Der Tisch ist aus massivem Holz und sehr schwer.
+    example_en: The table is made of solid wood and very heavy.
+    example_ru: Стол сделан из массива дерева и очень тяжёлый.
+    example_uk: Стіл зроблено з масиву дерева, і він дуже важкий.
+    note:
+      en: 'Neuter, and the -lz is spoken ts. In the ordinary sentence it takes neither article nor plural: etwas ist aus Holz, ein Haus aus Holz. Duden does record die Hölzer, but only for kinds of wood or for single pieces, edle Hölzer, and a B1 text rarely needs it. The same slot after aus is filled by B1 der Stein in the deck `natur-geografie-b1` and B1 der Kunststoff in the deck `konsum-umwelt`. Compounds carry the trade: das Holzhaus, der Holzboden, das Brennholz.'
+      ru: 'Средний род, а -lz звучит как ts. В обычном предложении слово идёт без артикля и без множественного: etwas ist aus Holz, ein Haus aus Holz. Duden фиксирует die Hölzer, но только о сортах древесины или об отдельных кусках, edle Hölzer, и тексту уровня B1 это почти не нужно. То же место после aus занимают der Stein уровня B1 из колоды `natur-geografie-b1` и der Kunststoff уровня B1 из колоды `konsum-umwelt`. Ремесло держится на сложных словах: das Holzhaus, der Holzboden, das Brennholz.'
+      uk: 'Середній рід, а -lz звучить як ts. У звичайному реченні слово йде без артикля і без множини: etwas ist aus Holz, ein Haus aus Holz. Duden фіксує die Hölzer, але лише про сорти деревини або про окремі шматки, edle Hölzer, і текстові рівня B1 це майже не потрібно. Те саме місце після aus займають der Stein рівня B1 з колоди `natur-geografie-b1` і der Kunststoff рівня B1 з колоди `konsum-umwelt`. Ремесло тримається на складних словах: das Holzhaus, der Holzboden, das Brennholz.'
+
+  - de: Metall
+    ipa: "meˈtal"
+    pos: noun
+    gender: n
+    plural: "die Metalle"
+    cards: recognition
+    en: a hard shiny substance that conducts heat and current, such as iron, copper or silver
+    ru: твёрдое блестящее вещество, проводящее тепло и ток, например железо, медь или серебро
+    uk: тверда блискуча речовина, що проводить тепло і струм, наприклад залізо, мідь або срібло
+    example_de: Die Griffe sind aus Metall, nicht aus Kunststoff.
+    example_en: The handles are made of metal, not of plastic.
+    example_ru: Ручки металлические, а не пластмассовые.
+    example_uk: Ручки металеві, а не пластмасові.
+    note:
+      en: 'Stress on the second syllable, neuter, and unlike Holz above it takes an ordinary plural: die Metalle, die Schwermetalle. B1 der Kunststoff in the deck `konsum-umwelt` is the word an instruction sets against it, exactly as in the example, and B1 das Gold below is one particular metal of the class. The adjective is metallisch, and scrap for recycling is das Altmetall.'
+      ru: 'Ударение на втором слоге, средний род, и в отличие от Holz выше слово имеет обычное множественное: die Metalle, die Schwermetalle. der Kunststoff уровня B1 из колоды `konsum-umwelt` — то, чему инструкция его противопоставляет, ровно как в примере, а das Gold уровня B1 ниже — один из металлов этого класса. Прилагательное — metallisch, а лом на переработку — das Altmetall.'
+      uk: 'Наголос на другому складі, середній рід, і на відміну від Holz вище слово має звичайну множину: die Metalle, die Schwermetalle. der Kunststoff рівня B1 з колоди `konsum-umwelt` — те, чому інструкція його протиставляє, точно як у прикладі, а das Gold рівня B1 нижче — один із металів цього класу. Прикметник — metallisch, а брухт на перероблення — das Altmetall.'
+
+  - de: Gold
+    ipa: "ˈgɔlt"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the soft yellow metal that rings and coins are made of, and the standard value is measured against
+    ru: мягкий жёлтый металл, из которого делают кольца и монеты, и мерило, которым меряют ценность
+    uk: м’який жовтий метал, з якого роблять каблучки й монети, і мірило, яким міряють цінність
+    example_de: Der Ring ist aus Gold und war entsprechend teuer.
+    example_en: The ring is made of gold and was expensive accordingly.
+    example_ru: Кольцо золотое и стоило соответственно дорого.
+    example_uk: Каблучка золота і коштувала відповідно дорого.
+    note:
+      en: 'Neuter, no plural, and the final d is spoken t. Like Holz above it stands article-free after aus. A2 der Ring in the deck `dinge-sachen-a2` and B1 der Schmuck in the deck `einkaufen-geld-b1` are what it is usually made into. The adjective golden covers both the substance and the colour, eine goldene Uhr, and sport gives die Goldmedaille. Two fixed phrases are worth learning whole: es ist nicht alles Gold, was glänzt, and das ist Gold wert.'
+      ru: 'Средний род, множественного нет, конечное d звучит как t. Как и Holz выше, слово стоит после aus без артикля. der Ring уровня A2 из колоды `dinge-sachen-a2` и der Schmuck уровня B1 из колоды `einkaufen-geld-b1` — то, во что его обычно превращают. Прилагательное golden покрывает и вещество, и цвет: eine goldene Uhr, а спорт даёт die Goldmedaille. Два оборота стоит выучить целиком: es ist nicht alles Gold, was glänzt, и das ist Gold wert.'
+      uk: 'Середній рід, множини немає, кінцеве d звучить як t. Як і Holz вище, слово стоїть після aus без артикля. der Ring рівня A2 з колоди `dinge-sachen-a2` і der Schmuck рівня B1 з колоди `einkaufen-geld-b1` — те, на що його зазвичай перетворюють. Прикметник golden покриває і речовину, і колір: eine goldene Uhr, а спорт дає die Goldmedaille. Два звороти варто вивчити цілком: es ist nicht alles Gold, was glänzt, і das ist Gold wert.'
+
+  - de: Leder
+    ipa: "ˈleːdɐ"
+    pos: noun
+    gender: n
+    plural: "die Leder"
+    cards: recognition
+    en: animal skin treated so that it lasts, used for shoes, bags and jackets
+    ru: обработанная шкура животного, которая долго служит и идёт на обувь, сумки и куртки
+    uk: оброблена шкура тварини, що довго служить і йде на взуття, сумки й куртки
+    example_de: Die Jacke ist aus Leder und hält schon zehn Jahre.
+    example_en: The jacket is made of leather and has already lasted ten years.
+    example_ru: Куртка кожаная и служит уже десять лет.
+    example_uk: Куртка шкіряна і служить уже десять років.
+    note:
+      en: 'Neuter, and in the everyday sentence article-free and singular after aus, exactly like Holz and Gold above; Duden''s die Leder names kinds of leather, feine Leder, and nothing else needs it. A1 der Schuh and A1 die Jacke in the deck `kleidung-farben` are what it usually becomes. The adjective is ledern, and echt Leder is what a label prints when the material is not an imitation. Compounds: die Lederjacke, die Ledertasche, der Lederschuh.'
+      ru: 'Средний род, а в обиходном предложении после aus стоит без артикля и в единственном, ровно как Holz и Gold выше; die Leder у Duden — это сорта кожи, feine Leder, и больше это ни для чего не нужно. der Schuh уровня A1 и die Jacke уровня A1 из колоды `kleidung-farben` — то, чем она обычно становится. Прилагательное — ledern, а echt Leder печатают на этикетке, когда материал не имитация. Сложные слова: die Lederjacke, die Ledertasche, der Lederschuh.'
+      uk: 'Середній рід, а в побутовому реченні після aus стоїть без артикля і в однині, точно як Holz і Gold вище; die Leder у Duden — це сорти шкіри, feine Leder, і більше це ні для чого не потрібно. der Schuh рівня A1 і die Jacke рівня A1 з колоди `kleidung-farben` — те, чим вона зазвичай стає. Прикметник — ledern, а echt Leder друкують на етикетці, коли матеріал не імітація. Складні слова: die Lederjacke, die Ledertasche, der Lederschuh.'
+
+  - de: Wolle
+    ipa: "ˈvɔlə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: the soft hair of a sheep, spun into thread and knitted into warm clothes
+    ru: мягкая шерсть овцы, из которой прядут нить и вяжут тёплые вещи
+    uk: м’яка вовна вівці, з якої прядуть нитку і в’яжуть теплі речі
+    example_de: Der Pullover ist aus reiner Wolle und kratzt ein bisschen.
+    example_en: The jumper is made of pure wool and scratches a little.
+    example_ru: Свитер из чистой шерсти и слегка колется.
+    example_uk: Светр із чистої вовни й трохи коле.
+    note:
+      en: 'Feminine and in practice singular; Duden''s die Wollen belongs to the textile trade and no B1 text needs it. The animal is B1 das Schaf in the deck `tiere-wetter-b1`, the adjective wollen means made of it and wollig means merely like it. On a care label it stands beside die Baumwolle, which is cotton from a plant and has nothing to do with sheep despite the shared second half. B1 die Nadel and B1 nähen in the deck `haushalt-notfall-b1` are the tools of the same field.'
+      ru: 'Женский род и на практике только единственное; die Wollen у Duden принадлежит текстильному ремеслу, и тексту уровня B1 это не нужно. Животное — das Schaf уровня B1 из колоды `tiere-wetter-b1`, прилагательное wollen значит «шерстяной», а wollig — лишь «похожий на шерсть». На ярлыке по уходу рядом стоит die Baumwolle — хлопок, растительное волокно, не имеющее к овце никакого отношения, несмотря на общую вторую половину. die Nadel и nähen уровня B1 из колоды `haushalt-notfall-b1` — инструменты того же поля.'
+      uk: 'Жіночий рід і на практиці лише однина; die Wollen у Duden належить текстильному ремеслу, і текстові рівня B1 це не потрібно. Тварина — das Schaf рівня B1 з колоди `tiere-wetter-b1`, прикметник wollen означає «вовняний», а wollig — лише «схожий на вовну». На етикетці догляду поряд стоїть die Baumwolle — бавовна, рослинне волокно, що не має до вівці жодного стосунку, попри спільну другу половину. die Nadel і nähen рівня B1 з колоди `haushalt-notfall-b1` — інструменти того самого поля.'
+
+  - de: Flüssigkeit
+    ipa: "ˈflʏsɪçkaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Flüssigkeiten"
+    cards: recognition
+    en: anything that flows and takes the shape of whatever it is poured into
+    ru: всё, что течёт и принимает форму того сосуда, куда налито
+    uk: усе, що тече і набирає форми тієї посудини, куди налите
+    example_de: Aus der Flasche läuft eine helle Flüssigkeit.
+    example_en: A pale liquid is running out of the bottle.
+    example_ru: Из бутылки вытекает светлая жидкость.
+    example_uk: З пляшки витікає світла рідина.
+    note:
+      en: 'The adjective flüssig plus -keit, so the -ig keeps its soft ç in front of the ending; feminine, like every -keit noun, with an ordinary plural. It is a sign-and-leaflet word rather than a conversational one: an airport notice, a medicine insert, a chemistry lesson. In a café German names the drink instead, A2 das Getränk in the deck `freunde-feste`. The adjective itself has a second life in money language, where flüssig sein means having cash available.'
+      ru: 'Прилагательное flüssig плюс -keit, поэтому -ig перед окончанием сохраняет мягкое ç; женский род, как у всякого слова на -keit, множественное обычное. Это слово таблички и вкладыша, а не разговора: объявление в аэропорту, инструкция к лекарству, урок химии. В кафе немец назовёт сам напиток — das Getränk уровня A2 из колоды `freunde-feste`. У самого прилагательного есть второе, денежное значение: flüssig sein — «располагать наличными».'
+      uk: 'Прикметник flüssig плюс -keit, тому -ig перед закінченням зберігає м’яке ç; жіночий рід, як у кожного слова на -keit, множина звичайна. Це слово таблички і вкладки, а не розмови: оголошення в аеропорту, інструкція до ліків, урок хімії. У кав’ярні німець назве сам напій — das Getränk рівня A2 з колоди `freunde-feste`. У самого прикметника є друге, грошове значення: flüssig sein — «мати готівку».'
+
+  # --- Der Gegenstand und seine Form ---
+  - de: Gegenstand
+    ipa: "ˈgeːgn̩ˌʃtant"
+    pos: noun
+    gender: m
+    plural: "die Gegenstände"
+    cards: recognition
+    en: 'a thing you can pick up and point at, named without saying what it is; and the topic something is about'
+    ru: 'предмет, который можно взять и на который можно указать, названный без уточнения, что это; а также то, о чём идёт речь'
+    uk: 'предмет, який можна взяти і на який можна вказати, названий без уточнення, що це; а також те, про що йдеться'
+    example_de: Bitte nehmen Sie alle Gegenstände aus Ihren Taschen.
+    example_en: Please take all objects out of your pockets.
+    example_ru: Пожалуйста, выньте все предметы из карманов.
+    example_uk: Будь ласка, вийміть усі предмети з кишень.
+    note:
+      en: 'Gegen plus stehen, with the primary stress on Gegen- and the final d spoken t. This is the formal word, at home in a notice, a police report and an insurance form; A2 das Ding and A2 die Sache in the deck `dinge-sachen-a2` are what a person says out loud, and Ding is the vaguest of the three. The abstract sense needs a genitive after it: der Gegenstand der Diskussion, der Gegenstand des Vertrags. The adjective gegenständlich belongs to art criticism.'
+      ru: 'Gegen плюс stehen, главное ударение на Gegen-, конечное d звучит как t. Это слово официальное — объявления, полицейской сводки, страхового бланка; das Ding и die Sache уровня A2 из колоды `dinge-sachen-a2` — то, что говорят вслух, и Ding из трёх самое расплывчатое. Отвлечённое значение требует после себя родительного: der Gegenstand der Diskussion, der Gegenstand des Vertrags. Прилагательное gegenständlich принадлежит разговору об искусстве.'
+      uk: 'Gegen плюс stehen, головний наголос на Gegen-, кінцеве d звучить як t. Це слово офіційне — оголошення, поліційного зведення, страхового бланка; das Ding і die Sache рівня A2 з колоди `dinge-sachen-a2` — те, що кажуть уголос, і Ding із трьох найрозпливчастіше. Відсторонене значення потребує після себе родового: der Gegenstand der Diskussion, der Gegenstand des Vertrags. Прикметник gegenständlich належить розмові про мистецтво.'
+
+  - de: Form
+    ipa: "ˈfɔʁm"
+    pos: noun
+    gender: f
+    plural: "die Formen"
+    cards: recognition
+    en: 'the outline a thing has, the way it is shaped; and, in a kitchen, the dish a cake is baked in'
+    ru: 'очертание вещи, то, как она устроена снаружи; а на кухне посудина, в которой пекут пирог'
+    uk: 'обрис речі, те, як вона влаштована ззовні; а на кухні посудина, у якій печуть пиріг'
+    example_de: Der Kuchen hat die Form eines Herzens.
+    example_en: The cake is in the shape of a heart.
+    example_ru: Пирог сделан в форме сердца.
+    example_uk: Пиріг зроблено у формі серця.
+    note:
+      en: 'Feminine, ordinary plural. The shape sense is the one a description needs and it takes a genitive or in Form von: in Form eines Kreuzes, in Form von Ringen. The baking sense is a countable object, eine runde Form, die Kuchenform, die Backform, and only the sentence separates the two. A third, abstract sense is condition: in Form sein, gut in Form. The verb formen means to give something a shape, while das Formular, the sheet an office hands you, is a different word with a different job.'
+      ru: 'Женский род, множественное обычное. Значение «очертание» нужно описанию и требует родительного или оборота in Form von: in Form eines Kreuzes, in Form von Ringen. Значение «форма для выпечки» — считаемый предмет: eine runde Form, die Kuchenform, die Backform, и различает их только предложение. Третье, отвлечённое значение — состояние: in Form sein, gut in Form. Глагол formen значит «придавать вид», а das Formular — бланк в учреждении — слово другое и с другой работой.'
+      uk: 'Жіночий рід, множина звичайна. Значення «обрис» потрібне описові й потребує родового або звороту in Form von: in Form eines Kreuzes, in Form von Ringen. Значення «форма для випікання» — злічуваний предмет: eine runde Form, die Kuchenform, die Backform, і розрізняє їх лише речення. Третє, відсторонене значення — стан: in Form sein, gut in Form. Дієслово formen означає «надавати вигляду», а das Formular — бланк в установі — слово інше і з іншою роботою.'
+
+  - de: Kreis
+    ipa: "ˈkʁaɪ̯s"
+    pos: noun
+    gender: m
+    plural: "die Kreise"
+    cards: recognition
+    en: 'the round closed line every point of which is the same distance from the middle; and a group of people who belong together'
+    ru: 'замкнутая круглая линия, все точки которой равно удалены от центра; а также круг людей, связанных между собой'
+    uk: 'замкнена кругла лінія, усі точки якої однаково віддалені від центру; а також коло людей, пов’язаних між собою'
+    example_de: Die Kinder sitzen im Kreis auf dem Boden.
+    example_en: The children are sitting in a circle on the floor.
+    example_ru: Дети сидят в кругу на полу.
+    example_uk: Діти сидять у колі на підлозі.
+    note:
+      en: 'Masculine, plural in -e, and the ei is the diphthong aɪ̯. A2 rund in the deck `eigenschaften-dinge-a2` is the adjective for the same shape. The people sense runs right through B1 reading: der Freundeskreis, im Familienkreis, in kleinem Kreis feiern. German administration adds a third sense, a rural district, which is why a car number plate begins with the letters of its Kreis. Chunks: im Kreis gehen, einen Kreis zeichnen.'
+      ru: 'Мужской род, множественное на -e, ei — дифтонг aɪ̯. rund уровня A2 из колоды `eigenschaften-dinge-a2` — прилагательное для той же фигуры. Значение «круг людей» пронизывает чтение уровня B1: der Freundeskreis, im Familienkreis, in kleinem Kreis feiern. Немецкое административное деление добавляет третье значение — сельский район, — потому автомобильный номер и начинается с букв своего Kreis. Обороты: im Kreis gehen, einen Kreis zeichnen.'
+      uk: 'Чоловічий рід, множина на -e, ei — дифтонг aɪ̯. rund рівня A2 з колоди `eigenschaften-dinge-a2` — прикметник для тієї самої фігури. Значення «коло людей» пронизує читання рівня B1: der Freundeskreis, im Familienkreis, in kleinem Kreis feiern. Німецький адміністративний поділ додає третє значення — сільський район, — тому автомобільний номер і починається з літер свого Kreis. Звороти: im Kreis gehen, einen Kreis zeichnen.'
+
+  - de: Kreuz
+    ipa: "ˈkʁɔʏ̯ts"
+    pos: noun
+    gender: n
+    plural: "die Kreuze"
+    cards: recognition
+    en: 'two lines laid across each other, as the mark on a form or as the Christian sign; and, of a body, the small of the back'
+    ru: 'две линии, положенные крест-накрест, как пометка в бланке или как христианский знак; а о теле — поясница'
+    uk: 'дві лінії, покладені навхрест, як позначка в бланку або як християнський знак; а про тіло — поперек'
+    example_de: Machen Sie bitte ein Kreuz in das erste Feld.
+    example_en: Please put a cross in the first box.
+    example_ru: Поставьте, пожалуйста, крестик в первом поле.
+    example_uk: Поставте, будь ласка, хрестик у першому полі.
+    note:
+      en: 'Neuter, plural in -e. On a form it does the work an English tick does, and the verb for it is ankreuzen. The body sense is fixed and idiomatic, mir tut das Kreuz weh and die Kreuzschmerzen, and it names the lower back specifically rather than A1 der Rücken in the deck `koerper-gesundheit`, which is the whole of it. Keep it apart from A2 die Kreuzung in the deck `verkehr-unterwegs-a2`, where two roads meet. The aid organisation is das Rote Kreuz.'
+      ru: 'Средний род, множественное на -e. В бланке слово делает работу английской галочки, а глагол к нему — ankreuzen. Телесное значение устойчиво и идиоматично: mir tut das Kreuz weh, die Kreuzschmerzen, — и называет именно поясницу, а не всю спину, как der Rücken уровня A1 из колоды `koerper-gesundheit`. Не смешивайте с die Kreuzung уровня A2 из колоды `verkehr-unterwegs-a2` — местом, где сходятся дороги. Организация помощи — das Rote Kreuz.'
+      uk: 'Середній рід, множина на -e. У бланку слово робить роботу англійської галочки, а дієслово до нього — ankreuzen. Тілесне значення усталене й ідіоматичне: mir tut das Kreuz weh, die Kreuzschmerzen, — і називає саме поперек, а не всю спину, як der Rücken рівня A1 з колоди `koerper-gesundheit`. Не змішуйте з die Kreuzung рівня A2 з колоди `verkehr-unterwegs-a2` — місцем, де сходяться дороги. Організація допомоги — das Rote Kreuz.'
+
+  - de: Linie
+    ipa: "ˈliːni̯ə"
+    pos: noun
+    gender: f
+    plural: "die Linien"
+    cards: recognition
+    en: 'a mark running from one point to another, straight or curved; and the numbered route a bus or a tram runs on'
+    ru: 'черта, идущая от точки к точке, прямая или изогнутая; а также номерной маршрут автобуса или трамвая'
+    uk: 'риска, що йде від точки до точки, пряма або зігнута; а також номерний маршрут автобуса чи трамвая'
+    example_de: Die Linie 8 fährt alle zehn Minuten zum Bahnhof.
+    example_en: The number 8 goes to the station every ten minutes.
+    example_ru: Восьмой маршрут ходит до вокзала каждые десять минут.
+    example_uk: Восьмий маршрут ходить до вокзалу кожні десять хвилин.
+    note:
+      en: 'Feminine, stress on the first syllable, ordinary plural. The transport sense is the one a learner needs first, and it keeps its article after mit: mit der Linie 8 fahren, but Linie 8 fährt. The drawn sense gives eine gerade Linie and eine Linie ziehen, and A2 der Punkt in the deck `schule-faecher-a2` is where such a line starts. In printed text a row of type is die Zeile, which is a different word. One chunk is fixed: in erster Linie, meaning above all.'
+      ru: 'Женский род, ударение на первом слоге, множественное обычное. Транспортное значение нужно учащемуся первым, и после mit слово сохраняет артикль: mit der Linie 8 fahren, но Linie 8 fährt. Начерченное значение даёт eine gerade Linie и eine Linie ziehen, а der Punkt уровня A2 из колоды `schule-faecher-a2` — то, с чего такая линия начинается. Строка в печатном тексте — die Zeile, слово другое. Один оборот устойчив: in erster Linie — «прежде всего».'
+      uk: 'Жіночий рід, наголос на першому складі, множина звичайна. Транспортне значення потрібне учневі першим, і після mit слово зберігає артикль: mit der Linie 8 fahren, але Linie 8 fährt. Накреслене значення дає eine gerade Linie і eine Linie ziehen, а der Punkt рівня A2 з колоди `schule-faecher-a2` — те, з чого така лінія починається. Рядок у друкованому тексті — die Zeile, слово інше. Один зворот усталений: in erster Linie — «передусім».'
+
+  - de: Bogen
+    ipa: "ˈboːgn̩"
+    pos: noun
+    gender: m
+    plural: "die Bögen"
+    cards: recognition
+    en: 'a line that curves evenly from one end to the other, as over a door or along a river; and one whole sheet of paper'
+    ru: 'ровно изогнутая линия, как над дверью или у реки; а также целый лист бумаги'
+    uk: 'рівно зігнута лінія, як над дверима або в річки; а також цілий аркуш паперу'
+    example_de: Der Weg macht hinter der Brücke einen weiten Bogen.
+    example_en: The path makes a wide curve after the bridge.
+    example_ru: За мостом дорога делает широкую дугу.
+    example_uk: За мостом дорога робить широку дугу.
+    note:
+      en: 'Masculine, and Duden records two plurals: die Bögen with the umlaut, which is the usual one for the curve, and die Bogen without it, which survives beside it and is the normal form for sheets of paper in the printing trade. The paper sense is what an office needs, ein Bogen Papier, and it is why a form to fill in is der Fragebogen: A2 das Blatt in the deck `schule-faecher-a2` is the loose page in a notebook, while a Bogen is the large unfolded sheet. B1 die Kurve in the deck `verkehr-auto-b1` is the same curve seen from a car. The chunk einen Bogen um jemanden machen means to give somebody a wide berth.'
+      ru: 'Мужской род, и Duden фиксирует два множественных: die Bögen с умлаутом — обычное для «дуги», — и die Bogen без него, которое живёт рядом и в типографском деле нормально для листов. Значение «лист» нужно канцелярии: ein Bogen Papier, — потому и анкета зовётся der Fragebogen: das Blatt уровня A2 из колоды `schule-faecher-a2` — отдельный листок из тетради, а Bogen — большой неразрезанный лист. die Kurve уровня B1 из колоды `verkehr-auto-b1` — та же дуга, увиденная из машины. Оборот einen Bogen um jemanden machen значит «обходить кого-либо стороной».'
+      uk: 'Чоловічий рід, і Duden фіксує дві множини: die Bögen з умлаутом — звичайну для «дуги», — і die Bogen без нього, яка живе поряд і в друкарській справі нормальна для аркушів. Значення «аркуш» потрібне канцелярії: ein Bogen Papier, — тому й анкета зветься der Fragebogen: das Blatt рівня A2 з колоди `schule-faecher-a2` — окремий аркушик із зошита, а Bogen — великий нерозрізаний аркуш. die Kurve рівня B1 з колоди `verkehr-auto-b1` — та сама дуга, побачена з автівки. Зворот einen Bogen um jemanden machen означає «обходити когось стороною».'
+
+  - de: Rand
+    ipa: "ˈʁant"
+    pos: noun
+    gender: m
+    plural: "die Ränder"
+    cards: recognition
+    en: 'the outer edge of a surface, where it stops; and the empty strip left beside written text'
+    ru: 'внешний край поверхности, там, где она кончается; а также пустая полоса сбоку от текста'
+    uk: 'зовнішній край поверхні, там, де вона закінчується; а також порожня смуга збоку від тексту'
+    example_de: Schreiben Sie Ihre Fragen bitte an den Rand.
+    example_en: Please write your questions in the margin.
+    example_ru: Свои вопросы пишите, пожалуйста, на полях.
+    example_uk: Свої питання пишіть, будь ласка, на полях.
+    note:
+      en: 'Masculine, umlaut in the plural, final d spoken t. It is the edge of a flat thing seen from outside: der Rand des Tellers, am Rand der Stadt, am Straßenrand. A1 die Ecke in the deck `reisen-urlaub` is a corner where two edges meet, and A2 die Seite in the deck `dinge-sachen-a2` is a whole face rather than its border. Figuratively am Rande means in passing, randvoll means filled to the brim, and etwas ist am Rande des Möglichen is at the limit of what can be done.'
+      ru: 'Мужской род, во множественном умлаут, конечное d звучит как t. Это край плоской вещи, взятый снаружи: der Rand des Tellers, am Rand der Stadt, am Straßenrand. die Ecke уровня A1 из колоды `reisen-urlaub` — угол, где сходятся два края, а die Seite уровня A2 из колоды `dinge-sachen-a2` — целая сторона, а не её кромка. Переносно am Rande значит «мимоходом», randvoll — «до краёв», а etwas ist am Rande des Möglichen — «на пределе возможного».'
+      uk: 'Чоловічий рід, у множині умлаут, кінцеве d звучить як t. Це край пласкої речі, узятий іззовні: der Rand des Tellers, am Rand der Stadt, am Straßenrand. die Ecke рівня A1 з колоди `reisen-urlaub` — ріг, де сходяться два краї, а die Seite рівня A2 з колоди `dinge-sachen-a2` — ціла сторона, а не її крайка. Переносно am Rande означає «мимохідь», randvoll — «по вінця», а etwas ist am Rande des Möglichen — «на межі можливого».'
+
+  - de: Scheibe
+    ipa: "ˈʃaɪ̯bə"
+    pos: noun
+    gender: f
+    plural: "die Scheiben"
+    cards: recognition
+    en: 'a thin flat piece cut off something; and the pane of glass in a window or a car'
+    ru: 'тонкий плоский кусок, отрезанный от чего-либо; а также стекло в окне или в машине'
+    uk: 'тонкий плаский шматок, відрізаний від чогось; а також скло у вікні або в машині'
+    example_de: Er schneidet zwei Scheiben Brot ab.
+    example_en: He cuts off two slices of bread.
+    example_ru: Он отрезает два ломтя хлеба.
+    example_uk: Він відрізає дві скибки хліба.
+    note:
+      en: 'Feminine, ordinary plural, and as a measure word it does take that plural after a number: zwei Scheiben Brot, drei Scheiben Käse, where a masculine or neuter measure would stay singular in zwei Glas Wasser. The verb behind this sense is A2 schneiden in the deck `verben-handlungen-a2-2`. The glass sense is the everyday one in a car, die Windschutzscheibe and die Scheibe putzen, and it is a whole pane rather than A2 das Glas in the deck `haushalt-geschirr-a2`, which is the substance and the drinking vessel. A third sense is any flat disc, die Bremsscheibe.'
+      ru: 'Женский род, множественное обычное, и как мера слово это множественное после числительного сохраняет: zwei Scheiben Brot, drei Scheiben Käse, — тогда как мера мужского или среднего рода осталась бы в единственном: zwei Glas Wasser. Глагол при этом значении — schneiden уровня A2 из колоды `verben-handlungen-a2-2`. Стекольное значение обиходно в разговоре о машине: die Windschutzscheibe, die Scheibe putzen, — и это целое полотно стекла, а не das Glas уровня A2 из колоды `haushalt-geschirr-a2`, где слово означает вещество и сосуд для питья. Третье значение — любой плоский диск: die Bremsscheibe.'
+      uk: 'Жіночий рід, множина звичайна, і як міра слово цю множину після числівника зберігає: zwei Scheiben Brot, drei Scheiben Käse, — тоді як міра чоловічого чи середнього роду лишилася б в однині: zwei Glas Wasser. Дієслово при цьому значенні — schneiden рівня A2 з колоди `verben-handlungen-a2-2`. Скляне значення побутове в розмові про автівку: die Windschutzscheibe, die Scheibe putzen, — і це ціле полотно скла, а не das Glas рівня A2 з колоди `haushalt-geschirr-a2`, де слово означає речовину і посудину для пиття. Третє значення — будь-який пласкій диск: die Bremsscheibe.'
+
+  - de: Knopf
+    ipa: "ˈknɔpf"
+    pos: noun
+    gender: m
+    plural: "die Knöpfe"
+    cards: recognition
+    en: 'the small round fastener sewn to a garment; and the round part you press on a machine'
+    ru: 'маленькая круглая застёжка, пришитая к одежде; а также круглая деталь, на которую нажимают в приборе'
+    uk: 'маленька кругла застібка, пришита до одягу; а також кругла деталь, на яку натискають у приладі'
+    example_de: An der Jacke fehlt ein Knopf.
+    example_en: A button is missing from the jacket.
+    example_ru: На куртке не хватает пуговицы.
+    example_uk: На куртці бракує ґудзика.
+    note:
+      en: 'Masculine, umlaut in the plural, and both letters of kn- are spoken. The garment sense is sewn on with B1 die Nadel and B1 nähen in the deck `haushalt-notfall-b1`. The machine sense is pressed, auf den Knopf drücken, with A2 drücken in the deck `verben-handlungen-a2-1`; a lift, a doorbell and a coffee machine all have one, while a computer keyboard has B1 die Taste in the deck `digitales-leben` instead. Der Knopfdruck is the act of pressing: auf Knopfdruck, at the touch of a button.'
+      ru: 'Мужской род, во множественном умлаут, в kn- слышны обе буквы. Значение «пуговица» пришивают die Nadel и nähen уровня B1 из колоды `haushalt-notfall-b1`. Значение «кнопка» нажимают: auf den Knopf drücken, — с глаголом drücken уровня A2 из колоды `verben-handlungen-a2-1`; кнопка есть у лифта, у звонка и у кофемашины, а у компьютерной клавиатуры вместо неё die Taste уровня B1 из колоды `digitales-leben`. Der Knopfdruck — само нажатие: auf Knopfdruck — «одним нажатием».'
+      uk: 'Чоловічий рід, у множині умлаут, у kn- чути обидві літери. Значення «ґудзик» пришивають die Nadel і nähen рівня B1 з колоди `haushalt-notfall-b1`. Значення «кнопка» натискають: auf den Knopf drücken, — з дієсловом drücken рівня A2 з колоди `verben-handlungen-a2-1`; кнопка є у ліфта, у дзвінка і в кавомашини, а в комп’ютерної клавіатури замість неї die Taste рівня B1 з колоди `digitales-leben`. Der Knopfdruck — саме натискання: auf Knopfdruck — «одним натисканням».'
+
+  - de: Couch
+    ipa: "ˈkaʊ̯tʃ"
+    pos: noun
+    gender: f
+    plural: "die Couchs"
+    cards: recognition
+    en: a long soft seat for several people in a living room
+    ru: длинное мягкое сиденье на несколько человек в гостиной
+    uk: довге м’яке сидіння на кілька осіб у вітальні
+    example_de: Am Abend sitzen wir zu dritt auf der Couch.
+    example_en: In the evening the three of us sit on the couch.
+    example_ru: Вечером мы втроём сидим на диване.
+    example_uk: Увечері ми втрьох сидимо на дивані.
+    note:
+      en: 'An English loan spoken kaʊ̯tʃ, feminine in German, with the plural die Couchs. A1 das Sofa in the deck `wohnen` is the same piece of furniture and the commoner word; Couch is a shade more casual and is what an advertisement writes. B1 der Sessel in the deck `wohnen-gebaeude-b1` seats one person only. The low table in front of it is der Couchtisch.'
+      ru: 'Английское заимствование, произносится kaʊ̯tʃ, в немецком женского рода, множественное die Couchs. das Sofa уровня A1 из колоды `wohnen` — тот же предмет мебели и слово более частое; Couch чуть более непринуждённо и живёт в рекламе. der Sessel уровня B1 из колоды `wohnen-gebaeude-b1` рассчитан на одного. Низкий столик перед ним — der Couchtisch.'
+      uk: 'Англійське запозичення, вимовляється kaʊ̯tʃ, у німецькій жіночого роду, множина die Couchs. das Sofa рівня A1 з колоди `wohnen` — той самий предмет меблів і слово частіше; Couch трохи невимушеніше і живе в рекламі. der Sessel рівня B1 з колоди `wohnen-gebaeude-b1` розрахований на одного. Низький столик перед ним — der Couchtisch.'
+
+  # --- Breit, schmal, flach: die Maße von außen ---
+  - de: breit
+    ipa: "ˈbʁaɪ̯t"
+    pos: adj
+    cards: recognition
+    en: measuring a lot from one side to the other
+    ru: имеющий большую протяжённость от одного края до другого
+    uk: що має велику протяжність від одного краю до другого
+    example_de: Der Schrank ist zu breit für diese Wand.
+    example_en: The cupboard is too wide for this wall.
+    example_ru: Шкаф слишком широк для этой стены.
+    example_uk: Шафа надто широка для цієї стіни.
+    note:
+      en: 'Its opposite is schmal below. Like A2 hoch in the deck `eigenschaften-dinge-a2` it takes the measurement in front of it and stays uninflected there: zwei Meter breit, drei Zentimeter breit. The noun is B1 die Breite in the deck `zahlen-mengen-masse-b1`, and the same pattern gives lang and die Länge, hoch and die Höhe. Figuratively die breite Öffentlichkeit is the public at large and ein breites Angebot is a wide range.'
+      ru: 'Противоположность — schmal ниже. Как и hoch уровня A2 из колоды `eigenschaften-dinge-a2`, слово ставит меру перед собой и остаётся при ней без окончания: zwei Meter breit, drei Zentimeter breit. Существительное — die Breite уровня B1 из колоды `zahlen-mengen-masse-b1`, и тот же ряд даёт lang и die Länge, hoch и die Höhe. Переносно die breite Öffentlichkeit — «широкая публика», а ein breites Angebot — «широкий выбор».'
+      uk: 'Протилежність — schmal нижче. Як і hoch рівня A2 з колоди `eigenschaften-dinge-a2`, слово ставить міру перед собою і лишається при ній без закінчення: zwei Meter breit, drei Zentimeter breit. Іменник — die Breite рівня B1 з колоди `zahlen-mengen-masse-b1`, і той самий ряд дає lang і die Länge, hoch і die Höhe. Переносно die breite Öffentlichkeit — «широкий загал», а ein breites Angebot — «широкий вибір».'
+
+  - de: schmal
+    ipa: "ˈʃmaːl"
+    pos: adj
+    cards: recognition
+    en: measuring little from one side to the other
+    ru: имеющий малую протяжённость от одного края до другого
+    uk: що має малу протяжність від одного краю до другого
+    example_de: Der Weg ist hier so schmal, dass nur einer gehen kann.
+    example_en: The path is so narrow here that only one person can walk along it.
+    example_ru: Тропа здесь такая узкая, что пройти может только один.
+    example_uk: Стежка тут така вузька, що пройти може лише один.
+    note:
+      en: 'The opposite of breit above, and the pair is about width, not about thickness: A2 dünn in the deck `charakter-eigenschaften-a2` is what a thin board is, schmal is what a narrow one is. Of a person it is the polite word where A2 dick in the same deck is blunt, and B1 schlank in the deck `koerperpflege-lebensstil-b1` is politer still. Duden allows both schmaler and schmäler as the comparative. Figuratively ein schmales Budget is a tight one.'
+      ru: 'Противоположность breit выше, и пара говорит о ширине, а не о толщине: dünn уровня A2 из колоды `charakter-eigenschaften-a2` — про тонкую доску, schmal — про узкую. О человеке это слово вежливое, тогда как dick из той же колоды прямолинейно, а schlank уровня B1 из колоды `koerperpflege-lebensstil-b1` ещё вежливее. Duden допускает в сравнительной степени и schmaler, и schmäler. Переносно ein schmales Budget — «скудный бюджет».'
+      uk: 'Протилежність breit вище, і пара говорить про ширину, а не про товщину: dünn рівня A2 з колоди `charakter-eigenschaften-a2` — про тонку дошку, schmal — про вузьку. Про людину це слово ввічливе, тоді як dick із тієї самої колоди прямолінійне, а schlank рівня B1 з колоди `koerperpflege-lebensstil-b1` іще ввічливіше. Duden допускає у вищому ступені і schmaler, і schmäler. Переносно ein schmales Budget — «скупий бюджет».'
+
+  - de: niedrig
+    ipa: "ˈniːdʁɪç"
+    pos: adj
+    cards: recognition
+    en: 'not far above the ground; and, of a number, small on the scale it belongs to'
+    ru: 'находящийся невысоко над землёй; а о числе — небольшой по своей шкале'
+    uk: 'розташований невисоко над землею; а про число — невеликий за своєю шкалою'
+    example_de: Die Mieten sind hier noch relativ niedrig.
+    example_en: Rents are still relatively low here.
+    example_ru: Аренда здесь пока сравнительно низкая.
+    example_uk: Оренда тут поки що порівняно низька.
+    note:
+      en: 'The opposite of A2 hoch in the deck `eigenschaften-dinge-a2`, with the -ig spoken ɪç. It is easy to confuse with A2 tief in the same deck, and the direction of measuring separates them: tief measures downwards from a surface, ein tiefer See, while niedrig measures upwards from the ground, ein niedriger Tisch. With numbers it is the standard word of news German: niedrige Preise, ein niedriges Einkommen, eine niedrige Temperatur. Flach below is the third neighbour and says the thing has hardly any height at all.'
+      ru: 'Противоположность hoch уровня A2 из колоды `eigenschaften-dinge-a2`, окончание -ig звучит как ɪç. Легко смешать с tief из той же колоды, но их разводит направление отсчёта: tief мерит вниз от поверхности — ein tiefer See, — а niedrig мерит вверх от земли: ein niedriger Tisch. С числами это стандартное слово газетного немецкого: niedrige Preise, ein niedriges Einkommen, eine niedrige Temperatur. Третий сосед — flach ниже, который говорит, что высоты почти нет вовсе.'
+      uk: 'Протилежність hoch рівня A2 з колоди `eigenschaften-dinge-a2`, закінчення -ig звучить як ɪç. Легко сплутати з tief із тієї самої колоди, але їх розводить напрямок відліку: tief міряє вниз від поверхні — ein tiefer See, — а niedrig міряє вгору від землі: ein niedriger Tisch. З числами це стандартне слово газетної німецької: niedrige Preise, ein niedriges Einkommen, eine niedrige Temperatur. Третій сусід — flach нижче, який каже, що висоти майже немає зовсім.'
+
+  - de: flach
+    ipa: "ˈflax"
+    pos: adj
+    cards: recognition
+    en: 'having no rise and no fall, level; and having very little height of its own'
+    ru: 'без подъёмов и спусков, ровный; а также очень небольшой собственной высоты'
+    uk: 'без підйомів і спусків, рівний; а також дуже невеликої власної висоти'
+    example_de: Das Land ist hier flach, man sieht keinen Hügel.
+    example_en: The land is flat here, you cannot see a single hill.
+    example_ru: Местность здесь ровная, ни одного холма не видно.
+    example_uk: Місцевість тут рівна, жодного пагорба не видно.
+    note:
+      en: 'Two neighbours sit inside this deck and one outside it: niedrig above says a thing is close to the ground, flach says it has hardly any height of its own, and B1 steil in the deck `natur-geografie-b1` is exactly what a flat path is not. Of water it means shallow, flaches Wasser, where A2 tief in the deck `eigenschaften-dinge-a2` is the opposite. Chunks: das Flachdach, flache Schuhe, flach atmen. The noun die Fläche, an area, ships at B1 in the deck `gesellschaft-zusammenleben`.'
+      ru: 'Два соседа стоят внутри этой колоды и один вне её: niedrig выше говорит, что предмет близок к земле, flach — что своей высоты у него почти нет, а steil уровня B1 из колоды `natur-geografie-b1` — ровно то, чем ровная дорога не является. О воде слово значит «мелкий»: flaches Wasser, — и противоположность здесь tief уровня A2 из колоды `eigenschaften-dinge-a2`. Обороты: das Flachdach, flache Schuhe, flach atmen. Существительное die Fläche — «площадь» — есть на уровне B1 в колоде `gesellschaft-zusammenleben`.'
+      uk: 'Два сусіди стоять усередині цієї колоди і один поза нею: niedrig вище каже, що предмет близький до землі, flach — що власної висоти в нього майже немає, а steil рівня B1 з колоди `natur-geografie-b1` — саме те, чим рівна дорога не є. Про воду слово означає «мілкий»: flaches Wasser, — і протилежність тут tief рівня A2 з колоди `eigenschaften-dinge-a2`. Звороти: das Flachdach, flache Schuhe, flach atmen. Іменник die Fläche — «площа» — є на рівні B1 у колоді `gesellschaft-zusammenleben`.'
+
+  # --- Die Oberfläche und die Kante ---
+  - de: glatt
+    ipa: "ˈglat"
+    pos: adj
+    cards: recognition
+    en: 'even to the touch, with nothing standing out of the surface; and so slippery that a foot slides on it'
+    ru: 'ровный на ощупь, без выступов на поверхности; а также настолько скользкий, что нога соскальзывает'
+    uk: 'рівний на дотик, без виступів на поверхні; а також настільки слизький, що нога ковзає'
+    example_de: Vorsicht, die Straße ist heute glatt.
+    example_en: Careful, the road is slippery today.
+    example_ru: Осторожно, дорога сегодня скользкая.
+    example_uk: Обережно, дорога сьогодні слизька.
+    note:
+      en: 'One word for two things a surface can be, and the winter sense is the one a traffic report uses: die Straße ist glatt, das Glatteis, die Glätte. Duden allows glatter and glätter alike in the comparative. Of hair it means straight rather than curly, glatte Haare, and A1 die Haare ship in the deck `menschen-familie`. Figuratively eine glatte Lüge is a downright lie and etwas läuft glatt means it goes off without a hitch.'
+      ru: 'Одно слово для двух свойств поверхности, и зимнее значение — то, что берёт сводка о дорогах: die Straße ist glatt, das Glatteis, die Glätte. В сравнительной степени Duden допускает и glatter, и glätter. О волосах слово значит «прямые», а не «вьющиеся»: glatte Haare, — и die Haare уровня A1 есть в колоде `menschen-familie`. Переносно eine glatte Lüge — «наглая ложь», а etwas läuft glatt — «идёт без сучка и задоринки».'
+      uk: 'Одне слово для двох властивостей поверхні, і зимове значення — те, що бере зведення про дороги: die Straße ist glatt, das Glatteis, die Glätte. У вищому ступені Duden допускає і glatter, і glätter. Про волосся слово означає «пряме», а не «кучеряве»: glatte Haare, — і die Haare рівня A1 є в колоді `menschen-familie`. Переносно eine glatte Lüge — «нахабна брехня», а etwas läuft glatt — «іде як по маслу».'
+
+  - de: spitz
+    ipa: "ˈʃpɪts"
+    pos: adj
+    cards: recognition
+    en: running to a fine point at one end, so that it can prick or bore into something
+    ru: сходящийся на одном конце в тонкое остриё, так что может уколоть или вонзиться
+    uk: що сходиться на одному кінці в тонке вістря, тож може вколоти або встромитися
+    example_de: Der Bleistift ist nicht mehr spitz.
+    example_en: The pencil is no longer sharp.
+    example_ru: Карандаш затупился.
+    example_uk: Олівець затупився.
+    note:
+      en: 'The sp- is spoken ʃp, as at the beginning of every German word. It is about shape and not about a cutting edge: a knife that cuts well is scharf, and spitz is what its tip is. The verb is spitzen, der Bleistiftspitzer is what sharpens a pencil, and die Spitze is the point itself as well as the top of a ranking. Of a remark it means barbed, eine spitze Bemerkung. Around it eckig below has corners and A2 rund in the deck `eigenschaften-dinge-a2` has none at all.'
+      ru: 'Сочетание sp- звучит как ʃp, как в начале любого немецкого слова. Речь о форме, а не о заточке лезвия: хорошо режущий нож — scharf, а spitz — это про его кончик. Глагол — spitzen, точилка — der Bleistiftspitzer, а die Spitze — и само остриё, и верхняя строка рейтинга. О замечании слово значит «колкий»: eine spitze Bemerkung. Рядом eckig ниже — с углами, а rund уровня A2 из колоды `eigenschaften-dinge-a2` — без углов вовсе.'
+      uk: 'Сполука sp- звучить як ʃp, як на початку будь-якого німецького слова. Ідеться про форму, а не про заточення леза: добре ріжучий ніж — scharf, а spitz — це про його кінчик. Дієслово — spitzen, стругачка — der Bleistiftspitzer, а die Spitze — і саме вістря, і верхній рядок рейтингу. Про зауваження слово означає «дошкульний»: eine spitze Bemerkung. Поряд eckig нижче — з кутами, а rund рівня A2 з колоди `eigenschaften-dinge-a2` — без кутів зовсім.'
+
+  - de: eckig
+    ipa: "ˈɛkɪç"
+    pos: adj
+    cards: recognition
+    en: having corners and straight sides instead of a curve
+    ru: имеющий углы и прямые стороны, а не изгиб
+    uk: що має кути й прямі сторони, а не вигин
+    example_de: Wir suchen einen eckigen Tisch, keinen runden.
+    example_en: We are looking for a table with corners, not a round one.
+    example_ru: Мы ищем стол с углами, а не круглый.
+    example_uk: Ми шукаємо стіл із кутами, а не круглий.
+    note:
+      en: 'A1 die Ecke in the deck `reisen-urlaub` plus -ig, with the ending spoken ɪç. It is the plain opposite of A2 rund in the deck `eigenschaften-dinge-a2`, as the example shows, and it says nothing about how many corners there are: quadratisch means four equal sides, rechteckig four sides in two lengths. Of a movement it means stiff and awkward, eckige Bewegungen. In print eckige Klammern are square brackets.'
+      ru: 'die Ecke уровня A1 из колоды `reisen-urlaub` плюс -ig, окончание звучит как ɪç. Это прямая противоположность rund уровня A2 из колоды `eigenschaften-dinge-a2`, что и показывает пример, и о числе углов слово не говорит ничего: quadratisch — четыре равные стороны, rechteckig — четыре стороны двух длин. О движениях значит «угловатые, скованные»: eckige Bewegungen. В типографике eckige Klammern — квадратные скобки.'
+      uk: 'die Ecke рівня A1 з колоди `reisen-urlaub` плюс -ig, закінчення звучить як ɪç. Це пряма протилежність rund рівня A2 з колоди `eigenschaften-dinge-a2`, що й показує приклад, і про кількість кутів слово не каже нічого: quadratisch — чотири рівні сторони, rechteckig — чотири сторони двох довжин. Про рухи означає «незграбні, скуті»: eckige Bewegungen. У друкарстві eckige Klammern — квадратні дужки.'
+
+  # --- Die Lage einer Linie ---
+  - de: senkrecht
+    ipa: "ˈzɛŋkʁɛçt"
+    pos: adj
+    cards: recognition
+    en: running straight up and down, at a right angle to the ground
+    ru: идущий строго вверх и вниз, под прямым углом к земле
+    uk: що йде строго вгору й униз, під прямим кутом до землі
+    example_de: Die Wand muss ganz senkrecht stehen.
+    example_en: The wall has to stand completely vertical.
+    example_ru: Стена должна стоять строго вертикально.
+    example_uk: Стіна має стояти строго вертикально.
+    note:
+      en: 'From senken, to lower, and the nk is ŋ plus k. It is the pair to waagerecht below, and a crossword prints exactly those two words as its two directions, senkrecht down the grid and waagerecht across it, which is where most learners meet them first. The Latin twins vertikal and horizontal mean the same and sound technical. Anything leaning away from either is schief below.'
+      ru: 'От senken — «опускать», — а nk звучит как ŋ плюс k. Это пара к waagerecht ниже, и кроссворд печатает ровно эти два слова как свои два направления: senkrecht — вниз по сетке, waagerecht — поперёк, — там их чаще всего впервые и встречают. Латинские близнецы vertikal и horizontal значат то же и звучат технически. Всё, что от той или другой линии отклоняется, — schief ниже.'
+      uk: 'Від senken — «опускати», — а nk звучить як ŋ плюс k. Це пара до waagerecht нижче, і кросворд друкує саме ці два слова як свої два напрямки: senkrecht — вниз по сітці, waagerecht — упоперек, — там їх найчастіше вперше й зустрічають. Латинські близнюки vertikal і horizontal означають те саме і звучать технічно. Усе, що від тієї чи тієї лінії відхиляється, — schief нижче.'
+
+  - de: waagerecht
+    ipa: "ˈvaːgəʁɛçt"
+    pos: adj
+    cards: recognition
+    en: running flat from side to side, level with the ground
+    ru: идущий ровно вбок, вровень с землёй
+    uk: що йде рівно вбік, урівень із землею
+    example_de: Halten Sie das Handy bitte waagerecht.
+    example_en: Please hold the phone level.
+    example_ru: Держите телефон, пожалуйста, горизонтально.
+    example_uk: Тримайте телефон, будь ласка, горизонтально.
+    note:
+      en: 'From die Waage, the scales, whose beam is level only when it balances; the shorter spelling waagrecht is equally correct. It is the pair to senkrecht above, and the two are learned together because a crossword, a form and an assembly instruction all name them together. The Latin twin is horizontal. Flach above describes a whole surface, this word the direction of one line.'
+      ru: 'От die Waage — весы, — коромысло которых стоит ровно, только когда они уравновешены; более короткое написание waagrecht столь же верно. Это пара к senkrecht выше, и учат их вместе, потому что кроссворд, бланк и инструкция по сборке называют их вместе. Латинский близнец — horizontal. Flach выше описывает всю поверхность, а это слово — направление одной линии.'
+      uk: 'Від die Waage — терези, — коромисло яких стоїть рівно, лише коли вони зрівноважені; коротше написання waagrecht так само правильне. Це пара до senkrecht вище, і вчать їх разом, бо кросворд, бланк і інструкція зі складання називають їх разом. Латинський близнюк — horizontal. Flach вище описує всю поверхню, а це слово — напрямок однієї лінії.'
+
+  - de: schief
+    ipa: "ˈʃiːf"
+    pos: adj
+    cards: recognition
+    en: leaning away from the upright or the level where it ought to be straight
+    ru: наклонённый в сторону от вертикали или горизонтали там, где должно быть ровно
+    uk: нахилений убік від вертикалі або горизонталі там, де мало б бути рівно
+    example_de: Das Bild an der Wand hängt schief.
+    example_en: The picture on the wall is hanging crooked.
+    example_ru: Картина на стене висит криво.
+    example_uk: Картина на стіні висить криво.
+    note:
+      en: 'It always implies a comparison with what should have been senkrecht or waagerecht above, which is why the word carries a complaint in it. The tower in Pisa is der Schiefe Turm von Pisa. Figuratively it means gone wrong: etwas geht schief, eine schiefe Sache, jemanden schief ansehen, to look at somebody askance. Keep it away from B1 steil in the deck `natur-geografie-b1`, which is about a slope being hard to climb rather than about something being out of true.'
+      ru: 'Слово всегда подразумевает сравнение с тем, что должно было быть senkrecht или waagerecht выше, — потому в нём и слышна жалоба. Башня в Пизе по-немецки der Schiefe Turm von Pisa. Переносно значит «не заладилось»: etwas geht schief, eine schiefe Sache, jemanden schief ansehen — «косо смотреть на кого-либо». Не смешивайте со steil уровня B1 из колоды `natur-geografie-b1`: там речь о крутизне подъёма, а не о перекосе.'
+      uk: 'Слово завжди передбачає порівняння з тим, що мало бути senkrecht або waagerecht вище, — тому в ньому й чути нарікання. Вежа в Пізі німецькою der Schiefe Turm von Pisa. Переносно означає «не склалося»: etwas geht schief, eine schiefe Sache, jemanden schief ansehen — «косо дивитися на когось». Не змішуйте зі steil рівня B1 з колоди `natur-geografie-b1`: там ідеться про крутизну підйому, а не про перекіс.'
+
+  # --- Farbe ---
+  - de: farbig
+    ipa: "ˈfaʁbɪç"
+    pos: adj
+    cards: recognition
+    en: having colour in it, as against being black and white
+    ru: имеющий цвет, в отличие от чёрно-белого
+    uk: що має колір, на відміну від чорно-білого
+    example_de: Die alten Fotos sind schwarz-weiß, die neuen farbig.
+    example_en: The old photographs are black and white, the new ones are in colour.
+    example_ru: Старые фотографии чёрно-белые, новые цветные.
+    example_uk: Старі світлини чорно-білі, нові кольорові.
+    note:
+      en: 'A1 die Farbe in the deck `kleidung-farben` plus -ig, with the ending spoken ɪç. It says only that colour is present, while A2 bunt in the deck `eigenschaften-dinge-a2` says several colours are present at once, so ein farbiges Bild may be one shade and ein buntes Bild never is. As a second half it names a shade: einfarbig, mehrfarbig, and the parallel ending -farben does the same work in cremefarben. Of people the word is dated and careful German avoids it today.'
+      ru: 'die Farbe уровня A1 из колоды `kleidung-farben` плюс -ig, окончание звучит как ɪç. Слово говорит лишь, что цвет есть, тогда как bunt уровня A2 из колоды `eigenschaften-dinge-a2` говорит, что цветов сразу несколько: ein farbiges Bild может быть одноцветным, ein buntes Bild — никогда. Второй частью слова оно называет оттенок: einfarbig, mehrfarbig, — а параллельное окончание -farben делает ту же работу в cremefarben. О людях слово устарело, и внимательный немецкий его сегодня избегает.'
+      uk: 'die Farbe рівня A1 з колоди `kleidung-farben` плюс -ig, закінчення звучить як ɪç. Слово каже лише, що колір є, тоді як bunt рівня A2 з колоди `eigenschaften-dinge-a2` каже, що кольорів одразу кілька: ein farbiges Bild може бути одноколірним, ein buntes Bild — ніколи. Другою частиною слова воно називає відтінок: einfarbig, mehrfarbig, — а паралельне закінчення -farben робить ту саму роботу в cremefarben. Про людей слово застаріло, і уважна німецька його сьогодні уникає.'
+
+  - de: violett
+    ipa: "vi̯oˈlɛt"
+    pos: adj
+    cards: recognition
+    en: of the deep colour between blue and red, the one at the far end of the rainbow
+    ru: глубокого цвета между синим и красным, того, что стоит с краю радуги
+    uk: глибокого кольору між синім і червоним, того, що стоїть скраю райдуги
+    example_de: Im Frühling ist die ganze Wiese violett.
+    example_en: In spring the whole meadow is purple.
+    example_ru: Весной весь луг фиолетовый.
+    example_uk: Навесні весь луг фіолетовий.
+    note:
+      en: 'A French loan stressed on the last syllable, and unlike its neighbour it declines normally: ein violettes Kleid, violette Blumen. A1 lila in the deck `kleidung-farben` covers the same part of the spectrum but takes no endings at all, so German says lila Blumen and violette Blumen. Dictionaries put violett at the deeper, bluer end and lila nearer the light shade of the lilac the word comes from. The Wortliste also lists the sharpening prefixes hell- and dunkel-, which work here as everywhere: hellviolett, dunkelviolett.'
+      ru: 'Французское заимствование с ударением на последнем слоге, и в отличие от соседа оно склоняется обычным образом: ein violettes Kleid, violette Blumen. lila уровня A1 из колоды `kleidung-farben` покрывает тот же участок спектра, но окончаний не принимает вовсе, так что немец говорит lila Blumen и violette Blumen. Словари относят violett к более глубокому, синеватому краю, а lila — ближе к светлому тону сирени, от которой слово и пошло. Wortliste перечисляет и уточняющие приставки hell- и dunkel-, работающие здесь как везде: hellviolett, dunkelviolett.'
+      uk: 'Французьке запозичення з наголосом на останньому складі, і на відміну від сусіда воно відмінюється звичайно: ein violettes Kleid, violette Blumen. lila рівня A1 з колоди `kleidung-farben` покриває ту саму ділянку спектра, але закінчень не приймає зовсім, тож німець каже lila Blumen і violette Blumen. Словники відносять violett до глибшого, синюватішого краю, а lila — ближче до світлого тону бузку, від якого слово й пішло. Wortliste перелічує й уточнювальні префікси hell- і dunkel-, що працюють тут як усюди: hellviolett, dunkelviolett.'

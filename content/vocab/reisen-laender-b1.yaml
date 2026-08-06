@@ -1,0 +1,662 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains what
+# data/goethe-b1-wortliste.txt still owes the journey itself: three countries with
+# their whole block of nationality rows, the boat and the harbour, the words a
+# timetable and a boarding card use, the two kinds of board a hotel sells, and what a
+# traveller brings home.
+# A1's `reisen-urlaub` owns the trip and the airport (Reise, Urlaub, Flug, Flughafen,
+# Flugzeug, Zug, Schiff, Ankunft, Abfahrt, Gast, Ausland, Grenze), A2's
+# `reisen-orte-a2` owns what a visitor does when he gets there (Tourist, Touristin,
+# Tour, Rundgang, Führung, Unterkunft, Jugendherberge, Insel, Strand, Hauptstadt),
+# A2's `reisen-verkehr` owns the platform words (Wagen, Anschluss, Verspätung,
+# Durchsage), B1's `reisen-probleme` owns what goes wrong (Passagier, Rückfahrt,
+# Aufenthalt, Übernachtung, Verbindung), A2's `laender-nationalitaeten-a2` owns the
+# country pattern itself (Deutschland, Österreich, die Schweiz, Luxemburg, Europa and
+# their -er/-in/-isch rows), A1's `stadt-wege` owns Stadt, Zentrum, Hotel and
+# Haltestelle, and B1's `sport-freizeit-b1` owns Start and starten. This deck is what
+# those seven leave unnamed: three more countries built on the A2 pattern, and the
+# words printed on the ticket, the sign and the price list around them.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read, never written: the learner's own sentence about a holiday comes out of A1 and
+# A2 words, and everything here is what the booking form, the announcement and the
+# brochure say back at him.
+id: reisen-laender-b1
+title_de: "Reisen & Länder"
+title_en: "Travel and countries"
+title_ru: "Путешествия и страны"
+title_uk: "Подорожі та країни"
+level: B1
+entries:
+  # --- Griechenland ---
+  - de: Griechenland
+    ipa: "ˈgʁiːçn̩ˌlant"
+    # Article-free proper noun, so `pos: phrase` and no gender — exactly as
+    # `Deutschland` is modelled in laender-nationalitaeten-a2. A noun entry would
+    # print "das Griechenland" on the card, which is not German.
+    pos: phrase
+    cards: recognition
+    en: Greece
+    ru: Греция
+    uk: Греція
+    example_de: Im August fliegen wir nach Griechenland.
+    example_en: In August we are flying to Greece.
+    example_ru: В августе мы летим в Грецию.
+    example_uk: У серпні ми летимо до Греції.
+    note:
+      en: 'Like almost every country name in German it is neuter and takes no article at all, which is the default A2 Deutschland in the deck `laender-nationalitaeten-a2` sets out: direction is nach Griechenland, position in Griechenland, origin aus Griechenland, and none of the three gets an article. Die Türkei and die Ukraine further down are the exception and work differently. The stress sits on Griechen- with a secondary one on -land, and the -chen- here is not the diminutive ending: it is the plural of der Grieche, the next entry, so the name says the land of the Greeks.'
+      ru: 'Как почти всякое название страны в немецком, слово среднего рода и вовсе без артикля — это исходная модель, заданная словом Deutschland уровня A2 из колоды `laender-nationalitaeten-a2`: направление — nach Griechenland, местонахождение — in Griechenland, происхождение — aus Griechenland, и артикля нет ни в одном из трёх. Die Türkei и die Ukraine ниже — исключение и устроены иначе. Ударение на Griechen-, побочное на -land, а -chen- здесь не уменьшительный суффикс: это множественное от der Grieche, следующей записи, так что имя значит «земля греков».'
+      uk: 'Як майже всяка назва країни в німецькій, слово середнього роду і взагалі без артикля — це вихідна модель, задана словом Deutschland рівня A2 з колоди `laender-nationalitaeten-a2`: напрямок — nach Griechenland, місцеперебування — in Griechenland, походження — aus Griechenland, і артикля немає в жодному з трьох. Die Türkei і die Ukraine нижче — виняток і влаштовані інакше. Наголос на Griechen-, побічний на -land, а -chen- тут не зменшувальний суфікс: це множина від der Grieche, наступного запису, тож ім’я означає «земля греків».'
+
+  - de: Grieche
+    ipa: "ˈgʁiːçə"
+    pos: noun
+    gender: m
+    plural: "die Griechen"
+    cards: recognition
+    en: a man from Greece
+    ru: мужчина из Греции
+    uk: чоловік із Греції
+    example_de: Unser Nachbar ist Grieche und arbeitet als Koch.
+    example_en: Our neighbour is Greek and works as a cook.
+    example_ru: Наш сосед грек и работает поваром.
+    example_uk: Наш сусід грек і працює кухарем.
+    note:
+      en: 'A weak masculine, so -n everywhere except the nominative singular: der Grieche, den Griechen, dem Griechen, des Griechen, die Griechen — the same class as B1 der Zeuge in the deck `recht-kriminalitaet-b1`, and the trap is the same, because the bare form is the one shape you least often need. This entry also opens the pattern the deck runs three times: each country comes as a block of five rows, the country itself, the man, the woman, the small-letter adjective and the capital-letter language, and they are worth learning together. After sein German drops the article for a nationality, Er ist Grieche, exactly as A2 Er ist Österreicher does in the deck `laender-nationalitaeten-a2`. In everyday speech beim Griechen means at the Greek restaurant.'
+      ru: 'Слабое существительное мужского рода: -n везде, кроме именительного единственного — der Grieche, den Griechen, dem Griechen, des Griechen, die Griechen, — тот же класс, что у der Zeuge уровня B1 из колоды `recht-kriminalitaet-b1`, и ловушка та же: голая форма нужна реже всех. С этой записи начинается и модель, которую колода повторит трижды: каждая страна идёт блоком из пяти строк — сама страна, мужчина, женщина, прилагательное со строчной и название языка с прописной, — и учить их стоит вместе. После sein артикль при названии национальности отпадает: Er ist Grieche, ровно как Er ist Österreicher уровня A2 из колоды `laender-nationalitaeten-a2`. В быту beim Griechen значит «в греческом ресторане».'
+      uk: 'Слабкий іменник чоловічого роду: -n усюди, крім називного однини — der Grieche, den Griechen, dem Griechen, des Griechen, die Griechen, — той самий клас, що в der Zeuge рівня B1 з колоди `recht-kriminalitaet-b1`, і пастка та сама: гола форма потрібна найрідше. Із цього запису починається й модель, яку колода повторить тричі: кожна країна йде блоком із п’яти рядків — сама країна, чоловік, жінка, прикметник із малої та назва мови з великої, — і вчити їх варто разом. Після sein артикль при назві національності відпадає: Er ist Grieche, точно як Er ist Österreicher рівня A2 з колоди `laender-nationalitaeten-a2`. У побуті beim Griechen означає «у грецькому ресторані».'
+
+  - de: Griechin
+    ipa: "ˈgʁiːçɪn"
+    pos: noun
+    gender: f
+    plural: "die Griechinnen"
+    cards: recognition
+    en: a woman from Greece
+    ru: женщина из Греции
+    uk: жінка з Греції
+    example_de: Meine Lehrerin ist Griechin und lebt seit zehn Jahren hier.
+    example_en: My teacher is Greek and has been living here for ten years.
+    example_ru: Моя учительница гречанка и живёт здесь уже десять лет.
+    example_uk: Моя вчителька грекиня і живе тут уже десять років.
+    note:
+      en: 'Movierung with -in on the stem Griech-, so the final e of der Grieche drops out; the plural doubles the n and there are no case endings at all, which means the weak declension of the masculine stops here — the same division of labour as die Zeugin beside der Zeuge in the deck `recht-kriminalitaet-b1`. The article stays away after sein here too: Sie ist Griechin. For a mixed group German uses the masculine plural die Griechen.'
+      ru: 'Мовирование на -in по основе Griech-, поэтому конечное e из der Grieche выпадает; во множественном n удваивается, а падежных окончаний нет вовсе — значит, слабое склонение мужской формы здесь обрывается, то же распределение, что у die Zeugin рядом с der Zeuge в колоде `recht-kriminalitaet-b1`. Артикль после sein отсутствует и тут: Sie ist Griechin. Для смешанной группы немецкий берёт мужское множественное die Griechen.'
+      uk: 'Моція на -in за основою Griech-, тому кінцеве e з der Grieche випадає; у множині n подвоюється, а відмінкових закінчень немає зовсім — отже, слабке відмінювання чоловічої форми тут уривається, той самий розподіл, що в die Zeugin поряд із der Zeuge в колоді `recht-kriminalitaet-b1`. Артикль після sein відсутній і тут: Sie ist Griechin. Для змішаної групи німецька бере чоловічу множину die Griechen.'
+
+  - de: griechisch
+    ipa: "ˈgʁiːçɪʃ"
+    pos: adj
+    cards: recognition
+    en: coming from Greece or belonging to it
+    ru: происходящий из Греции или относящийся к ней
+    uk: що походить із Греції або стосується її
+    example_de: Gestern waren wir in einem griechischen Restaurant.
+    example_en: Yesterday we were at a Greek restaurant.
+    example_ru: Вчера мы были в греческом ресторане.
+    example_uk: Учора ми були в грецькому ресторані.
+    note:
+      en: 'Always a small letter, because it is an ordinary adjective and takes ordinary endings: ein griechisches Restaurant, die griechische Küche, griechische Musik. The capital-letter Griechisch below is a different word and a noun, and the two answer different questions — was für ein? takes the adjective, was? or welches Fach? takes the noun. This is the one distinction the block exists to teach, and the türkisch and ukrainisch rows below only repeat it. A2 österreichisch in the deck `laender-nationalitaeten-a2` is the same suffix on a country that has no separate language row.'
+      ru: 'Всегда со строчной, потому что это обычное прилагательное с обычными окончаниями: ein griechisches Restaurant, die griechische Küche, griechische Musik. Griechisch с прописной ниже — другое слово и существительное, и отвечают они на разные вопросы: was für ein? требует прилагательного, was? или welches Fach? — существительного. Ради этого различия блок и существует, а строки türkisch и ukrainisch ниже лишь повторяют его. österreichisch уровня A2 из колоды `laender-nationalitaeten-a2` — тот же суффикс у страны, для которой отдельной строки языка нет.'
+      uk: 'Завжди з малої, бо це звичайний прикметник зі звичайними закінченнями: ein griechisches Restaurant, die griechische Küche, griechische Musik. Griechisch з великої нижче — інше слово і іменник, і відповідають вони на різні питання: was für ein? вимагає прикметника, was? або welches Fach? — іменника. Заради цієї відмінності блок і існує, а рядки türkisch і ukrainisch нижче лише повторюють його. österreichisch рівня A2 з колоди `laender-nationalitaeten-a2` — той самий суфікс у країни, для якої окремого рядка мови немає.'
+
+  - de: Griechisch
+    ipa: "ˈgʁiːçɪʃ"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the language of Greece, and the school subject in which it is taught
+    ru: язык Греции, а также школьный предмет, на котором его преподают
+    uk: мова Греції, а також шкільний предмет, на якому її викладають
+    example_de: Sie lernt seit einem Jahr Griechisch.
+    example_en: She has been learning Greek for a year.
+    example_ru: Она уже год учит греческий язык.
+    example_uk: Вона вже рік вчить грецьку мову.
+    note:
+      en: 'A capital letter and neuter, naming the language itself, so it behaves exactly like A1 Deutsch and A1 Englisch in the deck `erste-schritte`. In its everyday frames it takes no article: Griechisch lernen, Griechisch sprechen, auf Griechisch, and a school timetable prints the bare word. The article turns up only when something is said about one person''s command of it, das Griechisch meiner Mutter, and the longer das Griechische is the bookish form for the language as a system. Hold it apart from the small-letter adjective above with one pair: griechische Musik is music from Greece, ein Text auf Griechisch is a text in the language.'
+      ru: 'Прописная и средний род: слово называет сам язык и ведёт себя ровно как Deutsch и Englisch уровня A1 из колоды `erste-schritte`. В обиходных оборотах артикля нет: Griechisch lernen, Griechisch sprechen, auf Griechisch, — и в школьном расписании стоит голое слово. Артикль появляется только тогда, когда говорят о владении конкретного человека, das Griechisch meiner Mutter, а более длинное das Griechische — книжная форма для языка как системы. Держите слово отдельно от прилагательного со строчной, и хватит одной пары: griechische Musik — музыка из Греции, ein Text auf Griechisch — текст на этом языке.'
+      uk: 'Велика літера і середній рід: слово називає саму мову і поводиться точно як Deutsch і Englisch рівня A1 з колоди `erste-schritte`. У побутових зворотах артикля немає: Griechisch lernen, Griechisch sprechen, auf Griechisch, — і в шкільному розкладі стоїть голе слово. Артикль з’являється лише тоді, коли йдеться про володіння конкретної людини, das Griechisch meiner Mutter, а довше das Griechische — книжна форма для мови як системи. Тримайте слово окремо від прикметника з малої, і досить однієї пари: griechische Musik — музика з Греції, ein Text auf Griechisch — текст цією мовою.'
+
+  # --- Die Türkei ---
+  - de: Türkei
+    ipa: "tʏʁˈkaɪ̯"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: Turkey
+    ru: Турция
+    uk: Туреччина
+    example_de: Meine Kollegin fährt jedes Jahr in die Türkei.
+    example_en: My colleague travels to Turkey every year.
+    example_ru: Моя коллега каждый год ездит в Турцию.
+    example_uk: Моя колега щороку їздить до Туреччини.
+    note:
+      en: 'One of the handful of country names that do take an article, and a feminine one: die Türkei. Everything follows from that — direction is in die Türkei with the accusative, position in der Türkei with the dative, origin aus der Türkei, and nach is wrong here. That is the whole difference from Griechenland above, and it is the mistake made most often in this block; the note on A2 Deutschland in the deck `laender-nationalitaeten-a2` already lists this country among the exceptions. Stress on the last syllable, and the ending is the same -ei that makes die Bäckerei.'
+      ru: 'Одно из немногих названий стран, которые всё-таки требуют артикля, притом женского рода: die Türkei. Отсюда следует всё остальное: направление — in die Türkei с винительным, местонахождение — in der Türkei с дательным, происхождение — aus der Türkei, а nach здесь неверно. В этом вся разница с Griechenland выше, и здесь чаще всего и ошибаются; примечание к Deutschland уровня A2 из колоды `laender-nationalitaeten-a2` уже называет эту страну среди исключений. Ударение на последнем слоге, а окончание то же -ei, что даёт die Bäckerei.'
+      uk: 'Одна з небагатьох назв країн, які все-таки вимагають артикля, до того ж жіночого роду: die Türkei. Звідси випливає все інше: напрямок — in die Türkei зі знахідним, місцеперебування — in der Türkei з давальним, походження — aus der Türkei, а nach тут хибне. У цьому вся різниця з Griechenland вище, і саме тут найчастіше й помиляються; примітка до Deutschland рівня A2 з колоди `laender-nationalitaeten-a2` уже називає цю країну серед винятків. Наголос на останньому складі, а закінчення те саме -ei, що дає die Bäckerei.'
+
+  - de: Türke
+    ipa: "ˈtʏʁkə"
+    pos: noun
+    gender: m
+    plural: "die Türken"
+    cards: recognition
+    en: a man from Turkey
+    ru: мужчина из Турции
+    uk: чоловік із Туреччини
+    example_de: Der Bäcker an der Ecke ist Türke.
+    example_en: The baker on the corner is Turkish.
+    example_ru: Пекарь на углу турок.
+    example_uk: Пекар на розі турок.
+    note:
+      en: 'A weak masculine, the same class as der Grieche above: der Türke, den Türken, dem Türken, des Türken, die Türken, so -n in every form but one. The block repeats here without change — country, man, woman, small-letter adjective, capital-letter language — and the article falls away after sein: Er ist Türke. The umlaut belongs to the stem and stays through the whole paradigm, unlike the umlaut a plural sometimes adds.'
+      ru: 'Слабое существительное мужского рода, тот же класс, что der Grieche выше: der Türke, den Türken, dem Türken, des Türken, die Türken, — то есть -n во всех формах, кроме одной. Блок повторяется здесь без изменений — страна, мужчина, женщина, прилагательное со строчной, название языка с прописной, — а после sein артикль отпадает: Er ist Türke. Умлаут принадлежит основе и держится во всей парадигме, в отличие от умлаута, который иногда добавляет множественное число.'
+      uk: 'Слабкий іменник чоловічого роду, той самий клас, що der Grieche вище: der Türke, den Türken, dem Türken, des Türken, die Türken, — тобто -n в усіх формах, крім однієї. Блок повторюється тут без змін — країна, чоловік, жінка, прикметник із малої, назва мови з великої, — а після sein артикль відпадає: Er ist Türke. Умлаут належить основі й тримається в усій парадигмі, на відміну від умлаута, який іноді додає множина.'
+
+  - de: Türkin
+    ipa: "ˈtʏʁkɪn"
+    pos: noun
+    gender: f
+    plural: "die Türkinnen"
+    cards: recognition
+    en: a woman from Turkey
+    ru: женщина из Турции
+    uk: жінка з Туреччини
+    example_de: Die Ärztin im dritten Stock ist Türkin.
+    example_en: The doctor on the third floor is Turkish.
+    example_ru: Врач на третьем этаже турчанка.
+    example_uk: Лікарка на третьому поверсі туркеня.
+    note:
+      en: 'Movierung with -in on the stem Türk-, with the e of der Türke dropping out and the plural doubling the n; no case endings, so the weak declension of the masculine ends here, just as it did with die Griechin above. Sie ist Türkin takes no article. German writes Türkinnen und Türken when both are meant, and the masculine plural die Türken serves for a mixed group.'
+      ru: 'Мовирование на -in по основе Türk-: e из der Türke выпадает, во множественном n удваивается; падежных окончаний нет, поэтому слабое склонение мужской формы здесь кончается, как и у die Griechin выше. Sie ist Türkin — без артикля. Когда имеют в виду обоих, пишут Türkinnen und Türken, а для смешанной группы служит мужское множественное die Türken.'
+      uk: 'Моція на -in за основою Türk-: e з der Türke випадає, у множині n подвоюється; відмінкових закінчень немає, тому слабке відмінювання чоловічої форми тут кінчається, як і в die Griechin вище. Sie ist Türkin — без артикля. Коли мають на увазі обох, пишуть Türkinnen und Türken, а для змішаної групи служить чоловіча множина die Türken.'
+
+  - de: türkisch
+    ipa: "ˈtʏʁkɪʃ"
+    pos: adj
+    cards: recognition
+    en: coming from Turkey or belonging to it
+    ru: происходящий из Турции или относящийся к ней
+    uk: що походить із Туреччини або стосується її
+    example_de: Auf dem Markt gibt es türkisches Gemüse und frisches Brot.
+    example_en: There are Turkish vegetables and fresh bread at the market.
+    example_ru: На рынке есть турецкие овощи и свежий хлеб.
+    example_uk: На ринку є турецька городина і свіжий хліб.
+    note:
+      en: 'The small-letter adjective, with ordinary endings: türkischer Kaffee, ein türkisches Restaurant, die türkische Küche. Everything the griechisch entry above says about the split holds here word for word, so it is enough to check which question the sentence is answering before choosing between this and the capital-letter Türkisch below.'
+      ru: 'Прилагательное со строчной, с обычными окончаниями: türkischer Kaffee, ein türkisches Restaurant, die türkische Küche. Всё, что запись griechisch выше говорит о разделении, действует здесь дословно, так что довольно проверить, на какой вопрос отвечает предложение, прежде чем выбрать между этим словом и Türkisch с прописной ниже.'
+      uk: 'Прикметник із малої, зі звичайними закінченнями: türkischer Kaffee, ein türkisches Restaurant, die türkische Küche. Усе, що запис griechisch вище каже про поділ, діє тут дослівно, тож досить перевірити, на яке питання відповідає речення, перш ніж обрати між цим словом і Türkisch з великої нижче.'
+
+  - de: Türkisch
+    ipa: "ˈtʏʁkɪʃ"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the language of Turkey
+    ru: язык Турции
+    uk: мова Туреччини
+    example_de: Zu Hause sprechen die Kinder Türkisch.
+    example_en: At home the children speak Turkish.
+    example_ru: Дома дети говорят по-турецки.
+    example_uk: Удома діти розмовляють турецькою.
+    note:
+      en: 'The capital-letter language noun, neuter, and article-free in its everyday frames: Türkisch sprechen, Türkisch lernen, auf Türkisch. After German itself it is one of the most widely spoken languages in the country, so a B1 reader meets it often in texts about school and about families. The Griechisch entry above carries the full account of when the article appears and of the das Türkische form; nothing here works differently.'
+      ru: 'Название языка с прописной, средний род, в обиходных оборотах без артикля: Türkisch sprechen, Türkisch lernen, auf Türkisch. После самого немецкого это один из самых распространённых языков страны, поэтому читателю уровня B1 он часто попадается в текстах о школе и о семьях. Полное объяснение того, когда появляется артикль и что такое форма das Türkische, дано в записи Griechisch выше; здесь всё устроено так же.'
+      uk: 'Назва мови з великої, середній рід, у побутових зворотах без артикля: Türkisch sprechen, Türkisch lernen, auf Türkisch. Після самої німецької це одна з найпоширеніших мов країни, тому читачеві рівня B1 вона часто трапляється в текстах про школу і про родини. Повне пояснення того, коли з’являється артикль і що таке форма das Türkische, дано в записі Griechisch вище; тут усе влаштовано так само.'
+
+  # --- Die Ukraine ---
+  - de: Ukraine
+    ipa: "ukʁaˈiːnə"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: Ukraine
+    ru: Украина
+    uk: Україна
+    example_de: Ihre Familie kommt aus der Ukraine.
+    example_en: Her family comes from Ukraine.
+    example_ru: Её семья родом из Украины.
+    example_uk: Її родина походить з України.
+    note:
+      en: 'The second country name in this deck that takes an article, and feminine like die Türkei above: in die Ukraine fahren with the accusative, in der Ukraine leben with the dative, aus der Ukraine kommen. Duden gives ukʁaˈiːnə first, four syllables with the stress on the i, and lists a two-syllable uˈkʁaɪ̯nə beside it; the four-syllable one is what a news reader says. It is a state in eastern Europe, and the people rows follow.'
+      ru: 'Второе в этой колоде название страны с артиклем, женского рода, как и die Türkei выше: in die Ukraine fahren с винительным, in der Ukraine leben с дательным, aus der Ukraine kommen. Duden ставит первым ukʁaˈiːnə — четыре слога с ударением на i — и рядом даёт двусложное uˈkʁaɪ̯nə; в эфире звучит четырёхсложное. Это государство в Восточной Европе, а дальше идут строки о людях.'
+      uk: 'Друга в цій колоді назва країни з артиклем, жіночого роду, як і die Türkei вище: in die Ukraine fahren зі знахідним, in der Ukraine leben з давальним, aus der Ukraine kommen. Duden ставить першим ukʁaˈiːnə — чотири склади з наголосом на i — і поряд подає двоскладове uˈkʁaɪ̯nə; в ефірі звучить чотирискладове. Це держава у Східній Європі, а далі йдуть рядки про людей.'
+
+  - de: Ukrainer
+    ipa: "ukʁaˈiːnɐ"
+    pos: noun
+    gender: m
+    plural: "die Ukrainer"
+    cards: recognition
+    en: a man from Ukraine
+    ru: мужчина из Украины
+    uk: чоловік з України
+    example_de: Zwei Ukrainer arbeiten seit dem Frühling in unserem Betrieb.
+    example_en: Two Ukrainians have been working at our firm since the spring.
+    example_ru: Двое украинцев работают на нашем предприятии с весны.
+    example_uk: Двоє українців працюють на нашому підприємстві від весни.
+    note:
+      en: 'Not a weak masculine, and that is the one thing to notice here: unlike der Grieche and der Türke above, this word is built with -er and declines like A2 der Österreicher in the deck `laender-nationalitaeten-a2`, so there is no -n anywhere and singular and plural are spelled alike. The stress stays where the country put it, on the i. Er ist Ukrainer takes no article, as everywhere in this block.'
+      ru: 'Не слабое существительное, и это здесь главное: в отличие от der Grieche и der Türke выше, слово образовано с -er и склоняется как der Österreicher уровня A2 из колоды `laender-nationalitaeten-a2`, поэтому -n нет нигде, а единственное и множественное пишутся одинаково. Ударение остаётся там же, где в названии страны, — на i. Er ist Ukrainer идёт без артикля, как и везде в этом блоке.'
+      uk: 'Не слабкий іменник, і це тут головне: на відміну від der Grieche і der Türke вище, слово утворене з -er і відмінюється як der Österreicher рівня A2 з колоди `laender-nationalitaeten-a2`, тому -n немає ніде, а однина і множина пишуться однаково. Наголос лишається там само, де в назві країни, — на i. Er ist Ukrainer іде без артикля, як і всюди в цьому блоці.'
+
+  - de: Ukrainerin
+    ipa: "ukʁaˈiːnəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Ukrainerinnen"
+    cards: recognition
+    en: a woman from Ukraine
+    ru: женщина из Украины
+    uk: жінка з України
+    example_de: Die neue Kollegin ist Ukrainerin und spricht schon gut Deutsch.
+    example_en: The new colleague is Ukrainian and already speaks good German.
+    example_ru: Новая коллега украинка и уже хорошо говорит по-немецки.
+    example_uk: Нова колега українка і вже добре говорить німецькою.
+    note:
+      en: 'Movierung with -in on the full masculine Ukrainer, so nothing drops out and two r sounds follow each other at a distance; the plural doubles the n. Because the masculine is already an -er noun, the pair is the plain A2 pattern of Österreicher and Österreicherin in the deck `laender-nationalitaeten-a2` rather than the weak-masculine pattern of the two blocks above.'
+      ru: 'Мовирование на -in от полной мужской формы Ukrainer, так что ничего не выпадает, а два звука r расходятся по слову; во множественном n удваивается. Поскольку мужская форма и так на -er, пара идёт по простой модели A2 — Österreicher и Österreicherin из колоды `laender-nationalitaeten-a2`, — а не по модели слабого склонения из двух блоков выше.'
+      uk: 'Моція на -in від повної чоловічої форми Ukrainer, тож нічого не випадає, а два звуки r розходяться по слову; у множині n подвоюється. Оскільки чоловіча форма і так на -er, пара йде за простою моделлю A2 — Österreicher і Österreicherin з колоди `laender-nationalitaeten-a2`, — а не за моделлю слабкого відмінювання з двох блоків вище.'
+
+  - de: ukrainisch
+    ipa: "ukʁaˈiːnɪʃ"
+    pos: adj
+    cards: recognition
+    en: coming from Ukraine or belonging to it
+    ru: происходящий из Украины или относящийся к ней
+    uk: що походить з України або стосується її
+    example_de: Im Regal stehen zwei ukrainische Wörterbücher.
+    example_en: There are two Ukrainian dictionaries on the shelf.
+    example_ru: На полке стоят два украинских словаря.
+    example_uk: На полиці стоять два українські словники.
+    note:
+      en: 'The small-letter adjective with ordinary endings: ukrainische Lieder, ein ukrainischer Pass, die ukrainische Küche. The split from the capital-letter Ukrainisch below is the one the griechisch entry sets out in full; here it only has to be applied. Note that the -isch is added to the country stem, not to Ukrainer, so the adjective and the language noun keep the country''s stress.'
+      ru: 'Прилагательное со строчной и с обычными окончаниями: ukrainische Lieder, ein ukrainischer Pass, die ukrainische Küche. Разделение с Ukrainisch с прописной ниже подробно описано в записи griechisch; здесь его остаётся только применить. Учтите, что -isch добавляется к основе названия страны, а не к Ukrainer, поэтому и прилагательное, и название языка сохраняют ударение страны.'
+      uk: 'Прикметник із малої і зі звичайними закінченнями: ukrainische Lieder, ein ukrainischer Pass, die ukrainische Küche. Поділ з Ukrainisch з великої нижче докладно описано в записі griechisch; тут його лишається тільки застосувати. Зважте, що -isch додається до основи назви країни, а не до Ukrainer, тому і прикметник, і назва мови зберігають наголос країни.'
+
+  - de: Ukrainisch
+    ipa: "ukʁaˈiːnɪʃ"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the language of Ukraine
+    ru: язык Украины
+    uk: мова України
+    example_de: Sie schreibt ihrer Großmutter auf Ukrainisch.
+    example_en: She writes to her grandmother in Ukrainian.
+    example_ru: Бабушке она пишет по-украински.
+    example_uk: Бабусі вона пише українською.
+    note:
+      en: 'The capital-letter language noun, neuter and article-free in its frames: Ukrainisch lernen, Ukrainisch sprechen, auf Ukrainisch. It is a Slavic language with its own alphabet, which is why a German course for its speakers starts with the Latin letters. Everything about the article and the das Ukrainische form is in the Griechisch entry above and is not repeated.'
+      ru: 'Название языка с прописной, средний род, в своих оборотах без артикля: Ukrainisch lernen, Ukrainisch sprechen, auf Ukrainisch. Это славянский язык с собственным алфавитом, поэтому курс немецкого для его носителей начинается с латинских букв. Всё об артикле и о форме das Ukrainische сказано в записи Griechisch выше и здесь не повторяется.'
+      uk: 'Назва мови з великої, середній рід, у своїх зворотах без артикля: Ukrainisch lernen, Ukrainisch sprechen, auf Ukrainisch. Це слов’янська мова з власною абеткою, тому курс німецької для її носіїв починається з латинських літер. Усе про артикль і про форму das Ukrainische сказано в записі Griechisch вище і тут не повторюється.'
+
+  # --- Auf dem Wasser ---
+  - de: Boot
+    ipa: "ˈboːt"
+    pos: noun
+    gender: n
+    plural: "die Boote"
+    cards: recognition
+    en: a small open vessel, rowed or with a small motor, short enough to be pulled ashore
+    ru: небольшое открытое судно, вёсельное или с маленьким мотором, которое можно вытащить на берег
+    uk: невелике відкрите судно, веслове або з малим мотором, яке можна витягти на берег
+    example_de: Am See kann man für eine Stunde ein Boot mieten.
+    example_en: At the lake you can hire a boat for an hour.
+    example_ru: На озере можно взять лодку напрокат на час.
+    example_uk: На озері можна взяти човен напрокат на годину.
+    note:
+      en: 'Neuter with a regular plural, and the oo is one long o and never two vowels. Size and use divide it from A1 das Schiff in the deck `reisen-urlaub`: a Schiff carries cargo or crowds over open water, a Boot is what one family rows on a lake. The compounds keep the line — das Ruderboot, das Segelboot, das Schlauchboot — while das Rettungsboot hangs on a ship. Wir sitzen alle in einem Boot means we are all in the same position, and it is said as often in German as in English.'
+      ru: 'Средний род, обычное множественное, а oo — один долгий o, а не два гласных. Размер и назначение отделяют слово от das Schiff уровня A1 из колоды `reisen-urlaub`: Schiff везёт груз или толпу по открытой воде, а Boot — то, на чём одна семья гребёт по озеру. Сложные слова держат ту же границу: das Ruderboot, das Segelboot, das Schlauchboot, — а das Rettungsboot висит на борту судна. Wir sitzen alle in einem Boot значит «мы все в одном положении».'
+      uk: 'Середній рід, звичайна множина, а oo — один довгий o, а не два голосних. Розмір і призначення відділяють слово від das Schiff рівня A1 з колоди `reisen-urlaub`: Schiff везе вантаж або натовп відкритою водою, а Boot — те, на чому одна родина веслує озером. Складні слова тримають ту саму межу: das Ruderboot, das Segelboot, das Schlauchboot, — а das Rettungsboot висить на борту судна. Wir sitzen alle in einem Boot означає «ми всі в однаковому становищі».'
+
+  - de: Hafen
+    ipa: "ˈhaːfn̩"
+    pos: noun
+    gender: m
+    plural: "die Häfen"
+    cards: recognition
+    en: the sheltered water and the quays where ships tie up and are loaded
+    ru: защищённая акватория и причалы, где суда швартуются и грузятся
+    uk: захищена акваторія і причали, де судна швартуються і вантажаться
+    example_de: Das Schiff läuft am Abend in den Hafen ein.
+    example_en: The ship comes into port in the evening.
+    example_ru: Судно входит в порт вечером.
+    example_uk: Судно заходить до порту ввечері.
+    note:
+      en: 'Masculine, with an umlaut in the plural: der Hafen, die Häfen. A1 der Flughafen in the deck `reisen-urlaub` is built straight on it, because German saw the airfield as a harbour for aircraft, and it keeps the same plural, die Flughäfen. Germany''s largest is der Hamburger Hafen. Chunks: im Hafen liegen, in den Hafen einlaufen, aus dem Hafen auslaufen.'
+      ru: 'Мужской род, во множественном умлаут: der Hafen, die Häfen. der Flughafen уровня A1 из колоды `reisen-urlaub` построен прямо на нём — немецкий увидел в аэродроме гавань для самолётов — и сохраняет то же множественное, die Flughäfen. Крупнейший в Германии — der Hamburger Hafen. Обороты: im Hafen liegen, in den Hafen einlaufen, aus dem Hafen auslaufen.'
+      uk: 'Чоловічий рід, у множині умлаут: der Hafen, die Häfen. der Flughafen рівня A1 з колоди `reisen-urlaub` побудований прямо на ньому — німецька побачила в летовищі гавань для літаків — і зберігає ту саму множину, die Flughäfen. Найбільший у Німеччині — der Hamburger Hafen. Звороти: im Hafen liegen, in den Hafen einlaufen, aus dem Hafen auslaufen.'
+
+  - de: Kabine
+    ipa: "kaˈbiːnə"
+    pos: noun
+    gender: f
+    plural: "die Kabinen"
+    cards: recognition
+    en: a small closed room on a ship; also any small booth you step into for a moment
+    ru: маленькая закрытая комната на судне; а также всякая кабинка, куда заходят ненадолго
+    uk: маленька зачинена кімната на судні; а також будь-яка кабінка, куди заходять ненадовго
+    example_de: Unsere Kabine liegt auf dem zweiten Deck.
+    example_en: Our cabin is on the second deck.
+    example_ru: Наша каюта на второй палубе.
+    example_uk: Наша каюта на другій палубі.
+    note:
+      en: 'Feminine, plural in -n, stress on the -bi-. On board it is the room you sleep in and the word the ticket uses; A1 das Zimmer in the deck `wohnen` never crosses the gangway, because a room on a ship is not a Zimmer. Ashore the same word covers every small booth a person steps into: die Umkleidekabine in a shop, die Duschkabine in a bathroom, die Seilbahnkabine on a mountain. A team''s changing room is die Kabine too, which is why a football report can say etwas in der Kabine besprechen.'
+      ru: 'Женский род, множественное на -n, ударение на -bi-. На борту это помещение, где спят, и именно так называет его билет; das Zimmer уровня A1 из колоды `wohnen` через трап не переходит: комната на судне — не Zimmer. На берегу тем же словом зовут всякую кабинку, куда человек заходит: die Umkleidekabine в магазине, die Duschkabine в ванной, die Seilbahnkabine в горах. Раздевалка команды — тоже die Kabine, поэтому в спортивном репортаже возможно etwas in der Kabine besprechen.'
+      uk: 'Жіночий рід, множина на -n, наголос на -bi-. На борту це приміщення, де сплять, і саме так називає його квиток; das Zimmer рівня A1 з колоди `wohnen` через трап не переходить: кімната на судні не є Zimmer. На березі тим самим словом звуть будь-яку кабінку, куди людина заходить: die Umkleidekabine в крамниці, die Duschkabine у ванній, die Seilbahnkabine в горах. Роздягальня команди — теж die Kabine, тому в спортивному репортажі можливе etwas in der Kabine besprechen.'
+
+  - de: Passagierin
+    ipa: "pasaˈʒiːʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Passagierinnen"
+    cards: recognition
+    en: a woman travelling on a ship, a plane or a coach, seen as somebody the crew is responsible for
+    ru: женщина, которая едет на судне, самолёте или автобусе и за которую отвечает экипаж
+    uk: жінка, яка їде на судні, літаку чи автобусі і за яку відповідає екіпаж
+    example_de: Eine Passagierin hat ihren Platz nicht gefunden.
+    example_en: One passenger could not find her seat.
+    example_ru: Одна пассажирка не нашла своё место.
+    example_uk: Одна пасажирка не знайшла свого місця.
+    note:
+      en: 'Regular Movierung with -in on B1 der Passagier in the deck `reisen-probleme`, which is a Wortliste headword of its own; the g is spoken ʒ as in the French word behind it, and the plural doubles the n. It belongs to the language of the crew and the timetable and says nothing about why the person travels: A2 die Touristin in the deck `reisen-orte-a2` gives the reason and A1 der Gast in `reisen-urlaub` is a hotel word. On a bus or a train the sign says Fahrgäste rather than this.'
+      ru: 'Обычное мовирование на -in от der Passagier уровня B1 из колоды `reisen-probleme` — самостоятельной строки списка; g звучит как ʒ, по французскому образцу, а во множественном n удваивается. Слово принадлежит языку экипажа и расписания и ничего не говорит о причине поездки: die Touristin уровня A2 из колоды `reisen-orte-a2` называет причину, а der Gast уровня A1 из `reisen-urlaub` — гостиничное слово. В автобусе и в поезде на табличке стоит Fahrgäste, а не это.'
+      uk: 'Звичайна моція на -in від der Passagier рівня B1 з колоди `reisen-probleme` — самостійного рядка списку; g звучить як ʒ, за французьким зразком, а в множині n подвоюється. Слово належить мові екіпажу й розкладу і нічого не каже про причину поїздки: die Touristin рівня A2 з колоди `reisen-orte-a2` називає причину, а der Gast рівня A1 з `reisen-urlaub` — готельне слово. В автобусі й у потязі на табличці стоїть Fahrgäste, а не це.'
+
+  # --- Am Flughafen und im Zug ---
+  - de: Terminal
+    ipa: "ˈtœːɐ̯minəl"
+    pos: noun
+    gender: n
+    plural: "die Terminals"
+    cards: recognition
+    en: the building at an airport where passengers check in, wait and board
+    ru: здание в аэропорту, где пассажиры регистрируются, ждут и садятся на борт
+    uk: будівля в летовищі, де пасажири реєструються, чекають і сідають на борт
+    example_de: Der Flug nach Athen geht von Terminal 2.
+    example_en: The flight to Athens leaves from Terminal 2.
+    example_ru: Рейс в Афины вылетает из терминала 2.
+    example_uk: Рейс до Афін вилітає з термінала 2.
+    note:
+      en: 'An English loan, and Duden allows both der Terminal and das Terminal; the plural is die Terminals with the English -s. The stress sits at the front, ˈtœːɐ̯minəl, and the vowel German gives to English words like Shirt. A1 der Flughafen in the deck `reisen-urlaub` is the whole airport, and a Terminal is one building inside it, which is why a boarding card names a number. The same loan does other work outside travel: a screen with a keyboard is a Terminal, and so is the end of a pipeline.'
+      ru: 'Английское заимствование, и Duden допускает и der Terminal, и das Terminal; множественное — die Terminals с английским -s. Произносят ˈtœːɐ̯minəl: ударение в начале, а гласный тот, который немецкий даёт английским словам вроде Shirt. der Flughafen уровня A1 из колоды `reisen-urlaub` — весь аэропорт целиком, а Terminal — одно здание внутри него, поэтому на посадочном талоне стоит номер. То же заимствование работает и вне путешествий: Terminal — это и экран с клавиатурой, и конечная точка трубопровода.'
+      uk: 'Англійське запозичення, і Duden допускає і der Terminal, і das Terminal; множина — die Terminals з англійським -s. Вимовляють ˈtœːɐ̯minəl: наголос на початку, а голосний той, який німецька дає англійським словам на кшталт Shirt. der Flughafen рівня A1 з колоди `reisen-urlaub` — усе летовище цілком, а Terminal — одна будівля всередині нього, тому на посадковому талоні стоїть номер. Те саме запозичення працює й поза подорожами: Terminal — це і екран із клавіатурою, і кінцева точка трубопроводу.'
+
+  - de: landen
+    ipa: "ˈlandn̩"
+    pos: verb
+    praesens_3sg: landet
+    partizip2: gelandet
+    aux: sein
+    cards: recognition
+    en: to come down onto the ground at the end of a flight; also to end up somewhere unplanned
+    ru: опуститься на землю в конце полёта; а также оказаться где-либо не по плану
+    uk: опуститися на землю наприкінці польоту; а також опинитися десь не за планом
+    example_de: Das Flugzeug ist pünktlich in Wien gelandet.
+    example_en: The plane landed in Vienna on time.
+    example_ru: Самолёт приземлился в Вене вовремя.
+    example_uk: Літак приземлився у Відні вчасно.
+    note:
+      en: 'Weak, but the Perfekt takes sein and not haben, because the verb describes a change of place — the same reason A1 fliegen in the deck `perfekt-a1-verben` takes it. The stem ends in -d, so the present slips an e in: du landest, er landet. The town stands in in plus the dative and the airfield in auf plus the dative. The second sense is everyday and a little wry: Am Ende sind wir wieder im selben Lokal gelandet. A ship does not land in German; it legt an.'
+      ru: 'Слабый, но Perfekt берёт sein, а не haben, потому что глагол описывает перемену места — по той же причине его берёт fliegen уровня A1 из колоды `perfekt-a1-verben`. Основа кончается на -d, поэтому в настоящем появляется e: du landest, er landet. Город вводится через in с дательным, аэродром — через auf с дательным. Второе значение обиходное и слегка ироничное: Am Ende sind wir wieder im selben Lokal gelandet. Судно по-немецки не landet: оно legt an.'
+      uk: 'Слабке, але Perfekt бере sein, а не haben, бо дієслово описує зміну місця — з тієї самої причини його бере fliegen рівня A1 з колоди `perfekt-a1-verben`. Основа кінчається на -d, тому в теперішньому з’являється e: du landest, er landet. Місто вводиться через in з давальним, летовище — через auf з давальним. Друге значення побутове і трохи іронічне: Am Ende sind wir wieder im selben Lokal gelandet. Судно німецькою не landet: воно legt an.'
+
+  - de: Landung
+    ipa: "ˈlandʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Landungen"
+    cards: recognition
+    en: the manoeuvre and the moment of coming down at the end of a flight
+    ru: манёвр и момент приземления в конце полёта
+    uk: маневр і мить приземлення наприкінці польоту
+    example_de: Nach der Landung mussten wir lange auf das Gepäck warten.
+    example_en: After the landing we had to wait a long time for our luggage.
+    example_ru: После посадки нам пришлось долго ждать багаж.
+    example_uk: Після приземлення нам довелося довго чекати на багаж.
+    note:
+      en: 'The noun to landen above, feminine as every -ung noun is, with a regular plural. A1 die Ankunft in the deck `reisen-urlaub` is what the board announces and covers trains as well; this word is only the aircraft touching down, which is why a flight can have a späte Landung and still make its Ankunft on time. The opposite pair is B1 der Start and B1 starten in the deck `sport-freizeit-b1`. Chunks: eine weiche Landung, zur Landung ansetzen.'
+      ru: 'Существительное к landen выше, женского рода, как всякое слово на -ung, с обычным множественным. die Ankunft уровня A1 из колоды `reisen-urlaub` — то, что объявляет табло, и годится и для поездов; здесь же речь только о касании полосы, поэтому у рейса может быть späte Landung, а Ankunft при этом вовремя. Противоположная пара — der Start и starten уровня B1 из колоды `sport-freizeit-b1`. Обороты: eine weiche Landung, zur Landung ansetzen.'
+      uk: 'Іменник до landen вище, жіночого роду, як усяке слово на -ung, зі звичайною множиною. die Ankunft рівня A1 з колоди `reisen-urlaub` — те, що оголошує табло, і годиться й для потягів; тут же йдеться лише про торкання смуги, тому в рейсу може бути späte Landung, а Ankunft при цьому вчасна. Протилежна пара — der Start і starten рівня B1 з колоди `sport-freizeit-b1`. Звороти: eine weiche Landung, zur Landung ansetzen.'
+
+  - de: Speisewagen
+    ipa: "ˈʃpaɪ̯zəˌvaːgn̩"
+    pos: noun
+    gender: m
+    plural: "die Speisewagen"
+    cards: recognition
+    en: the carriage on a long-distance train in which meals are served at tables
+    ru: вагон дальнего поезда, где за столиками подают горячую еду
+    uk: вагон далекого потяга, де за столиками подають гарячу їжу
+    example_de: Im Speisewagen gibt es auch warmes Essen.
+    example_en: There is hot food in the dining car as well.
+    example_ru: В вагоне-ресторане есть и горячая еда.
+    example_uk: У вагоні-ресторані є й гаряча їжа.
+    note:
+      en: 'A compound of die Speise, a slightly formal word for a prepared dish, and A2 der Wagen in the deck `reisen-verkehr`, which on the railway means a carriage rather than a car; primary stress on Speise-, secondary on -wagen, and singular and plural are spelled alike. Deutsche Bahn calls its own das Bordrestaurant, so this is the general word rather than the one on the door. Only long-distance trains carry one; a regional service has nothing of the kind.'
+      ru: 'Сложное слово из die Speise — несколько книжного названия готового блюда — и der Wagen уровня A2 из колоды `reisen-verkehr`, который на железной дороге значит «вагон», а не «автомобиль»; главное ударение на Speise-, побочное на -wagen, единственное и множественное пишутся одинаково. Deutsche Bahn называет свой das Bordrestaurant, так что здесь общее слово, а не то, что написано на двери. Такой вагон бывает только в поездах дальнего следования; в пригородном ничего подобного нет.'
+      uk: 'Складне слово з die Speise — дещо книжної назви готової страви — і der Wagen рівня A2 з колоди `reisen-verkehr`, який на залізниці означає «вагон», а не «автомобіль»; головний наголос на Speise-, побічний на -wagen, однина і множина пишуться однаково. Deutsche Bahn зве свій das Bordrestaurant, тож тут загальне слово, а не те, що написано на дверях. Такий вагон буває лише в потягах далекого сполучення; у приміському нічого подібного немає.'
+
+  - de: Halt
+    ipa: "ˈhalt"
+    pos: noun
+    gender: m
+    plural: "die Halte"
+    cards: recognition
+    en: a short stop on a journey; also something to hold on to, and the steadiness it gives
+    ru: короткая остановка в пути; а также опора, за которую держатся, и устойчивость, которую она даёт
+    uk: коротка зупинка в дорозі; а також опора, за яку тримаються, і стійкість, яку вона дає
+    example_de: Der Zug hat in Fulda nur einen kurzen Halt.
+    example_en: The train makes only a short stop in Fulda.
+    example_ru: В Фульде поезд стоит совсем недолго.
+    example_uk: У Фульді потяг стоїть зовсім недовго.
+    note:
+      en: 'Masculine; Duden gives die Halte as the plural and records die Halts beside it, and neither is needed often, because the word is almost always singular. It is the noun to A2 halten in the deck `verben-handlungen-a2-1`, and it must not be swapped for A1 die Haltestelle in `stadt-wege`: the Haltestelle is the place, the Halt is the stopping itself. The second sense runs from the physical to the figurative — keinen Halt finden on a slippery slope, jemandem Halt geben. On a sign Halt! is an order, and the small-letter B1 halt in the deck `konnektoren-partikeln-b1` is a different word altogether.'
+      ru: 'Мужской род; Duden даёт множественное die Halte и рядом фиксирует die Halts, но нужны они редко: слово почти всегда в единственном. Это существительное к halten уровня A2 из колоды `verben-handlungen-a2-1`, и его нельзя путать с die Haltestelle уровня A1 из `stadt-wege`: Haltestelle — место, а Halt — сама остановка. Второе значение идёт от физического к переносному: keinen Halt finden на скользком склоне, jemandem Halt geben. На табличке Halt! — приказ, а halt со строчной уровня B1 из колоды `konnektoren-partikeln-b1` — вообще другое слово.'
+      uk: 'Чоловічий рід; Duden подає множину die Halte і поряд фіксує die Halts, але потрібні вони рідко: слово майже завжди в однині. Це іменник до halten рівня A2 з колоди `verben-handlungen-a2-1`, і його не можна плутати з die Haltestelle рівня A1 з `stadt-wege`: Haltestelle — місце, а Halt — сама зупинка. Друге значення йде від фізичного до переносного: keinen Halt finden на слизькому схилі, jemandem Halt geben. На табличці Halt! — наказ, а halt із малої рівня B1 з колоди `konnektoren-partikeln-b1` — узагалі інше слово.'
+
+  - de: stehen bleiben
+    pos: phrase
+    ipa: "ˈʃteːən ˈblaɪ̯bn̩"
+    cards: recognition
+    en: to stop walking and stand still; also to stop running, of a clock or an engine
+    ru: остановиться на ходу и замереть; а также встать, о часах или моторе
+    uk: спинитися на ходу і завмерти; а також стати, про годинник або мотор
+    example_de: Vor dem Schaufenster ist sie kurz stehen geblieben.
+    example_en: She stopped for a moment in front of the shop window.
+    example_ru: Перед витриной она ненадолго остановилась.
+    example_uk: Перед вітриною вона ненадовго спинилася.
+    note:
+      en: 'The Wortliste lists the two words together and that is the main spelling, A1 stehen in the deck `wohnen` plus A1 bleiben in `perfekt-a1-verben`, with Duden allowing stehenbleiben as one word beside it. The Perfekt takes sein and the ge- goes on the second verb: ist stehen geblieben. Two senses matter at B1 — a person stops walking, and a clock or a motor stops running, Die Uhr ist stehen geblieben. Do not use it for a vehicle making a scheduled stop; that is A2 halten in the deck `verben-handlungen-a2-1`.'
+      ru: 'Список даёт два слова вместе, и это основное написание: stehen уровня A1 из колоды `wohnen` плюс bleiben уровня A1 из `perfekt-a1-verben`, — а Duden рядом допускает и слитное stehenbleiben. Perfekt строится с sein, а ge- становится при втором глаголе: ist stehen geblieben. На уровне B1 важны два значения: человек останавливается на ходу и часы или мотор встают, Die Uhr ist stehen geblieben. Не берите оборот для транспорта на плановой остановке — там halten уровня A2 из колоды `verben-handlungen-a2-1`.'
+      uk: 'Список подає два слова разом, і це основне написання: stehen рівня A1 з колоди `wohnen` плюс bleiben рівня A1 з `perfekt-a1-verben`, — а Duden поряд допускає і злите stehenbleiben. Perfekt будується з sein, а ge- стає при другому дієслові: ist stehen geblieben. На рівні B1 важать два значення: людина спиняється на ходу і годинник або мотор стають, Die Uhr ist stehen geblieben. Не беріть зворот для транспорту на плановій зупинці — там halten рівня A2 з колоди `verben-handlungen-a2-1`.'
+
+  # --- Unterkunft und Verpflegung ---
+  - de: Pension
+    ipa: "pɑ̃ˈzi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Pensionen"
+    cards: recognition
+    en: a small guesthouse run by its owners, with a few rooms and breakfast included
+    ru: небольшой семейный гостевой дом с несколькими комнатами, где завтрак входит в цену
+    uk: невеликий родинний гостьовий дім із кількома кімнатами, де сніданок входить у ціну
+    example_de: Wir haben ein Zimmer in einer kleinen Pension gebucht.
+    example_en: We booked a room in a small guesthouse.
+    example_ru: Мы забронировали номер в маленьком пансионе.
+    example_uk: Ми забронювали кімнату в невеликому пансіоні.
+    note:
+      en: 'Feminine, plural in -en, and Duden''s first pronunciation keeps the French nasal, pɑ̃ˈzi̯oːn, with paŋ- and pɛn- current in the south, in Austria and in Switzerland. It sits between A1 das Hotel in the deck `stadt-wege` and A2 die Jugendherberge in `reisen-orte-a2`: smaller and cheaper than the first, and privately run rather than belonging to an association like the second, while A2 die Unterkunft in `reisen-orte-a2` is the cover word for all of them. The same noun has a second and quite separate life in Austria, where it means the money a retired person draws; the German word for that is B1 die Rente in the deck `arbeit-beruf-b1`, whose note already says so.'
+      ru: 'Женский род, множественное на -en, а первое произношение у Duden сохраняет французский носовой: pɑ̃ˈzi̯oːn, — тогда как на юге, в Австрии и в Швейцарии ходят paŋ- и pɛn-. Слово стоит между das Hotel уровня A1 из колоды `stadt-wege` и die Jugendherberge уровня A2 из `reisen-orte-a2`: меньше и дешевле первого, а держат его частные хозяева, а не объединение, как вторую; die Unterkunft уровня A2 из `reisen-orte-a2` — общее слово для всех троих. У существительного есть и вторая, совсем отдельная жизнь в Австрии, где так зовут деньги, которые получает вышедший на покой; немецкое слово для этого — die Rente уровня B1 из колоды `arbeit-beruf-b1`, и её примечание об этом уже говорит.'
+      uk: 'Жіночий рід, множина на -en, а перша вимова в Duden зберігає французький носовий: pɑ̃ˈzi̯oːn, — тоді як на півдні, в Австрії та у Швейцарії ходять paŋ- і pɛn-. Слово стоїть між das Hotel рівня A1 з колоди `stadt-wege` і die Jugendherberge рівня A2 з `reisen-orte-a2`: менше й дешевше за перше, а тримають його приватні господарі, а не об’єднання, як другу; die Unterkunft рівня A2 з `reisen-orte-a2` — загальне слово для всіх трьох. В іменника є й друге, цілком окреме життя в Австрії, де так звуть гроші, які отримує той, хто пішов на спочинок; німецьке слово для цього — die Rente рівня B1 з колоди `arbeit-beruf-b1`, і її примітка про це вже каже.'
+
+  - de: Halbpension
+    ipa: "ˈhalpˌpɑ̃zi̯oːn"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: a hotel rate that covers breakfast and one hot meal a day
+    ru: гостиничный тариф, включающий завтрак и одно горячее блюдо в день
+    uk: готельний тариф, що охоплює сніданок і одну гарячу страву на день
+    example_de: Wir haben das Zimmer mit Halbpension gebucht.
+    example_en: We booked the room with half board.
+    example_ru: Мы забронировали номер с полупансионом.
+    example_uk: Ми забронювали кімнату з напівпансіоном.
+    note:
+      en: 'Built on Pension above in its boarding sense, with the primary stress on Halb- and a secondary one on the second half; the b of halb is spoken as p in front of the p that follows. Duden marks it as mostly used without an article and without a plural, which is why it stands bare after mit: mit Halbpension buchen. Beside it die Vollpension covers all three meals, and a room with breakfast only is sold as Übernachtung mit Frühstück — B1 die Übernachtung is in the deck `reisen-probleme`.'
+      ru: 'Построено на Pension выше в значении постоя; главное ударение на Halb-, побочное на второй половине, а b в halb перед следующим p звучит как p. Duden помечает слово как употребляемое в основном без артикля и без множественного, поэтому после mit оно стоит голым: mit Halbpension buchen. Рядом die Vollpension покрывает все три приёма пищи, а номер только с завтраком продают как Übernachtung mit Frühstück; die Übernachtung уровня B1 — в колоде `reisen-probleme`.'
+      uk: 'Побудовано на Pension вище в значенні постою; головний наголос на Halb-, побічний на другій половині, а b в halb перед наступним p звучить як p. Duden позначає слово як уживане здебільшого без артикля і без множини, тому після mit воно стоїть голим: mit Halbpension buchen. Поряд die Vollpension покриває всі три прийоми їжі, а кімнату лише зі сніданком продають як Übernachtung mit Frühstück; die Übernachtung рівня B1 — у колоді `reisen-probleme`.'
+
+  - de: verpflegen
+    ipa: "fɛɐ̯ˈpfleːgn̩"
+    pos: verb
+    praesens_3sg: verpflegt
+    partizip2: verpflegt
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to keep a group of people fed and supplied over a stretch of time
+    ru: обеспечивать группу людей едой и всем нужным на протяжении какого-то времени
+    uk: забезпечувати групу людей їжею і всім потрібним протягом певного часу
+    example_de: Die Firma verpflegt die Gäste während der ganzen Tagung.
+    example_en: The company feeds the guests for the whole conference.
+    example_ru: Фирма кормит гостей на протяжении всей конференции.
+    example_uk: Фірма годує гостей упродовж усієї конференції.
+    note:
+      en: 'Weak and inseparable, so there is no ge- in the participle, hat verpflegt, and the ver- is spoken fɛɐ̯. This is an organiser''s verb rather than a cook''s: it says that meals were arranged for a group, and its object is a class, a crew or a party of guests. The reflexive sich selbst verpflegen means catering for yourself, which is what a holiday flat expects. The noun die Verpflegung is far commoner than the verb and is what a price list means by Verpflegung inklusive; A1 essen in the deck `essen-trinken` is what the guests then do.'
+      ru: 'Слабый и неотделяемый, поэтому в причастии нет ge-: hat verpflegt, — а ver- звучит как fɛɐ̯. Это глагол организатора, а не повара: он говорит, что для группы устроено питание, и дополнением при нём стоит класс, экипаж или компания гостей. Возвратное sich selbst verpflegen значит «питаться самостоятельно» — то, что предполагает съёмная квартира на отдыхе. Существительное die Verpflegung куда употребительнее глагола, и именно его имеет в виду прайс-лист в обороте Verpflegung inklusive; essen уровня A1 из колоды `essen-trinken` — то, что делают потом сами гости.'
+      uk: 'Слабке і невідокремлюване, тому в дієприкметнику немає ge-: hat verpflegt, — а ver- звучить як fɛɐ̯. Це дієслово організатора, а не кухаря: воно каже, що для групи влаштовано харчування, і додатком при ньому стоїть клас, екіпаж або товариство гостей. Зворотне sich selbst verpflegen означає «харчуватися самотужки» — те, що передбачає винайнята квартира на відпочинку. Іменник die Verpflegung куди вживаніший за дієслово, і саме його має на увазі прайс-лист у звороті Verpflegung inklusive; essen рівня A1 з колоди `essen-trinken` — те, що роблять потім самі гості.'
+
+  # --- Die Stadt, in die man fährt ---
+  - de: City
+    ipa: "ˈsɪti"
+    pos: noun
+    gender: f
+    plural: "die Citys"
+    cards: recognition
+    en: the busy central part of a large town, where the shops and offices are
+    ru: оживлённая центральная часть крупного города, где сосредоточены магазины и конторы
+    uk: жвава центральна частина великого міста, де зосереджено крамниці й контори
+    example_de: In der City sind die Mieten am höchsten.
+    example_en: Rents are highest in the city centre.
+    example_ru: В центре города аренда самая дорогая.
+    example_uk: У центрі міста оренда найдорожча.
+    note:
+      en: 'An English loan that German narrowed on the way in: it never means a whole town, only its middle, so A1 die Stadt in the deck `stadt-wege` is the town and this is its centre. Feminine, and the German plural is die Citys with a y rather than the English -ies. Spoken ˈsɪti, with the English s at the front and not the German ts. The plain German words for the same place are A1 das Zentrum in `stadt-wege` and die Innenstadt, and a sign is far more likely to say Zentrum.'
+      ru: 'Английское заимствование, которое немецкий на входе сузил: оно никогда не значит город целиком, только его середину, — так что die Stadt уровня A1 из колоды `stadt-wege` есть город, а это его центр. Женский род, а немецкое множественное — die Citys, через y, а не по-английски на -ies. Произносят ˈsɪti: в начале английское s, а не немецкое ts. Простые немецкие слова для того же места — das Zentrum уровня A1 из `stadt-wege` и die Innenstadt, и на указателе куда вероятнее увидеть Zentrum.'
+      uk: 'Англійське запозичення, яке німецька на вході звузила: воно ніколи не означає місто цілком, лише його середину, — тож die Stadt рівня A1 з колоди `stadt-wege` є місто, а це його центр. Жіночий рід, а німецька множина — die Citys, через y, а не по-англійському на -ies. Вимовляють ˈsɪti: на початку англійське s, а не німецьке ts. Прості німецькі слова для того самого місця — das Zentrum рівня A1 з `stadt-wege` і die Innenstadt, і на вказівнику куди ймовірніше побачити Zentrum.'
+
+  - de: Metropole
+    ipa: "metʁoˈpoːlə"
+    pos: noun
+    gender: f
+    plural: "die Metropolen"
+    cards: recognition
+    en: a very large city that sets the tone for a whole country or region
+    ru: очень большой город, задающий тон целой стране или региону
+    uk: дуже велике місто, що задає тон цілій країні або регіонові
+    example_de: Berlin ist die größte Metropole Deutschlands.
+    example_en: Berlin is Germany's largest metropolis.
+    example_ru: Берлин — крупнейший мегаполис Германии.
+    example_uk: Берлін є найбільшим мегаполісом Німеччини.
+    note:
+      en: 'Feminine, plural in -n, stress on the -po-. The word is about size and pull rather than about administration: A2 die Hauptstadt in the deck `reisen-orte-a2` is wherever the government sits and may be quite small, while a Metropole need not be a capital at all. Plain German counts any town of a hundred thousand people or more as eine Großstadt, and keeps this word for the few that are far bigger. Newspapers build on it freely: die Kulturmetropole, die Modemetropole.'
+      ru: 'Женский род, множественное на -n, ударение на -po-. Слово говорит о размере и притяжении, а не об управлении: die Hauptstadt уровня A2 из колоды `reisen-orte-a2` — там, где сидит правительство, и она бывает совсем небольшой, а Metropole вовсе не обязана быть столицей. Обычный немецкий считает eine Großstadt всякий город от ста тысяч жителей, а это слово держит для тех немногих, что заметно крупнее. Газеты свободно строят на нём: die Kulturmetropole, die Modemetropole.'
+      uk: 'Жіночий рід, множина на -n, наголос на -po-. Слово говорить про розмір і тяжіння, а не про врядування: die Hauptstadt рівня A2 з колоди `reisen-orte-a2` — там, де сидить уряд, і вона буває зовсім невеликою, а Metropole зовсім не мусить бути столицею. Звичайна німецька вважає eine Großstadt всяке місто від ста тисяч мешканців, а це слово тримає для тих небагатьох, що помітно більші. Газети вільно будують на ньому: die Kulturmetropole, die Modemetropole.'
+
+  - de: Zone
+    ipa: "ˈtsoːnə"
+    pos: noun
+    gender: f
+    plural: "die Zonen"
+    cards: recognition
+    en: a marked-off strip or area inside which one particular rule holds
+    ru: размеченный участок или полоса, внутри которых действует одно определённое правило
+    uk: розмічена ділянка або смуга, усередині яких діє одне певне правило
+    example_de: In dieser Zone dürfen Autos nicht fahren.
+    example_en: Cars are not allowed to drive in this zone.
+    example_ru: В этой зоне движение машин запрещено.
+    example_uk: У цій зоні рух машин заборонено.
+    note:
+      en: 'Feminine, plural in -n, and the Z is the German ts. The word is administrative through and through: it always implies a rule that is on inside the line and off outside it, which is why B1 die Fußgängerzone in the deck `verkehr-auto-b1` and die Tempo-30-Zone are built on it, and why a transport network sells tickets by zone. Beside it B1 die Gegend in the deck `leben-veraendern` is an area with no line drawn round it at all, and A1 die Grenze in `reisen-urlaub` is the line itself.'
+      ru: 'Женский род, множественное на -n, Z читается как немецкое ts. Слово насквозь административное: оно всегда предполагает правило, которое внутри черты действует, а снаружи нет, — потому на нём и построены die Fußgängerzone уровня B1 из колоды `verkehr-auto-b1` и die Tempo-30-Zone, и потому транспортная сеть продаёт билеты по зонам. Рядом die Gegend уровня B1 из колоды `leben-veraendern` — местность, вокруг которой черты нет вовсе, а die Grenze уровня A1 из `reisen-urlaub` — сама черта.'
+      uk: 'Жіночий рід, множина на -n, Z читається як німецьке ts. Слово наскрізь адміністративне: воно завжди передбачає правило, яке всередині межі діє, а зовні ні, — тому на ньому й побудовані die Fußgängerzone рівня B1 з колоди `verkehr-auto-b1` і die Tempo-30-Zone, і тому транспортна мережа продає квитки за зонами. Поряд die Gegend рівня B1 з колоди `leben-veraendern` — місцевість, довкола якої межі немає зовсім, а die Grenze рівня A1 з `reisen-urlaub` — сама межа.'
+
+  # --- Was man unternimmt und mitbringt ---
+  - de: Rundfahrt
+    ipa: "ˈʁʊntˌfaːɐ̯t"
+    pos: noun
+    gender: f
+    plural: "die Rundfahrten"
+    cards: recognition
+    en: a sightseeing trip by bus or boat that comes back to where it started
+    ru: обзорная поездка на автобусе или катере, которая возвращается к месту старта
+    uk: оглядова поїздка автобусом або катером, що повертається до місця початку
+    example_de: Am Sonntag machen wir eine Rundfahrt durch die Altstadt.
+    example_en: On Sunday we are going on a sightseeing tour of the old town.
+    example_ru: В воскресенье мы поедем на обзорную экскурсию по старому городу.
+    example_uk: У неділю ми поїдемо на оглядову екскурсію старим містом.
+    note:
+      en: 'rund plus die Fahrt, with the primary stress on Rund- and the d spoken as t before the f. What the word promises is the return to the starting point, which is why it is sold as one ticket. A2 der Rundgang in the deck `reisen-orte-a2` is the same shape on foot, A2 die Führung in the same deck adds a guide who explains as you go, and A2 die Tour beside them promises nothing about coming back. On water it is die Hafenrundfahrt, which is what a first-time visitor to Hamburg is offered.'
+      ru: 'rund плюс die Fahrt, главное ударение на Rund-, а d перед f звучит как t. Слово обещает возвращение в точку отправления, потому и продаётся одним билетом. der Rundgang уровня A2 из колоды `reisen-orte-a2` — то же самое пешком, die Führung из той же колоды добавляет экскурсовода, который по дороге объясняет, а die Tour рядом с ними ничего о возвращении не обещает. На воде это die Hafenrundfahrt — то, что первым делом предлагают приезжему в Гамбурге.'
+      uk: 'rund плюс die Fahrt, головний наголос на Rund-, а d перед f звучить як t. Слово обіцяє повернення до точки відправлення, тому й продається одним квитком. der Rundgang рівня A2 з колоди `reisen-orte-a2` — те саме пішки, die Führung з тієї самої колоди додає екскурсовода, який дорогою пояснює, а die Tour поряд із ними нічого про повернення не обіцяє. На воді це die Hafenrundfahrt — те, що найперше пропонують приїжджому в Гамбурзі.'
+
+  - de: Souvenir
+    ipa: "zuvəˈniːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Souvenirs"
+    cards: recognition
+    en: a small thing bought on a trip to keep the place in mind afterwards
+    ru: небольшая вещь, купленная в поездке, чтобы потом помнить это место
+    uk: невелика річ, куплена в подорожі, щоб потім пам’ятати те місце
+    example_de: Als Souvenir habe ich nur eine Postkarte mitgebracht.
+    example_en: The only souvenir I brought back was a postcard.
+    example_ru: В качестве сувенира я привёз только открытку.
+    example_uk: Як сувенір я привіз лише листівку.
+    note:
+      en: 'A French loan, neuter, plural with -s, and the s at the front is voiced like a German z while the final -r is the vocalized ɐ̯. A2 das Geschenk in the deck `freunde-feste` is bought for somebody else; this one is bought because of where you were and may well be for yourself. Plain German has das Andenken for the same idea, and the shop by the cathedral is der Souvenirladen. The French word behind it means a memory, which is exactly the job the object is given.'
+      ru: 'Французское заимствование, средний род, множественное на -s; начальное s звонкое, как немецкое z, а конечное -r даёт вокализованное ɐ̯. das Geschenk уровня A2 из колоды `freunde-feste` покупают для другого, а это — из-за места, где были, и вполне возможно для себя. Обычное немецкое слово для того же — das Andenken, а лавка у собора — der Souvenirladen. Французское слово, стоящее за этим, значит «воспоминание», — ровно ту работу предмету и поручают.'
+      uk: 'Французьке запозичення, середній рід, множина на -s; початкове s дзвінке, як німецьке z, а кінцеве -r дає вокалізоване ɐ̯. das Geschenk рівня A2 з колоди `freunde-feste` купують для іншого, а це — через місце, де були, і цілком можливо для себе. Звичайне німецьке слово для того самого — das Andenken, а крамничка біля собору — der Souvenirladen. Французьке слово, що стоїть за цим, означає «спогад», — саме цю роботу предметові й доручають.'
+
+  - de: Tourismus
+    ipa: "tuˈʁɪsmʊs"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: travelling for pleasure taken as an industry, with everything that lives off it
+    ru: поездки ради удовольствия, взятые как отрасль, вместе со всем, что ею кормится
+    uk: подорожі задля втіхи, узяті як галузь, разом з усім, що з неї живе
+    example_de: Vom Tourismus leben in dieser Region viele Familien.
+    example_en: A lot of families in this region live off tourism.
+    example_ru: В этом регионе туризмом живут многие семьи.
+    example_uk: У цьому регіоні туризмом живе багато родин.
+    note:
+      en: 'Masculine, no plural, stress on the -ris-, and every German noun in -ismus is masculine like it. The word names the business and the phenomenon and never a single trip: A1 die Reise in the deck `reisen-urlaub` is the trip, and A2 der Tourist in `reisen-orte-a2` is the person. A B1 reading text about a coastal town will use its compounds without warning — die Tourismusbranche, der Massentourismus, das Tourismusbüro.'
+      ru: 'Мужской род, без множественного, ударение на -ris-, и всякое немецкое существительное на -ismus мужского рода, как это. Слово называет отрасль и явление, но никогда отдельную поездку: die Reise уровня A1 из колоды `reisen-urlaub` — поездка, а der Tourist уровня A2 из `reisen-orte-a2` — человек. Текст уровня B1 о приморском городке пустит его сложные слова без предупреждения: die Tourismusbranche, der Massentourismus, das Tourismusbüro.'
+      uk: 'Чоловічий рід, без множини, наголос на -ris-, і всякий німецький іменник на -ismus чоловічого роду, як цей. Слово називає галузь і явище, але ніколи окрему поїздку: die Reise рівня A1 з колоди `reisen-urlaub` — поїздка, а der Tourist рівня A2 з `reisen-orte-a2` — людина. Текст рівня B1 про приморське містечко пустить його складні слова без попередження: die Tourismusbranche, der Massentourismus, das Tourismusbüro.'
+
+  - de: Rückkehr
+    ipa: "ˈʁʏkˌkeːɐ̯"
+    pos: noun
+    gender: f
+    plural: "—"
+    cards: recognition
+    en: the coming back to a place or a state that somebody had left
+    ru: возвращение к месту или к положению, которое человек покинул
+    uk: повернення до місця або до становища, яке людина полишила
+    example_de: Nach seiner Rückkehr hat er sofort wieder gearbeitet.
+    example_en: He went straight back to work after his return.
+    example_ru: После возвращения он сразу снова вышел на работу.
+    example_uk: Після повернення він одразу знову став до праці.
+    note:
+      en: 'From zurück and kehren, feminine, and with no plural; the stress is on Rück- and the two k sounds run together as one long one. B1 die Rückfahrt in the deck `reisen-probleme` is the journey home and can be printed on a ticket, while this word is the fact of being back and reaches far beyond travel: die Rückkehr an den Arbeitsplatz, die Rückkehr zur Normalität. The verb is zurückkehren, a shade more formal than the everyday zurückkommen.'
+      ru: 'От zurück и kehren, женский род, множественного нет; ударение на Rück-, а два k сливаются в один долгий. die Rückfahrt уровня B1 из колоды `reisen-probleme` — дорога домой, её можно напечатать на билете, а это слово — сам факт возвращения, и оно выходит далеко за пределы поездок: die Rückkehr an den Arbeitsplatz, die Rückkehr zur Normalität. Глагол — zurückkehren, чуть более официальный, чем обиходное zurückkommen.'
+      uk: 'Від zurück і kehren, жіночий рід, множини немає; наголос на Rück-, а два k зливаються в один довгий. die Rückfahrt рівня B1 з колоди `reisen-probleme` — дорога додому, її можна надрукувати на квитку, а це слово — сам факт повернення, і воно виходить далеко за межі подорожей: die Rückkehr an den Arbeitsplatz, die Rückkehr zur Normalität. Дієслово — zurückkehren, дещо офіційніше за побутове zurückkommen.'
