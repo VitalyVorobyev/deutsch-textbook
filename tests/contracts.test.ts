@@ -992,7 +992,22 @@ describe('cards: recognition | both', () => {
     // as `pos: phrase` on the `in Rente gehen/sein` precedent — `stehen bleiben`,
     // `im Freien`, `Tee ziehen lassen` — `Griechenland` as an article-free proper noun
     // on the `Deutschland` precedent, and `Prost` as `interj` on `okay`.
-    expect(cards).toBe(entries * 2 - 1295);
+    // Wortliste completion wave 4b, the two Varianten decks (2026-08-06), closes the
+    // lexis tail with ninety-two more: `varianten-at-ch-essen-alltag-b1` (47 of 47) and
+    // `varianten-at-ch-institutionen-b1` (45 of 45) are the Wortliste's Austrian and
+    // Swiss rows — read on a Viennese menu, a Swiss timetable and an Austrian school
+    // report, never produced, because the learner's own sentence uses the Germany-German
+    // sibling every note names. Nine Movierung pairs sit adjacent (`Coiffeuse` is the
+    // French counter-case: -euse, never -in; `Ammännin` builds on the umlauted stem);
+    // `Faschierte` and `Serviceangestellter/-e` are adjectival nouns on the `Tote` model;
+    // `Stadtpräsident`, `Pensionist` and `Bancomat` are n-declension (`Bancomat` and
+    // `Bankomat-Karte` keep the manifest's c/k split, `e-card` its lowercase hyphen);
+    // `in Pension gehen/sein` and `pensioniert werden/sein` ship as `pos: phrase` with
+    // IPA, unlike their `in Rente gehen/sein` precedent. The 73 rows still open after
+    // this wave are structurally cardless — bound morphemes (`hell-`, `-weise`),
+    // abbreviations (`bzw.`, `EG`), correlative frames (`je … desto`) and full forms
+    // whose short forms ship (`Personenkraftwagen`) — recorded as P25-6.
+    expect(cards).toBe(entries * 2 - 1387);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

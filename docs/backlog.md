@@ -98,7 +98,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
-- **P25-5 · `gen:ipa` without `--only` duplicates the `ipa:` key in five decks** — when an existing
+- **P25-6 · 73 B1 Wortliste rows are structurally cardless — decide which can earn `~`** — after
+  lexis wave 4b (2026-08-06) B1 coverage is 3343/3416: 3279 cards, 64 grammar `~`, 73 open. The 73
+  (the `NOCARD` set in the wave-4 partition) are bound morphemes (`hell-`, `-weise`, `irgend-`),
+  abbreviations (`bzw.`, `EG`, `vgl.`), correlative frames (`je … desto`, `sowohl … als auch`,
+  `um … zu`), and full forms whose short forms ship (`Personenkraftwagen`, `Akkumulator`). Several
+  of the frames are grammar-taught, so they may earn `~` markers — but a `~` must be earned (the
+  validator requires the word in the taught surface) and each needs a manifest line. Go row by row;
+  the rest stay open with this entry as the reason, and no coverage figure may round them away. — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
   `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).
