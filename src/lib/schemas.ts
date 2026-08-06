@@ -745,6 +745,25 @@ export const readingSchema = z.object({
   text: z.array(z.string().min(1)).min(1),
   /** comprehension questions shown after the text — 2–4 for intensive, 0–2 for extensive */
   questions: z.array(mcItemSchema).max(4).default([]),
+  /**
+   * Provenance for a reading adapted from someone else's work, mirroring
+   * `visualDocumentSchema` (ADR 0006): the credit line is data on the reading,
+   * rendered with it — never a YAML comment no gate can see. E.g.
+   * "Nach einem gemeinfreien Werk der Brüder Grimm. Didaktische Bearbeitung
+   * für Niveau A2. Historischer Originaltext: <Wikisource URL>" — URLs render
+   * as links. A reading with no external source keeps both fields absent.
+   */
+  attribution: z.string().min(1).optional(),
+  license: z.string().min(1).optional(),
+}).superRefine((reading, ctx) => {
+  // Readings carry no sourceClass (unlike documents), so the reachable rule is
+  // pairing: one field without the other is half a provenance record.
+  if (!reading.attribution !== !reading.license) {
+    ctx.addIssue({
+      code: 'custom',
+      message: 'attribution and license come together — an adapted reading ships with both or is not adapted',
+    });
+  }
 });
 export type Reading = z.infer<typeof readingSchema>;
 
