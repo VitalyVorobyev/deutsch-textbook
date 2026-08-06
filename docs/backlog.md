@@ -72,16 +72,17 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 - **P18-4 · The RU/UK produktion-set titles name goods, not speech** — all seven B1 `*-produktion`
   sets title themselves «Продукция»/«Продукція», which reads as manufactured output. If retitled,
   do all seven in one pass so the convention stays uniform.
-- **P24-4 · Klassiker pipeline: schema, pilot, then the wave** — turn the ten didactic retellings in
-  `deutsche_klassiker_a2_b1_markdown/` (committed verbatim, inert for the build) into
-  `kind: extensive` readings, per
-  [ADR 0006](adrs/0006-public-domain-classics-as-extensive-reading-corpus.md). In order:
-  **(1)** extend `readingSchema` (`src/lib/schemas.ts:725`) with `attribution`/`license`, mirroring
-  `documentSchema` (`:765`–`:769`), and render the credit line the corpus README specifies;
-  **(2)** pilot **Die Sterntaler (A2)** end to end — the only text already inside the 250–400-word
-  band (`scripts/validate.ts:1309`); **(3)** wave the remaining nine, four of which need trimming
-  (`awk '/^## Adaptierter Lesetext/{f=1;next}/^## /{f=0}f' <file> | wc -w`). Decide the corpus
-  directory's final home in the same pass, never before the adaptations exist.
+- **P24-4 · Klassiker wave: the remaining nine retellings** — schema and pilot shipped 2026-08-06
+  (`readingSchema` carries paired `attribution`/`license`, the credit line renders with the text,
+  and *Die Sterntaler* is live on `biografie-erfahrungen` as `kind: extensive`); what remains is
+  waving `deutsche_klassiker_a2_b1_markdown/` texts 2–10 into `content/reading/`, per
+  [ADR 0006](adrs/0006-public-domain-classics-as-extensive-reading-corpus.md). Four need trimming
+  into the 250–400 band (`awk '/^## Adaptierter Lesetext/{f=1;next}/^## /{f=0}f' <file> | wc -w`:
+  Bremer Stadtmusikanten 522, Hans im Glück 425, Kalif Storch 456, Das kalte Herz 519). Each text
+  needs an owning topic at its corpus level (A2+ texts land on late-A2 topics; B1 per the
+  progression table), sparse glosses, 0–2 gist questions, and the SOURCES.md credit. Decide the
+  corpus directory's final home in the same pass, never before the adaptations exist. The one
+  Entdecken index piece for the strand rides along (ADR 0006).
 - **C6-1 · RU/UK calque triage with the prose-reviewer skill** — was "Ukrainian calque audit";
   widened 2026-08-05 when a learner report caught calqued *Russian* in `b1/digitales-leben` (RU and
   UK failed in the same sentences — both shaped by the EN template). Instrument now exists: the
