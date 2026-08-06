@@ -74,12 +74,26 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   do all seven in one pass so the convention stays uniform.
 - **C6-1 · RU/UK calque triage with the prose-reviewer skill** — was "Ukrainian calque audit";
   widened 2026-08-05 when a learner report caught calqued *Russian* in `b1/digitales-leben` (RU and
-  UK failed in the same sentences — both shaped by the EN template). Instrument now exists: the
-  `textbook-text-reviewer` skill loop (`docs/authoring/article-prose.md`). Scope by evidence, not
-  blanket: a 3-unit spot-check of B1 RU `Kurz gesagt` blocks (`meinung-medien`, `leben-veraendern`,
-  `informationen-vermitteln`) found none, so triage at *section* granularity, worst-suspects first
-  (units authored earliest in the B1 pipeline), and stop when a unit reviews clean. Language
-  quality, not alphabet parity, is the target.
+  UK failed in the same sentences — both shaped by the EN template). Instrument: the
+  `textbook-text-reviewer` skill loop (`docs/authoring/article-prose.md`). Language quality, not
+  alphabet parity, is the target. **Twelve B1 units remain** — every unit except `digitales-leben`,
+  `kultur-freizeit` and `geld-vertraege`. Three things are now measured rather than assumed:
+  - **Authoring order does not predict it.** This entry used to say "worst-suspects first (units
+    authored earliest in the B1 pipeline)". The confirmed case, `digitales-leben`, was authored
+    2026-08-04 — 11th of 14 — while `leben-veraendern` (07-24, first) and `informationen-vermitteln`
+    (08-05, last) both spot-checked clean. Order the queue some other way, or not at all.
+  - **No cheap structural screen exists.** A prototype scoring EN↔RU/UK sentence-count parity and
+    per-sentence length lockstep (`## Beispiele` excluded) was calibrated against the one labelled
+    case and failed: pre-repair `digitales-leben` scored *below* two units that reviewed clean, and
+    the repair *raised* its score. The corpus is authored paragraph-parallel by design, so parity
+    runs 0.72–0.85 everywhere and carries no signal. The calque is rhetorical, not structural. The
+    script was deleted rather than tuned to agree with a 1-positive sample.
+  - **Hit rate so far is 2 of 2**, and the reviewer pass is what finds it. Both units reviewed
+    2026-08-06 returned REVISE on both halves, each with a Critical or Major *factual* defect
+    inherited from the EN half, not merely awkward prose. A per-unit pass costs ~8–10k tokens of
+    input (RU + UK + the German spec); a reviewer verdict of PASS *is* the triage, so no separate
+    screening stage is needed. Budget three subagents per unit: review → edit → fresh verify, two
+    edit cycles maximum.
 - **C6-2 · Verify the citation stress of `tatsächlich`** — `content/vocab/meinung-medien.yaml` has
   initial `ˈtaːtzɛçlɪç` (derivation from *Tatsache*, parallel `hauptsächlich`); a review argued for
   `taːtˈzɛçlɪç`, which is the emphatic realisation. Settle against Duden's primary entry and apply
