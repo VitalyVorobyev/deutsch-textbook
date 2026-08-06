@@ -275,13 +275,15 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   teach a form, no topic-to-topic "see also".
   [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) settles the how — every edge is
   **derived** from `focusIntroducedBy` (`src/lib/focus-tags.ts`), `deepens` edges and reference-data
-  keys, never a hand-maintained list. **The reverse edge and the index IA shipped 2026-08-06**:
-  five reference files carry a validator-checked page-level `focus` list, `TaughtIn.astro` renders
-  the derived chips on their pages, and `/referenz` is grouped by function. What remains here:
-  topic→Referenz edges, topic→topic "see also" (from `deepens` + shared tags), the P25-4 in-page
-  anchor nav, and finer-grained per-section edges where a page's data supports them
-  (sentence-connector relations already have ids). Where an editorial relation has no data behind
-  it, add the datum, not a link.
+  keys, never a hand-maintained list. **Shipped 2026-08-06** in two passes: five reference files
+  carry a validator-checked page-level `focus` list rendered by `TaughtIn.astro`, `/referenz` is
+  grouped by function, and every topic page carries a derived "Siehe auch" footer
+  (`SeeAlso.astro` — Referenz pages whose keys the topic introduces, builds-on from drilled tags,
+  both deepens directions). The same pass fixed the level-less `/topics/<id>` links that had the
+  `TenseSystem` chips and the MixedTraining per-topic rows 404ing (`topicPath`, `src/lib/url.ts`).
+  What remains here: the P25-4 in-page anchor nav, and finer-grained per-section edges where a
+  page's data supports them (sentence-connector relations already have ids). Where an editorial
+  relation has no data behind it, add the datum, not a link.
 - **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
   `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
   137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and
