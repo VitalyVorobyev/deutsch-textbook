@@ -275,11 +275,13 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   teach a form, no topic-to-topic "see also".
   [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) settles the how — every edge is
   **derived** from `focusIntroducedBy` (`src/lib/focus-tags.ts`), `deepens` edges and reference-data
-  keys, never a hand-maintained list; `/referenz/zeitformen` is the reference implementation
-  (`taughtIn()`, `src/components/reference/TenseSystem.astro:28`). First step: the reverse edge —
-  Referenz back into the topics — which exists nowhere else and is the cheaper half. Same pass
-  regroups `src/pages/referenz/index.astro` (a flat grid of eight equal cards) by function. Where an
-  editorial relation has no data behind it, add the datum, not a link.
+  keys, never a hand-maintained list. **The reverse edge and the index IA shipped 2026-08-06**:
+  five reference files carry a validator-checked page-level `focus` list, `TaughtIn.astro` renders
+  the derived chips on their pages, and `/referenz` is grouped by function. What remains here:
+  topic→Referenz edges, topic→topic "see also" (from `deepens` + shared tags), the P25-4 in-page
+  anchor nav, and finer-grained per-section edges where a page's data supports them
+  (sentence-connector relations already have ids). Where an editorial relation has no data behind
+  it, add the datum, not a link.
 - **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
   `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
   137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and

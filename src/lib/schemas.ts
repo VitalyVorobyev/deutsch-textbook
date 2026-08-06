@@ -1015,6 +1015,10 @@ const referenceExampleSchema = z.object({
 
 export const caseReferenceSchema = z.object({
   id: z.literal('cases'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
   articles: z.array(z.object({
     case: z.enum(['Nominativ', 'Akkusativ', 'Dativ']),
     masculine: z.string(), feminine: z.string(), neuter: z.string(), plural: z.string(),
@@ -1044,6 +1048,10 @@ export type CaseReference = z.infer<typeof caseReferenceSchema>;
 
 export const pronominalAdverbReferenceSchema = z.object({
   id: z.literal('pronominal-adverbs'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
   entries: z.array(z.object({
     preposition: z.string().min(1),
     status: z.enum(['productive', 'receptive']),
@@ -1064,6 +1072,10 @@ export type PronominalAdverbReference = z.infer<typeof pronominalAdverbReference
 
 export const zahlenDatumZeitReferenceSchema = z.object({
   id: z.literal('zahlen-datum-zeit'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
   /** cardinal numbers: numeral → spelled-out word (German only, no gloss) */
   cardinals: z.array(z.object({ value: z.string().min(1), word: z.string().min(1) })).min(1),
   /** ordinal numbers: "1." → "erste" */
@@ -1095,6 +1107,10 @@ const connectorSyntaxSchema = z.enum([
 
 export const sentenceConnectorsReferenceSchema = z.object({
   id: z.literal('sentence-connectors'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
   relations: z.array(z.object({
     id: slug,
     title: bilingualSchema,
@@ -1135,6 +1151,10 @@ export type SentenceConnectorsReference = z.infer<typeof sentenceConnectorsRefer
  */
 export const briefeReferenceSchema = z.object({
   id: z.literal('briefe'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
   sections: z.array(z.object({
     id: slug,
     title: bilingualSchema.extend({ de: z.string().min(1) }),
