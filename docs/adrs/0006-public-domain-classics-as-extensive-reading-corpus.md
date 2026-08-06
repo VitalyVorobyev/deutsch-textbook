@@ -87,6 +87,10 @@ it in the same pass that decides to use it would destroy the ability to diff an 
 what it was adapted from. Where it finally lives (a `sources/` directory, `docs/archive/`, or out
 of the repo entirely) is backlog **P24-4**, together with the schema extension and the pilot.
 
+> **Resolved 2026-08-06 (P24-4):** the corpus moved to `sources/klassiker/` when the last nine
+> readings shipped — kept in the repo so every adaptation (including the four trims) stays
+> diffable against its source; `sources/README.md` states the directory's contract.
+
 ## Consequences
 
 - **Extensive reading roughly doubles at A2 and gains its first B1 volume.** Seven Lena episodes

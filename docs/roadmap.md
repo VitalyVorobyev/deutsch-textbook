@@ -107,7 +107,7 @@ mobile audit) · P23-1 (page weight).
 ### 3 · Extensive-reading corpus
 
 Extensive reading is the thinnest input channel in the course: seven *Lena* episodes against 60
-reading files. `deutsche_klassiker_a2_b1_markdown/` adds ten didactic retellings of public-domain
+reading files. `sources/klassiker/` adds ten didactic retellings of public-domain
 classics — Grimm, Kopisch, Goethe, Hauff — with Wikisource sources and an A2→B1 progression. The
 adaptation is real authoring work, not import, and it needs the reading schema to carry
 `attribution`/`license` the way `content/documents/` already does, so per-text provenance is

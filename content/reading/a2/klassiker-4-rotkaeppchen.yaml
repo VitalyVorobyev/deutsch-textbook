@@ -1,0 +1,108 @@
+topic: verbindungen-folgen
+kind: extensive
+title_de: "Rotkäppchen"
+
+# Klassiker strand, text 4 of 10 (ADR 0006). The prose is the didactic retelling from
+# sources/klassiker/04-rotkaeppchen.md, verbatim apart from the
+# inline gloss markers, so the adaptation stays diffable against its source.
+# Präteritum narration end to end, with a second encounter that replays the first
+# differently — the past-tense telling verbindungen-folgen owns.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Rothkäppchen, 1857). Didaktische Bearbeitung für Niveau A2. Historischer Originaltext: https://de.wikisource.org/wiki/Rothk%C3%A4ppchen_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Ein Mädchen trug sehr gern eine rote Mütze. Deshalb nannten alle es Rotkäppchen.
+    Eines Morgens sagte seine Mutter:
+  - >-
+    „Deine Großmutter ist krank. Bring ihr diesen Kuchen und eine Flasche Saft. Bleib
+    auf dem Weg und geh direkt zu ihrem Haus.“
+  - >-
+    Rotkäppchen versprach es und ging in den Wald. Dort begegnete ihm ein Wolf. Das
+    Mädchen wusste nicht, dass der Wolf gefährlich war.
+  - >-
+    „Wohin gehst du?“, fragte der Wolf freundlich.
+  - >-
+    „Zu meiner Großmutter. Sie wohnt hinter den drei großen
+    [[Eichen::oak trees::дубы::дуби]], neben einer alten
+    [[Mühle::mill::мельница::млин]].“
+  - >-
+    Der Wolf dachte an einen Plan. „Deine Großmutter freut sich bestimmt über Blumen“,
+    sagte er. „Sieh nur, wie schön sie hier wachsen.“
+  - >-
+    Rotkäppchen verließ den Weg und sammelte Blumen. Währenddessen lief der Wolf schnell
+    zum Haus der Großmutter. Er klopfte und sagte mit heller Stimme: „Ich bin
+    Rotkäppchen.“
+  - >-
+    Die Großmutter öffnete, und der Wolf sprang ins Haus. Kurz danach legte er sich mit
+    ihrer [[Haube::bonnet::чепец::чепець]] und Brille ins Bett.
+  - >-
+    Als Rotkäppchen ankam, wunderte es sich über die offene Tür. Im Schlafzimmer war es
+    dunkel.
+  - >-
+    „Großmutter, warum hast du so große Ohren?“
+  - >-
+    „Damit ich dich besser hören kann.“
+  - >-
+    „Warum hast du so große Augen?“
+  - >-
+    „Damit ich dich besser sehen kann.“
+  - >-
+    „Und warum hast du so große Zähne?“
+  - >-
+    „Damit ich dich besser fressen kann!“
+  - >-
+    Der Wolf sprang aus dem Bett. Zum Glück hörte ein Jäger den
+    [[Lärm::noise::шум::галас]]. Er kam ins Haus und
+    [[rettete::rescued::спас::урятував]] Rotkäppchen und die Großmutter. Danach konnte
+    der Wolf niemandem mehr schaden.
+  - >-
+    Rotkäppchen war sehr [[erschrocken::frightened::напугано::налякана]]. Es sagte: „Ich
+    werde nie wieder allein vom Weg abgehen, wenn meine Mutter es verboten hat.“
+  - >-
+    Einige Wochen später traf Rotkäppchen im Wald wieder einen Wolf. Diesmal antwortete
+    es nicht auf seine Fragen. Es ging direkt zur Großmutter und erzählte ihr von der
+    Gefahr. Gemeinsam schlossen sie die Tür und machten einen Plan. Der Wolf versuchte,
+    ins Haus zu kommen, aber die beiden ließen ihn nicht herein.
+  - >-
+    So hatte Rotkäppchen gelernt, vorsichtig zu sein. Es verstand nun: Freundliche Worte
+    bedeuten nicht immer, dass jemand gute [[Absichten::intentions::намерения::наміри]]
+    hat.
+
+questions:
+  - id: q-umweg
+    outcomes: [vergangenheit-erzaehlen]
+    type: mc
+    prompt: "Wie schafft es der Wolf, vor Rotkäppchen bei der Großmutter zu sein?"
+    options:
+      - "Er zeigt dem Mädchen die Blumen, und Rotkäppchen verlässt den Weg."
+      - "Er nimmt dem Mädchen den Kuchen weg, damit es zurücklaufen muss."
+      - "Er fragt den Jäger nach dem kürzesten Weg zum Haus."
+    correct: 0
+    translation:
+      en: "How does the wolf manage to reach grandmother before Little Red Riding Hood?"
+      ru: "Как волку удаётся оказаться у бабушки раньше Красной Шапочки?"
+      uk: "Як вовкові вдається дістатися до бабусі раніше за Червону Шапочку?"
+    explain:
+      en: "He does not run faster — he makes the girl slower. First he asks where grandmother lives, then he points out the flowers, and while she is picking them off the path he takes the road straight to the house."
+      ru: "Он не бежит быстрее — он замедляет девочку. Сначала выспрашивает, где живёт бабушка, потом показывает на цветы, и пока она собирает их в стороне от тропинки, он идёт прямо к дому."
+      uk: "Він не біжить швидше — він сповільнює дівчинку. Спершу випитує, де живе бабуся, потім показує на квіти, і поки вона збирає їх осторонь стежки, він прямує просто до хати."
+
+  - id: q-zweites-mal
+    outcomes: [vergangenheit-erzaehlen]
+    type: mc
+    prompt: "Was macht Rotkäppchen beim zweiten Treffen im Wald anders?"
+    options:
+      - "Es sammelt wieder Blumen, aber nur ganz kurz."
+      - "Es bittet den Jäger, mit ihm zur Großmutter zu gehen."
+      - "Es antwortet dem Wolf nicht und geht direkt zur Großmutter."
+    correct: 2
+    translation:
+      en: "What does Little Red Riding Hood do differently at the second meeting in the forest?"
+      ru: "Что Красная Шапочка делает иначе при второй встрече в лесу?"
+      uk: "Що Червона Шапочка робить інакше під час другої зустрічі в лісі?"
+    explain:
+      en: "The second encounter is the first one told again with a different ending. She gives the wolf nothing — no answers, no detour — walks straight to grandmother, warns her, and the two of them keep the door shut together."
+      ru: "Вторая встреча — это первая, рассказанная заново и с другим концом. Волку она не даёт ничего: ни ответов, ни возможности увести её с дороги; идёт прямо к бабушке, предупреждает её, и дверь они держат закрытой вдвоём."
+      uk: "Друга зустріч — це перша, переказана наново й з іншим кінцем. Вовкові вона не дає нічого: ні відповідей, ні нагоди звести її з дороги; іде просто до бабусі, попереджає її, і двері вони тримають зачиненими вдвох."
