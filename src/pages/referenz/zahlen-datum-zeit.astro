@@ -1,6 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import TaughtIn from '../../components/reference/TaughtIn.astro';
 import { withBase } from '../../lib/url';
 import { zahlenDatumZeitReferenceSchema } from '../../lib/schemas';
 
@@ -19,7 +20,7 @@ const data = zahlenDatumZeitReferenceSchema.parse(entry.data);
       <span class="lang-ru">Числа, порядковые числительные, время и календарь в одном месте. Уроки объясняют части по отдельности; здесь формы просто собраны рядом.</span>
       <span class="lang-uk">Числа, порядкові числівники, час і календар в одному місці. Уроки пояснюють частини окремо; тут форми просто зібрані поряд.</span>
     </p>
-  </header>
+  <TaughtIn source="zahlen-datum-zeit" /></header>
 
   <section class="mt-10">
     <h2 class="mb-4 text-2xl font-bold">Kardinalzahlen</h2>
