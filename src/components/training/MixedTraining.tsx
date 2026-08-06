@@ -12,7 +12,7 @@ import {
   type SessionItem,
   type TrainingSet,
 } from '../../lib/training';
-import { withBase } from '../../lib/url';
+import { topicPath, withBase } from '../../lib/url';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -306,7 +306,7 @@ export default function MixedTraining({
                 {row.level}
               </span>
               <a
-                href={withBase(`/topics/${topicId}`)}
+                href={withBase(topicPath({ id: topicId, level: row.level }))}
                 lang="de"
                 className="truncate font-medium text-stone-700 hover:underline dark:text-stone-200"
               >

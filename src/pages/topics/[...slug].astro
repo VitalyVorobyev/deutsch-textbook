@@ -18,6 +18,9 @@ import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
+import SeeAlso from '../../components/topic/SeeAlso.astro';
+import { getCurriculum } from '../../lib/curriculum';
+import { focusIntroducedBy } from '../../lib/focus-tags';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
@@ -77,6 +80,50 @@ const readings = await Promise.all(
 );
 
 const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : undefined;
+
+// --- "Siehe auch": every edge derived from data the curriculum owns (ADR 0007) ---
+const { nodes } = getCurriculum();
+const introducedHere = Object.entries(focusIntroducedBy)
+  .filter(([, owner]) => owner === data.id)
+  .map(([tag]) => tag);
+
+/** data id -> the page that projects it; presentation-only routing, no curriculum facts */
+const REFERENZ_ROUTES: Record<string, { href: string; title: string }> = {
+  cases: { href: '/referenz/kasus-praepositionen', title: 'Kasus & Präpositionen' },
+  'pronominal-adverbs': { href: '/referenz/da-wo-woerter', title: 'Da- & Wo-Wörter' },
+  'sentence-connectors': { href: '/referenz/satzverbindungen', title: 'Satzverbindungen' },
+  'zahlen-datum-zeit': { href: '/referenz/zahlen-datum-zeit', title: 'Zahlen, Datum & Zeit' },
+  briefe: { href: '/referenz/briefe', title: 'Briefe & Nachrichten' },
+  zeitformen: { href: '/referenz/zeitformen', title: 'Zeitformen & Modus' },
+};
+const referenzLinks = (await getCollection('referenceData'))
+  .filter((r) => {
+    const keys =
+      r.data.id === 'zeitformen'
+        ? new Set(r.data.forms.flatMap((form) => form.focus))
+        : new Set((r.data as { focus?: string[] }).focus ?? []);
+    return introducedHere.some((tag) => keys.has(tag));
+  })
+  .map((r) => REFERENZ_ROUTES[r.data.id])
+  .filter((route) => route !== undefined);
+
+const toChip = (id: string) => {
+  const t = byId.get(id);
+  return t ? [{ id, title_de: t.data.title_de, level: t.data.level }] : [];
+};
+const node = nodes.find((n) => n.id === data.id);
+const deepensChips = (node?.deepens ?? []).flatMap(toChip);
+const deepenedByChips = nodes.filter((n) => n.deepens.includes(data.id)).flatMap((n) => toChip(n.id));
+// Tags this topic's own items drill but another topic introduces — the "builds on" edge.
+const drilledElsewhere = [
+  ...new Set(
+    exerciseSets
+      .flatMap((set) => set.data.items.flatMap((item) => (item.focus ? [item.focus] : [])))
+      .map((tag) => focusIntroducedBy[tag])
+      .filter((owner) => owner && owner !== data.id),
+  ),
+];
+const buildsOnChips = drilledElsewhere.flatMap(toChip);
 if (data.pretest && !pretestSet)
   throw new Error(`Topic ${data.id}: pretest set "${data.pretest}" not found`);
 
@@ -255,4 +302,5 @@ const KIND_KEY: Record<string, StringKey> = {
       </section>
     )
   }
+  <SeeAlso referenz={referenzLinks} deepens={deepensChips} deepenedBy={deepenedByChips} buildsOn={buildsOnChips} />
 </Base>
