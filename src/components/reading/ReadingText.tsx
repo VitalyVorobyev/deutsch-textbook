@@ -27,6 +27,34 @@ const UI = {
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 /**
+ * Renders a credit line's URLs as links showing only the hostname — a full
+ * percent-encoded Wikisource URL wraps over three lines on a phone, and the
+ * href keeps the whole address anyway.
+ */
+function renderCredit(text: string) {
+  return text.split(/(https?:\/\/\S+)/).map((part, i) => {
+    if (!/^https?:\/\//.test(part)) return <Fragment key={i}>{part}</Fragment>;
+    let label = part;
+    try {
+      label = new URL(part).hostname;
+    } catch {
+      /* unparseable — show the raw text */
+    }
+    return (
+      <a
+        key={i}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-dotted underline-offset-2 hover:text-stone-600 dark:hover:text-stone-300"
+      >
+        {label}
+      </a>
+    );
+  });
+}
+
+/**
  * A graded reading text with click-to-reveal glosses, followed by its
  * comprehension questions one at a time (same "Weiter →" flow as ExerciseSet).
  * Attempts are logged under `reading:<path-id>` so they are distinguishable
@@ -197,6 +225,13 @@ export default function ReadingText({ readingId, reading }: Props) {
           )
         )}
       </div>
+      )}
+
+      {/* Provenance for adapted texts (ADR 0006) — data on the reading, always visible. */}
+      {reading.attribution && (
+        <p lang="de" className="mt-4 text-xs text-stone-400 dark:text-stone-500">
+          {renderCredit(reading.attribution)} · {reading.license}
+        </p>
       )}
     </div>
   );
