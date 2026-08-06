@@ -2,19 +2,135 @@
 import Base from '../../layouts/Base.astro';
 import Chrome from '../../components/Chrome.astro';
 import { withBase } from '../../lib/url';
+
+/**
+ * The Referenz index, grouped by the function a page serves (ADR 0007): a flat
+ * list is navigable at eight entries and stops being navigable shortly after.
+ * Groups and card copy are editorial; the pages themselves derive their
+ * taught-in edges from data.
+ */
+interface Card {
+  href: string;
+  title: string;
+  en: string;
+  ru: string;
+  uk: string;
+}
+interface Group {
+  title_de: string;
+  en: string;
+  ru: string;
+  uk: string;
+  cards: Card[];
+}
+
+const groups: Group[] = [
+  {
+    title_de: 'Formen & Paradigmen',
+    en: 'Forms and paradigms',
+    ru: 'Формы и парадигмы',
+    uk: 'Форми та парадигми',
+    cards: [
+      {
+        href: '/referenz/kasus-praepositionen',
+        title: 'Kasus & Präpositionen',
+        en: 'Articles, pronouns, and case-governing prepositions.',
+        ru: 'Артикли, местоимения и управление падежами.',
+        uk: 'Артиклі, займенники та прийменники, що керують відмінками.',
+      },
+      {
+        href: '/referenz/zeitformen',
+        title: 'Zeitformen & Modus',
+        en: 'The whole verb system: six tenses, the moods, the passive — and where the look-alikes come apart.',
+        ru: 'Вся глагольная система: шесть времён, наклонения, пассив — и где расходятся похожие формы.',
+        uk: 'Уся дієслівна система: шість часів, способи, пасив — і де розходяться схожі форми.',
+      },
+      {
+        href: '/referenz/verbformen',
+        title: 'Verbformen',
+        en: "Every verb's present and Perfekt, straight from the decks.",
+        ru: 'Настоящее время и Perfekt каждого глагола — прямо из колод.',
+        uk: 'Теперішній час і Perfekt кожного дієслова — просто з колод.',
+      },
+    ],
+  },
+  {
+    title_de: 'Satzbau',
+    en: 'Sentence structure',
+    ru: 'Строение предложения',
+    uk: 'Будова речення',
+    cards: [
+      {
+        href: '/referenz/satzverbindungen',
+        title: 'Satzverbindungen',
+        en: 'Logical relations, connector levels and the sentence pattern each one requires.',
+        ru: 'Логические связи, уровни связок и требуемая структура предложения.',
+        uk: "Логічні зв'язки, рівні сполучників і структура речення, якої вимагає кожен із них.",
+      },
+      {
+        href: '/referenz/da-wo-woerter',
+        title: 'Da- & Wo-Wörter',
+        en: 'Questions about things, references back, and person alternatives.',
+        ru: 'Вопросы о предметах, отсылки и формы для людей.',
+        uk: 'Запитання про предмети, відсилання до них і форми для людей.',
+      },
+    ],
+  },
+  {
+    title_de: 'Nachschlagen',
+    en: 'Lookup tables',
+    ru: 'Справочные таблицы',
+    uk: 'Довідкові таблиці',
+    cards: [
+      {
+        href: '/referenz/zahlen-datum-zeit',
+        title: 'Zahlen, Datum & Zeit',
+        en: 'Numbers, ordinals, the clock and the calendar.',
+        ru: 'Числа, порядковые числительные, время и календарь.',
+        uk: 'Числа, порядкові числівники, час і календар.',
+      },
+      {
+        href: '/referenz/wortnetze',
+        title: 'Wortnetze',
+        en: 'Word families, close meanings and learner-safe memory bridges.',
+        ru: 'Семьи слов, близкие значения и безопасные мостики для памяти.',
+        uk: 'Родини слів, близькі значення та безпечні містки для пам’яті.',
+      },
+    ],
+  },
+  {
+    title_de: 'Schreiben',
+    en: 'Written genres',
+    ru: 'Письменные жанры',
+    uk: 'Письмові жанри',
+    cards: [
+      {
+        href: '/referenz/briefe',
+        title: 'Briefe & Nachrichten',
+        en: 'Greetings, sign-offs and register — with three complete models.',
+        ru: 'Обращения, подписи и регистр — с тремя полными образцами.',
+        uk: 'Звертання, підписи та регістр — із трьома повними зразками.',
+      },
+    ],
+  },
+];
 ---
 
 <Base title="Referenz">
   <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.referenz" /></h1>
   <p class="mt-2 text-stone-500"><span class="lang-en">Compact lookup pages. Opening them does not change mastery or progress.</span><span class="lang-ru">Краткие справочные страницы. Их просмотр не влияет на освоение тем и прогресс.</span><span class="lang-uk">Компактні довідкові сторінки. Їхній перегляд не впливає на опанування тем і прогрес.</span></p>
-  <div class="mt-8 grid gap-4 sm:grid-cols-2">
-    <a href={withBase('/referenz/kasus-praepositionen')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Kasus & Präpositionen</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Articles, pronouns, and case-governing prepositions.</span><span class="lang-ru">Артикли, местоимения и управление падежами.</span><span class="lang-uk">Артиклі, займенники та прийменники, що керують відмінками.</span></p></a>
-    <a href={withBase('/referenz/da-wo-woerter')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Da- & Wo-Wörter</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Questions about things, references back, and person alternatives.</span><span class="lang-ru">Вопросы о предметах, отсылки и формы для людей.</span><span class="lang-uk">Запитання про предмети, відсилання до них і форми для людей.</span></p></a>
-    <a href={withBase('/referenz/zeitformen')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Zeitformen &amp; Modus</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">The whole verb system: six tenses, the moods, the passive — and where the look-alikes come apart.</span><span class="lang-ru">Вся глагольная система: шесть времён, наклонения, пассив — и где расходятся похожие формы.</span><span class="lang-uk">Уся дієслівна система: шість часів, способи, пасив — і де розходяться схожі форми.</span></p></a>
-    <a href={withBase('/referenz/verbformen')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Verbformen</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Every verb's present and Perfekt, straight from the decks.</span><span class="lang-ru">Настоящее время и Perfekt каждого глагола — прямо из колод.</span><span class="lang-uk">Теперішній час і Perfekt кожного дієслова — просто з колод.</span></p></a>
-    <a href={withBase('/referenz/zahlen-datum-zeit')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Zahlen, Datum &amp; Zeit</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Numbers, ordinals, the clock and the calendar.</span><span class="lang-ru">Числа, порядковые числительные, время и календарь.</span><span class="lang-uk">Числа, порядкові числівники, час і календар.</span></p></a>
-    <a href={withBase('/referenz/satzverbindungen')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Satzverbindungen</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Logical relations, connector levels and the sentence pattern each one requires.</span><span class="lang-ru">Логические связи, уровни связок и требуемая структура предложения.</span><span class="lang-uk">Логічні зв'язки, рівні сполучників і структура речення, якої вимагає кожен із них.</span></p></a>
-    <a href={withBase('/referenz/briefe')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Briefe &amp; Nachrichten</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Greetings, sign-offs and register — with three complete models.</span><span class="lang-ru">Обращения, подписи и регистр — с тремя полными образцами.</span><span class="lang-uk">Звертання, підписи та регістр — із трьома повними зразками.</span></p></a>
-    <a href={withBase('/referenz/wortnetze')} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800"><h2 class="text-lg font-semibold">Wortnetze</h2><p class="mt-1 text-sm text-stone-500"><span class="lang-en">Word families, close meanings and learner-safe memory bridges.</span><span class="lang-ru">Семьи слов, близкие значения и безопасные мостики для памяти.</span><span class="lang-uk">Родини слів, близькі значення та безпечні містки для пам'яті.</span></p></a>
-  </div>
+  {groups.map((group) => (
+    <section class="mt-10">
+      <h2 class="text-xl font-bold" lang="de">{group.title_de}</h2>
+      <p class="mt-0.5 text-xs font-semibold uppercase tracking-wide text-amber-700"><span class="lang-en">{group.en}</span><span class="lang-ru">{group.ru}</span><span class="lang-uk">{group.uk}</span></p>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2">
+        {group.cards.map((card) => (
+          <a href={withBase(card.href)} class="rounded-xl border border-stone-200 bg-white p-5 hover:border-amber-500 dark:border-stone-700 dark:bg-stone-800">
+            <h3 class="text-lg font-semibold">{card.title}</h3>
+            <p class="mt-1 text-sm text-stone-500"><span class="lang-en">{card.en}</span><span class="lang-ru">{card.ru}</span><span class="lang-uk">{card.uk}</span></p>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </Base>

@@ -669,6 +669,17 @@ for (const { file, data } of references.values()) {
   }
 }
 
+// Every page-level `focus` list on a reference file is the derived Referenz→topic edge
+// (ADR 0007): tags only, resolved through focusIntroducedBy at build time. A tag the
+// allowlist does not know would render no chip and no error, so it is rejected here.
+for (const { file, data } of references.values()) {
+  const pageFocus = (data as { focus?: string[] }).focus ?? [];
+  for (const tag of pageFocus) {
+    if (!focusIntroducedBy[tag])
+      fail(file, `page-level focus "${tag}" is not in focusIntroducedBy (src/lib/focus-tags.ts)`);
+  }
+}
+
 // The Zeitformen page claims, for every verb form, the level at which the course teaches it.
 // That is precisely the kind of claim a reference page carries for years without anyone
 // re-deriving it, so it is checked rather than trusted: the tags must be real, and a form may
