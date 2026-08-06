@@ -1,0 +1,105 @@
+topic: informationen-vermitteln
+kind: extensive
+title_de: "Der Froschkönig"
+
+# Klassiker strand, text 6 of 10 (ADR 0006). The prose is the didactic retelling from
+# sources/klassiker/06-der-froschkoenig.md, verbatim apart from the
+# inline gloss markers, so the adaptation stays diffable against its source.
+# Almost everything decisive here is reported rather than shown — what the princess
+# had to tell her father, what the prince explains, what Heinrich says the noise
+# was — which is the passing-on-information work informationen-vermitteln owns.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Der Froschkönig oder der eiserne Heinrich, 1857). Didaktische Bearbeitung für Niveau B1. Historischer Originaltext: https://de.wikisource.org/wiki/Der_Froschk%C3%B6nig_oder_der_eiserne_Heinrich_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Eine junge Prinzessin spielte gern mit einer goldenen [[Kugel::ball::шар::куля]].
+    Eines Tages saß sie an einem tiefen [[Brunnen::well::колодец::криниця]] im Wald. Sie
+    warf die Kugel hoch, doch diesmal fing sie sie nicht. Die Kugel fiel ins Wasser und
+    verschwand.
+  - >-
+    Die Prinzessin begann zu weinen. Da hörte sie eine Stimme.
+  - >-
+    „Warum bist du so traurig?“
+  - >-
+    Neben dem Brunnen saß ein Frosch. Die Prinzessin erzählte ihm von der Kugel.
+  - >-
+    „Ich kann sie holen“, sagte der Frosch. „Was gibst du mir dafür?“
+  - >-
+    Die Prinzessin bot ihm [[Schmuck::jewellery::украшения::прикраси]] und schöne
+    Kleider an. Doch der Frosch wollte etwas anderes: „Ich möchte dein Freund sein. Ich
+    möchte neben dir sitzen, von deinem Teller essen und in deiner Nähe schlafen.“
+  - >-
+    Die Prinzessin dachte, dass ein Frosch niemals in den Palast kommen könne. Deshalb
+    versprach sie alles. Der Frosch tauchte hinab und brachte die Kugel zurück. Sobald
+    die Prinzessin sie hatte, lief sie davon.
+  - >-
+    Am nächsten Tag klopfte es während des Abendessens an der Palasttür. Draußen wartete
+    der Frosch.
+  - >-
+    Die Prinzessin erschrak. Ihr Vater, der König, fragte nach dem Grund. Sie musste
+    erzählen, was geschehen war.
+  - >-
+    „Ein Versprechen muss man ernst nehmen“, sagte der König. „Du hast seine Hilfe
+    angenommen. Nun darfst du nicht so tun, als hättest du nichts versprochen.“
+  - >-
+    Die Prinzessin ließ den Frosch herein. [[Widerwillig::Grudgingly::Нехотя::Знехотя]]
+    stellte sie ihm einen kleinen Teller hin. Später wollte der Frosch mit in ihr
+    Zimmer. Die Prinzessin wurde wütend. Sie fühlte sich durch das Versprechen unter
+    Druck gesetzt und warf den Frosch gegen die Wand.
+  - >-
+    In diesem Augenblick verwandelte er sich in einen jungen Prinzen. Eine Zauberin
+    hatte ihn vor langer Zeit in einen Frosch verwandelt. Nur eine Begegnung im Palast
+    konnte den Zauber beenden.
+  - >-
+    Die Prinzessin war überrascht und auch
+    [[beschämt::ashamed::пристыжена::присоромлена]]. Der Prinz erklärte, dass ein
+    Versprechen wichtig sei, aber dass Freundschaft nicht durch
+    [[Zwang::coercion::принуждение::примус]] entstehen könne. Beide sprachen lange
+    miteinander. Erst danach entschieden sie, gemeinsam zu seinem Königreich zu reisen.
+  - >-
+    Am nächsten Morgen wartete eine Kutsche vor dem Palast. Der treue
+    [[Diener::servant::слуга::слуга]] Heinrich saß vorne. Er hatte so sehr unter dem
+    Schicksal seines Herrn gelitten, dass er eiserne [[Bänder::bands::обручи::обручі]]
+    um sein Herz hatte legen lassen. Auf der Reise hörten die Reisenden dreimal ein
+    lautes Geräusch. Die Prinzessin glaubte, die Kutsche sei kaputt. Doch Heinrich
+    erklärte: Die Bänder um sein Herz sprangen vor Freude auseinander, weil sein Herr
+    wieder frei war.
+
+questions:
+  - id: q-versprechen
+    outcomes: [indirekt-berichten]
+    type: mc
+    prompt: "Warum muss die Prinzessin den Frosch schließlich hereinlassen?"
+    options:
+      - "Weil ihr Vater sagt, dass man ein Versprechen ernst nehmen muss."
+      - "Weil der Frosch ihr die goldene Kugel erst im Palast zurückgeben will."
+      - "Weil die Zauberin dem König befohlen hat, den Frosch aufzunehmen."
+    correct: 0
+    translation:
+      en: "Why does the princess finally have to let the frog in?"
+      ru: "Почему принцессе в итоге приходится впустить лягушонка?"
+      uk: "Чому принцеса врешті мусить впустити жабеня?"
+    explain:
+      en: "She has to tell her father what happened at the well, and he answers with the rule the story turns on: she accepted the frog's help, so she cannot now act as though she had promised nothing. The ball is already back in her hands."
+      ru: "Ей приходится рассказать отцу, что случилось у колодца, и он отвечает правилом, на котором держится вся история: она приняла помощь лягушонка, а значит, не может вести себя так, будто ничего не обещала. Шар уже у неё в руках."
+      uk: "Їй доводиться розповісти батькові, що сталося біля криниці, і він відповідає правилом, на якому тримається вся історія: вона прийняла допомогу жабеняти, а отже, не може поводитися так, наче нічого не обіцяла. Куля вже в неї в руках."
+
+  - id: q-heinrich
+    outcomes: [indirekt-berichten]
+    type: mc
+    prompt: "Was erklärt der Diener Heinrich der Prinzessin über die lauten Geräusche auf der Reise?"
+    options:
+      - "Er sagt, dass die Kutsche unterwegs kaputtgegangen ist."
+      - "Er sagt, dass die eisernen Bänder um sein Herz vor Freude auseinanderspringen."
+      - "Er sagt, dass die Zauberin der Kutsche durch den Wald folgt."
+    correct: 1
+    translation:
+      en: "What does the servant Heinrich tell the princess about the loud noises on the journey?"
+      ru: "Что слуга Генрих объясняет принцессе о громких звуках в дороге?"
+      uk: "Що слуга Генріх пояснює принцесі щодо гучних звуків у дорозі?"
+    explain:
+      en: "The princess assumes the carriage is breaking. Heinrich corrects her: he had iron bands put around his heart while his master was under the spell, and now that the prince is free again they are snapping apart, one at a time."
+      ru: "Принцесса думает, что ломается карета. Генрих поправляет её: пока его господин был заколдован, он велел стянуть себе сердце железными обручами, а теперь, когда принц снова свободен, они лопаются один за другим."
+      uk: "Принцеса гадає, що ламається карета. Генріх виправляє її: поки його пан був зачарований, він звелів стягнути собі серце залізними обручами, а тепер, коли принц знову вільний, вони лускають один за одним."

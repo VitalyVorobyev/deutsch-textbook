@@ -1,0 +1,106 @@
+topic: regeln-verantwortung
+kind: extensive
+title_de: "Der Zauberlehrling"
+
+# Klassiker strand, text 8 of 10 (ADR 0006). The prose is the didactic retelling from
+# sources/klassiker/08-der-zauberlehrling.md — a narrative retelling
+# of the plot of Goethe's ballad, not the verse, and verbatim apart from the inline
+# gloss markers, so the adaptation stays diffable against its source.
+# Every step has a consequence the apprentice did not think through — the naming of
+# consequences regeln-verantwortung owns.
+
+attribution: "Nach einem gemeinfreien Werk von Johann Wolfgang von Goethe (Der Zauberlehrling, 1798). Didaktische Bearbeitung für Niveau B1. Historischer Originaltext: https://de.wikisource.org/wiki/Der_Zauberlehrling_%281798%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Ein junger [[Lehrling::apprentice::ученик::учень]] arbeitete bei einem alten
+    Zaubermeister. Er musste Wasser holen, den Raum putzen und die
+    [[Werkstatt::workshop::мастерская::майстерня]] ordnen. Viel lieber wollte er selbst
+    zaubern.
+  - >-
+    Eines Tages verließ der Meister das Haus. Der Lehrling war allein. Er erinnerte sich
+    an einen [[Zauberspruch::spell::заклинание::закляття]], den er oft gehört hatte.
+  - >-
+    „Warum soll ich die schweren [[Eimer::buckets::вёдра::відра]] tragen?“, dachte er.
+    „Der [[Besen::broom::метла::мітла]] kann die Arbeit übernehmen.“
+  - >-
+    Er stellte den Besen aufrecht hin, sprach den Zauberspruch und befahl: „Geh zum
+    Fluss, hol Wasser und fülle die [[Wanne::tub::ванна::ванна]]!“
+  - >-
+    Der Besen bekam Arme und Beine. Er nahm zwei Eimer und ging los. Kurz darauf kam er
+    mit Wasser zurück. Dann ging er wieder. Der Lehrling war begeistert. Endlich hatte
+    er Macht über die Dinge.
+  - >-
+    Doch bald war die Wanne voll. Der Besen brachte trotzdem weiteres Wasser.
+  - >-
+    „Stopp! Hör auf!“, rief der Lehrling.
+  - >-
+    Der Besen reagierte nicht. Der Lehrling hatte den Zauberspruch zum Starten gelernt,
+    aber nicht den Spruch zum Beenden.
+  - >-
+    Das Wasser lief über den Rand der Wanne und verbreitete sich im Raum. Der Lehrling
+    suchte [[hektisch::frantically::лихорадочно::гарячково]] in den Büchern des
+    Meisters. Er fand viele schwierige Wörter, aber nicht die richtige Formel.
+  - >-
+    Der Besen kam immer wieder. Der Boden stand bereits unter Wasser. Möbel schwammen
+    durch das Zimmer, Bücher wurden nass, und der Lehrling bekam Angst.
+  - >-
+    Schließlich nahm er eine [[Axt::axe::топор::сокира]]. „Wenn ich den Besen in zwei
+    Teile schlage, muss er aufhören“, dachte er.
+  - >-
+    Er schlug zu. Für einen Moment lag der Besen still. Dann erhob sich jede Hälfte. Nun
+    gab es zwei Besen, und jeder nahm zwei Eimer. Das Problem wurde doppelt so groß.
+  - >-
+    Der Lehrling versuchte, die Tür zu öffnen, doch das Wasser drückte dagegen. Er rief
+    um Hilfe.
+  - >-
+    In diesem Augenblick kam der Meister zurück. Er sah das Chaos und verstand sofort,
+    was geschehen war. Ruhig sprach er den richtigen Befehl. Die Besen blieben stehen
+    und wurden wieder zu gewöhnlichem Holz.
+  - >-
+    Gemeinsam ließen Meister und Lehrling das Wasser ablaufen. Der Meister sagte: „Einen
+    Zauber zu beginnen ist nicht genug. Du musst auch wissen, wie du ihn kontrollierst
+    und beendest.“
+  - >-
+    Der Lehrling schämte sich. Er hatte nicht nur eine Regel gebrochen, sondern auch
+    eine Kraft benutzt, deren Folgen er nicht verstand. Von da an lernte er nicht nur
+    Formeln. Er lernte auch, Risiken zu prüfen, Grenzen zu setzen und rechtzeitig um
+    Hilfe zu bitten.
+
+questions:
+  - id: q-nicht-stoppen
+    outcomes: [folgen-benennen]
+    type: mc
+    prompt: "Warum kann der Lehrling den Besen nicht mehr stoppen?"
+    options:
+      - "Weil der Meister den Besen vorher gegen ihn verzaubert hat."
+      - "Weil er nur den Spruch zum Starten kennt, aber nicht den zum Beenden."
+      - "Weil die Wanne ein Loch hat und deshalb niemals voll wird."
+    correct: 1
+    translation:
+      en: "Why can the apprentice no longer stop the broom?"
+      ru: "Почему ученик уже не может остановить метлу?"
+      uk: "Чому учень уже не може спинити мітлу?"
+    explain:
+      en: "He had listened often enough to pick up the words that start the spell, and never the words that end it. The broom is doing exactly what it was told; the missing half of the knowledge is the whole problem."
+      ru: "Он слышал заклинание достаточно часто, чтобы запомнить слова, которые его запускают, но не те, что его останавливают. Метла делает ровно то, что ей велели; вся беда — в недостающей половине знания."
+      uk: "Він чув закляття досить часто, щоб запам’ятати слова, які його запускають, але не ті, що його спиняють. Мітла робить саме те, що їй звеліли; уся біда — у відсутній половині знання."
+
+  - id: q-axt
+    outcomes: [folgen-benennen]
+    type: mc
+    prompt: "Welche Folge hat es, dass der Lehrling den Besen mit der Axt in zwei Teile schlägt?"
+    options:
+      - "Aus jeder Hälfte wird ein eigener Besen, und es kommt doppelt so viel Wasser."
+      - "Der Besen bleibt endlich stehen, aber das Wasser bleibt im Zimmer."
+      - "Das Wasser läuft sofort durch die offene Tür ab."
+    correct: 0
+    translation:
+      en: "What follows from the apprentice splitting the broom in two with the axe?"
+      ru: "К чему приводит то, что ученик разрубает метлу топором надвое?"
+      uk: "До чого призводить те, що учень розрубує мітлу сокирою навпіл?"
+    explain:
+      en: "Each half stands up as a broom of its own and picks up two buckets, so the water arrives twice as fast. Acting without understanding the mechanism does not undo the damage — it doubles it."
+      ru: "Каждая половина поднимается как отдельная метла и берёт по два ведра, так что вода прибывает вдвое быстрее. Действие вслепую, без понимания механизма, не исправляет беду, а удваивает её."
+      uk: "Кожна половина підводиться як окрема мітла й бере по два відра, тож вода прибуває вдвічі швидше. Дія наосліп, без розуміння механізму, не виправляє біду, а подвоює її."
