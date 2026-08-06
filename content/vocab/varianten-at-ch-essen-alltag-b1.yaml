@@ -1,0 +1,894 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the Austrian and
+# Swiss everyday field of data/goethe-b1-wortliste.txt: the food, the kitchen, the
+# street and the calendar as Vienna and Zurich name them. The manifest prints these
+# rows beside their Germany-German siblings — Aprikose/Marille, Brötchen/Semmel/Brötli,
+# Kartoffel/Erdapfel, Gehsteig/Trottoir — because the exam expects a B1 reader to
+# recognise both halves of every pair.
+# The German half is already shipped and stays the production card: A1's `essen-trinken`
+# owns Brötchen, Kartoffel, Frühstück and Fleisch, A1's `einkaufen-geschaefte` owns Dose,
+# Eis and Tomate, B1's `essen-lebensmittel-b1` owns Aprikose, Karotte, Möhre, Kloß,
+# Hackfleisch, Sahne, Schlagsahne and Pilz, A2's `essen-trinken-a2` owns grillen and
+# Hähnchen, B1's `gastronomie-feste-b1` owns Metzger, Backofen, Imbiss, Snack and
+# Fasching, A2's `zeit-termine-a2` owns Karneval, A1's `stadt-wege` owns Fahrrad, A1's
+# `reisen-urlaub` owns Straßenbahn and Ecke, B1's `verkehr-auto-b1` owns Gehsteig, A2's
+# `wohnen-umzug` owns Treppe, B1's `regeln-verantwortung` owns Treppenhaus, B1's
+# `wohnen-gebaeude-b1` owns Ofen and Sessel, A2's `berufe-a2` owns Kellner, Friseur and
+# Friseurin, B1's `text-schreiben-b1` owns Briefumschlag, A2's `einkaufen-geld-a2` owns
+# Geldbörse, B1's `haushalt-notfall-b1` owns Streichholz and Feuerzeug, A1's `alltag-zeit`
+# owns Januar and A1's `zahlen-daten-geld` owns Februar. This deck is the other column.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c, and here the
+# reason is at its plainest: the learner writes Germany's German and is never asked to
+# produce a Marille. This field is read, never written — it is what an Austrian menu,
+# a Swiss timetable and a Viennese calendar say back at him.
+id: varianten-at-ch-essen-alltag-b1
+title_de: "Österreichisch und Schweizerisch: Essen und Alltag"
+title_en: "Austrian and Swiss words: food and everyday life"
+title_ru: "Австрийское и швейцарское: еда и повседневность"
+title_uk: "Австрійське і швейцарське: їжа і повсякдення"
+level: B1
+entries:
+  # --- Was auf dem Markt liegt ---
+  - de: Marille
+    ipa: "maˈʁɪlə"
+    pos: noun
+    gender: f
+    plural: "die Marillen"
+    cards: recognition
+    en: the small soft orange stone fruit of high summer
+    ru: небольшой мягкий оранжевый плод с косточкой, поспевающий в разгар лета
+    uk: невеликий м’який помаранчевий плід із кісточкою, що достигає в розпал літа
+    example_de: Im Sommer kauft man auf dem Markt frische Marillen.
+    example_en: In summer you buy fresh apricots at the market.
+    example_ru: Летом на рынке покупают свежие абрикосы.
+    example_uk: Улітку на ринку купують свіжі абрикоси.
+    note:
+      en: 'Austria''s word, feminine, plural in -n. Germany and Switzerland say B1 die Aprikose in the deck `essen-lebensmittel-b1`, which is what a supermarket label prints. The Wachau valley on the Danube has made a name of it: Marillenmarmelade on the breakfast table, Marillenschnaps after dinner, and the Marillenknödel below among the desserts. The stress is on the middle syllable.'
+      ru: 'Австрийское слово, женский род, множественное на -n. Германия и Швейцария говорят die Aprikose уровня B1 из колоды `essen-lebensmittel-b1` — именно эту форму печатает магазинная этикетка. Долина Вахау на Дунае сделала из слова имя: Marillenmarmelade к завтраку, Marillenschnaps после ужина и Marillenknödel ниже среди десертов. Ударение на среднем слоге.'
+      uk: 'Австрійське слово, жіночий рід, множина на -n. Німеччина і Швейцарія кажуть die Aprikose рівня B1 з колоди `essen-lebensmittel-b1` — саме цю форму друкує магазинна етикетка. Долина Вахау на Дунаї зробила зі слова ім’я: Marillenmarmelade до сніданку, Marillenschnaps після вечері й Marillenknödel нижче серед десертів. Наголос на середньому складі.'
+
+  - de: Erdapfel
+    ipa: "ˈeːɐ̯tˌʔapfl̩"
+    pos: noun
+    gender: m
+    plural: "die Erdäpfel"
+    cards: recognition
+    en: the round tuber that is boiled, fried or mashed and served beside the meat
+    ru: круглый клубень, который отваривают, жарят или разминают и подают к мясу
+    uk: круглий бульбоплід, який відварюють, смажать або розминають і подають до м’яса
+    example_de: Zum Fleisch gibt es Erdäpfel und Salat.
+    example_en: There are potatoes and salad with the meat.
+    example_ru: К мясу подают картофель и салат.
+    example_uk: До м’яса подають картоплю і салат.
+    note:
+      en: 'Literally the apple of the earth. Austria uses it where Germany and Switzerland say A1 die Kartoffel in the deck `essen-trinken`. Masculine, and the plural takes an umlaut: der Erdapfel, die Erdäpfel. The compounds follow the head, so an Austrian menu offers Erdäpfelsalat and Erdäpfelpüree. Note the glottal stop before the second half, eːɐ̯t-ʔapfl̩, which is how German joins any compound whose second part begins with a vowel.'
+      ru: 'Буквально «яблоко земли». Австрия говорит так там, где Германия и Швейцария берут die Kartoffel уровня A1 из колоды `essen-trinken`. Мужской род, а во множественном умлаут: der Erdapfel, die Erdäpfel. Сложные слова идут за главной частью, поэтому австрийское меню предлагает Erdäpfelsalat и Erdäpfelpüree. Обратите внимание на гортанную смычку перед второй половиной, eːɐ̯t-ʔapfl̩: так немецкий соединяет любое сложное слово, вторая часть которого начинается с гласного.'
+      uk: 'Буквально «яблуко землі». Австрія каже так там, де Німеччина і Швейцарія беруть die Kartoffel рівня A1 з колоди `essen-trinken`. Чоловічий рід, а в множині умлаут: der Erdapfel, die Erdäpfel. Складні слова йдуть за головною частиною, тому австрійське меню пропонує Erdäpfelsalat і Erdäpfelpüree. Зверніть увагу на гортанний зімкнений перед другою половиною, eːɐ̯t-ʔapfl̩: так німецька з’єднує будь-яке складне слово, друга частина якого починається з голосного.'
+
+  - de: Paradeiser
+    ipa: "paʁaˈdaɪ̯zɐ"
+    pos: noun
+    gender: m
+    plural: "die Paradeiser"
+    cards: recognition
+    en: the round red fruit eaten raw in salads and cooked down into sauce
+    ru: круглый красный плод, который едят сырым в салате и уваривают в соус
+    uk: круглий червоний плід, який їдять сирим у салаті й уварюють у соус
+    example_de: Der Salat besteht nur aus Paradeisern und Zwiebeln.
+    example_en: The salad consists of nothing but tomatoes and onions.
+    example_ru: Салат состоит только из помидоров и лука.
+    example_uk: Салат складається тільки з помідорів і цибулі.
+    note:
+      en: 'Short for Paradeisapfel, the apple of paradise. It is eastern Austria''s word, Vienna above all; the west of the country says die Tomate like Germany and Switzerland, and that is A1 die Tomate in the deck `einkaufen-geschaefte`. Masculine, singular and plural spelled alike, so only the article tells them apart. Stress falls on the -dei-.'
+      ru: 'Сокращение от Paradeisapfel — «райское яблоко». Это слово востока Австрии, прежде всего Вены; запад страны говорит die Tomate, как Германия и Швейцария, и это die Tomate уровня A1 из колоды `einkaufen-geschaefte`. Мужской род, единственное и множественное пишутся одинаково, так что различает их только артикль. Ударение падает на -dei-.'
+      uk: 'Скорочення від Paradeisapfel — «райське яблуко». Це слово сходу Австрії, передусім Відня; захід країни каже die Tomate, як Німеччина і Швейцарія, і це die Tomate рівня A1 з колоди `einkaufen-geschaefte`. Чоловічий рід, однина і множина пишуться однаково, тож розрізняє їх лише артикль. Наголос падає на -dei-.'
+
+  - de: Rüebli
+    ipa: "ˈʁyːəbli"
+    pos: noun
+    gender: n
+    plural: "die Rüebli"
+    cards: recognition
+    en: the long orange root eaten raw, grated or cooked
+    ru: длинный оранжевый корнеплод, который едят сырым, тёртым или варёным
+    uk: довгий помаранчевий коренеплід, який їдять сирим, тертим або вареним
+    example_de: Zum Znüni nimmt das Kind immer ein Rüebli mit.
+    example_en: The child always takes a carrot along for the morning snack.
+    example_ru: На утренний перекус ребёнок всегда берёт с собой морковку.
+    example_uk: На ранковий перекус дитина завжди бере із собою морквину.
+    note:
+      en: 'Switzerland''s word, a -li diminutive of die Rübe, so it is neuter and the plural is spelled exactly like the singular — the rule for the whole -li family, das Brötli below included. Germany and Austria say B1 die Karotte or B1 die Möhre in the deck `essen-lebensmittel-b1`, whose note already divides north from south. The canton of Aargau is nicknamed Rüebliland and sells the Rüeblitorte to prove it.'
+      ru: 'Швейцарское слово, уменьшительное на -li от die Rübe, поэтому средний род, а множественное пишется в точности как единственное — правило для всего семейства на -li, включая das Brötli ниже. Германия и Австрия говорят die Karotte или die Möhre уровня B1 из колоды `essen-lebensmittel-b1`, и её примечание уже делит север и юг. Кантон Аргау зовут Rüebliland и в доказательство продаёт Rüeblitorte.'
+      uk: 'Швейцарське слово, зменшене на -li від die Rübe, тому середній рід, а множина пишеться достеменно як однина — правило для всієї родини на -li, разом із das Brötli нижче. Німеччина й Австрія кажуть die Karotte або die Möhre рівня B1 з колоди `essen-lebensmittel-b1`, і її примітка вже ділить північ і південь. Кантон Ааргау звуть Rüebliland і на доказ продає Rüeblitorte.'
+
+  - de: Schwammerl
+    ipa: "ˈʃvamɐl"
+    pos: noun
+    gender: n
+    plural: "die Schwammerln"
+    cards: recognition
+    en: the thing with a cap and a stem that grows in the wood and is gathered for the pan
+    ru: то, что растёт в лесу на ножке под шляпкой и что собирают, чтобы пожарить
+    uk: те, що росте в лісі на ніжці під шапинкою і що збирають, аби посмажити
+    example_de: Im Herbst gehen wir im Wald Schwammerln suchen.
+    example_en: In autumn we go looking for mushrooms in the wood.
+    example_ru: Осенью мы ходим в лес за грибами.
+    example_uk: Восени ми ходимо до лісу по гриби.
+    note:
+      en: 'Austria and Bavaria, a diminutive of der Schwamm, so neuter; the plural adds -n. Germany says B1 der Pilz in the deck `essen-lebensmittel-b1`, and that is also the word a shop label and a biology book use in Austria — this one belongs to the wood and the kitchen. The fixed chunk is Schwammerln suchen gehen, and a Schwammerlsuppe is what comes of it.'
+      ru: 'Австрия и Бавария, уменьшительное от der Schwamm, отсюда средний род; во множественном добавляется -n. Германия говорит der Pilz уровня B1 из колоды `essen-lebensmittel-b1`, и то же слово в Австрии стоит на магазинной этикетке и в учебнике биологии, а это принадлежит лесу и кухне. Устойчивый оборот — Schwammerln suchen gehen, а получается из этого Schwammerlsuppe.'
+      uk: 'Австрія і Баварія, зменшене від der Schwamm, звідси середній рід; у множині додається -n. Німеччина каже der Pilz рівня B1 з колоди `essen-lebensmittel-b1`, і те саме слово в Австрії стоїть на магазинній етикетці й у підручнику біології, а це належить лісові й кухні. Усталений зворот — Schwammerln suchen gehen, а виходить із цього Schwammerlsuppe.'
+
+  # --- Brot, Fleisch, Milch ---
+  - de: Semmel
+    ipa: "ˈzɛml̩"
+    pos: noun
+    gender: f
+    plural: "die Semmeln"
+    cards: recognition
+    en: a small round white roll, the everyday breakfast bread
+    ru: небольшая круглая белая булочка, обиходный хлеб к завтраку
+    uk: невелика кругла біла булочка, побутовий хліб до сніданку
+    example_de: Zum Frühstück isst er zwei Semmeln mit Butter.
+    example_en: For breakfast he eats two rolls with butter.
+    example_ru: На завтрак он съедает две булочки с маслом.
+    example_uk: На сніданок він з’їдає дві булочки з маслом.
+    note:
+      en: 'Austria and the south-east of Germany, Bavaria above all. Feminine, plural in -n. Germany''s general word is A1 das Brötchen in the deck `essen-trinken`, and Switzerland says das Brötli, the next entry — three names for one roll, which is why the Wortliste lists all three. One idiom travels beyond the bakery: etwas geht weg wie warme Semmeln, it sells like hot cakes.'
+      ru: 'Австрия и юго-восток Германии, прежде всего Бавария. Женский род, множественное на -n. Общее слово Германии — das Brötchen уровня A1 из колоды `essen-trinken`, а Швейцария говорит das Brötli, следующая запись: три названия одной булочки, потому Wortliste и даёт все три. Один оборот выходит за пределы булочной: etwas geht weg wie warme Semmeln — «расходится нарасхват».'
+      uk: 'Австрія і південний схід Німеччини, передусім Баварія. Жіночий рід, множина на -n. Загальне слово Німеччини — das Brötchen рівня A1 з колоди `essen-trinken`, а Швейцарія каже das Brötli, наступний запис: три назви однієї булочки, тому Wortliste і подає всі три. Один зворот виходить за межі пекарні: etwas geht weg wie warme Semmeln — «розходиться нарозхват».'
+
+  - de: Brötli
+    ipa: "ˈbʁøːtli"
+    pos: noun
+    gender: n
+    plural: "die Brötli"
+    cards: recognition
+    en: a small bread roll, the size one person eats at breakfast
+    ru: маленькая хлебная булочка — как раз на одного человека к завтраку
+    uk: маленька хлібна булочка — саме на одну людину до сніданку
+    example_de: Am Sonntag holt der Vater frische Brötli beim Bäcker.
+    example_en: On Sunday the father fetches fresh rolls from the baker.
+    example_ru: В воскресенье отец приносит от пекаря свежие булочки.
+    example_uk: У неділю батько приносить від пекаря свіжі булочки.
+    note:
+      en: 'Switzerland, and the same word as A1 das Brötchen in the deck `essen-trinken` with a different diminutive on it: German makes small things with -chen, Switzerland with -li. Both endings force the neuter, but only the German one changes nothing in the plural either way — das Brötli, die Brötli, exactly as with das Rüebli above. Austria says die Semmel above.'
+      ru: 'Швейцария, и это то же слово, что das Brötchen уровня A1 из колоды `essen-trinken`, только с другим уменьшительным суффиксом: немецкий делает малое через -chen, Швейцария через -li. Оба суффикса требуют среднего рода, а множественное здесь просто не меняется: das Brötli, die Brötli, ровно как у das Rüebli выше. Австрия говорит die Semmel выше.'
+      uk: 'Швейцарія, і це те саме слово, що das Brötchen рівня A1 з колоди `essen-trinken`, лише з іншим зменшувальним суфіксом: німецька робить мале через -chen, Швейцарія через -li. Обидва суфікси вимагають середнього роду, а множина тут просто не змінюється: das Brötli, die Brötli, точно як у das Rüebli вище. Австрія каже die Semmel вище.'
+
+  - de: Faschierte
+    ipa: "faˈʃiːɐ̯tə"
+    pos: noun
+    gender: n
+    plural: "—"
+    # An adjectival noun (das Faschierte / ein Faschiertes / mit dem Faschierten), so it
+    # would need an accept list if it were typed — it is not, and the note carries the
+    # declension. The `Tote` entry in recht-kriminalitaet-b1 and `Kranke` in
+    # koerper-medizin-b1 are modelled the same way and for the same reason.
+    cards: recognition
+    en: meat put through the mincer, sold by weight and shaped in the pan
+    ru: мясо, пропущенное через мясорубку, — его продают на вес и формуют на сковороде
+    uk: м’ясо, пропущене через м’ясорубку, — його продають на вагу і формують на пательні
+    example_de: Für die Sauce brauchen wir ein halbes Kilo Faschiertes.
+    example_en: We need half a kilo of mince for the sauce.
+    example_ru: Для соуса нам нужно полкило фарша.
+    example_uk: Для соусу нам потрібно півкіла фаршу.
+    note:
+      en: 'An adjectival noun from faschiert, minced, so the ending follows whatever stands in front: das Faschierte, ein Faschiertes, mit dem Faschierten — the same pattern as B1 die Tote in the deck `recht-kriminalitaet-b1` and B1 der Kranke in the deck `koerper-medizin-b1`. It is Austria''s word; Germany and Switzerland say B1 das Hackfleisch in the deck `essen-lebensmittel-b1`. Austrian cooking builds faschierte Laibchen out of it, and the shop counter also writes faschiertes Fleisch in full.'
+      ru: 'Субстантивированное прилагательное от faschiert — «рубленый», поэтому окончание следует за тем, что стоит впереди: das Faschierte, ein Faschiertes, mit dem Faschierten — тот же образец, что у die Tote уровня B1 из колоды `recht-kriminalitaet-b1` и der Kranke уровня B1 из колоды `koerper-medizin-b1`. Это австрийское слово; Германия и Швейцария говорят das Hackfleisch уровня B1 из колоды `essen-lebensmittel-b1`. Австрийская кухня делает из него faschierte Laibchen, а прилавок пишет и полностью: faschiertes Fleisch.'
+      uk: 'Субстантивований прикметник від faschiert — «січений», тому закінчення йде за тим, що стоїть попереду: das Faschierte, ein Faschiertes, mit dem Faschierten — той самий взірець, що в die Tote рівня B1 з колоди `recht-kriminalitaet-b1` і der Kranke рівня B1 з колоди `koerper-medizin-b1`. Це австрійське слово; Німеччина і Швейцарія кажуть das Hackfleisch рівня B1 з колоди `essen-lebensmittel-b1`. Австрійська кухня робить із нього faschierte Laibchen, а прилавок пише й повністю: faschiertes Fleisch.'
+
+  - de: Fleischhauer
+    ipa: "ˈflaɪ̯ʃˌhaʊ̯ɐ"
+    pos: noun
+    gender: m
+    plural: "die Fleischhauer"
+    cards: recognition
+    en: the tradesman who cuts up meat and sells it over a counter
+    ru: ремесленник, который разделывает мясо и продаёт его за прилавком
+    uk: ремісник, який розбирає м’ясо і продає його за прилавком
+    example_de: Das Fleisch für den Braten kaufen wir beim Fleischhauer.
+    example_en: We buy the meat for the roast at the butcher's.
+    example_ru: Мясо для жаркого мы покупаем у мясника.
+    example_uk: М’ясо для печені ми купуємо в м’ясника.
+    note:
+      en: 'Austria''s name for the trade, the one on the shop sign and in the trade register. Southern Germany and Switzerland say B1 der Metzger in the deck `gastronomie-feste-b1`, whose note already draws that line; northern and eastern Germany say der Fleischer. Masculine, singular and plural spelled alike, and beim Fleischhauer means at his shop. The shop itself is die Fleischhauerei; the feminine is the next entry.'
+      ru: 'Австрийское название ремесла — то, что стоит на вывеске и в реестре промыслов. Юг Германии и Швейцария говорят der Metzger уровня B1 из колоды `gastronomie-feste-b1`, и её примечание уже проводит эту границу; север и восток Германии говорят der Fleischer. Мужской род, единственное и множественное пишутся одинаково, а beim Fleischhauer значит «в его лавке». Сама лавка — die Fleischhauerei; женская пара — следующая запись.'
+      uk: 'Австрійська назва ремесла — та, що стоїть на вивісці й у реєстрі промислів. Південь Німеччини і Швейцарія кажуть der Metzger рівня B1 з колоди `gastronomie-feste-b1`, і її примітка вже проводить цю межу; північ і схід Німеччини кажуть der Fleischer. Чоловічий рід, однина і множина пишуться однаково, а beim Fleischhauer означає «у його крамниці». Сама крамниця — die Fleischhauerei; жіноча пара — наступний запис.'
+
+  - de: Fleischhauerin
+    ipa: "ˈflaɪ̯ʃˌhaʊ̯əʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Fleischhauerinnen"
+    cards: recognition
+    en: the woman whose trade is cutting up meat and selling it
+    ru: женщина, чьё ремесло — разделывать и продавать мясо
+    uk: жінка, чиє ремесло — розбирати і продавати м’ясо
+    example_de: Die Fleischhauerin hat den Betrieb von ihrem Vater übernommen.
+    example_en: The butcher took the business over from her father.
+    example_ru: Мясница переняла дело у отца.
+    example_uk: М’ясничка перебрала справу від батька.
+    note:
+      en: 'Ordinary Movierung with -in on the masculine above, with no change to the stem and a doubled n in the plural. Austria writes the pair out in full on an apprenticeship contract, Fleischhauer/Fleischhauerin, exactly as Germany writes Metzger/Metzgerin. The trade has a third name again in the north, die Fleischerin.'
+      ru: 'Обычное мовирование на -in от мужской формы выше, без изменений в основе и с удвоенным n во множественном. Австрия выписывает пару целиком в договоре об ученичестве — Fleischhauer/Fleischhauerin, — ровно как Германия пишет Metzger/Metzgerin. На севере у ремесла снова третье название: die Fleischerin.'
+      uk: 'Звичайна моція на -in від чоловічої форми вище, без змін в основі і з подвоєним n у множині. Австрія виписує пару цілком у договорі про учнівство — Fleischhauer/Fleischhauerin, — точно як Німеччина пише Metzger/Metzgerin. На півночі в ремесла знову третя назва: die Fleischerin.'
+
+  - de: Hendl
+    ipa: "ˈhɛndl̩"
+    pos: noun
+    gender: n
+    plural: "die Hendln"
+    cards: recognition
+    en: a young chicken roasted or grilled whole and eaten as a meal
+    ru: молодая курица, зажаренная целиком и поданная как готовое блюдо
+    uk: молода курка, засмажена цілою і подана як готова страва
+    example_de: Auf dem Fest gibt es Hendln vom Grill.
+    example_en: There is grilled chicken at the fair.
+    example_ru: На празднике подают кур с гриля.
+    example_uk: На святі подають курей із грилю.
+    note:
+      en: 'Austria and Bavaria. It is a diminutive of das Huhn, which is why it is neuter; the plural takes -n. Germany says A2 das Hähnchen in the deck `essen-trinken-a2` and, for the meat rather than the meal, B1 das Hühnchen in the deck `essen-lebensmittel-b1`; Switzerland says das Poulet, the next entry. Two compounds are the everyday ones: das Brathendl and das Grillhendl.'
+      ru: 'Австрия и Бавария. Это уменьшительное от das Huhn, отсюда средний род; во множественном -n. Германия говорит das Hähnchen уровня A2 из колоды `essen-trinken-a2`, а о мясе, а не о блюде, — das Hühnchen уровня B1 из колоды `essen-lebensmittel-b1`; Швейцария говорит das Poulet, следующая запись. Два обиходных сложных слова: das Brathendl и das Grillhendl.'
+      uk: 'Австрія і Баварія. Це зменшене від das Huhn, звідси середній рід; у множині -n. Німеччина каже das Hähnchen рівня A2 з колоди `essen-trinken-a2`, а про м’ясо, а не про страву, — das Hühnchen рівня B1 з колоди `essen-lebensmittel-b1`; Швейцарія каже das Poulet, наступний запис. Два побутові складні слова: das Brathendl і das Grillhendl.'
+
+  - de: Poulet
+    ipa: "puˈleː"
+    pos: noun
+    gender: n
+    plural: "die Poulets"
+    cards: recognition
+    en: chicken as meat, the bird bought and cooked
+    ru: курятина как мясо; птица, которую покупают и готовят
+    uk: курятина як м’ясо; птиця, яку купують і готують
+    example_de: Heute Abend gibt es Poulet mit Reis.
+    example_en: There is chicken with rice this evening.
+    example_ru: Сегодня вечером будет курица с рисом.
+    example_uk: Сьогодні ввечері буде курка з рисом.
+    note:
+      en: 'Switzerland, straight out of French, and the final t is silent: puˈleː. Neuter, plural in -s. Germany says A2 das Hähnchen in the deck `essen-trinken-a2`, Austria das Hendl above. A Swiss menu also writes die Pouletbrust and das Pouletgeschnetzelte, so the loan behaves like a German word once it is inside a compound.'
+      ru: 'Швейцария, прямо из французского, и конечное t не произносится: puˈleː. Средний род, множественное на -s. Германия говорит das Hähnchen уровня A2 из колоды `essen-trinken-a2`, Австрия — das Hendl выше. В швейцарском меню встретятся и die Pouletbrust, и das Pouletgeschnetzelte: внутри сложного слова заимствование ведёт себя как немецкое.'
+      uk: 'Швейцарія, просто з французької, і кінцеве t не вимовляється: puˈleː. Середній рід, множина на -s. Німеччина каже das Hähnchen рівня A2 з колоди `essen-trinken-a2`, Австрія — das Hendl вище. У швейцарському меню трапляться і die Pouletbrust, і das Pouletgeschnetzelte: усередині складного слова запозичення поводиться як німецьке.'
+
+  - de: Knödel
+    ipa: "ˈknøːdl̩"
+    pos: noun
+    gender: m
+    plural: "die Knödel"
+    cards: recognition
+    en: a ball of bread or potato dough boiled in water and served beside the meat
+    ru: шар из хлебного или картофельного теста, отваренный в воде и поданный к мясу
+    uk: куля з хлібного або картопляного тіста, зварена у воді й подана до м’яса
+    example_de: Zum Braten gibt es Knödel und Rotkraut.
+    example_en: There are dumplings and red cabbage with the roast.
+    example_ru: К жаркому подают кнедлики и краснокочанную капусту.
+    example_uk: До печені подають кнедлі й червонокачанну капусту.
+    note:
+      en: 'Austria and Bavaria; masculine, singular and plural spelled alike. Northern Germany calls the same thing B1 der Kloß in the deck `essen-lebensmittel-b1`, and a cookery book usually prints whichever word its author grew up with. The kinds name their filling or their dough, and three of them use words from this deck: der Semmelknödel, der Erdäpfelknödel and, as a summer dessert, der Marillenknödel.'
+      ru: 'Австрия и Бавария; мужской род, единственное и множественное пишутся одинаково. Север Германии зовёт то же самое der Kloß уровня B1 из колоды `essen-lebensmittel-b1`, а поваренная книга обычно печатает то слово, с которым вырос её автор. Виды называют начинку или тесто, и три из них пользуются словами этой колоды: der Semmelknödel, der Erdäpfelknödel и, как летний десерт, der Marillenknödel.'
+      uk: 'Австрія і Баварія; чоловічий рід, однина і множина пишуться однаково. Північ Німеччини зве те саме der Kloß рівня B1 з колоди `essen-lebensmittel-b1`, а кулінарна книга зазвичай друкує те слово, з яким виріс її автор. Види називають начинку або тісто, і три з них послуговуються словами цієї колоди: der Semmelknödel, der Erdäpfelknödel і, як літній десерт, der Marillenknödel.'
+
+  - de: Obers
+    ipa: "ˈoːbɐs"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: the fat part of the milk, poured into coffee and stirred into sauces
+    ru: жирная часть молока, которую льют в кофе и вмешивают в соусы
+    uk: жирна частина молока, яку ллють у каву і вмішують у соуси
+    example_de: In die Suppe kommt noch ein wenig Obers.
+    example_en: A little cream goes into the soup as well.
+    example_ru: В суп добавляют ещё немного сливок.
+    example_uk: До супу додають ще трохи вершків.
+    note:
+      en: 'Austria. Neuter, no plural, and the -s belongs to the word rather than marking one — das Obers, mit dem Obers. Germany says B1 die Sahne in the deck `essen-lebensmittel-b1`, Switzerland der Rahm below. Beaten it becomes das Schlagobers, the next entry, and a Viennese menu abbreviates that to Schlag.'
+      ru: 'Австрия. Средний род, множественного нет, а -s принадлежит самому слову, а не обозначает множественное: das Obers, mit dem Obers. Германия говорит die Sahne уровня B1 из колоды `essen-lebensmittel-b1`, Швейцария — der Rahm ниже. Взбитые, они становятся das Schlagobers, следующая запись, а венское меню сокращает это до Schlag.'
+      uk: 'Австрія. Середній рід, множини немає, а -s належить самому слову, а не позначає множину: das Obers, mit dem Obers. Німеччина каже die Sahne рівня B1 з колоди `essen-lebensmittel-b1`, Швейцарія — der Rahm нижче. Збиті, вони стають das Schlagobers, наступний запис, а віденське меню скорочує це до Schlag.'
+
+  - de: Schlagobers
+    ipa: "ˈʃlaːkˌʔoːbɐs"
+    pos: noun
+    gender: n
+    plural: "—"
+    cards: recognition
+    en: cream beaten stiff, spooned onto cake and floated on coffee
+    ru: сливки, взбитые до густоты, — их кладут на пирожное и на кофе
+    uk: вершки, збиті до густоти, — їх кладуть на тістечко і на каву
+    example_de: Den Kuchen serviert man hier mit Schlagobers.
+    example_en: The cake is served here with whipped cream.
+    example_ru: Пирог здесь подают со взбитыми сливками.
+    example_uk: Пиріг тут подають зі збитими вершками.
+    note:
+      en: 'Schlag- from schlagen plus the Obers above; neuter and without a plural. Germany says B1 die Schlagsahne in the deck `essen-lebensmittel-b1`, Switzerland der Schlagrahm below. A Viennese coffee house builds a drink on it: der Einspänner is a black coffee served under a cap of Schlagobers, and mit Schlagobers is what the menu adds to almost everything else. The k sound in the middle is the devoiced g of Schlag.'
+      ru: 'Schlag- от schlagen плюс Obers выше; средний род и без множественного. Германия говорит die Schlagsahne уровня B1 из колоды `essen-lebensmittel-b1`, Швейцария — der Schlagrahm ниже. Венская кофейня строит на нём напиток: der Einspänner — это чёрный кофе под шапкой из Schlagobers, а mit Schlagobers меню добавляет почти ко всему остальному. Звук k в середине — это оглушённое g слова Schlag.'
+      uk: 'Schlag- від schlagen плюс Obers вище; середній рід і без множини. Німеччина каже die Schlagsahne рівня B1 з колоди `essen-lebensmittel-b1`, Швейцарія — der Schlagrahm нижче. Віденська кав’ярня будує на ньому напій: der Einspänner — це чорна кава під шапкою зі Schlagobers, а mit Schlagobers меню додає майже до всього іншого. Звук k усередині — це оглушене g слова Schlag.'
+
+  - de: Rahm
+    ipa: "ˈʁaːm"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the fat part of the milk, stirred into a sauce or beaten for a cake
+    ru: жирная часть молока, которую вмешивают в соус или взбивают для торта
+    uk: жирна частина молока, яку вмішують у соус або збивають для торта
+    example_de: Die Sauce wird mit Rahm gebunden.
+    example_en: The sauce is thickened with cream.
+    example_ru: Соус загущают сливками.
+    example_uk: Соус загущують вершками.
+    note:
+      en: 'Switzerland above all, and the south of the German-speaking area with it. Masculine, no plural. Germany says B1 die Sahne in the deck `essen-lebensmittel-b1`, Austria das Obers above. Soured it is der Sauerrahm, and the compounds are everywhere on a Swiss menu: die Rahmsauce, das Rahmschnitzel, der Rahmspinat.'
+      ru: 'Прежде всего Швейцария, а с нею и юг немецкоязычной области. Мужской род, множественного нет. Германия говорит die Sahne уровня B1 из колоды `essen-lebensmittel-b1`, Австрия — das Obers выше. Скисшие, они дают der Sauerrahm, а сложные слова в швейцарском меню на каждом шагу: die Rahmsauce, das Rahmschnitzel, der Rahmspinat.'
+      uk: 'Передусім Швейцарія, а з нею і південь німецькомовного простору. Чоловічий рід, множини немає. Німеччина каже die Sahne рівня B1 з колоди `essen-lebensmittel-b1`, Австрія — das Obers вище. Скислі, вони дають der Sauerrahm, а складні слова у швейцарському меню на кожному кроці: die Rahmsauce, das Rahmschnitzel, der Rahmspinat.'
+
+  - de: Schlagrahm
+    ipa: "ˈʃlaːkˌʁaːm"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: cream beaten stiff, as it is spooned onto a dessert
+    ru: сливки, взбитые до густоты, какими их кладут на десерт
+    uk: вершки, збиті до густоти, якими їх кладуть на десерт
+    example_de: Möchten Sie den Kaffee mit Schlagrahm?
+    example_en: Would you like the coffee with whipped cream?
+    example_ru: Вам кофе со взбитыми сливками?
+    example_uk: Вам каву зі збитими вершками?
+    note:
+      en: 'Switzerland: Schlag- plus the Rahm above, masculine and without a plural. Three languages'' worth of one substance now stand together — B1 die Schlagsahne in the deck `essen-lebensmittel-b1` in Germany, das Schlagobers above in Austria, this in Switzerland — and which of them a menu prints says where the kitchen is. The g of Schlag is devoiced to k here too.'
+      ru: 'Швейцария: Schlag- плюс Rahm выше, мужской род и без множественного. Теперь рядом стоят три названия одного и того же — die Schlagsahne уровня B1 из колоды `essen-lebensmittel-b1` в Германии, das Schlagobers выше в Австрии и это в Швейцарии, — и то, какое из них печатает меню, говорит, где находится кухня. G слова Schlag и здесь оглушается в k.'
+      uk: 'Швейцарія: Schlag- плюс Rahm вище, чоловічий рід і без множини. Тепер поряд стоять три назви того самого — die Schlagsahne рівня B1 з колоди `essen-lebensmittel-b1` у Німеччині, das Schlagobers вище в Австрії і це у Швейцарії, — і те, яку з них друкує меню, каже, де кухня. G слова Schlag і тут оглушується в k.'
+
+  - de: Glace
+    ipa: "ˈglasə"
+    pos: noun
+    gender: f
+    plural: "die Glaces"
+    cards: recognition
+    en: the sweet frozen thing eaten from a cone or a tub in summer
+    ru: сладкое замороженное лакомство, которое летом едят из рожка или из ванночки
+    uk: солодке заморожене частування, яке влітку їдять із ріжка або з ванночки
+    example_de: Die Kinder wollen am See eine Glace essen.
+    example_en: The children want to have an ice cream at the lake.
+    example_ru: Дети хотят съесть мороженое у озера.
+    example_uk: Діти хочуть з’їсти морозиво біля озера.
+    note:
+      en: 'Switzerland, from French glace, feminine, plural in -s. Germany and Austria say A1 das Eis in the deck `einkaufen-geschaefte`, which does two jobs at once — the frozen sweet and the frozen water on a lake. Switzerland splits them: the sweet is die Glace, the water is still das Eis. So a Swiss text can tell the two apart where a German one has to rely on context.'
+      ru: 'Швейцария, от французского glace, женский род, множественное на -s. Германия и Австрия говорят das Eis уровня A1 из колоды `einkaufen-geschaefte`, а это слово делает сразу две работы: замороженное лакомство и лёд на озере. Швейцария их разводит: лакомство — die Glace, лёд по-прежнему das Eis. Поэтому швейцарский текст различает их там, где немецкому приходится полагаться на контекст.'
+      uk: 'Швейцарія, від французького glace, жіночий рід, множина на -s. Німеччина й Австрія кажуть das Eis рівня A1 з колоди `einkaufen-geschaefte`, а це слово робить одразу дві роботи: заморожені ласощі і лід на озері. Швейцарія їх розводить: ласощі — die Glace, лід і далі das Eis. Тому швейцарський текст розрізняє їх там, де німецькому доводиться покладатися на контекст.'
+
+  # --- In der Küche ---
+  - de: grillieren
+    ipa: "gʁɪˈliːʁən"
+    pos: verb
+    praesens_3sg: grilliert
+    partizip2: grilliert
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to cook meat or vegetables over an open fire
+    ru: готовить мясо или овощи на открытом огне
+    uk: готувати м’ясо або овочі на відкритому вогні
+    example_de: Am Wochenende grillieren wir im Garten.
+    example_en: At the weekend we barbecue in the garden.
+    example_ru: На выходных мы жарим на гриле в саду.
+    example_uk: На вихідних ми смажимо на грилі в саду.
+    note:
+      en: 'Switzerland''s verb where Germany and Austria use A2 grillen in the deck `essen-trinken-a2`. Weak, and the -ieren ending takes no ge- in the participle: hat grilliert, exactly like studieren and passieren. The thing it is done on is B1 der Grill in the deck `gesellschaft-zusammenleben` in all three countries, so only the verb changes at the border.'
+      ru: 'Швейцарский глагол там, где Германия и Австрия берут grillen уровня A2 из колоды `essen-trinken-a2`. Слабый, а окончание -ieren не даёт ge- в причастии: hat grilliert, ровно как studieren и passieren. То, на чём это делают, во всех трёх странах der Grill уровня B1 из колоды `gesellschaft-zusammenleben`, так что на границе меняется только глагол.'
+      uk: 'Швейцарське дієслово там, де Німеччина й Австрія беруть grillen рівня A2 з колоди `essen-trinken-a2`. Слабке, а закінчення -ieren не дає ge- у дієприкметнику: hat grilliert, точно як studieren і passieren. Те, на чому це роблять, в усіх трьох країнах der Grill рівня B1 з колоди `gesellschaft-zusammenleben`, тож на кордоні змінюється тільки дієслово.'
+
+  - de: Rohr
+    ipa: "ˈʁoːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Rohre"
+    cards: recognition
+    en: the closed box in a cooker in which a cake or a roast is baked
+    ru: закрытая камера в плите, в которой пекут пирог или запекают жаркое
+    uk: закрита камера у плиті, у якій печуть пиріг або запікають печеню
+    example_de: Der Kuchen ist noch zehn Minuten im Rohr.
+    example_en: The cake has another ten minutes in the oven.
+    example_ru: Пирогу ещё десять минут в духовке.
+    example_uk: Пирогові ще десять хвилин у духовці.
+    note:
+      en: 'Austria, and short for das Backrohr, the next entry. Neuter, plural in -e. Germany says B1 der Backofen in the deck `gastronomie-feste-b1`, and B1 der Ofen in the deck `wohnen-gebaeude-b1` is the older, wider word that also heats a room. Everywhere in German das Rohr is a pipe as well, das Wasserrohr, so only the kitchen decides which of the two senses a sentence is using.'
+      ru: 'Австрия, сокращение от das Backrohr — следующая запись. Средний род, множественное на -e. Германия говорит der Backofen уровня B1 из колоды `gastronomie-feste-b1`, а der Ofen уровня B1 из колоды `wohnen-gebaeude-b1` — слово более старое и широкое, которым топят и комнату. Повсюду в немецком das Rohr — ещё и труба, das Wasserrohr, так что выбор между двумя значениями делает кухня.'
+      uk: 'Австрія, скорочення від das Backrohr — наступний запис. Середній рід, множина на -e. Німеччина каже der Backofen рівня B1 з колоди `gastronomie-feste-b1`, а der Ofen рівня B1 з колоди `wohnen-gebaeude-b1` — слово давніше і ширше, яким топлять і кімнату. Усюди в німецькій das Rohr — ще й труба, das Wasserrohr, тож вибір між двома значеннями робить кухня.'
+
+  - de: Backrohr
+    ipa: "ˈbakˌʁoːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Backrohre"
+    cards: recognition
+    en: the part of a cooker that is heated from all sides for baking and roasting
+    ru: часть плиты, которую прогревают со всех сторон для выпечки и запекания
+    uk: частина плити, яку прогрівають з усіх боків для випікання і запікання
+    example_de: Bitte das Backrohr auf 180 Grad vorheizen.
+    example_en: Please preheat the oven to 180 degrees.
+    example_ru: Разогрейте, пожалуйста, духовку до 180 градусов.
+    example_uk: Розігрійте, будь ласка, духовку до 180 градусів.
+    note:
+      en: 'Back- from backen plus the Rohr above: the full Austrian word, neuter, plural in -e. A recipe printed in Vienna opens with the sentence in the example; the same recipe printed in Hamburg says den Backofen vorheizen, and that is B1 der Backofen in the deck `gastronomie-feste-b1`. Primary stress on Back-, secondary on -rohr, as in every German compound of this shape.'
+      ru: 'Back- от backen плюс Rohr выше: полное австрийское слово, средний род, множественное на -e. Рецепт, напечатанный в Вене, начинается фразой из примера; тот же рецепт, напечатанный в Гамбурге, скажет den Backofen vorheizen — это der Backofen уровня B1 из колоды `gastronomie-feste-b1`. Главное ударение на Back-, побочное на -rohr, как во всяком немецком сложном слове такого устройства.'
+      uk: 'Back- від backen плюс Rohr вище: повне австрійське слово, середній рід, множина на -e. Рецепт, надрукований у Відні, починається фразою з прикладу; той самий рецепт, надрукований у Гамбурзі, скаже den Backofen vorheizen — це der Backofen рівня B1 з колоди `gastronomie-feste-b1`. Головний наголос на Back-, побічний на -rohr, як у кожному німецькому складному слові такої будови.'
+
+  - de: Büchse
+    ipa: "ˈbʏksə"
+    pos: noun
+    gender: f
+    plural: "die Büchsen"
+    cards: recognition
+    en: the sealed metal container food or drink is sold in
+    ru: запаянная металлическая ёмкость, в которой продают еду или напиток
+    uk: запаяна металева посудина, у якій продають їжу або напій
+    example_de: Im Regal stehen Büchsen mit Suppe und Gemüse.
+    example_en: There are tins of soup and vegetables on the shelf.
+    example_ru: На полке стоят банки с супом и овощами.
+    example_uk: На полиці стоять бляшанки із супом і овочами.
+    note:
+      en: 'Switzerland and southern Germany use it for the tin where the rest of the language says A1 die Dose in the deck `einkaufen-geschaefte`. Feminine, plural in -n. The compounds are shared everywhere, die Büchsenmilch and der Büchsenöffner, and outside the kitchen the word keeps two older senses in all varieties: a collecting tin, die Sammelbüchse, and a hunting rifle.'
+      ru: 'Швейцария и юг Германии называют так консервную банку там, где остальной язык говорит die Dose уровня A1 из колоды `einkaufen-geschaefte`. Женский род, множественное на -n. Сложные слова общие везде — die Büchsenmilch и der Büchsenöffner, — а вне кухни слово сохраняет во всех вариантах два более старых значения: кружка для пожертвований, die Sammelbüchse, и охотничье ружьё.'
+      uk: 'Швейцарія і південь Німеччини звуть так консервну бляшанку там, де решта мови каже die Dose рівня A1 з колоди `einkaufen-geschaefte`. Жіночий рід, множина на -n. Складні слова спільні всюди — die Büchsenmilch і der Büchsenöffner, — а поза кухнею слово зберігає в усіх варіантах два давніші значення: карнавка для пожертв, die Sammelbüchse, і мисливська рушниця.'
+
+  # --- Wo man einkehrt, und wer bedient ---
+  - de: Kaffeehaus
+    ipa: "kaˈfeːˌhaʊ̯s"
+    pos: noun
+    gender: n
+    plural: "die Kaffeehäuser"
+    cards: recognition
+    en: a large old-fashioned place where one sits for hours over a single cup and the newspapers
+    ru: просторное старомодное заведение, где часами сидят над одной чашкой и газетами
+    uk: просторий старомодний заклад, де годинами сидять над однією філіжанкою і газетами
+    example_de: Im Kaffeehaus liest er jeden Morgen die Zeitung.
+    example_en: He reads the paper in the coffee house every morning.
+    example_ru: В кофейне он каждое утро читает газету.
+    example_uk: У кав’ярні він щоранку читає газету.
+    note:
+      en: 'Austria, and Vienna above all. Neuter, umlaut in the plural, primary stress inside Kaffee- and a secondary one on -haus. Germany and Switzerland say A1 das Café in the deck `freizeit-koennen`, which is a smaller and more modern thing. The Viennese institution brings its own vocabulary with it: der Ober below takes the order, das Schlagobers above comes on the coffee, and a glass of water stands beside every cup.'
+      ru: 'Австрия, и прежде всего Вена. Средний род, во множественном умлаут, главное ударение внутри Kaffee-, побочное на -haus. Германия и Швейцария говорят das Café уровня A1 из колоды `freizeit-koennen`, а это заведение поменьше и посовременнее. Венское учреждение приносит с собой собственный словарь: заказ принимает der Ober ниже, на кофе кладут das Schlagobers выше, а рядом с каждой чашкой стоит стакан воды.'
+      uk: 'Австрія, і передусім Відень. Середній рід, у множині умлаут, головний наголос усередині Kaffee-, побічний на -haus. Німеччина і Швейцарія кажуть das Café рівня A1 з колоди `freizeit-koennen`, а це заклад менший і сучасніший. Віденська інституція приносить із собою власний словник: замовлення бере der Ober нижче, на каву кладуть das Schlagobers вище, а поряд із кожною філіжанкою стоїть склянка води.'
+
+  - de: Ober
+    ipa: "ˈoːbɐ"
+    pos: noun
+    gender: m
+    plural: "die Ober"
+    cards: recognition
+    en: the man who takes the order and brings the food in a restaurant
+    ru: мужчина, который принимает заказ и приносит еду в ресторане
+    uk: чоловік, який приймає замовлення і приносить страви в ресторані
+    example_de: Der Ober bringt die Speisekarte und ein Glas Wasser.
+    example_en: The waiter brings the menu and a glass of water.
+    example_ru: Официант приносит меню и стакан воды.
+    example_uk: Офіціант приносить меню і склянку води.
+    note:
+      en: 'Short for der Oberkellner. Austria and the Viennese coffee house keep it as the ordinary word; in Germany it survives mainly in the call Herr Ober! and the everyday word is A2 der Kellner in the deck `berufe-a2`. Masculine, singular and plural spelled alike. It has no feminine in ordinary use: a woman is A2 die Kellnerin in the same deck, or, on a Swiss form, die Serviceangestellte two entries below.'
+      ru: 'Сокращение от der Oberkellner. Австрия и венская кофейня держат его как обиходное слово; в Германии оно живёт главным образом в обращении Herr Ober!, а обиходное там — der Kellner уровня A2 из колоды `berufe-a2`. Мужской род, единственное и множественное пишутся одинаково. Женской пары в обычном употреблении нет: женщина — die Kellnerin уровня A2 из той же колоды или, в швейцарском бланке, die Serviceangestellte через две записи ниже.'
+      uk: 'Скорочення від der Oberkellner. Австрія і віденська кав’ярня тримають його як побутове слово; у Німеччині воно живе головно у звертанні Herr Ober!, а побутове там — der Kellner рівня A2 з колоди `berufe-a2`. Чоловічий рід, однина і множина пишуться однаково. Жіночої пари у звичайному вжитку немає: жінка — die Kellnerin рівня A2 з тієї самої колоди або, у швейцарському бланку, die Serviceangestellte через два записи нижче.'
+
+  - de: Serviceangestellter
+    ipa: "ˈsœʁvɪsˌʔangəʃtɛltɐ"
+    pos: noun
+    gender: m
+    plural: "die Serviceangestellten"
+    # An adjectival noun (der Serviceangestellte / ein Serviceangestellter), which is why
+    # the manifest prints the -r form. Recognition only, so no accept list is needed; the
+    # note carries the declension, exactly as `Tote` does in recht-kriminalitaet-b1.
+    cards: recognition
+    en: a man employed to wait on tables, in the wording a job advertisement uses
+    ru: мужчина, нанятый обслуживать столики, — в той формулировке, которой пользуется объявление о работе
+    uk: чоловік, найнятий обслуговувати столики, — у тому формулюванні, яким послуговується оголошення про роботу
+    example_de: Das Restaurant sucht einen Serviceangestellten für den Abend.
+    example_en: The restaurant is looking for a member of waiting staff for the evenings.
+    example_ru: Ресторан ищет официанта на вечерние смены.
+    example_uk: Ресторан шукає офіціанта на вечірні зміни.
+    note:
+      en: 'An adjectival noun built on A2 der Angestellte in the deck `berufe-a2`, so the ending follows the article: der Serviceangestellte, ein Serviceangestellter, die Serviceangestellten. That is why the manifest prints the -r form. It belongs to the register of forms, contracts and job adverts rather than of speech, and it is at home in Switzerland; across a room the person is der Ober above in Austria and A2 der Kellner in the deck `berufe-a2` in Germany. The feminine is the next entry.'
+      ru: 'Субстантивированное прилагательное на базе der Angestellte уровня A2 из колоды `berufe-a2`, поэтому окончание следует за артиклем: der Serviceangestellte, ein Serviceangestellter, die Serviceangestellten. Потому список и печатает форму на -r. Слово принадлежит регистру бланков, договоров и объявлений о работе, а не речи, и дома оно в Швейцарии; через зал человека зовут der Ober выше в Австрии и der Kellner уровня A2 из колоды `berufe-a2` в Германии. Женская пара — следующая запись.'
+      uk: 'Субстантивований прикметник на базі der Angestellte рівня A2 з колоди `berufe-a2`, тому закінчення йде за артиклем: der Serviceangestellte, ein Serviceangestellter, die Serviceangestellten. Тому список і друкує форму на -r. Слово належить регістрові бланків, договорів і оголошень про роботу, а не мовлення, і вдома воно у Швейцарії; через залу людину звуть der Ober вище в Австрії і der Kellner рівня A2 з колоди `berufe-a2` в Німеччині. Жіноча пара — наступний запис.'
+
+  - de: Serviceangestellte
+    ipa: "ˈsœʁvɪsˌʔangəʃtɛltə"
+    pos: noun
+    gender: f
+    plural: "die Serviceangestellten"
+    cards: recognition
+    en: a woman employed to wait on tables, in the same wording of a contract or an advert
+    ru: женщина, нанятая обслуживать столики, — в той же формулировке договора или объявления
+    uk: жінка, найнята обслуговувати столики, — у тому самому формулюванні договору або оголошення
+    example_de: Die Serviceangestellte arbeitet seit einem Jahr in diesem Betrieb.
+    example_en: The waitress has been working in this establishment for a year.
+    example_ru: Официантка работает в этом заведении уже год.
+    example_uk: Офіціантка працює в цьому закладі вже рік.
+    note:
+      en: 'The same adjectival noun in the feminine: die Serviceangestellte, eine Serviceangestellte, and the plural die Serviceangestellten covers a mixed team. Nothing is added to make it feminine, because the word is an adjective and not an -er noun — which is exactly where it stops behaving like A2 der Kellner and A2 die Kellnerin in the deck `berufe-a2`. The masculine is the entry above.'
+      ru: 'То же субстантивированное прилагательное в женском роде: die Serviceangestellte, eine Serviceangestellte, а множественное die Serviceangestellten покрывает и смешанную бригаду. Ничего не прибавляют, чтобы получить женский род, потому что слово — прилагательное, а не существительное на -er; именно здесь оно и перестаёт вести себя как der Kellner и die Kellnerin уровня A2 из колоды `berufe-a2`. Мужская пара — запись выше.'
+      uk: 'Той самий субстантивований прикметник у жіночому роді: die Serviceangestellte, eine Serviceangestellte, а множина die Serviceangestellten покриває і змішану бригаду. Нічого не додають, щоб дістати жіночий рід, бо слово — прикметник, а не іменник на -er; саме тут воно й перестає поводитися як der Kellner і die Kellnerin рівня A2 з колоди `berufe-a2`. Чоловіча пара — запис вище.'
+
+  # --- Die kleine Mahlzeit zwischendurch ---
+  - de: Jause
+    ipa: "ˈjaʊ̯zə"
+    pos: noun
+    gender: f
+    plural: "die Jausen"
+    cards: recognition
+    en: a small meal between the main ones, usually bread with something on it
+    ru: небольшая еда между основными приёмами пищи, обычно хлеб с чем-нибудь
+    uk: невелика їжа між основними прийомами, зазвичай хліб із чимось
+    example_de: Für die Wanderung packen wir eine Jause ein.
+    example_en: We are packing a snack for the hike.
+    example_ru: На прогулку мы берём с собой перекус.
+    example_uk: На прогулянку ми беремо із собою перекуску.
+    note:
+      en: 'Austria; feminine, plural in -n, and there is a verb beside it, jausnen. Germany has die Zwischenmahlzeit for the idea and, closer to the thing itself, B1 der Imbiss and B1 der Snack in the deck `gastronomie-feste-b1`. Switzerland cuts the same meal in two by the clock, das Znüni and das Zvieri below. What an Austrian child carries to school is das Jausenbrot.'
+      ru: 'Австрия; женский род, множественное на -n, а рядом есть и глагол jausnen. У Германии для самого понятия есть die Zwischenmahlzeit, а ближе к самой еде — der Imbiss и der Snack уровня B1 из колоды `gastronomie-feste-b1`. Швейцария делит ту же еду надвое по часам: das Znüni и das Zvieri ниже. То, что австрийский ребёнок несёт в школу, — das Jausenbrot.'
+      uk: 'Австрія; жіночий рід, множина на -n, а поряд є й дієслово jausnen. У Німеччини для самого поняття є die Zwischenmahlzeit, а ближче до самої їжі — der Imbiss і der Snack рівня B1 з колоди `gastronomie-feste-b1`. Швейцарія ділить ту саму їжу надвоє за годинником: das Znüni і das Zvieri нижче. Те, що австрійська дитина несе до школи, — das Jausenbrot.'
+
+  - de: Znüni
+    ipa: "ˈtsnyːni"
+    pos: noun
+    gender: n
+    plural: "die Znüni"
+    cards: recognition
+    en: the small thing eaten in the middle of the morning, at about nine
+    ru: небольшая еда в середине утра, около девяти
+    uk: невелика їжа посеред ранку, близько дев’ятої
+    example_de: In der Pause um neun essen die Kinder ihr Znüni.
+    example_en: The children eat their morning snack in the nine o'clock break.
+    example_ru: На перемене в девять дети едят свой утренний перекус.
+    example_uk: На перерві о дев’ятій діти їдять свою ранкову перекуску.
+    note:
+      en: 'Switzerland, and the word names its own hour: z Nüni, at nine. Neuter, and like every -li and -i word of this family it does not change in the plural. Its afternoon twin is das Zvieri, the next entry. Austria has one word for both, die Jause above; Germany has none and says eine Kleinigkeit or B1 der Imbiss in the deck `gastronomie-feste-b1`. The initial cluster is spoken ts plus n, in one push.'
+      ru: 'Швейцария, и слово само называет свой час: z Nüni — «в девять». Средний род, и, как всякое слово этого семейства на -li и -i, во множественном не меняется. Его послеполуденный близнец — das Zvieri, следующая запись. У Австрии одно слово на оба случая, die Jause выше; у Германии нет ни одного, и она скажет eine Kleinigkeit или der Imbiss уровня B1 из колоды `gastronomie-feste-b1`. Начальное сочетание произносят как ts плюс n, одним толчком.'
+      uk: 'Швейцарія, і слово саме називає свою годину: z Nüni — «о дев’ятій». Середній рід, і, як усяке слово цієї родини на -li та -i, у множині не змінюється. Його пообідній близнюк — das Zvieri, наступний запис. В Австрії одне слово на обидва випадки, die Jause вище; у Німеччини немає жодного, і вона скаже eine Kleinigkeit або der Imbiss рівня B1 з колоди `gastronomie-feste-b1`. Початкове сполучення вимовляють як ts плюс n, одним поштовхом.'
+
+  - de: Zvieri
+    ipa: "ˈtsfiːʁi"
+    pos: noun
+    gender: n
+    plural: "die Zvieri"
+    cards: recognition
+    en: the small thing eaten in the middle of the afternoon, at about four
+    ru: небольшая еда в середине дня, около четырёх
+    uk: невелика їжа посеред дня, близько четвертої
+    example_de: Nach der Schule gibt es zu Hause ein Zvieri.
+    example_en: There is an afternoon snack at home after school.
+    example_ru: После школы дома дают полдник.
+    example_uk: Після школи вдома дають підвечірок.
+    note:
+      en: 'Built exactly like das Znüni above: z Vieri, at four, with the v spoken f — ˈtsfiːʁi. Neuter, unchanged in the plural. A Swiss day is measured out by the two of them, one at the morning break and one after school, and both words are heard far more often than they are written. Austria covers the pair with die Jause above.'
+      ru: 'Построено в точности как das Znüni выше: z Vieri — «в четыре», причём v звучит как f: ˈtsfiːʁi. Средний род, во множественном не меняется. Швейцарский день размечен этими двумя — один на утренней перемене, другой после школы, — и оба слова слышат куда чаще, чем пишут. Австрия покрывает пару словом die Jause выше.'
+      uk: 'Побудовано достеменно як das Znüni вище: z Vieri — «о четвертій», причому v звучить як f: ˈtsfiːʁi. Середній рід, у множині не змінюється. Швейцарський день розмічений цими двома — один на ранковій перерві, другий після школи, — і обидва слова чують куди частіше, ніж пишуть. Австрія покриває пару словом die Jause вище.'
+
+  # --- Auf der Straße und im Haus ---
+  - de: Velo
+    ipa: "ˈveːlo"
+    pos: noun
+    gender: n
+    plural: "die Velos"
+    cards: recognition
+    en: the two-wheeled thing you move by pedalling
+    ru: двухколёсная машина, которую приводят в движение педалями
+    uk: двоколісна машина, яку приводять у рух педалями
+    example_de: Sie fährt jeden Tag mit dem Velo zur Arbeit.
+    example_en: She rides to work by bike every day.
+    example_ru: Она каждый день ездит на работу на велосипеде.
+    example_uk: Вона щодня їздить на роботу велосипедом.
+    note:
+      en: 'Switzerland, clipped from French vélocipède; neuter, plural in -s. Germany and Austria say A1 das Fahrrad in the deck `stadt-wege`, shortened in speech to A2 das Rad in the deck `verkehr-unterwegs-a2`. The Swiss word carries its own family with it: der Veloweg, der Velofahrer, der Veloständer, so a signpost in Bern reads differently from one in Berlin.'
+      ru: 'Швейцария, усечение французского vélocipède; средний род, множественное на -s. Германия и Австрия говорят das Fahrrad уровня A1 из колоды `stadt-wege`, а в речи сокращают до das Rad уровня A2 из колоды `verkehr-unterwegs-a2`. Швейцарское слово тянет за собой своё семейство: der Veloweg, der Velofahrer, der Veloständer, — поэтому указатель в Берне читается иначе, чем в Берлине.'
+      uk: 'Швейцарія, усічення французького vélocipède; середній рід, множина на -s. Німеччина й Австрія кажуть das Fahrrad рівня A1 з колоди `stadt-wege`, а в мовленні скорочують до das Rad рівня A2 з колоди `verkehr-unterwegs-a2`. Швейцарське слово тягне за собою свою родину: der Veloweg, der Velofahrer, der Veloständer, — тому вказівник у Берні читається інакше, ніж у Берліні.'
+
+  - de: Tram
+    ipa: "ˈtʁam"
+    pos: noun
+    gender: n
+    plural: "die Trams"
+    cards: recognition
+    en: the vehicle that runs on rails through the streets of a city
+    ru: транспорт, который ходит по рельсам прямо по городским улицам
+    uk: транспорт, що ходить рейками просто міськими вулицями
+    example_de: Mit dem Tram ist man in zehn Minuten am Bahnhof.
+    example_en: The tram gets you to the station in ten minutes.
+    example_ru: На трамвае до вокзала десять минут.
+    example_uk: Трамваєм до вокзалу десять хвилин.
+    note:
+      en: 'Switzerland, and the gender is the trap rather than the word: there it is das Tram, mit dem Tram. Germany''s word is A1 die Straßenbahn in the deck `reisen-urlaub`, and where a German city does use the short form it makes it feminine, die Tram. Plural die Trams. An English loan by way of the tramway, and it keeps the short a.'
+      ru: 'Швейцария, и ловушка тут не в слове, а в роде: там это das Tram, mit dem Tram. Слово Германии — die Straßenbahn уровня A1 из колоды `reisen-urlaub`, а там, где немецкий город всё же берёт короткую форму, он делает её женской: die Tram. Множественное die Trams. Заимствование из английского через tramway, и краткое a сохраняется.'
+      uk: 'Швейцарія, і пастка тут не у слові, а в роді: там це das Tram, mit dem Tram. Слово Німеччини — die Straßenbahn рівня A1 з колоди `reisen-urlaub`, а там, де німецьке місто таки бере коротку форму, воно робить її жіночою: die Tram. Множина die Trams. Запозичення з англійської через tramway, і коротке a зберігається.'
+
+  - de: Trottoir
+    ipa: "tʁɔˈtoaːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Trottoirs"
+    cards: recognition
+    en: the raised strip beside the road where people walk
+    ru: приподнятая полоса вдоль проезжей части, по которой ходят пешеходы
+    uk: піднята смуга вздовж проїзної частини, якою ходять пішоходи
+    example_de: Auf dem Trottoir darf man nicht Velo fahren.
+    example_en: You are not allowed to cycle on the pavement.
+    example_ru: По тротуару нельзя ездить на велосипеде.
+    example_uk: Тротуаром не можна їздити велосипедом.
+    note:
+      en: 'Switzerland, straight from French; neuter, plural in -s, and the -oir ends in the oa sound plus a vocalised r. B1 der Gehsteig in the deck `verkehr-auto-b1` is what Austria and southern Germany say, northern Germany says der Bürgersteig, and an official text says der Gehweg. Four words for one strip of pavement, and the one a text chooses places it on the map.'
+      ru: 'Швейцария, прямо из французского; средний род, множественное на -s, а -oir даёт сочетание oa плюс вокализованное r. der Gehsteig уровня B1 из колоды `verkehr-auto-b1` — то, что говорят Австрия и юг Германии, север Германии говорит der Bürgersteig, а официальный текст — der Gehweg. Четыре слова для одной полосы тротуара, и то, какое из них выбрал текст, помещает его на карту.'
+      uk: 'Швейцарія, просто з французької; середній рід, множина на -s, а -oir дає сполучення oa плюс вокалізоване r. der Gehsteig рівня B1 з колоди `verkehr-auto-b1` — те, що кажуть Австрія і південь Німеччини, північ Німеччини каже der Bürgersteig, а офіційний текст — der Gehweg. Чотири слова для однієї смуги тротуару, і те, яке з них обрав текст, розміщує його на мапі.'
+
+  - de: parkieren
+    ipa: "paʁˈkiːʁən"
+    pos: verb
+    praesens_3sg: parkiert
+    partizip2: parkiert
+    aux: haben
+    cards: recognition
+    en: to leave a car standing in a place meant for it
+    ru: оставить машину стоять в отведённом для этого месте
+    uk: залишити машину стояти у відведеному для цього місці
+    example_de: Vor dem Bahnhof darf man nur eine Stunde parkieren.
+    example_en: You may only park in front of the station for an hour.
+    example_ru: Перед вокзалом можно стоять только час.
+    example_uk: Перед вокзалом можна стояти лише годину.
+    note:
+      en: 'Switzerland; A2 parken in the deck `verkehr-unterwegs-a2` everywhere else. Weak and in -ieren, so the participle takes no ge-: hat parkiert, like grillieren above. A Swiss sign reads Parkieren verboten where a German one reads Parken verboten, and the noun on the ticket machine is das Parkieren.'
+      ru: 'Швейцария; во всех прочих местах parken уровня A2 из колоды `verkehr-unterwegs-a2`. Слабый и на -ieren, поэтому в причастии нет ge-: hat parkiert, как и grillieren выше. Швейцарская табличка гласит Parkieren verboten там, где немецкая — Parken verboten, а на паркомате стоит существительное das Parkieren.'
+      uk: 'Швейцарія; в усіх інших місцях parken рівня A2 з колоди `verkehr-unterwegs-a2`. Слабке і на -ieren, тому в дієприкметнику немає ge-: hat parkiert, як і grillieren вище. Швейцарська табличка каже Parkieren verboten там, де німецька — Parken verboten, а на паркоматі стоїть іменник das Parkieren.'
+
+  - de: Stiege
+    ipa: "ˈʃtiːgə"
+    pos: noun
+    gender: f
+    plural: "die Stiegen"
+    cards: recognition
+    en: the set of steps that takes you from one floor of a building to the next
+    ru: ряд ступеней, по которым поднимаются с этажа на этаж
+    uk: ряд сходинок, якими підіймаються з поверху на поверх
+    example_de: Der Aufzug ist kaputt, wir nehmen die Stiege.
+    example_en: The lift is out of order, we will take the stairs.
+    example_ru: Лифт сломан, пойдём по лестнице.
+    example_uk: Ліфт зламаний, підемо сходами.
+    note:
+      en: 'Austria; feminine, plural in -n. A2 die Treppe in the deck `wohnen-umzug` is the general word and the one Germany uses. In an Austrian block of flats the word does a second job that has no German equivalent: it is part of the address, so Stiege 2, Tür 14 tells the postman which staircase to enter before it tells him which door.'
+      ru: 'Австрия; женский род, множественное на -n. die Treppe уровня A2 из колоды `wohnen-umzug` — общее слово, его же берёт Германия. В австрийском многоквартирном доме слово делает вторую работу, которой у немецкого нет: оно входит в адрес, и Stiege 2, Tür 14 сначала говорит почтальону, в какой подъезд войти, и лишь потом — в какую дверь.'
+      uk: 'Австрія; жіночий рід, множина на -n. die Treppe рівня A2 з колоди `wohnen-umzug` — загальне слово, його ж бере Німеччина. В австрійському багатоквартирному будинку слово робить другу роботу, якої в німецького немає: воно входить до адреси, і Stiege 2, Tür 14 спершу каже листоноші, до якого під’їзду ввійти, і лише потім — до яких дверей.'
+
+  - de: Stiegenhaus
+    ipa: "ˈʃtiːgn̩ˌhaʊ̯s"
+    pos: noun
+    gender: n
+    plural: "die Stiegenhäuser"
+    cards: recognition
+    en: the shaft of a building that holds the stairs and belongs to all the flats
+    ru: часть дома, где идёт лестница и которая принадлежит всем квартирам сразу
+    uk: частина будинку, де йдуть сходи і яка належить усім помешканням разом
+    example_de: Im Stiegenhaus darf man keine Fahrräder abstellen.
+    example_en: Bicycles may not be left in the stairwell.
+    example_ru: В подъезде нельзя оставлять велосипеды.
+    example_uk: У під’їзді не можна залишати велосипеди.
+    note:
+      en: 'The Stiege above plus -haus. Germany says B1 das Treppenhaus in the deck `regeln-verantwortung`, which is where the house rules hang in both countries. Neuter, umlaut in the plural, primary stress on Stie- and a secondary one on -haus. The n between the two halves is syllabic, ˈʃtiːgn̩-, with no vowel of its own.'
+      ru: 'Stiege выше плюс -haus. Германия говорит das Treppenhaus уровня B1 из колоды `regeln-verantwortung`, а правила дома висят там в обеих странах. Средний род, во множественном умлаут, главное ударение на Stie-, побочное на -haus. N между половинами слоговой, ˈʃtiːgn̩-, собственного гласного при нём нет.'
+      uk: 'Stiege вище плюс -haus. Німеччина каже das Treppenhaus рівня B1 з колоди `regeln-verantwortung`, а правила будинку висять там в обох країнах. Середній рід, у множині умлаут, головний наголос на Stie-, побічний на -haus. N між половинами складотворний, ˈʃtiːgn̩-, власного голосного при ньому немає.'
+
+  - de: Eck
+    ipa: "ˈɛk"
+    pos: noun
+    gender: n
+    plural: "die Ecke"
+    cards: recognition
+    en: the place where two walls or two streets meet
+    ru: место, где сходятся две стены или две улицы
+    uk: місце, де сходяться дві стіни або дві вулиці
+    example_de: Das Geschäft ist gleich ums Eck.
+    example_en: The shop is just around the corner.
+    example_ru: Магазин прямо за углом.
+    example_uk: Крамниця просто за рогом.
+    note:
+      en: 'Austria and southern Germany, and the plural is the trap: die Ecke, spelled exactly like the singular of A1 die Ecke in the deck `reisen-urlaub`, so only the article and the verb separate them. The neuter is the form the shape words are built on everywhere in German — das Dreieck, das Viereck, die Vierecke. The Austrian chunk is ums Eck; the general one is um die Ecke.'
+      ru: 'Австрия и юг Германии, и ловушка во множественном: die Ecke пишется в точности как единственное число die Ecke уровня A1 из колоды `reisen-urlaub`, так что различают их только артикль и глагол. Средний род — та форма, на которой всюду в немецком строятся названия фигур: das Dreieck, das Viereck, die Vierecke. Австрийский оборот — ums Eck, общий — um die Ecke.'
+      uk: 'Австрія і південь Німеччини, а пастка в множині: die Ecke пишеться достеменно як однина die Ecke рівня A1 з колоди `reisen-urlaub`, тож розрізняють їх лише артикль і дієслово. Середній рід — та форма, на якій усюди в німецькій будуються назви фігур: das Dreieck, das Viereck, die Vierecke. Австрійський зворот — ums Eck, загальний — um die Ecke.'
+
+  # --- Was man in der Tasche und im Zimmer hat ---
+  - de: Kuvert
+    ipa: "kuˈvɛːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Kuverts"
+    cards: recognition
+    en: the paper pocket a letter goes into before it is posted
+    ru: бумажный карман, в который вкладывают письмо перед отправкой
+    uk: паперова кишенька, до якої вкладають лист перед відправленням
+    example_de: Sie steckt die Karte in ein Kuvert und klebt eine Briefmarke darauf.
+    example_en: She puts the card in an envelope and sticks a stamp on it.
+    example_ru: Она вкладывает открытку в конверт и наклеивает марку.
+    example_uk: Вона вкладає листівку в конверт і наклеює марку.
+    note:
+      en: 'From French enveloppe couverte, shortened. It is Austria''s everyday word, and Germany knows it beside B1 der Briefumschlag in the deck `text-schreiben-b1`, which is the plainer and commoner German. Switzerland spells the same word Couvert, the next entry. Neuter, plural in -s, and the final t is silent: kuˈvɛːɐ̯, the same ending as in Dessert.'
+      ru: 'От французского enveloppe couverte, в сокращении. Это обиходное слово Австрии, и Германия его знает наряду с der Briefumschlag уровня B1 из колоды `text-schreiben-b1` — более простым и более частым немецким словом. Швейцария пишет то же слово как Couvert, следующая запись. Средний род, множественное на -s, а конечное t не произносится: kuˈvɛːɐ̯, то же окончание, что и в Dessert.'
+      uk: 'Від французького enveloppe couverte, у скороченні. Це побутове слово Австрії, і Німеччина його знає поряд із der Briefumschlag рівня B1 з колоди `text-schreiben-b1` — простішим і частішим німецьким словом. Швейцарія пише те саме слово як Couvert, наступний запис. Середній рід, множина на -s, а кінцеве t не вимовляється: kuˈvɛːɐ̯, те саме закінчення, що й у Dessert.'
+
+  - de: Couvert
+    ipa: "kuˈvɛːɐ̯"
+    pos: noun
+    gender: n
+    plural: "die Couverts"
+    cards: recognition
+    en: the paper pocket a letter is put into, in the spelling Switzerland keeps
+    ru: бумажный конверт для письма — в том написании, которое сохранила Швейцария
+    uk: паперовий конверт для листа — у тому написанні, яке зберегла Швейцарія
+    example_de: Auf dem Couvert fehlt noch die Adresse.
+    example_en: The address is still missing from the envelope.
+    example_ru: На конверте ещё нет адреса.
+    example_uk: На конверті ще немає адреси.
+    note:
+      en: 'Switzerland writes the C, Austria the K: one word, one pronunciation, two spellings, and the manifest lists both because a B1 reader meets both. Neuter, plural in -s. Germany''s plain word is B1 der Briefumschlag in the deck `text-schreiben-b1`. Pairs like this are the reason a Swiss text can look French on the page and sound German when read aloud.'
+      ru: 'Швейцария пишет C, Австрия K: одно слово, одно произношение, два написания, и список даёт оба, потому что читатель уровня B1 встретит оба. Средний род, множественное на -s. Простое слово Германии — der Briefumschlag уровня B1 из колоды `text-schreiben-b1`. Такие пары и объясняют, почему швейцарский текст выглядит на бумаге французским, а вслух звучит по-немецки.'
+      uk: 'Швейцарія пише C, Австрія K: одне слово, одна вимова, два написання, і список подає обидва, бо читач рівня B1 зустріне обидва. Середній рід, множина на -s. Просте слово Німеччини — der Briefumschlag рівня B1 з колоди `text-schreiben-b1`. Такі пари й пояснюють, чому швейцарський текст на папері виглядає французьким, а вголос звучить по-німецьки.'
+
+  - de: Portemonnaie
+    ipa: "pɔʁtmɔˈneː"
+    pos: noun
+    gender: n
+    plural: "die Portemonnaies"
+    cards: recognition
+    en: the small folding thing coins and notes are carried in
+    ru: небольшая складная вещица, в которой носят монеты и купюры
+    uk: невелика складана річ, у якій носять монети й купюри
+    example_de: Das Portemonnaie liegt noch in der Jackentasche.
+    example_en: The purse is still in the jacket pocket.
+    example_ru: Кошелёк ещё лежит в кармане куртки.
+    example_uk: Гаманець іще лежить у кишені куртки.
+    note:
+      en: 'French porte-monnaie, carry-money, and German keeps the spelling and the silent ending; neuter, plural in -s. It is at home in Switzerland and current across the German-speaking area beside A2 die Geldbörse in the deck `einkaufen-geld-a2`. Germany also writes the reformed Portmonee and says der Geldbeutel in speech, while B1 die Brieftasche in the deck `einkaufen-geld-b1` is the flat one for notes and cards.'
+      ru: 'Французское porte-monnaie — «носи деньги», — и немецкий сохраняет написание и немое окончание; средний род, множественное на -s. Слово дома в Швейцарии и ходит по всей немецкоязычной области рядом с die Geldbörse уровня A2 из колоды `einkaufen-geld-a2`. Германия пишет и упрощённое Portmonee, а в речи говорит der Geldbeutel, тогда как die Brieftasche уровня B1 из колоды `einkaufen-geld-b1` — плоский бумажник для купюр и карт.'
+      uk: 'Французьке porte-monnaie — «носи гроші», — і німецька зберігає написання й німе закінчення; середній рід, множина на -s. Слово вдома у Швейцарії й ходить усім німецькомовним простором поряд із die Geldbörse рівня A2 з колоди `einkaufen-geld-a2`. Німеччина пише й спрощене Portmonee, а в мовленні каже der Geldbeutel, тоді як die Brieftasche рівня B1 з колоди `einkaufen-geld-b1` — плаский гаманець для купюр і карток.'
+
+  - de: Fauteuil
+    ipa: "foˈtøːj"
+    pos: noun
+    gender: m
+    plural: "die Fauteuils"
+    cards: recognition
+    en: a soft deep seat with arms, the one you sink into to read
+    ru: мягкое глубокое сиденье с подлокотниками, в которое усаживаются с книгой
+    uk: м’яке глибоке сидіння з підлокітниками, у яке всідаються з книжкою
+    example_de: Der Großvater sitzt im Fauteuil und hört Radio.
+    example_en: The grandfather is sitting in the armchair listening to the radio.
+    example_ru: Дедушка сидит в кресле и слушает радио.
+    example_uk: Дідусь сидить у кріслі й слухає радіо.
+    note:
+      en: 'Austria and Switzerland, from French; masculine, plural in -s, and -euil ends in a j sound. The word exists because B1 der Sessel in the deck `wohnen-gebaeude-b1` does not mean the same thing on both sides of the border: in Austria der Sessel is the upright chair at the table, which is A1 der Stuhl in the deck `wohnen` in Germany, so the armchair needed a name of its own. Read an Austrian sentence with the German meaning of Sessel and you furnish the room wrongly.'
+      ru: 'Австрия и Швейцария, из французского; мужской род, множественное на -s, а -euil даёт на конце звук j. Слово существует потому, что der Sessel уровня B1 из колоды `wohnen-gebaeude-b1` по обе стороны границы значит разное: в Австрии der Sessel — обычный стул у стола, то есть der Stuhl уровня A1 из колоды `wohnen` в Германии, и креслу понадобилось собственное имя. Прочтите австрийскую фразу с немецким значением Sessel — и обставите комнату неправильно.'
+      uk: 'Австрія і Швейцарія, із французької; чоловічий рід, множина на -s, а -euil дає на кінці звук j. Слово існує тому, що der Sessel рівня B1 з колоди `wohnen-gebaeude-b1` по обидва боки кордону означає різне: в Австрії der Sessel — звичайний стілець при столі, тобто der Stuhl рівня A1 з колоди `wohnen` у Німеччині, і кріслу знадобилося власне ім’я. Прочитайте австрійську фразу з німецьким значенням Sessel — і обставите кімнату неправильно.'
+
+  - de: Zünder
+    ipa: "ˈtsʏndɐ"
+    pos: noun
+    gender: m
+    plural: "die Zünder"
+    cards: recognition
+    en: the little wooden stick with a head that is struck to make a flame
+    ru: короткая деревянная палочка с головкой, которую чиркают, чтобы получить огонь
+    uk: коротка дерев’яна паличка з голівкою, яку черкають, щоб дістати вогонь
+    example_de: Hast du Zünder für die Kerzen?
+    example_en: Have you got any matches for the candles?
+    example_ru: У тебя есть спички для свечей?
+    example_uk: Ти маєш сірники до свічок?
+    note:
+      en: 'Austria, and usually in the plural, as in the example. Masculine, singular and plural spelled alike. B1 das Streichholz in the deck `haushalt-notfall-b1` is the German word and its note already names the Austrian one; B1 das Feuerzeug in the same deck is the refillable thing that has largely replaced both. Das Zündholz, the next entry, is the fuller form. Outside this sense der Zünder is the fuse of an explosive, so it is the plural and the kitchen that make the everyday reading.'
+      ru: 'Австрия, и обычно во множественном, как в примере. Мужской род, единственное и множественное пишутся одинаково. das Streichholz уровня B1 из колоды `haushalt-notfall-b1` — немецкое слово, и её примечание уже называет австрийское; das Feuerzeug уровня B1 из той же колоды — заправляемая вещь, которая почти вытеснила оба. Das Zündholz, следующая запись, — полная форма. Вне этого значения der Zünder — взрыватель, так что обиходное чтение задают множественное число и кухня.'
+      uk: 'Австрія, і зазвичай у множині, як у прикладі. Чоловічий рід, однина і множина пишуться однаково. das Streichholz рівня B1 з колоди `haushalt-notfall-b1` — німецьке слово, і її примітка вже називає австрійське; das Feuerzeug рівня B1 з тієї самої колоди — заправна річ, що майже витіснила обидва. Das Zündholz, наступний запис, — повна форма. Поза цим значенням der Zünder — підривник, тож побутове читання задають множина і кухня.'
+
+  - de: Zündholz
+    ipa: "ˈtsʏntˌhɔlts"
+    pos: noun
+    gender: n
+    plural: "die Zündhölzer"
+    cards: recognition
+    en: a short thin stick of wood with a head that catches fire when it is struck
+    ru: короткая тонкая деревянная палочка с головкой, которая загорается от чирканья
+    uk: коротка тонка дерев’яна паличка з голівкою, що займається від черкання
+    example_de: In der Schachtel sind nur noch drei Zündhölzer.
+    example_en: There are only three matches left in the box.
+    example_ru: В коробке осталось всего три спички.
+    example_uk: У коробці залишилося лише три сірники.
+    note:
+      en: 'Austria, Switzerland and southern Germany; neuter, umlaut and -er in the plural. B1 das Streichholz in the deck `haushalt-notfall-b1` is the northern and general word, and the two are built on different halves of the same act: streichen names the striking, zünden the lighting, and das Holz is in both. Austria clips this one to der Zünder above. The d is devoiced before the h, ˈtsʏnt-.'
+      ru: 'Австрия, Швейцария и юг Германии; средний род, во множественном умлаут и -er. das Streichholz уровня B1 из колоды `haushalt-notfall-b1` — северное и общее слово, а построены оба на разных половинах одного действия: streichen называет чирканье, zünden — зажигание, а das Holz есть и там и там. Австрия усекает это слово до der Zünder выше. D перед h оглушается: ˈtsʏnt-.'
+      uk: 'Австрія, Швейцарія і південь Німеччини; середній рід, у множині умлаут і -er. das Streichholz рівня B1 з колоди `haushalt-notfall-b1` — північне і загальне слово, а побудовані обидва на різних половинах однієї дії: streichen називає черкання, zünden — займання, а das Holz є і там і там. Австрія усікає це слово до der Zünder вище. D перед h оглушується: ˈtsʏnt-.'
+
+  # --- Beim Coiffeur ---
+  - de: Coiffeur
+    ipa: "koaˈføːɐ̯"
+    pos: noun
+    gender: m
+    plural: "die Coiffeure"
+    cards: recognition
+    en: the man whose trade is cutting and styling hair
+    ru: мужчина, чьё ремесло — стричь и укладывать волосы
+    uk: чоловік, чиє ремесло — стригти й укладати волосся
+    example_de: Er geht alle sechs Wochen zum Coiffeur.
+    example_en: He goes to the hairdresser every six weeks.
+    example_ru: Он ходит в парикмахерскую каждые шесть недель.
+    example_uk: Він ходить до перукарні кожні шість тижнів.
+    note:
+      en: 'Switzerland, straight from French; masculine, plural in -e. Germany and Austria say A2 der Friseur in the deck `berufe-a2`, which is a French loan too but a differently built one. The shop is der Coiffeursalon, and beim Coiffeur means at his shop, exactly like beim Fleischhauer above. The feminine is the next entry, and that is where the pair stops behaving like German.'
+      ru: 'Швейцария, прямо из французского; мужской род, множественное на -e. Германия и Австрия говорят der Friseur уровня A2 из колоды `berufe-a2` — тоже французское заимствование, но устроенное иначе. Салон — der Coiffeursalon, а beim Coiffeur значит «у него в салоне», ровно как beim Fleischhauer выше. Женская пара — следующая запись, и там пара перестаёт вести себя по-немецки.'
+      uk: 'Швейцарія, просто з французької; чоловічий рід, множина на -e. Німеччина й Австрія кажуть der Friseur рівня A2 з колоди `berufe-a2` — теж французьке запозичення, але влаштоване інакше. Салон — der Coiffeursalon, а beim Coiffeur означає «у нього в салоні», точно як beim Fleischhauer вище. Жіноча пара — наступний запис, і там пара перестає поводитися по-німецьки.'
+
+  - de: Coiffeuse
+    ipa: "koaˈføːzə"
+    pos: noun
+    gender: f
+    plural: "die Coiffeusen"
+    cards: recognition
+    en: the woman whose trade is cutting and styling hair
+    ru: женщина, чьё ремесло — стричь и укладывать волосы
+    uk: жінка, чиє ремесло — стригти й укладати волосся
+    example_de: Die Coiffeuse hat noch am Samstag einen Termin frei.
+    example_en: The hairdresser still has an appointment free on Saturday.
+    example_ru: У парикмахерши есть свободное время ещё в субботу.
+    example_uk: У перукарки є вільний час іще в суботу.
+    note:
+      en: 'The feminine comes from French, not from German: -euse instead of -in, so it is die Coiffeuse and never Coiffeurin. Plural in -n, and the s between the vowels is voiced. A2 die Friseurin in the deck `berufe-a2` is built the ordinary German way, so the two pairs side by side show that Movierung with -in is the rule and not a law.'
+      ru: 'Женская форма пришла из французского, а не из немецкого: -euse вместо -in, поэтому говорят die Coiffeuse и никогда Coiffeurin. Множественное на -n, а s между гласными звонкое. die Friseurin уровня A2 из колоды `berufe-a2` построена обычным немецким способом, так что две пары рядом показывают: мовирование на -in — правило, а не закон.'
+      uk: 'Жіноча форма прийшла з французької, а не з німецької: -euse замість -in, тому кажуть die Coiffeuse і ніколи Coiffeurin. Множина на -n, а s між голосними дзвінке. die Friseurin рівня A2 з колоди `berufe-a2` побудована звичайним німецьким способом, тож дві пари поряд показують: моція на -in — правило, а не закон.'
+
+  # --- Der Kalender ---
+  - de: Fasnacht
+    ipa: "ˈfasˌnaxt"
+    pos: noun
+    gender: f
+    plural: "die Fasnachten"
+    cards: recognition
+    en: the days of costumes, masks and processions before the fasting season
+    ru: дни костюмов, масок и шествий перед постом
+    uk: дні костюмів, масок і походів перед постом
+    example_de: An der Fasnacht ziehen die Masken durch die Stadt.
+    example_en: At carnival time the masks parade through the town.
+    example_ru: На карнавале маски идут по городу.
+    example_uk: На карнавалі маски йдуть містом.
+    note:
+      en: 'Switzerland''s name for the season, and the Alemannic south-west of Germany writes it much the same way. Feminine, plural in -en. B1 der Fasching in the deck `gastronomie-feste-b1` is Bavaria''s and Austria''s word, and A2 der Karneval in the deck `zeit-termine-a2` the Rhineland''s and the national broadcast''s. Basel''s Fasnacht opens at four in the morning with the Morgestraich, when the lights of the city go out.'
+      ru: 'Швейцарское название этой поры, и алеманнский юго-запад Германии пишет его почти так же. Женский род, множественное на -en. der Fasching уровня B1 из колоды `gastronomie-feste-b1` — слово Баварии и Австрии, а der Karneval уровня A2 из колоды `zeit-termine-a2` — слово Рейнской области и общенационального эфира. Базельский Fasnacht открывается в четыре утра ходом Morgestraich, когда в городе гасят свет.'
+      uk: 'Швейцарська назва цієї пори, і алеманський південний захід Німеччини пише її майже так само. Жіночий рід, множина на -en. der Fasching рівня B1 з колоди `gastronomie-feste-b1` — слово Баварії та Австрії, а der Karneval рівня A2 з колоди `zeit-termine-a2` — слово Рейнської області та загальнонаціонального ефіру. Базельський Fasnacht відкривається о четвертій ранку ходою Morgestraich, коли в місті гасять світло.'
+
+  - de: Jänner
+    ipa: "ˈjɛnɐ"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the first month of the year
+    ru: первый месяц года
+    uk: перший місяць року
+    example_de: Die Prüfung findet am 15. Jänner statt.
+    example_en: The examination takes place on 15 January.
+    example_ru: Экзамен состоится 15 января.
+    example_uk: Іспит відбудеться 15 січня.
+    note:
+      en: 'Austria''s name for the month, and it is not a colloquial one: a newspaper, a court decision and a school timetable all print Jänner where Germany and Switzerland print A1 der Januar in the deck `alltag-zeit`. Masculine, no plural, and the dates are formed the same way in both: im Jänner, am 3. Jänner. It is the form that stayed in Austria when the rest of the language went over to Januar.'
+      ru: 'Австрийское название месяца, и оно не разговорное: газета, судебное решение и школьное расписание печатают Jänner там, где Германия и Швейцария печатают der Januar уровня A1 из колоды `alltag-zeit`. Мужской род, множественного нет, а даты образуются одинаково в обоих вариантах: im Jänner, am 3. Jänner. Это форма, оставшаяся в Австрии, когда остальной язык перешёл на Januar.'
+      uk: 'Австрійська назва місяця, і вона не розмовна: газета, судове рішення і шкільний розклад друкують Jänner там, де Німеччина і Швейцарія друкують der Januar рівня A1 з колоди `alltag-zeit`. Чоловічий рід, множини немає, а дати утворюються однаково в обох варіантах: im Jänner, am 3. Jänner. Це форма, що лишилася в Австрії, коли решта мови перейшла на Januar.'
+
+  - de: Feber
+    ipa: "ˈfeːbɐ"
+    pos: noun
+    gender: m
+    plural: "—"
+    cards: recognition
+    en: the second month of the year
+    ru: второй месяц года
+    uk: другий місяць року
+    example_de: Das Formular ist bis Ende Feber gültig.
+    example_en: The form is valid until the end of February.
+    example_ru: Бланк действителен до конца февраля.
+    example_uk: Бланк чинний до кінця лютого.
+    note:
+      en: 'Austria again, but not in the way der Jänner above is: Feber is rare and official-sounding, kept alive on forms and in administrative language, while ordinary Austrian speech says Februar like everybody else. Masculine, no plural. Germany and Switzerland use A1 der Februar in the deck `zahlen-daten-geld`. So the two Austrian month names are not a matching pair, and treating them as one is the mistake to avoid.'
+      ru: 'Снова Австрия, но не так, как der Jänner выше: Feber редок и отдаёт канцелярией, держится на бланках и в административном языке, тогда как обычная австрийская речь говорит Februar, как и все. Мужской род, множественного нет. Германия и Швейцария берут der Februar уровня A1 из колоды `zahlen-daten-geld`. Так что два австрийских названия месяцев — не симметричная пара, и считать их такой как раз и не надо.'
+      uk: 'Знову Австрія, але не так, як der Jänner вище: Feber рідкісний і віддає канцелярією, тримається на бланках і в адміністративній мові, тоді як звичайне австрійське мовлення каже Februar, як і всі. Чоловічий рід, множини немає. Німеччина і Швейцарія беруть der Februar рівня A1 з колоди `zahlen-daten-geld`. Тож дві австрійські назви місяців — не симетрична пара, і вважати їх такою якраз і не варто.'

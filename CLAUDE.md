@@ -3,8 +3,10 @@
 An AI-assisted, human-directed and edited German learning system by Vitaly Vorobyev:
 wiki-like textbook + interactive exercises +
 FSRS flashcards. A1 and A2 are complete; all fourteen B1 units of the frozen contract
-(`docs/curriculum/a2-b1.md`) are now authored, and its end-of-level checkpoint and placement
-have landed; what B1 still owes is its Wortliste tail (lexis waves 2–4). The learner (Vitaly)
+(`docs/curriculum/a2-b1.md`) are authored, its end-of-level checkpoint and placement have
+landed, and the Wortliste tail is closed (lexis waves 2–4, 2026-08-06): B1 coverage stands at
+3343/3416 (98%), and the 73 open rows are structurally cardless — bound morphemes,
+abbreviations, correlative frames (P25-6 in the backlog). The learner (Vitaly)
 has B2 as a longer-term goal. Explanations
 are bilingual **EN + RU**, with an optional **UK** half — independently authored from the
 German, shipping in file-scoped waves — and, from B1
