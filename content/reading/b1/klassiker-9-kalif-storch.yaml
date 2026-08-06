@@ -1,0 +1,106 @@
+topic: erfahrungen-erzaehlen
+kind: extensive
+title_de: "Kalif Storch"
+
+# Klassiker strand, text 9 of 10 (ADR 0006). Adapted from
+# sources/klassiker/09-kalif-storch.md, which runs 456 words — over
+# the extensive band, so it is trimmed here rather than the band being widened:
+# the merchant scene, the meadow, the ruin and the wizards' hall are each compressed
+# by a sentence or two. The conditions the corpus builds the text on (wer …, wenn …,
+# nachdem …) and the Präteritum/Plusquamperfekt alternation are untouched.
+# A story worth retelling out loud, which is what erfahrungen-erzaehlen asks for.
+
+attribution: "Nach einem gemeinfreien Werk von Wilhelm Hauff (Die Geschichte von Kalif Storch). Didaktische Bearbeitung für Niveau B1. Historischer Originaltext: https://de.wikisource.org/wiki/Die_Geschichte_von_Kalif_Storch"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Kalif Chasid regierte Bagdad gemeinsam mit seinem
+    [[Großwesir::grand vizier::великий визирь::великий візир]] Mansor. Eines Tages bot
+    ein Händler im Palast eine kleine [[Dose::tin::коробочка::коробочка]] mit schwarzem
+    [[Pulver::powder::порошок::порошок]] und einem Zettel in einer unbekannten Sprache
+    an.
+  - >-
+    Der Kalif kaufte die Dose. Ein [[Gelehrter::scholar::учёный::учений]] übersetzte den
+    Zettel: Wer etwas von dem Pulver einatmete und dreimal das Wort „Mutabor“ sprach,
+    konnte sich in jedes Tier verwandeln. Um wieder Mensch zu werden, musste man sich
+    dreimal nach Osten [[verbeugen::bow::поклониться::вклонитися]] und das Wort
+    wiederholen. Wer während der Verwandlung lachte, vergaß das Zauberwort jedoch.
+  - >-
+    Am nächsten Morgen nahmen Chasid und Mansor auf einer Wiese etwas Pulver, sagten
+    „Mutabor“ und verwandelten sich in [[Störche::storks::аисты::лелеки]]. Zuerst waren
+    sie begeistert: Nun verstanden sie sogar die Sprache der Vögel.
+  - >-
+    In der Nähe tanzten zwei Störche. Einer erzählte eine so komische Geschichte, dass
+    Chasid und Mansor laut lachen mussten. Sofort war das Zauberwort aus ihrem
+    [[Gedächtnis::memory::память::пам’ять]] verschwunden.
+  - >-
+    Sie versuchten viele ähnliche Wörter, doch keines funktionierte. So mussten sie
+    Störche bleiben. Sie flogen zurück nach Bagdad und sahen, dass Mizra, der Sohn des
+    bösen Zauberers Kaschnur, den Palast übernommen hatte.
+  - >-
+    Nun verstanden sie, dass der Händler und das Pulver Teil eines Plans gewesen waren.
+  - >-
+    Die beiden Störche verließen die Stadt und suchten Hilfe. In einer alten Ruine
+    hörten sie eine [[Eule::owl::сова::сова]] weinen: Prinzessin Lusa, die Kaschnur
+    ebenfalls verzaubert hatte. Von ihr erfuhren sie, dass sich die Zauberer einmal im
+    Monat in einer verlassenen Halle trafen.
+  - >-
+    Chasid, Mansor und Lusa flogen zur Halle und versteckten sich. In der Nacht kamen
+    Kaschnur und seine Freunde. Sie erzählten stolz von ihren Taten, und Kaschnur
+    berichtete, wie leicht er den Kalifen getäuscht hatte. Dabei sprach er das
+    vergessene Wort aus: „Mutabor“.
+  - >-
+    Chasid und Mansor merkten es sich genau. Nachdem die Zauberer gegangen waren,
+    verbeugten sie sich dreimal nach Osten und sagten das Wort. Sofort waren sie wieder
+    Menschen.
+  - >-
+    Die Prinzessin konnte nur erlöst werden, wenn jemand sie heiratete, ohne vorher ihre
+    menschliche Gestalt gesehen zu haben. Chasid versprach es, und daraufhin wurde aus
+    der Eule wieder eine Prinzessin.
+  - >-
+    Gemeinsam kehrten sie nach Bagdad zurück. Die Bewohner erkannten ihren echten
+    Kalifen und [[vertrieben::drove out::прогнали::прогнали]] Mizra. Kaschnurs Plan war
+    gescheitert.
+  - >-
+    Chasid hatte gelernt, dass Neugier ohne Vorsicht gefährlich sein kann. Noch
+    wichtiger war jedoch eine andere Erkenntnis: Sprache kann Macht geben, aber auch
+    Macht nehmen. Ein einziges vergessenes Wort hatte ihn sein Reich gekostet, und ein
+    aufmerksam gehörtes Wort hatte ihm die Freiheit zurückgegeben.
+
+questions:
+  - id: q-storch-bleiben
+    outcomes: [muendlich-nacherzaehlen]
+    type: mc
+    prompt: "Warum können Chasid und Mansor nicht wieder Menschen werden?"
+    options:
+      - "Weil sie gelacht haben und dadurch das Zauberwort vergessen haben."
+      - "Weil sie sich nach Westen statt nach Osten verbeugt haben."
+      - "Weil der Händler ihnen zu wenig Pulver verkauft hat."
+    correct: 0
+    translation:
+      en: "Why can Chasid and Mansor not become human again?"
+      ru: "Почему Хасид и Мансор не могут снова стать людьми?"
+      uk: "Чому Хасид і Мансор не можуть знову стати людьми?"
+    explain:
+      en: "The note lists one condition alongside the ritual: whoever laughs while transformed loses the word. A stork tells a funny story, the two of them laugh, and \"Mutabor\" is gone from their memory — the bowing alone is useless without it."
+      ru: "В записке рядом с обрядом стоит одно условие: кто засмеётся в облике животного, тот теряет слово. Аист рассказывает смешную историю, оба хохочут — и «Mutabor» исчезает из памяти; одни поклоны без него бесполезны."
+      uk: "У записці поряд з обрядом стоїть одна умова: хто засміється в подобі тварини, той втрачає слово. Лелека розповідає смішну історію, обидва регочуть — і «Mutabor» зникає з пам’яті; самі поклони без нього марні."
+
+  - id: q-wort-zurueck
+    outcomes: [muendlich-nacherzaehlen]
+    type: mc
+    prompt: "Wie bekommen die beiden das Zauberwort zurück?"
+    options:
+      - "Prinzessin Lusa erinnert sich an das Wort und sagt es ihnen."
+      - "Sie belauschen Kaschnur in der Halle, und er spricht das Wort selbst aus."
+      - "Sie finden den Zettel des Händlers in der alten Ruine wieder."
+    correct: 1
+    translation:
+      en: "How do the two get the magic word back?"
+      ru: "Как эти двое возвращают себе волшебное слово?"
+      uk: "Як ці двоє повертають собі чарівне слово?"
+    explain:
+      en: "Lusa knows only where the wizards meet, not the word. Hidden in the hall, the storks hear Kaschnur boast about how easily he tricked the caliph — and he says \"Mutabor\" out loud himself. Listening is what saves them."
+      ru: "Луза знает только место встречи колдунов, а не слово. Спрятавшись в зале, аисты слышат, как Кашнур хвастается, до чего легко он обманул халифа, — и сам произносит «Mutabor». Их спасает именно умение слушать."
+      uk: "Луза знає лише місце зустрічі чаклунів, а не слово. Сховавшись у залі, лелеки чують, як Кашнур вихваляється, як легко він обдурив каліфа, — і сам вимовляє «Mutabor». Рятує їх саме вміння слухати."

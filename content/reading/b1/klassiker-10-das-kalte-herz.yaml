@@ -1,0 +1,108 @@
+topic: gesundheit-wohlbefinden
+kind: extensive
+title_de: "Das kalte Herz"
+
+# Klassiker strand, text 10 of 10 (ADR 0006). Adapted from
+# sources/klassiker/10-das-kalte-herz.md, which runs 519 words — the
+# longest in the corpus and well over the extensive band, so it is trimmed here
+# rather than the band being widened: the two forest figures, the three wishes and
+# the failure of the glassworks are compressed into background, and the two visits to
+# the Holländer-Michel are told in one paragraph each. Both halves of the spine stay
+# whole — the sold heart and the trick that wins it back — as does the closing moral.
+# The Konjunktiv II the corpus builds the text on (wäre, würden, könne) is untouched:
+# it is taught at this topic.
+
+attribution: "Nach einem gemeinfreien Werk von Wilhelm Hauff (Das kalte Herz). Didaktische Bearbeitung für Niveau B1. Historischer Originaltext, erste Abteilung: https://de.wikisource.org/wiki/Das_kalte_Herz/Erste_Abteilung · zweite Abteilung: https://de.wikisource.org/wiki/Das_kalte_Herz/Zweite_Abteilung"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Peter Munk war ein junger [[Köhler::charcoal burner::угольщик::вугляр]] im
+    Schwarzwald. Er arbeitete hart, verdiente aber wenig Geld. Wenn reiche Glasmacher
+    durch das Dorf gingen, betrachtete er ihre vollen
+    [[Geldbeutel::purses::кошельки::гаманці]] und dachte: „Wenn ich reich wäre, würden
+    mich alle respektieren.“
+  - >-
+    Im Wald kannte man zwei geheimnisvolle Gestalten: das Glasmännlein, das man mit
+    einem alten Vers rufen konnte, und den Holländer-Michel, der schnellen Reichtum
+    versprach und einen hohen Preis verlangte.
+  - >-
+    Peter rief nach dem Glasmännlein, und es [[gewährte::granted::исполнил::виконав]]
+    ihm drei Wünsche: Er wollte besser tanzen als alle anderen, immer Geld in der Tasche
+    haben und eine große [[Glashütte::glassworks::стекольный завод::скляна гута]]
+    besitzen. „Du wünschst dir Dinge, aber keine Klugheit, sie richtig zu benutzen“,
+    warnte es.
+  - >-
+    Zunächst hatte Peter Erfolg. Doch die Glashütte interessierte ihn kaum, und er hörte
+    nicht auf erfahrene Arbeiter. Bald hatte er [[Schulden::debts::долги::борги]].
+  - >-
+    In seiner [[Verzweiflung::despair::отчаяние::відчай]] ging Peter zum
+    Holländer-Michel. Dieser zeigte ihm eine Kammer voller menschlicher Herzen. „Dein
+    warmes Herz macht dich traurig“, sagte Michel. „Gib es mir. Dafür bekommst du ein
+    Herz aus Stein und genug Geld.“
+  - >-
+    Peter stimmte zu. Danach war er reich: Er kaufte Häuser, handelte mit Holz und
+    heiratete Lisbeth, eine freundliche junge Frau.
+  - >-
+    Aber Peter konnte keine echte Freude mehr empfinden. Er hatte kein
+    [[Mitleid::compassion::сострадание::співчуття]] und keine Dankbarkeit. Wenn arme
+    Menschen um Hilfe baten, schickte er sie fort. Obwohl Lisbeth ihn freundlich
+    behandelte, sprach er kalt mit ihr.
+  - >-
+    Eines Tages gab Lisbeth einem armen alten Mann etwas zu essen. Peter wurde wütend
+    und schlug sie so hart, dass sie zu Boden fiel und sich nicht mehr bewegte. Da
+    verstand er, was aus ihm geworden war.
+  - >-
+    Peter bat das Glasmännlein um Hilfe. Dieses erklärte, dass es sein Herz nicht
+    einfach zurückholen könne; Peter müsse Michel selbst
+    [[überlisten::outwit::перехитрить::перехитрувати]]. Also behauptete Peter, sein Herz
+    sei gar nicht aus Stein. Michel wollte das Gegenteil beweisen und setzte ihm für
+    einen Moment sein echtes Herz wieder ein.
+  - >-
+    Sofort fühlte Peter Angst, Liebe, Reue und Hoffnung. Er nahm sein Herz an und floh.
+    Das Glasmännlein schützte ihn vor Michels Zorn.
+  - >-
+    Peter [[bereute::regretted::раскаялся::розкаявся]] seine Taten. Lisbeth erhielt ihr
+    Leben zurück, doch Peter verlor einen großen Teil seines Reichtums und begann noch
+    einmal von vorn. Diesmal arbeitete er aufmerksam und lebte bescheidener.
+  - >-
+    Er verstand nun: Geld kann Sicherheit und Möglichkeiten geben. Es ersetzt aber weder
+    Mitgefühl noch Verantwortung. Ein warmes Herz macht das Leben manchmal schmerzhaft,
+    doch erst dadurch können Menschen lieben, bereuen und sich verändern.
+
+questions:
+  - id: q-tausch
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    prompt: "Was gibt Peter dem Holländer-Michel, und was bekommt er dafür?"
+    options:
+      - "Sein warmes Herz — dafür bekommt er ein Herz aus Stein und viel Geld."
+      - "Seine Glashütte — dafür bekommt er ein großes Haus im Dorf."
+      - "Seine drei Wünsche — dafür bekommt er ein langes Leben."
+    correct: 0
+    translation:
+      en: "What does Peter give the Dutch Michel, and what does he get for it?"
+      ru: "Что Петер отдаёт Голландцу Михелю и что получает взамен?"
+      uk: "Що Петер віддає Голландцю Міхелю і що отримує натомість?"
+    explain:
+      en: "Michel keeps a chamber full of human hearts, bought from rich men before Peter. Peter hands over his warm heart and takes a stone one plus money — and from that moment he can feel neither pity nor joy, which is the price the story is about."
+      ru: "У Михеля есть чулан, полный человеческих сердец, купленных у богачей до Петера. Петер отдаёт своё тёплое сердце и берёт каменное вместе с деньгами — и с этой минуты не способен ни на жалость, ни на радость; в этой цене вся суть истории."
+      uk: "У Міхеля є комора, повна людських сердець, куплених у багатіїв до Петера. Петер віддає своє тепле серце й бере кам’яне разом із грішми — і від тієї миті не здатен ані на жаль, ані на радість; у цій ціні вся суть історії."
+
+  - id: q-am-ende
+    outcomes: [gewohnheiten-beschreiben]
+    type: mc
+    prompt: "Wie lebt Peter am Ende der Geschichte?"
+    options:
+      - "Er bleibt reich, aber allein in seinem großen Haus."
+      - "Er verliert einen großen Teil seines Reichtums, arbeitet aufmerksam und lebt bescheidener."
+      - "Er zieht in die Stadt und wird dort ein bekannter Glasmacher."
+    correct: 1
+    translation:
+      en: "How does Peter live at the end of the story?"
+      ru: "Как Петер живёт в конце истории?"
+      uk: "Як Петер живе наприкінці історії?"
+    explain:
+      en: "He starts over: most of the money is gone, Lisbeth is alive again, and he works attentively and lives modestly. The closing lines say why that counts as an ending — money buys neither compassion nor responsibility."
+      ru: "Он начинает заново: большей части денег нет, Лисбет снова жива, а он работает внимательно и живёт скромнее. Финальные строки объясняют, почему это и есть развязка: деньги не заменяют ни сострадания, ни ответственности."
+      uk: "Він починає спочатку: більшої частини грошей немає, Лісбет знову жива, а він працює уважно й живе скромніше. Останні рядки пояснюють, чому це й є розв’язка: гроші не замінюють ані співчуття, ані відповідальності."

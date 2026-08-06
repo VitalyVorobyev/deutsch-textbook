@@ -1,0 +1,96 @@
+topic: man-und-besitz
+kind: extensive
+title_de: "Die Heinzelmännchen zu Köln"
+
+# Klassiker strand, text 7 of 10 (ADR 0006). The prose is the didactic retelling from
+# sources/klassiker/07-die-heinzelmaennchen-zu-koeln.md, verbatim
+# apart from the inline gloss markers, so the adaptation stays diffable against its
+# source. A whole town whose work gets done without anyone saying who does it —
+# which is exactly what man-und-besitz teaches the learner to read.
+
+attribution: "Nach einem gemeinfreien Werk von August Kopisch (Die Heinzelmännchen). Didaktische Bearbeitung für Niveau A2. Historischer Originaltext: https://de.wikisource.org/wiki/Die_Heinzelm%C3%A4nnchen"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Vor langer Zeit lebten in Köln kleine
+    [[Heinzelmännchen::brownies (helpful house spirits)::домовые::домовики]]. Am Tag sah
+    man sie nie. Sie kamen erst in der Nacht, wenn die Menschen schliefen.
+  - >-
+    Die Bewohner der Stadt hatten ein bequemes Leben. Ein Bäcker bereitete abends Mehl,
+    Wasser und Salz vor. Am Morgen waren die Brote fertig. Ein
+    [[Schneider::tailor::портной::кравець]] legte Stoff, [[Faden::thread::нитка::нитка]]
+    und Schere auf den Tisch. Wenn er aufwachte, lagen fertige Jacken und Hosen dort.
+    Auch beim Metzger, beim Zimmermann und beim Weinhändler
+    [[erledigten::took care of::выполняли::виконували]] die Heinzelmännchen die Arbeit.
+  - >-
+    Niemand wusste genau, wie sie aussahen. Die meisten Menschen waren einfach dankbar.
+    Sie ließen abends Werkzeuge und Material bereitliegen und gingen schlafen.
+  - >-
+    Nur die Frau eines Schneiders war sehr neugierig. Sie wollte die kleinen Helfer
+    unbedingt sehen. Mehrmals blieb sie nachts wach, aber kurz vor ihrer Ankunft schlief
+    sie jedes Mal ein.
+  - >-
+    Dann hatte sie eine Idee. Sie streute trockene [[Erbsen::peas::горох::горох]] auf
+    die Treppe und stellte eine Lampe bereit. „Wenn die Heinzelmännchen kommen, rutschen
+    sie aus“, dachte sie. „Dann wache ich auf und kann sie sehen.“
+  - >-
+    In der Nacht kamen die kleinen Männer wie immer. Doch auf der Treppe verloren sie
+    den [[Halt::footing::опора::опора]]. Einer fiel nach dem anderen hin. Es wurde laut:
+    Werkzeuge fielen zu Boden, Schuhe [[klapperten::clattered::стучали::стукотіли]], und
+    die Heinzelmännchen riefen durcheinander.
+  - >-
+    Die Schneidersfrau sprang aus dem Bett und öffnete schnell die Tür. Für einen kurzen
+    Moment sah sie die erschrockenen Gestalten. Dann liefen sie davon.
+  - >-
+    Am nächsten Morgen war keine Arbeit erledigt. Auch in den folgenden Nächten kamen
+    die Heinzelmännchen nicht zurück. Seitdem mussten die Menschen in Köln wieder selbst
+    backen, nähen, bauen und putzen.
+  - >-
+    Zuerst beschwerten sich viele. Später organisierten sie ihre Arbeit neu. Sie
+    lernten, Aufgaben zu teilen, [[Lehrlinge::apprentices::ученики::учні]] auszubilden
+    und bessere Werkzeuge zu benutzen. Das Leben war anstrengender, aber die Menschen
+    verstanden nun besser, wie viel Arbeit in einem Brot, einem Mantel oder einem Haus
+    steckt.
+  - >-
+    Die Schneidersfrau hatte endlich gesehen, was sie sehen wollte. Trotzdem war sie
+    nicht glücklich. Ihre Neugier hatte das Vertrauen zerstört. Die Geschichte erinnert
+    deshalb daran, dass nicht jedes Geheimnis gelöst werden muss – besonders dann nicht,
+    wenn andere dadurch verletzt oder vertrieben werden.
+
+questions:
+  - id: q-nachtarbeit
+    outcomes: [passiv-verstehen]
+    type: mc
+    prompt: "Wie wird die Arbeit in Köln erledigt, bevor die Schneidersfrau ihren Plan macht?"
+    options:
+      - "Sie wird nachts von den Heinzelmännchen gemacht, während die Menschen schlafen."
+      - "Sie wird von den Handwerkern und den Heinzelmännchen gemeinsam gemacht."
+      - "Sie wird von Lehrlingen gemacht, die die Heinzelmännchen dafür bezahlen."
+    correct: 0
+    translation:
+      en: "How does the work in Cologne get done before the tailor's wife makes her plan?"
+      ru: "Как в Кёльне выполняется работа до того, как жена портного придумывает свой план?"
+      uk: "Як у Кельні виконується робота, доки дружина кравця не вигадує свій план?"
+    explain:
+      en: "The craftsmen lay out flour, cloth or thread in the evening and go to bed; in the morning the bread is baked and the clothes are finished. Nobody in the town ever sees it happen, and nobody is paid for it."
+      ru: "Вечером ремесленники раскладывают муку, ткань или нитки и ложатся спать, а утром хлеб испечён и одежда готова. Никто в городе не видит, как это делается, и никому за это не платят."
+      uk: "Увечері ремісники розкладають борошно, тканину чи нитки й лягають спати, а вранці хліб спечений і одяг готовий. Ніхто в місті не бачить, як це робиться, і нікому за це не платять."
+
+  - id: q-danach
+    outcomes: [passiv-verstehen]
+    type: mc
+    prompt: "Wie verändert sich das Leben in Köln, nachdem die Heinzelmännchen weg sind?"
+    options:
+      - "Die Stadt wird arm, weil niemand mehr backen und nähen kann."
+      - "Die Menschen machen die Arbeit wieder selbst und organisieren sie neu."
+      - "Die Schneidersfrau erledigt nachts allein die Arbeit für die ganze Stadt."
+    correct: 1
+    translation:
+      en: "How does life in Cologne change after the brownies are gone?"
+      ru: "Как меняется жизнь в Кёльне после исчезновения домовых?"
+      uk: "Як змінюється життя в Кельні після зникнення домовиків?"
+    explain:
+      en: "At first people complain. Then they reorganise: they share out tasks, train apprentices and get better tools. Life is harder, but they finally understand how much work goes into a loaf, a coat or a house."
+      ru: "Сначала люди жалуются. Потом они перестраивают работу: делят задачи, обучают учеников, заводят инструменты получше. Жить стало тяжелее, зато они наконец понимают, сколько труда стоит за хлебом, пальто или домом."
+      uk: "Спершу люди нарікають. Потім вони перебудовують роботу: ділять завдання, навчають учнів, заводять кращі інструменти. Жити стало важче, зате вони нарешті розуміють, скільки праці стоїть за хлібом, пальтом чи домом."
