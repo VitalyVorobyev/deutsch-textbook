@@ -34,6 +34,7 @@ function isActive(item: NavItem): boolean {
   if (item.href === home) return current === home || current === home.replace(/\/$/, '');
   return [item.href, ...(item.match ?? [])].some((prefix) => current.startsWith(prefix));
 }
+const activeItem = nav.find(isActive);
 ---
 
 <!doctype html>
@@ -100,13 +101,17 @@ function isActive(item: NavItem): boolean {
         <a href={home} class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
           Deutsch-<span class="text-amber-600 dark:text-amber-400">Atlas</span>
         </a>
-        <nav class="order-3 -mx-4 flex w-full gap-x-4 overflow-x-auto whitespace-nowrap px-4 text-sm sm:order-none sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible sm:whitespace-normal sm:px-0">
+        {/* ≥640px: the flat seven-link row, unchanged. */}
+        <nav
+          aria-label="Hauptnavigation"
+          class="order-3 hidden gap-x-4 text-sm sm:order-none sm:flex sm:flex-wrap"
+        >
           {
             nav.map((item) => (
               <a
                 href={item.href}
                 class:list={[
-                  'py-2 font-medium sm:py-1',
+                  'py-1 font-medium',
                   isActive(item)
                     ? 'text-amber-700 dark:text-amber-400'
                     : 'text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
@@ -117,6 +122,38 @@ function isActive(item: NavItem): boolean {
             ))
           }
         </nav>
+        {/* <640px: disclosure instead of the old overflow-x scroller (P24-7) —
+            all seven links, equal weight, in a panel that overlays the page
+            rather than growing the sticky header. Works without JS; the
+            dismiss script at the end of <body> only adds outside-tap/Escape. */}
+        <details id="nav-menu" class="group relative order-3 w-full sm:hidden">
+          <summary
+            class="flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-2 rounded-md border border-stone-300 px-3 text-sm font-medium text-stone-700 [&::-webkit-details-marker]:hidden dark:border-stone-600 dark:text-stone-200"
+          >
+            <span>{t(activeItem?.label ?? 'nav.menu', 'de')}</span>
+            <span aria-hidden="true" class="text-xs text-stone-400 transition-transform group-open:rotate-90">▸</span>
+          </summary>
+          <nav
+            aria-label="Hauptnavigation"
+            class="absolute inset-x-0 top-full z-20 mt-1 grid grid-cols-2 gap-1 rounded-md border border-stone-200 bg-stone-50 p-2 shadow-lg dark:border-stone-700 dark:bg-stone-900"
+          >
+            {
+              nav.map((item) => (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'flex min-h-11 items-center rounded px-3 text-sm font-medium',
+                    isActive(item)
+                      ? 'bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400'
+                      : 'text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800',
+                  ]}
+                >
+                  {t(item.label, 'de')}
+                </a>
+              ))
+            }
+          </nav>
+        </details>
         <div class="ml-auto flex items-center gap-2">
           <ProfileSwitcher client:only="react" />
           <button
@@ -147,6 +184,23 @@ function isActive(item: NavItem): boolean {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         setTheme(next);
       });
+    </script>
+    <script is:inline>
+      // Nav-disclosure dismiss: outside-tap (mousedown, matching
+      // ProfileSwitcher) and Escape. <details> handles open/close natively.
+      (function () {
+        const menu = document.getElementById('nav-menu');
+        if (!menu) return;
+        document.addEventListener('mousedown', (e) => {
+          if (menu.open && e.target instanceof Node && !menu.contains(e.target)) menu.open = false;
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && menu.open) {
+            menu.open = false;
+            menu.querySelector('summary')?.focus();
+          }
+        });
+      })();
     </script>
   </body>
 </html>

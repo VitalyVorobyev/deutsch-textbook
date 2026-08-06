@@ -34,6 +34,9 @@ export const STRINGS = {
   'nav.ueben': { de: 'Üben', en: 'Practice', ru: 'Практика', uk: 'Практика' },
   'nav.fortschritt': { de: 'Fortschritt', en: 'Progress', ru: 'Прогресс', uk: 'Прогрес' },
   'nav.ueber': { de: 'Über', en: 'About', ru: 'О курсе', uk: 'Про курс' },
+  // Fallback label for the <640px nav disclosure on pages outside the seven
+  // tabs (/install, /konto); the trigger otherwise shows the active tab.
+  'nav.menu': { de: 'Navigation', en: 'Navigation', ru: 'Навигация', uk: 'Навігація' },
 
   // Shared action buttons (exercise runners, session flow).
   'action.check': { de: 'Prüfen', en: 'Check', ru: 'Проверить', uk: 'Перевірити' },
