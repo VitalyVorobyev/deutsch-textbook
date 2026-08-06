@@ -1,0 +1,78 @@
+---
+/**
+ * The topic page's "Siehe auch" footer — every edge derived, none hand-written
+ * (ADR 0007). The page computes the four lists from data the curriculum already
+ * owns (focusIntroducedBy, the atlas deepens graph, the topic's own item tags,
+ * the reference pages' declared keys); this component only renders them.
+ * An empty graph renders nothing.
+ */
+import { topicPath, withBase } from '../../lib/url';
+
+export interface TopicChip {
+  id: string;
+  title_de: string;
+  level: string;
+}
+export interface ReferenzChip {
+  href: string;
+  title: string;
+}
+interface Props {
+  referenz: ReferenzChip[];
+  deepens: TopicChip[];
+  deepenedBy: TopicChip[];
+  buildsOn: TopicChip[];
+}
+const { referenz, deepens, deepenedBy, buildsOn } = Astro.props;
+const empty =
+  referenz.length + deepens.length + deepenedBy.length + buildsOn.length === 0;
+
+const rows: {
+  key: string;
+  label: { en: string; ru: string; uk: string };
+  topics?: TopicChip[];
+  pages?: ReferenzChip[];
+}[] = [
+  { key: 'referenz', label: { en: 'In the Referenz:', ru: 'В справочнике:', uk: 'У довіднику:' }, pages: referenz },
+  { key: 'buildsOn', label: { en: 'Builds on:', ru: 'Опирается на:', uk: 'Спирається на:' }, topics: buildsOn },
+  { key: 'deepens', label: { en: 'Deepens:', ru: 'Углубляет:', uk: 'Поглиблює:' }, topics: deepens },
+  { key: 'deepenedBy', label: { en: 'Deepened by:', ru: 'Углубляется в:', uk: 'Поглиблюється в:' }, topics: deepenedBy },
+];
+---
+
+{!empty && (
+  <section class="mt-12 border-t border-stone-200 pt-6 dark:border-stone-700">
+    <h2 class="text-xl font-bold" lang="de">Siehe auch</h2>
+    <div class="mt-3 flex flex-col gap-2">
+      {rows.map((row) => {
+        const items = row.pages ?? row.topics ?? [];
+        return items.length > 0 ? (
+          <p class="flex flex-wrap items-center gap-1.5 text-sm">
+            <span class="mr-1 text-stone-500">
+              <span class="lang-en">{row.label.en}</span>
+              <span class="lang-ru">{row.label.ru}</span>
+              <span class="lang-uk">{row.label.uk}</span>
+            </span>
+            {row.pages?.map((page) => (
+              <a
+                href={withBase(page.href)}
+                class="rounded border border-stone-200 px-2 py-0.5 text-xs text-stone-600 hover:border-amber-500 hover:text-amber-700 dark:border-stone-600 dark:text-stone-300 dark:hover:text-amber-400"
+              >
+                <span lang="de">{page.title}</span>
+              </a>
+            ))}
+            {row.topics?.map((topic) => (
+              <a
+                href={withBase(topicPath(topic))}
+                class="rounded border border-stone-200 px-2 py-0.5 text-xs text-stone-600 hover:border-amber-500 hover:text-amber-700 dark:border-stone-600 dark:text-stone-300 dark:hover:text-amber-400"
+              >
+                <span lang="de">{topic.title_de}</span>
+                <span class="ml-1 opacity-60">{topic.level}</span>
+              </a>
+            ))}
+          </p>
+        ) : null;
+      })}
+    </div>
+  </section>
+)}
