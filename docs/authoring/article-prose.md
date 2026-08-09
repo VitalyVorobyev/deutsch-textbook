@@ -155,7 +155,19 @@ moves do it" — garden-path or collapse in Russian and Ukrainian. First live ca
   is the defect under review. Give the EN half as context labelled as suspect, or not at all.
 - The editor's revision keeps the repo constraints: ≤ 120-word paragraphs, divergence-by-design
   (an RU repair does not obligate the EN half), German terms glossed on first use, the language
-  hygiene rules (`bun run validate` enforces the character-set half of them).
+  hygiene rules (`bun run validate` enforces the character-set half of them). One hygiene rule the
+  validator cannot reach: the Russian conjunction **и** inside a `<Uk>` half. Ukrainian has и as a
+  letter, so the character-set check passes; grep for it by hand. (Clean across all 46 topics on
+  2026-08-06.)
+- **When the German and the non-German halves disagree about a fact of German, the German is
+  right — and the EN half is often where the error entered.** `b1/kultur-freizeit` said the ending
+  is the one *the noun would take*, against a German that said *die das Nomen ohnehin verlangt*
+  (requires): EN, RU and UK all carried it, the `<De>` half did not, and the same file contradicted
+  itself 200 lines later. So a review scoped to RU/UK may legitimately have to fix `<En>`, `<De>`
+  or an exercise `explain` — a false claim is one defect wherever it was copied, and grepping it to
+  its other instances is in scope (`CLAUDE.md`, "Fix the finding, not the neighbourhood"). Authorise
+  that exception explicitly, and touch nothing else in those halves. An `explain`-only edit does not
+  bump `revision`.
 - Stop after two edit cycles and report what still fails (skill rule; same doctrine as "review
   rounds end when a round finds nothing material").
 - **The 0–4 scores never leave the review.** Status (PASS/REVISE/REJECT) plus findings are the
