@@ -72,6 +72,81 @@ export async function migrateStoredCardIds(
 }
 
 // ---------------------------------------------------------------------------
+// Retry-on-visible: a stalled critical-path read/write is not the end of the story
+// ---------------------------------------------------------------------------
+
+/**
+ * How long a critical-path store call is given before the wrapper also arms a
+ * retry — long enough that an ordinary IndexedDB round trip never trips it,
+ * short enough that a genuinely stalled one does not read to the caller as a
+ * silent hang. WebKit is documented to stall IndexedDB transactions opened in
+ * a backgrounded tab; that stall does not always clear on its own when the
+ * tab is foregrounded again, which is what made `grade()` (FlashcardSession)
+ * a dead button and every topic read "Neu" (CurriculumPath) — both callers
+ * were awaiting a store promise that had simply stopped notifying anyone.
+ */
+export const VISIBILITY_RETRY_TIMEOUT_MS = 4000;
+
+/**
+ * Wraps a store operation so a stalled underlying IndexedDB promise is not
+ * the end of the story: if `op()` has not settled within `timeoutMs`, the
+ * wrapper ALSO retries it the next time the document becomes visible — the
+ * exact moment a backgrounded tab's stalled transaction tends to unstick —
+ * and settles with whichever attempt finishes first.
+ *
+ * Safe to wrap a write with: `setCardState` stores one full value per card
+ * id, so if the stale first attempt's write lands after a retry already
+ * settled the caller, it writes the identical value again — idempotent, not
+ * a double-apply. Nothing here changes what gets written, only how long a
+ * caller waits to find out it did.
+ *
+ * SSR-safe: without `document` there is no visibility event to retry on, so
+ * this is a passthrough to `op()`.
+ *
+ * `timeoutMs` is a parameter (not baked in) purely so tests can exercise the
+ * retry path without a real ~4s wait; every call site below uses the default.
+ */
+export function withVisibilityRetry<T>(
+  op: () => Promise<T>,
+  timeoutMs = VISIBILITY_RETRY_TIMEOUT_MS,
+): Promise<T> {
+  if (typeof document === 'undefined') return op();
+
+  return new Promise<T>((resolve, reject) => {
+    let settled = false;
+
+    const onVisible = () => {
+      if (settled || document.visibilityState !== 'visible') return;
+      document.removeEventListener('visibilitychange', onVisible);
+      op().then(settleResolve, settleReject);
+    };
+    function settleResolve(value: T) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onVisible);
+      resolve(value);
+    }
+    function settleReject(err: unknown) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onVisible);
+      reject(err);
+    }
+
+    op().then(settleResolve, settleReject);
+    // Declared after settleResolve/settleReject only textually — both are hoisted
+    // function declarations that close over `timer`, and neither can run before
+    // this line does (Promise callbacks are never synchronous), so the binding is
+    // always initialized by the time either reads it.
+    const timer = setTimeout(() => {
+      if (!settled) document.addEventListener('visibilitychange', onVisible);
+    }, timeoutMs);
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Exercise attempts
 // ---------------------------------------------------------------------------
 
@@ -145,7 +220,7 @@ export async function logAttempt(attempt: NewAttempt): Promise<void> {
 }
 
 export async function getAttempts(): Promise<Attempt[]> {
-  return (await get<Attempt[]>('attempts', await getStore())) ?? [];
+  return withVisibilityRetry(async () => (await get<Attempt[]>('attempts', await getStore())) ?? []);
 }
 
 // ---------------------------------------------------------------------------
@@ -174,11 +249,13 @@ export interface StoredCard {
 export type CardStates = Record<string, StoredCard>;
 
 export async function getCardStates(): Promise<CardStates> {
-  return (await get<CardStates>('cards', await getStore())) ?? {};
+  return withVisibilityRetry(async () => (await get<CardStates>('cards', await getStore())) ?? {});
 }
 
 export async function setCardState(cardId: string, card: StoredCard): Promise<void> {
-  await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), await getStore());
+  await withVisibilityRetry(async () => {
+    await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), await getStore());
+  });
   scheduleAutoSync();
 }
 
@@ -193,7 +270,7 @@ export interface LearningGoal {
 }
 
 export async function getLearningGoal(): Promise<LearningGoal | undefined> {
-  return await get<LearningGoal>('goal', await getStore());
+  return withVisibilityRetry(async () => await get<LearningGoal>('goal', await getStore()));
 }
 
 export async function setLearningGoal(goal: LearningGoal): Promise<void> {
@@ -274,7 +351,7 @@ export interface TopicProgress {
 export type TopicsState = Record<string, TopicProgress>;
 
 export async function getTopicsState(): Promise<TopicsState> {
-  return (await get<TopicsState>('topics', await getStore())) ?? {};
+  return withVisibilityRetry(async () => (await get<TopicsState>('topics', await getStore())) ?? {});
 }
 
 /** Mark a topic's article as read. Idempotent — keeps the earliest readAt. */

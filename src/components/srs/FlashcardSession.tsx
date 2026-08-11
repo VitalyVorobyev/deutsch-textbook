@@ -161,11 +161,11 @@ export default function FlashcardSession({
       if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
       if (ev.key >= '1' && ev.key <= String(GRADE_BUTTONS.length)) {
         ev.preventDefault();
-        void grade(GRADE_BUTTONS[Number(ev.key) - 1].grade);
+        grade(GRADE_BUTTONS[Number(ev.key) - 1].grade);
       } else if (ev.key === 'Enter' && verdict !== null) {
         if (ev.timeStamp === submitTs.current) return;
         ev.preventDefault();
-        void grade(suggested);
+        grade(suggested);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -218,10 +218,18 @@ export default function FlashcardSession({
   const front = card.dir === 'de-x' && !listening ? answerDe : meaning;
   const back = card.dir === 'de-x' ? meaning : answerDe;
 
-  async function grade(g: Grade) {
+  function grade(g: Grade) {
     if (!card) return;
     const nextState = gradeCard(states[card.id], g);
-    await setCardState(card.id, nextState);
+    // Optimistic: every visible state update lands synchronously, before the
+    // persisted write is even awaited. A stalled IndexedDB write (a
+    // backgrounded tab; WebKit is documented to stall IDB transactions there)
+    // used to sit ahead of all of these, so the click read as dead — nothing
+    // moved until the write settled, which could be never. The write itself
+    // still happens, just after the UI has already moved on; its failure is
+    // logged, not swallowed, and a lost write costs exactly one rep: card
+    // state is a full value per card id, so the next successful grade
+    // overwrites it (the same idempotency `scheduleAutoSync` already trusts).
     setStates((s) => ({ ...s, [card.id]: nextState }));
     setStats((st) => ({ reviewed: st.reviewed + 1, again: st.again + (g === Rating.Again ? 1 : 0) }));
     setQueue((q) => {
@@ -237,6 +245,9 @@ export default function FlashcardSession({
     setRevealed(false);
     setTyped('');
     setVerdict(null);
+    setCardState(card.id, nextState).catch((err) => {
+      console.error('setCardState failed', card.id, err);
+    });
   }
 
   function switchMode(mode: CardInputMode) {
@@ -325,7 +336,7 @@ export default function FlashcardSession({
           <button
             key={g}
             type="button"
-            onClick={() => void grade(g)}
+            onClick={() => grade(g)}
             className={`min-h-11 rounded-md px-3 py-2 text-sm font-semibold text-white sm:min-h-0 sm:px-4 ${cls} ${
               withSuggestion && g === suggested
                 ? 'ring-2 ring-stone-900 ring-offset-2 ring-offset-white dark:ring-stone-100 dark:ring-offset-stone-800'

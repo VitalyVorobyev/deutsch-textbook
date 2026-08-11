@@ -18,8 +18,11 @@ const decks = vocab
 
 <Base title="Wortschatz">
   <UebenNav active="wortschatz" />
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="ueben.tabWortschatz" /></h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">
+  <!-- Same defect as Wiederholen: the active tab already names the page on a phone.
+       sr-only keeps the H1 in the accessibility tree; the description is hidden
+       outright. Both return unchanged at sm+. -->
+  <h1 class="text-3xl font-bold tracking-tight sr-only sm:not-sr-only"><Chrome k="ueben.tabWortschatz" /></h1>
+  <p class="hidden sm:block mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">Flashcard decks built from the vocabulary base.</span>
     <span class="lang-ru">Колоды карточек, собранные из словарной базы.</span>
     <span class="lang-uk">Колоди карток, зібрані зі словникової бази.</span>

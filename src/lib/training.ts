@@ -96,14 +96,31 @@ export function resumedQueueIsEligible(
  * Builds an interleaved session from all items across all eligible sets.
  *
  * Priority bands, filled in order:
- *   1. items whose most recent attempt was wrong,
+ *   1. items whose most recent attempt was wrong — minus any that are FOSSILIZING
+ *      (see below); their never-seen same-focus siblings are promoted into this band
+ *      in their place,
  *   2. items whose `focus` tag is currently weak and that are not already in band 1,
- *   3. items never attempted.
- * Bands 1–3 are shuffled.
+ *   3. items never attempted (minus any siblings promoted into band 1),
+ *   4. fossilizing items that were demoted out of band 1 (see below).
+ * Bands 1–4 are each shuffled within themselves.
  *
- * Band 4 — items answered correctly, least recently first — is not merely the leftover:
+ * An item is FOSSILIZING when its last two attempts were both wrong: it has already
+ * failed a retry, and dealing it again on the same footing is exactly how P25-9
+ * happened — `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and
+ * failed nine sessions running while the eight never-seen items of
+ * `b1/drill-temporal-nebensatz`, sharing its focus tag, sat untouched in band 3. A
+ * fossilizing band-1 item with at least one never-seen same-focus sibling in the pool
+ * is demoted: the never-seen siblings move ahead into the band-1 slot it held, and the
+ * fossilizing item itself drops to the end of the priority list (after band 3, before
+ * the broad-retrieval band) — fresh material gets the turn a repeated retry never
+ * earned, and the item's own re-anchoring pauses until it has been worked through. A
+ * fossilizing item with NO never-seen same-focus sibling stays in band 1 unchanged:
+ * retrying is all there is. A single recent wrong answer (not two consecutive) is
+ * never fossilizing and keeps today's band-1 behavior exactly.
+ *
+ * Band 5 — items answered correctly, least recently first — is not merely the leftover:
  * `BROAD_RETRIEVAL_SHARE` of the session is *reserved* for it, so the loud bands cannot
- * take everything (see the constant). When band 4 is short the priority bands take the
+ * take everything (see the constant). When band 5 is short the priority bands take the
  * slack back, and vice versa; nothing is ever wasted.
  *
  * Afterwards the selection is interleaved so that no two consecutive items share a set,
@@ -123,6 +140,23 @@ export function buildSession(
     if (!prev || a.ts >= prev.ts) lastAttempt.set(key, { correct: a.correct, ts: a.ts });
   }
 
+  // every attempt per item, oldest→newest — only used to test the last two for
+  // "fossilizing" (P25-9) below; `lastAttempt` above stays the single source of
+  // truth for correctness/recency everywhere else.
+  const attemptsByItem = new Map<string, Attempt[]>();
+  for (const a of attempts) {
+    const key = `${a.setId}::${a.itemId}`;
+    const arr = attemptsByItem.get(key);
+    if (arr) arr.push(a);
+    else attemptsByItem.set(key, [a]);
+  }
+  for (const arr of attemptsByItem.values()) arr.sort((a, b) => a.ts - b.ts);
+  const isFossilizing = (uid: string): boolean => {
+    const arr = attemptsByItem.get(uid);
+    if (!arr || arr.length < 2) return false;
+    return !arr[arr.length - 1]!.correct && !arr[arr.length - 2]!.correct;
+  };
+
   const weak = new Set(weakFocuses([...attempts], { current }).map((w) => w.focus));
 
   const pool: SessionItem[] = sets.flatMap((s) =>
@@ -138,18 +172,52 @@ export function buildSession(
   );
 
   const lastWrong: SessionItem[] = [];
+  const fossilizing: SessionItem[] = [];
   const weakFocus: SessionItem[] = [];
   const untried: SessionItem[] = [];
   const seen: { entry: SessionItem; ts: number }[] = [];
   for (const p of pool) {
     const a = lastAttempt.get(p.uid);
-    if (a && !a.correct) lastWrong.push(p);
+    if (a && !a.correct) (isFossilizing(p.uid) ? fossilizing : lastWrong).push(p);
     else if (p.item.focus && weak.has(p.item.focus)) weakFocus.push(p);
     else if (!a) untried.push(p);
     else seen.push({ entry: p, ts: a.ts });
   }
 
-  const priority = [...shuffle(lastWrong), ...shuffle(weakFocus), ...shuffle(untried)];
+  // Never-seen items sharing a fossilizing item's focus tag — its candidate
+  // replacements in band 1.
+  const untriedByFocus = new Map<string, SessionItem[]>();
+  for (const p of untried) {
+    if (!p.item.focus) continue;
+    const arr = untriedByFocus.get(p.item.focus);
+    if (arr) arr.push(p);
+    else untriedByFocus.set(p.item.focus, [p]);
+  }
+
+  const promoted: SessionItem[] = [];
+  const promotedUids = new Set<string>();
+  const fossilizedDropped: SessionItem[] = [];
+  for (const p of fossilizing) {
+    const siblings = p.item.focus ? untriedByFocus.get(p.item.focus) : undefined;
+    if (!siblings || siblings.length === 0) {
+      lastWrong.push(p); // no fresh material to hand the slot to — retry is all there is
+      continue;
+    }
+    fossilizedDropped.push(p);
+    for (const sibling of siblings) {
+      if (promotedUids.has(sibling.uid)) continue;
+      promotedUids.add(sibling.uid);
+      promoted.push(sibling);
+    }
+  }
+  const untriedRemaining = untried.filter((p) => !promotedUids.has(p.uid));
+
+  const priority = [
+    ...shuffle([...lastWrong, ...promoted]),
+    ...shuffle(weakFocus),
+    ...shuffle(untriedRemaining),
+    ...shuffle(fossilizedDropped),
+  ];
   const broad = seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry);
 
   const reserved = Math.min(Math.round(count * BROAD_RETRIEVAL_SHARE), broad.length);
