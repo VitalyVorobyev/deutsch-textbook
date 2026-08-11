@@ -37,6 +37,7 @@ relationship.
 | [`0006`](0006-public-domain-classics-as-extensive-reading-corpus.md) | Public-domain classics as the second extensive-reading strand | accepted · 2026-08-04 |
 | [`0007`](0007-derived-cross-links-never-hand-maintained.md) | Cross-links are derived, never hand-maintained | accepted · 2026-08-04 |
 | [`0008`](0008-character-ensemble-and-audio-studio.md) | A recurring character ensemble, and productizing the audio studio | **proposed** · 2026-08-04 |
+| [`0009`](0009-official-exam-materials-local-only.md) | Official exam materials are local-only; the trainer degrades honestly without them | accepted · 2026-08-11 |
 
 A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
 superseded by a new ADR rather than edited into an acceptance.
