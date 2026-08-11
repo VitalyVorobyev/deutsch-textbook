@@ -66,10 +66,12 @@ export interface ExamManifest {
 /** Where a shipping-with-assets build serves the manifest, before `withBase`. */
 export const EXAM_MANIFEST_URL = '/exams/manifest.json';
 
-const isAnswer = (value: unknown): value is ExamAnswer =>
+export const isExamAnswer = (value: unknown): value is ExamAnswer =>
   value === 'a' || value === 'b' || value === 'c' || value === 'r' || value === 'f';
+const isAnswer = isExamAnswer;
 
-const shapeAllows = (shape: ExamOptionShape, answer: ExamAnswer): boolean => {
+/** Exported for `scripts/exam-ingest.ts` — one source of truth, so the two cannot drift. */
+export const shapeAllows = (shape: ExamOptionShape, answer: ExamAnswer): boolean => {
   if (shape === 'abc') return answer === 'a' || answer === 'b' || answer === 'c';
   if (shape === 'ab') return answer === 'a' || answer === 'b';
   return answer === 'r' || answer === 'f';

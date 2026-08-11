@@ -20,6 +20,7 @@
     "deploy:smoke": "bun scripts/deploy-smoke.ts",
     "review:gate": "bun scripts/pr-review-gate.ts",
     "gen:ipa": "bun scripts/gen-ipa.ts",
+    "exam:ingest": "bun scripts/exam-ingest.ts",
     "check": "astro check && tsc --noEmit -p worker/tsconfig.json",
     "lint": "eslint .",
     "test": "bun test",
