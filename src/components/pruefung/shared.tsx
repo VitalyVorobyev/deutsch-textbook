@@ -15,6 +15,7 @@ import type {
   ExamModuleId,
   ExamModuleSpec,
   ExamOptionShape,
+  ExamRunRecord,
   ExamSetSpec,
 } from '../../lib/exam-sim';
 import { moduleItems } from '../../lib/exam-sim';
@@ -77,13 +78,48 @@ export function formatDay(iso: string): string {
   return Number.isNaN(date.getTime()) ? '—' : date.toLocaleDateString('de-DE');
 }
 
+/** Points as German print shows them: comma decimal, "8,5". */
+export const formatPoints = (points: number): string => String(points).replace('.', ',');
+
 /**
- * Modules a session can actually be run against. `parseExamManifest` admits a module with an
- * empty `teile` list (nothing about the shape is wrong), but a sheet with no items would
- * divide by zero in `scoreModule` — so such a module is simply not offered.
+ * A run's score as one string. A run holding a self-assessment (Schreiben Teil 2) shows the
+ * sum, and always says so — the automatic score and a self-report are never summed silently.
  */
+export function formatRunScore(run: ExamRunRecord): string {
+  if (run.selfScore === undefined) return `${run.raw}/${run.rawMax}`;
+  const total = formatPoints(run.raw + run.selfScore);
+  const max = formatPoints(run.rawMax + (run.selfScoreMax ?? 0));
+  return `${total}/${max} (mit Selbstbewertung)`;
+}
+
+/** A typed answer counts once it holds something beyond whitespace. */
+export const hasText = (value: string | undefined): value is string =>
+  value !== undefined && value.trim() !== '';
+
+export const countWords = (text: string): number => text.trim().split(/\s+/).filter(Boolean).length;
+
+/**
+ * `scored` — an answer sheet exists (auto-gradable items, a free part, or both) and a run
+ * produces a record. `practice` — nothing gradable at all (Sprechen is a Gruppenprüfung with
+ * two examiners); the module opens as task cards to study, and no history is ever written.
+ */
+export type ModuleKind = 'scored' | 'practice';
+
+export const moduleKind = (module: ExamModuleSpec): ModuleKind =>
+  moduleItems(module).length > 0 || module.teile.some((teil) => teil.free) ? 'scored' : 'practice';
+
+/** Modules a learner can open: every scored one, plus practice modules that bring pages. */
 export const runnableModules = (set: ExamSetSpec): ExamModuleSpec[] =>
-  set.modules.filter((module) => moduleItems(module).length > 0);
+  set.modules.filter((module) => (moduleKind(module) === 'scored' ? true : module.pages.length > 0));
+
+/** The full written exam in booklet order, when this set can offer it end to end. */
+export function writtenModules(set: ExamSetSpec): ExamModuleSpec[] {
+  const order: ExamModuleId[] = ['hoeren', 'lesen', 'schreiben'];
+  const found = order
+    .map((id) => set.modules.find((module) => module.module === id))
+    .filter((module): module is ExamModuleSpec => module !== undefined && moduleKind(module) === 'scored');
+  return found.length === order.length ? found : [];
+}
 
 export const CARD = 'rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800';
 

@@ -16,20 +16,27 @@ import { useCallback, useEffect, useState } from 'react';
 import {
   EXAM_MANIFEST_URL,
   loadExamHistory,
+  moduleFreeMax,
   parseExamManifest,
   priorRuns,
   recordExamRun,
+  updateExamRun,
   type ExamManifest,
   type ExamModuleId,
   type ExamRunRecord,
   type ExamSetSpec,
 } from '../../lib/exam-sim';
 import { withBase } from '../../lib/url';
+import ExamFullRun from './ExamFullRun';
+import ExamPractice from './ExamPractice';
 import ExamResult from './ExamResult';
 import ExamRunner from './ExamRunner';
 import {
   formatDay,
+  formatRunScore,
+  moduleKind,
   runnableModules,
+  writtenModules,
   CARD,
   LevelBadge,
   MODULE_LABEL,
@@ -47,6 +54,8 @@ type Screen =
   | { kind: 'picker' }
   | { kind: 'setup'; setId: string; module?: ExamModuleId }
   | { kind: 'run'; setId: string; module: ExamModuleId; mode: ExamMode }
+  | { kind: 'practice'; setId: string; module: ExamModuleId }
+  | { kind: 'fullrun'; setId: string }
   | {
       kind: 'result';
       setId: string;
@@ -136,6 +145,28 @@ export default function GoetheExamSimulator() {
     setScreen({ kind: 'result', setId: run.setId, module: run.module, run, timedOut, earlier });
   }, []);
 
+  // The full run records each module the moment it finishes (aborting keeps what was sat)
+  // and stays on its own screen — no per-module result detour.
+  const recordOnly = useCallback((run: ExamRunRecord) => {
+    setHistory(recordExamRun(run));
+  }, []);
+
+  const applySelfScore = useCallback(
+    (run: ExamRunRecord, selfScore: number, selfScoreMax: number): ExamRunRecord => {
+      const patched = { ...run, selfScore, selfScoreMax };
+      setHistory(updateExamRun(run, { selfScore, selfScoreMax }));
+      setScreen((current) =>
+        current.kind === 'result' &&
+        current.run.module === run.module &&
+        current.run.startedAt === run.startedAt
+          ? { ...current, run: patched }
+          : current,
+      );
+      return patched;
+    },
+    [],
+  );
+
   if (load.status === 'loading') {
     return <p lang="de" className="text-sm text-stone-500 dark:text-stone-400">Lade…</p>;
   }
@@ -164,16 +195,48 @@ export default function GoetheExamSimulator() {
     }
   }
 
+  if (screen.kind === 'practice' && activeSet) {
+    const module = activeSet.modules.find((entry) => entry.module === screen.module);
+    if (module) {
+      return (
+        <ExamPractice
+          set={activeSet}
+          module={module}
+          onBack={() => setScreen({ kind: 'setup', setId: activeSet.id, module: module.module })}
+        />
+      );
+    }
+  }
+
+  if (screen.kind === 'fullrun' && activeSet) {
+    const modules = writtenModules(activeSet);
+    if (modules.length > 0) {
+      return (
+        <ExamFullRun
+          set={activeSet}
+          modules={modules}
+          onRecord={recordOnly}
+          onSelfScore={applySelfScore}
+          onExit={() => setScreen({ kind: 'picker' })}
+        />
+      );
+    }
+  }
+
   if (screen.kind === 'result' && activeSet) {
     const module = activeSet.modules.find((entry) => entry.module === screen.module);
     if (module) {
+      const run = screen.run;
       return (
         <ExamResult
           set={activeSet}
           module={module}
-          run={screen.run}
+          run={run}
           timedOut={screen.timedOut}
           earlier={screen.earlier}
+          onSelfScore={
+            moduleFreeMax(module) > 0 ? (score, max) => applySelfScore(run, score, max) : undefined
+          }
           onAgain={() => setScreen({ kind: 'setup', setId: activeSet.id, module: module.module })}
           onOverview={() => setScreen({ kind: 'picker' })}
         />
@@ -183,6 +246,7 @@ export default function GoetheExamSimulator() {
 
   if (screen.kind === 'setup' && activeSet) {
     const modules = runnableModules(activeSet);
+    const writtenFull = writtenModules(activeSet);
     // One module means there is nothing to choose; the chip still shows which one it is.
     const selected = screen.module ?? (modules.length === 1 ? modules[0]?.module : undefined);
     const active = modules.find((module) => module.module === selected);
@@ -221,14 +285,35 @@ export default function GoetheExamSimulator() {
             })}
           </div>
 
-          {active && (
+          {active && moduleKind(active) === 'practice' && (
+            <>
+              <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                Üben
+              </h3>
+              <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
+                Die echte Prüfung ist eine Gruppenprüfung mit zwei Prüfenden — hier gibt es die
+                Aufgabenkarten zum Üben, ohne Bewertung und ohne Verlauf.
+              </p>
+              <div className="mt-3">
+                <button
+                  type="button"
+                  onClick={() => setScreen({ kind: 'practice', setId: activeSet.id, module: active.module })}
+                  className={PRIMARY_BUTTON}
+                >
+                  Aufgabenkarten ansehen & üben
+                </button>
+              </div>
+            </>
+          )}
+
+          {active && moduleKind(active) === 'scored' && (
             <>
               <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                 Modus
               </h3>
               {last && (
                 <p className="mt-2 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-                  Zuletzt bearbeitet am {formatDay(last.finishedAt)}, Ergebnis {last.raw}/{last.rawMax}. Eine
+                  Zuletzt bearbeitet am {formatDay(last.finishedAt)}, Ergebnis {formatRunScore(last)}. Eine
                   Wiederholung misst auch das Gedächtnis für die Aufgaben, nicht nur die Kompetenz.
                 </p>
               )}
@@ -258,6 +343,27 @@ export default function GoetheExamSimulator() {
                 Im Prüfungsmodus läuft die Uhr und die Aufnahme läuft einmal durch. Beim Üben wird jede
                 Antwort sofort aufgelöst.
               </p>
+            </>
+          )}
+
+          {writtenFull.length > 0 && (
+            <>
+              <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                Ganze schriftliche Prüfung
+              </h3>
+              <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">
+                Hören → Lesen → Schreiben nacheinander im Prüfungsmodus — Ergebnis erst am Ende,
+                wie in der Prüfung.
+              </p>
+              <div className="mt-3">
+                <button
+                  type="button"
+                  onClick={() => setScreen({ kind: 'fullrun', setId: activeSet.id })}
+                  className={QUIET_BUTTON}
+                >
+                  Komplett starten · ca. {writtenFull.reduce((sum, module) => sum + module.timeLimitMin, 0)} Min.
+                </button>
+              </div>
             </>
           )}
 

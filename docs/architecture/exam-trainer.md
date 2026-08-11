@@ -11,7 +11,13 @@ Read that first if you are about to change anything here.
 A simulator for the official Goethe-Zertifikat sets (Modellsatz, Übungssätze) the learner already
 owns as PDFs and audio, downloaded free from goethe.de: timed sessions against the real
 Kandidatenblätter, playback of the real Tonträger, and an answer sheet that scores itself against
-the real Prüferblätter key. It sits beside — and does not replace — the committed,
+the real Prüferblätter key. Schreiben runs too — Teil 1 as auto-compared typed blanks (official
+answer always shown beside a mismatch), Teil 2 as a free text graded by nothing but the printed
+criteria, entered as a **self-assessment that is stored separately from the automatic score and
+never silently summed with it**. Sprechen, a Gruppenprüfung nothing solo can grade, opens as
+task cards with the examiner pages behind a disclosure — no sheet, no history. A set holding all
+three written modules also offers them as one sitting (Hören → Lesen → Schreiben, no scores
+between modules). It sits beside — and does not replace — the committed,
 repeatable `/pruefung/<level>` practice sets (original Goethe-*style* items authored for this
 course), which is where `/pruefung/<level>` already links out to it under "Prüfungssimulator".
 
@@ -70,6 +76,13 @@ documented in the comment at the top of `scripts/exam-ingest.ts`; the essentials
   no validator that can check it against the source, because the source is never in the repo.
 - `audio` is optional per module (Schreiben/Sprechen modules have none) and names a video or
   audio file to extract from, not a pre-sliced clip.
+- `answerPdfPages` (optional) names Prüferblätter pages — Transkriptionen, Bewertung,
+  Leistungsbeispiele — rendered exactly like task pages but surfaced only after a run.
+- Schreiben Teil 1 blanks are `shape: text` items with `answer` (as the Lösungen print it) plus
+  an `accept` list; comparison is literal (case/whitespace/trailing-punctuation-insensitive), so
+  the UI always shows the official answer beside a ✗. Teil 2 is a `free:` part — `label`,
+  `points`, and the printed `criteria` steps that drive the result screen's self-assessment.
+- A practice-only module (Sprechen) has `teile: []` — pages only, no answer sheet, no history.
 
 This repo intentionally contains **no example of a filled-in `exam-sources.yaml`** — even a
 plausible-looking one risks being read as a transcription of the real answer key. Author it
