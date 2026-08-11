@@ -1,0 +1,99 @@
+# Delayed probe family — ONE competence: produce the case a verb governs, cold, with nothing
+# on screen to choose from. Three parallel translate variants, served in authoring order
+# across the 2/7/21 delays — one retention curve over one decision.
+#
+# The three variants sample the article's three shapes rather than repeating one: a member of
+# the closed Dativ club (gratulieren), an ordinary accusative verb (anrufen), and a case
+# welded into a verb+preposition chunk (denken an). All three are places where the learner's
+# first language pulls the other way, which is what makes the decision worth measuring months
+# later: it cannot be re-derived, only remembered.
+#
+# translate rather than cloze or mc: a cloze prints the gap exactly where the article belongs
+# and an mc lists Akkusativ beside Dativ, and this competence *is* choosing between them with
+# nothing to react to.
+#
+# Pinned is the one word the government decides — the possessive or the article — and nothing
+# else, because the verbs and the people are carrier material and a fumbled Onkel is not this
+# confusion. Each pinned token occurs exactly once in every accepted rendering.
+#
+# Carrier nouns checked against this topic's practice set and its reading by grepping
+# content/, not by re-reading the lists: Onkel, Tante and Kurs occur in neither, so no variant
+# can be answered from the memory of an arming item.
+topic: verben-mit-kasus
+role: probe
+title:
+  en: "Delayed check — the case the verb demands"
+  ru: "Отложенная проверка — падеж, которого требует глагол"
+  uk: "Відкладена перевірка — відмінок, якого вимагає дієслово"
+arming:
+  - a2/verben-mit-kasus::table-jemanden-jemandem
+  - a2/verben-mit-kasus::cloze-mein-form
+  - a2/verben-mit-kasus::mc-gehoeren-besuchen
+  - a2/verben-mit-kasus::mc-freuen-wochenende
+  - a2/verben-mit-kasus::uebersetzen-bahnhof-zug
+  - a2/verben-mit-kasus::uebersetzen-anrufen-gratulieren
+  - a2/verben-mit-kasus::uebersetzen-fragen-antworten
+  - a2/verben-mit-kasus::cloze-markt-bus
+  - a2/verben-mit-kasus::uebersetzen-gefallen-stoeren
+  - a2/verben-mit-kasus::diktat-danken-anrufen
+  - a2/verben-mit-kasus::uebersetzen-sprechen-arzt
+items:
+  - id: variant-a
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen, verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. For 'uncle' take der Onkel."
+      ru: "Переведите на немецкий. Для «дядя» возьмите der Onkel."
+      uk: "Перекладіть німецькою. Для «дядько» візьміть der Onkel."
+    prompt_en: "On Friday I congratulate my uncle."
+    prompt_ru: "В пятницу я поздравляю своего дядю."
+    prompt_uk: "У п'ятницю я вітаю свого дядька."
+    answer: "Am Freitag gratuliere ich meinem Onkel."
+    accept:
+      - "Ich gratuliere meinem Onkel am Freitag."
+    key_tokens: ["meinem"]
+    explain:
+      en: "gratulieren is on the short closed list of verbs whose bare object stands in the dative, so the person is meinem Onkel and not meinen Onkel. Nothing in the meaning says so: congratulating somebody looks exactly like visiting or calling them, and those two take the accusative. The list is the only source, which is why it is short enough to memorise."
+      ru: "gratulieren стоит в коротком закрытом списке глаголов, чьё беспредложное дополнение требует Dativ, поэтому человек здесь meinem Onkel, а не meinen Onkel. Значение об этом не говорит ничего: поздравлять кого-то выглядит ровно так же, как навещать или звонить, а эти два глагола требуют Akkusativ. Русское «поздравляю (кого?) дядю» тянет в винительный, и единственный источник верного ответа — список; на то он и короткий."
+      uk: "gratulieren стоїть у короткому закритому списку дієслів, чий безприйменниковий додаток вимагає Dativ, тому людина тут meinem Onkel, а не meinen Onkel. Значення про це не каже нічого: вітати когось виглядає точно так само, як відвідувати чи дзвонити, а ці два дієслова вимагають Akkusativ. Українське «вітаю (кого?) дядька» тягне у знахідний, і єдине джерело правильної відповіді — список; на те він і короткий."
+
+  - id: variant-b
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen, verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. For 'aunt' take die Tante."
+      ru: "Переведите на немецкий. Для «тётя» возьмите die Tante."
+      uk: "Перекладіть німецькою. Для «тітка» візьміть die Tante."
+    prompt_en: "On Monday I call my aunt."
+    prompt_ru: "В понедельник я звоню своей тёте."
+    prompt_uk: "У понеділок я дзвоню своїй тітці."
+    answer: "Am Montag rufe ich meine Tante an."
+    accept:
+      - "Ich rufe am Montag meine Tante an."
+    key_tokens: ["meine"]
+    explain:
+      en: "anrufen is not on the dative list, so it falls back to the default: the person is a plain accusative object, meine Tante, with no preposition anywhere. English gives the same hint — you call somebody, you do not call to somebody — and German simply marks it with a case English does not have."
+      ru: "anrufen в дативном списке не значится, поэтому работает вариант по умолчанию: человек — обычное дополнение в Akkusativ, meine Tante, и никакого предлога. Русское «звонить (кому?) тёте» — дательный, и это самая живучая ошибка темы: немецкий обращается к человеку напрямую и падеж выбирает сам, независимо от перевода."
+      uk: "anrufen у давальному списку не значиться, тому працює варіант за замовчуванням: людина — звичайний додаток в Akkusativ, meine Tante, і жодного прийменника. Українське «дзвонити (кому?) тітці» — давальний, і це найживучіша помилка теми: німецька звертається до людини напряму й відмінок обирає сама, незалежно від перекладу."
+
+  - id: variant-c
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen, verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. For 'course' take der Kurs — the course you are taking, so the definite article."
+      ru: "Переведите на немецкий. Для «курс» возьмите der Kurs — речь о вашем известном курсе, поэтому определённый артикль."
+      uk: "Перекладіть німецькою. Для «курс» візьміть der Kurs — ідеться про ваш відомий курс, тому означений артикль."
+    prompt_en: "In the evening I am still thinking about the course."
+    prompt_ru: "Вечером я ещё думаю о курсе."
+    prompt_uk: "Увечері я ще думаю про курс."
+    answer: "Am Abend denke ich noch an den Kurs."
+    accept:
+      - "Ich denke am Abend noch an den Kurs."
+    key_tokens: ["den"]
+    explain:
+      en: "an is a Wechselpräposition, but here it did not arrive as a preposition of place — it arrived with the verb, as part of the chunk denken an, and inside a chunk the case is fixed: accusative. So der Kurs becomes an den Kurs, although nobody is going anywhere and there is nothing to answer Wohin? with. an dem Kurs would be the position form of a place, and this is not a place."
+      ru: "an — Wechselpräposition, но здесь он появился не как предлог места: он пришёл вместе с глаголом, как часть куска denken an, а внутри куска падеж закреплён — Akkusativ. Поэтому der Kurs превращается в an den Kurs, хотя никто никуда не движется и отвечать на Wohin? нечем. Форма an dem Kurs была бы формой места, а места здесь нет."
+      uk: "an — Wechselpräposition, але тут він з'явився не як прийменник місця: він прийшов разом із дієсловом, як частина шматка denken an, а всередині шматка відмінок закріплено — Akkusativ. Тому der Kurs перетворюється на an den Kurs, хоча ніхто нікуди не рухається і відповідати на Wohin? нічим. Форма an dem Kurs була б формою місця, а місця тут немає."

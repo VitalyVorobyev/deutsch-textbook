@@ -13,11 +13,13 @@ describe('listening production inventory', () => {
   // listening outcome, so their artifacts carry the genre's spoken form and claim no
   // listening evidence. The A2 prepositions unit (ort-richtung-praepositionen, 2026-08-12)
   // then took it 46 → 47 — appended to the A2 spine rather than B1, and `model-input` for
-  // the same reason: its outcomes are one reading and three writing.
+  // the same reason: its outcomes are one reading and three writing. Part two of the same
+  // strand (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
+  // same reason.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(47);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(47);
+    expect(rows).toHaveLength(48);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(48);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

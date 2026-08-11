@@ -1361,6 +1361,50 @@ nodes:
         ru: "Я умею сказать, откуда я иду или приехал."
         uk: "Я вмію сказати, звідки я йду або приїхав."
 
+  - id: verben-mit-kasus
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [verben-mit-praepositionen, akkusativ, dativ]
+    # `verben-mit-praepositionen` taught *which* preposition a verb governs and drills
+    # `verb-praeposition` in two of its practice items (match-verb-praeposition,
+    # translate-davon); this topic answers the other half of the same question — which case
+    # that preposition then brings — and one of its practice items (cloze-welche-praeposition)
+    # carries the same tag, so the edge has its runtime channel: an error on the preposition
+    # while practising the chunk marks that confusion weak course-wide and pulls the base
+    # topic's items back into mixed training.
+    deepens: [verben-mit-praepositionen]
+    outcomes:
+      - id: rektion-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann in einem einfachen Text verstehen, wem jemand hilft und wen jemand anruft."
+        en: "I can understand in a simple text whom somebody is helping and whom somebody is calling."
+        ru: "Я понимаю в простом тексте, кому человек помогает и кому звонит."
+        uk: "Я розумію в простому тексті, кому людина допомагає і кому дзвонить."
+      - id: akkusativ-person-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann Verben wie anrufen, fragen und stören mit der Person im Akkusativ verwenden."
+        en: "I can use verbs like anrufen, fragen and stören with the person in the accusative."
+        ru: "Я умею употреблять глаголы вроде anrufen, fragen и stören с человеком в Akkusativ."
+        uk: "Я вмію вживати дієслова на кшталт anrufen, fragen і stören з людиною в Akkusativ."
+      - id: dativ-person-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann bei den Verben des Dativ-Clubs die Person in den Dativ setzen."
+        en: "I can put the person in the dative with the verbs of the small dative club."
+        ru: "Я умею ставить человека в Dativ при глаголах из дативного списка."
+        uk: "Я вмію ставити людину в Dativ при дієсловах із давального списку."
+      - id: verbchunk-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann ein Verb mit fester Präposition im richtigen Kasus verwenden."
+        en: "I can use a verb with a fixed preposition in the case that preposition brings."
+        ru: "Я умею употреблять глагол с закреплённым предлогом в нужном падеже."
+        uk: "Я вмію вживати дієслово із закріпленим прийменником у потрібному відмінку."
+
   # --- B1 (contract: docs/curriculum/a2-b1.md, frozen 2026-07-24) ---
   - id: erfahrungen-erzaehlen
     level: B1
@@ -2223,6 +2267,18 @@ units:
     title_ru: "Место и направление"
     title_uk: "Місце і напрямок"
     topics: [ort-richtung-praepositionen]
+  # Part two of the prepositions strand, and the second reason it sits at the tail of A2: the
+  # unit deepens `verben-mit-praepositionen` rather than repeating it, so it has to follow
+  # every case topic *and* that one. Appended rather than inserted beside its base topic,
+  # because `units:` file order is the recommended path and an insert there would move every
+  # A2 unit after it.
+  - id: verben-mit-kasus
+    level: A2
+    title_de: "Rektion: Kasus beim Verb"
+    title_en: "Verb government: which case"
+    title_ru: "Управление глагола: какой падеж"
+    title_uk: "Керування дієслова: який відмінок"
+    topics: [verben-mit-kasus]
   - id: erfahrungen-erzaehlen
     level: B1
     title_de: "Erfahrungen erzählen"

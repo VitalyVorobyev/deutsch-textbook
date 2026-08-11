@@ -61,6 +61,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `futur-werden` |  Futur I is *werden* + bare infinitive in the bracket — and is used for a prediction or promise, not for a plan a time phrase already dates |
 | `reflexiv-akkusativ` | reflexive pronouns in the accusative: ich fühle **mich**, er ruht **sich** aus |
 | `verb-praeposition` | choosing the preposition governed by a verb: warten **auf**, träumen **von** |
+| `verb-kasus` | which **case** the verb's government demands — as a bare object (Akkusativ is the default: *jemanden anrufen/fragen/stören*; the small closed Dativ club is the exception: *jemandem helfen/danken/gratulieren*), or fixed inside a verb+preposition chunk (*warten **auf** + Akkusativ* always, even though *auf* is a Wechselpräposition and nothing in the sentence moves). Meaning predicts nothing and neither EN nor RU sorts the verbs the same way, so this is memorised per verb. Distinct from `verben-mit-dativ`, which grades membership of the dative list itself, and from `verb-praeposition`, which grades *which* preposition a verb takes rather than the case it brings |
 | `da-wo-woerter` | wo(r)- questions, da(r)- references, linking r, and thing/person selection |
 | `nebensatz-verbende` | the conjugated verb goes last in a weil-, dass- or wenn-clause |
 | `weil-denn` | *weil* sends the verb to the end, *denn* does not |
