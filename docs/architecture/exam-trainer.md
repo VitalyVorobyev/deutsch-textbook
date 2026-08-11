@@ -15,10 +15,10 @@ the real Prüferblätter key. It sits beside — and does not replace — the co
 repeatable `/pruefung/<level>` practice sets (original Goethe-*style* items authored for this
 course), which is where `/pruefung/<level>` already links out to it under "Prüfungssimulator".
 
-What is committed today: the manifest contract and scoring arithmetic
-(`src/lib/exam-sim.ts`), the local result history it defines, and the ingestion script below.
-The trainer page itself (`/pruefung/goethe-a1`, the island `parseExamManifest` is written for) is
-separate, later work — the link already exists, the page does not yet.
+What is committed: the manifest contract and scoring arithmetic (`src/lib/exam-sim.ts`), the
+local result history it defines, the ingestion script below, and the trainer page itself —
+`/pruefung/goethe-a1` with its simulator island, which fetches the manifest at runtime and
+renders the absence state when no build-local materials exist.
 
 ## The local-only boundary
 
@@ -31,7 +31,10 @@ whole boundary:
 | `docs/GeotheInstitute/` | The official PDFs and audio/video, plus `exam-sources.yaml` | `.gitignore` |
 | `public/exams/` | Everything `scripts/exam-ingest.ts` generates: rendered pages, extracted audio, `manifest.json` | `.gitignore` |
 
-A clean checkout — and every CI machine — has neither directory. `bun run build` still succeeds;
+A clean checkout — and every CI machine — has neither directory. One corollary binds the owner's
+machine: a **local** `dist/` legitimately contains the exam assets, so never hand-deploy it
+(`wrangler pages deploy dist` or any equivalent) — the public site deploys only from clean
+checkouts. `bun run build` still succeeds;
 it just never serves `/exams/manifest.json`. **This is the point, not a gap**: the trainer page
 reads that 404 as the absence state and says plainly that the official materials are not present,
 with no broken player and no shell pretending to load. Nothing here needs a runtime permission
