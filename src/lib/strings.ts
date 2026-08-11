@@ -32,9 +32,10 @@ export const STRINGS = {
   'nav.entdecken': { de: 'Entdecken', en: 'Discover', ru: 'Открытия', uk: 'Відкриття' },
   'nav.referenz': { de: 'Referenz', en: 'Reference', ru: 'Справочник', uk: 'Довідник' },
   'nav.ueben': { de: 'Üben', en: 'Practice', ru: 'Практика', uk: 'Практика' },
+  'nav.pruefung': { de: 'Prüfung', en: 'Exam', ru: 'Экзамен', uk: 'Іспит' },
   'nav.fortschritt': { de: 'Fortschritt', en: 'Progress', ru: 'Прогресс', uk: 'Прогрес' },
   'nav.ueber': { de: 'Über', en: 'About', ru: 'О курсе', uk: 'Про курс' },
-  // Fallback label for the <640px nav disclosure on pages outside the seven
+  // Fallback label for the <640px nav disclosure on pages outside the eight
   // tabs (/install, /konto); the trigger otherwise shows the active tab.
   'nav.menu': { de: 'Navigation', en: 'Navigation', ru: 'Навигация', uk: 'Навігація' },
 

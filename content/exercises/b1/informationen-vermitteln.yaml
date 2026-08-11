@@ -72,8 +72,8 @@ items:
     correct: 0
     translation:
       en: "The management's letter says: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" What does that mean?"
-      ru: "В письме управляющей компании стоит: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Что это значит?"
-      uk: "У листі управлінської компанії стоїть: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Що це означає?"
+      ru: "В письме от управляющей компании написано: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Что это значит?"
+      uk: "У листі від управлінської компанії написано: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Що це означає?"
     explain:
       en: "habe where the ordinary present has hat is a Konjunktiv I, and it does exactly one job: it marks the sentence as the workman's words rather than the writer's own claim. So the key is still with him, and reading the sentence as the management's own report of where the key is moves it to the wrong person — the whole point of the form is that the management is making no such claim. Reading it as a key already handed back changes the fact rather than the form: nothing here is over. At B1 this is a reading skill, and you pass it on with dass and the ordinary present: Der Handwerker schreibt, dass er den Schlüssel noch hat."
       ru: "habe там, где обычное настоящее даёт hat, — это Konjunktiv I, и работа у него ровно одна: пометить фразу как слова мастера, а не как утверждение самого пишущего. Значит, ключ по-прежнему у него; прочитать фразу как сообщение управляющей компании о собственном ключе — значит отдать ключ не тому, ведь вся суть формы в том, что компания этого не утверждает. Прочитать её как уже возвращённый ключ — значит поменять не форму, а факт: ничего здесь ещё не кончилось. На уровне B1 это навык чтения, а передаёте вы прочитанное через dass и обычное настоящее: Der Handwerker schreibt, dass er den Schlüssel noch hat."
@@ -86,8 +86,8 @@ items:
     focus: indirekte-rede
     instruction:
       en: "The notice reads: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Pass it on with dass, the ordinary present tense — and keep the passive the notice uses. For 'the management' take die Verwaltung, for 'writes' schreiben, for 'check' prüfen."
-      ru: "В объявлении стоит: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Передайте это через dass и обычное настоящее время — и сохраните пассив, которым написано объявление. Для «управляющая компания» возьмите die Verwaltung, для «пишет» — schreiben, для «проверять» — prüfen."
-      uk: "В оголошенні стоїть: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Перекажіть це через dass і звичайний теперішній час — і збережіть пасив, яким написане оголошення. Для «управлінська компанія» візьміть die Verwaltung, для «пише» — schreiben, для «перевіряти» — prüfen."
+      ru: "В объявлении написано: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Передайте это через dass и обычное настоящее время — и сохраните пассив, которым написано объявление. Для «управляющая компания» возьмите die Verwaltung, для «пишет» — schreiben, для «проверять» — prüfen."
+      uk: "В оголошенні написано: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Перекажіть це через dass і звичайний теперішній час — і збережіть пасив, яким написане оголошення. Для «управлінська компанія» візьміть die Verwaltung, для «пише» — schreiben, для «перевіряти» — prüfen."
       de: "Im Aushang steht: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Gib es mit dass und Präsens weiter — und behalt das Passiv des Aushangs bei. Für die Hausverwaltung nimm die Verwaltung, für das Schreiben schreiben, für die Kontrolle prüfen."
     prompt_en: "The management writes that the lift is being checked on Friday."
     prompt_ru: "Управляющая компания пишет, что лифт проверят в пятницу."
@@ -101,6 +101,7 @@ items:
       de: "Bewertet werden die beiden Enden des berichteten Nebensatzes: dass, womit eine Aussage weitergegeben wird, und wird, das finite Verb — im Präsens und ganz am Ende. Der Aushang schreibt werde, und der ganze B1-Schritt besteht darin, das als fremde Worte zu lesen und in der Zeitform weiterzugeben, die der Sprecher gewählt hat. wurde wäre kein anderer Stil, sondern eine andere Tatsache: Die Prüfung wäre schon vorbei."
 
   - id: uebersetzen-dass-verbende
+    revision: 2
     outcomes: [indirekt-berichten]
     type: translate
     focus: nebensatz-verbende
@@ -113,6 +114,10 @@ items:
     prompt_ru: "Он говорит, что завтра сдаст ключ в конторе."
     prompt_uk: "Він каже, що завтра здасть ключ у конторі."
     answer: "Er sagt, dass er den Schlüssel morgen im Büro abgibt."
+    accept:
+      # Ordinary Mittelfeld scrambling inside the dass-clause — object and locative may
+      # swap; the graded dass…abgibt bracket is unaffected (2026-08-11 triage, row 7a).
+      - "Er sagt, dass er morgen im Büro den Schlüssel abgibt."
     key_tokens: ["dass", "abgibt"]
     explain:
       en: "Graded are the two ends of the bracket: the dass that opens the clause and the finite verb that has to close it. Everything the clause carries — the object, the time, the place — stands between them, and a separable verb comes back together at the wall as one word: abgibt, never gibt … ab. The source languages keep ordinary word order inside a that-clause, so nothing warns the hand; the rule is a fact about the Nebensatz, not about this particular verb."

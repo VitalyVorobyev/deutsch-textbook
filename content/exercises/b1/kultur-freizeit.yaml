@@ -170,6 +170,7 @@ items:
       de: "Ein Gegenvorschlag hält den Plan am Leben und legt etwas anderes daneben, und ein einziges Wort erledigt das: lieber. Die beiden anderen Antworten schließen das Gespräch — die eine sagt, der Samstag ist weg, die andere, Konzerte sind es. Genau dieser Zug fehlt am häufigsten, und genau er macht aus einer Bitte ein Gespräch."
 
   - id: uebersetzen-vorschlag-modal
+    revision: 2
     outcomes: [veranstaltung-empfehlen]
     type: translate
     focus: modal-satzklammer
@@ -183,10 +184,13 @@ items:
     prompt_uk: "У неділю ми можемо разом піти на екскурсію."
     answer: "Am Sonntag können wir zusammen zur Führung gehen."
     accept:
-      # The subject may lead; the bracket is unchanged and so is the graded pair. All three
-      # prompts put 'together' in front of the goal, so no rendering has to move zusammen
-      # behind it — the prompt is written that way rather than the accept list widened.
+      # The subject may lead; the bracket is unchanged and so is the graded pair.
       - "Wir können am Sonntag zusammen zur Führung gehen."
+      # zusammen may also trail the goal PP (2026-08-11 triage, row 1a): marked but
+      # grammatical adjunct order, and the graded können…gehen bracket is unaffected. Both
+      # subject positions get the closure.
+      - "Am Sonntag können wir zur Führung zusammen gehen."
+      - "Wir können am Sonntag zur Führung zusammen gehen."
     key_tokens: ["können", "gehen"]
     explain:
       en: "Graded are the two ends of the bracket: the conjugated können in position 2 and the bare infinitive gehen at the very end, with everything the sentence has to say in between. können gehen wir zur Führung side by side is the order the source languages keep, and it leaves the sentence with nothing at its wall. A proposal is the first of the four moves an agreement is made of."

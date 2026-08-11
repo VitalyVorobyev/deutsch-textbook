@@ -26,6 +26,7 @@ const nav: NavItem[] = [
   { href: withBase('/entdecken'), label: 'nav.entdecken' },
   { href: withBase('/referenz'), label: 'nav.referenz' },
   { href: withBase('/ueben'), label: 'nav.ueben', match: [withBase('/vocab')] },
+  { href: withBase('/pruefung/a1'), label: 'nav.pruefung', match: [withBase('/pruefung')] },
   { href: withBase('/progress'), label: 'nav.fortschritt' },
   { href: withBase('/about'), label: 'nav.ueber' },
 ];
@@ -101,7 +102,7 @@ const activeItem = nav.find(isActive);
         <a href={home} class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
           Deutsch-<span class="text-amber-600 dark:text-amber-400">Atlas</span>
         </a>
-        {/* ≥640px: the flat seven-link row, unchanged. */}
+        {/* ≥640px: the flat eight-link row, unchanged. */}
         <nav
           aria-label="Hauptnavigation"
           class="order-3 hidden gap-x-4 text-sm sm:order-none sm:flex sm:flex-wrap"
@@ -123,7 +124,7 @@ const activeItem = nav.find(isActive);
           }
         </nav>
         {/* <640px: disclosure instead of the old overflow-x scroller (P24-7) —
-            all seven links, equal weight, in a panel that overlays the page
+            all eight links, equal weight, in a panel that overlays the page
             rather than growing the sticky header. Works without JS; the
             dismiss script at the end of <body> only adds outside-tap/Escape. */}
         <details id="nav-menu" class="group relative order-3 w-full sm:hidden">
