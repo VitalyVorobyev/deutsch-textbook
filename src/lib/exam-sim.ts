@@ -10,8 +10,8 @@
  * arithmetic, and the local result history — all testable without any copyrighted byte.
  */
 
-/** a/b/c single choice, or Richtig/Falsch. */
-export type ExamOptionShape = 'abc' | 'rf';
+/** a/b/c single choice, a/b two-way matching (Lesen Teil 2), or Richtig/Falsch. */
+export type ExamOptionShape = 'abc' | 'ab' | 'rf';
 
 export type ExamAnswer = 'a' | 'b' | 'c' | 'r' | 'f';
 
@@ -40,8 +40,10 @@ export interface ExamModuleSpec {
   /** Root-absolute URL of the full-module recording, when the module has one. */
   audio?: string;
   /**
-   * Scaled maximum from the Prüferblätter (25 per module in Start Deutsch 1). Carried in
-   * data, never hardcoded, so the number on screen is the number the source states.
+   * Maximum as the source's Antwortbogen states it. In the Start Deutsch 1 booklets on hand
+   * that is the raw count — 15 per written module, "Ergebnis (Hören+Lesen+Schreiben) …/45" —
+   * with no rescaling printed anywhere in them (extraction read of 2026-08-11). Carried in
+   * data, never hardcoded, so the number on screen is always the number the source states.
    */
   maxScaled: number;
   teile: ExamTeilSpec[];
@@ -67,8 +69,11 @@ export const EXAM_MANIFEST_URL = '/exams/manifest.json';
 const isAnswer = (value: unknown): value is ExamAnswer =>
   value === 'a' || value === 'b' || value === 'c' || value === 'r' || value === 'f';
 
-const shapeAllows = (shape: ExamOptionShape, answer: ExamAnswer): boolean =>
-  shape === 'abc' ? answer === 'a' || answer === 'b' || answer === 'c' : answer === 'r' || answer === 'f';
+const shapeAllows = (shape: ExamOptionShape, answer: ExamAnswer): boolean => {
+  if (shape === 'abc') return answer === 'a' || answer === 'b' || answer === 'c';
+  if (shape === 'ab') return answer === 'a' || answer === 'b';
+  return answer === 'r' || answer === 'f';
+};
 
 /**
  * Structural check for a fetched manifest. Deliberately a hand validator, not Zod: this runs in
@@ -102,7 +107,7 @@ export function parseExamManifest(value: unknown): ExamManifest | null {
           if (typeof item !== 'object' || item === null) return null;
           const i = item as Record<string, unknown>;
           if (typeof i.nr !== 'number' || seen.has(i.nr)) return null;
-          if (i.shape !== 'abc' && i.shape !== 'rf') return null;
+          if (i.shape !== 'abc' && i.shape !== 'ab' && i.shape !== 'rf') return null;
           if (!isAnswer(i.key) || !shapeAllows(i.shape, i.key)) return null;
           seen.add(i.nr);
         }

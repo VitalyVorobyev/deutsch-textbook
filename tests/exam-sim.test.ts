@@ -60,6 +60,15 @@ describe('parseExamManifest', () => {
     expect(parseExamManifest(bad)).toBeNull();
   });
 
+  test('the two-option ab shape (Lesen Teil 2) admits a and b but never c', () => {
+    const two = JSON.parse(JSON.stringify(manifest)) as ExamManifest;
+    two.sets[0]!.modules[0]!.teile[0]!.items[0]!.shape = 'ab';
+    two.sets[0]!.modules[0]!.teile[0]!.items[0]!.key = 'a';
+    expect(parseExamManifest(two)).not.toBeNull();
+    two.sets[0]!.modules[0]!.teile[0]!.items[0]!.key = 'c';
+    expect(parseExamManifest(two)).toBeNull();
+  });
+
   test('rejects a duplicate item number within a module — result identity would collide', () => {
     const bad = JSON.parse(JSON.stringify(manifest)) as ExamManifest;
     bad.sets[0]!.modules[0]!.teile[1]!.items[0]!.nr = 1;
