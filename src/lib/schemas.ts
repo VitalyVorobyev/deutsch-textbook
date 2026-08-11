@@ -1307,9 +1307,99 @@ export const zeitformenReferenceSchema = z.object({
 });
 export type ZeitformenReference = z.infer<typeof zeitformenReferenceSchema>;
 
+/**
+ * The preposition system on one page (content/reference-data/praepositionen.yaml).
+ *
+ * Organised by the DECISION a learner has to make, not by the alphabet, because the
+ * alphabet is exactly what makes this topic unlearnable: `in` appears in three of the
+ * sections below and means something different in each. The order of the fields is the
+ * order of the decisions — place type first (`place_types`), case only afterwards and only
+ * for the two-way nine (`two_way`), and `zu_bei_von` as the pattern that never alternates
+ * at all.
+ *
+ * `place_types.woher` carries the claim the page exists for: the origin column is NOT the
+ * accusative column with a dative article, it is a different preposition (auf → von,
+ * zu → von, in/nach → aus).
+ *
+ * The temporal and genitive blocks show language later than the topic that owns this page
+ * — a reference page may do that, and both are marked with the level that teaches them.
+ */
+export const praepositionenReferenceSchema = z.object({
+  id: z.literal('praepositionen'),
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+   * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
+   * and the validator rejects a tag it does not know. */
+  focus: z.array(slug).default([]),
+  /** Decision 1: the type of place chooses the preposition, before any case question. */
+  place_types: z.array(z.object({
+    label: z.string().min(1),
+    meaning: bilingualSchema,
+    wohin: z.string().min(1),
+    wo: z.string().min(1),
+    woher: z.string().min(1),
+    /** the triple as one German chunk — how the place is meant to be learnt */
+    triple: z.string().min(1),
+  })).min(1),
+  /** Decision 2: only the nine two-way prepositions let the direction pick the case. */
+  two_way: z.object({
+    forms: z.array(z.string().min(1)).min(1),
+    test: z.array(z.object({
+      question: z.string().min(1),
+      case: z.enum(['Akkusativ', 'Dativ']),
+      meaning: bilingualSchema,
+      example: referenceExampleSchema,
+    })).min(2),
+    /** the movement ≠ accusative caveat, which the two-row test cannot state by itself */
+    note: bilingualSchema,
+  }),
+  /** Decision 3: zu / bei / von — three prepositions, one case, no alternation. */
+  zu_bei_von: z.array(z.object({
+    question: z.string().min(1),
+    form: z.string().min(1),
+    example: referenceExampleSchema,
+  })).min(3),
+  /** The origin column in detail: inside-out (aus) against away-from (von). */
+  aus_von: z.array(z.object({
+    form: z.enum(['aus', 'von']),
+    use: bilingualSchema,
+    examples: z.array(z.string().min(1)).min(1),
+  })).min(2),
+  contractions: z.array(z.object({
+    long: z.string().min(1),
+    short: z.string().min(1),
+    case: z.enum(['Akkusativ', 'Dativ']),
+    example: z.string().min(1),
+  })).min(1),
+  /** The same prepositions used on the time axis, with the case each one governs. */
+  temporal: z.array(z.object({
+    form: z.string().min(1),
+    case: z.string().min(1),
+    use: bilingualSchema,
+    example: referenceExampleSchema,
+  })).min(1),
+  /** B1 layer: the genitive prepositions, with the dative form spoken German uses. */
+  genitive: z.array(z.object({
+    form: z.string().min(1),
+    level: levelSchema,
+    meaning: bilingualSchema,
+    example: referenceExampleSchema,
+    note: bilingualSchema.optional(),
+  })).min(1),
+  /** Pointers into verb government, where the preposition carries no spatial meaning. */
+  verb_government: z.array(z.object({
+    verb: z.string().min(1),
+    frame: z.string().min(1),
+    question: z.string().min(1),
+    level: levelSchema,
+    example: referenceExampleSchema,
+  })).min(1),
+});
+export type PraepositionenReference = z.infer<typeof praepositionenReferenceSchema>;
+
 export const referenceDataSchema = z.discriminatedUnion('id', [
   caseReferenceSchema,
   pronominalAdverbReferenceSchema,
+  praepositionenReferenceSchema,
   zahlenDatumZeitReferenceSchema,
   sentenceConnectorsReferenceSchema,
   briefeReferenceSchema,

@@ -1320,6 +1320,47 @@ nodes:
         ru: "Я умею написать короткое официальное сообщение в учреждение."
         uk: "Я вмію написати коротке офіційне повідомлення до установи."
 
+  - id: ort-richtung-praepositionen
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [wohnen-umzug, akkusativ, dativ]
+    # `wohnen-umzug` taught the Akkusativ/Dativ alternation on in/an/auf and drills `wo-wohin`
+    # in eleven of its practice items; two items here carry the same tag, so the edge has its
+    # runtime channel — an error on the case decision while practising the triple marks that
+    # confusion weak course-wide and pulls the base topic's items back into mixed training.
+    deepens: [wohnen-umzug]
+    outcomes:
+      - id: weg-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann in einem einfachen Text verstehen, wohin jemand geht, wo er ist und woher er kommt."
+        en: "I can follow in a simple text where somebody is going, where they are and where they have come from."
+        ru: "Я понимаю в простом тексте, куда человек идёт, где он находится и откуда возвращается."
+        uk: "Я розумію в простому тексті, куди людина йде, де вона перебуває і звідки повертається."
+      - id: ziel-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wohin ich gehe oder fahre."
+        en: "I can say where I am going."
+        ru: "Я умею сказать, куда я иду или еду."
+        uk: "Я вмію сказати, куди я йду або їду."
+      - id: ort-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wo ich gerade bin."
+        en: "I can say where I am at the moment."
+        ru: "Я умею сказать, где я сейчас нахожусь."
+        uk: "Я вмію сказати, де я зараз перебуваю."
+      - id: herkunft-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, woher ich komme."
+        en: "I can say where I have come from."
+        ru: "Я умею сказать, откуда я иду или приехал."
+        uk: "Я вмію сказати, звідки я йду або приїхав."
+
   # --- B1 (contract: docs/curriculum/a2-b1.md, frozen 2026-07-24) ---
   - id: erfahrungen-erzaehlen
     level: B1
@@ -2169,6 +2210,19 @@ units:
     title_ru: "Учреждения и услуги"
     title_uk: "Установи та послуги"
     topics: [aemter-dienstleistungen]
+  # The prepositions strand opens the tail of A2, after every case and every unit whose
+  # vocabulary it recycles. `wohnen-umzug` taught in/an/auf with Akkusativ against Dativ; this
+  # unit puts that decision second, behind the one the learner actually makes first — which
+  # preposition the *type of place* takes at all. Appended rather than inserted next to
+  # `wohnen-umzug`, because `units:` file order is the recommended path and an insert there
+  # would move every A2 unit after it.
+  - id: ort-richtung-praepositionen
+    level: A2
+    title_de: "Ort & Richtung"
+    title_en: "Place & direction"
+    title_ru: "Место и направление"
+    title_uk: "Місце і напрямок"
+    topics: [ort-richtung-praepositionen]
   - id: erfahrungen-erzaehlen
     level: B1
     title_de: "Erfahrungen erzählen"
