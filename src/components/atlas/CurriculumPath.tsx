@@ -55,6 +55,7 @@ const UI = {
     en: 'All {level} lessons done — measure what you can already do.',
     ru: 'Все уроки {level} пройдены — проверьте, что вы уже умеете.',
   },
+  loadingPath: { en: 'Loading your progress…', ru: 'Загружаем ваш прогресс…' },
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 /** The tab id lived under a different name before the overview replaced the
@@ -208,6 +209,20 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   }
   function changeView(value: View) {
     setView(value); localStorage.setItem('da:topics-view', value);
+  }
+
+  // `ctx` is null until getAttempts/getCardStates/getTopicsState/getLearningGoal all
+  // resolve. Rendering below that point uses an empty `completions` map for every
+  // topic, which is indistinguishable from "confirmed untouched" — a stalled read (a
+  // backgrounded tab; WebKit is documented to stall IndexedDB transactions there) used
+  // to render every topic "Neu" and assert no progress at all. Say so explicitly
+  // instead: no badge, no path claim, until the data is real.
+  if (ctx === null) {
+    return (
+      <p className="mt-6 text-sm text-stone-500 dark:text-stone-400">
+        {pick(lang, UI.loadingPath)}
+      </p>
+    );
   }
 
   return <div>

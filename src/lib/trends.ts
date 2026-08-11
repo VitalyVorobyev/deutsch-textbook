@@ -23,6 +23,17 @@ export function addDays(d: Date, n: number): Date {
   return x;
 }
 
+/**
+ * Reconstructs the local calendar date a `YYYY-MM-DD` string (as `localDateString`
+ * produces) names. Never `new Date(dateStr)` for one of these: that parses as UTC
+ * midnight, which can land on the wrong local day near a timezone boundary. This
+ * stays in the same local-field arithmetic as `startOfLocalDay`/`mondayOf`.
+ */
+export function parseLocalDate(dateStr: string): Date {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(y!, (m ?? 1) - 1, d ?? 1);
+}
+
 // ---------------------------------------------------------------------------
 // Daily activity (heatmap + streak)
 // ---------------------------------------------------------------------------
