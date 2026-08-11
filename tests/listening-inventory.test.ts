@@ -11,11 +11,13 @@ describe('listening production inventory', () => {
   // live unit, and the recording follows through the Studio, so the wave-1 count does not
   // move. The four are additionally `purpose: model-input` — none of those units owns a
   // listening outcome, so their artifacts carry the genre's spoken form and claim no
-  // listening evidence.
+  // listening evidence. The A2 prepositions unit (ort-richtung-praepositionen, 2026-08-12)
+  // then took it 46 → 47 — appended to the A2 spine rather than B1, and `model-input` for
+  // the same reason: its outcomes are one reading and three writing.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(46);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(46);
+    expect(rows).toHaveLength(47);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(47);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

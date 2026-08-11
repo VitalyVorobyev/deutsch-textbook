@@ -80,6 +80,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'praeteritum-sein-haben': 'biografie-erfahrungen',
   'indirekte-frage': 'lernen-verstehen',
   'hoeflich-konjunktiv': 'aemter-dienstleistungen',
+  'wohin-wo-woher': 'ort-richtung-praepositionen',
   // was escaping the spine check entirely while the table was a lookup, not an allowlist
   'haben-wendungen': 'essen-trinken',
   // --- B1 (contract: docs/curriculum/a2-b1.md) ---

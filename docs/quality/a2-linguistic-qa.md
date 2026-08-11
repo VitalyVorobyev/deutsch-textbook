@@ -1,9 +1,11 @@
 # A2 linguistic QA ledger
 
-Status: **30/30 manifest points linguistically signed off; zero open high/medium findings**.
+Status: **30 of 31 manifest points linguistically signed off; zero open high/medium findings**.
+The thirty-first point (`lokale-praepositionen-ortstyp`) joined the manifest on 2026-08-12 with
+`ort-richtung-praepositionen` and has not been through this ledger's pass; it is the one open row.
 Structural coverage, corpus correctness and learner mastery remain three separate claims.
 
-This ledger will become the linguistic sign-off that structural coverage cannot provide. `30/30` means
+This ledger will become the linguistic sign-off that structural coverage cannot provide. A signed-off row means
 every manifest point has teaching evidence; it does not mean that explanations are exception-safe,
 examples are natural, or a learner has mastered them. A row becomes `verified`, `corrected`, or
 `intentionally simplified` only after its owning articles, practice/drill prompts, accepted
@@ -42,11 +44,13 @@ named high-risk findings but did not yet justify marking every unaffected row co
 | `indefinitpronomen` | corrected | `man` is subject-only with `einen`/`einem` replacements; `jemand`/`niemand` case variants and neutral standard negation are represented without false logical rules. |
 | `genitiv-eigenname` | corrected | `von + Dativ` is safe productive advice, not the only grammar; common-noun genitive is shown receptively. |
 | `passiv-praesens` | corrected | A2 remains receptive and process-passive-focused; `werden` is contrasted with state/result `sein`, and the `man` bridge is not universalized. |
+| `lokale-praepositionen-ortstyp` | open | Added 2026-08-12 with `ort-richtung-praepositionen`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
 
 ## Corpus inventory
 
 The sign-off surface is larger than the 30-row manifest: 22 A2 topics, 105 exercise sets with 750
-items, and 35 A2 readings. The exercise roles are 50 practice sets, 24 probe families, 22 pretests,
+items, and 35 A2 readings — counted at the 2026-07-18 pass, before the prepositions unit was
+appended to the A2 spine. The exercise roles are 50 practice sets, 24 probe families, 22 pretests,
 8 drills and 1 checkpoint. Verification proceeds in bounded topic/point batches and records the
 files checked, so a green validator cannot substitute for a linguistic read.
 

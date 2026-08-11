@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import TaughtIn from '../../components/reference/TaughtIn.astro';
+import PrepositionSystem from '../../components/reference/PrepositionSystem.astro';
+import { withBase } from '../../lib/url';
+---
+
+<Base title="Präpositionen">
+  <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/topics')} class="hover:text-stone-700">Themen</a> / Referenz</nav>
+  <header>
+    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
+    <h1 class="mt-2 text-3xl font-bold">Präpositionen</h1>
+    <p class="mt-2 text-stone-500">
+      <span class="lang-en">Sorted by the decision you have to make, not by the alphabet: which preposition the place takes, and only then which case. The time axis and the genitive prepositions follow at the bottom.</span>
+      <span class="lang-ru">Собрано по порядку решений, а не по алфавиту: сначала какой предлог требует место, и только потом какой падеж. Временна́я шкала и предлоги с Genitiv — в конце страницы.</span>
+      <span class="lang-uk">Зібрано за порядком рішень, а не за абеткою: спершу який прийменник вимагає місце, і лише потім який відмінок. Часова шкала та прийменники з Genitiv — у кінці сторінки.</span>
+    </p>
+    <TaughtIn source="praepositionen" />
+  </header>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">1. Der Ort wählt die Präposition</h2>
+    <p class="mb-4 mt-1 text-sm text-stone-500">
+      <span class="lang-en">Woher? is not Wohin? with a dative article — the preposition itself changes.</span>
+      <span class="lang-ru">Woher? — это не Wohin? с дательным артиклем: меняется сам предлог.</span>
+      <span class="lang-uk">Woher? — це не Wohin? з давальним артиклем: змінюється сам прийменник.</span>
+    </p>
+    <PrepositionSystem view="place-types" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">2. Wechselpräpositionen: Wohin? oder Wo?</h2>
+    <p class="mb-4 mt-1 text-sm text-stone-500">
+      <span class="lang-en">Only these nine have a case to choose. The minimal pairs with their verbs are on Kasus &amp; Präpositionen.</span>
+      <span class="lang-ru">Падеж выбирают только эти девять. Минимальные пары с глаголами — на странице «Kasus &amp; Präpositionen».</span>
+      <span class="lang-uk">Відмінок обирають лише ці дев'ять. Мінімальні пари з дієсловами — на сторінці «Kasus &amp; Präpositionen».</span>
+    </p>
+    <PrepositionSystem view="wechsel" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">3. zu, bei, von: kein Kasuswechsel</h2>
+    <PrepositionSystem view="zu-bei-von" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">aus oder von</h2>
+    <PrepositionSystem view="aus-von" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Kurzformen</h2>
+    <PrepositionSystem view="contractions" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Präpositionen der Zeit</h2>
+    <PrepositionSystem view="temporal" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Präpositionen mit Genitiv</h2>
+    <PrepositionSystem view="genitiv" />
+  </section>
+
+  <section class="mt-10">
+    <h2 class="text-2xl font-bold">Verben mit fester Präposition</h2>
+    <p class="mb-4 mt-1 text-sm text-stone-500">
+      <span class="lang-en">Here the preposition has no meaning of its own — the verb chooses it, and both are learnt together. The da-/wo- forms are on Da- &amp; Wo-Wörter.</span>
+      <span class="lang-ru">Здесь у предлога нет собственного значения: его выбирает глагол, и учат их вместе. Формы da-/wo- — на странице «Da- &amp; Wo-Wörter».</span>
+      <span class="lang-uk">Тут прийменник не має власного значення: його обирає дієслово, і вчать їх разом. Форми da-/wo- — на сторінці «Da- &amp; Wo-Wörter».</span>
+    </p>
+    <PrepositionSystem view="verben" />
+  </section>
+
+  <section class="mt-10 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-5 dark:bg-amber-950/25">
+    <p>
+      <span class="lang-en">Looking something up is support, not evidence. Return to a fresh exercise when you want to check whether you can choose the form without the table.</span>
+      <span class="lang-ru">Справочник — это поддержка, а не доказательство знания. Чтобы проверить выбор без таблицы, вернитесь к новому упражнению.</span>
+      <span class="lang-uk">Довідник — це підтримка, а не доказ знання. Щоб перевірити, чи можете ви обрати форму без таблиці, поверніться до нової вправи.</span>
+    </p>
+  </section>
+</Base>

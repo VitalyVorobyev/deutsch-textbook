@@ -1,15 +1,18 @@
-topic: aemter-dienstleistungen
+topic: ort-richtung-praepositionen
 role: placement
 title: { en: "Placement test A2 — what you already know", ru: "Тест на уровень A2 — что вы уже знаете", uk: "Тест на рівень A2 — що ви вже знаєте" }
 
-# The A2 entry test: 46 tasks over 22 topics, two or three each. Same contract as the A1
+# The A2 entry test: 48 tasks over 23 topics, two or three each. Same contract as the A1
 # test — a topic is placed only when every one of its tasks is answered and the parts-
 # weighted ratio reaches 0.8, and every item's outcomes belong to exactly one topic.
 #
-# Anchored to `aemter-dienstleistungen`, the last A2 topic in the spine, so every focus tag
-# used anywhere in A2 passes the curriculum-order check.
+# Anchored to `ort-richtung-praepositionen`, the last A2 topic in the spine, so every focus
+# tag used anywhere in A2 passes the curriculum-order check. The anchor moved here from
+# `aemter-dienstleistungen` when the prepositions unit was appended to the spine: it is a
+# spine position and nothing else (`getPlacements()` reads the level off the directory), and
+# without the move this file could not carry an item tagged `wohin-wo-woher` at all.
 #
-# Mix: 24 translate, 11 cloze, 6 audio-comprehension, 5 mc. 76% of the test is produced
+# Mix: 25 translate, 12 cloze, 6 audio-comprehension, 5 mc. 77% of the test is produced
 # rather than picked, against caps of 25% mc and 40% selection. A2 is where the course
 # stops being about recognising German and starts being about building it, and a test that
 # decides which of those lessons the learner never sees has to ask them to build it.
@@ -564,3 +567,26 @@ items:
     answer: "Könnten Sie mir bitte helfen? Ich möchte mich anmelden."
     key_tokens: ["Könnten", "möchte"]
     explain: { en: "Two polite chunks side by side: könnten Sie for the request and ich möchte for what you want. helfen takes the dative — mir, not mich — while sich anmelden is reflexive, so the mich in the second sentence belongs to the verb and is not the object of möchte.", ru: "Две вежливые формулы рядом: könnten Sie для просьбы и ich möchte для желания. helfen требует датива — mir, а не mich, — тогда как sich anmelden возвратный, поэтому mich во втором предложении принадлежит глаголу, а не является дополнением при möchte.", uk: "Дві ввічливі формули поруч: könnten Sie для прохання та ich möchte для бажання. helfen вимагає давального — mir, а не mich, — тоді як sich anmelden зворотний, тому mich у другому реченні належить дієслову, а не є додатком при möchte." }
+
+  # --- ort-richtung-praepositionen ---
+  - id: ort-wohin-woher-luecke
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction: { en: "Fill in the preposition together with its article.", ru: "Вставьте предлог вместе с артиклем.", uk: "Вставте прийменник разом з артиклем." }
+    text: "Meine Tochter geht um acht {{in die}} Schule. Um eins kommt sie {{aus der}} Schule."
+    translation: { en: "My daughter goes to school at eight. At one she comes out of school.", ru: "Моя дочь идёт в школу в восемь. В час она выходит из школы.", uk: "Моя донька йде до школи о восьмій. О першій вона виходить зі школи." }
+    explain: { en: "Woher? is not Wohin? with a dative article: the preposition itself changes. A school is a building you go inside, so the destination is in + Akkusativ (in die Schule) and the origin is aus + Dativ (aus der Schule). The location, in der Schule, is the only place where in reappears.", ru: "Woher? — это не Wohin? с артиклем в Dativ: меняется сам предлог. В школу входят внутрь, поэтому цель — это in + Akkusativ (in die Schule), а исходная точка — aus + Dativ (aus der Schule). Предлог in возвращается только в форме места: in der Schule.", uk: "Woher? — це не Wohin? з артиклем у Dativ: змінюється сам прийменник. До школи заходять усередину, тому ціль — це in + Akkusativ (in die Schule), а вихідна точка — aus + Dativ (aus der Schule). Прийменник in повертається лише у формі місця: in der Schule." }
+
+  - id: ort-person-uebersetzen
+    outcomes: [ziel-nennen, ort-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction: { en: "Translate into German. Use the short forms where German has them.", ru: "Переведите на немецкий. Там, где в немецком есть краткие формы, используйте их.", uk: "Перекладіть німецькою. Там, де в німецькій є короткі форми, використовуйте їх." }
+    prompt_en: "On Tuesday I am going to the doctor. At four I am still at the doctor's."
+    prompt_ru: "Во вторник я иду к врачу. В четыре я ещё у врача."
+    prompt_uk: "У вівторок я йду до лікаря. О четвертій я ще в лікаря."
+    answer: "Am Dienstag gehe ich zum Arzt. Um vier bin ich noch beim Arzt."
+    accept: ["Ich gehe am Dienstag zum Arzt. Ich bin um vier noch beim Arzt."]
+    key_tokens: ["zum", "beim"]
+    explain: { en: "A person is a destination as a point, never a place you go inside: zu for the way there, bei for being there, von for coming back. All three take the dative, so nothing alternates — zu dem becomes zum, bei dem becomes beim. in den Arzt and zum Arzt sein are the two errors this pattern produces.", ru: "Человек — это цель-точка, а не помещение, куда входят: zu — путь туда, bei — нахождение там, von — возвращение. Все три требуют Dativ, поэтому чередования нет: zu dem превращается в zum, bei dem — в beim. Две типичные ошибки этой схемы — in den Arzt и zum Arzt sein.", uk: "Людина — це ціль-точка, а не приміщення, куди заходять: zu — шлях туди, bei — перебування там, von — повернення. Усі три вимагають Dativ, тому чергування немає: zu dem перетворюється на zum, bei dem — на beim. Дві типові помилки цієї схеми — in den Arzt і zum Arzt sein." }

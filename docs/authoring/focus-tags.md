@@ -49,6 +49,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `du-sie` | register: du vs Sie with strangers/officials |
 | `wo-wohin` | two-way prepositions: Wo? + Dativ (position) vs Wohin? + Akkusativ (direction) |
 | `stellen-stehen` | the placement/position verb pairs: stellen/stehen, legen/liegen, hängen |
+| `wohin-wo-woher` | which preposition a **type of place** takes, before any case question arises: a building or a country with an article takes *in – in – aus*, an open square or an event *auf – auf – von*, a person or a point destination *zu – bei – von*, a city or an article-less country *nach – in – aus*; plus the fixed pair *nach Hause / zu Hause*. The confusion is that ***Woher?* is not *Wohin?* with a dative article** — the preposition itself changes (*auf* → *von*, *zu* → *von*, *in/nach* → *aus*), and the *aus*/*von* split turns on whether you were **inside** it or **at** it. Distinct from `wo-wohin`, which grades the Akkusativ/Dativ alternation *once in, an or auf has already been chosen*; *zu, bei* and *von* alternate nothing at all |
 | `komparativ-als` | comparison with *als*, incl. the irregulars (gut → besser, gern → lieber, viel → mehr) |
 | `superlativ-am` | the superlative *am …-sten* |
 | `adjektiv-praedikativ` | an adjective after *sein/werden/bleiben* takes **no** ending (❌ Das Zimmer ist kleines) |
