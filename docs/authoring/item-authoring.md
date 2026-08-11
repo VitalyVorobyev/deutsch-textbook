@@ -101,7 +101,7 @@ a placement item they guess **retires a whole lesson they will never be shown ag
 
 | Rule | Why |
 | --- | --- |
-| **Every topic of the level, ≥ 2 items** | One item is a coin flip, and the verdict is permanent. Sizing follows from this: A1 is 24 items over 10 topics, A2 is 46 over 22. |
+| **Every topic of the level, ≥ 2 items** | One item is a coin flip, and the verdict is permanent. Sizing follows from this: A1 is 24 items over 10 topics, A2 is 48 over 23. |
 | **Every item's outcomes belong to exactly one topic** | The item's score decides that topic's verdict; an item counted toward two would blur both, and eleven items could otherwise "cover" twenty-two topics. |
 | Outcomes belong to topics **of the set's own level** | |
 | **`mc` ≤ 25%**, `mc`+`match`+`order` ≤ 40% | Recognition is precisely what a placement test must not mistake for knowledge. |

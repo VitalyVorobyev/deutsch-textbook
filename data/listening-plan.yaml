@@ -436,6 +436,23 @@ units:
         register: "formell-höflich"
         item_types: [audio-comprehension]
         context_sound: "leiser Schalterhallen-Raumton"
+  - unit: ort-richtung-praepositionen
+    level: A2
+    artifacts:
+      # model-input rather than listening-outcome: the unit owns no listening outcome — one
+      # reading and three writing — so the artifact carries the spoken form of the genre (a
+      # route described out loud, where wohin/wo/woher follow one another over the same
+      # places) and claims no listening evidence.
+      - id: ls-ort-richtung-praepositionen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Telefon: jemand erzählt, wohin er heute noch muss, wo er gerade ist und woher er kommt"
+        outcomes: [weg-verstehen]
+        duration_seconds: { min: 40, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-freundlich, Telefonat"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
   - unit: erfahrungen-erzaehlen
     level: B1
     artifacts:

@@ -24,7 +24,7 @@ mastered, and the next topic to learn.*
 
 ## What's inside
 
-- **A complete A1 and A2 course, and every B1 unit written** — ten A1 and twenty-two A2
+- **A complete A1 and A2 course, and every B1 unit written** — ten A1 and twenty-three A2
   units, each with a diagnostic pretest, a full article, a graded reading,
   exercises, and its own vocabulary; fourteen of the fourteen contracted B1 units
   are live, with an end-of-level checkpoint and an entry placement test, and

@@ -1,0 +1,104 @@
+# Delayed probe family — ONE competence: given a place and the kind of place it is, produce
+# its *Wo?* and its *Woher?* member, cold. Three parallel translate variants, served in
+# authoring order across the 2/7/21 delays — one retention curve over one decision.
+#
+# Wo? beside Woher? rather than Wohin? beside Wo?, because that pair is where the topic's
+# claim lives: the origin form is not the location form with another article, it is another
+# preposition (auf → von, bei → von, in → aus). A learner who has kept only the case rule
+# writes aus dem Markt and vom Schwimmbad and is right about the case both times.
+#
+# translate rather than cloze or mc: a cloze prints the gap exactly where the preposition
+# belongs and an mc lists the three candidates side by side, and this competence *is* the
+# choice between them.
+#
+# One place type per variant, so the three sample the table rather than repeating a row: a
+# building (im … / aus dem …), a person (bei … / von …), an event (auf dem … / vom …).
+# Pinned are the prepositions and, where the preposition brings a visible article with it,
+# that article — nothing else, because the verbs and nouns are carrier material and a fumbled
+# Schwimmbad is not this confusion. Each pinned token occurs once in every accepted rendering.
+#
+# Nouns checked against the practice set and the reading by grepping content/, not by
+# re-reading the list: Schwimmbad, Lehrerin and Fest occur in neither, so no variant can be
+# answered from the memory of an arming item.
+topic: ort-richtung-praepositionen
+role: probe
+title:
+  en: "Delayed check — where it is and where it comes from"
+  ru: "Отложенная проверка — где это и откуда"
+  uk: "Відкладена перевірка — де це і звідки"
+arming:
+  - a2/ort-richtung-praepositionen::table-ortstypen
+  - a2/ort-richtung-praepositionen::cloze-aus-oder-von
+  - a2/ort-richtung-praepositionen::cloze-zu-bei-von-freundin
+  - a2/ort-richtung-praepositionen::cloze-nach-hause-zu-hause
+  - a2/ort-richtung-praepositionen::mc-bin-beim-arzt
+  - a2/ort-richtung-praepositionen::mc-in-die-schweiz
+  - a2/ort-richtung-praepositionen::uebersetzen-nach-muenchen
+  - a2/ort-richtung-praepositionen::uebersetzen-aus-dem-kino
+  - a2/ort-richtung-praepositionen::diktat-zum-bahnhof
+  - a2/ort-richtung-praepositionen::uebersetzen-zu-und-von-der-tante
+items:
+  - id: variant-a
+    outcomes: [ort-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. For 'swimming pool' take das Schwimmbad, and use the short form where German has one."
+      ru: "Переведите на немецкий. Для «бассейн» возьмите das Schwimmbad; там, где в немецком есть краткая форма, используйте её."
+      uk: "Перекладіть німецькою. Для «басейн» візьміть das Schwimmbad; там, де в німецькій є коротка форма, використовуйте її."
+    prompt_en: "At five the children are still in the swimming pool. At six they come out of the swimming pool."
+    prompt_ru: "В пять дети ещё в бассейне. В шесть они выходят из бассейна."
+    prompt_uk: "О п'ятій діти ще в басейні. О шостій вони виходять з басейну."
+    answer: "Um fünf sind die Kinder noch im Schwimmbad. Um sechs kommen sie aus dem Schwimmbad."
+    accept:
+      # Subject-first is the same V2 sentence with another element in position 1.
+      - "Die Kinder sind um fünf noch im Schwimmbad. Sie kommen um sechs aus dem Schwimmbad."
+    key_tokens: ["im", "aus", "dem"]
+    explain:
+      en: "One place, two members, two different prepositions. A swimming pool is a building you are inside, so the location is in + Dativ, contracted to im. The origin then does not keep in and swap the article — it swaps the preposition: aus dem Schwimmbad. vom Schwimmbad would put the children beside the building rather than in the water, and im Schwimmbad in the second sentence would say they never left."
+      ru: "Одно место, два члена тройки, два разных предлога. Бассейн — здание, внутри которого находятся, поэтому место — это in + Dativ, в слитной форме im. А исходная точка не сохраняет in с другим артиклем: она меняет сам предлог — aus dem Schwimmbad. Форма vom Schwimmbad поставила бы детей рядом со зданием, а не в воду, а im Schwimmbad во втором предложении означало бы, что они никуда и не выходили."
+      uk: "Одне місце, два члени трійки, два різні прийменники. Басейн — будівля, всередині якої перебувають, тому місце — це in + Dativ, у злитій формі im. А вихідна точка не зберігає in з іншим артиклем: вона змінює сам прийменник — aus dem Schwimmbad. Форма vom Schwimmbad поставила б дітей поруч із будівлею, а не у воду, а im Schwimmbad у другому реченні означало б, що вони нікуди й не виходили."
+
+  - id: variant-b
+    outcomes: [ort-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. For 'teacher' take die Lehrerin."
+      ru: "Переведите на немецкий. Для «учительница» возьмите die Lehrerin."
+      uk: "Перекладіть німецькою. Для «вчителька» візьміть die Lehrerin."
+    prompt_en: "After the course Lena is still at her teacher's. At six she comes back from her."
+    prompt_ru: "После курса Лена ещё у учительницы. В шесть она возвращается от неё."
+    prompt_uk: "Після курсу Лена ще у вчительки. О шостій вона повертається від неї."
+    answer: "Nach dem Kurs ist Lena noch bei ihrer Lehrerin. Um sechs kommt sie von ihr zurück."
+    accept:
+      - "Lena ist nach dem Kurs noch bei ihrer Lehrerin. Sie kommt um sechs von ihr zurück."
+      # RU «у учительницы» / UK «у вчительки» are bare nouns — they license the definite
+      # article as well as the possessive, and neither carries the graded pair (bei/von).
+      - "Nach dem Kurs ist Lena noch bei der Lehrerin. Um sechs kommt sie von ihr zurück."
+      - "Lena ist nach dem Kurs noch bei der Lehrerin. Sie kommt um sechs von ihr zurück."
+    key_tokens: ["bei", "von"]
+    explain:
+      en: "A person is the row of the table with no case to choose: bei for being there, von for coming away, zu for going there — all three dative, so ihrer Lehrerin never changes shape and the preposition carries the whole meaning. in der Lehrerin is impossible (a person is not a room) and aus ihr belongs to buildings; with people the origin is always von."
+      ru: "Человек — это строка таблицы, где падеж выбирать не приходится: bei — находиться там, von — уходить оттуда, zu — идти туда; все три с Dativ, поэтому ihrer Lehrerin нигде не меняет форму, и весь смысл несёт предлог. Вариант in der Lehrerin невозможен (человек не помещение), а aus ihr относится к зданиям: у людей исходная точка всегда von."
+      uk: "Людина — це рядок таблиці, де відмінок обирати не доводиться: bei — перебувати там, von — іти звідти, zu — іти туди; усі три з Dativ, тому ihrer Lehrerin ніде не змінює форми, і весь зміст несе прийменник. Варіант in der Lehrerin неможливий (людина не приміщення), а aus ihr стосується будівель: у людей вихідна точка завжди von."
+
+  - id: variant-c
+    outcomes: [ort-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. For 'festival' take das Fest, and use the short form where German has one."
+      ru: "Переведите на немецкий. Для «праздник» возьмите das Fest; там, где в немецком есть краткая форма, используйте её."
+      uk: "Перекладіть німецькою. Для «свято» візьміть das Fest; там, де в німецькій є коротка форма, використовуйте її."
+    prompt_en: "On Sunday we are at the festival. At eleven we come back from the festival."
+    prompt_ru: "В воскресенье мы на празднике. В одиннадцать мы возвращаемся с праздника."
+    prompt_uk: "У неділю ми на святі. Об одинадцятій ми повертаємося зі свята."
+    answer: "Am Sonntag sind wir auf dem Fest. Um elf kommen wir vom Fest zurück."
+    accept:
+      - "Wir sind am Sonntag auf dem Fest. Wir kommen um elf vom Fest zurück."
+    key_tokens: ["dem", "vom"]
+    explain:
+      en: "An event behaves like an open square: you are on it rather than in it, so the location is auf + Dativ — auf dem Fest, dative because nothing is going anywhere. The origin again swaps the preposition and not the case: vom Fest, never aus dem Fest, which would treat a celebration as a building with an inside. That swap is the whole content of the Woher? column."
+      ru: "Мероприятие ведёт себя как открытая площадка: на нём находятся, а не внутри него, поэтому место — это auf + Dativ: auf dem Fest, и Dativ здесь потому, что никто никуда не движется. Исходная точка снова меняет предлог, а не падеж: vom Fest, но никогда aus dem Fest — это сделало бы праздник зданием, у которого есть «внутри». В этой замене и состоит всё содержание столбца Woher?."
+      uk: "Захід поводиться як відкритий майданчик: на ньому перебувають, а не всередині нього, тому місце — це auf + Dativ: auf dem Fest, і Dativ тут тому, що ніхто нікуди не рухається. Вихідна точка знову змінює прийменник, а не відмінок: vom Fest, але ніколи aus dem Fest — це зробило б свято будівлею, у якої є «всередині». У цій заміні й полягає весь зміст стовпця Woher?."
