@@ -101,7 +101,30 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
-- **P25-6 · 73 B1 Wortliste rows are structurally cardless — decide which can earn `~`** — after
+- **P25-7 · Slip-forgiveness does not reach a typo outside `key_tokens`** — the 2026-08-11 triage
+  confirmed four rows where every `key_tokens` token was perfect and one non-graded-token typo
+  still sank the rendering and re-enters the focus signal as an error on confirm: bliebt/bleibt
+  (`b1/digitales-leben:uebersetzen-sodass-bildschirm` row a), zech/zehn
+  (`b1/probe-informationen-vermitteln:variant-a` row a), mit/mir
+  (`b1/geld-vertraege:uebersetzen-nachfrage-indirekt` row a), Merr/Meer
+  (`a2/probe-verben-mit-praepositionen:probe-haus-am-meer` row a) — rulings and notes in
+  `data/grading-decisions.yaml` (decidedAt 2026-08-11). **Do not change the scorer without
+  measuring against the attempt log first** — the two `key_tokens: []` reversals both came from an
+  invented fixture, not the corpus, and were wrong twice. First step: pull every historical confirm
+  where the only divergence sits outside `key_tokens`, and measure whether widening
+  slip-forgiveness there would move real attribution.
+- **P25-9 · Band 1 re-deals a failed item before the drill that remediates it can ever be dealt** —
+  `buildSession` (`src/lib/training.ts`) serves last-answer-wrong items first, then seen weak-focus
+  items, then never-seen items. Consequence, measured 2026-08-11:
+  `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and failed in nine sessions
+  running (2026-07-24 → 2026-08-10, the learner's «Während warteten wir» re-anchoring each time),
+  while all eight items of `b1/drill-temporal-nebensatz` — shipped 2026-08-03 (#137), attached to
+  the topic, same focus tag — sat in band 3 with zero attempts ever. A fossilizing item cannot be
+  broken by re-serving itself, and any new drill would join the same band-3 queue, so the fix is
+  selection, not content (candidates: cap consecutive re-deals of one item; let a due drill item of
+  the same weak focus preempt band 1). The delayed probe runs 2/2 on this competence, so the loop
+  is measurably an item-serving artifact, not lost competence. Fix alongside the PR-4 session work
+  or PR-8 remediation design; measure the deal distribution before and after.
   lexis wave 4b (2026-08-06) B1 coverage is 3343/3416: 3279 cards, 64 grammar `~`, 73 open. The 73
   (the `NOCARD` set in the wave-4 partition) are bound morphemes (`hell-`, `-weise`, `irgend-`),
   abbreviations (`bzw.`, `EG`, `vgl.`), correlative frames (`je … desto`, `sowohl … als auch`,
@@ -268,6 +291,13 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Product surfaces
 
+- **P25-8 · Eight top-level nav tabs is past comfortable — plan an IA consolidation pass** — `nav`
+  in `src/layouts/Base.astro:23-32` lists Heute, Themen, Entdecken, Referenz, Üben, Prüfung,
+  Fortschritt, Über; P24-7 fixed the sub-640px disclosure, not the count. Owner judgement,
+  2026-08-11: "8 nav tabs is way too much." Priority: below the current exam/triage/preposition
+  work, but **required before the next tagged release — the one that reports B1 complete**. First
+  step: inventory the eight against actual necessity/traffic and propose a consolidated set (merge
+  candidates, demote to a menu, or fold into an existing tab).
 - **P25-1 · `/ueben/wortschatz` is a ~19,000 px flat deck list on a phone** — 22.3 viewport-heights
   at 390 px, one card per deck for the whole corpus, and every Wortliste wave makes it longer.
   Group by level with collapsed sections and/or a filter row. Evidence and method:

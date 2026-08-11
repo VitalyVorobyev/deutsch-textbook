@@ -144,6 +144,7 @@ items:
   # says what you want to do yourself. Both existing translate items here drill würde gern alone,
   # so the request half had never been produced.
   - id: uebersetzen-formelle-bitte-mail
+    revision: 2
     outcomes: [formelle-nachricht-schreiben, anliegen-nennen]
     type: translate
     focus: hoeflich-konjunktiv
@@ -159,6 +160,11 @@ items:
       - "Könnten Sie mir das Formular bitte schicken? Ich würde gern am Montag vorbeikommen."
       - "Könnten Sie mir bitte das Formular schicken? Ich würde gerne am Montag vorbeikommen."
       - "Könnten Sie mir das Formular bitte schicken? Ich würde gerne am Montag vorbeikommen."
+      # RU carries no «пожалуйста», so dropping bitte is faithful, and kommen is a looser
+      # but legitimate rendering of «зайти» (2026-08-11 triage, row 2b); Könnten/würde
+      # unaffected.
+      - "Könnten Sie mir das Formular schicken? Ich würde gern am Montag kommen."
+      - "Könnten Sie mir das Formular schicken? Ich würde gerne am Montag kommen."
     key_tokens: ["Könnten", "würde"]
     explain:
       en: "A formal message is assembled out of two polite chunks, and the whole item turns on telling them apart. Könnten Sie …? is a request: somebody else is going to do the thing, and the infinitive schicken drops to the very end, exactly as it would after a modal. Ich würde gern … is a wish about yourself: you are the one who will act, and again the infinitive closes the clause. Swap them and the message says the wrong thing — Ich würde gern das Formular schicken would mean you want to do the sending, which is not what you came to ask. Watch the umlaut in the first word: Können Sie das Formular schicken? is a plain question about ability and lands blunter than anything you want to send to an office; the polite form is Könnten. And keep hätte gern away from a verb — that chunk takes a noun and stops (Ich hätte gern eine Bescheinigung), so Ich hätte gern vorbeikommen is not a sentence. vorbeikommen is separable, but after würde gern it is an infinitive and stays in one piece at the end."

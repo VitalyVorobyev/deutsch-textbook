@@ -110,6 +110,7 @@ items:
       uk: "Дієслів два, але відмінюється лише одне — muss. dass вводить підрядне, а підрядне закінчується відмінюваним дієсловом: значить, muss стоїть найостаннішим, а інфінітив lernen вишиковується перед ним — … dass er mehr Deutsch lernen muss. Само по собі це речення звучало б навпаки: Er muss mehr Deutsch lernen. Сполучник вивертає рамку навиворіт. І не губіть кому перед dass: у німецькій вона обов'язкова."
 
   - id: variant-c
+    revision: 2
     outcomes: [weil-grund]
     type: translate
     focus: nebensatz-verbende
@@ -125,6 +126,13 @@ items:
       - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein musst."
       - "Wenn du um sechs Uhr im Büro sein musst, nehmen wir ein Taxi."
       - "Wenn du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
+      # falls is a fully grammatical conditional synonym of wenn (2026-08-11 triage, row
+      # 18a); musst still closes the clause, so the graded rule is untouched. Closed over
+      # both existing variant dimensions (fahren-mit-dem-Taxi wording, fronted clause).
+      - "Wir nehmen ein Taxi, falls du um sechs Uhr im Büro sein musst."
+      - "Wir fahren mit dem Taxi, falls du um sechs Uhr im Büro sein musst."
+      - "Falls du um sechs Uhr im Büro sein musst, nehmen wir ein Taxi."
+      - "Falls du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
     key_tokens: ["musst"]
     explain:
       en: "wenn is the third conjunction of the set and it behaves exactly like the other two: the conjugated verb closes the clause. The conjugated verb is the modal musst, so the infinitive sein stands in front of it — … wenn du um sechs Uhr im Büro sein musst. Everything else, um sechs Uhr and im Büro, simply lines up inside the clause and changes nothing: only the verb has a fixed address. And note the tense — German uses the plain present inside a wenn-clause even when the sentence is about tomorrow."
