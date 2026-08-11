@@ -34,13 +34,27 @@
  *           timeLimitMin: 20                # from the Kandidatenblätter instruction page
  *           audio: pruefungstraining_2_hoeren_a1_erwachsene.mp4   # optional, relative path
  *           pdfPages: [8, 9, 10, 11, 12, 13, 14]   # 1-based PDF page indices to render
- *           maxScaled: 25                   # scaled maximum from the Prüferblätter
+ *           answerPdfPages: [33, 34]        # optional Prüferblätter pages (Transkriptionen,
+ *                                           # Bewertung, Leistungsbeispiele) — shown after a run
+ *           maxScaled: 25                   # module maximum as the source's Antwortbogen states it
  *           teile:
  *             - teil: 1
  *               plays: twice                # once | twice, per the instruction line
  *               items:
  *                 - { nr: 1, shape: abc, key: b }   # shape: abc | ab | rf; key: a/b/c, a/b, or r/f
  *                 - { nr: 2, shape: abc, key: a }
+ *
+ *   Schreiben Teil 1 blanks are text items, compared against `answer` + `accept` variants:
+ *                 - { nr: 1, shape: text, answer: "Lyon", accept: ["Lyon, Frankreich"] }
+ *   Schreiben Teil 2 is a free part — no key exists, the printed criteria grade it:
+ *             - teil: 2
+ *               free:
+ *                 label: "Kurze Mitteilung schreiben, ca. 30 Wörter"
+ *                 points: 10
+ *                 criteria:                 # the printed steps, for the self-assessment panel
+ *                   - { label: "Inhaltspunkt 1", points: [3, 1.5, 0] }
+ *   A practice-only module (Sprechen — Gruppenprüfung, nothing auto-gradable) has `teile: []`:
+ *   its pages become study cards, and no answer sheet or history exists for it.
  *
  * Failure modes are first-class: a missing config, a missing pdftoppm/ffmpeg, a missing
  * referenced pdf/audio file, or a manifest that fails `parseExamManifest` each print one
@@ -63,6 +77,7 @@ import {
   isExamAnswer,
   parseExamManifest,
   shapeAllows,
+  type ExamFreeSpec,
   type ExamItemSpec,
   type ExamManifest,
   type ExamModuleId,
@@ -139,6 +154,8 @@ interface SourceModule {
   timeLimitMin: number;
   audio?: string;
   pdfPages: number[];
+  /** Prüferblätter pages, rendered like task pages but surfaced only after a run. */
+  answerPdfPages?: number[];
   maxScaled: number;
   teile: ExamTeilSpec[];
 }
@@ -257,8 +274,19 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         errors.push(`${mWhere2}: pdfPages must be a non-empty array of positive 1-based page numbers`);
         return;
       }
-      if (!Array.isArray(m.teile) || m.teile.length === 0) {
-        errors.push(`${mWhere2}: teile must be a non-empty array`);
+      if (
+        m.answerPdfPages !== undefined &&
+        (!Array.isArray(m.answerPdfPages) ||
+          m.answerPdfPages.length === 0 ||
+          m.answerPdfPages.some((p) => !isPositiveInt(p)))
+      ) {
+        errors.push(
+          `${mWhere2}: answerPdfPages must be a non-empty array of positive 1-based page numbers when present`,
+        );
+        return;
+      }
+      if (!Array.isArray(m.teile)) {
+        errors.push(`${mWhere2}: teile must be an array (empty only for a practice-only module like Sprechen)`);
         return;
       }
 
@@ -285,13 +313,77 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         if (t.plays !== undefined && t.plays !== 'once' && t.plays !== 'twice') {
           errors.push(`${tWhere}.plays must be "once" or "twice" when present`);
         }
-        if (!Array.isArray(t.items) || t.items.length === 0) {
-          errors.push(`${tWhere}.items must be a non-empty array`);
+        const rawItems = t.items ?? [];
+        if (!Array.isArray(rawItems)) {
+          errors.push(`${tWhere}.items must be an array when present`);
+          return;
+        }
+
+        let free: ExamFreeSpec | undefined;
+        if (t.free !== undefined) {
+          if (typeof t.free !== 'object' || t.free === null) {
+            errors.push(`${tWhere}.free is not a mapping`);
+            return;
+          }
+          const f = t.free as Record<string, unknown>;
+          if (typeof f.label !== 'string' || !f.label) {
+            errors.push(`${tWhere}.free.label must be a non-empty string`);
+            return;
+          }
+          if (!isPositiveNumber(f.points)) {
+            errors.push(`${tWhere}.free.points must be a positive number`);
+            return;
+          }
+          let criteria: ExamFreeSpec['criteria'];
+          if (f.criteria !== undefined) {
+            if (!Array.isArray(f.criteria) || f.criteria.length === 0) {
+              errors.push(`${tWhere}.free.criteria must be a non-empty array when present`);
+              return;
+            }
+            const parsed: { label: string; points: number[] }[] = [];
+            let broken = false;
+            f.criteria.forEach((rawCriterion: unknown, ci: number) => {
+              const cWhere = `${tWhere}.free.criteria[${ci}]`;
+              if (typeof rawCriterion !== 'object' || rawCriterion === null) {
+                errors.push(`${cWhere} is not a mapping`);
+                broken = true;
+                return;
+              }
+              const c = rawCriterion as Record<string, unknown>;
+              if (typeof c.label !== 'string' || !c.label) {
+                errors.push(`${cWhere}.label must be a non-empty string`);
+                broken = true;
+                return;
+              }
+              if (
+                !Array.isArray(c.points) ||
+                c.points.length === 0 ||
+                c.points.some((p) => typeof p !== 'number' || p < 0)
+              ) {
+                errors.push(`${cWhere}.points must be a non-empty array of numbers ≥ 0`);
+                broken = true;
+                return;
+              }
+              parsed.push({ label: c.label, points: c.points as number[] });
+            });
+            if (broken) return;
+            criteria = parsed;
+            const criteriaMax = parsed.reduce((sum, c) => sum + Math.max(...c.points), 0);
+            if (criteriaMax !== f.points) {
+              warnings.push(
+                `${tWhere}: criteria maxima sum to ${criteriaMax}, free.points is ${f.points} — check the Bewertung page`,
+              );
+            }
+          }
+          free = { label: f.label, points: f.points, ...(criteria ? { criteria } : {}) };
+        }
+        if (rawItems.length === 0 && !free) {
+          errors.push(`${tWhere}: a Teil needs items, a free part, or both`);
           return;
         }
 
         const items: ExamItemSpec[] = [];
-        t.items.forEach((rawItem: unknown, ii: number) => {
+        rawItems.forEach((rawItem: unknown, ii: number) => {
           const iWhere = `${tWhere}, items[${ii}]`;
           if (typeof rawItem !== 'object' || rawItem === null) {
             errors.push(`${iWhere} is not a mapping`);
@@ -302,19 +394,45 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
             errors.push(`${iWhere}.nr must be a positive integer`);
             return;
           }
-          if (it.shape !== 'abc' && it.shape !== 'ab' && it.shape !== 'rf') {
-            errors.push(`${iWhere}.shape must be "abc", "ab" or "rf"`);
+          if (it.shape === 'text') {
+            if (typeof it.answer !== 'string' || !it.answer) {
+              errors.push(`${iWhere}.answer must be a non-empty string for shape "text"`);
+              return;
+            }
+            if (
+              it.accept !== undefined &&
+              (!Array.isArray(it.accept) ||
+                it.accept.length === 0 ||
+                it.accept.some((a) => typeof a !== 'string' || !a))
+            ) {
+              errors.push(`${iWhere}.accept must be a non-empty array of non-empty strings when present`);
+              return;
+            }
+            items.push({
+              nr: it.nr,
+              shape: 'text',
+              answer: it.answer,
+              ...(it.accept !== undefined ? { accept: it.accept as string[] } : {}),
+            });
+          } else if (it.shape === 'abc' || it.shape === 'ab' || it.shape === 'rf') {
+            if (!isAnswer(it.key) || !shapeAllows(it.shape, it.key)) {
+              errors.push(`${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"`);
+              return;
+            }
+            items.push({ nr: it.nr, shape: it.shape, key: it.key });
+          } else {
+            errors.push(`${iWhere}.shape must be "abc", "ab", "rf" or "text"`);
             return;
           }
-          if (!isAnswer(it.key) || !shapeAllows(it.shape, it.key)) {
-            errors.push(`${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"`);
-            return;
-          }
-          items.push({ nr: it.nr, shape: it.shape, key: it.key });
           allNrs.push(it.nr);
         });
 
-        if (items.length) teile.push({ teil: t.teil, plays: t.plays as 'once' | 'twice' | undefined, items });
+        teile.push({
+          teil: t.teil,
+          plays: t.plays as 'once' | 'twice' | undefined,
+          items,
+          ...(free ? { free } : {}),
+        });
       });
 
       // Consecutive-ish item numbering across the whole module — a warning, not a failure:
@@ -330,16 +448,15 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         }
       }
 
-      if (teile.length) {
-        modules.push({
-          module: moduleId,
-          timeLimitMin: m.timeLimitMin as number,
-          maxScaled: m.maxScaled as number,
-          audio: m.audio as string | undefined,
-          pdfPages: m.pdfPages as number[],
-          teile,
-        });
-      }
+      modules.push({
+        module: moduleId,
+        timeLimitMin: m.timeLimitMin as number,
+        maxScaled: m.maxScaled as number,
+        audio: m.audio as string | undefined,
+        pdfPages: m.pdfPages as number[],
+        answerPdfPages: m.answerPdfPages as number[] | undefined,
+        teile,
+      });
     });
 
     if (modules.length) {
@@ -478,7 +595,7 @@ function ingest(
   for (const set of config.sets) {
     const pdfPath = resolve(sourcesDir, set.pdf);
     for (const module of set.modules) {
-      for (const page of module.pdfPages) {
+      for (const page of [...module.pdfPages, ...(module.answerPdfPages ?? [])]) {
         const result = renderPage(opts.pdftoppmBin, pdfPath, page, set.id, module.module, opts.force);
         if (result === 'rendered') stats.pagesRendered++;
         else stats.pagesSkipped++;
@@ -507,6 +624,9 @@ export function buildManifest(config: SourceConfig): ExamManifest {
       module: module.module,
       timeLimitMin: module.timeLimitMin,
       pages: module.pdfPages.map((page) => pagePngUrl(set.id, module.module, page)),
+      answerPages: module.answerPdfPages
+        ? module.answerPdfPages.map((page) => pagePngUrl(set.id, module.module, page))
+        : undefined,
       audio: module.audio ? audioUrl(set.id, module.module) : undefined,
       maxScaled: module.maxScaled,
       teile: module.teile,
@@ -522,7 +642,7 @@ export function missingOutputs(manifest: ExamManifest): string[] {
   const onDisk = (url: string) => existsSync(join(ROOT, 'public', url.replace(/^\//, '')));
   for (const set of manifest.sets) {
     for (const module of set.modules) {
-      for (const pageUrl of module.pages) {
+      for (const pageUrl of [...module.pages, ...(module.answerPages ?? [])]) {
         if (!onDisk(pageUrl)) problems.push(`${set.id}/${module.module}: missing ${pageUrl}`);
       }
       if (module.audio && !onDisk(module.audio)) {
@@ -589,7 +709,7 @@ if (missingFiles.length) {
 const totalSets = config.sets.length;
 const totalModules = config.sets.reduce((n, s) => n + s.modules.length, 0);
 const totalPages = config.sets.reduce(
-  (n, s) => n + s.modules.reduce((mn, m) => mn + m.pdfPages.length, 0),
+  (n, s) => n + s.modules.reduce((mn, m) => mn + m.pdfPages.length + (m.answerPdfPages?.length ?? 0), 0),
   0,
 );
 const totalAudio = config.sets.reduce((n, s) => n + s.modules.filter((m) => m.audio).length, 0);
@@ -603,9 +723,12 @@ if (options.check) {
     console.log(`  ${set.id} — ${set.title} (${set.level})`);
     for (const module of set.modules) {
       const items = module.teile.reduce((n, t) => n + t.items.length, 0);
+      const freeParts = module.teile.filter((t) => t.free).length;
       console.log(
         `    ${module.module}: ${module.pdfPages.length} page(s)` +
-          `${module.audio ? ', 1 audio track' : ''}, ${module.teile.length} Teil(e), ${items} item(s)`,
+          `${module.answerPdfPages ? ` + ${module.answerPdfPages.length} answer page(s)` : ''}` +
+          `${module.audio ? ', 1 audio track' : ''}, ${module.teile.length} Teil(e), ${items} item(s)` +
+          `${freeParts ? `, ${freeParts} free part(s)` : ''}`,
       );
     }
   }

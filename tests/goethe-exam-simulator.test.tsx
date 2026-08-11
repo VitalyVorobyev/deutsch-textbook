@@ -78,6 +78,44 @@ const MANIFEST: ExamManifest = {
             { teil: 2, items: [{ nr: 3, shape: 'ab', key: 'a' }] },
           ],
         },
+        {
+          module: 'schreiben',
+          timeLimitMin: 20,
+          pages: ['/exams/demo/s1.png'],
+          answerPages: ['/exams/demo/s-kriterien.png'],
+          maxScaled: 12, // 2 auto blanks + the 10-point free part
+          teile: [
+            {
+              teil: 1,
+              items: [
+                { nr: 1, shape: 'text', answer: 'Lyon', accept: ['Lyon, Frankreich'] },
+                { nr: 2, shape: 'text', answer: '9 - 12 Uhr' },
+              ],
+            },
+            {
+              teil: 2,
+              items: [],
+              free: {
+                label: 'Kurze Mitteilung, ca. 30 Wörter',
+                points: 10,
+                criteria: [
+                  { label: 'Inhaltspunkt 1', points: [3, 1.5, 0] },
+                  { label: 'Inhaltspunkt 2', points: [3, 1.5, 0] },
+                  { label: 'Inhaltspunkt 3', points: [3, 1.5, 0] },
+                  { label: 'Kommunikative Gestaltung', points: [1, 0.5, 0] },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          module: 'sprechen',
+          timeLimitMin: 15,
+          pages: ['/exams/demo/sp1.png'],
+          answerPages: ['/exams/demo/sp-hinweise.png'],
+          maxScaled: 15,
+          teile: [],
+        },
       ],
     },
   ],
@@ -220,5 +258,92 @@ describe('Prüfungsmodus', () => {
     expect(await screen.findByText(/Die Zeit war um/, {}, { timeout: 4000 })).toBeTruthy();
     expect(history().length).toBe(1);
     expect(history()[0]!.raw).toBe(0);
+  });
+});
+
+describe('Schreiben', () => {
+  test('typed blanks settle on request, the free text is kept, and the self-assessment stays separate', async () => {
+    serveManifest(true);
+    await openDemoSet(/Schreiben · 20 Min/, /Üben · ohne Zeit/);
+
+    // Blank 1: an accept variant, case-insensitive. Settled on Prüfen, not on typing.
+    fireEvent.change(screen.getByLabelText('Antwort zu Aufgabe 1'), {
+      target: { value: 'lyon, frankreich' },
+    });
+    expect(screen.getByText('richtig: 0/0')).toBeTruthy();
+    fireEvent.click(screen.getAllByRole('button', { name: 'Prüfen' })[0]!);
+    expect(screen.getByText('richtig: 1/1')).toBeTruthy();
+
+    // Blank 2: hyphen spacing and a trailing period normalize away.
+    fireEvent.change(screen.getByLabelText('Antwort zu Aufgabe 2'), {
+      target: { value: '9-12 Uhr.' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Prüfen' }));
+    expect(screen.getByText('richtig: 2/2')).toBeTruthy();
+
+    fireEvent.change(screen.getByLabelText('Text zu Teil 2'), {
+      target: { value: 'Lieber Thomas, ich komme gern zur Party.' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Beenden' }));
+
+    expect(await screen.findByText('Ergebnis')).toBeTruthy();
+    // The automatic score is the blanks alone — the free part never inflates it.
+    expect(history()[0]!).toMatchObject({ raw: 2, rawMax: 2 });
+    expect(history()[0]!.texts).toEqual({ 2: 'Lieber Thomas, ich komme gern zur Party.' });
+    expect(screen.getByText(/dazu kommen 10 Punkte des freien Teils/)).toBeTruthy();
+
+    // Self-assessment: 3 + 1,5 + 0 + 1 = 5,5 — applied, it lands on the record as selfScore.
+    fireEvent.click(screen.getAllByRole('button', { name: '3' })[0]!);
+    fireEvent.click(screen.getAllByRole('button', { name: '1,5' })[1]!);
+    fireEvent.click(screen.getAllByRole('button', { name: '0' })[2]!);
+    fireEvent.click(screen.getByRole('button', { name: '1' }));
+    fireEvent.click(screen.getByRole('button', { name: /Übernehmen · 5,5\/10/ }));
+
+    expect(await screen.findByText(/mit Selbstbewertung zusammen 7,5\/12/)).toBeTruthy();
+    expect(history()[0]!).toMatchObject({ raw: 2, selfScore: 5.5, selfScoreMax: 10 });
+  });
+});
+
+describe('Sprechen', () => {
+  test('a practice module opens as task cards and never writes history', async () => {
+    serveManifest(true);
+    render(<GoetheExamSimulator />);
+    fireEvent.click(await screen.findByText('Demo Satz'));
+    fireEvent.click(await screen.findByRole('button', { name: /Sprechen · 15 Min/ }));
+
+    // No Prüfungsmodus for a Gruppenprüfung — the setup offers the cards, nothing else.
+    expect(screen.queryByRole('button', { name: /Prüfungsmodus/ })).toBeNull();
+    fireEvent.click(await screen.findByRole('button', { name: /Aufgabenkarten ansehen/ }));
+    expect(await screen.findByText(/laut sprechen, buchstabieren/)).toBeTruthy();
+    expect(screen.getByText(/Hinweise & Bewertung ansehen/)).toBeTruthy();
+    expect(history().length).toBe(0);
+  });
+});
+
+describe('Ganze schriftliche Prüfung', () => {
+  test('runs the three modules in order, shows nothing between them, and records each once', async () => {
+    serveManifest(true);
+    render(<GoetheExamSimulator />);
+    fireEvent.click(await screen.findByText('Demo Satz'));
+    fireEvent.click(await screen.findByRole('button', { name: /Komplett starten · ca\. 65 Min/ }));
+
+    for (const [step, label] of [
+      [1, 'Hören'],
+      [2, 'Lesen'],
+      [3, 'Schreiben'],
+    ] as const) {
+      expect(await screen.findByText(`Modul ${step} von 3: ${label}`)).toBeTruthy();
+      // No result of an earlier module leaks onto the interstitial.
+      expect(screen.queryByText('Ergebnis')).toBeNull();
+      fireEvent.click(screen.getByRole('button', { name: `${label} starten` }));
+      fireEvent.click(await screen.findByRole('button', { name: 'Abgeben' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Ja, abgeben' }));
+    }
+
+    expect(await screen.findByText('Ganze schriftliche Prüfung — Ergebnis')).toBeTruthy();
+    expect(screen.getByText(/noch nicht selbst bewertet/)).toBeTruthy();
+    expect(history().length).toBe(3);
+    expect(history().map((run) => run.module)).toEqual(['hoeren', 'lesen', 'schreiben']);
+    expect(history().every((run) => run.mode === 'pruefung')).toBe(true);
   });
 });
