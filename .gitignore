@@ -25,6 +25,13 @@ npm-debug.log*
 # The official Wortliste PDFs are copyrighted transcription sources — never committed.
 docs/Goethe-Zertifikat_B1_Wortliste.pdf
 
+# Official Goethe-Institut exam sets (PDFs, audio, video) and everything derived from
+# them — sliced audio, rendered task pages, the local exam manifest — are copyrighted.
+# The exam trainer (ADR 0009) reads them from these local paths; they never enter the repo.
+docs/GeotheInstitute/
+sources/goethe-exams/
+public/exams/
+
 # design-sync (claude.ai/design)
 .ds-sync/
 ds-bundle/
@@ -47,3 +54,6 @@ tools/listening-studio/.pytest_cache/
 tools/listening-studio/.ruff_cache/
 tools/listening-studio/**/__pycache__/
 feedback.md
+# Screenshots attached to the feedback inbox — private, like feedback.md itself.
+/IMG_*.jpeg
+/IMG_*.png
