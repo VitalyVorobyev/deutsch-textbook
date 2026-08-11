@@ -1,0 +1,64 @@
+topic: verben-mit-kasus
+role: pretest
+title:
+  en: "Pretest — which case does the verb want?"
+  ru: "Предтест — какой падеж требует глагол?"
+  uk: "Претест — якого відмінка вимагає дієслово?"
+items:
+  - id: pretest-anrufen-bruder
+    outcomes: [akkusativ-person-nennen]
+    type: mc
+    focus: verb-kasus
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: неправильний здогад зараз корисніший за правильну відповідь потім."
+    prompt: "Am Abend rufe ich ___ Bruder an."
+    options: ["meinen", "meinem", "mein"]
+    correct: 0
+    translation:
+      en: "In the evening I call my brother."
+      ru: "Вечером я звоню брату."
+      uk: "Увечері я дзвоню братові."
+    explain:
+      en: "anrufen reaches the person directly, with no preposition in between, and the person stands in the accusative: meinen Bruder. This is the default that most German verbs follow."
+      ru: "anrufen обращается к человеку напрямую, без предлога, и человек стоит в Akkusativ: meinen Bruder. Это вариант по умолчанию, которому следует большинство немецких глаголов."
+      uk: "anrufen звертається до людини напряму, без прийменника, і людина стоїть в Akkusativ: meinen Bruder. Це варіант за замовчуванням, якого дотримується більшість німецьких дієслів."
+
+  - id: pretest-helfen-mir
+    outcomes: [dativ-person-nennen]
+    type: mc
+    focus: verb-kasus
+    instruction:
+      en: "Guess which form fits."
+      ru: "Угадайте, какая форма подходит."
+      uk: "Вгадайте, яка форма підходить."
+    prompt: "Die Kiste ist schwer. Kannst du ___ bitte helfen?"
+    options: ["mir", "mich", "ich"]
+    correct: 0
+    translation:
+      en: "The box is heavy. Can you help me, please?"
+      ru: "Коробка тяжёлая. Можешь мне помочь?"
+      uk: "Коробка важка. Можеш мені допомогти?"
+    explain:
+      en: "helfen belongs to a short closed list of verbs whose object stands in the dative, so it is mir and never mich. Nothing in the meaning predicts this — the list has to be learnt."
+      ru: "helfen входит в короткий закрытый список глаголов, дополнение которых стоит в Dativ, поэтому здесь mir, а не mich. Из значения это не выводится — список приходится выучить."
+      uk: "helfen входить до короткого закритого списку дієслів, додаток яких стоїть у Dativ, тому тут mir, а не mich. Зі значення це не виводиться — список доводиться вивчити."
+
+  - id: pretest-warten-auf-bus
+    outcomes: [verbchunk-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction:
+      en: "Guess: fill in auf together with its article."
+      ru: "Угадывайте: вставьте auf вместе с артиклем."
+      uk: "Вгадуйте: вставте auf разом з артиклем."
+    text: "Wir warten {{auf den}} Bus."
+    translation:
+      en: "We are waiting for the bus."
+      ru: "Мы ждём автобус."
+      uk: "Ми чекаємо на автобус."
+    explain:
+      en: "warten brings the preposition auf with it, and inside that chunk the case never alternates: warten auf is accusative, so der Bus becomes auf den Bus. auf dem Bus would put you on the roof."
+      ru: "warten приводит с собой предлог auf, и внутри этого куска падеж не чередуется: warten auf требует Akkusativ, поэтому der Bus превращается в auf den Bus. Форма auf dem Bus поставила бы вас на крышу автобуса."
+      uk: "warten приводить із собою прийменник auf, і всередині цього шматка відмінок не чергується: warten auf вимагає Akkusativ, тому der Bus перетворюється на auf den Bus. Форма auf dem Bus поставила б вас на дах автобуса."
