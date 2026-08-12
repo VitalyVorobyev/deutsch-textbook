@@ -64,6 +64,19 @@ export interface ExamTeilSpec {
 
 export type ExamModuleId = 'hoeren' | 'lesen' | 'schreiben' | 'sprechen';
 
+/**
+ * A named jump point in the module's recording — "Teil 2", "Nr. 7" — in seconds from its
+ * start. Üben only: the whole argument for Prüfungsmodus is that the recording runs the way
+ * the real Tonträger does, and a per-Nummer jump list is exactly the listening budget the exam
+ * withholds. Authored by hand in `exam-sources.yaml`, from an ear-checked silence scan
+ * (`scripts/exam-cues-scan.ts`), never derived at runtime.
+ */
+export interface ExamCue {
+  label: string;
+  /** Seconds from the start of the recording. */
+  at: number;
+}
+
 export interface ExamModuleSpec {
   module: ExamModuleId;
   /** Official time limit from the Kandidatenblätter instruction page. */
@@ -72,6 +85,8 @@ export interface ExamModuleSpec {
   pages: string[];
   /** Root-absolute URL of the full-module recording, when the module has one. */
   audio?: string;
+  /** Jump points into `audio`, in order — rendered in Üben and nowhere else. */
+  cues?: ExamCue[];
   /**
    * Rendered Prüferblätter pages that answer or grade the module — Transkriptionen for Hören,
    * Bewertungskriterien and Leistungsbeispiele for Schreiben, Hinweise for Sprechen. Shown
@@ -171,6 +186,18 @@ export function parseExamManifest(value: unknown): ExamManifest | null {
         (!Array.isArray(m.answerPages) || m.answerPages.some((p) => typeof p !== 'string'))
       ) {
         return null;
+      }
+      // Cues are structurally checked here and ordered by the ingest validator: a jump list
+      // out of order is a config defect worth naming at authoring time, never a reason for a
+      // whole set to fall back to the absence state on the learner's screen.
+      if (m.cues !== undefined) {
+        if (!Array.isArray(m.cues)) return null;
+        for (const cue of m.cues as unknown[]) {
+          if (typeof cue !== 'object' || cue === null) return null;
+          const c = cue as Record<string, unknown>;
+          if (typeof c.label !== 'string' || !c.label) return null;
+          if (typeof c.at !== 'number' || !Number.isFinite(c.at) || c.at < 0) return null;
+        }
       }
       if (!Array.isArray(m.teile)) return null;
       const seen = new Set<number>();
