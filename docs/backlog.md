@@ -47,9 +47,12 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     only, while the registered tag reads "a person or a point destination" — the *zu*-taking
     buildings (Bahnhof, Post, Arbeit) live as four Feinheiten exceptions instead of a row, and
     `diktat-zum-bahnhof` grades one of them.
-  - `a2/zeit-praepositionen`: `uebersetzen-von-bis` and `cloze-in-abstand` drill exactly the two
-    chunks the A1 tag `von-bis-in-zeit` (#184) names, but carry `zeitangaben-system` — consider
-    retagging so the A2 revisit can resurface the A1 family through the tag channel.
+  - `a2/zeit-praepositionen`: `uebersetzen-von-bis` drills exactly the chunk the A1 tag
+    `von-bis-in-zeit` (#184) names but carries `zeitangaben-system`. Retagging was tried and
+    reverted (2026-08-12): the item arms `probe-zeit-praepositionen`, and the P19-4
+    arming-equality check requires an armer's focus to equal the family's — so this resolves
+    only together with P25-15's umbrella-tag design note, not as an item edit. (`cloze-in-abstand`
+    keeps the umbrella correctly either way: its first gap is im+month, not the A1 chunk.)
   - `a2/zeit-praepositionen` "Zeit ohne Präposition" lacks the duration member of the bare-accusative
     family (*Ich bleibe drei Tage*, *den ganzen Tag*) — both already appear in A1 item surfaces.
   - `a2/verben-mit-kasus`: the chunk table shows *auf/an/über* with the accusative only; when
@@ -60,8 +63,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     without the pinned `von`, so it needs a design decision, not a quick accept line.
   - `content/reading/a1/ort-richtung-praepositionen.yaml`: *zu Miras Tante* is the passage's only
     above-level structure (`genitiv-eigenname`, A2) — glossed, so receptively fine.
-  - `content/reading/a2/verben-mit-kasus.yaml:28–31`: the RU/UK glosses of *gefällt Mira die neue
-    Wohnung* render «очень»/«дуже» for a *sehr* outside the glossed span. Cosmetic.
 - **P25-16 · Non-material findings of the 2026-08-12 A2 audit, batch 2** (dativ, trennbare-verben,
   alltag-tagesablauf, modalverben, termine-vereinbaren) — the material findings (thirteen from the
   reviewer plus three same-class promotions) were fixed in the batch PR; these were real but below
@@ -78,11 +79,9 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     learner's *in die Küche* is a wo/wohin error (unit 7 material, later in the spine) logged as
     `dativ-artikel`. The surface error is a case error, so the attribution is defensible — revisit
     once `wechselpraepositionen` is armed.
-  - Outcome `trennbar-tagesablauf` declares `mode: spoken-production`; its only `speak` item runs
-    `mode: spoken-interaction`.
-  - `a2/alltag-tagesablauf.mdx`: the frequency list omits *selten* (breaking the scale between
-    *manchmal* and *nie*) and the sequencers omit *zuletzt/später/schließlich*; neither list is
-    stated as closed.
+  - `a2/alltag-tagesablauf.mdx`: the sequencer list omits *zuletzt/später/schließlich* — not
+    stated as closed, and extending it is item-backed authoring, not a list edit (*schließlich*'s
+    card lives in the late-A2 `verbindungen-folgen` deck).
   - `a2/modalverben.mdx` teaches no modal-without-infinitive (*Ich muss nach Hause*) and no
     *sollen* in an offer question (*Soll ich das Fenster öffnen?*) — both ordinary Goethe-A2 uses.
   - `a2/probe-alltag-tagesablauf::variant-a` ("On Thursday I do sport at six o'clock") carries no
@@ -174,20 +173,6 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   coverage lives beside the quarantined test in `tests/store-visibility-retry.test.ts`. First
   step on each bun upgrade: delete the `skipIf` locally, push a draft, and see whether the runtime
   race is gone.
-- **P25-12 · «генитив» is the Russian spelling of the case name, and it is in 10 B1 files' `uk:`
-  fields** — 34 occurrences on 32 lines
-  (`grep -rh "^[[:space:]]*uk: .*генитив" content/exercises/ | grep -o "генитив" | wc -l`), heaviest
-  in `leben-veraendern.yaml` (8), `probe-leben-veraendern-genitiv-form.yaml` (7) and
-  `probe-geld-vertraege.yaml` (5), the rest across `checkpoint-b1`, `placement-b1`, the two
-  `geld-vertraege` sets and the two `leben-veraendern` pretest/produktion sets. The standard to
-  write is the repo's own: clean `uk:` fields and Uk halves say **«родовий відмінок»** (12
-  occurrences, incl. the `der Genitiv (родовий відмінок)` glosses in `b1/leben-veraendern.mdx`,
-  `b1/reisen-probleme.mdx`, `b1/geld-vertraege.mdx`), and «генітив»/«ґенітив» appear nowhere —
-  so this is a spelling to replace, not a term to transliterate. **The validator cannot see it**:
-  «и» is a Ukrainian letter, so the character-set check passes on a Russian word. One file-scoped
-  mechanical pass with each replacement read in context (several sit in case-name lists whose
-  neighbouring terms have to agree), not a blind sed. Filed from the C6-1 `leben-veraendern`
-  review, 2026-08-12 — that article file is itself clean of it.
 - **P25-11 · `erfahrungen-erzaehlen`: zero L1 contrast in a four-half calque-parallel article** —
   the 2026-08-12 C6-1 fresh verify passed the unit on falsehood triage but measured what no other
   reviewed B1 unit shows: `grep -c "русск|English|англ|українськ"` returns 0 against 27/9/5 in

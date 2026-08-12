@@ -590,7 +590,9 @@ nodes:
         ru: "Я различаю отделяемые и неотделяемые приставки: auf- отделяется, be- и ver- — никогда."
         uk: "Я розрізняю відокремлювані й невідокремлювані префікси: auf- відокремлюється, be- і ver- — ніколи."
       - id: trennbar-tagesablauf
-        mode: spoken-production
+        # The outcome's one speak task (sprechen-am-telefon) is a phone conversation, so the
+        # measured mode is interaction — the claim follows the shipped task (P25-16).
+        mode: spoken-interaction
         domain: personal
         de: "Ich kann über meinen Tag mit Verben wie aufstehen und einkaufen sprechen."
         en: "I can talk about my day using verbs like aufstehen and einkaufen."
