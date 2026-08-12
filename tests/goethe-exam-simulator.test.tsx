@@ -16,11 +16,11 @@
  *  - **A run is recorded exactly once.** The clock and the Abgeben button can both arrive;
  *    two rows would inflate the history the repeat warning reads.
  *  - **Prüfungsmodus gives the recording no replay.** The real Tonträger already contains
- *    every repetition; native `controls` would quietly hand back a listening budget the exam
- *    does not give.
+ *    every repetition; native `controls` — or the Üben-only Sprungmarken row — would quietly
+ *    hand back a listening budget the exam does not give.
  */
 import { afterAll, afterEach, beforeEach, describe, expect, test } from 'bun:test';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import GoetheExamSimulator from '../src/components/pruefung/GoetheExamSimulator';
 import { EXAM_HISTORY_KEY, type ExamManifest, type ExamRunRecord } from '../src/lib/exam-sim';
 
@@ -42,6 +42,11 @@ const MANIFEST: ExamManifest = {
           timeLimitMin: 20,
           pages: ['/exams/demo/h1.png'],
           audio: '/exams/demo/h.m4a',
+          // Invented seconds — no official recording's timings ever enter the repo (ADR 0009).
+          cues: [
+            { label: 'Teil 1', at: 30 },
+            { label: 'Nr. 1', at: 90 },
+          ],
           maxScaled: 4,
           teile: [
             {
@@ -200,6 +205,21 @@ describe('Üben', () => {
     // every item is in the record, so the result table can show an unanswered one as such
     expect(history()[0]!.answers).toEqual({ 1: 'r', 2: null, 3: null });
   });
+
+  test('the recording carries its Sprungmarken, and a cue seeks and plays from there', async () => {
+    serveManifest(true);
+    const { container } = render(<GoetheExamSimulator />);
+    fireEvent.click(await screen.findByText('Demo Satz'));
+    fireEvent.click(await screen.findByRole('button', { name: /Hören · 20 Min/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /Üben · ohne Zeit/ }));
+
+    expect(screen.getByRole('button', { name: 'Teil 1' })).toBeTruthy();
+    // `act`: the seek is synchronous, but the play() that follows settles the play state.
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Nr. 1' }));
+    });
+    expect(container.querySelector('audio')?.currentTime).toBe(90);
+  });
 });
 
 describe('Prüfungsmodus', () => {
@@ -213,6 +233,10 @@ describe('Prüfungsmodus', () => {
     expect(screen.getByRole('timer').textContent).toMatch(/^(20:00|19:5\d)$/);
     expect(screen.getByText(/Sie hören zweimal/)).toBeTruthy();
     expect(container.querySelector('audio')?.hasAttribute('controls')).toBe(false);
+    // Same manifest, same cues — and no jump list here: that is the listening budget the exam
+    // withholds, so a Sprungmarke in Prüfungsmodus would be the replay control by another name.
+    expect(screen.queryByRole('button', { name: 'Teil 1' })).toBeNull();
+    expect(screen.queryByRole('group', { name: 'Sprungmarken' })).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'Abspielen' }));
     const pause = await screen.findByRole('button', { name: 'Pause' });

@@ -78,6 +78,10 @@ documented in the comment at the top of `scripts/exam-ingest.ts`; the essentials
   audio file to extract from, not a pre-sliced clip.
 - `answerPdfPages` (optional) names Prüferblätter pages — Transkriptionen, Bewertung,
   Leistungsbeispiele — rendered exactly like task pages but surfaced only after a run.
+- `cues` (optional, audio modules only) are named jump points into the recording:
+  `- { label: "Nr. 7", at: "9:05" }`. `at` takes `"m:ss"`/`"mm:ss"` or plain seconds and is
+  converted to seconds in the manifest; labels are at most 24 characters and `at` must strictly
+  increase within a module. See "Cues" below.
 - Schreiben Teil 1 blanks are `shape: text` items with `answer` (as the Lösungen print it) plus
   an `accept` list; comparison is literal (case/whitespace/trailing-punctuation-insensitive), so
   the UI always shows the official answer beside a ✗. Teil 2 is a `free:` part — `label`,
@@ -116,6 +120,29 @@ every fetch — and confirms every page/audio path it just wrote actually exists
 check failing deletes the manifest and exits 1 naming the defect, rather than shipping a manifest
 the page cannot read or that 404s on its own assets.
 
+## Cues
+
+A Hören module is one ~17–19-minute recording, which is exactly right in Prüfungsmodus and
+useless when the learner wants Nummer 9 again. `cues` gives the module a list of named jump
+points, and the runner renders them **in Üben only**, as a wrap row of small buttons under the
+audio element; a click seeks and plays from there. Prüfungsmodus never shows them, for the same
+reason it gets no native `controls`: the real Tonträger already contains every repetition the
+Kandidatenblätter promise, so a per-Nummer jump list would hand back a listening budget the exam
+withholds.
+
+`bun scripts/exam-cues-scan.ts <setId>/<module>` proposes the list. It reads the already-ingested
+`public/exams/<setId>/<module>.m4a`, runs `ffmpeg -af silencedetect` over it, and prints a
+`cues:` block on stdout — one cue per silence of at least 8 seconds (`--min-gap`), placed one
+second before the audio returns, with the gap's length as a per-line comment. It writes nothing.
+
+**Everything it prints is a proposal, and the labels are placeholders** (`Marke 1`, `Marke 2`, …).
+Only listening tells you which mark is a Teil boundary and which is a Nummer: a Start Deutsch 1
+Hören opens each of Teil 1 and Teil 2 with a Beispiel whose pause looks exactly like an item's, so
+a mechanical numbering is off by one wherever a Beispiel is counted as a Nummer. The long gaps —
+where an instruction is read out — are the Teil boundaries, and the comment column is what makes
+them visible. Verify by ear, rename, adjust the `at:` values, then paste into `exam-sources.yaml`
+with a comment recording that the block came from a scan and when.
+
 ## Where outputs land
 
 ```
@@ -128,7 +155,8 @@ public/exams/
 ```
 
 `manifest.json` is what `EXAM_MANIFEST_URL` (`/exams/manifest.json`) serves; its `pages` and
-`audio` fields are the root-absolute URLs above, ready for `withBase`. None of it is validated by
+`audio` fields are the root-absolute URLs above, ready for `withBase`, and `cues[].at` is in
+seconds, ready for `currentTime`. None of it is validated by
 `bun run validate` against a committed fixture, because there is no committed instance to check —
 the self-check inside `scripts/exam-ingest.ts` is the only gate this manifest ever passes through.
 
