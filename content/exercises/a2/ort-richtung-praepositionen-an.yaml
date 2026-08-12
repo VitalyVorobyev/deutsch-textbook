@@ -1,0 +1,53 @@
+topic: ort-richtung-praepositionen
+role: practice
+title:
+  en: "Practice — an: at the edge"
+  ru: "Практика — an: у края"
+  uk: "Практика — an: біля краю"
+
+# Supplementary set, added 2026-08-12 together with the an row of the place-type table.
+# The primary set shipped without an — the source document's first table omitted the
+# preposition and the omission was reproduced — and a primary set's item list is frozen
+# once shipped, so the an coverage lands here.
+#
+# Nouns are deck words (grepped in content/vocab/, not remembered): See, Meer
+# (wetter-natur), Markt (stadt-wege et al.).
+items:
+  - id: cloze-an-den-see-vom-see
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "The place type picks the preposition. Fill in an or the short forms am, vom."
+      ru: "Тип места выбирает предлог. Вставьте an или краткие формы am, vom."
+      uk: "Тип місця обирає прийменник. Вставте an або короткі форми am, vom."
+    text: "Am Samstag fahren wir {{an}} den See. Wir sitzen den ganzen Tag {{am}} See. Um sechs kommen wir {{vom}} See zurück."
+    translation:
+      en: "On Saturday we drive to the lake. We sit by the lake all day. At six we come back from the lake."
+      ru: "В субботу мы едем на озеро. Весь день мы сидим у озера. В шесть мы возвращаемся с озера."
+      uk: "У суботу ми їдемо на озеро. Весь день ми сидимо біля озера. О шостій ми повертаємося з озера."
+    explain:
+      en: "A lake is an edge you stand at, so its place type takes an: the destination is an den See (accusative), the location am See (dative, an dem contracted). The origin swaps the preposition, not the case — vom See, exactly like vom Markt: you were at the water, not inside it, so aus has no business here."
+      ru: "Озеро — это край, у которого стоят, поэтому его тип берёт an: цель — an den See (Akkusativ), место — am See (Dativ, слитная форма от an dem). Исходная точка меняет предлог, а не падеж — vom See, ровно как vom Markt: вы были у воды, а не внутри неё, поэтому aus здесь не годится."
+      uk: "Озеро — це край, біля якого стоять, тому його тип бере an: ціль — an den See (Akkusativ), місце — am See (Dativ, злита форма від an dem). Вихідна точка змінює прийменник, а не відмінок — vom See, точно як vom Markt: ви були біля води, а не всередині неї, тому aus тут не годиться."
+
+  - id: uebersetzen-ans-meer
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. Use the short forms ans, vom where German has them."
+      ru: "Переведите на немецкий. Используйте слитные формы ans, vom там, где они есть."
+      uk: "Перекладіть німецькою. Використовуйте злиті форми ans, vom там, де вони є."
+    prompt_en: "In summer we often drive to the sea. In the evening we come back from the sea."
+    prompt_ru: "Летом мы часто ездим на море. Вечером мы возвращаемся с моря."
+    prompt_uk: "Улітку ми часто їздимо на море. Увечері ми повертаємося з моря."
+    answer: "Im Sommer fahren wir oft ans Meer. Am Abend kommen wir vom Meer zurück."
+    accept:
+      - "Wir fahren im Sommer oft ans Meer. Wir kommen am Abend vom Meer zurück."
+      - "Im Sommer fahren wir oft ans Meer. Am Abend kommen wir zurück vom Meer."
+    key_tokens: ["ans", "vom"]
+    explain:
+      en: "The sea is water you stand at, so the destination is an + accusative — an das Meer, contracted to ans Meer. Coming back is the Woher? column of the same row: the preposition swaps to von (vom Meer) and the case stays dative. aus dem Meer would mean you climbed out of the water itself."
+      ru: "Море — это вода, у которой стоят, поэтому цель — an + Akkusativ: an das Meer, в слитной форме ans Meer. Возвращение — столбец Woher? той же строки: предлог меняется на von (vom Meer), падеж остаётся Dativ. aus dem Meer значило бы, что вы вылезли из самой воды."
+      uk: "Море — це вода, біля якої стоять, тому ціль — an + Akkusativ: an das Meer, у злитій формі ans Meer. Повернення — стовпець Woher? того самого рядка: прийменник змінюється на von (vom Meer), відмінок лишається Dativ. aus dem Meer означало б, що ви вилізли з самої води."
