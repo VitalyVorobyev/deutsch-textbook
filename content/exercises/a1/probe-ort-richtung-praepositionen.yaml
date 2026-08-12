@@ -3,9 +3,10 @@
 # authoring order across the 2/7/21 delays — one retention curve over one decision.
 #
 # Wo? beside Woher? rather than Wohin? beside Wo?, because that pair is where the topic's
-# claim lives: the origin form is not the location form with another article, it is another
-# preposition (auf → von, bei → von, in → aus). A learner who has kept only the case rule
-# writes aus dem Markt and vom Schwimmbad and is right about the case both times.
+# claim lives: the Woher? phrase is not the Wo? phrase with another article, it is another
+# preposition (auf → von, bei → von, in → aus). A learner who has kept only "the article
+# after these prepositions ends in -m" writes aus dem Markt and vom Schwimmbad and has the
+# article right both times.
 #
 # translate rather than cloze or mc: a cloze prints the gap exactly where the preposition
 # belongs and an mc lists the three candidates side by side, and this competence *is* the
@@ -55,9 +56,9 @@ items:
       - "Die Kinder sind um fünf noch im Schwimmbad. Sie kommen um sechs aus dem Schwimmbad."
     key_tokens: ["im", "aus", "dem"]
     explain:
-      en: "One place, two members, two different prepositions. A swimming pool is a building you are inside, so the location is in + Dativ, contracted to im. The origin then does not keep in and swap the article — it swaps the preposition: aus dem Schwimmbad. vom Schwimmbad would put the children beside the building rather than in the water, and im Schwimmbad in the second sentence would say they never left."
-      ru: "Одно место, два члена тройки, два разных предлога. Бассейн — здание, внутри которого находятся, поэтому место — это in + Dativ, в слитной форме im. А исходная точка не сохраняет in с другим артиклем: она меняет сам предлог — aus dem Schwimmbad. Форма vom Schwimmbad поставила бы детей рядом со зданием, а не в воду, а im Schwimmbad во втором предложении означало бы, что они никуда и не выходили."
-      uk: "Одне місце, два члени трійки, два різні прийменники. Басейн — будівля, всередині якої перебувають, тому місце — це in + Dativ, у злитій формі im. А вихідна точка не зберігає in з іншим артиклем: вона змінює сам прийменник — aus dem Schwimmbad. Форма vom Schwimmbad поставила б дітей поруч із будівлею, а не у воду, а im Schwimmbad у другому реченні означало б, що вони нікуди й не виходили."
+      en: "One place, two members, two different prepositions. A swimming pool is a building you are inside, so the Wo? phrase is im Schwimmbad — im is the short form of in dem. The Woher? phrase then does not keep in and swap the article: it swaps the preposition, and dem stays where it was — aus dem Schwimmbad. vom Schwimmbad would put the children beside the building rather than in the water, and im Schwimmbad in the second sentence would say they never left."
+      ru: "Одно место, два члена тройки, два разных предлога. Бассейн — здание, внутри которого находятся, поэтому форма на Wo? — im Schwimmbad, где im есть краткая запись от in dem. А форма на Woher? не сохраняет in с другим артиклем: она меняет сам предлог, а dem остаётся на месте — aus dem Schwimmbad. Вариант vom Schwimmbad поставил бы детей рядом со зданием, а не в воду, а im Schwimmbad во втором предложении означало бы, что они никуда и не выходили."
+      uk: "Одне місце, два члени трійки, два різні прийменники. Басейн — будівля, всередині якої перебувають, тому форма на Wo? — im Schwimmbad, де im є коротким записом від in dem. А форма на Woher? не зберігає in з іншим артиклем: вона змінює сам прийменник, а dem лишається на місці — aus dem Schwimmbad. Варіант vom Schwimmbad поставив би дітей поруч із будівлею, а не у воду, а im Schwimmbad у другому реченні означало б, що вони нікуди й не виходили."
 
   - id: variant-b
     outcomes: [ort-nennen, herkunft-nennen]
@@ -79,9 +80,9 @@ items:
       - "Lena ist nach dem Kurs noch bei der Lehrerin. Sie kommt um sechs von ihr zurück."
     key_tokens: ["bei", "von"]
     explain:
-      en: "A person is the row of the table with no case to choose: bei for being there, von for coming away, zu for going there — all three dative, so ihrer Lehrerin never changes shape and the preposition carries the whole meaning. in der Lehrerin is impossible (a person is not a room) and aus ihr belongs to buildings; with people the origin is always von."
-      ru: "Человек — это строка таблицы, где падеж выбирать не приходится: bei — находиться там, von — уходить оттуда, zu — идти туда; все три с Dativ, поэтому ihrer Lehrerin нигде не меняет форму, и весь смысл несёт предлог. Вариант in der Lehrerin невозможен (человек не помещение), а aus ihr относится к зданиям: у людей исходная точка всегда von."
-      uk: "Людина — це рядок таблиці, де відмінок обирати не доводиться: bei — перебувати там, von — іти звідти, zu — іти туди; усі три з Dativ, тому ihrer Lehrerin ніде не змінює форми, і весь зміст несе прийменник. Варіант in der Lehrerin неможливий (людина не приміщення), а aus ihr стосується будівель: у людей вихідна точка завжди von."
+      en: "A person is the row of the table where only the preposition is ever chosen: bei for being there, von for coming away, zu for going there. Everything after it stays put — ihrer Lehrerin is written the same way in both sentences — so the preposition carries the whole meaning. in der Lehrerin is impossible (a person is not a room) and aus ihr belongs to buildings; with people the Woher? phrase is always von."
+      ru: "Человек — это строка таблицы, где выбирают только предлог: bei — находиться там, von — уходить оттуда, zu — идти туда. Всё, что стоит после, остаётся неизменным: ihrer Lehrerin в обоих предложениях пишется одинаково, — и весь смысл несёт предлог. Вариант in der Lehrerin невозможен (человек не помещение), а aus ihr относится к зданиям: у людей форма на Woher? всегда с von."
+      uk: "Людина — це рядок таблиці, де обирають лише прийменник: bei — перебувати там, von — іти звідти, zu — іти туди. Усе, що стоїть після, лишається незмінним: ihrer Lehrerin в обох реченнях пишеться однаково, — і весь зміст несе прийменник. Варіант in der Lehrerin неможливий (людина не приміщення), а aus ihr стосується будівель: у людей форма на Woher? завжди з von."
 
   - id: variant-c
     outcomes: [ort-nennen, herkunft-nennen]
@@ -99,6 +100,6 @@ items:
       - "Wir sind am Sonntag auf dem Fest. Wir kommen um elf vom Fest zurück."
     key_tokens: ["dem", "vom"]
     explain:
-      en: "An event behaves like an open square: you are on it rather than in it, so the location is auf + Dativ — auf dem Fest, dative because nothing is going anywhere. The origin again swaps the preposition and not the case: vom Fest, never aus dem Fest, which would treat a celebration as a building with an inside. That swap is the whole content of the Woher? column."
-      ru: "Мероприятие ведёт себя как открытая площадка: на нём находятся, а не внутри него, поэтому место — это auf + Dativ: auf dem Fest, и Dativ здесь потому, что никто никуда не движется. Исходная точка снова меняет предлог, а не падеж: vom Fest, но никогда aus dem Fest — это сделало бы праздник зданием, у которого есть «внутри». В этой замене и состоит всё содержание столбца Woher?."
-      uk: "Захід поводиться як відкритий майданчик: на ньому перебувають, а не всередині нього, тому місце — це auf + Dativ: auf dem Fest, і Dativ тут тому, що ніхто нікуди не рухається. Вихідна точка знову змінює прийменник, а не відмінок: vom Fest, але ніколи aus dem Fest — це зробило б свято будівлею, у якої є «всередині». У цій заміні й полягає весь зміст стовпця Woher?."
+      en: "An event behaves like an open square: you are on it rather than in it, so the Wo? phrase is auf dem Fest. The Woher? phrase again swaps the preposition and leaves the rest alone — vom Fest is von dem Fest, with the same dem. Never aus dem Fest, which would treat a celebration as a building with an inside. That swap is the whole content of the Woher? column."
+      ru: "Мероприятие ведёт себя как открытая площадка: на нём находятся, а не внутри него, поэтому форма на Wo? — auf dem Fest. Форма на Woher? снова меняет предлог, а остальное оставляет в покое: vom Fest — это von dem Fest, с тем же самым dem. Но никогда aus dem Fest: это сделало бы праздник зданием, у которого есть «внутри». В этой замене и состоит всё содержание столбца Woher?."
+      uk: "Захід поводиться як відкритий майданчик: на ньому перебувають, а не всередині нього, тому форма на Wo? — auf dem Fest. Форма на Woher? знову змінює прийменник, а решту лишає без змін: vom Fest — це von dem Fest, з тим самим dem. Але ніколи aus dem Fest: це зробило б свято будівлею, у якої є «всередині». У цій заміні й полягає весь зміст стовпця Woher?."
