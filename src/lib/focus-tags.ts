@@ -63,6 +63,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'reflexiv-akkusativ': 'gesundheit-arzttermin',
   'verb-praeposition': 'verben-mit-praepositionen',
   'verb-kasus': 'verben-mit-kasus',
+  'zeitangaben-system': 'zeit-praepositionen',
   'da-wo-woerter': 'verben-mit-praepositionen',
   'nebensatz-verbende': 'nebensaetze-plaene',
   'weil-denn': 'nebensaetze-plaene',

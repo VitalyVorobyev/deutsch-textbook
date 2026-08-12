@@ -1,0 +1,109 @@
+# Delayed probe family — ONE competence: mark a time expression correctly, cold, with the
+# whole system on the table and nothing on screen to choose from. Three parallel translate
+# variants, served in authoring order across the 2/7/21 delays — one retention curve over one
+# decision.
+#
+# The three variants sample three corners of that one decision rather than repeating a corner:
+# a stretch that is still running (seit + Präsens), the calendar defaults (an for the day, um
+# for the clock), and a start line drawn forward beside a time phrase that takes no preposition
+# at all (ab + jeden). All three are places where the learner's first language marks the
+# distinction differently or not at all — one Russian «с» covers seit and ab, one «в» covers um,
+# an and in, and «каждый день» carries no case — which is what makes the choice worth measuring
+# months later: it cannot be re-derived from the translation, only remembered.
+#
+# translate rather than cloze or mc: a cloze prints the gap exactly where the preposition
+# belongs and thereby answers the first question of the topic — whether a preposition is needed
+# at all — and an mc lists the rivals side by side, which is the whole decision.
+#
+# Pinned is the marker itself and nothing else: the nouns, the days and the verbs are carrier
+# material, and a fumbled Museum is not this confusion. Each pinned token occurs exactly once
+# in every accepted rendering, and where a token stands first in `answer` the runtime folds in
+# its lowercase form for the fronted renderings.
+#
+# Carrier lexis checked against this topic's practice set and its reading by grepping content/,
+# not by re-reading the lists: Mia, Training, Oktober and Zug occur in neither, so no variant
+# can be answered from the memory of an arming item.
+topic: zeit-praepositionen
+role: probe
+title:
+  en: "Delayed check — marking time"
+  ru: "Отложенная проверка — как отмечено время"
+  uk: "Відкладена перевірка — як позначено час"
+# Armed by every practice item that carries this family's own tag — all eight of the
+# `zeitangaben-system` items, which is the whole system half of the set. The four items tagged
+# `um-am-zeit` and `seit-vor-zeit` are deliberately absent and could not be listed anyway:
+# `bun run validate` holds an arming key's focus equal to the family's, so a probe clock can
+# only ever be started by the confusion it measures.
+arming:
+  - a2/zeit-praepositionen::table-um-an-in
+  - a2/zeit-praepositionen::cloze-in-abstand
+  - a2/zeit-praepositionen::mc-ab-seit
+  - a2/zeit-praepositionen::cloze-bis-pause
+  - a2/zeit-praepositionen::uebersetzen-von-bis
+  - a2/zeit-praepositionen::uebersetzen-vor-nach-pruefung
+  - a2/zeit-praepositionen::uebersetzen-ohne-praeposition
+  - a2/zeit-praepositionen::diktat-ab-bis
+items:
+  - id: variant-a
+    outcomes: [dauer-nennen, zeitpunkt-nennen, zeitraum-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "I have known Mia for two years."
+    prompt_ru: "Я знаю Мию уже два года."
+    prompt_uk: "Я знаю Мію вже два роки."
+    answer: "Ich kenne Mia seit zwei Jahren."
+    accept:
+      - "Seit zwei Jahren kenne ich Mia."
+    key_tokens: ["seit"]
+    explain:
+      en: "The acquaintance began two years ago and is still standing, and that is exactly what seit is for — with the German verb in the present, because the knowing is going on now. vor zwei Jahren would date a single finished event instead. English gives you 'for' here and 'since' in other sentences of the same shape, so the English preposition cannot be transferred; the question to ask is whether the thing is still true."
+      ru: "Знакомство началось два года назад и держится до сих пор — ровно для этого и существует seit, причём немецкий глагол стоит в настоящем времени, ведь знакомство длится сейчас. vor zwei Jahren датировало бы одно законченное событие. Русское «уже два года» — надёжная подсказка: где стоит «уже», там seit; где «назад», там vor."
+      uk: "Знайомство почалося два роки тому й тримається досі — саме для цього й існує seit, причому німецьке дієслово стоїть у теперішньому часі, адже знайомство триває зараз. vor zwei Jahren датувало б одну завершену подію. Українське «вже два роки» — надійна підказка: де стоїть «вже», там seit; де «тому», там vor."
+
+  - id: variant-b
+    outcomes: [dauer-nennen, zeitpunkt-nennen, zeitraum-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German. For 'training session' take das Training — the one you both know about."
+      ru: "Переведите на немецкий. Для «тренировка» возьмите das Training — речь об известной обоим тренировке."
+      uk: "Перекладіть німецькою. Для «тренування» візьміть das Training — ідеться про відоме обом тренування."
+    prompt_en: "On Sunday the training session begins at ten o'clock."
+    prompt_ru: "В воскресенье тренировка начинается в десять часов."
+    prompt_uk: "У неділю тренування починається о десятій годині."
+    answer: "Am Sonntag beginnt das Training um zehn Uhr."
+    accept:
+      - "Das Training beginnt am Sonntag um zehn Uhr."
+      - "Am Sonntag beginnt das Training um zehn."
+      - "Das Training beginnt am Sonntag um zehn."
+    key_tokens: ["Am", "um"]
+    explain:
+      en: "Two time expressions of two different kinds in one sentence, and each takes its own preposition: a weekday goes with an, contracted to am, and a clock time goes with um. English uses 'on' for the first and 'at' for the second, which happens to keep them apart — but 'at the weekend' shows that the English pairing does not hold, so the reliable move is to ask what kind of time is being named."
+      ru: "Два выражения времени двух разных типов в одном предложении, и каждое берёт свой предлог: день недели идёт с an, слитно am, а время по часам — с um. По-русски и там и там стоит «в» — «в воскресенье», «в десять», — поэтому подсказки от перевода нет вовсе: спрашивать надо, какого типа названо время."
+      uk: "Два вирази часу двох різних типів в одному реченні, і кожен бере свій прийменник: день тижня йде з an, злито am, а час за годинником — з um. Українською «у неділю» має своє «у», а «о десятій» — своє «о», тож частковий збіг є, але саме він і присипляє: питати треба, якого типу названо час."
+
+  - id: variant-c
+    outcomes: [dauer-nennen, zeitpunkt-nennen, zeitraum-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "From October on I will take the train every day."
+    prompt_ru: "С октября я буду каждый день ездить на поезде."
+    prompt_uk: "Із жовтня я щодня їздитиму поїздом."
+    answer: "Ab Oktober fahre ich jeden Tag mit dem Zug."
+    accept:
+      - "Ich fahre ab Oktober jeden Tag mit dem Zug."
+      - "Ab Oktober werde ich jeden Tag mit dem Zug fahren."
+      - "Ich werde ab Oktober jeden Tag mit dem Zug fahren."
+    key_tokens: ["Ab", "jeden"]
+    explain:
+      en: "Two time expressions, two different answers to the same question. October is a start line that has not been crossed yet, so it takes ab and not seit — seit would claim the train journeys are already happening. jeden Tag takes nothing at all: it is one of the phrases that stand bare in the accusative, and the -en is the only mark it carries."
+      ru: "Два выражения времени и два разных ответа на один вопрос. Октябрь — черта начала, которая ещё не перейдена, поэтому нужен ab, а не seit: seit утверждал бы, что поездки уже идут. А jeden Tag не берёт ничего — это одно из выражений, которые стоят голыми в Akkusativ, и единственный знак на нём — окончание -en. Русское «с октября» и «каждый день» подсказывают ровно наоборот: предлог там, где его нет, и никакого падежа там, где он есть."
+      uk: "Два вирази часу і дві різні відповіді на одне питання. Жовтень — межа початку, яку ще не перетнуто, тому потрібен ab, а не seit: seit стверджував би, що поїздки вже тривають. А jeden Tag не бере нічого — це один із виразів, що стоять голими в Akkusativ, і єдиний знак на ньому — закінчення -en."
