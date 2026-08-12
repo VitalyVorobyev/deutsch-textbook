@@ -156,21 +156,13 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
-- **P25-15 · Two instrument notes from the strand audit (2026-08-12)** — both verified against
-  `src/lib/production.ts`, neither fixed there yet:
-  - Mid-string sentence-initial capitals escape key-token grading: the case fold in
-    `gradeTranslation` applies at position 0 only (deliberate — mid-sentence capitalization is
-    grammar, `Sie`/`sie`), so a two-sentence `accept` rendering re-opens the one-directional hole
-    the answer-head rule closed. Live instance: `a2/zeit-praepositionen::uebersetzen-vor-nach-pruefung`
-    `accept[2]` capitalizes `Nach`, under which a *nach* error is never attributed.
+- **P25-15 · Instrument note from the strand audit (2026-08-12)** — verified against
+  `src/lib/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
+  case fold and the validator guard blind to it — were fixed the same day: sentence-head fold +
+  `gradedTokenPositions` mirror, with the three corpus items the new guard caught):
   - The validator holds a probe family's item `focus` equal to the arming set's, so a variant that
     grades a pure sub-confusion logs its failure on the umbrella tag: `a2/probe-zeit-praepositionen`
     `variant-a` is seit-vs-vor and `variant-b` am-vs-um, both logged as `zeitangaben-system`.
-  - (batch 2) The `key_tokens` uniqueness guard in `src/lib/validate.ts` compares exact strings and
-    does not model `gradeTranslation`'s answer-head lowercase expansion, so pinning a
-    capitalized sentence-opener whose lowercase twin appears later in the rendering (the
-    `a2/dativ::uebersetzen-nach-arbeit` *Nach … nach Hause* shape, fixed in the batch-2 PR by
-    unpinning) is invisible to the build. Mirroring the expansion in the guard would have caught it.
 - **P25-13 · The real store round-trip test is quarantined on CI (`test.skipIf(CI)`)** — on ubuntu
   runners the `getCardStates`/`setCardState` composition through the real `getStore()` dies at bun
   test's 5000ms budget with a promise that never settles, while every ingredient passes there in

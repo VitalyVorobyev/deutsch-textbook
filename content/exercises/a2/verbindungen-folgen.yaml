@@ -158,6 +158,7 @@ items:
       uk: "als — сполучник, тому його підрядне це Nebensatz, і відмінюване дієслово чекає в самому кінці за вже знайомим правилом від weil і dass. У Perfekt це значить: спочатку дієприкметник, допоміжне останнім — gewohnt haben, а не haben gewohnt. А оскільки підрядне з als стоїть тут першим, воно займає перше місце всього речення, і war та hatten ідуть одразу після коми."
 
   - id: uebersetzen-deshalb-inversion
+    revision: 2
     outcomes: [folge-ausdruecken]
     type: translate
     focus: konjunktionaladverb-inversion
@@ -169,11 +170,15 @@ items:
     prompt_ru: "У меня нет времени. Поэтому в субботу я не приду."
     prompt_uk: "У мене немає часу. Тому в суботу я не прийду."
     answer: "Ich habe keine Zeit. Deshalb komme ich am Samstag nicht."
-    key_tokens: ["Deshalb", "komme", "ich"]
+    # `ich` is deliberately NOT pinned: the sentence-head case fold makes the pinned `ich`
+    # also grade the `Ich` opening sentence 1, so a capitalization slip there was logged
+    # against the inversion tag. The signature error (Deshalb ich komme) still attributes
+    # through `komme`, whose position it displaces.
+    key_tokens: ["Deshalb", "komme"]
     explain:
-      en: "The three graded words are the whole point: Deshalb in position 1, komme in position 2, ich third. Writing Deshalb ich komme is the single commonest error with these adverbs, and it is graded here precisely because the source sentence gives you no warning — neither English nor Russian inverts after that is why."
-      ru: "Три проверяемых слова и есть вся суть: Deshalb на первом месте, komme на втором, ich третьим. Написать Deshalb ich komme — самая частая ошибка с этими наречиями, и проверяется она здесь именно потому, что исходное предложение ни о чём не предупреждает: ни английский, ни русский после «поэтому» инверсии не делают."
-      uk: "Три перевірювані слова і є вся суть: Deshalb на першому місці, komme на другому, ich третім. Написати Deshalb ich komme — найчастіша помилка з цими прислівниками, і перевіряється вона тут саме тому, що вихідне речення ні про що не попереджає: ні англійська, ні українська після «тому» інверсії не роблять."
+      en: "The graded frame is Deshalb in position 1 and komme in position 2 — the subject ich has to wait until position 3. Writing Deshalb ich komme is the single commonest error with these adverbs, and it is graded here precisely because the source sentence gives you no warning — neither English nor Russian inverts after that is why."
+      ru: "Проверяемая рамка — Deshalb на первом месте и komme на втором: подлежащему ich остаётся третье. Написать Deshalb ich komme — самая частая ошибка с этими наречиями, и проверяется она здесь именно потому, что исходное предложение ни о чём не предупреждает: ни английский, ни русский после «поэтому» инверсии не делают."
+      uk: "Перевірювана рамка — Deshalb на першому місці й komme на другому: підметові ich залишається третє. Написати Deshalb ich komme — найчастіша помилка з цими прислівниками, і перевіряється вона тут саме тому, що вихідне речення ні про що не попереджає: ні англійська, ні українська після «тому» інверсії не роблять."
 
   - id: uebersetzen-als-kindheit
     outcomes: [vergangenheit-erzaehlen]

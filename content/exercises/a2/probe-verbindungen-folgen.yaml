@@ -60,6 +60,7 @@ items:
       uk: "trotzdem дає ту саму схему, що й deshalb: прислівник, дієслово, підмет. У Perfekt другим мусить стояти допоміжне habe."
 
   - id: probe-inversion-schliesslich
+    revision: 2
     outcomes: [folge-ausdruecken]
     type: translate
     focus: konjunktionaladverb-inversion
@@ -67,12 +68,16 @@ items:
       en: "Use schließlich for the second sentence."
       ru: "Для второго предложения используйте schließlich."
       uk: "Для другого речення використайте schließlich."
-    prompt_en: "We waited an hour. In the end we took a taxi."
-    prompt_ru: "Мы прождали час. В конце концов мы взяли такси."
-    prompt_uk: "Ми прочекали годину. Врешті-решт ми взяли таксі."
-    answer: "Wir haben eine Stunde gewartet. Schließlich haben wir ein Taxi genommen."
+    # Sentence 1 is third person on purpose: with "We waited an hour" it contained wir
+    # (and Wir at the sentence head, which the case fold matches to the pinned wir), so a
+    # sentence-1 subject slip was graded against the inversion tag. The pinned pair needs
+    # wir to appear exactly once — after the verb, where its position proves the inversion.
+    prompt_en: "The bus didn't come. In the end we took a taxi."
+    prompt_ru: "Автобус не пришёл. В конце концов мы взяли такси."
+    prompt_uk: "Автобус не прийшов. Врешті-решт ми взяли таксі."
+    answer: "Der Bus ist nicht gekommen. Schließlich haben wir ein Taxi genommen."
     key_tokens: ["Schließlich", "wir"]
     explain:
-      en: "schließlich belongs to the same class as deshalb and trotzdem, so it inverts in the same way: Schließlich haben wir. Note that haben appears twice in the answer, so only the adverb and the subject are graded — the position of wir after the verb is what shows the inversion happened."
-      ru: "schließlich относится к тому же классу, что deshalb и trotzdem, и вызывает ту же инверсию: Schließlich haben wir. Заметьте, что haben встречается в ответе дважды, поэтому проверяются только наречие и подлежащее: положение wir после глагола и показывает, что инверсия произошла."
-      uk: "schließlich належить до того самого класу, що deshalb і trotzdem, і викликає ту саму інверсію: Schließlich haben wir. Зауважте, що haben трапляється у відповіді двічі, тому перевіряються лише прислівник і підмет: положення wir після дієслова й показує, що інверсія відбулася."
+      en: "schließlich belongs to the same class as deshalb and trotzdem, so it inverts in the same way: Schließlich haben wir. Only the adverb and the subject are graded — the position of wir after the verb is what shows the inversion happened."
+      ru: "schließlich относится к тому же классу, что deshalb и trotzdem, и вызывает ту же инверсию: Schließlich haben wir. Проверяются только наречие и подлежащее: положение wir после глагола и показывает, что инверсия произошла."
+      uk: "schließlich належить до того самого класу, що deshalb і trotzdem, і викликає ту саму інверсію: Schließlich haben wir. Перевіряються лише прислівник і підмет: положення wir після дієслова й показує, що інверсія відбулася."
