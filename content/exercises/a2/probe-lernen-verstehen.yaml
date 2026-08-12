@@ -85,7 +85,12 @@ items:
       - "Können Sie mir bitte sagen, wann der Zug nach Köln abfährt?"
       - "Wissen Sie, wann der Zug nach Köln fährt?"
       - "Wissen Sie, wann der Zug nach Köln abfährt?"
-    key_tokens: ["fährt"]
+    # revision 2: abfährt occupies the same wall position, so it carries the graded
+    # decision — without the pin, an accepted abfährt-rendering with the inversion
+    # left inside the wrapper came back unattributed on the retention curve.
+    # (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["fährt", "abfährt"]
+    revision: 2
     explain:
       en: "Two verbs, two addresses. The wrapper Können Sie mir sagen is a main clause. The embedded question after the comma uses subordinate-clause order: … wann der Zug nach Köln fährt. The direct question is Wann fährt der Zug nach Köln? Keep the interrogative meaning, but do not leave direct-question word order inside the wrapper."
       ru: "Два глагола — два адреса. Рамка Können Sie mir sagen — главное предложение. Встроенный вопрос после запятой использует порядок придаточного: … wann der Zug nach Köln fährt. Прямой вопрос звучит Wann fährt der Zug nach Köln? Вопросительный смысл сохраняется, а порядок прямого вопроса внутри рамки — нет."
@@ -109,7 +114,18 @@ items:
       - "Können Sie mir bitte sagen, wann der Supermarkt am Samstag schließt?"
       - "Wissen Sie, wann das Geschäft am Samstag schließt?"
       - "Wissen Sie, wann der Supermarkt am Samstag schließt?"
-    key_tokens: ["schließt"]
+      # revision 2: zumacht is ordinary German for «закрывается» and the sibling
+      # variant-c pairs öffnet/aufmacht — the colloquial twin was missing here, so a
+      # correct rendering was rejected AND logged against indirekte-frage. Closed over
+      # the same wrapper and noun dimensions; pin union. (Batch-6 audit, 2026-08-12.)
+      - "Können Sie mir sagen, wann das Geschäft am Samstag zumacht?"
+      - "Können Sie mir bitte sagen, wann das Geschäft am Samstag zumacht?"
+      - "Können Sie mir sagen, wann der Supermarkt am Samstag zumacht?"
+      - "Können Sie mir bitte sagen, wann der Supermarkt am Samstag zumacht?"
+      - "Wissen Sie, wann das Geschäft am Samstag zumacht?"
+      - "Wissen Sie, wann der Supermarkt am Samstag zumacht?"
+    key_tokens: ["schließt", "zumacht"]
+    revision: 2
     explain:
       en: "The wrapper is a question and keeps its own verb second; the wrapped clause is a Nebensatz and ends with its conjugated verb: … wann das Geschäft am Samstag schließt. The time phrase am Samstag simply sits inside the clause and changes nothing — only the verb has a fixed address, and that address is the wall. Wann schließt das Geschäft am Samstag? is the right question to ask on its own and the wrong thing to put behind a comma."
       ru: "Рамка — вопрос, и свой глагол она держит на втором месте; «обёрнутое» придаточное закрывается спрягаемым глаголом: … wann das Geschäft am Samstag schließt. Обстоятельство времени am Samstag просто стоит внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола, и этот адрес — стена. Wann schließt das Geschäft am Samstag? — правильный самостоятельный вопрос и неправильное продолжение после запятой."
@@ -133,7 +149,10 @@ items:
       - "Können Sie mir bitte sagen, wann die Praxis am Freitag aufmacht?"
       - "Wissen Sie, wann die Praxis am Freitag öffnet?"
       - "Wissen Sie, wann die Praxis am Freitag aufmacht?"
-    key_tokens: ["öffnet"]
+    # revision 2: aufmacht occupies the same wall position, so it carries the graded
+    # decision and joins the pins — same ruling as variant-a. (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["öffnet", "aufmacht"]
+    revision: 2
     explain:
       en: "Same rule for the third time, in the third place: the wrapper takes position 2 for its own verb, and the wrapped question hands its conjugated verb to the end of the clause — … wann die Praxis am Freitag öffnet. Whether you say öffnet or aufmacht is lexis and both are accepted; where the verb lands is the rule, and only that is graded. If your sentence reads Können Sie mir sagen, wann öffnet die Praxis, the bare question is still sitting inside the wrapper."
       ru: "То же правило в третий раз и в третьем месте: рамка держит свой глагол на втором месте, а «обёрнутый» вопрос отдаёт спрягаемый глагол в конец придаточного — … wann die Praxis am Freitag öffnet. Скажете вы öffnet или aufmacht — дело словаря, оба варианта принимаются; правило говорит лишь о том, где приземляется глагол, и только это и оценивается. Если получилось Können Sie mir sagen, wann öffnet die Praxis, значит внутри рамки по-прежнему сидит самостоятельный вопрос."

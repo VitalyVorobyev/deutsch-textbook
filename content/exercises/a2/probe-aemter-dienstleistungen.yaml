@@ -62,11 +62,17 @@ items:
     prompt_ru: "Не могли бы вы прислать мне документы? Я хотел(а) бы заказать карту."
     prompt_uk: "Чи не могли б ви надіслати мені документи? Я хотів(ла) би замовити картку."
     answer: "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gern eine Karte bestellen."
+    # revision 2: RU/UK carry no «пожалуйста» / «будь ласка», so dropping bitte is
+    # faithful (2026-08-11 ruling) — the graded Könnten and würde survive intact.
+    # Closed over the gern/gerne dimension. (Batch-6 audit, 2026-08-12.)
     accept:
       - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gern eine Karte bestellen."
       - "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gerne eine Karte bestellen."
       - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gerne eine Karte bestellen."
+      - "Könnten Sie mir die Unterlagen schicken? Ich würde gern eine Karte bestellen."
+      - "Könnten Sie mir die Unterlagen schicken? Ich würde gerne eine Karte bestellen."
     key_tokens: ["Könnten", "würde"]
+    revision: 2
     explain:
       en: "The target request opens with the conventional softer chunk Könnten Sie …? Können Sie …? is also grammatical and can be polite with bitte and suitable intonation; this item measures the taught Konjunktiv-II chunk. Something you want to do yourself takes würde gern, and the infinitive waits at the end: Ich würde gern eine Karte bestellen. Ich hätte gern would be wrong before a verb. gern and gerne are both correct."
       ru: "Целевая просьба начинается с обычного более мягкого оборота Könnten Sie …? Фраза Können Sie …? тоже грамматически правильна и с bitte и подходящей интонацией может быть вежливой; задание проверяет изученный оборот с Konjunktiv II. Для собственного действия нужен würde gern, а инфинитив стоит в конце: Ich würde gern eine Karte bestellen. Ich hätte gern перед глаголом не подходит. gern и gerne равноправны."
@@ -84,11 +90,24 @@ items:
     prompt_ru: "Не могли бы вы сказать мне часы работы? Я хотел(а) бы оформить читательский билет."
     prompt_uk: "Чи не могли б ви сказати мені години роботи? Я хотів(ла) би оформити читацький квиток."
     answer: "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gern einen Ausweis beantragen."
+    # revision 2: RU/UK carry no «пожалуйста», so dropping bitte is faithful; and both
+    # prompts say a LIBRARY card («читательский билет» / "library card"), so the more
+    # faithful einen Bibliotheksausweis must not score worse than the generic Ausweis.
+    # Closed over the bitte and gern/gerne dimensions. (Batch-6 audit, 2026-08-12.)
     accept:
       - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gern einen Ausweis beantragen."
       - "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gerne einen Ausweis beantragen."
       - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gerne einen Ausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten sagen? Ich würde gern einen Ausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten sagen? Ich würde gerne einen Ausweis beantragen."
+      - "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gern einen Bibliotheksausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gern einen Bibliotheksausweis beantragen."
+      - "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gerne einen Bibliotheksausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gerne einen Bibliotheksausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten sagen? Ich würde gern einen Bibliotheksausweis beantragen."
+      - "Könnten Sie mir die Öffnungszeiten sagen? Ich würde gerne einen Bibliotheksausweis beantragen."
     key_tokens: ["Könnten", "würde"]
+    revision: 2
     explain:
       en: "The polite request keeps its shape wherever you are: Könnten Sie mir bitte … — and the infinitive, here sagen, goes to the very end, behind the object. The second sentence names an action you want, so the chunk is würde gern and beantragen closes the sentence. Watch einen Ausweis: beantragen takes an accusative object, and the masculine article is the one that changes — ein becomes einen."
       ru: "Вежливая просьба сохраняет свою форму где угодно: Könnten Sie mir bitte … — а инфинитив, здесь sagen, уходит в самый конец, за дополнение. Вторая фраза называет действие, которого вы хотите, поэтому нужен оборот würde gern, а beantragen закрывает предложение. Обратите внимание на einen Ausweis: beantragen требует дополнения в Akkusativ, а меняется в нём только мужской артикль — ein превращается в einen."
@@ -102,15 +121,23 @@ items:
       en: "You are at the counter of a driving school. Say both sentences politely."
       ru: "Вы у стойки в автошколе. Скажите обе фразы вежливо."
       uk: "Ви біля стійки в автошколі. Скажіть обидві фрази ввічливо."
+    # revision 2: «записаться на курс» pointed straight at sich anmelden — the verb
+    # this topic's own deck teaches — while only buchen was accepted; the RU/UK prompts
+    # now say «забронировать»/«забронювати», which selects buchen. And dropping bitte
+    # is faithful (no «пожалуйста» in RU/UK), closed over gern/gerne.
+    # (Batch-6 audit, 2026-08-12.)
     prompt_en: "Could you show me the prices, please? I would like to book a course."
-    prompt_ru: "Не могли бы вы показать мне цены? Я хотел(а) бы записаться на курс."
-    prompt_uk: "Чи не могли б ви показати мені ціни? Я хотів(ла) би записатися на курс."
+    prompt_ru: "Не могли бы вы показать мне цены? Я хотел(а) бы забронировать курс."
+    prompt_uk: "Чи не могли б ви показати мені ціни? Я хотів(ла) би забронювати курс."
     answer: "Könnten Sie mir bitte die Preise zeigen? Ich würde gern einen Kurs buchen."
     accept:
       - "Könnten Sie mir die Preise bitte zeigen? Ich würde gern einen Kurs buchen."
       - "Könnten Sie mir bitte die Preise zeigen? Ich würde gerne einen Kurs buchen."
       - "Könnten Sie mir die Preise bitte zeigen? Ich würde gerne einen Kurs buchen."
+      - "Könnten Sie mir die Preise zeigen? Ich würde gern einen Kurs buchen."
+      - "Könnten Sie mir die Preise zeigen? Ich würde gerne einen Kurs buchen."
     key_tokens: ["Könnten", "würde"]
+    revision: 2
     explain:
       en: "Both halves of the target pair: Könnten Sie mir bitte …? is the conventional softer request, with zeigen at the end; Ich würde gern … names your own intended action, with buchen last. Ich will einen Kurs buchen is grammatical but normally too direct for this neutral first-contact prompt. Ich hätte gern einen Kurs buchen is not well formed, because hätte gern takes a noun phrase here, not an infinitive."
       ru: "Обе части целевой пары: Könnten Sie mir bitte …? — обычная более мягкая просьба с zeigen в конце; Ich würde gern … называет ваше собственное намерение, с buchen в конце. Ich will einen Kurs buchen грамматически верно, но обычно слишком прямо для этого нейтрального первого контакта. Ich hätte gern einen Kurs buchen построено неверно: здесь hätte gern берёт именную группу, а не инфинитив."

@@ -184,6 +184,44 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     *anmelden* but the item is about lunch — ids are stable, do **not** rename.
   - The double-negative distractor class and the `ls-*` above-A2 lexis stay under their
     standing entries (P25-18).
+- **P25-21 · Unpinned accepted synonyms, corpus-wide sweep + validator guard** — the batch-6
+  reviewer scanned all 556 translate items with `key_tokens`: after the batch-6 fixes, renderings
+  with **zero graded tokens** remain in `a1/freizeit-koennen::translate-gern-fussball`
+  (gern/gerne), `a2/drill-dativ-ausloeser::uebersetzen-zum-supermarkt` and `::uebersetzen-beim-baecker`,
+  `a2/drill-der-dem-den::uebersetzen-zum-arzt` (contraction vs full form),
+  `a2/placement-a2::besitz-annas-auto` (Annas/von Anna), and `a2/drill-nebensatz-verbende::
+  uebersetzen-weil-arbeiten-muss` / `::uebersetzen-dass-film-beginnt` / `::uebersetzen-weil-studieren-moechte`.
+  In such a rendering `absentGraded` and `misplacedGraded` are both false, so the item's signature
+  error comes back **unattributed** and the focus tag silently stops firing — the mechanism is
+  documented in `src/lib/production.ts` ("every synonymous form that carries the same graded
+  decision must be listed"), but no gate enforces it. Fix at the instrument: a validator rule
+  ("every accepted rendering of a focus-tagged translate must contain ≥1 graded position") plus
+  the residual pin unions, in one PR — the rule lands red until the last item is fixed.
+- **P25-20 · Non-material findings of the 2026-08-12 A2 audit, batch 6** (lernen-verstehen,
+  aemter-dienstleistungen) — the material findings (thirteen from the reviewer plus one
+  determiner-twin promotion) were fixed in the batch PR; these were real but below the bar:
+  - `a2/lernen-verstehen-produktion` opens with a stale comment describing a recording task that
+    contradicts the actual `ls-` transcript and sits above an `mc` item with no recording. Delete.
+  - `a2/lernen-verstehen.mdx` W-word tables never list *wie viel* (used by a drill answer) or
+    *wer/wen/wem/warum/welch-* as indirect-question openers; nothing the learner meets uses them
+    either — a completeness opportunity, not a gap.
+  - `a2/lernen-verstehen.mdx` "a Nebensatz may never begin with the verb" — false as an absolute
+    (verb-first conditionals), correct as the A2 simplification. Leave unless B1 contradicts it.
+  - UK half at `lernen-verstehen.mdx:203` — «але» contrast does not follow from its own clause
+    (calque of the RU half's point about «если»); the Häufige Fehler UK half states it right.
+  - `a2/lernen-verstehen::cloze-du-oder-sie-fragen` accepts only *können Sie / kannst du*; the
+    politer *könnten Sie* (taught in arbeit-beruf) is rejected on an item grading du/Sie, not mood.
+  - `a2/aemter-dienstleistungen-produktion` model answer carries a fourth *hätte* chunk (*Ich
+    hätte noch eine Frage*) the article's "exactly three" framing never presents; guidance-only.
+  - `content/vocab/aemter-dienstleistungen.yaml`: «бюргерамт» transliterates the answer on a
+    production card's question side (repo-wide convention for this word, no other RU equivalent);
+    the `anmelden` note describes only the reflexive use while the topic uses it transitively.
+  - `a2/aemter-dienstleistungen::table-hoefliche-chunks` cells accept a single string, so the
+    article's own neutral *Ich möchte* is scored wrong; if fixed, it is an instruction constraint.
+  - `a2/aemter-dienstleistungen-dokument::dokument-formular-unterlagen` is an untagged translate
+    keying *Wohnungsgeberbestätigung*/*nachreichen* (above A2, supported by the stimulus).
+  - Definite-leaning bare-noun prompts left unaccepted by design (watch the grading queue):
+    *das Formular* items in both aemter sets, *der Kurs*/*der Test* in the lernen enquiry items.
 - **P18-3 · B1.1–B1.2 competences without delayed evidence** — the contract requires one
   3-variant probe family per competence. B1.3 closed 2026-08-12: `adjektiv-nullartikel` gained
   family 4 of 4 (`probe-gesundheit-wohlbefinden-adjektiv-nullartikel`), so all four of its points
