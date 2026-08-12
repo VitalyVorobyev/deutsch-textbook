@@ -17,11 +17,20 @@ arming:
   - a2/adjektive-deklination::cloze-ein-springt-ein
   - a2/adjektive-deklination::order-wohnungsanzeige
   - a2/adjektive-deklination::translate-neuer-tisch
+# revision 2 on all three variants: RU/UK have no articles, and the graded ending
+# depends on the determiner — Der junge Arzt / das rote Fahrrad were correct German
+# logged against adjektiv-unbestimmt as decay. The instruction pins the first-mention
+# reading uniformly without naming the ending. (Batch-3 audit, 2026-08-12.)
 items:
   - id: probe-adjektiv-unbestimmt-v1
     outcomes: [adjektiv-wunsch-sagen]
     type: translate
     focus: adjektiv-unbestimmt
+    instruction:
+      en: "Translate into German. The person or thing is mentioned for the first time."
+      ru: "Переведите на немецкий. Человек или предмет упоминается впервые."
+      uk: "Перекладіть німецькою. Особу або предмет згадано вперше."
+    revision: 2
     prompt_en: "A young doctor is working today."
     prompt_ru: "Сегодня работает молодой врач."
     prompt_uk: "Сьогодні працює молодий лікар."
@@ -37,6 +46,11 @@ items:
     outcomes: [adjektiv-wunsch-sagen]
     type: translate
     focus: adjektiv-unbestimmt
+    instruction:
+      en: "Translate into German. The person or thing is mentioned for the first time."
+      ru: "Переведите на немецкий. Человек или предмет упоминается впервые."
+      uk: "Перекладіть німецькою. Особу або предмет згадано вперше."
+    revision: 2
     prompt_en: "That is a lovely present."
     prompt_ru: "Это прекрасный подарок."
     prompt_uk: "Це прекрасний подарунок."
@@ -51,6 +65,11 @@ items:
     outcomes: [adjektiv-wunsch-sagen]
     type: translate
     focus: adjektiv-unbestimmt
+    instruction:
+      en: "Translate into German. The person or thing is mentioned for the first time."
+      ru: "Переведите на немецкий. Человек или предмет упоминается впервые."
+      uk: "Перекладіть німецькою. Особу або предмет згадано вперше."
+    revision: 2
     prompt_en: "I am buying a red bike."
     prompt_ru: "Я покупаю красный велосипед."
     prompt_uk: "Я купую червоний велосипед."

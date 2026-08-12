@@ -104,4 +104,10 @@ Owner decisions backing the two non-obvious verdicts (2026-08-12): full-audit sc
   audit. Batch 1 = the preposition/time/case strand (PR #185); batch 2 = dativ,
   trennbare-verben, alltag-tagesablauf, modalverben, termine-vereinbaren (2026-08-12 — the
   missing paradigm member this time was the habitual *-s* adverbs beside the *am/um/in der*
-  system; the dativ paradigms themselves enumerated complete). 17 topics remain, in spine order.
+  system; the dativ paradigms themselves enumerated complete). Batch 3 = perfekt-haben-sein,
+  wohnen-umzug, reisen-verkehr, einkaufen-reklamation, adjektive-deklination (2026-08-12 —
+  two missing members this round: the *gemischt* Partizip class the formation table could not
+  generate, and *hoch*/*nah* behind a closed "three irregulars" claim; plus the systemic RU/UK
+  article-indeterminacy class across `adjektive-deklination`'s translate items, fixed with
+  constraining instructions where the determiner selects the graded ending and accepts where it
+  does not; reisen-verkehr clean). 12 topics remain, in spine order.

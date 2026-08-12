@@ -138,6 +138,15 @@ items:
     outcomes: [adjektiv-wunsch-sagen]
     type: translate
     focus: adjektiv-unbestimmt
+    # revision 2: «Новый стол» / «Новий стіл» are bare, and the determiner selects
+    # the graded ending — Der neue Tisch was correct German logged against
+    # adjektiv-unbestimmt. The instruction pins the general reading; an accept would
+    # defeat the focus. (Batch-3 audit, 2026-08-12.)
+    instruction:
+      en: "Translate into German. A general statement about any new table, not one particular table."
+      ru: "Переведите на немецкий. Это общее утверждение о любом новом столе, а не о конкретном."
+      uk: "Перекладіть німецькою. Це загальне твердження про будь-який новий стіл, а не про конкретний."
+    revision: 2
     prompt_en: "A new table is expensive."
     prompt_ru: "Новый стол стоит дорого."
     prompt_uk: "Новий стіл коштує дорого."
@@ -152,6 +161,14 @@ items:
     outcomes: [adjektiv-beschreiben]
     type: translate
     focus: adjektiv-bestimmt
+    # revision 3: «Новый коллега» / «Новий колега» are bare, and the determiner
+    # selects the graded ending — Ein neuer Kollege was correct German logged
+    # against adjektiv-bestimmt. The instruction pins the known-colleague reading.
+    # (Batch-3 audit, 2026-08-12.)
+    instruction:
+      en: "Translate into German. You both know which colleague is meant."
+      ru: "Переведите на немецкий. Вы оба знаете, о каком коллеге речь."
+      uk: "Перекладіть німецькою. Ви обоє знаєте, про якого колегу йдеться."
     prompt_en: "The new colleague is very friendly."
     prompt_ru: "Новый коллега очень приветливый."
     prompt_uk: "Новий колега дуже привітний."
@@ -161,7 +178,7 @@ items:
     accept:
       - "Der neue Kollege ist sehr nett."
     key_tokens: ["neue"]
-    revision: 2
+    revision: 3
     explain:
       en: "der has already said masculine nominative, so the adjective needs nothing more than the light -e. And freundlich, sitting after ist, stays bare. Note that Kollege ends in -n in every case except this one (den Kollegen, dem Kollegen) — it is an n-Nomen, which is worth recognising but is not what this item grades."
       ru: "der уже сказал: мужской род, именительный падеж — поэтому прилагательному хватает лёгкого -e. А freundlich стоит после ist и остаётся голым. Заметьте: Kollege во всех падежах, кроме этого, оканчивается на -n (den Kollegen, dem Kollegen) — это n-Nomen; знать это полезно, но данное задание проверяет не его."

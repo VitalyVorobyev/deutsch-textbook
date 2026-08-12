@@ -78,10 +78,15 @@ items:
     outcomes: [wohnung-beschreiben, wo-wohin-position]
     type: translate
     focus: akkusativ-artikel
+    # revision 2: «стул» / «стілець» are bare, and here the free determiner IS the
+    # graded token — einen Stuhl was correct accusative logged against
+    # akkusativ-artikel. The instruction pins the definite reading; an accept would
+    # defeat the focus. (Batch-3 audit, 2026-08-12.)
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. It is a specific chair — you know which one."
+      ru: "Переведите на немецкий. Стул — конкретный: вы знаете, о каком речь."
+      uk: "Перекладіть німецькою. Стілець — конкретний: ви знаєте, про який ідеться."
+    revision: 2
     prompt_en: "Nina puts the chair in the kitchen."
     prompt_ru: "Нина ставит стул на кухню."
     prompt_uk: "Ніна ставить стілець на кухню."
@@ -105,6 +110,12 @@ items:
     prompt_uk: "Ніна ставить лампу поряд із шафою."
     answer: "Nina stellt die Lampe neben den Schrank."
     key_tokens: ["den"]
+    # revision 2: «лампу» / «лампу» mark no definiteness, so the indefinite reading
+    # answers the RU/UK prompt too. The graded token is den (neben den Schrank).
+    # (Batch-3 audit, 2026-08-12.)
+    accept:
+      - "Nina stellt eine Lampe neben den Schrank."
+    revision: 2
     explain:
       en: "neben is one of the nine two-way prepositions, and the case is decided by the question, not by the preposition: Wohin? — the lamp is moving — so Akkusativ, der Schrank → neben den Schrank. Once the lamp is standing there, the same preposition takes the Dativ, because the question has become Wo?: Die Lampe steht neben dem Schrank. One word, two cases, and only the question tells them apart."
       ru: "neben — один из девяти предлогов двойного управления, и падеж выбирает вопрос, а не предлог: Wohin? — лампа перемещается — значит Akkusativ, der Schrank → neben den Schrank. Когда лампа уже стоит, тот же предлог требует Dativ, потому что вопрос сменился на Wo?: Die Lampe steht neben dem Schrank. Осторожно: по-русски здесь творительный падеж — «рядом со шкафом», — и он никак не намекает на направление."
