@@ -1,9 +1,9 @@
 # A2 linguistic QA ledger
 
-Status: **30 of 32 manifest points linguistically signed off; zero open high/medium findings**.
-The two newest points (`lokale-praepositionen-ortstyp`, `verbrektion-kasus`) joined the manifest on
-2026-08-12 with the prepositions strand and have not been through this ledger's pass; they are the
-two open rows.
+Status: **30 of 33 manifest points linguistically signed off; zero open high/medium findings**.
+The three newest points (`lokale-praepositionen-ortstyp`, `verbrektion-kasus`,
+`zeitangaben-system`) joined the manifest on 2026-08-12 with the prepositions strand and have not
+been through this ledger's pass; they are the three open rows.
 Structural coverage, corpus correctness and learner mastery remain three separate claims.
 
 This ledger will become the linguistic sign-off that structural coverage cannot provide. A signed-off row means
@@ -47,6 +47,7 @@ named high-risk findings but did not yet justify marking every unaffected row co
 | `passiv-praesens` | corrected | A2 remains receptive and process-passive-focused; `werden` is contrasted with state/result `sein`, and the `man` bridge is not universalized. |
 | `lokale-praepositionen-ortstyp` | open | Added 2026-08-12 with `ort-richtung-praepositionen`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
 | `verbrektion-kasus` | open | Added 2026-08-12 with `verben-mit-kasus`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
+| `zeitangaben-system` | open | Added 2026-08-12 with `zeit-praepositionen`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
 
 ## Corpus inventory
 

@@ -1,19 +1,19 @@
-topic: verben-mit-kasus
+topic: zeit-praepositionen
 role: placement
 title: { en: "Placement test A2 — what you already know", ru: "Тест на уровень A2 — что вы уже знаете", uk: "Тест на рівень A2 — що ви вже знаєте" }
 
-# The A2 entry test: 50 tasks over 24 topics, two or three each. Same contract as the A1
+# The A2 entry test: 52 tasks over 25 topics, two or three each. Same contract as the A1
 # test — a topic is placed only when every one of its tasks is answered and the parts-
 # weighted ratio reaches 0.8, and every item's outcomes belong to exactly one topic.
 #
-# Anchored to `verben-mit-kasus`, the last A2 topic in the spine, so every focus tag used
-# anywhere in A2 passes the curriculum-order check. The anchor has now moved twice — from
-# `aemter-dienstleistungen` to `ort-richtung-praepositionen` and on to here — each time the
-# prepositions strand appended a unit to the spine tail. It is a spine position and nothing
-# else (`getPlacements()` reads the level off the directory), and without the move this file
-# could not carry an item tagged `verb-kasus` at all.
+# Anchored to `zeit-praepositionen`, the last A2 topic in the spine, so every focus tag used
+# anywhere in A2 passes the curriculum-order check. The anchor has now moved three times —
+# from `aemter-dienstleistungen` to `ort-richtung-praepositionen`, on to `verben-mit-kasus`
+# and now to here — once per unit the prepositions strand appended to the spine tail. It is a
+# spine position and nothing else (`getPlacements()` reads the level off the directory), and
+# without the move this file could not carry an item tagged `zeitangaben-system` at all.
 #
-# Mix: 26 translate, 13 cloze, 6 audio-comprehension, 5 mc. 78% of the test is produced
+# Mix: 27 translate, 14 cloze, 6 audio-comprehension, 5 mc. 79% of the test is produced
 # rather than picked, against caps of 25% mc and 40% selection. A2 is where the course
 # stops being about recognising German and starts being about building it, and a test that
 # decides which of those lessons the learner never sees has to ask them to build it.
@@ -614,3 +614,26 @@ items:
     accept: ["Wir warten auf den Bus, und wir sprechen über die Reise."]
     key_tokens: ["den", "die"]
     explain: { en: "Both prepositions arrived with their verbs, so neither case is chosen in the sentence: warten auf is accusative (auf den Bus) and sprechen über is accusative too (über die Reise). auf and über alternate only as prepositions of place; inside a verb chunk the case was settled when the chunk was learnt, and nothing here is going anywhere.", ru: "Оба предлога пришли вместе со своими глаголами, поэтому падеж внутри предложения не выбирается: warten auf требует Akkusativ (auf den Bus), и sprechen über тоже требует Akkusativ (über die Reise). Предлоги auf и über чередуют падежи только как предлоги места; внутри глагольного куска падеж решён в момент заучивания, а движения здесь нет никакого.", uk: "Обидва прийменники прийшли разом зі своїми дієсловами, тому відмінок усередині речення не обирається: warten auf вимагає Akkusativ (auf den Bus), і sprechen über теж вимагає Akkusativ (über die Reise). Прийменники auf та über чергують відмінки лише як прийменники місця; усередині дієслівного шматка відмінок вирішено в момент завчання, а руху тут немає жодного." }
+
+  # --- zeit-praepositionen ---
+  - id: zeit-um-am-im-luecke
+    outcomes: [zeitpunkt-nennen]
+    type: cloze
+    focus: zeitangaben-system
+    instruction: { en: "Fill in the time preposition — merged with the article where German merges the two.", ru: "Вставьте предлог времени — слитно с артиклем там, где немецкий их сливает.", uk: "Вставте прийменник часу — злито з артиклем там, де німецька їх зливає." }
+    text: "{{Am}} Montag beginnt der Kurs {{um}} neun Uhr, und {{im}} Juli ist Pause."
+    translation: { en: "On Monday the course begins at nine o'clock, and in July there is a break.", ru: "В понедельник курс начинается в девять часов, а в июле перерыв.", uk: "У понеділок курс починається о дев'ятій годині, а в липні перерва." }
+    explain: { en: "Three kinds of time, three prepositions: a weekday takes an (contracted to am), a clock time takes um, a month takes in (contracted to im). English pairs them differently — on, at, in — and 'at the weekend' shows the pairing is not reliable, so the question to ask is what kind of time is being named, not which English word was used.", ru: "Три типа времени — три предлога: день недели берёт an (слитно am), время по часам — um, месяц — in (слитно im). Русское «в» стоит во всех трёх случаях, поэтому подсказки от перевода нет вовсе: спрашивать надо не «как это по-русски», а какого типа названо время.", uk: "Три типи часу — три прийменники: день тижня бере an (злито am), час за годинником — um, місяць — in (злито im). Українська допомагає лише наполовину: «о дев'ятій» має своє «о», а «у понеділок» і «у липні» користуються одним «у» — саме на цій парі й виникають помилки." }
+
+  - id: zeit-seit-uebersetzen
+    outcomes: [dauer-nennen]
+    type: translate
+    focus: seit-vor-zeit
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "We have been living in Munich for three years."
+    prompt_ru: "Мы живём в Мюнхене уже три года."
+    prompt_uk: "Ми живемо в Мюнхені вже три роки."
+    answer: "Wir wohnen seit drei Jahren in München."
+    accept: ["Seit drei Jahren wohnen wir in München.", "Wir leben seit drei Jahren in München."]
+    key_tokens: ["seit"]
+    explain: { en: "seit names a stretch that began back then and is still running, and it takes the German present tense with it — the living is going on now, so wir wohnen and not wir haben gewohnt. vor drei Jahren would date a finished event instead: vor drei Jahren sind wir umgezogen.", ru: "seit называет отрезок, который начался тогда и продолжается сейчас, и тянет за собой настоящее время: жизнь там идёт до сих пор, поэтому wir wohnen, а не wir haben gewohnt. Подсказка по-русски — слово «уже». Вариант vor drei Jahren датировал бы законченное событие: vor drei Jahren sind wir umgezogen.", uk: "seit називає відрізок, що почався тоді й триває зараз, і тягне за собою теперішній час: життя там іде досі, тому wir wohnen, а не wir haben gewohnt. Підказка українською — слово «вже». Варіант vor drei Jahren датував би завершену подію: vor drei Jahren sind wir umgezogen." }

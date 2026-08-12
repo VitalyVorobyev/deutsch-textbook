@@ -1,0 +1,161 @@
+# Drill from progress (2026-08-11 audit, post-triage): `dativ-praepositionen` is persistent —
+# 23 wrong of 103 attributed attempts, 19 of them recent, and seven of the errors are probe
+# errors, which is the delayed-check evidence that the rule has not settled. Recovery is
+# happening, so this is a drill rather than a re-teach: the topic's own practice already puts
+# the seven prepositions on the table, and what is missing is production of the marked form
+# often enough for it to stop being a lookup.
+#
+# Every item is `dativ-praepositionen` and production-heavy — four translate, two cloze and a
+# dictation, no mc — because the tag's error rate is a *production* rate: recognition of "aus,
+# bei, mit, nach, seit, von, zu take the dative" has never been the problem, and an mc would
+# score it as solved. The contraction surface (beim, vom, zur, zum) gets two items of its own
+# now that `ort-richtung-praepositionen` has given it a system home: the contraction is where
+# the dative disappears from sight, and that is where it goes missing.
+#
+# Contexts are grepped against every set a2/dativ owns (dativ, dativ-produktion, hoeren-dativ,
+# drill-mir-mich, drill-der-dem-den, drill-dativ-ausloeser) and against both of its readings,
+# rather than remembered: Taxi, Kollegin, Markt, Post, Termin, Apotheke, Zug, Tante,
+# Bibliothek, Freundin, Chefin, Kino, Buch, Onkel, Abendessen — every one of them at zero
+# occurrences there. The grep is why the taxi is a taxi: `mit dem Fahrrad` is the answer to a
+# question in the topic's own reading, and an item whose graded phrase is already an answer key
+# elsewhere in the topic is a memory test, not a drill.
+topic: dativ
+role: drill
+title:
+  en: "Drill — the seven prepositions that always take the dative"
+  ru: "Тренажёр — семь предлогов, которые всегда требуют Dativ"
+  uk: "Тренажер — сім прийменників, які завжди вимагають Dativ"
+items:
+  - id: uebersetzen-mit-taxi
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "I take a taxi to my colleague's place."
+    prompt_ru: "Я еду к своей коллеге на такси."
+    prompt_uk: "Я їду до своєї колеги на таксі."
+    answer: "Ich fahre mit dem Taxi zu meiner Kollegin."
+    accept:
+      - "Mit dem Taxi fahre ich zu meiner Kollegin."
+    key_tokens: ["dem", "meiner"]
+    explain:
+      en: "Two of the seven in one sentence, and both mark their noun the same way. mit takes the dative, so das Taxi becomes mit dem Taxi. zu takes the dative too, so die Kollegin becomes zu meiner Kollegin — the possessive carries the ending here, exactly as the article would. Neither preposition ever alternates: there is no accusative version of mit or zu to choose between, which is what makes these seven worth learning as one list."
+      ru: "Два предлога из семи в одном предложении, и оба помечают существительное одинаково. mit требует Dativ, поэтому das Taxi даёт mit dem Taxi. zu тоже требует Dativ, поэтому die Kollegin даёт zu meiner Kollegin — окончание несёт притяжательное местоимение ровно так же, как его нёс бы артикль. Чередования нет ни у того, ни у другого: винительного варианта у mit и zu просто не существует, поэтому эти семь предлогов и учат одним списком."
+      uk: "Два прийменники із семи в одному реченні, і обидва позначають іменник однаково. mit вимагає Dativ, тому das Taxi дає mit dem Taxi. zu теж вимагає Dativ, тому die Kollegin дає zu meiner Kollegin — закінчення несе присвійний займенник так само, як його ніс би артикль. Чергування немає в жодного: знахідного варіанта в mit і zu просто немає, тому ці сім прийменників і вчать одним списком."
+
+  - id: cloze-vom-zur
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: "Fill in von or zu, merged with the article the noun needs."
+      ru: "Вставьте von или zu, слитно с тем артиклем, которого требует существительное."
+      uk: "Вставте von або zu, злито з тим артиклем, якого вимагає іменник."
+    text: "Ich komme gerade {{vom}} Markt und gehe jetzt {{zur}} Post."
+    translation:
+      en: "I have just come from the market and am now going to the post office."
+      ru: "Я только что с рынка и сейчас иду на почту."
+      uk: "Я щойно з ринку і зараз іду на пошту."
+    explain:
+      en: "Both gaps hide a dative article inside a short word. von + dem is vom, so der Markt gives vom Markt; zu + der is zur, so die Post gives zur Post. The contraction is where the case becomes invisible — and where it therefore gets lost: writing von der Markt or zu die Post is the same error spelled out, and it is exactly the error the merged forms are meant to prevent."
+      ru: "В обоих пропусках дативный артикль спрятан внутри короткого слова. von + dem даёт vom, поэтому der Markt превращается в vom Markt; zu + der даёт zur, поэтому die Post превращается в zur Post. Именно в слитной форме падеж перестаёт быть виден — и именно поэтому теряется: von der Markt или zu die Post — та же ошибка, только развёрнутая."
+      uk: "В обох пропусках давальний артикль захований усередині короткого слова. von + dem дає vom, тому der Markt перетворюється на vom Markt; zu + der дає zur, тому die Post перетворюється на zur Post. Саме у злитій формі відмінок перестає бути видним — і саме тому губиться: von der Markt або zu die Post — та сама помилка, лише розгорнута."
+
+  - id: uebersetzen-nach-termin
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    # «в аптеку» also renders as in die Apotheke (accusative, equally correct German) — the
+    # instruction names zu because the dative government is what this drill grades.
+    instruction:
+      en: "Translate into German. For 'to the pharmacy' take zu (zur Apotheke)."
+      ru: "Переведите на немецкий. Для «в аптеку» возьмите zu (zur Apotheke)."
+      uk: "Перекладіть німецькою. Для «в аптеку» візьміть zu (zur Apotheke)."
+    prompt_en: "After the appointment I am going to the pharmacy."
+    prompt_ru: "После приёма я иду в аптеку."
+    prompt_uk: "Після прийому я йду в аптеку."
+    answer: "Nach dem Termin gehe ich zur Apotheke."
+    accept:
+      - "Ich gehe nach dem Termin zur Apotheke."
+    key_tokens: ["dem", "zur"]
+    explain:
+      en: "nach and zu are both on the list, so both nouns are marked: der Termin becomes nach dem Termin, and die Apotheke becomes zu der Apotheke, written zur Apotheke. Watch the second one — the merged form is a whole dative article compressed into three letters, and it is the form learners skip when they write zu die Apotheke."
+      ru: "nach и zu оба в списке, поэтому помечены оба существительных: der Termin даёт nach dem Termin, а die Apotheke — zu der Apotheke, что записывается как zur Apotheke. Следите за второй формой: в трёх буквах спрятан целый дативный артикль, и именно её пропускают, когда пишут zu die Apotheke."
+      uk: "nach і zu обидва в списку, тому позначені обидва іменники: der Termin дає nach dem Termin, а die Apotheke — zu der Apotheke, що записується як zur Apotheke. Стежте за другою формою: у трьох літерах захований цілий давальний артикль, і саме її пропускають, коли пишуть zu die Apotheke."
+
+  - id: diktat-mit-zug
+    outcomes: [dativ-praepositionen]
+    type: listen
+    focus: dativ-praepositionen
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
+    text: "Ich fahre mit dem Zug zu meiner Tante."
+    translation:
+      en: "I am taking the train to my aunt's."
+      ru: "Я еду на поезде к своей тёте."
+      uk: "Я їду поїздом до своєї тітки."
+    explain:
+      en: "Two dative endings to hear rather than to work out: dem after mit, meiner after zu. Both are unstressed and easy to swallow, and both are one letter away from a wrong form — den Zug, meine Tante. Say the sentence back before typing it: if the ending you heard belongs to a preposition on the list, it can only be the dative."
+      ru: "Два дативных окончания, которые надо услышать, а не вычислить: dem после mit, meiner после zu. Оба безударны, оба легко проглатываются, и оба отличаются одной буквой от неверной формы — den Zug, meine Tante. Проговорите предложение про себя перед тем, как печатать: если окончание относится к предлогу из списка, оно может быть только дативным."
+      uk: "Два давальні закінчення, які треба почути, а не обчислити: dem після mit, meiner після zu. Обидва ненаголошені, обидва легко ковтаються, і обидва відрізняються однією літерою від хибної форми — den Zug, meine Tante. Промовте речення подумки, перш ніж друкувати: якщо закінчення належить прийменникові зі списку, воно може бути тільки давальним."
+
+  - id: uebersetzen-aus-bibliothek
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "She is coming out of the library and going to her friend."
+    prompt_ru: "Она выходит из библиотеки и идёт к своей подруге."
+    prompt_uk: "Вона виходить із бібліотеки і йде до своєї подруги."
+    answer: "Sie kommt aus der Bibliothek und geht zu ihrer Freundin."
+    key_tokens: ["der", "ihrer"]
+    explain:
+      en: "Two feminine nouns, two prepositions from the list, and the same dative ending both times: die Bibliothek becomes aus der Bibliothek, die Freundin becomes zu ihrer Freundin. The feminine is where this rule is hardest to see, because der looks like a masculine nominative and ihrer looks like nothing in English at all — but after aus and zu no other form exists."
+      ru: "Два существительных женского рода, два предлога из списка и одно и то же дативное окончание в обоих случаях: die Bibliothek даёт aus der Bibliothek, die Freundin — zu ihrer Freundin. Женский род здесь самый коварный: der выглядит как мужской именительный, а ihrer русскому глазу не подсказывает ничего — но после aus и zu никакой другой формы не бывает."
+      uk: "Два іменники жіночого роду, два прийменники зі списку й те саме давальне закінчення в обох випадках: die Bibliothek дає aus der Bibliothek, die Freundin — zu ihrer Freundin. Жіночий рід тут найпідступніший: der виглядає як чоловічий називний, а ihrer українському оку не підказує нічого — але після aus і zu жодної іншої форми не буває."
+
+  - id: cloze-bei-aus
+    outcomes: [dativ-praepositionen]
+    type: cloze
+    focus: dativ-praepositionen
+    instruction:
+      en: "Fill in the article in the form the preposition demands."
+      ru: "Вставьте артикль в той форме, которой требует предлог."
+      uk: "Вставте артикль у тій формі, якої вимагає прийменник."
+    text: "Am Freitag bin ich bei {{der}} Chefin, und am Samstag komme ich spät aus {{dem}} Kino."
+    translation:
+      en: "On Friday I am at the boss's, and on Saturday I come home late from the cinema."
+      ru: "В пятницу я у начальницы, а в субботу поздно возвращаюсь из кино."
+      uk: "У п'ятницю я в начальниці, а в суботу пізно повертаюся з кіно."
+    explain:
+      en: "bei and aus are on the same list as mit and zu, and neither of them cares what is happening in the sentence: die Chefin becomes bei der Chefin, das Kino becomes aus dem Kino. Note that being somewhere and coming out of somewhere look like opposite ideas and take the same case — the case here is a property of the preposition, not of the movement."
+      ru: "bei и aus стоят в том же списке, что mit и zu, и ни одному из них нет дела до происходящего в предложении: die Chefin даёт bei der Chefin, das Kino — aus dem Kino. Обратите внимание: находиться где-то и выходить откуда-то — идеи противоположные, а падеж один. Падеж здесь свойство предлога, а не движения."
+      uk: "bei та aus стоять у тому самому списку, що mit і zu, і жодному з них немає діла до того, що відбувається в реченні: die Chefin дає bei der Chefin, das Kino — aus dem Kino. Зверніть увагу: перебувати десь і виходити звідкись — ідеї протилежні, а відмінок один. Відмінок тут властивість прийменника, а не руху."
+
+  - id: uebersetzen-von-onkel
+    outcomes: [dativ-praepositionen]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "The book is from my uncle, and I read it after dinner."
+    prompt_ru: "Книга от моего дяди, и я читаю её после ужина."
+    prompt_uk: "Книжка від мого дядька, і я читаю її після вечері."
+    answer: "Das Buch ist von meinem Onkel, und ich lese es nach dem Abendessen."
+    accept:
+      - "Das Buch ist von meinem Onkel. Ich lese es nach dem Abendessen."
+    key_tokens: ["meinem", "dem"]
+    explain:
+      en: "von and nach mark two completely different things here — where the book came from, and when the reading happens — and both land in the dative all the same. der Onkel becomes von meinem Onkel; das Abendessen becomes nach dem Abendessen. That is the whole point of the list: it is not the meaning that selects the case, it is the preposition, so once you know a preposition is on the list you have stopped choosing."
+      ru: "von и nach помечают здесь совершенно разные вещи — от кого книга и когда происходит чтение, — и всё равно оба дают Dativ. der Onkel даёт von meinem Onkel; das Abendessen — nach dem Abendessen. В этом и смысл списка: падеж выбирает не значение, а предлог, и как только вы знаете, что предлог в списке, выбирать больше нечего."
+      uk: "von і nach позначають тут зовсім різні речі — від кого книжка і коли відбувається читання, — і все одно обидва дають Dativ. der Onkel дає von meinem Onkel; das Abendessen — nach dem Abendessen. У цьому й сенс списку: відмінок обирає не значення, а прийменник, і щойно ви знаєте, що прийменник у списку, обирати більше нічого."

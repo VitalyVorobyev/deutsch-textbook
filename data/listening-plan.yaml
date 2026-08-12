@@ -470,6 +470,23 @@ units:
         register: "informell-freundlich, Telefonat"
         item_types: [audio-comprehension]
         context_sound: "sehr leiser Küchen-Raumton"
+  - unit: zeit-praepositionen
+    level: A2
+    artifacts:
+      # model-input for the third time in this strand and for the same reason: the unit owns
+      # one reading outcome and three writing outcomes, so the artifact carries the spoken
+      # form of the genre — a week being arranged out loud, with the time markers arriving
+      # unstressed and fast — and claims no listening evidence.
+      - id: ls-zeit-praepositionen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Bekannte stimmen eine Woche ab: ab wann, bis wann, seit wann schon — und wann genau der Kurs beginnt"
+        outcomes: [zeitangabe-verstehen]
+        duration_seconds: { min: 40, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-freundlich, Gespräch"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Café-Raumton"
   - unit: erfahrungen-erzaehlen
     level: B1
     artifacts:
