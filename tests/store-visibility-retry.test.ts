@@ -151,6 +151,10 @@ describe('diagnostic ladder for the CI stall', () => {
 
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
   test('getCardStates/setCardState round-trip through the real getStore()', async () => {
+    // TEMP-DIAG: bracket every preamble step; on CI the test dies at 5000ms
+    // with zero output, so the first missing print names the hang.
+    const diag = (m: string) => console.log(`[roundtrip-diag] ${m} @${Date.now()}`);
+    diag(`start, visibilityState=${typeof document !== 'undefined' ? document.visibilityState : 'no-doc'}`);
     // A profile must exist before getStore() proceeds past the first-run park
     // (store.ts:30-46, untouched by this change). Staging localStorage is not
     // enough on its own: resolveProfileState() memoizes module-wide, and on CI
@@ -163,15 +167,20 @@ describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-
       JSON.stringify([{ id: 'retry-wrapper-test', label: 'Retry Wrapper Test' }]),
     );
     localStorage.setItem('da:profile', 'retry-wrapper-test');
+    diag('staged localStorage');
     const { __resetProfileStateCacheForTests, resolveProfileState } = await import(
       '../src/lib/profile'
     );
+    diag('imported profile');
     __resetProfileStateCacheForTests();
+    diag('reset memo');
     // If this ever reports 'first-run', the park would otherwise show up as an
     // opaque 5s timeout — fail here with the real reason instead.
     expect(await resolveProfileState()).toBe('ready');
+    diag('profile state ready');
 
     const { getCardStates, setCardState } = await import('../src/lib/store');
+    diag('imported store');
     const card = {
       due: '2026-08-10T00:00:00.000Z',
       stability: 12,
@@ -185,7 +194,9 @@ describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-
     };
 
     expect(await getCardStates()).toEqual({});
+    diag('first getCardStates done');
     await setCardState('c1', card);
+    diag('setCardState done');
     expect((await getCardStates())['c1']).toMatchObject(card);
   });
 });
