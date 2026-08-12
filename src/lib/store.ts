@@ -28,30 +28,20 @@ const stores = new Map<string, UseStore>();
 // first-run gate is up there is no profile to own a write, so park forever —
 // creating the profile reloads the page, which discards parked operations.
 async function getStore(): Promise<UseStore> {
-  // TEMP-DIAG (CI stall investigation, removed with the fix): stage prints.
-  const diag = (m: string) => console.log(`[getStore-diag] ${m} @${Date.now()}`);
-  diag('enter');
-  const state = await resolveProfileState();
-  diag(`resolveProfileState=${state}`);
-  if (state === 'first-run') {
-    diag('PARKING forever');
+  if ((await resolveProfileState()) === 'first-run') {
     await new Promise<never>(() => {});
   }
   const id = getActiveProfileId();
-  diag(`activeProfile=${id}`);
   let s = stores.get(id);
   if (!s) {
     s = createStore(dbNameFor(id), 'progress');
     stores.set(id, s);
-    diag('createStore done');
     const handle = s;
     await migrateStoredCardIds(
       () => get<CardStates>('cards', handle),
       (cards) => set('cards', cards, handle),
     );
-    diag('migrate done');
   }
-  diag('return store');
   return s;
 }
 
@@ -123,15 +113,12 @@ export function withVisibilityRetry<T>(
   if (typeof document === 'undefined') return op();
 
   return new Promise<T>((resolve, reject) => {
-    console.log(`[wvr-diag] executor entered @${Date.now()}`);
     let settled = false;
 
     const onVisible = () => {
       if (settled || document.visibilityState !== 'visible') return;
       document.removeEventListener('visibilitychange', onVisible);
-      console.log(`[wvr-diag] calling op @${Date.now()}`);
-    op().then(settleResolve, settleReject);
-    console.log(`[wvr-diag] op called, arming timer @${Date.now()}`);
+      op().then(settleResolve, settleReject);
     };
     function settleResolve(value: T) {
       if (settled) return;
@@ -148,9 +135,7 @@ export function withVisibilityRetry<T>(
       reject(err);
     }
 
-    console.log(`[wvr-diag] calling op @${Date.now()}`);
     op().then(settleResolve, settleReject);
-    console.log(`[wvr-diag] op called, arming timer @${Date.now()}`);
     // Declared after settleResolve/settleReject only textually — both are hoisted
     // function declarations that close over `timer`, and neither can run before
     // this line does (Promise callbacks are never synchronous), so the binding is
@@ -264,7 +249,6 @@ export interface StoredCard {
 export type CardStates = Record<string, StoredCard>;
 
 export async function getCardStates(): Promise<CardStates> {
-  console.log(`[gcs-diag] getCardStates entered @${Date.now()}`);
   return withVisibilityRetry(async () => (await get<CardStates>('cards', await getStore())) ?? {});
 }
 

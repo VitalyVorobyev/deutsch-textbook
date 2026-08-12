@@ -107,6 +107,17 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
+- **P25-13 · The real store round-trip test is quarantined on CI (`test.skipIf(CI)`)** — on ubuntu
+  runners the `getCardStates`/`setCardState` composition through the real `getStore()` dies at bun
+  test's 5000ms budget with a promise that never settles, while every ingredient passes there in
+  milliseconds: raw fake-indexeddb, a fresh `IDBFactory`, idb-keyval `get`/`set`/`update`, the
+  `getStore` body rebuilt inline, and the same op through `withVisibilityRetry` at the production
+  timeout (PR #179's diagnostic-ladder runs, 2026-08-12). The hang point moved between runs
+  (`getCardStates` once, `setCardState` later) — a scheduling race in the fake-indexeddb/bun event
+  loop on Linux, not app logic; macOS passes every time on the same bun 1.3.14. Decomposed CI
+  coverage lives beside the quarantined test in `tests/store-visibility-retry.test.ts`. First
+  step on each bun upgrade: delete the `skipIf` locally, push a draft, and see whether the runtime
+  race is gone.
 - **P25-12 · «генитив» is the Russian spelling of the case name, and it is in 10 B1 files' `uk:`
   fields** — 34 occurrences on 32 lines
   (`grep -rh "^[[:space:]]*uk: .*генитив" content/exercises/ | grep -o "генитив" | wc -l`), heaviest
@@ -326,13 +337,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Product surfaces
 
-- **P25-8 · Eight top-level nav tabs is past comfortable — plan an IA consolidation pass** — `nav`
-  in `src/layouts/Base.astro:23-32` lists Heute, Themen, Entdecken, Referenz, Üben, Prüfung,
-  Fortschritt, Über; P24-7 fixed the sub-640px disclosure, not the count. Owner judgement,
-  2026-08-11: "8 nav tabs is way too much." Priority: below the current exam/triage/preposition
-  work, but **required before the next tagged release — the one that reports B1 complete**. First
-  step: inventory the eight against actual necessity/traffic and propose a consolidated set (merge
-  candidates, demote to a menu, or fold into an existing tab).
+- **P25-8 · Seven top-level nav tabs is still past comfortable — finish the IA consolidation pass** —
+  `nav` in `src/layouts/Base.astro` lists Heute, Themen, Entdecken, Referenz, Üben, Fortschritt,
+  Über; Prüfung was folded into Üben as its fourth sub-tab (PR #179, 2026-08-12) on the owner's
+  ruling that exam training is training, not a destination. Owner judgement, 2026-08-11: "8 nav
+  tabs is way too much" — the count is now seven, and the remaining pass is still **required before
+  the next tagged release — the one that reports B1 complete**. First step: inventory the seven
+  against actual necessity/traffic and propose a consolidated set (merge candidates, demote to a
+  menu, or fold into an existing tab).
 - **P25-1 · `/ueben/wortschatz` is a ~19,000 px flat deck list on a phone** — 22.3 viewport-heights
   at 390 px, one card per deck for the whole corpus, and every Wortliste wave makes it longer.
   Group by level with collapsed sections and/or a filter row. Evidence and method:
