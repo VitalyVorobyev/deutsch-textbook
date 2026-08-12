@@ -45,7 +45,7 @@ items:
       uk: "Не ім'я, отже von + Dativ, і von вимагає саме давального множини: unseren Nachbarn."
 
   - id: probe-genitiv-von-kollegin
-    revision: 2
+    revision: 3
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
@@ -60,8 +60,13 @@ items:
     prompt_ru: "Я читаю книгу коллеги."
     prompt_uk: "Я читаю книжку колеги."
     answer: "Ich lese das Buch von meiner Kollegin."
+    # revision 3: «книгу» is bare, and "a book of my colleague's" is as natural a
+    # reading as the definite one; every rendering carries the graded von. Closed
+    # over the possessive/article dimension. (Batch-5 audit, 2026-08-12.)
     accept:
       - "Ich lese das Buch von der Kollegin."
+      - "Ich lese ein Buch von meiner Kollegin."
+      - "Ich lese ein Buch von der Kollegin."
     key_tokens: ["von"]
     explain:
       en: "A noun with a possessive in front of it is not a name, so the -s is unavailable and von + Dativ is the only A2 route."

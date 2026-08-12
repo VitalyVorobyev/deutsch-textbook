@@ -1216,7 +1216,10 @@ nodes:
     deepens: [dativ]
     outcomes:
       - id: regeln-mit-man
-        mode: spoken-production
+        # spoken-interaction, not spoken-production: the topic's one speaking task
+        # (speak-regeln-erklaeren) answers a visitor's questions — its own checklist
+        # requires responding to a counter-question. (Batch-5 audit, 2026-08-12.)
+        mode: spoken-interaction
         domain: public
         de: "Ich kann mit man sagen, was man wo darf, muss und nicht darf."
         en: "I can use man to say what is allowed, required and forbidden somewhere."
