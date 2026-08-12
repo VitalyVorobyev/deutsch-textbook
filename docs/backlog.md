@@ -122,6 +122,42 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     `probe-adjektive-deklination::v2` share the *Das ist …* frame, which pragmatically pins the
     indefinite; left without a constraining instruction by design (v2 got one anyway for family
     parallelism).
+- **P25-18 · Non-material findings of the 2026-08-12 A2 audit, batch 4** (gesundheit-arzttermin,
+  verben-mit-praepositionen, arbeit-beruf, nebensaetze-plaene, infinitiv-mit-zu) — the material
+  findings (eleven from the reviewer plus five same-class promotions from the determiner-twin
+  grader sweep) were fixed in the batch PR; these were real but below the material bar:
+  - The generated `ls-*-hoeren` listening sets carry above-A2 lexis in three of the five topics —
+    *Lieferung/Kartons/beschädigt* (arbeit-beruf), *sobald* + reportive *soll* (nebensaetze-plaene),
+    *Anlage/Hausmeister/vermeiden* (infinitiv-mit-zu). No question key hinges on any of them and
+    the pattern is uniform across the `ls-` family — a family-wide pass, not per-topic edits.
+  - `a2/verben-mit-praepositionen.mdx` names *nach* among the dative-governing prepositions, but
+    no verb governing *nach* appears in the table, the reference data, the deck or any item.
+  - `a2/verben-mit-praepositionen::match-verb-praeposition` (primary practice) disambiguates with
+    B1 lexis (*erwarten*, *besprechen*) — not answer-bearing; the set cannot grow.
+  - `a2/probe-verben-mit-praepositionen-wahl`: all three UK explains contrast with Russian, not
+    Ukrainian («ні з російської конструкції…») — calque residue; rides on the C6-1 triage.
+  - `a2/probe-arbeit-beruf-anrede` variant-a translations render *können Sie…* as EN "could" and
+    RU imperative «пришлите» — the können/könnten distinction is the topic's own teaching point.
+  - `a2/arbeit-beruf.mdx`: "one letter apart in English" for *darf nicht*/*muss nicht* (rendered
+    "not allowed to"/"don't have to"); "Modals are the one verb group with no ending in the third
+    person singular" (*wissen* is the other Präteritopräsens).
+  - `content/vocab/arbeit-beruf.yaml` (`melden`): `valence: "+ Akk"` while the example carries a
+    dative recipient (*der Chefin*).
+  - `a2/nebensaetze-plaene::uebersetzen-weil-krank`: RU perfective «заболела» against *krank ist*
+    — aspect mismatch with no consequence for the graded token. `probe-nebensaetze-plaene-weil-denn`
+    variant-c explain cites *arbeitet* while quoting the other clause's evidence.
+  - `a2/nebensaetze-plaene::uebersetzen-dass-wetter`: RU/UK «будет» licenses the Futur rendering
+    (*gut sein wird*) once `zukunft-werden` is armed — watch the grading queue before widening.
+  - Bare-noun prompts in definite-leaning contexts left unaccepted by design (watch the queue):
+    `arbeit-beruf::uebersetzen-denn-termin` (*den Termin*), `drill-zu-infinitiv::
+    uebersetzen-formular-auszufuellen` (*ein Formular*), `gesundheit-arzttermin::
+    uebersetzen-imperativ-sie` / `-produktion::uebersetzen-ratschlag-sie` (the 2026-08-11
+    `confirm` ruling covers the class).
+  - `a2/infinitiv-mit-zu.mdx`: the "auch nach gehen und fahren" table omits *bleiben/lassen/
+    sehen/hören*, which the prose and a drill item do require; the productive/receptive boundary
+    is stated in prose only.
+  - `a2/gesundheit-arzttermin.mdx` teaches the whole `da(r)-` system as a preview of the next
+    topic — the same paradigm authored twice.
 - **P18-3 · B1.1–B1.2 competences without delayed evidence** — the contract requires one
   3-variant probe family per competence. B1.3 closed 2026-08-12: `adjektiv-nullartikel` gained
   family 4 of 4 (`probe-gesundheit-wohlbefinden-adjektiv-nullartikel`), so all four of its points

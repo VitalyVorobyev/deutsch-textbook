@@ -36,6 +36,13 @@ items:
     prompt_uk: "Ми вирішили переїхати до Бремена."
     answer: "Wir haben beschlossen, nach Bremen umzuziehen."
     key_tokens: ["umzuziehen"]
+    # revision 2: sich entscheiden is taught by this topic's own deck and renders
+    # «решили» / «вирішили» just as faithfully; the graded umzuziehen is identical.
+    # A probe that marks correct German wrong corrupts the retention curve.
+    # (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Wir haben uns entschieden, nach Bremen umzuziehen."
+    revision: 2
     explain:
       en: "beschließen is not a modal, so the infinitive takes zu — and umziehen is separable, so the zu goes inside: umzuziehen, one word."
       ru: "beschließen не модальный глагол, поэтому инфинитив берёт zu, а umziehen отделяемый, поэтому zu уходит внутрь: umzuziehen, одним словом."
@@ -45,9 +52,14 @@ items:
     outcomes: [zu-oder-ohne-zu]
     type: translate
     focus: zu-infinitiv
+    # revision 2: «Хочешь …?» rendered as Willst du … kochen? — a correct modal with
+    # correctly NO zu — and was logged as a zu-infinitiv failure. Only the EN prompt
+    # named the Lust-haben frame; the RU/UK prompts now select it too («есть
+    # настроение» / «є настрій»). (Batch-4 audit, 2026-08-12.)
     prompt_en: "Do you feel like cooking together this evening?"
-    prompt_ru: "Хочешь сегодня вечером вместе приготовить еду?"
-    prompt_uk: "Хочеш сьогодні ввечері разом приготувати їжу?"
+    prompt_ru: "Есть настроение сегодня вечером вместе приготовить еду?"
+    prompt_uk: "Є настрій сьогодні ввечері разом приготувати їжу?"
+    revision: 2
     answer: "Hast du Lust, heute Abend zusammen zu kochen?"
     key_tokens: ["zu", "kochen"]
     explain:
@@ -64,6 +76,13 @@ items:
     prompt_uk: "Вона обіцяла принести пиріг."
     answer: "Sie hat versprochen, einen Kuchen mitzubringen."
     key_tokens: ["mitzubringen"]
+    # revision 2: «пирог» / «пиріг» mark no definiteness — the promised cake reads
+    # definite as readily as indefinite — and the graded mitzubringen is identical.
+    # A probe that marks correct German wrong corrupts the retention curve.
+    # (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Sie hat versprochen, den Kuchen mitzubringen."
+    revision: 2
     explain:
       en: "versprechen opens a zu-infinitive, and mitbringen is separable, so the zu is buried inside the word: mitzubringen."
       ru: "versprechen вводит инфинитив с zu, а mitbringen отделяемый, поэтому zu спрятан внутри слова: mitzubringen."

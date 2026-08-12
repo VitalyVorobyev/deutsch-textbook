@@ -88,11 +88,18 @@ items:
     # English "you" does not choose a person, so du, ihr and Sie are all faithful renderings of
     # the prompt. This item grades `Worauf`, not the verb ending — failing a learner over a
     # person the prompt never fixed teaches them nothing about da-/wo- words.
+    # revision 3: «Ответа» / «Відповіді» mark no definiteness, and waiting for
+    # an answer is the idiomatic first-mention reading; the graded Worauf is
+    # identical. Closed over the person dimension. (Batch-4 audit, 2026-08-12.)
     accept:
       - "Worauf warten Sie? — Auf die Antwort."
       - "Worauf wartest du? — Auf die Antwort."
       - "Worauf wartet ihr? — Wir warten auf die Antwort."
-    revision: 2
+      - "Worauf wartet ihr? — Auf eine Antwort."
+      - "Worauf warten Sie? — Auf eine Antwort."
+      - "Worauf wartest du? — Auf eine Antwort."
+      - "Worauf wartet ihr? — Wir warten auf eine Antwort."
+    revision: 3
     key_tokens: ["Worauf"]
     explain: { en: "warten selects auf; a question about a thing is therefore worauf.", ru: "warten требует auf; поэтому вопрос о предмете — worauf.", uk: "warten вимагає auf; тому питання про предмет — worauf." }
   - id: translate-person-sache
@@ -125,8 +132,15 @@ items:
     answer: "Mia träumt von der Reise. Sie träumt oft davon."
     # Fronting the frequency adverb is ordinary V2. The item measures which preposition träumen
     # governs, not where `oft` sits, so the middle-field order must not decide the score.
-    accept: ["Mia träumt von der Reise. Oft träumt sie davon."]
+    # revision 2: «о путешествии» / «про подорож» mark no definiteness, and dreaming of
+    # a trip is the natural first-mention reading; the graded von/davon are identical.
+    # Closed over the fronting dimension. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Mia träumt von der Reise. Oft träumt sie davon."
+      - "Mia träumt von einer Reise. Sie träumt oft davon."
+      - "Mia träumt von einer Reise. Oft träumt sie davon."
     key_tokens: ["von", "davon"]
+    revision: 2
     explain: { en: "träumen selects von, so the thing reference is davon—not darüber, however natural 'about it' sounds.", ru: "träumen требует von, поэтому отсылка к предмету — davon, а не darüber, как подсказывало бы русское «об этом».", uk: "träumen вимагає von, тому відсилання до предмета — davon, а не darüber, як підказувало б українське «про це»." }
   - id: mc-zuvor
     type: mc
