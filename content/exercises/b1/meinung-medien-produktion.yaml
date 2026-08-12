@@ -49,6 +49,7 @@ items:
       de: "In drei Zeilen eines Aushangs stehen zwei Verbindungen, und jede zeigt auf etwas anderes. Abhängen von + Dativ zeigt auf das Wetter: hängt … vom Wetter ab. Sich äußern zu + Dativ zeigt auf die Kosten — und genau das bietet die Antwort mit den Kosten an, richtig zitiert und als Antwort auf eine Frage, die niemand gestellt hat. Die Antwort mit der Zahl der Gäste nennt etwas, das im Text gar nicht vorkommt. Einen kurzen Bericht zu lesen heißt großenteils genau das: verfolgen, welche Ergänzung zu welcher Verbindung gehört — erst recht, wenn ein trennbares ab sechs Wörter lang am Satzende gewartet hat."
 
   - id: uebersetzen-es-geht-um
+    revision: 2
     outcomes: [bericht-verstehen]
     type: translate
     focus: verb-praeposition-b1
@@ -61,10 +62,19 @@ items:
     prompt_ru: "В сообщении речь идёт об опросе среди читателей."
     prompt_uk: "У повідомленні йдеться про опитування серед читачів."
     answer: "In dem Bericht geht es um eine Umfrage unter den Lesern."
+    # "a survey among readers" / «опрос среди читателей» is indefinite, so bare dative
+    # plural — eine Umfrage unter Lesern — is target-preserving German the prompts license
+    # just as much as the definite unter den Lesern; both graded tokens keep their forms.
+    # Added closed over the existing in dem/im × Bericht/Beitrag dimensions, per the C6-1
+    # review of 2026-08-12.
     accept:
       - "Im Bericht geht es um eine Umfrage unter den Lesern."
       - "In dem Beitrag geht es um eine Umfrage unter den Lesern."
       - "Im Beitrag geht es um eine Umfrage unter den Lesern."
+      - "In dem Bericht geht es um eine Umfrage unter Lesern."
+      - "Im Bericht geht es um eine Umfrage unter Lesern."
+      - "In dem Beitrag geht es um eine Umfrage unter Lesern."
+      - "Im Beitrag geht es um eine Umfrage unter Lesern."
     key_tokens: ["es", "um"]
     explain:
       en: "Graded are the two pieces of the frame that cannot be worked out from the meaning: the es that holds the subject slot, and the preposition um. The text is named with in + Dativ — in dem Bericht, contracted to im — and it never becomes the subject, which is why ❌ Der Bericht geht um eine Umfrage is not German. Want the text as subject? Then the verb changes: Der Bericht handelt von einer Umfrage. Bericht and Beitrag are both usual here."
@@ -237,8 +247,8 @@ items:
         uk: "Щонайменше два докази, і не обидва з одним сполучником. Weil — там, де причина і є новою інформацією (дієслово йде в самий кінець), і винесене вперед підрядне з da — там, де причина вже є в будь-якого читача; після коми головне речення відкривається відмінюваним дієсловом: Da immer weniger Menschen Zeit haben, lesen viele nur …"
         de: "Mindestens zwei Gründe, und nicht beide mit derselben Konjunktion. Nimm weil, wo der Grund die neue Information ist — sein Verb steht ganz am Ende —, und einen vorangestellten da-Satz, wo jeder Leser den Grund schon hat; nach dem Komma beginnt der Hauptsatz mit seinem finiten Verb: Da immer weniger Menschen Zeit haben, lesen viele nur …"
       - en: "Weigh with a two-part connector, and let the first half choose its partner: zwar … aber for a concession, nicht nur … sondern auch when both halves hold, entweder … oder for a real choice between two. Never zwar … sondern — sondern needs a negation, and zwar is not one. Both halves of a pair should have the same shape: a prepositional phrase against a prepositional phrase, a clause against a clause."
-        ru: "Взвешивайте двойным союзом, и пусть первая половина выберет себе пару: zwar … aber для уступки, nicht nur … sondern auch, когда верны обе части, entweder … oder для настоящего выбора из двух. Никогда zwar … sondern: sondern требует отрицания, а zwar им не является. У обеих половин пары должна быть одинаковая форма — предложная группа против предложной группы, придаточное против придаточного."
-        uk: "Зважуйте подвійним сполучником, і хай перша половина обере собі пару: zwar … aber для поступки, nicht nur … sondern auch, коли правдиві обидві частини, entweder … oder для справжнього вибору з двох. Ніколи zwar … sondern: sondern вимагає заперечення, а zwar ним не є. В обох половин пари має бути однакова форма — прийменникова група проти прийменникової групи, підрядне проти підрядного."
+        ru: "Взвешивайте двойным союзом, и пусть первая половина выберет себе пару: zwar … aber для уступки, nicht nur … sondern auch, когда верны обе части, entweder … oder для настоящего выбора из двух. Никогда zwar … sondern: sondern требует отрицания, а zwar им не является. У обеих половин пары должна быть одинаковая форма — предложная группа против предложной группы, предложение против предложения."
+        uk: "Зважуйте подвійним сполучником, і хай перша половина обере собі пару: zwar … aber для поступки, nicht nur … sondern auch, коли правдиві обидві частини, entweder … oder для справжнього вибору з двох. Ніколи zwar … sondern: sondern вимагає заперечення, а zwar ним не є. В обох половин пари має бути однакова форма — прийменникова група проти прийменникової групи, речення проти речення."
         de: "Wäge mit einem zweiteiligen Konnektor ab, und lass die erste Hälfte ihren Partner wählen: zwar … aber für ein Zugeständnis, nicht nur … sondern auch, wenn beides gilt, entweder … oder für eine echte Wahl zwischen zweien. Nie zwar … sondern — sondern braucht eine Verneinung, und zwar ist keine. Beide Hälften sollen gleich gebaut sein: Präpositionalgruppe gegen Präpositionalgruppe, Satz gegen Satz."
       - en: "Say what you think in your own voice at least once — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — and remember that zustimmen and widersprechen both take the person or thing in the Dativ, with no preposition: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."
         ru: "Хотя бы раз скажите своим голосом, что вы думаете, — Meiner Meinung nach …, Ich finde, dass …, Ich stimme dem nicht zu — и помните, что zustimmen и widersprechen ставят человека или предмет в Dativ, без предлога: Ich stimme Ihnen zu, Ich muss dem Beitrag widersprechen."

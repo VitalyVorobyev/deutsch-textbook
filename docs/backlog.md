@@ -76,8 +76,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   widened 2026-08-05 when a learner report caught calqued *Russian* in `b1/digitales-leben` (RU and
   UK failed in the same sentences — both shaped by the EN template). Instrument: the
   `textbook-text-reviewer` skill loop (`docs/authoring/article-prose.md`). Language quality, not
-  alphabet parity, is the target. **Twelve B1 units remain** — every unit except `digitales-leben`,
-  `kultur-freizeit` and `geld-vertraege`. Three things are now measured rather than assumed:
+  alphabet parity, is the target. **Eight B1 units remain** — every unit except `digitales-leben`,
+  `kultur-freizeit`, `geld-vertraege`, and the 2026-08-12 batch `erfahrungen-erzaehlen` /
+  `leben-veraendern` / `meinung-medien` (7+6+2 material findings, all repaired and fresh-verified
+  PASS; the entry previously said "twelve remain" — the topic list says eleven did, now eight).
+  Hit rate is now **5 of 5**, and one pattern note joined the tally: `meinung-medien`'s false
+  universal about the *oder*-half lived in **all four halves including `<De>`** — the first
+  defect to cross the "EN enters, De stays clean" line. Three things are measured rather than
+  assumed:
   - **Authoring order does not predict it.** This entry used to say "worst-suspects first (units
     authored earliest in the B1 pipeline)". The confirmed case, `digitales-leben`, was authored
     2026-08-04 — 11th of 14 — while `leben-veraendern` (07-24, first) and `informationen-vermitteln`
@@ -101,6 +107,35 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
+- **P25-12 · «генитив» is the Russian spelling of the case name, and it is in 10 B1 files' `uk:`
+  fields** — 34 occurrences on 32 lines
+  (`grep -rh "^[[:space:]]*uk: .*генитив" content/exercises/ | grep -o "генитив" | wc -l`), heaviest
+  in `leben-veraendern.yaml` (8), `probe-leben-veraendern-genitiv-form.yaml` (7) and
+  `probe-geld-vertraege.yaml` (5), the rest across `checkpoint-b1`, `placement-b1`, the two
+  `geld-vertraege` sets and the two `leben-veraendern` pretest/produktion sets. The standard to
+  write is the repo's own: clean `uk:` fields and Uk halves say **«родовий відмінок»** (12
+  occurrences, incl. the `der Genitiv (родовий відмінок)` glosses in `b1/leben-veraendern.mdx`,
+  `b1/reisen-probleme.mdx`, `b1/geld-vertraege.mdx`), and «генітив»/«ґенітив» appear nowhere —
+  so this is a spelling to replace, not a term to transliterate. **The validator cannot see it**:
+  «и» is a Ukrainian letter, so the character-set check passes on a Russian word. One file-scoped
+  mechanical pass with each replacement read in context (several sit in case-name lists whose
+  neighbouring terms have to agree), not a blind sed. Filed from the C6-1 `leben-veraendern`
+  review, 2026-08-12 — that article file is itself clean of it.
+- **P25-11 · `erfahrungen-erzaehlen`: zero L1 contrast in a four-half calque-parallel article** —
+  the 2026-08-12 C6-1 fresh verify passed the unit on falsehood triage but measured what no other
+  reviewed B1 unit shows: `grep -c "русск|English|англ|українськ"` returns 0 against 27/9/5 in
+  `leben-veraendern`/`reisen-probleme`/`meinung-medien`, on the one topic where the L1 gap (RU/UK
+  have a single past tense; German splits Perfekt/Präteritum by register plus the Plusquamperfekt
+  step) is the strongest hook available. Repair is a rewrite of four halves — its own work item,
+  not a review-round edit. While there: one sentence on adverbial `seitdem` (V2 — the unit's own
+  reading and write model both use it unremarked, and the während-as-adverb sibling trap has 9
+  attributed learner errors).
+- **P25-10 · «рівно як» / «ровно как» idiom sweep** — the C6-1 review of `erfahrungen-erzaehlen`
+  (2026-08-12) fixed «рівно як» ×3 as a Russism calquing "exactly like"; the corpus-wide grep then
+  found ~20 more occurrences across 17 files (vocab + a2/b1 exercises), plus the RU sibling «ровно
+  как» in similar volume. Out of scope for a single unit's repair (an idiom sweep, not a falsehood),
+  and the unit's own drill already uses the idiomatic «точно як». One mechanical pass, file-scoped,
+  with each replacement read in context — not a blind sed.
 - **P25-7 · Slip-forgiveness does not reach a typo outside `key_tokens`** — the 2026-08-11 triage
   confirmed four rows where every `key_tokens` token was perfect and one non-graded-token typo
   still sank the rendering and re-enters the focus signal as an error on confirm: bliebt/bleibt
