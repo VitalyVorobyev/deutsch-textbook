@@ -87,6 +87,41 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   - `a2/probe-alltag-tagesablauf::variant-a` ("On Thursday I do sport at six o'clock") carries no
     explicit habitual marker, but *donnerstags* remains a licensed rendering of the EN present
     simple; watch the grading queue before constraining a third probe variant.
+- **P25-17 · Non-material findings of the 2026-08-12 A2 audit, batch 3** (perfekt-haben-sein,
+  wohnen-umzug, reisen-verkehr, einkaufen-reklamation, adjektive-deklination) — the material
+  findings (seven from the reviewer plus three same-class promotions from the determiner-twin
+  grader sweep) were fixed in the batch PR; these were real but below the material bar:
+  - `a2/perfekt-haben-sein.mdx`: *werden* appears in neither the *sein*-class lists nor the
+    frequent-participle table, while *ist … geworden* occurs in A2 material
+    (`gesundheit-arzttermin-pretest`, `lena-4-miras-fest`). "Change of state" arguably covers it;
+    worth one table row when the topic is next touched.
+  - `a2/perfekt-haben-sein.mdx`, `a2/wohnen-umzug.mdx`, `a2/einkaufen-reklamation.mdx` have no
+    `### German subsections` under `## Erklärung` (the skeleton rule postdates them;
+    `reisen-verkehr` and `adjektive-deklination` already comply). A level-wide retrofit pass, not
+    a per-topic edit.
+  - `a2/drill-wo-wohin::uebersetzen-bahnhof` pins `am` while the article itself licenses the
+    uncontracted *an dem* for emphasis; a learner producing the marked full form is scored wrong.
+    Low likelihood, but the pin and the article disagree.
+  - `a2/wohnen-umzug-produktion::uebersetzen-stuhl-neben-den-schrank` is about a lamp, not a
+    Stuhl. Do **not** rename: item ids are stable and the probe's `arming:` references this one.
+  - `a2/einkaufen-reklamation.mdx` "Above a hundred the *und* disappears: *hunderteins*, not
+    'hundertundeins'" — the "not" overstates; *hundertundeins* is attested standard usage. Nothing
+    grades it.
+  - `a2/einkaufen-reklamation.mdx` Feinheiten row `| 101 |` opens with „ and closes with an ASCII
+    straight quote. Typography only.
+  - `a2/probe-einkaufen-reklamation-superlativ`: all three variants print inflected NPs (*die
+    graue*, *der schwarze*, *das kleine Handy*) that can reach the learner before
+    `adjektive-deklination`; printed, never gapped, and the article announces the exposure.
+  - `a2/adjektive-deklination.mdx` heading "Nach *der, die, das*: fast immer -en" — 7 of 12 boxes;
+    the prose beneath gives the accurate five/seven split.
+  - `a2/adjektive-deklination-produktion::write-zimmer-beschreiben` presents *ein helleres Zimmer*
+    (komparativ-attributiv, a documented B1 deferral) as a model form to imitate; the audio item
+    also carries attributive comparatives receptively. The one place the deferral is contradicted
+    by material the learner is told to copy.
+  - `a2/adjektive-deklination-produktion::translate-grosses-problem` and
+    `probe-adjektive-deklination::v2` share the *Das ist …* frame, which pragmatically pins the
+    indefinite; left without a constraining instruction by design (v2 got one anyway for family
+    parallelism).
 - **P18-3 · B1.1–B1.2 competences without delayed evidence** — the contract requires one
   3-variant probe family per competence. B1.3 closed 2026-08-12: `adjektiv-nullartikel` gained
   family 4 of 4 (`probe-gesundheit-wohlbefinden-adjektiv-nullartikel`), so all four of its points
