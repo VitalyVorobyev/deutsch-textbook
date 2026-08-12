@@ -1,0 +1,64 @@
+topic: ort-richtung-praepositionen
+role: pretest
+title:
+  en: "Pretest — where to, where, where from"
+  ru: "Предтест — куда, где, откуда"
+  uk: "Претест — куди, де, звідки"
+items:
+  - id: pretest-auf-den-markt
+    outcomes: [ziel-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: неправильний здогад зараз корисніший за правильну відповідь потім."
+    text: "Am Samstag gehe ich {{auf den}} Markt."
+    translation:
+      en: "On Saturday I go to the market."
+      ru: "В субботу я иду на рынок."
+      uk: "У суботу я йду на ринок."
+    explain:
+      en: "A market is an open square, and an open square takes auf. The sentence answers Wohin?, so auf goes with the Akkusativ you already know: auf den Markt. The Wo? phrase for the same place is auf dem Markt."
+      ru: "Рынок — открытая площадка, а открытая площадка берёт auf. Предложение отвечает на Wohin?, поэтому auf идёт со знакомым вам Akkusativ: auf den Markt. Форма на Wo? у того же места — auf dem Markt."
+      uk: "Ринок — відкритий майданчик, а відкритий майданчик бере auf. Речення відповідає на Wohin?, тому auf іде зі знайомим вам Akkusativ: auf den Markt. Форма на Wo? у того самого місця — auf dem Markt."
+
+  - id: pretest-aus-der-schule
+    outcomes: [herkunft-nennen]
+    type: mc
+    focus: wohin-wo-woher
+    instruction:
+      en: "Guess which form says where somebody has come from."
+      ru: "Угадайте, какая форма говорит, откуда человек пришёл."
+      uk: "Вгадайте, яка форма каже, звідки людина прийшла."
+    prompt: "Um eins kommt mein Sohn ___ Schule."
+    options: ["aus der", "von der", "aus die"]
+    correct: 0
+    translation:
+      en: "At one my son comes out of school."
+      ru: "В час мой сын выходит из школы."
+      uk: "О першій мій син виходить зі школи."
+    explain:
+      en: "A school is a building you are inside, so the Woher? phrase takes aus, and the article after it is the same der as in in der Schule: aus der Schule. von is the Woher? preposition for people, squares and events, and aus die is not German at all."
+      ru: "Школа — здание, внутри которого находятся, поэтому форма на Woher? берёт aus, а артикль после него — тот же der, что и в in der Schule: aus der Schule. Предлог von остаётся за людьми, площадками и мероприятиями, а сочетания aus die в немецком нет вовсе."
+      uk: "Школа — будівля, всередині якої перебувають, тому форма на Woher? бере aus, а артикль після нього — той самий der, що й у in der Schule: aus der Schule. Прийменник von лишається за людьми, майданчиками та заходами, а сполуки aus die в німецькій немає взагалі."
+
+  - id: pretest-zum-arzt
+    outcomes: [ziel-nennen]
+    type: mc
+    focus: wohin-wo-woher
+    instruction:
+      en: "Guess which form fits."
+      ru: "Угадайте, какая форма подходит."
+      uk: "Вгадайте, яка форма підходить."
+    prompt: "Mein Kopf tut weh. Ich gehe ___ Arzt."
+    options: ["zum", "in den", "beim"]
+    correct: 0
+    translation:
+      en: "My head hurts. I am going to the doctor."
+      ru: "У меня болит голова. Я иду к врачу."
+      uk: "У мене болить голова. Я йду до лікаря."
+    explain:
+      en: "A person is a destination as a point, so the Wohin? phrase takes zu, in the short form zum you already use in Wie komme ich zum Bahnhof? in den Arzt would make the doctor a room, and beim Arzt says where you already are."
+      ru: "Человек — это цель-точка, поэтому форма на Wohin? берёт zu — в краткой форме zum, знакомой по Wie komme ich zum Bahnhof? Вариант in den Arzt превратил бы врача в помещение, а beim Arzt говорит, где вы уже находитесь."
+      uk: "Людина — це ціль-точка, тому форма на Wohin? бере zu — у короткій формі zum, знайомій із Wie komme ich zum Bahnhof? Варіант in den Arzt перетворив би лікаря на приміщення, а beim Arzt каже, де ви вже перебуваєте."
