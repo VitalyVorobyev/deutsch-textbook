@@ -87,11 +87,13 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   - `a2/probe-alltag-tagesablauf::variant-a` ("On Thursday I do sport at six o'clock") carries no
     explicit habitual marker, but *donnerstags* remains a licensed rendering of the EN present
     simple; watch the grading queue before constraining a third probe variant.
-- **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract requires
-  one 3-variant probe family per competence; those three units own 3 + 3 + 4 grammar points and
-  shipped one family each. No longer expensive: P19-4 gave every family its own explicit `arming:`
-  list, so a new family cannot move an existing one's `armedAt`. First step: `adjektiv-nullartikel`,
-  the one competence still without a family.
+- **P18-3 · B1.1–B1.2 competences without delayed evidence** — the contract requires one
+  3-variant probe family per competence. B1.3 closed 2026-08-12: `adjektiv-nullartikel` gained
+  family 4 of 4 (`probe-gesundheit-wohlbefinden-adjektiv-nullartikel`), so all four of its points
+  now have a clock. Next step: enumerate B1.1's and B1.2's points against their shipped families
+  (the original "one family each" note predates the #169–#178 loop, so the remaining gap has to be
+  measured, not read off this entry). P19-4's explicit `arming:` lists keep new families from
+  moving existing clocks — measured again for family 4: all three siblings' `armedAt` unchanged.
 - **P18-6 · `passiv-bildung`'s position half has no delayed evidence** — `probe-konsum-umwelt` is
   cloze ×3, and a cloze grades a form, never a position, so a learner who reproduces the wrong
   bracket passes all three stages. First step: a `translate` family for the position-2/clause-final
