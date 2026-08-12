@@ -110,7 +110,10 @@ items:
     prompt_ru: "Я люблю играть в футбол."
     prompt_uk: "Я люблю грати у футбол."
     answer: "Ich spiele gern Fußball."
-    key_tokens: ["gern"]
+    # revision 2: gerne carries the same graded decision in its renderings, so it
+    # joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["gern", "gerne"]
+    revision: 2
     accept: ["Ich spiele gerne Fußball.", "Fußball spiele ich gern.", "Fußball spiele ich gerne."]
     explain: { en: "No like-verb: the liking lives in gern after the verb — Ich spiele gern Fußball. gerne is an equally correct variant of gern.", ru: "Без глагола «любить»: любовь к занятию выражает gern после глагола — Ich spiele gern Fußball. gerne — равноправный вариант слова gern.", uk: "Без дієслова «любити»: любов до заняття виражає gern після дієслова — Ich spiele gern Fußball. gerne — рівноправний варіант слова gern." }
   - id: schreiben-meine-hobbys

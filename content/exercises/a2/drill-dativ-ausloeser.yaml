@@ -80,7 +80,10 @@ items:
     prompt_ru: "Как мне пройти к супермаркету?"
     prompt_uk: "Як мені пройти до супермаркету?"
     answer: "Wie komme ich zum Supermarkt?"
-    key_tokens: ["zum"]
+    # revision 2: in the uncontracted rendering the dative decision is carried by
+    # dem, so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["zum", "dem"]
+    revision: 2
     accept:
       - "Wie komme ich zu dem Supermarkt?"
     explain:
@@ -100,7 +103,10 @@ items:
     prompt_ru: "Я покупаю хлеб в булочной."
     prompt_uk: "Я купую хліб у пекарні."
     answer: "Ich kaufe Brot beim Bäcker."
-    key_tokens: ["beim"]
+    # revision 2: in the uncontracted rendering the dative decision is carried by
+    # dem, so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["beim", "dem"]
+    revision: 2
     accept:
       - "Ich kaufe beim Bäcker Brot."
       - "Ich kaufe Brot bei dem Bäcker."

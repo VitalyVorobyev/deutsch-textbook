@@ -184,19 +184,10 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     *anmelden* but the item is about lunch — ids are stable, do **not** rename.
   - The double-negative distractor class and the `ls-*` above-A2 lexis stay under their
     standing entries (P25-18).
-- **P25-21 · Unpinned accepted synonyms, corpus-wide sweep + validator guard** — the batch-6
-  reviewer scanned all 556 translate items with `key_tokens`: after the batch-6 fixes, renderings
-  with **zero graded tokens** remain in `a1/freizeit-koennen::translate-gern-fussball`
-  (gern/gerne), `a2/drill-dativ-ausloeser::uebersetzen-zum-supermarkt` and `::uebersetzen-beim-baecker`,
-  `a2/drill-der-dem-den::uebersetzen-zum-arzt` (contraction vs full form),
-  `a2/placement-a2::besitz-annas-auto` (Annas/von Anna), and `a2/drill-nebensatz-verbende::
-  uebersetzen-weil-arbeiten-muss` / `::uebersetzen-dass-film-beginnt` / `::uebersetzen-weil-studieren-moechte`.
-  In such a rendering `absentGraded` and `misplacedGraded` are both false, so the item's signature
-  error comes back **unattributed** and the focus tag silently stops firing — the mechanism is
-  documented in `src/lib/production.ts` ("every synonymous form that carries the same graded
-  decision must be listed"), but no gate enforces it. Fix at the instrument: a validator rule
-  ("every accepted rendering of a focus-tagged translate must contain ≥1 graded position") plus
-  the residual pin unions, in one PR — the rule lands red until the last item is fixed.
+- **P25-21 · done (2026-08-12)** — the unpinned-accepted-synonym class is now a validator
+  hard-fail (`scripts/validate.ts`: every rendering of a focus-tagged translate must carry ≥1
+  graded position); the rule was watched failing on the 8 residual items (11 renderings) before
+  their pin unions landed with it.
 - **P25-20 · Non-material findings of the 2026-08-12 A2 audit, batch 6** (lernen-verstehen,
   aemter-dienstleistungen) — the material findings (thirteen from the reviewer plus one
   determiner-twin promotion) were fixed in the batch PR; these were real but below the bar:
