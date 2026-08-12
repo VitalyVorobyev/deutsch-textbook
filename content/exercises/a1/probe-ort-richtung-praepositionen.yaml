@@ -40,6 +40,7 @@ arming:
   - a1/ort-richtung-praepositionen::uebersetzen-zu-und-von-der-tante
 items:
   - id: variant-a
+    revision: 2
     outcomes: [ort-nennen, herkunft-nennen]
     type: translate
     focus: wohin-wo-woher
@@ -54,13 +55,17 @@ items:
     accept:
       # Subject-first is the same V2 sentence with another element in position 1.
       - "Die Kinder sind um fünf noch im Schwimmbad. Sie kommen um sechs aus dem Schwimmbad."
-    key_tokens: ["im", "aus", "dem"]
+    # im carries its Wo?-preposition inside the contraction; aus is the Woher?-member. The
+    # standalone article is deliberately unpinned — the tag grades the preposition choice
+    # before any case question arises, so aus das/der Kino-type slips are not this confusion.
+    key_tokens: ["im", "aus"]
     explain:
       en: "One place, two members, two different prepositions. A swimming pool is a building you are inside, so the Wo? phrase is im Schwimmbad — im is the short form of in dem. The Woher? phrase then does not keep in and swap the article: it swaps the preposition, and dem stays where it was — aus dem Schwimmbad. vom Schwimmbad would put the children beside the building rather than in the water, and im Schwimmbad in the second sentence would say they never left."
       ru: "Одно место, два члена тройки, два разных предлога. Бассейн — здание, внутри которого находятся, поэтому форма на Wo? — im Schwimmbad, где im есть краткая запись от in dem. А форма на Woher? не сохраняет in с другим артиклем: она меняет сам предлог, а dem остаётся на месте — aus dem Schwimmbad. Вариант vom Schwimmbad поставил бы детей рядом со зданием, а не в воду, а im Schwimmbad во втором предложении означало бы, что они никуда и не выходили."
       uk: "Одне місце, два члени трійки, два різні прийменники. Басейн — будівля, всередині якої перебувають, тому форма на Wo? — im Schwimmbad, де im є коротким записом від in dem. А форма на Woher? не зберігає in з іншим артиклем: вона змінює сам прийменник, а dem лишається на місці — aus dem Schwimmbad. Варіант vom Schwimmbad поставив би дітей поруч із будівлею, а не у воду, а im Schwimmbad у другому реченні означало б, що вони нікуди й не виходили."
 
   - id: variant-b
+    revision: 2
     outcomes: [ort-nennen, herkunft-nennen]
     type: translate
     focus: wohin-wo-woher
@@ -68,23 +73,35 @@ items:
       en: "Translate into German. For 'teacher' take die Lehrerin."
       ru: "Переведите на немецкий. Для «учительница» возьмите die Lehrerin."
       uk: "Перекладіть німецькою. Для «вчителька» візьміть die Lehrerin."
-    prompt_en: "After the course Lena is still at her teacher's. At six she comes back from her."
-    prompt_ru: "После курса Лена ещё у учительницы. В шесть она возвращается от неё."
-    prompt_uk: "Після курсу Лена ще у вчительки. О шостій вона повертається від неї."
-    answer: "Nach dem Kurs ist Lena noch bei ihrer Lehrerin. Um sechs kommt sie von ihr zurück."
+    prompt_en: "After the course Lena is still at the teacher's. At six she comes back from the teacher's."
+    prompt_ru: "После курса Лена ещё у учительницы. В шесть она возвращается от учительницы."
+    prompt_uk: "Після курсу Лена ще у вчительки. О шостій вона повертається від учительки."
+    # The prompts repeat the noun on purpose: the old second half said "from her", and its
+    # only rendering was the dative pronoun von ihr — an A2 form (dativ-pronomen) this A1
+    # probe had no right to require. A probe miss must come from the measured competence.
+    answer: "Nach dem Kurs ist Lena noch bei der Lehrerin. Um sechs kommt sie von der Lehrerin zurück."
     accept:
+      # Subject-first is the same V2 sentence with another element in position 1.
+      - "Lena ist nach dem Kurs noch bei der Lehrerin. Sie kommt um sechs von der Lehrerin zurück."
+      # The teacher is Lena's, so the possessive is licensed in either slot even though no
+      # prompt spells it out — and a learner may hand the second mention to a pronoun. Every
+      # rendering here carries the graded pair (bei/von) exactly once.
+      - "Nach dem Kurs ist Lena noch bei ihrer Lehrerin. Um sechs kommt sie von ihrer Lehrerin zurück."
+      - "Lena ist nach dem Kurs noch bei ihrer Lehrerin. Sie kommt um sechs von ihrer Lehrerin zurück."
+      - "Nach dem Kurs ist Lena noch bei ihrer Lehrerin. Um sechs kommt sie von der Lehrerin zurück."
+      - "Lena ist nach dem Kurs noch bei ihrer Lehrerin. Sie kommt um sechs von der Lehrerin zurück."
+      - "Nach dem Kurs ist Lena noch bei ihrer Lehrerin. Um sechs kommt sie von ihr zurück."
       - "Lena ist nach dem Kurs noch bei ihrer Lehrerin. Sie kommt um sechs von ihr zurück."
-      # RU «у учительницы» / UK «у вчительки» are bare nouns — they license the definite
-      # article as well as the possessive, and neither carries the graded pair (bei/von).
       - "Nach dem Kurs ist Lena noch bei der Lehrerin. Um sechs kommt sie von ihr zurück."
       - "Lena ist nach dem Kurs noch bei der Lehrerin. Sie kommt um sechs von ihr zurück."
     key_tokens: ["bei", "von"]
     explain:
-      en: "A person is the row of the table where only the preposition is ever chosen: bei for being there, von for coming away, zu for going there. Everything after it stays put — ihrer Lehrerin is written the same way in both sentences — so the preposition carries the whole meaning. in der Lehrerin is impossible (a person is not a room) and aus ihr belongs to buildings; with people the Woher? phrase is always von."
-      ru: "Человек — это строка таблицы, где выбирают только предлог: bei — находиться там, von — уходить оттуда, zu — идти туда. Всё, что стоит после, остаётся неизменным: ihrer Lehrerin в обоих предложениях пишется одинаково, — и весь смысл несёт предлог. Вариант in der Lehrerin невозможен (человек не помещение), а aus ihr относится к зданиям: у людей форма на Woher? всегда с von."
-      uk: "Людина — це рядок таблиці, де обирають лише прийменник: bei — перебувати там, von — іти звідти, zu — іти туди. Усе, що стоїть після, лишається незмінним: ihrer Lehrerin в обох реченнях пишеться однаково, — і весь зміст несе прийменник. Варіант in der Lehrerin неможливий (людина не приміщення), а aus ihr стосується будівель: у людей форма на Woher? завжди з von."
+      en: "A person is the row of the table where only the preposition is ever chosen: bei for being there, von for coming away, zu for going there. Everything after it stays put — der Lehrerin is written the same way in both sentences — so the preposition carries the whole meaning. in der Lehrerin is impossible (a person is not a room) and aus belongs to buildings; with people the Woher? phrase is always von."
+      ru: "Человек — это строка таблицы, где выбирают только предлог: bei — находиться там, von — уходить оттуда, zu — идти туда. Всё, что стоит после, остаётся неизменным: der Lehrerin в обоих предложениях пишется одинаково, — и весь смысл несёт предлог. Вариант in der Lehrerin невозможен (человек не помещение), а aus относится к зданиям: у людей форма на Woher? всегда с von."
+      uk: "Людина — це рядок таблиці, де обирають лише прийменник: bei — перебувати там, von — іти звідти, zu — іти туди. Усе, що стоїть після, лишається незмінним: der Lehrerin в обох реченнях пишеться однаково, — і весь зміст несе прийменник. Варіант in der Lehrerin неможливий (людина не приміщення), а aus стосується будівель: у людей форма на Woher? завжди з von."
 
   - id: variant-c
+    revision: 2
     outcomes: [ort-nennen, herkunft-nennen]
     type: translate
     focus: wohin-wo-woher
@@ -98,7 +115,10 @@ items:
     answer: "Am Sonntag sind wir auf dem Fest. Um elf kommen wir vom Fest zurück."
     accept:
       - "Wir sind am Sonntag auf dem Fest. Wir kommen um elf vom Fest zurück."
-    key_tokens: ["dem", "vom"]
+    # auf is the Wo?-preposition the variant exists to catch (an dem/in dem Fest is its
+    # error), vom carries the Woher?-member inside the contraction. The standalone dem is
+    # deliberately unpinned — an article slip is a case question, not this tag's confusion.
+    key_tokens: ["auf", "vom"]
     explain:
       en: "An event behaves like an open square: you are on it rather than in it, so the Wo? phrase is auf dem Fest. The Woher? phrase again swaps the preposition and leaves the rest alone — vom Fest is von dem Fest, with the same dem. Never aus dem Fest, which would treat a celebration as a building with an inside. That swap is the whole content of the Woher? column."
       ru: "Мероприятие ведёт себя как открытая площадка: на нём находятся, а не внутри него, поэтому форма на Wo? — auf dem Fest. Форма на Woher? снова меняет предлог, а остальное оставляет в покое: vom Fest — это von dem Fest, с тем же самым dem. Но никогда aus dem Fest: это сделало бы праздник зданием, у которого есть «внутри». В этой замене и состоит всё содержание столбца Woher?."

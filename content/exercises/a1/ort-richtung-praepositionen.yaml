@@ -156,13 +156,14 @@ items:
       uk: "Прийменник nach працює лише з назвами без артикля: nach Berlin, nach Deutschland, nach Österreich. У die Schweiz артикль є — це одна з небагатьох таких країн, — тому вона поводиться як звичайне «приміщення»: in die Schweiz для цілі, in der Schweiz для місця, aus der Schweiz для вихідної точки. Варіант nach der Schweiz змішує дві схеми, а in der Schweiz сказав би, де ви вже перебуваєте."
 
   - id: uebersetzen-nach-muenchen
+    revision: 2
     outcomes: [ziel-nennen]
     type: translate
     focus: wohin-wo-woher
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. For 'colleague' take die Kollegin."
+      ru: "Переведите на немецкий. Для «коллега» возьмите die Kollegin."
+      uk: "Перекладіть німецькою. Для «колега» візьміть die Kollegin."
     prompt_en: "On Friday my colleague is travelling to Munich."
     prompt_ru: "В пятницу моя коллега едет в Мюнхен."
     prompt_uk: "У п'ятницю моя колега їде до Мюнхена."
@@ -180,6 +181,7 @@ items:
       uk: "У назви міста немає артикля, а форма на Wohin? для місця без артикля — це nach: nach München, nach Berlin, nach Hamburg. Додавати більше нічого — саме тому цей рядок варто тримати в голові окремо. Дві інші форми того самого міста — in München (Wo?) і aus München (Woher?)."
 
   - id: uebersetzen-aus-dem-kino
+    revision: 2
     outcomes: [herkunft-nennen]
     type: translate
     focus: wohin-wo-woher
@@ -193,7 +195,9 @@ items:
     answer: "Wir kommen gerade aus dem Kino."
     accept:
       - "Gerade kommen wir aus dem Kino."
-    key_tokens: ["aus", "dem"]
+    # Only the preposition is pinned: the tag grades the aus/von choice before any case
+    # question arises, so an article slip (aus das/der Kino) is not this confusion.
+    key_tokens: ["aus"]
     explain:
       en: "A cinema is a building you sit inside, so the Woher? phrase takes aus. Learn the three of them side by side and there is nothing left to build: ins Kino (Wohin?), im Kino (Wo?), aus dem Kino (Woher?) — the last two share the same dem. vom Kino would say you had been standing at the building rather than watching a film in it."
       ru: "Кинотеатр — здание, внутри которого сидят, поэтому форма на Woher? берёт aus. Выучите все три рядом — и собирать больше нечего: ins Kino (Wohin?), im Kino (Wo?), aus dem Kino (Woher?), причём в последних двух стоит одно и то же dem. Форма vom Kino сказала бы, что вы стояли у здания, а не смотрели фильм внутри."

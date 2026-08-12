@@ -27,13 +27,17 @@ title:
   uk: "Тренажер — сім прийменників, які завжди вимагають Dativ"
 items:
   - id: uebersetzen-mit-taxi
+    revision: 2
     outcomes: [dativ-praepositionen]
     type: translate
     focus: dativ-praepositionen
+    # The EN prompt leaves the colleague's gender free, but every rendering and the pinned
+    # meiner are feminine — an EN reader's correct "zu meinem Kollegen" would be logged as a
+    # dativ-praepositionen failure. The instruction fixes the noun instead.
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. For 'colleague' take die Kollegin."
+      ru: "Переведите на немецкий. Для «коллега» возьмите die Kollegin."
+      uk: "Перекладіть німецькою. Для «колега» візьміть die Kollegin."
     prompt_en: "I take a taxi to my colleague's place."
     prompt_ru: "Я еду к своей коллеге на такси."
     prompt_uk: "Я їду до своєї колеги на таксі."

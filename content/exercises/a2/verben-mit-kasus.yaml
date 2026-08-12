@@ -61,9 +61,9 @@ items:
           - { answer: "jemandem" }
           - { answer: "Dativ" }
     explain:
-      en: "Read the rows in pairs and the point of the table appears: anrufen and helfen do the same kind of thing to the same kind of person, and they land in different cases. Meaning predicts nothing, so the only reliable move is to store the pronoun with the verb — jemanden anrufen, jemandem helfen — and let it carry the case. Four of the six here are accusative, which is the default; the two dative ones belong to the closed list, and a verb that is not on that list takes the accusative."
-      ru: "Прочитайте строки парами — и смысл таблицы виден сразу: anrufen и helfen делают с человеком одно и то же, а падежи у них разные. Значение не предсказывает ничего, поэтому единственный надёжный ход — хранить местоимение вместе с глаголом (jemanden anrufen, jemandem helfen) и позволить ему нести падеж. Четыре глагола из шести здесь требуют Akkusativ — это вариант по умолчанию; два дативных входят в закрытый список, а глагол, которого в списке нет, берёт Akkusativ."
-      uk: "Прочитайте рядки парами — і сенс таблиці видно одразу: anrufen і helfen роблять з людиною те саме, а відмінки в них різні. Значення не передбачає нічого, тому єдиний надійний хід — зберігати займенник разом із дієсловом (jemanden anrufen, jemandem helfen) і дозволити йому нести відмінок. Чотири дієслова з шести тут вимагають Akkusativ — це варіант за замовчуванням; два давальні входять до закритого списку, а дієслово, якого в списку немає, бере Akkusativ."
+      en: "Read the rows in pairs and the point of the table appears: anrufen and helfen do the same kind of thing to the same kind of person, and they land in different cases. Meaning predicts nothing, so the only reliable move is to store the pronoun with the verb — jemanden anrufen, jemandem helfen — and let it carry the case. Four of the six here are accusative, which is the default; the two dative ones belong to the closed list, and a verb with one bare object that is not on that list takes the accusative."
+      ru: "Прочитайте строки парами — и смысл таблицы виден сразу: anrufen и helfen делают с человеком одно и то же, а падежи у них разные. Значение не предсказывает ничего, поэтому единственный надёжный ход — хранить местоимение вместе с глаголом (jemanden anrufen, jemandem helfen) и позволить ему нести падеж. Четыре глагола из шести здесь требуют Akkusativ — это вариант по умолчанию; два дативных входят в закрытый список, а глагол с одним беспредложным дополнением, которого в списке нет, берёт Akkusativ."
+      uk: "Прочитайте рядки парами — і сенс таблиці видно одразу: anrufen і helfen роблять з людиною те саме, а відмінки в них різні. Значення не передбачає нічого, тому єдиний надійний хід — зберігати займенник разом із дієсловом (jemanden anrufen, jemandem helfen) і дозволити йому нести відмінок. Чотири дієслова з шести тут вимагають Akkusativ — це варіант за замовчуванням; два давальні входять до закритого списку, а дієслово з одним безприйменниковим додатком, якого в списку немає, бере Akkusativ."
 
   - id: cloze-mein-form
     outcomes: [akkusativ-person-nennen, dativ-person-nennen]
@@ -124,6 +124,7 @@ items:
       uk: "Тут ніхто нікуди не рухається, тому питанню Wohin?/Wo? просто немає за що зачепитися — а лише це питання й змушує auf чергувати відмінки. Усередині шматка sich freuen auf відмінок вирішено раз і назавжди: Akkusativ. das Wochenende — середній рід, тому форма Akkusativ — auf das Wochenende. Варіант auf dem був би формою місця, а auf den — Akkusativ чоловічого роду: відмінок правильний, рід ні."
 
   - id: uebersetzen-bahnhof-zug
+    revision: 2
     outcomes: [verbchunk-nennen]
     type: translate
     focus: verb-kasus
@@ -136,9 +137,16 @@ items:
     prompt_uk: "Я чекаю на поїзд на вокзалі."
     answer: "Ich warte auf dem Bahnhof auf den Zug."
     accept:
-      # Fronting the place phrase is ordinary V2 and changes neither graded article.
+      # Fronting the place phrase is ordinary V2 and does not touch the graded chunk.
       - "Auf dem Bahnhof warte ich auf den Zug."
-    key_tokens: ["dem", "den"]
+      # am Bahnhof is what the course itself teaches for the location (the A1 place topic's
+      # Feinheiten row: Wo? mit an, nicht mit bei) — the free place phrase must not decide
+      # the verdict on an item whose competence is the warten-auf chunk.
+      - "Ich warte am Bahnhof auf den Zug."
+      - "Am Bahnhof warte ich auf den Zug."
+    # Only the chunk's article is pinned: the place phrase is not fixed by the prompts, so a
+    # dative slip there belongs to wo-wohin, not to verb-kasus.
+    key_tokens: ["den"]
     explain:
       en: "The same preposition twice in one short sentence, in two different jobs. The first auf answers Wo? — it names the place where the waiting happens, and a place you are at takes the dative: auf dem Bahnhof. The second auf arrived with the verb out of your vocabulary list, so it belongs to the chunk warten auf, whose case is fixed at accusative whatever the sentence is about: auf den Zug. Nothing in the sentence moves, and the second case is accusative anyway — that is the point. Swap the two articles and the sentence says you are waiting on top of a train for a station."
       ru: "Один и тот же предлог дважды в одном коротком предложении — и в двух разных ролях. Первый auf отвечает на вопрос Wo?: он называет место, где происходит ожидание, а место, на котором находятся, требует Dativ — auf dem Bahnhof. Второй auf пришёл вместе с глаголом из словарного списка, то есть принадлежит куску warten auf, а его падеж закреплён за Akkusativ независимо от содержания предложения: auf den Zug. Никакого движения в предложении нет, а второй падеж всё равно Akkusativ — в этом и суть. Поменяйте артикли местами, и получится, что вы стоите на поезде и ждёте вокзал."
@@ -260,13 +268,14 @@ items:
       uk: "Два займенники для тієї самої людини, різниця в одну літеру, і обирає її дієслово. danken стоїть у давальному списку — отже dir; anrufen звичайне дієслово з Akkusativ — отже dich. Промовте повільно: dir закінчується відкрито, dich — м'яким звуком ich. Написати dich після danke або dir після rufe — не описка, а неправильно ухвалене рішення про керування."
 
   - id: uebersetzen-sprechen-arzt
+    revision: 2
     outcomes: [verbchunk-nennen]
     type: translate
     focus: verb-kasus
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. Both of us know which doctor and which appointment are meant."
+      ru: "Переведите на немецкий. Речь идёт о конкретном враче и конкретном приёме."
+      uk: "Перекладіть німецькою. Ідеться про конкретного лікаря і конкретний прийом."
     prompt_en: "I am speaking with the doctor about the appointment."
     prompt_ru: "Я говорю с врачом о приёме."
     prompt_uk: "Я говорю з лікарем про прийом."
