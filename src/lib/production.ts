@@ -31,7 +31,7 @@
  * the grammar the dictation drills.
  */
 
-import { normalizeDictation, normalizeTranslation } from './cloze';
+import { normalizeDictation, normalizeTranslation, sentenceInitialIndices } from './cloze';
 import { diffExpectedWords } from './worddiff';
 
 /** Strip attached punctuation, so `Bahnhof?` and `Bahnhof` are the same token. */
@@ -253,55 +253,93 @@ export type TranslationVerdict =
 /** Whether a verdict counts as a correct answer for scoring. */
 export const verdictIsCorrect = (v: TranslationVerdict): boolean => v.kind !== 'wrong';
 
+const lowerFirst = (w: string) => w.charAt(0).toLowerCase() + w.slice(1);
+
+/**
+ * The set of token strings this item grades — the pinned tokens plus derived case twins.
+ *
+ * A key token standing at a sentence head of an accepted rendering is capitalized by
+ * position, not by grammar: `Im Sommer stehe ich um sechs Uhr auf.` pins `Im`. An
+ * `accept` rendering that moves it mid-sentence lowercases it — and `im` is then a
+ * different string from the pinned `Im`, so it would stop being graded for that
+ * rendering. Rule 1 would forgive `um` for `im` as a one-edit spelling slip, which is
+ * exactly the `um-am-zeit` error the item exists to measure, and Rule 2 would never
+ * blame the tag for it. The sentence-head fold in `isGradedAt` only covers the opposite
+ * move (pinned lowercase, capitalized at a head), so without this the hole is
+ * one-directional.
+ *
+ * Every sentence head of every accepted rendering derives a twin, not just the first
+ * token of `answer` as before P25-15: a pin capitalized because it opens the SECOND
+ * sentence of a rendering is capitalized by the same orthography. Mid-sentence
+ * capitalization *is* grammar in German — `Sie` and `sie` are different words — so
+ * nothing else is folded together.
+ */
+function buildGradedSet(spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>): Set<string> {
+  const graded = new Set((spec.keyTokens ?? []).map(bare));
+  for (const candidate of translationCandidates(spec)) {
+    const tokens = tokenize(candidate);
+    for (const i of sentenceInitialIndices(candidate)) {
+      const head = bare(tokens[i] ?? '');
+      if (graded.has(head)) graded.add(lowerFirst(head));
+    }
+  }
+  return graded;
+}
+
+/**
+ * Is the token at position `i` of an accepted rendering's `tokens` one this item grades?
+ *
+ * Sentence-head capitalization is orthography, not grammar, and an `accept` variant that
+ * fronts a time phrase — or splits one sentence into two — capitalizes whatever lands at
+ * the head: `am Samstag` becomes `Am Samstag`, `…, nach der Prüfung` becomes
+ * `. Nach der Prüfung`. Matched case-sensitively, the graded token then stops being
+ * graded for that rendering: a genuine `Um`-for-`Am` error would be forgiven as a
+ * spelling slip and never logged against `um-am-zeit`, the confusion the item exists to
+ * measure. The forgiveness rule would be silently inverted by an `accept` line.
+ *
+ * So every sentence-head position (`heads`, computed per rendering — before P25-15 this
+ * was index 0 only, which a two-sentence rendering escapes) matches case-insensitively.
+ * Everywhere else the comparison stays exact, because mid-sentence capitalization *is*
+ * grammar in German: `Sie` (formal you) and `sie` (she) are different words, and a
+ * `du-sie` item that graded both would blame the register tag for a pronoun error that
+ * has nothing to do with register.
+ */
+function isGradedAt(
+  graded: ReadonlySet<string>,
+  tokens: readonly string[],
+  heads: ReadonlySet<number>,
+  i: number,
+): boolean {
+  const token = bare(tokens[i]!);
+  if (graded.has(token)) return true;
+  return heads.has(i) && graded.has(lowerFirst(token));
+}
+
+/**
+ * The positions of `rendering` the grader would treat as graded — the validator's mirror
+ * of the twin derivation and sentence-head fold above, exported so the `key_tokens`
+ * guard cannot drift from the mechanism it guards: a guard that counts exact strings
+ * calls "Nach … nach Hause." unique while the grader grades both occurrences.
+ */
+export function gradedTokenPositions(
+  rendering: string,
+  spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>,
+): number[] {
+  const graded = buildGradedSet(spec);
+  const tokens = tokenize(rendering);
+  const heads = sentenceInitialIndices(rendering);
+  return tokens.map((_, i) => i).filter((i) => isGradedAt(graded, tokens, heads, i));
+}
+
 export function gradeTranslation(given: string, spec: TranslationSpec): TranslationVerdict {
   const candidates = translationCandidates(spec);
   const normalized = normalizeTranslation(given);
   if (candidates.some((c) => normalizeTranslation(c) === normalized)) return { kind: 'correct' };
 
   const givenTokens = tokenize(given);
-  const graded = new Set((spec.keyTokens ?? []).map(bare));
-
-  /**
-   * The mirror of the index-0 rule below, and it has to happen here rather than there.
-   *
-   * A key token standing first in `answer` is capitalized by sentence position, not by
-   * grammar: `Im Sommer stehe ich um sechs Uhr auf.` pins `Im`. An `accept` rendering that
-   * moves it mid-sentence lowercases it — `Ich stehe im Sommer um sechs Uhr auf.` — and
-   * `im` is then a different string from the pinned `Im`, so it stops being graded for that
-   * rendering. Rule 1 would forgive `um` for `im` as a one-edit spelling slip, which is
-   * exactly the `um-am-zeit` error the item exists to measure, and Rule 2 would never blame
-   * the tag for it. The index-0 rule only covers the opposite move (lowercase in `answer`,
-   * fronted and capitalized in an `accept`), so without this the hole is one-directional.
-   *
-   * Narrow on purpose: the lowercase form is derived only when the key token really is the
-   * first word of `answer`. Mid-sentence capitalization *is* grammar in German — `Sie` and
-   * `sie` are different words — so nothing else is folded together.
-   */
-  const answerHead = bare(tokenize(spec.answer)[0] ?? '');
-  if (graded.has(answerHead)) {
-    graded.add(answerHead.charAt(0).toLowerCase() + answerHead.slice(1));
-  }
-
-  /**
-   * Is the token at position `i` of `tokens` one this item grades?
-   *
-   * Sentence-initial capitalization is orthography, not grammar, and an `accept` variant
-   * that fronts a time phrase capitalizes whatever was there: `am Samstag` becomes
-   * `Am Samstag`. Matched case-sensitively, the graded `am` then stops being graded for
-   * that rendering — so a genuine `Um`-for-`Am` error would be forgiven as a spelling slip
-   * and never logged against `um-am-zeit`, which is the confusion the item exists to
-   * measure. The forgiveness rule would be silently inverted by an `accept` line.
-   *
-   * So position 0 matches case-insensitively. Everywhere else the comparison stays exact,
-   * because mid-sentence capitalization *is* grammar in German: `Sie` (formal you) and
-   * `sie` (she) are different words, and a `du-sie` item that graded both would blame the
-   * register tag for a pronoun error that has nothing to do with register.
-   */
-  const isGraded = (tokens: readonly string[], i: number): boolean => {
-    const token = bare(tokens[i]!);
-    if (graded.has(token)) return true;
-    return i === 0 && graded.has(token.charAt(0).toLowerCase() + token.slice(1));
-  };
+  const graded = buildGradedSet(spec);
+  const isGraded = (tokens: readonly string[], heads: ReadonlySet<number>, i: number): boolean =>
+    isGradedAt(graded, tokens, heads, i);
 
   // Rule 1 — a single slipped token, in any of the accepted renderings.
   for (const candidate of candidates) {
@@ -317,7 +355,7 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
     const at = diverged[0]!;
     const expected = want[at]!;
     const typed = givenTokens[at]!;
-    if (isGraded(want, at)) continue; // a token this item grades is never forgiven
+    if (isGraded(want, sentenceInitialIndices(candidate), at)) continue; // a token this item grades is never forgiven
     if (isFunctionWordSwap(typed, expected)) continue; // den for dem is a choice, not a slip
     if (!isOneEdit(typed, expected)) continue;
 
@@ -348,12 +386,14 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
    * Both would put a false entry in the one signal that steers training priority and drill
    * authoring, which is worse than no entry at all.
    */
-  const target = tokenize(closestTranslationCandidate(given, spec));
+  const closest = closestTranslationCandidate(given, spec);
+  const target = tokenize(closest);
+  const targetHeads = sentenceInitialIndices(closest);
 
   const differs = diffExpectedWords(target, givenTokens);
 
   // Is a word this item grades simply *absent* from what the learner wrote?
-  const absentGraded = target.some((_tok, i) => differs[i] && isGraded(target, i));
+  const absentGraded = target.some((_tok, i) => differs[i] && isGraded(target, targetHeads, i));
 
   /**
    * And the question an alignment diff structurally cannot answer: did the learner put
@@ -374,7 +414,7 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
    */
   const misplacedGraded =
     target.length === givenTokens.length &&
-    target.some((tok, i) => tok !== givenTokens[i] && isGraded(target, i));
+    target.some((tok, i) => tok !== givenTokens[i] && isGraded(target, targetHeads, i));
 
   return absentGraded || misplacedGraded
     ? { kind: 'wrong', focus: spec.focus }

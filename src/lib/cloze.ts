@@ -57,6 +57,32 @@ function stripTokenPunctuation(w: string): string {
   return w.replace(/[.,!?;:…]+$/, '').replace(/^[.,!?;:…¿¡]+/, '');
 }
 
+/**
+ * Which indices of `normalizeTranslation(s)`'s token stream begin a sentence?
+ *
+ * Sentence position is where German capitalization is orthography rather than grammar,
+ * and normalization strips the very punctuation that marks it — so the mapping from the
+ * raw string onto normalized token indices has to live here, beside the pipeline that
+ * defines which raw tokens survive. A raw token that dissolves entirely (a dialogue
+ * dash, a stray period) advances no index, but it may still close a sentence: a lone
+ * `.` does, a lone `-` does not.
+ */
+export function sentenceInitialIndices(s: string): Set<number> {
+  const heads = new Set<number>();
+  let index = 0;
+  let boundary = true;
+  for (const raw of foldTypography(s).split(/\s+/)) {
+    if (!raw) continue;
+    if (stripTokenPunctuation(raw)) {
+      if (boundary) heads.add(index);
+      index += 1;
+      boundary = false;
+    }
+    if (/[.!?…]['")\]]*$/.test(raw)) boundary = true;
+  }
+  return heads;
+}
+
 export function answerMatches(given: string, accepted: string[]): boolean {
   const g = normalizeTranslation(given);
   return accepted.some((a) => {
