@@ -1405,6 +1405,51 @@ nodes:
         ru: "Я умею употреблять глагол с закреплённым предлогом в нужном падеже."
         uk: "Я вмію вживати дієслово із закріпленим прийменником у потрібному відмінку."
 
+  - id: zeit-praepositionen
+    level: A2
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [alltag-zeit, gesundheit-arzttermin, dativ, akkusativ]
+    # Two edges, because the topic gathers two confusions that were introduced apart and
+    # never stood beside each other. `alltag-zeit` taught um/am/im and drills `um-am-zeit` in
+    # four of its practice items; `gesundheit-arzttermin` taught the backward look and drills
+    # `seit-vor-zeit` in two. This topic carries both tags — cloze-um-am-im the first,
+    # mc-seit-praesens, cloze-seit-vor and uebersetzen-seit-regen the second — so each edge
+    # has its runtime channel: an error while practising the system marks that confusion weak
+    # course-wide and pulls the base topic's items back into mixed training. The rest of the
+    # topic (ab, bis, von … bis, the bare accusative) is the new tag's, and deepens nothing.
+    deepens: [alltag-zeit, gesundheit-arzttermin]
+    outcomes:
+      - id: zeitangabe-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann in einem einfachen Text verstehen, wann etwas passiert und wie lange es schon läuft."
+        en: "I can understand in a simple text when something happens and how long it has been going on."
+        ru: "Я понимаю в простом тексте, когда что-то происходит и как долго это уже длится."
+        uk: "Я розумію в простому тексті, коли щось відбувається і як довго це вже триває."
+      - id: zeitpunkt-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann einen Zeitpunkt nennen: um acht, am Montag, im Juli, vor dem Kurs — oder ganz ohne Präposition."
+        en: "I can name a point in time: um acht, am Montag, im Juli, vor dem Kurs — or with no preposition at all."
+        ru: "Я умею назвать момент времени: um acht, am Montag, im Juli, vor dem Kurs — или вообще без предлога."
+        uk: "Я вмію назвати момент часу: um acht, am Montag, im Juli, vor dem Kurs — або взагалі без прийменника."
+      - id: dauer-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann mit seit sagen, wie lange etwas schon läuft, und mit vor, wann etwas vorbei ist."
+        en: "I can say with seit how long something has been going on, and with vor when something was over."
+        ru: "Я умею сказать с seit, как долго что-то длится, и с vor, когда что-то было."
+        uk: "Я вмію сказати з seit, як довго щось триває, і з vor, коли щось було."
+      - id: zeitraum-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann mit ab, bis und von … bis sagen, wann ein Zeitraum beginnt und endet."
+        en: "I can say with ab, bis and von … bis when a stretch of time begins and ends."
+        ru: "Я умею сказать с ab, bis и von … bis, когда отрезок времени начинается и заканчивается."
+        uk: "Я вмію сказати з ab, bis і von … bis, коли відрізок часу починається й закінчується."
+
   # --- B1 (contract: docs/curriculum/a2-b1.md, frozen 2026-07-24) ---
   - id: erfahrungen-erzaehlen
     level: B1
@@ -2279,6 +2324,18 @@ units:
     title_ru: "Управление глагола: какой падеж"
     title_uk: "Керування дієслова: який відмінок"
     topics: [verben-mit-kasus]
+  # Part three closes the strand, and it sits last for a reason of its own: it deepens two
+  # units at once — `alltag-zeit` from A1 and `gesundheit-arzttermin` from A2 — so it has to
+  # follow both, and its material (ab, bis, von … bis, the bare accusative) is the part of the
+  # Goethe A2 list that neither of them could reach. Appended rather than inserted beside its
+  # base topics, for the same reason as the two units above it.
+  - id: zeit-praepositionen
+    level: A2
+    title_de: "Zeit: Präpositionen"
+    title_en: "Time: prepositions"
+    title_ru: "Время: предлоги"
+    title_uk: "Час: прийменники"
+    topics: [zeit-praepositionen]
   - id: erfahrungen-erzaehlen
     level: B1
     title_de: "Erfahrungen erzählen"

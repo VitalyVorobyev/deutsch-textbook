@@ -1,0 +1,94 @@
+topic: zeit-praepositionen
+kind: intensive
+title_de: "Eine Woche in Hamburg"
+text:
+  - >-
+    [[Seit einem Monat::for a month now — seit + Dativ, and it is still
+    true::уже месяц — seit + Dativ, и это верно до сих пор::уже місяць — seit +
+    Dativ, і це чинне досі]] wohne ich in Hamburg.
+    [[Letztes Jahr::last year — no preposition at all, Akkusativ::в прошлом
+    году — вообще без предлога, Akkusativ::минулого року — узагалі без
+    прийменника, Akkusativ]] habe ich noch in Wien gewohnt.
+    [[Vor drei Wochen::three weeks ago — vor + Dativ, and it is over::три
+    недели назад — vor + Dativ, и это позади::три тижні тому — vor + Dativ, і
+    це позаду]] habe ich hier angefangen. Am Montag beginnt die Arbeit
+    [[um acht Uhr::at eight — the clock takes um::в восемь — время по часам
+    берёт um::о восьмій — час за годинником бере um]], und
+    [[am Morgen::in the morning — a part of the day takes an, not in::утром —
+    часть суток берёт an, а не in::вранці — частина доби бере an, а не in]]
+    bin ich noch müde.
+  - >-
+    [[Von Montag bis Donnerstag::from Monday to Thursday — both ends named, no
+    articles::с понедельника по четверг — названы оба конца, без артиклей::з
+    понеділка до четверга — названо обидва кінці, без артиклів]] bin ich im
+    Büro, am Freitag arbeite ich zu Hause.
+    [[Jeden Tag::every day — no preposition, Akkusativ::каждый день — без
+    предлога, Akkusativ::щодня — без прийменника, Akkusativ]] lerne ich abends
+    eine halbe Stunde Deutsch.
+    Im September mache ich die Prüfung. Am Wochenende treffe ich Freunde.
+  - >-
+    [[Ab nächster Woche::from next week on — ab draws a start line ahead::со
+    следующей недели — ab проводит черту начала впереди::з наступного тижня —
+    ab проводить межу початку попереду]] ist alles anders: Der Kurs beginnt um
+    sechs und dauert bis acht.
+    [[Nach dem Kurs::after the course — nach + Dativ before an event::после
+    курса — nach + Dativ перед событием::після курсу — nach + Dativ перед
+    подією]] bin ich erst um neun zu Hause.
+    [[Bis Freitag::by Friday — bis closes the stretch and needs no
+    article::до пятницы — bis закрывает отрезок и артикля не требует::до
+    п'ятниці — bis закриває відрізок і артикля не потребує]] muss ich noch die
+    Anmeldung schicken.
+questions:
+  - id: frage-hamburg
+    outcomes: [zeitangabe-verstehen, dauer-nennen]
+    type: mc
+    prompt: "Seit wann wohnt die Person in Hamburg?"
+    options:
+      - "Seit einem Monat."
+      - "Seit drei Wochen."
+      - "Seit einem Jahr."
+    correct: 0
+    translation:
+      en: How long has the person been living in Hamburg?
+      ru: Сколько времени человек живёт в Гамбурге?
+      uk: Скільки часу людина живе в Гамбурзі?
+    explain:
+      en: "The text opens with „Seit einem Monat wohne ich in Hamburg“. Three weeks is how long the job has been going („Vor drei Wochen habe ich hier angefangen“), and a year ago the person was still in Vienna."
+      ru: "Текст открывается словами «Seit einem Monat wohne ich in Hamburg». Три недели — это срок работы («Vor drei Wochen habe ich hier angefangen»), а год назад человек ещё жил в Вене."
+      uk: "Текст відкривається словами «Seit einem Monat wohne ich in Hamburg». Три тижні — це строк роботи («Vor drei Wochen habe ich hier angefangen»), а рік тому людина ще жила у Відні."
+
+  - id: frage-buero
+    outcomes: [zeitangabe-verstehen, zeitraum-nennen]
+    type: mc
+    prompt: "Wann ist die Person im Büro?"
+    options:
+      - "Von Montag bis Donnerstag."
+      - "Von Montag bis Freitag."
+      - "Am Wochenende."
+    correct: 0
+    translation:
+      en: When is the person in the office?
+      ru: Когда человек находится в офисе?
+      uk: Коли людина перебуває в офісі?
+    explain:
+      en: "„Von Montag bis Donnerstag bin ich im Büro, am Freitag arbeite ich zu Hause“ — von … bis names both ends of the stretch, and Friday falls outside it. The weekend is for friends."
+      ru: "«Von Montag bis Donnerstag bin ich im Büro, am Freitag arbeite ich zu Hause» — von … bis называет оба конца отрезка, и пятница в него не входит. Выходные отданы друзьям."
+      uk: "«Von Montag bis Donnerstag bin ich im Büro, am Freitag arbeite ich zu Hause» — von … bis називає обидва кінці відрізка, і п'ятниця в нього не входить. Вихідні віддані друзям."
+
+  - id: frage-arbeitsbeginn
+    outcomes: [zeitangabe-verstehen, zeitpunkt-nennen]
+    type: mc
+    prompt: "Wann beginnt am Montag die Arbeit?"
+    options:
+      - "Um acht Uhr."
+      - "Um sechs Uhr."
+      - "Um neun Uhr."
+    correct: 0
+    translation:
+      en: What time does work start on Monday?
+      ru: Во сколько в понедельник начинается работа?
+      uk: О котрій у понеділок починається робота?
+    explain:
+      en: "„Am Montag beginnt die Arbeit um acht Uhr“ — a clock time takes um. Six is when the course starts, and nine is when the person gets home after it."
+      ru: "«Am Montag beginnt die Arbeit um acht Uhr» — время по часам берёт um. В шесть начинается курс, а в девять человек возвращается после него домой."
+      uk: "«Am Montag beginnt die Arbeit um acht Uhr» — час за годинником бере um. О шостій починається курс, а о дев'ятій людина повертається після нього додому."

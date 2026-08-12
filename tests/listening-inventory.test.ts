@@ -15,11 +15,12 @@ describe('listening production inventory', () => {
   // then took it 46 → 47 — appended to the A2 spine rather than B1, and `model-input` for
   // the same reason: its outcomes are one reading and three writing. Part two of the same
   // strand (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
-  // same reason.
+  // same reason, and part three (zeit-praepositionen, 2026-08-12) took it 48 → 49 on the
+  // same argument — one reading outcome, three writing ones.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(48);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(48);
+    expect(rows).toHaveLength(49);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(49);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

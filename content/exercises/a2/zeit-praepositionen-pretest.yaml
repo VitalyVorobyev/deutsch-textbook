@@ -1,0 +1,67 @@
+topic: zeit-praepositionen
+role: pretest
+title:
+  en: "Pretest — which preposition does the time expression take?"
+  ru: "Предтест — какой предлог берёт выражение времени?"
+  uk: "Претест — який прийменник бере вираз часу?"
+items:
+  - id: pretest-am-freitag
+    outcomes: [zeitpunkt-nennen]
+    type: mc
+    focus: um-am-zeit
+    instruction:
+      en: "Guess. You have not learnt this yet — a wrong guess here is worth more than a right one later."
+      ru: "Угадывайте. Вы этого ещё не проходили: неверная догадка сейчас полезнее правильного ответа потом."
+      uk: "Вгадуйте. Ви цього ще не проходили: неправильний здогад зараз корисніший за правильну відповідь потім."
+    prompt: "___ Freitag habe ich einen Termin."
+    options: ["Am", "Im", "Um"]
+    correct: 0
+    translation:
+      en: "On Friday I have an appointment."
+      ru: "В пятницу у меня приём."
+      uk: "У п'ятницю в мене прийом."
+    explain:
+      en: "A weekday takes an, and an plus dem contracts to am: am Freitag. im belongs to months and seasons, um to clock times."
+      ru: "День недели берёт an, а an вместе с dem сливается в am: am Freitag. im — для месяцев и времён года, um — для времени по часам."
+      uk: "День тижня бере an, а an разом із dem зливається в am: am Freitag. im — для місяців і пір року, um — для часу за годинником."
+
+  - id: pretest-seit-vor
+    outcomes: [dauer-nennen]
+    type: cloze
+    focus: seit-vor-zeit
+    instruction:
+      en: "Guess the missing preposition. The person is still living there today."
+      ru: "Угадайте пропущенный предлог. Человек живёт там и сегодня."
+      uk: "Вгадайте пропущений прийменник. Людина живе там і сьогодні."
+    text: "Ich wohne {{seit}} einem Jahr in Hamburg."
+    translation:
+      en: "I have been living in Hamburg for a year."
+      ru: "Я живу в Гамбурге уже год."
+      uk: "Я живу в Гамбурзі вже рік."
+    explain:
+      en: "seit names a stretch that started back then and is still running, so the German verb stays in the present. vor would mean 'a year ago' and close the matter; ab would announce a start still to come."
+      ru: "seit называет отрезок, который начался тогда и продолжается сейчас, поэтому немецкий глагол остаётся в настоящем времени. vor значил бы «год назад» и закрыл бы дело, а ab объявлял бы начало, которое ещё впереди."
+      uk: "seit називає відрізок, що почався тоді й триває зараз, тому німецьке дієслово лишається в теперішньому часі. vor означав би «рік тому» і закрив би справу, а ab оголошував би початок, який ще попереду."
+
+  - id: pretest-ohne-praeposition
+    outcomes: [zeitpunkt-nennen]
+    type: mc
+    focus: zeitangaben-system
+    instruction:
+      en: "Guess which sentence is German."
+      ru: "Угадайте, какое предложение по-немецки правильно."
+      uk: "Вгадайте, яке речення німецькою правильне."
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Nächste Woche fahre ich nach Köln."
+      - "In nächster Woche fahre ich nach Köln."
+      - "Auf der nächsten Woche fahre ich nach Köln."
+    correct: 0
+    translation:
+      en: "Next week I am going to Cologne."
+      ru: "На следующей неделе я еду в Кёльн."
+      uk: "Наступного тижня я їду до Кельна."
+    explain:
+      en: "A whole family of time phrases carries no preposition at all and simply stands in the accusative: nächste Woche, jeden Tag, letztes Jahr. The two other options glue a preposition on because the phrase names a time, and neither of them is German."
+      ru: "Целое семейство выражений времени обходится вообще без предлога и просто стоит в Akkusativ: nächste Woche, jeden Tag, letztes Jahr. Два других варианта приклеивают предлог по русскому образцу («на следующей неделе»), и по-немецки так не говорят."
+      uk: "Ціла родина виразів часу обходиться взагалі без прийменника й просто стоїть в Akkusativ: nächste Woche, jeden Tag, letztes Jahr. Два інші варіанти приклеюють прийменник, бо вислів називає час, і жоден із них німецькою не існує."
