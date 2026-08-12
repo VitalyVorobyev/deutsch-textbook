@@ -64,7 +64,7 @@ arming:
   - a2/drill-nebensatz-verbende::uebersetzen-weil-studieren-moechte
 items:
   - id: variant-a
-    revision: 2
+    revision: 3
     outcomes: [weil-grund]
     type: translate
     focus: nebensatz-verbende
@@ -76,11 +76,20 @@ items:
     prompt_ru: "Лена сегодня не пойдёт в кино, потому что ей нужно забрать дочь."
     prompt_uk: "Лена сьогодні не піде в кіно, бо їй треба забрати доньку."
     answer: "Lena kommt heute nicht ins Kino, weil sie ihre Tochter abholen muss."
+    # revision 2: «ей нужно» / «їй треба» underdetermine the modal (the drill on this
+    # tag already rules so), and the soll renderings keep the graded verb at the wall —
+    # a probe that marks correct German wrong corrupts the retention curve. The pin
+    # list is the union over renderings; an absent pin has no effect in a candidate.
+    # (Batch-4 audit, 2026-08-12.)
     accept:
       - "Lena geht heute nicht ins Kino, weil sie ihre Tochter abholen muss."
       - "Heute kommt Lena nicht ins Kino, weil sie ihre Tochter abholen muss."
       - "Heute geht Lena nicht ins Kino, weil sie ihre Tochter abholen muss."
-    key_tokens: ["muss"]
+      - "Lena kommt heute nicht ins Kino, weil sie ihre Tochter abholen soll."
+      - "Lena geht heute nicht ins Kino, weil sie ihre Tochter abholen soll."
+      - "Heute kommt Lena nicht ins Kino, weil sie ihre Tochter abholen soll."
+      - "Heute geht Lena nicht ins Kino, weil sie ihre Tochter abholen soll."
+    key_tokens: ["muss", "soll"]
     explain:
       en: "Two verbs, and only one of them is conjugated: muss. weil opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive abholen queues up in front of it: … weil sie ihre Tochter abholen muss. As a main clause the very same words come out back to front: Sie muss ihre Tochter abholen. That is the whole difficulty here — the conjunction turns the bracket inside out. Note also that abholen keeps its prefix: a separable verb has no position 2 to leave behind in a Nebensatz."
       ru: "Глагола два, но спрягается только один — muss. weil вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив abholen выстраивается перед ним — … weil sie ihre Tochter abholen muss. В главном предложении те же самые слова идут в обратном порядке: Sie muss ihre Tochter abholen. В этом и вся трудность: союз выворачивает рамку наизнанку. Обратите внимание и на abholen — приставка остаётся на месте: в придаточном нет второго места, которое она могла бы покинуть."
@@ -98,19 +107,23 @@ items:
     prompt_ru: "Господин Бауэр говорит, что ему нужно больше учить немецкий."
     prompt_uk: "Пан Бауер каже, що йому треба більше вчити німецьку."
     answer: "Herr Bauer sagt, dass er mehr Deutsch lernen muss."
-    # No `accept` list: there is no second natural word order for this sentence. The one other
-    # thing a learner might write — `Herr Bauer sagt, er muss mehr Deutsch lernen.` — is correct
-    # German but is the dass-less construction, which leaves the verb in position 2 and therefore
-    # demonstrates none of what this family measures. Accepting it would score the competence as
+    # The dass-less construction — `Herr Bauer sagt, er muss mehr Deutsch lernen.` — stays
+    # unaccepted: it is correct German but leaves the verb in position 2 and demonstrates
+    # none of what this family measures. Accepting it would score the competence as
     # retained on evidence that never tested it.
-    key_tokens: ["muss"]
+    # revision 2: «ему нужно» / «йому треба» underdetermine the modal; the soll rendering
+    # keeps dass + the graded verb at the wall, so it joins accept. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Herr Bauer sagt, dass er mehr Deutsch lernen soll."
+    key_tokens: ["muss", "soll"]
+    revision: 2
     explain:
       en: "Two verbs, and only one of them is conjugated: muss. dass opens a Nebensatz, and a Nebensatz ends with its conjugated verb — so muss is the last word of all, and the infinitive lernen queues up in front of it: … dass er mehr Deutsch lernen muss. Standing alone the clause would come out back to front: Er muss mehr Deutsch lernen. The conjunction turns the bracket inside out. Keep the comma before dass — German never leaves it out."
       ru: "Глагола два, но спрягается только один — muss. dass вводит придаточное, а придаточное заканчивается спрягаемым глаголом: значит, muss стоит самым последним, а инфинитив lernen выстраивается перед ним — … dass er mehr Deutsch lernen muss. Само по себе это предложение звучало бы наоборот: Er muss mehr Deutsch lernen. Союз выворачивает рамку наизнанку. И не теряйте запятую перед dass: в немецком она обязательна."
       uk: "Дієслів два, але відмінюється лише одне — muss. dass вводить підрядне, а підрядне закінчується відмінюваним дієсловом: значить, muss стоїть найостаннішим, а інфінітив lernen вишиковується перед ним — … dass er mehr Deutsch lernen muss. Само по собі це речення звучало б навпаки: Er muss mehr Deutsch lernen. Сполучник вивертає рамку навиворіт. І не губіть кому перед dass: у німецькій вона обов'язкова."
 
   - id: variant-c
-    revision: 2
+    revision: 3
     outcomes: [weil-grund]
     type: translate
     focus: nebensatz-verbende
@@ -133,7 +146,18 @@ items:
       - "Wir fahren mit dem Taxi, falls du um sechs Uhr im Büro sein musst."
       - "Falls du um sechs Uhr im Büro sein musst, nehmen wir ein Taxi."
       - "Falls du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
-    key_tokens: ["musst"]
+      # revision 3: «тебе нужно» / «тобі треба» underdetermine the modal; the sollst
+      # renderings keep the graded verb at the wall. Closed over the same wording and
+      # fronting dimensions as the musst set. (Batch-4 audit, 2026-08-12.)
+      - "Wir nehmen ein Taxi, wenn du um sechs Uhr im Büro sein sollst."
+      - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein sollst."
+      - "Wenn du um sechs Uhr im Büro sein sollst, nehmen wir ein Taxi."
+      - "Wenn du um sechs Uhr im Büro sein sollst, fahren wir mit dem Taxi."
+      - "Wir nehmen ein Taxi, falls du um sechs Uhr im Büro sein sollst."
+      - "Wir fahren mit dem Taxi, falls du um sechs Uhr im Büro sein sollst."
+      - "Falls du um sechs Uhr im Büro sein sollst, nehmen wir ein Taxi."
+      - "Falls du um sechs Uhr im Büro sein sollst, fahren wir mit dem Taxi."
+    key_tokens: ["musst", "sollst"]
     explain:
       en: "wenn is the third conjunction of the set and it behaves exactly like the other two: the conjugated verb closes the clause. The conjugated verb is the modal musst, so the infinitive sein stands in front of it — … wenn du um sechs Uhr im Büro sein musst. Everything else, um sechs Uhr and im Büro, simply lines up inside the clause and changes nothing: only the verb has a fixed address. And note the tense — German uses the plain present inside a wenn-clause even when the sentence is about tomorrow."
       ru: "wenn — третий союз из этой тройки, и ведёт он себя точно так же, как два других: спрягаемый глагол закрывает придаточное. Спрягаемый здесь — модальный musst, поэтому инфинитив sein стоит перед ним: … wenn du um sechs Uhr im Büro sein musst. Всё остальное — um sechs Uhr, im Büro — просто выстраивается внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола. Обратите внимание и на время: внутри придаточного с wenn немецкий ставит обычное настоящее, даже если речь о завтрашнем дне."

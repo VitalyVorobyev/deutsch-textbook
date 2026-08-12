@@ -39,8 +39,15 @@ items:
     answer: "Worauf wartet Nina? — Auf das Paket. Sie wartet seit Montag darauf."
     # Fronting the time phrase is ordinary V2, not an error. Authoring it keeps the scorer from
     # presenting a valid word-order choice as a failure of the rule the probe measures.
-    accept: ["Worauf wartet Nina? — Auf das Paket. Seit Montag wartet sie darauf."]
+    # revision 2: «посылку» / «посилку» mark no definiteness, and first mention makes the
+    # indefinite at least as natural; the graded Worauf/darauf are identical. Closed over
+    # the fronting dimension. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Worauf wartet Nina? — Auf das Paket. Seit Montag wartet sie darauf."
+      - "Worauf wartet Nina? — Auf ein Paket. Sie wartet seit Montag darauf."
+      - "Worauf wartet Nina? — Auf ein Paket. Seit Montag wartet sie darauf."
     key_tokens: ["Worauf", "darauf"]
+    revision: 2
     explain: { en: "warten selects auf, and auf begins with a vowel: the question fuses to worauf and the thing-reference to darauf.", ru: "warten требует auf, а auf начинается с гласной: вопрос сращивается в worauf, а отсылка к предмету — в darauf.", uk: "warten вимагає auf, а auf починається з голосної: питання зростається в worauf, а відсилання до предмета — в darauf." }
   - id: probe-musik
     type: translate

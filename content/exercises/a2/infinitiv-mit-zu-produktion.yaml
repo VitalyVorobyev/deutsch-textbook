@@ -32,7 +32,15 @@ items:
     prompt_ru: "Надеюсь, что мой поезд придёт вовремя."
     prompt_uk: "Сподіваюся, що мій потяг прибуде вчасно."
     answer: "Ich hoffe, dass mein Zug pünktlich ankommt."
-    key_tokens: ["ankommt"]
+    # revision 2: «придёт» / «прибуде» license kommt as readily as ankommt, and the
+    # tag grades only that the conjugated verb closes the dass-clause — the sibling
+    # drill rules the same way for its free lexical pairs. The pin list is the union
+    # over renderings; an absent pin has no effect in a candidate.
+    # (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Ich hoffe, dass mein Zug pünktlich kommt."
+    key_tokens: ["ankommt", "kommt"]
+    revision: 2
     explain:
       en: "I hope, but the train arrives — two subjects, so the zu-infinitive is unavailable and dass takes over. And a dass-clause obeys the rule you already know: the conjugated verb goes to the very end, so the separable ankommen rejoins itself there as ankommt. That final position is the only thing graded here."
       ru: "Надеюсь я, а приходит поезд — подлежащих два, поэтому инфинитивный оборот невозможен, и его место занимает dass. А придаточное с dass подчиняется уже знакомому правилу: спрягаемый глагол уходит в самый конец, и отделяемый ankommen там снова собирается воедино — ankommt. Проверяется здесь только эта конечная позиция."
