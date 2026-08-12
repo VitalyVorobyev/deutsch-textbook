@@ -34,6 +34,10 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
       arming: e.data.arming,
       items: e.data.items,
       document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
+      // the set's own title, for the probe-failure remediation card's set link
+      // (remediationSetFor in src/lib/training.ts) — not needed by any other
+      // session.astro consumer, so the other TrainingSet assemblies leave it out
+      title: e.data.title,
     },
   ];
 });

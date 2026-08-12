@@ -1,6 +1,6 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
-import type { ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
+import type { Bilingual, ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
 import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
@@ -17,7 +17,20 @@ export interface TrainingSet {
   arming?: string[];
   items: ExerciseItem[];
   document?: VisualDocument;
+  /** the set's own bilingual title, when authored — not every set carries one
+      (schema-optional), and pages that never need to name an individual set
+      (training.astro, proben.astro) do not populate it */
+  title?: Bilingual;
 }
+
+/**
+ * Roles that ordinary practice — mixed training and probe-failure remediation — may
+ * ever draw from. Pretests are guesses taken before the lesson; checkpoints, probes
+ * and placements each own a separate evidence surface (docs/architecture/runtime-
+ * contracts.md). Hoisted so `eligibleTrainingSets` and `remediationSetFor` share one
+ * definition of "trainable" rather than two allowlists that could drift apart.
+ */
+const TRAINABLE_ROLES = new Set<ExerciseRole>(['practice', 'drill']);
 
 export interface SessionItem {
   /** `${setId}::${itemId}` — matches how attempts are keyed for priority lookup */
@@ -75,12 +88,58 @@ export function eligibleTrainingSets<
     return node ? topicPracticeSetIds(node).some((id) => attempted.has(id)) : false;
   };
   void spine;
-  const trainableRoles = new Set(['practice', 'drill']);
   return sets.filter(
     (s) =>
-      trainableRoles.has(s.role ?? 'practice') &&
+      TRAINABLE_ROLES.has((s.role ?? 'practice') as ExerciseRole) &&
       (ctx.topics[s.topicId]?.readAt || practiced(s.topicId)),
   );
+}
+
+/**
+ * Which of a topic's own exercise sets to point a learner back at after a failed
+ * delayed probe (R4, docs/adrs/0010-probe-failure-remediation.md).
+ *
+ * Candidates are the topic's own `TRAINABLE_ROLES` sets whose items carry the given
+ * `focus` tag — the same tag a probe family exposes on `ProbeFamily.focus`
+ * (src/lib/probes.ts). Among those:
+ *
+ * 1. **`role: drill` first** — purpose-built remediation over a practice set the tag
+ *    merely passes through.
+ * 2. **Then the most `translate` items carrying the tag.** The learner's assembly mode
+ *    (`translate`) runs at 43% accuracy against 85–92% for recognition formats
+ *    (mc/match/order) — measured against the attempt log, not assumed — so the
+ *    recommendation should point at the response mode that is actually weak, not at
+ *    whichever set happens to have more recognition coverage of the same tag.
+ * 3. **Then earliest in the topic's authored `exercises:` order.**
+ *
+ * Pure and stateless — no attempt log, no I/O. The third tie-break relies on
+ * `Array.prototype.sort`'s guaranteed stability plus **the order of `sets` as given**,
+ * so a caller that cares about it must pass `sets` already in `TopicNode.exerciseSets`
+ * order (the atlas's authored order), not collection order. `sets` may be the whole
+ * corpus — filtering by `topicId` happens here — or already narrowed to one topic.
+ */
+export function remediationSetFor(
+  focus: string,
+  topicId: string,
+  sets: readonly TrainingSet[],
+): TrainingSet | undefined {
+  const candidates = sets.filter(
+    (s) =>
+      s.topicId === topicId &&
+      TRAINABLE_ROLES.has(s.role) &&
+      s.items.some((item) => item.focus === focus),
+  );
+  if (candidates.length === 0) return undefined;
+
+  const translateCount = (s: TrainingSet): number =>
+    s.items.filter((item) => item.type === 'translate' && item.focus === focus).length;
+  const roleRank = (s: TrainingSet): number => (s.role === 'drill' ? 0 : 1);
+
+  return [...candidates].sort((a, b) => {
+    const byRole = roleRank(a) - roleRank(b);
+    if (byRole !== 0) return byRole;
+    return translateCount(b) - translateCount(a);
+  })[0];
 }
 
 /** A resumed queue may continue only while every queued set is still eligible. */

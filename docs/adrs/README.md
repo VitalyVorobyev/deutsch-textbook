@@ -38,6 +38,7 @@ relationship.
 | [`0007`](0007-derived-cross-links-never-hand-maintained.md) | Cross-links are derived, never hand-maintained | accepted · 2026-08-04 |
 | [`0008`](0008-character-ensemble-and-audio-studio.md) | A recurring character ensemble, and productizing the audio studio | **proposed** · 2026-08-04 |
 | [`0009`](0009-official-exam-materials-local-only.md) | Official exam materials are local-only; the trainer degrades honestly without them | accepted · 2026-08-11 |
+| [`0010`](0010-probe-failure-remediation.md) | Probe-failure remediation — a session-end card, a documented weakness channel, and a named exhausted state | accepted · 2026-08-12 |
 
 A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
 superseded by a new ADR rather than edited into an acceptance.
