@@ -49,6 +49,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'partizip2-form': 'perfekt-haben-sein',
   'perfekt-satzklammer': 'freizeit-koennen',
   'um-am-zeit': 'alltag-zeit',
+  'von-bis-in-zeit': 'alltag-zeit',
   'du-sie': 'stadt-wege',
   // --- A2 units ---
   'wo-wohin': 'wohnen-umzug',
