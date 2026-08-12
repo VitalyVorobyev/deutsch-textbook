@@ -18,6 +18,12 @@ items:
     prompt_uk: "Я шукаю людину, яка ремонтує велосипеди."
     answer: "Ich suche jemanden, der Fahrräder repariert."
     key_tokens: ["der"]
+    # revision 2: «человека» / «людину» license einen Menschen directly, and the
+    # article models exactly this sentence; a grading ruling already conceded the
+    # rendering exists. The graded der is identical. (Batch-5 audit, 2026-08-12.)
+    accept:
+      - "Ich suche einen Menschen, der Fahrräder repariert."
+    revision: 2
     explain:
       en: "This is the sentence to keep when a word escapes you: describe what the person does instead. The pronoun does the repairing, so it is the subject of its clause — der. Note that jemanden is accusative because suche demands it, and once again the pronoun ignores that entirely."
       ru: "Вот предложение, которое стоит держать наготове, когда слово не вспоминается: опишите, что человек делает. Чинит именно он, значит местоимение — подлежащее своего придаточного: der. Обратите внимание, что jemanden стоит в винительном, потому что этого требует suche, — и местоимение снова на это никак не реагирует."

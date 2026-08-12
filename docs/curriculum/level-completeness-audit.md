@@ -117,4 +117,11 @@ Owner decisions backing the two non-obvious verdicts (2026-08-12): full-audit sc
   uses; one false absolute, "*denn* never opens a sentence", in four places; and the modal/lexeme
   underdetermination class on probes — «нужно» licenses *soll*, «придёт» licenses *kommt*,
   «Хочешь…?» licenses *wollen* — fixed with accepts, pin unions and one RU/UK prompt rewrite).
-  7 topics remain, in spine order.
+  Batch 5 = relativsaetze, biografie-erfahrungen, verbindungen-folgen, man-und-besitz,
+  freunde-feste (2026-08-12 — the paradigm member this round was *es → ihm*, absent from an
+  article table whose own primary practice drills it; the "whole family" modal-Präteritum claim
+  opened for *sollte* and *mochte*; *wann* added as the third renderer of «когда»; one outcome's
+  mode corrected to the task that measures it — the only mode mismatch across the batch's
+  nineteen outcomes; a B1 Präteritum passive rewritten out of a graded distractor; plus the
+  determinacy class on both objects of the two-object probe family, whose header had already
+  made the argument for the thing but not the person). 2 topics remain, in spine order.
