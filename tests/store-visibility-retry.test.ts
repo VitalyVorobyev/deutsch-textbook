@@ -178,6 +178,22 @@ describe('diagnostic ladder for the CI stall', () => {
     expect(result).toBe('empty');
     console.log(`stage 5 (wrapped inline op) done in ${Date.now() - t0}ms`);
   });
+
+  test('stage 6: idb-keyval update() — the read-modify-write setCardState uses', async () => {
+    const { createStore, update, get } = await import('idb-keyval');
+    const s = createStore('diag-update-db', 'kv');
+    const t0 = Date.now();
+    const guarded = Promise.race([
+      update<Record<string, string>>('cards', (m) => ({ ...(m ?? {}), c1: 'v1' }), s).then(
+        () => 'settled' as const,
+      ),
+      new Promise<'never-settled'>((resolve) => setTimeout(() => resolve('never-settled'), 2000)),
+    ]);
+    const outcome = await guarded;
+    console.log(`stage 6 (idb-keyval update) → ${outcome} in ${Date.now() - t0}ms`);
+    expect(outcome).toBe('settled');
+    expect(await get('cards', s)).toEqual({ c1: 'v1' });
+  });
 });
 
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
