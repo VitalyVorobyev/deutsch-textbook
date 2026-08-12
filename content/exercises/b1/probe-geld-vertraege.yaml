@@ -57,7 +57,7 @@ role: probe
 title:
   en: "Delayed check — the genitive a bill line is made of"
   ru: "Отложенная проверка — генитив, из которого сделана строка счёта"
-  uk: "Відкладена перевірка — генитив, з якого зроблено рядок рахунку"
+  uk: "Відкладена перевірка — родовий відмінок, з якого зроблено рядок рахунку"
   de: "Kontrolle mit Abstand — der Genitiv einer Rechnungszeile"
 arming:
   - b1/geld-vertraege::cloze-genitiv-zeile
@@ -71,7 +71,7 @@ items:
     instruction:
       en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the provider' take der Anbieter, for 'the receipt' die Quittung."
       ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «оператор» возьмите der Anbieter, для «квитанция» — die Quittung."
-      uk: "Зв'яжіть два іменники генитивом — не через von і не одним складним словом. Для «оператор» візьміть der Anbieter, для «квитанція» — die Quittung."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «оператор» візьміть der Anbieter, для «квитанція» — die Quittung."
       de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Firma nimm der Anbieter, für den Zahlungsbeleg die Quittung."
     prompt_en: "The name of the provider is on the receipt."
     prompt_ru: "На квитанции стоит название оператора."
@@ -84,7 +84,7 @@ items:
     explain:
       en: "Masculine, and it takes two words to build. The article der becomes des — that half most hands keep. The other half is the noun's own ending, because a masculine noun carries the case itself: Anbieter becomes Anbieters. Leaving it off (der Name des Anbieter) is the quiet error, since the article alone already looks like a genitive."
       ru: "Мужской род, и собирается он из двух слов. Артикль der превращается в des — эту половину рука сохраняет почти всегда. Вторая половина — собственное окончание существительного, потому что мужской род несёт падеж сам: Anbieter даёт Anbieters. Пропустить его (der Name des Anbieter) — тихая ошибка: один артикль уже выглядит как генитив."
-      uk: "Чоловічий рід, і збирається він із двох слів. Артикль der перетворюється на des — цю половину рука зберігає майже завжди. Друга половина — власне закінчення іменника, бо чоловічий рід несе відмінок сам: Anbieter дає Anbieters. Пропустити його (der Name des Anbieter) — тиха помилка: один артикль уже виглядає як генитив."
+      uk: "Чоловічий рід, і збирається він із двох слів. Артикль der перетворюється на des — цю половину рука зберігає майже завжди. Друга половина — власне закінчення іменника, бо чоловічий рід несе відмінок сам: Anbieter дає Anbieters. Пропустити його (der Name des Anbieter) — тиха помилка: один артикль уже виглядає як родовий відмінок."
       de: "Maskulinum, und es besteht aus zwei Wörtern. Aus dem Artikel der wird des — diese Hälfte behält die Hand fast immer. Die andere Hälfte ist die Endung des Nomens selbst, denn ein Maskulinum trägt den Kasus mit: aus Anbieter wird Anbieters. Sie wegzulassen (der Name des Anbieter) ist der leise Fehler, denn der Artikel allein sieht schon nach Genitiv aus."
 
   - id: variant-b
@@ -94,7 +94,7 @@ items:
     instruction:
       en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the repair' take die Reparatur, for 'check' prüfen."
       ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «ремонт» возьмите die Reparatur, для «проверять» — prüfen."
-      uk: "Зв'яжіть два іменники генитивом — не через von і не одним складним словом. Для «ремонт» візьміть die Reparatur, для «перевіряти» — prüfen."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «ремонт» візьміть die Reparatur, для «перевіряти» — prüfen."
       de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Instandsetzung nimm die Reparatur, für die Kontrolle prüfen."
     prompt_en: "I check the price of the repair first."
     prompt_ru: "Сначала я проверяю цену ремонта."
@@ -117,7 +117,7 @@ items:
     instruction:
       en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the subscription' take das Abo, for 'amount' der Betrag."
       ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «подписка» возьмите das Abo, для «сумма» — der Betrag."
-      uk: "Зв'яжіть два іменники генитивом — не через von і не одним складним словом. Для «передплата» візьміть das Abo, для «сума» — der Betrag."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «передплата» візьміть das Abo, для «сума» — der Betrag."
       de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Zeitungsbestellung nimm das Abo, für die Summe der Betrag."
     prompt_en: "The amount of the subscription is the same every month."
     prompt_ru: "Сумма подписки каждый месяц одинаковая."

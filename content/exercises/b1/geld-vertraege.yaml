@@ -71,7 +71,7 @@ items:
     instruction:
       en: "Two lines of one bill. Put das Material and die Anfahrt into the genitive — the article word, and the noun where it changes."
       ru: "Две строки одного счёта. Поставьте das Material и die Anfahrt в генитив — артикль и существительное там, где оно меняется."
-      uk: "Два рядки одного рахунку. Поставте das Material і die Anfahrt у генитив — артикль та іменник там, де він змінюється."
+      uk: "Два рядки одного рахунку. Поставте das Material і die Anfahrt у родовий відмінок — артикль та іменник там, де він змінюється."
       de: "Zwei Zeilen einer Rechnung. Setz das Material und die Anfahrt in den Genitiv — das Artikelwort und das Nomen dort, wo es sich ändert."
     text: "In Zeile zwei steht der Preis {{des}} {{Materials}}, in Zeile drei der Betrag {{der}} Anfahrt."
     translation:
@@ -81,7 +81,7 @@ items:
     explain:
       en: "The two genders behave differently and a bill uses both in the same breath. A neuter noun carries the case itself: das becomes des and Material gains an -s. A feminine noun carries nothing at all — die becomes der and Anfahrt stays exactly as it was. So the ending is not a rule about the genitive, it is a fact about the gender."
       ru: "Два рода ведут себя по-разному, а счёт пользуется обоими в одной фразе. Средний род несёт падеж сам: das становится des, а Material получает -s. Женский не несёт ничего: die становится der, а Anfahrt остаётся ровно такой, какой была. Значит, окончание — это не правило о генитиве, а факт о роде."
-      uk: "Два роди поводяться по-різному, а рахунок користується обома в одній фразі. Середній рід несе відмінок сам: das стає des, а Material дістає -s. Жіночий не несе нічого: die стає der, а Anfahrt лишається рівно такою, якою була. Отже, закінчення — це не правило про генитив, а факт про рід."
+      uk: "Два роди поводяться по-різному, а рахунок користується обома в одній фразі. Середній рід несе відмінок сам: das стає des, а Material дістає -s. Жіночий не несе нічого: die стає der, а Anfahrt лишається рівно такою, якою була. Отже, закінчення — це не правило про родовий відмінок, а факт про рід."
       de: "Die beiden Genera verhalten sich verschieden, und eine Rechnung benutzt beide im selben Atemzug. Ein Neutrum trägt den Kasus mit: aus das wird des, und Material bekommt ein -s. Ein Femininum trägt gar nichts: aus die wird der, und Anfahrt bleibt genau wie zuvor. Die Endung ist also keine Regel über den Genitiv, sondern eine Tatsache über das Genus."
 
   - id: uebersetzen-genitiv-datum
@@ -91,7 +91,7 @@ items:
     instruction:
       en: "Write it the way a bill writes it: the second noun in the genitive — not with von, and not as one compound word. For 'the payment' take die Zahlung."
       ru: "Напишите так, как пишет счёт: второе существительное в генитиве — не через von и не одним сложным словом. Для «платёж» возьмите die Zahlung."
-      uk: "Напишіть так, як пише рахунок: другий іменник у генитиві — не через von і не одним складним словом. Для «платіж» візьміть die Zahlung."
+      uk: "Напишіть так, як пише рахунок: другий іменник у родовому відмінку — не через von і не одним складним словом. Для «платіж» візьміть die Zahlung."
       de: "Schreib es, wie eine Rechnung es schreibt: das zweite Nomen im Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Bezahlung nimm die Zahlung."
     prompt_en: "The date of the payment is missing on this bill."
     prompt_ru: "Дата платежа на этом счёте отсутствует."
