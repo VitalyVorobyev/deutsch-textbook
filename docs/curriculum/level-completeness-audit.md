@@ -110,4 +110,11 @@ Owner decisions backing the two non-obvious verdicts (2026-08-12): full-audit sc
   generate, and *hoch*/*nah* behind a closed "three irregulars" claim; plus the systemic RU/UK
   article-indeterminacy class across `adjektive-deklination`'s translate items, fixed with
   constraining instructions where the determiner selects the graded ending and accepts where it
-  does not; reisen-verkehr clean). 12 topics remain, in spine order.
+  does not; reisen-verkehr clean). Batch 4 = gesundheit-arzttermin, verben-mit-praepositionen,
+  arbeit-beruf, nebensaetze-plaene, infinitiv-mit-zu (2026-08-12 — two missing members: the
+  obligatory imperative *-e* after -t/-d/-ig stems that the stated bare-stem rule contradicted,
+  and *uns*/*euch* absent from the reflexive paradigm the topic's own imperative table already
+  uses; one false absolute, "*denn* never opens a sentence", in four places; and the modal/lexeme
+  underdetermination class on probes — «нужно» licenses *soll*, «придёт» licenses *kommt*,
+  «Хочешь…?» licenses *wollen* — fixed with accepts, pin unions and one RU/UK prompt rewrite).
+  7 topics remain, in spine order.
