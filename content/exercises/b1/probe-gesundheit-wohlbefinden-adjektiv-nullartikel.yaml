@@ -1,0 +1,147 @@
+# Delayed probe family 4 of 4 — ONE competence: producing the strong adjective ending
+# where no article stands. It is the fourth grammar point of B1.3 and the one the lassen
+# family's header left "for a later pass" (backlog P18-3): the unit's only competence with
+# no delayed evidence at all. Three parallel cloze variants, served in authoring order
+# across the 2/7/21 delays — one retention curve over one ending decision.
+# Cloze, and the argument is the checklist's: a cloze gap grades a FORM and never a
+# POSITION (docs/authoring/authoring-checklists.md), and this competence is nothing but a
+# form — the adjective's slot in front of its noun is fixed in every rendering German
+# allows, so there is no position left to get wrong. The lassen family reaches for
+# translate precisely because half of *its* competence is where the infinitive stands;
+# that argument does not reach this tag.
+# Translate would not merely weaken the measurement here, it would abolish it: a learner
+# translating "cold juice tastes best" may write den kalten Saft or einen kalten Saft, and
+# with an article in front the strong ending is no longer the right answer — the item
+# would grade the weak paradigm and never ask its own question. The gap is the graded
+# token, so a miss is always attributed and can never land in the "target retained,
+# sentence missed elsewhere" bucket a translate probe produces.
+# Each variant prints the bare adjective right after its gap — {{kalter}} (kalt), the
+# repo's hint form for a cloze that would otherwise grade which word the author had in
+# mind. Only the ending is produced. The instruction is identical across the three and
+# deliberately does NOT name the trigger: the missing article is visible in the printed
+# sentence, and an instruction that says "no article stands here" would test whether the
+# learner can apply a rule it has just handed them.
+# Cells — three endings, and none of them is what the arming items ask for. Those three
+# items spend -es twice (frisches Obst, frisches Gemüse), -en twice (starken Kaffee, bei
+# starken Kopfschmerzen) and -er once in the feminine dative (an frischer Luft). What they
+# never ask for is what is probed here:
+#   variant-a  maskulin Nominativ  -er   kalter Saft      (subject of schmecken, der Saft)
+#   variant-b  Dativ Singular      -em   offenem Fenster  (bei is always dative, das Fenster)
+#   variant-c  Plural Nom./Akk.    -e    leichte Suppen   (bare plural, so not -en)
+# A learner who memorized one arming item's ending passes none of the three, and one who
+# memorized one variant's cell still has to derive the other two. The feminine
+# nominative/accusative cell is left out on purpose: there the strong and the weak ending
+# coincide (frische Luft either way), so a gap in it would grade nothing — and the feminine
+# dative, where they do differ (-er vs -en), is already spent by an arming item
+# (an frischer Luft). The plural is in for the opposite
+# reason — its weak counterpart differs (die leichten Suppen), so -en is a real and
+# visible error there.
+# Non-overlap with the topic's other three families is structural, not just lexical:
+# family 1 grades a Konjunktiv II verb form, family 2 an article inside a reflexive
+# preposition frame (whose header records that it prints no adjective at all, precisely so
+# that no ending gives the case away), family 3 the two ends of a lassen bracket. No
+# sentence here contains a reflexive verb, a Konjunktiv II form or lassen, and no sentence
+# there contains an article-less adjective group.
+# Non-overlap with the three arming items is lexical too. They use exactly two adjectives,
+# frisch and stark, over Obst, Kaffee, Kopfschmerzen, Luft and Gemüse; these variants use
+# kalt, offen and leicht over Saft, Fenster and Suppen. Checked by grepping each stem
+# across the article, the reading, both exercise sets, the pretest and the three probe
+# families — `grep -roiE 'kalt[a-z]*|offen[a-z]*|leicht[a-z]*|Saft|Fenster|Suppe[n]?' …` —
+# which returned only betroffene and the frontmatter title Das kalte Herz. gesund and
+# schwarz were candidates and were dropped by that same grep: the article writes gesunde
+# Ernährung and schwarzen Kaffee, both of them article-less adjective groups.
+# Every content word is A1 or A2, so a miss cannot be a vocabulary miss: Saft, Suppe,
+# schmecken, kochen (essen-trinken, A1), Sport (freizeit-koennen, A1), schlafen
+# (alltag-a1-ergaenzung, A1), Fenster (wohnen, A1), Winter (alltag-zeit, A1), kalt
+# (wetter-natur, A1), offen (einkaufen-geschaefte, A1), leicht (einkaufen-reklamation,
+# A2). Nothing in a gap needs a second grammatical decision either — bei fixes the dative
+# by itself, and the other two nouns sit in the only case their clause offers.
+# Arming takes exactly the topic's three adjektiv-nullartikel practice items, the two
+# cloze and the mc; the validator holds every arming key to this family's own focus tag.
+# armedAt for the topic's three existing families was 2026-07-25 before this file and
+# 2026-07-25 after it — measured with armedAt/probeFamilies (src/lib/probes.ts) against
+# progress/vitaly/2026-08-11.json, not read off the source. Every family commits its own
+# arming list, so a new one cannot move an old one's clock.
+# One consequence of arriving after the lesson, recorded rather than smoothed over: this
+# family arms on 2026-07-25 as well — the earliest logged attempt on any of its three
+# arming items — so on the day it lands the 2-day and 7-day rungs have already elapsed
+# (`dueProbe`, src/lib/probes.ts: stage is how many probes have been taken, and the rung
+# is due once its interval is past). Its first two variants will therefore be answered at
+# eighteen days or more, and only the 21-day rung (2026-08-15) falls on schedule. The
+# topic's other three families sit the same way, and the retention points this one
+# produces have to be read at their logged elapsed days, never at the nominal 2/7/21.
+# `outcomes: [gewohnheiten-beschreiben]` is what two of the three arming items declare
+# (the third, cloze-starken-frischer, declares beschwerden-schildern), and all three
+# variants describe a habit. Sharing an outcome with the other families is harmless —
+# arming is by explicit item key (`armingItemKeys`, src/lib/probes.ts), never by outcome.
+topic: gesundheit-wohlbefinden
+role: probe
+title:
+  en: "Delayed check — the ending with no article in front"
+  ru: "Отложенная проверка — окончание, когда артикля впереди нет"
+  uk: "Відкладена перевірка — закінчення, коли артикля попереду немає"
+  de: "Kontrolle mit Abstand — die Endung ohne Artikel davor"
+arming:
+  - b1/gesundheit-wohlbefinden::cloze-frisches-starken
+  - b1/gesundheit-wohlbefinden::cloze-starken-frischer
+  - b1/gesundheit-wohlbefinden::mc-frisches-gemuese
+items:
+  - id: variant-a
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction:
+      en: "Fill in the adjective in the right form."
+      ru: "Впишите прилагательное в правильной форме."
+      uk: "Впишіть прикметник у правильній формі."
+      de: "Ergänze das Adjektiv in der richtigen Form."
+    text: "Nach dem Sport schmeckt {{kalter}} (kalt) Saft am besten."
+    translation:
+      en: "After exercise, cold juice tastes best."
+      ru: "После спорта вкуснее всего холодный сок."
+      uk: "Після спорту найкраще смакує холодний сік."
+    explain:
+      en: "No article stands in front of Saft, so the adjective has to say what the article would have said. The noun is the subject of schmecken, so the case is nominative, and der Saft in the nominative gives kalter — that final -r is the -r of der, moved one word to the left. The habit to resist comes from a year of after-article phrases: der kalte Saft. Take the article away and the weak -e marks nothing at all, which is exactly why German puts the signal on the adjective instead. English gives no warning, because cold juice keeps one shape in every slot it stands in."
+      ru: "Перед Saft артикля нет, и его работу выполняет прилагательное. Существительное здесь — подлежащее при schmecken, то есть номинатив, а der Saft в номинативе даёт kalter: конечное -r приходит прямо из артикля der. Русскому это устройство знакомо — «холодный сок» тоже показывает род и падеж сам, без всякого артикля. Мешает другое: за год немецкого рука привыкла к слабому -e после артикля (der kalte Saft) и пишет kalte там, где артикля нет, оставляя падеж без пометки. Проверка одна — верните артикль мысленно и послушайте, чем он кончается."
+      uk: "Артикля перед Saft немає, отже його сигнал бере на себе прикметник. Іменник тут — підмет при schmecken, а це називний відмінок, і der Saft у називному дає kalter: кінцеве -r приходить просто з артикля. Українська робить те саме взагалі без артикля — «холодний сік» сам показує рід і відмінок. Очікувана помилка — kalte: слабке закінчення, доречне лише після артикля (der kalte Saft). Без артикля воно про відмінок мовчить, і речення втрачає єдиний знак, який у ньому був."
+      de: "Vor Saft steht kein Artikel, also übernimmt das Adjektiv dessen Signal. Das Nomen ist Subjekt zu schmecken, der Kasus also Nominativ, und der Saft ergibt kalter Saft — das -r am Ende ist das -r von der, ein Wort nach links gerückt. Der erwartbare Fehler heißt kalte: die schwache Endung, die nur nach einem Artikel steht (der kalte Saft). Ohne Artikel sagt sie über den Kasus nichts, und genau deshalb wandert das Signal überhaupt auf das Adjektiv."
+
+  - id: variant-b
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction:
+      en: "Fill in the adjective in the right form."
+      ru: "Впишите прилагательное в правильной форме."
+      uk: "Впишіть прикметник у правильній формі."
+      de: "Ergänze das Adjektiv in der richtigen Form."
+    text: "Ich schlafe bei {{offenem}} (offen) Fenster viel besser."
+    translation:
+      en: "I sleep much better with an open window."
+      ru: "Я гораздо лучше сплю при открытом окне."
+      uk: "Я значно краще сплю при відчиненому вікні."
+    explain:
+      en: "bei is one of the always-dative prepositions from A1, and das Fenster in the dative is dem Fenster. The article is not printed, so its -m moves onto the adjective: offenem. Masculine and neuter share this one cell — mit heißem Tee carries the same ending for another gender — so -em is a single form covering two of the three. The wrong answer to expect is offenen, the weak ending the ear knows from bei dem offenen Fenster; it is right exactly when that article is really there, and here it is not."
+      ru: "bei — из всегда-дативных предлогов, знакомых ещё с A1, и das Fenster в дативе — dem Fenster. Артикль не написан, поэтому его -m переходит на прилагательное: offenem. Клетка эта одна на два рода: mit heißem Tee — мужской, bei offenem Fenster — средний, окончание общее. Ожидаемая ошибка — offenen: слабое окончание, которое ухо помнит по bei dem offenen Fenster. Оно верно ровно тогда, когда артикль действительно стоит; здесь его нет, и показать датив больше нечему."
+      uk: "bei завжди вимагає давального — це відомо ще з A1, а das Fenster у давальному дає dem Fenster. Артикль не написаний, тому його -m переходить на прикметник: offenem. Ця клітинка спільна для чоловічого й середнього роду: mit heißem Tee має те саме закінчення. Українська теж позначає відмінок на прикметнику — «при відчиненому вікні», — тож сам механізм знайомий, чужим лишається лише -em. Варіант offenen правильний тільки там, де артикль справді стоїть."
+      de: "bei gehört zu den Immer-Dativ-Präpositionen aus A1, und das Fenster im Dativ ist dem Fenster. Der Artikel steht nicht da, also wandert sein -m auf das Adjektiv: offenem. Maskulinum und Neutrum teilen sich diese Zelle — mit heißem Tee trägt dieselbe Endung —, eine Form für zwei Genera. Der erwartbare Fehler ist offenen: die schwache Endung aus bei dem offenen Fenster. Sie ist genau dann richtig, wenn der Artikel wirklich dasteht."
+
+  - id: variant-c
+    outcomes: [gewohnheiten-beschreiben]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction:
+      en: "Fill in the adjective in the right form."
+      ru: "Впишите прилагательное в правильной форме."
+      uk: "Впишіть прикметник у правильній формі."
+      de: "Ergänze das Adjektiv in der richtigen Form."
+    text: "Im Winter koche ich gern {{leichte}} (leicht) Suppen."
+    translation:
+      en: "In winter I like cooking light soups."
+      ru: "Зимой я люблю варить лёгкие супы."
+      uk: "Узимку я люблю варити легкі супи."
+    explain:
+      en: "One family, one competence, and the third cell: the plural. Nothing stands in front of Suppen, so the plural signal lands on the adjective — leichte, the same form in the nominative and the accusative. Here the year-long habit pulls the other way: after an article the plural ends in -en (die leichten Suppen), so the hand writes leichten out of practice. The rule has not moved across the three variants — the adjective takes the ending the missing article would have had, whichever cell that is."
+      ru: "Одна семья, одна компетенция — и третья клетка: множественное число. Перед Suppen не стоит ничего, поэтому сигнал множественного числа надевает прилагательное: leichte, одинаково в номинативе и аккузативе. Здесь привычка тянет в противоположную сторону: после артикля во множественном числе окончание -en (die leichten Suppen), и рука по инерции пишет leichten. Правило во всех трёх вариантах одно — прилагательное берёт окончание пропавшего артикля, в какой бы клетке оно ни оказалось."
+      uk: "Одна сім'я, одна компетенція — і третя клітинка: множина. Перед Suppen не стоїть нічого, тому сигнал множини надягає прикметник: leichte, однаково в називному та знахідному. Тут звичка тягне в протилежний бік: після артикля множина закінчується на -en (die leichten Suppen), і рука за інерцією пише leichten. Правило в усіх трьох варіантах те саме — прикметник бере закінчення зниклого артикля, у якій би клітинці воно не стояло."
+      de: "Eine Familie, eine Fähigkeit — und die dritte Zelle: der Plural. Vor Suppen steht nichts, also trägt das Adjektiv das Pluralsignal: leichte, im Nominativ wie im Akkusativ dieselbe Form. Hier zieht die Gewohnheit in die andere Richtung: Nach einem Artikel endet der Plural auf -en (die leichten Suppen), und die Hand schreibt aus Routine leichten. Die Regel bleibt über alle drei Varianten dieselbe — das Adjektiv nimmt die Endung, die der fehlende Artikel hätte."
