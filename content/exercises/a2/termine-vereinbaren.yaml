@@ -312,9 +312,13 @@ items:
       uk: 'З днями тижня вживається "am", з часом за годинником — "um": am Freitag um 15 Uhr. Звичайний порядок — спочатку день, потім час; у розкладах німці використовують 24-годинний формат: 15 Uhr.'
 
   - id: uebersetzen-termin-verschieben
+    revision: 2
     outcomes: [termine-organisieren]
     type: translate
-    focus: trennbar-modal
+    # verschieben has no separable prefix (its own explain says so), so the item cannot
+    # produce the trennbar-modal confusion it was tagged with; what the pinned bracket
+    # (Können … verschieben) actually grades is the modal Satzklammer.
+    focus: modal-satzklammer
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
