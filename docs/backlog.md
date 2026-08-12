@@ -39,6 +39,29 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
+- **P25-14 · Non-material findings of the 2026-08-12 strand audit (batch 1)** — the material
+  findings (false dative-club closure rule, missing plural in the A1 shape rule, six items
+  rejecting or mis-attributing correct German) were fixed in the batch PR; these were real but
+  below the material bar:
+  - `a1/ort-richtung-praepositionen`: the main table's *zu – bei – von* row is labelled **Person**
+    only, while the registered tag reads "a person or a point destination" — the *zu*-taking
+    buildings (Bahnhof, Post, Arbeit) live as four Feinheiten exceptions instead of a row, and
+    `diktat-zum-bahnhof` grades one of them.
+  - `a2/zeit-praepositionen`: `uebersetzen-von-bis` and `cloze-in-abstand` drill exactly the two
+    chunks the A1 tag `von-bis-in-zeit` (#184) names, but carry `zeitangaben-system` — consider
+    retagging so the A2 revisit can resurface the A1 family through the tag channel.
+  - `a2/zeit-praepositionen` "Zeit ohne Präposition" lacks the duration member of the bare-accusative
+    family (*Ich bleibe drei Tage*, *den ganzen Tag*) — both already appear in A1 item surfaces.
+  - `a2/verben-mit-kasus`: the chunk table shows *auf/an/über* with the accusative only; when
+    *teilnehmen an* / *arbeiten an* (an + Dativ frames) arrive, add the Feinheiten line. Nothing
+    false is taught today.
+  - `a2/probe-man-und-besitz-genitiv::probe-genitiv-von-kollegin`: a real genitive NP (*das Buch
+    meiner Kollegin*) is correct German the item rejects; accepting it means an accepted rendering
+    without the pinned `von`, so it needs a design decision, not a quick accept line.
+  - `content/reading/a1/ort-richtung-praepositionen.yaml`: *zu Miras Tante* is the passage's only
+    above-level structure (`genitiv-eigenname`, A2) — glossed, so receptively fine.
+  - `content/reading/a2/verben-mit-kasus.yaml:28–31`: the RU/UK glosses of *gefällt Mira die neue
+    Wohnung* render «очень»/«дуже» for a *sehr* outside the glossed span. Cosmetic.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract requires
   one 3-variant probe family per competence; those three units own 3 + 3 + 4 grammar points and
   shipped one family each. No longer expensive: P19-4 gave every family its own explicit `arming:`
@@ -107,6 +130,16 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Instruments and gates
 
+- **P25-15 · Two instrument notes from the strand audit (2026-08-12)** — both verified against
+  `src/lib/production.ts`, neither fixed there yet:
+  - Mid-string sentence-initial capitals escape key-token grading: the case fold in
+    `gradeTranslation` applies at position 0 only (deliberate — mid-sentence capitalization is
+    grammar, `Sie`/`sie`), so a two-sentence `accept` rendering re-opens the one-directional hole
+    the answer-head rule closed. Live instance: `a2/zeit-praepositionen::uebersetzen-vor-nach-pruefung`
+    `accept[2]` capitalizes `Nach`, under which a *nach* error is never attributed.
+  - The validator holds a probe family's item `focus` equal to the arming set's, so a variant that
+    grades a pure sub-confusion logs its failure on the umbrella tag: `a2/probe-zeit-praepositionen`
+    `variant-a` is seit-vs-vor and `variant-b` am-vs-um, both logged as `zeitangaben-system`.
 - **P25-13 · The real store round-trip test is quarantined on CI (`test.skipIf(CI)`)** — on ubuntu
   runners the `getCardStates`/`setCardState` composition through the real `getStore()` dies at bun
   test's 5000ms budget with a promise that never settles, while every ingredient passes there in

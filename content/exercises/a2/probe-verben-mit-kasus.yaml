@@ -59,13 +59,18 @@ items:
       uk: "gratulieren стоїть у короткому закритому списку дієслів, чий безприйменниковий додаток вимагає Dativ, тому людина тут meinem Onkel, а не meinen Onkel. Значення про це не каже нічого: вітати когось виглядає точно так само, як відвідувати чи дзвонити, а ці два дієслова вимагають Akkusativ. Українське «вітаю (кого?) дядька» тягне у знахідний, і єдине джерело правильної відповіді — список; на те він і короткий."
 
   - id: variant-b
+    revision: 2
     outcomes: [akkusativ-person-nennen, dativ-person-nennen, verbchunk-nennen]
     type: translate
     focus: verb-kasus
+    # "call" is the one prompt verb with two natural German renderings; telefonieren mit
+    # meiner Tante is correct German that bypasses the measured decision and misses the
+    # pinned meine — a false verb-kasus entry on the probe. Naming anrufen constrains the
+    # verb without giving away the case it governs.
     instruction:
-      en: "Translate into German. For 'aunt' take die Tante."
-      ru: "Переведите на немецкий. Для «тётя» возьмите die Tante."
-      uk: "Перекладіть німецькою. Для «тітка» візьміть die Tante."
+      en: "Translate into German. For 'aunt' take die Tante, and for 'call' the verb anrufen."
+      ru: "Переведите на немецкий. Для «тётя» возьмите die Tante, а для «звонить» — глагол anrufen."
+      uk: "Перекладіть німецькою. Для «тітка» візьміть die Tante, а для «дзвонити» — дієслово anrufen."
     prompt_en: "On Monday I call my aunt."
     prompt_ru: "В понедельник я звоню своей тёте."
     prompt_uk: "У понеділок я дзвоню своїй тітці."
