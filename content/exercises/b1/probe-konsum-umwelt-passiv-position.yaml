@@ -1,0 +1,179 @@
+# Delayed probe family 4 of 4 — ONE competence: the POSITION half of the Passiv frame,
+# produced cold. The conjugated werden on Position 2, the Partizip II at the clause wall,
+# and everything the sentence says packed between them. Three parallel translate variants,
+# all Präsens Passiv, served in authoring order across the 2/7/21 delays: one retention
+# curve over one bracket.
+#
+# Why a second family on passiv-bildung, and why translate. B1.6's own family
+# (probe-konsum-umwelt) is cloze ×3, and a cloze grades a FORM, never a POSITION — the item
+# prints the gap where werden belongs and the second gap where the participle belongs, so
+# the frame is drawn for the learner and neither wall can land anywhere else
+# (docs/authoring/authoring-checklists.md, checklist item 4). Someone who would write
+# *Die Milch wird geliefert jeden Morgen*, or pull the second verb forward, or close the
+# frame with an infinitive, fills both slots correctly and passes all three stages. That is
+# P18-6. The form half stays exactly where it is: this file adds nothing to the cloze family
+# and changes nothing in it — its variants, its arming list and its clock are untouched.
+#
+# Two families on one tag is precedent, not novelty, and the closest precedent is a
+# cloze/translate twin on ONE topic and ONE competence: a2/probe-relativsaetze-luecke beside
+# a2/probe-relativsaetze (both relativpronomen-kasus, both outcomes relativ-kasus-waehlen),
+# a1/probe-alltag-zeit-luecken beside a1/probe-alltag-zeit (both um-am-zeit),
+# a1/probe-menschen-familie-possessiv beside a1/probe-menschen-familie (both
+# possessivartikel). Across topics the same tag in two families is ordinary: du-sie carries
+# a2/probe-arbeit-beruf-anrede and a2/probe-termine-vereinbaren-anrede (and
+# a1/probe-stadt-wege-du-sie), and passiv-bildung itself already carries
+# b1/probe-digitales-leben-anleitung, whose translate variants are Anleitung steps
+# (Termine gesichert, Liste ausgedruckt, Formular abgeschickt) and share no sentence with
+# these. Found by grouping every role: probe set by its topic and its first item's focus
+# with a throwaway script over content/exercises/**, not by reading filenames.
+#
+# Parallelism: one competence, three pressures on the same two walls — a plain declarative
+# with the subject in Position 1 (a), a fronted time phrase that pushes the subject behind
+# wird (b), and a W-question whose question word takes the Vorfeld (c). All three stay in
+# the Präsens Passiv the article teaches; wurde … and ist … worden belong to
+# probe-konsum-umwelt-passiv-vergangenheit and would make the variants non-parallel. Number
+# follows the content (werden, wird, werden) — that is form, and form is the cloze family's
+# half.
+#
+# Determinacy, read per prompt language rather than once. Every instruction names the
+# passive and every open content word, because *man produziert diese Taschen in Europa aus
+# Papier* renders the prompt just as correctly and the frame is what is probed, never the
+# choice to use it. EN marks definiteness where RU and UK leave a bare noun free
+# («старую одежду», «старі комп'ютери»), so both determiners are accepted wherever the noun
+# is not fixed: definiteness is carrier material here and the graded pair is the frame.
+# Variant a needs no such accept — a demonstrative fixes the noun in all three languages.
+# The unit's own deck calls produzieren a near-twin of herstellen and says both love the
+# passive (content/vocab/konsum-umwelt.yaml), so the herstellen rendering is accepted and
+# its participle pinned as well: an unpinned synonym at the wall could be forgiven as a
+# one-edit slip.
+#
+# Non-overlap. No content word here occurs in the sibling family's three sentences (Milch
+# geliefert, Handys repariert, Qualität kontrolliert) or in any of the five arming items
+# (Tonne geleert, Säcke abgeholt, Müll getrennt, Tonne geleert, Gemüse verkauft). Checked
+# across the whole unit — article, both practice sets, pretest, Hören set, reading, sibling
+# probe — with:
+#   grep -rEon "Tasche|Papier|produzier|Kleidung|Frühling|Flohmarkt|[Tt]ausch|Computer|abgeb|Europa" \
+#     content/topics/b1/konsum-umwelt.mdx content/exercises/b1/konsum-umwelt*.yaml \
+#     content/exercises/b1/ls-konsum-umwelt-01-hoeren.yaml content/reading/b1/konsum-umwelt.yaml \
+#     content/exercises/b1/probe-konsum-umwelt.yaml
+# Tasche, Kleidung, Frühling, Flohmarkt, Computer and Europa return nothing at all. Papier
+# returns the reading's blue bin and the write task's *in Papier verpackt* — never with a bag
+# and never with produzieren. produzier returns one hit: the German half's prose verb in the
+# je-desto section (*produziert ständig Sätze*). [Tt]ausch returns *vertauschen* inside a
+# je-desto explanation, a different lemma. abgeb returns one wrong MC option in the reading
+# (*bei der Hausverwaltung abgeben*, an infinitive, about batteries).
+#
+# Vocabulary, per content word, checked against the decks and not against memory:
+# die Tasche (A1, einkaufen-geschaefte) · Europa (A2, laender-nationalitaeten-a2) ·
+# das Papier (A2, schule-faecher-a2) · produzieren (B1, konsum-umwelt, this unit's own deck) ·
+# die Kleidung (A1, kleidung-farben) · der Frühling (A1, zahlen-daten-geld) ·
+# der Flohmarkt (A2, einkaufen-geld-a2) · tauschen (A2, arbeit-beruf) · alt (A1, wohnen) ·
+# der Computer (A1, schule-arbeit) · abgeben (A2, verben-handlungen-a2-1). Nothing above B1,
+# nothing off-deck.
+#
+# arming: the five role: practice items in this unit that carry focus: passiv-bildung, and
+# no others — every one of them makes the learner build or choose the frame. It is the same
+# list probe-konsum-umwelt commits, and it has to be: producing the frame in practice is what
+# starts the clock on the frame, whichever half of it a family measures. Since P19-4 each
+# family arms from its own literal list (`armingItemKeys`, src/lib/probes.ts), so this file
+# cannot touch the cloze family's clock — measured rather than read off the source: against
+# progress/vitaly/2026-08-11.json, armedAt for b1/probe-konsum-umwelt is
+# 2026-07-29T19:05:47.838Z before this file and 2026-07-29T19:05:47.838Z after it, and the
+# other two families are likewise unmoved.
+# `outcomes: [passiv-beschreiben]` is what those five items declare and what this family
+# probes: the can-do is "mit dem Passiv beschreiben, wie etwas hergestellt oder geregelt
+# wird", and a Wo-question about where old computers are handed in asks precisely how
+# something is geregelt. Sharing that outcome with the cloze family is harmless for the
+# reason probe-gesundheit-wohlbefinden-lassen-verwendung states: arming is by item key,
+# never by outcome.
+topic: konsum-umwelt
+role: probe
+title:
+  en: "Delayed check — where the two walls of the frame stand"
+  ru: "Отложенная проверка — где стоят обе стены рамки"
+  uk: "Відкладена перевірка — де стоять обидві стіни рамки"
+  de: "Kontrolle mit Abstand — wo die beiden Wände der Klammer stehen"
+arming:
+  - b1/konsum-umwelt::cloze-tonnen-plan
+  - b1/konsum-umwelt::cloze-man-bruecke
+  - b1/konsum-umwelt::mc-wird-ist
+  - b1/konsum-umwelt::uebersetzen-gemuese
+  - b1/konsum-umwelt-produktion::uebersetzen-tonne-august
+items:
+  - id: variant-a
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate in the passive. For 'produce' take produzieren, for 'bag' die Tasche, for 'paper' das Papier."
+      ru: "Переведите в пассиве. Для «производить» возьмите produzieren, для «сумка» — die Tasche, для «бумага» — das Papier."
+      uk: "Перекладіть у пасиві. Для «виробляти» візьміть produzieren, для «сумка» — die Tasche, для «папір» — das Papier."
+      de: "Übersetze im Passiv. Für das Herstellen nimm produzieren, für den Beutel die Tasche, für das Material das Papier."
+    prompt_en: "These bags are produced in Europe out of paper."
+    prompt_ru: "Эти сумки производят в Европе из бумаги."
+    prompt_uk: "Ці сумки виробляють у Європі з паперу."
+    answer: "Diese Taschen werden in Europa aus Papier produziert."
+    accept:
+      # Position 1 taken by the place instead of the subject — ordinary V2, same bracket.
+      - "In Europa werden diese Taschen aus Papier produziert."
+      # herstellen is the deck's own near-twin of produzieren, so it must not be a miss;
+      # its participle is pinned too, or a malformed wall could pass as a spelling slip.
+      - "Diese Taschen werden in Europa aus Papier hergestellt."
+      - "In Europa werden diese Taschen aus Papier hergestellt."
+    key_tokens: ["werden", "produziert", "hergestellt"]
+    explain:
+      en: "Graded are the frame's two ends: werden in position 2 and produziert at the very end, with the whole middle — where, and out of what — between them. English keeps its verb parts side by side ('are produced') and hangs the details on afterwards, so the hand wants werden produziert in Europa aus Papier; German pulls them apart and makes the participle wait for the last word. The plural subject diese Taschen chooses werden over wird, and no producer is named anywhere — that absence is what the form is for."
+      ru: "Оцениваются два конца рамки: werden на втором месте и produziert в самом конце, а между ними — всё содержание: где и из чего. Русское «производят» — одно слово, и в конец оно ничего не отправляет, поэтому рука пишет werden produziert in Europa aus Papier; немецкий разводит две части глагола и держит причастие до последнего слова. Подлежащее во множественном числе diese Taschen выбирает werden, а не wird, а производитель не назван нигде — ради этой пустоты форма и существует."
+      uk: "Оцінюються два кінці рамки: werden на другому місці і produziert у самому кінці, а між ними — увесь зміст: де і з чого. Українське «виробляють» — одне слово, і в кінець воно нічого не відсилає, тому рука пише werden produziert in Europa aus Papier; німецька розводить дві частини дієслова і тримає дієприкметник до останнього слова. Множинний підмет diese Taschen обирає werden, а не wird, а виробника не названо ніде — саме заради цієї порожнечі форма й існує."
+      de: "Bewertet werden die beiden Enden der Klammer: werden auf Position 2 und produziert ganz am Ende, dazwischen alles, was der Satz sagt — wo und woraus. Viele Sprachen halten ihre zwei Verbteile beieinander und hängen die Angaben hinten an; das Deutsche zieht sie auseinander und lässt das Partizip bis zum letzten Wort warten. Das plurale Subjekt diese Taschen entscheidet über werden statt wird, und ein Hersteller wird nirgends genannt — genau für diese Leerstelle gibt es die Form."
+
+  - id: variant-b
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate in the passive. For 'swap' take tauschen, for 'clothes' die Kleidung, for 'flea market' der Flohmarkt."
+      ru: "Переведите в пассиве. Для «обменивать» возьмите tauschen, для «одежда» — die Kleidung, для «блошиный рынок» — der Flohmarkt."
+      uk: "Перекладіть у пасиві. Для «обмінювати» візьміть tauschen, для «одяг» — die Kleidung, для «блошиний ринок» — der Flohmarkt."
+      de: "Übersetze im Passiv. Für den Tausch nimm tauschen, für die Sachen zum Anziehen die Kleidung, für den Markt der Flohmarkt."
+    prompt_en: "Every spring the old clothes are swapped at the flea market."
+    prompt_ru: "Каждую весну старую одежду обменивают на блошином рынке."
+    prompt_uk: "Щовесни старий одяг обмінюють на блошиному ринку."
+    answer: "Jeden Frühling wird die alte Kleidung auf dem Flohmarkt getauscht."
+    accept:
+      # The subject may lead instead of the time phrase; wird stays second either way.
+      - "Die alte Kleidung wird jeden Frühling auf dem Flohmarkt getauscht."
+      # RU and UK mark no definiteness on the bare noun, so the generic reading is an
+      # equally faithful rendering — and definiteness is not what this item grades.
+      - "Jeden Frühling wird alte Kleidung auf dem Flohmarkt getauscht."
+      - "Alte Kleidung wird jeden Frühling auf dem Flohmarkt getauscht."
+    key_tokens: ["wird", "getauscht"]
+    explain:
+      en: "Fronting the time phrase changes position 1 and nothing else: jeden Frühling fills the first slot, wird is still the second element, and the subject die alte Kleidung moves in behind it. None of that reaches the participle — getauscht holds the last word in every rendering this item accepts. The collapse to watch for is Jeden Frühling die alte Kleidung wird …, which treats the fronted phrase as a free extra slot; German counts it as position 1, and the conjugated verb comes next."
+      ru: "Вынос обстоятельства вперёд меняет только первую позицию: jeden Frühling занимает первое место, wird остаётся вторым элементом, а подлежащее die alte Kleidung встаёт за ним. До причастия всё это не доходит: getauscht держит последнее слово в любом принимаемом варианте. Сбой, которого стоит ждать, — Jeden Frühling die alte Kleidung wird …: по-русски перед сказуемым свободно стоят и обстоятельство, и подлежащее, а немецкий считает вынесенную группу первой позицией, и сразу за ней обязан идти спрягаемый глагол."
+      uk: "Винесення обставини наперед змінює лише першу позицію: jeden Frühling заповнює перше місце, wird лишається другим елементом, а підмет die alte Kleidung стає за ним. До дієприкметника це не дотягується: getauscht тримає останнє слово в кожному прийнятому варіанті. Зрив, на який варто чекати, — Jeden Frühling die alte Kleidung wird …: українською перед присудком вільно стоять і обставина, і підмет, а німецька рахує винесену групу першою позицією, і одразу за нею мусить іти відмінюване дієслово."
+      de: "Die vorangestellte Zeitangabe ändert Position 1 und sonst nichts: Jeden Frühling füllt das Vorfeld, wird bleibt das zweite Element, und das Subjekt die alte Kleidung rückt dahinter. Zum Partizip dringt davon nichts durch — getauscht behält in jeder akzeptierten Fassung das letzte Wort. Der Einsturz, auf den zu achten ist, heißt Jeden Frühling die alte Kleidung wird …: Die vorangestellte Angabe ist selbst Position 1, danach kommt sofort das finite Verb und nicht noch ein Subjekt."
+
+  - id: variant-c
+    outcomes: [passiv-beschreiben]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "Translate the question in the passive. For 'hand in' take abgeben, for 'computer' der Computer."
+      ru: "Переведите вопрос в пассиве. Для «сдавать» возьмите abgeben, для «компьютер» — der Computer."
+      uk: "Перекладіть питання у пасиві. Для «здавати» візьміть abgeben, для «комп'ютер» — der Computer."
+      de: "Übersetze die Frage im Passiv. Für das Weggeben nimm abgeben, für das Gerät der Computer."
+    prompt_en: "Where are old computers handed in?"
+    prompt_ru: "Где сдают старые компьютеры?"
+    prompt_uk: "Де здають старі комп'ютери?"
+    answer: "Wo werden alte Computer abgegeben?"
+    accept:
+      # The bare plural is the direct reading of the RU/UK prompt; the definite one is the
+      # direct reading of the English. Both are ordinary German and both keep the frame.
+      - "Wo werden die alten Computer abgegeben?"
+    key_tokens: ["werden", "abgegeben"]
+    explain:
+      en: "A question moves position 1 and leaves the frame alone: wo takes the front slot, werden is still the second element, abgegeben still closes the sentence. Watch the wall itself — Wo werden alte Computer abgeben? has quietly become a future, because werden plus a bare infinitive is Futur I and not a passive at all. Only the participle makes it passive, and a separable verb travels there whole: the ab- does not stay behind, it sits inside abgegeben."
+      ru: "Вопрос сдвигает первую позицию и не трогает рамку: wo занимает первое место, werden по-прежнему второй элемент, abgegeben по-прежнему закрывает предложение. Следите за самой стеной: Wo werden alte Computer abgeben? — это уже будущее время, потому что werden с голым инфинитивом даёт Futur I, а вовсе не пассив. Пассив делает только причастие, а отделяемый глагол уходит в конец целиком: ab- не остаётся позади, оно сидит внутри abgegeben."
+      uk: "Питання зсуває першу позицію і рамки не чіпає: wo займає перше місце, werden і далі другий елемент, abgegeben і далі закриває речення. Пильнуйте саму стіну: Wo werden alte Computer abgeben? — це вже майбутній час, бо werden з голим інфінітивом дає Futur I, а зовсім не пасив. Пасив робить лише дієприкметник, а відокремлюване дієслово іде в кінець цілим: ab- не лишається позаду, воно сидить усередині abgegeben."
+      de: "Eine Frage verschiebt Position 1 und lässt die Klammer in Ruhe: wo besetzt das Vorfeld, werden ist weiterhin das zweite Element, abgegeben schließt den Satz weiterhin ab. Achte auf die Wand selbst: Wo werden alte Computer abgeben? ist bereits ein Futur, denn werden plus bloßer Infinitiv ergibt Futur I und kein Passiv. Erst das Partizip macht das Passiv — und ein trennbares Verb geht als Ganzes dorthin: Das ab- bleibt nicht zurück, es steckt in abgegeben."

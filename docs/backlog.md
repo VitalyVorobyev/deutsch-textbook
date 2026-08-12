@@ -94,10 +94,8 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   (the original "one family each" note predates the #169–#178 loop, so the remaining gap has to be
   measured, not read off this entry). P19-4's explicit `arming:` lists keep new families from
   moving existing clocks — measured again for family 4: all three siblings' `armedAt` unchanged.
-- **P18-6 · `passiv-bildung`'s position half has no delayed evidence** — `probe-konsum-umwelt` is
-  cloze ×3, and a cloze grades a form, never a position, so a learner who reproduces the wrong
-  bracket passes all three stages. First step: a `translate` family for the position-2/clause-final
-  frame.
+- **P18-6 · done (2026-08-12)** — `probe-konsum-umwelt-passiv-position`, translate ×3 on the frame's
+  two walls; sibling clocks measured unmoved, the family arms retroactively at 2026-07-29.
 - **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item** — B1.8 drills only the
   two-clause condition; the wish form sits in `### Feinheiten` with no item. First step: a later
   KII-touching unit owns one `translate` pinning the one-word form beside *doch*/*nur*.
