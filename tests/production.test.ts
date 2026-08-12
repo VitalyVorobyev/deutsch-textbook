@@ -2,6 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import {
   closestTranslationCandidate,
   dictationSlip,
+  gradedTokenPositions,
   gradeTranslation,
   isOneEdit,
   translationCandidates,
@@ -534,5 +535,83 @@ describe('punctuation and typography are not part of the graded surface', () => 
   test('a typographic apostrophe matches the straight one', () => {
     const spec = { answer: "Wie geht's dir?" };
     expect(gradeTranslation('Wie geht’s dir?', spec).kind).toBe('correct');
+  });
+});
+
+describe('sentence-head case fold — a rendering can have more than one head (P25-15)', () => {
+  // The live shape: a2/zeit-praepositionen::uebersetzen-vor-nach-pruefung. The pinned
+  // lowercase `nach` opens sentence 2 of the two-sentence accept rendering capitalized —
+  // a different string, so before the fix that rendering silently stopped grading it.
+  const vorNach = {
+    answer: 'Vor der Prüfung schlafe ich schlecht, nach der Prüfung schlafe ich gut.',
+    accept: ['Vor der Prüfung schlafe ich schlecht. Nach der Prüfung schlafe ich gut.'],
+    focus: 'zeitangaben-system',
+    keyTokens: ['Vor', 'nach'],
+  };
+
+  test('an error at the second sentence head is attributed to the focus', () => {
+    const verdict = gradeTranslation(
+      'Vor der Prüfung schlafe ich schlecht. Um der Prüfung schlafe ich gut.',
+      vorNach,
+    );
+    expect(verdict).toEqual({ kind: 'wrong', focus: 'zeitangaben-system' });
+  });
+
+  test('a near-miss at the second sentence head is not forgiven as a spelling slip', () => {
+    // Nacht for Nach is one edit and no function-word swap — only the pin protects it.
+    const verdict = gradeTranslation(
+      'Vor der Prüfung schlafe ich schlecht. Nacht der Prüfung schlafe ich gut.',
+      vorNach,
+    );
+    expect(verdict).toEqual({ kind: 'wrong', focus: 'zeitangaben-system' });
+  });
+
+  test('a pin capitalized at a mid-answer sentence head grades its lowercase twin in a reordered accept', () => {
+    // Before the fix only the FIRST token of `answer` derived a lowercase twin, so a pin
+    // that opens the answer's second sentence lost attribution in every accept that
+    // moved it mid-sentence.
+    const spec = {
+      answer: 'Ich schlafe schlecht. Nach der Prüfung schlafe ich gut.',
+      accept: ['Ich schlafe schlecht und nach der Prüfung schlafe ich gut.'],
+      focus: 'zeitangaben-system',
+      keyTokens: ['Nach'],
+    };
+    const verdict = gradeTranslation(
+      'Ich schlafe schlecht und um der Prüfung schlafe ich gut.',
+      spec,
+    );
+    expect(verdict).toEqual({ kind: 'wrong', focus: 'zeitangaben-system' });
+  });
+});
+
+describe('gradedTokenPositions — the validator mirror of the grading fold', () => {
+  test('a pinned sentence-opener grades its lowercase twin anywhere (the Nach/nach-Hause shape)', () => {
+    const positions = gradedTokenPositions('Nach der Arbeit gehe ich nach Hause.', {
+      answer: 'Nach der Arbeit gehe ich nach Hause.',
+      keyTokens: ['Nach', 'der'],
+    });
+    // Three graded positions for two pins — exactly the over-grading the exact-string
+    // uniqueness guard could not see (each string occurs once).
+    expect(positions).toEqual([0, 1, 5]);
+  });
+
+  test('mid-sentence capitalization is never folded: Sie stays ungraded when sie is not pinned', () => {
+    const positions = gradedTokenPositions(
+      'Wann möchten Sie kommen? Und wann möchtest du kommen?',
+      {
+        answer: 'Wann möchten Sie kommen? Und wann möchtest du kommen?',
+        keyTokens: ['möchten', 'möchtest'],
+      },
+    );
+    expect(positions).toEqual([1, 6]);
+  });
+
+  test('a lowercase pin is graded at the head of the second sentence', () => {
+    const spec = {
+      answer: 'Vor der Prüfung schlafe ich schlecht, nach der Prüfung schlafe ich gut.',
+      accept: ['Vor der Prüfung schlafe ich schlecht. Nach der Prüfung schlafe ich gut.'],
+      keyTokens: ['Vor', 'nach'],
+    };
+    expect(gradedTokenPositions(spec.accept[0]!, spec)).toEqual([0, 6]);
   });
 });

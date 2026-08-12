@@ -7,7 +7,7 @@
  * answer is always displayed fully punctuated, so none of it may cost an answer.
  */
 import { describe, expect, test } from 'bun:test';
-import { answerMatches, normalizeTranslation } from '../src/lib/cloze';
+import { answerMatches, normalizeTranslation, sentenceInitialIndices } from '../src/lib/cloze';
 
 describe('normalizeTranslation — punctuation is not part of the graded surface', () => {
   test('the dialogue dash dissolves, typed as — or - or not at all', () => {
@@ -62,5 +62,27 @@ describe('answerMatches — cloze gaps and table cells', () => {
   test('empty input never matches', () => {
     expect(answerMatches('', ['auf'])).toBe(false);
     expect(answerMatches('.', ['auf'])).toBe(false);
+  });
+});
+
+describe('sentenceInitialIndices', () => {
+  test('maps raw sentence boundaries onto normalized token indices', () => {
+    expect([
+      ...sentenceInitialIndices(
+        'Vor der Prüfung schlafe ich schlecht. Nach der Prüfung schlafe ich gut.',
+      ),
+    ]).toEqual([0, 6]);
+  });
+
+  test('a comma is not a sentence boundary', () => {
+    expect([...sentenceInitialIndices('Ich schlafe schlecht, du schläfst gut.')]).toEqual([0]);
+  });
+
+  test('a dissolving dialogue dash advances no index; the question mark before it still closes the sentence', () => {
+    expect([...sentenceInitialIndices('Worauf wartet ihr? — Auf die Antwort.')]).toEqual([0, 3]);
+  });
+
+  test('question and exclamation marks close sentences too', () => {
+    expect([...sentenceInitialIndices('Kommst du mit? Ja! Dann los.')]).toEqual([0, 3, 4]);
   });
 });

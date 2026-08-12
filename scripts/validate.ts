@@ -43,6 +43,7 @@ import {
 import type { GrammarPoint } from '../src/lib/grammar-coverage';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
+import { gradedTokenPositions } from '../src/lib/production';
 import { continuationWord } from '../src/lib/table';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
@@ -1113,6 +1114,32 @@ for (const [setId, { file, data }] of exerciseSets) {
                 `occurrence — including any that is a different decision. Rewrite the sentence ` +
                 `so the graded token appears once, or pin a token that is unique.`,
             );
+          }
+        }
+        // The exact-string counts above cannot see the grader's case machinery: a pinned
+        // sentence-opener derives a lowercase twin that matches ANYWHERE, and sentence-head
+        // positions match case-insensitively (src/lib/production.ts). So "Nach der Arbeit
+        // gehe ich nach Hause." with `Nach` pinned counted every string once and passed,
+        // while the grader graded both `nach`s — and logged a zu/nach-Hause slip under the
+        // dative tag. Ask the mechanism itself: in no rendering may the graded positions
+        // outnumber the pins.
+        if (item.key_tokens.length > 0) {
+          for (const { rendering, tokens } of renderings) {
+            const positions = gradedTokenPositions(rendering, {
+              answer: item.answer,
+              accept: item.accept,
+              keyTokens: item.key_tokens,
+            });
+            if (positions.length > item.key_tokens.length) {
+              fail(
+                where,
+                `key_tokens ${JSON.stringify(item.key_tokens)} grade ${positions.length} tokens ` +
+                  `in rendering "${rendering}" (${positions.map((i) => tokens[i]).join(', ')}) — ` +
+                  `the grader's sentence-head case fold matches more occurrences than there are ` +
+                  `pins, so an unrelated error on the extra token is attributed to the focus. ` +
+                  `Rewrite the rendering or pin tokens whose case twins stay unique.`,
+              );
+            }
           }
         }
         if (item.key_tokens.length > 0 && !item.focus) {
