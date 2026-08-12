@@ -109,13 +109,17 @@ items:
       uk: "Два давальні закінчення, які треба почути, а не обчислити: dem після mit, meiner після zu. Обидва ненаголошені, обидва легко ковтаються, і обидва відрізняються однією літерою від хибної форми — den Zug, meine Tante. Промовте речення подумки, перш ніж друкувати: якщо закінчення належить прийменникові зі списку, воно може бути тільки давальним."
 
   - id: uebersetzen-aus-bibliothek
+    revision: 2
     outcomes: [dativ-praepositionen]
     type: translate
     focus: dativ-praepositionen
+    # Same shape as the taxi item above: the EN prompt leaves the friend's gender free,
+    # but the pinned ihrer is feminine — an EN reader's correct "zu ihrem Freund" would be
+    # logged as a dativ-praepositionen failure. The instruction fixes the noun instead.
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. For 'friend' take die Freundin."
+      ru: "Переведите на немецкий. Для «подруга» возьмите die Freundin."
+      uk: "Перекладіть німецькою. Для «подруга» візьміть die Freundin."
     prompt_en: "She is coming out of the library and going to her friend."
     prompt_ru: "Она выходит из библиотеки и идёт к своей подруге."
     prompt_uk: "Вона виходить із бібліотеки і йде до своєї подруги."

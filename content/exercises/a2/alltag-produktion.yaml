@@ -78,13 +78,16 @@ items:
       uk: "Дві обставини часу — два різні прийменники. Пора року вимагає im (im Sommer), точний час на годиннику — um (um sechs Uhr). Зверніть увагу: українською «влітку» обходиться без прийменника, а німецькою прийменник обов'язковий. І aufstehen розділяється: auf замикає речення."
 
   - id: uebersetzen-wg-samstag
+    revision: 2
     outcomes: [alltag-zeitpraepositionen, alltag-zeit-haeufigkeit]
     type: translate
     focus: um-am-zeit
+    # "always" makes the sentence habitual, so samstags/morgens are correct German too —
+    # and the pinned Am/am are exactly what those renderings do not contain.
     instruction:
-      en: "Translate into German — you are telling Mara when you use the kitchen."
-      ru: "Переведите на немецкий — вы рассказываете Mara, когда пользуетесь кухней."
-      uk: "Перекладіть німецькою — ви розповідаєте Mara, коли користуєтеся кухнею."
+      en: "Translate into German — you are telling Mara when you use the kitchen. Write both time expressions with a preposition, not as one-word adverbs."
+      ru: "Переведите на немецкий — вы рассказываете Mara, когда пользуетесь кухней. Оба обстоятельства времени запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою — ви розповідаєте Mara, коли користуєтеся кухнею. Обидві обставини часу запишіть із прийменником, а не прислівником з одного слова."
     prompt_en: "On Saturday I always do the shopping in the morning."
     prompt_ru: "В субботу я всегда делаю покупки утром."
     prompt_uk: "У суботу я завжди роблю покупки вранці."
@@ -98,13 +101,16 @@ items:
       uk: "Тут обидві обставини часу вимагають am: день тижня (am Samstag) і частина доби (am Morgen) належать до однієї групи, хоча українською це «у суботу» і «вранці» — зовсім різні конструкції. Прислівник частотності immer стоїть одразу після дієслова, а префікс ein замикає речення."
 
   - id: uebersetzen-wg-nacht
+    revision: 2
     outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
     type: translate
     focus: um-am-zeit
+    # "never" makes the sentence habitual, so nachts is correct German too — and the
+    # pinned In/der are exactly what that rendering does not contain.
     instruction:
-      en: "Translate into German — you are promising your flatmates a quiet night."
-      ru: "Переведите на немецкий — вы обещаете соседям тихую ночь."
-      uk: "Перекладіть німецькою — ви обіцяєте сусідам тиху ніч."
+      en: "Translate into German — you are promising your flatmates a quiet night. Write the time of day with a preposition, not as a one-word adverb."
+      ru: "Переведите на немецкий — вы обещаете соседям тихую ночь. Время суток запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою — ви обіцяєте сусідам тиху ніч. Час доби запишіть із прийменником, а не прислівником з одного слова."
     prompt_en: "At night I never watch television."
     prompt_ru: "Ночью я никогда не смотрю телевизор."
     prompt_uk: "Вночі я ніколи не дивлюся телевізор."

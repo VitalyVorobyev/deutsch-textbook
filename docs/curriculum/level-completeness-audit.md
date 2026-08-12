@@ -101,4 +101,7 @@ Owner decisions backing the two non-obvious verdicts (2026-08-12): full-audit sc
   the two each row means.
 - Material completeness of the other 24 A2 topics' article systems (the missing-*an* defect
   class) is a separate instrument: the batched review loop tracked as the follow-up to this
-  audit, batch 1 = the preposition/time/case strand.
+  audit. Batch 1 = the preposition/time/case strand (PR #185); batch 2 = dativ,
+  trennbare-verben, alltag-tagesablauf, modalverben, termine-vereinbaren (2026-08-12 — the
+  missing paradigm member this time was the habitual *-s* adverbs beside the *am/um/in der*
+  system; the dativ paradigms themselves enumerated complete). 17 topics remain, in spine order.

@@ -259,13 +259,17 @@ items:
       uk: "aufstehen розділяється: stehe стоїть на другому місці, а префікс auf іде в самий кінець, за обставину часу."
 
   - id: uebersetzen-abends-fernsehen
+    revision: 2
     outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
     type: translate
     focus: um-am-zeit
+    # The sentence is habitual, so the one-word adverb (abends) is correct German too —
+    # and the pinned Am is exactly what that rendering does not contain. The instruction
+    # names the graded form without giving away which preposition it is.
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: "Translate into German. Write the time of day with a preposition, not as a one-word adverb."
+      ru: "Переведите на немецкий. Время суток запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою. Час доби запишіть із прийменником, а не прислівником з одного слова."
     prompt_en: "In the evening I often watch television."
     prompt_ru: "Вечером я часто смотрю телевизор."
     prompt_uk: "Увечері я часто дивлюся телевізор."

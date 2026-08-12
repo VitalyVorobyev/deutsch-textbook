@@ -32,6 +32,7 @@ arming:
   - a2/dativ-produktion::uebersetzen-danken-freunde
 items:
   - id: variant-a
+    revision: 2
     outcomes: [dativ-artikel]
     type: translate
     focus: dativ-artikel
@@ -40,8 +41,11 @@ items:
       ru: Переведите на немецкий.
       uk: Перекладіть німецькою.
     prompt_en: "On Saturday I am travelling to Berlin with my friends."
-    prompt_ru: "В субботу я еду в Берлин с друзьями."
-    prompt_uk: "У суботу я їду до Берліна з друзями."
+    # The possessive is pinned (meinen), so RU/UK must fix it too: a bare «с друзьями»
+    # renders as mit Freunden / mit den Freunden — correct German whose miss the probe
+    # would attribute to dativ-artikel.
+    prompt_ru: "В субботу я еду в Берлин со своими друзьями."
+    prompt_uk: "У суботу я їду до Берліна зі своїми друзями."
     answer: "Ich fahre am Samstag mit meinen Freunden nach Berlin."
     key_tokens: ["meinen", "Freunden"]
     accept:

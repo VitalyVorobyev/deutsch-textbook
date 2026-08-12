@@ -62,6 +62,32 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     above-level structure (`genitiv-eigenname`, A2) — glossed, so receptively fine.
   - `content/reading/a2/verben-mit-kasus.yaml:28–31`: the RU/UK glosses of *gefällt Mira die neue
     Wohnung* render «очень»/«дуже» for a *sehr* outside the glossed span. Cosmetic.
+- **P25-16 · Non-material findings of the 2026-08-12 A2 audit, batch 2** (dativ, trennbare-verben,
+  alltag-tagesablauf, modalverben, termine-vereinbaren) — the material findings (thirteen from the
+  reviewer plus three same-class promotions) were fixed in the batch PR; these were real but below
+  the material bar:
+  - `a2/trennbare-verben`: the inseparable-prefix list (*be-, ver-, er-, ent-, ge-*) reads as
+    closed in the article, the pretest and `mc-untrennbar`; the standard set adds *emp-, miss-,
+    zer-* (*empfehlen* is A2 vocab). The stress rule of thumb covers them and no item grades one.
+  - `a2/drill-dativ-ausloeser::cloze-nach-durch-park` declares `outcomes: [dativ-praepositionen]`
+    on an `akkusativ-praepositionen` item, and `a2/hoeren-dativ::hoeren-rufst-ihn` declares
+    `outcomes: [dativ-verben]` on an `akkusativ-pronomen` dictation — both are deliberate contrast
+    items ("this trigger is NOT dative"), so decide whether contrast evidence should count toward
+    the dative outcome before retagging.
+  - `a2/drill-dativ-ausloeser::uebersetzen-fruehstueck-kueche` pins `der` after two-way *in*: a
+    learner's *in die Küche* is a wo/wohin error (unit 7 material, later in the spine) logged as
+    `dativ-artikel`. The surface error is a case error, so the attribution is defensible — revisit
+    once `wechselpraepositionen` is armed.
+  - Outcome `trennbar-tagesablauf` declares `mode: spoken-production`; its only `speak` item runs
+    `mode: spoken-interaction`.
+  - `a2/alltag-tagesablauf.mdx`: the frequency list omits *selten* (breaking the scale between
+    *manchmal* and *nie*) and the sequencers omit *zuletzt/später/schließlich*; neither list is
+    stated as closed.
+  - `a2/modalverben.mdx` teaches no modal-without-infinitive (*Ich muss nach Hause*) and no
+    *sollen* in an offer question (*Soll ich das Fenster öffnen?*) — both ordinary Goethe-A2 uses.
+  - `a2/probe-alltag-tagesablauf::variant-a` ("On Thursday I do sport at six o'clock") carries no
+    explicit habitual marker, but *donnerstags* remains a licensed rendering of the EN present
+    simple; watch the grading queue before constraining a third probe variant.
 - **P18-3 · B1.1–B1.3 measure one competence each with delayed evidence** — the contract requires
   one 3-variant probe family per competence; those three units own 3 + 3 + 4 grammar points and
   shipped one family each. No longer expensive: P19-4 gave every family its own explicit `arming:`
@@ -140,6 +166,11 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   - The validator holds a probe family's item `focus` equal to the arming set's, so a variant that
     grades a pure sub-confusion logs its failure on the umbrella tag: `a2/probe-zeit-praepositionen`
     `variant-a` is seit-vs-vor and `variant-b` am-vs-um, both logged as `zeitangaben-system`.
+  - (batch 2) The `key_tokens` uniqueness guard in `src/lib/validate.ts` compares exact strings and
+    does not model `gradeTranslation`'s answer-head lowercase expansion, so pinning a
+    capitalized sentence-opener whose lowercase twin appears later in the rendering (the
+    `a2/dativ::uebersetzen-nach-arbeit` *Nach … nach Hause* shape, fixed in the batch-2 PR by
+    unpinning) is invisible to the build. Mirroring the expansion in the guard would have caught it.
 - **P25-13 · The real store round-trip test is quarantined on CI (`test.skipIf(CI)`)** — on ubuntu
   runners the `getCardStates`/`setCardState` composition through the real `getStore()` dies at bun
   test's 5000ms budget with a promise that never settles, while every ingredient passes there in
