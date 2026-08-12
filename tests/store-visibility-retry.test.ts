@@ -147,6 +147,37 @@ describe('diagnostic ladder for the CI stall', () => {
     expect(await get('k', s)).toBe('v');
     console.log(`stage 3 (idb-keyval) done in ${Date.now() - t0}ms`);
   });
+
+  test('stage 4: getStore body rebuilt inline — profile + dbNameFor + idb-keyval, no store.ts', async () => {
+    localStorage.setItem(
+      'da:profiles',
+      JSON.stringify([{ id: 'diag-stage4', label: 'Diag Stage 4' }]),
+    );
+    localStorage.setItem('da:profile', 'diag-stage4');
+    const { __resetProfileStateCacheForTests, resolveProfileState, dbNameFor } = await import(
+      '../src/lib/profile'
+    );
+    __resetProfileStateCacheForTests();
+    const t0 = Date.now();
+    expect(await resolveProfileState()).toBe('ready');
+    const { createStore, get } = await import('idb-keyval');
+    const s = createStore(dbNameFor('diag-stage4'), 'progress');
+    expect(await get('cards', s)).toBeUndefined();
+    console.log(`stage 4 (inline getStore body) done in ${Date.now() - t0}ms`);
+  });
+
+  test('stage 5: the same inline op through withVisibilityRetry at the production timeout', async () => {
+    const { withVisibilityRetry } = await import('../src/lib/store');
+    const { dbNameFor } = await import('../src/lib/profile');
+    const { createStore, get } = await import('idb-keyval');
+    const t0 = Date.now();
+    const result = await withVisibilityRetry(async () => {
+      const s = createStore(dbNameFor('diag-stage5'), 'progress');
+      return (await get('cards', s)) ?? 'empty';
+    });
+    expect(result).toBe('empty');
+    console.log(`stage 5 (wrapped inline op) done in ${Date.now() - t0}ms`);
+  });
 });
 
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
