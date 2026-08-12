@@ -487,7 +487,10 @@ items:
     prompt_ru: "Это машина Анны."
     prompt_uk: "Це машина Анни."
     answer: "Das ist Annas Auto."
-    key_tokens: ["Annas"]
+    # revision 2: in the von-rendering the possession decision is carried by von,
+    # so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["Annas", "von"]
+    revision: 2
     accept: ["Das ist das Auto von Anna."]
     explain: { en: "A name takes a plain -s and no apostrophe: Annas Auto, not Anna's Auto. The possessor comes first, exactly as in English. The spoken alternative von + dative is equally correct and is accepted here.", ru: "К имени добавляется просто -s, без апострофа: Annas Auto, а не Anna's Auto. Владелец стоит впереди. Разговорный вариант von + датив столь же правилен и здесь тоже принимается.", uk: "До імені додається просто -s, без апострофа: Annas Auto, а не Anna's Auto. Власник стоїть попереду. Розмовний варіант von + давальний так само правильний і тут теж приймається." }
 

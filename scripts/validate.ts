@@ -1140,6 +1140,22 @@ for (const [setId, { file, data }] of exerciseSets) {
                   `Rewrite the rendering or pin tokens whose case twins stay unique.`,
               );
             }
+            // The inverse defect (P25-21): an accepted rendering with NO graded token.
+            // A learner who reaches for that rendering and commits the item's signature
+            // error gets `wrong` with no focus — absentGraded and misplacedGraded are
+            // both false — so the confusion the item exists to measure is never logged,
+            // and a one-token slip on the unpinned synonym is forgiven as spelling.
+            // Every synonym that occupies the graded position must be pinned
+            // (src/lib/production.ts states the rule; this makes it a gate).
+            if (item.focus && positions.length === 0) {
+              fail(
+                where,
+                `rendering "${rendering}" contains no graded token — the accepted synonym ` +
+                  `that carries the graded decision must join key_tokens ` +
+                  `${JSON.stringify(item.key_tokens)}, or the focus tag "${item.focus}" ` +
+                  `silently stops firing on this rendering.`,
+              );
+            }
           }
         }
         if (item.key_tokens.length > 0 && !item.focus) {
