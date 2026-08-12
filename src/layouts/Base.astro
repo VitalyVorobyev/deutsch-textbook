@@ -25,8 +25,7 @@ const nav: NavItem[] = [
   { href: withBase('/topics'), label: 'nav.themen' },
   { href: withBase('/entdecken'), label: 'nav.entdecken' },
   { href: withBase('/referenz'), label: 'nav.referenz' },
-  { href: withBase('/ueben'), label: 'nav.ueben', match: [withBase('/vocab')] },
-  { href: withBase('/pruefung/a1'), label: 'nav.pruefung', match: [withBase('/pruefung')] },
+  { href: withBase('/ueben'), label: 'nav.ueben', match: [withBase('/vocab'), withBase('/pruefung')] },
   { href: withBase('/progress'), label: 'nav.fortschritt' },
   { href: withBase('/about'), label: 'nav.ueber' },
 ];

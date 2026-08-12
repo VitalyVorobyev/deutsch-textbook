@@ -32,7 +32,6 @@ export const STRINGS = {
   'nav.entdecken': { de: 'Entdecken', en: 'Discover', ru: 'Открытия', uk: 'Відкриття' },
   'nav.referenz': { de: 'Referenz', en: 'Reference', ru: 'Справочник', uk: 'Довідник' },
   'nav.ueben': { de: 'Üben', en: 'Practice', ru: 'Практика', uk: 'Практика' },
-  'nav.pruefung': { de: 'Prüfung', en: 'Exam', ru: 'Экзамен', uk: 'Іспит' },
   'nav.fortschritt': { de: 'Fortschritt', en: 'Progress', ru: 'Прогресс', uk: 'Прогрес' },
   'nav.ueber': { de: 'Über', en: 'About', ru: 'О курсе', uk: 'Про курс' },
   // Fallback label for the <640px nav disclosure on pages outside the eight
@@ -615,6 +614,7 @@ export const STRINGS = {
   'ueben.tabWiederholen': { de: 'Wiederholen', en: 'Review', ru: 'Повторение', uk: 'Повторення' },
   'ueben.tabTraining': { de: 'Training', en: 'Training', ru: 'Тренировка', uk: 'Тренування' },
   'ueben.tabWortschatz': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'ueben.tabPruefung': { de: 'Prüfung', en: 'Exam', ru: 'Экзамен', uk: 'Іспит' },
   'vocab.allWords': { de: 'Alle Wörter', en: 'All words', ru: 'Все слова', uk: 'Усі слова' },
   // Colon style in ru/uk on purpose: it sidesteps numeral agreement, which a
   // flat template cannot carry ("21 слов" is not Russian).

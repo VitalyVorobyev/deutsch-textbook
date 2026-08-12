@@ -1,13 +1,13 @@
 ---
 /**
- * Sub-navigation for the merged Üben tab: Wiederholen | Training | Wortschatz.
+ * Sub-navigation for the merged Üben tab: Wiederholen | Training | Wortschatz | Prüfung.
  * Server-rendered links; the owning page declares which tab is active.
  */
 import Chrome from './Chrome.astro';
 import { withBase } from '../lib/url';
 
 interface Props {
-  active: 'wiederholen' | 'training' | 'wortschatz';
+  active: 'wiederholen' | 'training' | 'wortschatz' | 'pruefung';
 }
 const { active } = Astro.props;
 
@@ -15,6 +15,7 @@ const tabs = [
   { id: 'wiederholen', href: withBase('/ueben/wiederholen'), label: 'ueben.tabWiederholen' },
   { id: 'training', href: withBase('/ueben/training'), label: 'ueben.tabTraining' },
   { id: 'wortschatz', href: withBase('/ueben/wortschatz'), label: 'ueben.tabWortschatz' },
+  { id: 'pruefung', href: withBase('/pruefung/a1'), label: 'ueben.tabPruefung' },
 ] as const;
 ---
 

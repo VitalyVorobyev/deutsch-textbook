@@ -276,6 +276,19 @@ export function resolveProfileState(): Promise<'ready' | 'first-run'> {
   return (resolved ??= detect());
 }
 
+/**
+ * Test-only: drop the memoized first-run decision. `bun test` runs every file in
+ * one process, so whichever file first triggers `resolveProfileState()` pins the
+ * answer for all later files — with an empty registry that is 'first-run', and
+ * `getStore()` then parks forever. A test that stages its own profile registry
+ * must call this after staging, or it inherits a verdict reached before its
+ * localStorage existed (file order differs between platforms, so the inherited
+ * verdict does too).
+ */
+export function __resetProfileStateCacheForTests(): void {
+  resolved = undefined;
+}
+
 async function detect(): Promise<'ready' | 'first-run'> {
   if (!hasStorage()) return 'ready';
   return listProfiles().length > 0 ? 'ready' : 'first-run';

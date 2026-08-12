@@ -1,10 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import UebenNav from '../../components/UebenNav.astro';
 import GoetheExamSimulator from '../../components/pruefung/GoetheExamSimulator';
 import { withBase } from '../../lib/url';
 ---
 
 <Base title="Prüfungssimulator — Goethe-Zertifikat A1" description="Simulator für die offiziellen Modellsätze (lokale Materialien)">
+  <UebenNav active="pruefung" />
   <nav class="mb-4 text-sm text-stone-400">
     <a href={withBase('/pruefung/a1')} class="hover:text-stone-600 dark:hover:text-stone-200">Prüfungspraxis A1</a>
     <span> / Simulator</span>
