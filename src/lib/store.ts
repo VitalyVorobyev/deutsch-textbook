@@ -123,12 +123,15 @@ export function withVisibilityRetry<T>(
   if (typeof document === 'undefined') return op();
 
   return new Promise<T>((resolve, reject) => {
+    console.log(`[wvr-diag] executor entered @${Date.now()}`);
     let settled = false;
 
     const onVisible = () => {
       if (settled || document.visibilityState !== 'visible') return;
       document.removeEventListener('visibilitychange', onVisible);
-      op().then(settleResolve, settleReject);
+      console.log(`[wvr-diag] calling op @${Date.now()}`);
+    op().then(settleResolve, settleReject);
+    console.log(`[wvr-diag] op called, arming timer @${Date.now()}`);
     };
     function settleResolve(value: T) {
       if (settled) return;
@@ -145,7 +148,9 @@ export function withVisibilityRetry<T>(
       reject(err);
     }
 
+    console.log(`[wvr-diag] calling op @${Date.now()}`);
     op().then(settleResolve, settleReject);
+    console.log(`[wvr-diag] op called, arming timer @${Date.now()}`);
     // Declared after settleResolve/settleReject only textually — both are hoisted
     // function declarations that close over `timer`, and neither can run before
     // this line does (Promise callbacks are never synchronous), so the binding is
@@ -259,6 +264,7 @@ export interface StoredCard {
 export type CardStates = Record<string, StoredCard>;
 
 export async function getCardStates(): Promise<CardStates> {
+  console.log(`[gcs-diag] getCardStates entered @${Date.now()}`);
   return withVisibilityRetry(async () => (await get<CardStates>('cards', await getStore())) ?? {});
 }
 

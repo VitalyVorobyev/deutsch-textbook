@@ -193,7 +193,9 @@ describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-
       state: 2,
     };
 
-    expect(await getCardStates()).toEqual({});
+    const firstRead = getCardStates();
+    diag('getCardStates() call returned a promise');
+    expect(await firstRead).toEqual({});
     diag('first getCardStates done');
     await setCardState('c1', card);
     diag('setCardState done');
