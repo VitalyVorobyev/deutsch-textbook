@@ -96,13 +96,24 @@ describe('withVisibilityRetry', () => {
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
   test('getCardStates/setCardState round-trip through the real getStore()', async () => {
     // A profile must exist before getStore() proceeds past the first-run park
-    // (store.ts:30-46, untouched by this change) — set it up before the import
-    // below ever calls resolveProfileState().
+    // (store.ts:30-46, untouched by this change). Staging localStorage is not
+    // enough on its own: resolveProfileState() memoizes module-wide, and on CI
+    // (Linux test-file order) an earlier file reaches it with an empty registry
+    // and pins 'first-run' — this test then parked forever and timed out, while
+    // passing locally under macOS file order. Reset the memo after staging so
+    // the decision is re-taken against THIS registry.
     localStorage.setItem(
       'da:profiles',
       JSON.stringify([{ id: 'retry-wrapper-test', label: 'Retry Wrapper Test' }]),
     );
     localStorage.setItem('da:profile', 'retry-wrapper-test');
+    const { __resetProfileStateCacheForTests, resolveProfileState } = await import(
+      '../src/lib/profile'
+    );
+    __resetProfileStateCacheForTests();
+    // If this ever reports 'first-run', the park would otherwise show up as an
+    // opaque 5s timeout — fail here with the real reason instead.
+    expect(await resolveProfileState()).toBe('ready');
 
     const { getCardStates, setCardState } = await import('../src/lib/store');
     const card = {
