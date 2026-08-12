@@ -33,6 +33,12 @@
  *         - module: hoeren                  # hoeren | lesen | schreiben | sprechen
  *           timeLimitMin: 20                # from the Kandidatenblätter instruction page
  *           audio: pruefungstraining_2_hoeren_a1_erwachsene.mp4   # optional, relative path
+ *           cues:                             # optional jump points into that recording,
+ *             - { label: "Teil 1", at: "0:27" }  # "m:ss"/"mm:ss" or plain seconds; labels
+ *             - { label: "Nr. 1", at: "0:50" }   # ≤ 24 chars, `at` strictly increasing.
+ *                                             # Üben only — see src/lib/exam-sim.ts.
+ *                                             # Propose them with scripts/exam-cues-scan.ts,
+ *                                             # then verify by ear before pasting.
  *           pdfPages: [8, 9, 10, 11, 12, 13, 14]   # 1-based PDF page indices to render
  *           answerPdfPages: [33, 34]        # optional Prüferblätter pages (Transkriptionen,
  *                                           # Bewertung, Leistungsbeispiele) — shown after a run
@@ -77,6 +83,7 @@ import {
   isExamAnswer,
   parseExamManifest,
   shapeAllows,
+  type ExamCue,
   type ExamFreeSpec,
   type ExamItemSpec,
   type ExamManifest,
@@ -153,6 +160,8 @@ interface SourceModule {
   module: ExamModuleId;
   timeLimitMin: number;
   audio?: string;
+  /** Jump points into `audio`, already converted from "m:ss" to seconds. */
+  cues?: ExamCue[];
   pdfPages: number[];
   /** Prüferblätter pages, rendered like task pages but surfaced only after a run. */
   answerPdfPages?: number[];
@@ -179,6 +188,22 @@ const isPositiveInt = (v: unknown): v is number =>
   typeof v === 'number' && Number.isInteger(v) && v > 0;
 const isPositiveNumber = (v: unknown): v is number => typeof v === 'number' && v > 0;
 const isAnswer = isExamAnswer;
+
+/** Long enough for "Teil 1"/"Nr. 15"; short enough that the cue row stays a row of buttons. */
+const MAX_CUE_LABEL = 24;
+
+/**
+ * A cue's `at`, as either the clock form a scan prints ("9:05", "12:15") or plain seconds.
+ * Both go into the manifest as seconds, which is what an `HTMLAudioElement.currentTime` is;
+ * the clock form exists because that is how the author reads the position off a player.
+ */
+export function parseCueAt(raw: unknown): number | null {
+  if (typeof raw === 'number') return Number.isFinite(raw) && raw >= 0 ? raw : null;
+  if (typeof raw !== 'string') return null;
+  const clock = /^(\d{1,3}):([0-5]\d)$/.exec(raw.trim());
+  if (!clock) return null;
+  return Number(clock[1]) * 60 + Number(clock[2]);
+}
 
 interface ValidationResult {
   config: SourceConfig | null;
@@ -265,6 +290,58 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
       if (!isPositiveNumber(m.maxScaled)) errors.push(`${mWhere2}: maxScaled must be a positive number`);
       if (m.audio !== undefined && (typeof m.audio !== 'string' || !m.audio)) {
         errors.push(`${mWhere2}: audio must be a non-empty string when present`);
+      }
+
+      let cues: ExamCue[] | undefined;
+      if (m.cues !== undefined) {
+        if (!Array.isArray(m.cues) || m.cues.length === 0) {
+          errors.push(`${mWhere2}: cues must be a non-empty array when present`);
+          return;
+        }
+        if (m.audio === undefined) {
+          errors.push(`${mWhere2}: cues need an audio track to jump into — this module has no "audio"`);
+          return;
+        }
+        const parsed: ExamCue[] = [];
+        let broken = false;
+        m.cues.forEach((rawCue: unknown, ci: number) => {
+          const cWhere = `${mWhere2}, cues[${ci}]`;
+          if (typeof rawCue !== 'object' || rawCue === null) {
+            errors.push(`${cWhere} is not a mapping`);
+            broken = true;
+            return;
+          }
+          const c = rawCue as Record<string, unknown>;
+          if (typeof c.label !== 'string' || !c.label.trim()) {
+            errors.push(`${cWhere}.label must be a non-empty string`);
+            broken = true;
+            return;
+          }
+          if (c.label.length > MAX_CUE_LABEL) {
+            errors.push(
+              `${cWhere}.label is ${c.label.length} characters — at most ${MAX_CUE_LABEL}, it is a button, not a caption`,
+            );
+            broken = true;
+            return;
+          }
+          const at = parseCueAt(c.at);
+          if (at === null) {
+            errors.push(`${cWhere}.at must be "m:ss"/"mm:ss" or seconds, got ${JSON.stringify(c.at)}`);
+            broken = true;
+            return;
+          }
+          const previous = parsed[parsed.length - 1];
+          if (previous && at <= previous.at) {
+            errors.push(
+              `${cWhere}.at (${at}s, "${c.label}") does not come after "${previous.label}" (${previous.at}s) — cues must be strictly increasing`,
+            );
+            broken = true;
+            return;
+          }
+          parsed.push({ label: c.label.trim(), at });
+        });
+        if (broken) return;
+        cues = parsed;
       }
       if (
         !Array.isArray(m.pdfPages) ||
@@ -453,6 +530,7 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         timeLimitMin: m.timeLimitMin as number,
         maxScaled: m.maxScaled as number,
         audio: m.audio as string | undefined,
+        cues,
         pdfPages: m.pdfPages as number[],
         answerPdfPages: m.answerPdfPages as number[] | undefined,
         teile,
@@ -628,6 +706,7 @@ export function buildManifest(config: SourceConfig): ExamManifest {
         ? module.answerPdfPages.map((page) => pagePngUrl(set.id, module.module, page))
         : undefined,
       audio: module.audio ? audioUrl(set.id, module.module) : undefined,
+      cues: module.cues,
       maxScaled: module.maxScaled,
       teile: module.teile,
     }));
@@ -727,7 +806,8 @@ if (options.check) {
       console.log(
         `    ${module.module}: ${module.pdfPages.length} page(s)` +
           `${module.answerPdfPages ? ` + ${module.answerPdfPages.length} answer page(s)` : ''}` +
-          `${module.audio ? ', 1 audio track' : ''}, ${module.teile.length} Teil(e), ${items} item(s)` +
+          `${module.audio ? ', 1 audio track' : ''}${module.cues ? `, ${module.cues.length} cue(s)` : ''}` +
+          `, ${module.teile.length} Teil(e), ${items} item(s)` +
           `${freeParts ? `, ${freeParts} free part(s)` : ''}`,
       );
     }

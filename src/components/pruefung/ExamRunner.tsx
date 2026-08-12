@@ -9,8 +9,9 @@
  *    pause the Kandidatenblätter promise, so a replay control would hand the learner a
  *    listening budget the exam does not give. Pausing stays possible (a doorbell is not a
  *    reason to lose a run) and says plainly that the real recording would have run on.
- *  - **Üben** removes the clock, hands the audio its native controls, and answers each item
- *    the moment it is chosen — a typed blank on request, since typing needs an "I'm done".
+ *  - **Üben** removes the clock, hands the audio its native controls and — when the manifest
+ *    carries them — a row of Sprungmarken per Teil/Nummer, and answers each item the moment
+ *    it is chosen; a typed blank on request, since typing needs an "I'm done".
  *
  * A module may carry three kinds of asking: letter items (the Antwortbogen), typed blanks
  * (Schreiben Teil 1 — compared literally, official answer always shown beside a ✗), and a
@@ -315,6 +316,22 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
     );
   }
 
+  /**
+   * Üben only (the render site enforces it): seek to a cue and play from there. Setting
+   * `currentTime` on a finished element and playing again is what restarts it, so the state
+   * goes straight to 'playing' — leaving it 'ended' would keep every control settled while
+   * the recording ran.
+   */
+  function jumpToCue(at: number) {
+    const audio = audioRef.current;
+    if (!audio || audioBroken) return;
+    audio.currentTime = at;
+    audio.play().then(
+      () => setPlayState('playing'),
+      () => setAudioBroken(true),
+    );
+  }
+
   function submit() {
     if (mode === 'pruefung' && missing > 0 && !confirming) {
       setConfirming(true);
@@ -353,6 +370,28 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
             onEnded={() => setPlayState('ended')}
             onError={() => setAudioBroken(true)}
           />
+          {/* Üben only, and deliberately so: the Tonträger already carries every repetition
+              the Kandidatenblätter promise, so a per-Nummer jump list in Prüfungsmodus would
+              hand back the listening budget the exam withholds. */}
+          {mode === 'ueben' && module.cues && module.cues.length > 0 && !audioBroken && (
+            <div className="mt-3" role="group" aria-label="Sprungmarken">
+              <p className="text-xs text-stone-500 dark:text-stone-400">
+                Sprungmarken — nur im Üben-Modus.
+              </p>
+              <div className="mt-1.5 flex flex-wrap gap-1.5">
+                {module.cues.map((cue) => (
+                  <button
+                    key={`${cue.at}-${cue.label}`}
+                    type="button"
+                    onClick={() => jumpToCue(cue.at)}
+                    className="min-h-11 rounded-md border border-stone-300 px-2.5 text-xs font-medium text-stone-600 hover:border-amber-500 dark:border-stone-600 dark:text-stone-300"
+                  >
+                    {cue.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           {mode === 'pruefung' && (
             <div className="flex flex-wrap items-center gap-3">
               <button

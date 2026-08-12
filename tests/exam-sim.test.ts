@@ -25,6 +25,12 @@ const hoeren: ExamModuleSpec = {
   timeLimitMin: 20,
   pages: ['/exams/demo/pages/h1.png'],
   audio: '/exams/demo/hoeren.m4a',
+  // Invented seconds, not a real recording's — ADR 0009 keeps official timings out of the repo.
+  cues: [
+    { label: 'Teil 1', at: 30 },
+    { label: 'Nr. 1', at: 90 },
+    { label: 'Teil 2', at: 240 },
+  ],
   maxScaled: 25,
   teile: [
     {
@@ -145,6 +151,28 @@ describe('parseExamManifest', () => {
     const bad = JSON.parse(JSON.stringify(manifest)) as ExamManifest;
     bad.sets[0]!.modules[0]!.teile[1]!.items[0]!.nr = 1;
     expect(parseExamManifest(bad)).toBeNull();
+  });
+
+  test('cues are optional, and a malformed one is rejected like any other optional field', () => {
+    const withoutCues = JSON.parse(JSON.stringify(manifest)) as ExamManifest;
+    delete withoutCues.sets[0]!.modules[0]!.cues;
+    expect(parseExamManifest(withoutCues)).not.toBeNull();
+    // Every other module in the fixture already ships without cues, and still parses.
+    expect(parseExamManifest(JSON.parse(JSON.stringify(manifest)))).not.toBeNull();
+
+    const cuesOf = (bad: ExamManifest) => bad.sets[0]!.modules[0]!.cues!;
+    for (const breakIt of [
+      (bad: ExamManifest) => void (cuesOf(bad)[0]!.label = ''),
+      (bad: ExamManifest) => void ((cuesOf(bad)[0] as { at: unknown }).at = '1:30'),
+      (bad: ExamManifest) => void (cuesOf(bad)[0]!.at = -1),
+      (bad: ExamManifest) => void (cuesOf(bad)[0]!.at = Number.NaN),
+      (bad: ExamManifest) => void (bad.sets[0]!.modules[0]!.cues = [null as never]),
+      (bad: ExamManifest) => void (bad.sets[0]!.modules[0]!.cues = {} as never),
+    ]) {
+      const bad = JSON.parse(JSON.stringify(manifest)) as ExamManifest;
+      breakIt(bad);
+      expect(parseExamManifest(bad)).toBeNull();
+    }
   });
 
   test('rejects the wrong version and non-object input', () => {
