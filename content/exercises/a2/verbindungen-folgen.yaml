@@ -123,21 +123,26 @@ items:
     outcomes: [vergangenheit-erzaehlen]
     type: mc
     focus: als-wenn-vergangenheit
+    # revision 2: the third distractor read "Wenn meine Tochter geboren wurde" —
+    # Präteritum passive is a B1 structure, and a graded option is learner-facing
+    # surface. Replaced with an active one-off event; the als/wenn contrast it
+    # tests is unchanged. (Batch-5 audit, 2026-08-12.)
     prompt: "In welchem Satz ist wenn richtig?"
     options:
       - "Immer wenn wir Ferien hatten, sind wir ans Meer gefahren."
       - "Wenn ich letzten Sommer nach Wien gefahren bin, war es sehr heiß."
-      - "Wenn meine Tochter geboren wurde, war ich sehr glücklich."
+      - "Wenn ich meinen ersten Job bekommen habe, war ich sehr glücklich."
       - "Wenn der Krieg zu Ende war, sind viele Menschen zurückgekommen."
     correct: 0
+    revision: 2
     translation:
       en: "Whenever we had holidays, we went to the sea. — The other three each describe something that happened once, so they need als."
       ru: "Каждый раз, когда у нас были каникулы, мы ездили на море. — Остальные три описывают то, что случилось один раз, поэтому им нужен als."
       uk: "Щоразу, коли в нас були канікули, ми їздили до моря. — Решта три описують те, що сталося один раз, тому їм потрібен als."
     explain:
-      en: "Apply the jedes Mal test to each one. Holidays came round again and again, so wenn is right and Immer confirms it. But last summer happened once, your daughter was born once, and the war ended once — every time in front of any of those turns the sentence into nonsense, so all three take als."
-      ru: "Примените к каждому проверку через jedes Mal. Каникулы повторялись, поэтому wenn верен, и Immer это подтверждает. А прошлое лето было одно, дочь родилась однажды, и война закончилась один раз — «каждый раз» перед любым из этих предложений превращает его в бессмыслицу, значит всем трём нужен als."
-      uk: "Застосуйте до кожного перевірку через jedes Mal. Канікули повторювалися, тому wenn правильний, і Immer це підтверджує. А минуле літо було одне, донька народилася одного разу, і війна закінчилася один раз — «щоразу» перед будь-яким із цих речень перетворює його на нісенітницю, отже всім трьом потрібен als."
+      en: "Apply the jedes Mal test to each one. Holidays came round again and again, so wenn is right and Immer confirms it. But last summer happened once, the first job came once, and the war ended once — every time in front of any of those turns the sentence into nonsense, so all three take als."
+      ru: "Примените к каждому проверку через jedes Mal. Каникулы повторялись, поэтому wenn верен, и Immer это подтверждает. А прошлое лето было одно, первую работу вы получили однажды, и война закончилась один раз — «каждый раз» перед любым из этих предложений превращает его в бессмыслицу, значит всем трём нужен als."
+      uk: "Застосуйте до кожного перевірку через jedes Mal. Канікули повторювалися, тому wenn правильний, і Immer це підтверджує. А минуле літо було одне, першу роботу ви отримали одного разу, і війна закінчилася один раз — «щоразу» перед будь-яким із цих речень перетворює його на нісенітницю, отже всім трьом потрібен als."
 
   - id: cloze-verbende-als
     outcomes: [vergangenheit-erzaehlen]

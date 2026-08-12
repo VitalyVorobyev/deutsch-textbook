@@ -158,6 +158,32 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
     is stated in prose only.
   - `a2/gesundheit-arzttermin.mdx` teaches the whole `da(r)-` system as a preview of the next
     topic — the same paradigm authored twice.
+- **P25-19 · Non-material findings of the 2026-08-12 A2 audit, batch 5** (relativsaetze,
+  biografie-erfahrungen, verbindungen-folgen, man-und-besitz, freunde-feste) — the material
+  findings (ten from the reviewer plus three same-class promotions from the determiner-twin
+  grader sweep) were fixed in the batch PR; these were real but below the material bar:
+  - `a2/relativsaetze-produktion::uebersetzen-definition-fahrrad` uses *jemanden* three units
+    before `man-und-besitz` introduces it, with no `preview: true`; its only card lives in the
+    unowned `kleine-woerter-a2` deck.
+  - `a2/relativsaetze.mdx` "they are the same table:" — the promised table appears only after
+    two further paragraphs and all three language halves. Reading-order nit.
+  - `a2/verbindungen-folgen.mdx` "There is a conjunction with the same meaning — obwohl" —
+    *obwohl*/*trotzdem* attach to opposite clauses; "same meaning" invites *Trotzdem es
+    geregnet hat*. The vocab note states it correctly; align the article's wording when next
+    touched.
+  - `content/reading/a2/verbindungen-folgen.yaml` mixes unglossed full-verb Präteritum (*ging*)
+    with Perfekt one clause apart, after the article restricted Präteritum to war/hatte/modals.
+    Receptive; consistent with "written narration uses it widely".
+  - `a2/biografie-erfahrungen-produktion`: «семью» without possessive licenses *die Familie*
+    (unlisted, not the graded token); the grow-up question accepts only *du* (settled by the
+    classmate instruction). Watch the queue.
+  - `a2/man-und-besitz.mdx` restricts the endingless *jemand* variant to the accusative; Duden
+    also allows an endingless dative. Under-narrow, not false.
+  - `a2/man-und-besitz-produktion` distractor "Keiner hat nichts gesagt." uses B1 *keiner*;
+    meaning-transparent, distractor only. `probe-man-und-besitz::probe-man-anmelden` id says
+    *anmelden* but the item is about lunch — ids are stable, do **not** rename.
+  - The double-negative distractor class and the `ls-*` above-A2 lexis stay under their
+    standing entries (P25-18).
 - **P18-3 · B1.1–B1.2 competences without delayed evidence** — the contract requires one
   3-variant probe family per competence. B1.3 closed 2026-08-12: `adjektiv-nullartikel` gained
   family 4 of 4 (`probe-gesundheit-wohlbefinden-adjektiv-nullartikel`), so all four of its points
