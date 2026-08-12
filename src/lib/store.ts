@@ -28,20 +28,30 @@ const stores = new Map<string, UseStore>();
 // first-run gate is up there is no profile to own a write, so park forever —
 // creating the profile reloads the page, which discards parked operations.
 async function getStore(): Promise<UseStore> {
-  if ((await resolveProfileState()) === 'first-run') {
+  // TEMP-DIAG (CI stall investigation, removed with the fix): stage prints.
+  const diag = (m: string) => console.log(`[getStore-diag] ${m} @${Date.now()}`);
+  diag('enter');
+  const state = await resolveProfileState();
+  diag(`resolveProfileState=${state}`);
+  if (state === 'first-run') {
+    diag('PARKING forever');
     await new Promise<never>(() => {});
   }
   const id = getActiveProfileId();
+  diag(`activeProfile=${id}`);
   let s = stores.get(id);
   if (!s) {
     s = createStore(dbNameFor(id), 'progress');
     stores.set(id, s);
+    diag('createStore done');
     const handle = s;
     await migrateStoredCardIds(
       () => get<CardStates>('cards', handle),
       (cards) => set('cards', cards, handle),
     );
+    diag('migrate done');
   }
+  diag('return store');
   return s;
 }
 
