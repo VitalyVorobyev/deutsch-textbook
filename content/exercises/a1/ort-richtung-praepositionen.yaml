@@ -55,24 +55,6 @@ items:
       ru: "Читайте таблицу по строкам, а не по столбцам: у каждого типа места свой набор из трёх форм. Здание берёт in – in – aus, и меняется только артикль (in die / in der). Открытая площадка берёт auf – auf – von, то есть в третьей форме меняется предлог, а не падеж. Человек берёт zu – bei – von: три разных предлога и три раза Dativ. Название города берёт nach – in – aus, и артикля нет вовсе. Столбец Woher? стоит проверять дважды: это никогда не форма Wohin? с артиклем в Dativ."
       uk: "Читайте таблицю за рядками, а не за стовпцями: у кожного типу місця свій набір із трьох форм. Будівля бере in – in – aus, і змінюється лише артикль (in die / in der). Відкритий майданчик бере auf – auf – von, тобто в третій формі змінюється прийменник, а не відмінок. Людина бере zu – bei – von: три різні прийменники і тричі Dativ. Назва міста бере nach – in – aus, і артикля немає взагалі. Стовпець Woher? варто перевіряти двічі: це ніколи не форма Wohin? з артиклем у Dativ."
 
-  - id: cloze-laufen-garten
-    outcomes: [ort-nennen, ziel-nennen]
-    type: cloze
-    focus: wo-wohin
-    instruction:
-      en: "Fill in the short form: im or ins."
-      ru: "Вставьте краткую форму: im или ins."
-      uk: "Вставте коротку форму: im або ins."
-    text: "Am Nachmittag laufen die Kinder eine Stunde {{im}} Garten. Um sechs laufen sie {{ins}} Haus."
-    translation:
-      en: "In the afternoon the children run in the garden for an hour. At six they run into the house."
-      ru: "После обеда дети час бегают в саду. В шесть они забегают в дом."
-      uk: "По обіді діти годину бігають у саду. О шостій вони забігають до будинку."
-    explain:
-      en: "The first sentence is full of movement and still takes the dative. The running starts and ends inside the garden — nobody changes place, so the phrase answers Wo? and in dem becomes im. The second sentence names a new place: the children were outside and are now inside, so Wohin? → in das → ins. The test is never whether something moves; it is whether the phrase names a destination or the place where it all happens."
-      ru: "В первом предложении движения сколько угодно, а падеж всё равно Dativ: бег начинается и заканчивается внутри сада, место не меняется, поэтому группа отвечает на Wo?, и in dem превращается в im. Во втором предложении названо новое место: дети были снаружи, а теперь внутри, значит Wohin? → in das → ins. Проверяют не наличие движения, а то, называет ли группа цель или место, где всё происходит."
-      uk: "У першому реченні руху скільки завгодно, а відмінок усе одно Dativ: біг починається й закінчується всередині саду, місце не змінюється, тому група відповідає на Wo?, і in dem перетворюється на im. У другому реченні названо нове місце: діти були надворі, а тепер усередині, отже Wohin? → in das → ins. Перевіряють не наявність руху, а те, чи називає група ціль, чи місце, де все відбувається."
-
   - id: cloze-aus-oder-von
     outcomes: [herkunft-nennen]
     type: cloze
@@ -211,30 +193,13 @@ items:
       ru: "Кинотеатр — здание, внутри которого сидят, поэтому исходная точка передаётся через aus, а aus требует Dativ: das Kino → aus dem Kino. Форма vom Kino сказала бы, что вы стояли у здания, а не смотрели фильм внутри. Два других члена той же тройки — ins Kino (цель) и im Kino (место)."
       uk: "Кінотеатр — будівля, всередині якої сидять, тому вихідна точка передається через aus, а aus вимагає Dativ: das Kino → aus dem Kino. Форма vom Kino сказала б, що ви стояли біля будівлі, а не дивилися фільм усередині. Два інші члени тієї самої трійки — ins Kino (ціль) і im Kino (місце)."
 
-  - id: uebersetzen-bibliothek-minimalpaar
-    outcomes: [ziel-nennen, ort-nennen]
-    type: translate
-    focus: wo-wohin
-    instruction:
-      en: "Translate both sentences into German."
-      ru: "Переведите оба предложения на немецкий."
-      uk: "Перекладіть обидва речення німецькою."
-    prompt_en: "At ten I go into the library. At twelve I am still in the library."
-    prompt_ru: "В десять я иду в библиотеку. В двенадцать я ещё в библиотеке."
-    prompt_uk: "О десятій я йду до бібліотеки. О дванадцятій я ще в бібліотеці."
-    answer: "Um zehn gehe ich in die Bibliothek. Um zwölf bin ich noch in der Bibliothek."
-    accept:
-      - "Ich gehe um zehn in die Bibliothek. Ich bin um zwölf noch in der Bibliothek."
-    key_tokens: ["die", "der"]
-    explain:
-      en: "One preposition, one noun, two cases — and the article is the only thing that shows which. The first sentence names a destination: Wohin? → accusative → in die Bibliothek. The second names where you are: Wo? → dative → in der Bibliothek. This is the second decision of the topic, and it only ever applies to in, an and auf. With zu, bei and von there is nothing to choose."
-      ru: "Один предлог, одно существительное, два падежа — и показывает это только артикль. Первое предложение называет цель: Wohin? → Akkusativ → in die Bibliothek. Второе называет место: Wo? → Dativ → in der Bibliothek. Это второе решение темы, и оно касается только in, an и auf. У zu, bei и von выбирать нечего."
-      uk: "Один прийменник, один іменник, два відмінки — і показує це лише артикль. Перше речення називає ціль: Wohin? → Akkusativ → in die Bibliothek. Друге називає місце: Wo? → Dativ → in der Bibliothek. Це друге рішення теми, і воно стосується лише in, an і auf. У zu, bei і von вибирати нічого."
-
   - id: diktat-zum-bahnhof
     outcomes: [ziel-nennen]
     type: listen
     focus: wohin-wo-woher
+    focus_evidence:
+      retained: ["\\bzum Bahnhof$"]
+      failed: ["\\b(am|beim|vom) Bahnhof$"]
     instruction:
       en: "Listen and type the sentence exactly."
       ru: "Прослушайте и запишите предложение точно."

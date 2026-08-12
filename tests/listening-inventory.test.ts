@@ -11,10 +11,11 @@ describe('listening production inventory', () => {
   // live unit, and the recording follows through the Studio, so the wave-1 count does not
   // move. The four are additionally `purpose: model-input` — none of those units owns a
   // listening outcome, so their artifacts carry the genre's spoken form and claim no
-  // listening evidence. The A2 prepositions unit (ort-richtung-praepositionen, 2026-08-12)
-  // then took it 46 → 47 — appended to the A2 spine rather than B1, and `model-input` for
-  // the same reason: its outcomes are one reading and three writing. Part two of the same
-  // strand (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
+  // listening evidence. The prepositions unit ort-richtung-praepositionen (2026-08-12;
+  // relocated to A1 by the level-completeness audit later the same day) then took it 46 → 47
+  // — appended to the A2 spine at the time, and `model-input` for the same reason: its
+  // outcomes are one reading and three writing. Part two of the same strand
+  // (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
   // same reason, and part three (zeit-praepositionen, 2026-08-12) took it 48 → 49 on the
   // same argument — one reading outcome, three writing ones.
   test('covers every live Atlas unit exactly once', () => {

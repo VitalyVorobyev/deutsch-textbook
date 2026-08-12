@@ -409,7 +409,7 @@ nodes:
     kind: communication
     strand: communication
     group: unterwegs
-    related: [wohnen]
+    related: [wohnen, ort-richtung-praepositionen]
     prerequisites: [praesens-wortstellung, artikel-genus, akkusativ]
     outcomes:
       - id: stadt-weg-erfragen
@@ -447,6 +447,45 @@ nodes:
         en: "I can give someone simple directions using imperative forms."
         ru: "Я умею объяснить дорогу простыми формами Imperativ."
         uk: "Я вмію пояснити дорогу простими формами Imperativ."
+  - id: ort-richtung-praepositionen
+    level: A1
+    kind: grammar
+    strand: grammar
+    group: nomen-kasus
+    prerequisites: [stadt-wege, wohnen, akkusativ]
+    # No deepens edge in either direction: wohnen-umzug's items carry wo-wohin, which this
+    # topic no longer drills, and none of its items carry wohin-wo-woher — an edge without a
+    # shared drilled tag is inert (see CLAUDE.md, atlas rules).
+    related: [stadt-wege, wohnen-umzug]
+    outcomes:
+      - id: weg-verstehen
+        mode: reading
+        domain: personal
+        de: "Ich kann in einem einfachen Text verstehen, wohin jemand geht, wo er ist und woher er kommt."
+        en: "I can follow in a simple text where somebody is going, where they are and where they have come from."
+        ru: "Я понимаю в простом тексте, куда человек идёт, где он находится и откуда возвращается."
+        uk: "Я розумію в простому тексті, куди людина йде, де вона перебуває і звідки повертається."
+      - id: ziel-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wohin ich gehe oder fahre."
+        en: "I can say where I am going."
+        ru: "Я умею сказать, куда я иду или еду."
+        uk: "Я вмію сказати, куди я йду або їду."
+      - id: ort-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, wo ich gerade bin."
+        en: "I can say where I am at the moment."
+        ru: "Я умею сказать, где я сейчас нахожусь."
+        uk: "Я вмію сказати, де я зараз перебуваю."
+      - id: herkunft-nennen
+        mode: writing
+        domain: personal
+        de: "Ich kann sagen, woher ich komme."
+        en: "I can say where I have come from."
+        ru: "Я умею сказать, откуда я иду или приехал."
+        uk: "Я вмію сказати, звідки я йду або приїхав."
   - id: freizeit-koennen
     level: A1
     kind: communication
@@ -695,6 +734,7 @@ nodes:
     kind: vocab-field
     strand: vocabulary
     group: wohnen-zuhause
+    related: [ort-richtung-praepositionen]
     prerequisites: [wohnen, akkusativ, dativ]
     deepens: [wohnen, akkusativ, dativ]
     outcomes:
@@ -1319,47 +1359,6 @@ nodes:
         en: "I can write a short formal message to a public office."
         ru: "Я умею написать короткое официальное сообщение в учреждение."
         uk: "Я вмію написати коротке офіційне повідомлення до установи."
-
-  - id: ort-richtung-praepositionen
-    level: A2
-    kind: grammar
-    strand: grammar
-    group: nomen-kasus
-    prerequisites: [wohnen-umzug, akkusativ, dativ]
-    # `wohnen-umzug` taught the Akkusativ/Dativ alternation on in/an/auf and drills `wo-wohin`
-    # in eleven of its practice items; two items here carry the same tag, so the edge has its
-    # runtime channel — an error on the case decision while practising the triple marks that
-    # confusion weak course-wide and pulls the base topic's items back into mixed training.
-    deepens: [wohnen-umzug]
-    outcomes:
-      - id: weg-verstehen
-        mode: reading
-        domain: personal
-        de: "Ich kann in einem einfachen Text verstehen, wohin jemand geht, wo er ist und woher er kommt."
-        en: "I can follow in a simple text where somebody is going, where they are and where they have come from."
-        ru: "Я понимаю в простом тексте, куда человек идёт, где он находится и откуда возвращается."
-        uk: "Я розумію в простому тексті, куди людина йде, де вона перебуває і звідки повертається."
-      - id: ziel-nennen
-        mode: writing
-        domain: personal
-        de: "Ich kann sagen, wohin ich gehe oder fahre."
-        en: "I can say where I am going."
-        ru: "Я умею сказать, куда я иду или еду."
-        uk: "Я вмію сказати, куди я йду або їду."
-      - id: ort-nennen
-        mode: writing
-        domain: personal
-        de: "Ich kann sagen, wo ich gerade bin."
-        en: "I can say where I am at the moment."
-        ru: "Я умею сказать, где я сейчас нахожусь."
-        uk: "Я вмію сказати, де я зараз перебуваю."
-      - id: herkunft-nennen
-        mode: writing
-        domain: personal
-        de: "Ich kann sagen, woher ich komme."
-        en: "I can say where I have come from."
-        ru: "Я умею сказать, откуда я иду или приехал."
-        uk: "Я вмію сказати, звідки я йду або приїхав."
 
   - id: verben-mit-kasus
     level: A2
@@ -2124,6 +2123,13 @@ units:
     title_ru: "Город и дороги"
     title_uk: "Місто та дороги"
     topics: [stadt-wege]
+  - id: ort-richtung-praepositionen
+    level: A1
+    title_de: "Ort & Richtung"
+    title_en: "Place & direction"
+    title_ru: "Место и направление"
+    title_uk: "Місце і напрямок"
+    topics: [ort-richtung-praepositionen]
   - id: freizeit-koennen
     level: A1
     title_de: "Freizeit & Können"
@@ -2299,24 +2305,13 @@ units:
     title_ru: "Учреждения и услуги"
     title_uk: "Установи та послуги"
     topics: [aemter-dienstleistungen]
-  # The prepositions strand opens the tail of A2, after every case and every unit whose
-  # vocabulary it recycles. `wohnen-umzug` taught in/an/auf with Akkusativ against Dativ; this
-  # unit puts that decision second, behind the one the learner actually makes first — which
-  # preposition the *type of place* takes at all. Appended rather than inserted next to
-  # `wohnen-umzug`, because `units:` file order is the recommended path and an insert there
-  # would move every A2 unit after it.
-  - id: ort-richtung-praepositionen
-    level: A2
-    title_de: "Ort & Richtung"
-    title_en: "Place & direction"
-    title_ru: "Место и направление"
-    title_uk: "Місце і напрямок"
-    topics: [ort-richtung-praepositionen]
-  # Part two of the prepositions strand, and the second reason it sits at the tail of A2: the
-  # unit deepens `verben-mit-praepositionen` rather than repeating it, so it has to follow
-  # every case topic *and* that one. Appended rather than inserted beside its base topic,
-  # because `units:` file order is the recommended path and an insert there would move every
-  # A2 unit after it.
+  # Part two of the prepositions strand (part one, `ort-richtung-praepositionen`, moved to
+  # A1 on 2026-08-12 — the level-completeness audit found the place-preposition chunk system
+  # is what the Goethe A1 exam tests), and the reason it
+  # sits at the tail of A2: the unit deepens `verben-mit-praepositionen` rather than repeating
+  # it, so it has to follow every case topic *and* that one. Appended rather than inserted
+  # beside its base topic, because `units:` file order is the recommended path and an insert
+  # there would move every A2 unit after it.
   - id: verben-mit-kasus
     level: A2
     title_de: "Rektion: Kasus beim Verb"
