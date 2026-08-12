@@ -124,4 +124,14 @@ Owner decisions backing the two non-obvious verdicts (2026-08-12): full-audit sc
   mode corrected to the task that measures it — the only mode mismatch across the batch's
   nineteen outcomes; a B1 Präteritum passive rewritten out of a graded distractor; plus the
   determinacy class on both objects of the two-object probe family, whose header had already
-  made the argument for the thing but not the person). 2 topics remain, in spine order.
+  made the argument for the thing but not the person). Batch 6 = lernen-verstehen,
+  aemter-dienstleistungen (2026-08-12 — the false facts this round were *d.h.* printed without
+  its space in the table that teaches abbreviation spacing, and "the possessive ends in -em"
+  stated as a consequence of the dative while *mit einer Kopie* sat in the same sentence; the
+  dominant class was grading, not prose: accepted synonyms left unpinned so the focus tag
+  silently stopped firing — *anfängt, aufmacht, zumacht, ist, will, soll* now join their pins —
+  plus the *bitte* the RU/UK prompts never carried, required by every accepted rendering of four
+  polite-request items including all three probe variants). **The batched review loop is closed:
+  all 25 A2 topics audited** (PRs #185, #186, #192, #193, #194 and the batch-6 PR). The
+  unpinned-synonym class turned out to be corpus-wide and gate-invisible — its permanent fix is
+  the P25-21 validator rule.

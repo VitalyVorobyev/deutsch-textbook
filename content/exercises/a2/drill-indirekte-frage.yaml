@@ -213,13 +213,22 @@ items:
     prompt_ru: "Вы можете мне сказать, сколько стоит билет?"
     prompt_uk: "Ви можете мені сказати, скільки коштує квиток?"
     answer: "Können Sie mir sagen, wie viel die Fahrkarte kostet?"
+    # revision 2: «сколько стоит билет» is a generic price question at least as
+    # naturally as an anaphoric one, so the indefinite renders it faithfully; the
+    # graded kostet is identical. Closed over the wrapper and noun dimensions.
+    # (Batch-6 audit, 2026-08-12.)
     accept:
       - "Können Sie mir sagen, wie viel das Ticket kostet?"
       - "Können Sie mir sagen, wie viel die Karte kostet?"
       - "Könnten Sie mir sagen, wie viel die Fahrkarte kostet?"
       - "Könnten Sie mir sagen, wie viel das Ticket kostet?"
       - "Könnten Sie mir sagen, wie viel die Karte kostet?"
+      - "Können Sie mir sagen, wie viel eine Fahrkarte kostet?"
+      - "Können Sie mir sagen, wie viel ein Ticket kostet?"
+      - "Könnten Sie mir sagen, wie viel eine Fahrkarte kostet?"
+      - "Könnten Sie mir sagen, wie viel ein Ticket kostet?"
     key_tokens: ["kostet"]
+    revision: 2
     explain:
       en: "In the direct question the verb stands second: Wie viel kostet die Fahrkarte? Embedded after Können Sie mir sagen, it walks to the end: wie viel die Fahrkarte kostet. Only kostet is graded — which word you choose for the ticket is not the rule."
       ru: "В прямом вопросе глагол стоит вторым: Wie viel kostet die Fahrkarte? Вложенный после Können Sie mir sagen, он уходит в конец: wie viel die Fahrkarte kostet. Оценивается только kostet — какое слово для билета вы выберете, правило не решает."

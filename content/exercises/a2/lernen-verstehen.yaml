@@ -203,7 +203,7 @@ items:
       uk: "Два речення — два правила. Рамка Wissen Sie — звичайне питання: дієслово першим, підмет за ним. Після коми йде підрядне, і відкрити його чимось потрібно — цим «чимось» буде ob, адже питального слова тут немає. Усе інше вишиковується всередині, а відмінюване дієслово закриває підрядне: stattfindet, разом із префіксом. У підрядному немає другого місця, яке відокремлюваний префікс міг би покинути, — і він повертається до дієслова."
 
   - id: uebersetzen-wie-lange-der-kurs-dauert
-    revision: 2
+    revision: 3
     outcomes: [nachfragen-klaeren]
     type: translate
     focus: indirekte-frage
@@ -227,11 +227,14 @@ items:
       - "Könnten Sie mir sagen, wie lang der Kurs ist?"
       - "Wissen Sie, wie lange der Kurs dauert?"
       - "Ich möchte wissen, wie lange der Kurs dauert."
-    key_tokens: ["dauert"]
+    # revision 3: ist occupies the wall in the accepted ist-renderings, so it carries
+    # the graded decision and joins the pins — an accepted rendering with no graded
+    # token lets the tag stop firing. (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["dauert", "ist"]
     explain:
-      en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. Only dauert is graded here — the rule is about where the wrapped verb lands."
-      ru: "Одно предложение, два глагола, два адреса. Глагол рамки Können остаётся на втором месте, как в любом главном предложении. «Обёрнутый» глагол dauert обязан уйти в самый конец, потому что после запятой стоит придаточное. Никогда … wie lange dauert der Kurs: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки, — та самая ошибка, ради которой существует вся тема. Оценивается здесь только dauert: правило говорит о том, куда приземляется «обёрнутый» глагол."
-      uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється тут лише dauert: правило говорить про те, куди приземляється «обгорнуте» дієслово."
+      en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. The graded token is the wrapped verb — dauert, or ist in the wie-lang variant: the rule is about where it lands."
+      ru: "Одно предложение, два глагола, два адреса. Глагол рамки Können остаётся на втором месте, как в любом главном предложении. «Обёрнутый» глагол dauert обязан уйти в самый конец, потому что после запятой стоит придаточное. Никогда … wie lange dauert der Kurs: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки, — та самая ошибка, ради которой существует вся тема. Оценивается «обёрнутый» глагол — dauert или ist в варианте с wie lang: правило говорит о том, куда он приземляется."
+      uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється «обгорнуте» дієслово — dauert або ist у варіанті з wie lang: правило говорить про те, куди воно приземляється."
 
   - id: uebersetzen-ob-der-test-schwer-ist
     revision: 2
