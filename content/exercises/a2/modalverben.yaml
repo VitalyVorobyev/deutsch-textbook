@@ -294,6 +294,7 @@ items:
       uk: "Загальне питання починається з модального дієслова: Kannst du …? Інфінітив helfen іде в кінець, а helfen вимагає Dativ — mir, а не mich."
 
   - id: uebersetzen-wollen
+    revision: 2
     outcomes: [modal-konjugation, modal-satzklammer]
     type: translate
     focus: modal-konjugation
@@ -306,6 +307,10 @@ items:
     prompt_uk: "Він хоче купити машину."
     answer: "Er will ein Auto kaufen."
     key_tokens: ["will"]
+    accept:
+      # «машину» marks no definiteness, so das Auto is as licensed a reading as ein Auto;
+      # the graded form is will, present in both.
+      - "Er will das Auto kaufen."
     explain:
       en: "er will — the er/sie/es form of a modal verb has no -t. The infinitive kaufen closes the sentence, and das Auto is neuter, so ein stays unchanged in the accusative."
       ru: "er will — у модальных глаголов форма er/sie/es не имеет окончания -t. Инфинитив kaufen замыкает предложение, а das Auto — среднего рода, поэтому ein в Akkusativ не меняется."

@@ -309,6 +309,7 @@ items:
       uk: "gehören вимагає Dativ: mein Vater → meinem Vater — як в українській: «належить (кому?) батькові». das Auto — підмет, він залишається в Nominativ."
 
   - id: uebersetzen-nach-arbeit
+    revision: 2
     outcomes: [dativ-praepositionen, dativ-artikel]
     type: translate
     focus: dativ-praepositionen
@@ -320,7 +321,10 @@ items:
     prompt_ru: "После работы я иду домой."
     prompt_uk: "Після роботи я йду додому."
     answer: "Nach der Arbeit gehe ich nach Hause."
-    key_tokens: ["Nach", "der"]
+    # Only the case-marked article is pinned. Pinning "Nach" also graded the sentence-final
+    # nach of nach Hause (the grader folds an answer-head token to lowercase), so a
+    # zu/nach-Hause slip — an A1 wohin-wo-woher decision — was logged under this tag.
+    key_tokens: ["der"]
     accept:
       - "Ich gehe nach der Arbeit nach Hause."
     explain:

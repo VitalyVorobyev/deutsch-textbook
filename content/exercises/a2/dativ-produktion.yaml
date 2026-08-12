@@ -73,6 +73,7 @@ items:
       uk: "nach — один із семи прийменників, що завжди вимагають Dativ: der Umzug → nach dem Umzug. Дієслово schmecken теж керує давальним відмінком, а в Dativ Plural змінюються обидві частини: die Freunde → den Freunden — артикль стає den, і сам іменник отримує -n. Контраст стоїть просто в цьому ж тексті: für seine Freunde залишається в Akkusativ, бо für ніколи не вимагає Dativ."
 
   - id: uebersetzen-danken-freunde
+    revision: 2
     outcomes: [dativ-artikel, dativ-verben]
     type: translate
     focus: dativ-artikel
@@ -81,8 +82,11 @@ items:
       ru: "Переведите на немецкий."
       uk: "Перекладіть німецькою."
     prompt_en: "Jonas thanks his friends for the help."
-    prompt_ru: "Йонас благодарит друзей за помощь."
-    prompt_uk: "Йонас дякує друзям за допомогу."
+    # The possessive is pinned (seinen), so every prompt language must fix it: a bare
+    # «друзей»/«друзям» licenses den Freunden — a perfect dative plural that the pinned
+    # token would log as a dativ-artikel error.
+    prompt_ru: "Йонас благодарит своих друзей за помощь."
+    prompt_uk: "Йонас дякує своїм друзям за допомогу."
     answer: "Jonas dankt seinen Freunden für die Hilfe."
     key_tokens: ["seinen", "Freunden"]
     explain:
@@ -91,16 +95,20 @@ items:
       uk: "danken вимагає Dativ — українське «дякує (кому?) друзям» підказує правильно: seinen Freunden. Змінюються обидві частини: у присвійного артикля закінчення -en, і сам іменник отримує -n. Форма seine Freunde (Akkusativ) тут була б помилкою. А für die Hilfe в тому самому реченні залишається в Akkusativ: für не входить до списку дативних прийменників."
 
   - id: uebersetzen-schluessel-geben
+    revision: 2
     outcomes: [dativ-artikel]
     type: translate
     focus: wechsel-akk-dat
+    # Both pinned tokens must be fixed in every prompt language: the possessive goes into
+    # the RU/UK prompts («своему»/«своєму»), and the key's definiteness — which «ключ»
+    # leaves free while den is pinned — into the instruction.
     instruction:
-      en: "Translate into German."
-      ru: "Переведите на немецкий."
-      uk: "Перекладіть німецькою."
+      en: "Translate into German. Both know which key is meant."
+      ru: "Переведите на немецкий. Оба знают, о каком ключе идёт речь."
+      uk: "Перекладіть німецькою. Обоє знають, про який ключ ідеться."
     prompt_en: "Jonas gives his friend the key."
-    prompt_ru: "Йонас даёт другу ключ."
-    prompt_uk: "Йонас дає другові ключ."
+    prompt_ru: "Йонас даёт своему другу ключ."
+    prompt_uk: "Йонас дає своєму другові ключ."
     answer: "Jonas gibt seinem Freund den Schlüssel."
     key_tokens: ["seinem", "den"]
     explain:
