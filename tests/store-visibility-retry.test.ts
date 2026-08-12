@@ -93,6 +93,62 @@ describe('withVisibilityRetry', () => {
   });
 });
 
+// DIAGNOSTIC LADDER (temporary, CI-only investigation): the round-trip below
+// times out at 5000ms on Linux CI and passes on macOS, with the profile-state
+// precondition already asserted. These stages isolate WHICH layer stalls on
+// CI: the fake-indexeddb global, a fresh factory, or idb-keyval. Each stage
+// has its own 5s budget, so one CI run bisects the stack. Removed once the
+// culprit is pinned.
+describe('diagnostic ladder for the CI stall', () => {
+  test('stage 1: raw round trip on the global fake-indexeddb', async () => {
+    const t0 = Date.now();
+    await new Promise<void>((resolve, reject) => {
+      const open = indexedDB.open('diag-global-db', 1);
+      open.onupgradeneeded = () => open.result.createObjectStore('kv');
+      open.onerror = () => reject(open.error);
+      open.onsuccess = () => {
+        const tx = open.result.transaction('kv', 'readwrite');
+        tx.objectStore('kv').put('v', 'k');
+        tx.oncomplete = () => {
+          const tx2 = open.result.transaction('kv', 'readonly');
+          const req = tx2.objectStore('kv').get('k');
+          req.onsuccess = () => (req.result === 'v' ? resolve() : reject(new Error('bad value')));
+          req.onerror = () => reject(req.error);
+        };
+        tx.onerror = () => reject(tx.error);
+      };
+    });
+    console.log(`stage 1 (global) done in ${Date.now() - t0}ms`);
+  });
+
+  test('stage 2: raw round trip on a FRESH IDBFactory', async () => {
+    const { IDBFactory } = await import('fake-indexeddb');
+    const fresh = new IDBFactory();
+    const t0 = Date.now();
+    await new Promise<void>((resolve, reject) => {
+      const open = fresh.open('diag-fresh-db', 1);
+      open.onupgradeneeded = () => open.result.createObjectStore('kv');
+      open.onerror = () => reject(open.error);
+      open.onsuccess = () => {
+        const tx = open.result.transaction('kv', 'readwrite');
+        tx.objectStore('kv').put('v', 'k');
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      };
+    });
+    console.log(`stage 2 (fresh factory) done in ${Date.now() - t0}ms`);
+  });
+
+  test('stage 3: idb-keyval get/set through createStore on the global', async () => {
+    const { createStore, get, set } = await import('idb-keyval');
+    const t0 = Date.now();
+    const s = createStore('diag-keyval-db', 'kv');
+    await set('k', 'v', s);
+    expect(await get('k', s)).toBe('v');
+    console.log(`stage 3 (idb-keyval) done in ${Date.now() - t0}ms`);
+  });
+});
+
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
   test('getCardStates/setCardState round-trip through the real getStore()', async () => {
     // A profile must exist before getStore() proceeds past the first-run park
