@@ -1,0 +1,57 @@
+topic: alltag-zeit
+role: practice
+title: { en: "Practice — from … to, and in five minutes", ru: "Практика — «с … до» и «через пять минут»", uk: "Практика — «з … до» і «через п'ять хвилин»" }
+items:
+  - id: cloze-oeffnungszeiten
+    outcomes: [zeit-wochenplan-lesen]
+    type: cloze
+    focus: von-bis-in-zeit
+    instruction: { en: "You are reading the opening hours on a door. Fill in both words of each pair.", ru: "Вы читаете часы работы на двери. Вставьте оба слова каждой пары.", uk: "Ви читаєте години роботи на дверях. Вставте обидва слова кожної пари." }
+    text: "Die Bibliothek ist {{von}} Montag {{bis}} Samstag geöffnet. Der Unterricht ist {{von}} acht {{bis}} zwölf Uhr."
+    translation: { en: "The library is open from Monday to Saturday. The lesson runs from eight to twelve o'clock.", ru: "Библиотека открыта с понедельника по субботу. Занятия идут с восьми до двенадцати часов.", uk: "Бібліотека відчинена з понеділка до суботи. Заняття тривають з восьмої до дванадцятої години." }
+    explain: { en: "A stretch of time has two ends and German marks both: von opens it, bis closes it, and neither half may be dropped. Before a bare day name or number nothing else joins them — von Montag bis Samstag, von acht bis zwölf Uhr.", ru: "У отрезка времени два конца, и немецкий отмечает оба: *von* открывает, *bis* закрывает, и ни одну половину выбросить нельзя. Перед голым названием дня или числом больше ничего не нужно: von Montag bis Samstag, von acht bis zwölf Uhr. Русское «по» в «с понедельника по субботу» — это тот же bis.", uk: "У відрізка часу два кінці, і німецька позначає обидва: *von* відкриває, *bis* закриває, і жодну половину викинути не можна. Перед голою назвою дня або числом більше нічого не потрібно: von Montag bis Samstag, von acht bis zwölf Uhr. Українське «по» в «з понеділка по суботу» — це той самий bis." }
+  - id: cloze-in-minuten
+    outcomes: [zeit-tagesablauf-beschreiben]
+    type: cloze
+    focus: von-bis-in-zeit
+    instruction: { en: "Fill in the one preposition that measures forward from now.", ru: "Вставьте предлог, отмеряющий расстояние вперёд от сейчас.", uk: "Вставте прийменник, що відміряє відстань уперед від зараз." }
+    text: "Der Zug kommt {{in}} fünf Minuten. Der Kurs beginnt {{in}} einer Stunde."
+    translation: { en: "The train comes in five minutes. The course begins in an hour.", ru: "Поезд придёт через пять минут. Курс начнётся через час.", uk: "Потяг прийде через п'ять хвилин. Курс почнеться через годину." }
+    explain: { en: "With a length of time in measures forward from now — and it stays bare, so in fünf Minuten, never im. nach fünf Minuten is a different sentence: it counts from some other moment, not from now.", ru: "С отрезком длины *in* отмеряет расстояние вперёд от сейчас — и остаётся без артикля: in fünf Minuten, а не im. Русское «через» здесь не *durch*: *durch* — это «через» в пространстве. И не *nach*: *nach fünf Minuten* считает от какого-то другого момента, а не от сейчас. *in einer Stunde* запоминайте целиком, как *in der Nacht*.", uk: "З відрізком довжини *in* відміряє відстань уперед від зараз — і залишається без артикля: in fünf Minuten, а не im. Українське «через» тут не *durch*: *durch* — це «через» у просторі. І не *nach*: *nach fünf Minuten* рахує від якогось іншого моменту, а не від зараз. *in einer Stunde* запам'ятовуйте цілком, як *in der Nacht*." }
+  - id: translate-arbeitswoche
+    outcomes: [zeit-tagesablauf-beschreiben]
+    type: translate
+    focus: von-bis-in-zeit
+    instruction: { en: "Mark both ends of the span with the preposition pair.", ru: "Отметьте оба конца отрезка парой предлогов.", uk: "Позначте обидва кінці відрізка парою прийменників." }
+    prompt_en: "I work from Monday to Friday."
+    prompt_ru: "Я работаю с понедельника по пятницу."
+    prompt_uk: "Я працюю з понеділка до п'ятниці."
+    answer: "Ich arbeite von Montag bis Freitag."
+    key_tokens: ["von", "bis"]
+    accept: ["Von Montag bis Freitag arbeite ich."]
+    explain: { en: "The pair is von … bis, and both words are needed. English 'from … to' is the trap: the German span never closes with zu. Day names take no article here.", ru: "Пара — *von … bis*, и нужны оба слова. Русское «с» здесь не *mit*: начало отрезка времени открывает только *von*, а «по» в «с понедельника по пятницу» — это *bis*. Названия дней стоят без артикля.", uk: "Пара — *von … bis*, і потрібні обидва слова. Українське «з» тут не *mit*: початок часового відрізка відкриває лише *von*, а «до»/«по» — це *bis*. Назви днів стоять без артикля." }
+  - id: translate-zug-minuten
+    outcomes: [zeit-tagesablauf-beschreiben]
+    type: translate
+    focus: von-bis-in-zeit
+    prompt_en: "The train comes in five minutes."
+    prompt_ru: "Поезд придёт через пять минут."
+    prompt_uk: "Потяг прийде через п'ять хвилин."
+    answer: "Der Zug kommt in fünf Minuten."
+    key_tokens: ["in"]
+    accept:
+      - "In fünf Minuten kommt der Zug."
+      - "Der Zug kommt in fünf Minuten an."
+      - "In fünf Minuten kommt der Zug an."
+    explain: { en: "'In five minutes' maps straight across: in + a length of time, with no article — in fünf Minuten. German uses the present tense for something this close ahead.", ru: "«Через пять минут» — это *in fünf Minuten*, без артикля. Не *durch* (это «через» в пространстве) и не *nach* (это отсчёт от какого-то другого момента). Немецкий ставит здесь настоящее время, хотя по-русски будущее.", uk: "«Через п'ять хвилин» — це *in fünf Minuten*, без артикля. Не *durch* (це «через» у просторі) і не *nach* (це відлік від якогось іншого моменту). Німецька ставить тут теперішній час, хоча українською майбутній." }
+  - id: hoeren-von-bis
+    outcomes: [zeit-uhrzeit-verstehen]
+    type: listen
+    focus: von-bis-in-zeit
+    focus_evidence:
+      retained: ["\\bvon acht bis zwölf Uhr$"]
+      failed: ["\\bvon acht (zu|nach|und) zwölf\\b", "\\b(ab|seit|mit) acht bis zwölf\\b"]
+    instruction: { en: "Listen and type what you hear.", ru: "Прослушайте и напишите, что вы слышите.", uk: "Прослухайте й напишіть, що ви чуєте." }
+    text: "Der Unterricht ist von acht bis zwölf Uhr."
+    translation: { en: "The lesson runs from eight to twelve o'clock.", ru: "Занятия идут с восьми до двенадцати часов.", uk: "Заняття тривають з восьмої до дванадцятої години." }
+    explain: { en: "You hear both ends of the pair: von acht bis zwölf Uhr. Unterricht is a noun and is capitalized; the numbers stay lowercase.", ru: "В записи звучат оба конца пары: von acht bis zwölf Uhr. Unterricht — существительное, с большой буквы; числительные — со строчной.", uk: "У записі звучать обидва кінці пари: von acht bis zwölf Uhr. Unterricht — іменник, з великої літери; числівники — з малої." }
