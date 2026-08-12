@@ -13,7 +13,15 @@ import {
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import type { TopicNode } from '../../lib/mastery';
-import { dueProbes, probeFamilies, sessionProbeCap, type DueProbe } from '../../lib/probes';
+import {
+  dueProbes,
+  probeFailuresOn,
+  probeFamilies,
+  sessionProbeCap,
+  type DueProbe,
+  type ProbeFailureToday,
+} from '../../lib/probes';
+import { remediationSetFor } from '../../lib/training';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -103,6 +111,9 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   const [probeCap, setProbeCap] = useState(0);
   const [probedCount, setProbedCount] = useState<number | null>(null);
   const [probesDone, setProbesDone] = useState(initial?.probesDone ?? false);
+  // null = not loaded yet; the remediation card (step 3) waits for this rather than
+  // ever guessing from what step 0 just did — see the effect below.
+  const [failedToday, setFailedToday] = useState<ProbeFailureToday[] | null>(null);
   const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
   const [reviewDone, setReviewDone] = useState(false);
   // summary counters: null = step was skipped
@@ -128,6 +139,34 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   // Which probes came due. Probe scheduling is derived entirely from the attempt log
   // (see src/lib/probes.ts), so there is no separate state to load or keep in sync.
   const families = useMemo(() => probeFamilies(sets), [sets]);
+  const nodeById = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
+  const setsBySetId = useMemo(() => new Map(sets.map((s) => [s.setId, s])), [sets]);
+
+  // Every failed-today probe, re-derived from the log the moment step 3 renders —
+  // never from `probedCount`/step-0 component state, so a family that failed in an
+  // earlier visit today (or the one just taken) shows up the same way either way, and
+  // a reload lands on the same card (R1, docs/adrs/0010-probe-failure-remediation.md).
+  useEffect(() => {
+    if (step !== 3) return;
+    let cancelled = false;
+    void getAttempts().then((attempts) => {
+      if (!cancelled) setFailedToday(probeFailuresOn(families, attempts));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [step, families]);
+
+  /** The topic's own sets, in the atlas's authored `exercises:` order — the order
+      `remediationSetFor`'s tie-break relies on (src/lib/training.ts). */
+  function orderedSetsForTopic(topicId: string): TrainingSet[] {
+    const node = nodeById.get(topicId);
+    if (!node) return [];
+    return node.exerciseSets.flatMap((id) => {
+      const s = setsBySetId.get(id);
+      return s ? [s] : [];
+    });
+  }
   useEffect(() => {
     let cancelled = false;
     void getAttempts().then((attempts) => {
@@ -391,6 +430,57 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
 
         {step === 3 && (
           <div>
+            {failedToday !== null && failedToday.length > 0 && (
+              <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-900/20">
+                <p lang="de" className="font-semibold text-stone-900 dark:text-stone-100">
+                  {t('probe.remediationTitle', uiLang)}
+                </p>
+                <ul className="mt-3 space-y-3 text-sm text-stone-700 dark:text-stone-300">
+                  {failedToday.map(({ family, exhausted }) => {
+                    const node = nodeById.get(family.topicId);
+                    const recommended = family.focus
+                      ? remediationSetFor(family.focus, family.topicId, orderedSetsForTopic(family.topicId))
+                      : undefined;
+                    const recTitle = recommended
+                      ? (recommended.title ? pick(lang, recommended.title) : recommended.setId)
+                      : undefined;
+                    return (
+                      <li key={family.setId}>
+                        {node ? (
+                          <a
+                            lang="de"
+                            href={node.path}
+                            className="font-medium text-amber-800 hover:underline dark:text-amber-300"
+                          >
+                            {node.title_de}
+                          </a>
+                        ) : (
+                          <span lang="de" className="font-medium">{family.topicId}</span>
+                        )}{' '}
+                        <span lang="de">{t('probe.remediationFailed', uiLang)}</span>
+                        {node && recTitle && (
+                          <>
+                            {' '}
+                            <a
+                              href={node.path}
+                              className="text-amber-700 hover:underline dark:text-amber-400"
+                            >
+                              {recTitle}
+                            </a>
+                          </>
+                        )}
+                        {exhausted && (
+                          <p lang="de" className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+                            {t('probe.remediationExhausted', uiLang)}
+                          </p>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+
             <div className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
               <NextTopic spine={spine} nodes={nodes} />
               <p className="mt-4 text-sm text-stone-500 dark:text-stone-400">

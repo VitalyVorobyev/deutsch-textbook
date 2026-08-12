@@ -47,7 +47,10 @@ Each topic implements **pretest → model → explanation → scaffold → fade 
 3. Topic-owned practice begins blocked and explanatory.
 4. Mixed training removes hints and interleaves only after the article was opened.
 5. At least one fresh-context production task (`translate` or `write`) checks transfer.
-6. Checkpoints/probes use separate roles and never leak into ordinary training.
+6. Checkpoints/probes use separate roles. Probe **items** never re-enter ordinary
+   training (`trainableRoles` in `training.ts`); probe **results** deliberately do —
+   a wrong probe attempt raises its focus tag's `weakFocuses` error rate like any
+   other attempt, on purpose (docs/adrs/0010-probe-failure-remediation.md).
 
 Drills from progress (the personalization loop):
 1. Run `bun run progress:audit --profile <slug>` — **never Read the raw snapshot**; the files run 300 KB+ and the audit already aggregates everything below (folders are named after the learner's chosen profile; the historical folder here is `progress/vitaly/`). Attempts carry a `focus` tag — the audit's focus-signal table applies the `weakFocuses` logic (`src/lib/weakness.ts`: last ~30 attempts per focus, weak = ≥4 attempts and ≥35% errors) and its lapse tables surface cards with high `lapses`. Use `--item <set-id>:<item-id>` for focused evidence on one item. The full procedure, including the triage-first rule, is the `progress-review` skill.

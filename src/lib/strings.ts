@@ -451,6 +451,30 @@ export const STRINGS = {
     uk: 'Черга відкладених перевірок',
   },
 
+  // Probe-failure remediation (docs/adrs/0010-probe-failure-remediation.md).
+  // `remediationTitle`/`remediationFailed` are the session-end card only (R1);
+  // `remediationExhausted` is shared verbatim with ProbeResults.tsx (R3 — "says the
+  // same" in both places), which is why it lives in the chrome table rather than as a
+  // per-file pick() record like the rest of that component's copy.
+  'probe.remediationTitle': {
+    de: 'Abstandsproben von heute',
+    en: "Today's delayed checks",
+    ru: 'Отложенные проверки сегодня',
+    uk: 'Відкладені перевірки сьогодні',
+  },
+  'probe.remediationFailed': {
+    de: 'hat den Abstand nicht überstanden — der Stoff dazu:',
+    en: 'did not survive the interval — the material for it:',
+    ru: 'не прошла проверку через время — материал по теме:',
+    uk: 'не пройшла перевірку через час — матеріал за темою:',
+  },
+  'probe.remediationExhausted': {
+    de: 'gemessen, nicht bestanden — braucht eine neue Probefamilie',
+    en: 'measured, not passed — needs a new probe family',
+    ru: 'измерено, но не пройдено — нужна новая проба-серия',
+    uk: 'виміряно, але не пройдено — потрібна нова проба-серія',
+  },
+
   // First-steps onboarding card (Heute).
   'today.howItWorks': { de: "So funktioniert's", en: 'How it works', ru: 'Как это работает', uk: 'Як це працює' },
   // Onboarding step names — their own keys, not nav.ueben/session.stepReview:
