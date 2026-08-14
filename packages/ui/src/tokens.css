@@ -24,30 +24,73 @@
   --color-ink: var(--color-stone-900);
   --color-ink-muted: var(--color-stone-500);
 
+  /*
+   * EACH ROLE IS TWO TOKENS, because a fill and a word are held to different bars: a graphic needs
+   * 3:1 against its background, a small word needs 4.5:1. Collapsing them into one value is how the
+   * first version shipped labels nobody could read — measured on the shipping palette, **seven of
+   * the eight role/theme text combinations were under 4.5:1**, and rose-600 on the dark page was
+   * 3.72. The learner app never had this problem because it writes the pair out by hand every time
+   * (`text-amber-700 dark:text-amber-300`, 27 occurrences); the token layer had only copied the
+   * light half of it.
+   *
+   *   `--color-<role>`      fill and stroke — bars, dots, active buttons, rules
+   *   `--color-<role>-ink`  text on `surface`, `surface-raised` or `<role>-soft`
+   *   `--color-<role>-soft` a tinted ground, never a text colour
+   *
+   * Re-derive with the ratios in `tests/design-tokens.test.ts`, which fails on any pair that drops
+   * below the floor.
+   */
   --color-brand: var(--color-amber-600);
+  --color-brand-ink: var(--color-amber-700);
   --color-brand-soft: var(--color-amber-100);
   --color-ok: var(--color-emerald-600);
+  --color-ok-ink: var(--color-emerald-700);
   --color-ok-soft: var(--color-emerald-100);
   --color-info: var(--color-sky-600);
+  --color-info-ink: var(--color-sky-700);
   --color-info-soft: var(--color-sky-100);
   --color-warn: var(--color-rose-600);
+  --color-warn-ink: var(--color-rose-700);
   --color-warn-soft: var(--color-rose-100);
 }
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/*
+ * The dark values are the LEARNER APP'S, not a darker cousin of them. The first version read
+ * stone-950 / stone-900 / stone-800 against `global.css`'s `dark:bg-stone-900` body,
+ * `dark:bg-stone-800` cards and `dark:border-stone-700` rules — so the editorial app was a full
+ * step darker than the product it exists to describe, and its card borders sat one step from
+ * invisible. `tests/design-tokens.test.ts` now holds the two files equal, because "same visual
+ * family" is a claim that decays the moment nothing checks it.
+ */
 :root[data-theme='dark'] {
-  --color-surface: var(--color-stone-950);
-  --color-surface-raised: var(--color-stone-900);
-  --color-surface-sunken: var(--color-stone-900);
-  --color-border-subtle: var(--color-stone-800);
+  --color-surface: var(--color-stone-900);
+  --color-surface-raised: var(--color-stone-800);
+  /* Recessed, so it must move AWAY from the page in the same direction light mode does (stone-50
+     page, stone-100 well). It used to equal the raised surface, which made a row hover and a card
+     the same colour. */
+  --color-surface-sunken: var(--color-stone-950);
+  --color-border-subtle: var(--color-stone-700);
   --color-ink: var(--color-stone-100);
   --color-ink-muted: var(--color-stone-400);
 
-  --color-brand-soft: color-mix(in oklab, var(--color-amber-500) 22%, transparent);
-  --color-ok-soft: color-mix(in oklab, var(--color-emerald-500) 22%, transparent);
-  --color-info-soft: color-mix(in oklab, var(--color-sky-500) 22%, transparent);
-  --color-warn-soft: color-mix(in oklab, var(--color-rose-500) 22%, transparent);
+  /*
+   * Text lightens in the dark, exactly as the learner app does it by hand (`dark:text-amber-300`
+   * ×27, `dark:text-red-400` ×17). Measured on stone-900 / stone-800: rose-400 reads 6.50 / 5.64
+   * where rose-600 read 3.72 / 3.23.
+   */
+  --color-brand-ink: var(--color-amber-300);
+  --color-ok-ink: var(--color-emerald-400);
+  --color-info-ink: var(--color-sky-400);
+  --color-warn-ink: var(--color-rose-400);
+
+  /* 14%, not 22%: a tint on a near-black page is a whisper, and at 22% the rose read as a filled
+     alert on every one of the forty-nine topic cards. */
+  --color-brand-soft: color-mix(in oklab, var(--color-amber-500) 14%, transparent);
+  --color-ok-soft: color-mix(in oklab, var(--color-emerald-500) 14%, transparent);
+  --color-info-soft: color-mix(in oklab, var(--color-sky-500) 14%, transparent);
+  --color-warn-soft: color-mix(in oklab, var(--color-rose-500) 14%, transparent);
 }
 
 /*

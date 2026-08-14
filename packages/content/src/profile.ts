@@ -36,6 +36,7 @@ import { parseGlosses } from '@da/schema/gloss';
 import type { ContentGraph } from './graph';
 import type { Element, LessonStage, Touch } from './elements';
 import { SELECTION_TYPES } from './elements';
+import { focusIntroducedBy } from './focus-tags';
 
 /** The item-mix bar from CLAUDE.md, over a topic's `role: practice` sets. */
 export const MIN_TRANSLATE = 2;
@@ -377,6 +378,10 @@ export const PROBLEM_LABELS: Record<string, { de: string; why: string }> = {
   'outcome-ohne-aufgabe': { de: 'Outcome ohne messende Aufgabe', why: 'Ein nur geprüftes Outcome wurde nie geübt.' },
   'modus-fehlt': { de: 'beanspruchter Modus wird nicht geübt', why: 'Das Outcome nennt Sprechen; nichts im Thema lässt sprechen.' },
   'tag-ohne-probe': { de: 'Fokus-Tag ohne Probe', why: 'Die Verwechslung wird geübt, aber nie später erneut gefragt.' },
+  'tag-ohne-aufgabe': {
+    de: 'Fokus-Tag ohne Aufgabe',
+    why: 'Der Tag existiert, aber keine praxis-/drill-Aufgabe trägt ihn — eine benannte Verwechslung, die nichts übt.',
+  },
   'punkt-ohne-thema': { de: 'Struktur ohne Thema', why: 'Eine Inventarzeile, die kein Thema unterrichtet.' },
   'deck-ohne-thema': { de: 'Deck ohne Thema', why: 'Wortlisten-Deck: bewusst frei, hier nur zur Übersicht.' },
 };
@@ -423,6 +428,28 @@ export function problems(graph: ContentGraph): Problem[] {
     if (probed.has(tag)) continue;
     if (!elements.some((e) => TEACHING_KINDS.has(e.kind))) continue;
     out.push({ kind: 'tag-ohne-probe', message: tag, level: elements[0]?.level });
+  }
+
+  /*
+   * A named confusion that nothing practises — the counterpart to `tag-ohne-probe`, and the state
+   * `ueber-dauer` is deliberately in: the DTZ settled it as an inventory row and a registered tag
+   * with zero items behind it, so that the gap would be *counted* rather than invisible. Eight
+   * today.
+   *
+   * Two siblings were written alongside this and deleted after measuring, which is worth recording
+   * so nobody adds them again: `tag-nicht-registriert` can never fire, because `bun run validate`
+   * already hard-rejects a tag missing from `focusIntroducedBy`; and `tag-ohne-struktur` reported
+   * zero while asserting something nobody has established — a focus tag names a confusion, and
+   * there is no rule that every confusion must be an inventory row. A problem class that cannot
+   * fire, or that encodes an opinion as a defect, makes the inbox less trustworthy rather than more
+   * complete.
+   */
+  const named = new Set(graph.inventory.flatMap((p) => p.focus ?? []));
+  for (const tag of new Set([...Object.keys(focusIntroducedBy), ...named])) {
+    const elements = graph.elementsByTag.get(tag) ?? [];
+    if (!elements.some((e) => TEACHING_KINDS.has(e.kind))) {
+      out.push({ kind: 'tag-ohne-aufgabe', message: tag, level: elements[0]?.level });
+    }
   }
 
   for (const point of graph.inventory) {
