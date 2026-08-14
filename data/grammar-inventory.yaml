@@ -73,6 +73,8 @@ points:
       - goethe-a1-sd1:praesens-alle-verben
       - goethe-a2-fit2:indikativ-alle-verben
       - goethe-a2-fit2:praesens-alle-verben
+      - goethe-dtz:indikativ
+      - goethe-dtz:praesens
 
   - id: praesens-unregelmaessig
     strand: verbformen
@@ -83,6 +85,7 @@ points:
     claims:
       - goethe-a1-sd1:praesens-alle-verben
       - goethe-a2-fit2:praesens-alle-verben
+      - goethe-dtz:praesens
 
   - id: haben-wendungen
     strand: verbvalenz
@@ -146,6 +149,8 @@ points:
       - goethe-a2-fit2:frage-ergaenzung
       - goethe-a2-fit2:pron-frage-akkusativ
       - goethe-a2-fit2:pron-frage-nominativ
+      - goethe-dtz:entscheidungsfrage
+      - goethe-dtz:ergaenzungsfrage
 
   - id: imperativ
     strand: verbformen
@@ -172,6 +177,10 @@ points:
       - goethe-a2-fit2:artikel-indefinit
       - goethe-a2-fit2:artikel-null
       - goethe-a2-fit2:genus
+      - goethe-dtz:definitartikel
+      - goethe-dtz:genus
+      - goethe-dtz:indefinitartikel
+      - goethe-dtz:nominativ
 
   - id: plural
     strand: nominalgruppe
@@ -182,6 +191,7 @@ points:
     claims:
       - goethe-a1-sd1:numerus
       - goethe-a2-fit2:numerus
+      - goethe-dtz:numerus
 
   - id: demonstrativartikel
     strand: nominalgruppe
@@ -192,6 +202,7 @@ points:
     claims:
       - goethe-a1-sd1:artikel-demonstrativ
       - goethe-a2-fit2:artikel-demonstrativ
+      - goethe-dtz:dieser
     note: "Opened 2026-08-14 by the first run of `bun scripts/structures.ts`: both Goethe inventories list it, at A1 and again at A2, and no row covered it. The confusion is not the meaning — EN `this` and RU «этот» carry it — but that dieser takes the DEFINITE article's endings while a following adjective then takes the weak ones, so it belongs beside `adjektiv-bestimmt` rather than beside `genus-artikel`."
 
   - id: wortbildung-nomen
@@ -210,6 +221,11 @@ points:
       - goethe-a2-fit2:wb-nomen-er
       - goethe-a2-fit2:wb-nomen-in
       - goethe-a2-fit2:wb-nomen-ung
+      - goethe-dtz:feminine-formen
+      - goethe-dtz:komposita-bestimmungswort
+      - goethe-dtz:komposita-grundwort
+      - goethe-dtz:nominalisierung
+      - goethe-dtz:weit-zum
     note: "Wortbildung is one of the eight top-level sections of BOTH Goethe inventories and had no row at any level — the largest single hole the 2026-08-14 anchor pass found. It is not decoration: the gender of a compound comes from its last member (die Reise + der Führer → der Reiseführer), -ung nouns are feminine without exception, and a learner who can decompose reads far more than the Wortliste alone predicts. Goethe also lists the substantivised participle (der Reisende) here; this course teaches that at B1 under `adjektiv-nomen`, so the claim sits on both rows."
 
   - id: wortbildung-adjektiv
@@ -225,6 +241,9 @@ points:
       - goethe-a1-sd1:wb-adj-un
       - goethe-a2-fit2:wb-adj-los
       - goethe-a2-fit2:wb-adj-un
+      - goethe-dtz:adj-komposita
+      - goethe-dtz:adj-nachsilben
+      - goethe-dtz:adj-vorsilbe-un
     note: "Opened with `wortbildung-nomen` and kept separate from it because the confusions differ: a noun compound asks which member carries the gender, an adjective affix asks what it does to the meaning — un- negates, -los says `ohne`, -bar says `kann …werden`. The last is also the first passive-like form a learner meets, years before the passive itself."
 
   - id: akkusativ-artikel
@@ -239,6 +258,7 @@ points:
       - goethe-a2-fit2:erg-akkusativ
       - goethe-a2-fit2:erg-nominativ
       - goethe-a2-fit2:kasus-nom-akk-dat
+      - goethe-dtz:akkusativ
 
   - id: akkusativ-pronomen
     strand: kasus
@@ -251,6 +271,8 @@ points:
       - goethe-a1-sd1:pron-personal-nominativ
       - goethe-a2-fit2:pron-personal-akkusativ
       - goethe-a2-fit2:pron-personal-nominativ
+      - goethe-dtz:personalpronomen-akkusativ
+      - goethe-dtz:personalpronomen-nominativ
 
   - id: reziprokpronomen
     strand: kasus
@@ -262,6 +284,8 @@ points:
     claims:
       - goethe-a1-sd1:pron-reziprok
       - goethe-a2-fit2:pron-reziprok
+      - goethe-dtz:reziprokpronomen-sich
+      - goethe-dtz:reziprokpronomen-uns
     note: "Listed at A1 and again at A2 by Goethe, with a row nowhere. It shares its FORM with the reflexive (`sich`, `uns`) and none of its meaning, which is exactly why it needs its own tag: `Wir sehen uns` is two people seeing each other, not two people seeing themselves. EN marks the difference lexically (`each other`), RU/UK with «друг друга» — neither hand supplies the German syncretism. Production is set at A2 because the reflexive paradigm it rides on is A2 here; reception is A1 because the phrase is unavoidable from the first week."
 
   - id: akkusativ-praepositionen
@@ -277,6 +301,9 @@ points:
       - goethe-a2-fit2:praep-mod-fuer
       - goethe-a2-fit2:praep-mod-ohne
       - goethe-a2-fit2:praep-temp-um
+      - goethe-dtz:lok-um
+      - goethe-dtz:mod-fuer
+      - goethe-dtz:mod-ohne
 
   - id: negation-nicht
     strand: negation
@@ -287,6 +314,7 @@ points:
     claims:
       - goethe-a1-sd1:negation-nicht
       - goethe-a2-fit2:negation-nicht
+      - goethe-dtz:negation-nicht
 
   - id: negation-kein
     strand: negation
@@ -299,6 +327,8 @@ points:
       - goethe-a1-sd1:negation-kein
       - goethe-a2-fit2:artikel-negativ-kein
       - goethe-a2-fit2:negation-kein
+      - goethe-dtz:negation-kein
+      - goethe-dtz:negativ-kein
 
   - id: possessivartikel
     strand: nominalgruppe
@@ -309,9 +339,10 @@ points:
     claims:
       - goethe-a1-sd1:artikel-possessiv
       - goethe-a1-sd1:artikel-possessiv-unser
-      - goethe-a2-fit2:artikel-possessiv-unser-euer
-      - goethe-start-deutsch-2:artikel-possessiv-unser-euer
       - goethe-a2-fit2:artikel-possessiv
+      - goethe-a2-fit2:artikel-possessiv-unser-euer
+      - goethe-dtz:possessiv-alle
+      - goethe-start-deutsch-2:artikel-possessiv-unser-euer
 
   - id: modalverben
     strand: verbformen
@@ -334,6 +365,7 @@ points:
       - goethe-a2-fit2:modal-sollen
       - goethe-a2-fit2:modal-wollen
       - goethe-a2-fit2:satzklammer
+      - goethe-dtz:satzklammer
     note: "A1 (freizeit-koennen) teaches the conjugation pattern and the bracket with können/möchten; the A2 modalverben topic deepens it to the full six-modal paradigm with the darf-nicht/muss-nicht split and the polite möchte register — a spiral, like perfekt below, not a misplaced level."
 
   - id: duerfen-muessen
@@ -359,6 +391,13 @@ points:
       - goethe-a1-sd1:trennbares-praefix
       - goethe-a2-fit2:satzklammer
       - goethe-a2-fit2:trennbares-praefix
+      - goethe-dtz:satzklammer
+      - goethe-dtz:vorsilbe-mit
+      - goethe-dtz:vorsilbe-vorbei
+      - goethe-dtz:vorsilbe-weg
+      - goethe-dtz:vorsilbe-weiter
+      - goethe-dtz:vorsilbe-zurueck
+      - goethe-dtz:vorsilbe-zusammen
     note: "A1 (alltag-zeit) teaches the word-order rule — prefix to the end, whole infinitive after a modal; the A2 trennbare-verben topic deepens it to separable vs inseparable prefixes (auf- splits, be-/ver- never) — a spiral, like perfekt below, not a misplaced level."
 
   - id: perfekt
@@ -370,6 +409,8 @@ points:
     claims:
       - goethe-a1-sd1:partizipien-ausgewaehlt
       - goethe-a1-sd1:perfekt-ausgewaehlte-verben
+      - goethe-dtz:perfekt
+      - goethe-dtz:satzklammer
     note: "A1 teaches the regular ge-…-t pattern and selected high-frequency lexical participles — which is exactly what the Goethe A1 list carries, a named verb list plus `ausgewählte Partizipien`. The complete formation system is `partizip2-system` at A2; it used to be this row's second sentence and nothing measured it."
 
   - id: zeitangaben
@@ -387,6 +428,9 @@ points:
       - goethe-a2-fit2:praep-temp-in
       - goethe-a2-fit2:praep-temp-um
       - goethe-a2-fit2:praep-temp-von-bis
+      - goethe-dtz:temp-an
+      - goethe-dtz:temp-in
+      - goethe-dtz:temp-um
     note: "A1 chunk level, A2 system level — the same split the perfekt row documents. A1 teaches four things as fixed chunks: the um/am/im calendar default, and the two the SD1 Wortliste attests without any system around them — von … bis („Unterricht von 8.00 bis 12.00 Uhr\", Seite 25) and in + Zeitmenge („Der Zug kommt in fünf Minuten\", Seite 17). A2's zeitangaben-system owns the choice itself: ab against seit, bis bare against bis zu + Dativ, vor/nach around an event, and the family that takes no preposition and stands bare in the Akkusativ. ab is ABSENT from the A1 Wortliste, which is what keeps the system at A2. Widened 2026-08-12 after the level-completeness audit found both chunks attested at A1 and taught nowhere at A1 (docs/curriculum/level-completeness-audit.md, Part 1 row 2); no new row, so the A1 denominator stays 23."
 
   - id: lokale-praepositionen-ortstyp
@@ -412,6 +456,13 @@ points:
       - goethe-a2-fit2:praep-lok-nach
       - goethe-a2-fit2:praep-lok-von-nach
       - goethe-a2-fit2:praep-lok-zu
+      - goethe-dtz:lok-auf
+      - goethe-dtz:lok-aus
+      - goethe-dtz:lok-bei
+      - goethe-dtz:lok-in
+      - goethe-dtz:lok-nach
+      - goethe-dtz:lok-von
+      - goethe-dtz:lok-zu
     note: "The chunk half of place prepositions is Goethe-A1 — the SD1 Wortliste attests am Bahnhof, ins Kino, zum Bahnhof, bei meinen Eltern, nach Hause, aus Brasilien, von Köln (docs/curriculum/level-completeness-audit.md, Part 1 row 1). A different question from its two A2 neighbours: dativ-praepositionen grades that aus/bei/nach/von/zu govern the dative, wechselpraepositionen grades which case in/an/auf take — neither asks which preposition the place itself selects, nor that Woher? swaps the preposition rather than the case. Added 2026-08-12 at A2 with ort-richtung-praepositionen; relocated to A1 with the topic after the level-completeness audit found A1's denominator had no place-preposition row at all (A1 22 → 23, A2 33 → 32)."
 
   - id: gern
@@ -423,6 +474,7 @@ points:
     claims:
       - goethe-a1-sd1:adj-adverbial
       - goethe-a2-fit2:adj-adverbial
+      - goethe-dtz:adj-adverbial
 
   - id: anrede-du-sie
     strand: register-pragmatik
@@ -440,6 +492,7 @@ points:
     taught_in: [alltag-zeit]
     claims:
       - goethe-a1-sd1:adj-zahlwoerter
+      - goethe-dtz:ordinalzahlen
 
   # ---------------------------------------------------------------- A2
   - id: praeteritum
@@ -453,6 +506,8 @@ points:
       - goethe-a2-fit2:praeteritum-haben
       - goethe-a2-fit2:praeteritum-modalverben
       - goethe-a2-fit2:praeteritum-sein
+      - goethe-dtz:praeteritum-aktiv
+      - goethe-dtz:praeteritum-modalverben
       - goethe-start-deutsch-2:praeteritum-haben
       - goethe-start-deutsch-2:praeteritum-modalverben
       - goethe-start-deutsch-2:praeteritum-sein
@@ -467,6 +522,7 @@ points:
     claims:
       - goethe-a1-sd1:kasus-dativ
       - goethe-a2-fit2:kasus-nom-akk-dat
+      - goethe-dtz:dativ
       - goethe-start-deutsch-2:kasus-dativ
     deepens: [akkusativ-artikel]
 
@@ -481,6 +537,7 @@ points:
       - goethe-a1-sd1:pron-personal-dativ-verben
       - goethe-a2-fit2:pron-frage-dativ
       - goethe-a2-fit2:pron-personal-dativ
+      - goethe-dtz:personalpronomen-dativ
     deepens: [akkusativ-pronomen]
 
   - id: dativ-verben
@@ -492,6 +549,7 @@ points:
     claims:
       - goethe-a1-sd1:erg-dativ
       - goethe-a2-fit2:erg-dativ
+      - goethe-dtz:verb-dativ
 
   - id: dativ-akkusativ-objekte
     strand: verbvalenz
@@ -501,6 +559,8 @@ points:
     focus: [wechsel-akk-dat]
     deepens: [dativ-verben, akkusativ-artikel]
     note: "Beyond every source list here, and opened anyway on internal evidence: `wechsel-akk-dat` was a registered, drilled focus tag that no inventory row referenced — one of four such orphans the 2026-08-14 pass found. Distinct from `dativ-verben`, which grades membership of the closed dative list (helfen takes the dative and nothing else): this grades a frame with BOTH objects present, where the choice is which noun goes in which case. RU marks the recipient with a dative too («дал брату книгу») and EN with a preposition or bare order («gave my brother the book»), so the case assignment transfers but the ORDER does not — and the pronoun ordering that goes with it is `pronomen-stellung` at B1, on two items."
+    claims:
+      - goethe-dtz:verb-dativ-akkusativ
 
   - id: dativ-praepositionen
     strand: kasus
@@ -525,6 +585,14 @@ points:
       - goethe-a2-fit2:praep-mod-mit
       - goethe-a2-fit2:praep-temp-seit
       - goethe-a2-fit2:praep-temp-zu
+      - goethe-dtz:lok-aus
+      - goethe-dtz:lok-bei
+      - goethe-dtz:lok-gegenueber
+      - goethe-dtz:lok-nach
+      - goethe-dtz:lok-von
+      - goethe-dtz:lok-zu
+      - goethe-dtz:mod-aus
+      - goethe-dtz:mod-mit
       - goethe-start-deutsch-2:praep-lok-gegenueber
       - goethe-start-deutsch-2:praep-lok-von
       - goethe-start-deutsch-2:praep-temp-seit
@@ -545,6 +613,14 @@ points:
       - goethe-a2-fit2:praep-lok-auf
       - goethe-a2-fit2:praep-lok-in
       - goethe-a2-fit2:praep-lok-vor
+      - goethe-dtz:lok-an
+      - goethe-dtz:lok-auf
+      - goethe-dtz:lok-hinter
+      - goethe-dtz:lok-in
+      - goethe-dtz:lok-neben
+      - goethe-dtz:lok-ueber
+      - goethe-dtz:lok-unter
+      - goethe-dtz:lok-zwischen
       - goethe-start-deutsch-2:praep-lok-hinter
       - goethe-start-deutsch-2:praep-lok-neben
       - goethe-start-deutsch-2:praep-lok-ueber
@@ -563,7 +639,30 @@ points:
       - goethe-a1-sd1:praep-temp-vor
       - goethe-a2-fit2:praep-temp-seit
       - goethe-a2-fit2:praep-temp-vor
+      - goethe-dtz:temp-seit
+      - goethe-dtz:temp-vor
       - goethe-start-deutsch-2:praep-temp-seit
+
+  # P26-8, ruled 2026-08-14. The A1 Prüfungsziele left `über` as the level's one unclaimed entry,
+  # and the backlog asked whether it is a temporal preposition at all or "closer to a quantifier"
+  # — a ruling was needed before a row was. The DTZ handbook settles it from the outside: §8.4 5.1
+  # files `über + Akkusativ` under **temporal**, beside während, zwischen and zu, and illustrates
+  # it with a duration. Two independent published standards classify it the same way, so it is a
+  # temporal preposition and it gets a row.
+  #
+  # NOTHING TEACHES IT YET, and this row is how that becomes visible: `bun scripts/grammar-coverage.ts`
+  # now reports A2 35/38 rather than 35/37. The alternative — folding `über` into the
+  # `zeitangaben-system` description — would have marked it covered by a tag no item carries for
+  # this meaning, which is the self-certifying failure the whole instrument exists to prevent.
+  - id: ueber-dauer
+    strand: zeit
+    level: {reception: A1, production: A2}
+    de: "über + Akkusativ als Dauer (Ich habe über eine Stunde gewartet.)"
+    en: "über + accusative marking a duration — 'for more than an hour', not a place"
+    focus: [ueber-dauer]
+    claims:
+      - goethe-a1-sd1:praep-temp-ueber
+      - goethe-dtz:temp-ueber
 
   - id: zeitangaben-system
     strand: zeit
@@ -573,8 +672,8 @@ points:
     focus: [zeitangaben-system]
     claims:
       - goethe-a1-sd1:praep-temp-ab
-      - goethe-a1-sd1:praep-temp-fuer
       - goethe-a1-sd1:praep-temp-an
+      - goethe-a1-sd1:praep-temp-fuer
       - goethe-a1-sd1:praep-temp-in
       - goethe-a1-sd1:praep-temp-nach
       - goethe-a1-sd1:praep-temp-um
@@ -585,6 +684,12 @@ points:
       - goethe-a2-fit2:praep-temp-nach
       - goethe-a2-fit2:praep-temp-um
       - goethe-a2-fit2:praep-temp-von-bis
+      - goethe-dtz:temp-ab
+      - goethe-dtz:temp-an
+      - goethe-dtz:temp-bis
+      - goethe-dtz:temp-in
+      - goethe-dtz:temp-nach
+      - goethe-dtz:temp-zu
       - goethe-start-deutsch-2:praep-temp-bis
       - goethe-start-deutsch-2:praep-temp-vom-an
     deepens: [zeitangaben]
@@ -602,6 +707,10 @@ points:
       - goethe-a2-fit2:adj-komparation-gut
       - goethe-a2-fit2:adj-komparation-viel
       - goethe-a2-fit2:adj-komparativ
+      - goethe-dtz:komparation-gern
+      - goethe-dtz:komparation-gut
+      - goethe-dtz:komparation-regelmaessig
+      - goethe-dtz:komparation-viel
       - goethe-start-deutsch-2:adj-komparation
 
   - id: superlativ
@@ -614,6 +723,10 @@ points:
       - goethe-a2-fit2:adj-komparation-gern
       - goethe-a2-fit2:adj-komparation-gut
       - goethe-a2-fit2:adj-komparation-viel
+      - goethe-dtz:komparation-gern
+      - goethe-dtz:komparation-gut
+      - goethe-dtz:komparation-regelmaessig
+      - goethe-dtz:komparation-viel
 
   - id: adjektiv-praedikativ
     strand: nominalgruppe
@@ -624,6 +737,7 @@ points:
     claims:
       - goethe-a1-sd1:adj-praedikativ
       - goethe-a2-fit2:adj-praedikativ
+      - goethe-dtz:adj-praedikativ
 
   - id: adjektiv-bestimmt
     strand: nominalgruppe
@@ -634,6 +748,7 @@ points:
     claims:
       - goethe-a1-sd1:adj-attributiv
       - goethe-a2-fit2:adj-attributiv
+      - goethe-dtz:adj-nach-definitem
       - goethe-start-deutsch-2:adj-attributiv-definit
 
   - id: adjektiv-unbestimmt
@@ -645,6 +760,7 @@ points:
     claims:
       - goethe-a1-sd1:adj-attributiv
       - goethe-a2-fit2:adj-attributiv
+      - goethe-dtz:adj-nach-indefinitem
       - goethe-start-deutsch-2:adj-attributiv-indefinit
 
   - id: adjektiv-nullartikel
@@ -655,6 +771,8 @@ points:
     focus: [adjektiv-nullartikel]
     deepens: [adjektiv-bestimmt, adjektiv-unbestimmt]
     note: "Deliberately deferred to B1 and stated as such in the adjektive-deklination article. Listed here so the deferral is visible rather than forgotten."
+    claims:
+      - goethe-dtz:adj-nach-nullartikel
 
   - id: nebensatz-verbende
     strand: satzverbindung
@@ -667,6 +785,7 @@ points:
       - goethe-a2-fit2:nebensatz-dass
       - goethe-a2-fit2:nebensatz-weil
       - goethe-a2-fit2:nebensatz-wenn
+      - goethe-dtz:neben-wenn
       - goethe-start-deutsch-2:nebensatz-weil
       - goethe-start-deutsch-2:nebensatz-wenn
 
@@ -678,6 +797,9 @@ points:
     focus: [indirekte-frage]
     claims:
       - goethe-a2-fit2:nebensatz-fragewort
+      - goethe-dtz:neben-ob
+      - goethe-dtz:neben-wie
+      - goethe-dtz:neben-wo-wohin
 
   - id: aber-sondern
     strand: satzverbindung
@@ -713,6 +835,8 @@ points:
     de: "Verben mit festen Präpositionen"
     en: "Verbs with fixed prepositions"
     focus: [verb-praeposition]
+    claims:
+      - goethe-dtz:verb-praeposition
 
   - id: verbrektion-kasus
     strand: verbvalenz
@@ -731,6 +855,7 @@ points:
       - goethe-a2-fit2:erg-lokal
       - goethe-a2-fit2:erg-nominativ
       - goethe-a2-fit2:erg-qualitativ
+      - goethe-dtz:verb-akkusativ
     deepens: [dativ-verben]
     note: "A different question from either neighbour here, and the one the Goethe A2 verb list leaves implicit: `dativ-verben` grades membership of the dative list (does helfen take the dative?), `verb-praeposition` grades which preposition a verb brings (warten auf, träumen von) — neither asks the learner to CHOOSE between the accusative default and the dative club with both on the table, nor covers the rule that the case inside a chunk is fixed even for a Wechselpräposition (warten auf + Akkusativ wherever the waiting happens). Added 2026-08-12 with `verben-mit-kasus`, the topic that closes it; the A2 denominator moved 31 → 32 in the same change."
 
@@ -740,6 +865,9 @@ points:
     de: "da(r)- und wo(r)-Wörter"
     en: "da- and wo- compounds"
     focus: [da-wo-woerter]
+    claims:
+      - goethe-dtz:praepositionalpronomen-dar
+      - goethe-dtz:praepositionalpronomen-wor
 
   - id: partizip2-system
     strand: verbformen
@@ -779,6 +907,8 @@ points:
       - goethe-a2-fit2:konjunktiv2-haben
       - goethe-a2-fit2:konjunktiv2-koennen
       - goethe-a2-fit2:konjunktiv2-moegen
+      - goethe-dtz:konjunktiv2-koennen
+      - goethe-dtz:konjunktiv2-wuerd
       - goethe-start-deutsch-2:konjunktiv2-haben
       - goethe-start-deutsch-2:konjunktiv2-koennen
 
@@ -799,6 +929,8 @@ points:
     de: "Infinitiv mit zu (Ich habe vor, … zu …)"
     en: "Infinitive with zu"
     focus: [zu-infinitiv]
+    claims:
+      - goethe-dtz:infinitiv-zu
 
   - id: um-zu
     strand: satzverbindung
@@ -806,6 +938,8 @@ points:
     de: "Finalsatz mit um … zu"
     en: "Purpose clause with um … zu"
     focus: [um-zu-zweck]
+    claims:
+      - goethe-dtz:neben-um-zu
 
   - id: relativsatz
     strand: satzverbindung
@@ -813,6 +947,8 @@ points:
     de: "Relativsätze im Nominativ und Akkusativ"
     en: "Relative clauses in the nominative and accusative"
     focus: [relativpronomen-kasus]
+    claims:
+      - goethe-dtz:rel-der-die-das
 
   - id: konjunktionaladverb
     strand: satzverbindung
@@ -824,6 +960,9 @@ points:
       - goethe-a1-sd1:satzverb-dann
       - goethe-a2-fit2:satzverb-dann
       - goethe-a2-fit2:satzverb-deshalb
+      - goethe-dtz:deshalb
+      - goethe-dtz:deswegen
+      - goethe-dtz:trotzdem
       - goethe-start-deutsch-2:satzverb-deshalb
 
   - id: als-wenn
@@ -833,6 +972,9 @@ points:
     en: "als for a single past event vs wenn for repetition"
     focus: [als-wenn-vergangenheit]
     deepens: [nebensatz-verbende]
+    claims:
+      - goethe-dtz:neben-als
+      - goethe-dtz:neben-wenn
 
   - id: futur-werden
     strand: verbformen
@@ -840,6 +982,10 @@ points:
     de: "Futur I mit werden + Infinitiv"
     en: "Future with werden + infinitive"
     focus: [futur-werden]
+    claims:
+      - goethe-dtz:futur1-vermutung
+      - goethe-dtz:futur1-versprechen
+      - goethe-dtz:futur1-vorhersage
 
   - id: interrogativartikel
     strand: nominalgruppe
@@ -851,6 +997,8 @@ points:
     claims:
       - goethe-a2-fit2:artikel-alle
       - goethe-a2-fit2:artikel-interrogativ
+      - goethe-dtz:interrogativ-welch
+      - goethe-dtz:jeder-alle
       - goethe-start-deutsch-2:artikel-alle
       - goethe-start-deutsch-2:artikel-interrogativ
     note: "Both A2 sources list it and no row covered it. The trap is the case: *welch-* takes the case of the noun's role, so the accusative *Welchen Film…?* is where a nominative *Welcher* slips in — EN `which` and RU «какой»/«который» decline for neither, or decline differently. Distinct from `indefinitpronomen`, which owns the free-standing *welch-* pronoun (`Hast du welche?`) rather than the determiner in front of a noun."
@@ -874,6 +1022,12 @@ points:
       - goethe-a2-fit2:pron-indefinit-man
       - goethe-a2-fit2:pron-indefinit-mehr
       - goethe-a2-fit2:pron-indefinit-nichts
+      - goethe-dtz:indefinitpronomen-etwas
+      - goethe-dtz:indefinitpronomen-jemand
+      - goethe-dtz:indefinitpronomen-man
+      - goethe-dtz:indefinitpronomen-mehr
+      - goethe-dtz:indefinitpronomen-nichts
+      - goethe-dtz:indefinitpronomen-niemand
       - goethe-start-deutsch-2:pron-indefinit-jemand
       - goethe-start-deutsch-2:pron-indefinit-niemand
 
@@ -887,6 +1041,7 @@ points:
       - goethe-a1-sd1:genitiv-eigenname
       - goethe-a2-fit2:genitiv-eigenname
       - goethe-a2-fit2:genitiv-ersatzform
+      - goethe-dtz:genitiv-eigennamen
       - goethe-start-deutsch-2:genitiv-ersatzform
 
   - id: passiv-praesens
@@ -896,6 +1051,7 @@ points:
     en: "Present passive — recognition only"
     focus: [passiv-rezeptiv]
     claims:
+      - goethe-dtz:passiv-tempora
       - goethe-start-deutsch-2:passiv
     note: "The exam lists it for comprehension rather than production; a receptive-only point still needs a drilled tag, because recognition that is never checked is not evidence."
 
@@ -932,6 +1088,7 @@ points:
     claims:
       - goethe-a2-fit2:praeteritum-kommen
       - goethe-a2-fit2:praeteritum-sagen
+      - goethe-dtz:praeteritum-aktiv
       - goethe-start-deutsch-2:praeteritum-kommen
       - goethe-start-deutsch-2:praeteritum-sagen
     deepens: [praeteritum]
@@ -944,6 +1101,9 @@ points:
     en: "Past perfect with nachdem — one past event before another"
     focus: [plusquamperfekt-nachdem]
     deepens: [perfekt]
+    claims:
+      - goethe-dtz:neben-nachdem
+      - goethe-dtz:plusquamperfekt
 
   - id: konjunktiv2-irreal
     strand: verbformen
@@ -952,6 +1112,10 @@ points:
     en: "Konjunktiv II: unreal conditions and wishes"
     focus: [konjunktiv2-form, irreale-bedingung]
     deepens: [hoeflich-konjunktiv]
+    claims:
+      - goethe-dtz:konjunktiv2-haben
+      - goethe-dtz:konjunktiv2-sein
+      - goethe-dtz:konjunktiv2-wuerd
 
   - id: konjunktiv2-ratschlag
     strand: verbformen
@@ -961,6 +1125,8 @@ points:
     focus: [konjunktiv2-ratschlag]
     deepens: [hoeflich-konjunktiv]
     note: "A2 teaches könnte and würde gern as fixed politeness chunks (hoeflich-konjunktiv). This point is the productive paradigm behind them, so it must not be marked covered by the A2 tag."
+    claims:
+      - goethe-dtz:konjunktiv2-sollen
 
   - id: passiv-produktion
     strand: verbformen
@@ -970,6 +1136,8 @@ points:
     focus: [passiv-bildung]
     deepens: [passiv-praesens]
     note: "The A2 point passiv-praesens is recognition only and is satisfied by passiv-rezeptiv. Producing the passive is a separate competence and needs its own tag, or the A2 tag would silently close a B1 gap."
+    claims:
+      - goethe-dtz:passiv-tempora
 
   - id: passiv-vergangenheit
     strand: verbformen
@@ -978,6 +1146,10 @@ points:
     en: "Past passive"
     focus: [passiv-vergangenheit]
     deepens: [passiv-produktion]
+    claims:
+      - goethe-dtz:passiv-tempora
+      - goethe-dtz:plusquamperfekt-passiv
+      - goethe-dtz:praeteritum-passiv
 
   - id: passiv-modal
     strand: verbformen
@@ -986,6 +1158,8 @@ points:
     en: "Passive with modal verbs"
     focus: [passiv-modal]
     deepens: [passiv-produktion, modalverben]
+    claims:
+      - goethe-dtz:passiv-modalverb
 
   - id: lassen
     strand: verbvalenz
@@ -1019,6 +1193,7 @@ points:
     focus: [genitiv-form]
     claims:
       - goethe-a1-sd1:genitiv-rezeptiv
+      - goethe-dtz:genitiv
     deepens: [genitiv-eigenname]
     note: "A2 covers only name + -s and the spoken von + Dativ route (genitiv-eigenname). The declined genitive is B1."
 
@@ -1029,6 +1204,8 @@ points:
     en: "Prepositions governing the genitive"
     focus: [praeposition-genitiv]
     claims:
+      - goethe-dtz:temp-waehrend
+      - goethe-dtz:weit-wegen
       - goethe-start-deutsch-2:praep-temp-waehrend-genitiv
     deepens: [genitiv-vollstaendig]
 
@@ -1038,6 +1215,8 @@ points:
     de: "n-Deklination (der Student → den Studenten, der Kollege → dem Kollegen)"
     en: "Weak masculine nouns (n-declension)"
     focus: [n-deklination]
+    claims:
+      - goethe-dtz:n-deklination
 
   - id: adjektiv-nomen
     strand: nominalgruppe
@@ -1047,6 +1226,8 @@ points:
     focus: [adjektiv-nomen]
     deepens: [adjektiv-bestimmt]
     note: "Partly pre-empted by A2 vocabulary, which already teaches Angestellte, Verwandte and Erwachsene as headwords with an accept list. B1 owes the rule those entries are exceptions to."
+    claims:
+      - goethe-dtz:partizipien-als-nomen
 
   - id: komparativ-attributiv
     strand: nominalgruppe
@@ -1073,6 +1254,8 @@ points:
     focus: [relativpronomen-dativ, relativ-praeposition]
     deepens: [relativsatz, dativ-artikel]
     note: "A2 ships the nominative and accusative relative pronoun (relativsatz). This is the added depth the blueprint names, not a re-teach."
+    claims:
+      - goethe-dtz:rel-mit-praeposition
 
   - id: relativ-was-wo
     strand: satzverbindung
@@ -1081,6 +1264,9 @@ points:
     en: "Relative was and wo"
     focus: [relativ-was-wo]
     deepens: [relativsatz]
+    claims:
+      - goethe-dtz:rel-was
+      - goethe-dtz:rel-wo
 
   - id: indefinitpronomen-erweitert
     strand: nominalgruppe
@@ -1090,6 +1276,11 @@ points:
     focus: [indefinitpronomen-erweitert]
     deepens: [indefinitpronomen]
     note: "A2 covers man, jemand, niemand, etwas and nichts (indefinitpronomen). The quantifier set that takes article endings is B1."
+    claims:
+      - goethe-dtz:einige-manche
+      - goethe-dtz:indefinitpronomen-alles
+      - goethe-dtz:indefinitpronomen-irgendjemand
+      - goethe-dtz:jeder-alle
 
   - id: temporalsatz
     strand: satzverbindung
@@ -1098,6 +1289,11 @@ points:
     en: "Temporal subordinate clauses"
     focus: [temporal-nebensatz]
     deepens: [nebensatz-verbende]
+    claims:
+      - goethe-dtz:neben-bevor
+      - goethe-dtz:neben-nachdem
+      - goethe-dtz:neben-seitdem
+      - goethe-dtz:temp-waehrend
 
   - id: konzessivsatz-obwohl
     strand: satzverbindung
@@ -1107,6 +1303,9 @@ points:
     focus: [obwohl-trotzdem]
     deepens: [konjunktionaladverb]
     note: "A2 teaches trotzdem as a position-1 adverb (konjunktionaladverb). The confusion this point names is that its near-synonym sends the verb to the end instead — which only exists once obwohl is taught."
+    claims:
+      - goethe-dtz:neben-obwohl
+      - goethe-dtz:trotzdem
 
   - id: finalsatz-damit
     strand: satzverbindung
@@ -1116,6 +1315,8 @@ points:
     focus: [damit-um-zu]
     deepens: [um-zu]
     note: "A2 teaches um … zu (um-zu). The B1 addition is the constraint that it requires one shared subject, and damit is what the learner needs when there are two."
+    claims:
+      - goethe-dtz:neben-damit
 
   - id: konsekutivsatz-sodass
     strand: satzverbindung
@@ -1124,6 +1325,8 @@ points:
     en: "Consecutive clauses: so … that"
     focus: [sodass-folge]
     deepens: [konjunktionaladverb]
+    claims:
+      - goethe-dtz:neben-so-dass
 
   - id: kausalsatz-da
     strand: satzverbindung
@@ -1132,6 +1335,8 @@ points:
     en: "da as a causal conjunction beside weil"
     focus: [da-weil]
     deepens: [nebensatz-verbende]
+    claims:
+      - goethe-dtz:neben-da
 
   - id: konditionalsatz-falls
     strand: satzverbindung
@@ -1140,6 +1345,8 @@ points:
     en: "Conditional clauses with falls and wenn"
     focus: [falls-wenn]
     deepens: [nebensatz-verbende]
+    claims:
+      - goethe-dtz:neben-wenn
 
   - id: zweiteilige-konnektoren
     strand: satzverbindung
@@ -1147,6 +1354,11 @@ points:
     de: "Zweiteilige Konnektoren (entweder … oder, nicht nur … sondern auch, zwar … aber)"
     en: "Two-part connectors"
     focus: [zweiteilige-konnektoren]
+    claims:
+      - goethe-dtz:entweder-oder
+      - goethe-dtz:nicht-nur-sondern-auch
+      - goethe-dtz:sowohl-als-auch
+      - goethe-dtz:weder-noch
 
   - id: proportionalsatz-je-desto
     strand: satzverbindung
@@ -1156,6 +1368,8 @@ points:
     focus: [je-desto]
     deepens: [komparativ]
     note: "Split out of zweiteilige-konnektoren when B1.5 shipped: that point's tag was carried by three coordinating pairs, and counting it as covered hid the fourth frame from --missing-only forever. This one is a subordinate clause with its own word order (je + Komparativ + Verb am Ende, then desto + Komparativ + finites Verb), needs the comparative, and names a different confusion — so it is its own point, and its tag stays unregistered until a unit teaches it."
+    claims:
+      - goethe-dtz:je-desto
 
   - id: infinitivsatz-ohne-statt
     strand: satzverbindung
@@ -1164,6 +1378,8 @@ points:
     en: "Infinitive clauses with ohne … zu and statt … zu"
     focus: [ohne-statt-zu]
     deepens: [um-zu, infinitiv-mit-zu]
+    claims:
+      - goethe-dtz:neben-anstatt
 
   - id: indirekte-rede
     strand: satzverbindung

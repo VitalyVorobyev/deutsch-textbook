@@ -1,0 +1,452 @@
+# Deutsch-Test für Zuwanderer (DTZ) A2–B1 — Prüfungshandbuch §8.4 STRUKTUREN.
+#
+# WHY THIS FILE MATTERS MORE THAN THE OTHER THREE. Until it landed, B1 had no external anchor at
+# all: `bun scripts/structures.ts B1` reported `anchored: false`, because Goethe's B1 Prüfungsziele
+# is a book (ISBN 978-3-19-031868-1) and the free A1/A2 inventories stop below it. The DTZ handbook
+# is free, is published by Goethe-Institut and telc jointly, and its §8.4 covers exactly the A2–B1
+# span this course is walking. It is the anchor that was assumed not to exist.
+#
+# AND IT IS A PRODUCTION STANDARD. §8.4 opens: "Diese Liste enthält sprachliche Strukturen, die
+# Prüfungsteilnehmende aktiv und passiv beherrschen sollen." Compare the A1 Prüfungsziele, which
+# says the opposite — "Für die mündliche und schriftliche Produktion ist die Grammatik-Liste
+# dagegen von untergeordneter Bedeutung" — and is why `source.mode` exists and is never assumed.
+# This list governs what a candidate must PRODUCE, which is what this course trains. So
+# `mode: production`, and a row claiming an entry here is claiming production, not recognition.
+#
+# WHAT IS COPIED, AND WHAT IS NOT. Structure labels only, in the document's own section order and
+# numbering. The document's example sentences — the whole right-hand column of every table — are
+# NOT reproduced, here or anywhere in this repo. Every German example in `content/` is written for
+# this course. That "the exam tests `wegen` with both Dativ and Genitiv" is a fact; the sentence
+# telc chose to show it with is not ours to take. Verified mechanically: `bun scripts/anchor-check.ts`
+# holds every `de:` below against the extracted source text and reports anything not found in it.
+#
+# ---------------------------------------------------------------------------
+# CUMULATIVE, NOT LEVELLED — the decision that makes this file readable
+# ---------------------------------------------------------------------------
+# The DTZ is one test scored to A2 *or* B1, so §8.4 assigns no level to its entries: it is the
+# repertoire, and the level is decided by how well the candidate uses it. Exactly two entries are
+# excepted, by a footnote on Seite 99. That is why `source.cumulative: true`, which means "every
+# entry counts for every level this source declares, at or above the entry's own level" — an entry
+# marked A2 is measured at A2 *and* at B1, because a structure met at A2 is still required at B1.
+# Without it, encoding the list at A2 would leave B1 unanchored again, and encoding it at B1 would
+# claim the DTZ says something about A2 that it does not.
+#
+# THE FOOTNOTE, TRANSCRIBED AS FOUND. Seite 99 carries one footnote, marked ¹, reading: "Die
+# Einträge mit Sternchen gelten nur für die Niveaustufe B1." Two entries in the tables carry the
+# marker — `bis + Akkusativ` and `seit + Dativ`, both in 5.1 temporal — and the marker they carry
+# is a superscript numeral, not the asterisk the footnote names. The footnote is therefore
+# self-inconsistent about its own glyph. Both entries are encoded `level: B1` with a `note:`,
+# because the intent is unambiguous even where the typography is not, and because a source is not
+# improved by being quietly corrected — it is made unverifiable.
+#
+# OVERVIEW VS DETAIL. The section overview on Seite 97 and the detail tables on Seiten 98–100 do
+# not agree, in two ways, and neither is smoothed here:
+#   - the overview lists **Modalverben** as the fourth Verb subsection; the tables number 1.3
+#     *Verbvalenz* and fold modals into 1.1 Tempus and 1.2 Modus. The tables win, because they are
+#     what carries the entries; `sections` follows their numbering.
+#   - the overview lists a seventh top-level group **Wortbildung** (Nomen, Adjektive); the tables
+#     have no group 7 and put Wortbildung inside sections 1.4, 2.4, 4.5 and 6.4. Again the tables
+#     win, and the overview's seventh group has no entries of its own to lose.
+#
+# TWO HEADINGS THAT DO NOT MEAN WHAT THEY SAY, left as printed: 1.2 *Modus* contains the Passiv,
+# which is a voice and not a mood; 6.4 *Wortbildung* contains the Konjunktionaladverbien
+# (deshalb, darum, deswegen, daher, trotzdem), which are not word formation.
+#
+# WRAPPED ROW LABELS. Several Verb rows print a tense on one line and its qualifier on the next
+# ("Präteritum" / "passiv: alle Verben, Modalverben"). Line spacing inside a table cell is uniform
+# at 9 pt with 18–27 pt between cells, so the cell boundaries are recoverable and were read off the
+# glyph positions rather than guessed. Two rows resisted it and say so in their own `note:`.
+#
+# COMPLETENESS, checked rather than felt. `bun scripts/anchor-check.ts goethe-dtz --unaccounted`
+# reads every line printed inside the two label columns and lists the ones no entry accounts for.
+# On 2026-08-14 that list was 71 rows and every one of them is a section heading, a bare group
+# number, the running title, the Seite-99 footnote, the overview's phantom "Adjektive" group, or one
+# half of a label this file transcribes whole ("Komposita – gleiches Bestimmungs-" / "wort";
+# "an" / "+ Dativ"). **No printed structure label is missing.** The check is deliberately left
+# noisy rather than tuned until it prints nothing: an instrument trained to be quiet is one that
+# stops finding the holes it exists for.
+#
+# Extraction: pdftotext -f 101 -l 104 -layout dtz_pruefungshandbuch.pdf, plus -bbox-layout for the
+# cell boundaries. Reference from a grammar-inventory row: `claims: [goethe-dtz:<key>]`.
+
+source:
+  id: goethe-dtz
+  title: "Deutsch-Test für Zuwanderer A2·B1 — Prüfungshandbuch"
+  publisher: "Goethe-Institut e.V. und telc GmbH"
+  edition: "2009 (Perlmann-Balme, Plassmann, Zeidler)"
+  chapter: "8 Sprachliche Inventare — 8.4 Strukturen"
+  pages: "97–100"
+  # Which PDF pages hold those printed pages, for `bun scripts/anchor-check.ts` — declared
+  # outright, because a linear offset does not survive a two-up scan.
+  pdf_pages: "101–104"
+  # Where §8.4's tables print their LABEL columns, in PDF points, for `--unaccounted`. Measured
+  # from a line-start histogram, not guessed: left labels cluster at x≈63 and their examples at
+  # x≈178, right labels at x≈325 (with the case column at x≈371) and theirs at x≈441.
+  label_columns: [[44, 70], [305, 380]]
+  levels: [A2, B1]
+  cumulative: true
+  status: current
+  audience: "Erwachsene Zugewanderte"
+  mode: production
+  url: "https://www.goethe.de/resources/files/pdf209/dtz_pruefungshandbuch.pdf"
+  local: "docs/GeotheInstitute/dtz_pruefungshandbuch.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  # ---- 1 Verb -------------------------------------------------------------
+  - id: verb-tempus
+    de: "1.1 Verb · Tempus"
+    page: 98
+    entries:
+      - { key: praesens, level: A2, de: "Präsens – alle Verben, Modalverben" }
+      - { key: perfekt, level: A2, de: "Perfekt – alle Verben, Modalverben" }
+      - { key: praeteritum-passiv, level: A2, de: "Präteritum passiv: alle Verben, Modalverben" }
+      - { key: praeteritum-aktiv, level: A2, de: "Präteritum aktiv: haben, sein, kommen, es gibt, gehen, finden" }
+      - key: praeteritum-modalverben
+        level: A2
+        de: "Modalverben und gebräuchlichste Verben"
+        note: >-
+          Printed as its own row between the Präteritum rows and Plusquamperfekt, with a Präteritum
+          example, but without repeating a tense name. Read as extending Präteritum aktiv beyond the
+          six verbs the row above names. Transcribed as printed rather than completed.
+      - { key: plusquamperfekt, level: A2, de: "Plusquamperfekt" }
+      - key: plusquamperfekt-passiv
+        level: A2
+        de: "passiv: alle Verben"
+        note: >-
+          Follows Plusquamperfekt inside the same cell, so it reads as "Plusquamperfekt passiv" —
+          but the cell's only example is active, so the pairing is not confirmed by the source.
+          Left as printed.
+      - { key: futur1-versprechen, level: A2, de: "Futur I: Versprechen" }
+      - { key: futur1-vorhersage, level: A2, de: "Futur I: Vorhersage" }
+      - { key: futur1-vermutung, level: A2, de: "Futur I: Vermutung" }
+
+  - id: verb-modus
+    de: "1.2 Verb · Modus"
+    page: 98
+    entries:
+      - { key: indikativ, level: A2, de: "Indikativ – alle Verben" }
+      - { key: konjunktiv2-haben, level: A2, de: "Konjunktiv II: haben" }
+      - { key: konjunktiv2-sein, level: A2, de: "Konjunktiv II: sein" }
+      - { key: konjunktiv2-sollen, level: A2, de: "Konjunktiv II: sollen" }
+      - { key: konjunktiv2-koennen, level: A2, de: "Konjunktiv II: können" }
+      - { key: konjunktiv2-wuerd, level: A2, de: "würd-" }
+      - { key: passiv-tempora, level: A2, de: "Passiv (Präsens, Präteritum, Perfekt)" }
+      - { key: passiv-modalverb, level: A2, de: "passivisch mit Modalverb" }
+
+  - id: verb-valenz
+    de: "1.3 Verb · Verbvalenz"
+    page: 98
+    entries:
+      - { key: verb-akkusativ, level: A2, de: "Verb + Akkusativ" }
+      - { key: verb-dativ, level: A2, de: "Verb + Dativ" }
+      - { key: verb-dativ-akkusativ, level: A2, de: "Verb + Dativ / Akkusativ" }
+      - { key: verb-praeposition, level: A2, de: "Verb + Präposition" }
+
+  - id: verb-wortbildung
+    de: "1.4 Verb · Wortbildung (Vorsilben)"
+    page: 98
+    entries:
+      - { key: vorsilbe-heraus, level: A2, de: "Vorsilben: heraus, raus" }
+      - { key: vorsilbe-herein, level: A2, de: "Vorsilben: herein, rein" }
+      - { key: vorsilbe-herunter, level: A2, de: "Vorsilben: herunter, runter" }
+      - { key: vorsilbe-herauf, level: A2, de: "Vorsilben: herauf, rauf" }
+      - { key: vorsilbe-hin, level: A2, de: "Vorsilben: hin" }
+      - { key: vorsilbe-hinauf, level: A2, de: "Vorsilben: hinauf, rauf" }
+      - { key: vorsilbe-hinaus, level: A2, de: "Vorsilben: hinaus, raus" }
+      - { key: vorsilbe-hinueber, level: A2, de: "Vorsilben: hinüber, rüber" }
+      - { key: vorsilbe-hinunter, level: A2, de: "Vorsilben: hinunter, runter" }
+      - { key: vorsilbe-mit, level: A2, de: "Vorsilben: mit" }
+      - { key: vorsilbe-vorbei, level: A2, de: "Vorsilben: vorbei" }
+      - { key: vorsilbe-weg, level: A2, de: "Vorsilben: weg" }
+      - { key: vorsilbe-weiter, level: A2, de: "Vorsilben: weiter" }
+      - { key: vorsilbe-zurueck, level: A2, de: "Vorsilben: zurück" }
+      - { key: vorsilbe-zusammen, level: A2, de: "Vorsilben: zusammen" }
+
+  # ---- 2 Nomen ------------------------------------------------------------
+  - id: nomen-genus
+    de: "2.1 Nomen · Genus"
+    page: 98
+    entries:
+      - { key: genus, level: A2, de: "der / die / das" }
+
+  - id: nomen-numerus
+    de: "2.2 Nomen · Numerus"
+    page: 98
+    entries:
+      - { key: numerus, level: A2, de: "Singular / Plural" }
+
+  - id: nomen-kasus
+    de: "2.3 Nomen · Kasus"
+    page: 98
+    entries:
+      - { key: nominativ, level: A2, de: "Nominativ" }
+      - { key: akkusativ, level: A2, de: "Akkusativ" }
+      - { key: dativ, level: A2, de: "Dativ" }
+      - { key: genitiv, level: A2, de: "Genitiv" }
+      - { key: genitiv-eigennamen, level: A2, de: "Genitiv bei Eigennamen im Singular" }
+      - { key: n-deklination, level: A2, de: "n-Deklination" }
+
+  - id: nomen-wortbildung
+    de: "2.4 Nomen · Wortbildung"
+    page: 98
+    entries:
+      - { key: komposita-grundwort, level: A2, de: "Komposita – gleiches Grundwort" }
+      - { key: komposita-bestimmungswort, level: A2, de: "Komposita – gleiches Bestimmungswort" }
+      - { key: nominalisierung, level: A2, de: "Nominalisierung" }
+      - { key: partizipien-als-nomen, level: A2, de: "Partizipien" }
+      - { key: feminine-formen, level: A2, de: "feminine Formen" }
+      - { key: nachsilbe-chen, level: A2, de: "Nachsilbe: -chen" }
+
+  # ---- 3 Artikelwörter / Pronomen ----------------------------------------
+  - id: artikel
+    de: "3.1 Artikelwörter · Artikel"
+    page: 98
+    entries:
+      - { key: definitartikel, level: A2, de: "Definitartikel: der / die / das / die" }
+      - { key: dieser, level: A2, de: "Definitartikel: dieser / diese / dieses / diese" }
+      - { key: derselbe, level: A2, de: "Definitartikel: derselbe/ dieselbe / dasselbe / dieselben" }
+      - { key: jeder-alle, level: A2, de: "Definitartikel: jeder / jede / jedes / alle" }
+      - { key: indefinitartikel, level: A2, de: "Indefinitartikel: ein / eine / ein" }
+      - { key: wenige, level: A2, de: "Indefinitartikel: wenige" }
+      - { key: ein-paar, level: A2, de: "Indefinitartikel: ein paar" }
+      - { key: einige-manche, level: A2, de: "Indefinitartikel: einige / manche" }
+      - key: interrogativ-welch
+        level: A2
+        de: "interrogativ – welch-"
+        note: "Printed after Indefinitartikel with a blank line and no heading of its own."
+      - { key: possessiv-alle, level: A2, de: "possessiv – alle" }
+      - { key: negativ-kein, level: A2, de: "negativ – kein" }
+
+  - id: pronomen
+    de: "3.2 Artikelwörter · Pronomen"
+    page: 99
+    entries:
+      - { key: personalpronomen-nominativ, level: A2, de: "Personalpronomen: Nominativ" }
+      - { key: personalpronomen-akkusativ, level: A2, de: "Personalpronomen: Akkusativ" }
+      - { key: personalpronomen-dativ, level: A2, de: "Personalpronomen: Dativ" }
+      - { key: indefinitpronomen-jemand, level: A2, de: "Indefinitpronomen: jemand" }
+      - { key: indefinitpronomen-irgendjemand, level: A2, de: "Indefinitpronomen: irgendjemand" }
+      - { key: indefinitpronomen-man, level: A2, de: "Indefinitpronomen: man" }
+      - { key: reziprokpronomen-sich, level: A2, de: "Reziprokpronomen: sich" }
+      - { key: reziprokpronomen-uns, level: A2, de: "Reziprokpronomen: uns" }
+      - { key: praepositionalpronomen-dar, level: A2, de: "Präpositionalpronomen: da(r) –" }
+      - { key: praepositionalpronomen-wor, level: A2, de: "Präpositionalpronomen: wo(r)-" }
+      - key: indefinitpronomen-niemand
+        level: A2
+        de: "Indefinitpronomen: niemand"
+        note: >-
+          niemand, etwas, nichts, mehr and alles are printed below the Präpositionalpronomen rows
+          without a heading; their examples are indefinite-pronoun uses, so they continue the
+          Indefinitpronomen block the layout separated them from.
+      - { key: indefinitpronomen-etwas, level: A2, de: "Indefinitpronomen: etwas" }
+      - { key: indefinitpronomen-nichts, level: A2, de: "Indefinitpronomen: nichts" }
+      - { key: indefinitpronomen-mehr, level: A2, de: "Indefinitpronomen: mehr" }
+      - { key: indefinitpronomen-alles, level: A2, de: "Indefinitpronomen: alles" }
+
+  # ---- 4 Adjektiv ---------------------------------------------------------
+  - id: adjektiv-attributiv
+    de: "4.1 Adjektiv · attributiv"
+    page: 99
+    entries:
+      - { key: adj-nach-definitem, level: A2, de: "nach definitem Artikel im Nominativ/Akkusativ/Dativ" }
+      - { key: adj-nach-indefinitem, level: A2, de: "nach indefinitem Artikel im Nominativ/Akkusativ/Dativ" }
+      - { key: adj-nach-nullartikel, level: A2, de: "nach Nullartikel im Nominativ/Akkusativ/Dativ" }
+
+  - id: adjektiv-praedikativ
+    de: "4.2 Adjektiv · prädikativ"
+    page: 99
+    entries:
+      - key: adj-praedikativ
+        level: A2
+        de: "prädikativ"
+        specified: heading-only
+        note: "The subsection carries an example but no row label; the heading is the entry."
+
+  - id: adjektiv-adverbial
+    de: "4.3 Adjektiv · adverbial"
+    page: 99
+    entries:
+      - key: adj-adverbial
+        level: A2
+        de: "adverbial"
+        specified: heading-only
+        note: "The subsection carries examples but no row label; the heading is the entry."
+
+  - id: adjektiv-komparation
+    de: "4.4 Adjektiv · Komparation"
+    page: 99
+    entries:
+      - key: komparation-regelmaessig
+        level: A2
+        de: "Komparation"
+        specified: heading-only
+        note: >-
+          Regular Komparativ and Superlativ are exemplified directly under the 4.4 heading with no
+          row label of their own; the four rows below are the irregular and ordinal cases.
+      - { key: komparation-gern, level: A2, de: "gern/lieber /am liebsten" }
+      - { key: komparation-viel, level: A2, de: "viel/mehr /am meisten" }
+      - { key: komparation-gut, level: A2, de: "gut/besser/am besten" }
+      - { key: ordinalzahlen, level: A2, de: "Ordinalzahlen: der erste/der zweite ... der zwanzigste" }
+
+  - id: adjektiv-wortbildung
+    de: "4.5 Adjektiv · Wortbildung"
+    page: 99
+    entries:
+      - { key: adj-vorsilbe-un, level: A2, de: "Vorsilbe: -un" }
+      - { key: adj-nachsilben, level: A2, de: "Nachsilbe: -los, -bar, -wert, -lich, -ig" }
+      - { key: adj-komposita, level: A2, de: "Komposita" }
+
+  # ---- 5 Präposition ------------------------------------------------------
+  - id: praeposition-temporal
+    de: "5.1 Präposition · temporal"
+    page: 99
+    entries:
+      - { key: temp-ab, level: A2, de: "ab" }
+      - { key: temp-an, level: A2, de: "an + Dativ" }
+      - key: temp-bis
+        level: B1
+        de: "bis + Akkusativ"
+        note: >-
+          One of the two entries carrying the Seite-99 footnote marker restricting them to B1. The
+          marker printed is a superscript numeral; the footnote text calls it an asterisk.
+      - { key: temp-in, level: A2, de: "in + Dativ" }
+      - { key: temp-mit, level: A2, de: "mit + Dativ" }
+      - { key: temp-nach, level: A2, de: "nach + Dativ" }
+      - key: temp-seit
+        level: B1
+        de: "seit + Dativ"
+        note: "The second footnote-marked, B1-only entry. See temp-bis."
+      - { key: temp-um, level: A2, de: "um + Akkusativ" }
+      - { key: temp-vor, level: A2, de: "vor + Dativ" }
+      - { key: temp-waehrend, level: A2, de: "während + Genitiv/Dativ" }
+      - { key: temp-ueber, level: A2, de: "über + Akkusativ" }
+      - { key: temp-zwischen, level: A2, de: "zwischen + Dativ/Akkusativ" }
+      - { key: temp-zu, level: A2, de: "zu + Dativ" }
+
+  - id: praeposition-lokal
+    de: "5.2 Präposition · lokal"
+    page: 99
+    entries:
+      - { key: lok-an, level: A2, de: "an + Dativ/Akkusativ" }
+      - { key: lok-auf, level: A2, de: "auf + Dativ" }
+      - { key: lok-aus, level: A2, de: "aus + Dativ" }
+      - { key: lok-ausserhalb, level: A2, de: "außerhalb + Genitiv" }
+      - { key: lok-bei, level: A2, de: "bei + Dativ" }
+      - { key: lok-gegen, level: A2, de: "gegen + Akkusativ" }
+      - { key: lok-hinter, level: A2, de: "hinter + Dativ/Akkusativ" }
+      - { key: lok-in, level: A2, de: "in + Dativ/Akkusativ" }
+      - { key: lok-gegenueber, level: A2, de: "gegenüber + Dativ" }
+      - { key: lok-nach, level: A2, de: "nach + Dativ" }
+      - { key: lok-neben, level: A2, de: "neben + Dativ/Akkusativ" }
+      - { key: lok-unter, level: A2, de: "unter + Dativ/Akkusativ" }
+      - { key: lok-ueber, level: A2, de: "über + Dativ/Akkusativ" }
+      - { key: lok-um, level: A2, de: "um + Akkusativ" }
+      - { key: lok-um-herum, level: A2, de: "um … (herum) + Akkusativ" }
+      - { key: lok-von, level: A2, de: "von + Dativ" }
+      - { key: lok-zu, level: A2, de: "zu + Dativ" }
+      - { key: lok-zwischen, level: A2, de: "zwischen + Dativ/Akkusativ" }
+
+  - id: praeposition-modal
+    de: "5.3 Präposition · modal"
+    page: 99
+    entries:
+      - { key: mod-aus, level: A2, de: "aus + Dativ" }
+      - { key: mod-fuer, level: A2, de: "für + Akkusativ" }
+      - { key: mod-mit, level: A2, de: "mit + Dativ" }
+      - { key: mod-ohne, level: A2, de: "ohne + Akkusativ" }
+      - { key: mod-wie, level: A2, de: "wie + Nominativ" }
+
+  - id: praeposition-weitere
+    de: "5.4 Präposition · Weitere Präpositionen"
+    page: 99
+    entries:
+      - { key: weit-nach, level: A2, de: "nach" }
+      - { key: weit-wegen, level: A2, de: "wegen + Dativ/Genitiv" }
+      - { key: weit-zum, level: A2, de: "zum" }
+
+  # ---- 6 Satz -------------------------------------------------------------
+  - id: satz-satzklammer
+    de: "6.1 Satz · Satzklammer"
+    page: 100
+    entries:
+      - key: satzklammer
+        level: A2
+        de: "Satzklammer"
+        specified: heading-only
+        note: >-
+          The subsection has no row labels; its three examples show the bracket with a separable
+          verb, with a modal, and in the Perfekt.
+
+  - id: satz-negation
+    de: "6.2 Satz · Negation"
+    page: 100
+    entries:
+      - { key: negation-kein, level: A2, de: "kein" }
+      - { key: negation-nicht, level: A2, de: "nicht" }
+
+  - id: satz-fragesatz
+    de: "6.3 Satz · Fragesatz"
+    page: 100
+    entries:
+      - { key: entscheidungsfrage, level: A2, de: "Entscheidungsfrage" }
+      - { key: ergaenzungsfrage, level: A2, de: "Ergänzungsfrage" }
+
+  - id: satz-wortbildung
+    de: "6.4 Satz · Wortbildung"
+    page: 100
+    entries:
+      - { key: deshalb, level: A2, de: "deshalb" }
+      - { key: darum, level: A2, de: "darum" }
+      - { key: deswegen, level: A2, de: "deswegen" }
+      - { key: daher, level: A2, de: "daher" }
+      - { key: trotzdem, level: A2, de: "trotzdem" }
+
+  - id: satz-nebensatz
+    de: "6.5 Satz · Hauptsatz + Nebensatz"
+    page: 100
+    entries:
+      - { key: neben-ob, level: A2, de: "ob" }
+      - { key: neben-wo-wohin, level: A2, de: "wo/wohin" }
+      - { key: neben-da, level: A2, de: "da" }
+      - { key: neben-als, level: A2, de: "als" }
+      - { key: neben-nachdem, level: A2, de: "nachdem" }
+      - { key: neben-bevor, level: A2, de: "bevor" }
+      - { key: neben-seitdem, level: A2, de: "seit(dem)" }
+      - { key: neben-um-zu, level: A2, de: "um … zu" }
+      - { key: neben-damit, level: A2, de: "damit" }
+      - { key: neben-so-dass, level: A2, de: "so … dass" }
+      - { key: neben-obwohl, level: A2, de: "obwohl" }
+      - { key: neben-wenn, level: A2, de: "wenn" }
+      - { key: neben-wie, level: A2, de: "wie" }
+      - { key: neben-anstatt, level: A2, de: "(an)statt" }
+
+  - id: satz-relativsatz
+    de: "6.6 Satz · Relativsatz"
+    page: 100
+    entries:
+      - { key: rel-der-die-das, level: A2, de: "der/die/das" }
+      - { key: rel-mit-praeposition, level: A2, de: "der/die/das + Präposition" }
+      - { key: rel-wo, level: A2, de: "wo" }
+      - { key: rel-was, level: A2, de: "was" }
+
+  - id: satz-infinitivsatz
+    de: "6.7 Satz · Infinitivsatz"
+    page: 100
+    entries:
+      - key: infinitiv-zu
+        level: A2
+        de: "Infinitivsatz"
+        specified: heading-only
+        note: "The plain zu-Infinitiv is exemplified under the heading with no row label of its own."
+      - { key: nicht-brauchen-zu, level: A2, de: "(nicht) brauchen zu" }
+
+  - id: satz-doppelkonjunktionen
+    de: "6.8 Satz · Doppelkonjunktionen"
+    page: 100
+    entries:
+      - { key: entweder-oder, level: A2, de: "entweder … oder" }
+      - { key: weder-noch, level: A2, de: "weder … noch" }
+      - { key: sowohl-als-auch, level: A2, de: "sowohl … als auch" }
+      - { key: nicht-nur-sondern-auch, level: A2, de: "nicht nur … sondern auch" }
+      - { key: je-desto, level: A2, de: "je … desto" }

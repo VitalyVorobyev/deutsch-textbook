@@ -52,13 +52,28 @@ export interface StructureSourceMeta {
   chapter?: string;
   pages?: string;
   levels: Level[];
+  /**
+   * The source assigns no level to its entries — its whole list is the repertoire across every
+   * level in `levels`, and an entry's own `level` is the floor at which the source first requires
+   * it, not the level it belongs to.
+   *
+   * This exists because the DTZ handbook is one exam scored to A2 *or* B1, so §8.4 levels nothing:
+   * two entries carry a B1-only footnote and the other 162 carry nothing at all. Encoding that list
+   * at A2 would have left B1 unanchored for a second time; encoding it at B1 would have made the
+   * DTZ say something about A2 that it does not. A cumulative source is measured at every declared
+   * level at or above each entry's floor, which is the only reading that is true at both.
+   */
+  cumulative?: boolean;
   /** `retired` marks a superseded exam: real evidence about a level's shape, not a requirement. */
   status?: 'current' | 'retired';
   audience?: string;
   mode?: SourceMode;
   url?: string;
   local?: string;
+  /** Printed page range, as the document numbers itself. */
   retrieved?: string;
+  /** Which pages of `local` hold `pages` — for `bun scripts/anchor-check.ts`. */
+  pdf_pages?: string;
 }
 
 export interface StructureEntry {
@@ -151,10 +166,17 @@ export function structureCoverage(level: Level, root = repoRoot()): StructureCov
   const covering = sources.filter((s) => s.source.levels.includes(level));
 
   const results: EntryResult[] = [];
+  const rank = (l: Level) => LEVELS.indexOf(l);
   for (const src of covering)
     for (const section of src.sections)
       for (const entry of section.entries) {
-        if (entry.level !== level) continue;
+        // A levelled source answers "what does the standard require AT this level"; a cumulative
+        // one answers "what must still be in the repertoire BY this level", so its A2 entries are
+        // measured at B1 too. Both readings are the source's own — never inferred.
+        const inScope = src.source.cumulative
+          ? rank(entry.level) <= rank(level)
+          : entry.level === level;
+        if (!inScope) continue;
         const owners = claimedBy.get(entryRef(src.source.id, entry.key)) ?? [];
         const levels = owners.map((id) => byId.get(id)).filter(Boolean).map((p) => productionLevel(p!));
         results.push({

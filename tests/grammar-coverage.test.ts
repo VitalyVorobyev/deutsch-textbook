@@ -80,10 +80,16 @@ describe('grammar coverage', () => {
   // both listed at A2 and covered by nothing) and three from registered focus tags that no row
   // referenced (`partizip2-form`, `wechsel-akk-dat`, `will-moechte`). Three of the five were
   // already drilled and closed on arrival; two are open and named here.
-  test('A2 reports the two structures its standard lists and no content teaches', () => {
+  // A third joined them on 2026-08-14 when the DTZ Prüfungshandbuch landed as an anchor. `über +
+  // Akkusativ` as a duration had sat as A1's single unclaimed entry with a backlog item (P26-8)
+  // asking whether it is a temporal preposition at all; the DTZ files it under §8.4 5.1 *temporal*,
+  // so two independent standards agree and it earned a row. NOTHING TEACHES IT, which is exactly
+  // why the number went the wrong way here — a denominator that only ever grows when the content
+  // is ready is not a denominator.
+  test('A2 reports the three structures its standard lists and no content teaches', () => {
     const coverage = grammarCoverage('A2');
     const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
-    expect(missing).toEqual(['interrogativartikel', 'reziprokpronomen']);
+    expect(missing).toEqual(['interrogativartikel', 'reziprokpronomen', 'ueber-dauer']);
     // Nothing is merely late either: a point taught above its standard level would
     // still count toward the percentage, so it has to be asserted separately.
     expect(coverage.late).toBe(0);

@@ -78,9 +78,10 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   `data/strukturenlisten/*.yaml` and every new entry starts life `unclaimed`, so the size of the job
   is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
   the free A2 list here is *Fit in Deutsch 2*, the youth exam.
-- **P26-8 · `über` as a duration marker** — the one remaining unclaimed A1 entry (*über 20 Minuten*),
-  taught nowhere. Marginal — it is closer to a quantifier than a temporal preposition — so it needs a
-  ruling before it needs a row.
+- **P26-8 · `über` as a duration marker — RULED 2026-08-14, row added, still untaught.** The DTZ
+  Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
+  not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar
+  coverage reads 35/38. Closing it means authoring the items, not editing this line.
 - **P26-9 · Twenty articles whose `## Erklärung` has no `###` subsections** — every case topic among
   them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
   `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
@@ -409,7 +410,14 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   `um … zu`), and full forms whose short forms ship (`Personenkraftwagen`, `Akkumulator`). Several
   of the frames are grammar-taught, so they may earn `~` markers — but a `~` must be earned (the
   validator requires the word in the taught surface) and each needs a manifest line. Go row by row;
-  the rest stay open with this entry as the reason, and no coverage figure may round them away. — when an existing
+  the rest stay open with this entry as the reason, and no coverage figure may round them away.
+  **The correlative frames are settled as of 2026-08-14 and are not lexis:** the DTZ
+  Prüfungshandbuch §8.4 lists *entweder … oder*, *weder … noch*, *sowohl … als auch*, *nicht nur …
+  sondern auch* and *je … desto* as **6.8 Doppelkonjunktionen**, and *um … zu* as a 6.5
+  Nebensatz-Konjunktion — structures, in a grammar inventory, all six claimed by
+  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. So they are eligible for `~`;
+  what remains is the per-row manifest work and the taught-surface check the validator runs, which
+  is real work and is what is still open here. — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
   `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).

@@ -98,3 +98,44 @@ can no longer be checked.
 - **One file per level rather than per document.** Rejected: A2 has three candidate authorities (the
   current youth exam, the retired Start Deutsch 2, the unbought adult exam) that disagree in scope,
   and merging them would make a row's authority unreadable — the defect this ADR exists to end.
+
+## Amendment, 2026-08-14 — the DTZ, and three things it changed
+
+The Deutsch-Test für Zuwanderer Prüfungshandbuch (Goethe-Institut | telc, 2009) is free, and its
+§8.4 is a **164-entry grammar inventory covering A2 *and* B1**. B1's "100% against no external
+list" is over: it now reads **141/164**, with 23 named holes.
+
+Three consequences the original decision did not anticipate:
+
+- **`audience` had to become load-bearing, not documentation.** For one day A2 read 138/138 = 100%,
+  and the list it was 100% of was *Fit in Deutsch 2* — the exam for teenagers. The adult A2
+  Prüfungsziele is not published free and Start Deutsch 2 is retired, so a youth exam was the only
+  current A2 anchor and nothing in the report said so. `scripts/structures.ts` now prints
+  `[audience]`, `[mode]` and `[kumulativ]` beside every source it counted. The ADR's original
+  rejection of one-file-per-level is what made this fixable: the authorities were still separable.
+- **`cumulative: true` is a new property of a source.** The DTZ is one exam scored to A2 *or* B1, so
+  §8.4 assigns no level: two entries carry a B1-only footnote and 162 carry nothing. A cumulative
+  source is measured at every declared level at or above each entry's floor. Encoding it at A2 alone
+  would have left B1 unanchored a second time; at B1 alone it would have made the DTZ say something
+  about A2 that it does not.
+- **`mode: production` finally appears.** Every anchor so far was `reception` or `unstated`, which
+  meant the course's *production* claim rested on nothing external. §8.4 opens with "Strukturen, die
+  Prüfungsteilnehmende **aktiv und passiv** beherrschen sollen" — the first published list that
+  measures what this course actually trains.
+
+### The transcription itself became checkable
+
+`bun scripts/anchor-check.ts` reads the source with `pdftotext` and holds every `de:` label against
+it. This closes a hole the original ADR left open: it argued that labels-only keeps the boundary
+legal, but nothing checked that a label was a label the document *printed*. On its first run three
+of the four existing files failed — they had expanded the source's own wording into fuller
+grammatical terms (`Indefinitpronomen: man` for the printed `Indefinit: man`; `Attributives
+Adjektiv`, where the booklet never uses the word *attributiv* at all). The entries were right and
+the denominator was the right size; the labels were paraphrases, and a paraphrased denominator
+cannot be checked against the document it claims to come from.
+
+The check is not a CI gate, on purpose: the PDFs are local-only (ADR 0009), so a clean checkout
+cannot run it and an absent source skips rather than fails — the contract `exam:ingest` already
+keeps. Each source therefore also declares `pdf_pages`, the PDF pages holding its printed `pages`.
+That is declared outright rather than as an offset because Start Deutsch 2's PDF is a two-up scan
+whose every page carries two printed pages.

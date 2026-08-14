@@ -60,8 +60,14 @@ describe('grammar depth', () => {
       },
       { thin: 0, singleFile: 0, noProbe: 0 },
     );
+    // 15 → 16 on 2026-08-14, and it is worth saying why a ratchet moved the wrong way. The DTZ
+    // Prüfungshandbuch settled a backlog ruling (P26-8) that `über + Akkusativ` as a duration is a
+    // temporal preposition, so `ueber-dauer` became an inventory row and a registered tag — with
+    // **zero items behind it**, because nothing teaches it yet. That is the entire point of adding
+    // it: the gap is now counted in three places (here, `grammar-coverage`, and the tag table)
+    // instead of being invisible. Lower it again by authoring the items, never by dropping the tag.
     expect([
-      totals.thin <= 15,
+      totals.thin <= 16,
       totals.singleFile <= 18,
       totals.noProbe <= 13,
     ]).toEqual([true, true, true]);

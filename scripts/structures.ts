@@ -61,8 +61,14 @@ for (const level of levels) {
   );
   for (const s of coverage.sources)
     console.log(
+      // `audience` is printed because leaving it out let A2 read 138/138 = 100% for a day against
+      // *Fit in Deutsch 2*, which is the exam for teenagers. This course is for an adult learner,
+      // the adult A2 Prüfungsziele is not published free, and Start Deutsch 2 is retired — so the
+      // only current, free, adult standard covering A2 is the DTZ. A percentage that does not say
+      // whose exam it is measured against is not a percentage anybody can act on.
       `   source: ${s.id} — ${s.title}${s.pages ? `, S. ${s.pages}` : ''}` +
-        `${s.status === 'retired' ? '  [RETIRED]' : ''}${s.mode ? `  [${s.mode}]` : ''}`,
+        `${s.status === 'retired' ? '  [RETIRED]' : ''}${s.audience ? `  [${s.audience}]` : ''}` +
+        `${s.mode ? `  [${s.mode}]` : ''}${s.cumulative ? '  [kumulativ A2–B1]' : ''}`,
     );
   console.log();
 

@@ -65,6 +65,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'verb-praeposition': 'verben-mit-praepositionen',
   'verb-kasus': 'verben-mit-kasus',
   'zeitangaben-system': 'zeit-praepositionen',
+  'ueber-dauer': 'zeit-praepositionen',
   'da-wo-woerter': 'verben-mit-praepositionen',
   'nebensatz-verbende': 'nebensaetze-plaene',
   'weil-denn': 'nebensaetze-plaene',
