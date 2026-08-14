@@ -66,6 +66,10 @@ meantime, Redaction refuses to overwrite it. Reload the source and merge the two
 deliberately. Writes are atomic and limited to existing supported text files below `content/` and
 `data/`; file creation, deletion, and moves remain repository operations.
 
+During the current pilot, save or deliberately discard the buffer before following another
+Redaction link. Closing or reloading the window is guarded, but internal hash navigation does not
+yet have the complete unsaved-changes confirmation required for broad use.
+
 The **GitHub** link is secondary provenance. It opens the corresponding source on `main`; it does
 not replace the local preview, local edit, or review of the eventual branch diff.
 
