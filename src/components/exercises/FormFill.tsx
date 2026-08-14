@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { z } from 'zod';
-import type { formItemSchema } from '../../lib/schemas';
+import type { formItemSchema } from '@da/schema';
 import { answerMatches } from '../../lib/cloze';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 

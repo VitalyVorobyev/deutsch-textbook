@@ -7,6 +7,7 @@
       "dependencies": {
         "@astrojs/mdx": "^7.0.3",
         "@astrojs/react": "^6.0.1",
+        "@da/schema": "workspace:*",
         "@tailwindcss/typography": "^0.5.20",
         "@tailwindcss/vite": "^4.3.3",
         "@tauri-apps/api": "^2.11.1",
@@ -46,6 +47,13 @@
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.65.0",
         "vite": "^8.1.5",
+      },
+    },
+    "packages/schema": {
+      "name": "@da/schema",
+      "version": "0.4.0",
+      "peerDependencies": {
+        "zod": "^4.4.3",
       },
     },
   },
@@ -164,6 +172,8 @@
     "@clack/prompts": ["@clack/prompts@1.7.0", "", { "dependencies": { "@clack/core": "1.4.3", "fast-string-width": "^3.0.2", "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-y7/yvZ2TPAnR9+jnc00klvNNLkJiXFFrQA/hlLCcxA9a2A4zQIOimyFQ9XfwYKiGD1fb5GY8vbKIIgO8d5Tb2A=="],
 
     "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20260801.1", "", {}, "sha512-XCv5xWi47WQOK0LpLa6997Mrpz8Ct+nZmp/M5Xp8Z4BFsarf7nYjkznGOcOoYK5m1GfbMFEEuQ2OIZnbIWoe9A=="],
+
+    "@da/schema": ["@da/schema@workspace:packages/schema"],
 
     "@emmetio/abbreviation": ["@emmetio/abbreviation@2.3.3", "", { "dependencies": { "@emmetio/scanner": "^1.0.4" } }, "sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA=="],
 

@@ -1,4 +1,4 @@
-import type { Wortnetz } from './schemas';
+import type { Wortnetz } from '@da/schema';
 
 /** Build-time reference checks that need the vocabulary catalog and therefore
     cannot live inside the self-contained Zod schema. */

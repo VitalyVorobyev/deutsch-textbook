@@ -9,7 +9,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { writeItemSchema } from '../../lib/schemas';
+import type { writeItemSchema } from '@da/schema';
 import {
   assistHiddenForSession,
   chooseAssistModel,

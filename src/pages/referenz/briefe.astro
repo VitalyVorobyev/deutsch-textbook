@@ -2,7 +2,7 @@
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TaughtIn from '../../components/reference/TaughtIn.astro';
-import { briefeReferenceSchema } from '../../lib/schemas';
+import { briefeReferenceSchema } from '@da/schema';
 import { withBase } from '../../lib/url';
 
 const entry = await getEntry('referenceData', 'briefe');

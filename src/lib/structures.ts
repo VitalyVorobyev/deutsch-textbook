@@ -39,7 +39,7 @@ import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
-import { LEVELS, type Level } from './schemas';
+import { LEVELS, type Level } from '@da/schema';
 
 /** How a source document describes what its own inventory governs. Never assumed. */
 export type SourceMode = 'reception' | 'production' | 'unstated';

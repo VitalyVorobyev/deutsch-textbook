@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TaughtIn from '../../components/reference/TaughtIn.astro';
 import PronominalAdverbTable from '../../components/reference/PronominalAdverbTable.astro';
-import { pronominalAdverbReferenceSchema } from '../../lib/schemas';
+import { pronominalAdverbReferenceSchema } from '@da/schema';
 const entry = await getEntry('referenceData', 'pronominal-adverbs');
 if (!entry) throw new Error('Missing canonical pronominal-adverb reference data');
 const data = pronominalAdverbReferenceSchema.parse(entry.data);

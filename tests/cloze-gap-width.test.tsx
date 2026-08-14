@@ -24,7 +24,7 @@
 import { afterEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Cloze, GAP_REST_CH, gapWidthCh } from '../src/components/exercises/Cloze';
-import { clozeItemSchema } from '../src/lib/schemas';
+import { clozeItemSchema } from '@da/schema';
 
 afterEach(cleanup);
 

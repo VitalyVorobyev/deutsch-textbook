@@ -9,7 +9,7 @@
 import { afterEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { ItemView } from '../src/components/exercises/ExerciseSet';
-import { translateItemSchema } from '../src/lib/schemas';
+import { translateItemSchema } from '@da/schema';
 
 const item = translateItemSchema.parse({
   id: 'i1',

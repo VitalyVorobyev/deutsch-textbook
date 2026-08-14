@@ -17,7 +17,7 @@
  *   bun scripts/grammar-depth.ts [A1|A2|B1] [--thin] [--by-point] [--no-probe]
  */
 import { levelDepth, type TagDepth } from '../src/lib/grammar-depth';
-import type { Level } from '../src/lib/schemas';
+import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const thinOnly = args.includes('--thin');

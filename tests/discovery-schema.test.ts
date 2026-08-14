@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 
-import { discoverySchema } from '../src/lib/schemas';
+import { discoverySchema } from '@da/schema';
 
 const base = {
   id: 'test-piece',

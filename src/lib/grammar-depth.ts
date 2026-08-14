@@ -42,7 +42,7 @@ import {
   type GrammarPoint,
 } from './grammar-coverage';
 import { focusIntroducedBy } from './focus-tags';
-import type { Level } from './schemas';
+import type { Level } from '@da/schema';
 
 /**
  * Item types that make the learner construct German rather than choose it.

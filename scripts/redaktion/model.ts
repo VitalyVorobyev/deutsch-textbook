@@ -38,7 +38,7 @@ import {
   type Reading,
   type Topic,
   type VocabFile,
-} from '../../src/lib/schemas';
+} from '@da/schema';
 import {
   grammarCoverage,
   loadGrammarInventory,

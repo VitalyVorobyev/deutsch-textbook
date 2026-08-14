@@ -11,7 +11,7 @@ import {
   discoverySchema,
   referenceDataSchema,
   listeningArtifactSchema,
-} from './lib/schemas';
+} from '@da/schema';
 
 const topics = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './content/topics' }),

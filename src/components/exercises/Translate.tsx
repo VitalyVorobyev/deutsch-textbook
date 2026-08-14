@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { translateItemSchema } from '../../lib/schemas';
+import type { translateItemSchema } from '@da/schema';
 import { normalizeAnswer, normalizeTranslation } from '../../lib/cloze';
 import {
   closestTranslationCandidate,

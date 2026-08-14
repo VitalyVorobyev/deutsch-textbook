@@ -40,7 +40,7 @@ import {
   type ListeningPlan,
   LEVELS,
   type Level,
-} from '../src/lib/schemas';
+} from '@da/schema';
 import { GRAMMAR_STRANDS, type GrammarPoint } from '../src/lib/grammar-coverage';
 import { entryRef, loadStructureSources } from '../src/lib/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
@@ -55,7 +55,7 @@ import {
   langFieldProblems,
   mdxLangProblems,
   ukParityProblems,
-} from '../src/lib/langcheck';
+} from '@da/schema/langcheck';
 import { proseShapeProblems } from '../src/lib/prose-shape';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
 import {

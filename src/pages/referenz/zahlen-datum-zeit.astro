@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TaughtIn from '../../components/reference/TaughtIn.astro';
 import { withBase } from '../../lib/url';
-import { zahlenDatumZeitReferenceSchema } from '../../lib/schemas';
+import { zahlenDatumZeitReferenceSchema } from '@da/schema';
 
 const entry = await getEntry('referenceData', 'zahlen-datum-zeit');
 if (!entry) throw new Error('Missing canonical zahlen-datum-zeit reference data');

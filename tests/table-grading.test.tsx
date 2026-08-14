@@ -10,7 +10,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { acceptedCellAnswers, continuationWord } from '../src/lib/table';
 import { answerMatches } from '../src/lib/cloze';
 import { TableFill } from '../src/components/exercises/TableFill';
-import { tableItemSchema } from '../src/lib/schemas';
+import { tableItemSchema } from '@da/schema';
 
 afterEach(cleanup);
 

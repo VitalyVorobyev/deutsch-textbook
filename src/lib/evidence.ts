@@ -1,4 +1,4 @@
-import type { ExerciseItem } from './schemas';
+import type { ExerciseItem } from '@da/schema';
 import type { Attempt } from './store';
 import { normalizeTranslation } from './cloze';
 

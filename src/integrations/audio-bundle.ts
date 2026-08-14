@@ -28,7 +28,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFi
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
-import { listeningArtifactSchema, listeningAudioPath } from '../lib/schemas';
+import { listeningArtifactSchema, listeningAudioPath } from '@da/schema';
 import { AUDIO_BUNDLE_ENV, bundlesAudio } from '../lib/audio';
 
 interface Shipped {

@@ -24,7 +24,7 @@ import { join } from 'node:path';
 import YAML from 'yaml';
 import { normalizeTranslation } from './cloze';
 import { gradeTranslation } from './production';
-import { gradingDecisionsSchema, type GradingDecision } from './schemas';
+import { gradingDecisionsSchema, type GradingDecision } from '@da/schema';
 
 export const GRADING_DECISIONS_FILE = join('data', 'grading-decisions.yaml');
 

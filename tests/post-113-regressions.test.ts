@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import YAML from 'yaml';
 import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
-import { exerciseSetSchema, type ExerciseSet } from '../src/lib/schemas';
+import { exerciseSetSchema, type ExerciseSet } from '@da/schema';
 
 const root = resolve(import.meta.dir, '..');
 

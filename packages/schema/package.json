@@ -1,0 +1,14 @@
+{
+  "//": "The content shapes, as Zod schemas \u2014 the single source of truth for every entity in content/. Pure: no filesystem, no Node built-ins, so it is importable from a React island, an Astro page, a Bun script and the editorial app alike. Anything that needs to READ the corpus belongs in @da/content instead.",
+  "name": "@da/schema",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./langcheck": "./src/langcheck.ts"
+  },
+  "peerDependencies": {
+    "zod": "^4.4.3"
+  }
+}

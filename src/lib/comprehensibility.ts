@@ -60,7 +60,7 @@ import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { normalize } from './coverage';
-import type { Level } from './schemas';
+import type { Level } from '@da/schema';
 
 /** Levels with both a spine and a Wortliste to be measured against. */
 export const RANKED_LEVELS = ['A1', 'A2', 'B1'] as const;

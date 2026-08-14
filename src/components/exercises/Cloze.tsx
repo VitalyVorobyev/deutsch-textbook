@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { z } from 'zod';
-import type { clozeItemSchema } from '../../lib/schemas';
+import type { clozeItemSchema } from '@da/schema';
 import { answerMatches, parseCloze } from '../../lib/cloze';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 

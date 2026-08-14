@@ -6,9 +6,11 @@
     "baseUrl": ".",
     "paths": {
       "@lib/*": ["src/lib/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@da/schema": ["packages/schema/src/index.ts"],
+      "@da/schema/*": ["packages/schema/src/*"]
     }
   },
-  "include": ["src/**/*", "scripts/**/*", "content/**/*", ".astro/types.d.ts"],
+  "include": ["src/**/*", "scripts/**/*", "packages/*/src/**/*", "content/**/*", ".astro/types.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

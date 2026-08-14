@@ -4,7 +4,7 @@ import {
   decisionKey,
   type DecisionTarget,
 } from '../src/lib/grading-decisions';
-import { gradingDecisionSchema, type GradingDecision } from '../src/lib/schemas';
+import { gradingDecisionSchema, type GradingDecision } from '@da/schema';
 import {
   buildAudit,
   renderMarkdown,

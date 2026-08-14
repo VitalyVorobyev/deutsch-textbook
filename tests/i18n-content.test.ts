@@ -22,7 +22,7 @@ import {
   langFieldProblems,
   mdxLangProblems,
   ukParityProblems,
-} from '../src/lib/langcheck';
+} from '@da/schema/langcheck';
 import {
   bilingualSchema,
   matchItemSchema,
@@ -34,7 +34,7 @@ import {
   vocabEntrySchema,
   type VocabEntry,
   type WordField,
-} from '../src/lib/schemas';
+} from '@da/schema';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
 import { ukHalfCoverage } from '../src/lib/coverage';
 import type { TopicNode } from '../src/lib/mastery';

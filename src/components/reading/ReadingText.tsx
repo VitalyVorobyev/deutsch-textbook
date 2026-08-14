@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useState } from 'react';
-import type { Reading } from '../../lib/schemas';
+import type { Reading } from '@da/schema';
 import { parseGlosses } from '../../lib/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';

@@ -32,8 +32,8 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
-import { hasRuField, hasUkField, ukParityProblems } from './langcheck';
-import type { Level } from './schemas';
+import { hasRuField, hasUkField, ukParityProblems } from '@da/schema/langcheck';
+import type { Level } from '@da/schema';
 
 const VOCAB_DIR = 'content/vocab';
 

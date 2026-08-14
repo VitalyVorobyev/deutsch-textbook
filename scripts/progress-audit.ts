@@ -27,7 +27,7 @@ import {
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { isPretestAttempt, isRetiredRevision, type RevisionLookup } from '../src/lib/weakness';
 import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
-import type { GradingDecision } from '../src/lib/schemas';
+import type { GradingDecision } from '@da/schema';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   armedAt,

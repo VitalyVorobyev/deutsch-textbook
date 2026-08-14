@@ -9,7 +9,7 @@
  *   bun scripts/grammar-coverage.ts [A1|A2|B1] [--missing-only]
  */
 import { grammarCoverage } from '../src/lib/grammar-coverage';
-import type { Level } from '../src/lib/schemas';
+import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const missingOnly = args.includes('--missing-only');

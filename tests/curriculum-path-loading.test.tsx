@@ -12,7 +12,7 @@ import { afterEach, beforeAll, describe, expect, mock, test } from 'bun:test';
 import { cleanup, render, screen } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import type { CourseTopic, CourseUnit } from '../src/components/atlas/course';
-import type { AtlasGroup } from '../src/lib/schemas';
+import type { AtlasGroup } from '@da/schema';
 import * as store from '../src/lib/store';
 
 const neverResolves = <T,>() => new Promise<T>(() => {});

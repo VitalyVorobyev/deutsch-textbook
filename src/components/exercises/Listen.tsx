@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { listenItemSchema } from '../../lib/schemas';
+import type { listenItemSchema } from '@da/schema';
 import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
 import { dictationSlip } from '../../lib/production';
 import { diffExpectedWords } from '../../lib/worddiff';

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { atlasSchema, type AtlasGroup, type AtlasNode, type AtlasUnit } from './schemas';
+import { atlasSchema, type AtlasGroup, type AtlasNode, type AtlasUnit } from '@da/schema';
 
 export interface Curriculum {
   /** ordered units — the file order of `units:` in content/atlas.yaml IS the spine order */

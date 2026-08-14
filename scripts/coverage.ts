@@ -20,7 +20,7 @@
 import { readFileSync } from 'node:fs';
 import * as YAML from 'yaml';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
-import type { Level } from '../src/lib/schemas';
+import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const missingOnly = args.includes('--missing-only');

@@ -19,7 +19,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
-import { LEVELS, type Level } from './schemas';
+import { LEVELS, type Level } from '@da/schema';
 
 /**
  * The grammatical systems a point belongs to. A point sits in exactly one — the system whose

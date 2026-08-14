@@ -9,7 +9,7 @@ import {
 } from './srs';
 import { withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
-import type { ExerciseSet } from './schemas';
+import type { ExerciseSet } from '@da/schema';
 import type { TopicNode } from './mastery';
 
 export async function getTopicNodes(): Promise<TopicNode[]> {

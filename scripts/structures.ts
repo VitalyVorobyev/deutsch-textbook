@@ -17,7 +17,7 @@ import {
   loadStructureSources,
   type EntryResult,
 } from '../src/lib/structures';
-import type { Level } from '../src/lib/schemas';
+import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const unclaimedOnly = args.includes('--unclaimed-only');

@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import { pronominalAdverbReferenceSchema } from '../../lib/schemas';
+import { pronominalAdverbReferenceSchema } from '@da/schema';
 interface Props { scope?: 'productive' | 'all' }
 const { scope = 'all' } = Astro.props;
 const entry = await getEntry('referenceData', 'pronominal-adverbs');

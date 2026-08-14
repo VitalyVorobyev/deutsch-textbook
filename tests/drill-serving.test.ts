@@ -19,8 +19,8 @@ import { join } from 'node:path';
 import YAML from 'yaml';
 import { buildSession, eligibleTrainingSets, type TrainingSet } from '../src/lib/training';
 import { weakFocuses } from '../src/lib/weakness';
-import { exerciseSetSchema } from '../src/lib/schemas';
-import type { ExerciseItem, Level } from '../src/lib/schemas';
+import { exerciseSetSchema } from '@da/schema';
+import type { ExerciseItem, Level } from '@da/schema';
 import type { Attempt } from '../src/lib/store';
 import type { TopicContext } from '../src/lib/mastery';
 
