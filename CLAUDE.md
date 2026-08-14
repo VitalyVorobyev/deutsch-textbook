@@ -27,6 +27,7 @@ read**, not a rule to guess at.
 | authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md) |
 | choosing or adding a **`focus` tag** | [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) |
 | changing anything in **`src/lib/`** | [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md) |
+| adding to **`packages/`** or **`apps/redaktion`**, or asking the corpus a new question | [`docs/architecture/content-graph.md`](docs/architecture/content-graph.md) |
 | touching **`worker/`**, `src/lib/sync-remote.ts` or `scripts/progress-pull.ts` (accounts, approval, snapshot sync) | [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md) |
 | reading or writing an **ADR**, or making an **architecture decision** | [`docs/adrs/README.md`](docs/adrs/README.md) |
 | shipping a **new topic**, or writing a **drill from learner progress** | [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md) |
@@ -61,7 +62,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun scripts/structures.ts <A1|A2> [--unclaimed-only] [--beyond]` — **the denominator's own denominator**: does `data/grammar-inventory.yaml` even contain every structure the published standard lists? Every entry of `data/strukturenlisten/` is `claimed` (some row cites it), **`unclaimed`** (a hole in the inventory) or **`beyond`** (an inventory row citing no source — legitimate, this course aims at B1, but visible rather than assumed). It exists because all three levels read 100% while the A1 list was missing four structures the exam tests; the anchors are free Goethe PDFs nobody had opened. A1 92/93, A2 138/138 — **B1 has no anchor at all** until its Prüfungsziele is bought. → [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md)
 - `bun scripts/comprehensibility.ts <level>/<topic-id>` — input load: how much of a topic's German the learner has not met yet, per section (`article`, `reading`, `items`), with the distinct ahead-of-the-learner words listed so they can be acted on. `--rank [A1|A2|B1]` ranks a level, or all three. **Read-only and deliberately without a threshold** — it hooks into no gate, and every row is read against the level MEDIAN the report computes from the corpus, never against zero. Outliers are the product. Known false positives (proper names, strong-verb ablaut, glossed reading words) are listed in the doc; nothing here may be quoted as an absolute claim about a learner. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun scripts/grammar-depth.ts [<level>] [--thin] [--by-point] [--no-probe]` — **how much practice stands behind each confusion**, the number coverage cannot express. Per focus tag: teaching items, of which production, distinct practice files (a tag in one file is met once and never interleaved), probe items. **Deliberately no threshold** — every row is read against the level median the report prints, the `comprehensibility.ts` discipline — while `tests/grammar-depth.test.ts` ratchets today's measured values so they may only improve. Median items per confusion: **A1 12 · A2 8 · B1 4**; production 6 · 6 · 3. **Breadth and depth are two numbers and neither substitutes for the other.**
-- `bun run redaktion` — the editorial console at `redaktion/index.html` (gitignored, self-contained, opens from `file://`, zero network requests): a **navigator over the language** with the course painted onto it. The **Sprachkarte** puts ten grammatical strands across every CEFR level the schema knows; **Stränge** draws each system as an A1→B1 ladder with the `deepens` spiral; **Strukturen**, **Fokus-Tags** and **Quellen** give every point, confusion and published source its own routable page; **Lücken** derives the holes no single artifact can see about itself. The four coverage measurements are imported from `src/lib/`, so it cannot disagree with the scripts. Source in `scripts/redaktion/` — `model.ts` builds one graph, `views/*.ts` render from it, so a new view costs a file and not a second pass over the corpus.
+- `bun run redaktion` — **Redaktion**, the editorial app (`apps/redaktion`, React on a Vite dev server at :4330): a **navigator over the language** with the course painted onto it. **Sprachkarte** puts ten grammatical strands across every CEFR level the schema knows — B2 is a visibly empty column on purpose; **Strukturen**, **Fokus-Tags** and **Quellen** give every point, confusion and published source a routable page; **Einheiten & Themen → Thema** opens one topic and shows *every* element it owns along the lesson cycle, its checks and its findings; **Lücken** is the derived problem inbox. Every figure comes from `@da/content`, never recomputed here — a number that disagrees with `bun scripts/<name>.ts` means the app is wrong. The corpus is re-read when a file under `content/` or `data/` changes, so it is never stale. It runs under Bun (`bunx --bun vite`) because Vite's config loader uses Node's strict ESM resolution, which rejects the packages' extensionless imports.
 - `bun tauri dev` / `bun tauri build` — desktop app (thin Tauri v2 shell in `src-tauri/`; needs a Rust toolchain). Release: push a plain `vX.Y.Z` tag → `.github/workflows/release.yml` builds Windows, Linux and macOS (unsigned) installers into a GitHub Release; the tag is stamped as the version. Keep the site base-path-agnostic. Tauri JS APIs only behind the `isTauri()` runtime check (`src/lib/syncdir.ts`).
 
 ## Where content lives
@@ -78,6 +79,33 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 | `content/atlas.yaml` | topic graph **and the curriculum spine** |
 | `progress/<profile>/*.json` | learner snapshots, one folder per local profile |
 | `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
+
+**Where the code lives.** A Bun workspace. `content/` and `data/` stay at the repo root because
+they belong to no single app, and the learner app is the **root package** — Astro requires its
+content collections to live under the project root, so moving the app under `apps/` was tried on
+2026-08-14 and reverted (it built zero pages; the reason is recorded beside the `workspaces` field
+in `package.json`). Four packages, and the boundary between them is what may be imported where:
+
+| Package | What it is | May it touch `node:fs`? |
+| --- | --- | --- |
+| `@da/schema` | content shapes (Zod), gloss markup, letter-set checks, item-type classification | **no** — imported by React islands |
+| `@da/grading` | does this answer count: `cloze`, `production`, `worddiff` | **no** |
+| `@da/content` | reads the corpus: the graph, elements, all measurements, the payload | yes |
+| `@da/ui` | Tailwind tokens + shared React primitives | **no** |
+
+`@da/content` exports **per module, never a barrel** — `@da/content/focus-tags` must cost a browser
+importer nothing. A pure value that lives in an fs-opening module leaks the filesystem into the
+client bundle, Vite externalises it silently, and the page keeps working: that happened once with
+`PRODUCTION_TYPES` and is why it now lives in `@da/schema`.
+
+**`contentGraph()` (`packages/content/src/graph.ts`) is the one pass over the corpus.** It replaced
+eight independent walks. It is memoised per root, and it **degrades a malformed file to a `note`
+rather than throwing**, because it is the model an editor reads *while* authoring. Every artifact
+becomes an **`Element`** with a `stage` on the lesson cycle and the `touches` it delivers — the two
+properties nothing in the corpus records, which is why nothing could report that **48 of 49 topics
+have no transfer task**. `packages/content/src/profile.ts` turns that into per-topic checks and a
+ranked problem list, **with no composite score** — every distributional figure is read against the
+level median it prints, never an invented threshold.
 
 **`content/atlas.yaml` carries three rules worth stating here**, because breaking one is silent:
 `units:` file order **is** the recommended path (insert, never renumber); every topic lives in
