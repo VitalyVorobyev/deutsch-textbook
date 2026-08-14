@@ -2,7 +2,7 @@ topic: freizeit-koennen
 title_de: "Am Samstag kann ich nicht"
 text:
   - "Lena und Tom sind Freunde. Am Freitag fragt Lena: „Tom, hast du am Samstag Zeit? Gehen wir ins Schwimmbad? Ich schwimme so gern!“ Tom sagt: „[[Leider::Unfortunately::К сожалению::На жаль]] kann ich am Samstag nicht. Meine Oma [[hat Geburtstag::has her birthday::празднует день рождения::святкує день народження]], und wir machen eine Party. [[Schade!::What a pity!::Как жаль!::Як шкода!]]“ Lena fragt: „Und am Sonntag? Kannst du am Sonntag?“ Tom sagt: „Ja, am Sonntag kann ich. Aber ich kann nicht gut schwimmen.“"
-  - "Lena sagt: „[[Kein Problem!::No problem!::Не беда!::Не біда!]] Wir schwimmen zusammen, [[das macht Spaß::that is fun::это весело::це весело]]. Und dann können wir ins Café gehen.“ Tom sagt: „Ja, gern! Ich mag [[Kuchen::cake::пироги::пироги]].“ Am Sonntag gehen die Freunde ins Schwimmbad. Tom schwimmt [[langsam::slowly::медленно::повільно]], aber er lernt schnell. Dann sitzen sie im Café. Tom sagt: „[[Das nächste Mal::Next time::В следующий раз::Наступного разу]] spielen wir Fußball im Park. Das kann ich [[wirklich::really::действительно::справді]] gut!“"
+  - "Lena sagt: „[[Kein Problem!::No problem!::Не беда!::Не біда!]] Wir schwimmen zusammen, [[das macht Spaß::that is fun::это весело::це весело]]. Und dann können wir ins Café gehen.“ Tom sagt: „Ja, gern! Ich mag [[Kuchen::cake::пирог::пиріг]].“ Am Sonntag gehen die Freunde ins Schwimmbad. Tom schwimmt [[langsam::slowly::медленно::повільно]], aber er lernt schnell. Dann sitzen sie im Café. Tom sagt: „[[Das nächste Mal::Next time::В следующий раз::Наступного разу]] spielen wir Fußball im Park. Das kann ich [[wirklich::really::действительно::справді]] gut!“"
 questions:
   - id: q-warum-nicht
     outcomes: [freizeit-verabredung]
@@ -24,4 +24,4 @@ questions:
     prompt: "Was kann Tom wirklich gut?"
     options: ["Fußball spielen", "schwimmen", "Kuchen machen"]
     correct: 0
-    explain: { en: "At the end Tom says: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! He swims slowly, and Kuchen he only likes to eat.", ru: "В конце Том говорит: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! Плавает он медленно, а пироги он любит только есть.", uk: "Наприкінці Том каже: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! Плаває він повільно, а пироги він любить лише їсти." }
+    explain: { en: "At the end Tom says: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! He swims slowly, and the text only says that he likes eating cake.", ru: "В конце Том говорит: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! Плавает он медленно, а о пироге сказано лишь, что он любит его есть.", uk: "Наприкінці Том каже: Das nächste Mal spielen wir Fußball im Park. Das kann ich wirklich gut! Плаває він повільно, а про пиріг сказано лише, що він любить його їсти." }

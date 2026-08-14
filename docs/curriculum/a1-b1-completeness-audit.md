@@ -274,3 +274,20 @@ Literal hyphenated labels keep the evidence addressable and prevent accidental c
   retaining the same finite ending whitelist; a regression test prevents arbitrary phrase matches.
 - B1 lexical coverage is now `3416/3416` (3297 card rows, 119 grammar rows, 0 missing, 0 late).
   This closes the Wortliste denominator, not the remaining bounded human topic-quality waves.
+
+### A1 topic-quality wave — 2026-08-15
+
+- The first P27-3g pass covered all 12 current A1 topic profiles, including their articles,
+  teaching/probe sets, 17 readings, ten listening contracts and 232 entries in seven owned decks.
+  The per-topic evidence and deliberate no-change decisions live in the
+  [topic-quality ledger](topic-quality-audit.md).
+- A zero derived queue did not catch the wave's substantive defect: `freizeit-koennen` conflated an
+  availability question with an invitation and prescribed *Hast du Zeit? — Ja, gern!* The three
+  support-language explanations and German model now distinguish a time answer from accepting a
+  real proposal. The associated *Kuchen* gloss was corrected from an RU/UK plural to independent
+  contextual singulars.
+- Five A1 profiles remain dense, but their extra sets have explicit core, extension, transfer or
+  named-remediation jobs. They were not merged to make the file count look smaller, and no extra set
+  was retained merely because it held historical progress.
+- This is a bounded corpus pass, not human approval. Existing `reviewed` states were preserved and
+  draft topics remain draft until the strict editorial/provenance transaction is completed.
