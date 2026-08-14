@@ -9,8 +9,13 @@
  * the level median, which the header shows beside it.
  */
 import { Bar, Card, Chip, Empty, Heading, Table, type Tone } from '@da/ui/primitives';
+import { defaultStage } from '@da/content/elements';
 import type { GraphPayload } from '../data';
+import { Feldwahl } from '../components/Feldwahl';
 import { href } from '../router';
+import { useWritable } from '../write';
+
+const STATUS_LABEL: Record<string, string> = { draft: 'Entwurf', reviewed: 'geprüft' };
 
 const STAGE_LABEL: Record<string, string> = {
   pretest: 'Pretest',
@@ -35,9 +40,15 @@ const TOUCH_LABEL: Record<string, string> = {
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 
 export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
+  // The allowlist comes from the controller, so a control exists here only if a write would be
+  // accepted there. No endpoint (a built bundle, a server without the plugin) means no controls.
+  const writable = useWritable();
   const topic = graph.topics.find((t) => t.id === id);
   const profile = graph.profiles.find((p) => p.topic === id);
   if (!topic || !profile) return <Empty>Kein Thema mit der Kennung „{id}“.</Empty>;
+
+  const stageField = writable.find((f) => f.class === 'exercise-set' && f.field === 'stage');
+  const statusField = writable.find((f) => f.class === 'topic-manifest' && f.field === 'status');
 
   const elements = graph.elements.filter((e) => e.topic === id);
   const median = graph.reports.find((r) => r.level === topic.level)?.medians;
@@ -57,6 +68,23 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
       >
         {topic.title}
       </Heading>
+
+      <div className="mb-4 flex items-center gap-2 text-xs">
+        <span className="text-ink-muted">Status</span>
+        {statusField ? (
+          <Feldwahl
+            file={topic.file}
+            field="status"
+            value={topic.status}
+            options={statusField.values}
+            labels={STATUS_LABEL}
+            width="w-28"
+            ariaLabel={`Status von ${topic.title}`}
+          />
+        ) : (
+          <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>{STATUS_LABEL[topic.status] ?? topic.status}</Chip>
+        )}
+      </div>
 
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
@@ -112,7 +140,26 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
         rows={elements}
         rowKey={(e) => e.id}
         columns={[
-          { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage]}</Chip> },
+          {
+            key: 'stage',
+            head: 'Stufe',
+            // Only an exercise set has a `stage:` to declare; an article or a deck has a stage the
+            // corpus computes and no file to write it into.
+            cell: (e) =>
+              stageField && e.file.startsWith('content/exercises/') ? (
+                <Feldwahl
+                  file={e.file}
+                  field="stage"
+                  value={e.stageDeclared ? e.stage : null}
+                  options={stageField.values}
+                  labels={STAGE_LABEL}
+                  derived={defaultStage(e.kind)}
+                  ariaLabel={`Stufe von ${e.id.split('#')[0]}`}
+                />
+              ) : (
+                <Chip>{STAGE_LABEL[e.stage]}</Chip>
+              ),
+          },
           { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink">{e.kind}</span> },
           {
             key: 'id',

@@ -28,7 +28,7 @@
  * the discipline `grammar-depth.ts` and `comprehensibility.ts` already use — never against an
  * invented threshold.
  */
-import { PRODUCTION_TYPES, SELECTION_TYPES } from '@da/schema';
+import { PRODUCTION_TYPES, SELECTION_TYPES, type LessonStage } from '@da/schema';
 import type { ExerciseItem, ExerciseSet, Level, Reading } from '@da/schema';
 
 /**
@@ -59,16 +59,7 @@ export const ELEMENT_KINDS = [
 export type ElementKind = (typeof ELEMENT_KINDS)[number];
 
 /** The lesson cycle, in order. `keine` is for material outside the arc — reference, Entdecken. */
-export const LESSON_STAGES = [
-  'pretest',
-  'modell',
-  'geruest',
-  'ausblenden',
-  'transfer',
-  'nachpruefung',
-  'keine',
-] as const;
-export type LessonStage = (typeof LESSON_STAGES)[number];
+export { LESSON_STAGES, type LessonStage } from '@da/schema';
 
 /** The four kinds of learning touch. A healthy topic feeds all four; nothing measures that today. */
 export const TOUCHES = ['input', 'abruf', 'interaktion', 'produktion'] as const;

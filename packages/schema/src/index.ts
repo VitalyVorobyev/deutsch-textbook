@@ -632,11 +632,37 @@ export const EXERCISE_ROLES = [
 export const exerciseRoleSchema = z.enum(EXERCISE_ROLES);
 export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
 
+/**
+ * Where an artifact sits on the lesson cycle `CLAUDE.md` requires of every topic:
+ * pretest → model → scaffold → fade → transfer → delayed check.
+ *
+ * Lives here rather than in `@da/content/elements` because a schema is imported by the browser and
+ * a pure value in an fs-opening module leaks the filesystem into the client bundle — the
+ * `PRODUCTION_TYPES` lesson. German, like the rest of the editorial surface.
+ */
+export const LESSON_STAGES = [
+  'pretest',
+  'modell',
+  'geruest',
+  'ausblenden',
+  'transfer',
+  'nachpruefung',
+  'keine',
+] as const;
+export type LessonStage = (typeof LESSON_STAGES)[number];
+
 export const exerciseSetSchema = z.object({
   /** back-reference to the owning topic id */
   topic: slug,
   /** explicit learning role; controls training eligibility and evidence use */
   role: exerciseRoleSchema.default('practice'),
+  /**
+   * Overrides the stage derived from `role`, for the case the derivation cannot see: a
+   * `role: practice` set that is really a fresh-context transfer task. Declaring one is the whole
+   * of the change — nothing else reads it, and the 336 sets that are what they look like stay
+   * silent. `@da/content/elements` records whether a stage was authored or derived.
+   */
+  stage: z.enum(LESSON_STAGES).optional(),
   title: bilingualSchema.optional(),
   /** Reusable document kept visible while every item in this set is answered. */
   stimulus: z.string().optional(),

@@ -663,6 +663,14 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   not a test. It was carried through the ADR 0012 migration unchanged so that the move stayed a
   provable relocation. Either give it a job (a Redaktion facet is the obvious one) or delete the
   field from `topicManifestSchema` and the 49 files in one change.
+- **P26-16 · Redaktion rebuilds the whole corpus after a one-field write** — measured in the
+  browser on 2026-08-14: `PUT /__write` returns in milliseconds, then `invalidateContentGraph`
+  throws the memoised graph away and the next `/__graph` takes **~6.6 s**, plus ~6 s for the
+  `bun run validate` the controller runs before it answers. The control holds the value it wrote
+  meanwhile (`Feldwahl`), so nothing lies on screen — but twelve seconds per click is the cost that
+  gets a feature stopped being used. Two independent fixes: invalidate *per file* rather than
+  wholesale, and let the verifier check only the touched file's rules. Neither is needed for the
+  two fields shipped today; both are needed before the allowlist grows.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking.

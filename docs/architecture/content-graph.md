@@ -126,3 +126,40 @@ Two operational notes that cost time to find:
 
 Verification is a headless browser walk over all eleven routes asserting zero console errors, not
 "it compiled".
+
+## Writing back: two fields, five rules, and one measurement that decided the design
+
+`content/` is the source of truth and `git diff` on a topic is the editorial process. Both survive
+exactly as long as it takes one tool to reserialise a file. So Redaktion can write **two fields** —
+an exercise set's `stage:` and a topic manifest's `status:` — and `@da/content/write` is where every
+rule about that lives. The UI holds none of them: it fetches the allowlist from `/__writable`, so a
+control can only appear after the controller would accept it.
+
+**Why a splice and not `YAML.parseDocument` → `set` → `toString`.** Measured on the shipping corpus:
+under the best options (`lineWidth: 0, flowCollectionPadding: false`) only **247 of 385** exercise
+sets and topic manifests round-trip byte-for-byte; under the library defaults, **18**. A writer
+built on `toString` would silently reformat a third of the files it touched — which already happened
+once here, when 166 added citations to `grammar-inventory.yaml` arrived as 697 insertions and 300
+deletions. The controller instead splices the new scalar into the source text at the node's own
+`range`, so every byte outside the value is identical by construction, comments and quoting
+included. A real write is `1 file changed, 1 insertion(+)`.
+
+Five checks, each broken on purpose once in `tests/write-controller.test.ts`: containment (resolved,
+not string-prefixed), file class, field-and-value allowlist, Zod re-validation of the resulting text,
+and a structural post-condition that **no second key moved**.
+
+**And the corpus check is not optional.** A per-file schema check cannot see a corpus-level rule, and
+one of the two writable fields reaches one: marking a **B1** topic `reviewed` makes
+`authorshipProvenanceProblems` demand records it may not have, so a write that is valid as a manifest
+turns `bun run validate` red. The caller injects a `verify` hook; when it reports anything the
+original bytes go back and the write is refused.
+
+**Unreachable from a build, by construction.** The plugin is `apply: 'serve'`, so a `vite build`
+contains no endpoint at all — verified: `GET /__write` on the built bundle is a 404 and the view
+renders zero controls, falling back to the read-only chips. Not a flag, not an environment check.
+
+The costs are stated rather than hidden: a write is followed by a full graph rebuild (~6.6 s) and a
+full validator run (~6 s), and the control shows the value it wrote rather than snapping back to the
+stale one while that happens. Backlog **P26-16** holds the per-file invalidation that makes this
+cheap enough to widen.
+
