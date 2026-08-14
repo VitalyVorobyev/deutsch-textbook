@@ -6,7 +6,7 @@
  * levels published the same 100% while median practice per confusion fell from twelve items to
  * four across them.
  *
- * The measurement lives in `src/lib/grammar-depth.ts` so this report and `bun run redaktion`
+ * The measurement lives in `packages/content/src/grammar-depth.ts` so this report and `bun run redaktion`
  * cannot disagree — the split every instrument here uses.
  *
  * Deliberately NO threshold: every row is read against the level median printed under its table,
@@ -16,7 +16,7 @@
  * Usage:
  *   bun scripts/grammar-depth.ts [A1|A2|B1] [--thin] [--by-point] [--no-probe]
  */
-import { levelDepth, type TagDepth } from '../src/lib/grammar-depth';
+import { levelDepth, type TagDepth } from '@da/content/grammar-depth';
 import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);

@@ -2,9 +2,9 @@
 
 The transcription contract, lifted out of CLAUDE.md because it is needed only when editing a
 vocab entry's `ipa`. Every rule below is enforced by `bun run validate` (`IPA_CHARS` in
-`src/lib/schemas.ts`), so this file explains the checks rather than replacing them.
+`packages/schema/src/index.ts`), so this file explains the checks rather than replacing them.
 
-Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then reviewed. Rendered under the word in the Wortschatz table and on the flashcard's back. The character set and these rules are enforced by `bun run validate` (`IPA_CHARS` in `src/lib/schemas.ts`).
+Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then reviewed. Rendered under the word in the Wortschatz table and on the flashcard's back. The character set and these rules are enforced by `bun run validate` (`IPA_CHARS` in `packages/schema/src/index.ts`).
 
 | Rule | Yes | No |
 | --- | --- | --- |

@@ -2,7 +2,7 @@
  * Prose shape for explanation halves: how big a single paragraph is allowed to
  * get inside `<En>`/`<Ru>`/`<Uk>`/`<De>`. Shared by `scripts/validate.ts`,
  * `scripts/prose-shape.ts` and the tests (house pattern: testable module in
- * src/lib/, thin wiring in the script — like src/lib/langcheck.ts). Nothing
+ * src/lib/, thin wiring in the script — like packages/schema/src/langcheck.ts). Nothing
  * here is imported by runtime code; it runs at authoring/validation time only.
  *
  * Why a word cap at all. The explanation article is the **model stage** of the

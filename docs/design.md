@@ -28,7 +28,7 @@ content YAML / MDX
                          └── bun run validate / test / check / build
 ```
 
-`src/lib/schemas.ts` is the source of truth for content shapes. Astro collection loading proves
+`packages/schema/src/index.ts` is the source of truth for content shapes. Astro collection loading proves
 that individual records conform; `scripts/validate.ts` enforces relationships that schemas cannot
 see, including identity/filename parity, curriculum ownership, unresolved references, language
 parity, outcome measurement and canonical relation uniqueness.
@@ -64,7 +64,7 @@ Receptive-only members have no mastery identity.
 
 ## Curriculum and learning flow
 
-`src/lib/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
+`packages/content/src/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
 selection; `deepens` and shared focus tags reactivate earlier knowledge without duplicating a
 lesson. Navigation is soft: the system recommends a next step but does not prevent deliberate
 exploration.
@@ -208,7 +208,7 @@ English and Russian are the core explanation halves; Ukrainian is an independent
 written from the German, never from a sibling half — required wherever a scope has entered a
 Ukrainian authoring wave (a wave is a scope of files, not a mode of writing). German-medium
 explanation halves ship with B1 content and are never backfilled to A1/A2. `src/lib/prefs.ts`
-selects the requested half and defines fallback behavior; `src/lib/langcheck.ts` and the validator
+selects the requested half and defines fallback behavior; `packages/schema/src/langcheck.ts` and the validator
 enforce parity and alphabet discipline.
 
 Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for the dual-language
@@ -234,7 +234,7 @@ Adding such context must not change card ids, SRS scheduling or snapshot state.
 
 ## Change boundaries
 
-- Change a content shape in `src/lib/schemas.ts`, collection wiring and validator/tests together.
+- Change a content shape in `packages/schema/src/index.ts`, collection wiring and validator/tests together.
 - Change persisted state only with an explicit migration and old-snapshot tests.
 - Change curriculum identities only before learner data exists, or with a documented migration.
 - Change evidence semantics only with production-scoring, mastery and audit tests.

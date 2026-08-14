@@ -19,8 +19,8 @@ import TopicProgress from '../../components/topic/TopicProgress';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import SeeAlso from '../../components/topic/SeeAlso.astro';
-import { getCurriculum } from '../../lib/curriculum';
-import { focusIntroducedBy } from '../../lib/focus-tags';
+import { getCurriculum } from '@da/content/curriculum';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {

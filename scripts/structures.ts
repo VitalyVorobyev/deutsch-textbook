@@ -6,7 +6,7 @@
  * *contains* every structure on the Goethe Strukturenliste. Both exist for the same reason — a
  * completeness figure measured against a list nobody checked drifts toward flattery.
  *
- * The measurement lives in `src/lib/structures.ts` so this report and `bun run redaktion` can
+ * The measurement lives in `packages/content/src/structures.ts` so this report and `bun run redaktion` can
  * never disagree, the same split the two coverage instruments already use.
  *
  * Usage:
@@ -16,7 +16,7 @@ import {
   structureCoverage,
   loadStructureSources,
   type EntryResult,
-} from '../src/lib/structures';
+} from '@da/content/structures';
 import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
@@ -109,7 +109,7 @@ for (const level of levels) {
 // figure that says whether "anchored" is a property of the file or of a handful of rows in it.
 const sources = loadStructureSources();
 if (sources.length) {
-  const { loadGrammarInventory } = await import('../src/lib/grammar-coverage');
+  const { loadGrammarInventory } = await import('@da/content/grammar-coverage');
   const points = loadGrammarInventory();
   const cited = points.filter((p) => (p.claims ?? []).length).length;
   console.log(

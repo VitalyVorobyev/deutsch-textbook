@@ -5,7 +5,7 @@ import Chrome from '../components/Chrome.astro';
 import SessionFlow from '../components/session/SessionFlow';
 import type { TrainingSet } from '../components/training/MixedTraining';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
 const [cards, nodes, deckLevels, exercises, topics, documents] = await Promise.all([
   getAllCards(),

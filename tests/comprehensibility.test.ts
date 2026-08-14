@@ -1,5 +1,5 @@
 /**
- * The input-load instrument (src/lib/comprehensibility.ts).
+ * The input-load instrument (packages/content/src/comprehensibility.ts).
  *
  * Every fixture here is written out in full and every assertion depends only on
  * what its own fixture states. Nothing reads `content/` — a test that asserted a
@@ -25,7 +25,7 @@ import {
   splitSentences,
   terminologyDensity,
   tokens,
-} from '../src/lib/comprehensibility';
+} from '@da/content/comprehensibility';
 
 /** A known set built from a word list, as `measureSpine` builds one. */
 const knowing = (...words: string[]) => {

@@ -31,8 +31,8 @@
  * the grammar the dictation drills.
  */
 
-import { normalizeDictation, normalizeTranslation, sentenceInitialIndices } from './cloze';
-import { diffExpectedWords } from './worddiff';
+import { normalizeDictation, normalizeTranslation, sentenceInitialIndices } from '@da/grading/cloze';
+import { diffExpectedWords } from '@da/grading/worddiff';
 
 /** Strip attached punctuation, so `Bahnhof?` and `Bahnhof` are the same token. */
 const bare = (w: string) => w.replace(/[.,!?;:]+$/, '');

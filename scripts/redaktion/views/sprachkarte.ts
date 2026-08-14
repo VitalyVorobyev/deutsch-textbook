@@ -8,7 +8,7 @@
  * with no manifest cannot notice its own gaps, and A2 spent months calling itself complete at 67%
  * of its standard for exactly that reason. An empty column is a statement.
  *
- * The columns are `LEVELS` from `src/lib/schemas.ts` — A1…B2 — and not a hand-written A1…C2. The
+ * The columns are `LEVELS` from `packages/schema/src/index.ts` — A1…B2 — and not a hand-written A1…C2. The
  * schema is where "which levels exist here" is decided, and a second list would be free to drift
  * from it; when C1 becomes a level this course models, this view grows a column without an edit.
  *

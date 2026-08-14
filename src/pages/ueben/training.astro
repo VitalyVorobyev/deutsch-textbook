@@ -6,7 +6,7 @@ import UebenNav from '../../components/UebenNav.astro';
 import MixedTraining from '../../components/training/MixedTraining';
 import type { TrainingSet } from '../../components/training/MixedTraining';
 import { getTopicNodes } from '../../lib/content';
-import { getCurriculum } from '../../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
 const [nodes, exercises, topics, documents] = await Promise.all([
   getTopicNodes(),

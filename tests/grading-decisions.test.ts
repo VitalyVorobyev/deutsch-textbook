@@ -3,7 +3,7 @@ import {
   checkGradingDecisions,
   decisionKey,
   type DecisionTarget,
-} from '../src/lib/grading-decisions';
+} from '@da/content/grading-decisions';
 import { gradingDecisionSchema, type GradingDecision } from '@da/schema';
 import {
   buildAudit,

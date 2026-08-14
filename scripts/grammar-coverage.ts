@@ -1,14 +1,14 @@
 /**
  * Grammar coverage report (dev tool, not part of the validate gate).
  *
- * The measurement lives in src/lib/grammar-coverage.ts so that anything which
+ * The measurement lives in packages/content/src/grammar-coverage.ts so that anything which
  * publishes the figure and this report can never disagree — the same split the
  * Wortliste coverage uses.
  *
  * Usage:
  *   bun scripts/grammar-coverage.ts [A1|A2|B1] [--missing-only]
  */
-import { grammarCoverage } from '../src/lib/grammar-coverage';
+import { grammarCoverage } from '@da/content/grammar-coverage';
 import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);

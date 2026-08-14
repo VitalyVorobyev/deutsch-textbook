@@ -6,7 +6,7 @@ import {
   exerciseLevelFromPath,
   grammarCoverage,
   loadGrammarInventory,
-} from '../src/lib/grammar-coverage';
+} from '@da/content/grammar-coverage';
 
 /** A throwaway content tree, so the escape-hatch rules can be tested on shapes
  *  the real inventory must never contain. */

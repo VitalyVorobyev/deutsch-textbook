@@ -77,7 +77,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 | `content/discovery/`, `content/reference-data/` | optional Entdecken material; canonical lookup data |
 | `content/atlas.yaml` | topic graph **and the curriculum spine** |
 | `progress/<profile>/*.json` | learner snapshots, one folder per local profile |
-| `src/lib/schemas.ts` | Zod schemas — the single source of truth for all content shapes |
+| `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
 
 **`content/atlas.yaml` carries three rules worth stating here**, because breaking one is silent:
 `units:` file order **is** the recommended path (insert, never renumber); every topic lives in
@@ -129,7 +129,7 @@ Section order (H2 headings, in German):
 - Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from frontmatter (`exercises`, `vocab`).
 - **`## Erklärung` splits into `### German subsections`, one per named confusion** — at least one per grammar point the unit owns, plus the integrating section. The heading is German and sits **outside** `<Bilingual>`, so it stays visible under `en`, `ru`, `uk` and `de`. A bolded lead sentence is not a heading: it cannot be navigated to and cannot carry a table with it.
 - **Each subsection keeps its table beside its prose.** A paradigm the reader must hold in memory across another subsection has been separated from what explains it.
-- **No paragraph over 120 words in any explanation half** (validator-enforced, `src/lib/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
+- **No paragraph over 120 words in any explanation half** (validator-enforced, `packages/content/src/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
 - **A fact stated in `## Erklärung` is drilled by an item or serves an outcome**; otherwise it goes in a compact `### Feinheiten` table. A list over three members is a table or a bullet list, never a semicolon chain — and prose never restates what the table beside it already enumerates.
 
 ### Exercise items → [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md)
@@ -149,7 +149,7 @@ Section order (H2 headings, in German):
 ### Focus tags → [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md)
 
 The table there is an **allowlist**: `bun run validate` rejects a tag not registered in
-`focusIntroducedBy` (`src/lib/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
+`focusIntroducedBy` (`packages/content/src/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
 whenever possible; a new one is for a genuinely new confusion and joins both places in the same
 change. Leave genuinely mixed or pure-comprehension items untagged — **a false tag is worse than no
 tag**, because it sends training and drill authoring after a confusion the learner does not have.

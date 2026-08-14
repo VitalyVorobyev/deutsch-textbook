@@ -14,7 +14,7 @@
  * answer 404 first and never call next().
  */
 import type { AstroIntegration } from 'astro';
-import { repoRoot } from '../lib/repo-root';
+import { repoRoot } from '@da/content/repo-root';
 import type { Connect } from 'vite';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';

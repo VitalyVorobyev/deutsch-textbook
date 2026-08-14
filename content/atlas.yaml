@@ -5,7 +5,7 @@
 # `units:` — the ordered curriculum spine: file order IS the recommended path
 # (A1 units before A2; insert new units, never renumber). Every topic lives in
 # exactly one unit; `bun run validate` enforces all of it. The recommended-path
-# engine (src/lib/curriculum.ts + recommendedNext in src/lib/mastery.ts) and the
+# engine (packages/content/src/curriculum.ts + recommendedNext in src/lib/mastery.ts) and the
 # Atlas map render this file.
 groups:
   - id: grundlagen

@@ -48,11 +48,11 @@ import {
   type GrammarCoverage,
   type GrammarPoint,
   type GrammarStrand,
-} from '../../src/lib/grammar-coverage';
-import { goetheCoverage, hasManifest, type Coverage } from '../../src/lib/coverage';
-import { structureCoverage, loadStructureSources, entryRef, type StructureCoverage, type StructureSource } from '../../src/lib/structures';
-import { levelDepth, tagDepths, pointDepths, type LevelDepth, type TagDepth, type PointDepth } from '../../src/lib/grammar-depth';
-import { focusIntroducedBy } from '../../src/lib/focus-tags';
+} from '@da/content/grammar-coverage';
+import { goetheCoverage, hasManifest, type Coverage } from '@da/content/coverage';
+import { structureCoverage, loadStructureSources, entryRef, type StructureCoverage, type StructureSource } from '@da/content/structures';
+import { levelDepth, tagDepths, pointDepths, type LevelDepth, type TagDepth, type PointDepth } from '@da/content/grammar-depth';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 export const ROOT = join(import.meta.dirname, '..', '..');
 export const CONTENT = join(ROOT, 'content');

@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
 import { getCheckpoints } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
-import { goetheCoverage, hasManifest, ukHalfCoverage } from '../lib/coverage';
-import { grammarCoverage } from '../lib/grammar-coverage';
+import { getCurriculum } from '@da/content/curriculum';
+import { goetheCoverage, hasManifest, ukHalfCoverage } from '@da/content/coverage';
+import { grammarCoverage } from '@da/content/grammar-coverage';
 import { withBase } from '../lib/url';
 
 const REPO = 'https://github.com/VitalyVorobyev/deutsch-textbook';

@@ -27,7 +27,7 @@ import {
 } from '../model';
 import { chip, esc, pointRef, searchKey, strandRef, tagRef, topicRef } from '../html';
 import { STRAND_LABELS } from './sprachkarte';
-import { focusIntroducedBy } from '../../../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 export function renderInventar(): string {
   const byLevel = new Map<string, GrammarPoint[]>();

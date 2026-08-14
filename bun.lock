@@ -7,6 +7,8 @@
       "dependencies": {
         "@astrojs/mdx": "^7.0.3",
         "@astrojs/react": "^6.0.1",
+        "@da/content": "workspace:*",
+        "@da/grading": "workspace:*",
         "@da/schema": "workspace:*",
         "@tailwindcss/typography": "^0.5.20",
         "@tailwindcss/vite": "^4.3.3",
@@ -48,6 +50,22 @@
         "typescript-eslint": "^8.65.0",
         "vite": "^8.1.5",
       },
+    },
+    "packages/content": {
+      "name": "@da/content",
+      "version": "0.4.0",
+      "dependencies": {
+        "@da/grading": "workspace:*",
+        "@da/schema": "workspace:*",
+      },
+      "peerDependencies": {
+        "yaml": "^2.9.0",
+        "zod": "^4.4.3",
+      },
+    },
+    "packages/grading": {
+      "name": "@da/grading",
+      "version": "0.4.0",
     },
     "packages/schema": {
       "name": "@da/schema",
@@ -172,6 +190,10 @@
     "@clack/prompts": ["@clack/prompts@1.7.0", "", { "dependencies": { "@clack/core": "1.4.3", "fast-string-width": "^3.0.2", "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-y7/yvZ2TPAnR9+jnc00klvNNLkJiXFFrQA/hlLCcxA9a2A4zQIOimyFQ9XfwYKiGD1fb5GY8vbKIIgO8d5Tb2A=="],
 
     "@cloudflare/workers-types": ["@cloudflare/workers-types@5.20260801.1", "", {}, "sha512-XCv5xWi47WQOK0LpLa6997Mrpz8Ct+nZmp/M5Xp8Z4BFsarf7nYjkznGOcOoYK5m1GfbMFEEuQ2OIZnbIWoe9A=="],
+
+    "@da/content": ["@da/content@workspace:packages/content"],
+
+    "@da/grading": ["@da/grading@workspace:packages/grading"],
 
     "@da/schema": ["@da/schema@workspace:packages/schema"],
 

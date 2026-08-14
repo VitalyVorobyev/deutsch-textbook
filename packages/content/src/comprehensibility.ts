@@ -1,7 +1,7 @@
 /**
  * Input load — how much of a topic's German the learner has not met yet.
  *
- * Build-time only (reads the repo, like src/lib/coverage.ts), imported by
+ * Build-time only (reads the repo, like packages/content/src/coverage.ts), imported by
  * `bun scripts/comprehensibility.ts` and by tests. Nothing in the runtime app
  * imports it, and it hooks into no gate: **there is no threshold here and no
  * pass/fail.** Outliers are the product — a topic whose article sits far above
@@ -128,7 +128,7 @@ const ROMAN = /^[ivx]{1,4}$/;
  * rather than of the article.
  *
  * Hand-curated and deliberately not a stemmer, the same device and the same
- * argument as `INFLECTIONS` in src/lib/coverage.ts. It covers the articles and
+ * argument as `INFLECTIONS` in packages/content/src/coverage.ts. It covers the articles and
  * their contractions, the personal and reflexive pronouns, and the finite and
  * participle forms of the auxiliaries and modals — nothing lexical. Ablaut in a
  * *lexical* strong verb (`gibt`, `trifft`, `spricht`) is out of scope and still
@@ -143,7 +143,7 @@ export const FUNCTION_WORDS = [
   'mir', 'dir', 'ihm', 'ihnen', 'sich', 'man', 'einander',
   // determiners and possessives — the manifests carry the citation form only
   // (`~euer`), and no text ever shows it: this is the same set, and the same
-  // argument, as INFLECTIONS in src/lib/coverage.ts
+  // argument, as INFLECTIONS in packages/content/src/coverage.ts
   'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
   'kein', 'keine', 'keinen', 'keinem', 'keiner', 'keines',
   'mein', 'meine', 'meinen', 'meinem', 'meiner', 'meines',
@@ -328,7 +328,7 @@ export function articleSentenceLines(source: string): string[] {
 
 /**
  * The German-bearing fields of an exercise item, by type — an explicit
- * allow-list mirroring `itemGerman` in src/lib/coverage.ts, and kept beside it
+ * allow-list mirroring `itemGerman` in packages/content/src/coverage.ts, and kept beside it
  * rather than shared because the two answer different questions and neither
  * should silently move the other. `prompt_en`/`prompt_ru`, bilingual
  * instructions and meaning-side `match` rights are not German and are not here.
@@ -440,7 +440,7 @@ const ABBREVIATIONS = [
  * Three rejoins, each of which invents a boundary otherwise: an abbreviation
  * (`z. B.`, `d. h.`, `Nr. 12`), any single-letter fragment end, and an ordinal
  * (`am 3. Mai`, `vom 20. April` — the readings are full of dates). Approximate
- * by construction, like `sentences()` in src/lib/prose-shape.ts.
+ * by construction, like `sentences()` in packages/content/src/prose-shape.ts.
  */
 export function splitSentences(text: string): string[] {
   const parts = text.split(/(?<=[.!?])\s+(?=[\p{Lu}„«"])/u);
@@ -462,7 +462,7 @@ export function splitSentences(text: string): string[] {
 }
 
 /** Words = whitespace tokens carrying a letter or digit (the house rule, as in
-    scripts/lang-cost.ts and src/lib/prose-shape.ts). */
+    scripts/lang-cost.ts and packages/content/src/prose-shape.ts). */
 export function countWords(text: string): number {
   return text.split(/\s+/).filter((t) => /[\p{L}\p{N}]/u.test(t)).length;
 }
@@ -614,7 +614,7 @@ export interface Corpus {
 }
 
 /** Endings a `stem-` Wortliste headword may take — the same list `addresses()`
-    uses in src/lib/coverage.ts, so the two instruments read the manifest alike. */
+    uses in packages/content/src/coverage.ts, so the two instruments read the manifest alike. */
 const STEM_ENDINGS = ['', 'e', 'er', 'es', 'en', 'em'];
 
 /**

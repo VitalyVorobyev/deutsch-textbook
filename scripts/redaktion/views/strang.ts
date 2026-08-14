@@ -26,7 +26,7 @@ import {
 } from '../model';
 import { esc, pointRef, searchKey, table, tagRef, topicRef } from '../html';
 import { STRAND_LABELS } from './sprachkarte';
-import { focusIntroducedBy } from '../../../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 const statusOf = (point: GrammarPoint) =>
   grammar.get(productionLevel(point))?.points.find((p) => p.point.id === point.id);

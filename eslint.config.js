@@ -75,7 +75,7 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
       ],
-      // The IPA validator (src/lib/schemas.ts) deliberately lists combining marks as
+      // The IPA validator (packages/schema/src/index.ts) deliberately lists combining marks as
       // standalone character-class members; written as \u escapes they aren't misleading.
       'no-misleading-character-class': ['error', { allowEscape: true }],
     },

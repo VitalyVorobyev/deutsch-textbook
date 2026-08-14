@@ -99,7 +99,7 @@ function renderTopicDetail(id: string): string {
 
   /**
    * CLAUDE.md: `## Erklärung` splits into `### German subsections`, one per named confusion. The
-   * rule is unenforced (`src/lib/prose-shape.ts` says the judgement stays with the author), and
+   * rule is unenforced (`packages/content/src/prose-shape.ts` says the judgement stays with the author), and
    * twenty of forty-nine articles have none — so the confusion an inventory row names has nowhere
    * in the prose to point at. The mechanical half of the rule is checkable and is checked here.
    */

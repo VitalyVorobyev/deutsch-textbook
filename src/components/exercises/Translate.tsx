@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
 import type { translateItemSchema } from '@da/schema';
-import { normalizeAnswer, normalizeTranslation } from '../../lib/cloze';
+import { normalizeAnswer, normalizeTranslation } from '@da/grading/cloze';
 import {
   closestTranslationCandidate,
   gradeTranslation,
   translationCandidates,
   verdictIsCorrect,
   type TranslationVerdict,
-} from '../../lib/production';
-import { diffExpectedWords } from '../../lib/worddiff';
+} from '@da/grading/production';
+import { diffExpectedWords } from '@da/grading/worddiff';
 import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';

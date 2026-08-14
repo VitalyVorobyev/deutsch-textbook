@@ -84,7 +84,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
 - **P26-9 · Twenty articles whose `## Erklärung` has no `###` subsections** — every case topic among
   them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
   `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
-  rule; `src/lib/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
+  rule; `packages/content/src/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
   (exit 0) and the console badges each topic. The heading is the only addressable place a structure
   is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
   point but the whole article. Content work, one article at a time; the warning count is the counter.
@@ -347,7 +347,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
 ### Instruments and gates
 
 - **P25-15 · Instrument note from the strand audit (2026-08-12)** — verified against
-  `src/lib/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
+  `packages/grading/src/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
   case fold and the validator guard blind to it — were fixed the same day: sentence-head fold +
   `gradedTokenPositions` mirror, with the three corpus items the new guard caught):
   - The validator holds a probe family's item `focus` equal to the arming set's, so a variant that
@@ -449,7 +449,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   `bun scripts/comprehensibility.ts <level>/<topic-id>` reports ahead-of-the-learner tokens per
   section with the words listed, sentence length and Nebensatz density, and terminology density per
   explanation half; `--rank` ranks a level or all three against medians read off the corpus
-  (`src/lib/comprehensibility.ts`, [doc](authoring/coverage-instruments.md)). It is read-only and
+  (`packages/content/src/comprehensibility.ts`, [doc](authoring/coverage-instruments.md)). It is read-only and
   gates nothing. Two things remain. **Calibrate before trusting it**: rank all 46 topics against
   the owner's felt-difficulty list, because a ranking nobody has checked against the feeling it was
   built to explain is still an assertion. The four known false-positive classes (proper names,
@@ -556,7 +556,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   `diffExpectedWords` twice with the arguments swapped, and each traversal picks its own
   direction-dependent alignment, so a transposition can mark different words on the two sides.
   Display only — scoring and attribution are untouched. Return both flag arrays from one traversal
-  in `src/lib/worddiff.ts`.
+  in `packages/grading/src/worddiff.ts`.
 - **P18-8 · `review:gate` cannot see a review whose body omits the Reviewed-commit line** —
   `scripts/pr-review-gate.ts` proves review-of-HEAD only by parsing "Reviewed commit: `sha`" out of
   review bodies, and a review can carry the exact HEAD sha in its API `commit_id` while omitting the
@@ -597,7 +597,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
   [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) settles the how — every edge is
-  **derived** from `focusIntroducedBy` (`src/lib/focus-tags.ts`), `deepens` edges and reference-data
+  **derived** from `focusIntroducedBy` (`packages/content/src/focus-tags.ts`), `deepens` edges and reference-data
   keys, never a hand-maintained list. **Shipped 2026-08-06** in two passes: five reference files
   carry a validator-checked page-level `focus` list rendered by `TaughtIn.astro`, `/referenz` is
   grouped by function, and every topic page carries a derived "Siehe auch" footer

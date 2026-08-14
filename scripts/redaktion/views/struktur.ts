@@ -25,7 +25,7 @@ import {
 } from '../model';
 import { backlinks, chip, esc, pointRef, searchKey, strandRef, table, tagRef, topicRef } from '../html';
 import { STRAND_LABELS } from './sprachkarte';
-import { focusIntroducedBy } from '../../../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 /** entry ref → the source entry itself, for rendering a citation as its published wording. */
 function entryIndex() {

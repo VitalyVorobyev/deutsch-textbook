@@ -36,7 +36,7 @@ import {
   type WordField,
 } from '@da/schema';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
-import { ukHalfCoverage } from '../src/lib/coverage';
+import { ukHalfCoverage } from '@da/content/coverage';
 import type { TopicNode } from '../src/lib/mastery';
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';

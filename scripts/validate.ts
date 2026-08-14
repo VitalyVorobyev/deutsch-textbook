@@ -5,7 +5,7 @@
  * (prerequisites, vocab, exercises, reading, pretest), exercise answer-key sanity,
  * reading gloss markup, prerequisite cycles, atlas.yaml consistency with topic
  * frontmatter, and language discipline (letter-set purity and uk/de parity —
- * src/lib/langcheck.ts).
+ * packages/schema/src/langcheck.ts).
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -41,11 +41,11 @@ import {
   LEVELS,
   type Level,
 } from '@da/schema';
-import { GRAMMAR_STRANDS, type GrammarPoint } from '../src/lib/grammar-coverage';
-import { entryRef, loadStructureSources } from '../src/lib/structures';
+import { GRAMMAR_STRANDS, type GrammarPoint } from '@da/content/grammar-coverage';
+import { entryRef, loadStructureSources } from '@da/content/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
-import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
-import { gradedTokenPositions } from '../src/lib/production';
+import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
+import { gradedTokenPositions } from '@da/grading/production';
 import { continuationWord } from '../src/lib/table';
 import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
 import {
@@ -56,18 +56,18 @@ import {
   mdxLangProblems,
   ukParityProblems,
 } from '@da/schema/langcheck';
-import { proseShapeProblems } from '../src/lib/prose-shape';
-import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
+import { proseShapeProblems } from '@da/content/prose-shape';
+import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '@da/content/coverage';
 import {
   checkGradingDecisions,
   GRADING_DECISIONS_FILE,
   loadGradingDecisions,
-} from '../src/lib/grading-decisions';
+} from '@da/content/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
-import { focusIntroducedBy } from '../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
-import { authorshipProvenanceProblems } from '../src/lib/authorship-provenance';
+import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -420,7 +420,7 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
       seen.add(point.id);
 
       // `level: {reception, production}` replaced `standard_level` on 2026-08-14. Both shapes are
-      // read by src/lib/grammar-coverage.ts so the migration did not have to be atomic, but a row
+      // read by packages/content/src/grammar-coverage.ts so the migration did not have to be atomic, but a row
       // carrying neither can be placed at no level at all and must not pass.
       const production = point.level?.production ?? point.standard_level;
       const reception = point.level?.reception ?? production;
@@ -742,7 +742,7 @@ for (const { file, data } of references.values()) {
   const pageFocus = (data as { focus?: string[] }).focus ?? [];
   for (const tag of pageFocus) {
     if (!focusIntroducedBy[tag])
-      fail(file, `page-level focus "${tag}" is not in focusIntroducedBy (src/lib/focus-tags.ts)`);
+      fail(file, `page-level focus "${tag}" is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
   }
 }
 
@@ -759,7 +759,7 @@ for (const { file, data } of references.values()) {
     for (const tag of form.focus) {
       const owner = focusIntroducedBy[tag];
       if (!owner) {
-        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (src/lib/focus-tags.ts)`);
+        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
         continue;
       }
       const topic = topics.get(owner);
@@ -1169,7 +1169,7 @@ for (const [setId, { file, data }] of exerciseSets) {
                 : -1;
           if (repeatedAt >= 0) {
             const n = counts[repeatedAt]!;
-            // `graded` in src/lib/production.ts is a Set of strings tested per token, so a
+            // `graded` in packages/grading/src/production.ts is a Set of strings tested per token, so a
             // key token is matched by string, not by position: if it occurs twice, the focus
             // tag grades BOTH occurrences. In "Nina stellt den Stuhl neben den Schrank." the
             // second `den` is the direction case (wo-wohin), not the object article — so a
@@ -1187,7 +1187,7 @@ for (const [setId, { file, data }] of exerciseSets) {
         }
         // The exact-string counts above cannot see the grader's case machinery: a pinned
         // sentence-opener derives a lowercase twin that matches ANYWHERE, and sentence-head
-        // positions match case-insensitively (src/lib/production.ts). So "Nach der Arbeit
+        // positions match case-insensitively (packages/grading/src/production.ts). So "Nach der Arbeit
         // gehe ich nach Hause." with `Nach` pinned counted every string once and passed,
         // while the grader graded both `nach`s — and logged a zu/nach-Hause slip under the
         // dative tag. Ask the mechanism itself: in no rendering may the graded positions
@@ -1215,7 +1215,7 @@ for (const [setId, { file, data }] of exerciseSets) {
             // both false — so the confusion the item exists to measure is never logged,
             // and a one-token slip on the unpinned synonym is forgiven as spelling.
             // Every synonym that occupies the graded position must be pinned
-            // (src/lib/production.ts states the rule; this makes it a gate).
+            // (packages/grading/src/production.ts states the rule; this makes it a gate).
             if (item.focus && positions.length === 0) {
               fail(
                 where,
@@ -1900,7 +1900,7 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(
               `${file} → item "${item.id}"`,
               `focus "${item.focus}" is not in the focus-tag table — add it to docs/authoring/focus-tags.md ` +
-                'and to focusIntroducedBy in src/lib/focus-tags.ts, naming the topic that introduces it — ' +
+                'and to focusIntroducedBy in packages/content/src/focus-tags.ts, naming the topic that introduces it — ' +
                   'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
             );
             continue;
@@ -1977,7 +1977,7 @@ for (const [setId, { file, data }] of exerciseSets) {
 }
 
 // ---------------------------------------------------------------------------
-// Language discipline: letter-set purity and uk/de parity (src/lib/langcheck.ts)
+// Language discipline: letter-set purity and uk/de parity (packages/schema/src/langcheck.ts)
 // ---------------------------------------------------------------------------
 
 /**
@@ -2060,7 +2060,7 @@ for (const { file, data, body } of discoveries.values())
 
 /**
  * `## Erklärung` must split into `### German subsections`, one per named confusion — CLAUDE.md
- * states it as an imperative, and until now nothing checked it. `src/lib/prose-shape.ts` says why
+ * states it as an imperative, and until now nothing checked it. `packages/content/src/prose-shape.ts` says why
  * it left the question alone: whether a heading *names a confusion* is a judgement about meaning
  * and stays with the author. But the mechanical half — is there a `### ` in there at all — is not
  * a judgement, and twenty of forty-nine articles have none.
@@ -2101,7 +2101,7 @@ for (const { file, body } of topics.values()) {
 /**
  * `data/grading-decisions.yaml` is the committed memory of the audit's
  * grading-review queue (see CLAUDE.md). Two of its claims are machine-checkable
- * and enforced here via `checkGradingDecisions` (`src/lib/grading-decisions.ts`):
+ * and enforced here via `checkGradingDecisions` (`packages/content/src/grading-decisions.ts`):
  * a decision's item ref must exist (hard fail), and an `accept`-ruled rendering
  * must pass today's grader (hard fail) — an accepted rendering the scorer still
  * rejects is a stale claim, and the queue it was meant to drain would refill.

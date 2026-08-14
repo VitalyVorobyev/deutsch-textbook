@@ -23,7 +23,7 @@
  * rather than by listing directories and hoping.
  */
 import type { AstroIntegration } from 'astro';
-import { repoRoot } from '../lib/repo-root';
+import { repoRoot } from '@da/content/repo-root';
 import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';

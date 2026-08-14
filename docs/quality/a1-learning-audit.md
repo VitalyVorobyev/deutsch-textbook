@@ -109,7 +109,7 @@ for a mir/mich confusion the learner does not have (`dativ-pronomen`: 7% error r
 personalization loop aimed at a phantom.
 
 **Decision:** fix the instrument before scheduling probes, so that the retention cohort in finding 1
-is measured with a scorer that works. Implemented in `src/lib/production.ts`:
+is measured with a scorer that works. Implemented in `packages/grading/src/production.ts`:
 
 1. A one-token near-miss outside the graded tokens is a spelling slip — shown as a correction,
    scored correct, logging no focus error. Closed-class words (`den`/`dem`, `ihn`/`ihm`,

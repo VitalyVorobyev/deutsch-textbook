@@ -8,7 +8,9 @@
       "@lib/*": ["src/lib/*"],
       "@components/*": ["src/components/*"],
       "@da/schema": ["packages/schema/src/index.ts"],
-      "@da/schema/*": ["packages/schema/src/*"]
+      "@da/schema/*": ["packages/schema/src/*"],
+      "@da/content/*": ["packages/content/src/*"],
+      "@da/grading/*": ["packages/grading/src/*"]
     }
   },
   "include": ["src/**/*", "scripts/**/*", "packages/*/src/**/*", "content/**/*", ".astro/types.d.ts"],

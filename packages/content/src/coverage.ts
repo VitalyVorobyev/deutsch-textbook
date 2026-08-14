@@ -289,7 +289,7 @@ export function taughtSurface(root = repoRoot()): string {
  * so a case-sensitive surface would report `der` unearned because the article
  * happens to open every table row. Different question, different answer.
  *
- * Exported for src/lib/comprehensibility.ts, which asks a different question of
+ * Exported for packages/content/src/comprehensibility.ts, which asks a different question of
  * the same corpus and must ask it in the same tokens — two tokenizers would make
  * the two instruments disagree about what a word is.
  */
@@ -365,7 +365,7 @@ export interface UkCoverage {
 /**
  * The Über page's UK-half figure, computed from content per the earned-claims
  * rule — the page never hand-writes it. The unit is the file: per-file parity
- * is validator-enforced (src/lib/langcheck.ts), so any `uk` in a file means
+ * is validator-enforced (packages/schema/src/langcheck.ts), so any `uk` in a file means
  * the file carries the half throughout — a wave's file is fully authored or
  * not started, never half. Two refinements keep the count honest:
  *

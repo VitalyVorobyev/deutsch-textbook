@@ -122,7 +122,7 @@ for existence and direction, and drawn as ladders in the console's Strang view.
 
 Separately: **20 of 49 articles have no `###` subsections inside `## Erklärung`** — including every
 case topic (`a1/akkusativ`, `a2/dativ`), `a1/praesens-wortstellung`, `a2/modalverben`,
-`a2/perfekt-haben-sein`. CLAUDE.md states the rule; `src/lib/prose-shape.ts:200-206` explicitly
+`a2/perfekt-haben-sein`. CLAUDE.md states the rule; `packages/content/src/prose-shape.ts:200-206` explicitly
 leaves it to the author, so nothing checked it. `bun run validate` now warns (exit 0), because the
 mechanical half of the rule is checkable even though the semantic half is not. It matters beyond
 tidiness: the heading is the only addressable place a structure is explained, so without one an

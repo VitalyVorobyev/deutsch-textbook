@@ -35,7 +35,7 @@ mastered, and the next topic to learn.*
 
 <!-- The figures above are re-derived, never remembered. `bun test` fails if this
      bullet and the content disagree (tests/published-claims.test.ts).
-       units per level:   bun -e 'const {getCurriculum}=await import("./src/lib/curriculum.ts");
+       units per level:   bun -e 'const {getCurriculum}=await import("./packages/content/src/curriculum.ts");
                             const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1;
                             console.log(c)'
        B1 contract total: docs/curriculum/a2-b1.md — frozen 2026-07-24 at fourteen units -->

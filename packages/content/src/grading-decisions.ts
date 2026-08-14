@@ -22,8 +22,8 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { normalizeTranslation } from './cloze';
-import { gradeTranslation } from './production';
+import { normalizeTranslation } from '@da/grading/cloze';
+import { gradeTranslation } from '@da/grading/production';
 import { gradingDecisionsSchema, type GradingDecision } from '@da/schema';
 
 export const GRADING_DECISIONS_FILE = join('data', 'grading-decisions.yaml');

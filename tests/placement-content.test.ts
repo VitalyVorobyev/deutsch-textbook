@@ -11,7 +11,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
 import { exerciseSetSchema } from '@da/schema';
-import { getCurriculum } from '../src/lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 import { placementResults } from '../src/lib/placement';
 import { eligibleFreshCards } from '../src/lib/decks';
 import {

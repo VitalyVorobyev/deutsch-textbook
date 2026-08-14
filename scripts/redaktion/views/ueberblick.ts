@@ -21,7 +21,7 @@ import {
   type Level,
 } from '../model';
 import { esc, pct, table, topicRef } from '../html';
-import { focusIntroducedBy } from '../../../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 function levelStats(level: Level) {
   const levelTopics = [...topics.values()].filter((t) => t.data.level === level);

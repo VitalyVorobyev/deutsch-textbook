@@ -18,15 +18,15 @@ import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
-import { normalizeTranslation } from '../src/lib/cloze';
+import { normalizeTranslation } from '@da/grading/cloze';
 import {
   closestTranslationCandidate,
   gradeTranslation,
   type TranslationSpec,
-} from '../src/lib/production';
+} from '@da/grading/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { isPretestAttempt, isRetiredRevision, type RevisionLookup } from '../src/lib/weakness';
-import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
+import { decisionKey, loadGradingDecisions } from '@da/content/grading-decisions';
 import type { GradingDecision } from '@da/schema';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {

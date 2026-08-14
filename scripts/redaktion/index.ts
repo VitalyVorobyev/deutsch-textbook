@@ -17,8 +17,8 @@
  *
  * EVERY FIGURE IS COMPUTED AT GENERATION TIME, never written by hand — the same rule the Über page
  * is held to. All four coverage measurements are *imported*, not reimplemented
- * (`src/lib/grammar-coverage.ts`, `src/lib/coverage.ts`, `src/lib/structures.ts`,
- * `src/lib/grammar-depth.ts`), so this console and `bun scripts/grammar-coverage.ts`,
+ * (`packages/content/src/grammar-coverage.ts`, `packages/content/src/coverage.ts`, `packages/content/src/structures.ts`,
+ * `packages/content/src/grammar-depth.ts`), so this console and `bun scripts/grammar-coverage.ts`,
  * `bun scripts/coverage.ts`, `bun scripts/structures.ts` and `bun scripts/grammar-depth.ts` cannot
  * disagree; anything counted here instead (sets, items, item mix, glosses, edges) is counted from
  * the same files the validator reads, by the same rule it uses. If a number here contradicts a
@@ -63,8 +63,8 @@ import { renderUeberblick } from './views/ueberblick';
 import { renderLernpfad } from './views/lernpfad';
 import { renderDetail } from './views/detail';
 import { renderInventar } from './views/inventar';
-import { focusIntroducedBy } from '../../src/lib/focus-tags';
-import { GRAMMAR_STRANDS } from '../../src/lib/grammar-coverage';
+import { focusIntroducedBy } from '@da/content/focus-tags';
+import { GRAMMAR_STRANDS } from '@da/content/grammar-coverage';
 
 const OUT_DIR = join(ROOT, 'redaktion');
 const OUT_FILE = join(OUT_DIR, 'index.html');

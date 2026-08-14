@@ -1,7 +1,7 @@
 /**
  * Language-discipline checks for content trees and MDX bodies, shared by
  * `scripts/validate.ts` and the tests (house pattern: testable module in
- * src/lib/, thin wiring in the script — like src/lib/grading-decisions.ts).
+ * src/lib/, thin wiring in the script — like packages/content/src/grading-decisions.ts).
  *
  * Four explanation languages, three letter-set oracles:
  * - `en`/`*_en` and `de`/`*_de` fields must contain no Cyrillic;
@@ -91,7 +91,7 @@ export function hasUkField(node: unknown): boolean {
 }
 
 /** Whether any `ru`/`*_ru` key with a string value exists anywhere in the tree —
-    the denominator of the Über page's UK-translation figure (src/lib/coverage.ts). */
+    the denominator of the Über page's UK-translation figure (packages/content/src/coverage.ts). */
 export function hasRuField(node: unknown): boolean {
   return hasLangStringField(node, 'ru');
 }

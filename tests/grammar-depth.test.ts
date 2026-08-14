@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
-import { levelDepth, pointDepths, tagDepths, PRODUCTION_TYPES, SELECTION_TYPES } from '../src/lib/grammar-depth';
-import { focusIntroducedBy } from '../src/lib/focus-tags';
+import { levelDepth, pointDepths, tagDepths, PRODUCTION_TYPES, SELECTION_TYPES } from '@da/content/grammar-depth';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 /**
  * The depth ratchet.

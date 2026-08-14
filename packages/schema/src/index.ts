@@ -492,7 +492,7 @@ export const translateItemSchema = z.object({
    *
    * Word order needs no declaration (tokens are compared positionally), and articles
    * and pronouns are protected automatically, so an item usually needs this only when
-   * it grades a verb form. See `src/lib/production.ts`.
+   * it grades a verb form. See `packages/grading/src/production.ts`.
    */
   key_tokens: z.array(z.string().min(1)).default([]),
 });
@@ -1492,7 +1492,7 @@ export const GRADING_DECISION_RULINGS = ['accept', 'constrain', 'confirm'] as co
  * review on every run and the queue can never drain. This file is that memory —
  * loaded by both `scripts/validate.ts` (which enforces the machine-checkable
  * claims) and `scripts/progress-audit.ts` (which applies the exclusion semantics;
- * see `src/lib/grading-decisions.ts`).
+ * see `packages/content/src/grading-decisions.ts`).
  */
 export const gradingDecisionSchema = z.object({
   /** `<set-id>:<item-id>` of the translate item the rendering answered */

@@ -77,7 +77,7 @@ export interface GrammarPoint {
   de: string;
   en: string;
   focus?: string[];
-  /** `<source-id>:<entry-key>` refs into `data/strukturenlisten/` — see `src/lib/structures.ts`. */
+  /** `<source-id>:<entry-key>` refs into `data/strukturenlisten/` — see `packages/content/src/structures.ts`. */
   claims?: string[];
   /** ids of points this one is the deeper pass over. Was prose in `note:` on 15 rows. */
   deepens?: string[];
