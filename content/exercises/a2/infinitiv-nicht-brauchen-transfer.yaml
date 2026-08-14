@@ -1,0 +1,55 @@
+topic: infinitiv-mit-zu
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Entlastung in Kurs und Amt"
+title: {en: "Transfer — removing obligations in courses and offices", ru: "Перенос — снятие обязанностей на курсе и в учреждении", uk: "Перенесення — зняття обов'язків на курсі та в установі"}
+items:
+  - id: translate-pass
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "You do not need to bring your passport tomorrow."
+    prompt_ru: "Завтра вам не нужно приносить паспорт."
+    prompt_uk: "Завтра вам не потрібно приносити паспорт."
+    answer: "Sie brauchen morgen Ihren Pass nicht mitzubringen."
+    accept: ["Morgen brauchen Sie Ihren Pass nicht mitzubringen."]
+    key_tokens: ["brauchen", "Pass", "nicht", "mitzubringen"]
+    explain: {en: "The obligation is removed, so nicht brauchen zu is appropriate. mitbringen is separable and becomes mitzubringen.", ru: "Обязанность снимается, поэтому подходит nicht brauchen zu. Отделяемый mitbringen превращается в mitzubringen.", uk: "Обов'язок знімається, тому пасує nicht brauchen zu. Відокремлюване mitbringen перетворюється на mitzubringen."}
+  - id: translate-online
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We don't need to fill out the application online."
+    prompt_ru: "Нам не нужно заполнять заявление онлайн."
+    prompt_uk: "Нам не потрібно заповнювати заяву онлайн."
+    answer: "Wir brauchen den Antrag nicht online auszufüllen."
+    accept: ["Wir brauchen den Antrag online nicht auszufüllen."]
+    key_tokens: ["brauchen", "Antrag", "nicht", "auszufüllen"]
+    explain: {en: "brauchen is finite and the bracket closes with the separable zu-infinitive auszufüllen. The statement permits online completion but does not require it.", ru: "brauchen — спрягаемая форма, рамку закрывает отделяемый zu-Infinitiv auszufüllen. Онлайн-заполнение разрешено, но не обязательно.", uk: "brauchen — відмінювана форма, рамку закриває відокремлюваний zu-Infinitiv auszufüllen. Онлайн-заповнення дозволене, але не обов'язкове."}
+  - id: translate-ticket
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "Translate the optional action into German.", ru: "Переведите необязательное действие на немецкий.", uk: "Перекладіть необов'язкову дію німецькою."}
+    prompt_en: "You do not need to print the ticket."
+    prompt_ru: "Вам не нужно распечатывать билет."
+    prompt_uk: "Вам не потрібно роздруковувати квиток."
+    answer: "Sie brauchen das Ticket nicht auszudrucken."
+    key_tokens: ["brauchen", "Ticket", "nicht", "auszudrucken"]
+    explain: {en: "Printing is optional, not forbidden. The separable verb ausdrucken takes internal zu and becomes auszudrucken.", ru: "Печатать билет необязательно, но не запрещено. У отделяемого ausdrucken частица zu входит внутрь: auszudrucken.", uk: "Друкувати квиток необов'язково, але не заборонено. У відокремлюваному ausdrucken частка zu входить усередину: auszudrucken."}
+  - id: write-entlastung
+    outcomes: [pflicht-aufheben]
+    type: write
+    focus: nicht-brauchen-zu
+    prompt: {en: "Write a short message that removes two obligations but explicitly keeps one prohibition.", ru: "Напишите короткое сообщение, которое снимает две обязанности, но явно сохраняет один запрет.", uk: "Напишіть коротке повідомлення, яке знімає два обов'язки, але явно зберігає одну заборону."}
+    goal: {en: "Make necessity and permission separate so the reader cannot confuse optional with forbidden.", ru: "Разделите необходимость и разрешение так, чтобы читатель не спутал необязательное с запрещённым.", uk: "Розділіть необхідність і дозвіл так, щоб читач не сплутав необов'язкове із забороненим."}
+    requirements:
+      - {en: "Use nicht brauchen zu for an optional action.", ru: "Используйте nicht brauchen zu для необязательного действия.", uk: "Використайте nicht brauchen zu для необов'язкової дії."}
+      - {en: "Use nicht dürfen for a prohibited action.", ru: "Используйте nicht dürfen для запрещённого действия.", uk: "Використайте nicht dürfen для забороненої дії."}
+    min_words: 18
+    model_answer: "Ihr braucht morgen kein Buch mitzubringen und nicht früher zu kommen. Im Prüfungsraum dürft ihr aber nicht telefonieren."
+    model_translation: {en: "You do not need to bring a book tomorrow or arrive earlier. But you are not allowed to make calls in the exam room.", ru: "Завтра вам не нужно приносить книгу или приходить раньше. Но в экзаменационной аудитории нельзя звонить.", uk: "Завтра вам не потрібно приносити книжку чи приходити раніше. Але в екзаменаційній аудиторії не можна телефонувати."}
+    explain: {en: "The first sentence removes requirements; the second uses dürfen to set a genuine rule. The contrast is semantic, not just a change of modal verb.", ru: "Первое предложение снимает требования, второе через dürfen устанавливает настоящий запрет. Различие смысловое, а не просто замена модального глагола.", uk: "Перше речення знімає вимоги, друге через dürfen установлює справжню заборону. Різниця змістова, а не просто заміна модального дієслова."}

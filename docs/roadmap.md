@@ -40,8 +40,11 @@ extensive-reading corpus, then cross-links/Referenz.
      structure without a delayed probe, depth medians 13 teaching / 9 production / 4 files.
    - ~~P27-3b A2 grammar wave~~ — shipped: internal 38/38, lexical 1449/1449, all thirteen A2
      article-section findings cleared and the eight A2 structure-level probe gaps closed.
-   - **P27-3c DTZ tail is next:** work the 21 rows as the eight coherent teaching slices already
-     classified in the audit ledger, with exact claims only after learner-facing evidence.
+   - ~~P27-3c DTZ tail~~ — shipped: eight exact teaching slices close internal A2 at 46/46 and the
+     cumulative external denominator at A2 300/300 and B1 164/164, while preserving A2 depth at
+     8 teaching / 6 production / 3 files.
+   - **P27-3d A2 findings is next:** complete the topic-wide review of the eight reading tripwires,
+     three open document tasks, three missing spoken modes and two auxiliary tags without probes.
    - Then complete the 49 original topic
      audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
      100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
@@ -161,7 +164,14 @@ each; all A1 explanation articles have named decision-level sections. A1 depth r
 coverage remains 1449/1449. Reciprocal pronouns, interrogative determiners and duration with
 *über* now have named owner sections, scaffolded practice, transfer and parallel delayed probes.
 The thirteen A2 no-subsection warnings and all eight structure-level no-probe gaps are closed;
-touched topics remain `draft`. P27-3c now owns the 21-row external DTZ tail.
+touched topics remain `draft`.
+
+**P27-3c · A2 DTZ-tail wave shipped 2026-08-15.** The 21 external rows are now represented by
+eight exact points with owner sections, scaffold, productive transfer and three-variant probes.
+Internal A2 is 46/46; A2 is 300/300 and cumulative B1 is 164/164 against DTZ. Twelve extra
+productive transfer items preserve the existing A2 depth ratchet at 8 / 6 / 3 after the denominator
+grew. The result is explicitly `100% des DTZ-Inventars`, not completeness of every conceivable B1
+grammar catalog. P27-3d owns the remaining A2 topic-profile findings.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

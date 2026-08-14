@@ -11,19 +11,20 @@ The first full run found 23 unclaimed DTZ entries. `mod-wie` is an exact existin
 `einkaufen-reklamation` article contrasts `so … wie`, `-er als` and `am …-sten`, and its core
 practice makes the learner choose and explain the equality frame. It is now claimed by
 `komparativ`. The A1 wave then shipped `nachsilbe-chen` inside the complete `wortbildung` slice.
-The remaining 21 are grouped by one learnable decision, not by source-table row.
+The remaining 21 were grouped by one learnable decision, not by source-table row, and shipped as
+eight complete A2 slices on 2026-08-15.
 
 | Slice | DTZ entries | Owner | Required teaching decision | State |
 | --- | --- | --- | --- | --- |
-| Directional adverbs | `vorsilbe-herauf`, `heraus`, `herein`, `herunter`, `hin`, `hinauf`, `hinaus`, `hinüber`, `hinunter` | `ort-richtung-praepositionen` | choose speaker-centred `her-` vs away-from-speaker `hin-`, then recognise colloquial `rauf/raus/rein/runter/rüber` | open |
+| Directional adverbs | `vorsilbe-herauf`, `heraus`, `herein`, `herunter`, `hin`, `hinauf`, `hinaus`, `hinüber`, `hinunter` | `wohnen-umzug` | choose speaker-centred `her-` vs away-from-speaker `hin-`, then recognise colloquial `rauf/raus/rein/runter/rüber` | delivered in A2 DTZ-tail wave |
 | Diminutive nouns | `nachsilbe-chen` | new A1 `wortbildung` | derive meaning, guaranteed neuter gender and unchanged plural without treating every final `-chen` as productive | delivered in A1 wave |
-| Identity determiner | `derselbe` | `adjektive-deklination` | distinguish `derselbe` from merely similar `gleich` and inflect its article half plus weak adjective half | open |
-| Small quantities | `ein-paar`, `wenige` | `einkaufen-reklamation` | contrast countable `ein paar`, low-quantity `wenige` and singular `wenig`; agreement must remain visible | open |
-| Time boundaries | `temp-mit`, `temp-zwischen` | `zeit-praepositionen` | read `mit 18` as a time threshold and `zwischen Montag und Mittwoch` as a bounded interval, including case | open |
-| Spatial boundary and path | `lok-ausserhalb`, `lok-gegen`, `lok-um-herum` | `ort-richtung-praepositionen` | separate outside boundary, endpoint/contact and path around an object; produce the governed case | open |
-| Norm/source with `nach` | `weit-nach` | `lernen-verstehen` | use postposed `meiner Meinung nach` and distinguish it from directional/temporal `nach + Dativ` | open |
-| Consequence variants | `darum`, `daher` | `verbindungen-folgen` | retain consequence direction and V2 inversion while choosing neutral spoken `darum` or more written `daher` | open |
-| Lifted obligation | `infinitiv-brauchen-zu` | `infinitiv-mit-zu` | distinguish `nicht brauchen zu` (no necessity) from `nicht dürfen` (prohibition) and preserve the infinitive frame | open |
+| Identity determiner | `derselbe` | `adjektive-deklination` | distinguish `derselbe` from merely similar `gleich` and inflect its article half plus weak adjective half | delivered in A2 DTZ-tail wave |
+| Small quantities | `ein-paar`, `wenige` | `einkaufen-reklamation` | contrast countable `ein paar`, low-quantity `wenige` and singular `wenig`; agreement must remain visible | delivered in A2 DTZ-tail wave |
+| Time boundaries | `temp-mit`, `temp-zwischen` | `zeit-praepositionen` | read `mit 18` as a time threshold and `zwischen Montag und Mittwoch` as a bounded interval, including case | delivered in A2 DTZ-tail wave |
+| Spatial boundary and path | `lok-ausserhalb`, `lok-gegen`, `lok-um-herum` | `wohnen-umzug` | separate outside boundary, endpoint/contact and path around an object; produce the governed case | delivered in A2 DTZ-tail wave |
+| Norm/source with `nach` | `weit-nach` | `lernen-verstehen` | use postposed `meiner Meinung nach` and distinguish it from directional/temporal `nach + Dativ` | delivered in A2 DTZ-tail wave |
+| Consequence variants | `darum`, `daher` | `verbindungen-folgen` | retain consequence direction and V2 inversion while choosing neutral spoken `darum` or more written `daher` | delivered in A2 DTZ-tail wave |
+| Lifted obligation | `nicht-brauchen-zu` | `infinitiv-mit-zu` | distinguish `nicht brauchen zu` (no necessity) from `nicht dürfen` (prohibition) and preserve the infinitive frame | delivered in A2 DTZ-tail wave |
 
 ## Seven internal slices already exposed by the inventory
 
@@ -89,3 +90,20 @@ The ledger records delivery, not learning. Learner retention and transfer remain
 - A2 depth now reports medians of 8 teaching items, 6 productive items and 3 practice files. The
   lower teaching median is the honest effect of adding three real confusions to the distribution,
   while the structure-level no-probe count improved from 8 to 0.
+
+### A2 DTZ-tail wave — 2026-08-15
+
+- The 21 unclaimed DTZ rows became eight exact inventory points rather than aliases on broader
+  rows. Internal A2 therefore moved from 38/38 to 46/46 while external alignment moved to 300/300;
+  cumulative B1 moved to 164/164. This is `100% des DTZ-Inventars`, not a claim that DTZ exhausts
+  every possible B1 syllabus.
+- Seven existing owner articles gained named decision sections. Direction and spatial-boundary
+  work belongs to `wohnen-umzug`, not the A1 location-preposition topic: the learner must already
+  control ordinary `Wo?`/`Wohin?` before adding viewpoint and path boundaries.
+- Each slice has a scaffold set, a separate productive transfer set and three homogeneous delayed
+  probe variants with focus-specific arming. Twelve additional deterministic transfer items were
+  added when the first honest run lowered A2 depth to 7 teaching / 5 production; padding the report
+  or lowering its ratchet was rejected. The shipped distribution remains 8 / 6 / 3.
+- The seven touched topics remain `draft`. Structural delivery is evidence that the material exists,
+  not evidence that a human has completed the topic-wide language, reading, vocabulary and outcome
+  review.

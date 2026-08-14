@@ -1,0 +1,39 @@
+topic: infinitiv-mit-zu
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — nicht brauchen zu"
+title: {en: "Core — nicht brauchen zu", ru: "Основа — nicht brauchen zu", uk: "Основа — nicht brauchen zu"}
+items:
+  - id: mc-keine-pflicht
+    outcomes: [pflicht-aufheben]
+    type: mc
+    focus: nicht-brauchen-zu
+    instruction: {en: "Attendance is optional, not forbidden. Choose the sentence.", ru: "Присутствие необязательно, но не запрещено. Выберите предложение.", uk: "Присутність необов'язкова, але не заборонена. Оберіть речення."}
+    prompt: "Morgen ist die Teilnahme freiwillig."
+    options: ["Du brauchst morgen nicht zu kommen.", "Du darfst morgen nicht kommen.", "Du brauchst morgen zu nicht kommen."]
+    correct: 0
+    explain: {en: "nicht brauchen zu removes necessity while leaving the action allowed. nicht dürfen would prohibit it, and zu cannot split the negation phrase that way.", ru: "nicht brauchen zu снимает необходимость, но оставляет действие разрешённым. nicht dürfen запретило бы его; zu нельзя ставить внутрь отрицания таким образом.", uk: "nicht brauchen zu знімає необхідність, але лишає дію дозволеною. nicht dürfen заборонило б її; zu не можна ставити всередину заперечення так."}
+  - id: cloze-rahmen
+    outcomes: [pflicht-aufheben]
+    type: cloze
+    focus: nicht-brauchen-zu
+    instruction: {en: "Complete the bracket and keep zu with the infinitive.", ru: "Дополните рамку и сохраните zu при инфинитиве.", uk: "Доповніть рамку й збережіть zu при інфінітиві."}
+    text: "Ihr {{braucht}} das Formular heute nicht {{auszufüllen}}."
+    explain: {en: "The finite braucht occupies position 2; the separable infinitive ausfüllen wraps zu inside and closes the bracket as auszufüllen.", ru: "Спрягаемое braucht занимает позицию 2; отделяемый инфинитив ausfüllen ставит zu внутрь и закрывает рамку формой auszufüllen.", uk: "Відмінюване braucht займає позицію 2; відокремлюваний інфінітив ausfüllen ставить zu всередину й закриває рамку формою auszufüllen."}
+  - id: mc-verbot
+    outcomes: [pflicht-aufheben]
+    type: mc
+    focus: nicht-brauchen-zu
+    instruction: {en: "Which sentence is a real prohibition?", ru: "Какое предложение выражает настоящий запрет?", uk: "Яке речення виражає справжню заборону?"}
+    prompt: "Das Fotografieren ist verboten."
+    options: ["Sie dürfen hier nicht fotografieren.", "Sie brauchen hier nicht zu fotografieren.", "Sie müssen hier nicht fotografieren."]
+    correct: 0
+    explain: {en: "nicht dürfen means not allowed. Both other sentences merely say that taking photographs is unnecessary and would leave it permitted.", ru: "nicht dürfen означает «не разрешено». Два других предложения лишь говорят, что фотографировать необязательно, и оставляют это разрешённым.", uk: "nicht dürfen означає «не дозволено». Два інші речення лише кажуть, що фотографувати необов'язково, і лишають це дозволеним."}
+  - id: cloze-anrufen
+    outcomes: [pflicht-aufheben]
+    type: cloze
+    focus: nicht-brauchen-zu
+    instruction: {en: "Complete the separable infinitive.", ru: "Дополните отделяемый инфинитив.", uk: "Доповніть відокремлюваний інфінітив."}
+    text: "Sie brauchen vorher nicht {{anzurufen}}; die Praxis ist geöffnet."
+    explain: {en: "The action is unnecessary but allowed. anrufen is separable, so zu goes between an- and -rufen: anzurufen.", ru: "Действие необязательно, но разрешено. anrufen — отделяемый глагол, поэтому zu стоит между an- и -rufen: anzurufen.", uk: "Дія необов'язкова, але дозволена. anrufen — відокремлюване дієслово, тому zu стоїть між an- та -rufen: anzurufen."}

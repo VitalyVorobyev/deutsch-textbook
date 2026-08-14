@@ -14,7 +14,7 @@ step*. Measurement essays, dated reads and PR history live in
 ### P27 · Redaction editorial workstation
 
 P27-0 and the foundation of P27-1/P27-2 are in the current implementation: ADR 0013; explicit
-A1–C2 `CefrLevel`, ten declared grammar tracks and all 98 points migrated; transport-neutral
+A1–C2 `CefrLevel`, ten declared grammar tracks and all 106 points migrated; transport-neutral
 `CorpusClient`; warm German app shell; Grammatikatlas; checkout selection; Bun JSONL sidecar and
 restricted Tauri command; exact source reads, revision conflicts, local parsing/schema checks and
 atomic saves. `bun run redaktion` remains the browser transport; `bun run redaktion:desktop` builds
@@ -28,11 +28,14 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3c DTZ tail**: deliver the 21 unclaimed entries as the eight
-coherent teaching slices in the audit ledger. P27-3b closed internal A2 at 38/38, all thirteen A2
-article-section findings and eight structure-level probe gaps; lexical A2 remains 1449/1449. P27-3a
-closed A1 and claimed DTZ `-chen`, leaving the external tail unchanged at 21 after the A2 internal
-wave. P27-2a removed the regex preview, added safe one-language MDX rendering, language
+The current executable item is **P27-3d A2 findings**. P27-3c closed the 21-row DTZ tail through
+eight exact teaching slices: internal A2 is 46/46, external A2 is 300/300, cumulative B1 is 164/164
+and A2 depth remains 8 teaching / 6 production / 3 files. The remaining A2 queue is sixteen
+editorial signals: manually read eight short-reading tripwires and change only real defects; convert
+the three open document translations to `write`; add genuine spoken production/interaction to
+`gesundheit-arzttermin`, `infinitiv-mit-zu` and `lernen-verstehen`; and give
+`verben-mit-dativ` plus `nebensatz-vorfeld` fresh three-variant probes. Lexical A2 remains 1449/1449.
+P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
 claimed. Then add safe structured controls over the same source buffer and visible background-job

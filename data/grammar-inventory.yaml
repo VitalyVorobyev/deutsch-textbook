@@ -678,6 +678,40 @@ points:
       - goethe-start-deutsch-2:praep-lok-zwischen
     deepens: [lokale-praepositionen-ortstyp, dativ-artikel]
 
+  - id: richtungsadverbien-her-hin
+    strand: raum
+    track: raum
+    level: {reception: A2, production: A2}
+    de: "Sprecherbezogene Richtungsadverbien: her- zu mir, hin- von mir weg; herein/hinaus und die gesprochenen Kurzformen rein/raus/rauf/runter/rüber"
+    en: "Speaker-centred direction adverbs: her- towards the speaker, hin- away; full and colloquial short forms"
+    focus: [richtungsadverb-her-hin]
+    deepens: [lokale-praepositionen-ortstyp]
+    claims:
+      - goethe-dtz:vorsilbe-herauf
+      - goethe-dtz:vorsilbe-heraus
+      - goethe-dtz:vorsilbe-herein
+      - goethe-dtz:vorsilbe-herunter
+      - goethe-dtz:vorsilbe-hin
+      - goethe-dtz:vorsilbe-hinauf
+      - goethe-dtz:vorsilbe-hinaus
+      - goethe-dtz:vorsilbe-hinueber
+      - goethe-dtz:vorsilbe-hinunter
+    note: "One learnable spatial decision pays for the nine source rows only because the course teaches both axes they encode: the deictic centre (towards the speaker vs away) and the path (in/out/up/down/across). The exercises require individual full forms and recognition of the ordinary spoken reductions; the claims are not aliases for generic separable prefixes."
+
+  - id: raumgrenzen-und-weg
+    strand: raum
+    track: raum
+    level: {reception: A2, production: A2}
+    de: "Räumliche Grenze und Weg: außerhalb + Genitiv, gegen + Akkusativ, um … herum + Akkusativ"
+    en: "Spatial boundary and path: outside a boundary, contact towards an endpoint, and a path around an object"
+    focus: [raumgrenze-pfad]
+    deepens: [wechselpraepositionen]
+    claims:
+      - goethe-dtz:lok-ausserhalb
+      - goethe-dtz:lok-gegen
+      - goethe-dtz:lok-um-herum
+    note: "These three do not belong to the Wo/Wohin alternation: each expression fixes its own case and profiles a different path relation. Teaching them together prevents the familiar but false rule 'movement means accusative' from swallowing außerhalb + Genitiv."
+
   - id: seit-vor
     strand: zeit
     track: zeit
@@ -746,6 +780,19 @@ points:
       - goethe-start-deutsch-2:praep-temp-vom-an
     deepens: [zeitangaben]
     note: "The third of the three temporal points here, and the one that owns the parts of the Goethe A2 list its neighbours cannot reach: `zeitangaben` (A1) is the um/am/im calendar default alone, `seit-vor` is the two-way backward look alone, and `dativ-praepositionen` grades that ab/seit/von/nach take the dative — none of them asks which marker a time expression takes when the whole set is on the table, and none of them covers ab, bis/bis zu, von … bis or the preposition-less accusative (jeden Tag, nächste Woche), which is where the Russian and Ukrainian hand adds a preposition German does not use. Added 2026-08-12 with `zeit-praepositionen`, the topic that closes it; the A2 denominator moved 32 → 33 in the same change."
+
+  - id: zeitgrenzen-mit-zwischen
+    strand: zeit
+    track: zeit
+    level: {reception: A2, production: A2}
+    de: "Zeitgrenzen mit mit + Dativ (mit 18) und zwischen … und + Dativ (zwischen Montag und Mittwoch)"
+    en: "Time thresholds with mit + dative and bounded intervals with zwischen … und + dative"
+    focus: [zeitgrenzen-mit-zwischen]
+    deepens: [zeitangaben-system]
+    claims:
+      - goethe-dtz:temp-mit
+      - goethe-dtz:temp-zwischen
+    note: "The source lists the prepositions, but the teachable unit is their temporal reading: mit names the age or threshold at which a state begins, while zwischen binds two endpoints into an interval. This is not paid for by generic dative-preposition practice, which never asks the learner to select either temporal meaning."
 
   - id: komparativ
     strand: nominalgruppe
@@ -820,6 +867,29 @@ points:
       - goethe-a2-fit2:adj-attributiv
       - goethe-dtz:adj-nach-indefinitem
       - goethe-start-deutsch-2:adj-attributiv-indefinit
+
+  - id: identitaetsartikel-derselbe
+    strand: nominalgruppe
+    track: nominalgruppe
+    level: {reception: A2, production: A2}
+    de: "derselbe/dieselbe/dasselbe: identische Referenz, mit bestimmtem Artikelteil und schwacher Adjektivendung"
+    en: "derselbe: identity rather than similarity, inflected as a definite-article part plus a weak adjective part"
+    focus: [derselbe-identitaet]
+    deepens: [adjektiv-bestimmt]
+    claims:
+      - goethe-dtz:derselbe
+
+  - id: kleine-mengen
+    strand: nominalgruppe
+    track: nominalgruppe
+    level: {reception: A2, production: A2}
+    de: "Kleine Mengen: ein paar + Plural, wenige + Plural und wenig + nicht zählbarer Singular"
+    en: "Small quantities: ein paar with plurals, wenige with countable plurals, wenig with uncountable singulars"
+    focus: [wenig-ein-paar]
+    deepens: [plural]
+    claims:
+      - goethe-dtz:ein-paar
+      - goethe-dtz:wenige
 
   - id: adjektiv-nullartikel
     strand: nominalgruppe
@@ -902,6 +972,18 @@ points:
     focus: [verb-praeposition]
     claims:
       - goethe-dtz:verb-praeposition
+
+  - id: meinung-nach
+    strand: register-pragmatik
+    track: register-pragmatik
+    level: {reception: A2, production: A2}
+    de: "Die nachgestellte Quelle mit nach: meiner Meinung nach"
+    en: "Postposed nach marking a norm or source: meiner Meinung nach"
+    focus: [meinung-nachgestellt]
+    deepens: [dativ-praepositionen]
+    claims:
+      - goethe-dtz:weit-nach
+    note: "The exact DTZ row is broader than one phrase, but the source example and the A2 communicative need meet at the productive frame meiner Meinung nach. The point is deliberately narrower than directional/temporal nach + Dativ: the phrase names whose judgement the statement follows and places nach after the noun phrase."
 
   - id: verbrektion-kasus
     strand: verbvalenz
@@ -1004,6 +1086,17 @@ points:
     claims:
       - goethe-dtz:infinitiv-zu
 
+  - id: nicht-brauchen-zu
+    strand: negation
+    track: negation
+    level: {reception: A2, production: A2}
+    de: "nicht brauchen zu + Infinitiv: fehlende Notwendigkeit, nicht Verbot"
+    en: "nicht brauchen zu + infinitive: lack of necessity, not prohibition"
+    focus: [nicht-brauchen-zu]
+    deepens: [infinitiv-mit-zu, duerfen-muessen]
+    claims:
+      - goethe-dtz:nicht-brauchen-zu
+
   - id: um-zu
     strand: satzverbindung
     track: satzverbindung
@@ -1039,6 +1132,18 @@ points:
       - goethe-dtz:deswegen
       - goethe-dtz:trotzdem
       - goethe-start-deutsch-2:satzverb-deshalb
+
+  - id: folgeadverbien-darum-daher
+    strand: satzverbindung
+    track: satzverbindung
+    level: {reception: A2, production: A2}
+    de: "Folgeadverbien darum und daher: Konsequenzrichtung, Verbzweit und Register"
+    en: "Consequence adverbs darum and daher: result direction, verb-second inversion and register"
+    focus: [darum-daher]
+    deepens: [konjunktionaladverb]
+    claims:
+      - goethe-dtz:darum
+      - goethe-dtz:daher
 
   - id: als-wenn
     strand: satzverbindung
