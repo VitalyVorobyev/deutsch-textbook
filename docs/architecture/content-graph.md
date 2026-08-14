@@ -25,6 +25,12 @@ there were eight partial ones — and a question spanning two of them had nowher
 
 ## The Element, and the two properties nothing recorded
 
+*Since [ADR 0012](../adrs/0012-topic-manifests.md) a topic answers half of this itself: its
+manifest's `elements:` block names every part it owns, and the validator holds that list closed
+against every artifact's `topic:` back-pointer. What follows is why the Element layer is still
+needed on top of it — the manifest says **which** files a topic owns, and the Element says **what
+each one does***.
+
 Ask "what is this topic made of?" and the corpus gives four answers: a set says `role`, a reading
 says `kind`, a listening artifact says `purpose`, an article says nothing. Some links are declared
 both ways (topic ↔ set), some only from the far side (a document names its topic; the topic does not

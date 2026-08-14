@@ -27,30 +27,20 @@ export type Bilingual = z.infer<typeof bilingualSchema>;
 const slug = z.string().regex(/^[a-z0-9-]+$/, 'must be a kebab-case slug');
 
 // ---------------------------------------------------------------------------
-// Topics (content/topics/<level>/<id>.mdx)
+// Topic articles (content/topics/<level>/<id>.mdx)
 // ---------------------------------------------------------------------------
 
-export const topicSchema = z.object({
-  id: slug,
-  title_de: z.string().min(1),
-  title_en: z.string().min(1),
-  title_ru: z.string().min(1),
-  title_uk: z.string().min(1).optional(),
-  level: levelSchema,
-  kind: topicKindSchema,
-  prerequisites: z.array(slug).default([]),
-  /** ids of vocab files whose entries feed this topic's flashcard deck */
-  vocab: z.array(slug).default([]),
-  /** ids (paths) of exercise sets embedded on this topic's page */
-  exercises: z.array(z.string()).default([]),
-  /** ids (paths) of reading texts rendered in the Lesetext section */
-  reading: z.array(z.string()).default([]),
-  /** id (path) of a 3-item pretest exercise set rendered above the article */
-  pretest: z.string().optional(),
-  tags: z.array(slug).default([]),
-  status: z.enum(['draft', 'reviewed']).default('draft'),
-});
-export type Topic = z.infer<typeof topicSchema>;
+/**
+ * The article file carries **prose and nothing else**. Everything that used to sit in its
+ * frontmatter — the titles, the level, the element lists — now lives in the sibling manifest
+ * `<id>.topic.yaml` (`topicManifestSchema`, below), because it was stored in two or three places
+ * and `scripts/validate.ts` existed partly to keep the copies equal.
+ *
+ * Strict on purpose: a leftover key is a half-finished migration, and an empty non-strict object
+ * would silently accept it. The id is the filename, as it always was.
+ */
+export const topicArticleSchema = z.strictObject({});
+export type TopicArticle = z.infer<typeof topicArticleSchema>;
 
 // ---------------------------------------------------------------------------
 // Vocabulary (content/vocab/<id>.yaml)
@@ -1470,12 +1460,71 @@ export const atlasGroupSchema = z.object({
 });
 export type AtlasGroup = z.infer<typeof atlasGroupSchema>;
 
-export const atlasNodeSchema = z.object({
+/**
+ * What a topic is made of — the list that existed nowhere.
+ *
+ * Every id here is a path-id (`a2/perfekt-haben-sein`), and every artifact still carries its own
+ * `topic:` back-pointer. The two directions are held equal by `scripts/validate.ts`, which is what
+ * makes this list **closed**: a set naming a topic that does not list it is now an error, where
+ * before it was simply invisible.
+ *
+ * Three of these fields replace a *convention* rather than a field:
+ * `primary_practice` was "the first practice set in `exercises:`", `probes` was a scan for
+ * `role: probe`, and the article was not addressable at all.
+ */
+export const topicElementsSchema = z.object({
+  /** the prose file beside this manifest; always `<id>.mdx` */
+  article: z.string().min(1),
+  /** 3-item diagnostic rendered above the article */
+  pretest: z.string().optional(),
+  /**
+   * Exercise sets in **page order, which is the authored teaching order** — deliberately one list
+   * rather than a `practice:`/`drill:` split. 14 of the 49 topics interleave the two on purpose
+   * (`dativ` runs practice → drill → drill → practice → practice → drill → drill → practice), which
+   * is the scaffold→fade arc written down; bucketing by role would have silently reordered their
+   * pages.
+   */
+  exercises: z.array(z.string()).default([]),
+  /**
+   * The set whose completion advances the Lernpfad, so **its item list must not grow later**.
+   * Declared here because "the first practice set in the array" made a reordering of the page into
+   * a silent change of what completion means.
+   */
+  primary_practice: z.string().optional(),
+  /** delayed-check families; every set in one carries `role: probe` */
+  probes: z.array(z.string()).default([]),
+  /** graded reading texts rendered in the Lesetext section */
+  reading: z.array(z.string()).default([]),
+  /** vocab decks whose entries feed this topic's flashcards */
+  vocab: z.array(slug).default([]),
+});
+export type TopicElements = z.infer<typeof topicElementsSchema>;
+
+/**
+ * One topic, declared in one file: `content/topics/<level>/<id>.topic.yaml`, beside its article.
+ *
+ * It replaces the atlas `nodes:` array and the article's frontmatter, which between them stored a
+ * topic's identity up to four times — `level` in the directory path, the frontmatter, the node and
+ * the unit entry; `prerequisites` and `kind` twice each — and needed reconciliation checks in
+ * `scripts/validate.ts` to keep the copies equal. `content/atlas.yaml` keeps what is genuinely
+ * about the whole graph: `groups:` and the ordered `units:` spine.
+ *
+ * Titles stay flat (`title_de`, …) rather than nesting under `title:`, matching every other content
+ * file — `langcheck.ts`'s uk-wave detection keys off `*_uk` fields, and a second title convention
+ * would be the duplication this file exists to remove.
+ */
+export const topicManifestSchema = z.object({
   id: slug,
   level: levelSchema,
   kind: topicKindSchema,
   strand: z.enum(CURRICULUM_STRANDS),
   group: slug,
+  title_de: z.string().min(1),
+  title_en: z.string().min(1),
+  title_ru: z.string().min(1),
+  title_uk: z.string().min(1).optional(),
+  status: z.enum(['draft', 'reviewed']).default('draft'),
+  tags: z.array(slug).default([]),
   prerequisites: z.array(slug).default([]),
   /** base topics this one revisits at greater depth (spiral learning). A target
       may also be a prerequisite — both meanings can apply. Must appear earlier
@@ -1485,8 +1534,9 @@ export const atlasNodeSchema = z.object({
   related: z.array(slug).default([]),
   /** 2–5 can-do statements the topic teaches, at the topic's CEFR level */
   outcomes: z.array(outcomeSchema).min(2).max(5),
+  elements: topicElementsSchema,
 });
-export type AtlasNode = z.infer<typeof atlasNodeSchema>;
+export type TopicManifest = z.infer<typeof topicManifestSchema>;
 
 /** One curriculum unit. The file order of `units:` IS the spine order — new
     units are inserted, never renumbered. */
@@ -1503,9 +1553,13 @@ export const atlasUnitSchema = z.object({
 });
 export type AtlasUnit = z.infer<typeof atlasUnitSchema>;
 
+/**
+ * What is left of `content/atlas.yaml` once every topic declares itself: the group taxonomy and
+ * the ordered spine. Both are properties of the whole graph rather than of any one topic, which is
+ * the line the `nodes:` array crossed — it stored 49 topics' identities a second time.
+ */
 export const atlasSchema = z.object({
   groups: z.array(atlasGroupSchema).min(1),
-  nodes: z.array(atlasNodeSchema).min(1),
   units: z.array(atlasUnitSchema).min(1),
 });
 export type Atlas = z.infer<typeof atlasSchema>;

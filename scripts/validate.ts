@@ -9,14 +9,14 @@
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, relative, sep } from 'node:path';
+import { dirname, join, relative, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
 import {
   atlasSchema,
   exerciseSetSchema,
   readingSchema,
-  topicSchema,
+  topicManifestSchema,
   vocabFileSchema,
   visualDocumentSchema,
   wordFieldSchema,
@@ -30,7 +30,7 @@ import {
   type Discovery,
   type ExerciseSet,
   type Reading,
-  type Topic,
+  type TopicManifest,
   type VocabEntry,
   type VocabFile,
   type VisualDocument,
@@ -68,6 +68,7 @@ import { focusIntroducedBy } from '@da/content/focus-tags';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
+import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 
 const ROOT = join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
@@ -186,23 +187,37 @@ const rel = (f: string) => relative(ROOT, f);
 // Load everything
 // ---------------------------------------------------------------------------
 
-const topics = new Map<string, { file: string; data: Topic; body: string }>();
-for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
-  const src = readFileSync(file, 'utf8');
-  const raw = parseFrontmatter(src, rel(file));
-  if (raw === undefined) continue;
-  const data = validateWith(topicSchema, raw, rel(file));
+/**
+ * A topic is its manifest plus its article. The manifest is the declaration — id, level, outcomes,
+ * elements — and the article is prose with no frontmatter at all, so the three-way reconciliation
+ * this block used to do (directory vs frontmatter vs atlas node) has nothing left to reconcile.
+ * What remains is the two things a filename can still disagree with.
+ */
+const topics = new Map<string, { file: string; article: string; data: TopicManifest; body: string }>();
+for (const file of manifestFiles(ROOT)) {
+  const raw = YAML.parse(readFileSync(file, 'utf8'));
+  const data = validateWith(topicManifestSchema, raw, rel(file));
   if (!data) continue;
-  const body = src.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '');
 
   const parts = relative(join(CONTENT, 'topics'), file).split(sep);
-  const basename = parts.at(-1)!.replace(/\.mdx$/, '');
+  const basename = idFromManifestPath(file);
   const levelDir = parts.length > 1 ? parts[0]! : '';
-  if (data.id !== basename) fail(rel(file), `frontmatter id "${data.id}" ≠ filename "${basename}"`);
+  if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
   if (levelDir.toUpperCase() !== data.level)
-    fail(rel(file), `level directory "${levelDir}" ≠ frontmatter level "${data.level}"`);
+    fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
   if (topics.has(data.id)) fail(rel(file), `duplicate topic id "${data.id}"`);
-  topics.set(data.id, { file: rel(file), data, body });
+
+  const article = join(dirname(file), data.elements.article);
+  if (!existsSync(article)) {
+    fail(rel(file), `elements.article "${data.elements.article}" does not exist`);
+    continue;
+  }
+  const body = readFileSync(article, 'utf8');
+  // The article carries prose only. A leftover frontmatter block is a half-finished edit that
+  // Astro's strict empty schema would reject at build time — say so here, where the message can
+  // name the file it belongs to.
+  if (/^---\r?\n/.test(body)) fail(rel(article), 'article has a frontmatter block; it belongs in the manifest');
+  topics.set(data.id, { file: rel(file), article: rel(article), data, body });
 }
 
 for (const problem of authorshipProvenanceProblems(
@@ -796,17 +811,39 @@ for (const [id, { file, data }] of topics) {
     if (!topics.has(p)) fail(file, `prerequisite "${p}" does not resolve to a topic`);
     if (p === id) fail(file, `topic lists itself as a prerequisite`);
   }
-  for (const v of data.vocab) {
+  for (const v of data.elements.vocab) {
     if (!vocabFiles.has(v)) fail(file, `vocab ref "${v}" does not resolve to content/vocab/${v}.yaml`);
   }
-  for (const ex of data.exercises) {
+  for (const ex of data.elements.exercises) {
     if (!exerciseSets.has(ex)) fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
   }
+  if (data.elements.article !== `${id}.mdx`)
+    fail(file, `elements.article "${data.elements.article}" must be "${id}.mdx"`);
+
   // The recommended path advances a topic on its first role: practice set (see
   // primaryPractice in src/lib/content.ts). A topic without one can never be
   // completed, so the Lernpfad would stop on it forever.
-  if (!data.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
+  if (!data.elements.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
     fail(file, 'topic owns no role: practice exercise set — the Lernpfad could never advance past it');
+
+  /**
+   * `primary_practice` decides what completing the Lernpfad step means, so it must be one of the
+   * topic's own practice sets and it must be stated. It used to be "the first practice set in the
+   * array": reordering the page silently moved it, and adding items to whichever set won the race
+   * silently lengthened the step.
+   */
+  const primary = data.elements.primary_practice;
+  if (primary === undefined) fail(file, 'elements.primary_practice is not declared');
+  else if (!data.elements.exercises.includes(primary))
+    fail(file, `elements.primary_practice "${primary}" is not in elements.exercises`);
+  else if (exerciseSets.get(primary)?.data.role !== 'practice')
+    fail(file, `elements.primary_practice "${primary}" is not a role: practice set`);
+
+  for (const probe of data.elements.probes) {
+    const set = exerciseSets.get(probe);
+    if (!set) fail(file, `probe ref "${probe}" does not resolve to content/exercises/${probe}.yaml`);
+    else if (set.data.role !== 'probe') fail(file, `elements.probes lists "${probe}", which is role: ${set.data.role}`);
+  }
 
   // Item mix (see "Item mix" in CLAUDE.md).
   //
@@ -825,7 +862,7 @@ for (const [id, { file, data }] of topics) {
   // recognition — publishing the 41-recording corpus (82 items) would have loosened the
   // selection cap on 38 of 41 topics and the mc cap on 27, silently, with `a1/artikel-genus`
   // going from exactly at its cap to one item under it.
-  const practiceItems = data.exercises
+  const practiceItems = data.elements.exercises
     .filter((ex) => exerciseSets.get(ex)?.data.role === 'practice')
     .flatMap((ex) => exerciseSets.get(ex)!.data.items)
     .filter((i) => i.type !== 'audio-comprehension');
@@ -863,7 +900,7 @@ for (const [id, { file, data }] of topics) {
   // is mostly `order`, because a sibling set's translate items dilute the ratio; this is
   // per set for that reason. Two is the "a couple per set" the authoring rule already asks
   // for, written down where it can be enforced.
-  for (const setId of data.exercises) {
+  for (const setId of data.elements.exercises) {
     const set = exerciseSets.get(setId);
     if (!set) continue;
     const orders = set.data.items.filter((i) => i.type === 'order');
@@ -876,20 +913,20 @@ for (const [id, { file, data }] of topics) {
           'translate or cloze of the same word order',
       );
   }
-  for (const r of data.reading) {
+  for (const r of data.elements.reading) {
     if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }
-  if (data.pretest !== undefined) {
-    const pre = exerciseSets.get(data.pretest);
+  if (data.elements.pretest !== undefined) {
+    const pre = exerciseSets.get(data.elements.pretest);
     if (!pre) {
-      fail(file, `pretest ref "${data.pretest}" does not resolve to content/exercises/${data.pretest}.yaml`);
+      fail(file, `pretest ref "${data.elements.pretest}" does not resolve to content/exercises/${data.elements.pretest}.yaml`);
     } else if (pre.data.topic !== id) {
-      fail(file, `pretest set "${data.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
+      fail(file, `pretest set "${data.elements.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
     } else if (pre.data.role !== 'pretest') {
-      fail(file, `pretest set "${data.pretest}" must declare role: pretest`);
+      fail(file, `pretest set "${data.elements.pretest}" must declare role: pretest`);
     }
-    if (data.exercises.includes(data.pretest))
-      fail(file, `pretest set "${data.pretest}" must not also be listed in exercises`);
+    if (data.elements.exercises.includes(data.elements.pretest))
+      fail(file, `pretest set "${data.elements.pretest}" must not also be listed in exercises`);
   }
 }
 
@@ -936,20 +973,38 @@ for (const { file, data } of wortnetze.values()) {
   }
 }
 
+/**
+ * The manifest's `elements` list is CLOSED, and this is what closes it.
+ *
+ * Every artifact still carries a `topic:` back-pointer — open a drill file and it tells you what it
+ * belongs to — but membership is declared by the topic, and the two directions must agree. Before
+ * the manifests, a set could name a topic that never listed it and nothing anywhere noticed: the
+ * probe family was found by scanning for `role: probe`, so a probe was "attached" simply by
+ * existing.
+ */
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
   const standalone = STANDALONE_ROLES.has(data.role);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
+  } else if (data.role === 'probe') {
+    if (!owner.data.elements.probes.includes(setId))
+      fail(file, `topic "${data.topic}" does not list this probe ("${setId}") in elements.probes`);
+    if (owner.data.elements.exercises.includes(setId) || owner.data.elements.pretest === setId)
+      fail(file, 'a role: probe set must not be listed in exercises or as the pretest — it opens the session, not the page');
   } else if (standalone) {
-    // Checkpoints/probes/placements anchor to a topic for spine position only — they
-    // get their own pages and must never be embedded in ordinary lesson flow.
-    if (owner.data.exercises.includes(setId) || owner.data.pretest === setId)
-      fail(file, `a role: ${data.role} set must not be listed in any topic's exercises or pretest`);
-  } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
+    // Checkpoints and placements anchor to a topic for spine position only — they get their own
+    // pages, belong to a level rather than a topic, and must never be embedded in lesson flow.
+    if (
+      owner.data.elements.exercises.includes(setId) ||
+      owner.data.elements.pretest === setId ||
+      owner.data.elements.probes.includes(setId)
+    )
+      fail(file, `a role: ${data.role} set belongs to a level, not a topic — it must not appear in any topic's elements`);
+  } else if (!owner.data.elements.exercises.includes(setId) && owner.data.elements.pretest !== setId) {
     fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
   }
-  if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
+  if (owner?.data.elements.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
   if (data.role === 'probe') {
@@ -1393,7 +1448,7 @@ for (const [readingId, { file, data }] of readings) {
   const owner = topics.get(data.topic);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
-  } else if (!owner.data.reading.includes(readingId)) {
+  } else if (!owner.data.elements.reading.includes(readingId)) {
     fail(file, `topic "${data.topic}" does not list this reading ("${readingId}") in its reading refs`);
   }
 
@@ -1486,7 +1541,7 @@ for (const [readingId, { file, data }] of readings) {
 for (const [setId, { file, data }] of exerciseSets) {
   if (STANDALONE_ROLES.has(data.role)) continue; // standalone by design
   const referenced = [...topics.values()].some(
-    (t) => t.data.exercises.includes(setId) || t.data.pretest === setId,
+    (t) => t.data.elements.exercises.includes(setId) || t.data.elements.pretest === setId,
   );
   if (!referenced) warn(file, 'exercise set is not embedded on any topic page');
 }
@@ -1521,7 +1576,9 @@ for (const [setId, { file, data }] of exerciseSets) {
     const raw = YAML.parse(readFileSync(atlasFile, 'utf8'));
     const atlas = validateWith(atlasSchema, raw, AT);
     if (atlas) {
-      const nodeIds = new Set(atlas.nodes.map((n) => n.id));
+      // The manifests ARE the nodes now; the atlas keeps the taxonomy and the spine.
+      const nodes = [...topics.values()].map((t) => t.data);
+      const nodeIds = new Set(nodes.map((n) => n.id));
       const groupById = new Map(atlas.groups.map((group) => [group.id, group]));
       if (groupById.size !== atlas.groups.length) fail(AT, 'duplicate group id');
       const parentGroups = new Set(atlas.groups.flatMap((group) => group.parent ? [group.parent] : []));
@@ -1543,19 +1600,7 @@ for (const [setId, { file, data }] of exerciseSets) {
           cursor = groupById.get(cursor)?.parent;
         }
       }
-      for (const id of topics.keys()) {
-        if (!nodeIds.has(id)) fail(AT, `topic "${id}" missing from atlas`);
-      }
-      for (const node of atlas.nodes) {
-        const t = topics.get(node.id);
-        if (!t) {
-          fail(AT, `node "${node.id}" has no topic file`);
-          continue;
-        }
-        if (node.level !== t.data.level)
-          fail(AT, `node "${node.id}" level ${node.level} ≠ topic level ${t.data.level}`);
-        if (node.kind !== t.data.kind)
-          fail(AT, `node "${node.id}" kind ${node.kind} ≠ topic kind ${t.data.kind}`);
+      for (const node of nodes) {
         const group = groupById.get(node.group);
         if (!group) fail(AT, `node "${node.id}" has unknown group "${node.group}"`);
         else {
@@ -1563,19 +1608,16 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (group.strand !== node.strand)
             fail(AT, `node "${node.id}" strand differs from group "${node.group}"`);
         }
-        const a = [...node.prerequisites].sort().join(',');
-        const b = [...t.data.prerequisites].sort().join(',');
-        if (a !== b) fail(AT, `node "${node.id}" prerequisites ≠ topic frontmatter`);
       }
 
       // Spine: every topic in exactly one unit; unit topics exist and match
       // the unit's level; units grouped by ascending level; the flattened
       // order never puts a topic before a prerequisite; deepens targets exist
       // and appear strictly earlier.
-      const nodeById = new Map(atlas.nodes.map((n) => [n.id, n]));
+      const nodeById = new Map(nodes.map((n) => [n.id, n]));
       const outcomeOwner = new Map<string, string>();
-      const outcomeById = new Map<string, (typeof atlas.nodes)[number]['outcomes'][number]>();
-      for (const node of atlas.nodes) {
+      const outcomeById = new Map<string, TopicManifest['outcomes'][number]>();
+      for (const node of nodes) {
         for (const outcome of node.outcomes) {
           const previous = outcomeOwner.get(outcome.id);
           if (previous) fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
@@ -1615,7 +1657,7 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(AT, `unit "${unit.id}" (${unit.level}) contains topic "${t}" of level ${node.level}`);
         }
       }
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         if (!unitOf.has(node.id)) fail(AT, `topic "${node.id}" is not in any unit`);
       }
 
@@ -1664,7 +1706,7 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
 
       const spinePos = new Map(atlas.units.flatMap((u) => u.topics).map((t, i) => [t, i]));
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         const at = spinePos.get(node.id);
         for (const p of node.prerequisites) {
           const pAt = spinePos.get(p);
@@ -1741,7 +1783,7 @@ for (const [setId, { file, data }] of exerciseSets) {
               rememberMode(outcome, 'reading');
             }
         }
-        for (const node of atlas.nodes) {
+        for (const node of nodes) {
           for (const outcome of node.outcomes) {
             if (!measured.has(outcome.id)) {
               fail(
@@ -1945,7 +1987,7 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (TRAINABLE_ROLES.has(data.role)) remember(trainableFocusOfTopic, data.topic, item.focus);
         }
       }
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         for (const base of node.deepens) {
           if (!nodeIds.has(base)) continue; // unknown target — already reported above
           const mine = focusOfTopic.get(node.id) ?? new Set<string>();
@@ -1967,7 +2009,7 @@ for (const [setId, { file, data }] of exerciseSets) {
       for (const p of langFieldProblems(atlas)) fail(AT, p);
       for (const group of atlas.groups)
         for (const p of ukParityProblems(group)) fail(AT, `group "${group.id}": ${p}`);
-      for (const node of atlas.nodes)
+      for (const node of nodes)
         for (const p of ukParityProblems(node)) fail(AT, `node "${node.id}": ${p}`);
       for (const unit of atlas.units)
         for (const p of ukParityProblems(unit)) fail(AT, `unit "${unit.id}": ${p}`);
@@ -2030,6 +2072,10 @@ function checkMdxLangDiscipline(
   data: unknown,
   body: string,
   balance: (file: string, msg: string) => void,
+  // A topic is TWO files, and the parity scope spans them: `title_uk` in the manifest still
+  // demands a `<Uk>` half in every `<Bilingual>` block of the article beside it, and vice versa.
+  // Only the file a finding is *reported against* differs — a prose defect must name the prose.
+  bodyFile: string = file,
 ): void {
   for (const p of langFieldProblems(data)) fail(file, p);
   for (const p of ukParityProblems(data, { forceUk: body.includes('<Uk>') })) fail(file, p);
@@ -2045,16 +2091,17 @@ function checkMdxLangDiscipline(
     forceUk: hasUkField(data),
     forceDe: hasDeExplanation(data),
   });
-  for (const p of report.balance) balance(file, p);
-  for (const p of report.letters) fail(file, p);
-  for (const p of report.parity) fail(file, p);
+  for (const p of report.balance) balance(bodyFile, p);
+  for (const p of report.letters) fail(bodyFile, p);
+  for (const p of report.parity) fail(bodyFile, p);
   // Prose shape is not a language question, but it rides the same body scan.
   // Unlike `<En>` balance it has no topics-warn/discovery-fail split: a
   // paragraph too big to read is the same defect wherever it is authored.
-  for (const p of proseShapeProblems(body)) fail(file, p);
+  for (const p of proseShapeProblems(body)) fail(bodyFile, p);
 }
 
-for (const { file, data, body } of topics.values()) checkMdxLangDiscipline(file, data, body, warn);
+for (const { file, article, data, body } of topics.values())
+  checkMdxLangDiscipline(file, data, body, warn, article);
 for (const { file, data, body } of discoveries.values())
   checkMdxLangDiscipline(file, data, body, fail);
 
@@ -2073,7 +2120,7 @@ for (const { file, data, body } of discoveries.values())
  * before the rule was enforced, which would make `bun run validate` something to work around
  * rather than something to pass. The console flags them per topic and the backlog holds the work.
  */
-for (const { file, body } of topics.values()) {
+for (const { article, body } of topics.values()) {
   const headings = [...body.matchAll(/^(#{2,3})\s+(.+?)\s*$/gm)].map((m) => ({
     depth: m[1]!.length,
     text: m[2]!.trim(),
@@ -2089,7 +2136,7 @@ for (const { file, body } of topics.values()) {
   }
   if (hasErklaerung && subsections === 0)
     warn(
-      file,
+      article,
       '## Erklärung has no ### subsections — the confusions it teaches have no addressable anchor (CLAUDE.md: one subsection per named confusion)',
     );
 }

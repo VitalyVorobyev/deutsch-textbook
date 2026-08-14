@@ -8,14 +8,13 @@ import type { TrainingSet } from '../../components/training/MixedTraining';
 import { getTopicNodes } from '../../lib/content';
 import { getCurriculum } from '@da/content/curriculum';
 
-const [nodes, exercises, topics, documents] = await Promise.all([
+const [nodes, exercises, documents] = await Promise.all([
   getTopicNodes(),
   getCollection('exercises'),
-  getCollection('topics'),
   getCollection('documents'),
 ]);
-const { spine } = getCurriculum();
-const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const { spine, nodes: manifests } = getCurriculum();
+const topicById = new Map(manifests.map((t) => [t.id, t]));
 const documentById = new Map(documents.map((document) => [document.id, document.data]));
 
 const sets: TrainingSet[] = exercises.map((e) => {

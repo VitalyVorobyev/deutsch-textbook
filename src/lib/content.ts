@@ -7,35 +7,45 @@ import {
   wortnetzContexts,
   type CardDef,
 } from './srs';
-import { withBase } from './url';
+import { topicPath, withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from '@da/schema';
 import type { TopicNode } from './mastery';
+import { getCurriculum } from '@da/content/curriculum';
 
+/**
+ * The learner-facing view of every topic, from the manifests.
+ *
+ * `primaryPractice` used to be re-derived here as "the first `role: practice` set in `exercises:`",
+ * which made reordering a topic's page a silent change to what advances the Lernpfad. The manifest
+ * declares it; this only has to look up the item ids.
+ */
 export async function getTopicNodes(): Promise<TopicNode[]> {
-  const [topics, exercises] = await Promise.all([getCollection('topics'), getCollection('exercises')]);
+  const exercises = await getCollection('exercises');
   const exerciseById = new Map(exercises.map((exercise) => [exercise.id, exercise.data]));
-  return topics.map((t) => ({
-    id: t.data.id,
-    path: withBase(`/topics/${t.id}`),
-    level: t.data.level,
-    kind: t.data.kind,
-    title_de: t.data.title_de,
-    title_en: t.data.title_en,
-    title_ru: t.data.title_ru,
-    title_uk: t.data.title_uk,
-    prerequisites: t.data.prerequisites,
-    exerciseSets: t.data.exercises,
-    vocabIds: t.data.vocab,
-    readingIds: t.data.reading,
-    pretestId: t.data.pretest,
-    primaryPractice: t.data.exercises.flatMap((setId) => {
-      const set = exerciseById.get(setId);
-      return set?.role === 'practice'
-        ? [{ setId, itemIds: set.items.map((item) => item.id) }]
-        : [];
-    })[0],
-  }));
+  return getCurriculum().nodes.map((t) => {
+    const primary = t.elements.primary_practice;
+    const primarySet = primary ? exerciseById.get(primary) : undefined;
+    return {
+      id: t.id,
+      path: withBase(topicPath(t)),
+      level: t.level,
+      kind: t.kind,
+      title_de: t.title_de,
+      title_en: t.title_en,
+      title_ru: t.title_ru,
+      title_uk: t.title_uk,
+      prerequisites: t.prerequisites,
+      exerciseSets: t.elements.exercises,
+      vocabIds: t.elements.vocab,
+      readingIds: t.elements.reading,
+      pretestId: t.elements.pretest,
+      primaryPractice:
+        primary && primarySet
+          ? { setId: primary, itemIds: primarySet.items.map((item) => item.id) }
+          : undefined,
+    };
+  });
 }
 
 export async function getAllCards(): Promise<CardDef[]> {

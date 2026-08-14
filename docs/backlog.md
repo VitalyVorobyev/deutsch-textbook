@@ -649,6 +649,20 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   Inventory: `docs/GeotheInstitute/SOURCES.md`. **They anchor no grammar** — their "Strukturen" hits
   are Schreiben/Sprechen marking criteria, not inventories; the grammar anchors are the
   *Prüfungsziele*, and B1's is still unbought (P26-7).
+- **P26-14 · The topic → reference-page route table is still hard-coded in an `.astro` file** —
+  `REFERENZ_ROUTES` in `src/pages/topics/[...slug].astro` maps six of the seven
+  `content/reference-data/` files to an href and a German title. The *edge* is properly derived
+  (ADR 0007: a topic links to a reference page when it introduces one of that page's focus tags);
+  only the destination is hand-written, so a new reference page silently links from nowhere. The
+  fix is a `route:`/`title:` pair on each reference-data file, not a per-topic `elements.reference`
+  list — ADR 0012 deliberately kept derived edges out of the manifests. **Measure first**:
+  `praepositionen.yaml` has no entry in the table at all, and whether that is a gap or a deliberate
+  fold into `/referenz/kasus-praepositionen` decides whether this is 7 rows or 6.
+- **P26-15 · Topic `tags:` has zero consumers** — every one of the 49 manifests carries a `tags:`
+  array (`[verbs, past-tense]`, …) that nothing reads: not the app, not a script, not Redaktion,
+  not a test. It was carried through the ADR 0012 migration unchanged so that the move stayed a
+  provable relocation. Either give it a job (a Redaktion facet is the obvious one) or delete the
+  field from `topicManifestSchema` and the 49 files in one change.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking.

@@ -160,7 +160,7 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
   const topic = graph.topics.get(topicId);
   if (!topic) return undefined;
   const elements = graph.elementsByTopic.get(topicId) ?? [];
-  const node = graph.nodes.get(topicId);
+  const node = topic.data;
   const of = (kind: string) => elements.filter((e) => e.kind === kind);
 
   const arc = {} as Record<LessonStage, number>;
@@ -267,8 +267,8 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     {
       id: 'outcomes',
       label: 'Atlas-Knoten mit 2–5 Outcomes',
-      ok: !!node && (node.outcomes?.length ?? 0) >= 2 && (node.outcomes?.length ?? 0) <= 5,
-      detail: node ? `${node.outcomes?.length ?? 0}` : 'kein Knoten',
+      ok: (node.outcomes?.length ?? 0) >= 2 && (node.outcomes?.length ?? 0) <= 5,
+      detail: `${node.outcomes?.length ?? 0}`,
     },
     {
       id: 'outcomes-gemessen',
@@ -391,7 +391,7 @@ export function problems(graph: ContentGraph): Problem[] {
     if (!profile) continue;
     const fail = (id: string) => profile.checks.find((c) => c.id === id && !c.ok);
 
-    if (fail('artikel-abschnitte')) add('artikel-ohne-abschnitte', topic.data.title_de, topic.id, topic.file);
+    if (fail('artikel-abschnitte')) add('artikel-ohne-abschnitte', topic.data.title_de, topic.id, topic.article);
     if (fail('transfer')) add('kein-transfer', topic.data.title_de, topic.id, topic.file);
     if (fail('probe')) add('keine-probe', topic.data.title_de, topic.id, topic.file);
     if (fail('lesetext-umfang')) add('lesetext-umfang', topic.data.title_de, topic.id, topic.file);

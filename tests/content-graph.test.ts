@@ -34,7 +34,6 @@ describe('content graph', () => {
     expect(graph.wortfelder.size).toBe(2);
     expect(graph.wortnetze.size).toBe(10);
     expect(graph.units.length).toBe(49);
-    expect(graph.nodes.size).toBe(49);
     expect(graph.outcomes.size).toBe(179);
     // 98 since 2026-08-14: `ueber-dauer` joined when the DTZ handbook confirmed `über + Akkusativ`
     // as a temporal preposition (P26-8). Nothing teaches it yet — see tests/grammar-coverage.test.ts.

@@ -28,13 +28,12 @@ import {
   exerciseSetSchema,
   listeningArtifactSchema,
   readingSchema,
-  topicSchema,
+  topicManifestSchema,
   visualDocumentSchema,
   vocabFileSchema,
   wordFieldSchema,
   wortnetzSchema,
   type AtlasGroup,
-  type AtlasNode,
   type AtlasUnit,
   type Discovery,
   type ExerciseSet,
@@ -42,7 +41,7 @@ import {
   type ListeningArtifact,
   type Outcome,
   type Reading,
-  type Topic,
+  type TopicManifest,
   type VisualDocument,
   type VocabFile,
   type WordField,
@@ -51,6 +50,7 @@ import {
 import { repoRoot } from './repo-root';
 import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
 import { loadStructureSources, type StructureSource } from './structures';
+import { idFromManifestPath, manifestFiles, MANIFEST_SUFFIX } from './topics';
 import {
   defaultStage,
   kindForReading,
@@ -65,15 +65,21 @@ import {
 // Node wrappers — the parsed file plus what only the file's *location* knows
 // ---------------------------------------------------------------------------
 
+/**
+ * A topic is two files: the manifest that declares it and the article that teaches it.
+ * `file` is the manifest — the thing an editor changes to change the topic — and `article` is the
+ * prose, which is what the `artikel` element and every prose-shape finding must point at.
+ */
 export interface TopicFile {
   id: string;
-  data: Topic;
+  data: TopicManifest;
   file: string;
+  article: string;
   /** German H2/H3 headings in order — the article skeleton as an outline. */
   headings: { depth: number; text: string }[];
   /** `###` headings inside `## Erklärung`: the addressable anchor for each named confusion. */
   erklaerungSubsections: string[];
-  /** Body word count, excluding the frontmatter. */
+  /** Body word count. */
   words: number;
 }
 
@@ -115,7 +121,6 @@ export interface ContentGraph {
   wortnetze: Map<string, { id: string; data: Wortnetz; file: string }>;
 
   groups: AtlasGroup[];
-  nodes: Map<string, AtlasNode>;
   units: AtlasUnit[];
 
   inventory: GrammarPoint[];
@@ -244,10 +249,17 @@ function build(root: string): ContentGraph {
   const CONTENT = join(root, 'content');
 
   // --- topics -------------------------------------------------------------
+  // The manifest is the topic; the article beside it is one of its elements. A manifest that does
+  // not parse is skipped with a note, the same as every other artifact — an unreadable declaration
+  // is not a topic with missing fields, it is a file being edited.
   const topics = new Map<string, TopicFile>();
-  for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
-    const { data, body } = readMdx<Topic>(loader, file, topicSchema);
-    const id = data?.id ?? file.split(sep).at(-1)!.replace(/\.mdx$/, '');
+  for (const file of manifestFiles(root)) {
+    const data = readYaml<TopicManifest>(loader, file, topicManifestSchema);
+    if (!data) continue;
+    const id = idFromManifestPath(file);
+    const articleFile = file.replace(new RegExp(`${MANIFEST_SUFFIX}$`), '.mdx');
+    const body = existsSync(articleFile) ? readFileSync(articleFile, 'utf8') : '';
+    if (!body) loader.notes.push(`${rel(file)}: no article at ${rel(articleFile)}`);
     const headings = [...body.matchAll(/^(#{2,3})\s+(.+?)\s*$/gm)].map((m) => ({
       depth: m[1]!.length,
       text: m[2]!,
@@ -262,6 +274,7 @@ function build(root: string): ContentGraph {
       id,
       data,
       file: rel(file),
+      article: rel(articleFile),
       headings,
       erklaerungSubsections: erklaerung,
       words: body.split(/\s+/).filter(Boolean).length,
@@ -337,9 +350,8 @@ function build(root: string): ContentGraph {
   // --- the atlas ----------------------------------------------------------
   const atlasFile = join(CONTENT, 'atlas.yaml');
   const atlas = (existsSync(atlasFile)
-    ? readYaml<{ groups: AtlasGroup[]; nodes: AtlasNode[]; units: AtlasUnit[] }>(loader, atlasFile, atlasSchema)
-    : undefined) ?? { groups: [], nodes: [], units: [] };
-  const nodes = new Map((atlas.nodes ?? []).map((n) => [n.id, n]));
+    ? readYaml<{ groups: AtlasGroup[]; units: AtlasUnit[] }>(loader, atlasFile, atlasSchema)
+    : undefined) ?? { groups: [], units: [] };
   const units = atlas.units ?? [];
 
   // --- the grammar inventory and its external anchors ---------------------
@@ -369,7 +381,6 @@ function build(root: string): ContentGraph {
     wortfelder,
     wortnetze,
     groups: atlas.groups ?? [],
-    nodes,
     units,
     inventory,
     pointById: new Map(inventory.map((p) => [p.id, p])),
@@ -428,11 +439,11 @@ function buildElements(graph: ContentGraph): void {
 
   for (const topic of graph.topics.values()) {
     out.push(
-      element('artikel', `${topic.id}#artikel`, topic.id, topic.data?.level ?? 'A1', topic.file, {
+      element('artikel', `${topic.id}#artikel`, topic.id, topic.data.level, topic.article, {
         touches: ['input'],
         modes: ['reading'],
         depth: { items: 1, production: 0, parts: topic.erklaerungSubsections.length },
-        title: topic.data?.title_de,
+        title: topic.data.title_de,
       }),
     );
   }
@@ -529,7 +540,7 @@ function buildElements(graph: ContentGraph): void {
   }
 
   for (const topic of graph.topics.values()) {
-    for (const deckId of topic.data?.vocab ?? []) {
+    for (const deckId of topic.data.elements.vocab) {
       const deck = graph.vocab.get(deckId);
       if (!deck) continue;
       const entries = deck.data?.entries ?? [];
@@ -585,13 +596,13 @@ function buildIndexes(graph: ContentGraph): void {
   }
   graph.spineOrder.forEach((id, i) => graph.spineIndex.set(id, i));
 
-  for (const node of graph.nodes.values()) {
-    for (const outcome of node.outcomes ?? []) {
-      graph.outcomes.set(outcome.id, { outcome, topic: node.id });
-    }
-    for (const prerequisite of node.prerequisites ?? []) push(graph.neededBy, prerequisite, node.id);
-    for (const base of node.deepens ?? []) push(graph.deepenedBy, base, node.id);
-    for (const other of node.related ?? []) push(graph.relatedFrom, other, node.id);
+  // The manifest IS the node: `graph.nodes` used to be a second map of the same 49 things, read
+  // from `atlas.yaml`'s `nodes:` array, and keeping the two in step was a job for the validator.
+  for (const { id, data } of graph.topics.values()) {
+    for (const outcome of data.outcomes ?? []) graph.outcomes.set(outcome.id, { outcome, topic: id });
+    for (const prerequisite of data.prerequisites ?? []) push(graph.neededBy, prerequisite, id);
+    for (const base of data.deepens ?? []) push(graph.deepenedBy, base, id);
+    for (const other of data.related ?? []) push(graph.relatedFrom, other, id);
   }
 
   // A point is "in" a topic when the topic has an element carrying one of its focus tags.
@@ -607,7 +618,7 @@ function buildIndexes(graph: ContentGraph): void {
   }
 
   for (const topic of graph.topics.values()) {
-    for (const deckId of topic.data?.vocab ?? []) push(graph.deckOwners, deckId, topic.id);
+    for (const deckId of topic.data.elements.vocab) push(graph.deckOwners, deckId, topic.id);
   }
 }
 

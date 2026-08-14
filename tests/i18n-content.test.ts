@@ -29,7 +29,7 @@ import {
   outcomeSchema,
   pronominalAdverbReferenceSchema,
   sentenceConnectorsReferenceSchema,
-  topicSchema,
+  topicManifestSchema,
   translateItemSchema,
   vocabEntrySchema,
   type VocabEntry,
@@ -540,7 +540,7 @@ describe('schema widening', () => {
   });
 
   test('topics and outcomes may carry uk titles/halves', () => {
-    const topic = topicSchema.parse({
+    const topic = topicManifestSchema.parse({
       id: 'akkusativ',
       title_de: 'Akkusativ',
       title_en: 'The accusative',
@@ -548,6 +548,16 @@ describe('schema widening', () => {
       title_uk: 'Знахідний відмінок',
       level: 'A1',
       kind: 'grammar',
+      strand: 'grammar',
+      group: 'kasus',
+      // Every field the assertion depends on is stated here, including the ones it only needs to
+      // satisfy the schema: a fixture that borrows defaults from live content turns a content fix
+      // into a red test.
+      outcomes: [
+        { id: 'akk-a', mode: 'writing', de: 'a', en: 'a', ru: 'а' },
+        { id: 'akk-b', mode: 'writing', de: 'b', en: 'b', ru: 'б' },
+      ],
+      elements: { article: 'akkusativ.mdx' },
     });
     expect(topic.title_uk).toBe('Знахідний відмінок');
 

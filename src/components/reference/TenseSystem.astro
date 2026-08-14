@@ -8,10 +8,11 @@
  * way a hand-written "taught in B1.5" would. `verbformen.astro` derives its table from the
  * decks for the same reason.
  */
-import { getCollection, getEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { zeitformenReferenceSchema } from '@da/schema';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
+import { getCurriculum } from '@da/content/curriculum';
 
 type View = 'axes' | 'forms' | 'paradigms' | 'comparisons';
 interface Props { view: View }
@@ -21,7 +22,7 @@ const entry = await getEntry('referenceData', 'zeitformen');
 if (!entry) throw new Error('Missing canonical zeitformen reference data');
 const data = zeitformenReferenceSchema.parse(entry.data);
 
-const topics = new Map((await getCollection('topics')).map((t) => [t.data.id, t.data]));
+const topics = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
 
 /** The topics that introduce a form's focus tags, deduplicated, in curriculum-level order. */
 const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'];

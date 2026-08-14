@@ -71,14 +71,15 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 
 | Path | What it is |
 | --- | --- |
-| `content/topics/<level>/<id>.mdx` | atlas nodes (articles); level dir must match frontmatter `level` |
+| `content/topics/<level>/<id>.topic.yaml` | **the topic**: identity, outcomes and the `elements:` list of every part it owns; level dir must match `level` |
+| `content/topics/<level>/<id>.mdx` | its article — **prose only, no frontmatter** ([ADR 0012](docs/adrs/0012-topic-manifests.md)) |
 | `content/vocab/<id>.yaml` | vocabulary; **every entry becomes two flashcards** (DE→EN/RU and EN/RU→DE) |
 | `content/exercises/<level>/<set-id>.yaml` | exercise sets, embedded on the owning topic's page |
 | `content/reading/<level>/<id>.yaml` | graded reading; `kind: intensive` and `kind: extensive` are **different artifacts for different purposes** |
 | `content/documents/` | reusable visual stimuli; **viewing is never evidence**; real/adapted assets require `attribution` + `license` |
 | `content/wortfelder/`, `content/wortnetze/` | lexical overlays and word families; **enrich only the answer side** — receptive members create no cards and no mastery |
 | `content/discovery/`, `content/reference-data/` | optional Entdecken material; canonical lookup data |
-| `content/atlas.yaml` | topic graph **and the curriculum spine** |
+| `content/atlas.yaml` | the `groups:` taxonomy **and the curriculum spine** (`units:`) — what belongs to the whole graph rather than to one topic |
 | `progress/<profile>/*.json` | learner snapshots, one folder per local profile |
 | `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
 
@@ -109,11 +110,18 @@ have no transfer task**. `packages/content/src/profile.ts` turns that into per-t
 ranked problem list, **with no composite score** — every distributional figure is read against the
 level median it prints, never an invented threshold.
 
-**`content/atlas.yaml` carries three rules worth stating here**, because breaking one is silent:
-`units:` file order **is** the recommended path (insert, never renumber); every topic lives in
-exactly one unit of its own level, never before a prerequisite; and a `deepens:` edge **must share
-a focus tag the base topic drills**, because the tag is the edge's only runtime channel — an edge
-without one is inert. Each node declares 2–5 learner-facing `outcomes`. All of it is validated.
+**The spine and the manifests carry five rules worth stating here**, because breaking one is
+silent: `units:` file order **is** the recommended path (insert, never renumber); every topic lives
+in exactly one unit of its own level, never before a prerequisite; a `deepens:` edge **must share a
+focus tag the base topic drills**, because the tag is the edge's only runtime channel — an edge
+without one is inert; every manifest declares 2–5 learner-facing `outcomes`; and **`elements:` is
+closed** — a set or reading whose `topic:` names a topic that does not list it is an error, not an
+invisibility. Two of those elements used to be conventions rather than fields, and both were
+load-bearing: **`primary_practice`** decides what completing a Lernpfad step means (it was "the
+first practice set in the array", so reordering the page moved it), and **`probes`** is the delayed
+check (a probe used to attach itself to a topic by existing). `elements.exercises` is **one ordered
+list on purpose** — 14 of the 49 topics interleave practice and drill, which is the scaffold→fade
+arc written down. All of it is validated.
 
 ## Runtime invariants
 
@@ -156,7 +164,7 @@ Section order (H2 headings, in German):
 2. `## Erklärung` — the full explanation with tables (bilingual prose, German tables).
 3. `## Beispiele` — 5–10 German sentences as blockquotes, each with EN/RU translation in a Bilingual block right after.
 4. `## Häufige Fehler` — typical mistakes (❌/✅ pairs). The Ru half highlights Russian-interference errors; the En half gets its own framing — English false friends where they exist ("must not"), otherwise neutral rule statements. Never Russian-framed English.
-- Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from frontmatter (`exercises`, `vocab`).
+- Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from the manifest (`elements.exercises`, `elements.vocab`).
 - **`## Erklärung` splits into `### German subsections`, one per named confusion** — at least one per grammar point the unit owns, plus the integrating section. The heading is German and sits **outside** `<Bilingual>`, so it stays visible under `en`, `ru`, `uk` and `de`. A bolded lead sentence is not a heading: it cannot be navigated to and cannot carry a table with it.
 - **Each subsection keeps its table beside its prose.** A paradigm the reader must hold in memory across another subsection has been separated from what explains it.
 - **No paragraph over 120 words in any explanation half** (validator-enforced, `packages/content/src/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
@@ -167,7 +175,7 @@ Section order (H2 headings, in German):
 - Topic `id` equals the filename; kebab-case ASCII. Exercise refs are path-ids like `a2/perfekt-haben-sein`.
 - **Item ids are stable.** Increment `revision` only when prompts, accepted answers, scoring, outcomes or focus semantics change — explanation-only polish does not.
 - Every set declares `role: pretest|practice|drill|checkpoint|probe|placement`.
-- **Every topic owns at least one `role: practice` set.** The first one is its `primaryPractice`, whose completion advances the Lernpfad — **so its item list must not grow later.** Add practice to a non-primary set instead.
+- **Every topic owns at least one `role: practice` set**, and names one of them `elements.primary_practice` — completing it advances the Lernpfad, **so its item list must not grow later.** Add practice to a non-primary set instead.
 - Every item declares `outcomes:`; every item should have a bilingual `explain` (it is where the teaching happens); every item that drills one nameable confusion gets a `focus` tag. `preview: true` only for an intentional forward reference.
 - **Pretests are never weakness evidence, never training, never `Geübt`.** The `-pretest` filename is validator-enforced in both directions, because an attempt records no role.
 - **Item mix, per topic, over `role: practice` sets:** ≥ 2 `translate`; `mc` ≤ ⅓; `mc`+`match`+`order` ≤ 45%. Plus `order` ≤ 2 **per set** — it is scaffolding, not a test, and it saturates. The ratios count **written items only**: `audio-comprehension` is on neither side, because the bar's argument is that the learner never has to *produce*, and production is what a listening task cannot ask for. Counting it in the denominator alone let every recorded item buy a topic more room for written recognition.
@@ -221,13 +229,13 @@ One mechanical hazard in the same family — silently wrong, and no gate catches
 
 A topic is not done until all nine are:
 
-1. `content/topics/<level>/<id>.mdx` — full frontmatter + article following the skeleton.
+1. `content/topics/<level>/<id>.topic.yaml` — the manifest, and `<id>.mdx` beside it: the article following the skeleton, **prose only**.
 2. Exercise set(s) — 8–15 items, ≥3 types, each with `explain`, clearing the item-mix bar; every `translate` declares `key_tokens`; include the modes the outcomes claim.
 3. Pretest — 3 items at `<id>-pretest.yaml`, referenced via `pretest`.
-4. Probe family — `probe-<id>.yaml`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
+4. Probe family — `probe-<id>.yaml`, listed in `elements.probes`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.
 6. Vocab file if the topic introduces a word field; fill `ipa` with `bun run gen:ipa`, then review it.
-7. Atlas node + unit slot, with 2–5 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
+7. Unit slot in `content/atlas.yaml`, and 2–5 `outcomes` in the manifest. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
 8. New `focus` tags registered in [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) **and** in `focusIntroducedBy`.
 9. `bun run validate` passes.
 

@@ -125,7 +125,6 @@ export function graphPayload(graph: ContentGraph): GraphPayload {
 
 function buildPayload(graph: ContentGraph): GraphPayload {
   const topics: TopicSummary[] = [...graph.topics.values()].map((topic) => {
-    const node = graph.nodes.get(topic.id);
     const unit = graph.unitOfTopic.get(topic.id);
     return {
       id: topic.id,
@@ -138,11 +137,11 @@ function buildPayload(graph: ContentGraph): GraphPayload {
       unitTitle: unit?.title_de,
       spine: graph.spineIndex.get(topic.id) ?? -1,
       subsections: topic.erklaerungSubsections,
-      prerequisites: node?.prerequisites ?? topic.data.prerequisites ?? [],
-      deepens: node?.deepens ?? [],
+      prerequisites: topic.data.prerequisites ?? [],
+      deepens: topic.data.deepens ?? [],
       neededBy: graph.neededBy.get(topic.id) ?? [],
       deepenedBy: graph.deepenedBy.get(topic.id) ?? [],
-      outcomes: node?.outcomes ?? [],
+      outcomes: topic.data.outcomes ?? [],
     };
   });
   topics.sort((a, b) => a.spine - b.spine);
