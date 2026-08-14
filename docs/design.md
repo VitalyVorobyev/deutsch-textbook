@@ -18,6 +18,13 @@ checkout and accepts the narrow read, revision-checked save and validation contr
 [ADR 0013](adrs/0013-redaction-repository-workbench.md). Browser development implements the same
 `CorpusClient` through Vite middleware. Neither transport creates a second content store.
 
+Editorial MDX preview crosses that boundary as data, never executable code. `@da/content/preview`
+parses the in-memory buffer into a serializable allowlisted tree, selects exactly one authored
+`En`/`Ru`/`Uk`/`De` half and turns expressions, raw HTML and unknown components into visible
+diagnostics. Known figure imports are recognised by spelling but never resolved or executed.
+`@da/renderers` renders the tree and disclosed exercise metadata without learner storage or
+progress effects. Both Vite and the Bun sidecar expose the same `renderSource` request.
+
 There is no server-side learner model. Content is build-time data; learner state belongs to a local
 profile and can be exported as a backward-compatible snapshot. An optional account adds a cloud copy
 of that snapshot and nothing else — the server has never parsed one.
@@ -233,6 +240,10 @@ EN/DE modes and a missing-UK fallback continue to show full English.
 
 German examples are source language, not proof that a record has a German-medium explanation.
 This distinction matters in reference data and Wortnetze.
+
+Redaction derives per-topic language coverage from authored `<Bilingual>` blocks. A language is
+`complete` only when every block carries its half, `partial` when some do, and `unsupported` when
+none do. The count is editorial visibility, not a request to backfill German.
 
 ## Reference and discovery extensions
 

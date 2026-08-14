@@ -7,6 +7,7 @@ import { contentGraph, invalidateContentGraph } from '@da/content/graph';
 import { graphChunk, graphPayload, type ChunkName } from '@da/content/payload';
 import { readSource, saveSource, type SaveFileInput } from '@da/content/editor';
 import { applyPatch, writableFields, type WritePatch } from '@da/content/write';
+import { renderSource, type RenderSourceInput } from '@da/content/preview';
 
 const PROTOCOL_VERSION = 1;
 interface RpcRequest { version?: number; id: number; method: string; params?: Record<string, unknown> }
@@ -84,6 +85,7 @@ async function dispatch(method: string, params: Record<string, unknown>) {
     case 'getGraph': return graphPayload(contentGraph(root()));
     case 'getChunk': return graphChunk(contentGraph(root()), String(params.name) as ChunkName);
     case 'readFile': return readSource(root(), String(params.path ?? ''));
+    case 'renderSource': return renderSource(params as unknown as RenderSourceInput);
     case 'saveFile': {
       const result = await saveSource(root(), params as unknown as SaveFileInput);
       if (result.ok && result.changed) { invalidateContentGraph(root()); revision += 1; }

@@ -144,10 +144,16 @@ the same four-function model. [ADR 0014](adrs/0014-learning-activity-architectur
 contract; [the activity audit](curriculum/learning-activity-audit.md) records all 172 sets and the
 five intentionally dense topics.
 
-The following slice is **P27-2a · renderer parity**. It extracts the learner's article and exercise
-renderers into pure components, proves editor mode has no progress side effects, and covers every
-shipped material kind with fixtures. Only after the preview is trustworthy should P27-3 turn the
-remaining reviewed-topic debt into topic-sized remediation batches.
+**P27-2a · trustworthy preview foundation shipped 2026-08-14.** The regex preview is gone. A
+non-executable MDX projection selects one authored language half, renders Markdown through shared
+pure React components, reports unsupported syntax, exposes topic language coverage and gives every
+exercise an answer-disclosed editor view with no progress writer. Every current topic parses in a
+corpus fixture and the browser audit exercises the source route at 1440/1024/768. The remaining
+renderer-parity work is migration of the nine image/reference learning figures from named semantic
+editor representations to the same React implementations used by the learner.
+
+The next course-quality slice is the **external grammar denominator**: account for the 23 unclaimed
+DTZ structures without aliases, then close the seven real teaching gaps before topic audit waves.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

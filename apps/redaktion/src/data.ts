@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type { Diagnostic, FileSnapshot, SaveFileInput, SaveFileResult } from '@da/content/editor';
 import type { ChunkName, GraphPayload } from '@da/content/payload';
 import type { WritePatch, WriteResult } from '@da/content/write';
+import type { RenderSourceInput, PreviewPayload } from '@da/content/preview';
 
 export type { Diagnostic, FileSnapshot, GraphPayload, SaveFileInput, SaveFileResult };
 
@@ -37,6 +38,7 @@ export interface CorpusClient {
   getGraph(): Promise<GraphPayload>;
   getChunk<T>(name: ChunkName): Promise<T>;
   readFile(path: string): Promise<FileSnapshot>;
+  renderSource(input: RenderSourceInput): Promise<PreviewPayload>;
   saveFile(input: SaveFileInput): Promise<SaveFileResult>;
   validateWorkspace(): Promise<ValidationRun>;
   assetUrl(path: string): Promise<string>;
@@ -60,6 +62,11 @@ class HttpCorpusClient implements CorpusClient {
   getGraph() { return response<GraphPayload>(fetch('/__graph')); }
   getChunk<T>(name: ChunkName) { return response<T>(fetch(`/__chunk/${name}`)); }
   readFile(path: string) { return response<FileSnapshot>(fetch(`/__file?path=${encodeURIComponent(path)}`)); }
+  renderSource(input: RenderSourceInput) {
+    return response<PreviewPayload>(fetch('/__render', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input),
+    }));
+  }
   saveFile(input: SaveFileInput) {
     return response<SaveFileResult>(fetch('/__file', {
       method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input),
@@ -98,6 +105,7 @@ class TauriCorpusClient implements CorpusClient {
   getGraph() { return this.rpc<GraphPayload>('getGraph'); }
   getChunk<T>(name: ChunkName) { return this.rpc<T>('getChunk', { name }); }
   readFile(path: string) { return this.rpc<FileSnapshot>('readFile', { path }); }
+  renderSource(input: RenderSourceInput) { return this.rpc<PreviewPayload>('renderSource', input as unknown as Record<string, unknown>); }
   saveFile(input: SaveFileInput) { return this.rpc<SaveFileResult>('saveFile', input as unknown as Record<string, unknown>); }
   validateWorkspace() { return this.rpc<ValidationRun>('validateWorkspace'); }
   assetUrl(path: string) { return this.rpc<string>('readAsset', { path }); }

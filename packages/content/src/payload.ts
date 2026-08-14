@@ -26,6 +26,9 @@ import type { Diagnostic } from './editor';
 import { loadAnchorSources, type AnchorCoverage, type AnchorDimension, type AnchorSource } from './anchors';
 import { handlungCoverage } from './handlungen';
 import { themaCoverage } from './themen';
+import { languageCoverage, type TopicLanguageCoverage } from './preview';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 export interface TopicSummary {
   id: string;
@@ -47,6 +50,8 @@ export interface TopicSummary {
   outcomes: Outcome[];
   tags: string[];
   claims: string[];
+  /** Authored explanation halves in the article; German examples do not count as a DE half. */
+  languageCoverage: TopicLanguageCoverage['languages'];
 }
 
 export interface TagSummary {
@@ -176,6 +181,11 @@ function buildPayload(graph: ContentGraph): GraphPayload {
       outcomes: topic.data.outcomes ?? [],
       tags: topic.data.tags ?? [],
       claims: topic.data.claims ?? [],
+      languageCoverage: languageCoverage(
+        topic.id,
+        topic.article,
+        readFileSync(resolve(graph.root, topic.article), 'utf8'),
+      ).languages,
     };
   });
   topics.sort((a, b) => a.spine - b.spine);
