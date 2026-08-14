@@ -3,15 +3,29 @@
  * and ranked by how many instances share a cause — so "what should I fix next" has an answer.
  */
 import { useState } from 'react';
-import { Card, Chip, Empty, Filter, Heading, Table } from '@da/ui/primitives';
+import { Chip, Empty, Filter, Panel } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
+import { Extern, Zeilentabelle, Quer, type Spalte } from '../components/Zeilentabelle';
 import { href } from '../router';
 
 type Level = GraphPayload['levels'][number];
 type Problem = GraphPayload['problems'][number];
 
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
+
+/** One shape for every class, so the eye keeps its place moving down thirteen groups. */
+const COLUMNS = (topicTitle: (id: string) => string): Spalte<Problem>[] => [
+  { key: 'message', head: 'Befund', cell: (p) => <span className="text-ink">{p.message}</span> },
+  {
+    key: 'topic',
+    head: 'Thema',
+    cell: (p) =>
+      p.topic ? <Quer href={href('thema', p.topic)}>{topicTitle(p.topic)}</Quer> : <span className="text-ink-muted">—</span>,
+  },
+  { key: 'level', head: 'Niveau', cell: (p) => <span className="text-ink-muted">{p.level ?? '—'}</span> },
+  { key: 'file', head: 'Datei', cell: (p) => (p.file ? <Extern href={`${GITHUB}/${p.file}`}>{p.file}</Extern> : null) },
+];
 
 export function Luecken({ graph }: { graph: GraphPayload }) {
   const [level, setLevel] = useState<Level | 'alle'>('alle');
@@ -33,7 +47,12 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
 
   return (
     <>
-      <Heading sub={`${filtered.length} von ${graph.problems.length} Befunden`}>Lücken</Heading>
+      <header className="mb-5">
+        <h1 className="text-2xl font-bold tracking-tight text-ink">Lücken</h1>
+        <p className="mt-1 text-sm text-ink-muted">
+          {filtered.length} von {graph.problems.length} Befunden, nach Häufigkeit der Ursache
+        </p>
+      </header>
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
@@ -46,48 +65,26 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
         sorted.map(([k, rows]) => {
           const label = PROBLEM_LABELS[k];
           return (
-            <Card key={k} className="mb-4">
-              <h2 className="mb-1 flex items-center gap-2 text-sm font-medium text-ink">
-                {label?.de ?? k}
-                <Chip tone="warn">{rows.length}</Chip>
-              </h2>
-              {label ? <p className="mb-3 text-xs text-ink-muted">{label.why}</p> : null}
-              <Table
+            <Panel
+              key={k}
+              tone="warn"
+              className="mb-4"
+              title={
+                <span className="flex items-center gap-2">
+                  {label?.de ?? k}
+                  <Chip tone="warn">{rows.length}</Chip>
+                </span>
+              }
+            >
+              {/* The `why` is the half a class name cannot carry, and it is why these are labels
+                  and not enum values. */}
+              {label ? <p className="-mt-2 mb-3 text-xs text-ink-muted">{label.why}</p> : null}
+              <Zeilentabelle
                 rows={rows}
                 rowKey={(p) => `${p.kind}-${p.topic ?? ''}-${p.file ?? ''}-${p.message}`}
-                columns={[
-                  {
-                    key: 'topic',
-                    head: 'Thema',
-                    cell: (p) =>
-                      p.topic ? (
-                        <a className="text-info hover:underline" href={href('thema', p.topic)}>
-                          {topicTitle(p.topic)}
-                        </a>
-                      ) : (
-                        <span className="text-ink-muted">—</span>
-                      ),
-                  },
-                  { key: 'level', head: 'Niveau', cell: (p) => p.level ?? '—' },
-                  { key: 'message', head: 'Befund', cell: (p) => p.message },
-                  {
-                    key: 'file',
-                    head: 'Datei',
-                    cell: (p) =>
-                      p.file ? (
-                        <a
-                          className="text-info hover:underline"
-                          href={`${GITHUB}/${p.file}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {p.file}
-                        </a>
-                      ) : null,
-                  },
-                ]}
+                columns={COLUMNS(topicTitle)}
               />
-            </Card>
+            </Panel>
           );
         })
       )}

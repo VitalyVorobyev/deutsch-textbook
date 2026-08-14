@@ -98,7 +98,7 @@ export function Feldwahl({
         <span className="text-[0.65rem] leading-tight text-ink-muted">geschrieben — Korpus wird neu gelesen…</span>
       )}
       {error && (
-        <span role="alert" className="max-w-64 text-[0.65rem] leading-tight text-warn">
+        <span role="alert" className="max-w-64 text-[0.65rem] leading-tight text-warn-ink">
           {error}
         </span>
       )}
