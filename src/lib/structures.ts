@@ -35,6 +35,7 @@
  * the console and the command cannot disagree about a figure.
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
@@ -109,7 +110,7 @@ export interface StructureCoverage {
 
 export const STRUCTURES_DIR = join('data', 'strukturenlisten');
 
-export function loadStructureSources(root = process.cwd()): StructureSource[] {
+export function loadStructureSources(root = repoRoot()): StructureSource[] {
   const dir = join(root, STRUCTURES_DIR);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
@@ -124,7 +125,7 @@ export const entryRef = (sourceId: string, key: string): string => `${sourceId}:
 const later = (a: Level, b: Level): Level =>
   LEVELS.indexOf(a) >= LEVELS.indexOf(b) ? a : b;
 
-export function structureCoverage(level: Level, root = process.cwd()): StructureCoverage {
+export function structureCoverage(level: Level, root = repoRoot()): StructureCoverage {
   const sources = loadStructureSources(root);
   const points = loadGrammarInventory(root);
 

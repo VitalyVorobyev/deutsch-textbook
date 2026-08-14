@@ -10,7 +10,7 @@ export default tseslint.config(
   {
     ignores: [
       'dist/',
-      '.astro/',
+      '**/.astro/',
       'node_modules/',
       'src-tauri/', // Rust shell + Tauri-generated artifacts
       'progress/',

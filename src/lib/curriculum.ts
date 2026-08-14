@@ -1,5 +1,6 @@
 /** Server-side curriculum loader (usable in .astro frontmatter only — islands get the spine as props). */
 import { readFileSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import YAML from 'yaml';
 import { atlasSchema, type AtlasGroup, type AtlasNode, type AtlasUnit } from './schemas';
@@ -24,7 +25,7 @@ let cached: Curriculum | undefined;
  */
 export function getCurriculum(): Curriculum {
   if (!cached) {
-    const file = join(process.cwd(), 'content', 'atlas.yaml');
+    const file = join(repoRoot(), 'content', 'atlas.yaml');
     const atlas = atlasSchema.parse(YAML.parse(readFileSync(file, 'utf8')));
     cached = {
       units: atlas.units,

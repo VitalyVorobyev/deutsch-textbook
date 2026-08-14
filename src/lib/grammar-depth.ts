@@ -33,6 +33,7 @@
  * contradict what it says.
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import {
@@ -128,7 +129,7 @@ const median = (xs: number[]): number =>
   xs.length ? [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]! : 0;
 
 /** Depth for every tag in the allowlist, whether or not any item carries it. */
-export function tagDepths(root = process.cwd()): Map<string, TagDepth> {
+export function tagDepths(root = repoRoot()): Map<string, TagDepth> {
   const topicLevel = new Map<string, Level>();
   try {
     for (const lvl of readdirSync(join(root, 'content', 'topics')))
@@ -196,7 +197,7 @@ export function tagDepths(root = process.cwd()): Map<string, TagDepth> {
   return out;
 }
 
-export function pointDepths(root = process.cwd()): PointDepth[] {
+export function pointDepths(root = repoRoot()): PointDepth[] {
   const tags = tagDepths(root);
   return loadGrammarInventory(root).map((point) => {
     const mine = (point.focus ?? []).map((t) => tags.get(t)).filter(Boolean) as TagDepth[];
@@ -216,7 +217,7 @@ export function pointDepths(root = process.cwd()): PointDepth[] {
   });
 }
 
-export function levelDepth(level: Level, root = process.cwd()): LevelDepth {
+export function levelDepth(level: Level, root = repoRoot()): LevelDepth {
   const all = tagDepths(root);
   // A tag belongs to the level of the topic that INTRODUCES it, not to every level whose items
   // happen to carry it: the question is where the confusion is owned, and a tag recycled by a

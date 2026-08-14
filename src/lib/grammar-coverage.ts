@@ -16,6 +16,7 @@
  * and a structure that is only ever tested was never taught.
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { LEVELS, type Level } from './schemas';
@@ -155,7 +156,7 @@ export function exerciseLevelFromPath(file: string, base: string): Level {
  * while every real drill of it sits at A2, hiding a genuine sequencing fact
  * from the one category that exists to show it.
  */
-export function drilledFocusTags(root = process.cwd()): Map<string, Set<Level>> {
+export function drilledFocusTags(root = repoRoot()): Map<string, Set<Level>> {
   const tags = new Map<string, Set<Level>>();
   const base = join(root, 'content', 'exercises');
   for (const file of walk(base)) {
@@ -176,7 +177,7 @@ export function drilledFocusTags(root = process.cwd()): Map<string, Set<Level>> 
   return tags;
 }
 
-export function loadGrammarInventory(root = process.cwd()): GrammarPoint[] {
+export function loadGrammarInventory(root = repoRoot()): GrammarPoint[] {
   const raw = readFileSync(join(root, 'data', 'grammar-inventory.yaml'), 'utf8');
   return (YAML.parse(raw) as { points: GrammarPoint[] }).points;
 }
@@ -184,7 +185,7 @@ export function loadGrammarInventory(root = process.cwd()): GrammarPoint[] {
 /** CEFR order, taken from the schema so a new level never has to be added twice. */
 const LEVEL_ORDER: readonly Level[] = LEVELS;
 
-export function grammarCoverage(level: Level, root = process.cwd()): GrammarCoverage {
+export function grammarCoverage(level: Level, root = repoRoot()): GrammarCoverage {
   const drilled = drilledFocusTags(root);
   // Topic → the level that owns it. A plain set of ids would say whether a
   // reference-only point's evidence exists but not *where* it is, which is

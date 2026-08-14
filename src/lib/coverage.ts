@@ -29,6 +29,7 @@
  * The claim and the measurement are the same object.
  */
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { hasRuField, hasUkField, ukParityProblems } from './langcheck';
@@ -208,7 +209,7 @@ function itemGerman(item: Record<string, unknown>): string[] {
  *     teaches. Vocab `example_de` is excluded on the same logic: a word used in
  *     another word's example sentence is not itself taught.
  */
-export function taughtSurface(root = process.cwd()): string {
+export function taughtSurface(root = repoRoot()): string {
   const parts: string[] = [];
   const caseViews = new Set<string>();
 
@@ -343,7 +344,7 @@ export function addresses(surface: string, word: string): boolean {
   return (INFLECTIONS[n] ?? [n]).some(has);
 }
 
-export function hasManifest(level: Level, root = process.cwd()): boolean {
+export function hasManifest(level: Level, root = repoRoot()): boolean {
   return existsSync(join(root, manifestPath(level)));
 }
 
@@ -378,7 +379,7 @@ export interface UkCoverage {
  *   a half-done file cannot ship; this rule keeps the figure robust on its own,
  *   per the earned-claims rule, rather than trusting the bridge.
  */
-export function ukHalfCoverage(root = process.cwd()): UkCoverage {
+export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;
   let total = 0;
   const count = (ruBearing: boolean, uk: boolean): void => {
@@ -408,7 +409,7 @@ export function ukHalfCoverage(root = process.cwd()): UkCoverage {
   return { authored, total };
 }
 
-export function goetheCoverage(level: Level, root = process.cwd()): Coverage {
+export function goetheCoverage(level: Level, root = repoRoot()): Coverage {
   const ownedBy = deckHeadwords(root);
   const levels = deckLevels(root);
   const surface = taughtSurface(root);

@@ -14,6 +14,7 @@
  * answer 404 first and never call next().
  */
 import type { AstroIntegration } from 'astro';
+import { repoRoot } from '../lib/repo-root';
 import type { Connect } from 'vite';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -28,7 +29,7 @@ function localDate(d: Date): string {
 }
 
 const handler: Connect.NextHandleFunction = (req, res, next) => {
-  const progressDir = path.resolve(process.cwd(), 'progress');
+  const progressDir = path.join(repoRoot(), 'progress');
   const url = req.url ?? '';
   if (req.method !== 'POST' || !url.startsWith(PREFIX)) return next();
 

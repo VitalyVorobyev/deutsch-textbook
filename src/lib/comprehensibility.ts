@@ -56,6 +56,7 @@
  * vocabulary" is not something this can support).
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { normalize } from './coverage';
@@ -645,7 +646,7 @@ function wortlisteTokens(root: string, level: RankedLevel): Set<string> {
 }
 
 /** Everything the report reads, loaded once. */
-export function loadCorpus(root = process.cwd()): Corpus {
+export function loadCorpus(root = repoRoot()): Corpus {
   const atlas = YAML.parse(readFileSync(join(root, 'content/atlas.yaml'), 'utf8')) as {
     units: Array<{ level: Level; topics: string[] }>;
   };
