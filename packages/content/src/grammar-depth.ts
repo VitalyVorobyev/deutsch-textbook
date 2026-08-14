@@ -122,8 +122,37 @@ function walk(dir: string): string[] {
 const median = (xs: number[]): number =>
   xs.length ? [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)]! : 0;
 
+/**
+ * Memoised per root, because this is the module's only corpus pass and everything else here is a
+ * projection of it — `pointDepths` calls it, `levelDepth` calls BOTH, so one `levelDepth(level)`
+ * used to re-read and re-parse all 336 exercise files twice. `tests/grammar-depth.test.ts` made
+ * eight such walks in a single test and tipped over CI's 5 s budget at 5244 ms; the same test now
+ * makes one.
+ *
+ * Safe because nothing mutates what comes back — every caller here, in `payload.ts` and in
+ * `scripts/grammar-depth.ts` only filters, maps and sums. Cleared through
+ * `invalidateContentGraph()`, which is deliberately the ONE invalidation entry point: the editorial
+ * dev server's watcher already calls it on every file change, and a second thing to remember to
+ * call is a stale number waiting to happen.
+ */
+const depthCache = new Map<string, Map<string, TagDepth>>();
+
+/** Drop the memo. Called by `invalidateContentGraph`; not part of the public surface. */
+export function invalidateGrammarDepth(root?: string): void {
+  if (root) depthCache.delete(root);
+  else depthCache.clear();
+}
+
 /** Depth for every tag in the allowlist, whether or not any item carries it. */
 export function tagDepths(root = repoRoot()): Map<string, TagDepth> {
+  const cached = depthCache.get(root);
+  if (cached) return cached;
+  const computed = computeTagDepths(root);
+  depthCache.set(root, computed);
+  return computed;
+}
+
+function computeTagDepths(root: string): Map<string, TagDepth> {
   const topicLevel = new Map<string, Level>();
   try {
     for (const lvl of readdirSync(join(root, 'content', 'topics')))

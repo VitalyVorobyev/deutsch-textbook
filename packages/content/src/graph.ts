@@ -49,6 +49,7 @@ import {
 } from '@da/schema';
 import { repoRoot } from './repo-root';
 import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
+import { invalidateGrammarDepth } from './grammar-depth';
 import { loadStructureSources, type StructureSource } from './structures';
 import { idFromManifestPath, manifestFiles, MANIFEST_SUFFIX } from './topics';
 import {
@@ -644,10 +645,18 @@ export function contentGraph(root: string = repoRoot(), options: { fresh?: boole
   return graph;
 }
 
-/** Drop the memo — for tests and for the editorial dev server's file watcher. */
+/**
+ * Drop the memo — for tests and for the editorial dev server's file watcher.
+ *
+ * It clears `grammar-depth`'s cache too, because that module keeps its own corpus pass (it predates
+ * the graph and still walks `content/exercises` itself). **One invalidation entry point is the
+ * point**: the watcher calls this, and a second cache with a second invalidator is a stale figure
+ * waiting for someone to forget it.
+ */
 export function invalidateContentGraph(root?: string): void {
   if (root) cache.delete(root);
   else cache.clear();
+  invalidateGrammarDepth(root);
 }
 
 export { productionLevel };

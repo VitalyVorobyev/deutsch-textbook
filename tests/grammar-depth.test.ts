@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { levelDepth, pointDepths, tagDepths, PRODUCTION_TYPES, SELECTION_TYPES } from '@da/content/grammar-depth';
+import { invalidateContentGraph } from '@da/content/graph';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 
 /**
@@ -89,6 +90,31 @@ describe('grammar depth', () => {
     // production at all, so counting it either way would misstate the ratio.
     expect(PRODUCTION_TYPES.has('audio-comprehension')).toBe(false);
     expect(SELECTION_TYPES.has('audio-comprehension')).toBe(false);
+  });
+
+  /**
+   * The memo, and the reason it is allowed to exist.
+   *
+   * `tagDepths` is this module's only corpus pass — `pointDepths` calls it and `levelDepth` calls
+   * both, so one `levelDepth()` re-parsed all 336 exercise files twice. The test below made eight
+   * such walks and timed out on CI at 5244 ms against a 5000 ms budget; the file as a whole went
+   * from 4.90 s to 520 ms once the pass was memoised.
+   *
+   * What that buys has to be paid for: a cached figure that outlives the file it was read from is
+   * exactly the silent-wrong-number class this repo keeps writing rules about, and the editorial
+   * dev server rebuilds on every save. So both halves of the contract are asserted — the memo
+   * holds, and `invalidateContentGraph` (the ONE entry point, which the watcher already calls)
+   * really drops it. Remove either line from `graph.ts` and one of these goes red.
+   */
+  test('the corpus pass is memoised, and the one invalidator really drops it', () => {
+    const first = tagDepths();
+    expect(tagDepths()).toBe(first);
+    invalidateContentGraph();
+    const afterwards = tagDepths();
+    expect(afterwards).not.toBe(first);
+    // Same corpus, so the same answer — the memo is a speed-up, never a different measurement.
+    expect(afterwards.size).toBe(first.size);
+    expect(afterwards.get('akkusativ-artikel')?.teaching).toBe(first.get('akkusativ-artikel')?.teaching);
   });
 
   test('a point with no teaching items is not counted as missing its delayed check', () => {
