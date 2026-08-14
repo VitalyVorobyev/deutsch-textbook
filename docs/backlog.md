@@ -78,6 +78,7 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   `data/strukturenlisten/*.yaml` and every new entry starts life `unclaimed`, so the size of the job
   is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
   the free A2 list here is *Fit in Deutsch 2*, the youth exam.
+- **P26-10 · The course never teaches turn-taking.** The first run of `bun scripts/handlungen.ts` (2026-08-14) reports 26/41 published Sprachhandlungen claimed, and **nine of the fifteen holes are one block**: the whole of DTZ §8.3 *Redeorganisation* — eine Äußerung einleiten/abschließen, um das Wort bitten, Zuhören signalisieren, zum Sprechen auffordern, gemeinsames Wissen andeuten, Beispiele geben, das Thema wechseln, Vermeidung. Six more: *Gefühle ausdrücken* (no outcome anywhere expresses feelings), *Wissen oder Nichtwissen ausdrücken*, *etwas bestätigen*, *Umgang mit der interkulturellen Begegnung*, *Umgang mit Wissensdivergenz*, *etwas hervorheben*. These are `spoken-interaction` competences and the corpus is already thin there; a discourse-strategy topic would close most of the block at once. Read the instrument before scoping — `beyond` is not a gap, only `unclaimed` is.
 - **P26-8 · `über` as a duration marker — RULED 2026-08-14, row added, still untaught.** The DTZ
   Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
   not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar

@@ -40,7 +40,7 @@ import { repoRoot } from '@da/content/repo-root';
 
 const ANCHOR_DIRS = ['strukturenlisten', 'handlungslisten', 'themenlisten'];
 
-interface Entry { key: string; de: string; note?: string }
+interface Entry { key: string; de: string; printed?: string; note?: string }
 interface Section { id: string; de: string; page?: number; entries: Entry[] }
 interface Anchor {
   source: {
@@ -93,10 +93,34 @@ function onPage(word: string, haystack: Set<string>, stems: string[]): boolean {
 const looksLikeSentence = (text: string): boolean =>
   /[.!?]\s*$/.test(text.trim()) && text.trim().split(/\s+/).length >= 5;
 
-function pdfText(pdf: string, from: number, to: number): string {
-  const out = Bun.spawnSync(['pdftotext', '-f', String(from), '-l', String(to), '-layout', pdf, '-']);
-  if (out.exitCode !== 0) throw new Error(`pdftotext failed on ${pdf}: ${out.stderr.toString()}`);
-  return out.stdout.toString();
+/**
+ * `"101–104"` or `"93, 99"` — a list of ranges and single pages.
+ *
+ * Two chapters of one booklet do not have to be adjacent: §8.2's inventory is enumerated on Seite
+ * 89 and §8.3's on Seite 95, with six pages of Exponenten between them. Reading the span would
+ * make the check *weaker* — a word from an example sentence would satisfy a label — so the pages
+ * that actually carry labels are named instead.
+ */
+function parsePages(spec: string): number[] {
+  const pages: number[] = [];
+  for (const part of spec.split(',')) {
+    const range = part.trim().match(/^(\d+)(?:\s*[–-]\s*(\d+))?$/);
+    if (!range) return [];
+    const from = Number(range[1]);
+    const to = range[2] ? Number(range[2]) : from;
+    for (let p = from; p <= to; p += 1) pages.push(p);
+  }
+  return pages;
+}
+
+function pdfText(pdf: string, pages: number[]): string {
+  return pages
+    .map((page) => {
+      const out = Bun.spawnSync(['pdftotext', '-f', String(page), '-l', String(page), '-layout', pdf, '-']);
+      if (out.exitCode !== 0) throw new Error(`pdftotext failed on ${pdf} p.${page}: ${out.stderr.toString()}`);
+      return out.stdout.toString();
+    })
+    .join('\n');
 }
 
 /**
@@ -112,12 +136,13 @@ function pdfText(pdf: string, from: number, to: number): string {
  *
  * Still a review list and not a verdict: a wrapped label's continuation line sits in the band too.
  */
-function unaccounted(anchor: Anchor, pdf: string, from: number, to: number): string[] | undefined {
+function unaccounted(anchor: Anchor, pdf: string, pages: number[]): string[] | undefined {
   const bands = anchor.source.label_columns;
   if (!bands?.length) return undefined;
 
-  const out = Bun.spawnSync(['pdftotext', '-f', String(from), '-l', String(to), '-bbox-layout', pdf, '-']);
-  const xml = out.stdout.toString();
+  const xml = pages
+    .map((page) => Bun.spawnSync(['pdftotext', '-f', String(page), '-l', String(page), '-bbox-layout', pdf, '-']).stdout.toString())
+    .join('\n');
 
   const known = new Set<string>();
   for (const section of anchor.sections) {
@@ -132,6 +157,7 @@ function unaccounted(anchor: Anchor, pdf: string, from: number, to: number): str
     known.add(norm(section.de));
     for (const entry of section.entries) {
       known.add(norm(entry.de));
+      if (entry.printed) known.add(norm(entry.printed));
       // A label transcribed as one entry may be printed as two lines, and each half must count as
       // accounted or every wrapped row would resurface here as a false hole.
       for (const part of entry.de.split(/[:,/]| – |\s…\s/)) known.add(norm(part));
@@ -190,9 +216,9 @@ function main() {
 
     const entries = anchor.sections.flatMap((s) => s.entries.map((e) => ({ section: s, entry: e })));
     const pdf = source.local ? join(root, source.local) : undefined;
-    const range = (source.pdf_pages ?? '').match(/^(\d+)\s*[–-]\s*(\d+)$/);
+    const pages = parsePages(source.pdf_pages ?? '');
 
-    if (!pdf || !existsSync(pdf) || !range) {
+    if (!pdf || !existsSync(pdf) || !pages.length) {
       const why = !pdf
         ? 'no source.local'
         : !existsSync(pdf)
@@ -203,16 +229,17 @@ function main() {
     }
 
     checked += 1;
-    const text = pdfText(pdf, Number(range[1]), Number(range[2]));
+    const text = pdfText(pdf, pages);
     const haystack = new Set(words(text));
     const stems = [...haystack].filter((w) => w.endsWith('-') && w.length > 2).map((w) => w.slice(0, -1));
 
     const invented: string[] = [];
     const leaked: string[] = [];
     for (const { section, entry } of entries) {
-      const missing = words(entry.de).filter((w) => !onPage(w, haystack, stems));
+      // `printed` wins where the page and the label differ, and says so in the file.
+      const missing = words(entry.printed ?? entry.de).filter((w) => !onPage(w, haystack, stems));
       if (missing.length) invented.push(`${section.id}/${entry.key}: “${entry.de}” — not on the page: ${missing.join(', ')}`);
-      if (looksLikeSentence(entry.de)) leaked.push(`${section.id}/${entry.key}: “${entry.de}”`);
+      if (looksLikeSentence(entry.printed ?? entry.de)) leaked.push(`${section.id}/${entry.key}: “${entry.de}”`);
     }
 
     const status = invented.length || leaked.length ? '✗' : '✓';
@@ -224,7 +251,7 @@ function main() {
     failures += invented.length + leaked.length;
 
     if (showUnaccounted) {
-      const rows = unaccounted(anchor, pdf, Number(range[1]), Number(range[2]));
+      const rows = unaccounted(anchor, pdf, pages);
       if (!rows) {
         console.log('     --unaccounted needs source.label_columns — see data/strukturenlisten/README.md');
       } else {

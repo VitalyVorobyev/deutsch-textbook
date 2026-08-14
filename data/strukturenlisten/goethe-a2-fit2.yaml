@@ -36,8 +36,8 @@ source:
   publisher: "Goethe-Institut"
   edition: "Vs05_080813"
   chapter: "Inventare — Grammatik: Morphologische und syntaktische Strukturen"
-  pages: "104–108"
-  pdf_pages: "104–108"
+  pages: "104–109"
+  pdf_pages: "104–109"
   levels: [A2]
   audience: jugendliche
   mode: unstated
@@ -93,51 +93,52 @@ sections:
       - { key: numerus, level: A2, de: "Numerus: Singular und Plural der Nomen der Wortliste" }
       - { key: kasus-nom-akk-dat, level: A2, de: "Kasus: Nominativ, Akkusativ und Dativ der Nomen der Wortliste" }
       - { key: genitiv-eigenname, level: A2, de: "Genitiv bei Eigennamen im Singular" }
-      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform des Genitivs mit von + Dativ" }
+      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform für den Genitiv: von + Dativ" }
 
   - id: artikelwoerter
     de: "Artikelwörter · Artikel"
     page: 106
     entries:
-      - { key: artikel-definit, level: A2, de: "Definiter Artikel: der / die / das" }
-      - { key: artikel-demonstrativ, level: A2, de: "Demonstrativartikel: dieser / diese / dieses / diese" }
-      - { key: artikel-indefinit, level: A2, de: "Indefiniter Artikel: ein / eine / ein" }
+      - { key: artikel-definit, level: A2, de: "Definit: der / die / das" }
+      - { key: artikel-demonstrativ, level: A2, de: "Demonstrativ: dieser / diese / dieses / diese" }
+      - { key: artikel-indefinit, level: A2, de: "Indefinit: ein / eine / ein" }
       - { key: artikel-null, level: A2, de: "Nullartikel" }
       - key: artikel-interrogativ
         level: A2
-        de: "Interrogativartikel welch- im Nominativ und Akkusativ"
-        note: "Printed `irrogativ` in the source — a typo for `interrogativ`, transcribed here in its corrected form with the source spelling recorded."
-      - { key: artikel-alle, level: A2, de: "alle als Artikelwort" }
-      - { key: artikel-possessiv, level: A2, de: "Possessivartikel: mein / dein / sein / ihr / Ihr" }
-      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessivartikel: unser / euer" }
-      - { key: artikel-negativ-kein, level: A2, de: "Negativartikel: kein" }
+        de: "interrogativ: Welch im Nominativ und Akkusativ"
+        printed: "irrogativ: Welch im Nominativ und Akkusativ"
+        note: "The source prints `irrogativ` — a typo for `interrogativ`. `de` carries the correct spelling because that is what the structure is called; `printed` carries the page verbatim, so the correction is stated and machine-checked rather than quiet."
+      - { key: artikel-alle, level: A2, de: "alle" }
+      - { key: artikel-possessiv, level: A2, de: "Possessiv: mein / dein / sein / ihr / Ihr" }
+      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessiv: unser / euer" }
+      - { key: artikel-negativ-kein, level: A2, de: "Negativ: kein" }
 
   - id: pronomen
     de: "Pronomen"
     page: 106
     entries:
-      - { key: pron-indefinit-man, level: A2, de: "Indefinitpronomen: man" }
-      - { key: pron-indefinit-jemand, level: A2, de: "Indefinitpronomen: jemand" }
-      - { key: pron-indefinit-etwas, level: A2, de: "Indefinitpronomen: etwas" }
-      - { key: pron-indefinit-nichts, level: A2, de: "Indefinitpronomen: nichts" }
-      - { key: pron-indefinit-mehr, level: A2, de: "Indefinitpronomen: mehr" }
-      - { key: pron-indefinit-alles, level: A2, de: "Indefinitpronomen: alles" }
+      - { key: pron-indefinit-man, level: A2, de: "Indefinit: man" }
+      - { key: pron-indefinit-jemand, level: A2, de: "Indefinit: jemand" }
+      - { key: pron-indefinit-etwas, level: A2, de: "Indefinit: etwas" }
+      - { key: pron-indefinit-nichts, level: A2, de: "Indefinit: nichts" }
+      - { key: pron-indefinit-mehr, level: A2, de: "Indefinit: mehr" }
+      - { key: pron-indefinit-alles, level: A2, de: "Indefinit: alles" }
       - { key: pron-personal-nominativ, level: A2, de: "Personalpronomen im Nominativ" }
       - { key: pron-personal-akkusativ, level: A2, de: "Personalpronomen im Akkusativ: mich / dich / ihn / sie / es" }
       - { key: pron-personal-dativ, level: A2, de: "Personalpronomen im Dativ: mir / dir / ihm / ihr / uns / euch" }
       - { key: pron-reflexiv-akkusativ, level: A2, de: "Reflexivpronomen im Akkusativ: mich / dich / sich" }
       - { key: pron-reziprok, level: A2, de: "Reziprokpronomen: sich / uns" }
-      - { key: pron-frage-nominativ, level: A2, de: "Fragepronomen im Nominativ: Wer? / Was?" }
+      - { key: pron-frage-nominativ, level: A2, de: "Fragepronomen im Nominativ: Wer / Was" }
       - { key: pron-frage-akkusativ, level: A2, de: "Fragepronomen im Akkusativ: Was?" }
-      - { key: pron-frage-dativ, level: A2, de: "Fragepronomen im Dativ: Mit wem?" }
+      - { key: pron-frage-dativ, level: A2, de: "Fragepronomen im Dativ: Mit wem" }
 
   - id: adjektiv
     de: "Adjektiv"
     page: 107
     entries:
-      - { key: adj-attributiv, level: A2, de: "Attributives Adjektiv nach definitem und indefinitem Artikel" }
-      - { key: adj-praedikativ, level: A2, de: "Prädikatives Adjektiv" }
-      - { key: adj-adverbial, level: A2, de: "Adverbialer Gebrauch des Adjektivs" }
+      - { key: adj-attributiv, level: A2, de: "attributiv" }
+      - { key: adj-praedikativ, level: A2, de: "prädikativ" }
+      - { key: adj-adverbial, level: A2, de: "adverbial" }
       - { key: adj-komparativ, level: A2, de: "Komparation: ausgewählte Komparative mit als" }
       - { key: adj-komparation-gern, level: A2, de: "Komparation: gern / lieber / am liebsten" }
       - { key: adj-komparation-viel, level: A2, de: "Komparation: viel / mehr / am meisten" }
@@ -178,9 +179,9 @@ sections:
     de: "Präposition · modal"
     page: 107
     entries:
-      - { key: praep-mod-aus, level: A2, de: "aus + Dativ (Material)" }
+      - { key: praep-mod-aus, level: A2, de: "aus + Dativ" }
       - { key: praep-mod-fuer, level: A2, de: "für + Akkusativ" }
-      - { key: praep-mod-mit, level: A2, de: "mit + Dativ (Mittel)" }
+      - { key: praep-mod-mit, level: A2, de: "mit + Dativ" }
       - { key: praep-mod-ohne, level: A2, de: "ohne + Akkusativ" }
 
   - id: syntax
@@ -203,19 +204,19 @@ sections:
     de: "Syntax · Satzverbindungen (Hauptsatz + Hauptsatz)"
     page: 108
     entries:
-      - { key: satzverb-und, level: A2, de: "Satzverbindung mit und" }
-      - { key: satzverb-oder, level: A2, de: "Satzverbindung mit oder" }
-      - { key: satzverb-aber, level: A2, de: "Satzverbindung mit aber" }
-      - { key: satzverb-denn, level: A2, de: "Satzverbindung mit denn" }
-      - { key: satzverb-deshalb, level: A2, de: "Satzverbindung mit deshalb (Adverb)" }
-      - { key: satzverb-dann, level: A2, de: "Satzverbindung mit dann" }
+      - { key: satzverb-und, level: A2, de: "Satzverbindungen mit und" }
+      - { key: satzverb-oder, level: A2, de: "Satzverbindungen mit oder" }
+      - { key: satzverb-aber, level: A2, de: "Satzverbindungen mit aber" }
+      - { key: satzverb-denn, level: A2, de: "Satzverbindungen mit denn" }
+      - { key: satzverb-deshalb, level: A2, de: "Satzverbindungen mit deshalb (Adverb)" }
+      - { key: satzverb-dann, level: A2, de: "Satzverbindungen mit dann" }
 
   - id: satzverbindungen-nebensatz
     de: "Syntax · Satzverbindungen (Hauptsatz + Nebensatz)"
     page: 108
     entries:
       - { key: nebensatz-dass, level: A2, de: "Nebensatz mit dass" }
-      - { key: nebensatz-fragewort, level: A2, de: "Nebensatz mit einem Fragewort (indirekte Frage)" }
+      - { key: nebensatz-fragewort, level: A2, de: "Nebensatz mit Fragewort" }
       - { key: nebensatz-weil, level: A2, de: "Nebensatz mit weil" }
       - { key: nebensatz-wenn, level: A2, de: "Nebensatz mit wenn" }
 
@@ -223,13 +224,13 @@ sections:
     de: "Wortbildung · Nomen"
     page: 108
     entries:
-      - { key: wb-nomen-er, level: A2, de: "Nominalisierung auf -er" }
-      - { key: wb-nomen-ung, level: A2, de: "Nominalisierung auf -ung" }
-      - { key: wb-nomen-in, level: A2, de: "Feminine Personenbezeichnung auf -in" }
+      - { key: wb-nomen-er, level: A2, de: "Nominalisierung: -er", printed: "Nominalisierung - er" }
+      - { key: wb-nomen-ung, level: A2, de: "Nominalisierung: -ung", printed: "Nominalisierung - ung" }
+      - { key: wb-nomen-in, level: A2, de: "Nominalisierung: -in", printed: "Nominalisierung - in" }
 
   - id: wortbildung-adjektiv
     de: "Wortbildung · Adjektive"
     page: 108
     entries:
-      - { key: wb-adj-un, level: A2, de: "Vorsilbe un-" }
-      - { key: wb-adj-los, level: A2, de: "Nachsilbe -los" }
+      - { key: wb-adj-un, level: A2, de: "Vorsilbe: un-", printed: "Vorsilbe un -" }
+      - { key: wb-adj-los, level: A2, de: "Nachsilbe: -los", printed: "Nachsilbe - los" }

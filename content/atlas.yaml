@@ -152,6 +152,8 @@ nodes:
         en: "I can briefly introduce myself with my name, origin and language."
         ru: "Я умею кратко представиться: назвать имя, страну и язык."
         uk: "Я вмію коротко представитися: назвати ім'я, країну та мову."
+        claims:
+          - goethe-dtz-handlungen:kontakte-aufnehmen-beenden
       - id: erste-buchstabieren
         mode: spoken-interaction
         domain: public
@@ -159,6 +161,8 @@ nodes:
         en: "I can spell my name and address."
         ru: "Я умею продиктовать по буквам своё имя и адрес."
         uk: "Я вмію продиктувати по літерах своє ім'я та адресу."
+        claims:
+          - goethe-dtz-handlungen:verstaendnishilfen-anbieten
       - id: erste-zahlen-verstehen
         mode: listening
         domain: public
@@ -195,6 +199,8 @@ nodes:
         en: "I can ask W-questions and yes/no questions."
         ru: "Я умею задавать вопросы с вопросительным словом и общие вопросы (да/нет)."
         uk: "Я вмію ставити питання з питальним словом і загальні питання (так/ні)."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
       - id: praesens-verneinung
         mode: writing
         domain: personal
@@ -253,6 +259,9 @@ nodes:
         en: "I can briefly introduce my family and important people."
         ru: "Я умею кратко представить свою семью и близких людей."
         uk: "Я вмію коротко представити свою сім'ю та близьких людей."
+        claims:
+          - goethe-dtz-handlungen:kontakte-aufnehmen-beenden
+          - goethe-dtz-handlungen:beschreiben
       - id: menschen-beschreiben
         mode: writing
         domain: personal
@@ -260,6 +269,8 @@ nodes:
         en: "I can describe a person with simple details about appearance and occupation."
         ru: "Я умею просто описать внешность и профессию человека."
         uk: "Я вмію просто описати зовнішність і професію людини."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: familie-verstehen
         mode: listening
         domain: personal
@@ -282,6 +293,8 @@ nodes:
         en: "I can say what I like to eat and drink."
         ru: "Я умею говорить, что я люблю есть и пить."
         uk: "Я вмію казати, що я люблю їсти й пити."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
       - id: essen-bestellen
         mode: spoken-interaction
         domain: public
@@ -289,6 +302,8 @@ nodes:
         en: "I can place a simple order in a café or restaurant."
         ru: "Я умею делать простой заказ в кафе или ресторане."
         uk: "Я вмію робити просте замовлення в кафе чи ресторані."
+        claims:
+          - goethe-dtz-handlungen:bestellen
       - id: essen-grundwortschatz
         mode: reading
         domain: public
@@ -296,6 +311,8 @@ nodes:
         en: "I can understand and use the most important words for food and drinks."
         ru: "Я понимаю и умею употреблять самые нужные слова для еды и напитков."
         uk: "Я розумію і вмію вживати найпотрібніші слова для їжі та напоїв."
+        claims:
+          - goethe-dtz-handlungen:benennen-definieren
       - id: essen-service-bezahlen
         mode: spoken-interaction
         domain: public
@@ -303,6 +320,9 @@ nodes:
         en: "I can name quantities, ask for alternatives and pay in a café."
         ru: "Я умею называть количество, спрашивать о заменах и расплачиваться в кафе."
         uk: "Я вмію називати кількість, питати про заміни й розраховуватися в кафе."
+        claims:
+          - goethe-dtz-handlungen:bestellen
+          - goethe-dtz-handlungen:nachfragen
   - id: akkusativ
     level: A1
     kind: grammar
@@ -361,6 +381,8 @@ nodes:
         en: "I can describe my day with time phrases: Um acht Uhr lerne ich Deutsch."
         ru: "Я умею описывать свой день с указанием времени: Um acht Uhr lerne ich Deutsch."
         uk: "Я вмію описувати свій день із зазначенням часу: Um acht Uhr lerne ich Deutsch."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: zeit-praepositionen
         mode: writing
         domain: personal
@@ -390,6 +412,8 @@ nodes:
         en: "I can describe my home: its rooms, simple adjectives, es gibt."
         ru: "Я умею описывать свою квартиру: комнаты, простые прилагательные, оборот es gibt."
         uk: "Я вмію описувати свою квартиру: кімнати, прості прикметники, зворот es gibt."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: wohnen-anzeige-verstehen
         mode: reading
         domain: public
@@ -404,6 +428,8 @@ nodes:
         en: "I can say where things are at home using fixed phrases: im Wohnzimmer, in der Küche."
         ru: "Я умею готовыми выражениями говорить, где что находится дома: im Wohnzimmer, in der Küche."
         uk: "Я вмію готовими виразами казати, де що розташоване вдома: im Wohnzimmer, in der Küche."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
   - id: stadt-wege
     level: A1
     kind: communication
@@ -419,6 +445,9 @@ nodes:
         en: "I can politely ask where something is and how to get there."
         ru: "Я умею вежливо спрашивать, где что находится и как туда добраться."
         uk: "Я вмію ввічливо питати, де що розташоване і як туди дістатися."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
+          - goethe-dtz-handlungen:hoeflichkeit
       - id: stadt-wegbeschreibung-verstehen
         mode: listening
         domain: public
@@ -433,6 +462,8 @@ nodes:
         en: "I can say how I get around: mit dem Bus, mit der U-Bahn, zu Fuß."
         ru: "Я умею говорить, как я добираюсь: mit dem Bus, mit der U-Bahn, zu Fuß."
         uk: "Я вмію казати, як я дістаюся: mit dem Bus, mit der U-Bahn, zu Fuß."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: stadt-schilder-verstehen
         mode: reading
         domain: public
@@ -447,6 +478,8 @@ nodes:
         en: "I can give someone simple directions using imperative forms."
         ru: "Я умею объяснить дорогу простыми формами Imperativ."
         uk: "Я вмію пояснити дорогу простими формами Imperativ."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
   - id: ort-richtung-praepositionen
     level: A1
     kind: grammar
@@ -486,6 +519,8 @@ nodes:
         en: "I can say where I have come from."
         ru: "Я умею сказать, откуда я иду или приехал."
         uk: "Я вмію сказати, звідки я йду або приїхав."
+        claims:
+          - goethe-dtz-handlungen:migrationserfahrung-berichten
   - id: freizeit-koennen
     level: A1
     kind: communication
@@ -501,6 +536,8 @@ nodes:
         en: "I can say what I do in my free time and what I like doing."
         ru: "Я умею рассказывать, что я делаю в свободное время и что мне нравится делать."
         uk: "Я вмію розповідати, що я роблю у вільний час і що мені подобається робити."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: freizeit-koennen-satz
         mode: writing
         domain: personal
@@ -522,6 +559,8 @@ nodes:
         en: "I can accept a suggestion or politely turn it down: Ja, gern. Nein, ich kann nicht."
         ru: "Я умею принять предложение или вежливо отказаться: Ja, gern. Nein, ich kann nicht."
         uk: "Я вмію прийняти пропозицію або ввічливо відмовитися: Ja, gern. Nein, ich kann nicht."
+        claims:
+          - goethe-dtz-handlungen:vorschlag-machen
       - id: freizeit-vergangenheit
         mode: spoken-production
         domain: personal
@@ -529,6 +568,8 @@ nodes:
         en: "I can briefly say in the perfect tense what I did at the weekend."
         ru: "Я умею кратко рассказать в Perfekt, что делал(а) на выходных."
         uk: "Я вмію коротко розповісти в Perfekt, що робив(-ла) на вихідних."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
   # --- A2 ---
   - id: dativ
     level: A2
@@ -598,6 +639,8 @@ nodes:
         en: "I can talk about my day using verbs like aufstehen and einkaufen."
         ru: "Я умею рассказывать о своём дне с глаголами вроде aufstehen и einkaufen."
         uk: "Я вмію розповідати про свій день із дієсловами на кшталт aufstehen та einkaufen."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
   - id: alltag-tagesablauf
     level: A2
     kind: vocab-field
@@ -614,6 +657,8 @@ nodes:
         en: "I can describe my daily routine: getting up, working, shopping, going to bed."
         ru: "Я умею описывать свой распорядок дня: подъём, работа, покупки, отход ко сну."
         uk: "Я вмію описувати свій розпорядок дня: підйом, робота, покупки, відхід до сну."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: alltag-zeit-haeufigkeit
         mode: spoken-production
         domain: personal
@@ -621,6 +666,8 @@ nodes:
         en: "I can say when and how often I do something (um sieben Uhr, jeden Tag)."
         ru: "Я умею говорить, когда и как часто я что-то делаю (um sieben Uhr, jeden Tag)."
         uk: "Я вмію казати, коли і як часто я щось роблю (um sieben Uhr, jeden Tag)."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: alltag-zeitpraepositionen
         mode: writing
         domain: personal
@@ -658,6 +705,8 @@ nodes:
         en: "I can tell darf nicht (not allowed) from muss nicht (not necessary)."
         ru: "Я различаю darf nicht («нельзя») и muss nicht («не обязательно»)."
         uk: "Я розрізняю darf nicht («не можна») і muss nicht («не обов'язково»)."
+        claims:
+          - goethe-dtz-handlungen:erlaubnis-genehmigung
       - id: modal-hoefliche-wuensche
         mode: spoken-interaction
         domain: public
@@ -665,6 +714,9 @@ nodes:
         en: "I can say politely what I would like, using möchte."
         ru: "Я умею вежливо говорить, чего я хочу, с помощью möchte."
         uk: "Я вмію ввічливо казати, чого я хочу, за допомогою möchte."
+        claims:
+          - goethe-dtz-handlungen:bitte-ausdruecken
+          - goethe-dtz-handlungen:hoeflichkeit
   - id: termine-vereinbaren
     level: A2
     kind: communication
@@ -680,6 +732,9 @@ nodes:
         en: "I can make, move or cancel an appointment."
         ru: "Я умею договариваться о встрече, переносить и отменять её."
         uk: "Я вмію домовлятися про зустріч, переносити та скасовувати її."
+        claims:
+          - goethe-dtz-handlungen:vorschlag-machen
+          - goethe-dtz-handlungen:ankuendigen-plaene
       - id: termine-zeit-verstehen
         mode: listening
         domain: public
@@ -694,6 +749,9 @@ nodes:
         en: "I can use polite Sie forms and standard phrases on the phone."
         ru: "Я умею вежливо обращаться на Sie по телефону и использовать подходящие формулы."
         uk: "Я вмію ввічливо звертатися на Sie по телефону та використовувати доречні формули."
+        claims:
+          - goethe-dtz-handlungen:kontakte-aufnehmen-beenden
+          - goethe-dtz-handlungen:hoeflichkeit
   - id: perfekt-haben-sein
     level: A2
     kind: grammar
@@ -709,6 +767,8 @@ nodes:
         en: "I can talk about yesterday and the past using the Perfekt."
         ru: "Я умею рассказывать о вчерашнем дне и о прошлом в перфекте."
         uk: "Я вмію розповідати про вчорашній день і про минуле в перфекті."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: perfekt-hilfsverb
         mode: writing
         domain: personal
@@ -754,6 +814,8 @@ nodes:
         en: "I can describe a flat and where it is in more detail."
         ru: "Я умею подробнее описать квартиру и её расположение."
         uk: "Я вмію докладніше описати квартиру та її розташування."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: wo-wohin-position
         mode: writing
         domain: personal
@@ -768,6 +830,8 @@ nodes:
         en: "I can make a request to a landlord or a neighbour."
         ru: "Я умею обратиться с просьбой к арендодателю или соседям."
         uk: "Я вмію звернутися з проханням до орендодавця чи сусідів."
+        claims:
+          - goethe-dtz-handlungen:bitte-ausdruecken
 
   - id: reisen-verkehr
     level: A2
@@ -798,6 +862,10 @@ nodes:
         en: "I can explain a travel problem and ask for help."
         ru: "Я умею объяснить проблему в пути и попросить о помощи."
         uk: "Я вмію пояснити проблему в дорозі та попросити про допомогу."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
+          - goethe-dtz-handlungen:bitte-ausdruecken
+          - goethe-dtz-handlungen:hilfe-anbieten
       - id: reise-berichten
         mode: spoken-production
         domain: personal
@@ -805,6 +873,8 @@ nodes:
         en: "I can give a short account of a journey."
         ru: "Я умею коротко рассказать о поездке."
         uk: "Я вмію коротко розповісти про поїздку."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
 
   - id: einkaufen-reklamation
     level: A2
@@ -821,6 +891,8 @@ nodes:
         en: "I can compare prices, sizes and products."
         ru: "Я умею сравнивать цены, размеры и товары."
         uk: "Я вмію порівнювати ціни, розміри й товари."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: gefallen-passen-sagen
         mode: spoken-interaction
         domain: personal
@@ -828,6 +900,8 @@ nodes:
         en: "I can say what fits me and what I like."
         ru: "Я умею сказать, что мне подходит и что мне нравится."
         uk: "Я вмію сказати, що мені підходить і що мені подобається."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
       - id: umtausch-begruenden
         mode: spoken-interaction
         domain: public
@@ -835,6 +909,8 @@ nodes:
         en: "I can give the reason for an exchange or a return."
         ru: "Я умею объяснить причину обмена или возврата."
         uk: "Я вмію пояснити причину обміну чи повернення."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
       - id: reklamation-schreiben
         mode: writing
         domain: public
@@ -842,6 +918,8 @@ nodes:
         en: "I can write a short complaint."
         ru: "Я умею написать краткую рекламацию."
         uk: "Я вмію написати коротку рекламацію."
+        claims:
+          - goethe-dtz-handlungen:umgang-konflikte
 
   # Placed straight after `einkaufen-reklamation` because that unit is where
   # adjectives first carry real weight (Komparativ, gefallen/passen) — but it
@@ -869,6 +947,8 @@ nodes:
         en: "I can describe people, homes and things precisely, using adjectives."
         ru: "Я умею подробно описывать людей, жильё и вещи с помощью прилагательных."
         uk: "Я вмію докладно описувати людей, житло й речі за допомогою прикметників."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: adjektiv-wunsch-sagen
         mode: spoken-interaction
         domain: public
@@ -876,6 +956,8 @@ nodes:
         en: "I can say what kind of flat or device I am looking for."
         ru: "Я умею сказать, какую квартиру или какой прибор я ищу."
         uk: "Я вмію сказати, яку квартиру чи який прилад я шукаю."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: adjektiv-anzeige-verstehen
         mode: reading
         domain: public
@@ -883,6 +965,8 @@ nodes:
         en: "I can understand which features a listing describes."
         ru: "Я умею понять, какие свойства описаны в объявлении."
         uk: "Я вмію зрозуміти, які властивості описано в оголошенні."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
 
   - id: gesundheit-arzttermin
     level: A2
@@ -899,6 +983,8 @@ nodes:
         en: "I can describe symptoms and how long I have had them."
         ru: "Я умею описать жалобы и то, как долго они длятся."
         uk: "Я вмію описати скарги й те, як довго вони тривають."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: praxis-anweisungen-verstehen
         mode: listening
         domain: public
@@ -913,6 +999,8 @@ nodes:
         en: "I can give a piece of advice and respond to one."
         ru: "Я умею дать совет и ответить на совет."
         uk: "Я вмію дати пораду й відповісти на пораду."
+        claims:
+          - goethe-dtz-handlungen:rat-empfehlung-warnung
       - id: krankmeldung-schreiben
         mode: writing
         domain: professional
@@ -920,6 +1008,8 @@ nodes:
         en: "I can write a short message saying I am ill and will not come in."
         ru: "Я умею написать короткое сообщение о болезни и отсутствии."
         uk: "Я вмію написати коротке повідомлення про хворобу та відсутність."
+        claims:
+          - goethe-dtz-handlungen:ankuendigen-plaene
 
   - id: verben-mit-praepositionen
     level: A2
@@ -950,6 +1040,8 @@ nodes:
         en: "I can use a wo-word to ask about a thing."
         ru: "Я умею задавать вопрос о предмете с помощью wo-слова."
         uk: "Я вмію ставити питання про предмет за допомогою wo-слова."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
       - id: person-sache-unterscheiden
         mode: spoken-interaction
         domain: personal
@@ -973,6 +1065,9 @@ nodes:
         en: "I can describe my duties and my working hours."
         ru: "Я умею описать свои обязанности и рабочее время."
         uk: "Я вмію описати свої обов'язки та робочий час."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
+          - goethe-dtz-handlungen:eigene-kompetenzen-darstellen
       - id: arbeitszeit-aushandeln
         mode: spoken-interaction
         domain: professional
@@ -980,6 +1075,9 @@ nodes:
         en: "I can make a request at work and swap a shift."
         ru: "Я умею обратиться с просьбой на работе и поменяться сменой."
         uk: "Я вмію звернутися з проханням на роботі та помінятися зміною."
+        claims:
+          - goethe-dtz-handlungen:bitte-ausdruecken
+          - goethe-dtz-handlungen:vorschlag-machen
       - id: arbeitsanweisung-verstehen
         mode: listening
         domain: professional
@@ -1010,6 +1108,8 @@ nodes:
         en: "I can give a reason with weil, with the verb at the end."
         ru: "Я умею назвать причину с помощью weil: глагол уходит в конец."
         uk: "Я вмію назвати причину за допомогою weil: дієслово йде в кінець."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
       - id: dass-satz
         mode: writing
         domain: personal
@@ -1017,6 +1117,8 @@ nodes:
         en: "I can use dass to say what I think, believe and hope."
         ru: "Я умею с помощью dass сказать, что я думаю, считаю и надеюсь."
         uk: "Я вмію за допомогою dass сказати, що я думаю, вважаю і сподіваюся."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
       - id: wenn-bedingung
         mode: writing
         domain: personal
@@ -1055,6 +1157,8 @@ nodes:
         en: "I can say what I am planning, using vorhaben, versuchen and Lust haben."
         ru: "Я умею рассказать о своих планах с помощью vorhaben, versuchen и Lust haben."
         uk: "Я вмію розповісти про свої плани за допомогою vorhaben, versuchen і Lust haben."
+        claims:
+          - goethe-dtz-handlungen:ankuendigen-plaene
       - id: zweck-um-zu
         mode: spoken-production
         domain: personal
@@ -1062,6 +1166,8 @@ nodes:
         en: "I can use um … zu to say what I am doing something for."
         ru: "Я умею с помощью um … zu сказать, зачем я что-то делаю."
         uk: "Я вмію за допомогою um … zu сказати, навіщо я щось роблю."
+        claims:
+          - goethe-dtz-handlungen:zweck-angeben
       - id: zu-oder-ohne-zu
         mode: writing
         domain: personal
@@ -1079,6 +1185,8 @@ nodes:
         en: "I can use werden + infinitive to make a prediction or a promise."
         ru: "Я умею с помощью werden + инфинитив сделать прогноз или дать обещание."
         uk: "Я вмію за допомогою werden + інфінітив зробити прогноз або дати обіцянку."
+        claims:
+          - goethe-dtz-handlungen:ankuendigen-plaene
 
   - id: relativsaetze
     level: A2
@@ -1102,6 +1210,8 @@ nodes:
         en: "I can use a relative clause to say which person or thing I mean."
         ru: "Я умею с помощью относительного придаточного сказать, какого человека или какую вещь я имею в виду."
         uk: "Я вмію за допомогою відносного підрядного сказати, яку людину чи яку річ я маю на увазі."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: sache-definieren
         mode: spoken-production
         domain: public
@@ -1109,6 +1219,8 @@ nodes:
         en: "I can describe a thing when the word escapes me (Ich suche ein Ding, das …)."
         ru: "Я умею описать предмет, когда не могу вспомнить слово (Ich suche ein Ding, das …)."
         uk: "Я вмію описати предмет, коли не можу згадати слово (Ich suche ein Ding, das …)."
+        claims:
+          - goethe-dtz-handlungen:kompensation
       - id: relativ-kasus-waehlen
         mode: writing
         domain: personal
@@ -1143,6 +1255,8 @@ nodes:
         en: "I can recount the stages of a life in the right order."
         ru: "Я умею рассказать об этапах жизни в правильной последовательности."
         uk: "Я вмію розповісти про етапи життя в правильній послідовності."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: praeteritum-war-hatte
         mode: writing
         domain: personal
@@ -1150,6 +1264,8 @@ nodes:
         en: "I can talk about the past using war, hatte and konnte."
         ru: "Я умею говорить о прошлом с помощью war, hatte и konnte."
         uk: "Я вмію говорити про минуле за допомогою war, hatte і konnte."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: erfahrungen-fragen
         mode: spoken-interaction
         domain: personal
@@ -1157,6 +1273,8 @@ nodes:
         en: "I can ask somebody about their life and their experiences."
         ru: "Я умею расспросить человека о его жизни и опыте."
         uk: "Я вмію розпитати людину про її життя і досвід."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: profil-schreiben
         mode: writing
         domain: personal
@@ -1164,6 +1282,8 @@ nodes:
         en: "I can write a short profile of another person."
         ru: "Я умею написать короткий портрет другого человека."
         uk: "Я вмію написати короткий портрет іншої людини."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
 
   - id: verbindungen-folgen
     level: A2
@@ -1187,6 +1307,8 @@ nodes:
         en: "I can express a consequence with deshalb, deswegen or trotzdem, keeping the verb second."
         ru: "Я умею выразить следствие через deshalb, deswegen или trotzdem, оставляя глагол на втором месте."
         uk: "Я вмію виразити наслідок через deshalb, deswegen або trotzdem, залишаючи дієслово на другому місці."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
       - id: vergangenheit-erzaehlen
         mode: writing
         domain: personal
@@ -1194,6 +1316,8 @@ nodes:
         en: "I can talk about the past and choose correctly between als and wenn."
         ru: "Я умею рассказывать о прошлом, правильно выбирая между als и wenn."
         uk: "Я вмію розповідати про минуле, правильно обираючи між als і wenn."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: ereignisse-ordnen
         mode: spoken-production
         domain: personal
@@ -1201,6 +1325,8 @@ nodes:
         en: "I can put events in order: zuerst, dann, danach, schließlich."
         ru: "Я умею упорядочить события: zuerst, dann, danach, schließlich."
         uk: "Я вмію впорядкувати події: zuerst, dann, danach, schließlich."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
 
   - id: man-und-besitz
     level: A2
@@ -1225,6 +1351,8 @@ nodes:
         en: "I can use man to say what is allowed, required and forbidden somewhere."
         ru: "Я умею с помощью man сказать, что где можно, нужно и нельзя."
         uk: "Я вмію за допомогою man сказати, що де можна, треба і не можна."
+        claims:
+          - goethe-dtz-handlungen:erlaubnis-genehmigung
       - id: unbestimmt-sprechen
         mode: writing
         domain: personal
@@ -1265,6 +1393,9 @@ nodes:
         en: "I can invite somebody, accept an invitation and decline one politely."
         ru: "Я умею пригласить, принять приглашение и вежливо отказаться."
         uk: "Я вмію запросити, прийняти запрошення і ввічливо відмовитися."
+        claims:
+          - goethe-dtz-handlungen:vorschlag-machen
+          - goethe-dtz-handlungen:beziehungen-pflegen
       - id: absprachen-aushandeln
         mode: spoken-interaction
         domain: personal
@@ -1272,6 +1403,8 @@ nodes:
         en: "I can agree with a group about who brings what."
         ru: "Я умею договориться в группе, кто что принесёт."
         uk: "Я вмію домовитися в групі, хто що принесе."
+        claims:
+          - goethe-dtz-handlungen:vorschlag-machen
       - id: glueckwuensche-formeln
         mode: spoken-production
         domain: personal
@@ -1279,6 +1412,8 @@ nodes:
         en: "I can congratulate somebody and express good wishes."
         ru: "Я умею поздравить и высказать добрые пожелания."
         uk: "Я вмію привітати і висловити добрі побажання."
+        claims:
+          - goethe-dtz-handlungen:beziehungen-pflegen
       - id: einladung-schreiben
         mode: writing
         domain: personal
@@ -1286,6 +1421,8 @@ nodes:
         en: "I can write a short invitation."
         ru: "Я умею написать короткое приглашение."
         uk: "Я вмію написати коротке запрошення."
+        claims:
+          - goethe-dtz-handlungen:vorschlag-machen
 
   - id: lernen-verstehen
     level: A2
@@ -1302,6 +1439,9 @@ nodes:
         en: "I can ask for clarification when I have not understood something."
         ru: "Я умею переспросить, если чего-то не понял."
         uk: "Я вмію перепитати, якщо чогось не зрозумів."
+        claims:
+          - goethe-dtz-handlungen:verstaendnishilfen-bitten
+          - goethe-dtz-handlungen:nachfragen
       - id: kursanweisungen-verstehen
         mode: listening
         domain: educational
@@ -1316,6 +1456,8 @@ nodes:
         en: "I can say how and why I learn German."
         ru: "Я умею рассказать, как и зачем я учу немецкий."
         uk: "Я вмію розповісти, як і навіщо я вчу німецьку."
+        claims:
+          - goethe-dtz-handlungen:individuelle-sprachigkeit
       - id: kursanfrage-schreiben
         mode: writing
         domain: educational
@@ -1323,6 +1465,8 @@ nodes:
         en: "I can write a short enquiry to a language school."
         ru: "Я умею написать короткий запрос в языковую школу."
         uk: "Я вмію написати короткий запит до мовної школи."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
 
   - id: aemter-dienstleistungen
     level: A2
@@ -1350,6 +1494,9 @@ nodes:
         en: "I can politely say what I need at a counter."
         ru: "Я умею вежливо объяснить у окошка, что мне нужно."
         uk: "Я вмію ввічливо пояснити біля віконця, що мені потрібно."
+        claims:
+          - goethe-dtz-handlungen:bitte-ausdruecken
+          - goethe-dtz-handlungen:hoeflichkeit
       - id: unterlagen-erfragen
         mode: spoken-interaction
         domain: public
@@ -1357,6 +1504,8 @@ nodes:
         en: "I can ask which documents I have to bring."
         ru: "Я умею спросить, какие документы нужно принести."
         uk: "Я вмію спитати, які документи потрібно принести."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
       - id: formelle-nachricht-schreiben
         mode: writing
         domain: public
@@ -1364,6 +1513,8 @@ nodes:
         en: "I can write a short formal message to a public office."
         ru: "Я умею написать короткое официальное сообщение в учреждение."
         uk: "Я вмію написати коротке офіційне повідомлення до установи."
+        claims:
+          - goethe-dtz-handlungen:bitte-ausdruecken
 
   - id: verben-mit-kasus
     level: A2
@@ -1474,6 +1625,8 @@ nodes:
         en: "I can narrate an experience in writing, in the Präteritum."
         ru: "Я умею письменно рассказать о пережитом в Präteritum."
         uk: "Я вмію письмово розповісти про пережите в Präteritum."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: vorzeitigkeit-ausdruecken
         mode: writing
         domain: personal
@@ -1481,6 +1634,8 @@ nodes:
         en: "I can say what happened first, with nachdem and the Plusquamperfekt."
         ru: "Я умею сказать, что произошло раньше, через nachdem и Plusquamperfekt."
         uk: "Я вмію сказати, що сталося раніше, через nachdem і Plusquamperfekt."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: interview-verstehen
         mode: listening
         domain: personal
@@ -1495,6 +1650,8 @@ nodes:
         en: "I can retell a story aloud in a connected way."
         ru: "Я умею связно пересказать историю вслух."
         uk: "Я вмію зв'язно переказати історію вголос."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
 
   # Lives in `erzaehlen-berichten` rather than a new group: two of its three outcomes are
   # written reporting, and the unit's genitive is explicitly the report register B1 opened with.
@@ -1517,6 +1674,8 @@ nodes:
         en: "I can compare housing situations and justify a choice."
         ru: "Я умею сравнивать варианты жилья и обосновать выбор."
         uk: "Я вмію порівнювати варіанти житла й обґрунтувати вибір."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
       - id: relativsatz-praezisieren
         mode: writing
         domain: personal
@@ -1524,6 +1683,8 @@ nodes:
         en: "I can use relative clauses in the dative and after prepositions to say more precisely what I mean."
         ru: "Я умею с помощью относительных придаточных в дативе и после предлогов точнее описать, что я имею в виду."
         uk: "Я вмію за допомогою відносних підрядних у дативі та після прийменників точніше описати, що я маю на увазі."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
       - id: veraenderung-berichten
         mode: writing
         domain: personal
@@ -1531,6 +1692,8 @@ nodes:
         en: "I can report on a life change and name its advantages and disadvantages."
         ru: "Я умею рассказать об изменении в жизни и назвать его плюсы и минусы."
         uk: "Я вмію розповісти про зміну в житті й назвати її плюси та мінуси."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
 
   # Sits with its base topic in `transaktionen-termine`: the counter conversations —
   # Beschwerden schildern, Empfehlungen und Packungsangaben verstehen — continue the same
@@ -1554,6 +1717,9 @@ nodes:
         en: "I can describe complaints and answer follow-up questions."
         ru: "Я умею описать жалобы и ответить на уточняющие вопросы."
         uk: "Я вмію описати скарги й відповісти на уточнювальні запитання."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
+          - goethe-dtz-handlungen:nachfragen
       - id: ratschlaege-formulieren
         mode: spoken-interaction
         domain: personal
@@ -1561,6 +1727,9 @@ nodes:
         en: "I can give and soften advice with the Konjunktiv II."
         ru: "Я умею давать и смягчать советы с помощью Konjunktiv II."
         uk: "Я вмію давати й пом'якшувати поради за допомогою Konjunktiv II."
+        claims:
+          - goethe-dtz-handlungen:rat-empfehlung-warnung
+          - goethe-dtz-handlungen:abschwaechung
       - id: empfehlungen-verstehen
         mode: reading
         domain: public
@@ -1575,6 +1744,8 @@ nodes:
         en: "I can talk about habits and wellbeing."
         ru: "Я умею говорить о привычках и самочувствии."
         uk: "Я вмію говорити про звички та самопочуття."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
 
   # Joins `behoerden-services` rather than the vocabulary leaf `arbeit-bildung` that holds
   # its A2 base: a node's strand must equal its group's, and this is a communication node —
@@ -1608,6 +1779,8 @@ nodes:
         en: "I can write a short application letter."
         ru: "Я умею написать короткое письмо-заявление о приёме на работу."
         uk: "Я вмію написати короткий лист-заяву про прийом на роботу."
+        claims:
+          - goethe-dtz-handlungen:eigene-kompetenzen-darstellen
       - id: erfahrung-praesentieren
         mode: spoken-production
         domain: professional
@@ -1615,6 +1788,8 @@ nodes:
         en: "I can present my experience and strengths in a conversation."
         ru: "Я умею рассказать о своём опыте и сильных сторонах в разговоре."
         uk: "Я вмію розповісти про свій досвід і сильні сторони в розмові."
+        claims:
+          - goethe-dtz-handlungen:eigene-kompetenzen-darstellen
       # Added 2026-07-26 (amendment recorded in docs/curriculum/a2-b1.md). Two reasons, and
       # both are load-bearing. The mission has four moves and the contract named three
       # outcomes — "handle interview turns" had none. And a probe family arms from the items
@@ -1629,6 +1804,9 @@ nodes:
         en: "I can answer questions in a job interview and ask one of my own."
         ru: "Я умею отвечать на вопросы на собеседовании и сам задать вопрос."
         uk: "Я вмію відповідати на питання на співбесіді й сам поставити запитання."
+        claims:
+          - goethe-dtz-handlungen:eigene-kompetenzen-darstellen
+          - goethe-dtz-handlungen:nachfragen
 
   # Joins `erzaehlen-berichten`, where the other two B1 communication nodes that work on
   # texts already sit: understanding a report and giving its point back is the same job as
@@ -1664,6 +1842,8 @@ nodes:
         en: "I can express my opinion and support it with reasons."
         ru: "Я умею высказать своё мнение и подкрепить его доводами."
         uk: "Я вмію висловити свою думку і підкріпити її доказами."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
       - id: argumente-verbinden
         mode: writing
         domain: public
@@ -1671,6 +1851,8 @@ nodes:
         en: "I can link statements with two-part connectors and weigh them against each other."
         ru: "Я умею связывать высказывания двойными союзами и взвешивать их."
         uk: "Я вмію пов'язувати висловлювання подвійними сполучниками і зважувати їх."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
 
   # Joins `transaktionen-termine`, where the everyday transactional nodes sit
   # (termine-vereinbaren, gesundheit-arzttermin, and at B1 gesundheit-wohlbefinden):
@@ -1700,6 +1882,9 @@ nodes:
         en: "I can use the passive to describe how something is made or regulated."
         ru: "Я умею описывать с помощью пассива, как что-то производят или регулируют."
         uk: "Я вмію описувати за допомогою пасиву, як щось виробляють або регулюють."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
+          - goethe-dtz-handlungen:erklaeren
       - id: hinweise-verstehen
         mode: reading
         domain: public
@@ -1714,6 +1899,8 @@ nodes:
         en: "I can compare consumer choices and justify my own."
         ru: "Я умею сравнивать потребительские решения и обосновывать свой выбор."
         uk: "Я вмію порівнювати споживчі рішення та обґрунтовувати свій вибір."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
 
   # Joins `behoerden-services`, where the register it trains already lives
   # (aemter-dienstleistungen at A2, arbeit-bewerbung at B1): a Hausordnung, a letter from
@@ -1754,6 +1941,8 @@ nodes:
         en: "I can use sodass to name the consequence something has."
         ru: "Я умею называть с помощью sodass, какое следствие что-то имеет."
         uk: "Я вмію називати за допомогою sodass, який наслідок щось має."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
       - id: loesung-aushandeln
         mode: spoken-interaction
         domain: public
@@ -1761,6 +1950,9 @@ nodes:
         en: "I can negotiate a practical solution to a problem."
         ru: "Я умею договариваться о практическом решении проблемы."
         uk: "Я вмію домовлятися про практичне розв'язання проблеми."
+        claims:
+          - goethe-dtz-handlungen:umgang-konflikte
+          - goethe-dtz-handlungen:vorschlag-machen
 
   # Joins `unterwegs`, where the travel ground already lives (stadt-wege at A1,
   # reisen-verkehr at A2): a strike on the platform, a missed Anschluss and a hotel
@@ -1794,6 +1986,8 @@ nodes:
         en: "I can write a formal complaint and give my reasons."
         ru: "Я умею писать официальную жалобу с обоснованием."
         uk: "Я вмію писати офіційну скаргу з обґрунтуванням."
+        claims:
+          - goethe-dtz-handlungen:umgang-konflikte
       - id: irreale-bedingung-nutzen
         mode: spoken-production
         domain: personal
@@ -1808,6 +2002,8 @@ nodes:
         en: "I can give a connected account of a travel mishap."
         ru: "Я умею связно рассказать о неудаче в поездке."
         uk: "Я вмію зв'язно розповісти про негаразд у подорожі."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
 
   # Joins `lernen-kurs`, where lernen-verstehen already lives: a course-counselling
   # appointment about the next German course — preparing its questions, following its
@@ -1842,6 +2038,8 @@ nodes:
         en: "I can name learning goals and justify what I am learning something for."
         ru: "Я умею называть учебные цели и обосновывать, для чего я что-то учу."
         uk: "Я вмію називати навчальні цілі й обґрунтовувати, для чого я щось вивчаю."
+        claims:
+          - goethe-dtz-handlungen:zweck-angeben
       - id: plan-formulieren
         mode: writing
         domain: educational
@@ -1849,6 +2047,8 @@ nodes:
         en: "I can formulate a plan with conditions."
         ru: "Я умею формулировать план с условиями."
         uk: "Я вмію формулювати план з умовами."
+        claims:
+          - goethe-dtz-handlungen:ankuendigen-plaene
       - id: beratung-verstehen
         mode: listening
         domain: educational
@@ -1876,6 +2076,8 @@ nodes:
         en: "I can voice objections and respond to opposing views."
         ru: "Я умею высказывать возражения и реагировать на противоположные мнения."
         uk: "Я вмію висловлювати заперечення й реагувати на протилежні думки."
+        claims:
+          - goethe-dtz-handlungen:umgang-dissens
       - id: diskussion-folgen
         mode: listening
         domain: public
@@ -1890,6 +2092,9 @@ nodes:
         en: "I can propose a compromise when there is a disagreement."
         ru: "Я умею предлагать компромисс при расхождении во мнениях."
         uk: "Я вмію пропонувати компроміс за розбіжності в думках."
+        claims:
+          - goethe-dtz-handlungen:umgang-dissens
+          - goethe-dtz-handlungen:vorschlag-machen
 
   - id: digitales-leben
     level: B1
@@ -1923,6 +2128,9 @@ nodes:
         en: "I can describe a technical problem and ask for help in a targeted way."
         ru: "Я умею описать техническую неполадку и обратиться за конкретной помощью."
         uk: "Я вмію описати технічну несправність і звернутися по конкретну допомогу."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
+          - goethe-dtz-handlungen:bitte-ausdruecken
       - id: mediennutzung-berichten
         mode: spoken-production
         domain: personal
@@ -1930,6 +2138,8 @@ nodes:
         en: "I can report on my media use and put it in perspective."
         ru: "Я умею рассказать о своём пользовании медиа и оценить его."
         uk: "Я вмію розповісти про своє користування медіа й оцінити його."
+        claims:
+          - goethe-dtz-handlungen:beschreiben
 
   - id: kultur-freizeit
     level: B1
@@ -1963,6 +2173,9 @@ nodes:
         en: "I can recommend an event and agree on a plan with others."
         ru: "Я умею порекомендовать мероприятие и договориться с другими о плане."
         uk: "Я вмію порекомендувати захід і домовитися з іншими про план."
+        claims:
+          - goethe-dtz-handlungen:rat-empfehlung-warnung
+          - goethe-dtz-handlungen:vorschlag-machen
       - id: erlebnis-bewerten
         mode: writing
         domain: personal
@@ -1970,6 +2183,8 @@ nodes:
         en: "I can write a short account of an experience and give a reasoned judgement."
         ru: "Я умею написать короткий отзыв о впечатлении и обосновать свою оценку."
         uk: "Я вмію написати короткий відгук про враження й обґрунтувати свою оцінку."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
 
   - id: geld-vertraege
     level: B1
@@ -2004,6 +2219,8 @@ nodes:
         en: "I can ask targeted questions about a contract and clear up its conditions."
         ru: "Я умею задать по договору конкретные вопросы и прояснить его условия."
         uk: "Я вмію поставити щодо договору конкретні питання і з'ясувати його умови."
+        claims:
+          - goethe-dtz-handlungen:nachfragen
       - id: kosten-vergleichen
         mode: spoken-production
         domain: personal
@@ -2011,6 +2228,8 @@ nodes:
         en: "I can compare costs and plans and give the reason for my choice."
         ru: "Я умею сравнить расходы и тарифы и обосновать свой выбор."
         uk: "Я вмію порівняти витрати й тарифи та обґрунтувати свій вибір."
+        claims:
+          - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
 
   - id: informationen-vermitteln
     level: B1
@@ -2046,6 +2265,8 @@ nodes:
         en: "I can pass on what a notice says in my own words."
         ru: "Я умею передать содержание оповещения своими словами."
         uk: "Я вмію передати зміст сповіщення своїми словами."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
       - id: indirekt-berichten
         mode: writing
         domain: public
@@ -2053,6 +2274,8 @@ nodes:
         en: "I can report what somebody said or asked."
         ru: "Я умею передать, что кто-либо сказал или спросил."
         uk: "Я вмію передати, що хтось сказав або спитав."
+        claims:
+          - goethe-dtz-handlungen:vergangenes-berichten
       - id: text-zusammenfassen
         mode: writing
         domain: public
@@ -2060,6 +2283,8 @@ nodes:
         en: "I can summarize a text briefly."
         ru: "Я умею кратко пересказать текст."
         uk: "Я вмію стисло переказати текст."
+        claims:
+          - goethe-dtz-handlungen:erklaeren
 
 # File order is the authoritative recommended path. Add a unit only when its
 # complete topic content lands; prerequisites must already appear above it.

@@ -104,7 +104,7 @@ for (const level of levels) {
   if (coverage.dangling.length) {
     anyDangling = true;
     console.log('### DANGLING claims — always a defect');
-    for (const d of coverage.dangling) console.log(`  ✗ ${d.point} claims "${d.ref}", which no source defines`);
+    for (const d of coverage.dangling) console.log(`  ✗ ${d.claimant} claims "${d.ref}", which no source defines`);
     console.log();
   }
 

@@ -30,6 +30,7 @@ source:
   pages: "192–201"
   pdf_pages: "97–101"   # two-up scan: each PDF page carries two printed pages
   levels: [A2]
+  audience: Erwachsene
   status: retired
   mode: reception
   url: "https://www.goethe.de/pro/relaunch/prf/de/Pruefungsziele_Testbeschreibung_A2_SD2.pdf"
@@ -45,7 +46,11 @@ sections:
       - { key: praeteritum-haben, level: A2, de: "Präteritum von haben" }
       - { key: praeteritum-sein, level: A2, de: "Präteritum von sein" }
       - { key: praeteritum-kommen, level: A2, de: "Präteritum von kommen" }
-      - { key: praeteritum-sagen, level: A2, de: "Präteritum von sagen" }
+      - key: praeteritum-sagen
+        level: A2
+        de: "Präteritum von sagen"
+        printed: "Präteritum von sagen*"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`sagen*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
       - { key: praeteritum-modalverben, level: A2, de: "Präteritum der Modalverben" }
 
   - id: verb-modus
@@ -59,37 +64,45 @@ sections:
     de: "Verb · Passiv"
     page: 195
     entries:
-      - { key: passiv, level: A2, de: "Passiv" }
+      - key: passiv
+        level: A2
+        de: "Passiv"
+        printed: "Passiv*"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`Passiv*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
 
   - id: nomen
     de: "Nomen"
     page: 195
     entries:
       - { key: kasus-dativ, level: A2, de: "Kasus: Dativ aller Nomen der Wortliste" }
-      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform des Genitivs mit von + Dativ" }
+      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform für den Genitiv: von + Dativ" }
 
   - id: artikelwoerter
     de: "Artikelwörter · Artikel"
     page: 196
     entries:
-      - { key: artikel-interrogativ, level: A2, de: "Interrogativartikel welch- im Nominativ und Akkusativ" }
-      - { key: artikel-alle, level: A2, de: "alle als Artikelwort" }
-      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessivartikel: unser / euer" }
+      - { key: artikel-interrogativ, level: A2, de: "interrogativ: Nominativ / Akkusativ: Welch-" }
+      - { key: artikel-alle, level: A2, de: "alle" }
+      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessiv: unser / euer" }
 
   - id: pronomen
     de: "Pronomen"
     page: 197
     entries:
-      - { key: pron-indefinit-jemand, level: A2, de: "Indefinitpronomen: jemand" }
-      - { key: pron-indefinit-niemand, level: A2, de: "Indefinitpronomen: niemand" }
-      - { key: pron-reflexiv-akkusativ, level: A2, de: "Reflexivpronomen im Akkusativ: mich / dich / euch / sich" }
+      - { key: pron-indefinit-jemand, level: A2, de: "Indefinit: jemand" }
+      - { key: pron-indefinit-niemand, level: A2, de: "Indefinit: niemand" }
+      - key: pron-reflexiv-akkusativ
+        level: A2
+        de: "Reflexivpronomen im Akkusativ: mich / dich / euch / sich"
+        printed: "Reflexivpronomen* im Akkusativ: mich / dich / euch / sich"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`Reflexivpronomen*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
 
   - id: adjektiv
     de: "Adjektiv"
     page: 198
     entries:
-      - { key: adj-attributiv-definit, level: A2, de: "Attributives Adjektiv nach definitem Artikel im Nominativ, Akkusativ und Dativ" }
-      - { key: adj-attributiv-indefinit, level: A2, de: "Attributives Adjektiv nach indefinitem Artikel im Nominativ, Akkusativ und Dativ" }
+      - { key: adj-attributiv-definit, level: A2, de: "attributiv nach definitem Artikel im Nominativ, Akkusativ und Dativ" }
+      - { key: adj-attributiv-indefinit, level: A2, de: "attributiv nach indefinitem Artikel im Nominativ, Akkusativ und Dativ" }
       - { key: adj-komparation, level: A2, de: "Komparation" }
 
   - id: praeposition-temporal
@@ -119,6 +132,6 @@ sections:
     de: "Syntax · Satzverbindungen"
     page: 200
     entries:
-      - { key: satzverb-deshalb, level: A2, de: "Satzverbindung mit deshalb" }
-      - { key: nebensatz-weil, level: A2, de: "Nebensatz mit weil" }
-      - { key: nebensatz-wenn, level: A2, de: "Nebensatz mit wenn" }
+      - { key: satzverb-deshalb, level: A2, de: "Satzverbindungen mit deshalb" }
+      - { key: nebensatz-weil, level: A2, de: "Satzverbindungen mit weil" }
+      - { key: nebensatz-wenn, level: A2, de: "Satzverbindungen mit wenn" }

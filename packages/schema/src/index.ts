@@ -1446,6 +1446,14 @@ export const outcomeSchema = z.object({
   en: z.string().min(1),
   ru: z.string().min(1),
   uk: z.string().min(1).optional(),
+  /**
+   * `<source-id>:<entry-key>` into `data/handlungslisten/` — the published language function this
+   * can-do realises. The same evidence channel a grammar-inventory row uses for `data/strukturenlisten/`,
+   * and for the same reason: until it existed, 179 self-authored communicative goals were measured
+   * against nothing but each other. Optional, and an outcome citing nothing is reported as
+   * `beyond` rather than as a defect — a course legitimately teaches more than an exam tests.
+   */
+  claims: z.array(z.string()).optional(),
 });
 export type Outcome = z.infer<typeof outcomeSchema>;
 
