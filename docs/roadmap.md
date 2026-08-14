@@ -49,10 +49,11 @@ extensive-reading corpus, then cross-links/Referenz.
    - ~~P27-3e residual findings~~ — shipped: the six deterministic A1 translations declare an
      honest graded surface, both remaining B1 tags have independent delayed families, all 17 former
      reading-length signals have been read by hand, and the live profile queue is empty.
-   - **P27-3f B1 lexical tail is next:** classify the remaining official Wortliste rows one by one,
-     then continue the bounded B1 topic-quality waves.
-   - Then complete the 49 original topic
-     audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
+   - ~~P27-3f B1 lexical tail~~ — shipped: all 73 rows classified one by one; 12 recognition cards,
+     six productive cards and 55 genuinely taught grammar/word-formation rows close B1 at
+     3416/3416 with 0 missing and 0 late.
+   - **P27-3g topic-quality waves are next:** complete the 49 original topic audits in bounded A1,
+     A2 and B1 waves, recording substantive language, task, reading and vocabulary decisions. B1 may be called
      100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
 2. **Read the cadence between the windows, not on top of them.** Drain the grading queue to zero,
    rerun `bun run progress:audit --profile vitaly`, and only then read the weak-focus table. This is
@@ -195,6 +196,13 @@ content defect worth changing. Together with P27-3d, all 17 have now received hu
 review. The derived A1–B1 topic-profile queue is empty; P27-3f owns the B1 lexical tail and the
 remaining topic-by-topic audit, so zero findings is a milestone rather than proof that the entire
 course has finished human review.
+
+**P27-3f · B1 lexical tail shipped 2026-08-15.** The 73-row remainder was re-audited rather than
+blanket-marked as grammar. Twelve written labels and official long forms now have recognition cards,
+six frequent independent forms have productive cards, and 55 true bound pieces/frames are backed by
+addressable teaching and a B1 decoding extension. Coverage is 3416/3416: 3297 card rows, 119 grammar
+rows, no missing or late entries. The [audit ledger](curriculum/a1-b1-completeness-audit.md) records
+every disposition. P27-3g now owns the remaining human topic-by-topic content audit.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
