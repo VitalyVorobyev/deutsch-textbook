@@ -28,14 +28,14 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3e residual findings**. P27-3d leaves A2 with no open
-topic-profile finding after manually reviewing all nine intensive texts behind its eight length
-signals, correcting one real narrative defect, converting three underdetermined document
-translations to `write`, delivering three missing spoken modes and probing the last two auxiliary
-tags. Word count remains an indicator and never a defect by itself. The global queue is now eight:
-six A1 translations need honest semantic tokens or a more appropriate task type, and B1
-`pronomen-stellung` plus `relativ-praeposition` need fresh three-variant delayed families. Internal
-A2 remains 46/46, external A2 300/300, cumulative B1 164/164, and lexical A2 1449/1449.
+The current executable item is **P27-3f B1 lexical tail and topic waves**. P27-3e closes the live
+A1–B1 topic-profile queue: six deterministic A1 translations now declare their meaningful graded
+tokens without fictional focus tags, `pronomen-stellung` and `relativ-praeposition` have separate
+homogeneous three-variant delayed families, and all 17 former reading-length signals have received
+manual editorial review. Word count remains an indicator and never a defect by itself. A zero
+derived queue is not the stop condition: classify the remaining B1 Wortliste rows one by one, then
+continue the topic-by-topic article, exercise, reading, audio and vocabulary review. Internal A2
+remains 46/46, external A2 300/300, cumulative B1 164/164, and lexical A2 1449/1449.
 P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be

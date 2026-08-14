@@ -127,3 +127,22 @@ The ledger records delivery, not learning. Learner retention and transfer remain
 - `verben-mit-dativ` and `nebensatz-vorfeld` gained separate three-variant delayed families with
   exact arming. A2 therefore has no remaining topic-profile finding; the global queue now contains
   only six A1 translations without semantic tokens and two B1 auxiliary tags without probes.
+
+### Residual findings wave — 2026-08-15
+
+- The five A1 texts (`akkusativ`, `artikel-genus`, `erste-schritte`, `menschen-familie`,
+  `praesens-wortstellung`) and four B1 texts (`arbeit-bewerbung`, `gesundheit-wohlbefinden`,
+  `leben-veraendern`, `reisen-probleme`) behind the remaining historical length signals were read
+  in full. Each has a clear purpose, coherent progression, level-appropriate load, useful glosses
+  and answerable questions with plausible distractors. None was padded or cut merely to enter the
+  90–130 band. Together with the A2 wave, all 17 former signals have now been manually reviewed.
+- Six A1 translations are genuinely short, deterministic retrieval tasks rather than open writing.
+  They remain `translate` and now pin the smallest meaningful lexical/grammatical surface. The two
+  formulaic `erste-schritte` items intentionally remain without a focus tag: `key_tokens` define
+  typo tolerance even when no grammar confusion can be attributed honestly.
+- `pronomen-stellung` and `relativ-praeposition` now have independent homogeneous delayed families.
+  Each supplies three fresh contexts and arms only from its own teaching items; checkpoints never
+  start the retention clock.
+- The derived Redaction topic-profile queue is now empty. This closes the known findings program,
+  not the full human audit of all 49 original topics; the B1 lexical tail and bounded content waves
+  remain the next deliverables.

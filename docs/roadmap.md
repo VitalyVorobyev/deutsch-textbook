@@ -46,8 +46,11 @@ extensive-reading corpus, then cross-links/Referenz.
    - ~~P27-3d A2 findings~~ — shipped: nine intensive texts manually reviewed, arithmetic length
      findings retired, three open document tasks corrected to `write`, all claimed spoken modes
      delivered and the last two A2 tag-level probe gaps closed.
-   - **P27-3e residual findings is next:** resolve six A1 translations without semantic tokens and
-     the two remaining B1 auxiliary tags without probes, then run the B1 content and lexical waves.
+   - ~~P27-3e residual findings~~ — shipped: the six deterministic A1 translations declare an
+     honest graded surface, both remaining B1 tags have independent delayed families, all 17 former
+     reading-length signals have been read by hand, and the live profile queue is empty.
+   - **P27-3f B1 lexical tail is next:** classify the remaining official Wortliste rows one by one,
+     then continue the bounded B1 topic-quality waves.
    - Then complete the 49 original topic
      audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
      100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
@@ -181,7 +184,17 @@ texts, all read by hand; word count remains visible but no longer creates a defe
 flaw in the apprentice story was corrected. Three underdetermined document translations became
 functional `write` tasks, three missing spoken modes received genuine scenarios, and the last two
 A2 tag-level probe gaps received parallel delayed families. A2 now contributes no open profile
-findings; P27-3e owns the global residual queue of eight.
+findings.
+
+**P27-3e · residual findings wave shipped 2026-08-15.** Six deterministic A1 translations now
+declare the smallest meaningful graded surface without inventing grammar tags for formulaic
+language. `pronomen-stellung` and `relativ-praeposition` each have a fresh, homogeneous,
+three-variant delayed family with exact arming. The five A1 and four B1 texts behind the remaining
+historical length signals were read for purpose, coherence, load, glosses and questions; none had a
+content defect worth changing. Together with P27-3d, all 17 have now received human editorial
+review. The derived A1–B1 topic-profile queue is empty; P27-3f owns the B1 lexical tail and the
+remaining topic-by-topic audit, so zero findings is a milestone rather than proof that the entire
+course has finished human review.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
