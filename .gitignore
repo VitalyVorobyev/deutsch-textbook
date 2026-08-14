@@ -1,8 +1,9 @@
 # build output
 dist/
 .astro/
-src-tauri/target/
-src-tauri/gen/
+**/src-tauri/target/
+**/src-tauri/gen/
+apps/redaktion/src-tauri/binaries/
 # wrangler's local state: the miniflare D1/R2 emulation under `wrangler dev`.
 .wrangler/
 

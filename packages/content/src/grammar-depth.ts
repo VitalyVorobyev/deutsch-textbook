@@ -42,7 +42,7 @@ import {
   type GrammarPoint,
 } from './grammar-coverage';
 import { focusIntroducedBy } from './focus-tags';
-import type { Level } from '@da/schema';
+import type { CefrLevel, Level } from '@da/schema';
 
 /**
  * Item types that make the learner construct German rather than choose it.
@@ -81,7 +81,7 @@ export interface TagDepth {
 
 export interface PointDepth {
   point: GrammarPoint;
-  level: Level;
+  level: CefrLevel;
   tags: TagDepth[];
   /** summed over the point's tags — an item carries exactly one tag, so nothing double counts */
   teaching: number;

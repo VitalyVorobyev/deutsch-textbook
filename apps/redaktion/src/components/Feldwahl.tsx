@@ -38,7 +38,7 @@ export function Feldwahl({
   field: string;
   /** The declared value, or null when the field is absent and the derived one applies. */
   value: string | null;
-  options: string[];
+  options: readonly string[];
   labels: Record<string, string>;
   /** What applies when nothing is declared. Omitted for fields that are always present. */
   derived?: string;

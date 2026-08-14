@@ -14,6 +14,7 @@ here.
 | hand-editing a vocab **`ipa`** | [`lautschrift.md`](lautschrift.md) |
 | authoring **Entdecken** material or adding a **document** | [`future-content-directions.md`](future-content-directions.md) |
 | drafting or reviewing **B1.4+**, or adding a generated/simulated asset | [`../../.agents/skills/authorship-provenance/SKILL.md`](../../.agents/skills/authorship-provenance/SKILL.md) · [`product-protection.md`](product-protection.md) |
+| using **Redaction** to inspect or edit the local corpus | [`redaction-editor-guide.md`](redaction-editor-guide.md) |
 
 What each doc is for, in one line:
 
@@ -25,3 +26,4 @@ What each doc is for, in one line:
 - [`lautschrift.md`](lautschrift.md) — IPA field conventions and the review procedure behind `bun run gen:ipa`.
 - [`future-content-directions.md`](future-content-directions.md) — the admission contract for Entdecken, documents and editorial media.
 - [`product-protection.md`](product-protection.md) — ownership, licensing and the authorship-provenance contract.
+- [`redaction-editor-guide.md`](redaction-editor-guide.md) — setup, a safe editing tutorial, review gate and current pilot boundaries.

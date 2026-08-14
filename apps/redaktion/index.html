@@ -9,7 +9,7 @@
       // that is wrong. Local-only tool, so localStorage is the whole persistence story.
       try {
         const saved = localStorage.getItem('da:redaktion-theme');
-        const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        const dark = saved === 'dark';
         document.documentElement.dataset.theme = dark ? 'dark' : 'light';
       } catch {}
     </script>

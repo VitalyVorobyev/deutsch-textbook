@@ -27,7 +27,7 @@ import { DichteLegende, Matrix, type Zelle } from '../components/Dichte';
 import type { GraphPayload } from '../data';
 import { href } from '../router';
 
-type Level = GraphPayload['levels'][number];
+type Level = GraphPayload['cefrLevels'][number];
 type GrammarPoint = GraphPayload['inventory'][number];
 
 function production(p: GrammarPoint): Level | undefined {
@@ -38,18 +38,16 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
   const taught = new Set(graph.elements.flatMap((e) => e.focus));
   const isTaught = (p: GrammarPoint) => (p.focus ?? []).some((tag) => taught.has(tag));
 
-  const strands = [
-    ...new Set(graph.inventory.map((p) => p.strand).filter((s): s is NonNullable<typeof s> => !!s)),
-  ].sort();
+  const tracks = [...graph.grammarTracks].sort((a, b) => a.order - b.order);
 
-  const cellPoints = (strand: string, level: string) =>
-    graph.inventory.filter((p) => p.strand === strand && production(p) === level);
+  const cellPoints = (track: string, level: string) =>
+    graph.inventory.filter((p) => p.track === track && production(p) === level);
 
   // The slot count is the matrix-wide maximum: alignment across columns IS the comparison, so a
   // cell must never size itself.
   const slots = Math.max(
     1,
-    ...strands.flatMap((s) => graph.levels.map((l) => cellPoints(s, l).length)),
+    ...tracks.flatMap((track) => graph.cefrLevels.map((level) => cellPoints(track.id, level).length)),
   );
 
   const untaught = graph.problems.filter((p) => p.kind === 'punkt-ohne-thema');
@@ -63,12 +61,10 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
 
   return (
     <>
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Sprachkarte</h1>
-        <p className="mt-1 text-sm text-ink-muted">
-          {graph.inventory.length} Strukturen in {strands.length} Strängen · {late} davon erwarten Rezeption
-          ein Niveau vor der Produktion
-        </p>
+      <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div><h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Grammatikatlas</h1>
+        <p className="mt-1 text-sm text-ink-muted">{graph.inventory.length} Strukturen in {tracks.length} Linien · {late} davon erwarten Rezeption ein Niveau vor der Produktion</p></div>
+        <Button href={href('quelle', undefined, { pfad: 'data/grammar-inventory.yaml' })}>Inventar bearbeiten</Button>
       </header>
 
       {untaught.length ? (
@@ -86,14 +82,13 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
 
       <Section>Gelehrt und ungelehrt</Section>
       <Matrix
-        rows={strands.map((s) => ({ id: s, label: s }))}
-        columns={[...graph.levels]}
+        rows={tracks.map((track) => ({ id: track.id, label: track.de }))}
+        columns={[...graph.cefrLevels]}
         slots={slots}
         columnNote={(level) =>
-          cellPoints('', level).length === 0 &&
           graph.inventory.every((p) => production(p) !== level) ? (
             <p className="mt-0.5 max-w-24 text-[0.65rem] leading-tight text-ink-muted">
-              das Inventar führt hier nichts
+              nicht kartiert
             </p>
           ) : null
         }
@@ -103,7 +98,7 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
             items: points.map((p) => ({ id: p.id, label: p.de, on: isTaught(p) })),
             // The cell hands over its own six rows rather than the whole inventory — the point of
             // making filter state addressable.
-            href: points.length ? href('struktur', undefined, { strang: row.id, niveau: level }) : undefined,
+            href: points.length ? href('struktur', undefined, { track: row.id, niveau: level }) : undefined,
           };
         }}
       />

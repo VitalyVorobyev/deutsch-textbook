@@ -19,11 +19,9 @@ import type { GraphPayload } from '../data';
 import { Extern, Gruppentabelle, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
 
-type Level = GraphPayload['levels'][number];
+type Level = GraphPayload['cefrLevels'][number];
 type GrammarPoint = GraphPayload['inventory'][number];
 type Element = GraphPayload['elements'][number];
-
-const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 
 const STAGE_LABEL: Record<string, string> = {
   pretest: 'Pretest',
@@ -55,20 +53,18 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
   // The hash IS the filter state, so a Sprachkarte cell can hand over exactly its own rows and the
   // reader can send that list to someone. `useState` seeded from the route would be a second copy
   // that drifts on the back button.
-  const [strand, setStrand] = useQueryState('strang', 'alle');
+  const [track, setTrack] = useQueryState('track', 'alle');
   const [level, setLevel] = useQueryState('niveau', 'alle');
   const [nurUngelehrt, setNurUngelehrt] = useState(false);
 
   const taught = new Set(graph.elements.flatMap((e) => e.focus));
   const isTaught = (p: GrammarPoint) => (p.focus ?? []).some((tag) => taught.has(tag));
 
-  const strandOptions = [
-    ...new Set(graph.inventory.map((p) => p.strand).filter((s): s is NonNullable<typeof s> => !!s)),
-  ].sort();
+  const trackOptions = [...graph.grammarTracks].sort((a, b) => a.order - b.order).map((item) => item.id);
 
   const filtered = graph.inventory.filter(
     (p) =>
-      (strand === 'alle' || p.strand === strand) &&
+      (track === 'alle' || p.track === track) &&
       (level === 'alle' || production(p) === (level as Level)) &&
       (!nurUngelehrt || !isTaught(p)),
   );
@@ -89,7 +85,7 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
       ),
     },
     { key: 'id', head: 'Kennung', sort: (p) => p.id, cell: (p) => <span className="text-xs text-ink-muted">{p.id}</span> },
-    { key: 'strand', head: 'Strang', sort: (p) => p.strand ?? '', cell: (p) => <span className="text-ink-muted">{p.strand ?? '—'}</span> },
+    { key: 'track', head: 'Linie', sort: (p) => p.track ?? '', cell: (p) => <span className="text-ink-muted">{graph.grammarTracks.find((track) => track.id === p.track)?.de ?? p.track ?? '—'}</span> },
     {
       key: 'level',
       head: 'Niveau',
@@ -165,8 +161,8 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
       ) : null}
 
       <div className="my-5 flex flex-wrap items-center gap-3">
-        <Filter label="Strang" value={strand} options={strandOptions} onChange={setStrand} />
-        <Filter label="Produktionsniveau" value={level as Level | 'alle'} options={graph.levels} onChange={setLevel} />
+        <Filter label="Linie" value={track} options={trackOptions} onChange={setTrack} />
+        <Filter label="Produktionsniveau" value={level as Level | 'alle'} options={graph.cefrLevels} onChange={setLevel} />
       </div>
 
       <Zeilentabelle rows={filtered} rowKey={(p) => p.id} columns={columns} sortKey="de" />
@@ -190,14 +186,14 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Extern href={`${GITHUB}/${e.file}`}>{e.id.split('#')[0]}</Extern> },
+    { key: 'file', head: 'Datei', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
   ];
 
   return (
     <>
       <header className="mb-5">
         <Label>
-          {point.strand ?? 'kein Strang'} · {point.id}
+          {graph.grammarTracks.find((track) => track.id === point.track)?.de ?? point.strand ?? 'keine Linie'} · {point.id}
         </Label>
         <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">{point.de}</h1>
         <p className="mt-1 text-sm text-ink-muted">{point.en}</p>

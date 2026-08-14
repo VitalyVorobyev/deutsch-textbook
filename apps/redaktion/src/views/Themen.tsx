@@ -47,6 +47,7 @@ const STATUS_LABEL: Record<string, string> = { draft: 'Entwurf', reviewed: 'gepr
 export function Themen({ graph }: { graph: GraphPayload }) {
   const [search, setSearch] = useState('');
   const [level, setLevel] = useState<Level | 'alle'>('alle');
+  const [track, setTrack] = useState<string | 'alle'>('alle');
   const [nurBefunde, setNurBefunde] = useState(false);
   const q = search.trim().toLowerCase();
 
@@ -60,6 +61,7 @@ export function Themen({ graph }: { graph: GraphPayload }) {
   const shown = graph.topics.filter(
     (t) =>
       (level === 'alle' || t.level === level) &&
+      (track === 'alle' || (graph.profiles.find((profile) => profile.topic === t.id)?.points ?? []).some((id) => graph.inventory.find((point) => point.id === id)?.track === track)) &&
       (!q || t.title.toLowerCase().includes(q) || t.id.includes(q)) &&
       (!nurBefunde || (problemsByTopic.get(t.id)?.length ?? 0) > 0),
   );
@@ -83,7 +85,7 @@ export function Themen({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Einheiten &amp; Themen</h1>
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Themen</h1>
         <p className="mt-1 text-sm text-ink-muted">
           {graph.topics.length} Themen auf dem empfohlenen Weg · {withFindings} mit Befunden
         </p>
@@ -94,6 +96,7 @@ export function Themen({ graph }: { graph: GraphPayload }) {
           <SearchBox value={search} onChange={setSearch} placeholder="Thema suchen …" />
         </div>
         <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
+        <Filter label="Grammatiklinie" value={track} options={graph.grammarTracks.map((item) => item.id)} onChange={setTrack} />
         <label className="flex items-center gap-1.5 text-xs text-ink-muted">
           <input
             type="checkbox"

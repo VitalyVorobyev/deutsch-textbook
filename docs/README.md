@@ -33,6 +33,7 @@ Each subdirectory carries its own README with a closer view of its documents.
 | [`authoring/lautschrift.md`](authoring/lautschrift.md) | IPA field conventions and review procedure | active | pronunciation authoring changes |
 | [`authoring/future-content-directions.md`](authoring/future-content-directions.md) | Admission contract for Entdecken, documents and editorial media | active | a new optional artifact class is admitted |
 | [`authoring/product-protection.md`](authoring/product-protection.md) | Ownership, licensing and authorship-provenance contract | authoritative | ownership, licence scope or the provenance gate changes |
+| [`authoring/redaction-editor-guide.md`](authoring/redaction-editor-guide.md) | Redaction setup, editing tutorial, safety checklist and pilot boundaries | active pilot guide | the editor workflow, safety boundary or release readiness changes |
 
 ## [`architecture/`](architecture/README.md)
 

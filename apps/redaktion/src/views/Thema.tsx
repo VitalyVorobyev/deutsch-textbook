@@ -51,8 +51,6 @@ const TOUCH_LABEL: Record<string, string> = {
   produktion: 'Produktion',
 };
 
-const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
-
 type ReiterId = 'ueberblick' | 'elemente' | 'pruefungen' | 'befunde';
 
 export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
@@ -86,9 +84,9 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           <Label>
             {topic.level} · {topic.unitTitle ?? 'ohne Einheit'}
           </Label>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">{topic.title}</h1>
+          <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">{topic.title}</h1>
           <p className="mt-1 text-sm">
-            <Extern href={`${GITHUB}/${topic.file}`}>{topic.file}</Extern>
+            <Extern href={href('quelle', undefined, { pfad: topic.file })}>{topic.file}</Extern>
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs">
@@ -135,19 +133,16 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
  * fetched, never copied. No endpoint (a built bundle, a server without the plugin) means a chip.
  */
 function StatusFeld({ graph, topic }: { graph: GraphPayload; topic: GraphPayload['topics'][number] }) {
-  const writable = useWritableField('topic-manifest', 'status');
-  if (!writable) return <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>{STATUS_LABEL[topic.status] ?? topic.status}</Chip>;
   void graph;
   return (
-    <Feldwahl
-      file={topic.file}
-      field="status"
-      value={topic.status}
-      options={writable.values}
-      labels={STATUS_LABEL}
-      width="w-28"
-      ariaLabel={`Status von ${topic.title}`}
-    />
+    <span className="inline-flex items-center gap-2">
+      <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>{STATUS_LABEL[topic.status] ?? topic.status}</Chip>
+      {topic.status !== 'reviewed' ? (
+        <a className="text-xs text-info-ink underline underline-offset-2" href={href('quelle', undefined, { pfad: topic.file })}>
+          Gate öffnen
+        </a>
+      ) : null}
+    </span>
   );
 }
 
@@ -255,10 +250,23 @@ function Ueberblick({
             <p className="text-xs text-warn-ink">{PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}</p>
           )}
           <p className="mt-3 border-t border-border-subtle pt-2 text-xs">
-            <Extern href={`${GITHUB}/${graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ?? topic.file}`}>
+            <Extern href={href('quelle', undefined, { pfad: graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ?? topic.file })}>
               Artikel öffnen
             </Extern>
           </p>
+        </Panel>
+      </div>
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <Panel title="Grammatiklinien und Fokus">
+          <div className="flex flex-wrap gap-1.5">
+            {[...new Set(profile.points.map((id) => graph.inventory.find((point) => point.id === id)?.track).filter((id): id is string => !!id))].map((track) => <Chip key={track} tone="brand">{graph.grammarTracks.find((item) => item.id === track)?.de ?? track}</Chip>)}
+            {profile.focus.map((tag) => <a key={tag} href={href('fokus', tag)}><Chip>{tag}</Chip></a>)}
+          </div>
+          {topic.tags.length ? <p className="mt-3 text-xs text-ink-muted">Themen-Tags: {topic.tags.join(' · ')}</p> : null}
+        </Panel>
+        <Panel title="Referenzansprüche" tone={topic.claims.length ? 'neutral' : 'leer'}>
+          {topic.claims.length ? <ul className="space-y-1 text-xs text-ink">{topic.claims.map((claim) => <li key={claim}>{claim}</li>)}</ul> : <p className="text-xs text-ink-muted">Keine Themenliste beansprucht; bei reinen Grammatikthemen ist das erwartbar.</p>}
+          <p className="mt-3"><a href={href('referenzen')} className="text-xs text-info-ink underline underline-offset-2">in Referenzen prüfen</a></p>
         </Panel>
       </div>
     </>
@@ -291,7 +299,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
         ),
     },
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
-    { key: 'id', head: 'Element', cell: (e) => <Extern href={`${GITHUB}/${e.file}`}>{e.id.split('#')[0]}</Extern> },
+    { key: 'id', head: 'Element', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
     {
@@ -357,7 +365,7 @@ function Befunde({ problems }: { problems: GraphPayload['problems'] }) {
           <p className="mt-0.5 text-xs text-ink-muted">{PROBLEM_LABELS[p.kind]?.why}</p>
           {p.file ? (
             <p className="mt-0.5 text-xs">
-              <Extern href={`${GITHUB}/${p.file}`}>{p.file}</Extern>
+              <Extern href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Extern>
             </p>
           ) : null}
         </li>

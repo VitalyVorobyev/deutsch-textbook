@@ -12,6 +12,12 @@ Astro renders the textbook and reference surfaces; React islands provide statefu
 sessions, flashcards and progress views. A thin Tauri shell adds desktop filesystem integration
 without changing the learning model.
 
+Redaction is a separate React/Tauri workbench for that same repository. Its webview has no direct
+filesystem or shell authority: a compiled Bun sidecar loads `@da/content`, watches the selected
+checkout and accepts the narrow read, revision-checked save and validation contract in
+[ADR 0013](adrs/0013-redaction-repository-workbench.md). Browser development implements the same
+`CorpusClient` through Vite middleware. Neither transport creates a second content store.
+
 There is no server-side learner model. Content is build-time data; learner state belongs to a local
 profile and can be exported as a backward-compatible snapshot. An optional account adds a cloud copy
 of that snapshot and nothing else — the server has never parsed one.
@@ -70,14 +76,16 @@ lesson. Navigation is soft: the system recommends a next step but does not preve
 exploration.
 
 The spine orders **topics**; `data/grammar-inventory.yaml` describes the **grammar** the topics
-teach, and the two are deliberately separate dimensions. Each inventory row carries a `strand` (one
-of ten grammatical systems), a `level: {reception, production}` pair — the published standards are
+teach, and the two are deliberately separate dimensions. Each inventory row carries a `track`, a
+`strand` (one of ten grammatical systems), a `level: {reception, production}` pair — the published standards are
 reception standards and this is a production course, so one number could not hold both — `deepens:`
 edges naming the rows it is the deeper pass over, and `claims:` citations into
 `data/strukturenlisten/`, the external inventories the denominator is measured against
-([ADR 0011](adrs/0011-external-grammar-anchors.md)). Nothing at runtime reads any of it: the four
+([ADR 0011](adrs/0011-external-grammar-anchors.md)). Grammar uses a dedicated A1–C2 CEFR contract;
+this does not extend the levels the learner runtime publishes. The explicit track catalog supplies
+the stable rows of Redaction's Grammatikatlas. Nothing in the learner runtime reads any of it: the
 fields exist so the curriculum can be audited along the language's own axes rather than only along
-the spine, which is what `bun run redaktion` renders and what `scripts/structures.ts` and
+the spine, which is what Redaction renders and what `scripts/structures.ts` and
 `scripts/grammar-depth.ts` measure.
 
 A normal learning cycle combines:

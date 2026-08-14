@@ -45,7 +45,7 @@ export function parseRoute(hash: string): Route {
   const [view = '', id] = path.split('/');
   const query: Record<string, string> = {};
   for (const [key, value] of new URLSearchParams(search)) query[key] = value;
-  return { view: view || 'sprachkarte', id: id ? decodeURIComponent(id) : undefined, query };
+  return { view: view || 'uebersicht', id: id ? decodeURIComponent(id) : undefined, query };
 }
 
 export function href(view: string, id?: string, query?: Record<string, string | undefined>): string {

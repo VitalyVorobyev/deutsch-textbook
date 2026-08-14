@@ -43,6 +43,7 @@
  * reports a problem the original bytes are put back and the write is refused. `bun run validate`
  * takes about six seconds — the honest cost of not shipping a red gate by accident.
  */
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import * as YAML from 'yaml';
@@ -113,6 +114,8 @@ function changedKeys(before: unknown, after: unknown): string[] {
 }
 
 export interface WriteOptions {
+  /** Revision of the bytes the editor reviewed; a changed file must never be silently promoted. */
+  expectedRevision?: string;
   /**
    * Runs after the bytes are written and reports what the corpus-level gate says. Returning a
    * string restores the file and refuses the write. Injected rather than imported because
@@ -142,6 +145,8 @@ export function applyPatch(patch: WritePatch, root = repoRoot(), opts: WriteOpti
     return { ok: false, error: `"${value}" is not one of ${spec.values.join(', ')} for ${klass.id}.${field}` };
 
   const source = readFileSync(target, 'utf8');
+  if (opts.expectedRevision && createHash('sha256').update(source).digest('hex') !== opts.expectedRevision)
+    return { ok: false, error: `"${file}" changed on disk; reload it before writing ${field}` };
   const doc = YAML.parseDocument(source);
   if (doc.errors.length) return { ok: false, error: `"${file}" is not valid YAML: ${doc.errors[0]!.message}` };
   if (!YAML.isMap(doc.contents)) return { ok: false, error: `"${file}" is not a mapping` };
