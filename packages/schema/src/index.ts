@@ -606,6 +606,30 @@ export const EXERCISE_ITEM_TYPES = exerciseItemSchema.options.map(
   (option) => option.shape.type.value,
 ) as unknown as [string, ...string[]];
 
+/**
+ * Which item types make the learner PRODUCE German rather than choose it, and which are selection.
+ *
+ * These live here, with the item shapes, rather than beside the depth report that first needed
+ * them — because they are facts about a type, every consumer needs them, and the depth report
+ * opens `node:fs`. A React island importing the classification used to drag the filesystem into
+ * the client bundle through that one re-export; Vite externalised it silently and the page kept
+ * working, which is the worst way for a layering mistake to behave.
+ *
+ * `order` counts as neither: it hands the learner every word and asks only for the sequence, so it
+ * is scaffolding for a word-order rule, not a test of one. `audio-comprehension` is on neither
+ * side either — it cannot ask for production at all, exactly as in the item-mix bar.
+ */
+export const PRODUCTION_TYPES: ReadonlySet<string> = new Set([
+  'translate',
+  'cloze',
+  'listen',
+  'write',
+  'speak',
+  'table',
+  'form',
+]);
+export const SELECTION_TYPES: ReadonlySet<string> = new Set(['mc', 'match', 'order']);
+
 export const EXERCISE_ROLES = [
   'pretest',
   'practice',

@@ -53,16 +53,10 @@ import type { Level } from '@da/schema';
  * test of one. `audio-comprehension` is on neither side, exactly as in the mix bar: it cannot ask
  * for production at all, so counting it either way would misstate the ratio.
  */
-export const PRODUCTION_TYPES = new Set([
-  'translate',
-  'cloze',
-  'listen',
-  'write',
-  'speak',
-  'table',
-  'form',
-]);
-export const SELECTION_TYPES = new Set(['mc', 'match', 'order']);
+// Re-exported for callers that already reach for them here; they LIVE in @da/schema, because
+// this module opens node:fs and a browser importer must never pull the filesystem in with them.
+import { PRODUCTION_TYPES, SELECTION_TYPES } from '@da/schema';
+export { PRODUCTION_TYPES, SELECTION_TYPES };
 
 export interface TagDepth {
   tag: string;

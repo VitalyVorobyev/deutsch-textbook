@@ -10,9 +10,10 @@
       "@da/schema": ["packages/schema/src/index.ts"],
       "@da/schema/*": ["packages/schema/src/*"],
       "@da/content/*": ["packages/content/src/*"],
-      "@da/grading/*": ["packages/grading/src/*"]
+      "@da/grading/*": ["packages/grading/src/*"],
+      "@da/ui/*": ["packages/ui/src/*"]
     }
   },
-  "include": ["src/**/*", "scripts/**/*", "packages/*/src/**/*", "content/**/*", ".astro/types.d.ts"],
+  "include": ["src/**/*", "scripts/**/*", "packages/*/src/**/*", "apps/*/src/**/*", "apps/*/plugin/**/*", "content/**/*", ".astro/types.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -28,7 +28,7 @@
  * the discipline `grammar-depth.ts` and `comprehensibility.ts` already use — never against an
  * invented threshold.
  */
-import { PRODUCTION_TYPES, SELECTION_TYPES } from './grammar-depth';
+import { PRODUCTION_TYPES, SELECTION_TYPES } from '@da/schema';
 import type { ExerciseItem, ExerciseSet, Level, Reading } from '@da/schema';
 
 /**
