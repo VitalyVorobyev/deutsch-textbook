@@ -30,6 +30,7 @@ const SET_SOURCE = `# A fixture set — the comment must survive every write.
 topic: fixture-topic
 role: practice   # trailing comment on the line being read
 
+activity: application
 title:
   de: "Übung"
   en: "Practice"
@@ -117,11 +118,14 @@ describe('the write controller writes', () => {
     expect(read(TOPIC)).toBe(TOPIC_SOURCE.replace('status: draft', 'status: reviewed'));
   });
 
-  test('a null value removes the key and restores the file exactly', () => {
+  test('a required teaching-contract key cannot be removed', () => {
     reset();
     applyPatch({ file: SET, field: 'stage', value: 'transfer' }, ROOT);
-    expect(applyPatch({ file: SET, field: 'stage', value: null }, ROOT)).toMatchObject({ ok: true });
-    expect(read(SET)).toBe(SET_SOURCE);
+    expect(applyPatch({ file: SET, field: 'stage', value: null }, ROOT)).toMatchObject({ ok: false });
+    expect(read(SET)).toBe(SET_SOURCE.replace(
+      'role: practice   # trailing comment on the line being read\n',
+      'role: practice   # trailing comment on the line being read\nstage: transfer\n',
+    ));
   });
 
   test('an unchanged write touches nothing', () => {
@@ -249,12 +253,17 @@ describe('the corpus check can undo a write the schema accepted', () => {
 });
 
 describe('the writable surface is declared, not implied', () => {
-  test('exactly two field classes, and both are editorial judgements', () => {
+  test('exactly three scalar fields, and all are editorial judgements', () => {
     expect(writableFields()).toEqual([
       {
         class: 'exercise-set',
         field: 'stage',
         values: ['pretest', 'modell', 'geruest', 'ausblenden', 'transfer', 'nachpruefung', 'keine'],
+      },
+      {
+        class: 'exercise-set',
+        field: 'activity',
+        values: ['core', 'extension', 'application', 'remediation'],
       },
       { class: 'topic-manifest', field: 'status', values: ['draft', 'reviewed'] },
     ]);

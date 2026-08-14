@@ -133,6 +133,14 @@ coverage.
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;
 the progress audit is the decision surface for remediation.
 
+Topic-owned teaching sets follow the learning-activity contract in [ADR
+0014](adrs/0014-learning-activity-architecture.md). `role` controls runtime/evidence semantics;
+`stage` states scaffold, fade or transfer intent; `activity` states purpose (`core`, `extension`,
+`application`, `remediation`); and the graph derives medium (`mixed`, `listening`, `document`). Every
+topic has exactly one 8–15-item core matching `primary_practice` and at least one productive
+application. The learner page groups sources by purpose rather than rendering one equal card per
+file. `bun run activity:audit` is the inventory; item-mix validation remains per topic.
+
 A passed placement is a third evidence class. It is real evidence and it removes a topic from the
 recommended path, but it is not a measurement of mastery and never raises the measured tier — a
 placement set belongs to no topic, so topic tier derivation cannot observe it at all. Navigation

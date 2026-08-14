@@ -41,14 +41,24 @@ const STAGE_LABEL: Record<string, string> = {
   keine: 'außerhalb des Zyklus',
 };
 
-/** The arc, in order. Rendered even where empty — an absent stage is the finding. */
-const ARC = ['pretest', 'modell', 'geruest', 'ausblenden', 'transfer', 'nachpruefung'] as const;
-
 const TOUCH_LABEL: Record<string, string> = {
   input: 'Input',
   abruf: 'Abruf',
   interaktion: 'Interaktion',
   produktion: 'Produktion',
+};
+
+const ACTIVITY_LABEL: Record<string, string> = {
+  core: 'Grundübung',
+  extension: 'Vertiefen',
+  application: 'Anwenden',
+  remediation: 'Gezielt üben',
+};
+
+const MEDIUM_LABEL: Record<string, string> = {
+  mixed: 'gemischt',
+  listening: 'Hören',
+  document: 'Dokument',
 };
 
 type ReiterId = 'ueberblick' | 'elemente' | 'pruefungen' | 'befunde';
@@ -159,20 +169,25 @@ function Ueberblick({
   median?: GraphPayload['reports'][number]['medians'];
   elements: Element[];
 }) {
-  const fehlend = ARC.filter((s) => !(profile.arc[s] ?? 0));
+  const fehlend = [
+    !profile.activities.core ? 'Grundübung' : undefined,
+    !profile.activities.application ? 'Anwendung' : undefined,
+  ].filter((value): value is string => !!value);
   return (
     <>
       {fehlend.length ? (
         <Callout
           tone="warn"
-          eyebrow="Lernzyklus"
-          title={`${fehlend.length} Stufe${fehlend.length === 1 ? '' : 'n'} ohne Element`}
+          eyebrow="Lernaktivitäten"
+          title={`${fehlend.length} notwendige Funktion${fehlend.length === 1 ? '' : 'en'} fehlt`}
         >
-          Es fehlt: {fehlend.map((s) => STAGE_LABEL[s]).join(', ')}. Der Zyklus verlangt jede Stufe einmal —
-          ein Thema, das beim Üben endet, wird nie in einem neuen Kontext verlangt.
+          Es fehlt: {fehlend.join(', ')}. Ausblenden kann das gemischte Training liefern; dafür ist
+          kein eigener Pflicht-Dateibaustein nötig.
         </Callout>
       ) : (
-        <Callout tone="ok" eyebrow="Lernzyklus" title="Jede Stufe hat mindestens ein Element" />
+        <Callout tone="ok" eyebrow="Lernaktivitäten" title="Grundübung und Anwendung sind vorhanden">
+          Erweiterungen und gezielte Remediation bleiben optional und werden nur bei Bedarf geöffnet.
+        </Callout>
       )}
 
       <div className="mt-5 grid gap-4 md:grid-cols-3">
@@ -192,18 +207,21 @@ function Ueberblick({
           </StatGroup>
         </Panel>
 
-        <Panel title="Lernzyklus">
+        <Panel title="Lernaktivitäten">
           <ul className="space-y-1.5">
-            {ARC.map((stage) => {
-              const n = profile.arc[stage] ?? 0;
+            {(['core', 'extension', 'application', 'remediation'] as const).map((activity) => {
+              const n = profile.activities[activity] ?? 0;
               return (
-                <li key={stage} className="flex items-center justify-between gap-2 text-xs">
-                  <span className={n ? 'text-ink' : 'text-warn-ink'}>{STAGE_LABEL[stage]}</span>
-                  <span className={`tabular ${n ? 'text-ink-muted' : 'text-warn-ink'}`}>{n || '—'}</span>
+                <li key={activity} className="flex items-center justify-between gap-2 text-xs">
+                  <span className={n || activity === 'extension' || activity === 'remediation' ? 'text-ink' : 'text-warn-ink'}>{ACTIVITY_LABEL[activity]}</span>
+                  <span className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-ink-muted' : 'text-warn-ink'}`}>{n || '—'}</span>
                 </li>
               );
             })}
           </ul>
+          <p className="mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
+            Stufe beschreibt die Lernabsicht; Medium und Dateizahl sind eigene Dimensionen.
+          </p>
         </Panel>
 
         <Panel title="Berührungen">
@@ -279,6 +297,11 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
 
   const columns: Spalte<Element>[] = [
     {
+      key: 'activity',
+      head: 'Funktion',
+      cell: (e) => <span className="text-ink">{e.activity ? ACTIVITY_LABEL[e.activity] : '—'}</span>,
+    },
+    {
       key: 'stage',
       head: 'Stufe',
       // Only an exercise set has a `stage:` to declare; an article or a deck has one the corpus
@@ -299,6 +322,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
         ),
     },
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
+    { key: 'medium', head: 'Medium', cell: (e) => <span className="text-ink-muted">{e.medium ? MEDIUM_LABEL[e.medium] : '—'}</span> },
     { key: 'id', head: 'Element', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
@@ -317,23 +341,26 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
     },
   ];
 
-  // Grouped by lesson-cycle stage, in arc order, so the page reads as the cycle rather than as a
-  // directory. `keine` collects what sits outside it (checkpoints, placements).
-  const order = [...ARC, 'keine'];
-  const gruppen = order
-    .map((stage) => ({
-      id: stage,
+  const activityOrder = ['core', 'extension', 'application', 'remediation'] as const;
+  const gruppen = [
+    ...activityOrder.map((activity) => ({
+      id: activity,
       label: (
         <span className="flex items-center gap-2">
-          {STAGE_LABEL[stage]}
+          {ACTIVITY_LABEL[activity]}
           <span className="tabular text-xs font-normal text-ink-muted">
-            {elements.filter((e) => e.stage === stage).length}
+            {elements.filter((e) => e.activity === activity).length}
           </span>
         </span>
       ),
-      rows: elements.filter((e) => e.stage === stage),
-    }))
-    .filter((g) => g.rows.length);
+      rows: elements.filter((e) => e.activity === activity),
+    })),
+    {
+      id: 'weitere',
+      label: <span>Weitere Materialien</span>,
+      rows: elements.filter((e) => !e.activity),
+    },
+  ].filter((g) => g.rows.length);
 
   return <Gruppentabelle gruppen={gruppen} columns={columns} rowKey={(e) => e.id} />;
 }

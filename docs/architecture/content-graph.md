@@ -34,48 +34,63 @@ each one does***.
 Ask "what is this topic made of?" and the corpus gives four answers: a set says `role`, a reading
 says `kind`, a listening artifact says `purpose`, an article says nothing. Some links are declared
 both ways (topic ↔ set), some only from the far side (a document names its topic; the topic does not
-name the document), and some exist only as a filename convention nothing checks (`probe-<topic>.yaml`)
-or as a rule in prose (`primaryPractice` is "the first practice set in the array").
+name the document), and some exist only as a filename convention nothing checks
+(`probe-<topic>.yaml`). The manifest now names `primary_practice` explicitly; array order no longer
+decides Lernpfad completion.
 
 An `Element` is one row per artifact, whatever file it came from, carrying:
 
-**`stage`** — position on the lesson cycle `CLAUDE.md` requires: pretest → model → scaffold → fade →
-transfer → delayed-check. Derived from role and type, declarable as an exception. The cycle had been
-an authoring convention with no representation in the data, so nothing could say what it said on the
-first run: **3 elements at the transfer stage in the whole corpus** — all three the exam-practice
-sets — against 151 at scaffold and 113 at delayed check. 48 of 49 topics ask for transfer never.
+**`stage`** — authored position on the lesson cycle: pretest → model → scaffold → fade → transfer →
+delayed-check. For teaching sets it is explicit. The runtime can also fade support through mixed
+training, so a missing dedicated fade file is not itself a defect.
+
+**`activity`** — pedagogical purpose: `core`, `extension`, `application`, `remediation`. It is
+orthogonal to role and stage. Exactly one core matches `primary_practice`, and every topic has a
+productive application in a fresh context.
+
+**`medium`** — derived delivery surface: `mixed`, `listening`, `document`. It prevents the old
+category error where “listening” sat beside “core” as if a medium and a purpose were alternatives.
 
 **`touches`** — input · retrieval · interaction · production. A topic can pass every gate in the
 repo while feeding two of the four.
 
-Neither is a score. Both exist so a profile can be *shown* against the level median.
+None is a score. They exist so a profile can be inspected against the level median.
 
 ## The metrics rule
 
-`profile.ts` produces a **count** (14 yes/no checks), a **profile** (arc, touches, modes, depth) and
+`profile.ts` produces a **count** (13 yes/no checks), a **profile** (activities, arc, touches, modes,
+depth) and
 a **problem list**. Deliberately **no composite score**: a single number invites optimising the
 number, which is the self-certifying-metric failure this repo already keeps a memory about. Every
 distributional figure is read against the level median the report computes — the
 `grammar-depth.ts` / `comprehensibility.ts` discipline.
 
-What it found on the shipping tree, none of it visible to any gate:
+The first run produced 265 findings, including 86 “under 8 items”, 50 “under three types” and 48
+“no transfer”. [ADR 0014](../adrs/0014-learning-activity-architecture.md) showed that those three
+classes measured file shape and inferred metadata, not learning quality. After explicit
+classification, content normalization and productive transfer backfill, rerun:
+
+```sh
+bun run activity:audit
+bun -e 'import {contentGraph} from "@da/content/graph"; import {problems} from "@da/content/profile"; console.log(problems(contentGraph()).length)'
+```
+
+The current editorial queue is 81 findings:
 
 | n | class | note |
 | --- | --- | --- |
-| 86 | `praxis`-Set under 8 items | `CLAUDE.md` says 8–15 |
-| 50 | `praxis`-Set under 3 item types | |
-| 48 | no transfer task | of 49 topics |
 | 20 | `## Erklärung` with no `###` subsections | |
 | 19 | focus tag with no probe | drilled, never re-asked |
 | 17 | intensive reading outside 90–130 words | of 60, spread 78–152 |
 | 9 | `translate` without `key_tokens` | 16 corpus-wide |
-| 6 | inventory row no topic teaches | |
+| 7 | inventory row no topic teaches | |
+| 7 | focus tag with no teaching item | |
 | 2 | outcome mode never exercised | |
 
-**None of these is a validator failure, on purpose.** Making one a hard error today stops work on
-eighty-six sets at once. They belong in an inbox that can be worked down deliberately, and the count
-is the argument for doing it. Median teaching items per topic: A1 26 · A2 26.5 · B1 19.5; checks met
-10 · 9 · 10.5 of 14.
+The activity contract itself is a validator failure: missing purpose/stage/title, a primary that is
+not the unique core, or a topic without productive application cannot ship. The remaining rows are
+editorial attention. Median teaching items per topic: A1 26 · A2 26.5 · B1 19.5; checks met 11 · 12
+· 13 of 13.
 
 ## The package boundary, and the leak it is there to stop
 
@@ -161,11 +176,12 @@ a working page), that permalinks survive reload, that no request leaves the orig
 two layout rules hold: row height ≤ 2× the median, ≤ 1 primary link per row. It is not part of
 `bun test`, which may not depend on a dev server or a browser.
 
-## Writing back: two fields, five rules, and one measurement that decided the design
+## Writing back: three scalar fields, five rules, and one measurement that decided the design
 
 `content/` is the source of truth and `git diff` on a topic is the editorial process. Both survive
-exactly as long as it takes one tool to reserialise a file. So Redaktion can write **two fields** —
-an exercise set's `stage:` and a topic manifest's `status:` — and `@da/content/write` is where every
+exactly as long as it takes one tool to reserialise a file. So Redaktion can write three scalar
+fields — an exercise set's `stage:` or `activity:`, and a topic manifest's `status:` — and
+`@da/content/write` is where every
 rule about that lives. The UI holds none of them: it fetches the allowlist from `/__writable`, so a
 control can only appear after the controller would accept it.
 

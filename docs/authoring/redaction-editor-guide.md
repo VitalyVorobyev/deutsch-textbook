@@ -51,6 +51,32 @@ On first launch, open **Einstellungen**, choose the Deutsch-Atlas checkout, and 
 The global search sends a query to **Materialien**. Follow links from a grammar point to its focus
 tag, topic, material and source rather than searching the repository by hand.
 
+## Tutorial: review one topic's learning activities
+
+This is the normal first editorial pass; it replaces counting YAML files or adding their item
+totals.
+
+1. Run `bun run activity:audit` from the checkout. The command names core-band exceptions, topics
+   without productive application and dense topics. These are review queues, not scores.
+2. In **Themen**, open the topic. The activity panel distinguishes **Grundübung**, **Vertiefen**,
+   **Anwenden** and **Gezielt üben**. Grundübung and a productive Anwendung are required;
+   Vertiefen and remediation are optional.
+3. Open **Elemente**. Read `Funktion`, `Stufe` and `Medium` separately. For example, a short
+   listening artifact may be an application at transfer; “listening” itself is not its purpose.
+4. Open each source. Ask what single learner job the set performs, which outcomes it gives evidence
+   for, and whether its support matches the stage. A file that exists only because of repository
+   history should be merged, reclassified or retired.
+5. Keep the core to 8–15 scaffolded items. Move free productive retrieval into Anwendung. Do not
+   inflate a two-question audio check merely to reach eight; review whether the recording and its
+   questions form a complete comprehension task.
+6. If an item moves between files, update its probe `arming:` keys and any grading-decision key.
+   The current pilot accepts a progress reset when it buys a better course.
+7. Save, run **Korpus prüfen**, then rerun `bun run activity:audit`. The pass is done when the
+   architecture is coherent and the validator is green—not when every topic has the same number of
+   files.
+
+The durable contract and trade-offs are in [ADR 0014](../adrs/0014-learning-activity-architecture.md).
+
 The arrow buttons beside the Redaction wordmark traverse the history created by links, filters and
 search. They stay disabled when no app-local destination exists; a dead-end detail also links back
 to its collection or owning topic.

@@ -14,15 +14,10 @@
  *      in front of it.
  *   3. a **problem list** — derived, one row per named defect class.
  *
- * WHY MOST OF THESE ARE NOT VALIDATOR FAILURES. `CLAUDE.md` states ten rules that nothing checks,
- * and every figure here is what this module measures on the shipping tree: 8–15 items per set (86
- * practice sets are under 8), at least three item types per set (50 are under), every `translate`
- * declares `key_tokens` (9 in practice sets do not; 16 corpus-wide, the rest in probes, placement
- * and a checkpoint), an intensive reading of 90–130 words (17 of 60 are outside, spread 78–152), a
- * pretest of exactly 3 items, a probe family of exactly 3 variants, a probe family per topic at
- * all. Turning any of them into a hard failure today stops all work on eighty-six sets at once.
- * They belong here, where they are visible and rankable and can be closed deliberately — and where
- * the count itself is the argument for closing them.
+ * WHY MOST OF THESE ARE NOT VALIDATOR FAILURES. A topic profile combines hard structural facts with
+ * editorial review prompts. The activity contract itself is hard-validated, including the 8–15
+ * cognitive-load band for the one required core activity. Short listening, document and
+ * open-production activities are judged by their declared job, never by a universal item minimum.
  *
  * One figure above was wrong on the first pass and is worth the warning: counting a reading's words
  * from the raw paragraph reported 37 rather than 17, because `[[Bahnsteig::platform::платформа]]`
@@ -30,8 +25,8 @@
  * way `scripts/validate.ts` does, through the same parser. Every count here is produced by a
  * command, and the command is the thing to re-run before quoting the number.
  */
-import type { ExerciseItem, Level } from '@da/schema';
-import { LEVELS } from '@da/schema';
+import type { ExerciseItem, LearningActivity, Level } from '@da/schema';
+import { LEARNING_ACTIVITIES, LEVELS } from '@da/schema';
 import { parseGlosses } from '@da/schema/gloss';
 import type { ContentGraph } from './graph';
 import type { Element, LessonStage, Touch } from './elements';
@@ -44,9 +39,8 @@ export const MAX_MC_PERCENT = 100 / 3;
 export const MAX_SELECTION_PERCENT = 45;
 /** `order` hands the learner every token — scaffolding, not a test, and it saturates. */
 export const MAX_ORDER_PER_SET = 2;
-/** The authoring bands `CLAUDE.md` states and no gate enforces. */
-export const SET_ITEMS = { min: 8, max: 15 } as const;
-export const SET_MIN_TYPES = 3;
+/** Cognitive-load contract for the required core activity only. */
+export const CORE_ITEMS = { min: 8, max: 15 } as const;
 export const INTENSIVE_WORDS = { min: 90, max: 130 } as const;
 
 export interface Check {
@@ -70,6 +64,8 @@ export interface TopicProfile {
   total: number;
   /** Which lesson-cycle stages have at least one element. */
   arc: Record<LessonStage, number>;
+  /** Authored teaching activities by pedagogical purpose. */
+  activities: Record<LearningActivity, number>;
   /** How many elements deliver each kind of learning touch. */
   touches: Record<Touch, number>;
   /** Response modes the topic can actually record, and the modes its outcomes claim. */
@@ -101,10 +97,6 @@ const TEACHING_KINDS = new Set(['praxis', 'drill']);
 function itemsOf(graph: ContentGraph, element: Element): ExerciseItem[] {
   const setId = element.id.split('#')[0]!;
   return graph.sets.get(setId)?.data.items ?? [];
-}
-
-function distinctTypes(items: readonly ExerciseItem[]): Set<string> {
-  return new Set(items.map((i) => i.type));
 }
 
 /**
@@ -166,6 +158,12 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
 
   const arc = {} as Record<LessonStage, number>;
   for (const element of elements) arc[element.stage] = (arc[element.stage] ?? 0) + 1;
+  const activities = Object.fromEntries(
+    LEARNING_ACTIVITIES.map((activity) => [
+      activity,
+      elements.filter((element) => element.activity === activity).length,
+    ]),
+  ) as Record<LearningActivity, number>;
   const touches = {} as Record<Touch, number>;
   for (const element of elements) for (const t of element.touches) touches[t] = (touches[t] ?? 0) + 1;
 
@@ -186,8 +184,10 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
 
   const mix = itemMix(graph, topicId);
   const practice = of('praxis');
-  const thinSets = practice.filter((e) => e.depth.items < SET_ITEMS.min);
-  const narrowSets = practice.filter((e) => distinctTypes(itemsOf(graph, e)).size < SET_MIN_TYPES);
+  const core = elements.find((element) => element.activity === 'core');
+  const productiveApplication = elements.some(
+    (element) => element.activity === 'application' && element.touches.includes('produktion'),
+  );
   const pretestItems = of('pretest').reduce((n, e) => n + e.depth.items, 0);
   const untypedTranslate = practice
     .flatMap((e) => itemsOf(graph, e))
@@ -224,16 +224,10 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
       detail: practice.length ? `${practice.length} Set(s)` : 'fehlt',
     },
     {
-      id: 'set-umfang',
-      label: `jedes praxis-Set hat ${SET_ITEMS.min}–${SET_ITEMS.max} Aufgaben`,
-      ok: thinSets.length === 0,
-      detail: thinSets.length ? `${thinSets.length} Set(s) unter ${SET_ITEMS.min}` : undefined,
-    },
-    {
-      id: 'set-typen',
-      label: `jedes praxis-Set hat ≥ ${SET_MIN_TYPES} Aufgabentypen`,
-      ok: narrowSets.length === 0,
-      detail: narrowSets.length ? `${narrowSets.length} Set(s) darunter` : undefined,
+      id: 'core-umfang',
+      label: `Grundübung im Vertragsband ${CORE_ITEMS.min}–${CORE_ITEMS.max} Aufgaben`,
+      ok: !!core && core.depth.items >= CORE_ITEMS.min && core.depth.items <= CORE_ITEMS.max,
+      detail: core ? `${core.depth.items} Aufgaben` : 'fehlt',
     },
     {
       id: 'aufgabenmischung',
@@ -285,9 +279,9 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     },
     {
       id: 'transfer',
-      label: 'mindestens eine Transfer-Aufgabe',
-      ok: (arc.transfer ?? 0) > 0,
-      detail: (arc.transfer ?? 0) > 0 ? undefined : 'geübt, aber nie in neuem Kontext verlangt',
+      label: 'mindestens eine produktive Anwendung im neuen Kontext',
+      ok: productiveApplication,
+      detail: productiveApplication ? `${activities.application} Anwendung(en)` : 'geübt oder nur gehört, aber nie produktiv in neuem Kontext verlangt',
     },
   ];
 
@@ -300,6 +294,7 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     met: checks.filter((c) => c.ok).length,
     total: checks.length,
     arc,
+    activities,
     touches,
     modesDelivered,
     modesClaimed,
@@ -368,8 +363,10 @@ export const PROBLEM_LABELS: Record<string, { de: string; why: string }> = {
     de: 'keine Probe-Familie',
     why: 'Nichts fragt nach 2, 7 und 21 Tagen noch einmal nach — es gibt keinen Behaltensbeleg.',
   },
-  'set-zu-klein': { de: 'praxis-Set unter 8 Aufgaben', why: 'CLAUDE.md nennt 8–15; nichts prüft es.' },
-  'set-zu-eng': { de: 'praxis-Set unter 3 Aufgabentypen', why: 'Ein Set aus einem Typ übt eine Antwortform, nicht eine Struktur.' },
+  'grunduebung-umfang': {
+    de: 'Grundübung außerhalb des Vertragsbands',
+    why: 'Nur die verpflichtende Grundübung muss 8–15 Aufgaben enthalten; das ist kein universelles Set-Limit.',
+  },
   'translate-ohne-key-tokens': {
     de: 'translate ohne key_tokens',
     why: 'Eine leere Liste schreibt jeden Fehler im Satz dem Fokus-Tag zu.',
@@ -401,14 +398,12 @@ export function problems(graph: ContentGraph): Problem[] {
     if (fail('probe')) add('keine-probe', topic.data.title_de, topic.id, topic.file);
     if (fail('lesetext-umfang')) add('lesetext-umfang', topic.data.title_de, topic.id, topic.file);
 
+    const core = profile.elements.find((element) => element.activity === 'core');
+    if (fail('core-umfang') && core) {
+      add('grunduebung-umfang', `${core.id} — ${core.depth.items} Aufgaben`, topic.id, core.file);
+    }
+
     for (const element of profile.elements.filter((e) => e.kind === 'praxis')) {
-      if (element.depth.items < SET_ITEMS.min) {
-        add('set-zu-klein', `${element.id} — ${element.depth.items} Aufgaben`, topic.id, element.file);
-      }
-      const types = distinctTypes(itemsOf(graph, element));
-      if (types.size < SET_MIN_TYPES) {
-        add('set-zu-eng', `${element.id} — ${types.size} Typ(en)`, topic.id, element.file);
-      }
       for (const item of itemsOf(graph, element)) {
         if (item.type === 'translate' && !(item as { key_tokens?: string[] }).key_tokens?.length) {
           add('translate-ohne-key-tokens', `${element.id} · ${item.id}`, topic.id, element.file);

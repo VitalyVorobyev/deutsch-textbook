@@ -136,11 +136,18 @@ from topic → article source → Back → Forward → dirty-buffer refusal/cons
 1440/1024/768, plus link-semantics and diagnostic-severity tests. The slice exits only when that
 scenario passes without opening a new window or losing a draft.
 
-After P27-1a, the next implementation slice is **P27-2a · renderer parity**, not a blind attempt to
-erase the whole findings count. It extracts the learner's article and exercise renderers into pure
-components, proves editor mode has no progress side effects, and covers every shipped material kind
-with fixtures. Only after the preview is trustworthy should P27-3 turn the reviewed-topic debt into
-topic-sized remediation batches.
+**P27-1b · learning-activity architecture shipped 2026-08-14.** Every topic-owned teaching set now
+has an explicit purpose, stage and German title. The migration replaced file-count arithmetic with
+topic-wide evidence and activity-contract checks, moved 21 productive items out of six overloaded
+cores, added four missing application activities, and made the learner page and Redaction present
+the same four-function model. [ADR 0014](adrs/0014-learning-activity-architecture.md) owns the
+contract; [the activity audit](curriculum/learning-activity-audit.md) records all 172 sets and the
+five intentionally dense topics.
+
+The following slice is **P27-2a · renderer parity**. It extracts the learner's article and exercise
+renderers into pure components, proves editor mode has no progress side effects, and covers every
+shipped material kind with fixtures. Only after the preview is trustworthy should P27-3 turn the
+remaining reviewed-topic debt into topic-sized remediation batches.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
