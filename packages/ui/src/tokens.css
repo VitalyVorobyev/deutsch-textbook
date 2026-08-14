@@ -16,38 +16,114 @@
  */
 @import 'tailwindcss';
 
-@theme {
-  --color-surface: var(--color-stone-50);
-  --color-surface-raised: var(--color-white);
-  --color-surface-sunken: var(--color-stone-100);
-  --color-border-subtle: var(--color-stone-200);
-  --color-ink: var(--color-stone-900);
-  --color-ink-muted: var(--color-stone-500);
+/*
+ * THE PACKAGE HAS TO ASK TO BE SCANNED, AND THIS LINE IS WHY THE FIRST REDESIGN SHIPPED BROKEN.
+ *
+ * Tailwind v4 detects sources automatically from the **Vite root**, which for the editorial app is
+ * `apps/redaktion`. So every class written in `apps/redaktion/src` was generated and every class
+ * written in `packages/ui/src` was not — and the failure is invisible in three separate ways: the
+ * component renders, the class is right there in the DOM, and any class the package happens to
+ * share with an app file works fine.
+ *
+ * Measured on the build the author called ugly: `Panel`'s `p-5` computed to **padding: 0px**,
+ * `Callout`'s `border-l-4` to **border-left-width: 0px** with a transparent ground, and
+ * `StatGroup`'s `sm:grid-cols-2` to a single 382 px column — while `text-2xl` and `text-warn-ink`,
+ * which app files also use, were fine. "Cards with zero padding" was not a figure of speech.
+ *
+ * `@source` adds to automatic detection rather than replacing it (that would be
+ * `@import 'tailwindcss' source(none)`), so the app's own files keep being found.
+ * `tests/design-tokens.test.ts` fails if a `.tsx` in this package sits outside every glob here.
+ */
+@source './';
 
+/*
+ * THE RAMP IS SLATE, AND THAT IS A DIVERGENCE ON PURPOSE.
+ *
+ * The learner app is warm: `stone` surfaces under an amber brand, which is right for a page someone
+ * reads one article on. The editorial app is a dense instrument for one person comparing forty-nine
+ * topics, and on a near-black warm ground the amber stops being an accent — the Sprachkarte's
+ * density blocks alone put ~90 amber squares on the front door, so the *ordinary* state was the
+ * loudest thing on screen.
+ *
+ * Slate is cool, so the same four role hues read as signal against it instead of as more of the
+ * ground, and the two apps are told apart at a glance — which is honest, because they are two
+ * applications. What does NOT diverge is the role assignment: amber = brand and active,
+ * emerald = success, sky = links and anything read, rose = failure. Those are the product's
+ * vocabulary and `tests/design-tokens.test.ts` still pins them to it.
+ */
+@theme {
+  --color-surface: var(--color-slate-50);
+  --color-surface-raised: var(--color-white);
+  --color-surface-sunken: var(--color-slate-100);
+  --color-border-subtle: var(--color-slate-200);
+  --color-ink: var(--color-slate-900);
+  --color-ink-muted: var(--color-slate-500);
+
+  /*
+   * EACH ROLE IS TWO TOKENS, because a fill and a word are held to different bars: a graphic needs
+   * 3:1 against its background, a small word needs 4.5:1. Collapsing them into one value is how the
+   * first version shipped labels nobody could read — measured on the shipping palette, **seven of
+   * the eight role/theme text combinations were under 4.5:1**, and rose-600 on the dark page was
+   * 3.72. The learner app never had this problem because it writes the pair out by hand every time
+   * (`text-amber-700 dark:text-amber-300`, 27 occurrences); the token layer had only copied the
+   * light half of it.
+   *
+   *   `--color-<role>`      fill and stroke — bars, dots, active buttons, rules
+   *   `--color-<role>-ink`  text on `surface`, `surface-raised` or `<role>-soft`
+   *   `--color-<role>-soft` a tinted ground, never a text colour
+   *
+   * Re-derive with the ratios in `tests/design-tokens.test.ts`, which fails on any pair that drops
+   * below the floor.
+   */
   --color-brand: var(--color-amber-600);
+  --color-brand-ink: var(--color-amber-700);
   --color-brand-soft: var(--color-amber-100);
   --color-ok: var(--color-emerald-600);
+  --color-ok-ink: var(--color-emerald-700);
   --color-ok-soft: var(--color-emerald-100);
   --color-info: var(--color-sky-600);
+  --color-info-ink: var(--color-sky-700);
   --color-info-soft: var(--color-sky-100);
   --color-warn: var(--color-rose-600);
+  --color-warn-ink: var(--color-rose-700);
   --color-warn-soft: var(--color-rose-100);
 }
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/*
+ * The dark ramp keeps the learner app's STEPS — page, one step up for a card, one step down for a
+ * well, borders a further step — on slate rather than stone. The steps are the part that was
+ * measurably wrong before: the first version read 950/900/800 against a 900 page, so the editorial
+ * app was a full step darker than the product and its card borders sat one step from invisible.
+ */
 :root[data-theme='dark'] {
-  --color-surface: var(--color-stone-950);
-  --color-surface-raised: var(--color-stone-900);
-  --color-surface-sunken: var(--color-stone-900);
-  --color-border-subtle: var(--color-stone-800);
-  --color-ink: var(--color-stone-100);
-  --color-ink-muted: var(--color-stone-400);
+  --color-surface: var(--color-slate-900);
+  --color-surface-raised: var(--color-slate-800);
+  /* Recessed, so it must move AWAY from the page in the same direction light mode does (slate-50
+     page, slate-100 well). It used to equal the raised surface, which made a row hover and a card
+     the same colour. */
+  --color-surface-sunken: var(--color-slate-950);
+  --color-border-subtle: var(--color-slate-700);
+  --color-ink: var(--color-slate-100);
+  --color-ink-muted: var(--color-slate-400);
 
-  --color-brand-soft: color-mix(in oklab, var(--color-amber-500) 22%, transparent);
-  --color-ok-soft: color-mix(in oklab, var(--color-emerald-500) 22%, transparent);
-  --color-info-soft: color-mix(in oklab, var(--color-sky-500) 22%, transparent);
-  --color-warn-soft: color-mix(in oklab, var(--color-rose-500) 22%, transparent);
+  /*
+   * Text lightens in the dark, exactly as the learner app does it by hand (`dark:text-amber-300`
+   * ×27, `dark:text-red-400` ×17). Measured on slate-900 / slate-800: rose-400 reads 6.36 / 5.23
+   * where rose-600 read 3.62 / 2.98.
+   */
+  --color-brand-ink: var(--color-amber-300);
+  --color-ok-ink: var(--color-emerald-400);
+  --color-info-ink: var(--color-sky-400);
+  --color-warn-ink: var(--color-rose-400);
+
+  /* 14%, not 22%: a tint on a near-black page is a whisper, and at 22% the rose read as a filled
+     alert on every one of the forty-nine topic cards. */
+  --color-brand-soft: color-mix(in oklab, var(--color-amber-500) 14%, transparent);
+  --color-ok-soft: color-mix(in oklab, var(--color-emerald-500) 14%, transparent);
+  --color-info-soft: color-mix(in oklab, var(--color-sky-500) 14%, transparent);
+  --color-warn-soft: color-mix(in oklab, var(--color-rose-500) 14%, transparent);
 }
 
 /*
