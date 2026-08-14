@@ -62,6 +62,7 @@ import {
   defaultStage,
   kindForReading,
   kindForRole,
+  learningMedium,
   summariseItems,
   type Element,
   type ElementKind,
@@ -441,6 +442,8 @@ function element(
     depth: extra.depth ?? { items: 1, production: 0, parts: 0 },
     file,
     title: extra.title,
+    activity: extra.activity,
+    medium: extra.medium,
     stageDeclared: extra.stageDeclared,
   };
 }
@@ -463,16 +466,16 @@ function buildElements(graph: ContentGraph): void {
     const topic = set.data?.topic;
     if (!topic) continue;
     const kind = kindForRole(set.data.role);
-    // `stage:` is not in the schema yet — read defensively so declaring one is a schema change
-    // and nothing else, and record whether the arc position was derived or authored.
-    const declared = (set.data as { stage?: LessonStage }).stage;
+    const declared = set.data.stage;
     const summary = summariseItems(set.data.items ?? []);
     out.push(
       element(kind, `${set.id}#${kind}`, topic, set.level, set.file, {
         ...summary,
         stage: declared ?? defaultStage(kind),
+        activity: set.data.activity,
+        medium: set.data.activity ? learningMedium(set.data) : undefined,
         stageDeclared: declared ? true : undefined,
-        title: set.data.title?.de,
+        title: set.data.title_de ?? set.data.title?.de,
       }),
     );
   }

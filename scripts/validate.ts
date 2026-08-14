@@ -40,6 +40,7 @@ import {
   type ListeningPlan,
   LEVELS,
   CEFR_LEVELS,
+  PRODUCTION_TYPES,
 } from '@da/schema';
 import { GRAMMAR_STRANDS, type GrammarPoint, type GrammarTrack } from '@da/content/grammar-coverage';
 import { entryRef, loadStructureSources } from '@da/content/structures';
@@ -865,6 +866,40 @@ for (const [id, { file, data }] of topics) {
     fail(file, `elements.primary_practice "${primary}" is not in elements.exercises`);
   else if (exerciseSets.get(primary)?.data.role !== 'practice')
     fail(file, `elements.primary_practice "${primary}" is not a role: practice set`);
+  else if (exerciseSets.get(primary)?.data.activity !== 'core')
+    fail(file, `elements.primary_practice "${primary}" must declare activity: core`);
+
+  const coreActivities = data.elements.exercises.filter(
+    (setId) => exerciseSets.get(setId)?.data.activity === 'core',
+  );
+  if (coreActivities.length !== 1) {
+    fail(
+      file,
+      `topic must own exactly one activity: core set; found ${coreActivities.length}`,
+    );
+  } else if (primary && coreActivities[0] !== primary) {
+    fail(
+      file,
+      `activity: core set "${coreActivities[0]}" must equal primary_practice "${primary}"`,
+    );
+  }
+  const coreSet = coreActivities.length === 1 ? exerciseSets.get(coreActivities[0]!)?.data : undefined;
+  if (coreSet && (coreSet.items.length < 8 || coreSet.items.length > 15)) {
+    fail(
+      file,
+      `activity: core must contain 8–15 scaffolded items; found ${coreSet.items.length} in "${coreActivities[0]}"`,
+    );
+  }
+
+  const applications = data.elements.exercises
+    .map((setId) => exerciseSets.get(setId)?.data)
+    .filter((set): set is ExerciseSet => set?.activity === 'application');
+  if (!applications.some((set) => set.items.some((item) => PRODUCTION_TYPES.has(item.type)))) {
+    fail(
+      file,
+      'topic needs at least one activity: application set with productive retrieval; a listening-only transfer does not prove the learner can use the material',
+    );
+  }
 
   for (const probe of data.elements.probes) {
     const set = exerciseSets.get(probe);

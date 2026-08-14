@@ -7,6 +7,10 @@ export function Uebersicht({ graph, workspace }: { graph: GraphPayload; workspac
   const count = (severity: GraphPayload['diagnostics'][number]['severity']) => graph.diagnostics.filter((item) => item.severity === severity).length;
   const topics = graph.topics.length;
   const reviewed = graph.topics.filter((topic) => topic.status === 'reviewed').length;
+  const reviewedIds = new Set(graph.topics.filter((topic) => topic.status === 'reviewed').map((topic) => topic.id));
+  const reviewedDebt = graph.problems.filter((problem) => problem.topic && reviewedIds.has(problem.topic)).length;
+  const draftDebt = graph.problems.filter((problem) => problem.topic && !reviewedIds.has(problem.topic)).length;
+  const workspaceDebt = graph.problems.filter((problem) => !problem.topic).length;
   const thin = graph.tags.filter((tag) => tag.teaching > 0 && tag.teaching <= 3).length;
   return (
     <>
@@ -17,10 +21,14 @@ export function Uebersicht({ graph, workspace }: { graph: GraphPayload; workspac
       </header>
 
       {count('blocking') ? (
-        <Callout tone="warn" eyebrow="Vor der nächsten Freigabe" title={`${count('blocking')} blockierende Befunde`} action={<Button href={href('qualitaet', undefined, { schwere: 'blocking' })}>Arbeitsliste öffnen</Button>}>
-          Bereits geprüfte Themen tragen offene strukturelle Befunde. Der Status und der Korpus widersprechen einander.
+        <Callout tone="warn" eyebrow="Technische Sperre" title={`${count('blocking')} tatsächlich blockierende Befunde`} action={<Button href={href('qualitaet', undefined, { schwere: 'blocking' })}>Arbeitsliste öffnen</Button>}>
+          Diese Fehler verhindern Speichern oder Freigabe und müssen zuerst behoben werden.
         </Callout>
-      ) : <Callout tone="ok" eyebrow="Freigabegate" title="Kein blockierender Befund" />}
+      ) : reviewedDebt ? (
+        <Callout tone="brand" eyebrow="Redaktionelle Schuld" title={`${reviewedDebt} Befunde in geprüften Themen`} action={<Button href={href('qualitaet', undefined, { status: 'reviewed' })}>priorisieren</Button>}>
+          Diese {reviewedDebt} Befunde sind keine Validatorfehler. Sie markieren ältere Qualitätslücken in bereits geprüften Themen und werden als Arbeitsvorrat priorisiert.
+        </Callout>
+      ) : <Callout tone="ok" eyebrow="Redaktioneller Status" title="Keine offenen Befunde in geprüften Themen" />}
 
       <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
         <Panel title="Kurszustand">
@@ -48,9 +56,9 @@ export function Uebersicht({ graph, workspace }: { graph: GraphPayload; workspac
 
       <Section>Arbeitslisten</Section>
       <div className="grid gap-4 md:grid-cols-3">
-        <Queue title="Blockierend" count={count('blocking')} tone="warn" href={href('qualitaet', undefined, { schwere: 'blocking' })}>Widersprüche in bereits geprüften Themen.</Queue>
-        <Queue title="Zu bearbeiten" count={count('attention')} tone="brand" href={href('qualitaet', undefined, { schwere: 'attention' })}>Bekannte Lücken in Entwürfen und Materialien.</Queue>
-        <Queue title="Hinweise" count={count('info')} tone="info" href={href('qualitaet', undefined, { schwere: 'info' })}>Bewusste Ausnahmen und Kontext.</Queue>
+        <Queue title="Geprüfte Themen" count={reviewedDebt} tone="warn" href={href('qualitaet', undefined, { status: 'reviewed' })}>Bestehende Qualitätslücken, geordnet nach gemeinsamer Ursache.</Queue>
+        <Queue title="Entwürfe" count={draftDebt} tone="brand" href={href('qualitaet', undefined, { status: 'draft' })}>Befunde, die vor der nächsten redaktionellen Prüfung bearbeitet werden sollten.</Queue>
+        <Queue title="Korpusweit" count={workspaceDebt} tone="info" href={href('qualitaet', undefined, { status: 'workspace' })}>Fokus-Tags, Inventar und Quellen ohne eindeutiges Eigentümerthema.</Queue>
       </div>
     </>
   );

@@ -47,7 +47,12 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import * as YAML from 'yaml';
-import { exerciseSetSchema, topicManifestSchema, LESSON_STAGES } from '@da/schema';
+import {
+  exerciseSetSchema,
+  topicManifestSchema,
+  LEARNING_ACTIVITIES,
+  LESSON_STAGES,
+} from '@da/schema';
 import { repoRoot } from './repo-root';
 
 interface WritableField {
@@ -73,10 +78,10 @@ const CLASSES: FileClass[] = [
     id: 'exercise-set',
     match: /^content\/exercises\/[a-z0-9]+\/[a-z0-9-]+\.yaml$/,
     schema: exerciseSetSchema,
-    // The one editorial judgement the stage derivation cannot make for itself, and the one the
-    // topic profile keeps asking for: 48 of 49 topics report no transfer task, and for some of them
-    // the truth is that a practice set already is one.
-    fields: { stage: { values: LESSON_STAGES, after: ['role', 'topic'] } },
+    fields: {
+      stage: { values: LESSON_STAGES, after: ['role', 'topic'] },
+      activity: { values: LEARNING_ACTIVITIES, after: ['stage', 'role', 'topic'] },
+    },
   },
   {
     id: 'topic-manifest',

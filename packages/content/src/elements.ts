@@ -29,7 +29,7 @@
  * invented threshold.
  */
 import { PRODUCTION_TYPES, SELECTION_TYPES, type LessonStage } from '@da/schema';
-import type { ExerciseItem, ExerciseSet, Level, Reading } from '@da/schema';
+import type { ExerciseItem, ExerciseSet, LearningActivity, Level, Reading } from '@da/schema';
 
 /**
  * What kind of thing this is. German, like the rest of the editorial surface, and deliberately
@@ -65,6 +65,10 @@ export { LESSON_STAGES, type LessonStage } from '@da/schema';
 export const TOUCHES = ['input', 'abruf', 'interaktion', 'produktion'] as const;
 export type Touch = (typeof TOUCHES)[number];
 
+/** Delivery medium is derived from content and deliberately separate from pedagogical purpose. */
+export const LEARNING_MEDIA = ['mixed', 'listening', 'document'] as const;
+export type LearningMedium = (typeof LEARNING_MEDIA)[number];
+
 export interface ElementDepth {
   /** Items, or 1 for a single-artifact element (an article, a reading, a recording). */
   items: number;
@@ -82,6 +86,10 @@ export interface Element {
   topic: string;
   level: Level;
   stage: LessonStage;
+  /** Learner-facing purpose of a topic-owned practice/drill file (ADR 0014). */
+  activity?: LearningActivity;
+  /** Derived delivery medium; only teaching sets carry it. */
+  medium?: LearningMedium;
   touches: Touch[];
   /** Response modes this element can actually record, from item types and declared targets. */
   modes: string[];
@@ -189,6 +197,17 @@ export function itemMode(item: ExerciseItem): string {
     default:
       return 'reading';
   }
+}
+
+export function learningMedium(set: ExerciseSet): LearningMedium {
+  if (set.stimulus || set.items.some((item) => item.stimulus)) return 'document';
+  if (
+    set.items.length > 0 &&
+    set.items.every((item) => item.type === 'listen' || item.type === 'audio-comprehension')
+  ) {
+    return 'listening';
+  }
+  return 'mixed';
 }
 
 /** Independently scored parts, for the depth figure. One per gap, cell, field or pair. */

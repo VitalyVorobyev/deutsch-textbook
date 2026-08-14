@@ -1,0 +1,52 @@
+topic: verben-mit-kasus
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Wer hilft wem und ruft wen an?"
+title:
+  en: Application — coordinate help for a neighbour
+  ru: Применение — организуйте помощь соседу
+  uk: Застосування — організуйте допомогу сусідові
+items:
+  - id: uebersetzen-nachbar-anrufen
+    type: translate
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    focus: verb-kasus
+    instruction: { en: "Translate. The same person changes form because the two verbs govern different cases.", ru: "Переведите. Один и тот же человек меняет форму, потому что глаголы требуют разных падежей.", uk: "Перекладіть. Та сама людина змінює форму, бо дієслова вимагають різних відмінків." }
+    prompt_en: "I help my neighbour and then call him."
+    prompt_ru: "Я помогаю своему соседу, а потом звоню ему."
+    prompt_uk: "Я допомагаю своєму сусідові, а потім телефоную йому."
+    answer: "Ich helfe meinem Nachbarn und rufe ihn dann an."
+    accept: ["Ich helfe meinem Nachbarn und dann rufe ich ihn an."]
+    key_tokens: ["meinem", "Nachbarn", "ihn"]
+    explain: { en: "helfen belongs to the small dative club: meinem Nachbarn. anrufen takes the person directly in the accusative: ihn.", ru: "helfen входит в небольшой дативный список: meinem Nachbarn. anrufen ставит человека прямо в Akkusativ: ihn.", uk: "helfen належить до невеликого давального списку: meinem Nachbarn. anrufen ставить людину прямо в Akkusativ: ihn." }
+
+  - id: schreiben-hilfe-organisieren
+    type: write
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen, verbchunk-nennen]
+    focus: verb-kasus
+    prompt: { en: "Your neighbour is moving. Write a group message: say whom you are helping, whom you will call, and what you are waiting for.", ru: "Сосед переезжает. Напишите в общий чат: кому вы помогаете, кому позвоните и чего ждёте.", uk: "Сусід переїжджає. Напишіть у спільний чат: кому ви допомагаєте, кому зателефонуєте й на що чекаєте." }
+    goal: { en: "Use one dative verb, one accusative verb and one fixed verb-preposition chunk in a real coordination message.", ru: "Используйте в реальном сообщении один глагол с Dativ, один с Akkusativ и одно сочетание глагол + предлог.", uk: "Використайте в реальному повідомленні одне дієслово з Dativ, одне з Akkusativ і одну сполуку дієслово + прийменник." }
+    requirements:
+      - { en: "Use helfen or danken with a dative person.", ru: "Используйте helfen или danken с человеком в Dativ.", uk: "Використайте helfen або danken з людиною в Dativ." }
+      - { en: "Use anrufen, fragen or stören with an accusative person.", ru: "Используйте anrufen, fragen или stören с человеком в Akkusativ.", uk: "Використайте anrufen, fragen або stören з людиною в Akkusativ." }
+      - { en: "Use warten auf or another taught fixed-preposition verb.", ru: "Используйте warten auf или другой изученный глагол с фиксированным предлогом.", uk: "Використайте warten auf або інше вивчене дієслово з фіксованим прийменником." }
+    min_words: 24
+    model_answer: "Ich helfe unserem Nachbarn am Samstag. Ich rufe ihn heute Abend an. Wir warten noch auf den Transporter. Kann jemand dem Fahrer die Adresse schicken?"
+    model_translation: { en: "I am helping our neighbour on Saturday. I will call him this evening. We are still waiting for the van. Can someone send the driver the address?", ru: "В субботу я помогаю нашему соседу. Сегодня вечером я ему позвоню. Мы ещё ждём фургон. Может кто-нибудь отправить водителю адрес?", uk: "У суботу я допомагаю нашому сусідові. Сьогодні ввечері я йому зателефоную. Ми ще чекаємо на фургон. Чи може хтось надіслати водієві адресу?" }
+    explain: { en: "Review the message verb by verb. The case comes from each German verb or preposition, not from the person's role in the story.", ru: "Проверьте сообщение глагол за глаголом. Падеж задаёт каждый немецкий глагол или предлог, а не роль человека в сюжете.", uk: "Перевірте повідомлення дієслово за дієсловом. Відмінок задає кожне німецьке дієслово або прийменник, а не роль людини в історії." }
+
+  - id: sprechen-aufgaben-verteilen
+    type: speak
+    mode: spoken-interaction
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    focus: verb-kasus
+    prompt: { en: "Record a 20–30 second reply assigning two people different jobs. Include one dative-club verb and one accusative-person verb.", ru: "Запишите ответ на 20–30 секунд и распределите две задачи между людьми. Используйте глагол из дативного списка и глагол с человеком в Akkusativ.", uk: "Запишіть відповідь на 20–30 секунд і розподіліть два завдання між людьми. Використайте дієслово з давального списку й дієслово з людиною в Akkusativ." }
+    goal: { en: "Make every pronoun's referent and case clear without naming a grammar rule aloud.", ru: "Сделайте понятными лицо и падеж каждого местоимения, не проговаривая грамматическое правило.", uk: "Зробіть зрозумілими особу й відмінок кожного займенника, не промовляючи граматичного правила." }
+    checklist:
+      - { en: "I used a dative person after helfen/danken/gefallen.", ru: "После helfen/danken/gefallen я использовал(а) человека в Dativ.", uk: "Після helfen/danken/gefallen я використав(-ла) людину в Dativ." }
+      - { en: "I used an accusative person after anrufen/fragen/stören.", ru: "После anrufen/fragen/stören я использовал(а) человека в Akkusativ.", uk: "Після anrufen/fragen/stören я використав(-ла) людину в Akkusativ." }
+      - { en: "I replayed once and checked the pronouns.", ru: "Я один раз прослушал(а) запись и проверил(а) местоимения.", uk: "Я один раз прослухав(-ла) запис і перевірив(-ла) займенники." }
+    model_answer: "Mira hilft dem neuen Nachbarn mit den Kartons. Ich rufe ihn an und frage ihn nach der Uhrzeit. Danach danke ich Mira."
+    model_translation: { en: "Mira helps the new neighbour with the boxes. I call him and ask him about the time. Afterwards I thank Mira.", ru: "Мира помогает новому соседу с коробками. Я звоню ему и спрашиваю его о времени. Потом я благодарю Миру.", uk: "Міра допомагає новому сусідові з коробками. Я телефоную йому й запитую його про час. Потім я дякую Мірі." }
+    explain: { en: "On replay, isolate the forms: dem Nachbarn, ihn, ihn, Mira. The verb changes the case even when the same person stays in focus.", ru: "При прослушивании выделите формы: dem Nachbarn, ihn, ihn, Mira. Глагол меняет падеж, даже когда речь идёт о том же человеке.", uk: "Під час прослуховування виділіть форми: dem Nachbarn, ihn, ihn, Mira. Дієслово змінює відмінок, навіть коли йдеться про ту саму людину." }

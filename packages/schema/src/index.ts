@@ -645,6 +645,22 @@ export const exerciseRoleSchema = z.enum(EXERCISE_ROLES);
 export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
 
 /**
+ * The learner-facing job of a topic-owned teaching set.
+ *
+ * This is deliberately orthogonal to `role`: role controls evidence/runtime semantics, while an
+ * activity explains why this particular stable file exists and how several files are presented as
+ * one coherent lesson. See ADR 0014.
+ */
+export const LEARNING_ACTIVITIES = [
+  'core',
+  'extension',
+  'application',
+  'remediation',
+] as const;
+export const learningActivitySchema = z.enum(LEARNING_ACTIVITIES);
+export type LearningActivity = z.infer<typeof learningActivitySchema>;
+
+/**
  * Where an artifact sits on the lesson cycle `CLAUDE.md` requires of every topic:
  * pretest → model → scaffold → fade → transfer → delayed check.
  *
@@ -668,19 +684,53 @@ export const exerciseSetSchema = z.object({
   topic: slug,
   /** explicit learning role; controls training eligibility and evidence use */
   role: exerciseRoleSchema.default('practice'),
-  /**
-   * Overrides the stage derived from `role`, for the case the derivation cannot see: a
-   * `role: practice` set that is really a fresh-context transfer task. Declaring one is the whole
-   * of the change — nothing else reads it, and the 336 sets that are what they look like stay
-   * silent. `@da/content/elements` records whether a stage was authored or derived.
-   */
+  /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0014. */
   stage: z.enum(LESSON_STAGES).optional(),
+  /** Learner-facing purpose; presentation groups files by this value, never by filename. */
+  activity: learningActivitySchema.optional(),
+  /** German editorial/activity label; separate from explanation-language parity on A1/A2. */
+  title_de: z.string().min(1).optional(),
   title: bilingualSchema.optional(),
   /** Reusable document kept visible while every item in this set is answered. */
   stimulus: z.string().optional(),
   /** Exact `setId::itemId` sources that arm a delayed probe family. Probe sets require it. */
   arming: z.array(z.string().min(1)).default([]),
   items: z.array(exerciseItemSchema).min(1),
+}).superRefine((set, ctx) => {
+  if (set.role !== 'practice' && set.role !== 'drill') return;
+
+  if (!set.activity) {
+    ctx.addIssue({ code: 'custom', path: ['activity'], message: 'practice/drill sets require activity (ADR 0014)' });
+    return;
+  }
+  if (!set.stage) {
+    ctx.addIssue({ code: 'custom', path: ['stage'], message: 'practice/drill sets require an authored stage (ADR 0014)' });
+  }
+  if (!set.title_de && !set.title?.de) {
+    ctx.addIssue({ code: 'custom', path: ['title_de'], message: 'practice/drill sets require a German activity title (ADR 0014)' });
+  }
+
+  const contract: Record<LearningActivity, { role: ExerciseRole; stages: LessonStage[] }> = {
+    core: { role: 'practice', stages: ['geruest'] },
+    extension: { role: 'practice', stages: ['geruest', 'ausblenden'] },
+    application: { role: 'practice', stages: ['transfer'] },
+    remediation: { role: 'drill', stages: ['ausblenden'] },
+  };
+  const expected = contract[set.activity];
+  if (set.role !== expected.role) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['role'],
+      message: `${set.activity} requires role: ${expected.role}`,
+    });
+  }
+  if (set.stage && !expected.stages.includes(set.stage)) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['stage'],
+      message: `${set.activity} requires stage: ${expected.stages.join(' or ')}`,
+    });
+  }
 });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
 

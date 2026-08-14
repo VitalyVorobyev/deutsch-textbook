@@ -235,7 +235,7 @@ describe('scoring and curriculum contracts', () => {
         focus: 'modal-satzklammer',
       },
       {
-        setId: 'a2/modalverben',
+        setId: 'a2/modalverben-produktion',
         id: 'uebersetzen-darf-nicht',
         given: 'Du darfs hier nicht rauchen.',
         focus: 'duerfen-muessen',

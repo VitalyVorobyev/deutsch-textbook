@@ -69,6 +69,16 @@ const exerciseSets = await Promise.all(
   }),
 );
 
+const activityGroups = [
+  { id: 'core', label: 'topic.activityCore', hint: 'topic.activityCoreHint' },
+  { id: 'extension', label: 'topic.activityExtension', hint: 'topic.activityExtensionHint' },
+  { id: 'application', label: 'topic.activityApplication', hint: 'topic.activityApplicationHint' },
+  { id: 'remediation', label: 'topic.activityRemediation', hint: 'topic.activityRemediationHint' },
+] as const satisfies { id: NonNullable<(typeof exerciseSets)[number]['data']['activity']>; label: StringKey; hint: StringKey }[];
+const groupedExerciseSets = activityGroups
+  .map((group) => ({ ...group, sets: exerciseSets.filter((set) => set.data.activity === group.id) }))
+  .filter((group) => group.sets.length > 0);
+
 const vocabFiles = await Promise.all(
   data.vocab.map(async (id) => {
     const v = await getEntry('vocab', id);
@@ -297,11 +307,49 @@ const KIND_KEY: Record<string, StringKey> = {
   {
     exerciseSets.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
-        <div class="flex flex-col gap-6">
-          {exerciseSets.map((s) => (
-            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
-          ))}
+        <h2 class="text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
+        <p class="mt-1 mb-5 text-sm text-stone-500 dark:text-stone-400">
+          <Chrome k="topic.activityIntro" />
+        </p>
+        <div class="flex flex-col gap-4">
+          {groupedExerciseSets.map((group) =>
+            group.id === 'core' ? (
+              <section class="rounded-xl border border-amber-300 bg-amber-50/40 p-3 dark:border-amber-800 dark:bg-amber-950/20 sm:p-4">
+                <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2 px-1">
+                  <div>
+                    <h3 class="font-semibold text-stone-900 dark:text-stone-100"><Chrome k={group.label} /></h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400"><Chrome k={group.hint} /></p>
+                  </div>
+                  <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                    Nächster Schritt
+                  </span>
+                </div>
+                <div class="flex flex-col gap-4">
+                  {group.sets.map((s) => (
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <details class="group rounded-xl border border-stone-200 bg-stone-50/60 open:bg-white dark:border-stone-700 dark:bg-stone-900/40 dark:open:bg-stone-900">
+                <summary class="flex min-h-14 cursor-pointer list-none items-center gap-3 px-4 py-3 marker:content-none">
+                  <span class="text-stone-400 transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block font-semibold text-stone-900 dark:text-stone-100"><Chrome k={group.label} /></span>
+                    <span class="block text-xs text-stone-500 dark:text-stone-400"><Chrome k={group.hint} /></span>
+                  </span>
+                  <span class="rounded-full bg-stone-200 px-2 py-0.5 text-xs tabular-nums text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+                    {group.sets.length}
+                  </span>
+                </summary>
+                <div class="flex flex-col gap-4 border-t border-stone-200 p-3 dark:border-stone-700 sm:p-4">
+                  {group.sets.map((s) => (
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                  ))}
+                </div>
+              </details>
+            ),
+          )}
         </div>
       </section>
     )

@@ -14,11 +14,11 @@
  * the delayed check is what closes the cycle), and it now leads.
  */
 import { useState } from 'react';
-import { Callout, Chip, Empty, Filter, Label, Panel, SearchBox, Section, Stat, StatGroup } from '@da/ui/primitives';
+import { Button, Callout, Chip, Empty, Filter, Label, Panel, SearchBox, Section, Stat, StatGroup } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
 import { Befundleiste } from '../components/Befundleiste';
-import { Extern, Gruppentabelle, Mehrere, Primaer, Quer, Zahl, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import { Gruppentabelle, Mehrere, Primaer, Quelllink, Quer, Zahl, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 import { href } from '../router';
 
 type Level = GraphPayload['levels'][number];
@@ -168,7 +168,7 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
+    { key: 'file', head: 'Datei', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
   ];
 
   return (
@@ -217,7 +217,21 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
       </div>
 
       <Section count={elements.length}>Elemente</Section>
-      <Gruppentabelle gruppen={gruppen} columns={columns} rowKey={(e) => e.id} empty="Kein Element trägt diesen Tag." />
+      <Gruppentabelle
+        gruppen={gruppen}
+        columns={columns}
+        rowKey={(e) => e.id}
+        empty={
+          <Panel tone="leer">
+            <p className="text-sm font-medium text-ink">Kein Material trägt diesen Fokus-Tag.</p>
+            <p className="mt-1 max-w-2xl text-sm text-ink-muted">Das ist ein Befund, kein Navigationsende. Öffne die registrierte Einführung oder kehre zur Liste aller Fokus-Tags zurück.</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {tag.introducedBy ? <Button href={href('thema', tag.introducedBy)}>Einführendes Thema</Button> : null}
+              <Button href={href('fokus')}>Alle Fokus-Tags</Button>
+            </div>
+          </Panel>
+        }
+      />
     </>
   );
 }

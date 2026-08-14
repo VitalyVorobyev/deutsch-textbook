@@ -7,11 +7,8 @@
  * WHAT THIS ONE ASKS. *Where along the path is the work?* Each topic is a panel toned by its own
  * state, carrying the three things that decide whether it is finished:
  *
- *   - **the lesson-cycle arc**, six dots — the skeleton `CLAUDE.md` requires of every topic
- *     (pretest → model → scaffold → fade → transfer → delayed check) and which nothing else in the
- *     repo renders. A hollow dot is a stage with no element, and it is the finding: **48 of 49
- *     topics have no transfer task**, which is what the `Element` layer was built to be able to
- *     say.
+ *   - **the activity architecture**, four marks — required core and application plus optional
+ *     extension and remediation. Media and source-file count no longer masquerade as stages.
  *   - **`met`/`total`** against the level median, which is printed beside it — the
  *     `grammar-depth.ts` discipline. There is no threshold and no score; a count of yes/no answers
  *     read against what the rest of the level manages.
@@ -31,15 +28,12 @@ import { href } from '../router';
 type Level = GraphPayload['levels'][number];
 type Topic = GraphPayload['topics'][number];
 
-/** The arc, in order. Rendered even where empty — an absent stage is the finding. */
-const ARC = ['pretest', 'modell', 'geruest', 'ausblenden', 'transfer', 'nachpruefung'] as const;
-const ARC_LABEL: Record<string, string> = {
-  pretest: 'Pretest',
-  modell: 'Modell',
-  geruest: 'Gerüst',
-  ausblenden: 'Ausblenden',
-  transfer: 'Transfer',
-  nachpruefung: 'Nachprüfung',
+const ACTIVITIES = ['core', 'extension', 'application', 'remediation'] as const;
+const ACTIVITY_LABEL: Record<string, string> = {
+  core: 'Grundübung',
+  extension: 'Vertiefen',
+  application: 'Anwenden',
+  remediation: 'Gezielt üben',
 };
 
 const STATUS_LABEL: Record<string, string> = { draft: 'Entwurf', reviewed: 'geprüft' };
@@ -184,20 +178,19 @@ function ThemaKarte({
       ) : null}
 
       <div>
-        <div className="flex items-center gap-1.5" role="img" aria-label={arcLabel(profile)}>
-          {ARC.map((stage) => {
-            const n = profile?.arc[stage] ?? 0;
+        <div className="flex items-center gap-1.5" role="img" aria-label={activityLabel(profile)}>
+          {ACTIVITIES.map((activity) => {
+            const n = profile?.activities[activity] ?? 0;
+            const optional = activity === 'extension' || activity === 'remediation';
             return (
               <span
-                key={stage}
-                title={`${ARC_LABEL[stage]}: ${n || 'nichts'}`}
-                // Neutral when present, rose only where the stage is missing — the same rule the
-                // density block follows, and for the same reason: a filled dot is the ordinary case.
-                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-ink-muted' : 'border border-warn'}`}
+                key={activity}
+                title={`${ACTIVITY_LABEL[activity]}: ${n || 'keine'}`}
+                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-ink-muted' : optional ? 'border border-border-strong' : 'border border-warn'}`}
               />
             );
           })}
-          <span className="ml-1 text-[0.65rem] text-ink-muted">Lernzyklus</span>
+          <span className="ml-1 text-[0.65rem] text-ink-muted">Aktivitäten</span>
         </div>
       </div>
 
@@ -243,7 +236,9 @@ function gleicherName(a: string, b: string): boolean {
 }
 
 /** The dots are decorative to a screen reader; this is what they say. */
-function arcLabel(profile?: GraphPayload['profiles'][number]): string {
-  const missing = ARC.filter((s) => !(profile?.arc[s] ?? 0)).map((s) => ARC_LABEL[s]);
-  return missing.length ? `Lernzyklus — es fehlt: ${missing.join(', ')}` : 'Lernzyklus vollständig';
+function activityLabel(profile?: GraphPayload['profiles'][number]): string {
+  const present = ACTIVITIES
+    .filter((activity) => (profile?.activities[activity] ?? 0) > 0)
+    .map((activity) => ACTIVITY_LABEL[activity]);
+  return `Lernaktivitäten: ${present.join(', ')}`;
 }

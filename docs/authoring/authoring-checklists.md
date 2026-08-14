@@ -15,7 +15,14 @@ New topic — a topic is not done until every line here is:
    is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
    `status: reviewed`.
 1. `content/topics/<level>/<id>.mdx` with full frontmatter + article following the skeleton.
-2. Exercise set(s) in `content/exercises/<level>/<id>.yaml` — 8–15 items, ≥3 different types, each with `explain`, each clearing the item-mix bar above. Every `translate` declares `key_tokens`. Include the modes the topic's outcomes claim: a hidden-transcript `audio-comprehension`, a `write` (draft → model comparison, revision optional), a `speak` (record/replay), and a faded discrimination set against the material this topic is confusable with. The **first** `role: practice` set in `exercises:` is the topic's `primaryPractice` — its completion advances the Lernpfad, so its item list must not grow later.
+2. Learning activities in `content/exercises/<level>/` — every topic has exactly one
+   `role: practice`, `activity: core`, `stage: geruest` Grundübung of 8–15 items, named explicitly by
+   `primary_practice`; and at least one productive `activity: application`, `stage: transfer` in a
+   fresh context. Add `extension` only for a coherent extra contrast/subskill and `remediation` only
+   for a named confusion. Every teaching set declares `title_de`; every item has `explain`; every
+   `translate` has `key_tokens`. Include the modes the outcomes claim. Item-mix checks are per topic,
+   not per file. `bun run activity:audit` shows architecture and review queues without inventing a
+   score. Compatibility with a test profile never justifies a pedagogically incoherent set.
 3. Pretest in `content/exercises/<level>/<id>-pretest.yaml` — 3 `mc` items probing the topic's core rules, referenced via `pretest`.
 4. Probe family in `content/exercises/<level>/probe-<id>.yaml` — `role: probe`, 3 **parallel variants**: different tasks, **one competence**. Never listed in `exercises`. Two rules, both validator-enforced, and both easy to get wrong in a way that looks fine:
    - **All three variants carry the same `focus` and the same `outcomes`.** `dueProbe` serves one unused variant per interval, so variants that test *different* things measure each of them exactly once, at exactly one delay — and a retention curve needs the same competence at several delays. There is then nothing to compare, and the number that comes out looks like retention without being it. (The original sixteen families shipped this way and had to be rewritten.) A topic with two competences worth delayed evidence owns two families, not one family with two kinds of item.

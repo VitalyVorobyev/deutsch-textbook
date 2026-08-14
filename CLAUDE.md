@@ -107,9 +107,11 @@ client bundle, Vite externalises it silently, and the page keeps working: that h
 **`contentGraph()` (`packages/content/src/graph.ts`) is the one pass over the corpus.** It replaced
 eight independent walks. It is memoised per root, and it **degrades a malformed file to a `note`
 rather than throwing**, because it is the model an editor reads *while* authoring. Every artifact
-becomes an **`Element`** with a `stage` on the lesson cycle and the `touches` it delivers — the two
-properties nothing in the corpus records, which is why nothing could report that **48 of 49 topics
-have no transfer task**. `packages/content/src/profile.ts` turns that into per-topic checks and a
+becomes an **`Element`** with its lesson `stage`, pedagogical `activity`, derived delivery `medium`
+and the `touches` it delivers. The activity contract is [ADR
+0014](docs/adrs/0014-learning-activity-architecture.md): purpose (`core`, `extension`,
+`application`, `remediation`) must not be confused with media (`mixed`, `listening`, `document`) or
+with a source-file count. `packages/content/src/profile.ts` turns that into per-topic checks and a
 ranked problem list, **with no composite score** — every distributional figure is read against the
 level median it prints, never an invented threshold.
 
@@ -233,7 +235,11 @@ One mechanical hazard in the same family — silently wrong, and no gate catches
 A topic is not done until all nine are:
 
 1. `content/topics/<level>/<id>.topic.yaml` — the manifest, and `<id>.mdx` beside it: the article following the skeleton, **prose only**.
-2. Exercise set(s) — 8–15 items, ≥3 types, each with `explain`, clearing the item-mix bar; every `translate` declares `key_tokens`; include the modes the outcomes claim.
+2. Learning activities — every topic owns exactly one 8–15-item `activity: core` Grundübung named by
+   `primary_practice`, plus at least one productive `activity: application` in a fresh context.
+   `extension` and `remediation` exist only for a coherent extra job. Every teaching set declares
+   `stage`, `activity`, `title_de`; every item has `explain`; every `translate` has `key_tokens`.
+   The item-mix bar is per topic, never per file. Run `bun run activity:audit`.
 3. Pretest — 3 items at `<id>-pretest.yaml`, referenced via `pretest`.
 4. Probe family — `probe-<id>.yaml`, listed in `elements.probes`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.

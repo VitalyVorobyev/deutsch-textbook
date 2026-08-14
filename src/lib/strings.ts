@@ -633,6 +633,40 @@ export const STRINGS = {
   'topic.sectionWordField': { de: 'Wortfeld', en: 'Word field', ru: 'Лексическое поле', uk: 'Лексичне поле' },
   'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
   'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
+  'topic.activityIntro': {
+    de: 'Beginne mit der Grundübung. Öffne danach nur die Aktivität, die du jetzt brauchst.',
+    en: 'Start with the core practice. Then open only the activity you need now.',
+    ru: 'Начните с основной практики. Затем откройте только то, что вам сейчас нужно.',
+    uk: 'Почніть з основної практики. Потім відкрийте лише те, що вам зараз потрібно.',
+  },
+  'topic.activityCore': { de: 'Grundübung', en: 'Core practice', ru: 'Основная практика', uk: 'Основна практика' },
+  'topic.activityCoreHint': {
+    de: 'Der verpflichtende nächste Schritt im Lernpfad.',
+    en: 'The required next step on the learning path.',
+    ru: 'Обязательный следующий шаг учебного пути.',
+    uk: 'Обов’язковий наступний крок навчального шляху.',
+  },
+  'topic.activityExtension': { de: 'Vertiefen', en: 'Deepen', ru: 'Углубить', uk: 'Поглибити' },
+  'topic.activityExtensionHint': {
+    de: 'Zusätzliche Kontraste und Teilfertigkeiten.',
+    en: 'Additional contrasts and subskills.',
+    ru: 'Дополнительные контрасты и отдельные навыки.',
+    uk: 'Додаткові контрасти й окремі навички.',
+  },
+  'topic.activityApplication': { de: 'Anwenden', en: 'Apply', ru: 'Применить', uk: 'Застосувати' },
+  'topic.activityApplicationHint': {
+    de: 'Die Struktur in einem neuen Zusammenhang selbst verwenden.',
+    en: 'Use the structure independently in a new context.',
+    ru: 'Самостоятельно применить структуру в новом контексте.',
+    uk: 'Самостійно застосувати структуру в новому контексті.',
+  },
+  'topic.activityRemediation': { de: 'Gezielt üben', en: 'Targeted practice', ru: 'Точечная тренировка', uk: 'Точкове тренування' },
+  'topic.activityRemediationHint': {
+    de: 'Nur für eine konkrete Verwechslung; auch im gemischten Training verfügbar.',
+    en: 'For a specific confusion only; also available in mixed training.',
+    ru: 'Только для конкретной путаницы; также доступно в смешанной тренировке.',
+    uk: 'Лише для конкретної плутанини; також доступно у змішаному тренуванні.',
+  },
   // Topic-kind badge (grammar/vocab-field/communication/phonetics). Dedicated
   // keys rather than reusing strand.*: kinds and strands are different
   // taxonomies that merely share three German words today.

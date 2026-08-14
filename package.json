@@ -21,6 +21,7 @@
     "validate": "bun scripts/validate.ts",
     "redaktion": "bun run --filter @da/redaktion dev",
     "redaktion:audit": "bun scripts/redaktion-audit.ts",
+    "activity:audit": "bun scripts/activity-audit.ts",
     "redaktion:desktop": "bun run --filter @da/redaktion tauri:dev",
     "redaktion:desktop:build": "bun run --filter @da/redaktion tauri:build",
     "listening:inventory": "bun scripts/listening-inventory.ts",
