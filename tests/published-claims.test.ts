@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { getCurriculum } from '../src/lib/curriculum';
-import { grammarCoverage, loadGrammarInventory } from '../src/lib/grammar-coverage';
+import { grammarCoverage, loadGrammarInventory, productionLevel } from '../src/lib/grammar-coverage';
 import { focusIntroducedBy } from '../src/lib/focus-tags';
 
 /**
@@ -129,9 +129,12 @@ describe('published progress claims match the content', () => {
     expect(doc).toContain(`with units B1.1–B1.${shipped} shipped`);
 
     // "(22 of the 35 tags the B1 points name are registered so far …)"
+    // `standard_level` was replaced by `level: {reception, production}` on 2026-08-14, and this
+    // filter silently matched nothing afterwards — a test that reads a field the data no longer
+    // has does not fail loudly, it just stops testing. Use the accessor the instruments use.
     const tags = new Set(
       loadGrammarInventory()
-        .filter((p) => p.standard_level === 'B1')
+        .filter((p) => productionLevel(p) === 'B1')
         .flatMap((p) => p.focus ?? []),
     );
     const registered = [...tags].filter((tag) => tag in focusIntroducedBy).length;

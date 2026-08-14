@@ -32,9 +32,14 @@ docs/GeotheInstitute/
 sources/goethe-exams/
 public/exams/
 
-# The editorial console (`bun run redaktion`) — a generated instrument, regenerated
+# The editorial console's OUTPUT (`bun run redaktion`) — a generated instrument, regenerated
 # on demand from content/ and data/, never committed.
-redaktion/
+#
+# Anchored with a leading slash. A bare `redaktion/` matches a directory of that name at ANY
+# depth, so when the console's source moved into `scripts/redaktion/` on 2026-08-14 this line
+# silently swallowed the whole thing — eleven new modules, untracked, invisible in `git status`,
+# and gone on the next clean checkout. The generated file is at the repo root; say so.
+/redaktion/
 
 # design-sync (claude.ai/design)
 .ds-sync/

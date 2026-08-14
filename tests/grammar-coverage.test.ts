@@ -48,13 +48,25 @@ describe('grammar coverage', () => {
       expect(Boolean(point.reference_only) || (point.focus?.length ?? 0) > 0).toBe(true);
   });
 
-  test('A1 has no missing structures', () => {
+  // This assertion was `missing === 0` until 2026-08-14, and that was true of a denominator
+  // nobody had checked. The first run of `bun scripts/structures.ts` against the official
+  // Goethe A1 inventory (data/strukturenlisten/goethe-a1-sd1.yaml, free from goethe.de and never
+  // opened before) found FOUR structures the exam lists and this file did not contain — the
+  // coordinating conjunctions, both Wortbildung sections and the demonstrative determiner. So it
+  // is a countdown again, exactly as A2's was ten times over: the number comes down once per
+  // commit that ships the content closing a point, and never by editing the number alone.
+  test('A1 reports the four structures the Goethe inventory lists and no content teaches', () => {
     const coverage = grammarCoverage('A1');
-    expect(coverage.missing).toBe(0);
-    // The A1 boundary is self-contained: Perfekt, Imperativ, separable verbs and
-    // darf/muss nicht all have real A1 instruction and practice.
-    expect(coverage.covered).toBe(coverage.total);
+    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
+    expect(missing).toEqual([
+      'demonstrativartikel',
+      'koordination',
+      'wortbildung-adjektiv',
+      'wortbildung-nomen',
+    ]);
+    // Nothing is late either: everything A1 does teach, it teaches inside A1.
     expect(coverage.late).toBe(0);
+    expect(coverage.covered).toBe(coverage.total - missing.length);
   });
 
   // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a
@@ -63,11 +75,15 @@ describe('grammar coverage', () => {
   // unit closing it — that visibility was the whole purpose, and it still is. If this
   // fails, either a structure was silently dropped or a point was added to the
   // inventory without the content to pay for it, and both want noticing.
-  test('A2 teaches every structure its standard expects', () => {
+  // Same reopening as A1, and for the same reason: the 2026-08-14 anchor pass added five A2 rows
+  // — two from the published inventories (the reciprocal pronoun and the interrogative determiner,
+  // both listed at A2 and covered by nothing) and three from registered focus tags that no row
+  // referenced (`partizip2-form`, `wechsel-akk-dat`, `will-moechte`). Three of the five were
+  // already drilled and closed on arrival; two are open and named here.
+  test('A2 reports the two structures its standard lists and no content teaches', () => {
     const coverage = grammarCoverage('A2');
-    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id);
-    expect(missing).toEqual([]);
-    expect(coverage.percent).toBe(100);
+    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
+    expect(missing).toEqual(['interrogativartikel', 'reziprokpronomen']);
     // Nothing is merely late either: a point taught above its standard level would
     // still count toward the percentage, so it has to be asserted separately.
     expect(coverage.late).toBe(0);

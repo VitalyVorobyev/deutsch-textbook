@@ -27,12 +27,33 @@ The course keeps five boundaries:
 rather than blocking them. Track order: accounts/sync surface first, then mobile, then the
 extensive-reading corpus, then cross-links/Referenz.
 
-1. **Finish the B1 units and wave-1 lexis, in two substantial PRs.** The four remaining units are
-   B1.11 `digitales-leben`, B1.12 `kultur-freizeit`, B1.13 `geld-vertraege` (genre units, no new
-   grammar) and B1.14 `informationen-vermitteln`, which closes the level's grammar — the identities
-   are frozen in [the blueprint](curriculum/a2-b1.md). The wave-1 lexis remainder is six unowned
-   decks; run `bun scripts/coverage.ts B1 --check-deck <file.yaml>` per deck before `bun run
-   validate`.
+1. ~~**Finish the B1 units and wave-1 lexis**~~ — **shipped** (all fourteen units, the checkpoint,
+   the placement and the Wortliste tail).
+
+   **In its place: close the six reopened grammar rows, and buy B1 an anchor.** On 2026-08-14 the
+   grammar denominator stopped measuring itself. The official Goethe *Prüfungsziele* inventories —
+   free PDFs nobody had opened, though the inventory header had named them as its source for months
+   — are ingested as `data/strukturenlisten/`, and diffing them against the course's own list found
+   six structures the exams test and no row contained: the coordinating conjunctions, both
+   Wortbildung sections, the demonstrative and interrogative determiners, and the reciprocal
+   pronoun. A1 fell 23/23 → **24/28**, A2 32/32 → **35/37**, and that is progress: the figure stopped
+   being flattering and started being true. Full finding:
+   [grammar-structure-audit.md](curriculum/grammar-structure-audit.md) · [ADR 0011](adrs/0011-external-grammar-anchors.md).
+
+   Three things follow, in order:
+
+   - **Author the six rows' content** (backlog P26-1…P26-6). Each closes by lowering the number in
+     `tests/grammar-coverage.test.ts` in the same commit, the discipline A2 already used ten times.
+   - **Buy the two anchors B1 and B2 have none of** — the B1 *Prüfungsziele* (ISBN 978-3-19-031868-1)
+     and *Profile deutsch* (ISBN 978-3-468-49410-9), the Council-of-Europe Reference Level
+     Description for German and the only source that assigns grammar across A1–C2. **B1 currently
+     reports 32/32 against no external list**, which is precisely the state A1 was in while missing
+     four structures. Until then the B1 figure means "every row we wrote is taught", never "B1 is
+     complete".
+   - **Read the depth report before authoring anything else** (`bun scripts/grammar-depth.ts`).
+     Median practice per confusion runs A1 12 · A2 8 · **B1 4**, production 6 · 6 · **3**, and 29% of
+     B1 tags live in a single practice file. Breadth and depth are two numbers and neither
+     substitutes for the other.
 2. **Read the cadence between the windows, not on top of them.** Drain the grading queue to zero,
    rerun `bun run progress:audit --profile vitaly`, and only then read the weak-focus table. This is
    P5-11 and it is not optional: a drill authored from a pre-triage table targets a confusion the

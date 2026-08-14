@@ -69,6 +69,17 @@ selection; `deepens` and shared focus tags reactivate earlier knowledge without 
 lesson. Navigation is soft: the system recommends a next step but does not prevent deliberate
 exploration.
 
+The spine orders **topics**; `data/grammar-inventory.yaml` describes the **grammar** the topics
+teach, and the two are deliberately separate dimensions. Each inventory row carries a `strand` (one
+of ten grammatical systems), a `level: {reception, production}` pair — the published standards are
+reception standards and this is a production course, so one number could not hold both — `deepens:`
+edges naming the rows it is the deeper pass over, and `claims:` citations into
+`data/strukturenlisten/`, the external inventories the denominator is measured against
+([ADR 0011](adrs/0011-external-grammar-anchors.md)). Nothing at runtime reads any of it: the four
+fields exist so the curriculum can be audited along the language's own axes rather than only along
+the spine, which is what `bun run redaktion` renders and what `scripts/structures.ts` and
+`scripts/grammar-depth.ts` measure.
+
 A normal learning cycle combines:
 
 1. a pretest that samples prior knowledge without teaching credit;

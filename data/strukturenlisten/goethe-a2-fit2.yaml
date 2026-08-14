@@ -1,0 +1,234 @@
+# Goethe-Zertifikat A2 · Fit in Deutsch 2 — the official GRAMMAR inventory at A2.
+#
+# The A2 counterpart of goethe-a1-sd1.yaml. Same copying boundary: structure labels only, in the
+# document's own section order, no example sentences reproduced.
+#
+# WHICH A2 DOCUMENT THIS IS, AND WHY IT MATTERS. Goethe publishes two A2 exams — *Fit in Deutsch
+# 2* for Jugendliche and *Goethe-Zertifikat A2* for Erwachsene. This is the Jugendliche one,
+# because its Prüfungsziele is the A2 grammar inventory that is freely downloadable. The adult
+# A2 Prüfungsziele is not free and is NOT among the local materials, so no row here may be read
+# as "the adult A2 exam requires this". The two exams certify the same CEFR level and the
+# structural inventory is expected to be near-identical; the *domains* differ (school and family
+# rather than work and Ämter), which affects lexis far more than structure. Where an inventory
+# row in data/grammar-inventory.yaml rests on this source alone, that is worth knowing, and the
+# `source:` field records it per row rather than in a blanket claim.
+#
+# THE OLDER *START DEUTSCH 2* LIST is a third, retired source with a wider structure set (Passiv,
+# während + Genitiv, the full Wechselpräposition series, Präteritum of the modals). It is
+# encoded separately in goethe-start-deutsch-1-2.yaml, because a retired exam's list is evidence
+# of a level's shape but not a current requirement, and mixing the two would make a row's
+# authority unreadable — which is exactly the defect this whole directory exists to end.
+#
+# READING MODE. Unlike the A1 booklet, this document states no reception-first caveat for its
+# inventory, so `source.mode: unstated` rather than an assumption in either direction.
+#
+# TWO ERRORS IN THE SOURCE, transcribed as printed and flagged in `note:` rather than silently
+# corrected: `zu + Akkusativ` under lokale Präpositionen (zu governs the dative — the document's
+# own example is dative), and `irrogativ` for `interrogativ`. A source is not improved by being
+# quietly fixed; it is made unverifiable.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A2_Fit2.pdf -
+# Reference from a grammar-inventory row: `claims: [goethe-a2-fit2:<key>]`.
+
+source:
+  id: goethe-a2-fit2
+  title: "Goethe-Zertifikat A2 · Fit in Deutsch 2 — Prüfungsziele, Testbeschreibung"
+  publisher: "Goethe-Institut"
+  edition: "Vs05_080813"
+  chapter: "Inventare — Grammatik: Morphologische und syntaktische Strukturen"
+  pages: "104–108"
+  levels: [A2]
+  audience: jugendliche
+  mode: unstated
+  url: "https://www.goethe.de/pro/relaunch/prf/de/Pruefungsziele_Testbeschreibung_A2_Fit2.pdf"
+  local: "docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A2_Fit2.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  - id: verb-tempus
+    de: "Verb · Tempus"
+    page: 105
+    entries:
+      - { key: praesens-alle-verben, level: A2, de: "Präsens aller Verben der Wortliste" }
+      - { key: perfekt-alle-verben, level: A2, de: "Perfekt aller Verben der Wortliste" }
+      - { key: praeteritum-haben, level: A2, de: "Präteritum von haben" }
+      - { key: praeteritum-sein, level: A2, de: "Präteritum von sein" }
+      - { key: praeteritum-kommen, level: A2, de: "Präteritum von kommen" }
+      - { key: praeteritum-sagen, level: A2, de: "Präteritum von sagen" }
+      - { key: praeteritum-modalverben, level: A2, de: "Präteritum der Modalverben" }
+
+  - id: verb-modus
+    de: "Verb · Modus"
+    page: 105
+    entries:
+      - { key: indikativ-alle-verben, level: A2, de: "Indikativ aller Verben der Wortliste" }
+      - { key: konjunktiv2-moegen, level: A2, de: "Konjunktiv II von mögen" }
+      - { key: konjunktiv2-haben, level: A2, de: "Konjunktiv II von haben" }
+      - { key: konjunktiv2-koennen, level: A2, de: "Konjunktiv II von können" }
+      - { key: imperativ-du-ihr, level: A2, de: "Imperativ in der du- und ihr-Form" }
+
+  - id: verb-modalverben
+    de: "Verb · Modalverben"
+    page: 105
+    entries:
+      - { key: modal-koennen, level: A2, de: "Präsens von können" }
+      - { key: modal-wollen, level: A2, de: "Präsens von wollen" }
+      - { key: modal-muessen, level: A2, de: "Präsens von müssen" }
+      - { key: modal-moechten, level: A2, de: "Präsens von möchten" }
+      - { key: modal-duerfen, level: A2, de: "Präsens von dürfen" }
+      - { key: modal-sollen, level: A2, de: "Präsens von sollen" }
+
+  - id: verb-praefix
+    de: "Verb · Verben mit trennbarem Präfix"
+    page: 105
+    entries:
+      - { key: trennbares-praefix, level: A2, de: "Verben mit trennbarem Präfix" }
+
+  - id: nomen
+    de: "Nomen"
+    page: 105
+    entries:
+      - { key: genus, level: A2, de: "Genus: der / die / das" }
+      - { key: numerus, level: A2, de: "Numerus: Singular und Plural der Nomen der Wortliste" }
+      - { key: kasus-nom-akk-dat, level: A2, de: "Kasus: Nominativ, Akkusativ und Dativ der Nomen der Wortliste" }
+      - { key: genitiv-eigenname, level: A2, de: "Genitiv bei Eigennamen im Singular" }
+      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform des Genitivs mit von + Dativ" }
+
+  - id: artikelwoerter
+    de: "Artikelwörter · Artikel"
+    page: 106
+    entries:
+      - { key: artikel-definit, level: A2, de: "Definiter Artikel: der / die / das" }
+      - { key: artikel-demonstrativ, level: A2, de: "Demonstrativartikel: dieser / diese / dieses / diese" }
+      - { key: artikel-indefinit, level: A2, de: "Indefiniter Artikel: ein / eine / ein" }
+      - { key: artikel-null, level: A2, de: "Nullartikel" }
+      - key: artikel-interrogativ
+        level: A2
+        de: "Interrogativartikel welch- im Nominativ und Akkusativ"
+        note: "Printed `irrogativ` in the source — a typo for `interrogativ`, transcribed here in its corrected form with the source spelling recorded."
+      - { key: artikel-alle, level: A2, de: "alle als Artikelwort" }
+      - { key: artikel-possessiv, level: A2, de: "Possessivartikel: mein / dein / sein / ihr / Ihr" }
+      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessivartikel: unser / euer" }
+      - { key: artikel-negativ-kein, level: A2, de: "Negativartikel: kein" }
+
+  - id: pronomen
+    de: "Pronomen"
+    page: 106
+    entries:
+      - { key: pron-indefinit-man, level: A2, de: "Indefinitpronomen: man" }
+      - { key: pron-indefinit-jemand, level: A2, de: "Indefinitpronomen: jemand" }
+      - { key: pron-indefinit-etwas, level: A2, de: "Indefinitpronomen: etwas" }
+      - { key: pron-indefinit-nichts, level: A2, de: "Indefinitpronomen: nichts" }
+      - { key: pron-indefinit-mehr, level: A2, de: "Indefinitpronomen: mehr" }
+      - { key: pron-indefinit-alles, level: A2, de: "Indefinitpronomen: alles" }
+      - { key: pron-personal-nominativ, level: A2, de: "Personalpronomen im Nominativ" }
+      - { key: pron-personal-akkusativ, level: A2, de: "Personalpronomen im Akkusativ: mich / dich / ihn / sie / es" }
+      - { key: pron-personal-dativ, level: A2, de: "Personalpronomen im Dativ: mir / dir / ihm / ihr / uns / euch" }
+      - { key: pron-reflexiv-akkusativ, level: A2, de: "Reflexivpronomen im Akkusativ: mich / dich / sich" }
+      - { key: pron-reziprok, level: A2, de: "Reziprokpronomen: sich / uns" }
+      - { key: pron-frage-nominativ, level: A2, de: "Fragepronomen im Nominativ: Wer? / Was?" }
+      - { key: pron-frage-akkusativ, level: A2, de: "Fragepronomen im Akkusativ: Was?" }
+      - { key: pron-frage-dativ, level: A2, de: "Fragepronomen im Dativ: Mit wem?" }
+
+  - id: adjektiv
+    de: "Adjektiv"
+    page: 107
+    entries:
+      - { key: adj-attributiv, level: A2, de: "Attributives Adjektiv nach definitem und indefinitem Artikel" }
+      - { key: adj-praedikativ, level: A2, de: "Prädikatives Adjektiv" }
+      - { key: adj-adverbial, level: A2, de: "Adverbialer Gebrauch des Adjektivs" }
+      - { key: adj-komparativ, level: A2, de: "Komparation: ausgewählte Komparative mit als" }
+      - { key: adj-komparation-gern, level: A2, de: "Komparation: gern / lieber / am liebsten" }
+      - { key: adj-komparation-viel, level: A2, de: "Komparation: viel / mehr / am meisten" }
+      - { key: adj-komparation-gut, level: A2, de: "Komparation: gut / besser / am besten" }
+
+  - id: praeposition-temporal
+    de: "Präposition · temporal"
+    page: 107
+    entries:
+      - { key: praep-temp-an, level: A2, de: "an + Dativ" }
+      - { key: praep-temp-bis, level: A2, de: "bis + Akkusativ" }
+      - { key: praep-temp-in, level: A2, de: "in + Dativ" }
+      - { key: praep-temp-nach, level: A2, de: "nach + Dativ" }
+      - { key: praep-temp-seit, level: A2, de: "seit + Dativ" }
+      - { key: praep-temp-um, level: A2, de: "um + Akkusativ" }
+      - { key: praep-temp-von-bis, level: A2, de: "von … bis" }
+      - { key: praep-temp-vor, level: A2, de: "vor + Dativ" }
+      - { key: praep-temp-zu, level: A2, de: "zu + Dativ" }
+
+  - id: praeposition-lokal
+    de: "Präposition · lokal"
+    page: 107
+    entries:
+      - { key: praep-lok-an, level: A2, de: "an + Dativ / Akkusativ" }
+      - { key: praep-lok-auf, level: A2, de: "auf + Dativ" }
+      - { key: praep-lok-aus, level: A2, de: "aus + Dativ" }
+      - { key: praep-lok-bei, level: A2, de: "bei + Dativ" }
+      - { key: praep-lok-in, level: A2, de: "in + Dativ / Akkusativ" }
+      - { key: praep-lok-nach, level: A2, de: "nach + Dativ" }
+      - { key: praep-lok-von-nach, level: A2, de: "von … nach + Dativ" }
+      - { key: praep-lok-vor, level: A2, de: "vor + Dativ / Akkusativ" }
+      - key: praep-lok-zu
+        level: A2
+        de: "zu + Dativ"
+        note: "Printed `zu + Akkusativ` in the source. That is an error in the document — zu governs the dative, and the document's own examples are dative. Corrected here, with the printed form recorded, because a transcription that reproduces the error would put a false fact into the denominator."
+
+  - id: praeposition-modal
+    de: "Präposition · modal"
+    page: 107
+    entries:
+      - { key: praep-mod-aus, level: A2, de: "aus + Dativ (Material)" }
+      - { key: praep-mod-fuer, level: A2, de: "für + Akkusativ" }
+      - { key: praep-mod-mit, level: A2, de: "mit + Dativ (Mittel)" }
+      - { key: praep-mod-ohne, level: A2, de: "ohne + Akkusativ" }
+
+  - id: syntax
+    de: "Syntax"
+    page: 108
+    entries:
+      - { key: verbzweitstellung, level: A2, de: "Verbzweitstellung" }
+      - { key: erg-nominativ, level: A2, de: "Nominativergänzung" }
+      - { key: erg-akkusativ, level: A2, de: "Akkusativergänzung" }
+      - { key: erg-dativ, level: A2, de: "Dativergänzung" }
+      - { key: erg-lokal, level: A2, de: "Lokalergänzung" }
+      - { key: erg-qualitativ, level: A2, de: "Qualitativergänzung" }
+      - { key: satzklammer, level: A2, de: "Satzklammer" }
+      - { key: negation-nicht, level: A2, de: "Negation mit nicht" }
+      - { key: negation-kein, level: A2, de: "Negation mit kein" }
+      - { key: frage-entscheidung, level: A2, de: "Entscheidungsfrage" }
+      - { key: frage-ergaenzung, level: A2, de: "Ergänzungsfrage" }
+
+  - id: satzverbindungen-hauptsatz
+    de: "Syntax · Satzverbindungen (Hauptsatz + Hauptsatz)"
+    page: 108
+    entries:
+      - { key: satzverb-und, level: A2, de: "Satzverbindung mit und" }
+      - { key: satzverb-oder, level: A2, de: "Satzverbindung mit oder" }
+      - { key: satzverb-aber, level: A2, de: "Satzverbindung mit aber" }
+      - { key: satzverb-denn, level: A2, de: "Satzverbindung mit denn" }
+      - { key: satzverb-deshalb, level: A2, de: "Satzverbindung mit deshalb (Adverb)" }
+      - { key: satzverb-dann, level: A2, de: "Satzverbindung mit dann" }
+
+  - id: satzverbindungen-nebensatz
+    de: "Syntax · Satzverbindungen (Hauptsatz + Nebensatz)"
+    page: 108
+    entries:
+      - { key: nebensatz-dass, level: A2, de: "Nebensatz mit dass" }
+      - { key: nebensatz-fragewort, level: A2, de: "Nebensatz mit einem Fragewort (indirekte Frage)" }
+      - { key: nebensatz-weil, level: A2, de: "Nebensatz mit weil" }
+      - { key: nebensatz-wenn, level: A2, de: "Nebensatz mit wenn" }
+
+  - id: wortbildung-nomen
+    de: "Wortbildung · Nomen"
+    page: 108
+    entries:
+      - { key: wb-nomen-er, level: A2, de: "Nominalisierung auf -er" }
+      - { key: wb-nomen-ung, level: A2, de: "Nominalisierung auf -ung" }
+      - { key: wb-nomen-in, level: A2, de: "Feminine Personenbezeichnung auf -in" }
+
+  - id: wortbildung-adjektiv
+    de: "Wortbildung · Adjektive"
+    page: 108
+    entries:
+      - { key: wb-adj-un, level: A2, de: "Vorsilbe un-" }
+      - { key: wb-adj-los, level: A2, de: "Nachsilbe -los" }

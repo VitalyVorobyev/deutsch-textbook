@@ -39,6 +39,71 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
+**P26 · The six rows the 2026-08-14 anchor pass reopened.** Each exists in
+`data/grammar-inventory.yaml` with a deliberately unregistered focus tag, so `bun scripts/grammar-coverage.ts`
+reports it `✗` — the pattern B1 used at 0%. Closing one means: content, register the tag in
+`focusIntroducedBy` **and** `docs/authoring/focus-tags.md`, and lower the number in
+`tests/grammar-coverage.test.ts` in the same commit. Evidence and page citations:
+[grammar-structure-audit.md](curriculum/grammar-structure-audit.md) · the console's Lücken view.
+
+- **P26-1 · `koordination` (A1)** — *und / oder / aber / denn* joining two main clauses, with the
+  conjunction occupying no sentence position. Listed at A1 **and** A2 by Goethe. The sharpest of the
+  six: `~und`, `~oder` and `~aber` are ~-marked in `data/goethe-a1-wortliste.txt`, i.e. the lexical
+  manifest has been claiming the curriculum teaches them as grammar while no grammar row existed at
+  any level. The only systematic treatment anywhere is one comparison-table row in
+  `a2/verbindungen-folgen`. Likely owner: `a1/praesens-wortstellung` (it owns `verbzweit`, and the
+  contrast that makes A2's *weil*/*deshalb* learnable is that these four change nothing).
+- **P26-2 · `wortbildung-nomen` (A1)** — Komposita, *-er*, *-ung*, feminine *-in*. Wortbildung is one
+  of the eight top-level sections of **both** Goethe inventories and had no row at any level: the
+  largest single hole found. Not decoration — the gender of a compound comes from its last member,
+  *-ung* nouns are feminine without exception, and a learner who can decompose reads far more than
+  the Wortliste alone predicts.
+- **P26-3 · `wortbildung-adjektiv` (A1)** — *un-*, *-los*, *-bar*, *hellblau*. Kept separate from
+  P26-2 because the confusion differs: a compound asks which member carries the gender, an affix
+  asks what it does to the meaning. *-bar* is also the first passive-like form a learner meets.
+- **P26-4 · `demonstrativartikel` (A1)** — *dieser/diese/dieses*, listed at A1 and again at A2. The
+  confusion is not the meaning but that *dieser* takes the definite article's endings while a
+  following adjective then takes the weak ones, so it belongs beside `adjektiv-bestimmt`.
+- **P26-5 · `reziprokpronomen` (A2)** — *Wir sehen uns morgen*. Shares its FORM with the reflexive
+  and none of its meaning; EN marks the difference lexically (`each other`), RU/UK with «друг друга»,
+  so neither hand supplies the German syncretism. Reception A1, production A2.
+- **P26-6 · `interrogativartikel` (A2)** — *welch-* as a determiner plus *alle*. The trap is the
+  case: *Welchen Film…?* is where a nominative *Welcher* slips in, and EN `which` / RU «какой»
+  decline for neither or differently. Distinct from `indefinitpronomen`, which owns the free-standing
+  *welch-* pronoun.
+- **P26-7 · Buy the two missing anchors** — the Goethe/ÖSD **B1 Prüfungsziele** (ISBN
+  978-3-19-031868-1) and **Profile deutsch** (ISBN 978-3-468-49410-9). B1 currently reports 32/32
+  against **no external list at all**, exactly the state A1 was in while missing four structures;
+  Goethe delegates B2's inventory to Profile deutsch outright. Each becomes one
+  `data/strukturenlisten/*.yaml` and every new entry starts life `unclaimed`, so the size of the job
+  is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
+  the free A2 list here is *Fit in Deutsch 2*, the youth exam.
+- **P26-8 · `über` as a duration marker** — the one remaining unclaimed A1 entry (*über 20 Minuten*),
+  taught nowhere. Marginal — it is closer to a quantifier than a temporal preposition — so it needs a
+  ruling before it needs a row.
+- **P26-9 · Twenty articles whose `## Erklärung` has no `###` subsections** — every case topic among
+  them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
+  `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
+  rule; `src/lib/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
+  (exit 0) and the console badges each topic. The heading is the only addressable place a structure
+  is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
+  point but the whole article. Content work, one article at a time; the warning count is the counter.
+- **P26-10 · Thirteen taught structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
+  --by-point --no-probe`. Five at A1 (`gern`, `plural`, `negation-nicht`, `akkusativ-pronomen`,
+  `haben-wendungen`), eight at A2 (`adjektiv-praedikativ`, `aber-sondern`, `reflexiv-akkusativ`,
+  `reflexiv-dativ`, `um-zu`, `passiv-praesens`, `will-moechte`, `partizip2-system`). The lesson cycle
+  ends before its last step for each of them. Probe families are ordinary work since P19-4, but
+  **measure `armedAt` before and after** — a source reading is not a measurement.
+- **P26-11 · B1 has one drill set (8 items) against A2's thirteen (170)** — the remediation channel
+  is effectively unbuilt at B1, which is what P23-3 sees from the other end. Median practice per
+  confusion is 4 at B1 against 12 at A1, and 10 of 35 B1 tags live in exactly one practice file, so a
+  B1 confusion is drilled inside its own unit and never interleaved again. Authoring drills here also
+  raises the floors in `tests/grammar-depth.test.ts`.
+- **P26-12 · B1 pretests carry zero focus tags** (0 of 42) where A2's carry 72 of 72 — the same
+  artifact class tagged differently per level. Pretests are never weakness evidence, so nothing is
+  mis-measured today; but any instrument reading pretest tags sees two levels and one blind spot.
+  Decide the convention, then make all three levels match it.
+
 - **P25-14 · Non-material findings of the 2026-08-12 strand audit (batch 1)** — the material
   findings (false dative-club closure rule, missing plural in the A1 shape rule, six items
   rejecting or mis-attributing correct German) were fixed in the batch PR; these were real but
@@ -564,6 +629,17 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   items name outcomes from six topics: accurate for `role: exam-practice`, but the `topic:` field
   then says something untrue. Both are shape questions — where exam practice belongs in navigation
   is a product call, and giving the role a level instead of a topic is a schema change.
+- **P26-13 · The A2 and B1 exam trainers are unblocked** — the owner downloaded the remaining free
+  goethe.de material on 2026-08-14, so `docs/GeotheInstitute/` now also holds `A2_Modellsatz_Erwachsene`,
+  `A2_Uebungssatz_Erwachsene`, `b1_modellsatz_erwachsene`, `B1_Uebungssatz_Erwachsene` and four
+  Hören tracks (A2 ×2, B1 ×2). `bun run exam:ingest` reads `exam-sources.yaml`, so extending the
+  trainer past A1 is config plus the cue pass — and the cue pass is the expensive half: labels and
+  boundaries proposed by `bun scripts/exam-cues-scan.ts` are guesses and must be **verified by ear**
+  (or against word-level ASR, per the exam-cue note) before they ship. ADR 0009 holds unchanged:
+  nothing these files contain, and no manifest reproducing their task texts, enters the repo.
+  Inventory: `docs/GeotheInstitute/SOURCES.md`. **They anchor no grammar** — their "Strukturen" hits
+  are Schreiben/Sprechen marking criteria, not inventories; the grammar anchors are the
+  *Prüfungsziele*, and B1's is still unbought (P26-7).
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking.

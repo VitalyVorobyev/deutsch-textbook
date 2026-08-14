@@ -20,15 +20,81 @@ import { join } from 'node:path';
 import * as YAML from 'yaml';
 import { LEVELS, type Level } from './schemas';
 
+/**
+ * The grammatical systems a point belongs to. A point sits in exactly one — the system whose
+ * picture would be incomplete without it — and genuine overlaps (`wechselpraepositionen` is case
+ * *and* space) are expressed as `deepens:` edges across strands instead of multi-membership, so
+ * each strand renders as one unambiguous A1→B1 ladder.
+ *
+ * Derived from the 87 rows that existed when the field was introduced, cross-checked against the
+ * section headings of the Goethe inventories (`data/strukturenlisten/`) — Verb, Nomen,
+ * Artikelwörter/Pronomen, Adjektiv, Präposition, Syntax, Wortbildung — and against the
+ * cross-cutting systems a reference grammar organises German by. It is a taxonomy of confusions,
+ * not of word classes: `raum` and `zeit` exist because choosing *in* vs *nach* and *seit* vs *vor*
+ * are the questions learners actually get wrong, and neither is answerable from inside `kasus`.
+ */
+export const GRAMMAR_STRANDS = [
+  'satzklammer',
+  'satzverbindung',
+  'kasus',
+  'nominalgruppe',
+  'verbformen',
+  'verbvalenz',
+  'zeit',
+  'raum',
+  'negation',
+  'register-pragmatik',
+] as const;
+export type GrammarStrand = (typeof GRAMMAR_STRANDS)[number];
+
+/**
+ * Where a structure sits, split in two because the external standards are split in two.
+ *
+ * The Goethe A1 inventory states that it governs comprehension — "Für die mündliche und
+ * schriftliche Produktion ist die Grammatik-Liste dagegen von untergeordneter Bedeutung"
+ * (Prüfungsziele A1, Seite 100). This course is a production course. With one `standard_level` per
+ * row those two facts collide and a deliberate sequencing decision — meet the dative inside fixed
+ * chunks at A1, produce the paradigm at A2 — is indistinguishable from being a year late.
+ *
+ * `reception` may never be later than `production`: you do not produce a structure before you can
+ * recognise it, and a row asserting otherwise is a data error (`scripts/validate.ts`).
+ */
+export interface GrammarLevel {
+  reception: Level;
+  production: Level;
+}
+
 export interface GrammarPoint {
   id: string;
-  standard_level: Level;
+  /**
+   * Superseded by `level`. Still read (and still accepted by the loader) so the field migration
+   * and the content edits it enables do not have to land in one commit.
+   */
+  standard_level?: Level;
+  level?: GrammarLevel;
+  strand?: GrammarStrand;
   de: string;
   en: string;
   focus?: string[];
+  /** `<source-id>:<entry-key>` refs into `data/strukturenlisten/` — see `src/lib/structures.ts`. */
+  claims?: string[];
+  /** ids of points this one is the deeper pass over. Was prose in `note:` on 15 rows. */
+  deepens?: string[];
+  /** Per-row citations. A file-level "Sources: …" claim covers no individual row and is not one. */
+  source?: string[];
   reference_only?: boolean;
   taught_in?: string[];
   note?: string;
+}
+
+/** The level this course authors production for — what `grammarCoverage` measures against. */
+export function productionLevel(point: GrammarPoint): Level {
+  return point.level?.production ?? point.standard_level!;
+}
+
+/** The level at which the standard expects comprehension. Defaults to the production level. */
+export function receptionLevel(point: GrammarPoint): Level {
+  return point.level?.reception ?? productionLevel(point);
 }
 
 export type PointStatus = 'covered' | 'late' | 'missing';
@@ -134,7 +200,7 @@ export function grammarCoverage(level: Level, root = process.cwd()): GrammarCove
   }
 
   const points = loadGrammarInventory(root)
-    .filter((p) => p.standard_level === level)
+    .filter((p) => productionLevel(p) === level)
     .map((point): GrammarPointResult => {
       if (point.reference_only) {
         // An empty `taught_in` must not pass. `[].every(...)` is vacuously

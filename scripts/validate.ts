@@ -39,8 +39,10 @@ import {
   type ListeningArtifact,
   type ListeningPlan,
   LEVELS,
+  type Level,
 } from '../src/lib/schemas';
-import type { GrammarPoint } from '../src/lib/grammar-coverage';
+import { GRAMMAR_STRANDS, type GrammarPoint } from '../src/lib/grammar-coverage';
+import { entryRef, loadStructureSources } from '../src/lib/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
 import { gradedTokenPositions } from '../src/lib/production';
@@ -398,17 +400,84 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
 // one. It cannot be checked against the focus taxonomy — a point whose tag is
 // unregistered is the normal way an unwritten structure shows up — so what is
 // enforced here is only that the file itself stays trustworthy: unique ids,
-// real levels, and reference-only points that name a topic which exists.
+// real levels, a known strand, resolvable `deepens` and `claims` edges, and
+// reference-only points that name a topic which exists.
 {
   const file = join(ROOT, 'data', 'grammar-inventory.yaml');
   try {
     const points = (YAML.parse(readFileSync(file, 'utf8')) as { points?: GrammarPoint[] }).points ?? [];
+    const ids = new Set(points.map((p) => p.id));
+    // Every `<source-id>:<entry-key>` any strukturenliste defines. A `claims:` ref that resolves
+    // to nothing is a citation to a document that does not say it — the one defect in this file
+    // that would quietly inflate the anchored figure.
+    const knownRefs = new Set<string>();
+    for (const src of loadStructureSources(ROOT))
+      for (const section of src.sections)
+        for (const entry of section.entries) knownRefs.add(entryRef(src.source.id, entry.key));
     const seen = new Set<string>();
     for (const point of points) {
       if (seen.has(point.id)) fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
       seen.add(point.id);
-      if (!(LEVELS as readonly string[]).includes(point.standard_level))
-        fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown standard_level "${point.standard_level}"`);
+
+      // `level: {reception, production}` replaced `standard_level` on 2026-08-14. Both shapes are
+      // read by src/lib/grammar-coverage.ts so the migration did not have to be atomic, but a row
+      // carrying neither can be placed at no level at all and must not pass.
+      const production = point.level?.production ?? point.standard_level;
+      const reception = point.level?.reception ?? production;
+      if (!production)
+        fail('data/grammar-inventory.yaml', `point "${point.id}" declares no level: {reception, production}`);
+      for (const [field, value] of [['production', production], ['reception', reception]] as const)
+        if (value && !(LEVELS as readonly string[]).includes(value))
+          fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown level.${field} "${value}"`);
+      // You do not produce a structure before you can recognise it. A row asserting otherwise has
+      // its two levels swapped, which would make the reception view report the opposite of reality.
+      // Guarded on both being *known* levels: `indexOf` returns -1 for an unknown one, so an
+      // already-reported typo would otherwise also report itself as an ordering defect.
+      const known = (v?: string) => !!v && (LEVELS as readonly string[]).includes(v);
+      if (
+        known(production) && known(reception) &&
+        LEVELS.indexOf(reception as Level) > LEVELS.indexOf(production as Level)
+      )
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has level.reception ${reception} later than level.production ${production} — reception cannot follow production`,
+        );
+
+      if (!point.strand || !(GRAMMAR_STRANDS as readonly string[]).includes(point.strand))
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has unknown strand "${point.strand ?? ''}" — one of ${GRAMMAR_STRANDS.join(', ')}`,
+        );
+
+      // `deepens` is the spiral as data. A dangling target, a self-edge or an edge pointing at a
+      // LATER point would each draw a ladder that does not exist — and the strand view is drawn
+      // from exactly these edges.
+      for (const target of point.deepens ?? []) {
+        if (target === point.id)
+          fail('data/grammar-inventory.yaml', `point "${point.id}" deepens itself`);
+        else if (!ids.has(target))
+          fail('data/grammar-inventory.yaml', `point "${point.id}" deepens unknown point "${target}"`);
+        else {
+          const base = points.find((p) => p.id === target)!;
+          const baseLevel = base.level?.production ?? base.standard_level;
+          if (
+            production && baseLevel &&
+            LEVELS.indexOf(baseLevel as Level) > LEVELS.indexOf(production as Level)
+          )
+            fail(
+              'data/grammar-inventory.yaml',
+              `point "${point.id}" (${production}) deepens "${target}", which is taught later (${baseLevel})`,
+            );
+        }
+      }
+
+      for (const claim of point.claims ?? [])
+        if (!knownRefs.has(claim))
+          fail(
+            'data/grammar-inventory.yaml',
+            `point "${point.id}" claims "${claim}", which no file in data/strukturenlisten/ defines`,
+          );
+
       if (!point.reference_only && !point.focus?.length)
         fail(
           'data/grammar-inventory.yaml',
@@ -1988,6 +2057,42 @@ function checkMdxLangDiscipline(
 for (const { file, data, body } of topics.values()) checkMdxLangDiscipline(file, data, body, warn);
 for (const { file, data, body } of discoveries.values())
   checkMdxLangDiscipline(file, data, body, fail);
+
+/**
+ * `## Erklärung` must split into `### German subsections`, one per named confusion — CLAUDE.md
+ * states it as an imperative, and until now nothing checked it. `src/lib/prose-shape.ts` says why
+ * it left the question alone: whether a heading *names a confusion* is a judgement about meaning
+ * and stays with the author. But the mechanical half — is there a `### ` in there at all — is not
+ * a judgement, and twenty of forty-nine articles have none.
+ *
+ * It matters beyond tidiness. The heading is the only addressable place a structure is explained:
+ * an inventory row names a confusion, and without a subsection there is nowhere for it, for a
+ * cross-link or for the console's Struktur page to point at except the whole article.
+ *
+ * A WARNING, not a failure. Twenty existing articles would turn the gate red for prose written
+ * before the rule was enforced, which would make `bun run validate` something to work around
+ * rather than something to pass. The console flags them per topic and the backlog holds the work.
+ */
+for (const { file, body } of topics.values()) {
+  const headings = [...body.matchAll(/^(#{2,3})\s+(.+?)\s*$/gm)].map((m) => ({
+    depth: m[1]!.length,
+    text: m[2]!.trim(),
+  }));
+  let inside = false;
+  let subsections = 0;
+  let hasErklaerung = false;
+  for (const h of headings) {
+    if (h.depth === 2) {
+      inside = h.text.startsWith('Erklärung');
+      if (inside) hasErklaerung = true;
+    } else if (inside) subsections += 1;
+  }
+  if (hasErklaerung && subsections === 0)
+    warn(
+      file,
+      '## Erklärung has no ### subsections — the confusions it teaches have no addressable anchor (CLAUDE.md: one subsection per named confusion)',
+    );
+}
 
 // ---------------------------------------------------------------------------
 // Grading decisions: a committed linguistic ruling must stay true
