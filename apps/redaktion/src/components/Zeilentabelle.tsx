@@ -29,6 +29,7 @@
  */
 import { useMemo, useState, type ReactNode } from 'react';
 import { Chip, Empty } from '@da/ui/primitives';
+import { Hinweis } from './Hinweis';
 
 export interface Spalte<Row> {
   key: string;
@@ -37,6 +38,14 @@ export interface Spalte<Row> {
   numeric?: boolean;
   /** Providing this makes the column sortable; the header becomes a button. */
   sort?: (row: Row) => number | string;
+  /**
+   * Dropped below 1280 px. For a column that is real but secondary — a machine key beside the
+   * human label it belongs to. Measured on `Quellen` at 1024: the five columns squeezed the label
+   * column to 309 px, two of the ninety-five entries wrapped to three lines, and the tallest row hit
+   * **2.74× the median** where the same table reads 1.56× at 1440. Dropping the key column gives the
+   * label ~440 px and the wrapping stops. Never mark the column a row is identified by.
+   */
+  nurBreit?: boolean;
   cell: (row: Row) => ReactNode;
 }
 
@@ -74,6 +83,24 @@ export function Extern({ href, children }: { href: string; children: ReactNode }
       {children}
       <span aria-hidden="true"> ↗</span>
     </a>
+  );
+}
+
+/**
+ * A bounded view of a long SINGLE value — the same rule as `Mehrere`, applied to length rather than
+ * to count.
+ *
+ * `Mehrere` was written because one cell holding twenty links set the height of its row. A cell
+ * holding one forty-word label does exactly the same thing, and the audit caught it: `Quellen` at
+ * 1024 px ran **2.15× its median row height** on two of ninety-five entries — "Perfekt der Verben:
+ * arbeiten / bleiben / essen …" wrapping to three lines. Two lines, then the full value on hover,
+ * which is what the row's own `title` could never give a keyboard.
+ */
+export function Kurz({ children, text }: { children: ReactNode; text: string }) {
+  return (
+    <Hinweis inhalt={text}>
+      <span className="line-clamp-2">{children}</span>
+    </Hinweis>
   );
 }
 
@@ -119,7 +146,9 @@ export function Zahl({ value, max, warnBei }: { value: number; max: number; warn
           set the row height for the whole table. Here the track is the same height as the digits. */}
       <span className="hidden h-1 w-16 overflow-hidden rounded-full bg-surface-sunken sm:block">
         <span
-          className={`block h-full ${tone === 'warn' ? 'bg-warn' : 'bg-brand'}`}
+          // Ink, not brand: a hundred and two amber tracks down one column is a texture, not a
+          // reading. Hue is kept for the rows that are short.
+          className={`block h-full ${tone === 'warn' ? 'bg-warn' : 'bg-ink-muted'}`}
           style={{ width: `${percent}%` }}
         />
       </span>
@@ -190,7 +219,7 @@ export function Zeilentabelle<Row>({
                   aria-sort={active ? (sort!.dir === 'auf' ? 'ascending' : 'descending') : undefined}
                   className={`whitespace-nowrap px-2 py-2 font-semibold uppercase tracking-wide first:pl-0 last:pr-0 ${
                     column.numeric ? 'text-right' : ''
-                  }`}
+                  } ${column.nurBreit ? 'hidden xl:table-cell' : ''}`}
                 >
                   {column.sort ? (
                     <button
@@ -224,7 +253,7 @@ export function Zeilentabelle<Row>({
                   key={column.key}
                   className={`px-2 py-1.5 align-middle text-ink first:pl-0 last:pr-0 ${
                     column.numeric ? 'tabular text-right' : ''
-                  }`}
+                  } ${column.nurBreit ? 'hidden xl:table-cell' : ''}`}
                 >
                   {column.cell(row)}
                 </td>

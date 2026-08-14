@@ -17,6 +17,13 @@
  * 7/7 says nothing worth a label and gets none; `nominalgruppe` at A1 reads 3/6 in warn ink and is
  * the finding. Labelling all forty cells equally would rebuild the table this replaces.
  *
+ * WHY THE FILLED SQUARE HAS NO HUE. It was `bg-brand`, and since roughly nine in ten structures are
+ * taught, that put ~90 saturated amber squares on the app's front door: the *ordinary* state was the
+ * loudest thing on the screen, and the rose outlines that are the actual finding had to compete with
+ * it. Filled is now neutral ink and the only hue on the map is the exception. The rule this follows
+ * across the app: **hue marks an exception or the reader's current position; quantity is drawn in
+ * ink.**
+ *
  * WHAT IT DELIBERATELY DOES NOT ENCODE. Fifteen of the 98 structures expect reception a level
  * before production, and that is a real fact with a real home — the chip on the Struktur page and
  * the count below the map. It is not a third fill here: one glyph answering two questions answers
@@ -59,7 +66,7 @@ export function Dichte({ items, slots, title }: { items: Zelle['items']; slots: 
             >
               <span
                 className={`h-2.5 w-2.5 rounded-[2px] ${
-                  item.on ? 'bg-brand' : 'border border-warn/70 bg-transparent'
+                  item.on ? 'bg-ink-muted' : 'border border-warn bg-transparent'
                 }`}
               />
             </Hinweis>
@@ -83,11 +90,11 @@ export function DichteLegende() {
   return (
     <ul className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-ink-muted">
       <li className="flex items-center gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-[2px] bg-brand" />
+        <span className="h-2.5 w-2.5 rounded-[2px] bg-ink-muted" />
         <span>ein Thema unterrichtet die Struktur</span>
       </li>
       <li className="flex items-center gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-[2px] border border-warn/70" />
+        <span className="h-2.5 w-2.5 rounded-[2px] border border-warn" />
         <span>im Inventar, kein Element trägt einen ihrer Fokus-Tags</span>
       </li>
       <li className="flex items-center gap-1.5">

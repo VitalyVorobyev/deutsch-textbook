@@ -95,7 +95,11 @@ export function Reiter<T extends string>({
     <RadixTabs.Root value={value} onValueChange={(next) => onChange(next as T)}>
       <RadixTabs.List
         aria-label={ariaLabel}
-        className="inline-flex rounded-md border border-border-subtle p-0.5 text-sm"
+        // WRAPS. `Bestand` has eight tabs and at 1024 px the eighth ("Wortnetze") was clipped by
+        // the container's right edge — silently, because an `inline-flex` row neither scrolls nor
+        // reflows, it just ends. A tab the reader cannot see is a kind of material the index does
+        // not appear to hold.
+        className="flex w-fit max-w-full flex-wrap rounded-md border border-border-subtle p-0.5 text-sm"
       >
         {options.map((option) => (
           <RadixTabs.Trigger

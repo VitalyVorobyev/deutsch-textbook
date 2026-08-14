@@ -179,15 +179,26 @@ export function Callout({
   action?: ReactNode;
   children?: ReactNode;
 }) {
+  /*
+   * THE RULE CARRIES THE TONE; THE GROUND DOES NOT. The learner app tints the whole block, and that
+   * works there because the block is small and the page is warm and light. Here the callout runs
+   * the full 1184 px content width, and a 14 % rose over a cool slate ground mixes to plum: measured
+   * `oklab(0.645 0.236 0.070 / 0.14)`, which is a large purple slab wearing a red stripe. Dose, not
+   * hue, was the error — the same mistake as the forty-nine tinted cards, at one-per-page scale.
+   */
+  // Inset shadow rather than `border-l-<colour>`, for the reason PANEL_TONE records: the two
+  // border-colour utilities collide at equal specificity and the winner depends on utility order.
   const rule: Record<Tone, string> = {
-    neutral: 'border-l-border-subtle bg-surface-sunken',
-    brand: 'border-l-brand bg-brand-soft',
-    ok: 'border-l-ok bg-ok-soft',
-    info: 'border-l-info bg-info-soft',
-    warn: 'border-l-warn bg-warn-soft',
+    neutral: 'shadow-[inset_4px_0_0_var(--color-border-subtle)]',
+    brand: 'shadow-[inset_4px_0_0_var(--color-brand)]',
+    ok: 'shadow-[inset_4px_0_0_var(--color-ok)]',
+    info: 'shadow-[inset_4px_0_0_var(--color-info)]',
+    warn: 'shadow-[inset_4px_0_0_var(--color-warn)]',
   };
   return (
-    <section className={`mb-6 flex flex-wrap items-center justify-between gap-4 border-l-4 p-5 ${rule[tone]}`}>
+    <section
+      className={`mb-6 flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border-subtle bg-surface-raised p-5 pl-6 ${rule[tone]}`}
+    >
       <div className="min-w-0 max-w-2xl">
         {eyebrow ? <Label>{eyebrow}</Label> : null}
         {title ? <h2 className="mt-1 text-lg font-semibold text-ink">{title}</h2> : null}
@@ -310,6 +321,47 @@ export function Filter<T extends string>({
         ))}
       </select>
     </label>
+  );
+}
+
+/**
+ * An action. Quiet by default, inverted when it is the one thing to do.
+ *
+ * IT IS NEVER TONED BY THE THING IT ACTS ON, which is the mistake it exists to stop: the
+ * Sprachkarte's "open in the findings inbox" button sat inside a warn `Callout`, on a warn ground,
+ * wearing a warn border and warn text — three statements of the same alarm, one of them on a
+ * control, where the reader has to decide whether red means *danger* or means *press me*. A callout
+ * has already said what is wrong; its button only has to say what to do.
+ *
+ * `stark` inverts to the ink colour: unmissable, and no role hue at all, so it works inside a
+ * callout of any tone.
+ */
+export function Button({
+  href,
+  onClick,
+  stark = false,
+  pressed,
+  children,
+}: {
+  href?: string;
+  onClick?: () => void;
+  stark?: boolean;
+  pressed?: boolean;
+  children: ReactNode;
+}) {
+  const className = `inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand ${
+    stark || pressed
+      ? 'bg-ink text-surface hover:opacity-90'
+      : 'border border-border-subtle bg-surface-raised text-ink hover:border-ink-muted'
+  }`;
+  return href ? (
+    <a href={href} className={className}>
+      {children}
+    </a>
+  ) : (
+    <button type="button" onClick={onClick} aria-pressed={pressed} className={className}>
+      {children}
+    </button>
   );
 }
 

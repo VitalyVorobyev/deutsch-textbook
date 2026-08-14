@@ -1,31 +1,36 @@
 /**
- * The editorial app and the learner app are one visual family, and this is the only thing that
- * says so twice.
+ * The design tokens, and the two things about them that are silent when broken.
  *
- * `packages/ui/src/tokens.css` was written to promote the learner app's palette from convention to
- * declaration — `stone` surfaces, `amber` brand, `emerald` success, `sky` links — and its own
- * comment claims "the palette does not change". It changed. The first version set the dark page to
- * `stone-950` against `src/styles/global.css`'s `dark:bg-stone-900` body, raised surfaces to
- * `stone-900` against the app's `dark:bg-stone-800` cards, and borders to `stone-800` against
- * `dark:border-stone-700`: a full step darker throughout, with card borders one step from
- * invisible. Nothing caught it, because a colour that is merely *wrong* renders perfectly.
+ * THE FIRST IS THAT THE PACKAGE HAS TO ASK TO BE SCANNED. Tailwind v4 detects sources from the Vite
+ * root, which for the editorial app is `apps/redaktion` — so every class written in
+ * `packages/ui/src` was simply never generated, and the failure is invisible three times over: the
+ * component renders, the class is right there in the DOM, and any class the package happens to
+ * share with an app file works fine. Measured in the browser on the build the author called ugly:
+ * `Panel`'s `p-5` computed to **padding: 0px**, `Callout`'s `border-l-4` to **border-left-width:
+ * 0px**, `StatGroup`'s `sm:grid-cols-2` to a single 382 px column. "Cards with zero padding" was a
+ * literal description. One `@source` line fixed all of it at once, and this file fails if a `.tsx`
+ * in the package ever falls outside those globs again.
  *
- * So the two files are held equal here. This is a small test guarding a claim the repo makes in
- * prose (CLAUDE.md, the tokens header) and could not otherwise keep — the same reason
- * `tests/focus-tags.test.ts` holds a doc table and an allowlist equal in both directions.
+ * THE SECOND IS CONTRAST. Seven of the eight role/theme text combinations shipped under the 4.5:1
+ * floor, because a colour that is merely unreadable renders perfectly and the author who picked it
+ * can see it on their own monitor. That is why each role is two tokens — a fill held to 3:1 and an
+ * `-ink` held to 4.5:1 — and why the ratios are asserted here rather than asserted in a comment.
  *
- * WHAT IT DELIBERATELY DOES NOT DO. It does not pin every token, because most of them have no
- * counterpart to drift from: the learner app has no `--color-ink-muted`, it has `text-stone-500`
- * typed out in ninety places. Only the surfaces and rules that both files independently name are
- * checked, and each assertion cites the learner-app declaration it is anchored to.
+ * WHAT IT DELIBERATELY DOES NOT DO. It no longer holds the editorial ramp equal to the learner
+ * app's. That equality was a real guard against accidental drift, and it was traded for a
+ * deliberate divergence: slate instead of stone, so the four role hues read as signal on a dense
+ * dark page and the two applications are told apart on sight. What is still pinned to the product
+ * is the part that carries meaning — which hue means what — plus the step structure the ramp has to
+ * have, and the floors, which are what the equality test was really protecting.
  */
 import { describe, expect, test } from 'bun:test';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 import { repoRoot } from '@da/content/repo-root';
 
 const root = repoRoot();
-const tokens = readFileSync(join(root, 'packages/ui/src/tokens.css'), 'utf8');
+const tokensPath = join(root, 'packages/ui/src/tokens.css');
+const tokens = readFileSync(tokensPath, 'utf8');
 const global = readFileSync(join(root, 'src/styles/global.css'), 'utf8');
 
 /**
@@ -48,34 +53,56 @@ const darkToken = (name: string): string | undefined => value(darkBlock, name);
 /** The value of `--color-<name>` in `@theme` — the light palette. */
 const lightToken = (name: string): string | undefined => value(lightBlock, name);
 
-describe('design tokens stay in the learner app’s family', () => {
-  test('the dark page background is the app’s body colour, not a darker one', () => {
-    // src/styles/global.css: body { @apply bg-stone-50 … dark:bg-stone-900 … }
+describe('the shared package reaches Tailwind’s scanner', () => {
+  /**
+   * The whole defect in one assertion. Without a matching `@source`, a class that exists only in
+   * this package is dropped from the stylesheet with no error anywhere — not at build, not at
+   * type-check, not in the console.
+   */
+  test('every .tsx in packages/ui/src is covered by an @source glob in tokens.css', () => {
+    const globs = [...tokens.matchAll(/@source\s+'([^']+)'/g)].map((m) => resolve(join(root, 'packages/ui/src'), m[1]!));
+    expect(globs.length, 'tokens.css declares no @source — the package will not be scanned').toBeGreaterThan(0);
+
+    const sources: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir)) {
+        const full = join(dir, entry);
+        if (statSync(full).isDirectory()) walk(full);
+        else if (entry.endsWith('.tsx')) sources.push(full);
+      }
+    };
+    walk(join(root, 'packages/ui/src'));
+    expect(sources.length, 'no .tsx found — this test would pass vacuously').toBeGreaterThan(0);
+
+    const uncovered = sources.filter((file) => !globs.some((glob) => !relative(glob, file).startsWith('..')));
+    expect(uncovered.map((f) => relative(root, f))).toEqual([]);
+  });
+});
+
+describe('design tokens', () => {
+  test('the ramp is slate — a deliberate divergence from the learner app’s stone', () => {
+    // The learner app stays warm; changing either side is a product decision, not a tidy-up. The
+    // assertion exists so that switching them back is a conscious edit with a reason attached.
     expect(global).toContain('dark:bg-stone-900');
-    expect(darkToken('surface')).toBe('stone-900');
+    expect(darkToken('surface')).toBe('slate-900');
+    expect(lightToken('surface')).toBe('slate-50');
   });
 
-  test('the light page background is the app’s body colour', () => {
-    expect(global).toContain('bg-stone-50');
-    expect(lightToken('surface')).toBe('stone-50');
-  });
-
-  test('a raised surface is a card, and a card in this product is stone-800 in the dark', () => {
+  test('a card sits one step above the page and its border one step above that', () => {
     // The learner app types this literally in CurriculumPath.tsx, ProgressPanel.tsx and
     // pruefung/shared.tsx: `rounded-lg border border-stone-200 bg-white dark:border-stone-700
-    // dark:bg-stone-800`. Both halves of that pair are pinned, because they were both wrong.
-    expect(darkToken('surface-raised')).toBe('stone-800');
-    expect(darkToken('border-subtle')).toBe('stone-700');
+    // dark:bg-stone-800`. The hues diverge now; the STEPS may not, or a card stops being a card.
+    expect(darkToken('surface-raised')).toBe('slate-800');
+    expect(darkToken('border-subtle')).toBe('slate-700');
     expect(lightToken('surface-raised')).toBe('white');
-    expect(lightToken('border-subtle')).toBe('stone-200');
+    expect(lightToken('border-subtle')).toBe('slate-200');
   });
 
   test('a recessed surface moves away from the page, in both themes', () => {
-    // Light: stone-50 page, stone-100 well. Dark has to mirror the direction, or a row hover and a
-    // card end up the same colour — which is what happened when sunken was set to stone-900 beside
-    // a stone-900 page.
-    expect(lightToken('surface-sunken')).toBe('stone-100');
-    expect(darkToken('surface-sunken')).toBe('stone-950');
+    // Light: slate-50 page, slate-100 well. Dark has to mirror the direction, or a row hover and a
+    // card end up the same colour — which is what happened when sunken was set to the page colour.
+    expect(lightToken('surface-sunken')).toBe('slate-100');
+    expect(darkToken('surface-sunken')).toBe('slate-950');
     expect(darkToken('surface-sunken')).not.toBe(darkToken('surface'));
     expect(darkToken('surface-sunken')).not.toBe(darkToken('surface-raised'));
   });
@@ -92,11 +119,6 @@ describe('design tokens stay in the learner app’s family', () => {
   /**
    * The contrast floor, which is the reason each role is two tokens.
    *
-   * Measured on the palette as it shipped: **seven of the eight role/theme text combinations were
-   * under 4.5:1** — rose-600 on the dark page read 3.72, amber-600 on the light page 3.05. Nothing
-   * caught it, because a colour that is merely unreadable renders perfectly and the author who
-   * picked it can see it fine on their own monitor.
-   *
    * WCAG 2.2: 4.5:1 for text under 18.66 px, 3:1 for a graphic that carries meaning. The `-ink`
    * half is held to the first, the fill half to the second. If a future palette change drops a pair
    * below its floor, this goes red with the measured number in the failure.
@@ -106,8 +128,8 @@ describe('design tokens stay in the learner app’s family', () => {
     'emerald-400': '#34d399', 'emerald-600': '#059669', 'emerald-700': '#047857',
     'sky-400': '#38bdf8', 'sky-600': '#0284c7', 'sky-700': '#0369a1',
     'rose-400': '#fb7185', 'rose-600': '#e11d48', 'rose-700': '#be123c',
-    'stone-50': '#fafaf9', 'stone-100': '#f5f5f4', 'stone-700': '#44403c',
-    'stone-800': '#292524', 'stone-900': '#1c1917', 'stone-950': '#0c0a09',
+    'slate-50': '#f8fafc', 'slate-100': '#f1f5f9', 'slate-700': '#334155',
+    'slate-800': '#1e293b', 'slate-900': '#0f172a', 'slate-950': '#020617',
     white: '#ffffff',
   };
   const channel = (c: number): number => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -126,8 +148,8 @@ describe('design tokens stay in the learner app’s family', () => {
     const failures: string[] = [];
     for (const role of ROLES) {
       for (const [theme, token, grounds] of [
-        ['light', lightToken(`${role}-ink`), ['stone-50', 'white']],
-        ['dark', darkToken(`${role}-ink`), ['stone-900', 'stone-800']],
+        ['light', lightToken(`${role}-ink`), ['slate-50', 'white']],
+        ['dark', darkToken(`${role}-ink`), ['slate-900', 'slate-800']],
       ] as const) {
         expect(token, `${theme} --color-${role}-ink is not declared`).toBeDefined();
         for (const ground of grounds) {
@@ -145,8 +167,8 @@ describe('design tokens stay in the learner app’s family', () => {
     const failures: string[] = [];
     for (const role of ROLES) {
       for (const [theme, token, ground] of [
-        ['light', lightToken(role), 'stone-50'],
-        ['dark', darkToken(role) ?? lightToken(role), 'stone-900'],
+        ['light', lightToken(role), 'slate-50'],
+        ['dark', darkToken(role) ?? lightToken(role), 'slate-900'],
       ] as const) {
         const ratio = contrast(token!, ground);
         if (ratio < 3) failures.push(`${theme} ${role} fill (${token}) on ${ground}: ${ratio.toFixed(2)}`);

@@ -115,7 +115,14 @@ four coverage reports) and `/__chunk/{items,vocab,texts}` (~8 MB, on demand), an
 corpus when a watched file changes. Same mechanism as `src/integrations/progress-writer.ts`, which
 already writes snapshots into the repo during `astro dev`.
 
-Two operational notes that cost time to find:
+It is **four maps**, not a report per sidebar entry: the language (`Sprachkarte`, the front door),
+the course (`Einheiten & Themen` → `Thema`), the material (`Bestand`, all fifteen `ElementKind`s),
+and the evidence (`Strukturen` · `Fokus-Tags` · `Quellen` · `Lücken`). The first version was nine
+flat routes each built from `Heading` + `Filter` + `Table`, because `@da/ui` held one container and
+one heading level — a package that ships three shapes can only produce pages that are three shapes.
+Blame the instrument first.
+
+Three operational notes that cost time to find:
 
 - It must run **under Bun** (`bunx --bun vite`). Vite loads its config through Node's strict ESM
   resolution, which rejects the extensionless relative imports inside `@da/content`.
@@ -123,9 +130,19 @@ Two operational notes that cost time to find:
   the graph is memoised but the four coverage measurements it calls are not, and each walks the
   corpus again. That is the eight-passes problem one layer up — building the graph did not remove
   it, it moved where it has to be paid. 7.8 s cold, 6 ms after.
+- **Tailwind does not scan `packages/ui` unless it is told to.** v4 auto-detects sources from the
+  *Vite root*, which here is `apps/redaktion`, so every class written in the shared package was
+  dropped from the stylesheet — silently, three ways over: the component rendered, the class sat in
+  the DOM, and any class the package happened to share with an app file still worked. Measured:
+  `Panel`'s `p-5` → **`padding: 0px`**, `Callout`'s `border-l-4` → `0px`, `StatGroup`'s
+  `sm:grid-cols-2` → one 382 px column. `@source './'` in `tokens.css` fixes it and
+  `tests/design-tokens.test.ts` keeps it fixed.
 
-Verification is a headless browser walk over all eleven routes asserting zero console errors, not
-"it compiled".
+Verification is `bun run redaktion:audit` — a headless browser over every route, asserting that each
+one resolves *as itself* (the router's fallback renders `Sprachkarte`, so a broken route looks like
+a working page), that permalinks survive reload, that no request leaves the origin, and that the
+two layout rules hold: row height ≤ 2× the median, ≤ 1 primary link per row. It is not part of
+`bun test`, which may not depend on a dev server or a browser.
 
 ## Writing back: two fields, five rules, and one measurement that decided the design
 

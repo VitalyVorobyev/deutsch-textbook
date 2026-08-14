@@ -109,9 +109,15 @@ export function Themen({ graph }: { graph: GraphPayload }) {
 
       {levels.map((group) => (
         <section key={group.level} className="mb-8">
-          <div className="mb-3 flex items-baseline gap-2">
+          <div className="mb-3 flex items-baseline gap-2 border-b border-border-subtle pb-2">
             <h2 className="text-base font-semibold text-ink">{group.level}</h2>
-            <span className="tabular text-xs text-ink-muted">{group.topics.length} Themen</span>
+            <span className="tabular text-xs text-ink-muted">
+              {group.topics.length} Themen
+              {(() => {
+                const par = graph.reports.find((r) => r.level === group.level)?.medians?.met;
+                return par === undefined ? '' : ` · Median ${par} Anforderungen`;
+              })()}
+            </span>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {group.topics.map((topic) => (
@@ -167,8 +173,10 @@ function ThemaKarte({
         </span>
       </div>
       {/* Units are 1:1 with topics today, so the unit title repeats the topic title on most cards.
-          Shown only where it actually says something different. */}
-      {topic.unitTitle && topic.unitTitle !== topic.title ? (
+          Compared LOOSELY, because an exact test let "Präsens und Wortstellung" print under
+          "Präsens & Wortstellung" on nine of the forty-nine cards — a difference of one conjunction,
+          rendered as if it were information. */}
+      {topic.unitTitle && !gleicherName(topic.unitTitle, topic.title) ? (
         <p className="-mt-1.5 truncate text-xs text-ink-muted">{topic.unitTitle}</p>
       ) : null}
 
@@ -180,7 +188,9 @@ function ThemaKarte({
               <span
                 key={stage}
                 title={`${ARC_LABEL[stage]}: ${n || 'nichts'}`}
-                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-brand' : 'border border-warn/70'}`}
+                // Neutral when present, rose only where the stage is missing — the same rule the
+                // density block follows, and for the same reason: a filled dot is the ordinary case.
+                className={`h-2.5 w-2.5 rounded-full ${n ? 'bg-ink-muted' : 'border border-warn'}`}
               />
             );
           })}
@@ -188,12 +198,13 @@ function ThemaKarte({
         </div>
       </div>
 
+      {/* The median is the LEVEL's, so it is printed once in the level heading rather than on all
+          forty-nine cards. A constant repeated per row is noise that reads as data. */}
       <p className="tabular text-xs text-ink-muted">
         <span className={par !== undefined && met < par ? 'text-warn-ink' : 'text-ink'}>
           {met}/{total}
         </span>{' '}
-        Anforderungen{par !== undefined ? ` · Median ${par}` : ''} · {profile?.depth.items ?? 0} Aufgaben,{' '}
-        {profile?.depth.production ?? 0} produktiv
+        Anforderungen · {profile?.depth.items ?? 0} Aufgaben, {profile?.depth.production ?? 0} produktiv
       </p>
 
       {/* A COUNT, not a stack of chips.
@@ -220,6 +231,12 @@ function ThemaKarte({
       )}
     </Panel>
   );
+}
+
+/** `&` and `und` are the same word, and a card that prints both has told the reader nothing. */
+function gleicherName(a: string, b: string): boolean {
+  const norm = (s: string) => s.toLowerCase().replace(/&/g, 'und').replace(/[^a-zäöüß]/g, '');
+  return norm(a) === norm(b);
 }
 
 /** The dots are decorative to a screen reader; this is what they say. */

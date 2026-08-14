@@ -13,7 +13,7 @@
  * over exactly the rows it was pointing at.
  */
 import { useState } from 'react';
-import { Callout, Chip, Empty, Filter, Label, Panel, Section } from '@da/ui/primitives';
+import { Button, Callout, Chip, Empty, Filter, Label, Panel, Section } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
 import { Extern, Gruppentabelle, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
@@ -155,16 +155,9 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
           eyebrow="Befund"
           title={`${untaught} Strukturen unterrichtet kein Thema`}
           action={
-            <button
-              type="button"
-              onClick={() => setNurUngelehrt((v) => !v)}
-              aria-pressed={nurUngelehrt}
-              className={`rounded-md border px-3 py-1.5 text-sm font-semibold ${
-                nurUngelehrt ? 'border-warn bg-warn text-white' : 'border-warn/50 text-warn-ink hover:bg-warn-soft'
-              }`}
-            >
+            <Button onClick={() => setNurUngelehrt((v) => !v)} pressed={nurUngelehrt}>
               {nurUngelehrt ? 'Filter aufheben' : 'nur diese zeigen'}
-            </button>
+            </Button>
           }
         >
           {PROBLEM_LABELS['punkt-ohne-thema']?.why}

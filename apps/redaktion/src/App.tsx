@@ -16,7 +16,9 @@
  * to `top-14` underneath it. At 98 and 102 rows the column meanings scroll away in the first
  * gesture, which is how the screenshots that prompted this redesign were taken.
  */
+import { useState } from 'react';
 import { Chip, Empty } from '@da/ui/primitives';
+import { Hinweis } from './components/Hinweis';
 import { useCorpus } from './data';
 import { href, useRoute, useScrollReset } from './router';
 import { Themen } from './views/Themen';
@@ -71,14 +73,53 @@ const TITLES: Record<string, string> = {
   luecken: 'Lücken',
 };
 
-function toggleTheme(): void {
-  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  document.documentElement.dataset.theme = next;
-  try {
-    localStorage.setItem('da:redaktion-theme', next);
-  } catch {
-    /* private mode; the theme simply does not persist */
-  }
+/**
+ * The theme control: an icon, and the icon of the theme you would GET rather than the one you are
+ * in. "Hell / Dunkel" was two words doing the job of one glyph, and it named both states at once,
+ * so it said nothing about which way the button goes.
+ *
+ * Inlined SVG rather than an icon package — two paths do not justify a dependency in an app whose
+ * whole point is that it never ships. Both carry `aria-hidden`; the button's accessible name is the
+ * `aria-label`, which changes with the state, and the tooltip repeats it for the mouse.
+ */
+function ThemeButton() {
+  const [dark, setDark] = useState(() => document.documentElement.dataset.theme === 'dark');
+  const next = dark ? 'light' : 'dark';
+  const label = dark ? 'Zu hellem Design wechseln' : 'Zu dunklem Design wechseln';
+
+  const toggle = () => {
+    document.documentElement.dataset.theme = next;
+    setDark(next === 'dark');
+    try {
+      localStorage.setItem('da:redaktion-theme', next);
+    } catch {
+      /* private mode; the theme simply does not persist */
+    }
+  };
+
+  return (
+    <Hinweis inhalt={label} fokussierbar={false}>
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={label}
+        className="grid h-8 w-8 place-items-center rounded-md text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 focus-visible:outline-brand"
+      >
+        {dark ? (
+          // Sun — what you switch TO from the dark theme.
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path strokeLinecap="round" d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" />
+          </svg>
+        ) : (
+          // Moon.
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M20 13.4A8.2 8.2 0 1 1 10.6 4a6.6 6.6 0 0 0 9.4 9.4Z" />
+          </svg>
+        )}
+      </button>
+    </Hinweis>
+  );
 }
 
 export function App() {
@@ -134,9 +175,7 @@ export function App() {
                 <Chip tone="warn">{graph.problems.length} Befunde</Chip>
               </a>
             ) : null}
-            <button type="button" onClick={toggleTheme} className="text-xs text-ink-muted hover:text-ink">
-              Hell / Dunkel
-            </button>
+            <ThemeButton />
           </div>
         </div>
       </header>

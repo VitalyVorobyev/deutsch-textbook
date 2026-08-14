@@ -21,7 +21,7 @@
  * `bun scripts/grammar-coverage.ts`, `coverage.ts`, `structures.ts` and `grammar-depth.ts` measure.
  * A number here that disagrees with those commands means this file is wrong.
  */
-import { Callout, Label, Panel, Section, Stat, StatGroup, Bar } from '@da/ui/primitives';
+import { Bar, Button, Callout, Label, Panel, Section, Stat, StatGroup } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import { DichteLegende, Matrix, type Zelle } from '../components/Dichte';
 import type { GraphPayload } from '../data';
@@ -76,14 +76,7 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
           tone="warn"
           eyebrow="Lücke im Inventar"
           title={`${untaught.length} Strukturen unterrichtet kein Thema`}
-          action={
-            <a
-              href={href('luecken')}
-              className="rounded-md border border-warn/50 px-3 py-1.5 text-sm font-semibold text-warn-ink hover:bg-warn-soft"
-            >
-              im Befundeingang öffnen
-            </a>
-          }
+          action={<Button href={href('luecken')}>im Befundeingang öffnen</Button>}
         >
           {PROBLEM_LABELS['punkt-ohne-thema']?.why}
         </Callout>

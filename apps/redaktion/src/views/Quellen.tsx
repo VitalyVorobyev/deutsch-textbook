@@ -17,10 +17,10 @@
  * with no way to see only what is unclaimed, which is the only thing anyone comes here for.
  */
 import { useState } from 'react';
-import { Chip, Empty, Label, Panel, Stat, StatGroup } from '@da/ui/primitives';
+import { Button, Chip, Empty, Label, Panel, Stat, StatGroup } from '@da/ui/primitives';
 import { Reiter } from '../components/Hinweis';
 import type { GraphPayload } from '../data';
-import { Extern, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import { Extern, Kurz, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 
 type Source = GraphPayload['sources'][number];
 type Entry = Source['sections'][number]['entries'][number] & { section: string; page?: number };
@@ -49,15 +49,38 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
   const uncovered = graph.levels.filter((l) => !graph.sources.some((s) => s.source.levels.includes(l)));
 
   const columns: Spalte<Entry>[] = [
-    { key: 'de', head: 'Bezeichnung', sort: (e) => e.de, cell: (e) => <span className="text-ink">{e.de}</span> },
+    {
+      key: 'de',
+      head: 'Bezeichnung',
+      sort: (e) => e.de,
+      // A handful of the transcribed labels run to a full clause ("Perfekt der Verben: arbeiten /
+      // bleiben / essen …"), which is the source's own wording and may not be shortened here — so
+      // the CELL is bounded instead, with the whole label one hover away.
+      cell: (e) => (
+        <Kurz text={e.de}>
+          <span className="text-ink">{e.de}</span>
+        </Kurz>
+      ),
+    },
     { key: 'section', head: 'Abschnitt', sort: (e) => e.section, cell: (e) => <span className="text-ink-muted">{e.section}</span> },
-    { key: 'key', head: 'Schlüssel', sort: (e) => e.key, cell: (e) => <span className="text-xs text-ink-muted">{e.key}</span> },
+    {
+      key: 'key',
+      head: 'Schlüssel',
+      // The machine id. Real, but it is the label beside it that a reader scans, so it yields the
+      // width below 1280 — see `nurBreit`.
+      nurBreit: true,
+      sort: (e) => e.key,
+      cell: (e) => <span className="text-xs text-ink-muted">{e.key}</span>,
+    },
     { key: 'level', head: 'Niveau', sort: (e) => e.level ?? '', cell: (e) => e.level ?? '—' },
     {
       key: 'status',
       head: 'Status',
       sort: (e) => (claimed(e) ? 1 : 0),
-      cell: (e) => (claimed(e) ? <Chip tone="ok">beansprucht</Chip> : <Chip tone="warn">offen</Chip>),
+      // Neutral for the ordinary case. `goethe-a1-sd1` is 95/95 claimed, so an `ok` chip here put
+      // ninety-five green pills down one column and the reader had to hunt for an absence of green.
+      // The rule the app follows everywhere: hue marks the exception.
+      cell: (e) => (claimed(e) ? <Chip>beansprucht</Chip> : <Chip tone="warn">offen</Chip>),
     },
   ];
 
@@ -132,16 +155,13 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
         <p className="text-sm text-ink-muted">
           {shown.length} von {entries.length} Einträgen
         </p>
-        <button
-          type="button"
-          aria-pressed={nurOffen}
-          onClick={() => setNurOffen((v) => !v)}
-          className={`rounded-md border px-3 py-1.5 text-xs font-semibold ${
-            nurOffen ? 'border-warn bg-warn text-white' : 'border-border-subtle text-ink-muted hover:text-ink'
-          }`}
-        >
-          nur offene ({open.length})
-        </button>
+        {/* Offered only when it would do something. A filter that promises `(0)` and empties the
+            table is a control that lies about what it is for. */}
+        {open.length ? (
+          <Button onClick={() => setNurOffen((v) => !v)} pressed={nurOffen}>
+            {nurOffen ? 'alle zeigen' : `nur offene (${open.length})`}
+          </Button>
+        ) : null}
       </div>
 
       <Zeilentabelle rows={shown} rowKey={(e) => `${meta.id}:${e.key}`} columns={columns} sortKey="de" />
