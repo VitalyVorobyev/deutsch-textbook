@@ -663,6 +663,21 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   not a test. It was carried through the ADR 0012 migration unchanged so that the move stayed a
   provable relocation. Either give it a job (a Redaktion facet is the obvious one) or delete the
   field from `topicManifestSchema` and the 49 files in one change.
+- **P26-17 · The DTZ § 9.2 Wortliste cross-check is the one anchor still unread** — the fourth
+  inventory in the handbook (pp. 105–178, ~2 100 Haupteinträge + ~600 indented Nebeneinträge) would
+  answer "does the adult A2–B1 standard expect words the Goethe A2 and B1 lists do not", against
+  `data/goethe-a2-wortliste.txt` (1 539) and `data/goethe-b1-wortliste.txt` (3 537). **Evidence, not
+  a denominator** — a different list for a different exam, so it is reported and never merged, and
+  it earns no `data/lexiklisten/` directory. Deferred on 2026-08-14 for cost against value: it is
+  the only anchor whose extraction is a project rather than a transcription, and the only one whose
+  output is a one-off report rather than a standing instrument. Geometry measured so a second
+  attempt does not start from zero: on a sample page, main entries sit at x≈133, indented
+  Nebeneinträge at x≈158 and the copyrighted example column at x≈250 (margins alternate by page
+  parity, as everywhere in this PDF). The unsolved part is **continuation lines** — `abhängen, hängt
+  ab,` / `hing ab, hat abgehangen` are two lines of one entry at the same x, so telling a new
+  headword from a verb-form continuation needs a heuristic, and `bun scripts/anchor-check.ts` cannot
+  check a lexis list the way it checks a label. Headwords only if it is ever done: the examples are
+  copyrighted (ADR 0009), exactly as the two existing manifests already record.
 - **P26-16 · Redaktion rebuilds the whole corpus after a one-field write** — measured in the
   browser on 2026-08-14: `PUT /__write` returns in milliseconds, then `invalidateContentGraph`
   throws the memoised graph away and the next `/__graph` takes **~6.6 s**, plus ~6 s for the
