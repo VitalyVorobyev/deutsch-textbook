@@ -139,3 +139,27 @@ cannot run it and an absent source skips rather than fails — the contract `exa
 keeps. Each source therefore also declares `pdf_pages`, the PDF pages holding its printed `pages`.
 That is declared outright rather than as an offset because Start Deutsch 2's PDF is a two-up scan
 whose every page carries two printed pages.
+
+## 2026-08-14 (later the same day) — the third dimension, and what a course can still hide
+
+`data/themenlisten/` completes the set. Grammar rows are measured against published *Strukturen*,
+outcomes against published *Sprachhandlungen*, and topics against published *Themen* — DTZ § 8.1,
+the CEFR chapter 4.2 theme list, seventy sub-topics.
+
+It could not have shipped with the other two. A theme is claimed by a **topic**, and until
+[ADR 0012](0012-topic-manifests.md) a topic had no file of its own to claim anything from.
+
+It found what the other two are blind to by construction: **59/70 (84%)**, with no topic about
+*Unfall*, *Polizei*, *Versicherungen*, *Kinderbetreuung* or *Klima/Wetter*. And it sharpened what a
+"hole" means. *Wetter*, *Sonne*, *Regen* and *Schnee* are all in the corpus — as flashcards in
+Wortliste completion decks that no topic owns. Lexical coverage reads 100% on them, because a card
+is a card. A theme hole is a **topic-level** hole: language the learner meets in isolation and never
+in a lesson.
+
+One caution belongs with it, and it is stronger than for the other two dimensions. A structure row
+cites a structure and an outcome cites a function; both are close to mechanical. **A theme
+assignment is editorial**, and it can fabricate in both directions: an over-claim manufactures
+coverage, and an under-claim manufactures a hole. Three of the first fourteen holes were the
+author's and not the corpus's — *Lebensmittel*, *Alter* and *Post* were all taught, and were found
+only by testing each reported hole against the decks and items rather than against the assignment
+that produced it. Do that every time this file grows.

@@ -8,6 +8,7 @@
 import { describe, expect, test } from 'bun:test';
 import { structureCoverage } from '@da/content/structures';
 import { handlungCoverage } from '@da/content/handlungen';
+import { themaCoverage } from '@da/content/themen';
 import { loadAnchorSources } from '@da/content/anchors';
 import { LEVELS } from '@da/schema';
 
@@ -22,6 +23,7 @@ describe('inventory anchors', () => {
     for (const level of LEVELS) {
       expect(structureCoverage(level).dangling).toEqual([]);
       expect(handlungCoverage(level).dangling).toEqual([]);
+      expect(themaCoverage(level).dangling).toEqual([]);
     }
   });
 
@@ -51,6 +53,19 @@ describe('inventory anchors', () => {
     // A1 has no handlung source: the DTZ starts at A2. `anchored: false` must stay distinguishable
     // from 0% — "nothing unclaimed" and "nothing measurable" print the same zero.
     expect(handlungCoverage('A1').anchored).toBe(false);
+  });
+
+  /**
+   * 84%, and the eleven holes are the point: no topic is about Unfall, Polizei, Versicherungen,
+   * Kinderbetreuung or Klima/Wetter. Today's number, not a target — and deliberately a floor rather
+   * than an equality, because the honest way to raise it is to author a topic, while the dishonest
+   * way is to add a claim to a topic that does not teach the theme. The floor rewards neither.
+   */
+  test('Thema coverage does not fall', () => {
+    expect(themaCoverage('A2').percent).toBeGreaterThanOrEqual(84);
+    expect(themaCoverage('B1').percent).toBeGreaterThanOrEqual(84);
+    // The DTZ starts at A2, exactly as for Sprachhandlungen.
+    expect(themaCoverage('A1').anchored).toBe(false);
   });
 
   /**

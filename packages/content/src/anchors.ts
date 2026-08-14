@@ -13,7 +13,7 @@
  *   | ---------- | ------------------------- | --------------------------------------- |
  *   | `struktur` | `data/strukturenlisten/`  | a row of `data/grammar-inventory.yaml`  |
  *   | `handlung` | `data/handlungslisten/`   | an `outcome` in `content/atlas.yaml`    |
- *   | `thema`    | `data/themenlisten/`      | (reserved — a topic, once manifests land) |
+ *   | `thema`    | `data/themenlisten/`      | a topic manifest in `content/topics/`   |
  *
  * A course can teach every structure on the published list and still never ask the learner to
  * refuse an offer, which is why these are separate denominators and not more rows in one. What they
@@ -116,6 +116,13 @@ export interface AnchorSection {
   id: string;
   de: string;
   page?: number;
+  note?: string;
+  /**
+   * `data/themenlisten/` only: § 8.1 prints the CEFR themes beside the Rahmencurriculum's
+   * Handlungsfelder as a *Gegenüberstellung* — set beside each other, not aligned row by row.
+   * Recorded as the source pairs them; nothing computes against it.
+   */
+  handlungsfelder?: string;
   entries: AnchorEntry[];
 }
 

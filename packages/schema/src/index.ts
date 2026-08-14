@@ -1534,6 +1534,14 @@ export const topicManifestSchema = z.object({
   related: z.array(slug).default([]),
   /** 2–5 can-do statements the topic teaches, at the topic's CEFR level */
   outcomes: z.array(outcomeSchema).min(2).max(5),
+  /**
+   * `<source-id>:<entry-key>` into `data/themenlisten/` — the published *theme* this topic is
+   * about. The third anchor dimension, and the one that answers a question neither of the others
+   * can: a course can teach every structure the standard lists, cover every communicative
+   * function, and never once mention Versicherungen. Optional; a topic citing nothing is reported
+   * as `beyond`, not as a defect.
+   */
+  claims: z.array(z.string()).optional(),
   elements: topicElementsSchema,
 });
 export type TopicManifest = z.infer<typeof topicManifestSchema>;
