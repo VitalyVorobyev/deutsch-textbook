@@ -1,6 +1,6 @@
-import type { ExerciseItem } from './schemas';
+import type { ExerciseItem } from '@da/schema';
 import type { Attempt } from './store';
-import { normalizeTranslation } from './cloze';
+import { normalizeTranslation } from '@da/grading/cloze';
 
 export type ResponseMode = NonNullable<Attempt['responseMode']>;
 export type FocusEvidence = NonNullable<Attempt['focusEvidence']>;

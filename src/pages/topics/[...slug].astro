@@ -19,18 +19,24 @@ import TopicProgress from '../../components/topic/TopicProgress';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import SeeAlso from '../../components/topic/SeeAlso.astro';
-import { getCurriculum } from '../../lib/curriculum';
-import { focusIntroducedBy } from '../../lib/focus-tags';
-import { withBase } from '../../lib/url';
+import { getCurriculum } from '@da/content/curriculum';
+import { focusIntroducedBy } from '@da/content/focus-tags';
+import { topicPath, withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
-  const topics = await getCollection('topics');
-  return topics.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  const articles = await getCollection('topics');
+  // The route is still the article's path (`a2/perfekt-haben-sein`); everything the page renders
+  // now comes from the sibling manifest, keyed by the id in that path.
+  const byId = new Map(getCurriculum().nodes.map((node) => [node.id, node]));
+  return articles.flatMap((entry) => {
+    const manifest = byId.get(entry.id.split('/').at(-1)!);
+    return manifest ? [{ params: { slug: entry.id }, props: { entry, manifest } }] : [];
+  });
 }
 
-const { entry } = Astro.props;
+const { entry, manifest } = Astro.props;
 const { Content } = await render(entry);
-const data = entry.data;
+const data = { ...manifest, ...manifest.elements };
 const wordFields = (await getCollection('wortfelder')).filter((field) => field.data.topic === data.id);
 // Optional editorial pieces that name this topic. Reviewed only, so a draft is neither
 // listed nor built — and the link is one-way: the topic never declares its pieces, so
@@ -40,8 +46,8 @@ const discoveryPieces = (await getCollection('discovery', ({ data: d }) => d.sta
   .filter((piece) => piece.data.topics.includes(data.id));
 const lexicalContexts = wordFieldContexts(wordFields.map((field) => field.data));
 
-const allTopics = await getCollection('topics');
-const byId = new Map(allTopics.map((t) => [t.data.id, t]));
+const { nodes } = getCurriculum();
+const byId = new Map(nodes.map((t) => [t.id, t]));
 const prerequisites = data.prerequisites
   .map((id) => byId.get(id))
   .filter((t) => t !== undefined);
@@ -82,7 +88,6 @@ const readings = await Promise.all(
 const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : undefined;
 
 // --- "Siehe auch": every edge derived from data the curriculum owns (ADR 0007) ---
-const { nodes } = getCurriculum();
 const introducedHere = Object.entries(focusIntroducedBy)
   .filter(([, owner]) => owner === data.id)
   .map(([tag]) => tag);
@@ -109,10 +114,9 @@ const referenzLinks = (await getCollection('referenceData'))
 
 const toChip = (id: string) => {
   const t = byId.get(id);
-  return t ? [{ id, title_de: t.data.title_de, level: t.data.level }] : [];
+  return t ? [{ id, title_de: t.title_de, level: t.level }] : [];
 };
-const node = nodes.find((n) => n.id === data.id);
-const deepensChips = (node?.deepens ?? []).flatMap(toChip);
+const deepensChips = manifest.deepens.flatMap(toChip);
 const deepenedByChips = nodes.filter((n) => n.deepens.includes(data.id)).flatMap((n) => toChip(n.id));
 // Tags this topic's own items drill but another topic introduces — the "builds on" edge.
 const drilledElsewhere = [
@@ -176,11 +180,11 @@ const KIND_KEY: Record<string, StringKey> = {
           <Chrome k="topic.prerequisites" />
           {prerequisites.map((p) => (
             <a
-              href={withBase(`/topics/${p.id}`)}
+              href={withBase(topicPath(p))}
               lang="de"
               class="ml-2 text-sky-700 hover:underline dark:text-sky-400"
             >
-              {p.data.title_de}
+              {p.title_de}
             </a>
           ))}
         </p>

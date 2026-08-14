@@ -1,0 +1,17 @@
+{
+  "//": "Redaktion — the editorial navigator. A separate app on purpose: it is a single-page tool with a client router, no SEO and no static pages, so Astro buys it nothing, and it can never leak into the learner build by construction. It reads the corpus through @da/content and never re-derives a measurement.",
+  "name": "@da/redaktion",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "bunx --bun vite build",
+    "preview": "bunx --bun vite preview"
+  },
+  "dependencies": {
+    "@da/content": "workspace:*",
+    "@da/schema": "workspace:*",
+    "@da/ui": "workspace:*"
+  }
+}

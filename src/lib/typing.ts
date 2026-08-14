@@ -1,6 +1,6 @@
 /** Pure matching/diff logic for typed flashcard answers (x-de production direction). */
 
-import { normalizeTranslation } from './cloze';
+import { normalizeTranslation } from '@da/grading/cloze';
 
 /** Normalize typed input the same way every other typed answer is normalized:
     punctuation and typography are not graded anywhere, including *inside* a

@@ -21,7 +21,7 @@
  *  - frontmatter and YAML files contribute every `en`/`ru`/`uk`/`de` string field, at any
  *    depth. `title_de` is deliberately NOT counted as a German half: it is the German name
  *    of the thing, present in every file regardless (the same distinction hasDeExplanation
- *    draws in src/lib/langcheck.ts).
+ *    draws in packages/schema/src/langcheck.ts).
  *
  * The two ratios answer different questions. `localised` is what authoring four halves
  * costs against two — the honest figure for "should B1 carry uk and de from day one".

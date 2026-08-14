@@ -21,7 +21,7 @@ one.
 **The pattern that does not drift already ships.** `/referenz/zeitformen`
 (`src/pages/referenz/zeitformen.astro`) renders `TenseSystem`
 (`src/components/reference/TenseSystem.astro`), whose per-form "taught-in" chips are computed at
-build time from `focusIntroducedBy` (`src/lib/focus-tags.ts`, imported at `:13`) crossed with the
+build time from `focusIntroducedBy` (`packages/content/src/focus-tags.ts`, imported at `:13`) crossed with the
 topics collection: `taughtIn()` at `:28`–`:29` maps each form's focus tags to the topic that
 introduces them. The component's own header comment states the rule — "the YAML names focus tags
 only, never a topic and never a lesson". The reference data cannot name a topic, so it cannot name
@@ -30,7 +30,7 @@ a wrong one.
 Three data sources already carry the relationships a cross-link graph needs, and all three are
 validated:
 
-- **`focusIntroducedBy`** (`src/lib/focus-tags.ts`) — every registered confusion mapped to the
+- **`focusIntroducedBy`** (`packages/content/src/focus-tags.ts`) — every registered confusion mapped to the
   topic that introduces it. `bun run validate` rejects an unregistered tag, and
   `tests/focus-tags.test.ts` holds the allowlist and
   [`../authoring/focus-tags.md`](../authoring/focus-tags.md) equal in both directions.

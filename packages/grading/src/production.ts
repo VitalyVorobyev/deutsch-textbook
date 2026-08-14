@@ -1,0 +1,422 @@
+/**
+ * Grading free-typed German sentences (`translate` items).
+ *
+ * A translate item asks for a whole sentence, so one mistyped character anywhere in
+ * it used to sink the item — and, worse, be recorded as a failure of the grammar the
+ * item was drilling. Both halves of that are measurement bugs, and both fed
+ * `weakFocuses()`, which steers mixed training and drill authoring.
+ *
+ * Two rules keep the signal honest:
+ *
+ *  1. A one-token near-miss outside the graded tokens is a spelling slip: the learner
+ *     sees the correction, the attempt scores correct, and no focus error is logged.
+ *     `Ich kann gut schimmen` is a typo, not a broken Satzklammer.
+ *  2. A real error is attributed to the item's `focus` tag only when a token that tag
+ *     actually grades is one of the tokens that diverged. Otherwise the attempt is
+ *     logged wrong but *unattributed*: an honest gap beats a false signal.
+ *     `Sie ist zu Hause gebliebt` is not evidence about `haben-sein` — `ist` is right.
+ *
+ * Underneath both: punctuation and typography are not part of the graded surface at
+ * all (`normalizeTranslation` removes them before tokens are compared). No focus tag
+ * grades a comma, and an omitted dialogue "—" used to change the token count — which
+ * silently disabled rule 1 for the sentence the learner actually wrote.
+ *
+ * `key_tokens` on the item names the tokens it actually grades. Where it is absent the
+ * fallbacks are the old behaviour (attribute to the item's tag), so an unaudited item
+ * is never made *worse* than it was — only a declared item gets the sharper treatment.
+ *
+ * Dictation (`listen`) is *scored* by none of this: there, spelling IS the drill, and a typo
+ * is a miss. But it borrows rule 2's principle for *attribution* — see `dictationSlip` — because
+ * a `listen` item's `focus` is still a grammar tag, and a mistyped noun is not evidence about
+ * the grammar the dictation drills.
+ */
+
+import { normalizeDictation, normalizeTranslation, sentenceInitialIndices } from '@da/grading/cloze';
+import { diffExpectedWords } from '@da/grading/worddiff';
+
+/** Strip attached punctuation, so `Bahnhof?` and `Bahnhof` are the same token. */
+const bare = (w: string) => w.replace(/[.,!?;:]+$/, '');
+
+const tokenize = (s: string) => normalizeTranslation(s).split(/\s+/).filter(Boolean);
+
+/**
+ * True when `a` becomes `b` with at most one insertion, deletion, substitution or
+ * adjacent transposition (Damerau-Levenshtein ≤ 1). Case-sensitive, so `Morgen` →
+ * `morgen` is one substitution — miscapitalizing a noun is a slip, not a grammar error.
+ *
+ * Deliberately tight: two edits is no longer unmistakably a slip. `we` → `wir` needs
+ * two, so it stays a real error (and rule 2 keeps it from being blamed on the wrong tag).
+ */
+export function isOneEdit(a: string, b: string): boolean {
+  if (a === b) return true;
+  if (Math.abs(a.length - b.length) > 1) return false;
+
+  if (a.length === b.length) {
+    let at = -1;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] === b[i]) continue;
+      if (at >= 0) {
+        // A second divergence is only forgivable as one adjacent transposition.
+        return (
+          at === i - 1 &&
+          a[at] === b[i] &&
+          a[i] === b[at] &&
+          a.slice(i + 1) === b.slice(i + 1)
+        );
+      }
+      at = i;
+    }
+    return at >= 0;
+  }
+
+  // One insertion or deletion: walk the shorter string against the longer, allowing
+  // exactly one character of the longer to go unmatched.
+  const [short, long] = a.length < b.length ? [a, b] : [b, a];
+  let i = 0;
+  let skipped = false;
+  for (let j = 0; j < long.length && i < short.length; j++) {
+    if (short[i] === long[j]) {
+      i++;
+      continue;
+    }
+    if (skipped) return false;
+    skipped = true;
+  }
+  return true;
+}
+
+/**
+ * German function words are densely one-edit-confusable with each other — and the
+ * difference between them is exactly what the focus taxonomy grades. `den`/`dem`,
+ * `ihn`/`ihm`, `einen`/`einem` are each a single character apart, so a blanket
+ * "one edit is a typo" rule would forgive precisely the errors we are trying to
+ * measure.
+ *
+ * The guard fires only when the learner swapped one *real* function word for another
+ * (`den` for `dem`) — that is a grammatical choice, and choices are graded. Typing
+ * `do` for `du` is not a choice, because `do` is not a German word; it stays a slip.
+ *
+ * Open-class words (nouns, adjectives, adverbs, and verbs whose *form* an item
+ * grades) are not listed here: those rely on the item's own `keyTokens`, because
+ * whether the exact form matters is a property of the item, not of the word.
+ */
+const CLOSED_CLASS = new Set([
+  // definite / indefinite / negative determiners
+  'der', 'die', 'das', 'dem', 'den', 'des',
+  'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
+  'kein', 'keine', 'keinen', 'keinem', 'keiner', 'keines',
+  // possessives (nominative + the endings that differ by one character)
+  'mein', 'meine', 'meinen', 'meinem', 'meiner',
+  'dein', 'deine', 'deinen', 'deinem', 'deiner',
+  'sein', 'seine', 'seinen', 'seinem', 'seiner',
+  'ihre', 'ihren', 'ihrem', 'ihrer',
+  'unser', 'unsere', 'unseren', 'unserem',
+  // personal pronouns
+  'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
+  'mich', 'dich', 'ihn', 'uns', 'euch',
+  'mir', 'dir', 'ihm', 'ihnen',
+  // contracted prepositions
+  'zum', 'zur', 'beim', 'vom', 'im', 'am', 'ins', 'ans',
+]);
+
+const isClosedClass = (token: string) => CLOSED_CLASS.has(bare(token).toLowerCase());
+
+/** The learner swapped one real German function word for another — a graded choice. */
+const isFunctionWordSwap = (typed: string, expected: string) =>
+  isClosedClass(expected) && isClosedClass(typed);
+
+/**
+ * Was a wrong dictation a spelling slip rather than the confusion the item is tagged with?
+ *
+ * A `listen` item is scored on its spelling — there, spelling *is* the drill, and a typo is a
+ * miss. But its `focus` tag is a *grammar* tag, and `focusForAttempt` logs that tag on any
+ * wrong answer. So a learner who hears `Ich bringe dir einen Kuchen mit.` and types `Kuhen`
+ * was being recorded as failing separable-verb word order — a confusion they did not have —
+ * and `weakFocuses()` would then prioritise it in training and invite a drill for it.
+ *
+ * The item still counts as wrong. Only the *attribution* is withheld, and only when the miss
+ * is unmistakably a slip: exactly one token off, one edit away, and not a swap inside the
+ * closed class. `den` for `dem` stays attributed, because that is precisely the choice a
+ * `dativ-artikel` dictation exists to grade — one edit apart *and* the thing being measured.
+ */
+export function dictationSlip(given: string, expected: string): boolean {
+  // Tokenized the way a dictation is *scored*, not the way a translation is. `dictationMatches`
+  // strips ALL punctuation everywhere — you cannot hear a comma, and word-internal hyphens
+  // and apostrophes go too — where `normalizeTranslation` keeps `E-Mail` and `geht's` whole.
+  // The slip question must be asked against the same surface the score was decided on.
+  const want = normalizeDictation(expected).split(/\s+/).filter(Boolean);
+  const got = normalizeDictation(given).split(/\s+/).filter(Boolean);
+  if (want.length !== got.length) return false;
+
+  const diverged = want.reduce<number[]>((acc, tok, i) => {
+    if (tok !== got[i]) acc.push(i);
+    return acc;
+  }, []);
+  if (diverged.length !== 1) return false;
+
+  const at = diverged[0]!;
+  if (isFunctionWordSwap(got[at]!, want[at]!)) return false;
+  return isOneEdit(got[at]!, want[at]!);
+}
+
+export interface TranslationSpec {
+  /** canonical German answer */
+  answer: string;
+  /** other legitimate German renderings (word order, wording — not typo tolerance) */
+  accept?: string[];
+  /** the confusion this item drills */
+  focus?: string;
+  /**
+   * The tokens of `answer` or an authored `accept` rendering whose exact *form* this
+   * item grades. Every synonymous form that carries the same graded decision must be
+   * listed: if `sehen` and `schauen` both close a modal bracket, pin both. A divergence
+   * here is a real error and is attributed to `focus`; a near-miss here is never
+   * forgiven as a typo (`geflügen` for `geflogen` is a participle the learner built
+   * wrong, not a slip). Everything else is scaffolding and gets typo tolerance.
+   *
+   * Word order is declared here too, and an item that grades only placement
+   * (`modal-satzklammer`, `verbzweit`) must still pin **both ends of the bracket**. It is
+   * tempting to reason that it needs no `keyTokens` at all — a reordered sentence changes
+   * at least two positions, so rule 1 can never mistake it for a one-token slip. That
+   * premise is true and the conclusion drawn from it was wrong: with nothing pinned,
+   * `graded.size === 0` below blanket-attributes *every* real error to the tag. Reviewed
+   * one by one against this repo's attempt log, 54 attributions change if the pins go —
+   * and 52 of the 54 are errors belonging to a *different* tag than the item's, so
+   * dropping the pins buys 52 false entries. The pins' own cost is 5. Ten times better,
+   * and that is why they stay.
+   *
+   * Those 5 are the known residual (P12-4) and are of three kinds:
+   *
+   *  - A typo inside a pinned *open-class* word is scored wrong and blamed on the tag —
+   *    `schimmen` for `schwimmen` logged against `modal-satzklammer`. There the token is
+   *    pinned for its *position*, not its form.
+   *  - A token pinned for mere *presence* carries a divergence belonging to another tag —
+   *    `geflügen` for `geflogen` logged against `haben-sein`, when building the Partizip II
+   *    is `partizip2-form`.
+   *  - And the blind spot: `misplacedGraded` requires equal token counts, so an
+   *    **insertion or deletion** can never be attributed even when it is exactly the
+   *    confusion the tag grades. `Sie sollten … zu nehmen` (a modal takes a bare
+   *    infinitive) and `Passt es zu dir …` for `Passt dir …` are both the item's signature
+   *    error, and both come back unattributed.
+   *
+   * Closed-class words are protected automatically — see CLOSED_CLASS.
+   */
+  keyTokens?: string[];
+}
+
+/** Canonical answer plus authored alternatives, normalized-deduplicated in author order. */
+export function translationCandidates(spec: Pick<TranslationSpec, 'answer' | 'accept'>): string[] {
+  const seen = new Set<string>();
+  return [spec.answer, ...(spec.accept ?? [])].filter((candidate) => {
+    const key = normalizeTranslation(candidate);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/**
+ * The authored rendering that best preserves what the learner already wrote.
+ *
+ * This is feedback selection, not semantic grading: only exact authored candidates (plus the
+ * narrow spelling-slip rule below) can score correct. The same LCS alignment used for focus
+ * attribution chooses the model, so a valid fronted phrase is not "corrected" back into the
+ * canonical word order merely because another token is wrong.
+ */
+export function closestTranslationCandidate(
+  given: string,
+  spec: Pick<TranslationSpec, 'answer' | 'accept'>,
+): string {
+  const givenTokens = tokenize(given);
+  return translationCandidates(spec)
+    .map((candidate) => ({
+      candidate,
+      matched: diffExpectedWords(tokenize(candidate), givenTokens).filter((d) => !d).length,
+    }))
+    // Stable sort: the canonical answer wins a genuine tie.
+    .sort((a, b) => b.matched - a.matched)[0]!.candidate;
+}
+
+export interface SpellingCorrection {
+  given: string;
+  expected: string;
+}
+
+export type TranslationVerdict =
+  /** exact match against the answer or an accepted variant */
+  | { kind: 'correct' }
+  /** right sentence, one slipped token — scores correct, logs no focus error */
+  | { kind: 'spelling'; correction: SpellingCorrection }
+  /** a real error; `focus` present only when a graded token is what diverged */
+  | { kind: 'wrong'; focus?: string };
+
+/** Whether a verdict counts as a correct answer for scoring. */
+export const verdictIsCorrect = (v: TranslationVerdict): boolean => v.kind !== 'wrong';
+
+const lowerFirst = (w: string) => w.charAt(0).toLowerCase() + w.slice(1);
+
+/**
+ * The set of token strings this item grades — the pinned tokens plus derived case twins.
+ *
+ * A key token standing at a sentence head of an accepted rendering is capitalized by
+ * position, not by grammar: `Im Sommer stehe ich um sechs Uhr auf.` pins `Im`. An
+ * `accept` rendering that moves it mid-sentence lowercases it — and `im` is then a
+ * different string from the pinned `Im`, so it would stop being graded for that
+ * rendering. Rule 1 would forgive `um` for `im` as a one-edit spelling slip, which is
+ * exactly the `um-am-zeit` error the item exists to measure, and Rule 2 would never
+ * blame the tag for it. The sentence-head fold in `isGradedAt` only covers the opposite
+ * move (pinned lowercase, capitalized at a head), so without this the hole is
+ * one-directional.
+ *
+ * Every sentence head of every accepted rendering derives a twin, not just the first
+ * token of `answer` as before P25-15: a pin capitalized because it opens the SECOND
+ * sentence of a rendering is capitalized by the same orthography. Mid-sentence
+ * capitalization *is* grammar in German — `Sie` and `sie` are different words — so
+ * nothing else is folded together.
+ */
+function buildGradedSet(spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>): Set<string> {
+  const graded = new Set((spec.keyTokens ?? []).map(bare));
+  for (const candidate of translationCandidates(spec)) {
+    const tokens = tokenize(candidate);
+    for (const i of sentenceInitialIndices(candidate)) {
+      const head = bare(tokens[i] ?? '');
+      if (graded.has(head)) graded.add(lowerFirst(head));
+    }
+  }
+  return graded;
+}
+
+/**
+ * Is the token at position `i` of an accepted rendering's `tokens` one this item grades?
+ *
+ * Sentence-head capitalization is orthography, not grammar, and an `accept` variant that
+ * fronts a time phrase — or splits one sentence into two — capitalizes whatever lands at
+ * the head: `am Samstag` becomes `Am Samstag`, `…, nach der Prüfung` becomes
+ * `. Nach der Prüfung`. Matched case-sensitively, the graded token then stops being
+ * graded for that rendering: a genuine `Um`-for-`Am` error would be forgiven as a
+ * spelling slip and never logged against `um-am-zeit`, the confusion the item exists to
+ * measure. The forgiveness rule would be silently inverted by an `accept` line.
+ *
+ * So every sentence-head position (`heads`, computed per rendering — before P25-15 this
+ * was index 0 only, which a two-sentence rendering escapes) matches case-insensitively.
+ * Everywhere else the comparison stays exact, because mid-sentence capitalization *is*
+ * grammar in German: `Sie` (formal you) and `sie` (she) are different words, and a
+ * `du-sie` item that graded both would blame the register tag for a pronoun error that
+ * has nothing to do with register.
+ */
+function isGradedAt(
+  graded: ReadonlySet<string>,
+  tokens: readonly string[],
+  heads: ReadonlySet<number>,
+  i: number,
+): boolean {
+  const token = bare(tokens[i]!);
+  if (graded.has(token)) return true;
+  return heads.has(i) && graded.has(lowerFirst(token));
+}
+
+/**
+ * The positions of `rendering` the grader would treat as graded — the validator's mirror
+ * of the twin derivation and sentence-head fold above, exported so the `key_tokens`
+ * guard cannot drift from the mechanism it guards: a guard that counts exact strings
+ * calls "Nach … nach Hause." unique while the grader grades both occurrences.
+ */
+export function gradedTokenPositions(
+  rendering: string,
+  spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>,
+): number[] {
+  const graded = buildGradedSet(spec);
+  const tokens = tokenize(rendering);
+  const heads = sentenceInitialIndices(rendering);
+  return tokens.map((_, i) => i).filter((i) => isGradedAt(graded, tokens, heads, i));
+}
+
+export function gradeTranslation(given: string, spec: TranslationSpec): TranslationVerdict {
+  const candidates = translationCandidates(spec);
+  const normalized = normalizeTranslation(given);
+  if (candidates.some((c) => normalizeTranslation(c) === normalized)) return { kind: 'correct' };
+
+  const givenTokens = tokenize(given);
+  const graded = buildGradedSet(spec);
+  const isGraded = (tokens: readonly string[], heads: ReadonlySet<number>, i: number): boolean =>
+    isGradedAt(graded, tokens, heads, i);
+
+  // Rule 1 — a single slipped token, in any of the accepted renderings.
+  for (const candidate of candidates) {
+    const want = tokenize(candidate);
+    if (want.length !== givenTokens.length) continue;
+
+    const diverged = want.reduce<number[]>((acc, tok, i) => {
+      if (tok !== givenTokens[i]) acc.push(i);
+      return acc;
+    }, []);
+    if (diverged.length !== 1) continue;
+
+    const at = diverged[0]!;
+    const expected = want[at]!;
+    const typed = givenTokens[at]!;
+    if (isGraded(want, sentenceInitialIndices(candidate), at)) continue; // a token this item grades is never forgiven
+    if (isFunctionWordSwap(typed, expected)) continue; // den for dem is a choice, not a slip
+    if (!isOneEdit(typed, expected)) continue;
+
+    return { kind: 'spelling', correction: { given: typed, expected } };
+  }
+
+  // Rule 2 — a real error. Blame the item's tag only if a token that tag grades is
+  // among the ones that actually diverged.
+  if (!spec.focus) return { kind: 'wrong' };
+  if (graded.size === 0) return { kind: 'wrong', focus: spec.focus };
+
+  /**
+   * Attribution is judged against the rendering the learner was actually aiming at — the
+   * accepted sentence their answer resembles most — and never against `answer` alone.
+   *
+   * Two different bugs come from measuring against `answer` when the learner aimed elsewhere:
+   *
+   * 1. An `accept` variant may substitute a *synonym for a graded token*. The lernen-verstehen
+   *    item pins `beginnt` and accepts `anfängt`. A learner who writes the accepted verb, in
+   *    the correct final position, and fumbles an unrelated article (`wann der Prüfung
+   *    anfängt?`) has made no word-order error at all — but measured against `answer`, the
+   *    pinned `beginnt` looks *missing*, and the attempt is logged against `indirekte-frage`.
+   *
+   * 2. An `accept` variant that legitimately fronts a time phrase shifts every later word by
+   *    one, so measured against `answer` every shifted slot looks misplaced — blaming the tag
+   *    for word order the learner got right.
+   *
+   * Both would put a false entry in the one signal that steers training priority and drill
+   * authoring, which is worse than no entry at all.
+   */
+  const closest = closestTranslationCandidate(given, spec);
+  const target = tokenize(closest);
+  const targetHeads = sentenceInitialIndices(closest);
+
+  const differs = diffExpectedWords(target, givenTokens);
+
+  // Is a word this item grades simply *absent* from what the learner wrote?
+  const absentGraded = target.some((_tok, i) => differs[i] && isGraded(target, targetHeads, i));
+
+  /**
+   * And the question an alignment diff structurally cannot answer: did the learner put
+   * something *else* into a slot this item grades?
+   *
+   * A transposition is not a missing word. `… weil ich am Samstag arbeiten muss` typed as
+   * `… weil ich am Samstag muss arbeiten` still contains both words, so the alignment matches
+   * the learner's `muss` to the expected `muss` and reports only `arbeiten` as diverged. The
+   * item pins `muss` — the verb whose placement it grades — that verb is reported present, and
+   * the attempt is logged wrong but **unattributed**. The tag never fires for the one error the
+   * item exists to catch.
+   *
+   * Every verb-final family was silently affected — `nebensatz-verbende`, `indirekte-frage`,
+   * `modal-satzklammer`, `trennbar-modal`, `perfekt-satzklammer` — across practice, drill and
+   * **probe** items alike. So the retention curve for a word-order rule was being read off
+   * items that could not attribute their own signature error, and `weakFocuses()` could never
+   * see a learner who systematically collapses the Satzklammer.
+   */
+  const misplacedGraded =
+    target.length === givenTokens.length &&
+    target.some((tok, i) => tok !== givenTokens[i] && isGraded(target, targetHeads, i));
+
+  return absentGraded || misplacedGraded
+    ? { kind: 'wrong', focus: spec.focus }
+    : { kind: 'wrong' };
+}

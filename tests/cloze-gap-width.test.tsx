@@ -12,7 +12,7 @@
  * distribution that chose the resting width with:
  *
  *   bun -e 'import {parse} from "yaml"; import {readFileSync} from "fs"; import {Glob} from "bun";
- *   import {parseCloze} from "./src/lib/cloze"; const lens=[];
+ *   import {parseCloze} from "./packages/grading/src/cloze"; const lens=[];
  *   for await (const f of new Glob("content/exercises/**\/*.yaml").scan(".")) {
  *     let d; try{d=parse(readFileSync(f,"utf8"));}catch{continue;}
  *     for(const it of (d?.items||[])) if(it.type==="cloze"&&it.text)
@@ -24,7 +24,7 @@
 import { afterEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Cloze, GAP_REST_CH, gapWidthCh } from '../src/components/exercises/Cloze';
-import { clozeItemSchema } from '../src/lib/schemas';
+import { clozeItemSchema } from '@da/schema';
 
 afterEach(cleanup);
 

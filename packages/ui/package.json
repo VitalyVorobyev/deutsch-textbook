@@ -1,0 +1,15 @@
+{
+  "//": "Shared UI: the design tokens and the primitives. The learner app has no design system — no config file, no @theme block, and 'tokens' that are stock Tailwind palette names retyped by hand. This names them, and the editorial app is the first consumer. Nothing here may read learner state; a component that touches IndexedDB belongs to the app that owns the flow.",
+  "name": "@da/ui",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./primitives": "./src/primitives.tsx",
+    "./tokens.css": "./src/tokens.css"
+  },
+  "peerDependencies": {
+    "react": "^19.2.8",
+    "tailwindcss": "^4.3.3"
+  }
+}

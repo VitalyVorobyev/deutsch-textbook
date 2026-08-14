@@ -1,0 +1,137 @@
+# Start Deutsch 2 (retired A2 exam) — the A2 DELTA of the combined Start-Deutsch-1-und-2
+# grammar inventory.
+#
+# WHY A RETIRED EXAM IS IN HERE. Start Deutsch 2 was replaced by the Goethe-Zertifikat A2, and no
+# row here is a current requirement — `status: retired` says so, and any grammar-inventory row
+# whose only authority is this file is a row resting on a superseded standard. It is encoded
+# anyway because its structure set is materially WIDER than the current free A2 list
+# (goethe-a2-fit2.yaml) at exactly the points where this course has been guessing: it carries
+# Passiv, `während + Genitiv`, the complete Wechselpräposition series, the Präteritum of the
+# modals and the attributive adjective in the dative — five structures the course teaches, or
+# defers, with no external evidence either way. A retired standard is weak evidence; no evidence
+# is weaker.
+#
+# ONLY THE A2 DELTA IS HERE. The combined handbook's unstarred entries are the A1 list and are
+# already encoded in goethe-a1-sd1.yaml, from the newer standalone A1 booklet; duplicating them
+# would create two answers to "what does A1 require". The handbook's own legend defines the
+# split: "Für Start Deutsch 2 gelten darüber hinaus auch die mit Sternchen * gekennzeichneten
+# Strukturen" (Seite 192). Every entry below carries that asterisk in the source.
+#
+# Same copying boundary as its siblings: structure labels only, no example sentences.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A2_SD2.pdf -
+# Reference from a grammar-inventory row: `claims: [goethe-start-deutsch-2:<key>]`.
+
+source:
+  id: goethe-start-deutsch-2
+  title: "Start Deutsch 1 und 2 — Prüfungsziele, Testbeschreibung (Start-Deutsch-2-Anteil)"
+  publisher: "Goethe-Institut / WBT Weiterbildungs-Testsysteme"
+  chapter: "6 Inventare — Grammatik: Morphologische und syntaktische Strukturen"
+  pages: "192–201"
+  pdf_pages: "97–101"   # two-up scan: each PDF page carries two printed pages
+  levels: [A2]
+  audience: Erwachsene
+  status: retired
+  mode: reception
+  url: "https://www.goethe.de/pro/relaunch/prf/de/Pruefungsziele_Testbeschreibung_A2_SD2.pdf"
+  local: "docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A2_SD2.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  - id: verb-tempus
+    de: "Verb · Tempus"
+    page: 194
+    entries:
+      - { key: perfekt-alle-verben, level: A2, de: "Perfekt aller Verben der Wortliste" }
+      - { key: praeteritum-haben, level: A2, de: "Präteritum von haben" }
+      - { key: praeteritum-sein, level: A2, de: "Präteritum von sein" }
+      - { key: praeteritum-kommen, level: A2, de: "Präteritum von kommen" }
+      - key: praeteritum-sagen
+        level: A2
+        de: "Präteritum von sagen"
+        printed: "Präteritum von sagen*"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`sagen*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
+      - { key: praeteritum-modalverben, level: A2, de: "Präteritum der Modalverben" }
+
+  - id: verb-modus
+    de: "Verb · Modus"
+    page: 194
+    entries:
+      - { key: konjunktiv2-haben, level: A2, de: "Konjunktiv II von haben" }
+      - { key: konjunktiv2-koennen, level: A2, de: "Konjunktiv II von können" }
+
+  - id: verb-genus-verbi
+    de: "Verb · Passiv"
+    page: 195
+    entries:
+      - key: passiv
+        level: A2
+        de: "Passiv"
+        printed: "Passiv*"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`Passiv*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
+
+  - id: nomen
+    de: "Nomen"
+    page: 195
+    entries:
+      - { key: kasus-dativ, level: A2, de: "Kasus: Dativ aller Nomen der Wortliste" }
+      - { key: genitiv-ersatzform, level: A2, de: "Ersatzform für den Genitiv: von + Dativ" }
+
+  - id: artikelwoerter
+    de: "Artikelwörter · Artikel"
+    page: 196
+    entries:
+      - { key: artikel-interrogativ, level: A2, de: "interrogativ: Nominativ / Akkusativ: Welch-" }
+      - { key: artikel-alle, level: A2, de: "alle" }
+      - { key: artikel-possessiv-unser-euer, level: A2, de: "Possessiv: unser / euer" }
+
+  - id: pronomen
+    de: "Pronomen"
+    page: 197
+    entries:
+      - { key: pron-indefinit-jemand, level: A2, de: "Indefinit: jemand" }
+      - { key: pron-indefinit-niemand, level: A2, de: "Indefinit: niemand" }
+      - key: pron-reflexiv-akkusativ
+        level: A2
+        de: "Reflexivpronomen im Akkusativ: mich / dich / euch / sich"
+        printed: "Reflexivpronomen* im Akkusativ: mich / dich / euch / sich"
+        note: "The Start-Deutsch-2 asterisk is fused to this word with no space (`Reflexivpronomen*`), unlike every other instance in this booklet. It stays in `printed`, where it is verifiable, and out of `de`, where a footnote glyph is not part of the structure's name."
+
+  - id: adjektiv
+    de: "Adjektiv"
+    page: 198
+    entries:
+      - { key: adj-attributiv-definit, level: A2, de: "attributiv nach definitem Artikel im Nominativ, Akkusativ und Dativ" }
+      - { key: adj-attributiv-indefinit, level: A2, de: "attributiv nach indefinitem Artikel im Nominativ, Akkusativ und Dativ" }
+      - { key: adj-komparation, level: A2, de: "Komparation" }
+
+  - id: praeposition-temporal
+    de: "Präposition · temporal"
+    page: 198
+    entries:
+      - { key: praep-temp-bis, level: A2, de: "bis + Akkusativ" }
+      - { key: praep-temp-seit, level: A2, de: "seit + Dativ" }
+      - { key: praep-temp-vom-an, level: A2, de: "vom … an" }
+      - { key: praep-temp-waehrend-genitiv, level: A2, de: "während + Genitiv" }
+      - { key: praep-temp-zu, level: A2, de: "zu + Dativ" }
+
+  - id: praeposition-lokal
+    de: "Präposition · lokal"
+    page: 198
+    entries:
+      - { key: praep-lok-hinter, level: A2, de: "hinter + Dativ / Akkusativ" }
+      - { key: praep-lok-gegenueber, level: A2, de: "gegenüber + Dativ (nachgestellt)" }
+      - { key: praep-lok-neben, level: A2, de: "neben + Dativ / Akkusativ" }
+      - { key: praep-lok-unter, level: A2, de: "unter + Dativ / Akkusativ" }
+      - { key: praep-lok-ueber, level: A2, de: "über + Dativ / Akkusativ" }
+      - { key: praep-lok-von, level: A2, de: "von + Dativ" }
+      - { key: praep-lok-vor, level: A2, de: "vor + Dativ" }
+      - { key: praep-lok-zwischen, level: A2, de: "zwischen + Dativ / Akkusativ" }
+
+  - id: satzverbindungen
+    de: "Syntax · Satzverbindungen"
+    page: 200
+    entries:
+      - { key: satzverb-deshalb, level: A2, de: "Satzverbindungen mit deshalb" }
+      - { key: nebensatz-weil, level: A2, de: "Satzverbindungen mit weil" }
+      - { key: nebensatz-wenn, level: A2, de: "Satzverbindungen mit wenn" }

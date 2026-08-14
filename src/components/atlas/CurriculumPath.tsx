@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { AtlasGroup, CurriculumStrand } from '../../lib/schemas';
+import type { AtlasGroup, CurriculumStrand } from '@da/schema';
 import { loadResume, saveResume } from '../../lib/resume';
 import { sanitizeThemenResume, type DrawerState, type ThemenResume } from './themen-resume';
 import {

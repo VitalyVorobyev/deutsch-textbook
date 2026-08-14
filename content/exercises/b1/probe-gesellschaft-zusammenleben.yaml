@@ -10,7 +10,7 @@
 # is cloze ×3 and its position half has no delayed evidence), and this tag is a word-order
 # contrast end to end. In a translate the collapse is scored wrong and attributed: the
 # pinned clause-final verb sits at a different index, so misplacedGraded fires
-# (src/lib/production.ts) and the tag gets the error it exists to catch.
+# (packages/grading/src/production.ts) and the tag gets the error it exists to catch.
 #
 # The instruction names the job and never the connector — "one sentence, the concession
 # is a Nebensatz" — because which of the two words can open a Nebensatz is exactly what is

@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { FormFill } from '../src/components/exercises/FormFill';
-import { exerciseSetSchema, formItemSchema } from '../src/lib/schemas';
+import { exerciseSetSchema, formItemSchema } from '@da/schema';
 
 afterEach(cleanup);
 

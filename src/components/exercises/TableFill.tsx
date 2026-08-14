@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { z } from 'zod';
-import type { tableItemSchema } from '../../lib/schemas';
-import { answerMatches } from '../../lib/cloze';
+import type { tableItemSchema } from '@da/schema';
+import { answerMatches } from '@da/grading/cloze';
 import { acceptedCellAnswers } from '../../lib/table';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 

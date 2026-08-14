@@ -1,5 +1,5 @@
 /** Shared shapes, labels and row logic for the Themen island (CurriculumPath + its views). */
-import type { CurriculumStrand, Outcome } from '../../lib/schemas';
+import type { CurriculumStrand, Outcome } from '@da/schema';
 import type { Tier, TopicEvidence, TopicNode } from '../../lib/mastery';
 import type { CheckpointItemRef } from '../../lib/checkpoint';
 import type { LearningGoal } from '../../lib/store';

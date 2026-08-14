@@ -7,7 +7,7 @@
  * answer is always displayed fully punctuated, so none of it may cost an answer.
  */
 import { describe, expect, test } from 'bun:test';
-import { answerMatches, normalizeTranslation, sentenceInitialIndices } from '../src/lib/cloze';
+import { answerMatches, normalizeTranslation, sentenceInitialIndices } from '@da/grading/cloze';
 
 describe('normalizeTranslation — punctuation is not part of the graded surface', () => {
   test('the dialogue dash dissolves, typed as — or - or not at all', () => {

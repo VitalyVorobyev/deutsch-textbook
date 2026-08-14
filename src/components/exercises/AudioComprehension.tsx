@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { audioComprehensionItemSchema } from '../../lib/schemas';
+import type { audioComprehensionItemSchema } from '@da/schema';
 import { speakGermanSequence, ttsAvailable } from '../../lib/speech';
 import { bundlesAudio, listeningAudioUrl } from '../../lib/audio';
 import { withBase } from '../../lib/url';

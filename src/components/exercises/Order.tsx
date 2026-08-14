@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { z } from 'zod';
-import type { orderItemSchema } from '../../lib/schemas';
-import { normalizeSentence } from '../../lib/cloze';
+import type { orderItemSchema } from '@da/schema';
+import { normalizeSentence } from '@da/grading/cloze';
 import { shuffle } from '../../lib/shuffle';
 import { pick } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';

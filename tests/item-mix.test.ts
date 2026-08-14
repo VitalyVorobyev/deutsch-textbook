@@ -37,21 +37,19 @@ for (const level of LEVELS) {
 
 /** Every item in every `role: practice` set a topic lists, in the validator's order. */
 function practiceItems(level: string, topic: string): Item[] {
-  const text = readFileSync(join('content/topics', level, `${topic}.mdx`), 'utf8');
-  const match = /^exercises: \[(.*)\]$/m.exec(text);
-  if (!match) return [];
-  return match[1]
-    .split(',')
-    .map((ref) => ref.trim())
+  const manifest = YAML.parse(
+    readFileSync(join('content/topics', level, `${topic}.topic.yaml`), 'utf8'),
+  ) as { elements?: { exercises?: string[] } };
+  return (manifest.elements?.exercises ?? [])
     .filter((ref) => sets.get(ref)?.role === 'practice')
     .flatMap((ref) => sets.get(ref)!.items ?? []);
 }
 
 const topics = LEVELS.flatMap((level) =>
   readdirSync(join('content/topics', level))
-    .filter((name) => name.endsWith('.mdx'))
+    .filter((name) => name.endsWith('.topic.yaml'))
     .map((name) => {
-      const id = name.replace(/\.mdx$/, '');
+      const id = name.replace(/\.topic\.yaml$/, '');
       const all = practiceItems(level, id);
       return {
         id: `${level}/${id}`,

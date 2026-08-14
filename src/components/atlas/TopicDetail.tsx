@@ -1,4 +1,4 @@
-import type { AtlasGroup, CurriculumStrand, Outcome } from '../../lib/schemas';
+import type { AtlasGroup, CurriculumStrand, Outcome } from '@da/schema';
 import type { Completion } from '../../lib/mastery';
 import { groupBreadcrumb } from '../../lib/atlas';
 import { pick, type ExplainLang } from '../../lib/prefs';

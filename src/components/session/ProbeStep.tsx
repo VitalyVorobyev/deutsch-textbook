@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { DueProbe } from '../../lib/probes';
 import { MAX_PROBES_PER_SESSION, PROBE_INTERVALS_DAYS, servedProbes } from '../../lib/probes';
-import type { ExerciseItem } from '../../lib/schemas';
+import type { ExerciseItem } from '@da/schema';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { attemptScore } from '../../lib/scoring';
 import { logAttempt } from '../../lib/store';

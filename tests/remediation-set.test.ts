@@ -6,7 +6,7 @@
  */
 import { describe, expect, test } from 'bun:test';
 import { remediationSetFor, type TrainingSet } from '../src/lib/training';
-import type { ExerciseItem, ExerciseRole } from '../src/lib/schemas';
+import type { ExerciseItem, ExerciseRole } from '@da/schema';
 
 const FOCUS = 'dativ-praepositionen';
 

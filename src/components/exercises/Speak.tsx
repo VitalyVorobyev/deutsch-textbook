@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { speakItemSchema } from '../../lib/schemas';
+import type { speakItemSchema } from '@da/schema';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import SpeakerButton from '../SpeakerButton';
 import { Instruction, Translation, type ItemProps } from './shared';

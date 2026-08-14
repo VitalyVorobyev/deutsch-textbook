@@ -4,7 +4,7 @@ import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../../lib/content';
-import { getCurriculum } from '../../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
 const [cards, nodes, deckLevels] = await Promise.all([
   getAllCards(),

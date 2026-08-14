@@ -11,7 +11,7 @@
  * what actually exists (levels, topic ids, group ids) before it is applied,
  * and anything unrecognised silently falls back to its default.
  */
-import type { CurriculumStrand } from '../../lib/schemas';
+import type { CurriculumStrand } from '@da/schema';
 import { STRANDS, type LevelFilter, type StatusFilter } from './course';
 
 export type DrawerState = 'closed' | 'collapsed' | 'open';

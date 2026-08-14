@@ -8,7 +8,7 @@ import NextTopic from '../components/today/NextTopic';
 import ProbeBacklog from '../components/today/ProbeBacklog';
 import SessionDoneBadge from '../components/today/SessionDoneBadge';
 import { getAllCards, getCheckpoints, getDeckLevels, getPlacements, getTopicNodes } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 import { probeFamilies } from '../lib/probes';
 import { withBase } from '../lib/url';
 
@@ -20,8 +20,8 @@ const { spine } = getCurriculum();
 // Probe families are pure content, so they are derived at build time; the backlog card
 // island only joins them against the attempt log (probe state is never stored). Same
 // tolerance as /session: a set whose topic hasn't landed yet is left out.
-const [exercises, topics] = await Promise.all([getCollection('exercises'), getCollection('topics')]);
-const topicIds = new Set(topics.map((t) => t.data.id));
+const exercises = await getCollection('exercises');
+const topicIds = new Set(getCurriculum().nodes.map((t) => t.id));
 const families = probeFamilies(
   exercises
     .filter((e) => topicIds.has(e.data.topic))

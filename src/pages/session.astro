@@ -5,18 +5,17 @@ import Chrome from '../components/Chrome.astro';
 import SessionFlow from '../components/session/SessionFlow';
 import type { TrainingSet } from '../components/training/MixedTraining';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
-const [cards, nodes, deckLevels, exercises, topics, documents] = await Promise.all([
+const [cards, nodes, deckLevels, exercises, documents] = await Promise.all([
   getAllCards(),
   getTopicNodes(),
   getDeckLevels(),
   getCollection('exercises'),
-  getCollection('topics'),
   getCollection('documents'),
 ]);
-const { spine } = getCurriculum();
-const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const { spine, nodes: manifests } = getCurriculum();
+const topicById = new Map(manifests.map((t) => [t.id, t]));
 const documentById = new Map(documents.map((document) => [document.id, document.data]));
 
 // Same assembly as /training, but tolerant of in-flight content: an exercise

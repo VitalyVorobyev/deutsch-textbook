@@ -26,7 +26,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { Listen } from '../src/components/exercises/Listen';
 import { Translate } from '../src/components/exercises/Translate';
 import { focusForAttempt } from '../src/lib/evidence';
-import { listenItemSchema, translateItemSchema } from '../src/lib/schemas';
+import { listenItemSchema, translateItemSchema } from '@da/schema';
 
 afterEach(cleanup);
 

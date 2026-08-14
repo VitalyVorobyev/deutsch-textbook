@@ -1,5 +1,5 @@
 import { useState, type ReactElement } from 'react';
-import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '../../lib/schemas';
+import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '@da/schema';
 import { logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';

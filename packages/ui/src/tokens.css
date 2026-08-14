@@ -1,0 +1,59 @@
+/*
+ * The design tokens, promoted from convention to declaration.
+ *
+ * The learner app has no design system: no config file, no `@theme` block, and "tokens" that are
+ * stock Tailwind palette names retyped by hand in every component — `stone` for surfaces, `amber`
+ * for the brand and the active state, `emerald` for success and mastery, `sky` for links and
+ * anything already read, `rose` for a failure. Four roles, agreed by repetition and written down
+ * nowhere, which is why a chip in one view and a chip in another are two implementations.
+ *
+ * This names them. The palette does not change — the point is that the next surface can say
+ * `--color-brand` instead of guessing which amber the last one used.
+ *
+ * Dark mode is a `data-theme` attribute rather than `prefers-color-scheme`, because the learner app
+ * sets it pre-paint from an inline script in Base.astro and the editorial app has to match: a theme
+ * that flashes is worse than a theme that is wrong.
+ */
+@import 'tailwindcss';
+
+@theme {
+  --color-surface: var(--color-stone-50);
+  --color-surface-raised: var(--color-white);
+  --color-surface-sunken: var(--color-stone-100);
+  --color-border-subtle: var(--color-stone-200);
+  --color-ink: var(--color-stone-900);
+  --color-ink-muted: var(--color-stone-500);
+
+  --color-brand: var(--color-amber-600);
+  --color-brand-soft: var(--color-amber-100);
+  --color-ok: var(--color-emerald-600);
+  --color-ok-soft: var(--color-emerald-100);
+  --color-info: var(--color-sky-600);
+  --color-info-soft: var(--color-sky-100);
+  --color-warn: var(--color-rose-600);
+  --color-warn-soft: var(--color-rose-100);
+}
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root[data-theme='dark'] {
+  --color-surface: var(--color-stone-950);
+  --color-surface-raised: var(--color-stone-900);
+  --color-surface-sunken: var(--color-stone-900);
+  --color-border-subtle: var(--color-stone-800);
+  --color-ink: var(--color-stone-100);
+  --color-ink-muted: var(--color-stone-400);
+
+  --color-brand-soft: color-mix(in oklab, var(--color-amber-500) 22%, transparent);
+  --color-ok-soft: color-mix(in oklab, var(--color-emerald-500) 22%, transparent);
+  --color-info-soft: color-mix(in oklab, var(--color-sky-500) 22%, transparent);
+  --color-warn-soft: color-mix(in oklab, var(--color-rose-500) 22%, transparent);
+}
+
+/*
+ * The editorial surface is dense on purpose: it is read by someone comparing forty-nine topics,
+ * not by a learner reading one article. Tabular figures so a column of counts lines up.
+ */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
