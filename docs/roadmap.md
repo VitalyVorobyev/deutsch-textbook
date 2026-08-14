@@ -7,8 +7,9 @@ content identities; the [backlog](backlog.md) owns executable work. The complete
 ## Product direction
 
 Deutsch-Atlas is a local-first German course whose success criterion is delayed retention and
-fresh-context transfer, not content volume or page views. A1 and A2 are complete. B1 is being
-authored under its frozen fourteen-unit contract.
+fresh-context transfer, not content volume or page views. The A1–B1 corpus is fully authored but
+is now being requalified against explicit internal, external, depth and lexical contracts; an
+authored level is not called complete while those gates remain open.
 
 The course keeps five boundaries:
 
@@ -20,40 +21,29 @@ The course keeps five boundaries:
 
 ## Current sequence
 
-**Closing B1 comes first, and nothing in the tracks below starts before it does.**
+**The source-led A1–B1 completeness program comes first.**
 
 *Amended 2026-08-05 (owner decision):* the direction tracks open now, with the B1 Wortliste tail
 (lexis waves 2–4) still owed — the remaining waves interleave as content PRs between the track PRs
 rather than blocking them. Track order: accounts/sync surface first, then mobile, then the
 extensive-reading corpus, then cross-links/Referenz.
 
-1. ~~**Finish the B1 units and wave-1 lexis**~~ — **shipped** (all fourteen units, the checkpoint,
-   the placement and the Wortliste tail).
+1. **Complete the source-led A1–B1 quality program.** “Complete” always names a denominator:
+   internal grammar, an external structure inventory, the Goethe Wortliste and teaching depth remain
+   separate. The German-medium edition is outside this gate.
 
-   **In its place: close the six reopened grammar rows, and buy B1 an anchor.** On 2026-08-14 the
-   grammar denominator stopped measuring itself. The official Goethe *Prüfungsziele* inventories —
-   free PDFs nobody had opened, though the inventory header had named them as its source for months
-   — are ingested as `data/strukturenlisten/`, and diffing them against the course's own list found
-   six structures the exams test and no row contained: the coordinating conjunctions, both
-   Wortbildung sections, the demonstrative and interrogative determiners, and the reciprocal
-   pronoun. A1 fell 23/23 → **24/28**, A2 32/32 → **35/37**, and that is progress: the figure stopped
-   being flattering and started being true. Full finding:
-   [grammar-structure-audit.md](curriculum/grammar-structure-audit.md) · [ADR 0011](adrs/0011-external-grammar-anchors.md).
-
-   Three things follow, in order:
-
-   - **Author the six rows' content** (backlog P26-1…P26-6). Each closes by lowering the number in
-     `tests/grammar-coverage.test.ts` in the same commit, the discipline A2 already used ten times.
-   - **Buy the two anchors B1 and B2 have none of** — the B1 *Prüfungsziele* (ISBN 978-3-19-031868-1)
-     and *Profile deutsch* (ISBN 978-3-468-49410-9), the Council-of-Europe Reference Level
-     Description for German and the only source that assigns grammar across A1–C2. **B1 currently
-     reports 32/32 against no external list**, which is precisely the state A1 was in while missing
-     four structures. Until then the B1 figure means "every row we wrote is taught", never "B1 is
-     complete".
-   - **Read the depth report before authoring anything else** (`bun scripts/grammar-depth.ts`).
-     Median practice per confusion runs A1 12 · A2 8 · **B1 4**, production 6 · 6 · **3**, and 29% of
-     B1 tags live in a single practice file. Breadth and depth are two numbers and neither
-     substitutes for the other.
+   - ~~P27-2a trustworthy Redaction preview~~ — shipped: safe one-language rendering and language
+     visibility make source review possible.
+   - ~~P27-2b denominator contract~~ — shipped: DTZ is the cumulative A2–B1 external anchor, with
+     alignment separated from internal coverage and learner mastery.
+   - ~~P27-3a A1 grammar wave~~ — shipped: internal 28/28, external 93/93, lexical 673/673, no A1
+     structure without a delayed probe, depth medians 13 teaching / 9 production / 4 files.
+   - **P27-3b A2 grammar wave is next:** deliver reciprocal pronouns, interrogative determiners and
+     duration with *über*; clear the thirteen A2 article-section findings and eight A2
+     point-without-probe findings through substantive review.
+   - Then work the 21-row DTZ tail as coherent teaching slices, complete the 49 original topic
+     audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
+     100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
 2. **Read the cadence between the windows, not on top of them.** Drain the grading queue to zero,
    rerun `bun run progress:audit --profile vitaly`, and only then read the weak-focus table. This is
    P5-11 and it is not optional: a drill authored from a pre-triage table targets a confusion the
@@ -156,8 +146,17 @@ editor representations to the same React implementations used by the learner.
 separates external alignment, internal catalog coverage, teaching depth and learner mastery. The
 23-row DTZ tail is grouped into coherent teaching slices in the
 [A1–B1 audit ledger](curriculum/a1-b1-completeness-audit.md); `mod-wie` was the one exact existing
-match, leaving 22 rows open. The next content slice closes the seven already exposed internal
-grammar gaps, including the full new A1 `wortbildung` topic, before the remaining DTZ slices.
+match, leaving 22 rows open at classification time. P27-3a then closed the four A1 internal gaps
+and the full new A1 `wortbildung` topic removed DTZ `-chen`; three A2 internal gaps remain.
+
+**P27-3a · A1 grammar quality wave shipped 2026-08-14.** Internal A1 grammar is now 28/28,
+external alignment remains 93/93 and the DTZ tail is 21 after the complete `-chen` slice. The new
+`wortbildung` topic and the coordination/demonstrative expansions have explicit scaffold,
+fade/transfer and delayed probes. Four older A1 confusions without probes now have three variants
+each; all A1 explanation articles have named decision-level sections. A1 depth rose to medians of
+13 teaching items, 9 productive items and 4 files, with zero taught structures lacking a probe.
+The next mergeable content slice is P27-3b: close the three internal A2 gaps and the remaining A2
+article/probe diagnostics before taking on the source-led DTZ tail.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

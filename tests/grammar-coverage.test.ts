@@ -52,25 +52,17 @@ describe('grammar coverage', () => {
       expect(Boolean(point.reference_only) || (point.focus?.length ?? 0) > 0).toBe(true);
   });
 
-  // This assertion was `missing === 0` until 2026-08-14, and that was true of a denominator
-  // nobody had checked. The first run of `bun scripts/structures.ts` against the official
-  // Goethe A1 inventory (data/strukturenlisten/goethe-a1-sd1.yaml, free from goethe.de and never
-  // opened before) found FOUR structures the exam lists and this file did not contain — the
-  // coordinating conjunctions, both Wortbildung sections and the demonstrative determiner. So it
-  // is a countdown again, exactly as A2's was ten times over: the number comes down once per
-  // commit that ships the content closing a point, and never by editing the number alone.
-  test('A1 reports the four structures the Goethe inventory lists and no content teaches', () => {
+  // The 2026-08-14 anchor pass reopened four honest gaps: coordinating conjunctions, both
+  // Wortbildung sections and the demonstrative determiner. The A1 quality wave closed them with
+  // owner articles, scaffold/fade/transfer practice and delayed probes. This is a ratchet again:
+  // adding an inventory row without evidence must reopen it visibly.
+  test('A1 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A1');
     const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
-    expect(missing).toEqual([
-      'demonstrativartikel',
-      'koordination',
-      'wortbildung-adjektiv',
-      'wortbildung-nomen',
-    ]);
-    // Nothing is late either: everything A1 does teach, it teaches inside A1.
+    expect(missing).toEqual([]);
+    expect(coverage.covered).toBe(28);
+    expect(coverage.percent).toBe(100);
     expect(coverage.late).toBe(0);
-    expect(coverage.covered).toBe(coverage.total - missing.length);
   });
 
   // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a

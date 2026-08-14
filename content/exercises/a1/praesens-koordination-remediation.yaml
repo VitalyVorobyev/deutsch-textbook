@@ -1,0 +1,36 @@
+topic: praesens-wortstellung
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt wiederholen — Konjunktion ohne Satzposition"
+title: {en: "Targeted retrieval — the conjunction occupies no clause position", ru: "Точечное повторение — союз не занимает позицию", uk: "Точкове повторення — сполучник не займає позицію"}
+items:
+  - id: cloze-aber-subjekt
+    outcomes: [praesens-koordination]
+    type: cloze
+    focus: koordination-position-null
+    instruction: {en: "Complete the intact second clause.", ru: "Дополните неизменную вторую часть.", uk: "Доповніть незмінену другу частину."}
+    text: "Das Zimmer ist klein, aber {{es}} ist hell."
+    explain: {en: "aber is outside the clause frame; the second clause still begins with its subject es.", ru: "aber находится вне каркаса предложения; вторая часть по-прежнему начинается с подлежащего es.", uk: "aber перебуває поза каркасом речення; друга частина й далі починається з підмета es."}
+  - id: translate-oder-termin
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate the choice with oder.", ru: "Переведите выбор с oder.", uk: "Перекладіть вибір з oder."}
+    prompt_en: "Are you coming on Monday, or do you have no time?"
+    prompt_ru: "Ты придёшь в понедельник или у тебя нет времени?"
+    prompt_uk: "Ти прийдеш у понеділок чи не маєш часу?"
+    answer: "Kommst du am Montag, oder hast du keine Zeit?"
+    key_tokens: ["oder", "hast"]
+    explain: {en: "Both halves are yes/no questions and keep verb-first order. oder only links them.", ru: "Обе части — общие вопросы и сохраняют порядок с глаголом в начале. oder только соединяет их.", uk: "Обидві частини — загальні питання й зберігають порядок із дієсловом на початку. oder лише поєднує їх."}
+  - id: translate-denn-muede
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Give the reason with denn.", ru: "Назовите причину с denn.", uk: "Назвіть причину з denn."}
+    prompt_en: "I am going home because I am tired."
+    prompt_ru: "Я иду домой, потому что устал."
+    prompt_uk: "Я йду додому, бо втомився."
+    answer: "Ich gehe nach Hause, denn ich bin müde."
+    key_tokens: ["denn", "bin"]
+    explain: {en: "denn introduces the main clause ich bin müde, not a verb-final clause.", ru: "denn вводит главное предложение ich bin müde, а не придаточное с глаголом в конце.", uk: "denn вводить головне речення ich bin müde, а не підрядне з дієсловом у кінці."}

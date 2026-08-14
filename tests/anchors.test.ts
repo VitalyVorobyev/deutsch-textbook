@@ -44,7 +44,8 @@ describe('inventory anchors', () => {
   /**
    * The DTZ tail is a named countdown, not a percentage that can move through rounding. One of the
    * original 23 entries, modal `wie + Nominativ`, already had exact teaching and productive
-   * evidence in einkaufen-reklamation and is now claimed by `komparativ`. The remaining 22 stay
+   * evidence in einkaufen-reklamation and is now claimed by `komparativ`; `-chen` shipped with
+   * the full A1 Wortbildung slice. The remaining 21 stay
    * visible until their complete teaching slices ship; adding an alias is not a valid way to edit
    * this list.
    */
@@ -52,7 +53,7 @@ describe('inventory anchors', () => {
     const expected = [
       'vorsilbe-herauf', 'vorsilbe-heraus', 'vorsilbe-herein', 'vorsilbe-herunter',
       'vorsilbe-hin', 'vorsilbe-hinauf', 'vorsilbe-hinaus', 'vorsilbe-hinueber',
-      'vorsilbe-hinunter', 'nachsilbe-chen', 'derselbe', 'ein-paar', 'wenige',
+      'vorsilbe-hinunter', 'derselbe', 'ein-paar', 'wenige',
       'temp-mit', 'temp-zwischen', 'lok-ausserhalb', 'lok-gegen', 'lok-um-herum',
       'weit-nach', 'darum', 'daher', 'nicht-brauchen-zu',
     ].sort();

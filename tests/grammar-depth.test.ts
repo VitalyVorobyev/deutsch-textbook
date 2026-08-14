@@ -27,7 +27,7 @@ import { focusIntroducedBy } from '@da/content/focus-tags';
 describe('grammar depth', () => {
   // Re-derive: bun scripts/grammar-depth.ts
   const FLOORS = {
-    A1: { teaching: 12, production: 6, files: 4 },
+    A1: { teaching: 13, production: 9, files: 4 },
     A2: { teaching: 8, production: 6, files: 3 },
     B1: { teaching: 4, production: 3, files: 2 },
   } as const;
@@ -69,8 +69,8 @@ describe('grammar depth', () => {
     // instead of being invisible. Lower it again by authoring the items, never by dropping the tag.
     expect([
       totals.thin <= 16,
-      totals.singleFile <= 18,
-      totals.noProbe <= 13,
+      totals.singleFile <= 16,
+      totals.noProbe <= 8,
     ]).toEqual([true, true, true]);
   });
 
@@ -118,8 +118,8 @@ describe('grammar depth', () => {
   });
 
   test('a point with no teaching items is not counted as missing its delayed check', () => {
-    // Opening a denominator gap must not look like a retention regression. The four A1 rows the
-    // anchor pass opened have no items and no probes, and are excluded by construction.
+    // Opening a denominator gap must not look like a retention regression. The three open A2 rows
+    // have no items and no probes, and are excluded by construction.
     const untaught = pointDepths().filter((p) => p.teaching === 0);
     expect(untaught.length).toBeGreaterThan(0);
     const counted = (['A1', 'A2', 'B1'] as const).reduce((n, l) => n + levelDepth(l).pointsWithoutProbe, 0);

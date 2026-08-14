@@ -1,0 +1,44 @@
+topic: alltag-zeit
+role: probe
+title: {en: "Probe — duration and time from now", ru: "Проверка — интервал и время от настоящего момента", uk: "Перевірка — інтервал і час від теперішнього моменту"}
+arming:
+  - a1/alltag-zeit-von-bis::cloze-oeffnungszeiten
+  - a1/alltag-zeit-von-bis::cloze-in-minuten
+  - a1/alltag-zeit-von-bis::translate-arbeitswoche
+  - a1/alltag-zeit-von-bis::translate-zug-minuten
+items:
+  - id: variant-a
+    outcomes: [zeit-praepositionen]
+    type: translate
+    focus: von-bis-in-zeit
+    instruction: {en: "Translate the opening interval.", ru: "Переведите интервал работы.", uk: "Перекладіть інтервал роботи."}
+    prompt_en: "The pharmacy is open from eight to six."
+    prompt_ru: "Аптека открыта с восьми до шести."
+    prompt_uk: "Аптека відкрита з восьмої до шостої."
+    answer: "Die Apotheke ist von acht bis sechs geöffnet."
+    accept: ["Die Apotheke ist von acht bis sechs offen."]
+    key_tokens: ["von", "bis"]
+    explain: {en: "von … bis … marks both boundaries of an interval. No extra preposition is needed before the second time.", ru: "von … bis … обозначает обе границы интервала. Перед вторым временем дополнительный предлог не нужен.", uk: "von … bis … позначає обидві межі інтервалу. Перед другим часом додатковий прийменник не потрібен."}
+  - id: variant-b
+    outcomes: [zeit-praepositionen]
+    type: translate
+    focus: von-bis-in-zeit
+    instruction: {en: "Translate the time from now.", ru: "Переведите время от настоящего момента.", uk: "Перекладіть час від теперішнього моменту."}
+    prompt_en: "The bus comes in ten minutes."
+    prompt_ru: "Автобус придёт через десять минут."
+    prompt_uk: "Автобус приїде через десять хвилин."
+    answer: "Der Bus kommt in zehn Minuten."
+    key_tokens: ["in", "Minuten"]
+    explain: {en: "in + a quantity of time measures forward from now: in zehn Minuten. It is not an interval with two endpoints.", ru: "in + отрезок времени отсчитывает вперёд от настоящего момента: in zehn Minuten. Это не интервал с двумя границами.", uk: "in + відрізок часу відраховує вперед від теперішнього моменту: in zehn Minuten. Це не інтервал із двома межами."}
+  - id: variant-c
+    outcomes: [zeit-praepositionen]
+    type: translate
+    focus: von-bis-in-zeit
+    instruction: {en: "Translate both time relations.", ru: "Переведите оба временных отношения.", uk: "Перекладіть обидва часові відношення."}
+    prompt_en: "The course runs from Monday to Friday and begins in two weeks."
+    prompt_ru: "Курс идёт с понедельника по пятницу и начинается через две недели."
+    prompt_uk: "Курс триває з понеділка до п’ятниці й починається через два тижні."
+    answer: "Der Kurs ist von Montag bis Freitag und beginnt in zwei Wochen."
+    accept: ["Der Kurs geht von Montag bis Freitag und beginnt in zwei Wochen."]
+    key_tokens: ["von", "bis", "in", "Wochen"]
+    explain: {en: "von … bis … gives the weekly span; in zwei Wochen gives the distance from now to the start.", ru: "von … bis … задаёт недельный интервал, а in zwei Wochen — расстояние от настоящего момента до начала.", uk: "von … bis … задає тижневий інтервал, а in zwei Wochen — відстань від теперішнього моменту до початку."}

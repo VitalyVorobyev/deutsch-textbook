@@ -28,10 +28,10 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3a A1 grammar wave**: close `koordination`,
-`demonstrativartikel`, `wortbildung-nomen` and `wortbildung-adjektiv` with complete teaching,
-transfer and probe evidence; the new `wortbildung` topic also owns DTZ `-chen`. P27-2b classified
-the 23-row DTZ tail, claimed only the exact existing `mod-wie` evidence and left 22 named rows open
+The current executable item is **P27-3b A2 grammar wave**: close `reziprokpronomen`,
+`interrogativartikel` and `ueber-dauer` with complete teaching, transfer and probe evidence; then
+remove the remaining A2 article/probe diagnostics through substantive review. P27-3a closed all
+four A1 gaps, added the full `wortbildung` topic and claimed DTZ `-chen`, leaving 21 named rows open
 in the audit ledger. P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
@@ -43,7 +43,7 @@ Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact 
 revision, invalid YAML/MDX and corpus-invalid-draft tests; all renderer fixtures; checkout/watcher/
 save/refetch/relaunch integration; keyboard and screen-reader navigation at 1440/1024/768; and a
 macOS `.app`/`.dmg` smoke build. Baseline findings and coverage are regression evidence, not KPIs:
-49/49 topics with findings, 265 findings, grammar claims A1/A2/B1 100%/92%/86%, A2–B1
+the original 49/49 topics with findings and 265 findings, grammar claims A1/A2/B1 100%/93%/87%, A2–B1
 Sprachhandlungen 63% and Themen 84% at the review that opened P27.
 
 ### P5-11 · Evidence-led operating cadence
@@ -74,31 +74,22 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
-**P26 · The six rows the 2026-08-14 anchor pass reopened.** Each exists in
-`data/grammar-inventory.yaml` with a deliberately unregistered focus tag, so `bun scripts/grammar-coverage.ts`
-reports it `✗` — the pattern B1 used at 0%. Closing one means: content, register the tag in
+**P26 · The seven rows the 2026-08-14 anchor pass reopened.** The four A1 rows are delivered by
+P27-3a and their tags are registered; the three A2 rows remain deliberately unregistered, so
+`bun scripts/grammar-coverage.ts` reports them `✗`. Closing one means: content, register the tag in
 `focusIntroducedBy` **and** `docs/authoring/focus-tags.md`, and lower the number in
 `tests/grammar-coverage.test.ts` in the same commit. Evidence and page citations:
 [grammar-structure-audit.md](curriculum/grammar-structure-audit.md) · the console's Lücken view.
 
-- **P26-1 · `koordination` (A1)** — *und / oder / aber / denn* joining two main clauses, with the
-  conjunction occupying no sentence position. Listed at A1 **and** A2 by Goethe. The sharpest of the
-  six: `~und`, `~oder` and `~aber` are ~-marked in `data/goethe-a1-wortliste.txt`, i.e. the lexical
-  manifest has been claiming the curriculum teaches them as grammar while no grammar row existed at
-  any level. The only systematic treatment anywhere is one comparison-table row in
-  `a2/verbindungen-folgen`. Likely owner: `a1/praesens-wortstellung` (it owns `verbzweit`, and the
-  contrast that makes A2's *weil*/*deshalb* learnable is that these four change nothing).
-- **P26-2 · `wortbildung-nomen` (A1)** — Komposita, *-er*, *-ung*, feminine *-in*. Wortbildung is one
-  of the eight top-level sections of **both** Goethe inventories and had no row at any level: the
-  largest single hole found. Not decoration — the gender of a compound comes from its last member,
-  *-ung* nouns are feminine without exception, and a learner who can decompose reads far more than
-  the Wortliste alone predicts.
-- **P26-3 · `wortbildung-adjektiv` (A1)** — *un-*, *-los*, *-bar*, *hellblau*. Kept separate from
-  P26-2 because the confusion differs: a compound asks which member carries the gender, an affix
-  asks what it does to the meaning. *-bar* is also the first passive-like form a learner meets.
-- **P26-4 · `demonstrativartikel` (A1)** — *dieser/diese/dieses*, listed at A1 and again at A2. The
-  confusion is not the meaning but that *dieser* takes the definite article's endings while a
-  following adjective then takes the weak ones, so it belongs beside `adjektiv-bestimmt`.
+- **P26-1 · `koordination` (A1) — delivered in P27-3a.** `praesens-wortstellung` now owns the
+  article section, four practice contexts across scaffold/fade/transfer and delayed probes for
+  position-zero *und / oder / aber / denn*.
+- **P26-2 · `wortbildung-nomen` (A1) — delivered in P27-3a.** The new `wortbildung` topic teaches
+  compounds, *-er*, *-ung*, feminine *-in* and the real boundary of *-chen*.
+- **P26-3 · `wortbildung-adjektiv` (A1) — delivered in P27-3a.** The same topic separately teaches
+  the meaning decisions behind *un-*, *-los*, *-bar* and adjective compounds.
+- **P26-4 · `demonstrativartikel` (A1) — delivered in P27-3a.** `artikel-genus` now carries
+  A1 nominative *dieser/diese/dieses* through scaffold, transfer and delayed checks.
 - **P26-5 · `reziprokpronomen` (A2)** — *Wir sehen uns morgen*. Shares its FORM with the reflexive
   and none of its meaning; EN marks the difference lexically (`each other`), RU/UK with «друг друга»,
   so neither hand supplies the German syncretism. Reception A1, production A2.
@@ -106,10 +97,10 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   case: *Welchen Film…?* is where a nominative *Welcher* slips in, and EN `which` / RU «какой»
   decline for neither or differently. Distinct from `indefinitpronomen`, which owns the free-standing
   *welch-* pronoun.
-- **P26-7 · Buy the two missing anchors** — the Goethe/ÖSD **B1 Prüfungsziele** (ISBN
-  978-3-19-031868-1) and **Profile deutsch** (ISBN 978-3-468-49410-9). B1 currently reports 32/32
-  against **no external list at all**, exactly the state A1 was in while missing four structures;
-  Goethe delegates B2's inventory to Profile deutsch outright. Each becomes one
+- **P26-7 · Buy the two stronger higher-level anchors** — the Goethe/ÖSD **B1 Prüfungsziele** (ISBN
+  978-3-19-031868-1) and **Profile deutsch** (ISBN 978-3-468-49410-9). B1 is now externally measured
+  against the cumulative DTZ inventory, but that is not a complete German B1 grammar progression;
+  Goethe delegates B2's inventory to Profile deutsch outright. Each new source becomes one
   `data/strukturenlisten/*.yaml` and every new entry starts life `unclaimed`, so the size of the job
   is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
   the free A2 list here is *Fit in Deutsch 2*, the youth exam.
@@ -118,16 +109,18 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
   not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar
   coverage reads 35/38. Closing it means authoring the items, not editing this line.
-- **P26-9 · Twenty articles whose `## Erklärung` has no `###` subsections** — every case topic among
+- **P26-9 · Fourteen findings remain for articles whose `## Erklärung` has no `###` subsections.**
+  P27-3a cleared all seven A1 articles (including the two grammar-owner articles already in flight);
+  thirteen A2 articles remain plus one B1 IPA warning. The original set included
   them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
   `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
   rule; `packages/content/src/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
   (exit 0) and the console badges each topic. The heading is the only addressable place a structure
   is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
   point but the whole article. Content work, one article at a time; the warning count is the counter.
-- **P26-10 · Thirteen taught structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
-  --by-point --no-probe`. Five at A1 (`gern`, `plural`, `negation-nicht`, `akkusativ-pronomen`,
-  `haben-wendungen`), eight at A2 (`adjektiv-praedikativ`, `aber-sondern`, `reflexiv-akkusativ`,
+- **P26-10 · Eight taught A2 structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
+  --by-point --no-probe`. P27-3a reduced A1 to zero; the A2 tail is `adjektiv-praedikativ`,
+  `aber-sondern`, `reflexiv-akkusativ`,
   `reflexiv-dativ`, `um-zu`, `passiv-praesens`, `will-moechte`, `partizip2-system`). The lesson cycle
   ends before its last step for each of them. Probe families are ordinary work since P19-4, but
   **measure `armedAt` before and after** — a source reading is not a measurement.
@@ -693,11 +686,11 @@ reports it `✗` — the pattern B1 used at 0%. Closing one means: content, regi
   list — ADR 0012 deliberately kept derived edges out of the manifests. **Measure first**:
   `praepositionen.yaml` has no entry in the table at all, and whether that is a gap or a deliberate
   fold into `/referenz/kasus-praepositionen` decides whether this is 7 rows or 6.
-- **P26-15 · Topic `tags:` has zero consumers** — every one of the 49 manifests carries a `tags:`
+- **P26-15 · Topic `tags:` has zero consumers** — every one of the 50 manifests carries a `tags:`
   array (`[verbs, past-tense]`, …) that nothing reads: not the app, not a script, not Redaktion,
   not a test. It was carried through the ADR 0012 migration unchanged so that the move stayed a
   provable relocation. Either give it a job (a Redaktion facet is the obvious one) or delete the
-  field from `topicManifestSchema` and the 49 files in one change.
+  field from `topicManifestSchema` and the 50 files in one change.
 - **P26-17 · The DTZ § 9.2 Wortliste cross-check is the one anchor still unread** — the fourth
   inventory in the handbook (pp. 105–178, ~2 100 Haupteinträge + ~600 indented Nebeneinträge) would
   answer "does the adult A2–B1 standard expect words the Goethe A2 and B1 lists do not", against

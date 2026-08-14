@@ -22,6 +22,10 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `artikel-pflicht` | dropping the article (❌ Ich habe Frage) |
 | `kein-nicht` | negating nouns with kein-, not nicht |
 | `nicht-position` | placing nicht correctly: after verb and object, before predicative adjectives/adverbs (❌ Ich nicht arbeite) |
+| `koordination-position-null` | *und, oder, aber, denn* join two main clauses from position zero: each clause keeps its own verb in position 2 (❌ *denn arbeite ich heute*); unlike *deshalb*, the connector does not itself occupy position 1, and unlike *weil* it never sends the verb to the end |
+| `demonstrativartikel` | *dieser/diese/dieses* points to a particular noun and takes the same visible gender/case ending as *der/die/das*; at A1 production is nominative, so ❌ *dieser Tasche* becomes *diese Tasche* |
+| `wortbildung-nomen` | reading and building transparent nouns: the final member determines compound gender and plural (*die Fahrt + der Plan → der Fahrplan*); *-ung* is feminine, *-chen* neuter with no distinct plural, person *-er* is usually masculine and *-in* makes the feminine — but resemblance alone is no licence to segment (*der Kuchen* is not a diminutive) |
+| `wortbildung-adjektiv` | reading productive adjective pieces without inventing forms: *un-* negates, *-los* means without, *-bar* means can be done, and adjective compounds combine meanings (*hellblau*); the base must be a real compatible word, so the pattern supports inference but does not replace a dictionary |
 | `possessivartikel` | choosing mein/dein/sein/ihr and matching nominative gender/plural endings |
 | `akkusativ-artikel` | accusative article forms: der→den, ein→einen, kein→keinen; only masculine changes |
 | `akkusativ-pronomen` | accusative pronoun forms: mich, dich, ihn |

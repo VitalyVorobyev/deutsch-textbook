@@ -25,17 +25,17 @@ describe('content graph', () => {
     // A note means a file did not match its schema. `bun run validate` is the gate; this asserts
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
-    expect(graph.topics.size).toBe(49);
-    expect(graph.sets.size).toBe(340);
-    expect(graph.readings.size).toBe(77);
+    expect(graph.topics.size).toBe(50);
+    expect(graph.sets.size).toBe(364);
+    expect(graph.readings.size).toBe(78);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(41);
     expect(graph.documents.size).toBe(5);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
     expect(graph.wortnetze.size).toBe(10);
-    expect(graph.units.length).toBe(49);
-    expect(graph.outcomes.size).toBe(179);
+    expect(graph.units.length).toBe(50);
+    expect(graph.outcomes.size).toBe(184);
     // 98 since 2026-08-14: `ueber-dauer` joined when the DTZ handbook confirmed `über + Akkusativ`
     // as a temporal preposition (P26-8). Nothing teaches it yet — see tests/grammar-coverage.test.ts.
     expect(graph.inventory.length).toBe(98);
@@ -79,23 +79,23 @@ describe('content graph', () => {
     const counts = new Map<ElementKind, number>();
     for (const element of graph.elements) counts.set(element.kind, (counts.get(element.kind) ?? 0) + 1);
     expect(Object.fromEntries([...counts].sort())).toEqual({
-      artikel: 49,
+      artikel: 50,
       checkpoint: 3,
       dokument: 5,
-      drill: 17,
+      drill: 19,
       einstufung: 3,
       entdecken: 19,
       hoertext: 41,
       'lesetext-extensiv': 17,
-      'lesetext-intensiv': 60,
-      praxis: 155,
-      pretest: 49,
-      probe: 110,
+      'lesetext-intensiv': 61,
+      praxis: 164,
+      pretest: 50,
+      probe: 122,
       pruefungspraxis: 3,
       wortfeld: 2,
       wortschatz: 40,
     });
-    expect(graph.elements.length).toBe(573);
+    expect(graph.elements.length).toBe(599);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -103,16 +103,16 @@ describe('content graph', () => {
     for (const element of graph.elements) byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(97);
-    expect(byStage.get('geruest')).toBe(55);
-    expect(byStage.get('nachpruefung')).toBe(113);
+    expect(byStage.get('transfer')).toBe(100);
+    expect(byStage.get('geruest')).toBe(59);
+    expect(byStage.get('nachpruefung')).toBe(125);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(172);
+    expect(teaching).toHaveLength(183);
     expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
       activity,
       teaching.filter((element) => element.activity === activity).length,
-    ]))).toEqual({ core: 49, extension: 12, application: 94, remediation: 17 });
+    ]))).toEqual({ core: 50, extension: 17, application: 97, remediation: 19 });
     expect([...graph.topics.keys()].filter((topic) =>
       !(graph.elementsByTopic.get(topic) ?? []).some(
         (element) => element.activity === 'application' && element.touches.includes('produktion'),

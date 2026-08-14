@@ -117,6 +117,27 @@ items:
     accept: ["Heute habe ich keine Zeit."]
     explain: { en: "A noun is negated with kein-, not with nicht, and kein- takes the same endings as ein-: die Zeit is feminine, so keine Zeit. Also note that German cannot drop haben here the way some languages drop the verb of possession.", ru: "Существительное отрицается через kein-, а не через nicht, и kein- получает те же окончания, что и ein-: die Zeit женского рода, поэтому keine Zeit. Обратите также внимание: конструкция «у меня нет» передаётся глаголом haben, который в немецком опустить нельзя.", uk: "Іменник заперечується через kein-, а не через nicht, і kein- отримує ті самі закінчення, що й ein-: die Zeit жіночого роду, тому keine Zeit. Зверніть також увагу: конструкція «у мене немає» передається дієсловом haben, яке в німецькій опустити не можна." }
 
+  # --- wortbildung ---
+  - id: wortbildung-kompositum
+    outcomes: [wortbildung-komposita]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: { en: "Complete the compound with its article.", ru: "Дополните сложное слово артиклем.", uk: "Доповніть складне слово артиклем." }
+    text: "Wörter + das Buch = {{das}} Wörterbuch"
+    explain: { en: "The final noun controls the whole compound: das Buch → das Wörterbuch. Wörter only specifies what kind of book it is.", ru: "Последнее существительное управляет всем сложным словом: das Buch → das Wörterbuch. Wörter лишь уточняет вид книги.", uk: "Останній іменник керує всім складним словом: das Buch → das Wörterbuch. Wörter лише уточнює вид книжки." }
+
+  - id: wortbildung-adjektiv
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: { en: "Use the adjective kostenlos.", ru: "Используйте прилагательное kostenlos.", uk: "Використайте прикметник kostenlos." }
+    prompt_en: "The course is free of charge."
+    prompt_ru: "Курс бесплатный."
+    prompt_uk: "Курс безкоштовний."
+    answer: "Der Kurs ist kostenlos."
+    key_tokens: ["kostenlos"]
+    explain: { en: "Kosten + -los means without costs: kostenlos. The suffix expresses absence, not merely a low price.", ru: "Kosten + -los означает «без расходов»: kostenlos. Суффикс выражает отсутствие, а не просто низкую цену.", uk: "Kosten + -los означає «без витрат»: kostenlos. Суфікс виражає відсутність, а не просто низьку ціну." }
+
   # --- menschen-familie ---
   - id: familie-possessiv-vorstellen
     outcomes: [menschen-beschreiben]
