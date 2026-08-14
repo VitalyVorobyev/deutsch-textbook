@@ -65,29 +65,17 @@ describe('grammar coverage', () => {
     expect(coverage.late).toBe(0);
   });
 
-  // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a
-  // ratchet: A2 is complete against the standard, and it must stay that way. The
-  // number was lowered ten times, once per point, each in the commit that shipped the
-  // unit closing it — that visibility was the whole purpose, and it still is. If this
-  // fails, either a structure was silently dropped or a point was added to the
-  // inventory without the content to pay for it, and both want noticing.
-  // Same reopening as A1, and for the same reason: the 2026-08-14 anchor pass added five A2 rows
-  // — two from the published inventories (the reciprocal pronoun and the interrogative determiner,
-  // both listed at A2 and covered by nothing) and three from registered focus tags that no row
-  // referenced (`partizip2-form`, `wechsel-akk-dat`, `will-moechte`). Three of the five were
-  // already drilled and closed on arrival; two are open and named here.
-  // A third joined them on 2026-08-14 when the DTZ Prüfungshandbuch landed as an anchor. `über +
-  // Akkusativ` as a duration had sat as A1's single unclaimed entry with a backlog item (P26-8)
-  // asking whether it is a temporal preposition at all; the DTZ files it under §8.4 5.1 *temporal*,
-  // so two independent standards agree and it earned a row. NOTHING TEACHES IT, which is exactly
-  // why the number went the wrong way here — a denominator that only ever grows when the content
-  // is ready is not a denominator.
-  test('A2 reports the three structures its standard lists and no content teaches', () => {
+  // The 2026-08-14 anchor pass deliberately reopened reciprocal pronouns, interrogative
+  // determiners and temporal `über`: the rows existed before their teaching evidence. The A2
+  // source-led wave then paid for each with an addressable article section, scaffold, transfer and
+  // a parallel three-variant probe family. This is a ratchet again: a new internal row without
+  // learner-facing evidence must make the test fail.
+  test('A2 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A2');
     const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
-    expect(missing).toEqual(['interrogativartikel', 'reziprokpronomen', 'ueber-dauer']);
-    // Nothing is merely late either: a point taught above its standard level would
-    // still count toward the percentage, so it has to be asserted separately.
+    expect(missing).toEqual([]);
+    expect(coverage.covered).toBe(38);
+    expect(coverage.percent).toBe(100);
     expect(coverage.late).toBe(0);
   });
 

@@ -7,7 +7,7 @@ title_de: Einkaufen & Reklamation
 title_en: Shopping and complaints
 title_ru: Покупки и рекламация
 title_uk: Покупки та рекламація
-status: reviewed
+status: draft
 tags:
   - shopping
   - comparison
@@ -58,6 +58,13 @@ outcomes:
     uk: Я вмію написати коротку рекламацію.
     claims:
       - goethe-dtz-handlungen:umgang-konflikte
+  - id: produkt-mit-welch-bestimmen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann mit welch- nach einem bestimmten Produkt oder einer Option fragen.
+    en: I can use welch- to ask for a particular product or option.
+    ru: Я умею с помощью welch- уточнить конкретный товар или вариант.
+    uk: Я вмію за допомогою welch- уточнити конкретний товар або варіант.
 claims:
   - goethe-dtz-themen:einkaufen-geschaefte
   - goethe-dtz-themen:einkaufen-preis
@@ -70,11 +77,14 @@ elements:
     - a2/einkaufen-reklamation
     - a2/einkaufen-reklamation-produktion
     - a2/einkaufen-reklamation-dokument
+    - a2/einkaufen-interrogativartikel
+    - a2/einkaufen-interrogativartikel-anwenden
     - a2/ls-einkaufen-reklamation-01-hoeren
   primary_practice: a2/einkaufen-reklamation
   probes:
     - a2/probe-einkaufen-reklamation
     - a2/probe-einkaufen-reklamation-superlativ
+    - a2/probe-interrogativartikel
   reading:
     - a2/einkaufen-reklamation
   vocab:

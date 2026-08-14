@@ -26,7 +26,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(50);
-    expect(graph.sets.size).toBe(364);
+    expect(graph.sets.size).toBe(381);
     expect(graph.readings.size).toBe(78);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(41);
@@ -35,7 +35,7 @@ describe('content graph', () => {
     expect(graph.wortfelder.size).toBe(2);
     expect(graph.wortnetze.size).toBe(10);
     expect(graph.units.length).toBe(50);
-    expect(graph.outcomes.size).toBe(184);
+    expect(graph.outcomes.size).toBe(188);
     // 98 since 2026-08-14: `ueber-dauer` joined when the DTZ handbook confirmed `über + Akkusativ`
     // as a temporal preposition (P26-8). Nothing teaches it yet — see tests/grammar-coverage.test.ts.
     expect(graph.inventory.length).toBe(98);
@@ -88,14 +88,14 @@ describe('content graph', () => {
       hoertext: 41,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 61,
-      praxis: 164,
+      praxis: 170,
       pretest: 50,
-      probe: 122,
+      probe: 133,
       pruefungspraxis: 3,
       wortfeld: 2,
       wortschatz: 40,
     });
-    expect(graph.elements.length).toBe(599);
+    expect(graph.elements.length).toBe(616);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -103,16 +103,16 @@ describe('content graph', () => {
     for (const element of graph.elements) byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(100);
-    expect(byStage.get('geruest')).toBe(59);
-    expect(byStage.get('nachpruefung')).toBe(125);
+    expect(byStage.get('transfer')).toBe(103);
+    expect(byStage.get('geruest')).toBe(62);
+    expect(byStage.get('nachpruefung')).toBe(136);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(183);
+    expect(teaching).toHaveLength(189);
     expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
       activity,
       teaching.filter((element) => element.activity === activity).length,
-    ]))).toEqual({ core: 50, extension: 17, application: 97, remediation: 19 });
+    ]))).toEqual({ core: 50, extension: 20, application: 100, remediation: 19 });
     expect([...graph.topics.keys()].filter((topic) =>
       !(graph.elementsByTopic.get(topic) ?? []).some(
         (element) => element.activity === 'application' && element.touches.includes('produktion'),

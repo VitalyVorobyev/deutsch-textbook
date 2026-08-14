@@ -35,9 +35,9 @@ lower internal coverage until learner-facing evidence pays for them.
 | `koordination` | `praesens-wortstellung` | delivered: named article section, scaffold/fade/transfer across four files and a three-variant probe |
 | `demonstrativartikel` | `artikel-genus` | delivered: A1 `dieser/diese/dieses`, scaffold, transfer and a three-variant probe |
 | `wortbildung-nomen`, `wortbildung-adjektiv` | new A1 `wortbildung` | delivered: full article, pretest, reading, scaffold/fade/transfer, separate probe families and DTZ `-chen` |
-| `reziprokpronomen` | `freunde-feste` | reciprocal `uns/sich`, explicitly contrasted with reflexive meaning |
-| `interrogativartikel` | `einkaufen-reklamation` | case-bearing `welch-` and `alle` before a noun |
-| `ueber-dauer` | `alltag-tagesablauf` and transfer in `zeit-praepositionen` | duration `über + Akkusativ`, never inferred from the spatial use |
+| `reziprokpronomen` | `freunde-feste` | delivered: reciprocal `uns/sich`, explicitly contrasted with reflexive meaning, transfer and probe family |
+| `interrogativartikel` | `einkaufen-reklamation` | delivered: case-bearing `welch-` and `alle` before a noun, transfer and probe family |
+| `ueber-dauer` | `alltag-tagesablauf` and transfer in `zeit-praepositionen` | delivered: duration `über + Akkusativ`, explicitly distinguished from a neutral duration and spatial use |
 
 ## Exit evidence per productive point
 
@@ -70,3 +70,22 @@ The ledger records delivery, not learning. Learner retention and transfer remain
 - A1 depth now reports median 13 teaching items, 9 productive items and 4 practice files; no taught
   A1 structure lacks a delayed probe. Touched topics remain `draft` until their complete profiles
   receive the later human review gate.
+
+### A2 internal grammar wave — 2026-08-14
+
+- Internal A2 moved from 35/38 to 38/38 while lexical coverage stayed 1449/1449. External DTZ
+  alignment deliberately stayed 279/300: the 21 rows require their own exact source-led slices.
+- `freunde-feste` now separates reciprocal *uns/sich* from reflexive form identity;
+  `einkaufen-reklamation` teaches the case-bearing determiner *welch-* rather than free-standing
+  *welche*; `alltag-tagesablauf` teaches *über* only for a crossed duration threshold, with transfer
+  in the time-preposition topic.
+- Eight previously taught productive structures received parallel three-variant delayed probes:
+  predicative adjectives, *aber/sondern*, accusative and dative reflexives, receptive passive,
+  *wollen/möchte*, *um … zu* and Partizip-II formation.
+- All thirteen remaining A2 articles without addressable explanation subsections were reviewed and
+  split by the actual learner decision. The unrelated B1 phrase IPA found by the same run was
+  transcribed, so validator warnings fell from 14 to 0. Touched topics remain `draft`; delivery is
+  not a human review approval.
+- A2 depth now reports medians of 8 teaching items, 6 productive items and 3 practice files. The
+  lower teaching median is the honest effect of adding three real confusions to the distribution,
+  while the structure-level no-probe count improved from 8 to 0.

@@ -38,10 +38,11 @@ extensive-reading corpus, then cross-links/Referenz.
      alignment separated from internal coverage and learner mastery.
    - ~~P27-3a A1 grammar wave~~ — shipped: internal 28/28, external 93/93, lexical 673/673, no A1
      structure without a delayed probe, depth medians 13 teaching / 9 production / 4 files.
-   - **P27-3b A2 grammar wave is next:** deliver reciprocal pronouns, interrogative determiners and
-     duration with *über*; clear the thirteen A2 article-section findings and eight A2
-     point-without-probe findings through substantive review.
-   - Then work the 21-row DTZ tail as coherent teaching slices, complete the 49 original topic
+   - ~~P27-3b A2 grammar wave~~ — shipped: internal 38/38, lexical 1449/1449, all thirteen A2
+     article-section findings cleared and the eight A2 structure-level probe gaps closed.
+   - **P27-3c DTZ tail is next:** work the 21 rows as the eight coherent teaching slices already
+     classified in the audit ledger, with exact claims only after learner-facing evidence.
+   - Then complete the 49 original topic
      audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
      100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
 2. **Read the cadence between the windows, not on top of them.** Drain the grading queue to zero,
@@ -147,7 +148,8 @@ separates external alignment, internal catalog coverage, teaching depth and lear
 23-row DTZ tail is grouped into coherent teaching slices in the
 [A1–B1 audit ledger](curriculum/a1-b1-completeness-audit.md); `mod-wie` was the one exact existing
 match, leaving 22 rows open at classification time. P27-3a then closed the four A1 internal gaps
-and the full new A1 `wortbildung` topic removed DTZ `-chen`; three A2 internal gaps remain.
+and the full new A1 `wortbildung` topic removed DTZ `-chen`; the A2 wave then closed all three
+internal gaps without changing the still-open external tail.
 
 **P27-3a · A1 grammar quality wave shipped 2026-08-14.** Internal A1 grammar is now 28/28,
 external alignment remains 93/93 and the DTZ tail is 21 after the complete `-chen` slice. The new
@@ -155,8 +157,11 @@ external alignment remains 93/93 and the DTZ tail is 21 after the complete `-che
 fade/transfer and delayed probes. Four older A1 confusions without probes now have three variants
 each; all A1 explanation articles have named decision-level sections. A1 depth rose to medians of
 13 teaching items, 9 productive items and 4 files, with zero taught structures lacking a probe.
-The next mergeable content slice is P27-3b: close the three internal A2 gaps and the remaining A2
-article/probe diagnostics before taking on the source-led DTZ tail.
+**P27-3b · A2 grammar quality wave shipped 2026-08-14.** Internal A2 grammar is 38/38 and lexical
+coverage remains 1449/1449. Reciprocal pronouns, interrogative determiners and duration with
+*über* now have named owner sections, scaffolded practice, transfer and parallel delayed probes.
+The thirteen A2 no-subsection warnings and all eight structure-level no-probe gaps are closed;
+touched topics remain `draft`. P27-3c now owns the 21-row external DTZ tail.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

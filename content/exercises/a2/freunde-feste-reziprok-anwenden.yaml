@@ -1,0 +1,42 @@
+topic: freunde-feste
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Beziehungen in neuen Situationen"
+title: {en: "Apply — relationships in new situations", ru: "Применение — отношения в новых ситуациях", uk: "Застосування — стосунки в нових ситуаціях"}
+items:
+  - id: translate-nachbarn
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The neighbours know each other well."
+    prompt_ru: "Соседи хорошо знают друг друга."
+    prompt_uk: "Сусіди добре знають одне одного."
+    answer: "Die Nachbarn kennen sich gut."
+    key_tokens: ["Nachbarn", "kennen", "sich"]
+    explain: {en: "A third-person plural group uses sich. The neighbours are separate people, so the natural reading is reciprocal.", ru: "Группа в третьем лице множественного числа требует sich. Соседи — разные люди, поэтому естественный смысл взаимный.", uk: "Група в третій особі множини потребує sich. Сусіди — різні люди, тому природний зміст взаємний."}
+  - id: translate-kollegen
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "My colleagues call each other every morning."
+    prompt_ru: "Мои коллеги звонят друг другу каждое утро."
+    prompt_uk: "Мої колеги телефонують одне одному щоранку."
+    answer: "Meine Kollegen rufen sich jeden Morgen an."
+    key_tokens: ["Kollegen", "rufen", "sich", "an"]
+    explain: {en: "sich carries the reciprocal relationship; anrufen still splits around the middle field. The pronoun is not a detachable part of the verb.", ru: "sich передаёт взаимное отношение; anrufen по-прежнему образует рамку с отделяемым an. Местоимение не является частью приставки.", uk: "sich передає взаємні стосунки; anrufen так само утворює рамку з відокремлюваним an. Займенник не є частиною префікса."}
+  - id: write-gruppe
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: write
+    focus: reziprokpronomen
+    prompt: {en: "Write a short message about two people or a group and describe one thing they do to each other.", ru: "Напишите короткое сообщение о двух людях или группе и назовите одно действие, которое они делают друг для друга.", uk: "Напишіть коротке повідомлення про двох людей або групу й назвіть одну дію, яку вони роблять одне для одного."}
+    goal: {en: "Make the reciprocal meaning clear from the participants and context, not from a translation note.", ru: "Сделайте взаимный смысл понятным из участников и ситуации, а не из примечания к переводу.", uk: "Зробіть взаємний зміст зрозумілим з учасників і ситуації, а не з примітки до перекладу."}
+    requirements:
+      - {en: "Name at least two participants.", ru: "Назовите как минимум двух участников.", uk: "Назвіть щонайменше двох учасників."}
+      - {en: "Use uns or sich with a genuinely two-way action.", ru: "Используйте uns или sich с действительно взаимным действием.", uk: "Використайте uns або sich зі справді взаємною дією."}
+    min_words: 10
+    model_answer: "Meine Schwester und ich wohnen in verschiedenen Städten, aber wir besuchen uns oft."
+    model_translation: {en: "My sister and I live in different cities, but we visit each other often.", ru: "Мы с сестрой живём в разных городах, но часто навещаем друг друга.", uk: "Ми із сестрою живемо в різних містах, але часто відвідуємо одна одну."}
+    explain: {en: "The sentence needs at least two participants and an action that can run between them. The model uses uns because the speaker belongs to the pair.", ru: "В предложении нужны как минимум два участника и действие, возможное между ними. В образце стоит uns, потому что говорящий входит в пару.", uk: "У реченні потрібні щонайменше два учасники й дія, можлива між ними. У зразку стоїть uns, бо мовець входить до пари."}

@@ -28,11 +28,11 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3b A2 grammar wave**: close `reziprokpronomen`,
-`interrogativartikel` and `ueber-dauer` with complete teaching, transfer and probe evidence; then
-remove the remaining A2 article/probe diagnostics through substantive review. P27-3a closed all
-four A1 gaps, added the full `wortbildung` topic and claimed DTZ `-chen`, leaving 21 named rows open
-in the audit ledger. P27-2a removed the regex preview, added safe one-language MDX rendering, language
+The current executable item is **P27-3c DTZ tail**: deliver the 21 unclaimed entries as the eight
+coherent teaching slices in the audit ledger. P27-3b closed internal A2 at 38/38, all thirteen A2
+article-section findings and eight structure-level probe gaps; lexical A2 remains 1449/1449. P27-3a
+closed A1 and claimed DTZ `-chen`, leaving the external tail unchanged at 21 after the A2 internal
+wave. P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
 claimed. Then add safe structured controls over the same source buffer and visible background-job
@@ -90,10 +90,10 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   the meaning decisions behind *un-*, *-los*, *-bar* and adjective compounds.
 - **P26-4 · `demonstrativartikel` (A1) — delivered in P27-3a.** `artikel-genus` now carries
   A1 nominative *dieser/diese/dieses* through scaffold, transfer and delayed checks.
-- **P26-5 · `reziprokpronomen` (A2)** — *Wir sehen uns morgen*. Shares its FORM with the reflexive
+- **P26-5 · `reziprokpronomen` (A2) — delivered in P27-3b.** *Wir sehen uns morgen*. Shares its FORM with the reflexive
   and none of its meaning; EN marks the difference lexically (`each other`), RU/UK with «друг друга»,
   so neither hand supplies the German syncretism. Reception A1, production A2.
-- **P26-6 · `interrogativartikel` (A2)** — *welch-* as a determiner plus *alle*. The trap is the
+- **P26-6 · `interrogativartikel` (A2) — delivered in P27-3b.** *welch-* as a determiner plus *alle*. The trap is the
   case: *Welchen Film…?* is where a nominative *Welcher* slips in, and EN `which` / RU «какой»
   decline for neither or differently. Distinct from `indefinitpronomen`, which owns the free-standing
   *welch-* pronoun.
@@ -105,25 +105,25 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
   the free A2 list here is *Fit in Deutsch 2*, the youth exam.
 - **P26-10 · The course never teaches turn-taking.** The first run of `bun scripts/handlungen.ts` (2026-08-14) reports 26/41 published Sprachhandlungen claimed, and **nine of the fifteen holes are one block**: the whole of DTZ §8.3 *Redeorganisation* — eine Äußerung einleiten/abschließen, um das Wort bitten, Zuhören signalisieren, zum Sprechen auffordern, gemeinsames Wissen andeuten, Beispiele geben, das Thema wechseln, Vermeidung. Six more: *Gefühle ausdrücken* (no outcome anywhere expresses feelings), *Wissen oder Nichtwissen ausdrücken*, *etwas bestätigen*, *Umgang mit der interkulturellen Begegnung*, *Umgang mit Wissensdivergenz*, *etwas hervorheben*. These are `spoken-interaction` competences and the corpus is already thin there; a discourse-strategy topic would close most of the block at once. Read the instrument before scoping — `beyond` is not a gap, only `unclaimed` is.
-- **P26-8 · `über` as a duration marker — RULED 2026-08-14, row added, still untaught.** The DTZ
+- **P26-8 · `über` as a duration marker — delivered in P27-3b.** The DTZ
   Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
-  not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar
-  coverage reads 35/38. Closing it means authoring the items, not editing this line.
-- **P26-9 · Fourteen findings remain for articles whose `## Erklärung` has no `###` subsections.**
-  P27-3a cleared all seven A1 articles (including the two grammar-owner articles already in flight);
-  thirteen A2 articles remain plus one B1 IPA warning. The original set included
+  not a quantifier. `ueber-dauer` now has owner teaching in `alltag-tagesablauf`, transfer in
+  `zeit-praepositionen` and a delayed probe family.
+- **P26-9 · Article subsection findings — delivered for A1–A2 in P27-3a/P27-3b.**
+  The seven A1 and thirteen A2 articles now expose named decision-level anchors; the unrelated B1
+  phrase IPA found by the same gate was also transcribed, so validation has no warnings. The original set included
   them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
   `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
   rule; `packages/content/src/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
   (exit 0) and the console badges each topic. The heading is the only addressable place a structure
   is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
   point but the whole article. Content work, one article at a time; the warning count is the counter.
-- **P26-10 · Eight taught A2 structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
-  --by-point --no-probe`. P27-3a reduced A1 to zero; the A2 tail is `adjektiv-praedikativ`,
+- **P26-10 · Eight taught A2 structures no probe ever re-asks — delivered in P27-3b.** `bun scripts/grammar-depth.ts
+  --by-point --no-probe` now reports zero inventory structures without probes. The closed tail was `adjektiv-praedikativ`,
   `aber-sondern`, `reflexiv-akkusativ`,
   `reflexiv-dativ`, `um-zu`, `passiv-praesens`, `will-moechte`, `partizip2-system`). The lesson cycle
-  ends before its last step for each of them. Probe families are ordinary work since P19-4, but
-  **measure `armedAt` before and after** — a source reading is not a measurement.
+  and each now has a parallel three-variant family with verified arming; this delivery does not
+  retroactively create learner retention evidence.
 - **P26-11 · B1 has one drill set (8 items) against A2's thirteen (170)** — the remediation channel
   is effectively unbuilt at B1, which is what P23-3 sees from the other end. Median practice per
   confusion is 4 at B1 against 12 at A1, and 10 of 35 B1 tags live in exactly one practice file, so a
