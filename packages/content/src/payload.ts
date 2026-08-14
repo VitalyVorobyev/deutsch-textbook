@@ -268,11 +268,14 @@ function buildPayload(graph: ContentGraph): GraphPayload {
 
   const foundProblems = problems(graph);
   const diagnostics: Diagnostic[] = foundProblems.map((problem, index) => {
-    const topic = problem.topic ? topics.find((candidate) => candidate.id === problem.topic) : undefined;
     const informational = problem.kind === 'deck-ohne-thema';
     return {
       id: `${problem.kind}:${problem.topic ?? problem.file ?? index}`,
-      severity: informational ? 'info' : topic?.status === 'reviewed' ? 'blocking' : 'attention',
+      // These are advisory profile findings, not validator failures. A reviewed topic carrying one
+      // is editorial debt, but calling it `blocking` was false: neither Save nor the reviewed gate
+      // consulted this list. Lifecycle (reviewed/draft) is a separate UI facet; severity stays an
+      // honest statement about what the system actually prevents.
+      severity: informational ? 'info' : 'attention',
       scope: problem.topic ? 'topic' : problem.file ? 'source' : 'workspace',
       entityId: problem.topic,
       path: problem.file,

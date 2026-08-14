@@ -128,6 +128,17 @@ request, parses MDX/YAML/JSON, applies the file-local schema where one exists, c
 revision and atomically renames a same-directory temporary file. A cross-file-invalid draft can be
 saved; a `reviewed` transition continues through the stricter allowlisted splice-and-rollback gate.
 
+Source links are internal Redaction navigation; only real web provenance opens a new window. The
+hash router owns one app-local history position for links, filters and global search, exposes
+Back/Forward controls, and asks every registered dirty buffer before it changes route. Empty detail
+views provide a path back to their collection or owning topic rather than ending at an absence.
+
+Profile findings are advisory editorial work, not validator errors. Their diagnostic severity is
+therefore `attention` (or `info` for deliberate context) even when the owning topic is already
+`reviewed`; topic lifecycle is a separate queue facet. `blocking` is reserved for a condition that
+actually prevents Save or the strict review transaction. The earlier implementation inferred
+severity from `topic.status` and displayed hundreds of fictional blockers that no gate consulted.
+
 Three operational notes that cost time to find:
 
 - It must run **under Bun** (`bunx --bun vite`). Vite loads its config through Node's strict ESM

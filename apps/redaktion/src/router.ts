@@ -8,7 +8,7 @@
  *
  * No router dependency: the whole contract is "read the hash, split it, subscribe to changes".
  */
-import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useSyncExternalStore, type MouseEvent as ReactMouseEvent } from 'react';
 
 export interface Route {
   /** The view: `themen`, `thema`, `fokus`, `struktur`, `luecken`, … */
@@ -24,13 +24,69 @@ export interface Route {
 }
 
 const listeners = new Set<() => void>();
+const HISTORY_POSITION = '__redactionHistoryPosition';
+let historyReady = false;
+let historyPosition = 0;
+let historyMaximum = 0;
+let allowNextTraversal = false;
+let restoreTraversal = false;
+const navigationBlockers = new Set<() => boolean>();
+
+function initialiseHistory(): void {
+  if (historyReady) return;
+  const state = window.history.state as Record<string, unknown> | null;
+  const stored = Number(window.sessionStorage.getItem('da:redaction-history-maximum'));
+  const position = Number(state?.[HISTORY_POSITION]);
+  const existingEntry = Number.isFinite(position);
+  historyPosition = existingEntry ? position : 0;
+  historyMaximum = existingEntry && Number.isFinite(stored) ? Math.max(historyPosition, stored) : historyPosition;
+  if (!existingEntry) {
+    window.history.replaceState({ ...(state ?? {}), [HISTORY_POSITION]: historyPosition }, '', window.location.href);
+  }
+  historyReady = true;
+}
+
+function rememberMaximum(): void {
+  window.sessionStorage.setItem('da:redaction-history-maximum', String(historyMaximum));
+}
+
+function navigationAllowed(): boolean {
+  return [...navigationBlockers].every((blocker) => blocker());
+}
+
+function onPopState(event: PopStateEvent): void {
+  initialiseHistory();
+  const target = Number((event.state as Record<string, unknown> | null)?.[HISTORY_POSITION]);
+  if (!Number.isFinite(target)) {
+    notify();
+    return;
+  }
+  if (restoreTraversal) {
+    restoreTraversal = false;
+    return;
+  }
+  if (!allowNextTraversal && !navigationAllowed()) {
+    const delta = historyPosition - target;
+    if (delta) {
+      restoreTraversal = true;
+      window.history.go(delta);
+    }
+    return;
+  }
+  allowNextTraversal = false;
+  historyPosition = target;
+  historyMaximum = Math.max(historyMaximum, historyPosition);
+  rememberMaximum();
+  notify();
+}
 
 function subscribe(listener: () => void): () => void {
-  if (listeners.size === 0) window.addEventListener('hashchange', notify);
+  initialiseHistory();
+  if (listeners.size === 0) window.addEventListener('popstate', onPopState);
   listeners.add(listener);
   return () => {
     listeners.delete(listener);
-    if (listeners.size === 0) window.removeEventListener('hashchange', notify);
+    if (listeners.size === 0) window.removeEventListener('popstate', onPopState);
   };
 }
 
@@ -39,6 +95,70 @@ function notify(): void {
 }
 
 const getSnapshot = (): string => window.location.hash;
+const getHistorySnapshot = (): string => {
+  initialiseHistory();
+  return `${historyPosition}:${historyMaximum}:${window.location.hash}`;
+};
+
+/** Register one editor buffer that must consent before an in-app navigation discards it. */
+export function blockNavigation(blocker: () => boolean): () => void {
+  navigationBlockers.add(blocker);
+  return () => navigationBlockers.delete(blocker);
+}
+
+/** One path for links, filters, search and history controls, so none can bypass the draft guard. */
+export function navigateHref(target: string): boolean {
+  initialiseHistory();
+  if (target === window.location.hash) return true;
+  if (!navigationAllowed()) return false;
+  historyPosition += 1;
+  historyMaximum = historyPosition;
+  rememberMaximum();
+  window.history.pushState(
+    { ...(window.history.state ?? {}), [HISTORY_POSITION]: historyPosition },
+    '',
+    target,
+  );
+  notify();
+  return true;
+}
+
+/** Delegate every ordinary internal anchor click to `navigateHref`; modified clicks stay native. */
+export function handleInternalLinkClick(event: ReactMouseEvent<HTMLElement>): void {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const target = event.target;
+  if (!(target instanceof Element)) return;
+  const anchor = target.closest('a');
+  if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return;
+  const targetHref = anchor.getAttribute('href');
+  if (!targetHref?.startsWith('#/')) return;
+  event.preventDefault();
+  navigateHref(targetHref);
+}
+
+export interface RouteHistory {
+  canBack: boolean;
+  canForward: boolean;
+  back(): void;
+  forward(): void;
+}
+
+export function useRouteHistory(): RouteHistory {
+  useSyncExternalStore(subscribe, getHistorySnapshot, () => '0:0:');
+  initialiseHistory();
+  const traverse = useCallback((delta: -1 | 1) => {
+    const possible = delta < 0 ? historyPosition > 0 : historyPosition < historyMaximum;
+    if (!possible || !navigationAllowed()) return;
+    allowNextTraversal = true;
+    window.history.go(delta);
+  }, []);
+  return {
+    canBack: historyPosition > 0,
+    canForward: historyPosition < historyMaximum,
+    back: () => traverse(-1),
+    forward: () => traverse(1),
+  };
+}
 
 export function parseRoute(hash: string): Route {
   const [path = '', search = ''] = hash.replace(/^#\/?/, '').split('?');
@@ -57,7 +177,7 @@ export function href(view: string, id?: string, query?: Record<string, string | 
 export function useRoute(): [Route, (view: string, id?: string, query?: Record<string, string | undefined>) => void] {
   const hash = useSyncExternalStore(subscribe, getSnapshot, () => '');
   const go = useCallback((view: string, id?: string, query?: Record<string, string | undefined>) => {
-    window.location.hash = href(view, id, query).slice(1);
+    navigateHref(href(view, id, query));
   }, []);
   return [parseRoute(hash), go];
 }

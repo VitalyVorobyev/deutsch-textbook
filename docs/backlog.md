@@ -22,10 +22,17 @@ the sidecars and launches Tauri.
 
 Open before P27-1 can close: source-led subdivision of any overly broad tracks, persisted graph
 cache rather than process memoisation, point→focus→topic→material end-to-end desktop tests, watcher
-tests and a packaged macOS smoke run. Open P27-2 work: extract pure learner renderers and prove
-editor mode has no progress side effects, add safe structured controls over the same source buffer,
-unsaved-navigation protection beyond the source view, background job status and fixtures for every
-artifact type. P27-3…P27-6 remain sequenced in the
+tests and a packaged macOS smoke run. P27-1a closes the first real-editor feedback loop: checkout
+source links stay inside the app; Back/Forward and the shared dirty-buffer guard cover links,
+filters, search and history traversal; empty focus details recover to a collection or owner; and
+profile findings no longer become fictional blockers merely because their topic says `reviewed`.
+The browser audit owns the complete regression journey.
+
+The next executable item is **P27-2a renderer parity**: extract pure learner article and exercise
+renderers, prove editor mode has no progress side effects, and add fixtures for every artifact kind.
+Then add safe structured controls over the same source buffer and visible background-job status.
+Do not begin by fixing all profile findings: first make the preview trustworthy, then work the
+reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
 [roadmap](roadmap.md#redaction-p27); do not flatten them into one release claim.
 
 Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale

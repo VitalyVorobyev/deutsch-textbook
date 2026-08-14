@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react';
 import { Button, Empty, Filter, Label, Panel, SearchBox, Stat, StatGroup } from '@da/ui/primitives';
 import { Reiter } from '../components/Hinweis';
 import { corpusClient, loadChunk, type GraphPayload } from '../data';
-import { Extern, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import { Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['levels'][number];
@@ -306,9 +306,6 @@ function Elemente({
   if (!elements.length) return <Empty>Nichts von dieser Art auf diesem Niveau.</Empty>;
   return <Zeilentabelle rows={elements} rowKey={(e) => e.id} columns={columns} sortKey="id" />;
 }
-
-/** Kept out of the table: an external file link that is not the row's primary target. */
-export { Extern };
 
 function AudioCell({ title, path }: { title: string; path: string }) {
   const [source, setSource] = useState('');

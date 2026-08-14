@@ -16,7 +16,7 @@ import { useState } from 'react';
 import { Button, Callout, Chip, Empty, Filter, Label, Panel, Section } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
-import { Extern, Gruppentabelle, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import { Gruppentabelle, Mehrere, Primaer, Quelllink, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['cefrLevels'][number];
@@ -186,7 +186,7 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
+    { key: 'file', head: 'Datei', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
   ];
 
   return (

@@ -127,6 +127,21 @@ complete editorial path usable rather than adding another disconnected report.
    security/integration/accessibility suites, `.app`/`.dmg` and CI smoke build. Windows/Linux remain
    build-target preparation only.
 
+The first post-merge slice is **P27-1a · navigation trust and queue semantics**. Its outcome is a
+closed editorial loop rather than another report: every source action opens the in-app editor;
+Back/Forward traverse app history; a dirty source buffer must consent before any link, filter,
+search or history traversal discards it; empty focus details offer recovery actions; and advisory
+profile findings are no longer presented as validator blockers. Validation is one browser scenario
+from topic → article source → Back → Forward → dirty-buffer refusal/consent, repeated at
+1440/1024/768, plus link-semantics and diagnostic-severity tests. The slice exits only when that
+scenario passes without opening a new window or losing a draft.
+
+After P27-1a, the next implementation slice is **P27-2a · renderer parity**, not a blind attempt to
+erase the whole findings count. It extracts the learner's article and exercise renderers into pure
+components, proves editor mode has no progress side effects, and covers every shipped material kind
+with fixtures. Only after the preview is trustworthy should P27-3 turn the reviewed-topic debt into
+topic-sized remediation batches.
+
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
 follow its course evidence, edit YAML/MDX with conflict protection, read local and corpus diagnostics,

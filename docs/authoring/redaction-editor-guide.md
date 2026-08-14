@@ -51,6 +51,14 @@ On first launch, open **Einstellungen**, choose the Deutsch-Atlas checkout, and 
 The global search sends a query to **Materialien**. Follow links from a grammar point to its focus
 tag, topic, material and source rather than searching the repository by hand.
 
+The arrow buttons beside the Redaction wordmark traverse the history created by links, filters and
+search. They stay disabled when no app-local destination exists; a dead-end detail also links back
+to its collection or owning topic.
+
+In **Qualität**, `geprüft` and `Entwurf` are workflow facets, not severity labels. A profile finding
+inside a reviewed topic is editorial debt; it is not a validator error and does not silently block
+Save. `technisch blockierend` is reserved for a condition that the application really refuses.
+
 ## Edit an existing source
 
 1. Open a source link from **Themen**, **Materialien**, or a grammar detail.
@@ -66,9 +74,9 @@ meantime, Redaction refuses to overwrite it. Reload the source and merge the two
 deliberately. Writes are atomic and limited to existing supported text files below `content/` and
 `data/`; file creation, deletion, and moves remain repository operations.
 
-During the current pilot, save or deliberately discard the buffer before following another
-Redaction link. Closing or reloading the window is guarded, but internal hash navigation does not
-yet have the complete unsaved-changes confirmation required for broad use.
+When the buffer is dirty, links, filters, search and Back/Forward ask before leaving it. Cancelling
+keeps the source and its unsaved text open; confirming discards the buffer and completes the
+navigation. Closing or reloading the window remains guarded by the platform prompt.
 
 The **GitHub** link is secondary provenance. It opens the corresponding source on `main`; it does
 not replace the local preview, local edit, or review of the eventual branch diff.
@@ -110,6 +118,6 @@ not release targets yet.
 
 Before broad editorial adoption, complete the shared learner renderer fixtures, automated Tauri
 workspace/save/watcher/security tests, dependency-aware cache invalidation, macOS signing and
-notarization, and several real-editor pilot sessions. The architecture and security boundary are
+notarization, and several more real-editor pilot sessions. The architecture and security boundary are
 recorded in [ADR 0013](../adrs/0013-redaction-repository-workbench.md); milestones and acceptance
 gates live in the [roadmap](../roadmap.md) and [backlog](../backlog.md).

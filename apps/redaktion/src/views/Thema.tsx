@@ -23,7 +23,7 @@ import { Reiter } from '../components/Hinweis';
 import type { GraphPayload } from '../data';
 import { Feldwahl } from '../components/Feldwahl';
 import { Kontextleiste, type Nachbar } from '../components/Kontextleiste';
-import { Extern, Gruppentabelle, Quer, type Spalte } from '../components/Zeilentabelle';
+import { Gruppentabelle, Quelllink, Quer, type Spalte } from '../components/Zeilentabelle';
 import { href } from '../router';
 import { useWritable } from '../write';
 
@@ -86,7 +86,7 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           </Label>
           <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">{topic.title}</h1>
           <p className="mt-1 text-sm">
-            <Extern href={href('quelle', undefined, { pfad: topic.file })}>{topic.file}</Extern>
+            <Quelllink href={href('quelle', undefined, { pfad: topic.file })}>{topic.file}</Quelllink>
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs">
@@ -250,9 +250,9 @@ function Ueberblick({
             <p className="text-xs text-warn-ink">{PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}</p>
           )}
           <p className="mt-3 border-t border-border-subtle pt-2 text-xs">
-            <Extern href={href('quelle', undefined, { pfad: graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ?? topic.file })}>
+            <Quelllink href={href('quelle', undefined, { pfad: graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ?? topic.file })}>
               Artikel öffnen
-            </Extern>
+            </Quelllink>
           </p>
         </Panel>
       </div>
@@ -299,7 +299,7 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
         ),
     },
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
-    { key: 'id', head: 'Element', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
+    { key: 'id', head: 'Element', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
     {
@@ -365,7 +365,7 @@ function Befunde({ problems }: { problems: GraphPayload['problems'] }) {
           <p className="mt-0.5 text-xs text-ink-muted">{PROBLEM_LABELS[p.kind]?.why}</p>
           {p.file ? (
             <p className="mt-0.5 text-xs">
-              <Extern href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Extern>
+              <Quelllink href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Quelllink>
             </p>
           ) : null}
         </li>

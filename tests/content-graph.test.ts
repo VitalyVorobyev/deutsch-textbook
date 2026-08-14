@@ -14,6 +14,7 @@
 import { describe, expect, test } from 'bun:test';
 import { LEVELS } from '@da/schema';
 import { contentGraph } from '@da/content/graph';
+import { graphPayload } from '@da/content/payload';
 import { LESSON_STAGES, TOUCHES, type ElementKind, type LessonStage } from '@da/content/elements';
 import { formatItemRef, parseItemRef, sameItem } from '@da/content/refs';
 
@@ -135,6 +136,13 @@ describe('content graph', () => {
     expect(contentGraph()).toBe(graph);
     expect(contentGraph(graph.root, { fresh: true })).not.toBe(graph);
   });
+
+  test('editorial profile findings are attention, not fictional validator blockers', () => {
+    const payload = graphPayload(graph);
+    expect(payload.diagnostics).toHaveLength(payload.problems.length);
+    expect(payload.diagnostics.filter((item) => item.severity === 'blocking')).toHaveLength(0);
+    expect(payload.diagnostics.filter((item) => item.severity === 'attention').length).toBeGreaterThan(0);
+  }, 10_000);
 });
 
 describe('item references', () => {
