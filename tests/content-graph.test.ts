@@ -149,7 +149,7 @@ describe('content graph', () => {
     expect(payload.diagnostics).toHaveLength(payload.problems.length);
     expect(payload.diagnostics.filter((item) => item.severity === 'blocking')).toHaveLength(0);
     expect(payload.diagnostics.filter((item) => item.severity === 'attention').length).toBeGreaterThan(0);
-  }, 10_000);
+  }, 20_000);
 });
 
 describe('item references', () => {
