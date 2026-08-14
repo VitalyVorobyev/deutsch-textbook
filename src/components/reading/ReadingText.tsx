@@ -1,6 +1,6 @@
 import { Fragment, useMemo, useState } from 'react';
 import type { Reading } from '@da/schema';
-import { parseGlosses } from '../../lib/gloss';
+import { parseGlosses } from '@da/schema/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
 import { pick, pickLang } from '../../lib/prefs';

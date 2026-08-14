@@ -14,7 +14,7 @@ import {
   type ExplainText,
 } from '../src/lib/prefs';
 import { PROFILE_KEY, PROFILES_KEY } from '../src/lib/profile';
-import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
+import { glossFieldParity, parseGlosses } from '@da/schema/gloss';
 import {
   deParityProblems,
   hasDeExplanation,

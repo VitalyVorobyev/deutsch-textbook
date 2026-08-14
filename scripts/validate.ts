@@ -47,7 +47,7 @@ import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-re
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
 import { gradedTokenPositions } from '@da/grading/production';
 import { continuationWord } from '../src/lib/table';
-import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
+import { glossFieldParity, parseGlosses } from '@da/schema/gloss';
 import {
   deParityProblems,
   hasDeExplanation,
