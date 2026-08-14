@@ -6,6 +6,18 @@ export const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
 export const levelSchema = z.enum(LEVELS);
 export type Level = z.infer<typeof levelSchema>;
 
+/**
+ * The full editorial CEFR axis.
+ *
+ * `Level` remains the set of levels the course runtime can currently own. The
+ * grammar inventory answers a different question — where a structure belongs
+ * in the whole language map — and must be able to name an honest C1/C2 gap
+ * without making the learner runtime pretend those course levels exist.
+ */
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const;
+export const cefrLevelSchema = z.enum(CEFR_LEVELS);
+export type CefrLevel = z.infer<typeof cefrLevelSchema>;
+
 export const TOPIC_KINDS = ['grammar', 'vocab-field', 'communication', 'phonetics'] as const;
 export const CURRICULUM_STRANDS = ['foundations', 'grammar', 'communication', 'vocabulary'] as const;
 export type CurriculumStrand = (typeof CURRICULUM_STRANDS)[number];

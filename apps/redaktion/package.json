@@ -7,13 +7,21 @@
   "scripts": {
     "dev": "bunx --bun vite",
     "build": "bunx --bun vite build",
-    "preview": "bunx --bun vite preview"
+    "preview": "bunx --bun vite preview",
+    "sidecar:build": "bun scripts/build-sidecars.ts",
+    "desktop:dev": "bun run sidecar:build && bunx --bun vite",
+    "desktop:build": "bun run sidecar:build && bunx --bun vite build",
+    "tauri:dev": "bunx tauri dev --config src-tauri/tauri.conf.json",
+    "tauri:build": "bun scripts/tauri-build.ts"
   },
   "dependencies": {
     "@da/content": "workspace:*",
     "@da/schema": "workspace:*",
     "@da/ui": "workspace:*",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-dialog": "^2.7.2",
     "@radix-ui/react-tabs": "^1.1.21",
-    "@radix-ui/react-tooltip": "^1.2.16"
+    "@radix-ui/react-tooltip": "^1.2.16",
+    "yaml": "^2.9.0"
   }
 }

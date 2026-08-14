@@ -29,7 +29,7 @@ import {
 } from './anchors';
 import { repoRoot } from './repo-root';
 import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
-import type { Level } from '@da/schema';
+import { LEVELS, type Level } from '@da/schema';
 
 export type { SourceMode };
 export type StructureSourceMeta = AnchorSourceMeta;
@@ -55,7 +55,9 @@ export function structureCoverage(level: Level, root = repoRoot()): StructureCov
   const coverage = anchorCoverage(
     'struktur',
     level,
-    points.map((point) => ({ id: point.id, level: productionLevel(point), claims: point.claims, label: point.de })),
+    points
+      .filter((point) => LEVELS.includes(productionLevel(point) as Level))
+      .map((point) => ({ id: point.id, level: productionLevel(point) as Level, claims: point.claims, label: point.de })),
     root,
   );
   const byId = new Map(points.map((p) => [p.id, p]));

@@ -13,7 +13,11 @@ import {
 function fixture(points: unknown[], topics: Record<string, string[]> = {}): string {
   const root = mkdtempSync(join(tmpdir(), 'grammar-coverage-'));
   mkdirSync(join(root, 'data'), { recursive: true });
-  writeFileSync(join(root, 'data', 'grammar-inventory.yaml'), JSON.stringify({ points }));
+  const tracked = points.map((point) => ({ track: 'fixture', ...(point as Record<string, unknown>) }));
+  writeFileSync(join(root, 'data', 'grammar-inventory.yaml'), JSON.stringify({
+    tracks: [{ id: 'fixture', strand: 'verbformen', de: 'Fixture', en: 'Fixture', order: 1 }],
+    points: tracked,
+  }));
   mkdirSync(join(root, 'content', 'exercises'), { recursive: true });
   for (const [level, ids] of Object.entries(topics)) {
     mkdirSync(join(root, 'content', 'topics', level), { recursive: true });

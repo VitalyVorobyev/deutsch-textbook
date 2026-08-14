@@ -80,29 +80,27 @@ describe('the shared package reaches Tailwind’s scanner', () => {
 });
 
 describe('design tokens', () => {
-  test('the ramp is slate — a deliberate divergence from the learner app’s stone', () => {
-    // The learner app stays warm; changing either side is a product decision, not a tidy-up. The
-    // assertion exists so that switching them back is a conscious edit with a reason attached.
+  test('the ramp is warm stone, shared with the learner app', () => {
     expect(global).toContain('dark:bg-stone-900');
-    expect(darkToken('surface')).toBe('slate-900');
-    expect(lightToken('surface')).toBe('slate-50');
+    expect(darkToken('surface')).toBe('stone-900');
+    expect(lightToken('surface')).toBe('stone-50');
   });
 
   test('a card sits one step above the page and its border one step above that', () => {
     // The learner app types this literally in CurriculumPath.tsx, ProgressPanel.tsx and
     // pruefung/shared.tsx: `rounded-lg border border-stone-200 bg-white dark:border-stone-700
     // dark:bg-stone-800`. The hues diverge now; the STEPS may not, or a card stops being a card.
-    expect(darkToken('surface-raised')).toBe('slate-800');
-    expect(darkToken('border-subtle')).toBe('slate-700');
+    expect(darkToken('surface-raised')).toBe('stone-800');
+    expect(darkToken('border-subtle')).toBe('stone-700');
     expect(lightToken('surface-raised')).toBe('white');
-    expect(lightToken('border-subtle')).toBe('slate-200');
+    expect(lightToken('border-subtle')).toBe('stone-200');
   });
 
   test('a recessed surface moves away from the page, in both themes', () => {
     // Light: slate-50 page, slate-100 well. Dark has to mirror the direction, or a row hover and a
     // card end up the same colour — which is what happened when sunken was set to the page colour.
-    expect(lightToken('surface-sunken')).toBe('slate-100');
-    expect(darkToken('surface-sunken')).toBe('slate-950');
+    expect(lightToken('surface-sunken')).toBe('stone-100');
+    expect(darkToken('surface-sunken')).toBe('stone-950');
     expect(darkToken('surface-sunken')).not.toBe(darkToken('surface'));
     expect(darkToken('surface-sunken')).not.toBe(darkToken('surface-raised'));
   });
@@ -128,8 +126,8 @@ describe('design tokens', () => {
     'emerald-400': '#34d399', 'emerald-600': '#059669', 'emerald-700': '#047857',
     'sky-400': '#38bdf8', 'sky-600': '#0284c7', 'sky-700': '#0369a1',
     'rose-400': '#fb7185', 'rose-600': '#e11d48', 'rose-700': '#be123c',
-    'slate-50': '#f8fafc', 'slate-100': '#f1f5f9', 'slate-700': '#334155',
-    'slate-800': '#1e293b', 'slate-900': '#0f172a', 'slate-950': '#020617',
+    'stone-50': '#fafaf9', 'stone-100': '#f5f5f4', 'stone-700': '#44403c',
+    'stone-800': '#292524', 'stone-900': '#1c1917', 'stone-950': '#0c0a09',
     white: '#ffffff',
   };
   const channel = (c: number): number => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -148,8 +146,8 @@ describe('design tokens', () => {
     const failures: string[] = [];
     for (const role of ROLES) {
       for (const [theme, token, grounds] of [
-        ['light', lightToken(`${role}-ink`), ['slate-50', 'white']],
-        ['dark', darkToken(`${role}-ink`), ['slate-900', 'slate-800']],
+        ['light', lightToken(`${role}-ink`), ['stone-50', 'white']],
+        ['dark', darkToken(`${role}-ink`), ['stone-900', 'stone-800']],
       ] as const) {
         expect(token, `${theme} --color-${role}-ink is not declared`).toBeDefined();
         for (const ground of grounds) {
@@ -167,8 +165,8 @@ describe('design tokens', () => {
     const failures: string[] = [];
     for (const role of ROLES) {
       for (const [theme, token, ground] of [
-        ['light', lightToken(role), 'slate-50'],
-        ['dark', darkToken(role) ?? lightToken(role), 'slate-900'],
+        ['light', lightToken(role), 'stone-50'],
+        ['dark', darkToken(role) ?? lightToken(role), 'stone-900'],
       ] as const) {
         const ratio = contrast(token!, ground);
         if (ratio < 3) failures.push(`${theme} ${role} fill (${token}) on ${ground}: ${ratio.toFixed(2)}`);

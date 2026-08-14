@@ -108,19 +108,25 @@ and `vite` (a direct `import type` in `progress-writer.ts`).
 
 ## Redaktion
 
-`apps/redaktion` is a React SPA on a Vite dev server, not another Astro app: it is a single-page
-tool with a client router, no SEO and no static pages, and it can never leak into the learner build
-by construction. `plugin/corpus.ts` serves `/__graph` (~1.4 MB — structure, profiles, problems, all
-four coverage reports) and `/__chunk/{items,vocab,texts}` (~8 MB, on demand), and re-reads the
-corpus when a watched file changes. Same mechanism as `src/integrations/progress-writer.ts`, which
-already writes snapshots into the repo during `astro dev`.
+`apps/redaktion` is a React SPA with two implementations of one `CorpusClient`. During browser
+development `plugin/corpus.ts` serves graph, chunks, source files and validation from the repository
+root. In desktop builds Tauri starts `sidecar/index.ts` as a Bun-compiled executable and forwards a
+narrow request/response protocol over stdio. The webview receives neither general shell nor
+filesystem access. The sidecar validates a selected checkout, watches `content/` and `data/`, owns
+the graph cache, and runs the separately compiled validator with `DEUTSCH_ATLAS_ROOT` set to that
+checkout. No HTTP port and no second content database exist.
 
-It is **four maps**, not a report per sidebar entry: the language (`Sprachkarte`, the front door),
-the course (`Einheiten & Themen` → `Thema`), the material (`Bestand`, all fifteen `ElementKind`s),
-and the evidence (`Strukturen` · `Fokus-Tags` · `Quellen` · `Lücken`). The first version was nine
+It is one professional IA: Übersicht, Grammatikatlas, Themen, Materialien, Qualität, Referenzen and
+Einstellungen. The first version was nine
 flat routes each built from `Heading` + `Filter` + `Table`, because `@da/ui` held one container and
 one heading level — a package that ships three shapes can only produce pages that are three shapes.
 Blame the instrument first.
+
+The source route reads exact MDX/YAML bytes and returns a SHA-256 revision. Save re-resolves lexical
+and physical paths below `content/` or `data/`, refuses unknown/non-text/non-existing files, caps the
+request, parses MDX/YAML/JSON, applies the file-local schema where one exists, compares the expected
+revision and atomically renames a same-directory temporary file. A cross-file-invalid draft can be
+saved; a `reviewed` transition continues through the stricter allowlisted splice-and-rollback gate.
 
 Three operational notes that cost time to find:
 
@@ -179,4 +185,3 @@ The costs are stated rather than hidden: a write is followed by a full graph reb
 full validator run (~6 s), and the control shows the value it wrote rather than snapping back to the
 stale one while that happens. Backlog **P26-16** holds the per-file invalidation that makes this
 cheap enough to widen.
-

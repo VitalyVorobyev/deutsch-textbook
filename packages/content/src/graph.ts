@@ -48,7 +48,13 @@ import {
   type Wortnetz,
 } from '@da/schema';
 import { repoRoot } from './repo-root';
-import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
+import {
+  loadGrammarInventory,
+  loadGrammarTracks,
+  productionLevel,
+  type GrammarPoint,
+  type GrammarTrack,
+} from './grammar-coverage';
 import { invalidateGrammarDepth } from './grammar-depth';
 import { loadStructureSources, type StructureSource } from './structures';
 import { idFromManifestPath, manifestFiles, MANIFEST_SUFFIX } from './topics';
@@ -125,6 +131,7 @@ export interface ContentGraph {
   units: AtlasUnit[];
 
   inventory: GrammarPoint[];
+  grammarTracks: GrammarTrack[];
   pointById: Map<string, GrammarPoint>;
   sources: StructureSource[];
 
@@ -357,8 +364,10 @@ function build(root: string): ContentGraph {
 
   // --- the grammar inventory and its external anchors ---------------------
   let inventory: GrammarPoint[] = [];
+  let grammarTracks: GrammarTrack[] = [];
   try {
     inventory = loadGrammarInventory(root);
+    grammarTracks = loadGrammarTracks(root);
   } catch (e) {
     loader.notes.push(`data/grammar-inventory.yaml: ${e instanceof Error ? e.message : e}`);
   }
@@ -384,6 +393,7 @@ function build(root: string): ContentGraph {
     groups: atlas.groups ?? [],
     units,
     inventory,
+    grammarTracks,
     pointById: new Map(inventory.map((p) => [p.id, p])),
     sources,
     elements: [],

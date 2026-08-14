@@ -60,10 +60,23 @@
 # every citation this repo can actually verify is a `claims:` ref, and a
 # free-text source field is precisely where unearned citations accumulate.
 
+tracks:
+  - {id: satzklammer, strand: satzklammer, de: "Satzklammer und Verbposition", en: "Clause frame and verb position", order: 10}
+  - {id: satzverbindung, strand: satzverbindung, de: "Satzverbindungen", en: "Clause linking", order: 20}
+  - {id: kasus, strand: kasus, de: "Kasussystem", en: "Case system", order: 30}
+  - {id: nominalgruppe, strand: nominalgruppe, de: "Nominalgruppe", en: "Noun phrase", order: 40}
+  - {id: verbformen, strand: verbformen, de: "Verbformen und Tempus", en: "Verb forms and tense", order: 50}
+  - {id: verbvalenz, strand: verbvalenz, de: "Verbvalenz", en: "Verb valency", order: 60}
+  - {id: zeit, strand: zeit, de: "Zeitangaben", en: "Time expressions", order: 70}
+  - {id: raum, strand: raum, de: "Raum und Richtung", en: "Space and direction", order: 80}
+  - {id: negation, strand: negation, de: "Negation", en: "Negation", order: 90}
+  - {id: register-pragmatik, strand: register-pragmatik, de: "Register und Pragmatik", en: "Register and pragmatics", order: 100}
+
 points:
   # ---------------------------------------------------------------- A1
   - id: praesens-regelmaessig
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "Präsens: regelmäßige Verben und Personalendungen"
     en: "Present tense: regular verbs and person endings"
@@ -78,6 +91,7 @@ points:
 
   - id: praesens-unregelmaessig
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "Präsens: Vokalwechsel (du sprichst, er fährt)"
     en: "Present tense: stem-vowel change"
@@ -89,6 +103,7 @@ points:
 
   - id: haben-wendungen
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A1, production: A1}
     de: "Zustände mit haben + Nomen: Hunger/Durst/Angst/Zeit haben (❌ Ich bin Hunger)"
     en: "States expressed with haben + a bare noun, where EN and RU use `to be`"
@@ -97,6 +112,7 @@ points:
 
   - id: sein-haben
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "sein und haben als Vollverben"
     en: "sein and haben as full verbs"
@@ -109,6 +125,7 @@ points:
 
   - id: verbzweit
     strand: satzklammer
+    track: satzklammer
     level: {reception: A1, production: A1}
     de: "Verbzweitstellung im Aussagesatz, Inversion nach Vorfeld"
     en: "Verb-second in statements, inversion after a fronted element"
@@ -119,6 +136,7 @@ points:
 
   - id: koordination
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A1, production: A1}
     de: "Hauptsatz + Hauptsatz mit und, oder, aber, denn — die Konjunktion besetzt keine Satzposition"
     en: "Joining two main clauses with und, oder, aber, denn — the conjunction occupies no sentence position"
@@ -136,6 +154,7 @@ points:
 
   - id: fragen
     strand: satzklammer
+    track: satzklammer
     level: {reception: A1, production: A1}
     de: "W-Fragen und Ja/Nein-Fragen"
     en: "W-questions and yes/no questions"
@@ -154,6 +173,7 @@ points:
 
   - id: imperativ
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "Imperativ: du, ihr, Sie"
     en: "Imperative: du, ihr, Sie"
@@ -164,6 +184,7 @@ points:
 
   - id: genus-artikel
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Genus und bestimmter/unbestimmter Artikel"
     en: "Gender and the definite/indefinite article"
@@ -184,6 +205,7 @@ points:
 
   - id: plural
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Pluralformen und der Plural-Artikel die"
     en: "Plural forms and the plural article die"
@@ -195,6 +217,7 @@ points:
 
   - id: demonstrativartikel
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Demonstrativartikel dieser/diese/dieses — Endungen wie beim bestimmten Artikel"
     en: "The demonstrative determiner dieser, which declines exactly like the definite article"
@@ -207,6 +230,7 @@ points:
 
   - id: wortbildung-nomen
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Wortbildung beim Nomen: Komposita (Reisegruppe, Zahnarzt), Nominalisierung auf -er und -ung, feminine Formen auf -in"
     en: "Noun formation: compounds, the -er and -ung nominalisations, and the feminine -in"
@@ -230,6 +254,7 @@ points:
 
   - id: wortbildung-adjektiv
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Wortbildung beim Adjektiv: Vorsilbe un-, Nachsilben -los und -bar, Adjektivkomposita (hellblau)"
     en: "Adjective formation: the un- prefix, the -los and -bar suffixes, adjective compounds"
@@ -248,6 +273,7 @@ points:
 
   - id: akkusativ-artikel
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A1}
     de: "Akkusativ: Artikelformen (den, einen, keinen)"
     en: "Accusative: article forms"
@@ -262,6 +288,7 @@ points:
 
   - id: akkusativ-pronomen
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A1}
     de: "Akkusativ: Personalpronomen (mich, dich, ihn)"
     en: "Accusative: personal pronouns"
@@ -276,6 +303,7 @@ points:
 
   - id: reziprokpronomen
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A2}
     de: "Reziprokpronomen: uns und sich für „einander“ (Wir sehen uns morgen.)"
     en: "Reciprocal pronouns: uns and sich for `each other`"
@@ -290,6 +318,7 @@ points:
 
   - id: akkusativ-praepositionen
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A1}
     de: "Präpositionen mit Akkusativ: für, ohne, um"
     en: "Prepositions governing the accusative"
@@ -307,6 +336,7 @@ points:
 
   - id: negation-nicht
     strand: negation
+    track: negation
     level: {reception: A1, production: A1}
     de: "Negation mit nicht und seine Position"
     en: "Negation with nicht and its position"
@@ -318,6 +348,7 @@ points:
 
   - id: negation-kein
     strand: negation
+    track: negation
     level: {reception: A1, production: A1}
     de: "Negation von Nomen mit kein-"
     en: "Negating nouns with kein-"
@@ -332,6 +363,7 @@ points:
 
   - id: possessivartikel
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A1}
     de: "Possessivartikel im Nominativ"
     en: "Possessive articles in the nominative"
@@ -346,6 +378,7 @@ points:
 
   - id: modalverben
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "Modalverben: Formen und Satzklammer"
     en: "Modal verbs: forms and the sentence bracket"
@@ -370,6 +403,7 @@ points:
 
   - id: duerfen-muessen
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "darf nicht gegen muss nicht"
     en: "darf nicht vs muss nicht"
@@ -382,6 +416,7 @@ points:
 
   - id: trennbare-verben
     strand: satzklammer
+    track: satzklammer
     level: {reception: A1, production: A1}
     de: "Trennbare Verben: Präfix am Satzende"
     en: "Separable verbs: the prefix goes to the end"
@@ -402,6 +437,7 @@ points:
 
   - id: perfekt
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A1}
     de: "Perfekt: Hilfsverb, Partizip II und Satzklammer"
     en: "Perfect tense: auxiliary, past participle and bracket"
@@ -415,6 +451,7 @@ points:
 
   - id: zeitangaben
     strand: zeit
+    track: zeit
     level: {reception: A1, production: A1}
     de: "Temporale Präpositionen: um, am, im, in der Nacht — dazu die Chunks von … bis (Zeitspanne) und in + Zeitmenge (Abstand nach vorn)"
     en: "Time prepositions: um, am, im, in der Nacht — plus the chunks von … bis for a span and in + a length of time for a distance forward from now"
@@ -435,6 +472,7 @@ points:
 
   - id: lokale-praepositionen-ortstyp
     strand: raum
+    track: raum
     level: {reception: A1, production: A1}
     de: "Ortsangaben nach Ortstyp: Wohin? (in/auf/zu/nach) – Wo? (in/auf/bei) – Woher? (aus/von)"
     en: "Place phrases chosen by type of place: the Wohin?/Wo?/Woher? triple, including the aus/von origin split"
@@ -467,6 +505,7 @@ points:
 
   - id: gern
     strand: register-pragmatik
+    track: register-pragmatik
     level: {reception: A1, production: A1}
     de: "Vorlieben mit gern ausdrücken"
     en: "Expressing preference with gern"
@@ -478,6 +517,7 @@ points:
 
   - id: anrede-du-sie
     strand: register-pragmatik
+    track: register-pragmatik
     level: {reception: A1, production: A1}
     de: "Anrede: du gegen Sie"
     en: "Register: du vs Sie"
@@ -485,6 +525,7 @@ points:
 
   - id: zahlen-uhrzeit
     strand: zeit
+    track: zeit
     level: {reception: A1, production: A1}
     de: "Zahlen, Uhrzeit und Datum"
     en: "Numbers, clock time and dates"
@@ -497,6 +538,7 @@ points:
   # ---------------------------------------------------------------- A2
   - id: praeteritum
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A2}
     de: "Präteritum von sein, haben und den Modalverben"
     en: "Past simple of sein, haben and the modals"
@@ -515,6 +557,7 @@ points:
 
   - id: dativ-artikel
     strand: kasus
+    track: kasus
     level: {reception: A2, production: A2}
     de: "Dativ: Artikel- und Nomenformen (dem, der, den …-n)"
     en: "Dative: article and noun forms"
@@ -528,6 +571,7 @@ points:
 
   - id: dativ-pronomen
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A2}
     de: "Dativ: Personalpronomen (mir, dir, ihm)"
     en: "Dative: personal pronouns"
@@ -542,6 +586,7 @@ points:
 
   - id: dativ-verben
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A1, production: A2}
     de: "Verben mit Dativ: helfen, danken, gefallen, gehören"
     en: "Dative-governing verbs"
@@ -553,6 +598,7 @@ points:
 
   - id: dativ-akkusativ-objekte
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A2, production: A2}
     de: "Verben mit zwei Objekten: jemandem etwas geben, zeigen, schicken, erklären — Empfänger im Dativ, Sache im Akkusativ"
     en: "Two-object verbs: the recipient is dative, the thing is accusative"
@@ -564,6 +610,7 @@ points:
 
   - id: dativ-praepositionen
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A2}
     de: "Präpositionen mit Dativ: aus, bei, mit, nach, seit, von, zu"
     en: "Prepositions governing the dative"
@@ -600,6 +647,7 @@ points:
 
   - id: wechselpraepositionen
     strand: kasus
+    track: kasus
     level: {reception: A2, production: A2}
     de: "Wechselpräpositionen: Wo? + Dativ gegen Wohin? + Akkusativ"
     en: "Two-way prepositions: Wo? vs Wohin?"
@@ -631,6 +679,7 @@ points:
 
   - id: seit-vor
     strand: zeit
+    track: zeit
     level: {reception: A2, production: A2}
     de: "seit gegen vor bei Zeitangaben"
     en: "seit vs vor in time expressions"
@@ -656,6 +705,7 @@ points:
   # this meaning, which is the self-certifying failure the whole instrument exists to prevent.
   - id: ueber-dauer
     strand: zeit
+    track: zeit
     level: {reception: A1, production: A2}
     de: "über + Akkusativ als Dauer (Ich habe über eine Stunde gewartet.)"
     en: "über + accusative marking a duration — 'for more than an hour', not a place"
@@ -666,6 +716,7 @@ points:
 
   - id: zeitangaben-system
     strand: zeit
+    track: zeit
     level: {reception: A2, production: A2}
     de: "Zeitangaben als System: Wahl der Präposition (um/an/in), ab gegen seit, bis und bis zu, von … bis, vor/nach + Ereignis — und Zeitangaben ohne Präposition im Akkusativ (jeden Tag, nächste Woche)"
     en: "Time phrases as a system: which preposition is selected (um/an/in), ab against seit, bis and bis zu, von … bis, vor/nach around an event — and the time phrases that take no preposition at all and stand in the accusative"
@@ -697,6 +748,7 @@ points:
 
   - id: komparativ
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A2, production: A2}
     de: "Komparativ mit als, einschließlich der unregelmäßigen Formen"
     en: "Comparative with als, including irregulars"
@@ -715,6 +767,7 @@ points:
 
   - id: superlativ
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A2, production: A2}
     de: "Superlativ: am …-sten"
     en: "Superlative: am …-sten"
@@ -730,6 +783,7 @@ points:
 
   - id: adjektiv-praedikativ
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A2}
     de: "Prädikatives Adjektiv ohne Endung"
     en: "Predicative adjective takes no ending"
@@ -741,6 +795,7 @@ points:
 
   - id: adjektiv-bestimmt
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A2, production: A2}
     de: "Adjektivdeklination nach bestimmtem Artikel"
     en: "Adjective declension after the definite article"
@@ -753,6 +808,7 @@ points:
 
   - id: adjektiv-unbestimmt
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A2, production: A2}
     de: "Adjektivdeklination nach ein-, kein-, Possessivartikel"
     en: "Adjective declension after ein-, kein-, possessives"
@@ -765,6 +821,7 @@ points:
 
   - id: adjektiv-nullartikel
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: B1, production: B1}
     de: "Adjektivdeklination ohne Artikel (starke Deklination)"
     en: "Adjective declension with no article (strong)"
@@ -776,6 +833,7 @@ points:
 
   - id: nebensatz-verbende
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Nebensatz mit weil, dass, wenn: Verb am Ende"
     en: "Subordinate clauses with weil, dass, wenn: verb-final"
@@ -791,6 +849,7 @@ points:
 
   - id: indirekte-frage
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Indirekte Fragesätze mit ob und W-Wort"
     en: "Indirect questions with ob and question words"
@@ -803,6 +862,7 @@ points:
 
   - id: aber-sondern
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "aber gegen sondern nach einer Verneinung"
     en: "aber vs sondern after a negation"
@@ -813,6 +873,7 @@ points:
 
   - id: reflexiv-akkusativ
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A2, production: A2}
     de: "Reflexive Verben mit Akkusativpronomen"
     en: "Reflexive verbs with accusative pronouns"
@@ -823,6 +884,7 @@ points:
 
   - id: reflexiv-dativ
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A2, production: A2}
     de: "Reflexivpronomen im Dativ (ich wasche mir die Hände)"
     en: "Reflexive pronouns in the dative"
@@ -831,6 +893,7 @@ points:
 
   - id: verb-praeposition
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A2, production: A2}
     de: "Verben mit festen Präpositionen"
     en: "Verbs with fixed prepositions"
@@ -840,6 +903,7 @@ points:
 
   - id: verbrektion-kasus
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A1, production: A2}
     de: "Rektion: Welchen Kasus verlangt das Verb? (Akkusativ als Normalfall gegen den Dativ-Club; fester Kasus im Verb-Präposition-Chunk)"
     en: "Verb government: which case the verb demands — the accusative default against the closed dative list, and the case welded into a verb+preposition chunk"
@@ -861,6 +925,7 @@ points:
 
   - id: da-wo-woerter
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: A2, production: A2}
     de: "da(r)- und wo(r)-Wörter"
     en: "da- and wo- compounds"
@@ -871,6 +936,7 @@ points:
 
   - id: partizip2-system
     strand: verbformen
+    track: verbformen
     level: {reception: A2, production: A2}
     de: "Partizip II als System: ge-…-t und ge-…-en, -ieren ohne ge-, trennbares -ge- im Wort, untrennbare Präfixe ohne ge-"
     en: "The complete Partizip II formation system, as against A1's list of learned forms"
@@ -883,6 +949,7 @@ points:
 
   - id: will-moechte
     strand: register-pragmatik
+    track: register-pragmatik
     level: {reception: A1, production: A2}
     de: "wollen gegen möchte: der direkte Wunsch und der höfliche"
     en: "Blunt wollen against polite möchte — a register choice, not a meaning one"
@@ -897,6 +964,7 @@ points:
 
   - id: hoeflich-konjunktiv
     strand: verbformen
+    track: verbformen
     level: {reception: A1, production: A2}
     de: "Höfliches könnte und würde gern als Chunks"
     en: "Polite könnte and würde gern as chunks"
@@ -914,6 +982,7 @@ points:
 
   - id: trennbar-untrennbar
     strand: verbformen
+    track: verbformen
     level: {reception: A2, production: A2}
     de: "Trennbare gegen untrennbare Präfixe"
     en: "Separable vs inseparable prefixes"
@@ -925,6 +994,7 @@ points:
 
   - id: infinitiv-mit-zu
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Infinitiv mit zu (Ich habe vor, … zu …)"
     en: "Infinitive with zu"
@@ -934,6 +1004,7 @@ points:
 
   - id: um-zu
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Finalsatz mit um … zu"
     en: "Purpose clause with um … zu"
@@ -943,6 +1014,7 @@ points:
 
   - id: relativsatz
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Relativsätze im Nominativ und Akkusativ"
     en: "Relative clauses in the nominative and accusative"
@@ -952,6 +1024,7 @@ points:
 
   - id: konjunktionaladverb
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "Konjunktionaladverbien: deshalb, deswegen, trotzdem, dann — mit Inversion"
     en: "Conjunctional adverbs with inversion"
@@ -967,6 +1040,7 @@ points:
 
   - id: als-wenn
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: A2, production: A2}
     de: "als für einmalige Vergangenheit gegen wenn für Wiederholung"
     en: "als for a single past event vs wenn for repetition"
@@ -978,6 +1052,7 @@ points:
 
   - id: futur-werden
     strand: verbformen
+    track: verbformen
     level: {reception: A2, production: A2}
     de: "Futur I mit werden + Infinitiv"
     en: "Future with werden + infinitive"
@@ -989,6 +1064,7 @@ points:
 
   - id: interrogativartikel
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A2, production: A2}
     de: "Interrogativartikel welch- und das Artikelwort alle — Endungen wie beim bestimmten Artikel (Welchen Film meinst du?)"
     en: "The interrogative determiner welch- and the quantifier alle, both taking definite-article endings"
@@ -1005,6 +1081,7 @@ points:
 
   - id: indefinitpronomen
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: A1, production: A2}
     de: "Indefinitpronomen: man, jemand, niemand, etwas, nichts"
     en: "Indefinite pronouns"
@@ -1033,6 +1110,7 @@ points:
 
   - id: genitiv-eigenname
     strand: kasus
+    track: kasus
     level: {reception: A1, production: A2}
     de: "Genitiv-s bei Eigennamen (Annas Auto) und von + Dativ als Ersatz"
     en: "Genitive -s on proper names, and von + dative as the alternative"
@@ -1046,6 +1124,7 @@ points:
 
   - id: passiv-praesens
     strand: verbformen
+    track: verbformen
     level: {reception: A2, production: A2}
     de: "Passiv Präsens — rezeptiv (Hier wird gebaut.)"
     en: "Present passive — recognition only"
@@ -1081,6 +1160,7 @@ points:
 
   - id: praeteritum-vollverben
     strand: verbformen
+    track: verbformen
     level: {reception: A2, production: B1}
     de: "Präteritum der Vollverben (schriftliches Erzählen)"
     en: "Preterite of full verbs — the written narrative past"
@@ -1096,6 +1176,7 @@ points:
 
   - id: plusquamperfekt
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Plusquamperfekt und nachdem (Vorzeitigkeit)"
     en: "Past perfect with nachdem — one past event before another"
@@ -1107,6 +1188,7 @@ points:
 
   - id: konjunktiv2-irreal
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Konjunktiv II: irreale Bedingungen und Wünsche (Wenn ich Zeit hätte, würde ich …)"
     en: "Konjunktiv II: unreal conditions and wishes"
@@ -1119,6 +1201,7 @@ points:
 
   - id: konjunktiv2-ratschlag
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Konjunktiv II für Ratschläge (An deiner Stelle würde ich …, du solltest …)"
     en: "Konjunktiv II for advice"
@@ -1130,6 +1213,7 @@ points:
 
   - id: passiv-produktion
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Passiv Präsens — produktiv (Das Formular wird ausgefüllt.)"
     en: "Present passive — produced, not merely recognised"
@@ -1141,6 +1225,7 @@ points:
 
   - id: passiv-vergangenheit
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Passiv in der Vergangenheit (wurde gebaut, ist gebaut worden)"
     en: "Past passive"
@@ -1153,6 +1238,7 @@ points:
 
   - id: passiv-modal
     strand: verbformen
+    track: verbformen
     level: {reception: B1, production: B1}
     de: "Passiv mit Modalverben (Das muss heute gemacht werden.)"
     en: "Passive with modal verbs"
@@ -1163,6 +1249,7 @@ points:
 
   - id: lassen
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: B1, production: B1}
     de: "lassen: erlauben und veranlassen (Ich lasse mir die Haare schneiden.)"
     en: "lassen: permitting and having something done"
@@ -1170,6 +1257,7 @@ points:
 
   - id: reflexiv-praeposition
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: B1, production: B1}
     de: "Reflexive Verben mit Präposition (sich freuen auf, sich interessieren für)"
     en: "Reflexive verbs governing a preposition"
@@ -1178,6 +1266,7 @@ points:
 
   - id: verb-praeposition-erweitert
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: B1, production: B1}
     de: "Erweiterte Verb-Präposition-Verbindungen mit da(r)- und wo(r)-Verweis"
     en: "Extended verb + preposition inventory, with da(r)-/wo(r)- reference"
@@ -1187,6 +1276,7 @@ points:
 
   - id: genitiv-vollstaendig
     strand: kasus
+    track: kasus
     level: {reception: A1, production: B1}
     de: "Genitiv: Formen und Gebrauch (das Auto des Mannes, die Farbe der Wand)"
     en: "Full genitive: forms and use"
@@ -1199,6 +1289,7 @@ points:
 
   - id: praeposition-genitiv
     strand: kasus
+    track: kasus
     level: {reception: A2, production: B1}
     de: "Präpositionen mit Genitiv (wegen, trotz, während, statt)"
     en: "Prepositions governing the genitive"
@@ -1211,6 +1302,7 @@ points:
 
   - id: n-deklination
     strand: kasus
+    track: kasus
     level: {reception: B1, production: B1}
     de: "n-Deklination (der Student → den Studenten, der Kollege → dem Kollegen)"
     en: "Weak masculine nouns (n-declension)"
@@ -1220,6 +1312,7 @@ points:
 
   - id: adjektiv-nomen
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: B1, production: B1}
     de: "Adjektive und Partizipien als Nomen (der Bekannte, das Wichtigste, etwas Neues)"
     en: "Adjectives and participles used as nouns"
@@ -1231,6 +1324,7 @@ points:
 
   - id: komparativ-attributiv
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: B1, production: B1}
     de: "Komparativ und Superlativ vor dem Nomen (der bessere Job, der beste Preis)"
     en: "Comparative and superlative in attributive position"
@@ -1240,6 +1334,7 @@ points:
 
   - id: partizip-adjektiv
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: B1, production: B1}
     de: "Partizip I und II als Attribut (das gekochte Ei, die lachenden Kinder)"
     en: "Participles as attributive adjectives"
@@ -1248,6 +1343,7 @@ points:
 
   - id: relativsatz-dativ
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Relativsätze im Dativ und nach Präpositionen (dem, mit dem, für den)"
     en: "Relative clauses in the dative and after prepositions"
@@ -1259,6 +1355,7 @@ points:
 
   - id: relativ-was-wo
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Relativpronomen was und wo (alles, was …; die Stadt, wo …)"
     en: "Relative was and wo"
@@ -1270,6 +1367,7 @@ points:
 
   - id: indefinitpronomen-erweitert
     strand: nominalgruppe
+    track: nominalgruppe
     level: {reception: B1, production: B1}
     de: "Erweiterte Indefinitpronomen (irgendein, jeder, alle, beide, manche, einige)"
     en: "Extended indefinite pronouns and quantifiers"
@@ -1284,6 +1382,7 @@ points:
 
   - id: temporalsatz
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Temporale Nebensätze: bevor, nachdem, während, seit(dem), sobald, bis"
     en: "Temporal subordinate clauses"
@@ -1297,6 +1396,7 @@ points:
 
   - id: konzessivsatz-obwohl
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "obwohl als Konjunktion neben trotzdem als Adverb"
     en: "obwohl as a conjunction beside the adverb trotzdem"
@@ -1309,6 +1409,7 @@ points:
 
   - id: finalsatz-damit
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "damit gegenüber um … zu (verschiedene Subjekte)"
     en: "damit vs um … zu — when the subjects differ"
@@ -1320,6 +1421,7 @@ points:
 
   - id: konsekutivsatz-sodass
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Konsekutivsätze: so … dass, sodass"
     en: "Consecutive clauses: so … that"
@@ -1330,6 +1432,7 @@ points:
 
   - id: kausalsatz-da
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "da als kausale Konjunktion neben weil"
     en: "da as a causal conjunction beside weil"
@@ -1340,6 +1443,7 @@ points:
 
   - id: konditionalsatz-falls
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Konditionalsätze mit falls und wenn"
     en: "Conditional clauses with falls and wenn"
@@ -1350,6 +1454,7 @@ points:
 
   - id: zweiteilige-konnektoren
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Zweiteilige Konnektoren (entweder … oder, nicht nur … sondern auch, zwar … aber)"
     en: "Two-part connectors"
@@ -1362,6 +1467,7 @@ points:
 
   - id: proportionalsatz-je-desto
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "je … desto/umso mit Komparativ (Je länger der Beitrag ist, desto mehr erklärt er.)"
     en: "Proportional clauses with je … desto/umso"
@@ -1373,6 +1479,7 @@ points:
 
   - id: infinitivsatz-ohne-statt
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Infinitivsätze mit ohne … zu und (an)statt … zu"
     en: "Infinitive clauses with ohne … zu and statt … zu"
@@ -1383,6 +1490,7 @@ points:
 
   - id: indirekte-rede
     strand: satzverbindung
+    track: satzverbindung
     level: {reception: B1, production: B1}
     de: "Indirekte Rede — rezeptiv (Er sagte, er komme später.)"
     en: "Reported speech — recognition"
@@ -1392,6 +1500,7 @@ points:
 
   - id: wortstellung-angaben
     strand: satzklammer
+    track: satzklammer
     level: {reception: B1, production: B1}
     de: "Stellung der Angaben (temporal – kausal – modal – lokal) und Pronomen vor Nomen"
     en: "Order of adverbials, and pronoun objects before noun objects"
@@ -1401,6 +1510,7 @@ points:
 
   - id: nomen-verb-verbindungen
     strand: verbvalenz
+    track: verbvalenz
     level: {reception: B1, production: B1}
     de: "Nomen-Verb-Verbindungen (eine Entscheidung treffen, in Kontakt bleiben)"
     en: "Noun–verb collocations"

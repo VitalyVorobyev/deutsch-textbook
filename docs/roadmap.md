@@ -103,6 +103,35 @@ figures: [archive](archive/2026-08-doc-slimming.md).
 Five named tracks, decided 2026-08-04. Each has an ADR that holds the reasoning and backlog entries
 that hold the work; a track can be picked up without re-deciding it. **They start after B1 closes.**
 
+### Redaction · P27
+
+Redaction is being rebuilt as a local repository-backed editorial workstation, independently of
+learner features. The delivery sequence is intentionally vertical: each milestone must leave one
+complete editorial path usable rather than adding another disconnected report.
+
+1. **P27-0 · contracts and evidence baseline** — ADR 0013, stable design, A1–C2 grammar contract,
+   explicit tracks, severity diagnostics and the existing audit figures retained as baselines.
+2. **P27-1 · Grammatikatlas desktop slice** — checkout picker, restricted Bun sidecar, persistent
+   graph cache, warm app shell, A1–C2 atlas, navigation from point through focus/topic/material and
+   live source refresh on macOS.
+3. **P27-2 · shared preview and source editor** — extract learner renderers from progress runtime;
+   add editor mode, revision conflicts, atomic Save, local diagnostics, background corpus validation
+   and fixtures for every material kind.
+4. **P27-3 · Themen workspaces** — readiness dimensions, curriculum relations, outcomes, lesson
+   stages, materials, standards and a complete rejection explanation for the reviewed gate.
+5. **P27-4 · Materialien index** — load all graph chunks, full-text and faceted search, URL-persisted
+   filters, preview drawer and playback of committed audio without Listening Studio functions.
+6. **P27-5 · Qualität and Referenzen** — one severity-based diagnostic model while keeping inventory
+   coverage, external alignment, teaching depth and unknown source territory visibly distinct.
+7. **P27-6 · hardening and macOS delivery** — dependency-aware invalidation, background jobs,
+   security/integration/accessibility suites, `.app`/`.dmg` and CI smoke build. Windows/Linux remain
+   build-target preparation only.
+
+[ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
+current implementation boundary. Completion is the full editor journey: locate a grammar line,
+follow its course evidence, edit YAML/MDX with conflict protection, read local and corpus diagnostics,
+and mark a topic reviewed only through the green gate.
+
 ### 1 · Accounts and sync ergonomics
 
 Sync is already automatic — a 20-second debounce on all ten `src/lib/store.ts` write paths, one

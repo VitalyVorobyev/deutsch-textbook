@@ -13,6 +13,7 @@ export default tseslint.config(
       '**/.astro/',
       'node_modules/',
       'src-tauri/', // Rust shell + Tauri-generated artifacts
+      '**/src-tauri/',
       'progress/',
       'docs/',
       '.claude/', // local settings + agent worktrees (each carries a full repo copy)

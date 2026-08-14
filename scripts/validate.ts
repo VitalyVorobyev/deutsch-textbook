@@ -9,7 +9,7 @@
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { dirname, join, relative, sep } from 'node:path';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
 import {
@@ -39,9 +39,9 @@ import {
   type ListeningArtifact,
   type ListeningPlan,
   LEVELS,
-  type Level,
+  CEFR_LEVELS,
 } from '@da/schema';
-import { GRAMMAR_STRANDS, type GrammarPoint } from '@da/content/grammar-coverage';
+import { GRAMMAR_STRANDS, type GrammarPoint, type GrammarTrack } from '@da/content/grammar-coverage';
 import { entryRef, loadStructureSources } from '@da/content/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
@@ -70,7 +70,12 @@ import { responseModeForItem } from '../src/lib/evidence';
 import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
 import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 
-const ROOT = join(import.meta.dirname, '..');
+// The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
+// checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
+// CI runs retain the repository-relative default.
+const ROOT = process.env.DEUTSCH_ATLAS_ROOT
+  ? resolve(process.env.DEUTSCH_ATLAS_ROOT)
+  : join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
 
 const errors: string[] = [];
@@ -420,7 +425,21 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
 {
   const file = join(ROOT, 'data', 'grammar-inventory.yaml');
   try {
-    const points = (YAML.parse(readFileSync(file, 'utf8')) as { points?: GrammarPoint[] }).points ?? [];
+    const inventory = YAML.parse(readFileSync(file, 'utf8')) as {
+      tracks?: GrammarTrack[];
+      points?: GrammarPoint[];
+    };
+    const tracks = inventory.tracks ?? [];
+    const points = inventory.points ?? [];
+    const trackIds = new Set<string>();
+    for (const track of tracks) {
+      if (trackIds.has(track.id)) fail('data/grammar-inventory.yaml', `duplicate grammar track id "${track.id}"`);
+      trackIds.add(track.id);
+      if (!(GRAMMAR_STRANDS as readonly string[]).includes(track.strand))
+        fail('data/grammar-inventory.yaml', `track "${track.id}" has unknown strand "${track.strand}"`);
+      if (!track.de || !track.en || !Number.isFinite(track.order))
+        fail('data/grammar-inventory.yaml', `track "${track.id}" needs de, en and a numeric order`);
+    }
     const ids = new Set(points.map((p) => p.id));
     // Every `<source-id>:<entry-key>` any strukturenliste defines. A `claims:` ref that resolves
     // to nothing is a citation to a document that does not say it — the one defect in this file
@@ -442,16 +461,17 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
       if (!production)
         fail('data/grammar-inventory.yaml', `point "${point.id}" declares no level: {reception, production}`);
       for (const [field, value] of [['production', production], ['reception', reception]] as const)
-        if (value && !(LEVELS as readonly string[]).includes(value))
+        if (value && !(CEFR_LEVELS as readonly string[]).includes(value))
           fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown level.${field} "${value}"`);
       // You do not produce a structure before you can recognise it. A row asserting otherwise has
       // its two levels swapped, which would make the reception view report the opposite of reality.
       // Guarded on both being *known* levels: `indexOf` returns -1 for an unknown one, so an
       // already-reported typo would otherwise also report itself as an ordering defect.
-      const known = (v?: string) => !!v && (LEVELS as readonly string[]).includes(v);
+      const known = (v?: string) => !!v && (CEFR_LEVELS as readonly string[]).includes(v);
       if (
         known(production) && known(reception) &&
-        LEVELS.indexOf(reception as Level) > LEVELS.indexOf(production as Level)
+        CEFR_LEVELS.indexOf(reception as (typeof CEFR_LEVELS)[number]) >
+          CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
       )
         fail(
           'data/grammar-inventory.yaml',
@@ -462,6 +482,12 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
         fail(
           'data/grammar-inventory.yaml',
           `point "${point.id}" has unknown strand "${point.strand ?? ''}" — one of ${GRAMMAR_STRANDS.join(', ')}`,
+        );
+
+      if (!point.track || !trackIds.has(point.track))
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has unknown track "${point.track ?? ''}"`,
         );
 
       // `deepens` is the spiral as data. A dangling target, a self-edge or an edge pointing at a
@@ -477,7 +503,8 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
           const baseLevel = base.level?.production ?? base.standard_level;
           if (
             production && baseLevel &&
-            LEVELS.indexOf(baseLevel as Level) > LEVELS.indexOf(production as Level)
+            CEFR_LEVELS.indexOf(baseLevel as (typeof CEFR_LEVELS)[number]) >
+              CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
           )
             fail(
               'data/grammar-inventory.yaml',

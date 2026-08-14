@@ -207,7 +207,21 @@ export function Zeilentabelle<Row>({
      * has no sticky header to lose.
      */
     <div>
-      <table className="w-full border-collapse text-sm">
+      <ul className="space-y-2 min-[900px]:hidden" aria-label="Ergebnisliste">
+        {sorted.map((row) => (
+          <li key={rowKey(row)} className="rounded-lg border border-border-subtle bg-surface-raised p-3">
+            <dl className="grid grid-cols-[minmax(6.5rem,0.35fr)_minmax(0,1fr)] gap-x-3 gap-y-2 text-sm">
+              {columns.filter((column) => !column.nurBreit).map((column) => (
+                <div key={column.key} className="contents">
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-ink-muted">{column.head}</dt>
+                  <dd className={`${column.numeric ? 'tabular' : ''} min-w-0 text-ink`}>{column.cell(row)}</dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
+      <table className="hidden w-full border-collapse text-sm min-[900px]:table">
         <thead>
           {/* Sticky under the page header, which is `top-0 h-14` in the shell. */}
           <tr className="sticky top-14 z-10 bg-surface text-left text-xs text-ink-muted shadow-[0_1px_0_var(--color-border-subtle)]">

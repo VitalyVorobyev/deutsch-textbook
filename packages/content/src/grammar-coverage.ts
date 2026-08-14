@@ -19,7 +19,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
-import { LEVELS, type Level } from '@da/schema';
+import { CEFR_LEVELS, LEVELS, type CefrLevel, type Level } from '@da/schema';
 
 /**
  * The grammatical systems a point belongs to. A point sits in exactly one — the system whose
@@ -61,12 +61,23 @@ export type GrammarStrand = (typeof GRAMMAR_STRANDS)[number];
  * recognise it, and a row asserting otherwise is a data error (`scripts/validate.ts`).
  */
 export interface GrammarLevel {
-  reception: Level;
-  production: Level;
+  reception: CefrLevel;
+  production: CefrLevel;
+}
+
+/** One stable row in the editorial A1→C2 map. */
+export interface GrammarTrack {
+  id: string;
+  strand: GrammarStrand;
+  de: string;
+  en: string;
+  order: number;
 }
 
 export interface GrammarPoint {
   id: string;
+  /** Explicit map row. A strand is the broad taxonomy; a track is navigable editorial IA. */
+  track?: string;
   /**
    * Superseded by `level`. Still read (and still accepted by the loader) so the field migration
    * and the content edits it enables do not have to land in one commit.
@@ -89,12 +100,12 @@ export interface GrammarPoint {
 }
 
 /** The level this course authors production for — what `grammarCoverage` measures against. */
-export function productionLevel(point: GrammarPoint): Level {
+export function productionLevel(point: GrammarPoint): CefrLevel {
   return point.level?.production ?? point.standard_level!;
 }
 
 /** The level at which the standard expects comprehension. Defaults to the production level. */
-export function receptionLevel(point: GrammarPoint): Level {
+export function receptionLevel(point: GrammarPoint): CefrLevel {
   return point.level?.reception ?? productionLevel(point);
 }
 
@@ -177,9 +188,35 @@ export function drilledFocusTags(root = repoRoot()): Map<string, Set<Level>> {
   return tags;
 }
 
-export function loadGrammarInventory(root = repoRoot()): GrammarPoint[] {
+export interface GrammarInventory {
+  tracks: GrammarTrack[];
+  points: GrammarPoint[];
+}
+
+export function loadGrammarMap(root = repoRoot()): GrammarInventory {
   const raw = readFileSync(join(root, 'data', 'grammar-inventory.yaml'), 'utf8');
-  return (YAML.parse(raw) as { points: GrammarPoint[] }).points;
+  const parsed = YAML.parse(raw) as Partial<GrammarInventory>;
+  const tracks = parsed.tracks ?? [];
+  const points = parsed.points ?? [];
+  const ids = new Set(tracks.map((track) => track.id));
+  const badLevel = points.find((point) => {
+    const level = point.level ?? (point.standard_level
+      ? { reception: point.standard_level, production: point.standard_level }
+      : undefined);
+    return !level || !CEFR_LEVELS.includes(level.reception) || !CEFR_LEVELS.includes(level.production);
+  });
+  if (badLevel) throw new Error(`point "${badLevel.id}" has no valid A1–C2 reception/production level`);
+  const untracked = points.find((point) => !point.track || !ids.has(point.track));
+  if (untracked) throw new Error(`point "${untracked.id}" names no declared grammar track`);
+  return { tracks, points };
+}
+
+export function loadGrammarInventory(root = repoRoot()): GrammarPoint[] {
+  return loadGrammarMap(root).points;
+}
+
+export function loadGrammarTracks(root = repoRoot()): GrammarTrack[] {
+  return loadGrammarMap(root).tracks;
 }
 
 /** CEFR order, taken from the schema so a new level never has to be added twice. */

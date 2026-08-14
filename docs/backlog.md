@@ -11,6 +11,30 @@ step*. Measurement essays, dated reads and PR history live in
 
 ## Doing
 
+### P27 · Redaction editorial workstation
+
+P27-0 and the foundation of P27-1/P27-2 are in the current implementation: ADR 0013; explicit
+A1–C2 `CefrLevel`, ten declared grammar tracks and all 98 points migrated; transport-neutral
+`CorpusClient`; warm German app shell; Grammatikatlas; checkout selection; Bun JSONL sidecar and
+restricted Tauri command; exact source reads, revision conflicts, local parsing/schema checks and
+atomic saves. `bun run redaktion` remains the browser transport; `bun run redaktion:desktop` builds
+the sidecars and launches Tauri.
+
+Open before P27-1 can close: source-led subdivision of any overly broad tracks, persisted graph
+cache rather than process memoisation, point→focus→topic→material end-to-end desktop tests, watcher
+tests and a packaged macOS smoke run. Open P27-2 work: extract pure learner renderers and prove
+editor mode has no progress side effects, add safe structured controls over the same source buffer,
+unsaved-navigation protection beyond the source view, background job status and fixtures for every
+artifact type. P27-3…P27-6 remain sequenced in the
+[roadmap](roadmap.md#redaction-p27); do not flatten them into one release claim.
+
+Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale
+revision, invalid YAML/MDX and corpus-invalid-draft tests; all renderer fixtures; checkout/watcher/
+save/refetch/relaunch integration; keyboard and screen-reader navigation at 1440/1024/768; and a
+macOS `.app`/`.dmg` smoke build. Baseline findings and coverage are regression evidence, not KPIs:
+49/49 topics with findings, 265 findings, grammar claims A1/A2/B1 100%/92%/86%, A2–B1
+Sprachhandlungen 63% and Themen 84% at the review that opened P27.
+
 ### P5-11 · Evidence-led operating cadence
 
 After every two B1 units: drain the grading queue, rerun `bun run progress:audit --profile vitaly`,

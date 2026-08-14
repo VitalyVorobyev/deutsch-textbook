@@ -15,12 +15,9 @@
  * this app exists to report faithfully.
  */
 import { useEffect, useState } from 'react';
+import { corpusClient, type WritableField } from './data';
 
-export interface WritableField {
-  class: string;
-  field: string;
-  values: string[];
-}
+export type { WritableField } from './data';
 
 export type WriteOutcome = { ok: true; changed: boolean } | { ok: false; error: string };
 
@@ -29,10 +26,9 @@ export function useWritable(): WritableField[] {
   const [fields, setFields] = useState<WritableField[]>([]);
   useEffect(() => {
     let cancelled = false;
-    fetch('/__writable')
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((body: { fields: WritableField[] }) => {
-        if (!cancelled) setFields(body.fields);
+    corpusClient.writableFields()
+      .then((next) => {
+        if (!cancelled) setFields(next);
       })
       .catch(() => {
         /* No endpoint means no editing. The report is the product; the edit is the extra. */
@@ -50,14 +46,9 @@ export async function writeField(patch: {
   value: string | null;
 }): Promise<WriteOutcome> {
   try {
-    const response = await fetch('/__write', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(patch),
-    });
-    const body = (await response.json()) as { ok?: boolean; changed?: boolean; error?: string };
-    if (!response.ok || !body.ok) return { ok: false, error: body.error ?? `${response.status}` };
-    return { ok: true, changed: body.changed ?? false };
+    const body = await corpusClient.writeField(patch);
+    if (!body.ok) return body;
+    return { ok: true, changed: body.changed };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }

@@ -25,8 +25,6 @@ type Level = GraphPayload['levels'][number];
 type Tag = GraphPayload['tags'][number];
 type Element = GraphPayload['elements'][number];
 
-const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
-
 const STAGE_LABEL: Record<string, string> = {
   pretest: 'Pretest',
   modell: 'Modell',
@@ -170,7 +168,7 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Extern href={`${GITHUB}/${e.file}`}>{e.id.split('#')[0]}</Extern> },
+    { key: 'file', head: 'Datei', cell: (e) => <Extern href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Extern> },
   ];
 
   return (

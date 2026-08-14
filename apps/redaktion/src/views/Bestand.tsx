@@ -19,19 +19,17 @@
  * ones outside. Nothing on this page recomputes a figure — `graph.decks`, `graph.readings` and
  * `graph.elements` are what the corpus measured.
  */
-import { useState } from 'react';
-import { Empty, Filter, Label, Panel, SearchBox, Stat, StatGroup } from '@da/ui/primitives';
+import { useEffect, useState } from 'react';
+import { Button, Empty, Filter, Label, Panel, SearchBox, Stat, StatGroup } from '@da/ui/primitives';
 import { Reiter } from '../components/Hinweis';
-import type { GraphPayload } from '../data';
+import { corpusClient, loadChunk, type GraphPayload } from '../data';
 import { Extern, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
-import { href } from '../router';
+import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['levels'][number];
 type Element = GraphPayload['elements'][number];
 type Deck = GraphPayload['decks'][number];
 type Reading = GraphPayload['readings'][number];
-
-const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 
 /** Word bands `CLAUDE.md` states for each reading kind, and no gate enforces. */
 const BANDS: Record<string, [number, number]> = { intensive: [90, 130], extensive: [250, 400] };
@@ -59,32 +57,61 @@ const ARTEN: { id: Art; label: string; kinds: string[] }[] = [
 ];
 
 export function Bestand({ graph }: { graph: GraphPayload }) {
-  const [art, setArt] = useState<Art>('wortschatz');
-  const [level, setLevel] = useState<Level | 'alle'>('alle');
-  const [search, setSearch] = useState('');
+  const [artValue, setArtValue] = useQueryState('art', 'wortschatz');
+  const art = ARTEN.some((candidate) => candidate.id === artValue) ? artValue as Art : 'wortschatz';
+  const setArt = (next: Art) => setArtValue(next);
+  const [levelValue, setLevelValue] = useQueryState('niveau', 'alle');
+  const level = levelValue as Level | 'alle';
+  const setLevel = (next: Level | 'alle') => setLevelValue(next);
+  const [search, setSearch] = useQueryState('q', '');
+  const [track, setTrack] = useQueryState('track', 'alle');
+  const [topic, setTopic] = useQueryState('thema', 'alle');
+  const [loadedSearch, setLoadedSearch] = useState<{ chunk: string; rows: Map<string, string> }>();
   const q = search.trim().toLowerCase();
+  const searchChunk = art === 'uebungen' ? 'items' : art === 'wortschatz' ? 'vocab' : art === 'lesetexte' ? 'texts' : undefined;
+  const bulkSearch = loadedSearch && loadedSearch.chunk === searchChunk
+    ? loadedSearch.rows
+    : new Map<string, string>();
+
+  useEffect(() => {
+    const chunk = searchChunk;
+    if (!chunk) return;
+    let cancelled = false;
+    void loadChunk<Record<string, unknown>[]>(chunk).then((rows) => {
+      if (!cancelled) setLoadedSearch({
+        chunk,
+        rows: new Map(rows.map((row) => [String(row.id), JSON.stringify(row).toLowerCase()])),
+      });
+    });
+    return () => { cancelled = true; };
+  }, [searchChunk]);
 
   const topicTitle = (id: string) => graph.topics.find((t) => t.id === id)?.title ?? id;
   const byLevel = <T extends { level: string }>(xs: T[]) => xs.filter((x) => level === 'alle' || x.level === level);
+  const tracksOf = (focus: string[]) => new Set(graph.inventory.filter((point) => (point.focus ?? []).some((tag) => focus.includes(tag))).map((point) => point.track));
+  const elementFits = (element: Element) =>
+    (topic === 'alle' || element.topic === topic) &&
+    (track === 'alle' || tracksOf(element.focus).has(track)) &&
+    (!q || element.id.toLowerCase().includes(q) || (element.title ?? '').toLowerCase().includes(q) || [...bulkSearch.entries()].some(([id, text]) => element.id.startsWith(id) && text.includes(q)));
   const counts = new Map(ARTEN.map((a) => [a.id, graph.elements.filter((e) => a.kinds.includes(e.kind)).length]));
 
   return (
     <>
       <header className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Bestand</h1>
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Materialien</h1>
         <p className="mt-1 text-sm text-ink-muted">
           {graph.elements.length} Elemente in {ARTEN.length} Materialarten · jede Zahl kommt aus dem Korpus
         </p>
       </header>
 
-      <div className="mb-5 grid gap-4 md:grid-cols-4">
+      <div className="mb-5 grid gap-4 lg:grid-cols-4">
         <Panel>
           <StatGroup columns={2}>
             <Stat label="Karten" value={graph.decks.reduce((n, d) => n + d.entries, 0)} hint="Einträge in Decks" />
             <Stat label="Aufgaben" value={graph.elements.reduce((n, e) => n + (e.depth.items || 0), 0)} />
           </StatGroup>
         </Panel>
-        <div className="md:col-span-3">
+        <div className="lg:col-span-3">
           <Panel>
             <Label>Wortliste je Niveau</Label>
             <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-sm">
@@ -110,31 +137,34 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
             options={ARTEN.map((a) => ({ id: a.id, label: a.label, count: counts.get(a.id) }))}
           />
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-56">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="min-w-52 flex-1">
             <SearchBox value={search} onChange={setSearch} placeholder="Suchen …" />
           </div>
           <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
+          <Filter label="Grammatiklinie" value={track} options={graph.grammarTracks.map((item) => item.id)} onChange={setTrack} />
+          <Filter label="Thema" value={topic} options={graph.topics.map((item) => item.id)} onChange={setTopic} />
         </div>
       </div>
 
       {art === 'wortschatz' ? (
         <Decks
-          decks={byLevel(graph.decks).filter((d) => !q || d.title.toLowerCase().includes(q) || d.id.includes(q))}
+          decks={byLevel(graph.decks).filter((d) => (topic === 'alle' || d.owners.includes(topic)) && (!q || d.title.toLowerCase().includes(q) || d.id.includes(q) || bulkSearch.get(d.id)?.includes(q)))}
           topicTitle={topicTitle}
         />
       ) : art === 'lesetexte' ? (
         <Lesetexte
-          readings={byLevel(graph.readings).filter((r) => !q || r.title.toLowerCase().includes(q) || r.id.includes(q))}
+          readings={byLevel(graph.readings).filter((r) => (topic === 'alle' || r.topic === topic) && (!q || r.title.toLowerCase().includes(q) || r.id.includes(q) || bulkSearch.get(r.id)?.includes(q)))}
           topicTitle={topicTitle}
         />
       ) : (
         <Elemente
           elements={byLevel(
             graph.elements.filter((e) => ARTEN.find((a) => a.id === art)!.kinds.includes(e.kind)),
-          ).filter((e) => !q || e.id.toLowerCase().includes(q) || (e.title ?? '').toLowerCase().includes(q))}
+          ).filter(elementFits)}
           topicTitle={topicTitle}
           art={art}
+          graph={graph}
         />
       )}
     </>
@@ -144,7 +174,7 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
 function Decks({ decks, topicTitle }: { decks: Deck[]; topicTitle: (id: string) => string }) {
   const max = Math.max(1, ...decks.map((d) => d.entries));
   const columns: Spalte<Deck>[] = [
-    { key: 'id', head: 'Deck', sort: (d) => d.title, cell: (d) => <Primaer href={`${GITHUB}/${d.file}`}>{d.title}</Primaer> },
+    { key: 'id', head: 'Deck', sort: (d) => d.title, cell: (d) => <Primaer href={href('quelle', undefined, { pfad: d.file })}>{d.title}</Primaer> },
     { key: 'level', head: 'Niveau', sort: (d) => d.level, cell: (d) => d.level },
     { key: 'entries', head: 'Einträge', numeric: true, sort: (d) => d.entries, cell: (d) => d.entries },
     {
@@ -186,7 +216,7 @@ function Decks({ decks, topicTitle }: { decks: Deck[]; topicTitle: (id: string) 
 
 function Lesetexte({ readings, topicTitle }: { readings: Reading[]; topicTitle: (id: string) => string }) {
   const columns: Spalte<Reading>[] = [
-    { key: 'id', head: 'Text', sort: (r) => r.title, cell: (r) => <Primaer href={`${GITHUB}/${r.file}`}>{r.title}</Primaer> },
+    { key: 'id', head: 'Text', sort: (r) => r.title, cell: (r) => <Primaer href={href('quelle', undefined, { pfad: r.file })}>{r.title}</Primaer> },
     { key: 'level', head: 'Niveau', sort: (r) => r.level, cell: (r) => r.level },
     { key: 'kind', head: 'Art', sort: (r) => r.kind, cell: (r) => r.kind },
     {
@@ -219,17 +249,19 @@ function Elemente({
   elements,
   topicTitle,
   art,
+  graph,
 }: {
   elements: Element[];
   topicTitle: (id: string) => string;
   art: Art;
+  graph: GraphPayload;
 }) {
   const columns: Spalte<Element>[] = [
     {
       key: 'id',
       head: 'Element',
       sort: (e) => e.id,
-      cell: (e) => <Primaer href={`${GITHUB}/${e.file}`}>{e.title ?? e.id.split('#')[0]}</Primaer>,
+      cell: (e) => <Primaer href={href('quelle', undefined, { pfad: e.file })}>{e.title ?? e.id.split('#')[0]}</Primaer>,
     },
     { key: 'level', head: 'Niveau', sort: (e) => e.level, cell: (e) => e.level },
     { key: 'kind', head: 'Art', sort: (e) => e.kind, cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
@@ -245,6 +277,13 @@ function Elemente({
           },
         ] as Spalte<Element>[])
       : []),
+    ...(art === 'hoertexte'
+      ? ([{
+          key: 'audio', head: 'Audio', cell: (e) => {
+            const listening = graph.listenings.find((item) => e.id.startsWith(`${item.id}#`));
+            return listening ? <AudioCell title={listening.title} path={listening.audio} /> : null;
+          },
+        }] as Spalte<Element>[]) : []),
     {
       key: 'topic',
       head: 'Thema',
@@ -270,3 +309,9 @@ function Elemente({
 
 /** Kept out of the table: an external file link that is not the row's primary target. */
 export { Extern };
+
+function AudioCell({ title, path }: { title: string; path: string }) {
+  const [source, setSource] = useState('');
+  if (!source) return <Button onClick={() => void corpusClient.assetUrl(path).then(setSource)}>Audio laden</Button>;
+  return <audio aria-label={`Hörtext ${title}`} controls preload="metadata" className="h-8 w-48" src={source} />;
+}

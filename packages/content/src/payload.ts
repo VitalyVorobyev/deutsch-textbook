@@ -12,16 +12,20 @@
  * every reading's text) is an order of magnitude larger, is needed by two views out of nine, and
  * ships per chunk on demand.
  */
-import type { AtlasGroup, AtlasUnit, Level, Outcome } from '@da/schema';
-import { LEVELS } from '@da/schema';
+import { listeningAudioPath, type AtlasGroup, type AtlasUnit, type Level, type Outcome } from '@da/schema';
+import { CEFR_LEVELS, LEVELS } from '@da/schema';
 import type { ContentGraph } from './graph';
 import type { Element } from './elements';
 import { levelMedians, problems, readingWords, topicProfile, type LevelMedians, type Problem, type TopicProfile } from './profile';
-import { grammarCoverage, type GrammarCoverage, type GrammarPoint } from './grammar-coverage';
+import { grammarCoverage, type GrammarCoverage, type GrammarPoint, type GrammarTrack } from './grammar-coverage';
 import { goetheCoverage, hasManifest, type Coverage } from './coverage';
 import { structureCoverage, type StructureCoverage, type StructureSource } from './structures';
 import { levelDepth, type LevelDepth } from './grammar-depth';
 import { focusIntroducedBy } from './focus-tags';
+import type { Diagnostic } from './editor';
+import { loadAnchorSources, type AnchorCoverage, type AnchorDimension, type AnchorSource } from './anchors';
+import { handlungCoverage } from './handlungen';
+import { themaCoverage } from './themen';
 
 export interface TopicSummary {
   id: string;
@@ -41,6 +45,8 @@ export interface TopicSummary {
   neededBy: string[];
   deepenedBy: string[];
   outcomes: Outcome[];
+  tags: string[];
+  claims: string[];
 }
 
 export interface TagSummary {
@@ -76,6 +82,18 @@ export interface DeckSummary {
   file: string;
 }
 
+export interface ListeningSummary {
+  id: string;
+  level: Level;
+  title: string;
+  scenario: string;
+  duration: number;
+  speakers: string[];
+  transcript: { speaker: string; text: string }[];
+  file: string;
+  audio: string;
+}
+
 export interface LevelReport {
   level: Level;
   grammar?: GrammarCoverage;
@@ -85,10 +103,18 @@ export interface LevelReport {
   medians?: LevelMedians;
 }
 
+export interface AnchorLevelReport {
+  level: Level;
+  handlung: AnchorCoverage;
+  thema: AnchorCoverage;
+}
+
 export interface GraphPayload {
   root: string;
   notes: string[];
   levels: Level[];
+  /** Full A1–C2 editorial axis; deliberately wider than the course runtime levels. */
+  cefrLevels: typeof CEFR_LEVELS;
   groups: AtlasGroup[];
   units: AtlasUnit[];
   topics: TopicSummary[];
@@ -96,11 +122,17 @@ export interface GraphPayload {
   /** Without `elements` — join to the top-level array by `topic`. */
   profiles: Omit<TopicProfile, 'elements'>[];
   problems: Problem[];
+  /** The same findings, normalised for prioritised work queues. */
+  diagnostics: Diagnostic[];
   inventory: GrammarPoint[];
+  grammarTracks: GrammarTrack[];
   sources: StructureSource[];
+  anchorSources: { dimension: AnchorDimension; source: AnchorSource }[];
+  anchorReports: AnchorLevelReport[];
   tags: TagSummary[];
   readings: ReadingSummary[];
   decks: DeckSummary[];
+  listenings: ListeningSummary[];
   reports: LevelReport[];
 }
 
@@ -142,6 +174,8 @@ function buildPayload(graph: ContentGraph): GraphPayload {
       neededBy: graph.neededBy.get(topic.id) ?? [],
       deepenedBy: graph.deepenedBy.get(topic.id) ?? [],
       outcomes: topic.data.outcomes ?? [],
+      tags: topic.data.tags ?? [],
+      claims: topic.data.claims ?? [],
     };
   });
   topics.sort((a, b) => a.spine - b.spine);
@@ -185,6 +219,17 @@ function buildPayload(graph: ContentGraph): GraphPayload {
     owners: graph.deckOwners.get(deck.id) ?? [],
     file: deck.file,
   }));
+  const listenings: ListeningSummary[] = [...graph.listening.values()].map((artifact) => ({
+    id: artifact.id,
+    level: artifact.level,
+    title: artifact.data.title.de ?? artifact.id,
+    scenario: artifact.data.scenario,
+    duration: artifact.data.duration_seconds,
+    speakers: artifact.data.speakers,
+    transcript: artifact.data.transcript,
+    file: artifact.file,
+    audio: listeningAudioPath(artifact.level, artifact.id),
+  }));
 
   const medians = levelMedians(graph);
   // `Coverage.ownedBy` and `TagDepth.byType` are Maps. `JSON.stringify` turns a Map into `{}`
@@ -212,11 +257,34 @@ function buildPayload(graph: ContentGraph): GraphPayload {
     } catch { /* no external anchor at this level */ }
     return wireSafe(report);
   });
+  const anchorReports: AnchorLevelReport[] = LEVELS.map((level) => wireSafe({
+    level,
+    handlung: handlungCoverage(level, graph.root),
+    thema: themaCoverage(level, graph.root),
+  }));
+  const anchorSources = (['struktur', 'handlung', 'thema'] as const).flatMap((dimension) =>
+    loadAnchorSources(dimension, graph.root).map((source) => ({ dimension, source })),
+  );
+
+  const foundProblems = problems(graph);
+  const diagnostics: Diagnostic[] = foundProblems.map((problem, index) => {
+    const topic = problem.topic ? topics.find((candidate) => candidate.id === problem.topic) : undefined;
+    const informational = problem.kind === 'deck-ohne-thema';
+    return {
+      id: `${problem.kind}:${problem.topic ?? problem.file ?? index}`,
+      severity: informational ? 'info' : topic?.status === 'reviewed' ? 'blocking' : 'attention',
+      scope: problem.topic ? 'topic' : problem.file ? 'source' : 'workspace',
+      entityId: problem.topic,
+      path: problem.file,
+      message: problem.message,
+    };
+  });
 
   return {
     root: graph.root,
     notes: graph.notes,
     levels: [...LEVELS],
+    cefrLevels: CEFR_LEVELS,
     groups: graph.groups,
     units: graph.units,
     topics,
@@ -227,12 +295,17 @@ function buildPayload(graph: ContentGraph): GraphPayload {
       .map((id) => topicProfile(graph, id))
       .filter((p): p is TopicProfile => !!p)
       .map(({ elements: _elements, ...rest }) => rest as Omit<TopicProfile, 'elements'>),
-    problems: problems(graph),
+    problems: foundProblems,
+    diagnostics,
     inventory: graph.inventory,
+    grammarTracks: graph.grammarTracks,
     sources: graph.sources,
+    anchorSources,
+    anchorReports,
     tags,
     readings,
     decks,
+    listenings,
     reports,
   };
 }
