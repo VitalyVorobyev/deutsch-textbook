@@ -107,3 +107,23 @@ The ledger records delivery, not learning. Learner retention and transfer remain
 - The seven touched topics remain `draft`. Structural delivery is evidence that the material exists,
   not evidence that a human has completed the topic-wide language, reading, vocabulary and outcome
   review.
+
+### A2 findings wave — 2026-08-15
+
+- All nine intensive texts behind the eight A2 length signals were read for purpose, coherence,
+  input load, glosses and question quality. Their measured lengths are 109–152 words; none needs
+  padding or deletion to satisfy an arbitrary band. The length stays visible in every topic profile,
+  but no longer creates a binary finding.
+- The reading review found one real reasoning defect in `verbindungen-folgen`: the story claimed
+  that Nadja hired an apprentice because she had done poorly at school. A trial shift now supplies
+  job-relevant evidence, and the comprehension question distinguishes demonstrated aptitude from
+  a stereotype. The other eight texts remain unchanged because their extra words support distinct
+  grammar examples, coherent narrative or a second purposeful routine—not because 130 is ignored.
+- Three document tasks with many legitimate German renderings are now `write` tasks with functional
+  requirements and model comparison. Exact-answer `translate` was the wrong assessment contract;
+  adding token labels would only have hidden that defect.
+- `gesundheit-arzttermin`, `infinitiv-mit-zu` and `lernen-verstehen` now deliver the spoken mode their
+  outcomes claim through voicemail, obligation-negotiation and study-path monologue scenarios.
+- `verben-mit-dativ` and `nebensatz-vorfeld` gained separate three-variant delayed families with
+  exact arming. A2 therefore has no remaining topic-profile finding; the global queue now contains
+  only six A1 translations without semantic tokens and two B1 auxiliary tags without probes.

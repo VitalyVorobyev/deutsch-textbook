@@ -28,13 +28,14 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3d A2 findings**. P27-3c closed the 21-row DTZ tail through
-eight exact teaching slices: internal A2 is 46/46, external A2 is 300/300, cumulative B1 is 164/164
-and A2 depth remains 8 teaching / 6 production / 3 files. The remaining A2 queue is sixteen
-editorial signals: manually read eight short-reading tripwires and change only real defects; convert
-the three open document translations to `write`; add genuine spoken production/interaction to
-`gesundheit-arzttermin`, `infinitiv-mit-zu` and `lernen-verstehen`; and give
-`verben-mit-dativ` plus `nebensatz-vorfeld` fresh three-variant probes. Lexical A2 remains 1449/1449.
+The current executable item is **P27-3e residual findings**. P27-3d leaves A2 with no open
+topic-profile finding after manually reviewing all nine intensive texts behind its eight length
+signals, correcting one real narrative defect, converting three underdetermined document
+translations to `write`, delivering three missing spoken modes and probing the last two auxiliary
+tags. Word count remains an indicator and never a defect by itself. The global queue is now eight:
+six A1 translations need honest semantic tokens or a more appropriate task type, and B1
+`pronomen-stellung` plus `relativ-praeposition` need fresh three-variant delayed families. Internal
+A2 remains 46/46, external A2 300/300, cumulative B1 164/164, and lexical A2 1449/1449.
 P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be

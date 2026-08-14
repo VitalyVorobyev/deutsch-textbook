@@ -43,8 +43,11 @@ extensive-reading corpus, then cross-links/Referenz.
    - ~~P27-3c DTZ tail~~ — shipped: eight exact teaching slices close internal A2 at 46/46 and the
      cumulative external denominator at A2 300/300 and B1 164/164, while preserving A2 depth at
      8 teaching / 6 production / 3 files.
-   - **P27-3d A2 findings is next:** complete the topic-wide review of the eight reading tripwires,
-     three open document tasks, three missing spoken modes and two auxiliary tags without probes.
+   - ~~P27-3d A2 findings~~ — shipped: nine intensive texts manually reviewed, arithmetic length
+     findings retired, three open document tasks corrected to `write`, all claimed spoken modes
+     delivered and the last two A2 tag-level probe gaps closed.
+   - **P27-3e residual findings is next:** resolve six A1 translations without semantic tokens and
+     the two remaining B1 auxiliary tags without probes, then run the B1 content and lexical waves.
    - Then complete the 49 original topic
      audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
      100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
@@ -171,7 +174,14 @@ eight exact points with owner sections, scaffold, productive transfer and three-
 Internal A2 is 46/46; A2 is 300/300 and cumulative B1 is 164/164 against DTZ. Twelve extra
 productive transfer items preserve the existing A2 depth ratchet at 8 / 6 / 3 after the denominator
 grew. The result is explicitly `100% des DTZ-Inventars`, not completeness of every conceivable B1
-grammar catalog. P27-3d owns the remaining A2 topic-profile findings.
+grammar catalog.
+
+**P27-3d · A2 findings wave shipped 2026-08-15.** The eight length findings covered nine intensive
+texts, all read by hand; word count remains visible but no longer creates a defect. One real causal
+flaw in the apprentice story was corrected. Three underdetermined document translations became
+functional `write` tasks, three missing spoken modes received genuine scenarios, and the last two
+A2 tag-level probe gaps received parallel delayed families. A2 now contributes no open profile
+findings; P27-3e owns the global residual queue of eight.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

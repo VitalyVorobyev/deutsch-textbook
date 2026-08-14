@@ -32,25 +32,31 @@ items:
       uk: "На полиці SoundGo коштує 39,90 євро, а в чеку — 49,90 євро: різниця рівно десять євро."
 
   - id: dokument-produkte-vergleichen
-    revision: 2
+    revision: 3
     outcomes: [produkte-vergleichen]
-    type: translate
-    instruction:
-      en: "Compare the two products. Translate into German."
-      ru: "Сравните два товара. Переведите на немецкий."
-      uk: "Порівняйте два товари. Перекладіть німецькою."
-    prompt_en: "SoundPro is heavier and more expensive than SoundGo, but its battery lasts ten hours longer."
-    prompt_ru: "SoundPro тяжелее и дороже, чем SoundGo, но его аккумулятор работает на десять часов дольше."
-    prompt_uk: "SoundPro важчий і дорожчий за SoundGo, але його акумулятор працює на десять годин довше."
-    answer: "SoundPro ist schwerer und teurer als SoundGo, aber der Akku hält zehn Stunden länger."
-    accept:
-      - "SoundPro ist schwerer und kostet mehr als SoundGo, aber der Akku hält zehn Stunden länger."
-      - "SoundPro ist schwerer und teurer als SoundGo, aber sein Akku hält zehn Stunden länger."
-      - "SoundPro ist schwerer und kostet mehr als SoundGo, aber sein Akku hält zehn Stunden länger."
+    type: write
+    prompt:
+      en: "Use the two product cards. Write a short comparison that would help a customer choose."
+      ru: "Используйте две карточки товаров. Напишите короткое сравнение, которое поможет покупателю выбрать."
+      uk: "Використайте дві картки товарів. Напишіть коротке порівняння, яке допоможе покупцеві обрати."
+    goal:
+      en: "Turn the visible figures into meaningful comparisons rather than copying a supplied sentence."
+      ru: "Превратите видимые характеристики в осмысленное сравнение, а не копируйте готовую фразу."
+      uk: "Перетворіть видимі характеристики на змістовне порівняння, а не копіюйте готову фразу."
+    requirements:
+      - {en: "Compare both weight and price with comparative + als.", ru: "Сравните вес и цену с помощью сравнительной степени + als.", uk: "Порівняйте вагу й ціну за допомогою вищого ступеня + als."}
+      - {en: "State the ten-hour battery advantage.", ru: "Укажите преимущество аккумулятора в десять часов.", uk: "Укажіть перевагу акумулятора в десять годин."}
+      - {en: "Use the product names so every comparison has an unambiguous referent.", ru: "Используйте названия товаров, чтобы каждое сравнение было однозначным.", uk: "Використайте назви товарів, щоб кожне порівняння було однозначним."}
+    min_words: 13
+    model_answer: "SoundPro ist schwerer und teurer als SoundGo. Dafür hält sein Akku zehn Stunden länger."
+    model_translation:
+      en: "SoundPro is heavier and more expensive than SoundGo. In return, its battery lasts ten hours longer."
+      ru: "SoundPro тяжелее и дороже SoundGo. Зато его аккумулятор работает на десять часов дольше."
+      uk: "SoundPro важчий і дорожчий за SoundGo. Зате його акумулятор працює на десять годин довше."
     explain:
-      en: "The cards provide all three comparisons: 260 versus 220 grams, 59.90 versus 39.90 euros, and 30 versus 20 hours. German uses the comparative plus als."
-      ru: "Карточки дают все три сравнения: 260 и 220 граммов, 59,90 и 39,90 евро, 30 и 20 часов. В немецком используется сравнительная степень с als."
-      uk: "Картки дають усі три порівняння: 260 і 220 грамів, 59,90 і 39,90 євро, 30 і 20 годин. У німецькій уживається вищий ступінь з als."
+      en: "The cards support more than one natural wording. A useful answer preserves all three facts and makes the trade-off explicit: SoundPro costs and weighs more, but offers ten additional battery hours."
+      ru: "Карточки допускают несколько естественных формулировок. Полезный ответ сохраняет все три факта и явно показывает компромисс: SoundPro дороже и тяжелее, но даёт десять дополнительных часов работы."
+      uk: "Картки допускають кілька природних формулювань. Корисна відповідь зберігає всі три факти й чітко показує компроміс: SoundPro дорожчий і важчий, але дає десять додаткових годин роботи."
 
   - id: dokument-reklamation-schreiben
     outcomes: [umtausch-begruenden, reklamation-schreiben]
