@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react';
 import { Button, Empty, Filter, Label, Panel, SearchBox, Stat, StatGroup } from '@da/ui/primitives';
 import { Reiter } from '../components/Hinweis';
 import { corpusClient, loadChunk, type GraphPayload } from '../data';
-import { Extern, Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import { Mehrere, Primaer, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['levels'][number];
@@ -33,6 +33,17 @@ type Reading = GraphPayload['readings'][number];
 
 /** Word bands `CLAUDE.md` states for each reading kind, and no gate enforces. */
 const BANDS: Record<string, [number, number]> = { intensive: [90, 130], extensive: [250, 400] };
+const ACTIVITY_LABEL: Record<string, string> = {
+  core: 'Grundübung',
+  extension: 'Vertiefen',
+  application: 'Anwenden',
+  remediation: 'Gezielt üben',
+};
+const MEDIUM_LABEL: Record<string, string> = {
+  mixed: 'gemischt',
+  listening: 'Hören',
+  document: 'Dokument',
+};
 
 type Art =
   | 'wortschatz'
@@ -66,6 +77,7 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
   const [search, setSearch] = useQueryState('q', '');
   const [track, setTrack] = useQueryState('track', 'alle');
   const [topic, setTopic] = useQueryState('thema', 'alle');
+  const [activity, setActivity] = useQueryState('aktivitaet', 'alle');
   const [loadedSearch, setLoadedSearch] = useState<{ chunk: string; rows: Map<string, string> }>();
   const q = search.trim().toLowerCase();
   const searchChunk = art === 'uebungen' ? 'items' : art === 'wortschatz' ? 'vocab' : art === 'lesetexte' ? 'texts' : undefined;
@@ -91,6 +103,7 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
   const tracksOf = (focus: string[]) => new Set(graph.inventory.filter((point) => (point.focus ?? []).some((tag) => focus.includes(tag))).map((point) => point.track));
   const elementFits = (element: Element) =>
     (topic === 'alle' || element.topic === topic) &&
+    (activity === 'alle' || element.activity === activity) &&
     (track === 'alle' || tracksOf(element.focus).has(track)) &&
     (!q || element.id.toLowerCase().includes(q) || (element.title ?? '').toLowerCase().includes(q) || [...bulkSearch.entries()].some(([id, text]) => element.id.startsWith(id) && text.includes(q)));
   const counts = new Map(ARTEN.map((a) => [a.id, graph.elements.filter((e) => a.kinds.includes(e.kind)).length]));
@@ -144,6 +157,15 @@ export function Bestand({ graph }: { graph: GraphPayload }) {
           <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
           <Filter label="Grammatiklinie" value={track} options={graph.grammarTracks.map((item) => item.id)} onChange={setTrack} />
           <Filter label="Thema" value={topic} options={graph.topics.map((item) => item.id)} onChange={setTopic} />
+          {art === 'uebungen' ? (
+            <Filter
+              label="Lernfunktion"
+              value={activity}
+              options={['core', 'extension', 'application', 'remediation']}
+              labels={ACTIVITY_LABEL}
+              onChange={setActivity}
+            />
+          ) : null}
         </div>
       </div>
 
@@ -267,6 +289,18 @@ function Elemente({
     { key: 'kind', head: 'Art', sort: (e) => e.kind, cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
     ...(art === 'uebungen'
       ? ([
+          {
+            key: 'activity',
+            head: 'Funktion',
+            sort: (e) => e.activity ?? '',
+            cell: (e) => ACTIVITY_LABEL[e.activity ?? ''] ?? '—',
+          },
+          {
+            key: 'medium',
+            head: 'Medium',
+            sort: (e) => e.medium ?? '',
+            cell: (e) => MEDIUM_LABEL[e.medium ?? ''] ?? '—',
+          },
           { key: 'items', head: 'Aufgaben', numeric: true, sort: (e) => e.depth.items, cell: (e) => e.depth.items || '' },
           {
             key: 'prod',
@@ -306,9 +340,6 @@ function Elemente({
   if (!elements.length) return <Empty>Nichts von dieser Art auf diesem Niveau.</Empty>;
   return <Zeilentabelle rows={elements} rowKey={(e) => e.id} columns={columns} sortKey="id" />;
 }
-
-/** Kept out of the table: an external file link that is not the row's primary target. */
-export { Extern };
 
 function AudioCell({ title, path }: { title: string; path: string }) {
   const [source, setSource] = useState('');

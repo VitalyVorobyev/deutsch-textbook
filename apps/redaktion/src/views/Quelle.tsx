@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import YAML from 'yaml';
 import { Button, Chip, Empty, Label, Panel } from '@da/ui/primitives';
 import { corpusClient, type FileSnapshot, type GraphPayload, type ValidationRun } from '../data';
+import { blockNavigation } from '../router';
 
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 
@@ -28,6 +29,10 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
     const warn = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); };
     window.addEventListener('beforeunload', warn);
     return () => window.removeEventListener('beforeunload', warn);
+  }, [dirty]);
+  useEffect(() => {
+    if (!dirty) return;
+    return blockNavigation(() => window.confirm('Ungespeicherte Änderungen verwerfen und die Quelle verlassen?'));
   }, [dirty]);
 
   if (!path) return <Empty>Keine Quelldatei gewählt.</Empty>;

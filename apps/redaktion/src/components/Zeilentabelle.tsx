@@ -86,6 +86,19 @@ export function Extern({ href, children }: { href: string; children: ReactNode }
   );
 }
 
+/** A source inside the selected checkout. It stays in Redaction and opens the preview/editor. */
+export function Quelllink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="text-info-ink underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-brand"
+    >
+      {children}
+      <span aria-hidden="true"> →</span>
+    </a>
+  );
+}
+
 /**
  * A bounded view of a long SINGLE value — the same rule as `Mehrere`, applied to length rather than
  * to count.

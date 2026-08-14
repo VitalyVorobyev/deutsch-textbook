@@ -22,10 +22,16 @@ the sidecars and launches Tauri.
 
 Open before P27-1 can close: source-led subdivision of any overly broad tracks, persisted graph
 cache rather than process memoisation, point→focus→topic→material end-to-end desktop tests, watcher
-tests and a packaged macOS smoke run. Open P27-2 work: extract pure learner renderers and prove
-editor mode has no progress side effects, add safe structured controls over the same source buffer,
-unsaved-navigation protection beyond the source view, background job status and fixtures for every
-artifact type. P27-3…P27-6 remain sequenced in the
+tests and a packaged macOS smoke run. P27-1a closes the first real-editor feedback loop: checkout
+source links stay inside the app; Back/Forward and the shared dirty-buffer guard cover links,
+filters, search and history traversal; empty focus details recover to a collection or owner; and
+profile findings no longer become fictional blockers merely because their topic says `reviewed`.
+The browser audit owns the complete regression journey.
+
+The current executable item is **P27-2a renderer parity**: extract pure learner article and exercise renderers, prove editor
+mode has no progress side effects, and add fixtures for every artifact kind. Then add safe structured
+controls over the same source buffer and visible background-job status. Work the remaining
+reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
 [roadmap](roadmap.md#redaction-p27); do not flatten them into one release claim.
 
 Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale
@@ -727,6 +733,14 @@ These require a measured learning or usability need. They do not block the curri
 
 ## Recently completed
 
+- **P27-1b · learning-activity architecture** (2026-08-14) — all 172 topic-owned teaching sets now
+  declare one pedagogical function, authored stage and German editor title; every topic has exactly
+  one 8–15-item Grundübung and a productive application; six overloaded cores were split by purpose;
+  the learner page, Redaction topic profile and material index share the same model. The old
+  per-file arithmetic was removed, reducing the editorial queue from the 265-finding baseline to
+  81 evidence gaps. Contract, migration decisions and repeatable counts:
+  [ADR 0014](adrs/0014-learning-activity-architecture.md) ·
+  [activity audit](curriculum/learning-activity-audit.md) · `bun run activity:audit`.
 - **P24-4 · Klassiker wave** (2026-08-06) — all ten classics live as extensive readings on their
   owning topics; four trimmed into the band; corpus source moved to `sources/klassiker/` (the
   home decision ADR 0006 deferred); `klassiker-lesen` Entdecken piece indexes the strand.

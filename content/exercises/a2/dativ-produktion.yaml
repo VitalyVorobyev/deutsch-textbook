@@ -1,5 +1,8 @@
 topic: dativ
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Der Dativ"
 title:
   en: "Practice — after the move: listening, writing, speaking"
   ru: "Практика — после переезда: аудирование, письмо, речь"
@@ -182,3 +185,60 @@ items:
       en: "A complete turn does three things: it answers the question, it settles the ownership (gehören + Dativ: dir), and it makes a concrete offer (zu dir, mit dem Auto — both dative prepositions). Say it a second time and listen for the endings: dir, not dich; mit dem Auto, not mit das Auto."
       ru: "Полноценная реплика делает три вещи: отвечает на вопрос, решает вопрос принадлежности (gehören + Dativ: dir) и содержит конкретное предложение (zu dir, mit dem Auto — оба предлога требуют Dativ). Проговорите ответ второй раз и вслушайтесь в окончания: dir, а не dich; mit dem Auto, а не mit das Auto."
       uk: "Повноцінна репліка робить три речі: відповідає на питання, з'ясовує належність (gehören + Dativ: dir) і містить конкретну пропозицію (zu dir, mit dem Auto — обидва прийменники вимагають Dativ). Промовте відповідь удруге і вслухайтеся в закінчення: dir, а не dich; mit dem Auto, а не mit das Auto."
+  - id: uebersetzen-helfen
+    outcomes: [dativ-verben, dativ-artikel]
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "I am helping my brother."
+    prompt_ru: "Я помогаю своему брату."
+    prompt_uk: "Я допомагаю своєму братові."
+    answer: "Ich helfe meinem Bruder."
+    key_tokens: ["meinem"]
+    explain:
+      en: "helfen takes the dative: mein Bruder → meinem Bruder. English 'help HIM' looks like a direct object, but helfen means giving help TO someone — ask wem? (to whom?)."
+      ru: "helfen требует Dativ: mein Bruder → meinem Bruder. Русский здесь подсказывает: «помогаю (кому?) брату» — тоже дательный падеж."
+      uk: "helfen вимагає Dativ: mein Bruder → meinem Bruder. Українська тут підказує: «допомагаю (кому?) братові» — теж давальний відмінок."
+  - id: uebersetzen-gehoeren
+    outcomes: [dativ-verben, dativ-artikel]
+    type: translate
+    focus: verben-mit-dativ
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "The car belongs to my father."
+    prompt_ru: "Машина принадлежит моему отцу."
+    prompt_uk: "Машина належить моєму батькові."
+    answer: "Das Auto gehört meinem Vater."
+    key_tokens: ["meinem"]
+    explain:
+      en: "gehören takes the dative: mein Vater → meinem Vater — 'it belongs TO my father'. das Auto is the subject and stays in the nominative."
+      ru: "gehören требует Dativ: mein Vater → meinem Vater — как в русском: «принадлежит (кому?) отцу». das Auto — подлежащее, оно остаётся в Nominativ."
+      uk: "gehören вимагає Dativ: mein Vater → meinem Vater — як в українській: «належить (кому?) батькові». das Auto — підмет, він залишається в Nominativ."
+  - id: uebersetzen-nach-arbeit
+    revision: 2
+    outcomes: [dativ-praepositionen, dativ-artikel]
+    type: translate
+    focus: dativ-praepositionen
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "After work I go home."
+    prompt_ru: "После работы я иду домой."
+    prompt_uk: "Після роботи я йду додому."
+    answer: "Nach der Arbeit gehe ich nach Hause."
+    # Only the case-marked article is pinned. Pinning "Nach" also graded the sentence-final
+    # nach of nach Hause (the grader folds an answer-head token to lowercase), so a
+    # zu/nach-Hause slip — an A1 wohin-wo-woher decision — was logged under this tag.
+    key_tokens: ["der"]
+    accept:
+      - "Ich gehe nach der Arbeit nach Hause."
+    explain:
+      en: "nach always takes the dative: die Arbeit → der Arbeit. When Nach der Arbeit opens the sentence, the verb stays second: … gehe ich …. The subject-first order Ich gehe nach der Arbeit nach Hause is also correct."
+      ru: "nach всегда требует Dativ: die Arbeit → der Arbeit. Если Nach der Arbeit стоит в начале, глагол остаётся на втором месте: … gehe ich …. Порядок с подлежащим в начале — Ich gehe nach der Arbeit nach Hause — тоже правильный."
+      uk: "nach завжди вимагає Dativ: die Arbeit → der Arbeit. Якщо Nach der Arbeit стоїть на початку, дієслово залишається на другому місці: … gehe ich …. Порядок із підметом на початку — Ich gehe nach der Arbeit nach Hause — теж правильний."

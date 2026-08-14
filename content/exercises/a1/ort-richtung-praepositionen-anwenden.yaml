@@ -1,0 +1,52 @@
+topic: ort-richtung-praepositionen
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Drei Stationen eines Weges"
+title:
+  en: Application — where I am, where I am going, where I came from
+  ru: Применение — где я, куда иду и откуда пришёл
+  uk: Застосування — де я, куди йду і звідки прийшов
+items:
+  - id: uebersetzen-markt-see
+    type: translate
+    outcomes: [ziel-nennen, ort-nennen]
+    focus: wohin-wo-woher
+    instruction: { en: "Translate the whole update. Choose each preposition from the kind of place and the question: wo or wohin.", ru: "Переведите сообщение целиком. Выбирайте предлог по типу места и вопросу: wo или wohin.", uk: "Перекладіть повідомлення повністю. Обирайте прийменник за типом місця й питанням: wo чи wohin." }
+    prompt_en: "I am at the market now, and then I am going to the lake."
+    prompt_ru: "Сейчас я на рынке, а потом иду к озеру."
+    prompt_uk: "Зараз я на ринку, а потім іду до озера."
+    answer: "Ich bin jetzt auf dem Markt, und dann gehe ich an den See."
+    accept: ["Jetzt bin ich auf dem Markt, und dann gehe ich an den See."]
+    key_tokens: ["auf", "dem", "an", "den"]
+    explain: { en: "The market is an open place: wo → auf dem Markt. The lake has an edge: wohin → an den See.", ru: "Рынок — открытое место: wo → auf dem Markt. У озера есть край: wohin → an den See.", uk: "Ринок — відкрите місце: wo → auf dem Markt. Озеро має край: wohin → an den See." }
+
+  - id: schreiben-drei-stationen
+    type: write
+    outcomes: [ziel-nennen, ort-nennen, herkunft-nennen]
+    focus: wohin-wo-woher
+    prompt: { en: "A friend is waiting for you. Write a short message with three facts: where you have just come from, where you are now, and where you are going next.", ru: "Друг ждёт вас. Напишите короткое сообщение из трёх фактов: откуда вы пришли, где вы сейчас и куда идёте дальше.", uk: "Друг чекає на вас. Напишіть коротке повідомлення з трьома фактами: звідки ви прийшли, де ви зараз і куди йдете далі." }
+    goal: { en: "Use three different place chunks and make the woher → wo → wohin sequence unambiguous.", ru: "Используйте три разных сочетания места и однозначную последовательность woher → wo → wohin.", uk: "Використайте три різні сполуки місця й однозначну послідовність woher → wo → wohin." }
+    requirements:
+      - { en: "Name the starting point with aus/von.", ru: "Назовите исходную точку с aus/von.", uk: "Назвіть вихідну точку з aus/von." }
+      - { en: "Name the current location with a wo chunk.", ru: "Назовите текущее место сочетанием для wo.", uk: "Назвіть поточне місце сполукою для wo." }
+      - { en: "Name the destination with a wohin chunk.", ru: "Назовите цель сочетанием для wohin.", uk: "Назвіть ціль сполукою для wohin." }
+    min_words: 15
+    model_answer: "Ich komme gerade aus der Bibliothek. Jetzt bin ich auf dem Markt. Danach gehe ich zu meiner Freundin."
+    model_translation: { en: "I have just come from the library. Now I am at the market. After that I am going to my friend's place.", ru: "Я только что из библиотеки. Сейчас я на рынке. Потом я иду к подруге.", uk: "Я щойно з бібліотеки. Зараз я на ринку. Потім я йду до подруги." }
+    explain: { en: "The three sentences force three different decisions. Compare the place type first, then the question; do not translate one English preposition mechanically.", ru: "Три предложения требуют трёх разных решений. Сначала сравните тип места, затем вопрос; не переводите один предлог механически.", uk: "Три речення вимагають трьох різних рішень. Спочатку порівняйте тип місця, потім питання; не перекладайте один прийменник механічно." }
+
+  - id: sprechen-treffpunkt-aendern
+    type: speak
+    mode: spoken-interaction
+    outcomes: [ziel-nennen, ort-nennen]
+    focus: wohin-wo-woher
+    prompt: { en: "Record a voice message: the agreed meeting place is closed. Say where you are and propose another destination.", ru: "Запишите голосовое сообщение: условленное место закрыто. Скажите, где вы, и предложите другое место.", uk: "Запишіть голосове повідомлення: домовлене місце зачинене. Скажіть, де ви, і запропонуйте інше місце." }
+    goal: { en: "Give the listener enough location information to meet you without another question.", ru: "Дайте достаточно информации о месте, чтобы собеседнику не пришлось переспрашивать.", uk: "Дайте достатньо інформації про місце, щоб співрозмовнику не довелося перепитувати." }
+    checklist:
+      - { en: "I answered wo with a location chunk.", ru: "Я ответил(а) на wo сочетанием места.", uk: "Я відповів(-ла) на wo сполукою місця." }
+      - { en: "I answered wohin with a destination chunk.", ru: "Я ответил(а) на wohin сочетанием направления.", uk: "Я відповів(-ла) на wohin сполукою напрямку." }
+      - { en: "I replayed the message and checked both case forms.", ru: "Я прослушал(а) запись и проверил(а) обе падежные формы.", uk: "Я прослухав(-ла) запис і перевірив(-ла) обидві відмінкові форми." }
+    model_answer: "Ich bin schon am Bahnhof, aber das Café ist geschlossen. Gehen wir in den Park? Ich warte dort am Eingang."
+    model_translation: { en: "I am already at the station, but the café is closed. Shall we go to the park? I will wait there at the entrance.", ru: "Я уже на вокзале, но кафе закрыто. Пойдём в парк? Я буду ждать там у входа.", uk: "Я вже на вокзалі, але кафе зачинене. Ходімо до парку? Я чекатиму там біля входу." }
+    explain: { en: "The contrast must be audible: am Bahnhof answers wo; in den Park answers wohin. Replay before comparing with the model.", ru: "Контраст должен быть слышен: am Bahnhof отвечает на wo, in den Park — на wohin. Прослушайте себя до сравнения с образцом.", uk: "Контраст має бути чутним: am Bahnhof відповідає на wo, in den Park — на wohin. Прослухайте себе до порівняння зі зразком." }

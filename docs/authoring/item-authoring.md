@@ -66,10 +66,54 @@ it is a question about meaning — the text says so, and it is then on the autho
 - `speak` items: declare `mode: spoken-production|spoken-interaction`, a bilingual communicative `prompt` and `goal`, 2–4 bilingual self-check points (rendered as guidance on the compare screen, never as a gated form), and a concise German `model_answer`. Recording is optional and local-only; a stopped take auto-plays and the learner may re-record freely, including after seeing the model. Audio is never uploaded, persisted or automatically scored.
 - Reading gloss markers: `[[German phrase::en gloss::ru gloss]]` inline in `text` paragraphs — three non-empty `::`-separated fields, or four with a trailing `uk` gloss (`[[de::en::ru::uk]]`), all-or-none per reading; every reading should gloss 6–10 phrases.
 - Every exercise set declares `role: pretest|practice|drill|checkpoint|probe|placement`. Pretests are 3-item sets at `content/exercises/<level>/<topic-id>-pretest.yaml`, referenced via the topic's `pretest` field — never listed in `exercises`, never mixed into training, never counted as `Geübt`, and **never weakness evidence**. That last one was an oversight for months: `focusStats` keys only by `focus` and saw them, and since all 96 pretest items are `mc` — the format the pilot learner scores ~93% on — 91 easy recognition attempts sat in the denominators of a signal that exists to find *production* confusion. It changed the error rate of 27 tags and swapped a member of the weak set (`nebensatz-vorfeld` masked, `konjunktionaladverb-inversion` falsely raised). `isPretestAttempt` (`src/lib/weakness.ts`) now excludes them, in `focusStats` and in the audit's own table, and **the `-pretest` filename is validator-enforced in both directions** because an attempt records no role — the runtime predicate reads the suffix, so the convention has to be a checked contract.
-- **Every topic must own at least one `role: practice` set** (validator-enforced). Its first one is the topic's `primaryPractice` — the set whose completion advances the Lernpfad. A topic with only drills or Hören sets could never be completed, and the recommended path would stop on it forever.
+- **Every topic owns exactly one `activity: core` set** (validator-enforced), and it is the manifest's
+  explicit `primary_practice`. Array order does not choose it. The core is `role: practice`,
+  `stage: geruest`, 8–15 items and the one required learner step. Every topic also owns a productive
+  `activity: application`, `stage: transfer`; a listening-only transfer is useful input, but does
+  not prove that the learner can use the material.
+- **Purpose, stage and medium are different axes.** `activity` is `core`, `extension`, `application`
+  or `remediation`. `stage` says scaffold/fade/transfer. The graph derives `medium: listening` from
+  all-listening items and `medium: document` from a stimulus; neither is an activity. A two-question
+  recording may be a complete application, while a two-item addendum with no independent job should
+  be merged or retired. See [ADR 0014](../adrs/0014-learning-activity-architecture.md).
 - Every item declares `outcomes: [stable-outcome-id]`; ids, modes and domains live in `content/atlas.yaml`. Use `preview: true` only when an item intentionally uses a focus introduced later in the spine; the validator otherwise rejects curriculum-order leakage.
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
 - Every exercise item that clearly drills one confusion gets a `focus` tag (kebab-case ASCII, validated against `/^[a-z0-9]+(-[a-z0-9]+)*$/`) from the canonical table below. Leave genuinely mixed or pure-comprehension items (dialogue matching, lexical MC) untagged. Attempts carry the tag into progress snapshots; weakness detection and training prioritization aggregate per tag.
+
+---
+
+## Choosing the activity boundary
+
+An exercise file earns its own activity only when an editor can finish the sentence: **“The learner
+opens this now in order to …”** with one concrete job. File history, generation batch and item count
+are not acceptable answers.
+
+| `activity` | Required contract | Use it when | Do not use it for |
+| --- | --- | --- | --- |
+| `core` | `role: practice`, `stage: geruest`, exactly one per topic, 8–15 items | the shortest scaffolded route through the topic's central outcomes | every item the topic owns |
+| `extension` | `role: practice`, `stage: geruest` or `ausblenden` | one additional contrast or subskill that can be skipped without breaking the core | a late file created only because the primary was once frozen |
+| `application` | `role: practice`, `stage: transfer`; at least one per topic must require production | a fresh situation, message, mission, conversation or integrated listening response | another blocked table of the same forms |
+| `remediation` | `role: drill`, `stage: ausblenden` | one named confusion selected from evidence or a known high-risk contrast | a mandatory second lesson or general revision |
+
+Every one also declares `title_de`. The graph derives the medium: all `listen`/
+`audio-comprehension` becomes `listening`; a stimulus becomes `document`; everything else is
+`mixed`. A medium never answers why the activity exists.
+
+Review an existing topic in this order:
+
+1. Run `bun run activity:audit`; open dense topics, core-band exceptions and missing productive
+   applications.
+2. Read item ids, outcomes, focus tags and response types together. Counts only locate the review.
+3. Keep one coherent core. Move free production out of an overloaded scaffold and into an existing
+   or new application.
+4. Merge or retire an extension that has no independent learner job. Keep short listening and
+   document activities when the artifact and question form a complete task.
+5. Treat multiple remediation files as a targeted bank, not sequential lesson steps.
+6. If an item moves, update manifest membership, probe `arming:` and `data/grading-decisions.yaml`
+   in the same change. Run `bun run validate` and the audit again.
+
+Do not “solve” a dense topic by adding all item counts. That hides overload. Do not solve it by
+splitting every ten items either. The boundary is a pedagogical job with a beginning and an end.
 
 ---
 
@@ -89,7 +133,11 @@ Checked per **topic**, not per set, so a set may still specialize — a Hören s
 
 `order` gives the learner every token and asks only for the sequence. It is scaffolded first-encounter practice for a word-order rule, not a test of one, and it saturates fast — 99% over 78 attempts here. **Validator-enforced at ≤ 2 per set**, and per *set* rather than per topic on purpose: the topic-level caps above cannot see a single set that is mostly `order`, because a sibling set's `translate` items dilute the ratio. `a2/trennbare-verben` had 4 of 18 while `trennbar-wortstellung` was one of the worst persistent weak focuses in the log — a quarter of the practice for a rule the learner was failing handed them the tokens. Never let `order` stand in for a `translate` of the same rule.
 
-**Adding items to an existing topic is not free.** `pathDone` treats a topic as finished when its `primaryPractice` set's items have all been attempted, so appending an item to that set silently un-finishes the topic for anyone who had completed it (mastered topics are safe — they pass `pathDone` by mastery). When adding practice to a topic that already ships, append it to a **non-primary** set, or add a new `role: practice` set **after** the existing ones in the topic's `exercises` list — `primaryPractice` is the *first* practice set, so it stays put.
+**Adding or moving items changes evidence identity.** `pathDone` reads the explicit
+`primary_practice`; attempts and probe arming use the set/item pair. Update manifest references,
+`arming:` keys and grading decisions atomically when moving an item. Preserve ids when the learning
+design is already sound, but do not create a meaningless extra file merely to protect a test
+profile. During pre-release normalization, the better course outranks backward compatibility.
 
 ---
 

@@ -12,8 +12,9 @@
  * add content, or did I break the loader". Adding content: update the number in the same commit.
  */
 import { describe, expect, test } from 'bun:test';
-import { LEVELS } from '@da/schema';
+import { LEARNING_ACTIVITIES, LEVELS } from '@da/schema';
 import { contentGraph } from '@da/content/graph';
+import { graphPayload } from '@da/content/payload';
 import { LESSON_STAGES, TOUCHES, type ElementKind, type LessonStage } from '@da/content/elements';
 import { formatItemRef, parseItemRef, sameItem } from '@da/content/refs';
 
@@ -25,7 +26,7 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(49);
-    expect(graph.sets.size).toBe(336);
+    expect(graph.sets.size).toBe(340);
     expect(graph.readings.size).toBe(77);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(41);
@@ -87,29 +88,36 @@ describe('content graph', () => {
       hoertext: 41,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 60,
-      praxis: 151,
+      praxis: 155,
       pretest: 49,
       probe: 110,
       pruefungspraxis: 3,
       wortfeld: 2,
       wortschatz: 40,
     });
-    expect(graph.elements.length).toBe(569);
+    expect(graph.elements.length).toBe(573);
   });
 
-  test('the lesson cycle is visible, and the transfer stage is nearly empty', () => {
+  test('the lesson cycle and activity architecture are explicit', () => {
     const byStage = new Map<LessonStage, number>();
     for (const element of graph.elements) byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    // The finding the Element layer exists to make sayable. `CLAUDE.md` requires every topic to
-    // run pretest → model → scaffold → fade → transfer → delayed-check, and the corpus has THREE
-    // elements at the transfer stage — all of them the exam-practice sets — against 151 at
-    // scaffold. Nothing before this could report it, because no field recorded where an artifact
-    // sits on the arc. This number is a floor to be raised, not a fact to be preserved.
-    expect(byStage.get('transfer')).toBe(3);
-    expect(byStage.get('geruest')).toBe(151);
+    expect(byStage.get('transfer')).toBe(97);
+    expect(byStage.get('geruest')).toBe(55);
     expect(byStage.get('nachpruefung')).toBe(113);
+
+    const teaching = graph.elements.filter((element) => element.activity);
+    expect(teaching).toHaveLength(172);
+    expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
+      activity,
+      teaching.filter((element) => element.activity === activity).length,
+    ]))).toEqual({ core: 49, extension: 12, application: 94, remediation: 17 });
+    expect([...graph.topics.keys()].filter((topic) =>
+      !(graph.elementsByTopic.get(topic) ?? []).some(
+        (element) => element.activity === 'application' && element.touches.includes('produktion'),
+      ),
+    )).toEqual([]);
   });
 
   test('every touch a topic delivers is one of the four, and production is reachable everywhere', () => {
@@ -135,6 +143,13 @@ describe('content graph', () => {
     expect(contentGraph()).toBe(graph);
     expect(contentGraph(graph.root, { fresh: true })).not.toBe(graph);
   });
+
+  test('editorial profile findings are attention, not fictional validator blockers', () => {
+    const payload = graphPayload(graph);
+    expect(payload.diagnostics).toHaveLength(payload.problems.length);
+    expect(payload.diagnostics.filter((item) => item.severity === 'blocking')).toHaveLength(0);
+    expect(payload.diagnostics.filter((item) => item.severity === 'attention').length).toBeGreaterThan(0);
+  }, 20_000);
 });
 
 describe('item references', () => {

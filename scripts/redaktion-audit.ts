@@ -216,6 +216,47 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   const after = await page.locator('tbody tr').count();
   check(before === after && before > 0, 'permalink survives reload', `${before} rows before, ${after} after`);
 
+  // A source link is internal navigation, not an external provenance action. The first desktop
+  // slice used `Extern` for both; `target=_blank` made “Artikel öffnen” appear to do nothing in the
+  // Tauri webview and left every source link with the wrong arrow. Exercise the exact report from
+  // the first editor pilot, then prove both directions of the app history and the draft guard.
+  // Force a fresh document: the route sweep above deliberately uses native `page.goto` hash
+  // changes, while a real in-app link goes through the router's history contract.
+  await page.goto('about:blank');
+  await page.goto(`${base}/#/thema/erste-schritte`);
+  await page.waitForLoadState('networkidle');
+  await page.getByRole('link', { name: 'Artikel öffnen' }).click();
+  await page.waitForTimeout(200);
+  check(page.url().includes('#/quelle?pfad=content%2Ftopics%2Fa1%2Ferste-schritte.mdx'), 'article opens in the source editor');
+  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'source editor names the opened article');
+
+  const back = page.getByRole('button', { name: 'Zurück' });
+  const forward = page.getByRole('button', { name: 'Vorwärts' });
+  check(await back.isEnabled(), 'back becomes available after internal navigation');
+  await back.click();
+  await page.waitForTimeout(100);
+  check(await page.getByRole('heading', { name: 'Erste Schritte' }).count() === 1, 'back returns to the topic');
+  check(await forward.isEnabled(), 'forward becomes available after going back');
+  await forward.click();
+  await page.waitForTimeout(100);
+  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'forward returns to the source');
+
+  const editor = page.getByRole('textbox', { name: /Quelltext von/ });
+  await editor.fill(`${await editor.inputValue()}\n`);
+  page.once('dialog', (dialog) => void dialog.dismiss());
+  await back.click();
+  await page.waitForTimeout(100);
+  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'dismissed draft warning keeps the editor open');
+  page.once('dialog', (dialog) => void dialog.accept());
+  await back.click();
+  await page.waitForTimeout(100);
+  check(await page.getByRole('heading', { name: 'Erste Schritte' }).count() === 1, 'confirmed draft discard permits back navigation');
+
+  await page.goto(`${base}/#/fokus/ueber-dauer`);
+  await page.waitForLoadState('networkidle');
+  check(await page.getByText('Das ist ein Befund, kein Navigationsende.').count() === 1, 'empty focus detail explains the recovery path');
+  check(await page.getByRole('link', { name: 'Einführendes Thema' }).count() === 1, 'empty focus detail links to its introducing topic');
+
   await ctx.close();
 }
 

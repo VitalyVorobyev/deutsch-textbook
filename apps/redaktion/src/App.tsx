@@ -20,7 +20,7 @@ import { useState } from 'react';
 import { Chip, Empty } from '@da/ui/primitives';
 import { Hinweis } from './components/Hinweis';
 import { useCorpus } from './data';
-import { href, useRoute, useScrollReset } from './router';
+import { handleInternalLinkClick, href, navigateHref, useRoute, useRouteHistory, useScrollReset } from './router';
 import { Themen } from './views/Themen';
 import { Thema } from './views/Thema';
 import { Bestand } from './views/Bestand';
@@ -103,9 +103,30 @@ function ThemeButton() {
   );
 }
 
+function HistoryButton({ direction, disabled, onClick }: { direction: 'back' | 'forward'; disabled: boolean; onClick: () => void }) {
+  const back = direction === 'back';
+  const label = back ? 'Zurück' : 'Vorwärts';
+  return (
+    <Hinweis inhalt={label} fokussierbar={false}>
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={label}
+        className="grid h-8 w-8 place-items-center rounded text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink-muted"
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d={back ? 'm14.5 6-6 6 6 6' : 'm9.5 6 6 6-6 6'} />
+        </svg>
+      </button>
+    </Hinweis>
+  );
+}
+
 export function App() {
   const { graph, workspace, error, revision } = useCorpus();
   const [route] = useRoute();
+  const routeHistory = useRouteHistory();
   const [globalSearch, setGlobalSearch] = useState('');
   useScrollReset(`${route.view}/${route.id ?? ''}`);
 
@@ -155,7 +176,7 @@ export function App() {
   const flat = NAV.flatMap((g) => g.items);
 
   return (
-    <div className="min-h-screen bg-surface font-sans">
+    <div className="min-h-screen bg-surface font-sans" onClickCapture={handleInternalLinkClick}>
       {/* h-14, and `Zeilentabelle` sticks its header to `top-14` under it. */}
       <header className="sticky top-0 z-30 h-14 border-b border-border-subtle bg-surface/95 backdrop-blur">
         <div className="flex h-full items-center gap-4 px-4 lg:px-6">
@@ -163,14 +184,18 @@ export function App() {
             Redaction
             <span className="ml-2 font-sans text-xs font-normal uppercase tracking-[0.14em] text-ink-muted">Deutsch-Atlas</span>
           </a>
-          <form className="mx-auto hidden w-full max-w-xl md:block" onSubmit={(event) => { event.preventDefault(); if (globalSearch.trim()) window.location.hash = href('materialien', undefined, { q: globalSearch.trim() }).slice(1); }}>
+          <div className="flex shrink-0 items-center rounded-md border border-border-subtle p-0.5" aria-label="Navigationsverlauf">
+            <HistoryButton direction="back" disabled={!routeHistory.canBack} onClick={routeHistory.back} />
+            <HistoryButton direction="forward" disabled={!routeHistory.canForward} onClick={routeHistory.forward} />
+          </div>
+          <form className="mx-auto hidden w-full max-w-xl md:block" onSubmit={(event) => { event.preventDefault(); if (globalSearch.trim()) navigateHref(href('materialien', undefined, { q: globalSearch.trim() })); }}>
             <label className="sr-only" htmlFor="globale-suche">Kurs durchsuchen</label>
             <input id="globale-suche" value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Themen, Materialien, Fokus-Tags suchen …" className="w-full rounded-md border border-border-subtle bg-surface-sunken px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-muted focus-visible:ring-2 focus-visible:ring-brand" />
           </form>
           <div className="ml-auto flex items-center gap-3">
             {graph?.problems.length ? (
               <a href={href('luecken')} className="text-xs text-ink-muted hover:text-ink">
-                <Chip tone="warn">{graph.problems.length} Befunde</Chip>
+                <Chip tone="brand">{graph.problems.length} offene Befunde</Chip>
               </a>
             ) : null}
             <ThemeButton />
