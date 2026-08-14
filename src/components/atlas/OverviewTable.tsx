@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { AtlasGroup } from '../../lib/schemas';
+import type { AtlasGroup } from '@da/schema';
 import { topicEvidence, type Completion, type Tier, type TopicContext, type TopicEvidence } from '../../lib/mastery';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';

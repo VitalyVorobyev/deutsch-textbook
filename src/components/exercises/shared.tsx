@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react';
-import type { Bilingual } from '../../lib/schemas';
+import type { Bilingual } from '@da/schema';
 import type { CriterionAssessment, PracticePayload } from '../../lib/store';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';

@@ -70,7 +70,7 @@ Full catalog and evidence labels: the `learning-science` skill, §17 in
 2. **A subsection keeps its table with its prose.** Never a table stranded behind another
    subsection's prose — the reader should not hold a paradigm in memory across 130 lines.
 3. **No paragraph over 120 words in any explanation half; target ≤ 90.** One paragraph, one claim
-   plus its evidence. Validator-enforced (`src/lib/prose-shape.ts`); the ceiling is corpus-derived,
+   plus its evidence. Validator-enforced (`packages/content/src/prose-shape.ts`); the ceiling is corpus-derived,
    not chosen — when it was set no A1 or A2 paragraph exceeded 107 and no discovery piece exceeded
    113, so 120 refuses the wall without touching a shipped paragraph.
 4. **A fact in `## Erklärung` is drilled by an item or serves an outcome.** Otherwise it belongs in

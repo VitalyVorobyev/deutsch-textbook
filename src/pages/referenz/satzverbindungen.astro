@@ -2,7 +2,7 @@
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TaughtIn from '../../components/reference/TaughtIn.astro';
-import { sentenceConnectorsReferenceSchema } from '../../lib/schemas';
+import { sentenceConnectorsReferenceSchema } from '@da/schema';
 import { withBase } from '../../lib/url';
 
 const entry = await getEntry('referenceData', 'sentence-connectors');

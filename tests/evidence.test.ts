@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { evaluateFocusEvidence, responseModeForItem } from '../src/lib/evidence';
-import type { ExerciseItem } from '../src/lib/schemas';
+import type { ExerciseItem } from '@da/schema';
 
 const base = { id: 'item', outcomes: [], preview: false };
 

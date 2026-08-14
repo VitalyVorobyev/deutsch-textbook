@@ -15,7 +15,7 @@
 import { describe, expect, test } from 'bun:test';
 import { buildSession, type TrainingSet } from '../src/lib/training';
 import type { Attempt } from '../src/lib/store';
-import type { ExerciseItem } from '../src/lib/schemas';
+import type { ExerciseItem } from '@da/schema';
 
 const NOW = 1_780_000_000_000;
 const HOUR = 3_600_000;

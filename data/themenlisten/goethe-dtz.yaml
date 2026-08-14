@@ -1,0 +1,190 @@
+# Deutsch-Test für Zuwanderer — § 8.1 THEMEN (Prüfungshandbuch, S. 86–88)
+#
+# WHY THIS FILE EXISTS. `data/strukturenlisten/` measures the grammar the course teaches and
+# `data/handlungslisten/` the things it lets the learner *do*. Neither can see the third question a
+# language course answers: **what is it about**. A course can teach every structure the standard
+# lists, cover every communicative function, and never once mention Versicherungen.
+#
+# WHAT THE SOURCE IS. § 8.1 prints two columns side by side: the themes of the **CEFR chapter 4.2**
+# on the left, each with its sub-topics, and the **Handlungsfelder of the Rahmencurriculum** on the
+# right. They are a *Gegenüberstellung* — set beside each other, not aligned row by row: the left
+# column's `Arbeit / Beruf` faces both `Arbeit` and `Arbeitssuche` on the right.
+#
+# Only the LEFT column becomes entries. It is the theme inventory proper, and the sub-topics are the
+# level at which a hole is findable — eleven top-level themes against forty-nine topics would read
+# 100% and say nothing. The right column is recorded per section as `handlungsfelder:`, because it
+# is the source's own pairing and inventing an alignment would be worse than recording none.
+#
+# MODE IS `unstated`, and deliberately so. § 8.4 says its structures must be mastered "aktiv und
+# passiv"; § 8.1 says nothing of the kind — it constrains *task selection* ("kein Fachwissen oder
+# ein spezifisches Weltwissen", nothing historical, nothing about politics or economics, but
+# "Vertrautheit mit der Lebenswelt in Deutschland" assumed). A theme is not something one produces.
+#
+# ONE FOOTNOTE IS A FINDING. `Essen / Trinken` carries a superscript 1: *"Die Bedarfsrecherchen
+# haben ergeben, dass das Thema im Zusammenhang mit dem Spracherwerb weniger wichtig ist."* The
+# standard says food matters less for this audience than a coursebook progression suggests. It is
+# transcribed on the section, not acted on.
+#
+# BOUNDARY (ADR 0009 / ADR 0011): labels only, in the source's own order. No example sentences and
+# no Exponenten; the PDF stays local-only and gitignored.
+#
+# COMPLETENESS: all eleven themes of § 8.1 and all seventy sub-topics, S. 86–88 (PDF 90–92).
+
+source:
+  id: goethe-dtz-themen
+  title: "Deutsch-Test für Zuwanderer A2·B1 — Prüfungshandbuch"
+  publisher: "Goethe-Institut e.V. und telc GmbH"
+  edition: "2009 (Perlmann-Balme, Plassmann, Zeidler)"
+  chapter: "8 Sprachliche Inventare — 8.1 Themen"
+  pages: "86–88"
+  pdf_pages: "90–92"
+  label_columns: [[90, 310]]
+  levels: [A2, B1]
+  cumulative: true
+  status: current
+  audience: "Erwachsene Zugewanderte"
+  mode: unstated
+  url: "https://www.goethe.de/resources/files/pdf209/dtz_pruefungshandbuch.pdf"
+  local: "docs/GeotheInstitute/dtz_pruefungshandbuch.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  - id: person
+    de: "Informationen zur Person"
+    page: 86
+    handlungsfelder: "Gestaltung sozialer Kontakte"
+    entries:
+      - { key: person-name, level: A2, de: "Name" }
+      - { key: person-adresse, level: A2, de: "Adresse" }
+      - { key: person-telefon, level: A2, de: "Telefon" }
+      - { key: person-geburtsdatum, level: A2, de: "Geburtsdatum" }
+      - { key: person-geburtsort, level: A2, de: "Geburtsort" }
+      - { key: person-alter, level: A2, de: "Alter" }
+      - { key: person-geschlecht, level: A2, de: "Geschlecht" }
+      - { key: person-familienstand, level: A2, de: "Familienstand/Familie" }
+      - { key: person-beziehungen, level: A2, de: "Persönliche Beziehungen" }
+      - { key: person-herkunft, level: A2, de: "Staatsangehörigkeit/Nationalität/Herkunft" }
+      - { key: person-taetigkeit, level: A2, de: "Berufliche Tätigkeit" }
+      - { key: person-aussehen, level: A2, de: "Aussehen" }
+
+  - id: wohnen
+    de: "Wohnen und Umwelt"
+    page: 86
+    handlungsfelder: "Wohnen"
+    entries:
+      - { key: wohnen-wohnung-art, level: A2, de: "Art, Lage und Größe der Wohnung" }
+      - { key: wohnen-raeume, level: A2, de: "Räume" }
+      - { key: wohnen-einrichtung, level: A2, de: "Einrichtung/Möbel" }
+      - { key: wohnen-haushalt, level: A2, de: "Haushalt/technische Einrichtungen" }
+      - { key: wohnen-miete, level: A2, de: "Miete/Mietverhältnis" }
+      - { key: wohnen-wohnungswechsel, level: A2, de: "Wohnungswechsel" }
+      - { key: wohnen-gegend, level: A2, de: "Gegend/Stadt/Land" }
+      - { key: wohnen-pflanzen, level: A2, de: "Pflanzen" }
+      - { key: wohnen-tiere, level: A2, de: "Tiere" }
+      - { key: wohnen-klima, level: A2, de: "Klima/Wetter" }
+
+  - id: arbeit
+    de: "Arbeit / Beruf"
+    page: 86
+    handlungsfelder: "Arbeit; Arbeitssuche"
+    entries:
+      - { key: arbeit-berufliche-taetigkeit, level: A2, de: "Berufliche Tätigkeit" }
+      - { key: arbeit-qualifikation, level: A2, de: "Berufliche Ausbildung/Qualifikation" }
+      - { key: arbeit-arbeitsplatz, level: A2, de: "Arbeitsplatz" }
+      - { key: arbeit-lohn, level: A2, de: "Lohn/Gehalt" }
+      - { key: arbeit-arbeitszeit, level: A2, de: "Arbeitszeit" }
+      - { key: arbeit-urlaub, level: A2, de: "Urlaub" }
+
+  - id: freizeit
+    de: "Freizeit / Unterhaltung"
+    page: 87
+    handlungsfelder: "Mediennutzung"
+    entries:
+      - { key: freizeit-freizeitbeschaeftigung, level: A2, de: "Freizeitbeschäftigung" }
+      - { key: freizeit-interessen, level: A2, de: "Interessen" }
+      - { key: freizeit-kulturelle-veranstaltungen, level: A2, de: "Kulturelle Veranstaltungen" }
+      - { key: freizeit-sport, level: A2, de: "Sportveranstaltungen/Sport treiben" }
+      - { key: freizeit-radio-fernsehen, level: A2, de: "Radio/Fernsehen" }
+      - { key: freizeit-internet, level: A2, de: "Internet" }
+      - { key: freizeit-lektuere, level: A2, de: "Lektüre/Presse" }
+      - { key: freizeit-feste, level: A2, de: "Gesellige Anlässe/Feiertage/Feste" }
+
+  - id: reisen
+    de: "Reisen / Verkehr"
+    page: 87
+    handlungsfelder: "Mobilität"
+    entries:
+      - { key: reisen-verkehr, level: A2, de: "privater und öffentlicher Verkehr" }
+      - { key: reisen-reisen, level: A2, de: "Reisen" }
+      - { key: reisen-unterkunft, level: A2, de: "Unterkunft" }
+      - { key: reisen-gepaeck, level: A2, de: "Gepäck" }
+
+  - id: gesundheit
+    de: "Menschlicher Körper / Gesundheit"
+    page: 87
+    handlungsfelder: "Gesundheit"
+    entries:
+      - { key: gesundheit-koerperteile, level: A2, de: "Körperteile" }
+      - { key: gesundheit-koerperpflege, level: A2, de: "Körperpflege/Hygiene" }
+      - { key: gesundheit-befinden, level: A2, de: "Befinden" }
+      - { key: gesundheit-krankheit, level: A2, de: "Krankheit" }
+      - { key: gesundheit-unfall, level: A2, de: "Unfall" }
+      - { key: gesundheit-sucht, level: A2, de: "Rauchen/Drogen/Alkohol" }
+      - { key: gesundheit-versorgung, level: A2, de: "Medizinische/ärztliche Versorgung" }
+
+  - id: bildung
+    de: "Erziehung / Ausbildung / Lernen"
+    page: 87
+    handlungsfelder: "Aus- und Weiterbildung; Betreuung und Ausbildung der Kinder / Unterricht; Unterricht"
+    entries:
+      - { key: bildung-kinderbetreuung, level: A2, de: "Kinderbetreuung" }
+      - { key: bildung-schule, level: A2, de: "Schule" }
+      - { key: bildung-studium, level: A2, de: "Studium" }
+      - { key: bildung-berufliche-ausbildung, level: A2, de: "Berufliche Ausbildung" }
+      - { key: bildung-pruefungen, level: A2, de: "Prüfungen" }
+
+  - id: einkaufen
+    de: "Einkaufen / Gebrauchsartikel"
+    page: 88
+    handlungsfelder: "Einkaufen"
+    entries:
+      - { key: einkaufen-geschaefte, level: A2, de: "Geschäfte" }
+      - { key: einkaufen-preis, level: A2, de: "Preis/Bezahlen" }
+      - { key: einkaufen-lebensmittel, level: A2, de: "Lebensmittel" }
+      - { key: einkaufen-kleidung, level: A2, de: "Kleidung" }
+      - { key: einkaufen-haushaltsartikel, level: A2, de: "Haushaltsartikel" }
+
+  - id: essen
+    de: "Essen / Trinken"
+    page: 88
+    handlungsfelder: "Essen / Trinken"
+    # Footnote 1, S. 88, transcribed as printed: "Die Bedarfsrecherchen haben ergeben, dass das
+    # Thema im Zusammenhang mit dem Spracherwerb weniger wichtig ist." The only theme in § 8.1 the
+    # source itself down-weights for this audience.
+    note: "Fußnote 1: laut Bedarfsrecherchen im Zusammenhang mit dem Spracherwerb weniger wichtig"
+    entries:
+      - { key: essen-nahrungsmittel, level: A2, de: "Nahrungsmittel" }
+      - { key: essen-mahlzeiten, level: A2, de: "Mahlzeiten" }
+      - { key: essen-speisen, level: A2, de: "Speisen" }
+      - { key: essen-getraenke, level: A2, de: "Getränke" }
+      - { key: essen-lokale, level: A2, de: "Lokale (Restaurant, Café)" }
+
+  - id: dienstleistungen
+    de: "Dienstleistungen"
+    page: 88
+    handlungsfelder: "Ämter und Behörden; Banken und Versicherungen"
+    entries:
+      - { key: dienstleistungen-post, level: A2, de: "Post" }
+      - { key: dienstleistungen-telekommunikation, level: A2, de: "Telekommunikation" }
+      - { key: dienstleistungen-banken, level: A2, de: "Banken" }
+      - { key: dienstleistungen-versicherungen, level: A2, de: "Versicherungen" }
+      - { key: dienstleistungen-polizei, level: A2, de: "Polizei" }
+      - { key: dienstleistungen-aemter, level: A2, de: "Konsularische Vertretung, Ämter" }
+
+  - id: sprache
+    de: "Sprache"
+    page: 88
+    handlungsfelder: "Umgang mit dem eigenen Sprachenlernen"
+    entries:
+      - { key: sprache-sprachfaehigkeit, level: A2, de: "Fähigkeit, Verstehen, Ausdruck" }
+      - { key: sprache-sprachen-lernen, level: A2, de: "Sprachen lernen" }

@@ -1,4 +1,4 @@
-import type { VisualDocument } from '../../lib/schemas';
+import type { VisualDocument } from '@da/schema';
 import { withBase } from '../../lib/url';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';

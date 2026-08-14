@@ -2,7 +2,7 @@
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TenseSystem from '../../components/reference/TenseSystem.astro';
-import { zeitformenReferenceSchema } from '../../lib/schemas';
+import { zeitformenReferenceSchema } from '@da/schema';
 import { withBase } from '../../lib/url';
 
 const entry = await getEntry('referenceData', 'zeitformen');

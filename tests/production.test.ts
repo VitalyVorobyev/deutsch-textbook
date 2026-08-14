@@ -7,7 +7,7 @@ import {
   isOneEdit,
   translationCandidates,
   verdictIsCorrect,
-} from '../src/lib/production';
+} from '@da/grading/production';
 
 describe('one-edit near-miss detection', () => {
   test('accepts the slips a learner actually makes', () => {

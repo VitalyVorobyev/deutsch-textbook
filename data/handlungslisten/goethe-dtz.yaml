@@ -1,0 +1,180 @@
+# Deutsch-Test für Zuwanderer (DTZ) A2–B1 — Prüfungshandbuch §8.2 SPRACHHANDLUNGEN
+# and §8.3 SPRACHHANDLUNGSSTRATEGIEN.
+#
+# WHAT THIS ANCHORS, AND WHY IT IS A DIFFERENT DIMENSION FROM `strukturenlisten/`. Every topic in
+# `content/atlas.yaml` declares 2–5 learner-facing `outcomes` — 179 of them, each a can-do
+# statement in four languages, each measured by at least one practice item. What no outcome has
+# ever had is an *outside*: nothing said whether the set of can-dos this course teaches is the set
+# a published standard expects, and a self-authored list of communicative goals drifts exactly the
+# way a self-authored grammar list drifted. §8.2 is that outside. It is Goethe's and telc's
+# enumeration of the language functions an adult migrant must be able to perform, drawn from the
+# Rahmencurriculum and cross-checked there against Start Deutsch, Zertifikat Deutsch and Profile
+# Deutsch — the same lineage as the CEFR's own "language functions".
+#
+# A grammar row and an outcome are not the same kind of thing and must not share a denominator: a
+# course can teach every structure on the list and still never ask the learner to refuse an offer.
+# Hence a second directory rather than more rows in the first.
+#
+# MODE. §8.2 opens: "Diese Liste enthält sprachliche Mittel, die es Teilnehmenden ermöglichen, in
+# der schriftlichen und mündlichen Kommunikation ihre kommunikativen Ziele und Intentionen
+# **produktiv** zu realisieren." So `mode: production`, like §8.4 and unlike the A1 Prüfungsziele.
+#
+# CUMULATIVE. §8.3 states its scope outright — "ausgewählte Beispiele, die auf beiden Niveaustufen
+# – A2 und B1 – sowohl im formellen (Sie-Form) als auch im informellen Register (Du-Form) zum
+# Einsatz kommen können" — and §8.2 assigns no level either. Same reading as §8.4: the whole list
+# is the repertoire, measured at every declared level.
+#
+# ---------------------------------------------------------------------------
+# THE TRANSCRIPTION DEPTH, AND WHY IT STOPS WHERE IT DOES
+# ---------------------------------------------------------------------------
+# Each chapter prints its inventory twice: an **overview** enumerating Bereich → Sprachhandlung
+# (Seite 89 and Seite 95), then **detail pages** giving each Sprachhandlung a third level of
+# sub-functions, each followed by its *Exponenten* — the ready-made phrases a candidate would
+# actually say.
+#
+# Only the overview level is transcribed. Two reasons, and the second is the load-bearing one:
+#   - the Exponenten are the booklet's authored wording, and ADR 0011's boundary is labels only;
+#   - on the detail pages the third-level labels are typographically interleaved with those
+#     Exponenten in a three-column layout, both in mixed-case German, with no mechanical way to
+#     tell one from the other. Transcribing them would mean deciding by eye which German phrase is
+#     a heading — and a denominator assembled by eye is the thing this whole layer replaced.
+# The overview is the source's own complete enumeration, so nothing is lost but depth, and the
+# depth that is lost is recorded here rather than silently absent.
+#
+# FOUR DISCREPANCIES BETWEEN OVERVIEW AND DETAIL, left as found:
+#   - §8.2 overview heads the second Bereich "Realisierung von Gefühlen, Haltungen und Meinungen";
+#     the detail page heads it "REALISIEREN VON GEFÜHLEN, HALTUNGEN UND MEINUNGEN".
+#   - §8.3 overview lists "gemeinsames Wissen **andeuten**"; the detail block is headed
+#     "Gemeinsames Wissen **ausdrücken**".
+#   - §8.3 overview lists "**Vermeidung**"; the detail page has no such block and instead heads one
+#     "**Ausrede**". The chapter's own introduction speaks of "Kompensations- bzw.
+#     Vermeidungsstrategien", so the two are plainly the same slot, but the source never says so.
+#   - §8.3 overview lists "**etwas hervorheben**" and the detail pages carry no block for it at all
+#     — marked `specified: overview-only`, the same treatment the A1 Adjektiv rows get.
+#
+# ONE OMISSION THE SOURCE EXPLAINS ITSELF: §8.1's Handlungsfeld column includes "Umgang mit dem
+# eigenen Sprachenlernen", and §8.2 leaves it out on purpose — "der eher auf die Situation im
+# Unterricht bezogen ist und in dieser Form in der Prüfung nicht vorkommen wird". Two Bereiche run
+# the other way and are here because the exam needs them: "Handlungsregulierung" and
+# "Informationsaustausch" come from the Referenzrahmen and Threshold 1990 rather than from the
+# Rahmencurriculum.
+#
+# Extraction: pdftotext -f 93 -l 99 -layout dtz_pruefungshandbuch.pdf.
+# Reference from an atlas outcome: `claims: [goethe-dtz-handlungen:<key>]`.
+
+source:
+  id: goethe-dtz-handlungen
+  title: "Deutsch-Test für Zuwanderer A2·B1 — Prüfungshandbuch, Sprachhandlungen"
+  publisher: "Goethe-Institut e.V. und telc GmbH"
+  edition: "2009 (Perlmann-Balme, Plassmann, Zeidler)"
+  chapter: "8 Sprachliche Inventare — 8.2 Sprachhandlungen, 8.3 Sprachhandlungsstrategien"
+  pages: "89, 95"
+  pdf_pages: "93, 99"
+  levels: [A2, B1]
+  cumulative: true
+  status: current
+  audience: "Erwachsene Zugewanderte"
+  mode: production
+  url: "https://www.goethe.de/resources/files/pdf209/dtz_pruefungshandbuch.pdf"
+  local: "docs/GeotheInstitute/dtz_pruefungshandbuch.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  # ---- 8.2 Sprachhandlungen ------------------------------------------------
+  - id: migrationssituation
+    de: "Umgang mit der Migrationssituation"
+    page: 89
+    entries:
+      - { key: migrationserfahrung-berichten, level: A2, de: "über Migrationserfahrung berichten" }
+      - { key: interkulturelle-begegnung, level: A2, de: "Umgang mit der interkulturellen Begegnung" }
+      - { key: eigene-kompetenzen-darstellen, level: A2, de: "eigene Kompetenzen darstellen" }
+      - { key: wissensdivergenz, level: A2, de: "Umgang mit Wissensdivergenz und Kompetenzlücken" }
+      - { key: individuelle-sprachigkeit, level: A2, de: "Umgang mit der individuellen Sprachigkeit" }
+
+  - id: gefuehle-haltungen-meinungen
+    de: "Realisierung von Gefühlen, Haltungen und Meinungen"
+    page: 89
+    entries:
+      - { key: gefuehle-ausdruecken, level: A2, de: "Gefühle ausdrücken" }
+      - { key: haltungen-meinungen-ausdruecken, level: A2, de: "Haltungen, Meinungen ausdrücken" }
+
+  - id: dissens-konflikte
+    de: "Umgang mit Dissens und Konflikten"
+    page: 89
+    entries:
+      - { key: umgang-dissens, level: A2, de: "Umgang mit Dissens" }
+      - { key: umgang-konflikte, level: A2, de: "Umgang mit Konflikten" }
+
+  - id: soziale-kontakte
+    de: "Gestaltung sozialer Kontakte"
+    page: 89
+    entries:
+      - { key: kontakte-aufnehmen-beenden, level: A2, de: "Kontakte aufnehmen, Kontakte beenden" }
+      - { key: beziehungen-pflegen, level: A2, de: "Beziehungen entwickeln und pflegen" }
+
+  - id: informationsaustausch
+    de: "Informationsaustausch"
+    page: 89
+    entries:
+      - { key: benennen-definieren, level: A2, de: "etwas benennen und um Definitionen bitten" }
+      - { key: beschreiben, level: A2, de: "jemanden zum Beschreiben auffordern und etwas beschreiben" }
+      - { key: erklaeren, level: A2, de: "um Erklärung bitten und etwas erklären" }
+      - { key: vergangenes-berichten, level: A2, de: "nach Ereignissen fragen und Vergangenes berichten" }
+      - { key: ankuendigen-plaene, level: A2, de: "etwas ankündigen und nach Plänen fragen" }
+      - { key: nachfragen, level: A2, de: "nachfragen" }
+      - { key: zweck-angeben, level: A2, de: "nach dem Zweck fragen und den Zweck angeben" }
+      - { key: wissen-nichtwissen, level: A2, de: "Wissen oder Nichtwissen ausdrücken" }
+
+  - id: handlungsregulierung
+    de: "Handlungsregulierung"
+    page: 89
+    entries:
+      - { key: bitte-ausdruecken, level: A2, de: "eine Bitte ausdrücken und auf Bitten reagieren" }
+      - { key: bestaetigen, level: A2, de: "etwas bestätigen und um Bestätigung bitten" }
+      - { key: hilfe-anbieten, level: A2, de: "Hilfe anbieten und Hilfe annehmen oder ablehnen" }
+      - { key: bestellen, level: A2, de: "etwas bestellen und auf eine Bestellung reagieren" }
+      - { key: rat-empfehlung-warnung, level: A2, de: "um Rat bitten, eine Empfehlung oder Warnung aussprechen" }
+      - { key: erlaubnis-genehmigung, level: A2, de: "um Erlaubnis bitten, eine Genehmigung aussprechen oder verweigern" }
+      - { key: vorschlag-machen, level: A2, de: "einen Vorschlag machen und auf Vorschläge reagieren" }
+
+  # ---- 8.3 Sprachhandlungsstrategien ---------------------------------------
+  - id: redeorganisation
+    de: "Redeorganisation"
+    page: 95
+    entries:
+      - { key: aeusserung-einleiten, level: A2, de: "eine Äußerung einleiten" }
+      - { key: aeusserung-abschliessen, level: A2, de: "eine Äußerung abschließen" }
+      - { key: wort-bitten, level: A2, de: "um das Wort bitten" }
+      - { key: zuhoeren-signalisieren, level: A2, de: "Zuhören signalisieren" }
+      - { key: sprechen-auffordern, level: A2, de: "zum Sprechen auffordern" }
+      - key: gemeinsames-wissen
+        level: A2
+        de: "gemeinsames Wissen andeuten"
+        note: >-
+          The overview says "andeuten"; the detail block on Seite 95 is headed "Gemeinsames Wissen
+          ausdrücken". The overview's wording is kept because it is the enumeration this file
+          transcribes.
+      - { key: beispiele-geben, level: A2, de: "Beispiele geben/etwas verdeutlichen" }
+      - { key: thema-wechseln, level: A2, de: "das Thema wechseln" }
+      - key: hervorheben
+        level: A2
+        de: "etwas hervorheben"
+        specified: overview-only
+        note: "Listed in the Seite-95 overview; the detail pages carry no block for it."
+      - key: vermeidung
+        level: A2
+        de: "Vermeidung"
+        note: >-
+          The detail page heads the corresponding block "Ausrede". The chapter introduction speaks
+          of "Kompensations- bzw. Vermeidungsstrategien", so they are plainly one slot, but the
+          source never equates them and neither does this file.
+      - { key: hoeflichkeit, level: A2, de: "Höflichkeit" }
+      - { key: abschwaechung, level: A2, de: "Abschwächung" }
+
+  - id: verstaendnissicherung
+    de: "Verständnissicherung"
+    page: 95
+    entries:
+      - { key: verstaendnishilfen-anbieten, level: A2, de: "Verständnishilfen anbieten" }
+      - { key: verstaendnishilfen-bitten, level: A2, de: "um Verständnishilfen bitten" }
+      - { key: kompensation, level: A2, de: "Kompensation" }

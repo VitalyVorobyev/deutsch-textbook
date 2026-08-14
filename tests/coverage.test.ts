@@ -8,7 +8,7 @@
  * turned out to be false. These tests are what stops that coming back.
  */
 import { describe, expect, test } from 'bun:test';
-import { addresses, goetheCoverage, MEASURED_LEVELS, taughtSurface } from '../src/lib/coverage';
+import { addresses, goetheCoverage, MEASURED_LEVELS, taughtSurface } from '@da/content/coverage';
 
 const surface = taughtSurface();
 

@@ -27,6 +27,7 @@ read**, not a rule to guess at.
 | authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md) |
 | choosing or adding a **`focus` tag** | [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) |
 | changing anything in **`src/lib/`** | [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md) |
+| adding to **`packages/`** or **`apps/redaktion`**, or asking the corpus a new question | [`docs/architecture/content-graph.md`](docs/architecture/content-graph.md) |
 | touching **`worker/`**, `src/lib/sync-remote.ts` or `scripts/progress-pull.ts` (accounts, approval, snapshot sync) | [`docs/architecture/cloud-sync.md`](docs/architecture/cloud-sync.md) |
 | reading or writing an **ADR**, or making an **architecture decision** | [`docs/adrs/README.md`](docs/adrs/README.md) |
 | shipping a **new topic**, or writing a **drill from learner progress** | [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md) |
@@ -35,6 +36,7 @@ read**, not a rule to guess at.
 | hand-editing a vocab **`ipa`** | [`docs/authoring/lautschrift.md`](docs/authoring/lautschrift.md) |
 | authoring **Entdecken** material or adding a **document** | [`docs/authoring/future-content-directions.md`](docs/authoring/future-content-directions.md) |
 | deciding **what A2 teaches**, in what order, with which frozen identities | [`docs/curriculum/a2-b1.md`](docs/curriculum/a2-b1.md) |
+| adding a **grammar-inventory row**, a `claims:` citation or an external **Strukturenliste** | [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md) · [ADR 0011](docs/adrs/0011-external-grammar-anchors.md) · [`docs/curriculum/grammar-structure-audit.md`](docs/curriculum/grammar-structure-audit.md) |
 | checking a finished unit against the **quality gate** | [`docs/quality/a1-learning-audit.md`](docs/quality/a1-learning-audit.md) |
 | looking for the **system map** or **the queue** | [`docs/design.md`](docs/design.md) · [`docs/backlog.md`](docs/backlog.md) |
 
@@ -56,31 +58,71 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun scripts/coverage.ts <A1|A2|B1>` — Goethe Wortliste coverage. **A1 and A2 are both at 100% — keep them there.** A new word belongs to exactly one deck; the manifest gains a line in the same change. A leading `~` (taught as grammar, no flashcard) **must be earned** — the validator hard-fails unless the word occurs in the taught surface. Run `--check-deck <file.yaml>` per deck before `bun run validate` on any completion pass. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
 - `bun run exam:ingest` — turn the **local-only** official Goethe exam materials (`docs/GeotheInstitute/`, gitignored) into the trainer's runtime assets under `public/exams/` (also gitignored). Nothing it reads or writes may ever enter the repo; a clean checkout builds fine and `/pruefung/goethe-a1` shows its absence state. A module's optional `cues:` (Teil/Nummer jump points, rendered in Üben only) are proposed by `bun scripts/exam-cues-scan.ts <setId>/<module>` from a silence scan and **verified by ear before pasting** — labels and boundaries are guesses, never findings. → [ADR 0009](docs/adrs/0009-official-exam-materials-local-only.md) · [`docs/architecture/exam-trainer.md`](docs/architecture/exam-trainer.md)
 - `bun scripts/lang-cost.ts <file…>` — words per explanation half, and what four halves cost against two. Exists because a figure that decides a policy has to be reproducible: the `<De>` pilot's ratios reached the roadmap with no command behind them. Counting method is stated in the script.
-- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 23/23, A2 32/32, B1 32/32. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
+- `bun scripts/grammar-coverage.ts <A1|A2|B1>` — structural coverage against `data/grammar-inventory.yaml`. A point counts as taught only when a `practice`/`drill` item carries the focus tag naming its confusion — not a checkpoint, pretest, probe, or `preview: true` item. **Closing a gap means lowering the number in `tests/grammar-coverage.test.ts` in the same commit**; it is a tripwire. A1 24/28, A2 35/38, B1 32/32. A denominator that only grows once the content is ready is not a denominator, so A2's figure got **worse** on 2026-08-14, when `ueber-dauer` earned a row nothing teaches. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
+- `bun scripts/structures.ts <A1|A2|B1> [--unclaimed-only] [--beyond]` — **the denominator's own denominator**: does `data/grammar-inventory.yaml` even contain every structure the published standard lists? Every entry of `data/strukturenlisten/` is `claimed` (some row cites it), **`unclaimed`** (a hole in the inventory) or **`beyond`** (an inventory row citing no source — legitimate, this course aims at B1, but visible rather than assumed). It exists because all three levels read 100% while the A1 list was missing four structures the exam tests; the anchors are free Goethe PDFs nobody had opened. **Read the `[audience]` the report prints before the percentage**: A2 read 138/138 = 100% for a day against *Fit in Deutsch 2*, which is the exam for **teenagers** — this course is for an adult. The free, current, adult, **production** standard covering A2 *and* B1 is the DTZ Prüfungshandbuch, added 2026-08-14: A1 93/93, A2 277/300, **B1 141/164 — B1 had no anchor at all before it.** → [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md)
+- `bun scripts/handlungen.ts <A1|A2|B1> [--unclaimed-only] [--beyond]` — **the same question asked of the can-dos**: do the 179 `outcomes` contain every communicative function the published standard expects? `data/handlungslisten/` is to outcomes what `data/strukturenlisten/` is to grammar rows, and it exists because a course can teach every structure the exam tests and never ask the learner to refuse an offer. 26/41 at A2 and B1 — and **nine of the fifteen holes are the whole of §8.3 Redeorganisation**: opening and closing a turn, taking the floor, signalling you are listening, changing the subject. `beyond` is expected here and is not a gap (a grammar outcome realises no language function). → [`data/handlungslisten/README.md`](data/handlungslisten/README.md)
+- `bun scripts/themen.ts <A1|A2|B1> [--unclaimed-only] [--beyond]` — **the third denominator, and the last one a course has**: is this course *about* the things an adult in Germany needs to talk about? `data/themenlisten/` is to topics what the other two lists are to grammar rows and outcomes; the claimant is a topic manifest, which is why it could not exist before [ADR 0012](docs/adrs/0012-topic-manifests.md). **59/70 (84%)**, and the eleven holes are the product: no topic is about **Unfall, Polizei, Versicherungen, Kinderbetreuung** or **Klima/Wetter**. Read a hole as *topic-level*, never lexical — *Wetter, Sonne, Regen, Schnee* all exist as flashcards, in Wortliste completion decks no topic owns. **The assignments are editorial**: an under-claim manufactures a hole exactly as an over-claim manufactures coverage, and three of the first fourteen holes were the author's, not the corpus's. → [`data/themenlisten/README.md`](data/themenlisten/README.md)
+- `bun scripts/anchor-check.ts [<source-id>] [--unaccounted]` — holds a transcribed inventory anchor against the PDF it came from: a `de:` label containing a word the page does not contain is a fabrication, and one shaped like a sentence is a leaked example. **Run it whenever a `data/*listen/*.yaml` changes** — neither failure is otherwise visible, because the YAML parses, `bun run validate` is green and `structures.ts` happily reports a percentage of the wrong list. Its first run found three of four files had paraphrased the source (`Indefinitpronomen: man` for the printed `Indefinit: man`). The PDFs are local-only (ADR 0009), so an absent source **skips** rather than failing. → [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md)
 - `bun scripts/comprehensibility.ts <level>/<topic-id>` — input load: how much of a topic's German the learner has not met yet, per section (`article`, `reading`, `items`), with the distinct ahead-of-the-learner words listed so they can be acted on. `--rank [A1|A2|B1]` ranks a level, or all three. **Read-only and deliberately without a threshold** — it hooks into no gate, and every row is read against the level MEDIAN the report computes from the corpus, never against zero. Outliers are the product. Known false positives (proper names, strong-verb ablaut, glossed reading words) are listed in the doc; nothing here may be quoted as an absolute claim about a learner. → [`docs/authoring/coverage-instruments.md`](docs/authoring/coverage-instruments.md)
-- `bun run redaktion` — the editorial console at `redaktion/index.html` (gitignored, self-contained, opens from `file://`): level overview, the spine with a presence badge per shipping-checklist artifact, the full spec of every topic with repo paths and GitHub links, and the grammar inventory grouped by `standard_level`. Every figure is computed from content at generation time — the two coverage measurements are imported from `src/lib/`, so it cannot disagree with the scripts — and it is independent of the site build.
+- `bun scripts/grammar-depth.ts [<level>] [--thin] [--by-point] [--no-probe]` — **how much practice stands behind each confusion**, the number coverage cannot express. Per focus tag: teaching items, of which production, distinct practice files (a tag in one file is met once and never interleaved), probe items. **Deliberately no threshold** — every row is read against the level median the report prints, the `comprehensibility.ts` discipline — while `tests/grammar-depth.test.ts` ratchets today's measured values so they may only improve. Median items per confusion: **A1 12 · A2 8 · B1 4**; production 6 · 6 · 3. **Breadth and depth are two numbers and neither substitutes for the other.**
+- `bun run redaktion` — **Redaktion**, the editorial app (`apps/redaktion`, React on a Vite dev server at :4330): a **navigator over the language** with the course painted onto it. **Sprachkarte** puts ten grammatical strands across every CEFR level the schema knows — B2 is a visibly empty column on purpose; **Strukturen**, **Fokus-Tags** and **Quellen** give every point, confusion and published source a routable page; **Einheiten & Themen → Thema** opens one topic and shows *every* element it owns along the lesson cycle, its checks and its findings; **Lücken** is the derived problem inbox. Every figure comes from `@da/content`, never recomputed here — a number that disagrees with `bun scripts/<name>.ts` means the app is wrong. The corpus is re-read when a file under `content/` or `data/` changes, so it is never stale. It runs under Bun (`bunx --bun vite`) because Vite's config loader uses Node's strict ESM resolution, which rejects the packages' extensionless imports. **It can also write two fields** — an exercise set's `stage:` and a topic's `status:` — through `PUT /__write`, and every rule about what that may touch lives in `@da/content/write`, never in the UI: it is an allowlist of (file class, field) pairs, it **splices into the source text instead of reserialising** (only 247 of 385 sets and manifests survive a `YAML.parseDocument`→`toString` round trip byte-for-byte, 18 under the library defaults), it refuses any write whose result would change a second key, and it runs `bun run validate` afterwards and **puts the original bytes back** if the corpus goes red. `apply: 'serve'` is what makes the endpoint unreachable from a build — not a flag; the plugin is simply not there, and the app degrades to the read-only report.
 - `bun tauri dev` / `bun tauri build` — desktop app (thin Tauri v2 shell in `src-tauri/`; needs a Rust toolchain). Release: push a plain `vX.Y.Z` tag → `.github/workflows/release.yml` builds Windows, Linux and macOS (unsigned) installers into a GitHub Release; the tag is stamped as the version. Keep the site base-path-agnostic. Tauri JS APIs only behind the `isTauri()` runtime check (`src/lib/syncdir.ts`).
 
 ## Where content lives
 
 | Path | What it is |
 | --- | --- |
-| `content/topics/<level>/<id>.mdx` | atlas nodes (articles); level dir must match frontmatter `level` |
+| `content/topics/<level>/<id>.topic.yaml` | **the topic**: identity, outcomes and the `elements:` list of every part it owns; level dir must match `level` |
+| `content/topics/<level>/<id>.mdx` | its article — **prose only, no frontmatter** ([ADR 0012](docs/adrs/0012-topic-manifests.md)) |
 | `content/vocab/<id>.yaml` | vocabulary; **every entry becomes two flashcards** (DE→EN/RU and EN/RU→DE) |
 | `content/exercises/<level>/<set-id>.yaml` | exercise sets, embedded on the owning topic's page |
 | `content/reading/<level>/<id>.yaml` | graded reading; `kind: intensive` and `kind: extensive` are **different artifacts for different purposes** |
 | `content/documents/` | reusable visual stimuli; **viewing is never evidence**; real/adapted assets require `attribution` + `license` |
 | `content/wortfelder/`, `content/wortnetze/` | lexical overlays and word families; **enrich only the answer side** — receptive members create no cards and no mastery |
 | `content/discovery/`, `content/reference-data/` | optional Entdecken material; canonical lookup data |
-| `content/atlas.yaml` | topic graph **and the curriculum spine** |
+| `content/atlas.yaml` | the `groups:` taxonomy **and the curriculum spine** (`units:`) — what belongs to the whole graph rather than to one topic |
 | `progress/<profile>/*.json` | learner snapshots, one folder per local profile |
-| `src/lib/schemas.ts` | Zod schemas — the single source of truth for all content shapes |
+| `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
 
-**`content/atlas.yaml` carries three rules worth stating here**, because breaking one is silent:
-`units:` file order **is** the recommended path (insert, never renumber); every topic lives in
-exactly one unit of its own level, never before a prerequisite; and a `deepens:` edge **must share
-a focus tag the base topic drills**, because the tag is the edge's only runtime channel — an edge
-without one is inert. Each node declares 2–5 learner-facing `outcomes`. All of it is validated.
+**Where the code lives.** A Bun workspace. `content/` and `data/` stay at the repo root because
+they belong to no single app, and the learner app is the **root package** — Astro requires its
+content collections to live under the project root, so moving the app under `apps/` was tried on
+2026-08-14 and reverted (it built zero pages; the reason is recorded beside the `workspaces` field
+in `package.json`). Four packages, and the boundary between them is what may be imported where:
+
+| Package | What it is | May it touch `node:fs`? |
+| --- | --- | --- |
+| `@da/schema` | content shapes (Zod), gloss markup, letter-set checks, item-type classification | **no** — imported by React islands |
+| `@da/grading` | does this answer count: `cloze`, `production`, `worddiff` | **no** |
+| `@da/content` | reads the corpus: the graph, elements, all measurements, the payload | yes |
+| `@da/ui` | Tailwind tokens + shared React primitives | **no** |
+
+`@da/content` exports **per module, never a barrel** — `@da/content/focus-tags` must cost a browser
+importer nothing. A pure value that lives in an fs-opening module leaks the filesystem into the
+client bundle, Vite externalises it silently, and the page keeps working: that happened once with
+`PRODUCTION_TYPES` and is why it now lives in `@da/schema`.
+
+**`contentGraph()` (`packages/content/src/graph.ts`) is the one pass over the corpus.** It replaced
+eight independent walks. It is memoised per root, and it **degrades a malformed file to a `note`
+rather than throwing**, because it is the model an editor reads *while* authoring. Every artifact
+becomes an **`Element`** with a `stage` on the lesson cycle and the `touches` it delivers — the two
+properties nothing in the corpus records, which is why nothing could report that **48 of 49 topics
+have no transfer task**. `packages/content/src/profile.ts` turns that into per-topic checks and a
+ranked problem list, **with no composite score** — every distributional figure is read against the
+level median it prints, never an invented threshold.
+
+**The spine and the manifests carry five rules worth stating here**, because breaking one is
+silent: `units:` file order **is** the recommended path (insert, never renumber); every topic lives
+in exactly one unit of its own level, never before a prerequisite; a `deepens:` edge **must share a
+focus tag the base topic drills**, because the tag is the edge's only runtime channel — an edge
+without one is inert; every manifest declares 2–5 learner-facing `outcomes`; and **`elements:` is
+closed** — a set or reading whose `topic:` names a topic that does not list it is an error, not an
+invisibility. Two of those elements used to be conventions rather than fields, and both were
+load-bearing: **`primary_practice`** decides what completing a Lernpfad step means (it was "the
+first practice set in the array", so reordering the page moved it), and **`probes`** is the delayed
+check (a probe used to attach itself to a topic by existing). `elements.exercises` is **one ordered
+list on purpose** — 14 of the 49 topics interleave practice and drill, which is the scaffold→fade
+arc written down. All of it is validated.
 
 ## Runtime invariants
 
@@ -123,10 +165,10 @@ Section order (H2 headings, in German):
 2. `## Erklärung` — the full explanation with tables (bilingual prose, German tables).
 3. `## Beispiele` — 5–10 German sentences as blockquotes, each with EN/RU translation in a Bilingual block right after.
 4. `## Häufige Fehler` — typical mistakes (❌/✅ pairs). The Ru half highlights Russian-interference errors; the En half gets its own framing — English false friends where they exist ("must not"), otherwise neutral rule statements. Never Russian-framed English.
-- Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from frontmatter (`exercises`, `vocab`).
+- Do **not** add Übungen/Wortschatz sections in the article — the page template renders them from the manifest (`elements.exercises`, `elements.vocab`).
 - **`## Erklärung` splits into `### German subsections`, one per named confusion** — at least one per grammar point the unit owns, plus the integrating section. The heading is German and sits **outside** `<Bilingual>`, so it stays visible under `en`, `ru`, `uk` and `de`. A bolded lead sentence is not a heading: it cannot be navigated to and cannot carry a table with it.
 - **Each subsection keeps its table beside its prose.** A paradigm the reader must hold in memory across another subsection has been separated from what explains it.
-- **No paragraph over 120 words in any explanation half** (validator-enforced, `src/lib/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
+- **No paragraph over 120 words in any explanation half** (validator-enforced, `packages/content/src/prose-shape.ts`); target ≤ 90, one claim per paragraph. The cap is a tripwire, **never a target** — trimming the reasons and the L1 contrast trades a shape defect for a teaching one. Command: `bun scripts/prose-shape.ts content/topics/<level>`.
 - **A fact stated in `## Erklärung` is drilled by an item or serves an outcome**; otherwise it goes in a compact `### Feinheiten` table. A list over three members is a table or a bullet list, never a semicolon chain — and prose never restates what the table beside it already enumerates.
 
 ### Exercise items → [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md)
@@ -134,7 +176,7 @@ Section order (H2 headings, in German):
 - Topic `id` equals the filename; kebab-case ASCII. Exercise refs are path-ids like `a2/perfekt-haben-sein`.
 - **Item ids are stable.** Increment `revision` only when prompts, accepted answers, scoring, outcomes or focus semantics change — explanation-only polish does not.
 - Every set declares `role: pretest|practice|drill|checkpoint|probe|placement`.
-- **Every topic owns at least one `role: practice` set.** The first one is its `primaryPractice`, whose completion advances the Lernpfad — **so its item list must not grow later.** Add practice to a non-primary set instead.
+- **Every topic owns at least one `role: practice` set**, and names one of them `elements.primary_practice` — completing it advances the Lernpfad, **so its item list must not grow later.** Add practice to a non-primary set instead.
 - Every item declares `outcomes:`; every item should have a bilingual `explain` (it is where the teaching happens); every item that drills one nameable confusion gets a `focus` tag. `preview: true` only for an intentional forward reference.
 - **Pretests are never weakness evidence, never training, never `Geübt`.** The `-pretest` filename is validator-enforced in both directions, because an attempt records no role.
 - **Item mix, per topic, over `role: practice` sets:** ≥ 2 `translate`; `mc` ≤ ⅓; `mc`+`match`+`order` ≤ 45%. Plus `order` ≤ 2 **per set** — it is scaffolding, not a test, and it saturates. The ratios count **written items only**: `audio-comprehension` is on neither side, because the bar's argument is that the learner never has to *produce*, and production is what a listening task cannot ask for. Counting it in the denominator alone let every recorded item buy a topic more room for written recognition.
@@ -146,7 +188,7 @@ Section order (H2 headings, in German):
 ### Focus tags → [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md)
 
 The table there is an **allowlist**: `bun run validate` rejects a tag not registered in
-`focusIntroducedBy` (`src/lib/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
+`focusIntroducedBy` (`packages/content/src/focus-tags.ts`) with the topic that introduces it — `tests/focus-tags.test.ts` holds the doc table and the allowlist equal in both directions. Use an existing tag
 whenever possible; a new one is for a genuinely new confusion and joins both places in the same
 change. Leave genuinely mixed or pure-comprehension items untagged — **a false tag is worse than no
 tag**, because it sends training and drill authoring after a confusion the learner does not have.
@@ -188,13 +230,13 @@ One mechanical hazard in the same family — silently wrong, and no gate catches
 
 A topic is not done until all nine are:
 
-1. `content/topics/<level>/<id>.mdx` — full frontmatter + article following the skeleton.
+1. `content/topics/<level>/<id>.topic.yaml` — the manifest, and `<id>.mdx` beside it: the article following the skeleton, **prose only**.
 2. Exercise set(s) — 8–15 items, ≥3 types, each with `explain`, clearing the item-mix bar; every `translate` declares `key_tokens`; include the modes the outcomes claim.
 3. Pretest — 3 items at `<id>-pretest.yaml`, referenced via `pretest`.
-4. Probe family — `probe-<id>.yaml`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
+4. Probe family — `probe-<id>.yaml`, listed in `elements.probes`, 3 **parallel variants**: different tasks, **one competence**, same `focus` and `outcomes`, none answerable from memory of a practice item. A second family on a topic is ordinary work since P19-4 gave every family its own explicit `arming:` list — it cannot move an existing family's clock — but **still measure `armedAt` before and after**, because a source reading is not a measurement.
 5. Reading — `kind: intensive`, ~90–130 words, 6–10 glosses, 3 questions.
 6. Vocab file if the topic introduces a word field; fill `ipa` with `bun run gen:ipa`, then review it.
-7. Atlas node + unit slot, with 2–5 `outcomes`. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
+7. Unit slot in `content/atlas.yaml`, and 2–5 `outcomes` in the manifest. **Every outcome must be measured by a `practice`/`drill` item or a reading question** — pretests, checkpoints and probes deliberately do not count, because an outcome only ever tested was never practised.
 8. New `focus` tags registered in [`docs/authoring/focus-tags.md`](docs/authoring/focus-tags.md) **and** in `focusIntroducedBy`.
 9. `bun run validate` passes.
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Level } from '../../lib/schemas';
+import type { Level } from '@da/schema';
 import { getAttempts, getCardStates, getTopicsState, logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';

@@ -156,7 +156,7 @@ its explanation prose is not immersion, it is a table collection.
   with `content/reference-data` exempt — its `{de, en, ru}` records are German example sentences,
   not explanation records.
 - **`translation` and `model_translation` are exempt from `de` parity** (`RENDERING_PATH`,
-  `src/lib/langcheck.ts`), for the same reason there is no `prompt_de`: they render the item's own
+  `packages/schema/src/langcheck.ts`), for the same reason there is no `prompt_de`: they render the item's own
   German into the explanation languages, and under `de` that German is already on screen as the
   prompt, the answer or the reading text — a `de` there is the source text printed twice, handed
   back to the learner as if it were help. Without the exemption a `de`-carrying B1 set is not

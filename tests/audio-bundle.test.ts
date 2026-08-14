@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 import { bundlesAudio, listeningAudioUrl } from '../src/lib/audio';
 import { reviewedRecordings } from '../src/integrations/audio-bundle';
-import { listeningAudioPath } from '../src/lib/schemas';
+import { listeningAudioPath } from '@da/schema';
 
 /**
  * The build split is the only reason the same content tree can serve a 40 MB desktop bundle

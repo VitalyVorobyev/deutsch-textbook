@@ -1,6 +1,6 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
-import type { Bilingual, ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
+import type { Bilingual, ExerciseItem, ExerciseRole, Level, VisualDocument } from '@da/schema';
 import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';

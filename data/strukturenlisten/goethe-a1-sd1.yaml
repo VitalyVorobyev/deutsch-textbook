@@ -1,0 +1,228 @@
+# Goethe-Zertifikat A1 · Start Deutsch 1 — the official GRAMMAR inventory.
+#
+# The structural counterpart of data/goethe-a1-wortliste.txt, and the thing this repo did not
+# have until 2026-08-14. The 2026-08-12 level-completeness audit recorded that "the SD1 grammar
+# inventory proper (Prüfungsziele / Testbeschreibung) is not among the local materials" and
+# stopped there; it is a free download from goethe.de and always was. Until then
+# data/grammar-inventory.yaml was measured against nothing but itself, which is how a level
+# reports 100% while its denominator is missing rows.
+#
+# WHAT IS COPIED HERE, AND WHAT IS NOT. Structure labels only, in the document's own section
+# order — the same boundary the Wortliste manifests keep ("the official glosses and examples are
+# copyrighted; all translations and examples in content/vocab/ are original"). The document's
+# example sentences are NOT reproduced: every German example in this repo is original. A label
+# such as "Präsens aller Verben der Wortliste" is a fact about what the exam tests.
+#
+# HOW THE DOCUMENT DESCRIBES ITS OWN LIST — this governs how a row may be read:
+#   "Die Inventarisierung der Grammatik bezieht sich dementsprechend in erster Linie auf die
+#    Aufgabenstellung im Bereich der rezeptiven Fertigkeiten […] Für die mündliche und
+#    schriftliche Produktion ist die Grammatik-Liste dagegen von untergeordneter Bedeutung."
+#    (Seite 100)
+# An entry here is therefore a COMPREHENSION requirement at A1, not a production one. That is
+# why `source.mode: reception`, and why grammar-inventory rows carry level.reception separately
+# from level.production: a structure this list puts at A1 and the course produces at A2 is a
+# deliberate sequencing decision, not a gap.
+#
+# THE ASTERISK. Two entries carry `*` in this booklet with no legend anywhere in it — a leftover
+# from the older combined *Start Deutsch 1 und 2* handbook, where the legend reads "Für Start
+# Deutsch 2 gelten darüber hinaus auch die mit Sternchen * gekennzeichneten Strukturen". Both are
+# encoded as A2 with `note:` saying so, rather than silently resolved either way.
+#
+# OVERVIEW VS DETAIL. The section overview (Seite 101) lists five Adjektiv subtopics; the detail
+# tables (Seite 103) specify two. The three with no detail row carry `specified: overview-only`,
+# because a discrepancy inside the source is a fact about the source and must not be smoothed.
+#
+# Extraction: pdftotext -layout docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A1_SD1.pdf -
+# Reference from a grammar-inventory row: `claims: [goethe-a1-sd1:<key>]`.
+
+source:
+  id: goethe-a1-sd1
+  title: "Goethe-Zertifikat A1 · Start Deutsch 1 — Prüfungsziele, Testbeschreibung"
+  publisher: "Goethe-Institut"
+  edition: "VS_08_190422"
+  chapter: "Inventare — Grammatik: Morphologische und syntaktische Strukturen"
+  pages: "100–106"
+  pdf_pages: "102–108"
+  levels: [A1]
+  audience: Erwachsene
+  mode: reception
+  url: "https://www.goethe.de/pro/relaunch/prf/it/Pruefungsziele_Testbeschreibung_A1_SD1.pdf"
+  local: "docs/GeotheInstitute/Pruefungsziele_Testbeschreibung_A1_SD1.pdf"
+  retrieved: "2026-08-14"
+
+sections:
+  - id: verb-tempus
+    de: "Verb · Tempus"
+    page: 101
+    entries:
+      - { key: praesens-alle-verben, level: A1, de: "Präsens aller Verben der Wortliste" }
+      - { key: perfekt-ausgewaehlte-verben, level: A1, de: "Perfekt der Verben: arbeiten / bleiben / essen / fahren / fragen / glauben / haben / lesen / lernen / machen / schlafen / sehen / passieren / trinken / verstehen" }
+      - { key: partizipien-ausgewaehlt, level: A1, de: "Ausgewählte Partizipien" }
+      - { key: praeteritum-haben-sein, level: A1, de: "Präteritum: 1. und 3. Person von haben und sein" }
+
+  - id: verb-modus
+    de: "Verb · Modus"
+    page: 101
+    entries:
+      - { key: indikativ-alle-verben, level: A1, de: "Indikativ aller Verben der Wortliste" }
+      - { key: konjunktiv2-moegen, level: A1, de: "Konjunktiv II von mögen" }
+      - { key: konjunktiv2-werden, level: A1, de: "Konjunktiv II von werden" }
+      - { key: imperativ-du-ihr-sie, level: A1, de: "Imperativ in der du-, ihr- und Sie-Form" }
+
+  - id: verb-modalverben
+    de: "Verb · Modalverben"
+    page: 101
+    entries:
+      - { key: modal-koennen, level: A1, de: "Präsens von können" }
+      - { key: modal-wollen, level: A1, de: "Präsens von wollen" }
+      - { key: modal-muessen, level: A1, de: "Präsens von müssen" }
+      - { key: modal-duerfen, level: A1, de: "Präsens von dürfen" }
+      - { key: modal-sollen, level: A1, de: "Präsens von sollen" }
+      - { key: modal-moechten, level: A1, de: "Präsens von möchten" }
+
+  - id: verb-praefix
+    de: "Verb · Verben mit trennbarem Präfix"
+    page: 101
+    entries:
+      - { key: trennbares-praefix, level: A1, de: "Verben mit trennbarem Präfix" }
+
+  - id: nomen
+    de: "Nomen"
+    page: 102
+    entries:
+      - { key: genus, level: A1, de: "Genus: der / die / das" }
+      - { key: numerus, level: A1, de: "Numerus: Singular und Plural der Nomen der Wortliste" }
+      - { key: kasus-nominativ-akkusativ, level: A1, de: "Kasus: Nominativ und Akkusativ aller Nomen der Wortliste" }
+      - key: kasus-dativ
+        level: A2
+        de: "Kasus: Dativ aller Nomen der Wortliste"
+        note: "Printed as `Dativ*` in this booklet, whose legend is missing; the combined Start-Deutsch-1-und-2 handbook defines `*` as Start Deutsch 2 (A2). Encoded as A2 on that reading. The dative PRONOUN frames below carry no asterisk and stay A1."
+      - { key: genitiv-eigenname, level: A1, de: "Genitiv bei Eigennamen im Singular" }
+      - { key: genitiv-rezeptiv, level: A1, de: "Genitiv — rezeptiv" }
+
+  - id: artikelwoerter
+    de: "Artikelwörter · Artikel"
+    page: 102
+    entries:
+      - { key: artikel-definit, level: A1, de: "Definit: der / die / das / die" }
+      - { key: artikel-demonstrativ, level: A1, de: "Demonstrativ: dieser / diese / dieses / diese" }
+      - { key: artikel-indefinit, level: A1, de: "Indefinit: ein / eine / ein" }
+      - { key: artikel-null, level: A1, de: "Nullartikel" }
+      - { key: artikel-possessiv, level: A1, de: "Possessiv: mein / dein / sein / ihr / Ihr" }
+      - { key: artikel-possessiv-unser, level: A1, de: "Possessiv: unser" }
+      - { key: artikel-negativ-kein, level: A1, de: "Negativ: kein" }
+
+  - id: pronomen
+    de: "Pronomen"
+    page: 103
+    entries:
+      - { key: pron-indefinit-man, level: A1, de: "Indefinit: man" }
+      - { key: pron-indefinit-etwas, level: A1, de: "Indefinit: etwas" }
+      - { key: pron-indefinit-nichts, level: A1, de: "Indefinit: nichts" }
+      - { key: pron-indefinit-mehr, level: A1, de: "Indefinit: mehr" }
+      - { key: pron-indefinit-alles, level: A1, de: "Indefinit: alles" }
+      - { key: pron-indefinit-welch, level: A1, de: "Indefinit: welch-" }
+      - { key: pron-personal-nominativ, level: A1, de: "Personalpronomen im Nominativ" }
+      - { key: pron-personal-akkusativ, level: A1, de: "Personalpronomen im Akkusativ: mich / dich / ihn / sie / es" }
+      - { key: pron-personal-dativ-verben, level: A1, de: "Personalpronomen im Dativ bei den Verben danken / gehören / helfen und es geht: mir / dir / euch / Ihnen" }
+      - { key: pron-reziprok, level: A1, de: "Reziprokpronomen: sich / uns" }
+      - { key: pron-frage-nominativ, level: A1, de: "Fragepronomen im Nominativ: Wer / Was" }
+      - { key: pron-frage-akkusativ, level: A1, de: "Fragepronomen im Akkusativ: Wen / Was" }
+      - { key: pron-frage-dativ, level: A1, de: "Fragepronomen im Dativ: Wem?" }
+
+  - id: adjektiv
+    de: "Adjektiv"
+    page: 103
+    entries:
+      - { key: adj-praedikativ, level: A1, de: "prädikativ" }
+      - { key: adj-adverbial, level: A1, de: "adverbial" }
+      - { key: adj-attributiv, level: A1, de: "attributiv", specified: overview-only }
+      - { key: adj-komparation, level: A1, de: "Komparation", specified: overview-only }
+      - { key: adj-zahlwoerter, level: A1, de: "Zahlwörter", specified: overview-only }
+
+  - id: praeposition-temporal
+    de: "Präposition · temporal"
+    page: 104
+    entries:
+      - { key: praep-temp-an, level: A1, de: "an + Dativ" }
+      - { key: praep-temp-ab, level: A1, de: "ab + Akkusativ" }
+      - { key: praep-temp-fuer, level: A1, de: "für + Akkusativ" }
+      - { key: praep-temp-in, level: A1, de: "in + Dativ" }
+      - { key: praep-temp-nach, level: A1, de: "nach + Dativ" }
+      - { key: praep-temp-ueber, level: A1, de: "über" }
+      - { key: praep-temp-um, level: A1, de: "um + Akkusativ" }
+      - { key: praep-temp-von-bis, level: A1, de: "von … bis" }
+      - { key: praep-temp-vor, level: A1, de: "vor + Dativ" }
+
+  - id: praeposition-lokal
+    de: "Präposition · lokal"
+    page: 104
+    entries:
+      - { key: praep-lok-an, level: A1, de: "an + Dativ / Akkusativ" }
+      - { key: praep-lok-auf, level: A1, de: "auf + Dativ" }
+      - { key: praep-lok-aus, level: A1, de: "aus + Dativ" }
+      - { key: praep-lok-bei, level: A1, de: "bei + Dativ" }
+      - { key: praep-lok-in, level: A1, de: "in + Dativ / Akkusativ" }
+      - { key: praep-lok-nach, level: A1, de: "nach + Dativ" }
+      - { key: praep-lok-von-nach, level: A1, de: "von … nach + Dativ" }
+      - { key: praep-lok-unter, level: A1, de: "unter + Dativ" }
+      - { key: praep-lok-zu, level: A1, de: "zu + Dativ" }
+
+  - id: praeposition-modal
+    de: "Präposition · modal"
+    page: 104
+    entries:
+      - { key: praep-mod-aus, level: A1, de: "aus + Dativ" }
+      - { key: praep-mod-fuer, level: A1, de: "für + Akkusativ" }
+      - { key: praep-mod-mit, level: A1, de: "mit + Dativ" }
+      - { key: praep-mod-ohne, level: A1, de: "ohne + Akkusativ" }
+
+  - id: syntax
+    de: "Syntax"
+    page: 105
+    entries:
+      - { key: verbzweitstellung, level: A1, de: "Verbzweitstellung" }
+      - { key: erg-nominativ, level: A1, de: "Nominativergänzung" }
+      - { key: erg-akkusativ, level: A1, de: "Akkusativergänzung" }
+      - { key: erg-dativ, level: A1, de: "Dativergänzung bei den Verben danken, gehören, geben, helfen" }
+      - { key: erg-lokal, level: A1, de: "Lokalergänzung" }
+      - { key: erg-qualitativ, level: A1, de: "Qualitativergänzung" }
+      - { key: satzklammer, level: A1, de: "Satzklammer" }
+      - { key: negation-nicht, level: A1, de: "Negation mit nicht" }
+      - { key: negation-kein, level: A1, de: "Negation mit kein" }
+      - { key: frage-entscheidung, level: A1, de: "Entscheidungsfrage" }
+      - { key: frage-ergaenzung, level: A1, de: "Ergänzungsfrage" }
+
+  - id: satzverbindungen
+    de: "Syntax · Satzverbindungen"
+    page: 105
+    entries:
+      - { key: satzverb-und, level: A1, de: "Satzverbindungen mit und" }
+      - { key: satzverb-oder, level: A1, de: "Satzverbindungen mit oder" }
+      - { key: satzverb-aber, level: A1, de: "Satzverbindungen mit aber" }
+      - { key: satzverb-denn, level: A1, de: "Satzverbindungen mit denn" }
+      - { key: satzverb-dann, level: A1, de: "Satzverbindungen mit dann" }
+      - key: satzverb-wenn
+        level: A2
+        de: "Satzverbindungen mit wenn"
+        note: "Printed as `wenn *`; same missing legend as kasus-dativ above, and encoded as A2 on the combined handbook's reading."
+
+  - id: wortbildung-nomen
+    de: "Wortbildung · Nomen"
+    page: 105
+    entries:
+      - { key: wb-nomen-er, level: A1, de: "Nominalisierung auf -er" }
+      - { key: wb-nomen-ung, level: A1, de: "Nominalisierung auf -ung" }
+      - { key: wb-nomen-in, level: A1, de: "Feminine Formen auf -in" }
+      - { key: wb-komposita-bestimmungswort, level: A1, de: "Komposita: gleiches Bestimmungswort" }
+      - { key: wb-komposita-grundwort, level: A1, de: "Komposita: gleiches Grundwort" }
+      - { key: wb-nomen-partizip, level: A1, de: "Partizipien" }
+
+  - id: wortbildung-adjektiv
+    de: "Wortbildung · Adjektive"
+    page: 105
+    entries:
+      - { key: wb-adj-un, level: A1, de: "Vorsilbe un-" }
+      - { key: wb-adj-los, level: A1, de: "Nachsilbe -los" }
+      - { key: wb-adj-bar, level: A1, de: "Nachsilbe -bar" }
+      - { key: wb-adj-komposita, level: A1, de: "Komposita" }

@@ -4,7 +4,7 @@
  *
  * Read-only, like scripts/lang-cost.ts and scripts/prose-shape.ts: no gate, no
  * threshold, nothing in `bun run validate` calls this. The measurement lives in
- * src/lib/comprehensibility.ts and states its counting method there; this is the
+ * packages/content/src/comprehensibility.ts and states its counting method there; this is the
  * report around it.
  *
  * Usage:
@@ -34,7 +34,7 @@ import {
   median,
   type RankedLevel,
   type TopicLoad,
-} from '../src/lib/comprehensibility.ts';
+} from '@da/content/comprehensibility';
 
 const args = process.argv.slice(2);
 const rank = args.includes('--rank');
@@ -69,7 +69,7 @@ if (rank) {
   const out: string[] = [
     'Input load per topic — ahead-of-the-learner tokens per 100, by section.',
     'Sorted by `all` (article+reading pooled), the provisional primary indicator.',
-    'Read against the MEDIAN row, not against zero. Method: src/lib/comprehensibility.ts.',
+    'Read against the MEDIAN row, not against zero. Method: packages/content/src/comprehensibility.ts.',
   ];
 
   for (const level of levels) {
@@ -212,7 +212,7 @@ out.push(
   '',
   'A number here ranks this topic against its level, and nothing more —',
   'the matcher folds inflections without a lemmatizer and the Nebensatz count is',
-  'a word list, not a parse. See the module doc in src/lib/comprehensibility.ts.',
+  'a word list, not a parse. See the module doc in packages/content/src/comprehensibility.ts.',
   '',
 );
 

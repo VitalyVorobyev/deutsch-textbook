@@ -1,6 +1,6 @@
 /** Topic completion tiers derived from the attempt/card log + persisted read/manual state. */
 import type { Attempt, CardStates, TopicsState, TopicManual, TopicPlacement } from './store';
-import type { CurriculumStrand } from './schemas';
+import type { CurriculumStrand } from '@da/schema';
 import { localDateString } from './store';
 import { scoreTotal, verifiedOnly } from './scoring';
 

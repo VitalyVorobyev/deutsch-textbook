@@ -1,6 +1,6 @@
 /** FSRS scheduling and deck building. */
 import { createEmptyCard, fsrs, type Card, type Grade } from 'ts-fsrs';
-import type { VocabEntry, WordField, Wortnetz } from './schemas';
+import type { VocabEntry, WordField, Wortnetz } from '@da/schema';
 import { shuffle } from './shuffle';
 import { localDateString, type StoredCard } from './store';
 

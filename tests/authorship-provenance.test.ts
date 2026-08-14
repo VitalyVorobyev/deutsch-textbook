@@ -15,11 +15,11 @@ import {
   legacyAssetChangeProblems,
   reviewedTopicAuthorshipProblems,
   simulatedInstructionalAssetPaths,
-} from '../src/lib/authorship-provenance';
+} from '@da/content/authorship-provenance';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { discoverySchema, visualDocumentSchema } from '../src/lib/schemas';
+import { discoverySchema, visualDocumentSchema } from '@da/schema';
 
 const root = resolve(import.meta.dir, '..');
 

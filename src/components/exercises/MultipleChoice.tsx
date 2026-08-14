@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { z } from 'zod';
-import type { mcItemSchema } from '../../lib/schemas';
+import type { mcItemSchema } from '@da/schema';
 import { shuffle } from '../../lib/shuffle';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 

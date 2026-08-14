@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Chrome from '../../components/Chrome.astro';
 import CurriculumPath from '../../components/atlas/CurriculumPath';
 import { getCheckpoints, getTopicNodes } from '../../lib/content';
-import { getCurriculum } from '../../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
 const curriculum = getCurriculum();
 const topicNodes = await getTopicNodes();

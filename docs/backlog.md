@@ -39,6 +39,73 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
+**P26 · The six rows the 2026-08-14 anchor pass reopened.** Each exists in
+`data/grammar-inventory.yaml` with a deliberately unregistered focus tag, so `bun scripts/grammar-coverage.ts`
+reports it `✗` — the pattern B1 used at 0%. Closing one means: content, register the tag in
+`focusIntroducedBy` **and** `docs/authoring/focus-tags.md`, and lower the number in
+`tests/grammar-coverage.test.ts` in the same commit. Evidence and page citations:
+[grammar-structure-audit.md](curriculum/grammar-structure-audit.md) · the console's Lücken view.
+
+- **P26-1 · `koordination` (A1)** — *und / oder / aber / denn* joining two main clauses, with the
+  conjunction occupying no sentence position. Listed at A1 **and** A2 by Goethe. The sharpest of the
+  six: `~und`, `~oder` and `~aber` are ~-marked in `data/goethe-a1-wortliste.txt`, i.e. the lexical
+  manifest has been claiming the curriculum teaches them as grammar while no grammar row existed at
+  any level. The only systematic treatment anywhere is one comparison-table row in
+  `a2/verbindungen-folgen`. Likely owner: `a1/praesens-wortstellung` (it owns `verbzweit`, and the
+  contrast that makes A2's *weil*/*deshalb* learnable is that these four change nothing).
+- **P26-2 · `wortbildung-nomen` (A1)** — Komposita, *-er*, *-ung*, feminine *-in*. Wortbildung is one
+  of the eight top-level sections of **both** Goethe inventories and had no row at any level: the
+  largest single hole found. Not decoration — the gender of a compound comes from its last member,
+  *-ung* nouns are feminine without exception, and a learner who can decompose reads far more than
+  the Wortliste alone predicts.
+- **P26-3 · `wortbildung-adjektiv` (A1)** — *un-*, *-los*, *-bar*, *hellblau*. Kept separate from
+  P26-2 because the confusion differs: a compound asks which member carries the gender, an affix
+  asks what it does to the meaning. *-bar* is also the first passive-like form a learner meets.
+- **P26-4 · `demonstrativartikel` (A1)** — *dieser/diese/dieses*, listed at A1 and again at A2. The
+  confusion is not the meaning but that *dieser* takes the definite article's endings while a
+  following adjective then takes the weak ones, so it belongs beside `adjektiv-bestimmt`.
+- **P26-5 · `reziprokpronomen` (A2)** — *Wir sehen uns morgen*. Shares its FORM with the reflexive
+  and none of its meaning; EN marks the difference lexically (`each other`), RU/UK with «друг друга»,
+  so neither hand supplies the German syncretism. Reception A1, production A2.
+- **P26-6 · `interrogativartikel` (A2)** — *welch-* as a determiner plus *alle*. The trap is the
+  case: *Welchen Film…?* is where a nominative *Welcher* slips in, and EN `which` / RU «какой»
+  decline for neither or differently. Distinct from `indefinitpronomen`, which owns the free-standing
+  *welch-* pronoun.
+- **P26-7 · Buy the two missing anchors** — the Goethe/ÖSD **B1 Prüfungsziele** (ISBN
+  978-3-19-031868-1) and **Profile deutsch** (ISBN 978-3-468-49410-9). B1 currently reports 32/32
+  against **no external list at all**, exactly the state A1 was in while missing four structures;
+  Goethe delegates B2's inventory to Profile deutsch outright. Each becomes one
+  `data/strukturenlisten/*.yaml` and every new entry starts life `unclaimed`, so the size of the job
+  is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
+  the free A2 list here is *Fit in Deutsch 2*, the youth exam.
+- **P26-10 · The course never teaches turn-taking.** The first run of `bun scripts/handlungen.ts` (2026-08-14) reports 26/41 published Sprachhandlungen claimed, and **nine of the fifteen holes are one block**: the whole of DTZ §8.3 *Redeorganisation* — eine Äußerung einleiten/abschließen, um das Wort bitten, Zuhören signalisieren, zum Sprechen auffordern, gemeinsames Wissen andeuten, Beispiele geben, das Thema wechseln, Vermeidung. Six more: *Gefühle ausdrücken* (no outcome anywhere expresses feelings), *Wissen oder Nichtwissen ausdrücken*, *etwas bestätigen*, *Umgang mit der interkulturellen Begegnung*, *Umgang mit Wissensdivergenz*, *etwas hervorheben*. These are `spoken-interaction` competences and the corpus is already thin there; a discourse-strategy topic would close most of the block at once. Read the instrument before scoping — `beyond` is not a gap, only `unclaimed` is.
+- **P26-8 · `über` as a duration marker — RULED 2026-08-14, row added, still untaught.** The DTZ
+  Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
+  not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar
+  coverage reads 35/38. Closing it means authoring the items, not editing this line.
+- **P26-9 · Twenty articles whose `## Erklärung` has no `###` subsections** — every case topic among
+  them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
+  `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
+  rule; `packages/content/src/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
+  (exit 0) and the console badges each topic. The heading is the only addressable place a structure
+  is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
+  point but the whole article. Content work, one article at a time; the warning count is the counter.
+- **P26-10 · Thirteen taught structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
+  --by-point --no-probe`. Five at A1 (`gern`, `plural`, `negation-nicht`, `akkusativ-pronomen`,
+  `haben-wendungen`), eight at A2 (`adjektiv-praedikativ`, `aber-sondern`, `reflexiv-akkusativ`,
+  `reflexiv-dativ`, `um-zu`, `passiv-praesens`, `will-moechte`, `partizip2-system`). The lesson cycle
+  ends before its last step for each of them. Probe families are ordinary work since P19-4, but
+  **measure `armedAt` before and after** — a source reading is not a measurement.
+- **P26-11 · B1 has one drill set (8 items) against A2's thirteen (170)** — the remediation channel
+  is effectively unbuilt at B1, which is what P23-3 sees from the other end. Median practice per
+  confusion is 4 at B1 against 12 at A1, and 10 of 35 B1 tags live in exactly one practice file, so a
+  B1 confusion is drilled inside its own unit and never interleaved again. Authoring drills here also
+  raises the floors in `tests/grammar-depth.test.ts`.
+- **P26-12 · B1 pretests carry zero focus tags** (0 of 42) where A2's carry 72 of 72 — the same
+  artifact class tagged differently per level. Pretests are never weakness evidence, so nothing is
+  mis-measured today; but any instrument reading pretest tags sees two levels and one blind spot.
+  Decide the convention, then make all three levels match it.
+
 - **P25-14 · Non-material findings of the 2026-08-12 strand audit (batch 1)** — the material
   findings (false dative-club closure rule, missing plural in the A1 shape rule, six items
   rejecting or mis-attributing correct German) were fixed in the batch PR; these were real but
@@ -282,7 +349,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 ### Instruments and gates
 
 - **P25-15 · Instrument note from the strand audit (2026-08-12)** — verified against
-  `src/lib/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
+  `packages/grading/src/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
   case fold and the validator guard blind to it — were fixed the same day: sentence-head fold +
   `gradedTokenPositions` mirror, with the three corpus items the new guard caught):
   - The validator holds a probe family's item `focus` equal to the arming set's, so a variant that
@@ -344,7 +411,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   `um … zu`), and full forms whose short forms ship (`Personenkraftwagen`, `Akkumulator`). Several
   of the frames are grammar-taught, so they may earn `~` markers — but a `~` must be earned (the
   validator requires the word in the taught surface) and each needs a manifest line. Go row by row;
-  the rest stay open with this entry as the reason, and no coverage figure may round them away. — when an existing
+  the rest stay open with this entry as the reason, and no coverage figure may round them away.
+  **The correlative frames are settled as of 2026-08-14 and are not lexis:** the DTZ
+  Prüfungshandbuch §8.4 lists *entweder … oder*, *weder … noch*, *sowohl … als auch*, *nicht nur …
+  sondern auch* and *je … desto* as **6.8 Doppelkonjunktionen**, and *um … zu* as a 6.5
+  Nebensatz-Konjunktion — structures, in a grammar inventory, all six claimed by
+  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. So they are eligible for `~`;
+  what remains is the per-row manifest work and the taught-surface check the validator runs, which
+  is real work and is what is still open here. — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
   `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).
@@ -384,7 +458,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   `bun scripts/comprehensibility.ts <level>/<topic-id>` reports ahead-of-the-learner tokens per
   section with the words listed, sentence length and Nebensatz density, and terminology density per
   explanation half; `--rank` ranks a level or all three against medians read off the corpus
-  (`src/lib/comprehensibility.ts`, [doc](authoring/coverage-instruments.md)). It is read-only and
+  (`packages/content/src/comprehensibility.ts`, [doc](authoring/coverage-instruments.md)). It is read-only and
   gates nothing. Two things remain. **Calibrate before trusting it**: rank all 46 topics against
   the owner's felt-difficulty list, because a ranking nobody has checked against the feeling it was
   built to explain is still an assertion. The four known false-positive classes (proper names,
@@ -491,7 +565,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   `diffExpectedWords` twice with the arguments swapped, and each traversal picks its own
   direction-dependent alignment, so a transposition can mark different words on the two sides.
   Display only — scoring and attribution are untouched. Return both flag arrays from one traversal
-  in `src/lib/worddiff.ts`.
+  in `packages/grading/src/worddiff.ts`.
 - **P18-8 · `review:gate` cannot see a review whose body omits the Reviewed-commit line** —
   `scripts/pr-review-gate.ts` proves review-of-HEAD only by parsing "Reviewed commit: `sha`" out of
   review bodies, and a review can carry the exact HEAD sha in its API `commit_id` while omitting the
@@ -532,7 +606,7 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   from a topic to a Referenz page, none from Referenz back into the topics that
   teach a form, no topic-to-topic "see also".
   [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) settles the how — every edge is
-  **derived** from `focusIntroducedBy` (`src/lib/focus-tags.ts`), `deepens` edges and reference-data
+  **derived** from `focusIntroducedBy` (`packages/content/src/focus-tags.ts`), `deepens` edges and reference-data
   keys, never a hand-maintained list. **Shipped 2026-08-06** in two passes: five reference files
   carry a validator-checked page-level `focus` list rendered by `TaughtIn.astro`, `/referenz` is
   grouped by function, and every topic page carries a derived "Siehe auch" footer
@@ -564,6 +638,54 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   items name outcomes from six topics: accurate for `role: exam-practice`, but the `topic:` field
   then says something untrue. Both are shape questions — where exam practice belongs in navigation
   is a product call, and giving the role a level instead of a topic is a schema change.
+- **P26-13 · The A2 and B1 exam trainers are unblocked** — the owner downloaded the remaining free
+  goethe.de material on 2026-08-14, so `docs/GeotheInstitute/` now also holds `A2_Modellsatz_Erwachsene`,
+  `A2_Uebungssatz_Erwachsene`, `b1_modellsatz_erwachsene`, `B1_Uebungssatz_Erwachsene` and four
+  Hören tracks (A2 ×2, B1 ×2). `bun run exam:ingest` reads `exam-sources.yaml`, so extending the
+  trainer past A1 is config plus the cue pass — and the cue pass is the expensive half: labels and
+  boundaries proposed by `bun scripts/exam-cues-scan.ts` are guesses and must be **verified by ear**
+  (or against word-level ASR, per the exam-cue note) before they ship. ADR 0009 holds unchanged:
+  nothing these files contain, and no manifest reproducing their task texts, enters the repo.
+  Inventory: `docs/GeotheInstitute/SOURCES.md`. **They anchor no grammar** — their "Strukturen" hits
+  are Schreiben/Sprechen marking criteria, not inventories; the grammar anchors are the
+  *Prüfungsziele*, and B1's is still unbought (P26-7).
+- **P26-14 · The topic → reference-page route table is still hard-coded in an `.astro` file** —
+  `REFERENZ_ROUTES` in `src/pages/topics/[...slug].astro` maps six of the seven
+  `content/reference-data/` files to an href and a German title. The *edge* is properly derived
+  (ADR 0007: a topic links to a reference page when it introduces one of that page's focus tags);
+  only the destination is hand-written, so a new reference page silently links from nowhere. The
+  fix is a `route:`/`title:` pair on each reference-data file, not a per-topic `elements.reference`
+  list — ADR 0012 deliberately kept derived edges out of the manifests. **Measure first**:
+  `praepositionen.yaml` has no entry in the table at all, and whether that is a gap or a deliberate
+  fold into `/referenz/kasus-praepositionen` decides whether this is 7 rows or 6.
+- **P26-15 · Topic `tags:` has zero consumers** — every one of the 49 manifests carries a `tags:`
+  array (`[verbs, past-tense]`, …) that nothing reads: not the app, not a script, not Redaktion,
+  not a test. It was carried through the ADR 0012 migration unchanged so that the move stayed a
+  provable relocation. Either give it a job (a Redaktion facet is the obvious one) or delete the
+  field from `topicManifestSchema` and the 49 files in one change.
+- **P26-17 · The DTZ § 9.2 Wortliste cross-check is the one anchor still unread** — the fourth
+  inventory in the handbook (pp. 105–178, ~2 100 Haupteinträge + ~600 indented Nebeneinträge) would
+  answer "does the adult A2–B1 standard expect words the Goethe A2 and B1 lists do not", against
+  `data/goethe-a2-wortliste.txt` (1 539) and `data/goethe-b1-wortliste.txt` (3 537). **Evidence, not
+  a denominator** — a different list for a different exam, so it is reported and never merged, and
+  it earns no `data/lexiklisten/` directory. Deferred on 2026-08-14 for cost against value: it is
+  the only anchor whose extraction is a project rather than a transcription, and the only one whose
+  output is a one-off report rather than a standing instrument. Geometry measured so a second
+  attempt does not start from zero: on a sample page, main entries sit at x≈133, indented
+  Nebeneinträge at x≈158 and the copyrighted example column at x≈250 (margins alternate by page
+  parity, as everywhere in this PDF). The unsolved part is **continuation lines** — `abhängen, hängt
+  ab,` / `hing ab, hat abgehangen` are two lines of one entry at the same x, so telling a new
+  headword from a verb-form continuation needs a heuristic, and `bun scripts/anchor-check.ts` cannot
+  check a lexis list the way it checks a label. Headwords only if it is ever done: the examples are
+  copyrighted (ADR 0009), exactly as the two existing manifests already record.
+- **P26-16 · Redaktion rebuilds the whole corpus after a one-field write** — measured in the
+  browser on 2026-08-14: `PUT /__write` returns in milliseconds, then `invalidateContentGraph`
+  throws the memoised graph away and the next `/__graph` takes **~6.6 s**, plus ~6 s for the
+  `bun run validate` the controller runs before it answers. The control holds the value it wrote
+  meanwhile (`Feldwahl`), so nothing lies on screen — but twelve seconds per click is the cost that
+  gets a feature stopped being used. Two independent fixes: invalidate *per file* rather than
+  wholesale, and let the verifier check only the touched file's rules. Neither is needed for the
+  two fields shipped today; both are needed before the allowlist grows.
 - **P13-1 · Spoken-mode placement evidence** — document or prototype only when the app can collect
   mode-valid evidence; written selection must never masquerade as speech.
 - **P13-2 · Next-level placement offer** — surface a newly available level test without hard-locking.

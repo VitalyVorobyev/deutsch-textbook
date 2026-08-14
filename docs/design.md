@@ -28,7 +28,7 @@ content YAML / MDX
                          └── bun run validate / test / check / build
 ```
 
-`src/lib/schemas.ts` is the source of truth for content shapes. Astro collection loading proves
+`packages/schema/src/index.ts` is the source of truth for content shapes. Astro collection loading proves
 that individual records conform; `scripts/validate.ts` enforces relationships that schemas cannot
 see, including identity/filename parity, curriculum ownership, unresolved references, language
 parity, outcome measurement and canonical relation uniqueness.
@@ -64,10 +64,21 @@ Receptive-only members have no mastery identity.
 
 ## Curriculum and learning flow
 
-`src/lib/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
+`packages/content/src/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
 selection; `deepens` and shared focus tags reactivate earlier knowledge without duplicating a
 lesson. Navigation is soft: the system recommends a next step but does not prevent deliberate
 exploration.
+
+The spine orders **topics**; `data/grammar-inventory.yaml` describes the **grammar** the topics
+teach, and the two are deliberately separate dimensions. Each inventory row carries a `strand` (one
+of ten grammatical systems), a `level: {reception, production}` pair — the published standards are
+reception standards and this is a production course, so one number could not hold both — `deepens:`
+edges naming the rows it is the deeper pass over, and `claims:` citations into
+`data/strukturenlisten/`, the external inventories the denominator is measured against
+([ADR 0011](adrs/0011-external-grammar-anchors.md)). Nothing at runtime reads any of it: the four
+fields exist so the curriculum can be audited along the language's own axes rather than only along
+the spine, which is what `bun run redaktion` renders and what `scripts/structures.ts` and
+`scripts/grammar-depth.ts` measure.
 
 A normal learning cycle combines:
 
@@ -197,7 +208,7 @@ English and Russian are the core explanation halves; Ukrainian is an independent
 written from the German, never from a sibling half — required wherever a scope has entered a
 Ukrainian authoring wave (a wave is a scope of files, not a mode of writing). German-medium
 explanation halves ship with B1 content and are never backfilled to A1/A2. `src/lib/prefs.ts`
-selects the requested half and defines fallback behavior; `src/lib/langcheck.ts` and the validator
+selects the requested half and defines fallback behavior; `packages/schema/src/langcheck.ts` and the validator
 enforce parity and alphabet discipline.
 
 Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for the dual-language
@@ -223,7 +234,7 @@ Adding such context must not change card ids, SRS scheduling or snapshot state.
 
 ## Change boundaries
 
-- Change a content shape in `src/lib/schemas.ts`, collection wiring and validator/tests together.
+- Change a content shape in `packages/schema/src/index.ts`, collection wiring and validator/tests together.
 - Change persisted state only with an explicit migration and old-snapshot tests.
 - Change curriculum identities only before learner data exists, or with a documented migration.
 - Change evidence semantics only with production-scoring, mastery and audit tests.

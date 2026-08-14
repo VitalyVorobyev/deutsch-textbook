@@ -7,7 +7,7 @@ import {
   proseShapeProblems,
   proseShapeStats,
   sentences,
-} from '../src/lib/prose-shape';
+} from '@da/content/prose-shape';
 
 /** A body of `n` words, as one paragraph inside one half. */
 const half = (tag: string, n: number) => `<${tag}>\n${Array(n).fill('Wort').join(' ')}\n</${tag}>`;

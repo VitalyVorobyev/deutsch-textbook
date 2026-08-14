@@ -8,7 +8,7 @@
 import { afterEach, beforeAll, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import type { ComponentType } from 'react';
-import { translateItemSchema } from '../src/lib/schemas';
+import { translateItemSchema } from '@da/schema';
 import type { DueProbe } from '../src/lib/probes';
 import type { TrainingSet } from '../src/lib/training';
 import * as store from '../src/lib/store';

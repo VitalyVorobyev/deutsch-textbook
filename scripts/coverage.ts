@@ -1,7 +1,7 @@
 /**
  * Goethe Wortliste coverage report (dev tool, not part of the validate gate).
  *
- * The measurement itself lives in src/lib/coverage.ts, because the Über page
+ * The measurement itself lives in packages/content/src/coverage.ts, because the Über page
  * publishes the same number and the two must never disagree. This is the report
  * around it: per section, which manifest words a deck already covers
  * (`covered-by`), which are addressed as grammar (`~`), which are missing, and
@@ -19,8 +19,8 @@
  */
 import { readFileSync } from 'node:fs';
 import * as YAML from 'yaml';
-import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
-import type { Level } from '../src/lib/schemas';
+import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '@da/content/coverage';
+import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
 const missingOnly = args.includes('--missing-only');

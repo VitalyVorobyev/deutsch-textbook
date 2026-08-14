@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import { caseReferenceSchema } from '../../lib/schemas';
+import { caseReferenceSchema } from '@da/schema';
 type View = 'articles-akk' | 'articles-dat' | 'pronouns-akk' | 'pronouns-dat' | 'prepositions' | 'prepositions-dat' | 'prepositions-wechsel';
 interface Props { view: View }
 const { view } = Astro.props;

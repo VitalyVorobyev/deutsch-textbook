@@ -30,8 +30,8 @@ Two facts about fit, measured 2026-08-04:
   (`scripts/validate.ts:1309`), with at most 2 gist questions (`:1313`) and a gloss-density cap
   (`:1321`). Six of ten sit inside the band as they stand; four (Bremer Stadtmusikanten, Hans im
   Glück, Kalif Storch, Das kalte Herz) run long and need trimming or splitting into episodes.
-- **Provenance.** `readingSchema` (`src/lib/schemas.ts:725`–`:748`) has **no** `attribution` or
-  `license` field. `documentSchema` does (`src/lib/schemas.ts:765`–`:766`), and refuses to validate
+- **Provenance.** `readingSchema` (`packages/schema/src/index.ts:725`–`:748`) has **no** `attribution` or
+  `license` field. `documentSchema` does (`packages/schema/src/index.ts:765`–`:766`), and refuses to validate
   a `real`/`adapted` document without both (`:769`). So today a reading adapted from someone else's
   work can ship with its provenance in a comment, or with none at all, and every gate stays green.
 

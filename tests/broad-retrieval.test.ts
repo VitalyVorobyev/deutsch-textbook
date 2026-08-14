@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { BROAD_RETRIEVAL_SHARE, buildSession, type TrainingSet } from '../src/lib/training';
 import type { Attempt } from '../src/lib/store';
-import type { ExerciseItem } from '../src/lib/schemas';
+import type { ExerciseItem } from '@da/schema';
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_780_000_000_000;

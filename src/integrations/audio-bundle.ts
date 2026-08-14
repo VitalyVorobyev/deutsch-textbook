@@ -23,11 +23,12 @@
  * rather than by listing directories and hoping.
  */
 import type { AstroIntegration } from 'astro';
+import { repoRoot } from '@da/content/repo-root';
 import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
-import { listeningArtifactSchema, listeningAudioPath } from '../lib/schemas';
+import { listeningArtifactSchema, listeningAudioPath } from '@da/schema';
 import { AUDIO_BUNDLE_ENV, bundlesAudio } from '../lib/audio';
 
 interface Shipped {
@@ -76,7 +77,7 @@ export function audioBundle(): AstroIntegration {
        */
       'astro:server:setup': ({ server, logger }) => {
         if (!bundlesAudio(process.env[AUDIO_BUNDLE_ENV])) return;
-        const root = process.cwd();
+        const root = repoRoot();
         server.middlewares.use((req, res, next) => {
           const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec((req.url ?? '').split('?')[0] ?? '');
           if (!match) return next();
@@ -89,7 +90,7 @@ export function audioBundle(): AstroIntegration {
         logger.info(`serving ${reviewedRecordings(root).length} reviewed recording(s) from content/listening`);
       },
       'astro:build:done': ({ dir, logger }) => {
-        const root = process.cwd();
+        const root = repoRoot();
         const outDir = fileURLToPath(dir);
         const audioDir = join(outDir, 'audio');
         const bundle = bundlesAudio(process.env[AUDIO_BUNDLE_ENV]);

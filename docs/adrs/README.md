@@ -39,6 +39,8 @@ relationship.
 | [`0008`](0008-character-ensemble-and-audio-studio.md) | A recurring character ensemble, and productizing the audio studio | **proposed** · 2026-08-04 |
 | [`0009`](0009-official-exam-materials-local-only.md) | Official exam materials are local-only; the trainer degrades honestly without them | accepted · 2026-08-11 |
 | [`0010`](0010-probe-failure-remediation.md) | Probe-failure remediation — a session-end card, a documented weakness channel, and a named exhausted state | accepted · 2026-08-12 |
+| [`0011`](0011-external-grammar-anchors.md) | The grammar denominator is anchored to published inventories, labels only | accepted · 2026-08-14 |
+| [`0012`](0012-topic-manifests.md) | A topic declares itself in one manifest; the article keeps prose only | accepted · 2026-08-14 |
 
 A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
 superseded by a new ADR rather than edited into an acceptance.

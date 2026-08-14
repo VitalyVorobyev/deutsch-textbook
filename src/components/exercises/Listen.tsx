@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { listenItemSchema } from '../../lib/schemas';
-import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
-import { dictationSlip } from '../../lib/production';
-import { diffExpectedWords } from '../../lib/worddiff';
+import type { listenItemSchema } from '@da/schema';
+import { dictationMatches, normalizeAnswer } from '@da/grading/cloze';
+import { dictationSlip } from '@da/grading/production';
+import { diffExpectedWords } from '@da/grading/worddiff';
 import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { pick } from '../../lib/prefs';

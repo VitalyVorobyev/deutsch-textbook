@@ -6,17 +6,17 @@ authoring rules. Historical failures and extended rationale are
 
 | Contract | Source of truth | Required companion checks |
 | --- | --- | --- |
-| Content shapes | `src/lib/schemas.ts`, `src/content.config.ts` | validator and schema tests |
-| Curriculum order and graph | `content/atlas.yaml`, `src/lib/curriculum.ts` | contracts/deepens tests |
+| Content shapes | `packages/schema/src/index.ts`, `src/content.config.ts` | validator and schema tests |
+| Curriculum order and graph | `content/atlas.yaml`, `packages/content/src/curriculum.ts` | contracts/deepens tests |
 | Review queue and daily new-card budget | `src/lib/decks.ts` | review-plan tests |
 | Training eligibility and interleaving | `src/lib/training.ts` | eligibility/broad-retrieval tests |
 | Mastery and navigation evidence | `src/lib/mastery.ts`, `src/lib/placement.ts` | mastery/placement tests |
 | Delayed probes | `src/lib/probes.ts` | probe tests and progress audit |
-| Scoring and focus attribution | `src/lib/scoring.ts`, `src/lib/production.ts` | grading/contract tests |
+| Scoring and focus attribution | `src/lib/scoring.ts`, `packages/grading/src/production.ts` | grading/contract tests |
 | Profiles and learner storage | `src/lib/profile.ts`, `src/lib/store.ts` | snapshot/store tests |
 | Snapshot compatibility | `src/lib/snapshot-schema.ts`, `src/lib/snapshot-merge.ts` | all-version migration tests |
-| Language selection | `src/lib/prefs.ts`, `src/lib/langcheck.ts` | i18n tests and validator |
-| Explanation prose shape | `src/lib/prose-shape.ts` (authoring-time only; never imported by runtime) | prose-shape tests, validator, `bun scripts/prose-shape.ts` |
+| Language selection | `src/lib/prefs.ts`, `packages/schema/src/langcheck.ts` | i18n tests and validator |
+| Explanation prose shape | `packages/content/src/prose-shape.ts` (authoring-time only; never imported by runtime) | prose-shape tests, validator, `bun scripts/prose-shape.ts` |
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |

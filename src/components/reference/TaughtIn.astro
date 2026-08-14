@@ -8,9 +8,10 @@
  * never leave a stale link — the page rebuilds to the new truth or the validator
  * fails on the unknown tag.
  */
-import { getCollection, getEntry } from 'astro:content';
-import { focusIntroducedBy } from '../../lib/focus-tags';
+import { getEntry } from 'astro:content';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 import { topicPath, withBase } from '../../lib/url';
+import { getCurriculum } from '@da/content/curriculum';
 
 interface Props {
   /** reference-data id whose page-level `focus` list this row renders */
@@ -21,7 +22,7 @@ const { source } = Astro.props;
 const entry = await getEntry('referenceData', source);
 const focus: string[] = (entry?.data as { focus?: string[] } | undefined)?.focus ?? [];
 
-const topics = new Map((await getCollection('topics')).map((t) => [t.data.id, t.data]));
+const topics = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
 
 const LEVEL_ORDER = ['A1', 'A2', 'B1', 'B2'];
 const taughtIn = [...new Set(focus.map((tag) => focusIntroducedBy[tag]).filter(Boolean))]

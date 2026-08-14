@@ -10,8 +10,8 @@ import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { exerciseSetSchema } from '../src/lib/schemas';
-import { getCurriculum } from '../src/lib/curriculum';
+import { exerciseSetSchema } from '@da/schema';
+import { getCurriculum } from '@da/content/curriculum';
 import { placementResults } from '../src/lib/placement';
 import { eligibleFreshCards } from '../src/lib/decks';
 import {

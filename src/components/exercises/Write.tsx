@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import type { z } from 'zod';
-import type { writeItemSchema } from '../../lib/schemas';
+import type { writeItemSchema } from '@da/schema';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
