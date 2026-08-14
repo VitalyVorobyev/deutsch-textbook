@@ -29,6 +29,9 @@ import { Fokus } from './views/Fokus';
 import { Sprachkarte } from './views/Sprachkarte';
 import { Struktur } from './views/Struktur';
 import { Quellen } from './views/Quellen';
+import { Uebersicht } from './views/Uebersicht';
+import { Einstellungen } from './views/Einstellungen';
+import { Quelle } from './views/Quelle';
 
 interface NavItem {
   view: string;
@@ -38,40 +41,18 @@ interface NavItem {
 }
 
 const NAV: { group?: string; items: NavItem[] }[] = [
-  { items: [{ view: 'sprachkarte', label: 'Sprachkarte' }] },
-  {
-    group: 'Kurs',
-    items: [
-      { view: 'themen', label: 'Einheiten & Themen', also: ['thema'] },
-      { view: 'bestand', label: 'Bestand' },
-    ],
-  },
-  {
-    group: 'Sprache',
-    items: [
-      { view: 'struktur', label: 'Strukturen' },
-      { view: 'fokus', label: 'Fokus-Tags' },
-    ],
-  },
-  {
-    group: 'Beleg',
-    items: [
-      { view: 'quellen', label: 'Quellen' },
-      { view: 'luecken', label: 'Lücken' },
-    ],
-  },
+  { items: [{ view: 'uebersicht', label: 'Übersicht' }] },
+  { group: 'Kurs', items: [
+    { view: 'grammatik', label: 'Grammatikatlas', also: ['sprachkarte', 'struktur', 'fokus'] },
+    { view: 'themen', label: 'Themen', also: ['thema'] },
+    { view: 'materialien', label: 'Materialien', also: ['bestand', 'quelle'] },
+  ] },
+  { group: 'Redaktion', items: [
+    { view: 'qualitaet', label: 'Qualität', also: ['luecken'] },
+    { view: 'referenzen', label: 'Referenzen', also: ['quellen'] },
+    { view: 'einstellungen', label: 'Einstellungen' },
+  ] },
 ];
-
-const TITLES: Record<string, string> = {
-  sprachkarte: 'Sprachkarte',
-  themen: 'Einheiten & Themen',
-  thema: 'Thema',
-  bestand: 'Bestand',
-  struktur: 'Strukturen',
-  fokus: 'Fokus-Tags',
-  quellen: 'Quellen',
-  luecken: 'Lücken',
-};
 
 /**
  * The theme control: an icon, and the icon of the theme you would GET rather than the one you are
@@ -123,8 +104,9 @@ function ThemeButton() {
 }
 
 export function App() {
-  const { graph, error, revision } = useCorpus();
+  const { graph, workspace, error, revision } = useCorpus();
   const [route] = useRoute();
+  const [globalSearch, setGlobalSearch] = useState('');
   useScrollReset(`${route.view}/${route.id ?? ''}`);
 
   const body = () => {
@@ -135,6 +117,7 @@ export function App() {
         </Empty>
       );
     }
+    if (!graph && workspace && !workspace.root) return <Einstellungen workspace={workspace} />;
     if (!graph) return <Empty>Korpus wird gelesen …</Empty>;
     switch (route.view) {
       case 'themen':
@@ -142,17 +125,29 @@ export function App() {
       case 'thema':
         return route.id ? <Thema graph={graph} id={route.id} /> : <Themen graph={graph} />;
       case 'bestand':
+      case 'materialien':
         return <Bestand graph={graph} />;
       case 'luecken':
+      case 'qualitaet':
         return <Luecken graph={graph} />;
       case 'fokus':
         return <Fokus graph={graph} id={route.id} />;
       case 'struktur':
         return <Struktur graph={graph} id={route.id} />;
       case 'quellen':
+      case 'referenzen':
         return <Quellen graph={graph} />;
-      default:
+      case 'einstellungen':
+        return <Einstellungen workspace={workspace} />;
+      case 'quelle':
+        return <Quelle graph={graph} path={route.query.pfad} />;
+      case 'grammatik':
+      case 'sprachkarte':
         return <Sprachkarte graph={graph} />;
+      case 'uebersicht':
+        return <Uebersicht graph={graph} workspace={workspace} />;
+      default:
+        return <Uebersicht graph={graph} workspace={workspace} />;
     }
   };
 
@@ -160,15 +155,18 @@ export function App() {
   const flat = NAV.flatMap((g) => g.items);
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-surface font-sans">
       {/* h-14, and `Zeilentabelle` sticks its header to `top-14` under it. */}
       <header className="sticky top-0 z-30 h-14 border-b border-border-subtle bg-surface/95 backdrop-blur">
-        <div className="mx-auto flex h-full max-w-[1500px] items-center gap-4 px-4">
-          <a href={href('sprachkarte')} className="shrink-0 text-sm font-bold tracking-tight text-ink">
-            Redaktion
-            <span className="ml-2 font-normal text-ink-muted">Deutsch-Atlas</span>
+        <div className="flex h-full items-center gap-4 px-4 lg:px-6">
+          <a href={href('uebersicht')} className="shrink-0 font-serif text-base font-semibold tracking-tight text-ink">
+            Redaction
+            <span className="ml-2 font-sans text-xs font-normal uppercase tracking-[0.14em] text-ink-muted">Deutsch-Atlas</span>
           </a>
-          <span className="hidden text-sm text-ink-muted sm:inline">/ {TITLES[route.view] ?? route.view}</span>
+          <form className="mx-auto hidden w-full max-w-xl md:block" onSubmit={(event) => { event.preventDefault(); if (globalSearch.trim()) window.location.hash = href('materialien', undefined, { q: globalSearch.trim() }).slice(1); }}>
+            <label className="sr-only" htmlFor="globale-suche">Kurs durchsuchen</label>
+            <input id="globale-suche" value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Themen, Materialien, Fokus-Tags suchen …" className="w-full rounded-md border border-border-subtle bg-surface-sunken px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-muted focus-visible:ring-2 focus-visible:ring-brand" />
+          </form>
           <div className="ml-auto flex items-center gap-3">
             {graph?.problems.length ? (
               <a href={href('luecken')} className="text-xs text-ink-muted hover:text-ink">
@@ -180,8 +178,8 @@ export function App() {
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-[1500px] gap-8 px-4 py-6">
-        <nav className="sticky top-20 hidden h-fit w-48 shrink-0 md:block">
+      <div className="flex gap-4 px-4 py-6 lg:gap-7 lg:px-6">
+        <nav className="sticky top-20 hidden h-[calc(100vh-6rem)] w-44 shrink-0 flex-col border-r border-border-subtle pr-4 md:flex lg:w-56 lg:pr-5">
           {NAV.map((group, i) => (
             <div key={group.group ?? `top-${i}`} className="mb-5">
               {group.group ? (
@@ -213,10 +211,13 @@ export function App() {
               {graph.notes.length} Ladehinweis(e)
             </p>
           ) : null}
-          {revision > 0 ? <p className="mt-3 text-[0.65rem] text-ink-muted">Korpus neu gelesen ({revision})</p> : null}
+          <div className="mt-auto border-t border-border-subtle pt-4">
+            <p className="truncate text-[0.68rem] text-ink-muted" title={workspace?.root ?? graph?.root}>{workspace?.root ?? graph?.root}</p>
+            {revision > 0 ? <p className="mt-1 text-[0.65rem] text-ink-muted">Korpus neu gelesen ({revision})</p> : null}
+          </div>
         </nav>
 
-        <main className="min-w-0 flex-1 pb-16">
+        <main className="min-w-0 max-w-[1680px] flex-1 pb-16">
           <div className="mb-4 flex flex-wrap gap-1 md:hidden">
             {flat.map((item) => (
               <a key={item.view} href={href(item.view)}>

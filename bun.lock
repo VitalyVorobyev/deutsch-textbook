@@ -64,6 +64,9 @@
         "@da/ui": "workspace:*",
         "@radix-ui/react-tabs": "^1.1.21",
         "@radix-ui/react-tooltip": "^1.2.16",
+        "@tauri-apps/api": "^2.11.1",
+        "@tauri-apps/plugin-dialog": "^2.7.2",
+        "yaml": "^2.9.0",
       },
     },
     "packages/content": {
@@ -72,6 +75,7 @@
       "dependencies": {
         "@da/grading": "workspace:*",
         "@da/schema": "workspace:*",
+        "@mdx-js/mdx": "^3.1.1",
       },
       "peerDependencies": {
         "yaml": "^2.9.0",

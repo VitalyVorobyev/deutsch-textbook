@@ -341,15 +341,17 @@ export function Button({
   onClick,
   stark = false,
   pressed,
+  disabled = false,
   children,
 }: {
   href?: string;
   onClick?: () => void;
   stark?: boolean;
   pressed?: boolean;
+  disabled?: boolean;
   children: ReactNode;
 }) {
-  const className = `inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand ${
+  const className = `inline-flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45 ${
     stark || pressed
       ? 'bg-ink text-surface hover:opacity-90'
       : 'border border-border-subtle bg-surface-raised text-ink hover:border-ink-muted'
@@ -359,7 +361,7 @@ export function Button({
       {children}
     </a>
   ) : (
-    <button type="button" onClick={onClick} aria-pressed={pressed} className={className}>
+    <button type="button" onClick={onClick} aria-pressed={pressed} disabled={disabled} className={className}>
       {children}
     </button>
   );

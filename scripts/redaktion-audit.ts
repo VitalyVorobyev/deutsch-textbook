@@ -34,18 +34,21 @@ import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 
 const ROUTES = [
-  'sprachkarte',
+  'uebersicht',
+  'grammatik',
   'themen',
   'thema/artikel-genus',
-  'bestand',
+  'materialien',
   'struktur',
   'fokus',
-  'quellen',
-  'luecken',
+  'referenzen',
+  'qualitaet',
+  'einstellungen',
+  'quelle?pfad=content%2Fatlas.yaml',
 ] as const;
 
 /** Views whose body is a `Zeilentabelle`, so the row rules apply. */
-const TABLE_VIEWS = new Set(['struktur', 'fokus', 'quellen', 'bestand']);
+const TABLE_VIEWS = new Set(['struktur', 'fokus', 'referenzen', 'materialien']);
 
 /** A scoped list `Sprachkarte` links into — the permalink that has to survive a reload. */
 const PERMALINK = 'struktur?strang=verbformen&niveau=A1';
@@ -86,8 +89,15 @@ async function startServer(port: number): Promise<{ base: string; stop: () => vo
   const child = spawn('bunx', ['--bun', 'vite', '--port', String(port), '--strictPort'], {
     cwd: new URL('../apps/redaktion', import.meta.url).pathname,
     stdio: ['ignore', 'pipe', 'pipe'],
-    env: { ...process.env, BROWSER: 'none' },
+    env: {
+      ...process.env,
+      BROWSER: 'none',
+      REDAKTION_VITE_CACHE_DIR: `/tmp/deutsch-atlas-redaktion-audit-${process.pid}`,
+    },
   });
+  // Always drain both pipes. Vite can re-optimise dependencies on a lockfile change; leaving its
+  // stdout unread eventually blocks the child before it starts accepting audit requests.
+  child.stdout.on('data', () => {});
   child.stderr.on('data', (c: Buffer) => process.stderr.write(c));
   const base = `http://localhost:${port}`;
 
@@ -98,7 +108,7 @@ async function startServer(port: number): Promise<{ base: string; stop: () => vo
       throw new Error(`the dev server did not answer on ${base} within 60 s`);
     }
     try {
-      const html = await fetch(`${base}/`).then((r) => r.text());
+      const html = await fetch(`${base}/`, { signal: AbortSignal.timeout(2_000) }).then((r) => r.text());
       if (html.includes('<title>Redaktion · Deutsch-Atlas</title>')) break;
       child.kill();
       throw new Error(`something else is serving ${base} — free the port or pass --port`);
@@ -112,7 +122,10 @@ async function startServer(port: number): Promise<{ base: string; stop: () => vo
 
 async function measureRows(page: Page) {
   return page.evaluate(() => {
-    const rows = [...document.querySelectorAll('tbody tr')];
+    const tableRows = [...document.querySelectorAll('tbody tr')].filter((row) => row.getBoundingClientRect().height > 0);
+    const rows = tableRows.length
+      ? tableRows
+      : [...document.querySelectorAll('ul[aria-label="Ergebnisliste"] > li')].filter((row) => row.getBoundingClientRect().height > 0);
     return {
       n: rows.length,
       heights: rows.map((r) => Math.round(r.getBoundingClientRect().height)),

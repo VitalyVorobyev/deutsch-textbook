@@ -7,12 +7,10 @@ import { Chip, Empty, Filter, Panel } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
 import { Extern, Zeilentabelle, Quer, type Spalte } from '../components/Zeilentabelle';
-import { href } from '../router';
+import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['levels'][number];
 type Problem = GraphPayload['problems'][number];
-
-const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
 
 /** One shape for every class, so the eye keeps its place moving down thirteen groups. */
 const COLUMNS = (topicTitle: (id: string) => string): Spalte<Problem>[] => [
@@ -24,18 +22,22 @@ const COLUMNS = (topicTitle: (id: string) => string): Spalte<Problem>[] => [
       p.topic ? <Quer href={href('thema', p.topic)}>{topicTitle(p.topic)}</Quer> : <span className="text-ink-muted">—</span>,
   },
   { key: 'level', head: 'Niveau', cell: (p) => <span className="text-ink-muted">{p.level ?? '—'}</span> },
-  { key: 'file', head: 'Datei', cell: (p) => (p.file ? <Extern href={`${GITHUB}/${p.file}`}>{p.file}</Extern> : null) },
+  { key: 'file', head: 'Datei', cell: (p) => (p.file ? <Extern href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Extern> : null) },
 ];
 
 export function Luecken({ graph }: { graph: GraphPayload }) {
   const [level, setLevel] = useState<Level | 'alle'>('alle');
   const [kind, setKind] = useState<string | 'alle'>('alle');
+  const [severity, setSeverity] = useQueryState('schwere', 'alle');
 
   const kindOptions = [...new Set(graph.problems.map((p) => p.kind))].sort();
   const topicTitle = (id: string) => graph.topics.find((t) => t.id === id)?.title ?? id;
 
   const filtered = graph.problems.filter(
-    (p) => (level === 'alle' || p.level === level) && (kind === 'alle' || p.kind === kind),
+    (p, index) =>
+      (level === 'alle' || p.level === level) &&
+      (kind === 'alle' || p.kind === kind) &&
+      (severity === 'alle' || graph.diagnostics[index]?.severity === severity),
   );
 
   const groups = new Map<string, Problem[]>();
@@ -48,15 +50,16 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-5">
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Lücken</h1>
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Qualität</h1>
         <p className="mt-1 text-sm text-ink-muted">
-          {filtered.length} von {graph.problems.length} Befunden, nach Häufigkeit der Ursache
+          {filtered.length} von {graph.problems.length} Befunden · blockierend, zu bearbeiten oder informativ
         </p>
       </header>
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
         <Filter label="Art" value={kind} options={kindOptions} onChange={setKind} />
+        <Filter label="Schwere" value={severity} options={['blocking', 'attention', 'info']} onChange={setSeverity} />
       </div>
 
       {sorted.length === 0 ? (

@@ -184,6 +184,15 @@ describe('the write controller refuses', () => {
     );
   });
 
+  test('a stale reviewed transition cannot overwrite an external change', () => {
+    reset();
+    const expectedRevision = '0'.repeat(64);
+    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { expectedRevision });
+    expect(result.ok).toBe(false);
+    expect(result.ok ? '' : result.error).toContain('changed on disk');
+    expect(read(TOPIC)).toBe(TOPIC_SOURCE);
+  });
+
   test('a result that would not validate against the schema', () => {
     // The backstop the allowlist cannot be. Break the file first — a valid patch onto an invalid
     // document must still refuse, because the writer would otherwise bless it by writing it.
