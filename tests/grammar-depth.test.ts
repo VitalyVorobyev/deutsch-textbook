@@ -29,7 +29,7 @@ describe('grammar depth', () => {
   const FLOORS = {
     A1: { teaching: 13, production: 9, files: 4 },
     A2: { teaching: 9, production: 6, files: 3 },
-    B1: { teaching: 6, production: 4, files: 3 },
+    B1: { teaching: 6, production: 5, files: 3 },
   } as const;
 
   for (const [level, floor] of Object.entries(FLOORS) as [keyof typeof FLOORS, typeof FLOORS.A1][]) {

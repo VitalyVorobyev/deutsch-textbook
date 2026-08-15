@@ -1,0 +1,194 @@
+topic: gespraech-steuern
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — mitreden, statt nur zuzuhören"
+title:
+  en: "Apply — join the conversation instead of only following it"
+  ru: "Применение — вступить в разговор, а не только слушать"
+  uk: "Застосування — вступити в розмову, а не лише слухати"
+
+# Independent transfer in three fresh contexts: a meeting heard and not read, a written
+# contribution to a course forum, and two spoken tasks. Nothing here re-skins a Grundübung item.
+#
+# Two speak items on purpose, and not for variety. The topic's outcomes claim two spoken modes
+# and each one has to be practised in the mode it names: sprechen-besprechung is
+# `mode: spoken-interaction` (breaking into somebody's turn and handing the floor on), and
+# sprechen-abschluss is `mode: spoken-production` (one uninterrupted contribution with a beginning
+# and an end). A single speak item would leave the other outcome claiming a mode nothing exercises.
+#
+# The honesty limit, stated in the article and repeated in both prompts: the app has no
+# interlocutor. Neither task simulates a partner, so what they measure is whether the chunk is
+# available under time pressure — not whether the learner can hold a conversation.
+#
+# Both tags get a second production context here: `konjunktionaladverb-inversion` in
+# uebersetzen-themenwechsel and `konjunktiv2-form` in uebersetzen-koennten.
+items:
+  - id: hoeren-besprechung
+    outcomes: [inhalt-steuern, zuhoeren-anknuepfen]
+    type: audio-comprehension
+    instruction:
+      en: "A short meeting, heard once and not written down. Listen for what each speaker does with the conversation, not for what it is about."
+      ru: "Короткое совещание, услышанное один раз и не записанное. Слушайте, что каждый говорящий делает с разговором, а не о чём он."
+      uk: "Коротка нарада, почута один раз і не записана. Слухайте, що кожен мовець робить із розмовою, а не про що вона."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Herr Blum", text: "Wir haben jetzt über die Pausen gesprochen. Gibt es dazu noch Fragen?" }
+        - { speaker: "Frau Kaya", text: "Entschuldigung, dürfte ich dazu kurz etwas sagen?" }
+        - { speaker: "Herr Blum", text: "Ja, bitte." }
+        - { speaker: "Frau Kaya", text: "Vor allem die kurze Pause am Vormittag ist ein Problem. Übrigens fehlt uns auch noch eine Antwort aus der Abteilung." }
+        - { speaker: "Herr Blum", text: "Danke, das schreibe ich auf. Frau Weber, wie sehen Sie das?" }
+    question: "Was macht Frau Kaya am Ende ihres Beitrags?"
+    options:
+      - "Sie wechselt zu einem anderen Punkt."
+      - "Sie beendet die Besprechung."
+      - "Sie fordert Herrn Blum zum Sprechen auf."
+    correct: 0
+    translation:
+      en: "What does Frau Kaya do at the end of her contribution?"
+      ru: "Что делает госпожа Кая в конце своего высказывания?"
+      uk: "Що робить пані Кая наприкінці свого виступу?"
+    explain:
+      en: "Her last sentence begins with *Übrigens*, which announces that what follows belongs to a different point — the missing answer has nothing to do with the breaks they were discussing. Ending the meeting is Herr Blum's move, and it is not made here; inviting somebody to speak is also his, and he does it in the last turn, to Frau Weber. Two things are worth catching by ear: *Übrigens* is followed immediately by the verb (*fehlt*), and Frau Kaya's opening line is the Konjunktiv II request for the floor."
+      ru: "Её последняя фраза начинается с *Übrigens*, а это объявление, что дальше идёт другой пункт: недостающий ответ никак не связан с перерывами, о которых шла речь. Закончить совещание — ход господина Блума, и здесь он его не делает; предложить высказаться — тоже его ход, и он делает его в последней реплике, обращаясь к госпоже Вебер. Уловить на слух стоит две вещи: за *Übrigens* сразу идёт глагол (*fehlt*), а первая реплика госпожи Кая — это просьба о слове в Konjunktiv II."
+      uk: "Її остання фраза починається з *Übrigens*, а це оголошення, що далі йде інший пункт: відповіді, якої бракує, не стосуються перерв, про які йшлося. Завершити нараду — хід пана Блума, і тут він його не робить; запропонувати висловитися — теж його хід, і він робить його в останній репліці, звертаючись до пані Вебер. Уловити на слух варто дві речі: за *Übrigens* одразу йде дієслово (*fehlt*), а перша репліка пані Кая — це прохання про слово в Konjunktiv II."
+
+  - id: uebersetzen-themenwechsel
+    outcomes: [inhalt-steuern]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    key_tokens: ["Übrigens", "treffen"]
+    instruction:
+      en: "Begin the sentence with übrigens."
+      ru: "Начните предложение со слова übrigens."
+      uk: "Почніть речення зі слова übrigens."
+    prompt_en: "By the way, we are meeting in the canteen tomorrow."
+    prompt_ru: "Кстати, завтра мы встречаемся в столовой."
+    prompt_uk: "До речі, завтра ми зустрічаємося в їдальні."
+    answer: "Übrigens treffen wir uns morgen in der Kantine."
+    explain:
+      en: "Nothing on the screen tells you where the verb goes this time. *Übrigens* is inside the sentence and therefore in position 1, so the finite verb *treffen* comes straight after it and the subject *wir* follows: *Übrigens **treffen wir** uns …*. The reflexive *uns* stays with its verb. If the sentence had opened with *Also,* instead, the comma would have kept everything else in place — that is the contrast the practice table drilled and the one this item asks you to reproduce without it."
+      ru: "На этот раз ничто на экране не подсказывает, где стоит глагол. *Übrigens* находится внутри предложения и потому на первом месте, так что спрягаемое *treffen* идёт сразу за ним, а подлежащее *wir* — следом: *Übrigens **treffen wir** uns …*. Возвратное *uns* остаётся при своём глаголе. Если бы фраза начиналась с *Also,*, запятая оставила бы всё остальное на месте — это то противопоставление, которое отрабатывала таблица и которое здесь надо воспроизвести без неё."
+      uk: "Цього разу ніщо на екрані не підказує, де стоїть дієслово. *Übrigens* міститься всередині речення і тому на першому місці, тож відмінюване *treffen* іде одразу за ним, а підмет *wir* — слідом: *Übrigens **treffen wir** uns …*. Зворотне *uns* залишається при своєму дієслові. Якби фраза починалася з *Also,*, кома залишила б усе інше на місці — це те протиставлення, яке відпрацьовувала таблиця і яке тут треба відтворити без неї."
+
+  - id: uebersetzen-koennten
+    outcomes: [wort-nehmen-geben]
+    type: translate
+    focus: konjunktiv2-form
+    key_tokens: ["Könnten", "Würden"]
+    prompt_en: "Could you please explain that once more?"
+    prompt_ru: "Не могли бы вы объяснить это ещё раз?"
+    prompt_uk: "Чи не могли б ви пояснити це ще раз?"
+    answer: "Könnten Sie das bitte noch einmal erklären?"
+    accept:
+      - "Würden Sie das bitte noch einmal erklären?"
+    explain:
+      en: "Both openings are accepted because both are Konjunktiv II — *könnten* from *konnte* with an umlaut, *würden* as the all-purpose polite auxiliary. What is graded is that the form is Konjunktiv II at all: *Können Sie das wiederholen?* is a question about ability and, addressed to somebody who has just finished explaining, it lands as a complaint. Note that the infinitive still closes the sentence, exactly as it does after *können* in the indicative."
+      ru: "Приняты оба начала, потому что оба — Konjunktiv II: *könnten* из *konnte* с умлаутом, *würden* — универсальный вежливый вспомогательный глагол. Оценивается то, что форма вообще стоит в Konjunktiv II: *Können Sie das wiederholen?* — вопрос о способности, и, обращённый к тому, кто только что объяснял, он звучит как претензия. Обратите внимание: инфинитив по-прежнему закрывает предложение — ровно так же, как после *können* в изъявительном наклонении."
+      uk: "Прийняті обидва початки, бо обидва — Konjunktiv II: *könnten* із *konnte* з умлаутом, *würden* — універсальне ввічливе допоміжне дієслово. Оцінюється те, що форма взагалі стоїть у Konjunktiv II: *Können Sie das wiederholen?* — питання про спроможність, і, звернене до того, хто щойно пояснював, воно звучить як докір. Зверніть увагу: інфінітив, як і раніше, закриває речення — рівно так само, як після *können* в дійсному способі."
+
+  - id: schreiben-forumsbeitrag
+    outcomes: [inhalt-steuern, beitrag-rahmen]
+    type: write
+    prompt:
+      en: "In the forum of your German course, other participants are complaining that the morning break is too short. Write a short contribution: open your turn, give one example, say what matters most to you, move on to one other point, and close."
+      ru: "На форуме вашего курса немецкого другие участники жалуются, что утренний перерыв слишком короткий. Напишите короткое сообщение: начните своё высказывание, приведите один пример, скажите, что для вас важнее всего, перейдите к ещё одному пункту и закончите."
+      uk: "На форумі вашого курсу німецької інші учасники скаржаться, що ранкова перерва надто коротка. Напишіть коротке повідомлення: почніть свій виступ, наведіть один приклад, скажіть, що для вас найважливіше, перейдіть до ще одного пункту й завершіть."
+    goal:
+      en: "Write something a reader can follow without scrolling back — the markers, not the content, are what make that possible."
+      ru: "Написать так, чтобы читатель не возвращался к началу, — возможным это делают маркеры, а не содержание."
+      uk: "Написати так, щоб читач не повертався до початку, — можливим це роблять маркери, а не зміст."
+    requirements:
+      - en: "Open and close the contribution with a phrase that carries no content — for example Also, ich sehe das so: … and Das wäre alles von mir."
+        ru: "Откройте и закройте сообщение оборотом, который сам ничего не сообщает, — например Also, ich sehe das so: … и Das wäre alles von mir."
+        uk: "Відкрийте й закрийте повідомлення зворотом, який сам нічого не повідомляє, — наприклад Also, ich sehe das so: … і Das wäre alles von mir."
+      - en: "Give one example with zum Beispiel and mark what matters most with vor allem."
+        ru: "Приведите один пример через zum Beispiel и выделите самое важное через vor allem."
+        uk: "Наведіть один приклад через zum Beispiel і виділіть найважливіше через vor allem."
+      - en: "Change the subject once with übrigens, and remember that the finite verb comes straight after it."
+        ru: "Один раз смените тему через übrigens и помните, что спрягаемый глагол идёт сразу за ним."
+        uk: "Один раз змініть тему через übrigens і пам'ятайте, що відмінюване дієслово йде одразу за ним."
+    min_words: 60
+    model_answer: "Also, ich sehe das so: Die Pause am Vormittag ist wirklich zu kurz. Zum Beispiel brauche ich allein zehn Minuten, um in die Kantine und zurück zu kommen. Vor allem für die Teilnehmer aus der Abteilung ist das ein Problem, weil sie später anfangen. Ich würde deshalb gern eine Pause von zwanzig Minuten vorschlagen. Übrigens fehlt uns immer noch eine Antwort vom Kursleiter zum Termin im Mai. Das wäre alles von mir. Wie sehen Sie das?"
+    model_translation:
+      en: "Well, I see it like this: the morning break really is too short. For example, I need ten minutes just to get to the canteen and back. Above all it is a problem for the participants from the department, because they start later. So I would like to propose a twenty-minute break. By the way, we are still missing an answer from the course leader about the date in May. That would be all from me. What do you think?"
+      ru: "Так вот, я вижу это так: перерыв в первой половине дня действительно слишком короткий. Например, мне только на дорогу до столовой и обратно нужно десять минут. Прежде всего это проблема для участников из отдела, потому что они начинают позже. Поэтому я хотел бы предложить перерыв в двадцать минут. Кстати, нам всё ещё не хватает ответа от преподавателя курса по поводу даты в мае. У меня всё. А что думаете вы?"
+      uk: "Отже, я бачу це так: перерва в першій половині дня справді надто коротка. Наприклад, мені лише на дорогу до їдальні й назад потрібно десять хвилин. Насамперед це проблема для учасників із відділу, бо вони починають пізніше. Тому я хотів би запропонувати перерву на двадцять хвилин. До речі, нам усе ще бракує відповіді від викладача курсу щодо дати у травні. У мене все. А що думаєте ви?"
+    explain:
+      en: "Read your draft against the model on three points. First, find your opener and your closer: if the text begins with the complaint itself and stops after the last fact, a reader cannot tell where your turn started or whether it has ended. Second, check the sentence after *übrigens* — the model has *Übrigens **fehlt** uns …*, verb second; *Übrigens uns fehlt …* is the standard collapse. Third, look at *vor allem*: the whole phrase *Vor allem für die Teilnehmer aus der Abteilung* is one element, so the verb *ist* comes immediately after it. The last line of the model is optional and does something extra — it hands the floor on."
+      ru: "Сверьте черновик с образцом по трём точкам. Сначала найдите свой зачин и свою концовку: если текст начинается прямо с жалобы и обрывается после последнего факта, читателю не понять, где началась ваша реплика и закончилась ли она. Затем проверьте предложение после *übrigens*: в образце *Übrigens **fehlt** uns …*, глагол вторым; *Übrigens uns fehlt …* — стандартный сбой. И третье — посмотрите на *vor allem*: всё сочетание *Vor allem für die Teilnehmer aus der Abteilung* является одним членом, поэтому глагол *ist* идёт сразу за ним. Последняя строка образца необязательна и делает кое-что сверх задания — передаёт слово."
+      uk: "Звірте чернетку зі зразком за трьома точками. Спершу знайдіть свій зачин і свою кінцівку: якщо текст починається просто зі скарги й обривається після останнього факту, читачеві не зрозуміти, де почалася ваша репліка і чи вона завершилася. Потім перевірте речення після *übrigens*: у зразку *Übrigens **fehlt** uns …*, дієслово другим; *Übrigens uns fehlt …* — стандартний збій. І третє — подивіться на *vor allem*: усе сполучення *Vor allem für die Teilnehmer aus der Abteilung* є одним членом, тому дієслово *ist* іде одразу за ним. Останній рядок зразка необов'язковий і робить дещо понад завдання — передає слово."
+
+  - id: sprechen-besprechung
+    outcomes: [wort-nehmen-geben, zuhoeren-anknuepfen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud — and if you can, record yourself. Nobody answers back here, so what this measures is whether the phrase is available in time, not whether you can hold the conversation."
+      ru: "Скажите вслух — и, если можете, запишите себя. Здесь никто не отвечает, поэтому проверяется одно: успевает ли оборот прийти вовремя, а не умеете ли вы вести разговор."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе. Тут ніхто не відповідає, тому перевіряється одне: чи встигає зворот прийти вчасно, а не чи вмієте ви вести розмову."
+    prompt:
+      en: "You are in a meeting at work. A colleague has been talking about the new break times for several minutes and is about to move on. You know something she does not: the department starts an hour later. Break in politely, say your piece, refer to what everybody already knows, and hand the floor to the colleague who has not spoken yet."
+      ru: "Вы на совещании на работе. Коллега уже несколько минут говорит о новом расписании перерывов и вот-вот перейдёт дальше. Вы знаете то, чего не знает она: отдел начинает на час позже. Вежливо вклиньтесь, скажите своё, сошлитесь на то, что известно всем, и передайте слово коллеге, который ещё не говорил."
+      uk: "Ви на нараді на роботі. Колега вже кілька хвилин говорить про новий розклад перерв і ось-ось перейде далі. Ви знаєте те, чого не знає вона: відділ починає на годину пізніше. Ввічливо вклиньтеся, скажіть своє, зішліться на те, що відоме всім, і передайте слово колезі, який ще не говорив."
+    goal:
+      en: "Get into the conversation without anyone feeling interrupted, and get back out of it by giving the floor away."
+      ru: "Войти в разговор так, чтобы никто не почувствовал себя перебитым, и выйти из него, передав слово."
+      uk: "Увійти в розмову так, щоб ніхто не відчув себе перебитим, і вийти з неї, передавши слово."
+    checklist:
+      - en: "I asked for the floor in Konjunktiv II: Dürfte ich … / Könnte ich … — not Darf ich."
+        ru: "Я попросил(а) слова в Konjunktiv II: Dürfte ich … / Könnte ich …, а не Darf ich."
+        uk: "Я попросив(ла) слова в Konjunktiv II: Dürfte ich … / Könnte ich …, а не Darf ich."
+      - en: "I referred to shared knowledge with the unstressed ja inside the sentence, or with Wie Sie wissen, … followed straight by the verb."
+        ru: "Я сослался(лась) на общее знание через безударное ja внутри предложения или через Wie Sie wissen, … , за которым сразу идёт глагол."
+        uk: "Я зіслався(лася) на спільне знання через ненаголошене ja всередині речення або через Wie Sie wissen, … , за яким одразу йде дієслово."
+      - en: "I handed the floor on with a question that names the person: Wie sehen Sie das, …?"
+        ru: "Я передал(а) слово вопросом, в котором названо имя: Wie sehen Sie das, …?"
+        uk: "Я передав(ла) слово питанням, у якому названо ім'я: Wie sehen Sie das, …?"
+    model_answer: "Entschuldigung, dürfte ich dazu kurz etwas sagen? — Danke. Sie wissen ja, dass die Abteilung eine Stunde später anfängt. Vor allem für die Kollegen dort ist die neue Pause am Vormittag zu kurz. Ich würde deshalb gern eine andere Zeit vorschlagen. Das wäre alles von mir. Wie sehen Sie das, Frau Weber?"
+    model_translation:
+      en: "Excuse me, could I say something about that briefly? — Thank you. You know, of course, that the department starts an hour later. Above all for the colleagues there the new morning break is too short. So I would like to propose a different time. That would be all from me. What do you think, Frau Weber?"
+      ru: "Извините, можно мне коротко сказать об этом? — Спасибо. Вы ведь знаете, что отдел начинает на час позже. Прежде всего для тамошних коллег новый утренний перерыв слишком короткий. Поэтому я хотел бы предложить другое время. У меня всё. Что вы об этом думаете, госпожа Вебер?"
+      uk: "Перепрошую, чи можна мені коротко про це сказати? — Дякую. Ви ж знаєте, що відділ починає на годину пізніше. Насамперед для тамтешніх колег нова ранкова перерва надто коротка. Тому я хотів би запропонувати інший час. У мене все. Що ви про це думаєте, пані Вебер?"
+    explain:
+      en: "Play yourself back and check the first three seconds. That is where the whole task is decided: if the request for the floor did not come out as one piece, you were still building it while the colleague went on talking. *Entschuldigung, dürfte ich dazu kurz etwas sagen?* has to arrive whole. Then check the *ja* in *Sie wissen ja, dass …*: it must be unstressed and inside the sentence — stressing it turns a reminder into a contradiction. Finally, listen for whether you actually gave the floor away at the end, or simply stopped."
+      ru: "Прослушайте запись и проверьте первые три секунды. Именно там решается всё задание: если просьба о слове не вышла одним куском, значит вы ещё строили её, пока коллега продолжала говорить. *Entschuldigung, dürfte ich dazu kurz etwas sagen?* должно приходить целиком. Потом проверьте *ja* в *Sie wissen ja, dass …*: оно должно быть безударным и внутри предложения — под ударением напоминание превращается в возражение. И наконец, послушайте, действительно ли вы передали слово в конце или просто замолчали."
+      uk: "Прослухайте запис і перевірте перші три секунди. Саме там вирішується все завдання: якщо прохання про слово не вийшло одним шматком, значить ви ще будували його, поки колега продовжувала говорити. *Entschuldigung, dürfte ich dazu kurz etwas sagen?* має приходити цілком. Потім перевірте *ja* в *Sie wissen ja, dass …*: воно має бути ненаголошеним і всередині речення — під наголосом нагадування перетворюється на заперечення. І нарешті, послухайте, чи справді ви передали слово наприкінці, чи просто замовкли."
+
+  - id: sprechen-abschluss
+    outcomes: [beitrag-rahmen, hoeflich-ausweichen]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say it aloud in one go — a short voice message, nobody answering."
+      ru: "Скажите вслух одним куском — короткое голосовое сообщение, никто не отвечает."
+      uk: "Скажіть уголос одним шматком — коротке голосове повідомлення, ніхто не відповідає."
+    prompt:
+      en: "Your neighbours' association asked you by phone about the courtyard. Leave them a voice message: open your contribution, give one example of the problem, say what matters most, and admit the one thing you cannot answer — the costs — without simply going quiet. Then close."
+      ru: "Соседское объединение спросило вас по телефону о дворе. Оставьте им голосовое сообщение: начните своё высказывание, приведите один пример проблемы, скажите, что важнее всего, и признайте то единственное, на что вы ответить не можете, — расходы, — не замолчав при этом. Потом закончите."
+      uk: "Сусідське об'єднання спитало вас телефоном про подвір'я. Залиште їм голосове повідомлення: почніть свій виступ, наведіть один приклад проблеми, скажіть, що найважливіше, і визнайте те єдине, на що ви відповісти не можете, — витрати, — не замовкнувши при цьому. Потім завершіть."
+    goal:
+      en: "Say what you do know and what you do not, in a message the association can act on without calling you back."
+      ru: "Сказать и то, что вы знаете, и то, чего не знаете, так, чтобы объединению не пришлось перезванивать."
+      uk: "Сказати і те, що ви знаєте, і те, чого не знаєте, так, щоб об'єднанню не довелося передзвонювати."
+    checklist:
+      - en: "I marked the beginning and the end of my contribution, so the listener can hear where it stops."
+        ru: "Я отметил(а) начало и конец своего высказывания, чтобы слушателю было слышно, где оно кончается."
+        uk: "Я позначив(ла) початок і кінець свого виступу, щоб слухачеві було чути, де він завершується."
+      - en: "I gave one example with zum Beispiel and marked the main thing with vor allem."
+        ru: "Я привёл(привела) один пример через zum Beispiel и выделил(а) главное через vor allem."
+        uk: "Я навів(навела) один приклад через zum Beispiel і виділив(ла) головне через vor allem."
+      - en: "Where I could not answer, I said so politely and offered the next step, instead of stopping at Ich weiß nicht."
+        ru: "Там, где ответить не мог(ла), я сказал(а) об этом вежливо и предложил(а) следующий шаг, а не остановился(лась) на Ich weiß nicht."
+        uk: "Там, де відповісти не міг(ла), я сказав(ла) про це ввічливо і запропонував(ла) наступний крок, а не спинився(лася) на Ich weiß nicht."
+    model_answer: "Guten Tag, ich möchte kurz etwas zum Hof sagen. Der Hof ist ja seit Mai eine Baustelle. Zum Beispiel können die Kinder am Nachmittag nicht mehr draußen spielen. Vor allem der Lärm am Abend stört viele Nachbarn. Zu den Kosten kann ich leider nichts sagen — da bin ich mir nicht sicher, ich frage nach und sage Ihnen morgen Bescheid. Das wäre alles von mir."
+    model_translation:
+      en: "Hello, I would like to say something briefly about the courtyard. The courtyard has been a building site since May, as you know. For example, the children can no longer play outside in the afternoon. Above all the noise in the evening bothers a lot of neighbours. I am afraid I cannot say anything about the costs — I am not sure about that, I will ask and let you know tomorrow. That would be all from me."
+      ru: "Здравствуйте, я хотел бы коротко сказать о дворе. Двор ведь с мая стройка. Например, дети больше не могут играть на улице во второй половине дня. Прежде всего многих соседей беспокоит шум по вечерам. О расходах я, к сожалению, ничего сказать не могу — тут я не уверен, я узнаю и завтра вам сообщу. У меня всё."
+      uk: "Добрий день, я хотів би коротко сказати про подвір'я. Подвір'я ж із травня будівельний майданчик. Наприклад, діти більше не можуть гратися надворі по обіді. Насамперед багатьох сусідів турбує шум увечері. Про витрати я, на жаль, нічого сказати не можу — тут я не впевнений, я дізнаюся і завтра вам повідомлю. У мене все."
+    explain:
+      en: "Two things to listen for. The first is the shape: play the recording and see whether you can hear the beginning and the end without knowing the content — *Ich möchte kurz etwas zum Hof sagen* and *Das wäre alles von mir* are what make that possible, and a message without them sounds like it was cut off. The second is the refusal. *Zu den Kosten kann ich leider nichts sagen* is not the end of the message: the model adds what it will do instead, and that pair is the difference between declining and stonewalling. Also check the *ja* in the second sentence — unstressed, inside the sentence, meaning *as you know*."
+      ru: "Слушать надо две вещи. Первая — форма: прослушайте запись и проверьте, слышны ли начало и конец без знания содержания. Возможным это делают *Ich möchte kurz etwas zum Hof sagen* и *Das wäre alles von mir*, а сообщение без них звучит как оборванное. Вторая — отказ. *Zu den Kosten kann ich leider nichts sagen* не является концом сообщения: образец добавляет, что он сделает взамен, и именно эта пара отличает уход от ответа от глухой стены. Проверьте ещё *ja* во втором предложении — безударное, внутри фразы, со значением «как вы знаете»."
+      uk: "Слухати треба дві речі. Перша — форма: прослухайте запис і перевірте, чи чути початок і кінець без знання змісту. Можливим це роблять *Ich möchte kurz etwas zum Hof sagen* і *Das wäre alles von mir*, а повідомлення без них звучить як обірване. Друга — відмова. *Zu den Kosten kann ich leider nichts sagen* не є кінцем повідомлення: зразок додає, що він зробить натомість, і саме ця пара відрізняє ухилення від глухої стіни. Перевірте ще *ja* в другому реченні — ненаголошене, всередині фрази, зі значенням «як ви знаєте»."

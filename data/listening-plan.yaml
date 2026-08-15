@@ -822,3 +822,24 @@ units:
         register: "sachlich-freundlich, Beratungsgespräch"
         context_sound: "leiser Gruppenraum im Hintergrund"
         item_types: [audio-comprehension]
+  - unit: gespraech-steuern
+    level: B1
+    artifacts:
+      # listening-outcome would be wrong here for the usual reason — the unit's five outcomes are
+      # two spoken production, two spoken interaction and one writing, so there is nothing for a
+      # listening artifact to measure. But the model-input case is stronger for this unit than for
+      # any other: Redemittel are heard before they are ever read, and the whole point of
+      # zuhoeren-signalisieren is that the signal arrives in somebody else's turn. A transcript
+      # cannot rehearse an interruption.
+      - id: ls-gespraech-steuern-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurze Besprechung zu dritt: jemand eröffnet den Beitrag, wird unterbrochen, bittet um das Wort zurück, gibt es weiter und schließt ab"
+        outcomes: [wort-nehmen-geben]
+        required_vocabulary: [Moment, unterbrechen, Beispiel, übrigens, kurz]
+        grammar_target: "Redemittel als feste Wendungen; Konjunktiv II der Höflichkeit"
+        duration_seconds: { min: 60, max: 80 }
+        speakers: { min: 3, max: 3 }
+        register: "beruflich-informell, Besprechung"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Besprechungsraum"

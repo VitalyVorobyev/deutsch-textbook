@@ -29,8 +29,8 @@ describe('listening production inventory', () => {
   // evidence, which is the honest shape when the unit never asked for any.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(56);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(56);
+    expect(rows).toHaveLength(57);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(57);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

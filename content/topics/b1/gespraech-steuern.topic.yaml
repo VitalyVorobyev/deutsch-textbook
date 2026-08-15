@@ -1,0 +1,125 @@
+id: gespraech-steuern
+level: B1
+kind: communication
+strand: communication
+group: erzaehlen-berichten
+title_de: Ein Gespräch steuern
+title_en: Steering a conversation
+title_ru: Управлять ходом разговора
+title_uk: Керувати перебігом розмови
+status: draft
+# Why this topic exists, in one number: `bun scripts/handlungen.ts B1` read 28/41, and nine of
+# the thirteen holes were the whole of §8.3 Redeorganisation of the DTZ Prüfungshandbuch —
+# opening and closing a turn, asking for the floor, inviting somebody else to speak, signalling
+# that you are listening, appealing to shared knowledge, giving an example, changing the
+# subject, emphasising. The course taught a learner to build sentences and never to manage a
+# conversation, which is a gap no grammar instrument can express.
+#
+# What is being taught is Redemittel: formulaic chunks, retrieved whole rather than derived.
+# The learning-science skill's `formulaic language` line is the whole pedagogy here, and it is
+# why the article's tables are lists of usable phrases and not paradigms.
+#
+# The honesty constraint this topic cannot escape: **the app has no interlocutor.** One `speak`
+# item with `mode: spoken-interaction` is the closest the corpus gets, and the rest of the
+# interaction functions are practised as recognition, as written turns in a printed dialogue,
+# and as one recorded monologue. That is stated in the article rather than papered over — a
+# learner who has done this topic has rehearsed the chunks, not held a conversation.
+#
+# Two focus tags, both recycled rather than invented, and both genuinely at issue here:
+#   * `konjunktionaladverb-inversion` (A2, gesellschaft-zusammenleben) — *übrigens*, *vor allem*
+#     and *besonders* are adverbs, so they fill position 1 and the finite verb comes second.
+#     This is exactly what collapses when a learner learns the chunk and not the sentence it
+#     sits in: the phrasebook says *übrigens* and the hand writes *Übrigens ich habe …*.
+#   * `konjunktiv2-form` (B1, reisen-probleme; 4 items in 2 files on
+#     `bun scripts/grammar-depth.ts B1 --thin`) — asking for the floor and declining to answer
+#     both run on *dürfte*, *könnte* and *würde* + Infinitiv, so this topic is where the B1
+#     paradigm gets a third file and a second communicative reason to exist.
+# No new tag was registered: neither the chunk inventory nor the listener signals name a
+# confusion a tag could grade, and a false tag is worse than no tag.
+tags:
+  - gespraech
+  - redemittel
+  - diskussion
+  - hoeflichkeit
+  - b1
+prerequisites:
+  - meinung-medien
+  - gesellschaft-zusammenleben
+  - reisen-probleme
+deepens:
+  # Checked against the corpus rather than assumed: `konjunktionaladverb-inversion` is drilled
+  # by gesellschaft-zusammenleben (and by a2/verbindungen-folgen, which introduces it), and
+  # `konjunktiv2-form` by reisen-probleme. Both edges therefore have the runtime channel a
+  # deepens edge needs. meinung-medien is the obvious neighbour by subject — a discussion is
+  # where you steer a conversation — and it shares no focus tag with this topic, so it stays a
+  # prerequisite: an edge to it would be inert.
+  - gesellschaft-zusammenleben
+  - reisen-probleme
+related: []
+outcomes:
+  - id: beitrag-rahmen
+    mode: spoken-production
+    domain: public
+    de: Ich kann meinen Beitrag deutlich anfangen und deutlich beenden.
+    en: I can open my contribution clearly and bring it to a clear close.
+    ru: Я умею отчётливо начать своё высказывание и отчётливо его закончить.
+    uk: Я вмію виразно почати свій виступ і виразно його завершити.
+    claims:
+      - goethe-dtz-handlungen:aeusserung-einleiten
+      - goethe-dtz-handlungen:aeusserung-abschliessen
+  - id: wort-nehmen-geben
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann höflich um das Wort bitten und andere zum Sprechen auffordern.
+    en: I can politely ask for the floor and invite other people to speak.
+    ru: Я умею вежливо попросить слова и предложить высказаться другим.
+    uk: Я вмію ввічливо попросити слова і запросити висловитися інших.
+    claims:
+      - goethe-dtz-handlungen:wort-bitten
+      - goethe-dtz-handlungen:sprechen-auffordern
+  - id: zuhoeren-anknuepfen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann zeigen, dass ich zuhöre, und an Bekanntes anknüpfen.
+    en: I can show that I am listening and tie what I say to what we both already know.
+    ru: Я умею показать, что слушаю, и опереться на уже известное обоим.
+    uk: Я вмію показати, що слухаю, і спертися на вже відоме обом.
+    claims:
+      - goethe-dtz-handlungen:zuhoeren-signalisieren
+      - goethe-dtz-handlungen:gemeinsames-wissen
+  - id: inhalt-steuern
+    mode: writing
+    domain: public
+    de: Ich kann ein Beispiel geben, das Wichtigste hervorheben und zu einem anderen Punkt wechseln.
+    en: I can give an example, mark what matters most and move on to another point.
+    ru: Я умею привести пример, выделить самое важное и перейти к другому пункту.
+    uk: Я вмію навести приклад, виділити найважливіше і перейти до іншого пункту.
+    claims:
+      - goethe-dtz-handlungen:beispiele-geben
+      - goethe-dtz-handlungen:hervorheben
+      - goethe-dtz-handlungen:thema-wechseln
+  - id: hoeflich-ausweichen
+    mode: spoken-production
+    domain: public
+    de: Ich kann höflich ausweichen, wenn ich etwas nicht weiß oder nicht sagen möchte.
+    en: I can decline politely when I do not know something or would rather not say it.
+    ru: Я умею вежливо уйти от ответа, если чего-то не знаю или не хочу говорить.
+    uk: Я вмію ввічливо ухилитися від відповіді, якщо чогось не знаю або не хочу казати.
+    claims:
+      - goethe-dtz-handlungen:vermeidung
+elements:
+  article: gespraech-steuern.mdx
+  pretest: b1/gespraech-steuern-pretest
+  exercises:
+    - b1/gespraech-steuern
+    - b1/gespraech-steuern-produktion
+  primary_practice: b1/gespraech-steuern
+  probes:
+    - b1/probe-gespraech-steuern
+  reading:
+    - b1/gespraech-steuern
+  # No `vocab:`. `redemittel-chunks-a2` was read and does fit by subject — it is the A2
+  # Wortliste chunk tail (*zum Beispiel*, *auf jeden Fall*, *Bescheid*) — but it is a Wortliste
+  # completion deck and those stay unowned: listing it here would gate its fresh cards on this
+  # one B1 topic having been opened. The chunks this topic teaches are multi-word Redemittel
+  # rather than headwords, and they are taught in the article and drilled in the sets.
