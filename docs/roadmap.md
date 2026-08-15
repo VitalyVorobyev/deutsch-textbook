@@ -49,11 +49,14 @@ extensive-reading corpus, then cross-links/Referenz.
    - ~~P27-3e residual findings~~ — shipped: the six deterministic A1 translations declare an
      honest graded surface, both remaining B1 tags have independent delayed families, all 17 former
      reading-length signals have been read by hand, and the live profile queue is empty.
-   - **P27-3f B1 lexical tail is next:** classify the remaining official Wortliste rows one by one,
-     then continue the bounded B1 topic-quality waves.
-   - Then complete the 49 original topic
-     audits in bounded waves, and close the 73-row B1 lexical tail entry by entry. B1 may be called
-     100% des DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
+   - ~~P27-3f B1 lexical tail~~ — shipped: all 73 rows classified one by one; 12 recognition cards,
+     six productive cards and 55 genuinely taught grammar/word-formation rows close B1 at
+     3416/3416 with 0 missing and 0 late.
+   - **P27-3g topic-quality waves are in progress:** A1's 11 original topics plus the new
+     `wortbildung`, and all 24 A2 topics, have completed the bounded corpus pass; B1 remains. Each wave records
+     substantive language, task, reading, audio and vocabulary decisions under one shared contract;
+     it does not impersonate the separate human `reviewed` gate. B1 may be called 100% des
+     DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
 2. **Read the cadence between the windows, not on top of them.** Drain the grading queue to zero,
    rerun `bun run progress:audit --profile vitaly`, and only then read the weak-focus table. This is
    P5-11 and it is not optional: a drill authored from a pre-triage table targets a confusion the
@@ -195,6 +198,34 @@ content defect worth changing. Together with P27-3d, all 17 have now received hu
 review. The derived A1–B1 topic-profile queue is empty; P27-3f owns the B1 lexical tail and the
 remaining topic-by-topic audit, so zero findings is a milestone rather than proof that the entire
 course has finished human review.
+
+**P27-3f · B1 lexical tail shipped 2026-08-15.** The 73-row remainder was re-audited rather than
+blanket-marked as grammar. Twelve written labels and official long forms now have recognition cards,
+six frequent independent forms have productive cards, and 55 true bound pieces/frames are backed by
+addressable teaching and a B1 decoding extension. Coverage is 3416/3416: 3297 card rows, 119 grammar
+rows, no missing or late entries. The [audit ledger](curriculum/a1-b1-completeness-audit.md) records
+every disposition. P27-3g now owns the remaining human topic-by-topic content audit.
+
+**P27-3g · A1 topic-quality wave shipped 2026-08-15.** All 12 current A1 topics (11 of the
+original 49 plus the new `wortbildung`) were read as complete profiles under the shared
+[audit contract](authoring/content-quality-audit.md). The pass confirmed that dense topics split
+sets by function and learning stage rather than arbitrary item counts. It also found a defect that
+the derived queue could not: `freizeit-koennen` treated an availability question as an invitation
+and modelled *Hast du Zeit? — Ja, gern!*; the article now distinguishes the speech acts in all
+three support languages. The associated reading's singular *Kuchen* gloss and feedback were also
+corrected. The [topic ledger](curriculum/topic-quality-audit.md) records decisions per topic; draft
+statuses remain pending human approval.
+
+**P27-3g · A2 topic-quality wave shipped 2026-08-15.** All 24 A2 profiles were read across article,
+114 teaching/remediation sets, 42 readings, listening flows, documents and 271 entries in 19 owned
+decks. The empty diagnostics queue missed five substantive defect clusters: a Bürgeramt recording
+mixed Anmeldung with Personalausweis, the course invented a closed list of dative verbs, register
+guidance banned `du` with every stranger, past-tense/auxiliary advice used false absolutes, and the
+habitual/specific evening contrast was overstated. These contracts are corrected; the obsolete
+recording is retired until a human approves an exact replacement, and the substantively changed
+`verben-mit-kasus` topic returned to `draft`. Ten dense profiles were retained only where every set
+owns a distinct decision, stage or medium. The [topic ledger](curriculum/topic-quality-audit.md)
+records all 24 decisions.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,

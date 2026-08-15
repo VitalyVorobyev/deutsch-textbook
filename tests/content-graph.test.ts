@@ -27,10 +27,10 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(50);
-    expect(graph.sets.size).toBe(409);
+    expect(graph.sets.size).toBe(410);
     expect(graph.readings.size).toBe(78);
     expect(graph.vocab.size).toBe(129);
-    expect(graph.listening.size).toBe(41);
+    expect(graph.listening.size).toBe(40);
     expect(graph.documents.size).toBe(5);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
@@ -86,10 +86,10 @@ describe('content graph', () => {
       drill: 19,
       einstufung: 3,
       entdecken: 19,
-      hoertext: 41,
+      hoertext: 40,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 61,
-      praxis: 186,
+      praxis: 187,
       pretest: 50,
       probe: 145,
       pruefungspraxis: 3,
@@ -109,11 +109,11 @@ describe('content graph', () => {
     expect(byStage.get('nachpruefung')).toBe(148);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(205);
+    expect(teaching).toHaveLength(206);
     expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
       activity,
       teaching.filter((element) => element.activity === activity).length,
-    ]))).toEqual({ core: 50, extension: 28, application: 108, remediation: 19 });
+    ]))).toEqual({ core: 50, extension: 29, application: 108, remediation: 19 });
     expect([...graph.topics.keys()].filter((topic) =>
       !(graph.elementsByTopic.get(topic) ?? []).some(
         (element) => element.activity === 'application' && element.touches.includes('produktion'),
