@@ -132,7 +132,11 @@ describe('published progress claims match the content', () => {
       const c = goetheCoverage(level);
       expect([level, stated, total]).toEqual([level, c.cards + c.grammar, c.total]);
     }
-  });
+    // 30s, not the 5s default: `goetheCoverage` re-reads and re-parses all 129 vocab decks twice
+    // and the entire taught surface once, per level — ~1.2 s locally and past 3 s on CI, three
+    // times over. That is the layering defect P27-4 fixes (the function should read the already
+    // built ContentGraph), not a slow test. Drop this argument once it does.
+  }, 30_000);
 
   /**
    * `handlungen.ts` reports "N/192 outcomes cite a published Sprachhandlung", and CLAUDE.md states
