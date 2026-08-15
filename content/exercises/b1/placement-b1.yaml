@@ -542,3 +542,48 @@ items:
       # what the tag grades, and it is unchanged here.
       - "Morgen fahre ich wegen eines Termins mit dem Zug nach Köln."
     explain: { en: "Four adverbials in one clause, and German has a default order for them: temporal before causal before modal before local — morgen, wegen eines Termins, mit dem Zug, nach Köln. Say it in the source-language order and the sentence comes out with the place too early, which is the one that sounds most wrong to a German ear. The order is a default and not a law: any one of them may be moved into position 1 for emphasis, and then the verb comes second and the rest keep their sequence.", ru: "Четыре обстоятельства в одном предложении, и у немецкого для них есть порядок по умолчанию: время — причина — образ действия — место: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказать это в русском порядке — значит вынести место слишком рано, а именно это немецкому уху и режет слух сильнее всего. Порядок — это умолчание, а не закон: любое из обстоятельств можно вынести на первое место для акцента, и тогда глагол идёт вторым, а остальные сохраняют свою последовательность.", uk: "Чотири обставини в одному реченні, і в німецької для них є порядок за замовчуванням: час — причина — спосіб дії — місце: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказати це в українському порядку — означає винести місце надто рано, а саме це німецькому вуху й ріже слух найдужче. Порядок — це замовчування, а не закон: будь-яку з обставин можна винести на перше місце для акценту, і тоді дієслово йде другим, а решта зберігають свою послідовність.", de: "Vier Angaben in einem Satz, und das Deutsche hat dafür eine Grundreihenfolge: temporal vor kausal vor modal vor lokal — morgen, wegen eines Termins, mit dem Zug, nach Köln. Wer sie in der Reihenfolge der Ausgangssprache sagt, setzt die Ortsangabe zu früh, und genau das klingt für ein deutsches Ohr am schiefsten. Die Reihenfolge ist eine Grundregel und kein Gesetz: Jede einzelne Angabe darf zur Betonung auf Position 1 rücken, dann steht das Verb an zweiter Stelle und der Rest behält seine Abfolge." }
+
+  # --- unfall-notruf ---
+  - id: unfall-nachdem
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    prompt_en: "After the ambulance had arrived, everything went quickly."
+    prompt_ru: "После того как приехала скорая, всё пошло быстро."
+    prompt_uk: "Після того як приїхала швидка, усе пішло швидко."
+    answer: "Nachdem der Krankenwagen gekommen war, ging alles schnell."
+    accept: ["Nachdem der Krankenwagen angekommen war, ging alles schnell.", "Nachdem der Krankenwagen gekommen war, ist alles schnell gegangen."]
+    key_tokens: ["Nachdem", "war"]
+    explain: { en: "nachdem names the earlier of two past events and puts it in the Plusquamperfekt; kommen builds its perfect with sein, so the auxiliary is war and it closes the Nebensatz behind the participle. One past tense in both halves loses the sequence, which is the only thing nachdem was used for.", ru: "nachdem называет более раннее из двух прошедших событий и ставит его в Plusquamperfekt; kommen строит перфект с sein, поэтому вспомогательный — war, и он закрывает придаточное за причастием. Одно прошедшее время в обеих половинах теряет последовательность, а ведь только ради неё nachdem и берут.", uk: "nachdem називає ранішу з двох минулих подій і ставить її в Plusquamperfekt; kommen будує перфект із sein, тому допоміжне — war, і воно закриває підрядне за дієприкметником. Один минулий час в обох половинах втрачає послідовність, а саме заради неї nachdem і беруть.", de: "nachdem nennt das frühere von zwei vergangenen Ereignissen und setzt es ins Plusquamperfekt; kommen bildet sein Perfekt mit sein, also lautet das Hilfsverb war und schließt den Nebensatz hinter dem Partizip. Ein einziges Vergangenheitstempus in beiden Hälften verliert die Abfolge — und nur dafür steht nachdem überhaupt da." }
+
+  - id: unfall-koerperteil
+    outcomes: [verletzung-benennen]
+    type: cloze
+    instruction: { en: "Fill in the reflexive pronoun and the article.", ru: "Вставьте возвратное местоимение и артикль.", uk: "Вставте зворотний займенник і артикль.", de: "Ergänze das Reflexivpronomen und den Artikel." }
+    text: "Ich habe {{mir}} {{den}} Arm verletzt und kann nicht arbeiten."
+    translation: { en: "I have injured my arm and cannot work.", ru: "Я повредил руку и не могу работать.", uk: "Я пошкодив руку і не можу працювати." }
+    explain: { en: "German marks whose body it is with a dative reflexive and keeps the ordinary definite article on the body part: mir den Arm. meinen Arm is understood but doubles what mir already says.", ru: "Немецкий отмечает принадлежность тела возвратным местоимением в дативе и сохраняет у части тела обычный определённый артикль: mir den Arm. Вариант meinen Arm поймут, но он дублирует то, что уже сказано словом mir.", uk: "Німецька позначає належність тіла зворотним займенником у давальному і зберігає в частини тіла звичайний означений артикль: mir den Arm. Варіант meinen Arm зрозуміють, але він дублює те, що вже сказано словом mir.", de: "Beim eigenen Körper markiert das Deutsche die Zugehörigkeit mit einem Reflexivpronomen im Dativ und behält am Körperteil den gewöhnlichen bestimmten Artikel: mir den Arm. meinen Arm versteht man, aber es verdoppelt, was mir schon gesagt hat." }
+
+  # --- polizei-anzeige ---
+  - id: polizei-indirekt
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    prompt_en: "The witness says that he did not see anything."
+    prompt_ru: "Свидетель говорит, что ничего не видел."
+    prompt_uk: "Свідок каже, що нічого не бачив."
+    answer: "Der Zeuge sagt, dass er nichts gesehen hat."
+    accept: ["Der Zeuge sagt, dass er nichts gesehen habe."]
+    key_tokens: ["dass", "hat"]
+    explain: { en: "dass opens a Nebensatz, so the conjugated verb closes it — in a perfect that is the auxiliary, behind the participle: gesehen hat. The Konjunktiv I habe is accepted because it is the written variant of the same report, but nothing in this course asks you to produce it.", ru: "dass открывает придаточное, поэтому спрягаемый глагол его закрывает — в перфекте это вспомогательный, за причастием: gesehen hat. Форма Konjunktiv I habe принимается как письменный вариант той же передачи, но производить её курс нигде не требует.", uk: "dass відкриває підрядне, тому відмінюване дієслово його закриває — у перфекті це допоміжне, за дієприкметником: gesehen hat. Форма Konjunktiv I habe приймається як писемний варіант того самого передавання, але виробляти її курс ніде не вимагає.", de: "dass eröffnet einen Nebensatz, also schließt ihn das konjugierte Verb — im Perfekt ist das das Hilfsverb, hinter dem Partizip: gesehen hat. Der Konjunktiv I habe wird akzeptiert, weil er die geschriebene Variante derselben Wiedergabe ist; produzieren muss man ihn in diesem Kurs nirgends." }
+
+  - id: polizei-partizip
+    outcomes: [diebstahl-melden]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction: { en: "Fill in the participle with the ending its position requires: stehlen.", ru: "Вставьте причастие с окончанием, которого требует позиция: stehlen.", uk: "Вставте дієприкметник із закінченням, якого вимагає позиція: stehlen.", de: "Ergänze das Partizip mit der Endung, die seine Position verlangt: stehlen." }
+    text: "Die Polizei hat das {{gestohlene}} Fahrrad gefunden."
+    translation: { en: "The police found the stolen bicycle.", ru: "Полиция нашла украденный велосипед.", uk: "Поліція знайшла украдений велосипед." }
+    explain: { en: "In front of a noun a Partizip II is an adjective and takes the ending its article and case demand — after das in the accusative neuter that is -e. A bare participle stands only after sein or werden: Das Fahrrad wurde gestohlen.", ru: "Перед существительным Partizip II — прилагательное и берёт окончание, которого требуют артикль и падеж: после das в винительном среднего рода это -e. Без окончания причастие стоит только после sein или werden: Das Fahrrad wurde gestohlen.", uk: "Перед іменником Partizip II — прикметник і бере закінчення, якого вимагають артикль і відмінок: після das у знахідному середнього роду це -e. Без закінчення дієприкметник стоїть лише після sein або werden: Das Fahrrad wurde gestohlen.", de: "Vor einem Nomen ist ein Partizip II ein Adjektiv und nimmt die Endung, die Artikel und Kasus verlangen — nach das im Akkusativ Neutrum also -e. Endungslos steht das Partizip nur nach sein oder werden: Das Fahrrad wurde gestohlen." }

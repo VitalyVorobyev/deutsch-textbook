@@ -1,0 +1,84 @@
+# Delayed probe family — ONE competence: putting the earlier of two past events one step further
+# back with nachdem. Three parallel translate variants, served in authoring order across the
+# 2/7/21 delays: one retention curve over one decision.
+#
+# The three variants sample three corners of that decision rather than repeating a corner.
+# variant-a is a haben verb with the Nebensatz first; variant-b is a sein verb with the main
+# clause first, so the Plusquamperfekt arrives after the learner has already committed to a
+# tense; variant-c puts a separable verb in the participle, where the prefix has to stay
+# attached and the auxiliary still has to close the clause.
+#
+# translate rather than cloze: a cloze prints the gap where the auxiliary belongs and thereby
+# answers the question — whether a step back is needed at all.
+#
+# Pinned is nachdem and the auxiliary the step back requires. The nouns are carrier material: a
+# fumbled Werkstatt is not this confusion. Each pinned token occurs exactly once in every
+# accepted rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading by grepping
+# content/, not by re-reading them: Werkstatt, Formular, Nachbar and Schlüssel appear in no
+# arming item, so no variant can be answered from the memory of one.
+topic: unfall-notruf
+role: probe
+arming:
+  - b1/unfall-notruf::cloze-nachdem-plusquam
+  - b1/unfall-notruf::uebersetzen-nachdem
+  - b1/unfall-notruf::order-nachdem
+  - b1/unfall-notruf::cloze-nachdem-sein
+  - b1/unfall-notruf-produktion::uebersetzen-reihenfolge
+title:
+  en: "Delayed check — one past event before another"
+  ru: "Отложенная проверка — одно прошедшее событие раньше другого"
+  uk: "Відкладена перевірка — одна минула подія раніше за іншу"
+items:
+  - id: variant-a
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    key_tokens: ["Nachdem", "hatte"]
+    prompt_en: "After I had filled in the form, the clerk asked for my passport."
+    prompt_ru: "После того как я заполнил формуляр, служащий попросил мой паспорт."
+    prompt_uk: "Після того як я заповнив формуляр, службовець попросив мій паспорт."
+    answer: "Nachdem ich das Formular ausgefüllt hatte, hat der Beamte nach meinem Pass gefragt."
+    accept:
+      - "Nachdem ich das Formular ausgefüllt hatte, fragte der Beamte nach meinem Pass."
+    explain:
+      en: "*Ausfüllen* takes *haben*, so the step back is *hatte ausgefüllt* — and inside the Nebensatz the auxiliary goes last, after the participle. The source sentence marks the sequence with a conjunction and a single past tense; German marks it with two different tenses, so the information has to be rebuilt rather than translated."
+      ru: "*Ausfüllen* берёт *haben*, поэтому шаг назад — это *hatte ausgefüllt*, а внутри придаточного вспомогательный уходит в конец, после причастия. Русская фраза отмечает последовательность словом («после того как») и одним прошедшим временем; немецкая отмечает её двумя разными временами, так что информацию приходится строить заново, а не переводить."
+      uk: "*Ausfüllen* бере *haben*, тому крок назад — це *hatte ausgefüllt*, а всередині підрядного допоміжне йде в кінець, після дієприкметника. Українська фраза позначає послідовність словом («після того як») і одним минулим часом; німецька позначає її двома різними часами, тож інформацію доводиться будувати наново, а не перекладати."
+
+  - id: variant-b
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    key_tokens: ["nachdem", "war"]
+    instruction:
+      en: "Begin with the main clause."
+      ru: "Начните с главного предложения."
+      uk: "Почніть із головного речення."
+    prompt_en: "My neighbour called me after the ambulance had already left."
+    prompt_ru: "Сосед позвонил мне после того, как скорая уже уехала."
+    prompt_uk: "Сусід зателефонував мені після того, як швидка вже поїхала."
+    answer: "Mein Nachbar hat mich angerufen, nachdem der Krankenwagen schon weggefahren war."
+    accept:
+      - "Mein Nachbar rief mich an, nachdem der Krankenwagen schon weggefahren war."
+    explain:
+      en: "The clauses are in the reverse order and the rule does not move with them: the *nachdem* clause still holds the earlier event and still takes the Plusquamperfekt, even though it now comes second. *Wegfahren* is a change of place, so the auxiliary is *war*. This is the harder direction, because by the time you reach *nachdem* you have already chosen a tense for the main clause and it is tempting to keep it."
+      ru: "Части стоят в обратном порядке, и правило вместе с ними не сдвигается: придаточное с *nachdem* по-прежнему держит более раннее событие и по-прежнему берёт Plusquamperfekt, хотя теперь идёт вторым. *Wegfahren* — перемена места, поэтому вспомогательный *war*. Это более трудное направление: доходя до *nachdem*, вы уже выбрали время для главного предложения, и его хочется сохранить."
+      uk: "Частини стоять у зворотному порядку, і правило разом із ними не зсувається: підрядне з *nachdem* так само тримає ранішу подію і так само бере Plusquamperfekt, хоча тепер іде другим. *Wegfahren* — зміна місця, тому допоміжне *war*. Це важчий напрямок: доходячи до *nachdem*, ви вже обрали час для головного речення, і його хочеться зберегти."
+
+  - id: variant-c
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    key_tokens: ["Nachdem", "abgeschlossen"]
+    prompt_en: "After she had locked the workshop, she went home."
+    prompt_ru: "После того как она заперла мастерскую, она пошла домой."
+    prompt_uk: "Після того як вона замкнула майстерню, вона пішла додому."
+    answer: "Nachdem sie die Werkstatt abgeschlossen hatte, ist sie nach Hause gegangen."
+    accept:
+      - "Nachdem sie die Werkstatt abgeschlossen hatte, ging sie nach Hause."
+    explain:
+      en: "*Abschließen* is separable, and a participle is one word, so the prefix stays attached: *abgeschlossen*, with the *ge-* in the middle. The auxiliary still closes the Nebensatz behind it. Two things have to be right at once here — the shape of the participle and its position — and neither is visible in the source sentence."
+      ru: "*Abschließen* — глагол с отделяемой приставкой, а причастие есть одно слово, поэтому приставка остаётся приклеенной: *abgeschlossen*, с *ge-* в середине. Вспомогательный по-прежнему закрывает придаточное за ним. Здесь одновременно должны быть верны две вещи — форма причастия и его позиция, — и ни одна не видна в исходной фразе."
+      uk: "*Abschließen* — дієслово з відокремлюваним префіксом, а дієприкметник є одним словом, тому префікс лишається приклеєним: *abgeschlossen*, із *ge-* посередині. Допоміжне так само закриває підрядне за ним. Тут водночас мають бути правильні дві речі — форма дієприкметника і його позиція, — і жодна не видна у вихідній фразі."

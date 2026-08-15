@@ -1,0 +1,270 @@
+topic: unfall-notruf
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — den Hergang erzählen"
+title:
+  en: "Practice — telling what happened"
+  ru: "Практика — рассказать, как это произошло"
+  uk: "Практика — розповісти, як це сталося"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# Twelve items over the article's four sections: the call's fixed order (table-notruf,
+# mc-notrufnummer), the sequence of two past events (cloze-nachdem-plusquam,
+# uebersetzen-nachdem, cloze-nachdem-sein, order-nachdem), the order of the adverbials
+# (cloze-angaben, uebersetzen-angaben, table-angaben) and naming the injury
+# (cloze-koerperteil, uebersetzen-weh, match-verletzung).
+#
+# Two tags, both recycled and both chosen from `bun scripts/grammar-depth.ts B1 --thin`:
+# `plusquamperfekt-nachdem` and `angaben-reihenfolge` were each living in a single practice
+# file, met once in one sitting and never interleaved again. This set is their second file and
+# their second context, which is the whole of what the thin tail measures.
+#
+# Mix over this file: 1 mc of 12 (8%), mc+match+order 3 of 12 (25%), 3 translate, 1 order.
+#
+# Every noun is a headword of `koerper-medizin-b1`, the deck this topic adopts, or of an A1/A2
+# deck — grepped in content/vocab/ rather than remembered: Wunde, Verletzung, Blut, bluten,
+# Knie, Schulter, Kopf, Arm, Krankenwagen, Klinik, Untersuchung, Pflaster, Patient, Straße,
+# Auto, Fahrrad, Regen, Arzt, Kreuzung, Morgen.
+items:
+  - id: table-notruf
+    outcomes: [notruf-absetzen]
+    type: table
+    title: "Der Notruf in der richtigen Reihenfolge"
+    instruction:
+      en: "Number the steps of an emergency call from 1 to 5."
+      ru: "Пронумеруйте шаги экстренного звонка от 1 до 5."
+      uk: "Пронумеруйте кроки екстреного дзвінка від 1 до 5."
+    columns: ["Nummer"]
+    rows:
+      - label: "Ihren Namen nennen"
+        cells:
+          - { answer: "5" }
+      - label: "sagen, wo es passiert ist"
+        cells:
+          - { answer: "1", given: true }
+      - label: "sagen, welche Verletzung die Person hat"
+        cells:
+          - { answer: "4" }
+      - label: "sagen, was passiert ist"
+        cells:
+          - { answer: "2" }
+      - label: "sagen, wie viele Personen verletzt sind"
+        cells:
+          - { answer: "3" }
+    explain:
+      en: "The address comes first because it is what starts the ambulance moving — the dispatcher can send a vehicle while you are still talking. Everything else follows the same logic: what happened, then how many are hurt, then how badly, and your name last, because it changes nothing about the response. Your instinct is to start with the drama; the system needs the map reference."
+      ru: "Адрес идёт первым, потому что именно он приводит машину в движение: диспетчер может отправить её, пока вы ещё говорите. Всё остальное следует той же логике — что случилось, потом сколько пострадавших, потом насколько тяжело, а имя последним, потому что оно ничего не меняет в реакции. Инстинкт велит начать с самого страшного; системе нужна точка на карте."
+      uk: "Адреса йде першою, бо саме вона приводить машину в рух: диспетчер може відправити її, поки ви ще говорите. Усе інше слідує тій самій логіці — що сталося, потім скільки потерпілих, потім наскільки тяжко, а ім'я останнім, бо воно нічого не змінює в реакції. Інстинкт велить почати з найстрашнішого; системі потрібна точка на карті."
+
+  - id: mc-notrufnummer
+    outcomes: [notruf-absetzen]
+    type: mc
+    prompt: "Ihr Fahrrad wurde in der Nacht gestohlen. Welche Nummer wählen Sie?"
+    options:
+      - "110"
+      - "112"
+      - "116117"
+    correct: 0
+    explain:
+      en: "A theft is police business: 110. 112 is the fire brigade and the ambulance, and calling it for a stolen bicycle occupies a line somebody may need for an injury. The two numbers are worth separating now, because in the moment you will not be deciding calmly."
+      ru: "Кража — дело полиции: 110. 112 — пожарные и скорая, и звонок туда из-за украденного велосипеда занимает линию, которая может понадобиться пострадавшему. Развести эти два номера стоит заранее: в нужный момент вы не будете выбирать спокойно."
+      uk: "Крадіжка — справа поліції: 110. 112 — пожежні та швидка, і дзвінок туди через украдений велосипед займає лінію, яка може знадобитися потерпілому. Розвести ці два номери варто заздалегідь: у потрібний момент ви не будете обирати спокійно."
+
+  - id: cloze-nachdem-plusquam
+    outcomes: [unfallhergang-schildern]
+    type: cloze
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Fill in the auxiliary each clause needs: hatte or war."
+      ru: "Вставьте вспомогательный глагол, нужный каждой части: hatte или war."
+      uk: "Вставте допоміжне дієслово, потрібне кожній частині: hatte або war."
+    text: "Nachdem der Fahrer gebremst {{hatte}}, rutschte das Auto weiter. Nachdem der Krankenwagen angekommen {{war}}, ging alles schnell."
+    translation:
+      en: "After the driver had braked, the car went on sliding. Once the ambulance had arrived, everything went quickly."
+      ru: "После того как водитель затормозил, машина продолжила скользить. После того как приехала скорая, всё пошло быстро."
+      uk: "Після того як водій загальмував, машина продовжила ковзати. Після того як приїхала швидка, усе пішло швидко."
+    explain:
+      en: "Both clauses take the Plusquamperfekt because *nachdem* names the earlier of two past events — but they choose different auxiliaries. *Bremsen* is an ordinary action verb and builds its perfect with *haben*, so *hatte gebremst*. *Ankommen* is a change of place and takes *sein*, so *war angekommen*. The Plusquamperfekt inherits that choice unchanged from the Perfekt; nothing new has to be learned about which verb takes which."
+      ru: "Обе части стоят в Plusquamperfekt, потому что *nachdem* называет более раннее из двух прошедших событий, — но вспомогательные у них разные. *Bremsen* — обычный глагол действия и строит перфект с *haben*, отсюда *hatte gebremst*. *Ankommen* — перемена места и берёт *sein*, отсюда *war angekommen*. Plusquamperfekt наследует этот выбор у Perfekt без изменений: заново запоминать ничего не нужно."
+      uk: "Обидві частини стоять у Plusquamperfekt, бо *nachdem* називає ранішу з двох минулих подій, — але допоміжні в них різні. *Bremsen* — звичайне дієслово дії і будує перфект із *haben*, звідси *hatte gebremst*. *Ankommen* — зміна місця і бере *sein*, звідси *war angekommen*. Plusquamperfekt успадковує цей вибір від Perfekt без змін: наново запам'ятовувати нічого не треба."
+
+  - id: uebersetzen-nachdem
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    key_tokens: ["Nachdem", "hatte"]
+    instruction:
+      en: "Begin with the earlier event."
+      ru: "Начните с более раннего события."
+      uk: "Почніть із ранішої події."
+    prompt_en: "After the doctor had examined the wound, he put on a plaster."
+    prompt_ru: "После того как врач осмотрел рану, он наложил пластырь."
+    prompt_uk: "Після того як лікар оглянув рану, він наклав пластир."
+    answer: "Nachdem der Arzt die Wunde untersucht hatte, hat er ein Pflaster angelegt."
+    accept:
+      - "Nachdem der Arzt die Wunde untersucht hatte, legte er ein Pflaster an."
+    explain:
+      en: "Two things follow from *nachdem* and both are graded here. It opens a Nebensatz, so the whole verb group goes to the end — *untersucht hatte*, with the auxiliary last. And the earlier event steps back into the Plusquamperfekt while the later one stays in Perfekt or Präteritum; both are accepted, because German lets you tell the second half either way."
+      ru: "Из *nachdem* следуют две вещи, и обе здесь оцениваются. Он открывает придаточное, поэтому вся глагольная группа уходит в конец — *untersucht hatte*, со вспомогательным последним. И более раннее событие отступает в Plusquamperfekt, а более позднее остаётся в Perfekt или Präteritum; принимаются оба, потому что немецкий разрешает рассказать вторую половину и так и так. По-русски достаточно одного прошедшего в обеих частях — отсюда и соблазн."
+      uk: "Із *nachdem* випливають дві речі, і обидві тут оцінюються. Він відкриває підрядне, тому вся дієслівна група йде в кінець — *untersucht hatte*, з допоміжним останнім. І раніша подія відступає в Plusquamperfekt, а пізніша лишається в Perfekt або Präteritum; приймаються обидва, бо німецька дозволяє розповісти другу половину і так і так."
+
+  - id: order-nachdem
+    outcomes: [unfallhergang-schildern]
+    type: order
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Build the Nebensatz."
+      ru: "Составьте придаточное предложение."
+      uk: "Складіть підрядне речення."
+    words: ["Nachdem", "ich", "den", "Notruf", "gewählt", "hatte,", "kam", "der", "Krankenwagen."]
+    translation:
+      en: "After I had dialled the emergency number, the ambulance came."
+      ru: "После того как я набрал номер экстренной службы, приехала скорая."
+      uk: "Після того як я набрав номер екстреної служби, приїхала швидка."
+    explain:
+      en: "The order is the point: *nachdem* opens the clause, the subject and object follow, and the verb group closes it with the participle before the auxiliary — *gewählt hatte*, not *hatte gewählt*. That inversion inside the verb group is what a Nebensatz does to the Plusquamperfekt, and it is the part that disappears if you only ever meet the construction in a main clause."
+      ru: "Порядок здесь и есть суть: *nachdem* открывает придаточное, дальше идут подлежащее и дополнение, а глагольная группа закрывает его — причастие перед вспомогательным: *gewählt hatte*, а не *hatte gewählt*. Эта перестановка внутри глагольной группы и есть то, что придаточное делает с Plusquamperfekt, и именно она пропадает, если встречать конструкцию только в главном предложении."
+      uk: "Порядок тут і є суть: *nachdem* відкриває підрядне, далі йдуть підмет і додаток, а дієслівна група закриває його — дієприкметник перед допоміжним: *gewählt hatte*, а не *hatte gewählt*. Ця перестановка всередині дієслівної групи і є те, що підрядне робить із Plusquamperfekt, і саме вона зникає, якщо зустрічати конструкцію лише в головному реченні."
+
+  - id: cloze-nachdem-sein
+    outcomes: [unfallhergang-schildern]
+    type: cloze
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Fill in the auxiliary, then the tense the main clause takes."
+      ru: "Вставьте вспомогательный глагол, затем время главного предложения."
+      uk: "Вставте допоміжне дієслово, потім час головного речення."
+    text: "Nachdem wir angekommen {{waren}}, {{war}} die Straße schon gesperrt."
+    translation:
+      en: "By the time we arrived, the road had already been closed off."
+      ru: "К тому времени как мы приехали, улица была уже перекрыта."
+      uk: "На той час, коли ми приїхали, вулиця була вже перекрита."
+    explain:
+      en: "The same verb form fills both gaps and does two different jobs, which is exactly why this item exists. The first *waren* is an auxiliary building the Plusquamperfekt of *ankommen*. The second *war* is the full verb *sein* in the Präteritum, describing the state of the road. Reading the sentence as if both were the same tense loses the sequence."
+      ru: "Одна и та же форма заполняет оба пропуска и делает две разные работы — ради этого пункт и существует. Первое *waren* — вспомогательный глагол, строящий Plusquamperfekt от *ankommen*. Второе *war* — полнозначный *sein* в Präteritum, описывающий состояние улицы. Прочитать фразу так, будто оба одинаковы, значит потерять последовательность."
+      uk: "Та сама форма заповнює обидва пропуски і робить дві різні роботи — заради цього пункт і існує. Перше *waren* — допоміжне дієслово, що будує Plusquamperfekt від *ankommen*. Друге *war* — повнозначне *sein* у Präteritum, що описує стан вулиці. Прочитати фразу так, ніби обидва однакові, означає втратити послідовність."
+
+  - id: cloze-angaben
+    outcomes: [unfallhergang-schildern]
+    type: cloze
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Put the three details in the order German requires: langsam, gestern, über die Straße."
+      ru: "Расставьте три обстоятельства в порядке, которого требует немецкий: langsam, gestern, über die Straße."
+      uk: "Розставте три обставини в порядку, якого вимагає німецька: langsam, gestern, über die Straße."
+    text: "Ich bin {{gestern}} {{langsam}} {{über die Straße}} gegangen."
+    translation:
+      en: "Yesterday I walked slowly across the road."
+      ru: "Вчера я медленно перешёл дорогу."
+      uk: "Учора я повільно перейшов дорогу."
+    explain:
+      en: "Time, then manner, then place. The order is fixed after the verb, and none of the three may be moved past another to add emphasis — that is what fronting is for, and only one element may be fronted. The place phrase feels like the most important information and still comes last."
+      ru: "Время, потом образ действия, потом место. Порядок закреплён после глагола, и ни одно из трёх нельзя переставить через другое ради выделения — для этого существует вынос вперёд, и вынести можно только один элемент. Обстоятельство места кажется главной информацией и всё равно стоит последним. По-русски порядок свободен, поэтому проверять его приходится сознательно."
+      uk: "Час, потім спосіб дії, потім місце. Порядок закріплений після дієслова, і жодну з трьох не можна переставити через іншу заради виділення — для цього існує винесення вперед, і винести можна лише один елемент. Обставина місця здається головною інформацією і все одно стоїть останньою."
+
+  - id: uebersetzen-angaben
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: angaben-reihenfolge
+    key_tokens: ["heute", "vorsichtig"]
+    instruction:
+      en: "Keep all three details behind the verb."
+      ru: "Оставьте все три обстоятельства после глагола."
+      uk: "Залиште всі три обставини після дієслова."
+    prompt_en: "Today I drove carefully to the crossroads."
+    prompt_ru: "Сегодня я осторожно доехал до перекрёстка."
+    prompt_uk: "Сьогодні я обережно доїхав до перехрестя."
+    answer: "Ich bin heute vorsichtig zur Kreuzung gefahren."
+    accept:
+      - "Heute bin ich vorsichtig zur Kreuzung gefahren."
+    explain:
+      en: "Time before manner before place, again — and the accepted variant shows what the rule does and does not cover. Moving *heute* in front of the verb is allowed and changes nothing about the two that stay behind it. Moving *vorsichtig* past *zur Kreuzung* is not allowed at all."
+      ru: "Снова время перед образом действия перед местом — и принятый вариант показывает, что правило покрывает, а что нет. Вынести *heute* перед глаголом можно, и на порядок двух оставшихся это никак не влияет. Переставить *vorsichtig* за *zur Kreuzung* нельзя вовсе."
+      uk: "Знову час перед способом дії перед місцем — і прийнятий варіант показує, що правило покриває, а що ні. Винести *heute* перед дієсловом можна, і на порядок двох, що лишилися, це ніяк не впливає. Переставити *vorsichtig* за *zur Kreuzung* не можна взагалі."
+
+  - id: table-angaben
+    outcomes: [unfallhergang-schildern]
+    type: table
+    focus: angaben-reihenfolge
+    title: "Welche Angabe steht wo?"
+    instruction:
+      en: "Sort each phrase into its slot."
+      ru: "Распределите каждое выражение по своей позиции."
+      uk: "Розподіліть кожен вираз за своєю позицією."
+    columns: ["wann", "warum", "wie", "wo"]
+    rows:
+      - label: "heute Morgen · wegen des Regens · schnell · an der Kreuzung"
+        cells:
+          - { answer: "heute Morgen", given: true }
+          - { answer: "wegen des Regens" }
+          - { answer: "schnell" }
+          - { answer: "an der Kreuzung" }
+      - label: "sofort · aus Angst · zu Fuß · zur Klinik"
+        cells:
+          - { answer: "sofort" }
+          - { answer: "aus Angst" }
+          - { answer: "zu Fuß" }
+          - { answer: "zur Klinik" }
+    explain:
+      en: "Sorting them is easier than producing them, which is the point of doing it once before the translate items. The questions to ask are *wann*, *warum*, *wie*, *wo* — in that order — and each phrase answers exactly one of them. Note that *zu Fuß* answers *wie* and not *wo*, even though it names no manner you can hear: the test is the question, not the words."
+      ru: "Разложить их проще, чем построить, — ради этого упражнение и стоит перед пунктами на перевод. Задавать надо вопросы *wann*, *warum*, *wie*, *wo* именно в таком порядке, и каждое выражение отвечает ровно на один из них. Обратите внимание: *zu Fuß* отвечает на *wie*, а не на *wo*, хотя никакого «как» в нём на слух нет. Проверка — вопрос, а не слова."
+      uk: "Розкласти їх простіше, ніж побудувати, — заради цього вправа й стоїть перед пунктами на переклад. Ставити треба питання *wann*, *warum*, *wie*, *wo* саме в такому порядку, і кожен вираз відповідає рівно на одне з них. Зверніть увагу: *zu Fuß* відповідає на *wie*, а не на *wo*, хоча жодного «як» у ньому на слух немає. Перевірка — питання, а не слова."
+
+  - id: cloze-koerperteil
+    outcomes: [verletzung-benennen]
+    type: cloze
+    instruction:
+      en: "Fill in the reflexive pronoun and the article."
+      ru: "Вставьте возвратное местоимение и артикль."
+      uk: "Вставте зворотний займенник і артикль."
+    text: "Ich habe {{mir}} {{den}} Arm verletzt, und meine Kollegin hat {{sich}} das Knie verletzt."
+    translation:
+      en: "I have injured my arm, and my colleague has injured her knee."
+      ru: "Я повредил руку, а моя коллега повредила колено."
+      uk: "Я пошкодив руку, а моя колега пошкодила коліно."
+    explain:
+      en: "German marks whose body it is with a dative reflexive, not with a possessive: *mir … den Arm*, *sich … das Knie*. The body part then keeps its ordinary definite article and stands in the accusative as the thing affected. Saying *meinen Arm* is understood but marks you out — the *mir* has already said whose arm it is, so the possessive doubles it."
+      ru: "Немецкий отмечает принадлежность тела возвратным местоимением в дативе, а не притяжательным: *mir … den Arm*, *sich … das Knie*. Часть тела сохраняет обычный определённый артикль и стоит в аккузативе как затронутый предмет. *Meinen Arm* поймут, но так не говорят: *mir* уже сказало, чья это рука, и притяжательное её дублирует."
+      uk: "Німецька позначає належність тіла зворотним займенником у давальному, а не присвійним: *mir … den Arm*, *sich … das Knie*. Частина тіла зберігає звичайний означений артикль і стоїть у знахідному як зачеплений предмет. *Meinen Arm* зрозуміють, але так не кажуть: *mir* уже сказало, чия це рука, і присвійне її дублює."
+
+  - id: uebersetzen-weh
+    outcomes: [verletzung-benennen]
+    type: translate
+    key_tokens: ["Mir", "tut"]
+    prompt_en: "My head hurts and I cannot stand up."
+    prompt_ru: "У меня болит голова, и я не могу встать."
+    prompt_uk: "У мене болить голова, і я не можу встати."
+    answer: "Mir tut der Kopf weh, und ich kann nicht aufstehen."
+    accept:
+      - "Der Kopf tut mir weh, und ich kann nicht aufstehen."
+    explain:
+      en: "In *wehtun* the body part is the subject and the person is in the dative — literally the head does the hurting, to me. So it is *der Kopf* in the nominative and *mir*, never *ich*. English makes the sufferer the possessor of the body part — *my head hurts* — so the German shape has to be built rather than translated across."
+      ru: "В *wehtun* подлежащее — часть тела, а человек стоит в дативе: буквально «голова делает больно мне». Поэтому *der Kopf* в номинативе и *mir*, а не *ich*. Конструкция близка к русскому «мне больно», где «я» тоже не подлежащее, — так что доверять образцу здесь можно."
+      uk: "У *wehtun* підмет — частина тіла, а людина стоїть у давальному: буквально «голова робить боляче мені». Тому *der Kopf* у називному і *mir*, а не *ich*. Конструкція близька до українського «мені боляче», де «я» теж не підмет, — тож довіряти зразку тут можна."
+
+  - id: match-verletzung
+    outcomes: [verletzung-benennen, unfallbericht-verstehen]
+    type: match
+    instruction:
+      en: "Match each word with its meaning."
+      ru: "Соотнесите каждое слово с его значением."
+      uk: "Зіставте кожне слово з його значенням."
+    pairs:
+      - left: "die Wunde"
+        right: { en: "wound, open injury", ru: "рана", uk: "рана" }
+      - left: "die Verletzung"
+        right: { en: "injury (the general word)", ru: "травма (общее слово)", uk: "травма (загальне слово)" }
+      - left: "bluten"
+        right: { en: "to bleed", ru: "кровоточить", uk: "кровоточити" }
+      - left: "der Krankenwagen"
+        right: { en: "ambulance", ru: "скорая помощь", uk: "швидка допомога" }
+      - left: "die Notaufnahme"
+        right: { en: "accident and emergency department", ru: "приёмный покой, неотложка", uk: "приймальне відділення, невідкладна" }
+      - left: "das Pflaster"
+        right: { en: "plaster, sticking plaster", ru: "пластырь", uk: "пластир" }
+    explain:
+      en: "Two of these are worth separating deliberately. *Wunde* is a specific open injury you can point at; *Verletzung* is the general word and covers a broken bone with no wound at all. And *Notaufnahme* is a place inside the hospital, while the *Notruf* is the phone call — they share the *Not-* and nothing else."
+      ru: "Две пары стоит развести сознательно. *Wunde* — конкретная открытая рана, на которую можно показать; *Verletzung* — общее слово, покрывающее и перелом без всякой раны. А *Notaufnahme* — место в больнице, тогда как *Notruf* — телефонный звонок: общего у них только *Not-*."
+      uk: "Дві пари варто розвести свідомо. *Wunde* — конкретна відкрита рана, на яку можна показати; *Verletzung* — загальне слово, що покриває і перелом без жодної рани. А *Notaufnahme* — місце в лікарні, тоді як *Notruf* — телефонний дзвінок: спільне в них лише *Not-*."

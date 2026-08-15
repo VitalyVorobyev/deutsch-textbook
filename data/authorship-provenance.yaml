@@ -285,3 +285,52 @@ topics:
       status: pending
       substantiveContributions: []
       reviewedAt: null
+
+  # The five topics below close the Themen denominator (bun scripts/themen.ts: 59/70 → 70/70).
+  # Their briefs were NOT approved in advance in the sense the earlier B1 records mean it: what
+  # Vitaly approved on 2026-08-15 was the goal — reach 70/70 by authoring sensible topics for
+  # themes the course was not about, explicitly including topics that introduce no new grammar.
+  # Every creative choice below was therefore proposed by the draft and is marked as such, and
+  # humanReview stays pending until he has read the material. Recording an approval that did not
+  # happen would be the one thing this manifest exists to prevent.
+  - topic: unfall-notruf
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1 · Themen-Nachtrag"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-15"
+      creativeChoices:
+        - "Build the unit around the emergency call rather than around first aid, so that the fixed order of a Notruf — where, what, how many, how badly, who — becomes the article's own structure. PROPOSED BY THE DRAFT, NOT YET SELECTED: the DTZ theme is Unfall and says nothing about which situation carries it; a workplace-accident report to an employer and a hospital admission were the alternatives, and the call was chosen because it is the one situation where getting the order wrong has a cost the learner can feel."
+        - "Recycle two thin confusions instead of introducing a new tag: plusquamperfekt-nachdem and angaben-reihenfolge were both sitting at three or four items inside a single practice file, and an accident report is the everyday genre that forces a sequence of past events and a pile-up of adverbials in the same sentence. PROPOSED BY THE DRAFT, NOT YET SELECTED: the alternative was to let a vocabulary topic carry no focus tag at all, which would have been simpler and would have left the depth tail where it was."
+        - "Adopt the orphan deck koerper-medizin-b1 rather than a subset of it. PROPOSED BY THE DRAFT, NOT YET SELECTED: the deck is body parts plus illness plus treatment, and only part of it is about accidents; splitting it would have been tidier and would have rewritten every affected card id, which is the learner's SRS history."
+        - "Teach the injury with the dative reflexive (Ich habe mir den Arm verletzt) and wehtun with the body part as subject, rather than with a possessive. PROPOSED BY THE DRAFT, NOT YET SELECTED: both are the idiomatic German, and the second happens to match the Russian and Ukrainian shape, which the explanation halves say so that the learner trusts the pattern instead of translating the English."
+    aiAssistance:
+      tools:
+        - "Claude Opus 5 (Claude Code) — drafted the manifest, article, four exercise sets and the reading on 2026-08-15"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null
+
+  - topic: polizei-anzeige
+    humanEditor: Vitaly Vorobyev
+    legacy: false
+    approvedBrief:
+      curriculumSection: "B1 · Themen-Nachtrag"
+      approvedBy: Vitaly Vorobyev
+      approvedAt: "2026-08-15"
+      creativeChoices:
+        - "Stage the unit as one bicycle theft carried through the counter, the statement and the written report, so that reported speech and the participle-as-adjective are two moments of one errand rather than two grammar exercises. PROPOSED BY THE DRAFT, NOT YET SELECTED: the DTZ theme is Polizei and fixes no situation; a lost-property office and a traffic stop were the alternatives, and the theft was chosen because it is the only one that needs somebody else's words relayed."
+        - "Hold Konjunktiv I to reading and say so in the article's own German rather than only in the explanation halves, following the precedent informationen-vermitteln set: the productive route is dass, ob, the kept question word and sollen for a request. PROPOSED BY THE DRAFT, NOT YET SELECTED, but constrained — the frozen B1 contract excludes Konjunktiv I production, so the only open question was whether to show it at all."
+        - "Recycle indirekte-rede and partizip-adjektiv, both of which were living at three items in one practice file. PROPOSED BY THE DRAFT, NOT YET SELECTED: a police report is the genre that needs both at once, because you report what somebody said and describe the thing it happened to."
+        - "Separate Verdacht from Beweis and Täter from Verdächtiger explicitly, in the Feinheiten table and in a match item, and have the model report decline to name anybody. PROPOSED BY THE DRAFT, NOT YET SELECTED: this is a claim about what a report should contain rather than about German, and it is the kind of editorial judgement that ought to be visible rather than absorbed into an example."
+    aiAssistance:
+      tools:
+        - "Claude Opus 5 (Claude Code) — drafted the manifest, article, four exercise sets and the reading on 2026-08-15"
+      role: drafting
+    humanReview:
+      status: pending
+      substantiveContributions: []
+      reviewedAt: null

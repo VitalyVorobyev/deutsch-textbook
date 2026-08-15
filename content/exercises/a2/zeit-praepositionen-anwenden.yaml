@@ -8,18 +8,39 @@ title:
   ru: Применение — объявите и объясните расписание курса
   uk: Застосування — оголосіть і поясніть розклад курсу
 items:
+  # revision 2 (2026-08-15): the item rejected correct German on three axes it does not grade.
+  # Its focus is `zeitangaben-system` — which marker a time expression takes — and its
+  # key_tokens are the five markers. Nothing about *Uhr*, about *dauern* against *gehen*, or
+  # about digits against spelled-out ordinals belongs to that decision, and all three were
+  # nevertheless required by the answer key. A learner who wrote
+  # `Der Kurs beginnt am Montag um neun und geht von 3. Mai bis 28. Juni` had four of the five
+  # graded markers right and was told the whole sentence was wrong.
+  #
+  # Two of the axes are now accepted, because they are free variation the focus does not reach:
+  # *dauert* / *geht*, and `3. Mai` / `dritten Mai`. The third is removed from the item instead
+  # of accepted: the source now says *neun Uhr*, so the clock phrase is named rather than left
+  # to the learner to guess — *um neun* on its own is perfectly good German and there is no
+  # reason for this item to have an opinion about it.
   - id: uebersetzen-kursplan
     type: translate
+    revision: 2
     outcomes: [zeitpunkt-nennen, zeitraum-nennen]
     focus: zeitangaben-system
-    instruction: { en: "Translate the announcement. Decide separately how German marks the day, clock time and date range.", ru: "Переведите объявление. Отдельно решите, как по-немецки обозначить день, время на часах и диапазон дат.", uk: "Перекладіть оголошення. Окремо вирішіть, як німецькою позначити день, час на годиннику й діапазон дат." }
-    prompt_en: "The course starts on Monday at nine and runs from 3 May to 28 June."
-    prompt_ru: "Курс начинается в понедельник в девять и идёт с 3 мая до 28 июня."
-    prompt_uk: "Курс починається в понеділок о дев'ятій і триває з 3 травня до 28 червня."
-    answer: "Der Kurs beginnt am Montag um neun Uhr und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."
-    accept: ["Am Montag um neun Uhr beginnt der Kurs und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."]
+    instruction: { en: "Translate the announcement. Decide separately how German marks the day, the clock time and the date range.", ru: "Переведите объявление. Отдельно решите, как по-немецки обозначить день, время на часах и диапазон дат.", uk: "Перекладіть оголошення. Окремо вирішіть, як німецькою позначити день, час на годиннику й діапазон дат." }
+    prompt_en: "The course starts on Monday at nine o'clock and runs from 3 May to 28 June."
+    prompt_ru: "Курс начинается в понедельник в девять часов и идёт с 3 мая до 28 июня."
+    prompt_uk: "Курс починається в понеділок о дев'ятій годині і триває з 3 травня до 28 червня."
+    answer: "Der Kurs beginnt am Montag um neun Uhr und dauert vom 3. Mai bis zum 28. Juni."
+    accept:
+      - "Der Kurs beginnt am Montag um neun Uhr und geht vom 3. Mai bis zum 28. Juni."
+      - "Der Kurs beginnt am Montag um neun Uhr und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Der Kurs beginnt am Montag um neun Uhr und geht vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und dauert vom 3. Mai bis zum 28. Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und geht vom 3. Mai bis zum 28. Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und geht vom dritten Mai bis zum achtundzwanzigsten Juni."
     key_tokens: ["am", "um", "vom", "bis", "zum"]
-    explain: { en: "A weekday takes am, a clock time um, and a range keeps both ends: vom … bis zum … . One announcement requires three different time decisions.", ru: "День недели требует am, время на часах — um, а диапазон сохраняет обе границы: vom … bis zum … . В одном объявлении нужны три разных решения.", uk: "День тижня вимагає am, час на годиннику — um, а діапазон зберігає обидві межі: vom … bis zum … . В одному оголошенні потрібні три різні рішення." }
+    explain: { en: "A weekday takes am, a clock time um, and a range keeps a marker at both ends: vom … bis zum … . That last one is where announcements go wrong: bis alone reads as a deadline, and the second half of a date range needs zum as much as the first needs vom. Everything else here is free — dauert and geht both work, and a written date may be 3. Mai or dritten Mai.", ru: "День недели требует am, время на часах — um, а диапазон сохраняет маркер на обоих концах: vom … bis zum … . Именно на последнем объявления и ломаются: одно bis читается как крайний срок, и второй половине диапазона zum нужен ровно так же, как первой нужен vom. Всё остальное здесь свободно: годятся и dauert, и geht, а дата на письме может быть и 3. Mai, и dritten Mai.", uk: "День тижня вимагає am, час на годиннику — um, а діапазон зберігає маркер на обох кінцях: vom … bis zum … . Саме на останньому оголошення й ламаються: одне bis читається як крайній строк, і другій половині діапазону zum потрібен так само, як першій потрібен vom. Усе інше тут вільне: годяться і dauert, і geht, а дата на письмі може бути і 3. Mai, і dritten Mai." }
 
   - id: schreiben-kursaenderung
     type: write

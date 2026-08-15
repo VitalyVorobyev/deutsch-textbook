@@ -1,0 +1,84 @@
+id: polizei-anzeige
+level: B1
+kind: communication
+strand: communication
+group: behoerden-services
+title_de: Polizei & Anzeige
+title_en: Police and reporting a crime
+title_ru: Полиция и заявление
+title_uk: Поліція і заява
+status: draft
+# Polizei was one of the DTZ themes no topic was about, while the whole field — Dieb, Einbruch,
+# stehlen, Zeuge, Verdacht, festnehmen — had shipped as thirty-eight flashcards in
+# `recht-kriminalitaet-b1`, a deck no topic owned.
+#
+# The two confusions come from `bun scripts/grammar-depth.ts B1 --thin`, where both were sitting
+# at three items in a single practice file: `indirekte-rede` and `partizip-adjektiv`. A police
+# statement is the genre that needs both at once — you report what somebody else said, and you
+# describe the thing it happened to. Konjunktiv I stays a reading skill here, as the frozen
+# contract requires; the productive route is dass, ob and the kept question word.
+tags:
+  - polizei
+  - diebstahl
+  - anzeige
+  - zeuge
+  - recht
+  - b1
+prerequisites:
+  - informationen-vermitteln
+  - regeln-verantwortung
+  - geld-vertraege
+deepens:
+  # One edge, because only one topic drills either confusion: informationen-vermitteln owns both
+  # `indirekte-rede` and `partizip-adjektiv`. An edge to a topic that shares no tag would be
+  # inert, so the other two prerequisites stay prerequisites.
+  - informationen-vermitteln
+related: []
+outcomes:
+  - id: diebstahl-melden
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann bei der Polizei melden, dass mir etwas gestohlen wurde.
+    en: I can report to the police that something of mine has been stolen.
+    ru: Я умею заявить в полицию, что у меня что-то украли.
+    uk: Я вмію заявити в поліцію, що в мене щось украли.
+    claims:
+      - goethe-dtz-handlungen:beschreiben
+  - id: aussage-wiedergeben
+    mode: spoken-production
+    domain: public
+    de: Ich kann wiedergeben, was eine andere Person gesagt hat.
+    en: I can report what another person said.
+    ru: Я умею передать, что сказал другой человек.
+    uk: Я вмію передати, що сказала інша людина.
+    claims:
+      - goethe-dtz-handlungen:bestaetigen
+  - id: anzeige-schreiben
+    mode: writing
+    domain: public
+    de: Ich kann eine einfache Anzeige schriftlich aufsetzen.
+    en: I can write a simple crime report.
+    ru: Я умею составить простое письменное заявление.
+    uk: Я вмію скласти просту письмову заяву.
+  - id: polizeimeldung-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann eine kurze Polizeimeldung verstehen.
+    en: I can understand a short police report.
+    ru: Я понимаю короткое полицейское сообщение.
+    uk: Я розумію коротке поліцейське повідомлення.
+claims:
+  - goethe-dtz-themen:dienstleistungen-polizei
+elements:
+  article: polizei-anzeige.mdx
+  pretest: b1/polizei-anzeige-pretest
+  exercises:
+    - b1/polizei-anzeige
+    - b1/polizei-anzeige-produktion
+  primary_practice: b1/polizei-anzeige
+  probes:
+    - b1/probe-polizei-anzeige
+  reading:
+    - b1/polizei-anzeige
+  vocab:
+    - recht-kriminalitaet-b1

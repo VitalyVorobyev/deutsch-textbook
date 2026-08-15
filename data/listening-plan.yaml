@@ -729,3 +729,41 @@ units:
         register: "nachbarschaftlich-freundlich, gesprochene Nachricht"
         item_types: [audio-comprehension]
         context_sound: "leises Treppenhaus"
+  - unit: unfall-notruf
+    level: B1
+    artifacts:
+      # listening-outcome is not available here either: the unit's four outcomes are one reading,
+      # two spoken interaction and one spoken production. model-input carries what the learner
+      # has to imitate — a real emergency call, where the dispatcher's questions arrive faster
+      # than a course dialogue and the caller has to answer in the order the system needs.
+      - id: ls-unfall-notruf-01
+        wave: 2
+        purpose: model-input
+        scenario: "Notruf 112: die Leitstelle fragt nach Adresse, Hergang und Verletzung, die anrufende Person antwortet knapp und bleibt am Telefon"
+        outcomes: [notruf-absetzen]
+        required_vocabulary: [Notruf, verletzt, Krankenwagen, bluten, Kreuzung]
+        grammar_target: "Reihenfolge der Angaben und die Perfektbildung von passieren"
+        duration_seconds: { min: 45, max: 65 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-dringlich, Telefongespräch"
+        item_types: [audio-comprehension]
+        context_sound: "Straßengeräusch im Hintergrund"
+  - unit: polizei-anzeige
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome to measure. What the audio adds is the counter itself —
+      # the officer's questions arrive as reported speech coming back at you, which is the one
+      # place the construction is heard rather than read.
+      - id: ls-polizei-anzeige-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Polizeiwache: eine Anzeige wegen Fahrraddiebstahl, der Beamte fragt nach Zeitraum, Ort und Zeugen und wiederholt die Angaben"
+        outcomes: [diebstahl-melden]
+        required_vocabulary: [Anzeige, gestohlen, Zeugin, Verdacht, Beweis]
+        grammar_target: "indirekte Rede mit dass und ob, Partizip als Adjektiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Amtsgespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Amtsraum"
