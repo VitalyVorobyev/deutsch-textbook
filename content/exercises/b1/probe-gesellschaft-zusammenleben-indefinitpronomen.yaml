@@ -1,0 +1,109 @@
+# Delayed probe family 2 of 3 — ONE competence: making the words that count the room
+# agree, cold — the article ending the quantifier takes in an oblique slot, and the
+# singular verb jeder forces however many people it covers. Three parallel cloze variants,
+# each a two-sentence note from the same building with those two gaps, served in
+# authoring order across the 2/7/21 delays — one retention curve over one agreement.
+#
+# Cloze rather than translate, and legitimately so: both facts are FORMS, and the slot is
+# where they surface. The B1.7/B1.8 family-1 precedent is the test — the confusion is
+# which form, never a position — and a cloze is always attributed, because the gap is the
+# graded token. A translate would spread each miss across a whole sentence and file half
+# of them as "target retained, sentence missed elsewhere". Nothing here is a word-order
+# rule, so P18-6 does not apply: this family owes no position evidence.
+#
+# The instruction names the citation forms (all-, beid-, viel-; bekommen, dürfen, grüßen)
+# and nothing else. It has to: served alone, a bare gap after mit would take any of half a
+# dozen quantifiers, and a gap before "am Abend einmal sprechen" any of half a dozen
+# verbs. Naming the word gives away neither probed fact — which ending, and which number.
+#
+# The two gaps are parallel across the variants and the case trigger deliberately is not:
+# gap 1 is the dative in all three (where the article says a missing ending is most
+# audible), but it comes from a bare indirect object (a), the preposition mit (b) and the
+# dative verb helfen (c). Gap 2 is jeder + a singular verb in all three, once with the
+# subject after the verb (c), so the family cannot be passed by a positional habit.
+#
+# Content fresh against the practice union, the article and the deck, checked by grepping
+# each noun and verb across content/: the taught surface runs on mit einigen Bewohnern
+# gesprochen + Jeder hat eine andere Idee (cloze-einige-jeder), Alle sind gekommen / jeder
+# will (mc-jeder-singular), Nicht alle sind hier / jeder Bewohner hat eine Stimme
+# (uebersetzen-alle-jeder), Jeder hat eine Meinung, aber niemand hat eine Lösung
+# (hoeren-diktat), and on jeder Mieter hat eine Stimme in the article. No variant here
+# uses einig-, none uses haben or wollen as the agreeing verb, and neither Frau Teichmann
+# nor Herr Özkan appears in the article, the reading, the deck or any practice item.
+#
+# arming: the four practice items in which the learner decides the agreeing form — the
+# cloze writes both the ending and the verb, the mc picks the sentence in which both agree,
+# the translate produces both, and hoeren-diktat is typed German, so its hat is written out
+# rather than recognised.
+topic: gesellschaft-zusammenleben
+role: probe
+title:
+  en: "Delayed check — the endings and the number of the counting words"
+  ru: "Отложенная проверка — окончания и число слов, которыми считают собрание"
+  uk: "Відкладена перевірка — закінчення й число слів, якими рахують збори"
+  de: "Kontrolle mit Abstand — Endung und Numerus der zählenden Wörter"
+arming:
+  - b1/gesellschaft-zusammenleben::cloze-einige-jeder
+  - b1/gesellschaft-zusammenleben::mc-jeder-singular
+  - b1/gesellschaft-zusammenleben::uebersetzen-alle-jeder
+  - b1/gesellschaft-zusammenleben-produktion::hoeren-diktat
+items:
+  - id: variant-a
+    outcomes: [diskussion-folgen]
+    type: cloze
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "The first gap takes all-, the second bekommen. Put each into the form its own sentence requires."
+      ru: "В первую лакуну идёт all-, во вторую — bekommen. Поставьте каждое слово в форму, которой требует его предложение."
+      uk: "У першу лакуну йде all-, у другу — bekommen. Поставте кожне слово у форму, якої вимагає його речення."
+      de: "In die erste Lücke kommt all-, in die zweite bekommen. Setz beides in die Form, die der jeweilige Satz verlangt."
+    text: "Der Hausmeister hat {{allen}} Familien im Haus einen Zettel in den Briefkasten gelegt. Jeder {{bekommt}} nächste Woche einen neuen Schlüssel für die Waschküche."
+    translation:
+      en: "The caretaker has put a note in the letterbox of all the families in the building. Everybody gets a new key for the laundry room next week."
+      ru: "Комендант дома положил всем семьям в доме записку в почтовый ящик. На следующей неделе каждый получает новый ключ от прачечной."
+      uk: "Комендант будинку поклав усім родинам у будинку записку до поштової скриньки. Наступного тижня кожен отримує новий ключ від пральні."
+    explain:
+      en: "The sentence already has its accusative — einen Zettel — so the people are the indirect object and stand in the dative plural: allen Familien, never alle Familien. Nothing but the ending carries that case here. Then jeder: it covers every tenant in the building and stays grammatically singular all the same, so the verb is bekommt. The meaning pulls towards bekommen, and the form wins."
+      ru: "Аккузатив в предложении уже занят — einen Zettel, — поэтому люди здесь косвенное дополнение и стоят в дативе множественного числа: allen Familien, и никогда alle Familien. Падеж держится только на окончании. Дальше jeder: он охватывает всех жильцов дома и всё равно остаётся грамматически единственным числом, поэтому глагол bekommt. Смысл тянет к bekommen, но побеждает форма."
+      uk: "Знахідний у реченні вже зайнятий — einen Zettel, — тому люди тут непрямий додаток і стоять у давальному множини: allen Familien, і ніколи alle Familien. Відмінок тримається лише на закінченні. Далі jeder: він охоплює всіх мешканців будинку і все одно лишається граматично одниною, тому дієслово bekommt. Зміст тягне до bekommen, але перемагає форма."
+      de: "Der Akkusativ ist schon vergeben — einen Zettel —, also sind die Leute das indirekte Objekt und stehen im Dativ Plural: allen Familien, nie alle Familien. Den Kasus trägt allein die Endung. Dann jeder: Es meint jede Mietpartei im Haus und bleibt trotzdem grammatisch Singular, also heißt das Verb bekommt. Die Bedeutung zieht zu bekommen, und die Form gewinnt."
+
+  - id: variant-b
+    outcomes: [diskussion-folgen]
+    type: cloze
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "The first gap takes beid-, the second dürfen. Put each into the form its own sentence requires."
+      ru: "В первую лакуну идёт beid-, во вторую — dürfen. Поставьте каждое слово в форму, которой требует его предложение."
+      uk: "У першу лакуну йде beid-, у другу — dürfen. Поставте кожне слово у форму, якої вимагає його речення."
+      de: "In die erste Lücke kommt beid-, in die zweite dürfen. Setz beides in die Form, die der jeweilige Satz verlangt."
+    text: "Frau Teichmann hat mit {{beiden}} Nachbarn aus dem Erdgeschoss telefoniert und ihnen die Regel erklärt: Jeder {{darf}} am Abend einmal sprechen."
+    translation:
+      en: "Frau Teichmann phoned both neighbours on the ground floor and explained the rule to them: everybody may speak once in the evening."
+      ru: "Госпожа Тайхман позвонила обоим соседям с первого этажа и объяснила им правило: каждый может выступить вечером один раз."
+      uk: "Пані Тайхман зателефонувала обом сусідам з першого поверху й пояснила їм правило: кожен може виступити ввечері один раз."
+    explain:
+      en: "beide names the two that are already known, and it declines like any article word: mit demands the dative, so it is mit beiden Nachbarn, never mit beide. This is the half of the tag that A2 gives no warning about — man, jemand and etwas never changed shape at all. The second gap is the other half: jeder is singular, so the modal is darf. Two neighbours, several people, one grammatical number — the singular one."
+      ru: "beide называет тех двоих, что уже известны, и склоняется, как любое артиклевое слово: mit требует датива, поэтому mit beiden Nachbarn, и никогда mit beide. Это та половина тега, о которой A2 не предупреждает: man, jemand и etwas не менялись вовсе. Вторая лакуна — другая половина: jeder единственного числа, поэтому модальный глагол darf. Двое соседей, много людей — и одно грамматическое число, единственное."
+      uk: "beide називає тих двох, що вже відомі, і відмінюється, як будь-яке артиклеве слово: mit вимагає давального, тому mit beiden Nachbarn, і ніколи mit beide. Це та половина тега, про яку A2 не попереджає: man, jemand і etwas не змінювалися зовсім. Друга лакуна — інша половина: jeder однини, тому модальне дієслово darf. Двоє сусідів, багато людей — і одне граматичне число, однина."
+      de: "beide meint die zwei, die schon bekannt sind, und es dekliniert wie jedes Artikelwort: mit verlangt den Dativ, also mit beiden Nachbarn, nie mit beide. Das ist die Hälfte des Tags, vor der A2 nicht warnt — man, jemand und etwas änderten sich gar nicht. Die zweite Lücke ist die andere Hälfte: jeder ist Singular, also heißt das Modalverb darf. Zwei Nachbarn, viele Personen — und ein grammatischer Numerus, der Singular."
+
+  - id: variant-c
+    outcomes: [diskussion-folgen]
+    type: cloze
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "The first gap takes viel-, the second grüßen. Put each into the form its own sentence requires."
+      ru: "В первую лакуну идёт viel-, во вторую — grüßen. Поставьте каждое слово в форму, которой требует его предложение."
+      uk: "У першу лакуну йде viel-, у другу — grüßen. Поставте кожне слово у форму, якої вимагає його речення."
+      de: "In die erste Lücke kommt viel-, in die zweite grüßen. Setz beides in die Form, die der jeweilige Satz verlangt."
+    text: "Herr Özkan hat {{vielen}} Leuten im Haus beim Umzug geholfen. Deshalb {{grüßt}} ihn jeder im Treppenhaus."
+    translation:
+      en: "Herr Özkan has helped many people in the building with their move. That is why everybody greets him in the stairwell."
+      ru: "Господин Озкан помог многим людям в доме с переездом. Поэтому в подъезде его приветствует каждый."
+      uk: "Пан Озкан допоміг багатьом людям у будинку з переїздом. Тому в під'їзді його вітає кожен."
+    explain:
+      en: "Here the case comes from the verb, not from a preposition or a spare slot: helfen governs the dative, so it is vielen Leuten. Change the verb and the ending changes with it — viele Leute would be the accusative of a verb like fragen. The second gap moves jeder behind its verb, which is where the plural slips in most easily: Deshalb fills position 1, the finite verb comes second, and it is still the singular grüßt, because jeder has not stopped being singular by standing later in the sentence."
+      ru: "Здесь падеж задаёт глагол, а не предлог и не свободное место: helfen управляет дативом, поэтому vielen Leuten. Смените глагол — сменится и окончание: viele Leute было бы аккузативом при глаголе вроде fragen. Во второй лакуне jeder стоит после глагола, и как раз там легче всего проскакивает множественное число: Deshalb занимает первую позицию, спрягаемый глагол идёт вторым — и это по-прежнему единственное grüßt, потому что jeder не перестал быть единственным оттого, что встал позже."
+      uk: "Тут відмінок задає дієслово, а не прийменник і не вільне місце: helfen керує давальним, тому vielen Leuten. Змініть дієслово — зміниться й закінчення: viele Leute було б знахідним при дієслові на кшталт fragen. У другій лакуні jeder стоїть після дієслова, і саме там найлегше прослизає множина: Deshalb займає першу позицію, відмінюване дієслово йде другим — і це так само однинне grüßt, бо jeder не перестав бути одниною через те, що став пізніше."
+      de: "Hier kommt der Kasus vom Verb, nicht von einer Präposition oder einem freien Platz: helfen regiert den Dativ, also vielen Leuten. Ein anderes Verb, eine andere Endung — viele Leute wäre der Akkusativ bei einem Verb wie fragen. Die zweite Lücke stellt jeder hinter sein Verb, und dort rutscht der Plural am leichtesten hinein: Deshalb besetzt Position 1, das finite Verb folgt an zweiter Stelle, und es heißt weiter das singularische grüßt — jeder hört nicht auf, Singular zu sein, nur weil es später im Satz steht."

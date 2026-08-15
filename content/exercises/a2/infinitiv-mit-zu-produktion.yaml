@@ -1,5 +1,8 @@
 topic: infinitiv-mit-zu
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Infinitiv mit zu & um … zu"
 title:
   en: "Plans in context — listen, write, speak"
   ru: "Планы в контексте — слушать, писать, говорить"
@@ -32,7 +35,15 @@ items:
     prompt_ru: "Надеюсь, что мой поезд придёт вовремя."
     prompt_uk: "Сподіваюся, що мій потяг прибуде вчасно."
     answer: "Ich hoffe, dass mein Zug pünktlich ankommt."
-    key_tokens: ["ankommt"]
+    # revision 2: «придёт» / «прибуде» license kommt as readily as ankommt, and the
+    # tag grades only that the conjugated verb closes the dass-clause — the sibling
+    # drill rules the same way for its free lexical pairs. The pin list is the union
+    # over renderings; an absent pin has no effect in a candidate.
+    # (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Ich hoffe, dass mein Zug pünktlich kommt."
+    key_tokens: ["ankommt", "kommt"]
+    revision: 2
     explain:
       en: "I hope, but the train arrives — two subjects, so the zu-infinitive is unavailable and dass takes over. And a dass-clause obeys the rule you already know: the conjugated verb goes to the very end, so the separable ankommen rejoins itself there as ankommt. That final position is the only thing graded here."
       ru: "Надеюсь я, а приходит поезд — подлежащих два, поэтому инфинитивный оборот невозможен, и его место занимает dass. А придаточное с dass подчиняется уже знакомому правилу: спрягаемый глагол уходит в самый конец, и отделяемый ankommen там снова собирается воедино — ankommt. Проверяется здесь только эта конечная позиция."
@@ -153,3 +164,30 @@ items:
       en: "Listen back for the two um … zu frames in the model — um hier zu arbeiten, um einen Satz zu bauen — and notice that the infinitive is the last word every time, with nothing after it. The other pattern to hear is mich … zu bewerben: a reflexive verb keeps its pronoun early in the clause while zu stays glued to the infinitive at the end."
       ru: "Прослушайте запись и обратите внимание на рамки um … zu в образце — um hier zu arbeiten, um einen Satz zu bauen: инфинитив каждый раз последнее слово, после него ничего. Второй образец для слуха — mich … zu bewerben: у возвратного глагола местоимение остаётся в начале оборота, а zu держится вплотную к инфинитиву в конце."
       uk: "Прослухайте запис і зверніть увагу на рамки um … zu у зразку — um hier zu arbeiten, um einen Satz zu bauen: інфінітив щоразу останнє слово, після нього нічого. Другий зразок для слуху — mich … zu bewerben: у зворотного дієслова займенник залишається на початку звороту, а zu тримається впритул до інфінітива в кінці."
+
+  - id: sprechen-kurs-entlastung
+    outcomes: [pflicht-aufheben]
+    type: speak
+    mode: spoken-interaction
+    focus: nicht-brauchen-zu
+    prompt:
+      en: "A course organiser says: „Sie können das Formular heute abgeben. Ein Foto können Sie später schicken. Im Kursraum dürfen Sie aber nicht telefonieren.“ Reply aloud: confirm what is optional, ask whether you need to print the form and repeat the prohibition correctly."
+      ru: "Организатор курса говорит: «Sie können das Formular heute abgeben. Ein Foto können Sie später schicken. Im Kursraum dürfen Sie aber nicht telefonieren.» Ответьте вслух: подтвердите, что необязательно, спросите, нужно ли печатать формуляр, и правильно повторите запрет."
+      uk: "Організатор курсу каже: «Sie können das Formular heute abgeben. Ein Foto können Sie später schicken. Im Kursraum dürfen Sie aber nicht telefonieren.» Дайте відповідь уголос: підтвердьте, що необов'язково, запитайте, чи треба друкувати формуляр, і правильно повторіть заборону."
+    goal:
+      en: "Negotiate obligations in a real exchange without confusing optional with forbidden."
+      ru: "Уточните обязанности в реальном диалоге, не смешивая необязательное с запрещённым."
+      uk: "Уточніть обов'язки в реальному діалозі, не плутаючи необов'язкове із забороненим."
+    checklist:
+      - {en: "I used nicht brauchen zu for the photo or printed form.", ru: "Для фотографии или распечатки я использовал(а) nicht brauchen zu.", uk: "Для фотографії або роздруківки я використав (використала) nicht brauchen zu."}
+      - {en: "I used nicht dürfen only for the phone prohibition.", ru: "Только для запрета телефона я использовал(а) nicht dürfen.", uk: "Лише для заборони телефона я використав (використала) nicht dürfen."}
+      - {en: "I reacted to the organiser and asked one genuine follow-up question.", ru: "Я отреагировал(а) на слова организатора и задал(а) один настоящий уточняющий вопрос.", uk: "Я відреагував (відреагувала) на слова організатора й поставив (поставила) одне справжнє уточнювальне запитання."}
+    model_answer: "Gut, dann brauche ich das Foto heute noch nicht zu schicken. Brauche ich das Formular auszudrucken, oder kann ich es digital zeigen? Und im Kursraum darf ich nicht telefonieren, richtig?"
+    model_translation:
+      en: "All right, then I do not need to send the photo today. Do I need to print the form, or can I show it digitally? And I am not allowed to make calls in the course room, right?"
+      ru: "Хорошо, тогда фотографию сегодня отправлять не нужно. Нужно ли распечатывать формуляр или можно показать его в электронном виде? И в аудитории нельзя звонить, верно?"
+      uk: "Гаразд, тоді фотографію сьогодні надсилати не потрібно. Чи треба роздруковувати формуляр, чи можна показати його в електронному вигляді? І в аудиторії не можна телефонувати, правильно?"
+    explain:
+      en: "The exchange keeps three meanings separate: a delayed photo is unnecessary now, printing is an open question, and phone use is prohibited. Listen for zu inside the separable infinitives: zu schicken but auszudrucken."
+      ru: "В реплике разделены три смысла: фотографию сейчас отправлять необязательно, печать остаётся открытым вопросом, а телефонный разговор запрещён. Проверьте zu в отделяемых инфинитивах: zu schicken, но auszudrucken."
+      uk: "У репліці розділено три значення: фотографію зараз надсилати необов'язково, друк лишається відкритим питанням, а телефонну розмову заборонено. Перевірте zu у відокремлюваних інфінітивах: zu schicken, але auszudrucken."

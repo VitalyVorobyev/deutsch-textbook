@@ -21,8 +21,14 @@
  *    snapshot key to merge, and none for `replaceSnapshot` to silently destroy. The
  *    attempt log is the one thing in this system that already merges correctly.
  *
- * Probes stay out of ordinary training (`trainableRoles` in training.ts is an
- * allowlist of practice+drill) and out of mastery: they are their own surface.
+ * Probe ITEMS never re-enter ordinary training (`trainableRoles` in training.ts is an
+ * allowlist of practice+drill), and probe RESULTS never count toward mastery — probes
+ * are their own surface for both. But a probe attempt is logged the same way as any
+ * other (`logAttempt` in ProbeStep.tsx), and `weakFocuses` (weakness.ts) applies no
+ * role filter to it — so a wrong probe attempt deliberately raises its focus tag's
+ * error rate. That is correct, not an oversight: a failed delayed check is exactly the
+ * evidence that should raise same-focus practice priority. See
+ * docs/adrs/0010-probe-failure-remediation.md.
  */
 import type { Attempt } from './store';
 import { isVerifiedEvidence } from './scoring';
@@ -61,6 +67,14 @@ export interface ProbeFamily {
   /** the outcomes these variants probe */
   outcomes: string[];
   /**
+   * The one confusion these variants drill — `scripts/validate.ts` enforces the same
+   * `focus` (and the same `outcomes`) across every variant in a family, so the first
+   * item's tag speaks for all of them. Absent only for families authored before a
+   * `focus` tag existed for their competence; `remediationSetFor` (src/lib/training.ts)
+   * has nothing to match a recommendation against for those.
+   */
+  focus?: string;
+  /**
    * Exact verified practice sources, as `setId::itemId`. This is intentionally authored,
    * not inferred from a broad outcome or topic: an old attempt still resolves by stable item
    * identity, while a reading question, pretest or neighbouring competence cannot start the
@@ -77,7 +91,7 @@ interface SetLike {
   topicId: string;
   role?: string;
   arming?: readonly string[];
-  items: readonly { id: string; outcomes: string[] }[];
+  items: readonly { id: string; outcomes: string[]; focus?: string }[];
 }
 
 /** Attempt identity for item-level arming — the same `::` shape card ids already use. */
@@ -97,6 +111,7 @@ export function probeFamilies(sets: readonly SetLike[]): ProbeFamily[] {
       setId: s.setId,
       topicId: s.topicId,
       outcomes,
+      focus: s.items[0]?.focus,
       armingItemKeys: [...(s.arming ?? [])],
       items: s.items.map((i) => ({ id: i.id, outcomes: i.outcomes })),
     };
@@ -227,6 +242,20 @@ export function dueProbes(
     .map((f) => dueProbe(f, attempts, now))
     .filter((p): p is DueProbe => p !== undefined)
     .sort((a, b) => a.dueAt - b.dueAt);
+}
+
+/**
+ * A family that has used every scheduled stage and failed at least one of them — the
+ * gap PR-8 names (docs/adrs/0010-probe-failure-remediation.md). Mid-ladder failures
+ * already get re-checked, on schedule, by the next rung: `dueProbe` keeps serving this
+ * family until `PROBE_INTERVALS_DAYS.length` stages are taken. Once they are, there is
+ * no further rung to re-check it — the family needs an authored successor, not another
+ * scheduled probe. This says nothing about *when* the failure happened, only that the
+ * ladder has nothing left to offer this competence.
+ */
+export function exhaustedFailed(family: ProbeFamily, attempts: readonly Attempt[]): boolean {
+  const taken = probeAttempts(family, attempts);
+  return taken.length >= PROBE_INTERVALS_DAYS.length && taken.some((a) => !a.correct);
 }
 
 /**
@@ -369,4 +398,43 @@ export function probeResults(
       stages,
     };
   });
+}
+
+/** One family's probes answered wrong today (docs/adrs/0010-probe-failure-remediation.md). */
+export interface ProbeFailureToday {
+  family: ProbeFamily;
+  /** 0-based stage indices answered wrong today (usually one; a family can log at
+      most one probe attempt per day, but the derivation makes no assumption of it) */
+  failedStages: number[];
+  /** the ladder has no rung left for this family (see exhaustedFailed above) */
+  exhausted: boolean;
+}
+
+/**
+ * Every probe family with a wrong attempt logged today — the session-end remediation
+ * card's source of truth (R1, docs/adrs/0010-probe-failure-remediation.md). Derived
+ * fresh from the attempt log on every call, like every other piece of probe state: no
+ * transient "answered wrong just now" flag to thread through the session, so the card
+ * renders the same whether the failure happened a minute ago or the learner reloaded
+ * mid-session and came back.
+ *
+ * A family with nothing wrong today is simply absent from the result — this is not a
+ * queue and carries no ordering guarantee beyond `families`' own order.
+ */
+export function probeFailuresOn(
+  families: readonly ProbeFamily[],
+  attempts: readonly Attempt[],
+  now: number = Date.now(),
+): ProbeFailureToday[] {
+  const out: ProbeFailureToday[] = [];
+  for (const family of families) {
+    const taken = probeAttempts(family, attempts);
+    const failedStages = taken
+      .map((a, stage) => ({ stage, correct: a.correct, ts: a.ts }))
+      .filter((a) => !a.correct && sameLocalDay(a.ts, now))
+      .map((a) => a.stage);
+    if (failedStages.length === 0) continue;
+    out.push({ family, failedStages, exhausted: exhaustedFailed(family, attempts) });
+  }
+  return out;
 }

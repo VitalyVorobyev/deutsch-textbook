@@ -1,0 +1,134 @@
+# Delayed probe family 1 of 2 — ONE competence: building the full genitive group inside a
+# bill line, cold — the article word in its genitive form AND the ending the noun itself
+# takes. Three parallel translate variants served in authoring order across the 2/7/21
+# delays — one retention curve over one paradigm.
+#
+# Why a family here at all, and why only two on this unit. Of the three frozen outcomes,
+# `vertrag-nachfragen` and `kosten-vergleichen` are spoken (interaction and production),
+# and the app never verifies free speech, so neither can carry delayed evidence in the mode
+# it names. What can be probed is the verifiable structure each of them rests on:
+# the genitive a Rechnung line is made of, here, and the modal passive a contract states a
+# condition in, in family 2. `kosten-vergleichen` therefore gets no family — its
+# comparison lives in speech, and a written stand-in would measure something else.
+#
+# A genre unit closes no grammar point, so this family measures nothing new: genitiv-form
+# belongs to B1.2 and already has its own family there
+# (probe-leben-veraendern-genitiv-form — cloze ×3: des Gartens, meiner Tochter, unseres
+# Autos). Two things are new. The format: B1.2 argues for a cloze because the gaps ARE the
+# graded tokens, and that argument is about attribution, which a translate keeps here by
+# pinning the same two tokens; what a translate adds is that the group has to be *composed*
+# — a cloze prints der Preis and hands over the slot behind it, while here the whole line
+# is built, and von + Dativ or a compound is what a hand reaches for when nothing has
+# printed the frame. The task: B1.2 reports a move in writing (the size of a garden, a
+# daughter's bicycle), this unit reads a bill, where the genitive is not a stylistic
+# register but what almost every line is made of.
+# The three cells deliberately repeat B1.2's three-way split — masculine with -s, feminine
+# with no ending at all, neuter with -s — because that split IS the paradigm, and this
+# check asks whether it survived. What differs is the article word: B1.2 puts two of its
+# three cells behind possessives, all three here are the plain definite series a bill
+# prints. The two families cannot disturb each other's clock — since P19-4 every family
+# arms from its own literal list, and B1.2's names only B1.2 items.
+#
+# Every instruction names the phrase in the nominative and asks for the genitive by name,
+# because *der Preis von der Reparatur* and *der Reparaturpreis* render each prompt just as
+# correctly: what is probed is the written form, never the choice to use it, and never
+# which noun the author had in mind. The prompts fix definiteness on both sides, so no
+# variant grades an article the source language left open.
+#
+# Pinned in every accepted rendering are the two halves of the group and nothing else: the
+# article word and the noun. The head noun in front of it is deliberately unpinned — a
+# fumbled Quittung is scored wrong and left unattributed rather than charged to this tag.
+#
+# Content fresh against the taught surface, checked by grepping each phrase across the
+# unit's six files rather than by re-reading this list. The taught genitives are Reparatur
+# der Waschmaschine, der Preis des Tickets, die Nummer der Rechnung, das Datum der
+# Lieferung and Notiz des Kunden (the article and the reading), des Auftrags (the pretest),
+# des Materials and der Anfahrt, der Zahlung and der Lieferung (the two practice sets).
+# `des Anbieters` and `des Abos` occur nowhere in the unit in any case; `der Reparatur`
+# occurs exactly once, in the reading's title, where it is a dative after *nach* and not a
+# genitive at all. None of the three collides with B1.2's family either, whose nouns are
+# Garten, Tochter and Auto.
+#
+# arming: the three items in which the learner builds a genitive group. Nothing else in the
+# unit carries this tag, and the pretest's des Auftrags cloze is excluded by role — a
+# pretest is a guess taken before the lesson and arms nothing.
+topic: geld-vertraege
+role: probe
+title:
+  en: "Delayed check — the genitive a bill line is made of"
+  ru: "Отложенная проверка — генитив, из которого сделана строка счёта"
+  uk: "Відкладена перевірка — родовий відмінок, з якого зроблено рядок рахунку"
+  de: "Kontrolle mit Abstand — der Genitiv einer Rechnungszeile"
+arming:
+  - b1/geld-vertraege::cloze-genitiv-zeile
+  - b1/geld-vertraege::uebersetzen-genitiv-datum
+  - b1/geld-vertraege-produktion::uebersetzen-lieferung-genitiv
+items:
+  - id: variant-a
+    outcomes: [rechnung-pruefen]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the provider' take der Anbieter, for 'the receipt' die Quittung."
+      ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «оператор» возьмите der Anbieter, для «квитанция» — die Quittung."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «оператор» візьміть der Anbieter, для «квитанція» — die Quittung."
+      de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Firma nimm der Anbieter, für den Zahlungsbeleg die Quittung."
+    prompt_en: "The name of the provider is on the receipt."
+    prompt_ru: "На квитанции стоит название оператора."
+    prompt_uk: "На квитанції стоїть назва оператора."
+    answer: "Auf der Quittung steht der Name des Anbieters."
+    accept:
+      # The subject may lead; both are ordinary V2 and the graded pair does not move.
+      - "Der Name des Anbieters steht auf der Quittung."
+    key_tokens: ["des", "Anbieters"]
+    explain:
+      en: "Masculine, and it takes two words to build. The article der becomes des — that half most hands keep. The other half is the noun's own ending, because a masculine noun carries the case itself: Anbieter becomes Anbieters. Leaving it off (der Name des Anbieter) is the quiet error, since the article alone already looks like a genitive."
+      ru: "Мужской род, и собирается он из двух слов. Артикль der превращается в des — эту половину рука сохраняет почти всегда. Вторая половина — собственное окончание существительного, потому что мужской род несёт падеж сам: Anbieter даёт Anbieters. Пропустить его (der Name des Anbieter) — тихая ошибка: один артикль уже выглядит как генитив."
+      uk: "Чоловічий рід, і збирається він із двох слів. Артикль der перетворюється на des — цю половину рука зберігає майже завжди. Друга половина — власне закінчення іменника, бо чоловічий рід несе відмінок сам: Anbieter дає Anbieters. Пропустити його (der Name des Anbieter) — тиха помилка: один артикль уже виглядає як родовий відмінок."
+      de: "Maskulinum, und es besteht aus zwei Wörtern. Aus dem Artikel der wird des — diese Hälfte behält die Hand fast immer. Die andere Hälfte ist die Endung des Nomens selbst, denn ein Maskulinum trägt den Kasus mit: aus Anbieter wird Anbieters. Sie wegzulassen (der Name des Anbieter) ist der leise Fehler, denn der Artikel allein sieht schon nach Genitiv aus."
+
+  - id: variant-b
+    outcomes: [rechnung-pruefen]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the repair' take die Reparatur, for 'check' prüfen."
+      ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «ремонт» возьмите die Reparatur, для «проверять» — prüfen."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «ремонт» візьміть die Reparatur, для «перевіряти» — prüfen."
+      de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Instandsetzung nimm die Reparatur, für die Kontrolle prüfen."
+    prompt_en: "I check the price of the repair first."
+    prompt_ru: "Сначала я проверяю цену ремонта."
+    prompt_uk: "Спершу я перевіряю ціну ремонту."
+    answer: "Ich prüfe zuerst den Preis der Reparatur."
+    accept:
+      # The adverb may lead, as it does in the RU and UK prompts; the graded pair stays put.
+      - "Zuerst prüfe ich den Preis der Reparatur."
+    key_tokens: ["der", "Reparatur"]
+    explain:
+      en: "Feminine, and this is the cell that tempts an ending which does not exist. The article word does all the work — die becomes der — and the noun stays exactly as it was: der Reparatur, never der Reparaturs. The -s belongs to masculine and neuter nouns alone, so the ending is a fact about the gender rather than a rule about the case."
+      ru: "Женский род, и это та самая клетка, которая подбивает поставить окончание, которого нет. Всю работу делает артикль — die превращается в der, — а существительное остаётся ровно таким же: der Reparatur, но никогда der Reparaturs. Это -s есть только у мужского и среднего рода, так что окончание — факт о роде, а не правило о падеже."
+      uk: "Жіночий рід, і це та сама клітинка, яка підбиває поставити закінчення, якого немає. Усю роботу робить артикль — die перетворюється на der, — а іменник лишається рівно таким самим: der Reparatur, але ніколи der Reparaturs. Це -s є лише в чоловічого й середнього роду, тож закінчення — факт про рід, а не правило про відмінок."
+      de: "Femininum, und das ist die Zelle, die zu einer Endung verführt, die es nicht gibt. Die ganze Arbeit macht das Artikelwort — aus die wird der —, und das Nomen bleibt genau wie zuvor: der Reparatur, nie der Reparaturs. Das -s haben nur Maskulinum und Neutrum, die Endung ist also eine Tatsache über das Genus und keine Regel über den Kasus."
+
+  - id: variant-c
+    outcomes: [rechnung-pruefen]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Link the two nouns with the genitive — not with von and not as one compound word. For 'the subscription' take das Abo, for 'amount' der Betrag."
+      ru: "Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «подписка» возьмите das Abo, для «сумма» — der Betrag."
+      uk: "Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «передплата» візьміть das Abo, для «сума» — der Betrag."
+      de: "Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für die Zeitungsbestellung nimm das Abo, für die Summe der Betrag."
+    prompt_en: "The amount of the subscription is the same every month."
+    prompt_ru: "Сумма подписки каждый месяц одинаковая."
+    prompt_uk: "Сума передплати щомісяця однакова."
+    answer: "Der Betrag des Abos ist jeden Monat gleich."
+    accept:
+      # The time phrase may lead; both are ordinary V2 and the graded pair does not move.
+      - "Jeden Monat ist der Betrag des Abos gleich."
+    key_tokens: ["des", "Abos"]
+    explain:
+      en: "Neuter, and it behaves exactly like the masculine: das becomes des, and the noun takes an -s of its own — Abos. A short loanword makes the second half easy to forget, because des Abo already sounds finished. The three cells together are the whole paradigm: -s twice, nothing once, and the article word every time."
+      ru: "Средний род ведёт себя ровно как мужской: das становится des, а существительное берёт собственное -s — Abos. У короткого заимствования вторую половину особенно легко забыть, потому что des Abo уже звучит законченно. Три клетки вместе и составляют всю парадигму: дважды -s, один раз ничего, и артикль каждый раз."
+      uk: "Середній рід поводиться рівно як чоловічий: das стає des, а іменник бере власне -s — Abos. У короткого запозичення другу половину особливо легко забути, бо des Abo вже звучить завершено. Три клітинки разом і складають усю парадигму: двічі -s, раз нічого, і артикль щоразу."
+      de: "Neutrum, und es verhält sich genau wie das Maskulinum: aus das wird des, und das Nomen nimmt ein eigenes -s — Abos. Bei einem kurzen Lehnwort vergisst man die zweite Hälfte besonders leicht, denn des Abo klingt schon fertig. Die drei Zellen zusammen sind das ganze Paradigma: zweimal -s, einmal nichts und jedes Mal das Artikelwort."

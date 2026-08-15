@@ -1,0 +1,298 @@
+# B1.10 primary practice. The three new tags close the unit's three contract points
+# (konzessivsatz-obwohl → obwohl-trotzdem; indefinitpronomen-erweitert;
+# relativ-was-wo). Two items recycle earlier tags and close nothing — they are the
+# live runtime channels of the `deepens` edges declared on the atlas node:
+# uebersetzen-trotzdem-mehrheit (konjunktionaladverb-inversion) carries the edge to
+# verbindungen-folgen — trotzdem on its own, the position-1 adverb that pulls the
+# finite verb straight behind it; uebersetzen-nicht-sondern (aber-sondern) carries
+# the edge to freunde-feste — the shape an objection travels in once you deny one
+# thing and put another in its place.
+# Outcome discipline, because probe families arm by outcome (src/lib/probes.ts):
+# every item on `einwand-ausdruecken` builds or weighs an objection (the concession
+# half in obwohl/trotzdem, the correction in nicht …, sondern …, the Redemittel that
+# carry them); every item on `diskussion-folgen` turns on the words that count the
+# room — who is for, who against, who has said nothing — which is what following a
+# Hausversammlung consists of; every item on `kompromiss-vorschlagen` builds the
+# sentence that records the decision, and that sentence is where `was` and `wo` live.
+# Nothing arms a family whose competence it does not touch.
+# Format ladder per B1.8: each new point runs cloze → mc → translate. order is
+# saturated per the standing backlog ruling (98% corpus-wide), so the practice union
+# ships zero order items. Contract exclusions hold: the whole unit stays inside one
+# Hausversammlung about one courtyard — no political institutions, no migration
+# policy, no formal debate structure.
+# This set is the primaryPractice — its item list never grows after shipping.
+topic: gesellschaft-zusammenleben
+role: practice
+stage: geruest
+activity: core
+title:
+  en: "Practice — obwohl or trotzdem, the words that count the room, was and wo"
+  ru: "Практика — obwohl или trotzdem, слова, которыми считают собрание, was и wo"
+  uk: "Практика — obwohl чи trotzdem, слова, якими рахують збори, was і wo"
+  de: "Übung — obwohl oder trotzdem, die Wörter, die den Raum zählen, was und wo"
+items:
+  - id: cloze-obwohl-nebensatz
+    outcomes: [einwand-ausdruecken]
+    type: cloze
+    focus: obwohl-trotzdem
+    instruction:
+      en: "obwohl or trotzdem? Only one of the two can open a Nebensatz. Fill in that word, and put sein into the form the clause requires."
+      ru: "obwohl или trotzdem? Открыть Nebensatz может только одно из двух. Впишите это слово и поставьте sein в форму, которой требует придаточное."
+      uk: "obwohl чи trotzdem? Відкрити Nebensatz може лише одне з двох. Впишіть це слово і поставте sein у форму, якої вимагає підрядне."
+      de: "obwohl oder trotzdem? Nur eines von beiden kann einen Nebensatz eröffnen. Ergänze dieses Wort und setz sein in die Form, die der Nebensatz verlangt."
+    text: "{{Obwohl}} viele Nachbarn dagegen {{sind}}, kommt der Spielplatz in den Hof."
+    translation:
+      en: "Although many neighbours are against it, the playground is coming into the courtyard."
+      ru: "Хотя многие соседи против, детская площадка появится во дворе."
+      uk: "Хоча багато сусідів проти, дитячий майданчик з'явиться у дворі."
+    explain:
+      en: "Only obwohl is a conjunction, so only obwohl can open a clause — and it sends the finite verb to the very end: dagegen sind, never sind dagegen. trotzdem is an adverb and would need a full main clause behind it. Because the Nebensatz stands first, it fills position 1, and the main clause opens with kommt."
+      ru: "Союз здесь только obwohl, поэтому и открыть придаточное может только он — а спрягаемый глагол уходит в самый конец: dagegen sind, и никогда sind dagegen. trotzdem — наречие, за ним стояло бы полноценное главное предложение. Придаточное стоит первым и занимает первую позицию, поэтому главное начинается с kommt."
+      uk: "Сполучник тут лише obwohl, тому й відкрити підрядне може тільки він — а відмінюване дієслово йде в самий кінець: dagegen sind, і ніколи sind dagegen. trotzdem — прислівник, за ним стояло б повноцінне головне речення. Підрядне стоїть першим і займає першу позицію, тому головне починається з kommt."
+      de: "Konjunktion ist hier nur obwohl, also kann auch nur obwohl einen Nebensatz eröffnen — und es schickt das finite Verb ganz ans Ende: dagegen sind, nie sind dagegen. trotzdem ist ein Adverb; dahinter stünde ein vollständiger Hauptsatz. Der Nebensatz steht vorn und besetzt Position 1, darum beginnt der Hauptsatz mit kommt."
+
+  - id: mc-obwohl-oder-trotzdem
+    outcomes: [einwand-ausdruecken]
+    type: mc
+    focus: obwohl-trotzdem
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Obwohl der Hof laut ist, wohne ich gern hier."
+      - "Obwohl der Hof ist laut, wohne ich gern hier."
+      - "Trotzdem der Hof laut ist, wohne ich gern hier."
+    correct: 0
+    translation:
+      en: "Although the courtyard is noisy, I like living here."
+      ru: "Хотя двор шумный, мне нравится здесь жить."
+      uk: "Хоча подвір'я гамірне, мені подобається тут жити."
+    explain:
+      en: "Two errors, one for each half of the confusion. Obwohl der Hof ist laut keeps main-clause order after a conjunction — obwohl is a weil-type word and the verb goes last. Trotzdem der Hof laut ist gives the adverb a Nebensatz to open, which no adverb can do: trotzdem needs a full main clause behind it."
+      ru: "Две ошибки, по одной на каждую половину путаницы. Obwohl der Hof ist laut сохраняет порядок главного предложения после союза — а obwohl устроен как weil, и глагол уходит в конец. Trotzdem der Hof laut ist поручает наречию открыть придаточное, чего наречие не умеет: за trotzdem идёт полноценное главное предложение."
+      uk: "Дві помилки, по одній на кожну половину плутанини. Obwohl der Hof ist laut зберігає порядок головного речення після сполучника — а obwohl влаштований як weil, і дієслово йде в кінець. Trotzdem der Hof laut ist доручає прислівникові відкрити підрядне, чого прислівник не вміє: за trotzdem іде повноцінне головне речення."
+      de: "Zwei Fehler, einer pro Hälfte der Verwechslung. Obwohl der Hof ist laut behält nach einer Konjunktion die Hauptsatzstellung — obwohl ist ein Wort vom Typ weil, das Verb geht ans Ende. Trotzdem der Hof laut ist lässt ein Adverb einen Nebensatz eröffnen, was kein Adverb kann: Hinter trotzdem steht ein vollständiger Hauptsatz."
+
+  - id: uebersetzen-obwohl-garten
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: obwohl-trotzdem
+    instruction:
+      en: "Pack the concession into one sentence with obwohl. For 'be in favour' take dafür sein."
+      ru: "Уместите уступку в одно предложение с obwohl. Для «быть за» возьмите dafür sein."
+      uk: "Умістіть поступку в одне речення з obwohl. Для «бути за» візьміть dafür sein."
+      de: "Pack das Zugeständnis mit obwohl in einen Satz. Für die Zustimmung nimm dafür sein."
+    prompt_en: "Although the garden costs money, I am in favour of it."
+    prompt_ru: "Хотя сад стоит денег, я за."
+    prompt_uk: "Хоча сад коштує грошей, я за."
+    answer: "Obwohl der Garten Geld kostet, bin ich dafür."
+    accept:
+      # The concession may stand second; nothing else moves when it does.
+      - "Ich bin dafür, obwohl der Garten Geld kostet."
+    key_tokens: ["Obwohl", "obwohl", "kostet"]
+    explain:
+      en: "Graded are the two ends of the conjunction's rule: obwohl and the clause-final kostet. English leaves its word order alone after 'although', so the hand writes obwohl der Garten kostet Geld — the one collapse this tag exists to catch. Where the clause stands is free: first, and the main clause opens with bin; second, and nothing else changes."
+      ru: "Оцениваются два конца правила союза: obwohl и kostet в самом конце. Русский после «хотя» ничего в порядке слов не двигает, поэтому рука пишет obwohl der Garten kostet Geld — ровно тот развал, ради которого этот тег и существует. Место придаточного свободно: впереди — и главное начинается с bin; сзади — и больше не меняется ничего."
+      uk: "Оцінюються два кінці правила сполучника: obwohl і kostet у самому кінці. Українська після «хоча» нічого в порядку слів не рухає, тому рука пише obwohl der Garten kostet Geld — рівно той розвал, заради якого цей тег і існує. Місце підрядного вільне: попереду — і головне починається з bin; позаду — і більше не змінюється нічого."
+      de: "Bewertet werden die zwei Enden der Konjunktionsregel: obwohl und das satzfinale kostet. Die Ausgangssprachen rühren nach „obwohl“ die Wortstellung nicht an, also schreibt die Hand obwohl der Garten kostet Geld — genau der Einsturz, für den es diesen Tag gibt. Wo der Nebensatz steht, ist frei: vorn, dann beginnt der Hauptsatz mit bin; hinten, dann ändert sich sonst nichts."
+
+  - id: uebersetzen-trotzdem-mehrheit
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: konjunktionaladverb-inversion
+    instruction:
+      en: "Join the two halves with trotzdem. For 'vote for' take stimmen für."
+      ru: "Соедините две части словом trotzdem. Для «голосовать за» возьмите stimmen für."
+      uk: "З'єднайте дві частини словом trotzdem. Для «голосувати за» візьміть stimmen für."
+      de: "Verbinde die beiden Hälften mit trotzdem. Für das Abstimmen nimm stimmen für."
+    prompt_en: "The parking spaces are important. Nevertheless the majority votes for the playground."
+    prompt_ru: "Парковочные места важны. И всё же большинство голосует за детскую площадку."
+    prompt_uk: "Паркомісця важливі. І все ж більшість голосує за дитячий майданчик."
+    answer: "Die Parkplätze sind wichtig. Trotzdem stimmt die Mehrheit für den Spielplatz."
+    # German joins the two halves with a comma as readily as with a full stop, and the
+    # inversion this item grades is identical either way. B1.7's
+    # `uebersetzen-deshalb-treppe` already accepts both for the same adverb class; not
+    # accepting it here would reject correct German for a punctuation choice the prompt
+    # does not fix and no focus tag grades.
+    accept:
+      - "Die Parkplätze sind wichtig, trotzdem stimmt die Mehrheit für den Spielplatz."
+    key_tokens: ["Trotzdem", "trotzdem", "stimmt"]
+    explain:
+      en: "Graded is the pair Trotzdem stimmt. trotzdem is an adverb, so it fills position 1 of a new main clause and the finite verb has to come second — never Trotzdem die Mehrheit stimmt. That is the A2 rule for deshalb, dann and trotzdem alike, and it is the exact opposite of what obwohl does with the same thought."
+      ru: "Оценивается пара Trotzdem stimmt. trotzdem — наречие, оно занимает первую позицию нового главного предложения, и спрягаемый глагол обязан идти вторым — никогда Trotzdem die Mehrheit stimmt. Это правило A2 для deshalb, dann и trotzdem, и оно ровно противоположно тому, что делает с той же мыслью obwohl."
+      uk: "Оцінюється пара Trotzdem stimmt. trotzdem — прислівник, він займає першу позицію нового головного речення, і відмінюване дієслово мусить іти другим — ніколи Trotzdem die Mehrheit stimmt. Це правило A2 для deshalb, dann і trotzdem, і воно рівно протилежне тому, що робить із тією самою думкою obwohl."
+      de: "Bewertet wird das Paar Trotzdem stimmt. trotzdem ist ein Adverb, besetzt also Position 1 eines neuen Hauptsatzes, und das finite Verb muss an zweiter Stelle stehen — nie Trotzdem die Mehrheit stimmt. Das ist die A2-Regel für deshalb, dann und trotzdem, und sie ist das genaue Gegenteil dessen, was obwohl mit demselben Gedanken macht."
+
+  - id: uebersetzen-nicht-sondern
+    outcomes: [einwand-ausdruecken]
+    type: translate
+    focus: aber-sondern
+    instruction:
+      en: "Deny the one year and put the other in its place. For 'come' take kommen in the present."
+      ru: "Отвергните один год и подставьте на его место другой. Для «появиться» возьмите kommen в презенсе."
+      uk: "Відкиньте один рік і підставте на його місце інший. Для «з'явитися» візьміть kommen у презенсі."
+      de: "Verneine das eine Jahr und setz das andere an seine Stelle. Für das Kommen nimm kommen im Präsens."
+    prompt_en: "The garden is not coming this year, but next year."
+    prompt_ru: "Сад появится не в этом году, а в следующем."
+    prompt_uk: "Сад з'явиться не цього року, а наступного."
+    answer: "Der Garten kommt nicht dieses Jahr, sondern nächstes Jahr."
+    accept:
+      # The same correction with the years in prepositional phrases.
+      - "Der Garten kommt nicht in diesem Jahr, sondern im nächsten Jahr."
+    key_tokens: ["nicht", "sondern"]
+    explain:
+      en: "Graded is the frame nicht …, sondern …. sondern may only follow a negation and it replaces exactly what was denied — this year out, next year in. aber would merely add a second, compatible statement, which is not what a counter-proposal does. English uses one word, 'but', for both, so the frame has to be built from the negation, not from the translation."
+      ru: "Оценивается рамка nicht …, sondern …. sondern стоит только после отрицания и подставляет ровно то, что было отвергнуто: этот год долой, следующий на его место. aber лишь добавило бы второе, совместимое утверждение, а встречное предложение делает не это. Русское «а» и «но» стоят рядом, поэтому рамку надо строить от отрицания, а не от перевода."
+      uk: "Оцінюється рамка nicht …, sondern …. sondern стоїть лише після заперечення й підставляє саме те, що було відкинуте: цей рік геть, наступний на його місце. aber лише додало б друге, сумісне твердження, а зустрічна пропозиція робить не це. Українські «а» і «але» стоять поряд, тому рамку треба будувати від заперечення, а не від перекладу."
+      de: "Bewertet wird der Rahmen nicht …, sondern …. sondern steht nur nach einer Verneinung und ersetzt genau das Verneinte: dieses Jahr raus, nächstes Jahr rein. aber würde bloß eine zweite, verträgliche Aussage anhängen, und das tut ein Gegenvorschlag nicht. Die Ausgangssprachen haben ein Wort für beides, also baut man den Rahmen von der Verneinung her."
+
+  - id: match-redemittel
+    outcomes: [einwand-ausdruecken]
+    type: match
+    instruction:
+      en: "Which move does each sentence make in the Hausversammlung?"
+      ru: "Какой ход делает каждая фраза на собрании жильцов?"
+      uk: "Який хід робить кожна фраза на зборах мешканців?"
+      de: "Welchen Zug macht jeder Satz in der Hausversammlung?"
+    pairs:
+      - left: "einen Vorschlag machen"
+        right: "Ich schlage vor, dass wir den Hof teilen."
+      - left: "Verständnis zeigen"
+        right: "Da haben Sie recht, abends ist hier wirklich kein Platz."
+      - left: "einen Einwand nennen"
+        right: "Trotzdem brauche ich nachts einen Parkplatz."
+      - left: "einen Vorschlag korrigieren"
+        right: "Nicht das ganze Jahr, sondern nur den Sommer."
+      - left: "einen Kompromiss vorschlagen"
+        right: "Einigen wir uns erst einmal auf ein Jahr."
+    explain:
+      en: "The evening runs on five moves in a fixed order: someone proposes, someone grants the point, someone objects, someone corrects, someone finds the middle. The words that mark them are worth learning as chunks — Ich schlage vor, dass …, Da haben Sie recht, Trotzdem …, Nicht …, sondern …, Einigen wir uns auf … — because in a real discussion there is no time to build them."
+      ru: "Вечер держится на пяти ходах в устойчивом порядке: кто-то вносит предложение, кто-то признаёт довод, кто-то возражает, кто-то поправляет, кто-то находит середину. Формулы, которыми они помечены, стоит выучить целиком — Ich schlage vor, dass …, Da haben Sie recht, Trotzdem …, Nicht …, sondern …, Einigen wir uns auf …, — потому что в живом обсуждении собирать их некогда."
+      uk: "Вечір тримається на п'яти ходах у сталому порядку: хтось вносить пропозицію, хтось визнає довід, хтось заперечує, хтось поправляє, хтось знаходить середину. Формули, якими вони позначені, варто вивчити цілими — Ich schlage vor, dass …, Da haben Sie recht, Trotzdem …, Nicht …, sondern …, Einigen wir uns auf …, — бо в живому обговоренні збирати їх ніколи."
+      de: "Der Abend läuft über fünf Züge in fester Reihenfolge: Jemand schlägt vor, jemand gibt den Punkt zu, jemand widerspricht, jemand korrigiert, jemand findet die Mitte. Die Wendungen, die sie markieren, lernt man am besten als Chunks — Ich schlage vor, dass …, Da haben Sie recht, Trotzdem …, Nicht …, sondern …, Einigen wir uns auf … —, denn in einer echten Diskussion bleibt keine Zeit, sie zu bauen."
+
+  - id: cloze-einige-jeder
+    outcomes: [diskussion-folgen]
+    type: cloze
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "Fill in einig- after mit, jed- as the subject, and haben in the form jed- requires."
+      ru: "Впишите einig- после mit, jed- в роли подлежащего и haben в форме, которой требует jed-."
+      uk: "Впишіть einig- після mit, jed- у ролі підмета і haben у формі, якої вимагає jed-."
+      de: "Ergänze einig- nach mit, jed- als Subjekt und haben in der Form, die jed- verlangt."
+    text: "Ich habe mit {{einigen}} Bewohnern gesprochen. {{Jeder}} {{hat}} eine andere Idee für den Hof."
+    translation:
+      en: "I have spoken to some of the residents. Everybody has a different idea for the courtyard."
+      ru: "Я поговорил с некоторыми жильцами. У каждого своя идея насчёт двора."
+      uk: "Я поговорив з деякими мешканцями. У кожного своя ідея щодо двору."
+    explain:
+      en: "Two facts in one sentence. einige takes the article endings, and mit demands the dative plural: einigen Bewohnern, never mit einige. And jeder is grammatically singular however many people it covers, so the verb is hat — the meaning pulls towards haben, because the building is full of tenants, and the form wins."
+      ru: "Два факта в одном предложении. einige берёт артиклевые окончания, а mit требует датива множественного числа: einigen Bewohnern, и никогда mit einige. И jeder грамматически единственного числа, сколько бы людей за ним ни стояло, поэтому глагол hat — смысл тянет к haben, ведь жильцов много, но побеждает форма."
+      uk: "Два факти в одному реченні. einige бере артиклеві закінчення, а mit вимагає давального множини: einigen Bewohnern, і ніколи mit einige. І jeder граматично однини, скільки б людей за ним не стояло, тому дієслово hat — зміст тягне до haben, адже мешканців багато, але перемагає форма."
+      de: "Zwei Befunde in einem Satz. einige nimmt die Artikelendungen, und mit verlangt den Dativ Plural: einigen Bewohnern, nie mit einige. Und jeder ist grammatisch Singular, wie viele Personen es auch meint, also heißt das Verb hat — die Bedeutung zieht zu haben, denn das Haus ist voller Mietparteien, und die Form gewinnt."
+
+  - id: mc-jeder-singular
+    outcomes: [diskussion-folgen]
+    type: mc
+    focus: indefinitpronomen-erweitert
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Alle sind gekommen, aber jeder will etwas anderes."
+      - "Alle ist gekommen, aber jeder wollen etwas anderes."
+      - "Alle sind gekommen, aber jeder wollen etwas anderes."
+    correct: 0
+    translation:
+      en: "Everybody has come, but everybody wants something different."
+      ru: "Пришли все, но каждый хочет своего."
+      uk: "Прийшли всі, але кожен хоче свого."
+    explain:
+      en: "The two words point at the same people and take opposite verbs. alle is plural: sind gekommen. jeder is singular: will. The rendering that keeps Alle sind gekommen and still writes jeder wollen shows the usual direction of the error — the meaning is unmistakably plural, so the plural verb slips in behind a singular form."
+      ru: "Оба слова указывают на одних и тех же людей, но требуют разных чисел. alle — множественное: sind gekommen. jeder — единственное: will. Вариант, где Alle sind gekommen стоит верно, а дальше всё-таки написано jeder wollen, показывает обычное направление ошибки: смысл явно множественный, и множественный глагол проскакивает за формой единственного числа."
+      uk: "Обидва слова вказують на тих самих людей, але вимагають різних чисел. alle — множина: sind gekommen. jeder — однина: will. Варіант, де Alle sind gekommen стоїть правильно, а далі все-таки написано jeder wollen, показує звичний напрямок помилки: зміст явно множинний, і множинне дієслово прослизає за формою однини."
+      de: "Beide Wörter meinen dieselben Leute und verlangen entgegengesetzte Verbformen. alle ist Plural: sind gekommen. jeder ist Singular: will. Die Fassung mit richtigem Alle sind gekommen und trotzdem jeder wollen zeigt die übliche Richtung des Fehlers: Die Bedeutung ist eindeutig plural, und das plurale Verb rutscht hinter die Singularform."
+
+  - id: uebersetzen-alle-jeder
+    revision: 2
+    outcomes: [diskussion-folgen]
+    type: translate
+    focus: indefinitpronomen-erweitert
+    instruction:
+      en: "For 'be here' take hier sein or da sein; for 'resident' take Bewohner."
+      ru: "Для «быть здесь» возьмите hier sein или da sein; для «жилец» — Bewohner."
+      uk: "Для «бути тут» візьміть hier sein або da sein; для «мешканець» — Bewohner."
+      de: "Für „hier sein“ nimm hier sein oder da sein; für die Person im Haus das Wort Bewohner."
+    prompt_en: "Not everybody is here, but every resident has a vote."
+    prompt_ru: "Здесь не все, но у каждого жильца есть голос."
+    prompt_uk: "Тут не всі, але кожен мешканець має голос."
+    answer: "Nicht alle sind hier, aber jeder Bewohner hat eine Stimme."
+    # Hier-fronting is ordinary V2 variation and even mirrors the Russian prompt's
+    # information structure; all four graded tokens keep their forms, so the tag's
+    # competence is intact — accepted per the 2026-08-05 ruling in
+    # data/grading-decisions.yaml.
+    accept:
+      - "Nicht alle sind da, aber jeder Bewohner hat eine Stimme."
+      - "Hier sind nicht alle, aber jeder Bewohner hat eine Stimme."
+    key_tokens: ["alle", "sind", "jeder", "hat"]
+    explain:
+      en: "Graded are both quantifiers and both verbs, because the tag is exactly that agreement. alle is plural and takes sind; jeder is singular and takes hat, even though it covers every single tenant in the building. Write jeder Bewohner haben and the sentence has followed the meaning instead of the form."
+      ru: "Оцениваются оба количественных слова и оба глагола — тег именно об этом согласовании. alle множественного числа и берёт sind; jeder единственного и берёт hat, хотя охватывает всех жильцов дома до единого. Напишите jeder Bewohner haben — и предложение пошло за смыслом вместо формы."
+      uk: "Оцінюються обидва кількісні слова й обидва дієслова — тег саме про це узгодження. alle множини і бере sind; jeder однини і бере hat, хоча охоплює всіх мешканців будинку до одного. Напишіть jeder Bewohner haben — і речення пішло за змістом замість форми."
+      de: "Bewertet werden beide Quantoren und beide Verben, denn genau darum geht es dem Tag. alle ist Plural und nimmt sind; jeder ist Singular und nimmt hat, obwohl es jede einzelne Mietpartei im Haus meint. Wer jeder Bewohner haben schreibt, ist der Bedeutung statt der Form gefolgt."
+
+  - id: cloze-was-wo
+    outcomes: [kompromiss-vorschlagen]
+    type: cloze
+    focus: relativ-was-wo
+    instruction:
+      en: "Two relative words with no gender, one word each: one after a superlative used as a noun, one after a place."
+      ru: "Два относительных слова без рода, по одному слову в каждой лакуне: одно после превосходной степени в роли существительного, другое после обозначения места."
+      uk: "Два відносні слова без роду, по одному слову в кожній лакуні: одне після найвищого ступеня в ролі іменника, друге після позначення місця."
+      de: "Zwei Relativwörter ohne Genus, je ein Wort: eines nach einem Superlativ als Nomen, eines nach einem Ort."
+    text: "Das Beste, {{was}} wir heute erreichen können, ist ein Garten auf der Wiese, {{wo}} jetzt alte Fahrräder liegen."
+    translation:
+      en: "The best thing we can achieve today is a garden on the patch of grass where old bicycles are lying at the moment."
+      ru: "Лучшее, чего мы можем сегодня добиться, — сад на лужайке, где сейчас лежат старые велосипеды."
+      uk: "Найкраще, чого ми можемо сьогодні досягти, — сад на галявині, де зараз лежать старі велосипеди."
+    explain:
+      en: "das Beste is a neuter superlative used as a noun, and a relative pronoun would have nothing to agree with, so the relative word is was. After a place, wo stands in for the whole preposition-plus-pronoun (auf der). Both clauses stay Nebensätze: können and liegen at the end."
+      ru: "das Beste — превосходная степень среднего рода в роли существительного, относительному местоимению здесь не с чем согласовываться, поэтому относительное слово — was. После обозначения места wo заменяет целую связку «предлог + местоимение» (auf der). Оба придаточных остаются придаточными: können и liegen в конце."
+      uk: "das Beste — найвищий ступінь середнього роду в ролі іменника, відносному займенникові тут нема з чим узгоджуватися, тому відносне слово — was. Після позначення місця wo заміняє цілу зв'язку «прийменник + займенник» (auf der). Обидва підрядні лишаються підрядними: können і liegen у кінці."
+      de: "das Beste ist ein Superlativ als Nomen im Neutrum, und ein Relativpronomen hätte nichts, wonach es sich richten könnte — also heißt das Relativwort was. Nach einer Ortsangabe steht wo für die ganze Verbindung aus Präposition und Pronomen (auf der). Beide Sätze bleiben Nebensätze: können und liegen am Ende."
+
+  - id: mc-was-satzbezug
+    outcomes: [kompromiss-vorschlagen]
+    type: mc
+    focus: relativ-was-wo
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Am Ende waren fast alle einverstanden, was mich wirklich überrascht hat."
+      - "Am Ende waren fast alle einverstanden, das mich wirklich überrascht hat."
+      - "Am Ende waren fast alle einverstanden, was hat mich wirklich überrascht."
+    correct: 0
+    translation:
+      en: "In the end almost everybody agreed, which really surprised me."
+      ru: "В итоге согласны были почти все, что меня по-настоящему удивило."
+      uk: "Урешті погодилися майже всі, що мене справді здивувало."
+    explain:
+      en: "The relative word points back at the whole preceding clause, not at a single noun — and a clause has no gender, so it must be was. The rendering with das takes the familiar form, the mistake English 'which' invites. The rendering with was hat mich keeps the right word but puts hat in second place: a relative clause is a Nebensatz, and its finite verb stands last."
+      ru: "Относительное слово указывает на всё предыдущее предложение, а не на отдельное существительное, — у предложения рода нет, поэтому только was. В варианте с das взята привычная форма: русское «что» одно на оба немецких слова. В варианте с was hat mich слово выбрано верно, но hat стоит на втором месте: относительное придаточное — это Nebensatz, и спрягаемый глагол в нём последний."
+      uk: "Відносне слово вказує на все попереднє речення, а не на окремий іменник, — у речення роду немає, тому лише was. У варіанті з das узято звичну форму: українське «що» одне на обидва німецькі слова. У варіанті з was hat mich слово вибрано правильно, але hat стоїть на другому місці: відносне підрядне — це Nebensatz, і відмінюване дієслово в ньому останнє."
+      de: "Das Relativwort zeigt auf den ganzen vorangehenden Satz, nicht auf ein einzelnes Nomen — und ein Satz hat kein Genus, also muss es was heißen. Die Fassung mit das greift zum vertrauten Wort. Die Fassung mit was hat mich hat das richtige Wort, stellt hat aber an die zweite Stelle: Ein Relativsatz ist ein Nebensatz, und sein finites Verb steht zuletzt."
+
+  - id: uebersetzen-alles-was
+    outcomes: [kompromiss-vorschlagen]
+    type: translate
+    focus: relativ-was-wo
+    instruction:
+      en: "For 'decide' take entscheiden; for 'cost money' kosten."
+      ru: "Для «решать» возьмите entscheiden; для «стоить денег» — kosten."
+      uk: "Для «вирішувати» візьміть entscheiden; для «коштувати грошей» — kosten."
+      de: "Für das Entscheiden nimm entscheiden; für das Kosten kosten."
+    prompt_en: "Everything that we decide today costs money."
+    prompt_ru: "Всё, что мы решаем сегодня, стоит денег."
+    prompt_uk: "Усе, що ми вирішуємо сьогодні, коштує грошей."
+    answer: "Alles, was wir heute entscheiden, kostet Geld."
+    key_tokens: ["was", "entscheiden"]
+    explain:
+      en: "Graded are the relative word and the wall behind it. alles has no gender for a relative pronoun to agree with, so it is was, never das — and the relative clause is a Nebensatz, so entscheiden stands at its end. The comma pair around the clause is part of the sentence: it opens after alles and closes before kostet."
+      ru: "Оцениваются относительное слово и стена за ним. У alles нет рода, с которым согласовалось бы относительное местоимение, поэтому только was, и никогда das, — а относительное придаточное есть Nebensatz, так что entscheiden стоит в его конце. Пара запятых вокруг придаточного — часть предложения: она открывается после alles и закрывается перед kostet."
+      uk: "Оцінюються відносне слово і стіна за ним. У alles немає роду, з яким узгоджувався б відносний займенник, тому лише was, і ніколи das, — а відносне підрядне є Nebensatz, тож entscheiden стоїть у його кінці. Пара ком навколо підрядного — частина речення: вона відкривається після alles і закривається перед kostet."
+      de: "Bewertet werden das Relativwort und die Wand dahinter. alles hat kein Genus, nach dem sich ein Relativpronomen richten könnte, also heißt es was und nie das — und der Relativsatz ist ein Nebensatz, also steht entscheiden an seinem Ende. Das Kommapaar gehört dazu: Es öffnet nach alles und schließt vor kostet."

@@ -11,9 +11,9 @@ import { join } from 'node:path';
 import YAML from 'yaml';
 import { buildSession, type TrainingSet } from '../src/lib/training';
 import { weakFocuses } from '../src/lib/weakness';
-import { getCurriculum } from '../src/lib/curriculum';
-import { exerciseSetSchema } from '../src/lib/schemas';
-import type { ExerciseItem } from '../src/lib/schemas';
+import { getCurriculum } from '@da/content/curriculum';
+import { exerciseSetSchema } from '@da/schema';
+import type { ExerciseItem } from '@da/schema';
 import type { Attempt } from '../src/lib/store';
 
 const DAY = 24 * 60 * 60 * 1000;

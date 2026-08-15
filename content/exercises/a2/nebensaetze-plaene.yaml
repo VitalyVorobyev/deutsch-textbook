@@ -1,5 +1,8 @@
 topic: nebensaetze-plaene
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Nebensätze & Pläne"
 title:
   en: "Practice — weil, dass, wenn: the verb goes to the end"
   ru: "Практика — weil, dass, wenn: глагол уходит в конец"
@@ -261,7 +264,13 @@ items:
     prompt_ru: "Я надеюсь, что в воскресенье будет хорошая погода."
     prompt_uk: "Я сподіваюся, що в неділю буде гарна погода."
     answer: "Ich hoffe, dass das Wetter am Sonntag gut ist."
+    # revision 2: the ordinary middle-field order is correct German and keeps ist at
+    # the wall; the weil-item four lines up already authorizes its own word-order
+    # variant. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Ich hoffe, dass am Sonntag das Wetter gut ist."
     key_tokens: ["ist"]
+    revision: 2
     explain:
       en: "Two things are easy to lose here. The comma before dass is compulsory in German. And the verb ist belongs at the very end of the dass-clause — dass das Wetter am Sonntag gut ist — not next to the subject where the English sentence keeps it. The time phrase am Sonntag simply sits inside the clause and changes nothing: only the verb has a fixed address."
       ru: "Здесь легко потерять две вещи. Запятая перед dass в немецком обязательна. И глагол ist стоит в самом конце придаточного — dass das Wetter am Sonntag gut ist, — а не рядом с подлежащим, как это было бы по-русски («что погода будет хорошая»). Обстоятельство времени am Sonntag просто стоит внутри придаточного и ни на что не влияет: фиксированный адрес есть только у глагола."

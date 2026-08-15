@@ -1,5 +1,8 @@
 topic: aemter-dienstleistungen
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Ämter & Dienstleistungen"
 title:
   en: "Practice — the polite chunks at the counter"
   ru: "Практика — вежливые обороты у окошка"
@@ -106,7 +109,11 @@ items:
       en: "Put the verbs at the end of the weil-clause, in the right order."
       ru: "Поставьте глаголы в конец придаточного с weil, в правильном порядке."
       uk: "Поставте дієслова в кінець підрядного з weil, у правильному порядку."
-    text: "Guten Tag! Ich komme, weil ich mich {{anmelden}} {{möchte}}. Ich brauche auch eine Bescheinigung, weil mein Chef sie {{braucht}}."
+    # revision 2: «хочу» licenses will as directly as möchte, and the focus grades the
+    # wall, not the modal — the sibling translate in -produktion and the lernen-verstehen
+    # clozes already accept it. (Batch-6 audit, 2026-08-12.)
+    revision: 2
+    text: "Guten Tag! Ich komme, weil ich mich {{anmelden}} {{möchte|will}}. Ich brauche auch eine Bescheinigung, weil mein Chef sie {{braucht}}."
     translation:
       en: "Good afternoon! I have come because I would like to register. I also need a certificate, because my employer needs it."
       ru: "Здравствуйте! Я пришёл(шла), потому что хочу зарегистрироваться. Мне также нужна справка, потому что она нужна моему начальнику."
@@ -170,9 +177,14 @@ items:
     prompt_ru: "Не могли бы вы дать мне бланк?"
     prompt_uk: "Чи не могли б ви дати мені бланк?"
     answer: "Könnten Sie mir bitte das Formular geben?"
+    # revision 2: RU/UK carry no «пожалуйста» / «будь ласка», so dropping bitte is
+    # faithful — the 2026-08-11 ruling on the -produktion sibling; this item was not
+    # swept then. The graded Könnten is identical. (Batch-6 audit, 2026-08-12.)
     accept:
       - "Könnten Sie mir das Formular bitte geben?"
+      - "Könnten Sie mir das Formular geben?"
     key_tokens: ["Könnten"]
+    revision: 2
     explain:
       en: "Könnten Sie … is the conventional softer request chunk targeted here. Können Sie … is also grammatical and can be polite with bitte and appropriate intonation, but it more directly asks about ability. The word-order frame is unchanged: conjugated verb first in the question, Sie behind it, and geben at the end."
       ru: "Könnten Sie … — целевой здесь готовый блок более мягкой просьбы. Können Sie … тоже грамматично и с bitte и подходящей интонацией может быть вежливым, но прямее спрашивает о возможности. Порядок слов тот же: спрягаемый глагол открывает вопрос, за ним Sie, а geben стоит в конце."
@@ -190,10 +202,16 @@ items:
     prompt_ru: "Я хотел(а) бы получить справку для начальника."
     prompt_uk: "Я хотів(ла) би отримати довідку для начальника."
     answer: "Ich hätte gern eine Bescheinigung für meinen Chef."
+    # revision 2: «для начальника» carries no possessive, so für den Chef is faithful
+    # to RU/UK — the vom-Bruder ruling. The graded hätte is identical.
+    # (Batch-6 audit, 2026-08-12.)
     accept:
       - "Ich hätte gerne eine Bescheinigung für meinen Chef."
       - "Für meinen Chef hätte ich gern eine Bescheinigung."
+      - "Ich hätte gern eine Bescheinigung für den Chef."
+      - "Ich hätte gerne eine Bescheinigung für den Chef."
     key_tokens: ["hätte"]
+    revision: 2
     explain:
       en: "Ich hätte gern … is the taught neutral counter chunk for something you want handed to you, followed here by the accusative noun phrase eine Bescheinigung. Ich will eine Bescheinigung is grammatical but normally too direct for this first-contact prompt. Note für meinen Chef: für governs the accusative, so the possessive is meinen, not meinem. gern and gerne are interchangeable."
       ru: "Ich hätte gern … — изученный нейтральный оборот у окошка для того, что вам должны выдать; здесь за ним идёт именная группа eine Bescheinigung в Akkusativ. Ich will eine Bescheinigung грамматически верно, но обычно слишком прямо для первого контакта. После für нужен Akkusativ: für meinen Chef, не meinem. gern и gerne равноправны."
@@ -207,9 +225,14 @@ items:
       en: "Translate into German."
       ru: "Переведите на немецкий."
       uk: "Перекладіть німецькою."
+    # revision 2: «с удостоверением» / «з посвідченням» carried no possessive while
+    # meinem is a GRADED token — mit dem Ausweis was correct German logged against
+    # dativ-praepositionen. The RU/UK prompts now carry the possessive the EN prompt
+    # always had. (Batch-6 audit, 2026-08-12.)
     prompt_en: "On Monday I am going to the public office with my ID card."
-    prompt_ru: "В понедельник я иду в учреждение с удостоверением."
-    prompt_uk: "У понеділок я йду до установи з посвідченням."
+    prompt_ru: "В понедельник я иду в учреждение со своим удостоверением."
+    prompt_uk: "У понеділок я йду до установи зі своїм посвідченням."
+    revision: 2
     answer: "Am Montag gehe ich mit meinem Ausweis zum Amt."
     accept:
       - "Ich gehe am Montag mit meinem Ausweis zum Amt."

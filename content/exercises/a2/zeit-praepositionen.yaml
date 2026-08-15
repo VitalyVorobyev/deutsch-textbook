@@ -1,0 +1,292 @@
+topic: zeit-praepositionen
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Zeit: um, am, im, seit, ab, bis"
+title:
+  en: "Practice — which preposition does the time expression take?"
+  ru: "Практика — какой предлог берёт выражение времени?"
+  uk: "Практика — який прийменник бере вираз часу?"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# The article's five sections drilled as one decision — which marker a time expression takes,
+# including "none at all": the um/an/in table and its Abstand row (table-um-an-in,
+# cloze-um-am-im, cloze-in-abstand), the two backward looks (mc-seit-praesens, cloze-seit-vor,
+# uebersetzen-seit-regen), the boundary set (mc-ab-seit, cloze-bis-pause, uebersetzen-von-bis,
+# diktat-ab-bis), the event sequence (uebersetzen-vor-nach-pruefung) and the preposition-less
+# accusative (uebersetzen-ohne-praeposition).
+#
+# Three tags, and the split is the ruling this topic ships under. `zeitangaben-system` is the
+# new one and names the SYSTEM choice — which temporal preposition, or none, a time expression
+# takes. Items whose whole question is one of the two confusions A1/A2 already own keep those
+# tags: cloze-um-am-im is `um-am-zeit` (a1/alltag-zeit drills it in four practice items), and
+# mc-seit-praesens, cloze-seit-vor and uebersetzen-seit-regen are `seit-vor-zeit`
+# (a2/gesundheit-arzttermin drills it in two). Those two tags are the runtime channels of the
+# `deepens: [alltag-zeit, gesundheit-arzttermin]` edges — an error here marks the confusion
+# weak course-wide and pulls the base topics' items back into mixed training.
+#
+# Two facts the items deliberately never mark wrong, because both are real German: `in der
+# nächsten Woche` / `am nächsten Montag` (correct, merely heavier than the bare accusative —
+# uebersetzen-ohne-praeposition names the everyday register in its instruction rather than
+# treating the long form as an error), and `für ein Jahr` (correct for a planned stretch
+# ahead, wrong only for a running state — no item asks for it in either reading).
+#
+# Nouns are all A1/A2 deck words, grepped in content/vocab/ rather than remembered: Uhr,
+# Mittwoch, September, Wochenende, Nacht, Konzert, Freitag, August, Köln, Praktikum, Juli,
+# Woche, Jahr, Nachbarin, Museum, Samstag, Montag, Stelle, Büro, Stadt, Abend, Pause,
+# Bäckerei, Dienstag, Sonntag, Tag, Prüfung, Zeit, Deutsch. No new deck — the topic recycles.
+items:
+  - id: table-um-an-in
+    outcomes: [zeitpunkt-nennen]
+    type: table
+    focus: zeitangaben-system
+    title: "Welche Präposition passt zur Zeitangabe?"
+    instruction:
+      en: "Write each time expression again with the preposition it takes — merged with the article where German merges the two (am, im)."
+      ru: "Запишите каждое выражение времени заново, вместе с предлогом — и слитно с артиклем там, где немецкий их сливает (am, im)."
+      uk: "Запишіть кожен вираз часу заново, разом із прийменником — і злито з артиклем там, де німецька їх зливає (am, im)."
+    columns: ["Zeitangabe mit Präposition"]
+    rows:
+      - label: "acht Uhr"
+        cells:
+          - { answer: "um acht Uhr", given: true }
+      - label: "Mittwoch"
+        cells:
+          - { answer: "am Mittwoch" }
+      - label: "September"
+        cells:
+          - { answer: "im September" }
+      - label: "Wochenende"
+        cells:
+          - { answer: "am Wochenende" }
+      - label: "Nacht"
+        cells:
+          - { answer: "in der Nacht" }
+      - label: "zwei Wochen (von heute nach vorn)"
+        cells:
+          - { answer: "in zwei Wochen" }
+    explain:
+      en: "Read the rows as four questions rather than six words. A clock time takes um. A day or a part of the day takes an, contracted to am — and the weekend counts as a day. A month takes in, contracted to im. The last row is the same in doing a second job: with an amount of time it measures the distance forward from today, so in zwei Wochen is 'two weeks from now' and names no month at all. in der Nacht is the one part of the day that goes with in instead of an, and it keeps its article because die Nacht is feminine."
+      ru: "Читайте строки не как шесть слов, а как четыре вопроса. Время по часам берёт um. День и часть суток берут an, слитно am, — и выходные считаются днём. Месяц берёт in, слитно im. Последняя строка — тот же in во второй работе: с отрезком времени он отмеряет расстояние вперёд от сегодняшнего дня, поэтому in zwei Wochen значит «через две недели» и никакого месяца не называет. Русское «через» здесь не переводится отдельным словом вовсе. Исключение одно: in der Nacht — единственная часть суток с in, и артикль остаётся, потому что die Nacht женского рода."
+      uk: "Читайте рядки не як шість слів, а як чотири питання. Час за годинником бере um. День і частина доби беруть an, злито am, — і вихідні рахуються днем. Місяць бере in, злито im. Останній рядок — той самий in у другій роботі: з відрізком часу він відміряє відстань уперед від сьогодні, тож in zwei Wochen — це «через два тижні», і жодного місяця тут немає. Виняток один: in der Nacht — єдина частина доби з in, і артикль лишається, бо die Nacht жіночого роду."
+
+  - id: cloze-um-am-im
+    outcomes: [zeitpunkt-nennen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "Fill in um, am or im."
+      ru: "Вставьте um, am или im."
+      uk: "Вставте um, am або im."
+    text: "Das Konzert beginnt {{um}} acht Uhr. {{Am}} Freitag habe ich frei, und {{im}} August fahre ich nach Köln."
+    translation:
+      en: "The concert begins at eight o'clock. On Friday I have a day off, and in August I am travelling to Cologne."
+      ru: "Концерт начинается в восемь часов. В пятницу у меня выходной, а в августе я еду в Кёльн."
+      uk: "Концерт починається о восьмій годині. У п'ятницю в мене вихідний, а в серпні я їду до Кельна."
+    explain:
+      en: "Three gaps, three types of time, and the sentence tells you which is which: a clock time (um), a weekday (am), a month (im). English is a fair guide here — at eight, on Friday, in August line up one to one with um, am, im — so the trap is not the choice itself but the habit of translating the English word instead of asking what kind of time is being named."
+      ru: "Три пропуска, три типа времени, и подсказывает сам текст: время по часам (um), день недели (am), месяц (im). Русское «в» стоит во всех трёх случаях — «в восемь», «в пятницу», «в августе», — поэтому по-русски выбирать нечего, а по-немецки выбирать приходится каждый раз заново. Спрашивайте не «как это по-немецки», а «какого типа это время»."
+      uk: "Три пропуски, три типи часу, і підказує сам текст: час за годинником (um), день тижня (am), місяць (im). Українська допомагає лише наполовину: «о восьмій» має свій прийменник, а «у п'ятницю» і «у серпні» користуються одним «у» — і саме на цій парі виникають помилки. Питайте не «як це німецькою», а «якого типу цей час»."
+
+  - id: cloze-in-abstand
+    outcomes: [zeitpunkt-nennen]
+    type: cloze
+    focus: zeitangaben-system
+    instruction:
+      en: "The same preposition twice: once merged with the article, once on its own."
+      ru: "Один и тот же предлог дважды: один раз слитно с артиклем, один раз сам по себе."
+      uk: "Той самий прийменник двічі: один раз злито з артиклем, один раз сам по собі."
+    text: "Mein Praktikum beginnt {{im}} Juli, also {{in}} vier Wochen."
+    translation:
+      en: "My internship starts in July, that is, four weeks from now."
+      ru: "Моя практика начинается в июле, то есть через четыре недели."
+      uk: "Моя практика починається в липні, тобто через чотири тижні."
+    explain:
+      en: "One preposition, two jobs, and only what follows it tells them apart. With a month, in names the month itself and merges with the article: im Juli. With an amount of time, the same in counts forward from today: in vier Wochen. Nothing merges there, because vier Wochen has no article to merge with."
+      ru: "Один предлог, две работы, и различает их только то, что стоит после него. С месяцем in называет сам месяц и сливается с артиклем: im Juli. С отрезком времени тот же in отсчитывает вперёд от сегодняшнего дня: in vier Wochen. Здесь сливаться не с чем — артикля нет. Русское «через» немецким предлогом не переводится: место «через» занимает in."
+      uk: "Один прийменник, дві роботи, і розрізняє їх лише те, що стоїть після нього. З місяцем in називає сам місяць і зливається з артиклем: im Juli. З відрізком часу той самий in відлічує вперед від сьогодні: in vier Wochen. Тут зливатися немає з чим — артикля немає. Українське «через» окремим прийменником не перекладається: його місце займає in."
+
+  - id: mc-seit-praesens
+    outcomes: [dauer-nennen]
+    type: mc
+    focus: seit-vor-zeit
+    instruction:
+      en: "The person still lives in Cologne today. Which sentence is correct?"
+      ru: "Человек и сегодня живёт в Кёльне. Какое предложение верно?"
+      uk: "Людина й сьогодні живе в Кельні. Яке речення правильне?"
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Sie wohnt seit einem Jahr in Köln."
+      - "Sie hat seit einem Jahr in Köln gewohnt."
+      - "Sie wohnt vor einem Jahr in Köln."
+    correct: 0
+    translation:
+      en: "She has been living in Cologne for a year."
+      ru: "Она живёт в Кёльне уже год."
+      uk: "Вона живе в Кельні вже рік."
+    explain:
+      en: "Two decisions in one short sentence. seit is the preposition for something that started back then and is still running, so vor — which means 'ago' and closes the matter — is out. And a seit phrase goes with the German present tense: the living is going on now. English pushes the other way with 'has been living', which is why the perfect version looks so plausible; German would take it to mean the living has stopped."
+      ru: "В одном коротком предложении два решения. seit — предлог для того, что началось тогда и продолжается сейчас, поэтому vor («назад», дело закрыто) отпадает. Вторая половина — время глагола: при seit немецкий держит настоящее, ведь человек живёт там и сегодня. Русское «живёт уже год» устроено так же, а вот «жила год» — это уже другой смысл, и именно его передал бы вариант с Perfekt."
+      uk: "В одному короткому реченні два рішення. seit — прийменник для того, що почалося тоді й триває зараз, тому vor («тому», справу закрито) відпадає. Друга половина — час дієслова: при seit німецька тримає теперішній, адже людина живе там і сьогодні. Українське «живе вже рік» влаштоване так само, а от «жила рік» — це вже інший зміст, і саме його передав би варіант із Perfekt."
+
+  - id: cloze-seit-vor
+    outcomes: [dauer-nennen]
+    type: cloze
+    focus: seit-vor-zeit
+    instruction:
+      en: "Fill in seit or vor."
+      ru: "Вставьте seit или vor."
+      uk: "Вставте seit або vor."
+    text: "Meine Nachbarin arbeitet {{seit}} zwei Jahren im Museum. {{Vor}} zwei Jahren hat sie dort angefangen."
+    translation:
+      en: "My neighbour has been working at the museum for two years. Two years ago she started there."
+      ru: "Моя соседка работает в музее уже два года. Два года назад она там начала."
+      uk: "Моя сусідка працює в музеї вже два роки. Два роки тому вона там почала."
+    explain:
+      en: "The same two years twice, and the same Dativ twice — zwei Jahren either way — so the case decides nothing. What decides is whether the sentence looks at something still running or at a point that is over. The working continues, so it is seit plus a present tense; the starting happened once and is finished, so it is vor plus a past tense. The verb forms in the two halves are the visible proof of the choice."
+      ru: "Те же два года дважды и тот же Dativ дважды — zwei Jahren в обоих случаях, — так что падеж не решает ничего. Решает рамка: продолжается дело или уже закрыто. Работа идёт до сих пор — значит seit и настоящее время; начало произошло однажды и позади — значит vor и прошедшее. Проверка по-русски короткая: «уже два года» — seit, «два года назад» — vor."
+      uk: "Ті самі два роки двічі й той самий Dativ двічі — zwei Jahren в обох випадках, — тож відмінок не вирішує нічого. Вирішує рамка: справа триває чи вже закрита. Робота йде досі — отже seit і теперішній час; початок стався одного разу й позаду — отже vor і минулий. Перевірка українською коротка: «вже два роки» — seit, «два роки тому» — vor."
+
+  - id: mc-ab-seit
+    outcomes: [zeitraum-nennen]
+    type: mc
+    focus: zeitangaben-system
+    instruction:
+      en: "Today is Saturday, and the new job begins on Monday. Which word fits?"
+      ru: "Сегодня суббота, новая работа начинается в понедельник. Какое слово подходит?"
+      uk: "Сьогодні субота, нова робота починається в понеділок. Яке слово підходить?"
+    prompt: "___ Montag arbeite ich in der Stadt."
+    options:
+      - "Ab"
+      - "Seit"
+      - "Bis"
+    correct: 0
+    translation:
+      en: "From Monday on I work in town."
+      ru: "С понедельника я работаю в городе."
+      uk: "З понеділка я працюю в місті."
+    explain:
+      en: "ab draws a start line and looks forward from it, which is exactly the situation here: the job has not begun yet. seit would look back from today and claim the work is already going on, and bis would name the end of a stretch instead of its beginning — 'until Monday' is the opposite announcement. English keeps 'from' for both ab and seit, so nothing in the translation separates them; the question to ask is whether the line has already been crossed."
+      ru: "ab проводит черту начала и смотрит с неё вперёд — ровно наш случай: работа ещё не началась. seit смотрел бы из сегодняшнего дня назад и утверждал бы, что работа уже идёт, а bis назвал бы конец отрезка, а не его начало. Русское «с понедельника» покрывает и ab, и seit одним словом, поэтому переводом здесь ничего не решить: спрашивайте, перейдена ли уже черта."
+      uk: "ab проводить межу початку й дивиться з неї вперед — саме наш випадок: робота ще не почалася. seit дивився б із сьогоднішнього дня назад і стверджував би, що робота вже триває, а bis назвав би кінець відрізка, а не його початок. Українське «з понеділка» покриває і ab, і seit одним словом, тому перекладом тут нічого не вирішити: питайте, чи вже перетнуто межу."
+
+  - id: cloze-bis-pause
+    outcomes: [zeitraum-nennen]
+    type: cloze
+    focus: zeitangaben-system
+    instruction:
+      en: "Fill in bis in the form the phrase needs — bare, or with zu and an article."
+      ru: "Вставьте bis в той форме, которой требует выражение, — без ничего или с zu и артиклем."
+      uk: "Вставте bis у тій формі, якої вимагає вислів, — без нічого або з zu й артиклем."
+    text: "Ich lerne {{bis}} Samstag jeden Abend. Am Montag arbeite ich {{bis zur|bis zu der}} Pause im Büro."
+    translation:
+      en: "I am studying every evening until Saturday. On Monday I work until the break in the office."
+      ru: "До субботы я занимаюсь каждый вечер. В понедельник я работаю в офисе до перерыва."
+      uk: "До суботи я вчуся щовечора. У понеділок я працюю в офісі до перерви."
+    explain:
+      en: "bis needs nothing at all before a bare name or an adverb: bis Samstag, bis morgen. The moment the phrase needs an article, bis alone is no longer German and the phrase becomes bis zu plus the Dativ — die Pause is feminine, so bis zu der contracts to bis zur. The test is not the meaning, which is the same in both halves, but whether an article has to appear."
+      ru: "Перед голым названием или наречием bis не требует ничего: bis Samstag, bis morgen. Но как только выражению нужен артикль, одного bis мало и получается bis zu плюс Dativ — die Pause женского рода, поэтому bis zu der сливается в bis zur. Проверять надо не смысл (он в обеих половинах один), а нужен ли артикль."
+      uk: "Перед голою назвою або прислівником bis не потребує нічого: bis Samstag, bis morgen. Але щойно виразові потрібен артикль, самого bis замало і виходить bis zu плюс Dativ — die Pause жіночого роду, тому bis zu der зливається в bis zur. Перевіряти треба не зміст (він в обох половинах один), а чи потрібен артикль."
+
+  - id: uebersetzen-von-bis
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "The bakery is open from Tuesday to Sunday."
+    prompt_ru: "Пекарня открыта со вторника по воскресенье."
+    prompt_uk: "Пекарня відчинена з вівторка до неділі."
+    answer: "Die Bäckerei ist von Dienstag bis Sonntag geöffnet."
+    accept:
+      - "Die Bäckerei hat von Dienstag bis Sonntag geöffnet."
+      - "Von Dienstag bis Sonntag ist die Bäckerei geöffnet."
+    key_tokens: ["von", "bis"]
+    explain:
+      en: "von … bis names both ends of the stretch in one move, and with bare weekday names neither end takes an article: von Dienstag bis Sonntag. Note that bis is doing here exactly what it did on its own — closing the stretch — while von opens it; ab would open it too, but ab announces a start with no end in sight, and this shop closes again on Monday."
+      ru: "von … bis называет оба конца отрезка сразу, и с голыми названиями дней недели артикль не нужен ни там, ни там: von Dienstag bis Sonntag. Обратите внимание: bis делает здесь ровно то же, что и в одиночку, — закрывает отрезок, — а von его открывает. ab тоже открыл бы, но ab объявляет начало без видимого конца, а магазин в понедельник снова закрыт."
+      uk: "von … bis називає обидва кінці відрізка одразу, і з голими назвами днів тижня артикль не потрібен ні там, ні там: von Dienstag bis Sonntag. Зверніть увагу: bis робить тут те саме, що й наодинці, — закриває відрізок, — а von його відкриває. ab теж відкрив би, але ab оголошує початок без видимого кінця, а крамниця в понеділок знову зачинена."
+
+  - id: uebersetzen-seit-regen
+    outcomes: [dauer-nennen]
+    type: translate
+    focus: seit-vor-zeit
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "It has been raining for three days."
+    prompt_ru: "Дождь идёт уже три дня."
+    prompt_uk: "Дощ іде вже три дні."
+    answer: "Es regnet seit drei Tagen."
+    accept:
+      - "Seit drei Tagen regnet es."
+    key_tokens: ["seit"]
+    explain:
+      en: "English offers 'for' here and 'since' in Seit Montag regnet es, and German answers both with seit — so the English word is no guide at all. What decides is that the rain is still falling: something running gets seit and, with it, the present tense. Three days that were over would be vor drei Tagen and a past tense."
+      ru: "Русское «уже три дня» — самая надёжная подсказка: там, где перед отрезком времени стоит «уже», по-немецки стоит seit. И глагол остаётся в настоящем времени, потому что дождь идёт до сих пор: es regnet, а не *es hat geregnet*. Три дня, которые уже позади, дали бы vor drei Tagen и прошедшее время."
+      uk: "Українське «вже три дні» — найнадійніша підказка: там, де перед відрізком часу стоїть «вже», німецькою стоїть seit. І дієслово лишається в теперішньому часі, бо дощ іде досі: es regnet, а не *es hat geregnet*. Три дні, які вже позаду, дали б vor drei Tagen і минулий час."
+
+  - id: uebersetzen-vor-nach-pruefung
+    outcomes: [zeitpunkt-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "Before the exam I sleep badly, after the exam I sleep well."
+    prompt_ru: "Перед экзаменом я плохо сплю, после экзамена я сплю хорошо."
+    prompt_uk: "Перед іспитом я погано сплю, після іспиту я сплю добре."
+    answer: "Vor der Prüfung schlafe ich schlecht, nach der Prüfung schlafe ich gut."
+    accept:
+      - "Vor der Prüfung schlafe ich schlecht, und nach der Prüfung schlafe ich gut."
+      - "Vor der Prüfung schlafe ich schlecht. Nach der Prüfung schlafe ich gut."
+    key_tokens: ["Vor", "nach"]
+    explain:
+      en: "This is the second job of vor, and the sentence shows how German keeps the two apart: after vor stands an event with an article — der Prüfung — not an amount of time, so it means 'before' and not 'ago'. Its partner nach has no such double life and always means 'later than'. Both take the Dativ, which is why die Prüfung appears as der Prüfung twice."
+      ru: "Это вторая работа vor, и предложение показывает, как немецкий разводит две его роли: после vor стоит событие с артиклем — der Prüfung, — а не отрезок времени, поэтому значение здесь «перед», а не «назад». У напарника nach такой двойной жизни нет: он всегда значит «позже». Оба требуют Dativ, поэтому die Prüfung дважды выходит как der Prüfung."
+      uk: "Це друга робота vor, і речення показує, як німецька розводить дві його ролі: після vor стоїть подія з артиклем — der Prüfung, — а не відрізок часу, тому значення тут «перед», а не «тому». У напарника nach такого подвійного життя немає: він завжди означає «пізніше». Обидва вимагають Dativ, тому die Prüfung двічі виходить як der Prüfung."
+
+  - id: uebersetzen-ohne-praeposition
+    outcomes: [zeitpunkt-nennen]
+    type: translate
+    focus: zeitangaben-system
+    instruction:
+      en: "Translate into German. Use the everyday time phrases — the ones that take no preposition at all."
+      ru: "Переведите на немецкий. Используйте обычные разговорные выражения времени — те, что обходятся вообще без предлога."
+      uk: "Перекладіть німецькою. Використайте звичайні розмовні вирази часу — ті, що обходяться взагалі без прийменника."
+    prompt_en: "Next week I have no time, but every day I study German."
+    prompt_ru: "На следующей неделе у меня нет времени, но каждый день я учу немецкий."
+    prompt_uk: "Наступного тижня в мене немає часу, але щодня я вчу німецьку."
+    answer: "Nächste Woche habe ich keine Zeit, aber jeden Tag lerne ich Deutsch."
+    accept:
+      - "Nächste Woche habe ich keine Zeit, aber ich lerne jeden Tag Deutsch."
+      - "Ich habe nächste Woche keine Zeit, aber jeden Tag lerne ich Deutsch."
+      - "Ich habe nächste Woche keine Zeit, aber ich lerne jeden Tag Deutsch."
+    key_tokens: ["Nächste", "jeden"]
+    explain:
+      en: "Both time phrases stand in the Akkusativ with no preposition in front of them, and on jeden Tag the case is visible in the ending. English does the same — 'next week', 'every day' — so what has to be resisted is the general reflex of reaching for a preposition whenever a phrase names a time. The longer am nächsten Montag and in der nächsten Woche are correct German too; they are simply heavier, and the bare form is the everyday default."
+      ru: "Оба выражения времени стоят в Akkusativ и обходятся без предлога, а в jeden Tag падеж виден по окончанию. Русский подталкивает к ошибке: «на следующей неделе» — предлог есть, и рука ставит его и по-немецки. Формы подлиннее — am nächsten Montag, in der nächsten Woche — тоже правильны, просто тяжеловеснее; обычный нейтральный вариант голый. А вот *auf der nächsten Woche* не существует вовсе."
+      uk: "Обидва вирази часу стоять в Akkusativ і обходяться без прийменника, а в jeden Tag відмінок видно із закінчення. Тут українська на вашому боці: «наступного тижня» і «щодня» теж не мають прийменника. Довші форми — am nächsten Montag, in der nächsten Woche — теж правильні, просто важчі; звичайний нейтральний варіант голий. А от *auf der nächsten Woche* не існує взагалі."
+
+  - id: diktat-ab-bis
+    outcomes: [zeitraum-nennen]
+    type: listen
+    focus: zeitangaben-system
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
+    text: "Ab Mittwoch arbeite ich bis sechs Uhr."
+    translation:
+      en: "From Wednesday on I work until six o'clock."
+      ru: "Со среды я работаю до шести часов."
+      uk: "Із середи я працюю до шостої години."
+    explain:
+      en: "One stretch, both ends named, and neither preposition takes an article: ab Mittwoch opens it and bis sechs Uhr closes it. Listen for the two short words rather than for the days and hours — ab and bis are unstressed and easy to lose, and the sentence says something quite different without them."
+      ru: "Один отрезок, названы оба конца, и артикля не требует ни один предлог: ab Mittwoch открывает, bis sechs Uhr закрывает. Слушайте именно два коротких слова, а не дни и часы: ab и bis безударны, их легко потерять, а без них предложение говорит совсем другое."
+      uk: "Один відрізок, названо обидва кінці, і артикля не потребує жоден прийменник: ab Mittwoch відкриває, bis sechs Uhr закриває. Слухайте саме два короткі слова, а не дні й години: ab і bis ненаголошені, їх легко загубити, а без них речення каже зовсім інше."

@@ -1,0 +1,83 @@
+id: gesundheit-arzttermin
+level: A2
+kind: communication
+strand: communication
+group: transaktionen-termine
+title_de: Gesundheit & Arzttermin
+title_en: Health & the doctor
+title_ru: Здоровье и приём у врача
+title_uk: Здоров'я та візит до лікаря
+status: draft
+tags:
+  - health
+  - doctor
+  - imperative
+  - dative
+  - advice
+prerequisites:
+  - termine-vereinbaren
+  - dativ
+  - modalverben
+deepens:
+  - termine-vereinbaren
+  - dativ
+  - modalverben
+related: []
+outcomes:
+  - id: beschwerden-beschreiben
+    mode: spoken-production
+    domain: personal
+    de: Ich kann Beschwerden und ihre Dauer beschreiben.
+    en: I can describe symptoms and how long I have had them.
+    ru: Я умею описать жалобы и то, как долго они длятся.
+    uk: Я вмію описати скарги й те, як довго вони тривають.
+    claims:
+      - goethe-dtz-handlungen:beschreiben
+  - id: praxis-anweisungen-verstehen
+    mode: listening
+    domain: public
+    de: Ich kann einfache Anweisungen in der Praxis und in der Apotheke verstehen.
+    en: I can understand simple instructions at the doctor's and at the pharmacy.
+    ru: Я понимаю простые указания в поликлинике и в аптеке.
+    uk: Я розумію прості вказівки в поліклініці та в аптеці.
+  - id: ratschlag-geben
+    mode: spoken-interaction
+    domain: personal
+    de: Ich kann einen Ratschlag geben und auf einen Ratschlag antworten.
+    en: I can give a piece of advice and respond to one.
+    ru: Я умею дать совет и ответить на совет.
+    uk: Я вмію дати пораду й відповісти на пораду.
+    claims:
+      - goethe-dtz-handlungen:rat-empfehlung-warnung
+  - id: krankmeldung-schreiben
+    mode: writing
+    domain: professional
+    de: Ich kann eine kurze Krankmeldung schreiben.
+    en: I can write a short message saying I am ill and will not come in.
+    ru: Я умею написать короткое сообщение о болезни и отсутствии.
+    uk: Я вмію написати коротке повідомлення про хворобу та відсутність.
+    claims:
+      - goethe-dtz-handlungen:ankuendigen-plaene
+claims:
+  - goethe-dtz-themen:gesundheit-koerperteile
+  - goethe-dtz-themen:gesundheit-befinden
+  - goethe-dtz-themen:gesundheit-krankheit
+  - goethe-dtz-themen:gesundheit-versorgung
+elements:
+  article: gesundheit-arzttermin.mdx
+  pretest: a2/gesundheit-arzttermin-pretest
+  exercises:
+    - a2/gesundheit-arzttermin
+    - a2/gesundheit-arzttermin-produktion
+    - a2/gesundheit-arzttermin-reflexiv-dativ
+    - a2/ls-gesundheit-arzttermin-01-hoeren
+  primary_practice: a2/gesundheit-arzttermin
+  probes:
+    - a2/probe-gesundheit-arzttermin
+    - a2/probe-gesundheit-arzttermin-imperativ
+    - a2/probe-reflexiv-akkusativ
+    - a2/probe-reflexiv-dativ
+  reading:
+    - a2/gesundheit-arzttermin
+  vocab:
+    - gesundheit-arzttermin

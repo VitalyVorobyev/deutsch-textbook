@@ -1,0 +1,92 @@
+topic: biografie-erfahrungen
+kind: extensive
+title_de: "Die Sterntaler"
+
+# Klassiker strand, text 1 of 10 (ADR 0006) — the P24-4 pilot. The prose is the
+# didactic retelling from sources/klassiker/01-die-sterntaler.md,
+# verbatim apart from the inline gloss markers, so the adaptation stays diffable
+# against its source. Präteritum of frequent verbs carries the narration —
+# owned by biografie-erfahrungen, whose grammar that is.
+# Read straight through for meaning: sparse glosses, two gist questions.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Die Sternthaler, 1857). Didaktische Bearbeitung für Niveau A2. Historischer Originaltext: https://de.wikisource.org/wiki/Die_Sternthaler_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Es war einmal ein kleines Mädchen. Seine Eltern waren gestorben, und es
+    hatte kein Zuhause mehr. Es [[besaß::owned::владела::володіла]] nur die
+    Kleidung, die es trug, und ein Stück Brot. Ein freundlicher Mensch hatte
+    ihm das Brot gegeben.
+  - >-
+    Das Mädchen ging allein über das Land. Trotzdem hatte es keine Angst. Es
+    glaubte, dass es irgendwann Hilfe finden würde.
+  - >-
+    Auf dem Weg traf es einen alten Mann. Der Mann sah müde und hungrig aus.
+    „Bitte gib mir etwas zu essen“, sagte er. „Ich habe seit gestern nichts
+    gegessen.“
+  - >-
+    Das Mädchen dachte kurz nach. Dann gab es ihm sein ganzes Stück Brot.
+    „Du brauchst es genauso [[dringend::urgently::срочно::терміново]] wie
+    ich“, sagte es.
+  - >-
+    Später begegnete ihm ein Kind. Das Kind
+    [[fror::was freezing::мёрз::мерз]], weil es keine Mütze hatte. Das Mädchen
+    nahm seine eigene Mütze ab und gab sie dem Kind.
+  - >-
+    Nach einiger Zeit kam ein zweites Kind. Es trug nur ein dünnes Hemd und
+    [[zitterte::was shivering::дрожал::тремтів]]. Das Mädchen gab ihm seine
+    Jacke. Danach traf es noch ein Kind, das keine Schuhe hatte. Auch seine
+    Schuhe gab das Mädchen weg.
+  - >-
+    Am Abend wurde es dunkel. Das Mädchen ging in einen Wald. Dort war es
+    still, und über den Bäumen standen viele Sterne. Nun hatte das Mädchen
+    fast nichts mehr. Es setzte sich unter einen Baum und schaute zum Himmel.
+  - >-
+    Da fielen plötzlich helle Sterne herunter. Als sie den Boden
+    [[berührten::touched::коснулись::торкнулися]], wurden sie zu silbernen
+    [[Münzen::coins::монеты::монети]]. Das Mädchen bemerkte außerdem, dass es
+    wieder warme, saubere Kleidung trug. In den Taschen lagen weitere Münzen.
+  - >-
+    Von diesem Tag an musste das Mädchen nicht mehr
+    [[hungern::go hungry::голодать::голодувати]]. Es fand ein kleines Zuhause
+    und lebte sicher. Aber es vergaß nie, wie es sich gefühlt hatte, als es
+    selbst nichts besaß. Deshalb half es später anderen Menschen, die hungrig
+    waren oder froren.
+
+questions:
+  - id: q-weggeben
+    outcomes: [lebensstationen-ordnen]
+    type: mc
+    prompt: "Warum hat das Mädchen am Ende fast nichts mehr?"
+    options:
+      - "Es hat unterwegs alles Menschen gegeben, die Hilfe brauchten."
+      - "Es hat seine Sachen im dunklen Wald verloren."
+      - "Ein alter Mann hat ihm das Brot und die Jacke gestohlen."
+    correct: 0
+    translation:
+      en: "Why does the girl have almost nothing left at the end?"
+      ru: "Почему в конце у девочки почти ничего не остаётся?"
+      uk: "Чому наприкінці в дівчинки майже нічого не лишається?"
+    explain:
+      en: "One by one the girl gives away everything she owns — the bread to the hungry man, then her cap, her jacket and her shoes to the freezing children. Nothing is lost or stolen; she chooses to give."
+      ru: "Девочка одну за другой отдаёт все свои вещи: хлеб — голодному старику, а шапку, куртку и башмаки — замёрзшим детям. Она ничего не теряет и ничего у неё не крадут — она отдаёт сама."
+      uk: "Дівчинка одну за одною віддає всі свої речі: хліб — голодному чоловікові, а шапку, куртку й черевики — змерзлим дітям. Вона нічого не губить і ніхто в неї не краде — вона віддає сама."
+
+  - id: q-ende
+    outcomes: [lebensstationen-ordnen]
+    type: mc
+    prompt: "Wie endet die Geschichte?"
+    options:
+      - "Das Mädchen bleibt arm und muss weiter hungern."
+      - "Sterne fallen vom Himmel, werden zu Münzen, und das Mädchen ist versorgt."
+      - "Das Mädchen bekommt sein Brot, seine Mütze und seine Schuhe zurück."
+    correct: 1
+    translation:
+      en: "How does the story end?"
+      ru: "Чем заканчивается история?"
+      uk: "Чим закінчується історія?"
+    explain:
+      en: "In the forest the stars fall to the ground and turn into silver coins, and the girl finds herself in warm, clean clothes again. From that day on she no longer goes hungry — and later helps others in need herself."
+      ru: "В лесу звёзды падают на землю и превращаются в серебряные монеты, а на девочке снова тёплая чистая одежда. С этого дня ей больше не приходится голодать, и позже она сама помогает нуждающимся."
+      uk: "У лісі зорі падають на землю і стають срібними монетами, а дівчинка знову в теплому чистому одязі. Від того дня їй більше не доводиться голодувати, і згодом вона сама допомагає тим, хто в біді."

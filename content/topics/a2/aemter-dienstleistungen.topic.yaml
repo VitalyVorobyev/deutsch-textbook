@@ -1,0 +1,88 @@
+id: aemter-dienstleistungen
+level: A2
+kind: communication
+strand: communication
+group: behoerden-services
+title_de: Ämter & Dienstleistungen
+title_en: Public offices & services
+title_ru: Учреждения и услуги
+title_uk: Установи та послуги
+status: draft
+tags:
+  - public-office
+  - forms
+  - politeness
+  - formal-register
+  - documents
+prerequisites:
+  - termine-vereinbaren
+  - erste-schritte
+  - nebensaetze-plaene
+deepens:
+  - termine-vereinbaren
+  - dativ
+  - nebensaetze-plaene
+  - lernen-verstehen
+related: []
+outcomes:
+  - id: formular-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann ein einfaches Formular verstehen und ausfüllen.
+    en: I can understand a simple form and fill it in.
+    ru: Я понимаю простой бланк и умею его заполнить.
+    uk: Я розумію простий бланк і вмію його заповнити.
+  - id: anliegen-nennen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann am Schalter höflich sagen, was ich brauche.
+    en: I can politely say what I need at a counter.
+    ru: Я умею вежливо объяснить у окошка, что мне нужно.
+    uk: Я вмію ввічливо пояснити біля віконця, що мені потрібно.
+    claims:
+      - goethe-dtz-handlungen:bitte-ausdruecken
+      - goethe-dtz-handlungen:hoeflichkeit
+  - id: unterlagen-erfragen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann fragen, welche Unterlagen ich mitbringen muss.
+    en: I can ask which documents I have to bring.
+    ru: Я умею спросить, какие документы нужно принести.
+    uk: Я вмію спитати, які документи потрібно принести.
+    claims:
+      - goethe-dtz-handlungen:nachfragen
+  - id: formelle-nachricht-schreiben
+    mode: writing
+    domain: public
+    de: Ich kann eine kurze formelle Nachricht an ein Amt schreiben.
+    en: I can write a short formal message to a public office.
+    ru: Я умею написать короткое официальное сообщение в учреждение.
+    uk: Я вмію написати коротке офіційне повідомлення до установи.
+    claims:
+      - goethe-dtz-handlungen:bitte-ausdruecken
+claims:
+  - goethe-dtz-themen:dienstleistungen-aemter
+  # `### Das Formular` teaches Geburtsort as a recognised field with a filled example, which is
+  # exactly the DTZ's sense of the theme — a form word you read and complete, never say aloud.
+  # It was an under-claim, and an under-claim manufactures a hole the way an over-claim
+  # manufactures coverage.
+  - goethe-dtz-themen:person-geburtsort
+elements:
+  article: aemter-dienstleistungen.mdx
+  pretest: a2/aemter-dienstleistungen-pretest
+  exercises:
+    - a2/aemter-dienstleistungen
+    - a2/aemter-dienstleistungen-produktion
+    - a2/aemter-dienstleistungen-dokument
+    - a2/ls-aemter-dienstleistungen-01-hoeren
+  primary_practice: a2/aemter-dienstleistungen
+  probes:
+    - a2/probe-aemter-dienstleistungen
+    - a2/probe-aemter-dienstleistungen-dativ
+  reading:
+    - a2/aemter-dienstleistungen
+    - a2/lena-5-der-mann-aus-stein
+    - a2/lena-6-die-blaue-tasche
+    - a2/lena-7-ein-brief-fuer-den-hof
+  vocab:
+    - aemter-dienstleistungen

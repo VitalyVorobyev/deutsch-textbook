@@ -1,0 +1,440 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the written-text
+# field of data/goethe-b1-wortliste.txt: the letter and the envelope it travels in,
+# the parts a long text is built from and the tone it is written in, the pictures a
+# document carries, the talk given off a screen, and the books a writer looks things
+# up in.
+# A1's `kommunikation-medien` owns the letter as a message (Brief, Karte,
+# Briefmarke, Antwort), B1's `informationen-vermitteln` owns the talk and its plan
+# (Vortrag, Einleitung, Liste, Absender), A2's `schule-faecher-a2` owns the paper a
+# pupil hands in (Text, Thema, Papier), A2's `lernen-verstehen` owns the
+# reference shelf (Wörterbuch, Beispiel), and B1's `geld-vertraege` owns the figures
+# in rows (Tabelle, Abschnitt). This deck is the layer between them: the German
+# printed *around* a text rather than in it — the envelope, the caption under a
+# picture, the slide, the note in a margin about style — which those five never name.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read off a page, a form and a projected screen; the learner who has to *write*
+# about any of it reaches for the A1 or A2 word beside it, and that word already
+# ships as a typed card.
+id: text-schreiben-b1
+title_de: "Texte schreiben und lesen"
+title_en: "Writing and reading texts"
+title_ru: "Письменные тексты"
+title_uk: "Письмові тексти"
+level: B1
+entries:
+  # --- Briefe und Formulare ---
+  - de: Briefumschlag
+    ipa: "ˈbʁiːfˌʔʊmʃlaːk"
+    pos: noun
+    gender: m
+    plural: "die Briefumschläge"
+    cards: recognition
+    en: the paper cover a letter is folded into, closed and addressed before it is posted
+    ru: бумажная обёртка, в которую вкладывают сложенное письмо, заклеивают и надписывают перед отправкой
+    uk: паперова обгортка, у яку вкладають складений лист, заклеюють і надписують перед відправленням
+    example_de: Bitte schreiben Sie die Adresse deutlich auf den Briefumschlag.
+    example_en: Please write the address clearly on the envelope.
+    example_ru: Пожалуйста, напишите адрес на конверте разборчиво.
+    example_uk: Будь ласка, напишіть адресу на конверті розбірливо.
+    note:
+      en: 'A1 der Brief plus der Umschlag, a cover or a wrapper. In speech the short der Umschlag is enough once the context is post, and a post office window sells them as Umschläge; the long form is what a stationery packet and an office order print. Two conventions travel with it: the sender goes top left and the addressee in the middle right, and A1 die Briefmarke goes top right. Plural takes an umlaut. Primary stress on Brief-, secondary on the Um- of Umschlag, and the u begins with a small catch of the throat.'
+      ru: 'der Brief уровня A1 плюс der Umschlag — «обёртка». В разговоре, когда речь и так о почте, хватает короткого der Umschlag, и на почте их продают как Umschläge; длинная форма — то, что напечатано на пачке в канцелярском магазине и в заявке для конторы. С ним идут два правила оформления: отправитель — слева вверху, получатель — посредине справа, а die Briefmarke уровня A1 — справа вверху. Во множественном умлаут. Главное ударение на Brief-, побочное на Um-, и u начинается с лёгкого гортанного щелчка.'
+      uk: 'der Brief рівня A1 плюс der Umschlag — «обгортка». У розмові, коли й так ідеться про пошту, вистачає короткого der Umschlag, і на пошті їх продають як Umschläge; довга форма — те, що надруковано на пачці в канцелярській крамниці та в заявці для контори. Із ним ідуть два правила оформлення: відправник — ліворуч угорі, одержувач — посередині праворуч, а die Briefmarke рівня A1 — праворуч угорі. У множині умлаут. Головний наголос на Brief-, побічний на Um-, і u починається з легкого гортанного клацання.'
+
+  - de: Absenderin
+    ipa: "ˈapˌzɛndəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Absenderinnen"
+    cards: recognition
+    en: the woman a letter or a parcel comes from, named in the top left corner of it
+    ru: женщина, от которой пришло письмо или посылка, — та, что указана в левом верхнем углу
+    uk: жінка, від якої надійшов лист чи посилка, — та, що зазначена в лівому верхньому куті
+    example_de: Die Absenderin hat ihre Adresse auf die Rückseite geschrieben.
+    example_en: The sender wrote her address on the back.
+    example_ru: Отправительница написала свой адрес на обратной стороне.
+    example_uk: Відправниця написала свою адресу на зворотному боці.
+    note:
+      en: 'This one ships without its masculine beside it: B1 der Absender already lives in the deck `informationen-vermitteln`, and a headword belongs to exactly one file. The pattern is the ordinary German one — a role word takes -in for a woman, the stem is untouched, and the plural doubles the n. The other side of the envelope is A2 der Empfänger, whose feminine takes the same -in. Note that der Absender has a second, thing-like sense — the printed address block itself — which the -in form cannot have, because a person is all it can mean.'
+      ru: 'Эта запись идёт без мужской пары рядом: der Absender уровня B1 уже живёт в колоде `informationen-vermitteln`, а заглавное слово принадлежит ровно одному файлу. Модель обычная немецкая: слово-роль получает -in для женщины, основа не трогается, во множественном n удваивается. Другая сторона конверта — der Empfänger уровня A2; женская форма берёт то же -in. Учтите: у der Absender есть второе, предметное значение — сам напечатанный блок с обратным адресом, — а у формы на -in его быть не может, потому что она называет только человека.'
+      uk: 'Цей запис іде без чоловічої пари поряд: der Absender рівня B1 уже живе в колоді `informationen-vermitteln`, а заголовне слово належить рівно одному файлові. Модель звичайна німецька — так звана моція: слово-роль дістає -in для жінки, основа не чіпається, у множині n подвоюється. Інший бік конверта — der Empfänger рівня A2; жіноча форма бере те саме -in. Зважте: у der Absender є друге, предметне значення — сам надрукований блок зі зворотною адресою, — а форма на -in його мати не може, бо називає лише людину.'
+
+  - de: geehrt
+    ipa: "gəˈʔeːɐ̯t"
+    pos: adj
+    cards: recognition
+    en: addressed with formal respect — the word that opens a business or official letter
+    en_compact: "honoured, in the opening line of a formal letter"
+    ru: почтительно поименованный — слово, которым открывается деловое или официальное письмо
+    uk: шанобливо названий — слово, яким відкривається ділове чи офіційне письмо
+    example_de: Sehr geehrte Damen und Herren, ich schreibe Ihnen wegen Ihrer Anzeige.
+    example_en: Dear Sir or Madam, I am writing to you about your advertisement.
+    example_ru: Уважаемые дамы и господа, пишу вам по поводу вашего объявления.
+    example_uk: Шановні пані та панове, пишу вам щодо вашого оголошення.
+    note:
+      en: 'Nobody uses this word on its own; it is met as one fixed formula, and the formula is what has to be learned. The ending agrees with whoever is addressed: Sehr geehrter Herr Klein, Sehr geehrte Frau Klein, Sehr geehrte Damen und Herren when the name is unknown. Sehr is part of it and is not dropped. The informal opening is Liebe Anna / Lieber Tom, and the close that matches this one is Mit freundlichen Grüßen. It is the Partizip II of ehren, to honour, so the ge- prefix is unstressed and the stressed vowel behind it starts with a catch of the throat.'
+      ru: 'Само по себе это слово не употребляет никто: оно встречается как одна застывшая формула, и учить надо именно формулу. Окончание согласуется с адресатом: Sehr geehrter Herr Klein, Sehr geehrte Frau Klein, Sehr geehrte Damen und Herren, когда имя неизвестно. Sehr — часть формулы, и его не опускают. Неофициальное начало — Liebe Anna / Lieber Tom, а парная концовка к этой формуле — Mit freundlichen Grüßen. Это Partizip II от ehren — «чтить», поэтому приставка ge- безударна, а ударный гласный за ней начинается с гортанного щелчка.'
+      uk: 'Саме по собі це слово не вживає ніхто: воно трапляється як одна застигла формула, і вчити треба саме формулу. Закінчення узгоджується з адресатом: Sehr geehrter Herr Klein, Sehr geehrte Frau Klein, Sehr geehrte Damen und Herren, коли ім’я невідоме. Sehr — частина формули, і його не опускають. Неофіційний початок — Liebe Anna / Lieber Tom, а парне закінчення до цієї формули — Mit freundlichen Grüßen. Це Partizip II від ehren — «шанувати», тому префікс ge- ненаголошений, а наголошений голосний за ним починається з гортанного клацання.'
+
+  - de: ankreuzen
+    ipa: "ˈanˌkʁɔʏ̯tsn̩"
+    pos: verb
+    praesens_3sg: kreuzt an
+    partizip2: angekreuzt
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to put a cross in a small box on a form or a test to mark your choice
+    ru: поставить крестик в квадратике бланка или теста, отмечая свой выбор
+    uk: поставити хрестик у клітинці бланка чи тесту, позначаючи свій вибір
+    example_de: Kreuzen Sie bitte die richtige Antwort an.
+    example_en: Please tick the correct answer.
+    example_ru: Отметьте, пожалуйста, правильный ответ.
+    example_uk: Позначте, будь ласка, правильну відповідь.
+    note:
+      en: 'Separable: er kreuzt an, hat angekreuzt, and in an instruction the prefix lands at the end — Kreuzen Sie an. It is one of the handful of verbs a German exam paper and an official form use to tell you what to do, beside ausfüllen, unterstreichen, zuordnen and ergänzen, so it is met far more often as a printed command than in speech. From das Kreuz, a cross; the mark itself is ein Kreuz machen. Primary stress on the prefix an-, secondary on -kreuz-.'
+      ru: 'Глагол отделяемый: er kreuzt an, hat angekreuzt, а в инструкции приставка уходит в конец — Kreuzen Sie an. Это один из немногих глаголов, которыми немецкий экзаменационный лист и официальный бланк объясняют, что делать, рядом с ausfüllen, unterstreichen, zuordnen и ergänzen, так что встречается он куда чаще как печатная команда, чем в разговоре. От das Kreuz — «крест»; сам знак ставят оборотом ein Kreuz machen. Главное ударение на приставке an-, побочное на -kreuz-.'
+      uk: 'Дієслово відокремлюване: er kreuzt an, hat angekreuzt, а в інструкції префікс іде в кінець — Kreuzen Sie an. Це одне з небагатьох дієслів, якими німецький екзаменаційний аркуш і офіційний бланк пояснюють, що робити, поряд із ausfüllen, unterstreichen, zuordnen та ergänzen, тож трапляється воно набагато частіше як друкована команда, ніж у розмові. Від das Kreuz — «хрест»; сам знак ставлять зворотом ein Kreuz machen. Головний наголос на префіксі an-, побічний на -kreuz-.'
+
+  # --- Buchstaben und Schriften ---
+  - de: Alphabet
+    ipa: "alfaˈbeːt"
+    pos: noun
+    gender: n
+    plural: "die Alphabete"
+    cards: recognition
+    en: the letters of a language taken as a fixed, ordered set
+    ru: буквы языка, взятые как закреплённый упорядоченный набор
+    uk: літери мови, узяті як закріплений упорядкований набір
+    example_de: Die Wörter im Wörterbuch stehen nach dem Alphabet.
+    example_en: The words in the dictionary are ordered by the alphabet.
+    example_ru: Слова в словаре расположены по алфавиту.
+    example_uk: Слова у словнику розташовані за абеткою.
+    note:
+      en: 'Neuter, stress on the last syllable. The German one has the 26 basic letters plus ä, ö, ü and ß, and only the 26 count for ordering: a dictionary files Bäcker under Ba, and ß files as ss. The useful chunk is nach dem Alphabet ordnen, and the adjective is alphabetisch. A2 der Buchstabe is one single letter, this is all of them together. Spoken German also calls it das ABC, especially about a child learning to read.'
+      ru: 'Средний род, ударение на последнем слоге. В немецком это 26 основных букв плюс ä, ö, ü и ß, причём для сортировки считаются только 26: словарь ставит Bäcker под Ba, а ß идёт как ss. Полезный оборот — nach dem Alphabet ordnen, прилагательное — alphabetisch. der Buchstabe уровня A2 — одна отдельная буква, а здесь они все вместе. Разговорный немецкий называет это ещё das ABC, особенно про ребёнка, который учится читать.'
+      uk: 'Середній рід, наголос на останньому складі. У німецькій це 26 основних літер плюс ä, ö, ü і ß, причому для впорядкування рахуються лише 26: словник ставить Bäcker під Ba, а ß іде як ss. Корисний зворот — nach dem Alphabet ordnen, прикметник — alphabetisch. der Buchstabe рівня A2 — одна окрема літера, а тут вони всі разом. Розмовна німецька зве це ще das ABC, надто про дитину, яка вчиться читати.'
+
+  - de: Schrift
+    ipa: "ˈʃʁɪft"
+    pos: noun
+    gender: f
+    plural: "die Schriften"
+    cards: recognition
+    en: writing as a system of signs; also the hand a person writes in, and the shape of the printed letters
+    ru: письменность как система знаков; а также почерк человека и рисунок печатных букв
+    uk: письмо як система знаків; а також почерк людини й рисунок друкованих літер
+    example_de: Auf dem Bildschirm kann man eine größere Schrift wählen.
+    example_en: You can choose a larger font on the screen.
+    example_ru: На экране можно выбрать шрифт покрупнее.
+    example_uk: На екрані можна вибрати більший шрифт.
+    note:
+      en: 'Three senses, and the sentence around it decides which: the writing system of a language (die lateinische Schrift, die griechische Schrift, die Blindenschrift), the way one person forms letters by hand (Er hat eine schöne Schrift), and the typeface on a page or a screen, for which a settings menu also says die Schriftart. The adjective schriftlich, in writing, is its most useful child and is the opposite of mündlich: eine schriftliche Prüfung. Feminine, plural in -en.'
+      ru: 'Три значения, и выбирает между ними предложение: система письма языка (die lateinische Schrift, die griechische Schrift, die Blindenschrift), манера одного человека выводить буквы от руки (Er hat eine schöne Schrift) и начертание букв на странице или экране, для которого меню настроек скажет ещё die Schriftart. Самое полезное производное — прилагательное schriftlich, «письменный», противоположное mündlich: eine schriftliche Prüfung. Женский род, множественное на -en.'
+      uk: 'Три значення, і обирає між ними речення: система письма мови (die lateinische Schrift, die griechische Schrift, die Blindenschrift), манера однієї людини виводити літери від руки (Er hat eine schöne Schrift) і накреслення літер на сторінці чи екрані, для якого меню налаштувань скаже ще die Schriftart. Найкорисніший похідник — прикметник schriftlich, «письмовий», протилежний до mündlich: eine schriftliche Prüfung. Жіночий рід, множина на -en.'
+
+  # --- Wie ein Text gebaut ist ---
+  - de: Einführung
+    ipa: "ˈaɪ̯nˌfyːʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Einführungen"
+    cards: recognition
+    en: an opening part that leads a reader into a subject; also a book or a course that does the same job, and the bringing in of something new
+    ru: вводная часть, которая вводит читателя в предмет; а также книга или курс с той же задачей и введение чего-то нового
+    uk: вступна частина, що вводить читача в предмет; а також книжка чи курс із тим самим завданням і запровадження чогось нового
+    example_de: In der Einführung erklärt die Autorin, warum das Thema wichtig ist.
+    example_en: In the introduction the author explains why the subject matters.
+    example_ru: Во введении автор объясняет, почему тема важна.
+    example_uk: У вступі авторка пояснює, чому тема важлива.
+    note:
+      en: 'B1 die Einleitung, in the deck `informationen-vermitteln`, is the near neighbour, and the two are not interchangeable in every direction: an Einleitung is strictly the opening section of one text or talk, while this word also names a whole introductory book or course — eine Einführung in die Physik — and, quite separately, the act of bringing something new into use: die Einführung des Euro, die Einführung neuer Regeln. B1 einführen is the verb behind both. Primary stress on ein-, secondary on -füh-.'
+      ru: 'die Einleitung уровня B1 из колоды `informationen-vermitteln` — ближайший сосед, и заменяют они друг друга не во всех направлениях: Einleitung — строго вступительный раздел одного текста или доклада, а это слово называет ещё и целую вводную книгу или курс — eine Einführung in die Physik — и, совсем отдельно, введение чего-то нового в обиход: die Einführung des Euro, die Einführung neuer Regeln. Глагол за обоими — einführen уровня B1. Главное ударение на ein-, побочное на -füh-.'
+      uk: 'die Einleitung рівня B1 з колоди `informationen-vermitteln` — найближчий сусід, і заміняють вони одне одного не в усіх напрямках: Einleitung — строго вступний розділ одного тексту чи доповіді, а це слово називає ще й цілу вступну книжку або курс — eine Einführung in die Physik — і, зовсім окремо, запровадження чогось нового: die Einführung des Euro, die Einführung neuer Regeln. Дієслово за обома — einführen рівня B1. Головний наголос на ein-, побічний на -füh-.'
+
+  - de: Kapitel
+    ipa: "kaˈpɪtl̩"
+    pos: noun
+    gender: n
+    plural: "die Kapitel"
+    cards: recognition
+    en: one numbered main part of a book, usually with a title of its own
+    ru: одна пронумерованная основная часть книги, обычно со своим заголовком
+    uk: одна пронумерована основна частина книжки, зазвичай зі своїм заголовком
+    example_de: Das dritte Kapitel handelt von der Geschichte der Stadt.
+    example_en: The third chapter is about the history of the town.
+    example_ru: Третья глава посвящена истории города.
+    example_uk: Третій розділ присвячено історії міста.
+    note:
+      en: 'Neuter, and singular and plural are spelled alike, so only the article and the verb tell them apart: das Kapitel ist, die Kapitel sind. It is the largest division of a book; B1 der Abschnitt is a smaller stretch inside one, and der Absatz is a single paragraph. A textbook labels its units the same way (Kapitel 5). One idiom is worth recognising: ein neues Kapitel beginnen, to start a new phase of a life. Stress falls on the middle syllable.'
+      ru: 'Средний род, единственное и множественное пишутся одинаково, так что различают их только артикль и глагол: das Kapitel ist, die Kapitel sind. Это крупнейшее деление книги; der Abschnitt уровня B1 — меньший кусок внутри него, а der Absatz — отдельный абзац. Учебник маркирует свои разделы так же (Kapitel 5). Стоит узнавать один оборот: ein neues Kapitel beginnen — «начать новый этап жизни». Ударение падает на средний слог.'
+      uk: 'Середній рід, однина і множина пишуться однаково, тож розрізняють їх лише артикль і дієслово: das Kapitel ist, die Kapitel sind. Це найбільший поділ книжки; der Abschnitt рівня B1 — менший відтинок усередині нього, а der Absatz — окремий абзац. Підручник маркує свої розділи так само (Kapitel 5). Варто впізнавати один зворот: ein neues Kapitel beginnen — «почати новий етап життя». Наголос падає на середній склад.'
+
+  - de: Struktur
+    ipa: "ʃtʁʊkˈtuːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Strukturen"
+    cards: recognition
+    en: the way the parts of something are arranged and held together, seen as a plan
+    ru: то, как части чего-либо расположены и держатся вместе, взятое как план
+    uk: те, як частини чогось розташовані й тримаються разом, узяте як план
+    example_de: Achten Sie beim Schreiben auf eine klare Struktur.
+    example_en: Pay attention to a clear structure when you write.
+    example_ru: При письме следите за ясной структурой.
+    example_uk: Пишучи, стежте за ясною структурою.
+    note:
+      en: 'An exam-instruction word before it is anything else: a marking sheet judges der Textaufbau, the German-rooted sibling, under this name, and the standard advice is Einleitung, Hauptteil, Schluss. It reaches far past texts — die Struktur eines Betriebs, gesellschaftliche Strukturen, and in the plural it usually means arrangements that people made and could change. The verb is strukturieren and the participle strukturiert (gut strukturiert). Stress on the last syllable, whose -ur is a long u plus the vocalised r.'
+      ru: 'Прежде всего это слово экзаменационной инструкции: под ним оценочный лист имеет в виду der Textaufbau, немецкий по корню синоним, а стандартный совет звучит как Einleitung, Hauptteil, Schluss. Значение выходит далеко за пределы текстов — die Struktur eines Betriebs, gesellschaftliche Strukturen, — и во множественном обычно имеются в виду порядки, которые люди устроили и могут изменить. Глагол — strukturieren, причастие — strukturiert (gut strukturiert). Ударение на последнем слоге, где -ur — долгое u плюс вокализованное r.'
+      uk: 'Насамперед це слово екзаменаційної інструкції: під ним оцінний аркуш має на увазі der Textaufbau, німецький за коренем синонім, а стандартна порада звучить як Einleitung, Hauptteil, Schluss. Значення виходить далеко за межі текстів — die Struktur eines Betriebs, gesellschaftliche Strukturen, — і в множині зазвичай ідеться про порядки, які люди влаштували і можуть змінити. Дієслово — strukturieren, дієприкметник — strukturiert (gut strukturiert). Наголос на останньому складі, де -ur — довге u плюс вокалізоване r.'
+
+  - de: Stil
+    ipa: "ˈʃtiːl"
+    pos: noun
+    gender: m
+    plural: "die Stile"
+    cards: recognition
+    en: the way something is written, said, built or done, as distinct from what it actually says
+    ru: способ, каким что-то написано, сказано, построено или сделано, в отличие от того, что именно там сказано
+    uk: спосіб, яким щось написано, сказано, збудовано чи зроблено, на відміну від того, що саме там сказано
+    example_de: Der Brief ist richtig geschrieben, aber der Stil passt nicht.
+    example_en: The letter is correctly written, but the style is not right for it.
+    example_ru: Письмо написано правильно, но стиль не подходит.
+    example_uk: Лист написано правильно, але стиль не пасує.
+    note:
+      en: 'Masculine, plural in -e. Two pronunciations are both standard and both widely heard, with the sh-sound the one Duden prints first and the s-sound common in the north; nothing hangs on the choice. The word runs through half the language in compounds — der Schreibstil, der Lebensstil, der Baustil, der Musikstil, der Kleidungsstil — and the pair a letter-writer needs is formeller Stil against informeller Stil. The adjective is the next entry. In sport it is the stroke: der Freistil.'
+      ru: 'Мужской род, множественное на -e. Оба произношения — со звуком «ш» и со звуком «с» — литературны и оба широко слышны; первым Duden печатает вариант с «ш», вариант с «с» обычен на севере, и от выбора ничего не зависит. Слово пронизывает язык сложными словами — der Schreibstil, der Lebensstil, der Baustil, der Musikstil, der Kleidungsstil, — а пара, нужная пишущему письмо, — formeller Stil против informeller Stil. Прилагательное — следующая запись. В спорте это способ плавания: der Freistil.'
+      uk: 'Чоловічий рід, множина на -e. Обидві вимови — зі звуком «ш» і зі звуком «с» — літературні й обидві широко чутні; першим Duden друкує варіант із «ш», варіант із «с» звичний на півночі, і від вибору нічого не залежить. Слово пронизує мову складними словами — der Schreibstil, der Lebensstil, der Baustil, der Musikstil, der Kleidungsstil, — а пара, потрібна тому, хто пише листа, — formeller Stil проти informeller Stil. Прикметник — наступний запис. У спорті це спосіб плавання: der Freistil.'
+
+  - de: stilistisch
+    ipa: "ʃtiˈlɪstɪʃ"
+    pos: adj
+    cards: recognition
+    en: having to do with the way something is expressed, rather than with its grammar or its facts
+    ru: относящийся к тому, как что-то выражено, а не к его грамматике или содержанию
+    uk: що стосується того, як щось висловлено, а не його граматики чи змісту
+    example_de: Der Satz ist grammatisch richtig, aber stilistisch nicht schön.
+    example_en: The sentence is grammatically correct, but not good stylistically.
+    example_ru: Предложение грамматически правильно, но стилистически неудачно.
+    example_uk: Речення граматично правильне, але стилістично невдале.
+    note:
+      en: 'The word a teacher and a corrector reach for when nothing is actually wrong: ein stilistischer Fehler breaks no rule, it only puts the wrong register in the wrong letter — du in a job application, a heavy office phrase in a note to a friend. Feedback pairs it against grammatisch and inhaltlich, so a report can say sprachlich richtig, aber stilistisch unpassend. It works as an adverb unchanged (stilistisch gut) and as an adjective with endings (eine stilistische Frage). Stress on the -lis- syllable, not on the first.'
+      ru: 'Это слово берут учитель и редактор тогда, когда собственно ошибки нет: ein stilistischer Fehler не нарушает правила, он лишь ставит не тот регистр не в то письмо — du в заявлении о приёме на работу, тяжёлый канцелярский оборот в записке другу. В отзыве оно противопоставлено словам grammatisch и inhaltlich, так что рецензия может сказать sprachlich richtig, aber stilistisch unpassend. Работает и как наречие без изменений (stilistisch gut), и как прилагательное с окончаниями (eine stilistische Frage). Ударение на слоге -lis-, а не на первом.'
+      uk: 'Це слово беруть учитель і редактор тоді, коли власне помилки немає: ein stilistischer Fehler не порушує правила, він лише ставить не той регістр не в той лист — du в заяві про прийняття на роботу, важкий канцелярський зворот у записці другові. У відгуку воно протиставлене словам grammatisch та inhaltlich, тож рецензія може сказати sprachlich richtig, aber stilistisch unpassend. Працює і як прислівник без змін (stilistisch gut), і як прикметник із закінченнями (eine stilistische Frage). Наголос на складі -lis-, а не на першому.'
+
+  - de: Kommentar
+    ipa: "kɔmɛnˈtaːɐ̯"
+    pos: noun
+    gender: m
+    plural: "die Kommentare"
+    cards: recognition
+    en: a short remark that gives an opinion on something said or written; also a signed opinion piece in a newspaper
+    ru: короткое высказывание с оценкой сказанного или написанного; а также авторская колонка с мнением в газете
+    uk: коротке висловлювання з оцінкою сказаного чи написаного; а також авторська колонка з думкою в газеті
+    example_de: Unter dem Artikel stehen schon über hundert Kommentare.
+    example_en: There are already more than a hundred comments under the article.
+    example_ru: Под статьёй уже больше сотни комментариев.
+    example_uk: Під статтею вже понад сотню коментарів.
+    note:
+      en: 'Masculine, plural in -e, stress on the last syllable. Two homes: the remark anybody adds under an online article or a video, and the newspaper genre in which one journalist openly judges the news — which is why a serious paper keeps it on a page of its own, apart from B1 der Bericht (deck `erfahrungen-erzaehlen`), where judging is exactly what is not allowed. The verb is kommentieren, and the flat refusal Kein Kommentar is as fixed in German as in English.'
+      ru: 'Мужской род, множественное на -e, ударение на последнем слоге. Два дома у слова: замечание, которое любой добавляет под статьёй или видео, и газетный жанр, где журналист открыто судит о новости, — потому серьёзная газета держит его на отдельной полосе, вдали от der Bericht уровня B1 (колода `erfahrungen-erzaehlen`), где судить как раз нельзя. Глагол — kommentieren, а сухой отказ Kein Kommentar закреплён в немецком не хуже, чем в других языках.'
+      uk: 'Чоловічий рід, множина на -e, наголос на останньому складі. Два доми у слова: зауваження, яке будь-хто додає під статтею чи відео, і газетний жанр, де журналіст відкрито судить про новину, — тому поважна газета тримає його на окремій шпальті, віддалік від der Bericht рівня B1 (колода `erfahrungen-erzaehlen`), де судити якраз не можна. Дієслово — kommentieren, а сухе Kein Kommentar закріплене в німецькій не гірше, ніж в інших мовах.'
+
+  # --- Bilder, Grafiken, Folien ---
+  - de: Abbildung
+    ipa: "ˈapˌbɪldʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Abbildungen"
+    cards: recognition
+    en: a picture printed inside a text and numbered so that the text can point at it
+    ru: изображение, напечатанное внутри текста и пронумерованное, чтобы текст мог на него сослаться
+    uk: зображення, надруковане всередині тексту й пронумероване, щоб текст міг на нього послатися
+    example_de: Die Abbildung auf Seite 12 zeigt den Aufbau des Motors.
+    example_en: The illustration on page 12 shows how the engine is put together.
+    example_ru: Изображение на странице 12 показывает устройство двигателя.
+    example_uk: Зображення на сторінці 12 показує будову двигуна.
+    note:
+      en: 'Feminine, plural in -en, and it belongs to printed matter: a book, a manual and a report shorten it to Abb. and number it, so the reference reads siehe Abb. 3. A2 das Bild is the neutral word for a picture anywhere at all; an Abbildung is one that sits in a document and does a job there. Beside it die Grafik shows figures and die Zeichnung says the picture was drawn by hand, both further down this deck. Built from ab- and bilden, to form: the thing is formed off something else.'
+      ru: 'Женский род, множественное на -en, и живёт слово в печатном тексте: книга, инструкция и отчёт сокращают его до Abb. и нумеруют, так что ссылка выглядит как siehe Abb. 3. das Bild уровня A2 — нейтральное слово для картинки где угодно; Abbildung же стоит в документе и выполняет там работу. Рядом die Grafik показывает цифры, а die Zeichnung говорит, что рисовали от руки, — обе ниже в этой колоде. Составлено из ab- и bilden — «образовывать»: предмет как бы отображён с другого.'
+      uk: 'Жіночий рід, множина на -en, і живе слово в друкованому тексті: книжка, інструкція та звіт скорочують його до Abb. і нумерують, тож посилання виглядає як siehe Abb. 3. das Bild рівня A2 — нейтральне слово для картинки де завгодно; Abbildung же стоїть у документі й виконує там роботу. Поряд die Grafik показує цифри, а die Zeichnung каже, що малювали від руки, — обидві нижче в цій колоді. Складене з ab- і bilden — «утворювати»: предмет наче відображено з іншого.'
+
+  - de: Grafik
+    ipa: "ˈgʁaːfɪk"
+    pos: noun
+    gender: f
+    plural: "die Grafiken"
+    cards: recognition
+    en: a drawing that turns numbers into a picture, so that a change or a share can be seen at once
+    ru: рисунок, превращающий числа в картинку, чтобы изменение или доля были видны сразу
+    uk: рисунок, що перетворює числа на картинку, аби зміна чи частка були видні одразу
+    example_de: Die Grafik zeigt, wie viele Menschen mit dem Rad zur Arbeit fahren.
+    example_en: The chart shows how many people cycle to work.
+    example_ru: Диаграмма показывает, сколько людей ездит на работу на велосипеде.
+    example_uk: Діаграма показує, скільки людей їздить на роботу велосипедом.
+    note:
+      en: 'A B1 exam task is built on this word — Beschreiben Sie die Grafik — and the sentence that starts the answer is Die Grafik zeigt … B1 die Tabelle, in the deck `geld-vertraege`, puts the same figures in rows and columns instead, and das Diagramm is the narrower technical word for a single chart. A second sense is graphic art and computer graphics, which is where die Grafikkarte comes from. Feminine, plural in -en; the older spelling Graphik is still legal and still met in older books.'
+      ru: 'На этом слове построено экзаменационное задание B1 — Beschreiben Sie die Grafik, — и ответ начинают фразой Die Grafik zeigt … die Tabelle уровня B1 из колоды `geld-vertraege` кладёт те же цифры в строки и столбцы, а das Diagramm — более узкое техническое слово для отдельной диаграммы. Второе значение — графика как искусство и как компьютерная графика, откуда и die Grafikkarte. Женский род, множественное на -en; старое написание Graphik по-прежнему допустимо и встречается в старых книгах.'
+      uk: 'На цьому слові побудоване екзаменаційне завдання B1 — Beschreiben Sie die Grafik, — і відповідь починають фразою Die Grafik zeigt … die Tabelle рівня B1 з колоди `geld-vertraege` кладе ті самі цифри в рядки і стовпці, а das Diagramm — вужче технічне слово для окремої діаграми. Друге значення — графіка як мистецтво і як комп’ютерна графіка, звідки й die Grafikkarte. Жіночий рід, множина на -en; старий правопис Graphik і досі припустимий і трапляється у старих книжках.'
+
+  - de: Zeichnung
+    ipa: "ˈtsaɪ̯çnʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Zeichnungen"
+    cards: recognition
+    en: a picture made by hand with a pencil or a pen, rather than with paint or a camera
+    ru: рисунок, сделанный от руки карандашом или пером, а не краской и не камерой
+    uk: рисунок, зроблений від руки олівцем чи пером, а не фарбою і не камерою
+    example_de: An der Wand hängt eine Zeichnung von seiner Tochter.
+    example_en: A drawing by his daughter hangs on the wall.
+    example_ru: На стене висит рисунок его дочери.
+    example_uk: На стіні висить рисунок його доньки.
+    note:
+      en: 'A2 zeichnen, in the deck `sport-freizeit-a2`, is the verb, and A1 malen is what you do with paint and colour, so German separates by tool what English can leave open. A2 das Bild names any picture without saying how it was made; this word says how. The technical child is die technische Zeichnung, the measured plan in a manual or a building file, and eine Zeichnung anfertigen is how an engineer says it. The ch after the diphthong is the soft one of ich.'
+      ru: 'zeichnen уровня A2 из колоды `sport-freizeit-a2` — глагол, а malen уровня A1 — то, что делают краской, так что немецкий разделяет по инструменту то, что можно было бы и не разделять. das Bild уровня A2 называет любую картинку, не говоря, чем её сделали; это слово как раз говорит. Технический потомок — die technische Zeichnung, размеренный чертёж в инструкции или в строительном деле, а инженер скажет eine Zeichnung anfertigen. ch после дифтонга здесь мягкое, как в ich.'
+      uk: 'zeichnen рівня A2 з колоди `sport-freizeit-a2` — дієслово, а malen рівня A1 — те, що роблять фарбою, тож німецька розділяє за інструментом те, що можна було б і не розділяти. das Bild рівня A2 називає будь-яку картинку, не кажучи, чим її зроблено; це слово якраз каже. Технічний нащадок — die technische Zeichnung, розмірене креслення в інструкції чи в будівельній справі, а інженер скаже eine Zeichnung anfertigen. ch після дифтонга тут м’яке, як в ich.'
+
+  - de: Folie
+    ipa: "ˈfoːli̯ə"
+    pos: noun
+    gender: f
+    plural: "die Folien"
+    cards: recognition
+    en: one screen of a talk, carrying a heading and a few lines shown to the audience; also a thin sheet of plastic or metal
+    ru: один экран доклада с заголовком и несколькими строками, показываемый залу; а также тонкий лист плёнки или фольги
+    uk: один екран доповіді із заголовком і кількома рядками, що показують залові; а також тонкий аркуш плівки чи фольги
+    example_de: Auf der dritten Folie stehen die wichtigsten Zahlen.
+    example_en: The most important figures are on the third slide.
+    example_ru: На третьем слайде — самые важные цифры.
+    example_uk: На третьому слайді — найважливіші цифри.
+    note:
+      en: 'The name survives from the transparent sheet that used to be laid on an overhead projector, and it moved to the screen without changing: eine Folie zeigen, die Folien vorbereiten, and a course sheet still says Folie 1, Folie 2. English slide is heard too, but Folie is the neutral German word. The other sense is a thin sheet you can hold: die Alufolie for kitchen foil, die Frischhaltefolie for cling film. Feminine, plural in -n, and the -ie is one syllable, not two.'
+      ru: 'Название уцелело от прозрачной плёнки, которую клали на проектор, и переехало на экран без изменений: eine Folie zeigen, die Folien vorbereiten, а раздаточный лист курса по-прежнему пишет Folie 1, Folie 2. Английское slide тоже слышно, но нейтральное немецкое слово — именно Folie. Второе значение — тонкий лист, который держат в руках: die Alufolie — фольга, die Frischhaltefolie — пищевая плёнка. Женский род, множественное на -n, а -ie здесь один слог, а не два.'
+      uk: 'Назва вціліла від прозорої плівки, яку клали на проєктор, і переїхала на екран без змін: eine Folie zeigen, die Folien vorbereiten, а роздатковий аркуш курсу й досі пише Folie 1, Folie 2. Англійське slide теж чутно, але нейтральне німецьке слово — саме Folie. Друге значення — тонкий аркуш, який тримають у руках: die Alufolie — фольга, die Frischhaltefolie — харчова плівка. Жіночий рід, множина на -n, а -ie тут один склад, а не два.'
+
+  # --- Vortragen und nachschlagen ---
+  - de: Präsentation
+    ipa: "pʁɛzɛntaˈtsi̯oːn"
+    pos: noun
+    gender: f
+    plural: "die Präsentationen"
+    cards: recognition
+    en: a prepared talk given in front of a group with pictures and headings shown on a screen
+    ru: подготовленное выступление перед группой с картинками и заголовками на экране
+    uk: підготовлений виступ перед групою з картинками й заголовками на екрані
+    example_de: Ihre Präsentation dauert höchstens zehn Minuten.
+    example_en: Your presentation lasts ten minutes at most.
+    example_ru: Ваша презентация длится не больше десяти минут.
+    example_uk: Ваша презентація триває щонайбільше десять хвилин.
+    note:
+      en: 'The chunk is eine Präsentation halten, exactly like einen Vortrag halten — never machen. B1 der Vortrag, in the deck `informationen-vermitteln`, is the talk itself and needs nothing on a wall; this word implies the screen behind the speaker and the Folien above. B1 präsentieren is the verb. Every noun in -tion is feminine, takes -en in the plural and is stressed on that ending, which makes the whole family predictable: die Information, die Situation, die Gratulation.'
+      ru: 'Устойчивый оборот — eine Präsentation halten, ровно как einen Vortrag halten, и никогда machen. der Vortrag уровня B1 из колоды `informationen-vermitteln` — само выступление, которому ничего на стене не нужно; это же слово подразумевает экран за спиной докладчика и Folien выше. Глагол — präsentieren уровня B1. Всякое существительное на -tion женского рода, во множественном берёт -en и ударно на этом окончании, отчего всё семейство предсказуемо: die Information, die Situation, die Gratulation.'
+      uk: 'Усталений зворот — eine Präsentation halten, точно як einen Vortrag halten, і ніколи machen. der Vortrag рівня B1 з колоди `informationen-vermitteln` — сам виступ, якому нічого на стіні не потрібно; це ж слово передбачає екран за спиною доповідача і Folien вище. Дієслово — präsentieren рівня B1. Кожен іменник на -tion жіночого роду, у множині бере -en і наголошений на цьому закінченні, через що вся родина передбачувана: die Information, die Situation, die Gratulation.'
+
+  - de: Recherche
+    ipa: "ʁeˈʃɛʁʃə"
+    pos: noun
+    gender: f
+    plural: "die Recherchen"
+    cards: recognition
+    en: the systematic search for information that a piece of writing has to be built on
+    ru: планомерный поиск сведений, на которых должен строиться будущий текст
+    uk: планомірний пошук відомостей, на яких має будуватися майбутній текст
+    example_de: Für den Artikel brauchte sie mehrere Wochen Recherche.
+    example_en: She needed several weeks of research for the article.
+    example_ru: На статью у неё ушло несколько недель поиска материала.
+    example_uk: На статтю в неї пішло кілька тижнів пошуку матеріалу.
+    note:
+      en: 'A French loan and it keeps its French sounds: both ch are the sh-sound and the ending is a light -e, so nothing in it is read as German would read it. A1 suchen is looking for anything at all; this word is purposeful gathering for a text, a report or a case, which is why it is above all a journalist''s word — eine Recherche über etwas, bei der Recherche stoßen auf. The verb is recherchieren, and everyday German also says nachforschen or, in a library, nachschlagen. Feminine, plural in -n.'
+      ru: 'Французское заимствование, и звуки в нём французские: оба ch читаются как «ш», а концовка — лёгкое -e, так что по-немецки здесь не читается ничего. suchen уровня A1 — искать что угодно; это же слово — целенаправленный сбор материала для текста, репортажа или дела, потому оно прежде всего журналистское: eine Recherche über etwas, bei der Recherche stoßen auf. Глагол — recherchieren, а обиходный немецкий скажет ещё nachforschen или, в библиотеке, nachschlagen. Женский род, множественное на -n.'
+      uk: 'Французьке запозичення, і звуки в ньому французькі: обидва ch читаються як «ш», а закінчення — легке -e, тож по-німецьки тут не читається нічого. suchen рівня A1 — шукати будь-що; це ж слово — цілеспрямоване збирання матеріалу для тексту, репортажу чи справи, тому воно передусім журналістське: eine Recherche über etwas, bei der Recherche stoßen auf. Дієслово — recherchieren, а побутова німецька скаже ще nachforschen або, у бібліотеці, nachschlagen. Жіночий рід, множина на -n.'
+
+  - de: Lexikon
+    ipa: "ˈlɛksikɔn"
+    pos: noun
+    gender: n
+    plural: "die Lexika"
+    cards: recognition
+    en: a reference work whose entries are ordered by their first letters and explain what a thing is
+    ru: справочник, статьи которого расположены по первым буквам и объясняют, что представляет собой предмет
+    uk: довідник, статті якого розташовані за першими літерами й пояснюють, що являє собою предмет
+    example_de: Im Lexikon steht ein langer Artikel über die Stadt.
+    example_en: There is a long entry about the town in the encyclopedia.
+    example_ru: В энциклопедии есть большая статья об этом городе.
+    example_uk: В енциклопедії є велика стаття про це місто.
+    note:
+      en: 'The plural keeps the Greek shape: das Lexikon, die Lexika. What separates it from A2 das Wörterbuch, in the deck `lernen-verstehen`, is what the entry gives you — a Wörterbuch gives the word in another language, a Lexikon explains the thing itself, so one is used while translating and the other while learning. Compounds narrow it: das Fachlexikon, das Musiklexikon, and das Konversationslexikon is the old name for a general one. Stress on the first syllable.'
+      ru: 'Множественное сохраняет греческую форму: das Lexikon, die Lexika. От das Wörterbuch уровня A2 из колоды `lernen-verstehen` его отделяет то, что даёт статья: Wörterbuch даёт слово на другом языке, а Lexikon объясняет сам предмет, — потому одним пользуются при переводе, а другим при изучении. Сложные слова сужают значение: das Fachlexikon, das Musiklexikon, а das Konversationslexikon — старое название общей энциклопедии. Ударение на первом слоге.'
+      uk: 'Множина зберігає грецьку форму: das Lexikon, die Lexika. Від das Wörterbuch рівня A2 з колоди `lernen-verstehen` його відділяє те, що дає стаття: Wörterbuch дає слово іншою мовою, а Lexikon пояснює сам предмет, — тому одним користуються під час перекладу, а другим під час навчання. Складні слова звужують значення: das Fachlexikon, das Musiklexikon, а das Konversationslexikon — стара назва загальної енциклопедії. Наголос на першому складі.'
+
+  # Written abbreviations are recognition cards: the prompt is the mark on the
+  # page, while the answer teaches how to expand and interpret it.
+  - de: "bzw."
+    ipa: "bəˈtsiːʊŋsˌvaɪ̯zə"
+    pos: phrase
+    cards: recognition
+    en: respectively; or rather (written abbreviation for beziehungsweise)
+    en_compact: respectively; or rather
+    ru: соответственно; точнее (письменное сокращение beziehungsweise)
+    uk: відповідно; точніше (письмове скорочення beziehungsweise)
+    example_de: Bitte bringen Sie Pass bzw. Ausweis mit.
+    example_en: Please bring your passport or, as applicable, your identity card.
+    example_ru: Возьмите с собой паспорт или, соответственно, удостоверение личности.
+    example_uk: Візьміть із собою паспорт або, відповідно, посвідчення особи.
+    note:
+      en: 'Expand it silently to beziehungsweise. It can correct a term (or rather) or assign parallel items respectively. It links like und/oder and does not send a verb to the end.'
+      ru: 'Мысленно разворачивайте в beziehungsweise. Оно либо уточняет сказанное («точнее»), либо распределяет параллельные элементы («соответственно»). Связывает как und/oder и не отправляет глагол в конец.'
+      uk: 'Подумки розгортайте в beziehungsweise. Воно або уточнює сказане («точніше»), або розподіляє паралельні елементи («відповідно»). Сполучає як und/oder і не відправляє дієслово в кінець.'
+
+  - de: "d. h."
+    ipa: "das ˈhaɪ̯st"
+    pos: phrase
+    cards: recognition
+    en: that is, in other words (written abbreviation for das heißt)
+    en_compact: that is; in other words
+    ru: то есть, иными словами (письменное сокращение das heißt)
+    uk: тобто, іншими словами (письмове скорочення das heißt)
+    example_de: Der Termin ist verbindlich, d. h., Sie müssen pünktlich kommen.
+    example_en: The appointment is binding; that is, you must arrive on time.
+    example_ru: Время записи обязательно, то есть вы должны прийти вовремя.
+    example_uk: Час запису обов’язковий, тобто ви маєте прийти вчасно.
+    note:
+      en: 'Read the two letters as the full phrase das heißt. It introduces an explanation or consequence. Spacing varies in real texts, but the standard form keeps a full stop after each abbreviated word.'
+      ru: 'Читайте две буквы как полную формулу das heißt. Она вводит пояснение или следствие. В реальных текстах пробелы варьируются, но нормативная запись сохраняет точку после каждого сокращённого слова.'
+      uk: 'Читайте дві літери як повну формулу das heißt. Вона вводить пояснення або наслідок. У реальних текстах пробіли різняться, але нормативний запис зберігає крапку після кожного скороченого слова.'
+
+  - de: "etc."
+    ipa: "ɛtˈtseːtɐa"
+    pos: phrase
+    cards: recognition
+    en: and so on (written abbreviation from Latin et cetera)
+    en_compact: and so on
+    ru: и так далее (письменное сокращение латинского et cetera)
+    uk: і так далі (письмове скорочення латинського et cetera)
+    example_de: Bitte nennen Sie Namen, Adresse, Telefonnummer etc.
+    example_en: Please give your name, address, telephone number and so on.
+    example_ru: Укажите имя, адрес, номер телефона и так далее.
+    example_uk: Укажіть ім’я, адресу, номер телефону тощо.
+    note:
+      en: 'In German prose, read etc. as et cetera or replace it mentally with und so weiter. Because et already means and, do not write und etc. in careful prose.'
+      ru: 'В немецком тексте читайте etc. как et cetera или мысленно заменяйте на und so weiter. Поскольку et уже означает «и», в аккуратном тексте не пишут und etc.'
+      uk: 'У німецькому тексті читайте etc. як et cetera або подумки замінюйте на und so weiter. Оскільки et уже означає «і», в акуратному тексті не пишуть und etc.'
+
+  - de: "vgl."
+    ipa: "fɛɐ̯ˈglaɪ̯çə"
+    pos: phrase
+    cards: recognition
+    en: compare, see (written abbreviation for vergleiche)
+    en_compact: compare; see
+    ru: сравни, см. (письменное сокращение vergleiche)
+    uk: порівняй, див. (письмове скорочення vergleiche)
+    example_de: Vgl. dazu die Tabelle auf Seite 12.
+    example_en: Compare the table on page 12 on this point.
+    example_ru: Сравните с таблицей на странице 12.
+    example_uk: Порівняйте з таблицею на сторінці 12.
+    note:
+      en: 'A cross-reference in academic and administrative writing. Read it as vergleiche: it sends you to a related passage, not necessarily to proof of the same claim. At the beginning of a sentence it is capitalised.'
+      ru: 'Перекрёстная ссылка в научном и административном тексте. Читайте как vergleiche: она отправляет к связанному месту, а не обязательно к доказательству того же тезиса. В начале предложения пишется с большой буквы.'
+      uk: 'Перехресне посилання в науковому й адміністративному тексті. Читайте як vergleiche: воно відсилає до пов’язаного місця, а не обов’язково до доказу тієї самої тези. На початку речення пишеться з великої літери.'

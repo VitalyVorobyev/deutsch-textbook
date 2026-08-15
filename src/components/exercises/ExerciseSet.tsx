@@ -1,5 +1,5 @@
 import { useState, type ReactElement } from 'react';
-import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '../../lib/schemas';
+import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '@da/schema';
 import { logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
@@ -28,7 +28,7 @@ interface Props {
   documents?: Record<string, VisualDocument>;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   practiceSaved: {
     en: 'Practice saved; there is no automatic score.',

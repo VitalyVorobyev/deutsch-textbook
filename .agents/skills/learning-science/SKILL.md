@@ -140,7 +140,7 @@ sufficient.
   target ≤ 90); a fact that no item drills and no outcome needs goes to a
   `### Feinheiten` table. `## Kurz gesagt` is an advance organizer, not a
   summary. Measure with `bun scripts/prose-shape.ts <file|dir> [--worst]`;
-  rules and history in `docs/article-prose.md`. **The cap is a tripwire, not a
+  rules and history in `docs/authoring/article-prose.md`. **The cap is a tripwire, not a
   target** — prose shortened by deleting the reasons and the L1 contrast is a
   worse defect than the wall it replaced.
 

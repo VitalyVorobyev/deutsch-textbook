@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { z } from 'zod';
-import type { matchItemSchema } from '../../lib/schemas';
+import type { matchItemSchema } from '@da/schema';
 import { shuffle } from '../../lib/shuffle';
 import { pick, pickLang } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
@@ -12,7 +12,7 @@ type RightSide = MatchItem['pairs'][number]['right'];
     a plain-string right is its own identity. Display resolves separately. */
 const rightKey = (r: RightSide): string => (typeof r === 'string' ? r : r.en);
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   errors: { en: 'Errors', ru: 'Ошибки' },
 } as const satisfies Record<string, { en: string; ru: string }>;

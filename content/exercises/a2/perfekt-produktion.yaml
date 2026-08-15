@@ -1,5 +1,8 @@
 topic: perfekt-haben-sein
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Das Perfekt mit haben und sein"
 title:
   en: "Monday morning at the office — 'What did you do at the weekend?'"
   ru: "Утро понедельника в офисе — «Что ты делал на выходных?»"
@@ -39,6 +42,12 @@ items:
     prompt_uk: "Я написав листа."
     answer: "Ich habe einen Brief geschrieben."
     key_tokens: ["geschrieben"]
+    # revision 2: «письмо» / «листа» mark no definiteness, so the definite reading
+    # answers the RU/UK prompt too — same ruling as uebersetzen-pizza-gegessen.
+    # The graded token is geschrieben. (Batch-3 audit, 2026-08-12.)
+    accept:
+      - "Ich habe den Brief geschrieben."
+    revision: 2
     explain:
       en: "schreiben is strong: the participle is geschrieben, not *geschreibt. It takes haben, since nothing moves anywhere."
       ru: "schreiben — сильный глагол: причастие geschrieben, а не *geschreibt. Вспомогательный глагол haben, так как никакого перемещения нет."

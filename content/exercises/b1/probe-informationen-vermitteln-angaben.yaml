@@ -1,0 +1,113 @@
+# Delayed probe family 2 of 4 — ONE competence: putting the Angaben of a middle field into
+# the German default order, cold — temporal before kausal before modal before lokal. Three
+# parallel cloze variants, each a one-sentence report with three Angaben in it, served in
+# authoring order across the 2/7/21 delays: one retention curve over one order.
+#
+# `wortstellung-angaben` names both this tag and `pronomen-stellung`, but the two remain
+# separate families: te-ka-mo-lo orders several Angaben, while the fourth family tests the
+# earlier placement of a pronoun object. A short binary decision still needs retention
+# evidence; it simply must not be mixed into this family's curve.
+#
+# cloze rather than translate, and this is the one place in the unit where that is the
+# stronger format: the three gaps ARE the three positions, so every miss is attributed to
+# the tag with nothing else in the sentence able to absorb it — and the phrases themselves
+# are handed over in the instruction, so no variant grades vocabulary, a preposition case or
+# which noun the author had in mind. What a translate would add here is composition, and
+# composition is already measured by uebersetzen-angaben in the practice set, whose whole
+# argument is that nothing is on screen.
+#
+# The instruction lists the three phrases in REVERSED order every time — lokal, then the
+# middle one, then temporal. That is deliberately the sequence the source languages suggest,
+# so the item cannot be answered by copying the list left to right, and a learner who has
+# lost the rule has something plausible to fall into rather than a blank.
+#
+# The three cells vary which Angaben are present, because the rule is about the order of
+# whatever is there rather than about a fixed four: T–K–L, T–M–L and T–K–M. One competence,
+# three subsets.
+#
+# Content fresh against the taught surface, checked by grepping each phrase across the
+# unit's seven files rather than by re-reading this list. The taught rows are gestern /
+# wegen der Reparatur / kurz / im Hof (the article's showcase sentence and its table),
+# am Montag / wegen der Mitteilung / lange / im Büro (the order item), heute Morgen /
+# schnell / im Hof (the practice cloze), gestern / wegen der Änderung / schnell / im Büro
+# (the practice translate) and morgen / zur Post (the pretest). None of am Wochenende,
+# wegen des Regens, an der Haltestelle, am Sonntag, in Ruhe, in der Küche, letzte Woche,
+# wegen der Arbeit or telefonisch occurs in any learner-facing text of this unit, in any
+# position — the only hits the grep returns are inside the pretest's own freshness note.
+#
+# arming: the three items in which the learner orders the Angaben of a middle field — the
+# order task, the cloze and the translate. Nothing else in the unit carries this tag. All
+# three families here are new and each arms from its own literal list (P19-4,
+# src/lib/probes.ts reads `arming` and nothing else), so none of them can move another's
+# `armedAt` — measured before and after by reading the three lists, which share no item.
+topic: informationen-vermitteln
+role: probe
+title:
+  en: "Delayed check — the order of the Angaben"
+  ru: "Отложенная проверка — порядок Angaben"
+  uk: "Відкладена перевірка — порядок Angaben"
+  de: "Kontrolle mit Abstand — die Reihenfolge der Angaben"
+arming:
+  - b1/informationen-vermitteln::order-angaben-tekamolo
+  - b1/informationen-vermitteln::cloze-angaben-reihenfolge
+  - b1/informationen-vermitteln::uebersetzen-angaben
+items:
+  - id: variant-a
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Three Angaben, listed here in the wrong order: an der Haltestelle, wegen des Regens, am Wochenende. Put each into its slot so the sentence follows the German default order."
+      ru: "Три Angaben, перечисленные здесь в неверном порядке: an der Haltestelle, wegen des Regens, am Wochenende. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."
+      uk: "Три Angaben, перелічені тут у хибному порядку: an der Haltestelle, wegen des Regens, am Wochenende. Поставте кожну у свій пропуск так, щоб речення йшло в німецькому порядку за замовчуванням."
+      de: "Drei Angaben, hier in der falschen Reihenfolge: an der Haltestelle, wegen des Regens, am Wochenende. Setz jede in ihre Lücke, sodass der Satz der Grundreihenfolge folgt."
+    text: "Ich habe {{am Wochenende}} {{wegen des Regens}} {{an der Haltestelle}} gewartet."
+    translation:
+      en: "At the weekend I waited at the bus stop because of the rain."
+      ru: "На выходных я из-за дождя ждал на остановке."
+      uk: "На вихідних я через дощ чекав на зупинці."
+    explain:
+      en: "temporal, kausal, lokal — when, why, where. The list above is the order the source languages suggest, and it is exactly backwards: they end the sentence with the time and bring the place forward, German does the opposite. Nothing else in the sentence moves, because A1 and A2 already fixed its two ends: habe in position 2, gewartet at the wall. Everything decidable sits in the three slots between them."
+      ru: "temporal, kausal, lokal — когда, почему, где. Список выше даёт порядок, к которому толкает русский, и он ровно обратный: русская фраза кончается временем и выносит место вперёд, немецкая — наоборот. Больше в предложении не двигается ничто: два его конца закреплены ещё в A1 и A2 — habe на второй позиции, gewartet у стены. Всё решаемое помещается в три пропуска между ними."
+      uk: "temporal, kausal, lokal — коли, чому, де. Список вище дає порядок, до якого штовхає українська, і він рівно зворотний: українська фраза закінчується часом і виносить місце наперед, німецька — навпаки. Більше в реченні не рухається ніщо: два його кінці закріплені ще в A1 і A2 — habe на другій позиції, gewartet біля стіни. Усе, що вирішується, вміщується у три пропуски між ними."
+      de: "temporal, kausal, lokal — wann, warum, wo. Die Liste oben gibt die Reihenfolge der Ausgangssprachen, und die ist genau umgekehrt: Sie enden mit der Zeit und ziehen den Ort nach vorn, das Deutsche macht es andersherum. Sonst bewegt sich nichts, denn A1 und A2 haben die Satzenden längst festgelegt: habe auf Position 2, gewartet an der Wand. Alles Entscheidbare liegt in den drei Lücken dazwischen."
+
+  - id: variant-b
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Three Angaben, listed here in the wrong order: in der Küche, in Ruhe, am Sonntag. Put each into its slot so the sentence follows the German default order."
+      ru: "Три Angaben, перечисленные здесь в неверном порядке: in der Küche, in Ruhe, am Sonntag. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."
+      uk: "Три Angaben, перелічені тут у хибному порядку: in der Küche, in Ruhe, am Sonntag. Поставте кожну у свій пропуск так, щоб речення йшло в німецькому порядку за замовчуванням."
+      de: "Drei Angaben, hier in der falschen Reihenfolge: in der Küche, in Ruhe, am Sonntag. Setz jede in ihre Lücke, sodass der Satz der Grundreihenfolge folgt."
+    text: "Sie hat {{am Sonntag}} {{in Ruhe}} {{in der Küche}} gelesen."
+    translation:
+      en: "On Sunday she read in peace in the kitchen."
+      ru: "В воскресенье она спокойно читала на кухне."
+      uk: "У неділю вона спокійно читала на кухні."
+    explain:
+      en: "This sentence has no reason in it, so the row is temporal, modal, lokal, and the rule simply skips the cell that is not there — that is what makes te-ka-mo-lo usable, since hardly any real sentence carries all four. in Ruhe is a manner phrase and not a place, however much its preposition looks like one: the question it answers is wie, not wo. Deciding that is the whole of this variant, because the two remaining positions follow from it."
+      ru: "В этом предложении нет причины, поэтому ряд такой: temporal, modal, lokal, — правило просто пропускает отсутствующую клетку, и именно поэтому «те-ка-мо-ло» удобно: все четыре вместе встречаются редко. in Ruhe — обстоятельство образа действия, а не места, как бы ни выглядел его предлог: оно отвечает на wie, а не на wo. В этом весь вариант — остальные две позиции следуют сами."
+      uk: "У цьому реченні немає причини, тому ряд такий: temporal, modal, lokal, — правило просто пропускає відсутню клітинку, і саме тому «те-ка-мо-ло» зручне: усі чотири разом трапляються рідко. in Ruhe — обставина способу, а не місця, хоч би як виглядав його прийменник: воно відповідає на wie, а не на wo. У цьому весь варіант — решта дві позиції випливають самі."
+      de: "In diesem Satz steht kein Grund, die Reihe heißt also temporal, modal, lokal — die Regel überspringt die fehlende Zelle einfach, und genau das macht te-ka-mo-lo brauchbar, denn alle vier stehen selten zusammen. in Ruhe ist eine Modalangabe und kein Ort, so sehr die Präposition auch danach aussieht: Sie antwortet auf wie, nicht auf wo. Darin besteht diese Variante, denn die beiden übrigen Positionen folgen daraus."
+
+  - id: variant-c
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Three Angaben, listed here in the wrong order: telefonisch, wegen der Arbeit, letzte Woche. Put each into its slot so the sentence follows the German default order."
+      ru: "Три Angaben, перечисленные здесь в неверном порядке: telefonisch, wegen der Arbeit, letzte Woche. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."
+      uk: "Три Angaben, перелічені тут у хибному порядку: telefonisch, wegen der Arbeit, letzte Woche. Поставте кожну у свій пропуск так, щоб речення йшло в німецькому порядку за замовчуванням."
+      de: "Drei Angaben, hier in der falschen Reihenfolge: telefonisch, wegen der Arbeit, letzte Woche. Setz jede in ihre Lücke, sodass der Satz der Grundreihenfolge folgt."
+    text: "Er hat {{letzte Woche}} {{wegen der Arbeit}} {{telefonisch}} Bescheid gegeben."
+    translation:
+      en: "Last week he let us know by phone because of work."
+      ru: "На прошлой неделе он из-за работы сообщил об этом по телефону."
+      uk: "Минулого тижня він через роботу повідомив про це телефоном."
+    explain:
+      en: "No place this time, so the row is temporal, kausal, modal — and the sentence still ends where every German sentence ends, with what the verb needs: Bescheid gegeben is one fixed pairing and stays together at the wall, so it is not a fourth Angabe competing for a slot. letzte Woche carries no preposition at all and is still a temporal Angabe; the question it answers is what decides, never the shape it comes in."
+      ru: "Места здесь нет, поэтому ряд такой: temporal, kausal, modal, — а кончается предложение там же, где кончается любое немецкое: тем, что нужно глаголу. Bescheid gegeben — устойчивое сочетание, оно остаётся у стены целиком и не претендует на четвёртый слот. letzte Woche стоит вообще без предлога и всё равно остаётся временной Angabe: решает вопрос, на который она отвечает, а не её внешняя форма."
+      uk: "Місця тут немає, тому ряд такий: temporal, kausal, modal, — а закінчується речення там само, де закінчується будь-яке німецьке: тим, що потрібне дієслову. Bescheid gegeben — стале сполучення, воно лишається біля стіни цілком і не претендує на четвертий слот. letzte Woche стоїть узагалі без прийменника і все одно лишається часовою Angabe: вирішує питання, на яке вона відповідає, а не її зовнішня форма."
+      de: "Diesmal fehlt der Ort, die Reihe heißt also temporal, kausal, modal — und der Satz endet dort, wo jeder deutsche Satz endet: bei dem, was das Verb braucht. Bescheid gegeben ist eine feste Verbindung und bleibt als Ganzes an der Wand, ist also keine vierte Angabe, die um einen Platz konkurriert. letzte Woche trägt gar keine Präposition und ist trotzdem eine Temporalangabe: Es entscheidet die Frage, auf die sie antwortet, nie ihre äußere Form."

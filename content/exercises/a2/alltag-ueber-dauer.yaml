@@ -1,0 +1,50 @@
+topic: alltag-tagesablauf
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — über als überschrittene Dauer"
+title: {en: "Core — über for a duration threshold", ru: "Основа — über для превышенной длительности", uk: "Основа — über для перевищеної тривалості"}
+items:
+  - id: mc-ueber-stunde
+    outcomes: [dauer-ueber-nennen]
+    type: mc
+    focus: ueber-dauer
+    prompt: "Ich habe ___ eine Stunde auf den Bus gewartet."
+    options: ["über", "seit", "vor"]
+    correct: 0
+    explain: {en: "The completed wait lasted more than one hour, so über marks an exceeded duration threshold. seit would mean the waiting is still continuing; vor would locate an event one hour ago.", ru: "Закончившееся ожидание длилось больше часа, поэтому über отмечает превышенный порог длительности. seit означало бы, что ожидание ещё продолжается; vor поместило бы событие час назад.", uk: "Завершене очікування тривало понад годину, тому über позначає перевищений поріг тривалості. seit означало б, що очікування ще триває; vor розмістило б подію годину тому."}
+  - id: mc-akkusativ
+    outcomes: [dauer-ueber-nennen]
+    type: mc
+    focus: ueber-dauer
+    prompt: "Der Termin hat über ___ Stunde gedauert."
+    options: ["eine", "einer", "einen"]
+    correct: 0
+    explain: {en: "Temporal über governs the accusative. die Stunde therefore stays eine Stunde; the feminine accusative happens to look like the nominative.", ru: "Временное über требует Akkusativ. Поэтому die Stunde даёт eine Stunde; форма женского Akkusativ совпадает с Nominativ.", uk: "Часове über потребує Akkusativ. Тому die Stunde дає eine Stunde; форма жіночого Akkusativ збігається з Nominativ."}
+  - id: cloze-tage-monat
+    outcomes: [dauer-ueber-nennen]
+    type: cloze
+    focus: ueber-dauer
+    instruction: {en: "Complete the two exceeded durations.", ru: "Заполните две превышенные длительности.", uk: "Заповніть дві перевищені тривалості."}
+    text: "Die Reparatur hat {{über drei Tage}} gedauert. Wir haben {{über einen Monat}} gewartet."
+    explain: {en: "über takes an accusative duration phrase. The plural drei Tage shows no article; masculine ein Monat makes the case visible as einen Monat.", ru: "über присоединяет длительность в Akkusativ. Во множественном drei Tage артикля нет; мужское ein Monat делает падеж видимым: einen Monat.", uk: "über приєднує тривалість в Akkusativ. У множині drei Tage артикля немає; чоловіче ein Monat робить відмінок видимим: einen Monat."}
+  - id: mc-neutral-oder-ueber
+    outcomes: [dauer-ueber-nennen]
+    type: mc
+    focus: ueber-dauer
+    instruction: {en: "The course lasted exactly two hours. Which sentence says that without adding more than?", ru: "Курс длился ровно два часа. Какое предложение не добавляет смысл больше?", uk: "Курс тривав рівно дві години. Яке речення не додає зміст понад?"}
+    prompt: "Der Kurs hat ..."
+    options: ["zwei Stunden gedauert.", "über zwei Stunden gedauert.", "seit zwei Stunden gedauert."]
+    correct: 0
+    explain: {en: "A bare accusative duration is neutral: exactly/about two hours in context. über two hours explicitly crosses the two-hour threshold. It is not a universal translation of English for.", ru: "Голая длительность в Akkusativ нейтральна: два часа. über zwei Stunden явно означает больше двух часов. Это не универсальный перевод русского «в течение» или английского for.", uk: "Гола тривалість в Akkusativ нейтральна: дві години. über zwei Stunden явно означає понад дві години. Це не універсальний переклад українського «протягом» або англійського for."}
+  - id: translate-telefoniert
+    outcomes: [dauer-ueber-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We talked on the phone for over an hour."
+    prompt_ru: "Мы разговаривали по телефону больше часа."
+    prompt_uk: "Ми розмовляли телефоном понад годину."
+    answer: "Wir haben über eine Stunde telefoniert."
+    key_tokens: ["über", "eine", "Stunde", "telefoniert"]
+    explain: {en: "über eine Stunde is one accusative duration phrase and the finished event is in the Perfekt.", ru: "über eine Stunde — единая группа длительности в Akkusativ, а завершённое событие стоит в Perfekt.", uk: "über eine Stunde — єдина група тривалості в Akkusativ, а завершена подія стоїть у Perfekt."}

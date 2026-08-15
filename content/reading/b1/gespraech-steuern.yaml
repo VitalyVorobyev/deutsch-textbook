@@ -1,0 +1,89 @@
+topic: gespraech-steuern
+kind: intensive
+title_de: "Die Versammlung im Verein"
+text:
+  - >-
+    Bei der Versammlung im Verein ging es um die Beiträge. Herr Blum sprach lange,
+    und niemand sagte etwas. Dann fragte Frau Kaya:
+    „[[Entschuldigung, dürfte ich dazu kurz etwas sagen?::excuse me, could I say
+    something about that briefly — the polite Konjunktiv II is what asks for the
+    floor::извините, можно мне коротко сказать об этом — вежливый Konjunktiv II и
+    есть просьба о слове::перепрошую, чи можна мені коротко про це сказати —
+    ввічливий Konjunktiv II і є проханням про слово]]“ — „Ja, bitte“, sagte Herr Blum.
+  - >-
+    „[[Vor allem::above all — marks what matters most::прежде всего — отмечает самое
+    важное::насамперед — позначає найважливіше]] die Kosten sind ein Problem“,
+    sagte sie.
+    „[[Zum Beispiel::for example — opens an example::например — вводит пример::наприклад
+    — уводить приклад]] zahlen die jungen Mitglieder zu viel.“ Die anderen sagten
+    nur „[[Genau::exactly — a listener signal, not agreement with a proposal::вот
+    именно — сигнал слушателя, а не согласие с предложением::саме так — сигнал
+    слухача, а не згода з пропозицією]]“ und „[[Wirklich?::really? — the signal that
+    something is new to you::правда? — сигнал, что для вас это новость::справді? —
+    сигнал, що для вас це новина]]“.
+  - >-
+    „[[Übrigens::by the way — an adverb, so it fills position 1 and the verb comes
+    second::кстати — наречие, поэтому оно занимает первое место, а глагол идёт
+    вторым::до речі — прислівник, тому він посідає перше місце, а дієслово йде
+    другим]] warten wir noch auf eine Antwort von der Stadt“, sagte sie. „Wie sehen
+    Sie das, Herr Blum?“ — „[[Da bin ich mir nicht sicher::I am not sure about
+    that — a polite way of not answering::тут я не уверен — вежливый способ не
+    отвечать::тут я не впевнений — ввічливий спосіб не відповідати]] — ich frage
+    nach und sage Ihnen morgen Bescheid.“ Dann sagte Frau Kaya:
+    „[[Das wäre alles von mir.::that would be all from me — the phrase that closes a
+    turn::у меня всё — оборот, которым закрывают своё высказывание::у мене все —
+    зворот, яким закривають свій виступ]]“
+questions:
+  - id: frage-wort
+    outcomes: [wort-nehmen-geben]
+    type: mc
+    prompt: "Wie kommt Frau Kaya zu Wort?"
+    options:
+      - "Sie bittet höflich darum und wartet auf die Antwort."
+      - "Sie fängt einfach an zu sprechen."
+      - "Herr Blum fordert sie zum Sprechen auf."
+    correct: 0
+    translation:
+      en: How does Frau Kaya get the floor?
+      ru: Как госпожа Кая получает слово?
+      uk: Як пані Кая отримує слово?
+    explain:
+      en: "„Entschuldigung, dürfte ich dazu kurz etwas sagen?“ — she asks, and Herr Blum answers „Ja, bitte“ before she goes on. The polite Konjunktiv II is what makes the interruption acceptable; simply starting to talk is the option the text rules out, since nobody had said anything at all up to that point. Herr Blum does invite somebody to speak later in the meeting, but the person he names is not Frau Kaya."
+      ru: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — она просит, и господин Блум отвечает «Ja, bitte», прежде чем она продолжает. Вежливый Konjunktiv II и делает вмешательство приемлемым; вариант «просто начала говорить» текст исключает, потому что до этого не говорил вообще никто. Господин Блум действительно предлагает кому-то высказаться позже, но названо там не имя госпожи Кая."
+      uk: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — вона просить, і пан Блум відповідає «Ja, bitte», перш ніж вона продовжує. Ввічливий Konjunktiv II і робить втручання прийнятним; варіант «просто почала говорити» текст виключає, бо до того не говорив узагалі ніхто. Пан Блум справді пропонує комусь висловитися пізніше, але назване там не ім'я пані Кая."
+
+  - id: frage-genau
+    outcomes: [zuhoeren-anknuepfen]
+    type: mc
+    prompt: "Was bedeutet „Genau“ hier?"
+    options:
+      - "Die anderen zeigen, dass sie zuhören."
+      - "Die anderen sind mit Frau Kaya einverstanden."
+      - "Die anderen möchten selbst sprechen."
+    correct: 0
+    translation:
+      en: "What does „Genau“ mean here?"
+      ru: "Что значит здесь «Genau»?"
+      uk: "Що означає тут «Genau»?"
+    explain:
+      en: "*Genau* and *Wirklich?* are listener signals: they say that the line is still open and nothing more. Reading them as agreement is the standing mistake, and it matters — the meeting is about the fees, and nobody in this paragraph has agreed to anything. Wanting to speak would be marked differently, with a request for the floor of the kind Frau Kaya made."
+      ru: "*Genau* и *Wirklich?* — сигналы слушателя: они сообщают, что связь ещё есть, и больше ничего. Прочитать их как согласие — устойчивая ошибка, и она существенна: речь на собрании идёт о взносах, а в этом абзаце никто ни с чем не согласился. Желание высказаться отмечалось бы иначе — просьбой о слове того рода, какую сделала госпожа Кая."
+      uk: "*Genau* та *Wirklich?* — сигнали слухача: вони повідомляють, що зв'язок ще є, і більше нічого. Прочитати їх як згоду — стала помилка, і вона суттєва: на зборах ідеться про внески, а в цьому абзаці ніхто ні з чим не погодився. Бажання висловитися позначалося б інакше — проханням про слово того ґатунку, яке зробила пані Кая."
+
+  - id: frage-ausweichen
+    outcomes: [hoeflich-ausweichen, inhalt-steuern]
+    type: mc
+    prompt: "Warum sagt Herr Blum „Da bin ich mir nicht sicher“?"
+    options:
+      - "Er weiß die Antwort nicht und sagt, was er stattdessen tun wird."
+      - "Er ist mit Frau Kaya nicht einverstanden."
+      - "Er möchte die Versammlung beenden."
+    correct: 0
+    translation:
+      en: "Why does Herr Blum say „Da bin ich mir nicht sicher“?"
+      ru: "Почему господин Блум говорит «Da bin ich mir nicht sicher»?"
+      uk: "Чому пан Блум каже «Da bin ich mir nicht sicher»?"
+    explain:
+      en: "The sentence does not end there, and that is the point: *ich frage nach und sage Ihnen morgen Bescheid* is the half that keeps the conversation open. Admitting the gap alone would close it, and disagreeing is a different move with different words. Note also what starts the paragraph — *Übrigens* announces that the answer still awaited from the city belongs to another point, and the verb *warten* comes straight after it."
+      ru: "Фраза на этом не кончается, и в этом всё дело: *ich frage nach und sage Ihnen morgen Bescheid* — та половина, которая оставляет разговор открытым. Одно лишь признание пробела его бы закрыло, а несогласие — другой ход и другие слова. Отметьте и начало абзаца: *Übrigens* объявляет, что ожидаемый ответ от города относится к другому пункту, и глагол *warten* идёт сразу за ним."
+      uk: "Фраза на цьому не закінчується, і в цьому вся річ: *ich frage nach und sage Ihnen morgen Bescheid* — та половина, що залишає розмову відкритою. Саме лише визнання прогалини її б закрило, а незгода — інший хід та інші слова. Відзначте й початок абзацу: *Übrigens* оголошує, що очікувана відповідь від міста стосується іншого пункту, і дієслово *warten* іде одразу за ним."

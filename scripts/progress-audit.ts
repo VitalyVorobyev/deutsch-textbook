@@ -7,25 +7,27 @@
  *
  * Usage:
  *   bun run progress:audit --profile vitaly
+ *   bun run progress:audit --profile vitaly --pull        # fetch the cloud snapshot first
  *   bun run progress:audit --profile vitaly --json
  *   bun run progress:audit --snapshot progress/vitaly/2026-07-13.json
  *   bun run progress:audit --profile vitaly --item a2/perfekt-haben-sein:uebersetzen-pizza
  *   bun run progress:audit --profile vitaly --project 2026-08-02
  *   bun run progress:audit --profile vitaly --lapses
  */
+import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
-import { normalizeTranslation } from '../src/lib/cloze';
+import { normalizeTranslation } from '@da/grading/cloze';
 import {
   closestTranslationCandidate,
   gradeTranslation,
   type TranslationSpec,
-} from '../src/lib/production';
+} from '@da/grading/production';
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { isPretestAttempt, isRetiredRevision, type RevisionLookup } from '../src/lib/weakness';
-import { decisionKey, loadGradingDecisions } from '../src/lib/grading-decisions';
-import type { GradingDecision } from '../src/lib/schemas';
+import { decisionKey, loadGradingDecisions } from '@da/content/grading-decisions';
+import type { GradingDecision } from '@da/schema';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   armedAt,
@@ -76,7 +78,7 @@ interface AuditCard {
  * A lexeme with this many lapses **in the production direction** is what the operating
  * program calls a review trigger for that *entry* — its forms, its contrast and its
  * context — not a signal about the learner: "Two productive-direction lapses on one lexeme
- * trigger review of its forms, contrast and context" (docs/a2-learning-led-program.md).
+ * trigger review of its forms, contrast and context" (docs/curriculum/a2-learning-led-program.md).
  *
  * The direction is part of the rule, not a detail of it, so `needingReview` filters to
  * `x-de` — a recognition card that lapses is telling you the learner cannot read the word
@@ -1530,6 +1532,7 @@ interface CliArgs {
   project?: string;
   json: boolean;
   lapses: boolean;
+  pull: boolean;
 }
 
 function cliArgs(argv: string[]): CliArgs {
@@ -1547,7 +1550,33 @@ function cliArgs(argv: string[]): CliArgs {
     project: value('--project'),
     json: argv.includes('--json'),
     lapses: argv.includes('--lapses'),
+    pull: argv.includes('--pull'),
   };
+}
+
+/**
+ * `--pull` fetches before it reads.
+ *
+ * The audit reads a file on disk, so its answer is only ever as fresh as the last
+ * `progress:pull` — and a stale snapshot does not look stale, it looks like an audit:
+ * every table renders, and the weak-focus rows are simply last week's. Spawning the
+ * pull script rather than importing it keeps the R2 credentials, the refuse-to-shrink
+ * rule and the `source setenv.sh` guidance in the one file that owns them
+ * (scripts/progress-pull.ts), and its non-zero exit stops the audit here instead of
+ * letting it report an old day as today.
+ */
+function pullFirst(profile: string | undefined): void {
+  if (!profile)
+    throw new Error('--pull needs --profile <slug>; --snapshot names a file, not a cloud account.');
+  // `process.execPath` is the Bun binary already running this file — no PATH lookup,
+  // no shell; stdio is inherited so the pull's own guidance reaches the terminal.
+  const result = spawnSync(process.execPath, [join(import.meta.dirname, 'progress-pull.ts'), '--profile', profile], {
+    stdio: 'inherit',
+  });
+  if (result.status !== 0)
+    throw new Error(
+      `progress:pull exited ${result.status ?? 'without a status'} — auditing a snapshot it could not refresh would report stale evidence as current.`,
+    );
 }
 
 /**
@@ -1591,7 +1620,10 @@ export function run(argv = process.argv.slice(2), root = process.cwd()): string 
 
 if (import.meta.main) {
   try {
-    process.stdout.write(run());
+    const argv = process.argv.slice(2);
+    const args = cliArgs(argv);
+    if (args.pull) pullFirst(args.profile);
+    process.stdout.write(run(argv));
   } catch (error) {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
     process.exitCode = 1;

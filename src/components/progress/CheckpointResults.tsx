@@ -24,7 +24,7 @@ interface Props {
   attempts: Attempt[];
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   retake: { en: 'Retake →', ru: 'Пройти ещё раз →' },

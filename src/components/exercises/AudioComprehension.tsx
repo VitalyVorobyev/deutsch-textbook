@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { audioComprehensionItemSchema } from '../../lib/schemas';
+import type { audioComprehensionItemSchema } from '@da/schema';
 import { speakGermanSequence, ttsAvailable } from '../../lib/speech';
 import { bundlesAudio, listeningAudioUrl } from '../../lib/audio';
 import { withBase } from '../../lib/url';
@@ -12,7 +12,7 @@ import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from '.
 
 type AudioItem = z.infer<typeof audioComprehensionItemSchema>;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   noAudio: {
     en: 'Audio unavailable: this task is scored as reading.',

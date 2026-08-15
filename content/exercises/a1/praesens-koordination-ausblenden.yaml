@@ -1,0 +1,36 @@
+topic: praesens-wortstellung
+role: practice
+stage: ausblenden
+activity: extension
+title_de: "Ausblenden — Hauptsätze verbinden"
+title: {en: "Fade — connect main clauses", ru: "Снятие опор — соединяем главные предложения", uk: "Зняття опор — поєднуємо головні речення"}
+items:
+  - id: translate-und-arbeit
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Join the two facts with und.", ru: "Соедините два факта с und.", uk: "Поєднайте два факти з und."}
+    prompt_en: "I work in Bonn, and my wife works in Cologne."
+    prompt_ru: "Я работаю в Бонне, а моя жена работает в Кёльне."
+    prompt_uk: "Я працюю в Бонні, а моя дружина працює в Кельні."
+    answer: "Ich arbeite in Bonn, und meine Frau arbeitet in Köln."
+    key_tokens: ["und", "Frau", "arbeitet"]
+    explain: {en: "und joins two complete V2 clauses. The second subject still comes before its verb: meine Frau arbeitet.", ru: "und соединяет два полных предложения с V2. Во второй части подлежащее остаётся перед глаголом: meine Frau arbeitet.", uk: "und поєднує два повні речення з V2. У другій частині підмет лишається перед дієсловом: meine Frau arbeitet."}
+  - id: translate-aber-wetter
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Express the contrast with aber.", ru: "Передайте противопоставление с aber.", uk: "Передайте протиставлення з aber."}
+    prompt_en: "It is cold, but the sun is shining."
+    prompt_ru: "Холодно, но светит солнце."
+    prompt_uk: "Холодно, але світить сонце."
+    answer: "Es ist kalt, aber die Sonne scheint."
+    key_tokens: ["aber", "Sonne", "scheint"]
+    explain: {en: "The contrast does not trigger inversion: aber | die Sonne | scheint.", ru: "Противопоставление не вызывает инверсию: aber | die Sonne | scheint.", uk: "Протиставлення не викликає інверсії: aber | die Sonne | scheint."}
+  - id: cloze-denn-grund
+    outcomes: [praesens-koordination]
+    type: cloze
+    focus: koordination-position-null
+    instruction: {en: "Complete the reason with the finite verb.", ru: "Дополните причину спрягаемым глаголом.", uk: "Доповніть причину відмінюваним дієсловом."}
+    text: "Wir gehen zu Fuß, denn der Bus {{kommt}} heute nicht."
+    explain: {en: "After denn, the subject der Bus is followed by the V2 verb kommt.", ru: "После denn за подлежащим der Bus следует глагол в позиции 2: kommt.", uk: "Після denn за підметом der Bus іде дієслово в позиції 2: kommt."}

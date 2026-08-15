@@ -1,0 +1,339 @@
+# B1.11 primary practice. A genre unit: it adopts no grammar point, closes none, and every
+# tag below was registered by an earlier unit — the grammar ratchet in
+# tests/grammar-coverage.test.ts does not move in this commit
+# (`bun scripts/grammar-coverage.ts B1`, still 29/32).
+# Two of the recycled tags are named by the frozen contract, and they are the two the genre
+# actually runs on: passiv-bildung (B1.6) is why an Anleitung step names no person, and
+# sodass-folge (B1.7) is the clause that tells a help desk what you can no longer do.
+# Three more are the live runtime channels of the `deepens` edges on the atlas node:
+# indirekte-frage and hoeflich-konjunktiv carry the edges to lernen-verstehen and
+# aemter-dienstleistungen (an online form asks the counter's questions in writing), and
+# trennbar-wortstellung is drilled by aemter-dienstleistungen-produktion — here it is the
+# form's own error, the prefix of angeben/auswählen dropped at the end of the line.
+# haben-sein, um-zu-zweck and verbzweit are the three remaining honest single confusions:
+# folgen and bleiben both take sein in a fault report's first two sentences, a purpose is
+# um … zu, and Früher …, heute … is two fronted adverbs with the finite verb behind each.
+# Six of the nineteen items across the two practice sets stay untagged on purpose — the
+# form-line match and the discourse mc here, the listening and the dictation over there,
+# and both open tasks: a false tag sends training after a confusion the learner does not
+# have, and unverified production must never feed the weakness signal at all.
+# Outcome discipline, because probe families arm by their own explicit item list
+# (src/lib/probes.ts, P19-4): every item on `anleitung-verstehen` is a step or a field
+# somebody has to carry out; every item on `technikproblem-schildern` is a part of the
+# report — what I did, what happened, what follows, what I am asking for; every item on
+# `mediennutzung-berichten` places a habit rather than merely naming it.
+# Contract exclusions hold: no IT-specialist vocabulary (Taste, Feld, Netz, Akku are
+# library-user words), no data-protection law, no brand names anywhere.
+# This set is the primaryPractice — its item list never grows after shipping.
+topic: digitales-leben
+role: practice
+stage: geruest
+activity: core
+title:
+  en: "Practice — the step, the field, the fault, the habit"
+  ru: "Практика — шаг, поле, поломка, привычка"
+  uk: "Практика — крок, поле, поломка, звичка"
+  de: "Übung — der Schritt, das Feld, die Störung, die Gewohnheit"
+items:
+  - id: cloze-anleitung-passiv
+    outcomes: [anleitung-verstehen]
+    type: cloze
+    focus: passiv-bildung
+    instruction:
+      en: "Two steps from a set of instructions. Fill in werden in the form each subject requires, and the Partizip II of installieren and löschen."
+      ru: "Два шага из инструкции. Впишите werden в форме, которой требует каждое подлежащее, и Partizip II глаголов installieren и löschen."
+      uk: "Два кроки з інструкції. Впишіть werden у формі, якої вимагає кожен підмет, і Partizip II дієслів installieren та löschen."
+      de: "Zwei Schritte aus einer Anleitung. Ergänze werden in der Form, die das jeweilige Subjekt verlangt, und das Partizip II von installieren und löschen."
+    text: "Zuerst {{wird}} die neue Software {{installiert}}. Danach {{werden}} die alten Fotos {{gelöscht}}."
+    translation:
+      en: "First the new software is installed. Then the old photos are deleted."
+      ru: "Сначала устанавливают новое программное обеспечение. Затем удаляют старые фотографии."
+      uk: "Спершу встановлюють нове програмне забезпечення. Потім видаляють старі світлини."
+    explain:
+      en: "The frame has two walls: werden in position 2 and the Partizip II at the very end. werden agrees with the new subject, so die Software takes wird and die Fotos take werden — the number comes from the thing, never from whoever is doing it. That is the whole reason an Anleitung reaches for this form: nobody has to be named."
+      ru: "У рамки две стены: werden на втором месте и Partizip II в самом конце. werden согласуется с новым подлежащим, поэтому die Software берёт wird, а die Fotos — werden: число задаёт предмет, а не тот, кто действует. Ради этого инструкция за пассив и берётся — называть исполнителя не нужно."
+      uk: "У рамки дві стіни: werden на другому місці і Partizip II у самому кінці. werden узгоджується з новим підметом, тому die Software бере wird, а die Fotos — werden: число задає предмет, а не той, хто діє. Заради цього інструкція за пасив і береться — називати виконавця не треба."
+      de: "Die Klammer hat zwei Wände: werden auf Position 2 und das Partizip II ganz am Ende. werden richtet sich nach dem neuen Subjekt, also wird bei die Software und werden bei die Fotos — der Numerus kommt von der Sache, nie von der handelnden Person. Genau deshalb greift eine Anleitung zu dieser Form."
+
+  - id: mc-werden-passiv
+    outcomes: [anleitung-verstehen]
+    type: mc
+    focus: passiv-bildung
+    prompt: "Welcher Satz steht so in einer Anleitung?"
+    options:
+      - "Zuerst wird der Akku aufgeladen."
+      - "Zuerst wird der Akku aufladen."
+      - "Zuerst ist der Akku aufgeladen."
+    correct: 0
+    translation:
+      en: "First the battery is charged."
+      ru: "Сначала заряжают аккумулятор."
+      uk: "Спершу заряджають акумулятор."
+    explain:
+      en: "werden has two jobs and this is where they collide. With a Partizip II it builds the passive — the step that is being carried out. With an infinitive it builds the future, so wird aufladen promises that somebody will charge it later. And ist aufgeladen states a result: the battery is already full, which is no step at all."
+      ru: "У werden две работы, и здесь они сталкиваются. С Partizip II получается пассив — шаг, который выполняют. С инфинитивом получается будущее время, и wird aufladen обещает, что кто-то зарядит потом. А ist aufgeladen называет итог: аккумулятор уже полон, и это никакой не шаг."
+      uk: "У werden дві роботи, і тут вони стикаються. З Partizip II виходить пасив — крок, який виконують. З інфінітивом виходить майбутній час, і wird aufladen обіцяє, що хтось зарядить потім. А ist aufgeladen називає підсумок: акумулятор уже повний, і це жодний не крок."
+      de: "werden hat zwei Aufgaben, und hier stoßen sie zusammen. Mit Partizip II entsteht das Passiv — der Schritt, der ausgeführt wird. Mit Infinitiv entsteht Futur, und wird aufladen verspricht, dass jemand später lädt. ist aufgeladen stellt ein Ergebnis fest: Der Akku ist schon voll, und das ist kein Schritt."
+
+  - id: uebersetzen-passiv-sprache
+    outcomes: [anleitung-verstehen]
+    type: translate
+    focus: passiv-bildung
+    instruction:
+      en: "One step from the instructions for your new phone — write it in the passive. For 'select' take auswählen, for 'the restart' der Neustart."
+      ru: "Один шаг из инструкции к вашему новому телефону — напишите его в пассиве. Для «выбрать» возьмите auswählen, для «перезапуск» — der Neustart."
+      uk: "Один крок з інструкції до вашого нового телефона — напишіть його в пасиві. Для «вибрати» візьміть auswählen, для «перезапуск» — der Neustart."
+      de: "Ein Schritt aus der Anleitung deines neuen Handys — schreib ihn im Passiv. Für das Auswählen nimm auswählen, für den Neustart der Neustart."
+    prompt_en: "After the restart the language is selected."
+    prompt_ru: "После перезапуска язык выбирают."
+    prompt_uk: "Після перезапуску мову вибирають."
+    answer: "Nach dem Neustart wird die Sprache ausgewählt."
+    accept:
+      # The subject may lead; the frame is the same and nothing else moves.
+      - "Die Sprache wird nach dem Neustart ausgewählt."
+    key_tokens: ["wird", "ausgewählt"]
+    explain:
+      en: "Graded are the two walls of the frame: wird in position 2 and ausgewählt at the very end, with everything else between them. The passive is named in the task because man wählt nach dem Neustart die Sprache aus renders the same step correctly — this item is about the werden-frame, not about choosing it. Fronting Nach dem Neustart is equally right."
+      ru: "Оцениваются две стены рамки: wird на втором месте и ausgewählt в самом конце, всё остальное — между ними. Пассив назван в задании, потому что man wählt nach dem Neustart die Sprache aus передаёт тот же шаг верно: предмет проверки здесь — рамка с werden, а не выбор между формами. Вынести Nach dem Neustart вперёд так же правильно."
+      uk: "Оцінюються дві стіни рамки: wird на другому місці і ausgewählt у самому кінці, усе інше — між ними. Пасив названо в завданні, бо man wählt nach dem Neustart die Sprache aus передає той самий крок правильно: предмет перевірки тут — рамка з werden, а не вибір між формами. Винести Nach dem Neustart уперед так само правильно."
+      de: "Bewertet werden die beiden Wände der Klammer: wird auf Position 2 und ausgewählt ganz am Ende, alles andere dazwischen. Das Passiv steht in der Aufgabe, weil man wählt nach dem Neustart die Sprache aus denselben Schritt richtig wiedergibt — geprüft wird die werden-Klammer, nicht die Wahl der Form. Nach dem Neustart vorn ist genauso richtig."
+
+  - id: cloze-formular-verben
+    outcomes: [anleitung-verstehen]
+    type: cloze
+    focus: trennbar-wortstellung
+    instruction:
+      en: "Two lines from an online form. Put angeben and auswählen into the Sie-imperative — each of them has a second half that waits at the end of its line."
+      ru: "Две строки из онлайн-формуляра. Поставьте angeben и auswählen в повелительную форму на Sie — у каждого есть вторая половина, ждущая в конце строки."
+      uk: "Два рядки з онлайн-формуляра. Поставте angeben і auswählen у наказову форму на Sie — у кожного є друга половина, що чекає в кінці рядка."
+      de: "Zwei Zeilen aus einem Online-Formular. Setz angeben und auswählen in den Sie-Imperativ — beide haben eine zweite Hälfte, die am Zeilenende wartet."
+    text: "Bitte {{geben}} Sie Ihre Ausweisnummer {{an}}. {{Wählen}} Sie danach Ihre Stadt {{aus}}."
+    translation:
+      en: "Please enter your library card number. Then select your city."
+      ru: "Пожалуйста, укажите номер читательского билета. Затем выберите свой город."
+      uk: "Будь ласка, укажіть номер читацького квитка. Потім виберіть своє місто."
+    explain:
+      en: "The prefix is not decoration, it is half the word: geben means hand over, geben … an means state on a form. In a main clause the two halves stand apart and the prefix goes last, behind everything the line says. Drop it and the form asks you to hand your card number to somebody."
+      ru: "Приставка — не украшение, а половина слова: geben значит «передать в руки», geben … an — «указать в формуляре». В главном предложении половинки стоят порознь, и приставка уходит в самый конец, за всё, что строка успела сказать. Потеряйте её — и формуляр попросит отдать кому-то номер билета."
+      uk: "Префікс — не оздоба, а половина слова: geben означає «передати до рук», geben … an — «зазначити у формулярі». У головному реченні половинки стоять окремо, і префікс іде в самий кінець, за все, що рядок устиг сказати. Загубіть його — і формуляр попросить віддати комусь номер квитка."
+      de: "Der Präfix ist keine Zierde, sondern die halbe Bedeutung: geben heißt in die Hand geben, geben … an heißt im Formular nennen. Im Hauptsatz stehen die beiden Teile getrennt, und der Präfix geht ganz ans Ende, hinter alles, was die Zeile sagt. Ohne ihn bittet das Formular darum, die Nummer herzugeben."
+
+  - id: match-formular-zeilen
+    outcomes: [anleitung-verstehen]
+    type: match
+    instruction:
+      en: "What does the form want from you in each line?"
+      ru: "Чего формуляр хочет от вас в каждой строке?"
+      uk: "Чого формуляр хоче від вас у кожному рядку?"
+      de: "Was will das Formular in jeder Zeile von dir?"
+    pairs:
+      - left: "etwas selbst schreiben"
+        right: "Bitte geben Sie Ihre Ausweisnummer an."
+      - left: "eines aus einer Liste nehmen"
+        right: "Wählen Sie Ihr Geburtsjahr aus."
+      - left: "ein kleines Kästchen drücken"
+        right: "Klicken Sie das Feld links unten an."
+      - left: "dieses Feld ist Pflicht"
+        right: "Felder mit einem Stern sind Pflichtfelder."
+      - left: "hier stimmt etwas nicht"
+        right: "Das Feld darf nicht leer sein."
+    explain:
+      en: "A form asks in three verbs, and telling them apart is most of the work: angeben means type it in yourself, auswählen means take one from a list that already exists, anklicken means press a box. The label above a field never says which of the three — only the instruction line beside the form does, which is why it is worth reading."
+      ru: "Формуляр спрашивает тремя глаголами, и различить их — почти вся работа: angeben — впишите сами, auswählen — возьмите из готового списка, anklicken — нажмите на квадратик. Подпись над полем никогда не говорит, что именно из трёх; это говорит только строка с указанием рядом с формой, и потому её стоит читать."
+      uk: "Формуляр питає трьома дієсловами, і розрізнити їх — майже вся робота: angeben — впишіть самі, auswählen — візьміть із готового списку, anklicken — натисніть на квадратик. Підпис над полем ніколи не каже, що саме з трьох; це каже лише рядок із вказівкою поряд із формою, і тому його варто читати."
+      de: "Ein Formular fragt in drei Verben, und sie auseinanderzuhalten ist der größte Teil der Arbeit: angeben heißt selbst schreiben, auswählen heißt eines aus einer fertigen Liste nehmen, anklicken heißt ein Kästchen drücken. Die Beschriftung über dem Feld sagt nie, welches davon gemeint ist — das tut nur die Anweisungszeile daneben."
+
+  - id: cloze-problem-perfekt
+    outcomes: [technikproblem-schildern]
+    type: cloze
+    focus: haben-sein
+    instruction:
+      en: "The first two sentences of a fault report. Fill in the auxiliary — both participles are already there, and each verb chooses its own."
+      ru: "Первые две фразы сообщения о поломке. Впишите вспомогательный глагол — причастия уже стоят, и каждый глагол выбирает своё."
+      uk: "Перші дві фрази повідомлення про поломку. Впишіть допоміжне дієслово — дієприкметники вже стоять, і кожне дієслово вибирає своє."
+      de: "Die ersten zwei Sätze einer Problemmeldung. Ergänze das Hilfsverb — die Partizipien stehen schon da, und jedes Verb wählt seines selbst."
+    text: "Ich {{bin}} der Anleitung Schritt für Schritt gefolgt. Danach {{ist}} der Bildschirm schwarz geblieben."
+    translation:
+      en: "I followed the instructions step by step. After that the screen stayed black."
+      ru: "Я шаг за шагом следовал инструкции. После этого экран остался чёрным."
+      uk: "Я крок за кроком дотримувався інструкції. Після цього екран лишився чорним."
+    explain:
+      en: "Both verbs take sein, and neither of them looks like it. folgen is a movement from one point to the next, exactly like gehen and fahren — and what you follow stays in the dative: der Anleitung. bleiben is on the short sein-list with sein and passieren. The source languages build every perfect the same way, so the hand reaches for habe."
+      ru: "Оба глагола берут sein, и по виду этого не скажешь. folgen — движение от одной точки к следующей, как gehen и fahren, а то, чему следуют, остаётся в дативе: der Anleitung. bleiben стоит в коротком списке при sein и passieren. В русском вспомогательный глагол не выбирают вовсе, поэтому рука тянется к habe."
+      uk: "Обидва дієслова беруть sein, і на вигляд цього не скажеш. folgen — рух від однієї точки до наступної, як gehen і fahren, а те, чого дотримуються, лишається в давальному: der Anleitung. bleiben стоїть у короткому списку поряд із sein і passieren. В українській допоміжного дієслова не вибирають узагалі, тому рука тягнеться до habe."
+      de: "Beide Verben nehmen sein, und beiden sieht man es nicht an. folgen ist eine Bewegung von einem Punkt zum nächsten, genau wie gehen und fahren — und das, dem man folgt, steht im Dativ: der Anleitung. bleiben gehört zur kurzen sein-Liste neben sein und passieren. Die Ausgangssprachen bilden jedes Perfekt gleich, also greift die Hand zu habe."
+
+  - id: mc-sodass-stellung
+    outcomes: [technikproblem-schildern]
+    type: mc
+    focus: sodass-folge
+    prompt: "Der Zugang funktioniert seit gestern nicht mehr, ___"
+    options:
+      - "sodass ich kein Buch mehr laden kann."
+      - "sodass kann ich kein Buch mehr laden."
+      - "sodass ich kann kein Buch mehr laden."
+    correct: 0
+    translation:
+      en: "The access has not been working since yesterday, so I cannot load any book any more."
+      ru: "Со вчерашнего дня доступ не работает, так что книгу я загрузить больше не могу."
+      uk: "Від учора доступ не працює, так що книжку я завантажити більше не можу."
+    explain:
+      en: "sodass is a conjunction like weil: subject straight after it, finite verb at the very end — kann closes the clause. sodass kann ich … gives it the grammar of deshalb, an adverb that pulls the verb behind itself. sodass ich kann … keeps main-clause order, which is what the source languages do after their own 'so'."
+      ru: "sodass — союз, как weil: сразу за ним подлежащее, спрягаемый глагол в самом конце, и придаточное закрывает kann. Вариант sodass kann ich … даёт ему грамматику deshalb — наречия, которое тянет глагол за собой. Вариант sodass ich kann … сохраняет порядок главного предложения: именно так ведёт себя русское «так что»."
+      uk: "sodass — сполучник, як weil: одразу за ним підмет, відмінюване дієслово в самому кінці, і підрядне закриває kann. Варіант sodass kann ich … дає йому граматику deshalb — прислівника, що тягне дієслово за собою. Варіант sodass ich kann … зберігає порядок головного речення: саме так поводиться українське «так що»."
+      de: "sodass ist eine Konjunktion wie weil: direkt danach das Subjekt, das finite Verb ganz am Ende — kann schließt den Satz. sodass kann ich … gibt ihm die Grammatik von deshalb, einem Adverb, das das Verb hinter sich zieht. sodass ich kann … behält die Hauptsatzstellung, die die Ausgangssprachen nach ihrem eigenen „so\" beibehalten."
+
+  - id: uebersetzen-sodass-bildschirm
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Attach the consequence with sodass. For 'operate' take bedienen."
+      ru: "Присоедините следствие союзом sodass. Для «управлять» возьмите bedienen."
+      uk: "Приєднайте наслідок сполучником sodass. Для «керувати» візьміть bedienen."
+      de: "Häng die Folge mit sodass an. Für das Bedienen nimm bedienen."
+    prompt_en: "The screen stays black, so I cannot operate the app any more."
+    prompt_ru: "Экран остаётся чёрным, так что приложением я больше управлять не могу."
+    prompt_uk: "Екран лишається чорним, так що застосунком я більше керувати не можу."
+    answer: "Der Bildschirm bleibt schwarz, sodass ich die App nicht mehr bedienen kann."
+    accept:
+      # The older spelling is the same conjunction and this course's orthography must not
+      # cost a correct answer.
+      - "Der Bildschirm bleibt schwarz, so dass ich die App nicht mehr bedienen kann."
+    key_tokens: ["sodass", "kann"]
+    explain:
+      en: "Graded are the two ends of the consequence clause: sodass opening it and kann at its wall, with the verb chain bedienen kann whole and the finite verb last. This is the sentence that makes a fault report useful — it says not what is broken but what you can no longer do, and that is what decides how urgent the request is."
+      ru: "Оцениваются два конца придаточного следствия: sodass, который его открывает, и kann у самой стены — глагольная цепочка bedienen kann остаётся целой, спрягаемый глагол последним. Именно эта фраза делает сообщение о поломке полезным: она говорит не что сломалось, а чего вы теперь не можете, — и от этого зависит срочность."
+      uk: "Оцінюються два кінці підрядного наслідку: sodass, що його відкриває, і kann біля самої стіни — дієслівний ланцюжок bedienen kann лишається цілим, відмінюване дієслово останнім. Саме ця фраза робить повідомлення про поломку корисним: вона каже не що зламалося, а чого ви тепер не можете, — і від цього залежить терміновість."
+      de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und kann an seiner Wand — die Verbkette bedienen kann bleibt zusammen, das finite Verb zuletzt. Dieser Satz macht eine Problemmeldung brauchbar: Er sagt nicht, was kaputt ist, sondern was man nicht mehr tun kann, und daran hängt die Dringlichkeit."
+
+  - id: mc-indirekte-frage
+    outcomes: [technikproblem-schildern]
+    type: mc
+    focus: indirekte-frage
+    prompt: "Sie schreiben an die Hilfe der Bibliothek. Welche Frage ist richtig gebaut?"
+    options:
+      - "Können Sie mir sagen, ob ich die App noch einmal installieren muss?"
+      - "Können Sie mir sagen, ob muss ich die App noch einmal installieren?"
+      - "Können Sie mir sagen, ob ich muss die App noch einmal installieren?"
+    correct: 0
+    translation:
+      en: "Can you tell me whether I have to install the app again?"
+      ru: "Можете сказать, нужно ли мне устанавливать приложение заново?"
+      uk: "Чи можете сказати, чи потрібно мені встановлювати застосунок наново?"
+    explain:
+      en: "Wrapping a question inside Können Sie mir sagen … turns it into a Nebensatz, and a Nebensatz has its finite verb last: muss closes the clause. ob muss ich keeps the direct question's inversion; ob ich muss installieren keeps main-clause order. One polite question, asked once, is worth more to a help desk than three impatient ones."
+      ru: "Вопрос, вложенный в Können Sie mir sagen …, становится придаточным, а в придаточном спрягаемый глагол стоит последним: предложение закрывает muss. Вариант ob muss ich сохраняет инверсию прямого вопроса; вариант ob ich muss installieren — порядок главного предложения. Один вежливый вопрос, заданный один раз, полезнее трёх нетерпеливых."
+      uk: "Питання, вкладене в Können Sie mir sagen …, стає підрядним, а в підрядному відмінюване дієслово стоїть останнім: речення закриває muss. Варіант ob muss ich зберігає інверсію прямого питання; варіант ob ich muss installieren — порядок головного речення. Одне ввічливе питання, поставлене один раз, корисніше за три нетерплячі."
+      de: "Eine Frage, die in Können Sie mir sagen … eingepackt wird, ist ein Nebensatz, und im Nebensatz steht das finite Verb zuletzt: muss schließt ihn. ob muss ich behält die Inversion der direkten Frage, ob ich muss installieren die Hauptsatzstellung. Eine höfliche Frage, einmal gestellt, nützt dem Support mehr als drei ungeduldige."
+
+  - id: uebersetzen-hoeflich-bitte
+    outcomes: [technikproblem-schildern]
+    type: translate
+    focus: hoeflich-konjunktiv
+    instruction:
+      en: "You are writing to the library's help desk and have never met the person who will read it. Say it politely. For 'the message on the screen' take die Meldung."
+      ru: "Вы пишете в справочную библиотеки и никогда не видели того, кто это прочтёт. Сформулируйте вежливо. Для «сообщение на экране» возьмите die Meldung."
+      uk: "Ви пишете до довідкової бібліотеки й ніколи не бачили того, хто це прочитає. Сформулюйте ввічливо. Для «повідомлення на екрані» візьміть die Meldung."
+      de: "Du schreibst an die Bibliothekshilfe und hast die Person, die es liest, nie getroffen. Formulier es höflich. Für die Anzeige auf dem Bildschirm nimm die Meldung."
+    prompt_en: "Could you please explain the message to me?"
+    prompt_ru: "Не могли бы вы, пожалуйста, объяснить мне это сообщение?"
+    prompt_uk: "Чи не могли б ви, будь ласка, пояснити мені це повідомлення?"
+    answer: "Könnten Sie mir bitte die Meldung erklären?"
+    accept:
+      # The RU/UK prompts point at one message on the screen, the EN prompt at the message
+      # already under discussion; both determiners render the same request. The polite
+      # form carries the request on its own, so bitte is optional in every one of them —
+      # and where it stands is not graded either: after mir and after the object are both
+      # native positions, and the tag pins Könnten alone.
+      - "Könnten Sie mir bitte diese Meldung erklären?"
+      - "Könnten Sie mir die Meldung erklären?"
+      - "Könnten Sie mir diese Meldung erklären?"
+      - "Könnten Sie mir die Meldung bitte erklären?"
+      - "Könnten Sie mir diese Meldung bitte erklären?"
+    key_tokens: ["Könnten"]
+    explain:
+      en: "Graded is Könnten alone — the umlaut plus the Konjunktiv -e is the whole polite form, and the request the chapter needs. Können Sie is not wrong, but it asks whether you are able to; Könnten Sie asks whether you would. Which message is meant is carrier material here, so die and diese are both accepted."
+      ru: "Оценивается одно Könnten: умлаут плюс конъюнктивное -e и есть вся вежливая форма — та просьба, которая нужна этой главе. Können Sie не ошибка, но спрашивает, способны ли вы; Könnten Sie спрашивает, согласны ли. Какое именно сообщение имеется в виду, здесь неважно, поэтому принимаются и die, и diese."
+      uk: "Оцінюється одне Könnten: умлаут плюс кон'юнктивне -e і є вся ввічлива форма — те прохання, якого потребує цей розділ. Können Sie не помилка, але питає, чи здатні ви; Könnten Sie питає, чи згодні. Яке саме повідомлення мається на увазі, тут не важить, тому приймаються і die, і diese."
+      de: "Bewertet wird allein Könnten — Umlaut plus Konjunktiv-e ergeben die höfliche Form, um die es hier geht. Können Sie ist nicht falsch, fragt aber nach der Fähigkeit; Könnten Sie fragt nach der Bereitschaft. Welche Meldung gemeint ist, ist hier Trägermaterial, also gelten die und diese gleichermaßen."
+
+  - id: uebersetzen-um-zu-medien
+    outcomes: [mediennutzung-berichten]
+    type: translate
+    focus: um-zu-zweck
+    instruction:
+      en: "Name the purpose with um … zu. For 'speak' take sprechen, for 'above all' vor allem."
+      ru: "Назовите цель через um … zu. Для «разговаривать» возьмите sprechen, для «прежде всего» — vor allem."
+      uk: "Назвіть мету через um … zu. Для «розмовляти» візьміть sprechen, для «передусім» — vor allem."
+      de: "Nenn den Zweck mit um … zu. Für das Sprechen nimm sprechen, für die Gewichtung vor allem."
+    prompt_en: "I use my phone above all to speak with my family."
+    prompt_ru: "Телефоном я пользуюсь прежде всего, чтобы разговаривать с семьёй."
+    prompt_uk: "Телефоном я користуюся передусім, щоб розмовляти з родиною."
+    answer: "Ich nutze das Handy vor allem, um mit meiner Familie zu sprechen."
+    accept:
+      # A phone in the hand really is benutzen, and the RU/UK prompts leave the determiner
+      # free; the purpose frame is unchanged in all renderings. The RU/UK prompts also
+      # front the phone («Телефоном я пользуюсь …»), so the object-first order is an
+      # equally faithful rendering — the probes in this unit accept fronting for the same
+      # reason, and the graded um … zu frame does not move with it.
+      - "Ich benutze das Handy vor allem, um mit meiner Familie zu sprechen."
+      - "Ich nutze mein Handy vor allem, um mit meiner Familie zu sprechen."
+      - "Ich benutze mein Handy vor allem, um mit meiner Familie zu sprechen."
+      - "Das Handy nutze ich vor allem, um mit meiner Familie zu sprechen."
+      - "Das Handy benutze ich vor allem, um mit meiner Familie zu sprechen."
+      - "Mein Handy nutze ich vor allem, um mit meiner Familie zu sprechen."
+      - "Mein Handy benutze ich vor allem, um mit meiner Familie zu sprechen."
+    key_tokens: ["um", "zu", "sprechen"]
+    explain:
+      en: "Graded is the frame: um at the front, zu in front of the infinitive, sprechen at the end. It has two ends and both are needed — um alone leaves the clause unfinished, and für plus a bare infinitive is no German construction. Saying what a device is for is what turns a number of hours into a report."
+      ru: "Оценивается рамка: um впереди, zu перед инфинитивом, sprechen в конце. У неё два конца, и нужны оба: одно um оставляет придаточное недостроенным, а für с голым инфинитивом — вовсе не немецкая конструкция. Именно ответ «зачем» превращает число часов в рассказ."
+      uk: "Оцінюється рамка: um попереду, zu перед інфінітивом, sprechen у кінці. У неї два кінці, і потрібні обидва: саме um лишає підрядне недобудованим, а für з голим інфінітивом — узагалі не німецька конструкція. Саме відповідь «навіщо» перетворює число годин на розповідь."
+      de: "Bewertet wird der Rahmen: um vorn, zu vor dem Infinitiv, sprechen am Ende. Er hat zwei Enden und braucht beide — ein bloßes um lässt den Satz unfertig, und für plus blanker Infinitiv ist keine deutsche Fügung. Erst das Wozu macht aus einer Stundenzahl einen Bericht."
+
+  - id: mc-zahl-einordnen
+    outcomes: [mediennutzung-berichten]
+    type: mc
+    prompt: "Jemand fragt: Wie viel Zeit verbringst du am Handy? Welche Antwort ordnet die Zahl ein?"
+    options:
+      - "Ungefähr zwei Stunden am Tag. Früher war es weniger, und eigentlich ist mir das zu viel."
+      - "Zwei Stunden."
+      - "Ich schaue abends Serien."
+    correct: 0
+    translation:
+      en: "Somebody asks: how much time do you spend on your phone? Which answer places the number?"
+      ru: "Вас спрашивают: сколько времени ты проводишь с телефоном? Какой ответ помещает число в контекст?"
+      uk: "Вас питають: скільки часу ти проводиш із телефоном? Яка відповідь поміщає число в контекст?"
+    explain:
+      en: "A number on its own answers nothing, because the listener cannot tell whether it is a lot. Three cheap moves place it: compare with before (Früher …, heute …), judge it (Das ist mir zu viel), and qualify it honestly (Allerdings brauche ich das Handy für die Arbeit). One sentence each, and the report is done."
+      ru: "Одно число не отвечает ни на что: собеседник не знает, много это или мало. Помещают его три дешёвых хода: сравнение с прошлым (Früher …, heute …), оценка (Das ist mir zu viel) и честная оговорка (Allerdings brauche ich das Handy für die Arbeit). По одному предложению на ход — и рассказ готов."
+      uk: "Одне число не відповідає ні на що: співрозмовник не знає, багато це чи мало. Поміщають його три дешеві ходи: порівняння з минулим (Früher …, heute …), оцінка (Das ist mir zu viel) і чесне застереження (Allerdings brauche ich das Handy für die Arbeit). По одному реченню на хід — і розповідь готова."
+      de: "Eine Zahl allein beantwortet nichts, denn niemand hört ihr an, ob sie viel ist. Drei billige Züge ordnen sie ein: der Vergleich mit früher (Früher …, heute …), die Bewertung (Das ist mir zu viel) und die ehrliche Einschränkung (Allerdings brauche ich das Handy für die Arbeit). Je ein Satz, und der Bericht steht."
+
+  - id: uebersetzen-frueher-heute
+    outcomes: [mediennutzung-berichten]
+    type: translate
+    focus: verbzweit
+    instruction:
+      en: "Two halves, one comparison — and each half opens with its time word. For 'the paper' take Zeitung, for 'in the evening' abends."
+      ru: "Две половины, одно сравнение — и каждая половина открывается своим словом времени. Для «газета» возьмите Zeitung, для «по вечерам» — abends."
+      uk: "Дві половини, одне порівняння — і кожна половина відкривається своїм словом часу. Для «газета» візьміть Zeitung, для «увечері» — abends."
+      de: "Zwei Hälften, ein Vergleich — und jede Hälfte beginnt mit ihrem Zeitwort. Für die Zeitung nimm Zeitung, für die Tageszeit abends."
+    prompt_en: "I used to read the paper in the evening, today I read digitally."
+    prompt_ru: "Раньше я читал по вечерам газету, сегодня читаю в цифровом виде."
+    prompt_uk: "Раніше я читав увечері газету, сьогодні читаю в цифровому вигляді."
+    answer: "Früher habe ich abends Zeitung gelesen, heute lese ich digital."
+    accept:
+      # Reading the paper takes the article as readily as it goes without it, and German
+      # joins the two halves with a full stop as readily as with a comma. The graded rule
+      # is identical in all four, so rejecting one would fail correct German over a
+      # punctuation choice no prompt fixes — hence heute is pinned in both cases.
+      - "Früher habe ich abends die Zeitung gelesen, heute lese ich digital."
+      - "Früher habe ich abends Zeitung gelesen. Heute lese ich digital."
+      - "Früher habe ich abends die Zeitung gelesen. Heute lese ich digital."
+    key_tokens: ["Früher", "habe", "heute", "Heute", "lese"]
+    explain:
+      en: "Graded are both time words and both finite verbs, because that is the rule: whatever fills position 1, the conjugated verb comes second and the subject moves behind it — habe ich, lese ich. Früher ich habe is the order the source languages keep. The pair Früher …, heute … is the cheapest way to place a habit instead of listing it."
+      ru: "Оцениваются оба слова времени и оба спрягаемых глагола — в этом и правило: что бы ни стояло на первой позиции, спрягаемый глагол идёт вторым, а подлежащее уходит за него: habe ich, lese ich. Früher ich habe — это русский порядок слов. Пара Früher …, heute … — самый дешёвый способ поместить привычку во времени, а не просто её назвать."
+      uk: "Оцінюються обидва слова часу й обидва відмінювані дієслова — у цьому й правило: що б не стояло на першій позиції, відмінюване дієслово йде другим, а підмет відходить за нього: habe ich, lese ich. Früher ich habe — це український порядок слів. Пара Früher …, heute … — найдешевший спосіб помістити звичку в часі, а не просто її назвати."
+      de: "Bewertet werden beide Zeitwörter und beide finiten Verben, denn genau darum geht es: Was auch immer Position 1 füllt, das konjugierte Verb steht an zweiter Stelle und das Subjekt dahinter — habe ich, lese ich. Früher ich habe ist die Stellung der Ausgangssprachen. Das Paar Früher …, heute … ordnet eine Gewohnheit ein, statt sie nur zu nennen."

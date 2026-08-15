@@ -3,8 +3,27 @@
 # last error. Every item drills one of the tag's three faces: wo(r)- asks, da(r)- refers,
 # and a person takes preposition + pronoun instead of either. Contexts are fresh (bus,
 # photo, bicycle, party, neighbour), never re-skins of the topic's own items.
+#
+# Second wave (2026-08-11 audit, post-triage), appended below rather than shipped as a second
+# file: 11 attributed errors of 49 attempts, 11 of them recent, and recovery **no** — the tag
+# has not settled since the first wave, so what it needs is more never-seen items on the same
+# confusion, and since the serving loop's band fix a never-seen same-focus item now preempts a
+# fossilizing failed one. Kept in this file because a topic page renders every set it lists,
+# and two sets called "Drill — da-words, wo-words, and people" would be one drill wearing two
+# titles. The seven new items are production-heavy — four translate, two cloze, a dictation,
+# and no mc — because 4 of the first wave's 11 items are mc and `translate` is the mode the log
+# says is weak. Three of the A2 deck's chunks that the first wave never used carry three of
+# them (träumen von, sich erinnern an, arbeiten mit); the rest reuse a chunk in a face it did
+# not have — sich freuen auf as a wo-question rather than a da-reference, sich interessieren
+# für the same way, warten auf as production rather than an mc, sprechen über with the person
+# and the thing side by side in one item. Contexts are grepped against both this file and the
+# topic's own practice: Ferien, Urlaub, Kollegin, Musik, Rechnung, Vertrag, Chef, Chefin,
+# Schwester.
 topic: verben-mit-praepositionen
 role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — da-, wo-Wörter und Personen"
 title:
   en: "Drill — da-words, wo-words, and people"
   ru: "Тренажёр — da-слова, wo-слова и люди"
@@ -218,3 +237,146 @@ items:
       en: "A neighbour is a person, so no da-word: the preposition stays and takes a pronoun — mit ihm. damit would turn him into a tool. sprechen mit governs the dative, hence ihm."
       ru: "Сосед — человек, поэтому никакого da-слова: предлог остаётся и берёт местоимение — mit ihm. damit превратило бы его в инструмент. sprechen mit управляет дательным, отсюда ihm."
       uk: "Сусід — людина, тому жодного da-слова: прийменник залишається і бере займенник — mit ihm. damit перетворило б його на інструмент. sprechen mit керує давальним, звідси ihm."
+
+  # --- second wave, 2026-08-11 ---
+  - id: uebersetzen-worauf-ferien
+    outcomes: [wo-wort-fragen]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate. Ask with a wo-word."
+      ru: "Переведите. Задайте вопрос с wo-словом."
+      uk: "Перекладіть. Поставте питання з wo-словом."
+    prompt_en: "What are you looking forward to? — To the holidays."
+    prompt_ru: "Чего ты ждёшь с нетерпением? — Каникул."
+    prompt_uk: "На що ти чекаєш із нетерпінням? — На канікули."
+    answer: "Worauf freust du dich? — Auf die Ferien."
+    # English "you" fixes no person — the same reasoning as translate-worauf.
+    accept:
+      - "Worauf freuen Sie sich? — Auf die Ferien."
+      - "Worauf freut ihr euch? — Auf die Ferien."
+    key_tokens: ["Worauf"]
+    explain:
+      en: "sich freuen selects auf, and a question about a thing fuses wo + r + auf into one word: worauf. The reply keeps the plain preposition and the article — auf die Ferien — because there is nothing to point back at yet. Note that English splits the question into two words at opposite ends of the sentence; German never strands the preposition."
+      ru: "sich freuen требует auf, а вопрос о предмете сплавляет wo + r + auf в одно слово: worauf. В ответе предлог остаётся сам по себе, вместе с артиклем — auf die Ferien, — потому что отсылать пока не к чему. По-русски вопрос строится падежом («чего»), и предлога в нём нет вовсе; по-немецки предлог обязателен и приклеивается к wo."
+      uk: "sich freuen вимагає auf, а питання про предмет сплавляє wo + r + auf в одне слово: worauf. У відповіді прийменник залишається сам по собі, разом з артиклем — auf die Ferien, — бо посилатися поки нема на що. Українське «на що» ставить прийменник окремо; німецька приклеює його до wo."
+
+  - id: uebersetzen-davon-urlaub
+    outcomes: [da-wort-sache]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate. Refer back with a da-word."
+      ru: "Переведите. Сошлитесь с помощью da-слова."
+      uk: "Перекладіть. Пошліться за допомогою da-слова."
+    prompt_en: "Are you dreaming of the holiday? — Yes, I dream of it every day."
+    prompt_ru: "Ты мечтаешь об отпуске? — Да, я мечтаю о нём каждый день."
+    prompt_uk: "Ти мрієш про відпустку? — Так, я мрію про неї щодня."
+    answer: "Träumst du vom Urlaub? — Ja, ich träume jeden Tag davon."
+    accept:
+      - "Träumen Sie vom Urlaub? — Ja, ich träume jeden Tag davon."
+      - "Träumt ihr vom Urlaub? — Ja, ich träume jeden Tag davon."
+      - "Träumst du vom Urlaub? — Ja, ich träume davon jeden Tag."
+    key_tokens: ["davon"]
+    explain:
+      en: "träumen selects von, and the holiday is a thing, so the reference is a da-word: da + von = davon, with no linking r because von begins with a consonant. von ihm would make the holiday a person. The question half shows the preposition doing its ordinary work, contracted with the article: von dem Urlaub is vom Urlaub."
+      ru: "träumen требует von, а отпуск — предмет, поэтому отсылка идёт da-словом: da + von = davon, и соединительное r не нужно, потому что von начинается с согласного. Вариант von ihm сделал бы отпуск человеком — по-русски «о нём» звучит совершенно естественно, и в этом вся ловушка. В первой половине предлог работает обычным образом и сливается с артиклем: von dem Urlaub — это vom Urlaub."
+      uk: "träumen вимагає von, а відпустка — предмет, тому відсилання йде da-словом: da + von = davon, і сполучне r не потрібне, бо von починається з приголосного. Варіант von ihm зробив би відпустку людиною — а українське «про неї» підказує ще й неправильний рід, бо der Urlaub чоловічого роду: пастка тут подвійна. У першій половині прийменник працює звичайно і зливається з артиклем: von dem Urlaub — це vom Urlaub."
+
+  - id: uebersetzen-an-sie-kollegin
+    outcomes: [person-sache-unterscheiden]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "Do you remember my colleague? — Yes, I remember her well."
+    prompt_ru: "Ты помнишь мою коллегу? — Да, я хорошо её помню."
+    prompt_uk: "Ти пам'ятаєш мою колегу? — Так, я добре її пам'ятаю."
+    answer: "Erinnerst du dich an meine Kollegin? — Ja, ich erinnere mich gut an sie."
+    accept:
+      - "Erinnern Sie sich an meine Kollegin? — Ja, ich erinnere mich gut an sie."
+      - "Erinnert ihr euch an meine Kollegin? — Ja, ich erinnere mich gut an sie."
+    # Only the pronoun is pinned: `an` occurs twice in the rendering — once as the verb's
+    # governed preposition in the question, once in the answer — and a token pinned twice is
+    # graded twice, so the question half would be scored as this decision too.
+    key_tokens: ["sie"]
+    explain:
+      en: "sich erinnern selects an, and the second half is the test this drill keeps returning to: a colleague is a person, so no da-word is available. The preposition stays and takes a pronoun — an sie — while daran would be the form for a thing. English writes 'remember her' either way and marks nothing, so the decision has to be made in German alone."
+      ru: "sich erinnern требует an, а вторая половина — та самая проверка, к которой этот тренажёр возвращается: коллега — человек, поэтому da-слово недоступно. Предлог остаётся и берёт местоимение — an sie, — тогда как daran было бы формой для предмета. По-русски «её помню» устроено одинаково и для человека, и для вещи, поэтому решение приходится принимать уже по-немецки."
+      uk: "sich erinnern вимагає an, а друга половина — та сама перевірка, до якої цей тренажер повертається: колега — людина, тому da-слово недоступне. Прийменник залишається і бере займенник — an sie, — тоді як daran було б формою для предмета. Українською «її пам'ятаю» влаштовано однаково і для людини, і для речі, тому рішення доводиться ухвалювати вже німецькою."
+
+  - id: uebersetzen-wofuer-musik
+    outcomes: [wo-wort-fragen]
+    type: translate
+    focus: da-wo-woerter
+    instruction:
+      en: "Translate. Ask with a wo-word."
+      ru: "Переведите. Задайте вопрос с wo-словом."
+      uk: "Перекладіть. Поставте питання з wo-словом."
+    prompt_en: "What is your sister interested in? — In music."
+    prompt_ru: "Чем интересуется твоя сестра? — Музыкой."
+    prompt_uk: "Чим цікавиться твоя сестра? — Музикою."
+    answer: "Wofür interessiert sich deine Schwester? — Für Musik."
+    accept:
+      - "Wofür interessiert sich Ihre Schwester? — Für Musik."
+    key_tokens: ["Wofür"]
+    explain:
+      en: "sich interessieren selects für, so the question word is built from für and not from the English 'in': wo + für = wofür, with no linking r before a consonant. The reply drops the article, because Musik as a field of interest takes none — für Musik, not für die Musik."
+      ru: "sich interessieren требует für, поэтому вопросительное слово строится именно из für: wo + für = wofür, соединительного r нет, так как für начинается с согласного. Русский творительный падеж («чем интересуется») предлога не даёт вовсе, и подсказать нужное слово может только сам глагол. В ответе артикля нет: Musik как область интересов идёт без него — für Musik, а не für die Musik."
+      uk: "sich interessieren вимагає für, тому питальне слово будується саме з für: wo + für = wofür, сполучного r немає, бо für починається з приголосного. Українське «чим цікавиться» прийменника не дає взагалі, і підказати потрібне слово може лише саме дієслово. У відповіді артикля немає: Musik як царина інтересів іде без нього — für Musik, а не für die Musik."
+
+  - id: cloze-darauf-rechnung
+    outcomes: [da-wort-sache]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "Refer back to the bill with one da-word."
+      ru: "Сошлитесь на счёт одним da-словом."
+      uk: "Пошліться на рахунок одним da-словом."
+    text: "Die Rechnung ist immer noch nicht da. Wir warten seit gestern {{darauf}}."
+    translation:
+      en: "The bill still has not arrived. We have been waiting for it since yesterday."
+      ru: "Счёт всё ещё не пришёл. Мы ждём его со вчерашнего дня."
+      uk: "Рахунок і досі не прийшов. Ми чекаємо на нього з учорашнього дня."
+    explain:
+      en: "warten selects auf, the bill has already been named, and auf begins with a vowel — three facts, one word: da + r + auf = darauf. auf sie would treat the bill as a person, and a bare sie would leave the verb without the preposition it governs."
+      ru: "warten требует auf, счёт уже назван, а auf начинается с гласного. Три факта — одно слово: da + r + auf = darauf. Вариант auf sie сделал бы счёт человеком, а просто sie оставило бы глагол без предлога, которым он управляет."
+      uk: "warten вимагає auf, рахунок уже названо, а auf починається з голосного. Три факти — одне слово: da + r + auf = darauf. Варіант auf sie зробив би рахунок людиною, а просто sie залишило б дієслово без прийменника, яким воно керує."
+
+  - id: cloze-ueber-ihn-darueber
+    outcomes: [person-sache-unterscheiden]
+    type: cloze
+    focus: da-wo-woerter
+    instruction:
+      en: "One person and one thing, one after the other. Fill in the reference each of them takes."
+      ru: "Сначала человек, потом предмет. Вставьте ту отсылку, которой требует каждый из них."
+      uk: "Спочатку людина, потім предмет. Вставте те відсилання, якого вимагає кожен із них."
+    text: "Das ist mein neuer Chef. Wir sprechen oft {{über ihn}}. Und der Vertrag? Wir sprechen morgen {{darüber}}."
+    translation:
+      en: "That is my new boss. We often talk about him. And the contract? We are talking about it tomorrow."
+      ru: "Это мой новый начальник. Мы часто о нём говорим. А договор? О нём мы поговорим завтра."
+      uk: "Це мій новий начальник. Ми часто про нього говоримо. А договір? Про нього ми поговоримо завтра."
+    explain:
+      en: "The same verb, the same preposition, two gaps and two different forms — because German sorts references by what is being referred to. A boss is a person: the preposition stays and takes a pronoun, über ihn. A contract is a thing: the reference fuses into a da-word, über becomes darüber with the linking r. English says 'about him' and 'about it' with the same shape, so nothing in the translation warns you that the second one has to be written as one word."
+      ru: "Один и тот же глагол, один и тот же предлог, два пропуска — и две разные формы, потому что немецкий сортирует отсылки по тому, на что ссылаются. Начальник — человек: предлог остаётся и берёт местоимение, über ihn. Договор — предмет: отсылка сплавляется в da-слово, über даёт darüber с соединительным r. По-русски «о нём» подходит и человеку, и договору, и именно это совпадение делает вторую половину ошибкой."
+      uk: "Одне й те саме дієслово, той самий прийменник, два пропуски — і дві різні форми, бо німецька сортує відсилання за тим, на що посилаються. Начальник — людина: прийменник залишається і бере займенник, über ihn. Договір — предмет: відсилання сплавляється в da-слово, über дає darüber зі сполучним r. Українською «про нього» підходить і людині, і договору, і саме цей збіг робить другу половину помилкою."
+
+  - id: diktat-mit-ihr-chefin
+    outcomes: [person-sache-unterscheiden]
+    type: listen
+    focus: da-wo-woerter
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
+    text: "Das ist meine Chefin. Ich arbeite gern mit ihr."
+    translation:
+      en: "That is my boss. I like working with her."
+      ru: "Это моя начальница. Мне нравится работать с ней."
+      uk: "Це моя начальниця. Мені подобається працювати з нею."
+    explain:
+      en: "Two words where a da-word would be one, and the ear has to keep them apart: mit ihr, not damit. arbeiten mit takes a da-word only for a tool or a programme — a person keeps the preposition and a dative pronoun. Listen for the second stress: da-mit lands on one word, mit ihr on two."
+      ru: "Два слова там, где da-слово было бы одним, и ухо должно их различить: mit ihr, а не damit. arbeiten mit берёт da-слово только для инструмента или программы — при человеке предлог остаётся, а местоимение стоит в Dativ. Слушайте ударение: da-mit звучит как одно слово, mit ihr — как два."
+      uk: "Два слова там, де da-слово було б одним, і вухо має їх розрізнити: mit ihr, а не damit. arbeiten mit бере da-слово лише для інструмента чи програми — при людині прийменник залишається, а займенник стоїть у Dativ. Слухайте наголос: da-mit звучить як одне слово, mit ihr — як два."

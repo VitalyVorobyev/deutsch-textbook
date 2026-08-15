@@ -15,7 +15,7 @@ title:
 arming:
   - a2/alltag-tagesablauf::cloze-um
   - a2/alltag-tagesablauf::mc-wochenende
-  - a2/alltag-tagesablauf::uebersetzen-abends-fernsehen
+  - a2/alltag-produktion::uebersetzen-abends-fernsehen
   - a2/alltag-tagesablauf::cloze-tagesablauf-zeiten
   - a2/alltag-produktion::cloze-nachricht-zeiten
   - a2/alltag-produktion::uebersetzen-wg-sommer
@@ -46,13 +46,17 @@ items:
       uk: "Прийменник обирається за типом часу, а не за змістом: am — із днем тижня (am Donnerstag), um — із точним часом (um sechs Uhr). Тут вони стоять в одному реченні, і саме тут їх найчастіше міняють місцями. Українська, до речі, теж їх розводить — «у четвер», але «о шостій» — тож нехай це нагадує: два типи часу, два різні слова."
 
   - id: variant-b
+    revision: 2
     outcomes: [alltag-zeitpraepositionen]
     type: translate
     focus: um-am-zeit
+    # Both sentences are habitual, so Abends … / Nachts … satisfies the old instruction
+    # with correct German — a double probe miss attributed to um-am-zeit. The instruction
+    # names the graded form (preposition, not adverb) without leaking which preposition.
     instruction:
-      en: Translate into German. Begin each sentence with the time expression.
-      ru: Переведите на немецкий. Начните каждое предложение с обстоятельства времени.
-      uk: Перекладіть німецькою. Почніть кожне речення з обставини часу.
+      en: "Translate into German. Begin each sentence with the time expression, written with a preposition — not as a one-word adverb."
+      ru: "Переведите на немецкий. Начните каждое предложение с обстоятельства времени, записанного с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою. Почніть кожне речення з обставини часу, записаної з прийменником, а не прислівником з одного слова."
     prompt_en: "In the evening I cook at seven o'clock. At night it is very quiet here."
     prompt_ru: "Вечером я готовлю в семь часов. Ночью здесь очень тихо."
     prompt_uk: "Увечері я готую о сьомій годині. Вночі тут дуже тихо."

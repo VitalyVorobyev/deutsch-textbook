@@ -1,5 +1,8 @@
 topic: man-und-besitz
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — man, jemand & wem etwas gehört"
 title:
   en: "Practice — man, jemand, niemand, and whose it is"
   ru: "Практика — man, jemand, niemand и чьё это"
@@ -172,14 +175,20 @@ items:
     prompt_ru: "Нужно записаться заранее."
     prompt_uk: "Треба записатися заздалегідь."
     answer: "Man muss sich vorher anmelden."
-    key_tokens: ["Man", "muss"]
+    # revision 2: «Нужно» / «Треба» underdetermine the modal (the batch-4 probe
+    # ruling); the soll rendering keeps man + the er-form agreement the item grades.
+    # Pin union over renderings. (Batch-5 audit, 2026-08-12.)
+    accept:
+      - "Man soll sich vorher anmelden."
+    key_tokens: ["Man", "muss", "soll"]
+    revision: 2
     explain:
       en: "Neither source sentence contains a subject you can copy: English you means people in general here rather than the listener, and the Russian has no subject at all. German needs one, and man is it. muss is graded alongside because man takes the er-form — Man müssen would be the same error as Er müssen."
       ru: "Ни одно исходное предложение не даёт подлежащего, которое можно было бы просто перенести: русское «нужно записаться» обходится без него вовсе, а английское you значит здесь «люди вообще», а не собеседника. Немецкому подлежащее необходимо, и им становится man. Заодно проверяется muss: при man глагол стоит в форме er, и Man müssen было бы той же ошибкой, что и Er müssen."
       uk: "Жодне вихідне речення не дає підмета, який можна було б просто перенести: українське «треба записатися» обходиться без нього зовсім, а англійське you значить тут «люди загалом», а не співрозмовника. Німецькій підмет необхідний, і ним стає man. Заразом перевіряється muss: при man дієслово стоїть у формі er, і Man müssen було б тією самою помилкою, що й Er müssen."
 
   - id: uebersetzen-von-dativ
-    revision: 2
+    revision: 3
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
@@ -191,8 +200,16 @@ items:
     prompt_ru: "Я еду на машине брата."
     prompt_uk: "Я їду машиною брата."
     answer: "Ich fahre mit dem Auto von meinem Bruder."
-    accept: ["Ich fahre das Auto von meinem Bruder."]
-    key_tokens: ["von"]
+    # revision 3: RU/UK «брата» carries no possessive, so the definite article is
+    # licensed beside meinem — the topic's own probe already ruled this for «книгу
+    # коллеги» (das Buch von der Kollegin). Both new renderings carry the graded
+    # construction as the contraction vom; pin union over renderings.
+    # (Batch-5 audit, 2026-08-12.)
+    accept:
+      - "Ich fahre das Auto von meinem Bruder."
+      - "Ich fahre mit dem Auto vom Bruder."
+      - "Ich fahre das Auto vom Bruder."
+    key_tokens: ["von", "vom"]
     explain:
       en: "This A2 item explicitly asks for the productive von + Dativ route: von meinem Bruder. A full genitive, mit dem Auto meines Bruders, is grammatical German but would bypass the construction this item measures."
       ru: "Это задание A2 прямо тренирует активную модель von + Dativ: von meinem Bruder. Полный Genitiv — mit dem Auto meines Bruders — грамматически правилен, но обходит конструкцию, которую здесь проверяют."

@@ -1,6 +1,9 @@
 topic: wohnen-umzug
 role: practice
+stage: transfer
+activity: application
 stimulus: a2/wohnen-wohnungsanzeige
+title_de: "Mission — Wohnen & Umzug"
 title:
   en: "Mission — decide whether the flat fits"
   ru: "Задача — решить, подходит ли квартира"
@@ -29,27 +32,31 @@ items:
       uk: "В оголошенні вказано теплу орендну плату 880 євро й балкон. Квартира на третьому поверсі, а тварин треба погодити."
 
   - id: dokument-wohnung-grundriss
-    revision: 3
+    revision: 4
     outcomes: [wohnung-beschreiben]
-    type: translate
-    instruction:
-      en: "Use the floor plan. Translate into German."
-      ru: "Используйте план. Переведите на немецкий."
-      uk: "Використайте план. Перекладіть німецькою."
-    prompt_en: "The living room is next to the bedroom. The kitchen is between the bathroom and the hall."
-    prompt_ru: "Гостиная находится рядом со спальней. Кухня находится между ванной и прихожей."
-    prompt_uk: "Вітальня розташована поруч зі спальнею. Кухня розташована між ванною та передпокоєм."
-    answer: "Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur."
-    accept:
-      - "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur."
-      - "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche ist zwischen dem Bad und dem Flur."
-      - "Das Wohnzimmer ist neben dem Schlafzimmer. Die Küche liegt zwischen dem Bad und dem Flur."
-      - "Neben dem Schlafzimmer ist das Wohnzimmer. Zwischen dem Bad und dem Flur ist die Küche."
-      - "Das Wohnzimmer ist neben dem Schlafzimmer, und die Küche ist zwischen dem Bad und dem Flur."
+    type: write
+    prompt:
+      en: "Use the floor plan. Describe where the living room and kitchen are so that someone who cannot see the plan can locate both."
+      ru: "Используйте план. Опишите расположение гостиной и кухни так, чтобы человек без плана мог найти обе комнаты."
+      uk: "Використайте план. Опишіть розташування вітальні й кухні так, щоб людина без плану могла знайти обидві кімнати."
+    goal:
+      en: "Express two static spatial relations from the document in your own connected description."
+      ru: "Самостоятельно выразите две статические пространственные связи из документа в связном описании."
+      uk: "Самостійно висловіть два статичні просторові зв'язки з документа у зв'язному описі."
+    requirements:
+      - {en: "Place the living room next to the bedroom.", ru: "Расположите гостиную рядом со спальней.", uk: "Розташуйте вітальню поруч зі спальнею."}
+      - {en: "Place the kitchen between the bathroom and the hall.", ru: "Расположите кухню между ванной и прихожей.", uk: "Розташуйте кухню між ванною та передпокоєм."}
+      - {en: "Use dative forms after neben and zwischen because both relations answer Wo?.", ru: "Используйте Dativ после neben и zwischen, потому что обе связи отвечают на Wo?.", uk: "Використайте Dativ після neben і zwischen, бо обидві зв'язки відповідають на Wo?."}
+    min_words: 12
+    model_answer: "Das Wohnzimmer liegt neben dem Schlafzimmer. Die Küche befindet sich zwischen dem Bad und dem Flur."
+    model_translation:
+      en: "The living room is next to the bedroom. The kitchen is between the bathroom and the hall."
+      ru: "Гостиная находится рядом со спальней. Кухня находится между ванной и прихожей."
+      uk: "Вітальня розташована поруч зі спальнею. Кухня розташована між ванною та передпокоєм."
     explain:
-      en: "The plan shows the living room beside the bedroom and the kitchen between the bathroom and the hall. Both phrases answer Wo?, so neben and zwischen take the dative: dem Schlafzimmer, dem Bad, dem Flur."
-      ru: "На плане гостиная находится рядом со спальней, а кухня — между ванной и прихожей. Обе группы отвечают на Wo?, поэтому neben и zwischen требуют Dativ: dem Schlafzimmer, dem Bad, dem Flur."
-      uk: "На плані вітальня розташована поруч зі спальнею, а кухня — між ванною та передпокоєм. Обидві групи відповідають на Wo?, тому neben і zwischen вимагають Dativ: dem Schlafzimmer, dem Bad, dem Flur."
+      en: "The document fixes the spatial facts but not one sentence. Check whether a reader can reconstruct both relations and whether the static Wo? phrases carry dative: dem Schlafzimmer, dem Bad, dem Flur."
+      ru: "Документ задаёт пространственные факты, но не одну готовую фразу. Проверьте, сможет ли читатель восстановить обе связи и стоит ли Dativ в статических группах Wo?: dem Schlafzimmer, dem Bad, dem Flur."
+      uk: "Документ задає просторові факти, але не одну готову фразу. Перевірте, чи зможе читач відновити обидві зв'язки й чи стоїть Dativ у статичних групах Wo?: dem Schlafzimmer, dem Bad, dem Flur."
 
   - id: dokument-wohnung-anfrage
     outcomes: [wohnungsanzeige-lesen, nachbarn-bitte]

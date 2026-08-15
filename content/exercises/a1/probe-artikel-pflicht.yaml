@@ -1,0 +1,42 @@
+topic: artikel-genus
+role: probe
+title: {en: "Probe — article or licensed zero", ru: "Проверка — нужен ли артикль", uk: "Перевірка — чи потрібен артикль"}
+arming:
+  - a1/artikel-genus::mc-frage
+  - a1/artikel-genus::order-auto
+  - a1/essen-einkaufen-service::uebersetzen-flasche
+items:
+  - id: variant-a
+    outcomes: [artikel-richtig-verwenden]
+    type: translate
+    focus: artikel-pflicht
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I have a bicycle."
+    prompt_ru: "У меня есть велосипед."
+    prompt_uk: "У мене є велосипед."
+    answer: "Ich habe ein Fahrrad."
+    key_tokens: ["ein", "Fahrrad"]
+    explain: {en: "A singular countable noun introduced for the first time needs a determiner: ein Fahrrad. The source languages may omit it; German does not.", ru: "Исчисляемому существительному в единственном числе при первом упоминании нужен определитель: ein Fahrrad. В русском его нет, в немецком он обязателен.", uk: "Злічуваному іменнику в однині при першій згадці потрібен визначник: ein Fahrrad. В українській його немає, у німецькій він обов'язковий."}
+  - id: variant-b
+    outcomes: [artikel-richtig-verwenden]
+    type: translate
+    focus: artikel-pflicht
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "She is a teacher."
+    prompt_ru: "Она учительница."
+    prompt_uk: "Вона вчителька."
+    answer: "Sie ist Lehrerin."
+    accept: ["Sie ist eine Lehrerin."]
+    key_tokens: ["Lehrerin"]
+    explain: {en: "A profession after sein normally stands without an article: Sie ist Lehrerin. eine Lehrerin is possible when classification is stressed, so it is accepted; the important point is that the zero is licensed here, unlike Ich habe Fahrrad.", ru: "Профессия после sein обычно стоит без артикля: Sie ist Lehrerin. Вариант eine Lehrerin возможен при подчёркнутой классификации и принят; важно, что нулевой артикль здесь разрешён, в отличие от Ich habe Fahrrad.", uk: "Професія після sein зазвичай стоїть без артикля: Sie ist Lehrerin. Варіант eine Lehrerin можливий за підкресленої класифікації й приймається; важливо, що нульовий артикль тут дозволений, на відміну від Ich habe Fahrrad."}
+  - id: variant-c
+    outcomes: [artikel-richtig-verwenden]
+    type: translate
+    focus: artikel-pflicht
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We are buying a lamp."
+    prompt_ru: "Мы покупаем лампу."
+    prompt_uk: "Ми купуємо лампу."
+    answer: "Wir kaufen eine Lampe."
+    key_tokens: ["eine", "Lampe"]
+    explain: {en: "A new singular countable object needs ein/eine: die Lampe → eine Lampe. The article cannot be dropped.", ru: "Новому исчисляемому объекту в единственном числе нужен ein/eine: die Lampe → eine Lampe. Артикль нельзя опустить.", uk: "Новому злічуваному об'єкту в однині потрібен ein/eine: die Lampe → eine Lampe. Артикль не можна пропустити."}

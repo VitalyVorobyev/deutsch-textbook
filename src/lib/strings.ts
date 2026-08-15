@@ -2,7 +2,7 @@
  * Chrome strings — the UI's own furniture (navigation, buttons, section
  * labels), as opposed to the content's explanation language.
  *
- * Two independent axes (docs/i18n-design.md), never conflated: `UiLang` picks
+ * Two independent axes (docs/adrs/0001-bilingual-explanation-halves.md), never conflated: `UiLang` picks
  * the chrome language per profile and defaults to 'de' — today's exact UI —
  * while `ExplainLang` (src/lib/prefs.ts) picks which half of a Bilingual
  * block is shown. Full immersion is simply uiLang 'de' over any explanation
@@ -34,6 +34,9 @@ export const STRINGS = {
   'nav.ueben': { de: 'Üben', en: 'Practice', ru: 'Практика', uk: 'Практика' },
   'nav.fortschritt': { de: 'Fortschritt', en: 'Progress', ru: 'Прогресс', uk: 'Прогрес' },
   'nav.ueber': { de: 'Über', en: 'About', ru: 'О курсе', uk: 'Про курс' },
+  // Fallback label for the <640px nav disclosure on pages outside the eight
+  // tabs (/install, /konto); the trigger otherwise shows the active tab.
+  'nav.menu': { de: 'Navigation', en: 'Navigation', ru: 'Навигация', uk: 'Навігація' },
 
   // Shared action buttons (exercise runners, session flow).
   'action.check': { de: 'Prüfen', en: 'Check', ru: 'Проверить', uk: 'Перевірити' },
@@ -247,12 +250,68 @@ export const STRINGS = {
   'progress.tabUebersicht': { de: 'Übersicht', en: 'Overview', ru: 'Обзор', uk: 'Огляд' },
   'progress.tabNachweise': { de: 'Nachweise', en: 'Evidence', ru: 'Показатели', uk: 'Показники' },
   'progress.tabDaten': { de: 'Daten', en: 'Data', ru: 'Данные', uk: 'Дані' },
+  'progress.datenLocal': { de: 'Dieses Gerät', en: 'This device', ru: 'Это устройство', uk: 'Цей пристрій' },
   'progress.viewsAria': {
     de: 'Fortschrittsansicht',
     en: 'Progress view',
     ru: 'Вид страницы прогресса',
     uk: 'Вигляд сторінки прогресу',
   },
+
+  // Konto island (AccountPanel / DeviceTokens / OwnerUsers).
+  // Buttons and labels only. The explanations beside them follow the learner's
+  // explanation language and live as pick() records in the components — the
+  // classification rule at the top of this file.
+  'account.title': { de: 'Konto', en: 'Account', ru: 'Аккаунт', uk: 'Обліковий запис' },
+  'account.signIn': { de: 'Anmelden', en: 'Sign in', ru: 'Войти', uk: 'Увійти' },
+  'account.signOut': { de: 'Abmelden', en: 'Sign out', ru: 'Выйти', uk: 'Вийти' },
+  'account.sync': {
+    de: 'Jetzt synchronisieren',
+    en: 'Sync now',
+    ru: 'Синхронизировать',
+    uk: 'Синхронізувати',
+  },
+  'account.connect': { de: 'Verbinden', en: 'Connect', ru: 'Связать', uk: "Пов'язати" },
+  'account.disconnect': { de: 'Trennen', en: 'Disconnect', ru: 'Отвязать', uk: "Від'єднати" },
+  'account.devices': { de: 'Geräte', en: 'Devices', ru: 'Устройства', uk: 'Пристрої' },
+  'account.newDevice': { de: 'Neues Gerät', en: 'New device', ru: 'Новое устройство', uk: 'Новий пристрій' },
+  'account.revoke': { de: 'Widerrufen', en: 'Revoke', ru: 'Отозвать', uk: 'Відкликати' },
+  'account.users': { de: 'Nutzer', en: 'Users', ru: 'Пользователи', uk: 'Користувачі' },
+  'account.approve': { de: 'Freigeben', en: 'Approve', ru: 'Одобрить', uk: 'Схвалити' },
+  'account.block': { de: 'Sperren', en: 'Block', ru: 'Заблокировать', uk: 'Заблокувати' },
+  'account.remove': { de: 'Entfernen', en: 'Remove', ru: 'Удалить', uk: 'Видалити' },
+  'account.deleteCloud': {
+    de: 'Cloud-Kopie löschen',
+    en: 'Delete cloud copy',
+    ru: 'Удалить копию в облаке',
+    uk: 'Видалити копію в хмарі',
+  },
+  'account.deleteAccount': { de: 'Konto löschen', en: 'Delete account', ru: 'Удалить аккаунт', uk: 'Видалити обліковий запис' },
+  'account.statusPending': {
+    de: 'Wartet auf Freigabe',
+    en: 'Waiting for approval',
+    ru: 'Ожидает одобрения',
+    uk: 'Очікує схвалення',
+  },
+  'account.statusApproved': { de: 'Aktiv', en: 'Active', ru: 'Активен', uk: 'Активний' },
+  'account.statusBlocked': { de: 'Gesperrt', en: 'Blocked', ru: 'Заблокирован', uk: 'Заблокований' },
+  'account.accountId': { de: 'Konto-ID', en: 'Account ID', ru: 'ID аккаунта', uk: 'ID облікового запису' },
+  'account.boundProfile': {
+    de: 'Verbundenes Profil',
+    en: 'Connected profile',
+    ru: 'Связанный профиль',
+    uk: "Пов'язаний профіль",
+  },
+  'account.lastSync': {
+    de: 'Zuletzt synchronisiert',
+    en: 'Last synced',
+    ru: 'Последняя синхронизация',
+    uk: 'Остання синхронізація',
+  },
+  'account.never': { de: 'Nie', en: 'Never', ru: 'Никогда', uk: 'Ніколи' },
+  'account.cancel': { de: 'Abbrechen', en: 'Cancel', ru: 'Отмена', uk: 'Скасувати' },
+  'account.continue': { de: 'Weiter', en: 'Continue', ru: 'Далее', uk: 'Далі' },
+  'account.owner': { de: 'Eigentümer', en: 'Owner', ru: 'Владелец', uk: 'Власник' },
 
   // Themen island (CurriculumPath / TopicDetail / OverviewTable).
   'topics.tabPath': { de: 'Lernpfad', en: 'Learning path', ru: 'Учебный путь', uk: 'Навчальний шлях' },
@@ -391,6 +450,30 @@ export const STRINGS = {
     uk: 'Черга відкладених перевірок',
   },
 
+  // Probe-failure remediation (docs/adrs/0010-probe-failure-remediation.md).
+  // `remediationTitle`/`remediationFailed` are the session-end card only (R1);
+  // `remediationExhausted` is shared verbatim with ProbeResults.tsx (R3 — "says the
+  // same" in both places), which is why it lives in the chrome table rather than as a
+  // per-file pick() record like the rest of that component's copy.
+  'probe.remediationTitle': {
+    de: 'Abstandsproben von heute',
+    en: "Today's delayed checks",
+    ru: 'Отложенные проверки сегодня',
+    uk: 'Відкладені перевірки сьогодні',
+  },
+  'probe.remediationFailed': {
+    de: 'hat den Abstand nicht überstanden — der Stoff dazu:',
+    en: 'did not survive the interval — the material for it:',
+    ru: 'не прошла проверку через время — материал по теме:',
+    uk: 'не пройшла перевірку через час — матеріал за темою:',
+  },
+  'probe.remediationExhausted': {
+    de: 'gemessen, nicht bestanden — braucht eine neue Probefamilie',
+    en: 'measured, not passed — needs a new probe family',
+    ru: 'измерено, но не пройдено — нужна новая проба-серия',
+    uk: 'виміряно, але не пройдено — потрібна нова проба-серія',
+  },
+
   // First-steps onboarding card (Heute).
   'today.howItWorks': { de: "So funktioniert's", en: 'How it works', ru: 'Как это работает', uk: 'Як це працює' },
   // Onboarding step names — their own keys, not nav.ueben/session.stepReview:
@@ -446,6 +529,12 @@ export const STRINGS = {
     en: 'Vocabulary by area',
     ru: 'Лексика по разделам',
     uk: 'Лексика за розділами',
+  },
+  'vocab.moreBreakdowns': {
+    de: 'Mehr Details: nach Thema und Wortart',
+    en: 'More detail: by topic and word type',
+    ru: 'Подробнее: по темам и частям речи',
+    uk: 'Докладніше: за темами та частинами мови',
   },
   'vocab.deckSummary': {
     de: '{due} Wörter fällig · {strong} sicher',
@@ -525,6 +614,7 @@ export const STRINGS = {
   'ueben.tabWiederholen': { de: 'Wiederholen', en: 'Review', ru: 'Повторение', uk: 'Повторення' },
   'ueben.tabTraining': { de: 'Training', en: 'Training', ru: 'Тренировка', uk: 'Тренування' },
   'ueben.tabWortschatz': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
+  'ueben.tabPruefung': { de: 'Prüfung', en: 'Exam', ru: 'Экзамен', uk: 'Іспит' },
   'vocab.allWords': { de: 'Alle Wörter', en: 'All words', ru: 'Все слова', uk: 'Усі слова' },
   // Colon style in ru/uk on purpose: it sidesteps numeral agreement, which a
   // flat template cannot carry ("21 слов" is not Russian).
@@ -543,6 +633,40 @@ export const STRINGS = {
   'topic.sectionWordField': { de: 'Wortfeld', en: 'Word field', ru: 'Лексическое поле', uk: 'Лексичне поле' },
   'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
   'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
+  'topic.activityIntro': {
+    de: 'Beginne mit der Grundübung. Öffne danach nur die Aktivität, die du jetzt brauchst.',
+    en: 'Start with the core practice. Then open only the activity you need now.',
+    ru: 'Начните с основной практики. Затем откройте только то, что вам сейчас нужно.',
+    uk: 'Почніть з основної практики. Потім відкрийте лише те, що вам зараз потрібно.',
+  },
+  'topic.activityCore': { de: 'Grundübung', en: 'Core practice', ru: 'Основная практика', uk: 'Основна практика' },
+  'topic.activityCoreHint': {
+    de: 'Der verpflichtende nächste Schritt im Lernpfad.',
+    en: 'The required next step on the learning path.',
+    ru: 'Обязательный следующий шаг учебного пути.',
+    uk: 'Обов’язковий наступний крок навчального шляху.',
+  },
+  'topic.activityExtension': { de: 'Vertiefen', en: 'Deepen', ru: 'Углубить', uk: 'Поглибити' },
+  'topic.activityExtensionHint': {
+    de: 'Zusätzliche Kontraste und Teilfertigkeiten.',
+    en: 'Additional contrasts and subskills.',
+    ru: 'Дополнительные контрасты и отдельные навыки.',
+    uk: 'Додаткові контрасти й окремі навички.',
+  },
+  'topic.activityApplication': { de: 'Anwenden', en: 'Apply', ru: 'Применить', uk: 'Застосувати' },
+  'topic.activityApplicationHint': {
+    de: 'Die Struktur in einem neuen Zusammenhang selbst verwenden.',
+    en: 'Use the structure independently in a new context.',
+    ru: 'Самостоятельно применить структуру в новом контексте.',
+    uk: 'Самостійно застосувати структуру в новому контексті.',
+  },
+  'topic.activityRemediation': { de: 'Gezielt üben', en: 'Targeted practice', ru: 'Точечная тренировка', uk: 'Точкове тренування' },
+  'topic.activityRemediationHint': {
+    de: 'Nur für eine konkrete Verwechslung; auch im gemischten Training verfügbar.',
+    en: 'For a specific confusion only; also available in mixed training.',
+    ru: 'Только для конкретной путаницы; также доступно в смешанной тренировке.',
+    uk: 'Лише для конкретної плутанини; також доступно у змішаному тренуванні.',
+  },
   // Topic-kind badge (grammar/vocab-field/communication/phonetics). Dedicated
   // keys rather than reusing strand.*: kinds and strands are different
   // taxonomies that merely share three German words today.
@@ -551,6 +675,18 @@ export const STRINGS = {
   'kind.communication': { de: 'Kommunikation', en: 'Communication', ru: 'Коммуникация', uk: 'Комунікація' },
   'kind.phonetics': { de: 'Aussprache', en: 'Pronunciation', ru: 'Произношение', uk: 'Вимова' },
   'discovery.links': { de: 'Links', en: 'Links', ru: 'Ссылки', uk: 'Посилання' },
+
+  // Service-worker update prompt. Never auto-applied: reloading mid-exercise
+  // discards the attempt the learner was about to log (src/lib/pwa.ts).
+  'update.available': {
+    de: 'Neue Version verfügbar',
+    en: 'New version available',
+    ru: 'Доступна новая версия',
+    uk: 'Доступна нова версія',
+  },
+  'update.apply': { de: 'Neu laden', en: 'Reload', ru: 'Перезагрузить', uk: 'Перезавантажити' },
+  'update.dismiss': { de: 'Später', en: 'Later', ru: 'Позже', uk: 'Пізніше' },
+
   'footer.tagline': {
     de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',
     en: 'Deutsch-Atlas by Vitaly Vorobyev · AI-assisted, human-directed and edited',

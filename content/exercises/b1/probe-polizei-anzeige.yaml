@@ -1,0 +1,77 @@
+# Delayed probe family — ONE competence: reporting what somebody else said, with the right
+# opener and the verb at the end. Three parallel translate variants, served in authoring order
+# across the 2/7/21 delays: one retention curve over one decision.
+#
+# The three variants sample three corners of that decision rather than repeating a corner.
+# variant-a is a statement, so the opener is dass and the auxiliary closes the clause.
+# variant-b is a yes/no question, where German has to supply an opener the source does not
+# contain. variant-c is a request, where the imperative cannot survive and sollen carries the
+# instruction — the corner that has to be learned as a chunk rather than derived.
+#
+# translate rather than cloze: a cloze prints the opener's slot and thereby answers the first
+# question this competence asks, which is whether an opener is needed at all.
+#
+# Pinned is the opener and the verb that has to reach the end. The nouns are carrier material:
+# a fumbled Kollegin is not this confusion. Each pinned token occurs exactly once in every
+# accepted rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading by grepping
+# content/, not by re-reading them: Kollegin, Portemonnaie, Nachbar and Formular appear in no
+# arming item, so no variant can be answered from the memory of one.
+topic: polizei-anzeige
+role: probe
+arming:
+  - b1/polizei-anzeige::cloze-dass-ob
+  - b1/polizei-anzeige::uebersetzen-dass
+  - b1/polizei-anzeige::table-indirekt
+  - b1/polizei-anzeige::uebersetzen-frage
+  - b1/polizei-anzeige::order-ob
+  - b1/polizei-anzeige-produktion::uebersetzen-weitergeben
+title:
+  en: "Delayed check — passing on what was said"
+  ru: "Отложенная проверка — передача чужих слов"
+  uk: "Відкладена перевірка — передавання чужих слів"
+items:
+  - id: variant-a
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["dass", "hat"]
+    prompt_en: "My colleague says that she found the wallet."
+    prompt_ru: "Коллега говорит, что нашла кошелёк."
+    prompt_uk: "Колега каже, що знайшла гаманець."
+    answer: "Meine Kollegin sagt, dass sie das Portemonnaie gefunden hat."
+    explain:
+      en: "A reported statement opens with *dass*, and the clause it opens puts its conjugated verb last. In a perfect that conjugated part is the auxiliary, so the order is *gefunden hat*. Note what stays unchanged: the reporting verb is present here, but even a past *sagte* would leave the reported tense alone — German does not shift tenses to match."
+      ru: "Переданное утверждение открывается словом *dass*, а открытое им придаточное ставит спрягаемый глагол последним. В перфекте спрягаемая часть — вспомогательный, поэтому порядок *gefunden hat*. Обратите внимание на то, что не меняется: глагол передачи здесь в настоящем, но даже прошедшее *sagte* оставило бы время придаточного в покое — согласования времён в немецком нет."
+      uk: "Передане твердження відкривається словом *dass*, а відкрите ним підрядне ставить відмінюване дієслово останнім. У перфекті відмінювана частина — допоміжне, тому порядок *gefunden hat*. Зверніть увагу на те, що не змінюється: дієслово передавання тут у теперішньому, але навіть минуле *sagte* лишило б час підрядного в спокої — узгодження часів у німецькій немає."
+
+  - id: variant-b
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["ob", "war"]
+    prompt_en: "He asks whether my neighbour was at home."
+    prompt_ru: "Он спрашивает, был ли мой сосед дома."
+    prompt_uk: "Він питає, чи був мій сусід удома."
+    answer: "Er fragt, ob mein Nachbar zu Hause war."
+    explain:
+      en: "A yes/no question carries no question word to keep, so German has to supply one: *ob*. Behind it the clause takes ordinary subject-first order with the verb at the end — there is no inversion, even though the original was a question. The commonest wrong answer keeps the question shape, *ob war mein Nachbar zu Hause*, which is a main clause wearing a conjunction."
+      ru: "У вопроса «да/нет» нет вопросительного слова, которое можно сохранить, поэтому немецкий подставляет союз: *ob*. За ним придаточное с обычным порядком «подлежащее первым» и глаголом в конце — никакой инверсии, хотя оригинал был вопросом. Самый частый неверный ответ сохраняет форму вопроса: *ob war mein Nachbar zu Hause* — это главное предложение, надевшее союз."
+      uk: "У питання «так/ні» немає питального слова, яке можна зберегти, тому німецька підставляє сполучник: *ob*. За ним підрядне зі звичайним порядком «підмет першим» і дієсловом у кінці — жодної інверсії, хоча оригінал був питанням. Найчастіша хибна відповідь зберігає форму питання: *ob war mein Nachbar zu Hause* — це головне речення, що вдягло сполучник."
+
+  - id: variant-c
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["dass", "soll"]
+    prompt_en: "She says I should fill in the form first."
+    prompt_ru: "Она говорит, что мне сначала следует заполнить формуляр."
+    prompt_uk: "Вона каже, що мені спершу слід заповнити формуляр."
+    answer: "Sie sagt, dass ich zuerst das Formular ausfüllen soll."
+    accept:
+      - "Sie sagt, dass ich das Formular zuerst ausfüllen soll."
+    explain:
+      en: "An instruction cannot be reported as an imperative — there is no imperative inside a Nebensatz — so *sollen* carries it. The modal is then the conjugated verb and lands at the very end, behind its own infinitive: *ausfüllen soll*. Both accepted renderings differ only in where *zuerst* sits, which the focus does not grade."
+      ru: "Указание нельзя передать императивом — внутри придаточного императива не бывает, — поэтому его несёт *sollen*. Модальный глагол оказывается спрягаемым и встаёт в самый конец, за собственным инфинитивом: *ausfüllen soll*. Оба принимаемых варианта различаются лишь местом *zuerst*, а его фокус не оценивает."
+      uk: "Вказівку не можна передати імперативом — усередині підрядного імператива не буває, — тому її несе *sollen*. Модальне дієслово виявляється відмінюваним і стає в самий кінець, за власним інфінітивом: *ausfüllen soll*. Обидва прийняті варіанти різняться лише місцем *zuerst*, а його фокус не оцінює."

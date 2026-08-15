@@ -2,8 +2,8 @@ import { describe, expect, test } from 'bun:test';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import YAML from 'yaml';
-import { getCurriculum } from '../src/lib/curriculum';
-import { gradeTranslation, verdictIsCorrect } from '../src/lib/production';
+import { getCurriculum } from '@da/content/curriculum';
+import { gradeTranslation, verdictIsCorrect } from '@da/grading/production';
 import { attemptScore, verifiedOnly } from '../src/lib/scoring';
 import { isValidSnapshot, sanitizeAttempts, type Attempt } from '../src/lib/store';
 import { parseProgressSnapshot } from '../src/lib/snapshot-schema';
@@ -65,7 +65,7 @@ describe('scoring and curriculum contracts', () => {
   test('the learner-led module keeps its required position in the A2 spine', () => {
     const curriculum = getCurriculum();
     const a2 = curriculum.spine.filter((id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2');
-    expect(a2).toHaveLength(22);
+    expect(a2).toHaveLength(25);
     const position = a2.indexOf('verben-mit-praepositionen');
     expect(a2[position - 1]).toBe('gesundheit-arzttermin');
     expect(a2[position + 1]).toBe('arbeit-beruf');
@@ -118,7 +118,7 @@ describe('scoring and curriculum contracts', () => {
   });
 
   // Both checks below guard one property with two faces: an item must never grade which
-  // word the author had in mind. `docs/item-authoring.md` had stated it for cloze gaps
+  // word the author had in mind. `docs/authoring/item-authoring.md` had stated it for cloze gaps
   // only; these are the two places it reached `translate` and `table` instead.
   test('no translate item pins one interchangeable connector without saying so', () => {
     // «потому что» renders as denn (V2) or weil (verb-final) with equal fidelity, so an
@@ -235,7 +235,7 @@ describe('scoring and curriculum contracts', () => {
         focus: 'modal-satzklammer',
       },
       {
-        setId: 'a2/modalverben',
+        setId: 'a2/modalverben-produktion',
         id: 'uebersetzen-darf-nicht',
         given: 'Du darfs hier nicht rauchen.',
         focus: 'duerfen-muessen',
@@ -570,7 +570,446 @@ describe('cards: recognition | both', () => {
     // (Zertifikat … Studie): course-catalogue and classroom-role vocabulary a B1
     // learner reads on a school's notice board or in its programme but is not asked
     // to produce.
-    expect(cards).toBe(entries * 2 - 100);
+    // B1.10 (gesellschaft-zusammenleben, 2026-08-03) adds twenty — eighteen are the
+    // deck's receptive tail (Gesellschaft … gerecht): the courtyard, the notice board
+    // and the people around a Hausversammlung, which a B1 learner reads on an Aushang
+    // or hears across the room but is not asked to produce. The other two, `nachgeben`
+    // and `gegenseitig`, are off the Goethe-B1 manifest and named by no frozen outcome,
+    // so they earn one card rather than two; `Einwand` and `Meinungsverschiedenheit` are
+    // off-manifest too and stay core, because the unit's own atlas outcomes contain
+    // those words (`einwand-ausdruecken`, "bei einer Meinungsverschiedenheit").
+    // The Wortliste completion pass (2026-08-03) starts here, and it is the first source
+    // of recognition-only entries that is not a unit deck: `konnektoren-partikeln-b1`
+    // adds twenty-two — the modal particles (eben, halt, wohl, bloß, gar, zwar, nun,
+    // überhaupt), the discourse markers (okay, sowieso, selbstverständlich, meinetwegen,
+    // offenbar) and the connectors whose EN/RU prompt more than one German word
+    // answers (seitdem/seit, solange, indem, als ob, soviel, beziehungsweise, umso,
+    // wieso, and daher against A2's shipped deshalb and also). A typed production card
+    // cannot fairly grade "the particle meaning ведь", and per the amendment in
+    // docs/curriculum/a2-b1.md recognition stays over half of every completion deck.
+    // `graduierung-mengenwoerter-b1` (2026-08-03) adds twenty-four on the same argument,
+    // and here it is almost entirely the shipped-synonym one: A1/A2 already sell `oft`,
+    // `meistens`, `normalerweise`, `schon`, `nur`, `alle`, `wieder`, `fast`, `total`,
+    // `ganz`, `unbedingt`, `vielleicht`, `wahrscheinlich` and `bisschen` as production
+    // cards, so `häufig`, `meist`, `gewöhnlich`, `bereits`, `ausschließlich`, `sämtliche`,
+    // `noch mal`, `nochmals`, `beinahe`, `völlig`, `absolut`, `bestimmt`, `eventuell`,
+    // `vermutlich` and `ein bisschen` answer a prompt a shipped card already owns — which
+    // no `accept` list can repair, because the two cards live in different decks. Four
+    // more (`circa`, `etwa`, `je`, `jeweils`) would compete inside this very deck, and
+    // three (`so viel wie`, `wie viele`, `noch mal`) would grade a space rather than a
+    // word; `einzeln` and `folgend` are notice-and-packaging vocabulary.
+    // `eigenschaften-bewertung-b1` (2026-08-03) adds twenty-six, and the shipped-synonym
+    // argument again does most of the work — but here it lands on whole clusters rather
+    // than on single pairs. A2's `bewertung-a2` alone sells `toll`, `super`,
+    // `fantastisch`, `wunderbar`, `klar`, `richtig` and `echt` as production cards, so
+    // the five-word "excellent" cluster collapses to one: `perfekt` keeps the typed card
+    // on the narrow claim that nothing is left to correct, and `ausgezeichnet`, `ideal`,
+    // `klasse`, `cool` and `wunderschön` answer prompts that are already owned —
+    // `cool` twice over, because A2's `kühl` is glossed "cool" letter for letter.
+    // The same test disqualifies `korrekt` (against `richtig`), `eindeutig` (`klar`,
+    // `deutlich`), `unterschiedlich` (`verschieden`), `komplett` (`total`, `ganz`),
+    // `still` (`leise`, `ruhig`), `vergeblich` (`umsonst`, whose second gloss is "in
+    // vain"), `erforderlich` (`notwendig` and `nötig`, both glossed "necessary"),
+    // `üblich` (`normal`, `normalerweise`, `meistens` — the ruling `gewöhnlich` already
+    // got on the sibling deck, and the two notes now agree), `alltäglich` (`täglich`,
+    // `Alltag`), `dicht` (`dick`), `fest` (`hart`) and `original` (`echt`). `fertig` is
+    // the one that looks like an A1 word and is not: A2 ships the phrase `fertig sein`
+    // glossed "to be ready, to be finished", and this headword IS that answer, in
+    // another deck where no `accept` list can reach it. Six more are recognition on the
+    // register argument alone — `begrenzt`, `einheitlich`, `allgemein`, `alternativ`,
+    // `zugänglich`, `äußerlich`: Aushang, Beipackzettel, AGB and course-programme
+    // vocabulary, read constantly and produced never at B1. `unheimlich` and `intensiv`
+    // join them because each carries two unrelated senses one example cannot hold.
+    // `ort-richtung-verweis-b1` (2026-08-03) adds twenty-four, and the collision test
+    // does most of the work again — but this deck's collisions are with the *directional*
+    // A1/A2 lexis rather than with adjectives. `richtung-position-a2` and
+    // `funktionswoerter-chunks` already sell `drinnen`, `draußen`, `nirgends`, `raus`,
+    // `rein`, `vorwärts`, `zurück`, `oben`, `unten`, `hier`, `da` and `dort` as production
+    // cards, so `innen`, `außen`, `drin`, `nirgendwo`, `rauf`, `runter`, `aufwärts` and
+    // `abwärts` answer prompts a shipped card already owns, two decks over. `nahe` is the
+    // same word as A1 `nah`, `selber` the same word as A2 `selbst`, `ebenfalls` a written
+    // A1 `auch`, `hinterher` an A2 `danach`, `nebenbei` the B1 `übrigens` already carded
+    // in `konnektoren-partikeln-b1`, and `voraus` competes with both A2 `vorher` and A2
+    // `vorwärts`. `heim` fails a different test: the form a B1 learner must produce for
+    // "home(wards)" is `nach Hause`, so a typed card would train the wrong word.
+    // Three are decided inside the deck. `ebenso` is the sharpest case in the pass so
+    // far — `genauso` in `graduierung-mengenwoerter-b1` ships it in `accept`, so a
+    // production card here would let two different prompts grade one rendering correct;
+    // `gleichfalls` therefore takes the deck's single typed card for the likewise family,
+    // on the reply formula no other card answers, and lists `ebenfalls` in its own
+    // `accept`. `dahin` yields to `dorthin`, which accepts it. `derselbe` declines on both
+    // halves at once and splits after a preposition (am selben Tag), so a typed card would
+    // grade which of six forms was meant; `dabei`, `los` and `recht` each carry three or
+    // more unrelated jobs that no single EN/RU prompt can name. `vor allem` was the close
+    // call and lost twice over: A2 `besonders` already owns "especially", and the headword
+    // is two words, so the card would grade the space against `vorallem`. `mitten` is the
+    // twenty-fifth, added in review: it never stands alone, and neither English nor Russian
+    // has a bare word for it, so every gloss of it is a prepositional phrase and a typed
+    // prompt invites `mitten in` — the `so viel wie` defect with the space on the inside.
+    // `zeit-b1` (2026-08-03) adds thirty, the largest recognition share of the pass so far
+    // (30 of 40), and it is earned rather than chosen: time is the densest synonym field
+    // A1/A2 has already sold. Run mechanically — YAML-parse every deck, index every
+    // `de`/`en`/`ru`/`uk`/`accept` of every entry whose `cards` is absent or `both`, then
+    // check the forty candidate glosses against it — the collision test flagged seventeen.
+    // Sixteen of those became recognition: `Anfang`, `Moment`, `zuerst`, `danach`, `später`,
+    // `dann`, `neulich`, `gerade`, `ständig`, `irgendwann`, `Alltag`, `Kalender`, `Werktag`,
+    // `wahrscheinlich`, `Zukunft` and `sich beeilen` ship as production cards elsewhere, so
+    // `Beginn`, `Augenblick`, `anfangs`, `zunächst`, `nachher`, `kürzlich`, `vorhin`,
+    // `dauernd`, `jemals`, `Tagesablauf`, `Terminkalender`, `Wochentag`, `voraussichtlich`,
+    // `zukünftig` and `eilen` answer a prompt that is already owned — unrepairable by
+    // `accept`, because the two cards live in different decks and the grader only ever sees
+    // one. `Wochentag` is the one no reading of the glosses would have caught: A2's `Werktag`
+    // is glossed "weekday, working day (Mon–Sat)", and "weekday" is the standard English
+    // rendering of both, which is exactly why a learner swaps them. The seventeenth,
+    // `Zeitpunkt`, survives as `both`: it collided only on the glosses "moment" and "time",
+    // which were then dropped — it ships glossed "point in time" alone, and no shipped card
+    // answers that. Four more are ruled inside the deck, on tests the index cannot run.
+    // `mittlerweile` and `inzwischen` are the
+    // same word for every practical purpose, so `inzwischen` takes the family's one typed card
+    // and lists `mittlerweile` in `accept` — the `ebenso`/`genauso` ruling from
+    // `ort-richtung-verweis-b1`. `zurzeit` grades a space whose two sides mean different
+    // things: solid it is "at present", split `zur Zeit` is "at the time of" and wants a
+    // Genitiv, so a production card cannot signal which is wanted — the `so viel` case, this
+    // time with the meanings rather than the spelling doing the splitting. `dreiviertel` grades
+    // a space too (`drei viertel` is equally correct) on top of colliding with `viertel`. And
+    // the `-lich` frequency series is priced as one rule rather than five words: `täglich`
+    // (gesundheit-arzttermin) already sells the pattern at A2, so `monatlich` takes this deck's
+    // single typed card — the member a B1 learner writes, on rent, salary and every
+    // subscription — while `stündlich`, `wöchentlich`, `jährlich` and `wochentags` are derived
+    // from `Stunde`, `Woche`, `Jahr` and `Woche`, all carded, by a rule the learner can see.
+    // Five typed cards for one visible rule buys nothing the sixth does not already teach.
+    // The remainder are recognition on register alone: `Eile`, `längst`, `vorläufig`,
+    // `Jahrzehnt`, `Jahrhundert`, `Jahrtausend`, `Nationalfeiertag` and `Pfingsten` are
+    // notice, contract, museum-label and calendar vocabulary — read at B1 and never produced.
+    // `digitales-leben` (B1.11, 2026-08-04) adds sixteen, and the line falls where the
+    // learner stops writing the word and only has to recognise it on a screen. The unit's
+    // three outcomes are read an Anleitung, write a fault report, talk about media use, so
+    // the twenty-two productive entries are exactly what those three tasks need to be
+    // produced: `Anleitung`, `Schritt`, `Reihenfolge`, `Taste`, `Feld`, `Zugang`, `Akku`,
+    // `Kabel`, `Netz`, `Technik` and the eleven verbs and adjectives a form, a fault and a
+    // habit are described with. The sixteen recognition entries are what the *screen* says
+    // back: `Software`, `Symbol`, `Menü`, `Stecker`, `Fernbedienung`, `Bedienungsanleitung`
+    // and `Textnachricht` are label-and-box vocabulary, read constantly and written never;
+    // `installieren`, `hochladen`, `sichern`, `anklicken`, `tippen` and `zuschauen` are
+    // instruction verbs the learner obeys rather than issues — and `anklicken` additionally
+    // collides with this deck's own `klicken`, which differs only in whether the object
+    // arrives through `auf`, so a typed prompt could not name which of the two it wanted.
+    // `Serie` loses the "what I watch" slot to cards that already ship: `Film`
+    // (freizeit-koennen, A1) and `Sendung` (kultur-unterhaltung-a2), and the productive
+    // core of the media-use outcome is the frequency-duration-purpose frame the article
+    // teaches (`täglich`, `ungefähr zwei Stunden`, `zum Lesen`), not the genre noun.
+    // `Unterhaltung` carries two unrelated senses one example cannot hold — entertainment
+    // and conversation — and each already has a carded answer, `Spaß`
+    // (kultur-unterhaltung-a2) and `Gespräch` (menschen-beziehungen-a2); that is the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. `abhängig` is
+    // recognition on register: it is the word a screen-time article uses, while the
+    // article's own model for saying the same thing is the plain
+    // `Ich brauche das Handy auch für die Arbeit`.
+    // `kultur-freizeit` (B1.12, 2026-08-04) adds sixteen on the same test, applied to a
+    // flyer instead of a screen: the line falls where the learner stops writing the word
+    // and only has to read it off a programme. The unit's three outcomes are read a
+    // Programm, agree on an evening, write a short report of it, so the twenty-two
+    // productive entries are what those three tasks have to say out loud — `Vorstellung`,
+    // `Publikum`, `Bühne`, `Saal`, `Reservierung`, `Treffpunkt`, `Stimmung`, `Roman`,
+    // `Figur`, `Wanderung`, the eight verbs of arranging and judging, and the four
+    // evaluative words a report and a plan are built from. The sixteen recognition entries
+    // are what the *programme* says back: `Oper`, `Orchester`, `Ballett`, `Szene`,
+    // `Auftritt`, `Saison`, `Broschüre` and `Überschrift` are label-and-poster vocabulary,
+    // read on every flyer and written on none; `aufführen`, `auftreten` and `ankündigen`
+    // are what a venue does to an event, never what a learner reports doing. Three lose a
+    // productive slot to a card that already ships or to this deck's own core: `Tanz` to
+    // `tanzen` (freizeit-koennen, A1), which is the form the plan actually needs;
+    // `Auswahl` to this deck's `aussuchen`, since a typed prompt for "choice" cannot say
+    // which of the noun and the verb it wants — the `anklicken`/`klicken` ruling from
+    // `digitales-leben`; and `Langeweile` to `sich langweilen`, the same pair one step
+    // further, with `langweilig` (bewertung-a2) already carded. `verabredet` is the
+    // participle of this deck's own `verabreden` and would grade the same word twice.
+    // `Vergnügen` is recognition on register: `Viel Vergnügen!` is printed at the foot of
+    // a programme, and the article's model for saying it is the plain `sich amüsieren`,
+    // which does ship as a production card.
+    // Wortliste completion wave 1, decks 6–11 (2026-08-04) add a hundred and thirty-two
+    // across six unowned decks — `verben-handlungen-b1-1` (20 of 35),
+    // `verben-handlungen-b1-2` (23 of 34), `verben-handlungen-b1-3` (20 of 34),
+    // `verben-kommunikation-ausdruck-b1` (21 of 36), `charakter-verhalten-b1` (23 of 40)
+    // and `zahlen-mengen-masse-b1` (25 of 39). Every split was run through the same
+    // mechanical collision test as the five wave-1 decks before them: YAML-parse every
+    // deck, index the `de`/`en`/`ru`/`uk`/`accept` of every entry whose `cards` is absent
+    // or `both`, and check each candidate gloss against it.
+    // The general-purpose verbs collide hardest, because A1/A2 already sell the plain
+    // members of every family: `benutzen` owns "to use", so `anwenden`, `verwenden` and
+    // `gebrauchen` are one prompt with three headwords; `bekommen`/`kriegen`/`holen` own
+    // "to get", which retires `besorgen`, `erhalten` and `empfangen`; `laufen` owns "to
+    // run" (`rennen`), `fallen` owns "to fall" (`stürzen`, and `sinken` in the numbers
+    // deck), `wenden` owns "to turn" (`drehen`, `umdrehen`), `setzen`/`stellen`/`legen`
+    // own "to put" (`stecken`), `erfahren` owns "to find out" (`herausfinden`),
+    // `akzeptieren`/`zusagen` own "to accept" (`annehmen`), `prüfen` owns "to test"
+    // (`testen`), `diskutieren` owns "to discuss" (`besprechen`), `notieren` owns "to
+    // write down" (`aufschreiben`), `sich bemühen` owns "to make an effort"
+    // (`sich anstrengen`), and `danken`/`bedanken` own "to thank" twice over, which is
+    // why the B1 headword `sich bedanken` cannot have a typed card at all.
+    // `neugierig` is the one no reading of the glosses would have caught: `gespannt`
+    // (kultur-freizeit, shipped in the same tree) is glossed "eager to see what comes,
+    // curious", and "curious" is the standard rendering of both — the `Wochentag`/`Werktag`
+    // case from `zeit-b1`, in the other direction.
+    // Four rulings are made inside a deck rather than against another one. `reichen` takes
+    // the typed card for the enough-family and lists `ausreichen` and `genügen` in its
+    // `accept`, the `dorthin`/`dahin` ruling from `ort-richtung-verweis-b1`; `verlangen`
+    // takes it from `fordern`; `festlegen` from `festsetzen`; `Entfernung` from `Distanz`.
+    // `ordnen` was drafted `both` and demoted in review: `organisieren` and `vereinbaren`
+    // both ship "to arrange", `regeln` owns the sorting-out prompt and `aufräumen` the
+    // tidying one — three owners in three other decks for one headword.
+    // The rest are recognition on two arguments the corpus has used before. Multi-sense
+    // headwords one example cannot hold: `aufheben`, `fassen`, `festhalten`, `treten`,
+    // `brechen`, `leisten`, `einsetzen`, `ausrichten`, `handeln`, `aufhalten`, `behandeln`,
+    // `vertreten`, `verraten`, `versichern`, `Ausdruck`, `locker`, `schuldig` — the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. And register: the
+    // office and notice words (`benötigen`, `erstellen`, `unterlassen`, `beschränken`,
+    // `festsetzen`, `feststehen`, `sich befinden`, `sich ereignen`, `Anrede`,
+    // `Aufforderung`, `Begründung`, `bekannt geben`, `kreativ`, `flexibel`), the
+    // instruction verbs a learner obeys rather than issues (`einfügen`, `zuordnen`,
+    // `nachschlagen`, `unterstreichen` — the `installieren` ruling from `digitales-leben`),
+    // and the units and figures that are read and never quoted (`Zentimeter`, `Kilometer`,
+    // `Milliarde`, `Franken`, `Deka`, `Dekagramm`, `Pfund`, `Geschwindigkeit`).
+    // `Zentimeter`, `Kilometer`, `durchschnittlich`, `Länge`, `Breite` and `vergrößern`
+    // additionally lose their card to a rule the learner can see — they are `Meter`,
+    // `Durchschnitt`, `lang`, `breit` and `groß` plus an affix, which is the `-lich`
+    // frequency-series ruling from `zeit-b1`. `Null` is the sharpest of them: A1 ships the
+    // numeral `null`, and the two differ by one capital letter.
+    // `geld-vertraege` (B1.13, 2026-08-04) adds sixteen on the same test, applied to the
+    // paper a household is sent: the line falls where the learner stops saying the word and
+    // only has to read it off a bill or out of the small print. The unit's three outcomes
+    // are check a Rechnung, ask about a Vertrag, compare what two things cost, so the
+    // twenty-two productive entries are what those three tasks have to say out loud —
+    // `Zeile`, `Kosten`, `Zahlung`, `Überweisung`, `Mahnung`, `Kündigung`, `Abo`,
+    // `Anbieter`, `Alternative`, `Angabe`, `Auftrag`, `Material`, `Bargeld`,
+    // `Kreditkarte`, `Leistung`, `Trinkgeld`, the two adjectives a payment date turns on
+    // (`fällig`, `gültig`) and the four verbs the field has left unowned. The sixteen
+    // recognition entries are what the *paper* says back: `verpflichtet`, `Anspruch`,
+    // `Forderung`, `pauschal`, `Abschnitt` and `Urkunde` are terms-and-conditions and
+    // Amt language, read in every contract and written in none; `Stempel`, `Girokonto`,
+    // `Tabelle` and `ausstellen` are what a bill, a receipt and an estimate are printed
+    // with. Four lose a productive slot to a card that already ships or to this deck's own
+    // core: `Abonnement` to `Abo`, which lists it in `accept` — the `gleichfalls`/
+    // `ebenfalls` ruling from `ort-richtung-verweis-b1`; `Kauf` to `kaufen` (A1) and to
+    // `Einkauf` (einkaufen-geschaefte), both glossed "purchase"; `Erhöhung` to `erhöhen`
+    // (zahlen-mengen-masse-b1), the noun-to-verb case of the `Auswahl`/`aussuchen` ruling
+    // from `kultur-freizeit`; and `Schulden` on register — a Mahnung says it, a learner at
+    // a counter does not. `Ausgabe` and `Nachfrage` carry two unrelated senses one example
+    // cannot hold (spending and a newspaper's edition; asking again and market demand) —
+    // the `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`.
+    // One `both` entry is kept over a collision, deliberately: `Kosten` case-folds onto
+    // A1's verb `kosten` (essen-trinken). It is NOT the `Null`/`null` case, because that
+    // pair shares a prompt — here nothing is shared but the letters: "to cost" and
+    // "costs, what something comes to altogether" are different questions, and the unit's
+    // own `kosten-vergleichen` outcome is unwritable without the noun.
+    // `informationen-vermitteln` (B1.14, 2026-08-04) adds twenty-one, the largest receptive
+    // share of any unit deck so far (21 of 38) — and it is a finding rather than a choice.
+    // The mediation field is almost entirely owned before this unit opens: `mitteilen`
+    // (regeln-verantwortung), `informieren` and `Nachricht` (kommunikation-medien),
+    // `berichten` (verben-handlungen-a2-1), `melden` (arbeit-beruf), `zusammenfassen`,
+    // `behaupten`, `Aussage`, `Meldung` and `Quelle` (meinung-medien), `ausrichten`
+    // (verben-handlungen-b1-2), `ankündigen` (kultur-freizeit) and `Bescheid`
+    // (redemittel-chunks-a2) are every one of them another deck's headword, so seventeen
+    // productive entries is what the field has left. Five were drafted `both` and demoted by
+    // the same mechanical collision test the pass before it used: `Neuigkeit` against
+    // `Nachricht` (glossed "message; (pl.) the news"), `Sinn` against `Bedeutung`
+    // ("meaning | значение, смысл"), `Zeichen` against `Schild` ("sign (road sign, notice)"),
+    // `Dokument` against `Unterlagen` and `Papiere` (both glossed "documents"), and
+    // `verständlich` against `klar` ("clear, plain | ясный, понятный") — the `eindeutig`
+    // ruling from `eigenschaften-bewertung-b1`. `Detail` yields its productive slot to this
+    // deck's own `Einzelheit`, which lists it in `accept`: the `dorthin`/`dahin` ruling from
+    // `ort-richtung-verweis-b1`. The rest are recognition on register — `Schreiben`, `Anlage`,
+    // `Einschreiben`, `Vermittlung`, `Vertretung`, `Darstellung`, `Einleitung`, `Fortsetzung`,
+    // `Textaufbau`, `Ansage`, `Lautsprecher` and `Vortrag` are what a formal letter, a notice
+    // board and a course handout say to you — plus `Botschaft`, `aufnehmen` and `anzeigen`,
+    // which each carry two unrelated senses one example cannot hold (the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`).
+    // Wortliste completion wave 2, decks 1–2 (2026-08-05) add fifty-eight across two
+    // unowned decks — `gefuehle-reflexive-verben-b1` (31 of 41) and
+    // `beziehungen-familie-b1` (27 of 41) — run through the same mechanical collision
+    // test as wave 1. Feelings collide as hard as time did, and for the same reason:
+    // `gefuehle-reflexive-a2` is an A2 deck about exactly this field, so `ärgern`,
+    // `beeilen`, `verlieben`, `Angst`, `froh`, `glücklich` and `nervös` are already sold
+    // as production cards and retire `aufregen`, `sich beeilen`, `fürchten`, `vergnügt`
+    // and `Nerv` between them. Outside it, `fühlen` (gesundheit-arzttermin) owns "to
+    // feel" (`spüren`), `lachen` owns "to laugh" one letter away from `lächeln`,
+    // `weinen` owns crying (`Träne`), `erschrecken` (erfahrungen-erzaehlen) owns the
+    // fright (`Schreck`), `Vergnügen` (kultur-freizeit) owns the pleasure
+    // (`sich vergnügen`), `verrückt` and `schuldig` (charakter-verhalten-b1) own
+    // `wahnsinnig` and `schuld`, `geheim` (eigenschaften-bewertung-b1) owns
+    // `Geheimnis`, `Glück` and `Pech` own `Unglück`, `Entschuldigung`
+    // (funktionswoerter-chunks) owns `Verzeihung`, `müde` owns `erschöpft`, `ablehnen`
+    // (regeln-verantwortung) owns `sich weigern` and `ausruhen` owns `Erholung`.
+    // `leid tun` is the sharpest of the pass so far: A2 ships the identical two words
+    // written solid (`leidtun`, verben-handlungen-a2-2), so the Wortliste's spelling
+    // can only be keyed, never carded again. `Schrecken` yields to `Schreck` inside
+    // the deck — the `ebenso`/`genauso` ruling from `ort-richtung-verweis-b1`.
+    // The family deck is owned before it opens by `menschen-familie` and
+    // `menschen-beziehungen-a2`: `Großmutter`/`Großvater` retire `Oma`/`Opa`, `Junge`
+    // retires `Bub`, `Verwandte` retires `Angehörige`, `Jugendliche` retires `Jugend`,
+    // and `Erwachsene` retires `erwachsen` — that last one named in the A2 entry's own
+    // note. `treffen` owns `begegnen`, `mitkommen` owns `begleiten`, `nett` and
+    // `freundlich` own `lieb`, `schwanger` owns `Schwangerschaft`, `sich verabschieden`
+    // (verben-kommunikation-ausdruck-b1) owns `Abschied`, and `Paar` plus this deck's
+    // own `Ehe` own `Ehepaar`. Four are ruled inside the deck: `Beziehung` takes the
+    // typed card from `Verhältnis`, `küssen` from `Kuss`, `Scheidung` from
+    // `sich scheiden lassen`, and `Altenheim`/`Altersheim` are one institution spelled
+    // two ways, so neither can be typed. `Babysitterin` is the pass's first Movierung
+    // pair: A2's `Babysitter` ships and its note already names the feminine, so the
+    // pair costs three cards rather than four. The rest are register — `sich nähern`,
+    // `erleichtern`, `winken`, `blass`, `Blick`, `betrunken`, `befreit`, `entschlossen`,
+    // `entspannend`, `Wunder`, `sich etwas gefallen lassen`, `Generation`, `Senioren`,
+    // `Familienstand`, `getrennt leben`, `geboren werden`, `Nachwuchs` and `umarmen` are
+    // what a form, a report and a narrative say to the learner, not what he says back.
+    // Wortliste completion wave 2, decks 3–5 (2026-08-05) add sixty-six across three
+    // more unowned decks — `verwaltung-behoerden-b1` (18 of 31), `arbeit-beruf-b1`
+    // (26 of 40) and `berufe-b1` (22 of 35). Two thirds of the total are one rule: every
+    // feminine agent noun ships recognition beside its masculine, so a Movierung pair
+    // costs three cards and not four — `Beamtin`, `Bürgerin`, `Betriebsrätin`,
+    // `Leiterin`, `Architektin`, `Anwältin`, `Sekretärin`, `Übersetzerin`, `Malerin`,
+    // `Briefträgerin`, `Betreuerin`, `Pflegerin`, `Unternehmerin`, `Händlerin`,
+    // `Vertreterin`, `Managerin`, `Spezialistin`, `Fachfrau` and `Stewardess`, plus five
+    // whose masculine already ships elsewhere: `Praktikantin` (Praktikant,
+    // arbeit-bewerbung), `Mitarbeiterin` (arbeit-ausbildung-a2), `Arbeiterin`
+    // (arbeit-bewerbung), `Hausmeisterin` (regeln-verantwortung) and `Direktorin`
+    // (schule-faecher-a2). The office deck is owned before it opens by A2's
+    // `aemter-dienstleistungen`: `Amt` owns the counter, so `Behörde` keeps only the
+    // body behind it, and `Kopie` owns `Original`. Seven more yield to a shipped
+    // production card — `verboten` and `untersagt` to `verboten sein`
+    // (verben-handlungen-a2-2), `genehmigen` to `erlauben` (verben-handlungen-a2-1),
+    // `Rufnummer` to A1 `Telefonnummer`, `sich bewerben` to `bewerben`
+    // (arbeit-ausbildung-a2, which lists it in `accept`), `anstellen` to `einstellen`,
+    // `Lehre` and `Lehrling` to `Ausbildung` and `Azubi`, `betreuen` to `kümmern`,
+    // `Kuli` to `Kugelschreiber` inside the deck, and `Pfleger`/`Pflegerin` to
+    // `Krankenpfleger`/`Krankenschwester` (berufe-a2). `Überstunde` is this pass's
+    // `leid tun`: A2 ships the plural `Überstunden` (arbeit-beruf), one letter away, so
+    // the Wortliste's singular can only be keyed. `Spezialist` yields to this deck's own
+    // `Experte`, and `Manager` to `Chef` and `Leiter`. Four carry senses one prompt
+    // cannot name — `Leiter` (the head and the ladder), `Leitung` (the management, the
+    // pipe and the phone line), `Dienst` (the shift, the state sector and a favour) and
+    // `Meister` (the trade qualification and the champion) — the
+    // `unheimlich`/`intensiv` ruling from `eigenschaften-bewertung-b1`. `in Rente
+    // gehen/sein` and `Fachleute` cannot be typed at all: one is a slash headword, the
+    // other plural-only. The rest are register — `Konsulat`, `Asyl`, `Personalien`,
+    // `Personenstand`, `Daten`, `Versichertenkarte`, `Förderung`, `fördern`,
+    // `Einrichtung`, `städtisch`, `Aushilfe`, `halbtags`, `ausgebildet`, `Tätigkeit`,
+    // `Betreuung`, `Profi`, `anwesend`, `abwesend`, `Mappe`, `Kopierer` and `Steward`
+    // are what a form, a rota and an advert say to the learner, not what he says back.
+    // Wortliste completion wave 2c, the three mixed decks (2026-08-05) add seventy-one
+    // across `koerper-medizin-b1` (22 of 41), `essen-lebensmittel-b1` (24 of 45) and
+    // `verkehr-auto-b1` (25 of 44), all three run through the same mechanical collision
+    // test as the waves before them. Three rulings account for most of it. **A shipped
+    // production card owns the prompt**, so the newcomer can only be keyed: A1
+    // `Tablette` retires `Pille`, `Medikament` retires `Medizin`, `Krankenhaus` retires
+    // `Klinik`, `krank` retires the adjectival noun `Kranke`, `Obst` retires `Frucht`
+    // and its separately-keyed plural `Früchte`, `Auto` retires `Pkw`, `Weg` retires
+    // `Strecke`, `Bahn` retires `Eisenbahn`; A2 `stark` retires `kräftig`,
+    // `erkältet sein` retires `erkältet`, `Ernährung` retires `Diät`, `untersuchen`
+    // retires `Untersuchung`, `Lebensmittel` retires `Nahrungsmittel`, `Essen` and
+    // `Gericht` retire `Mahlzeit`, `vorbereiten` and `kochen` retire `zubereiten`,
+    // `Lkw` retires both `Lastwagen` and its colloquial twin `Laster`, `Schild` retires
+    // `Verkehrszeichen`, and `anmachen`/`ausmachen` retire `schalten`. Three are the
+    // `Überstunde` case exactly — the shipped card is the same string plus one word, so
+    // the Wortliste's bare form can only be keyed: `Gute Besserung!` retires
+    // `Besserung`, `Guten Appetit!` retires `Appetit`, and A2 `Hähnchen` retires
+    // `Hühnchen` one umlaut away. **Two senses one prompt cannot name** — the
+    // `unheimlich`/`intensiv` ruling — retires `taub` (deaf and numb), `Geschmack`
+    // (the tongue and the judgement), `Fett` (noun and adjective), `Spur` (lane and
+    // trace), `Tempo` (pace and paper tissue), `Kennzeichen` (number plate and
+    // distinguishing feature), `überfahren`, `entgegenkommen` and `Bremse`. Three
+    // Movierung pairs cost three cards rather than four — `Patientin`, `Fußgängerin`
+    // and `Radfahrerin` beside their masculines — and seven same-referent pairs yield
+    // their one typed card inside their own deck: `Karotte` over `Möhre`, `Marmelade`
+    // over `Konfitüre`, `Sahne` over `Schlagsahne`, `Nachspeise` over `Dessert`,
+    // `Operation` over `operieren`, `bremsen` over `Bremse` and `transportieren` over
+    // `Transport`. `Zutaten` is `Fachleute` again, plural-only and untypeable. The rest
+    // is register — `Bart`, `Muskel`, `Atem`, `körperlich`, `Infektion`, `blind`,
+    // `stumm`, `Tod`, `tödlich`, `Therapie`, `Schnitzel`, `Margarine`, `Essig`,
+    // `Gewürz`, `Gebäck`, `Kloß`, `mager`, `haltbar`, `Kakao`, `Limonade`, `Fahrzeug`,
+    // `Kfz`, `Fußgängerzone`, `Gehsteig`, `Fahrbahn`, `Einbahnstraße`, `Einfahrt` and
+    // `Geschwindigkeitsbeschränkung` are what a diagnosis, a packet and a road sign say
+    // to the learner, not what he says back.
+    // Wortliste completion wave 2c, the three recognition-only decks (2026-08-05) add
+    // one hundred and eleven, and for the first time the ruling is per deck rather than
+    // per word: `wohnen-gebaeude-b1` (39 of 39) is the German of an estate agent's
+    // listing, a floor plan and a town guide, `haushalt-notfall-b1` (41 of 41) the
+    // German of a label, a warning sign and an instruction sheet, and
+    // `einkaufen-geld-b1` (31 of 31) the German of a bank form, a shop window and a
+    // leaflet through the door. All three are read, never produced: the sentence the
+    // learner builds about any of these situations comes out of A1 `wohnen`,
+    // `haushalt-geraete`, `einkaufen-geschaefte` and `kleidung-farben` and A2
+    // `wohnen-umzug`, `haushalt-geschirr-a2` and `einkaufen-geld-a2`, which already
+    // ship the typed cards. Two per-word notes survive that: two Movierung pairs cost
+    // three cards rather than four — `Einwohnerin` and `Käuferin` beside their
+    // masculines — and `Mieterin` ships without an adjacency at all, because B1 `Mieter`
+    // (leben-veraendern) already owns that headword in another file.
+    // Wortliste completion wave 3a, six recognition-only decks (2026-08-05), adds one
+    // hundred and fifty-two — the whole of wave 3's first slice, and the ruling stays
+    // per deck: `text-schreiben-b1` (19 of 19) is the German printed around a text —
+    // the envelope, the caption, the slide; `sprechen-lernen-b1` (23 of 23) the German
+    // of a course register, a timetable and a northern radio announcer;
+    // `computer-internet-b1` (29 of 29) a spec sheet, a browser and a virus warning;
+    // `medien-digital-b1` (25 of 25) a listings page, a credit roll and a shelf of old
+    // discs; `abstrakte-begriffe-b1` (37 of 37) the sentence-carrying abstractions of a
+    // B1 reading text; and `wirtschaft-handel-b1` (19 of 19) the economy as a headline
+    // names it. All six are read, never produced — the learner's own sentence about
+    // any of it comes out of the A1/A2 word beside each entry, which already ships as
+    // a typed card, and each note names that word. Movierung inside the wave costs
+    // adjacency, not cards: `Userin`, `Teilnehmerin`, `Hörerin` and `Reporterin` sit
+    // beside their masculines; `Absenderin`, `Zuhörerin`, `Moderatorin` and
+    // `Zuschauerin` ship alone because `informationen-vermitteln` and `meinung-medien`
+    // already own the masculine headwords in other files.
+    // Wortliste completion wave 3b, five recognition-only decks (2026-08-06), closes
+    // wave 3 with one hundred and forty-seven more: `recht-kriminalitaet-b1` (38 of
+    // 38) is the crime report and the courtroom as a newspaper prints them,
+    // `politik-staat-b1` (36 of 36) the state as the evening news names it,
+    // `gesellschaft-migration-b1` (25 of 25) the B1 reading text about who lives here,
+    // `bildung-schulsystem-b1` (28 of 28) the school system's proper names and its
+    // marks — words *about* the institutions, where the learner's own sentence uses
+    // A1 `Schule` and A2 `Note` — and `wissenschaft-technik-b1` (20 of 20) research
+    // and the machine behind the plug. Eleven Movierung pairs sit adjacent at the
+    // cost of adjacency alone; `Mitglied` is the counter-case the deck teaches (no
+    // -in form exists); `Tote` ships as an adjectival noun like `Kranke`; `Abgase`
+    // is `Zinsen` again, plural-only as `pos: phrase`.
+    // Wortliste completion wave 4a, eight recognition-only decks (2026-08-06), adds two
+    // hundred and forty-two: `sport-freizeit-b1` (42 of 42) is the match commentary and
+    // the club noticeboard, `tiere-wetter-b1` (41 of 41) the zoo sign and the forecast,
+    // `kultur-literatur-presse-b1` (21 of 21) the arts page and the theatre cloakroom,
+    // `reisen-laender-b1` (35 of 35) the departure board plus three country blocks,
+    // `natur-geografie-b1` (29 of 29) the map and the hiking guide,
+    // `material-stoffe-formen-b1` (29 of 29) the product description and the crossword's
+    // two directions, `koerperpflege-lebensstil-b1` (23 of 23) the bathroom shelf and
+    // the health leaflet, and `gastronomie-feste-b1` (22 of 22) the menu and the
+    // innkeeper's sign. All eight are read, never produced, and each note names the
+    // A1/A2 word the learner's own sentence uses instead. Fourteen Movierung pairs sit
+    // adjacent at the cost of adjacency alone (six in sport, two smokers, `Wirtin`,
+    // `Griechin`, `Türkin`, `Ukrainerin`, `Schriftstellerin`, `Heldin`); `Gegner` and
+    // `König` ship masculine-alone because the Wortliste lists only that form, and
+    // `Leserin` and `Passagierin` ship feminine-alone because `meinung-medien` and
+    // `reisen-probleme` already own their masculines in other files — the `Absenderin`
+    // ruling from 3a. Eight weak masculines run on the `Zeuge` model (`Hase`, `Affe`,
+    // `Bär`, `Löwe`, `Elefant`, `Held`, `Grieche`, `Türke`). Three multiword rows ship
+    // as `pos: phrase` on the `in Rente gehen/sein` precedent — `stehen bleiben`,
+    // `im Freien`, `Tee ziehen lassen` — `Griechenland` as an article-free proper noun
+    // on the `Deutschland` precedent, and `Prost` as `interj` on `okay`.
+    // Wortliste completion wave 4b, the two Varianten decks (2026-08-06), closes the
+    // lexis tail with ninety-two more: `varianten-at-ch-essen-alltag-b1` (47 of 47) and
+    // `varianten-at-ch-institutionen-b1` (45 of 45) are the Wortliste's Austrian and
+    // Swiss rows — read on a Viennese menu, a Swiss timetable and an Austrian school
+    // report, never produced, because the learner's own sentence uses the Germany-German
+    // sibling every note names. Nine Movierung pairs sit adjacent (`Coiffeuse` is the
+    // French counter-case: -euse, never -in; `Ammännin` builds on the umlauted stem);
+    // `Faschierte` and `Serviceangestellter/-e` are adjectival nouns on the `Tote` model;
+    // `Stadtpräsident`, `Pensionist` and `Bancomat` are n-declension (`Bancomat` and
+    // `Bankomat-Karte` keep the manifest's c/k split, `e-card` its lowercase hyphen);
+    // `in Pension gehen/sein` and `pensioniert werden/sein` ship as `pos: phrase` with
+    // IPA, unlike their `in Rente gehen/sein` precedent.
+    // P27-3f closes the final 73 rows by reviewing every row again instead of applying
+    // the old blanket no-card ruling: 12 written/official variants are recognition
+    // cards (`bzw.`, `EG`, `Personenkraftwagen`), six frequent forms are productive,
+    // and the remaining 55 bound pieces/frames are earned by learner-facing teaching.
+    // The twelve new recognition entries add twelve deliberate one-card exceptions.
+    expect(cards).toBe(entries * 2 - 1399);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

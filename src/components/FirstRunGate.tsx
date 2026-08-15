@@ -7,9 +7,13 @@ import {
   type DiscoveredProfile,
 } from '../lib/profile';
 import { pick, type ExplainLang } from '../lib/prefs';
-import { useExplainLang } from './hooks';
+import { getSession, type RemoteSession } from '../lib/sync-remote';
+import { isTauri } from '../lib/syncdir';
+import { t } from '../lib/strings';
+import { withBase } from '../lib/url';
+import { useExplainLang, useUiLang } from './hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   welcome: { en: 'Welcome to Deutsch-Atlas', ru: 'Добро пожаловать в Deutsch-Atlas' },
@@ -40,7 +44,25 @@ const UI = {
     en: '{n} exercises · last active {date}',
     ru: 'упражнений: {n} · последний раз {date}',
   },
+  orSignIn: { en: 'Or with an account', ru: 'Или с аккаунтом' },
+  cloudRecommend: {
+    en: 'Recommended if you use more than one device: your progress keeps a second copy in the cloud.',
+    ru: 'Рекомендуется, если у вас больше одного устройства: у прогресса появится вторая копия в облаке.',
+  },
+  signedInAs: { en: 'Signed in as {email}.', ru: 'Вы вошли как {email}.' },
+  connectHint: {
+    en: 'After you pick a name, connect this profile to the account under Fortschritt → Daten.',
+    ru: 'После выбора имени свяжите профиль с аккаунтом в разделе Fortschritt → Daten.',
+  },
+  // Same wording as AccountPanel's pending copy (ADR 0004c): stated wherever the
+  // pending state is reachable, and it changes nothing about local work.
+  pendingGate: {
+    en: 'Your account exists but is waiting to be approved. Nothing is stored in the cloud yet — keep learning, everything is saved on this device and will be uploaded once the account is approved.',
+    ru: 'Аккаунт создан, но ожидает одобрения. В облаке пока ничего не хранится — продолжайте заниматься: всё сохраняется на этом устройстве и будет загружено после одобрения.',
+  },
 } as const satisfies Record<string, { en: string; ru: string }>;
+
+const PROVIDER_LABEL: Record<string, string> = { google: 'Google', github: 'GitHub' };
 
 /**
  * Blocking first-run dialog: shown whenever no profile is registered — it asks
@@ -51,16 +73,33 @@ const UI = {
  */
 export default function FirstRunGate() {
   const lang = useExplainLang();
+  const uiLang = useUiLang();
   const [show, setShow] = useState(false);
   const [found, setFound] = useState<DiscoveredProfile[]>([]);
   const [name, setName] = useState('');
   const [busy, setBusy] = useState(false);
+  const [session, setSession] = useState<RemoteSession | null>(null);
+  const [returnTo, setReturnTo] = useState('/');
 
   useEffect(() => {
     void resolveProfileState().then(async (state) => {
       if (state !== 'first-run') return;
       setFound(await discoverProfiles());
       setShow(true);
+      // Session is asked for only once the gate is actually shown — an install
+      // with a profile never pays this request. Signing in from the gate must
+      // land back in the gate (ADR 0004a), so returnTo is the current page.
+      queueMicrotask(() =>
+        setReturnTo(window.location.pathname + window.location.search),
+      );
+      if (!isTauri()) {
+        const s = await getSession();
+        setSession(s);
+        // An OAuth display name may prefill the name field and nothing more
+        // (ADR 0004b): fully editable, no profile created, discovery untouched.
+        const displayName = s.signedIn ? s.user?.displayName : undefined;
+        if (displayName) setName((prev) => prev || displayName);
+      }
     });
   }, []);
 
@@ -175,6 +214,45 @@ export default function FirstRunGate() {
           <p className="mt-2 text-xs text-stone-400">
             {pick(lang, UI.reconnectHint)}
           </p>
+        )}
+
+        {/* Optional sign-in offer (ADR 0004a/d): visually below the local path,
+            which stays first-class and one-click. Absent entirely when the
+            deployment has no providers or in the desktop app (pairing is its
+            route in, on Fortschritt → Daten). */}
+        {session && !session.signedIn && session.providers.length > 0 && (
+          <div className="mt-4 border-t border-stone-200 pt-3 dark:border-stone-700">
+            <p className="text-xs font-semibold uppercase tracking-wide text-stone-400">
+              {pick(lang, UI.orSignIn)}
+            </p>
+            <p className="mt-1 text-xs text-stone-400">{pick(lang, UI.cloudRecommend)}</p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {session.providers.map((provider) => (
+                <a
+                  key={provider}
+                  href={withBase(`/api/auth/${provider}/start?returnTo=${encodeURIComponent(returnTo)}`)}
+                  className="inline-flex min-h-11 items-center rounded-md border border-stone-300 px-3 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
+                >
+                  {t('account.signIn', uiLang)} · {PROVIDER_LABEL[provider] ?? provider}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {session?.signedIn && session.user && (
+          <div className="mt-4 border-t border-stone-200 pt-3 dark:border-stone-700">
+            <p className="text-xs text-stone-500 dark:text-stone-400">
+              {pick(lang, UI.signedInAs).replace('{email}', session.user.email)}
+            </p>
+            {session.user.status === 'pending' ? (
+              <p className="mt-2 rounded bg-amber-50 px-2 py-1 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
+                {pick(lang, UI.pendingGate)}
+              </p>
+            ) : (
+              <p className="mt-1 text-xs text-stone-400">{pick(lang, UI.connectHint)}</p>
+            )}
+          </div>
         )}
       </form>
     </div>

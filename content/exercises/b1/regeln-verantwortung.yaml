@@ -20,6 +20,8 @@
 # This set is the primaryPractice — its item list never grows after shipping.
 topic: regeln-verantwortung
 role: practice
+stage: geruest
+activity: core
 title:
   en: "Practice — the modal carries the rule, werden stays an infinitive"
   ru: "Практика — правило несёт модальный глагол, werden остаётся инфинитивом"
@@ -245,6 +247,7 @@ items:
       de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und können an seiner Wand — die Verbkette spielen können bleibt zusammen, das finite Verb zuletzt. sodass können die Kinder … wäre die Wortstellung von deshalb. Der Hauptsatz läuft im einfachen Passiv aus B1.6, hier reines Trägermaterial. Die ältere Schreibung so dass ist dieselbe Konjunktion und wird akzeptiert."
 
   - id: uebersetzen-deshalb-treppe
+    revision: 2
     outcomes: [folgen-benennen]
     type: translate
     focus: konjunktionaladverb-inversion
@@ -257,10 +260,15 @@ items:
     prompt_ru: "Лифт красят. Поэтому на этой неделе я пользуюсь лестницей."
     prompt_uk: "Ліфт фарбують. Тому цього тижня я користуюся сходами."
     answer: "Der Aufzug wird gestrichen. Deshalb nehme ich diese Woche die Treppe."
-    # The RU prompt's «пользуюсь» renders as benutzen as faithfully as the idiom
-    # die Treppe nehmen, and «на этой неделе» is diese Woche or in dieser Woche —
-    # all renderings accepted, both verbs pinned, so the inversion stays graded
-    # whichever the learner aimed at.
+    # The RU prompt's «пользуюсь» renders as benutzen or nutzen as faithfully as
+    # the idiom die Treppe nehmen, and «на этой неделе» is diese Woche or in
+    # dieser Woche — all renderings accepted, all three verbs pinned, so the
+    # inversion stays graded whichever the learner aimed at.
+    #
+    # nutzen was missing until 2026-08-03 and the gap was not cosmetic: the
+    # finite verb is one end of the word-order rule, so an unpinned third verb
+    # made the very token the focus grades invisible to key_tokens, and a
+    # correct inversion could have been charged to konjunktionaladverb-inversion.
     accept:
       - "Der Aufzug wird gestrichen, deshalb nehme ich diese Woche die Treppe."
       - "Der Aufzug wird gestrichen. Deshalb nehme ich in dieser Woche die Treppe."
@@ -269,7 +277,11 @@ items:
       - "Der Aufzug wird gestrichen, deshalb benutze ich diese Woche die Treppe."
       - "Der Aufzug wird gestrichen. Deshalb benutze ich in dieser Woche die Treppe."
       - "Der Aufzug wird gestrichen, deshalb benutze ich in dieser Woche die Treppe."
-    key_tokens: ["Deshalb", "deshalb", "nehme", "benutze"]
+      - "Der Aufzug wird gestrichen. Deshalb nutze ich diese Woche die Treppe."
+      - "Der Aufzug wird gestrichen, deshalb nutze ich diese Woche die Treppe."
+      - "Der Aufzug wird gestrichen. Deshalb nutze ich in dieser Woche die Treppe."
+      - "Der Aufzug wird gestrichen, deshalb nutze ich in dieser Woche die Treppe."
+    key_tokens: ["Deshalb", "deshalb", "nehme", "benutze", "nutze"]
     explain:
       en: "The A2 contrast sodass lives next to: deshalb is an adverb, so it fills position 1 of a new main clause and the finite verb comes immediately — Deshalb nehme ich, never Deshalb ich nehme. Same two facts as a sodass sentence, opposite grammar: the adverb pulls the verb to itself, the conjunction sends it to the end."
       ru: "Контраст с A2, рядом с которым живёт sodass: deshalb — наречие, оно занимает первую позицию нового главного предложения, и спрягаемый глагол идёт сразу за ним — Deshalb nehme ich, никогда Deshalb ich nehme. Те же два факта, что и в предложении с sodass, но противоположная грамматика: наречие притягивает глагол к себе, союз отправляет его в конец."

@@ -1,0 +1,167 @@
+# Goethe exam trainer — operations
+
+The operational half: what the trainer is, the expected local layout of the official materials,
+how to run ingestion, and where its outputs land. The *decision* — why the materials never enter
+the repository, why a build without them degrades honestly instead of failing, why exam results
+are calibration and never mastery — is [ADR 0009](../adrs/0009-official-exam-materials-local-only.md).
+Read that first if you are about to change anything here.
+
+## What it is
+
+A simulator for the official Goethe-Zertifikat sets (Modellsatz, Übungssätze) the learner already
+owns as PDFs and audio, downloaded free from goethe.de: timed sessions against the real
+Kandidatenblätter, playback of the real Tonträger, and an answer sheet that scores itself against
+the real Prüferblätter key. Schreiben runs too — Teil 1 as auto-compared typed blanks (official
+answer always shown beside a mismatch), Teil 2 as a free text graded by nothing but the printed
+criteria, entered as a **self-assessment that is stored separately from the automatic score and
+never silently summed with it**. Sprechen, a Gruppenprüfung nothing solo can grade, opens as
+task cards with the examiner pages behind a disclosure — no sheet, no history. A set holding all
+three written modules also offers them as one sitting (Hören → Lesen → Schreiben, no scores
+between modules). It sits beside — and does not replace — the committed,
+repeatable `/pruefung/<level>` practice sets (original Goethe-*style* items authored for this
+course), which is where `/pruefung/<level>` already links out to it under "Prüfungssimulator".
+
+What is committed: the manifest contract and scoring arithmetic (`src/lib/exam-sim.ts`), the
+local result history it defines, the ingestion script below, and the trainer page itself —
+`/pruefung/goethe-a1` with its simulator island, which fetches the manifest at runtime and
+renders the absence state when no build-local materials exist.
+
+## The local-only boundary
+
+Official exam materials — PDFs, audio, video, every derived artifact (rendered pages, sliced
+audio, the generated manifest) — never enter the repository. Two gitignored directories carry the
+whole boundary:
+
+| Path | Contents | Ignored by |
+| --- | --- | --- |
+| `docs/GeotheInstitute/` | The official PDFs and audio/video, plus `exam-sources.yaml` | `.gitignore` |
+| `public/exams/` | Everything `scripts/exam-ingest.ts` generates: rendered pages, extracted audio, `manifest.json` | `.gitignore` |
+
+A clean checkout — and every CI machine — has neither directory. One corollary binds the owner's
+machine: a **local** `dist/` legitimately contains the exam assets, so never hand-deploy it
+(`wrangler pages deploy dist` or any equivalent) — the public site deploys only from clean
+checkouts. `bun run build` still succeeds;
+it just never serves `/exams/manifest.json`. **This is the point, not a gap**: the trainer page
+reads that 404 as the absence state and says plainly that the official materials are not present,
+with no broken player and no shell pretending to load. Nothing here needs a runtime permission
+check, because the deployed bytes simply do not exist.
+
+## Expected layout of `docs/GeotheInstitute/`
+
+```
+docs/GeotheInstitute/
+├── exam-sources.yaml              # the config below — the only file this script reads directly
+├── sd_1_modellsatz.pdf            # Kandidatenblätter + Prüferblätter, as downloaded
+├── sd_1_uebungssatz01.pdf
+├── sd_1_uebungssatz02.pdf
+└── pruefungstraining_2_hoeren_a1_erwachsene.mp4   # full Hören module recordings
+```
+
+Filenames are whatever goethe.de ships; `exam-sources.yaml` is the one place that names them.
+`pdf` and `audio` paths in the config are relative to the config's own directory, so the whole
+folder can be renamed or relocated without touching the config's other fields.
+
+### `exam-sources.yaml`
+
+One file, version 1, one entry per official set. The full shape — with a worked Hören module — is
+documented in the comment at the top of `scripts/exam-ingest.ts`; the essentials:
+
+- `sets[].id` is the set's stable identity — it becomes the `public/exams/<id>/` directory name
+  and the key the local result history hangs off, so treat it as a permanent identifier once a
+  learner has taken the set.
+- `sets[].modules[].pdfPages` are 1-based indices into the PDF — the Kandidatenblätter pages for
+  that module, in reading order.
+- `sets[].modules[].teile[].items[].key` is the answer key, transcribed from the Prüferblätter.
+  This is the one place a transcription error costs a wrong score, not a wrong lesson — there is
+  no validator that can check it against the source, because the source is never in the repo.
+- `audio` is optional per module (Schreiben/Sprechen modules have none) and names a video or
+  audio file to extract from, not a pre-sliced clip.
+- `answerPdfPages` (optional) names Prüferblätter pages — Transkriptionen, Bewertung,
+  Leistungsbeispiele — rendered exactly like task pages but surfaced only after a run.
+- `cues` (optional, audio modules only) are named jump points into the recording:
+  `- { label: "Nr. 7", at: "9:05" }`. `at` takes `"m:ss"`/`"mm:ss"` or plain seconds and is
+  converted to seconds in the manifest; labels are at most 24 characters and `at` must strictly
+  increase within a module. See "Cues" below.
+- Schreiben Teil 1 blanks are `shape: text` items with `answer` (as the Lösungen print it) plus
+  an `accept` list; comparison is literal (case/whitespace/trailing-punctuation-insensitive), so
+  the UI always shows the official answer beside a ✗. Teil 2 is a `free:` part — `label`,
+  `points`, and the printed `criteria` steps that drive the result screen's self-assessment.
+- A practice-only module (Sprechen) has `teile: []` — pages only, no answer sheet, no history.
+
+This repo intentionally contains **no example of a filled-in `exam-sources.yaml`** — even a
+plausible-looking one risks being read as a transcription of the real answer key. Author it
+directly against the shape comment and the real Prüferblätter.
+
+## Running ingestion
+
+```
+bun run exam:ingest                    # ingest using the default config path
+bun run exam:ingest -- --check         # validate + report what would be generated, write nothing
+bun run exam:ingest -- --force          # re-render every page / re-extract every audio track
+bun run exam:ingest -- --sources <path> # use a config file somewhere other than the default
+```
+
+For each module, it renders the listed `pdfPages` to PNG at 150 dpi (`pdftoppm`) and, when
+`audio` is set, extracts the audio stream without re-encoding (`ffmpeg -acodec copy` — the source
+video is already AAC, so there is nothing to transcode). Idempotent: a page or audio file already
+newer than its source is left alone, so editing one Teil's answer key and re-running does not
+re-render pages that did not change. `--check` never touches disk and never requires `pdftoppm`
+or `ffmpeg` to be installed — only the config and the referenced source files.
+
+Needs `pdftoppm` (part of Poppler) and `ffmpeg`:
+
+```
+brew install poppler ffmpeg
+```
+
+Before writing `public/exams/manifest.json`, the script re-reads it and runs it through
+`parseExamManifest` (`src/lib/exam-sim.ts`) — the same structural check the trainer page runs on
+every fetch — and confirms every page/audio path it just wrote actually exists on disk. Either
+check failing deletes the manifest and exits 1 naming the defect, rather than shipping a manifest
+the page cannot read or that 404s on its own assets.
+
+## Cues
+
+A Hören module is one ~17–19-minute recording, which is exactly right in Prüfungsmodus and
+useless when the learner wants Nummer 9 again. `cues` gives the module a list of named jump
+points, and the runner renders them **in Üben only**, as a wrap row of small buttons under the
+audio element; a click seeks and plays from there. Prüfungsmodus never shows them, for the same
+reason it gets no native `controls`: the real Tonträger already contains every repetition the
+Kandidatenblätter promise, so a per-Nummer jump list would hand back a listening budget the exam
+withholds.
+
+`bun scripts/exam-cues-scan.ts <setId>/<module>` proposes the list. It reads the already-ingested
+`public/exams/<setId>/<module>.m4a`, runs `ffmpeg -af silencedetect` over it, and prints a
+`cues:` block on stdout — one cue per silence of at least 8 seconds (`--min-gap`), placed one
+second before the audio returns, with the gap's length as a per-line comment. It writes nothing.
+
+**Everything it prints is a proposal, and the labels are placeholders** (`Marke 1`, `Marke 2`, …).
+Only listening tells you which mark is a Teil boundary and which is a Nummer: a Start Deutsch 1
+Hören opens each of Teil 1 and Teil 2 with a Beispiel whose pause looks exactly like an item's, so
+a mechanical numbering is off by one wherever a Beispiel is counted as a Nummer. The long gaps —
+where an instruction is read out — are the Teil boundaries, and the comment column is what makes
+them visible. Verify by ear, rename, adjust the `at:` values, then paste into `exam-sources.yaml`
+with a comment recording that the block came from a scan and when.
+
+## Where outputs land
+
+```
+public/exams/
+├── manifest.json
+└── <setId>/
+    ├── <module>.m4a
+    └── pages/
+        └── <module>-p<NN>.png
+```
+
+`manifest.json` is what `EXAM_MANIFEST_URL` (`/exams/manifest.json`) serves; its `pages` and
+`audio` fields are the root-absolute URLs above, ready for `withBase`, and `cues[].at` is in
+seconds, ready for `currentTime`. None of it is validated by
+`bun run validate` against a committed fixture, because there is no committed instance to check —
+the self-check inside `scripts/exam-ingest.ts` is the only gate this manifest ever passes through.
+
+## The one thing to remember
+
+A build made from a clean checkout has no exam assets. That is not a bug to chase — it is the
+trainer degrading honestly, exactly as ADR 0009 requires. Re-running `bun run exam:ingest` on a
+machine that holds `docs/GeotheInstitute/` is what brings it back.

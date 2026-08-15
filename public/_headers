@@ -1,0 +1,30 @@
+# Cloudflare Pages response headers. Copied verbatim into dist/ by Astro.
+#
+# The rule that matters most is the first one: a long-lived `sw.js` is how a PWA
+# strands every installed learner on an old build, because the browser only ever
+# discovers an update by re-fetching this one file.
+
+/sw.js
+  Cache-Control: no-cache
+  Content-Type: text/javascript; charset=utf-8
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+  Content-Type: application/manifest+json; charset=utf-8
+
+# Content-hashed by the build — the name changes whenever the bytes do.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Reviewed recordings are immutable once published (docs/product-protection.md):
+# republishing mints a new artifact rather than replacing bytes in place.
+/audio/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY

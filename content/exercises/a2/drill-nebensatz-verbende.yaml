@@ -5,6 +5,9 @@
 # Contexts are fresh (bus, weather, flat, cinema), never re-skins of the topic's own items.
 topic: nebensaetze-plaene
 role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — das Verb am Ende"
 title:
   en: "Drill — the verb goes to the wall"
   ru: "Тренажёр — глагол уходит в конец"
@@ -174,7 +177,10 @@ items:
       - "Ich bleibe zu Hause, weil ich morgen arbeiten soll."
       - "Weil ich morgen arbeiten muss, bleibe ich zu Hause."
       - "Weil ich morgen arbeiten soll, bleibe ich zu Hause."
-    key_tokens: ["muss"]
+    # revision 2: soll occupies the same wall position in its renderings, so it joins
+    # the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["muss", "soll"]
+    revision: 2
     explain:
       en: "weil sends the conjugated verb to the wall, and with two verbs the wall takes only the conjugated one: arbeiten muss, infinitive first. weil ich muss morgen arbeiten is the bracket left standing in main-clause order — the one error this whole drill is about. Only muss is graded: where the conjugated verb lands is the rule."
       ru: "weil отправляет спрягаемый глагол к стене, а из двух глаголов стена берёт только спрягаемый: arbeiten muss, инфинитив первым. weil ich muss morgen arbeiten — это рамка, оставшаяся в порядке главного предложения, та самая ошибка, о которой весь тренажёр. Оценивается только muss: правило — в том, куда приземляется спрягаемый глагол."
@@ -198,7 +204,10 @@ items:
       - "Ich glaube, dass der Film um acht beginnt."
       - "Ich denke, dass der Film um acht anfängt."
       - "Ich glaube, dass der Film um acht anfängt."
-    key_tokens: ["beginnt"]
+    # revision 2: anfängt occupies the same wall position in its renderings, so it
+    # joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["beginnt", "anfängt"]
+    revision: 2
     explain:
       en: "dass wraps the statement, and beginnt walks to the end of it: dass der Film um acht beginnt. If you reached for anfangen instead, notice what the wall does to it — the prefix comes home and it arrives as one word, anfängt. Only the final verb is graded; beginnt or anfängt is your choice."
       ru: "dass оборачивает утверждение, и beginnt уходит в его конец: dass der Film um acht beginnt. Если вам ближе anfangen, посмотрите, что делает с ним стена: приставка возвращается на место, и глагол приходит одним словом — anfängt. Оценивается только глагол у стены; beginnt или anfängt — ваш выбор."
@@ -218,7 +227,10 @@ items:
     answer: "Sie lernt Deutsch, weil sie in Berlin studieren möchte."
     accept:
       - "Sie lernt Deutsch, weil sie in Berlin studieren will."
-    key_tokens: ["möchte"]
+    # revision 2: will occupies the same wall position in its rendering, so it joins
+    # the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["möchte", "will"]
+    revision: 2
     explain:
       en: "The trap sits at the end: studieren möchte, infinitive first, conjugated modal last. weil sie möchte in Berlin studieren keeps the main-clause bracket inside the Nebensatz, and that is the error. möchte or will is a shade of tone; only the verb at the wall is graded."
       ru: "Ловушка ждёт в конце: studieren möchte — сначала инфинитив, спрягаемый модальный последним. weil sie möchte in Berlin studieren сохраняет рамку главного предложения внутри придаточного, и это и есть ошибка. möchte или will — оттенок тона; оценивается только глагол у стены."

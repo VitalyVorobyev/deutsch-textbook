@@ -1,0 +1,436 @@
+id: praepositionen
+# The taught-in chips are derived from these tags alone (ADR 0007). The list spans A1 to
+# B1 on purpose: this page is the one surface where the spatial, temporal and
+# verb-government uses of the same prepositions can be seen as one system.
+focus:
+  - akkusativ-praepositionen
+  - dativ-praepositionen
+  - wechsel-akk-dat
+  - wo-wohin
+  - wohin-wo-woher
+  - um-am-zeit
+  - seit-vor-zeit
+  - zeitangaben-system
+  - verb-praeposition
+  - verb-kasus
+  - verb-praeposition-b1
+  - praeposition-genitiv
+
+# Decision 1. Nothing here is about cases yet — the type of place picks the preposition,
+# and the Woher? column is the point: it is not the Wohin? column with a dative article.
+place_types:
+  - label: "Zimmer, Gebäude, Land mit Artikel"
+    meaning:
+      en: "a place you go inside — a room, a building, a country that carries an article"
+      ru: "место, внутрь которого входят: помещение, здание, страна с артиклем"
+      uk: "місце, куди заходять усередину: приміщення, будівля, країна з артиклем"
+    wohin: "in + Akkusativ"
+    wo: "in + Dativ"
+    woher: "aus + Dativ"
+    triple: "in die Schule – in der Schule – aus der Schule"
+  - label: "Platz, Markt, Fest"
+    meaning:
+      en: "an open space or an event — you are on it rather than in it"
+      ru: "открытая площадка или мероприятие: находишься на нём, а не внутри"
+      uk: "відкритий майданчик або свято: перебуваєш на ньому, а не всередині"
+    wohin: "auf + Akkusativ"
+    wo: "auf + Dativ"
+    woher: "von + Dativ"
+    triple: "auf den Markt – auf dem Markt – vom Markt"
+  - label: "Person, Ziel als Punkt"
+    meaning:
+      en: "a person, or a destination treated as a point you head for"
+      ru: "человек или цель, которую воспринимают как точку, к которой идут"
+      uk: "людина або ціль, яку сприймають як точку, до якої йдуть"
+    wohin: "zu + Dativ"
+    wo: "bei + Dativ"
+    woher: "von + Dativ"
+    triple: "zum Arzt – beim Arzt – vom Arzt"
+  - label: "Stadt, Land ohne Artikel"
+    meaning:
+      en: "a place name without an article — most cities and most countries"
+      ru: "название без артикля: большинство городов и большинство стран"
+      uk: "назва без артикля: більшість міст і більшість країн"
+    wohin: "nach"
+    wo: "in + Dativ"
+    woher: "aus + Dativ"
+    triple: "nach Berlin – in Berlin – aus Berlin"
+  - label: "das eigene Zuhause"
+    meaning:
+      en: "one's own home — a fixed set of three, with no article at all"
+      ru: "собственный дом: устойчивая тройка, артикля нет вообще"
+      uk: "власна домівка: стала трійка, артикля немає взагалі"
+    wohin: "nach Hause"
+    wo: "zu Hause"
+    woher: "von zu Hause"
+    triple: "nach Hause – zu Hause – von zu Hause"
+
+# Decision 2. The nine two-way prepositions, and the one question that decides the case.
+# The full nine-row minimal-pair table (with the verb pairs that carry the contrast) lives
+# on /referenz/kasus-praepositionen; this block is the test, not the paradigm.
+two_way:
+  forms: [an, auf, hinter, in, neben, über, unter, vor, zwischen]
+  test:
+    - question: "Wohin?"
+      case: Akkusativ
+      meaning:
+        en: "a destination, or a new spatial position"
+        ru: "цель или новое положение в пространстве"
+        uk: "ціль або нове положення у просторі"
+      example:
+        de: "Ich gehe in die Küche."
+        en: "I am going into the kitchen."
+        ru: "Я иду на кухню."
+        uk: "Я йду на кухню."
+    - question: "Wo?"
+      case: Dativ
+      meaning:
+        en: "the place where something is, or where the action happens"
+        ru: "место, где что-то находится или где происходит действие"
+        uk: "місце, де щось перебуває або де відбувається дія"
+      example:
+        de: "Ich koche in der Küche."
+        en: "I am cooking in the kitchen."
+        ru: "Я готовлю на кухне."
+        uk: "Я готую на кухні."
+  note:
+    en: "Movement is not the test. Ich laufe in der Küche is full of movement and still dative, because the running begins and ends inside the kitchen. The accusative marks a change of place, not activity."
+    ru: "Тест — не про движение. В Ich laufe in der Küche движения сколько угодно, а падеж Dativ: бег начинается и заканчивается внутри кухни. Akkusativ отмечает смену места, а не активность."
+    uk: "Тест — не про рух. У Ich laufe in der Küche руху скільки завгодно, а відмінок Dativ: біг починається й закінчується всередині кухні. Akkusativ позначає зміну місця, а не активність."
+
+# Decision 3. A different pattern: three prepositions, one case, nothing to choose.
+zu_bei_von:
+  - question: "Wohin?"
+    form: "zu + Dativ"
+    example:
+      de: "Ich gehe zum Arzt."
+      en: "I am going to the doctor."
+      ru: "Я иду к врачу."
+      uk: "Я йду до лікаря."
+  - question: "Wo?"
+    form: "bei + Dativ"
+    example:
+      de: "Ich bin beim Arzt."
+      en: "I am at the doctor's."
+      ru: "Я у врача."
+      uk: "Я в лікаря."
+  - question: "Woher?"
+    form: "von + Dativ"
+    example:
+      de: "Ich komme vom Arzt."
+      en: "I am coming from the doctor's."
+      ru: "Я иду от врача."
+      uk: "Я йду від лікаря."
+
+# The origin column at full resolution. Both are "from"; the split is inside/outside.
+aus_von:
+  - form: aus
+    use:
+      en: "out of the inside of something: a room, a building, an institution"
+      ru: "изнутри наружу: из помещения, здания, учреждения"
+      uk: "зсередини назовні: з приміщення, будівлі, установи"
+    examples: ["aus dem Haus", "aus der Küche", "aus der Schule", "aus der Bibliothek"]
+  - form: aus
+    use:
+      en: "origin: the town or country somebody comes from"
+      ru: "происхождение: город или страна, откуда человек родом"
+      uk: "походження: місто або країна, звідки людина родом"
+    examples: ["aus Berlin", "aus Deutschland", "aus der Schweiz"]
+  - form: von
+    use:
+      en: "away from a person"
+      ru: "от человека"
+      uk: "від людини"
+    examples: ["vom Arzt", "von meiner Nachbarin", "von Mira"]
+  - form: von
+    use:
+      en: "away from an open space, an event, or a point you were standing at"
+      ru: "с открытой площадки, с мероприятия, от точки, у которой стоял"
+      uk: "з відкритого майданчика, зі свята, від точки, біля якої стояв"
+    examples: ["vom Markt", "von der Party", "vom Bahnhof", "von der Arbeit"]
+
+# Preposition + article grown together. The short form is the neutral choice; the long one
+# survives where the article is stressed or contrasted. The case stays visible in both.
+contractions:
+  - { long: "in das", short: "ins", case: Akkusativ, example: "Ich gehe ins Kino." }
+  - { long: "an das", short: "ans", case: Akkusativ, example: "Wir fahren ans Meer." }
+  - { long: "auf das", short: "aufs", case: Akkusativ, example: "Am Wochenende fahren wir aufs Land." }
+  - { long: "in dem", short: "im", case: Dativ, example: "Ich bin im Kino." }
+  - { long: "an dem", short: "am", case: Dativ, example: "Wir sind am Meer." }
+  - { long: "zu dem", short: "zum", case: Dativ, example: "Ich gehe zum Bahnhof." }
+  - { long: "zu der", short: "zur", case: Dativ, example: "Ich gehe zur Post." }
+  - { long: "bei dem", short: "beim", case: Dativ, example: "Ich bin beim Arzt." }
+  - { long: "von dem", short: "vom", case: Dativ, example: "Ich komme vom Arzt." }
+
+# The same prepositions on the time axis. Nothing spatial survives the move: an means "on"
+# for days, in means "in" for months, and the case each governs has to be learnt with it.
+temporal:
+  - form: "um"
+    case: "Akkusativ"
+    use:
+      en: "clock time"
+      ru: "время по часам"
+      uk: "час за годинником"
+    example:
+      de: "Der Kurs beginnt um acht Uhr."
+      en: "The course starts at eight o'clock."
+      ru: "Курс начинается в восемь часов."
+      uk: "Курс починається о восьмій годині."
+  - form: "an (am)"
+    case: "Dativ"
+    use:
+      en: "days and parts of the day"
+      ru: "дни и части суток"
+      uk: "дні та частини доби"
+    example:
+      de: "Am Montag habe ich einen Termin."
+      en: "On Monday I have an appointment."
+      ru: "В понедельник у меня встреча."
+      uk: "У понеділок у мене зустріч."
+  - form: "in (im)"
+    case: "Dativ"
+    use:
+      en: "months, seasons, years"
+      ru: "месяцы, времена года, годы"
+      uk: "місяці, пори року, роки"
+    example:
+      de: "Im Sommer fahren wir ans Meer."
+      en: "In summer we go to the seaside."
+      ru: "Летом мы едем на море."
+      uk: "Улітку ми їдемо на море."
+  - form: "in"
+    case: "Dativ"
+    use:
+      en: "a point in the future, counted from now"
+      ru: "момент в будущем, отсчитанный от сейчас"
+      uk: "момент у майбутньому, відлічений від тепер"
+    example:
+      de: "In zwei Wochen fange ich an."
+      en: "I start in two weeks."
+      ru: "Через две недели я начинаю."
+      uk: "Через два тижні я починаю."
+  - form: "seit"
+    case: "Dativ"
+    use:
+      en: "started in the past and still going on"
+      ru: "началось в прошлом и продолжается"
+      uk: "почалося в минулому і триває"
+    example:
+      de: "Ich lerne seit einem Jahr Deutsch."
+      en: "I have been learning German for a year."
+      ru: "Я учу немецкий уже год."
+      uk: "Я вчу німецьку вже рік."
+  - form: "vor"
+    case: "Dativ"
+    use:
+      en: "a point in the past, counted back from now"
+      ru: "момент в прошлом, отсчитанный назад от сейчас"
+      uk: "момент у минулому, відлічений назад від тепер"
+    example:
+      de: "Vor drei Tagen war ich beim Arzt."
+      en: "Three days ago I was at the doctor's."
+      ru: "Три дня назад я был у врача."
+      uk: "Три дні тому я був у лікаря."
+  - form: "ab"
+    case: "Dativ"
+    use:
+      en: "from a starting point onwards, usually in the future"
+      ru: "начиная с какого-то момента, обычно в будущем"
+      uk: "починаючи з якогось моменту, зазвичай у майбутньому"
+    example:
+      de: "Ab Montag arbeite ich in Berlin."
+      en: "From Monday on I work in Berlin."
+      ru: "С понедельника я работаю в Берлине."
+      uk: "З понеділка я працюю в Берліні."
+  - form: "bis"
+    case: "Akkusativ (meist ohne Artikel)"
+    use:
+      en: "the end point; with an article, bis zu + Dativ"
+      ru: "конечная точка; с артиклем — bis zu + Dativ"
+      uk: "кінцева точка; з артиклем — bis zu + Dativ"
+    example:
+      de: "Ich bleibe bis Freitag, bis zum Abend."
+      en: "I am staying until Friday, until the evening."
+      ru: "Я остаюсь до пятницы, до вечера."
+      uk: "Я залишаюся до п'ятниці, до вечора."
+  - form: "von … bis"
+    case: "Dativ … Akkusativ"
+    use:
+      en: "a stretch of time with both ends named"
+      ru: "промежуток времени, у которого названы оба конца"
+      uk: "проміжок часу, у якого названо обидва кінці"
+    example:
+      de: "Ich arbeite von acht bis vier."
+      en: "I work from eight to four."
+      ru: "Я работаю с восьми до четырёх."
+      uk: "Я працюю з восьмої до четвертої."
+  - form: "nach"
+    case: "Dativ"
+    use:
+      en: "after an event"
+      ru: "после события"
+      uk: "після події"
+    example:
+      de: "Nach dem Kurs gehe ich nach Hause."
+      en: "After the course I go home."
+      ru: "После курса я иду домой."
+      uk: "Після курсу я йду додому."
+
+# B1 layer. Written German puts these on the genitive; spoken German very often uses the
+# dative instead, and the note says where that is normal rather than an error.
+genitive:
+  - form: "während"
+    level: B1
+    meaning:
+      en: "during, in the course of"
+      ru: "во время, в течение"
+      uk: "під час, протягом"
+    example:
+      de: "Während der Reise hat es jeden Tag geregnet."
+      en: "During the trip it rained every day."
+      ru: "Во время поездки каждый день шёл дождь."
+      uk: "Під час подорожі щодня йшов дощ."
+    note:
+      en: "In speech während + Dativ is common and accepted; in writing keep the genitive."
+      ru: "В речи часто и допустимо während + Dativ; на письме сохраняйте Genitiv."
+      uk: "У мовленні часто й допустимо während + Dativ; на письмі зберігайте Genitiv."
+  - form: "wegen"
+    level: B1
+    meaning:
+      en: "because of"
+      ru: "из-за"
+      uk: "через"
+    example:
+      de: "Wegen des Wetters bleiben wir zu Hause."
+      en: "Because of the weather we are staying at home."
+      ru: "Из-за погоды мы остаёмся дома."
+      uk: "Через погоду ми залишаємося вдома."
+    note:
+      en: "wegen dem Wetter is everyday spoken German; it is not the written standard."
+      ru: "wegen dem Wetter — обычная разговорная форма, но не письменная норма."
+      uk: "wegen dem Wetter — звичайна розмовна форма, але не писемна норма."
+  - form: "trotz"
+    level: B1
+    meaning:
+      en: "in spite of"
+      ru: "несмотря на"
+      uk: "попри, незважаючи на"
+    example:
+      de: "Trotz des Regens sind wir spazieren gegangen."
+      en: "In spite of the rain we went for a walk."
+      ru: "Несмотря на дождь, мы пошли гулять."
+      uk: "Попри дощ ми пішли гуляти."
+  - form: "statt"
+    level: B1
+    meaning:
+      en: "instead of"
+      ru: "вместо"
+      uk: "замість"
+    example:
+      de: "Statt eines Briefes hat sie eine Mail geschickt."
+      en: "Instead of a letter she sent an e-mail."
+      ru: "Вместо письма она отправила электронное сообщение."
+      uk: "Замість листа вона надіслала електронне повідомлення."
+
+# Where the preposition stops meaning anything on its own: the verb chooses it, and it has
+# to be learnt with the verb, together with the case it governs.
+verb_government:
+  - verb: "denken"
+    frame: "an + Akkusativ"
+    question: "woran?"
+    level: A2
+    example:
+      de: "Denkst du an die Tickets?"
+      en: "Are you thinking of the tickets?"
+      ru: "Ты помнишь про билеты?"
+      uk: "Ти пам'ятаєш про квитки?"
+  - verb: "warten"
+    frame: "auf + Akkusativ"
+    question: "worauf?"
+    level: A2
+    example:
+      de: "Wir warten auf Leas Antwort."
+      en: "We are waiting for Lea's answer."
+      ru: "Мы ждём ответа Леи."
+      uk: "Ми чекаємо на відповідь Леї."
+  - verb: "sich freuen"
+    frame: "auf + Akkusativ"
+    question: "worauf?"
+    level: A2
+    example:
+      de: "Wir freuen uns auf den Ausflug."
+      en: "We are looking forward to the outing."
+      ru: "Мы с нетерпением ждём поездки."
+      uk: "Ми з нетерпінням чекаємо на поїздку."
+  - verb: "sprechen"
+    frame: "über + Akkusativ"
+    question: "worüber?"
+    level: A2
+    example:
+      de: "Wir sprechen über den Ausflug."
+      en: "We are talking about the outing."
+      ru: "Мы говорим о поездке."
+      uk: "Ми говоримо про поїздку."
+  - verb: "sprechen"
+    frame: "mit + Dativ"
+    question: "mit wem?"
+    level: A2
+    example:
+      de: "Ich spreche mit dem Arzt."
+      en: "I am speaking with the doctor."
+      ru: "Я говорю с врачом."
+      uk: "Я говорю з лікарем."
+  - verb: "sich interessieren"
+    frame: "für + Akkusativ"
+    question: "wofür?"
+    level: A2
+    example:
+      de: "Ich interessiere mich für den Fotokurs."
+      en: "I am interested in the photography course."
+      ru: "Я интересуюсь курсом фотографии."
+      uk: "Я цікавлюся курсом фотографії."
+  - verb: "träumen"
+    frame: "von + Dativ"
+    question: "wovon?"
+    level: A2
+    example:
+      de: "Mia träumt von einer Reise."
+      en: "Mia dreams of a journey."
+      ru: "Мия мечтает о путешествии."
+      uk: "Мія мріє про подорож."
+  - verb: "arbeiten"
+    frame: "mit + Dativ"
+    question: "womit?"
+    level: A2
+    example:
+      de: "Wir arbeiten mit einer App."
+      en: "We work with an app."
+      ru: "Мы работаем с приложением."
+      uk: "Ми працюємо з застосунком."
+  - verb: "abhängen"
+    frame: "von + Dativ"
+    question: "wovon?"
+    level: B1
+    example:
+      de: "Wie lange wir bleiben, hängt vom Wetter ab."
+      en: "How long we stay depends on the weather."
+      ru: "Сколько мы пробудем, зависит от погоды."
+      uk: "Скільки ми пробудемо, залежить від погоди."
+  - verb: "sich kümmern"
+    frame: "um + Akkusativ"
+    question: "worum?"
+    level: B1
+    example:
+      de: "Wer kümmert sich um deine Katze?"
+      en: "Who is looking after your cat?"
+      ru: "Кто присмотрит за твоей кошкой?"
+      uk: "Хто догляне за твоєю кішкою?"
+  - verb: "sich wenden"
+    frame: "an + Akkusativ"
+    question: "an wen?"
+    level: B1
+    example:
+      de: "Mit Fragen wenden Sie sich bitte an das Personal."
+      en: "Please turn to the staff with any questions."
+      ru: "С вопросами обращайтесь, пожалуйста, к персоналу."
+      uk: "З питаннями звертайтеся, будь ласка, до персоналу."

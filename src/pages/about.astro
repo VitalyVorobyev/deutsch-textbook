@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
 import { getCheckpoints } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
-import { goetheCoverage, hasManifest, ukHalfCoverage } from '../lib/coverage';
-import { grammarCoverage } from '../lib/grammar-coverage';
+import { getCurriculum } from '@da/content/curriculum';
+import { goetheCoverage, hasManifest, ukHalfCoverage } from '@da/content/coverage';
+import { grammarCoverage } from '@da/content/grammar-coverage';
 import { withBase } from '../lib/url';
 
 const REPO = 'https://github.com/VitalyVorobyev/deutsch-textbook';
@@ -217,8 +217,11 @@ const principles = [
             {' '}{coverage.total} headwords on the official Goethe-Institut A1 Wortliste are covered
             ({coverage.percent}%) — {coverage.onTimeCards} card headwords are available by the A1
             boundary and {coverage.grammar} are taught as grammar rather than vocabulary. All
-            {' '}{grammarA1.total} grammar points expected at A1 are introduced and practised inside
-            A1 ({grammarA1.late} late). Original Goethe-style
+            {' '}{grammarA1.taught} of the {grammarA1.total} structures on this course's A1 grammar
+            inventory are introduced and practised inside A1 ({grammarA1.late} late), each one
+            measured by a practice or drill item that names the confusion it drills. The inventory
+            is checked against the Goethe-Institut's own published A1 structure list, which is how
+            the {grammarA1.missing} open ones were found. Original Goethe-style
             <a href={withBase('/pruefung/a1')} class="ml-1 text-sky-700 hover:underline dark:text-sky-400">reading, writing and speaking practice</a>
             is included; listening exam practice remains explicitly deferred. A cumulative
             {checkpointA1 && ` ${checkpointA1.items.length}-item`} A1 checkpoint measures the
@@ -231,8 +234,11 @@ const principles = [
             типов и собственный словарь. Из {coverage.total} слов официального списка Goethe-Institut
             A1 Wortliste охвачено {coverage.cards + coverage.grammar} ({coverage.percent}%):
             {' '}{coverage.onTimeCards} слов с карточками доступны уже к границе A1, ещё
-            {' '}{coverage.grammar} даются как грамматика. Все {grammarA1.total} грамматических
-            пунктов A1 вводятся и отрабатываются внутри A1 ({grammarA1.late} с опозданием).
+            {' '}{coverage.grammar} даются как грамматика. Из {grammarA1.total} структур
+            в грамматическом инвентаре курса на A1 изложено и отработано {grammarA1.taught}
+            ({grammarA1.late} с опозданием) — каждая подтверждена упражнением, которое прямо
+            называет соответствующую трудность. Сам инвентарь сверяется с опубликованным списком
+            структур Goethe-Institut для A1: именно так и нашлись оставшиеся {grammarA1.missing}.
             Добавлена оригинальная практика чтения, письма и говорения в формате Goethe;
             экзаменационное аудирование явно отложено.
             Итоговая контрольная точка A1
@@ -245,8 +251,11 @@ const principles = [
             читання, вправи кількох типів і власний словник. Із {coverage.total} слів офіційного
             списку Goethe-Institut A1 Wortliste охоплено {coverage.cards + coverage.grammar}
             ({coverage.percent}%): {coverage.onTimeCards} слів із картками доступні вже до межі A1,
-            ще {coverage.grammar} подано як граматику. Усі {grammarA1.total} граматичних пунктів A1
-            вводяться й відпрацьовуються всередині A1 ({grammarA1.late} із запізненням). Додано
+            ще {coverage.grammar} подано як граматику. Із {grammarA1.total} структур
+            граматичного інвентарю курсу на A1 викладено й відпрацьовано {grammarA1.taught}
+            ({grammarA1.late} із запізненням) — кожну підтверджено вправою, яка прямо називає
+            відповідну трудність. Сам інвентар звіряється з опублікованим списком структур
+            Goethe-Institut для A1: саме так і знайшлися решта {grammarA1.missing}. Додано
             оригінальну практику читання, письма й говоріння у форматі Goethe; екзаменаційне
             аудіювання явно відкладено.
             Підсумкова контрольна точка A1
@@ -272,9 +281,11 @@ const principles = [
               official Goethe-Institut A2 Wortliste are covered (${coverageA2.percent}%) —
               ${coverageA2.cards} as flashcards and ${coverageA2.grammar} taught as grammar rather
               than as vocabulary.`}
-            {` All ${grammarA2.total} grammar points the A2 standard expects are taught
-              (${grammarA2.percent}%), each one measured by a practice or drill item that names the
-              confusion it drills — testing a structure in a checkpoint does not count as teaching it.`}
+            {` ${grammarA2.taught} of the ${grammarA2.total} structures on this course's A2 grammar inventory
+              are taught (${grammarA2.percent}%), each one measured by a practice or drill item that names the
+              confusion it drills — testing a structure in a checkpoint does not count as teaching it.
+              The inventory itself is checked against the Goethe-Institut's published A2 structure
+              list, which is how the ${grammarA2.missing} open ones were found.`}
             {checkpointA2 && ` A cumulative ${checkpointA2.items.length}-item A2 checkpoint measures
               the level end to end.`} What that does not mean is that finishing it makes you A2 —
             that is a claim about you, not about the content, and no course can make it for you.
@@ -289,9 +300,11 @@ const principles = [
               ` Из ${coverageA2.total} слов официального списка Goethe-Institut A2 Wortliste охвачено
               ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%): ${coverageA2.cards} —
               карточками, ещё ${coverageA2.grammar} даются как грамматика, а не как лексика.`}
-            {` Охвачены все грамматические пункты стандарта A2 — всего ${grammarA2.total} (${grammarA2.percent}%),
-              и каждый подтверждён упражнением, которое называет соответствующую трудность:
-              проверить структуру в контрольной точке не значит её обучить.`}
+            {` Из ${grammarA2.total} структур грамматического инвентаря курса на A2 изложено ${grammarA2.taught}
+              (${grammarA2.percent}%), и каждая подтверждена упражнением, которое называет соответствующую
+              трудность: проверить структуру в контрольной точке не значит её обучить. Сам инвентарь
+              сверяется с опубликованным списком структур Goethe-Institut для A2 — так и нашлись
+              оставшиеся ${grammarA2.missing}.`}
             {checkpointA2 && ` Итоговая контрольная точка A2 из ${checkpointA2.items.length} заданий
               проверяет уровень целиком.`} Это не значит, что, пройдя курс, вы автоматически получите
             A2: это утверждение о вас, а не о содержании, и ни один курс не может сделать его за вас.
@@ -305,8 +318,8 @@ const principles = [
               ` Із ${coverageA2.total} слів офіційного списку Goethe-Institut A2 Wortliste охоплено
               ${coverageA2.cards + coverageA2.grammar} (${coverageA2.percent}%): ${coverageA2.cards} —
               картками, ще ${coverageA2.grammar} подано як граматику, а не як лексику.`}
-            {` Викладено всі граматичні пункти, яких очікує стандарт A2, — усього ${grammarA2.total}
-              (${grammarA2.percent}%), і кожен підтверджено вправою, яка називає відповідну
+            {` Із ${grammarA2.total} структур граматичного інвентарю курсу на A2 викладено ${grammarA2.taught}
+              (${grammarA2.percent}%), і кожну підтверджено вправою, яка називає відповідну
               трудність: перевірити структуру в контрольній точці не означає її навчити.`}
             {checkpointA2 && ` Підсумкова контрольна точка A2 з ${checkpointA2.items.length} завдань
               перевіряє рівень повністю.`} Але це не означає, що, пройшовши курс, ви автоматично
@@ -326,8 +339,8 @@ const principles = [
             {b1.units} B1 units are live so far, each built like an A2 one — pretest, article,
             graded reading, exercises, delayed probe and its own vocabulary — and each also
             explained in German for learners who no longer need the detour through another
-            language. {grammarB1.taught} of the {grammarB1.total} grammar points the B1 standard
-            expects are taught ({grammarB1.percent}%), measured the same way as at A1 and A2: a
+            language. {grammarB1.taught} of the {grammarB1.total} structures on this course's B1 grammar
+            inventory are taught ({grammarB1.percent}%), measured the same way as at A1 and A2: a
             point counts only where a practice or drill item names the confusion it drills. The
             long-term aim is B2, and the course is built so that levels can be added without
             disturbing what you have already learned.
@@ -340,8 +353,8 @@ const principles = [
             Пока доступно {b1.units} юнитов уровня B1. Каждый устроен так же, как юнит A2 —
             претест, статья, текст для чтения, упражнения, отложенная проверка и собственный
             словарь, — и вдобавок объясняется по-немецки: для тех, кому уже не нужен обходной путь
-            через другой язык. Из {grammarB1.total} грамматических пунктов, которых ожидает
-            стандарт B1, изложено {grammarB1.taught} ({grammarB1.percent}%); мерка та же, что на
+            через другой язык. Из {grammarB1.total} структур грамматического
+            инвентаря курса на B1 изложено {grammarB1.taught} ({grammarB1.percent}%); мерка та же, что на
             A1 и A2: пункт засчитывается, только если упражнение прямо называет соответствующую
             трудность. Долгосрочная цель — B2, и курс построен так, чтобы новые уровни добавлялись,
             не затрагивая уже пройденное.
@@ -354,8 +367,8 @@ const principles = [
             Наразі доступно {b1.units} юнітів рівня B1. Кожен побудовано так само, як юніт A2 —
             претест, стаття, адаптований текст для читання, вправи, відкладена перевірка і власний
             словник, — а ще кожен пояснено німецькою: для тих, кому вже не потрібен обхідний шлях
-            через іншу мову. Із {grammarB1.total} граматичних пунктів, яких очікує стандарт B1,
-            викладено {grammarB1.taught} ({grammarB1.percent}%); мірка та сама, що на A1 і A2:
+            через іншу мову. Із {grammarB1.total} структур граматичного інвентарю курсу
+            на B1 викладено {grammarB1.taught} ({grammarB1.percent}%); мірка та сама, що на A1 і A2:
             пункт зараховується лише тоді, коли вправа прямо називає відповідну трудність.
             Довгострокова мета — B2, і курс побудовано так, щоб нові рівні додавалися, не зачіпаючи
             того, що ви вже вивчили.
@@ -370,25 +383,28 @@ const principles = [
 
     <p class="mt-4 max-w-prose text-sm text-stone-500 dark:text-stone-400">
       <span class="lang-en">
-        Every explanation carries an English and a Russian half. The Ukrainian half is authored in
-        Ukrainian — written from the German rather than translated out of another half — and it now
-        covers all {ukCoverage.authored} of {ukCoverage.total} content files, counted from those
-        files each time this page is built. A German-medium half is authored from B1 onward.
-        Wherever a half does not exist, the app shows the English one.
+        Every explanation carries an English and a Russian half, and every half — English, Russian,
+        Ukrainian, German — is written from the German material rather than translated out of a
+        sibling half. The Ukrainian one is optional and lands file by file; it now covers all
+        {ukCoverage.authored} of {ukCoverage.total} content files, counted from those files each
+        time this page is built. A German-medium half is authored from B1 onward. Wherever a half
+        does not exist, the app shows the English one.
       </span>
       <span class="lang-ru">
-        У каждого объяснения есть английская и русская половины. Украинскую пишут по-украински,
-        отталкиваясь от немецкого текста, а не переводя её с соседней половины; сейчас она есть во
-        всех файлах курса — {ukCoverage.authored} из {ukCoverage.total}, и это число считается по
-        самим файлам при каждой сборке страницы. Немецкоязычная половина пишется начиная с уровня
-        B1. Там, где половины нет, приложение показывает английскую.
+        У каждого объяснения есть английская и русская половины, и каждую половину — английскую,
+        русскую, украинскую, немецкую — пишут от немецкого материала, а не переводят с соседней.
+        Украинская необязательна и появляется файл за файлом; сейчас она есть во всех файлах
+        курса — {ukCoverage.authored} из {ukCoverage.total}, и это число считается по самим файлам
+        при каждой сборке страницы. Немецкоязычная половина пишется начиная с уровня B1. Там, где
+        половины нет, приложение показывает английскую.
       </span>
       <span class="lang-uk">
-        Кожне пояснення має англійську та російську половини. Українську пишуть українською,
-        відштовхуючись від німецького тексту, а не перекладаючи її із сусідньої половини; зараз
-        вона є в усіх файлах курсу — {ukCoverage.authored} із {ukCoverage.total}, і це число щоразу
-        рахується за самими файлами під час збирання сторінки. Німецькомовна половина з’являється
-        з рівня B1. Там, де половини немає, застосунок показує англійську.
+        Кожне пояснення має англійську та російську половини, і кожну половину — англійську,
+        російську, українську, німецьку — пишуть від німецького матеріалу, а не перекладають із
+        сусідньої. Українська необов’язкова і з’являється файл за файлом; зараз вона є в усіх
+        файлах курсу — {ukCoverage.authored} із {ukCoverage.total}, і це число щоразу рахується за
+        самими файлами під час збирання сторінки. Німецькомовна половина з’являється з рівня B1.
+        Там, де половини немає, застосунок показує англійську.
       </span>
     </p>
 

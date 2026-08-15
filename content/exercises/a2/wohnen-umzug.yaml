@@ -1,5 +1,8 @@
 topic: wohnen-umzug
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Wohnen & Umzug"
 title:
   en: "Practice — Wo? and Wohin? in Nina's new flat"
   ru: "Практика — Wo? и Wohin? в новой квартире Нины"
@@ -174,6 +177,12 @@ items:
     prompt_uk: "Ніна вішає картину на стіну."
     answer: "Nina hängt das Bild an die Wand."
     key_tokens: ["die"]
+    # revision 2: «картину» / «картину» mark no definiteness, so the indefinite
+    # reading answers the RU/UK prompt too. The graded token is die (an die Wand).
+    # (Batch-3 audit, 2026-08-12.)
+    accept:
+      - "Nina hängt ein Bild an die Wand."
+    revision: 2
     explain:
       en: "Nina is doing the hanging, so the picture is on its way somewhere: Wohin? → accusative → an die Wand. If you wrote an der Wand, you described the finished result instead — Das Bild hängt an der Wand — which is a different sentence with a different meaning."
       ru: "Вешает Нина — значит картина перемещается: Wohin? → Akkusativ → an die Wand. Если вы написали an der Wand, вы описали уже готовый результат — Das Bild hängt an der Wand, — а это другое предложение с другим смыслом. Русский здесь подсказывает верно: «на стену», а не «на стене»."
@@ -192,6 +201,12 @@ items:
     prompt_uk: "Тобіас ставить коробку в підвал."
     answer: "Tobias stellt die Kiste in den Keller."
     key_tokens: ["stellt"]
+    # revision 2: «коробку» / «коробку» mark no definiteness, so the indefinite
+    # reading answers the RU/UK prompt too. The graded token is stellt.
+    # (Batch-3 audit, 2026-08-12.)
+    accept:
+      - "Tobias stellt eine Kiste in den Keller."
+    revision: 2
     explain:
       en: "The verb is the point. There is an object (die Kiste) and somebody moving it, so German needs the placement verb stellen — steht would leave the box standing there by itself, with nobody putting it anywhere. The direction follows automatically: in den Keller, accusative."
       ru: "Всё решает глагол. Есть дополнение (die Kiste) и тот, кто его перемещает, — значит нужен глагол перемещения stellen («ставить»). Форма steht означала бы, что коробка стоит сама по себе и никто её никуда не ставит. Направление получается автоматически: in den Keller, Akkusativ."

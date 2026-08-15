@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { z } from 'zod';
-import type { tableItemSchema } from '../../lib/schemas';
-import { answerMatches } from '../../lib/cloze';
+import type { tableItemSchema } from '@da/schema';
+import { answerMatches } from '@da/grading/cloze';
 import { acceptedCellAnswers } from '../../lib/table';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
@@ -97,6 +97,7 @@ export function TableFill({
                             : 'border-stone-300 focus:border-amber-500 dark:border-stone-600'
                         }`}
                         autoCapitalize="off"
+                        autoCorrect="off"
                         autoComplete="off"
                         spellCheck={false}
                       />

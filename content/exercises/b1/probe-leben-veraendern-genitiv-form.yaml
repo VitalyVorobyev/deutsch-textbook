@@ -6,7 +6,7 @@
 # always stands behind its noun, so no position is at stake, and a cloze is always
 # attributed — the gaps ARE the graded tokens, so a miss cannot land in the "target
 # retained, sentence missed elsewhere" bucket a translate probe produces
-# (docs/authoring-checklists.md). The sibling family on reisen-probleme uses translate
+# (docs/authoring/authoring-checklists.md). The sibling family on reisen-probleme uses translate
 # for praeposition-genitiv, and for a good reason that does not apply here: there a
 # cloze would print the preposition and the visible -s and give the case away. Here the
 # gap is the whole graded phrase, article word and noun ending together, so nothing is
@@ -37,7 +37,7 @@ role: probe
 title:
   en: "Delayed check — the written genitive"
   ru: "Отложенная проверка — письменный генитив"
-  uk: "Відкладена перевірка — письмовий генитив"
+  uk: "Відкладена перевірка — письмовий родовий відмінок"
   de: "Kontrolle mit Abstand — der geschriebene Genitiv"
 arming:
   - b1/leben-veraendern::cloze-genitiv-lage
@@ -51,7 +51,7 @@ items:
     instruction:
       en: "der Garten in the genitive — article and noun."
       ru: "der Garten в генитиве — артикль и существительное."
-      uk: "der Garten у генитиві — артикль та іменник."
+      uk: "der Garten у родовому відмінку — артикль та іменник."
       de: "der Garten im Genitiv — Artikel und Nomen."
     text: "Die Größe {{des}} {{Gartens}} war für uns wichtig."
     translation:
@@ -61,7 +61,7 @@ items:
     explain:
       en: "Masculine genitive, and it takes two words to build. The article der becomes des — that half most learners keep. The other half is the noun's own ending: a masculine noun carries the case itself, so Garten becomes Gartens. Leaving it off (die Größe des Garten) is the quiet error this check exists for, because the article alone already looks like a genitive. The whole group stands behind its noun — die Größe des Gartens, never des Gartens Größe."
       ru: "Генитив мужского рода собирается из двух слов. Артикль der становится des — эту половину помнят почти все. Вторая половина — собственное окончание существительного: мужской род несёт падеж сам, поэтому Garten превращается в Gartens. Пропустить его (die Größe des Garten) — тихая ошибка, ради которой существует эта проверка: один артикль уже выглядит как генитив. Вся группа стоит после своего существительного — die Größe des Gartens, а не des Gartens Größe."
-      uk: "Генитив чоловічого роду збирається з двох слів. Артикль der стає des — цю половину пам'ятають майже всі. Друга половина — власне закінчення іменника: чоловічий рід несе відмінок сам, тому Garten перетворюється на Gartens. Пропустити його (die Größe des Garten) — тиха помилка, заради якої існує ця перевірка: один артикль уже виглядає як генитив. Уся група стоїть після свого іменника — die Größe des Gartens, а не des Gartens Größe."
+      uk: "Родовий відмінок чоловічого роду збирається з двох слів. Артикль der стає des — цю половину пам'ятають майже всі. Друга половина — власне закінчення іменника: чоловічий рід несе відмінок сам, тому Garten перетворюється на Gartens. Пропустити його (die Größe des Garten) — тиха помилка, заради якої існує ця перевірка: один артикль уже виглядає як родовий відмінок. Уся група стоїть після свого іменника — die Größe des Gartens, а не des Gartens Größe."
       de: "Der maskuline Genitiv besteht aus zwei Wörtern. Aus dem Artikel der wird des — diese Hälfte behalten die meisten. Die andere Hälfte ist die Endung des Nomens selbst: Ein Maskulinum trägt den Kasus mit, also wird aus Garten ein Gartens. Sie wegzulassen (die Größe des Garten) ist der leise Fehler, für den diese Kontrolle da ist, denn der Artikel allein sieht schon nach Genitiv aus. Die ganze Gruppe steht hinter ihrem Nomen — die Größe des Gartens."
 
   - id: variant-b
@@ -71,7 +71,7 @@ items:
     instruction:
       en: "meine Tochter in the genitive — possessive article and noun."
       ru: "meine Tochter в генитиве — притяжательное местоимение и существительное."
-      uk: "meine Tochter у генитиві — присвійний займенник та іменник."
+      uk: "meine Tochter у родовому відмінку — присвійний займенник та іменник."
       de: "meine Tochter im Genitiv — Possessivartikel und Nomen."
     text: "Das Fahrrad {{meiner}} {{Tochter}} steht seit Wochen im Keller."
     translation:
@@ -81,7 +81,7 @@ items:
     explain:
       en: "A possessive declines exactly like the article, so the feminine genitive is meiner — the same form as the feminine dative, which is why it feels safe. The graded surprise is the second gap: a feminine noun stays completely unchanged. Tochter, with no ending at all. After the masculine Gartens the hand wants to add something here, and there is nothing to add — the -s belongs to masculine and neuter nouns only."
       ru: "Притяжательное склоняется точно как артикль, поэтому генитив женского рода — meiner, та же форма, что и датив женского рода, и потому она кажется безопасной. Оцениваемая неожиданность — второй пропуск: существительное женского рода не меняется вовсе. Tochter, без всякого окончания. После мужского Gartens рука тянется что-нибудь дописать, а дописывать нечего: -s достаётся только мужскому и среднему роду."
-      uk: "Присвійне відмінюється точно як артикль, тому генитив жіночого роду — meiner, та сама форма, що й давальний жіночого роду, і тому вона здається безпечною. Оцінювана несподіванка — другий пропуск: іменник жіночого роду не змінюється зовсім. Tochter, без жодного закінчення. Після чоловічого Gartens рука тягнеться щось дописати, а дописувати нема чого: -s дістається лише чоловічому та середньому роду."
+      uk: "Присвійне відмінюється точно як артикль, тому родовий відмінок жіночого роду — meiner, та сама форма, що й давальний жіночого роду, і тому вона здається безпечною. Оцінювана несподіванка — другий пропуск: іменник жіночого роду не змінюється зовсім. Tochter, без жодного закінчення. Після чоловічого Gartens рука тягнеться щось дописати, а дописувати нема чого: -s дістається лише чоловічому та середньому роду."
       de: "Ein Possessivartikel geht genau wie der Artikel, also heißt der Genitiv Feminin meiner — dieselbe Form wie der Dativ Feminin, deshalb fühlt sie sich sicher an. Die bewertete Überraschung ist die zweite Lücke: Ein feminines Nomen bleibt völlig unverändert. Tochter, ohne jede Endung. Nach dem maskulinen Gartens will die Hand hier etwas anhängen, und es gibt nichts anzuhängen — das -s gehört allein zu Maskulinum und Neutrum."
 
   - id: variant-c
@@ -91,7 +91,7 @@ items:
     instruction:
       en: "unser Auto in the genitive — possessive article and noun."
       ru: "unser Auto в генитиве — притяжательное местоимение и существительное."
-      uk: "unser Auto у генитиві — присвійний займенник та іменник."
+      uk: "unser Auto у родовому відмінку — присвійний займенник та іменник."
       de: "unser Auto im Genitiv — Possessivartikel und Nomen."
     text: "Die Reparatur {{unseres}} {{Autos}} war leider sehr teuer."
     translation:
@@ -101,5 +101,5 @@ items:
     explain:
       en: "One family, one competence: both halves of the genitive, a third time. Neuter goes with masculine here, so the possessive is unseres and the noun takes an ending of its own — Autos. Which ending is a matter of shape, not of gender: -es after a one-syllable noun or an s-sound (des Hauses), plain -s otherwise, and Auto ends in a vowel, so Autos. In speech von unserem Auto stays perfectly correct; the report register is what asks for this form."
       ru: "Одна семья, одна компетенция: обе половины генитива, в третий раз. Средний род идёт здесь вместе с мужским, поэтому притяжательное — unseres, а существительное берёт собственное окончание: Autos. Какое именно — вопрос формы, а не рода: -es после односложного существительного или s-звука (des Hauses), в остальных случаях просто -s, а Auto оканчивается на гласную, отсюда Autos. В речи von unserem Auto остаётся совершенно правильным; этой формы требует именно регистр отчёта."
-      uk: "Одна сім'я, одна компетенція: обидві половини генитива, утретє. Середній рід іде тут разом із чоловічим, тому присвійне — unseres, а іменник бере власне закінчення: Autos. Яке саме — питання форми, а не роду: -es після односкладового іменника або s-звука (des Hauses), в інших випадках просто -s, а Auto закінчується на голосну, звідси Autos. У мовленні von unserem Auto залишається цілком правильним; цієї форми вимагає саме регістр звіту."
+      uk: "Одна сім'я, одна компетенція: обидві половини родового відмінка, утретє. Середній рід іде тут разом із чоловічим, тому присвійне — unseres, а іменник бере власне закінчення: Autos. Яке саме — питання форми, а не роду: -es після односкладового іменника або s-звука (des Hauses), в інших випадках просто -s, а Auto закінчується на голосну, звідси Autos. У мовленні von unserem Auto залишається цілком правильним; цієї форми вимагає саме регістр звіту."
       de: "Eine Familie, eine Fähigkeit: beide Hälften des Genitivs, zum dritten Mal. Das Neutrum geht hier mit dem Maskulinum, also heißt der Possessivartikel unseres, und das Nomen nimmt eine eigene Endung — Autos. Welche es ist, entscheidet die Form des Wortes, nicht sein Genus: -es nach einsilbigen Nomen und nach s-Lauten (des Hauses), sonst schlicht -s, und Auto endet auf einen Vokal, also Autos. Gesprochen bleibt von unserem Auto völlig korrekt; nach dieser Form fragt allein das Berichtsregister."

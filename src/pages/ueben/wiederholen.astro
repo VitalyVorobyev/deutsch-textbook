@@ -4,7 +4,7 @@ import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import FlashcardSession from '../../components/srs/FlashcardSession';
 import { getAllCards, getDeckLevels, getTopicNodes } from '../../lib/content';
-import { getCurriculum } from '../../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
 const [cards, nodes, deckLevels] = await Promise.all([
   getAllCards(),
@@ -16,8 +16,12 @@ const { spine } = getCurriculum();
 
 <Base title="Wiederholen">
   <UebenNav active="wiederholen" />
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="ueben.tabWiederholen" /></h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">
+  <!-- The active UebenNav tab already names the page on a phone — the H1 and the
+       standing description below it just push the first card half a viewport down.
+       sr-only keeps the H1 in the accessibility tree; the description, being purely
+       redundant with the tab, is hidden outright. Both return unchanged at sm+. -->
+  <h1 class="text-3xl font-bold tracking-tight sr-only sm:not-sr-only"><Chrome k="ueben.tabWiederholen" /></h1>
+  <p class="hidden sm:block mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">Your daily review across all decks — due cards first, then a few new ones.</span>
     <span class="lang-ru">Ежедневное повторение по всем колодам — сначала карточки к повторению, затем немного новых.</span>
     <span class="lang-uk">Щоденне повторення за всіма колодами — спершу картки до повторення, потім кілька нових.</span>

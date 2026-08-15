@@ -1,0 +1,89 @@
+topic: ort-richtung-praepositionen
+kind: intensive
+title_de: "Ein Samstag hin und zurück"
+text:
+  - >-
+    Am Samstag fährt Jonas in die Stadt. Zuerst geht er
+    [[auf den Markt::to the market — an open square, so auf::на рынок — открытая
+    площадка, поэтому auf::на ринок — відкритий майданчик, тому auf]] und kauft
+    Obst und Brot. Um zehn kommt er
+    [[vom Markt zurück::back from the market — after auf the origin is von::с
+    рынка обратно — после auf исходная точка идёт с von::з ринку назад — після
+    auf вихідна точка йде з von]] und geht
+    [[in die Bibliothek::into the library — a building, so in + Akkusativ::в
+    библиотеку — здание, поэтому in + Akkusativ::до бібліотеки — будівля, тому
+    in + Akkusativ]]. In der Bibliothek liest er eine Stunde.
+  - >-
+    Dann kommt er [[aus der Bibliothek::out of the library — he was inside, so
+    aus::из библиотеки — он был внутри, поэтому aus::з бібліотеки — він був
+    усередині, тому aus]] und läuft
+    [[zum Bahnhof::to the station — a destination as a point, so zu::к вокзалу —
+    цель-точка, поэтому zu::до вокзалу — ціль-точка, тому zu]].
+    [[Am Bahnhof::at the station — the location takes an, not bei::на вокзале —
+    место берёт an, а не bei::на вокзалі — місце бере an, а не bei]] wartet
+    seine Kollegin Mira. Sie kommt gerade aus Berlin. Ihr Zug ist pünktlich.
+    Zusammen fahren sie [[zu Miras Tante::to Mira's aunt — a person, so zu::к
+    тёте Миры — человек, поэтому zu::до тітки Міри — людина, тому zu]].
+  - >-
+    [[Bei der Tante::at the aunt's place — a person, so bei::у тёти — человек,
+    поэтому bei::у тітки — людина, тому bei]] essen sie Kuchen und erzählen von
+    der Woche. Um vier kommen sie
+    [[von der Tante zurück::back from the aunt's — a person, so von::от тёти
+    обратно — человек, поэтому von::від тітки назад — людина, тому von]]. Jonas
+    fährt mit dem Bus
+    [[nach Hause::home, as a destination::домой — как цель движения::додому — як
+    ціль руху]] und ist um fünf zu Hause.
+questions:
+  - id: frage-markt
+    outcomes: [weg-verstehen, ziel-nennen]
+    type: mc
+    prompt: "Wohin geht Jonas zuerst?"
+    options:
+      - "Auf den Markt."
+      - "In die Bibliothek."
+      - "Zum Bahnhof."
+    correct: 0
+    translation:
+      en: Where does Jonas go first?
+      ru: Куда Йонас идёт сначала?
+      uk: Куди Йонас іде спочатку?
+    explain:
+      en: "The text says „Zuerst geht er auf den Markt“. A market is an open square, so the destination takes auf + Akkusativ. He goes to the library afterwards and to the station after that."
+      ru: "В тексте сказано: «Zuerst geht er auf den Markt». Рынок — открытая площадка, поэтому цель берёт auf + Akkusativ. В библиотеку он идёт потом, а на вокзал — ещё позже."
+      uk: "У тексті сказано: «Zuerst geht er auf den Markt». Ринок — відкритий майданчик, тому ціль бере auf + Akkusativ. До бібліотеки він іде потім, а на вокзал — ще пізніше."
+
+  - id: frage-mira
+    outcomes: [weg-verstehen, herkunft-nennen]
+    type: mc
+    prompt: "Woher kommt Mira?"
+    options:
+      - "Vom Markt."
+      - "Von ihrer Tante."
+      - "Aus Berlin."
+    correct: 2
+    translation:
+      en: Where does Mira come from?
+      ru: Откуда приезжает Мира?
+      uk: Звідки приїжджає Міра?
+    explain:
+      en: "„Sie kommt gerade aus Berlin“ — a city name takes aus for the origin. Jonas is the one who comes vom Markt, and the visit to the aunt happens later in the day."
+      ru: "«Sie kommt gerade aus Berlin» — с названием города исходная точка передаётся через aus. С рынка (vom Markt) возвращается Йонас, а к тёте они едут позже."
+      uk: "«Sie kommt gerade aus Berlin» — із назвою міста вихідна точка передається через aus. З ринку (vom Markt) повертається Йонас, а до тітки вони їдуть пізніше."
+
+  - id: frage-kuchen
+    outcomes: [weg-verstehen, ort-nennen]
+    type: mc
+    prompt: "Wo essen Jonas und Mira Kuchen?"
+    options:
+      - "In der Bibliothek."
+      - "Bei Miras Tante."
+      - "Am Bahnhof."
+    correct: 1
+    translation:
+      en: Where do Jonas and Mira eat cake?
+      ru: Где Йонас и Мира едят пирог?
+      uk: Де Йонас і Міра їдять пиріг?
+    explain:
+      en: "„Bei der Tante essen sie Kuchen“ — with a person, the Wo? phrase takes bei. The library is where Jonas read, and the station is where he met Mira."
+      ru: "«Bei der Tante essen sie Kuchen» — когда речь о человеке, форма на Wo? берёт bei. В библиотеке Йонас читал, а на вокзале встретил Миру."
+      uk: "«Bei der Tante essen sie Kuchen» — коли йдеться про людину, форма на Wo? бере bei. У бібліотеці Йонас читав, а на вокзалі зустрів Міру."

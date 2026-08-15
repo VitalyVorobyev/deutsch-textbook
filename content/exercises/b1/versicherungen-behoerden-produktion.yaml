@@ -1,0 +1,172 @@
+topic: versicherungen-behoerden
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — antworten und nachfragen"
+title:
+  en: "Apply — answer the letter and ask at the counter"
+  ru: "Применение — ответить на письмо и спросить у окошка"
+  uk: "Застосування — відповісти на лист і спитати біля віконця"
+
+# Independent transfer: a letter that has to be answered inside its deadline, and a counter
+# conversation where the learner does not know the answer and has to say so. Fresh contexts,
+# no scaffolding, nothing that re-skins a Grundübung item.
+#
+# Both thin tags get their second production context here — `praeposition-genitiv` in
+# uebersetzen-frist and `adjektiv-nullartikel` in uebersetzen-angaben — which is what lifts each
+# off the single-file tail.
+#
+# The speak task is where `wissen-nichtwissen` is actually taught rather than merely claimed:
+# the model's second line is the admission, and the checklist makes it the thing to check.
+items:
+  - id: uebersetzen-frist
+    outcomes: [frist-nennen]
+    type: translate
+    focus: praeposition-genitiv
+    key_tokens: ["wegen", "des"]
+    instruction:
+      en: "Write it in the register of a letter, not of a conversation."
+      ru: "Напишите в регистре письма, а не разговора."
+      uk: "Напишіть у регістрі листа, а не розмови."
+    prompt_en: "Because of the move I am asking for a longer deadline."
+    prompt_ru: "В связи с переездом я прошу продлить срок."
+    prompt_uk: "У зв'язку з переїздом я прошу продовжити строк."
+    answer: "Wegen des Umzugs bitte ich um eine längere Frist."
+    accept:
+      - "Ich bitte wegen des Umzugs um eine längere Frist."
+    explain:
+      en: "*Wegen* plus the genitive is what makes this a letter rather than a remark: *wegen dem Umzug* is what you would say out loud and is not wrong German, but it is the wrong register here. *Umzug* is masculine, so the case shows twice — *des* and the *-s*. Note the frame the rest of the sentence uses: *bitten um* plus accusative is the fixed way German asks for something in writing."
+      ru: "*Wegen* с генитивом и делает это письмом, а не репликой: *wegen dem Umzug* — то, что вы сказали бы вслух, и это не ошибочный немецкий, но здесь неверный регистр. *Umzug* мужского рода, поэтому падеж виден дважды — *des* и *-s*. Обратите внимание и на рамку остальной фразы: *bitten um* с аккузативом — устойчивый способ, которым немецкий просит о чём-то письменно."
+      uk: "*Wegen* з родовим і робить це листом, а не реплікою: *wegen dem Umzug* — те, що ви сказали б уголос, і це не хибна німецька, але тут неправильний регістр. *Umzug* чоловічого роду, тому відмінок видно двічі — *des* і *-s*. Зверніть увагу й на рамку решти фрази: *bitten um* зі знахідним — сталий спосіб, яким німецька просить про щось письмово."
+
+  - id: uebersetzen-angaben
+    outcomes: [personalien-angeben]
+    type: translate
+    focus: adjektiv-nullartikel
+    key_tokens: ["Angaben"]
+    prompt_en: "The form is asking for details about my income."
+    prompt_ru: "Бланк запрашивает данные о моём доходе."
+    prompt_uk: "Бланк запитує дані про мій дохід."
+    answer: "Das Formular verlangt Angaben über mein Einkommen."
+    explain:
+      en: "*Angaben* is a general plural and stands bare — unspecified details, whichever the form asks for. Compare the subject: *das Formular* keeps its article because it is one particular sheet in front of you. The two nouns in one short sentence are the contrast the tag grades, and neither language you are translating from marks it at all."
+      ru: "*Angaben* — обобщающее множественное и стоит голым: неопределённые данные, те, которых бланк потребует. Сравните с подлежащим: *das Formular* сохраняет артикль, потому что это один конкретный лист перед вами. Два существительных в одной короткой фразе и есть противопоставление, которое оценивает тег, — а в русском оно не отмечено никак."
+      uk: "*Angaben* — узагальнювальна множина і стоїть голим: невизначені дані, ті, яких бланк вимагатиме. Порівняйте з підметом: *das Formular* зберігає артикль, бо це один конкретний аркуш перед вами. Два іменники в одній короткій фразі і є протиставлення, яке оцінює тег, — а в українській воно не позначене ніяк."
+
+  - id: diktat-frist
+    outcomes: [behoerdenbrief-verstehen]
+    type: listen
+    text: "Bitte antworten Sie innerhalb der Frist."
+    translation:
+      en: "Please reply within the deadline."
+      ru: "Пожалуйста, ответьте в течение установленного срока."
+      uk: "Будь ласка, відповідайте протягом встановленого строку."
+    explain:
+      en: "The sentence every letter from an authority ends with, and the word that decides what it means is the shortest one: *innerhalb* is four unstressed syllables that run together, and hearing *in* instead changes a deadline into a place. Writing it once is the way to find out whether you would recognise it on a recorded message."
+      ru: "Фраза, которой заканчивается любое письмо из учреждения, и слово, определяющее смысл, — самое короткое: *innerhalb* — четыре безударных слога, сливающихся в один поток, и услышать вместо него *in* значит превратить срок в место. Записать её один раз — способ выяснить, узнали бы вы её в автоответчике."
+      uk: "Фраза, якою закінчується будь-який лист з установи, і слово, що визначає зміст, — найкоротше: *innerhalb* — чотири ненаголошені склади, що зливаються в один потік, і почути замість нього *in* означає перетворити строк на місце. Записати її один раз — спосіб з'ясувати, чи впізнали б ви її в автовідповідачі."
+
+  - id: sprechen-schalter
+    outcomes: [versicherung-klaeren]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "Your bicycle was stolen. You are at your insurer's counter and you genuinely do not know whether theft is covered by your policy. Find out — aloud — and ask for written confirmation."
+      ru: "У вас украли велосипед. Вы у окошка страховой и действительно не знаете, покрывает ли ваш полис кражу. Выясните это вслух и попросите письменное подтверждение."
+      uk: "У вас украли велосипед. Ви біля віконця страхової і справді не знаєте, чи покриває ваш поліс крадіжку. З'ясуйте це вголос і попросіть письмове підтвердження."
+    goal:
+      en: "Say what you do not know instead of guessing, and leave with something in writing."
+      ru: "Сказать, чего вы не знаете, вместо того чтобы гадать, и уйти с чем-то письменным."
+      uk: "Сказати, чого ви не знаєте, замість того щоб гадати, і піти з чимось письмовим."
+    checklist:
+      - en: "I said openly that I do not know: Ich weiß nicht, ob … — with ob and the verb at the end."
+        ru: "Я прямо сказал(а), что не знаю: Ich weiß nicht, ob … — с ob и глаголом в конце."
+        uk: "Я прямо сказав(ла), що не знаю: Ich weiß nicht, ob … — з ob і дієсловом у кінці."
+      - en: "I named the risk with gegen and a bare noun: gegen Diebstahl."
+        ru: "Я назвал(а) риск через gegen и существительное без артикля: gegen Diebstahl."
+        uk: "Я назвав(ла) ризик через gegen та іменник без артикля: gegen Diebstahl."
+      - en: "I asked for a Nachweis in writing rather than accepting a spoken yes."
+        ru: "Я попросил(а) письменный Nachweis, а не удовлетворился(лась) устным «да»."
+        uk: "Я попросив(ла) письмовий Nachweis, а не задовольнився(лася) усним «так»."
+    model_answer: "Guten Tag. Mein Fahrrad wurde gestohlen. Ich weiß nicht, ob ich gegen Diebstahl versichert bin — können Sie das bitte prüfen? Ich bin seit Januar bei Ihnen versichert. Und könnten Sie mir einen Nachweis schicken, damit ich ihn der Polizei zeigen kann?"
+    model_translation:
+      en: "Hello. My bicycle has been stolen. I do not know whether I am insured against theft — could you check, please? I have been insured with you since January. And could you send me written confirmation, so that I can show it to the police?"
+      ru: "Здравствуйте. У меня украли велосипед. Я не знаю, застрахован ли я от кражи, — вы не могли бы проверить? Я застрахован у вас с января. И не могли бы вы прислать мне подтверждение, чтобы я мог показать его полиции?"
+      uk: "Добрий день. У мене вкрали велосипед. Я не знаю, чи застрахований я від крадіжки, — чи не могли б ви перевірити? Я застрахований у вас із січня. І чи не могли б ви надіслати мені підтвердження, щоб я міг показати його поліції?"
+    explain:
+      en: "Play yourself back and check the second sentence first. Saying *Ich weiß nicht, ob …* out loud is the whole skill here, and it is the one most learners route around by asking a question they already half-know the answer to. The clause needs *ob* and the verb at the end: *ob ich gegen Diebstahl versichert bin*. Then check the risk phrase — *gegen Diebstahl*, no article — and the last line, where *damit* introduces the purpose and sends its own verb to the end too."
+      ru: "Прослушайте запись и проверьте сначала второе предложение. Произнести вслух *Ich weiß nicht, ob …* — здесь и есть всё умение, и именно его большинство учащихся обходит, задавая вопрос, ответ на который уже наполовину знает. Придаточному нужны *ob* и глагол в конце: *ob ich gegen Diebstahl versichert bin*. Потом проверьте сочетание с риском — *gegen Diebstahl*, без артикля — и последнюю строку, где *damit* вводит цель и тоже отправляет свой глагол в конец."
+      uk: "Прослухайте запис і перевірте спершу друге речення. Вимовити вголос *Ich weiß nicht, ob …* — тут і є все вміння, і саме його більшість учнів обходить, ставлячи питання, відповідь на яке вже наполовину знає. Підрядному потрібні *ob* і дієслово в кінці: *ob ich gegen Diebstahl versichert bin*. Потім перевірте сполучення з ризиком — *gegen Diebstahl*, без артикля — і останній рядок, де *damit* вводить мету і теж відправляє своє дієслово в кінець."
+
+  - id: schreiben-antwort
+    outcomes: [personalien-angeben, frist-nennen]
+    type: write
+    prompt:
+      en: "An authority has written asking for evidence of your income within four weeks. You are moving house next week and will not manage it in time. Write a short reply: say why, ask for a longer deadline, and give your new address."
+      ru: "Учреждение прислало письмо с просьбой предоставить подтверждения дохода в течение четырёх недель. На следующей неделе вы переезжаете и не успеете. Напишите короткий ответ: объясните причину, попросите продлить срок и сообщите новый адрес."
+      uk: "Установа надіслала лист із проханням надати підтвердження доходу протягом чотирьох тижнів. Наступного тижня ви переїжджаєте і не встигнете. Напишіть коротку відповідь: поясніть причину, попросіть продовжити строк і повідомте нову адресу."
+    goal:
+      en: "Ask for more time in a way an official reader will grant without a second letter."
+      ru: "Попросить больше времени так, чтобы официальный читатель дал его без второго письма."
+      uk: "Попросити більше часу так, щоб офіційний читач дав його без другого листа."
+    requirements:
+      - en: "Use at least one genitive preposition — wegen, trotz, während or innerhalb — with the article and, if the noun is masculine or neuter, its -s."
+        ru: "Используйте хотя бы один генитивный предлог — wegen, trotz, während или innerhalb — с артиклем и, если существительное мужского или среднего рода, с его -s."
+        uk: "Використайте хоча б один родовий прийменник — wegen, trotz, während або innerhalb — з артиклем і, якщо іменник чоловічого чи середнього роду, з його -s."
+      - en: "Refer to the documents with a bare plural (Nachweise, Unterlagen, Angaben), not with die."
+        ru: "Назовите документы обобщающим множественным без артикля (Nachweise, Unterlagen, Angaben), а не с die."
+        uk: "Назвіть документи узагальнювальною множиною без артикля (Nachweise, Unterlagen, Angaben), а не з die."
+      - en: "Name the new address the way a form does — street and number, postcode and town."
+        ru: "Укажите новый адрес так, как это делает бланк: улица и номер, индекс и город."
+        uk: "Укажіть нову адресу так, як це робить бланк: вулиця і номер, індекс і місто."
+    min_words: 55
+    model_answer: "Sehr geehrte Damen und Herren, ich habe Ihren Brief vom fünften Mai erhalten. Wegen des Umzugs kann ich die Unterlagen nicht innerhalb der Frist von vier Wochen schicken. Ich ziehe nächste Woche um und bitte deshalb um zwei Wochen mehr. Nachweise über mein Einkommen liegen bereit; ich schicke sie sofort nach dem Umzug. Meine neue Adresse ist Hauptstraße 14, 28195 Bremen. Mit freundlichen Grüßen Anna Petrova"
+    model_translation:
+      en: "Dear Sir or Madam, I have received your letter of the fifth of May. Because of the move I cannot send the documents within the four-week deadline. I am moving next week and therefore ask for two more weeks. Evidence of my income is ready; I will send it immediately after the move. My new address is Hauptstraße 14, 28195 Bremen. Kind regards, Anna Petrova"
+      ru: "Уважаемые дамы и господа, я получила ваше письмо от пятого мая. В связи с переездом я не могу отправить документы в течение четырёхнедельного срока. На следующей неделе я переезжаю и поэтому прошу дать ещё две недели. Подтверждения дохода готовы; я отправлю их сразу после переезда. Мой новый адрес: Hauptstraße 14, 28195 Bremen. С уважением, Анна Петрова"
+      uk: "Шановні пані та панове, я отримала ваш лист від п'ятого травня. У зв'язку з переїздом я не можу надіслати документи протягом чотиритижневого строку. Наступного тижня я переїжджаю і тому прошу дати ще два тижні. Підтвердження доходу готові; я надішлю їх одразу після переїзду. Моя нова адреса: Hauptstraße 14, 28195 Bremen. З повагою, Анна Петрова"
+    explain:
+      en: "Read your draft against the model on three points. First, find your genitive preposition and check the noun after it: *wegen des Umzugs* and *innerhalb der Frist* — masculine takes the *-s*, feminine takes nothing. Second, look at how you named the documents: the model has *die Unterlagen* once, with an article, because those are the specific ones the letter asked for, and *Nachweise* once without, because that sentence introduces them for the first time. The rule is about what the reader already knows, not about the plural. Third, no comma after *Mit freundlichen Grüßen* — the name simply follows."
+      ru: "Сверьте черновик с образцом по трём точкам. Сначала найдите свой генитивный предлог и проверьте существительное после него: *wegen des Umzugs* и *innerhalb der Frist* — мужской род берёт *-s*, женский не берёт ничего. Затем посмотрите, как вы назвали документы: в образце один раз *die Unterlagen*, с артиклем, потому что это именно те, о которых просило письмо, и один раз *Nachweise* без артикля, потому что то предложение вводит их впервые. Правило про то, что читатель уже знает, а не про множественное число. И третье: после *Mit freundlichen Grüßen* запятая не ставится — имя просто идёт следом."
+      uk: "Звірте чернетку зі зразком за трьома точками. Спершу знайдіть свій родовий прийменник і перевірте іменник після нього: *wegen des Umzugs* та *innerhalb der Frist* — чоловічий рід бере *-s*, жіночий не бере нічого. Потім подивіться, як ви назвали документи: у зразку один раз *die Unterlagen*, з артиклем, бо це саме ті, про які просив лист, і один раз *Nachweise* без артикля, бо те речення вводить їх уперше. Правило про те, що читач уже знає, а не про множину. І третє: після *Mit freundlichen Grüßen* кома не ставиться — ім'я просто йде слідом."
+
+  - id: sprechen-frist
+    outcomes: [frist-nennen]
+    type: speak
+    mode: spoken-production
+    focus: praeposition-genitiv
+    instruction:
+      en: "Say it aloud in one go — a short voice message, nobody answering."
+      ru: "Скажите вслух одним куском — короткое голосовое сообщение, никто не отвечает."
+      uk: "Скажіть уголос одним шматком — коротке голосове повідомлення, ніхто не відповідає."
+    prompt:
+      en: "Leave a voice message for a colleague explaining why your application is late: the move, the deadline you were given, the extra two weeks you asked for, and when you will send the documents."
+      ru: "Оставьте коллеге голосовое сообщение с объяснением, почему ваше заявление задерживается: переезд, назначенный срок, дополнительные две недели, о которых вы попросили, и когда вы отправите документы."
+      uk: "Залиште колезі голосове повідомлення з поясненням, чому ваша заява затримується: переїзд, призначений строк, додаткові два тижні, про які ви попросили, і коли ви надішлете документи."
+    goal:
+      en: "Give a reason and a date that somebody can act on without asking you back."
+      ru: "Назвать причину и дату так, чтобы человеку не пришлось переспрашивать."
+      uk: "Назвати причину і дату так, щоб людині не довелося перепитувати."
+    checklist:
+      - en: "I used at least one genitive preposition — wegen, trotz, während, innerhalb — with its article."
+        ru: "Я использовал(а) хотя бы один генитивный предлог — wegen, trotz, während, innerhalb — с артиклем."
+        uk: "Я використав(ла) хоча б один родовий прийменник — wegen, trotz, während, innerhalb — з артиклем."
+      - en: "If the noun after it was masculine or neuter, I said the -s: des Umzugs, des Termins."
+        ru: "Если существительное после него было мужского или среднего рода, я произнёс(ла) -s: des Umzugs, des Termins."
+        uk: "Якщо іменник після нього був чоловічого чи середнього роду, я вимовив(ла) -s: des Umzugs, des Termins."
+      - en: "I named the documents with a bare plural, not with die."
+        ru: "Я назвал(а) документы обобщающим множественным без артикля, а не с die."
+        uk: "Я назвав(ла) документи узагальнювальною множиною без артикля, а не з die."
+    model_answer: "Hallo, kurz zu meinem Antrag: Wegen des Umzugs schaffe ich die Frist nicht. Das Amt hat mir vier Wochen gegeben, aber ich ziehe nächste Woche um. Ich habe deshalb um zwei Wochen mehr gebeten. Nachweise über mein Einkommen habe ich schon; ich schicke sie zwei Tage nach dem Umzug."
+    model_translation:
+      en: "Hello, briefly about my application: because of the move I will not manage the deadline. The office gave me four weeks, but I am moving next week. So I have asked for two more weeks. I already have evidence of my income; I will send it two days after the move."
+      ru: "Привет, коротко о моём заявлении: из-за переезда я не укладываюсь в срок. Учреждение дало мне четыре недели, но на следующей неделе я переезжаю. Поэтому я попросил ещё две недели. Подтверждения дохода у меня уже есть; отправлю их через два дня после переезда."
+      uk: "Привіт, коротко про мою заяву: через переїзд я не встигаю у строк. Установа дала мені чотири тижні, але наступного тижня я переїжджаю. Тому я попросив ще два тижні. Підтвердження доходу в мене вже є; надішлю їх за два дні після переїзду."
+    explain:
+      en: "Spoken German would normally say *wegen dem Umzug* here, and this task deliberately asks for the written form out loud — because the point is to have produced the genitive at least once without a keyboard to think at. Play yourself back and listen for the *-s* on *Umzugs*; it is one consonant and it disappears first. Then check *Nachweise*: if you said *die Nachweise*, you claimed your colleague already knows which ones."
+      ru: "В разговорной речи здесь сказали бы *wegen dem Umzug*, и задание намеренно просит произнести письменную форму вслух: смысл в том, чтобы хоть раз построить генитив без клавиатуры, над которой можно подумать. Прослушайте запись и вслушайтесь в *-s* у *Umzugs*: это один согласный, и исчезает он первым. Потом проверьте *Nachweise*: если вы сказали *die Nachweise*, значит вы утверждали, что коллега уже знает, о каких идёт речь."
+      uk: "У розмовному мовленні тут сказали б *wegen dem Umzug*, і завдання навмисно просить вимовити писемну форму вголос: сенс у тому, щоб хоч раз побудувати родовий без клавіатури, над якою можна подумати. Прослухайте запис і вслухайтеся в *-s* у *Umzugs*: це один приголосний, і зникає він першим. Потім перевірте *Nachweise*: якщо ви сказали *die Nachweise*, значить ви стверджували, що колега вже знає, про які йдеться."

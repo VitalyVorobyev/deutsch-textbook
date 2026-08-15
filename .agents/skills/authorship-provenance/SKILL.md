@@ -6,7 +6,7 @@ description: Preserve honest evidence of human creative direction and AI assista
 # Authorship provenance
 
 Treat provenance as evidence of process, never as a promise of copyrightability. Read
-`docs/product-protection.md`, the relevant frozen curriculum section and the matching record in
+`docs/authoring/product-protection.md`, the relevant frozen curriculum section and the matching record in
 `data/authorship-provenance.yaml` or `data/asset-provenance.yaml` before editing.
 
 ## Topic workflow

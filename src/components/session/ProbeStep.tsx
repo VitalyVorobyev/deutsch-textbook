@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { DueProbe } from '../../lib/probes';
 import { MAX_PROBES_PER_SESSION, PROBE_INTERVALS_DAYS, servedProbes } from '../../lib/probes';
-import type { ExerciseItem } from '../../lib/schemas';
+import type { ExerciseItem } from '@da/schema';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { attemptScore } from '../../lib/scoring';
 import { logAttempt } from '../../lib/store';
@@ -43,7 +43,7 @@ interface Queued {
   overdueDays: number;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{n}` is replaced by the caller. */
 const UI = {
   probeResult: {

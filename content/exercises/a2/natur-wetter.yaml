@@ -1,0 +1,263 @@
+topic: natur-wetter
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — das Wetter und was draußen ist"
+title:
+  en: "Practice — the weather and what is outside"
+  ru: "Практика — погода и то, что снаружи"
+  uk: "Практика — погода і те, що назовні"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# Twelve items over the article's four decisions, in its order: the empty subject
+# (cloze-es-wetterverben, cloze-es-umgestellt, uebersetzen-es-regnet), the three word classes for
+# one weather (table-wortarten, mc-sonne-scheint), the bare-or-declined adjective
+# (cloze-praedikativ-attributiv, uebersetzen-kaltes-wetter) and the comparison
+# (cloze-komparativ, uebersetzen-vergleich). The last three carry the landscape vocabulary the
+# topic adopts (match-landschaft, cloze-grad, mc-see-meer).
+#
+# Three tags, and only one is new. `es-unpersoenlich` names the confusion this topic owns: the
+# subject slot that must be filled by a word meaning nothing. It is registered in
+# focus-tags.ts and the doc table in the same change, and it is deliberately carried by five
+# items across two practice files — a tag with three items or fewer, or a tag living in one
+# file, is the thin tail `bun scripts/grammar-depth.ts --thin` counts, and the corpus-wide
+# ceilings in tests/grammar-depth.test.ts sit exactly on today's numbers.
+#
+# The other two are recycled and are the runtime channel of this topic's `deepens:` edges:
+# `adjektiv-praedikativ` (adjektive-deklination) and `komparativ-als` (einkaufen-reklamation).
+# An error here marks the confusion weak course-wide and pulls the base topics back into
+# mixed training, which is the whole point of the edge.
+#
+# Mix over this file: 2 mc of 12 (17%), mc+match+order 3 of 12 (25%), 3 translate, 0 order.
+#
+# Every noun and adjective is a headword of the two decks this topic adopts (wetter-natur,
+# natur-tiere-a2), grepped in content/vocab/ rather than remembered, plus A1/A2 carrier words
+# (Tag, Morgen, Sommer, Winter, März, Mai, Berlin, Hamburg, gestern, heute, morgen).
+items:
+  - id: cloze-es-wetterverben
+    outcomes: [wetter-beschreiben]
+    type: cloze
+    focus: es-unpersoenlich
+    instruction:
+      en: "Fill in the subject each weather verb needs."
+      ru: "Вставьте подлежащее, которого требует каждый погодный глагол."
+      uk: "Вставте підмет, якого потребує кожне погодне дієслово."
+    text: "Im November regnet {{es}} fast jeden Tag, und im Januar schneit {{es}} hier oft."
+    translation:
+      en: "In November it rains almost every day, and in January it often snows here."
+      ru: "В ноябре дождь идёт почти каждый день, а в январе здесь часто идёт снег."
+      uk: "У листопаді дощ іде майже щодня, а в січні тут часто йде сніг."
+    explain:
+      en: "Both verbs already contain their weather, so there is nothing left for a subject to name — and German still insists on having one. It supplies *es*, a word that means nothing here and only holds the slot. Both gaps take the same *es*, and both sentences are complete without any further subject."
+      ru: "Оба глагола уже содержат свою погоду, так что называть подлежащему нечего — а немецкий всё равно требует подлежащее. Он подставляет *es*: слово, которое здесь ничего не значит и только держит место. В оба пропуска идёт одно и то же *es*, и оба предложения полны без какого-либо другого подлежащего. По-русски «идёт дождь» обходится настоящим подлежащим, поэтому пустое место здесь и хочется оставить незаполненным."
+      uk: "Обидва дієслова вже містять свою погоду, тож називати підметові нічого — а німецька все одно вимагає підмет. Вона підставляє *es*: слово, яке тут нічого не значить і лише тримає місце. В обидва пропуски йде те саме *es*, і обидва речення повні без будь-якого іншого підмета. Українською «іде дощ» обходиться справжнім підметом, тому порожнє місце тут і хочеться лишити незаповненим."
+
+  - id: cloze-es-umgestellt
+    outcomes: [wetter-beschreiben]
+    type: cloze
+    focus: es-unpersoenlich
+    instruction:
+      en: "The sentence starts with something else. Put the missing word where it now belongs."
+      ru: "Предложение начинается с другого слова. Поставьте пропущенное слово туда, где ему теперь место."
+      uk: "Речення починається з іншого слова. Поставте пропущене слово туди, де йому тепер місце."
+    text: "Heute regnet {{es}} den ganzen Tag. Morgen wird {{es}} kühler."
+    translation:
+      en: "Today it rains all day. Tomorrow it will get cooler."
+      ru: "Сегодня весь день идёт дождь. Завтра станет прохладнее."
+      uk: "Сьогодні цілий день іде дощ. Завтра стане прохолодніше."
+    explain:
+      en: "Fronting *heute* or *morgen* pushes the verb into second place and the subject behind it — but it does not delete the subject. *Es* is still required, and now it is easy to see it doing nothing except being there: *Heute regnet es*, never ❌ *Heute regnet*. The second sentence shows the same *es* with *werden* instead of a weather verb."
+      ru: "Вынос *heute* или *morgen* вперёд ставит глагол на второе место, а подлежащее — за него, но не отменяет подлежащее. *Es* по-прежнему обязательно, и здесь особенно видно, что оно не делает ничего, кроме как присутствует: *Heute regnet es*, а не ❌ *Heute regnet*. Второе предложение показывает то же *es* с *werden* вместо погодного глагола."
+      uk: "Винесення *heute* чи *morgen* вперед ставить дієслово на друге місце, а підмет — за нього, але не скасовує підмет. *Es* так само обов'язкове, і тут особливо видно, що воно не робить нічого, крім того, що присутнє: *Heute regnet es*, а не ❌ *Heute regnet*. Друге речення показує те саме *es* з *werden* замість погодного дієслова."
+
+  - id: uebersetzen-es-regnet
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["es", "schneit"]
+    instruction:
+      en: "Start the sentence with the time phrase."
+      ru: "Начните предложение с обстоятельства времени."
+      uk: "Почніть речення з обставини часу."
+    prompt_en: "In January it snows here almost every day."
+    prompt_ru: "В январе здесь почти каждый день идёт снег."
+    prompt_uk: "У січні тут майже щодня йде сніг."
+    answer: "Im Januar schneit es hier fast jeden Tag."
+    explain:
+      en: "The instruction fronts the time phrase on purpose, because that is the position where the placeholder is hardest to remember: the verb takes second place and *es* follows it, with nothing in your source sentence corresponding to it. ❌ *Im Januar schneit hier fast jeden Tag* is not a shorter way of saying it — the verb has nothing to agree with."
+      ru: "Инструкция намеренно выносит обстоятельство времени вперёд: именно в этой позиции пустое подлежащее забывается легче всего. Глагол занимает второе место, *es* идёт за ним, а в русской фразе ему ничто не соответствует. ❌ *Im Januar schneit hier fast jeden Tag* — не более краткий вариант: глаголу не с чем согласовываться."
+      uk: "Інструкція навмисно виносить обставину часу вперед: саме в цій позиції порожній підмет забувається найлегше. Дієслово посідає друге місце, *es* іде за ним, а в українській фразі йому ніщо не відповідає. ❌ *Im Januar schneit hier fast jeden Tag* — не коротший варіант: дієслову немає з чим узгоджуватися."
+
+  - id: table-wortarten
+    outcomes: [wetter-beschreiben]
+    type: table
+    title: "Ein Wetter, drei Wortarten"
+    instruction:
+      en: "Complete the row: the noun with its article, the adjective, and the whole sentence with the verb."
+      ru: "Заполните строку: существительное с артиклем, прилагательное и целое предложение с глаголом."
+      uk: "Заповніть рядок: іменник з артиклем, прикметник і ціле речення з дієсловом."
+    columns: ["Nomen", "Adjektiv", "Satz mit Verb"]
+    rows:
+      - label: "Schnee"
+        cells:
+          - { answer: "der Schnee", given: true }
+          - { answer: "—", given: true }
+          - { answer: "Es schneit." }
+      - label: "Sonne"
+        cells:
+          - { answer: "die Sonne" }
+          - { answer: "sonnig" }
+          - { answer: "Die Sonne scheint." }
+      - label: "Wind"
+        cells:
+          - { answer: "der Wind" }
+          - { answer: "windig" }
+          - { answer: "—", given: true }
+      - label: "Wolke"
+        cells:
+          - { answer: "die Wolke" }
+          - { answer: "bewölkt" }
+          - { answer: "—", given: true }
+    explain:
+      en: "The table is one question asked four times: which word classes does this weather actually have? Snow has no adjective of its own, and wind and cloud have no verb — the gaps are as much a fact about the word as the forms are. Sun is the row that breaks the pattern: its sentence is *Die Sonne scheint*, with a real subject and an ordinary verb, so it is the one weather sentence in this topic that needs no placeholder at all."
+      ru: "Таблица — это один вопрос, заданный четыре раза: какие части речи у этой погоды вообще есть? У снега нет своего прилагательного, у ветра и облака нет глагола — пробелы говорят о слове не меньше, чем сами формы. Солнце ломает образец: его предложение — *Die Sonne scheint*, с настоящим подлежащим и обычным глаголом. Это единственная погодная фраза темы, которой пустое *es* не нужно."
+      uk: "Таблиця — це одне питання, поставлене чотири рази: які частини мови в цієї погоди взагалі є? У снігу немає власного прикметника, у вітру і хмари немає дієслова — прогалини говорять про слово не менше, ніж самі форми. Сонце ламає зразок: його речення — *Die Sonne scheint*, зі справжнім підметом і звичайним дієсловом. Це єдина погодна фраза теми, якій порожнє *es* не потрібне."
+
+  - id: mc-sonne-scheint
+    outcomes: [wetter-beschreiben]
+    type: mc
+    prompt: "Welcher Satz über die Sonne ist richtig?"
+    options:
+      - "Die Sonne scheint."
+      - "Es sonnt."
+      - "Die Sonne sonnt."
+    correct: 0
+    explain:
+      en: "There is no weather verb *sonnen* for the sky. The sun takes the ordinary verb *scheinen* and is a real subject doing a real thing, which is why this sentence looks nothing like *es regnet*. If you want the placeholder pattern for sunshine, you need the adjective: *Es ist sonnig*."
+      ru: "Погодного глагола *sonnen* про небо не существует. Солнце берёт обычный глагол *scheinen* и является настоящим подлежащим, которое совершает настоящее действие, — поэтому эта фраза совсем не похожа на *es regnet*. Если нужен образец с пустым подлежащим, берите прилагательное: *Es ist sonnig*."
+      uk: "Погодного дієслова *sonnen* про небо не існує. Сонце бере звичайне дієслово *scheinen* і є справжнім підметом, який виконує справжню дію, — тому ця фраза зовсім не схожа на *es regnet*. Якщо потрібен зразок із порожнім підметом, беріть прикметник: *Es ist sonnig*."
+
+  - id: cloze-praedikativ-attributiv
+    outcomes: [wetter-beschreiben, landschaft-beschreiben]
+    type: cloze
+    focus: adjektiv-praedikativ
+    instruction:
+      en: "Fill in the adjective in the form the position requires: kalt, nass."
+      ru: "Вставьте прилагательное в форме, которой требует позиция: kalt, nass."
+      uk: "Вставте прикметник у формі, якої вимагає позиція: kalt, nass."
+    text: "Der Morgen war {{kalt}}, und wir sind durch den {{nassen}} Wald gegangen. Am Abend wurde es wieder {{kalt}}."
+    translation:
+      en: "The morning was cold, and we walked through the wet forest. In the evening it turned cold again."
+      ru: "Утро было холодным, и мы шли через мокрый лес. К вечеру снова стало холодно."
+      uk: "Ранок був холодний, і ми йшли через мокрий ліс. Надвечір знову стало холодно."
+    explain:
+      en: "The same two words, three positions, and only the position decides. After *war* and after *wurde* the adjective is bare — *kalt*, both times. In front of *Wald* it must be declined, and *durch* takes the accusative, so after *den* the ending is *-en*: *durch den nassen Wald*. Notice that the first and last gaps are identical even though one is past and one is a change of state; tense never touches a predicate adjective."
+      ru: "Те же два слова, три позиции, и решает только позиция. После *war* и после *wurde* прилагательное голое — оба раза *kalt*. Перед *Wald* оно склоняется, а *durch* требует винительного падежа, поэтому после *den* окончание — *-en*: *durch den nassen Wald*. Обратите внимание: первый и последний пропуски одинаковы, хотя в одном прошедшее время, а в другом смена состояния; время никогда не влияет на прилагательное-сказуемое. По-русски «утро было холодным» требует окончания — отсюда и ошибка."
+      uk: "Ті самі два слова, три позиції, і вирішує лише позиція. Після *war* і після *wurde* прикметник голий — обидва рази *kalt*. Перед *Wald* він відмінюється, а *durch* вимагає знахідного відмінка, тому після *den* закінчення — *-en*: *durch den nassen Wald*. Зверніть увагу: перший і останній пропуски однакові, хоч в одному минулий час, а в іншому зміна стану; час ніколи не впливає на прикметник-присудок. Українською «ранок був холодний» вимагає закінчення — звідси й помилка."
+
+  - id: uebersetzen-kaltes-wetter
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: adjektiv-praedikativ
+    key_tokens: ["kalt", "kalte"]
+    prompt_en: "The weather is cold. I do not like the cold weather."
+    prompt_ru: "Погода холодная. Я не люблю холодную погоду."
+    prompt_uk: "Погода холодна. Я не люблю холодну погоду."
+    answer: "Das Wetter ist kalt. Ich mag das kalte Wetter nicht."
+    accept:
+      - "Das Wetter ist kalt. Das kalte Wetter mag ich nicht."
+    explain:
+      en: "One adjective, two sentences, and the difference between them is the whole rule. After *ist* it is bare: *kalt*. In front of *Wetter* it is declined, and after *das* the ending is *-e*: *das kalte Wetter*. Both German sentences are asked for at once so that the pair cannot be answered by habit — whichever form you reach for first, the other sentence needs the other one."
+      ru: "Одно прилагательное, два предложения, и разница между ними — это всё правило. После *ist* оно голое: *kalt*. Перед *Wetter* оно склоняется, и после *das* окончание — *-e*: *das kalte Wetter*. Оба немецких предложения запрашиваются сразу, чтобы пару нельзя было ответить по привычке: какую форму вы ни возьмёте первой, второму предложению нужна другая. По-русски окончание есть в обоих («холодная», «холодную»), поэтому различие приходится строить, а не переводить."
+      uk: "Один прикметник, два речення, і різниця між ними — це все правило. Після *ist* він голий: *kalt*. Перед *Wetter* він відмінюється, і після *das* закінчення — *-e*: *das kalte Wetter*. Обидва німецькі речення запитуються одразу, щоб пару не можна було відповісти за звичкою: яку форму ви не візьмете першою, другому реченню потрібна інша. Українською закінчення є в обох («холодна», «холодну»), тому різницю доводиться будувати, а не перекладати."
+
+  - id: cloze-komparativ
+    outcomes: [wetter-vergleichen]
+    type: cloze
+    focus: komparativ-als
+    instruction:
+      en: "Fill in the comparative form and the word that follows it."
+      ru: "Вставьте форму сравнительной степени и слово после неё."
+      uk: "Вставте форму вищого ступеня і слово після неї."
+    text: "Im Mai ist es {{wärmer}} {{als}} im März, aber am Meer ist es {{windiger}} {{als}} im Wald."
+    translation:
+      en: "In May it is warmer than in March, but by the sea it is windier than in the forest."
+      ru: "В мае теплее, чем в марте, но у моря ветренее, чем в лесу."
+      uk: "У травні тепліше, ніж у березні, але біля моря вітряніше, ніж у лісі."
+    explain:
+      en: "Two comparisons, and each needs two things. The comparative adds *-er*, and a short *a* takes an Umlaut with it: *warm → wärmer*. *Windig* is longer and adds *-er* unchanged: *windiger*. Both are followed by *als*, because both name a difference. Note what happens after *als*: the second half keeps its own preposition — *als im März*, not ❌ *als März*, because you are comparing two months in the same way, not a temperature with a month."
+      ru: "Два сравнения, и каждому нужно две вещи. Сравнительная степень прибавляет *-er*, и краткое *a* при этом получает умлаут: *warm → wärmer*. *Windig* длиннее и прибавляет *-er* без изменений: *windiger*. За обоими стоит *als*, потому что оба называют различие. Обратите внимание на то, что идёт после *als*: вторая половина сохраняет свой предлог — *als im März*, а не ❌ *als März*, потому что вы сравниваете два месяца одинаково, а не температуру с месяцем."
+      uk: "Два порівняння, і кожному потрібні дві речі. Вищий ступінь додає *-er*, і коротке *a* при цьому дістає умлаут: *warm → wärmer*. *Windig* довше і додає *-er* без змін: *windiger*. За обома стоїть *als*, бо обидва називають відмінність. Зверніть увагу на те, що йде після *als*: друга половина зберігає свій прийменник — *als im März*, а не ❌ *als März*, бо ви порівнюєте два місяці однаково, а не температуру з місяцем."
+
+  - id: uebersetzen-vergleich
+    outcomes: [wetter-vergleichen]
+    type: translate
+    focus: komparativ-als
+    key_tokens: ["kälter", "als"]
+    prompt_en: "In Hamburg it is colder than in Berlin."
+    prompt_ru: "В Гамбурге холоднее, чем в Берлине."
+    prompt_uk: "У Гамбурзі холодніше, ніж у Берліні."
+    answer: "In Hamburg ist es kälter als in Berlin."
+    accept:
+      - "Es ist in Hamburg kälter als in Berlin."
+    explain:
+      en: "Three things have to be right at once and only two of them are the comparison. *Kalt* umlauts to *kälter*; the difference takes *als*; and the second city keeps its *in*, because the sentence compares two places, not a temperature and a place. The empty *es* is here too — *In Hamburg ist es kälter*, never ❌ *In Hamburg ist kälter* — which is why the placeholder is worth having drilled before this item."
+      ru: "Три вещи должны быть верны одновременно, и только две из них — про сравнение. *Kalt* даёт умлаут: *kälter*; различие берёт *als*; и второй город сохраняет свой *in*, потому что предложение сравнивает два места, а не температуру с местом. Пустое *es* тоже здесь — *In Hamburg ist es kälter*, а не ❌ *In Hamburg ist kälter*: русская фраза без подлежащего обходится, немецкая — нет."
+      uk: "Три речі мають бути правильні водночас, і лише дві з них — про порівняння. *Kalt* дає умлаут: *kälter*; відмінність бере *als*; і друге місто зберігає свій *in*, бо речення порівнює два місця, а не температуру з місцем. Порожнє *es* теж тут — *In Hamburg ist es kälter*, а не ❌ *In Hamburg ist kälter*: українська фраза без підмета обходиться, німецька — ні."
+
+  - id: match-landschaft
+    outcomes: [landschaft-beschreiben]
+    type: match
+    instruction:
+      en: "Match each word with its meaning."
+      ru: "Соотнесите каждое слово с его значением."
+      uk: "Зіставте кожне слово з його значенням."
+    pairs:
+      - left: "der Wald"
+        right: { en: "forest, woods", ru: "лес", uk: "ліс" }
+      - left: "der Fluss"
+        right: { en: "river", ru: "река", uk: "річка" }
+      - left: "der Berg"
+        right: { en: "mountain", ru: "гора", uk: "гора" }
+      - left: "der Himmel"
+        right: { en: "sky", ru: "небо", uk: "небо" }
+      - left: "die Landschaft"
+        right: { en: "landscape, countryside", ru: "местность, пейзаж", uk: "місцевість, краєвид" }
+      - left: "die Luft"
+        right: { en: "air", ru: "воздух", uk: "повітря" }
+    explain:
+      en: "Six words that frame any description of what is outside: two kinds of ground and water, and then the three that are everywhere and easy to forget — the sky above it, the air in it, and the word for the whole view at once. *Landschaft* is the one to keep: it lets you say what you see without listing every part of it."
+      ru: "Шесть слов, задающих рамку любому описанию того, что снаружи: два вида суши и воды, а затем три вездесущих и легко забываемых — небо над всем этим, воздух в нём и слово для всего вида сразу. Стоит запомнить *Landschaft*: оно позволяет сказать, что вы видите, не перечисляя каждую часть."
+      uk: "Шість слів, що задають рамку будь-якому опису того, що назовні: два види суходолу й води, а потім три всюдисущі та легко забувані — небо над усім цим, повітря в ньому і слово для всього краєвиду одразу. Варто запам'ятати *Landschaft*: воно дозволяє сказати, що ви бачите, не перелічуючи кожну частину."
+
+  - id: cloze-grad
+    outcomes: [wetter-beschreiben]
+    type: cloze
+    instruction:
+      en: "Fill in the word for the unit of temperature, in the form a number requires."
+      ru: "Вставьте слово для единицы температуры в той форме, которой требует число."
+      uk: "Вставте слово для одиниці температури у формі, якої вимагає число."
+    text: "Heute sind es dreißig {{Grad}}, gestern waren es nur achtzehn {{Grad}}."
+    translation:
+      en: "Today it is thirty degrees; yesterday it was only eighteen."
+      ru: "Сегодня тридцать градусов, вчера было только восемнадцать."
+      uk: "Сьогодні тридцять градусів, учора було лише вісімнадцять."
+    explain:
+      en: "After a number *Grad* does not change — not *dreißig Grade*, and not *achtzehn Grade* either. This is a small group of masculine measurement nouns that stay singular after a numeral, and it is worth noticing because the dictionary plural *die Grade* is real: it just belongs to sentences without a number in front of it."
+      ru: "После числительного *Grad* не меняется — ни *dreißig Grade*, ни *achtzehn Grade*. Это небольшая группа существительных мужского рода со значением меры, которые после числительного остаются в единственном числе. Заметить это стоит потому, что словарное множественное *die Grade* существует по-настоящему: оно просто принадлежит предложениям без числа перед ним."
+      uk: "Після числівника *Grad* не змінюється — ані *dreißig Grade*, ані *achtzehn Grade*. Це невелика група іменників чоловічого роду зі значенням міри, які після числівника лишаються в однині. Помітити це варто тому, що словникова множина *die Grade* існує насправді: вона просто належить реченням без числа перед ним."
+
+  - id: mc-see-meer
+    outcomes: [landschaft-beschreiben]
+    type: mc
+    prompt: "„Wir fahren an den See.“ Wohin fahren wir?"
+    options:
+      - "An einen See — ringsum ist Land."
+      - "An das Meer."
+      - "An einen Fluss."
+    correct: 0
+    explain:
+      en: "*Der See* is a lake, and the masculine article is the whole signal — *die See*, feminine, would be the sea. Spelling, plural and pronunciation are identical, so the article is doing work nothing else in the word can do. For open water the everyday choice is *das Meer*, which is why *die See* is worth recognising when you read it rather than reaching for when you speak."
+      ru: "*Der See* — озеро, и мужской артикль здесь единственный сигнал: *die See*, женского рода, было бы море. Написание, множественное число и произношение совпадают, так что артикль делает работу, которую больше ничто в слове не сделает. Для открытой воды обиходный выбор — *das Meer*, поэтому *die See* стоит узнавать при чтении, а не употреблять в речи."
+      uk: "*Der See* — озеро, і чоловічий артикль тут єдиний сигнал: *die See*, жіночого роду, було б море. Написання, множина і вимова збігаються, тож артикль робить роботу, якої більше ніщо в слові не зробить. Для відкритої води побутовий вибір — *das Meer*, тому *die See* варто впізнавати під час читання, а не вживати в мовленні."

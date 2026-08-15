@@ -1,0 +1,93 @@
+---
+/**
+ * Install instructions for iOS and Android, plus the QR code that is the distribution entry point.
+ *
+ * The QR is rendered to inline SVG **at build time** — `qrcode` is a devDependency and nothing
+ * from it reaches the client bundle. It encodes `Astro.site`, so the code cannot drift from where
+ * the site is actually deployed the way a committed image would.
+ *
+ * Android can offer a real install prompt (`beforeinstallprompt`); iOS cannot, and Add to Home
+ * Screen is only in Safari's share sheet — not Chrome's, not Firefox's. Both paths are written
+ * out rather than detected, because a learner reading this page on a laptop is usually about to
+ * install on a phone they are holding.
+ */
+import QRCode from 'qrcode';
+import Base from '../layouts/Base.astro';
+
+const url = Astro.site?.href ?? 'https://deutsch.vitavision.dev/';
+const qr = await QRCode.toString(url, {
+  type: 'svg',
+  margin: 1,
+  errorCorrectionLevel: 'M',
+  color: { dark: '#1c1917', light: '#0000' },
+});
+
+const steps = [
+  {
+    platform: 'iPhone / iPad',
+    note: 'Nur in Safari — Chrome und Firefox bieten „Zum Home-Bildschirm“ auf iOS nicht an.',
+    items: [
+      'Die Adresse in Safari öffnen.',
+      'Auf das Teilen-Symbol tippen (Quadrat mit Pfeil nach oben).',
+      '„Zum Home-Bildschirm“ wählen.',
+      'Die App vom Home-Bildschirm starten.',
+    ],
+  },
+  {
+    platform: 'Android',
+    note: 'Chrome zeigt die Installation meist von selbst an; sonst über das Menü.',
+    items: [
+      'Die Adresse in Chrome öffnen.',
+      'Im Menü (⋮) „App installieren“ oder „Zum Startbildschirm hinzufügen“ wählen.',
+      'Bestätigen.',
+      'Die App vom Startbildschirm starten.',
+    ],
+  },
+];
+---
+
+<Base title="App installieren">
+  <h1 class="text-3xl font-bold tracking-tight">App installieren</h1>
+  <p class="mt-4 max-w-2xl text-stone-700 dark:text-stone-300">
+    Deutsch-Atlas läuft als installierbare Web-App — ohne App Store, ohne Konto. Nach der
+    Installation startet sie im eigenen Fenster, funktioniert offline weiter und aktualisiert sich
+    selbst, sobald eine neue Version veröffentlicht ist.
+  </p>
+
+  <div class="mt-8 flex flex-col gap-8 sm:flex-row sm:items-start">
+    <div class="shrink-0">
+      <div class="w-44 rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-700" set:html={qr} />
+      <p class="mt-2 break-all text-center text-xs text-stone-500 dark:text-stone-400">{url}</p>
+    </div>
+
+    <div class="flex-1 space-y-8">
+      {
+        steps.map((group) => (
+          <section>
+            <h2 class="text-lg font-semibold">{group.platform}</h2>
+            <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-stone-700 dark:text-stone-300">
+              {group.items.map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+            <p class="mt-2 text-xs text-stone-500 dark:text-stone-400">{group.note}</p>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+
+  <section class="mt-10 border-t border-stone-200 pt-6 dark:border-stone-700">
+    <h2 class="text-lg font-semibold">Was offline funktioniert</h2>
+    <p class="mt-2 max-w-2xl text-sm text-stone-700 dark:text-stone-300">
+      Dein Fortschritt, die Karteikarten und die Übungen liegen auf dem Gerät und brauchen nie eine
+      Verbindung. Seiten, die du besucht hast, bleiben verfügbar; Hörtexte bleiben nach dem ersten
+      Abspielen gespeichert. Eine Seite, die du noch nie geöffnet hast, braucht einmal Netz.
+    </p>
+    <p class="mt-3 max-w-2xl text-sm text-stone-700 dark:text-stone-300">
+      <strong>Wichtig auf dem iPhone:</strong> Solange die App nicht installiert ist, löscht iOS die
+      gespeicherten Daten nach etwa sieben Tagen ohne Besuch. Installieren schützt davor — genau wie
+      ein Export über <em>Fortschritt → Daten</em>.
+    </p>
+  </section>
+</Base>

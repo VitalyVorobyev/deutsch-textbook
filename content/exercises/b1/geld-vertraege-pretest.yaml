@@ -1,0 +1,79 @@
+# Diagnostic generation, not practice: three guesses before the article, one per outcome —
+# the genitive a bill line is built out of, the modal passive a contract states its rules
+# in, and the arithmetic that decides which of two Tarife is actually cheaper. No focus
+# tags, because a pretest is never weakness evidence.
+# The first item is a cloze, since a pretest made only of mc discriminates nothing, and its
+# gaps name the phrase in the nominative, so it is a retention check on B1.2's paradigm
+# rather than a vocabulary guess.
+# A genre unit adopts no structure of its own, so every guess here is about something the
+# learner has already met in an earlier unit — which is what makes this pretest worth
+# taking: it asks whether the form survived, not whether it was ever taught.
+# None of these three surfaces returns in a probe family. The cloze declines der Auftrag,
+# while family 1 declines der Anbieter, die Reparatur and das Abo; the contract mc turns on
+# gekündigt werden, which family 2 uses in no variant (it runs on unterschrieben,
+# überwiesen and erhöht); and the tariff arithmetic is probed nowhere at all, because
+# kosten-vergleichen is spoken production and the app never verifies it.
+topic: geld-vertraege
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-genitiv
+    outcomes: [rechnung-pruefen]
+    type: cloze
+    instruction:
+      en: "A bill line says what belongs to what. Put der Auftrag into the genitive — the article word and the noun."
+      ru: "Строка счёта говорит, что к чему относится. Поставьте der Auftrag в генитив — артикль и существительное."
+      uk: "Рядок рахунку каже, що до чого належить. Поставте der Auftrag у родовий відмінок — артикль та іменник."
+      de: "Eine Rechnungszeile sagt, was wozu gehört. Setz der Auftrag in den Genitiv — Artikel und Nomen."
+    text: "Oben auf der Rechnung steht die Nummer {{des}} {{Auftrags|Auftrages}}."
+    translation:
+      en: "The number of the order is at the top of the bill."
+      ru: "Наверху счёта стоит номер заказа."
+      uk: "Угорі рахунку стоїть номер замовлення."
+    explain:
+      en: "The genitive takes two words, and a bill needs it in almost every line. First the article: der becomes des. Then the noun's own ending, because a masculine noun carries the case itself — Auftrag becomes Auftrags, and the longer Auftrages is just as right. Leaving that -s off is the quiet half of the error."
+      ru: "Генитив собирается из двух слов, и счёту он нужен почти в каждой строке. Сначала артикль: der превращается в des. Потом собственное окончание существительного, потому что мужской род несёт падеж сам: Auftrag даёт Auftrags, а более длинное Auftrages ровно так же верно. Пропустить это -s — тихая половина ошибки."
+      uk: "Генитив збирається з двох слів, і рахунку він потрібен майже в кожному рядку. Спершу артикль: der перетворюється на des. Потім власне закінчення іменника, бо чоловічий рід несе відмінок сам: Auftrag дає Auftrags, а довше Auftrages рівно так само правильне. Пропустити це -s — тиха половина помилки."
+      de: "Der Genitiv besteht aus zwei Wörtern, und eine Rechnung braucht ihn in fast jeder Zeile. Zuerst der Artikel: aus der wird des. Dann die Endung des Nomens selbst, denn ein Maskulinum trägt den Kasus mit — aus Auftrag wird Auftrags, und das längere Auftrages ist genauso richtig. Das fehlende -s ist die leise Hälfte des Fehlers."
+
+  - id: pre-mc-vertragssatz
+    outcomes: [vertrag-nachfragen]
+    type: mc
+    prompt: "Welcher Satz steht so in einem Vertrag?"
+    options:
+      - "Der Vertrag kann monatlich gekündigt werden."
+      - "Der Vertrag kann monatlich gekündigt sein."
+      - "Der Vertrag kann monatlich werden gekündigt."
+    correct: 0
+    translation:
+      en: "Which sentence is the way a contract puts it?"
+      ru: "Какое предложение стоит в договоре именно так?"
+      uk: "Яке речення стоїть у договорі саме так?"
+    explain:
+      en: "A contract talks about what happens to things, not about who does it, and that shape has a fixed end: Partizip II first, then werden, both at the very wall. gekündigt sein would state a finished condition instead of a rule you may use, and werden gekündigt is the order English and the source languages suggest, with the auxiliary in front of the participle."
+      ru: "Договор говорит о том, что происходит с вещами, а не о том, кто это делает, и у этой формы жёсткий конец: сначала Partizip II, потом werden, оба у самой стены. gekündigt sein описывало бы уже наступившее состояние, а не правило, которым можно воспользоваться; а werden gekündigt — это порядок, который подсказывает русский «может быть расторгнут», со вспомогательным глаголом перед причастием."
+      uk: "Договір говорить про те, що відбувається з речами, а не про те, хто це робить, і в цієї форми жорсткий кінець: спершу Partizip II, потім werden, обидва біля самої стіни. gekündigt sein описувало б уже наявний стан, а не правило, яким можна скористатися; а werden gekündigt — це порядок, який підказує українське «може бути розірваний», із допоміжним дієсловом перед дієприкметником."
+      de: "Ein Vertrag spricht davon, was mit den Dingen geschieht, nicht davon, wer es tut, und diese Form hat ein festes Ende: erst das Partizip II, dann werden, beide ganz an der Wand. gekündigt sein nennte einen fertigen Zustand statt einer Regel, und werden gekündigt ist die Reihenfolge der Ausgangssprachen, mit dem Hilfsverb vor dem Partizip."
+
+  - id: pre-mc-tarife
+    outcomes: [kosten-vergleichen]
+    type: mc
+    prompt: "Tarif A kostet 15 Euro im Monat, dazu einmal 24 Euro Anschlusspreis. Tarif B kostet 17 Euro im Monat, ohne Anschlusspreis. Was zahlt man im ersten Jahr?"
+    options:
+      - "Beide kosten im ersten Jahr gleich viel: 204 Euro."
+      - "Tarif A, weil der Monatspreis niedriger ist."
+      - "Tarif B, weil es keinen Anschlusspreis gibt."
+    correct: 0
+    translation:
+      en: "Plan A costs 15 euros a month plus a one-off connection fee of 24 euros. Plan B costs 17 euros a month with no connection fee. What do you pay in the first year?"
+      ru: "Тариф A стоит 15 евро в месяц плюс единовременно 24 евро за подключение. Тариф B стоит 17 евро в месяц без платы за подключение. Сколько платишь в первый год?"
+      uk: "Тариф A коштує 15 євро на місяць плюс одноразово 24 євро за підключення. Тариф B коштує 17 євро на місяць без плати за підключення. Скільки платиш у перший рік?"
+    explain:
+      en: "Twelve months plus what you pay once is the only number that can be compared: A is 12 × 15 + 24 = 204, B is 12 × 17 = 204. The two other answers each read one line and stop — the monthly price alone makes A look cheaper, the one-off cost alone makes B look cheaper, and neither line decides anything on its own."
+      ru: "Сравнимо только одно: двенадцать месяцев плюс то, что платится один раз. У A это 12 × 15 + 24 = 204, у B — 12 × 17 = 204. Два других ответа читают по одной строке и останавливаются: месячная цена сама по себе делает дешевле A, разовый платёж сам по себе — B, и ни та ни другая строка ничего не решает."
+      uk: "Порівнянне лише одне: дванадцять місяців плюс те, що платиться один раз. У A це 12 × 15 + 24 = 204, у B — 12 × 17 = 204. Дві інші відповіді читають по одному рядку і спиняються: місячна ціна сама по собі робить дешевшим A, разовий платіж сам по собі — B, і жоден із цих рядків нічого не вирішує."
+      de: "Vergleichbar sind allein zwölf Monate plus die einmaligen Kosten: A sind 12 × 15 + 24 = 204, B sind 12 × 17 = 204. Die beiden anderen Antworten lesen je eine Zeile und hören dort auf — der Monatspreis allein lässt A billiger aussehen, die einmaligen Kosten allein B, und keine der Zeilen entscheidet für sich."

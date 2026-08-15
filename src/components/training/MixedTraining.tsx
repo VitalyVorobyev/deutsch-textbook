@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Level } from '../../lib/schemas';
+import type { Level } from '@da/schema';
 import { getAttempts, getCardStates, getTopicsState, logAttempt } from '../../lib/store';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
@@ -12,7 +12,7 @@ import {
   type SessionItem,
   type TrainingSet,
 } from '../../lib/training';
-import { withBase } from '../../lib/url';
+import { topicPath, withBase } from '../../lib/url';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -26,7 +26,7 @@ export type { TrainingSet } from '../../lib/training';
 
 const SESSION_SIZE = 15;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   building: { en: 'Building your session…', ru: 'Собираем тренировку…' },
   emptyHint: {
@@ -306,7 +306,7 @@ export default function MixedTraining({
                 {row.level}
               </span>
               <a
-                href={withBase(`/topics/${topicId}`)}
+                href={withBase(topicPath({ id: topicId, level: row.level }))}
                 lang="de"
                 className="truncate font-medium text-stone-700 hover:underline dark:text-stone-200"
               >

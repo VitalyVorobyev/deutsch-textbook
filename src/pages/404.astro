@@ -1,0 +1,23 @@
+---
+/**
+ * Not found.
+ *
+ * Distinct from `/offline`, which the service worker serves for a page that exists but was never
+ * cached. This one answers a path that does not exist at all, and `wrangler.toml` points
+ * `not_found_handling` at it so the platform's own error page never shows.
+ */
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/url';
+---
+
+<Base title="Seite nicht gefunden">
+  <h1 class="text-3xl font-bold tracking-tight">Seite nicht gefunden</h1>
+  <p class="mt-4 text-stone-700 dark:text-stone-300">
+    Diese Adresse gibt es nicht — vielleicht ist der Link alt oder hat einen Tippfehler.
+  </p>
+  <ul class="mt-6 space-y-2 text-sm">
+    <li><a href={withBase('/')} class="text-amber-700 underline dark:text-amber-400">→ Tagesplan</a></li>
+    <li><a href={withBase('/topics')} class="text-amber-700 underline dark:text-amber-400">→ Alle Themen</a></li>
+    <li><a href={withBase('/ueben/wiederholen')} class="text-amber-700 underline dark:text-amber-400">→ Wiederholen</a></li>
+  </ul>
+</Base>

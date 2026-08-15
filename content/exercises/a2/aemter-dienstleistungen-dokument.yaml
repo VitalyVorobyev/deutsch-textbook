@@ -1,6 +1,9 @@
 topic: aemter-dienstleistungen
 role: practice
+stage: transfer
+activity: application
 stimulus: a2/aemter-anmeldung-formular
+title_de: "Mission — Ämter & Dienstleistungen"
 title:
   en: "Mission — complete the registration"
   ru: "Задача — завершить регистрацию"
@@ -30,22 +33,29 @@ items:
 
   - id: dokument-formular-unterlagen
     outcomes: [unterlagen-erfragen]
-    type: translate
-    instruction:
-      en: "You have a passport but no landlord confirmation. Translate your question into German."
-      ru: "У вас есть паспорт, но нет подтверждения от арендодателя. Переведите вопрос на немецкий."
-      uk: "У вас є паспорт, але немає підтвердження від орендодавця. Перекладіть запитання німецькою."
-    prompt_en: "Could you please tell me whether I can submit the landlord confirmation later?"
-    prompt_ru: "Не могли бы вы сказать, могу ли я донести подтверждение от арендодателя позже?"
-    prompt_uk: "Чи не могли б ви сказати, чи можу я донести підтвердження від орендодавця пізніше?"
-    answer: "Könnten Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später nachreichen kann?"
-    accept:
-      - "Könnten Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später einreichen kann?"
-      - "Können Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später nachreichen kann?"
+    type: write
+    prompt:
+      en: "You have your passport, but the landlord confirmation shown in the checklist is missing. Write one polite question to the clerk about what you can do."
+      ru: "Паспорт у вас есть, но указанного в списке подтверждения от арендодателя нет. Напишите сотруднику один вежливый вопрос о том, что можно сделать."
+      uk: "Паспорт у вас є, але зазначеного в переліку підтвердження від орендодавця немає. Напишіть працівникові одне ввічливе запитання про те, що можна зробити."
+    goal:
+      en: "Refer to the exact missing document and ask whether it may be submitted later."
+      ru: "Назовите точный недостающий документ и спросите, можно ли донести его позже."
+      uk: "Назвіть точний відсутній документ і запитайте, чи можна донести його пізніше."
+    requirements:
+      - {en: "Address the clerk with Sie.", ru: "Обращайтесь к сотруднику на Sie.", uk: "Звертайтеся до працівника на Sie."}
+      - {en: "Use an indirect yes/no question with ob and the finite verb at the end.", ru: "Используйте косвенный общий вопрос с ob и спрягаемым глаголом в конце.", uk: "Використайте непряме загальне запитання з ob і відмінюваним дієсловом у кінці."}
+      - {en: "Name the Wohnungsgeberbestätigung; do not replace it with an unspecified document.", ru: "Назовите Wohnungsgeberbestätigung, а не неопределённый «документ».", uk: "Назвіть Wohnungsgeberbestätigung, а не невизначений «документ»."}
+    min_words: 9
+    model_answer: "Könnten Sie mir bitte sagen, ob ich die Wohnungsgeberbestätigung später nachreichen kann?"
+    model_translation:
+      en: "Could you please tell me whether I can submit the landlord confirmation later?"
+      ru: "Не могли бы вы сказать, могу ли я донести подтверждение от арендодателя позже?"
+      uk: "Чи не могли б ви сказати, чи можу я донести підтвердження від орендодавця пізніше?"
     explain:
-      en: "The checklist identifies the missing document. The indirect yes/no question begins with ob, and its conjugated verb kann goes to the end."
-      ru: "Список указывает недостающий документ. Косвенный общий вопрос вводится ob, а спрягаемый глагол kann уходит в конец."
-      uk: "Список указує на відсутній документ. Непряме загальне запитання вводиться ob, а відмінюване дієслово kann переходить у кінець."
+      en: "The checklist supplies the fact, but several natural German requests can express it. Compare the function, not one exact sentence: formal address, the named document, ob and a clause-final finite verb."
+      ru: "Список даёт факт, но выразить просьбу по-немецки можно несколькими естественными способами. Сравнивайте функцию, а не одну точную фразу: обращение на Sie, название документа, ob и спрягаемый глагол в конце придаточного."
+      uk: "Перелік дає факт, але висловити прохання німецькою можна кількома природними способами. Порівнюйте функцію, а не одну точну фразу: звертання на Sie, назва документа, ob і відмінюване дієслово в кінці підрядного."
 
   - id: dokument-formular-nachricht
     outcomes: [formular-verstehen, formelle-nachricht-schreiben]

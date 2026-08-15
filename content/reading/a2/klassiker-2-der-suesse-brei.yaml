@@ -1,0 +1,95 @@
+topic: verbindungen-folgen
+kind: extensive
+title_de: "Der süße Brei"
+
+# Klassiker strand, text 2 of 10 (ADR 0006). The prose is the didactic retelling
+# from sources/klassiker/02-der-suesse-brei.md, verbatim apart from
+# the inline gloss markers, so the adaptation stays diffable against its source.
+# A chain of events with a clear turn and a clear repair — the ordering work
+# verbindungen-folgen owns. Read straight through: sparse glosses, two gist questions.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Der süße Brei, 1857). Didaktische Bearbeitung für Niveau A2. Historischer Originaltext: https://de.wikisource.org/wiki/Der_s%C3%BC%C3%9Fe_Brei_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Ein armes Mädchen lebte mit seiner Mutter in einem kleinen Haus. Eines Tages hatten
+    sie nichts mehr zu essen. Das Mädchen ging in den Wald und suchte Beeren und
+    [[Pilze::mushrooms::грибы::гриби]]. Aber es fand fast nichts.
+  - >-
+    Im Wald traf es eine alte Frau. Die Frau fragte: „Warum bist du so traurig?“
+  - >-
+    Das Mädchen erzählte von seiner Mutter und vom Hunger. Die alte Frau gab ihm einen
+    kleinen Topf.
+  - >-
+    „Dieser Topf ist besonders“, erklärte sie. „Wenn du sagst: ,Töpfchen, koche!‘, kocht
+    er süßen Brei. Wenn du sagst: ,Töpfchen, steh!‘, hört er wieder auf.“
+  - >-
+    Das Mädchen bedankte sich und brachte den Topf nach Hause. Seine Mutter war zuerst
+    [[skeptisch::doubtful::недоверчива::недовірлива]]. Doch das Mädchen stellte den Topf
+    auf den Tisch und sagte: „Töpfchen, koche!“
+  - >-
+    Sofort begann der Topf zu kochen. Bald
+    [[duftete::smelled wonderful::благоухал::пахнув]] das ganze Haus nach warmem Brei.
+    Mutter und Tochter aßen, bis sie [[satt::full::сыты::ситі]] waren. Dann sagte das
+    Mädchen: „Töpfchen, steh!“ Der Topf hörte auf.
+  - >-
+    Von nun an mussten sie nicht mehr hungern. Sie benutzten den Topf jeden Tag, aber
+    immer vorsichtig.
+  - >-
+    Eines Nachmittags ging das Mädchen zu einer Nachbarin. Die Mutter bekam Hunger und
+    wollte nicht warten. Sie sagte: „Töpfchen, koche!“ Der Topf kochte. Die Mutter aß
+    eine [[Schüssel::bowl::миска::миска]] Brei. Danach wollte sie den Topf stoppen. Aber
+    sie hatte die richtigen Worte vergessen.
+  - >-
+    „Hör auf! Genug! Stopp!“, rief sie. Doch der Topf kochte weiter.
+  - >-
+    Der Brei lief über den [[Rand::rim::край::край]], über den Tisch und auf den Boden.
+    Bald floss er aus der Haustür. Er füllte die Straße und erreichte die nächsten
+    Häuser. Die Menschen mussten auf Stühle und Mauern steigen.
+  - >-
+    Endlich kam das Mädchen zurück. Es sah die große Breimasse und rief laut: „Töpfchen,
+    steh!“
+  - >-
+    Sofort hörte der Topf auf zu kochen. Danach mussten sich die Menschen durch den Brei
+    essen, um wieder nach Hause zu kommen.
+  - >-
+    Seit diesem Tag schrieb die Mutter die beiden wichtigen Sätze auf ein großes
+    [[Schild::sign::табличка::табличка]]. Das Schild hing direkt über dem Topf.
+
+questions:
+  - id: q-warum-ueberlaeuft
+    outcomes: [ereignisse-ordnen]
+    type: mc
+    prompt: "Warum läuft der Brei aus dem Haus auf die Straße?"
+    options:
+      - "Die Mutter hat den Satz vergessen, mit dem der Topf aufhört."
+      - "Der Topf ist zu klein für so viel Brei."
+      - "Das Mädchen hat der alten Frau nicht zugehört."
+    correct: 0
+    translation:
+      en: "Why does the porridge run out of the house and into the street?"
+      ru: "Почему каша выливается из дома на улицу?"
+      uk: "Чому каша виливається з дому на вулицю?"
+    explain:
+      en: "The pot obeys two sentences: one starts it, one stops it. The mother uses the first while her daughter is out, then cannot remember the second: Hör auf! and Genug! do nothing. The pot is not faulty and nobody is punished; a forgotten instruction is the whole cause."
+      ru: "Горшок слушается двух фраз: одна включает его, другая останавливает. Мать произносит первую, пока дочь в гостях, а вторую вспомнить не может: «Hör auf!» и «Genug!» не действуют. Горшок исправен, и никто не виноват: причина только в забытых словах."
+      uk: "Горщик слухається двох фраз: одна його вмикає, друга спиняє. Мати вимовляє першу, поки доньки немає вдома, а другої пригадати не може: «Hör auf!» і «Genug!» не діють. Горщик справний, і ніхто не винен: причина лише в забутих словах."
+
+  - id: q-danach
+    outcomes: [ereignisse-ordnen]
+    type: mc
+    prompt: "Was macht die Mutter, nachdem das Mädchen den Topf gestoppt hat?"
+    options:
+      - "Sie bringt den Topf zurück in den Wald."
+      - "Sie schreibt die beiden wichtigen Sätze auf ein Schild über dem Topf."
+      - "Sie verbietet dem Mädchen, den Topf noch einmal zu benutzen."
+    correct: 1
+    translation:
+      en: "What does the mother do after her daughter stops the pot?"
+      ru: "Что делает мать после того, как дочь остановила горшок?"
+      uk: "Що робить мати після того, як донька спинила горщик?"
+    explain:
+      en: "She hangs a large sign with both sentences directly above the pot. The pot stays in the house and stays in use — what changes is that the instructions are now written down where anyone using it can read them."
+      ru: "Она вешает большую табличку с обеими фразами прямо над горшком. Горшок остаётся в доме и по-прежнему в ходу — меняется лишь то, что теперь слова записаны там, где их увидит каждый, кто им пользуется."
+      uk: "Вона вішає велику табличку з обома фразами просто над горщиком. Горщик лишається в домі й далі в ужитку — змінюється тільки те, що слова тепер записані там, де їх побачить кожен, хто ним користується."

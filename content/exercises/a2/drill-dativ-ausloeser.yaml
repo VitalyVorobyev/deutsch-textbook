@@ -1,11 +1,15 @@
 topic: dativ
 role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Was verlangt den Dativ?"
 title:
   en: Drill — what triggers the dative?
   ru: Тренажёр — что требует Dativ?
   uk: Тренажер — що вимагає Dativ?
 items:
   - id: uebersetzen-gefallen-mann
+    revision: 2
     outcomes: [dativ-verben]
     type: translate
     focus: verben-mit-dativ
@@ -20,6 +24,10 @@ items:
     key_tokens: ["meinem"]
     accept:
       - "Meinem Mann gefällt der Film nicht."
+      # «этот фильм» / «цей фільм» license dieser as readily as der; the graded form is
+      # the dative meinem, which both renderings still demand.
+      - "Dieser Film gefällt meinem Mann nicht."
+      - "Meinem Mann gefällt dieser Film nicht."
     explain:
       en: "gefallen flips the sentence: the film is the subject, and the person who likes or dislikes it stands in the dative — mein Mann → meinem Mann. The form meinen Mann is accusative, and gefallen never takes one."
       ru: "gefallen устроен как «нравиться»: фильм — подлежащее, а человек стоит в дательном падеже — mein Mann → meinem Mann. Русский здесь подсказывает верно: «нравится (кому?) мужу». Форма meinen Mann — это Akkusativ, после gefallen он невозможен."
@@ -75,7 +83,10 @@ items:
     prompt_ru: "Как мне пройти к супермаркету?"
     prompt_uk: "Як мені пройти до супермаркету?"
     answer: "Wie komme ich zum Supermarkt?"
-    key_tokens: ["zum"]
+    # revision 2: in the uncontracted rendering the dative decision is carried by
+    # dem, so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["zum", "dem"]
+    revision: 2
     accept:
       - "Wie komme ich zu dem Supermarkt?"
     explain:
@@ -95,7 +106,10 @@ items:
     prompt_ru: "Я покупаю хлеб в булочной."
     prompt_uk: "Я купую хліб у пекарні."
     answer: "Ich kaufe Brot beim Bäcker."
-    key_tokens: ["beim"]
+    # revision 2: in the uncontracted rendering the dative decision is carried by
+    # dem, so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["beim", "dem"]
+    revision: 2
     accept:
       - "Ich kaufe beim Bäcker Brot."
       - "Ich kaufe Brot bei dem Bäcker."
@@ -148,13 +162,17 @@ items:
       uk: "Два дативні прийменники в одному реченні: mit der U-Bahn (die U-Bahn — жіночий рід, тому die → der) і zur Arbeit (zur = zu der). Звичний порядок — спершу як, потім куди: mit der U-Bahn zur Arbeit."
 
   - id: uebersetzen-frau-kaffee
+    revision: 2
     outcomes: [dativ-artikel]
     type: translate
     focus: dativ-artikel
+    # der is pinned, but «женщине»/«жінці» leave definiteness free — einer Frau is a
+    # correct dative that would be logged as a dativ-artikel error. The instruction fixes
+    # the woman; the coffee (unpinned) takes accepts instead.
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: "Translate into German. Both know which woman is meant."
+      ru: "Переведите на немецкий. Оба знают, о какой женщине идёт речь."
+      uk: "Перекладіть німецькою. Обоє знають, про яку жінку йдеться."
     prompt_en: "He brings the woman a coffee."
     prompt_ru: "Он приносит женщине кофе."
     prompt_uk: "Він приносить жінці каву."
@@ -162,6 +180,8 @@ items:
     key_tokens: ["der"]
     accept:
       - "Der Frau bringt er einen Kaffee."
+      - "Er bringt der Frau den Kaffee."
+      - "Der Frau bringt er den Kaffee."
     explain:
       en: "bringen has two objects: the receiver is the wem?-answer and takes the dative — die Frau → der Frau. The coffee is the was?-answer and stays accusative: einen Kaffee."
       ru: "У bringen два дополнения: получатель отвечает на wem? и стоит в Dativ — die Frau → der Frau (женское die превращается в der). Кофе отвечает на was? и стоит в Akkusativ: einen Kaffee."

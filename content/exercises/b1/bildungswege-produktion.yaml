@@ -1,0 +1,145 @@
+topic: bildungswege
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — am Schalter und im Brief"
+title:
+  en: "Apply — at the counter and in a letter"
+  ru: "Применение — у окошка и в письме"
+  uk: "Застосування — біля віконця та в листі"
+
+# Independent transfer: a place at the Kita asked for out loud, a school decision explained in
+# writing to somebody who does not live in Germany, and two sentences that carry the topic's two
+# confusions into fresh situations. Nothing here re-skins a Grundübung item.
+#
+# Both thin tags get their second file here — `falls-wenn` in uebersetzen-falls-gymnasium and
+# `damit-um-zu` in uebersetzen-damit-studium — which is what lifts each off the single-file tail
+# that `bun scripts/grammar-depth.ts B1 --thin` reports.
+items:
+  - id: uebersetzen-falls-gymnasium
+    outcomes: [bildungsweg-erklaeren]
+    type: translate
+    focus: falls-wenn
+    instruction:
+      en: "A bare eventuality — attach the condition with falls. For 'manage' take schaffen, for the move auf … wechseln."
+      ru: "Голая эвентуальность — присоедините условие союзом falls. Для «справиться» возьмите schaffen, для перехода — auf … wechseln."
+      uk: "Гола можливість — приєднайте умову сполучником falls. Для «упоратися» візьміть schaffen, для переходу — auf … wechseln."
+    prompt_en: "In case my son does not manage the Gymnasium, he will change to the Realschule."
+    prompt_ru: "Если сын вдруг не справится с гимназией, он перейдёт в Realschule."
+    prompt_uk: "Якщо син раптом не впорається з гімназією, він перейде до Realschule."
+    answer: "Falls mein Sohn das Gymnasium nicht schafft, wechselt er auf die Realschule."
+    accept:
+      # dann may hold position 1 after the fronted condition.
+      - "Falls mein Sohn das Gymnasium nicht schafft, dann wechselt er auf die Realschule."
+    explain:
+      en: "Graded are *falls* and the clause-final *schafft*. The word choice is a statement about expectancy and nothing else: the parents are not predicting the failure, they are naming a case the plan has to survive — which is exactly what a school decision at the age of ten needs. Word order is unchanged from *wenn*: verb at the end of the condition, and the fronted condition then pushes the main verb in front of its subject."
+      ru: "Оцениваются *falls* и *schafft* в конце придаточного. Выбор слова говорит только об ожидании: родители не предсказывают неудачу, а называют случай, который плану надо пережить, — ровно то, что нужно решению о школе в десять лет. Порядок слов такой же, как с *wenn*: глагол в конце условия, а вынесенное вперёд условие ставит главный глагол перед подлежащим."
+      uk: "Оцінюються *falls* і *schafft* у кінці підрядного. Вибір слова говорить лише про очікування: батьки не передбачають невдачу, а називають випадок, який планові треба пережити, — рівно те, що потрібно рішенню про школу в десять років. Порядок слів такий самий, як із *wenn*: дієслово в кінці умови, а винесена наперед умова ставить головне дієслово перед підметом."
+    key_tokens: ["Falls", "schafft"]
+
+  - id: uebersetzen-damit-studium
+    outcomes: [lernziel-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Count the subjects before you choose the form. For 'finish' take beenden."
+      ru: "Сосчитайте подлежащие, прежде чем выбрать форму. Для «закончить» возьмите beenden."
+      uk: "Порахуйте підмети, перш ніж вибрати форму. Для «закінчити» візьміть beenden."
+    prompt_en: "My wife works in the evening so that I can finish my studies."
+    prompt_ru: "Моя жена работает по вечерам, чтобы я мог закончить учёбу."
+    prompt_uk: "Моя дружина працює вечорами, щоб я міг закінчити навчання."
+    answer: "Meine Frau arbeitet am Abend, damit ich mein Studium beenden kann."
+    accept:
+      # The time phrase may take position 1, and the evening goes by both of its ordinary names.
+      - "Am Abend arbeitet meine Frau, damit ich mein Studium beenden kann."
+      - "Meine Frau arbeitet abends, damit ich mein Studium beenden kann."
+      - "Abends arbeitet meine Frau, damit ich mein Studium beenden kann."
+    explain:
+      en: "Graded are *damit* and the clause-final *kann*. She works, I finish — two doers, so the subjectless frame is simply unavailable, and the sentence has to open a full Nebensatz. With a modal the clause ends in two verbs and the order inside that pair is fixed: infinitive first, conjugated modal last — *beenden kann*, never *kann beenden*."
+      ru: "Оцениваются *damit* и *kann* в конце придаточного. Работает она, заканчиваю я — два деятеля, поэтому бессубъектная рамка попросту недоступна, и предложению приходится открывать полноценный Nebensatz. С модальным глаголом придаточное заканчивается двумя глаголами, и порядок внутри пары закреплён: сначала инфинитив, спрягаемый модальный — последним: *beenden kann*, а не *kann beenden*."
+      uk: "Оцінюються *damit* і *kann* у кінці підрядного. Працює вона, закінчую я — два діячі, тому безпідметова рамка просто недоступна, і реченню доводиться відкривати повноцінний Nebensatz. З модальним дієсловом підрядне закінчується двома дієсловами, і порядок усередині пари закріплений: спершу інфінітив, відмінюване модальне — останнім: *beenden kann*, а не *kann beenden*."
+    key_tokens: ["damit", "kann"]
+
+  - id: diktat-anmeldung
+    outcomes: [betreuung-klaeren]
+    type: listen
+    text: "Die Anmeldung für die Kita beginnt im September."
+    translation:
+      en: "Registration for the day-care centre starts in September."
+      ru: "Запись в детский сад начинается в сентябре."
+      uk: "Запис до дитячого садка починається у вересні."
+    explain:
+      en: "The sentence every notice board in the town carries once a year, and the hard part is *für die Kita*: the preposition takes the accusative, so it is *für die* and never *für der*. Note also that *Anmeldung* is capitalised — it is a noun built from the verb *anmelden*, and German writes the noun with a capital letter even where the source language would not."
+      ru: "Фраза, которая раз в год висит на каждой доске объявлений, и труднее всего в ней *für die Kita*: предлог требует аккузатива, поэтому *für die*, а не *für der*. Обратите внимание и на заглавную букву в *Anmeldung*: это существительное от глагола *anmelden*, и немецкий пишет его с большой буквы там, где исходный язык этого не делает."
+      uk: "Фраза, яка раз на рік висить на кожній дошці оголошень, і найважче в ній *für die Kita*: прийменник вимагає знахідного, тому *für die*, а не *für der*. Зверніть увагу й на велику літеру в *Anmeldung*: це іменник від дієслова *anmelden*, і німецька пише його з великої там, де вихідна мова цього не робить."
+
+  - id: sprechen-kita
+    outcomes: [betreuung-klaeren, lernziel-begruenden]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "You are standing at the counter of a Kita. Your daughter is three. Ask whether a place will come free in the autumn, say what you will do if none does, say what you want the place for, and ask what papers you have to bring."
+      ru: "Вы стоите у окошка в Kita. Вашей дочери три года. Спросите, освободится ли место осенью, скажите, что вы сделаете, если не освободится, скажите, ради чего вам нужно место, и спросите, какие документы нужно принести."
+      uk: "Ви стоїте біля віконця в Kita. Вашій доньці три роки. Запитайте, чи звільниться місце восени, скажіть, що ви зробите, якщо не звільниться, скажіть, заради чого вам потрібне місце, і запитайте, які документи треба принести."
+    goal:
+      en: "Get the four things you came for — the answer, the fallback, the reason and the paperwork — in that order."
+      ru: "Получить те четыре вещи, ради которых пришли: ответ, запасной вариант, причину и список документов — именно в этом порядке."
+      uk: "Отримати ті чотири речі, заради яких прийшли: відповідь, запасний варіант, причину і список документів — саме в цьому порядку."
+    checklist:
+      - en: "I named the fallback with falls and put the verb at the end: Falls kein Platz frei wird, …"
+        ru: "Я назвал(а) запасной вариант через falls, поставив глагол в конец: Falls kein Platz frei wird, …"
+        uk: "Я назвав(ла) запасний варіант через falls, поставивши дієслово в кінець: Falls kein Platz frei wird, …"
+      - en: "I gave the reason with damit, because my daughter is the one who learns: damit sie besser Deutsch lernt."
+        ru: "Я назвал(а) причину через damit, потому что учится дочь, а не я: damit sie besser Deutsch lernt."
+        uk: "Я назвав(ла) причину через damit, бо вчиться донька, а не я: damit sie besser Deutsch lernt."
+      - en: "I asked a real question about the papers rather than only stating my wish."
+        ru: "Я задал(а) настоящий вопрос о документах, а не только высказал(а) своё пожелание."
+        uk: "Я поставив(ла) справжнє запитання про документи, а не лише висловив(ла) своє побажання."
+      - en: "I said how old my daughter is, because the age decides the group."
+        ru: "Я сказал(а), сколько дочери лет, потому что возраст решает, в какую группу она попадёт."
+        uk: "Я сказав(ла), скільки доньці років, бо вік вирішує, до якої групи вона потрапить."
+    model_answer: "Guten Tag, ich möchte meine Tochter anmelden. Sie ist drei Jahre alt. Wird im Herbst ein Platz frei? Falls in der Kita kein Platz frei wird, melde ich sie im Kindergarten an. Ich möchte den Platz, damit sie vor der Grundschule besser Deutsch lernt. Welche Unterlagen soll ich mitbringen?"
+    model_translation:
+      en: "Hello, I would like to register my daughter. She is three years old. Will a place come free in the autumn? In case no place comes free at the day-care centre, I will register her at the Kindergarten. I want the place so that she learns German better before primary school. Which papers should I bring?"
+      ru: "Здравствуйте, я хочу записать дочь. Ей три года. Освободится ли место осенью? Если в Kita место не освободится, я запишу её в Kindergarten. Место мне нужно, чтобы она перед начальной школой лучше выучила немецкий. Какие документы мне принести?"
+      uk: "Добрий день, я хочу записати доньку. Їй три роки. Чи звільниться місце восени? Якщо в Kita місце не звільниться, я запишу її до Kindergarten. Місце мені потрібне, щоб вона перед початковою школою краще вивчила німецьку. Які документи мені принести?"
+    explain:
+      en: "Play yourself back and find two sentences. The fallback: does it open with *falls* and close with the verb? If you said *Falls wird kein Platz frei*, you kept the shape of a question inside a Nebensatz. And the reason: whose learning is it? Your daughter's, not yours — so *damit sie … lernt*, and *um besser Deutsch zu lernen* would quietly say that you are the one going to the Kita."
+      ru: "Прослушайте запись и найдите две фразы. Запасной вариант: открывается ли он словом *falls* и закрывается ли глаголом? Если вы сказали *Falls wird kein Platz frei*, вы оставили внутри придаточного форму вопроса. И причина: чьё это обучение? Дочери, а не ваше, — значит, *damit sie … lernt*; а *um besser Deutsch zu lernen* тихо сказало бы, что в Kita ходите вы."
+      uk: "Прослухайте запис і знайдіть дві фрази. Запасний варіант: чи відкривається він словом *falls* і чи закривається дієсловом? Якщо ви сказали *Falls wird kein Platz frei*, ви лишили всередині підрядного форму питання. І причина: чиє це навчання? Доньчине, а не ваше, — отже, *damit sie … lernt*; а *um besser Deutsch zu lernen* тихо сказало б, що до Kita ходите ви."
+
+  - id: schreiben-bildungsweg
+    outcomes: [bildungsweg-erklaeren, lernziel-begruenden]
+    type: write
+    prompt:
+      en: "Write to a friend abroad and explain the path your nine-year-old son will take through the German school system: what comes after the Grundschule, what you will do if the Gymnasium does not work out, and what he is working towards. Six or seven sentences."
+      ru: "Напишите подруге за границей и объясните, какой путь пройдёт через немецкую школьную систему ваш девятилетний сын: что идёт после Grundschule, что вы будете делать, если с гимназией не сложится, и ради чего он старается. Шесть-семь предложений."
+      uk: "Напишіть подрузі за кордон і поясніть, який шлях пройде через німецьку шкільну систему ваш дев'ятирічний син: що йде після Grundschule, що ви робитимете, якщо з гімназією не складеться, і заради чого він старається. Шість-сім речень."
+    goal:
+      en: "Make a system the reader has never seen understandable in six sentences, without leaving out the branch that is chosen at ten."
+      ru: "Сделать понятной за шесть предложений систему, которой читатель никогда не видел, не пропустив развилку, которую проходят в десять лет."
+      uk: "Зробити зрозумілою за шість речень систему, якої читач ніколи не бачив, не пропустивши розвилку, яку проходять у десять років."
+    requirements:
+      - en: "Name at least three institutions by their German names (Grundschule, Realschule, Gymnasium, Gesamtschule, Ausbildung)."
+        ru: "Назовите не меньше трёх учреждений их немецкими именами (Grundschule, Realschule, Gymnasium, Gesamtschule, Ausbildung)."
+        uk: "Назвіть не менше трьох закладів їхніми німецькими іменами (Grundschule, Realschule, Gymnasium, Gesamtschule, Ausbildung)."
+      - en: "Attach the fallback with falls and put the verb at the end of that clause."
+        ru: "Присоедините запасной вариант союзом falls и поставьте глагол в конец этого придаточного."
+        uk: "Приєднайте запасний варіант сполучником falls і поставте дієслово в кінець цього підрядного."
+      - en: "Give one purpose with damit or um … zu, and count the subjects before you choose which."
+        ru: "Назовите одну цель через damit или um … zu, сосчитав подлежащие, прежде чем выбрать."
+        uk: "Назвіть одну мету через damit або um … zu, порахувавши підмети, перш ніж вибрати."
+    min_words: 55
+    model_answer: "Liebe Anna, in Deutschland geht ein Kind zuerst in die Kita und dann vier Jahre in die Grundschule. Danach wählen die Eltern zwischen Hauptschule, Realschule, Gymnasium und Gesamtschule. Mein Sohn ist jetzt neun. Wir gehen bald in die Schule, damit die Lehrerin uns die Noten erklärt. Falls er das Gymnasium nicht schafft, wechselt er auf die Realschule und macht danach eine Ausbildung. Er lernt jeden Abend, um ein gutes Zeugnis zu bekommen. Viele Grüße, Marta"
+    model_translation:
+      en: "Dear Anna, in Germany a child first goes to a day-care centre and then spends four years at primary school. After that the parents choose between Hauptschule, Realschule, Gymnasium and Gesamtschule. My son is nine now. We are going to the school soon so that the teacher explains the marks to us. In case he does not manage the Gymnasium, he will move to the Realschule and then do an apprenticeship. He studies every evening in order to get a good report. Kind regards, Marta"
+      ru: "Дорогая Анна, в Германии ребёнок сначала ходит в Kita, а потом четыре года в Grundschule. После этого родители выбирают между Hauptschule, Realschule, Gymnasium и Gesamtschule. Сыну сейчас девять. Скоро мы пойдём в школу, чтобы учительница объяснила нам оценки. Если он не справится с гимназией, он перейдёт в Realschule и потом пойдёт на профессиональное обучение. Он учит каждый вечер, чтобы получить хороший табель. С приветом, Марта"
+      uk: "Дорога Анно, у Німеччині дитина спершу ходить до Kita, а потім чотири роки до Grundschule. Після цього батьки обирають між Hauptschule, Realschule, Gymnasium і Gesamtschule. Синові зараз дев'ять. Невдовзі ми підемо до школи, щоб учителька пояснила нам оцінки. Якщо він не впорається з гімназією, він перейде до Realschule і потім піде на професійне навчання. Він учить щовечора, щоб отримати гарний табель. З вітанням, Марта"
+    explain:
+      en: "Check the two clauses that carry this topic. The condition: *falls* plus a verb at the very end, and after the comma the main clause opens with its own verb, because the fronted condition already fills position 1. The purpose: the model uses both forms on purpose — *damit die Lehrerin … erklärt* has a second doer and could not be compressed, while *um ein gutes Zeugnis zu bekommen* keeps one doer and therefore may be. Then read the institution names once more: they stay German inside a foreign-language letter, because there is no equivalent to translate them into."
+      ru: "Проверьте два придаточных, на которых стоит эта тема. Условие: *falls* и глагол в самом конце, а после запятой главное предложение открывается своим глаголом, потому что вынесенное условие уже заняло первую позицию. Цель: в образце нарочно стоят обе формы — у *damit die Lehrerin … erklärt* есть второй деятель, и сжаться она не могла бы, а *um ein gutes Zeugnis zu bekommen* держит одного деятеля и потому может. Затем ещё раз прочтите названия учреждений: в письме на другом языке они остаются немецкими, потому что переводить их не во что."
+      uk: "Перевірте два підрядні, на яких стоїть ця тема. Умова: *falls* і дієслово в самому кінці, а після коми головне речення відкривається своїм дієсловом, бо винесена умова вже зайняла першу позицію. Мета: у зразку навмисне стоять обидві форми — у *damit die Lehrerin … erklärt* є другий діяч, і стиснутися вона не могла б, а *um ein gutes Zeugnis zu bekommen* тримає одного діяча і тому може. Потім ще раз прочитайте назви закладів: у листі іншою мовою вони лишаються німецькими, бо перекладати їх нема в що."

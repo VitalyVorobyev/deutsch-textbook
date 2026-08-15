@@ -36,15 +36,21 @@ arming:
   - a2/wohnen-umzug::hoeren-teppich-sofa
   - a2/wohnen-umzug::cloze-kontraktionen
   - a2/wohnen-umzug::cloze-haengen-zwei-leben
+# revision 2 on all three variants: RU/UK bare nouns left definiteness free, so
+# einen Kalender / Eine Zeitung were correct German scored wrong — on a probe,
+# where a false negative reads as decay. The instruction pins the definite
+# reading uniformly; only the case-marked article stays graded.
+# (Batch-3 audit, 2026-08-12.)
 items:
   - id: variant-a
     outcomes: [wo-wohin-position]
     type: translate
     focus: wo-wohin
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: "Translate into German. The things named are specific, known ones — use definite articles."
+      ru: "Переведите на немецкий. Названные предметы — конкретные, известные: используйте определённые артикли."
+      uk: "Перекладіть німецькою. Названі предмети — конкретні, відомі: використовуйте означені артиклі."
+    revision: 2
     prompt_en: "Tom is hanging the calendar above the door."
     prompt_ru: "Том вешает календарь над дверью."
     prompt_uk: "Том вішає календар над дверима."
@@ -60,9 +66,10 @@ items:
     type: translate
     focus: wo-wohin
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: "Translate into German. The things named are specific, known ones — use definite articles."
+      ru: "Переведите на немецкий. Названные предметы — конкретные, известные: используйте определённые артикли."
+      uk: "Перекладіть німецькою. Названі предмети — конкретні, відомі: використовуйте означені артиклі."
+    revision: 2
     prompt_en: "The newspaper is lying on the chair. I am putting it on the table."
     prompt_ru: "Газета лежит на стуле. Я кладу её на стол."
     prompt_uk: "Газета лежить на стільці. Я кладу її на стіл."
@@ -78,9 +85,10 @@ items:
     type: translate
     focus: wo-wohin
     instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
+      en: "Translate into German. The things named are specific, known ones — use definite articles."
+      ru: "Переведите на немецкий. Названные предметы — конкретные, известные: используйте определённые артикли."
+      uk: "Перекладіть німецькою. Названі предмети — конкретні, відомі: використовуйте означені артиклі."
+    revision: 2
     prompt_en: "The bikes are standing in front of the house."
     prompt_ru: "Велосипеды стоят перед домом."
     prompt_uk: "Велосипеди стоять перед будинком."

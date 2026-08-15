@@ -1,0 +1,54 @@
+topic: zeit-praepositionen
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Lebensphasen und Lieferfenster"
+title: {en: "Transfer — life stages and delivery windows", ru: "Перенос — этапы жизни и интервалы доставки", uk: "Перенесення — етапи життя та інтервали доставки"}
+items:
+  - id: translate-fuehrerschein
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "She got her driving licence at eighteen."
+    prompt_ru: "Она получила водительские права в восемнадцать лет."
+    prompt_uk: "Вона отримала водійські права у вісімнадцять років."
+    answer: "Mit 18 hat sie den Führerschein gemacht."
+    accept: ["Sie hat mit 18 den Führerschein gemacht."]
+    key_tokens: ["mit", "18", "Führerschein", "gemacht"]
+    explain: {en: "The age is a life threshold, not a clock time, so mit 18. The Perfekt frame remains hat … gemacht.", ru: "Возраст — жизненный порог, а не время на часах, поэтому mit 18. Рамка Perfekt сохраняется: hat … gemacht.", uk: "Вік — життєвий поріг, а не час на годиннику, тому mit 18. Рамка Perfekt зберігається: hat … gemacht."}
+  - id: translate-lieferung
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate the delivery window.", ru: "Переведите интервал доставки.", uk: "Перекладіть інтервал доставки."}
+    prompt_en: "The delivery arrives between nine and eleven o'clock."
+    prompt_ru: "Доставка прибудет между девятью и одиннадцатью часами."
+    prompt_uk: "Доставка прибуде між дев'ятою та одинадцятою годинами."
+    answer: "Die Lieferung kommt zwischen neun und elf Uhr."
+    key_tokens: ["Lieferung", "zwischen", "neun", "und", "elf", "Uhr"]
+    explain: {en: "zwischen … und binds both clock-time endpoints into one window. No second preposition is inserted.", ru: "zwischen … und связывает обе временные границы в одно окно. Второй предлог не добавляется.", uk: "zwischen … und поєднує обидві часові межі в одне вікно. Другий прийменник не додається."}
+  - id: translate-feiertage
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate the bounded holiday interval into German.", ru: "Переведите ограниченный праздничный интервал на немецкий.", uk: "Перекладіть обмежений святковий інтервал німецькою."}
+    prompt_en: "The office is closed between Christmas and New Year."
+    prompt_ru: "Офис закрыт между Рождеством и Новым годом."
+    prompt_uk: "Офіс зачинений між Різдвом і Новим роком."
+    answer: "Das Büro ist zwischen Weihnachten und Neujahr geschlossen."
+    key_tokens: ["Büro", "zwischen", "Weihnachten", "und", "Neujahr", "geschlossen"]
+    explain: {en: "zwischen … und binds the two holidays as the endpoints of one closure interval.", ru: "zwischen … und связывает два праздника как границы одного периода закрытия.", uk: "zwischen … und поєднує два свята як межі одного періоду зачинення."}
+  - id: write-zwei-grenzen
+    outcomes: [zeitraum-nennen]
+    type: write
+    focus: zeitgrenzen-mit-zwischen
+    prompt: {en: "Write two facts: one change that began at an age or event threshold, and one appointment window.", ru: "Напишите два факта: одно изменение с возрастного или событийного порога и один интервал встречи.", uk: "Напишіть два факти: одну зміну з вікового чи подієвого порога та один інтервал зустрічі."}
+    goal: {en: "Use the two boundary constructions for different communicative jobs.", ru: "Используйте две конструкции границы для разных коммуникативных задач.", uk: "Використайте дві конструкції межі для різних комунікативних завдань."}
+    requirements:
+      - {en: "Use mit for the threshold.", ru: "Используйте mit для порога.", uk: "Використайте mit для порога."}
+      - {en: "Use the complete zwischen … und frame.", ru: "Используйте полную рамку zwischen … und.", uk: "Використайте повну рамку zwischen … und."}
+    min_words: 15
+    model_answer: "Mit dem neuen Job fahre ich früher los. Der Einführungstermin liegt zwischen neun und zehn Uhr."
+    model_translation: {en: "With the new job I leave earlier. The introductory appointment is between nine and ten.", ru: "С новой работой я выезжаю раньше. Вводная встреча назначена между девятью и десятью.", uk: "Із новою роботою я виїжджаю раніше. Вступну зустріч призначено між дев'ятою та десятою."}
+    explain: {en: "mit dem neuen Job marks the change threshold; zwischen neun und zehn names a bounded appointment window.", ru: "mit dem neuen Job отмечает порог изменения; zwischen neun und zehn называет ограниченный интервал встречи.", uk: "mit dem neuen Job позначає поріг зміни; zwischen neun und zehn називає обмежений інтервал зустрічі."}

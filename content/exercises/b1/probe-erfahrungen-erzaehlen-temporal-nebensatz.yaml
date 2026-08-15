@@ -13,8 +13,11 @@
 # family states: name the connector, grade its rule.
 # Pinned are both ends of the bracket: the conjunction (in both capitalizations, since
 # the fronted and the trailing clause are both accepted) and the clause-final finite
-# verb. Nothing else — the main clause is carrier, and its verb is not what the tag
-# grades. Each pinned token occurs once in every accepted rendering.
+# verb (in variant-b both of them, since the simple sequence closes the clause with
+# bekam and the staircase with hatte). Nothing else — the main clause is carrier, and
+# its verb is not what the tag grades. Every accepted rendering therefore carries
+# exactly one of the pinned conjunction forms and exactly one of the pinned finite
+# verbs, each once.
 # Cells: bevor, sobald, während — three conjunctions, one rule. bevor also carries the
 # tense half the article warns about (bevor needs no Plusquamperfekt: the conjunction
 # already says which event is first), so the pinned ging catches a staircase built
@@ -63,12 +66,16 @@ items:
       - "Ich stellte den Wecker, bevor ich ins Bett ging."
     key_tokens: ["Bevor", "bevor", "ging"]
     explain:
-      en: "Graded are both ends of the clause: bevor opens it, ging closes it. A temporal conjunction always builds a Nebensatz, so the finite verb walks past everything else to the wall — Bevor ich ins Bett ging, never Bevor ich ging ins Bett. The second graded fact is the tense: bevor needs no Plusquamperfekt, because the conjunction itself already says which event comes first, so both clauses simply share the Präteritum. Reserve the staircase for nachdem. When the clause stands first it fills position 1 of the main sentence, which is why stellte follows the comma directly."
-      ru: "Оцениваются оба конца придаточного: bevor его открывает, ging закрывает. Временной союз всегда строит придаточное, поэтому спрягаемый глагол проходит мимо всего остального к стене — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Второй оцениваемый факт — время: bevor не требует Plusquamperfekt, ведь союз сам уже говорит, что было раньше, и обе части просто стоят в Präteritum. Лестницу приберегите для nachdem. Когда придаточное стоит первым, оно занимает первое место главного предложения — поэтому stellte идёт сразу за запятой."
-      uk: "Оцінюються обидва кінці підрядного: bevor його відкриває, ging закриває. Часовий сполучник завжди будує підрядне, тому відмінюване дієслово проходить повз усе інше до стіни — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Другий оцінюваний факт — час: bevor не вимагає Plusquamperfekt, адже сполучник сам уже каже, що було раніше, і обидві частини просто стоять у Präteritum. Сходи приберігайте для nachdem. Коли підрядне стоїть першим, воно займає перше місце головного речення — тому stellte іде одразу за комою."
-      de: "Bewertet werden beide Enden des Nebensatzes: bevor eröffnet ihn, ging schließt ihn. Eine temporale Konjunktion baut immer einen Nebensatz, also wandert das finite Verb an allem vorbei bis zur Wand — Bevor ich ins Bett ging, nie Bevor ich ging ins Bett. Der zweite bewertete Punkt ist das Tempus: bevor braucht kein Plusquamperfekt, denn die Konjunktion sagt selbst schon, was zuerst kommt; beide Teilsätze teilen sich einfach das Präteritum. Die Treppe bleibt nachdem vorbehalten. Steht der Nebensatz vorn, besetzt er Position 1 des Hauptsatzes — deshalb folgt stellte direkt nach dem Komma."
+      en: "Graded are both ends of the clause: bevor opens it, ging closes it. A temporal conjunction always builds a Nebensatz, so the finite verb walks past everything else to the wall — Bevor ich ins Bett ging, never Bevor ich ging ins Bett. The second graded fact is the tense: bevor needs no Plusquamperfekt, because the conjunction itself already says which event comes first, so both clauses simply share the Präteritum. Only nachdem demands the staircase. When the clause stands first it fills position 1 of the main sentence, which is why stellte follows the comma directly."
+      ru: "Оцениваются оба конца придаточного: bevor его открывает, ging закрывает. Временной союз всегда строит придаточное, поэтому спрягаемый глагол проходит мимо всего остального к стене — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Второй оцениваемый факт — время: bevor не требует Plusquamperfekt, ведь союз сам уже говорит, что было раньше, и обе части просто стоят в Präteritum. Лестницы требует только nachdem. Когда придаточное стоит первым, оно занимает первое место главного предложения — поэтому stellte идёт сразу за запятой."
+      uk: "Оцінюються обидва кінці підрядного: bevor його відкриває, ging закриває. Часовий сполучник завжди будує підрядне, тому відмінюване дієслово проходить повз усе інше до стіни — Bevor ich ins Bett ging, а не Bevor ich ging ins Bett. Другий оцінюваний факт — час: bevor не вимагає Plusquamperfekt, адже сполучник сам уже каже, що було раніше, і обидві частини просто стоять у Präteritum. Сходів вимагає лише nachdem. Коли підрядне стоїть першим, воно займає перше місце головного речення — тому stellte іде одразу за комою."
+      de: "Bewertet werden beide Enden des Nebensatzes: bevor eröffnet ihn, ging schließt ihn. Eine temporale Konjunktion baut immer einen Nebensatz, also wandert das finite Verb an allem vorbei bis zur Wand — Bevor ich ins Bett ging, nie Bevor ich ging ins Bett. Der zweite bewertete Punkt ist das Tempus: bevor braucht kein Plusquamperfekt, denn die Konjunktion sagt selbst schon, was zuerst kommt; beide Teilsätze teilen sich einfach das Präteritum. Verlangt wird die Treppe nur von nachdem. Steht der Nebensatz vorn, besetzt er Position 1 des Hauptsatzes — deshalb folgt stellte direkt nach dem Komma."
 
   - id: variant-b
+    # C6-1 prose review, 2026-08-12: the staircase is correct German after sobald too, so
+    # the Plusquamperfekt rendering joins accept and hatte joins the pins as that
+    # rendering's clause-final finite verb (bekam does not occur in it).
+    revision: 2
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
@@ -88,7 +95,16 @@ items:
       # choice is carrier material — the tag grades the clause, not the frame.
       - "Sobald ich die Rechnung bekam, rief ich die Firma an."
       - "Ich rief die Firma an, sobald ich die Rechnung bekam."
-    key_tokens: ["Sobald", "sobald", "bekam"]
+      # sobald takes the simple sequence and the Plusquamperfekt staircase alike — the
+      # article's own Beispiele ship both. The clause bracket is what the tag grades, and
+      # this rendering builds it with hatte at the wall instead of bekam.
+      - "Sobald ich die Rechnung bekommen hatte, rief ich bei der Firma an."
+      # …closed over the item's other two accept dimensions (clause order, bei der
+      # Firma / die Firma), same as the bekam renderings above.
+      - "Sobald ich die Rechnung bekommen hatte, rief ich die Firma an."
+      - "Ich rief bei der Firma an, sobald ich die Rechnung bekommen hatte."
+      - "Ich rief die Firma an, sobald ich die Rechnung bekommen hatte."
+    key_tokens: ["Sobald", "sobald", "bekam", "hatte"]
     explain:
       en: "The same two ends, a new conjunction: sobald opens the clause and bekam stands at its wall. sobald chains the two events without a pause — one ends, the next begins — and it is a conjunction, not an adverb, so it takes the whole clause with it. Watch the main clause on the other side of the comma: rief … an is a separable bracket, so its prefix an lands at the very end of the main clause, while the Nebensatz's verb had already reached the end of its own."
       ru: "Те же два конца, новый союз: sobald открывает придаточное, bekam стоит у его стены. sobald сцепляет два события без паузы — одно кончается, другое начинается, — и это именно союз, а не наречие, поэтому он забирает с собой всё придаточное. Обратите внимание на главное предложение по ту сторону запятой: rief … an — отделяемая рамка, её приставка an уходит в самый конец главного, тогда как глагол придаточного уже достиг конца своего."

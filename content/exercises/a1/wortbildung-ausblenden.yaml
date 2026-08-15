@@ -1,0 +1,43 @@
+topic: wortbildung
+role: practice
+stage: ausblenden
+activity: extension
+title_de: "Ausblenden — Wortteile selbst nutzen"
+title: {en: "Fade — use word parts independently", ru: "Снятие опор — самостоятельно используем части слов", uk: "Зняття опор — самостійно використовуємо частини слів"}
+items:
+  - id: cloze-kinderzimmer
+    outcomes: [wortbildung-komposita]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Build the compound and add its article.", ru: "Составьте сложное слово и добавьте его артикль.", uk: "Складіть складне слово й додайте його артикль."}
+    text: "Kinder + das Zimmer = {{das Kinderzimmer}}"
+    explain: {en: "The final noun das Zimmer determines the article of das Kinderzimmer.", ru: "Последнее существительное das Zimmer определяет артикль всего слова das Kinderzimmer.", uk: "Останній іменник das Zimmer визначає артикль усього слова das Kinderzimmer."}
+  - id: translate-fahrerin
+    outcomes: [wortbildung-nomenformen]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Translate the profession.", ru: "Переведите название профессии.", uk: "Перекладіть назву професії."}
+    prompt_en: "The bus driver is called Aylin."
+    prompt_ru: "Водительницу автобуса зовут Айлин."
+    prompt_uk: "Водійку автобуса звати Айлін."
+    answer: "Die Busfahrerin heißt Aylin."
+    key_tokens: ["Busfahrerin"]
+    explain: {en: "Bus + Fahrer + -in produces the female profession Busfahrerin; the final -in also makes the article die.", ru: "Bus + Fahrer + -in образует женское название Busfahrerin; конечное -in также требует артикль die.", uk: "Bus + Fahrer + -in утворює жіночу назву Busfahrerin; кінцеве -in також вимагає артикль die."}
+  - id: cloze-kostenlos
+    outcomes: [wortbildung-adjektive]
+    type: cloze
+    focus: wortbildung-adjektiv
+    instruction: {en: "Form the adjective meaning without cost.", ru: "Образуйте прилагательное со значением «без оплаты».", uk: "Утворіть прикметник зі значенням «без оплати»."}
+    text: "Der Eintritt kostet nichts. Er ist {{kostenlos}}."
+    explain: {en: "-los means without: kostenlos is without cost, not merely cheap.", ru: "-los означает «без»: kostenlos — бесплатно, а не просто дёшево.", uk: "-los означає «без»: kostenlos — безкоштовно, а не просто дешево."}
+  - id: translate-unklar
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Translate with an adjective formed with un-.", ru: "Переведите с прилагательным на un-.", uk: "Перекладіть із прикметником на un-."}
+    prompt_en: "The address is unclear."
+    prompt_ru: "Адрес непонятен."
+    prompt_uk: "Адреса незрозуміла."
+    answer: "Die Adresse ist unklar."
+    key_tokens: ["unklar"]
+    explain: {en: "un- reverses klar: unklar. The adjective after ist has no ending.", ru: "un- меняет klar на противоположное: unklar. Прилагательное после ist не получает окончания.", uk: "un- змінює klar на протилежне: unklar. Прикметник після ist не отримує закінчення."}

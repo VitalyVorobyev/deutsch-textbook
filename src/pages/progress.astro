@@ -1,10 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
-import { withBase } from '../lib/url';
 import ProgressPanel from '../components/progress/ProgressPanel';
 import { getCheckpoints, getTopicNodes } from '../lib/content';
-import { getCurriculum } from '../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 import { getAllCards } from '../lib/content';
 import { getCollection } from 'astro:content';
 import { probeFamilies } from '../lib/probes';
@@ -79,25 +78,16 @@ const outcomeLabels = Object.fromEntries(
   <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.fortschritt" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
-      Your activity, streak, measured evidence, and weak spots for the active profile — all stored
-      in this browser. Per-topic progress lives in <a href={withBase('/topics')} class="underline
-      hover:text-amber-700">Themen → Alle Themen</a>, one table with filters and next steps. Export
-      writes a snapshot to <code>progress/&lt;profile&gt;/</code> (or downloads it) so the agent can
-      generate drills targeting your mistakes.
+      Your activity, evidence, and vocabulary mastery for this profile — all stored in this
+      browser.
     </span>
     <span class="lang-ru">
-      Активность, серия, измеренные результаты и слабые места активного профиля — всё хранится в
-      этом браузере. Прогресс по темам — в разделе <a href={withBase('/topics')} class="underline
-      hover:text-amber-700">Themen → Alle Themen</a>: одна таблица с фильтрами и следующими шагами.
-      Экспорт записывает снимок в <code>progress/&lt;profile&gt;/</code> (или скачивает его), чтобы
-      агент создал упражнения по вашим ошибкам.
+      Ваша активность, результаты и владение словарём по этому профилю — всё хранится в этом
+      браузере.
     </span>
     <span class="lang-uk">
-      Активність, серія занять, виміряні показники та слабкі місця активного профілю — усе
-      зберігається в цьому браузері. Прогрес за темами — у розділі <a href={withBase('/topics')}
-      class="underline hover:text-amber-700">Themen → Alle Themen</a>: одна таблиця з фільтрами та
-      наступними кроками. Експорт записує знімок у <code>progress/&lt;profile&gt;/</code> (або
-      завантажує його), щоб агент створив вправи за вашими помилками.
+      Ваша активність, результати та володіння словником у цьому профілі — усе зберігається в
+      цьому браузері.
     </span>
   </p>
 

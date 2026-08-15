@@ -1,0 +1,814 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the working-life
+# field of data/goethe-b1-wortliste.txt: how a job begins and ends, who represents
+# whom inside a firm, who is on the payroll in which shape, what stands on the desk
+# and where people eat. The profession NAMES are a deck of their own (berufe-b1);
+# A2's `arbeit-bewerbung`, `arbeit-ausbildung-a2` and `schule-arbeit` own the basics
+# (Stelle, Bewerbung, einstellen, kündigen, Gehalt, Chef, Firma, Vollzeit, Teilzeit).
+id: arbeit-beruf-b1
+title_de: "Arbeit und Berufsleben"
+title_en: "Work and working life"
+title_ru: "Работа и трудовая жизнь"
+title_uk: "Робота й трудове життя"
+level: B1
+entries:
+  # --- Wie eine Stelle anfängt und aufhört ---
+  - de: Beschäftigung
+    ipa: "bəˈʃɛftɪgʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Beschäftigungen"
+    en: having paid work at all, being on somebody's payroll
+    en_compact: "employment"
+    ru: "занятость: наличие оплачиваемой работы, состояние в штате"
+    uk: "зайнятість: наявність оплачуваної роботи, перебування у штаті"
+    example_de: Nach dem Studium fand sie sofort eine feste Beschäftigung.
+    example_en: After her degree she found steady employment straight away.
+    example_ru: После учёбы она сразу нашла постоянную занятость.
+    example_uk: Після навчання вона одразу знайшла постійну зайнятість.
+    note:
+      en: 'The noun of A2 beschäftigen, and in official German it is the fact of being employed rather than the work itself: eine Beschäftigung suchen, in Beschäftigung stehen, die geringfügige Beschäftigung for a small job below the tax threshold. Beside it, die Tätigkeit below is the work actually done, and A2 die Stelle is the one post at one firm. A second, milder sense is what keeps somebody busy — eine Beschäftigung für die Kinder finden — and sich mit etwas beschäftigen is to occupy oneself with it.'
+      ru: 'Существительное от beschäftigen уровня A2, и в официальном немецком это сам факт наличия работы, а не работа: eine Beschäftigung suchen, in Beschäftigung stehen, die geringfügige Beschäftigung — подработка ниже налогового порога. Рядом: die Tätigkeit ниже — это то, что человек фактически делает, а die Stelle уровня A2 — конкретная должность в конкретной фирме. Второй, более мягкий смысл — то, чем занять время: eine Beschäftigung für die Kinder finden, а sich mit etwas beschäftigen значит «заниматься чем-либо».'
+      uk: 'Іменник від beschäftigen рівня A2, і в офіційній німецькій це сам факт наявності роботи, а не робота: eine Beschäftigung suchen, in Beschäftigung stehen, die geringfügige Beschäftigung — підробіток нижче податкового порога. Поряд: die Tätigkeit нижче — це те, що людина фактично робить, а die Stelle рівня A2 — конкретна посада в конкретній фірмі. Другий, м’якший сенс — те, чим зайняти час: eine Beschäftigung für die Kinder finden, а sich mit etwas beschäftigen означає «займатися чимось».'
+
+  - de: sich bewerben
+    ipa: "zɪç bəˈvɛʁbn̩"
+    pos: verb
+    praesens_3sg: bewirbt sich
+    partizip2: sich beworben
+    aux: haben
+    valence: "sich + Akk; um + Akk, bei + Dat"
+    # Recognition only: A2 ships `bewerben` ("to apply (for a job)",
+    # arbeit-ausbildung-a2) as a production card, with `sich bewerben` in its own
+    # accept list — the typed prompt is answered one deck over, and this entry
+    # exists to key the Wortliste's reflexive headword.
+    cards: recognition
+    en: to put oneself forward for a job or a place
+    ru: подавать заявку на должность или место, претендовать на них
+    uk: подавати заявку на посаду чи місце, претендувати на них
+    example_de: Er hat sich bei drei Firmen um dieselbe Stelle beworben.
+    example_en: He applied to three companies for the same position.
+    example_ru: Он подал заявки на одну и ту же должность в три фирмы.
+    example_uk: Він подав заявки на ту саму посаду до трьох фірм.
+    note:
+      en: 'A true reflexive: the pronoun is part of the verb, so there is no version of it without one. Two prepositions divide the sentence and both are needed — um + Akkusativ for what you want, bei + Dativ for where you are asking, as the example shows. The stem vowel changes in the present (du bewirbst dich, er bewirbt sich) and again in the past (bewarb, beworben), which is the strong-verb pattern of werben, to advertise. The noun is die Bewerbung, and das Bewerbungsgespräch is the interview.'
+      ru: 'Настоящий возвратный глагол: местоимение здесь часть глагола, и версии без него не существует. Предложение делят два предлога, и нужны оба: um + Akkusativ — на что претендуют, bei + Dativ — куда обращаются, как в примере. В настоящем времени гласная основы меняется (du bewirbst dich, er bewirbt sich), меняется и в прошедшем (bewarb, beworben) — это сильное спряжение глагола werben «рекламировать». Существительное — die Bewerbung, а собеседование — das Bewerbungsgespräch.'
+      uk: 'Справжнє зворотне дієслово: займенник тут частина дієслова, і версії без нього не існує. Речення ділять два прийменники, і потрібні обидва: um + Akkusativ — на що претендують, bei + Dativ — куди звертаються, як у прикладі. У теперішньому часі голосна основи змінюється (du bewirbst dich, er bewirbt sich), змінюється й у минулому (bewarb, beworben) — це сильна дієвідміна дієслова werben «рекламувати». Іменник — die Bewerbung, а співбесіда — das Bewerbungsgespräch.'
+
+  - de: anstellen
+    ipa: "ˈanˌʃtɛlən"
+    pos: verb
+    praesens_3sg: stellt an
+    partizip2: angestellt
+    aux: haben
+    valence: "+ Akk / sich"
+    # Recognition only: A2 ships `einstellen` ("to hire, to take on",
+    # arbeit-bewerbung) as the production card for taking somebody on.
+    cards: recognition
+    en: to take somebody onto the staff; also to join a queue
+    en_compact: "to employ; to queue up"
+    ru: брать в штат; также вставать в очередь
+    uk: брати до штату; також ставати в чергу
+    example_de: Die Firma stellt im Sommer zehn neue Leute an.
+    example_en: The company is taking on ten new people in the summer.
+    example_ru: Летом фирма берёт в штат десять новых человек.
+    example_uk: Улітку фірма бере до штату десять нових людей.
+    note:
+      en: 'Separable, and it splits three ways. Employing somebody: the result is der Angestellte, an employee, which A2 already cards, and the neighbour einstellen names the act of hiring more sharply. Queueing: sich anstellen, what you do at a counter, and Stell dich hinten an! is the sentence you may hear. Switching on: das Radio anstellen, the same as anmachen. A fourth is idiomatic and always about trouble — Was hast du denn da angestellt?'
+      ru: 'Отделяемый, и расходится на три значения. Брать на работу: результат — der Angestellte, «служащий», карточка на A2, а сосед einstellen точнее называет сам акт найма. Вставать в очередь: sich anstellen — то, что делают у окошка, и Stell dich hinten an! вполне можно услышать. Включать: das Radio anstellen, то же, что anmachen. Четвёртое значение идиоматическое и всегда про проделки: Was hast du denn da angestellt?'
+      uk: 'Відокремлюваний, і розходиться на три значення. Брати на роботу: результат — der Angestellte, «службовець», картка на A2, а сусід einstellen точніше називає сам акт найму. Ставати в чергу: sich anstellen — те, що роблять біля віконця, і Stell dich hinten an! цілком можна почути. Вмикати: das Radio anstellen, те саме, що anmachen. Четверте значення ідіоматичне й завжди про витівки: Was hast du denn da angestellt?'
+
+  - de: Entlassung
+    ipa: "ɛntˈlasʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Entlassungen"
+    en: being let go by an employer, on the employer's decision
+    ru: увольнение по решению работодателя
+    uk: звільнення за рішенням роботодавця
+    example_de: Nach der Entlassung suchte er ein halbes Jahr lang eine neue Stelle.
+    example_en: After being made redundant he looked for a new job for six months.
+    example_ru: После увольнения он полгода искал новое место.
+    example_uk: Після звільнення він пів року шукав нове місце.
+    note:
+      en: 'The noun of B1 entlassen, and the direction matters: this comes from the employer''s side, while A2 kündigen works both ways, so Ich habe gekündigt means you left of your own accord. In a wave of them a newspaper writes Massenentlassungen or Stellenabbau. The same word is used far from work: die Entlassung aus dem Krankenhaus is being discharged, and der Entlassungsbrief follows either one.'
+      ru: 'Существительное от entlassen уровня B1, и направление здесь существенно: инициатива исходит от работодателя, тогда как kündigen уровня A2 работает в обе стороны, так что Ich habe gekündigt значит «я уволился сам». О массовом явлении газета напишет Massenentlassungen или Stellenabbau. То же слово живёт далеко от работы: die Entlassung aus dem Krankenhaus — выписка из больницы, а der Entlassungsbrief следует и за тем, и за другим.'
+      uk: 'Іменник від entlassen рівня B1, і напрямок тут суттєвий: ініціатива походить від роботодавця, тоді як kündigen рівня A2 працює в обидва боки, тож Ich habe gekündigt означає «я звільнився сам». Про масове явище газета напише Massenentlassungen або Stellenabbau. Те саме слово живе далеко від роботи: die Entlassung aus dem Krankenhaus — виписка з лікарні, а der Entlassungsbrief іде і за тим, і за тим.'
+
+  - de: Arbeitslosigkeit
+    ipa: "ˈaʁbaɪ̯tsloːzɪçkaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: being out of work, and the scale of it in a country
+    ru: безработица как положение человека и как явление в стране
+    uk: безробіття як становище людини і як явище в країні
+    example_de: In dieser Region ist die Arbeitslosigkeit seit Jahren hoch.
+    example_en: Unemployment has been high in this region for years.
+    example_ru: В этом регионе безработица высока уже много лет.
+    example_uk: У цьому регіоні безробіття високе вже багато років.
+    note:
+      en: 'Built in two steps from A2 arbeitslos: -ig makes an adjective into a stem, and -keit makes it a feminine noun, exactly as in Möglichkeit and Schwierigkeit. Effectively without a plural. It carries both readings — one person''s situation and the national figure — and the news uses die Arbeitslosenquote for the percentage. The money is das Arbeitslosengeld, and the office that pays it is die Agentur für Arbeit.'
+      ru: 'Построено в два шага от arbeitslos уровня A2: -ig превращает прилагательное в основу, а -keit делает из неё существительное женского рода — ровно как в Möglichkeit и Schwierigkeit. Множественного числа фактически нет. В слове живут оба прочтения — положение отдельного человека и цифра по стране, — а для процента новости берут die Arbeitslosenquote. Деньги называются das Arbeitslosengeld, а платит их die Agentur für Arbeit.'
+      uk: 'Побудоване у два кроки від arbeitslos рівня A2: -ig перетворює прикметник на основу, а -keit робить із неї іменник жіночого роду — точно як у Möglichkeit і Schwierigkeit. Множини фактично немає. У слові живуть обидва прочитання — становище окремої людини й цифра по країні, — а для відсотка новини беруть die Arbeitslosenquote. Гроші звуться das Arbeitslosengeld, а платить їх die Agentur für Arbeit.'
+
+  - de: Aushilfe
+    ipa: "ˈaʊ̯sˌhɪlfə"
+    pos: noun
+    gender: f
+    plural: "die Aushilfen"
+    # Recognition only: read in a job advert and on a payslip. The learner who has
+    # to say it produces `Job` or `Teilzeit`, both already carded.
+    cards: recognition
+    en: somebody taken on for a short time to cover a gap, and the job itself
+    en_compact: "temporary help; a stopgap job"
+    ru: подсобный работник на время и сама такая временная работа
+    uk: підсобний працівник на час і сама така тимчасова робота
+    example_de: Im Dezember sucht der Laden immer eine Aushilfe.
+    example_en: In December the shop always looks for temporary help.
+    example_ru: В декабре магазин всегда ищет временного работника.
+    example_uk: У грудні крамниця завжди шукає тимчасового працівника.
+    note:
+      en: 'One word for the person and for the arrangement, which is why a small ad reads Aushilfe gesucht and a student says Ich arbeite als Aushilfe. It is built from aus and helfen, and the same idea gives aushelfen, to stand in for a while. Two words are close but not it: die Vertretung is standing in for one named colleague, and der Nebenjob is a second job you keep beside your main one. A related German institution is der Minijob, a small post capped by law.'
+      ru: 'Одно слово и на человека, и на саму схему: поэтому объявление гласит Aushilfe gesucht, а студент говорит Ich arbeite als Aushilfe. Слово сложено из aus и helfen, а та же идея даёт глагол aushelfen — «выручить на время». Два слова рядом, но не то же: die Vertretung — замещение конкретного коллеги, а der Nebenjob — подработка помимо основного места. Родственный немецкий институт — der Minijob, малая занятость с потолком по закону.'
+      uk: 'Одне слово і на людину, і на саму схему: тому оголошення каже Aushilfe gesucht, а студент говорить Ich arbeite als Aushilfe. Слово складене з aus і helfen, а та сама ідея дає дієслово aushelfen — «виручити на час». Два слова поряд, але не те саме: die Vertretung — заміщення конкретного колеги, а der Nebenjob — підробіток поза основним місцем. Споріднений німецький інститут — der Minijob, мала зайнятість із межею за законом.'
+
+  - de: halbtags
+    ipa: "ˈhalpˌtaːks"
+    pos: adv
+    # Recognition only: A2 ships `Teilzeit` and `Vollzeit` (arbeit-bewerbung) as the
+    # nouns for the same arrangement, and this word is their adverb.
+    cards: recognition
+    en: for half a working day, mornings or afternoons only
+    ru: полдня, только до обеда или только после
+    uk: пів дня, лише до обіду або лише після
+    example_de: Seit der Geburt des Kindes arbeitet sie halbtags.
+    example_en: Since the birth of the child she has worked half days.
+    example_ru: После рождения ребёнка она работает полдня.
+    example_uk: Після народження дитини вона працює пів дня.
+    note:
+      en: 'An adverb, so it never takes an ending and never stands before a noun: sie arbeitet halbtags, but eine Halbtagsstelle when a noun is wanted. Its opposite is ganztags, and the pair belongs beside A2 die Teilzeit and die Vollzeit, which are nouns for the same arrangement (in Teilzeit arbeiten). The -s at the end is the old adverbial genitive that also makes morgens, abends and montags out of nouns.'
+      ru: 'Наречие, поэтому окончаний не принимает и перед существительным не стоит: sie arbeitet halbtags, но eine Halbtagsstelle, когда нужно существительное. Противоположность — ganztags, а пара стоит рядом с die Teilzeit и die Vollzeit уровня A2, которые называют ту же схему существительными (in Teilzeit arbeiten). Конечное -s — старый наречный родительный, тот же, что делает из существительных morgens, abends и montags.'
+      uk: 'Прислівник, тому закінчень не приймає й перед іменником не стоїть: sie arbeitet halbtags, але eine Halbtagsstelle, коли потрібен іменник. Протилежність — ganztags, а пара стоїть поряд із die Teilzeit і die Vollzeit рівня A2, які називають ту саму схему іменниками (in Teilzeit arbeiten). Кінцеве -s — старий прислівниковий родовий, той самий, що робить із іменників morgens, abends і montags.'
+
+  - de: Überstunde
+    ipa: "ˈyːbɐˌʃtʊndə"
+    pos: noun
+    gender: f
+    plural: "die Überstunden"
+    # Recognition only: A2 ships the plural `Überstunden` ("overtime (extra hours)",
+    # arbeit-beruf) as a production card, and the two answers are one letter apart —
+    # this entry keys the Wortliste's singular headword without dealing a second
+    # production card for the identical prompt.
+    cards: recognition
+    en: an hour worked beyond the agreed time
+    ru: сверхурочный час работы, отработанный сверх договорённого времени
+    uk: понаднормова година роботи, відпрацьована понад домовлений час
+    example_de: Diesen Monat habe ich zwanzig Überstunden gemacht.
+    example_en: This month I have done twenty hours of overtime.
+    example_ru: В этом месяце я отработал двадцать сверхурочных часов.
+    example_uk: Цього місяця я відпрацював двадцять понаднормових годин.
+    note:
+      en: 'The singular is the entry the Wortliste lists, but real sentences almost always use the plural, which A2 already cards: Überstunden machen — with machen, never arbeiten — and Überstunden abbauen when you take them back as time off. German employment law counts them on das Arbeitszeitkonto, and they are either paid or given back as free days, which is why abbauen is the everyday word beside it. One at a time it goes back to the singular: Das war nur eine halbe Stunde mehr, keine ganze.'
+      ru: 'Единственное число — это заглавная форма Wortliste, но живая речь почти всегда берёт множественное, которое уже есть карточкой на A2: Überstunden machen — именно с machen, а не с arbeiten, — и Überstunden abbauen, «отгулять их». Немецкое трудовое право считает их на das Arbeitszeitkonto, и их либо оплачивают, либо возвращают свободными днями, отсюда и обиходное abbauen рядом. При счёте по одному возвращается единственное: Das war nur eine halbe Stunde mehr, keine ganze.'
+      uk: 'Однина — це заголовна форма Wortliste, але живе мовлення майже завжди бере множину, яка вже є карткою на A2: Überstunden machen — саме з machen, а не з arbeiten, — і Überstunden abbauen, «відгуляти їх». Німецьке трудове право рахує їх на das Arbeitszeitkonto, і їх або оплачують, або повертають вільними днями, звідси й побутове abbauen поряд. При лічбі по одній повертається однина: Das war nur eine halbe Stunde mehr, keine ganze.'
+
+  - de: Einkommen
+    ipa: "ˈaɪ̯nˌkɔmən"
+    pos: noun
+    gender: n
+    plural: "die Einkommen"
+    en: everything a person earns in a year, from a job or from anything else
+    en_compact: "income"
+    ru: "доход: всё, что человек зарабатывает за год из любых источников"
+    uk: "дохід: усе, що людина заробляє за рік із будь-яких джерел"
+    example_de: Das Einkommen der Familie reicht knapp für die Miete.
+    example_en: The family's income barely covers the rent.
+    example_ru: Дохода семьи едва хватает на аренду.
+    example_uk: Доходу родини ледве вистачає на оренду.
+    note:
+      en: 'The widest of the money words, and the one a tax form uses: it includes wages, rent received, interest and a pension, whereas A2 das Gehalt is the fixed monthly sum an employee is paid and der Lohn is pay counted by the hour or the piece. Plural identical to the singular, as with all -en nouns of this shape. Two compounds are unavoidable: die Einkommensteuer and das Einkommen pro Kopf in a statistic. The verb behind it is einkommen only in the old sense; today one says verdienen.'
+      ru: 'Самое широкое из денежных слов и то, которым пользуется налоговая форма: сюда входят и зарплата, и полученная арендная плата, и проценты, и пенсия, тогда как das Gehalt уровня A2 — фиксированная месячная сумма служащего, а der Lohn — оплата по часам или по выработке. Множественное совпадает с единственным, как у всех существительных такого вида на -en. Два составных слова не обойти: die Einkommensteuer и das Einkommen pro Kopf в статистике. Глагол einkommen сохранился лишь в старом значении; сегодня говорят verdienen.'
+      uk: 'Найширше з грошових слів і те, яким користується податкова форма: сюди входять і зарплата, і отримана орендна плата, і відсотки, і пенсія, тоді як das Gehalt рівня A2 — фіксована місячна сума службовця, а der Lohn — оплата за годинами або за виробітком. Множина збігається з одниною, як в усіх іменників такого вигляду на -en. Двох складних слів не обійти: die Einkommensteuer і das Einkommen pro Kopf у статистиці. Дієслово einkommen збереглося лише в старому значенні; сьогодні кажуть verdienen.'
+
+  - de: Rente
+    ipa: "ˈʁɛntə"
+    pos: noun
+    gender: f
+    plural: "die Renten"
+    en: the monthly money paid to somebody who has stopped working because of age
+    en_compact: "state pension"
+    ru: "пенсия: ежемесячные выплаты тому, кто оставил работу по возрасту"
+    uk: "пенсія: щомісячні виплати тому, хто залишив роботу за віком"
+    example_de: Ihre Rente ist niedrig, weil sie lange nur halbtags gearbeitet hat.
+    example_en: Her pension is low because she worked only half days for a long time.
+    example_ru: Её пенсия невелика, потому что она долго работала лишь полдня.
+    example_uk: Її пенсія невелика, бо вона довго працювала лише пів дня.
+    note:
+      en: 'The money, not the person: A2 der Rentner and die Rentnerin are the people who receive it. Germany says this word, Austria says die Pension, and Switzerland says both plus die AHV for the state scheme. The system is die Rentenversicherung, paid into from every wage, and the age is das Rentenalter. A second meaning survives in finance, where eine Rente is an annuity — a fixed sum paid out at intervals for any reason.'
+      ru: 'Это деньги, а не человек: der Rentner и die Rentnerin уровня A2 — те, кто их получает. Германия говорит именно так, Австрия — die Pension, Швейцария — и то и другое плюс die AHV для государственной системы. Сама система — die Rentenversicherung, взносы в неё идут с каждой зарплаты, а возраст — das Rentenalter. Второе значение уцелело в финансах: eine Rente — это аннуитет, фиксированная сумма, выплачиваемая через равные промежутки по любой причине.'
+      uk: 'Це гроші, а не людина: der Rentner і die Rentnerin рівня A2 — ті, хто їх отримує. Німеччина каже саме так, Австрія — die Pension, Швейцарія — і те й те плюс die AHV для державної системи. Сама система — die Rentenversicherung, внески до неї йдуть із кожної зарплати, а вік — das Rentenalter. Друге значення вціліло у фінансах: eine Rente — це ануїтет, фіксована сума, яку виплачують через рівні проміжки з будь-якої причини.'
+
+  - de: in Rente gehen/sein
+    ipa: "ɪn ˈʁɛntə ˌgeːənˈzaɪ̯n"
+    pos: phrase
+    # Recognition only: a slash headword — the card cannot say which of the two
+    # verbs it wants, and `Rente` above already carries the production prompt.
+    cards: recognition
+    en: to retire, and to be retired
+    ru: выходить на пенсию и быть на пенсии
+    uk: виходити на пенсію і бути на пенсії
+    example_de: Mein Vater geht nächstes Jahr in Rente, meine Mutter ist schon in Rente.
+    example_en: My father retires next year, my mother is already retired.
+    example_ru: Мой отец выходит на пенсию в следующем году, а мама уже на пенсии.
+    example_uk: Мій батько виходить на пенсію наступного року, а мама вже на пенсії.
+    note:
+      en: 'Two chunks in one line, and German keeps them apart the way it keeps gehen and sein apart everywhere: the movement verb for the step and the state verb for the situation afterwards. No article: it is in Rente, never in die Rente, and the Perfekt of the first one takes sein (Er ist letztes Jahr in Rente gegangen). Austria says in Pension gehen, Switzerland pensioniert werden. A third, formal wording used in letters is in den Ruhestand treten.'
+      ru: 'Два оборота в одной строке, и немецкий различает их так же, как всюду различает gehen и sein: глагол движения — для самого шага, глагол состояния — для положения после. Артикля нет: говорят in Rente, а не in die Rente, и Perfekt первого оборота строится с sein (Er ist letztes Jahr in Rente gegangen). Австрия скажет in Pension gehen, Швейцария — pensioniert werden. Третья, официальная формулировка для писем — in den Ruhestand treten.'
+      uk: 'Два звороти в одному рядку, і німецька розрізняє їх так само, як усюди розрізняє gehen і sein: дієслово руху — для самого кроку, дієслово стану — для становища після. Артикля немає: кажуть in Rente, а не in die Rente, і Perfekt першого звороту будується з sein (Er ist letztes Jahr in Rente gegangen). Австрія скаже in Pension gehen, Швейцарія — pensioniert werden. Третє, офіційне формулювання для листів — in den Ruhestand treten.'
+
+  # --- Der Weg in den Beruf ---
+  - de: Lehre
+    ipa: "ˈleːʁə"
+    pos: noun
+    gender: f
+    plural: "die Lehren"
+    # Recognition only: A2 ships `Ausbildung` ("vocational training, apprenticeship",
+    # biografie-erfahrungen) as the production card for the same three years.
+    cards: recognition
+    en: the years spent learning a trade inside a firm; also a body of teaching
+    en_compact: "apprenticeship; a doctrine"
+    ru: годы обучения ремеслу на предприятии; также учение как система взглядов
+    uk: роки навчання ремесла на підприємстві; також учення як система поглядів
+    example_de: Nach der Schule macht er eine Lehre als Elektriker.
+    example_en: After school he is doing an apprenticeship as an electrician.
+    example_ru: После школы он проходит обучение на электрика.
+    example_uk: Після школи він проходить навчання на електрика.
+    note:
+      en: 'The traditional word for what A2 calls die Ausbildung, and the two are used side by side: eine Lehre machen, in der Lehre sein. Austria and Switzerland prefer this one, and der Lehrling below is the person doing it. Two other senses run through the same word: a body of teaching (die Lehre Buddhas, die Relativitätstheorie als Lehre) and the moral of a story, in the fixed phrase Das soll dir eine Lehre sein. The verb is lehren, to teach, which takes two accusatives.'
+      ru: 'Традиционное слово для того, что на A2 называется die Ausbildung, и оба живут рядом: eine Lehre machen, in der Lehre sein. Австрия и Швейцария предпочитают именно это, а der Lehrling ниже — тот, кто её проходит. В том же слове живут ещё два смысла: учение как система взглядов (die Lehre Buddhas) и мораль истории — в устойчивом Das soll dir eine Lehre sein. Глагол — lehren «учить, преподавать», он берёт два дополнения в Akkusativ.'
+      uk: 'Традиційне слово для того, що на A2 зветься die Ausbildung, і обидва живуть поряд: eine Lehre machen, in der Lehre sein. Австрія і Швейцарія віддають перевагу саме цьому, а der Lehrling нижче — той, хто її проходить. У тому самому слові живуть ще два сенси: учення як система поглядів (die Lehre Buddhas) і мораль історії — в усталеному Das soll dir eine Lehre sein. Дієслово — lehren «навчати, викладати», воно бере два додатки в Akkusativ.'
+
+  - de: Lehrling
+    ipa: "ˈleːɐ̯lɪŋ"
+    pos: noun
+    gender: m
+    plural: "die Lehrlinge"
+    # Recognition only: A2 ships `Azubi` and `Auszubildende` (arbeit-bewerbung,
+    # berufe-a2) as cards for the same person in today's official wording.
+    cards: recognition
+    en: a young person learning a trade in a firm while going to a vocational school
+    en_compact: "apprentice"
+    ru: "подмастерье: молодой человек, обучающийся ремеслу на предприятии и в профшколе"
+    uk: "підмайстер: молода людина, що вчиться ремесла на підприємстві та у профшколі"
+    example_de: Der Betrieb bildet jedes Jahr zwei Lehrlinge aus.
+    example_en: The firm trains two apprentices every year.
+    example_ru: Предприятие каждый год готовит двух учеников.
+    example_uk: Підприємство щороку готує двох учнів.
+    note:
+      en: 'The older German word, now official in Austria and Switzerland while Germany writes der Auszubildende and everybody says der Azubi. The suffix -ling names a person by what happens to them and is faintly diminutive — der Flüchtling, der Säugling, der Frühling — which is one reason Germany moved away from it. It has no feminine of its own: German says die Auszubildende, and older Swiss usage had die Lehrtochter beside it.'
+      ru: 'Более старое немецкое слово, ныне официальное в Австрии и Швейцарии, тогда как Германия пишет der Auszubildende, а говорят все der Azubi. Суффикс -ling называет человека по тому, что с ним происходит, и слегка уменьшителен — der Flüchtling, der Säugling, der Frühling, — и отчасти поэтому Германия от него ушла. Собственной женской формы у слова нет: говорят die Auszubildende, а в старом швейцарском обиходе рядом стояло die Lehrtochter.'
+      uk: 'Давніше німецьке слово, нині офіційне в Австрії та Швейцарії, тоді як Німеччина пише der Auszubildende, а кажуть усі der Azubi. Суфікс -ling називає людину за тим, що з нею відбувається, і трохи зменшувальний — der Flüchtling, der Säugling, der Frühling, — і почасти тому Німеччина від нього відійшла. Власної жіночої форми слово не має: кажуть die Auszubildende, а в старому швейцарському вжитку поряд стояло die Lehrtochter.'
+
+  - de: ausgebildet
+    ipa: "ˈaʊ̯sgəˌbɪldət"
+    pos: adj
+    # Recognition only: read in a job advert and a CV. A learner says `Ich habe eine
+    # Ausbildung gemacht` with the A2 noun instead.
+    cards: recognition
+    en: having finished a formal training and holding the certificate for it
+    en_compact: "trained, qualified"
+    ru: прошедший профессиональную подготовку и имеющий свидетельство о ней
+    uk: той, хто пройшов фахову підготовку і має свідоцтво про неї
+    example_de: Wir suchen eine ausgebildete Pflegerin für den Nachtdienst.
+    example_en: We are looking for a trained carer for the night shift.
+    example_ru: Мы ищем дипломированную сиделку в ночную смену.
+    example_uk: Ми шукаємо дипломовану доглядальницю в нічну зміну.
+    note:
+      en: 'The Partizip II of ausbilden, long since an adjective, and it appears mostly before a noun in adverts: eine ausgebildete Köchin, gut ausgebildete Fachleute. It says the training was formal and finished, which is what separates it from erfahren, experienced through practice, and from gelernt, which German uses in exactly the same slot (ein gelernter Bäcker). The noun is die Ausbildung and the person who does the training is der Ausbilder.'
+      ru: 'Partizip II от ausbilden, давно ставшее прилагательным; чаще всего стоит перед существительным в объявлениях: eine ausgebildete Köchin, gut ausgebildete Fachleute. Слово утверждает, что подготовка была формальной и завершённой, — этим оно отличается от erfahren «опытный на практике» и от gelernt, которое немецкий ставит ровно в ту же позицию (ein gelernter Bäcker). Существительное — die Ausbildung, а тот, кто обучает, — der Ausbilder.'
+      uk: 'Partizip II від ausbilden, давно вже прикметник; найчастіше стоїть перед іменником в оголошеннях: eine ausgebildete Köchin, gut ausgebildete Fachleute. Слово стверджує, що підготовка була формальною і завершеною, — цим воно відрізняється від erfahren «досвідчений на практиці» і від gelernt, яке німецька ставить рівно в ту саму позицію (ein gelernter Bäcker). Іменник — die Ausbildung, а той, хто навчає, — der Ausbilder.'
+
+  - de: Praktikantin
+    ipa: "pʁaktiˈkantɪn"
+    pos: noun
+    gender: f
+    plural: "die Praktikantinnen"
+    # Recognition only: the feminine of A2's `Praktikant` (arbeit-bewerbung), whose
+    # own note names this form — the pair costs three cards rather than four.
+    cards: recognition
+    en: a woman spending a fixed period in a firm to learn the work
+    en_compact: "intern (female)"
+    ru: практикантка, женщина, проходящая в фирме определённый срок ради опыта
+    uk: практикантка, жінка, що проходить у фірмі певний строк заради досвіду
+    example_de: Die Praktikantin darf bei den Besprechungen dabei sein.
+    example_en: The intern is allowed to sit in on the meetings.
+    example_ru: Практикантка может присутствовать на совещаниях.
+    example_uk: Практикантка може бути присутньою на нарадах.
+    note:
+      en: 'Regular Movierung with -in, no umlaut, doubled n in the plural. The period itself is das Praktikum, a Latin noun with the plural die Praktika, and doing one is ein Praktikum machen. German distinguishes das Pflichtpraktikum, required by a course, from das freiwillige Praktikum, and pays for the second one by law above three months. In job adverts the pair is written Praktikant/-in.'
+      ru: 'Обычное мовирование на -in, без умлаута, во множественном n удваивается. Сам срок называется das Praktikum, латинское существительное с множественным die Praktika, а пройти его — ein Praktikum machen. Немецкий различает das Pflichtpraktikum, обязательную по программе, и das freiwillige Praktikum, причём вторую по закону оплачивают, если она дольше трёх месяцев. В объявлениях о работе пару пишут Praktikant/-in.'
+      uk: 'Звичайна моція на -in, без умлаута, у множині n подвоюється. Сам строк зветься das Praktikum, латинський іменник із множиною die Praktika, а пройти його — ein Praktikum machen. Німецька розрізняє das Pflichtpraktikum, обов’язкову за програмою, і das freiwillige Praktikum, причому другу за законом оплачують, якщо вона довша за три місяці. В оголошеннях про роботу пару пишуть Praktikant/-in.'
+
+  # --- Wer im Betrieb wer ist ---
+  - de: Mitarbeiterin
+    ipa: "ˈmɪtˌʔaʁbaɪ̯təʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Mitarbeiterinnen"
+    # Recognition only: the feminine of A2's `Mitarbeiter` (arbeit-ausbildung-a2),
+    # whose gloss already marks the pair.
+    cards: recognition
+    en: a woman who works in a firm, seen as one of its people
+    en_compact: "employee, staff member (female)"
+    ru: сотрудница фирмы, одна из её работников
+    uk: співробітниця фірми, одна з її працівників
+    example_de: Alle Mitarbeiterinnen und Mitarbeiter bekommen den Freitag frei.
+    example_en: All members of staff are given the Friday off.
+    example_ru: Все сотрудницы и сотрудники получают выходной в пятницу.
+    example_uk: Усі співробітниці й співробітники отримують вихідний у п’ятницю.
+    note:
+      en: 'The word a firm uses about its own people, warmer than der Angestellte, which is a legal category, and quite different from die Kollegin, which is how one of them refers to another. The mit- in front says working alongside, and the same prefix builds das Mitglied and mitmachen. Circulars and speeches use the full pair as the example shows, and an advert writes Mitarbeiter/-in or Mitarbeitende for a neutral form.'
+      ru: 'Слово, которым фирма говорит о своих людях, — теплее, чем der Angestellte, правовая категория, и совсем не то же, что die Kollegin, как один сотрудник называет другого. Приставка mit- означает «вместе, рядом», и она же строит das Mitglied и mitmachen. Циркуляры и речи используют полную пару, как в примере, а объявление пишет Mitarbeiter/-in или нейтральное Mitarbeitende.'
+      uk: 'Слово, яким фірма говорить про своїх людей, — тепліше, ніж der Angestellte, правова категорія, і зовсім не те саме, що die Kollegin, як один співробітник називає іншого. Префікс mit- означає «разом, поряд», і він же будує das Mitglied і mitmachen. Циркуляри й промови вживають повну пару, як у прикладі, а оголошення пише Mitarbeiter/-in або нейтральне Mitarbeitende.'
+
+  - de: Arbeiterin
+    ipa: "ˈaʁbaɪ̯təʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Arbeiterinnen"
+    # Recognition only: the feminine of A2's `Arbeiter` ("worker, labourer",
+    # arbeit-bewerbung), which is itself a recognition card there.
+    cards: recognition
+    en: a woman who does physical work for wages, in a factory or on a site
+    en_compact: "manual worker (female)"
+    ru: работница физического труда на заводе или на стройке
+    uk: робітниця фізичної праці на заводі або на будові
+    example_de: In der Fabrik arbeiten heute mehr Arbeiterinnen als Arbeiter.
+    example_en: More women than men work in the factory today.
+    example_ru: На фабрике сегодня работниц больше, чем рабочих.
+    example_uk: На фабриці сьогодні робітниць більше, ніж робітників.
+    note:
+      en: 'Physical work for a wage is the whole meaning, which is why die Angestellte stands against it: German has kept the old distinction between somebody paid der Lohn and somebody paid das Gehalt, and it still shows in insurance and union names. The word carries a political history with it — die Arbeiterklasse, die Arbeiterbewegung — and reads more dated than der Mitarbeiter. Careful with die Arbeit itself, which is any work at all.'
+      ru: 'Физический труд за плату — это всё значение, и потому die Angestellte ей противостоит: немецкий сохранил старое различие между тем, кто получает der Lohn, и тем, кто получает das Gehalt, и оно до сих пор видно в названиях страховых касс и профсоюзов. За словом тянется политическая история — die Arbeiterklasse, die Arbeiterbewegung, — и звучит оно старомоднее, чем der Mitarbeiter. Осторожно с самим die Arbeit: это любая работа вообще.'
+      uk: 'Фізична праця за плату — це все значення, і тому die Angestellte їй протистоїть: німецька зберегла старе розрізнення між тим, хто отримує der Lohn, і тим, хто отримує das Gehalt, і воно досі помітне в назвах страхових кас і профспілок. За словом тягнеться політична історія — die Arbeiterklasse, die Arbeiterbewegung, — і звучить воно старомодніше, ніж der Mitarbeiter. Обережно із самим die Arbeit: це будь-яка робота взагалі.'
+
+  - de: Tätigkeit
+    ipa: "ˈtɛːtɪçkaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Tätigkeiten"
+    # Recognition only: `Beschäftigung` above carries the production prompt for
+    # having work, and A2 `Stelle` and `Beruf` carry the post and the trade.
+    cards: recognition
+    en: the work somebody actually does, the tasks that fill the day
+    en_compact: "activity, line of work"
+    ru: "то, чем человек фактически занят: задачи, из которых состоит его день"
+    uk: "те, чим людина фактично зайнята: завдання, з яких складається її день"
+    example_de: Meine Tätigkeit besteht vor allem aus Beratung am Telefon.
+    example_en: My work consists above all of advising people on the phone.
+    example_ru: Моя работа состоит прежде всего из консультаций по телефону.
+    example_uk: Моя робота полягає передусім у консультаціях телефоном.
+    note:
+      en: 'Built from tätig, active or working, and it names the doing rather than the post: eine Tätigkeit ausüben, die berufliche Tätigkeit, and a CV lists Tätigkeiten under each job. Three neighbours divide the field: A2 der Beruf is the trade you learned, A2 die Stelle is the one post at one firm, and die Beschäftigung above is the fact of being employed at all. Outside work it means any activity, as in körperliche Tätigkeit.'
+      ru: 'Образовано от tätig «деятельный, работающий» и называет само делание, а не должность: eine Tätigkeit ausüben, die berufliche Tätigkeit; в резюме под каждым местом работы перечисляют Tätigkeiten. Поле делят три соседа: der Beruf уровня A2 — выученная профессия, die Stelle уровня A2 — конкретная должность в конкретной фирме, а die Beschäftigung выше — сам факт занятости. Вне работы слово значит любую деятельность: körperliche Tätigkeit.'
+      uk: 'Утворене від tätig «діяльний, працюючий» і називає саме діяння, а не посаду: eine Tätigkeit ausüben, die berufliche Tätigkeit; у резюме під кожним місцем роботи перелічують Tätigkeiten. Поле ділять три сусіди: der Beruf рівня A2 — вивчена професія, die Stelle рівня A2 — конкретна посада в конкретній фірмі, а die Beschäftigung вище — сам факт зайнятості. Поза роботою слово означає будь-яку діяльність: körperliche Tätigkeit.'
+
+  - de: Meister
+    ipa: "ˈmaɪ̯stɐ"
+    pos: noun
+    gender: m
+    plural: "die Meister"
+    # Recognition only: a German qualification with no one-word equivalent, and the
+    # same form is the sports champion — a typed prompt could not say which.
+    cards: recognition
+    en: a craftsman who has passed the highest trade exam and may train others; also a champion
+    en_compact: "master craftsman; champion"
+    ru: "мастер: ремесленник, сдавший высший профессиональный экзамен и имеющий право обучать; также чемпион"
+    uk: "майстер: ремісник, що склав вищий фаховий іспит і має право навчати; також чемпіон"
+    example_de: Ohne Meister darf man in Deutschland keine eigene Bäckerei eröffnen.
+    example_en: Without the master craftsman's qualification you cannot open your own bakery in Germany.
+    example_ru: Без звания мастера в Германии нельзя открыть собственную пекарню.
+    example_uk: Без звання майстра в Німеччині не можна відкрити власну пекарню.
+    note:
+      en: 'A German institution rather than a job: after the apprenticeship comes die Meisterprüfung, and only somebody who has passed it may run certain trades and take on apprentices, which is why den Meister machen is a whole stage of a working life. It is also the sports champion, der Deutsche Meister, and the polite address for a craftsman on a building site. The feminine is die Meisterin, and das Meisterwerk is a masterpiece.'
+      ru: 'Это скорее немецкий институт, чем профессия: после ученичества сдают die Meisterprüfung, и только сдавший вправе вести определённые ремёсла и брать учеников, — поэтому den Meister machen означает целый этап трудовой жизни. Тем же словом называют спортивного чемпиона — der Deutsche Meister — и вежливо обращаются к мастеру на стройке. Женская форма — die Meisterin, а das Meisterwerk — шедевр.'
+      uk: 'Це радше німецький інститут, ніж професія: після учнівства складають die Meisterprüfung, і лише той, хто склав, має право вести певні ремесла й брати учнів, — тому den Meister machen означає цілий етап трудового життя. Тим самим словом називають спортивного чемпіона — der Deutsche Meister — і ввічливо звертаються до майстра на будові. Жіноча форма — die Meisterin, а das Meisterwerk — шедевр.'
+
+  - de: Profi
+    ipa: "ˈpʁoːfi"
+    pos: noun
+    gender: m
+    plural: "die Profis"
+    # Recognition only: `beruflich` ("professional; work-related", arbeit-bewerbung)
+    # holds the adjective, and this clipped noun is heard far more than said.
+    cards: recognition
+    en: somebody who does a thing for a living rather than for pleasure
+    en_compact: "professional (not an amateur)"
+    ru: тот, кто занимается делом ради заработка, а не для удовольствия
+    uk: той, хто займається справою заради заробітку, а не для задоволення
+    example_de: Für die Elektrik im Bad hole ich lieber einen Profi.
+    example_en: For the wiring in the bathroom I would rather get a professional in.
+    example_ru: Для проводки в ванной я лучше позову профессионала.
+    example_uk: Для проводки у ванній я краще покличу професіонала.
+    note:
+      en: 'A clipping of der Professionelle, and German has kept the short form for the everyday word while the long one sounds technical. Its opposite is der Amateur or, in sport, der Hobbysportler. It works as a compliment about competence in general (Das hast du echt wie ein Profi gemacht) and it feeds compounds freely: der Profifußball, die Profikamera, and the entry Profisportler on the same Wortliste page.'
+      ru: 'Усечение от der Professionelle: немецкий оставил короткую форму для обихода, а полная звучит технически. Противоположность — der Amateur, а в спорте der Hobbysportler. Слово работает и как похвала умению вообще (Das hast du echt wie ein Profi gemacht), и свободно даёт составные: der Profifußball, die Profikamera и статья Profisportler на той же странице Wortliste.'
+      uk: 'Усічення від der Professionelle: німецька залишила коротку форму для побуту, а повна звучить технічно. Протилежність — der Amateur, а в спорті der Hobbysportler. Слово працює і як похвала вмінню взагалі (Das hast du echt wie ein Profi gemacht), і вільно дає складні: der Profifußball, die Profikamera та стаття Profisportler на тій самій сторінці Wortliste.'
+
+  # --- Betreuen als Arbeit ---
+  - de: betreuen
+    ipa: "bəˈtʁɔʏ̯ən"
+    pos: verb
+    praesens_3sg: betreut
+    partizip2: betreut
+    aux: haben
+    valence: "+ Akk"
+    # Recognition only: A2 ships `kümmern` ("to take care of, to look after",
+    # gefuehle-reflexive-a2) as the production card for caring about somebody.
+    cards: recognition
+    en: to look after people or a task as one's job, over a stretch of time
+    en_compact: "to look after (as a job)"
+    ru: вести, опекать людей или дело как работу, на протяжении времени
+    uk: вести, опікуватися людьми чи справою як роботою, протягом часу
+    example_de: Zwei Erzieherinnen betreuen die Gruppe am Nachmittag.
+    example_en: Two nursery teachers look after the group in the afternoon.
+    example_ru: Двое воспитательниц ведут группу во второй половине дня.
+    example_uk: Дві виховательки ведуть групу в другій половині дня.
+    note:
+      en: 'Professional rather than personal, and that is the whole difference from A2 sich um jemanden kümmern, which is what a friend or a relative does. It takes a plain accusative and no preposition, and its object can be a person or a thing: Patienten betreuen, ein Projekt betreuen, eine Website betreuen. It is inseparable, so the Partizip II has no ge-. The people are der Betreuer and die Betreuerin, both in berufe-b1, and the noun is die Betreuung below.'
+      ru: 'Слово профессиональное, а не личное, и в этом вся разница с sich um jemanden kümmern уровня A2, что делает друг или родственник. Дополнение — чистый Akkusativ без предлога, и объектом может быть и человек, и дело: Patienten betreuen, ein Projekt betreuen, eine Website betreuen. Глагол неотделяемый, поэтому в Partizip II нет ge-. Люди — der Betreuer и die Betreuerin, обе карточки в berufe-b1, а существительное — die Betreuung ниже.'
+      uk: 'Слово фахове, а не особисте, і в цьому вся різниця з sich um jemanden kümmern рівня A2, що робить друг чи родич. Додаток — чистий Akkusativ без прийменника, і об’єктом може бути і людина, і справа: Patienten betreuen, ein Projekt betreuen, eine Website betreuen. Дієслово невідокремлюване, тому в Partizip II немає ge-. Люди — der Betreuer і die Betreuerin, обидві картки в berufe-b1, а іменник — die Betreuung нижче.'
+
+  - de: Betreuung
+    ipa: "bəˈtʁɔʏ̯ʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Betreuungen"
+    # Recognition only: the noun of the entry above, and a word read in council
+    # letters and nursery contracts rather than produced.
+    cards: recognition
+    en: the looking after of people as an arranged service, and the hours of it
+    en_compact: "care provided as a service"
+    ru: организованный уход за людьми как услуга и часы, на которые он рассчитан
+    uk: організований догляд за людьми як послуга і години, на які він розрахований
+    example_de: Die Betreuung der Kinder ist bis siebzehn Uhr gesichert.
+    example_en: Care for the children is guaranteed until five in the afternoon.
+    example_ru: Присмотр за детьми обеспечен до семнадцати часов.
+    example_uk: Догляд за дітьми забезпечено до сімнадцятої години.
+    note:
+      en: 'Almost always about an arrangement rather than a feeling: die Kinderbetreuung, die Betreuung von Senioren, der Betreuungsschlüssel for how many children one adult may have. It is what a council promises and a contract prices, which is why die Pflege stands beside it for the bodily care of a sick person and die Erziehung for bringing a child up. Legal German has a second sense: eine rechtliche Betreuung is court-appointed guardianship for an adult who cannot decide alone.'
+      ru: 'Почти всегда речь об организованной услуге, а не о чувстве: die Kinderbetreuung, die Betreuung von Senioren, der Betreuungsschlüssel — сколько детей приходится на одного взрослого. Это то, что обещает муниципалитет и оценивает договор, и потому рядом стоят die Pflege — телесный уход за больным и die Erziehung — воспитание ребёнка. В юридическом немецком есть второй смысл: eine rechtliche Betreuung — назначенная судом опека над взрослым, который не может решать сам.'
+      uk: 'Майже завжди йдеться про організовану послугу, а не про почуття: die Kinderbetreuung, die Betreuung von Senioren, der Betreuungsschlüssel — скільки дітей припадає на одного дорослого. Це те, що обіцяє муніципалітет і оцінює договір, і тому поряд стоять die Pflege — тілесний догляд за хворим і die Erziehung — виховання дитини. У юридичній німецькій є другий сенс: eine rechtliche Betreuung — призначена судом опіка над дорослим, який не може вирішувати сам.'
+
+  # --- Wer die Interessen vertritt ---
+  - de: Gewerkschaft
+    ipa: "gəˈvɛʁkʃaft"
+    pos: noun
+    gender: f
+    plural: "die Gewerkschaften"
+    en: the organisation employees join to bargain over pay and conditions together
+    en_compact: "trade union"
+    ru: "профсоюз: организация работников для общих переговоров об оплате и условиях"
+    uk: "профспілка: організація працівників для спільних переговорів про оплату й умови"
+    example_de: Die Gewerkschaft fordert sechs Prozent mehr Lohn.
+    example_en: The union is demanding six per cent more pay.
+    example_ru: Профсоюз требует повысить зарплату на шесть процентов.
+    example_uk: Профспілка вимагає підвищити зарплату на шість відсотків.
+    note:
+      en: 'Built from das Gewerk, an old word for a trade, plus -schaft, the suffix that makes a body out of its members, as in die Mannschaft and die Freundschaft. Germany has a handful of large ones by industry rather than by job, and their names are in the news: ver.di, die IG Metall. The words around it are der Tarifvertrag for the agreement they sign, der Streik for what happens when talks fail, and der Betriebsrat below for representation inside one firm.'
+      ru: 'Образовано от das Gewerk, старого слова для ремесла, и суффикса -schaft, который делает из членов целое — как в die Mannschaft и die Freundschaft. В Германии их немного, и строятся они по отраслям, а не по профессиям; их названия на слуху: ver.di, die IG Metall. Рядом стоят der Tarifvertrag — соглашение, которое они подписывают, der Streik — то, что происходит при срыве переговоров, и der Betriebsrat ниже — представительство внутри одной фирмы.'
+      uk: 'Утворене від das Gewerk, старого слова для ремесла, і суфікса -schaft, який робить із членів ціле — як у die Mannschaft і die Freundschaft. У Німеччині їх небагато, і будуються вони за галузями, а не за професіями; їхні назви на слуху: ver.di, die IG Metall. Поряд стоять der Tarifvertrag — угода, яку вони підписують, der Streik — те, що стається при зриві переговорів, і der Betriebsrat нижче — представництво всередині однієї фірми.'
+
+  - de: Betriebsrat
+    ipa: "bəˈtʁiːpsˌʁaːt"
+    pos: noun
+    gender: m
+    plural: "die Betriebsräte"
+    en: the elected body that speaks for the staff inside one firm, and a member of it
+    en_compact: "works council"
+    ru: совет трудового коллектива фирмы и его член
+    uk: рада трудового колективу фірми та її член
+    example_de: Der Betriebsrat muss jeder Kündigung zustimmen.
+    example_en: The works council has to agree to every dismissal.
+    example_ru: Совет трудового коллектива должен согласовать каждое увольнение.
+    example_uk: Рада трудового колективу має погодити кожне звільнення.
+    note:
+      en: 'A German institution with no exact equivalent elsewhere: the staff of any firm with five or more employees may elect one, and it has real legal rights over hours, dismissals and shift plans. The word does double duty for the body and for one member, so er ist Betriebsrat is possible; the feminine of the person is die Betriebsrätin below. Do not confuse it with die Gewerkschaft above, which is organised across firms and outside them.'
+      ru: 'Немецкий институт без точного соответствия в других странах: коллектив любой фирмы от пяти работников вправе его избрать, и у него есть реальные права по часам, увольнениям и графикам смен. Слово обозначает и сам орган, и одного его члена, поэтому возможно er ist Betriebsrat; женская форма для человека — die Betriebsrätin ниже. Не путать с die Gewerkschaft выше: та строится поверх фирм и вне их.'
+      uk: 'Німецький інститут без точного відповідника в інших країнах: колектив будь-якої фірми від п’яти працівників має право його обрати, і в нього є реальні права щодо годин, звільнень і графіків змін. Слово позначає і сам орган, і одного його члена, тому можливе er ist Betriebsrat; жіноча форма для людини — die Betriebsrätin нижче. Не плутати з die Gewerkschaft вище: та будується поверх фірм і поза ними.'
+
+  - de: Betriebsrätin
+    ipa: "bəˈtʁiːpsˌʁɛːtɪn"
+    pos: noun
+    gender: f
+    plural: "die Betriebsrätinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: a woman elected to speak for the staff inside her firm
+    en_compact: "works council member (female)"
+    ru: женщина, избранная представлять работников внутри своей фирмы
+    uk: жінка, обрана представляти працівників усередині своєї фірми
+    example_de: Als Betriebsrätin kennt sie jeden Vertrag im Haus.
+    example_en: As a works council member she knows every contract in the building.
+    example_ru: Как член совета коллектива она знает каждый договор в этом доме.
+    example_uk: Як членкиня ради колективу вона знає кожен договір у цьому домі.
+    note:
+      en: 'Movierung with -in plus the umlaut the stem allows, which is where der Rat gives die Rätin. Only the person can be feminine: the body itself keeps der Betriebsrat whoever sits on it. The same pattern runs through the whole family of German councils — der Stadtrat and die Stadträtin, der Bundesrat and die Bundesrätin in Switzerland — and each of them names both the body and one member.'
+      ru: 'Мовирование на -in плюс умлаут, который допускает основа: der Rat даёт die Rätin. Женской бывает только человек — сам орган остаётся der Betriebsrat, кто бы в нём ни заседал. Тот же образец проходит через всю семью немецких советов: der Stadtrat и die Stadträtin, der Bundesrat и die Bundesrätin в Швейцарии, — и каждое из этих слов называет и орган, и одного члена.'
+      uk: 'Мовація на -in плюс умлаут, який дозволяє основа: der Rat дає die Rätin. Жіночою буває лише людина — сам орган лишається der Betriebsrat, хто б у ньому не засідав. Той самий зразок проходить через усю родину німецьких рад: der Stadtrat і die Stadträtin, der Bundesrat і die Bundesrätin у Швейцарії, — і кожне з цих слів називає і орган, і одного члена.'
+
+  # --- Wer etwas leitet ---
+  - de: leiten
+    ipa: "ˈlaɪ̯tn̩"
+    pos: verb
+    praesens_3sg: leitet
+    partizip2: geleitet
+    aux: haben
+    valence: "+ Akk"
+    en: to be formally in charge of a department, a project or an institution
+    en_compact: "to head, to be in charge of"
+    ru: возглавлять, официально отвечать за отдел, проект или учреждение
+    uk: очолювати, офіційно відповідати за відділ, проєкт чи установу
+    example_de: Sie leitet seit drei Jahren die Abteilung für Einkauf.
+    example_en: She has been in charge of the purchasing department for three years.
+    example_ru: Она уже три года возглавляет отдел закупок.
+    example_uk: Вона вже три роки очолює відділ закупівель.
+    note:
+      en: 'The object is an organisation or a piece of work, never a person, and the point is formal responsibility: eine Firma leiten, ein Projekt leiten, eine Sitzung leiten. B1 führen overlaps but is about the leading itself and takes people as well (Mitarbeiter führen, ein Gespräch führen), so a firm''s head both leitet die Firma and führt die Mitarbeiter. Physics keeps a second sense: Kupfer leitet Strom, copper conducts electricity, and die Leitung below is the cable that does it.'
+      ru: 'Дополнение — организация или дело, но не человек, и суть в формальной ответственности: eine Firma leiten, ein Projekt leiten, eine Sitzung leiten. führen уровня B1 частично пересекается, но говорит о самом ведении и берёт также людей (Mitarbeiter führen, ein Gespräch führen), так что глава фирмы одновременно leitet die Firma и führt die Mitarbeiter. Второе значение сохранила физика: Kupfer leitet Strom — «медь проводит ток», а die Leitung ниже — тот самый провод.'
+      uk: 'Додаток — організація або справа, але не людина, і суть у формальній відповідальності: eine Firma leiten, ein Projekt leiten, eine Sitzung leiten. führen рівня B1 частково перетинається, але говорить про саме ведення й бере також людей (Mitarbeiter führen, ein Gespräch führen), тож голова фірми водночас leitet die Firma і führt die Mitarbeiter. Друге значення зберегла фізика: Kupfer leitet Strom — «мідь проводить струм», а die Leitung нижче — той самий провід.'
+
+  - de: Leiter
+    ipa: "ˈlaɪ̯tɐ"
+    pos: noun
+    gender: m
+    plural: "die Leiter"
+    # Recognition only: two different words share this spelling — the head of
+    # something and the ladder — and a typed prompt could not say which is wanted.
+    cards: recognition
+    en: the man formally in charge of a department, a school or a project
+    en_compact: "head, director"
+    ru: руководитель отдела, школы или проекта, официально отвечающий за него
+    uk: керівник відділу, школи чи проєкту, що офіційно за нього відповідає
+    example_de: Der Leiter der Schule begrüßte die neuen Eltern.
+    example_en: The head of the school welcomed the new parents.
+    example_ru: Руководитель школы приветствовал новых родителей.
+    example_uk: Керівник школи привітав нових батьків.
+    note:
+      en: 'Two words share this shape and only the article tells them apart: with der it is the person from leiten, with die it is a ladder you climb. The person appears mostly inside compounds — der Abteilungsleiter, der Projektleiter, der Kursleiter, which lernen-zukunft already cards — and the feminine is die Leiterin below. Beside it, A2 der Chef is the boss as a person you answer to, while this word names the office rather than the relationship.'
+      ru: 'Одну и ту же форму делят два слова, и различает их только артикль: с der это человек, от leiten, с die — лестница-стремянка. Человек чаще всего встречается внутри составных слов — der Abteilungsleiter, der Projektleiter, der Kursleiter, последнее уже есть в колоде lernen-zukunft, — а женская форма die Leiterin ниже. Рядом: der Chef уровня A2 — начальник как человек, которому вы подчиняетесь, а это слово называет должность, а не отношения.'
+      uk: 'Одну й ту саму форму ділять два слова, і розрізняє їх лише артикль: із der це людина, від leiten, із die — драбина-драбинка. Людина найчастіше трапляється всередині складних слів — der Abteilungsleiter, der Projektleiter, der Kursleiter, останнє вже є в колоді lernen-zukunft, — а жіноча форма die Leiterin нижче. Поряд: der Chef рівня A2 — начальник як людина, якій ви підпорядковані, а це слово називає посаду, а не стосунки.'
+
+  - de: Leiterin
+    ipa: "ˈlaɪ̯təʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Leiterinnen"
+    # Recognition only: the feminine of the entry above, whose note names the pair.
+    cards: recognition
+    en: the woman formally in charge of a department, a school or a project
+    en_compact: "head, director (female)"
+    ru: руководительница отдела, школы или проекта
+    uk: керівниця відділу, школи чи проєкту
+    example_de: Die Leiterin der Kita hat mir alles gezeigt.
+    example_en: The head of the nursery showed me everything.
+    example_ru: Заведующая детским садом всё мне показала.
+    example_uk: Завідувачка дитячого садка все мені показала.
+    note:
+      en: 'Unlike the masculine this form is unambiguous: the ladder has no feminine person beside it, so die Leiterin is always a human being. It behaves regularly, plural with a doubled n, and it lives in the same compounds — die Abteilungsleiterin, die Projektleiterin. In job adverts German writes Leiter/-in or, increasingly, Leitung on its own, which avoids naming a gender at all and is why a door plate often reads simply Leitung.'
+      ru: 'В отличие от мужской формы эта однозначна: у стремянки нет женского человеческого двойника, так что die Leiterin — всегда человек. Склоняется правильно, во множественном n удваивается, и живёт в тех же составных: die Abteilungsleiterin, die Projektleiterin. В объявлениях о работе пишут Leiter/-in или всё чаще просто Leitung — так пол не называют вовсе, и потому на двери часто стоит одно слово Leitung.'
+      uk: 'На відміну від чоловічої форми ця однозначна: у драбини немає жіночого людського двійника, тож die Leiterin — завжди людина. Відмінюється правильно, у множині n подвоюється, і живе в тих самих складних: die Abteilungsleiterin, die Projektleiterin. В оголошеннях про роботу пишуть Leiter/-in або дедалі частіше просто Leitung — так стать не називають зовсім, і тому на дверях часто стоїть одне слово Leitung.'
+
+  - de: Leitung
+    ipa: "ˈlaɪ̯tʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Leitungen"
+    # Recognition only: three senses in one form — the management, the pipe and the
+    # phone line — and no typed prompt can name one of them determinately.
+    cards: recognition
+    en: the people in charge of an organisation; also a pipe or a cable
+    en_compact: "management; a pipe or cable"
+    ru: руководство организации как группа лиц; также труба, провод или линия связи
+    uk: керівництво організації як група осіб; також труба, провід чи лінія зв’язку
+    example_de: Die Leitung des Hauses entscheidet am Freitag.
+    example_en: The management of the institution decides on Friday.
+    example_ru: Руководство учреждения примет решение в пятницу.
+    example_uk: Керівництво установи ухвалить рішення в п’ятницю.
+    note:
+      en: 'The noun of leiten, and it inherits both of the verb''s senses. Human: die Leitung übernehmen, unter der Leitung von, and a door plate that reads Leitung. Physical: die Wasserleitung, die Stromleitung, and on the telephone Die Leitung ist besetzt. A third, idiomatic use is affectionate mockery — eine lange Leitung haben, to be slow on the uptake. German keeps them apart by context alone, never by article.'
+      ru: 'Существительное от leiten, и оно наследует оба значения глагола. Человеческое: die Leitung übernehmen, unter der Leitung von, а на двери табличка Leitung. Вещественное: die Wasserleitung, die Stromleitung, а по телефону Die Leitung ist besetzt. Третье употребление идиоматическое и добродушно-насмешливое: eine lange Leitung haben — «долго доходит». Немецкий различает их только по контексту, но не по артиклю.'
+      uk: 'Іменник від leiten, і він успадковує обидва значення дієслова. Людське: die Leitung übernehmen, unter der Leitung von, а на дверях табличка Leitung. Речовинне: die Wasserleitung, die Stromleitung, а телефоном Die Leitung ist besetzt. Третє вживання ідіоматичне й добродушно-глузливе: eine lange Leitung haben — «довго доходить». Німецька розрізняє їх лише за контекстом, але не за артиклем.'
+
+  # --- Da oder nicht da ---
+  - de: anwesend
+    ipa: "ˈanveːzn̩t"
+    pos: adj
+    # Recognition only: A1 `da sein` (funktionswoerter-chunks) is the shipped
+    # production card for being there, and this is its formal twin.
+    cards: recognition
+    en: there in person when a list is read out or a meeting begins
+    en_compact: "present, in attendance"
+    ru: присутствующий лично при перекличке или в начале собрания
+    uk: присутній особисто під час переклички чи на початку зборів
+    example_de: Bei der Sitzung waren nur sechs von zwölf Mitgliedern anwesend.
+    example_en: Only six of the twelve members were present at the meeting.
+    example_ru: На заседании присутствовали лишь шестеро из двенадцати членов.
+    example_uk: На засіданні були присутні лише шестеро з дванадцяти членів.
+    note:
+      en: 'Formal register: a register, a minute or a court report uses it, while speech says da sein or the schoolroom hier. It is built from an plus the old present participle of sein, which is also why the noun is die Anwesenheit and the register itself is die Anwesenheitsliste. Its opposite abwesend is the next entry, and the two make the neat pair a meeting always needs.'
+      ru: 'Официальный регистр: так пишут в журнале, в протоколе или в судебном отчёте, тогда как речь скажет da sein, а в классе — hier. Слово сложено из an и старого причастия настоящего времени от sein, отсюда же существительное die Anwesenheit и сам журнал — die Anwesenheitsliste. Противоположность abwesend — следующая запись, и вместе они дают ту аккуратную пару, которая нужна любому собранию.'
+      uk: 'Офіційний регістр: так пишуть у журналі, у протоколі чи в судовому звіті, тоді як мовлення скаже da sein, а в класі — hier. Слово складене з an і старого дієприкметника теперішнього часу від sein, звідси ж іменник die Anwesenheit і сам журнал — die Anwesenheitsliste. Протилежність abwesend — наступний запис, і разом вони дають ту акуратну пару, якої потребують будь-які збори.'
+
+  - de: abwesend
+    ipa: "ˈapveːzn̩t"
+    pos: adj
+    # Recognition only: the opposite of the entry above; production for being away
+    # goes through A2 `weg sein` and `fehlen`.
+    cards: recognition
+    en: not there when the others are; also lost in thought
+    en_compact: "absent; far away in thought"
+    ru: отсутствующий, когда остальные на месте; также погружённый в свои мысли
+    uk: відсутній, коли решта на місці; також заглиблений у власні думки
+    example_de: Herr Weber ist bis Montag abwesend.
+    example_en: Mr Weber is away until Monday.
+    example_ru: Господин Вебер отсутствует до понедельника.
+    example_uk: Пан Вебер відсутній до понеділка.
+    note:
+      en: 'The counterweight to the entry above, and the automatic email reply is called die Abwesenheitsnotiz for exactly this reason. The everyday verb for a pupil or a colleague who is not there is fehlen (Zwei Kinder fehlen heute), which is what a teacher actually says. The second sense is about the mind rather than the body: ein abwesender Blick, and Er wirkte abwesend of somebody who was there but not listening.'
+      ru: 'Противовес предыдущей записи, и автоответчик в почте называется именно поэтому die Abwesenheitsnotiz. Обиходный глагол про ученика или коллегу, которого нет, — fehlen (Zwei Kinder fehlen heute), и именно так говорит учитель. Второе значение — о мыслях, а не о теле: ein abwesender Blick, а Er wirkte abwesend — о том, кто был здесь, но не слушал.'
+      uk: 'Противага до попереднього запису, і автовідповідач у пошті зветься саме тому die Abwesenheitsnotiz. Побутове дієслово про учня чи колегу, якого немає, — fehlen (Zwei Kinder fehlen heute), і саме так каже вчитель. Друге значення — про думки, а не про тіло: ein abwesender Blick, а Er wirkte abwesend — про того, хто був тут, але не слухав.'
+
+  # --- Wo gearbeitet und wo gegessen wird ---
+  - de: Fabrik
+    ipa: "faˈbʁiːk"
+    pos: noun
+    gender: f
+    plural: "die Fabriken"
+    en: a building where goods are made in quantity by machine
+    ru: "завод или фабрика: здание, где машины выпускают продукцию в больших количествах"
+    uk: "завод або фабрика: будівля, де машини випускають продукцію у великих кількостях"
+    example_de: In der Fabrik am Fluss werden Möbel hergestellt.
+    example_en: Furniture is made in the factory by the river.
+    example_ru: На фабрике у реки производят мебель.
+    example_uk: На фабриці біля річки виробляють меблі.
+    note:
+      en: 'Stress on the second syllable, which catches Russian and English speakers alike. The word names the building and the plant, while der Betrieb is any working operation of any size and das Werk is a large industrial plant belonging to a named firm (das Opel-Werk). The people are die Fabrikarbeiter, and eine Fabrik stilllegen is to close one down. Beware the false friend: die Fabrik makes things, while der Stoff or das Gewebe is cloth.'
+      ru: 'Ударение на втором слоге — на этом спотыкаются и русскоязычные, и англоязычные. Слово называет здание и производство, тогда как der Betrieb — любое действующее предприятие любого размера, а das Werk — крупный завод, принадлежащий названной фирме (das Opel-Werk). Люди — die Fabrikarbeiter, а eine Fabrik stilllegen значит «остановить производство». Осторожно с ложным другом: здесь делают вещи, а ткань — это der Stoff или das Gewebe.'
+      uk: 'Наголос на другому складі — на цьому спотикаються і російськомовні, і англомовні. Слово називає будівлю й виробництво, тоді як der Betrieb — будь-яке чинне підприємство будь-якого розміру, а das Werk — великий завод, що належить названій фірмі (das Opel-Werk). Люди — die Fabrikarbeiter, а eine Fabrik stilllegen означає «зупинити виробництво». Обережно з фальшивим другом: тут роблять речі, а тканина — це der Stoff або das Gewebe.'
+
+  - de: Kantine
+    ipa: "kanˈtiːnə"
+    pos: noun
+    gender: f
+    plural: "die Kantinen"
+    en: the dining room inside a firm or an office where the staff eat at midday
+    en_compact: "staff canteen"
+    ru: столовая внутри фирмы или учреждения, где сотрудники обедают
+    uk: їдальня всередині фірми чи установи, де співробітники обідають
+    example_de: In der Kantine kostet das Mittagessen nur vier Euro.
+    example_en: Lunch costs only four euros in the staff canteen.
+    example_ru: В заводской столовой обед стоит всего четыре евро.
+    example_uk: У заводській їдальні обід коштує лише чотири євро.
+    note:
+      en: 'It belongs to a workplace and is open to its own people, which is what separates it from A2 die Cafeteria, a self-service place anyone may walk into, and from die Mensa, which is the same thing at a university. Germany prices it below a restaurant because the employer pays part of the meal, and das Kantinenessen has become a byword for plain food. The word came from French through the army, where a canteen was the sutler''s stall.'
+      ru: 'Слово принадлежит месту работы и открыто для своих — этим оно отличается от die Cafeteria уровня A2, куда с самообслуживанием может зайти любой, и от die Mensa, которая делает то же самое при университете. В Германии там дешевле, чем в ресторане, потому что часть обеда оплачивает работодатель, а das Kantinenessen стало нарицательным обозначением незамысловатой еды. Слово пришло из французского через армию, где так называлась лавка маркитанта.'
+      uk: 'Слово належить місцю роботи й відкрите для своїх — цим воно відрізняється від die Cafeteria рівня A2, куди із самообслуговуванням може зайти будь-хто, і від die Mensa, яка робить те саме при університеті. У Німеччині там дешевше, ніж у ресторані, бо частину обіду оплачує роботодавець, а das Kantinenessen стало загальною назвою невигадливої їжі. Слово прийшло з французької через армію, де так звалася крамничка маркітанта.'
+
+  # --- Was auf dem Schreibtisch liegt ---
+  - de: Ordner
+    ipa: "ˈɔʁdnɐ"
+    pos: noun
+    gender: m
+    plural: "die Ordner"
+    en: the stiff file with two rings that stands upright on an office shelf
+    en_compact: "ring binder"
+    ru: папка-регистратор с кольцами, которая стоит на офисной полке
+    uk: папка-реєстратор із кільцями, що стоїть на офісній полиці
+    example_de: Die Rechnungen des letzten Jahres liegen im blauen Ordner.
+    example_en: Last year's invoices are in the blue binder.
+    example_ru: Счета за прошлый год лежат в синей папке.
+    example_uk: Рахунки за минулий рік лежать у синій папці.
+    note:
+      en: 'The tall German office object, properly der Aktenordner or the trade name Leitz-Ordner, and the verb behind it is ordnen, to put in order. The computer took the same word for a folder on a screen, so einen Ordner anlegen works in both worlds. Beside it, die Mappe below is flat and carried, and die Akte is the case itself — the papers about one matter, whatever they are kept in.'
+      ru: 'Высокий предмет немецкого офиса, полностью der Aktenordner или по торговому названию Leitz-Ordner; за словом стоит глагол ordnen «приводить в порядок». Компьютер взял то же слово для папки на экране, поэтому einen Ordner anlegen работает в обоих мирах. Рядом: die Mappe ниже — плоская и её носят с собой, а die Akte — само дело, бумаги по одному вопросу, в чём бы они ни лежали.'
+      uk: 'Високий предмет німецького офісу, повністю der Aktenordner або за торговою назвою Leitz-Ordner; за словом стоїть дієслово ordnen «дати лад». Комп’ютер узяв те саме слово для теки на екрані, тому einen Ordner anlegen працює в обох світах. Поряд: die Mappe нижче — пласка і її носять із собою, а die Akte — сама справа, папери з одного питання, у чому б вони не лежали.'
+
+  - de: Mappe
+    ipa: "ˈmapə"
+    pos: noun
+    gender: f
+    plural: "die Mappen"
+    # Recognition only: `Ordner` above holds the office-folder prompt, and A2
+    # `Tasche` covers what a learner carries papers in.
+    cards: recognition
+    en: the flat folder papers are carried in, and the set of work kept inside it
+    en_compact: "flat folder, portfolio"
+    ru: плоская папка, в которой носят бумаги, и собрание работ внутри неё
+    uk: пласка тека, у якій носять папери, і зібрання робіт усередині неї
+    example_de: Er zog die Bewerbung aus einer dünnen schwarzen Mappe.
+    example_en: He pulled the application out of a thin black folder.
+    example_ru: Он достал заявление из тонкой чёрной папки.
+    example_uk: Він дістав заяву з тонкої чорної теки.
+    note:
+      en: 'Flat and portable, which is the whole difference from der Ordner above. Two everyday compounds: die Bewerbungsmappe, the folder of documents a German application still often arrives in, and die Schulmappe, an older word for a satchel. In art and design it is the portfolio itself — seine Mappe zeigen — so the word can mean the contents rather than the cover. The plural is regular.'
+      ru: 'Плоская и переносная — в этом вся разница с der Ordner выше. Два обиходных составных слова: die Bewerbungsmappe — папка документов, в которой в Германии до сих пор часто подают заявление, и die Schulmappe, устаревшее слово для школьного ранца. В искусстве и дизайне это само портфолио — seine Mappe zeigen, — так что слово может означать содержимое, а не обложку. Множественное правильное.'
+      uk: 'Пласка й переносна — у цьому вся різниця з der Ordner вище. Два побутові складні слова: die Bewerbungsmappe — тека документів, у якій у Німеччині досі часто подають заяву, і die Schulmappe, застаріле слово для шкільного ранця. У мистецтві та дизайні це саме портфоліо — seine Mappe zeigen, — тож слово може означати вміст, а не обкладинку. Множина правильна.'
+
+  - de: Kugelschreiber
+    ipa: "ˈkuːgl̩ˌʃʁaɪ̯bɐ"
+    pos: noun
+    gender: m
+    plural: "die Kugelschreiber"
+    en: the pen with a small rolling ball at its tip, the blue one on every counter
+    en_compact: "ballpoint pen"
+    ru: шариковая ручка, та самая синяя, что лежит на каждой стойке
+    uk: кулькова ручка, та сама синя, що лежить на кожній стійці
+    example_de: Unterschreiben Sie bitte mit einem Kugelschreiber, nicht mit Bleistift.
+    example_en: Please sign with a ballpoint pen, not with a pencil.
+    example_ru: Подпишите, пожалуйста, шариковой ручкой, а не карандашом.
+    example_uk: Підпишіть, будь ласка, кульковою ручкою, а не олівцем.
+    note:
+      en: 'A transparent compound: die Kugel is the ball, schreiben is to write, and German built the machine into the name. It is the instrument an office insists on, because a form signed in pencil can be erased. A2 der Stift is the wider word for anything you write with, der Bleistift is the pencil and der Filzstift the felt tip. Everybody shortens this one to der Kuli, the next entry.'
+      ru: 'Прозрачное сложение: die Kugel — шарик, schreiben — писать, и немецкий вписал устройство прямо в название. Именно этим требует подписывать канцелярия: заполненный карандашом бланк можно стереть. der Stift уровня A2 — более широкое слово для всего, чем пишут, der Bleistift — карандаш, der Filzstift — фломастер. В обиходе слово сокращают до der Kuli — следующая запись.'
+      uk: 'Прозоре складання: die Kugel — кулька, schreiben — писати, і німецька вписала пристрій просто в назву. Саме цим вимагає підписувати канцелярія: заповнений олівцем бланк можна стерти. der Stift рівня A2 — ширше слово для всього, чим пишуть, der Bleistift — олівець, der Filzstift — фломастер. У побуті слово скорочують до der Kuli — наступний запис.'
+
+  - de: Kuli
+    ipa: "ˈkuːli"
+    pos: noun
+    gender: m
+    plural: "die Kulis"
+    # Recognition only: the clipped form of the entry above, which holds the
+    # production prompt — a typed card could not say which of the two it wants.
+    cards: recognition
+    en: the everyday short word for that same pen
+    ru: обиходное сокращение для той же самой ручки
+    uk: побутове скорочення для тієї самої ручки
+    example_de: Hast du mal einen Kuli für mich?
+    example_en: Have you got a pen for me?
+    example_ru: У тебя не найдётся ручки для меня?
+    example_uk: Чи не знайдеться в тебе ручки для мене?
+    note:
+      en: 'Spoken German clips long compounds mercilessly, and this is one of the standard examples beside das Abi, der Akku and die Uni. It is entirely normal in speech and among colleagues, but a written instruction on a form keeps the long word. The plural takes -s, as clipped and foreign nouns usually do in German. An unrelated homograph borrowed from India once named a badly paid labourer and belongs to history books.'
+      ru: 'Разговорный немецкий безжалостно урезает длинные сложные слова, и это один из хрестоматийных примеров рядом с das Abi, der Akku и die Uni. В речи и среди коллег форма совершенно нормальна, но письменная инструкция в бланке сохраняет длинное слово. Множественное на -s, как обычно у усечённых и заимствованных существительных. Никак не связанный с ним омограф, заимствованный из Индии, когда-то называл низкооплачиваемого работника и принадлежит книгам по истории.'
+      uk: 'Розмовна німецька безжально вкорочує довгі складні слова, і це один із хрестоматійних прикладів поряд із das Abi, der Akku і die Uni. У мовленні й серед колег форма цілком нормальна, але письмова інструкція в бланку зберігає довге слово. Множина на -s, як зазвичай в усічених і запозичених іменників. Ніяк не пов’язаний із ним омограф, запозичений з Індії, колись називав низькооплачуваного працівника й належить книжкам з історії.'
+
+  - de: kopieren
+    ipa: "koˈpiːʁən"
+    pos: verb
+    praesens_3sg: kopiert
+    partizip2: kopiert
+    aux: haben
+    valence: "+ Akk"
+    en: to make a duplicate of something on a machine or in a computer
+    en_compact: "to copy, to photocopy"
+    ru: делать копию на аппарате или в компьютере
+    uk: робити копію на апараті або в комп’ютері
+    example_de: Können Sie mir den Vertrag bitte zweimal kopieren?
+    example_en: Could you copy the contract for me twice, please?
+    example_ru: Скопируйте мне, пожалуйста, договор в двух экземплярах.
+    example_uk: Скопіюйте мені, будь ласка, договір у двох примірниках.
+    note:
+      en: 'An -ieren verb, so the Partizip II has no ge-: hat kopiert. It covers paper and screen alike, and the computer pair is kopieren und einfügen. Beside it, B1 abschreiben is copying by hand from a source or from a neighbour in an exam, and nachmachen is imitating what somebody else does. The noun is A2 die Kopie, and der Kopierer below is the machine.'
+      ru: 'Глагол на -ieren, поэтому в Partizip II нет ge-: hat kopiert. Он покрывает и бумагу, и экран, а компьютерная пара — kopieren und einfügen. Рядом: abschreiben уровня B1 — это списывать от руки из источника или у соседа на экзамене, а nachmachen — подражать тому, что делает другой. Существительное — die Kopie уровня A2, а der Kopierer ниже — сам аппарат.'
+      uk: 'Дієслово на -ieren, тому в Partizip II немає ge-: hat kopiert. Воно покриває і папір, і екран, а комп’ютерна пара — kopieren und einfügen. Поряд: abschreiben рівня B1 — це списувати від руки з джерела чи в сусіда на іспиті, а nachmachen — наслідувати те, що робить інший. Іменник — die Kopie рівня A2, а der Kopierer нижче — сам апарат.'
+
+  - de: Kopierer
+    ipa: "koˈpiːʁɐ"
+    pos: noun
+    gender: m
+    plural: "die Kopierer"
+    # Recognition only: read on a sign in the corridor and said as `der Drucker`
+    # by half the office — the verb above carries the production prompt.
+    cards: recognition
+    en: the machine in the corridor that duplicates sheets of paper
+    en_compact: "photocopier"
+    ru: аппарат в коридоре, который размножает листы бумаги
+    uk: апарат у коридорі, що розмножує аркуші паперу
+    example_de: Der Kopierer ist schon wieder kaputt.
+    example_en: The photocopier has broken down yet again.
+    example_ru: Копировальный аппарат опять сломался.
+    example_uk: Копіювальний апарат знову зламався.
+    note:
+      en: 'The -er suffix on a verb makes either the person who does it or the machine that does it, and German lets context decide: der Fahrer is a person, der Rechner is a computer, der Trockner is a dryer. The full word is das Kopiergerät, and a big office device that also prints and scans is now called das Multifunktionsgerät. Careful with der Drucker, which prints from a file rather than duplicating a sheet.'
+      ru: 'Суффикс -er на глаголе даёт либо человека, который это делает, либо машину, которая это делает, а различает их контекст: der Fahrer — человек, der Rechner — компьютер, der Trockner — сушилка. Полное слово — das Kopiergerät, а большой офисный аппарат, который ещё печатает и сканирует, сегодня называют das Multifunktionsgerät. Осторожно с der Drucker: он печатает из файла, а не размножает лист.'
+      uk: 'Суфікс -er на дієслові дає або людину, яка це робить, або машину, яка це робить, а розрізняє їх контекст: der Fahrer — людина, der Rechner — комп’ютер, der Trockner — сушарка. Повне слово — das Kopiergerät, а великий офісний апарат, що ще й друкує та сканує, сьогодні звуть das Multifunktionsgerät. Обережно з der Drucker: він друкує з файлу, а не розмножує аркуш.'
+
+  - de: Visitenkarte
+    ipa: "viˈziːtn̩ˌkaʁtə"
+    pos: noun
+    gender: f
+    plural: "die Visitenkarten"
+    en: the small printed card with a person's name, firm and contact details
+    en_compact: "business card"
+    ru: маленькая печатная карточка с именем, фирмой и контактами человека
+    uk: маленька друкована картка з іменем, фірмою та контактами людини
+    example_de: Darf ich Ihnen meine Visitenkarte geben?
+    example_en: May I give you my business card?
+    example_ru: Позвольте дать вам мою визитную карточку.
+    example_uk: Дозвольте дати вам мою візитну картку.
+    note:
+      en: 'From die Visite, a formal call paid on somebody, which survives in German mainly as a doctor''s round in hospital. The card is handed over with both the giving and the reading done unhurriedly, and eine Visitenkarte austauschen is the standard first move at a fair. German uses the word figuratively as well: Der Bahnhof ist die Visitenkarte der Stadt, meaning it is what the town shows of itself first.'
+      ru: 'От die Visite — официального визита, который в немецком уцелел в основном как обход врача в больнице. Карточку передают неспешно, так же неспешно её и читают, а eine Visitenkarte austauschen — стандартный первый ход на выставке. Слово живёт и в переносном смысле: Der Bahnhof ist die Visitenkarte der Stadt — то есть первое, что город показывает о себе.'
+      uk: 'Від die Visite — офіційного візиту, який у німецькій уцілів здебільшого як обхід лікаря в лікарні. Картку передають неквапно, так само неквапно її й читають, а eine Visitenkarte austauschen — стандартний перший хід на виставці. Слово живе й у переносному сенсі: Der Bahnhof ist die Visitenkarte der Stadt — тобто перше, що місто показує про себе.'

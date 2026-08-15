@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { listeningAudioPath, listeningPlanSchema } from '../src/lib/schemas';
+import { listeningAudioPath, listeningPlanSchema } from '@da/schema';
 
 export type ListeningInventoryStatus =
   | 'planned'

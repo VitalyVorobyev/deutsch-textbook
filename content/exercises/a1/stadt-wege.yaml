@@ -1,6 +1,9 @@
 topic: stadt-wege
 role: practice
-title: { en: "Practice — city and directions", ru: "Практика — город и дороги", uk: "Практика — місто та дороги" }
+stage: geruest
+activity: core
+title_de: "Grundübung — Stadt und Wege"
+title: { en: "Practice — city and directions", ru: "Практика — город и дороги", uk: "Практика — місто та дороги"  }
 items:
   - id: mc-wo-frage
     outcomes: [stadt-weg-erfragen]
@@ -88,6 +91,8 @@ items:
     prompt_ru: "Извините, где вокзал?"
     prompt_uk: "Вибачте, де вокзал?"
     answer: "Entschuldigung, wo ist der Bahnhof?"
+    accept: ["Entschuldigen Sie, wo ist der Bahnhof?"]
+    key_tokens: ["wo", "der", "Bahnhof"]
     explain: { en: "Open politely with Entschuldigung, then a plain W-question: wo ist + article + noun. The article is not optional: der Bahnhof.", ru: "Начните вежливо с Entschuldigung, дальше обычный W-вопрос: wo ist + артикль + существительное. Артикль обязателен: der Bahnhof, а не просто Bahnhof.", uk: "Почніть ввічливо з Entschuldigung, далі звичайне W-питання: wo ist + артикль + іменник. Артикль обов'язковий: der Bahnhof, а не просто Bahnhof." }
   - id: translate-mit-dem-bus
     outcomes: [stadt-verkehrsmittel-nennen]
@@ -97,6 +102,7 @@ items:
     prompt_uk: "Я їжджу на роботу автобусом."
     answer: "Ich fahre mit dem Bus zur Arbeit."
     accept: ["Ich fahre zur Arbeit mit dem Bus.", "Zur Arbeit fahre ich mit dem Bus.", "Mit dem Bus fahre ich zur Arbeit."]
+    key_tokens: ["fahre", "mit", "dem", "Bus", "zur", "Arbeit"]
     explain: { en: "'By bus' is mit dem Bus — with the article, never bei. zur Arbeit is the fixed chunk for 'to work'.", ru: "«На автобусе» — mit dem Bus: с артиклем, не auf. «На работу» — устойчивая связка zur Arbeit.", uk: "«Автобусом» — mit dem Bus: з артиклем, не auf і не голий орудний відмінок. «На роботу» — усталена зв'язка zur Arbeit." }
   - id: schreiben-mein-weg
     outcomes: [stadt-verkehrsmittel-nennen]

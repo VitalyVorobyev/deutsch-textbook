@@ -259,6 +259,9 @@ entries:
     example_ru: Немного шума в доме — это совершенно нормально.
     example_uk: Трохи шуму в будинку — це цілком нормально.
   - de: notwendig
+    # `nötig` (infinitiv-mit-zu) carries the same one-word English gloss and shares
+    # «необходимый» — nothing on the prompt side picks between them.
+    accept: ["nötig"]
     ipa: "ˈnoːtvɛndɪç"
     pos: adj
     en: necessary

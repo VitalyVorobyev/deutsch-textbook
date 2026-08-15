@@ -49,14 +49,18 @@ items:
     prompt_ru: "Мы полетели в Вену и пробыли там неделю."
     prompt_uk: "Ми полетіли до Відня і пробули там тиждень."
     answer: "Wir sind nach Wien geflogen und eine Woche dort geblieben."
-    key_tokens: ["sind", "geflogen", "geblieben"]
+    # `sind` is pinned once per graded slot: several accepts repeat the auxiliary after
+    # `und`, and both occurrences are the same haben-sein decision (the comment below).
+    # The validator counts graded positions against the number of pins, so the second
+    # slot is declared here — grading itself is unchanged (the grader dedupes).
+    key_tokens: ["sind", "sind", "geflogen", "geblieben"]
     accept:
       # The `sind` may be repeated after `und`, and dort/eine Woche may swap — both are
       # ordinary German. A probe measures the auxiliary, so it must not fail a learner who
       # picked the right one and put the adverb where a native also puts it.
       #
       # The canonical answer elides the second `sind` on purpose: repeated, it would put the
-      # graded token in the sentence twice, and `graded` in src/lib/production.ts matches by
+      # graded token in the sentence twice, and `graded` in packages/grading/src/production.ts matches by
       # string rather than by position — so one auxiliary slip would be counted against
       # haben-sein twice over. Here both occurrences would be the same decision, so nothing
       # would be mis-attributed, but the probe would still weigh this item's aux error more

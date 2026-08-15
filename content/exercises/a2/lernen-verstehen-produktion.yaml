@@ -1,5 +1,8 @@
 topic: lernen-verstehen
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Lernen & Verstehen"
 title:
   en: "Practice — in the course: listening, writing, asking again"
   ru: "Практика — на курсе: аудирование, письмо, переспрашивание"
@@ -75,11 +78,15 @@ items:
       - "Können Sie mir sagen, wann die Prüfung beginnt?"
       - "Wissen Sie, wann die Prüfung anfängt?"
       - "Können Sie mir sagen, wann die Prüfung anfängt?"
-    key_tokens: ["beginnt"]
+    # revision 2: anfängt occupies the same wall position as beginnt, so it carries the
+    # graded decision — every synonym that does must be pinned, or the accepted rendering
+    # grades nothing and the tag stops firing. (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["beginnt", "anfängt"]
+    revision: 2
     explain:
-      en: "The wrapper Wissen Sie is a normal question and keeps its verb first. Everything after the comma is a Nebensatz, so beginnt travels all the way to the end — not wann beginnt die Prüfung, which is the bare question with its inversion still standing inside the wrapper. Only beginnt is graded: whether you say beginnt or anfängt is lexis, and both are accepted; where the verb lands is the rule."
-      ru: "Рамка Wissen Sie — обычный вопрос, и глагол в ней стоит первым. Всё после запятой — придаточное, поэтому beginnt уезжает в самый конец, а не wann beginnt die Prüfung: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки. Оценивается только beginnt: скажете вы beginnt или anfängt — дело словаря, оба варианта принимаются; правило же говорит о том, где приземляется глагол."
-      uk: "Рамка Wissen Sie — звичайне питання, і дієслово в ній стоїть першим. Усе після коми — підрядне, тому beginnt їде в самий кінець, а не wann beginnt die Prüfung: це самостійне питання, у якого інверсія так і залишилася всередині рамки. Оцінюється лише beginnt: скажете ви beginnt чи anfängt — справа словника, обидва варіанти приймаються; правило ж говорить про те, де приземляється дієслово."
+      en: "The wrapper Wissen Sie is a normal question and keeps its verb first. Everything after the comma is a Nebensatz, so beginnt travels all the way to the end — not wann beginnt die Prüfung, which is the bare question with its inversion still standing inside the wrapper. The graded token is the wrapped verb — beginnt or anfängt, both are accepted; where it lands is the rule."
+      ru: "Рамка Wissen Sie — обычный вопрос, и глагол в ней стоит первым. Всё после запятой — придаточное, поэтому beginnt уезжает в самый конец, а не wann beginnt die Prüfung: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки. Оценивается «обёрнутый» глагол — beginnt или anfängt, оба принимаются; правило же говорит о том, где он приземляется."
+      uk: "Рамка Wissen Sie — звичайне питання, і дієслово в ній стоїть першим. Усе після коми — підрядне, тому beginnt їде в самий кінець, а не wann beginnt die Prüfung: це самостійне питання, у якого інверсія так і залишилася всередині рамки. Оцінюється «обгорнуте» дієслово — beginnt чи anfängt, обидва приймаються; правило ж говорить про те, де воно приземляється."
 
   - id: uebersetzen-warum-ich-ueber
     outcomes: [lernstrategien-sagen]
@@ -103,11 +110,15 @@ items:
       - "Ich lerne jeden Tag, weil ich die Nachrichten verstehen möchte."
       - "Ich lerne jeden Tag, weil ich die Nachrichten verstehen will."
       - "Jeden Tag lerne ich, weil ich die Nachrichten verstehen möchte."
-    key_tokens: ["möchte"]
+    # revision 2: will occupies the same wall position as möchte in the accepted
+    # renderings, so it carries the graded decision and joins the pins.
+    # (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["möchte", "will"]
+    revision: 2
     explain:
-      en: "weil wraps a statement — your reason — and sends the conjugated verb to the end. There are two verbs in the clause and only möchte is conjugated, so the infinitive verstehen stands in front of it: verstehen möchte, never möchte verstehen. Say the reason as a main clause first (Ich möchte die Nachrichten verstehen) and you can watch the two swap places the moment weil appears. Only möchte is graded here: the rule is about where the conjugated verb lands."
-      ru: "weil оборачивает утверждение — вашу причину — и отправляет спрягаемый глагол в конец. Глаголов в придаточном два, а спрягается только möchte, поэтому инфинитив verstehen стоит перед ним: verstehen möchte, но никогда möchte verstehen. Проговорите причину сначала как главное предложение (Ich möchte die Nachrichten verstehen) — и увидите, как эти два слова меняются местами, едва впереди появляется weil. Оценивается здесь только möchte: правило говорит о том, куда приземляется спрягаемый глагол."
-      uk: "weil обгортає твердження — вашу причину — і відправляє відмінюване дієслово в кінець. Дієслів у підрядному два, а відмінюється лише möchte, тому інфінітив verstehen стоїть перед ним: verstehen möchte, але ніколи möchte verstehen. Проговоріть причину спочатку як головне речення (Ich möchte die Nachrichten verstehen) — і побачите, як ці два слова міняються місцями, щойно попереду з'являється weil. Оцінюється тут лише möchte: правило говорить про те, куди приземляється відмінюване дієслово."
+      en: "weil wraps a statement — your reason — and sends the conjugated verb to the end. There are two verbs in the clause and only möchte is conjugated, so the infinitive verstehen stands in front of it: verstehen möchte, never möchte verstehen. Say the reason as a main clause first (Ich möchte die Nachrichten verstehen) and you can watch the two swap places the moment weil appears. Only the conjugated modal — möchte or will — is graded here: the rule is about where it lands."
+      ru: "weil оборачивает утверждение — вашу причину — и отправляет спрягаемый глагол в конец. Глаголов в придаточном два, а спрягается только möchte, поэтому инфинитив verstehen стоит перед ним: verstehen möchte, но никогда möchte verstehen. Проговорите причину сначала как главное предложение (Ich möchte die Nachrichten verstehen) — и увидите, как эти два слова меняются местами, едва впереди появляется weil. Оценивается здесь только спрягаемый модальный глагол — möchte или will: правило говорит о том, куда он приземляется."
+      uk: "weil обгортає твердження — вашу причину — і відправляє відмінюване дієслово в кінець. Дієслів у підрядному два, а відмінюється лише möchte, тому інфінітив verstehen стоїть перед ним: verstehen möchte, але ніколи möchte verstehen. Проговоріть причину спочатку як головне речення (Ich möchte die Nachrichten verstehen) — і побачите, як ці два слова міняються місцями, щойно попереду з'являється weil. Оцінюється тут лише відмінюване модальне дієслово — möchte чи will: правило говорить про те, куди воно приземляється."
 
   # The verified half of `kursanfrage-schreiben`. The outcome was carried by the `write` item
   # below and by nothing else, and a `write` logs unverified practice evidence by design — so
@@ -129,10 +140,28 @@ items:
     accept:
       # `wie viel` for `was` is lexis, not the rule — both are ordinary renderings of the same
       # question, and rejecting one would write a false indirekte-frage error for a word choice.
+      # revision 2: RU/UK say «писать тест» — einen Test schreiben is the standard collocation,
+      # and a grading ruling already called it fine lexis — and «нужно ли» licenses soll (the
+      # sibling cloze above concedes both). Closed over the was/wie-viel, auch/Und,
+      # machen/schreiben and muss/soll dimensions; soll joins the pins, schreiben is not graded.
+      # (Batch-6 audit, 2026-08-12.)
       - "Können Sie mir sagen, wie viel der Kurs kostet? Ich möchte auch wissen, ob ich einen Test machen muss."
       - "Können Sie mir sagen, was der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen muss."
       - "Können Sie mir sagen, wie viel der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen muss."
-    key_tokens: ["kostet", "ob", "muss"]
+      - "Können Sie mir sagen, was der Kurs kostet? Ich möchte auch wissen, ob ich einen Test schreiben muss."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Ich möchte auch wissen, ob ich einen Test schreiben muss."
+      - "Können Sie mir sagen, was der Kurs kostet? Und ich möchte wissen, ob ich einen Test schreiben muss."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Und ich möchte wissen, ob ich einen Test schreiben muss."
+      - "Können Sie mir sagen, was der Kurs kostet? Ich möchte auch wissen, ob ich einen Test machen soll."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Ich möchte auch wissen, ob ich einen Test machen soll."
+      - "Können Sie mir sagen, was der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen soll."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Und ich möchte wissen, ob ich einen Test machen soll."
+      - "Können Sie mir sagen, was der Kurs kostet? Ich möchte auch wissen, ob ich einen Test schreiben soll."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Ich möchte auch wissen, ob ich einen Test schreiben soll."
+      - "Können Sie mir sagen, was der Kurs kostet? Und ich möchte wissen, ob ich einen Test schreiben soll."
+      - "Können Sie mir sagen, wie viel der Kurs kostet? Und ich möchte wissen, ob ich einen Test schreiben soll."
+    key_tokens: ["kostet", "ob", "muss", "soll"]
+    revision: 2
     explain:
       en: "Two questions are embedded in longer sentences. They remain interrogative in meaning but use subordinate-clause word order. The direct question Was kostet der Kurs? becomes was der Kurs kostet, with the finite verb at the end. The second is a yes/no question, so ob opens it: ob ich einen Test machen muss. Replace ob with wenn and you name a condition instead. Inside that clause the finite modal muss closes the verb group after machen. The item grades these two embedded-question decisions."
       ru: "Два вопроса вложены в более длинные предложения. Они сохраняют вопросительное значение, но получают порядок слов придаточного. Прямой вопрос Was kostet der Kurs? превращается в was der Kurs kostet со спрягаемым глаголом в конце. Второй вопрос допускает ответ ja/nein, поэтому его открывает ob: ob ich einen Test machen muss. Если заменить ob на wenn, получится условие. Внутри придаточного спрягаемый модальный muss замыкает группу после machen. Задание проверяет именно эти два решения."
@@ -222,3 +251,30 @@ items:
       en: "Two things to listen for when you play yourself back. First, the end of your indirect question: the last word must be the conjugated verb — müssen, with the infinitive abgeben in front of it. If you hear wann müssen wir die Hausaufgabe abgeben, you have said the bare question inside the wrapper, and that is the mistake this topic is about. Second, whether you named the problem. Ich verstehe nicht gives the teacher nothing to work with; Was bedeutet das Wort „Bedeutung“? gets you an answer in one move."
       ru: "Слушая запись, обратите внимание на две вещи. Во-первых, на конец вашего косвенного вопроса: последним словом должен быть спрягаемый глагол — müssen, а перед ним инфинитив abgeben. Если слышится wann müssen wir die Hausaufgabe abgeben, значит внутрь рамки попал самостоятельный вопрос, а это и есть та ошибка, ради которой существует тема. Во-вторых, назвали ли вы саму проблему. Фраза Ich verstehe nicht не даёт преподавателю ничего; вопрос Was bedeutet das Wort «Bedeutung»? приносит ответ с первого раза."
       uk: "Слухаючи запис, зверніть увагу на дві речі. По-перше, на кінець вашого непрямого питання: останнім словом має бути відмінюване дієслово — müssen, а перед ним інфінітив abgeben. Якщо чується wann müssen wir die Hausaufgabe abgeben, значить усередину рамки потрапило самостійне питання, а це й є та помилка, заради якої існує тема. По-друге, чи назвали ви саму проблему. Фраза Ich verstehe nicht не дає викладачеві нічого; питання Was bedeutet das Wort „Bedeutung“? приносить відповідь з першого разу."
+
+  - id: sprechen-lernweg
+    outcomes: [lernstrategien-sagen, meinung-kennzeichnen]
+    type: speak
+    mode: spoken-production
+    focus: meinung-nachgestellt
+    prompt:
+      en: "Record a short introduction for a new study group. Explain why and how you learn German, name one difficulty and evaluate one learning method as your own opinion."
+      ru: "Запишите короткое представление для новой учебной группы. Объясните, зачем и как вы учите немецкий, назовите одну трудность и оцените один метод как собственное мнение."
+      uk: "Запишіть коротке представлення для нової навчальної групи. Поясніть, навіщо і як ви вчите німецьку, назвіть одну складність і оцініть один метод як власну думку."
+    goal:
+      en: "Sustain a self-contained account of your learning instead of answering isolated teacher questions."
+      ru: "Постройте самостоятельный связный рассказ об учёбе, а не ответы на отдельные вопросы преподавателя."
+      uk: "Побудуйте самостійну зв'язну розповідь про навчання, а не відповіді на окремі запитання викладача."
+    checklist:
+      - {en: "I explained my purpose and one regular learning habit.", ru: "Я объяснил(а) свою цель и одну регулярную учебную привычку.", uk: "Я пояснив (пояснила) свою мету й одну регулярну навчальну звичку."}
+      - {en: "I named a concrete difficulty and what I do about it.", ru: "Я назвал(а) конкретную трудность и то, что с ней делаю.", uk: "Я назвав (назвала) конкретну складність і те, що з нею роблю."}
+      - {en: "I used meiner Meinung nach after the noun phrase and followed it with a complete clause.", ru: "Я поставил(а) meiner Meinung nach после именной группы и продолжил(а) полноценным предложением.", uk: "Я поставив (поставила) meiner Meinung nach після іменної групи й продовжив (продовжила) повним реченням."}
+    model_answer: "Ich lerne Deutsch, weil ich in Berlin arbeiten möchte. Jeden Morgen wiederhole ich Wörter, und zweimal pro Woche spreche ich mit einer Tandempartnerin. Spontan zu sprechen ist für mich noch schwierig, darum nehme ich kurze Sprachnachrichten auf. Meiner Meinung nach hilft diese Methode besonders gut, weil ich meine Fehler hören kann."
+    model_translation:
+      en: "I am learning German because I want to work in Berlin. Every morning I review words, and twice a week I speak with a tandem partner. Speaking spontaneously is still difficult for me, so I record short voice messages. In my opinion, this method helps especially well because I can hear my mistakes."
+      ru: "Я учу немецкий, потому что хочу работать в Берлине. Каждое утро повторяю слова, а дважды в неделю разговариваю с тандем-партнёршей. Мне пока трудно говорить спонтанно, поэтому я записываю короткие голосовые сообщения. По моему мнению, этот метод особенно полезен, потому что я могу слышать свои ошибки."
+      uk: "Я вчу німецьку, бо хочу працювати в Берліні. Щоранку повторюю слова, а двічі на тиждень розмовляю з тандем-партнеркою. Мені поки важко говорити спонтанно, тому я записую короткі голосові повідомлення. На мою думку, цей метод особливо корисний, бо я можу чути свої помилки."
+    explain:
+      en: "A production task must stand without an interviewer. The model links purpose, routine, difficulty, response and evaluation. In meiner Meinung nach, the dative phrase comes first and nach closes the fixed frame."
+      ru: "Задание на монолог должно быть понятным без вопросов собеседника. Образец связывает цель, привычку, трудность, действие и оценку. В meiner Meinung nach сначала идёт группа в Dativ, а nach закрывает устойчивую рамку."
+      uk: "Завдання на монолог має бути зрозумілим без запитань співрозмовника. Зразок пов'язує мету, звичку, складність, дію й оцінку. У meiner Meinung nach спочатку йде група в Dativ, а nach закриває сталу рамку."

@@ -1,5 +1,8 @@
 topic: aemter-dienstleistungen
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Ämter & Dienstleistungen"
 title:
   en: "Practice — at the counter, in writing, on the phone"
   ru: "Практика — у окошка, письменно, по телефону"
@@ -58,7 +61,10 @@ items:
     answer: "Können Sie mir sagen, welche Unterlagen ich mitbringen muss?"
     accept:
       - "Können Sie mir sagen, welche Unterlagen ich mitbringen soll?"
-    key_tokens: ["muss"]
+    # revision 2: soll occupies the same wall position in the accepted rendering, so
+    # it carries the graded decision and joins the pins. (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["muss", "soll"]
+    revision: 2
     explain:
       en: "Everything after the comma is a subordinate clause, so the conjugated verb goes last of all: … welche Unterlagen ich mitbringen muss. The infinitive mitbringen does not shield it — muss still has to land behind it, at the very end. Writing welche Unterlagen muss ich mitbringen? here is the standard mistake: that word order belongs to the question when it stands alone."
       ru: "Всё, что стоит после запятой, — придаточное предложение, поэтому спрягаемый глагол уходит последним: … welche Unterlagen ich mitbringen muss. Инфинитив mitbringen его не прикрывает: muss всё равно должен приземлиться за ним, в самом конце. Написать здесь welche Unterlagen muss ich mitbringen? — типичная ошибка: такой порядок слов принадлежит вопросу, когда тот стоит сам по себе."
@@ -68,7 +74,9 @@ items:
     outcomes: [anliegen-nennen]
     type: translate
     focus: nebensatz-verbende
-    revision: 2
+    # revision 3: will occupies the same wall position in the accepted rendering, so
+    # it carries the graded decision and joins the pins. (Batch-6 audit, 2026-08-12.)
+    revision: 3
     instruction:
       en: "Say why you have come, with weil. Translate into German."
       ru: "Скажите, зачем вы пришли, с помощью weil. Переведите на немецкий."
@@ -79,7 +87,7 @@ items:
     answer: "Ich bin hier, weil ich mich anmelden möchte."
     accept:
       - "Ich bin hier, weil ich mich anmelden will."
-    key_tokens: ["möchte"]
+    key_tokens: ["möchte", "will"]
     explain:
       en: "weil opens a subordinate clause, and in one of those the conjugated verb stands last — behind the reflexive pronoun, behind the infinitive, behind everything. Ich bin hier, weil ich möchte mich anmelden keeps the main-clause order and is the mistake to watch for. Read your own sentence backwards to check it: möchte — anmelden — mich — ich — weil. If the conjugated verb is not the last word, the clause is not finished. (will instead of möchte builds the same clause and is accepted here, but at a counter möchte is the one to say.)"
       ru: "weil открывает придаточное, а в придаточном спрягаемый глагол стоит последним — за возвратным местоимением, за инфинитивом, за всем. Вариант Ich bin hier, weil ich möchte mich anmelden сохраняет порядок главного предложения — вот та ошибка, которой надо остерегаться. Проверяйте себя, читая фразу с конца: möchte — anmelden — mich — ich — weil. Если спрягаемый глагол не последнее слово, придаточное не достроено. (Форма will строит то же самое придаточное и здесь засчитывается, но у окошка говорить следует möchte.)"
@@ -144,6 +152,7 @@ items:
   # says what you want to do yourself. Both existing translate items here drill würde gern alone,
   # so the request half had never been produced.
   - id: uebersetzen-formelle-bitte-mail
+    revision: 2
     outcomes: [formelle-nachricht-schreiben, anliegen-nennen]
     type: translate
     focus: hoeflich-konjunktiv
@@ -159,6 +168,11 @@ items:
       - "Könnten Sie mir das Formular bitte schicken? Ich würde gern am Montag vorbeikommen."
       - "Könnten Sie mir bitte das Formular schicken? Ich würde gerne am Montag vorbeikommen."
       - "Könnten Sie mir das Formular bitte schicken? Ich würde gerne am Montag vorbeikommen."
+      # RU carries no «пожалуйста», so dropping bitte is faithful, and kommen is a looser
+      # but legitimate rendering of «зайти» (2026-08-11 triage, row 2b); Könnten/würde
+      # unaffected.
+      - "Könnten Sie mir das Formular schicken? Ich würde gern am Montag kommen."
+      - "Könnten Sie mir das Formular schicken? Ich würde gerne am Montag kommen."
     key_tokens: ["Könnten", "würde"]
     explain:
       en: "A formal message is assembled out of two polite chunks, and the whole item turns on telling them apart. Könnten Sie …? is a request: somebody else is going to do the thing, and the infinitive schicken drops to the very end, exactly as it would after a modal. Ich würde gern … is a wish about yourself: you are the one who will act, and again the infinitive closes the clause. Swap them and the message says the wrong thing — Ich würde gern das Formular schicken would mean you want to do the sending, which is not what you came to ask. Watch the umlaut in the first word: Können Sie das Formular schicken? is a plain question about ability and lands blunter than anything you want to send to an office; the polite form is Könnten. And keep hätte gern away from a verb — that chunk takes a noun and stops (Ich hätte gern eine Bescheinigung), so Ich hätte gern vorbeikommen is not a sentence. vorbeikommen is separable, but after würde gern it is an infinitive and stays in one piece at the end."

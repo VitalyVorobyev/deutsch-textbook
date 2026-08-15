@@ -1,5 +1,8 @@
 topic: nebensaetze-plaene
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Nebensätze & Pläne"
 title:
   en: "Practice — planning the Sunday: listening, writing, speaking"
   ru: "Практика — планируем воскресенье: аудирование, письмо, речь"
@@ -117,7 +120,12 @@ items:
     prompt_ru: "Тобиас остаётся дома — он ведь устал."
     prompt_uk: "Тобіас залишається вдома — він же втомився."
     answer: "Tobias bleibt zu Hause, denn er ist müde."
-    key_tokens: ["denn"]
+    # revision 2: pin both ends of the word-order rule — with only denn pinned, the
+    # tag's signature error (denn er müde ist) went unattributed, because denn sits at
+    # the same index either way. Same pattern as arbeit-beruf's ["denn", "habe"].
+    # (Batch-4 audit, 2026-08-12.)
+    key_tokens: ["denn", "ist"]
+    revision: 2
     explain:
       en: "denn and weil translate the same way and build different sentences. This item asks for denn, so the clause behind it is an ordinary main clause: er ist müde, verb in position 2, nothing moved. With weil you would have had to write weil er müde ist. Both are correct German; only one of them is what the task asked for, and the conjunction you choose is what commits you to the word order."
       ru: "denn и weil переводятся одинаково, а предложения строят разные. Здесь требуется denn, поэтому после него идёт обычное главное предложение: er ist müde — глагол на втором месте, ничего не сдвинуто. С weil пришлось бы написать weil er müde ist. Оба варианта — правильный немецкий; заданию отвечает только один, и именно выбор союза обязывает вас к тому или иному порядку слов."

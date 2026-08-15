@@ -1,8 +1,8 @@
 /**
  * The focus-tag taxonomy lives in two places and must never diverge:
  *
- *   - `docs/focus-tags.md` — the table an author consults while tagging an item;
- *   - `focusIntroducedBy` (src/lib/focus-tags.ts) — the allowlist `bun run validate`
+ *   - `docs/authoring/focus-tags.md` — the table an author consults while tagging an item;
+ *   - `focusIntroducedBy` (packages/content/src/focus-tags.ts) — the allowlist `bun run validate`
  *     enforces, which also names the topic that introduces each tag.
  *
  * Keeping them in step has been a rule in prose. That works at 62 tags maintained a handful
@@ -18,13 +18,13 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { focusIntroducedBy } from '../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 const ROOT = join(import.meta.dirname, '..');
 
 /** Tags from the Markdown table: rows shaped `| \`tag\` | what it names |`. */
 function documentedTags(): string[] {
-  const doc = readFileSync(join(ROOT, 'docs', 'focus-tags.md'), 'utf8');
+  const doc = readFileSync(join(ROOT, 'docs', 'authoring', 'focus-tags.md'), 'utf8');
   return [...doc.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|/gm)].map((m) => m[1]!);
 }
 

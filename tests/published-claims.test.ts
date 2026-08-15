@@ -1,9 +1,11 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { getCurriculum } from '../src/lib/curriculum';
-import { grammarCoverage, loadGrammarInventory } from '../src/lib/grammar-coverage';
-import { focusIntroducedBy } from '../src/lib/focus-tags';
+import { contentGraph } from '@da/content/graph';
+import { getCurriculum } from '@da/content/curriculum';
+import { goetheCoverage } from '@da/content/coverage';
+import { grammarCoverage, loadGrammarInventory, productionLevel } from '@da/content/grammar-coverage';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 
 /**
  * The tripwire for progress figures written into prose.
@@ -70,7 +72,7 @@ function numeral(word: string): number {
  * gaps and duplicates so a malformed heading cannot quietly lower it.
  */
 function contractedB1Units(): number {
-  const headings = [...read('docs/curriculum-a2-b1.md').matchAll(/^### B1\.(\d+) · /gm)].map((m) =>
+  const headings = [...read('docs/curriculum/a2-b1.md').matchAll(/^### B1\.(\d+) · /gm)].map((m) =>
     Number(m[1]),
   );
   expect(headings).toEqual(headings.map((_, i) => i + 1));
@@ -85,14 +87,19 @@ describe('published progress claims match the content', () => {
 
     const spine = /(\S+) A1 and (\S+) A2\s+units/.exec(readme);
     expect(spine).not.toBeNull();
-    // Re-derive: bun -e 'const {getCurriculum}=await import("./src/lib/curriculum.ts");
+    // Re-derive: bun -e 'const {getCurriculum}=await import("./packages/content/src/curriculum.ts");
     //   const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1; console.log(c)'
     expect([numeral(spine![1]), numeral(spine![2])]).toEqual([count('A1'), count('A2')]);
 
-    const b1 = /(\S+) of the (\S+) contracted B1 units\s+are live/.exec(readme);
+    // Until 2026-08-15 this was one claim — "N of the N contracted B1 units are live" — and the
+    // test equated the live B1 unit count with the contract length. That equation broke the
+    // moment B1 gained units the contract never named: the five Themen-Nachtrag topics that
+    // closed the DTZ denominator. They are two facts now, and both are checked.
+    const b1 = /(\S+) B1 units are live — the (\S+) of\s+the frozen contract plus (\S+) that close/.exec(readme);
     expect(b1).not.toBeNull();
     expect(numeral(b1![1])).toBe(count('B1'));
     expect(numeral(b1![2])).toBe(contractedB1Units());
+    expect(numeral(b1![3])).toBe(count('B1') - contractedB1Units());
   });
 
   test('the CLAUDE.md grammar digest matches the grammar-coverage instrument', () => {
@@ -110,8 +117,49 @@ describe('published progress claims match the content', () => {
     }
   });
 
+  /**
+   * The headline sentence of the project index is a published figure and had no guard, which is
+   * exactly how it went on saying "B1 Wortliste coverage stands at 3343/3416 (98%), and the 73 open
+   * rows are cardless" for the nine days after P27-3f closed the tail at 3416/3416. The grammar
+   * digest one screen below it *was* guarded and stayed correct the whole time — one claim in a
+   * paragraph being checked does not protect its neighbours.
+   */
+  test('the CLAUDE.md Wortliste headline matches the coverage instrument', () => {
+    // "Wortliste 673/673 · 1449/1449 · 3416/3416" — re-derive with `bun scripts/coverage.ts <level>`.
+    const line = /Wortliste (\d+)\/(\d+) · (\d+)\/(\d+) · (\d+)\/(\d+)/.exec(read('CLAUDE.md'));
+    expect(line).not.toBeNull();
+    const [, a1c, a1t, a2c, a2t, b1c, b1t] = line!.map(Number);
+    for (const [level, stated, total] of [
+      ['A1', a1c, a1t],
+      ['A2', a2c, a2t],
+      ['B1', b1c, b1t],
+    ] as const) {
+      const c = goetheCoverage(level);
+      expect([level, stated, total]).toEqual([level, c.cards + c.grammar, c.total]);
+    }
+    // 30s, not the 5s default: `goetheCoverage` re-reads and re-parses all 129 vocab decks twice
+    // and the entire taught surface once, per level — ~1.2 s locally and past 3 s on CI, three
+    // times over. That is the layering defect P27-4 fixes (the function should read the already
+    // built ContentGraph), not a slow test. Drop this argument once it does.
+  }, 30_000);
+
+  /**
+   * `handlungen.ts` reports "N/192 outcomes cite a published Sprachhandlung", and CLAUDE.md states
+   * the denominator in prose. A new topic adds outcomes, so this number moves whenever content
+   * ships — which is precisely the kind of figure that rots unwatched.
+   */
+  test('the CLAUDE.md outcome count matches the corpus', () => {
+    const line = /do the (\d+) `outcomes` contain/.exec(read('CLAUDE.md'));
+    expect(line).not.toBeNull();
+    const outcomes = [...contentGraph().topics.values()].reduce(
+      (n, t) => n + (t.data.outcomes?.length ?? 0),
+      0,
+    );
+    expect(Number(line![1])).toBe(outcomes);
+  });
+
   test('the coverage-instruments B1 paragraph matches the instrument and the allowlist', () => {
-    const doc = read('docs/coverage-instruments.md');
+    const doc = read('docs/authoring/coverage-instruments.md');
     const coverage = grammarCoverage('B1');
 
     // "B1 has a real 32-point manifest, at 21/32 (66%) …"
@@ -124,14 +172,18 @@ describe('published progress claims match the content', () => {
       coverage.percent,
     ]);
 
-    // "… with units B1.1–B1.7 shipped" — the shipped range, not the contract.
-    const shipped = getCurriculum().units.filter((u) => u.level === 'B1').length;
-    expect(doc).toContain(`with units B1.1–B1.${shipped} shipped`);
+    // "… with the contracted units B1.1–B1.14 shipped". This reads the contract, not the live
+    // unit count: the two stopped being the same number when the Themen-Nachtrag topics landed,
+    // and a range written as B1.1–B1.19 would name five units the contract never numbered.
+    expect(doc).toContain(`with the contracted units B1.1–B1.${contractedB1Units()} shipped`);
 
     // "(22 of the 35 tags the B1 points name are registered so far …)"
+    // `standard_level` was replaced by `level: {reception, production}` on 2026-08-14, and this
+    // filter silently matched nothing afterwards — a test that reads a field the data no longer
+    // has does not fail loudly, it just stops testing. Use the accessor the instruments use.
     const tags = new Set(
       loadGrammarInventory()
-        .filter((p) => p.standard_level === 'B1')
+        .filter((p) => productionLevel(p) === 'B1')
         .flatMap((p) => p.focus ?? []),
     );
     const registered = [...tags].filter((tag) => tag in focusIntroducedBy).length;

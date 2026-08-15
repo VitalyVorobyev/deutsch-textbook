@@ -1,0 +1,87 @@
+id: natur-wetter
+level: A2
+kind: vocab-field
+strand: vocabulary
+group: alltag-wortschatz
+title_de: Natur & Wetter
+title_en: Nature and weather
+title_ru: Природа и погода
+title_uk: Природа і погода
+status: draft
+# Why this topic exists, and why so late: `bun scripts/themen.ts` reported three DTZ themes —
+# Klima/Wetter, Tiere, Pflanzen — that no topic was about, while `Wetter`, `Sonne`, `Regen`,
+# `Schnee`, `Hund`, `Katze` and `Pflanze` had all shipped long ago as flashcards in two decks no
+# topic owned (`wetter-natur`, `natur-tiere-a2`). The learner met forty-two words one card at a
+# time and never in a lesson. That is what a topic-level hole is, and coverage of the Wortliste
+# cannot express it, because a card is a card.
+#
+# It adopts both decks unchanged. Splitting the weather adjectives out of `natur-tiere-a2` would
+# have been tidier and would have rewritten every affected card id, which is the learner's SRS
+# history — so the deck keeps the shape its own title already describes (`Natur, Tiere & Wetter`).
+tags:
+  - wetter
+  - klima
+  - natur
+  - tiere
+  - pflanzen
+  - jahreszeiten
+  - a2
+prerequisites:
+  - adjektive-deklination
+  - einkaufen-reklamation
+  - nebensaetze-plaene
+deepens:
+  # Both edges carry a tag this topic actually drills, which is the only channel they have:
+  # `komparativ-als` (einkaufen-reklamation) in the two-places comparison, and
+  # `adjektiv-praedikativ` (adjektive-deklination) in the predicate-vs-attribute decision that
+  # weather adjectives force on every sentence.
+  - einkaufen-reklamation
+  - adjektive-deklination
+related: []
+outcomes:
+  - id: wetter-beschreiben
+    mode: spoken-production
+    domain: personal
+    de: Ich kann sagen, wie das Wetter heute ist und wie es morgen wird.
+    en: I can say what the weather is like today and what it will be like tomorrow.
+    ru: Я умею сказать, какая сегодня погода и какая будет завтра.
+    uk: Я вмію сказати, яка сьогодні погода і яка буде завтра.
+  - id: wetterbericht-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann einen kurzen Wetterbericht verstehen.
+    en: I can understand a short weather report.
+    ru: Я понимаю короткий прогноз погоды.
+    uk: Я розумію короткий прогноз погоди.
+  - id: landschaft-beschreiben
+    mode: writing
+    domain: personal
+    de: Ich kann eine Landschaft mit ihren Tieren und Pflanzen beschreiben.
+    en: I can describe a landscape with the animals and plants in it.
+    ru: Я умею описать местность с её животными и растениями.
+    uk: Я вмію описати місцевість із її тваринами й рослинами.
+  - id: wetter-vergleichen
+    mode: writing
+    domain: personal
+    de: Ich kann das Wetter an zwei Orten oder in zwei Jahreszeiten vergleichen.
+    en: I can compare the weather in two places or in two seasons.
+    ru: Я умею сравнить погоду в двух местах или в двух временах года.
+    uk: Я вмію порівняти погоду у двох місцях або у дві пори року.
+claims:
+  - goethe-dtz-themen:wohnen-klima
+  - goethe-dtz-themen:wohnen-tiere
+  - goethe-dtz-themen:wohnen-pflanzen
+elements:
+  article: natur-wetter.mdx
+  pretest: a2/natur-wetter-pretest
+  exercises:
+    - a2/natur-wetter
+    - a2/natur-wetter-produktion
+  primary_practice: a2/natur-wetter
+  probes:
+    - a2/probe-natur-wetter
+  reading:
+    - a2/natur-wetter
+  vocab:
+    - wetter-natur
+    - natur-tiere-a2

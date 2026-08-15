@@ -12,8 +12,8 @@ title: { en: "Placement test A1 — what you already know", ru: "Тест на �
 # `dativ`, which carries `preview: true` here exactly as it does in the stadt-wege lesson
 # that teaches zum/zur as a fixed chunk.
 #
-# Item mix, deliberately production-heavy: 10 translate, 5 cloze, 4 audio-comprehension,
-# 4 mc, 1 match. That is 62% free or gap production against 21% selection — the caps are
+# Item mix, deliberately production-heavy: 11 translate, 10 cloze, 4 audio-comprehension,
+# 4 mc, 1 match. That is 70% free or gap production against 17% selection — the caps are
 # 25% mc and 40% selection, tighter than a practice set's, because a guessed answer here
 # costs the learner teaching rather than a point.
 #
@@ -116,6 +116,27 @@ items:
     key_tokens: ["keine"]
     accept: ["Heute habe ich keine Zeit."]
     explain: { en: "A noun is negated with kein-, not with nicht, and kein- takes the same endings as ein-: die Zeit is feminine, so keine Zeit. Also note that German cannot drop haben here the way some languages drop the verb of possession.", ru: "Существительное отрицается через kein-, а не через nicht, и kein- получает те же окончания, что и ein-: die Zeit женского рода, поэтому keine Zeit. Обратите также внимание: конструкция «у меня нет» передаётся глаголом haben, который в немецком опустить нельзя.", uk: "Іменник заперечується через kein-, а не через nicht, і kein- отримує ті самі закінчення, що й ein-: die Zeit жіночого роду, тому keine Zeit. Зверніть також увагу: конструкція «у мене немає» передається дієсловом haben, яке в німецькій опустити не можна." }
+
+  # --- wortbildung ---
+  - id: wortbildung-kompositum
+    outcomes: [wortbildung-komposita]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: { en: "Complete the compound with its article.", ru: "Дополните сложное слово артиклем.", uk: "Доповніть складне слово артиклем." }
+    text: "Wörter + das Buch = {{das}} Wörterbuch"
+    explain: { en: "The final noun controls the whole compound: das Buch → das Wörterbuch. Wörter only specifies what kind of book it is.", ru: "Последнее существительное управляет всем сложным словом: das Buch → das Wörterbuch. Wörter лишь уточняет вид книги.", uk: "Останній іменник керує всім складним словом: das Buch → das Wörterbuch. Wörter лише уточнює вид книжки." }
+
+  - id: wortbildung-adjektiv
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: { en: "Use the adjective kostenlos.", ru: "Используйте прилагательное kostenlos.", uk: "Використайте прикметник kostenlos." }
+    prompt_en: "The course is free of charge."
+    prompt_ru: "Курс бесплатный."
+    prompt_uk: "Курс безкоштовний."
+    answer: "Der Kurs ist kostenlos."
+    key_tokens: ["kostenlos"]
+    explain: { en: "Kosten + -los means without costs: kostenlos. The suffix expresses absence, not merely a low price.", ru: "Kosten + -los означает «без расходов»: kostenlos. Суффикс выражает отсутствие, а не просто низкую цену.", uk: "Kosten + -los означає «без витрат»: kostenlos. Суфікс виражає відсутність, а не просто низьку ціну." }
 
   # --- menschen-familie ---
   - id: familie-possessiv-vorstellen
@@ -273,6 +294,29 @@ items:
     correct: 0
     translation: { en: "There is a sign on the door. What does it mean?", ru: "На двери висит табличка. Что это значит?", uk: "На дверях висить табличка. Що це означає?" }
     explain: { en: "Kein Eingang says this door is not an entrance; the second sentence sends you to the other one — benutzen Sie den Eingang an der Marktstraße. Nothing on the sign says the shop is shut.", ru: "Kein Eingang сообщает, что эта дверь — не вход; второе предложение отправляет к другому: benutzen Sie den Eingang an der Marktstraße. О том, что магазин закрыт, на табличке ничего нет.", uk: "Kein Eingang повідомляє, що ці двері — не вхід; друге речення відправляє до іншого: benutzen Sie den Eingang an der Marktstraße. Про те, що магазин зачинений, на табличці нічого немає." }
+
+  # --- ort-richtung-praepositionen ---
+  - id: ort-wohin-woher-luecke
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction: { en: "Fill in the preposition together with its article.", ru: "Вставьте предлог вместе с артиклем.", uk: "Вставте прийменник разом з артиклем." }
+    text: "Meine Tochter geht um acht {{in die}} Schule. Um eins kommt sie {{aus der}} Schule."
+    translation: { en: "My daughter goes to school at eight. At one she comes out of school.", ru: "Моя дочь идёт в школу в восемь. В час она выходит из школы.", uk: "Моя донька йде до школи о восьмій. О першій вона виходить зі школи." }
+    explain: { en: "Woher? is not Wohin? with another article: the preposition itself changes. A school is a building you go inside, so the Wohin? phrase is in + Akkusativ (in die Schule) and the Woher? phrase is aus der Schule. in reappears only in the Wo? phrase, in der Schule — and der is the same word there and after aus.", ru: "Woher? — это не Wohin? с другим артиклем: меняется сам предлог. В школу входят внутрь, поэтому форма на Wohin? — это in + Akkusativ (in die Schule), а форма на Woher? — aus der Schule. Предлог in возвращается только в форме на Wo?: in der Schule, причём der там и после aus — одно и то же слово.", uk: "Woher? — це не Wohin? з іншим артиклем: змінюється сам прийменник. До школи заходять усередину, тому форма на Wohin? — це in + Akkusativ (in die Schule), а форма на Woher? — aus der Schule. Прийменник in повертається лише у формі на Wo?: in der Schule, причому der там і після aus — те саме слово." }
+
+  - id: ort-person-uebersetzen
+    outcomes: [ziel-nennen, ort-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction: { en: "Translate into German. Use the short forms where German has them.", ru: "Переведите на немецкий. Там, где в немецком есть краткие формы, используйте их.", uk: "Перекладіть німецькою. Там, де в німецькій є короткі форми, використовуйте їх." }
+    prompt_en: "On Tuesday I am going to the doctor. At four I am still at the doctor's."
+    prompt_ru: "Во вторник я иду к врачу. В четыре я ещё у врача."
+    prompt_uk: "У вівторок я йду до лікаря. О четвертій я ще в лікаря."
+    answer: "Am Dienstag gehe ich zum Arzt. Um vier bin ich noch beim Arzt."
+    accept: ["Ich gehe am Dienstag zum Arzt. Ich bin um vier noch beim Arzt."]
+    key_tokens: ["zum", "beim"]
+    explain: { en: "A person is a destination as a point, never a place you go inside: zu for the way there, bei for being there, von for coming back. Only the preposition ever changes — zu dem merges into zum, bei dem into beim, and Arzt is untouched in all three. in den Arzt and zum Arzt sein are the two errors this pattern produces.", ru: "Человек — это цель-точка, а не помещение, куда входят: zu — путь туда, bei — нахождение там, von — возвращение. Меняется только предлог: zu dem сливается в zum, bei dem — в beim, а само Arzt во всех трёх формах остаётся нетронутым. Две типичные ошибки этой схемы — in den Arzt и zum Arzt sein.", uk: "Людина — це ціль-точка, а не приміщення, куди заходять: zu — шлях туди, bei — перебування там, von — повернення. Змінюється лише прийменник: zu dem зливається в zum, bei dem — у beim, а саме Arzt в усіх трьох формах лишається недоторканим. Дві типові помилки цієї схеми — in den Arzt і zum Arzt sein." }
 
   # --- freizeit-koennen ---
   - id: freizeit-koennen-schwimmen

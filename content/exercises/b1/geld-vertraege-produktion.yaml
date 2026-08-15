@@ -1,0 +1,234 @@
+# B1.13 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a service line heard on the phone rather than a bill read on
+# paper, the dictation of the one line that decides when the money has to be there, two
+# translations in frames the primary set does not use (a price that is not known yet,
+# before the work; a tariff condition rather than a payment deadline), and the two open
+# tasks the outcomes claim. The spoken tasks move to a provider's counter and to a kitchen
+# table with two written estimates on it, so neither can be answered out of the repair bill
+# the primary set is built on.
+# There is no `write` task here, and that is the outcome list rather than an omission: this
+# unit's two non-reading outcomes are `vertrag-nachfragen` (spoken-interaction) and
+# `kosten-vergleichen` (spoken-production), so a written open task would claim a mode the
+# frozen contract does not give this unit. B1.11 and B1.12 each own a writing outcome and
+# each ship one write task; here the same rule produces two speak items instead.
+# Open tasks are minimal ceremony: attempt → model → done; `requirements` and `checklist`
+# are guidance for comparing your own production against the model — the app cannot verify
+# free production, so it charges no steps for feedback it cannot give, and both stay
+# untagged, because unverified production must never feed the weakness signal.
+# The listening item is untagged: its three options differ only in which of the amount and
+# the date the caller heard change, and the two are settled two turns apart, so a wrong
+# pick is a failure to carry one fact across the conversation, not a decode failure of any
+# one structure. The dictation is untagged for the same
+# reason — what it drills is writing down a payment line exactly, which is a genre habit
+# and no grammar tag's substance.
+# Both speak items take the mode of the outcome they serve, following the corpus
+# convention: `vertrag-nachfragen` is spoken-interaction, as `loesung-aushandeln` is at
+# B1.7, and `kosten-vergleichen` is spoken-production, as `konsum-vergleichen` is at B1.6.
+# Outcome discipline continues the primary set's channels (probe families arm from their
+# own explicit item lists, src/lib/probes.ts): the phone call, the dictation and the
+# genitive line on rechnung-pruefen, the tariff condition and the counter conversation on
+# vertrag-nachfragen, the comparison out loud on kosten-vergleichen.
+# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns is
+# both the script a future take would be made from and today's TTS fallback.
+topic: geld-vertraege
+role: practice
+stage: transfer
+activity: application
+title:
+  en: "Production — hear the correction, write the deadline, ask and compare out loud"
+  ru: "Продукция — услышать исправление, записать срок, спросить и сравнить вслух"
+  uk: "Продукція — почути виправлення, записати строк, спитати й порівняти вголос"
+  de: "Produktion — die Korrektur hören, die Frist mitschreiben, fragen und laut vergleichen"
+items:
+  - id: hoeren-anbieter-rechnung
+    outcomes: [rechnung-pruefen]
+    type: audio-comprehension
+    instruction:
+      en: "A call about a bill, heard and not read. One thing about the bill changes and one stays, and the two are settled in different turns."
+      ru: "Звонок по поводу счёта, услышанный, а не прочитанный. Одно в счёте меняется, другое остаётся, и решается это в разных репликах."
+      uk: "Дзвінок щодо рахунку, почутий, а не прочитаний. Одне в рахунку змінюється, інше лишається, і вирішується це в різних репліках."
+      de: "Ein Anruf wegen einer Rechnung, gehört und nicht gelesen. Eines ändert sich, eines bleibt — und beides wird in verschiedenen Beiträgen geklärt."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Kundendienst", text: "Kundendienst der Firma Lindner, guten Tag." }
+        - { speaker: "Anrufer", text: "Guten Tag, ich habe eine Frage zu meiner Rechnung. Der Gesamtbetrag ist hundertvierzig Euro, aber in Zeile drei steht eine Anfahrt für dreißig Euro. Im Kostenvoranschlag stand davon nichts." }
+        - { speaker: "Kundendienst", text: "Einen Moment, ich sehe nach. Sie haben recht, die Anfahrt ist dort nicht angegeben. Wir streichen die Zeile und schicken Ihnen morgen eine neue Rechnung über hundertzehn Euro." }
+        - { speaker: "Anrufer", text: "Und bis wann muss ich dann zahlen?" }
+        - { speaker: "Kundendienst", text: "Das Datum bleibt, wie es ist: fällig am siebzehnten Mai. Bitte überweisen Sie erst, wenn die neue Rechnung da ist." }
+    question: "Was ändert sich an der Rechnung, und was bleibt?"
+    options:
+      - "Der Betrag wird kleiner, das Datum bleibt der siebzehnte Mai."
+      - "Der Betrag bleibt, dafür wird das Datum später."
+      - "Beides ändert sich: ein neuer Betrag und ein neues Datum."
+    correct: 0
+    translation:
+      en: "What changes on the bill, and what stays?"
+      ru: "Что меняется в счёте, а что остаётся?"
+      uk: "Що змінюється в рахунку, а що лишається?"
+    explain:
+      en: "The two answers arrive two turns apart, and the arithmetic ties them together: the struck line was thirty euros, so hundertvierzig becomes hundertzehn. The date is settled only later, and it is settled the other way — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. A corrected bill almost never moves its own deadline, which is exactly why the caller asks: the new paper arrives with the old day on it."
+      ru: "Два ответа приходят с разницей в две реплики, а связывает их арифметика: вычеркнутая строка стоила тридцать евро, значит hundertvierzig превращается в hundertzehn. Дату решают только потом, и решают иначе — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Исправленный счёт почти никогда не двигает собственный срок, потому звонящий и спрашивает: новая бумага приходит со старым днём."
+      uk: "Дві відповіді приходять із різницею у дві репліки, а пов'язує їх арифметика: викреслений рядок коштував тридцять євро, отже hundertvierzig перетворюється на hundertzehn. Дату вирішують лише потім, і вирішують інакше — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Виправлений рахунок майже ніколи не рухає власний строк, тому той, хто телефонує, і питає: новий папір приходить зі старим днем."
+      de: "Die beiden Antworten kommen zwei Beiträge auseinander, und die Rechnung verbindet sie: Die gestrichene Zeile kostete dreißig Euro, aus hundertvierzig werden also hundertzehn. Das Datum wird erst danach geklärt, und zwar andersherum — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Eine korrigierte Rechnung verschiebt ihre Frist fast nie, und genau deshalb fragt der Anrufer."
+
+  - id: hoeren-diktat-faelligkeit
+    outcomes: [rechnung-pruefen]
+    type: listen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Der Gesamtbetrag ist am dreißigsten Juni fällig."
+    translation:
+      en: "The total amount is due on 30 June."
+      ru: "Итоговая сумма подлежит оплате 30 июня."
+      uk: "Підсумкова сума підлягає оплаті 30 червня."
+    explain:
+      en: "This is the line that decides whether a Mahnung arrives, and it only works in full: which sum, which day, and the word that ties them together. fällig is the payment day and gültig is a period something still counts for, so the two are never swapped. am dreißigsten carries the ordinal ending the date is spoken with, even where the bill prints 30."
+      ru: "Именно эта строчка решает, придёт ли Mahnung, и работает она только целиком: какая сумма, какой день и слово, которое их связывает. fällig — день платежа, gültig — срок, пока что-то ещё действует, и меняться местами они не могут. В am dreißigsten стоит то порядковое окончание, с которым дату произносят, даже если на счёте напечатано 30."
+      uk: "Саме цей рядок вирішує, чи прийде Mahnung, і працює він лише цілком: яка сума, який день і слово, що їх пов'язує. fällig — день платежу, gültig — строк, поки щось іще діє, і мінятися місцями вони не можуть. В am dreißigsten стоїть те порядкове закінчення, з яким дату вимовляють, навіть якщо на рахунку надруковано 30."
+      de: "Diese Zeile entscheidet, ob eine Mahnung kommt, und sie wirkt nur vollständig: welche Summe, welcher Tag und das Wort, das beide verbindet. fällig ist der Tag, an dem gezahlt sein muss, gültig die Zeit, in der etwas noch gilt — die beiden tauschen nie die Plätze. In am dreißigsten steht die Ordnungsendung, mit der man das Datum spricht, auch wenn auf der Rechnung 30 gedruckt ist."
+
+  - id: uebersetzen-lieferung-genitiv
+    outcomes: [rechnung-pruefen]
+    type: translate
+    focus: genitiv-form
+    instruction:
+      en: "Before the work, not after it. Say what belongs to what with the genitive — not with von and not as one compound word. For 'know' take kennen, for 'the delivery' die Lieferung."
+      ru: "Это ещё до работы, а не после неё. Свяжите два существительных генитивом — не через von и не одним сложным словом. Для «знать» возьмите kennen, для «доставка» — die Lieferung."
+      uk: "Це ще до роботи, а не після неї. Зв'яжіть два іменники родовим відмінком — не через von і не одним складним словом. Для «знати» візьміть kennen, для «доставка» — die Lieferung."
+      de: "Noch vor der Arbeit, nicht danach. Verbind die beiden Nomen mit dem Genitiv — nicht mit von und nicht als ein zusammengesetztes Wort. Für das Wissen nimm kennen, für die Zustellung die Lieferung."
+    prompt_en: "We do not know the price of the delivery yet."
+    prompt_ru: "Цену доставки мы пока не знаем."
+    prompt_uk: "Ціну доставки ми поки не знаємо."
+    answer: "Wir kennen den Preis der Lieferung noch nicht."
+    accept:
+      # The object may lead, as it does in the RU and UK prompts; the graded pair does not
+      # move with it and the sentence stays ordinary V2.
+      - "Den Preis der Lieferung kennen wir noch nicht."
+    key_tokens: ["der", "Lieferung"]
+    explain:
+      en: "Graded is the genitive group: der Lieferung, the article word carrying the case while the feminine noun stays bare. The estimate is where this form does its work — a line names what a price belongs to before anybody owes anything, and der Preis von der Lieferung says the same thing in the register of speech rather than of paper."
+      ru: "Оценивается родительная группа: der Lieferung, где падеж несёт артикль, а существительное женского рода остаётся без окончания. В смете эта форма и работает: строка называет, к чему относится цена, ещё до того, как кто-то что-то должен, — а der Preis von der Lieferung говорит то же самое в регистре речи, а не бумаги."
+      uk: "Оцінюється родова група: der Lieferung, де відмінок несе артикль, а іменник жіночого роду лишається без закінчення. У кошторисі ця форма й працює: рядок називає, до чого належить ціна, ще до того, як хтось щось винен, — а der Preis von der Lieferung каже те саме в регістрі мовлення, а не паперу."
+      de: "Bewertet wird die Genitivgruppe: der Lieferung, wo das Artikelwort den Kasus trägt und das feminine Nomen leer bleibt. Im Kostenvoranschlag tut diese Form ihre Arbeit — eine Zeile nennt, wozu ein Preis gehört, bevor jemand etwas schuldet —, und der Preis von der Lieferung sagt dasselbe im Register des Sprechens statt des Papiers."
+
+  - id: uebersetzen-bedingung-passiv
+    outcomes: [vertrag-nachfragen]
+    type: translate
+    focus: passiv-modal
+    instruction:
+      en: "A condition from the terms, so the passive — use it with können. For 'change' take ändern, for 'plan' der Tarif."
+      ru: "Условие из договора, значит пассив — с können. Для «менять» возьмите ändern, для «тариф» — der Tarif."
+      uk: "Умова з договору, отже пасив — із können. Для «змінювати» візьміть ändern, для «тариф» — der Tarif."
+      de: "Eine Bedingung aus den Vertragsbedingungen, also das Passiv — mit können. Für das Wechseln nimm ändern, für das Angebot der Tarif."
+    prompt_en: "The plan can be changed once a year."
+    prompt_ru: "Тариф можно менять раз в год."
+    prompt_uk: "Тариф можна змінювати раз на рік."
+    answer: "Der Tarif kann einmal im Jahr geändert werden."
+    accept:
+      # The time phrase may lead; both are ordinary V2 and the closing pair is untouched.
+      - "Einmal im Jahr kann der Tarif geändert werden."
+    key_tokens: ["kann", "geändert", "werden"]
+    explain:
+      en: "Graded are the three anchors: kann agreeing with der Tarif, and the pair geändert werden closing the clause in that order. This is the sentence to turn into a question at the counter, and the turn is mechanical — kann geändert werden becomes Kann ich den Tarif einmal im Jahr ändern? The condition names no person; the question puts you back into it."
+      ru: "Оцениваются три якоря: kann, согласованный с der Tarif, и пара geändert werden, закрывающая предложение именно в этом порядке. Это и есть фраза, которую у стойки превращают в вопрос, и превращение механическое: из kann geändert werden получается Kann ich den Tarif einmal im Jahr ändern? Условие не называет человека — вопрос возвращает вас в него."
+      uk: "Оцінюються три якорі: kann, узгоджений із der Tarif, і пара geändert werden, що закриває речення саме в цьому порядку. Це й є фраза, яку біля стійки перетворюють на питання, і перетворення механічне: з kann geändert werden виходить Kann ich den Tarif einmal im Jahr ändern? Умова не називає людину — питання повертає вас у неї."
+      de: "Bewertet werden die drei Anker: kann, passend zu der Tarif, und das Paar geändert werden, das den Satz in dieser Reihenfolge schließt. Aus genau diesem Satz wird am Schalter eine Frage, und zwar mechanisch: Aus kann geändert werden wird Kann ich den Tarif einmal im Jahr ändern? Die Bedingung nennt niemanden; die Frage setzt dich wieder hinein."
+
+  - id: sprechen-vertrag-nachfragen
+    outcomes: [vertrag-nachfragen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Speak your side of the conversation aloud — then compare with the model."
+      ru: "Произнесите вслух свою часть разговора — затем сравните с образцом."
+      uk: "Промовте вголос свою частину розмови — потім порівняйте зі зразком."
+      de: "Sprich deinen Teil des Gesprächs laut — vergleich dann mit dem Muster."
+    prompt:
+      en: "You are at the counter of an internet provider and are about to sign a contract for twenty-five euros a month. Ask what is included in the price, what costs extra, how long the price is valid and how you can give notice. Then say one of the answers back in your own words to check you understood it, and ask for the terms in writing."
+      ru: "Вы у стойки интернет-провайдера и собираетесь подписать договор за двадцать пять евро в месяц. Спросите, что входит в цену, за что придётся доплачивать, как долго цена действительна и как расторгнуть договор. Потом перескажите один из ответов своими словами, чтобы проверить, правильно ли вы поняли, и попросите условия в письменном виде."
+      uk: "Ви біля стійки інтернет-провайдера і збираєтеся підписати договір за двадцять п'ять євро на місяць. Спитайте, що входить у ціну, за що доведеться доплачувати, як довго ціна дійсна і як розірвати договір. Потім перекажіть одну з відповідей своїми словами, щоб перевірити, чи правильно ви зрозуміли, і попросіть умови в письмовому вигляді."
+      de: "Du stehst am Schalter eines Internetanbieters und willst einen Vertrag über fünfundzwanzig Euro im Monat abschließen. Frag, was im Preis enthalten ist, was extra kostet, wie lange der Preis gültig ist und wie du kündigen kannst. Gib danach eine der Antworten mit eigenen Worten zurück, um dich zu vergewissern, und bitte um die Bedingungen in schriftlicher Form."
+    goal:
+      en: "Four questions that a contract can be answered with, one check that you and the other person mean the same thing, and a request for paper. The spoken outcome of this unit."
+      ru: "Четыре вопроса, на которые договор может ответить, одна проверка, что вы с собеседником поняли одно и то же, и просьба о бумаге. Устный итог этой главы."
+      uk: "Чотири питання, на які договір може відповісти, одна перевірка, що ви зі співрозмовником зрозуміли одне й те саме, і прохання про папір. Усний підсумок цього розділу."
+      de: "Vier Fragen, die ein Vertrag beantworten kann, eine Kontrolle, ob beide dasselbe meinen, und die Bitte um Papier. Das gesprochene Ergebnis dieser Einheit."
+    checklist:
+      - en: "Each of your four questions asked about one line of the offer, not about the offer as a whole: Welche Leistungen sind im Preis enthalten? Was kommt noch dazu? Wie lange ist der Preis gültig? Wie und bis wann kann ich kündigen?"
+        ru: "Каждый из ваших четырёх вопросов спрашивал об одной строке предложения, а не о предложении целиком: Welche Leistungen sind im Preis enthalten? Was kommt noch dazu? Wie lange ist der Preis gültig? Wie und bis wann kann ich kündigen?"
+        uk: "Кожне з ваших чотирьох питань питало про один рядок пропозиції, а не про пропозицію загалом: Welche Leistungen sind im Preis enthalten? Was kommt noch dazu? Wie lange ist der Preis gültig? Wie und bis wann kann ich kündigen?"
+        de: "Jede deiner vier Fragen galt einer Zeile des Angebots und nicht dem Angebot im Ganzen: Welche Leistungen sind im Preis enthalten? Was kommt noch dazu? Wie lange ist der Preis gültig? Wie und bis wann kann ich kündigen?"
+      - en: "At least one question was packed politely: Darf ich kurz nachfragen …? or Können Sie mir sagen, wie lange der Preis gültig ist? — and in that second shape the verb goes to the end of the clause."
+        ru: "Хотя бы один вопрос был упакован вежливо: Darf ich kurz nachfragen …? или Können Sie mir sagen, wie lange der Preis gültig ist? — и в этой второй форме глагол уходит в конец придаточного."
+        uk: "Принаймні одне питання було спаковане ввічливо: Darf ich kurz nachfragen …? або Können Sie mir sagen, wie lange der Preis gültig ist? — і в цій другій формі дієслово йде в кінець підрядного."
+        de: "Mindestens eine Frage war höflich verpackt: Darf ich kurz nachfragen …? oder Können Sie mir sagen, wie lange der Preis gültig ist? — und in dieser zweiten Form steht das Verb am Ende des Nebensatzes."
+      - en: "You said one answer back before agreeing to anything: Habe ich das richtig verstanden, dass ich jederzeit zum Monatsende kündigen kann? A misunderstanding caught there costs nothing."
+        ru: "Один ответ вы пересказали, прежде чем на что-то согласиться: Habe ich das richtig verstanden, dass ich jederzeit zum Monatsende kündigen kann? Недоразумение, пойманное здесь, не стоит ничего."
+        uk: "Одну відповідь ви переказали, перш ніж на щось погодитися: Habe ich das richtig verstanden, dass ich jederzeit zum Monatsende kündigen kann? Непорозуміння, спіймане тут, не коштує нічого."
+        de: "Eine Antwort hast du zurückgegeben, bevor du zugestimmt hast: Habe ich das richtig verstanden, dass ich jederzeit zum Monatsende kündigen kann? Ein Missverständnis kostet dort nichts."
+      - en: "You closed by asking for paper — Können Sie mir das bitte schriftlich geben? — because only what is written down can be read again later."
+        ru: "В конце вы попросили бумагу — Können Sie mir das bitte schriftlich geben? — потому что перечитать позже можно только записанное."
+        uk: "Наприкінці ви попросили папір — Können Sie mir das bitte schriftlich geben? — бо перечитати згодом можна лише записане."
+        de: "Zum Schluss hast du um Papier gebeten — Können Sie mir das bitte schriftlich geben? —, denn nachlesen lässt sich nur, was geschrieben steht."
+    model_answer: "Guten Tag, ich interessiere mich für den Tarif für fünfundzwanzig Euro im Monat. Darf ich kurz nachfragen: Welche Leistungen sind im Preis enthalten? — Und was kommt noch dazu, ist der Anschluss inklusive? — Können Sie mir sagen, wie lange der Preis gültig ist? — Eine Frage noch: Wie und bis wann kann ich kündigen? — Habe ich das richtig verstanden, dass ich jederzeit zum Monatsende kündigen kann und die Kündigung schriftlich schicken muss? — Gut. Können Sie mir das bitte schriftlich geben?"
+    model_translation:
+      en: "Hello, I am interested in the plan for twenty-five euros a month. May I just ask: which services are included in the price? — And what comes on top of that, is the connection included? — Can you tell me how long the price is valid? — One more question: how and by when can I give notice? — Have I understood correctly that I can give notice at the end of any month and have to send the notice in writing? — Good. Could you give me that in writing, please?"
+      ru: "Здравствуйте, меня интересует тариф за двадцать пять евро в месяц. Можно уточнить: какие услуги входят в цену? — А что придётся доплачивать, подключение включено? — Вы можете сказать мне, как долго действительна цена? — И ещё вопрос: как и к какому сроку я могу расторгнуть договор? — Я правильно понял, что могу расторгнуть договор к концу любого месяца и должен отправить заявление в письменном виде? — Хорошо. Вы можете дать мне это в письменном виде?"
+      uk: "Доброго дня, мене цікавить тариф за двадцять п'ять євро на місяць. Чи можу я уточнити: які послуги входять у ціну? — А що доведеться доплачувати, підключення включене? — Чи можете ви сказати мені, як довго дійсна ціна? — І ще питання: як і до якого строку я можу розірвати договір? — Чи правильно я зрозумів, що можу розірвати договір до кінця будь-якого місяця і маю надіслати заяву письмово? — Добре. Чи можете ви дати мені це в письмовому вигляді?"
+    explain:
+      en: "Listen for the order the model works in. Each question names one line of the offer, so each answer is a fact rather than a mood. The polite wrapper costs four words and buys the right to ask a fourth question. Then the answer is said back before anything is agreed — and only after that does the request for paper close the conversation."
+      ru: "Слушайте порядок, в котором работает образец. Каждый вопрос называет одну строку предложения, поэтому каждый ответ — факт, а не настроение. Вежливая обёртка стоит четырёх слов и покупает право задать четвёртый вопрос. Потом ответ пересказывают, прежде чем о чём-то договориться, — и только после этого просьба о бумаге закрывает разговор."
+      uk: "Слухайте порядок, у якому працює зразок. Кожне питання називає один рядок пропозиції, тому кожна відповідь — факт, а не настрій. Ввічлива обгортка коштує чотирьох слів і купує право поставити четверте питання. Потім відповідь переказують, перш ніж про щось домовитися, — і лише після цього прохання про папір закриває розмову."
+      de: "Hör auf die Reihenfolge des Musters. Jede Frage benennt eine Zeile des Angebots, also ist jede Antwort eine Tatsache und keine Stimmung. Die höfliche Verpackung kostet vier Wörter und kauft das Recht auf eine vierte Frage. Danach wird die Antwort zurückgegeben, bevor irgendetwas zugesagt ist — und erst dann schließt die Bitte um Papier das Gespräch."
+
+  - id: sprechen-tarife-vergleichen
+    outcomes: [kosten-vergleichen]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say the whole comparison aloud in one go — then compare with the model."
+      ru: "Произнесите всё сравнение вслух одним куском — затем сравните с образцом."
+      uk: "Промовте все порівняння вголос одним шматком — потім порівняйте зі зразком."
+      de: "Sprich den ganzen Vergleich am Stück laut — vergleich dann mit dem Muster."
+    prompt:
+      en: "Two written estimates for the same repair are on the table. The first one: material 60 euros, labour 90 euros, call-out 25 euros, one year's guarantee. The second one: everything at a flat rate of 190 euros, call-out included, two years' guarantee. Compare them line against line, say which one you are taking, and give the line your choice rests on."
+      ru: "На столе лежат две сметы на один и тот же ремонт. Первая: материалы 60 евро, работа 90 евро, выезд 25 евро, гарантия год. Вторая: всё единой суммой 190 евро, выезд включён, гарантия два года. Сравните их строку со строкой, скажите, какую вы берёте, и назовите строку, на которой держится ваш выбор."
+      uk: "На столі лежать два кошториси на той самий ремонт. Перший: матеріали 60 євро, робота 90 євро, виїзд 25 євро, гарантія рік. Другий: усе єдиною сумою 190 євро, виїзд включено, гарантія два роки. Порівняйте їх рядок із рядком, скажіть, який ви берете, і назвіть рядок, на якому тримається ваш вибір."
+      de: "Auf dem Tisch liegen zwei Kostenvoranschläge für dieselbe Reparatur. Der erste: Material 60 Euro, Arbeitszeit 90 Euro, Anfahrt 25 Euro, ein Jahr Garantie. Der zweite: alles pauschal 190 Euro, Anfahrt inklusive, zwei Jahre Garantie. Vergleich sie Zeile gegen Zeile, sag, welchen du nimmst, und nenn die Zeile, auf der deine Wahl steht."
+    goal:
+      en: "A comparison somebody can disagree with: the same lines on both sides, one total against the other, and a choice justified by a line rather than by a feeling."
+      ru: "Сравнение, с которым можно спорить: одни и те же строки с обеих сторон, итог против итога и выбор, обоснованный строкой, а не ощущением."
+      uk: "Порівняння, з яким можна сперечатися: ті самі рядки з обох боків, підсумок проти підсумку і вибір, обґрунтований рядком, а не відчуттям."
+      de: "Ein Vergleich, dem man widersprechen kann: dieselben Zeilen auf beiden Seiten, Summe gegen Summe und eine Wahl, die auf einer Zeile steht und nicht auf einem Gefühl."
+    checklist:
+      - en: "You put the same lines beside each other before you added anything up: Material, Arbeitszeit, Anfahrt — and you said which of them the second estimate does not charge separately."
+        ru: "Вы положили одинаковые строки рядом, прежде чем что-либо складывать: Material, Arbeitszeit, Anfahrt, — и сказали, какую из них вторая смета отдельно не считает."
+        uk: "Ви поклали однакові рядки поруч, перш ніж щось складати: Material, Arbeitszeit, Anfahrt, — і сказали, якого з них другий кошторис окремо не рахує."
+        de: "Du hast dieselben Zeilen nebeneinandergelegt, bevor du etwas addiert hast: Material, Arbeitszeit, Anfahrt — und gesagt, welche davon der zweite Voranschlag nicht extra berechnet."
+      - en: "The comparison itself used als: Der erste Kostenvoranschlag ist günstiger als der zweite. Never wie, which would say the two cost the same."
+        ru: "Само сравнение прозвучало с als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — оно сказало бы, что обе сметы стоят одинаково."
+        uk: "Саме порівняння прозвучало з als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — воно сказало б, що обидва кошториси коштують однаково."
+        de: "Der Vergleich selbst stand mit als: Der erste Kostenvoranschlag ist günstiger als der zweite. Nie mit wie, das hieße, beide kosten gleich viel."
+      - en: "You named the sums out loud, both of them, and said what the difference consists of: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
+        ru: "Вы назвали вслух обе суммы и сказали, из чего складывается разница: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
+        uk: "Ви назвали вголос обидві суми і сказали, з чого складається різниця: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
+        de: "Du hast beide Summen laut genannt und gesagt, woraus die Differenz besteht: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
+      - en: "Your choice rested on a line and not on the total alone: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
+        ru: "Ваш выбор держался на строке, а не на одном итоге: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
+        uk: "Ваш вибір тримався на рядку, а не на самому підсумку: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
+        de: "Deine Wahl stand auf einer Zeile und nicht allein auf der Summe: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
+    model_answer: "Ich habe die beiden Kostenvoranschläge nebeneinandergelegt. Beim ersten stehen Material, Arbeitszeit und Anfahrt einzeln: sechzig, neunzig und fünfundzwanzig Euro, zusammen hundertfünfundsiebzig. Der zweite rechnet alles pauschal, hundertneunzig Euro, und die Anfahrt ist da schon drin. Der erste ist also im Moment günstiger als der zweite, aber nur um fünfzehn Euro. Dafür gilt die Garantie beim zweiten zwei Jahre statt einem. Ich nehme den zweiten Kostenvoranschlag, weil eine zweite Reparatur im ersten Jahr nichts kostet und ich nichts extra bezahlen muss."
+    model_translation:
+      en: "I have put the two estimates side by side. In the first one material, labour and the call-out are listed separately: sixty, ninety and twenty-five euros, one hundred and seventy-five in total. The second charges everything at a flat rate, one hundred and ninety euros, with the call-out already in it. So the first one is cheaper than the second at the moment, but only by fifteen euros. On the other hand the second one guarantees two years instead of one. I am taking the second estimate, because a second repair in the first year costs nothing and I do not have to pay anything extra."
+      ru: "Я положил обе сметы рядом. В первой материалы, работа и выезд стоят по отдельности: шестьдесят, девяносто и двадцать пять евро, вместе сто семьдесят пять. Вторая считает всё единой суммой — сто девяносто евро, и выезд там уже внутри. Значит, сейчас первая дешевле второй, но всего на пятнадцать евро. Зато во второй гарантия действует два года вместо одного. Я беру вторую смету: повторный ремонт в первый год ничего не стоит, и доплачивать мне не придётся."
+      uk: "Я поклав обидва кошториси поруч. У першому матеріали, робота і виїзд стоять окремо: шістдесят, дев'яносто і двадцять п'ять євро, разом сто сімдесят п'ять. Другий рахує все єдиною сумою — сто дев'яносто євро, і виїзд там уже всередині. Отже, зараз перший дешевший за другий, але лише на п'ятнадцять євро. Зате в другому гарантія діє два роки замість одного. Я беру другий кошторис: повторний ремонт у перший рік нічого не коштує, і доплачувати мені не доведеться."
+    explain:
+      en: "Compare your version against the model's moves, not its words. The lines come first and in the same order on both sides, so the two totals mean the same thing when they finally appear. Then one comparison with als, then the difference in figures, and only at the end the choice — attached to a line of the offer, which is what makes it something the other person can argue with."
+      ru: "Сверяйте свой вариант с ходами образца, а не со словами. Сначала строки, и в одном и том же порядке с обеих сторон, — тогда два итога, когда они наконец прозвучат, будут значить одно и то же. Потом одно сравнение с als, потом разница в цифрах, и только в конце выбор, привязанный к строке предложения: именно это и делает его тем, с чем можно спорить."
+      uk: "Звіряйте свій варіант із ходами зразка, а не зі словами. Спершу рядки, і в тому самому порядку з обох боків, — тоді два підсумки, коли вони нарешті прозвучать, означатимуть одне й те саме. Потім одне порівняння з als, потім різниця в цифрах, і лише наприкінці вибір, прив'язаний до рядка пропозиції: саме це й робить його тим, із чим можна сперечатися."
+      de: "Vergleiche deine Fassung mit den Zügen des Musters, nicht mit seinen Wörtern. Zuerst die Zeilen, auf beiden Seiten in derselben Reihenfolge, damit die zwei Summen dasselbe bedeuten, wenn sie endlich fallen. Dann ein Vergleich mit als, dann die Differenz in Zahlen, und erst am Schluss die Wahl — an eine Zeile des Angebots gehängt, denn genau das macht sie widersprechbar."

@@ -1,8 +1,11 @@
 # build output
 dist/
 .astro/
-src-tauri/target/
-src-tauri/gen/
+**/src-tauri/target/
+**/src-tauri/gen/
+apps/redaktion/src-tauri/binaries/
+# wrangler's local state: the miniflare D1/R2 emulation under `wrangler dev`.
+.wrangler/
 
 # dependencies
 node_modules/
@@ -10,6 +13,9 @@ node_modules/
 # environment
 .env
 .env.*
+# Worker secrets for `wrangler dev` — the local stand-in for `wrangler secret put`.
+.dev.vars
+.dev.vars.*
 
 # macOS
 .DS_Store
@@ -20,10 +26,21 @@ npm-debug.log*
 # The official Wortliste PDFs are copyrighted transcription sources — never committed.
 docs/Goethe-Zertifikat_B1_Wortliste.pdf
 
+# Official Goethe-Institut exam sets (PDFs, audio, video) and everything derived from
+# them — sliced audio, rendered task pages, the local exam manifest — are copyrighted.
+# The exam trainer (ADR 0009) reads them from these local paths; they never enter the repo.
+docs/GeotheInstitute/
+sources/goethe-exams/
+public/exams/
+
 # design-sync (claude.ai/design)
 .ds-sync/
 ds-bundle/
 .design-sync/.cache/
+
+# Local credentials — Cloudflare R2 today. Never committed; the deploy reads
+# CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID from repository secrets instead.
+setenv.sh
 
 # Large local ML checkpoints
 .models/
@@ -38,4 +55,7 @@ tools/listening-studio/.pytest_cache/
 tools/listening-studio/.ruff_cache/
 tools/listening-studio/**/__pycache__/
 
-setenv.sh
+feedback.md
+# Screenshots attached to the feedback inbox — private, like feedback.md itself.
+/IMG_*.jpeg
+/IMG_*.png

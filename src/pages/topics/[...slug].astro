@@ -18,16 +18,25 @@ import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
-import { withBase } from '../../lib/url';
+import SeeAlso from '../../components/topic/SeeAlso.astro';
+import { getCurriculum } from '@da/content/curriculum';
+import { focusIntroducedBy } from '@da/content/focus-tags';
+import { topicPath, withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
-  const topics = await getCollection('topics');
-  return topics.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  const articles = await getCollection('topics');
+  // The route is still the article's path (`a2/perfekt-haben-sein`); everything the page renders
+  // now comes from the sibling manifest, keyed by the id in that path.
+  const byId = new Map(getCurriculum().nodes.map((node) => [node.id, node]));
+  return articles.flatMap((entry) => {
+    const manifest = byId.get(entry.id.split('/').at(-1)!);
+    return manifest ? [{ params: { slug: entry.id }, props: { entry, manifest } }] : [];
+  });
 }
 
-const { entry } = Astro.props;
+const { entry, manifest } = Astro.props;
 const { Content } = await render(entry);
-const data = entry.data;
+const data = { ...manifest, ...manifest.elements };
 const wordFields = (await getCollection('wortfelder')).filter((field) => field.data.topic === data.id);
 // Optional editorial pieces that name this topic. Reviewed only, so a draft is neither
 // listed nor built — and the link is one-way: the topic never declares its pieces, so
@@ -37,8 +46,8 @@ const discoveryPieces = (await getCollection('discovery', ({ data: d }) => d.sta
   .filter((piece) => piece.data.topics.includes(data.id));
 const lexicalContexts = wordFieldContexts(wordFields.map((field) => field.data));
 
-const allTopics = await getCollection('topics');
-const byId = new Map(allTopics.map((t) => [t.data.id, t]));
+const { nodes } = getCurriculum();
+const byId = new Map(nodes.map((t) => [t.id, t]));
 const prerequisites = data.prerequisites
   .map((id) => byId.get(id))
   .filter((t) => t !== undefined);
@@ -60,6 +69,16 @@ const exerciseSets = await Promise.all(
   }),
 );
 
+const activityGroups = [
+  { id: 'core', label: 'topic.activityCore', hint: 'topic.activityCoreHint' },
+  { id: 'extension', label: 'topic.activityExtension', hint: 'topic.activityExtensionHint' },
+  { id: 'application', label: 'topic.activityApplication', hint: 'topic.activityApplicationHint' },
+  { id: 'remediation', label: 'topic.activityRemediation', hint: 'topic.activityRemediationHint' },
+] as const satisfies { id: NonNullable<(typeof exerciseSets)[number]['data']['activity']>; label: StringKey; hint: StringKey }[];
+const groupedExerciseSets = activityGroups
+  .map((group) => ({ ...group, sets: exerciseSets.filter((set) => set.data.activity === group.id) }))
+  .filter((group) => group.sets.length > 0);
+
 const vocabFiles = await Promise.all(
   data.vocab.map(async (id) => {
     const v = await getEntry('vocab', id);
@@ -78,6 +97,48 @@ const readings = await Promise.all(
 );
 
 const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : undefined;
+
+// --- "Siehe auch": every edge derived from data the curriculum owns (ADR 0007) ---
+const introducedHere = Object.entries(focusIntroducedBy)
+  .filter(([, owner]) => owner === data.id)
+  .map(([tag]) => tag);
+
+/** data id -> the page that projects it; presentation-only routing, no curriculum facts */
+const REFERENZ_ROUTES: Record<string, { href: string; title: string }> = {
+  cases: { href: '/referenz/kasus-praepositionen', title: 'Kasus & Präpositionen' },
+  'pronominal-adverbs': { href: '/referenz/da-wo-woerter', title: 'Da- & Wo-Wörter' },
+  'sentence-connectors': { href: '/referenz/satzverbindungen', title: 'Satzverbindungen' },
+  'zahlen-datum-zeit': { href: '/referenz/zahlen-datum-zeit', title: 'Zahlen, Datum & Zeit' },
+  briefe: { href: '/referenz/briefe', title: 'Briefe & Nachrichten' },
+  zeitformen: { href: '/referenz/zeitformen', title: 'Zeitformen & Modus' },
+};
+const referenzLinks = (await getCollection('referenceData'))
+  .filter((r) => {
+    const keys =
+      r.data.id === 'zeitformen'
+        ? new Set(r.data.forms.flatMap((form) => form.focus))
+        : new Set((r.data as { focus?: string[] }).focus ?? []);
+    return introducedHere.some((tag) => keys.has(tag));
+  })
+  .map((r) => REFERENZ_ROUTES[r.data.id])
+  .filter((route) => route !== undefined);
+
+const toChip = (id: string) => {
+  const t = byId.get(id);
+  return t ? [{ id, title_de: t.title_de, level: t.level }] : [];
+};
+const deepensChips = manifest.deepens.flatMap(toChip);
+const deepenedByChips = nodes.filter((n) => n.deepens.includes(data.id)).flatMap((n) => toChip(n.id));
+// Tags this topic's own items drill but another topic introduces — the "builds on" edge.
+const drilledElsewhere = [
+  ...new Set(
+    exerciseSets
+      .flatMap((set) => set.data.items.flatMap((item) => (item.focus ? [item.focus] : [])))
+      .map((tag) => focusIntroducedBy[tag])
+      .filter((owner) => owner && owner !== data.id),
+  ),
+];
+const buildsOnChips = drilledElsewhere.flatMap(toChip);
 if (data.pretest && !pretestSet)
   throw new Error(`Topic ${data.id}: pretest set "${data.pretest}" not found`);
 
@@ -130,11 +191,11 @@ const KIND_KEY: Record<string, StringKey> = {
           <Chrome k="topic.prerequisites" />
           {prerequisites.map((p) => (
             <a
-              href={withBase(`/topics/${p.id}`)}
+              href={withBase(topicPath(p))}
               lang="de"
               class="ml-2 text-sky-700 hover:underline dark:text-sky-400"
             >
-              {p.data.title_de}
+              {p.title_de}
             </a>
           ))}
         </p>
@@ -247,13 +308,52 @@ const KIND_KEY: Record<string, StringKey> = {
   {
     exerciseSets.length > 0 && (
       <section class="mt-12">
-        <h2 class="mb-4 text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
-        <div class="flex flex-col gap-6">
-          {exerciseSets.map((s) => (
-            <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
-          ))}
+        <h2 class="text-2xl font-bold"><Chrome k="topic.sectionExercises" /></h2>
+        <p class="mt-1 mb-5 text-sm text-stone-500 dark:text-stone-400">
+          <Chrome k="topic.activityIntro" />
+        </p>
+        <div class="flex flex-col gap-4">
+          {groupedExerciseSets.map((group) =>
+            group.id === 'core' ? (
+              <section class="rounded-xl border border-amber-300 bg-amber-50/40 p-3 dark:border-amber-800 dark:bg-amber-950/20 sm:p-4">
+                <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2 px-1">
+                  <div>
+                    <h3 class="font-semibold text-stone-900 dark:text-stone-100"><Chrome k={group.label} /></h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-400"><Chrome k={group.hint} /></p>
+                  </div>
+                  <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                    Nächster Schritt
+                  </span>
+                </div>
+                <div class="flex flex-col gap-4">
+                  {group.sets.map((s) => (
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <details class="group rounded-xl border border-stone-200 bg-stone-50/60 open:bg-white dark:border-stone-700 dark:bg-stone-900/40 dark:open:bg-stone-900">
+                <summary class="flex min-h-14 cursor-pointer list-none items-center gap-3 px-4 py-3 marker:content-none">
+                  <span class="text-stone-400 transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block font-semibold text-stone-900 dark:text-stone-100"><Chrome k={group.label} /></span>
+                    <span class="block text-xs text-stone-500 dark:text-stone-400"><Chrome k={group.hint} /></span>
+                  </span>
+                  <span class="rounded-full bg-stone-200 px-2 py-0.5 text-xs tabular-nums text-stone-600 dark:bg-stone-700 dark:text-stone-300">
+                    {group.sets.length}
+                  </span>
+                </summary>
+                <div class="flex flex-col gap-4 border-t border-stone-200 p-3 dark:border-stone-700 sm:p-4">
+                  {group.sets.map((s) => (
+                    <ExerciseSetIsland client:only="react" setId={s.id} set={s.data} document={s.document} documents={s.documents} />
+                  ))}
+                </div>
+              </details>
+            ),
+          )}
         </div>
       </section>
     )
   }
+  <SeeAlso referenz={referenzLinks} deepens={deepensChips} deepenedBy={deepenedByChips} buildsOn={buildsOnChips} />
 </Base>

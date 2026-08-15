@@ -5,7 +5,7 @@ import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   nextTopic: { en: 'Suggested next topic', ru: 'Следующая тема' },

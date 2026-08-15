@@ -41,6 +41,21 @@ units:
         register: "neutral, klar"
         item_types: [audio-comprehension]
         context_sound: "leiser Markt-Hintergrund"
+  - unit: wortbildung
+    level: A1
+    artifacts:
+      - id: ls-wortbildung-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Nachbarn lesen ein Hoffest-Plakat und entschlüsseln Komposita und transparente Adjektive"
+        outcomes: [wortbildung-komposita]
+        required_vocabulary: [Fahrplan, Sommerfest, kostenlos, zuckerlos]
+        grammar_target: "Letztes Nomen bestimmt den Artikel; -los bedeutet ohne"
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Innenhof"
   - unit: menschen-familie
     level: A1
     artifacts:
@@ -429,13 +444,87 @@ units:
       - id: ls-aemter-dienstleistungen-01
         wave: 2
         purpose: model-input
-        scenario: "Gespräch am Schalter über Unterlagen und nächste Schritte"
+        scenario: "Wohnsitz anmelden: Unterlagen, Vollmacht und Meldebestätigung"
         outcomes: [unterlagen-erfragen]
-        duration_seconds: { min: 50, max: 60 }
+        required_vocabulary: [Wohnungsgeberbestätigung, Formular, Vollmacht, Meldebestätigung, kostenlos]
+        grammar_target: "Unterlagen erfragen und eine Verwaltungsauskunft verstehen"
+        duration_seconds: { min: 40, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich"
         item_types: [audio-comprehension]
         context_sound: "leiser Schalterhallen-Raumton"
+  - unit: ort-richtung-praepositionen
+    level: A1
+    artifacts:
+      # model-input rather than listening-outcome: the unit owns no listening outcome — one
+      # reading and three writing — so the artifact carries the spoken form of the genre (a
+      # route described out loud, where wohin/wo/woher follow one another over the same
+      # places) and claims no listening evidence.
+      - id: ls-ort-richtung-praepositionen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Telefon: jemand erzählt, wohin er heute noch muss, wo er gerade ist und woher er kommt"
+        outcomes: [weg-verstehen]
+        duration_seconds: { min: 40, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-freundlich, Telefonat"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: verben-mit-kasus
+    level: A2
+    artifacts:
+      # model-input for the same reason as the unit before it: this one owns a single reading
+      # outcome and three writing outcomes, so the artifact carries the spoken form of the
+      # genre — governed verbs arriving one after another in a short everyday exchange — and
+      # claims no listening evidence.
+      - id: ls-verben-mit-kasus-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzes Telefonat vor einem Umzug: wer ruft wen an, wer hilft wem, worauf wartet man noch"
+        outcomes: [rektion-verstehen]
+        duration_seconds: { min: 40, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-freundlich, Telefonat"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Küchen-Raumton"
+  - unit: zeit-praepositionen
+    level: A2
+    artifacts:
+      # model-input for the third time in this strand and for the same reason: the unit owns
+      # one reading outcome and three writing outcomes, so the artifact carries the spoken
+      # form of the genre — a week being arranged out loud, with the time markers arriving
+      # unstressed and fast — and claims no listening evidence.
+      - id: ls-zeit-praepositionen-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Bekannte stimmen eine Woche ab: ab wann, bis wann, seit wann schon — und wann genau der Kurs beginnt"
+        outcomes: [zeitangabe-verstehen]
+        duration_seconds: { min: 40, max: 55 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-freundlich, Gespräch"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leiser Café-Raumton"
+  - unit: natur-wetter
+    level: A2
+    artifacts:
+      # model-input, not listening-outcome: the unit's four outcomes are one reading and three
+      # production, so there is no listening outcome for an artifact to measure, and claiming one
+      # would be evidence the unit never asked for. What the audio adds is the genre in its spoken
+      # form — the empty `es` is unstressed and runs straight into the verb beside it, so a radio
+      # forecast is where the ear has to recover a word it can barely hear. The unit's dictation
+      # item makes that point in miniature; this artifact makes it in connected speech.
+      - id: ls-natur-wetter-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzer Wetterbericht im Radio: heute, morgen und das Wochenende, mit Temperaturen und einer Warnung vor einem Gewitter"
+        outcomes: [wetterbericht-verstehen]
+        required_vocabulary: [Wetter, Grad, Gewitter, bewölkt, trocken]
+        grammar_target: "unpersönliches es mit Wetterverben und mit sein/werden"
+        duration_seconds: { min: 35, max: 50 }
+        speakers: { min: 1, max: 1 }
+        register: "neutral-sachlich, Rundfunk"
+        item_types: [audio-comprehension]
+        context_sound: "kein Raumton, Studioaufnahme"
   - unit: erfahrungen-erzaehlen
     level: B1
     artifacts:
@@ -557,3 +646,200 @@ units:
         register: "neutral-höflich, natürlich"
         item_types: [audio-comprehension]
         context_sound: "sehr leiser Beratungsraum"
+  - unit: gesellschaft-zusammenleben
+    level: B1
+    artifacts:
+      - id: ls-gesellschaft-zusammenleben-01
+        wave: 2
+        purpose: listening-outcome
+        scenario: "Hausversammlung über die Nutzung des gemeinsamen Hofs — Spielplatz, Parkplätze oder Garten"
+        outcomes: [diskussion-folgen]
+        required_vocabulary: [Versammlung, Mehrheit, Einwand, Gemeinschaft, abstimmen]
+        grammar_target: "obwohl gegen trotzdem, alle/einige/jeder und die Relativwörter was und wo"
+        duration_seconds: { min: 65, max: 85 }
+        speakers: { min: 3, max: 3 }
+        register: "neutral, alltagsnah, leicht kontrovers"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Gemeinschaftsraum mit wenigen Personen"
+  - unit: digitales-leben
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome: this unit owns no listening outcome —
+      # its three are reading, writing and spoken production — so the artifact carries the
+      # genre's spoken form (steps given over the phone) and claims no listening evidence.
+      - id: ls-digitales-leben-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf bei der Bibliothekshilfe: zwei Schritte zur Anmeldung in der Lese-App"
+        outcomes: [anleitung-verstehen]
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-höflich, geduldig"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: kultur-freizeit
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome, for the same reason as B1.11: this unit
+      # owns no listening outcome — its three are reading, spoken interaction and writing —
+      # so the artifact carries the genre's spoken form (a programme read out over the
+      # phone) and claims no listening evidence.
+      - id: ls-kultur-freizeit-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf im Kulturbüro: Preise, Beginn und Einlass für das Wochenendprogramm"
+        outcomes: [programm-verstehen]
+        duration_seconds: { min: 50, max: 70 }
+        speakers: { min: 2, max: 2 }
+        register: "freundlich-sachlich, Auskunft am Telefon"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: geld-vertraege
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome, for the same reason as B1.11 and B1.12:
+      # this unit owns no listening outcome — its three are reading, spoken interaction and
+      # spoken production — so the artifact carries the genre's spoken form (a bill queried
+      # over the phone) and claims no listening evidence.
+      - id: ls-geld-vertraege-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anruf beim Anbieter: eine Zeile der Rechnung stimmt nicht, der Zahltag bleibt"
+        outcomes: [rechnung-pruefen]
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Servicegespräch am Telefon"
+        item_types: [audio-comprehension]
+        context_sound: "sehr leises Telefonrauschen"
+  - unit: informationen-vermitteln
+    level: B1
+    artifacts:
+      # model-input rather than listening-outcome: this unit owns no listening outcome —
+      # its three are spoken production and twice writing — so the artifact carries the
+      # spoken form of the genre (a message left for somebody who is not there) and claims
+      # no listening evidence. It is what the unit's own outcome asks the learner to relay,
+      # heard rather than read.
+      - id: ls-informationen-vermitteln-01
+        wave: 2
+        purpose: model-input
+        scenario: "Nachricht an der Wohnungstür: ein Termin rückt, der Schlüssel bekommt eine eigene Frist, die Uhrzeit bleibt"
+        outcomes: [mitteilung-weitergeben]
+        duration_seconds: { min: 50, max: 70 }
+        speakers: { min: 2, max: 2 }
+        register: "nachbarschaftlich-freundlich, gesprochene Nachricht"
+        item_types: [audio-comprehension]
+        context_sound: "leises Treppenhaus"
+  - unit: unfall-notruf
+    level: B1
+    artifacts:
+      # listening-outcome is not available here either: the unit's four outcomes are one reading,
+      # two spoken interaction and one spoken production. model-input carries what the learner
+      # has to imitate — a real emergency call, where the dispatcher's questions arrive faster
+      # than a course dialogue and the caller has to answer in the order the system needs.
+      - id: ls-unfall-notruf-01
+        wave: 2
+        purpose: model-input
+        scenario: "Notruf 112: die Leitstelle fragt nach Adresse, Hergang und Verletzung, die anrufende Person antwortet knapp und bleibt am Telefon"
+        outcomes: [notruf-absetzen]
+        required_vocabulary: [Notruf, verletzt, Krankenwagen, bluten, Kreuzung]
+        grammar_target: "Reihenfolge der Angaben und die Perfektbildung von passieren"
+        duration_seconds: { min: 45, max: 65 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-dringlich, Telefongespräch"
+        item_types: [audio-comprehension]
+        context_sound: "Straßengeräusch im Hintergrund"
+  - unit: polizei-anzeige
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome to measure. What the audio adds is the counter itself —
+      # the officer's questions arrive as reported speech coming back at you, which is the one
+      # place the construction is heard rather than read.
+      - id: ls-polizei-anzeige-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Polizeiwache: eine Anzeige wegen Fahrraddiebstahl, der Beamte fragt nach Zeitraum, Ort und Zeugen und wiederholt die Angaben"
+        outcomes: [diebstahl-melden]
+        required_vocabulary: [Anzeige, gestohlen, Zeugin, Verdacht, Beweis]
+        grammar_target: "indirekte Rede mit dass und ob, Partizip als Adjektiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Amtsgespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Amtsraum"
+  - unit: versicherungen-behoerden
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome for an artifact to measure. The genre it carries is the
+      # counter conversation in which the learner has to say they do not know — the one line
+      # this topic exists to make sayable, and the one a written model cannot rehearse.
+      - id: ls-versicherungen-behoerden-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Krankenkasse: eine Kundin weiß nicht, ob ein Schaden versichert ist, fragt nach und bittet um einen schriftlichen Nachweis"
+        outcomes: [versicherung-klaeren]
+        required_vocabulary: [versichert, Nachweis, Frist, Antrag, Behörde]
+        grammar_target: "ob-Nebensatz nach weiß nicht, Präpositionen mit Genitiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Schaltergespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Wartebereich"
+  - unit: sucht-lebensstil
+    level: B1
+    artifacts:
+      # model-input: the unit's outcomes are one reading, one writing and two spoken production,
+      # so no listening outcome exists to measure. The genre it carries is advice given without
+      # moralising — the register question this topic is really about.
+      - id: ls-sucht-lebensstil-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Bekannte sprechen über das Aufhören: die eine erzählt, was sie versucht hat, die andere rät vorsichtig und ohne Vorwurf"
+        outcomes: [rat-zum-aufhoeren]
+        required_vocabulary: [Zigarette, aufhören, Sucht, Alkohol, Nichtraucher]
+        grammar_target: "irreale Bedingung mit Konjunktiv II, lassen"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-vertraulich, Gespräch unter Bekannten"
+        context_sound: "leiser Küchen-Raumton"
+        item_types: [audio-comprehension]
+  - unit: bildungswege
+    level: B1
+    artifacts:
+      # model-input: one reading, two writing and one spoken-interaction outcome, so again no
+      # listening outcome. The audio carries the Kita counter — the conversation where a parent
+      # has to state a condition and a purpose in the same breath.
+      - id: ls-bildungswege-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anmeldung in der Kita: eine Mutter fragt nach einem Platz, nennt Bedingungen und begründet, warum sie den Platz braucht"
+        outcomes: [betreuung-klaeren]
+        required_vocabulary: [Kita, Platz, anmelden, Grundschule, Hochschule]
+        grammar_target: "falls gegen wenn, damit gegen um … zu"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-freundlich, Beratungsgespräch"
+        context_sound: "leiser Gruppenraum im Hintergrund"
+        item_types: [audio-comprehension]
+  - unit: gespraech-steuern
+    level: B1
+    artifacts:
+      # listening-outcome would be wrong here for the usual reason — the unit's five outcomes are
+      # two spoken production, two spoken interaction and one writing, so there is nothing for a
+      # listening artifact to measure. But the model-input case is stronger for this unit than for
+      # any other: Redemittel are heard before they are ever read, and the whole point of
+      # zuhoeren-signalisieren is that the signal arrives in somebody else's turn. A transcript
+      # cannot rehearse an interruption.
+      - id: ls-gespraech-steuern-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurze Besprechung zu dritt: jemand eröffnet den Beitrag, wird unterbrochen, bittet um das Wort zurück, gibt es weiter und schließt ab"
+        outcomes: [wort-nehmen-geben]
+        required_vocabulary: [Moment, unterbrechen, Beispiel, übrigens, kurz]
+        grammar_target: "Redemittel als feste Wendungen; Konjunktiv II der Höflichkeit"
+        duration_seconds: { min: 60, max: 80 }
+        speakers: { min: 3, max: 3 }
+        register: "beruflich-informell, Besprechung"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Besprechungsraum"

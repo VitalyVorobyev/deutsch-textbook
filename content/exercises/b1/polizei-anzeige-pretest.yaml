@@ -1,0 +1,54 @@
+topic: polizei-anzeige
+role: pretest
+title:
+  en: "Before you read — reporting what somebody said"
+  ru: "Перед чтением — как передать чужие слова"
+  uk: "Перед читанням — як передати чужі слова"
+
+# Three guesses, one per decision the article answers: where the verb lands in a dass-clause,
+# which word a reported question keeps, and whether a participle in front of a noun declines.
+# Two are non-mc — a pretest is generation, not recognition.
+items:
+  - id: dass-verbendstellung
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    key_tokens: ["dass", "hat"]
+    prompt_en: "The witness says that he did not see anything."
+    prompt_ru: "Свидетель говорит, что ничего не видел."
+    prompt_uk: "Свідок каже, що нічого не бачив."
+    answer: "Der Zeuge sagt, dass er nichts gesehen hat."
+    explain:
+      en: "*Dass* opens a Nebensatz, and a Nebensatz puts its conjugated verb at the very end. The conjugated part of a perfect is the auxiliary, so *hat* comes after the participle: *gesehen hat*, not *hat gesehen*."
+      ru: "*Dass* открывает придаточное, а придаточное ставит спрягаемый глагол в самый конец. Спрягаемая часть перфекта — вспомогательный глагол, поэтому *hat* идёт после причастия: *gesehen hat*, а не *hat gesehen*."
+      uk: "*Dass* відкриває підрядне, а підрядне ставить відмінюване дієслово в самий кінець. Відмінювана частина перфекта — допоміжне дієслово, тому *hat* іде після дієприкметника: *gesehen hat*, а не *hat gesehen*."
+
+  - id: ob-oder-wann
+    outcomes: [aussage-wiedergeben]
+    type: cloze
+    instruction:
+      en: "Fill in the word each reported question needs."
+      ru: "Вставьте слово, которого требует каждый переданный вопрос."
+      uk: "Вставте слово, якого потребує кожне передане питання."
+    text: "Sie fragt, {{ob}} ich den Täter erkannt habe. Er fragt, {{wann}} der Einbruch passiert ist."
+    translation:
+      en: "She asks whether I recognised the perpetrator. He asks when the break-in happened."
+      ru: "Она спрашивает, узнал ли я преступника. Он спрашивает, когда произошёл взлом."
+      uk: "Вона питає, чи впізнав я злочинця. Він питає, коли стався злам."
+    explain:
+      en: "A yes/no question needs *ob* — there is no question word to keep, so German supplies one. A question that already has a question word simply keeps it: *wann*. The trap in the second gap is *wenn*, which means *if* and belongs to conditions."
+      ru: "Вопросу «да/нет» нужен *ob*: сохранять нечего, поэтому немецкий подставляет союз. Вопрос, у которого вопросительное слово уже есть, просто сохраняет его: *wann*. Ловушка второго пропуска — *wenn*: оно значит «если» и относится к условиям, тогда как русское «когда» покрывает оба случая."
+      uk: "Питанню «так/ні» потрібен *ob*: зберігати нічого, тому німецька підставляє сполучник. Питання, у якого питальне слово вже є, просто зберігає його: *wann*. Пастка другого пропуску — *wenn*: воно означає «якщо» і стосується умов, тоді як українське «коли» покриває обидва випадки."
+
+  - id: partizip-endung
+    outcomes: [diebstahl-melden]
+    type: mc
+    prompt: "Welche Form ist richtig?"
+    options:
+      - "das gestohlene Fahrrad"
+      - "das gestohlen Fahrrad"
+      - "das gestohlenes Fahrrad"
+    correct: 0
+    explain:
+      en: "In front of a noun a Partizip II behaves as an adjective, so it takes the ending the article and case require — after *das* in the accusative or nominative singular neuter, that is *-e*. A bare participle stands only after *sein* or *werden*: *Das Fahrrad wurde gestohlen*."
+      ru: "Перед существительным Partizip II ведёт себя как прилагательное и берёт окончание, которого требуют артикль и падеж: после *das* в именительном или винительном среднего рода это *-e*. Без окончания причастие стоит только после *sein* или *werden*: *Das Fahrrad wurde gestohlen*."
+      uk: "Перед іменником Partizip II поводиться як прикметник і бере закінчення, якого вимагають артикль і відмінок: після *das* у називному чи знахідному середнього роду це *-e*. Без закінчення дієприкметник стоїть лише після *sein* або *werden*: *Das Fahrrad wurde gestohlen*."

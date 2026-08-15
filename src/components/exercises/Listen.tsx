@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import type { z } from 'zod';
-import type { listenItemSchema } from '../../lib/schemas';
-import { dictationMatches, normalizeAnswer } from '../../lib/cloze';
-import { dictationSlip } from '../../lib/production';
-import { diffExpectedWords } from '../../lib/worddiff';
+import type { listenItemSchema } from '@da/schema';
+import { dictationMatches, normalizeAnswer } from '@da/grading/cloze';
+import { dictationSlip } from '@da/grading/production';
+import { diffExpectedWords } from '@da/grading/worddiff';
 import { GERMAN_INPUT_KEYS as SPECIAL_CHARS } from '../../lib/typing';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import { pick } from '../../lib/prefs';
@@ -14,7 +14,7 @@ import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from '.
 
 type ListenItem = z.infer<typeof listenItemSchema>;
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   noTts: {
     en: 'Audio is not available on this device — copy the sentence instead.',
@@ -138,6 +138,7 @@ export function Listen({
             : 'border-stone-300 focus:border-amber-500 dark:border-stone-600'
         }`}
         autoCapitalize="off"
+        autoCorrect="off"
         autoComplete="off"
         spellCheck={false}
       />

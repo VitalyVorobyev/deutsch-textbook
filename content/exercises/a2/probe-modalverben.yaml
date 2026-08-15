@@ -17,7 +17,7 @@ title:
 arming:
   - a2/modalverben::order-infinitiv-ende
   - a2/modalverben::order-inversion
-  - a2/modalverben::uebersetzen-muessen
+  - a2/modalverben-produktion::uebersetzen-muessen
 items:
   - id: variant-a
     outcomes: [modal-satzklammer]
@@ -79,6 +79,7 @@ items:
       uk: "Відмінюється лише модальне дієслово, і воно займає друге місце. Увесь зміст речення — коли, що — збирається в середині, а інфінітив виштовхується в самий кінець: will … kochen. Що довша середина, то сильніша спокуса поставити інфінітив одразу за модальним дієсловом, як в українській («хоче приготувати суп»). Німецька змушує притримати його до останнього слова."
 
   - id: variant-c
+    revision: 2
     outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
@@ -91,6 +92,11 @@ items:
     prompt_uk: "Де я можу купити квитки?"
     answer: "Wo kann ich Fahrkarten kaufen?"
     key_tokens: ["kann", "kaufen"]
+    accept:
+      # Karten and Tickets are ordinary German for the same prompt; the graded bracket
+      # (kann … kaufen) stands in every rendering, like the siblings' accept lists.
+      - "Wo kann ich Karten kaufen?"
+      - "Wo kann ich Tickets kaufen?"
     explain:
       en: "A W-question changes nothing about the bracket: the question word takes position 1, the modal kann is still the second element, and the infinitive kaufen still ends the sentence. English puts 'buy' right after 'I' — German makes you wait for it."
       ru: "Вопрос с вопросительным словом ничего не меняет в рамке: вопросительное слово занимает первое место, модальный глагол kann остаётся вторым, а инфинитив kaufen по-прежнему замыкает предложение. По-русски «купить» стоит сразу после «могу» — по-немецки его приходится ждать до конца."

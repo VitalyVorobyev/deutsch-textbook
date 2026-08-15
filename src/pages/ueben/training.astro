@@ -6,16 +6,15 @@ import UebenNav from '../../components/UebenNav.astro';
 import MixedTraining from '../../components/training/MixedTraining';
 import type { TrainingSet } from '../../components/training/MixedTraining';
 import { getTopicNodes } from '../../lib/content';
-import { getCurriculum } from '../../lib/curriculum';
+import { getCurriculum } from '@da/content/curriculum';
 
-const [nodes, exercises, topics, documents] = await Promise.all([
+const [nodes, exercises, documents] = await Promise.all([
   getTopicNodes(),
   getCollection('exercises'),
-  getCollection('topics'),
   getCollection('documents'),
 ]);
-const { spine } = getCurriculum();
-const topicById = new Map(topics.map((t) => [t.data.id, t.data]));
+const { spine, nodes: manifests } = getCurriculum();
+const topicById = new Map(manifests.map((t) => [t.id, t]));
 const documentById = new Map(documents.map((document) => [document.id, document.data]));
 
 const sets: TrainingSet[] = exercises.map((e) => {
@@ -38,8 +37,11 @@ const sets: TrainingSet[] = exercises.map((e) => {
 
 <Base title="Gemischtes Training">
   <UebenNav active="training" />
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="training.pageTitle" /></h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">
+  <!-- Same defect as Wiederholen: the active tab already names the page on a phone.
+       sr-only keeps the H1 in the accessibility tree; the description is hidden
+       outright. Both return unchanged at sm+. -->
+  <h1 class="text-3xl font-bold tracking-tight sr-only sm:not-sr-only"><Chrome k="training.pageTitle" /></h1>
+  <p class="hidden sm:block mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
       A mixed session across all topics — constantly switching rules forces you to recognize
       which one applies, something practicing one topic at a time never trains.

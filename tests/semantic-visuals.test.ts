@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import YAML from 'yaml';
-import { visualDocumentSchema } from '../src/lib/schemas';
+import { visualDocumentSchema } from '@da/schema';
 
 const root = resolve(import.meta.dir, '..');
 

@@ -1,0 +1,45 @@
+topic: perfekt-haben-sein
+role: probe
+title: {en: "Probe — build the Partizip II", ru: "Проверка — образование Partizip II", uk: "Перевірка — утворення Partizip II"}
+arming:
+  - a2/perfekt-haben-sein::partizip2-tabelle
+  - a2/perfekt-haben-sein::match-partizip
+  - a2/perfekt-haben-sein::cloze-studiert
+  - a2/perfekt-haben-sein::mc-gemacht
+  - a2/perfekt-haben-sein::cloze-aufgestanden
+  - a2/perfekt-haben-sein::cloze-bezahlt
+  - a2/perfekt-produktion::cloze-partizip-vier-regeln
+items:
+  - id: variant-a
+    outcomes: [perfekt-vergangenheit-erzaehlen]
+    type: translate
+    focus: partizip2-form
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We talked on the phone for a long time and then tidied the kitchen."
+    prompt_ru: "Мы долго разговаривали по телефону, а потом убрали кухню."
+    prompt_uk: "Ми довго розмовляли телефоном, а потім прибрали кухню."
+    answer: "Wir haben lange telefoniert und danach die Küche aufgeräumt."
+    key_tokens: ["telefoniert", "aufgeräumt"]
+    explain: {en: "-ieren verbs take no ge-: telefoniert. A separable prefix places ge inside the word: aufgeräumt.", ru: "Глаголы на -ieren не получают ge-: telefoniert. У отделяемой приставки ge стоит внутри слова: aufgeräumt.", uk: "Дієслова на -ieren не мають ge-: telefoniert. За відокремлюваного префікса ge стоїть усередині слова: aufgeräumt."}
+  - id: variant-b
+    outcomes: [perfekt-vergangenheit-erzaehlen]
+    type: translate
+    focus: partizip2-form
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I did not understand the question."
+    prompt_ru: "Я не понял вопрос."
+    prompt_uk: "Я не зрозумів запитання."
+    answer: "Ich habe die Frage nicht verstanden."
+    key_tokens: ["habe", "Frage", "nicht", "verstanden"]
+    explain: {en: "The inseparable prefix ver- blocks ge-, and the strong lexical form is verstanden.", ru: "Неотделяемая приставка ver- блокирует ge-, а сильная словарная форма — verstanden.", uk: "Невідокремлюваний префікс ver- блокує ge-, а сильна словникова форма — verstanden."}
+  - id: variant-c
+    outcomes: [perfekt-vergangenheit-erzaehlen]
+    type: translate
+    focus: partizip2-form
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I ordered the form online and filled it out."
+    prompt_ru: "Я заказал бланк онлайн и заполнил его."
+    prompt_uk: "Я замовив бланк онлайн і заповнив його."
+    answer: "Ich habe das Formular online bestellt und ausgefüllt."
+    key_tokens: ["habe", "Formular", "bestellt", "ausgefüllt"]
+    explain: {en: "bestellen has inseparable be- and no ge-. ausfüllen is separable and inserts ge after aus-: ausgefüllt.", ru: "У bestellen неотделяемая be-, поэтому ge- нет. ausfüllen — отделяемый глагол, и ge вставляется после aus-: ausgefüllt.", uk: "У bestellen невідокремлюване be-, тому ge- немає. ausfüllen — відокремлюване дієслово, і ge вставляється після aus-: ausgefüllt."}

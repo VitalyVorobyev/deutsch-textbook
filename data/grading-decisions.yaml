@@ -1,5 +1,5 @@
 # Linguistic rulings on rejected translate renderings — the committed memory of the
-# audit's grading-review queue (schema: gradingDecisionSchema in src/lib/schemas.ts;
+# audit's grading-review queue (schema: gradingDecisionSchema in packages/schema/src/index.ts;
 # semantics: CLAUDE.md "Drills from progress" and .agents/skills/progress-review).
 #
 #   item:      <set-id>:<item-id> of the translate item
@@ -248,19 +248,19 @@
   note: "English-interference we for wir — two edits, beyond slip tolerance. The haben-sein target (sind … geblieben) was met — unattributed."
   decidedAt: 2026-07-14
 
-- item: a2/termine-vereinbaren:uebersetzen-absagen
+- item: a2/termine-produktion:uebersetzen-absagen
   given: "Ich möchte einen Termin absagen"
   decision: accept
   note: "Reverses the 2026-07-14 confirm, which read prompt_en ('the appointment'). «Я хотел бы отменить встречу» marks no definiteness, and cancelling an appointment is as ordinary as cancelling the one just discussed. einen/den is indeed a closed-class choice and never a slip — but it is a choice the prompt left open, and the graded bracket möchte … absagen was right."
   decidedAt: 2026-08-03
 
-- item: a2/modalverben:uebersetzen-helfen-frage
+- item: a2/modalverben-produktion:uebersetzen-helfen-frage
   given: "Kannst do mir helfen?"
   decision: accept
   note: "Non-word slip: do for du, one edit, outside the graded tokens (mir was right). Scorer forgiveness endorsed; no content change."
   decidedAt: 2026-07-14
 
-- item: a2/modalverben:uebersetzen-muessen
+- item: a2/modalverben-produktion:uebersetzen-muessen
   given: "Ich muss heite arbeiten"
   decision: accept
   note: "Non-word slip: heite for heute, one edit, outside the graded tokens (muss … arbeiten intact). No content change."
@@ -272,7 +272,7 @@
   note: "Non-word slip: Artzt for Arzt, one edit, outside the graded token (zum was right). No content change."
   decidedAt: 2026-07-14
 
-- item: a2/dativ:uebersetzen-helfen
+- item: a2/dativ-produktion:uebersetzen-helfen
   given: "Ich hilfe meinem Bruder"
   decision: accept
   note: "Endorsed, with a caveat: hilfe is plausibly a chosen stem-change overgeneralization (du hilfst → ✗ ich hilfe), not a pure typo. It is rightly unattributable here — the item grades verben-mit-dativ (meinem was right), and pinning the verb would create false attributions — so the signal lives in this note. Drill note: verb-endungen — stem change is singular du/er only, never ich."
@@ -956,7 +956,7 @@
   note: "The graded target is verbzweit on lese, and lese sits in position 2 straight after dann. einen Kaffee is ordinary German for a serving, and the prompt's bare mass noun coffee does not fix the count reading either way — unlike a lamp or tickets, where the prompt does. Accept list closed over connector (und dann / , dann) × Kaffee / einen Kaffee."
   decidedAt: 2026-08-02
 
-- item: a1/akkusativ:uebersetzen-lampe
+- item: a1/akkusativ-anwenden:uebersetzen-lampe
   given: "Morgen kaufe ich die Lampe"
   decision: confirm
   note: "The prompt says a lamp, and die Lampe makes it a specific one already known to both speakers. Same ruling as a2/probe-modalverben:variant-b (die Suppe): the rejection stands even though the graded verbzweit token kaufe is intact, because the prompt determines definiteness. Recurred twice."
@@ -1021,3 +1021,456 @@
   decision: confirm
   note: "passen takes the day as its subject: Der Donnerstag passt meiner Frau nicht. Adding es gives the clause two subjects, and the expletive is only available when no other subject is present (Es passt meiner Frau nicht). The dative targets meiner and ihr were correct. drill note: expletive es disappears once a real subject occupies the slot."
   decidedAt: 2026-08-02
+
+- item: b1/lernen-zukunft:uebersetzen-statt-videos
+  given: "Statt bloß Videos zu schauen, wiederhole ich jeden Abend Grammatik."
+  decision: accept
+  note: "bloß is a standard synonym of nur as a restrictive adverb, and «просто»/«просто» name no particular one of them. The graded skeleton — Statt … zu schauen with the fronted clause in position 1 and wiederhole immediately after — is exactly right. The intensifier carries no part of ohne-statt-zu, so the sibling joins the accept list across the item's three clause orders."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft:uebersetzen-statt-videos
+  given: "Statt einfahr Videos zu schauen, wiederhole ich jeden Abend Grammatik."
+  decision: confirm
+  note: "einfahr is not a German word. The statt … zu frame around it is correct, and today's grader leaves the divergence outside ohne-statt-zu, so the ruling costs the focus signal nothing."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-wegen-verspaetung
+  given: "Wegen der Verspettung haben wir den letzten Zug nach Hamburg verpasst"
+  decision: confirm
+  note: "Verspettung misspells Verspätung. Wegen der is correct and the genitive target survived; the divergence is orthographic and sits outside praeposition-genitiv."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-freuen
+  given: "Ich würde mich gefreut, wenn Sie mir bis Freitag antwotren könnten."
+  decision: confirm
+  note: "würde takes the infinitive: Ich würde mich freuen, never würde mich gefreut. That is the konjunktiv2-form target itself, so the rejection is right and the attribution belongs to the focus. antwotren is a separate slip for antworten."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-freuen
+  given: "Ich würde mich freuen, wenn Sie mir antworten könnten."
+  decision: confirm
+  note: "Correct German but an incomplete translation: bis Freitag is dropped, and the deadline is the informative half of the sentence. The Konjunktiv II frame itself was right, and today's grader keeps the divergence outside konjunktiv2-form."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-deshalb-treppe
+  given: "Der Aufzug wird gestrichten. Deshalb nutze ich diese Woche die Treppe"
+  decision: confirm
+  note: "gestrichten is not a form of streichen; the participle is gestrichen. The inversion after Deshalb is correct. Instrument note paid for in the same change: nutzen renders «пользуюсь» as faithfully as benutzen and was neither accepted nor pinned, so the finite verb the rule grades was invisible to key_tokens and the miss could have been attributed to konjunktionaladverb-inversion. nutze now joins both, across the item's four order/punctuation cells."
+  decidedAt: 2026-08-03
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen
+  given: "Während warteten wir, beginnt es zu regnen."
+  decision: confirm
+  note: "Während is a subordinating conjunction and sends the finite verb to the end — Während wir warteten. The rendering keeps verb-second, which is precisely the temporal-nebensatz confusion, so the error is the focus's own. beginnt also loses the past tense the narration needs."
+  decidedAt: 2026-08-03
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss vorher anmelden"
+  decision: confirm
+  note: "sich anmelden is reflexive and the pronoun is obligatory: Man muss sich vorher anmelden. Without it the verb has no object and the clause is ungrammatical. Man and muss were both right, and today's grader keeps the divergence outside indefinitpronomen. drill note: reflexive pronoun dropped from a governed reflexive verb (sich anmelden, sich bewerben, sich beeilen)."
+  decidedAt: 2026-08-03
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss"
+  decision: confirm
+  note: "An abandoned attempt — two words of a five-word sentence. Nothing to rule linguistically."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-an-deiner-stelle
+  given: "An deiner Stelle, würde ich mich bei dem Hotel beschweren"
+  decision: confirm
+  note: "A fronted adverbial takes no comma before the finite verb: An deiner Stelle würde ich … The rendering also drops sofort/gleich, which the prompt's «сразу» carries. bei dem for beim is unobjectionable on its own. The Konjunktiv II advice frame survived, so the divergence sits outside konjunktiv2-ratschlag."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-hof-sodass
+  given: "Den Hof wird repariert, sodass die Kinder nicht auf die Straße spielen können."
+  decision: confirm
+  note: "The subject of a passive clause is nominative: Der Hof wird repariert. auf die Straße spielen is also wrong — spielen names a location, so it takes the dative auf der Straße, and the prompt says draußen rather than in the street at all. The sodass clause's own verb-final order was right."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-miete
+  given: "Die Miete muss nich Bar bezahlt werden"
+  decision: confirm
+  note: "nich misspells nicht, and bar is an adverb here, so it stays lower case — bar bezahlen. muss nicht for the absent obligation was right, so the divergence sits outside duerfen-muessen."
+  decidedAt: 2026-08-03
+
+- item: b1/regeln-verantwortung:uebersetzen-fahrraeder
+  given: "Die Fahräder müssen bis Sonntag im Hof gestellt werden"
+  decision: confirm
+  note: "Fahräder misspells Fahrräder. More substantially, stellen names a movement into a place and governs the accusative: in den Hof, not im Hof. The modal passive itself — müssen … gestellt werden — was correct. drill note: stellen/legen/setzen take wohin (accusative) even when the resulting state is a location."
+  decidedAt: 2026-08-03
+
+- item: b1/konsum-umwelt:uebersetzen-sofa
+  given: "Das altes Sofa wurde letztes Woche entsorgt."
+  decision: confirm
+  note: "After the definite article the adjective takes the weak -e: das alte Sofa. Woche is feminine, so the time phrase is letzte Woche. The past passive wurde … entsorgt was exactly right, and today's grader keeps both slips outside passiv-vergangenheit."
+  decidedAt: 2026-08-03
+
+- item: a2/freunde-feste-produktion:uebersetzen-aber-sondern-chat
+  given: "Wir treffen nicht um acht, sondern um neun. Ich bringe die Getränke, aber den Kuchen nicht"
+  decision: confirm
+  note: "sich treffen is reflexive: Wir treffen uns nicht um acht. Without uns the verb is transitive and the clause says they are not meeting someone unnamed. sondern and aber were both placed correctly, so the divergence sits outside aber-sondern. drill note: the same dropped reflexive pronoun as a2/man-und-besitz:uebersetzen-man-regel."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft-produktion:uebersetzen-ohne-nachdenken
+  given: "Marta antwortet den Fragen, ohne lange nachzudenken"
+  decision: confirm
+  note: "antworten takes a dative person but a prepositional object for the thing answered: auf die Fragen antworten. den Fragen makes the questions the addressee. The ohne … zu clause was correct, so the valence error sits outside ohne-statt-zu. drill note: antworten auf + Akkusativ against jemandem antworten."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-wohnen:variant-c
+  given: "Es gibt einen Tisch in der Küche, aber es gibt keinen Stuhl"
+  decision: accept
+  note: "Correct German throughout, and both graded articles are exactly right — einen Tisch, keinen Stuhl. The authored answer fronts In der Küche; the learner used the neutral order with the locative after the object and repeated es gibt in the second clause, both of which are ordinary. Nothing in «На кухне есть стол» requires the fronting. The item had no accept list at all, which is why a fully correct probe answer was scored as a failure of akkusativ-artikel."
+  decidedAt: 2026-08-03
+
+- item: b1/probe-erfahrungen-erzaehlen-temporal-nebensatz:variant-a
+  given: "Bevor ich ins Bett ging, stehlt ich den Wecker."
+  decision: confirm
+  note: "stehlt is no form of stellen — the Präteritum is stellte — and stehlen is a different verb entirely. The bevor-clause with its final ging was correct, so the graded temporal structure survived and the divergence sits outside temporal-nebensatz."
+  decidedAt: 2026-08-03
+
+- item: a2/reisen-verkehr:uebersetzen-koennen-sie-helfen
+  given: "Entschuldigung, können Sie mir helfen? Main Zug fählt aus."
+  decision: confirm
+  note: "Main for Mein and fählt for fällt are both misspellings. The formal address — können Sie mir helfen — was right, so the divergence sits outside du-sie."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-alltag-zeit:variant-c
+  given: "Im Juli habe ich viel Zeit, aber arbeite ich am Mittwoch."
+  decision: confirm
+  note: "aber is a coordinating conjunction in position 0 and does not take the verb with it: aber ich arbeite am Mittwoch, or aber am Mittwoch arbeite ich. The rendering inverts as though aber were an adverb. Im and am were both correct, so the divergence sits outside um-am-zeit. drill note: aber/und/oder/denn/sondern occupy position 0 and never trigger inversion — the mirror image of the deshalb rule."
+  decidedAt: 2026-08-03
+
+- item: a1/probe-menschen-familie:variant-c
+  given: "Das ist meine Tochter. Ihr Mann ist Arzt von Beruf."
+  decision: accept
+  note: "Correct German, and both graded possessives are exactly right — meine Tochter, Ihr Mann. von Beruf is an idiomatic expansion of the bare predicate noun, not a change of claim: «Её муж — врач» and Ihr Mann ist Arzt von Beruf say the same thing. The item carried no accept list, so an entirely correct probe answer was scored as a failure of possessivartikel."
+  decidedAt: 2026-08-03
+
+- item: b1/lernen-zukunft:uebersetzen-falls-antwort
+  given: "Falls die Schulle nicht antwortet, rufe ich am Montag."
+  decision: confirm
+  note: "Schulle misspells Schule, and anrufen has lost its separable prefix — rufe ich am Montag an. Without an the verb is rufen, to shout, and the sentence no longer says what it means to. The falls-clause itself was correct, so the divergence sits outside falls-wenn. drill note: separable prefix dropped from the end of the main clause."
+  decidedAt: 2026-08-03
+
+- item: b1/reisen-probleme:uebersetzen-anschluss-perfekt
+  given: "Wir haben den Anschluss verpasst"
+  decision: confirm
+  note: "Correct German but an incomplete translation: in Hannover is dropped, and the possessive unseren has become den. The Perfekt bracket haben … verpasst was right, so the divergence sits outside perfekt-satzklammer."
+  decidedAt: 2026-08-03
+
+- item: a1/checkpoint-a1:uebersetzen-fahrrad
+  given: "Wir fahren mit dem Fahrrad ins Kaufhaus"
+  decision: confirm
+  note: "das Kaufhaus is a department store, not a supermarket — all three prompt halves say Supermarkt/супермаркет, so the rendering changes the destination and does not preserve the target. The grammar around it (fahren mit dem Fahrrad, ins + Akkusativ direction) is fine, and the item is untagged, so nothing is attributed. drill note: store-type lexemes confused — Kaufhaus for Supermarkt; the Laden/Geschäft/Kaufhaus/Supermarkt row already lives in A1 vocabulary."
+  decidedAt: 2026-08-04
+
+- item: b1/probe-erfahrungen-erzaehlen-plusquamperfekt-nachdem:variant-b
+  given: "Nachdem ich den Vertrag unterschrieben hatte, ging alles sehr gut."
+  decision: confirm
+  note: "sehr gut renders «очень хорошо», but every prompt half says fast/быстро/швидко — the carrier adverb is mistranslated, so the sentence is not target-preserving and accept would be wrong. The probed competence is intact: Nachdem, unterschrieben and hatte are all exactly right, so under today's grader the miss stays outside plusquamperfekt-nachdem and the probe stage is not charged to the tag."
+  decidedAt: 2026-08-04
+
+- item: a2/lernen-verstehen:uebersetzen-wie-lange-der-kurs-dauert
+  given: "Könnten Sie mir sagen, wie lang der Kurs ist?"
+  decision: accept
+  note: "Correct, target-preserving German on both counts the rejection implied. Könnten is Konjunktiv II — at least as polite as Können for «Вы не подскажете», and the accept list already admits wrapper variation (Wissen Sie). wie lang der Kurs ist is a grammatical duration question (Der Kurs ist zwei Wochen lang → Wie lang ist der Kurs?), with correctly bare lang before ist. The focus grades where the wrapped verb lands, and the learner's ist is clause-final — the pin dauert does not carry the focus, so the sibling is accepted rather than the instruction constrained (P12-7). The item's accept list gains the ist/Könnten renderings in the same change, with a revision bump."
+  decidedAt: 2026-08-05
+
+- item: b1/gesellschaft-zusammenleben:uebersetzen-alle-jeder
+  given: "Hier sind nicht alle, aber jeder Bewohner hat eine Stimme"
+  decision: accept
+  note: "Target-preserving and grammatical: Hier-fronting is ordinary V2 variation (and mirrors «Здесь не все» more closely than the canonical answer), the partial negation stays adjacent (nicht alle), and all four graded tokens keep their forms — alle with plural sind, jeder Bewohner with singular hat, which is precisely the agreement the tag grades. The pin does not carry word order, so the sibling is accepted rather than the instruction constrained (P12-7). The item's accept list gains the rendering in the same change, with a revision bump."
+  decidedAt: 2026-08-05
+
+
+# --- 2026-08-11 triage: grading-review queue drain (48 rulings: 7 accept / 41 confirm / 0 constrain) ---
+
+- item: b1/kultur-freizeit:uebersetzen-vorschlag-modal
+  given: "Am Sonntag können wir zur Führung zusammen gehen."
+  decision: accept
+  note: "Marked but grammatical adjunct order (zusammen postposed after the goal PP); the graded modal bracket können…gehen is intact and nothing pins adjunct order."
+  decidedAt: 2026-08-11
+
+- item: b1/kultur-freizeit:uebersetzen-vorschlag-modal
+  given: "Am Sonntag können wir in die Führung zusammen gehen"
+  decision: confirm
+  note: "Wrong preposition: one goes zu einer Führung, not in die. drill note: preposition choice with events (zur Führung) — 3 of 4 renderings on this item picked a wrong preposition."
+  decidedAt: 2026-08-11
+
+- item: b1/kultur-freizeit:uebersetzen-vorschlag-modal
+  given: "Am Sonntag können wir zusammen an die Führung gehen."
+  decision: confirm
+  note: "an die Führung — wrong preposition (zur)."
+  decidedAt: 2026-08-11
+
+- item: b1/kultur-freizeit:uebersetzen-vorschlag-modal
+  given: "Am Sonntag können wir an die Führung zusammen gehen."
+  decision: confirm
+  note: "an die Führung — wrong preposition (zur)."
+  decidedAt: 2026-08-11
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-formelle-bitte-mail
+  given: "Könnten Sie mir bitter das Formular schicken? Ich würde gern am Montag vorbezukommen."
+  decision: confirm
+  note: "bitter is a real but wrong word, and vorbezukommen is malformed — zu cannot infix after würde."
+  decidedAt: 2026-08-11
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-formelle-bitte-mail
+  given: "Könnten Sie mir das Formular schicken? Ich würde gern am Montag kommen."
+  decision: accept
+  note: "RU has no «пожалуйста», so dropping bitte is faithful; kommen is a legitimate looser rendering of «зайти»; Könnten/würde intact."
+  decidedAt: 2026-08-11
+
+- item: a2/freunde-feste-produktion:uebersetzen-einladung-hochzeit
+  given: "Ich lade dich auf meiner Hochzeit ein. Wir feiern am Samstag um acht."
+  decision: confirm
+  note: "einladen governs zu + Dativ for the event; auf meiner Hochzeit (Dativ) is wrong — colloquial auf takes Akkusativ (auf meine Hochzeit), and the taught frame is zu."
+  decidedAt: 2026-08-11
+
+- item: a2/freunde-feste-produktion:uebersetzen-einladung-hochzeit
+  given: "Ich lade dich zu meiner Heiratung ein. Wir feiern am Samstag um acht."
+  decision: confirm
+  note: "Heiratung is not a German word."
+  decidedAt: 2026-08-11
+
+- item: b1/konsum-umwelt:uebersetzen-gemuese
+  given: "Das Obst wird hier ohne Plastik verkauft."
+  decision: confirm
+  note: "Obst is fruit; RU «Овощи» is unambiguous — real mistranslation."
+  decidedAt: 2026-08-11
+
+- item: b1/konsum-umwelt:uebersetzen-gemuese
+  given: "Das Gemüse wird ohne Plastik hier verkauft."
+  decision: accept
+  note: "Adjunct reordering only; wird…verkauft bracket intact."
+  decidedAt: 2026-08-11
+
+- item: a2/aemter-dienstleistungen:uebersetzen-haette-gern
+  given: "Ich hätte gern eine Beschwerung für meinen Chef bekommen."
+  decision: confirm
+  note: "Beschwerung is not Bescheinigung, and hätte … bekommen is counterfactual past, not the polite-wish chunk."
+  decidedAt: 2026-08-11
+
+- item: a2/aemter-dienstleistungen:uebersetzen-haette-gern
+  given: "Ich hätte gern eine Bescheinigung für meinem Chef bekommen."
+  decision: confirm
+  note: "für governs Akkusativ (für meinen Chef); and hätte gern + Akk NP is already complete — adding bekommen shifts the construction to counterfactual past. drill note: hätte gern takes a plain Akk object, no infinitive."
+  decidedAt: 2026-08-11
+
+- item: b1/informationen-vermitteln:uebersetzen-angaben
+  given: "Sie hat gestern wegen der Änderung schnell zum Büro angeruft."
+  decision: confirm
+  note: "angeruft is not a word (angerufen), and zum Büro is directional where locative im Büro is needed."
+  decidedAt: 2026-08-11
+
+- item: b1/informationen-vermitteln:uebersetzen-angaben
+  given: "Sie hat gestern wegen die Änderung schnell ins Büro angerufen."
+  decision: confirm
+  note: "wegen never governs Akkusativ (wegen der Änderung), and ins Büro repeats the direction/location error."
+  decidedAt: 2026-08-11
+
+- item: b1/informationen-vermitteln:uebersetzen-dass-verbende
+  given: "Er sagt, dass er morgen im Büro den Schlüssel abgibt."
+  decision: accept
+  note: "Ordinary Mittelfeld scrambling inside the dass-clause; dass…abgibt fully intact."
+  decidedAt: 2026-08-11
+
+- item: b1/informationen-vermitteln:uebersetzen-dass-verbende
+  given: "Er sagt, dass er morgen dem Schlülles ins Büro abgibt."
+  decision: confirm
+  note: "dem Schlülles is garbled in case and spelling; ins Büro wrong for the locative."
+  decidedAt: 2026-08-11
+
+- item: b1/geld-vertraege:uebersetzen-tarif-vergleich
+  given: "Im Jahr ist der zweite Tarif günstiger als den ersten Tarif."
+  decision: confirm
+  note: "The als-comparison holds two nominatives (… als der erste); den ersten Tarif is a genuine case error. drill note: case matching across als — appeared twice on this item."
+  decidedAt: 2026-08-11
+
+- item: b1/geld-vertraege:uebersetzen-tarif-vergleich
+  given: "Jahrig ist der zweiter Tarif günstiger als den ersten"
+  decision: confirm
+  note: "Jahrig is not a word; der zweiter has the wrong adjective ending; same als-case error."
+  decidedAt: 2026-08-11
+
+- item: b1/geld-vertraege:uebersetzen-genitiv-datum
+  given: "Die Datum der Zahlung fählt in die Rechnung."
+  decision: confirm
+  note: "Datum is neuter (das); fählt misspelled; in die Rechnung wrong preposition and case for auf dieser Rechnung."
+  decidedAt: 2026-08-11
+
+- item: b1/geld-vertraege:uebersetzen-genitiv-datum
+  given: "Die Datum der Zahlung an fählt"
+  decision: confirm
+  note: "Same wrong-gender article plus a garbled verb phrase."
+  decidedAt: 2026-08-11
+
+- item: b1/digitales-leben:uebersetzen-sodass-bildschirm
+  given: "Der Bildschirm bliebt schwartz, sodass ich die Application nicht mehr bedienen kann."
+  decision: confirm
+  note: "Application is not German (die App); bliebt/schwartz are misspellings. Instrument note: isolated typos in non-graded tokens — see backlog entry from this triage."
+  decidedAt: 2026-08-11
+
+- item: b1/digitales-leben:uebersetzen-sodass-bildschirm
+  given: "Der Bildschirm bleibt schwarz, sodass ich das App nicht mehr bedienen kann."
+  decision: confirm
+  note: "App is feminine — das App is a genuine gender error."
+  decidedAt: 2026-08-11
+
+- item: b1/gesellschaft-zusammenleben:uebersetzen-obwohl-garten
+  given: "Obwohl der Garten Geld kostet, bin it dafür."
+  decision: confirm
+  note: "it is not a German pronoun; the clause has no valid subject."
+  decidedAt: 2026-08-11
+
+- item: b1/gesellschaft-zusammenleben:uebersetzen-obwohl-garten
+  given: "Obwohl der Garten das Geld kostet, bin ich dafür"
+  decision: confirm
+  note: "Geld kosten is a fixed zero-article expression; «стоит денег» is the generic idiom, not a free determiner slot — das Geld kostet points at specific money. drill note: articles inside fixed verb phrases (Geld kosten, Zeit haben)."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-informationen-vermitteln:variant-a
+  given: "Die Praxis schreibt, dass der Arzt erst um zech kommt."
+  decision: confirm
+  note: "zech is not a word (zehn); the indirekte-Rede structure itself is perfect. Instrument note: isolated typo outside the graded tokens — see backlog."
+  decidedAt: 2026-08-11
+
+- item: a2/probe-verbindungen-folgen-zeit:probe-als-unfall
+  given: "Als ich die erste Arbeit bekommen, war ich zweiundzwanzich"
+  decision: confirm
+  note: "The auxiliary habe is missing — the Als-clause has no finite verb."
+  decidedAt: 2026-08-11
+
+- item: a2/probe-infinitiv-mit-zu:probe-kuchen-mitzubringen
+  given: "Sie hat verprochen die Torte mitzubringen."
+  decision: confirm
+  note: "verprochen is malformed, and Torte is «торт» — RU «пирог» is Kuchen."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-reisen-probleme-praeposition-genitiv:variant-b
+  given: "Trotz der Reservierung, müssten wir bis Hannover stechen."
+  decision: confirm
+  note: "müssten (Konjunktiv II) changes the meaning from mussten, and stechen is a different verb from stehen."
+  decidedAt: 2026-08-11
+
+- item: b1/konsum-umwelt:uebersetzen-je-desto
+  given: "Je billiger das Produkt ist, desto schneller geht er kaputt"
+  decision: confirm
+  note: "Produkt is neuter, so the anaphor is es, not er. drill note: pronoun gender agreement with neuter nouns."
+  decidedAt: 2026-08-11
+
+- item: a2/relativsaetze-produktion:uebersetzen-definition-fahrrad
+  given: "Ich suche den Mann, der Fahrräder repariert."
+  decision: confirm
+  note: "RU «человека» is genderless 'someone'; den Mann adds definiteness and maleness the source does not license."
+  decidedAt: 2026-08-11
+
+- item: a2/probe-nebensaetze-plaene:variant-c
+  given: "Wir nehmen ein Taxi, falls du um sechs Uhr im Büro sein musst."
+  decision: accept
+  note: "falls is a fully grammatical conditional synonym of wenn; musst still closes the clause, so the graded rule is untouched."
+  decidedAt: 2026-08-11
+
+- item: b1/geld-vertraege:uebersetzen-nachfrage-indirekt
+  given: "Können Sie mit sagen, wie lang der Preis gültig ist?"
+  decision: confirm
+  note: "mit for mir breaks the Können-Sie-mir-sagen frame — ungrammatical as written. Instrument note: likely one-letter slip — see backlog."
+  decidedAt: 2026-08-11
+
+- item: b1/meinung-medien:uebersetzen-zwar-aber
+  given: "Die Meldung ist zwar kurz, aber sie erklärt alles gut."
+  decision: confirm
+  note: "«Передача» is a programme/broadcast (die Sendung); Meldung is a news item — real lexical confusion. Lexical hint added to the item in the same change."
+  decidedAt: 2026-08-11
+
+- item: b1/meinung-medien:uebersetzen-weil-grund
+  given: "Ich schaue Nachrichten nur abends, weil ich morgens keine Zeit habe."
+  decision: accept
+  note: "Recombination of two already-accepted variant dimensions (bare Nachrichten, nur abends); nothing new is graded."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-digitales-leben:variant-a
+  given: "Seit heute mein Drucker funkzioniert nicht, sodass ich die Seite in der Bibliothek drucken muss."
+  decision: confirm
+  note: "V2 violation — after fronted Seit heute the finite verb must precede the subject; plus funkzioniert and the Seite/Seiten slip."
+  decidedAt: 2026-08-11
+
+- item: b1/kultur-freizeit:uebersetzen-interessantere-fuehrung
+  given: "Am Sonntag ist die interessantere Führung, als am Samstag"
+  decision: confirm
+  note: "Close call: a scheduling-sein reading exists (Die interessantere Führung ist am Sonntag), but as written — definite article + sein + a comma'd als-phrase in one clause — it is not clean target German; gibt es or the predicative frame were the grammatical outs."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-regeln-verantwortung-sodass-folge:variant-b
+  given: "Seit morgen es ist stark gescheit, sodass die Schule heute geschossen bleibt"
+  decision: confirm
+  note: "seit morgen means 'since tomorrow'; V2 violated; gescheit and geschossen are the wrong words entirely."
+  decidedAt: 2026-08-11
+
+- item: a2/probe-arbeit-beruf:variant-c
+  given: "Ihre Tochter darf heute nicht fernzusehen. Aber sie muss morgen nicht früh aufzustehen."
+  decision: confirm
+  note: "Modals govern bare infinitives — fernzusehen/aufzustehen wrongly carry zu. drill note: zu-infinitiv bleeding into modal constructions."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-regeln-verantwortung-duerfen-muessen:variant-b
+  given: "Die Handys dürfen während der Prüfung nicht benutzt werden"
+  decision: accept
+  note: "Definite generic plural (Die Handys dürfen …) is normal rule-statement German; RU bare «телефонами» leaves the article free and dürfen is intact."
+  decidedAt: 2026-08-11
+
+- item: b1/digitales-leben:uebersetzen-um-zu-medien
+  given: "Ich nutze dem Telefon vor allem, um mit meiner Familie zu sprechen."
+  decision: confirm
+  note: "nutzen governs the Akkusativ; dem Telefon calques the RU instrumental «телефоном». drill note: nutzen/benutzen + Akk."
+  decidedAt: 2026-08-11
+
+- item: b1/regeln-verantwortung:uebersetzen-deshalb-treppe
+  given: "Der Aufzug wied gestricht. Deshalb nehme ich diese Woche die Treppe"
+  decision: confirm
+  note: "wied for wird, and gestricht is not a word (gestrichen) — the first sentence is broken even though the graded second sentence is verbatim correct."
+  decidedAt: 2026-08-11
+
+- item: b1/regeln-verantwortung:uebersetzen-rauchen
+  given: "Im Treppenhaus darf es nicht geraucht werden."
+  decision: confirm
+  note: "The impersonal-passive es exists only to fill an empty Vorfeld; with Im Treppenhaus fronted it must drop. drill note: dummy es never doubles a fronted constituent."
+  decidedAt: 2026-08-11
+
+- item: b1/regeln-verantwortung:uebersetzen-fahrraeder
+  given: "Die Fahrräder müssen bis Sonntag im Hof gestellt werden"
+  decision: confirm
+  note: "stellen + wohin takes the Akkusativ — in den Hof; im Hof reverses the exact rule the item teaches."
+  decidedAt: 2026-08-11
+
+- item: a2/lernen-verstehen-produktion:uebersetzen-warum-ich-ueber
+  given: "Ich studiere jeden Tag, weil ich die Nachrihten verstehen will."
+  decision: confirm
+  note: "studieren means formal university study; RU «занимаюсь» is broader — the item's own line is lernen/üben. drill note: заниматься ≠ studieren false friend."
+  decidedAt: 2026-08-11
+
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-interview-frage
+  given: "Wo hast du aufgewachsend? Warst du dort glücklig?"
+  decision: confirm
+  note: "aufwachsen takes sein (bist aufgewachsen); hast … aufgewachsend is the sein/haben confusion plus an invalid participle."
+  decidedAt: 2026-08-11
+
+- item: a2/probe-verben-mit-praepositionen:probe-haus-am-meer
+  given: "Wovon träumt Frau Weber? - Von einem Haus an Merr. Sie träumt jede Nacht davon."
+  decision: confirm
+  note: "an Merr is not German (am Meer); Wovon/davon are both perfect. Instrument note: isolated typo outside the graded tokens — see backlog."
+  decidedAt: 2026-08-11
+
+- item: b1/probe-reisen-probleme-irreale-bedingung:variant-a
+  given: "Wenn die Fahrkarten nicht so teuer wären, würden wir öfter mit dem Zug gefahren."
+  decision: confirm
+  note: "würden takes the bare infinitive (fahren), never the participle — gefahren breaks the graded construction itself."
+  decidedAt: 2026-08-11
+
+- item: b1/gesellschaft-zusammenleben:uebersetzen-alles-was
+  given: "Alles, was wir heute entscheiden können, kostet."
+  decision: confirm
+  note: "können adds a possibility modal the RU does not carry, and kostet has lost its object Geld — both substantive."
+  decidedAt: 2026-08-11

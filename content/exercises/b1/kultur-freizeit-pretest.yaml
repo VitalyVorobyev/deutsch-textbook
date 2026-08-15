@@ -1,0 +1,78 @@
+# Diagnostic generation, not practice: three guesses before the article, one per outcome —
+# the comparative a recommendation is made of, the two ticket lines a Programm answers the
+# card question with, and the past tense a written report is in. No focus tags, because a
+# pretest is never weakness evidence. The first item is a cloze, since a pretest made only
+# of mc discriminates nothing, and its gap names the adjective, so it is a retention check
+# on B1.2's declension rather than a vocabulary guess.
+# A genre unit adopts no structure of its own, so every guess here is about something the
+# learner has already met in an earlier unit — which is what makes this pretest worth
+# taking: it asks whether the form survived, not whether it was ever taught.
+# None of these three surfaces returns in a probe family: the cloze compares gut on a
+# neuter Programm, while family 2 compares spät, spannend and schön on Vorstellung, Stück
+# and Abend; the report mc turns on finden, which neither family-1 variant uses (they run
+# on warten/sitzen, trinken/lachen and kaufen/bekommen); and the ticket line is read
+# nowhere in either family.
+topic: kultur-freizeit
+role: pretest
+title:
+  en: "Before you read — three guesses"
+  ru: "Перед чтением — три догадки"
+  uk: "Перед читанням — три здогади"
+  de: "Vor dem Lesen — drei Vermutungen"
+items:
+  - id: pre-cloze-komparativ
+    outcomes: [veranstaltung-empfehlen]
+    type: cloze
+    instruction:
+      en: "A recommendation compares. Put gut into the comparative and give it the ending the noun after it needs."
+      ru: "Рекомендация сравнивает. Поставьте gut в сравнительную степень и дайте ей окончание, которого требует следующее существительное."
+      uk: "Рекомендація порівнює. Поставте gut у вищий ступінь і дайте йому закінчення, якого вимагає наступний іменник."
+      de: "Eine Empfehlung vergleicht. Setz gut in den Komparativ und gib ihm die Endung, die das folgende Nomen verlangt."
+    text: "Ich finde die Ausstellung ein {{besseres}} Programm als den Film."
+    translation:
+      en: "I think the exhibition is a better programme than the film."
+      ru: "По-моему, выставка — программа получше, чем фильм."
+      uk: "Як на мене, виставка — краща програма, ніж фільм."
+    explain:
+      en: "Two steps, in this order. gut is irregular and its comparative is besser. Then besser is an ordinary adjective stem in front of a noun: ein wants the strong neuter -es, exactly what gutes would have taken. So besseres. Stopping at besser keeps the comparison and drops the declension, which is the single most common miss with this form."
+      ru: "Два шага, именно в таком порядке. gut — неправильное прилагательное, его сравнительная степень besser. Дальше besser — обычная основа прилагательного перед существительным: ein требует сильного окончания среднего рода -es, ровно того, которое взяло бы gutes. Получается besseres. Остановка на besser сохраняет сравнение и выбрасывает склонение — самый частый промах с этой формой."
+      uk: "Два кроки, саме в такому порядку. gut — неправильний прикметник, його вищий ступінь besser. Далі besser — звичайна основа прикметника перед іменником: ein вимагає сильного закінчення середнього роду -es, рівно того, яке взяло б gutes. Виходить besseres. Зупинка на besser зберігає порівняння і викидає відмінювання — найчастіший промах із цією формою."
+      de: "Zwei Schritte, genau in dieser Reihenfolge. gut ist unregelmäßig, sein Komparativ heißt besser. Danach ist besser ein ganz normaler Adjektivstamm vor einem Nomen: ein verlangt die starke neutrale Endung -es, genau die, die auch gutes nähme. Also besseres. Wer bei besser aufhört, behält den Vergleich und lässt die Deklination weg."
+
+  - id: pre-mc-programm-karten
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Im Programm steht: Samstag ausverkauft. Sonntag: Restkarten an der Abendkasse. Was heißt das?"
+    options:
+      - "Am Samstag bekommt man keine Karte mehr; am Sonntag kann man es an der Kasse versuchen."
+      - "An beiden Tagen sind alle Karten weg."
+      - "Am Samstag muss man reservieren, am Sonntag nicht."
+    correct: 0
+    translation:
+      en: "The programme says: Saturday sold out. Sunday: remaining tickets at the box office. What does that mean?"
+      ru: "В программе написано: суббота — распродано. Воскресенье: оставшиеся билеты в вечерней кассе. Что это значит?"
+      uk: "У програмі написано: субота — розпродано. Неділя: квитки, що лишилися, у вечірній касі. Що це означає?"
+    explain:
+      en: "Two lines, two different answers to the same question. ausverkauft closes the day: no ticket is left and nothing can be done about it. Restkarten an der Abendkasse leaves a chance you have to queue for — the box office opens shortly before the performance and sells what nobody collected. Neither line says anything about booking."
+      ru: "Две строки — два разных ответа на один вопрос. ausverkauft закрывает день: билетов нет и сделать ничего нельзя. Restkarten an der Abendkasse оставляет шанс, за которым нужно постоять: вечерняя касса открывается незадолго до начала и продаёт то, что никто не выкупил. Про бронирование ни та ни другая строка не говорит."
+      uk: "Два рядки — дві різні відповіді на одне питання. ausverkauft закриває день: квитків немає і вдіяти нічого не можна. Restkarten an der Abendkasse лишає шанс, по який треба постояти: вечірня каса відчиняється незадовго до початку і продає те, чого ніхто не викупив. Про бронювання жоден із рядків не каже."
+      de: "Zwei Zeilen, zwei verschiedene Antworten auf dieselbe Frage. ausverkauft schließt den Tag: Es ist keine Karte mehr da, und daran ändert nichts etwas. Restkarten an der Abendkasse lässt eine Chance, für die man ansteht — die Abendkasse öffnet kurz vor Beginn und verkauft, was niemand abgeholt hat. Von einer Reservierung sagt keine der beiden Zeilen etwas."
+
+  - id: pre-mc-praeteritum
+    outcomes: [erlebnis-bewerten]
+    type: mc
+    prompt: "Sie schreiben einen kurzen Bericht über den Abend. Welcher Satz ist richtig?"
+    options:
+      - "Das Publikum fand den zweiten Teil zu lang."
+      - "Das Publikum findete den zweiten Teil zu lang."
+      - "Das Publikum fandete den zweiten Teil zu lang."
+    correct: 0
+    translation:
+      en: "You are writing a short report about the evening. Which sentence is right?"
+      ru: "Вы пишете короткий отзыв о вечере. Какое предложение верно?"
+      uk: "Ви пишете короткий відгук про вечір. Яке речення правильне?"
+    explain:
+      en: "A written report is in the Präteritum, and finden is strong: the vowel changes and no ending is added at all — fand. The two wrong options build the past the regular way, with the -te that weak verbs take. Say the same evening aloud to a friend and you would use the Perfekt instead: Ich habe den zweiten Teil zu lang gefunden."
+      ru: "Письменный отзыв стоит в Präteritum, а finden — сильный глагол: меняется корневая гласная и никакого окончания не добавляется вовсе — fand. Оба неверных варианта строят прошедшее время правильным способом, с тем -te, которое берут слабые глаголы. Расскажите тот же вечер приятелю вслух — и вы возьмёте перфект: Ich habe den zweiten Teil zu lang gefunden."
+      uk: "Письмовий відгук стоїть у Präteritum, а finden — сильне дієслово: змінюється кореневий голосний і жодного закінчення не додається взагалі — fand. Обидва хибні варіанти будують минулий час правильним способом, із тим -te, яке беруть слабкі дієслова. Розкажіть той самий вечір приятелеві вголос — і ви візьмете перфект: Ich habe den zweiten Teil zu lang gefunden."
+      de: "Ein schriftlicher Bericht steht im Präteritum, und finden ist stark: Der Vokal wechselt, und es kommt gar keine Endung dazu — fand. Die beiden falschen Optionen bilden die Vergangenheit regelmäßig, mit dem -te der schwachen Verben. Mündlich erzählt man denselben Abend im Perfekt: Ich habe den zweiten Teil zu lang gefunden."

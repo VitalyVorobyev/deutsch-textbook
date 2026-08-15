@@ -6,14 +6,18 @@ import {
   exerciseLevelFromPath,
   grammarCoverage,
   loadGrammarInventory,
-} from '../src/lib/grammar-coverage';
+} from '@da/content/grammar-coverage';
 
 /** A throwaway content tree, so the escape-hatch rules can be tested on shapes
  *  the real inventory must never contain. */
 function fixture(points: unknown[], topics: Record<string, string[]> = {}): string {
   const root = mkdtempSync(join(tmpdir(), 'grammar-coverage-'));
   mkdirSync(join(root, 'data'), { recursive: true });
-  writeFileSync(join(root, 'data', 'grammar-inventory.yaml'), JSON.stringify({ points }));
+  const tracked = points.map((point) => ({ track: 'fixture', ...(point as Record<string, unknown>) }));
+  writeFileSync(join(root, 'data', 'grammar-inventory.yaml'), JSON.stringify({
+    tracks: [{ id: 'fixture', strand: 'verbformen', de: 'Fixture', en: 'Fixture', order: 1 }],
+    points: tracked,
+  }));
   mkdirSync(join(root, 'content', 'exercises'), { recursive: true });
   for (const [level, ids] of Object.entries(topics)) {
     mkdirSync(join(root, 'content', 'topics', level), { recursive: true });
@@ -48,28 +52,30 @@ describe('grammar coverage', () => {
       expect(Boolean(point.reference_only) || (point.focus?.length ?? 0) > 0).toBe(true);
   });
 
-  test('A1 has no missing structures', () => {
+  // The 2026-08-14 anchor pass reopened four honest gaps: coordinating conjunctions, both
+  // Wortbildung sections and the demonstrative determiner. The A1 quality wave closed them with
+  // owner articles, scaffold/fade/transfer practice and delayed probes. This is a ratchet again:
+  // adding an inventory row without evidence must reopen it visibly.
+  test('A1 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A1');
-    expect(coverage.missing).toBe(0);
-    // The A1 boundary is self-contained: Perfekt, Imperativ, separable verbs and
-    // darf/muss nicht all have real A1 instruction and practice.
-    expect(coverage.covered).toBe(coverage.total);
+    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
+    expect(missing).toEqual([]);
+    expect(coverage.covered).toBe(28);
+    expect(coverage.percent).toBe(100);
     expect(coverage.late).toBe(0);
   });
 
-  // Phase 10 closed the last A2 gap, so this stopped being a countdown and became a
-  // ratchet: A2 is complete against the standard, and it must stay that way. The
-  // number was lowered ten times, once per point, each in the commit that shipped the
-  // unit closing it — that visibility was the whole purpose, and it still is. If this
-  // fails, either a structure was silently dropped or a point was added to the
-  // inventory without the content to pay for it, and both want noticing.
-  test('A2 teaches every structure its standard expects', () => {
+  // The 2026-08-14 anchor pass deliberately reopened reciprocal pronouns, interrogative
+  // determiners and temporal `über`: the rows existed before their teaching evidence. The A2
+  // source-led wave then paid for each with an addressable article section, scaffold, transfer and
+  // a parallel three-variant probe family. This is a ratchet again: a new internal row without
+  // learner-facing evidence must make the test fail.
+  test('A2 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A2');
-    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id);
+    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
     expect(missing).toEqual([]);
+    expect(coverage.covered).toBe(46);
     expect(coverage.percent).toBe(100);
-    // Nothing is merely late either: a point taught above its standard level would
-    // still count toward the percentage, so it has to be asserted separately.
     expect(coverage.late).toBe(0);
   });
 
@@ -79,7 +85,7 @@ describe('grammar coverage', () => {
   // file guards against is a level calling itself complete with nothing measuring it, and a
   // level with no manifest cannot even notice the question. When the first B1 unit ships,
   // the tags it registers close their points and this assertion comes up with them.
-  test('B1 reports exactly what has shipped — units 1–9 cover their twenty-six points', () => {
+  test('B1 reports exactly what has shipped — units 1–14 cover all thirty-two points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
     // The ratchet: raised in the same commit that ships a unit, never ahead of content.
@@ -104,16 +110,31 @@ describe('grammar coverage', () => {
     // praeposition-genitiv. Unit B1.9 (lernen-zukunft, 2026-07-31) closed
     // finalsatz-damit (damit-um-zu), konditionalsatz-falls (falls-wenn) and
     // infinitivsatz-ohne-statt (ohne-statt-zu) — the purpose clause under the subject
-    // test, expectancy against A2's wenn, and um … zu's two siblings.
-    expect(coverage.covered).toBe(26);
+    // test, expectancy against A2's wenn, and um … zu's two siblings. Unit B1.10
+    // (gesellschaft-zusammenleben, 2026-08-03) closed konzessivsatz-obwohl
+    // (obwohl-trotzdem), indefinitpronomen-erweitert and relativ-was-wo — the
+    // conjunction beside A2's trotzdem adverb, the quantifiers that decline beside A2's
+    // invariant set, and the two relative words that are not der/die/das. Units B1.11–B1.13
+    // (digitales-leben, kultur-freizeit, geld-vertraege, 2026-08-04) are genre units and
+    // moved this number by design: they own no manifest point, register no tag, and recycle
+    // the ones earlier units drilled. Unit B1.14 (informationen-vermitteln, 2026-08-04)
+    // closes the last three and the level with them: indirekte-rede (indirekte-rede — the
+    // connector a report opens with and the tense it keeps, with Konjunktiv I receptive
+    // only), wortstellung-angaben (angaben-reihenfolge AND pronomen-stellung — the point
+    // whose two tags must BOTH be drilled before it counts) and partizip-adjektiv
+    // (partizip-adjektiv). This assertion has now stopped being a countdown for B1 too, and
+    // becomes a ratchet of the A2 kind: 32/32 is where it stays.
+    expect(coverage.covered).toBe(32);
     expect(coverage.late).toBe(0);
-    expect(coverage.percent).toBe(81);
+    expect(coverage.percent).toBe(100);
     const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
       'adjektiv-nullartikel',
       'finalsatz-damit',
       'genitiv-vollstaendig',
+      'indefinitpronomen-erweitert',
+      'indirekte-rede',
       'infinitivsatz-ohne-statt',
       'kausalsatz-da',
       'komparativ-attributiv',
@@ -121,9 +142,11 @@ describe('grammar coverage', () => {
       'konjunktiv2-irreal',
       'konjunktiv2-ratschlag',
       'konsekutivsatz-sodass',
+      'konzessivsatz-obwohl',
       'lassen',
       'n-deklination',
       'nomen-verb-verbindungen',
+      'partizip-adjektiv',
       'passiv-modal',
       'passiv-produktion',
       'passiv-vergangenheit',
@@ -132,15 +155,17 @@ describe('grammar coverage', () => {
       'praeteritum-vollverben',
       'proportionalsatz-je-desto',
       'reflexiv-praeposition',
+      'relativ-was-wo',
       'relativsatz-dativ',
       'temporalsatz',
       'verb-praeposition-erweitert',
+      'wortstellung-angaben',
       'zweiteilige-konnektoren',
     ]);
-    // Every other B1 point still names only tags no shipped content carries — an A2
-    // tag must never silently close a B1 gap (the mistake that hid six A2 structures
-    // inside planned B1 units).
-    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 26);
+    // Nothing is left missing, and the assertion stays rather than being deleted: it is
+    // what would notice a point being ADDED to the inventory without the content to pay
+    // for it, which is how a level stops being complete without anybody editing a number.
+    expect(coverage.points.filter((p) => p.status === 'missing')).toHaveLength(coverage.total - 32);
   });
 
   test('a shipped structure counts as covered, and every taught point resolves a level', () => {

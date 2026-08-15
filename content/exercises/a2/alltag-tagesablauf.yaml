@@ -1,5 +1,8 @@
 topic: alltag-tagesablauf
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Alltag und Tagesablauf"
 title:
   en: Practice — everyday life and daily routine
   ru: Практика — повседневная жизнь и распорядок дня
@@ -238,45 +241,7 @@ items:
       ru: '"am Wochenende" — как и с частями суток (am Morgen, am Abend), с выходными используется "am". "um" — только для точного времени, а "in" требует артикля (in der Nacht).'
       uk: '"am Wochenende" — як і з частинами доби (am Morgen, am Abend), із вихідними вживається "am". "um" — лише для точного часу, а "in" вимагає артикля (in der Nacht).'
 
-  - id: uebersetzen-stehe-auf
-    outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
-    type: translate
-    focus: trennbar-wortstellung
-    instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
-    prompt_en: "I get up at seven o'clock."
-    prompt_ru: "Я встаю в семь часов."
-    prompt_uk: "Я встаю о сьомій годині."
-    answer: "Ich stehe um sieben Uhr auf."
-    key_tokens: ["stehe", "auf"]
-    accept:
-      - "Um sieben Uhr stehe ich auf."
-    explain:
-      en: "aufstehen splits: stehe holds position 2 and the prefix auf drops to the very end, behind the time phrase."
-      ru: "aufstehen разделяется: stehe стоит на втором месте, а приставка auf уходит в самый конец, за обстоятельство времени."
-      uk: "aufstehen розділяється: stehe стоїть на другому місці, а префікс auf іде в самий кінець, за обставину часу."
 
-  - id: uebersetzen-abends-fernsehen
-    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
-    type: translate
-    focus: um-am-zeit
-    instruction:
-      en: Translate into German.
-      ru: Переведите на немецкий.
-      uk: Перекладіть німецькою.
-    prompt_en: "In the evening I often watch television."
-    prompt_ru: "Вечером я часто смотрю телевизор."
-    prompt_uk: "Увечері я часто дивлюся телевізор."
-    answer: "Am Abend sehe ich oft fern."
-    key_tokens: ["Am"]
-    accept:
-      - "Ich sehe am Abend oft fern."
-    explain:
-      en: "Parts of the day take am: am Abend. fernsehen is separable, so fern closes the sentence — even behind the adverb oft."
-      ru: "С частями суток употребляется am: am Abend. fernsehen — отделяемый глагол, поэтому fern замыкает предложение, даже после наречия oft."
-      uk: "З частинами доби вживається am: am Abend. fernsehen — відокремлюване дієслово, тому fern замикає речення, навіть після прислівника oft."
 
   - id: cloze-tagesablauf-zeiten
     outcomes: [alltag-zeitpraepositionen]

@@ -1,15 +1,19 @@
-topic: aemter-dienstleistungen
+topic: natur-wetter
 role: placement
 title: { en: "Placement test A2 — what you already know", ru: "Тест на уровень A2 — что вы уже знаете", uk: "Тест на рівень A2 — що ви вже знаєте" }
 
-# The A2 entry test: 46 tasks over 22 topics, two or three each. Same contract as the A1
+# The A2 entry test: 50 tasks over 24 topics, two or three each. Same contract as the A1
 # test — a topic is placed only when every one of its tasks is answered and the parts-
 # weighted ratio reaches 0.8, and every item's outcomes belong to exactly one topic.
 #
-# Anchored to `aemter-dienstleistungen`, the last A2 topic in the spine, so every focus tag
-# used anywhere in A2 passes the curriculum-order check.
+# Anchored to `natur-wetter`, the last A2 topic in the spine, so every focus tag used anywhere
+# in A2 passes the curriculum-order check. The anchor has now moved four times — from
+# `aemter-dienstleistungen` to `ort-richtung-praepositionen`, on to `verben-mit-kasus`, then
+# `zeit-praepositionen` and now here — once per unit appended to the spine tail. It is a spine
+# position and nothing else (`getPlacements()` reads the level off the directory), and without
+# the move this file could not carry an item tagged `es-unpersoenlich` at all.
 #
-# Mix: 24 translate, 11 cloze, 6 audio-comprehension, 5 mc. 76% of the test is produced
+# Mix: 26 translate, 13 cloze, 6 audio-comprehension, 5 mc. 78% of the test is produced
 # rather than picked, against caps of 25% mc and 40% selection. A2 is where the course
 # stops being about recognising German and starts being about building it, and a test that
 # decides which of those lessons the learner never sees has to ask them to build it.
@@ -483,7 +487,10 @@ items:
     prompt_ru: "Это машина Анны."
     prompt_uk: "Це машина Анни."
     answer: "Das ist Annas Auto."
-    key_tokens: ["Annas"]
+    # revision 2: in the von-rendering the possession decision is carried by von,
+    # so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["Annas", "von"]
+    revision: 2
     accept: ["Das ist das Auto von Anna."]
     explain: { en: "A name takes a plain -s and no apostrophe: Annas Auto, not Anna's Auto. The possessor comes first, exactly as in English. The spoken alternative von + dative is equally correct and is accepted here.", ru: "К имени добавляется просто -s, без апострофа: Annas Auto, а не Anna's Auto. Владелец стоит впереди. Разговорный вариант von + датив столь же правилен и здесь тоже принимается.", uk: "До імені додається просто -s, без апострофа: Annas Auto, а не Anna's Auto. Власник стоїть попереду. Розмовний варіант von + давальний так само правильний і тут теж приймається." }
 
@@ -564,3 +571,75 @@ items:
     answer: "Könnten Sie mir bitte helfen? Ich möchte mich anmelden."
     key_tokens: ["Könnten", "möchte"]
     explain: { en: "Two polite chunks side by side: könnten Sie for the request and ich möchte for what you want. helfen takes the dative — mir, not mich — while sich anmelden is reflexive, so the mich in the second sentence belongs to the verb and is not the object of möchte.", ru: "Две вежливые формулы рядом: könnten Sie для просьбы и ich möchte для желания. helfen требует датива — mir, а не mich, — тогда как sich anmelden возвратный, поэтому mich во втором предложении принадлежит глаголу, а не является дополнением при möchte.", uk: "Дві ввічливі формули поруч: könnten Sie для прохання та ich möchte для бажання. helfen вимагає давального — mir, а не mich, — тоді як sich anmelden зворотний, тому mich у другому реченні належить дієслову, а не є додатком при möchte." }
+
+  # --- verben-mit-kasus ---
+  - id: rektion-akkusativ-dativ-luecke
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction: { en: "Fill in mein- in the form the verb demands.", ru: "Вставьте mein- в той форме, которой требует глагол.", uk: "Вставте mein- у тій формі, якої вимагає дієслово." }
+    text: "Am Abend rufe ich {{meinen}} Vater an. Danach helfe ich {{meiner}} Mutter."
+    translation: { en: "In the evening I call my father. Afterwards I help my mother.", ru: "Вечером я звоню отцу. Потом я помогаю маме.", uk: "Увечері я дзвоню батькові. Потім я допомагаю мамі." }
+    explain: { en: "The verb, not the person, picks the case. anrufen is an ordinary accusative verb, so it is meinen Vater; helfen belongs to the smaller group of dative verbs, so it is meiner Mutter. English marks neither, which is why both frames have to be stored with their verbs rather than worked out.", ru: "Падеж выбирает глагол, а не человек. anrufen — обычный глагол с Akkusativ, поэтому meinen Vater; helfen входит в меньшую группу дативных глаголов, поэтому meiner Mutter. Русский подсказывает неверно в первой половине («звонить кому?»), поэтому оба управления запоминают вместе с глаголами, а не выводят.", uk: "Відмінок обирає дієслово, а не людина. anrufen — звичайне дієслово з Akkusativ, тому meinen Vater; helfen входить до меншої групи давальних дієслів, тому meiner Mutter. Українська підказує неправильно в першій половині («дзвонити кому?»), тому обидва керування запам'ятовують разом із дієсловами, а не виводять." }
+
+  - id: rektion-verbchunk-uebersetzen
+    outcomes: [verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction: { en: "Translate into German. The bus and the trip are known to both speakers — use the definite articles.", ru: "Переведите на немецкий. Автобус и поездка известны обоим — используйте определённые артикли.", uk: "Перекладіть німецькою. Автобус і поїздка відомі обом — використовуйте означені артиклі." }
+    prompt_en: "We are waiting for the bus and talking about the trip."
+    prompt_ru: "Мы ждём автобус и говорим о поездке."
+    prompt_uk: "Ми чекаємо на автобус і говоримо про подорож."
+    answer: "Wir warten auf den Bus und sprechen über die Reise."
+    accept: ["Wir warten auf den Bus, und wir sprechen über die Reise."]
+    key_tokens: ["den", "die"]
+    explain: { en: "Both prepositions arrived with their verbs, so neither case is chosen in the sentence: warten auf is accusative (auf den Bus) and sprechen über is accusative too (über die Reise). auf and über alternate only as prepositions of place; inside a verb chunk the case was settled when the chunk was learnt, and nothing here is going anywhere.", ru: "Оба предлога пришли вместе со своими глаголами, поэтому падеж внутри предложения не выбирается: warten auf требует Akkusativ (auf den Bus), и sprechen über тоже требует Akkusativ (über die Reise). Предлоги auf и über чередуют падежи только как предлоги места; внутри глагольного куска падеж решён в момент заучивания, а движения здесь нет никакого.", uk: "Обидва прийменники прийшли разом зі своїми дієсловами, тому відмінок усередині речення не обирається: warten auf вимагає Akkusativ (auf den Bus), і sprechen über теж вимагає Akkusativ (über die Reise). Прийменники auf та über чергують відмінки лише як прийменники місця; усередині дієслівного шматка відмінок вирішено в момент завчання, а руху тут немає жодного." }
+
+  # --- zeit-praepositionen ---
+  - id: zeit-um-am-im-luecke
+    outcomes: [zeitpunkt-nennen]
+    type: cloze
+    focus: zeitangaben-system
+    instruction: { en: "Fill in the time preposition — merged with the article where German merges the two.", ru: "Вставьте предлог времени — слитно с артиклем там, где немецкий их сливает.", uk: "Вставте прийменник часу — злито з артиклем там, де німецька їх зливає." }
+    text: "{{Am}} Montag beginnt der Kurs {{um}} neun Uhr, und {{im}} Juli ist Pause."
+    translation: { en: "On Monday the course begins at nine o'clock, and in July there is a break.", ru: "В понедельник курс начинается в девять часов, а в июле перерыв.", uk: "У понеділок курс починається о дев'ятій годині, а в липні перерва." }
+    explain: { en: "Three kinds of time, three prepositions: a weekday takes an (contracted to am), a clock time takes um, a month takes in (contracted to im). English pairs them differently — on, at, in — and 'at the weekend' shows the pairing is not reliable, so the question to ask is what kind of time is being named, not which English word was used.", ru: "Три типа времени — три предлога: день недели берёт an (слитно am), время по часам — um, месяц — in (слитно im). Русское «в» стоит во всех трёх случаях, поэтому подсказки от перевода нет вовсе: спрашивать надо не «как это по-русски», а какого типа названо время.", uk: "Три типи часу — три прийменники: день тижня бере an (злито am), час за годинником — um, місяць — in (злито im). Українська допомагає лише наполовину: «о дев'ятій» має своє «о», а «у понеділок» і «у липні» користуються одним «у» — саме на цій парі й виникають помилки." }
+
+  - id: zeit-seit-uebersetzen
+    outcomes: [dauer-nennen]
+    type: translate
+    focus: seit-vor-zeit
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "We have been living in Munich for three years."
+    prompt_ru: "Мы живём в Мюнхене уже три года."
+    prompt_uk: "Ми живемо в Мюнхені вже три роки."
+    answer: "Wir wohnen seit drei Jahren in München."
+    accept: ["Seit drei Jahren wohnen wir in München.", "Wir leben seit drei Jahren in München."]
+    key_tokens: ["seit"]
+    explain: { en: "seit names a stretch that began back then and is still running, and it takes the German present tense with it — the living is going on now, so wir wohnen and not wir haben gewohnt. vor drei Jahren would date a finished event instead: vor drei Jahren sind wir umgezogen.", ru: "seit называет отрезок, который начался тогда и продолжается сейчас, и тянет за собой настоящее время: жизнь там идёт до сих пор, поэтому wir wohnen, а не wir haben gewohnt. Подсказка по-русски — слово «уже». Вариант vor drei Jahren датировал бы законченное событие: vor drei Jahren sind wir umgezogen.", uk: "seit називає відрізок, що почався тоді й триває зараз, і тягне за собою теперішній час: життя там іде досі, тому wir wohnen, а не wir haben gewohnt. Підказка українською — слово «вже». Варіант vor drei Jahren датував би завершену подію: vor drei Jahren sind wir umgezogen." }
+
+  # --- natur-wetter ---
+  # Two tasks, both produced rather than picked, because a topic this test passes is never
+  # taught again and the confusion it owns is exactly the kind a recognition item flatters:
+  # a learner who has never written `es` will still recognise it in a list.
+  - id: natur-es-uebersetzen
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою." }
+    prompt_en: "In November it rains here almost every day."
+    prompt_ru: "В ноябре здесь почти каждый день идёт дождь."
+    prompt_uk: "У листопаді тут майже щодня йде дощ."
+    answer: "Im November regnet es hier fast jeden Tag."
+    accept: ["Es regnet hier im November fast jeden Tag."]
+    key_tokens: ["regnet", "es"]
+    explain: { en: "A German weather sentence needs a subject even though nothing can be one: es holds the slot, and with the time phrase in front it lands behind the verb — Im November regnet es. Dropping it leaves the verb with nothing to agree with, and putting der Regen there instead is not German at all.", ru: "Немецкой погодной фразе нужно подлежащее, хотя быть им нечему: es держит место, и при вынесенном вперёд обстоятельстве оно оказывается за глаголом — Im November regnet es. Опустить его нельзя: глаголу не с чем согласовываться. Поставить туда der Regen — тоже не по-немецки, хотя русское «дождь идёт» именно это и подсказывает.", uk: "Німецькій погодній фразі потрібен підмет, хоча бути ним нема чому: es тримає місце, і за винесеної вперед обставини воно опиняється за дієсловом — Im November regnet es. Опустити його не можна: дієслову немає з чим узгоджуватися. Поставити туди der Regen — теж не по-німецьки, хоча українське «дощ іде» саме це й підказує." }
+
+  - id: natur-praedikativ-luecke
+    outcomes: [wetter-beschreiben]
+    type: cloze
+    focus: adjektiv-praedikativ
+    instruction: { en: "Fill in the adjective in the form its position requires: kalt, warm.", ru: "Вставьте прилагательное в форме, которой требует его позиция: kalt, warm.", uk: "Вставте прикметник у формі, якої вимагає його позиція: kalt, warm." }
+    text: "Gestern war es sehr {{kalt}}, aber heute haben wir einen {{warmen}} Tag."
+    translation: { en: "Yesterday it was very cold, but today we are having a warm day.", ru: "Вчера было очень холодно, а сегодня у нас тёплый день.", uk: "Учора було дуже холодно, а сьогодні в нас теплий день." }
+    explain: { en: "After war the adjective is bare — kalt, no ending, ever. In front of Tag it must be declined, and einen is accusative masculine, so the ending is -en: einen warmen Tag. Position decides, not meaning.", ru: "После war прилагательное голое — kalt, без окончания, всегда. Перед Tag оно склоняется, а einen — винительный мужского рода, поэтому окончание -en: einen warmen Tag. Решает позиция, а не смысл: по-русски окончание есть и в «было холодно» нет, и в «тёплый день» есть — совпадение случайное.", uk: "Після war прикметник голий — kalt, без закінчення, завжди. Перед Tag він відмінюється, а einen — знахідний чоловічого роду, тому закінчення -en: einen warmen Tag. Вирішує позиція, а не зміст." }

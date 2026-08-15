@@ -1,5 +1,8 @@
 topic: relativsaetze
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Relativsätze: der, die, das"
 title:
   en: "Practice — der or den, and the verb at the end"
   ru: "Практика — der или den, и глагол в конце"
@@ -165,8 +168,15 @@ items:
     prompt_ru: "Человек, которого я знаю, живёт в Бремене."
     prompt_uk: "Людина, яку я знаю, живе в Бремені."
     answer: "Der Mann, den ich kenne, wohnt in Bremen."
-    accept: ["Der Mann, den ich kenne, lebt in Bremen."]
+    # revision 2: «Человек, которого я знаю» reads at least as naturally indefinite
+    # ("a man I know"), and the graded den is identical. Closed over the wohnt/lebt
+    # dimension. (Batch-5 audit, 2026-08-12.)
+    accept:
+      - "Der Mann, den ich kenne, lebt in Bremen."
+      - "Ein Mann, den ich kenne, wohnt in Bremen."
+      - "Ein Mann, den ich kenne, lebt in Bremen."
     key_tokens: ["den"]
+    revision: 2
     explain:
       en: "ich is the subject inside the clause, so the man is the object and the pronoun is den. English gives you no signal here — the pronoun is missing from the source sentence entirely, because English is allowed to drop it. German is not, and it must also choose a case for it."
       ru: "Подлежащее внутри придаточного — ich, значит человек это дополнение, и местоимение будет den. Русский здесь как раз подсказывает верно: вы говорите «которого», а не «который», и это ровно то же решение. А вот английский не подсказывает ничего — там местоимение вообще опущено."

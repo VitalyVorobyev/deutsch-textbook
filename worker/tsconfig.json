@@ -1,0 +1,18 @@
+{
+  "//": "Separate from the root tsconfig on purpose: the Worker runs against workers-types, not the DOM. Sharing one config would give Request/Response/caches two incompatible shapes. `bun run check` runs both.",
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022"],
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "types": ["@cloudflare/workers-types"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["**/*.ts"]
+}

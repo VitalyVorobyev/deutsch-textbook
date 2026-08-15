@@ -1,0 +1,56 @@
+topic: ort-richtung-praepositionen
+role: practice
+stage: geruest
+activity: extension
+title_de: "Vertiefen — an: am Rand und am Wasser"
+title:
+  en: "Practice — an: at the edge"
+  ru: "Практика — an: у края"
+  uk: "Практика — an: біля краю"
+
+# Supplementary set, added 2026-08-12 together with the an row of the place-type table.
+# The primary set shipped without an — the source document's first table omitted the
+# preposition and the omission was reproduced — and a primary set's item list is frozen
+# once shipped, so the an coverage lands here.
+#
+# Nouns are deck words (grepped in content/vocab/, not remembered): See, Meer
+# (wetter-natur), Markt (stadt-wege et al.).
+items:
+  - id: cloze-an-den-see-vom-see
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "The place type picks the preposition. Fill in an or the short forms am, vom."
+      ru: "Тип места выбирает предлог. Вставьте an или краткие формы am, vom."
+      uk: "Тип місця обирає прийменник. Вставте an або короткі форми am, vom."
+    text: "Am Samstag fahren wir {{an}} den See. Wir sitzen den ganzen Tag {{am}} See. Um sechs kommen wir {{vom}} See zurück."
+    translation:
+      en: "On Saturday we drive to the lake. We sit by the lake all day. At six we come back from the lake."
+      ru: "В субботу мы едем на озеро. Весь день мы сидим у озера. В шесть мы возвращаемся с озера."
+      uk: "У суботу ми їдемо на озеро. Весь день ми сидимо біля озера. О шостій ми повертаємося з озера."
+    explain:
+      en: "A lake is an edge you stand at, so its kind of place takes an: the Wohin? phrase is an den See, with the Akkusativ you know, and the Wo? phrase is am See, short for an dem. The Woher? phrase swaps the preposition rather than the article — vom See, exactly like vom Markt: you were at the water, not inside it, so aus has no business here."
+      ru: "Озеро — это край, у которого стоят, поэтому его тип берёт an: форма на Wohin? — an den See, со знакомым вам Akkusativ, а форма на Wo? — am See, краткая запись от an dem. Форма на Woher? меняет предлог, а не артикль: vom See, ровно как vom Markt — вы были у воды, а не внутри неё, поэтому aus здесь не годится."
+      uk: "Озеро — це край, біля якого стоять, тому його тип бере an: форма на Wohin? — an den See, зі знайомим вам Akkusativ, а форма на Wo? — am See, короткий запис від an dem. Форма на Woher? змінює прийменник, а не артикль: vom See, точно як vom Markt — ви були біля води, а не всередині неї, тому aus тут не годиться."
+
+  - id: uebersetzen-ans-meer
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. Use the short forms ans, vom where German has them."
+      ru: "Переведите на немецкий. Используйте слитные формы ans, vom там, где они есть."
+      uk: "Перекладіть німецькою. Використовуйте злиті форми ans, vom там, де вони є."
+    prompt_en: "In summer we often drive to the sea. In the evening we come back from the sea."
+    prompt_ru: "Летом мы часто ездим на море. Вечером мы возвращаемся с моря."
+    prompt_uk: "Улітку ми часто їздимо на море. Увечері ми повертаємося з моря."
+    answer: "Im Sommer fahren wir oft ans Meer. Am Abend kommen wir vom Meer zurück."
+    accept:
+      - "Wir fahren im Sommer oft ans Meer. Wir kommen am Abend vom Meer zurück."
+      - "Im Sommer fahren wir oft ans Meer. Am Abend kommen wir zurück vom Meer."
+    key_tokens: ["ans", "vom"]
+    explain:
+      en: "The sea is water you stand at, so the Wohin? phrase is an + Akkusativ — an das Meer, merged into ans Meer. Coming back is the Woher? column of the same row: the preposition swaps to von, and what follows keeps the shape of the Wo? phrase (am Meer → vom Meer). aus dem Meer would mean you climbed out of the water itself."
+      ru: "Море — это вода, у которой стоят, поэтому форма на Wohin? — это an + Akkusativ: an das Meer, слитно ans Meer. Возвращение — столбец Woher? той же строки: предлог меняется на von, а то, что после, сохраняет облик формы на Wo? (am Meer → vom Meer). aus dem Meer значило бы, что вы вылезли из самой воды."
+      uk: "Море — це вода, біля якої стоять, тому форма на Wohin? — це an + Akkusativ: an das Meer, злито ans Meer. Повернення — стовпець Woher? того самого рядка: прийменник змінюється на von, а те, що після, зберігає вигляд форми на Wo? (am Meer → vom Meer). aus dem Meer означало б, що ви вилізли з самої води."

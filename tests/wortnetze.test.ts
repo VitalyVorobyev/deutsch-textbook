@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { wortnetzSchema, type Wortnetz } from '../src/lib/schemas';
+import { wortnetzSchema, type Wortnetz } from '@da/schema';
 import { wortnetzContexts } from '../src/lib/srs';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { z } from 'zod';
-import type { formItemSchema } from '../../lib/schemas';
-import { answerMatches } from '../../lib/cloze';
+import type { formItemSchema } from '@da/schema';
+import { answerMatches } from '@da/grading/cloze';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
 type FormItem = z.infer<typeof formItemSchema>;
@@ -38,9 +38,12 @@ export function FormFill({ item, lang, onResult, locked, onNext, nextLabel }: It
         <span className="text-sm font-medium">{field.label}</span>
         {field.given ? <span className="text-sm text-stone-600 dark:text-stone-300">{field.answer}</span> : <input
           type="text"
+          lang="de"
           value={values[field.id] ?? ''}
           onChange={(event) => setValues((current) => ({ ...current, [field.id]: event.target.value }))}
           disabled={checked || locked}
+          autoCapitalize="off"
+          autoCorrect="off"
           autoComplete="off"
           spellCheck={false}
           className={`min-h-11 rounded-md border bg-white px-3 py-2 outline-none dark:bg-stone-800 ${checked ? ok(field) ? 'border-green-500' : 'border-red-500' : 'border-stone-300 focus:border-amber-500 dark:border-stone-600'}`}

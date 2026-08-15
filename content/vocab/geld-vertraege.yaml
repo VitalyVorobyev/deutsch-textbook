@@ -1,0 +1,724 @@
+id: geld-vertraege
+title_de: "Geld & Verträge"
+title_en: "Money and contracts"
+title_ru: "Деньги и договоры"
+title_uk: "Гроші та договори"
+level: B1
+# B1.13 is a genre unit: it owns no grammar point, so the deck carries the whole
+# weight of what is new here — the words a Rechnung, a Vertrag and a
+# Kostenvoranschlag are made of, plus the language for asking about them and
+# comparing what two of them cost.
+#
+# Three constraints shaped the list.
+#
+# 1. The frozen contract excludes banking and insurance law, investment
+#    vocabulary and tax content. So no `Zinsen`, no `Versicherung`, no `Steuer`
+#    — all three are free on the manifest and all three were left there. Every
+#    headword is one a person who has just been sent a bill has to read or say:
+#    Zeile, Kosten, Zahlung, Mahnung, Kündigung, fällig, gültig.
+# 2. The money and contract words the learner already owns are RECYCLED in the
+#    article, the reading and the notes below, never re-taught (the validator
+#    hard-fails a headword living in two decks): Rechnung, Preis, kosten,
+#    bezahlen, bestellen (essen-trinken); Vertrag (arbeit-beruf); Konto,
+#    überweisen, bar, zahlen, sparen, ausgeben, Gehalt, Ermäßigung, Empfänger,
+#    liefern (einkaufen-geld-a2); Quittung, Reklamation, Fehler, günstig
+#    (einkaufen-reklamation); Kunde, Kundin, Angebot (einkaufen-geschaefte);
+#    Gebühr, Unterschrift, unterschreiben, Antrag, Anmeldung
+#    (aemter-dienstleistungen); Betrag, Zuschlag, inklusive, Bestätigung
+#    (reisen-probleme); Bedingung, verlängern (regeln-verantwortung); Frist,
+#    Lohn (arbeit-bewerbung); kündigen, prüfen (arbeit-ausbildung-a2); Beleg,
+#    Rabatt, Ware, Lieferung (konsum-umwelt); Summe, insgesamt, berechnen,
+#    erhöhen (zahlen-mengen-masse-b1); monatlich, jährlich (zeit-b1); teuer,
+#    billig, Miete (wohnen); Kaution, Nebenkosten, Reparatur (wohnen-umzug);
+#    vereinbaren (termine-zeit); nachfragen (lernen-verstehen). Their slots went
+#    to the neighbour this unit genuinely adds — Zahlung beside zahlen, Mahnung
+#    beside Rechnung, Anbieter beside Kunde, fällig beside gültig, Auftrag
+#    beside Bestellung.
+#    The unit is noun-heavy for the same reason, and that is a finding rather
+#    than a preference: of the domain's everyday verbs, kündigen, bezahlen,
+#    überweisen, sparen, ausgeben, prüfen, berechnen, vereinbaren, bestellen and
+#    unterschreiben are all owned by earlier decks, so the five verbs below are
+#    what the field has left.
+# 3. Every headword is on the Goethe-B1 Wortliste and owned by no other deck,
+#    checked with
+#    `bun scripts/coverage.ts B1 --check-deck content/vocab/geld-vertraege.yaml`.
+#    Two words the frozen outcomes themselves name — `Tarif` and
+#    `Kostenvoranschlag` — are NOT on the manifest, so they cannot take a card:
+#    they are taught receptively, in the article's tables and in the reading,
+#    which is where language that earns no flashcard belongs.
+#
+# Tiering, decided once and never retrofitted: the 22 entries the unit actively
+# teaches ship as `both`; the 16 below the divider are the receptive tail —
+# language a bill, a set of terms and conditions and a Mahnung say to you, and
+# `cards: recognition` from the start because the direction is baked into the
+# card id.
+entries:
+  # --- Core (cards: both by default) --------------------------------------
+  # Reading a bill line by line, asking what a contract commits you to, and
+  # comparing two prices out loud. These the learner produces.
+
+  - de: "Zeile"
+    ipa: "ˈtsaɪ̯lə"
+    pos: noun
+    gender: f
+    plural: "die Zeilen"
+    en: "line of text on a page or a bill"
+    ru: "строка, строчка"
+    uk: "рядок, рядочок"
+    example_de: "In der dritten Zeile stimmt der Preis nicht."
+    example_en: "The price in the third line is wrong."
+    example_ru: "В третьей строке цена не сходится."
+    example_uk: "У третьому рядку ціна не сходиться."
+    note:
+      en: "A bill is read Zeile für Zeile: one line, one item, one price. A numbered part of a contract is ein Abschnitt, and a box on a form is ein Feld."
+      ru: "Счёт читают Zeile für Zeile: одна строка — одна услуга и одна цена. Нумерованная часть договора — ein Abschnitt, поле бланка — ein Feld."
+      uk: "Рахунок читають Zeile für Zeile: один рядок — одна послуга й одна ціна. Нумерована частина договору — ein Abschnitt, поле бланка — ein Feld."
+
+  - de: "Kosten"
+    ipa: "ˈkɔstn̩"
+    pos: phrase
+    en: "costs, what something comes to altogether"
+    ru: "расходы, затраты"
+    uk: "витрати, кошти"
+    example_de: "Die Kosten für die Reparatur sind höher als im Angebot."
+    example_en: "The costs of the repair are higher than in the quote."
+    example_ru: "Расходы на ремонт выше, чем в предложении."
+    example_uk: "Витрати на ремонт вищі, ніж у пропозиції."
+    note:
+      en: "Plural only, so the verb is plural too: Die Kosten sind hoch. One thing has einen Preis; everything together has Kosten. Fixed chunks: auf eigene Kosten, die Kosten übernehmen."
+      ru: "Только множественное число, поэтому и глагол во множественном: Die Kosten sind hoch. У одной вещи есть ein Preis, а у всего вместе — Kosten. Устойчивые сочетания: auf eigene Kosten, die Kosten übernehmen."
+      uk: "Лише множина, тому й дієслово в множині: Die Kosten sind hoch. В однієї речі є ein Preis, а в усього разом — Kosten. Сталі сполучення: auf eigene Kosten, die Kosten übernehmen."
+
+  - de: "Zahlung"
+    ipa: "ˈtsaːlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Zahlungen"
+    en: "payment"
+    ru: "платёж, оплата"
+    uk: "платіж, оплата"
+    example_de: "Wir bitten um Zahlung bis zum 17. Mai."
+    example_en: "We ask for payment by 17 May."
+    example_ru: "Просим произвести оплату до 17 мая."
+    example_uk: "Просимо здійснити оплату до 17 травня."
+    note:
+      en: "The word a bill uses where speech says zahlen: Zahlung bis …, Zahlung per Überweisung. Eine Zahlung leisten is the formal verb phrase; in a shop you simply zahlen."
+      ru: "Слово, которым пользуется счёт там, где в речи говорят zahlen: Zahlung bis …, Zahlung per Überweisung. Формальный оборот — eine Zahlung leisten, а в магазине просто zahlen."
+      uk: "Слово, яким користується рахунок там, де в мовленні кажуть zahlen: Zahlung bis …, Zahlung per Überweisung. Формальний зворот — eine Zahlung leisten, а в крамниці просто zahlen."
+
+  - de: "Überweisung"
+    ipa: "yːbɐˈvaɪ̯zʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Überweisungen"
+    en: "bank transfer"
+    ru: "банковский перевод"
+    uk: "банківський переказ"
+    example_de: "Ich habe den Betrag gestern per Überweisung bezahlt."
+    example_en: "I paid the amount by bank transfer yesterday."
+    example_ru: "Вчера я оплатил сумму банковским переводом."
+    example_uk: "Учора я сплатив суму банківським переказом."
+    note:
+      en: "Money moving from one account to another, and the usual way a bill is paid in Germany: per Überweisung, eine Überweisung machen. At the doctor's the same word names the referral to a specialist."
+      ru: "Деньги, идущие с одного счёта на другой, — обычный способ оплатить счёт в Германии: per Überweisung, eine Überweisung machen. У врача то же слово означает направление к специалисту."
+      uk: "Гроші, що йдуть з одного рахунку на інший, — звичайний спосіб оплатити рахунок у Німеччині: per Überweisung, eine Überweisung machen. У лікаря те саме слово означає направлення до фахівця."
+
+  - de: "Mahnung"
+    ipa: "ˈmaːnʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Mahnungen"
+    en: "written reminder to pay"
+    ru: "напоминание об оплате, требование оплаты"
+    uk: "нагадування про оплату, вимога оплати"
+    example_de: "Wer zu spät zahlt, bekommt nach zwei Wochen eine Mahnung."
+    example_en: "Anyone who pays late gets a reminder after two weeks."
+    example_ru: "Кто платит с опозданием, через две недели получает напоминание."
+    example_uk: "Хто платить із запізненням, за два тижні дістає нагадування."
+    note:
+      en: "The letter that follows an unpaid bill; the polite first one is often called eine Zahlungserinnerung. It usually costs extra, and it is not die Erinnerung, which is a memory."
+      ru: "Письмо вслед за неоплаченным счётом; вежливое первое часто называют eine Zahlungserinnerung. Обычно оно стоит дополнительных денег и не путается с die Erinnerung — воспоминанием."
+      uk: "Лист услід за несплаченим рахунком; увічливий перший часто називають eine Zahlungserinnerung. Зазвичай воно коштує додаткових грошей і не плутається з die Erinnerung — спогадом."
+
+  - de: "Kündigung"
+    ipa: "ˈkʏndɪgʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Kündigungen"
+    en: "notice that brings a contract to an end"
+    ru: "расторжение договора, заявление о расторжении"
+    uk: "розірвання договору, заява про розірвання"
+    example_de: "Die Kündigung muss schriftlich geschickt werden."
+    example_en: "The notice has to be sent in writing."
+    example_ru: "Заявление о расторжении нужно отправить в письменном виде."
+    example_uk: "Заяву про розірвання треба надіслати письмово."
+    note:
+      en: "The same word covers a job and a phone contract: die Kündigung schicken, eine Kündigung bekommen. The verb behind it is kündigen, and what a contract says about the deadline is die Kündigungsfrist."
+      ru: "Одно слово и для работы, и для договора связи: die Kündigung schicken, eine Kündigung bekommen. За ним стоит глагол kündigen, а срок, названный в договоре, — die Kündigungsfrist."
+      uk: "Одне слово і для роботи, і для договору зв'язку: die Kündigung schicken, eine Kündigung bekommen. За ним стоїть дієслово kündigen, а строк, названий у договорі, — die Kündigungsfrist."
+
+  - de: "Abo"
+    ipa: "ˈabo"
+    pos: noun
+    gender: n
+    plural: "die Abos"
+    accept: ["das Abonnement"]
+    en: "subscription"
+    ru: "подписка, абонемент"
+    uk: "передплата, абонемент"
+    example_de: "Das Abo für die Zeitung kostet neun Euro im Monat."
+    example_en: "The subscription to the newspaper costs nine euros a month."
+    example_ru: "Подписка на газету стоит девять евро в месяц."
+    example_uk: "Передплата на газету коштує дев'ять євро на місяць."
+    note:
+      en: "The everyday short form of das Abonnement, and the word spoken German actually uses: ein Abo abschließen, ein Abo kündigen. Both forms are accepted on this card."
+      ru: "Обиходное сокращение от das Abonnement — именно его и говорят: ein Abo abschließen, ein Abo kündigen. Карточка принимает обе формы."
+      uk: "Побутове скорочення від das Abonnement — саме його й кажуть: ein Abo abschließen, ein Abo kündigen. Картка приймає обидві форми."
+
+  - de: "Anbieter"
+    ipa: "ˈanˌbiːtɐ"
+    pos: noun
+    gender: m
+    plural: "die Anbieter"
+    en: "provider, the firm selling the service"
+    ru: "поставщик услуг, оператор"
+    uk: "постачальник послуг, оператор"
+    example_de: "Bei einem anderen Anbieter kostet der gleiche Tarif zwölf Euro."
+    example_en: "At another provider the same plan costs twelve euros."
+    example_ru: "У другого оператора такой же тариф стоит двенадцать евро."
+    example_uk: "В іншого оператора такий самий тариф коштує дванадцять євро."
+    note:
+      en: "From anbieten: the side that offers electricity, internet or a phone plan. The other side is der Kunde, which declines dem Kunden, den Kunden (→ B1.4). A woman is die Anbieterin."
+      ru: "От anbieten: сторона, предлагающая электричество, интернет или тариф связи. Другая сторона — der Kunde, склоняющийся dem Kunden, den Kunden (→ B1.4). Женский вариант — die Anbieterin."
+      uk: "Від anbieten: сторона, що пропонує електрику, інтернет або тариф зв'язку. Інша сторона — der Kunde, що відмінюється dem Kunden, den Kunden (→ B1.4). Жіночий варіант — die Anbieterin."
+
+  - de: "Alternative"
+    ipa: "altɛʁnaˈtiːvə"
+    pos: noun
+    gender: f
+    plural: "die Alternativen"
+    en: "second option worth considering"
+    ru: "альтернатива, другой вариант"
+    uk: "альтернатива, інший варіант"
+    example_de: "Es gibt eine günstigere Alternative ohne Vertrag."
+    example_en: "There is a cheaper option without a contract."
+    example_ru: "Есть более дешёвый вариант без договора."
+    example_uk: "Є дешевший варіант без договору."
+    note:
+      en: "eine Alternative zu + Dativ, stressed on the last syllable. It names the option you genuinely weigh against the first one, which is what a comparison of two prices needs."
+      ru: "eine Alternative zu + Dativ, ударение на последнем слоге. Слово называет вариант, который действительно взвешивают против первого, — именно это и нужно сравнению двух цен."
+      uk: "eine Alternative zu + Dativ, наголос на останньому складі. Слово називає варіант, який справді зважують проти першого, — саме це й потрібне порівнянню двох цін."
+
+  - de: "Angabe"
+    ipa: "ˈanˌgaːbə"
+    pos: noun
+    gender: f
+    plural: "die Angaben"
+    en: "piece of information stated on a form or a bill"
+    ru: "указанные данные, сведения"
+    uk: "зазначені дані, відомості"
+    example_de: "Bitte prüfen Sie die Angaben auf der Rechnung."
+    example_en: "Please check the information on the bill."
+    example_ru: "Проверьте, пожалуйста, данные в счёте."
+    example_uk: "Перевірте, будь ласка, дані в рахунку."
+    note:
+      en: "Nearly always plural: persönliche Angaben, Angaben zur Person. From angeben. A contract may allow a cancellation ohne Angabe von Gründen — with no reasons named."
+      ru: "Почти всегда во множественном: persönliche Angaben, Angaben zur Person. От angeben. Договор может разрешать расторжение ohne Angabe von Gründen — без указания причин."
+      uk: "Майже завжди в множині: persönliche Angaben, Angaben zur Person. Від angeben. Договір може дозволяти розірвання ohne Angabe von Gründen — без зазначення причин."
+
+  - de: "Auftrag"
+    ipa: "ˈaʊ̯fˌtʁaːk"
+    pos: noun
+    gender: m
+    plural: "die Aufträge"
+    en: "job you give a firm to do"
+    ru: "заказ на работу, поручение"
+    uk: "замовлення на роботу, доручення"
+    example_de: "Den Auftrag habe ich erst nach dem Kostenvoranschlag gegeben."
+    example_en: "I only placed the order after the written estimate."
+    example_ru: "Заказ я дал только после сметы."
+    example_uk: "Замовлення я дав лише після кошторису."
+    note:
+      en: "einen Auftrag geben, bekommen, ausführen. The order of events is Kostenvoranschlag, then Auftrag, then Rechnung. Goods ordered in a shop are eine Bestellung instead, and im Auftrag von means on somebody's behalf."
+      ru: "einen Auftrag geben, bekommen, ausführen. Порядок событий: Kostenvoranschlag, затем Auftrag, затем Rechnung. Товар, заказанный в магазине, — это eine Bestellung, а im Auftrag von значит «по поручению»."
+      uk: "einen Auftrag geben, bekommen, ausführen. Порядок подій: Kostenvoranschlag, потім Auftrag, потім Rechnung. Товар, замовлений у крамниці, — це eine Bestellung, а im Auftrag von означає «за дорученням»."
+
+  - de: "Material"
+    ipa: "mateˈʁi̯aːl"
+    pos: noun
+    gender: n
+    plural: "die Materialien"
+    en: "the stuff a job is done with"
+    ru: "материалы для работы, расходные материалы"
+    uk: "матеріали для роботи, витратні матеріали"
+    example_de: "Im Preis sind Material und Arbeitszeit enthalten."
+    example_en: "Material and labour time are included in the price."
+    example_ru: "В цену включены материалы и время работы."
+    example_uk: "У ціну включено матеріали та час роботи."
+    note:
+      en: "On a written estimate it stands beside Arbeitszeit, and the two together make the total. Stress on the last syllable, plural die Materialien."
+      ru: "В смете стоит рядом с Arbeitszeit, и вдвоём они дают итог. Ударение на последнем слоге, множественное — die Materialien."
+      uk: "У кошторисі стоїть поряд з Arbeitszeit, і вдвох вони дають підсумок. Наголос на останньому складі, множина — die Materialien."
+
+  - de: "Bargeld"
+    ipa: "ˈbaːɐ̯ˌgɛlt"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: "notes and coins you pay with"
+    ru: "наличные деньги"
+    uk: "готівкові гроші"
+    example_de: "Beim Handwerker kann man auch mit Bargeld bezahlen."
+    example_en: "You can also pay the tradesman in cash."
+    example_ru: "Мастеру можно заплатить и наличными."
+    example_uk: "Майстрові можна заплатити й готівкою."
+    note:
+      en: "bar plus das Geld, and no plural. The adverb is what a shop asks with: Zahlen Sie bar oder mit Karte? The thing itself is Bargeld — Ich habe kein Bargeld dabei."
+      ru: "bar плюс das Geld, множественного нет. Наречием спрашивают в магазине: Zahlen Sie bar oder mit Karte? Сами деньги — Bargeld: Ich habe kein Bargeld dabei."
+      uk: "bar плюс das Geld, множини немає. Прислівником питають у крамниці: Zahlen Sie bar oder mit Karte? Самі гроші — Bargeld: Ich habe kein Bargeld dabei."
+
+  - de: "Kreditkarte"
+    ipa: "kʁeˈdiːtˌkaʁtə"
+    pos: noun
+    gender: f
+    plural: "die Kreditkarten"
+    en: "credit card"
+    ru: "кредитная карта"
+    uk: "кредитна картка"
+    example_de: "Kann ich die Rechnung mit Kreditkarte bezahlen?"
+    example_en: "Can I pay the bill by credit card?"
+    example_ru: "Могу я оплатить счёт кредитной картой?"
+    example_uk: "Чи можу я оплатити рахунок кредитною карткою?"
+    note:
+      en: "mit Kreditkarte zahlen — the phrase drops the article. The everyday German card that takes the money straight off the account is die EC-Karte or die Girocard, and small firms often take neither."
+      ru: "mit Kreditkarte zahlen — в обороте артикль опускается. Обиходная немецкая карта, списывающая деньги прямо со счёта, — die EC-Karte или die Girocard, а мелкие фирмы часто не принимают ни ту, ни другую."
+      uk: "mit Kreditkarte zahlen — у звороті артикль опускається. Побутова німецька картка, що списує гроші просто з рахунку, — die EC-Karte або die Girocard, а дрібні фірми часто не приймають ані тієї, ані тієї."
+
+  - de: "Leistung"
+    ipa: "ˈlaɪ̯stʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Leistungen"
+    en: "service a contract provides"
+    ru: "услуга по договору, предоставляемое обслуживание"
+    uk: "послуга за договором, надаване обслуговування"
+    example_de: "Welche Leistungen sind im Preis enthalten?"
+    example_en: "Which services are included in the price?"
+    example_ru: "Какие услуги включены в цену?"
+    example_uk: "Які послуги включено в ціну?"
+    note:
+      en: "In a contract the plural names what you actually get for the money, which is the first thing to ask about. The same word is an achievement at school or at work — gute Leistungen — and the verb is leisten."
+      ru: "В договоре множественное число называет то, что вы за деньги действительно получаете, — с этого и стоит начинать вопросы. То же слово означает достижение в школе или на работе (gute Leistungen), а глагол — leisten."
+      uk: "У договорі множина називає те, що ви за гроші справді дістаєте, — саме з цього й варто починати питання. Те саме слово означає досягнення у школі чи на роботі (gute Leistungen), а дієслово — leisten."
+
+  - de: "Trinkgeld"
+    ipa: "ˈtʁɪŋkˌgɛlt"
+    pos: noun
+    gender: n
+    plural: "die Trinkgelder"
+    en: "money you leave for good service"
+    ru: "чаевые"
+    uk: "чайові"
+    example_de: "Das Trinkgeld steht nicht auf der Rechnung."
+    example_en: "The tip is not on the bill."
+    example_ru: "Чаевые в счёт не входят."
+    example_uk: "Чайові до рахунку не входять."
+    note:
+      en: "Trinkgeld geben, five to ten per cent, and it is handed over when you pay rather than written down: Machen Sie 30 Euro. The word is singular even though English says tips."
+      ru: "Trinkgeld geben, пять–десять процентов, и передают их при оплате, а не вписывают в счёт: Machen Sie 30 Euro. Слово стоит в единственном числе."
+      uk: "Trinkgeld geben, п'ять–десять відсотків, і передають їх під час оплати, а не вписують у рахунок: Machen Sie 30 Euro. Слово стоїть в однині."
+
+  - de: "fällig"
+    ipa: "ˈfɛlɪç"
+    pos: adj
+    en: "due, to be paid by a stated day"
+    ru: "подлежащий оплате к сроку"
+    uk: "що підлягає оплаті до строку"
+    example_de: "Die Rechnung ist am 17. Mai fällig."
+    example_en: "The bill is due on 17 May."
+    example_ru: "Счёт подлежит оплате 17 мая."
+    example_uk: "Рахунок підлягає оплаті 17 травня."
+    note:
+      en: "fällig names the day the money has to be there; gültig names how long something still counts. Die Miete wird am Ersten fällig, and eine fällige Rechnung is one whose day has come."
+      ru: "fällig называет день, к которому деньги должны быть на месте; gültig — срок, пока что-то ещё действует. Die Miete wird am Ersten fällig, а eine fällige Rechnung — счёт, чей срок настал."
+      uk: "fällig називає день, до якого гроші мають бути на місці; gültig — строк, поки щось іще діє. Die Miete wird am Ersten fällig, а eine fällige Rechnung — рахунок, чий строк настав."
+
+  - de: "gültig"
+    ipa: "ˈgʏltɪç"
+    pos: adj
+    en: "valid, still in force"
+    ru: "действительный, имеющий силу"
+    uk: "дійсний, що має силу"
+    example_de: "Das Angebot ist bis Ende Mai gültig."
+    example_en: "The offer is valid until the end of May."
+    example_ru: "Предложение действительно до конца мая."
+    example_uk: "Пропозиція дійсна до кінця травня."
+    note:
+      en: "From gelten. A ticket, a passport, a price and a set of terms can all be gültig; the opposite is ungültig. What must be paid by a certain day is fällig instead."
+      ru: "От gelten. Билет, паспорт, цена и условия договора могут быть gültig; противоположность — ungültig. То, что нужно оплатить к определённому дню, — fällig."
+      uk: "Від gelten. Квиток, паспорт, ціна й умови договору можуть бути gültig; протилежність — ungültig. Те, що треба оплатити до певного дня, — fällig."
+
+  - de: "enthalten"
+    ipa: "ɛntˈhaltn̩"
+    pos: verb
+    praesens_3sg: "enthält"
+    partizip2: "enthalten"
+    aux: haben
+    valence: "+ Akk"
+    en: "to include, to have inside"
+    ru: "содержать, включать в себя"
+    uk: "містити, включати в себе"
+    example_de: "Der Preis enthält das Material."
+    example_en: "The price includes the material."
+    example_ru: "Цена включает материалы."
+    example_uk: "Ціна включає матеріали."
+    note:
+      en: "Inseparable and strong: enthält, hat enthalten — the participle takes no ge-. It is not reflexive, and the most useful shape is the passive-looking one a price list writes: Das Material ist im Preis enthalten."
+      ru: "Неотделяемый и сильный: enthält, hat enthalten — в причастии нет ge-. Возвратным не бывает, а полезнее всего форма, которой пользуется прайс-лист: Das Material ist im Preis enthalten."
+      uk: "Невідокремлюване й сильне: enthält, hat enthalten — у дієприкметнику немає ge-. Зворотним не буває, а найкорисніша форма — та, якою користується прайс-лист: Das Material ist im Preis enthalten."
+
+  - de: "garantieren"
+    ipa: "gaʁanˈtiːʁən"
+    pos: verb
+    praesens_3sg: "garantiert"
+    partizip2: "garantiert"
+    aux: haben
+    valence: "+ Akk"
+    en: "to guarantee"
+    ru: "гарантировать"
+    uk: "гарантувати"
+    example_de: "Der Anbieter garantiert den Preis für zwölf Monate."
+    example_en: "The provider guarantees the price for twelve months."
+    example_ru: "Оператор гарантирует цену на двенадцать месяцев."
+    example_uk: "Оператор гарантує ціну на дванадцять місяців."
+    note:
+      en: "Verbs in -ieren build the Partizip II without ge-: hat garantiert. jemandem etwas garantieren takes a Dativ and an Akkusativ, and the noun is die Garantie."
+      ru: "Глаголы на -ieren образуют Partizip II без ge-: hat garantiert. jemandem etwas garantieren берёт Dativ и Akkusativ, существительное — die Garantie."
+      uk: "Дієслова на -ieren утворюють Partizip II без ge-: hat garantiert. jemandem etwas garantieren бере Dativ і Akkusativ, іменник — die Garantie."
+
+  - de: "einzahlen"
+    ipa: "ˈaɪ̯nˌtsaːlən"
+    pos: verb
+    praesens_3sg: "zahlt ein"
+    partizip2: "eingezahlt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to pay money into an account"
+    ru: "вносить деньги на счёт"
+    uk: "вносити гроші на рахунок"
+    example_de: "Sie können den Betrag auch bar bei der Bank einzahlen."
+    example_en: "You can also pay the amount in at the bank in cash."
+    example_ru: "Сумму можно внести и наличными в банке."
+    example_uk: "Суму можна внести й готівкою в банку."
+    note:
+      en: "Separable: zahlt ein, hat eingezahlt, and the direction is into the account — auf das Konto einzahlen. Taking money out is abheben; sending it from one account to another is überweisen."
+      ru: "Отделяемая приставка: zahlt ein, hat eingezahlt, и направление — на счёт: auf das Konto einzahlen. Снять деньги — abheben, отправить с одного счёта на другой — überweisen."
+      uk: "Відокремлюваний префікс: zahlt ein, hat eingezahlt, і напрямок — на рахунок: auf das Konto einzahlen. Зняти гроші — abheben, надіслати з одного рахунку на інший — überweisen."
+
+  - de: "versäumen"
+    ipa: "fɛɐ̯ˈzɔʏ̯mən"
+    pos: verb
+    praesens_3sg: "versäumt"
+    partizip2: "versäumt"
+    aux: haben
+    valence: "+ Akk"
+    en: "to let a deadline or a date go by"
+    ru: "упустить срок, не сделать вовремя"
+    uk: "проґавити строк, не зробити вчасно"
+    example_de: "Wer die Frist versäumt, bekommt eine Mahnung."
+    example_en: "Anyone who lets the deadline go by gets a reminder."
+    example_ru: "Кто упускает срок, получает напоминание об оплате."
+    example_uk: "Хто проґавлює строк, дістає нагадування про оплату."
+    note:
+      en: "Inseparable, so no ge- in hat versäumt. It goes with a Frist, a Termin or a Chance; a train or a bus is verpassen instead."
+      ru: "Приставка неотделяемая, поэтому в hat versäumt нет ge-. Сочетается с Frist, Termin или Chance; поезд или автобус — verpassen."
+      uk: "Префікс невідокремлюваний, тому в hat versäumt немає ge-. Сполучається з Frist, Termin або Chance; потяг чи автобус — verpassen."
+
+  # --- Receptive tail (cards: recognition) --------------------------------
+  # What a bill, a set of terms and conditions and a Mahnung say to you.
+  # Understood, never demanded back. Declared recognition from the start, never
+  # retrofitted.
+
+  - de: "Abonnement"
+    ipa: "abɔnəˈmɑ̃ː"
+    pos: noun
+    gender: n
+    plural: "die Abonnements"
+    cards: recognition
+    en: "subscription"
+    ru: "подписка, абонемент"
+    uk: "передплата, абонемент"
+    example_de: "Das Abonnement verlängert sich automatisch um ein Jahr."
+    example_en: "The subscription is automatically extended by a year."
+    example_ru: "Подписка автоматически продлевается на год."
+    example_uk: "Передплата автоматично продовжується на рік."
+    note:
+      en: "The long written form printed in a contract, where speech says Abo. A French word: the stress is on the last syllable and the ending is nasal, with no t spoken."
+      ru: "Длинная письменная форма, которую печатают в договоре, тогда как в речи говорят Abo. Слово французское: ударение на последнем слоге, окончание носовое, t не произносится."
+      uk: "Довга письмова форма, яку друкують у договорі, тоді як у мовленні кажуть Abo. Слово французьке: наголос на останньому складі, закінчення носове, t не вимовляється."
+
+  - de: "Abschnitt"
+    ipa: "ˈapˌʃnɪt"
+    pos: noun
+    gender: m
+    plural: "die Abschnitte"
+    cards: recognition
+    en: "section of a text or a contract"
+    ru: "раздел, отрезок"
+    uk: "розділ, відтинок"
+    example_de: "Was in Abschnitt 4 steht, gilt nur für neue Kunden."
+    example_en: "What is in section 4 applies only to new customers."
+    example_ru: "То, что написано в разделе 4, действует только для новых клиентов."
+    example_uk: "Те, що написано в розділі 4, діє лише для нових клієнтів."
+    note:
+      en: "A contract is numbered in these, and a reference to one is how a firm answers a question. The word also names a stretch of a road or of time."
+      ru: "Договор пронумерован именно ими, и ссылкой на такой раздел фирма отвечает на вопрос. Слово называет и отрезок дороги или времени."
+      uk: "Договір пронумерований саме ними, і посиланням на такий розділ фірма відповідає на питання. Слово називає й відтинок дороги чи часу."
+
+  - de: "verpflichtet"
+    ipa: "fɛɐ̯ˈpflɪçtət"
+    pos: adj
+    cards: recognition
+    en: "obliged, bound to do something"
+    ru: "обязанный что-либо сделать"
+    uk: "зобов'язаний щось зробити"
+    example_de: "Der Kunde ist verpflichtet, die Rechnung innerhalb von 14 Tagen zu bezahlen."
+    example_en: "The customer is obliged to pay the bill within 14 days."
+    example_ru: "Клиент обязан оплатить счёт в течение 14 дней."
+    example_uk: "Клієнт зобов'язаний оплатити рахунок протягом 14 днів."
+    note:
+      en: "zu etwas verpflichtet sein — the sentence pattern the small print is written in, usually with an infinitive after it. The verb is verpflichten and the noun die Pflicht."
+      ru: "zu etwas verpflichtet sein — образец фразы, которым написан мелкий шрифт, обычно с инфинитивом следом. Глагол — verpflichten, существительное — die Pflicht."
+      uk: "zu etwas verpflichtet sein — зразок фрази, якою написаний дрібний шрифт, зазвичай з інфінітивом слідом. Дієслово — verpflichten, іменник — die Pflicht."
+
+  - de: "Anspruch"
+    ipa: "ˈanˌʃpʁʊx"
+    pos: noun
+    gender: m
+    plural: "die Ansprüche"
+    cards: recognition
+    en: "claim to something you are owed"
+    ru: "право требования, притязание"
+    uk: "право вимоги, домагання"
+    example_de: "Bei einer falschen Lieferung haben Sie Anspruch auf Ersatz."
+    example_en: "If the delivery is wrong you have a claim to a replacement."
+    example_ru: "При неверной поставке вы вправе требовать замену."
+    example_uk: "У разі хибної поставки ви маєте право вимагати заміну."
+    note:
+      en: "Anspruch auf + Akkusativ. The other everyday use is etwas in Anspruch nehmen — to make use of a service that is on offer."
+      ru: "Anspruch auf + Akkusativ. Второе обиходное употребление — etwas in Anspruch nehmen: воспользоваться предложенной услугой."
+      uk: "Anspruch auf + Akkusativ. Друге побутове вживання — etwas in Anspruch nehmen: скористатися запропонованою послугою."
+
+  - de: "Forderung"
+    ipa: "ˈfɔʁdəʁʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Forderungen"
+    cards: recognition
+    en: "amount still demanded, demand"
+    ru: "требование, непогашенная задолженность"
+    uk: "вимога, непогашена заборгованість"
+    example_de: "In der Mahnung steht die offene Forderung."
+    example_en: "The reminder states the amount still outstanding."
+    example_ru: "В напоминании указана непогашенная сумма."
+    example_uk: "У нагадуванні зазначено непогашену суму."
+    note:
+      en: "From fordern. On a Mahnung it is the money not yet paid; away from money it is a demand somebody makes in a discussion."
+      ru: "От fordern. В напоминании это ещё не уплаченные деньги; вне денег — требование, которое выдвигают в споре."
+      uk: "Від fordern. У нагадуванні це ще не сплачені гроші; поза грошима — вимога, яку висувають у суперечці."
+
+  - de: "pauschal"
+    ipa: "paʊ̯ˈʃaːl"
+    pos: adj
+    cards: recognition
+    en: "as one flat sum, not itemized"
+    ru: "единой суммой, без разбивки"
+    uk: "єдиною сумою, без розбивки"
+    example_de: "Die Anfahrt wird pauschal mit 25 Euro berechnet."
+    example_en: "The call-out is charged at a flat rate of 25 euros."
+    example_ru: "Выезд считают единой суммой в 25 евро."
+    example_uk: "Виїзд рахують єдиною сумою в 25 євро."
+    note:
+      en: "One price for everything, however long it takes; the noun is die Pauschale. The opposite is charging nach Stunden, hour by hour."
+      ru: "Одна цена за всё, сколько бы времени ни ушло; существительное — die Pauschale. Противоположность — счёт nach Stunden, по часам."
+      uk: "Одна ціна за все, скільки б часу не пішло; іменник — die Pauschale. Протилежність — рахунок nach Stunden, погодинно."
+
+  - de: "Erhöhung"
+    ipa: "ɛɐ̯ˈhøːʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Erhöhungen"
+    cards: recognition
+    en: "rise in a price or an amount"
+    ru: "повышение, увеличение"
+    uk: "підвищення, збільшення"
+    example_de: "Der Brief kündigt eine Erhöhung um zwei Euro an."
+    example_en: "The letter announces a rise of two euros."
+    example_ru: "Письмо объявляет о повышении на два евро."
+    example_uk: "Лист оголошує про підвищення на два євро."
+    note:
+      en: "The noun to erhöhen, which the learner already has a card for; a price goes up um so-and-so much. The opposite movement is die Senkung."
+      ru: "Существительное к erhöhen, карточка на который у учащегося уже есть; цена растёт um столько-то. Обратное движение — die Senkung."
+      uk: "Іменник до erhöhen, картка на який в учня вже є; ціна зростає um стільки-то. Зворотний рух — die Senkung."
+
+  - de: "Ausgabe"
+    ipa: "ˈaʊ̯sˌgaːbə"
+    pos: noun
+    gender: f
+    plural: "die Ausgaben"
+    cards: recognition
+    en: "money spent; edition of a paper"
+    ru: "расход, трата; выпуск издания"
+    uk: "витрата; випуск видання"
+    example_de: "Meine Ausgaben für Handy und Internet sind gestiegen."
+    example_en: "My spending on phone and internet has gone up."
+    example_ru: "Мои траты на телефон и интернет выросли."
+    example_uk: "Мої витрати на телефон та інтернет зросли."
+    note:
+      en: "Mostly plural when it is about money, and the counterpart is die Einnahme. The Monday paper is die Ausgabe vom Montag — the same noun, from ausgeben in its other sense."
+      ru: "О деньгах — почти всегда во множественном, а пара к нему — die Einnahme. Понедельничный номер газеты — die Ausgabe vom Montag: то же существительное, от ausgeben в другом значении."
+      uk: "Про гроші — майже завжди в множині, а пара до нього — die Einnahme. Понеділковий номер газети — die Ausgabe vom Montag: той самий іменник, від ausgeben в іншому значенні."
+
+  - de: "Girokonto"
+    ipa: "ˈʒiːʁoˌkɔnto"
+    pos: noun
+    gender: n
+    plural: "die Girokonten"
+    cards: recognition
+    en: "everyday bank account"
+    ru: "текущий банковский счёт"
+    uk: "поточний банківський рахунок"
+    example_de: "Der Betrag wird jeden Monat vom Girokonto abgebucht."
+    example_en: "The amount is debited from the account every month."
+    example_ru: "Сумму каждый месяц списывают с текущего счёта."
+    example_uk: "Суму щомісяця списують з поточного рахунку."
+    note:
+      en: "The account a salary arrives in and bills leave from. Giro is Italian, spoken with the sound of Journal. The general word is das Konto."
+      ru: "Счёт, на который приходит зарплата и с которого уходят платежи. Giro — слово итальянское, произносится как в Journal. Общее слово — das Konto."
+      uk: "Рахунок, на який приходить зарплата і з якого йдуть платежі. Giro — слово італійське, вимовляється як у Journal. Загальне слово — das Konto."
+
+  - de: "Kauf"
+    ipa: "ˈkaʊ̯f"
+    pos: noun
+    gender: m
+    plural: "die Käufe"
+    cards: recognition
+    en: "act of buying, purchase"
+    ru: "покупка как действие"
+    uk: "купівля як дія"
+    example_de: "Bewahren Sie den Beleg nach dem Kauf gut auf."
+    example_en: "Keep the receipt safe after the purchase."
+    example_ru: "После покупки сохраняйте чек."
+    example_uk: "Після купівлі зберігайте чек."
+    note:
+      en: "The noun to kaufen, which already has a card. beim Kauf is what a guarantee refers to, and etwas in Kauf nehmen means putting up with a drawback."
+      ru: "Существительное к kaufen, на который карточка уже есть. beim Kauf — то, на что ссылается гарантия, а etwas in Kauf nehmen значит мириться с недостатком."
+      uk: "Іменник до kaufen, на який картка вже є. beim Kauf — те, на що посилається гарантія, а etwas in Kauf nehmen означає миритися з недоліком."
+
+  - de: "Stempel"
+    ipa: "ˈʃtɛmpl̩"
+    pos: noun
+    gender: m
+    plural: "die Stempel"
+    cards: recognition
+    en: "rubber stamp on a document"
+    ru: "печать, штамп на документе"
+    uk: "печатка, штамп на документі"
+    example_de: "Die Quittung ist erst mit Stempel gültig."
+    example_en: "The receipt is only valid with a stamp on it."
+    example_ru: "Квитанция действительна только с печатью."
+    example_uk: "Квитанція дійсна лише з печаткою."
+    note:
+      en: "Not the one on an envelope, which is die Briefmarke. An Amt, a workshop and a shop all keep one; the verb is stempeln."
+      ru: "Не та, что на конверте, — там die Briefmarke. Печать держат и в учреждении, и в мастерской, и в магазине; глагол — stempeln."
+      uk: "Не та, що на конверті, — там die Briefmarke. Печатку тримають і в установі, і в майстерні, і в крамниці; дієслово — stempeln."
+
+  - de: "Nachfrage"
+    ipa: "ˈnaːxˌfʁaːgə"
+    pos: noun
+    gender: f
+    plural: "die Nachfragen"
+    cards: recognition
+    en: "follow-up question; demand for goods"
+    ru: "повторный вопрос; спрос на товар"
+    uk: "повторне питання; попит на товар"
+    example_de: "Erst auf Nachfrage hat der Anbieter die Rechnung geändert."
+    example_en: "Only after being asked did the provider change the bill."
+    example_ru: "Только после повторного вопроса оператор изменил счёт."
+    example_uk: "Лише після повторного питання оператор змінив рахунок."
+    note:
+      en: "auf Nachfrage is the fixed chunk and means after somebody asked again. The second sense belongs to shops rather than to people: Die Nachfrage ist groß."
+      ru: "auf Nachfrage — устойчивое сочетание: «после того как переспросили». Второе значение относится к торговле, а не к людям: Die Nachfrage ist groß."
+      uk: "auf Nachfrage — стале сполучення: «після того як перепитали». Друге значення стосується торгівлі, а не людей: Die Nachfrage ist groß."
+
+  - de: "Schulden"
+    ipa: "ˈʃʊldn̩"
+    pos: phrase
+    cards: recognition
+    en: "debts, money owed"
+    ru: "долги"
+    uk: "борги"
+    example_de: "Wer seine Rechnungen nicht bezahlt, macht Schulden."
+    example_en: "Anyone who does not pay their bills runs up debts."
+    example_ru: "Кто не оплачивает счета, влезает в долги."
+    example_uk: "Хто не оплачує рахунки, залазить у борги."
+    note:
+      en: "Plural only: Schulden machen, Schulden haben, Schulden zurückzahlen. The singular die Schuld is a different word — fault or guilt."
+      ru: "Только множественное: Schulden machen, Schulden haben, Schulden zurückzahlen. Единственное die Schuld — другое слово: вина."
+      uk: "Лише множина: Schulden machen, Schulden haben, Schulden zurückzahlen. Однина die Schuld — інше слово: провина."
+
+  - de: "ausstellen"
+    ipa: "ˈaʊ̯sˌʃtɛlən"
+    pos: verb
+    praesens_3sg: "stellt aus"
+    partizip2: "ausgestellt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to issue a document"
+    ru: "выписывать, выдавать документ"
+    uk: "виписувати, видавати документ"
+    example_de: "Die Rechnung wurde am 3. Mai ausgestellt."
+    example_en: "The bill was issued on 3 May."
+    example_ru: "Счёт был выписан 3 мая."
+    example_uk: "Рахунок був виписаний 3 травня."
+    note:
+      en: "Separable: stellt aus, hat ausgestellt. A firm issues eine Rechnung or eine Quittung, an Amt eine Bescheinigung. The other sense is a museum putting something on show."
+      ru: "Отделяемая приставка: stellt aus, hat ausgestellt. Фирма выписывает eine Rechnung или eine Quittung, учреждение — eine Bescheinigung. Второе значение — выставлять в музее."
+      uk: "Відокремлюваний префікс: stellt aus, hat ausgestellt. Фірма виписує eine Rechnung або eine Quittung, установа — eine Bescheinigung. Друге значення — виставляти в музеї."
+
+  - de: "Tabelle"
+    ipa: "taˈbɛlə"
+    pos: noun
+    gender: f
+    plural: "die Tabellen"
+    cards: recognition
+    en: "table of rows and columns"
+    ru: "таблица"
+    uk: "таблиця"
+    example_de: "Im Kostenvoranschlag steht alles in einer Tabelle."
+    example_en: "In the written estimate everything is set out in a table."
+    example_ru: "В смете всё изложено таблицей."
+    example_uk: "У кошторисі все викладено таблицею."
+    note:
+      en: "Across it runs die Zeile, down it die Spalte. A written estimate and a price list are both built out of one; stress on the middle syllable."
+      ru: "Поперёк идёт die Zeile, вниз — die Spalte. И смета, и прайс-лист построены на ней; ударение на среднем слоге."
+      uk: "Упоперек іде die Zeile, униз — die Spalte. І кошторис, і прайс-лист побудовані на ній; наголос на середньому складі."
+
+  - de: "Urkunde"
+    ipa: "ˈuːɐ̯ˌkʊndə"
+    pos: noun
+    gender: f
+    plural: "die Urkunden"
+    cards: recognition
+    en: "official certificate"
+    ru: "официальный документ, свидетельство"
+    uk: "офіційний документ, свідоцтво"
+    example_de: "Für die Anmeldung brauchen Sie die Urkunde im Original."
+    example_en: "For the registration you need the original certificate."
+    example_ru: "Для регистрации нужен оригинал свидетельства."
+    example_uk: "Для реєстрації потрібен оригінал свідоцтва."
+    note:
+      en: "A paper with a stamp and a signature: die Geburtsurkunde, die Heiratsurkunde. A shorter confirmation an Amt writes for one purpose is eine Bescheinigung."
+      ru: "Бумага с печатью и подписью: die Geburtsurkunde, die Heiratsurkunde. Короткая справка, которую учреждение выдаёт под конкретную цель, — eine Bescheinigung."
+      uk: "Папір із печаткою та підписом: die Geburtsurkunde, die Heiratsurkunde. Коротка довідка, яку установа видає під конкретну мету, — eine Bescheinigung."

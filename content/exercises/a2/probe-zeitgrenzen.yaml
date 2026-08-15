@@ -1,0 +1,47 @@
+topic: zeit-praepositionen
+role: probe
+title: {en: "Probe — temporal thresholds and intervals", ru: "Проверка — временные пороги и интервалы", uk: "Перевірка — часові пороги та інтервали"}
+arming:
+  - a2/zeit-praepositionen-grenzen::mc-mit-18
+  - a2/zeit-praepositionen-grenzen::cloze-kursbeginn
+  - a2/zeit-praepositionen-grenzen::mc-zwischen
+  - a2/zeit-praepositionen-grenzen::cloze-zwischen-dativ
+  - a2/zeit-praepositionen-grenzen-transfer::translate-fuehrerschein
+  - a2/zeit-praepositionen-grenzen-transfer::translate-lieferung
+  - a2/zeit-praepositionen-grenzen-transfer::translate-feiertage
+items:
+  - id: variant-a
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "At sixteen he started an apprenticeship."
+    prompt_ru: "В шестнадцать лет он начал профессиональное обучение."
+    prompt_uk: "У шістнадцять років він почав професійне навчання."
+    answer: "Mit 16 hat er eine Ausbildung angefangen."
+    accept: ["Er hat mit 16 eine Ausbildung angefangen."]
+    key_tokens: ["mit", "16", "Ausbildung", "angefangen"]
+    explain: {en: "The age is the threshold at which the new life stage began: mit 16.", ru: "Возраст — порог, с которого начался новый жизненный этап: mit 16.", uk: "Вік — поріг, із якого почався новий життєвий етап: mit 16."}
+  - id: variant-b
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate both ends of the interval into German.", ru: "Переведите обе границы интервала на немецкий.", uk: "Перекладіть обидві межі інтервалу німецькою."}
+    prompt_en: "The exam takes place between the second and fourth of June."
+    prompt_ru: "Экзамен состоится между вторым и четвёртым июня."
+    prompt_uk: "Іспит відбудеться між другим і четвертим червня."
+    answer: "Die Prüfung findet zwischen dem zweiten und dem vierten Juni statt."
+    key_tokens: ["Prüfung", "zwischen", "zweiten", "und", "vierten", "Juni"]
+    explain: {en: "The dates delimit one interval and both stand in the dative within zwischen … und.", ru: "Даты ограничивают один интервал и обе стоят в Dativ внутри zwischen … und.", uk: "Дати обмежують один інтервал і обидві стоять у Dativ усередині zwischen … und."}
+  - id: variant-c
+    outcomes: [zeitraum-nennen]
+    type: translate
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Translate the event threshold into German.", ru: "Переведите событийный порог на немецкий.", uk: "Перекладіть подієвий поріг німецькою."}
+    prompt_en: "Everything changed with the move."
+    prompt_ru: "С переездом всё изменилось."
+    prompt_uk: "Із переїздом усе змінилося."
+    answer: "Mit dem Umzug änderte sich alles."
+    accept: ["Mit dem Umzug hat sich alles geändert."]
+    key_tokens: ["Mit", "dem", "Umzug", "alles"]
+    explain: {en: "mit dem Umzug sets the event boundary from which the change holds; it does not name transport or clock time.", ru: "mit dem Umzug задаёт событийную границу, с которой действует изменение; это не транспорт и не время на часах.", uk: "mit dem Umzug задає подієву межу, з якої діє зміна; це не транспорт і не час на годиннику."}

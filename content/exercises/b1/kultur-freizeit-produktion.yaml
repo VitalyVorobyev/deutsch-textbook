@@ -1,0 +1,230 @@
+# B1.12 production half: the transfer set. Fresh contexts, none a rehearsal of a
+# primary-practice sentence — a culture office heard on the phone rather than read off a
+# flyer, the dictation of the one line a plan must get exactly right, two translations in
+# frames the primary set does not use (a comparison of two evenings already had, a report
+# line about a half-empty hall), and the open tasks the outcomes claim. The written task
+# moves to a school concert in a different district and the spoken one to a colleague at
+# work, so neither can be answered out of the Kulturwoche flyer the primary set is built on.
+# Open tasks are minimal ceremony: attempt → model → done; `requirements` and `checklist`
+# are guidance for comparing your own production against the model — the app cannot verify
+# free production, so it charges no steps for feedback it cannot give, and both stay
+# untagged, because unverified production must never feed the weakness signal.
+# The listening item is untagged: its three options differ in the price and in which of
+# Beginn and Einlass the caller heard, so a wrong pick is a failure to hold two facts from
+# one turn, not a decode failure of any one structure. The dictation is untagged for the
+# same reason — what it drills is writing down a Treffpunkt line exactly, which is a genre
+# habit and no grammar tag's substance.
+# The speak item declares `mode: spoken-interaction`, following the corpus convention that
+# a speak task takes the mode of the outcome it serves: `veranstaltung-empfehlen` is a
+# spoken-interaction outcome, as `einwand-ausdruecken` and `kompromiss-vorschlagen` are at
+# B1.10, whose speak items are marked the same way.
+# Outcome discipline continues the primary set's channels (probe families arm from their
+# own explicit item lists, src/lib/probes.ts): the phone call on programm-verstehen, the
+# Treffpunkt line, the comparison and the spoken agreement on veranstaltung-empfehlen, the
+# report line and the written report on erlebnis-bewerten.
+# No `recording:` field: no reviewed artifact exists for this unit yet, so source.turns is
+# both the script a future take would be made from and today's TTS fallback.
+topic: kultur-freizeit
+role: practice
+stage: transfer
+activity: application
+title:
+  en: "Production — hear the box office, fix the meeting point, write it up"
+  ru: "Продукция — услышать кассу, назначить место встречи, написать отзыв"
+  uk: "Продукція — почути касу, призначити місце зустрічі, написати відгук"
+  de: "Produktion — die Kasse hören, den Treffpunkt festlegen, den Abend aufschreiben"
+items:
+  - id: hoeren-kulturbuero
+    outcomes: [programm-verstehen]
+    type: audio-comprehension
+    instruction:
+      en: "A call to a culture office, heard and not read. Two facts about Sunday morning arrive in one turn — the price for the child and when the door opens."
+      ru: "Звонок в культурный центр, услышанный, а не прочитанный. Два факта про воскресное утро приходят в одной реплике — цена для ребёнка и когда открывают двери."
+      uk: "Дзвінок до культурного центру, почутий, а не прочитаний. Два факти про недільний ранок приходять в одній репліці — ціна для дитини і коли відчиняють двері."
+      de: "Ein Anruf im Kulturbüro, gehört und nicht gelesen. Zwei Angaben zum Sonntagvormittag stehen in einem Beitrag — der Preis für das Kind und die Öffnung der Tür."
+    source:
+      kind: tts
+      rate: 0.9
+      turns:
+        - { speaker: "Kulturbüro", text: "Kulturbüro Nordstadt, guten Tag." }
+        - { speaker: "Anruferin", text: "Guten Tag, ich möchte am Sonntag mit meiner Tochter zum Kinderprogramm kommen. Sie ist neun. Muss ich vorher reservieren?" }
+        - { speaker: "Kulturbüro", text: "Für das Kinderprogramm nicht. Beginn ist um halb elf, Einlass ab zehn. Kinder bis zwölf Jahre kommen gratis, Erwachsene zahlen vier Euro." }
+        - { speaker: "Anruferin", text: "Und die Führung am Nachmittag?" }
+        - { speaker: "Kulturbüro", text: "Da brauchen Sie eine Reservierung, und zwar bis Freitag. Die Plätze sind fast weg." }
+    question: "Was zahlt die Tochter, und wann geht die Tür auf?"
+    options:
+      - "Sie zahlt nichts, und die Tür geht um zehn auf."
+      - "Sie zahlt vier Euro, und die Tür geht um halb elf auf."
+      - "Sie zahlt nichts, und die Tür geht um halb elf auf."
+    correct: 0
+    translation:
+      en: "What does the daughter pay, and when does the door open?"
+      ru: "Сколько платит дочь и когда открывают двери?"
+      uk: "Скільки платить донька і коли відчиняють двері?"
+    explain:
+      en: "One turn carries both answers and they sit in different halves of it. Einlass ab zehn is the door, halb elf is the start, so an answer that opens the door at halb elf has taken the start for the door — which is how people end up standing outside. And Kinder bis zwölf Jahre kommen gratis covers a nine-year-old, so the four euros belong to the adult ticket only."
+      ru: "Оба ответа несёт одна реплика, и лежат они в разных её половинах. Einlass ab zehn — это дверь, halb elf — начало, так что ответ, открывающий дверь в halb elf, принял начало за дверь; именно так люди и остаются снаружи. А Kinder bis zwölf Jahre kommen gratis покрывает девятилетнюю, так что четыре евро — это только взрослый билет."
+      uk: "Обидві відповіді несе одна репліка, і лежать вони в різних її половинах. Einlass ab zehn — це двері, halb elf — початок, тож відповідь, що відчиняє двері о halb elf, прийняла початок за двері; саме так люди й лишаються назовні. А Kinder bis zwölf Jahre kommen gratis покриває дев'ятирічну, тож чотири євро — це лише дорослий квиток."
+      de: "Ein Beitrag trägt beide Antworten, und sie stehen in verschiedenen Hälften davon. Einlass ab zehn ist die Tür, halb elf der Beginn — wer die Tür um halb elf aufgehen lässt, hat den Beginn für die Tür gehalten, und genau so steht man draußen. Und Kinder bis zwölf Jahre kommen gratis gilt für eine Neunjährige, die vier Euro betreffen also nur die Erwachsenenkarte."
+
+  - id: hoeren-diktat-treffpunkt
+    outcomes: [veranstaltung-empfehlen]
+    type: listen
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть, що ви чуєте."
+      de: "Hör zu und tippe, was du hörst."
+    text: "Treffpunkt ist um Viertel vor acht vor dem Saal."
+    translation:
+      en: "The meeting point is outside the hall at a quarter to eight."
+      ru: "Встречаемся без четверти восемь перед залом."
+      uk: "Зустрічаємося за чверть восьма перед залою."
+    explain:
+      en: "This is the line that decides whether two people end up in the same place, and it only works in full: a place and a time, both named, with no verb between them. Viertel vor acht is seven forty-five, not eight fifteen — vor counts backwards from the hour. And vor dem Saal is outside it; the seats are inside."
+      ru: "Именно эта строчка решает, окажутся ли двое в одном месте, и работает она только целиком: место и время, названные оба, без глагола между ними. Viertel vor acht — это 19:45, а не 20:15: vor отсчитывает назад от часа. А vor dem Saal — это перед залом, снаружи; места внутри."
+      uk: "Саме цей рядок вирішує, чи опиняться двоє в одному місці, і працює він лише цілком: місце й час, названі обидва, без дієслова між ними. Viertel vor acht — це 19:45, а не 20:15: vor відлічує назад від години. А vor dem Saal — це перед залою, назовні; місця всередині."
+      de: "Diese Zeile entscheidet, ob zwei Leute am selben Ort ankommen, und sie wirkt nur vollständig: ein Ort und eine Zeit, beide genannt, ohne Verb dazwischen. Viertel vor acht ist 19.45 Uhr, nicht 20.15 — vor zählt von der vollen Stunde zurück. Und vor dem Saal heißt davor; die Plätze sind drinnen."
+
+  - id: uebersetzen-gemuetlicherer-abend
+    outcomes: [veranstaltung-empfehlen]
+    type: translate
+    focus: komparativ-attributiv
+    instruction:
+      en: "Compare the two evenings — put the comparison in front of the noun. For 'cosy' take gemütlich."
+      ru: "Сравните два вечера — поставьте сравнение перед существительным. Для «уютный» возьмите gemütlich."
+      uk: "Порівняйте два вечори — поставте порівняння перед іменником. Для «затишний» візьміть gemütlich."
+      de: "Vergleich die beiden Abende — stell den Vergleich vor das Nomen. Für die Atmosphäre nimm gemütlich."
+    prompt_en: "In the small hall we had a cosier evening than in the Stadthalle."
+    prompt_ru: "В малом зале вечер у нас вышел уютнее, чем в Штадтхалле."
+    prompt_uk: "У малій залі вечір у нас вийшов затишніший, ніж у Штадтхалле."
+    answer: "Im kleinen Saal hatten wir einen gemütlicheren Abend als in der Stadthalle."
+    accept:
+      # The subject may lead; both are ordinary V2 and the graded word does not move.
+      # No definite-article variant is listed, although RU and UK leave the determiner
+      # free: einen Abend haben is the fixed collocation and den Abend haben is not
+      # German, so the frame settles the article without an accept doing it.
+      - "Wir hatten im kleinen Saal einen gemütlicheren Abend als in der Stadthalle."
+    key_tokens: ["gemütlicheren"]
+    explain:
+      en: "Graded is the one word the tag is about: gemütlicher plus the -en that a masculine accusative asks for. Two endings are stacked in a fixed order — first the -er of the comparison, then the case ending on top of it. A hand that stops at gemütlicher has kept the comparison and dropped the declension; a hand that writes gemütliche has done the opposite."
+      ru: "Оценивается одно слово, ради которого и стоит тег: gemütlicher плюс то -en, которого требует винительный мужского рода. Два окончания складываются в жёстком порядке: сначала -er сравнения, потом падежное поверх него. Рука, остановившаяся на gemütlicher, сохранила сравнение и выбросила склонение; рука, написавшая gemütliche, сделала ровно наоборот."
+      uk: "Оцінюється одне слово, заради якого й стоїть тег: gemütlicher плюс те -en, якого вимагає знахідний чоловічого роду. Два закінчення складаються в жорсткому порядку: спершу -er порівняння, потім відмінкове поверх нього. Рука, що спинилася на gemütlicher, зберегла порівняння і викинула відмінювання; рука, що написала gemütliche, зробила рівно навпаки."
+      de: "Bewertet wird das eine Wort, um das es dem Tag geht: gemütlicher plus das -en, das ein maskuliner Akkusativ verlangt. Zwei Endungen stapeln sich in fester Reihenfolge — erst das -er des Vergleichs, dann die Kasusendung darauf. Wer bei gemütlicher aufhört, behält den Vergleich ohne Deklination; wer gemütliche schreibt, macht es genau umgekehrt."
+
+  - id: uebersetzen-bericht-plaetze
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'stay' take bleiben, for 'end' enden."
+      ru: "Письменный отзыв — значит Präteritum. Для «оставаться» возьмите bleiben, для «закончиться» — enden."
+      uk: "Письмовий відгук — отже Präteritum. Для «лишатися» візьміть bleiben, для «закінчитися» — enden."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für das Freibleiben nimm bleiben, für den Schluss enden."
+    prompt_en: "After the interval many seats stayed empty, and the evening ended earlier."
+    prompt_ru: "После антракта много мест осталось пустыми, и вечер закончился раньше."
+    prompt_uk: "Після антракту багато місць лишилося порожніми, і вечір закінчився раніше."
+    answer: "Nach der Pause blieben viele Plätze leer, und der Abend endete früher."
+    accept:
+      # The subject may lead; the two graded forms do not move with it.
+      - "Viele Plätze blieben nach der Pause leer, und der Abend endete früher."
+    key_tokens: ["blieben", "endete"]
+    explain:
+      en: "Graded are the two full verbs, one of each kind: bleiben is strong and changes its vowel with no ending — blieben — while enden is weak and keeps its stem under the -te. Both are Präteritum, and that is the register: a report is paper. Watch the plural too, since viele Plätze is what blieben agrees with."
+      ru: "Оцениваются два полнозначных глагола, по одному каждого типа: bleiben — сильный, меняет гласную и не берёт окончания (blieben), а enden — слабый и сохраняет основу под -te. Оба стоят в Präteritum, и в этом весь регистр: отзыв — это бумага. Следите и за числом: blieben согласуется с viele Plätze."
+      uk: "Оцінюються два повнозначні дієслова, по одному кожного типу: bleiben — сильне, змінює голосний і не бере закінчення (blieben), а enden — слабке і зберігає основу під -te. Обидва стоять у Präteritum, і в цьому весь регістр: відгук — це папір. Стежте й за числом: blieben узгоджується з viele Plätze."
+      de: "Bewertet werden die zwei Vollverben, je eines pro Klasse: bleiben ist stark, wechselt den Vokal und nimmt keine Endung — blieben —, enden ist schwach und behält seinen Stamm unter dem -te. Beide stehen im Präteritum, und das ist das Register: Ein Bericht ist Papier. Achte auch auf den Numerus, denn blieben richtet sich nach viele Plätze."
+
+  - id: schreiben-erfahrungsbericht
+    outcomes: [erlebnis-bewerten]
+    type: write
+    instruction:
+      en: "Write the report yourself — the list shows what to check it against."
+      ru: "Напишите отзыв сами — список подскажет, что в нём проверить."
+      uk: "Напишіть відгук самі — список підкаже, що в ньому перевірити."
+      de: "Schreib den Bericht selbst — die Liste zeigt, woran du ihn prüfen kannst."
+    prompt:
+      en: "Last Saturday you were at a school concert in your district. Write a short Erfahrungsbericht for the neighbourhood paper: say what it was, when and where; say what the hall and the audience were like; praise one thing with a reason; name exactly one limitation; and end with whether you would go again."
+      ru: "В прошлую субботу вы были на школьном концерте в своём районе. Напишите короткий отзыв для районной газеты: скажите, что это было, когда и где; скажите, каким был зал и какой была публика; похвалите одно, сразу с обоснованием; назовите ровно одну оговорку; и закончите тем, пошли бы вы снова."
+      uk: "Минулої суботи ви були на шкільному концерті у своєму районі. Напишіть короткий відгук для районної газети: скажіть, що це було, коли і де; скажіть, якою була зала і якою була публіка; похваліть одне, одразу з обґрунтуванням; назвіть рівно одне застереження; і закінчіть тим, чи пішли б ви знову."
+      de: "Am vergangenen Samstag warst du bei einem Schulkonzert in deinem Stadtteil. Schreib einen kurzen Erfahrungsbericht für die Stadtteilzeitung: Sag, was es war, wann und wo; sag, wie der Saal und das Publikum waren; lob eine Sache mit Begründung; nenn genau eine Einschränkung; und schließ damit, ob du wieder hingehen würdest."
+    goal:
+      en: "A report somebody can decide by: three facts, one judgement with a reason, one limitation and a verdict — the writing this unit asks of you."
+      ru: "Отзыв, по которому можно принять решение: три факта, одна оценка с обоснованием, одна оговорка и вывод — то самое письмо, которого ждёт эта глава."
+      uk: "Відгук, за яким можна ухвалити рішення: три факти, одна оцінка з обґрунтуванням, одне застереження і висновок — те саме письмо, якого чекає цей розділ."
+      de: "Ein Bericht, nach dem man sich entscheiden kann: drei Fakten, ein begründetes Urteil, eine Einschränkung und ein Schluss — das Schreiben dieser Einheit."
+    requirements:
+      - en: "Open with the facts in the Präteritum: Am Samstag war ich im Schulkonzert in der Aula. Full verbs take this tense too, not only war and hatte — es gab, das Konzert begann, der Chor sang."
+        ru: "Начните с фактов в Präteritum: Am Samstag war ich im Schulkonzert in der Aula. Полнозначные глаголы тоже берут это время, не только war и hatte: es gab, das Konzert begann, der Chor sang."
+        uk: "Почніть із фактів у Präteritum: Am Samstag war ich im Schulkonzert in der Aula. Повнозначні дієслова теж беруть цей час, не лише war і hatte: es gab, das Konzert begann, der Chor sang."
+        de: "Beginn mit den Fakten im Präteritum: Am Samstag war ich im Schulkonzert in der Aula. Auch Vollverben stehen in dieser Zeit, nicht nur war und hatte — es gab, das Konzert begann, der Chor sang."
+      - en: "Say what the room was like before you judge anything: der Saal war fast voll, die Stimmung war gut, das Publikum klatschte nach jedem Stück. das Publikum is singular, so its verb is too."
+        ru: "Скажите, каким был зал, прежде чем что-либо оценивать: der Saal war fast voll, die Stimmung war gut, das Publikum klatschte nach jedem Stück. das Publikum — единственное число, и глагол при нём тоже."
+        uk: "Скажіть, якою була зала, перш ніж щось оцінювати: der Saal war fast voll, die Stimmung war gut, das Publikum klatschte nach jedem Stück. das Publikum — однина, і дієслово при ньому теж."
+        de: "Sag, wie der Raum war, bevor du bewertest: der Saal war fast voll, die Stimmung war gut, das Publikum klatschte nach jedem Stück. das Publikum ist Singular, das Verb also auch."
+      - en: "Praise one thing and attach the reason at once: Besonders gut gefiel mir die zweite Hälfte, weil der Chor ohne Pause sang. Praise without a reason tells the reader nothing they can use."
+        ru: "Похвалите одно и сразу приложите обоснование: Besonders gut gefiel mir die zweite Hälfte, weil der Chor ohne Pause sang. Похвала без обоснования не даёт читателю ничего, чем он мог бы воспользоваться."
+        uk: "Похваліть одне і одразу додайте обґрунтування: Besonders gut gefiel mir die zweite Hälfte, weil der Chor ohne Pause sang. Похвала без обґрунтування не дає читачеві нічого, чим він міг би скористатися."
+        de: "Lob eine Sache und häng die Begründung gleich an: Besonders gut gefiel mir die zweite Hälfte, weil der Chor ohne Pause sang. Lob ohne Grund gibt der Leserin nichts an die Hand."
+      - en: "Name exactly one limitation — Nur der Anfang war zu lang — and close with the verdict the reader came for: Ich kann den Abend empfehlen, or Ich würde wieder hingehen. Do not end by retelling the programme."
+        ru: "Назовите ровно одну оговорку — Nur der Anfang war zu lang — и закончите тем выводом, ради которого отзыв и открыли: Ich kann den Abend empfehlen или Ich würde wieder hingehen. Не заканчивайте пересказом программы."
+        uk: "Назвіть рівно одне застереження — Nur der Anfang war zu lang — і закінчіть тим висновком, заради якого відгук і відкрили: Ich kann den Abend empfehlen або Ich würde wieder hingehen. Не закінчуйте переказом програми."
+        de: "Nenn genau eine Einschränkung — Nur der Anfang war zu lang — und schließ mit dem Urteil, wegen dem man den Bericht liest: Ich kann den Abend empfehlen oder Ich würde wieder hingehen. Erzähl am Ende nicht das Programm nach."
+    min_words: 60
+    model_answer: "Am vergangenen Samstag war ich im Schulkonzert in der Aula der Gesamtschule. Beginn war um sieben, und Einlass gab es schon ab halb sieben. Der Saal war fast voll, die Stimmung war gut, und das Publikum klatschte nach jedem Stück. Besonders gut gefiel mir die zweite Hälfte, weil der Chor dort ohne Pause sang und die jüngeren Kinder mitmachten. Nur der Anfang war zu lang: Drei Reden vor dem ersten Ton sind zwei zu viel. Der Eintritt war frei, und für die Getränke in der Pause zahlte man zwei Euro. Ich kann den Abend empfehlen und würde wieder hingehen."
+    model_translation:
+      en: "Last Saturday I was at the school concert in the assembly hall of the comprehensive school. It started at seven, and the doors opened as early as half past six. The hall was almost full, the atmosphere was good, and the audience clapped after every piece. What I liked most was the second half, because the choir sang without a break there and the younger children joined in. Only the beginning was too long: three speeches before the first note are two too many. Admission was free, and drinks in the interval cost two euros. I can recommend the evening and would go again."
+      ru: "В прошлую субботу я был на школьном концерте в актовом зале общеобразовательной школы. Начало было в семь, а двери открыли уже в половине седьмого. Зал был почти полон, атмосфера была хорошая, и публика хлопала после каждого номера. Больше всего мне понравилась вторая половина: хор пел там без перерыва, а младшие дети подпевали. Вот только начало оказалось слишком длинным — три речи до первой ноты, то есть на две больше, чем нужно. Вход был свободный, а за напитки в антракте платили два евро. Вечер я могу рекомендовать и пошёл бы снова."
+      uk: "Минулої суботи я був на шкільному концерті в актовій залі загальноосвітньої школи. Початок був о сьомій, а двері відчинили вже о пів на сьому. Зала була майже повна, атмосфера була добра, і публіка плескала після кожного номера. Найбільше мені сподобалася друга половина: хор співав там без перерви, а молодші діти підспівували. Ото тільки початок виявився задовгим — три промови до першої ноти, тобто на дві більше, ніж треба. Вхід був вільний, а за напої в антракті платили два євро. Вечір я можу рекомендувати і пішов би знову."
+    explain:
+      en: "Compare your draft against the model's moves, not its words. The facts come first and in the Präteritum, including the full verbs — gab, gefiel, sang, zahlte. Then the room, then one piece of praise with its reason attached, then exactly one limitation, and only then the verdict. Nothing at the end retells the programme: that part the reader already has."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Сначала факты и в Präteritum, включая полнозначные глаголы: gab, gefiel, sang, zahlte. Потом зал, потом одна похвала сразу с обоснованием, потом ровно одна оговорка — и только затем вывод. В конце нет пересказа программы: она у читателя и так есть."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Спершу факти і в Präteritum, включно з повнозначними дієсловами: gab, gefiel, sang, zahlte. Потім зала, потім одна похвала одразу з обґрунтуванням, потім рівно одне застереження — і лише тоді висновок. У кінці немає переказу програми: вона в читача і так є."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Zuerst die Fakten, im Präteritum, auch bei den Vollverben — gab, gefiel, sang, zahlte. Dann der Raum, dann ein Lob mit angehängter Begründung, dann genau eine Einschränkung und erst danach das Urteil. Am Ende wird das Programm nicht nacherzählt: Das hat die Leserin schon."
+
+  - id: sprechen-empfehlung-einigung
+    outcomes: [veranstaltung-empfehlen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Speak both turns of the exchange aloud — then compare with the model."
+      ru: "Произнесите вслух обе реплики разговора — затем сравните с образцом."
+      uk: "Промовте вголос обидві репліки розмови — потім порівняйте зі зразком."
+      de: "Sprich beide Redebeiträge laut — vergleich dann mit dem Muster."
+    prompt:
+      en: "A colleague says: „Am Wochenende ist Kulturwoche. Hast du Lust mitzukommen?\" Recommend one of the events with a comparison in front of the noun and give your reason. Your colleague then prefers the other day. React: accept it or make one counter-proposal, settle the plan, and fix the meeting point and the time."
+      ru: "Коллега говорит: „Am Wochenende ist Kulturwoche. Hast du Lust mitzukommen?\" Порекомендуйте одно из событий, поставив сравнение перед существительным, и обоснуйте выбор. Коллега предпочитает другой день. Отреагируйте: согласитесь или сделайте одно встречное предложение, закройте договорённость и назначьте место встречи и время."
+      uk: "Колега каже: „Am Wochenende ist Kulturwoche. Hast du Lust mitzukommen?\" Порекомендуйте одну з подій, поставивши порівняння перед іменником, і обґрунтуйте вибір. Колега віддає перевагу іншому дню. Відреагуйте: погодьтеся або зробіть одну зустрічну пропозицію, закрийте домовленість і призначте місце зустрічі та час."
+      de: "Eine Kollegin sagt: „Am Wochenende ist Kulturwoche. Hast du Lust mitzukommen?\" Empfiehl eine der Veranstaltungen mit einem Vergleich vor dem Nomen und begründe sie. Deine Kollegin möchte lieber den anderen Tag. Reagier darauf: Nimm es an oder mach genau einen Gegenvorschlag, einige dich, und leg Treffpunkt und Uhrzeit fest."
+    goal:
+      en: "An agreement, not a wish: recommend, justify, react to the other person, and leave with a place and a time. The spoken outcome of this unit."
+      ru: "Договорённость, а не пожелание: порекомендовать, обосновать, отреагировать на собеседника и разойтись, зная место и время. Устный итог этой главы."
+      uk: "Домовленість, а не побажання: порекомендувати, обґрунтувати, відреагувати на співрозмовника й розійтися, знаючи місце й час. Усний підсумок цього розділу."
+      de: "Eine Einigung, kein Wunsch: empfehlen, begründen, auf die andere Person reagieren und mit Ort und Uhrzeit auseinandergehen. Das gesprochene Ergebnis dieser Einheit."
+    checklist:
+      - en: "Your recommendation named the thing, with the comparison in front of the noun: ein besseres Konzert, eine ruhigere Vorstellung, eine interessantere Führung — not just Das ist besser."
+        ru: "Ваша рекомендация назвала предмет, поставив сравнение перед существительным: ein besseres Konzert, eine ruhigere Vorstellung, eine interessantere Führung, — а не просто Das ist besser."
+        uk: "Ваша рекомендація назвала предмет, поставивши порівняння перед іменником: ein besseres Konzert, eine ruhigere Vorstellung, eine interessantere Führung, — а не просто Das ist besser."
+        de: "Deine Empfehlung hat die Sache benannt, mit dem Vergleich vor dem Nomen: ein besseres Konzert, eine ruhigere Vorstellung, eine interessantere Führung — nicht nur Das ist besser."
+      - en: "The reason came right after it, in a weil- or denn-clause: …, weil der kleine Saal gemütlicher ist. And your reaction was a counter-proposal with lieber, not a refusal."
+        ru: "Обоснование прозвучало сразу следом, в придаточном с weil или в предложении с denn: …, weil der kleine Saal gemütlicher ist. А ваша реакция была встречным предложением с lieber, а не отказом."
+        uk: "Обґрунтування прозвучало одразу слідом, у підрядному з weil або в реченні з denn: …, weil der kleine Saal gemütlicher ist. А ваша реакція була зустрічною пропозицією з lieber, а не відмовою."
+        de: "Die Begründung kam direkt danach, im weil- oder denn-Satz: …, weil der kleine Saal gemütlicher ist. Und deine Reaktion war ein Gegenvorschlag mit lieber, keine Absage."
+      - en: "You closed the plan out loud — Abgemacht, Dann machen wir das so — and named place and time separately: Treffpunkt ist vor dem Saal, um Viertel vor acht."
+        ru: "Вы закрыли договорённость вслух — Abgemacht, Dann machen wir das so — и назвали место и время по отдельности: Treffpunkt ist vor dem Saal, um Viertel vor acht."
+        uk: "Ви закрили домовленість уголос — Abgemacht, Dann machen wir das so — і назвали місце й час окремо: Treffpunkt ist vor dem Saal, um Viertel vor acht."
+        de: "Du hast den Plan hörbar geschlossen — Abgemacht, Dann machen wir das so — und Ort und Zeit einzeln genannt: Treffpunkt ist vor dem Saal, um Viertel vor acht."
+      - en: "Anything still open got a deadline: Ich sage dir bis Donnerstag Bescheid, ob ich noch zwei Karten bekomme. Bescheid belongs to the verb and closes the sentence, so the deadline stands before it."
+        ru: "Всё нерешённое получило срок: Ich sage dir bis Donnerstag Bescheid, ob ich noch zwei Karten bekomme. Bescheid принадлежит глаголу и закрывает предложение, поэтому срок стоит перед ним."
+        uk: "Усе невирішене дістало термін: Ich sage dir bis Donnerstag Bescheid, ob ich noch zwei Karten bekomme. Bescheid належить дієслову й закриває речення, тому термін стоїть перед ним."
+        de: "Für jede offene Frage steht ein Termin: Ich sage dir bis Donnerstag Bescheid, ob ich noch zwei Karten bekomme. Bescheid gehört zum Verb und schließt den Satz, die Frist steht also davor."
+    model_answer: "Ja, gern. Ich würde am Samstag ins Konzert gehen — das ist ein besseres Programm als der Film, und der kleine Saal hat eine gemütlichere Stimmung. — Ach, du kannst am Samstag nicht? Dann gehe ich lieber am Sonntag in die zweite Vorstellung, die ist ruhiger und fängt früher an. Abgemacht: Treffpunkt ist vor dem Saal, um Viertel vor acht. Karten gibt es noch an der Abendkasse; ich sage dir bis Donnerstag Bescheid, ob ich schon zwei reserviere."
+    model_translation:
+      en: "Yes, I would like to. I would go to the concert on Saturday — it is a better programme than the film, and the small hall has a cosier atmosphere. — Oh, you cannot make Saturday? Then I would rather go to the second showing on Sunday; it is quieter and starts earlier. Agreed: the meeting point is outside the hall, at a quarter to eight. There are still tickets at the box office; I will let you know by Thursday whether I book two in advance."
+      ru: "Да, с удовольствием. Я бы пошёл в субботу на концерт — это программа получше, чем фильм, а в малом зале атмосфера уютнее. — А, в субботу ты не можешь? Тогда я лучше пойду в воскресенье на второй сеанс, он спокойнее и начинается раньше. Договорились: встречаемся перед залом, без четверти восемь. Билеты ещё есть в вечерней кассе; до четверга я скажу, буду ли бронировать два."
+      uk: "Так, залюбки. Я пішов би в суботу на концерт — це краща програма, ніж фільм, а в малій залі атмосфера затишніша. — А, у суботу ти не можеш? Тоді я краще піду в неділю на другий сеанс, він спокійніший і починається раніше. Домовилися: зустрічаємося перед залою, за чверть восьма. Квитки ще є у вечірній касі; до четверга я скажу, чи бронюватиму два."
+    explain:
+      en: "Listen for the order the model works in. The recommendation names the thing before it praises it, and the comparison sits in front of the noun where the other person can answer it. The counter-proposal is one word — lieber — and it keeps the plan alive. Only then come the two things a plan cannot do without: a place and a time, said separately."
+      ru: "Слушайте порядок, в котором работает образец. Рекомендация сначала называет предмет и лишь потом хвалит его, а сравнение стоит перед существительным — там, где собеседнику есть что ответить. Встречное предложение — одно слово, lieber, и оно оставляет план живым. И только потом идут две вещи, без которых плана нет: место и время, названные по отдельности."
+      uk: "Слухайте порядок, у якому працює зразок. Рекомендація спершу називає предмет і лише потім хвалить його, а порівняння стоїть перед іменником — там, де співрозмовникові є що відповісти. Зустрічна пропозиція — одне слово, lieber, і воно лишає план живим. І лише потім ідуть дві речі, без яких плану немає: місце й час, названі окремо."
+      de: "Hör auf die Reihenfolge des Musters. Die Empfehlung benennt die Sache, bevor sie sie lobt, und der Vergleich steht vor dem Nomen, wo die andere Seite antworten kann. Der Gegenvorschlag ist ein einziges Wort — lieber — und hält den Plan am Leben. Erst danach kommen die zwei Dinge, ohne die ein Plan keiner ist: ein Ort und eine Zeit, einzeln genannt."

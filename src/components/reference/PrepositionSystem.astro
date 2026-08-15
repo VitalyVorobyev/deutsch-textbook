@@ -1,0 +1,245 @@
+---
+/**
+ * The preposition system, one view per decision (content/reference-data/praepositionen.yaml).
+ *
+ * Split into views rather than rendered as one blob so the page can put a German heading
+ * above each table: the sections are the decisions a learner makes in order, and a heading
+ * is what makes one of them findable again three weeks later.
+ *
+ * Every `lang-ru` span here is immediately followed by a conditional `lang-uk` sibling —
+ * the relationship `global.css` needs for its `:has()` fallback, and the one
+ * tests/i18n-content.test.ts ratchets. The data carries no `uk` yet, so those spans stay
+ * unrendered and a UK reader sees the EN gloss.
+ */
+import { getEntry } from 'astro:content';
+import { praepositionenReferenceSchema } from '@da/schema';
+
+type View =
+  | 'place-types'
+  | 'wechsel'
+  | 'zu-bei-von'
+  | 'aus-von'
+  | 'contractions'
+  | 'temporal'
+  | 'genitiv'
+  | 'verben';
+interface Props { view: View }
+const { view } = Astro.props;
+
+const entry = await getEntry('referenceData', 'praepositionen');
+if (!entry) throw new Error('Missing canonical preposition reference data');
+const data = praepositionenReferenceSchema.parse(entry.data);
+---
+
+{view === 'place-types' && (
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[48rem] text-sm">
+      <thead>
+        <tr>
+          <th>Art des Ortes</th>
+          <th class="text-amber-800 dark:text-amber-300">Wohin?</th>
+          <th class="text-amber-800 dark:text-amber-300">Wo?</th>
+          <th class="text-amber-800 dark:text-amber-300">Woher?</th>
+          <th>Dreier</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.place_types.map((row) => (
+          <tr>
+            <th class="text-left align-top">
+              <span lang="de">{row.label}</span>
+              <span class="block text-xs font-normal text-stone-500 lang-en">{row.meaning.en}</span>
+              <span class="block text-xs font-normal text-stone-500 lang-ru">{row.meaning.ru}</span>
+              {row.meaning.uk && <span class="block text-xs font-normal text-stone-500 lang-uk">{row.meaning.uk}</span>}
+            </th>
+            <td lang="de" class="align-top font-semibold">{row.wohin}</td>
+            <td lang="de" class="align-top font-semibold">{row.wo}</td>
+            <td lang="de" class="align-top font-semibold">{row.woher}</td>
+            <td lang="de" class="align-top">{row.triple}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'wechsel' && (
+  <div>
+    <p lang="de" class="text-sm">{data.two_way.forms.join(' · ')}</p>
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead><tr><th>Frage</th><th>Kasus</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          {data.two_way.test.map((row) => (
+            <tr>
+              <th lang="de" class="text-left align-top text-amber-800 dark:text-amber-300">{row.question}</th>
+              <td class="align-top font-semibold">{row.case}</td>
+              <td class="align-top">
+                <span class="lang-en">{row.meaning.en}</span>
+                <span class="lang-ru">{row.meaning.ru}</span>
+                {row.meaning.uk && <span class="lang-uk">{row.meaning.uk}</span>}
+              </td>
+              <td class="align-top">
+                <span lang="de" class="block">{row.example.de}</span>
+                <span class="block text-xs text-stone-500 lang-en">{row.example.en}</span>
+                <span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span>
+                {row.example.uk && <span class="block text-xs text-stone-500 lang-uk">{row.example.uk}</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 rounded-lg border-l-4 border-amber-500 bg-amber-50 p-4 text-sm dark:bg-amber-950/25">
+      <span class="lang-en">{data.two_way.note.en}</span>
+      <span class="lang-ru">{data.two_way.note.ru}</span>
+      {data.two_way.note.uk && <span class="lang-uk">{data.two_way.note.uk}</span>}
+    </p>
+  </div>
+)}
+
+{view === 'zu-bei-von' && (
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead><tr><th>Frage</th><th>Präposition</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        {data.zu_bei_von.map((row) => (
+          <tr>
+            <th lang="de" class="text-left align-top text-amber-800 dark:text-amber-300">{row.question}</th>
+            <td lang="de" class="align-top font-semibold">{row.form}</td>
+            <td class="align-top">
+              <span lang="de" class="block">{row.example.de}</span>
+              <span class="block text-xs text-stone-500 lang-en">{row.example.en}</span>
+              <span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span>
+              {row.example.uk && <span class="block text-xs text-stone-500 lang-uk">{row.example.uk}</span>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'aus-von' && (
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead><tr><th>Präposition</th><th>Gebrauch</th><th>Beispiele</th></tr></thead>
+      <tbody>
+        {data.aus_von.map((row) => (
+          <tr>
+            <th lang="de" class="text-left align-top font-semibold text-amber-800 dark:text-amber-300">{row.form}</th>
+            <td class="align-top">
+              <span class="lang-en">{row.use.en}</span>
+              <span class="lang-ru">{row.use.ru}</span>
+              {row.use.uk && <span class="lang-uk">{row.use.uk}</span>}
+            </td>
+            <td lang="de" class="align-top">{row.examples.join(' · ')}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'contractions' && (
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead><tr><th>Lang</th><th>Kurz</th><th>Kasus</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        {data.contractions.map((row) => (
+          <tr>
+            <th lang="de" class="text-left font-normal text-stone-500">{row.long}</th>
+            <td lang="de" class="font-semibold text-amber-800 dark:text-amber-300">{row.short}</td>
+            <td>{row.case}</td>
+            <td lang="de">{row.example}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'temporal' && (
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[42rem] text-sm">
+      <thead><tr><th>Präposition</th><th>Kasus</th><th>Gebrauch</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        {data.temporal.map((row) => (
+          <tr>
+            <th lang="de" class="text-left align-top font-semibold text-amber-800 dark:text-amber-300">{row.form}</th>
+            <td class="align-top">{row.case}</td>
+            <td class="align-top">
+              <span class="lang-en">{row.use.en}</span>
+              <span class="lang-ru">{row.use.ru}</span>
+              {row.use.uk && <span class="lang-uk">{row.use.uk}</span>}
+            </td>
+            <td class="align-top">
+              <span lang="de" class="block">{row.example.de}</span>
+              <span class="block text-xs text-stone-500 lang-en">{row.example.en}</span>
+              <span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span>
+              {row.example.uk && <span class="block text-xs text-stone-500 lang-uk">{row.example.uk}</span>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'genitiv' && (
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[42rem] text-sm">
+      <thead><tr><th>Präposition</th><th>Stufe</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        {data.genitive.map((row) => (
+          <tr>
+            <th lang="de" class="text-left align-top font-semibold text-amber-800 dark:text-amber-300">{row.form}</th>
+            <td class="align-top text-xs text-stone-500">{row.level}</td>
+            <td class="align-top">
+              <span class="lang-en">{row.meaning.en}</span>
+              <span class="lang-ru">{row.meaning.ru}</span>
+              {row.meaning.uk && <span class="lang-uk">{row.meaning.uk}</span>}
+            </td>
+            <td class="align-top">
+              <span lang="de" class="block">{row.example.de}</span>
+              <span class="block text-xs text-stone-500 lang-en">{row.example.en}</span>
+              <span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span>
+              {row.example.uk && <span class="block text-xs text-stone-500 lang-uk">{row.example.uk}</span>}
+              {row.note && (
+                <span class="mt-1 block text-xs text-amber-800 dark:text-amber-300">
+                  <span class="lang-en">{row.note.en}</span>
+                  <span class="lang-ru">{row.note.ru}</span>
+                  {row.note.uk && <span class="lang-uk">{row.note.uk}</span>}
+                </span>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}
+
+{view === 'verben' && (
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-[42rem] text-sm">
+      <thead><tr><th>Verb</th><th>Rektion</th><th>Frage</th><th>Stufe</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        {data.verb_government.map((row) => (
+          <tr>
+            <th lang="de" class="text-left align-top">{row.verb}</th>
+            <td lang="de" class="align-top font-semibold text-amber-800 dark:text-amber-300">{row.frame}</td>
+            <td lang="de" class="align-top">{row.question}</td>
+            <td class="align-top text-xs text-stone-500">{row.level}</td>
+            <td class="align-top">
+              <span lang="de" class="block">{row.example.de}</span>
+              <span class="block text-xs text-stone-500 lang-en">{row.example.en}</span>
+              <span class="block text-xs text-stone-500 lang-ru">{row.example.ru}</span>
+              {row.example.uk && <span class="block text-xs text-stone-500 lang-uk">{row.example.uk}</span>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)}

@@ -1,5 +1,8 @@
 topic: dativ
 role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — der, dem oder den?"
 title:
   en: Drill — der, dem or den?
   ru: Тренажёр — der, dem или den?
@@ -271,7 +274,10 @@ items:
     prompt_ru: "Она идёт к врачу."
     prompt_uk: "Вона йде до лікаря."
     answer: "Sie geht zum Arzt."
-    key_tokens: ["zum"]
+    # revision 2: in the uncontracted rendering the dative decision is carried by
+    # dem, so it joins the pins (P25-21 guard). (2026-08-12.)
+    key_tokens: ["zum", "dem"]
+    revision: 2
     accept:
       - "Sie geht zu dem Arzt."
     explain:

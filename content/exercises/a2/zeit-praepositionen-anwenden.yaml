@@ -1,0 +1,73 @@
+topic: zeit-praepositionen
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Einen Kursplan bekannt geben"
+title:
+  en: Application — announce and explain a course schedule
+  ru: Применение — объявите и объясните расписание курса
+  uk: Застосування — оголосіть і поясніть розклад курсу
+items:
+  # revision 2 (2026-08-15): the item rejected correct German on three axes it does not grade.
+  # Its focus is `zeitangaben-system` — which marker a time expression takes — and its
+  # key_tokens are the five markers. Nothing about *Uhr*, about *dauern* against *gehen*, or
+  # about digits against spelled-out ordinals belongs to that decision, and all three were
+  # nevertheless required by the answer key. A learner who wrote
+  # `Der Kurs beginnt am Montag um neun und geht von 3. Mai bis 28. Juni` had four of the five
+  # graded markers right and was told the whole sentence was wrong.
+  #
+  # Two of the axes are now accepted, because they are free variation the focus does not reach:
+  # *dauert* / *geht*, and `3. Mai` / `dritten Mai`. The third is removed from the item instead
+  # of accepted: the source now says *neun Uhr*, so the clock phrase is named rather than left
+  # to the learner to guess — *um neun* on its own is perfectly good German and there is no
+  # reason for this item to have an opinion about it.
+  - id: uebersetzen-kursplan
+    type: translate
+    revision: 2
+    outcomes: [zeitpunkt-nennen, zeitraum-nennen]
+    focus: zeitangaben-system
+    instruction: { en: "Translate the announcement. Decide separately how German marks the day, the clock time and the date range.", ru: "Переведите объявление. Отдельно решите, как по-немецки обозначить день, время на часах и диапазон дат.", uk: "Перекладіть оголошення. Окремо вирішіть, як німецькою позначити день, час на годиннику й діапазон дат." }
+    prompt_en: "The course starts on Monday at nine o'clock and runs from 3 May to 28 June."
+    prompt_ru: "Курс начинается в понедельник в девять часов и идёт с 3 мая до 28 июня."
+    prompt_uk: "Курс починається в понеділок о дев'ятій годині і триває з 3 травня до 28 червня."
+    answer: "Der Kurs beginnt am Montag um neun Uhr und dauert vom 3. Mai bis zum 28. Juni."
+    accept:
+      - "Der Kurs beginnt am Montag um neun Uhr und geht vom 3. Mai bis zum 28. Juni."
+      - "Der Kurs beginnt am Montag um neun Uhr und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Der Kurs beginnt am Montag um neun Uhr und geht vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und dauert vom 3. Mai bis zum 28. Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und geht vom 3. Mai bis zum 28. Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und dauert vom dritten Mai bis zum achtundzwanzigsten Juni."
+      - "Am Montag um neun Uhr beginnt der Kurs und geht vom dritten Mai bis zum achtundzwanzigsten Juni."
+    key_tokens: ["am", "um", "vom", "bis", "zum"]
+    explain: { en: "A weekday takes am, a clock time um, and a range keeps a marker at both ends: vom … bis zum … . That last one is where announcements go wrong: bis alone reads as a deadline, and the second half of a date range needs zum as much as the first needs vom. Everything else here is free — dauert and geht both work, and a written date may be 3. Mai or dritten Mai.", ru: "День недели требует am, время на часах — um, а диапазон сохраняет маркер на обоих концах: vom … bis zum … . Именно на последнем объявления и ломаются: одно bis читается как крайний срок, и второй половине диапазона zum нужен ровно так же, как первой нужен vom. Всё остальное здесь свободно: годятся и dauert, и geht, а дата на письме может быть и 3. Mai, и dritten Mai.", uk: "День тижня вимагає am, час на годиннику — um, а діапазон зберігає маркер на обох кінцях: vom … bis zum … . Саме на останньому оголошення й ламаються: одне bis читається як крайній строк, і другій половині діапазону zum потрібен так само, як першій потрібен vom. Усе інше тут вільне: годяться і dauert, і geht, а дата на письмі може бути і 3. Mai, і dritten Mai." }
+
+  - id: schreiben-kursaenderung
+    type: write
+    outcomes: [zeitpunkt-nennen, dauer-nennen, zeitraum-nennen]
+    focus: zeitangaben-system
+    prompt: { en: "The evening course changes rooms and times next month. Write a notice giving the new start date, weekly time and how long the arrangement remains valid.", ru: "В следующем месяце у вечернего курса меняются аудитория и время. Напишите объявление с новой датой начала, еженедельным временем и сроком действия изменения.", uk: "Наступного місяця вечірній курс змінює аудиторію й час. Напишіть оголошення з новою датою початку, щотижневим часом і строком дії зміни." }
+    goal: { en: "Write a schedule somebody can actually follow; every time expression must have one clear function.", ru: "Напишите расписание, которому можно реально следовать; у каждого выражения времени должна быть одна ясная функция.", uk: "Напишіть розклад, якого можна реально дотримуватися; кожен вираз часу має мати одну чітку функцію." }
+    requirements:
+      - { en: "Use ab for the new starting point.", ru: "Используйте ab для новой точки начала.", uk: "Використайте ab для нової точки початку." }
+      - { en: "Use am + weekday and um + clock time.", ru: "Используйте am + день недели и um + время.", uk: "Використайте am + день тижня й um + час." }
+      - { en: "Use bis or von … bis for the end of the arrangement.", ru: "Используйте bis или von … bis для окончания периода.", uk: "Використайте bis або von … bis для завершення періоду." }
+    min_words: 24
+    model_answer: "Ab dem ersten September findet der Abendkurs am Dienstag um 18 Uhr in Raum 4 statt. Diese Regel gilt bis Ende Oktober. Im November beginnt wieder der normale Plan."
+    model_translation: { en: "From 1 September, the evening course takes place on Tuesday at 6 p.m. in room 4. This arrangement applies until the end of October. The normal schedule resumes in November.", ru: "С 1 сентября вечерний курс проходит по вторникам в 18:00 в аудитории 4. Это правило действует до конца октября. В ноябре возвращается обычное расписание.", uk: "З 1 вересня вечірній курс відбувається у вівторок о 18:00 в аудиторії 4. Це правило діє до кінця жовтня. У листопаді повертається звичайний розклад." }
+    explain: { en: "Read the notice as a timeline: ab opens the new period, am/um locate each weekly meeting, bis closes it, im locates the following month.", ru: "Прочитайте объявление как временную линию: ab открывает новый период, am/um задают еженедельную встречу, bis закрывает период, im указывает следующий месяц.", uk: "Прочитайте оголошення як часову лінію: ab відкриває новий період, am/um задають щотижневу зустріч, bis закриває період, im указує наступний місяць." }
+
+  - id: sprechen-termin-erklaeren
+    type: speak
+    mode: spoken-interaction
+    outcomes: [zeitpunkt-nennen, dauer-nennen]
+    focus: seit-vor-zeit
+    prompt: { en: "A course partner missed the notice. Record a 20–30 second explanation: when the change began, how long it has applied, and when the next meeting is.", ru: "Партнёр по курсу пропустил объявление. Запишите объяснение на 20–30 секунд: когда началось изменение, как долго оно действует и когда следующая встреча.", uk: "Партнер по курсу пропустив оголошення. Запишіть пояснення на 20–30 секунд: коли почалася зміна, як довго вона діє й коли наступна зустріч." }
+    goal: { en: "Contrast a starting point in the past with a situation that still continues now.", ru: "Противопоставьте момент начала в прошлом ситуации, которая продолжается сейчас.", uk: "Протиставте момент початку в минулому ситуації, що триває зараз." }
+    checklist:
+      - { en: "I used seit with the present for the continuing situation.", ru: "Для продолжающейся ситуации я использовал(а) seit с Präsens.", uk: "Для ситуації, що триває, я використав(-ла) seit із Präsens." }
+      - { en: "I used vor for a finished point in the past.", ru: "Для завершённого момента в прошлом я использовал(а) vor.", uk: "Для завершеного моменту в минулому я використав(-ла) vor." }
+      - { en: "I gave the next appointment with am/um.", ru: "Следующую встречу я назвал(а) с am/um.", uk: "Наступну зустріч я назвав(-ла) з am/um." }
+    model_answer: "Der Plan hat sich vor zwei Wochen geändert. Wir treffen uns seitdem immer am Dienstag. Der nächste Kurs ist am Dienstag um 18 Uhr."
+    model_translation: { en: "The schedule changed two weeks ago. Since then we have always met on Tuesday. The next course is on Tuesday at 6 p.m.", ru: "Расписание изменилось две недели назад. С тех пор мы всегда встречаемся по вторникам. Следующее занятие — во вторник в 18:00.", uk: "Розклад змінився два тижні тому. Відтоді ми завжди зустрічаємося у вівторок. Наступне заняття — у вівторок о 18:00." }
+    explain: { en: "vor zwei Wochen places the completed change in the past. seitdem + present connects that point to now. am/um then locates the next meeting.", ru: "vor zwei Wochen помещает завершённое изменение в прошлое. seitdem + Präsens связывает эту точку с настоящим. am/um затем указывают следующую встречу.", uk: "vor zwei Wochen розміщує завершену зміну в минулому. seitdem + Präsens поєднує цю точку з теперішнім. am/um потім указують наступну зустріч." }

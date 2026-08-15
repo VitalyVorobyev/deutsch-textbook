@@ -57,8 +57,15 @@ items:
     prompt_ru: "У Йонаса кашель с понедельника. Три дня назад врач его осмотрел."
     prompt_uk: "У Йонаса кашель із понеділка. Три дні тому лікар його оглянув."
     answer: "Jonas hat seit Montag Husten. Der Arzt hat ihn vor drei Tagen untersucht."
-    accept: ["Jonas hat seit Montag Husten. Vor drei Tagen hat der Arzt ihn untersucht."]
+    # revision 2: «врач» is first mention and bare — Ein Arzt is at least as natural as
+    # the institutional Der Arzt; the graded seit/vor/Tagen are identical. Closed over
+    # the fronting dimension. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Jonas hat seit Montag Husten. Vor drei Tagen hat der Arzt ihn untersucht."
+      - "Jonas hat seit Montag Husten. Ein Arzt hat ihn vor drei Tagen untersucht."
+      - "Jonas hat seit Montag Husten. Vor drei Tagen hat ein Arzt ihn untersucht."
     key_tokens: ["seit", "vor", "Tagen"]
+    revision: 2
     explain:
       en: "The cough started on Monday and is still there, so it is seit Montag — a fixed point in time works with seit exactly as a stretch of time does. The examination is over: vor drei Tagen, and the plural adds -n — Tagen, not Tage. Note that seit is not a past tense: German says Jonas hat Husten in the present, because he still has it, where English needs 'has had'."
       ru: "Кашель начался в понедельник и есть до сих пор, поэтому seit Montag: с seit одинаково хорошо работают и точка во времени, и отрезок. А осмотр уже позади: vor drei Tagen, причём множественное число получает -n — Tagen, а не Tage. Обратите внимание: seit не требует прошедшего времени. Немецкий говорит Jonas hat Husten в настоящем, ведь кашель есть и сейчас, — а русское «у него кашель» устроено так же."

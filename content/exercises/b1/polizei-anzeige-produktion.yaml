@@ -1,0 +1,174 @@
+topic: polizei-anzeige
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — die Anzeige aufsetzen"
+title:
+  en: "Apply — file the report"
+  ru: "Применение — составить заявление"
+  uk: "Застосування — скласти заяву"
+
+# Independent transfer: a stolen bicycle, a neighbour's statement relayed at the counter, and a
+# written report. Fresh contexts, no scaffolding, and nothing that re-skins a Grundübung item.
+#
+# Both thin tags get their second production context here — `indirekte-rede` in
+# uebersetzen-weitergeben and `partizip-adjektiv` in uebersetzen-beschreibung — which is what
+# lifts each off the single-file tail.
+items:
+  - id: uebersetzen-weitergeben
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["dass", "soll"]
+    prompt_en: "The officer says that I should file the report online."
+    prompt_ru: "Сотрудник говорит, что заявление мне следует подать онлайн."
+    prompt_uk: "Працівник каже, що заяву мені слід подати онлайн."
+    answer: "Der Beamte sagt, dass ich die Anzeige online schreiben soll."
+    accept:
+      - "Die Beamtin sagt, dass ich die Anzeige online schreiben soll."
+    explain:
+      en: "An instruction reported inside a *dass*-clause is carried by *sollen* — there is no imperative available there. The modal is the conjugated verb, so it goes last, after the infinitive: *schreiben soll*. Both *Beamte* and *Beamtin* are accepted because the source names no gender."
+      ru: "Указание, переданное внутри придаточного с *dass*, несёт *sollen*: императива там не бывает. Модальный глагол и есть спрягаемый, поэтому он идёт последним, после инфинитива: *schreiben soll*. Принимаются и *Beamte*, и *Beamtin*, потому что в исходной фразе род не назван."
+      uk: "Вказівку, передану всередині підрядного з *dass*, несе *sollen*: імператива там не буває. Модальне дієслово і є відмінюваним, тому воно йде останнім, після інфінітива: *schreiben soll*. Приймаються і *Beamte*, і *Beamtin*, бо у вихідній фразі рід не названо."
+
+  - id: uebersetzen-beschreibung
+    outcomes: [diebstahl-melden]
+    type: translate
+    focus: partizip-adjektiv
+    key_tokens: ["gestohlenes"]
+    instruction:
+      en: "Use a participle in front of the noun."
+      ru: "Используйте причастие перед существительным."
+      uk: "Використайте дієприкметник перед іменником."
+    prompt_en: "I am looking for my stolen bicycle."
+    prompt_ru: "Я ищу свой украденный велосипед."
+    prompt_uk: "Я шукаю свій украдений велосипед."
+    answer: "Ich suche mein gestohlenes Fahrrad."
+    explain:
+      en: "This is the ending the core set deliberately postponed. *Mein* is a possessive and belongs to the *ein*-group, which supplies no gender of its own in the neuter — so the adjective has to, and the ending is *-es*: *mein gestohlenes Fahrrad*. Move the same phrase into the dative and the ending changes again — *nach meinem gestohlenen Fahrrad* — which is why the ending has to be read off the case each time rather than memorised with the word."
+      ru: "Это то окончание, которое основной блок сознательно отложил. *Mein* — притяжательное и относится к группе *ein*, которая в среднем роде своего рода не показывает, — поэтому показать его должно прилагательное, и окончание будет *-es*: *mein gestohlenes Fahrrad*. Переведите то же сочетание в датив — и окончание снова изменится: *nach meinem gestohlenen Fahrrad*. Поэтому окончание каждый раз читается по падежу, а не запоминается вместе со словом."
+      uk: "Це те закінчення, яке основний блок свідомо відклав. *Mein* — присвійне і належить до групи *ein*, яка в середньому роді свого роду не показує, — тому показати його має прикметник, і закінчення буде *-es*: *mein gestohlenes Fahrrad*. Переведіть те саме сполучення в давальний — і закінчення знову зміниться: *nach meinem gestohlenen Fahrrad*. Тому закінчення щоразу читається за відмінком, а не запам'ятовується разом зі словом."
+
+  - id: diktat-anzeige
+    outcomes: [polizeimeldung-verstehen]
+    type: listen
+    text: "Mein Fahrrad wurde in der Nacht gestohlen."
+    translation:
+      en: "My bicycle was stolen during the night."
+      ru: "Мой велосипед украли ночью."
+      uk: "Мій велосипед украли вночі."
+    explain:
+      en: "The sentence a counter clerk hears twenty times a day, and the part that is hardest to catch is *wurde* — one unstressed syllable that turns the whole sentence passive. Miss it and you have said *Mein Fahrrad ist gestohlen*, which is a state rather than an event and does not tell them when to look."
+      ru: "Фраза, которую сотрудник слышит двадцать раз в день, и труднее всего расслышать *wurde* — один безударный слог, который делает всё предложение пассивным. Пропустите его — и получится *Mein Fahrrad ist gestohlen*: состояние вместо события, и оно не говорит, когда искать."
+      uk: "Фраза, яку працівник чує двадцять разів на день, і найважче розчути *wurde* — один ненаголошений склад, що робить усе речення пасивним. Пропустите його — і вийде *Mein Fahrrad ist gestohlen*: стан замість події, і воно не каже, коли шукати."
+
+  - id: sprechen-schalter
+    outcomes: [diebstahl-melden, aussage-wiedergeben]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "Your bicycle was stolen from the yard at Hauptstraße 14, some time between Friday evening and Saturday morning. A neighbour told you she heard a noise around midnight. It was worth about 400 euros. Report it at the police counter, aloud."
+      ru: "Ваш велосипед украли со двора по адресу Hauptstraße 14 в промежутке между вечером пятницы и утром субботы. Соседка сказала вам, что около полуночи слышала шум. Велосипед стоил около 400 евро. Заявите об этом у окошка в полиции — вслух."
+      uk: "Ваш велосипед украли з двору за адресою Hauptstraße 14 у проміжку між вечором п'ятниці та ранком суботи. Сусідка сказала вам, що близько опівночі чула шум. Велосипед коштував близько 400 євро. Заявіть про це біля віконця в поліції — уголос."
+    goal:
+      en: "Give the five facts the report needs, and relay the neighbour's statement as hers rather than as yours."
+      ru: "Сообщить пять фактов, которых требует заявление, и передать слова соседки как её, а не как свои."
+      uk: "Повідомити п'ять фактів, яких потребує заява, і передати слова сусідки як її, а не як свої."
+    checklist:
+      - en: "I said what was taken with a passive: Mein Fahrrad wurde gestohlen."
+        ru: "Я сказал(а), что украдено, в пассиве: Mein Fahrrad wurde gestohlen."
+        uk: "Я сказав(ла), що вкрадено, у пасиві: Mein Fahrrad wurde gestohlen."
+      - en: "I gave a time span, not just a day: zwischen Freitagabend und Samstagmorgen."
+        ru: "Я назвал(а) промежуток, а не только день: zwischen Freitagabend und Samstagmorgen."
+        uk: "Я назвав(ла) проміжок, а не лише день: zwischen Freitagabend und Samstagmorgen."
+      - en: "I relayed the neighbour with dass and put her verb at the end: Meine Nachbarin sagt, dass sie Lärm gehört hat."
+        ru: "Я передал(а) слова соседки через dass, поставив её глагол в конец: Meine Nachbarin sagt, dass sie Lärm gehört hat."
+        uk: "Я передав(ла) слова сусідки через dass, поставивши її дієслово в кінець: Meine Nachbarin sagt, dass sie Lärm gehört hat."
+      - en: "I named the value without claiming who did it."
+        ru: "Я назвал(а) стоимость, не утверждая, кто это сделал."
+        uk: "Я назвав(ла) вартість, не стверджуючи, хто це зробив."
+    model_answer: "Guten Tag, ich möchte eine Anzeige machen. Mein Fahrrad wurde gestohlen. Es stand im Hof, Hauptstraße 14, und es ist zwischen Freitagabend und Samstagmorgen passiert. Meine Nachbarin sagt, dass sie gegen Mitternacht Lärm gehört hat. Das gestohlene Fahrrad war ungefähr vierhundert Euro wert. Ich habe einen Verdacht, aber keinen Beweis."
+    model_translation:
+      en: "Hello, I would like to file a report. My bicycle was stolen. It was standing in the yard at Hauptstraße 14, and it happened between Friday evening and Saturday morning. My neighbour says that she heard a noise around midnight. The stolen bicycle was worth about four hundred euros. I have a suspicion but no proof."
+      ru: "Здравствуйте, я хочу подать заявление. У меня украли велосипед. Он стоял во дворе, Hauptstraße 14, и произошло это между вечером пятницы и утром субботы. Соседка говорит, что около полуночи слышала шум. Украденный велосипед стоил около четырёхсот евро. У меня есть подозрение, но нет доказательства."
+      uk: "Добрий день, я хочу подати заяву. У мене вкрали велосипед. Він стояв у дворі, Hauptstraße 14, і сталося це між вечором п'ятниці та ранком суботи. Сусідка каже, що близько опівночі чула шум. Украдений велосипед коштував близько чотирьохсот євро. У мене є підозра, але немає доказу."
+    explain:
+      en: "Play yourself back and find the sentence about your neighbour. It should have three properties: *dass*, her verb at the very end, and no claim that what she heard was the theft. If you said *Meine Nachbarin hat Lärm gehört* you reported a fact rather than her statement — correct German, but it makes you the witness. Then check the last line: naming a suspicion without a proof is allowed and useful; naming a *Täter* without one is not the same thing."
+      ru: "Прослушайте запись и найдите фразу о соседке. У неё должны быть три свойства: *dass*, её глагол в самом конце и никакого утверждения, что услышанное ею и было кражей. Если вы сказали *Meine Nachbarin hat Lärm gehört*, вы сообщили факт, а не её слова — немецкий верный, но свидетелем оказываетесь вы. Затем проверьте последнюю строку: назвать подозрение без доказательства можно и полезно; назвать без доказательства *Täter* — уже другое дело."
+      uk: "Прослухайте запис і знайдіть фразу про сусідку. У неї мають бути три властивості: *dass*, її дієслово в самому кінці і жодного твердження, що почуте нею і було крадіжкою. Якщо ви сказали *Meine Nachbarin hat Lärm gehört*, ви повідомили факт, а не її слова — німецька правильна, але свідком виявляєтеся ви. Потім перевірте останній рядок: назвати підозру без доказу можна й корисно; назвати без доказу *Täter* — уже інша річ."
+
+  - id: schreiben-anzeige
+    outcomes: [anzeige-schreiben]
+    type: write
+    prompt:
+      en: "Write the online report of the bicycle theft: what was taken, when, where, what a witness said, and what it was worth. Six or seven sentences."
+      ru: "Напишите онлайн-заявление о краже велосипеда: что украдено, когда, где, что сказал свидетель и сколько это стоило. Шесть-семь предложений."
+      uk: "Напишіть онлайн-заяву про крадіжку велосипеда: що вкрадено, коли, де, що сказав свідок і скільки це коштувало. Шість-сім речень."
+    goal:
+      en: "Give a stranger everything they need to act on, and nothing they would have to discount."
+      ru: "Дать незнакомому человеку всё, на чём можно действовать, и ничего, что пришлось бы отбросить."
+      uk: "Дати незнайомій людині все, на чому можна діяти, і нічого, що довелося б відкинути."
+    requirements:
+      - en: "Report the witness with dass, ob or a question word, and put her verb at the end."
+        ru: "Передайте слова свидетельницы через dass, ob или вопросительное слово, поставив её глагол в конец."
+        uk: "Передайте слова свідки через dass, ob або питальне слово, поставивши її дієслово в кінець."
+      - en: "Use at least one participle in front of a noun (das gestohlene Fahrrad, die aufgebrochene Tür)."
+        ru: "Используйте хотя бы одно причастие перед существительным (das gestohlene Fahrrad, die aufgebrochene Tür)."
+        uk: "Використайте хоча б один дієприкметник перед іменником (das gestohlene Fahrrad, die aufgebrochene Tür)."
+      - en: "Give a time span rather than a single moment, and say what the thing was worth."
+        ru: "Назовите промежуток времени, а не один момент, и укажите стоимость вещи."
+        uk: "Назвіть проміжок часу, а не один момент, і вкажіть вартість речі."
+    min_words: 55
+    model_answer: "Sehr geehrte Damen und Herren, ich möchte eine Anzeige machen. Mein Fahrrad wurde zwischen Freitagabend und Samstagmorgen gestohlen. Es stand im Hof in der Hauptstraße 14 in Bremen. Meine Nachbarin sagt, dass sie gegen Mitternacht Lärm gehört hat. Das gestohlene Fahrrad ist blau und war ungefähr vierhundert Euro wert. Ich habe keinen Beweis und nenne deshalb keinen Namen. Mit freundlichen Grüßen Anna Petrova"
+    model_translation:
+      en: "Dear Sir or Madam, I would like to make a report. My bicycle was stolen between Friday evening and Saturday morning. It was standing in the yard at Hauptstraße 14 in Bremen. My neighbour says that she heard a noise around midnight. The stolen bicycle is blue and was worth about four hundred euros. I have no proof and am therefore not naming anybody. Kind regards, Anna Petrova"
+      ru: "Уважаемые дамы и господа, я хочу подать заявление. Мой велосипед украли между вечером пятницы и утром субботы. Он стоял во дворе по адресу Hauptstraße 14 в Бремене. Соседка говорит, что около полуночи слышала шум. Украденный велосипед синий и стоил около четырёхсот евро. Доказательства у меня нет, поэтому имён я не называю. С уважением, Анна Петрова"
+      uk: "Шановні пані та панове, я хочу подати заяву. Мій велосипед украли між вечором п'ятниці та ранком суботи. Він стояв у дворі за адресою Hauptstraße 14 у Бремені. Сусідка каже, що близько опівночі чула шум. Украдений велосипед синій і коштував близько чотирьохсот євро. Доказу в мене немає, тому імен я не називаю. З повагою, Анна Петрова"
+    explain:
+      en: "Check three things against the model. Your reported clause: does the verb sit at the very end, and did you resist changing its tense to match the reporting verb? German has no backshift. Your participle: does it carry an ending, and is that ending the one its article and case require — *das gestohlene* after a definite article, *mein gestohlenes* after a possessive. And the closing formula takes no comma before the name; the name simply follows on the next line."
+      ru: "Сверьте с образцом три вещи. Ваше переданное придаточное: стоит ли глагол в самом конце и удержались ли вы от того, чтобы подогнать его время под глагол передачи? Согласования времён в немецком нет. Ваше причастие: есть ли у него окончание и то ли это окончание, которого требуют артикль и падеж, — *das gestohlene* после определённого артикля, *mein gestohlenes* после притяжательного. И после заключительной формулы запятая перед именем не ставится: имя просто идёт следующей строкой."
+      uk: "Звірте зі зразком три речі. Ваше передане підрядне: чи стоїть дієслово в самому кінці і чи втрималися ви від того, щоб підігнати його час під дієслово передавання? Узгодження часів у німецькій немає. Ваш дієприкметник: чи є в нього закінчення і чи те це закінчення, якого вимагають артикль і відмінок, — *das gestohlene* після означеного артикля, *mein gestohlenes* після присвійного. І після заключної формули кома перед іменем не ставиться: ім'я просто йде наступним рядком."
+
+  - id: sprechen-weitergeben
+    outcomes: [aussage-wiedergeben]
+    type: speak
+    mode: spoken-production
+    focus: indirekte-rede
+    instruction:
+      en: "Say it aloud in one go — you are the one reporting, not the one being asked."
+      ru: "Скажите вслух одним куском: вы передаёте, а не отвечаете на вопросы."
+      uk: "Скажіть уголос одним шматком: ви передаєте, а не відповідаєте на питання."
+    prompt:
+      en: "A friend was not at the police station with you. Tell them in four sentences what the officer said and asked: that the report is enough, whether you have a photo of the bicycle, when you last saw it, and that you should ring back in two weeks."
+      ru: "Друга не было с вами в полиции. Расскажите ему в четырёх предложениях, что сказал и о чём спросил сотрудник: что заявления достаточно, есть ли у вас фотография велосипеда, когда вы видели его в последний раз и что перезвонить нужно через две недели."
+      uk: "Друга не було з вами в поліції. Розкажіть йому в чотирьох реченнях, що сказав і про що спитав працівник: що заяви достатньо, чи є у вас фотографія велосипеда, коли ви бачили його востаннє і що передзвонити треба за два тижні."
+    goal:
+      en: "Make it audible throughout that these are somebody else's words, not yours."
+      ru: "Сделать слышным на протяжении всего рассказа, что это чужие слова, а не ваши."
+      uk: "Зробити чутним упродовж усієї розповіді, що це чужі слова, а не ваші."
+    checklist:
+      - en: "Each reported clause opened with dass, ob or a question word, and the verb closed it."
+        ru: "Каждое переданное придаточное начиналось с dass, ob или вопросительного слова, а глагол его закрывал."
+        uk: "Кожне передане підрядне починалося з dass, ob або питального слова, а дієслово його закривало."
+      - en: "The yes/no question got ob, and I did not turn it back into a question."
+        ru: "Вопрос «да/нет» получил ob, и я не превратил(а) его обратно в вопрос."
+        uk: "Питання «так/ні» дістало ob, і я не перетворив(ла) його назад на питання."
+      - en: "The instruction came out as sollen, not as an imperative."
+        ru: "Указание вышло через sollen, а не императивом."
+        uk: "Вказівка вийшла через sollen, а не імперативом."
+      - en: "I did not shift any tense to match the reporting verb."
+        ru: "Я не сдвигал(а) время под глагол передачи."
+        uk: "Я не зсував(ла) час під дієслово передавання."
+    model_answer: "Der Beamte hat gesagt, dass die Anzeige reicht. Er hat gefragt, ob ich ein Foto von dem Fahrrad habe. Dann wollte er wissen, wann ich es zuletzt gesehen habe. Am Ende hat er gesagt, dass ich in zwei Wochen noch einmal anrufen soll."
+    model_translation:
+      en: "The officer said that the report is enough. He asked whether I have a photo of the bicycle. Then he wanted to know when I last saw it. At the end he said that I should ring again in two weeks."
+      ru: "Сотрудник сказал, что заявления достаточно. Он спросил, есть ли у меня фотография велосипеда. Потом он хотел знать, когда я видел его в последний раз. В конце он сказал, что через две недели мне нужно перезвонить."
+      uk: "Працівник сказав, що заяви достатньо. Він спитав, чи є в мене фотографія велосипеда. Потім він хотів знати, коли я бачив його востаннє. Наприкінці він сказав, що за два тижні мені треба передзвонити."
+    explain:
+      en: "Four clauses, four different openers, and speaking them is where the pattern breaks: the opener commits you to sending the verb to the end, and by the time you get there the sentence has grown. Play yourself back and check the last word of each clause — *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Then check the second one specifically: if it came out as *ob habe ich ein Foto*, the question shape survived the conjunction, which is the one error this task exists to catch."
+      ru: "Четыре придаточных, четыре разных начала, и ломается образец именно в устной речи: начало обязывает отправить глагол в конец, а к тому моменту предложение успевает вырасти. Прослушайте запись и проверьте последнее слово каждого придаточного: *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Потом отдельно проверьте второе: если вышло *ob habe ich ein Foto*, значит форма вопроса пережила союз, — а ради этой ошибки задание и существует."
+      uk: "Чотири підрядні, чотири різні початки, і ламається зразок саме в усному мовленні: початок зобов'язує відправити дієслово в кінець, а на той момент речення встигає вирости. Прослухайте запис і перевірте останнє слово кожного підрядного: *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Потім окремо перевірте друге: якщо вийшло *ob habe ich ein Foto*, значить форма питання пережила сполучник, — а заради цієї помилки завдання й існує."

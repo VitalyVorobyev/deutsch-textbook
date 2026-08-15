@@ -1,5 +1,8 @@
 topic: alltag-tagesablauf
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Alltag und Tagesablauf"
 title:
   en: "Production — my day, told to a future flatmate"
   ru: "Продукция — мой день: рассказ будущему соседу по квартире"
@@ -78,13 +81,16 @@ items:
       uk: "Дві обставини часу — два різні прийменники. Пора року вимагає im (im Sommer), точний час на годиннику — um (um sechs Uhr). Зверніть увагу: українською «влітку» обходиться без прийменника, а німецькою прийменник обов'язковий. І aufstehen розділяється: auf замикає речення."
 
   - id: uebersetzen-wg-samstag
+    revision: 2
     outcomes: [alltag-zeitpraepositionen, alltag-zeit-haeufigkeit]
     type: translate
     focus: um-am-zeit
+    # "always" makes the sentence habitual, so samstags/morgens are correct German too —
+    # and the pinned Am/am are exactly what those renderings do not contain.
     instruction:
-      en: "Translate into German — you are telling Mara when you use the kitchen."
-      ru: "Переведите на немецкий — вы рассказываете Mara, когда пользуетесь кухней."
-      uk: "Перекладіть німецькою — ви розповідаєте Mara, коли користуєтеся кухнею."
+      en: "Translate into German — you are telling Mara when you use the kitchen. Write both time expressions with a preposition, not as one-word adverbs."
+      ru: "Переведите на немецкий — вы рассказываете Mara, когда пользуетесь кухней. Оба обстоятельства времени запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою — ви розповідаєте Mara, коли користуєтеся кухнею. Обидві обставини часу запишіть із прийменником, а не прислівником з одного слова."
     prompt_en: "On Saturday I always do the shopping in the morning."
     prompt_ru: "В субботу я всегда делаю покупки утром."
     prompt_uk: "У суботу я завжди роблю покупки вранці."
@@ -98,13 +104,16 @@ items:
       uk: "Тут обидві обставини часу вимагають am: день тижня (am Samstag) і частина доби (am Morgen) належать до однієї групи, хоча українською це «у суботу» і «вранці» — зовсім різні конструкції. Прислівник частотності immer стоїть одразу після дієслова, а префікс ein замикає речення."
 
   - id: uebersetzen-wg-nacht
+    revision: 2
     outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
     type: translate
     focus: um-am-zeit
+    # "never" makes the sentence habitual, so nachts is correct German too — and the
+    # pinned In/der are exactly what that rendering does not contain.
     instruction:
-      en: "Translate into German — you are promising your flatmates a quiet night."
-      ru: "Переведите на немецкий — вы обещаете соседям тихую ночь."
-      uk: "Перекладіть німецькою — ви обіцяєте сусідам тиху ніч."
+      en: "Translate into German — you are promising your flatmates a quiet night. Write the time of day with a preposition, not as a one-word adverb."
+      ru: "Переведите на немецкий — вы обещаете соседям тихую ночь. Время суток запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою — ви обіцяєте сусідам тиху ніч. Час доби запишіть із прийменником, а не прислівником з одного слова."
     prompt_en: "At night I never watch television."
     prompt_ru: "Ночью я никогда не смотрю телевизор."
     prompt_uk: "Вночі я ніколи не дивлюся телевізор."
@@ -186,3 +195,45 @@ items:
       en: "Speaking a routine aloud is where the rules meet real time pressure. Two things break first: the prefix (Ich stehe … auf — never Ich aufstehe) and the verb position after a sequencer (Dann esse ich, never Dann ich esse). Record yourself, listen back once against the checklist, then say it a second time — the second attempt is the one that improves."
       ru: "Когда распорядок дня произносишь вслух, правила впервые встречаются с реальным темпом речи. Первыми ломаются два: приставка (Ich stehe … auf — никогда Ich aufstehe) и место глагола после слова-связки (Dann esse ich, а не Dann ich esse). Запишите себя, прослушайте один раз по чек-листу и произнесите ещё раз — улучшается именно вторая попытка."
       uk: "Коли розпорядок дня промовляєш уголос, правила вперше зустрічаються зі справжнім темпом мовлення. Першими ламаються два: префікс (Ich stehe … auf — ніколи Ich aufstehe) і місце дієслова після слова-зв'язки (Dann esse ich, а не Dann ich esse). Запишіть себе, прослухайте один раз за чек-лістом і промовте ще раз — покращується саме друга спроба."
+  - id: uebersetzen-stehe-auf
+    outcomes: [alltag-zeitpraepositionen, alltag-beschreiben]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: Translate into German.
+      ru: Переведите на немецкий.
+      uk: Перекладіть німецькою.
+    prompt_en: "I get up at seven o'clock."
+    prompt_ru: "Я встаю в семь часов."
+    prompt_uk: "Я встаю о сьомій годині."
+    answer: "Ich stehe um sieben Uhr auf."
+    key_tokens: ["stehe", "auf"]
+    accept:
+      - "Um sieben Uhr stehe ich auf."
+    explain:
+      en: "aufstehen splits: stehe holds position 2 and the prefix auf drops to the very end, behind the time phrase."
+      ru: "aufstehen разделяется: stehe стоит на втором месте, а приставка auf уходит в самый конец, за обстоятельство времени."
+      uk: "aufstehen розділяється: stehe стоїть на другому місці, а префікс auf іде в самий кінець, за обставину часу."
+  - id: uebersetzen-abends-fernsehen
+    revision: 2
+    outcomes: [alltag-beschreiben, alltag-zeit-haeufigkeit]
+    type: translate
+    focus: um-am-zeit
+    # The sentence is habitual, so the one-word adverb (abends) is correct German too —
+    # and the pinned Am is exactly what that rendering does not contain. The instruction
+    # names the graded form without giving away which preposition it is.
+    instruction:
+      en: "Translate into German. Write the time of day with a preposition, not as a one-word adverb."
+      ru: "Переведите на немецкий. Время суток запишите с предлогом, а не наречием из одного слова."
+      uk: "Перекладіть німецькою. Час доби запишіть із прийменником, а не прислівником з одного слова."
+    prompt_en: "In the evening I often watch television."
+    prompt_ru: "Вечером я часто смотрю телевизор."
+    prompt_uk: "Увечері я часто дивлюся телевізор."
+    answer: "Am Abend sehe ich oft fern."
+    key_tokens: ["Am"]
+    accept:
+      - "Ich sehe am Abend oft fern."
+    explain:
+      en: "Parts of the day take am: am Abend. fernsehen is separable, so fern closes the sentence — even behind the adverb oft."
+      ru: "С частями суток употребляется am: am Abend. fernsehen — отделяемый глагол, поэтому fern замыкает предложение, даже после наречия oft."
+      uk: "З частинами доби вживається am: am Abend. fernsehen — відокремлюване дієслово, тому fern замикає речення, навіть після прислівника oft."

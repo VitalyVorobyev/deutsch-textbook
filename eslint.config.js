@@ -10,9 +10,10 @@ export default tseslint.config(
   {
     ignores: [
       'dist/',
-      '.astro/',
+      '**/.astro/',
       'node_modules/',
       'src-tauri/', // Rust shell + Tauri-generated artifacts
+      '**/src-tauri/',
       'progress/',
       'docs/',
       '.claude/', // local settings + agent worktrees (each carries a full repo copy)
@@ -23,6 +24,10 @@ export default tseslint.config(
       'tools/listening-studio/**/__pycache__/',
       'ds-bundle/', // generated claude.ai/design bundle (compiled React + previews)
       '.ds-sync/', // staged design-sync converter scripts + their node_modules
+      // Flat-config `dist/` anchors at the repo root, so a nested build output —
+      // the Listening Studio frontend's — was being linted as source. It is
+      // gitignored, so this only ever bit a local run.
+      '**/dist/',
     ],
   },
 
@@ -55,6 +60,14 @@ export default tseslint.config(
     files: ['scripts/**', 'src/integrations/**', '*.{js,mjs,ts}', '.design-sync/*.mjs'],
     languageOptions: { globals: globals.node },
   },
+  // The service-worker source is a template, not a module: it is never imported, and
+  // `src/integrations/pwa.ts` copies it into dist/ with its placeholders filled. It runs in
+  // the ServiceWorkerGlobalScope, so it needs those globals rather than Node's — and the
+  // override must come after the integrations block above, which would otherwise win.
+  {
+    files: ['src/integrations/service-worker.js'],
+    languageOptions: { globals: { ...globals.serviceworker, console: 'readonly' } },
+  },
 
   {
     rules: {
@@ -63,7 +76,7 @@ export default tseslint.config(
         'error',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
       ],
-      // The IPA validator (src/lib/schemas.ts) deliberately lists combining marks as
+      // The IPA validator (packages/schema/src/index.ts) deliberately lists combining marks as
       // standalone character-class members; written as \u escapes they aren't misleading.
       'no-misleading-character-class': ['error', { allowEscape: true }],
     },

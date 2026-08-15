@@ -24,19 +24,21 @@ mastered, and the next topic to learn.*
 
 ## What's inside
 
-- **A complete A1 and A2 course, and B1 in progress** — ten A1 and twenty-two A2
+- **A fully authored A1 and A2 course, and every B1 unit written** — twelve A1 and twenty-five A2
   units, each with a diagnostic pretest, a full article, a graded reading,
-  exercises, and its own vocabulary; nine of the fourteen contracted B1 units
-  are live. Every headword of the Goethe-Institut's A1 and A2 Wortlisten is
-  covered, and the Über page reports how far each level goes with figures
-  measured from the content itself, not hand-written.
+  exercises, and its own vocabulary; twenty B1 units are live — the fourteen of
+  the frozen contract plus six that close the DTZ Themen and Sprachhandlungen denominators — with an
+  end-of-level checkpoint and an entry placement test. Every headword of the
+  Goethe-Institut's A1, A2 and B1 Wortlisten is covered, and the Über page reports
+  how far each level goes with figures measured from the content itself, not
+  hand-written.
 
 <!-- The figures above are re-derived, never remembered. `bun test` fails if this
      bullet and the content disagree (tests/published-claims.test.ts).
-       units per level:   bun -e 'const {getCurriculum}=await import("./src/lib/curriculum.ts");
+       units per level:   bun -e 'const {getCurriculum}=await import("./packages/content/src/curriculum.ts");
                             const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1;
                             console.log(c)'
-       B1 contract total: docs/curriculum-a2-b1.md — frozen 2026-07-24 at fourteen units -->
+       B1 contract total: docs/curriculum/a2-b1.md — frozen 2026-07-24 at fourteen units -->
 
 - **Interactive exercises with instant feedback** — multiple choice, gap-fill,
   matching, word order, tables, translation, open writing, speaking, and
@@ -65,8 +67,23 @@ mastered, and the next topic to learn.*
 ## Getting it
 
 **Use it in the browser** — the site is deployed at
-<https://vitalyvorobyev.github.io/deutsch-textbook/>. Nothing to install;
-progress stays in your browser.
+<https://deutsch.vitavision.dev/>. Nothing to install; progress stays in your
+browser.
+
+**Signing in is optional.** Without an account the app is complete and entirely
+local — an account only adds a copy of your progress in the cloud so a second
+device can pick it up. New accounts are approved by hand, so if you sign in and
+are told your account is waiting, keep going: everything is saved on your device
+and uploads once it is approved.
+
+**Or install it on your phone** — it is a Progressive Web App, so the same URL
+installs to the home screen on iOS (Safari → Share → *Zum Home-Bildschirm*) and
+Android (Chrome → *App installieren*), with no app store involved. It then runs
+in its own window and keeps working offline: visited pages, the recordings you
+have played and all of your progress stay on the device.
+[Installation instructions and a QR code](https://deutsch.vitavision.dev/install).
+On iOS, installing also stops the system evicting your saved progress after a
+week of not opening it.
 
 **Or install the desktop app** (Windows, Linux, macOS) from
 [GitHub Releases](https://github.com/VitalyVorobyev/deutsch-textbook/releases):
@@ -144,7 +161,7 @@ conventions — are in [CLAUDE.md](CLAUDE.md).
 Deutsch-Atlas is AI-assisted, human-directed and edited. AI systems support drafting and asset
 generation; they are not credited as authors. The project’s ownership, licence boundaries and
 authorship-provenance process are summarized in [NOTICE.md](NOTICE.md) and
-[docs/product-protection.md](docs/product-protection.md).
+[docs/authoring/product-protection.md](docs/authoring/product-protection.md).
 
 ## Licence
 

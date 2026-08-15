@@ -1,0 +1,42 @@
+{
+  "//": "This package READS the corpus (content/, data/) — every measurement (coverage, structures, grammar depth, comprehensibility, prose shape, authorship provenance) lives here. @da/schema holds the shapes and stays pure. Exports are per-module, never a single barrel, because some of these modules import node:fs and some are imported by browser React components; a barrel would drag node:fs into the client bundle.",
+  "name": "@da/content",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./anchors": "./src/anchors.ts",
+    "./authorship-provenance": "./src/authorship-provenance.ts",
+    "./comprehensibility": "./src/comprehensibility.ts",
+    "./coverage": "./src/coverage.ts",
+    "./curriculum": "./src/curriculum.ts",
+    "./elements": "./src/elements.ts",
+    "./editor": "./src/editor.ts",
+    "./focus-tags": "./src/focus-tags.ts",
+    "./grading-decisions": "./src/grading-decisions.ts",
+    "./grammar-coverage": "./src/grammar-coverage.ts",
+    "./grammar-depth": "./src/grammar-depth.ts",
+    "./graph": "./src/graph.ts",
+    "./handlungen": "./src/handlungen.ts",
+    "./payload": "./src/payload.ts",
+    "./preview": "./src/preview.ts",
+    "./profile": "./src/profile.ts",
+    "./prose-shape": "./src/prose-shape.ts",
+    "./refs": "./src/refs.ts",
+    "./repo-root": "./src/repo-root.ts",
+    "./structures": "./src/structures.ts",
+    "./themen": "./src/themen.ts",
+    "./topics": "./src/topics.ts",
+    "./write": "./src/write.ts"
+  },
+  "dependencies": {
+    "@da/grading": "workspace:*",
+    "@da/schema": "workspace:*",
+    "@mdx-js/mdx": "^3.1.1",
+    "remark-gfm": "^4.0.1"
+  },
+  "peerDependencies": {
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
+  }
+}

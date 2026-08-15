@@ -1,0 +1,104 @@
+# Cloudflare Workers config: static assets + the /api sync Worker.
+#
+# The site itself is a static Astro build served straight from `dist/`. `main`
+# exists for one reason — the accounts and progress-sync API under `/api/*`
+# (worker/index.ts). Everything that is not `/api/*` is handed back to the asset
+# server untouched, so the site is exactly as static as it was before.
+#
+# **Deploys come from the Cloudflare Git integration watching `main`.** There is
+# deliberately no GitHub Actions deploy: two paths watching one branch race each
+# other on every push. `.github/workflows/ci.yml` still runs validate, test,
+# check, lint and build, so broken content is caught before it can be merged.
+#
+# Build configuration to set in the dashboard — the build command on its own is
+# not enough, and each of these has a failure mode worth knowing:
+#
+#   Build command      bun run build
+#   Output directory   dist
+#   Branch control     build **`main` only**. Workers Builds will otherwise build
+#                      every pushed branch and deploy it to *production* — an
+#                      unreviewed PR branch on the live domain, reported as a
+#                      green check on the PR. Corrected in the dashboard on
+#                      2026-08-03; nothing in this repo can enforce or detect it,
+#                      which is the whole reason it is written down here.
+#   NODE_VERSION       22   — package.json requires >=22.12.0 and Astro 7 needs
+#                            >=20; the platform default is older.
+#   PUBLIC_ATLAS_AUDIO_BUNDLE
+#                      1    — without it the build logs "41 reviewed recording(s)
+#                            withheld" and the site speaks browser TTS over
+#                            scripts that were recorded and human-approved.
+#   SITE_URL           https://deutsch.vitavision.dev
+#                           — canonical, /install QR and sitemap URLs only;
+#                             astro.config already defaults to this host.
+#   BASE_PATH          leave unset. Setting it prefixes every URL with a subpath;
+#                      the Worker matches `/api/…` at the root (see worker/index.ts).
+#
+# **Secrets** (`bunx wrangler secret put <NAME>`) — the Worker refuses the
+# affected route rather than crashing when one is missing, so a partial setup
+# degrades instead of taking the site down:
+#
+#   SESSION_SECRET        32+ random bytes; signs the short-lived OAuth state
+#                         cookie. Rotating it invalidates in-flight sign-ins only.
+#   GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET
+#   GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET
+#   OWNER_EMAILS          comma-separated. A verified email in this list is
+#                         created (or promoted) as an approved owner on sign-in,
+#                         so an empty D1 never locks you out of /konto.
+#
+# **A deploy from a config without `main` removes all six.** Cloudflare's docs
+# say wrangler will not delete secrets; that did not hold across this path. On
+# 2026-08-03 a build of the *old*, assets-only wrangler.toml landed on this
+# Worker while branch control was still building every branch, and replaced the
+# entire binding set: version 02e21b05 (6 secrets + DB + SNAPSHOTS + ASSETS) →
+# c2f78b7e (no bindings at all). Every later build restored the three bindings
+# from this file and had nothing to inherit for the rest, so sign-in was
+# impossible for four hours with every gate green. Recovery is
+# `bunx wrangler secret put` × 6 and needs no rebuild — putting a secret creates
+# a version that inherits the deployed code. Detection is `bun run deploy:smoke`.
+#
+# Redirect URIs to register with both providers:
+#   https://deutsch.vitavision.dev/api/auth/google/callback
+#   https://deutsch.vitavision.dev/api/auth/github/callback
+#   http://localhost:8787/api/auth/{google,github}/callback   (wrangler dev)
+#
+# Migrations are NOT applied by the deploy:
+#   bunx wrangler d1 migrations apply deutsch-atlas --remote
+#
+# Deploy by hand:  bun run build && bunx wrangler deploy
+# Domain:          deutsch.vitavision.dev
+
+# `name` is the *existing* Worker, which the Git integration named after the
+# GitHub repo — not after this project. It must stay `deutsch-textbook`: a
+# different name here does not rename anything, it deploys a second Worker, and
+# deutsch.vitavision.dev keeps serving the old one. The failure is silent — the
+# build goes green and the API is simply absent from the domain.
+name = "deutsch-textbook"
+main = "worker/index.ts"
+compatibility_date = "2026-08-03"
+
+[assets]
+directory = "./dist"
+# Astro emits src/pages/404.astro as dist/404.html. Without this an unknown path
+# gets Cloudflare's own error page instead of the site's.
+not_found_handling = "404-page"
+# The Worker delegates everything that is not /api/* straight back here.
+binding = "ASSETS"
+# /api/* matches no asset, so the Worker would receive it anyway — but stating it
+# means a future dist/api/… file can never silently shadow the API.
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "deutsch-atlas"
+# Filled in by `bunx wrangler d1 create deutsch-atlas`.
+database_id = "07239d0d-50b2-4e43-959a-587036767dc3"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "SNAPSHOTS"
+bucket_name = "deutsch-atlas-progress"
+# The S3 credentials in the local setenv.sh are EU-jurisdiction
+# (…eu.r2.cloudflarestorage.com), so the bucket must be created to match or
+# `bun run progress:pull` cannot reach it:
+#   bunx wrangler r2 bucket create deutsch-atlas-progress --jurisdiction eu
+jurisdiction = "eu"

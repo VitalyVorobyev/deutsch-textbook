@@ -14,7 +14,7 @@ import {
   type ExplainText,
 } from '../src/lib/prefs';
 import { PROFILE_KEY, PROFILES_KEY } from '../src/lib/profile';
-import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
+import { glossFieldParity, parseGlosses } from '@da/schema/gloss';
 import {
   deParityProblems,
   hasDeExplanation,
@@ -22,21 +22,21 @@ import {
   langFieldProblems,
   mdxLangProblems,
   ukParityProblems,
-} from '../src/lib/langcheck';
+} from '@da/schema/langcheck';
 import {
   bilingualSchema,
   matchItemSchema,
   outcomeSchema,
   pronominalAdverbReferenceSchema,
   sentenceConnectorsReferenceSchema,
-  topicSchema,
+  topicManifestSchema,
   translateItemSchema,
   vocabEntrySchema,
   type VocabEntry,
   type WordField,
-} from '../src/lib/schemas';
+} from '@da/schema';
 import { buildDeck, wordFieldContexts } from '../src/lib/srs';
-import { ukHalfCoverage } from '../src/lib/coverage';
+import { ukHalfCoverage } from '@da/content/coverage';
 import type { TopicNode } from '../src/lib/mastery';
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -540,7 +540,7 @@ describe('schema widening', () => {
   });
 
   test('topics and outcomes may carry uk titles/halves', () => {
-    const topic = topicSchema.parse({
+    const topic = topicManifestSchema.parse({
       id: 'akkusativ',
       title_de: 'Akkusativ',
       title_en: 'The accusative',
@@ -548,6 +548,16 @@ describe('schema widening', () => {
       title_uk: 'Знахідний відмінок',
       level: 'A1',
       kind: 'grammar',
+      strand: 'grammar',
+      group: 'kasus',
+      // Every field the assertion depends on is stated here, including the ones it only needs to
+      // satisfy the schema: a fixture that borrows defaults from live content turns a content fix
+      // into a red test.
+      outcomes: [
+        { id: 'akk-a', mode: 'writing', de: 'a', en: 'a', ru: 'а' },
+        { id: 'akk-b', mode: 'writing', de: 'b', en: 'b', ru: 'б' },
+      ],
+      elements: { article: 'akkusativ.mdx' },
     });
     expect(topic.title_uk).toBe('Знахідний відмінок');
 
@@ -923,7 +933,7 @@ describe('uk reaches the runtime surfaces', () => {
 /**
  * The frontmatter↔body parity bridge, for BOTH optional halves.
  *
- * `docs/i18n-design.md` and the comment in `scripts/validate.ts` both say frontmatter and
+ * `docs/adrs/0001-bilingual-explanation-halves.md` and the comment in `scripts/validate.ts` both say frontmatter and
  * body are one parity scope. That was true of `uk` only: `mdxLangProblems` hardcoded its
  * force to `tag === 'Uk'`, and `deParityProblems` never saw the body at all. So a file
  * could ship a fully German-medium article under an English-only summary card, or the

@@ -1,0 +1,735 @@
+id: gesellschaft-zusammenleben
+title_de: "Gesellschaft & Zusammenleben"
+title_en: "Society & living together"
+title_ru: "Общество и совместная жизнь"
+title_uk: "Суспільство та спільне життя"
+level: B1
+# The unit is one Hausversammlung about what to do with the shared Hof, so the
+# deck is the vocabulary of that room: the yard itself, the meeting, and the
+# moves of agreeing and disagreeing in it.
+#
+# Two constraints shaped the headword list and are worth stating once.
+#
+# 1. Ten of the twenty words the unit's brief names as core are already owned
+#    by shipped decks and are RECYCLED here, not re-taught (the validator
+#    hard-fails a headword living in two decks): Kompromiss, Rücksicht, sich
+#    einigen, ablehnen, einverstanden (regeln-verantwortung, B1.7); zustimmen,
+#    überzeugen (meinung-medien, B1.5); Vorschlag, Lösung (nebensaetze-plaene,
+#    A2); vorschlagen (infinitiv-mit-zu, A2). Their slots are filled by the
+#    neighbour this unit genuinely adds — die Zustimmung beside zustimmen,
+#    anschließen beside einverstanden, überreden beside überzeugen.
+# 2. Every headword is a Goethe-B1 Wortliste word except four, checked with
+#    `bun scripts/coverage.ts B1 --check-deck content/vocab/gesellschaft-zusammenleben.yaml`
+#    (8 of the 9 shipped B1 unit decks are manifest-clean; meinung-medien
+#    carries eleven exceptions of the same kind). The four here: Einwand and
+#    Meinungsverschiedenheit are named in the unit's own frozen atlas outcomes
+#    (`einwand-ausdruecken`, and "bei einer Meinungsverschiedenheit" in
+#    `kompromiss-vorschlagen`), so the article cannot avoid them; nachgeben and
+#    gegenseitig are the two words of the brief's obligatory core that are
+#    neither owned elsewhere nor in the manifest, and the mission — resolve a
+#    disagreement — has no substitute for either.
+entries:
+  # --- Core (cards: both by default) --------------------------------------
+  # The words the unit actively teaches and asks the learner to produce.
+
+  - de: "Versammlung"
+    ipa: "fɛɐ̯ˈzamlʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Versammlungen"
+    en: "meeting, assembly"
+    ru: "собрание"
+    uk: "збори"
+    example_de: "Auf der Versammlung geht es diesmal nur um den Hof."
+    example_en: "At the meeting this time it is only about the courtyard."
+    example_ru: "На собрании на этот раз речь пойдёт только о дворе."
+    example_uk: "На зборах цього разу йтиметься лише про двір."
+    note:
+      en: "A gathering called for a purpose and with an agenda: eine Versammlung einberufen. From versammeln, to bring people together. das Treffen is simply seeing each other."
+      ru: "Собрание, которое созывают с определённой целью и с повесткой: eine Versammlung einberufen. От versammeln — «собирать людей». das Treffen — просто встреча."
+      uk: "Збори, які скликають із певною метою та з порядком денним: eine Versammlung einberufen. Від versammeln — «збирати людей». das Treffen — просто зустріч."
+
+  - de: "Gemeinschaft"
+    ipa: "gəˈmaɪ̯nʃaft"
+    pos: noun
+    gender: f
+    plural: "die Gemeinschaften"
+    en: "community"
+    ru: "сообщество, общность"
+    uk: "спільнота"
+    example_de: "In unserer Gemeinschaft entscheidet niemand allein."
+    example_en: "In our community nobody decides alone."
+    example_ru: "В нашем сообществе никто не решает в одиночку."
+    example_uk: "У нашій спільноті ніхто не вирішує на самоті."
+    note:
+      en: "People held together by something they share, not by an address list. The residents of one building are die Hausgemeinschaft; the verb behind it is gemeinsam handeln."
+      ru: "Люди, которых держит вместе что-то общее, а не список жильцов. Жильцы одного дома — die Hausgemeinschaft; за словом стоит gemeinsam handeln."
+      uk: "Люди, яких тримає разом щось спільне, а не список мешканців. Мешканці одного будинку — die Hausgemeinschaft; за словом стоїть gemeinsam handeln."
+
+  - de: "Einwand"
+    ipa: "ˈaɪ̯nvant"
+    pos: noun
+    gender: m
+    plural: "die Einwände"
+    en: "objection"
+    ru: "возражение"
+    uk: "заперечення"
+    example_de: "Gegen den Parkplatz gab es sofort mehrere Einwände."
+    example_en: "There were several objections to the parking area straight away."
+    example_ru: "Против парковки сразу же прозвучало несколько возражений."
+    example_uk: "Проти парковки одразу пролунало кілька заперечень."
+    note:
+      en: "einen Einwand haben, einen Einwand erheben. The plural takes an umlaut: die Einwände. It names one concrete point against a plan, not a general mood."
+      ru: "einen Einwand haben, einen Einwand erheben. Во множественном числе появляется умлаут: die Einwände. Это один конкретный довод против плана, а не общее настроение."
+      uk: "einen Einwand haben, einen Einwand erheben. У множині з'являється умлаут: die Einwände. Це один конкретний довід проти плану, а не загальний настрій."
+
+  - de: "Meinungsverschiedenheit"
+    ipa: "ˈmaɪ̯nʊŋsfɛɐ̯ˌʃiːdn̩haɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Meinungsverschiedenheiten"
+    en: "disagreement, difference of opinion"
+    ru: "разногласие, расхождение во мнениях"
+    uk: "розбіжність у думках, незгода"
+    example_de: "Zwischen den Nachbarn gibt es eine alte Meinungsverschiedenheit."
+    example_en: "There is an old disagreement between the neighbours."
+    example_ru: "Между соседями есть давнее разногласие."
+    example_uk: "Між сусідами є давня незгода."
+    note:
+      en: "Long but transparent: die Meinung + verschieden + -heit. Calmer than der Streit (B1.7), which is already a quarrel; a Meinungsverschiedenheit can stay friendly."
+      ru: "Длинное, но прозрачное: die Meinung + verschieden + -heit. Спокойнее, чем der Streit (B1.7) — тот уже ссора; Meinungsverschiedenheit может остаться дружеской."
+      uk: "Довге, але прозоре: die Meinung + verschieden + -heit. Спокійніше, ніж der Streit (B1.7) — той уже сварка; Meinungsverschiedenheit може лишитися дружньою."
+
+  - de: "Zustimmung"
+    ipa: "ˈtsuːˌʃtɪmʊŋ"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: "approval, agreement"
+    ru: "согласие, одобрение"
+    uk: "згода, схвалення"
+    example_de: "Der Plan mit dem Garten fand breite Zustimmung."
+    example_en: "The plan with the garden met with broad approval."
+    example_ru: "План с садом получил широкое одобрение."
+    example_uk: "План із садом дістав широке схвалення."
+    note:
+      en: "Zustimmung finden, seine Zustimmung geben. The noun of zustimmen (B1.5), and its opposite is die Ablehnung. Used in the singular even when many people agree."
+      ru: "Zustimmung finden, seine Zustimmung geben. Существительное к zustimmen (B1.5), противоположность — die Ablehnung. Употребляется в единственном числе, даже когда согласны многие."
+      uk: "Zustimmung finden, seine Zustimmung geben. Іменник до zustimmen (B1.5), протилежність — die Ablehnung. Уживається в однині, навіть коли згодні багато людей."
+
+  - de: "Mehrheit"
+    ipa: "ˈmeːɐ̯haɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Mehrheiten"
+    en: "majority"
+    ru: "большинство"
+    uk: "більшість"
+    example_de: "Die Mehrheit war für den Spielplatz, obwohl viele Autos im Hof stehen."
+    example_en: "The majority were in favour of the playground, although many cars are parked in the courtyard."
+    example_ru: "Большинство было за детскую площадку, хотя во дворе стоит много машин."
+    example_uk: "Більшість була за дитячий майданчик, хоча у дворі стоїть багато автівок."
+    note:
+      en: "Takes a singular verb: die Mehrheit ist dafür. With a Genitiv it names the group: die Mehrheit der Bewohner."
+      ru: "Согласуется с глаголом в единственном числе: die Mehrheit ist dafür. С Genitiv называет группу: die Mehrheit der Bewohner."
+      uk: "Узгоджується з дієсловом в однині: die Mehrheit ist dafür. З Genitiv називає групу: die Mehrheit der Bewohner."
+
+  - de: "Stimme"
+    ipa: "ˈʃtɪmə"
+    pos: noun
+    gender: f
+    plural: "die Stimmen"
+    en: "vote; voice"
+    ru: "голос"
+    uk: "голос"
+    example_de: "Am Ende fehlte dem Parkplatz genau eine Stimme."
+    example_en: "In the end the parking area was exactly one vote short."
+    example_ru: "В итоге парковке не хватило ровно одного голоса."
+    example_uk: "Зрештою парковці забракло рівно одного голосу."
+    note:
+      en: "One word for both: seine Stimme abgeben is to cast a vote, mit leiser Stimme is to speak quietly. Counting a result: acht Stimmen dafür, drei dagegen."
+      ru: "Одно слово для обоих значений: seine Stimme abgeben — «отдать голос», mit leiser Stimme — «тихо». Подсчёт результата: acht Stimmen dafür, drei dagegen."
+      uk: "Одне слово для обох значень: seine Stimme abgeben — «віддати голос», mit leiser Stimme — «тихо». Підрахунок результату: acht Stimmen dafür, drei dagegen."
+
+  - de: "Verständnis"
+    ipa: "fɛɐ̯ˈʃtɛntnɪs"
+    pos: noun
+    gender: n
+    plural: "—"
+    en: "understanding, sympathy"
+    ru: "понимание, сочувственное отношение"
+    uk: "розуміння, співчутливе ставлення"
+    example_de: "Für die Eltern mit kleinen Kindern habe ich Verständnis."
+    example_en: "I have sympathy for the parents with small children."
+    example_ru: "К родителям с маленькими детьми я отношусь с пониманием."
+    example_uk: "До батьків із маленькими дітьми я ставлюся з розумінням."
+    note:
+      en: "Verständnis haben für + Akk — the sentence that opens an objection without hardening it. das Verstehen is the mental act; das Verständnis is the attitude you take to a person."
+      ru: "Verständnis haben für + Akk — фраза, которой начинают возражение, не заостряя его. das Verstehen — сам мыслительный акт; das Verständnis — отношение к человеку."
+      uk: "Verständnis haben für + Akk — фраза, якою починають заперечення, не загострюючи його. das Verstehen — сам розумовий акт; das Verständnis — ставлення до людини."
+
+  - de: "Respekt"
+    ipa: "ʁeˈspɛkt"
+    pos: noun
+    gender: m
+    plural: "—"
+    en: "respect"
+    ru: "уважение"
+    uk: "повага"
+    example_de: "Ohne Respekt vor den Nachbarn geht im Hof gar nichts."
+    example_en: "Without respect for the neighbours nothing works in the courtyard."
+    example_ru: "Без уважения к соседям во дворе ничего не получится."
+    example_uk: "Без поваги до сусідів у дворі нічого не вийде."
+    note:
+      en: "Respekt vor + Dat — what you have respect for stands in the Dativ. Only in the singular. die Rücksicht (B1.7) is respect turned into behaviour."
+      ru: "Respekt vor + Dat — то, к чему испытывают уважение, стоит в Dativ. Только в единственном числе. die Rücksicht (B1.7) — уважение, ставшее поведением."
+      uk: "Respekt vor + Dat — те, до чого відчувають повагу, стоїть у Dativ. Лише в однині. die Rücksicht (B1.7) — повага, що стала поведінкою."
+
+  - de: "Hof"
+    ipa: "ˈhoːf"
+    pos: noun
+    gender: m
+    plural: "die Höfe"
+    en: "courtyard (the shared open space behind a block of flats)"
+    en_compact: "courtyard, yard"
+    ru: "двор (общее пространство за жилым домом)"
+    uk: "двір (спільний простір за житловим будинком)"
+    example_de: "Im Hof stehen zurzeit acht Autos und ein Fahrradständer."
+    example_en: "At the moment there are eight cars and a bicycle rack in the courtyard."
+    example_ru: "Во дворе сейчас стоят восемь машин и велосипедная стойка."
+    example_uk: "У дворі зараз стоять вісім автівок і велосипедна стійка."
+    note:
+      en: "The space this whole unit argues about. The word also covers a farm (der Bauernhof) and a royal court, but here it is what lies behind the front door."
+      ru: "Пространство, о котором спорит весь этот раздел. Слово покрывает и ферму (der Bauernhof), и королевский двор, но здесь это то, что за подъездом."
+      uk: "Простір, про який сперечається весь цей розділ. Слово покриває і ферму (der Bauernhof), і королівський двір, але тут це те, що за під'їздом."
+
+  - de: "abstimmen"
+    ipa: "ˈapˌʃtɪmən"
+    pos: verb
+    praesens_3sg: "stimmt ab"
+    partizip2: "abgestimmt"
+    aux: haben
+    valence: "über + Akk"
+    en: "to vote"
+    ru: "голосовать"
+    uk: "голосувати"
+    example_de: "Am Ende haben wir über beide Vorschläge abgestimmt."
+    example_en: "In the end we voted on both proposals."
+    example_ru: "В конце мы проголосовали по обоим предложениям."
+    example_uk: "Наприкінці ми проголосували щодо обох пропозицій."
+    note:
+      en: "Separable: stimmt ab, hat abgestimmt. What is being voted on takes über + Akk. A second sense is to coordinate: etwas mit jemandem abstimmen."
+      ru: "Отделяемая приставка: stimmt ab, hat abgestimmt. То, по чему голосуют, вводит über + Akk. Второе значение — «согласовать»: etwas mit jemandem abstimmen."
+      uk: "Відокремлюваний префікс: stimmt ab, hat abgestimmt. Те, щодо чого голосують, вводить über + Akk. Друге значення — «узгодити»: etwas mit jemandem abstimmen."
+
+  - de: "anschließen"
+    ipa: "ˈanˌʃliːsn̩"
+    pos: verb
+    praesens_3sg: "schließt sich an"
+    partizip2: "sich angeschlossen"
+    aux: haben
+    valence: "sich + Akk; + Dat"
+    accept: ["sich anschließen"]
+    en: "to side with someone, to back what they said"
+    ru: "присоединяться к мнению, поддерживать"
+    uk: "приєднуватися до думки, підтримувати"
+    example_de: "Ich schließe mich dem Vorschlag von Frau Adamek an."
+    example_en: "I am backing Ms Adamek's proposal."
+    example_ru: "Я присоединяюсь к предложению госпожи Адамек."
+    example_uk: "Я приєднуюся до пропозиції пані Адамек."
+    note:
+      en: "In a discussion it is reflexive: sich jemandem oder einer Sache anschließen, and the person or plan stands in the Dativ with no preposition. Separable: schließt sich an, hat sich angeschlossen. zustimmen (B1.5) answers a proposal; this verb puts you behind the person who made it."
+      ru: "В обсуждении глагол возвратный: sich jemandem oder einer Sache anschließen, причём человек или план стоят в Dativ без предлога. Отделяемая приставка: schließt sich an, hat sich angeschlossen. zustimmen (B1.5) отвечает на предложение; этот глагол ставит вас за спину тому, кто его внёс."
+      uk: "В обговоренні дієслово зворотне: sich jemandem oder einer Sache anschließen, причому людина або план стоять у Dativ без прийменника. Відокремлюваний префікс: schließt sich an, hat sich angeschlossen. zustimmen (B1.5) відповідає на пропозицію; це дієслово ставить вас за спину тому, хто її вніс."
+
+  - de: "überreden"
+    ipa: "ˌyːbɐˈʁeːdn̩"
+    pos: verb
+    praesens_3sg: "überredet"
+    partizip2: "überredet"
+    aux: haben
+    valence: "+ Akk; zu + Dat"
+    en: "to talk someone into something"
+    ru: "уговаривать"
+    uk: "умовляти"
+    example_de: "Meine Nachbarin hat mich zu dem Garten überredet."
+    example_en: "My neighbour talked me into the garden."
+    example_ru: "Соседка уговорила меня на сад."
+    example_uk: "Сусідка вмовила мене на сад."
+    note:
+      en: "Inseparable, so no ge-: hat überredet. It works on the will and may leave the person unconvinced; überzeugen (B1.5) works on the mind and leaves them agreeing."
+      ru: "Неотделяемая приставка, поэтому без ge-: hat überredet. Действует на волю и может оставить человека при своём мнении; überzeugen (B1.5) действует на разум и оставляет его согласным."
+      uk: "Невідокремлюваний префікс, тому без ge-: hat überredet. Діє на волю й може лишити людину при своїй думці; überzeugen (B1.5) діє на розум і лишає її згодною."
+
+  - de: "sich beteiligen"
+    ipa: "zɪç bəˈtaɪ̯lɪgn̩"
+    pos: verb
+    praesens_3sg: "beteiligt sich"
+    partizip2: "sich beteiligt"
+    aux: haben
+    valence: "sich + Akk; an + Dat"
+    # Gloss deliberately NOT "to take part / участвовать" — that is A2 teilnehmen's
+    # production prompt (arbeit-ausbildung-a2), and two entries answering one prompt
+    # is the P22-11 defect. This card asks for the contribution sense only.
+    en: "to get involved, to contribute one's share (in a joint effort or its costs)"
+    en_compact: "to get involved, to contribute"
+    ru: "участвовать, внося свой вклад (в общее дело, обсуждение или расходы)"
+    uk: "долучатися, брати активну участь (у спільній справі чи витратах)"
+    example_de: "An der Versammlung haben sich fast alle Bewohner beteiligt."
+    example_en: "Almost all the residents took an active part in the meeting."
+    example_ru: "В собрании активно участвовали почти все жильцы."
+    example_uk: "У зборах активну участь узяли майже всі мешканці."
+    note:
+      en: "Against A2 teilnehmen: teilnehmen says you were among the participants (an einem Kurs teilnehmen); sich beteiligen says you put something of your own in — work, words or money. What you join takes an + Dat. Inseparable, so no ge-: hat sich beteiligt. Sharing a cost uses the same verb: sich an den Kosten beteiligen."
+      ru: "В отличие от teilnehmen (A2): teilnehmen — вы были среди участников (an einem Kurs teilnehmen); sich beteiligen — вы вложили что-то своё: труд, слово или деньги. То, в чём участвуют, вводит an + Dat. Неотделяемая приставка, поэтому без ge-: hat sich beteiligt. О деньгах — тот же глагол: sich an den Kosten beteiligen."
+      uk: "На відміну від teilnehmen (A2): teilnehmen — ви були серед учасників (an einem Kurs teilnehmen); sich beteiligen — ви вклали щось своє: працю, слово чи гроші. Те, у чому беруть участь, вводить an + Dat. Невідокремлюваний префікс, тому без ge-: hat sich beteiligt. Про гроші — те саме дієслово: sich an den Kosten beteiligen."
+
+  - de: "hinweisen"
+    ipa: "ˈhɪnˌvaɪ̯zn̩"
+    pos: verb
+    praesens_3sg: "weist hin"
+    partizip2: "hingewiesen"
+    aux: haben
+    valence: "auf + Akk"
+    en: "to point something out"
+    ru: "указывать, обращать внимание"
+    uk: "указувати, звертати увагу"
+    example_de: "Der Hausmeister hat auf die Kosten hingewiesen."
+    example_en: "The caretaker pointed out the costs."
+    example_ru: "Управдом обратил внимание на расходы."
+    example_uk: "Двірник звернув увагу на витрати."
+    note:
+      en: "auf etwas hinweisen — the calm way to add a fact the others have missed, without contradicting anyone. Separable and strong: weist hin, hat hingewiesen. The noun is der Hinweis."
+      ru: "auf etwas hinweisen — спокойный способ добавить факт, который упустили другие, никому не возражая. Отделяемая приставка, сильный глагол: weist hin, hat hingewiesen. Существительное — der Hinweis."
+      uk: "auf etwas hinweisen — спокійний спосіб додати факт, який інші проґавили, нікому не заперечуючи. Відокремлюваний префікс, сильне дієслово: weist hin, hat hingewiesen. Іменник — der Hinweis."
+
+  - de: "nachgeben"
+    ipa: "ˈnaːxˌgeːbn̩"
+    pos: verb
+    praesens_3sg: "gibt nach"
+    partizip2: "nachgegeben"
+    aux: haben
+    valence: "+ Dat"
+    # Same reasoning as gegenseitig: off the manifest, not named by any frozen outcome.
+    # The learner meets it in the discussion and reads it on the notice; producing it is
+    # not what the exam asks, and the new-card budget is the binding constraint at B1.
+    cards: recognition
+    en: "to give in, to yield"
+    ru: "уступать"
+    uk: "поступатися"
+    example_de: "Beim Parkplatz haben wir nachgegeben, beim Lärm nicht."
+    example_en: "We gave in on the parking area, but not on the noise."
+    example_ru: "По парковке мы уступили, а по шуму нет."
+    example_uk: "Щодо парковки ми поступилися, а щодо шуму ні."
+    note:
+      en: "Separable: gibt nach, hat nachgegeben. The person you yield to stands in the Dativ; the question you yield on takes bei + Dat. Giving in once is what makes der Kompromiss (B1.7) possible."
+      ru: "Отделяемая приставка: gibt nach, hat nachgegeben. Человек, которому уступают, стоит в Dativ; вопрос, в котором уступают, вводит bei + Dat. Именно уступка делает возможным der Kompromiss (B1.7)."
+      uk: "Відокремлюваний префікс: gibt nach, hat nachgegeben. Людина, якій поступаються, стоїть у Dativ; питання, у якому поступаються, вводить bei + Dat. Саме поступка робить можливим der Kompromiss (B1.7)."
+
+  - de: "gemeinsam"
+    ipa: "gəˈmaɪ̯nzaːm"
+    pos: adj
+    en: "joint, shared; together"
+    ru: "совместный, общий; вместе"
+    uk: "спільний; разом"
+    example_de: "Der Hof ist unser gemeinsamer Raum, nicht mein Parkplatz."
+    example_en: "The courtyard is our shared space, not my parking spot."
+    example_ru: "Двор — наше общее пространство, а не моя парковка."
+    example_uk: "Двір — наш спільний простір, а не моя парковка."
+    note:
+      en: "Both an adjective (eine gemeinsame Lösung) and an adverb (Wir entscheiden gemeinsam). zusammen says people are in the same place; gemeinsam says the thing belongs to all of them."
+      ru: "И прилагательное (eine gemeinsame Lösung), и наречие (Wir entscheiden gemeinsam). zusammen говорит, что люди в одном месте; gemeinsam — что вещь принадлежит им всем."
+      uk: "І прикметник (eine gemeinsame Lösung), і прислівник (Wir entscheiden gemeinsam). zusammen каже, що люди в одному місці; gemeinsam — що річ належить їм усім."
+
+  - de: "gegenseitig"
+    ipa: "ˈgeːgn̩ˌzaɪ̯tɪç"
+    pos: adj
+    # Off the Goethe-B1 manifest and not forced by the unit's frozen outcomes, so it
+    # earns one card rather than two: the courtyard argument needs it understood, the
+    # exam never asks for it back. Declared here at authoring time and never retrofitted.
+    cards: recognition
+    en: "mutual; one another"
+    ru: "взаимный; друг друга"
+    uk: "взаємний; один одного"
+    example_de: "Ohne gegenseitige Rücksicht funktioniert kein Hof."
+    example_en: "No courtyard works without mutual consideration."
+    example_ru: "Без взаимного внимания друг к другу двор не работает."
+    example_uk: "Без взаємної уваги один до одного двір не працює."
+    note:
+      en: "As an adverb it replaces einander: Wir helfen uns gegenseitig. Built from gegen + die Seite, so it always looks in both directions at once."
+      ru: "Как наречие заменяет einander: Wir helfen uns gegenseitig. Из gegen + die Seite, поэтому всегда смотрит сразу в обе стороны."
+      uk: "Як прислівник замінює einander: Wir helfen uns gegenseitig. З gegen + die Seite, тому завжди дивиться одразу в обидва боки."
+
+  - de: "dafür"
+    ipa: "daˈfyːɐ̯"
+    pos: adv
+    en: "in favour of it; in return"
+    ru: "за это; зато, взамен"
+    uk: "за це; натомість"
+    example_de: "Ich bin dafür, obwohl ich kein Kind im Haus habe."
+    example_en: "I am in favour, although I have no child in the building."
+    example_ru: "Я за, хотя у меня в доме нет ребёнка."
+    example_uk: "Я за, хоча я не маю дитини в будинку."
+    note:
+      en: "dafür sein is how a position is stated and a result reported: acht dafür, drei dagegen. The second sense trades one thing for another: Der Kurs ist teuer, dafür ist er kurz."
+      ru: "dafür sein — так заявляют позицию и сообщают результат: acht dafür, drei dagegen. Второе значение — обмен одного на другое: Der Kurs ist teuer, dafür ist er kurz."
+      uk: "dafür sein — так заявляють позицію й повідомляють результат: acht dafür, drei dagegen. Друге значення — обмін одного на інше: Der Kurs ist teuer, dafür ist er kurz."
+
+  - de: "dagegen"
+    ipa: "daˈgeːgn̩"
+    pos: adv
+    en: "against it; on the other hand"
+    ru: "против этого; зато, напротив"
+    uk: "проти цього; натомість"
+    example_de: "Herr Weber war dagegen und hat es auch begründet."
+    example_en: "Mr Weber was against it and gave his reasons too."
+    example_ru: "Господин Вебер был против и обосновал это."
+    example_uk: "Пан Вебер був проти й обґрунтував це."
+    note:
+      en: "The mirror of dafür, and the shortest possible objection: Ich bin dagegen. The same word also sets two statements against each other: Der Hof ist groß, der Keller dagegen klein."
+      ru: "Зеркало dafür и самое короткое из возражений: Ich bin dagegen. То же слово противопоставляет два высказывания: Der Hof ist groß, der Keller dagegen klein."
+      uk: "Дзеркало dafür і найкоротше із заперечень: Ich bin dagegen. Те саме слово протиставляє два висловлювання: Der Hof ist groß, der Keller dagegen klein."
+
+  - de: "allerdings"
+    ipa: "ˌalɐˈdɪŋs"
+    pos: adv
+    en: "though, admittedly"
+    ru: "правда, впрочем"
+    uk: "щоправда, утім"
+    example_de: "Der Garten ist eine schöne Idee. Allerdings kostet er Geld."
+    example_en: "The garden is a nice idea. It costs money, though."
+    example_ru: "Сад — хорошая идея. Правда, он стоит денег."
+    example_uk: "Сад — гарна ідея. Щоправда, він коштує грошей."
+    note:
+      en: "The polite way to raise an objection: you grant the point first, then limit it. In position 1 the verb still comes second — Allerdings kostet er Geld. It also answers a question with a firm yes: Kommst du? — Allerdings!"
+      ru: "Вежливый способ возразить: сначала соглашаются, потом ограничивают. На первом месте глагол всё равно второй — Allerdings kostet er Geld. Ещё это твёрдое «да» в ответе: Kommst du? — Allerdings!"
+      uk: "Ввічливий спосіб заперечити: спершу погоджуються, потім обмежують. На першому місці дієслово все одно друге — Allerdings kostet er Geld. Ще це тверде «так» у відповіді: Kommst du? — Allerdings!"
+
+  # --- Receptive tail (cards: recognition) --------------------------------
+  # The notice, the discussion and the yard around it: words the learner must
+  # understand but is never asked to produce. Declared recognition from the
+  # start — the direction is baked into the card id and is never retrofitted.
+
+  - de: "Gesellschaft"
+    ipa: "gəˈzɛlʃaft"
+    pos: noun
+    gender: f
+    plural: "die Gesellschaften"
+    cards: recognition
+    en: "society"
+    ru: "общество"
+    uk: "суспільство"
+    example_de: "Was im Kleinen im Hof passiert, passiert auch in der Gesellschaft."
+    example_en: "What happens on a small scale in the courtyard also happens in society."
+    example_ru: "То, что в малом происходит во дворе, происходит и в обществе."
+    example_uk: "Те, що в малому відбувається у дворі, відбувається й у суспільстві."
+    note:
+      en: "Also a company in the business sense, and the people you spend an evening with: in netter Gesellschaft. Built on der Geselle, a companion."
+      ru: "Ещё это компания в деловом смысле и люди, с которыми проводят вечер: in netter Gesellschaft. В основе der Geselle — «товарищ»."
+      uk: "Ще це компанія в діловому сенсі й люди, з якими проводять вечір: in netter Gesellschaft. В основі der Geselle — «товариш»."
+
+  - de: "Minderheit"
+    ipa: "ˈmɪndɐhaɪ̯t"
+    pos: noun
+    gender: f
+    plural: "die Minderheiten"
+    cards: recognition
+    en: "minority"
+    ru: "меньшинство"
+    uk: "меншість"
+    example_de: "Die Minderheit war unzufrieden, hat den Beschluss aber akzeptiert."
+    example_en: "The minority were unhappy, but they accepted the decision."
+    example_ru: "Меньшинство было недовольно, но приняло решение."
+    example_uk: "Меншість була невдоволена, але прийняла рішення."
+    note:
+      en: "The counterpart of die Mehrheit, built the same way: minder, meaning less, plus -heit."
+      ru: "Пара к die Mehrheit, построено так же: minder («меньше») плюс -heit."
+      uk: "Пара до die Mehrheit, побудовано так само: minder («менше») плюс -heit."
+
+  - de: "Diskussion"
+    ipa: "dɪskʊˈsjoːn"
+    pos: noun
+    gender: f
+    plural: "die Diskussionen"
+    cards: recognition
+    en: "discussion, debate"
+    ru: "обсуждение, дискуссия"
+    uk: "обговорення, дискусія"
+    example_de: "Die Diskussion über den Hof dauerte fast zwei Stunden."
+    example_en: "The discussion about the courtyard lasted almost two hours."
+    example_ru: "Обсуждение двора длилось почти два часа."
+    example_uk: "Обговорення двору тривало майже дві години."
+    note:
+      en: "eine Diskussion führen; what it is about takes über + Akk. Its verb diskutieren is already an A2 card."
+      ru: "eine Diskussion führen; предмет вводит über + Akk. Её глагол diskutieren — уже карточка с уровня A2."
+      uk: "eine Diskussion führen; предмет вводить über + Akk. Її дієслово diskutieren — уже картка з рівня A2."
+
+  - de: "Überzeugung"
+    ipa: "yːbɐˈtsɔʏ̯gʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Überzeugungen"
+    cards: recognition
+    en: "conviction, firm belief"
+    ru: "убеждение"
+    uk: "переконання"
+    example_de: "Er hat seine Überzeugung ruhig und freundlich erklärt."
+    example_en: "He explained his conviction calmly and kindly."
+    example_ru: "Он спокойно и дружелюбно объяснил своё убеждение."
+    example_uk: "Він спокійно й доброзичливо пояснив своє переконання."
+    note:
+      en: "The noun of überzeugen (B1.5). aus Überzeugung means doing something because you believe in it, not because someone asked."
+      ru: "Существительное к überzeugen (B1.5). aus Überzeugung — делать что-то потому, что веришь в это, а не потому, что попросили."
+      uk: "Іменник до überzeugen (B1.5). aus Überzeugung — робити щось тому, що віриш у це, а не тому, що попросили."
+
+  - de: "Bewohner"
+    ipa: "bəˈvoːnɐ"
+    pos: noun
+    gender: m
+    plural: "die Bewohner"
+    cards: recognition
+    en: "resident, occupant"
+    ru: "житель, жилец"
+    uk: "мешканець"
+    example_de: "Alle Bewohner haben die Einladung im Treppenhaus gesehen."
+    example_en: "All the residents saw the invitation in the stairwell."
+    example_ru: "Все жильцы видели приглашение на лестнице."
+    example_uk: "Усі мешканці бачили запрошення на сходах."
+    note:
+      en: "From bewohnen. The plural looks like the singular. der Mieter names a contract; this word only names who lives there."
+      ru: "От bewohnen. Множественное число совпадает с единственным. der Mieter указывает на договор, это слово — только на того, кто живёт."
+      uk: "Від bewohnen. Множина збігається з одниною. der Mieter вказує на договір, це слово — лише на того, хто живе."
+
+  - de: "Bewohnerin"
+    ipa: "bəˈvoːnəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Bewohnerinnen"
+    cards: recognition
+    en: "resident, occupant (female)"
+    ru: "жительница, жилица"
+    uk: "мешканка"
+    example_de: "Eine Bewohnerin aus dem dritten Stock hat den Termin vorgeschlagen."
+    example_en: "A resident from the third floor suggested the date."
+    example_ru: "Жительница с третьего этажа предложила дату."
+    example_uk: "Мешканка з третього поверху запропонувала дату."
+    note:
+      en: "The -in pair of der Bewohner, plural with a doubled n: die Bewohnerinnen."
+      ru: "Пара на -in к der Bewohner, во множественном числе удвоенное n: die Bewohnerinnen."
+      uk: "Пара на -in до der Bewohner, у множині подвоєне n: die Bewohnerinnen."
+
+  - de: "Verwaltung"
+    ipa: "fɛɐ̯ˈvaltʊŋ"
+    pos: noun
+    gender: f
+    plural: "die Verwaltungen"
+    cards: recognition
+    en: "administration, management office"
+    ru: "администрация, управление"
+    uk: "адміністрація, управління"
+    example_de: "Ohne die Verwaltung dürfen wir im Hof nichts bauen."
+    example_en: "Without the management office we are not allowed to build anything in the courtyard."
+    example_ru: "Без управляющей организации мы не имеем права ничего строить во дворе."
+    example_uk: "Без управлінської організації ми не маємо права нічого будувати у дворі."
+    note:
+      en: "For a block of flats it is die Hausverwaltung, the office you write to. From verwalten, to administer. der Hausmeister is the person on site who actually repairs things."
+      ru: "Для жилого дома это die Hausverwaltung — контора, куда пишут. От verwalten — «управлять». der Hausmeister — человек на месте, который чинит."
+      uk: "Для житлового будинку це die Hausverwaltung — контора, куди пишуть. Від verwalten — «керувати». der Hausmeister — людина на місці, яка лагодить."
+
+  - de: "Spielplatz"
+    ipa: "ˈʃpiːlˌplats"
+    pos: noun
+    gender: m
+    plural: "die Spielplätze"
+    cards: recognition
+    en: "playground"
+    ru: "детская площадка"
+    uk: "дитячий майданчик"
+    example_de: "Ein kleiner Spielplatz braucht nicht viel Platz."
+    example_en: "A small playground does not need much space."
+    example_ru: "Маленькая детская площадка не требует много места."
+    example_uk: "Маленький дитячий майданчик не потребує багато місця."
+    note:
+      en: "spielen + der Platz. In a courtyard it usually means a sandpit, a bench and one swing."
+      ru: "spielen + der Platz. Во дворе это обычно песочница, скамейка и одни качели."
+      uk: "spielen + der Platz. У дворі це зазвичай пісочниця, лавка й одна гойдалка."
+
+  - de: "Fläche"
+    ipa: "ˈflɛçə"
+    pos: noun
+    gender: f
+    plural: "die Flächen"
+    cards: recognition
+    en: "area, surface"
+    ru: "площадь, участок поверхности"
+    uk: "площа, ділянка поверхні"
+    example_de: "Die Fläche im Hof reicht für einen Spielplatz und ein paar Bänke."
+    example_en: "The area in the courtyard is enough for a playground and a few benches."
+    example_ru: "Площади во дворе хватит на детскую площадку и несколько скамеек."
+    example_uk: "Площі у дворі вистачить на дитячий майданчик і кілька лавок."
+    note:
+      en: "How much ground there is, in square metres: eine Fläche von 200 Quadratmetern. der Platz is the room you feel; die Fläche is the room you measure."
+      ru: "Сколько земли есть, в квадратных метрах: eine Fläche von 200 Quadratmetern. der Platz — место, которое ощущаешь; die Fläche — место, которое измеряют."
+      uk: "Скільки землі є, у квадратних метрах: eine Fläche von 200 Quadratmetern. der Platz — місце, яке відчуваєш; die Fläche — місце, яке вимірюють."
+
+  - de: "Wiese"
+    ipa: "ˈviːzə"
+    pos: noun
+    gender: f
+    plural: "die Wiesen"
+    cards: recognition
+    en: "meadow, patch of grass"
+    ru: "луг, лужайка"
+    uk: "лука, галявина"
+    example_de: "Hinter dem Haus liegt eine kleine Wiese, die niemand nutzt."
+    example_en: "Behind the house there is a small patch of grass that nobody uses."
+    example_ru: "За домом есть маленькая лужайка, которой никто не пользуется."
+    example_uk: "За будинком є маленька галявина, якою ніхто не користується."
+    note:
+      en: "Grass that grows freely, often with flowers in it; der Rasen is cut short and walked on. auf der Wiese liegen is a summer sentence."
+      ru: "Трава, которая растёт свободно, часто с цветами; der Rasen подстрижен, по нему ходят. auf der Wiese liegen — летняя фраза."
+      uk: "Трава, що росте вільно, часто з квітами; der Rasen підстрижений, по ньому ходять. auf der Wiese liegen — літня фраза."
+
+  - de: "Ergebnis"
+    ipa: "ɛɐ̯ˈgeːpnɪs"
+    pos: noun
+    gender: n
+    plural: "die Ergebnisse"
+    cards: recognition
+    en: "result, outcome"
+    ru: "результат, итог"
+    uk: "результат, підсумок"
+    example_de: "Das Ergebnis war klar: acht Stimmen für den Spielplatz."
+    example_en: "The result was clear: eight votes for the playground."
+    example_ru: "Результат был ясен: восемь голосов за детскую площадку."
+    example_uk: "Результат був ясний: вісім голосів за дитячий майданчик."
+    note:
+      en: "zu einem Ergebnis kommen — to arrive at a result. Neuter, and the plural doubles the s: die Ergebnisse. das Resultat says the same in a more formal register."
+      ru: "zu einem Ergebnis kommen — «прийти к результату». Средний род, во множественном числе удвоенное s: die Ergebnisse. das Resultat — то же самое, но официальнее."
+      uk: "zu einem Ergebnis kommen — «дійти результату». Середній рід, у множині подвоєне s: die Ergebnisse. das Resultat — те саме, але офіційніше."
+
+  - de: "Grill"
+    ipa: "ˈgʁɪl"
+    pos: noun
+    gender: m
+    plural: "die Grills"
+    cards: recognition
+    en: "barbecue"
+    ru: "мангал, гриль"
+    uk: "мангал, гриль"
+    example_de: "Ein Grill im Hof gefällt nicht allen Nachbarn."
+    example_en: "A barbecue in the courtyard does not please all the neighbours."
+    example_ru: "Мангал во дворе нравится не всем соседям."
+    example_uk: "Мангал у дворі подобається не всім сусідам."
+    note:
+      en: "The appliance; the evening around it is das Grillfest and the verb is grillen. The plural takes an English -s: die Grills."
+      ru: "Сам прибор; вечер вокруг него — das Grillfest, глагол — grillen. Множественное число на английское -s: die Grills."
+      uk: "Сам прилад; вечір навколо нього — das Grillfest, дієслово — grillen. Множина на англійське -s: die Grills."
+
+  - de: "sorgen"
+    ipa: "ˈzɔʁgn̩"
+    pos: verb
+    praesens_3sg: "sorgt"
+    partizip2: "gesorgt"
+    aux: haben
+    valence: "für + Akk"
+    cards: recognition
+    en: "to see to something, to take care of it"
+    ru: "заботиться, обеспечивать"
+    uk: "дбати, забезпечувати"
+    example_de: "Wer sorgt im Sommer für die Pflanzen?"
+    example_en: "Who takes care of the plants in summer?"
+    example_ru: "Кто летом заботится о растениях?"
+    example_uk: "Хто влітку дбає про рослини?"
+    note:
+      en: "sorgen für + Akk is practical: making sure something gets done. sich sorgen um + Akk is the feeling, worrying about someone. The noun die Sorge covers both."
+      ru: "sorgen für + Akk — практическое: проследить, чтобы дело было сделано. sich sorgen um + Akk — чувство, тревога за кого-то. Существительное die Sorge покрывает оба значения."
+      uk: "sorgen für + Akk — практичне: подбати, щоб справу було зроблено. sich sorgen um + Akk — почуття, тривога за когось. Іменник die Sorge покриває обидва значення."
+
+  - de: "pflanzen"
+    ipa: "ˈpflantsn̩"
+    pos: verb
+    praesens_3sg: "pflanzt"
+    partizip2: "gepflanzt"
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: "to plant"
+    ru: "сажать"
+    uk: "садити"
+    example_de: "Im Frühling pflanzen wir zusammen ein paar Blumen."
+    example_en: "In spring we plant a few flowers together."
+    example_ru: "Весной мы вместе сажаем несколько цветов."
+    example_uk: "Навесні ми разом садимо кілька квітів."
+    note:
+      en: "Regular: pflanzt, hat gepflanzt. The noun die Pflanze is the plant itself; einpflanzen puts it into the ground."
+      ru: "Правильный глагол: pflanzt, hat gepflanzt. Существительное die Pflanze — само растение; einpflanzen — «посадить в землю»."
+      uk: "Правильне дієслово: pflanzt, hat gepflanzt. Іменник die Pflanze — сама рослина; einpflanzen — «посадити в землю»."
+
+  - de: "stimmen"
+    ipa: "ˈʃtɪmən"
+    pos: verb
+    praesens_3sg: "stimmt"
+    partizip2: "gestimmt"
+    aux: haben
+    valence: "für + Akk; gegen + Akk"
+    cards: recognition
+    en: "to vote for or against; to be correct"
+    ru: "голосовать за или против; быть верным"
+    uk: "голосувати за або проти; бути правильним"
+    example_de: "Sieben Bewohner stimmten für den Spielplatz."
+    example_en: "Seven residents voted for the playground."
+    example_ru: "Семеро жильцов проголосовали за детскую площадку."
+    example_uk: "Семеро мешканців проголосували за дитячий майданчик."
+    note:
+      en: "Two lives in one verb: für etwas stimmen at a meeting, and the everyday Das stimmt for that is right. abstimmen names the whole procedure; stimmen is what one person does inside it."
+      ru: "Две жизни у одного глагола: für etwas stimmen на собрании и бытовое Das stimmt — «верно». abstimmen называет всю процедуру; stimmen — то, что делает внутри неё один человек."
+      uk: "Два життя в одного дієслова: für etwas stimmen на зборах і побутове Das stimmt — «правильно». abstimmen називає всю процедуру; stimmen — те, що робить усередині неї одна людина."
+
+  - de: "miteinander"
+    ipa: "mɪtaɪ̯ˈnandɐ"
+    pos: adv
+    cards: recognition
+    en: "with one another"
+    ru: "друг с другом"
+    uk: "один з одним"
+    example_de: "Wir reden miteinander, nicht übereinander."
+    example_en: "We talk with one another, not about one another."
+    example_ru: "Мы говорим друг с другом, а не друг о друге."
+    example_uk: "Ми говоримо один з одним, а не один про одного."
+    note:
+      en: "mit + einander, and the whole family works the same way: übereinander, voreinander, nebeneinander. As a noun das Miteinander is the way a group gets along."
+      ru: "mit + einander, и всё семейство устроено так же: übereinander, voreinander, nebeneinander. Как существительное das Miteinander — то, как группа уживается."
+      uk: "mit + einander, і вся родина влаштована так само: übereinander, voreinander, nebeneinander. Як іменник das Miteinander — те, як група уживається."
+
+  - de: "tolerant"
+    ipa: "toləˈʁant"
+    pos: adj
+    cards: recognition
+    en: "tolerant"
+    ru: "терпимый, толерантный"
+    uk: "терпимий, толерантний"
+    example_de: "Beim Lärm sind die meisten Nachbarn sehr tolerant."
+    example_en: "Most of the neighbours are very tolerant about noise."
+    example_ru: "К шуму большинство соседей относится очень терпимо."
+    example_uk: "До шуму більшість сусідів ставиться дуже терпимо."
+    note:
+      en: "What you tolerate takes gegenüber + Dat: tolerant gegenüber anderen Meinungen. The noun is die Toleranz."
+      ru: "То, к чему терпимы, вводит gegenüber + Dat: tolerant gegenüber anderen Meinungen. Существительное — die Toleranz."
+      uk: "Те, до чого терпимі, вводить gegenüber + Dat: tolerant gegenüber anderen Meinungen. Іменник — die Toleranz."
+
+  - de: "gerecht"
+    ipa: "gəˈʁɛçt"
+    pos: adj
+    cards: recognition
+    en: "fair, just"
+    ru: "справедливый"
+    uk: "справедливий"
+    example_de: "Eine gerechte Lösung findet man nur gemeinsam."
+    example_en: "A fair solution can only be found together."
+    example_ru: "Справедливое решение можно найти только сообща."
+    example_uk: "Справедливе рішення можна знайти лише спільно."
+    note:
+      en: "About shares and rules rather than prices: eine gerechte Verteilung. For a price the word is fair or günstig. The noun is die Gerechtigkeit."
+      ru: "О долях и правилах, а не о ценах: eine gerechte Verteilung. О цене говорят fair или günstig. Существительное — die Gerechtigkeit."
+      uk: "Про частки й правила, а не про ціни: eine gerechte Verteilung. Про ціну кажуть fair або günstig. Іменник — die Gerechtigkeit."

@@ -1,5 +1,8 @@
 topic: adjektive-deklination
 role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Beschreiben: Adjektive vor dem Nomen"
 title:
   en: "Describing in context — listen, write, speak"
   ru: "Описание в контексте — слушать, писать, говорить"
@@ -27,8 +30,15 @@ items:
     prompt_ru: "Я еду скорым поездом."
     prompt_uk: "Я їду швидким потягом."
     answer: "Ich fahre mit dem schnellen Zug."
-    accept: ["Mit dem schnellen Zug fahre ich."]
+    # revision 2: «скорым поездом» / «швидким потягом» mark no definiteness, and the
+    # graded dative -en is identical under einem — the item's own explain says the
+    # article is settled before gender matters. (Batch-3 audit, 2026-08-12.)
+    accept:
+      - "Mit dem schnellen Zug fahre ich."
+      - "Ich fahre mit einem schnellen Zug."
+      - "Mit einem schnellen Zug fahre ich."
     key_tokens: ["schnellen"]
+    revision: 2
     explain:
       en: "mit forces the dative and the dative is -en throughout, so the ending is settled before you have even thought about gender. Fronting the phrase — Mit dem schnellen Zug fahre ich — is equally good German and changes nothing about the ending."
       ru: "mit требует дательного, а в дательном везде -en, так что окончание определено ещё до того, как вы задумались о роде. Вынести группу вперёд — Mit dem schnellen Zug fahre ich — столь же правильный немецкий, и на окончание это никак не влияет."

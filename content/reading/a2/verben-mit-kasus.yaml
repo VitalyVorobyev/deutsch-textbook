@@ -1,0 +1,96 @@
+topic: verben-mit-kasus
+kind: intensive
+title_de: "Miras Umzug am Samstag"
+text:
+  - >-
+    Am Samstag zieht Mira um. Um neun wartet sie
+    [[auf Jonas::for Jonas — the preposition comes from the verb warten auf, not
+    from the meaning::Йонаса — предлог идёт от глагольного куска warten auf, а
+    не от смысла::Йонаса — прийменник іде від дієслівного шматка warten auf, а
+    не від змісту]], aber Jonas kommt nicht. Mira
+    [[ruft ihn an::calls him — anrufen takes the accusative and no preposition
+    at all::звонит ему — anrufen требует Akkusativ и никакого предлога::дзвонить
+    йому — anrufen вимагає Akkusativ і жодного прийменника]]. Sein Zug hat
+    Verspätung. Mira wartet noch eine halbe Stunde
+    [[auf dem Balkon::on the balcony — here auf names the place, so the case is
+    dative::на балконе — здесь auf называет место, поэтому падеж Dativ::на
+    балконі — тут auf називає місце, тому відмінок Dativ]]. Dann ist Jonas
+    endlich da.
+  - >-
+    Jonas [[hilft ihr::helps her — helfen is on the dative list::помогает ей —
+    helfen стоит в дативном списке::допомагає їй — helfen стоїть у давальному
+    списку]] mit den Kisten. Der Aufzug ist kaputt, und die Kisten sind schwer.
+    Auch die Nachbarin hilft: Sie trägt eine Lampe nach oben. Mira
+    [[dankt der Nachbarin::thanks the neighbour — danken takes the
+    dative::благодарит соседку — danken требует Dativ::дякує сусідці — danken
+    вимагає Dativ]] für die Lampe.
+  - >-
+    Am Abend [[gefällt Mira die neue Wohnung::Mira likes the new flat — the flat
+    is the subject and Mira stands in the dative::новая квартира нравится
+    Мире — подлежащее здесь квартира, а Mira стоит в Dativ::нова квартира
+    подобається Мірі — підметом тут є квартира, а Mira стоїть у Dativ]] sehr.
+    Sie [[spricht mit Jonas über den nächsten Samstag::talks with Jonas about
+    next Saturday — mit takes the dative, über takes the accusative::говорит с
+    Йонасом о следующей субботе — mit требует Dativ, а über —
+    Akkusativ::говорить з Йонасом про наступну суботу — mit вимагає Dativ, а
+    über — Akkusativ]]: Dann
+    [[gratuliert sie ihrer Schwester::she congratulates her sister — gratulieren
+    takes the dative::она поздравляет сестру — gratulieren требует Dativ::вона
+    вітає сестру — gratulieren вимагає Dativ]] zum Geburtstag. Der Kuchen von
+    der Nachbarin [[schmeckt allen::everybody likes the taste — schmecken takes
+    the dative::всем нравится — schmecken требует Dativ::усім смакує — schmecken
+    вимагає Dativ]] gut.
+questions:
+  - id: frage-anruf
+    outcomes: [rektion-verstehen, akkusativ-person-nennen]
+    type: mc
+    prompt: "Wen ruft Mira an?"
+    options:
+      - "Jonas."
+      - "Die Nachbarin."
+      - "Ihre Schwester."
+    correct: 0
+    translation:
+      en: Whom does Mira call?
+      ru: Кому Мира звонит?
+      uk: Кому Міра дзвонить?
+    explain:
+      en: "„Mira ruft ihn an“ — ihn is Jonas, who is not there at nine. anrufen puts the person in the accusative and needs no preposition. The neighbour turns up later with the boxes, and the sister only appears in the plan for next Saturday."
+      ru: "«Mira ruft ihn an» — ihn это Йонас, которого в девять ещё нет. anrufen ставит человека в Akkusativ и обходится без предлога. Соседка появляется позже, у коробок, а сестра — только в планах на следующую субботу."
+      uk: "«Mira ruft ihn an» — ihn це Йонас, якого о дев'ятій ще немає. anrufen ставить людину в Akkusativ і обходиться без прийменника. Сусідка з'являється пізніше, біля коробок, а сестра — лише в планах на наступну суботу."
+
+  - id: frage-dank
+    outcomes: [rektion-verstehen, dativ-person-nennen]
+    type: mc
+    prompt: "Wem dankt Mira für die Lampe?"
+    options:
+      - "Jonas."
+      - "Der Nachbarin."
+      - "Ihrer Schwester."
+    correct: 1
+    translation:
+      en: Whom does Mira thank for the lamp?
+      ru: Кого Мира благодарит за лампу?
+      uk: Кому Міра дякує за лампу?
+    explain:
+      en: "„Mira dankt der Nachbarin für die Lampe“ — the neighbour is the one who carried the lamp upstairs. danken puts the person in the dative (der Nachbarin, not die Nachbarin), and the thing thanked for follows with für + Akkusativ. Jonas helps with the boxes, not with the lamp."
+      ru: "«Mira dankt der Nachbarin für die Lampe» — лампу наверх отнесла именно соседка. danken ставит человека в Dativ (der Nachbarin, а не die Nachbarin), а предмет благодарности идёт через für + Akkusativ. Йонас помогает с коробками, а не с лампой."
+      uk: "«Mira dankt der Nachbarin für die Lampe» — лампу нагору віднесла саме сусідка. danken ставить людину в Dativ (der Nachbarin, а не die Nachbarin), а предмет подяки йде через für + Akkusativ. Йонас допомагає з коробками, а не з лампою."
+
+  - id: frage-gespraech
+    outcomes: [rektion-verstehen, verbchunk-nennen]
+    type: mc
+    prompt: "Worüber spricht Mira am Abend mit Jonas?"
+    options:
+      - "Über die neue Wohnung."
+      - "Über den nächsten Samstag."
+      - "Über die Kisten."
+    correct: 1
+    translation:
+      en: What does Mira talk about with Jonas in the evening?
+      ru: О чём Мира говорит вечером с Йонасом?
+      uk: Про що Міра говорить увечері з Йонасом?
+    explain:
+      en: "„Sie spricht mit Jonas über den nächsten Samstag“ — the person she talks to takes mit + Dativ, the topic takes über + Akkusativ (den nächsten Samstag). The flat is what she likes that evening, and the boxes belong to the afternoon."
+      ru: "«Sie spricht mit Jonas über den nächsten Samstag» — собеседник идёт через mit + Dativ, а тема — через über + Akkusativ (den nächsten Samstag). Квартира в этот вечер ей нравится, а коробки остались во второй половине дня."
+      uk: "«Sie spricht mit Jonas über den nächsten Samstag» — співрозмовник іде через mit + Dativ, а тема — через über + Akkusativ (den nächsten Samstag). Квартира цього вечора їй подобається, а коробки лишилися по обіді."

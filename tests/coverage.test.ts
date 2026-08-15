@@ -8,7 +8,7 @@
  * turned out to be false. These tests are what stops that coming back.
  */
 import { describe, expect, test } from 'bun:test';
-import { addresses, goetheCoverage, MEASURED_LEVELS, taughtSurface } from '../src/lib/coverage';
+import { addresses, goetheCoverage, MEASURED_LEVELS, taughtSurface } from '@da/content/coverage';
 
 const surface = taughtSurface();
 
@@ -42,6 +42,12 @@ describe('the taught surface is the German the course teaches', () => {
     // stem match from laundering an unrelated word that merely starts the same.
     expect(addresses('manche geschäfte nehmen kein bargeld', 'manch-')).toBe(true);
     expect(addresses('ich gehe manchmal ins kino', 'manch-')).toBe(false);
+  });
+
+  test('a multiword stem inflects only at the end of the complete frame', () => {
+    expect(addresses('was für eine frist gilt hier', 'was für ein-')).toBe(true);
+    expect(addresses('was für ein dokument fehlt', 'was für ein-')).toBe(true);
+    expect(addresses('was steht für eine frist im text', 'was für ein-')).toBe(false);
   });
 
   test('a phrase headword is matched after normalization, not before', () => {

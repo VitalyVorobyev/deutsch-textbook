@@ -61,6 +61,7 @@ items:
       de: "Gemeint ist eine aufgehobene Pflicht, und die hebt muss nicht auf: Ausdrucken bleibt erlaubt, nur verlangt es niemand. darf nicht würde es verbieten, was kein Amt gesagt hat. Bewertet wird nur das Modalverb; die Klammer hat ihre eigene Kontrolle mit Abstand."
 
   - id: variant-b
+    revision: 2
     outcomes: [loesung-aushandeln]
     type: translate
     focus: duerfen-muessen
@@ -75,6 +76,11 @@ items:
     answer: "Handys dürfen während der Prüfung nicht benutzt werden."
     accept:
       - "Während der Prüfung dürfen Handys nicht benutzt werden."
+      # Definite generic plural is normal rule-statement German; RU bare «телефонами»
+      # leaves the article free and dürfen is intact (2026-08-11 triage, row 26a). Closed
+      # over both word orders.
+      - "Die Handys dürfen während der Prüfung nicht benutzt werden."
+      - "Während der Prüfung dürfen die Handys nicht benutzt werden."
     key_tokens: ["dürfen"]
     explain:
       en: "\"May not\" marks the ban, and the ban is darf nicht — here plural dürfen, agreeing with Handys. müssen nicht would only announce that nobody requires phone use, a strange exam rule. English \"must not\" says exactly this ban, which is why the hand reaches for müssen — the wrong modal. Agreement and frame stay unpinned on purpose: this family grades the choice alone. Fronting während der Prüfung is equally correct and accepted."

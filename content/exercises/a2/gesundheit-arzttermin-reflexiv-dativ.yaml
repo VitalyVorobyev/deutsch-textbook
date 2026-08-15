@@ -1,5 +1,8 @@
 topic: gesundheit-arzttermin
 role: practice
+stage: geruest
+activity: extension
+title_de: "Vertiefen — Reflexivpronomen im Dativ"
 title:
   en: "Reflexive in the dative — sich die Hände waschen"
   ru: "Возвратное местоимение в дательном — sich die Hände waschen"
@@ -97,6 +100,12 @@ items:
     prompt_uk: "Я пошкодив ногу."
     answer: "Ich habe mir den Fuß verletzt."
     key_tokens: ["mir"]
+    # revision 2: «нога» covers both Bein and Fuß — the deck's own Fuß note says so —
+    # so the Bein rendering answers the RU/UK prompt and demonstrates the graded mir
+    # exactly. (Batch-4 audit, 2026-08-12.)
+    accept:
+      - "Ich habe mir das Bein verletzt."
+    revision: 2
     explain:
       en: "This is the sentence to have ready at a doctor's, and it is built on the dative reflexive: the foot is what got hurt, so it is the object, and mir says whose it is. The same frame gives you Ich habe mir den Arm gebrochen and Ich habe mir wehgetan."
       ru: "Именно это предложение нужно иметь наготове у врача, и построено оно на возвратном дательном: повреждена нога, значит она дополнение, а mir говорит, чья она. Та же рамка даёт Ich habe mir den Arm gebrochen и Ich habe mir wehgetan."

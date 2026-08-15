@@ -1,0 +1,769 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the time words of
+# data/goethe-b1-wortliste.txt — the points and spans a sentence measures, where it
+# sits relative to now, how often it repeats, and the calendar a German year runs on.
+id: zeit-b1
+title_de: "Zeit: Punkte, Spannen und Wiederholung"
+title_en: "Time: points, spans and repetition"
+title_ru: "Время: моменты, отрезки и повторяемость"
+title_uk: "Час: моменти, відрізки й повторюваність"
+level: B1
+entries:
+  # --- Der Punkt und die Strecke: wann genau, und wie lange ---
+  - de: Zeitpunkt
+    ipa: "ˈtsaɪ̯tˌpʊŋkt"
+    pos: noun
+    gender: m
+    plural: "die Zeitpunkte"
+    en: point in time
+    ru: момент времени, точка во времени
+    uk: момент часу, точка в часі
+    example_de: Zu diesem Zeitpunkt wussten wir noch nichts von dem Unfall.
+    example_en: At that point in time we still knew nothing about the accident.
+    example_ru: На тот момент мы ещё ничего не знали об аварии.
+    example_uk: На той момент ми ще нічого не знали про аварію.
+    note:
+      en: 'It names a position on a timeline and never a stretch of it, which is what separates it from A2 Moment. You can say Einen Moment, bitte, because a Moment is short enough to wait through; there is no "Einen Zeitpunkt, bitte". Its chunks are zu diesem Zeitpunkt, zum richtigen Zeitpunkt, ab diesem Zeitpunkt and zu einem späteren Zeitpunkt — all with zu, all written German, and all at home in a report, a contract or a piece of news. Where speech says damals or gerade, writing says this word.'
+      ru: 'Называет положение на оси времени и никогда — отрезок; этим оно и отличается от Moment уровня A2. Einen Moment, bitte сказать можно, потому что Moment достаточно короткий, чтобы его переждать; «Einen Zeitpunkt, bitte» — нельзя. Его устойчивые сочетания: zu diesem Zeitpunkt, zum richtigen Zeitpunkt, ab diesem Zeitpunkt, zu einem späteren Zeitpunkt — все с zu, все письменные, все уместны в отчёте, договоре или новости. Там, где речь скажет damals или gerade, письмо возьмёт это слово.'
+      uk: 'Називає положення на осі часу й ніколи — відрізок; цим воно й відрізняється від Moment рівня A2. Einen Moment, bitte сказати можна, бо Moment достатньо короткий, щоб його перечекати; «Einen Zeitpunkt, bitte» — ні. Його сталі сполучення: zu diesem Zeitpunkt, zum richtigen Zeitpunkt, ab diesem Zeitpunkt, zu einem späteren Zeitpunkt — усі з zu, усі писемні, усі доречні у звіті, договорі чи новині. Там, де мовлення скаже damals або gerade, письмо візьме це слово.'
+
+  - de: Augenblick
+    ipa: "ˈaʊ̯gn̩blɪk"
+    pos: noun
+    gender: m
+    plural: "die Augenblicke"
+    # Recognition only: A2 ships `Moment` ("moment") as a production card in
+    # funktionswoerter-chunks, and `im Moment` / `im Augenblick` fill one slot — the
+    # prompt is answered two decks over, where no accept list here can reach it.
+    cards: recognition
+    en: moment, instant
+    ru: миг, мгновение
+    uk: мить, миттєвість
+    example_de: Einen Augenblick bitte, ich hole den Chef.
+    example_en: One moment please, I will fetch the boss.
+    example_ru: Одну минуту, пожалуйста, я позову начальника.
+    example_uk: Одну хвилинку, будь ласка, я покличу начальника.
+    note:
+      en: 'The written twin of A2 Moment, and in the everyday phrases the two are simply interchangeable: Einen Augenblick, bitte and Einen Moment, bitte are both what you hear at a counter, im Augenblick and im Moment both mean right now. The difference is register, not meaning — this one is a shade more formal and a shade shorter, literally the blink of an eye. Fixed uses worth having whole: jeden Augenblick (any second now), im letzten Augenblick, in diesem Augenblick. The adjective augenblicklich means at this very moment.'
+      ru: 'Письменный двойник Moment уровня A2, и в обиходных формулах они просто взаимозаменяемы: Einen Augenblick, bitte и Einen Moment, bitte одинаково звучат у стойки, im Augenblick и im Moment одинаково значат «прямо сейчас». Разница в регистре, а не в значении: это слово чуть официальнее и чуть короче по длительности — буквально «мгновение ока». Устойчивые сочетания стоит взять целиком: jeden Augenblick («вот-вот»), im letzten Augenblick, in diesem Augenblick. Прилагательное augenblicklich значит «в данную минуту».'
+      uk: 'Писемний двійник Moment рівня A2, і в побутових формулах вони просто взаємозамінні: Einen Augenblick, bitte і Einen Moment, bitte однаково звучать біля стійки, im Augenblick та im Moment однаково означають «просто зараз». Різниця в регістрі, а не у значенні: це слово трохи офіційніше й трохи коротше за тривалістю — буквально «змиг ока». Сталі сполучення варто взяти цілими: jeden Augenblick («от-от»), im letzten Augenblick, in diesem Augenblick. Прикметник augenblicklich означає «цієї хвилини».'
+
+  - de: Beginn
+    ipa: "bəˈgɪn"
+    pos: noun
+    gender: m
+    plural: "—"
+    # Recognition only: A2 ships `Anfang` ("beginning, start") as a production card in
+    # zeit-termine-a2, glossed letter for letter in all three languages.
+    cards: recognition
+    en: beginning, start
+    ru: начало
+    uk: початок
+    example_de: Der Beginn der Vorstellung wurde auf acht Uhr verschoben.
+    example_en: The start of the performance was moved to eight o'clock.
+    example_ru: Начало представления перенесли на восемь часов.
+    example_uk: Початок вистави перенесли на восьму годину.
+    note:
+      en: 'Same meaning as A2 Anfang, different register, and they are not freely swappable in both directions. This one belongs to programmes, announcements and contracts: zu Beginn des Kurses, der Beginn der Ferien, Beginn: 20 Uhr on a poster. Anfang is the everyday word and the only one that stands bare in a date — Anfang Mai, Anfang nächster Woche; there is no "Beginn Mai". It has no plural. The verbs behind them split the same way: beginnen is the written one, anfangen the one you say.'
+      ru: 'То же значение, что у Anfang уровня A2, но другой регистр, и заменять их друг другом в обе стороны нельзя. Это слово принадлежит программам, объявлениям и договорам: zu Beginn des Kurses, der Beginn der Ferien, Beginn: 20 Uhr на афише. Anfang — слово обиходное и единственное, которое стоит без предлога в дате: Anfang Mai, Anfang nächster Woche; «Beginn Mai» не бывает. Множественного числа нет. Глаголы за ними делятся так же: beginnen — письменный, anfangen — разговорный.'
+      uk: 'Те саме значення, що в Anfang рівня A2, але інший регістр, і замінювати їх одне одним в обидва боки не можна. Це слово належить програмам, оголошенням і договорам: zu Beginn des Kurses, der Beginn der Ferien, Beginn: 20 Uhr на афіші. Anfang — слово побутове й єдине, що стоїть без прийменника в даті: Anfang Mai, Anfang nächster Woche; «Beginn Mai» не буває. Множини немає. Дієслова за ними діляться так само: beginnen — писемне, anfangen — розмовне.'
+
+  - de: Dauer
+    ipa: "ˈdaʊ̯ɐ"
+    pos: noun
+    gender: f
+    plural: "—"
+    en: duration, length of time
+    ru: продолжительность, длительность
+    uk: тривалість
+    example_de: Für die Dauer der Bauarbeiten fährt der Bus eine andere Strecke.
+    example_en: For the duration of the building work the bus takes a different route.
+    example_ru: На время строительных работ автобус ходит по другому маршруту.
+    example_uk: На час будівельних робіт автобус їздить іншим маршрутом.
+    note:
+      en: 'The noun behind dauern, and three chunks carry most of its work: für die Dauer with a Genitiv (for as long as something runs), auf Dauer meaning in the long run (Auf Dauer ist das zu teuer), and von kurzer or von langer Dauer (Die Freude war von kurzer Dauer). It has no plural. On a form it is the field asking how long: Dauer des Aufenthalts, Dauer des Vertrags, voraussichtliche Dauer. Speech mostly avoids the noun and asks with the verb instead: Wie lange dauert das?'
+      ru: 'Существительное за глаголом dauern, и почти всю работу тянут три сочетания: für die Dauer с Genitiv («на всё время чего-либо»), auf Dauer — «в долгосрочной перспективе» (Auf Dauer ist das zu teuer), и von kurzer / von langer Dauer (Die Freude war von kurzer Dauer). Множественного числа нет. В анкете это графа «сколько времени»: Dauer des Aufenthalts, Dauer des Vertrags, voraussichtliche Dauer. Речь обычно обходится без существительного и спрашивает глаголом: Wie lange dauert das?'
+      uk: 'Іменник за дієсловом dauern, і майже всю роботу тягнуть три сполучення: für die Dauer з Genitiv («на весь час чогось»), auf Dauer — «у довгостроковій перспективі» (Auf Dauer ist das zu teuer), і von kurzer / von langer Dauer (Die Freude war von kurzer Dauer). Множини немає. В анкеті це графа «скільки часу»: Dauer des Aufenthalts, Dauer des Vertrags, voraussichtliche Dauer. Мовлення зазвичай обходиться без іменника й питає дієсловом: Wie lange dauert das?'
+
+  - de: Eile
+    ipa: "ˈaɪ̯lə"
+    pos: noun
+    gender: f
+    plural: "—"
+    # Recognition only: the form a B1 learner has to produce for "to be in a hurry" is
+    # A2's chunk `es eilig haben` (eigenschaften-dinge-a2). This noun almost never
+    # stands alone — every use is a fixed phrase, so a typed card would grade which
+    # phrase the author had in mind.
+    cards: recognition
+    en: hurry, haste
+    ru: спешка, поспешность
+    uk: поспіх, квапливість
+    example_de: In der Eile habe ich meinen Ausweis zu Hause vergessen.
+    example_en: In my hurry I left my ID card at home.
+    example_ru: В спешке я забыл дома удостоверение личности.
+    example_uk: Поспішаючи, я забув удома посвідчення особи.
+    note:
+      en: 'It lives in fixed phrases and hardly ever stands alone: in der Eile (in the rush of the moment), in aller Eile (in a great hurry), Nur keine Eile! (no rush at all) and the office line Die Sache hat Eile. German prefers to have the hurry rather than to be in one, and A2 es eilig haben is the everyday sentence: Ich habe es eilig. Ich bin in Eile is possible but sounds written. No plural. The verb is eilen, the adjective eilig.'
+      ru: 'Живёт в устойчивых сочетаниях и почти не встречается само по себе: in der Eile («второпях»), in aller Eile («в большой спешке»), Nur keine Eile! («не торопитесь») и канцелярское Die Sache hat Eile. Немецкий предпочитает «иметь спешку», а не «быть в спешке», и обиходная фраза — es eilig haben уровня A2: Ich habe es eilig. Ich bin in Eile возможно, но звучит книжно. Множественного числа нет. Глагол — eilen, прилагательное — eilig.'
+      uk: 'Живе у сталих сполученнях і майже не трапляється саме по собі: in der Eile («поспіхом»), in aller Eile («у великому поспіху»), Nur keine Eile! («не квапте себе») і канцелярське Die Sache hat Eile. Німецька радше «має поспіх», ніж «перебуває в поспіху», і побутова фраза — es eilig haben рівня A2: Ich habe es eilig. Ich bin in Eile можливе, але звучить книжно. Множини немає. Дієслово — eilen, прикметник — eilig.'
+
+  - de: eilen
+    ipa: "ˈaɪ̯lən"
+    pos: verb
+    partizip2: geeilt
+    aux: haben/sein
+    praesens_3sg: eilt
+    # Recognition only: A2 ships `sich beeilen` ("to hurry, to hurry up") as a production
+    # card in gefuehle-reflexive-a2, with `sich beeilen` in its own accept list — the
+    # prompt "to hurry" is owned there, and this word is besides the written one.
+    cards: recognition
+    en: to hurry, to rush; to be urgent
+    ru: спешить, мчаться; быть срочным
+    uk: поспішати, мчати; бути терміновим
+    example_de: Nach dem Anruf ist sie sofort ins Krankenhaus geeilt.
+    example_en: After the phone call she hurried straight to the hospital.
+    example_ru: После звонка она сразу же помчалась в больницу.
+    example_uk: Після дзвінка вона одразу помчала до лікарні.
+    note:
+      en: 'Two uses, and they take two different Hilfsverben. Moving fast towards a place is a verb of motion and takes sein: Sie ist zum Bahnhof geeilt — written German; in speech you would say rennen or sich beeilen. The impersonal Es eilt says the matter is urgent and takes haben: Das eilt nicht, Es hat damit nicht geeilt. The word you should produce is A2 sich beeilen, the reflexive everyday one for getting a move on (Beeil dich!). Related: eilig, die Eile, and the notice stamp Eilt! on an envelope.'
+      ru: 'Два употребления, и у каждого свой вспомогательный глагол. Быстрое движение к месту — глагол движения, и он берёт sein: Sie ist zum Bahnhof geeilt — по-письменному; в речи сказали бы rennen или sich beeilen. Безличное Es eilt значит «дело срочное» и берёт haben: Das eilt nicht, Es hat damit nicht geeilt. Производить же следует sich beeilen уровня A2 — обиходный возвратный глагол «поторопиться» (Beeil dich!). Родня: eilig, die Eile и пометка Eilt! на конверте.'
+      uk: 'Два вживання, і в кожного своє допоміжне дієслово. Швидкий рух до місця — дієслово руху, і воно бере sein: Sie ist zum Bahnhof geeilt — по-писемному; у мовленні сказали б rennen або sich beeilen. Безособове Es eilt означає «справа термінова» і бере haben: Das eilt nicht, Es hat damit nicht geeilt. Продукувати ж варто sich beeilen рівня A2 — побутове зворотне дієслово «поквапитися» (Beeil dich!). Рідня: eilig, die Eile і позначка Eilt! на конверті.'
+
+  # --- Die großen Spannen: Jahrzehnt, Jahrhundert, Jahrtausend, ewig ---
+  - de: Jahrzehnt
+    ipa: "jaːɐ̯ˈtseːnt"
+    pos: noun
+    gender: n
+    plural: "die Jahrzehnte"
+    # Recognition only: newspaper and report vocabulary. Spoken German counts the same
+    # span as `zehn Jahre`, and that is what a B1 learner produces.
+    cards: recognition
+    en: decade
+    ru: десятилетие
+    uk: десятиліття
+    example_de: Die Stadt hat sich in den letzten zwei Jahrzehnten stark verändert.
+    example_en: The city has changed a great deal over the last two decades.
+    example_ru: За последние два десятилетия город сильно изменился.
+    example_uk: За останні два десятиліття місто дуже змінилося.
+    note:
+      en: 'Built like its two big brothers, from Jahr plus a counting element: Jahrzehnt, Jahrhundert, Jahrtausend. All three are neuter and all three take -e in the plural. Speech prefers the plain zehn Jahre, so this one is a word of reports and newspapers. The years themselves are named differently again: die Achtzigerjahre or die achtziger Jahre, and in den Achtzigern for the decade of a life.'
+      ru: 'Построено как два его старших брата — из Jahr и счётного элемента: Jahrzehnt, Jahrhundert, Jahrtausend. Все три среднего рода и все три получают -e во множественном числе. Речь предпочитает простое zehn Jahre, так что это слово газет и отчётов. Сами десятилетия называются иначе: die Achtzigerjahre или die achtziger Jahre, а in den Achtzigern — о возрасте.'
+      uk: 'Побудоване як два його старші брати — з Jahr і лічильного елемента: Jahrzehnt, Jahrhundert, Jahrtausend. Усі три середнього роду й усі три отримують -e в множині. Мовлення віддає перевагу простому zehn Jahre, тож це слово газет і звітів. Самі десятиліття звуться інакше: die Achtzigerjahre або die achtziger Jahre, а in den Achtzigern — про вік.'
+
+  - de: Jahrhundert
+    ipa: "jaːɐ̯ˈhʊndɐt"
+    pos: noun
+    gender: n
+    plural: "die Jahrhunderte"
+    # Recognition only: museum-label, guidebook and history-text vocabulary — read
+    # constantly at B1 and produced almost never.
+    cards: recognition
+    en: century
+    ru: век, столетие
+    uk: століття, сторіччя
+    example_de: Die Kirche stammt aus dem sechzehnten Jahrhundert.
+    example_en: The church dates from the sixteenth century.
+    example_ru: Церковь относится к шестнадцатому веку.
+    example_uk: Церква походить із шістнадцятого століття.
+    note:
+      en: 'Always an ordinal in front, and the ordinal takes the ending its case demands: im 19. Jahrhundert, aus dem 16. Jahrhundert, seit dem 20. Jahrhundert. Written with a full stop after the figure and spoken as neunzehnten. The number runs one ahead of the years it covers — the 1800s are das 19. Jahrhundert. As a first element it makes die Jahrhundertwende, and as an exaggeration der Jahrhundertsommer, the hottest one in living memory.'
+      ru: 'Впереди всегда порядковое числительное, и оно получает окончание своего падежа: im 19. Jahrhundert, aus dem 16. Jahrhundert, seit dem 20. Jahrhundert. На письме — точка после цифры, вслух — neunzehnten. Номер на единицу больше, чем годы, которые век покрывает: 1800-е — это das 19. Jahrhundert. Первым элементом даёт die Jahrhundertwende («рубеж веков»), а в преувеличении — der Jahrhundertsommer, самое жаркое лето на памяти живущих.'
+      uk: 'Попереду завжди порядковий числівник, і він отримує закінчення свого відмінка: im 19. Jahrhundert, aus dem 16. Jahrhundert, seit dem 20. Jahrhundert. На письмі — крапка після цифри, уголос — neunzehnten. Номер на одиницю більший за роки, які століття охоплює: 1800-ті — це das 19. Jahrhundert. Першим елементом дає die Jahrhundertwende («зламу століть»), а в перебільшенні — der Jahrhundertsommer, найспекотніше літо на пам’ять живих.'
+
+  - de: Jahrtausend
+    ipa: "jaːɐ̯ˈtaʊ̯zn̩t"
+    pos: noun
+    gender: n
+    plural: "die Jahrtausende"
+    # Recognition only: museum-label and documentary vocabulary, the far end of the
+    # Jahr- series and the one a B1 learner will only ever read.
+    cards: recognition
+    en: millennium
+    ru: тысячелетие
+    uk: тисячоліття
+    example_de: Diese Werkzeuge sind mehrere Jahrtausende alt.
+    example_en: These tools are several millennia old.
+    example_ru: Этим инструментам несколько тысячелетий.
+    example_uk: Цим інструментам кілька тисячоліть.
+    note:
+      en: 'The third and largest member of the Jahr- series, neuter like the other two. The phrase you will actually meet is seit Jahrtausenden, for thousands of years, in a museum caption or a documentary. Die Jahrtausendwende was the turn of the year 2000. Everyday German would say vor mehreren tausend Jahren instead.'
+      ru: 'Третий и самый крупный член ряда Jahr-, среднего рода, как и два других. На практике встретится сочетание seit Jahrtausenden — «тысячелетиями», в музейной подписи или в документальном фильме. Die Jahrtausendwende — рубеж 2000 года. Обиходный немецкий сказал бы vor mehreren tausend Jahren.'
+      uk: 'Третій і найбільший член ряду Jahr-, середнього роду, як і два інші. На практиці трапиться сполучення seit Jahrtausenden — «тисячоліттями», у музейному підписі чи в документальному фільмі. Die Jahrtausendwende — злам 2000 року. Побутова німецька сказала б vor mehreren tausend Jahren.'
+
+  - de: ewig
+    ipa: "ˈeːvɪç"
+    pos: adj
+    en: eternal, everlasting; forever, for ages
+    ru: вечный; вечно, целую вечность
+    uk: вічний; вічно, цілу вічність
+    example_de: Auf meinen Termin beim Amt habe ich ewig gewartet.
+    example_en: I waited ages for my appointment at the public office.
+    example_ru: Своей очереди в ведомстве я ждал целую вечность.
+    example_uk: Своєї черги в установі я чекав цілу вічність.
+    note:
+      en: 'In speech it is nearly always an exaggeration of how long one single thing took: Das dauert ewig. Ich habe ewig gesucht. Wir haben uns ewig nicht gesehen. Two neighbours do a different job — A2 immer says something happens every time, and ständig complains that it keeps repeating, while this word stretches one stretch of time. The literal sense is real too, and there it is an ordinary adjective with endings: das ewige Leben, der ewige Schnee, für immer und ewig. The noun is die Ewigkeit, and eine halbe Ewigkeit is the same exaggeration again.'
+      ru: 'В речи это почти всегда преувеличение длительности одного события: Das dauert ewig. Ich habe ewig gesucht. Wir haben uns ewig nicht gesehen. Два соседа делают другую работу: immer уровня A2 говорит, что нечто происходит каждый раз, а ständig жалуется на повторяемость, тогда как это слово растягивает один отрезок. Буквальное значение тоже настоящее, и там это обычное прилагательное с окончаниями: das ewige Leben, der ewige Schnee, für immer und ewig. Существительное — die Ewigkeit, а eine halbe Ewigkeit — то же преувеличение.'
+      uk: 'У мовленні це майже завжди перебільшення тривалості однієї події: Das dauert ewig. Ich habe ewig gesucht. Wir haben uns ewig nicht gesehen. Два сусіди роблять іншу роботу: immer рівня A2 каже, що щось відбувається щоразу, а ständig нарікає на повторюваність, тоді як це слово розтягує один відрізок. Буквальне значення теж справжнє, і там це звичайний прикметник із закінченнями: das ewige Leben, der ewige Schnee, für immer und ewig. Іменник — die Ewigkeit, а eine halbe Ewigkeit — те саме перебільшення.'
+
+  # --- Wo der Satz relativ zum Jetzt steht ---
+  - de: bisher
+    ipa: "bɪsˈheːɐ̯"
+    pos: adv
+    en: so far, up to now
+    ru: до сих пор, пока что
+    uk: досі, поки що
+    example_de: Bisher habe ich noch keine Antwort auf meine Bewerbung bekommen.
+    example_en: So far I have not received any answer to my application.
+    example_ru: До сих пор я не получил ответа на своё заявление.
+    example_uk: Досі я не отримав відповіді на свою заяву.
+    note:
+      en: 'It measures from an earlier point up to now and deliberately leaves the future open, which is why it so often stands with the Perfekt and a negation: Bisher hat sich niemand gemeldet. It fills position 1 and the finite verb follows immediately. The adjective is bisherig, meaning the one up to now: der bisherige Chef, die bisherigen Ergebnisse. Two look-alikes: bis jetzt says the same in speech, and bis dahin points forward at a deadline (Bis dahin muss alles fertig sein).'
+      ru: 'Меряет от некоторой прежней точки до сейчас и намеренно оставляет будущее открытым — потому и стоит так часто с Perfekt и отрицанием: Bisher hat sich niemand gemeldet. Занимает первое место, и спрягаемый глагол идёт сразу за ним. Прилагательное — bisherig, «прежний, нынешний по счёту»: der bisherige Chef, die bisherigen Ergebnisse. Два похожих: bis jetzt говорит то же в речи, а bis dahin смотрит вперёд, на срок (Bis dahin muss alles fertig sein).'
+      uk: 'Міряє від певної попередньої точки до тепер і навмисно лишає майбутнє відкритим — тому й стоїть так часто з Perfekt і запереченням: Bisher hat sich niemand gemeldet. Займає перше місце, і відмінюване дієслово йде одразу за ним. Прикметник — bisherig, «дотеперішній»: der bisherige Chef, die bisherigen Ergebnisse. Два схожі: bis jetzt каже те саме в мовленні, а bis dahin дивиться вперед, на строк (Bis dahin muss alles fertig sein).'
+
+  - de: inzwischen
+    ipa: "ɪnˈtsvɪʃn̩"
+    pos: adv
+    # The deck's one typed card for the meanwhile family. `mittlerweile` below is the
+    # same word for most purposes and rides in this entry's accept list — two production
+    # cards would let two prompts grade one rendering correct, which is the
+    # `ebenso`/`genauso` defect ruled in ort-richtung-verweis-b1.
+    accept: ["mittlerweile"]
+    en: in the meantime, meanwhile
+    ru: тем временем, между тем
+    uk: тим часом, за цей час
+    example_de: Ich decke schon den Tisch, du kannst inzwischen den Salat machen.
+    example_en: I will set the table already, and in the meantime you can make the salad.
+    example_ru: Я пока накрою на стол, а ты тем временем сделай салат.
+    example_uk: Я поки накрию на стіл, а ти тим часом зроби салат.
+    note:
+      en: 'Two jobs, and only the first is unique to this word: the interval between two events, when something else fills the waiting (Der Zug kommt erst um sechs, inzwischen können wir einen Kaffee trinken). The second job is a state that has come about by now, and there mittlerweile says exactly the same thing — Inzwischen wohnt er in Hamburg and Mittlerweile wohnt er in Hamburg are one sentence twice, which is why mittlerweile is accepted here. It fills position 1 or sits after the finite verb. The zwischen inside it is no help: the word is about a stretch of time, never about standing between two things in space.'
+      ru: 'Две работы, и только первая принадлежит этому слову одному: промежуток между двумя событиями, когда ожидание чем-то заполняют (Der Zug kommt erst um sechs, inzwischen können wir einen Kaffee trinken). Вторая работа — состояние, сложившееся к нынешнему моменту, и там mittlerweile говорит ровно то же: Inzwischen wohnt er in Hamburg и Mittlerweile wohnt er in Hamburg — одно предложение дважды, поэтому mittlerweile здесь принимается. Занимает первое место или стоит после спрягаемого глагола. С предлогом zwischen ничего общего.'
+      uk: 'Дві роботи, і лише перша належить цьому слову самому: проміжок між двома подіями, коли очікування чимось заповнюють (Der Zug kommt erst um sechs, inzwischen können wir einen Kaffee trinken). Друга робота — стан, що склався на цей момент, і там mittlerweile каже те саме: Inzwischen wohnt er in Hamburg і Mittlerweile wohnt er in Hamburg — одне речення двічі, тому mittlerweile тут приймається. Займає перше місце або стоїть після відмінюваного дієслова. З прийменником zwischen нічого спільного.'
+
+  - de: mittlerweile
+    ipa: "mɪtlɐˈvaɪ̯lə"
+    pos: adv
+    # Recognition only: the same word as `inzwischen` for every practical purpose, and
+    # it rides in that entry's accept list. One typed card for the family, per the
+    # `ebenso`/`genauso` ruling.
+    cards: recognition
+    en: by now, by this time
+    ru: к этому времени, теперь уже
+    uk: на цей час, тепер уже
+    example_de: Mittlerweile spricht er richtig gut Deutsch.
+    example_en: By now he speaks German really well.
+    example_ru: Теперь он уже говорит по-немецки по-настоящему хорошо.
+    example_uk: Тепер він уже говорить німецькою по-справжньому добре.
+    note:
+      en: 'It marks a state as having come about gradually, so it goes with the present tense and an unspoken contrast with how things used to be: Mittlerweile ist das ganz normal. In this by-now sense it and inzwischen are freely interchangeable, and inzwischen is both shorter and more frequent — that is the one to reach for when you produce. Only inzwischen also covers the interval sense, doing one thing while another runs. Built from mittler- (middle) plus Weile (a while), and always written solid.'
+      ru: 'Помечает состояние как сложившееся постепенно, поэтому идёт с настоящим временем и с невысказанным противопоставлением прежнему: Mittlerweile ist das ganz normal. В этом значении «к настоящему времени» оно и inzwischen свободно взаимозаменяемы, а inzwischen и короче, и частотнее — именно его и стоит брать в производстве. Только inzwischen покрывает ещё и значение промежутка: делать одно, пока идёт другое. Составлено из mittler- («средний») и Weile («некоторое время»), пишется всегда слитно.'
+      uk: 'Позначає стан як такий, що склався поступово, тому йде з теперішнім часом і з невисловленим протиставленням колишньому: Mittlerweile ist das ganz normal. У цьому значенні «на цей час» воно та inzwischen вільно взаємозамінні, а inzwischen і коротше, і частотніше — саме його й варто брати в продукуванні. Лише inzwischen покриває ще й значення проміжку: робити одне, поки триває інше. Складене з mittler- («середній») і Weile («якийсь час»), пишеться завжди разом.'
+
+  - de: zurzeit
+    ipa: "tsuːɐ̯ˈtsaɪ̯t"
+    pos: adv
+    # Recognition only, and the reason is a space. Solid `zurzeit` means "at present";
+    # two-word `zur Zeit` is a preposition plus a noun and means "at the time of"
+    # (zur Zeit Goethes). They are different meanings, not spelling variants, so a typed
+    # production card would grade the space with no way of signalling which is wanted —
+    # the `so viel` / `so viel wie` ruling, applied to a pair whose meanings differ.
+    cards: recognition
+    en: at present, currently
+    ru: в настоящее время, на данный момент
+    uk: наразі, нині
+    example_de: Der Aufzug ist zurzeit außer Betrieb.
+    example_en: The lift is currently out of order.
+    example_ru: Лифт в настоящее время не работает.
+    example_uk: Ліфт наразі не працює.
+    note:
+      en: 'Written solid it is one adverb and answers Wann?: Zurzeit habe ich viel zu tun. Written as two words, zur Zeit is a preposition plus a noun and means at the time of, always with a Genitiv or a von-phrase: zur Zeit der Mauer, zur Zeit meiner Großeltern. The test that settles it: if im Moment could stand there instead, write it solid. You meet the solid one on notices — zurzeit geschlossen, zurzeit nicht erreichbar — and the words speech uses for the same thing are gerade and momentan.'
+      ru: 'Слитно — это одно наречие, отвечающее на Wann?: Zurzeit habe ich viel zu tun. Раздельно zur Zeit — предлог плюс существительное, «во времена», всегда с Genitiv или с von: zur Zeit der Mauer, zur Zeit meiner Großeltern. Проверка: если на это место подходит im Moment, пишем слитно. Слитное встречается на объявлениях — zurzeit geschlossen, zurzeit nicht erreichbar, — а речь на то же место ставит gerade или momentan.'
+      uk: 'Разом — це один прислівник, що відповідає на Wann?: Zurzeit habe ich viel zu tun. Окремо zur Zeit — прийменник плюс іменник, «за часів», завжди з Genitiv або з von: zur Zeit der Mauer, zur Zeit meiner Großeltern. Перевірка: якщо на це місце пасує im Moment, пишемо разом. Злите трапляється на оголошеннях — zurzeit geschlossen, zurzeit nicht erreichbar, — а мовлення на те саме місце ставить gerade або momentan.'
+
+  - de: vorhin
+    ipa: "foːɐ̯ˈhɪn"
+    pos: adv
+    # Recognition only: A2 ships `gerade` ("just now, right now") in zeitadverbien-a2 and
+    # `neulich` ("the other day, recently") in verbindungen-folgen as production cards —
+    # the prompt is owned twice. It is also two letters from A2's shipped `vorher`, a word
+    # the learner already types for a different job.
+    cards: recognition
+    en: a short while ago, earlier today
+    ru: недавно, только что (сегодня)
+    uk: нещодавно, щойно (сьогодні)
+    example_de: Vorhin hat jemand für dich angerufen.
+    example_en: Somebody rang for you a little while ago.
+    example_ru: Недавно тебе кто-то звонил.
+    example_uk: Нещодавно тобі хтось телефонував.
+    note:
+      en: 'It names a point earlier in the same day, still inside the here and now: Vorhin war der Laden noch offen. Three neighbours divide up the recent past — A2 gerade is a moment ago or right now, neulich is one occasion in the last few weeks, and früher is a whole stretch of life that is over. A2 vorher is a different word again: that one means before that, measured against something else already named, while this one is measured from now. It normally takes position 1.'
+      ru: 'Называет точку раньше в тот же день, всё ещё внутри нынешнего «здесь и сейчас»: Vorhin war der Laden noch offen. Недавнее прошлое делят три соседа: gerade уровня A2 — «только что» или «прямо сейчас», neulich — один случай за последние недели, früher — целый закончившийся отрезок жизни. vorher уровня A2 — вообще другое слово: оно значит «до этого», меряется от чего-то уже названного, а это — от нынешнего момента. Обычно занимает первое место.'
+      uk: 'Називає точку раніше того самого дня, ще всередині теперішнього «тут і зараз»: Vorhin war der Laden noch offen. Недавнє минуле ділять три сусіди: gerade рівня A2 — «щойно» або «просто зараз», neulich — один випадок за останні тижні, früher — цілий завершений відтинок життя. vorher рівня A2 — узагалі інше слово: воно означає «до цього», міряється від чогось уже названого, а це — від теперішнього моменту. Зазвичай займає перше місце.'
+
+  - de: kürzlich
+    ipa: "ˈkʏʁtslɪç"
+    pos: adv
+    # Recognition only: `neulich` (verbindungen-folgen) ships as a production card glossed
+    # "the other day, recently" letter for letter, in all three languages — the same
+    # prompt, in another deck, where no accept list here can reach it.
+    cards: recognition
+    en: recently, the other day
+    ru: недавно, на днях
+    uk: нещодавно, днями
+    example_de: Kürzlich habe ich einen alten Freund im Zug getroffen.
+    example_en: Recently I met an old friend on the train.
+    example_ru: Недавно я встретил в поезде старого друга.
+    example_uk: Нещодавно я зустрів у потязі старого друга.
+    note:
+      en: 'It and neulich mean the same and both open a story about one occasion a few days or weeks back — which is why the clause after either of them takes als and never wenn. The difference is register: this one belongs to a report, a letter or a news item, neulich to speech. It is built on kurz, so it says literally a short time ago, and vor Kurzem is the same idea as a prepositional phrase. Not to be confused with kurz itself, which measures length rather than distance in time.'
+      ru: 'Оно и neulich значат одно и то же и оба открывают рассказ об одном случае несколько дней или недель назад — потому придаточное после любого из них берёт als, а не wenn. Разница в регистре: это слово для отчёта, письма или новости, neulich — для речи. Оно построено на kurz, то есть буквально «незадолго до», а vor Kurzem — та же мысль предложным оборотом. Не путать с самим kurz, которое меряет длину, а не удалённость во времени.'
+      uk: 'Воно і neulich означають те саме й обидва відкривають розповідь про один випадок кілька днів чи тижнів тому — тому підрядне після будь-якого з них бере als, а не wenn. Різниця в регістрі: це слово для звіту, листа чи новини, neulich — для мовлення. Воно побудоване на kurz, тобто буквально «незадовго до», а vor Kurzem — та сама думка прийменниковим зворотом. Не плутати із самим kurz, яке міряє довжину, а не віддаленість у часі.'
+
+  - de: längst
+    ipa: "ˈlɛŋst"
+    pos: adv
+    # Recognition only: the rendering a B1 learner actually produces for this is
+    # `schon lange`, which A2's `lange` (zeitadverbien-a2) teaches in its own note — a
+    # typed card would grade which of the two the author had in mind.
+    cards: recognition
+    en: long since, ages ago already
+    ru: давно уже, давным-давно
+    uk: давно вже, давним-давно
+    example_de: Das Paket ist längst angekommen, es steht bei den Nachbarn.
+    example_en: The parcel arrived long ago, it is sitting with the neighbours.
+    example_ru: Посылка давно пришла, она у соседей.
+    example_uk: Посилка давно прийшла, вона в сусідів.
+    note:
+      en: 'It says the thing happened much earlier than the listener seems to assume, so it almost always carries a small correction: Das weiß ich längst. Ich bin längst fertig. Negated it means nowhere near, not by a long way: Das reicht längst nicht. Formally it is the superlative of lang, but it never answers Wie lange? — that question takes lange. The plain everyday equivalent is schon lange, and schon längst is the emphatic version of both.'
+      ru: 'Говорит, что событие произошло гораздо раньше, чем, похоже, полагает собеседник, поэтому почти всегда несёт лёгкую поправку: Das weiß ich längst. Ich bin längst fertig. С отрицанием значит «далеко не»: Das reicht längst nicht. Формально это превосходная степень от lang, но на вопрос Wie lange? оно не отвечает — там нужно lange. Обиходный эквивалент — schon lange, а schon längst — усиленный вариант обоих.'
+      uk: 'Каже, що подія сталася значно раніше, ніж, схоже, гадає співрозмовник, тому майже завжди несе легку поправку: Das weiß ich längst. Ich bin längst fertig. Із запереченням означає «далеко не»: Das reicht längst nicht. Формально це найвищий ступінь від lang, але на питання Wie lange? воно не відповідає — там потрібне lange. Побутовий відповідник — schon lange, а schon längst — посилений варіант обох.'
+
+  - de: nachher
+    ipa: "naxˈheːɐ̯"
+    pos: adv
+    # Recognition only: A1/A2 ship `danach` ("after that, afterwards"), `später`
+    # ("later, afterwards") and `dann` as production cards in three other decks, so the
+    # prompt is owned three times over — and A2's `vorher` (zeitadverbien-a2) already
+    # names this word in its own note as the partner.
+    cards: recognition
+    en: afterwards, later on
+    ru: потом, после этого
+    uk: потім, після цього
+    example_de: Wir gehen erst einkaufen und trinken nachher einen Kaffee.
+    example_en: We will go shopping first and have a coffee afterwards.
+    example_ru: Сначала пойдём за покупками, а потом выпьем кофе.
+    example_uk: Спочатку підемо по покупки, а потім вип’ємо кави.
+    note:
+      en: 'The mirror of A2 vorher: that one points back, this one forward, and both are measured against a point already named rather than against now. In everyday speech danach and später cover the same ground and are heard far more often. The stress falls on the second syllable. It is an adverb and never a preposition — after the film is nach dem Film, never nachher dem Film. Bis nachher! is see you later, for the same day.'
+      ru: 'Зеркало к vorher уровня A2: то смотрит назад, это вперёд, и оба меряются от уже названной точки, а не от «сейчас». В обиходной речи то же поле покрывают danach и später, и слышны они куда чаще. Ударение падает на второй слог. Это наречие и никогда не предлог: «после фильма» — nach dem Film, а не nachher dem Film. Bis nachher! значит «до скорого», в пределах того же дня.'
+      uk: 'Дзеркало до vorher рівня A2: те дивиться назад, це вперед, і обидва міряються від уже названої точки, а не від «зараз». У побутовому мовленні те саме поле покривають danach і später, і чути їх значно частіше. Наголос падає на другий склад. Це прислівник і ніколи не прийменник: «після фільму» — nach dem Film, а не nachher dem Film. Bis nachher! означає «до скорого», у межах того самого дня.'
+
+  - de: anfangs
+    ipa: "ˈanfaŋs"
+    pos: adv
+    # Recognition only: A1/A2 ship `zuerst` ("first, at first") as a production card in
+    # alltag-tagesablauf, and `am Anfang` says the same thing — the prompt has an owner
+    # two decks over.
+    cards: recognition
+    en: at first, in the beginning
+    ru: сначала, поначалу
+    uk: спочатку, попервах
+    example_de: Anfangs war die Arbeit schwer, aber jetzt macht sie mir Spaß.
+    example_en: At first the job was hard, but now I enjoy it.
+    example_ru: Поначалу работа была тяжёлой, но теперь она мне нравится.
+    example_uk: Попервах робота була важкою, але тепер вона мені подобається.
+    note:
+      en: 'It always implies a contrast with how things are now, so it wants an aber or a jetzt in the same breath. Am Anfang means the same and is heard far more often. A2 zuerst is a different job: that one numbers the first step of a sequence (zuerst … dann … danach), while this word describes a whole opening period without counting anything. The -s is the old adverb ending, the same one in morgens, abends, montags and wochentags.'
+      ru: 'Всегда подразумевает противопоставление нынешнему положению, поэтому просит рядом aber или jetzt. Am Anfang значит то же и слышно куда чаще. zuerst уровня A2 делает другую работу: оно нумерует первый шаг последовательности (zuerst … dann … danach), тогда как это слово описывает целый начальный период и ничего не считает. Конечное -s — старое наречное окончание, то же, что в morgens, abends, montags, wochentags.'
+      uk: 'Завжди передбачає протиставлення теперішньому станові, тому просить поряд aber або jetzt. Am Anfang означає те саме й чути його значно частіше. zuerst рівня A2 робить іншу роботу: воно нумерує перший крок послідовності (zuerst … dann … danach), тоді як це слово описує цілий початковий період і нічого не лічить. Кінцеве -s — старе прислівникове закінчення, те саме, що в morgens, abends, montags, wochentags.'
+
+  - de: zunächst
+    ipa: "tsuˈnɛːçst"
+    pos: adv
+    # Recognition only: `zuerst` ("first, at first", alltag-tagesablauf) and `erstens`
+    # ("firstly, first of all", zahlen-masse-a2) are both shipped production cards
+    # answering this prompt.
+    cards: recognition
+    en: to begin with, for the moment
+    ru: сначала, прежде всего
+    uk: спочатку, передусім
+    example_de: Zunächst möchte ich mich für die Einladung bedanken.
+    example_en: To begin with, I would like to thank you for the invitation.
+    example_ru: Прежде всего я хотел бы поблагодарить за приглашение.
+    example_uk: Передусім я хотів би подякувати за запрошення.
+    note:
+      en: 'The written word for the opening step, at home in a talk, a letter or an essay: Zunächst einmal …, and then dann, danach, schließlich. It has a second job that English has no single word for — for the time being, with nothing yet decided: Wir bleiben zunächst hier. Speech uses A2 zuerst or the chunk erst mal for both jobs. Do not mix it with erstens, which numbers the points of an argument rather than events in time.'
+      ru: 'Письменное слово для первого шага, уместное в докладе, письме или сочинении: Zunächst einmal …, а дальше dann, danach, schließlich. У него есть и вторая работа — «пока что», когда ничего ещё не решено: Wir bleiben zunächst hier. Речь на обе работы берёт zuerst уровня A2 или оборот erst mal. Не смешивать с erstens, которое нумерует пункты аргументации, а не события во времени.'
+      uk: 'Писемне слово для першого кроку, доречне в доповіді, листі чи творі: Zunächst einmal …, а далі dann, danach, schließlich. Має й другу роботу — «поки що», коли нічого ще не вирішено: Wir bleiben zunächst hier. Мовлення на обидві роботи бере zuerst рівня A2 або зворот erst mal. Не змішувати з erstens, яке нумерує пункти аргументації, а не події в часі.'
+
+  - de: ursprünglich
+    ipa: "ˈuːɐ̯ʃpʁʏŋlɪç"
+    pos: adj
+    en: originally, at first; the first one there was
+    ru: первоначально, изначально; первоначальный
+    uk: початково, первісно; первісний
+    example_de: Ursprünglich wollten wir nach Italien fahren, aber dann wurde alles zu teuer.
+    example_en: Originally we wanted to go to Italy, but then everything became too expensive.
+    example_ru: Изначально мы собирались поехать в Италию, но потом всё стало слишком дорого.
+    example_uk: Початково ми збиралися поїхати до Італії, але потім усе стало надто дорогим.
+    note:
+      en: 'The narrating word for a plan that later changed, and it nearly always sets up an aber: Ursprünglich sollte das Haus im Mai fertig sein. In front of a noun it takes endings and means the first one there was: der ursprüngliche Plan, die ursprüngliche Fassung, im ursprünglichen Zustand. Do not confuse it with original, which means genuine rather than fake. The noun behind it is der Ursprung, the origin of a thing.'
+      ru: 'Повествовательное слово для плана, который потом изменился, и оно почти всегда готовит aber: Ursprünglich sollte das Haus im Mai fertig sein. Перед существительным получает окончания и значит «самый первый»: der ursprüngliche Plan, die ursprüngliche Fassung, im ursprünglichen Zustand. Не путать с original — «подлинный, не поддельный». За ним стоит существительное der Ursprung, «происхождение, исток».'
+      uk: 'Оповідне слово для плану, який потім змінився, і воно майже завжди готує aber: Ursprünglich sollte das Haus im Mai fertig sein. Перед іменником отримує закінчення й означає «найперший»: der ursprüngliche Plan, die ursprüngliche Fassung, im ursprünglichen Zustand. Не плутати з original — «справжній, не підробний». За ним стоїть іменник der Ursprung, «походження, витік».'
+
+  - de: zukünftig
+    ipa: "ˈtsuːkʏnftɪç"
+    pos: adj
+    # Recognition only: `Zukunft` ("future") ships as a production card in lernen-zukunft,
+    # and a prompt reading "future" cannot tell the learner whether the noun or this
+    # adjective is wanted — two decks apart, no accept list reaches it.
+    cards: recognition
+    en: future, prospective; in future, from now on
+    ru: будущий; впредь, в дальнейшем
+    uk: майбутній; надалі, віднині
+    example_de: Zukünftig müssen alle Anträge online gestellt werden.
+    example_en: In future all applications have to be submitted online.
+    example_ru: Впредь все заявления нужно подавать онлайн.
+    example_uk: Надалі всі заяви потрібно подавати онлайн.
+    note:
+      en: 'Two shapes. In front of a noun it is an ordinary adjective with endings and names the one that is still to come: mein zukünftiger Chef, die zukünftige Wohnung, unsere zukünftigen Kunden. Standing alone it is the adverb of notices and rulebooks: Zukünftig gilt eine neue Regel. Speech says in Zukunft instead, which is the chunk Zukunft teaches on its own card, and künftig is the shorter written twin. It has nothing to do with the Futur — German states the future with the present tense plus a time word.'
+      ru: 'Две формы. Перед существительным это обычное прилагательное с окончаниями, называющее то, что ещё предстоит: mein zukünftiger Chef, die zukünftige Wohnung, unsere zukünftigen Kunden. Само по себе — наречие объявлений и регламентов: Zukünftig gilt eine neue Regel. Речь вместо него скажет in Zukunft — оборот, которому учит собственная карточка Zukunft, а künftig — более короткий письменный двойник. К Futur отношения не имеет: будущее немецкий выражает настоящим временем плюс словом времени.'
+      uk: 'Дві форми. Перед іменником це звичайний прикметник із закінченнями, що називає те, що ще попереду: mein zukünftiger Chef, die zukünftige Wohnung, unsere zukünftigen Kunden. Само по собі — прислівник оголошень і регламентів: Zukünftig gilt eine neue Regel. Мовлення замість нього скаже in Zukunft — зворот, якого навчає власна картка Zukunft, а künftig — коротший писемний двійник. До Futur стосунку не має: майбутнє німецька виражає теперішнім часом плюс словом часу.'
+
+  - de: voraussichtlich
+    ipa: "foˈʁaʊ̯szɪçtlɪç"
+    pos: adj
+    # Recognition only: A2 ships `wahrscheinlich` ("probably") as a production card in
+    # nebensaetze-plaene, and the prompt is owned there. This word is besides the
+    # announcement register — a Durchsage, a forecast, a building schedule — not
+    # something a B1 learner says about their own plans.
+    cards: recognition
+    en: expected to, according to the forecast
+    ru: предположительно, по предварительным оценкам
+    uk: за прогнозом, орієнтовно
+    example_de: Der Zug aus Hamburg hat voraussichtlich zwanzig Minuten Verspätung.
+    example_en: The train from Hamburg is expected to be twenty minutes late.
+    example_ru: Поезд из Гамбурга, предположительно, опоздает на двадцать минут.
+    example_uk: Потяг із Гамбурга, за прогнозом, запізниться на двадцять хвилин.
+    note:
+      en: 'It sits at the same height on the certainty scale as A2 wahrscheinlich — vielleicht, then this word with wahrscheinlich and vermutlich, then bestimmt, then sicher — but it comes from a different mouth. vermutlich marks the speaker''s own inference, wahrscheinlich states a plain probability, and this one reports an official estimate about something scheduled. Hence its home: station announcements, weather reports, building plans, voraussichtliche Ankunft, voraussichtliche Dauer, voraussichtlich ab Mai. In front of a noun it takes endings. About your own intentions it sounds like a press release, so say wahrscheinlich there.'
+      ru: 'На шкале уверенности стоит на той же высоте, что и wahrscheinlich уровня A2: vielleicht, затем это слово вместе с wahrscheinlich и vermutlich, затем bestimmt, затем sicher. Но исходит оно из других уст. vermutlich помечает собственный вывод говорящего, wahrscheinlich просто констатирует вероятность, а это слово передаёт официальную оценку чего-то запланированного. Отсюда и его дом: вокзальные объявления, прогнозы, планы строительства, voraussichtliche Ankunft, voraussichtliche Dauer, voraussichtlich ab Mai. Перед существительным получает окончания. О собственных намерениях звучит как пресс-релиз — там нужно wahrscheinlich.'
+      uk: 'На шкалі впевненості стоїть на тій самій висоті, що й wahrscheinlich рівня A2: vielleicht, потім це слово разом із wahrscheinlich і vermutlich, потім bestimmt, потім sicher. Але походить воно з інших вуст. vermutlich позначає власний висновок мовця, wahrscheinlich просто констатує ймовірність, а це слово передає офіційну оцінку чогось запланованого. Звідси і його дім: вокзальні оголошення, прогнози, плани будівництва, voraussichtliche Ankunft, voraussichtliche Dauer, voraussichtlich ab Mai. Перед іменником отримує закінчення. Про власні наміри звучить як пресреліз — там потрібне wahrscheinlich.'
+
+  - de: vorläufig
+    ipa: "ˈfoːɐ̯lɔʏ̯fɪç"
+    pos: adj
+    # Recognition only: Amt, Vertrag and Bescheid vocabulary. A B1 learner reads it on a
+    # Bescheinigung and says `erst mal` or `bis auf Weiteres` instead.
+    cards: recognition
+    en: provisional, temporary; for the time being
+    ru: предварительный, временный; пока что
+    uk: попередній, тимчасовий; поки що
+    example_de: Sie bekommen einen vorläufigen Ausweis, bis der neue fertig ist.
+    example_en: You will get a provisional ID card until the new one is ready.
+    example_ru: Вы получите временное удостоверение, пока не будет готово новое.
+    example_uk: Ви отримаєте тимчасове посвідчення, поки не буде готове нове.
+    note:
+      en: 'It marks something as valid only until a final decision is taken: ein vorläufiger Termin, eine vorläufige Zusage, das vorläufige Ergebnis. As an adverb it means for now, nothing settled: Wir bleiben vorläufig in der alten Wohnung. Two neighbours are not the same word — zeitweise means from time to time, and vorübergehend means passing, not lasting. The office phrase with the same job is bis auf Weiteres; speech says erst mal.'
+      ru: 'Помечает нечто как действующее лишь до окончательного решения: ein vorläufiger Termin, eine vorläufige Zusage, das vorläufige Ergebnis. Как наречие значит «пока, ничего не решено»: Wir bleiben vorläufig in der alten Wohnung. Два соседа — другие слова: zeitweise значит «время от времени», а vorübergehend — «преходящий, недолгий». Канцелярский оборот с той же работой — bis auf Weiteres; речь скажет erst mal.'
+      uk: 'Позначає щось як чинне лише до остаточного рішення: ein vorläufiger Termin, eine vorläufige Zusage, das vorläufige Ergebnis. Як прислівник означає «поки, нічого не вирішено»: Wir bleiben vorläufig in der alten Wohnung. Два сусіди — інші слова: zeitweise означає «час від часу», а vorübergehend — «перехідний, недовгий». Канцелярський зворот із тією самою роботою — bis auf Weiteres; мовлення скаже erst mal.'
+
+  - de: jederzeit
+    ipa: "ˈjeːdɐˌtsaɪ̯t"
+    pos: adv
+    en: at any time, whenever you like
+    ru: в любое время, в любой момент
+    uk: будь-коли, у будь-який час
+    example_de: Sie können mich jederzeit anrufen, ich habe das Handy immer dabei.
+    example_en: You can call me at any time, I always have my mobile with me.
+    example_ru: Вы можете позвонить мне в любое время, телефон всегда при мне.
+    example_uk: Ви можете зателефонувати мені будь-коли, телефон завжди при мені.
+    note:
+      en: 'Written solid, one word, never jeder Zeit. It is the polite formula of an open offer: Melden Sie sich jederzeit, Sie sind jederzeit willkommen, Der Vertrag ist jederzeit kündbar. It answers Wann?, so it fills position 1 or stands after the finite verb. It is not the same as immer — immer says something always happens, this one says it always may. The negative is nie, not nicht jederzeit.'
+      ru: 'Пишется слитно, одним словом, никогда не jeder Zeit. Это вежливая формула открытого предложения: Melden Sie sich jederzeit, Sie sind jederzeit willkommen, Der Vertrag ist jederzeit kündbar. Отвечает на Wann?, поэтому занимает первое место или стоит после спрягаемого глагола. Это не то же, что immer: immer говорит, что нечто всегда происходит, а это — что всегда можно. Отрицание — nie, а не nicht jederzeit.'
+      uk: 'Пишеться разом, одним словом, ніколи не jeder Zeit. Це ввічлива формула відкритої пропозиції: Melden Sie sich jederzeit, Sie sind jederzeit willkommen, Der Vertrag ist jederzeit kündbar. Відповідає на Wann?, тому займає перше місце або стоїть після відмінюваного дієслова. Це не те саме, що immer: immer каже, що щось завжди відбувається, а це — що завжди можна. Заперечення — nie, а не nicht jederzeit.'
+
+  - de: jemals
+    ipa: "ˈjeːmaːls"
+    pos: adv
+    # Recognition only: `irgendwann` ("sometime, at some point") ships as a production
+    # card in verbindungen-folgen with the same Russian gloss, and the rendering a B1
+    # learner actually produces for "Have you ever …?" is the chunk `schon mal`.
+    cards: recognition
+    en: ever, at any point
+    ru: когда-либо, когда-нибудь
+    uk: коли-небудь, бодай колись
+    example_de: Hast du jemals daran gedacht, im Ausland zu arbeiten?
+    example_en: Have you ever thought about working abroad?
+    example_ru: Ты когда-нибудь думал о том, чтобы работать за границей?
+    example_uk: Ти коли-небудь думав про те, щоб працювати за кордоном?
+    note:
+      en: 'It only lives in questions, negations, conditions and after a superlative — never in a plain positive statement: Wenn du jemals nach Wien kommst …, der beste Film, den ich jemals gesehen habe, Das wird er nie jemals zugeben. In an ordinary question German prefers schon mal, and that is what you should produce: Warst du schon mal in Wien? The bookish short form is je (schöner als je zuvor); the positive statement word is irgendwann.'
+      ru: 'Живёт только в вопросах, отрицаниях, условиях и после превосходной степени — но не в простом утверждении: Wenn du jemals nach Wien kommst …, der beste Film, den ich jemals gesehen habe, Das wird er nie jemals zugeben. В обычном вопросе немецкий предпочитает schon mal, и производить следует именно его: Warst du schon mal in Wien? Книжная краткая форма — je (schöner als je zuvor); слово для утверждения — irgendwann.'
+      uk: 'Живе лише в питаннях, запереченнях, умовах і після найвищого ступеня — але не у простому ствердженні: Wenn du jemals nach Wien kommst …, der beste Film, den ich jemals gesehen habe, Das wird er nie jemals zugeben. У звичайному питанні німецька віддає перевагу schon mal, і продукувати варто саме його: Warst du schon mal in Wien? Книжна коротка форма — je (schöner als je zuvor); слово для ствердження — irgendwann.'
+
+  - de: diesmal
+    ipa: "ˈdiːsmaːl"
+    pos: adv
+    accept: ["dieses Mal"]
+    en: this time
+    ru: в этот раз, на этот раз
+    uk: цього разу
+    example_de: Letztes Jahr hat es geregnet, diesmal hatten wir Glück mit dem Wetter.
+    example_en: Last year it rained, this time we were lucky with the weather.
+    example_ru: В прошлом году шёл дождь, а в этот раз нам повезло с погодой.
+    example_uk: Торік ішов дощ, а цього разу нам пощастило з погодою.
+    note:
+      en: 'It always contrasts this one occasion with the others, so it usually stands next to a letztes Mal or a sonst: Diesmal mache ich es anders. Written solid; the two-word dieses Mal means exactly the same and is equally correct, which is why both are accepted here. The family is built on das Mal, the noun for an occasion: letztes Mal, nächstes Mal, jedes Mal, zum ersten Mal. It fills position 1 or stands after the finite verb.'
+      ru: 'Всегда противопоставляет этот случай остальным, поэтому обычно стоит рядом с letztes Mal или sonst: Diesmal mache ich es anders. Пишется слитно; раздельное dieses Mal значит ровно то же и столь же правильно — потому здесь принимаются оба. Семья построена на существительном das Mal («раз»): letztes Mal, nächstes Mal, jedes Mal, zum ersten Mal. Занимает первое место или стоит после спрягаемого глагола.'
+      uk: 'Завжди протиставляє цей випадок іншим, тому зазвичай стоїть поряд із letztes Mal або sonst: Diesmal mache ich es anders. Пишеться разом; окреме dieses Mal означає те саме й так само правильне — тому тут приймаються обидва. Родина побудована на іменнику das Mal («раз»): letztes Mal, nächstes Mal, jedes Mal, zum ersten Mal. Займає перше місце або стоїть після відмінюваного дієслова.'
+
+  - de: gleichzeitig
+    ipa: "ˈglaɪ̯çˌtsaɪ̯tɪç"
+    pos: adj
+    en: at the same time, simultaneously
+    ru: одновременно, в то же время
+    uk: одночасно, водночас
+    example_de: Ich kann nicht gleichzeitig telefonieren und die Kinder anziehen.
+    example_en: I cannot make a phone call and dress the children at the same time.
+    example_ru: Я не могу одновременно говорить по телефону и одевать детей.
+    example_uk: Я не можу одночасно говорити телефоном і вдягати дітей.
+    note:
+      en: 'From gleich plus Zeit: two things running through the same stretch of time. In front of a noun it takes endings — die gleichzeitige Nutzung, bei gleichzeitiger Zahlung. It has a second, written job as a connector meaning at the same time in the sense of on the other hand: Das Angebot ist günstig, gleichzeitig ist der Vertrag sehr lang. Two neighbours: zur gleichen Zeit says the plain version, and während is the conjunction that gives the second event a clause of its own (Während ich koche, deckt er den Tisch).'
+      ru: 'Из gleich и Zeit: две вещи идут через один и тот же отрезок времени. Перед существительным получает окончания: die gleichzeitige Nutzung, bei gleichzeitiger Zahlung. Есть и вторая, письменная работа — связка со значением «в то же время, с другой стороны»: Das Angebot ist günstig, gleichzeitig ist der Vertrag sehr lang. Два соседа: zur gleichen Zeit — простой вариант того же, а während — союз, отдающий второму событию собственное придаточное (Während ich koche, deckt er den Tisch).'
+      uk: 'Із gleich і Zeit: дві речі йдуть крізь той самий відтинок часу. Перед іменником отримує закінчення: die gleichzeitige Nutzung, bei gleichzeitiger Zahlung. Є й друга, писемна робота — зв’язка зі значенням «водночас, з іншого боку»: Das Angebot ist günstig, gleichzeitig ist der Vertrag sehr lang. Два сусіди: zur gleichen Zeit — простий варіант того самого, а während — сполучник, що віддає другій події власне підрядне (Während ich koche, deckt er den Tisch).'
+
+  - de: dauernd
+    ipa: "ˈdaʊ̯ɐnt"
+    pos: adj
+    # Recognition only: `ständig` ("constantly, all the time") ships as a production card
+    # in verbindungen-folgen, glossed letter for letter in all three languages.
+    cards: recognition
+    en: constantly, over and over
+    ru: постоянно, то и дело
+    uk: постійно, раз у раз
+    example_de: Mein Nachbar klingelt dauernd an der falschen Tür.
+    example_en: My neighbour is constantly ringing at the wrong door.
+    example_ru: Мой сосед постоянно звонит не в ту дверь.
+    example_uk: Мій сусід постійно дзвонить не в ті двері.
+    note:
+      en: 'It is the Partizip I of dauern used as an adverb, and in speech it is nearly always a complaint: Er ruft dauernd an. Sie kommt dauernd zu spät. ständig says the same and is the neutral choice; immer and die ganze Zeit are the plainest. The literal sense, lasting or permanent, survives in a few written chunks — eine dauernde Lösung, dauernd getrennt lebend on a tax form. Do not confuse it with ewig, which stretches one single stretch of time rather than counting repetitions.'
+      ru: 'Это Partizip I от dauern в роли наречия, и в речи это почти всегда жалоба: Er ruft dauernd an. Sie kommt dauernd zu spät. ständig говорит то же и нейтральнее; immer и die ganze Zeit — самые простые варианты. Буквальное значение «длящийся, постоянный» уцелело в нескольких письменных сочетаниях: eine dauernde Lösung, dauernd getrennt lebend в налоговой анкете. Не путать с ewig, которое растягивает один отрезок, а не считает повторы.'
+      uk: 'Це Partizip I від dauern у ролі прислівника, і в мовленні це майже завжди нарікання: Er ruft dauernd an. Sie kommt dauernd zu spät. ständig каже те саме й нейтральніше; immer і die ganze Zeit — найпростіші варіанти. Буквальне значення «тривалий, постійний» уціліло в кількох писемних сполученнях: eine dauernde Lösung, dauernd getrennt lebend у податковій анкеті. Не плутати з ewig, яке розтягує один відтинок, а не лічить повтори.'
+
+  # --- Wie oft: die -lich-Reihe. Eine getippte Karte für das Muster, der Rest rezeptiv ---
+  - de: stündlich
+    ipa: "ˈʃtʏntlɪç"
+    pos: adj
+    # Recognition only, on the pattern ruling stated in full on `monatlich`: -lich builds
+    # off a time noun by a rule the learner can see, A2's `täglich` already sells that
+    # rule as a production card, and this deck adds one more. A typed card here would
+    # test the rule a third time, not a word.
+    cards: recognition
+    en: hourly, every hour
+    ru: ежечасно, каждый час
+    uk: щогодини, щогодинний
+    example_de: Der Bus zum Flughafen fährt stündlich.
+    example_en: The bus to the airport runs every hour.
+    example_ru: Автобус в аэропорт ходит каждый час.
+    example_uk: Автобус до аеропорту їздить щогодини.
+    note:
+      en: 'Built from Stunde with an Umlaut, and it is adjective and adverb in one form: der stündliche Takt, Der Zug fährt stündlich. Timetables write it; speech says jede Stunde. Do not confuse it with stundenlang, which means for hours on end — one says how often, the other how long. The medicine-label pattern with a count is alle zwei Stunden rather than zweimal stündlich.'
+      ru: 'Построено от Stunde с умлаутом и служит сразу прилагательным и наречием в одной форме: der stündliche Takt, Der Zug fährt stündlich. Так пишут расписания; речь скажет jede Stunde. Не путать со stundenlang — «часами напролёт»: одно про то, как часто, другое про то, как долго. На упаковке лекарства со счётом пишут alle zwei Stunden, а не zweimal stündlich.'
+      uk: 'Побудоване від Stunde з умлаутом і слугує водночас прикметником і прислівником в одній формі: der stündliche Takt, Der Zug fährt stündlich. Так пишуть розклади; мовлення скаже jede Stunde. Не плутати зі stundenlang — «годинами поспіль»: одне про те, як часто, друге про те, як довго. На упаковці ліків із лічбою пишуть alle zwei Stunden, а не zweimal stündlich.'
+
+  - de: wöchentlich
+    ipa: "ˈvœçn̩tlɪç"
+    pos: adj
+    # Recognition only, on the same pattern ruling — see `monatlich`.
+    cards: recognition
+    en: weekly, every week
+    ru: еженедельно, еженедельный
+    uk: щотижня, щотижневий
+    example_de: Der Kurs findet wöchentlich am Dienstagabend statt.
+    example_en: The course takes place weekly on Tuesday evenings.
+    example_ru: Курс проходит еженедельно по вторникам вечером.
+    example_uk: Курс відбувається щотижня у вівторок увечері.
+    note:
+      en: 'From Woche with an Umlaut. Counted repetitions put the -mal word in front: einmal wöchentlich, zweimal wöchentlich — and einmal die Woche is the everyday spoken version of the same thing. As an adjective it takes endings: der wöchentliche Bericht, ein wöchentliches Treffen. There is no single word for fortnightly; German says alle zwei Wochen.'
+      ru: 'От Woche с умлаутом. При счёте впереди ставится слово на -mal: einmal wöchentlich, zweimal wöchentlich, а обиходный разговорный вариант того же — einmal die Woche. Как прилагательное получает окончания: der wöchentliche Bericht, ein wöchentliches Treffen. Отдельного слова для «раз в две недели» нет — говорят alle zwei Wochen.'
+      uk: 'Від Woche з умлаутом. При лічбі попереду ставиться слово на -mal: einmal wöchentlich, zweimal wöchentlich, а побутовий розмовний варіант того самого — einmal die Woche. Як прикметник отримує закінчення: der wöchentliche Bericht, ein wöchentliches Treffen. Окремого слова для «раз на два тижні» немає — кажуть alle zwei Wochen.'
+
+  - de: monatlich
+    ipa: "ˈmoːnatlɪç"
+    pos: adj
+    en: monthly
+    ru: ежемесячно, ежемесячный
+    uk: щомісячно, щомісячний
+    example_de: Die Miete wird monatlich vom Konto abgebucht.
+    example_en: The rent is debited from the account monthly.
+    example_ru: Аренда ежемесячно списывается со счёта.
+    example_uk: Оренда щомісячно списується з рахунку.
+    note:
+      en: 'The deck gives the -lich series one typed card, and this is the member that earns it: rent, salary, insurance and every subscription are billed monatlich, so it is the one a B1 learner writes. The rule behind the series is visible and fully productive — Stunde/stündlich, Woche/wöchentlich, Monat/monatlich, Jahr/jährlich, and A2 Tag/täglich; only Monat keeps its vowel unchanged, the others take an Umlaut. One form for adjective and adverb: die monatliche Rate, Ich zahle monatlich. Counted: einmal monatlich, and in speech einmal im Monat.'
+      ru: 'На весь ряд на -lich колода даёт одну печатаемую карточку, и заслуживает её именно этот член: аренда, зарплата, страховка и любая подписка считаются monatlich — это то слово, которое учащийся уровня B1 пишет сам. Правило за рядом видимое и полностью продуктивное: Stunde/stündlich, Woche/wöchentlich, Monat/monatlich, Jahr/jährlich и Tag/täglich уровня A2; только Monat сохраняет гласный без изменений, остальные получают умлаут. Одна форма для прилагательного и наречия: die monatliche Rate, Ich zahle monatlich. Со счётом: einmal monatlich, а в речи einmal im Monat.'
+      uk: 'На весь ряд на -lich колода дає одну друковану картку, і заслуговує на неї саме цей член: оренда, зарплата, страхування й будь-яка підписка рахуються monatlich — це те слово, яке учень рівня B1 пише сам. Правило за рядом видиме й цілком продуктивне: Stunde/stündlich, Woche/wöchentlich, Monat/monatlich, Jahr/jährlich і Tag/täglich рівня A2; лише Monat зберігає голосний без змін, решта отримують умлаут. Одна форма для прикметника і прислівника: die monatliche Rate, Ich zahle monatlich. З лічбою: einmal monatlich, а в мовленні einmal im Monat.'
+
+  - de: jährlich
+    ipa: "ˈjɛːɐ̯lɪç"
+    pos: adj
+    # Recognition only, on the same pattern ruling — see `monatlich`.
+    cards: recognition
+    en: yearly, annually
+    ru: ежегодно, ежегодный
+    uk: щорічно, щорічний
+    example_de: Die Versicherung wird jährlich neu berechnet.
+    example_en: The insurance is recalculated annually.
+    example_ru: Страховка ежегодно пересчитывается.
+    example_uk: Страхування щорічно перераховують.
+    note:
+      en: 'From Jahr with an Umlaut, adjective and adverb in one form: der jährliche Urlaub, Der Beitrag wird jährlich abgebucht. On a contract you meet it beside pro Jahr and the abbreviation p. a.; speech prefers pro Jahr or im Jahr. Do not confuse it with jahrelang, for years on end — again, one says how often, the other how long.'
+      ru: 'От Jahr с умлаутом, прилагательное и наречие в одной форме: der jährliche Urlaub, Der Beitrag wird jährlich abgebucht. В договоре стоит рядом с pro Jahr и сокращением p. a.; речь предпочитает pro Jahr или im Jahr. Не путать с jahrelang — «годами напролёт»: снова одно про то, как часто, другое про то, как долго.'
+      uk: 'Від Jahr з умлаутом, прикметник і прислівник в одній формі: der jährliche Urlaub, Der Beitrag wird jährlich abgebucht. У договорі стоїть поряд із pro Jahr і скороченням p. a.; мовлення віддає перевагу pro Jahr або im Jahr. Не плутати з jahrelang — «роками поспіль»: знову одне про те, як часто, друге про те, як довго.'
+
+  - de: wochentags
+    ipa: "ˈvɔxn̩ˌtaːks"
+    pos: adv
+    # Recognition only: `werktags` (regeln-verantwortung) is the same kind of notice word
+    # a couple of letters away, and the rendering a B1 learner produces is
+    # `Montag bis Freitag`. It also belongs to the same -s adverb series as `täglich`'s
+    # neighbours, which this deck already prices at one typed card.
+    cards: recognition
+    en: on weekdays, Monday to Friday
+    ru: по будням, в будние дни
+    uk: у будні, по буднях
+    example_de: Die Praxis ist wochentags von acht bis achtzehn Uhr geöffnet.
+    example_en: The surgery is open on weekdays from eight until six.
+    example_ru: Кабинет работает по будням с восьми до восемнадцати часов.
+    example_uk: Кабінет працює у будні з восьмої до вісімнадцятої години.
+    note:
+      en: 'Notice language — read on a door, a timetable or an opening-hours board rather than said. The -s adverbs are a small closed set built on time nouns: montags, dienstags, morgens, abends, wochentags, werktags. Mind the pair: this one means the days of the working week, Monday to Friday, while werktags means every day on which work happens by law, which traditionally takes in Saturday. Sonn- und feiertags is the other side of both. Speech says Montag bis Freitag or unter der Woche.'
+      ru: 'Язык объявлений: это читают на двери, в расписании или на табличке с часами работы, а не произносят. Наречия на -s — небольшой закрытый ряд от существительных времени: montags, dienstags, morgens, abends, wochentags, werktags. Внимание к паре: это слово значит дни рабочей недели, с понедельника по пятницу, а werktags — все дни, в которые по закону работают, что традиционно включает субботу. Sonn- und feiertags — обратная сторона обоих. Речь скажет Montag bis Freitag или unter der Woche.'
+      uk: 'Мова оголошень: це читають на дверях, у розкладі чи на табличці з годинами роботи, а не вимовляють. Прислівники на -s — невеликий закритий ряд від іменників часу: montags, dienstags, morgens, abends, wochentags, werktags. Увага до пари: це слово означає дні робочого тижня, з понеділка до п’ятниці, а werktags — усі дні, у які за законом працюють, що традиційно охоплює суботу. Sonn- und feiertags — зворотний бік обох. Мовлення скаже Montag bis Freitag або unter der Woche.'
+
+  # --- Der Kalender: Wochentage, Feste und die Uhr ---
+  - de: Wochentag
+    ipa: "ˈvɔxn̩ˌtaːk"
+    pos: noun
+    gender: m
+    plural: "die Wochentage"
+    # Recognition only: A2 ships `Werktag` ("weekday, working day (Mon–Sat)") as a
+    # production card in zeit-termine-a2, and "weekday" is the standard English rendering
+    # of both — the prompt is owned two decks over, where no accept list here reaches it.
+    cards: recognition
+    en: day of the week
+    ru: день недели
+    uk: день тижня
+    example_de: An welchem Wochentag hast du frei?
+    example_en: Which day of the week do you have off?
+    example_ru: В какой день недели у тебя выходной?
+    example_uk: Якого дня тижня в тебе вихідний?
+    note:
+      en: 'All seven days, Monday through Sunday, as opposed to A2 Werktag, which covers only the ones on which work happens. English weekday translates both, which is exactly why they are so easy to swap. The days themselves are masculine and take an with the Dativ: am Montag, am Wochenende. In speech the noun is usually skipped altogether — Wann hast du frei? rather than An welchem Wochentag …?'
+      ru: 'Все семь дней, с понедельника по воскресенье, в отличие от Werktag уровня A2, который покрывает только рабочие. Английское weekday переводит оба слова — именно поэтому их так легко перепутать. Сами дни мужского рода и берут an с Dativ: am Montag, am Wochenende. В речи существительное обычно опускают: Wann hast du frei? вместо An welchem Wochentag …?'
+      uk: 'Усі сім днів, з понеділка до неділі, на відміну від Werktag рівня A2, який охоплює лише робочі. Англійське weekday перекладає обидва слова — саме тому їх так легко переплутати. Самі дні чоловічого роду й беруть an з Dativ: am Montag, am Wochenende. У мовленні іменник зазвичай оминають: Wann hast du frei? замість An welchem Wochentag …?'
+
+  - de: Tagesablauf
+    ipa: "ˈtaːgəsˌʔaplaʊ̯f"
+    pos: noun
+    gender: m
+    plural: "die Tagesabläufe"
+    # Recognition only: `Alltag` ("everyday life, daily routine") ships as a production
+    # card in alltag-tagesablauf, glossed "daily routine" letter for letter.
+    cards: recognition
+    en: daily routine, the shape of the day
+    ru: распорядок дня, режим дня
+    uk: розпорядок дня, режим дня
+    example_de: Seit der Geburt unseres Sohnes hat sich unser Tagesablauf völlig verändert.
+    example_en: Since the birth of our son our daily routine has completely changed.
+    example_ru: С рождением сына наш распорядок дня полностью изменился.
+    example_uk: Від народження сина наш розпорядок дня цілком змінився.
+    note:
+      en: 'A compound of Tag and Ablauf, the way something runs its course, joined by the -es- Fugenelement. It names the order of one day — getting up, work, meals, bed — while Alltag names ordinary life as a whole, the opposite of a holiday. A course programme calls its schedule der Ablauf; a shift plan is der Dienstplan. The plural takes an Umlaut: die Tagesabläufe.'
+      ru: 'Сложное слово из Tag и Ablauf («ход, течение»), соединённых вставкой -es-. Оно называет порядок одного дня — подъём, работа, еда, сон, — тогда как Alltag называет обыденную жизнь в целом, противоположность празднику. Программа курса зовёт свой распорядок der Ablauf; график смен — der Dienstplan. Множественное число с умлаутом: die Tagesabläufe.'
+      uk: 'Складне слово з Tag і Ablauf («перебіг, хід»), з’єднані вставкою -es-. Воно називає порядок одного дня — підйом, робота, їжа, сон, — тоді як Alltag називає буденне життя загалом, протилежність святу. Програма курсу зве свій розпорядок der Ablauf; графік змін — der Dienstplan. Множина з умлаутом: die Tagesabläufe.'
+
+  - de: Terminkalender
+    ipa: "tɛɐ̯ˈmiːnkaˌlɛndɐ"
+    pos: noun
+    gender: m
+    plural: "die Terminkalender"
+    # Recognition only: `Kalender` (termine-zeit) ships as a production card whose Russian
+    # and Ukrainian glosses are exactly this word — the prompt is owned there.
+    cards: recognition
+    en: appointment diary, work calendar
+    ru: ежедневник, календарь встреч
+    uk: щоденник зустрічей, робочий календар
+    example_de: Ich schaue kurz in meinen Terminkalender, ob der Freitag noch frei ist.
+    example_en: I will just look in my appointment diary to see whether Friday is still free.
+    example_ru: Я быстро загляну в ежедневник, свободна ли ещё пятница.
+    example_uk: Я швидко загляну в щоденник, чи вільна ще п’ятниця.
+    note:
+      en: 'Termin plus Kalender: the one with your appointments in it, on paper or on the phone, as opposed to a plain Kalender that only shows the dates. Its plural is identical to the singular, like every noun in -er. What you do with it: einen Termin eintragen, verschieben, absagen. The office word for the shared electronic one is der Kalender again, or der Outlook-Kalender.'
+      ru: 'Termin плюс Kalender: тот, где стоят ваши встречи, на бумаге или в телефоне, в отличие от простого Kalender, который показывает лишь даты. Множественное число совпадает с единственным, как у всех существительных на -er. Что с ним делают: einen Termin eintragen, verschieben, absagen. Общий электронный в офисе зовут просто der Kalender или der Outlook-Kalender.'
+      uk: 'Termin плюс Kalender: той, де стоять ваші зустрічі, на папері чи в телефоні, на відміну від простого Kalender, який показує лише дати. Множина збігається з одниною, як у всіх іменників на -er. Що з ним роблять: einen Termin eintragen, verschieben, absagen. Спільний електронний в офісі звуть просто der Kalender або der Outlook-Kalender.'
+
+  - de: Nationalfeiertag
+    ipa: "natsjoˈnaːlfaɪ̯ɐˌtaːk"
+    pos: noun
+    gender: m
+    plural: "die Nationalfeiertage"
+    # Recognition only: `Feiertag` ("public holiday") ships as a production card in
+    # zeit-termine-a2, and this is that word with a transparent first element bolted on —
+    # a compound the learner reads on a calendar and never has to build.
+    cards: recognition
+    en: national holiday, national day
+    ru: национальный праздник, государственный праздник
+    uk: національне свято, державне свято
+    example_de: Der dritte Oktober ist in Deutschland der Nationalfeiertag.
+    example_en: The third of October is the national holiday in Germany.
+    example_ru: Третье октября в Германии — национальный праздник.
+    example_uk: Третє жовтня в Німеччині — національне свято.
+    note:
+      en: 'Worth knowing in all three countries, because the Wortliste is trinational: Germany keeps the 3. Oktober as the Tag der Deutschen Einheit, Austria the 26. Oktober, and Switzerland the 1. August, which it calls der Bundesfeiertag. Like every Feiertag it is a day on which the shops stay shut. The first element National- attaches the same way in die Nationalmannschaft and der Nationalpark.'
+      ru: 'Знать стоит по всем трём странам, потому что список трёхнациональный: в Германии это 3 октября, Tag der Deutschen Einheit, в Австрии 26 октября, в Швейцарии 1 августа, и там его зовут der Bundesfeiertag. Как всякий Feiertag это день, когда магазины закрыты. Первый элемент National- присоединяется так же в die Nationalmannschaft и der Nationalpark.'
+      uk: 'Знати варто по всіх трьох країнах, бо список тринаціональний: у Німеччині це 3 жовтня, Tag der Deutschen Einheit, в Австрії 26 жовтня, у Швейцарії 1 серпня, і там його звуть der Bundesfeiertag. Як усякий Feiertag це день, коли крамниці зачинені. Перший елемент National- приєднується так само в die Nationalmannschaft і der Nationalpark.'
+
+  - de: Pfingsten
+    ipa: "ˈpfɪŋstn̩"
+    pos: noun
+    gender: n
+    plural: "—"
+    # Recognition only: a calendar word a B1 learner reads on a shop notice or a school
+    # timetable and is never asked to produce. Gender and plural follow the shipped
+    # precedent of A2's `Ostern` and `Weihnachten` (zeit-termine-a2), which take the same
+    # no-article behaviour, gender n and plural "—".
+    cards: recognition
+    en: Whitsun, Pentecost
+    ru: Троица, Пятидесятница
+    uk: Трійця, П’ятдесятниця
+    example_de: An Pfingsten fahren wir immer zu meinen Eltern aufs Land.
+    example_en: At Whitsun we always drive out to my parents in the country.
+    example_ru: На Троицу мы всегда ездим к родителям за город.
+    example_uk: На Трійцю ми завжди їздимо до батьків за місто.
+    note:
+      en: 'No article in ordinary use, exactly like A2 Ostern and Weihnachten: an Pfingsten, zu Pfingsten, Frohe Pfingsten! It looks like a plural and behaves as a singular — Pfingsten ist dieses Jahr spät. It is a movable feast, fifty days after Ostern, and in Germany and Austria the Monday after it is a public holiday, which is why school timetables show die Pfingstferien.'
+      ru: 'В обычном употреблении без артикля, ровно как Ostern и Weihnachten уровня A2: an Pfingsten, zu Pfingsten, Frohe Pfingsten! Выглядит как множественное число, а ведёт себя как единственное: Pfingsten ist dieses Jahr spät. Праздник переходящий, на пятидесятый день после Ostern, и в Германии и Австрии следующий за ним понедельник — нерабочий день, отчего в школьном расписании стоят die Pfingstferien.'
+      uk: 'У звичайному вжитку без артикля, точно як Ostern і Weihnachten рівня A2: an Pfingsten, zu Pfingsten, Frohe Pfingsten! Виглядає як множина, а поводиться як однина: Pfingsten ist dieses Jahr spät. Свято рухоме, на п’ятдесятий день після Ostern, і в Німеччині та Австрії наступний за ним понеділок — неробочий, через що у шкільному розкладі стоять die Pfingstferien.'
+
+  - de: dreiviertel
+    ipa: "ˈdʁaɪ̯ˌfɪʁtl̩"
+    pos: num
+    # Recognition only, for two reasons. `viertel` ("quarter (in clock times)") ships as a
+    # production card in zahlen-masse-a2, and the two-word `drei viertel` is equally
+    # correct German — a typed card would grade a space, which is the `so viel` ruling.
+    # The sense taught here is the duration `eine dreiviertel Stunde`, standard
+    # everywhere; the clock reading is regional and the note says so.
+    cards: recognition
+    en: three quarters (of an hour)
+    ru: три четверти (часа)
+    uk: три чверті (години)
+    example_de: Bis zum Bahnhof braucht man zu Fuß eine dreiviertel Stunde.
+    example_en: It takes three quarters of an hour to walk to the station.
+    example_ru: До вокзала пешком идти три четверти часа.
+    example_uk: До вокзалу пішки йти три чверті години.
+    note:
+      en: 'Standard everywhere in the duration phrase eine dreiviertel Stunde, forty-five minutes, where it stands in front of the noun and takes no endings; written as two words, drei viertel Stunden means the same. The clock reading is a different matter and it is regional: in southern Germany, Austria and eastern Germany dreiviertel drei means 2:45, counting how much of the hour towards three has already gone, and viertel drei means 2:15. Standard German and the whole north say Viertel vor drei and Viertel nach zwei instead. So if you hear dreiviertel acht, it is 7:45 and not 8:45.'
+      ru: 'Повсеместно стандартно в обороте длительности eine dreiviertel Stunde — сорок пять минут, — где слово стоит перед существительным и не получает окончаний; раздельное drei viertel Stunden значит то же. С часами дело другое, и там употребление областное: на юге Германии, в Австрии и на востоке Германии dreiviertel drei значит 2:45 — считают, сколько часа до трёх уже прошло, — а viertel drei значит 2:15. Стандартный немецкий и весь север скажут вместо этого Viertel vor drei и Viertel nach zwei. Так что если вы слышите dreiviertel acht, это 7:45, а не 8:45.'
+      uk: 'Повсюдно стандартно у звороті тривалості eine dreiviertel Stunde — сорок п’ять хвилин, — де слово стоїть перед іменником і не отримує закінчень; окреме drei viertel Stunden означає те саме. З годинником справа інша, і там ужиток обласний: на півдні Німеччини, в Австрії та на сході Німеччини dreiviertel drei означає 2:45 — лічать, скільки години до третьої вже минуло, — а viertel drei означає 2:15. Стандартна німецька і вся північ скажуть натомість Viertel vor drei і Viertel nach zwei. Тож якщо ви чуєте dreiviertel acht, це 7:45, а не 8:45.'

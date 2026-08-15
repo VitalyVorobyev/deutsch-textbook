@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 import { progressWriter } from './src/integrations/progress-writer';
 import { audioBundle } from './src/integrations/audio-bundle';
+import { pwa } from './src/integrations/pwa';
 
 // Astro prefixes redirect *sources* with the base but emits destinations
 // literally, so subpath deployments (GitHub Pages) need the prefix here.
@@ -13,9 +14,10 @@ const base = process.env.BASE_PATH ?? '/';
 const withBase = (path) => (base === '/' ? path : base.replace(/\/$/, '') + path);
 
 export default defineConfig({
-  // SITE_URL/BASE_PATH are set by the GitHub Pages workflow; local dev and
-  // plain builds keep the site at the root.
-  site: process.env.SITE_URL ?? 'https://deutsch-atlas.local',
+  // Cloudflare Pages serves at the root, so BASE_PATH is unset there and in
+  // local dev. It stays supported because the Tauri shell and any subpath
+  // mirror still need it, and `withBase` (src/lib/url.ts) is the one helper.
+  site: process.env.SITE_URL ?? 'https://deutsch.vitavision.dev',
   base,
   // Static meta-refresh redirect pages — work on GitHub Pages and in the
   // Tauri shell. /vocab/<id> deck detail pages stay at their old URLs.
@@ -31,7 +33,8 @@ export default defineConfig({
   // product here, so keep the HTML-aware compression the articles were written
   // against rather than chasing every wrap point with {' '}.
   compressHTML: true,
-  integrations: [mdx(), react(), progressWriter(), audioBundle()],
+  // pwa() last: it hashes what the other integrations emitted into the build id.
+  integrations: [mdx(), react(), progressWriter(), audioBundle(), pwa()],
   vite: {
     plugins: [tailwindcss()],
   },

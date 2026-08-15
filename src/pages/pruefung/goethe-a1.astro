@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import UebenNav from '../../components/UebenNav.astro';
+import GoetheExamSimulator from '../../components/pruefung/GoetheExamSimulator';
+import { withBase } from '../../lib/url';
+---
+
+<Base title="Prüfungssimulator — Goethe-Zertifikat A1" description="Simulator für die offiziellen Modellsätze (lokale Materialien)">
+  <UebenNav active="pruefung" />
+  <nav class="mb-4 text-sm text-stone-400">
+    <a href={withBase('/pruefung/a1')} class="hover:text-stone-600 dark:hover:text-stone-200">Prüfungspraxis A1</a>
+    <span> / Simulator</span>
+  </nav>
+  <header class="mb-6">
+    <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">A1</span>
+    <h1 lang="de" class="mt-3 text-3xl font-bold">Prüfungssimulator</h1>
+    <p class="mt-2 text-stone-500">
+      <span class="lang-en">Timed runs of the official Goethe-Institut practice sets — Hören, Lesen and Schreiben with the real answer sheets, Sprechen as task cards, and the full written exam in one sitting. Materials stay on this device and are never part of the public site. Results are calibration only: they never count toward mastery, and the Schreiben free part is a self-assessment against the printed criteria, stored as exactly that.</span>
+      <span class="lang-ru">Прогон официальных тренировочных комплектов Гёте-Института на время — Hören, Lesen и Schreiben с настоящими бланками ответов, Sprechen в виде карточек с заданиями, а также вся письменная часть подряд. Материалы остаются на этом устройстве и не входят в публичный сайт. Результаты служат только для самооценки и не влияют на освоение тем; свободная часть Schreiben оценивается по печатным критериям самостоятельно и так и сохраняется.</span>
+      <span class="lang-uk">Проходження офіційних тренувальних комплектів Ґете-Інституту на час — Hören, Lesen і Schreiben зі справжніми бланками відповідей, Sprechen у вигляді карток із завданнями, а також уся письмова частина поспіль. Матеріали залишаються на цьому пристрої й не входять до публічного сайту. Результати слугують лише для самооцінки й не впливають на опанування тем; вільна частина Schreiben оцінюється за друкованими критеріями самостійно й саме так і зберігається.</span>
+    </p>
+  </header>
+  <GoetheExamSimulator client:only="react" />
+</Base>

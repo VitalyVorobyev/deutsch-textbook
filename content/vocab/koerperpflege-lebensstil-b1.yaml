@@ -1,0 +1,447 @@
+# Goethe-B1 Wortliste completion deck — unowned by any topic (gates its fresh cards
+# on the learner's level, not on a topic being opened). It drains the body-care and
+# lifestyle field of data/goethe-b1-wortliste.txt: what a person does to himself in
+# front of the mirror every morning, what he is judged to look like afterwards, and
+# the vocabulary a health leaflet uses for smoking, drinking and the point at which a
+# habit stops being one. This is the German of a chemist's shelf, a hotel form and the
+# health page of a newspaper.
+# A2's `koerper-pflege-a2` owns der Körper, die Seife, die Dusche, das Handtuch,
+# die Creme, das Gesicht and rauchen, A1's `koerper-gesundheit` owns der Zahn, die
+# Gesundheit and das Medikament, A1's `alltag-a1-ergaenzung` owns putzen and duschen,
+# A2's `berufe-a2` owns der Friseur and die Friseurin, B1's `koerper-medizin-b1` owns
+# der Bart, die Haut, die Lippe, die Diät and ernähren, B1's `gesundheit-wohlbefinden`
+# owns die Ernährung and die Gewohnheit, A2's `charakter-eigenschaften-a2` owns dick
+# and dünn, and B1's `haushalt-notfall-b1` owns die Bürste, das Feuerzeug and das
+# Streichholz. This deck is what those eight leave unnamed: the act, the tube it comes
+# out of, the word for the person with the habit, and the word for the habit that has
+# stopped being one.
+# Every entry is `cards: recognition` by the tiering frozen in wave 2c. This field is
+# read, never written: the learner says Ich putze mir die Zähne out of A1 and A2 words,
+# and everything here is what the packaging, the sign on the door and the leaflet in
+# the waiting room say back at him.
+id: koerperpflege-lebensstil-b1
+title_de: "Körperpflege und Lebensstil"
+title_en: "Personal care and lifestyle"
+title_ru: "Уход за собой и образ жизни"
+title_uk: "Догляд за собою і спосіб життя"
+level: B1
+entries:
+  # --- Sich pflegen ---
+  - de: pflegen
+    ipa: "ˈpfleːgn̩"
+    pos: verb
+    praesens_3sg: pflegt
+    partizip2: gepflegt
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to look after somebody or something regularly so that it stays in good condition
+    ru: регулярно ухаживать за кем-либо или чем-либо, чтобы оно оставалось в порядке
+    uk: регулярно доглядати когось або щось, щоб воно лишалося в порядку
+    example_de: Sie pflegt ihre Mutter seit drei Jahren zu Hause.
+    example_en: She has been caring for her mother at home for three years.
+    example_ru: Она уже три года ухаживает за матерью дома.
+    example_uk: Вона вже три роки доглядає матір удома.
+    note:
+      en: 'Weak, and it takes a plain accusative object where English needs a preposition: she cares FOR her mother, but sie pflegt ihre Mutter. The nursing sense gives the professions B1 der Pfleger and die Pflegerin in the deck `berufe-b1`, and the noun die Pflege covers a person and a thing alike: die Hautpflege, die Zahnpflege, die Altenpflege. A2 sich kümmern in the deck `gefuehle-reflexive-a2` needs um plus the accusative and means seeing that something gets done, while this verb is the doing. The participle works as an adjective: eine gepflegte Wohnung.'
+      ru: 'Слабый, и управляет он прямым дополнением в винительном там, где русский требует предлога: «ухаживать ЗА матерью», но sie pflegt ihre Mutter, без всякого предлога. Значение ухода за больными даёт профессии der Pfleger и die Pflegerin уровня B1 из колоды `berufe-b1`, а существительное die Pflege покрывает и человека, и вещь: die Hautpflege, die Zahnpflege, die Altenpflege. sich kümmern уровня A2 из колоды `gefuehle-reflexive-a2` требует um с винительным и значит «позаботиться, чтобы дело было сделано», а этот глагол — само делание. Причастие работает прилагательным: eine gepflegte Wohnung.'
+      uk: 'Слабке, і керує воно прямим додатком у знахідному там, де українська потребує прийменника: «доглядати ЗА матір’ю» або «доглядати матір», але німецька знає лише другий спосіб: sie pflegt ihre Mutter. Значення догляду за хворими дає професії der Pfleger і die Pflegerin рівня B1 з колоди `berufe-b1`, а іменник die Pflege покриває і людину, і річ: die Hautpflege, die Zahnpflege, die Altenpflege. sich kümmern рівня A2 з колоди `gefuehle-reflexive-a2` потребує um зі знахідним і означає «подбати, щоб справу було зроблено», а це дієслово — саме робіння. Дієприкметник працює прикметником: eine gepflegte Wohnung.'
+
+  - de: rasieren
+    ipa: "ʁaˈziːʁən"
+    pos: verb
+    praesens_3sg: rasiert
+    partizip2: rasiert
+    aux: haben
+    valence: "+ Akk / sich"
+    cards: recognition
+    en: to take hair off the skin with a blade
+    ru: снимать волосы с кожи лезвием
+    uk: знімати волосся зі шкіри лезом
+    example_de: Er rasiert sich jeden Morgen vor dem Frühstück.
+    example_en: He shaves every morning before breakfast.
+    example_ru: Он бреется каждое утро перед завтраком.
+    example_uk: Він голиться щоранку перед сніданком.
+    note:
+      en: 'Weak and inseparable, so there is no ge- in the participle: hat rasiert. It works both ways round, which is why the Wortliste prints it as (sich) rasieren: sich rasieren is what a person does to himself, jemanden rasieren is what a barber does, and den Bart rasieren names the thing removed. B1 der Bart in the deck `koerper-medizin-b1` is usually what goes; the tool is der Rasierer or der Rasierapparat and the foam der Rasierschaum. Schminken below is declared the same way and for the same reason.'
+      ru: 'Слабый и неотделяемый, поэтому в причастии нет ge-: hat rasiert. Глагол работает в обе стороны, потому Wortliste и печатает его как (sich) rasieren: sich rasieren — то, что человек делает с собой, jemanden rasieren — то, что делает парикмахер, а den Bart rasieren называет удаляемое. der Bart уровня B1 из колоды `koerper-medizin-b1` — обычно то, что сбривают; прибор — der Rasierer или der Rasierapparat, пена — der Rasierschaum. Schminken ниже описан так же и по той же причине.'
+      uk: 'Слабке і невідокремлюване, тому в дієприкметнику немає ge-: hat rasiert. Дієслово працює в обидва боки, тому Wortliste і друкує його як (sich) rasieren: sich rasieren — те, що людина робить із собою, jemanden rasieren — те, що робить перукар, а den Bart rasieren називає те, що зголюють. der Bart рівня B1 з колоди `koerper-medizin-b1` — зазвичай те, що йде геть; прилад — der Rasierer або der Rasierapparat, піна — der Rasierschaum. Schminken нижче описано так само і з тієї самої причини.'
+
+  - de: schminken
+    ipa: "ˈʃmɪŋkn̩"
+    pos: verb
+    praesens_3sg: schminkt
+    partizip2: geschminkt
+    aux: haben
+    valence: "+ Akk / sich"
+    cards: recognition
+    en: to put colour on a face to change the way it looks
+    ru: наносить краску на лицо, чтобы изменить его вид
+    uk: наносити фарбу на обличчя, щоб змінити його вигляд
+    example_de: Sie schminkt sich nur, wenn sie ausgeht.
+    example_en: She only puts make-up on when she is going out.
+    example_ru: Она красится, только когда куда-нибудь идёт.
+    example_uk: Вона фарбується, тільки коли кудись іде.
+    note:
+      en: 'Weak, and the nk is ŋ plus k. Like rasieren above it is reflexive and transitive at once: sich schminken is the daily one, jemanden schminken is what a theatre does before the curtain goes up, and die Augen schminken names the part. The stuff itself is die Schminke, or, far more often today, das Make-up; A2 das Gesicht in the deck `koerper-pflege-a2` is where it goes and A2 die Creme in the same deck is what comes off with it. The participle serves as an adjective: stark geschminkt.'
+      ru: 'Слабый, nk звучит как ŋ плюс k. Как и rasieren выше, он разом возвратный и переходный: sich schminken — ежедневное, jemanden schminken — то, что делают в театре перед выходом, а die Augen schminken называет часть лица. Само вещество — die Schminke или, куда чаще сегодня, das Make-up; das Gesicht уровня A2 из колоды `koerper-pflege-a2` — то, на что наносят, а die Creme из той же колоды — то, чем снимают. Причастие служит прилагательным: stark geschminkt.'
+      uk: 'Слабке, nk звучить як ŋ плюс k. Як і rasieren вище, воно водночас зворотне і перехідне: sich schminken — щоденне, jemanden schminken — те, що роблять у театрі перед виходом, а die Augen schminken називає частину обличчя. Сама речовина — die Schminke або, куди частіше сьогодні, das Make-up; das Gesicht рівня A2 з колоди `koerper-pflege-a2` — те, на що наносять, а die Creme з тієї самої колоди — те, чим знімають. Дієприкметник служить прикметником: stark geschminkt.'
+
+  - de: Frisur
+    ipa: "fʁiˈzuːɐ̯"
+    pos: noun
+    gender: f
+    plural: "die Frisuren"
+    cards: recognition
+    en: the way somebody's hair has been cut and arranged
+    ru: то, как подстрижены и уложены волосы
+    uk: те, як підстрижене й укладене волосся
+    example_de: Deine neue Frisur steht dir wirklich gut.
+    example_en: Your new hairstyle really suits you.
+    example_ru: Новая причёска тебе очень идёт.
+    example_uk: Нова зачіска тобі дуже пасує.
+    note:
+      en: 'A French loan stressed on the last syllable, feminine, plural in -en. It is the result rather than the hair: A1 die Haare in the deck `menschen-familie` is what a person has, and this is what has been done with it. Who does it is A2 der Friseur and die Friseurin in the deck `berufe-a2`, and the verb frisieren is used far less than the noun. Chunks: eine neue Frisur, zum Friseur gehen, sich die Haare schneiden lassen.'
+      ru: 'Французское заимствование с ударением на последнем слоге, женский род, множественное на -en. Это результат, а не сами волосы: die Haare уровня A1 из колоды `menschen-familie` — то, что у человека есть, а здесь — то, что с этим сделали. Делает это der Friseur и die Friseurin уровня A2 из колоды `berufe-a2`, а глагол frisieren употребляется куда реже существительного. Обороты: eine neue Frisur, zum Friseur gehen, sich die Haare schneiden lassen.'
+      uk: 'Французьке запозичення з наголосом на останньому складі, жіночий рід, множина на -en. Це результат, а не саме волосся: die Haare рівня A1 з колоди `menschen-familie` — те, що людина має, а тут — те, що з цим зробили. Робить це der Friseur і die Friseurin рівня A2 з колоди `berufe-a2`, а дієслово frisieren вживається куди рідше за іменник. Звороти: eine neue Frisur, zum Friseur gehen, sich die Haare schneiden lassen.'
+
+  - de: Zahnbürste
+    ipa: "ˈtsaːnˌbʏʁstə"
+    pos: noun
+    gender: f
+    plural: "die Zahnbürsten"
+    cards: recognition
+    en: the small brush a person cleans their teeth with
+    ru: маленькая щётка, которой чистят зубы
+    uk: маленька щітка, якою чистять зуби
+    example_de: Meine Zahnbürste ist alt, ich brauche eine neue.
+    example_en: My toothbrush is old, I need a new one.
+    example_ru: Моя зубная щётка старая, нужна новая.
+    example_uk: Моя зубна щітка стара, потрібна нова.
+    note:
+      en: 'A1 der Zahn in the deck `koerper-gesundheit` plus B1 die Bürste in the deck `haushalt-notfall-b1`, with the main stress on Zahn- and a secondary one on Bür-. The daily chunk uses A1 putzen in the deck `alltag-a1-ergaenzung` and puts the teeth in the accusative with the person in the dative: sich die Zähne putzen, ich putze mir die Zähne. The powered kind is die elektrische Zahnbürste; what goes on it is Zahnpasta or Zahncreme, the next two entries.'
+      ru: 'der Zahn уровня A1 из колоды `koerper-gesundheit` плюс die Bürste уровня B1 из колоды `haushalt-notfall-b1`, главное ударение на Zahn-, побочное на Bür-. Ежедневный оборот берёт putzen уровня A1 из колоды `alltag-a1-ergaenzung` и ставит зубы в винительный, а человека в дательный: sich die Zähne putzen, ich putze mir die Zähne. Электрическая — die elektrische Zahnbürste; то, что на неё выдавливают, — Zahnpasta или Zahncreme, две следующие записи.'
+      uk: 'der Zahn рівня A1 з колоди `koerper-gesundheit` плюс die Bürste рівня B1 з колоди `haushalt-notfall-b1`, головний наголос на Zahn-, побічний на Bür-. Щоденний зворот бере putzen рівня A1 з колоди `alltag-a1-ergaenzung` і ставить зуби у знахідний, а людину в давальний: sich die Zähne putzen, ich putze mir die Zähne. Електрична — die elektrische Zahnbürste; те, що на неї видавлюють, — Zahnpasta або Zahncreme, два наступні записи.'
+
+  - de: Zahnpasta
+    ipa: "ˈtsaːnˌpasta"
+    pos: noun
+    gender: f
+    plural: "die Zahnpasten"
+    cards: recognition
+    en: the paste squeezed out of a tube to clean teeth with
+    ru: паста, которую выдавливают из тюбика, чтобы чистить зубы
+    uk: паста, яку видавлюють із тюбика, щоб чистити зуби
+    example_de: Die Zahnpasta ist fast leer.
+    example_en: The toothpaste is nearly finished.
+    example_ru: Зубная паста почти кончилась.
+    example_uk: Зубна паста майже скінчилася.
+    note:
+      en: 'From Italian pasta, feminine, and the plural swaps the ending for -en: die Zahnpasten. Nobody counts it in a bathroom, so that plural belongs to a shelf and a price list. Zahncreme, the next entry, means the same thing, and a German supermarket carries both words without any difference in the product; the Wortliste lists the two of them one after the other for that reason. The tube is die Tube, and it is used with die Zahnbürste above.'
+      ru: 'От итальянского pasta, женский род, а во множественном окончание меняется на -en: die Zahnpasten. В ванной никто её не считает, поэтому множественное принадлежит полке магазина и прайс-листу. Zahncreme, следующая запись, значит то же самое, и немецкий супермаркет держит оба слова без всякой разницы в товаре; Wortliste и перечисляет их подряд именно поэтому. Тюбик — die Tube, а пользуются пастой вместе с die Zahnbürste выше.'
+      uk: 'Від італійського pasta, жіночий рід, а в множині закінчення міняється на -en: die Zahnpasten. У ванній ніхто її не рахує, тому множина належить полиці крамниці й прайс-листу. Zahncreme, наступний запис, означає те саме, і німецький супермаркет тримає обидва слова без жодної різниці в товарі; Wortliste і перелічує їх поспіль саме тому. Тюбик — die Tube, а користуються пастою разом із die Zahnbürste вище.'
+
+  - de: Zahncreme
+    ipa: "ˈtsaːnˌkʁeːm"
+    pos: noun
+    gender: f
+    plural: "die Zahncremes"
+    cards: recognition
+    en: the same paste for cleaning teeth, named as a cream instead of a paste
+    ru: та же паста для чистки зубов, названная кремом, а не пастой
+    uk: та сама паста для чищення зубів, названа кремом, а не пастою
+    example_de: Diese Zahncreme schmeckt stark nach Minze.
+    example_en: This toothpaste tastes strongly of mint.
+    example_ru: Эта зубная паста сильно отдаёт мятой.
+    example_uk: Ця зубна паста сильно віддає м’ятою.
+    note:
+      en: 'A2 die Creme in the deck `koerper-pflege-a2` compounded with A1 der Zahn, spoken kʁeːm with no vowel at the end, and the plural adds -s. It is the near twin of Zahnpasta above, and which one appears on a tube is a matter of the brand''s habit rather than of the substance, so a learner needs to recognise both and may produce either. In Switzerland the plural die Cremen also occurs, and Germany writes Creme where French writes crème.'
+      ru: 'die Creme уровня A2 из колоды `koerper-pflege-a2` в сложении с der Zahn уровня A1, произносится kʁeːm без гласного на конце, множественное прибавляет -s. Это близнец Zahnpasta выше, и какое из двух слов стоит на тюбике, решает привычка марки, а не состав, — значит, узнавать нужно оба, а называть можно любое. В Швейцарии встречается и множественное die Cremen, а Германия пишет Creme там, где французский пишет crème.'
+      uk: 'die Creme рівня A2 з колоди `koerper-pflege-a2` у складенні з der Zahn рівня A1, вимовляється kʁeːm без голосного в кінці, множина додає -s. Це близнюк Zahnpasta вище, і яке з двох слів стоїть на тюбику, вирішує звичка марки, а не склад, — отже, упізнавати треба обидва, а називати можна будь-яке. У Швейцарії трапляється й множина die Cremen, а Німеччина пише Creme там, де французька пише crème.'
+
+  # --- Wie jemand aussieht ---
+  - de: hübsch
+    ipa: "ˈhʏpʃ"
+    pos: adj
+    cards: recognition
+    en: pleasant to look at, in a light and friendly way rather than a grand one
+    ru: приятный на вид, скорее мило и по-домашнему, чем величественно
+    uk: приємний на вигляд, радше мило й по-домашньому, ніж велично
+    example_de: Sie haben eine hübsche kleine Wohnung.
+    example_en: They have a pretty little flat.
+    example_ru: У них милая маленькая квартира.
+    example_uk: У них мила маленька квартира.
+    note:
+      en: 'The b before sch is spoken p. It sits a step below A1 schön in the deck `wohnen`: schön can be said of anything from a face to a symphony, while hübsch stays small and warm, and of a man it is used far less than of a woman or a thing. It works on places and objects too, as the example shows. In front of a number it means considerable, with a touch of irony: eine hübsche Summe, ein hübsches Stück Arbeit.'
+      ru: 'B перед sch звучит как p. Слово стоит ступенью ниже, чем schön уровня A1 из колоды `wohnen`: schön говорят обо всём, от лица до симфонии, а hübsch остаётся маленьким и тёплым, и о мужчине его употребляют куда реже, чем о женщине или о вещи. О местах и предметах работает тоже, как в примере. Перед числом значит «изрядный», с оттенком иронии: eine hübsche Summe, ein hübsches Stück Arbeit.'
+      uk: 'B перед sch звучить як p. Слово стоїть щаблем нижче, ніж schön рівня A1 з колоди `wohnen`: schön кажуть про все, від обличчя до симфонії, а hübsch лишається маленьким і теплим, і про чоловіка його вживають куди рідше, ніж про жінку чи про річ. Про місця й предмети працює теж, як у прикладі. Перед числом означає «неабиякий», з відтінком іронії: eine hübsche Summe, ein hübsches Stück Arbeit.'
+
+  - de: schlank
+    ipa: "ˈʃlaŋk"
+    pos: adj
+    cards: recognition
+    en: thin in a way that is meant as a compliment
+    ru: худощавый так, что это звучит похвалой
+    uk: худорлявий так, що це звучить похвалою
+    example_de: Seit dem Sommer ist er deutlich schlanker geworden.
+    example_en: He has become noticeably slimmer since the summer.
+    example_ru: С лета он заметно похудел.
+    example_uk: Від літа він помітно схуднув.
+    note:
+      en: 'The nk is ŋ plus k. Of a person it is the polite word: A2 dünn in the deck `charakter-eigenschaften-a2` can sound like a diagnosis and A2 dick in the same deck is blunt. The verbs for the change are A2 abnehmen and zunehmen in the deck `infinitiv-mit-zu`, and the field around it is B1 die Ernährung in the deck `gesundheit-wohlbefinden`, B1 die Diät in the deck `koerper-medizin-b1` and B1 die Fitness in the deck `sport-freizeit-b1`. Business German borrowed the word for schlanke Strukturen, meaning lean ones.'
+      ru: 'Nk звучит как ŋ плюс k. О человеке это вежливое слово: dünn уровня A2 из колоды `charakter-eigenschaften-a2` может прозвучать как диагноз, а dick из той же колоды прямолинейно. Глаголы перемены — abnehmen и zunehmen уровня A2 из колоды `infinitiv-mit-zu`, а поле вокруг — die Ernährung уровня B1 из колоды `gesundheit-wohlbefinden`, die Diät уровня B1 из колоды `koerper-medizin-b1` и die Fitness уровня B1 из колоды `sport-freizeit-b1`. Деловой немецкий позаимствовал слово для schlanke Strukturen — «облегчённые структуры».'
+      uk: 'Nk звучить як ŋ плюс k. Про людину це ввічливе слово: dünn рівня A2 з колоди `charakter-eigenschaften-a2` може прозвучати як діагноз, а dick із тієї самої колоди прямолінійне. Дієслова зміни — abnehmen і zunehmen рівня A2 з колоди `infinitiv-mit-zu`, а поле навколо — die Ernährung рівня B1 з колоди `gesundheit-wohlbefinden`, die Diät рівня B1 з колоди `koerper-medizin-b1` і die Fitness рівня B1 з колоди `sport-freizeit-b1`. Ділова німецька запозичила слово для schlanke Strukturen — «полегшені структури».'
+
+  - de: anhaben
+    ipa: "ˈanˌhaːbn̩"
+    pos: verb
+    praesens_3sg: hat an
+    partizip2: angehabt
+    aux: haben
+    valence: "+ Akk"
+    cards: recognition
+    en: to have a piece of clothing on
+    ru: быть одетым во что-либо
+    uk: бути вдягненим у щось
+    example_de: Sie hat heute ein rotes Kleid an.
+    example_en: She has a red dress on today.
+    example_ru: На ней сегодня красное платье.
+    example_uk: На ній сьогодні червона сукня.
+    note:
+      en: 'Separable, so the an goes to the end of the clause: sie hat ein Kleid an, sie hat ein Kleid angehabt. It names the state, and it needs a garment beside it, which is why there is no bare sie hat an. A1 tragen in the deck `kleidung-farben` says the same thing in a more neutral register and also covers carrying; A1 anziehen in the same deck is the act of putting the garment on. In the negative the verb has a second, idiomatic life: Das kann mir nichts anhaben, meaning it cannot touch me.'
+      ru: 'Отделяемый, поэтому an уходит в конец: sie hat ein Kleid an, sie hat ein Kleid angehabt. Слово называет состояние и требует рядом названия одежды — потому голого sie hat an не бывает. tragen уровня A1 из колоды `kleidung-farben` говорит то же нейтральнее и покрывает ещё и «нести»; anziehen из той же колоды — само действие надевания. В отрицании у глагола есть вторая, идиоматическая жизнь: Das kann mir nichts anhaben — «мне это нипочём».'
+      uk: 'Відокремлюване, тому an іде в кінець: sie hat ein Kleid an, sie hat ein Kleid angehabt. Слово називає стан і потребує поряд назви одягу — тому голого sie hat an не буває. tragen рівня A1 з колоди `kleidung-farben` каже те саме нейтральніше і покриває ще й «нести»; anziehen з тієї самої колоди — сама дія вдягання. У запереченні дієслово має друге, ідіоматичне життя: Das kann mir nichts anhaben — «мені це байдуже».'
+
+  - de: stinken
+    ipa: "ˈʃtɪŋkn̩"
+    pos: verb
+    praesens_3sg: stinkt
+    partizip2: gestunken
+    aux: haben
+    cards: recognition
+    en: to give off a strong bad smell
+    ru: издавать сильный дурной запах
+    uk: видавати сильний поганий запах
+    example_de: Im Treppenhaus stinkt es nach Zigaretten.
+    example_en: The stairwell stinks of cigarettes.
+    example_ru: На лестнице воняет сигаретами.
+    example_uk: На сходах смердить сигаретами.
+    note:
+      en: 'Strong, with three different stem vowels: stinken, stank, hat gestunken. What it smells of follows nach plus the dative, and the impersonal es stinkt nach is the commonest frame, exactly as in the example. A2 riechen in the deck `verben-handlungen-a2-2` is neutral and needs an adverb to say whether the smell is good, gut riechen or schlecht riechen; this verb has the judgement built in and is a shade coarse. Figuratively Die Sache stinkt means something about it is not right.'
+      ru: 'Сильный, с тремя разными корневыми гласными: stinken, stank, hat gestunken. Источник запаха вводится через nach с дательным, и безличное es stinkt nach — самая частая конструкция, ровно как в примере. riechen уровня A2 из колоды `verben-handlungen-a2-2` нейтрально и требует наречия, чтобы сказать, хорош ли запах: gut riechen или schlecht riechen; в этом глаголе оценка уже встроена, и он слегка груб. Переносно Die Sache stinkt значит «дело нечисто».'
+      uk: 'Сильне, з трьома різними кореневими голосними: stinken, stank, hat gestunken. Джерело запаху вводиться через nach з давальним, і безособове es stinkt nach — найчастіша конструкція, точно як у прикладі. riechen рівня A2 з колоди `verben-handlungen-a2-2` нейтральне і потребує прислівника, щоб сказати, чи запах добрий: gut riechen або schlecht riechen; у цьому дієслові оцінка вже вбудована, і воно трохи грубе. Переносно Die Sache stinkt означає «справа нечиста».'
+
+  # --- Rauchen ---
+  - de: Zigarette
+    ipa: "tsigaˈʁɛtə"
+    pos: noun
+    gender: f
+    plural: "die Zigaretten"
+    cards: recognition
+    en: a thin paper roll of tobacco that is lit and smoked
+    ru: тонкая бумажная трубочка с табаком, которую поджигают и курят
+    uk: тонка паперова трубочка з тютюном, яку підпалюють і курять
+    example_de: Er hat sich vor der Tür eine Zigarette angezündet.
+    example_en: He lit a cigarette outside the door.
+    example_ru: Он закурил сигарету у двери.
+    example_uk: Він запалив сигарету біля дверей.
+    note:
+      en: 'A French loan stressed on the -re-, feminine, ordinary plural. The verb is A2 rauchen in the deck `koerper-pflege-a2`, and eine Zigarette rauchen is the full chunk. What lights it is B1 das Feuerzeug or B1 das Streichholz in the deck `haushalt-notfall-b1`. A packet is eine Schachtel Zigaretten, and the people who do and do not are Raucher and Nichtraucher below. The tobacco itself is der Tabak.'
+      ru: 'Французское заимствование с ударением на -re-, женский род, множественное обычное. Глагол — rauchen уровня A2 из колоды `koerper-pflege-a2`, а полный оборот — eine Zigarette rauchen. Поджигают её das Feuerzeug или das Streichholz уровня B1 из колоды `haushalt-notfall-b1`. Пачка — eine Schachtel Zigaretten, а те, кто курит и не курит, — Raucher и Nichtraucher ниже. Сам табак — der Tabak.'
+      uk: 'Французьке запозичення з наголосом на -re-, жіночий рід, множина звичайна. Дієслово — rauchen рівня A2 з колоди `koerper-pflege-a2`, а повний зворот — eine Zigarette rauchen. Підпалюють її das Feuerzeug або das Streichholz рівня B1 з колоди `haushalt-notfall-b1`. Пачка — eine Schachtel Zigaretten, а ті, хто курить і не курить, — Raucher і Nichtraucher нижче. Сам тютюн — der Tabak.'
+
+  - de: Raucher
+    ipa: "ˈʁaʊ̯xɐ"
+    pos: noun
+    gender: m
+    plural: "die Raucher"
+    cards: recognition
+    en: a man who smokes, named for the habit rather than for a single occasion
+    ru: 'мужчина, который курит: назван по привычке, а не по одному случаю'
+    uk: 'чоловік, який курить: названий за звичкою, а не за одним випадком'
+    example_de: Sind Sie Raucher oder Nichtraucher?
+    example_en: Are you a smoker or a non-smoker?
+    example_ru: Вы курящий или некурящий?
+    example_uk: Ви курець чи не курець?
+    note:
+      en: 'A2 rauchen in the deck `koerper-pflege-a2` plus -er, with singular and plural spelled alike. German asks the question in the example with no article at all, because a bare noun after sein names a category rather than an individual. The area set aside is der Raucherbereich and a hotel offers ein Raucherzimmer or ein Nichtraucherzimmer. The heavy smoker is ein starker Raucher, not ein schwerer. The feminine is die Raucherin, the next entry.'
+      ru: 'rauchen уровня A2 из колоды `koerper-pflege-a2` плюс -er, единственное и множественное пишутся одинаково. Вопрос из примера немец задаёт вовсе без артикля: голое существительное после sein называет разряд, а не отдельного человека. Отведённая зона — der Raucherbereich, а гостиница предлагает ein Raucherzimmer или ein Nichtraucherzimmer. Заядлый курильщик — ein starker Raucher, а не ein schwerer. Женская пара — die Raucherin, следующая запись.'
+      uk: 'rauchen рівня A2 з колоди `koerper-pflege-a2` плюс -er, однина і множина пишуться однаково. Питання з прикладу німець ставить зовсім без артикля: голий іменник після sein називає розряд, а не окрему людину. Відведена зона — der Raucherbereich, а готель пропонує ein Raucherzimmer або ein Nichtraucherzimmer. Затятий курець — ein starker Raucher, а не ein schwerer. Жіноча пара — die Raucherin, наступний запис.'
+
+  - de: Raucherin
+    ipa: "ˈʁaʊ̯xəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Raucherinnen"
+    cards: recognition
+    en: a woman who smokes
+    ru: женщина, которая курит
+    uk: жінка, яка курить
+    example_de: Meine Kollegin ist starke Raucherin.
+    example_en: My colleague is a heavy smoker.
+    example_ru: Моя коллега заядлая курильщица.
+    example_uk: Моя колега багато курить.
+    note:
+      en: 'Regular Movierung with -in and a doubled n in the plural. It is used wherever the masculine would be, but a sign, a form and a booking page almost always print the masculine or the plural, because they address a category and not a person. Starke Raucherin in the example is the fixed collocation, and the abstract wording a health campaign prefers is das Rauchverhalten rather than any personal noun at all.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается. Употребляется всюду, где стояла бы мужская форма, но табличка, бланк и страница бронирования почти всегда печатают мужскую или множественную: они обращаются к разряду, а не к человеку. Starke Raucherin в примере — устойчивое сочетание, а отвлечённая формулировка, которую предпочитает кампания за здоровье, — das Rauchverhalten, вовсе без слова о лице.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється. Уживається всюди, де стояла б чоловіча форма, але табличка, бланк і сторінка бронювання майже завжди друкують чоловічу або множинну: вони звертаються до розряду, а не до людини. Starke Raucherin у прикладі — усталене сполучення, а відсторонене формулювання, яке воліє кампанія за здоров’я, — das Rauchverhalten, зовсім без слова про особу.'
+
+  - de: Nichtraucher
+    ipa: "ˈnɪçtˌʁaʊ̯xɐ"
+    pos: noun
+    gender: m
+    plural: "die Nichtraucher"
+    cards: recognition
+    en: a man who does not smoke, named as a category on a sign or a form
+    ru: 'мужчина, который не курит: так его называют табличка и анкета'
+    uk: 'чоловік, який не курить: так його називають табличка й анкета'
+    example_de: Der Tisch am Fenster ist für Nichtraucher.
+    example_en: The table by the window is for non-smokers.
+    example_ru: Столик у окна для некурящих.
+    example_uk: Столик біля вікна для тих, хто не курить.
+    note:
+      en: 'Nicht plus Raucher above, written as one word, with the main stress on Nicht- and a secondary one on -rau-. German builds a fair number of nouns this way, der Nichtschwimmer and das Nichtraucherabteil among them, and the negation belongs to the noun rather than to the sentence, which is why nicht cannot stand apart here. On a door and a timetable the word appears without an article at all: Nichtraucher, Nichtraucherzone, Nichtraucherschutz. The feminine is die Nichtraucherin, the next entry.'
+      ru: 'Nicht плюс Raucher выше, написанные одним словом, главное ударение на Nicht-, побочное на -rau-. Немецкий строит так немало существительных — der Nichtschwimmer, das Nichtraucherabteil, — и отрицание принадлежит существительному, а не предложению, поэтому отдельно nicht здесь стоять не может. На двери и в расписании слово идёт вовсе без артикля: Nichtraucher, Nichtraucherzone, Nichtraucherschutz. Женская пара — die Nichtraucherin, следующая запись.'
+      uk: 'Nicht плюс Raucher вище, написані одним словом, головний наголос на Nicht-, побічний на -rau-. Німецька будує так чимало іменників — der Nichtschwimmer, das Nichtraucherabteil, — і заперечення належить іменникові, а не реченню, тому окремо nicht тут стояти не може. На дверях і в розкладі слово йде зовсім без артикля: Nichtraucher, Nichtraucherzone, Nichtraucherschutz. Жіноча пара — die Nichtraucherin, наступний запис.'
+
+  - de: Nichtraucherin
+    ipa: "ˈnɪçtˌʁaʊ̯xəʁɪn"
+    pos: noun
+    gender: f
+    plural: "die Nichtraucherinnen"
+    cards: recognition
+    en: a woman who does not smoke
+    ru: женщина, которая не курит
+    uk: жінка, яка не курить
+    example_de: Ich bin Nichtraucherin und hätte gern einen Platz drinnen.
+    example_en: I do not smoke and would like a seat inside.
+    example_ru: Я не курю и хотела бы место внутри.
+    example_uk: Я не курю і хотіла б місце всередині.
+    note:
+      en: 'Regular Movierung with -in, plural with a doubled n, and the stress stays where Nichtraucher above put it. The example shows the one place where the feminine really is used, namely a woman saying it about herself; note that German states it with no article, Ich bin Nichtraucherin, exactly as it does with a profession. A sign keeps the masculine or the plural, and a form usually offers the neutral Nichtraucherbereich instead.'
+      ru: 'Обычное мовирование на -in, во множественном n удваивается, ударение остаётся там же, где в Nichtraucher выше. Пример показывает единственное место, где женская форма и вправду нужна: женщина говорит так о себе, — и заметьте, что немецкий обходится без артикля, Ich bin Nichtraucherin, ровно как с названием профессии. Табличка держит мужскую форму или множественное, а бланк обычно предлагает нейтральное Nichtraucherbereich.'
+      uk: 'Звичайна моція на -in, у множині n подвоюється, наголос лишається там само, де в Nichtraucher вище. Приклад показує єдине місце, де жіноча форма справді потрібна: жінка каже так про себе, — і зверніть увагу, що німецька обходиться без артикля, Ich bin Nichtraucherin, точно як із назвою професії. Табличка тримає чоловічу форму або множину, а бланк зазвичай пропонує нейтральне Nichtraucherbereich.'
+
+  # --- Sucht und was süchtig macht ---
+  - de: Alkohol
+    ipa: "ˈalkohoːl"
+    pos: noun
+    gender: m
+    plural: "die Alkohole"
+    cards: recognition
+    en: 'the substance in wine, beer and spirits that makes a person drunk; and the drinks that contain it'
+    ru: 'вещество в вине, пиве и крепких напитках, от которого пьянеют; а также сами такие напитки'
+    uk: 'речовина у вині, пиві та міцних напоях, від якої п’яніють; а також самі такі напої'
+    example_de: Ich trinke keinen Alkohol, wenn ich fahre.
+    example_en: I do not drink alcohol when I am driving.
+    example_ru: Я не пью алкоголь, когда за рулём.
+    example_uk: Я не п’ю алкоголю, коли за кермом.
+    note:
+      en: 'An Arabic loan by way of Latin, masculine, with the stress on the first syllable. In the everyday sense it takes no plural at all; die Alkohole belongs to chemistry, where it names a whole class of substances. Alkoholfrei is what a menu prints beside a drink, Alkohol am Steuer is the offence in the example, and A1 das Bier and A1 der Wein in the deck `essen-trinken` are what it comes in. A person for whom it has become die Sucht below is der Alkoholiker or die Alkoholikerin.'
+      ru: 'Арабское заимствование через латынь, мужской род, ударение на первом слоге. В обиходном значении множественного нет вовсе; die Alkohole принадлежит химии, где называет целый класс веществ. Alkoholfrei печатают в меню рядом с напитком, Alkohol am Steuer — это то нарушение, о котором пример, а das Bier и der Wein уровня A1 из колоды `essen-trinken` — то, в чём он к нам приходит. Тот, для кого это стало die Sucht ниже, — der Alkoholiker или die Alkoholikerin.'
+      uk: 'Арабське запозичення через латину, чоловічий рід, наголос на першому складі. У побутовому значенні множини немає зовсім; die Alkohole належить хімії, де називає цілий клас речовин. Alkoholfrei друкують у меню поряд із напоєм, Alkohol am Steuer — це те порушення, про яке приклад, а das Bier і der Wein рівня A1 з колоди `essen-trinken` — те, у чому він до нас приходить. Той, для кого це стало die Sucht нижче, — der Alkoholiker або die Alkoholikerin.'
+
+  - de: Droge
+    ipa: "ˈdʁoːgə"
+    pos: noun
+    gender: f
+    plural: "die Drogen"
+    cards: recognition
+    en: a substance taken for its effect on the mind, and forbidden by law
+    ru: вещество, которое принимают ради воздействия на сознание и которое запрещено законом
+    uk: речовина, яку вживають заради дії на свідомість і яка заборонена законом
+    example_de: In der Zeitung steht ein langer Artikel über Drogen.
+    example_en: There is a long article about drugs in the newspaper.
+    example_ru: В газете большая статья о наркотиках.
+    example_uk: У газеті велика стаття про наркотики.
+    note:
+      en: 'Feminine, ordinary plural, and it is used in the plural far more often than in the singular. It is not a medicine: A1 das Medikament in the deck `koerper-gesundheit` and A2 das Rezept in the deck `gesundheit-arzttermin` belong to a doctor, while this word belongs to the crime page and the health page. The confusing neighbour is die Drogerie, a shop that sells soap and shampoo and nothing stronger. Compounds: der Drogenhandel, die Drogenberatung, drogenabhängig.'
+      ru: 'Женский род, множественное обычное, и во множественном слово встречается куда чаще, чем в единственном. Это не лекарство: das Medikament уровня A1 из колоды `koerper-gesundheit` и das Rezept уровня A2 из колоды `gesundheit-arzttermin` принадлежат врачу, а это слово — криминальной и медицинской полосе газеты. Сбивающий с толку сосед — die Drogerie, магазин мыла и шампуня, где ничего крепче не продают. Сложные слова: der Drogenhandel, die Drogenberatung, drogenabhängig.'
+      uk: 'Жіночий рід, множина звичайна, і в множині слово трапляється куди частіше, ніж в однині. Це не ліки: das Medikament рівня A1 з колоди `koerper-gesundheit` і das Rezept рівня A2 з колоди `gesundheit-arzttermin` належать лікареві, а це слово — кримінальній і медичній шпальті газети. Сусід, що збиває з пантелику, — die Drogerie, крамниця мила й шампуню, де нічого міцнішого не продають. Складні слова: der Drogenhandel, die Drogenberatung, drogenabhängig.'
+
+  - de: Sucht
+    ipa: "ˈzʊxt"
+    pos: noun
+    gender: f
+    plural: "die Süchte"
+    cards: recognition
+    en: a need for something so strong that a person cannot stop even when they want to
+    ru: настолько сильная потребность в чём-либо, что человек не может остановиться, даже когда хочет
+    uk: настільки сильна потреба в чомусь, що людина не може спинитися, навіть коли хоче
+    example_de: Aus der Gewohnheit ist mit den Jahren eine Sucht geworden.
+    example_en: Over the years the habit turned into an addiction.
+    example_ru: С годами привычка превратилась в зависимость.
+    example_uk: З роками звичка перетворилася на залежність.
+    note:
+      en: 'Feminine, umlaut in the plural, and despite the look it has nothing to do with suchen: it goes back to siech, meaning ill. What the person is addicted to stands in front as a compound: die Alkoholsucht, die Spielsucht, die Magersucht. B1 die Gewohnheit in the deck `gesundheit-wohlbefinden` is the harmless stage the example moves away from. The adjective is süchtig below and the whole class of substances is das Suchtmittel, two entries down.'
+      ru: 'Женский род, во множественном умлаут, и вопреки внешнему сходству к suchen слово отношения не имеет: оно восходит к siech — «больной». То, к чему возникла зависимость, ставится впереди сложным словом: die Alkoholsucht, die Spielsucht, die Magersucht. die Gewohnheit уровня B1 из колоды `gesundheit-wohlbefinden` — та безобидная ступень, от которой пример уходит. Прилагательное — süchtig ниже, а весь класс веществ — das Suchtmittel через одну запись.'
+      uk: 'Жіночий рід, у множині умлаут, і всупереч зовнішній схожості до suchen слово стосунку не має: воно сходить до siech — «хворий». Те, до чого виникла залежність, ставиться попереду складним словом: die Alkoholsucht, die Spielsucht, die Magersucht. die Gewohnheit рівня B1 з колоди `gesundheit-wohlbefinden` — той безневинний щабель, від якого приклад іде. Прикметник — süchtig нижче, а весь клас речовин — das Suchtmittel через один запис.'
+
+  - de: süchtig
+    ipa: "ˈzʏçtɪç"
+    pos: adj
+    cards: recognition
+    en: no longer able to stop needing something, once the need has taken hold
+    ru: уже не способный перестать нуждаться в чём-либо, когда потребность взяла своё
+    uk: уже не здатний перестати потребувати чогось, коли потреба взяла своє
+    example_de: Man kann auch nach Zucker süchtig werden.
+    example_en: You can become addicted to sugar too.
+    example_ru: Зависимость может возникнуть и от сахара.
+    example_uk: Залежність може виникнути і від цукру.
+    note:
+      en: 'Die Sucht above with an umlaut and -ig, and both ch are the soft ç. What the person is addicted to follows nach plus the dative, as in the example, while the ordinary alternative wording is abhängig von plus the dative. As the second half of a compound it is everywhere: drogensüchtig, spielsüchtig, arbeitssüchtig. Loose speech has weakened it to mean merely very keen on something, which is why a serious text prefers abhängig.'
+      ru: 'Die Sucht выше с умлаутом и -ig, оба ch мягкие ç. Предмет зависимости вводится через nach с дательным, как в примере, а обычная замена — abhängig von с дательным. Второй частью сложного слова оно встречается повсюду: drogensüchtig, spielsüchtig, arbeitssüchtig. В небрежной речи слово ослабло до «страстно увлечённый», поэтому серьёзный текст предпочитает abhängig.'
+      uk: 'Die Sucht вище з умлаутом і -ig, обидва ch м’які ç. Предмет залежності вводиться через nach з давальним, як у прикладі, а звичайна заміна — abhängig von з давальним. Другою частиною складного слова воно трапляється всюди: drogensüchtig, spielsüchtig, arbeitssüchtig. У недбалому мовленні слово ослабло до «пристрасно захоплений», тому серйозний текст воліє abhängig.'
+
+  - de: Suchtmittel
+    ipa: "ˈzʊxtˌmɪtl̩"
+    pos: noun
+    gender: n
+    plural: "die Suchtmittel"
+    cards: recognition
+    en: any substance that can leave a person unable to stop taking it
+    ru: любое вещество, из-за которого человек теряет способность остановиться
+    uk: будь-яка речовина, через яку людина втрачає здатність спинитися
+    example_de: Alkohol ist das Suchtmittel, das am leichtesten zu bekommen ist.
+    example_en: Alcohol is the addictive substance that is easiest to get hold of.
+    example_ru: Алкоголь — то вещество, вызывающее зависимость, которое достать легче всего.
+    example_uk: Алкоголь — та речовина, що викликає залежність, яку дістати найлегше.
+    note:
+      en: 'Die Sucht above plus das Mittel, with the main stress on Sucht-, neuter after its second half, and singular and plural spelled alike. It belongs to health policy and prevention rather than to conversation: it gathers Alkohol, Zigaretten and Drogen, all above, under one heading, which is exactly what a leaflet and a school lesson need. Around it die Suchtberatung is where a person goes for help and die Prävention is what a campaign does.'
+      ru: 'Die Sucht выше плюс das Mittel, главное ударение на Sucht-, род средний по второй половине, единственное и множественное пишутся одинаково. Слово принадлежит здравоохранительной политике и профилактике, а не разговору: оно собирает Alkohol, Zigaretten и Drogen — всё выше — под одну шапку, что и нужно листовке и школьному уроку. Рядом die Suchtberatung — куда идут за помощью, а die Prävention — то, чем занята кампания.'
+      uk: 'Die Sucht вище плюс das Mittel, головний наголос на Sucht-, рід середній за другою половиною, однина і множина пишуться однаково. Слово належить політиці охорони здоров’я і профілактиці, а не розмові: воно збирає Alkohol, Zigaretten і Drogen — усе вище — під одну шапку, що й потрібно летючці та шкільному урокові. Поряд die Suchtberatung — куди йдуть по допомогу, а die Prävention — те, чим зайнята кампанія.'
+
+  # --- Gesund leben ---
+  - de: Vitamin
+    ipa: "vitaˈmiːn"
+    pos: noun
+    gender: n
+    plural: "die Vitamine"
+    cards: recognition
+    en: one of the substances a body needs in small amounts and gets from its food
+    ru: одно из веществ, которые организму нужны в малых количествах и которые он получает с пищей
+    uk: одна з речовин, потрібних організмові в малих кількостях і які він дістає з їжею
+    example_de: Frisches Obst hat mehr Vitamine als Saft.
+    example_en: Fresh fruit has more vitamins than juice.
+    example_ru: В свежих фруктах больше витаминов, чем в соке.
+    example_uk: У свіжих фруктах більше вітамінів, ніж у соку.
+    note:
+      en: 'Neuter, stressed on the last syllable, ordinary plural. The letter after it is read the German way, so Vitamin C ends in the sound tseː and not in the English see. B1 ernähren in the deck `koerper-medizin-b1` and B1 die Ernährung in the deck `gesundheit-wohlbefinden` are the field it belongs to, and A1 das Obst in the deck `essen-trinken` is where the example finds it. A pill of it is die Vitamintablette, and vitaminreich is what a label claims.'
+      ru: 'Средний род, ударение на последнем слоге, множественное обычное. Буква после слова читается по-немецки, поэтому Vitamin C оканчивается звуком tseː, а не английским «си». ernähren уровня B1 из колоды `koerper-medizin-b1` и die Ernährung уровня B1 из колоды `gesundheit-wohlbefinden` — поле, к которому слово принадлежит, а das Obst уровня A1 из колоды `essen-trinken` — то, где его находит пример. Таблетка — die Vitamintablette, а vitaminreich заявляет этикетка.'
+      uk: 'Середній рід, наголос на останньому складі, множина звичайна. Літера після слова читається по-німецьки, тому Vitamin C закінчується звуком tseː, а не англійським «сі». ernähren рівня B1 з колоди `koerper-medizin-b1` і die Ernährung рівня B1 з колоди `gesundheit-wohlbefinden` — поле, до якого слово належить, а das Obst рівня A1 з колоди `essen-trinken` — те, де його знаходить приклад. Пігулка — die Vitamintablette, а vitaminreich заявляє етикетка.'
+
+  - de: bio
+    ipa: "ˈbiːo"
+    pos: adj
+    cards: recognition
+    en: grown or made without chemical fertiliser and pesticide, and certified as such
+    ru: выращенный или произведённый без химических удобрений и пестицидов и имеющий на это сертификат
+    uk: вирощений або вироблений без хімічних добрив і пестицидів і сертифікований як такий
+    example_de: Diese Eier sind bio, die anderen nicht.
+    example_en: These eggs are organic, the others are not.
+    example_ru: Эти яйца органические, а те нет.
+    example_uk: Ці яйця органічні, а ті ні.
+    note:
+      en: 'Indeclinable and mostly predicative, so German says Das ist bio and Diese Eier sind bio, but puts the word in front of a noun only as a prefix: der Bioladen, die Biomilch, das Biogemüse. That prefix is where a learner meets it most, and the term is legally protected in the European Union, so a package may not carry it without certification. The longer adjective biologisch means the same on a package and something quite different in a laboratory, and Bio at school is the subject Biologie.'
+      ru: 'Несклоняемое и по преимуществу предикативное: немец говорит Das ist bio и Diese Eier sind bio, а перед существительным ставит слово только как приставку — der Bioladen, die Biomilch, das Biogemüse. Именно в этой приставке учащийся встретит его чаще всего, а сам термин защищён законом Европейского союза, так что без сертификата упаковка носить его не вправе. Более длинное прилагательное biologisch на упаковке значит то же самое, а в лаборатории совсем другое, тогда как Bio в школе — предмет Biologie.'
+      uk: 'Невідмінюване і переважно предикативне: німець каже Das ist bio і Diese Eier sind bio, а перед іменником ставить слово лише як префікс — der Bioladen, die Biomilch, das Biogemüse. Саме в цьому префіксі учень зустріне його найчастіше, а сам термін захищений законом Європейського Союзу, тож без сертифіката паковання носити його не вправі. Довший прикметник biologisch на пакованні означає те саме, а в лабораторії зовсім інше, тоді як Bio у школі — предмет Biologie.'

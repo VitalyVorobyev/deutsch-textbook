@@ -1,0 +1,35 @@
+topic: wortbildung
+role: pretest
+title: {en: "Pretest — can you see the pieces?", ru: "Предтест — видны ли части слова?", uk: "Передтест — чи видно частини слова?"}
+items:
+  - id: pre-kompositum-genus
+    outcomes: [wortbildung-komposita]
+    type: mc
+    focus: wortbildung-nomen
+    prompt: "Fahrt + Plan = …"
+    options: ["der Fahrplan", "die Fahrplan", "das Fahrplan"]
+    correct: 0
+    explain: {en: "The final noun is der Plan, so the compound is der Fahrplan. This is a preview: the lesson will make the last-member rule explicit.", ru: "Последнее существительное — der Plan, поэтому всё слово — der Fahrplan. Это предварительная проверка; правило последней части объясняется в уроке.", uk: "Останній іменник — der Plan, тому все слово — der Fahrplan. Це попередня перевірка; правило останньої частини пояснюється в уроці."}
+  - id: pre-chen
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the diminutive with its article.", ru: "Дополните уменьшительное артиклем.", uk: "Доповніть зменшувальний іменник артиклем."}
+    text: "Brot → {{das}} Brötchen"
+    explain: {en: "A genuine -chen diminutive is neuter: das Brötchen.", ru: "Настоящее уменьшительное на -chen среднего рода: das Brötchen.", uk: "Справжній зменшувальний іменник на -chen середнього роду: das Brötchen."}
+  - id: pre-ung
+    outcomes: [wortbildung-nomenformen]
+    type: mc
+    focus: wortbildung-nomen
+    prompt: "___ Anmeldung"
+    options: ["die", "der", "das"]
+    correct: 0
+    explain: {en: "The productive suffix -ung makes a feminine noun: die Anmeldung.", ru: "Продуктивный суффикс -ung образует существительное женского рода: die Anmeldung.", uk: "Продуктивний суфікс -ung утворює іменник жіночого роду: die Anmeldung."}
+  - id: pre-lesbar
+    outcomes: [wortbildung-adjektive]
+    type: mc
+    focus: wortbildung-adjektiv
+    prompt: "Der Text ist lesbar."
+    options: ["Man kann ihn lesen.", "Man liest ihn nicht.", "Er hat keine Wörter."]
+    correct: 0
+    explain: {en: "-bar means that the action is possible: lesbar = can be read.", ru: "-bar означает возможность действия: lesbar = можно прочитать.", uk: "-bar означає можливість дії: lesbar = можна прочитати."}

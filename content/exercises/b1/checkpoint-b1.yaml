@@ -1,0 +1,493 @@
+topic: informationen-vermitteln
+role: checkpoint
+title:
+  en: "Checkpoint B1 — the whole level in one test"
+  ru: "Контрольный тест B1 — весь уровень в одном тесте"
+  uk: "Контрольний тест B1 — весь рівень в одному тесті"
+  de: "Kontrollpunkt B1 — das ganze Niveau in einem Test"
+
+# The cumulative B1 test. It SAMPLES the level rather than re-teaching it: 28 tasks — the
+# same size as the A1 checkpoint, six more than the A2 one — of which 23 carry a focus tag,
+# and those 23 tags reach 23 of the 32 manifest points in `data/grammar-inventory.yaml`'s B1
+# section (72%). Every one of the fourteen B1 topics is reached by at least one item.
+#
+# That 72% is denser than either model — A1 reaches 12 of 22 (55%), A2 only 9 of 30 (30%) —
+# and the gap is not ambition. Much of what the A2 checkpoint re-tests is A1 machinery the
+# level builds on (6 of its 17 tags are A1-introduced, and several more belong to points
+# filed at A1), so its own manifest is thinly sampled by design. B1's machinery is almost
+# entirely new: a level-close test that skipped it would skip the level.
+#
+# Re-derive both figures — the tags here against the `focus:` lists of the level's points:
+#   bun -e 'const {parse}=await import("yaml");const fs=await import("node:fs");
+#     const P=parse(fs.readFileSync("data/grammar-inventory.yaml","utf8")).points;
+#     const d=parse(fs.readFileSync("content/exercises/b1/checkpoint-b1.yaml","utf8"));
+#     const t=new Set(d.items.filter(i=>i.focus).map(i=>i.focus));
+#     const p=P.filter(x=>x.standard_level==="B1");
+#     console.log(p.filter(x=>(x.focus??[]).some(f=>t.has(f))).length+"/"+p.length)'
+# `bun scripts/grammar-coverage.ts B1` deliberately does NOT count this file, because
+# testing a structure is not teaching it — the level stays at 32/32 on its practice sets
+# alone, and shipping this checkpoint moves that number by zero.
+#
+# Anchored to `informationen-vermitteln`, the last B1 topic in the spine, so every focus tag
+# introduced anywhere in B1 passes the curriculum-order check.
+#
+# What a checkpoint is and is not: attempts here are ordinary evidence and they do count
+# toward a competence's coverage, but the set is never training — it is in no topic's
+# `exercises`, it is reachable only from /checkpoint/b1 once the B1 path is done, and
+# finishing it is not a claim that the learner speaks B1 German. The one `write` task at the
+# end is recorded as practice and never as verified mastery, because the app cannot score
+# free production.
+#
+# No item re-presents a sentence from a B1 practice set. A checkpoint that does that
+# measures recognition of that sentence rather than the competence behind it.
+items:
+  # --- Hören ---
+  - id: hoeren-interview-neuanfang
+    outcomes: [interview-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Moderatorin", text: "Frau Kranz, Sie sind vor drei Jahren nach Leipzig gezogen. Was war am Anfang am schwersten?" }
+        - { speaker: "Frau Kranz", text: "Ehrlich gesagt nicht die Arbeit. Eine Wohnung hatte ich schnell gefunden, und die Kollegen waren von Anfang an freundlich. Schwer war, dass ich abends niemanden kannte. Erst als ich im Chor angefangen habe, wurde es besser." }
+    question: "Was war für Frau Kranz am Anfang das größte Problem?"
+    options: ["Dass sie in der neuen Stadt niemanden kannte.", "Dass sie lange keine Wohnung fand.", "Dass die Kollegen unfreundlich waren."]
+    correct: 0
+    translation: { en: "What was the biggest problem for Frau Kranz at the beginning?", ru: "Что было для госпожи Кранц самым трудным в начале?", uk: "Що було для пані Кранц найважчим на початку?" }
+    explain: { en: "The interview names its own answer: Schwer war, dass ich abends niemanden kannte. The two distractors are not merely absent — they are explicitly denied a moment earlier, and each denial is worth hearing. Eine Wohnung hatte ich schnell gefunden is a Plusquamperfekt: the flat was already sorted before everything else being described. And die Kollegen waren freundlich rules out the answer about unfriendly colleagues. Listen for where a speaker marks the point themselves; interviews almost always do.", ru: "Интервью само называет ответ: Schwer war, dass ich abends niemanden kannte. Два других варианта не просто не прозвучали — их прямо опровергают чуть раньше, и оба опровержения стоит расслышать. Eine Wohnung hatte ich schnell gefunden — это Plusquamperfekt: с квартирой всё решилось раньше всего остального, о чём идёт речь. А die Kollegen waren freundlich снимает ответ про недружелюбных коллег. Слушайте, где говорящий сам выделяет главное, — в интервью это происходит почти всегда.", uk: "Інтерв'ю саме називає відповідь: Schwer war, dass ich abends niemanden kannte. Два інші варіанти не просто не прозвучали — їх прямо спростовують трохи раніше, і обидва спростування варто розчути. Eine Wohnung hatte ich schnell gefunden — це Plusquamperfekt: з житлом усе вирішилося раніше за все інше, про що йдеться. А die Kollegen waren freundlich знімає відповідь про недружніх колег. Слухайте, де мовець сам виділяє головне, — в інтерв'ю це трапляється майже завжди.", de: "Das Interview nennt seine Antwort selbst: Schwer war, dass ich abends niemanden kannte. Die beiden anderen Möglichkeiten fehlen nicht bloß — sie werden kurz vorher ausdrücklich verneint, und beide Verneinungen lohnen das Hinhören. Eine Wohnung hatte ich schnell gefunden ist ein Plusquamperfekt: Die Wohnung war vor allem anderen schon erledigt. Und die Kollegen waren freundlich schließt die Antwort über unfreundliche Kollegen aus. Achte darauf, wo eine Sprecherin den Punkt selbst markiert — in Interviews geschieht das fast immer." }
+
+  - id: hoeren-beratung-kurs
+    outcomes: [beratung-verstehen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Beraterin", text: "Guten Tag, Sie möchten sich für den nächsten Kurs anmelden?" }
+        - { speaker: "Herr Osei", text: "Ja, ich habe B1 gerade beendet. Kann ich direkt in den B2-Kurs?" }
+        - { speaker: "Beraterin", text: "Grundsätzlich ja. Ich würde Ihnen aber empfehlen, vorher den Einstufungstest zu machen. Er dauert eine Stunde und kostet nichts. Danach melden wir Sie an." }
+    question: "Was empfiehlt die Beraterin?"
+    options: ["Vor der Anmeldung den Einstufungstest zu machen.", "Den B1-Kurs noch einmal zu besuchen.", "Sich sofort für den B2-Kurs anzumelden."]
+    correct: 0
+    translation: { en: "What does the adviser recommend?", ru: "Что советует консультант?", uk: "Що радить консультантка?" }
+    explain: { en: "Grundsätzlich ja is a yes with a but coming, and the but arrives at once: Ich würde Ihnen aber empfehlen … The Konjunktiv II würde … empfehlen is what makes it advice rather than a rule — nobody is refusing him the B2 course, and that is exactly why the answer about signing up straight away is tempting and still wrong: it ignores the vorher. Nothing at all is said about repeating B1.", ru: "Grundsätzlich ja — это «да», за которым идёт «но», и «но» появляется сразу: Ich würde Ihnen aber empfehlen … Konjunktiv II würde … empfehlen превращает фразу в совет, а не в правило: курс B2 никто не запрещает — и потому ответ про немедленную запись так соблазнителен и всё же неверен: он пропускает vorher. О повторном прохождении B1 не сказано ни слова.", uk: "Grundsätzlich ja — це «так», за яким іде «але», і «але» з'являється одразу: Ich würde Ihnen aber empfehlen … Konjunktiv II würde … empfehlen перетворює фразу на пораду, а не на правило: курс B2 ніхто не забороняє — і саме тому відповідь про негайний запис така спокуслива і все ж хибна: вона пропускає vorher. Про повторне проходження B1 не сказано ні слова.", de: "Grundsätzlich ja ist ein Ja mit einem folgenden Aber, und das Aber kommt sofort: Ich würde Ihnen aber empfehlen … Der Konjunktiv II würde … empfehlen macht daraus einen Rat und keine Vorschrift — den B2-Kurs verbietet niemand, und genau deshalb ist die Antwort über die sofortige Anmeldung verlockend und trotzdem falsch: Sie überhört das vorher. Von einer Wiederholung des B1-Kurses ist gar nicht die Rede." }
+
+  - id: hoeren-diskussion-hof
+    outcomes: [diskussion-folgen]
+    type: audio-comprehension
+    source:
+      kind: tts
+      rate: 0.85
+      turns:
+        - { speaker: "Herr Baum", text: "Ich bin dafür, dass wir im Hof Fahrradständer aufstellen. Es stehen ständig Räder im Weg." }
+        - { speaker: "Frau Ricci", text: "Obwohl ich das gut verstehe, finde ich den Platz in der Mitte zu klein. Vielleicht nur an der Mauer?" }
+        - { speaker: "Herr Baum", text: "Damit könnte ich leben. Dann stellen wir sie an die Mauer." }
+    question: "Worauf einigen sich die beiden?"
+    options: ["Die Fahrradständer kommen an die Mauer.", "Es werden gar keine Fahrradständer aufgestellt.", "Der ganze Hof wird für Fahrräder frei gemacht."]
+    correct: 0
+    translation: { en: "What do the two of them agree on?", ru: "О чём эти двое договариваются?", uk: "Про що ці двоє домовляються?" }
+    explain: { en: "A disagreement here is settled in three moves, and each has a word that carries it. Herr Baum states his position (Ich bin dafür, dass …). Frau Ricci objects without rejecting — Obwohl ich das gut verstehe … concedes the point and still names the problem — and then offers the compromise as a question. Damit könnte ich leben accepts it. Nobody says no to the stands, so the answer that has none put up at all confuses an objection with a refusal.", ru: "Разногласие здесь улаживается в три хода, и у каждого есть своё слово. Господин Баум заявляет позицию (Ich bin dafür, dass …). Госпожа Риччи возражает, не отвергая: Obwohl ich das gut verstehe … признаёт правоту и всё же называет проблему, а потом предлагает компромисс в форме вопроса. Damit könnte ich leben — это согласие. Отказа от стоек не звучит ни от кого, поэтому ответ, в котором их не ставят вовсе, путает возражение с отказом.", uk: "Незгода тут залагоджується в три ходи, і в кожного є своє слово. Пан Баум заявляє позицію (Ich bin dafür, dass …). Пані Річчі заперечує, не відкидаючи: Obwohl ich das gut verstehe … визнає слушність і все ж називає проблему, а потім пропонує компроміс у формі питання. Damit könnte ich leben — це згода. Відмови від стійок не звучить ні від кого, тому відповідь, у якій їх не ставлять зовсім, плутає заперечення з відмовою.", de: "Eine Meinungsverschiedenheit wird hier in drei Zügen beigelegt, und jeder Zug hat sein Wort. Herr Baum nennt seine Position (Ich bin dafür, dass …). Frau Ricci widerspricht, ohne abzulehnen — Obwohl ich das gut verstehe … gibt ihm recht und nennt trotzdem das Problem — und bietet dann den Kompromiss als Frage an. Damit könnte ich leben nimmt ihn an. Niemand sagt Nein zu den Ständern, deshalb verwechselt die Antwort ohne jeden Ständer einen Einwand mit einer Absage." }
+
+  - id: diktat-passiv-formular
+    outcomes: [passiv-beschreiben]
+    type: listen
+    focus: passiv-bildung
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть те, що ви чуєте."
+      de: "Hör zu und schreib, was du hörst."
+    text: "Das Formular wird im Büro ausgefüllt und unterschrieben."
+    translation: { en: "The form is filled in and signed in the office.", ru: "Бланк заполняют и подписывают в бюро.", uk: "Бланк заповнюють і підписують у бюро." }
+    explain: { en: "The present passive is werden plus a Partizip II, and here one werden carries two participles: ausgefüllt und unterschrieben. Nothing in the sentence says who does it, which is the whole point of the form — a procedure is described, not a person. By ear the trap is wird against wurde: one letter apart, and it decides whether the office still does this or once did.", ru: "Пассив настоящего времени — это werden плюс Partizip II, и здесь одно werden держит сразу два причастия: ausgefüllt und unterschrieben. Кто это делает, в предложении не сказано вовсе — в этом и смысл формы: описывают процедуру, а не человека. На слух ловушка в паре wird и wurde: разница в одну букву, а решается, делают это в бюро сейчас или делали когда-то.", uk: "Пасив теперішнього часу — це werden плюс Partizip II, і тут одне werden тримає одразу два дієприкметники: ausgefüllt und unterschrieben. Хто це робить, у реченні не сказано зовсім — у цьому й суть форми: описують процедуру, а не людину. На слух пастка в парі wird і wurde: різниця в одну літеру, а вирішується, роблять це в бюро зараз чи робили колись.", de: "Das Passiv Präsens ist werden plus Partizip II, und hier trägt ein werden gleich zwei Partizipien: ausgefüllt und unterschrieben. Wer es tut, steht nirgends — genau dafür gibt es die Form: Beschrieben wird ein Vorgang, keine Person. Beim Hören ist die Falle wird gegen wurde: ein Buchstabe Unterschied, und er entscheidet, ob das Büro das immer noch so macht oder einmal so gemacht hat." }
+
+  - id: diktat-genitiv-tarif
+    outcomes: [kosten-vergleichen]
+    type: listen
+    focus: genitiv-form
+    instruction:
+      en: "Listen and type what you hear."
+      ru: "Прослушайте и напишите, что вы слышите."
+      uk: "Прослухайте і напишіть те, що ви чуєте."
+      de: "Hör zu und schreib, was du hörst."
+    text: "Der Preis des neuen Tarifs steigt im Januar."
+    translation: { en: "The price of the new plan is going up in January.", ru: "Цена нового тарифа вырастет в январе.", uk: "Ціна нового тарифу зросте в січні." }
+    explain: { en: "Three endings land on one short group and every one of them is audible: des on the article, -en on the adjective, and the -s on the masculine noun itself — des neuen Tarifs. That last -s is the one learners leave off, and it is what makes the group a genitive rather than a dative. The spoken alternative von dem neuen Tarif exists, but a price list writes the genitive.", ru: "На одну короткую группу приходятся три окончания, и каждое слышно: des у артикля, -en у прилагательного и -s у самого существительного мужского рода — des neuen Tarifs. Именно это -s чаще всего теряют, а оно и делает группу генитивом, а не дативом. Разговорный вариант von dem neuen Tarif существует, но в прайс-листе пишут генитив.", uk: "На одну коротку групу припадають три закінчення, і кожне чути: des в артикля, -en у прикметника і -s у самого іменника чоловічого роду — des neuen Tarifs. Саме це -s найчастіше губиться, а воно й робить групу родовим відмінком, а не давальним. Розмовний варіант von dem neuen Tarif існує, але в прайс-листі пишуть родовий відмінок.", de: "Auf eine kurze Gruppe fallen drei Endungen, und jede ist hörbar: des am Artikelwort, -en am Adjektiv und das -s am maskulinen Nomen selbst — des neuen Tarifs. Genau dieses -s wird weggelassen, und genau es macht die Gruppe zum Genitiv und nicht zum Dativ. Gesprochen gibt es von dem neuen Tarif; eine Preisliste schreibt den Genitiv." }
+
+  # --- Grammatik ---
+  - id: luecke-praeteritum-erzaehlen
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written account of a Saturday. Fill in the Präteritum of the verb in brackets."
+      ru: "Письменный рассказ об одной субботе. Вставьте Präteritum глагола, указанного в скобках."
+      uk: "Письмова розповідь про одну суботу. Вставте Präteritum дієслова, вказаного в дужках."
+      de: "Ein schriftlicher Bericht über einen Samstag. Ergänze das Präteritum des Verbs in Klammern."
+    text: "Am Samstag {{fuhr}} (fahren) ich zum Markt. Ich {{kaufte}} (kaufen) Obst und {{traf}} (treffen) dort meine alte Nachbarin. Wir {{sprachen}} (sprechen) fast eine Stunde."
+    translation: { en: "On Saturday I went to the market. I bought fruit and met my old neighbour there. We talked for almost an hour.", ru: "В субботу я поехал на рынок. Я купил фруктов и встретил там свою старую соседку. Мы проговорили почти час.", uk: "У суботу я поїхав на ринок. Я купив фруктів і зустрів там свою стару сусідку. Ми проговорили майже годину." }
+    explain: { en: "Four verbs, two patterns. A weak verb builds the Präteritum with -te on the stem: kaufen → kaufte. A strong verb changes its vowel and takes no -te at all: fahren → fuhr, treffen → traf, sprechen → sprach (plural sprachen). The endings are the small print — the ich-form and the er-form are identical and both are bare. This is the written past: spoken German would tell the same Saturday in the Perfekt, and neither is more correct than the other.", ru: "Четыре глагола — две модели. Слабый глагол образует Präteritum суффиксом -te на основе: kaufen → kaufte. Сильный меняет гласную и никакого -te не берёт: fahren → fuhr, treffen → traf, sprechen → sprach (множественное sprachen). Окончания — мелкий шрифт: формы ich и er совпадают, и обе без окончания. Это письменное прошедшее: вслух ту же субботу рассказали бы в Perfekt, и ни один из вариантов не «правильнее» другого.", uk: "Чотири дієслова — дві моделі. Слабке дієслово утворює Präteritum суфіксом -te на основі: kaufen → kaufte. Сильне міняє голосну і жодного -te не бере: fahren → fuhr, treffen → traf, sprechen → sprach (множина sprachen). Закінчення — дрібний шрифт: форми ich і er збігаються, і обидві без закінчення. Це письмове минуле: вголос ту саму суботу розповіли б у Perfekt, і жоден із варіантів не «правильніший» за інший.", de: "Vier Verben, zwei Muster. Ein schwaches Verb bildet das Präteritum mit -te am Stamm: kaufen → kaufte. Ein starkes wechselt den Vokal und nimmt gar kein -te: fahren → fuhr, treffen → traf, sprechen → sprach (Plural sprachen). Die Endungen sind das Kleingedruckte — ich-Form und er-Form sind gleich und beide endungslos. Das ist die geschriebene Vergangenheit: Gesprochen erzählte man denselben Samstag im Perfekt, und keines von beiden ist richtiger." }
+
+  - id: luecke-plusquamperfekt-nachdem
+    outcomes: [vorzeitigkeit-ausdruecken]
+    type: cloze
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "What happened first? Complete each nachdem-clause in the Plusquamperfekt: unterschreiben in the first sentence, abfahren in the second."
+      ru: "Что произошло раньше? Дополните каждое придаточное с nachdem формой Plusquamperfekt: в первом предложении unterschreiben, во втором abfahren."
+      uk: "Що сталося раніше? Доповніть кожне підрядне з nachdem формою Plusquamperfekt: у першому реченні unterschreiben, у другому abfahren."
+      de: "Was geschah zuerst? Ergänze jeden nachdem-Satz im Plusquamperfekt: im ersten Satz unterschreiben, im zweiten abfahren."
+    text: "Nachdem wir den Vertrag {{unterschrieben}} {{hatten}}, bekamen wir die Schlüssel. Nachdem der Zug {{abgefahren}} {{war}}, merkte ich, dass meine Tasche noch auf der Bank lag."
+    translation: { en: "After we had signed the contract, we got the keys. After the train had left, I noticed that my bag was still on the bench.", ru: "После того как мы подписали договор, нам дали ключи. После того как поезд ушёл, я заметил, что моя сумка осталась на скамейке.", uk: "Після того як ми підписали договір, нам дали ключі. Після того як потяг пішов, я помітив, що моя сумка лишилася на лавці." }
+    explain: { en: "nachdem is the one conjunction that forces a step back in time: the clause it opens holds the earlier event, and German marks that with the Plusquamperfekt — Partizip II plus hatte or war, both at the very end of the clause and in that order. The auxiliary follows the same rule as in the Perfekt: unterschreiben takes hatten, abfahren is a change of place and takes war. The main clause then stays one step later, in the Präteritum: bekamen, merkte.", ru: "nachdem — единственный союз, который заставляет сделать шаг назад во времени: в открываемом им придаточном стоит более раннее событие, и немецкий помечает это формой Plusquamperfekt — Partizip II плюс hatte или war, оба в самом конце придаточного и именно в таком порядке. Вспомогательный глагол выбирается так же, как в Perfekt: unterschreiben берёт hatten, abfahren — смена места, поэтому war. Главное предложение остаётся на шаг позже, в Präteritum: bekamen, merkte.", uk: "nachdem — єдиний сполучник, який змушує зробити крок назад у часі: у підрядному, яке він відкриває, стоїть раніша подія, і німецька позначає це формою Plusquamperfekt — Partizip II плюс hatte або war, обидва в самому кінці підрядного і саме в такому порядку. Допоміжне дієслово вибирається так само, як у Perfekt: unterschreiben бере hatten, abfahren — зміна місця, тому war. Головне речення лишається на крок пізніше, у Präteritum: bekamen, merkte.", de: "nachdem ist die eine Konjunktion, die einen Schritt zurück in der Zeit erzwingt: Im Satz, den sie eröffnet, steht das frühere Ereignis, und das Deutsche markiert es mit dem Plusquamperfekt — Partizip II plus hatte oder war, beide ganz am Ende und in dieser Reihenfolge. Das Hilfsverb folgt derselben Regel wie im Perfekt: unterschreiben nimmt hatten, abfahren ist ein Ortswechsel und nimmt war. Der Hauptsatz bleibt einen Schritt später, im Präteritum: bekamen, merkte." }
+
+  - id: luecke-temporal-nebensatz
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: temporal-nebensatz
+    instruction:
+      en: "bevor, während or seitdem? One word per gap, each used once."
+      ru: "bevor, während или seitdem? По одному слову в каждый пропуск, каждое используется один раз."
+      uk: "bevor, während чи seitdem? По одному слову в кожен пропуск, кожне вживається один раз."
+      de: "bevor, während oder seitdem? Ein Wort pro Lücke, jedes einmal."
+    text: "{{Bevor}} ich nach Deutschland kam, arbeitete ich in einem Labor. {{Während}} ich auf den Bus wartete, las ich die Zeitung. {{Seitdem}} ich hier wohne, fahre ich jeden Tag mit dem Rad."
+    translation: { en: "Before I came to Germany, I worked in a laboratory. While I was waiting for the bus, I read the newspaper. Since I have lived here, I cycle every day.", ru: "До того как я приехал в Германию, я работал в лаборатории. Пока я ждал автобус, я читал газету. С тех пор как я здесь живу, я каждый день езжу на велосипеде.", uk: "До того як я приїхав до Німеччини, я працював у лабораторії. Поки я чекав на автобус, я читав газету. Відколи я тут живу, я щодня їжджу на велосипеді." }
+    explain: { en: "Three relations, three conjunctions, and all three send their verb to the end of the clause. bevor puts the clause after the main event in time; während runs the two at the same time; seitdem names a starting point that still holds, which is why the main clause stays in the present; here the seitdem-clause names a state that has run ever since, so it is in the present too — Seitdem ich hier wohne — while everything else is past. The trap is treating seitdem like the adverb seitdem in Seitdem fahre ich Rad: as a conjunction it opens a clause, as an adverb it takes position 1 and the verb comes second.", ru: "Три отношения, три союза, и все три отправляют глагол в конец придаточного. bevor помещает придаточное позже основного события; während совмещает оба во времени; seitdem называет точку отсчёта, которая действует до сих пор, — поэтому в настоящем времени стоит главное предложение; здесь придаточное называет состояние, которое тянется с той поры, и потому тоже стоит в настоящем (Seitdem ich hier wohne), тогда как всё остальное здесь в прошедшем. Ловушка — спутать союз seitdem с наречием seitdem в Seitdem fahre ich Rad: как союз оно открывает придаточное, как наречие занимает первое место, и глагол идёт вторым.", uk: "Три відношення, три сполучники, і всі три відправляють дієслово в кінець підрядного. bevor розміщує підрядне пізніше за основну подію; während поєднує обидві в часі; seitdem називає точку відліку, що діє й досі, — тому в теперішньому часі стоїть головне речення; тут підрядне називає стан, який тягнеться відтоді, і тому теж стоїть у теперішньому (Seitdem ich hier wohne), тоді як усе інше тут у минулому. Пастка — сплутати сполучник seitdem з прислівником seitdem у Seitdem fahre ich Rad: як сполучник він відкриває підрядне, як прислівник займає перше місце, і дієслово йде другим.", de: "Drei Verhältnisse, drei Konjunktionen, und alle drei schicken ihr Verb ans Satzende. bevor stellt den Nebensatz zeitlich hinter das Hauptereignis; während lässt beides gleichzeitig laufen; seitdem nennt einen Anfangspunkt, der bis jetzt gilt — deshalb steht der Hauptsatz im Präsens; der seitdem-Satz nennt hier einen Zustand, der seither läuft, und steht darum ebenfalls im Präsens (Seitdem ich hier wohne), während hier sonst alles Vergangenheit ist. Die Falle ist die Verwechslung mit dem Adverb seitdem in Seitdem fahre ich Rad: Als Konjunktion eröffnet es einen Nebensatz, als Adverb steht es auf Position 1 und das Verb an zweiter Stelle." }
+
+  - id: luecke-passiv-modal
+    outcomes: [pflichten-verstehen]
+    type: cloze
+    focus: passiv-modal
+    instruction:
+      en: "A notice in the stairwell. Complete it in the modal passive — müssen or dürfen, then the Partizip II, then werden. The verbs are trennen and arbeiten."
+      ru: "Объявление на лестнице. Дополните его модальным пассивом: müssen или dürfen, затем Partizip II, затем werden. Глаголы — trennen и arbeiten."
+      uk: "Оголошення на сходах. Доповніть його модальним пасивом: müssen або dürfen, потім Partizip II, потім werden. Дієслова — trennen і arbeiten."
+      de: "Ein Aushang im Treppenhaus. Ergänze ihn im Passiv mit Modalverb — müssen oder dürfen, dann das Partizip II, dann werden. Die Verben sind trennen und arbeiten."
+    text: "Der Müll {{muss}} bis Montag {{getrennt}} {{werden}}. Im Hof {{darf}} nach zweiundzwanzig Uhr nicht {{gearbeitet}} {{werden}}."
+    translation: { en: "The rubbish has to be separated by Monday. No work may be done in the courtyard after ten p.m.", ru: "Мусор нужно рассортировать до понедельника. Во дворе после двадцати двух часов работать нельзя.", uk: "Сміття треба розсортувати до понеділка. У дворі після двадцять другої години працювати не можна." }
+    explain: { en: "A rule is written in the passive because it applies to everybody, and adding a modal changes nothing about the frame: the modal takes position 2, and the clause closes with Partizip II + werden in exactly that order — getrennt werden, gearbeitet werden. Never the other way round, and never the ordinary infinitive. The second sentence has no subject at all, which German allows here and which is precisely the register a Hausordnung is written in.", ru: "Правило пишут в пассиве, потому что оно касается всех, и модальный глагол в рамке ничего не меняет: модальный занимает второе место, а предложение закрывается сочетанием Partizip II + werden именно в таком порядке — getrennt werden, gearbeitet werden. Никогда наоборот и никогда просто инфинитив. Во втором предложении подлежащего нет вовсе — немецкий это здесь допускает, и именно так пишется Hausordnung.", uk: "Правило пишуть у пасиві, бо воно стосується всіх, і модальне дієслово в рамці нічого не змінює: модальне займає друге місце, а речення закривається сполученням Partizip II + werden саме в такому порядку — getrennt werden, gearbeitet werden. Ніколи навпаки і ніколи просто інфінітив. У другому реченні підмета немає зовсім — німецька це тут дозволяє, і саме так пишеться Hausordnung.", de: "Eine Regel steht im Passiv, weil sie für alle gilt, und ein Modalverb ändert an der Klammer nichts: Das Modalverb steht auf Position 2, und der Satz schließt mit Partizip II + werden, genau in dieser Reihenfolge — getrennt werden, gearbeitet werden. Nie umgekehrt und nie der einfache Infinitiv. Der zweite Satz hat überhaupt kein Subjekt, was das Deutsche hier erlaubt und was genau das Register einer Hausordnung ist." }
+
+  - id: luecke-relativ-praeposition
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Fill in the relative pronoun after the preposition."
+      ru: "Вставьте относительное местоимение после предлога."
+      uk: "Вставте відносний займенник після прийменника."
+      de: "Ergänze das Relativpronomen nach der Präposition."
+    text: "Der Kollege, mit {{dem}} ich das Projekt mache, ist neu. Die Firma, bei {{der}} ich mich beworben habe, hat schon geantwortet. Das Formular, auf {{das}} ich warte, kommt per Post."
+    translation: { en: "The colleague I am doing the project with is new. The company I applied to has already answered. The form I am waiting for is coming by post.", ru: "Коллега, с которым я делаю проект, здесь новый. Фирма, куда я подавал заявление, уже ответила. Бланк, которого я жду, придёт по почте.", uk: "Колега, з яким я роблю проєкт, тут новий. Фірма, куди я подавав заяву, уже відповіла. Бланк, на який я чекаю, прийде поштою." }
+    explain: { en: "The preposition comes first and never moves to the end — there is no German equivalent of the colleague I work with. Two things then decide the pronoun: the gender and number come from the noun outside, the case comes from the preposition. mit and bei govern the dative, so masculine dem and feminine der; warten auf governs the accusative, so neuter das. The middle one is the instructive pair, because feminine dative der looks exactly like the nominative masculine.", ru: "Предлог стоит впереди и никогда не уходит в конец — конструкции вроде «коллега, с которым» с предлогом на конце в немецком нет. Дальше форму местоимения определяют две вещи: род и число берутся у существительного снаружи, падеж — у предлога. mit и bei требуют датива, отсюда dem в мужском роде и der в женском; warten auf требует аккузатива, отсюда das в среднем. Самая поучительная — средняя пара: датив женского рода der выглядит точно как номинатив мужского.", uk: "Прийменник стоїть попереду і ніколи не йде в кінець — конструкції з прийменником у кінці в німецькій немає. Далі форму займенника визначають дві речі: рід і число беруться в іменника ззовні, відмінок — у прийменника. mit і bei вимагають давального, звідси dem у чоловічому роді й der у жіночому; warten auf вимагає акузатива, звідси das у середньому. Найповчальніша — середня пара: давальний жіночого роду der виглядає точно як називний чоловічого.", de: "Die Präposition steht vorn und wandert nie ans Ende — ein nachgestelltes with wie im Englischen gibt es im Deutschen nicht. Zwei Dinge entscheiden dann über das Pronomen: Genus und Numerus kommen vom Nomen davor, der Kasus von der Präposition. mit und bei regieren den Dativ, also maskulin dem und feminin der; warten auf regiert den Akkusativ, also neutrum das. Am lehrreichsten ist das mittlere Paar, denn der feminine Dativ der sieht genauso aus wie der maskuline Nominativ." }
+
+  - id: luecke-relativ-was-wo
+    outcomes: [kompromiss-vorschlagen]
+    type: cloze
+    focus: relativ-was-wo
+    instruction:
+      en: "was or wo? Fill in the relative pronoun."
+      ru: "was или wo? Вставьте относительное местоимение."
+      uk: "was чи wo? Вставте відносний займенник."
+      de: "was oder wo? Ergänze das Relativpronomen."
+    text: "Das ist alles, {{was}} ich dazu sagen kann. Das ist die Stadt, {{wo}} ich geboren bin. Das Beste, {{was}} wir jetzt machen können, ist ein Kompromiss."
+    translation: { en: "That is all I can say about it. That is the town where I was born. The best thing we can do now is a compromise.", ru: "Это всё, что я могу об этом сказать. Это тот город, где я родился. Лучшее, что мы сейчас можем сделать, — это компромисс.", uk: "Це все, що я можу про це сказати. Це те місто, де я народився. Найкраще, що ми зараз можемо зробити, — це компроміс." }
+    explain: { en: "A relative pronoun normally agrees with a noun, but two cases have no noun to agree with. After alles, etwas, nichts, viel and a neuter superlative like das Beste there is no gender to copy, so the pronoun is was. And where the antecedent is a place, wo replaces the heavier in der / in dem: die Stadt, wo ich geboren bin. Both clauses are still Nebensätze, so the verb goes to the end — kann, bin, können.", ru: "Относительное местоимение обычно согласуется с существительным, но в двух случаях согласовываться не с чем. После alles, etwas, nichts, viel и субстантивированной превосходной степени среднего рода вроде das Beste рода нет, поэтому местоимение — was. А если предшествующее слово обозначает место, wo заменяет более громоздкое in der / in dem: die Stadt, wo ich geboren bin. Оба придаточных остаются придаточными, поэтому глагол уходит в конец: kann, bin, können.", uk: "Відносний займенник зазвичай узгоджується з іменником, але у двох випадках узгоджуватися нема з чим. Після alles, etwas, nichts, viel і субстантивованого найвищого ступеня середнього роду на кшталт das Beste роду немає, тому займенник — was. А якщо попереднє слово позначає місце, wo заміняє громіздкіше in der / in dem: die Stadt, wo ich geboren bin. Обидва підрядні лишаються підрядними, тому дієслово йде в кінець: kann, bin, können.", de: "Ein Relativpronomen richtet sich normalerweise nach einem Nomen, aber in zwei Fällen gibt es keines. Nach alles, etwas, nichts, viel und einem neutralen Superlativ wie das Beste ist kein Genus da, das man übernehmen könnte, also heißt das Pronomen was. Und wo das Bezugswort ein Ort ist, ersetzt wo das schwerere in der / in dem: die Stadt, wo ich geboren bin. Beide Sätze bleiben Nebensätze, das Verb geht also ans Ende — kann, bin, können." }
+
+  - id: luecke-konjunktiv2-irreal
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: konjunktiv2-form
+    instruction:
+      en: "Unreal conditions. Fill in the Konjunktiv II of haben, werden and sein."
+      ru: "Нереальные условия. Вставьте Konjunktiv II глаголов haben, werden и sein."
+      uk: "Нереальні умови. Вставте Konjunktiv II дієслів haben, werden і sein."
+      de: "Irreale Bedingungen. Ergänze den Konjunktiv II von haben, werden und sein."
+    text: "Wenn ich mehr Zeit {{hätte}}, {{würde}} ich einen Sprachkurs machen. Wenn das Wetter besser {{wäre}}, {{würden}} wir am See grillen."
+    translation: { en: "If I had more time, I would do a language course. If the weather were better, we would have a barbecue at the lake.", ru: "Если бы у меня было больше времени, я бы пошёл на языковой курс. Если бы погода была лучше, мы бы жарили шашлык на озере.", uk: "Якби в мене було більше часу, я б пішов на мовний курс. Якби погода була краща, ми б смажили шашлик на озері." }
+    explain: { en: "Both halves are marked, and that is the whole grammar of it. The wenn-clause takes the Konjunktiv II of its own verb — hätte, wäre, with the umlaut doing the work — and the main clause takes würde plus an infinitive at the end. Note the word order: a fronted wenn-clause fills position 1 on its own, so the main clause opens with its verb, würde, never with the subject. haben, sein and the modals keep their own short forms; nearly every other verb goes through würde.", ru: "Помечены обе половины — в этом вся грамматика. Придаточное с wenn ставит в Konjunktiv II собственный глагол — hätte, wäre, где всю работу делает умлаут, — а главное предложение берёт würde и инфинитив в конце. Обратите внимание на порядок слов: вынесенное вперёд придаточное с wenn целиком занимает первое место, поэтому главное начинается с глагола würde, а не с подлежащего. У haben, sein и модальных есть собственные краткие формы; почти все остальные глаголы идут через würde.", uk: "Позначені обидві половини — у цьому вся граматика. Підрядне з wenn ставить у Konjunktiv II власне дієслово — hätte, wäre, де всю роботу робить умлаут, — а головне речення бере würde й інфінітив у кінці. Зверніть увагу на порядок слів: винесене вперед підрядне з wenn цілком займає перше місце, тому головне починається з дієслова würde, а не з підмета. У haben, sein і модальних є власні короткі форми; майже всі інші дієслова йдуть через würde.", de: "Beide Hälften sind markiert, und darin besteht die ganze Grammatik. Der wenn-Satz setzt sein eigenes Verb in den Konjunktiv II — hätte, wäre, der Umlaut macht die Arbeit —, der Hauptsatz nimmt würde plus Infinitiv am Ende. Achte auf die Wortstellung: Ein vorangestellter wenn-Satz füllt Position 1 allein, deshalb beginnt der Hauptsatz mit dem Verb würde und nie mit dem Subjekt. haben, sein und die Modalverben behalten ihre eigenen Kurzformen; fast alle anderen Verben gehen über würde." }
+
+  - id: luecke-praeposition-genitiv
+    outcomes: [beschwerde-schreiben]
+    type: cloze
+    focus: praeposition-genitiv
+    instruction:
+      en: "Fill in the article. wegen, trotz and während all govern the genitive."
+      ru: "Вставьте артикль. wegen, trotz и während управляют генитивом."
+      uk: "Вставте артикль. wegen, trotz і während керують родовим відмінком."
+      de: "Ergänze das Artikelwort. wegen, trotz und während regieren den Genitiv."
+    text: "Wegen {{des}} Streiks fiel mein Zug aus. Trotz {{der}} Verspätung erreichte ich den Anschluss. Während {{der}} Fahrt habe ich die Beschwerde geschrieben."
+    translation: { en: "Because of the strike my train was cancelled. Despite the delay I caught the connection. During the journey I wrote the complaint.", ru: "Из-за забастовки мой поезд отменили. Несмотря на опоздание, я успел на пересадку. Во время поездки я написал жалобу.", uk: "Через страйк мій потяг скасували. Попри запізнення я встиг на пересадку. Під час поїздки я написав скаргу." }
+    explain: { en: "These three prepositions are the everyday genitive, and each of them names a different relation: wegen a cause, trotz a concession, während a stretch of time. Masculine and neuter show it twice — des Streiks, with the article word and the noun's own -s — while feminine shows it once, on the article word alone: der Verspätung, der Fahrt. wegen dem Streik is widely heard in speech; a written complaint uses the genitive, and this is the register the form belongs to.", ru: "Эти три предлога — генитив на каждый день, и каждый называет своё отношение: wegen — причину, trotz — уступку, während — отрезок времени. Мужской и средний род показывают его дважды: des Streiks — и артиклем, и собственным -s существительного, — а женский только один раз, артиклем: der Verspätung, der Fahrt. Вариант wegen dem Streik часто звучит в речи; в письменной жалобе стоит генитив, и это как раз тот регистр, которому форма принадлежит.", uk: "Ці три прийменники — родовий відмінок на щодень, і кожен називає своє відношення: wegen — причину, trotz — поступку, während — відрізок часу. Чоловічий і середній рід показують його двічі: des Streiks — і артиклем, і власним -s іменника, — а жіночий лише раз, артиклем: der Verspätung, der Fahrt. Варіант wegen dem Streik часто звучить у мовленні; у письмовій скарзі стоїть родовий відмінок, і це саме той регістр, якому форма належить.", de: "Diese drei Präpositionen sind der Alltagsgenitiv, und jede nennt ein anderes Verhältnis: wegen einen Grund, trotz eine Einräumung, während eine Zeitspanne. Maskulinum und Neutrum zeigen ihn zweimal — des Streiks, am Artikelwort und am eigenen -s des Nomens —, das Femininum nur einmal, am Artikelwort allein: der Verspätung, der Fahrt. wegen dem Streik hört man oft; eine geschriebene Beschwerde nimmt den Genitiv, und in dieses Register gehört die Form." }
+
+  - id: mc-indirekte-rede
+    outcomes: [indirekt-berichten]
+    type: mc
+    focus: indirekte-rede
+    prompt: "Im Aushang steht: „Die Hausverwaltung teilt mit, das Wasser werde am Mittwoch abgestellt.“ Was ist gemeint?"
+    options:
+      - "Die Hausverwaltung sagt: Das Wasser wird am Mittwoch abgestellt."
+      - "Das Wasser wurde schon am Mittwoch abgestellt."
+      - "Die Hausverwaltung fragt, ob das Wasser abgestellt werden soll."
+    correct: 0
+    translation: { en: "A notice reads: „Die Hausverwaltung teilt mit, das Wasser werde am Mittwoch abgestellt.“ What does it mean?", ru: "На объявлении написано: „Die Hausverwaltung teilt mit, das Wasser werde am Mittwoch abgestellt.“ Что это значит?", uk: "На оголошенні написано: „Die Hausverwaltung teilt mit, das Wasser werde am Mittwoch abgestellt.“ Що це означає?" }
+    explain: { en: "werde where the ordinary present has wird is a Konjunktiv I, and it does one job: it marks the words as somebody else's. Everything else stays as it was — the tense is still ahead of us, so Wednesday is still to come, and reading it as something already done changes the fact rather than the form. Nor is it a question: a question would need ob and no Konjunktiv I at all. At B1 you only have to read this form; you pass it on with dass and the ordinary present — Die Hausverwaltung teilt mit, dass das Wasser am Mittwoch abgestellt wird.", ru: "werde там, где обычное настоящее даёт wird, — это Konjunktiv I, и работа у него одна: пометить фразу как чужие слова. Всё остальное остаётся как было: время по-прежнему впереди, значит среда ещё предстоит, и прочитать это как уже сделанное — значит поменять не форму, а факт. И это не вопрос: вопросу нужен ob и никакого Konjunktiv I. На уровне B1 эту форму достаточно уметь читать, а передаёте вы её через dass и обычное настоящее — Die Hausverwaltung teilt mit, dass das Wasser am Mittwoch abgestellt wird.", uk: "werde там, де звичайний теперішній дає wird, — це Konjunktiv I, і робота в нього одна: позначити фразу як чужі слова. Усе інше лишається як було: час і далі попереду, отже середа ще настане, і прочитати це як уже зроблене — означає змінити не форму, а факт. І це не питання: питанню потрібен ob і жодного Konjunktiv I. На рівні B1 цю форму достатньо вміти читати, а переказуєте ви її через dass і звичайний теперішній — Die Hausverwaltung teilt mit, dass das Wasser am Mittwoch abgestellt wird.", de: "werde dort, wo das gewöhnliche Präsens wird hat, ist ein Konjunktiv I, und er tut eine einzige Sache: Er markiert die Worte als die eines anderen. Alles Übrige bleibt, wie es war — die Zeit liegt weiter vor uns, der Mittwoch steht also noch bevor, und wer es als bereits Geschehenes liest, ändert die Tatsache und nicht die Form. Eine Frage ist es auch nicht: Die bräuchte ob und gar keinen Konjunktiv I. Auf B1 musst du diese Form nur lesen; weiter gibst du sie mit dass und dem gewöhnlichen Präsens — Die Hausverwaltung teilt mit, dass das Wasser am Mittwoch abgestellt wird." }
+
+  - id: mc-damit-um-zu
+    outcomes: [ziele-begruenden]
+    type: mc
+    focus: damit-um-zu
+    prompt: "Sie schicken die Unterlagen, und Ihr Kollege soll sie am Montag vorlegen. Welcher Satz sagt genau das?"
+    options:
+      - "Ich schicke dir die Unterlagen, damit du sie am Montag vorlegen kannst."
+      - "Ich schicke dir die Unterlagen, um sie am Montag vorzulegen."
+      - "Ich schicke dir die Unterlagen, damit sie am Montag vorzulegen."
+    correct: 0
+    translation: { en: "You are sending the documents, and your colleague is to present them on Monday. Which sentence says exactly that?", ru: "Вы отправляете документы, а предъявить их в понедельник должен ваш коллега. Какое предложение говорит именно это?", uk: "Ви надсилаєте документи, а подати їх у понеділок має ваш колега. Яке речення каже саме це?" }
+    explain: { en: "Count the subjects, and the choice makes itself. um … zu has no subject of its own, so it can only ever mean the subject of the main clause: the um … zu version says that I will present them, which is not the situation. Where the two differ — I send, you present — the purpose needs a clause with its own subject, and that clause is opened by damit and closed by its finite verb: damit du sie vorlegen kannst. The version that puts vorzulegen behind damit mixes the two frames and is not a German sentence at all.", ru: "Сосчитайте подлежащие — и выбор сделается сам. У um … zu собственного подлежащего нет, поэтому оно всегда означает подлежащее главного предложения: вариант с um … zu говорит, что предъявлю их я, а ситуация не такая. Когда действующие лица разные — отправляю я, предъявляет коллега, — для цели нужно придаточное с собственным подлежащим, и открывает его damit, а закрывает спрягаемый глагол: damit du sie vorlegen kannst. Вариант, где после damit стоит vorzulegen, смешивает обе конструкции и предложением вообще не является.", uk: "Порахуйте підмети — і вибір зробиться сам. У um … zu власного підмета немає, тому воно завжди означає підмет головного речення: варіант із um … zu каже, що подам їх я, а ситуація не така. Коли дійові особи різні — надсилаю я, подає колега, — для мети потрібне підрядне з власним підметом, і відкриває його damit, а закриває відмінюване дієслово: damit du sie vorlegen kannst. Варіант, де після damit стоїть vorzulegen, змішує обидві конструкції і реченням узагалі не є.", de: "Zähl die Subjekte, dann trifft sich die Wahl von selbst. um … zu hat kein eigenes Subjekt und meint deshalb immer das des Hauptsatzes: Die Fassung mit um … zu sagt, dass ich sie vorlege, und so ist die Lage nicht. Wo die beiden auseinandergehen — ich schicke, du legst vor —, braucht der Zweck einen Nebensatz mit eigenem Subjekt, eröffnet von damit und geschlossen vom finiten Verb: damit du sie vorlegen kannst. Die Fassung mit vorzulegen hinter damit mischt beide Rahmen und ist gar kein deutscher Satz." }
+
+  - id: mc-obwohl-trotzdem
+    outcomes: [einwand-ausdruecken]
+    type: mc
+    focus: obwohl-trotzdem
+    prompt: "„Der Kurs ist teuer.“ — Welcher Satz ist richtig?"
+    options:
+      - "Obwohl der Kurs teuer ist, melde ich mich an."
+      - "Obwohl der Kurs ist teuer, melde ich mich an."
+      - "Trotzdem der Kurs teuer ist, melde ich mich an."
+    correct: 0
+    translation: { en: "„The course is expensive.“ — Which sentence is correct?", ru: "«Курс дорогой». — Какое предложение верное?", uk: "«Курс дорогий». — Яке речення правильне?" }
+    explain: { en: "obwohl is a conjunction, so it opens a subordinate clause and the finite verb lands at the very end: obwohl der Kurs teuer ist. The version obwohl der Kurs ist teuer keeps main-clause order behind the conjunction, which is the collapse this rule exists to prevent. trotzdem says the same thing but is an adverb, so it cannot open a clause like that at all — it takes position 1 in its own main clause and the verb comes second: Der Kurs ist teuer. Trotzdem melde ich mich an. Same idea, two completely different pieces of machinery.", ru: "obwohl — союз, поэтому он открывает придаточное, и спрягаемый глагол уходит в самый конец: obwohl der Kurs teuer ist. Вариант obwohl der Kurs ist teuer сохраняет за союзом порядок главного предложения — это и есть та ошибка, ради которой правило существует. trotzdem означает то же самое, но это наречие, и придаточное оно так открыть не может вовсе: оно занимает первое место в собственном главном предложении, а глагол идёт вторым: Der Kurs ist teuer. Trotzdem melde ich mich an. Смысл один, механизмы совершенно разные.", uk: "obwohl — сполучник, тому він відкриває підрядне, і відмінюване дієслово йде в самий кінець: obwohl der Kurs teuer ist. Варіант obwohl der Kurs ist teuer зберігає за сполучником порядок головного речення — це і є та помилка, заради якої правило існує. trotzdem означає те саме, але це прислівник, і підрядне він так відкрити не може зовсім: він займає перше місце у власному головному реченні, а дієслово йде другим: Der Kurs ist teuer. Trotzdem melde ich mich an. Зміст один, механізми зовсім різні.", de: "obwohl ist eine Konjunktion, eröffnet also einen Nebensatz, und das finite Verb landet ganz am Ende: obwohl der Kurs teuer ist. Die Fassung obwohl der Kurs ist teuer behält hinter der Konjunktion die Hauptsatzstellung — genau der Zusammenbruch, gegen den es diese Regel gibt. trotzdem sagt dasselbe, ist aber ein Adverb und kann so gar keinen Nebensatz eröffnen: Es steht auf Position 1 seines eigenen Hauptsatzes, das Verb an zweiter Stelle: Der Kurs ist teuer. Trotzdem melde ich mich an. Ein Gedanke, zwei völlig verschiedene Maschinen." }
+
+  - id: satz-je-desto
+    outcomes: [konsum-vergleichen]
+    type: order
+    focus: je-desto
+    instruction:
+      en: "Arrange the words into a correct sentence about a repair that gets more expensive."
+      ru: "Составьте из этих слов правильное предложение о ремонте, который дорожает."
+      uk: "Складіть із цих слів правильне речення про ремонт, який дорожчає."
+      de: "Bring die Wörter in die richtige Reihenfolge — ein Satz über eine Reparatur, die teurer wird."
+    words: ["Je", "länger", "wir", "warten,", "desto", "teurer", "wird", "die", "Reparatur", "."]
+    translation: { en: "The longer we wait, the more expensive the repair gets.", ru: "Чем дольше мы тянем, тем дороже выйдет ремонт.", uk: "Що довше ми зволікаємо, то дорожчим буде ремонт." }
+    explain: { en: "Two comparatives, two different word orders, and the sentence needs both. The je-half is a subordinate clause: je is followed straight away by the comparative, and the verb goes to the very end — Je länger wir warten. The desto-half is a main clause that begins with desto plus its comparative, so the finite verb comes second — desto teurer wird die Reparatur — and the subject moves in behind it. umso is interchangeable with desto; nothing else in the frame is.", ru: "Две сравнительные степени, два разных порядка слов, и в предложении нужны оба. Половина с je — придаточное: сразу за je идёт сравнительная степень, а глагол уходит в самый конец: Je länger wir warten. Половина с desto — главное предложение, которое начинается с desto и сравнительной степени, поэтому спрягаемый глагол стоит вторым — desto teurer wird die Reparatur, — а подлежащее уходит за него. umso взаимозаменяемо с desto; больше в этой конструкции ничто не свободно.", uk: "Два вищі ступені, два різні порядки слів, і в реченні потрібні обидва. Половина з je — підрядне: одразу за je йде вищий ступінь, а дієслово йде в самий кінець: Je länger wir warten. Половина з desto — головне речення, що починається з desto й вищого ступеня, тому відмінюване дієслово стоїть другим — desto teurer wird die Reparatur, — а підмет іде за нього. umso взаємозамінне з desto; більше в цій конструкції ніщо не вільне.", de: "Zwei Komparative, zwei verschiedene Wortstellungen, und der Satz braucht beide. Die je-Hälfte ist ein Nebensatz: Auf je folgt sofort der Komparativ, und das Verb geht ganz ans Ende — Je länger wir warten. Die desto-Hälfte ist ein Hauptsatz, der mit desto und seinem Komparativ beginnt, also steht das finite Verb an zweiter Stelle — desto teurer wird die Reparatur — und das Subjekt rückt dahinter. umso ist mit desto austauschbar; sonst nichts an diesem Rahmen." }
+
+  # --- Wortschatz & Kommunikation ---
+  - id: mc-programm-lesen
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Im Programm steht: „Führung durch die Ausstellung: Samstag 15 Uhr, Sonntag 11 Uhr. Anmeldung bis Freitag 12 Uhr erforderlich. Eintritt frei, Führung 5 Euro.“ Was ist richtig?"
+    options:
+      - "Wer an der Führung teilnehmen will, muss sich bis Freitagmittag anmelden."
+      - "Die Führung ist kostenlos, der Eintritt kostet fünf Euro."
+      - "Man kann sich am Samstag direkt vor der Führung anmelden."
+    correct: 0
+    translation: { en: "An events programme reads: „Guided tour of the exhibition: Saturday 3 p.m., Sunday 11 a.m. Registration required by Friday 12 noon. Admission free, tour 5 euros.“ What is correct?", ru: "В программе написано: «Экскурсия по выставке: суббота 15:00, воскресенье 11:00. Запись обязательна до пятницы 12:00. Вход бесплатный, экскурсия 5 евро». Что верно?", uk: "У програмі написано: «Екскурсія виставкою: субота 15:00, неділя 11:00. Запис обов'язковий до п'ятниці 12:00. Вхід безкоштовний, екскурсія 5 євро». Що правильно?" }
+    explain: { en: "erforderlich is the word the whole notice turns on: it means required, not offered, and it fixes the deadline at Friday noon — which rules out registering on the day. The prices are the other trap, and they are stated the other way round: Eintritt frei, Führung 5 Euro. A programme is read the way a timetable is: find the word that says whether something is optional, then match each figure to the thing beside it.", ru: "На слове erforderlich держится всё объявление: оно значит «обязательно», а не «возможно», и закрепляет срок — пятница, полдень; это снимает запись прямо перед экскурсией. Вторая ловушка — цены, и названы они ровно наоборот: Eintritt frei, Führung 5 Euro. Программу читают как расписание: сначала находят слово, которое говорит, обязательно это или нет, а потом сопоставляют каждую цифру с тем, что рядом с ней.", uk: "На слові erforderlich тримається все оголошення: воно означає «обов'язково», а не «можливо», і закріплює строк — п'ятниця, полудень; це знімає запис прямо перед екскурсією. Друга пастка — ціни, і названі вони точно навпаки: Eintritt frei, Führung 5 Euro. Програму читають як розклад: спочатку знаходять слово, яке каже, обов'язково це чи ні, а потім зіставляють кожну цифру з тим, що поруч із нею.", de: "Auf erforderlich steht der ganze Aushang: Es heißt notwendig, nicht möglich, und es legt die Frist auf Freitagmittag — womit die Anmeldung am Tag selbst ausscheidet. Die zweite Falle sind die Preise, und die stehen genau andersherum da: Eintritt frei, Führung 5 Euro. Ein Programm liest man wie einen Fahrplan: erst das Wort suchen, das sagt, ob etwas freiwillig ist, dann jede Zahl dem zuordnen, was daneben steht." }
+
+  - id: uebersetzen-n-deklination
+    outcomes: [erfahrung-praesentieren]
+    type: translate
+    focus: n-deklination
+    instruction:
+      en: "Translate into German. For 'colleague' take der Kollege."
+      ru: "Переведите на немецкий. Для «коллега» возьмите der Kollege."
+      uk: "Перекладіть німецькою. Для «колега» візьміть der Kollege."
+      de: "Übersetze ins Deutsche. Für den Arbeitskollegen nimm der Kollege."
+    prompt_en: "I spoke to a colleague about my experience."
+    prompt_ru: "Я поговорил с коллегой о своём опыте."
+    prompt_uk: "Я поговорив з колегою про свій досвід."
+    answer: "Ich habe mit einem Kollegen über meine Erfahrung gesprochen."
+    key_tokens: ["Kollegen"]
+    accept:
+      # Neither source prompt fixes the determiner, and the tag does not grade it — the
+      # definite reading is ordinary German and preserves the graded token.
+      - "Ich habe mit dem Kollegen über meine Erfahrung gesprochen."
+      - "Über meine Erfahrung habe ich mit einem Kollegen gesprochen."
+    explain: { en: "Graded is one word: Kollegen. A small group of masculine nouns — der Kollege, der Kunde, der Student, der Nachbar, der Mensch — takes -n or -en in every case except the nominative singular, so the dictionary form der Kollege is the only form without it. mit einem Kollege is the standard slip, and it is invisible in the source languages because they mark the case elsewhere. Everything else in the sentence is carrier.", ru: "Оценивается одно слово: Kollegen. Небольшая группа существительных мужского рода — der Kollege, der Kunde, der Student, der Nachbar, der Mensch — получает -n или -en во всех падежах, кроме именительного единственного, так что словарная форма der Kollege — единственная без окончания. mit einem Kollege — типичная ошибка, и в русском её ничто не подсказывает: падеж там выражен в другом месте. Всё остальное в предложении — носитель.", uk: "Оцінюється одне слово: Kollegen. Невелика група іменників чоловічого роду — der Kollege, der Kunde, der Student, der Nachbar, der Mensch — отримує -n або -en в усіх відмінках, крім називного однини, тож словникова форма der Kollege — єдина без закінчення. mit einem Kollege — типова помилка, і українська її нічим не підказує: відмінок там виражений в іншому місці. Усе інше в реченні — носій.", de: "Bewertet wird ein Wort: Kollegen. Eine kleine Gruppe maskuliner Nomen — der Kollege, der Kunde, der Student, der Nachbar, der Mensch — nimmt in jedem Kasus außer dem Nominativ Singular ein -n oder -en, die Wörterbuchform der Kollege ist also die einzige ohne. mit einem Kollege ist der übliche Ausrutscher, und die Ausgangssprachen warnen nicht davor, weil sie den Kasus anderswo markieren. Alles Weitere im Satz ist Träger." }
+
+  - id: uebersetzen-komparativ-attributiv
+    outcomes: [wohnsituation-vergleichen]
+    type: translate
+    focus: komparativ-attributiv
+    instruction:
+      en: "Translate into German. Put both compared adjectives in front of their noun."
+      ru: "Переведите на немецкий. Оба сравнения поставьте перед существительным."
+      uk: "Перекладіть німецькою. Обидва порівняння поставте перед іменником."
+      de: "Übersetze ins Deutsche. Stell beide verglichenen Adjektive vor ihr Nomen."
+    prompt_en: "We are looking for a bigger flat in a quieter street."
+    prompt_ru: "Мы ищем квартиру побольше на улице потише."
+    prompt_uk: "Ми шукаємо більшу квартиру на тихішій вулиці."
+    answer: "Wir suchen eine größere Wohnung in einer ruhigeren Straße."
+    key_tokens: ["größere", "ruhigeren"]
+    explain: { en: "In front of a noun a comparative carries two endings, one after the other: first the -er of the comparison, then the ordinary adjective ending the case demands. eine größere Wohnung is -er plus -e for the feminine accusative; in einer ruhigeren Straße is -er plus -en for the feminine dative. Dropping the second ending (eine größer Wohnung) is the usual failure, and so is comparing with mehr — German never says mehr groß.", ru: "Перед существительным сравнительная степень несёт два окончания подряд: сначала -er самого сравнения, потом обычное окончание прилагательного, которого требует падеж. eine größere Wohnung — это -er плюс -e для женского аккузатива; in einer ruhigeren Straße — -er плюс -en для женского датива. Обычная ошибка — потерять второе окончание (eine größer Wohnung), и вторая — сравнивать через mehr: mehr groß в немецком не бывает.", uk: "Перед іменником вищий ступінь несе два закінчення поспіль: спочатку -er самого порівняння, потім звичайне закінчення прикметника, якого вимагає відмінок. eine größere Wohnung — це -er плюс -e для жіночого акузатива; in einer ruhigeren Straße — -er плюс -en для жіночого давального. Звична помилка — загубити друге закінчення (eine größer Wohnung), а друга — порівнювати через mehr: mehr groß у німецькій не буває.", de: "Vor einem Nomen trägt ein Komparativ zwei Endungen hintereinander: erst das -er des Vergleichs, dann die gewöhnliche Adjektivendung, die der Kasus verlangt. eine größere Wohnung ist -er plus -e für den femininen Akkusativ; in einer ruhigeren Straße ist -er plus -en für den femininen Dativ. Die zweite Endung fällt gern weg (eine größer Wohnung), und der Vergleich mit mehr ebenso gern — mehr groß sagt das Deutsche nie." }
+
+  - id: uebersetzen-sodass
+    outcomes: [folgen-benennen]
+    type: translate
+    focus: sodass-folge
+    instruction:
+      en: "Name the consequence with sodass."
+      ru: "Назовите следствие с помощью sodass."
+      uk: "Назвіть наслідок за допомогою sodass."
+      de: "Nenn die Folge mit sodass."
+    prompt_en: "The lift is out of order, so we have to take the stairs."
+    prompt_ru: "Лифт не работает, так что нам приходится идти по лестнице."
+    prompt_uk: "Ліфт не працює, тож нам доводиться йти сходами."
+    answer: "Der Aufzug ist kaputt, sodass wir die Treppe nehmen müssen."
+    key_tokens: ["sodass", "müssen"]
+    explain: { en: "Graded are both ends of the rule: sodass opening the clause and müssen closing it. sodass is a conjunction, so what follows it is a subordinate clause and the finite verb goes to the very wall — sodass wir die Treppe nehmen müssen, with the infinitive in front of the modal. The adverb route says the same thing with different machinery and a different order: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Mixing them produces sodass müssen wir …, which is the collapse this item watches for.", ru: "Оцениваются оба конца правила: sodass, открывающий придаточное, и müssen, закрывающий его. sodass — союз, поэтому за ним придаточное, и спрягаемый глагол уходит к самой стене: sodass wir die Treppe nehmen müssen, где инфинитив стоит перед модальным. Наречный путь выражает то же самое другим механизмом и другим порядком: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Смешение даёт sodass müssen wir … — именно эту ошибку задание и ловит.", uk: "Оцінюються обидва кінці правила: sodass, що відкриває підрядне, і müssen, що його закриває. sodass — сполучник, тому за ним підрядне, і відмінюване дієслово йде до самої стіни: sodass wir die Treppe nehmen müssen, де інфінітив стоїть перед модальним. Прислівниковий шлях виражає те саме іншим механізмом і іншим порядком: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Змішування дає sodass müssen wir … — саме цю помилку завдання й ловить.", de: "Bewertet werden beide Enden der Regel: sodass am Anfang des Nebensatzes und müssen an seinem Ende. sodass ist eine Konjunktion, dahinter steht also ein Nebensatz, und das finite Verb geht an die Wand — sodass wir die Treppe nehmen müssen, mit dem Infinitiv vor dem Modalverb. Der Adverbweg sagt dasselbe mit anderer Maschine und anderer Stellung: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Wer beides mischt, schreibt sodass müssen wir … — genau darauf schaut diese Aufgabe." }
+
+  - id: uebersetzen-ohne-zu
+    outcomes: [plan-formulieren]
+    type: translate
+    focus: ohne-statt-zu
+    instruction:
+      en: "Translate into German. Use ohne … zu. For 'say goodbye' take sich verabschieden."
+      ru: "Переведите на немецкий. Используйте ohne … zu. Для «попрощаться» возьмите sich verabschieden."
+      uk: "Перекладіть німецькою. Використайте ohne … zu. Для «попрощатися» візьміть sich verabschieden."
+      de: "Übersetze ins Deutsche. Benutze ohne … zu. Für den Abschied nimm sich verabschieden."
+    prompt_en: "He left the meeting without saying goodbye."
+    prompt_ru: "Он ушёл со встречи, не попрощавшись."
+    prompt_uk: "Він пішов зі зустрічі, не попрощавшись."
+    answer: "Er verließ die Besprechung, ohne sich zu verabschieden."
+    key_tokens: ["ohne", "zu", "verabschieden"]
+    accept:
+      # Spoken German would tell the same thing in the Perfekt; the graded frame is untouched.
+      - "Er hat die Besprechung verlassen, ohne sich zu verabschieden."
+    explain: { en: "ohne … zu is a two-ended frame like um … zu: ohne opens the clause, zu stands directly in front of the infinitive, and the infinitive is the last word. What sits between them here is the reflexive pronoun, which belongs to the verb and cannot be left out — sich verabschieden is one item. There is no subject inside the clause, which is why it works only when the two halves share one: it is he who left and he who did not say goodbye. And nothing in the clause is negated — the ohne already carries the negation.", ru: "ohne … zu — двусторонняя рамка, как um … zu: ohne открывает придаточное, zu стоит прямо перед инфинитивом, а инфинитив — последнее слово. Между ними здесь возвратное местоимение, которое принадлежит глаголу и опустить его нельзя: sich verabschieden — единое целое. Подлежащего внутри придаточного нет, поэтому конструкция работает только при общем подлежащем: ушёл он и не попрощался тоже он. И ничего внутри не отрицается — отрицание уже несёт само ohne.", uk: "ohne … zu — двобічна рамка, як um … zu: ohne відкриває підрядне, zu стоїть прямо перед інфінітивом, а інфінітив — останнє слово. Між ними тут зворотний займенник, який належить дієслову і його не можна опустити: sich verabschieden — єдине ціле. Підмета всередині підрядного немає, тому конструкція працює лише за спільного підмета: пішов він і не попрощався теж він. І нічого всередині не заперечується — заперечення вже несе саме ohne.", de: "ohne … zu ist ein Rahmen mit zwei Enden wie um … zu: ohne eröffnet den Satz, zu steht direkt vor dem Infinitiv, und der Infinitiv ist das letzte Wort. Dazwischen steht hier das Reflexivpronomen, das zum Verb gehört und nicht wegfallen darf — sich verabschieden ist eine Einheit. Ein Subjekt gibt es im Satz nicht, deshalb funktioniert er nur bei gemeinsamem Subjekt: Er ging, und er verabschiedete sich nicht. Und verneint wird darin nichts — die Verneinung steckt schon im ohne." }
+
+  - id: uebersetzen-reflexiv-praeposition
+    outcomes: [gewohnheiten-beschreiben]
+    type: translate
+    focus: reflexiv-praeposition
+    instruction:
+      en: "Translate into German. Use sich interessieren."
+      ru: "Переведите на немецкий. Используйте sich interessieren."
+      uk: "Перекладіть німецькою. Вживайте sich interessieren."
+      de: "Übersetze ins Deutsche. Benutze sich interessieren."
+    prompt_en: "I am interested in old films."
+    prompt_ru: "Я интересуюсь старыми фильмами."
+    prompt_uk: "Я цікавлюся старими фільмами."
+    answer: "Ich interessiere mich für alte Filme."
+    key_tokens: ["mich", "für"]
+    accept:
+      - "Für alte Filme interessiere ich mich."
+    explain: { en: "The verb comes as a package of three parts and both graded ones are in it: the reflexive pronoun mich and the preposition für, which then takes the accusative — alte Filme. Learn the whole frame in one piece, sich interessieren für, because nothing in the meaning predicts the preposition: sich freuen takes auf or über, sich kümmern takes um, sich ärgern takes über. Dropping the pronoun leaves ich interessiere, which means something else entirely — that would be me being interesting to somebody.", ru: "Глагол приходит комплектом из трёх частей, и обе оцениваемые в нём: возвратное местоимение mich и предлог für, который дальше требует аккузатива — alte Filme. Заучивайте рамку целиком, sich interessieren für, потому что из значения предлог не выводится: sich freuen берёт auf или über, sich kümmern — um, sich ärgern — über. Без местоимения остаётся ich interessiere, а это уже совсем другое: тогда интересен кому-то я.", uk: "Дієслово приходить комплектом із трьох частин, і обидві оцінювані в ньому: зворотний займенник mich і прийменник für, який далі вимагає акузатива — alte Filme. Заучуйте рамку цілком, sich interessieren für, бо зі значення прийменник не виводиться: sich freuen бере auf або über, sich kümmern — um, sich ärgern — über. Без займенника лишається ich interessiere, а це вже зовсім інше: тоді цікавий комусь я.", de: "Das Verb kommt als Paket aus drei Teilen, und beide bewerteten Teile stecken darin: das Reflexivpronomen mich und die Präposition für, die dann den Akkusativ nimmt — alte Filme. Lern den ganzen Rahmen als Stück, sich interessieren für, denn aus der Bedeutung folgt die Präposition nicht: sich freuen nimmt auf oder über, sich kümmern um, sich ärgern über. Ohne das Pronomen bleibt ich interessiere, und das heißt etwas ganz anderes — dann bin ich für jemanden interessant." }
+
+  - id: uebersetzen-zweiteilige-konnektoren
+    outcomes: [argumente-verbinden]
+    type: translate
+    focus: zweiteilige-konnektoren
+    instruction:
+      en: "Translate into German. Use nicht nur … sondern auch."
+      ru: "Переведите на немецкий. Используйте nicht nur … sondern auch."
+      uk: "Перекладіть німецькою. Використайте nicht nur … sondern auch."
+      de: "Übersetze ins Deutsche. Benutze nicht nur … sondern auch."
+    prompt_en: "The course is not only cheap but also close by."
+    prompt_ru: "Курс не только дешёвый, но и находится рядом."
+    prompt_uk: "Курс не тільки дешевий, а й розташований поруч."
+    answer: "Der Kurs ist nicht nur billig, sondern auch in der Nähe."
+    key_tokens: ["nur", "sondern", "auch"]
+    accept:
+      - "Der Kurs ist nicht nur günstig, sondern auch in der Nähe."
+    explain: { en: "A two-part connector is one word split in two, and both parts have to be there: nicht nur in front of the first item, sondern auch in front of the second. The half that gets forgotten is auch, and without it the sentence turns into a plain correction — nicht A, sondern B says B instead of A, while nicht nur A, sondern auch B says both. The comma goes before sondern. Note too that the nicht here is not a negation of the course; it belongs to nur.", ru: "Двойной союз — это одно слово, разорванное надвое, и обе части обязательны: nicht nur перед первым членом, sondern auch перед вторым. Забывают обычно auch — и без него предложение превращается в простое исправление: nicht A, sondern B значит «не A, а B», тогда как nicht nur A, sondern auch B значит «и то, и другое». Запятая ставится перед sondern. И ещё: nicht здесь не отрицает курс, оно принадлежит слову nur.", uk: "Подвійний сполучник — це одне слово, розірване надвоє, і обидві частини обов'язкові: nicht nur перед першим членом, sondern auch перед другим. Забувають зазвичай auch — і без нього речення перетворюється на просте виправлення: nicht A, sondern B означає «не A, а B», тоді як nicht nur A, sondern auch B означає «і те, і те». Кома ставиться перед sondern. І ще: nicht тут не заперечує курс, воно належить слову nur.", de: "Ein zweiteiliger Konnektor ist ein Wort in zwei Stücken, und beide müssen da sein: nicht nur vor dem ersten Glied, sondern auch vor dem zweiten. Vergessen wird meist das auch — und ohne es wird der Satz zur bloßen Korrektur: nicht A, sondern B heißt B statt A, nicht nur A, sondern auch B heißt beides. Das Komma steht vor sondern. Und das nicht verneint hier nicht den Kurs; es gehört zu nur." }
+
+  - id: uebersetzen-lassen
+    outcomes: [beschwerden-schildern]
+    type: translate
+    focus: lassen-verwendung
+    instruction:
+      en: "You are not doing it yourself — somebody does it for you. Use lassen; for 'examine' take untersuchen."
+      ru: "Вы не делаете это сами — это делают для вас. Используйте lassen; для «проверить» возьмите untersuchen."
+      uk: "Ви не робите це самі — це роблять для вас. Використайте lassen; для «перевірити» візьміть untersuchen."
+      de: "Du machst es nicht selbst — jemand macht es für dich. Benutze lassen; für das Prüfen nimm untersuchen."
+    prompt_en: "I am having my eyes examined on Friday."
+    prompt_ru: "В пятницу мне проверят глаза."
+    prompt_uk: "У п'ятницю мені перевірять очі."
+    answer: "Ich lasse am Freitag meine Augen untersuchen."
+    key_tokens: ["lasse", "untersuchen"]
+    accept:
+      - "Am Freitag lasse ich meine Augen untersuchen."
+      - "Ich lasse mir am Freitag die Augen untersuchen."
+    explain: { en: "lassen builds a bracket exactly like a modal verb: lasse in position 2, the bare infinitive at the very end, and no zu anywhere. What the construction adds is who acts — not me. The doctor is never named, and that is the point of the form: Ich lasse meine Augen untersuchen says the examining is arranged, not done by me, while Ich untersuche meine Augen would say I do it myself. The dative variant Ich lasse mir die Augen untersuchen says the same thing and marks whose eyes rather than repeating the possessive.", ru: "lassen строит рамку в точности как модальный глагол: lasse на втором месте, чистый инфинитив в самом конце, и никакого zu. Новое, что вносит конструкция, — кто действует, и это не я. Врача не называют вовсе, в этом и смысл формы: Ich lasse meine Augen untersuchen значит, что проверку организуют, а не что её делаю я, тогда как Ich untersuche meine Augen означало бы «я сам осматриваю свои глаза». Дативный вариант Ich lasse mir die Augen untersuchen говорит то же самое, помечая принадлежность падежом вместо притяжательного местоимения.", uk: "lassen будує рамку точно як модальне дієслово: lasse на другому місці, чистий інфінітив у самому кінці, і жодного zu. Нове, що вносить конструкція, — хто діє, і це не я. Лікаря не називають зовсім, у цьому й суть форми: Ich lasse meine Augen untersuchen означає, що перевірку організують, а не що її роблю я, тоді як Ich untersuche meine Augen означало б «я сам оглядаю свої очі». Давальний варіант Ich lasse mir die Augen untersuchen каже те саме, позначаючи належність відмінком замість присвійного займенника.", de: "lassen baut eine Klammer wie ein Modalverb: lasse auf Position 2, der reine Infinitiv ganz am Ende, nirgends ein zu. Neu ist, wer handelt — nämlich nicht ich. Die Ärztin wird gar nicht genannt, und das ist der Sinn der Form: Ich lasse meine Augen untersuchen heißt, dass die Untersuchung veranlasst wird, nicht dass ich sie mache; Ich untersuche meine Augen hieße genau das. Die Dativvariante Ich lasse mir die Augen untersuchen sagt dasselbe und markiert die Zugehörigkeit über den Kasus statt über das Possessivum." }
+
+  - id: uebersetzen-pronomen-stellung
+    outcomes: [mitteilung-weitergeben]
+    type: translate
+    focus: pronomen-stellung
+    instruction:
+      en: "Translate into German. There are two objects in the sentence — one pronoun and one noun."
+      ru: "Переведите на немецкий. В предложении два дополнения — местоимение и существительное."
+      uk: "Перекладіть німецькою. У реченні два додатки — займенник та іменник."
+      de: "Übersetze ins Deutsche. Der Satz hat zwei Objekte — ein Pronomen und ein Nomen."
+    prompt_en: "I gave him your message."
+    prompt_ru: "Я передал ему твоё сообщение."
+    prompt_uk: "Я передав йому твоє повідомлення."
+    answer: "Ich habe ihm deine Nachricht gegeben."
+    key_tokens: ["ihm", "Nachricht"]
+    accept:
+      # Written narrative would use the Präteritum; the graded pair keeps its order.
+      - "Ich gab ihm deine Nachricht."
+    explain: { en: "Graded is the order of the two objects, so both are pinned. The rule is short and it beats the case rule: a pronoun object comes in front of a noun object, whatever their cases are. With two nouns the dative leads (Ich habe dem Kollegen die Nachricht gegeben); the moment one of them becomes a pronoun, the pronoun moves in front — ihm deine Nachricht — and it would do the same if it were the accusative one (Ich habe sie dem Kollegen gegeben). Short and known first, long and new last: that is the principle underneath it.", ru: "Оценивается порядок двух дополнений, поэтому пришпилены оба. Правило короткое, и оно сильнее падежного: местоименное дополнение идёт впереди именного, какими бы ни были падежи. Если оба существительные, впереди датив (Ich habe dem Kollegen die Nachricht gegeben); как только одно из них становится местоимением, местоимение выходит вперёд — ihm deine Nachricht, — и точно так же поступило бы местоимение в аккузативе (Ich habe sie dem Kollegen gegeben). Короткое и известное — раньше, длинное и новое — позже: вот принцип под этим правилом.", uk: "Оцінюється порядок двох додатків, тому пришпилені обидва. Правило коротке, і воно сильніше за відмінкове: займенниковий додаток іде попереду іменникового, хоч би якими були відмінки. Якщо обидва іменники, попереду давальний (Ich habe dem Kollegen die Nachricht gegeben); щойно один із них стає займенником, займенник виходить наперед — ihm deine Nachricht, — і так само вчинив би займенник в акузативі (Ich habe sie dem Kollegen gegeben). Коротке й відоме — раніше, довге й нове — пізніше: ось принцип під цим правилом.", de: "Bewertet wird die Reihenfolge der beiden Objekte, deshalb sind beide gepinnt. Die Regel ist kurz und sie schlägt die Kasusregel: Ein Pronomenobjekt steht vor einem Nomenobjekt, gleich welche Kasus vorliegen. Bei zwei Nomen führt der Dativ (Ich habe dem Kollegen die Nachricht gegeben); sobald eines davon ein Pronomen wird, rückt das Pronomen nach vorn — ihm deine Nachricht —, und ein Akkusativpronomen täte dasselbe (Ich habe sie dem Kollegen gegeben). Kurz und bekannt zuerst, lang und neu zuletzt: Das ist das Prinzip darunter." }
+
+  - id: tabelle-partizip-attribut
+    outcomes: [text-zusammenfassen]
+    type: table
+    focus: partizip-adjektiv
+    title: "Partizip als Attribut"
+    instruction:
+      en: "Left: the bare participle. Right: the same participle in front of its noun, with the ending the article demands."
+      ru: "Слева — чистое причастие. Справа — оно же перед существительным, с окончанием, которого требует артикль."
+      uk: "Ліворуч — чистий дієприкметник. Праворуч — він же перед іменником, із закінченням, якого вимагає артикль."
+      de: "Links das reine Partizip. Rechts dasselbe Partizip vor seinem Nomen, mit der Endung, die das Artikelwort verlangt."
+    columns: ["Partizip", "Attribut"]
+    rows:
+      - { label: "kochen · das Ei", cells: [{ answer: "gekocht", given: true }, { answer: "das gekochte Ei" }] }
+      - { label: "planen · das Treffen", cells: [{ answer: "geplant" }, { answer: "das geplante Treffen" }] }
+      - { label: "lachen · die Kinder", cells: [{ answer: "lachend" }, { answer: "die lachenden Kinder" }] }
+    explain: { en: "A participle put in front of a noun becomes an adjective and takes an adjective ending — that ending is the whole exercise, because the bare form is what learners leave standing there. The two participles do different jobs: the Partizip II is passive and finished (das geplante Treffen — somebody planned it), while the Partizip I is active and ongoing and is built from the infinitive plus -d (lachen → lachend → die lachenden Kinder). This is how a notice compresses a whole relative clause into two words.", ru: "Причастие, поставленное перед существительным, становится прилагательным и получает соответствующее окончание — и всё задание именно про него, потому что чаще всего там оставляют чистую форму. Два причастия делают разную работу: Partizip II пассивно и завершено (das geplante Treffen — встречу кто-то запланировал), а Partizip I активно и длится и образуется от инфинитива плюс -d (lachen → lachend → die lachenden Kinder). Именно так объявление сжимает целое придаточное в два слова.", uk: "Дієприкметник, поставлений перед іменником, стає прикметником і отримує відповідне закінчення — і все завдання саме про нього, бо найчастіше там залишають чисту форму. Два дієприкметники роблять різну роботу: Partizip II пасивний і завершений (das geplante Treffen — зустріч хтось запланував), а Partizip I активний і триває й утворюється від інфінітива плюс -d (lachen → lachend → die lachenden Kinder). Саме так оголошення стискає ціле підрядне у два слова.", de: "Ein Partizip vor einem Nomen wird zum Adjektiv und nimmt eine Adjektivendung — und genau um die geht es hier, denn stehen bleibt meist die reine Form. Die beiden Partizipien tun Verschiedenes: Das Partizip II ist passivisch und abgeschlossen (das geplante Treffen — jemand hat es geplant), das Partizip I ist aktivisch und im Verlauf und entsteht aus Infinitiv plus -d (lachen → lachend → die lachenden Kinder). So verdichtet ein Aushang einen ganzen Relativsatz zu zwei Wörtern." }
+
+  # --- Schreiben ---
+  - id: schreiben-beschwerde-zug
+    outcomes: [beschwerde-schreiben, folgen-benennen]
+    type: write
+    instruction:
+      en: "Write the complaint yourself — the list below is what to check it against, not a form to fill in."
+      ru: "Напишите жалобу сами — список ниже подсказывает, что в ней проверить, а не бланк для заполнения."
+      uk: "Напишіть скаргу самі — список нижче підказує, що в ній перевірити, а не бланк для заповнення."
+      de: "Schreib die Beschwerde selbst — die Liste unten sagt, woran du sie prüfen kannst, sie ist kein Formular."
+    prompt:
+      en: "Your train from Hamburg to Munich was cancelled at short notice because of a strike. You waited two hours, missed your connection in Nuremberg and arrived four hours late; the hotel had already given your room away. Write a formal complaint to the railway company."
+      ru: "Ваш поезд из Гамбурга в Мюнхен отменили в последний момент из-за забастовки. Вы прождали два часа, не успели на пересадку в Нюрнберге и приехали на четыре часа позже; отель тем временем отдал ваш номер. Напишите официальную жалобу в железнодорожную компанию."
+      uk: "Ваш потяг із Гамбурга до Мюнхена скасували в останній момент через страйк. Ви прочекали дві години, не встигли на пересадку в Нюрнберзі й приїхали на чотири години пізніше; готель тим часом віддав ваш номер. Напишіть офіційну скаргу до залізничної компанії."
+      de: "Dein Zug von Hamburg nach München fiel wegen eines Streiks kurzfristig aus. Du hast zwei Stunden gewartet, den Anschluss in Nürnberg verpasst und bist vier Stunden zu spät angekommen; das Hotel hatte dein Zimmer inzwischen weitergegeben. Schreib eine formelle Beschwerde an die Bahn."
+    goal:
+      en: "Six to eight sentences: what was booked, what happened, what followed from it, and what you are asking for — formal throughout, and factual rather than angry."
+      ru: "Шесть-восемь предложений: что было забронировано, что произошло, что из этого последовало и чего вы требуете — официальным тоном и по фактам, а не эмоционально."
+      uk: "Шість-вісім речень: що було заброньовано, що сталося, що з цього випливло і чого ви вимагаєте — офіційним тоном і по фактах, а не емоційно."
+      de: "Sechs bis acht Sätze: was gebucht war, was geschah, was daraus folgte und was du forderst — durchgehend formell und sachlich statt wütend."
+    requirements:
+      - en: "Open and close formally: Sehr geehrte Damen und Herren, … Mit freundlichen Grüßen. Stay with Sie throughout."
+        ru: "Официальное начало и конец: Sehr geehrte Damen und Herren, … Mit freundlichen Grüßen. Форму Sie выдерживайте до конца."
+        uk: "Офіційний початок і кінець: Sehr geehrte Damen und Herren, … Mit freundlichen Grüßen. Форму Sie витримуйте до кінця."
+        de: "Formell beginnen und schließen: Sehr geehrte Damen und Herren, … Mit freundlichen Grüßen. Bleib durchgehend beim Sie."
+      - en: "Name the facts first — train, date, route, booking number — before you name the problem. A complaint that opens with the annoyance is harder to process."
+        ru: "Сначала факты — поезд, дата, маршрут, номер брони, — и только потом проблема. Жалобу, которая начинается с возмущения, труднее обработать."
+        uk: "Спочатку факти — потяг, дата, маршрут, номер броні, — і лише потім проблема. Скаргу, що починається з обурення, важче опрацювати."
+        de: "Nenn zuerst die Fakten — Zug, Datum, Strecke, Buchungsnummer — und erst dann das Problem. Eine Beschwerde, die mit dem Ärger anfängt, lässt sich schwerer bearbeiten."
+      - en: "Give the cause with wegen + genitive (wegen eines Streiks) and the consequence with sodass (…, sodass ich meinen Anschluss verpasst habe). Those two sentences are the core of the letter."
+        ru: "Причину назовите через wegen + генитив (wegen eines Streiks), следствие — через sodass (…, sodass ich meinen Anschluss verpasst habe). Эти два предложения и есть ядро письма."
+        uk: "Причину назвіть через wegen + родовий відмінок (wegen eines Streiks), наслідок — через sodass (…, sodass ich meinen Anschluss verpasst habe). Ці два речення і є ядром листа."
+        de: "Nenn den Grund mit wegen + Genitiv (wegen eines Streiks) und die Folge mit sodass (…, sodass ich meinen Anschluss verpasst habe). Diese beiden Sätze sind der Kern des Briefs."
+      - en: "End with one clear request and a date: Ich bitte Sie, mir die Kosten bis zum 30. September zu erstatten. A complaint without a request is only a report."
+        ru: "Закончите одним чётким требованием и датой: Ich bitte Sie, mir die Kosten bis zum 30. September zu erstatten. Жалоба без требования — это просто отчёт."
+        uk: "Закінчіть одним чітким проханням і датою: Ich bitte Sie, mir die Kosten bis zum 30. September zu erstatten. Скарга без вимоги — це просто звіт."
+        de: "Schließ mit einer klaren Forderung und einem Datum: Ich bitte Sie, mir die Kosten bis zum 30. September zu erstatten. Eine Beschwerde ohne Forderung ist nur ein Bericht."
+    min_words: 45
+    model_answer: "Sehr geehrte Damen und Herren, am 12. September wollte ich mit dem ICE 585 von Hamburg nach München fahren, Buchungsnummer XK4821. Wegen eines Streiks fiel dieser Zug kurzfristig aus. Ich habe zwei Stunden am Gleis gewartet, sodass ich meinen Anschluss in Nürnberg verpasst habe und erst vier Stunden später in München angekommen bin. Mein Hotelzimmer war zu diesem Zeitpunkt bereits anderweitig vergeben worden, und ich musste eine teurere Unterkunft nehmen. Die Rechnung über 140 Euro lege ich bei. Ich bitte Sie, mir den Fahrpreis und die zusätzlichen Kosten bis zum 30. September zu erstatten. Mit freundlichen Grüßen, Anna Weber"
+    model_translation:
+      en: "Dear Sir or Madam, on 12 September I intended to travel from Hamburg to Munich on ICE 585, booking number XK4821. Because of a strike this train was cancelled at short notice. I waited two hours on the platform, so that I missed my connection in Nuremberg and only arrived in Munich four hours later. By that time my hotel room had already been given to somebody else, and I had to take more expensive accommodation. I enclose the invoice for 140 euros. I ask you to refund the fare and the additional costs by 30 September. Yours faithfully, Anna Weber"
+      ru: "Уважаемые дамы и господа! 12 сентября я собиралась ехать поездом ICE 585 из Гамбурга в Мюнхен, номер брони XK4821. Из-за забастовки этот поезд был отменён в последний момент. Я прождала на платформе два часа, так что не успела на пересадку в Нюрнберге и приехала в Мюнхен только на четыре часа позже. К этому моменту мой номер в отеле уже отдали другим, и мне пришлось взять более дорогое жильё. Счёт на 140 евро прилагаю. Прошу возместить мне стоимость проезда и дополнительные расходы до 30 сентября. С уважением, Анна Вебер"
+      uk: "Шановні пані та панове! 12 вересня я збиралася їхати потягом ICE 585 з Гамбурга до Мюнхена, номер броні XK4821. Через страйк цей потяг було скасовано в останній момент. Я прочекала на платформі дві години, тож не встигла на пересадку в Нюрнберзі й приїхала до Мюнхена лише на чотири години пізніше. На той момент мій номер у готелі вже віддали іншим, і мені довелося взяти дорожче житло. Рахунок на 140 євро додаю. Прошу відшкодувати мені вартість проїзду та додаткові витрати до 30 вересня. З повагою, Анна Вебер"
+    explain: { en: "Compare your draft with the model's moves rather than its words. The facts come first and carry a booking number, so the company can find the journey without writing back. The cause is a genitive phrase and the consequence a sodass-clause, which is the pair a complaint is actually built from — everything else is detail hanging off those two. The past passive vergeben worden war says the room went without saying who gave it away, which is exactly the right amount of blame to assign to a hotel that is not the addressee. And the letter closes with one request and one date; a complaint that asks for nothing gets filed rather than answered.", ru: "Сверяйте черновик с ходами образца, а не со словами. Сначала идут факты, и среди них номер брони — чтобы компания нашла поездку, не переспрашивая. Причина оформлена генитивной группой, следствие — придаточным с sodass: именно эта пара и составляет каркас жалобы, всё остальное к ней подвешено. Пассив прошедшего vergeben worden war сообщает, что номер отдали, не называя кто, — ровно столько вины, сколько уместно возложить на отель, который тут не адресат. И письмо закрывается одним требованием и одной датой: жалобу, которая ничего не просит, подшивают, а не отвечают на неё.", uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Спочатку йдуть факти, і серед них номер броні — щоб компанія знайшла поїздку, не перепитуючи. Причина оформлена групою родового відмінка, наслідок — підрядним із sodass: саме ця пара й складає каркас скарги, усе інше до неї підвішене. Пасив минулого vergeben worden war повідомляє, що номер віддали, не називаючи кому саме належить провина, — рівно стільки, скільки доречно покласти на готель, який тут не адресат. І лист закривається однією вимогою й однією датою: скаргу, що нічого не просить, підшивають, а не відповідають на неї.", de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Zuerst kommen die Fakten, und darunter eine Buchungsnummer, damit die Bahn die Fahrt ohne Rückfrage findet. Der Grund steht als Genitivgruppe, die Folge als sodass-Satz — dieses Paar ist das Gerüst jeder Beschwerde, alles andere hängt daran. Das Vergangenheitspassiv vergeben worden war sagt, dass das Zimmer weg war, ohne zu nennen, wer es weitergab: genau so viel Schuld, wie einem Hotel zusteht, das hier nicht der Adressat ist. Und der Brief schließt mit einer Forderung und einem Datum; eine Beschwerde ohne Forderung wird abgeheftet statt beantwortet." }

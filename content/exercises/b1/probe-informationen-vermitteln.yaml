@@ -1,0 +1,119 @@
+# Delayed probe family 1 of 3 — ONE competence: the relay, cold. A written notice reports
+# in the Konjunktiv I, and the learner hands it on the way B1 produces it — er sagt/schreibt,
+# dass … plus the ordinary present tense, with the finite verb at the clause end. Three
+# parallel translate variants served in authoring order across the 2/7/21 delays: one
+# retention curve over one move.
+#
+# Konjunktiv I is receptive here as everywhere in this unit, and the format is what keeps it
+# that way. Every variant PRINTS the notice in its instruction (komme, sei, finde … statt)
+# and asks for the relay; nothing the learner types is ever a Konjunktiv I form, and no
+# variant grades recognition alone either — the answer has to be composed.
+#
+# translate rather than cloze: what is measured is a whole clause the learner builds — the
+# connector, the tense and the verb's position at once — and a cloze would print the frame
+# that decides two of the three. The cost is attribution, and `key_tokens` pays it: the two
+# ends of the reported clause are pinned in every variant and nothing else is, so a fumbled
+# Trainer or Ausflug is scored wrong and left unattributed rather than charged to this
+# tag.
+#
+# The three cells are the three shapes the Konjunktiv I actually turns up in on paper: the
+# plain -e for -t (komme → kommt), the one form that looks like nothing else (sei → ist),
+# and a separable verb whose halves come back together at the wall (finde … statt →
+# stattfindet). One competence, three surfaces.
+#
+# Every instruction names the reporting verb, so the main clause is fixed and no variant
+# grades which word the author had in mind; variant b accepts both the Perfekt and the
+# Präteritum of sagen, because the prompt's past is genuinely open between them and the
+# graded pair does not move with the choice.
+#
+# Content fresh against the taught surface, checked by grepping each institution, noun and
+# verb across the unit's seven files rather than by re-reading this list. The taught relays
+# are all about this one building — der Aufzug wird am Freitag repariert/geprüft, der Termin
+# werde verschoben, der Handwerker habe den Schlüssel noch, die Briefkästen seien schon
+# geliefert worden, das Wasser wird am Mittwoch abgestellt, die Handwerker kommen am Montag
+# (the pretest). `Praxis`, `Arzt`, `Trainer`, `Training`, `Schule` and `Ausflug` occur in no
+# learner-facing text of this unit — the only hits the grep returns are inside the pretest's
+# own freshness note — and no taught item reports an institution outside the house.
+#
+# arming: the three items in which the learner chooses the connector of a reported clause or
+# relays a written Konjunktiv I. Nothing else in the unit carries this tag. All three
+# families on this topic are new and each arms from its own literal list (P19-4,
+# src/lib/probes.ts reads `arming` and nothing else), so no family's `armedAt` can be moved
+# by another — measured before and after by reading the three lists, which share no item.
+# The pretest's dass-cloze is excluded by role: a pretest is a guess taken before the lesson
+# and arms nothing.
+topic: informationen-vermitteln
+role: probe
+title:
+  en: "Delayed check — handing a written report on"
+  ru: "Отложенная проверка — передача письменного сообщения"
+  uk: "Відкладена перевірка — передавання письмового повідомлення"
+  de: "Kontrolle mit Abstand — einen schriftlichen Bericht weitergeben"
+arming:
+  - b1/informationen-vermitteln::cloze-dass-ob-relais
+  - b1/informationen-vermitteln::mc-konjunktiv1-lesen
+  - b1/informationen-vermitteln::uebersetzen-relais-konjunktiv
+items:
+  - id: variant-a
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-rede
+    instruction:
+      en: "The notice reads: Die Praxis teilt mit, der Arzt komme erst um zehn. Pass it on with dass and the ordinary present tense. For 'the practice' take die Praxis, for 'writes' schreiben, and for 'not … until' erst."
+      ru: "В объявлении написано: Die Praxis teilt mit, der Arzt komme erst um zehn. Передайте это через dass и обычное настоящее время. Для «поликлиника» возьмите die Praxis, для «пишет» — schreiben, для «только» — erst."
+      uk: "В оголошенні написано: Die Praxis teilt mit, der Arzt komme erst um zehn. Перекажіть це через dass і звичайний теперішній час. Для «поліклініка» візьміть die Praxis, для «пише» — schreiben, для «лише» — erst."
+      de: "Im Aushang steht: Die Praxis teilt mit, der Arzt komme erst um zehn. Gib es mit dass und Präsens weiter. Für die Arztpraxis nimm die Praxis, für das Schreiben schreiben, für nicht vor erst."
+    prompt_en: "The practice writes that the doctor is not coming until ten."
+    prompt_ru: "Поликлиника пишет, что врач придёт только в десять."
+    prompt_uk: "Поліклініка пише, що лікар прийде лише о десятій."
+    answer: "Die Praxis schreibt, dass der Arzt erst um zehn kommt."
+    key_tokens: ["dass", "kommt"]
+    explain:
+      en: "The plain cell: the notice writes komme where the ordinary present has kommt, and that -e is the whole signal. It marks the sentence as somebody else's words and says nothing about the time, the certainty or the politeness of it. Passing it on, you drop the marker and keep the fact — dass and kommt, the verb in the present and at the very end. Both ends are graded: dass is what a statement travels in, and the position of kommt is what the source languages give no warning about."
+      ru: "Простая клетка: в объявлении стоит komme там, где обычное настоящее даёт kommt, и всё сообщение — в этом -e. Оно помечает фразу как чужие слова и ничего не говорит ни о времени, ни о степени уверенности, ни о вежливости. Передавая, вы снимаете пометку и сохраняете факт: dass и kommt, глагол в настоящем и в самом конце. Оцениваются оба конца: dass — то, в чём путешествует утверждение, а о позиции kommt русский язык ничем не предупреждает."
+      uk: "Проста клітинка: в оголошенні стоїть komme там, де звичайний теперішній дає kommt, і все повідомлення — у цьому -e. Воно позначає фразу як чужі слова й нічого не каже ні про час, ні про міру певності, ні про ввічливість. Переказуючи, ви знімаєте позначку й зберігаєте факт: dass і kommt, дієслово в теперішньому і в самому кінці. Оцінюються обидва кінці: dass — те, у чому подорожує твердження, а про позицію kommt українська мова нічим не попереджає."
+      de: "Die einfache Zelle: Der Aushang schreibt komme, wo der Indikativ kommt sagt, und dieses -e ist das ganze Signal. Es markiert den Satz als fremde Worte und sagt nichts über Zeit, Sicherheit oder Höflichkeit. Beim Weitergeben fällt die Markierung weg und die Tatsache bleibt — dass und kommt, das Verb im Präsens und ganz am Ende. Bewertet sind beide Enden: dass trägt die Aussage, und vor der Stellung von kommt warnen die Ausgangssprachen nicht."
+
+  - id: variant-b
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-rede
+    instruction:
+      en: "The message reads: Der Trainer sagte, das Training sei eine Stunde später. Pass it on with dass and the ordinary present tense. For 'the trainer' take der Trainer, for 'the training session' das Training."
+      ru: "В сообщении написано: Der Trainer sagte, das Training sei eine Stunde später. Передайте это через dass и обычное настоящее время. Для «тренер» возьмите der Trainer, для «тренировка» — das Training."
+      uk: "У повідомленні написано: Der Trainer sagte, das Training sei eine Stunde später. Перекажіть це через dass і звичайний теперішній час. Для «тренер» візьміть der Trainer, для «тренування» — das Training."
+      de: "In der Nachricht steht: Der Trainer sagte, das Training sei eine Stunde später. Gib es mit dass und Präsens weiter. Für den Übungsleiter nimm der Trainer, für die Übungsstunde das Training."
+    prompt_en: "The trainer said that the training session is an hour later."
+    prompt_ru: "Тренер сказал, что тренировка на час позже."
+    prompt_uk: "Тренер сказав, що тренування на годину пізніше."
+    answer: "Der Trainer hat gesagt, dass das Training eine Stunde später ist."
+    accept:
+      # The reporting verb's own past is genuinely open between Perfekt and Präteritum here,
+      # and the graded pair does not move with the choice.
+      - "Der Trainer sagte, dass das Training eine Stunde später ist."
+    key_tokens: ["dass", "ist"]
+    explain:
+      en: "The odd cell: sei is the one Konjunktiv I form that looks like nothing else in the language, and it is the form a written report reaches for most often. Read it as ist and hand it on as ist. What does not change is the tense — the session is still ahead, so a past form in the reported clause would say something different from what the trainer said. The reporting verb outside it may be either past; only the clause inside is graded."
+      ru: "Особая клетка: sei — единственная форма Konjunktiv I, не похожая ни на что другое в языке, и именно её письменный отчёт берёт чаще всего. Читайте её как ist и передавайте как ist. Не меняется время: тренировка ещё впереди, и прошедшая форма в придаточном сказала бы не то, что сказал тренер. Глагол сообщения снаружи может стоять в любом из двух прошедших; оценивается только придаточное."
+      uk: "Особлива клітинка: sei — єдина форма Konjunktiv I, не схожа ні на що інше в мові, і саме її письмовий звіт бере найчастіше. Читайте її як ist і переказуйте як ist. Не змінюється час: тренування ще попереду, і минула форма в підрядному сказала б не те, що сказав тренер. Дієслово повідомлення зовні може стояти в будь-якому з двох минулих; оцінюється лише підрядне."
+      de: "Die besondere Zelle: sei ist die eine Konjunktiv-I-Form, die nach nichts anderem aussieht, und sie ist die häufigste im geschriebenen Bericht. Lies sie als ist und gib sie als ist weiter. Die Zeitform bleibt: Das Training steht noch bevor, eine Vergangenheitsform im Nebensatz sagte also etwas anderes, als der Trainer gesagt hat. Das Verb des Berichts draußen darf beide Vergangenheiten haben; bewertet wird nur der Nebensatz."
+
+  - id: variant-c
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-rede
+    instruction:
+      en: "The letter reads: Die Schule teilt mit, der Ausflug finde am Dienstag statt. Pass it on with dass and the ordinary present tense. For 'the school' take die Schule, for 'writes' schreiben, for 'the outing' der Ausflug, and for 'take place' stattfinden."
+      ru: "В письме написано: Die Schule teilt mit, der Ausflug finde am Dienstag statt. Передайте это через dass и обычное настоящее время. Для «школа» возьмите die Schule, для «пишет» — schreiben, для «экскурсия» — der Ausflug, для «состояться» — stattfinden."
+      uk: "У листі написано: Die Schule teilt mit, der Ausflug finde am Dienstag statt. Перекажіть це через dass і звичайний теперішній час. Для «школа» візьміть die Schule, для «пише» — schreiben, для «екскурсія» — der Ausflug, для «відбутися» — stattfinden."
+      de: "Im Schreiben steht: Die Schule teilt mit, der Ausflug finde am Dienstag statt. Gib es mit dass und Präsens weiter. Für die Bildungseinrichtung nimm die Schule, für das Schreiben schreiben, für die Fahrt der Ausflug, für die Durchführung stattfinden."
+    prompt_en: "The school writes that the outing is taking place on Tuesday."
+    prompt_ru: "Школа пишет, что экскурсия состоится во вторник."
+    prompt_uk: "Школа пише, що екскурсія відбудеться у вівторок."
+    answer: "Die Schule schreibt, dass der Ausflug am Dienstag stattfindet."
+    key_tokens: ["dass", "stattfindet"]
+    explain:
+      en: "The separable cell, and the one where two rules meet. In the notice the verb is split as usual — finde … statt — and the Konjunktiv I sits on the finite half. Relayed inside a dass-clause the two halves come back together at the wall as one word: stattfindet, never findet … statt and never statt findet. So the position and the spelling are one decision, and both are graded together with the connector that opens the clause."
+      ru: "Клетка с отделяемой приставкой — и та, где сходятся два правила. В объявлении глагол разделён как обычно (finde … statt), а Konjunktiv I сидит на спрягаемой половине. Переданный внутри придаточного с dass, он у стены снова собирается в одно слово: stattfindet, но не findet … statt и не statt findet. Значит, позиция и написание — одно решение, и оценивается оно вместе со словом, открывающим придаточное."
+      uk: "Клітинка з відокремлюваним префіксом — і та, де сходяться два правила. В оголошенні дієслово розділене як звичайно (finde … statt), а Konjunktiv I сидить на відмінюваній половині. Переказаний усередині підрядного з dass, він біля стіни знову збирається в одне слово: stattfindet, але не findet … statt і не statt findet. Отже, позиція і написання — одне рішення, і оцінюється воно разом зі словом, що відкриває підрядне."
+      de: "Die trennbare Zelle, und die, in der zwei Regeln zusammenkommen. Im Aushang steht das Verb wie üblich getrennt — finde … statt —, und der Konjunktiv I sitzt auf der finiten Hälfte. Im dass-Satz weitergegeben, setzen sich beide Hälften an der Wand wieder zu einem Wort zusammen: stattfindet, nie findet … statt und nie statt findet. Stellung und Schreibung sind also eine Entscheidung, und sie wird zusammen mit dem Einleitungswort bewertet."

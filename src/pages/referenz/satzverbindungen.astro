@@ -1,7 +1,8 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { sentenceConnectorsReferenceSchema } from '../../lib/schemas';
+import TaughtIn from '../../components/reference/TaughtIn.astro';
+import { sentenceConnectorsReferenceSchema } from '@da/schema';
 import { withBase } from '../../lib/url';
 
 const entry = await getEntry('referenceData', 'sentence-connectors');
@@ -44,7 +45,7 @@ const levelClasses: Record<string, string> = {
       <span class="lang-ru">Карта логических связей между высказываниями и порядка слов, которого требует каждая немецкая связка. Значок уровня показывает первую ступень Atlas, где ожидается активное употребление; более поздние формы уже показаны для узнавания и сравнения.</span>
       <span class="lang-uk">Карта логічних зв'язків між висловлюваннями — і порядку слів, якого вимагає кожен німецький сполучник. Позначка рівня показує перший щабель Atlas, на якому очікується активне вживання; пізніші форми подано тут для розпізнавання та порівняння.</span>
     </p>
-  </header>
+  <TaughtIn source="sentence-connectors" /></header>
 
   <section class="mt-8 rounded-xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
     <h2 class="font-bold">Stufen auf dieser Seite</h2>

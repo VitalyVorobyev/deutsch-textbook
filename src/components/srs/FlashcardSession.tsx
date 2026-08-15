@@ -23,7 +23,7 @@ import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
 import SpeakerButton from '../SpeakerButton';
 import { useExplainLang, useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   allDone: { en: 'All done for now!', ru: 'На сегодня всё!' },
   cardsReviewed: { en: 'Cards reviewed', ru: 'Карточек повторено' },
@@ -161,11 +161,11 @@ export default function FlashcardSession({
       if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
       if (ev.key >= '1' && ev.key <= String(GRADE_BUTTONS.length)) {
         ev.preventDefault();
-        void grade(GRADE_BUTTONS[Number(ev.key) - 1].grade);
+        grade(GRADE_BUTTONS[Number(ev.key) - 1].grade);
       } else if (ev.key === 'Enter' && verdict !== null) {
         if (ev.timeStamp === submitTs.current) return;
         ev.preventDefault();
-        void grade(suggested);
+        grade(suggested);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -218,10 +218,18 @@ export default function FlashcardSession({
   const front = card.dir === 'de-x' && !listening ? answerDe : meaning;
   const back = card.dir === 'de-x' ? meaning : answerDe;
 
-  async function grade(g: Grade) {
+  function grade(g: Grade) {
     if (!card) return;
     const nextState = gradeCard(states[card.id], g);
-    await setCardState(card.id, nextState);
+    // Optimistic: every visible state update lands synchronously, before the
+    // persisted write is even awaited. A stalled IndexedDB write (a
+    // backgrounded tab; WebKit is documented to stall IDB transactions there)
+    // used to sit ahead of all of these, so the click read as dead — nothing
+    // moved until the write settled, which could be never. The write itself
+    // still happens, just after the UI has already moved on; its failure is
+    // logged, not swallowed, and a lost write costs exactly one rep: card
+    // state is a full value per card id, so the next successful grade
+    // overwrites it (the same idempotency `scheduleAutoSync` already trusts).
     setStates((s) => ({ ...s, [card.id]: nextState }));
     setStats((st) => ({ reviewed: st.reviewed + 1, again: st.again + (g === Rating.Again ? 1 : 0) }));
     setQueue((q) => {
@@ -237,6 +245,9 @@ export default function FlashcardSession({
     setRevealed(false);
     setTyped('');
     setVerdict(null);
+    setCardState(card.id, nextState).catch((err) => {
+      console.error('setCardState failed', card.id, err);
+    });
   }
 
   function switchMode(mode: CardInputMode) {
@@ -313,14 +324,19 @@ export default function FlashcardSession({
     </>
   );
 
+  // Sticky on phones (P24-10): a long card back — example, translations, note —
+  // pushed this row below the fold, where Safari's bottom bar covered it; the
+  // learner who had just answered could not see how to proceed. Sticky beats
+  // scroll-into-view because it also holds when the back is taller than one
+  // viewport. Static again at sm:, where the fold was never the problem.
   const gradeButtons = (withSuggestion: boolean) => (
-    <>
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
+    <div className="sticky bottom-0 z-10 mt-6 bg-white/95 pb-[max(0.25rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm dark:bg-stone-800/95 sm:static sm:z-auto sm:bg-transparent sm:pb-0 sm:pt-0 sm:backdrop-blur-none">
+      <div className="flex flex-wrap justify-center gap-2">
         {GRADE_BUTTONS.map(({ grade: g, label, cls }) => (
           <button
             key={g}
             type="button"
-            onClick={() => void grade(g)}
+            onClick={() => grade(g)}
             className={`min-h-11 rounded-md px-3 py-2 text-sm font-semibold text-white sm:min-h-0 sm:px-4 ${cls} ${
               withSuggestion && g === suggested
                 ? 'ring-2 ring-stone-900 ring-offset-2 ring-offset-white dark:ring-stone-100 dark:ring-offset-stone-800'
@@ -336,7 +352,7 @@ export default function FlashcardSession({
           ↵ {suggested === Rating.Good ? t('grade.good', uiLang) : t('grade.again', uiLang)} · 1–2
         </p>
       )}
-    </>
+    </div>
   );
 
   return (
@@ -375,7 +391,7 @@ export default function FlashcardSession({
           {pick(lang, UI.remaining)}: {queue.length}
         </p>
       </div>
-      <div className="rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
+      <div className="rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
         <p className="text-center text-xs uppercase tracking-wide text-stone-400">
           {listening
             ? t('flashcards.dirListen', uiLang)
@@ -409,7 +425,7 @@ export default function FlashcardSession({
         ) : (
           <p
             lang={card.dir === 'de-x' && !listening ? 'de' : undefined}
-            className="mt-4 text-center text-2xl font-bold sm:text-3xl"
+            className="mt-3 text-center text-xl font-bold sm:mt-4 sm:text-3xl"
           >
             {front}
             {card.dir === 'de-x' && !listening && (
@@ -420,7 +436,7 @@ export default function FlashcardSession({
 
         {typing ? (
           verdict === null ? (
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <div className="flex gap-2">
                 <input
                   ref={inputRef}
@@ -455,7 +471,7 @@ export default function FlashcardSession({
                   é were added, and 8×w-10 + 7×gap-2 is 376px — wider than the
                   card at a 320–375px viewport. Without wrapping the last keys
                   clip off, which is the very defect the extra keys fixed. */}
-              <div className="mt-2 flex flex-wrap justify-center gap-2">
+              <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:gap-2">
                 {GERMAN_INPUT_KEYS.map((ch) => (
                   <button
                     key={ch}

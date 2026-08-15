@@ -1,7 +1,8 @@
 ---
 import { getEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { briefeReferenceSchema } from '../../lib/schemas';
+import TaughtIn from '../../components/reference/TaughtIn.astro';
+import { briefeReferenceSchema } from '@da/schema';
 import { withBase } from '../../lib/url';
 
 const entry = await getEntry('referenceData', 'briefe');
@@ -52,7 +53,7 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
       <span class="lang-ru">Части, из которых строится немецкое сообщение, в порядке их следования — и три полных образца в трёх регистрах. Выберите <b>du</b> или <b>Sie</b> один раз и держитесь этого до последней строки.</span>
       <span class="lang-uk">Частини, з яких будується німецьке повідомлення, у порядку їхньої появи — і три повні зразки в трьох регістрах. Оберіть <b>du</b> або <b>Sie</b> один раз і тримайтеся цього до останнього рядка.</span>
     </p>
-  </header>
+  <TaughtIn source="briefe" /></header>
 
   {
     data.sections.map((section) => (

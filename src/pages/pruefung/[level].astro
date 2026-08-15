@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import UebenNav from '../../components/UebenNav.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
 import { withBase } from '../../lib/url';
 
@@ -19,10 +20,7 @@ const title = `Prüfungspraxis ${level.toUpperCase()}`;
 ---
 
 <Base title={title}>
-  <nav class="mb-4 text-sm text-stone-400">
-    <a href={withBase('/topics')} class="hover:text-stone-600 dark:hover:text-stone-200">Themen</a>
-    <span> / Prüfungspraxis</span>
-  </nav>
+  <UebenNav active="pruefung" />
   <header class="mb-8">
     <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800 dark:bg-amber-900 dark:text-amber-200">{level.toUpperCase()}</span>
     <h1 lang="de" class="mt-3 text-3xl font-bold">{title}</h1>
@@ -37,6 +35,14 @@ const title = `Prüfungspraxis ${level.toUpperCase()}`;
     <span class="lang-ru">Свободное письмо и говорение сохраняются как непроверенная практика. Сравнивайте ответ с образцом; эти задания не повышают измеренное освоение.</span>
     <span class="lang-uk">Вільне письмо й говоріння зберігаються як неперевірена практика. Порівнюйте відповідь зі зразком; ці завдання не підвищують виміряне опанування.</span>
   </aside>
+  {level === 'a1' && (
+    <aside class="mb-8 rounded-lg border border-stone-200 bg-stone-50 p-4 text-sm dark:border-stone-700 dark:bg-stone-900">
+      <a href={withBase('/pruefung/goethe-a1')} class="font-semibold text-amber-700 hover:underline dark:text-amber-400">Prüfungssimulator →</a>
+      <span class="ml-2 lang-en">Timed runs of the official Goethe practice sets, when their materials are present on this device.</span>
+      <span class="ml-2 lang-ru">Прогон официальных комплектов Гёте на время — если их материалы есть на этом устройстве.</span>
+      <span class="ml-2 lang-uk">Проходження офіційних комплектів Ґете на час — якщо їхні матеріали є на цьому пристрої.</span>
+    </aside>
+  )}
   <div class="space-y-8">
     {sets.map((entry) => {
       const ids = [...new Set(entry.data.items.flatMap((item) => item.stimulus ? [item.stimulus] : []))];

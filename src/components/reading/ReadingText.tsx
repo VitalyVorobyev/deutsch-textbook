@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
-import type { Reading, ReadingAudioArtifact } from '../../lib/schemas';
-import { parseGlosses } from '../../lib/gloss';
+import type { Reading, ReadingAudioArtifact } from '@da/schema';
+import { parseGlosses } from '@da/schema/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { logAttempt } from '../../lib/store';
 import { pick, pickLang } from '../../lib/prefs';
@@ -20,7 +20,7 @@ interface Props {
   narration?: ReadingAudioArtifact;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   extensiveNote: {
     en: 'A longer text, meant to be read for pleasure. Read it straight through once. Not knowing every word is fine — leave the glosses closed while the meaning still carries.',
@@ -29,6 +29,34 @@ const UI = {
   comprehension: { en: 'comprehension questions correct.', ru: 'правильных ответов по тексту.' },
   results: { en: 'Results', ru: 'Результат' },
 } as const satisfies Record<string, { en: string; ru: string }>;
+
+/**
+ * Renders a credit line's URLs as links showing only the hostname — a full
+ * percent-encoded Wikisource URL wraps over three lines on a phone, and the
+ * href keeps the whole address anyway.
+ */
+function renderCredit(text: string) {
+  return text.split(/(https?:\/\/\S+)/).map((part, i) => {
+    if (!/^https?:\/\//.test(part)) return <Fragment key={i}>{part}</Fragment>;
+    let label = part;
+    try {
+      label = new URL(part).hostname;
+    } catch {
+      /* unparseable — show the raw text */
+    }
+    return (
+      <a
+        key={i}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-dotted underline-offset-2 hover:text-stone-600 dark:hover:text-stone-300"
+      >
+        {label}
+      </a>
+    );
+  });
+}
 
 /**
  * A graded reading text with click-to-reveal glosses, followed by its
@@ -258,6 +286,13 @@ export default function ReadingText({ readingId, reading, narration }: Props) {
           )
         )}
       </div>
+      )}
+
+      {/* Provenance for adapted texts (ADR 0006) — data on the reading, always visible. */}
+      {reading.attribution && (
+        <p lang="de" className="mt-4 text-xs text-stone-400 dark:text-stone-500">
+          {renderCredit(reading.attribution)} · {reading.license}
+        </p>
       )}
     </div>
   );

@@ -1,0 +1,292 @@
+topic: verben-mit-kasus
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Welchen Kasus will das Verb?"
+title:
+  en: "Practice — which case does the verb want?"
+  ru: "Практика — какой падеж требует глагол?"
+  uk: "Практика — якого відмінка вимагає дієслово?"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# The article's three shapes, drilled as one decision rather than three lists: the Akkusativ
+# default against the closed Dativ club (the table, cloze-mein-form, mc-gehoeren-besuchen,
+# three translate items and the dictation), and the case welded into a verb+preposition chunk
+# (mc-freuen-wochenende, the Bahnhof/Zug flagship, cloze-markt-bus, uebersetzen-sprechen).
+# Every club item puts an accusative verb beside the dative one in the same task, because bare
+# recall of helfen + Dativ is what a2/dativ already drills — what is new here is the *choice*,
+# and a learner who never has to make it can pass by writing Dativ whenever a person appears.
+#
+# One item carries `verb-praeposition` instead (cloze-welche-praeposition): it grades which
+# preposition the verb governs, not the case that preposition then brings, and it is what
+# makes the `deepens: verben-mit-praepositionen` edge real — that topic drills the same tag in
+# two of its practice items (match-verb-praeposition, translate-davon), so an error here pulls
+# them back into mixed training.
+#
+# Nouns are all A1/A2 deck words, grepped in content/vocab/ rather than remembered: Chefin,
+# Nachbarin, Arzt, Bruder, Schwester, Kollegin, Auto, Bahnhof, Zug, Markt, Bus, Wochenende,
+# Wohnung, Musik, Termin, Antwort, Reise. No new deck — the topic recycles.
+items:
+  - id: table-jemanden-jemandem
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: table
+    focus: verb-kasus
+    title: "jemanden oder jemandem?"
+    instruction:
+      en: "Every one of these verbs takes its person without a preposition — but not in the same case. Write the chunk pronoun (jemanden or jemandem) and then name the case (Akkusativ or Dativ)."
+      ru: "Все эти глаголы берут человека без предлога — но не в одном и том же падеже. Впишите местоимение из куска (jemanden или jemandem) и назовите падеж (Akkusativ или Dativ)."
+      uk: "Усі ці дієслова беруть людину без прийменника — але не в тому самому відмінку. Впишіть займенник зі шматка (jemanden або jemandem) і назвіть відмінок (Akkusativ або Dativ)."
+    columns: ["jemanden oder jemandem?", "Kasus"]
+    rows:
+      - label: "anrufen"
+        cells:
+          - { answer: "jemanden", given: true }
+          - { answer: "Akkusativ" }
+      - label: "helfen"
+        cells:
+          - { answer: "jemandem" }
+          - { answer: "Dativ" }
+      - label: "fragen"
+        cells:
+          - { answer: "jemanden" }
+          - { answer: "Akkusativ" }
+      - label: "danken"
+        cells:
+          - { answer: "jemandem" }
+          - { answer: "Dativ" }
+      - label: "stören"
+        cells:
+          - { answer: "jemanden" }
+          - { answer: "Akkusativ" }
+      - label: "gratulieren"
+        cells:
+          - { answer: "jemandem" }
+          - { answer: "Dativ" }
+    explain:
+      en: "Read the rows in pairs and the point of the table appears: anrufen and helfen do the same kind of thing to the same kind of person, and they land in different cases. Meaning predicts nothing, so the reliable move is to store the pronoun with the verb — jemanden anrufen, jemandem helfen — and let it carry the case. Four of the six here are accusative, the common pattern; the two dative frames must be learnt individually, and an unfamiliar verb should be checked rather than assigned a case by elimination."
+      ru: "Прочитайте строки парами — и смысл таблицы виден сразу: anrufen и helfen делают с человеком одно и то же, а падежи у них разные. Значение не предсказывает ничего, поэтому надёжный ход — хранить местоимение вместе с глаголом (jemanden anrufen, jemandem helfen) и позволить ему нести падеж. Четыре глагола из шести здесь требуют Akkusativ — это частая модель; две рамки с Dativ учат отдельно, а управление незнакомого глагола проверяют, а не выводят методом исключения."
+      uk: "Прочитайте рядки парами — і сенс таблиці видно одразу: anrufen і helfen роблять з людиною те саме, а відмінки в них різні. Значення не передбачає нічого, тому надійний хід — зберігати займенник разом із дієсловом (jemanden anrufen, jemandem helfen) і дозволити йому нести відмінок. Чотири дієслова з шести тут вимагають Akkusativ — це часта модель; дві рамки з Dativ вчать окремо, а керування незнайомого дієслова перевіряють, а не виводять методом виключення."
+
+  - id: cloze-mein-form
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction:
+      en: "Fill in mein- in the form the verb demands."
+      ru: "Вставьте mein- в той форме, которой требует глагол."
+      uk: "Вставте mein- у тій формі, якої вимагає дієслово."
+    text: "Am Morgen rufe ich {{meine}} Chefin an. Dann helfe ich {{meiner}} Nachbarin. Am Abend danke ich {{meinem}} Arzt."
+    translation:
+      en: "In the morning I call my boss. Then I help my neighbour. In the evening I thank my doctor."
+      ru: "Утром я звоню своей начальнице. Потом я помогаю соседке. Вечером я благодарю своего врача."
+      uk: "Уранці я дзвоню своїй начальниці. Потім я допомагаю сусідці. Увечері я дякую своєму лікареві."
+    explain:
+      en: "Three people, three verbs, two cases. anrufen is an ordinary accusative verb, so the feminine stays meine Chefin. helfen is on the dative list, so the feminine becomes meiner Nachbarin — and those first two gaps are the whole topic in two words, because nothing but the list separates them. danken is on the same list, and the masculine dative is meinem Arzt. Note that the two feminines differ by one letter: meine against meiner is exactly the choice the verb makes for you."
+      ru: "Три человека, три глагола, два падежа. anrufen — обычный глагол с Akkusativ, поэтому женский род остаётся meine Chefin. helfen стоит в дативном списке, поэтому женский род даёт meiner Nachbarin — и первые два пропуска и есть вся тема в двух словах, потому что различает их только список. danken из того же списка, а мужской род в Dativ — meinem Arzt. Обратите внимание: две формы женского рода отличаются одной буквой, и выбор между meine и meiner делает за вас именно глагол."
+      uk: "Троє людей, три дієслова, два відмінки. anrufen — звичайне дієслово з Akkusativ, тому жіночий рід лишається meine Chefin. helfen стоїть у давальному списку, тому жіночий рід дає meiner Nachbarin — і перші два пропуски і є вся тема у двох словах, бо розрізняє їх лише список. danken з того самого списку, а чоловічий рід у Dativ — meinem Arzt. Зверніть увагу: дві форми жіночого роду відрізняються однією літерою, і вибір між meine та meiner робить за вас саме дієслово."
+
+  - id: mc-gehoeren-besuchen
+    outcomes: [dativ-person-nennen, akkusativ-person-nennen]
+    type: mc
+    focus: verb-kasus
+    instruction:
+      en: "One noun, two verbs. Choose the pair of forms that fits."
+      ru: "Одно существительное, два глагола. Выберите подходящую пару форм."
+      uk: "Один іменник, два дієслова. Виберіть відповідну пару форм."
+    prompt: "Das Auto gehört ___ Bruder. Am Sonntag besuche ich ___ Bruder."
+    options: ["meinem … meinen", "meinen … meinem", "meinem … meinem"]
+    correct: 0
+    translation:
+      en: "The car belongs to my brother. On Sunday I visit my brother."
+      ru: "Машина принадлежит моему брату. В воскресенье я навещаю брата."
+      uk: "Машина належить моєму братові. У неділю я відвідую брата."
+    explain:
+      en: "The noun does not move and the sentence does not change its topic — only the verb changes, and with it the case. gehören is on the dative list, so the owner is meinem Bruder. besuchen is not on the list, so it falls back to the default and takes meinen Bruder. The pairing meinem … meinem keeps the dative for both, which is the habit this topic exists to break: a person in the sentence is not a reason for the dative, the verb is."
+      ru: "Существительное не меняется, тема предложения не меняется — меняется только глагол, а вместе с ним падеж. gehören стоит в дативном списке, поэтому владелец — meinem Bruder. besuchen в списке нет, поэтому работает вариант по умолчанию: meinen Bruder. Пара meinem … meinem ставит Dativ дважды — это и есть привычка, ради которой существует тема: человек в предложении не повод для Dativ, повод — глагол."
+      uk: "Іменник не змінюється, тема речення не змінюється — змінюється лише дієслово, а разом із ним відмінок. gehören стоїть у давальному списку, тому власник — meinem Bruder. besuchen у списку немає, тому працює варіант за замовчуванням: meinen Bruder. Пара meinem … meinem ставить Dativ двічі — це і є звичка, заради якої існує тема: людина в реченні не привід для Dativ, привід — дієслово."
+
+  - id: mc-freuen-wochenende
+    outcomes: [verbchunk-nennen]
+    type: mc
+    focus: verb-kasus
+    instruction:
+      en: "Choose the correct form."
+      ru: "Выберите правильную форму."
+      uk: "Виберіть правильну форму."
+    prompt: "Wir freuen uns schon ___ Wochenende."
+    options: ["auf das", "auf dem", "auf den"]
+    correct: 0
+    translation:
+      en: "We are already looking forward to the weekend."
+      ru: "Мы уже с радостью ждём выходных."
+      uk: "Ми вже з радістю чекаємо на вихідні."
+    explain:
+      en: "Nothing here moves anywhere, so the Wohin?/Wo? question has nothing to work on — and that question is the only thing that ever makes auf alternate. Inside the chunk sich freuen auf the case was settled once and for all: accusative. das Wochenende is neuter, so the accusative form is auf das Wochenende. auf dem would be the position form of a place, and auf den is the masculine accusative, which is the right case on the wrong gender."
+      ru: "Здесь никто никуда не движется, поэтому вопросу Wohin?/Wo? просто не за что зацепиться — а только этот вопрос и заставляет auf чередовать падежи. Внутри куска sich freuen auf падеж решён раз и навсегда: Akkusativ. das Wochenende — средний род, поэтому форма Akkusativ — auf das Wochenende. Вариант auf dem был бы формой места, а auf den — Akkusativ мужского рода: падеж верный, род нет."
+      uk: "Тут ніхто нікуди не рухається, тому питанню Wohin?/Wo? просто немає за що зачепитися — а лише це питання й змушує auf чергувати відмінки. Усередині шматка sich freuen auf відмінок вирішено раз і назавжди: Akkusativ. das Wochenende — середній рід, тому форма Akkusativ — auf das Wochenende. Варіант auf dem був би формою місця, а auf den — Akkusativ чоловічого роду: відмінок правильний, рід ні."
+
+  - id: uebersetzen-bahnhof-zug
+    revision: 2
+    outcomes: [verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. Both of us know which train is meant."
+      ru: "Переведите на немецкий. Речь идёт о конкретном, известном поезде."
+      uk: "Перекладіть німецькою. Ідеться про конкретний, відомий поїзд."
+    prompt_en: "I am waiting for the train at the station."
+    prompt_ru: "Я жду поезд на вокзале."
+    prompt_uk: "Я чекаю на поїзд на вокзалі."
+    answer: "Ich warte auf dem Bahnhof auf den Zug."
+    accept:
+      # Fronting the place phrase is ordinary V2 and does not touch the graded chunk.
+      - "Auf dem Bahnhof warte ich auf den Zug."
+      # am Bahnhof is what the course itself teaches for the location (the A1 place topic's
+      # Feinheiten row: Wo? mit an, nicht mit bei) — the free place phrase must not decide
+      # the verdict on an item whose competence is the warten-auf chunk.
+      - "Ich warte am Bahnhof auf den Zug."
+      - "Am Bahnhof warte ich auf den Zug."
+    # Only the chunk's article is pinned: the place phrase is not fixed by the prompts, so a
+    # dative slip there belongs to wo-wohin, not to verb-kasus.
+    key_tokens: ["den"]
+    explain:
+      en: "The same preposition twice in one short sentence, in two different jobs. The first auf answers Wo? — it names the place where the waiting happens, and a place you are at takes the dative: auf dem Bahnhof. The second auf arrived with the verb out of your vocabulary list, so it belongs to the chunk warten auf, whose case is fixed at accusative whatever the sentence is about: auf den Zug. Nothing in the sentence moves, and the second case is accusative anyway — that is the point. Swap the two articles and the sentence says you are waiting on top of a train for a station."
+      ru: "Один и тот же предлог дважды в одном коротком предложении — и в двух разных ролях. Первый auf отвечает на вопрос Wo?: он называет место, где происходит ожидание, а место, на котором находятся, требует Dativ — auf dem Bahnhof. Второй auf пришёл вместе с глаголом из словарного списка, то есть принадлежит куску warten auf, а его падеж закреплён за Akkusativ независимо от содержания предложения: auf den Zug. Никакого движения в предложении нет, а второй падеж всё равно Akkusativ — в этом и суть. Поменяйте артикли местами, и получится, что вы стоите на поезде и ждёте вокзал."
+      uk: "Той самий прийменник двічі в одному короткому реченні — і у двох різних ролях. Перший auf відповідає на питання Wo?: він називає місце, де відбувається очікування, а місце, на якому перебувають, вимагає Dativ — auf dem Bahnhof. Другий auf прийшов разом із дієсловом зі словникового списку, тобто належить шматкові warten auf, а його відмінок закріплено за Akkusativ незалежно від змісту речення: auf den Zug. Жодного руху в реченні немає, а другий відмінок усе одно Akkusativ — у цьому й суть. Поміняйте артиклі місцями, і вийде, що ви стоїте на поїзді й чекаєте на вокзал."
+
+  - id: uebersetzen-anrufen-gratulieren
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "I call my sister and congratulate her."
+    prompt_ru: "Я звоню сестре и поздравляю её."
+    prompt_uk: "Я дзвоню сестрі й вітаю її."
+    answer: "Ich rufe meine Schwester an und gratuliere ihr."
+    accept:
+      - "Ich rufe meine Schwester an. Ich gratuliere ihr."
+      - "Ich rufe meine Schwester an und ich gratuliere ihr."
+    key_tokens: ["meine", "ihr"]
+    explain:
+      en: "Two verbs about the same person, and German sorts them into opposite cases. anrufen reaches the person directly — you call somebody, with no preposition and no 'to' — so it is the accusative meine Schwester. gratulieren requires the dative, so the person becomes ihr, not sie. English is no help in either half: 'call her' and 'congratulate her' are written identically. That is why both frames are stored with their verbs."
+      ru: "Два глагола об одном и том же человеке — и немецкий разводит их по разным падежам. anrufen обращается к человеку напрямую, без предлога, поэтому нужен Akkusativ: meine Schwester. А вот gratulieren требует Dativ, поэтому человек — ihr, а не sie. Русский подсказывает неверно оба раза: «звоню (кому?) сестре» — дательный там, где немецкий требует Akkusativ, а «поздравляю (кого?) её» — винительный там, где немецкий требует Dativ. Ровно поэтому управление запоминают вместе с глаголом."
+      uk: "Два дієслова про ту саму людину — і німецька розводить їх у різні відмінки. anrufen звертається до людини напряму, без прийменника, тому потрібен Akkusativ: meine Schwester. А от gratulieren вимагає Dativ, тому людина — ihr, а не sie. Українська підказує неправильно обидва рази: «дзвоню (кому?) сестрі» — давальний там, де німецька вимагає Akkusativ, а «вітаю (кого?) її» — знахідний там, де німецька вимагає Dativ. Саме тому керування запам'ятовують разом із дієсловом."
+
+  - id: uebersetzen-fragen-antworten
+    outcomes: [akkusativ-person-nennen, dativ-person-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "I ask my colleague, and she answers me."
+    prompt_ru: "Я спрашиваю у своей коллеги, и она мне отвечает."
+    prompt_uk: "Я питаю у своєї колеги, і вона мені відповідає."
+    answer: "Ich frage meine Kollegin, und sie antwortet mir."
+    accept:
+      - "Ich frage meine Kollegin. Sie antwortet mir."
+    key_tokens: ["meine", "mir"]
+    explain:
+      en: "A question and its answer, and the two verbs sit on opposite sides of the rule. fragen takes the person as a plain accusative object with no preposition at all: ich frage meine Kollegin. antworten is on the dative list, so the person answered is mir. English hides both decisions — 'ask her' and 'answer her' look the same — and it also tempts you to insert a preposition after ask, which German never does here."
+      ru: "Вопрос и ответ — и два глагола оказываются по разные стороны правила. fragen берёт человека как обычное дополнение в Akkusativ, безо всякого предлога: ich frage meine Kollegin. А antworten стоит в дативном списке, поэтому тот, кому отвечают, — mir. Русское «спросить у коллеги» подсказывает предлог, которого в немецком нет, а «ответить кому» здесь совпадает с немецким — совпадение приятное, но именно из-за него первая половина и остаётся ошибкой на годы."
+      uk: "Питання і відповідь — і два дієслова опиняються по різні боки правила. fragen бере людину як звичайний додаток в Akkusativ, без жодного прийменника: ich frage meine Kollegin. А antworten стоїть у давальному списку, тому той, кому відповідають, — mir. Українське «спитати в колеги» підказує прийменник, якого в німецькій немає, а «відповісти кому» тут збігається з німецькою — збіг приємний, але саме через нього перша половина й лишається помилкою на роки."
+
+  - id: cloze-markt-bus
+    outcomes: [verbchunk-nennen]
+    type: cloze
+    focus: verb-kasus
+    instruction:
+      en: "The same preposition twice. Fill in auf together with its article."
+      ru: "Один и тот же предлог дважды. Вставьте auf вместе с артиклем."
+      uk: "Той самий прийменник двічі. Вставте auf разом з артиклем."
+    text: "Lea steht {{auf dem}} Markt und wartet {{auf den}} Bus."
+    translation:
+      en: "Lea is standing in the market square, waiting for the bus."
+      ru: "Леа стоит на рынке и ждёт автобус."
+      uk: "Леа стоїть на ринку й чекає на автобус."
+    explain:
+      en: "Ask the two-question test on each gap in turn. The first one answers Wo? — the market square is where Lea is standing, and a location takes the dative: auf dem Markt. The second gap answers nothing about place at all; the auf came with warten out of the vocabulary list, so the chunk decides, and warten auf is accusative: auf den Bus. Standing still and waiting is the clearest case there is that movement has nothing to do with it."
+      ru: "Примените проверку двумя вопросами к каждому пропуску по очереди. Первый отвечает на Wo?: рынок — место, где Леа стоит, а место требует Dativ — auf dem Markt. Второй пропуск о месте не говорит вообще ничего: auf пришёл вместе с warten из словарного списка, поэтому решает кусок, а warten auf требует Akkusativ — auf den Bus. Человек стоит на месте и ждёт — яснее не показать, что движение тут ни при чём."
+      uk: "Застосуйте перевірку двома питаннями до кожного пропуску по черзі. Перший відповідає на Wo?: ринок — місце, де Леа стоїть, а місце вимагає Dativ — auf dem Markt. Другий пропуск про місце не каже взагалі нічого: auf прийшов разом із warten зі словникового списку, тому вирішує шматок, а warten auf вимагає Akkusativ — auf den Bus. Людина стоїть на місці й чекає — ясніше не показати, що рух тут ні до чого."
+
+  - id: cloze-welche-praeposition
+    outcomes: [verbchunk-nennen]
+    type: cloze
+    focus: verb-praeposition
+    instruction:
+      en: "Fill in the preposition the verb governs."
+      ru: "Вставьте предлог, которого требует глагол."
+      uk: "Вставте прийменник, якого вимагає дієслово."
+    text: "Wir warten {{auf}} die Antwort. Ich denke oft {{an}} den Termin. Lea träumt {{von}} einer Reise."
+    translation:
+      en: "We are waiting for the answer. I often think about the appointment. Lea dreams of a journey."
+      ru: "Мы ждём ответа. Я часто думаю о приёме. Леа мечтает о путешествии."
+      uk: "Ми чекаємо на відповідь. Я часто думаю про прийом. Леа мріє про подорож."
+    explain:
+      en: "This is the half of the chunk you met first: which preposition the verb brings. It is not a translation of anything — 'wait for' does not give you auf, 'think about' does not give you an, and 'dream of' does not give you von; each of the three has to be stored with its verb. Once you have it, the second half follows without another decision, because the preposition carries a fixed case with it: auf and an are accusative here, von is dative."
+      ru: "Это та половина куска, с которой вы познакомились раньше: какой предлог приводит с собой глагол. Переводом она не выводится — «ждать» не даёт auf, «думать о» не даёт an, «мечтать о» не даёт von; каждый из трёх приходится хранить вместе со своим глаголом. Зато когда предлог известен, вторая половина идёт следом без нового решения: предлог несёт с собой закреплённый падеж — auf и an здесь с Akkusativ, von с Dativ."
+      uk: "Це та половина шматка, з якою ви познайомилися раніше: який прийменник приводить із собою дієслово. Перекладом вона не виводиться — «чекати» не дає auf, «думати про» не дає an, «мріяти про» не дає von; кожен із трьох доводиться зберігати разом зі своїм дієсловом. Зате коли прийменник відомий, друга половина йде слідом без нового рішення: прийменник несе із собою закріплений відмінок — auf і an тут з Akkusativ, von з Dativ."
+
+  - id: uebersetzen-gefallen-stoeren
+    outcomes: [dativ-person-nennen, akkusativ-person-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. Use gefallen for the first half."
+      ru: "Переведите на немецкий. В первой половине используйте gefallen."
+      uk: "Перекладіть німецькою. У першій половині вживайте gefallen."
+    prompt_en: "I like the new flat, but the music bothers me."
+    prompt_ru: "Новая квартира мне нравится, но музыка мне мешает."
+    prompt_uk: "Нова квартира мені подобається, але музика мені заважає."
+    answer: "Die neue Wohnung gefällt mir, aber die Musik stört mich."
+    accept:
+      - "Mir gefällt die neue Wohnung, aber die Musik stört mich."
+    key_tokens: ["mir", "mich"]
+    explain:
+      en: "One person, one sentence, two cases — this is the pair worth carrying away from the whole topic. gefallen is on the dative list and turns the sentence round on top of that: the flat is the subject and the person stands in the dative, so 'I like it' becomes die Wohnung gefällt mir. stören is not on the list, so it takes the ordinary accusative: die Musik stört mich. English writes the two halves in completely different shapes and gives you no case marking at all, so neither half can be derived — both are looked up."
+      ru: "Один человек, одно предложение, два падежа — эту пару стоит вынести из всей темы. gefallen стоит в дативном списке и вдобавок переворачивает предложение: подлежащее — квартира, а человек в Dativ, так что «мне нравится» превращается в die Wohnung gefällt mir. stören в списке нет, поэтому берёт обычный Akkusativ: die Musik stört mich. По-русски обе половины устроены одинаково — «мне нравится» и «мне мешает», оба раза дательный, — и именно поэтому вторая половина так упорно выходит как *stört mir*."
+      uk: "Одна людина, одне речення, два відмінки — цю пару варто винести з усієї теми. gefallen стоїть у давальному списку і на додачу перевертає речення: підмет — квартира, а людина в Dativ, тож «мені подобається» перетворюється на die Wohnung gefällt mir. stören у списку немає, тому бере звичайний Akkusativ: die Musik stört mich. Українською обидві половини влаштовані однаково — «мені подобається» і «мені заважає», обидва рази давальний, — і саме тому друга половина так уперто виходить як *stört mir*."
+
+  - id: diktat-danken-anrufen
+    outcomes: [dativ-person-nennen, akkusativ-person-nennen]
+    type: listen
+    focus: verb-kasus
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
+    text: "Ich danke dir, und ich rufe dich an."
+    translation:
+      en: "Thank you, and I will call you."
+      ru: "Спасибо тебе, и я тебе позвоню."
+      uk: "Дякую тобі, і я тобі зателефоную."
+    explain:
+      en: "Two pronouns for the same person, one letter apart, and the verb picks which one you hear. danken is on the dative list, so it is dir; anrufen is an ordinary accusative verb, so it is dich. Sound them out slowly: dir ends open, dich ends with the soft ich-sound. Writing dich after danke or dir after rufe is not a spelling slip — it is the government decision going the wrong way."
+      ru: "Два местоимения для одного и того же человека, разница в одну букву, и выбирает её глагол. danken стоит в дативном списке — значит dir; anrufen обычный глагол с Akkusativ — значит dich. Проговорите медленно: dir заканчивается открыто, dich — мягким звуком ich. Написать dich после danke или dir после rufe — не описка, а неверно принятое решение об управлении."
+      uk: "Два займенники для тієї самої людини, різниця в одну літеру, і обирає її дієслово. danken стоїть у давальному списку — отже dir; anrufen звичайне дієслово з Akkusativ — отже dich. Промовте повільно: dir закінчується відкрито, dich — м'яким звуком ich. Написати dich після danke або dir після rufe — не описка, а неправильно ухвалене рішення про керування."
+
+  - id: uebersetzen-sprechen-arzt
+    revision: 2
+    outcomes: [verbchunk-nennen]
+    type: translate
+    focus: verb-kasus
+    instruction:
+      en: "Translate into German. Both of us know which doctor and which appointment are meant."
+      ru: "Переведите на немецкий. Речь идёт о конкретном враче и конкретном приёме."
+      uk: "Перекладіть німецькою. Ідеться про конкретного лікаря і конкретний прийом."
+    prompt_en: "I am speaking with the doctor about the appointment."
+    prompt_ru: "Я говорю с врачом о приёме."
+    prompt_uk: "Я говорю з лікарем про прийом."
+    answer: "Ich spreche mit dem Arzt über den Termin."
+    accept:
+      - "Über den Termin spreche ich mit dem Arzt."
+    key_tokens: ["dem", "den"]
+    explain:
+      en: "One verb, two chunks, two cases, and neither of them is a decision you make in the sentence. sprechen mit names the person you are talking to, and mit is dative always and everywhere: mit dem Arzt. sprechen über names the topic, and über inside a verb chunk is accusative however it behaves as a preposition of place: über den Termin. Store the verb twice, once per frame, exactly as the vocabulary cards do."
+      ru: "Один глагол, два куска, два падежа — и ни один из них не решается внутри предложения. sprechen mit называет собеседника, а mit всегда и везде требует Dativ: mit dem Arzt. sprechen über называет тему, а über внутри глагольного куска требует Akkusativ, как бы он ни вёл себя в качестве предлога места: über den Termin. Храните этот глагол дважды, по одному разу на каждую модель, — ровно так, как устроены словарные карточки."
+      uk: "Одне дієслово, два шматки, два відмінки — і жоден із них не вирішується всередині речення. sprechen mit називає співрозмовника, а mit завжди й усюди вимагає Dativ: mit dem Arzt. sprechen über називає тему, а über усередині дієслівного шматка вимагає Akkusativ, хоч би як він поводився як прийменник місця: über den Termin. Зберігайте це дієслово двічі, по одному разу на кожну модель, — саме так, як побудовані словникові картки."

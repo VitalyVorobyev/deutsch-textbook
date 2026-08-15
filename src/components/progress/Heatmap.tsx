@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { dailyActivity, activeDateSet, currentStreak, mondayOf, addDays } from '../../lib/trends';
+import { dailyActivity, activeDateSet, currentStreak, mondayOf, addDays, parseLocalDate } from '../../lib/trends';
 import { localDateString, type Attempt, type CardStates, type SessionLogEntry } from '../../lib/store';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   title: { en: 'Activity', ru: 'Активность' },
   dayStreak: { en: 'day streak', ru: 'дн. подряд' },
@@ -15,7 +15,10 @@ const UI = {
 const WEEKS = 13;
 
 function intensity(total: number): string {
-  if (total <= 0) return 'bg-stone-100 dark:bg-stone-800';
+  // The surrounding card is dark:bg-stone-800 — an empty cell painted the same
+  // color was indistinguishable from the card background, not "no activity".
+  // One step lighter than the card keeps it subtle but visible.
+  if (total <= 0) return 'bg-stone-100 dark:bg-stone-700';
   if (total <= 2) return 'bg-emerald-200 dark:bg-emerald-900';
   if (total <= 5) return 'bg-emerald-300 dark:bg-emerald-800';
   if (total <= 10) return 'bg-emerald-400 dark:bg-emerald-600';
@@ -37,11 +40,23 @@ export function Heatmap({
 
   const today = new Date();
   const todayStr = localDateString(today);
-  const start = addDays(mondayOf(today), -(WEEKS - 1) * 7);
+  const defaultStart = addDays(mondayOf(today), -(WEEKS - 1) * 7);
+  // Never render weeks before the learner's own history — months of empty cells
+  // before they existed is noise, not context. Clamped the other way too: a long
+  // history never grows the grid past WEEKS weeks. No activity at all leaves
+  // nothing to clamp against, so the fixed WEEKS-week window is unchanged.
+  let earliestActive: string | undefined;
+  for (const [date, day] of map) {
+    if (day.total > 0 && (!earliestActive || date < earliestActive)) earliestActive = date;
+  }
+  const earliestMonday = earliestActive ? mondayOf(parseLocalDate(earliestActive)) : undefined;
+  const start = earliestMonday && earliestMonday > defaultStart ? earliestMonday : defaultStart;
+
+  const mondayToday = mondayOf(today);
   const weeks: string[][] = [];
-  for (let w = 0; w < WEEKS; w++) {
+  for (let w = 0, cursor = start; w < WEEKS && cursor <= mondayToday; w++, cursor = addDays(cursor, 7)) {
     const col: string[] = [];
-    for (let d = 0; d < 7; d++) col.push(localDateString(addDays(start, w * 7 + d)));
+    for (let d = 0; d < 7; d++) col.push(localDateString(addDays(cursor, d)));
     weeks.push(col);
   }
 

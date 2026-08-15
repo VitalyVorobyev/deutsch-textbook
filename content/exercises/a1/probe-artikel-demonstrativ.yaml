@@ -1,0 +1,45 @@
+topic: artikel-genus
+role: probe
+title: {en: "Probe — demonstrative endings", ru: "Проверка — окончания указательного слова", uk: "Перевірка — закінчення вказівного слова"}
+arming:
+  - a1/artikel-demonstrativ::mc-dieser-tisch
+  - a1/artikel-demonstrativ::mc-diese-tasche
+  - a1/artikel-demonstrativ::cloze-dieses-buch
+  - a1/artikel-demonstrativ::table-nominativ
+  - a1/artikel-demonstrativ-anwenden::translate-fenster
+  - a1/artikel-demonstrativ-anwenden::translate-buecher
+  - a1/artikel-demonstrativ-anwenden::translate-kaffee
+items:
+  - id: variant-a
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "This train is late."
+    prompt_ru: "Этот поезд опаздывает."
+    prompt_uk: "Цей потяг запізнюється."
+    answer: "Dieser Zug ist spät."
+    key_tokens: ["Dieser", "Zug"]
+    explain: {en: "der Zug → dieser Zug. The -er ending carries masculine nominative.", ru: "der Zug → dieser Zug. Окончание -er показывает мужской род в именительном падеже.", uk: "der Zug → dieser Zug. Закінчення -er показує чоловічий рід у називному відмінку."}
+  - id: variant-b
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "This street is quiet."
+    prompt_ru: "Эта улица тихая."
+    prompt_uk: "Ця вулиця тиха."
+    answer: "Diese Straße ist ruhig."
+    key_tokens: ["Diese", "Straße"]
+    explain: {en: "die Straße → diese Straße. Feminine nominative carries -e.", ru: "die Straße → diese Straße. Женский род в именительном падеже получает -e.", uk: "die Straße → diese Straße. Жіночий рід у називному відмінку отримує -e."}
+  - id: variant-c
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "This ticket is valid."
+    prompt_ru: "Этот билет действителен."
+    prompt_uk: "Цей квиток дійсний."
+    answer: "Dieses Ticket ist gültig."
+    key_tokens: ["Dieses", "Ticket"]
+    explain: {en: "das Ticket → dieses Ticket. Neuter nominative carries -es.", ru: "das Ticket → dieses Ticket. Средний род в именительном падеже получает -es.", uk: "das Ticket → dieses Ticket. Середній рід у називному відмінку отримує -es."}

@@ -4,7 +4,7 @@ import { attemptScore, isVerifiedEvidence } from '../../lib/scoring';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   title: { en: 'Session history', ru: 'История занятий' },
   date: { en: 'Date', ru: 'Дата' },
@@ -39,11 +39,14 @@ export function SessionLog({
   // Owns its card, so an empty log leaves no empty box behind.
   if (rows.length === 0) return null;
 
+  // Closed by default: the heatmap already answers "when was I active", so the
+  // per-day table is detail on demand, not part of the overview (P24-3).
   return (
-    <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-      <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+    <details className="group rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-stone-600 hover:text-amber-700 dark:text-stone-300 dark:hover:text-amber-400 sm:min-h-0">
+        <span aria-hidden className="text-xs font-normal transition-transform group-open:rotate-90">▸</span>
         {pick(lang, UI.title)}
-      </h2>
+      </summary>
       <div className="mt-3 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -71,6 +74,6 @@ export function SessionLog({
           </tbody>
         </table>
       </div>
-    </section>
+    </details>
   );
 }

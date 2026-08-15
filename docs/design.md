@@ -12,8 +12,22 @@ Astro renders the textbook and reference surfaces; React islands provide statefu
 sessions, flashcards and progress views. A thin Tauri shell adds desktop filesystem integration
 without changing the learning model.
 
-There is no account service and no server-side learner model. Content is build-time data; learner
-state belongs to a local profile and can be exported as a backward-compatible snapshot.
+Redaktion is a separate React/Tauri workbench for that same repository. Its webview has no direct
+filesystem or shell authority: a compiled Bun sidecar loads `@da/content`, watches the selected
+checkout and accepts the narrow read, revision-checked save and validation contract in
+[ADR 0013](adrs/0013-redaction-repository-workbench.md). Browser development implements the same
+`CorpusClient` through Vite middleware. Neither transport creates a second content store.
+
+Editorial MDX preview crosses that boundary as data, never executable code. `@da/content/preview`
+parses the in-memory buffer into a serializable allowlisted tree, selects exactly one authored
+`En`/`Ru`/`Uk`/`De` half and turns expressions, raw HTML and unknown components into visible
+diagnostics. Known figure imports are recognised by spelling but never resolved or executed.
+`@da/renderers` renders the tree and disclosed exercise metadata without learner storage or
+progress effects. Both Vite and the Bun sidecar expose the same `renderSource` request.
+
+There is no server-side learner model. Content is build-time data; learner state belongs to a local
+profile and can be exported as a backward-compatible snapshot. An optional account adds a cloud copy
+of that snapshot and nothing else — the server has never parsed one.
 
 ## Content pipeline
 
@@ -27,7 +41,7 @@ content YAML / MDX
                          └── bun run validate / test / check / build
 ```
 
-`src/lib/schemas.ts` is the source of truth for content shapes. Astro collection loading proves
+`packages/schema/src/index.ts` is the source of truth for content shapes. Astro collection loading proves
 that individual records conform; `scripts/validate.ts` enforces relationships that schemas cannot
 see, including identity/filename parity, curriculum ownership, unresolved references, language
 parity, outcome measurement and canonical relation uniqueness.
@@ -63,10 +77,23 @@ Receptive-only members have no mastery identity.
 
 ## Curriculum and learning flow
 
-`src/lib/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
+`packages/content/src/curriculum.ts` loads the atlas graph and ordered spine. Prerequisites block automatic
 selection; `deepens` and shared focus tags reactivate earlier knowledge without duplicating a
 lesson. Navigation is soft: the system recommends a next step but does not prevent deliberate
 exploration.
+
+The spine orders **topics**; `data/grammar-inventory.yaml` describes the **grammar** the topics
+teach, and the two are deliberately separate dimensions. Each inventory row carries a `track`, a
+`strand` (one of ten grammatical systems), a `level: {reception, production}` pair — the published standards are
+reception standards and this is a production course, so one number could not hold both — `deepens:`
+edges naming the rows it is the deeper pass over, and `claims:` citations into
+`data/strukturenlisten/`, the external inventories the denominator is measured against
+([ADR 0011](adrs/0011-external-grammar-anchors.md)). Grammar uses a dedicated A1–C2 CEFR contract;
+this does not extend the levels the learner runtime publishes. The explicit track catalog supplies
+the stable rows of Redaktion's Grammatikatlas. Nothing in the learner runtime reads any of it: the
+fields exist so the curriculum can be audited along the language's own axes rather than only along
+the spine, which is what Redaktion renders and what `scripts/structures.ts` and
+`scripts/grammar-depth.ts` measure.
 
 A normal learning cycle combines:
 
@@ -103,15 +130,23 @@ Focused free-typed tasks may carry `focus_evidence` response predicates. Where a
 them, the attempt carries an explicit `retained`, `failed` or `unknown` verdict and that verdict
 decides attribution — an unmatched whole-sentence error is not guessed into the weakness signal.
 Where an item declares none, the attempt carries no verdict and attribution stays as it was
-(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are additive on purpose:
-silencing every unmatched miss corpus-wide was measured against the learner's log and inverts the
-signal rather than gapping it — 145 of 291 wrong free-typed attempts lose their tag and
-`weakFocuses` falls 7 → 1, with error rates driven to zero at an unchanged denominator.
-Checkpoint scores exclude both open writing and speech while their attempts still count as coverage.
+(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are **additive on purpose**:
+silencing every unmatched free-typed miss corpus-wide was measured against the learner's log and
+inverts the signal rather than gapping it ([archive](archive/2026-08-doc-slimming.md), backlog
+P12-6). Checkpoint scores exclude both open writing and speech while their attempts still count as
+coverage.
 
 `src/lib/mastery.ts` derives topic evidence and mastery. `src/lib/weakness.ts` aggregates
 focus-tag errors. High recognition or ordering scores do not override weak productive evidence;
 the progress audit is the decision surface for remediation.
+
+Topic-owned teaching sets follow the learning-activity contract in [ADR
+0014](adrs/0014-learning-activity-architecture.md). `role` controls runtime/evidence semantics;
+`stage` states scaffold, fade or transfer intent; `activity` states purpose (`core`, `extension`,
+`application`, `remediation`); and the graph derives medium (`mixed`, `listening`, `document`). Every
+topic has exactly one 8–15-item core matching `primary_practice` and at least one productive
+application. The learner page groups sources by purpose rather than rendering one equal card per
+file. `bun run activity:audit` is the inventory; item-mix validation remains per topic.
 
 A passed placement is a third evidence class. It is real evidence and it removes a topic from the
 recommended path, but it is not a measurement of mastery and never raises the measured tier — a
@@ -123,14 +158,12 @@ Opening or replaying a listening artifact likewise creates no evidence; only its
 identified exercise question can write a verified attempt. The published MP3 lives beside its record
 in `content/listening/`, never under `public/` — the WAV master stays in the studio, because it is
 what QA ran on and what the editor approved, not what a learner downloads.
-`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it**:
-`bun run build:desktop` for the desktop app (in-process rather than as a shell prefix, so the
-Windows release build can run the same command) and `.github/workflows/pages.yml` for the public
-demo. The corpus is 14.2 MB against a 69 MB site, so the split the flag originally encoded —
-recordings on the desktop, browser TTS on the web — bought nothing worth the worse demo. What it
-distinguishes now is a shipping build from a lean one with no binaries; TTS remains the live
-fallback for a recording that is absent or fails to load (`src/integrations/audio-bundle.ts`,
-`src/lib/audio.ts`).
+`PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it** —
+`bun run build:desktop` (in-process rather than as a shell prefix, so the Windows release build can
+run the same command) and the Cloudflare build. The flag therefore distinguishes a shipping build
+from a lean one with no binaries, not the desktop from the web
+([archive](archive/2026-08-doc-slimming.md)). TTS remains the live fallback for a recording that is
+absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`).
 
 ## Listening authoring boundary
 
@@ -187,15 +220,50 @@ automatically write them to `progress/<profile>/`. `bun run progress:audit` read
 snapshot, grading rulings and current content contract to produce the evidence table used for
 drill decisions.
 
+An optional account adds a third destination: `src/lib/sync-remote.ts` uploads a gzipped snapshot
+to `/api/sync/snapshot` and pulls the other device's before merging it locally. Local-first is
+unchanged by it — with no account every call is a no-op. `bun run progress:pull` brings the cloud
+copy back to `progress/<profile>/` so the personalization loop is unaffected. The reasoning is
+[ADR 0003](adrs/0003-opaque-snapshot-sync-and-approval-accounts.md); the operations are
+[`cloud-sync.md`](architecture/cloud-sync.md).
+
+## Delivery and offline
+
+The site is a static build served at `deutsch.vitavision.dev` from a Cloudflare Worker's static
+assets (`wrangler.toml`), deployed by the Cloudflare Git integration watching `main`. The Worker's
+`main` entry exists for `/api/*` alone — accounts and snapshot sync (`worker/`, D1 + R2); every
+other path is handed straight back to the asset server. **There is deliberately no GitHub Actions
+deploy**: two paths watching one branch race each other on every push, and `ci.yml` already gates
+`main`. The site is served at the root — `withBase` (`src/lib/url.ts`) remains the one helper, so a
+subpath mirror and the Tauri shell stay possible. `public/_headers` carries the response headers, of
+which one is load-bearing: a cached `sw.js` strands an installed learner on an old build
+permanently. The same build is an installable PWA: `src/integrations/pwa.ts` emits the manifest and
+the service worker at `astro:build:done`, pinning a build id that is the content hash of everything
+precached, so a no-op rebuild does not invalidate a learner's cache.
+
+Three caches on three lifecycles. The **shell** is precached and versioned — content-hashed
+`_astro/` assets, the icons and the offline page. **Documents** are network-first and versioned,
+because each page inlines its content at build time and stale HTML is stale course material.
+**Media** is cache-first and deliberately *unversioned*, because reviewed recordings are immutable
+and re-downloading the whole MP3 corpus on every deploy would be the most expensive thing the worker
+could do. Both budgeted caches evict oldest-first against a byte budget rather than an entry count,
+because page weight in this build spans two orders of magnitude (backlog P23-1).
+
+Two behaviours carry the offline promise and are covered by `tests/service-worker.test.ts`, which
+evaluates the substituted template rather than a re-implementation: Range requests are sliced out
+of the cached body into real 206s (Safari sends `Range` for every `<audio>` element, and a cached
+200 is why offline audio silently fails on iOS), and eviction moves a re-visited entry to the back
+of the order. Updates are never applied silently — `sw.js` waits and the learner presses the
+button, because reloading mid-exercise discards the attempt about to be logged.
+
 ## Multilingual rendering
 
 English and Russian are the core explanation halves; Ukrainian is an independently authored half —
 written from the German, never from a sibling half — required wherever a scope has entered a
 Ukrainian authoring wave (a wave is a scope of files, not a mode of writing). German-medium
-explanation halves ship with B1 content — live since the first B1 unit (2026-07-24), never
-backfilled to A1/A2.
-`src/lib/prefs.ts` selects the requested half and defines fallback behavior; `src/lib/langcheck.ts`
-and the validator enforce parity and alphabet discipline.
+explanation halves ship with B1 content and are never backfilled to A1/A2. `src/lib/prefs.ts`
+selects the requested half and defines fallback behavior; `packages/schema/src/langcheck.ts` and the validator
+enforce parity and alphabet discipline.
 
 Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for the dual-language
 card surface. The compact form is used only when `pickSecond` resolves an actual RU/UK half;
@@ -203,6 +271,10 @@ EN/DE modes and a missing-UK fallback continue to show full English.
 
 German examples are source language, not proof that a record has a German-medium explanation.
 This distinction matters in reference data and Wortnetze.
+
+Redaktion derives per-topic language coverage from authored `<Bilingual>` blocks. A language is
+`complete` only when every block carries its half, `partial` when some do, and `unsupported` when
+none do. The count is editorial visibility, not a request to backfill German.
 
 ## Reference and discovery extensions
 
@@ -220,7 +292,7 @@ Adding such context must not change card ids, SRS scheduling or snapshot state.
 
 ## Change boundaries
 
-- Change a content shape in `src/lib/schemas.ts`, collection wiring and validator/tests together.
+- Change a content shape in `packages/schema/src/index.ts`, collection wiring and validator/tests together.
 - Change persisted state only with an explicit migration and old-snapshot tests.
 - Change curriculum identities only before learner data exists, or with a documented migration.
 - Change evidence semantics only with production-scoring, mastery and audit tests.

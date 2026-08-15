@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import type { z } from 'zod';
-import type { writeItemSchema } from '../../lib/schemas';
+import type { writeItemSchema } from '@da/schema';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { getActiveProfileId } from '../../lib/profile';
 import { reviewedHintsSchema, type ReviewedHints } from '../../lib/assist';
@@ -12,7 +12,7 @@ import { AssistPanel } from './AssistPanel';
 type WriteItem = z.infer<typeof writeItemSchema>;
 type Stage = 'draft' | 'compare' | 'done';
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
 const UI = {
   modelHeading: {
     en: 'Model — compare content and form',
@@ -53,7 +53,7 @@ interface SavedWriting {
    * generation — but only while `forText` still matches the saved text, so
    * hints never outlive the text they quote. Display-only: submit never reads
    * this field, so it can never reach attempts or the snapshot
-   * (docs/assist-design.md).
+   * (docs/adrs/0002-advisory-only-writing-assistant.md).
    */
   assist?: ReviewedHints | null;
 }
@@ -182,7 +182,7 @@ export function Write({
       )}
 
       {/* Compare screen only, on demand: hints while drafting would replace the
-          learner's own retrieval attempt (docs/assist-design.md). */}
+          learner's own retrieval attempt (docs/adrs/0002-advisory-only-writing-assistant.md). */}
       {stage === 'compare' && (
         <AssistPanel
           item={item}
@@ -232,9 +232,13 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
   return (
     <div className="mt-4">
       <label htmlFor={id} className="text-sm font-semibold">{label}</label>
+      {/* Autocorrect must not rewrite free German production; spellCheck stays ON
+          deliberately — write is advisory-only assist territory, and whether the
+          browser may flag spelling is a policy call (P24-6), not a device bug. */}
       <textarea
         id={id}
         lang="de"
+        autoCorrect="off"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         disabled={disabled}

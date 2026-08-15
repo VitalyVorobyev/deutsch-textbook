@@ -1,7 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import {
-  topicSchema,
+  topicArticleSchema,
   vocabFileSchema,
   exerciseSetSchema,
   readingSchema,
@@ -12,11 +12,13 @@ import {
   referenceDataSchema,
   listeningArtifactSchema,
   readingAudioArtifactSchema,
-} from './lib/schemas';
+} from '@da/schema';
 
+// Prose only: a topic's identity, titles and element lists live in the sibling
+// `<id>.topic.yaml`, which `getCurriculum()` reads. The collection exists to render the article.
 const topics = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './content/topics' }),
-  schema: topicSchema,
+  schema: topicArticleSchema,
 });
 
 const vocab = defineCollection({

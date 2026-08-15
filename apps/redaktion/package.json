@@ -1,0 +1,28 @@
+{
+  "//": "Redaktion — the editorial navigator. A separate app on purpose: it is a single-page tool with a client router, no SEO and no static pages, so Astro buys it nothing, and it can never leak into the learner build by construction. It reads the corpus through @da/content and never re-derives a measurement.",
+  "name": "@da/redaktion",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "sidecar:build": "bun scripts/build-sidecars.ts",
+    "desktop:dev": "bun run sidecar:build && bunx --bun vite",
+    "desktop:build": "bun run sidecar:build && bunx --bun vite build",
+    "tauri:dev": "bunx tauri dev --config src-tauri/tauri.conf.json",
+    "tauri:build": "bun scripts/tauri-build.ts"
+  },
+  "dependencies": {
+    "@da/content": "workspace:*",
+    "@da/renderers": "workspace:*",
+    "@da/schema": "workspace:*",
+    "@da/ui": "workspace:*",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-dialog": "^2.7.2",
+    "@radix-ui/react-tabs": "^1.1.21",
+    "@radix-ui/react-tooltip": "^1.2.16",
+    "yaml": "^2.9.0"
+  }
+}

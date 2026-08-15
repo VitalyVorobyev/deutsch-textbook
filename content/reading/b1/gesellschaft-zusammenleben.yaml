@@ -1,0 +1,82 @@
+topic: gesellschaft-zusammenleben
+kind: intensive
+title_de: "Protokoll der Hausversammlung"
+text:
+  - >-
+    Am Dienstagabend hat sich die
+    [[Hausgemeinschaft::residents of the building::жильцы дома::мешканці
+    будинку]] in der Lindenstraße 7 getroffen. Thema war der
+    [[Hof::courtyard::двор::подвір'я]]. Frau Kolb hat drei Vorschläge
+    gesammelt: ein Spielplatz, zwei Parkplätze oder ein kleiner Garten.
+  - >-
+    Herr Demir war für den Spielplatz. „Obwohl der Hof klein ist, passt eine
+    [[Schaukel::swing::качели::гойдалка]] hinein.“ Frau Nowak hatte einen
+    [[Einwand::objection::возражение::заперечення]]: Sie braucht nachts einen
+    Parkplatz, weil sie im Krankenhaus arbeitet. Einige Nachbarn haben ihr
+    [[zugestimmt::agreed::согласились::погодилися]], andere nicht. Jeder
+    wollte etwas anderes, und lange sah es nach keiner
+    [[Lösung::solution::решение::рішення]] aus.
+  - >-
+    Dann hat Frau Kolb einen
+    [[Kompromiss::compromise::компромисс::компроміс]] vorgeschlagen, was am
+    Ende alle überzeugt hat: Die vordere Hälfte wird ein Spielplatz, die
+    hintere bleibt der Ort, wo die Autos stehen. Der Garten kommt nächstes
+    Jahr. Niemand hat [[abgelehnt::voted against::отклонил::відхилив]]. „Das
+    ist alles, was wir heute entscheiden können“, hat Frau Kolb gesagt.
+questions:
+  - id: frage-einwand
+    outcomes: [einwand-ausdruecken]
+    type: mc
+    prompt: "Welchen Einwand hatte Frau Nowak?"
+    options:
+      - "Sie braucht nachts einen Parkplatz, weil sie im Krankenhaus arbeitet."
+      - "Sie findet den Hof zu klein für einen Garten."
+      - "Sie möchte, dass die Kinder im Hof leiser spielen."
+    correct: 0
+    translation:
+      en: "What objection did Frau Nowak have?"
+      ru: "Какое возражение было у фрау Новак?"
+      uk: "Яке заперечення мала пані Новак?"
+    explain:
+      en: "Her objection is stated with its reason: Sie braucht nachts einen Parkplatz, weil sie im Krankenhaus arbeitet. The size of the courtyard is Herr Demir's point, not hers — and he raises it as a concession (Obwohl der Hof klein ist …), not as an objection. Nothing in the minutes is about noise."
+      ru: "Возражение названо вместе с причиной: Sie braucht nachts einen Parkplatz, weil sie im Krankenhaus arbeitet. Про размер двора говорит господин Демир, а не она, — причём говорит как уступку (Obwohl der Hof klein ist …), а не как возражение. О шуме в протоколе нет ни слова."
+      uk: "Заперечення назване разом із причиною: Sie braucht nachts einen Parkplatz, weil sie im Krankenhaus arbeitet. Про розмір подвір'я говорить пан Демір, а не вона, — і говорить як поступку (Obwohl der Hof klein ist …), а не як заперечення. Про шум у протоколі немає жодного слова."
+      de: "Der Einwand steht mit seinem Grund im Text: Sie braucht nachts einen Parkplatz, weil sie im Krankenhaus arbeitet. Die Größe des Hofes nennt Herr Demir, nicht Frau Nowak — und er nennt sie als Zugeständnis (Obwohl der Hof klein ist …), nicht als Einwand. Vom Lärm steht im Protokoll nichts."
+
+  - id: frage-kompromiss
+    outcomes: [kompromiss-vorschlagen]
+    type: mc
+    prompt: "Worauf hat sich die Hausgemeinschaft geeinigt?"
+    options:
+      - "Der Hof wird geteilt: vorne der Spielplatz, hinten die Autos."
+      - "Der Hof bleibt so, wie er ist, bis der Garten fertig ist."
+      - "Zuerst kommt der Garten, der Spielplatz erst nächstes Jahr."
+    correct: 0
+    translation:
+      en: "What did the residents agree on?"
+      ru: "О чём договорились жильцы дома?"
+      uk: "Про що домовилися мешканці будинку?"
+    explain:
+      en: "The compromise splits the courtyard: Die vordere Hälfte wird ein Spielplatz, die hintere bleibt der Ort, wo die Autos stehen. Something is decided today, so the courtyard does not stay as it is — and the garden is postponed to next year rather than coming first."
+      ru: "Компромисс делит двор: Die vordere Hälfte wird ein Spielplatz, die hintere bleibt der Ort, wo die Autos stehen. Решение принято уже сегодня, так что двор не остаётся прежним, — а сад перенесён на следующий год, а не поставлен первым."
+      uk: "Компроміс ділить подвір'я: Die vordere Hälfte wird ein Spielplatz, die hintere bleibt der Ort, wo die Autos stehen. Рішення ухвалене вже сьогодні, тож подвір'я не лишається таким, як було, — а сад перенесено на наступний рік, а не поставлено першим."
+      de: "Der Kompromiss teilt den Hof: Die vordere Hälfte wird ein Spielplatz, die hintere bleibt der Ort, wo die Autos stehen. Heute wird also entschieden, der Hof bleibt nicht, wie er ist — und der Garten kommt nächstes Jahr, nicht zuerst."
+
+  - id: frage-verlauf
+    outcomes: [diskussion-folgen]
+    type: mc
+    prompt: "Wie ist die Diskussion verlaufen?"
+    options:
+      - "Zuerst wollte jeder etwas anderes, am Ende hat der Kompromiss alle überzeugt."
+      - "Alle waren von Anfang an für den Spielplatz."
+      - "Am Ende hat die Mehrheit den Vorschlag von Frau Kolb abgelehnt."
+    correct: 0
+    translation:
+      en: "How did the discussion go?"
+      ru: "Как шло обсуждение?"
+      uk: "Як минуло обговорення?"
+    explain:
+      en: "The minutes mark both stages: Jeder wollte etwas anderes, und lange sah es nach keiner Lösung aus, and then … was am Ende alle überzeugt hat. Agreement from the start would leave no room for Frau Nowak's objection, and the closing line is the opposite of a rejection: Niemand hat abgelehnt."
+      ru: "В протоколе отмечены обе стадии: Jeder wollte etwas anderes, und lange sah es nach keiner Lösung aus, а затем … was am Ende alle überzeugt hat. Согласие с самого начала не оставило бы места возражению фрау Новак, а последняя фраза — прямая противоположность отказу: Niemand hat abgelehnt."
+      uk: "У протоколі позначені обидві стадії: Jeder wollte etwas anderes, und lange sah es nach keiner Lösung aus, а потім … was am Ende alle überzeugt hat. Згода від самого початку не лишила б місця запереченню пані Новак, а остання фраза — пряма протилежність відмові: Niemand hat abgelehnt."
+      de: "Das Protokoll hält beide Phasen fest: Jeder wollte etwas anderes, und lange sah es nach keiner Lösung aus, und dann … was am Ende alle überzeugt hat. Einigkeit von Anfang an ließe keinen Platz für den Einwand von Frau Nowak, und der Schlusssatz ist das Gegenteil einer Ablehnung: Niemand hat abgelehnt."

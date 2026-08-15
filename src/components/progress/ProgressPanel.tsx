@@ -15,8 +15,10 @@ import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
 import { localDateString } from '../../lib/store';
 import { pick, type ExplainText } from '../../lib/prefs';
+import { forceSync, readSyncState } from '../../lib/sync-remote';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
+import AccountPanel from '../account/AccountPanel';
 import { Heatmap } from './Heatmap';
 import { WeaknessTrends } from './WeaknessTrends';
 import { SessionLog } from './SessionLog';
@@ -54,7 +56,7 @@ function savedProgressView(value: string | null): ProgressView | undefined {
   return value === 'uebersicht' || value === 'nachweise' || value === 'daten' ? value : undefined;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   writtenTo: { en: 'Written to {path}', ru: 'Сохранено в {path}' },
@@ -72,6 +74,22 @@ const UI = {
   },
   replaced: { en: 'Progress replaced.', ru: 'Прогресс заменён.' },
   merged: { en: 'Progress merged.', ru: 'Прогресс объединён.' },
+  replacedSynced: {
+    en: 'Progress replaced and uploaded.',
+    ru: 'Прогресс заменён и отправлен в облако.',
+  },
+  mergedSynced: {
+    en: 'Progress merged and uploaded.',
+    ru: 'Прогресс объединён и отправлен в облако.',
+  },
+  datenLead: {
+    en: 'Where your progress lives, and how to move or back it up — on this device always, in the cloud if you connect an account.',
+    ru: 'Где хранится ваш прогресс и как его перенести или сохранить — на этом устройстве всегда, а в облаке — если подключить аккаунт.',
+  },
+  importCloudNote: {
+    en: 'If a cloud account is connected, the loaded file is uploaded automatically.',
+    ru: 'Если подключён облачный аккаунт, загруженная копия автоматически отправится в облако.',
+  },
   importFailed: { en: 'Import failed: {reason}', ru: 'Не удалось импортировать: {reason}' },
   untouched: {
     en: 'Nothing to show yet. Answer your first exercise or review your first flashcard, and this page fills up: what you practised, on which days, and which confusions keep costing you points.',
@@ -181,9 +199,17 @@ export default function ProgressPanel({
   useEffect(() => {
     // localStorage is client-only; queueMicrotask defers the restore out of the
     // effect body — the same idiom the Themen tab uses for its saved view.
+    // A ?tab= in the URL wins over the stored view and is persisted: it is how
+    // the /konto redirect lands on Daten instead of whatever tab was last open.
+    const fromQuery = savedProgressView(new URLSearchParams(window.location.search).get('tab'));
     const saved = savedProgressView(localStorage.getItem(VIEW_KEY));
     queueMicrotask(() => {
-      if (saved) setView(saved);
+      if (fromQuery) {
+        setView(fromQuery);
+        localStorage.setItem(VIEW_KEY, fromQuery);
+      } else if (saved) {
+        setView(saved);
+      }
     });
     void loadData().then(setData);
     if (isTauri()) void getSyncDir().then(setSyncDir);
@@ -266,13 +292,25 @@ export default function ProgressPanel({
       } else {
         await mergeSnapshot(snapshot);
       }
-      await refresh();
-      setMessage(mode === 'replace' ? pick(lang, UI.replaced) : pick(lang, UI.merged));
     } catch (e) {
       setMessage(
         pick(lang, UI.importFailed).replace('{reason}', pick(lang, importErrorReason(e))),
       );
+      return;
     }
+    await refresh();
+    // Whether the applied file then reaches the cloud is a property of the
+    // account state, never of which button was pressed (ADR 0005). A failed
+    // push keeps the plain local message: the Konto section below already
+    // explains a pending or blocked account.
+    if (readSyncState().profileId === getActiveProfileId()) {
+      const outcome = await forceSync();
+      if (outcome.state === 'ok') {
+        setMessage(pick(lang, mode === 'replace' ? UI.replacedSynced : UI.mergedSynced));
+        return;
+      }
+    }
+    setMessage(mode === 'replace' ? pick(lang, UI.replaced) : pick(lang, UI.merged));
   }
 
   function pickFile(mode: 'merge' | 'replace') {
@@ -325,6 +363,9 @@ export default function ProgressPanel({
         ))}
       </div>
 
+      {/* One activity card: the stat tiles and the calendar answer the same
+          "how am I doing" question, and splitting them buried the calendar at
+          the bottom of the page (P24-3). */}
       {view === 'uebersicht' && data && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
@@ -343,17 +384,14 @@ export default function ProgressPanel({
               <dd className="mt-1 text-2xl font-bold">{Object.keys(data.cards).length}</dd>
             </div>
           </dl>
+          <div className="mt-6 border-t border-stone-100 pt-5 dark:border-stone-700">
+            <Heatmap attempts={data.attempts} sessions={data.sessions} cards={data.cards} />
+          </div>
         </section>
       )}
 
       {view === 'uebersicht' && data && (
         <VocabularyProgress cards={cards} groups={vocabularyGroups} states={data.cards} />
-      )}
-
-      {view === 'uebersicht' && data && (
-        <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <Heatmap attempts={data.attempts} sessions={data.sessions} cards={data.cards} />
-        </section>
       )}
 
       {view === 'uebersicht' && data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
@@ -403,71 +441,82 @@ export default function ProgressPanel({
       {view === 'nachweise' && data && <WeaknessTrends attempts={data.attempts} />}
 
       {view === 'daten' && (
-      <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => void doExport()}
-            className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
-          >
-            {pick(lang, UI.exportBtn)}
-          </button>
-          <button
-            type="button"
-            onClick={() => pickFile('merge')}
-            className="min-h-11 rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
-          >
-            {pick(lang, UI.importMergeBtn)}
-          </button>
-          <button
-            type="button"
-            onClick={() => pickFile('replace')}
-            className="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-red-600 dark:text-stone-400 sm:min-h-0"
-          >
-            {pick(lang, UI.replaceBtn)}
-          </button>
-          <input
-            ref={fileInput}
-            type="file"
-            accept="application/json"
-            className="hidden"
-            onChange={(e) => {
-              const f = e.target.files?.[0];
-              if (f) void doImport(f);
-              e.target.value = '';
-            }}
-          />
-        </div>
-        {isTauri() && (
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-500 dark:text-stone-400">
-            <span className="font-semibold">{pick(lang, UI.syncFolder)}</span>
-            <code className="max-w-full truncate rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-900">
-              {syncDir ?? '…'}
-            </code>
-            <button
-              type="button"
-              onClick={() => void changeSyncDir()}
-              className="rounded-md border border-stone-300 px-2 py-1 font-semibold hover:border-amber-500 dark:border-stone-600"
-            >
-              {pick(lang, UI.changeBtn)}
-            </button>
-          </div>
-        )}
-        {isTauri() ? (
-          <p className="mt-3 text-center text-xs text-stone-400">
-            {pick(lang, UI.autoSyncTauri)}
-          </p>
-        ) : (
-          import.meta.env.DEV && (
-            <p className="mt-3 text-center text-xs text-stone-400">
-              {pick(lang, UI.autoSyncDev)}
-            </p>
-          )
-        )}
-        {message && (
-          <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
-        )}
-      </section>
+        <>
+          <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.datenLead)}</p>
+          <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
+            <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+              {t('progress.datenLocal', uiLang)}
+            </h2>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => void doExport()}
+                className="min-h-11 rounded-md bg-amber-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-amber-700 sm:min-h-0"
+              >
+                {pick(lang, UI.exportBtn)}
+              </button>
+              <button
+                type="button"
+                onClick={() => pickFile('merge')}
+                className="min-h-11 rounded-md border border-stone-300 px-4 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
+              >
+                {pick(lang, UI.importMergeBtn)}
+              </button>
+              <button
+                type="button"
+                onClick={() => pickFile('replace')}
+                className="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-red-600 dark:text-stone-400 sm:min-h-0"
+              >
+                {pick(lang, UI.replaceBtn)}
+              </button>
+              <input
+                ref={fileInput}
+                type="file"
+                accept="application/json"
+                className="hidden"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) void doImport(f);
+                  e.target.value = '';
+                }}
+              />
+            </div>
+            <p className="mt-3 text-center text-xs text-stone-400">{pick(lang, UI.importCloudNote)}</p>
+            {isTauri() && (
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-500 dark:text-stone-400">
+                <span className="font-semibold">{pick(lang, UI.syncFolder)}</span>
+                <code className="max-w-full truncate rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-900">
+                  {syncDir ?? '…'}
+                </code>
+                <button
+                  type="button"
+                  onClick={() => void changeSyncDir()}
+                  className="rounded-md border border-stone-300 px-2 py-1 font-semibold hover:border-amber-500 dark:border-stone-600"
+                >
+                  {pick(lang, UI.changeBtn)}
+                </button>
+              </div>
+            )}
+            {isTauri() ? (
+              <p className="mt-3 text-center text-xs text-stone-400">
+                {pick(lang, UI.autoSyncTauri)}
+              </p>
+            ) : (
+              import.meta.env.DEV && (
+                <p className="mt-3 text-center text-xs text-stone-400">
+                  {pick(lang, UI.autoSyncDev)}
+                </p>
+              )
+            )}
+            {message && (
+              <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
+            )}
+          </section>
+          {/* The whole account surface, moved here from /konto (ADR 0005). It
+              renders its own cards and asks for the session only when mounted,
+              so the request happens per Daten view, not per page load. */}
+          <AccountPanel />
+        </>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
 import type { Attempt } from '../../lib/store';
-import { probeResults, PROBE_INTERVALS_DAYS, type ProbeFamily } from '../../lib/probes';
+import { exhaustedFailed, probeResults, PROBE_INTERVALS_DAYS, type ProbeFamily } from '../../lib/probes';
 import { pick, type ExplainLang } from '../../lib/prefs';
+import { t } from '../../lib/strings';
+import { useUiLang } from '../hooks';
 
 /**
  * What the delayed probes showed — reported apart from everything else on this page,
@@ -17,7 +19,7 @@ export interface ProbeFamilyLabel {
   title_de: string;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/i18n-design.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   title: { en: 'Delayed checks', ru: 'Проверки через время' },
@@ -49,10 +51,11 @@ interface Props {
 }
 
 export function ProbeResults({ families, labels, topicPaths, attempts, lang }: Props) {
+  const uiLang = useUiLang();
   const results = probeResults(families, attempts).filter((r) => r.taken.length > 0);
 
   const answered = results.flatMap((r) => r.taken);
-  const correct = answered.filter((t) => t.correct).length;
+  const correct = answered.filter((x) => x.correct).length;
 
   return (
     <section className="mt-10">
@@ -76,17 +79,28 @@ export function ProbeResults({ families, labels, topicPaths, attempts, lang }: P
             {pick(lang, UI.lifetime)}
           </p>
           <ul className="mt-3 space-y-2">
-            {results.map((r) => (
+            {results.map((r) => {
+              const anyWrong = r.taken.some((x) => !x.correct);
+              const exhausted = exhaustedFailed(r.family, attempts);
+              return (
               <li
                 key={r.family.setId}
                 className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-800"
               >
                 <span className="text-sm">
                   <span lang="de" className="font-medium">{labels[r.family.setId] ?? r.family.topicId}</span>
-                  {r.taken.some((t) => !t.correct) && topicPaths[r.family.topicId] && (
+                  {anyWrong && topicPaths[r.family.topicId] && (
                     <a href={topicPaths[r.family.topicId]} className="ml-2 text-xs text-amber-700 hover:underline dark:text-amber-400">
                       {pick(lang, UI.reviewTopic)}
                     </a>
+                  )}
+                  {exhausted && (
+                    <span
+                      lang="de"
+                      className="ml-2 rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200"
+                    >
+                      {t('probe.remediationExhausted', uiLang)}
+                    </span>
                   )}
                 </span>
                 <span className="flex flex-wrap items-center gap-2">
@@ -115,7 +129,8 @@ export function ProbeResults({ families, labels, topicPaths, attempts, lang }: P
                   ))}
                 </span>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </>
       )}

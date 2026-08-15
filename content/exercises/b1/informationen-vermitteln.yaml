@@ -1,0 +1,323 @@
+# B1.14 primary practice — the last B1 unit, and the only one of this window that owns
+# grammar. Three manifest points close here and the ratchet in tests/grammar-coverage.test.ts
+# moves 29 → 32 in this same commit (`bun scripts/grammar-coverage.ts B1`).
+# Four tags are new and every one of them is drilled below by a production-grade item,
+# because the instrument counts a point only when a practice or drill item carries its tag:
+#   indirekte-rede      — items 1, 2, 3 (the connector a report opens with, and the relay of
+#                         a written Konjunktiv I as dass + Indikativ)
+#   angaben-reihenfolge — items 5, 6, 7 (te-ka-mo-lo, the order of the Angaben)
+#   pronomen-stellung   — items 8, 9 (a pronoun in front of a noun object, whatever its case)
+#   partizip-adjektiv   — items 10, 11, 12 (the participle as an attribute, WITH its ending)
+# `wortstellung-angaben` is the one manifest point whose two tags must BOTH be drilled, and
+# items 5–9 are why it counts.
+# Konjunktiv I stays receptive, as the frozen contract requires: item 2 asks the learner to
+# READ habe as somebody else's words, and item 3 hands them a written werde/komme notice to
+# RELAY — the answer they type is dass + the ordinary present. No item anywhere in this unit
+# asks for a Konjunktiv I form.
+# Three more tags are recycled and each is the live runtime channel of a `deepens` edge on
+# the atlas node — an edge with no shared tag can resurface nothing:
+#   nebensatz-verbende (nebensaetze-plaene) — item 4, the verb at the wall of a dass-clause;
+#   indirekte-frage (lernen-verstehen) and praeteritum-vollverben (erfahrungen-erzaehlen)
+#   are carried by the produktion set.
+# Item 13 stays untagged on purpose: matching a job to its Redemittel is a discourse move,
+# not one nameable grammatical confusion, and a false tag sends training after something the
+# learner does not have.
+# Outcome discipline: every item on `indirekt-berichten` reports what somebody said or
+# asked; every item on `mitteilung-weitergeben` is a sentence a message is passed on in;
+# every item on `text-zusammenfassen` compresses or unpacks what a notice says in one word.
+# Contract exclusions hold: no Konjunktiv I production, no journalistic register, no minutes
+# or protocol format — everything here is a notice on a board, a message left for somebody
+# and the sentence that hands it on.
+# The 21 `cards: recognition` headwords of the deck are never demanded as a typed answer:
+# `Vortrag` and `Schreiben` appear only inside a printed frame or an option the learner
+# reads, never inside a gap or a translation answer.
+# This set is the primaryPractice — its item list never grows after shipping.
+topic: informationen-vermitteln
+role: practice
+stage: geruest
+activity: core
+title:
+  en: "Practice — report it, order it, compress it"
+  ru: "Практика — передать, упорядочить, сжать"
+  uk: "Практика — переказати, впорядкувати, стиснути"
+  de: "Übung — berichten, ordnen, verdichten"
+items:
+  - id: cloze-dass-ob-relais
+    outcomes: [indirekt-berichten]
+    type: cloze
+    focus: indirekte-rede
+    instruction:
+      en: "Two reports, two openers. The first passes on a statement, the second a yes/no question — fill in the word that opens each clause."
+      ru: "Два пересказа, два вводных слова. Первый передаёт утверждение, второй — вопрос без вопросительного слова. Впишите слово, открывающее каждое придаточное."
+      uk: "Два перекази, два вставні слова. Перший передає твердження, другий — питання без питального слова. Впишіть слово, що відкриває кожне підрядне."
+      de: "Zwei Berichte, zwei Einleitungswörter. Der erste gibt eine Aussage weiter, der zweite eine Ja/Nein-Frage — ergänze das Wort, das den Nebensatz öffnet."
+    text: "Die Verwaltung schreibt, {{dass}} das Wasser am Mittwoch abgestellt wird. Der Nachbar fragt, {{ob}} wir eine Kopie der Mitteilung haben."
+    translation:
+      en: "The management writes that the water is being turned off on Wednesday. The neighbour is asking whether we have a copy of the notice."
+      ru: "Управляющая компания пишет, что в среду отключат воду. Сосед спрашивает, есть ли у нас копия оповещения."
+      uk: "Управлінська компанія пише, що в середу вимкнуть воду. Сусід питає, чи є в нас копія сповіщення."
+    explain:
+      en: "What was said decides the opener. A statement is reported with dass and nothing else. A question with no question word in it becomes an ob-clause — and the trap is wenn, because English \"if\" does both jobs (\"ask if you are coming\", \"if it rains\") while German splits them: wenn only ever opens a condition or a repeated time. Both clauses then behave like any Nebensatz, which is why wird and haben are already standing at the wall."
+      ru: "Вводное слово выбирает то, что было сказано. Утверждение передаётся только через dass. Вопрос без вопросительного слова становится придаточным с ob, и ловушка здесь — wenn: русское «ли» стоит внутри придаточного и легко теряется, а привычное «если» тянет за собой именно wenn, которое вводит лишь условие или повторяющееся время. Дальше оба придаточных ведут себя как любые другие — потому wird и haben уже стоят у стены."
+      uk: "Вставне слово обирає те, що було сказано. Твердження переказують лише через dass. Питання без питального слова стає підрядним з ob, і пастка тут — wenn: українське «чи» стоїть усередині підрядного й легко губиться, а звичне «якщо» тягне за собою саме wenn, яке вводить лише умову або повторюваний час. Далі обидва підрядні поводяться як будь-які інші — тому wird і haben уже стоять біля стіни."
+      de: "Das Gesagte entscheidet über das Einleitungswort. Eine Aussage wird mit dass berichtet, sonst nichts. Eine Frage ohne Fragewort wird zum ob-Satz, und die Falle heißt wenn — die Ausgangssprachen decken beides mit einem Wort ab, das Deutsche trennt: wenn eröffnet nur Bedingung oder wiederholte Zeit. Danach verhalten sich beide Nebensätze wie alle anderen, deshalb stehen wird und haben schon an der Wand."
+
+  - id: mc-konjunktiv1-lesen
+    outcomes: [indirekt-berichten]
+    type: mc
+    focus: indirekte-rede
+    prompt: "Im Schreiben der Verwaltung steht: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Was ist gemeint?"
+    options:
+      - "Der Handwerker sagt: Ich habe den Schlüssel noch."
+      - "Die Verwaltung hat den Schlüssel noch."
+      - "Der Handwerker hatte den Schlüssel, hat ihn aber schon zurückgegeben."
+    correct: 0
+    translation:
+      en: "The management's letter says: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" What does that mean?"
+      ru: "В письме от управляющей компании написано: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Что это значит?"
+      uk: "У листі від управлінської компанії написано: „Der Handwerker teilt mit, er habe den Schlüssel noch.\" Що це означає?"
+    explain:
+      en: "habe where the ordinary present has hat is a Konjunktiv I, and it does exactly one job: it marks the sentence as the workman's words rather than the writer's own claim. So the key is still with him, and reading the sentence as the management's own report of where the key is moves it to the wrong person — the whole point of the form is that the management is making no such claim. Reading it as a key already handed back changes the fact rather than the form: nothing here is over. At B1 this is a reading skill, and you pass it on with dass and the ordinary present: Der Handwerker schreibt, dass er den Schlüssel noch hat."
+      ru: "habe там, где обычное настоящее даёт hat, — это Konjunktiv I, и работа у него ровно одна: пометить фразу как слова мастера, а не как утверждение самого пишущего. Значит, ключ по-прежнему у него; прочитать фразу как сообщение управляющей компании о собственном ключе — значит отдать ключ не тому, ведь вся суть формы в том, что компания этого не утверждает. Прочитать её как уже возвращённый ключ — значит поменять не форму, а факт: ничего здесь ещё не кончилось. На уровне B1 это навык чтения, а передаёте вы прочитанное через dass и обычное настоящее: Der Handwerker schreibt, dass er den Schlüssel noch hat."
+      uk: "habe там, де звичайний теперішній дає hat, — це Konjunktiv I, і робота в нього рівно одна: позначити фразу як слова майстра, а не як твердження самого автора. Отже, ключ і далі в нього; прочитати фразу як повідомлення управлінської компанії про власний ключ — означає віддати ключ не тому, бо вся суть форми в тому, що компанія цього не стверджує. Прочитати її як уже повернений ключ — означає змінити не форму, а факт: нічого тут іще не скінчилося. На рівні B1 це навичка читання, а переказуєте ви прочитане через dass і звичайний теперішній: Der Handwerker schreibt, dass er den Schlüssel noch hat."
+      de: "habe dort, wo der Indikativ hat sagt, ist ein Konjunktiv I, und er hat genau eine Aufgabe: Er markiert den Satz als die Worte des Handwerkers und nicht als eigene Behauptung. Der Schlüssel ist also weiterhin bei ihm; ihn als Meldung der Verwaltung über den eigenen Schlüssel zu lesen, gibt ihn der falschen Person — gerade das verhindert die Form. Ihn als längst zurückgegebenen Schlüssel zu lesen, ändert nicht die Form, sondern die Tatsache: Hier ist nichts vorbei. Auf B1 wird das gelesen und mit dass und Präsens weitergegeben: Der Handwerker schreibt, dass er den Schlüssel noch hat."
+
+  - id: uebersetzen-relais-konjunktiv
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: indirekte-rede
+    instruction:
+      en: "The notice reads: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Pass it on with dass, the ordinary present tense — and keep the passive the notice uses. For 'the management' take die Verwaltung, for 'writes' schreiben, for 'check' prüfen."
+      ru: "В объявлении написано: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Передайте это через dass и обычное настоящее время — и сохраните пассив, которым написано объявление. Для «управляющая компания» возьмите die Verwaltung, для «пишет» — schreiben, для «проверять» — prüfen."
+      uk: "В оголошенні написано: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Перекажіть це через dass і звичайний теперішній час — і збережіть пасив, яким написане оголошення. Для «управлінська компанія» візьміть die Verwaltung, для «пише» — schreiben, для «перевіряти» — prüfen."
+      de: "Im Aushang steht: Die Firma teilt mit, der Aufzug werde am Freitag geprüft. Gib es mit dass und Präsens weiter — und behalt das Passiv des Aushangs bei. Für die Hausverwaltung nimm die Verwaltung, für das Schreiben schreiben, für die Kontrolle prüfen."
+    prompt_en: "The management writes that the lift is being checked on Friday."
+    prompt_ru: "Управляющая компания пишет, что лифт проверят в пятницу."
+    prompt_uk: "Управлінська компанія пише, що ліфт перевірять у п'ятницю."
+    answer: "Die Verwaltung schreibt, dass der Aufzug am Freitag geprüft wird."
+    key_tokens: ["dass", "wird"]
+    explain:
+      en: "Graded are the two ends of the reported clause: dass, which is what a statement is passed on with, and wird, the finite verb — in the present, and at the very end. The written notice says werde, and the whole B1 move is to read that as somebody else's words and hand it on in the tense the speaker used. wurde would not be a different style, it would be a different fact: it says the check is already over."
+      ru: "Оцениваются два конца переданного придаточного: dass, которым передают утверждение, и wird — спрягаемый глагол в настоящем времени и в самом конце. В объявлении стоит werde, и весь приём уровня B1 в том, чтобы прочитать это как чужие слова и передать в том времени, которое поставил говорящий. wurde было бы не другим стилем, а другим фактом: оно сказало бы, что проверка уже позади."
+      uk: "Оцінюються два кінці переказаного підрядного: dass, яким передають твердження, і wird — відмінюване дієслово в теперішньому часі й у самому кінці. В оголошенні стоїть werde, і весь прийом рівня B1 у тому, щоб прочитати це як чужі слова й переказати в тому часі, який поставив мовець. wurde було б не іншим стилем, а іншим фактом: воно сказало б, що перевірка вже позаду."
+      de: "Bewertet werden die beiden Enden des berichteten Nebensatzes: dass, womit eine Aussage weitergegeben wird, und wird, das finite Verb — im Präsens und ganz am Ende. Der Aushang schreibt werde, und der ganze B1-Schritt besteht darin, das als fremde Worte zu lesen und in der Zeitform weiterzugeben, die der Sprecher gewählt hat. wurde wäre kein anderer Stil, sondern eine andere Tatsache: Die Prüfung wäre schon vorbei."
+
+  - id: uebersetzen-dass-verbende
+    revision: 2
+    outcomes: [indirekt-berichten]
+    type: translate
+    focus: nebensatz-verbende
+    instruction:
+      en: "Report it with a dass-clause. For 'hand in' take abgeben, for 'the key' der Schlüssel."
+      ru: "Передайте это придаточным с dass. Для «сдать» возьмите abgeben, для «ключ» — der Schlüssel."
+      uk: "Перекажіть це підрядним із dass. Для «здати» візьміть abgeben, для «ключ» — der Schlüssel."
+      de: "Berichte es mit einem dass-Satz. Für das Zurückgeben nimm abgeben, für den Hausschlüssel der Schlüssel."
+    prompt_en: "He says that he is handing the key in at the office tomorrow."
+    prompt_ru: "Он говорит, что завтра сдаст ключ в конторе."
+    prompt_uk: "Він каже, що завтра здасть ключ у конторі."
+    answer: "Er sagt, dass er den Schlüssel morgen im Büro abgibt."
+    accept:
+      # Ordinary Mittelfeld scrambling inside the dass-clause — object and locative may
+      # swap; the graded dass…abgibt bracket is unaffected (2026-08-11 triage, row 7a).
+      - "Er sagt, dass er morgen im Büro den Schlüssel abgibt."
+    key_tokens: ["dass", "abgibt"]
+    explain:
+      en: "Graded are the two ends of the bracket: the dass that opens the clause and the finite verb that has to close it. Everything the clause carries — the object, the time, the place — stands between them, and a separable verb comes back together at the wall as one word: abgibt, never gibt … ab. The source languages keep ordinary word order inside a that-clause, so nothing warns the hand; the rule is a fact about the Nebensatz, not about this particular verb."
+      ru: "Оцениваются два конца рамки: dass, открывающее придаточное, и спрягаемый глагол, который обязан его закрыть. Всё, что придаточное несёт, — дополнение, время, место — стоит между ними, а отделяемый глагол у стены снова собирается в одно слово: abgibt, но не gibt … ab. Русское придаточное с «что» сохраняет обычный порядок слов, так что рука ничего не подсказывает; правило — факт о придаточном, а не об этом глаголе."
+      uk: "Оцінюються два кінці рамки: dass, що відкриває підрядне, і відмінюване дієслово, яке мусить його закрити. Усе, що підрядне несе, — додаток, час, місце — стоїть між ними, а відокремлюване дієслово біля стіни знову збирається в одне слово: abgibt, але не gibt … ab. Українське підрядне зі «що» зберігає звичайний порядок слів, тож рука нічого не підказує; правило — факт про підрядне, а не про це дієслово."
+      de: "Bewertet werden die beiden Enden der Klammer: das dass, das den Satz öffnet, und das finite Verb, das ihn schließen muss. Alles, was der Satz trägt — Objekt, Zeit, Ort —, steht dazwischen, und ein trennbares Verb setzt sich an der Wand wieder zu einem Wort zusammen: abgibt, nie gibt … ab. Die Ausgangssprachen behalten im dass-Satz ihre gewohnte Stellung, warnen die Hand also nicht; die Regel gilt dem Nebensatz und nicht diesem Verb."
+
+  - id: order-angaben-tekamolo
+    outcomes: [mitteilung-weitergeben]
+    type: order
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Four Angaben in one sentence. Put them in the German default order: when, why, how, where."
+      ru: "Четыре Angaben в одном предложении. Поставьте их в немецком порядке по умолчанию: когда, почему, как, где."
+      uk: "Чотири Angaben в одному реченні. Поставте їх у німецькому порядку за замовчуванням: коли, чому, як, де."
+      de: "Vier Angaben in einem Satz. Bring sie in die Grundreihenfolge: wann, warum, wie, wo."
+    words:
+      - "Wir"
+      - "haben"
+      - "am Montag"
+      - "wegen der Mitteilung"
+      - "lange"
+      - "im Büro"
+      - "gewartet"
+    translation:
+      en: "On Monday we waited a long time at the office because of the notice."
+      ru: "В понедельник мы долго ждали в конторе из-за оповещения."
+      uk: "У понеділок ми довго чекали в конторі через сповіщення."
+    explain:
+      en: "temporal, kausal, modal, lokal — say it as te-ka-mo-lo and it sticks: am Montag, wegen der Mitteilung, lange, im Büro. Hardly any real sentence carries all four, and then the rule simply applies to the two or three that are there. The two ends of the sentence were settled at A1 and A2 and do not move here: haben in position 2, gewartet at the very end. This item hands you every token, so it is scaffolding for the order and not a test of it — the translate below is the test."
+      ru: "temporal, kausal, modal, lokal — скажите «те-ка-мо-ло», и порядок останется в памяти: am Montag, wegen der Mitteilung, lange, im Büro. Все четыре вместе встречаются редко, и тогда правило просто применяется к тем двум-трём, что есть. Два конца предложения закреплены ещё в A1 и A2 и здесь не двигаются: haben на второй позиции, gewartet в самом конце. Это задание выдаёт вам все слова, поэтому оно — опора для порядка, а не проверка его; проверка — перевод ниже."
+      uk: "temporal, kausal, modal, lokal — скажіть «те-ка-мо-ло», і порядок лишиться в пам'яті: am Montag, wegen der Mitteilung, lange, im Büro. Усі чотири разом трапляються рідко, і тоді правило просто застосовується до тих двох-трьох, що є. Два кінці речення закріплені ще в A1 і A2 і тут не рухаються: haben на другій позиції, gewartet у самому кінці. Це завдання видає вам усі слова, тому воно — опора для порядку, а не перевірка його; перевірка — переклад нижче."
+      de: "temporal, kausal, modal, lokal — te-ka-mo-lo, und es sitzt: am Montag, wegen der Mitteilung, lange, im Büro. Alle vier stehen selten zusammen; dann gilt die Regel eben für die zwei oder drei, die da sind. Die beiden Satzenden sind aus A1 und A2 gesichert und bewegen sich hier nicht: haben auf Position 2, gewartet ganz am Ende. Diese Aufgabe gibt dir jedes Wort, ist also Stütze für die Reihenfolge und keine Prüfung — geprüft wird sie in der Übersetzung darunter."
+
+  - id: cloze-angaben-reihenfolge
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Three Angaben, listed here in the wrong order: im Hof, schnell, heute Morgen. Put each into its slot so the sentence follows the German default order."
+      ru: "Три Angaben, перечисленные здесь в неверном порядке: im Hof, schnell, heute Morgen. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."
+      uk: "Три Angaben, перелічені тут у хибному порядку: im Hof, schnell, heute Morgen. Поставте кожну у свій пропуск так, щоб речення йшло в німецькому порядку за замовчуванням."
+      de: "Drei Angaben, hier in der falschen Reihenfolge: im Hof, schnell, heute Morgen. Setz jede in ihre Lücke, sodass der Satz der Grundreihenfolge folgt."
+    text: "Ich habe {{heute Morgen}} {{schnell}} {{im Hof}} nachgefragt."
+    translation:
+      en: "I asked quickly in the courtyard this morning."
+      ru: "Я коротко переспросил утром во дворе."
+      uk: "Я коротко перепитав уранці в подвір'ї."
+    explain:
+      en: "Time first, then how, then where: heute Morgen, schnell, im Hof. The list above is deliberately the order the source languages suggest — they let the time phrase drift to the end of the sentence and put the place early, which is exactly the sequence German reverses. Nothing else in the sentence moves: habe stays in position 2 and nachgefragt at the wall, so the whole decision lives in the three slots between them."
+      ru: "Сначала время, потом как, потом где: heute Morgen, schnell, im Hof. Список выше намеренно даёт тот порядок, к которому толкает русский: он спокойно отправляет обстоятельство времени в конец, а место — вперёд, и именно эту последовательность немецкий переворачивает. Больше в предложении не двигается ничто: habe остаётся на второй позиции, nachgefragt — у стены, и всё решение помещается в три пропуска между ними."
+      uk: "Спершу час, потім як, потім де: heute Morgen, schnell, im Hof. Список вище навмисне дає той порядок, до якого штовхає українська: вона спокійно відправляє обставину часу в кінець, а місце — наперед, і саме цю послідовність німецька перевертає. Більше в реченні не рухається ніщо: habe лишається на другій позиції, nachgefragt — біля стіни, і все рішення вміщується у три пропуски між ними."
+      de: "Erst die Zeit, dann das Wie, dann das Wo: heute Morgen, schnell, im Hof. Die Liste oben gibt absichtlich die Reihenfolge, zu der die Ausgangssprachen verführen — sie schieben die Zeitangabe ans Satzende und den Ort nach vorn, und genau das dreht das Deutsche um. Sonst bewegt sich nichts: habe steht auf Position 2, nachgefragt an der Wand, und die ganze Entscheidung liegt in den drei Lücken dazwischen."
+
+  - id: uebersetzen-angaben
+    outcomes: [mitteilung-weitergeben]
+    type: translate
+    focus: angaben-reihenfolge
+    instruction:
+      en: "Nothing is given this time — start the sentence with 'she' and build the middle yourself. For 'the change' take die Änderung, for 'ring' anrufen, for 'quickly' schnell."
+      ru: "Здесь ничего не подсказано — начните предложение с «она» и соберите середину сами. Для «изменение» возьмите die Änderung, для «позвонить» — anrufen, для «быстро» — schnell."
+      uk: "Тут нічого не підказано — почніть речення з «вона» і зберіть середину самі. Для «зміна» візьміть die Änderung, для «зателефонувати» — anrufen, для «швидко» — schnell."
+      de: "Diesmal ist nichts vorgegeben — beginn den Satz mit sie und bau das Mittelfeld selbst. Für die Terminverschiebung nimm die Änderung, für den Anruf anrufen, für zügig schnell."
+    prompt_en: "She rang the office quickly yesterday because of the change."
+    prompt_ru: "Вчера она из-за изменения быстро позвонила в контору."
+    prompt_uk: "Учора вона через зміну швидко зателефонувала в контору."
+    answer: "Sie hat gestern wegen der Änderung schnell im Büro angerufen."
+    key_tokens: ["gestern", "Büro"]
+    explain:
+      en: "Graded are the two ends of the row: gestern, the temporal Angabe that has to come first, and im Büro, the local one that has to come last. Everything between them follows from the same rule — wegen der Änderung is the reason and schnell the manner, so kausal precedes modal. This is the item the order task above was scaffolding for: nothing is on screen, and the sentence has to be composed in a language whose source version ends with the time or the place, never begins with the time."
+      ru: "Оцениваются два конца ряда: gestern — временная Angabe, которая обязана стоять первой, и im Büro — местная, которая обязана стоять последней. Всё между ними следует из того же правила: wegen der Änderung — причина, schnell — образ действия, значит kausal раньше modal. Ради этого задания и была опора-«порядок» выше: на экране ничего нет, а предложение надо собрать на языке, чей исходник кончается временем или местом и никогда не начинается со времени."
+      uk: "Оцінюються два кінці ряду: gestern — часова Angabe, яка мусить стояти першою, і im Büro — місцева, яка мусить стояти останньою. Усе між ними випливає з того самого правила: wegen der Änderung — причина, schnell — спосіб, отже kausal раніше за modal. Заради цього завдання й була опора-«порядок» вище: на екрані нічого немає, а речення треба зібрати мовою, чий оригінал закінчується часом або місцем і ніколи не починається з часу."
+      de: "Bewertet werden die beiden Enden der Reihe: gestern, die temporale Angabe, die vorn stehen muss, und im Büro, die lokale, die hinten steht. Alles dazwischen folgt derselben Regel — wegen der Änderung ist der Grund, schnell die Art, also kausal vor modal. Für diese Aufgabe war die Ordnungsübung oben die Stütze: Hier steht nichts auf dem Bildschirm, und der Satz muss in einer Sprache gebaut werden, deren Vorlage mit Zeit oder Ort endet und nie mit der Zeit beginnt."
+
+  - id: cloze-pronomen-stellung
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: pronomen-stellung
+    instruction:
+      en: "Two middle fields, each with one pronoun and one noun. Into the first sentence go es and dem Hausmeister, into the second ihr and den Schlüssel — each pair in the order German uses."
+      ru: "Две середины предложения, в каждой одно местоимение и одно существительное. В первое предложение идут es и dem Hausmeister, во второе — ihr и den Schlüssel; каждую пару поставьте в том порядке, какой требует немецкий."
+      uk: "Дві середини речення, у кожній один займенник і один іменник. У перше речення йдуть es і dem Hausmeister, у друге — ihr і den Schlüssel; кожну пару поставте в тому порядку, якого вимагає німецька."
+      de: "Zwei Mittelfelder mit je einem Pronomen und einem Nomen. In den ersten Satz kommen es und dem Hausmeister, in den zweiten ihr und den Schlüssel — jedes Paar in der Reihenfolge, die das Deutsche verlangt."
+    text: "Ich habe {{es}} {{dem Hausmeister}} schon gesagt. Er gibt {{ihr}} {{den Schlüssel}} morgen zurück."
+    translation:
+      en: "I have already told the caretaker about it. He is giving her the key back tomorrow."
+      ru: "Я уже сказал об этом коменданту. Ключ он вернёт ей завтра."
+      uk: "Я вже сказав про це комендантові. Ключ він поверне їй завтра."
+    explain:
+      en: "The pronoun comes first, and the case has nothing to do with it. es is accusative and stands in front of a dative noun; ihr is dative and stands in front of an accusative noun. What decides is length and news value: short, known, already-mentioned material goes early, and a pronoun is all three at once. Two nouns would keep the order you learned with the dative — dative first — and it is exactly that habit which produces ❌ Ich habe dem Hausmeister es schon gesagt."
+      ru: "Первым идёт местоимение, и падеж здесь ни при чём. es — аккузатив и стоит перед дативным существительным; ihr — датив и стоит перед аккузативным. Решают длина и новизна: короткое, известное, уже названное идёт раньше, а местоимение — всё это сразу. Два существительных сохранили бы порядок, выученный вместе с дативом, — сначала датив, — и именно эта привычка даёт ❌ Ich habe dem Hausmeister es schon gesagt."
+      uk: "Першим іде займенник, і відмінок тут ні до чого. es — акузатив і стоїть перед давальним іменником; ihr — датив і стоїть перед знахідним. Вирішують довжина й новизна: коротке, відоме, уже назване йде раніше, а займенник — усе це разом. Два іменники зберегли б порядок, вивчений разом із давальним, — спершу давальний, — і саме ця звичка дає ❌ Ich habe dem Hausmeister es schon gesagt."
+      de: "Das Pronomen steht vorn, und der Kasus spielt dabei keine Rolle. es ist Akkusativ und steht vor einem Dativnomen; ihr ist Dativ und steht vor einem Akkusativnomen. Entscheidend sind Kürze und Neuigkeitswert: Kurzes, Bekanntes, schon Genanntes kommt früh, und ein Pronomen ist alles drei. Zwei Nomen behielten die Reihenfolge aus dem Dativ — erst Dativ —, und genau diese Gewohnheit erzeugt ❌ Ich habe dem Hausmeister es schon gesagt."
+
+  - id: uebersetzen-pronomen-stellung
+    outcomes: [mitteilung-weitergeben]
+    type: translate
+    focus: pronomen-stellung
+    instruction:
+      en: "What was passed on is das Schreiben, so the accusative pronoun is neuter. For 'pass on' take weitergeben, for 'straight away' sofort."
+      ru: "Передали здесь das Schreiben, поэтому аккузативное местоимение — среднего рода. Для «передать дальше» возьмите weitergeben, для «сразу же» — sofort."
+      uk: "Передали тут das Schreiben, тому знахідний займенник — середнього роду. Для «передати далі» візьміть weitergeben, для «одразу ж» — sofort."
+      de: "Weitergegeben wurde das Schreiben, das Akkusativpronomen ist also ein Neutrum. Für das Weiterreichen nimm weitergeben, für gleich sofort."
+    prompt_en: "I passed it on to her straight away."
+    prompt_ru: "Я сразу же передал это ей."
+    prompt_uk: "Я одразу ж передав це їй."
+    answer: "Ich habe es ihr sofort weitergegeben."
+    key_tokens: ["es", "ihr"]
+    explain:
+      en: "Graded are the two pronouns and the order they stand in. With two of them the noun order turns round: accusative before dative, es ihr — and never ihr es. They also stand in front of the Angabe, so sofort comes after both and not between them. English repairs the same collision with a preposition (\"passed it on to her\"), which is a move German does not have: here the case endings carry it and the position is fixed."
+      ru: "Оцениваются два местоимения и порядок, в котором они стоят. Когда их два, прежний порядок переворачивается: аккузатив перед дативом, es ihr — и никогда ihr es. Стоят они и перед Angabe, поэтому sofort идёт после обоих, а не между ними. Русский порядок дополнений свободен, и «передал это ей» звучит нормально, так что немецкая фраза строится по слуху; в немецком её держат падежные формы и жёсткая позиция."
+      uk: "Оцінюються два займенники й порядок, у якому вони стоять. Коли їх два, попередній порядок перевертається: знахідний перед давальним, es ihr — і ніколи ihr es. Стоять вони й перед Angabe, тому sofort іде після обох, а не між ними. Український порядок додатків вільний, і «передав це їй» звучить нормально, тож німецька фраза будується на слух; у німецькій її тримають відмінкові форми й жорстка позиція."
+      de: "Bewertet werden die beiden Pronomen und ihre Reihenfolge. Stehen zwei da, dreht sich die Nomenordnung um: Akkusativ vor Dativ, es ihr — nie ihr es. Sie stehen außerdem vor der Angabe, sofort kommt also hinter beide und nicht dazwischen. Die Ausgangssprachen lösen dieselbe Stelle mit einer Präposition oder mit freier Wortstellung; im Deutschen tragen die Kasusformen sie, und die Position liegt fest."
+
+  - id: cloze-partizip-attribut
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Two whole clauses compressed into one word each. Fill in the participle of absagen and of warten as an attribute — with the ending its article and case call for."
+      ru: "Два целых придаточных, сжатых в одно слово каждое. Впишите причастие от absagen и от warten как определение — с тем окончанием, которого требуют артикль и падеж."
+      uk: "Два цілі підрядні, стиснені в одне слово кожне. Впишіть дієприкметник від absagen і від warten як означення — із тим закінченням, якого вимагають артикль і відмінок."
+      de: "Zwei ganze Nebensätze, je in ein Wort verdichtet. Ergänze das Partizip von absagen und von warten als Attribut — mit der Endung, die Artikel und Kasus verlangen."
+    text: "Der {{abgesagte}} Vortrag wird im September nachgeholt. Die {{wartenden}} Nachbarn stehen noch vor der Tür."
+    translation:
+      en: "The talk that was cancelled will be held in September. The neighbours who are waiting are still standing outside the door."
+      ru: "Отменённый доклад состоится в сентябре. Ожидающие соседи всё ещё стоят у двери."
+      uk: "Скасовану доповідь проведуть у вересні. Сусіди, що чекають, і досі стоять під дверима."
+    explain:
+      en: "The two participles mean opposite things. Somebody cancelled the talk, so the talk had it done to it — Partizip II, the form you already build for the Perfekt. The neighbours are doing the waiting themselves — Partizip I, the infinitive plus -d. After that nothing new happens: both decline like any adjective, so der takes -e and die in the plural takes -en. The test for which one you need is the relative clause it came from: der Vortrag, der abgesagt wurde against die Nachbarn, die warten."
+      ru: "Причастия значат противоположное. Доклад отменили — значит, с ним нечто проделали: Partizip II, та самая форма, что и в перфекте. Соседи ждут сами — Partizip I, инфинитив плюс -d. Дальше не происходит ничего нового: оба склоняются как обычные прилагательные, поэтому после der стоит -e, а после die во множественном — -en. Проверка та же, что и в статье: разверните обратно в придаточное — der Vortrag, der abgesagt wurde против die Nachbarn, die warten."
+      uk: "Дієприкметники значать протилежне. Доповідь скасували — отже, з нею щось зробили: Partizip II, та сама форма, що й у перфекті. Сусіди чекають самі — Partizip I, інфінітив плюс -d. Далі не відбувається нічого нового: обидва відмінюються як звичайні прикметники, тому після der стоїть -e, а після die в множині — -en. Перевірка та сама, що й у статті: розгорніть назад у підрядне — der Vortrag, der abgesagt wurde проти die Nachbarn, die warten."
+      de: "Die beiden Partizipien bedeuten Gegensätzliches. Den Vortrag hat jemand abgesagt, mit ihm wurde also etwas gemacht — Partizip II, die Form aus dem Perfekt. Die Nachbarn warten selbst — Partizip I, Infinitiv plus -d. Danach passiert nichts Neues: Beide dekliniere wie ein Adjektiv, nach der steht -e, nach die im Plural -en. Die Probe ist der Relativsatz dahinter: der Vortrag, der abgesagt wurde, gegen die Nachbarn, die warten."
+
+  - id: uebersetzen-partizip
+    outcomes: [text-zusammenfassen]
+    type: translate
+    focus: partizip-adjektiv
+    instruction:
+      en: "Compress the relative clause into one word in front of the noun. For 'sign' take unterschreiben, for 'put' legen, and address the reader with Sie."
+      ru: "Сожмите придаточное в одно слово перед существительным. Для «подписать» возьмите unterschreiben, для «положить» — legen, и обращайтесь к читателю на Sie."
+      uk: "Стисніть підрядне в одне слово перед іменником. Для «підписати» візьміть unterschreiben, для «покласти» — legen, і звертайтеся до читача на Sie."
+      de: "Verdichte den Relativsatz zu einem Wort vor dem Nomen. Für das Signieren nimm unterschreiben, für das Hineinlegen legen, und sprich die Leserin mit Sie an."
+    prompt_en: "Please put the signed list in the letterbox."
+    prompt_ru: "Пожалуйста, положите подписанный перечень в почтовый ящик."
+    prompt_uk: "Будь ласка, покладіть підписаний перелік у поштову скриньку."
+    answer: "Bitte legen Sie die unterschriebene Liste in den Briefkasten."
+    accept:
+      # bitte may follow the imperative; the graded attribute does not move with it.
+      - "Legen Sie bitte die unterschriebene Liste in den Briefkasten."
+    key_tokens: ["unterschriebene"]
+    explain:
+      en: "Graded is the attribute and nothing else: the Partizip II of unterschreiben plus the ending die calls for in the accusative — unterschriebene, one word standing where die Liste, die unterschrieben wurde would otherwise stand. This is the compression a notice is made of, and it is also why reading one means unpacking it again. Dropping the ending (die unterschrieben Liste) is the quiet half of the error: in front of a noun a participle is an adjective and declines like one."
+      ru: "Оценивается определение и ничего больше: Partizip II от unterschreiben плюс окончание, которого требует die в аккузативе, — unterschriebene, одно слово на месте целого die Liste, die unterschrieben wurde. Это и есть то сжатие, из которого сделано объявление, и потому прочитать его значит развернуть сжатое обратно. Пропустить окончание (die unterschrieben Liste) — тихая половина ошибки: перед существительным причастие есть прилагательное и склоняется как прилагательное."
+      uk: "Оцінюється означення й нічого більше: Partizip II від unterschreiben плюс закінчення, якого вимагає die в акузативі, — unterschriebene, одне слово на місці цілого die Liste, die unterschrieben wurde. Це й є те стиснення, з якого зроблено оголошення, і тому прочитати його означає розгорнути стиснене назад. Пропустити закінчення (die unterschrieben Liste) — тиха половина помилки: перед іменником дієприкметник є прикметником і відмінюється як прикметник."
+      de: "Bewertet wird das Attribut und sonst nichts: das Partizip II von unterschreiben plus die Endung, die die im Akkusativ verlangt — unterschriebene, ein Wort an der Stelle von die Liste, die unterschrieben wurde. Genau daraus besteht ein Aushang, und deshalb heißt Lesen hier: wieder auspacken. Die fehlende Endung (die unterschrieben Liste) ist die leise Hälfte des Fehlers: Vor dem Nomen ist ein Partizip ein Adjektiv und dekliniert wie eines."
+
+  - id: mc-partizip-wahl
+    outcomes: [text-zusammenfassen]
+    type: mc
+    focus: partizip-adjektiv
+    prompt: "„Der Termin, der bestätigt wurde, steht unten.\" Wie steht das kurz vor dem Nomen?"
+    options:
+      - "der bestätigte Termin"
+      - "der bestätigende Termin"
+      - "der bestätigt Termin"
+    correct: 0
+    translation:
+      en: "„Der Termin, der bestätigt wurde, steht unten.\" How is that put compactly in front of the noun?"
+      ru: "„Der Termin, der bestätigt wurde, steht unten.\" Как это сказать коротко перед существительным?"
+      uk: "„Der Termin, der bestätigt wurde, steht unten.\" Як це сказати коротко перед іменником?"
+    explain:
+      en: "The relative clause is a passive one — somebody confirmed the appointment — so the compressed form is the Partizip II with an adjective ending: der bestätigte Termin. der bestätigende Termin is the Partizip I and reverses who is doing what: an appointment that confirms something. der bestätigt Termin picks the right participle and leaves it bare, which is the ending error and not a choice between participles. Reading a notice is this move run backwards: der geänderte Termin unpacks to der Termin, der geändert wurde."
+      ru: "Придаточное здесь пассивное — срок подтвердили, — поэтому сжатая форма это Partizip II с окончанием прилагательного: der bestätigte Termin. Форма der bestätigende Termin — это Partizip I, и она меняет местами, кто что делает: срок, который сам что-то подтверждает. der bestätigt Termin берёт верное причастие и оставляет его без окончания, а это уже ошибка в окончании, а не выбор между причастиями. Чтение объявления — та же операция в обратную сторону: der geänderte Termin разворачивается в der Termin, der geändert wurde."
+      uk: "Підрядне тут пасивне — строк підтвердили, — тому стиснена форма це Partizip II із прикметниковим закінченням: der bestätigte Termin. Форма der bestätigende Termin — це Partizip I, і вона міняє місцями, хто що робить: строк, який сам щось підтверджує. der bestätigt Termin бере правильний дієприкметник і лишає його без закінчення, а це вже помилка в закінченні, а не вибір між дієприкметниками. Читання оголошення — та сама операція у зворотний бік: der geänderte Termin розгортається в der Termin, der geändert wurde."
+      de: "Der Relativsatz ist ein passiver — jemand hat den Termin bestätigt —, also ist die verdichtete Form das Partizip II mit Adjektivendung: der bestätigte Termin. der bestätigende Termin ist das Partizip I und dreht um, wer handelt: ein Termin, der etwas bestätigt. der bestätigt Termin wählt das richtige Partizip und lässt es endungslos, das ist der Endungsfehler und keine Wahl zwischen Partizipien. Einen Aushang zu lesen heißt, denselben Schritt rückwärts zu gehen: der geänderte Termin wird zu der Termin, der geändert wurde."
+
+  - id: match-weitergeben-redemittel
+    outcomes: [mitteilung-weitergeben]
+    type: match
+    instruction:
+      en: "Passing a message on has five moves. Which sentence does which?"
+      ru: "Передача сообщения состоит из пяти шагов. Какая фраза делает какой?"
+      uk: "Передавання повідомлення складається з п'яти кроків. Яка фраза робить який?"
+      de: "Eine Mitteilung weiterzugeben hat fünf Schritte. Welcher Satz leistet welchen?"
+    pairs:
+      - left: "Woher die Information kommt"
+        right: "Im Aushang steht, dass …"
+      - left: "Was sich ändert"
+        right: "Der Termin wurde auf Donnerstag verschoben."
+      - left: "Was zu tun ist"
+        right: "Wir sollen die Treppe nehmen."
+      - left: "Eine Frage weitergeben"
+        right: "Sie fragt, ob jemand einen Schlüssel hat."
+      - left: "Unsicherheit markieren"
+        right: "So habe ich es verstanden."
+    explain:
+      en: "A relayed message is read for four things — who is writing, what changes, what you have to do, by when — and it is passed on in the same order, with one addition. Naming the source keeps your own opinion out of it, and marking what you are unsure of costs one sentence: a relayed message is the one place where a small mistake travels further than the person who made it. The greeting, the apology and the phone number are filing, not content."
+      ru: "Переданное сообщение читают ради четырёх вещей — кто пишет, что меняется, что нужно сделать, к какому сроку — и передают в том же порядке, с одним добавлением. Названный источник оставляет ваше мнение при себе, а пометка о неуверенности стоит одной фразы: в переданном сообщении маленькая ошибка уходит дальше, чем тот, кто её сделал. Приветствие, извинение и номер телефона — это архив, а не содержание."
+      uk: "Переказане повідомлення читають заради чотирьох речей — хто пише, що змінюється, що треба зробити, до якого строку — і переказують у тому самому порядку, з одним додатком. Названо джерело — і ваша думка лишається при вас, а позначка про непевність коштує однієї фрази: у переказаному повідомленні маленька помилка йде далі, ніж той, хто її зробив. Привітання, вибачення й номер телефону — це архів, а не зміст."
+      de: "Eine weitergegebene Mitteilung liest man auf vier Fragen — wer schreibt, was ändert sich, was ist zu tun, bis wann — und gibt sie in derselben Reihenfolge weiter, mit einer Ergänzung. Die genannte Quelle hält die eigene Meinung draußen, und die Unsicherheitsmarkierung kostet einen Satz: In einer weitergereichten Nachricht läuft ein kleiner Fehler weiter als der, der ihn gemacht hat. Gruß, Entschuldigung und Telefonnummer sind Ablage, kein Inhalt."

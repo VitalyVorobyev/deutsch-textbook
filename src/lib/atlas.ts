@@ -1,4 +1,4 @@
-import type { AtlasGroup } from './schemas';
+import type { AtlasGroup } from '@da/schema';
 import type { TopicNode } from './mastery';
 
 export function groupChildren(groups: AtlasGroup[]): Map<string | undefined, AtlasGroup[]> {

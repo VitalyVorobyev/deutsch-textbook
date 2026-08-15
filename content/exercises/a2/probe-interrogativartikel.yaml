@@ -1,0 +1,45 @@
+topic: einkaufen-reklamation
+role: probe
+title: {en: "Probe — welch- endings", ru: "Проверка — окончания welch-", uk: "Перевірка — закінчення welch-"}
+arming:
+  - a2/einkaufen-interrogativartikel::table-welch-nominativ
+  - a2/einkaufen-interrogativartikel::mc-welchen-film
+  - a2/einkaufen-interrogativartikel::cloze-mit-welcher
+  - a2/einkaufen-interrogativartikel::mc-alle-kunden
+  - a2/einkaufen-interrogativartikel::translate-welche-groesse
+  - a2/einkaufen-interrogativartikel-anwenden::translate-bus
+  - a2/einkaufen-interrogativartikel-anwenden::translate-mit-welchem-zug
+items:
+  - id: variant-a
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Which appointment suits you?"
+    prompt_ru: "Какая встреча вам подходит?"
+    prompt_uk: "Яка зустріч вам підходить?"
+    answer: "Welcher Termin passt Ihnen?"
+    key_tokens: ["Welcher", "Termin", "passt"]
+    explain: {en: "der Termin is the subject, so nominative masculine gives welcher.", ru: "der Termin — подлежащее, поэтому Nominativ мужского рода даёт welcher.", uk: "der Termin — підмет, тому Nominativ чоловічого роду дає welcher."}
+  - id: variant-b
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Which documents do I need?"
+    prompt_ru: "Какие документы мне нужны?"
+    prompt_uk: "Які документи мені потрібні?"
+    answer: "Welche Dokumente brauche ich?"
+    key_tokens: ["Welche", "Dokumente", "brauche"]
+    explain: {en: "Plural accusative has the same -e form as plural nominative: welche Dokumente.", ru: "Форма Akkusativ Plural совпадает с Nominativ Plural: welche Dokumente.", uk: "Форма Akkusativ Plural збігається з Nominativ Plural: welche Dokumente."}
+  - id: variant-c
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "In which room is the course?"
+    prompt_ru: "В какой аудитории проходит курс?"
+    prompt_uk: "У якій аудиторії проходить курс?"
+    answer: "In welchem Raum ist der Kurs?"
+    key_tokens: ["In", "welchem", "Raum"]
+    explain: {en: "The course is located in the room, so in answers Wo? and takes the dative: welchem Raum.", ru: "Курс находится в помещении, поэтому in отвечает на Wo? и требует Dativ: welchem Raum.", uk: "Курс перебуває в приміщенні, тому in відповідає на Wo? й потребує Dativ: welchem Raum."}

@@ -1,0 +1,45 @@
+topic: freunde-feste
+role: probe
+title: {en: "Probe — reciprocal uns and sich", ru: "Проверка — взаимные uns и sich", uk: "Перевірка — взаємні uns і sich"}
+arming:
+  - a2/freunde-feste-reziprok::mc-sehen-uns
+  - a2/freunde-feste-reziprok::mc-reflexiv-oder-reziprok
+  - a2/freunde-feste-reziprok::cloze-uns-sich
+  - a2/freunde-feste-reziprok::translate-helfen
+  - a2/freunde-feste-reziprok-anwenden::translate-nachbarn
+  - a2/freunde-feste-reziprok-anwenden::translate-kollegen
+items:
+  - id: variant-a
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We see each other at the station."
+    prompt_ru: "Мы увидимся на вокзале."
+    prompt_uk: "Ми побачимося на вокзалі."
+    answer: "Wir sehen uns am Bahnhof."
+    key_tokens: ["sehen", "uns"]
+    explain: {en: "wir selects uns; the meeting of two people makes it reciprocal.", ru: "wir требует uns; встреча двух людей задаёт взаимный смысл.", uk: "wir потребує uns; зустріч двох людей задає взаємний зміст."}
+  - id: variant-b
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The children understand each other."
+    prompt_ru: "Дети понимают друг друга."
+    prompt_uk: "Діти розуміють одне одного."
+    answer: "Die Kinder verstehen sich."
+    key_tokens: ["Kinder", "verstehen", "sich"]
+    explain: {en: "A third-person plural subject takes sich; the children are separate participants.", ru: "Подлежащее в третьем лице множественного числа требует sich; дети — разные участники.", uk: "Підмет у третій особі множини потребує sich; діти — різні учасники."}
+  - id: variant-c
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "After the course, we write to each other."
+    prompt_ru: "После курса мы пишем друг другу."
+    prompt_uk: "Після курсу ми пишемо одне одному."
+    answer: "Nach dem Kurs schreiben wir uns."
+    accept: ["Wir schreiben uns nach dem Kurs."]
+    key_tokens: ["schreiben", "uns"]
+    explain: {en: "schreiben uses a dative recipient; for wir the reciprocal dative form is uns.", ru: "Получатель при schreiben стоит в Dativ; для wir взаимная форма — uns.", uk: "Отримувач при schreiben стоїть у Dativ; для wir взаємна форма — uns."}

@@ -5,18 +5,18 @@
  * (prerequisites, vocab, exercises, reading, pretest), exercise answer-key sanity,
  * reading gloss markup, prerequisite cycles, atlas.yaml consistency with topic
  * frontmatter, and language discipline (letter-set purity and uk/de parity —
- * src/lib/langcheck.ts).
+ * packages/schema/src/langcheck.ts).
  */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, relative, sep } from 'node:path';
+import { dirname, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
 import {
   atlasSchema,
   exerciseSetSchema,
   readingSchema,
-  topicSchema,
+  topicManifestSchema,
   vocabFileSchema,
   visualDocumentSchema,
   wordFieldSchema,
@@ -30,7 +30,7 @@ import {
   type Discovery,
   type ExerciseSet,
   type Reading,
-  type Topic,
+  type TopicManifest,
   type VocabEntry,
   type VocabFile,
   type VisualDocument,
@@ -39,12 +39,16 @@ import {
   type ListeningArtifact,
   type ListeningPlan,
   LEVELS,
-} from '../src/lib/schemas';
-import type { GrammarPoint } from '../src/lib/grammar-coverage';
+  CEFR_LEVELS,
+  PRODUCTION_TYPES,
+} from '@da/schema';
+import { GRAMMAR_STRANDS, type GrammarPoint, type GrammarTrack } from '@da/content/grammar-coverage';
+import { entryRef, loadStructureSources } from '@da/content/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
-import { clozeGaps, normalizeDictation, normalizeTranslation } from '../src/lib/cloze';
+import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
+import { gradedTokenPositions } from '@da/grading/production';
 import { continuationWord } from '../src/lib/table';
-import { glossFieldParity, parseGlosses } from '../src/lib/gloss';
+import { glossFieldParity, parseGlosses } from '@da/schema/gloss';
 import {
   deParityProblems,
   hasDeExplanation,
@@ -52,21 +56,27 @@ import {
   langFieldProblems,
   mdxLangProblems,
   ukParityProblems,
-} from '../src/lib/langcheck';
-import { proseShapeProblems } from '../src/lib/prose-shape';
-import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '../src/lib/coverage';
+} from '@da/schema/langcheck';
+import { proseShapeProblems } from '@da/content/prose-shape';
+import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '@da/content/coverage';
 import {
   checkGradingDecisions,
   GRADING_DECISIONS_FILE,
   loadGradingDecisions,
-} from '../src/lib/grading-decisions';
+} from '@da/content/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
-import { focusIntroducedBy } from '../src/lib/focus-tags';
+import { focusIntroducedBy } from '@da/content/focus-tags';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
-import { authorshipProvenanceProblems } from '../src/lib/authorship-provenance';
+import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
+import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 
-const ROOT = join(import.meta.dirname, '..');
+// The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
+// checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
+// CI runs retain the repository-relative default.
+const ROOT = process.env.DEUTSCH_ATLAS_ROOT
+  ? resolve(process.env.DEUTSCH_ATLAS_ROOT)
+  : join(import.meta.dirname, '..');
 const CONTENT = join(ROOT, 'content');
 
 const errors: string[] = [];
@@ -183,23 +193,37 @@ const rel = (f: string) => relative(ROOT, f);
 // Load everything
 // ---------------------------------------------------------------------------
 
-const topics = new Map<string, { file: string; data: Topic; body: string }>();
-for (const file of listFiles(join(CONTENT, 'topics'), '.mdx')) {
-  const src = readFileSync(file, 'utf8');
-  const raw = parseFrontmatter(src, rel(file));
-  if (raw === undefined) continue;
-  const data = validateWith(topicSchema, raw, rel(file));
+/**
+ * A topic is its manifest plus its article. The manifest is the declaration — id, level, outcomes,
+ * elements — and the article is prose with no frontmatter at all, so the three-way reconciliation
+ * this block used to do (directory vs frontmatter vs atlas node) has nothing left to reconcile.
+ * What remains is the two things a filename can still disagree with.
+ */
+const topics = new Map<string, { file: string; article: string; data: TopicManifest; body: string }>();
+for (const file of manifestFiles(ROOT)) {
+  const raw = YAML.parse(readFileSync(file, 'utf8'));
+  const data = validateWith(topicManifestSchema, raw, rel(file));
   if (!data) continue;
-  const body = src.replace(/^---\r?\n[\s\S]*?\r?\n---(\r?\n|$)/, '');
 
   const parts = relative(join(CONTENT, 'topics'), file).split(sep);
-  const basename = parts.at(-1)!.replace(/\.mdx$/, '');
+  const basename = idFromManifestPath(file);
   const levelDir = parts.length > 1 ? parts[0]! : '';
-  if (data.id !== basename) fail(rel(file), `frontmatter id "${data.id}" ≠ filename "${basename}"`);
+  if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
   if (levelDir.toUpperCase() !== data.level)
-    fail(rel(file), `level directory "${levelDir}" ≠ frontmatter level "${data.level}"`);
+    fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
   if (topics.has(data.id)) fail(rel(file), `duplicate topic id "${data.id}"`);
-  topics.set(data.id, { file: rel(file), data, body });
+
+  const article = join(dirname(file), data.elements.article);
+  if (!existsSync(article)) {
+    fail(rel(file), `elements.article "${data.elements.article}" does not exist`);
+    continue;
+  }
+  const body = readFileSync(article, 'utf8');
+  // The article carries prose only. A leftover frontmatter block is a half-finished edit that
+  // Astro's strict empty schema would reject at build time — say so here, where the message can
+  // name the file it belongs to.
+  if (/^---\r?\n/.test(body)) fail(rel(article), 'article has a frontmatter block; it belongs in the manifest');
+  topics.set(data.id, { file: rel(file), article: rel(article), data, body });
 }
 
 for (const problem of authorshipProvenanceProblems(
@@ -368,16 +392,12 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
 }
 
 // Every headword lives in exactly one deck: a duplicate means the learner
-// grinds two SRS histories for one word and coverage counts it twice. The
-// allowlist freezes the five pairs that predate the rule — card identity is
-// <file-id>::<de>::<direction>, so consolidating them now would wipe history.
-const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
-  wohnen: 'erste-schritte+kernwortschatz-a2',
-  kommen: 'erste-schritte+perfekt-verben',
-  sprechen: 'erste-schritte+perfekt-verben',
-  Arzt: 'menschen-familie+termine-zeit',
-  Ärztin: 'menschen-familie+termine-zeit',
-};
+// grinds two SRS histories for one word and coverage counts it twice. Empty
+// since 2026-08-06: the five legacy pairs that predated the rule were all
+// consolidated by the A1 boundary migration (#128), so the corpus now has no
+// exceptions — the record stays as the one place a future deliberate pair
+// would have to be declared and argued for.
+const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
 {
   const decksOf = new Map<string, string[]>();
   for (const [id, { data }] of vocabFiles) {
@@ -401,17 +421,106 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {
 // one. It cannot be checked against the focus taxonomy — a point whose tag is
 // unregistered is the normal way an unwritten structure shows up — so what is
 // enforced here is only that the file itself stays trustworthy: unique ids,
-// real levels, and reference-only points that name a topic which exists.
+// real levels, a known strand, resolvable `deepens` and `claims` edges, and
+// reference-only points that name a topic which exists.
 {
   const file = join(ROOT, 'data', 'grammar-inventory.yaml');
   try {
-    const points = (YAML.parse(readFileSync(file, 'utf8')) as { points?: GrammarPoint[] }).points ?? [];
+    const inventory = YAML.parse(readFileSync(file, 'utf8')) as {
+      tracks?: GrammarTrack[];
+      points?: GrammarPoint[];
+    };
+    const tracks = inventory.tracks ?? [];
+    const points = inventory.points ?? [];
+    const trackIds = new Set<string>();
+    for (const track of tracks) {
+      if (trackIds.has(track.id)) fail('data/grammar-inventory.yaml', `duplicate grammar track id "${track.id}"`);
+      trackIds.add(track.id);
+      if (!(GRAMMAR_STRANDS as readonly string[]).includes(track.strand))
+        fail('data/grammar-inventory.yaml', `track "${track.id}" has unknown strand "${track.strand}"`);
+      if (!track.de || !track.en || !Number.isFinite(track.order))
+        fail('data/grammar-inventory.yaml', `track "${track.id}" needs de, en and a numeric order`);
+    }
+    const ids = new Set(points.map((p) => p.id));
+    // Every `<source-id>:<entry-key>` any strukturenliste defines. A `claims:` ref that resolves
+    // to nothing is a citation to a document that does not say it — the one defect in this file
+    // that would quietly inflate the anchored figure.
+    const knownRefs = new Set<string>();
+    for (const src of loadStructureSources(ROOT))
+      for (const section of src.sections)
+        for (const entry of section.entries) knownRefs.add(entryRef(src.source.id, entry.key));
     const seen = new Set<string>();
     for (const point of points) {
       if (seen.has(point.id)) fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
       seen.add(point.id);
-      if (!(LEVELS as readonly string[]).includes(point.standard_level))
-        fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown standard_level "${point.standard_level}"`);
+
+      // `level: {reception, production}` replaced `standard_level` on 2026-08-14. Both shapes are
+      // read by packages/content/src/grammar-coverage.ts so the migration did not have to be atomic, but a row
+      // carrying neither can be placed at no level at all and must not pass.
+      const production = point.level?.production ?? point.standard_level;
+      const reception = point.level?.reception ?? production;
+      if (!production)
+        fail('data/grammar-inventory.yaml', `point "${point.id}" declares no level: {reception, production}`);
+      for (const [field, value] of [['production', production], ['reception', reception]] as const)
+        if (value && !(CEFR_LEVELS as readonly string[]).includes(value))
+          fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown level.${field} "${value}"`);
+      // You do not produce a structure before you can recognise it. A row asserting otherwise has
+      // its two levels swapped, which would make the reception view report the opposite of reality.
+      // Guarded on both being *known* levels: `indexOf` returns -1 for an unknown one, so an
+      // already-reported typo would otherwise also report itself as an ordering defect.
+      const known = (v?: string) => !!v && (CEFR_LEVELS as readonly string[]).includes(v);
+      if (
+        known(production) && known(reception) &&
+        CEFR_LEVELS.indexOf(reception as (typeof CEFR_LEVELS)[number]) >
+          CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
+      )
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has level.reception ${reception} later than level.production ${production} — reception cannot follow production`,
+        );
+
+      if (!point.strand || !(GRAMMAR_STRANDS as readonly string[]).includes(point.strand))
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has unknown strand "${point.strand ?? ''}" — one of ${GRAMMAR_STRANDS.join(', ')}`,
+        );
+
+      if (!point.track || !trackIds.has(point.track))
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" has unknown track "${point.track ?? ''}"`,
+        );
+
+      // `deepens` is the spiral as data. A dangling target, a self-edge or an edge pointing at a
+      // LATER point would each draw a ladder that does not exist — and the strand view is drawn
+      // from exactly these edges.
+      for (const target of point.deepens ?? []) {
+        if (target === point.id)
+          fail('data/grammar-inventory.yaml', `point "${point.id}" deepens itself`);
+        else if (!ids.has(target))
+          fail('data/grammar-inventory.yaml', `point "${point.id}" deepens unknown point "${target}"`);
+        else {
+          const base = points.find((p) => p.id === target)!;
+          const baseLevel = base.level?.production ?? base.standard_level;
+          if (
+            production && baseLevel &&
+            CEFR_LEVELS.indexOf(baseLevel as (typeof CEFR_LEVELS)[number]) >
+              CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
+          )
+            fail(
+              'data/grammar-inventory.yaml',
+              `point "${point.id}" (${production}) deepens "${target}", which is taught later (${baseLevel})`,
+            );
+        }
+      }
+
+      for (const claim of point.claims ?? [])
+        if (!knownRefs.has(claim))
+          fail(
+            'data/grammar-inventory.yaml',
+            `point "${point.id}" claims "${claim}", which no file in data/strukturenlisten/ defines`,
+          );
+
       if (!point.reference_only && !point.focus?.length)
         fail(
           'data/grammar-inventory.yaml',
@@ -669,6 +778,17 @@ for (const { file, data } of references.values()) {
   }
 }
 
+// Every page-level `focus` list on a reference file is the derived Referenz→topic edge
+// (ADR 0007): tags only, resolved through focusIntroducedBy at build time. A tag the
+// allowlist does not know would render no chip and no error, so it is rejected here.
+for (const { file, data } of references.values()) {
+  const pageFocus = (data as { focus?: string[] }).focus ?? [];
+  for (const tag of pageFocus) {
+    if (!focusIntroducedBy[tag])
+      fail(file, `page-level focus "${tag}" is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
+  }
+}
+
 // The Zeitformen page claims, for every verb form, the level at which the course teaches it.
 // That is precisely the kind of claim a reference page carries for years without anyone
 // re-deriving it, so it is checked rather than trusted: the tags must be real, and a form may
@@ -682,7 +802,7 @@ for (const { file, data } of references.values()) {
     for (const tag of form.focus) {
       const owner = focusIntroducedBy[tag];
       if (!owner) {
-        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (src/lib/focus-tags.ts)`);
+        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
         continue;
       }
       const topic = topics.get(owner);
@@ -719,17 +839,73 @@ for (const [id, { file, data }] of topics) {
     if (!topics.has(p)) fail(file, `prerequisite "${p}" does not resolve to a topic`);
     if (p === id) fail(file, `topic lists itself as a prerequisite`);
   }
-  for (const v of data.vocab) {
+  for (const v of data.elements.vocab) {
     if (!vocabFiles.has(v)) fail(file, `vocab ref "${v}" does not resolve to content/vocab/${v}.yaml`);
   }
-  for (const ex of data.exercises) {
+  for (const ex of data.elements.exercises) {
     if (!exerciseSets.has(ex)) fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
   }
+  if (data.elements.article !== `${id}.mdx`)
+    fail(file, `elements.article "${data.elements.article}" must be "${id}.mdx"`);
+
   // The recommended path advances a topic on its first role: practice set (see
   // primaryPractice in src/lib/content.ts). A topic without one can never be
   // completed, so the Lernpfad would stop on it forever.
-  if (!data.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
+  if (!data.elements.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
     fail(file, 'topic owns no role: practice exercise set — the Lernpfad could never advance past it');
+
+  /**
+   * `primary_practice` decides what completing the Lernpfad step means, so it must be one of the
+   * topic's own practice sets and it must be stated. It used to be "the first practice set in the
+   * array": reordering the page silently moved it, and adding items to whichever set won the race
+   * silently lengthened the step.
+   */
+  const primary = data.elements.primary_practice;
+  if (primary === undefined) fail(file, 'elements.primary_practice is not declared');
+  else if (!data.elements.exercises.includes(primary))
+    fail(file, `elements.primary_practice "${primary}" is not in elements.exercises`);
+  else if (exerciseSets.get(primary)?.data.role !== 'practice')
+    fail(file, `elements.primary_practice "${primary}" is not a role: practice set`);
+  else if (exerciseSets.get(primary)?.data.activity !== 'core')
+    fail(file, `elements.primary_practice "${primary}" must declare activity: core`);
+
+  const coreActivities = data.elements.exercises.filter(
+    (setId) => exerciseSets.get(setId)?.data.activity === 'core',
+  );
+  if (coreActivities.length !== 1) {
+    fail(
+      file,
+      `topic must own exactly one activity: core set; found ${coreActivities.length}`,
+    );
+  } else if (primary && coreActivities[0] !== primary) {
+    fail(
+      file,
+      `activity: core set "${coreActivities[0]}" must equal primary_practice "${primary}"`,
+    );
+  }
+  const coreSet = coreActivities.length === 1 ? exerciseSets.get(coreActivities[0]!)?.data : undefined;
+  if (coreSet && (coreSet.items.length < 8 || coreSet.items.length > 15)) {
+    fail(
+      file,
+      `activity: core must contain 8–15 scaffolded items; found ${coreSet.items.length} in "${coreActivities[0]}"`,
+    );
+  }
+
+  const applications = data.elements.exercises
+    .map((setId) => exerciseSets.get(setId)?.data)
+    .filter((set): set is ExerciseSet => set?.activity === 'application');
+  if (!applications.some((set) => set.items.some((item) => PRODUCTION_TYPES.has(item.type)))) {
+    fail(
+      file,
+      'topic needs at least one activity: application set with productive retrieval; a listening-only transfer does not prove the learner can use the material',
+    );
+  }
+
+  for (const probe of data.elements.probes) {
+    const set = exerciseSets.get(probe);
+    if (!set) fail(file, `probe ref "${probe}" does not resolve to content/exercises/${probe}.yaml`);
+    else if (set.data.role !== 'probe') fail(file, `elements.probes lists "${probe}", which is role: ${set.data.role}`);
+  }
 
   // Item mix (see "Item mix" in CLAUDE.md).
   //
@@ -748,7 +924,7 @@ for (const [id, { file, data }] of topics) {
   // recognition — publishing the 41-recording corpus (82 items) would have loosened the
   // selection cap on 38 of 41 topics and the mc cap on 27, silently, with `a1/artikel-genus`
   // going from exactly at its cap to one item under it.
-  const practiceItems = data.exercises
+  const practiceItems = data.elements.exercises
     .filter((ex) => exerciseSets.get(ex)?.data.role === 'practice')
     .flatMap((ex) => exerciseSets.get(ex)!.data.items)
     .filter((i) => i.type !== 'audio-comprehension');
@@ -786,7 +962,7 @@ for (const [id, { file, data }] of topics) {
   // is mostly `order`, because a sibling set's translate items dilute the ratio; this is
   // per set for that reason. Two is the "a couple per set" the authoring rule already asks
   // for, written down where it can be enforced.
-  for (const setId of data.exercises) {
+  for (const setId of data.elements.exercises) {
     const set = exerciseSets.get(setId);
     if (!set) continue;
     const orders = set.data.items.filter((i) => i.type === 'order');
@@ -799,20 +975,20 @@ for (const [id, { file, data }] of topics) {
           'translate or cloze of the same word order',
       );
   }
-  for (const r of data.reading) {
+  for (const r of data.elements.reading) {
     if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }
-  if (data.pretest !== undefined) {
-    const pre = exerciseSets.get(data.pretest);
+  if (data.elements.pretest !== undefined) {
+    const pre = exerciseSets.get(data.elements.pretest);
     if (!pre) {
-      fail(file, `pretest ref "${data.pretest}" does not resolve to content/exercises/${data.pretest}.yaml`);
+      fail(file, `pretest ref "${data.elements.pretest}" does not resolve to content/exercises/${data.elements.pretest}.yaml`);
     } else if (pre.data.topic !== id) {
-      fail(file, `pretest set "${data.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
+      fail(file, `pretest set "${data.elements.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
     } else if (pre.data.role !== 'pretest') {
-      fail(file, `pretest set "${data.pretest}" must declare role: pretest`);
+      fail(file, `pretest set "${data.elements.pretest}" must declare role: pretest`);
     }
-    if (data.exercises.includes(data.pretest))
-      fail(file, `pretest set "${data.pretest}" must not also be listed in exercises`);
+    if (data.elements.exercises.includes(data.elements.pretest))
+      fail(file, `pretest set "${data.elements.pretest}" must not also be listed in exercises`);
   }
 }
 
@@ -859,20 +1035,38 @@ for (const { file, data } of wortnetze.values()) {
   }
 }
 
+/**
+ * The manifest's `elements` list is CLOSED, and this is what closes it.
+ *
+ * Every artifact still carries a `topic:` back-pointer — open a drill file and it tells you what it
+ * belongs to — but membership is declared by the topic, and the two directions must agree. Before
+ * the manifests, a set could name a topic that never listed it and nothing anywhere noticed: the
+ * probe family was found by scanning for `role: probe`, so a probe was "attached" simply by
+ * existing.
+ */
 for (const [setId, { file, data }] of exerciseSets) {
   const owner = topics.get(data.topic);
   const standalone = STANDALONE_ROLES.has(data.role);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
+  } else if (data.role === 'probe') {
+    if (!owner.data.elements.probes.includes(setId))
+      fail(file, `topic "${data.topic}" does not list this probe ("${setId}") in elements.probes`);
+    if (owner.data.elements.exercises.includes(setId) || owner.data.elements.pretest === setId)
+      fail(file, 'a role: probe set must not be listed in exercises or as the pretest — it opens the session, not the page');
   } else if (standalone) {
-    // Checkpoints/probes/placements anchor to a topic for spine position only — they
-    // get their own pages and must never be embedded in ordinary lesson flow.
-    if (owner.data.exercises.includes(setId) || owner.data.pretest === setId)
-      fail(file, `a role: ${data.role} set must not be listed in any topic's exercises or pretest`);
-  } else if (!owner.data.exercises.includes(setId) && owner.data.pretest !== setId) {
+    // Checkpoints and placements anchor to a topic for spine position only — they get their own
+    // pages, belong to a level rather than a topic, and must never be embedded in lesson flow.
+    if (
+      owner.data.elements.exercises.includes(setId) ||
+      owner.data.elements.pretest === setId ||
+      owner.data.elements.probes.includes(setId)
+    )
+      fail(file, `a role: ${data.role} set belongs to a level, not a topic — it must not appear in any topic's elements`);
+  } else if (!owner.data.elements.exercises.includes(setId) && owner.data.elements.pretest !== setId) {
     fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
   }
-  if (owner?.data.exercises.includes(setId) && data.role === 'pretest')
+  if (owner?.data.elements.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
   if (data.role === 'probe') {
@@ -1092,7 +1286,7 @@ for (const [setId, { file, data }] of exerciseSets) {
                 : -1;
           if (repeatedAt >= 0) {
             const n = counts[repeatedAt]!;
-            // `graded` in src/lib/production.ts is a Set of strings tested per token, so a
+            // `graded` in packages/grading/src/production.ts is a Set of strings tested per token, so a
             // key token is matched by string, not by position: if it occurs twice, the focus
             // tag grades BOTH occurrences. In "Nina stellt den Stuhl neben den Schrank." the
             // second `den` is the direction case (wo-wohin), not the object article — so a
@@ -1108,9 +1302,53 @@ for (const [setId, { file, data }] of exerciseSets) {
             );
           }
         }
-        if (item.key_tokens.length > 0 && !item.focus) {
-          warn(where, 'key_tokens without a focus tag grades nothing');
+        // The exact-string counts above cannot see the grader's case machinery: a pinned
+        // sentence-opener derives a lowercase twin that matches ANYWHERE, and sentence-head
+        // positions match case-insensitively (packages/grading/src/production.ts). So "Nach der Arbeit
+        // gehe ich nach Hause." with `Nach` pinned counted every string once and passed,
+        // while the grader graded both `nach`s — and logged a zu/nach-Hause slip under the
+        // dative tag. Ask the mechanism itself: in no rendering may the graded positions
+        // outnumber the pins.
+        if (item.key_tokens.length > 0) {
+          for (const { rendering, tokens } of renderings) {
+            const positions = gradedTokenPositions(rendering, {
+              answer: item.answer,
+              accept: item.accept,
+              keyTokens: item.key_tokens,
+            });
+            if (positions.length > item.key_tokens.length) {
+              fail(
+                where,
+                `key_tokens ${JSON.stringify(item.key_tokens)} grade ${positions.length} tokens ` +
+                  `in rendering "${rendering}" (${positions.map((i) => tokens[i]).join(', ')}) — ` +
+                  `the grader's sentence-head case fold matches more occurrences than there are ` +
+                  `pins, so an unrelated error on the extra token is attributed to the focus. ` +
+                  `Rewrite the rendering or pin tokens whose case twins stay unique.`,
+              );
+            }
+            // The inverse defect (P25-21): an accepted rendering with NO graded token.
+            // A learner who reaches for that rendering and commits the item's signature
+            // error gets `wrong` with no focus — absentGraded and misplacedGraded are
+            // both false — so the confusion the item exists to measure is never logged,
+            // and a one-token slip on the unpinned synonym is forgiven as spelling.
+            // Every synonym that occupies the graded position must be pinned
+            // (packages/grading/src/production.ts states the rule; this makes it a gate).
+            if (item.focus && positions.length === 0) {
+              fail(
+                where,
+                `rendering "${rendering}" contains no graded token — the accepted synonym ` +
+                  `that carries the graded decision must join key_tokens ` +
+                  `${JSON.stringify(item.key_tokens)}, or the focus tag "${item.focus}" ` +
+                  `silently stops firing on this rendering.`,
+              );
+            }
+          }
         }
+        // An untagged translation still needs an explicit graded surface. `key_tokens`
+        // decide which near-miss is a spelling slip even when there is deliberately no
+        // confusion tag to attribute (for example the formulaic first A1 introduction).
+        // Requiring a fictional focus here would turn honest language production into a
+        // false grammar signal, so the absence of `focus` is not itself a warning.
         break;
       }
       case 'table': {
@@ -1274,7 +1512,7 @@ for (const [readingId, { file, data }] of readings) {
   const owner = topics.get(data.topic);
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
-  } else if (!owner.data.reading.includes(readingId)) {
+  } else if (!owner.data.elements.reading.includes(readingId)) {
     fail(file, `topic "${data.topic}" does not list this reading ("${readingId}") in its reading refs`);
   }
 
@@ -1367,7 +1605,7 @@ for (const [readingId, { file, data }] of readings) {
 for (const [setId, { file, data }] of exerciseSets) {
   if (STANDALONE_ROLES.has(data.role)) continue; // standalone by design
   const referenced = [...topics.values()].some(
-    (t) => t.data.exercises.includes(setId) || t.data.pretest === setId,
+    (t) => t.data.elements.exercises.includes(setId) || t.data.elements.pretest === setId,
   );
   if (!referenced) warn(file, 'exercise set is not embedded on any topic page');
 }
@@ -1402,7 +1640,9 @@ for (const [setId, { file, data }] of exerciseSets) {
     const raw = YAML.parse(readFileSync(atlasFile, 'utf8'));
     const atlas = validateWith(atlasSchema, raw, AT);
     if (atlas) {
-      const nodeIds = new Set(atlas.nodes.map((n) => n.id));
+      // The manifests ARE the nodes now; the atlas keeps the taxonomy and the spine.
+      const nodes = [...topics.values()].map((t) => t.data);
+      const nodeIds = new Set(nodes.map((n) => n.id));
       const groupById = new Map(atlas.groups.map((group) => [group.id, group]));
       if (groupById.size !== atlas.groups.length) fail(AT, 'duplicate group id');
       const parentGroups = new Set(atlas.groups.flatMap((group) => group.parent ? [group.parent] : []));
@@ -1424,19 +1664,7 @@ for (const [setId, { file, data }] of exerciseSets) {
           cursor = groupById.get(cursor)?.parent;
         }
       }
-      for (const id of topics.keys()) {
-        if (!nodeIds.has(id)) fail(AT, `topic "${id}" missing from atlas`);
-      }
-      for (const node of atlas.nodes) {
-        const t = topics.get(node.id);
-        if (!t) {
-          fail(AT, `node "${node.id}" has no topic file`);
-          continue;
-        }
-        if (node.level !== t.data.level)
-          fail(AT, `node "${node.id}" level ${node.level} ≠ topic level ${t.data.level}`);
-        if (node.kind !== t.data.kind)
-          fail(AT, `node "${node.id}" kind ${node.kind} ≠ topic kind ${t.data.kind}`);
+      for (const node of nodes) {
         const group = groupById.get(node.group);
         if (!group) fail(AT, `node "${node.id}" has unknown group "${node.group}"`);
         else {
@@ -1444,19 +1672,16 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (group.strand !== node.strand)
             fail(AT, `node "${node.id}" strand differs from group "${node.group}"`);
         }
-        const a = [...node.prerequisites].sort().join(',');
-        const b = [...t.data.prerequisites].sort().join(',');
-        if (a !== b) fail(AT, `node "${node.id}" prerequisites ≠ topic frontmatter`);
       }
 
       // Spine: every topic in exactly one unit; unit topics exist and match
       // the unit's level; units grouped by ascending level; the flattened
       // order never puts a topic before a prerequisite; deepens targets exist
       // and appear strictly earlier.
-      const nodeById = new Map(atlas.nodes.map((n) => [n.id, n]));
+      const nodeById = new Map(nodes.map((n) => [n.id, n]));
       const outcomeOwner = new Map<string, string>();
-      const outcomeById = new Map<string, (typeof atlas.nodes)[number]['outcomes'][number]>();
-      for (const node of atlas.nodes) {
+      const outcomeById = new Map<string, TopicManifest['outcomes'][number]>();
+      for (const node of nodes) {
         for (const outcome of node.outcomes) {
           const previous = outcomeOwner.get(outcome.id);
           if (previous) fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
@@ -1496,7 +1721,7 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(AT, `unit "${unit.id}" (${unit.level}) contains topic "${t}" of level ${node.level}`);
         }
       }
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         if (!unitOf.has(node.id)) fail(AT, `topic "${node.id}" is not in any unit`);
       }
 
@@ -1545,7 +1770,7 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
 
       const spinePos = new Map(atlas.units.flatMap((u) => u.topics).map((t, i) => [t, i]));
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         const at = spinePos.get(node.id);
         for (const p of node.prerequisites) {
           const pAt = spinePos.get(p);
@@ -1622,7 +1847,7 @@ for (const [setId, { file, data }] of exerciseSets) {
               rememberMode(outcome, 'reading');
             }
         }
-        for (const node of atlas.nodes) {
+        for (const node of nodes) {
           for (const outcome of node.outcomes) {
             if (!measured.has(outcome.id)) {
               fail(
@@ -1775,13 +2000,13 @@ for (const [setId, { file, data }] of exerciseSets) {
           // exempt from the spine check — which is exactly backwards, since a tag nobody
           // registered is the one most likely to be a typo or an undeclared new confusion.
           // (`haben-wendungen` had been escaping this way.) The table is also the canonical
-          // focus-tag list in docs/focus-tags.md, so the two cannot drift apart unnoticed.
+          // focus-tag list in docs/authoring/focus-tags.md, so the two cannot drift apart unnoticed.
           const intro = focusIntroducedBy[item.focus];
           if (!intro) {
             fail(
               `${file} → item "${item.id}"`,
-              `focus "${item.focus}" is not in the focus-tag table — add it to docs/focus-tags.md ` +
-                'and to focusIntroducedBy in src/lib/focus-tags.ts, naming the topic that introduces it — ' +
+              `focus "${item.focus}" is not in the focus-tag table — add it to docs/authoring/focus-tags.md ` +
+                'and to focusIntroducedBy in packages/content/src/focus-tags.ts, naming the topic that introduces it — ' +
                   'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
             );
             continue;
@@ -1826,7 +2051,7 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (TRAINABLE_ROLES.has(data.role)) remember(trainableFocusOfTopic, data.topic, item.focus);
         }
       }
-      for (const node of atlas.nodes) {
+      for (const node of nodes) {
         for (const base of node.deepens) {
           if (!nodeIds.has(base)) continue; // unknown target — already reported above
           const mine = focusOfTopic.get(node.id) ?? new Set<string>();
@@ -1848,7 +2073,7 @@ for (const [setId, { file, data }] of exerciseSets) {
       for (const p of langFieldProblems(atlas)) fail(AT, p);
       for (const group of atlas.groups)
         for (const p of ukParityProblems(group)) fail(AT, `group "${group.id}": ${p}`);
-      for (const node of atlas.nodes)
+      for (const node of nodes)
         for (const p of ukParityProblems(node)) fail(AT, `node "${node.id}": ${p}`);
       for (const unit of atlas.units)
         for (const p of ukParityProblems(unit)) fail(AT, `unit "${unit.id}": ${p}`);
@@ -1858,7 +2083,7 @@ for (const [setId, { file, data }] of exerciseSets) {
 }
 
 // ---------------------------------------------------------------------------
-// Language discipline: letter-set purity and uk/de parity (src/lib/langcheck.ts)
+// Language discipline: letter-set purity and uk/de parity (packages/schema/src/langcheck.ts)
 // ---------------------------------------------------------------------------
 
 /**
@@ -1898,7 +2123,7 @@ for (const { file, data } of references.values()) checkLangDiscipline(file, data
 /**
  * MDX files: frontmatter and body are ONE parity scope — the contract is per
  * file ("any uk in a file means every ru-bearing field in that file carries
- * uk", docs/i18n-design.md), and the frontmatter/body split must not open a
+ * uk", docs/adrs/0001-bilingual-explanation-halves.md), and the frontmatter/body split must not open a
  * hole in it. So uk on either side forces parity on both — the same bridge as
  * reading glosses ↔ YAML above: `title_uk` alone demands a <Uk> half in every
  * <Bilingual> block, and a <Uk> block alone demands `title_uk`. Otherwise a
@@ -1911,6 +2136,10 @@ function checkMdxLangDiscipline(
   data: unknown,
   body: string,
   balance: (file: string, msg: string) => void,
+  // A topic is TWO files, and the parity scope spans them: `title_uk` in the manifest still
+  // demands a `<Uk>` half in every `<Bilingual>` block of the article beside it, and vice versa.
+  // Only the file a finding is *reported against* differs — a prose defect must name the prose.
+  bodyFile: string = file,
 ): void {
   for (const p of langFieldProblems(data)) fail(file, p);
   for (const p of ukParityProblems(data, { forceUk: body.includes('<Uk>') })) fail(file, p);
@@ -1918,7 +2147,7 @@ function checkMdxLangDiscipline(
   // (content/discovery/b1/sonntagsruhe.mdx) was written to look for exactly this: a file
   // could carry `summary.de` with a wholly English article, or German article halves under
   // an English summary card, and validate said nothing — while the comment above and
-  // docs/i18n-design.md both claimed frontmatter and body were ONE parity scope. They were,
+  // docs/adrs/0001-bilingual-explanation-halves.md both claimed frontmatter and body were ONE parity scope. They were,
   // for uk alone.
   const bodyHasDe = body.includes('<De>');
   for (const p of deParityProblems(data, { forceDe: bodyHasDe })) fail(file, p);
@@ -1926,18 +2155,55 @@ function checkMdxLangDiscipline(
     forceUk: hasUkField(data),
     forceDe: hasDeExplanation(data),
   });
-  for (const p of report.balance) balance(file, p);
-  for (const p of report.letters) fail(file, p);
-  for (const p of report.parity) fail(file, p);
+  for (const p of report.balance) balance(bodyFile, p);
+  for (const p of report.letters) fail(bodyFile, p);
+  for (const p of report.parity) fail(bodyFile, p);
   // Prose shape is not a language question, but it rides the same body scan.
   // Unlike `<En>` balance it has no topics-warn/discovery-fail split: a
   // paragraph too big to read is the same defect wherever it is authored.
-  for (const p of proseShapeProblems(body)) fail(file, p);
+  for (const p of proseShapeProblems(body)) fail(bodyFile, p);
 }
 
-for (const { file, data, body } of topics.values()) checkMdxLangDiscipline(file, data, body, warn);
+for (const { file, article, data, body } of topics.values())
+  checkMdxLangDiscipline(file, data, body, warn, article);
 for (const { file, data, body } of discoveries.values())
   checkMdxLangDiscipline(file, data, body, fail);
+
+/**
+ * `## Erklärung` must split into `### German subsections`, one per named confusion — CLAUDE.md
+ * states it as an imperative, and until now nothing checked it. `packages/content/src/prose-shape.ts` says why
+ * it left the question alone: whether a heading *names a confusion* is a judgement about meaning
+ * and stays with the author. But the mechanical half — is there a `### ` in there at all — is not
+ * a judgement, and twenty of forty-nine articles have none.
+ *
+ * It matters beyond tidiness. The heading is the only addressable place a structure is explained:
+ * an inventory row names a confusion, and without a subsection there is nowhere for it, for a
+ * cross-link or for the console's Struktur page to point at except the whole article.
+ *
+ * A WARNING, not a failure. Twenty existing articles would turn the gate red for prose written
+ * before the rule was enforced, which would make `bun run validate` something to work around
+ * rather than something to pass. The console flags them per topic and the backlog holds the work.
+ */
+for (const { article, body } of topics.values()) {
+  const headings = [...body.matchAll(/^(#{2,3})\s+(.+?)\s*$/gm)].map((m) => ({
+    depth: m[1]!.length,
+    text: m[2]!.trim(),
+  }));
+  let inside = false;
+  let subsections = 0;
+  let hasErklaerung = false;
+  for (const h of headings) {
+    if (h.depth === 2) {
+      inside = h.text.startsWith('Erklärung');
+      if (inside) hasErklaerung = true;
+    } else if (inside) subsections += 1;
+  }
+  if (hasErklaerung && subsections === 0)
+    warn(
+      article,
+      '## Erklärung has no ### subsections — the confusions it teaches have no addressable anchor (CLAUDE.md: one subsection per named confusion)',
+    );
+}
 
 // ---------------------------------------------------------------------------
 // Grading decisions: a committed linguistic ruling must stay true
@@ -1946,7 +2212,7 @@ for (const { file, data, body } of discoveries.values())
 /**
  * `data/grading-decisions.yaml` is the committed memory of the audit's
  * grading-review queue (see CLAUDE.md). Two of its claims are machine-checkable
- * and enforced here via `checkGradingDecisions` (`src/lib/grading-decisions.ts`):
+ * and enforced here via `checkGradingDecisions` (`packages/content/src/grading-decisions.ts`):
  * a decision's item ref must exist (hard fail), and an `accept`-ruled rendering
  * must pass today's grader (hard fail) — an accepted rendering the scorer still
  * rejects is a stale claim, and the queue it was meant to drain would refill.

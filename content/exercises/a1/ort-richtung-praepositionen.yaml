@@ -1,0 +1,252 @@
+topic: ort-richtung-praepositionen
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Ort & Richtung: wohin, wo, woher"
+title:
+  en: "Practice — where to, where, where from"
+  ru: "Практика — куда, где, откуда"
+  uk: "Практика — куди, де, звідки"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# A1 discipline: the place type picks the preposition, and each place carries three
+# ready-made phrases the learner memorizes whole — Wohin?, Wo?, Woher?. No item asks which
+# case a preposition takes, and none can be answered by knowing one. The Wohin? phrases with
+# in/an/auf rest on the Akkusativ the learner already has (a1/akkusativ); the Wo? and Woher?
+# phrases are chunks, exactly as a1/wohnen teaches im Wohnzimmer and a1/stadt-wege teaches
+# zum/zur. The case system behind them is A2's (a2/dativ, a2/wohnen-umzug), and the article
+# says so once, as a signpost.
+#
+# Every item therefore grades a preposition choice, never an ending: aus/von (cloze,
+# translate Kino), zu/bei/von for a person (cloze, mc, translate Tante), nach/zu Hause
+# (cloze), nach vs in for a country name (mc, translate München), and the whole three-form
+# set at once (table). diktat-zum-bahnhof grades zum by ear, with focus_evidence pinning the
+# retained and failed surfaces.
+#
+# Nouns are all A1/A2 deck words (grepped in content/vocab/, not remembered): Bibliothek,
+# Markt, Friseur, Schule, Party, Freundin, Arzt, Schweiz, Kino, Bahnhof, Tante, Kollegin.
+# No new deck — the topic recycles.
+items:
+  - id: table-ortstypen
+    outcomes: [ziel-nennen, ort-nennen, herkunft-nennen]
+    type: table
+    focus: wohin-wo-woher
+    title: "Ein Ort, drei Formen"
+    instruction:
+      en: "The type of place is named in brackets, and that type picks the preposition. Fill in the three forms of each place. Use the short forms zum, beim, vom where German has them."
+      ru: "Тип места указан в скобках — именно он выбирает предлог. Впишите три формы для каждого места. Там, где есть слитные формы zum, beim, vom, используйте их."
+      uk: "Тип місця вказано в дужках — саме він обирає прийменник. Впишіть три форми для кожного місця. Там, де є злиті форми zum, beim, vom, використовуйте їх."
+    columns: ["Wohin?", "Wo?", "Woher?"]
+    rows:
+      - label: "die Bibliothek (ein Haus)"
+        cells:
+          - { answer: "in die Bibliothek", given: true }
+          - { answer: "in der Bibliothek" }
+          - { answer: "aus der Bibliothek" }
+      - label: "der Markt (ein Platz)"
+        cells:
+          - { answer: "auf den Markt" }
+          - { answer: "auf dem Markt" }
+          - { answer: "vom Markt" }
+      - label: "der Friseur (eine Person)"
+        cells:
+          - { answer: "zum Friseur" }
+          - { answer: "beim Friseur" }
+          - { answer: "vom Friseur" }
+      - label: "Berlin (eine Stadt)"
+        cells:
+          - { answer: "nach Berlin" }
+          - { answer: "in Berlin" }
+          - { answer: "aus Berlin" }
+    explain:
+      en: "Read the table by rows, not by columns: each type of place comes with its own set of three. A building takes in – in – aus, and only the article moves (in die / in der). An open square takes auf – auf – von, so the third phrase changes the preposition rather than the article. A person takes zu – bei – von: three different prepositions, and the words after them stay the same in all three. A city name takes nach – in – aus and no article at all. The Woher? column is the one to check twice — it is never the Wohin? phrase with another article."
+      ru: "Читайте таблицу по строкам, а не по столбцам: у каждого типа места свой набор из трёх форм. Здание берёт in – in – aus, и меняется только артикль (in die / in der). Открытая площадка берёт auf – auf – von, то есть в третьей форме меняется предлог, а не артикль. Человек берёт zu – bei – von: три разных предлога, а слова после них во всех трёх формах одинаковы. Название города берёт nach – in – aus, и артикля нет вовсе. Столбец Woher? стоит проверять дважды: это никогда не форма Wohin? с другим артиклем."
+      uk: "Читайте таблицю за рядками, а не за стовпцями: у кожного типу місця свій набір із трьох форм. Будівля бере in – in – aus, і змінюється лише артикль (in die / in der). Відкритий майданчик бере auf – auf – von, тобто в третій формі змінюється прийменник, а не артикль. Людина бере zu – bei – von: три різні прийменники, а слова після них в усіх трьох формах однакові. Назва міста бере nach – in – aus, і артикля немає взагалі. Стовпець Woher? варто перевіряти двічі: це ніколи не форма Wohin? з іншим артиклем."
+
+  - id: cloze-aus-oder-von
+    outcomes: [herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "Woher? Fill in aus, von, or the short form vom."
+      ru: "Woher? Вставьте aus, von или краткую форму vom."
+      uk: "Woher? Вставте aus, von або коротку форму vom."
+    text: "Um zwölf komme ich {{aus}} der Schule. Am Nachmittag komme ich {{vom}} Markt. Um zehn komme ich {{von}} der Party."
+    translation:
+      en: "At twelve I come out of school. In the afternoon I come back from the market. At ten I come back from the party."
+      ru: "В двенадцать я выхожу из школы. После обеда я возвращаюсь с рынка. В десять я возвращаюсь с вечеринки."
+      uk: "О дванадцятій я виходжу зі школи. По обіді я повертаюся з ринку. О десятій я повертаюся з вечірки."
+    explain:
+      en: "Ask one question each time: was I inside it, or was I at it? A school is a building you sit inside, so leaving it is aus der Schule. A market is an open square you stand on (auf dem Markt), so leaving it is von, contracted to vom. A party is an event, and an event is something you are at, so von der Party. The rule covers the ordinary cases; a handful of fixed expressions such as von der Arbeit are learned as vocabulary."
+      ru: "Каждый раз задавайте один вопрос: я был внутри или я был у этого? Школа — здание, внутри которого сидят, поэтому выходят aus der Schule. Рынок — открытая площадка, на которой стоят (auf dem Markt), поэтому уходят с неё через von, в слитной форме vom. Вечеринка — мероприятие, а на мероприятии находятся «при», поэтому von der Party. Правило покрывает обычные случаи; несколько устойчивых сочетаний вроде von der Arbeit запоминают как лексику."
+      uk: "Щоразу ставте одне питання: я був усередині чи я був біля цього? Школа — будівля, всередині якої сидять, тому виходять aus der Schule. Ринок — відкритий майданчик, на якому стоять (auf dem Markt), тому йдуть із нього через von, у злитій формі vom. Вечірка — захід, а на заході перебувають «при», тому von der Party. Правило покриває звичайні випадки; кілька сталих сполук на кшталт von der Arbeit запам'ятовують як лексику."
+
+  - id: cloze-zu-bei-von-freundin
+    outcomes: [ziel-nennen, ort-nennen, herkunft-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "One person, three questions. Fill in zu, bei or von."
+      ru: "Один человек, три вопроса. Вставьте zu, bei или von."
+      uk: "Одна людина, три питання. Вставте zu, bei або von."
+    text: "Am Samstag fahre ich {{zu}} meiner Freundin. Ich bin den ganzen Tag {{bei}} meiner Freundin. Am Abend komme ich {{von}} meiner Freundin zurück."
+    translation:
+      en: "On Saturday I go to my friend's. I spend the whole day at my friend's. In the evening I come back from my friend's."
+      ru: "В субботу я еду к подруге. Весь день я у подруги. Вечером я возвращаюсь от подруги."
+      uk: "У суботу я їду до подруги. Весь день я в подруги. Увечері я повертаюся від подруги."
+    explain:
+      en: "With a person the only thing to choose is the preposition, and it carries the whole meaning: zu is where you are going, bei is where you are, von is where you have come from. Everything after it stays put — meiner Freundin looks identical in all three sentences, so nothing has to be worked out twice. And a person is never a place you go inside, so in has no business here at all."
+      ru: "Когда речь о человеке, выбирать приходится только предлог — он и несёт весь смысл: zu — куда идут, bei — где находятся, von — откуда вернулись. Всё, что стоит после, остаётся неизменным: meiner Freundin во всех трёх предложениях выглядит одинаково, и второй раз ничего вычислять не нужно. И человек никогда не бывает местом, куда входят внутрь, так что предлогу in здесь делать нечего."
+      uk: "Коли йдеться про людину, обирати доводиться лише прийменник — він і несе весь зміст: zu — куди йдуть, bei — де перебувають, von — звідки повернулися. Усе, що стоїть після, лишається незмінним: meiner Freundin в усіх трьох реченнях виглядає однаково, і вдруге нічого обчислювати не треба. І людина ніколи не буває місцем, куди заходять усередину, тож прийменнику in тут немає чого робити."
+
+  - id: cloze-nach-hause-zu-hause
+    outcomes: [ziel-nennen, ort-nennen]
+    type: cloze
+    focus: wohin-wo-woher
+    instruction:
+      en: "Fill in nach or zu."
+      ru: "Вставьте nach или zu."
+      uk: "Вставте nach або zu."
+    text: "Um halb sechs gehe ich {{nach}} Hause. Am Abend bleibe ich {{zu}} Hause und lese."
+    translation:
+      en: "At half past five I go home. In the evening I stay at home and read."
+      ru: "В половине шестого я иду домой. Вечером я остаюсь дома и читаю."
+      uk: "О пів на шосту я йду додому. Увечері я залишаюся вдома й читаю."
+    explain:
+      en: "These two are fixed expressions, so learn them as a pair rather than deriving them: nach Hause is where you are going, zu Hause is where you are. Both are written as two words, neither takes an article, and neither ever changes form. They work for a home only — for any other building you need the ordinary prepositions (ins Büro, im Büro)."
+      ru: "Это устойчивые выражения, и их проще запомнить парой, чем вывести: nach Hause — куда идут, zu Hause — где находятся. Оба пишутся в два слова, артикля не имеют и никогда не изменяются. Годятся они только для дома: для любого другого здания нужны обычные предлоги (ins Büro, im Büro)."
+      uk: "Це сталі вислови, і їх простіше запам'ятати парою, ніж вивести: nach Hause — куди йдуть, zu Hause — де перебувають. Обидва пишуться у два слова, артикля не мають і ніколи не змінюються. Годяться вони лише для дому: для будь-якої іншої будівлі потрібні звичайні прийменники (ins Büro, im Büro)."
+
+  - id: mc-bin-beim-arzt
+    outcomes: [ort-nennen]
+    type: mc
+    focus: wohin-wo-woher
+    instruction:
+      en: "Choose the form that says where you are."
+      ru: "Выберите форму, которая говорит, где вы находитесь."
+      uk: "Виберіть форму, яка каже, де ви перебуваєте."
+    prompt: "Ich bin gerade ___ Arzt und komme um vier zurück."
+    options: ["beim", "zum", "vom"]
+    correct: 0
+    translation:
+      en: "I am at the doctor's right now and will be back at four."
+      ru: "Я сейчас у врача и вернусь в четыре."
+      uk: "Я зараз у лікаря і повернуся о четвертій."
+    explain:
+      en: "All three belong to the same set of three and all three end in -m, so only the meaning separates them. bin says where you are, and the Wo? phrase for a person is bei — beim Arzt. zum answers Wohin? (Ich gehe zum Arzt) and vom answers Woher? (Ich komme vom Arzt). English hides the distinction in the noun phrase: 'to the doctor's', 'at the doctor's' and 'from the doctor's' all keep the same words and change only a small preposition, so it is easy to reach for whichever German form came to mind first."
+      ru: "Все три формы принадлежат одной тройке и все три кончаются на -m, поэтому различает их только смысл. Глагол bin говорит о местонахождении, а форма на Wo? при человеке — это bei: beim Arzt. Форма zum отвечает на Wohin? (Ich gehe zum Arzt), а vom — на Woher? (Ich komme vom Arzt). Осторожно с русским: «я у врача» и «я к врачу» различаются, но «пойти к врачу» и «быть у врача» легко смешиваются в спешке, а немецкий их не путает никогда."
+      uk: "Усі три форми належать одній трійці й усі три закінчуються на -m, тому розрізняє їх лише зміст. Дієслово bin говорить про місцеперебування, а форма на Wo? при людині — це bei: beim Arzt. Форма zum відповідає на Wohin? (Ich gehe zum Arzt), а vom — на Woher? (Ich komme vom Arzt). Обережно з українською: «я в лікаря» і «я до лікаря» розрізняються, але поспіхом їх легко змішати, а німецька їх не плутає ніколи."
+
+  - id: mc-in-die-schweiz
+    outcomes: [ziel-nennen]
+    type: mc
+    focus: wohin-wo-woher
+    instruction:
+      en: "Choose the correct form."
+      ru: "Выберите правильную форму."
+      uk: "Виберіть правильну форму."
+    prompt: "Im Sommer fahren wir ___ Schweiz."
+    options: ["in die", "nach der", "in der"]
+    correct: 0
+    translation:
+      en: "In summer we are going to Switzerland."
+      ru: "Летом мы едем в Швейцарию."
+      uk: "Улітку ми їдемо до Швейцарії."
+    explain:
+      en: "nach works only with names that carry no article: nach Berlin, nach Deutschland, nach Österreich. die Schweiz is one of the few countries with an article, so it behaves like any other enclosed place — in die Schweiz for the destination, in der Schweiz for the location, aus der Schweiz for the origin. nach der Schweiz mixes the two systems, and in der Schweiz would say where you already are."
+      ru: "Предлог nach работает только с названиями без артикля: nach Berlin, nach Deutschland, nach Österreich. У die Schweiz артикль есть — это одна из немногих таких стран, — поэтому она ведёт себя как обычное «помещение»: in die Schweiz для цели, in der Schweiz для места, aus der Schweiz для исходной точки. Вариант nach der Schweiz смешивает две схемы, а in der Schweiz сказал бы, где вы уже находитесь."
+      uk: "Прийменник nach працює лише з назвами без артикля: nach Berlin, nach Deutschland, nach Österreich. У die Schweiz артикль є — це одна з небагатьох таких країн, — тому вона поводиться як звичайне «приміщення»: in die Schweiz для цілі, in der Schweiz для місця, aus der Schweiz для вихідної точки. Варіант nach der Schweiz змішує дві схеми, а in der Schweiz сказав би, де ви вже перебуваєте."
+
+  - id: uebersetzen-nach-muenchen
+    revision: 2
+    outcomes: [ziel-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German. For 'colleague' take die Kollegin."
+      ru: "Переведите на немецкий. Для «коллега» возьмите die Kollegin."
+      uk: "Перекладіть німецькою. Для «колега» візьміть die Kollegin."
+    prompt_en: "On Friday my colleague is travelling to Munich."
+    prompt_ru: "В пятницу моя коллега едет в Мюнхен."
+    prompt_uk: "У п'ятницю моя колега їде до Мюнхена."
+    answer: "Am Freitag fährt meine Kollegin nach München."
+    accept:
+      - "Meine Kollegin fährt am Freitag nach München."
+      # EN "is travelling" licenses reisen just as well; the verb carries no part of the
+      # graded choice (nach), so both renderings stay target-preserving.
+      - "Am Freitag reist meine Kollegin nach München."
+      - "Meine Kollegin reist am Freitag nach München."
+    key_tokens: ["nach"]
+    explain:
+      en: "A city name carries no article, and the Wohin? phrase for a place without an article is nach: nach München, nach Berlin, nach Hamburg. Nothing else has to be added, which is exactly why this row is worth keeping separate in your head. The other two phrases for the same city are in München (Wo?) and aus München (Woher?)."
+      ru: "У названия города нет артикля, а форма на Wohin? для места без артикля — это nach: nach München, nach Berlin, nach Hamburg. Добавлять больше нечего — именно поэтому эту строку стоит держать в голове отдельно. Две другие формы того же города — in München (Wo?) и aus München (Woher?)."
+      uk: "У назви міста немає артикля, а форма на Wohin? для місця без артикля — це nach: nach München, nach Berlin, nach Hamburg. Додавати більше нічого — саме тому цей рядок варто тримати в голові окремо. Дві інші форми того самого міста — in München (Wo?) і aus München (Woher?)."
+
+  - id: uebersetzen-aus-dem-kino
+    revision: 2
+    outcomes: [herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "We are just coming out of the cinema."
+    prompt_ru: "Мы как раз выходим из кино."
+    prompt_uk: "Ми якраз виходимо з кіно."
+    answer: "Wir kommen gerade aus dem Kino."
+    accept:
+      - "Gerade kommen wir aus dem Kino."
+    # Only the preposition is pinned: the tag grades the aus/von choice before any case
+    # question arises, so an article slip (aus das/der Kino) is not this confusion.
+    key_tokens: ["aus"]
+    explain:
+      en: "A cinema is a building you sit inside, so the Woher? phrase takes aus. Learn the three of them side by side and there is nothing left to build: ins Kino (Wohin?), im Kino (Wo?), aus dem Kino (Woher?) — the last two share the same dem. vom Kino would say you had been standing at the building rather than watching a film in it."
+      ru: "Кинотеатр — здание, внутри которого сидят, поэтому форма на Woher? берёт aus. Выучите все три рядом — и собирать больше нечего: ins Kino (Wohin?), im Kino (Wo?), aus dem Kino (Woher?), причём в последних двух стоит одно и то же dem. Форма vom Kino сказала бы, что вы стояли у здания, а не смотрели фильм внутри."
+      uk: "Кінотеатр — будівля, всередині якої сидять, тому форма на Woher? бере aus. Вивчіть усі три поруч — і збирати більше нічого: ins Kino (Wohin?), im Kino (Wo?), aus dem Kino (Woher?), причому в останніх двох стоїть те саме dem. Форма vom Kino сказала б, що ви стояли біля будівлі, а не дивилися фільм усередині."
+
+  - id: diktat-zum-bahnhof
+    outcomes: [ziel-nennen]
+    type: listen
+    focus: wohin-wo-woher
+    focus_evidence:
+      retained: ["\\bzum Bahnhof$"]
+      failed: ["\\b(am|beim|vom) Bahnhof$"]
+    instruction:
+      en: "Listen and type the sentence exactly."
+      ru: "Прослушайте и запишите предложение точно."
+      uk: "Прослухайте і запишіть речення точно."
+    text: "Am Morgen fahre ich zum Bahnhof."
+    translation:
+      en: "In the morning I go to the station."
+      ru: "Утром я еду на вокзал."
+      uk: "Уранці я їду на вокзал."
+    explain:
+      en: "One short word carries the whole decision, and it is easy to lose by ear: zum = zu dem. A station is a destination you head for as a point, so it takes zu, in exactly the short form you already use in Wie komme ich zum Bahnhof? Written out in full it is zu dem Bahnhof, but nobody says it that way. Careful with this place: its Wo? phrase is am Bahnhof, not beim Bahnhof."
+      ru: "Всё решение несёт одно короткое слово, и на слух его легко потерять: zum = zu dem. Вокзал — цель-точка, к которой направляются, поэтому нужен zu — ровно в той краткой форме, что уже знакома по Wie komme ich zum Bahnhof? Полностью это zu dem Bahnhof, но так никто не говорит. С этим местом есть тонкость: форма на Wo? — am Bahnhof, а не beim Bahnhof."
+      uk: "Усе рішення несе одне коротке слово, і на слух його легко втратити: zum = zu dem. Вокзал — ціль-точка, до якої прямують, тому потрібен zu — саме в тій короткій формі, що вже знайома з Wie komme ich zum Bahnhof? Повністю це zu dem Bahnhof, але так ніхто не каже. З цим місцем є тонкість: форма на Wo? — am Bahnhof, а не beim Bahnhof."
+
+  - id: uebersetzen-zu-und-von-der-tante
+    outcomes: [ziel-nennen, herkunft-nennen]
+    type: translate
+    focus: wohin-wo-woher
+    instruction:
+      en: "Translate into German."
+      ru: "Переведите на немецкий."
+      uk: "Перекладіть німецькою."
+    prompt_en: "On Sunday we drive to my aunt's. At eight we come back from my aunt's."
+    prompt_ru: "В воскресенье мы едем к моей тёте. В восемь мы возвращаемся от тёти."
+    prompt_uk: "У неділю ми їдемо до моєї тітки. О восьмій ми повертаємося від тітки."
+    answer: "Am Sonntag fahren wir zu meiner Tante. Um acht kommen wir von meiner Tante zurück."
+    accept:
+      - "Wir fahren am Sonntag zu meiner Tante. Wir kommen um acht von meiner Tante zurück."
+      # «возвращаемся» renders as kommen … zurück or fahren … zurück alike; the verb is not
+      # part of the graded pair (zu/von), so the fahren renderings stay target-preserving.
+      - "Am Sonntag fahren wir zu meiner Tante. Um acht fahren wir von meiner Tante zurück."
+      - "Wir fahren am Sonntag zu meiner Tante. Wir fahren um acht von meiner Tante zurück."
+    key_tokens: ["zu", "von"]
+    explain:
+      en: "Both halves name the same person, and the preposition does all the work: zu answers Wohin?, von answers Woher?. What follows is untouched — meiner Tante is written the same way in both sentences, so only the first word has to be chosen. The two errors to avoid are in meine Tante — a person is not a room — and aus meiner Tante, which is the phrase for coming out of a building."
+      ru: "Обе половины называют одного и того же человека, и всю работу делает предлог: zu отвечает на Wohin?, von — на Woher?. То, что стоит после, остаётся нетронутым: meiner Tante в обоих предложениях пишется одинаково, так что выбирать нужно только первое слово. Двух ошибок стоит избегать: in meine Tante — человек не помещение — и aus meiner Tante: это сочетание для выхода изнутри здания."
+      uk: "Обидві половини називають ту саму людину, і всю роботу робить прийменник: zu відповідає на Wohin?, von — на Woher?. Те, що стоїть після, лишається недоторканим: meiner Tante в обох реченнях пишеться однаково, тож обирати треба лише перше слово. Двох помилок варто уникати: in meine Tante — людина не приміщення — та aus meiner Tante: це сполука для виходу зсередини будівлі."

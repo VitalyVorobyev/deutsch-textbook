@@ -1,5 +1,8 @@
 topic: lernen-verstehen
 role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Lernen & Verstehen"
 title:
   en: "Practice — the wrapped question: the verb goes to the end"
   ru: "Практика — вопрос в рамке: глагол уходит в конец"
@@ -181,8 +184,8 @@ items:
       uk: "Я часто перепитую, бо розумію не все. Я вчу німецьку, бо хочу тут працювати."
     explain:
       en: "weil is a subordinator like ob and the question words, so the wall is the same: the conjugated verb goes last. In the first sentence that is verstehe. In the second there are two verbs and only one of them is conjugated — möchte — so the infinitive arbeiten queues up in front of it: arbeiten möchte, never möchte arbeiten. What weil does not do is wrap a question: it gives a reason, and the reason is a statement. That is the difference between this clause and Ich weiß nicht, ob ich alles verstehe."
-      ru: "weil — подчинительный союз, как ob и вопросительные слова, поэтому стена та же: спрягаемый глагол уходит последним. В первом предложении это verstehe. Во втором глагола два, а спрягается только один — möchte, — поэтому инфинитив arbeiten выстраивается перед ним: arbeiten möchte, но никогда möchte arbeiten. Чего weil не делает, так это не оборачивает вопрос: он называет причину, а причина — утверждение. В этом и разница между этим придаточным и оборотом Ich weiß nicht, ob ich alles verstehe."
-      uk: "weil — підрядний сполучник, як ob і питальні слова, тому стіна та сама: відмінюване дієслово йде останнім. У першому реченні це verstehe. У другому дієслова два, а відмінюється лише одне — möchte, — тому інфінітив arbeiten вишиковується перед ним: arbeiten möchte, але ніколи möchte arbeiten. Чого weil не робить, так це не обгортає питання: він називає причину, а причина — твердження. У цьому й різниця між цим підрядним і зворотом Ich weiß nicht, ob ich alles verstehe."
+      ru: "weil — подчинительный союз, как ob и вопросительные слова, поэтому стена та же: спрягаемый глагол уходит последним. В первом предложении это verstehe. Во втором глагола два, а спрягается только один — möchte, — поэтому инфинитив arbeiten выстраивается перед ним: arbeiten möchte, но никогда möchte arbeiten. Вопрос weil при этом не оборачивает: он называет причину, а причина — утверждение. В этом и разница между этим придаточным и оборотом Ich weiß nicht, ob ich alles verstehe."
+      uk: "weil — підрядний сполучник, як ob і питальні слова, тому стіна та сама: відмінюване дієслово йде останнім. У першому реченні це verstehe. У другому дієслова два, а відмінюється лише одне — möchte, — тому інфінітив arbeiten вишиковується перед ним: arbeiten möchte, але ніколи möchte arbeiten. Питання weil при цьому не обгортає: він називає причину, а причина — твердження. У цьому й різниця між цим підрядним і зворотом Ich weiß nicht, ob ich alles verstehe."
 
   - id: order-ob-frage-bauen
     outcomes: [nachfragen-klaeren]
@@ -203,6 +206,7 @@ items:
       uk: "Два речення — два правила. Рамка Wissen Sie — звичайне питання: дієслово першим, підмет за ним. Після коми йде підрядне, і відкрити його чимось потрібно — цим «чимось» буде ob, адже питального слова тут немає. Усе інше вишиковується всередині, а відмінюване дієслово закриває підрядне: stattfindet, разом із префіксом. У підрядному немає другого місця, яке відокремлюваний префікс міг би покинути, — і він повертається до дієслова."
 
   - id: uebersetzen-wie-lange-der-kurs-dauert
+    revision: 3
     outcomes: [nachfragen-klaeren]
     type: translate
     focus: indirekte-frage
@@ -214,15 +218,26 @@ items:
     prompt_ru: "Вы не подскажете, сколько длится курс?"
     prompt_uk: "Чи не підкажете, скільки триває курс?"
     answer: "Können Sie mir sagen, wie lange der Kurs dauert?"
+    # The focus grades where the wrapped verb lands, not which verb it is — so the
+    # ist-variant (Der Kurs ist zwei Wochen lang → wie lang der Kurs ist, bare lang)
+    # and the Konjunktiv wrapper are siblings, accepted per the 2026-08-05 ruling in
+    # data/grading-decisions.yaml.
     accept:
       - "Können Sie mir bitte sagen, wie lange der Kurs dauert?"
+      - "Könnten Sie mir sagen, wie lange der Kurs dauert?"
+      - "Könnten Sie mir bitte sagen, wie lange der Kurs dauert?"
+      - "Können Sie mir sagen, wie lang der Kurs ist?"
+      - "Könnten Sie mir sagen, wie lang der Kurs ist?"
       - "Wissen Sie, wie lange der Kurs dauert?"
       - "Ich möchte wissen, wie lange der Kurs dauert."
-    key_tokens: ["dauert"]
+    # revision 3: ist occupies the wall in the accepted ist-renderings, so it carries
+    # the graded decision and joins the pins — an accepted rendering with no graded
+    # token lets the tag stop firing. (Batch-6 audit, 2026-08-12.)
+    key_tokens: ["dauert", "ist"]
     explain:
-      en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. Only dauert is graded here — the rule is about where the wrapped verb lands."
-      ru: "Одно предложение, два глагола, два адреса. Глагол рамки Können остаётся на втором месте, как в любом главном предложении. «Обёрнутый» глагол dauert обязан уйти в самый конец, потому что после запятой стоит придаточное. Никогда … wie lange dauert der Kurs: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки, — та самая ошибка, ради которой существует вся тема. Оценивается здесь только dauert: правило говорит о том, куда приземляется «обёрнутый» глагол."
-      uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється тут лише dauert: правило говорить про те, куди приземляється «обгорнуте» дієслово."
+      en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. The graded token is the wrapped verb — dauert, or ist in the wie-lang variant: the rule is about where it lands."
+      ru: "Одно предложение, два глагола, два адреса. Глагол рамки Können остаётся на втором месте, как в любом главном предложении. «Обёрнутый» глагол dauert обязан уйти в самый конец, потому что после запятой стоит придаточное. Никогда … wie lange dauert der Kurs: это самостоятельный вопрос, у которого инверсия так и осталась внутри рамки, — та самая ошибка, ради которой существует вся тема. Оценивается «обёрнутый» глагол — dauert или ist в варианте с wie lang: правило говорит о том, куда он приземляется."
+      uk: "Одне речення, два дієслова, дві адреси. Дієслово рамки Können залишається на другому місці, як у будь-якому головному реченні. «Обгорнуте» дієслово dauert зобов'язане піти в самий кінець, бо після коми стоїть підрядне. Ніколи … wie lange dauert der Kurs: це самостійне питання, у якого інверсія так і залишилася всередині рамки, — та сама помилка, заради якої існує вся тема. Оцінюється «обгорнуте» дієслово — dauert або ist у варіанті з wie lang: правило говорить про те, куди воно приземляється."
 
   - id: uebersetzen-ob-der-test-schwer-ist
     revision: 2

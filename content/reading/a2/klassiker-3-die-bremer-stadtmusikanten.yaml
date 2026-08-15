@@ -1,0 +1,103 @@
+topic: nebensaetze-plaene
+kind: extensive
+title_de: "Die Bremer Stadtmusikanten"
+
+# Klassiker strand, text 3 of 10 (ADR 0006). Adapted from
+# sources/klassiker/03-die-bremer-stadtmusikanten.md, which runs 522
+# words — over the extensive band, so it is trimmed here rather than the band being
+# widened: the three recruitment scenes are compressed to one exchange each, the
+# night visit of the returning robber is summarised, and one Konjunktiv-I clause
+# ("ein Monster sei ins Haus gekommen") is rewritten as an A2 dass-Satz. Setup, turn,
+# resolution and the closing moral are untouched.
+# Every animal states a reason — the weil/denn work nebensaetze-plaene owns.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Die Bremer Stadtmusikanten, 1857). Didaktische Bearbeitung für Niveau A2. Historischer Originaltext: https://de.wikisource.org/wiki/Die_Bremer_Stadtmusikanten_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Ein Esel hatte viele Jahre für einen Müller gearbeitet und jeden Tag schwere Säcke
+    getragen. Nun war er alt und nicht mehr so stark. Der Müller dachte: „Der Esel
+    kostet [[Futter::feed::корм::корм]], aber er kann kaum noch arbeiten.“ Der Esel
+    merkte, dass ihm Gefahr [[drohte::was looming::грозила::загрожувала]], und verließ
+    den Hof.
+  - >-
+    „Ich gehe nach Bremen“, sagte er. „Dort kann ich Stadtmusikant werden. Meine Stimme
+    ist laut, und vielleicht gefällt sie den Menschen.“
+  - >-
+    Auf dem Weg traf er einen Hund, der schwer atmete. „Ich bin alt und kann nicht mehr
+    jagen“, sagte der Hund, „und mein Herr will mich nicht mehr behalten.“
+  - >-
+    „Komm mit nach Bremen“, schlug der Esel vor. „Du kannst trommeln, und ich spiele
+    [[Laute::lute::лютня::лютня]].“ Der Hund ging mit.
+  - >-
+    Später sahen sie eine traurige Katze. Sie konnte keine Mäuse mehr fangen und sollte
+    ihr Zuhause verlieren. „Komm mit uns“, sagten Esel und Hund, „denn deine Stimme
+    passt gut zu unserer Musik.“
+  - >-
+    Am Abend trafen sie einen Hahn. Er schrie laut, denn er sollte am nächsten Tag in
+    der Suppe landen. „Dann sing lieber mit uns“, sagte der Esel. So waren sie zu viert.
+  - >-
+    Als es dunkel wurde, entdeckte der Hahn von einem Baum aus ein Licht. Die vier
+    gingen dorthin und fanden ein Haus. Durch das Fenster sahen sie
+    [[Räuber::robbers::разбойники::розбійники]] am Tisch.
+  - >-
+    Die Tiere waren hungrig und machten einen Plan: Der Esel stellte sich vor das
+    Fenster, der Hund sprang auf seinen Rücken, die Katze auf den Hund und der Hahn nach
+    oben.
+  - >-
+    Dann begannen alle gleichzeitig mit ihrer „Musik“: Der Esel schrie, der Hund bellte,
+    die Katze miaute und der Hahn [[krähte::crowed::кукарекал::кукурікав]]. Gleichzeitig
+    sprangen sie durch das Fenster.
+  - >-
+    Die Räuber [[erschraken::took fright::испугались::злякалися]]. Sie glaubten, dass
+    ein Monster im Haus war, und liefen in den Wald. Die Tiere setzten sich an den Tisch
+    und aßen, bis sie satt waren.
+  - >-
+    Später löschten sie das Licht und suchten Schlafplätze: der Hund hinter der Tür, die
+    Katze am warmen [[Herd::stove::печь::піч]] und der Hahn auf dem Dach. In der Nacht
+    kam ein Räuber zurück und wollte das Haus prüfen. Doch die Katze kratzte ihn, der
+    Hund biss ihn, und der Hahn schrie laut vom Dach. Danach
+    [[wagten::dared::отваживались::наважувалися]] die Räuber nie wieder, zum Haus
+    zurückzukehren.
+  - >-
+    Den Tieren gefiel ihr neues Zuhause so gut, dass sie nicht weiter nach Bremen
+    gingen. Stadtmusikanten wurden sie also nie. Aber gemeinsam hatten sie einen
+    sicheren Ort gefunden, an dem jeder gebraucht wurde.
+
+questions:
+  - id: q-warum-weg
+    outcomes: [weil-grund]
+    type: mc
+    prompt: "Warum verlassen der Esel, der Hund, die Katze und der Hahn ihr Zuhause?"
+    options:
+      - "Weil sie alt geworden sind und ihre Besitzer sie nicht mehr brauchen."
+      - "Weil sie in Bremen eine Musikschule besuchen möchten."
+      - "Weil die Räuber sie aus dem Dorf vertrieben haben."
+    correct: 0
+    translation:
+      en: "Why do the donkey, the dog, the cat and the rooster leave home?"
+      ru: "Почему осёл, собака, кошка и петух уходят из дома?"
+      uk: "Чому осел, собака, кішка й півень ідуть із дому?"
+    explain:
+      en: "Each of the four gives the same kind of reason: it has grown old and can no longer do the work it was kept for, so its owner wants to be rid of it. Bremen and the music are the plan they invent afterwards, not the cause."
+      ru: "Каждый из четверых называет причину одного рода: он состарился и больше не справляется с работой, ради которой его держали, и хозяин хочет от него избавиться. Бремен и музыка — это план, придуманный уже потом, а не причина."
+      uk: "Кожен із чотирьох називає причину того самого штибу: він постарів і вже не справляється з роботою, задля якої його тримали, тож господар хоче його позбутися. Бремен і музика — це задум, вигаданий уже потім, а не причина."
+
+  - id: q-nie-bremen
+    outcomes: [weil-grund]
+    type: mc
+    prompt: "Warum kommen die vier Tiere nie in Bremen an?"
+    options:
+      - "Weil der Weg zu weit war und sie ihn nicht mehr fanden."
+      - "Weil ihnen das Haus im Wald so gut gefiel, dass sie dort blieben."
+      - "Weil die Räuber sie am nächsten Morgen gefangen nahmen."
+    correct: 1
+    translation:
+      en: "Why do the four animals never reach Bremen?"
+      ru: "Почему четверо животных так и не добираются до Бремена?"
+      uk: "Чому четверо тварин так і не дістаються до Бремена?"
+    explain:
+      en: "The house they take from the robbers gives them exactly what they set out to find: food, safety, and a place where each of them is needed. Once they have that, the journey has no point, and the story ends with them staying put — town musicians is the one thing they never become."
+      ru: "Дом, отбитый у разбойников, даёт им ровно то, ради чего они отправились в путь: еду, безопасность и место, где каждый нужен. После этого идти дальше незачем, и история кончается тем, что они остаются, — городскими музыкантами они так и не становятся."
+      uk: "Дім, відбитий у розбійників, дає їм саме те, заради чого вони вирушили в дорогу: їжу, безпеку й місце, де кожен потрібен. Після цього йти далі немає сенсу, і історія закінчується тим, що вони лишаються, — міськими музикантами вони так і не стають."

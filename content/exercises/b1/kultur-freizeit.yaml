@@ -1,0 +1,309 @@
+# B1.12 primary practice. A genre unit: it adopts no grammar point, closes none, and every
+# tag below was registered by an earlier unit — the grammar ratchet in
+# tests/grammar-coverage.test.ts does not move in this commit
+# (`bun scripts/grammar-coverage.ts B1`, still 29/32).
+# Two of the recycled tags are named by the frozen contract, and they are the two the genre
+# actually runs on: komparativ-attributiv (B1.2) is what makes a recommendation answerable —
+# ein besseres Konzert names the thing the other person can counter — and
+# praeteritum-vollverben (B1.1) is the register a written Erfahrungsbericht is in.
+# Two more are the live runtime channels of the `deepens` edges on the atlas node:
+# modal-satzklammer carries the edge to freizeit-koennen (that topic drills it in its own
+# practice, and here it is the proposal — Am Sonntag können wir … gehen), and
+# trennbar-wortstellung carries the edge to freunde-feste (drilled in
+# freunde-feste-produktion; here it is the prefix of abholen at the end of the line that
+# settles who collects whom and when).
+# um-am-zeit is the fifth and the only one not asked for by anything: a Programm writes
+# `Fr, 13.3., 20 Uhr` and never a preposition, so saying the line back is exactly the A1
+# choice between am, um and im — an honest single confusion, recycled the way this level
+# recycles lexis.
+# Four of the twelve items stay untagged on purpose — the four-question match, the money
+# line, the counter-proposal mc and the report-shape mc: all four are comprehension or a
+# discourse move, and a false tag sends training after a confusion the learner does not
+# have.
+# Outcome discipline, because probe families arm by their own explicit item list
+# (src/lib/probes.ts, P19-4): every item on `programm-verstehen` asks for one of the four
+# answers a Programm holds; every item on `veranstaltung-empfehlen` is one move of the
+# agreement — propose, recommend, counter, accept; every item on `erlebnis-bewerten` is a
+# line of the report, and each of those names a fact and judges it.
+# Contract exclusions hold: no art-criticism register (no Werk, no Interpretation, no
+# Epoche), no sports jargon, no cultural history — everything here is on the flyer.
+# The attributive superlative stays out of production per the article's Feinheiten row: it
+# is read in a programme, never demanded back.
+# This set is the primaryPractice — its item list never grows after shipping.
+topic: kultur-freizeit
+role: practice
+stage: geruest
+activity: core
+title:
+  en: "Practice — the programme, the plan, the report"
+  ru: "Практика — программа, план, отзыв"
+  uk: "Практика — програма, план, відгук"
+  de: "Übung — das Programm, der Plan, der Bericht"
+items:
+  - id: match-vier-fragen
+    outcomes: [programm-verstehen]
+    type: match
+    instruction:
+      en: "A programme answers four questions. Which line answers which?"
+      ru: "Программа отвечает на четыре вопроса. Какая строка на какой?"
+      uk: "Програма відповідає на чотири питання. Який рядок на яке?"
+      de: "Ein Programm beantwortet vier Fragen. Welche Zeile beantwortet welche?"
+    pairs:
+      - left: "Wann fängt es an?"
+        right: "Beginn 20 Uhr, Einlass ab 19.30"
+      - left: "In welchem Raum?"
+        right: "Stadthalle, kleiner Saal"
+      - left: "Was kostet es?"
+        right: "Eintritt 8 Euro, Kinder gratis"
+      - left: "Gibt es noch Karten?"
+        right: "Samstag ausverkauft, Sonntag Restkarten"
+      - left: "Muss ich vorher anrufen?"
+        right: "Reservierung bis Freitag nötig"
+    explain:
+      en: "A programme line has no verb and almost no articles, so it cannot be read through — it is read for answers. Four questions get everything out of it: when, where, what it costs, whether tickets are left. Two small words split the evening in half: Beginn is the start, Einlass ab is when the door opens, and arriving at Beginn means arriving last."
+      ru: "В строке программы нет ни глагола, ни почти никаких артиклей, так что подряд её не читают — из неё достают ответы. Четыре вопроса вынимают всё: когда, где, сколько стоит, остались ли билеты. Вечер делят надвое два коротких слова: Beginn — начало, Einlass ab — когда открывают двери, и прийти к Beginn значит прийти последним."
+      uk: "У рядку програми немає ні дієслова, ні майже жодних артиклів, тож поспіль його не читають — із нього дістають відповіді. Чотири питання виймають усе: коли, де, скільки коштує, чи лишилися квитки. Вечір ділять надвоє два короткі слова: Beginn — початок, Einlass ab — коли відчиняють двері, і прийти на Beginn означає прийти останнім."
+      de: "Eine Programmzeile hat kein Verb und fast keine Artikel, also liest man sie nicht durch, sondern auf Antworten hin. Vier Fragen holen alles heraus: wann, wo, was es kostet, ob es noch Karten gibt. Zwei kurze Wörter teilen den Abend: Beginn ist der Anfang, Einlass ab die Öffnung der Tür — wer zum Beginn kommt, kommt als Letzter."
+
+  - id: mc-eintritt-preise
+    outcomes: [programm-verstehen]
+    type: mc
+    prompt: "Im Programm steht: Eintritt 8 Euro, ermäßigt 5 Euro, Kinder gratis. Wer zahlt was?"
+    options:
+      - "Erwachsene acht Euro, Schüler und Studenten fünf, Kinder nichts."
+      - "Alle zahlen fünf Euro, nur Kinder acht."
+      - "Der Eintritt ist frei; die Zahlen gelten für die Führung."
+    correct: 0
+    translation:
+      en: "The programme says: admission 8 euros, reduced 5 euros, children free. Who pays what?"
+      ru: "В программе написано: вход 8 евро, льготный 5 евро, дети бесплатно. Кто сколько платит?"
+      uk: "У програмі написано: вхід 8 євро, пільговий 5 євро, діти безкоштовно. Хто скільки платить?"
+    explain:
+      en: "The money line has three shapes and they are three different promises. A number is the ordinary price. ermäßigt names a smaller price for a group the line itself defines — students, pensioners, holders of a card. gratis and Eintritt frei mean nobody in that group pays at all. gratis never takes an ending, so it stands after the noun: Kinder gratis."
+      ru: "Строчка про деньги бывает трёх видов, и обещают они разное. Число — обычная цена. ermäßigt называет цену поменьше для группы, которую тут же и определяют: школьники, пенсионеры, обладатели карты. gratis и Eintritt frei значат, что эта группа не платит вовсе. Окончания gratis не получает никогда, поэтому стоит после существительного: Kinder gratis."
+      uk: "Рядок про гроші буває трьох видів, і обіцяють вони різне. Число — звичайна ціна. ermäßigt називає меншу ціну для групи, яку тут-таки й визначають: школярі, пенсіонери, власники картки. gratis і Eintritt frei означають, що ця група не платить зовсім. Закінчення gratis не дістає ніколи, тому стоїть після іменника: Kinder gratis."
+      de: "Die Zeile zum Geld hat drei Formen mit drei Versprechen. Eine Zahl ist der normale Preis. ermäßigt nennt einen kleineren Preis für eine Gruppe, die die Zeile selbst bestimmt — Schüler, Rentnerinnen, Inhaber einer Karte. gratis und Eintritt frei heißen: Diese Gruppe zahlt gar nichts. gratis nimmt nie eine Endung und steht deshalb hinter dem Nomen: Kinder gratis."
+
+  - id: cloze-programm-zeitangaben
+    outcomes: [programm-verstehen]
+    type: cloze
+    focus: um-am-zeit
+    instruction:
+      en: "Say the programme line out loud. A weekday, a clock time and a month each take their own preposition."
+      ru: "Проговорите строку программы вслух. День недели, время на часах и месяц берут каждый свой предлог."
+      uk: "Промовте рядок програми вголос. День тижня, час на годиннику і місяць беруть кожен свій прийменник."
+      de: "Sprich die Programmzeile aus. Wochentag, Uhrzeit und Monat haben je ihre eigene Präposition."
+    text: "Das Konzert ist {{am}} Freitag {{um}} 20 Uhr. {{Im}} März gibt es die nächste Kulturwoche."
+    translation:
+      en: "The concert is on Friday at 8 pm. The next culture week is in March."
+      ru: "Концерт в пятницу в 20:00. Следующая культурная неделя — в марте."
+      uk: "Концерт у п'ятницю о 20:00. Наступний культурний тиждень — у березні."
+    explain:
+      en: "A programme prints Fr, 13.3., 20 Uhr and no preposition at all, so saying the line back is where the choice happens: am for a day, um for a time on the clock, im for a month or a season. The clock runs to twenty-four here, so 20 Uhr is eight in the evening and needs no abends beside it."
+      ru: "Программа печатает Fr, 13.3., 20 Uhr и никакого предлога, поэтому выбор возникает ровно тогда, когда строку проговаривают: am — для дня, um — для времени на часах, im — для месяца или времени года. Часы идут до двадцати четырёх, так что 20 Uhr — это восемь вечера, и никакого abends рядом не нужно."
+      uk: "Програма друкує Fr, 13.3., 20 Uhr і жодного прийменника, тому вибір виникає рівно тоді, коли рядок промовляють: am — для дня, um — для часу на годиннику, im — для місяця чи пори року. Годинник іде до двадцяти чотирьох, тож 20 Uhr — це восьма вечора, і жодного abends поряд не потрібно."
+      de: "Ein Programm druckt Fr, 13.3., 20 Uhr und gar keine Präposition, also fällt die Wahl erst beim Aussprechen: am für den Tag, um für die Uhrzeit, im für Monat oder Jahreszeit. Die Uhr läuft bis vierundzwanzig, 20 Uhr ist also acht Uhr abends und braucht kein abends daneben."
+
+  - id: cloze-empfehlung-komparativ
+    outcomes: [veranstaltung-empfehlen]
+    type: cloze
+    focus: komparativ-attributiv
+    instruction:
+      en: "Two recommendations. Put gut and ruhig into the comparative and give each the ending its article and noun ask for."
+      ru: "Две рекомендации. Поставьте gut и ruhig в сравнительную степень и дайте каждому окончание, которого требуют артикль и существительное."
+      uk: "Дві рекомендації. Поставте gut і ruhig у вищий ступінь і дайте кожному закінчення, якого вимагають артикль та іменник."
+      de: "Zwei Empfehlungen. Setz gut und ruhig in den Komparativ und gib beiden die Endung, die Artikel und Nomen verlangen."
+    text: "Der kleine Saal hat eine {{bessere}} Stimmung als die Halle. Am Sonntag läuft die {{ruhigere}} Vorstellung."
+    translation:
+      en: "The small hall has a better atmosphere than the big hall. On Sunday the quieter showing is on."
+      ru: "В малом зале атмосфера лучше, чем в большом. В воскресенье идёт более спокойный сеанс."
+      uk: "У малій залі атмосфера краща, ніж у великій. У неділю йде спокійніший сеанс."
+    explain:
+      en: "The comparative moves in front of the noun and stays an ordinary adjective there: build besser and ruhiger first, then add the ending the noun requires. Both nouns here are feminine, so both endings are -e — after eine and after die alike. What is new at B1 is not the form but the use: naming the better one is a recommendation the other person can answer."
+      ru: "Сравнительная степень переезжает вперёд, к существительному, и остаётся там обычным прилагательным: сначала стройте besser и ruhiger, потом добавляйте окончание, которого требует существительное. Оба существительных здесь женского рода, поэтому оба окончания -e — и после eine, и после die. Ново на B1 не форма, а применение: назвать то, что лучше, — это рекомендация, на которую собеседнику есть что ответить."
+      uk: "Вищий ступінь переїздить уперед, до іменника, і лишається там звичайним прикметником: спершу будуйте besser і ruhiger, потім додавайте закінчення, якого вимагає іменник. Обидва іменники тут жіночого роду, тому обидва закінчення -e — і після eine, і після die. Нове на B1 не форма, а застосування: назвати краще — це рекомендація, на яку співрозмовникові є що відповісти."
+      de: "Der Komparativ rückt vor das Nomen und bleibt dort ein ganz normales Adjektiv: erst besser und ruhiger bauen, dann die Endung anhängen, die das Nomen ohnehin verlangt. Beide Nomen sind hier feminin, also heißen beide Endungen -e — nach eine wie nach die. Neu ist auf B1 nicht die Form, sondern der Gebrauch: Wer das Bessere benennt, empfiehlt so, dass die andere Seite antworten kann."
+
+  - id: uebersetzen-interessantere-fuehrung
+    outcomes: [veranstaltung-empfehlen]
+    type: translate
+    focus: komparativ-attributiv
+    instruction:
+      en: "Recommend one of the two days — put the comparison in front of the noun. For 'guided tour' take die Führung, for 'interesting' interessant."
+      ru: "Порекомендуйте один из двух дней — поставьте сравнение перед существительным. Для «экскурсия» возьмите die Führung, для «интересный» — interessant."
+      uk: "Порекомендуйте один із двох днів — поставте порівняння перед іменником. Для «екскурсія» візьміть die Führung, для «цікавий» — interessant."
+      de: "Empfiehl einen der beiden Tage — stell den Vergleich vor das Nomen. Für die Besichtigung nimm die Führung, für interessant interessant."
+    prompt_en: "On Sunday there is a more interesting guided tour than on Saturday."
+    prompt_ru: "В воскресенье экскурсия интереснее, чем в субботу."
+    prompt_uk: "У неділю екскурсія цікавіша, ніж у суботу."
+    answer: "Am Sonntag gibt es eine interessantere Führung als am Samstag."
+    accept:
+      # The day may follow the frame; both are ordinary V2.
+      - "Es gibt am Sonntag eine interessantere Führung als am Samstag."
+      # RU and UK mark no definiteness on a bare noun, so the definite reading is an
+      # equally faithful rendering — and the graded ending is identical under both, since
+      # a feminine noun takes -e after eine and after die alike. Accepting it therefore
+      # costs the measurement nothing and buys back correct German.
+      - "Am Sonntag gibt es die interessantere Führung als am Samstag."
+    key_tokens: ["interessantere"]
+    explain:
+      en: "Graded is the one word the tag is about: interessanter plus the -e that die Führung asks for. The ordinary gradable adjective interessant forms its comparative with -er, not the source-language frame mehr + adjective: ein interessanteres Programm. Which day you name is carrier material; the ending is not."
+      ru: "Оценивается одно слово, ради которого и стоит тег: interessanter плюс то -e, которого требует die Führung. Немецкий никогда не сравнивает через mehr с прилагательным, каким бы длинным ни было слово: ein mehr interessantes Programm — привычка, которую подсказывает аналитическая модель, и в немецком её нет. Какой день назван — материал-носитель, а окончание нет."
+      uk: "Оцінюється одне слово, заради якого й стоїть тег: interessanter плюс те -e, якого вимагає die Führung. Німецька ніколи не порівнює через mehr з прикметником, хоч би яким довгим було слово: ein mehr interessantes Programm — звичка, яку підказує аналітична модель, і в німецькій її немає. Який день названо — матеріал-носій, а закінчення ні."
+      de: "Bewertet wird das eine Wort, um das es dem Tag geht: interessanter plus das -e, das die Führung verlangt. Das gewöhnliche steigerbare Adjektiv interessant bildet den Komparativ mit -er, nicht mit der aus den Ausgangssprachen übertragenen Form mehr + Adjektiv: ein interessanteres Programm. Welcher Tag genannt wird, ist Trägermaterial; die Endung nicht."
+
+  - id: mc-gegenvorschlag
+    outcomes: [veranstaltung-empfehlen]
+    type: mc
+    prompt: "Jemand fragt: Sollen wir am Samstag ins Konzert gehen? Welche Antwort ist ein Gegenvorschlag und keine Absage?"
+    options:
+      - "Ich gehe lieber am Sonntag in die Ausstellung — die fängt früher an."
+      - "Am Samstag bin ich leider schon verabredet."
+      - "Konzerte sind eigentlich nichts für mich."
+    correct: 0
+    translation:
+      en: "Somebody asks: shall we go to the concert on Saturday? Which answer is a counter-proposal and not a refusal?"
+      ru: "Вас спрашивают: пойдём в субботу на концерт? Какой ответ — встречное предложение, а не отказ?"
+      uk: "Вас питають: підемо в суботу на концерт? Яка відповідь — зустрічна пропозиція, а не відмова?"
+    explain:
+      en: "A counter-proposal keeps the plan alive and puts something else on the table, and one word does the whole job: lieber. The other two answers close the conversation — one says the Saturday is gone, the other says concerts are. This is the move learners skip, and it is the one that makes an agreement a negotiation rather than a request."
+      ru: "Встречное предложение оставляет план живым и кладёт на стол что-то другое, и всю работу делает одно слово — lieber. Два других ответа разговор закрывают: первый сообщает, что занята суббота, второй — что не годятся концерты. Именно этот ход обычно пропускают, и именно он превращает договорённость из просьбы в переговоры."
+      uk: "Зустрічна пропозиція лишає план живим і кладе на стіл щось інше, і всю роботу робить одне слово — lieber. Дві інші відповіді розмову закривають: перша повідомляє, що зайнята субота, друга — що не годяться концерти. Саме цей хід зазвичай пропускають, і саме він перетворює домовленість із прохання на переговори."
+      de: "Ein Gegenvorschlag hält den Plan am Leben und legt etwas anderes daneben, und ein einziges Wort erledigt das: lieber. Die beiden anderen Antworten schließen das Gespräch — die eine sagt, der Samstag ist weg, die andere, Konzerte sind es. Genau dieser Zug fehlt am häufigsten, und genau er macht aus einer Bitte ein Gespräch."
+
+  - id: uebersetzen-vorschlag-modal
+    revision: 2
+    outcomes: [veranstaltung-empfehlen]
+    type: translate
+    focus: modal-satzklammer
+    instruction:
+      en: "Make the proposal. For 'guided tour' take die Führung, for 'together' zusammen."
+      ru: "Сформулируйте предложение. Для «экскурсия» возьмите die Führung, для «вместе» — zusammen."
+      uk: "Сформулюйте пропозицію. Для «екскурсія» візьміть die Führung, для «разом» — zusammen."
+      de: "Mach den Vorschlag. Für die Besichtigung nimm die Führung, für gemeinsam zusammen."
+    prompt_en: "On Sunday we can go together to the guided tour."
+    prompt_ru: "В воскресенье мы можем вместе пойти на экскурсию."
+    prompt_uk: "У неділю ми можемо разом піти на екскурсію."
+    answer: "Am Sonntag können wir zusammen zur Führung gehen."
+    accept:
+      # The subject may lead; the bracket is unchanged and so is the graded pair.
+      - "Wir können am Sonntag zusammen zur Führung gehen."
+      # zusammen may also trail the goal PP (2026-08-11 triage, row 1a): marked but
+      # grammatical adjunct order, and the graded können…gehen bracket is unaffected. Both
+      # subject positions get the closure.
+      - "Am Sonntag können wir zur Führung zusammen gehen."
+      - "Wir können am Sonntag zur Führung zusammen gehen."
+    key_tokens: ["können", "gehen"]
+    explain:
+      en: "Graded are the two ends of the bracket: the conjugated können in position 2 and the bare infinitive gehen at the very end, with everything the sentence has to say in between. können gehen wir zur Führung side by side is the order the source languages keep, and it leaves the sentence with nothing at its wall. A proposal is the first of the four moves an agreement is made of."
+      ru: "Оцениваются два конца рамки: спрягаемое können на втором месте и голый инфинитив gehen в самом конце, а между ними — всё, что предложение хочет сказать. Порядок können gehen wir zur Führung, где глаголы стоят рядом, — это порядок исходных языков, и он оставляет предложение без стены. Предложение пойти — первый из четырёх ходов, из которых складывается договорённость."
+      uk: "Оцінюються два кінці рамки: відмінюване können на другому місці і голий інфінітив gehen у самому кінці, а між ними — усе, що речення хоче сказати. Порядок können gehen wir zur Führung, де дієслова стоять поряд, — це порядок вихідних мов, і він лишає речення без стіни. Пропозиція піти — перший із чотирьох ходів, з яких складається домовленість."
+      de: "Bewertet werden die zwei Enden der Klammer: das konjugierte können auf Position 2 und der blanke Infinitiv gehen ganz am Ende, dazwischen alles, was der Satz zu sagen hat. können gehen wir zur Führung nebeneinander ist die Stellung der Ausgangssprachen und lässt den Satz ohne Wand. Der Vorschlag ist der erste der vier Züge einer Einigung."
+
+  - id: uebersetzen-abholen
+    outcomes: [veranstaltung-empfehlen]
+    type: translate
+    focus: trennbar-wortstellung
+    instruction:
+      en: "Settle the last detail of the plan. For 'pick up' take abholen, for 'half past seven' halb acht."
+      ru: "Уточните последнюю деталь плана. Для «заехать за кем-то» возьмите abholen, для «половина восьмого» — halb acht."
+      uk: "Уточніть останню деталь плану. Для «заїхати по когось» візьміть abholen, для «пів на восьму» — halb acht."
+      de: "Klär die letzte Einzelheit des Plans. Für das Abholen nimm abholen, für die Uhrzeit halb acht."
+    prompt_en: "I will pick you up at half past seven."
+    prompt_ru: "Я заеду за тобой в половине восьмого."
+    prompt_uk: "Я заїду по тебе о пів на восьму."
+    answer: "Ich hole dich um halb acht ab."
+    accept:
+      # The time may lead; the prefix stays where it is and so does the graded pair.
+      - "Um halb acht hole ich dich ab."
+    key_tokens: ["hole", "ab"]
+    explain:
+      en: "Graded are both halves of the verb: hole in position 2 and its prefix ab at the very end, behind the object and the time. The prefix is not decoration — holen means fetch a thing, abholen means collect a person from where they are. Leave it off and the sentence says you will fetch the other person from nowhere in particular."
+      ru: "Оцениваются обе половины глагола: hole на втором месте и приставка ab в самом конце, за дополнением и временем. Приставка — не украшение: holen значит «принести вещь», abholen — «забрать человека оттуда, где он есть». Без неё фраза сообщает, что вы принесёте собеседника неизвестно откуда."
+      uk: "Оцінюються обидві половини дієслова: hole на другому місці і префікс ab у самому кінці, за додатком і часом. Префікс — не оздоба: holen означає «принести річ», abholen — «забрати людину звідти, де вона є». Без нього фраза повідомляє, що ви принесете співрозмовника невідомо звідки."
+      de: "Bewertet werden beide Hälften des Verbs: hole auf Position 2 und sein Präfix ab ganz am Ende, hinter Objekt und Uhrzeit. Der Präfix ist keine Zierde — holen heißt eine Sache holen, abholen heißt eine Person dort abholen, wo sie ist. Ohne ihn sagt der Satz, du holtest die andere Person von nirgendwo."
+
+  - id: cloze-bericht-praeteritum
+    outcomes: [erlebnis-bewerten]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "The first two lines of a written report. Put geben and gefallen into the Präteritum."
+      ru: "Первые две строки письменного отзыва. Поставьте geben и gefallen в Präteritum."
+      uk: "Перші два рядки письмового відгуку. Поставте geben і gefallen у Präteritum."
+      de: "Die ersten zwei Zeilen eines schriftlichen Berichts. Setz geben und gefallen ins Präteritum."
+    text: "Am Freitag {{gab}} es in der Stadthalle ein Konzert. Besonders gut {{gefiel}} mir das Orchester."
+    translation:
+      en: "On Friday there was a concert at the Stadthalle. What I liked most was the orchestra."
+      ru: "В пятницу в Штадтхалле был концерт. Больше всего мне понравился оркестр."
+      uk: "У п'ятницю в Штадтхалле був концерт. Найбільше мені сподобався оркестр."
+    explain:
+      en: "Both verbs are strong: the vowel changes and no -te is added at all — geben becomes gab, gefallen becomes gefiel. A written report runs on these forms; tell the same evening to a friend and you would say es hat gegeben and hat mir gefallen instead. Neither is more correct — the choice is between paper and conversation."
+      ru: "Оба глагола сильные: меняется корневая гласная и никакого -te не добавляется вовсе — geben даёт gab, gefallen даёт gefiel. Письменный отзыв держится на этих формах; расскажите тот же вечер приятелю — и получится es hat gegeben и hat mir gefallen. Правильнее не то и не другое: выбор идёт между бумагой и разговором."
+      uk: "Обидва дієслова сильні: змінюється кореневий голосний і жодного -te не додається взагалі — geben дає gab, gefallen дає gefiel. Письмовий відгук тримається на цих формах; розкажіть той самий вечір приятелеві — і вийде es hat gegeben і hat mir gefallen. Правильніше не те й не те: вибір іде між папером і розмовою."
+      de: "Beide Verben sind stark: Der Vokal wechselt, und ein -te kommt gar nicht dazu — aus geben wird gab, aus gefallen gefiel. Ein schriftlicher Bericht lebt von diesen Formen; mündlich erzählt hieße derselbe Abend es hat gegeben und hat mir gefallen. Richtiger ist keines von beiden; die Wahl steht zwischen Papier und Gespräch."
+
+  - id: uebersetzen-stueck-begann
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'the play' take das Stück, for 'begin' beginnen, for 'find' finden."
+      ru: "Письменный отзыв — значит Präteritum. Для «спектакль» возьмите das Stück, для «начаться» — beginnen, для «счесть» — finden."
+      uk: "Письмовий відгук — отже Präteritum. Для «вистава» візьміть das Stück, для «початися» — beginnen, для «визнати» — finden."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für das Theaterstück nimm das Stück, für den Anfang beginnen, für die Einschätzung finden."
+    prompt_en: "The play began at seven, and the audience found the first half too long."
+    prompt_ru: "Спектакль начался в семь, и публика сочла первую половину слишком длинной."
+    prompt_uk: "Вистава почалася о сьомій, і публіка визнала першу половину задовгою."
+    answer: "Das Stück begann um sieben, und das Publikum fand die erste Hälfte zu lang."
+    accept:
+      # The hour may be said with or without Uhr; nothing else moves.
+      - "Das Stück begann um sieben Uhr, und das Publikum fand die erste Hälfte zu lang."
+    key_tokens: ["begann", "fand"]
+    explain:
+      en: "Graded are the two full verbs, and both are strong: beginnen gives begann, finden gives fand, each a bare vowel change with no ending. das Publikum is singular however many people it covers, so its verb is singular too — fand, never fanden. That agreement is not what this item grades, but it is what an English or Russian hand gets wrong here."
+      ru: "Оцениваются два полнозначных глагола, и оба сильные: beginnen даёт begann, finden даёт fand — чистая смена гласной без окончания. das Publikum стоит в единственном числе, сколько бы людей за ним ни стояло, и глагол при нём тоже: fand, а не fanden. Это согласование данный пункт не оценивает, но именно на нём спотыкается русская рука."
+      uk: "Оцінюються два повнозначні дієслова, і обидва сильні: beginnen дає begann, finden дає fand — чиста зміна голосного без закінчення. das Publikum стоїть в однині, скільки б людей за ним не стояло, і дієслово при ньому теж: fand, а не fanden. Це узгодження цей пункт не оцінює, але саме на ньому спотикається українська рука."
+      de: "Bewertet werden die zwei Vollverben, und beide sind stark: beginnen ergibt begann, finden ergibt fand, jeweils ein reiner Vokalwechsel ohne Endung. das Publikum steht im Singular, wie viele Leute auch gemeint sind, und das Verb ebenso — fand, nie fanden. Diese Kongruenz bewertet die Aufgabe nicht, aber genau dort greift die Hand daneben."
+
+  - id: mc-einschraenkung
+    outcomes: [erlebnis-bewerten]
+    type: mc
+    prompt: "Welcher Bericht liest sich als Urteil und nicht als Werbung?"
+    options:
+      - "Die Stimmung war gut, und das Orchester spielte ohne Pause. Nur der zweite Teil war zu lang."
+      - "Alles war wunderbar, ein perfekter Abend von Anfang bis Ende."
+      - "Der Abend war schlecht: zu lang, zu laut, zu voll."
+    correct: 0
+    translation:
+      en: "Which report reads as a judgement rather than as an advertisement?"
+      ru: "Какой отзыв читается как оценка, а не как реклама?"
+      uk: "Який відгук читається як оцінка, а не як реклама?"
+    explain:
+      en: "One limitation makes everything around it credible, and it costs a single sentence: Nur der zweite Teil war zu lang. Praise with nothing against it reads as an advertisement, and criticism with nothing for it reads as a bad mood — in both cases the reader learns nothing about the evening. Praise first, then exactly one Nur."
+      ru: "Одна оговорка делает достоверным всё вокруг себя и стоит одного предложения: Nur der zweite Teil war zu lang. Похвала, которой нечего противопоставить, читается как реклама, а сплошная ругань — как плохое настроение; и в том и в другом случае читатель не узнаёт о вечере ничего. Сначала похвала, потом ровно одно Nur."
+      uk: "Одне застереження робить достовірним усе довкола себе і коштує одного речення: Nur der zweite Teil war zu lang. Похвала, якій нічого протиставити, читається як реклама, а суцільна лайка — як поганий настрій; і в тому, і в тому разі читач не дізнається про вечір нічого. Спершу похвала, потім рівно одне Nur."
+      de: "Eine Einschränkung macht alles um sie herum glaubwürdig und kostet einen einzigen Satz: Nur der zweite Teil war zu lang. Lob ohne Gegengewicht liest sich als Werbung, lauter Kritik als schlechte Laune — in beiden Fällen erfährt die Leserin nichts über den Abend. Erst das Lob, dann genau ein Nur."
+
+  - id: uebersetzen-fuehrung-dauerte
+    outcomes: [erlebnis-bewerten]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written report, so the Präteritum. For 'the guided tour' take die Führung, for 'last' dauern, for 'learn' lernen."
+      ru: "Письменный отзыв — значит Präteritum. Для «экскурсия» возьмите die Führung, для «длиться» — dauern, для «узнать нового» — lernen."
+      uk: "Письмовий відгук — отже Präteritum. Для «екскурсія» візьміть die Führung, для «тривати» — dauern, для «дізнатися нового» — lernen."
+      de: "Ein schriftlicher Bericht, also Präteritum. Für die Besichtigung nimm die Führung, für die Länge dauern, für den Zugewinn lernen."
+    prompt_en: "The guided tour lasted only an hour, but I learned a lot."
+    prompt_ru: "Экскурсия длилась всего час, но я многому научился."
+    prompt_uk: "Екскурсія тривала лише годину, але я багато чого навчився."
+    answer: "Die Führung dauerte nur eine Stunde, aber ich lernte viel."
+    accept:
+      # An hour is as readily counted as named; the graded pair is untouched.
+      - "Die Führung dauerte nur eine Stunde, aber ich lernte sehr viel."
+    key_tokens: ["dauerte", "lernte"]
+    explain:
+      en: "Graded are the two full verbs, and both are weak: dauern and lernen keep their stem and take -te — dauerte, lernte. That is the other half of the Präteritum, and it is the half that misleads, because the ending looks like the one a hand puts on gehen and finden too. Strong verbs change the vowel instead and take no -te at all."
+      ru: "Оцениваются два полнозначных глагола, и оба слабые: dauern и lernen сохраняют основу и берут -te — dauerte, lernte. Это вторая половина Präteritum, и как раз она сбивает с толку: окончание выглядит ровно так, как рука приставляет его и к gehen, и к finden. Сильные глаголы вместо этого меняют гласную и никакого -te не берут."
+      uk: "Оцінюються два повнозначні дієслова, і обидва слабкі: dauern і lernen зберігають основу і беруть -te — dauerte, lernte. Це друга половина Präteritum, і саме вона збиває з пантелику: закінчення виглядає рівно так, як рука приставляє його і до gehen, і до finden. Сильні дієслова натомість змінюють голосний і жодного -te не беруть."
+      de: "Bewertet werden die zwei Vollverben, und beide sind schwach: dauern und lernen behalten ihren Stamm und nehmen -te — dauerte, lernte. Das ist die andere Hälfte des Präteritums, und sie führt in die Irre, weil die Endung genau so aussieht wie die, die eine Hand auch an gehen und finden hängt. Starke Verben wechseln stattdessen den Vokal und nehmen gar kein -te."

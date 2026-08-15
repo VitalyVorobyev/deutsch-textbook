@@ -1,6 +1,6 @@
 /** Pure matching/diff logic for typed flashcard answers (x-de production direction). */
 
-import { normalizeTranslation } from './cloze';
+import { normalizeTranslation } from '@da/grading/cloze';
 
 /** Normalize typed input the same way every other typed answer is normalized:
     punctuation and typography are not graded anywhere, including *inside* a
@@ -134,8 +134,34 @@ export interface DiffSeg {
   miss: boolean;
 }
 
-/** Character-level LCS diff, rendered over the EXPECTED string: segments not
-    matched by the given input are flagged `miss`. Adjacent runs are merged. */
+/** Lowercase without ever changing the string's length, so the diff below can index
+    the folded and the original string interchangeably. (`'İ'.toLowerCase()` is two
+    code units; nothing else a learner types here is.) */
+function foldCase(s: string): string {
+  return s.replace(/\p{Lu}/gu, (c) => {
+    const lower = c.toLowerCase();
+    return lower.length === c.length ? lower : c;
+  });
+}
+
+/**
+ * Character-level LCS diff, rendered over the EXPECTED string: segments not
+ * matched by the given input are flagged `miss`. Adjacent runs are merged.
+ *
+ * **The alignment is case-insensitive unless casing is the only thing wrong**, and
+ * that distinction is the whole point. The grader is case-sensitive on purpose
+ * (`normalizeTyped`), but a case-sensitive *alignment* fragments compounds at the
+ * seam and then highlights something that is not a morpheme: `das Angebot` typed
+ * for `das Sonderangebot` matched only `ngebot`, because the learner's capital `A`
+ * cannot match the compound's medial lowercase `a`, and the card told them the
+ * missing piece was `Sondera`. It is `Sonder`. Every compound whose second element
+ * is a word the learner already knows hits this, which is most of them.
+ *
+ * When the two strings differ *only* by case the case-sensitive alignment is
+ * exactly right — it pinpoints the letters that need the other case — so that path
+ * is kept. It is the one thing a folded diff cannot show, because it would report
+ * a perfect match.
+ */
 export function diffExpected(expected: string, given: string): DiffSeg[] {
   const n = expected.length;
   const m = given.length;
@@ -143,12 +169,16 @@ export function diffExpected(expected: string, given: string): DiffSeg[] {
   if (m === 0) return [{ text: expected, miss: true }];
   if (n * m > 40000) return [{ text: expected, miss: false }];
 
-  // dp[i][j] = LCS length of expected[i..] vs given[j..]
+  const caseOnly = foldCase(expected) === foldCase(given);
+  const e = caseOnly ? expected : foldCase(expected);
+  const g = caseOnly ? given : foldCase(given);
+
+  // dp[i][j] = LCS length of e[i..] vs g[j..]
   const dp: Uint16Array[] = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
   for (let i = n - 1; i >= 0; i--) {
     for (let j = m - 1; j >= 0; j--) {
       dp[i][j] =
-        expected[i] === given[j]
+        e[i] === g[j]
           ? dp[i + 1][j + 1] + 1
           : Math.max(dp[i + 1][j], dp[i][j + 1]);
     }
@@ -158,7 +188,7 @@ export function diffExpected(expected: string, given: string): DiffSeg[] {
   let i = 0;
   let j = 0;
   while (i < n && j < m) {
-    if (expected[i] === given[j]) {
+    if (e[i] === g[j]) {
       miss[i] = false;
       i++;
       j++;

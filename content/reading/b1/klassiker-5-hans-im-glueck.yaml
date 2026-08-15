@@ -1,0 +1,104 @@
+topic: leben-veraendern
+kind: extensive
+title_de: "Hans im Glück"
+
+# Klassiker strand, text 5 of 10 (ADR 0006). Adapted from
+# sources/klassiker/05-hans-im-glueck.md, which runs 425 words — over
+# the extensive band, so it is trimmed here rather than the band being widened. All
+# five trades are kept, because the chain is the story; what goes is descriptive
+# padding around them and the second, redundant stone. The comparatives the corpus
+# builds the text on (schwerer, sicherer, nützlicher, leichter) are untouched.
+# Possession that changes at every step — the reporting-a-change work
+# leben-veraendern owns.
+
+attribution: "Nach einem gemeinfreien Werk der Brüder Grimm (Hans im Glück, 1857). Didaktische Bearbeitung für Niveau B1. Historischer Originaltext: https://de.wikisource.org/wiki/Hans_im_Gl%C3%BCck_%281857%29"
+license: "Gemeinfrei (§ 64 UrhG)"
+
+text:
+  - >-
+    Hans hatte sieben Jahre lang bei einem Meister gearbeitet. Am letzten Tag sagte der
+    Meister: „Du warst zuverlässig und fleißig. Dafür bekommst du deinen Lohn.“ Er gab
+    Hans einen großen [[Klumpen::lump::слиток::зливок]] Gold.
+  - >-
+    Hans bedankte sich und machte sich auf den Weg zu seiner Mutter. Das Gold war
+    wertvoll, aber auch sehr schwer. Nach einer Stunde tat ihm die Schulter weh.
+  - >-
+    Da kam ein Reiter auf einem schnellen Pferd vorbei. „Reiten ist viel angenehmer, als
+    einen schweren Klumpen zu tragen“, dachte Hans. Der Reiter sah das Gold und schlug
+    einen [[Tausch::swap::обмен::обмін]] vor. Zuerst war Hans begeistert. Doch als er
+    schneller reiten wollte, fiel er herunter.
+  - >-
+    Kurz darauf traf er einen Bauern mit einer ruhigen Kuh. Der Bauer erklärte: „Eine
+    Kuh ist sicherer als ein Pferd. Außerdem gibt sie Milch.“
+  - >-
+    Hans fand diese Argumente überzeugend. Er tauschte das Pferd gegen die Kuh. Am
+    Mittag bekam er Durst und wollte die Kuh [[melken::to milk::подоить::подоїти]]. Aber
+    die Kuh gab keine Milch und trat nach ihm.
+  - >-
+    Nun kam ein [[Metzger::butcher::мясник::різник]] mit einem Schwein vorbei. „Diese
+    Kuh ist alt“, sagte er. „Ein Schwein ist viel nützlicher.“ Wieder tauschte Hans.
+  - >-
+    Später begegnete er einem Mann mit einer Gans. Der Mann erzählte, in der Nähe sei
+    ein Schwein gestohlen worden. Hans bekam Angst und tauschte erneut.
+  - >-
+    Am Abend traf er einen [[Scherenschleifer::knife grinder::точильщик::точильник]],
+    der von Ort zu Ort reiste. „Mein Beruf macht mich frei“, sagte er. „Ich brauche nur
+    einen guten [[Schleifstein::grindstone::точильный камень::точильний камінь]].“
+  - >-
+    Hans wollte ebenfalls unabhängig sein. Er gab die Gans ab und bekam dafür einen
+    schweren Stein.
+  - >-
+    Hans ging weiter. Er war müde, hungrig und durstig. Der Stein wurde mit jedem
+    Schritt schwerer. An einem Brunnen wollte er trinken. Als er sich nach vorn
+    [[beugte::leaned::наклонился::нахилився]], fiel der Stein ins Wasser.
+  - >-
+    Hans sah ihm nach. Dann lachte er
+    [[erleichtert::with relief::с облегчением::полегшено]].
+  - >-
+    „So viel Glück hatte ich noch nie!“, rief er. „Jetzt muss ich nichts Schweres mehr
+    tragen, und niemand kann mir etwas stehlen.“
+  - >-
+    Ohne Gold, Pferd, Kuh, Schwein, Gans und Stein kam Hans bei seiner Mutter an. Einen
+    materiellen Lohn hatte er nicht mehr, aber er fühlte sich frei und zufrieden.
+  - >-
+    Ob Hans wirklich klug gehandelt hatte, bleibt offen. Von außen wurden seine
+    Tauschgeschäfte immer schlechter. Für Hans selbst wurde sein Weg jedoch immer
+    leichter. Vielleicht bestand sein Glück nicht im Besitz, sondern darin, dass er sich
+    über keinen Verlust lange ärgerte.
+
+questions:
+  - id: q-besitz
+    outcomes: [veraenderung-berichten]
+    type: mc
+    prompt: "Wie verändert sich Hans’ Besitz auf dem Weg zu seiner Mutter?"
+    options:
+      - "Er tauscht immer weiter und besitzt am Ende gar nichts mehr."
+      - "Er verkauft das Gold und kommt mit viel Geld zu Hause an."
+      - "Er behält den Klumpen Gold, weil ihm niemand einen guten Tausch anbietet."
+    correct: 0
+    translation:
+      en: "How does what Hans owns change on the way to his mother?"
+      ru: "Как меняется имущество Ганса по дороге к матери?"
+      uk: "Як змінюється майно Ганса дорогою до матері?"
+    explain:
+      en: "Gold, horse, cow, pig, goose, grindstone — every swap hands him something worth less than the last, and the stone finally drops into the well. He arrives with nothing at all, and the story lets that stand as the outcome."
+      ru: "Золото, конь, корова, свинья, гусь, точильный камень — каждый обмен даёт ему вещь дешевле прежней, а камень в итоге падает в колодец. Домой он приходит вообще ни с чем, и рассказ оставляет это как итог."
+      uk: "Золото, кінь, корова, свиня, гуска, точильний камінь — кожен обмін дає йому річ дешевшу за попередню, а камінь зрештою падає в криницю. Додому він приходить зовсім ні з чим, і оповідь лишає це як підсумок."
+
+  - id: q-glueck
+    outcomes: [veraenderung-berichten]
+    type: mc
+    prompt: "Warum heißt die Geschichte trotzdem „Hans im Glück“?"
+    options:
+      - "Weil Hans im Brunnen am Ende doch noch einen Schatz findet."
+      - "Weil Hans sich ohne Besitz frei fühlt und sich über keinen Verlust lange ärgert."
+      - "Weil Hans’ Mutter ihm den verlorenen Lohn später ersetzt."
+    correct: 1
+    translation:
+      en: "Why is the story still called \"Lucky Hans\"?"
+      ru: "Почему история всё-таки называется «Счастливый Ганс»?"
+      uk: "Чому історія все-таки називається «Щасливий Ганс»?"
+    explain:
+      en: "Seen from outside, every deal is worse than the one before. Seen from where Hans stands, every step makes the road lighter — and the closing lines leave open whether he acted wisely, saying only that he never stayed angry about a loss."
+      ru: "Со стороны каждая сделка хуже предыдущей. С той точки, где стоит Ганс, каждый шаг облегчает дорогу, — и финал не решает, разумно ли он поступал, а говорит лишь, что ни одна потеря его надолго не огорчала."
+      uk: "Збоку кожна оборудка гірша за попередню. З того місця, де стоїть Ганс, кожен крок полегшує дорогу, — і фінал не вирішує, чи розважливо він чинив, а каже лише, що жодна втрата не засмучувала його надовго."

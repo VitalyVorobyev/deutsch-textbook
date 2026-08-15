@@ -1,6 +1,6 @@
 /** Which exercise sets mixed training may draw from (client-side — "opened" lives in IndexedDB). */
 import { topicPracticeSetIds, type TopicContext, type TopicNode } from './mastery';
-import type { ExerciseItem, ExerciseRole, Level, VisualDocument } from './schemas';
+import type { Bilingual, ExerciseItem, ExerciseRole, Level, VisualDocument } from '@da/schema';
 import type { Attempt } from './store';
 import { weakFocuses, type RevisionLookup } from './weakness';
 import { shuffle } from './shuffle';
@@ -17,7 +17,20 @@ export interface TrainingSet {
   arming?: string[];
   items: ExerciseItem[];
   document?: VisualDocument;
+  /** the set's own bilingual title, when authored — not every set carries one
+      (schema-optional), and pages that never need to name an individual set
+      (training.astro, proben.astro) do not populate it */
+  title?: Bilingual;
 }
+
+/**
+ * Roles that ordinary practice — mixed training and probe-failure remediation — may
+ * ever draw from. Pretests are guesses taken before the lesson; checkpoints, probes
+ * and placements each own a separate evidence surface (docs/architecture/runtime-
+ * contracts.md). Hoisted so `eligibleTrainingSets` and `remediationSetFor` share one
+ * definition of "trainable" rather than two allowlists that could drift apart.
+ */
+const TRAINABLE_ROLES = new Set<ExerciseRole>(['practice', 'drill']);
 
 export interface SessionItem {
   /** `${setId}::${itemId}` — matches how attempts are keyed for priority lookup */
@@ -75,12 +88,58 @@ export function eligibleTrainingSets<
     return node ? topicPracticeSetIds(node).some((id) => attempted.has(id)) : false;
   };
   void spine;
-  const trainableRoles = new Set(['practice', 'drill']);
   return sets.filter(
     (s) =>
-      trainableRoles.has(s.role ?? 'practice') &&
+      TRAINABLE_ROLES.has((s.role ?? 'practice') as ExerciseRole) &&
       (ctx.topics[s.topicId]?.readAt || practiced(s.topicId)),
   );
+}
+
+/**
+ * Which of a topic's own exercise sets to point a learner back at after a failed
+ * delayed probe (R4, docs/adrs/0010-probe-failure-remediation.md).
+ *
+ * Candidates are the topic's own `TRAINABLE_ROLES` sets whose items carry the given
+ * `focus` tag — the same tag a probe family exposes on `ProbeFamily.focus`
+ * (src/lib/probes.ts). Among those:
+ *
+ * 1. **`role: drill` first** — purpose-built remediation over a practice set the tag
+ *    merely passes through.
+ * 2. **Then the most `translate` items carrying the tag.** The learner's assembly mode
+ *    (`translate`) runs at 43% accuracy against 85–92% for recognition formats
+ *    (mc/match/order) — measured against the attempt log, not assumed — so the
+ *    recommendation should point at the response mode that is actually weak, not at
+ *    whichever set happens to have more recognition coverage of the same tag.
+ * 3. **Then earliest in the topic's authored `exercises:` order.**
+ *
+ * Pure and stateless — no attempt log, no I/O. The third tie-break relies on
+ * `Array.prototype.sort`'s guaranteed stability plus **the order of `sets` as given**,
+ * so a caller that cares about it must pass `sets` already in `TopicNode.exerciseSets`
+ * order (the atlas's authored order), not collection order. `sets` may be the whole
+ * corpus — filtering by `topicId` happens here — or already narrowed to one topic.
+ */
+export function remediationSetFor(
+  focus: string,
+  topicId: string,
+  sets: readonly TrainingSet[],
+): TrainingSet | undefined {
+  const candidates = sets.filter(
+    (s) =>
+      s.topicId === topicId &&
+      TRAINABLE_ROLES.has(s.role) &&
+      s.items.some((item) => item.focus === focus),
+  );
+  if (candidates.length === 0) return undefined;
+
+  const translateCount = (s: TrainingSet): number =>
+    s.items.filter((item) => item.type === 'translate' && item.focus === focus).length;
+  const roleRank = (s: TrainingSet): number => (s.role === 'drill' ? 0 : 1);
+
+  return [...candidates].sort((a, b) => {
+    const byRole = roleRank(a) - roleRank(b);
+    if (byRole !== 0) return byRole;
+    return translateCount(b) - translateCount(a);
+  })[0];
 }
 
 /** A resumed queue may continue only while every queued set is still eligible. */
@@ -96,14 +155,31 @@ export function resumedQueueIsEligible(
  * Builds an interleaved session from all items across all eligible sets.
  *
  * Priority bands, filled in order:
- *   1. items whose most recent attempt was wrong,
+ *   1. items whose most recent attempt was wrong — minus any that are FOSSILIZING
+ *      (see below); their never-seen same-focus siblings are promoted into this band
+ *      in their place,
  *   2. items whose `focus` tag is currently weak and that are not already in band 1,
- *   3. items never attempted.
- * Bands 1–3 are shuffled.
+ *   3. items never attempted (minus any siblings promoted into band 1),
+ *   4. fossilizing items that were demoted out of band 1 (see below).
+ * Bands 1–4 are each shuffled within themselves.
  *
- * Band 4 — items answered correctly, least recently first — is not merely the leftover:
+ * An item is FOSSILIZING when its last two attempts were both wrong: it has already
+ * failed a retry, and dealing it again on the same footing is exactly how P25-9
+ * happened — `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and
+ * failed nine sessions running while the eight never-seen items of
+ * `b1/drill-temporal-nebensatz`, sharing its focus tag, sat untouched in band 3. A
+ * fossilizing band-1 item with at least one never-seen same-focus sibling in the pool
+ * is demoted: the never-seen siblings move ahead into the band-1 slot it held, and the
+ * fossilizing item itself drops to the end of the priority list (after band 3, before
+ * the broad-retrieval band) — fresh material gets the turn a repeated retry never
+ * earned, and the item's own re-anchoring pauses until it has been worked through. A
+ * fossilizing item with NO never-seen same-focus sibling stays in band 1 unchanged:
+ * retrying is all there is. A single recent wrong answer (not two consecutive) is
+ * never fossilizing and keeps today's band-1 behavior exactly.
+ *
+ * Band 5 — items answered correctly, least recently first — is not merely the leftover:
  * `BROAD_RETRIEVAL_SHARE` of the session is *reserved* for it, so the loud bands cannot
- * take everything (see the constant). When band 4 is short the priority bands take the
+ * take everything (see the constant). When band 5 is short the priority bands take the
  * slack back, and vice versa; nothing is ever wasted.
  *
  * Afterwards the selection is interleaved so that no two consecutive items share a set,
@@ -123,6 +199,23 @@ export function buildSession(
     if (!prev || a.ts >= prev.ts) lastAttempt.set(key, { correct: a.correct, ts: a.ts });
   }
 
+  // every attempt per item, oldest→newest — only used to test the last two for
+  // "fossilizing" (P25-9) below; `lastAttempt` above stays the single source of
+  // truth for correctness/recency everywhere else.
+  const attemptsByItem = new Map<string, Attempt[]>();
+  for (const a of attempts) {
+    const key = `${a.setId}::${a.itemId}`;
+    const arr = attemptsByItem.get(key);
+    if (arr) arr.push(a);
+    else attemptsByItem.set(key, [a]);
+  }
+  for (const arr of attemptsByItem.values()) arr.sort((a, b) => a.ts - b.ts);
+  const isFossilizing = (uid: string): boolean => {
+    const arr = attemptsByItem.get(uid);
+    if (!arr || arr.length < 2) return false;
+    return !arr[arr.length - 1]!.correct && !arr[arr.length - 2]!.correct;
+  };
+
   const weak = new Set(weakFocuses([...attempts], { current }).map((w) => w.focus));
 
   const pool: SessionItem[] = sets.flatMap((s) =>
@@ -138,18 +231,52 @@ export function buildSession(
   );
 
   const lastWrong: SessionItem[] = [];
+  const fossilizing: SessionItem[] = [];
   const weakFocus: SessionItem[] = [];
   const untried: SessionItem[] = [];
   const seen: { entry: SessionItem; ts: number }[] = [];
   for (const p of pool) {
     const a = lastAttempt.get(p.uid);
-    if (a && !a.correct) lastWrong.push(p);
+    if (a && !a.correct) (isFossilizing(p.uid) ? fossilizing : lastWrong).push(p);
     else if (p.item.focus && weak.has(p.item.focus)) weakFocus.push(p);
     else if (!a) untried.push(p);
     else seen.push({ entry: p, ts: a.ts });
   }
 
-  const priority = [...shuffle(lastWrong), ...shuffle(weakFocus), ...shuffle(untried)];
+  // Never-seen items sharing a fossilizing item's focus tag — its candidate
+  // replacements in band 1.
+  const untriedByFocus = new Map<string, SessionItem[]>();
+  for (const p of untried) {
+    if (!p.item.focus) continue;
+    const arr = untriedByFocus.get(p.item.focus);
+    if (arr) arr.push(p);
+    else untriedByFocus.set(p.item.focus, [p]);
+  }
+
+  const promoted: SessionItem[] = [];
+  const promotedUids = new Set<string>();
+  const fossilizedDropped: SessionItem[] = [];
+  for (const p of fossilizing) {
+    const siblings = p.item.focus ? untriedByFocus.get(p.item.focus) : undefined;
+    if (!siblings || siblings.length === 0) {
+      lastWrong.push(p); // no fresh material to hand the slot to — retry is all there is
+      continue;
+    }
+    fossilizedDropped.push(p);
+    for (const sibling of siblings) {
+      if (promotedUids.has(sibling.uid)) continue;
+      promotedUids.add(sibling.uid);
+      promoted.push(sibling);
+    }
+  }
+  const untriedRemaining = untried.filter((p) => !promotedUids.has(p.uid));
+
+  const priority = [
+    ...shuffle([...lastWrong, ...promoted]),
+    ...shuffle(weakFocus),
+    ...shuffle(untriedRemaining),
+    ...shuffle(fossilizedDropped),
+  ];
   const broad = seen.sort((a, b) => a.ts - b.ts).map((s) => s.entry);
 
   const reserved = Math.min(Math.round(count * BROAD_RETRIEVAL_SHARE), broad.length);
