@@ -1,0 +1,16 @@
+{
+  "name": "@da/renderers",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./article": "./src/article.tsx",
+    "./exercises": "./src/exercises.tsx"
+  },
+  "dependencies": {
+    "@da/content": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.2.8"
+  }
+}
