@@ -1,0 +1,41 @@
+topic: wohnen-umzug
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — her- oder hin-?"
+title: {en: "Core — her- or hin-?", ru: "Основа — her- или hin-?", uk: "Основа — her- чи hin-?"}
+items:
+  - id: mc-herein
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You are inside the flat and invite the mover in. Choose the full form.", ru: "Вы находитесь в квартире и приглашаете грузчика войти. Выберите полную форму.", uk: "Ви перебуваєте у квартирі й запрошуєте вантажника зайти. Оберіть повну форму."}
+    prompt: "Kommen Sie bitte ___."
+    options: ["herein", "hinaus", "hinunter"]
+    correct: 0
+    explain: {en: "The movement ends where the speaker is, so her- is required; the path is into the flat, so -ein gives herein.", ru: "Движение заканчивается у говорящего, поэтому нужна часть her-; путь ведёт внутрь, поэтому -ein даёт herein.", uk: "Рух закінчується біля мовця, тому потрібна частина her-; шлях веде всередину, тому -ein дає herein."}
+  - id: mc-hinaus
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You are in the room and ask somebody to leave it. Choose the full form.", ru: "Вы в комнате и просите человека выйти из неё. Выберите полную форму.", uk: "Ви в кімнаті й просите людину вийти з неї. Оберіть повну форму."}
+    prompt: "Geh bitte ___."
+    options: ["herein", "hinaus", "herauf"]
+    correct: 1
+    explain: {en: "The person moves away from the speaker, hence hin-, and out of the room, hence -aus: hinaus.", ru: "Человек движется от говорящего — hin-, и наружу из комнаты — -aus: hinaus.", uk: "Людина рухається від мовця — hin-, і назовні з кімнати — -aus: hinaus."}
+  - id: cloze-herauf-hinunter
+    outcomes: [wo-wohin-position]
+    type: cloze
+    focus: richtungsadverb-her-hin
+    instruction: {en: "Complete the directions from the speaker's position.", ru: "Дополните указания с учётом места говорящего.", uk: "Доповніть вказівки з огляду на місце мовця."}
+    text: "Ich stehe oben: Bringt die Kartons {{herauf}}! Danach bleibe ich hier und ihr tragt die leeren Kisten wieder {{hinunter}}."
+    explain: {en: "Up towards the speaker is herauf; down away from that speaker is hinunter. The vertical path alone does not choose her- or hin-.", ru: "Вверх к говорящему — herauf, вниз от него — hinunter. Одного направления вверх/вниз недостаточно для выбора her- или hin-.", uk: "Угору до мовця — herauf, униз від нього — hinunter. Самого напрямку вгору/вниз недостатньо для вибору her- чи hin-."}
+  - id: mc-kurzform
+    outcomes: [wo-wohin-position]
+    type: mc
+    focus: richtungsadverb-her-hin
+    instruction: {en: "Which spoken form can mean either herein or hinein when the situation is clear?", ru: "Какая разговорная форма может означать и herein, и hinein, если направление ясно из ситуации?", uk: "Яка розмовна форма може означати і herein, і hinein, якщо напрямок зрозумілий із ситуації?"}
+    prompt: "Komm rein! / Geh rein!"
+    options: ["rein", "raus", "rüber"]
+    correct: 0
+    explain: {en: "rein is the everyday reduction for movement in. It leaves the towards/away contrast to context; raus is out and rüber is across.", ru: "rein — обычная разговорная форма движения внутрь. Направление к/от говорящего уточняет контекст; raus значит наружу, rüber — на другую сторону.", uk: "rein — звичайна розмовна форма руху всередину. Напрямок до/від мовця уточнює контекст; raus означає назовні, rüber — на інший бік."}

@@ -1,0 +1,66 @@
+topic: wortbildung
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — Komposita und Nomenendungen"
+title: {en: "Core — compounds and noun endings", ru: "Основа — сложные слова и суффиксы существительных", uk: "Основа — складні слова й суфікси іменників"}
+items:
+  - id: mc-fahrplan-artikel
+    outcomes: [wortbildung-komposita]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the compound with the article from the final noun.", ru: "Дополните сложное слово артиклем последнего существительного.", uk: "Доповніть складне слово артиклем останнього іменника."}
+    text: "Fahrt + der Plan = {{der}} Fahrplan"
+    explain: {en: "The whole thing is a Plan, so it keeps der: der Fahrplan. Fahrt only specifies what kind of plan it is.", ru: "Всё слово обозначает Plan, поэтому сохраняет der: der Fahrplan. Fahrt лишь уточняет вид плана.", uk: "Усе слово позначає Plan, тому зберігає der: der Fahrplan. Fahrt лише уточнює вид плану."}
+  - id: mc-sommerfest-artikel
+    outcomes: [wortbildung-komposita]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the compound with its article.", ru: "Дополните сложное слово артиклем.", uk: "Доповніть складне слово артиклем."}
+    text: "Sommer + das Fest = {{das}} Sommerfest"
+    explain: {en: "The final member das Fest controls the compound: das Sommerfest. der Sommer does not transfer its gender forward.", ru: "Последняя часть das Fest управляет всем словом: das Sommerfest. Род der Sommer не переносится.", uk: "Остання частина das Fest керує всім словом: das Sommerfest. Рід der Sommer не переноситься."}
+  - id: match-komposita
+    outcomes: [wortbildung-komposita]
+    type: match
+    focus: wortbildung-nomen
+    instruction: {en: "Match the parts to a useful compound.", ru: "Соедините части в полезные сложные слова.", uk: "Поєднайте частини в корисні складні слова."}
+    pairs:
+      - {left: "Küche", right: "der Tisch → der Küchentisch"}
+      - {left: "Arbeit", right: "die Zeit → die Arbeitszeit"}
+      - {left: "Fahrt", right: "der Plan → der Fahrplan"}
+    explain: {en: "Read every result from the right: table, time, plan. That final noun supplies article and plural.", ru: "Читайте результат справа: стол, время, план. Последнее существительное даёт артикль и множественное число.", uk: "Читайте результат справа: стіл, час, план. Останній іменник дає артикль і множину."}
+  - id: cloze-lehrerin
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Form the female profession.", ru: "Образуйте женское название профессии.", uk: "Утворіть жіночу назву професії."}
+    text: "der Lehrer → die {{Lehrerin}}"
+    explain: {en: "The person suffix -in makes the feminine form and changes the article to die. The plural is Lehrerinnen.", ru: "Суффикс -in образует женскую форму и меняет артикль на die. Множественное число — Lehrerinnen.", uk: "Суфікс -in утворює жіночу форму й змінює артикль на die. Множина — Lehrerinnen."}
+  - id: cloze-fahrer
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Form the noun for the person who does the action.", ru: "Образуйте существительное для человека, который выполняет действие.", uk: "Утворіть іменник для людини, яка виконує дію."}
+    text: "fahren → der {{Fahrer}}"
+    explain: {en: "The productive ending -er names the person who performs the action: fahren → der Fahrer. The vowel change belongs to this common form and must be learned with it.", ru: "Продуктивный суффикс -er называет человека, который выполняет действие: fahren → der Fahrer. Изменение гласной относится к этой частой форме и запоминается вместе с ней.", uk: "Продуктивний суфікс -er називає людину, яка виконує дію: fahren → der Fahrer. Зміну голосної в цій частій формі треба запам’ятати разом із нею."}
+  - id: mc-anmeldung-genus
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the -ung noun with its article.", ru: "Дополните существительное на -ung артиклем.", uk: "Доповніть іменник на -ung артиклем."}
+    text: "{{Die}} Anmeldung ist online."
+    explain: {en: "Productive -ung nouns are feminine: die Anmeldung. The action anmelden has become a noun and is capitalised.", ru: "Продуктивные существительные на -ung женского рода: die Anmeldung. Действие anmelden стало существительным и пишется с большой буквы.", uk: "Продуктивні іменники на -ung жіночого роду: die Anmeldung. Дія anmelden стала іменником і пишеться з великої літери."}
+  - id: cloze-broetchen-plural
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the order. Singular and plural have the same noun form.", ru: "Дополните заказ. Форма существительного одинакова в единственном и множественном числе.", uk: "Доповніть замовлення. Форма іменника однакова в однині й множині."}
+    text: "Ein Brötchen für mich und zwei {{Brötchen}} für euch."
+    explain: {en: "-chen diminutives add no plural ending: ein Brötchen, zwei Brötchen. The number carries the contrast.", ru: "Уменьшительные на -chen не получают окончания множественного числа: ein Brötchen, zwei Brötchen. Разницу показывает число.", uk: "Зменшувальні на -chen не отримують закінчення множини: ein Brötchen, zwei Brötchen. Різницю показує число."}
+  - id: mc-kuchen-grenze
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Complete the whole word with its memorised article; it is not a diminutive.", ru: "Дополните цельное слово выученным артиклем; это не уменьшительное.", uk: "Доповніть цілісне слово вивченим артиклем; це не зменшувальне."}
+    text: "{{der}} Kuchen"
+    explain: {en: "The letters chen are not enough. Kuchen has no base *Ku* and no diminutive meaning, so it is the whole masculine word der Kuchen.", ru: "Одних букв chen недостаточно. У Kuchen нет основы *Ku* и уменьшительного значения, поэтому это цельное слово мужского рода der Kuchen.", uk: "Самих літер chen недостатньо. У Kuchen немає основи *Ku* й зменшувального значення, тому це цілісне слово чоловічого роду der Kuchen."}

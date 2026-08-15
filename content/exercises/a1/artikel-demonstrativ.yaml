@@ -1,0 +1,52 @@
+topic: artikel-genus
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — dieser, diese, dieses"
+title: {en: "Core — dieser, diese, dieses", ru: "Основа — dieser, diese, dieses", uk: "Основа — dieser, diese, dieses"}
+items:
+  - id: mc-dieser-tisch
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: mc
+    focus: demonstrativartikel
+    prompt: "___ Tisch ist frei."
+    options: ["Dieser", "Diese", "Dieses"]
+    correct: 0
+    explain: {en: "der Tisch gives the visible -er ending: dieser Tisch. The demonstrative replaces der; both never stand together.", ru: "der Tisch подсказывает видимое окончание -er: dieser Tisch. Указательное слово заменяет der; вместе они не стоят.", uk: "der Tisch підказує видиме закінчення -er: dieser Tisch. Вказівне слово замінює der; разом вони не стоять."}
+  - id: mc-diese-tasche
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: mc
+    focus: demonstrativartikel
+    prompt: "___ Tasche ist neu."
+    options: ["Dieser", "Diese", "Dieses"]
+    correct: 1
+    explain: {en: "die Tasche → diese Tasche. The -e carries the feminine nominative form you already know from die.", ru: "die Tasche → diese Tasche. Окончание -e показывает знакомую форму женского рода.", uk: "die Tasche → diese Tasche. Закінчення -e показує знайому форму жіночого роду."}
+  - id: cloze-dieses-buch
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: cloze
+    focus: demonstrativartikel
+    instruction: {en: "Complete with the demonstrative for das Buch.", ru: "Вставьте указательное слово для das Buch.", uk: "Вставте вказівне слово для das Buch."}
+    text: "{{Dieses}} Buch ist interessant."
+    explain: {en: "das Buch → dieses Buch. Neuter nominative carries -es.", ru: "das Buch → dieses Buch. Средний род в именительном падеже получает -es.", uk: "das Buch → dieses Buch. Середній рід у називному відмінку отримує -es."}
+  - id: table-nominativ
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: table
+    focus: demonstrativartikel
+    title: "dies- — Nominativ"
+    instruction: {en: "Fill in the missing forms.", ru: "Заполните пропущенные формы.", uk: "Заповніть пропущені форми."}
+    columns: ["dies-"]
+    rows:
+      - {label: "der Tisch", cells: [{answer: "dieser Tisch"}]}
+      - {label: "die Lampe", cells: [{answer: "diese Lampe"}]}
+      - {label: "das Fenster", cells: [{answer: "dieses Fenster"}]}
+      - {label: "die Stühle", cells: [{answer: "diese Stühle"}]}
+    explain: {en: "Copy the article ending: der/-er, die/-e, das/-es, plural die/-e.", ru: "Повторите окончание артикля: der/-er, die/-e, das/-es, множественное die/-e.", uk: "Повторіть закінчення артикля: der/-er, die/-e, das/-es, множина die/-e."}
+  - id: mc-kein-doppelartikel
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: mc
+    focus: demonstrativartikel
+    instruction: {en: "Which phrase is grammatical?", ru: "Какая группа слов грамматически правильна?", uk: "Яка група слів граматично правильна?"}
+    prompt: "this child"
+    options: ["dieses Kind", "dieses das Kind", "dies Kind"]
+    correct: 0
+    explain: {en: "dieses already occupies the article position and carries the neuter ending. A second article is impossible, and bare dies lacks the required ending.", ru: "dieses уже занимает место артикля и несёт окончание среднего рода. Второй артикль невозможен, а dies без окончания неполно.", uk: "dieses уже займає місце артикля й несе закінчення середнього роду. Другий артикль неможливий, а dies без закінчення неповне."}

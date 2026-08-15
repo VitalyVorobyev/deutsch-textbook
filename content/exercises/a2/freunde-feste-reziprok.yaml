@@ -1,0 +1,44 @@
+topic: freunde-feste
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — einander mit uns und sich"
+title: {en: "Core — each other with uns and sich", ru: "Основа — друг друга: uns и sich", uk: "Основа — одне одного: uns і sich"}
+items:
+  - id: mc-sehen-uns
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: mc
+    focus: reziprokpronomen
+    instruction: {en: "Nina and I meet tomorrow. Choose the German sentence.", ru: "Мы с Ниной увидимся завтра. Выберите немецкое предложение.", uk: "Ми з Ніною побачимося завтра. Оберіть німецьке речення."}
+    prompt: "Nina und ich: ___"
+    options: ["Wir sehen uns morgen.", "Wir sehen sich morgen.", "Wir sehen einander uns morgen."]
+    correct: 0
+    explain: {en: "The plural subject wir contains two people acting on each other, so the reciprocal object has the familiar form uns. German does not add einander as well. The form is identical to reflexive uns; the two-person situation supplies the reciprocal meaning.", ru: "Подлежащее wir включает двух людей, действующих друг на друга, поэтому взаимное дополнение имеет знакомую форму uns. Добавлять ещё einander не нужно. Форма совпадает с возвратным uns; взаимный смысл задаёт ситуация с двумя участниками.", uk: "Підмет wir охоплює двох людей, які діють одне на одного, тому взаємний додаток має знайому форму uns. Додавати ще einander не треба. Форма збігається зі зворотним uns; взаємний зміст задає ситуація з двома учасниками."}
+  - id: mc-reflexiv-oder-reziprok
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: mc
+    focus: reziprokpronomen
+    instruction: {en: "Which context makes sich mean each other?", ru: "В каком контексте sich означает друг друга?", uk: "У якому контексті sich означає одне одного?"}
+    prompt: "Welche Situation ist reziprok?"
+    options: ["Mara wäscht sich.", "Mara und Leo schreiben sich jeden Tag.", "Leo rasiert sich."]
+    correct: 1
+    explain: {en: "Mara and Leo can send messages in both directions, so sich means each other. With one singular person, wäscht sich and rasiert sich can only mean that the action returns to that same person.", ru: "Мара и Лео могут писать в обе стороны, поэтому sich значит «друг другу». При одном человеке wäscht sich и rasiert sich могут означать только действие, направленное на самого себя.", uk: "Мара й Лео можуть писати в обидва боки, тому sich означає «одне одному». За одного учасника wäscht sich і rasiert sich можуть означати лише дію, спрямовану на себе."}
+  - id: cloze-uns-sich
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: cloze
+    focus: reziprokpronomen
+    instruction: {en: "Complete the reciprocal pronouns.", ru: "Вставьте взаимные местоимения.", uk: "Вставте взаємні займенники."}
+    text: "Wir kennen {{uns}} seit dem Deutschkurs. Die beiden Familien besuchen {{sich}} oft."
+    explain: {en: "First person plural uses uns; third person plural uses sich. Both sentences describe a relationship running in both directions, not two separate acts of self-contact.", ru: "Первое лицо множественного числа требует uns, третье — sich. Оба предложения описывают отношение в двух направлениях, а не отдельные действия каждого на самого себя.", uk: "Перша особа множини потребує uns, третя — sich. Обидва речення описують взаємні стосунки, а не окремі дії кожного щодо себе."}
+  - id: translate-helfen
+    outcomes: [beziehungen-reziprok-beschreiben]
+    type: translate
+    focus: reziprokpronomen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We help each other before the party."
+    prompt_ru: "Перед праздником мы помогаем друг другу."
+    prompt_uk: "Перед святом ми допомагаємо одне одному."
+    answer: "Vor dem Fest helfen wir uns."
+    accept: ["Wir helfen uns vor dem Fest."]
+    key_tokens: ["helfen", "uns"]
+    explain: {en: "helfen governs the dative, but first-person plural uns has the same form in accusative and dative. The reciprocal meaning comes from the plural group and the two-way help; do not invent a separate German word for each other.", ru: "helfen требует Dativ, но у первого лица множественного числа форма uns одинакова в Akkusativ и Dativ. Взаимный смысл создают группа и помощь в обе стороны; отдельного обязательного слова для «друг другу» здесь нет.", uk: "helfen потребує Dativ, але в першій особі множини форма uns однакова в Akkusativ і Dativ. Взаємний зміст створюють група й допомога в обидва боки; окремого обов'язкового слова для «одне одному» тут немає."}

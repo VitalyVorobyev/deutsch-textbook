@@ -1,0 +1,43 @@
+topic: infinitiv-mit-zu
+role: probe
+title: {en: "Probe — purpose with um … zu", ru: "Проверка — цель с um … zu", uk: "Перевірка — мета з um … zu"}
+arming:
+  - a2/infinitiv-mit-zu::cloze-um-zu-rahmen
+  - a2/infinitiv-mit-zu::order-um-zu-arzt
+  - a2/infinitiv-mit-zu::mc-wozu-oder-warum
+  - a2/infinitiv-mit-zu::uebersetzen-um-zu-geschenk
+items:
+  - id: variant-a
+    outcomes: [zweck-um-zu]
+    type: translate
+    focus: um-zu-zweck
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I am calling to cancel the appointment."
+    prompt_ru: "Я звоню, чтобы отменить встречу."
+    prompt_uk: "Я телефоную, щоб скасувати зустріч."
+    answer: "Ich rufe an, um den Termin abzusagen."
+    key_tokens: ["rufe", "an", "um", "Termin", "abzusagen"]
+    explain: {en: "The caller performs both actions, so the shared subject allows um … zu. With separable absagen, zu sits inside: abzusagen.", ru: "Оба действия выполняет звонящий, поэтому общий субъект допускает um … zu. В отделяемом absagen частица zu стоит внутри: abzusagen.", uk: "Обидві дії виконує той, хто телефонує, тому спільний підмет допускає um … zu. У відокремлюваному absagen частка zu стоїть усередині: abzusagen."}
+  - id: variant-b
+    outcomes: [zweck-um-zu]
+    type: translate
+    focus: um-zu-zweck
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Mila studies every evening in order to pass the exam."
+    prompt_ru: "Мила занимается каждый вечер, чтобы сдать экзамен."
+    prompt_uk: "Міла навчається щовечора, щоб скласти іспит."
+    answer: "Mila lernt jeden Abend, um die Prüfung zu bestehen."
+    key_tokens: ["um", "Prüfung", "zu", "bestehen"]
+    explain: {en: "The second action is Mila's purpose and shares her subject, so it takes the two-ended frame um … zu.", ru: "Второе действие — цель Милы и имеет тот же субъект, поэтому нужна двухчастная рамка um … zu.", uk: "Друга дія — мета Міли й має той самий підмет, тому потрібна двочленна рамка um … zu."}
+  - id: variant-c
+    outcomes: [zweck-um-zu]
+    type: translate
+    focus: um-zu-zweck
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We take the train to avoid traffic."
+    prompt_ru: "Мы едем поездом, чтобы избежать пробок."
+    prompt_uk: "Ми їдемо потягом, щоб уникнути заторів."
+    answer: "Wir fahren mit dem Zug, um den Verkehr zu vermeiden."
+    accept: ["Wir nehmen den Zug, um den Verkehr zu vermeiden."]
+    key_tokens: ["Zug", "um", "Verkehr", "zu", "vermeiden"]
+    explain: {en: "One wir performs both actions. vermeiden is inseparable, so zu remains a separate word before the infinitive.", ru: "Одно wir выполняет оба действия. vermeiden — неотделяемый глагол, поэтому zu остаётся отдельным словом перед инфинитивом.", uk: "Одне wir виконує обидві дії. vermeiden — невідокремлюване дієслово, тому zu лишається окремим словом перед інфінітивом."}

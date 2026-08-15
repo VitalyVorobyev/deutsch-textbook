@@ -1,0 +1,41 @@
+topic: verbindungen-folgen
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — darum und daher"
+title: {en: "Core — darum and daher", ru: "Основа — darum и daher", uk: "Основа — darum і daher"}
+items:
+  - id: mc-darum-v2
+    outcomes: [folge-mit-register-ausdruecken]
+    type: mc
+    focus: darum-daher
+    instruction: {en: "Choose the sentence with correct verb-second order.", ru: "Выберите предложение с правильным порядком Verbzweit.", uk: "Оберіть речення з правильним порядком Verbzweit."}
+    prompt: "Der Bus fällt aus."
+    options: ["Darum nehme ich die Bahn.", "Darum ich nehme die Bahn.", "Darum ich die Bahn nehme."]
+    correct: 0
+    explain: {en: "darum is an adverb in position 1, so the finite verb nehme follows immediately and the subject comes third.", ru: "darum — наречие на позиции 1, поэтому спрягаемое nehme идёт сразу после него, а подлежащее — третьим.", uk: "darum — прислівник на позиції 1, тому відмінюване nehme іде одразу після нього, а підмет — третім."}
+  - id: mc-richtung
+    outcomes: [folge-mit-register-ausdruecken]
+    type: mc
+    focus: darum-daher
+    instruction: {en: "Choose the logical cause-to-result order.", ru: "Выберите логичный порядок от причины к следствию.", uk: "Оберіть логічний порядок від причини до наслідку."}
+    prompt: "Welche Verbindung ist logisch?"
+    options: ["Es regnet stark. Darum bleiben wir zu Hause.", "Wir bleiben zu Hause. Darum regnet es stark.", "Darum es stark regnet, bleiben wir zu Hause."]
+    correct: 0
+    explain: {en: "Heavy rain can cause the decision to stay home, not the reverse. darum introduces the result and keeps main-clause V2 order.", ru: "Сильный дождь может стать причиной остаться дома, а не наоборот. darum вводит следствие и сохраняет Verbzweit главного предложения.", uk: "Сильний дощ може стати причиною лишитися вдома, а не навпаки. darum вводить наслідок і зберігає Verbzweit головного речення."}
+  - id: mc-register
+    outcomes: [folge-mit-register-ausdruecken]
+    type: mc
+    focus: darum-daher
+    instruction: {en: "A formal notice needs the more typical written option. Choose it; the spoken alternative remains grammatical.", ru: "Для официального объявления выберите более типичный письменный вариант; разговорная альтернатива остаётся грамматичной.", uk: "Для офіційного оголошення оберіть типовішу письмову форму; розмовна альтернатива лишається граматичною."}
+    prompt: "Die Heizung wird repariert. ___ bleibt das Büro geschlossen."
+    options: ["Daher", "Darum", "Weil"]
+    correct: 0
+    explain: {en: "daher is especially natural in a written explanatory notice. Darum would also be grammatical; weil would need a subordinate clause and cannot fill this frame unchanged.", ru: "daher особенно естественно в письменном объяснительном объявлении. Darum тоже грамматично; weil потребовало бы придаточного и не может без изменений заполнить эту рамку.", uk: "daher особливо природне в письмовому пояснювальному оголошенні. Darum теж граматичне; weil потребувало б підрядного й не може без змін заповнити цю рамку."}
+  - id: cloze-zwei-register
+    outcomes: [folge-mit-register-ausdruecken]
+    type: cloze
+    focus: darum-daher
+    instruction: {en: "Complete the conversational and written continuations.", ru: "Дополните разговорное и письменное продолжения.", uk: "Доповніть розмовне й письмове продовження."}
+    text: "Im Gespräch: Ich bin müde. {{Darum gehe}} ich früh ins Bett. Im Bericht: Die Nachfrage ist gesunken. {{Daher wird}} das Angebot verkleinert."
+    explain: {en: "Both adverbs trigger V2. Darum is the conversational choice here; daher fits the report. The grammatical frame is identical.", ru: "Оба наречия вызывают Verbzweit. Darum здесь разговорный выбор, daher подходит отчёту. Грамматическая рамка одинакова.", uk: "Обидва прислівники запускають Verbzweit. Darum тут розмовний вибір, daher пасує звіту. Граматична рамка однакова."}

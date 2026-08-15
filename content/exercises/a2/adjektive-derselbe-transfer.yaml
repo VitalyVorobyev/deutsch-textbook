@@ -1,0 +1,54 @@
+topic: adjektive-deklination
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Identität in Alltag und Arbeit"
+title: {en: "Transfer — identity in daily life and work", ru: "Перенос — тождество в быту и на работе", uk: "Перенесення — тотожність у побуті та на роботі"}
+items:
+  - id: translate-kollege
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We are speaking with the same colleague."
+    prompt_ru: "Мы разговариваем с одним и тем же коллегой."
+    prompt_uk: "Ми розмовляємо з тим самим колегою."
+    answer: "Wir sprechen mit demselben Kollegen."
+    key_tokens: ["sprechen", "mit", "demselben", "Kollegen"]
+    explain: {en: "mit selects the dative; one identical masculine colleague gives demselben Kollegen. The noun also shows its n-declension form.", ru: "mit требует Dativ; один и тот же коллега мужского рода даёт demselben Kollegen. Существительное также показывает слабое склонение.", uk: "mit потребує Dativ; той самий колега чоловічого роду дає demselben Kollegen. Іменник також показує слабку відміну."}
+  - id: translate-zimmer
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Today I am working in the same room as yesterday."
+    prompt_ru: "Сегодня я работаю в той же комнате, что и вчера."
+    prompt_uk: "Сьогодні я працюю в тій самій кімнаті, що й учора."
+    answer: "Heute arbeite ich in demselben Zimmer wie gestern."
+    accept: ["Ich arbeite heute in demselben Zimmer wie gestern."]
+    key_tokens: ["heute", "demselben", "Zimmer", "gestern"]
+    explain: {en: "Static in governs the dative; neuter das Zimmer therefore becomes in demselben Zimmer. The point is one identical room across two days.", ru: "Статическое in требует Dativ; среднее das Zimmer превращается в in demselben Zimmer. Речь идёт об одной комнате в два разных дня.", uk: "Статичне in потребує Dativ; середнє das Zimmer перетворюється на in demselben Zimmer. Йдеться про ту саму кімнату у два різні дні."}
+  - id: translate-projekt
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Both teams are working on the same project."
+    prompt_ru: "Обе команды работают над одним и тем же проектом."
+    prompt_uk: "Обидві команди працюють над тим самим проєктом."
+    answer: "Beide Teams arbeiten an demselben Projekt."
+    key_tokens: ["Beide", "Teams", "arbeiten", "an", "demselben", "Projekt"]
+    explain: {en: "One shared project requires derselbe. Static arbeiten an governs the dative here, and neuter das Projekt becomes demselben Projekt.", ru: "Один общий проект требует derselbe. Устойчивое arbeiten an здесь требует Dativ, среднее das Projekt превращается в demselben Projekt.", uk: "Один спільний проєкт потребує derselbe. Стале arbeiten an тут потребує Dativ, середнє das Projekt перетворюється на demselben Projekt."}
+  - id: write-gemeinsame-sache
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: write
+    focus: derselbe-identitaet
+    prompt: {en: "Write two sentences: one about one shared object, another about two merely similar objects.", ru: "Напишите два предложения: одно об одном общем предмете, другое о двух лишь похожих предметах.", uk: "Напишіть два речення: одне про одну спільну річ, друге про дві лише схожі речі."}
+    goal: {en: "Make the identity contrast recoverable without a translation note.", ru: "Сделайте различие тождества понятным без примечания к переводу.", uk: "Зробіть різницю тотожності зрозумілою без примітки до перекладу."}
+    requirements:
+      - {en: "Use an inflected form of derselbe.", ru: "Используйте изменённую форму derselbe.", uk: "Використайте відмінювану форму derselbe."}
+      - {en: "Contrast it with gleich or a plural context.", ru: "Противопоставьте её gleich или контексту множественного числа.", uk: "Протиставте її gleich або контексту множини."}
+    min_words: 14
+    model_answer: "Meine Schwester und ich benutzen denselben Laptop. Wir haben aber nur gleiche Taschen: Jede hat ihre eigene."
+    model_translation: {en: "My sister and I use the same laptop. Our matching bags, however, belong to each of us separately.", ru: "Мы с сестрой пользуемся одним ноутбуком. Но наши одинаковые сумки принадлежат каждой из нас отдельно.", uk: "Ми із сестрою користуємося тим самим ноутбуком. Але наші однакові сумки належать кожній із нас окремо."}
+    explain: {en: "denselben Laptop identifies one object; gleiche Taschen explicitly leaves two matching objects. The noun roles select the endings.", ru: "denselben Laptop называет один предмет; gleiche Taschen прямо оставляет два одинаковых предмета. Окончания задают роли существительных.", uk: "denselben Laptop називає одну річ; gleiche Taschen прямо залишає дві однакові речі. Закінчення задають ролі іменників."}

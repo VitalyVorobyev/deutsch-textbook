@@ -1,0 +1,46 @@
+topic: wohnen-umzug
+role: probe
+title: {en: "Probe — spatial boundary and path", ru: "Проверка — пространственная граница и путь", uk: "Перевірка — просторова межа та шлях"}
+arming:
+  - a2/wohnen-raumgrenzen::mc-ausserhalb
+  - a2/wohnen-raumgrenzen::cloze-gegen
+  - a2/wohnen-raumgrenzen::cloze-um-herum
+  - a2/wohnen-raumgrenzen::mc-kein-wechselkasus
+  - a2/wohnen-raumgrenzen-transfer::translate-oeffnungszeiten
+  - a2/wohnen-raumgrenzen-transfer::translate-zaun
+  - a2/wohnen-raumgrenzen-transfer::translate-bahnhof-herum
+items:
+  - id: variant-a
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The campsite is outside the village."
+    prompt_ru: "Кемпинг находится за пределами деревни."
+    prompt_uk: "Кемпінг розташований за межами села."
+    answer: "Der Campingplatz liegt außerhalb des Dorfes."
+    key_tokens: ["Campingplatz", "außerhalb", "des", "Dorfes"]
+    explain: {en: "The village is the crossed boundary; außerhalb governs the genitive des Dorfes.", ru: "Деревня — пересекаемая граница; außerhalb требует Genitiv des Dorfes.", uk: "Село — межа; außerhalb потребує Genitiv des Dorfes."}
+  - id: variant-b
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate the contact path into German.", ru: "Переведите направление к контакту на немецкий.", uk: "Перекладіть напрямок до контакту німецькою."}
+    prompt_en: "The shopping trolley rolls against the car."
+    prompt_ru: "Тележка катится и ударяется о машину."
+    prompt_uk: "Візок котиться й ударяється об автомобіль."
+    answer: "Der Einkaufswagen fährt gegen das Auto."
+    accept: ["Der Einkaufswagen rollt gegen das Auto."]
+    key_tokens: ["Einkaufswagen", "gegen", "das", "Auto"]
+    explain: {en: "gegen always takes the accusative; neuter das Auto keeps das in the accusative.", ru: "gegen всегда требует Akkusativ; среднее das Auto сохраняет das в Akkusativ.", uk: "gegen завжди потребує Akkusativ; середнє das Auto зберігає das в Akkusativ."}
+  - id: variant-c
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate into German using the full path frame.", ru: "Переведите на немецкий, используя полную рамку пути.", uk: "Перекладіть німецькою, використовуючи повну рамку шляху."}
+    prompt_en: "We cycle around the lake."
+    prompt_ru: "Мы едем на велосипедах вокруг озера."
+    prompt_uk: "Ми їдемо велосипедами навколо озера."
+    answer: "Wir fahren mit dem Fahrrad um den See herum."
+    key_tokens: ["fahren", "um", "den", "See", "herum"]
+    explain: {en: "um and herum form the path frame; masculine der See becomes the accusative den See.", ru: "um и herum образуют рамку пути; мужское der See становится Akkusativ den See.", uk: "um і herum утворюють рамку шляху; чоловіче der See стає Akkusativ den See."}

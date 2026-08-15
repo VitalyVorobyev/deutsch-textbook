@@ -1,0 +1,40 @@
+topic: adjektive-deklination
+role: probe
+title: {en: "Probe — adjectives after sein", ru: "Проверка — прилагательные после sein", uk: "Перевірка — прикметники після sein"}
+arming:
+  - a2/adjektive-deklination::cloze-praedikativ-oder-attributiv
+  - a2/adjektive-deklination-produktion::mc-diskriminierung-ist-oder-nomen
+items:
+  - id: variant-a
+    outcomes: [adjektiv-beschreiben]
+    type: translate
+    focus: adjektiv-praedikativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The new flat is bright."
+    prompt_ru: "Новая квартира светлая."
+    prompt_uk: "Нова квартира світла."
+    answer: "Die neue Wohnung ist hell."
+    key_tokens: ["neue", "Wohnung", "ist", "hell"]
+    explain: {en: "neue stands before the noun and declines; hell stands after ist and has no ending.", ru: "neue стоит перед существительным и склоняется; hell стоит после ist без окончания.", uk: "neue стоїть перед іменником і відмінюється; hell стоїть після ist без закінчення."}
+  - id: variant-b
+    outcomes: [adjektiv-beschreiben]
+    type: translate
+    focus: adjektiv-praedikativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "After the repair, the door remains open."
+    prompt_ru: "После ремонта дверь остаётся открытой."
+    prompt_uk: "Після ремонту двері залишаються відчиненими."
+    answer: "Nach der Reparatur bleibt die Tür offen."
+    key_tokens: ["bleibt", "Tür", "offen"]
+    explain: {en: "After bleiben, the adjective describes the subject and takes no ending: offen.", ru: "После bleiben прилагательное описывает подлежащее и не получает окончания: offen.", uk: "Після bleiben прикметник описує підмет і не має закінчення: offen."}
+  - id: variant-c
+    outcomes: [adjektiv-beschreiben]
+    type: translate
+    focus: adjektiv-praedikativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The rooms are becoming quieter."
+    prompt_ru: "Комнаты становятся тише."
+    prompt_uk: "Кімнати стають тихішими."
+    answer: "Die Zimmer werden ruhiger."
+    key_tokens: ["Zimmer", "werden", "ruhiger"]
+    explain: {en: "ruhiger is predicative after werden and therefore receives no declension ending on top of its comparative -er.", ru: "ruhiger употреблено предикативно после werden и не получает окончания склонения поверх сравнительного -er.", uk: "ruhiger ужито предикативно після werden і не має закінчення відмінювання поверх порівняльного -er."}

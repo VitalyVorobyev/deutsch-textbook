@@ -1,0 +1,43 @@
+topic: praesens-wortstellung
+role: probe
+title: {en: "Probe — place nicht", ru: "Проверка — позиция nicht", uk: "Перевірка — позиція nicht"}
+arming:
+  - a1/praesens-fragen-verneinung::mc-nicht-satzende
+  - a1/praesens-fragen-verneinung::mc-nicht-adjektiv
+  - a1/praesens-fragen-verneinung::uebersetzen-arbeitet-nicht
+items:
+  - id: variant-a
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I am not working today."
+    prompt_ru: "Сегодня я не работаю."
+    prompt_uk: "Сьогодні я не працюю."
+    answer: "Ich arbeite heute nicht."
+    accept: ["Heute arbeite ich nicht."]
+    key_tokens: ["arbeite", "nicht"]
+    explain: {en: "nicht does not stand in front of the conjugated verb. With the whole activity negated, it closes the sentence: Ich arbeite heute nicht.", ru: "nicht не ставится перед спрягаемым глаголом. При отрицании всего действия оно завершает предложение: Ich arbeite heute nicht.", uk: "nicht не ставиться перед відмінюваним дієсловом. Коли заперечується вся дія, воно завершує речення: Ich arbeite heute nicht."}
+  - id: variant-b
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The room is not large."
+    prompt_ru: "Комната небольшая."
+    prompt_uk: "Кімната невелика."
+    answer: "Das Zimmer ist nicht groß."
+    key_tokens: ["ist", "nicht", "groß"]
+    explain: {en: "Before a predicative adjective, nicht stands directly in front of what it negates: nicht groß. sein remains in position 2.", ru: "Перед сказуемым-прилагательным nicht стоит прямо перед тем, что отрицает: nicht groß. sein остаётся на позиции 2.", uk: "Перед присудковим прикметником nicht стоїть безпосередньо перед тим, що заперечує: nicht groß. sein лишається на позиції 2."}
+  - id: variant-c
+    outcomes: [praesens-verneinung]
+    type: translate
+    focus: nicht-position
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We are not going to Berlin tomorrow."
+    prompt_ru: "Завтра мы не едем в Берлин."
+    prompt_uk: "Завтра ми не їдемо до Берліна."
+    answer: "Wir fahren morgen nicht nach Berlin."
+    accept: ["Morgen fahren wir nicht nach Berlin."]
+    key_tokens: ["fahren", "nicht", "Berlin"]
+    explain: {en: "The destination is the denied element, so nicht stands directly before nach Berlin. The verb still occupies position 2.", ru: "Отрицается направление, поэтому nicht стоит прямо перед nach Berlin. Глагол по-прежнему занимает позицию 2.", uk: "Заперечується напрямок, тому nicht стоїть безпосередньо перед nach Berlin. Дієслово й далі займає позицію 2."}

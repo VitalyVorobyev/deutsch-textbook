@@ -1,0 +1,43 @@
+topic: wortbildung
+role: probe
+title: {en: "Probe — compound nouns", ru: "Проверка — сложные существительные", uk: "Перевірка — складні іменники"}
+arming:
+  - a1/wortbildung-nomen::mc-fahrplan-artikel
+  - a1/wortbildung-nomen::mc-sommerfest-artikel
+  - a1/wortbildung-nomen::match-komposita
+  - a1/wortbildung-anwenden::translate-arbeitszeit
+items:
+  - id: variant-a
+    outcomes: [wortbildung-komposita]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the compound Schlafzimmer.", ru: "Используйте сложное слово Schlafzimmer.", uk: "Використайте складне слово Schlafzimmer."}
+    prompt_en: "The bedroom is small."
+    prompt_ru: "Спальня маленькая."
+    prompt_uk: "Спальня маленька."
+    answer: "Das Schlafzimmer ist klein."
+    key_tokens: ["Das", "Schlafzimmer"]
+    explain: {en: "schlafen + das Zimmer → das Schlafzimmer. The whole thing is a Zimmer, so the final noun provides das.", ru: "schlafen + das Zimmer → das Schlafzimmer. Всё слово обозначает Zimmer, поэтому последняя часть даёт das.", uk: "schlafen + das Zimmer → das Schlafzimmer. Усе слово позначає Zimmer, тому остання частина дає das."}
+  - id: variant-b
+    outcomes: [wortbildung-komposita]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the compound Bushaltestelle.", ru: "Используйте сложное слово Bushaltestelle.", uk: "Використайте складне слово Bushaltestelle."}
+    prompt_en: "The bus stop is nearby."
+    prompt_ru: "Автобусная остановка рядом."
+    prompt_uk: "Автобусна зупинка поруч."
+    answer: "Die Bushaltestelle ist in der Nähe."
+    accept: ["Die Bushaltestelle ist nah."]
+    key_tokens: ["Die", "Bushaltestelle"]
+    explain: {en: "Bus + die Haltestelle → die Bushaltestelle. The final noun names the place and supplies die.", ru: "Bus + die Haltestelle → die Bushaltestelle. Последнее существительное называет место и даёт die.", uk: "Bus + die Haltestelle → die Bushaltestelle. Останній іменник називає місце й дає die."}
+  - id: variant-c
+    outcomes: [wortbildung-komposita]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the compound Wörterbuch.", ru: "Используйте сложное слово Wörterbuch.", uk: "Використайте складне слово Wörterbuch."}
+    prompt_en: "The dictionary is new."
+    prompt_ru: "Словарь новый."
+    prompt_uk: "Словник новий."
+    answer: "Das Wörterbuch ist neu."
+    key_tokens: ["Das", "Wörterbuch"]
+    explain: {en: "Wörter + das Buch → das Wörterbuch. It is a kind of Buch, so the compound inherits das.", ru: "Wörter + das Buch → das Wörterbuch. Это вид Buch, поэтому сложное слово наследует das.", uk: "Wörter + das Buch → das Wörterbuch. Це вид Buch, тому складне слово успадковує das."}

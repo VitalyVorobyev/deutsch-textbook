@@ -218,3 +218,29 @@ items:
       en: "A full turn at the doctor's has three parts, and you can build all three from this unit. How you feel: Ich fühle mich nicht gut — with the reflexive mich, which is not optional. What hurts: Mir tut der Hals weh — the body part is the subject and you are in the dative. Since when: seit Freitag. Then answer the advice like a person, not a form: agree (dann bleibe ich zu Hause — note that dann pushes the verb to position 2 and the subject behind it) and ask the one practical question you actually need answered. Say it a second time and listen for mir and mich."
       ru: "Полноценная реплика в кабинете состоит из трёх частей, и все три можно построить средствами этого урока. Самочувствие: Ich fühle mich nicht gut — с возвратным mich, которое обязательно. Что болит: Mir tut der Hals weh — часть тела подлежащее, вы в Dativ. С каких пор: seit Freitag. А дальше отвечайте на совет как человек, а не как анкета: согласитесь (dann bleibe ich zu Hause — обратите внимание, что после dann глагол уходит на второе место, а подлежащее за него) и задайте тот практический вопрос, ответ на который вам действительно нужен. Произнесите всё второй раз и вслушайтесь в mir и mich."
       uk: "Повноцінна репліка в кабінеті складається з трьох частин, і всі три можна побудувати засобами цього уроку. Самопочуття: Ich fühle mich nicht gut — зі зворотним mich, яке обов'язкове. Що болить: Mir tut der Hals weh — частина тіла підмет, ви в Dativ. Відколи: seit Freitag. А далі відповідайте на пораду як людина, а не як анкета: погодьтеся (dann bleibe ich zu Hause — зверніть увагу, що після dann дієслово йде на друге місце, а підмет за нього) і поставте те практичне питання, відповідь на яке вам справді потрібна. Вимовте все вдруге і вслухайтеся в mir та mich."
+
+  - id: sprechen-praxis-voicemail
+    outcomes: [beschwerden-beschreiben]
+    type: speak
+    mode: spoken-production
+    prompt:
+      en: "The surgery is closed and its answerphone asks you to describe your problem. Leave a short voice message: identify yourself, describe two symptoms, say since when you have had them and leave your phone number."
+      ru: "Поликлиника закрыта, и автоответчик просит описать проблему. Оставьте короткое голосовое сообщение: представьтесь, назовите два симптома, скажите, с каких пор они длятся, и оставьте номер телефона."
+      uk: "Поліклініка зачинена, і автовідповідач просить описати проблему. Залиште коротке голосове повідомлення: відрекомендуйтеся, назвіть два симптоми, скажіть, відколи вони тривають, і залиште номер телефону."
+    goal:
+      en: "Give a complete, understandable symptom report without an interlocutor supplying the next question."
+      ru: "Дайте полное и понятное описание симптомов без подсказок собеседника."
+      uk: "Дайте повний і зрозумілий опис симптомів без підказок співрозмовника."
+    checklist:
+      - {en: "I gave my name and telephone number.", ru: "Я назвал(а) имя и номер телефона.", uk: "Я назвав (назвала) ім'я й номер телефону."}
+      - {en: "I described two symptoms with natural frames such as Ich habe … or Mir tut … weh.", ru: "Я описал(а) два симптома естественными оборотами вроде Ich habe … или Mir tut … weh.", uk: "Я описав (описала) два симптоми природними зворотами на кшталт Ich habe … або Mir tut … weh."}
+      - {en: "I used seit + present tense for a symptom that is still present.", ru: "Для продолжающегося симптома я использовал(а) seit + Präsens.", uk: "Для симптому, що триває, я використав (використала) seit + Präsens."}
+    model_answer: "Guten Tag, hier spricht Marina Kovalenko. Ich habe seit gestern Fieber, und mir tut der Hals weh. Außerdem huste ich viel. Bitte rufen Sie mich unter 0176 438 920 an. Vielen Dank."
+    model_translation:
+      en: "Hello, this is Marina Kovalenko. I have had a fever since yesterday and my throat hurts. I am also coughing a lot. Please call me on 0176 438 920. Thank you."
+      ru: "Здравствуйте, говорит Марина Коваленко. Со вчерашнего дня у меня температура и болит горло. Кроме того, я сильно кашляю. Перезвоните мне, пожалуйста, по номеру 0176 438 920. Спасибо."
+      uk: "Добрий день, говорить Марина Коваленко. Від учора в мене температура й болить горло. Крім того, я сильно кашляю. Передзвоніть мені, будь ласка, за номером 0176 438 920. Дякую."
+    explain:
+      en: "Unlike the consultation dialogue, a voicemail must be self-contained. The listener needs identity, symptoms, duration and a callback route. Keep an ongoing symptom in the present with seit: Ich habe seit gestern Fieber."
+      ru: "В отличие от диалога на приёме, голосовое сообщение должно быть самодостаточным. Слушателю нужны имя, симптомы, длительность и способ перезвонить. Продолжающийся симптом остаётся в Präsens с seit: Ich habe seit gestern Fieber."
+      uk: "На відміну від діалогу на прийомі, голосове повідомлення має бути самодостатнім. Слухачеві потрібні ім'я, симптоми, тривалість і спосіб передзвонити. Симптом, що триває, лишається в Präsens із seit: Ich habe seit gestern Fieber."

@@ -1,0 +1,44 @@
+topic: gesundheit-arzttermin
+role: probe
+title: {en: "Probe — dative reflexive with body parts", ru: "Проверка — возвратный Dativ с частями тела", uk: "Перевірка — зворотний Dativ із частинами тіла"}
+arming:
+  - a2/gesundheit-arzttermin-reflexiv-dativ::table-mich-oder-mir
+  - a2/gesundheit-arzttermin-reflexiv-dativ::cloze-koerperpflege
+  - a2/gesundheit-arzttermin-reflexiv-dativ::mc-meine-haende
+  - a2/gesundheit-arzttermin-reflexiv-dativ::uebersetzen-zaehne-putzen
+  - a2/gesundheit-arzttermin-reflexiv-dativ::uebersetzen-fuss-verletzt
+items:
+  - id: variant-a
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I wash my hands before eating."
+    prompt_ru: "Я мою руки перед едой."
+    prompt_uk: "Я мию руки перед їжею."
+    answer: "Ich wasche mir vor dem Essen die Hände."
+    accept: ["Vor dem Essen wasche ich mir die Hände."]
+    key_tokens: ["wasche", "mir", "die", "Hände"]
+    explain: {en: "die Hände is the accusative object, so the affected person becomes dative mir; the body part normally keeps the definite article.", ru: "die Hände — дополнение в Akkusativ, поэтому затронутый человек получает Dativ mir; часть тела обычно сохраняет определённый артикль.", uk: "die Hände — додаток в Akkusativ, тому заторкнута особа має Dativ mir; частина тіла зазвичай зберігає означений артикль."}
+  - id: variant-b
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Anna cut her finger while cooking."
+    prompt_ru: "Во время готовки Анна порезала палец."
+    prompt_uk: "Під час готування Анна порізала палець."
+    answer: "Beim Kochen hat Anna sich den Finger geschnitten."
+    key_tokens: ["Anna", "sich", "den", "Finger", "geschnitten"]
+    explain: {en: "den Finger already fills the accusative slot, so Anna is the affected dative person. Third person uses sich in both cases, but the two-object structure proves it is dative here.", ru: "den Finger уже занимает позицию Akkusativ, поэтому Anna — затронутый человек в Dativ. В третьем лице обе формы выглядят как sich, но структура с двумя дополнениями доказывает Dativ.", uk: "den Finger уже займає позицію Akkusativ, тому Anna — заторкнута особа в Dativ. У третій особі обидві форми виглядають як sich, але структура з двома додатками доводить Dativ."}
+  - id: variant-c
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Did you hurt your knee?"
+    prompt_ru: "Ты повредил колено?"
+    prompt_uk: "Ти пошкодив коліно?"
+    answer: "Hast du dir das Knie verletzt?"
+    key_tokens: ["Hast", "du", "dir", "das", "Knie", "verletzt"]
+    explain: {en: "das Knie is the accusative object; du therefore becomes dative dir.", ru: "das Knie — дополнение в Akkusativ; поэтому du превращается в Dativ dir.", uk: "das Knie — додаток в Akkusativ; тому du перетворюється на Dativ dir."}

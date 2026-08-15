@@ -1,9 +1,10 @@
 # A2 linguistic QA ledger
 
-Status: **30 of 33 manifest points linguistically signed off; zero open high/medium findings**.
-The three newest points (`lokale-praepositionen-ortstyp`, `verbrektion-kasus`,
-`zeitangaben-system`) joined the manifest on 2026-08-12 with the prepositions strand and have not
-been through this ledger's pass; they are the three open rows.
+Status: **all 46 current productive-A2 inventory points have recorded linguistic/profile evidence;
+zero open high/medium findings**. The topic-wide pass of 2026-08-15 closed the three rows that this
+ledger had still marked open and reconciled the eight exact DTZ-tail points added after its first
+30-row wave. `lokale-praepositionen-ortstyp` is now an A1 productive point and is covered by the A1
+owner-topic pass; it remains here only to close the historical A2 queue explicitly.
 Structural coverage, corpus correctness and learner mastery remain three separate claims.
 
 This ledger will become the linguistic sign-off that structural coverage cannot provide. A signed-off row means
@@ -45,17 +46,18 @@ named high-risk findings but did not yet justify marking every unaffected row co
 | `indefinitpronomen` | corrected | `man` is subject-only with `einen`/`einem` replacements; `jemand`/`niemand` case variants and neutral standard negation are represented without false logical rules. |
 | `genitiv-eigenname` | corrected | `von + Dativ` is safe productive advice, not the only grammar; common-noun genitive is shown receptively. |
 | `passiv-praesens` | corrected | A2 remains receptive and process-passive-focused; `werden` is contrasted with state/result `sein`, and the `man` bridge is not universalized. |
-| `lokale-praepositionen-ortstyp` | open | Added 2026-08-12 with `ort-richtung-praepositionen`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
-| `verbrektion-kasus` | open | Added 2026-08-12 with `verben-mit-kasus`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
-| `zeitangaben-system` | open | Added 2026-08-12 with `zeit-praepositionen`. Not yet read in EN/RU/UK against its article, items and reading — the row stays `open` until it has been. |
+| `lokale-praepositionen-ortstyp` | verified | The A1 owner article, core/application sets, reading and delayed family were read in the A1 topic wave. Place type selects the neutral productive preposition; visible movement is not used as a case shortcut. |
+| `verbrektion-kasus` | corrected | The article, pretest, core/application, placement reuse, reading and probe were checked. The false “closed list of ten dative verbs” and accusative-by-elimination instruction were removed; unfamiliar valency is checked, and the taught verbs form a productive A2 core learned as frames. |
+| `zeitangaben-system` | corrected | The owner article, five functional sets, reading, placement item and probe family were checked. The pass corrected the false claim that only bare *am Abend* can name one particular evening and retained the actual system boundaries: habitual adverbs, calendar frames, thresholds, intervals and prepositionless accusative time phrases. |
 
 ## Corpus inventory
 
-The sign-off surface is larger than the 30-row manifest: 22 A2 topics, 105 exercise sets with 750
-items, and 35 A2 readings — counted at the 2026-07-18 pass, before the prepositions unit was
-appended to the A2 spine. The exercise roles are 50 practice sets, 24 probe families, 22 pretests,
-8 drills and 1 checkpoint. Verification proceeds in bounded topic/point batches and records the
-files checked, so a green validator cannot substitute for a linguistic read.
+The historical 2026-07-18 surface was 22 topics, 105 exercise sets with 750 items and 35 readings.
+The current 2026-08-15 surface is 24 topics, 114 teaching/remediation sets with 821 items and 42
+readings, plus pretests and delayed families. The reproducible topic/set figures come from
+`bun scripts/activity-audit.ts --json`; the graph-backed topic audit supplies the reading count.
+Verification proceeds in bounded topic/point batches and records the files checked, so a green
+validator cannot substitute for a linguistic read.
 
 ## Findings closed in this pass
 
@@ -68,6 +70,26 @@ files checked, so a green validator cannot substitute for a linguistic read.
   recovery task. Existing drills continue to own the other persistent foci.
 
 ## Corpus pass log
+
+### 2026-08-15 — complete 24-topic profile pass
+
+Read every current A2 owner profile across article, teaching/remediation sets, pretest, delayed
+families, readings, listening script, document/discovery surfaces and owned vocabulary. The
+per-topic artifact decisions and dense-set rulings are recorded in
+[`topic-quality-audit.md`](../curriculum/topic-quality-audit.md).
+
+The pass found defects that the zero diagnostics queue did not:
+
+- retired an address-registration recording that had silently introduced a Personalausweis result
+  and fee; the corrected TTS exercise remains live while exact replacement audio awaits human QA;
+- replaced a false closed dative-verb list with individually learned lexical frames and returned
+  the substantively changed `verben-mit-kasus` topic to `draft`;
+- removed universal stranger/`Sie`, spoken-past and movement/`sein` rules while preserving safe A2
+  production defaults;
+- corrected the habitual-versus-specific evening boundary and a remaining false ban on
+  *bin gewesen/habe gehabt*;
+- reviewed all ten A2 topics above the five-set density trigger; every retained set owns a distinct
+  activity, stage and learner decision or medium.
 
 ### 2026-07-18 — clause, lexical-frame and voice cluster (complete)
 

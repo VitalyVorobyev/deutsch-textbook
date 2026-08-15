@@ -1,0 +1,45 @@
+topic: nebensaetze-plaene
+role: probe
+title:
+  en: "Probe — subordinate clause in position 1"
+  ru: "Проверка — придаточное на позиции 1"
+  uk: "Перевірка — підрядне на позиції 1"
+arming:
+  - a2/nebensaetze-plaene::order-wenn-vorfeld
+  - a2/nebensaetze-plaene-produktion::cloze-vorfeld-verb-nach-komma
+  - a2/nebensaetze-plaene-produktion::uebersetzen-vorfeld-museum
+items:
+  - id: variant-a
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: translate
+    focus: nebensatz-vorfeld
+    instruction: {en: "Begin with the wenn-clause.", ru: "Начните с придаточного с wenn.", uk: "Почніть із підрядного з wenn."}
+    prompt_en: "If the train is delayed, we will take the bus."
+    prompt_ru: "Если поезд опоздает, мы поедем на автобусе."
+    prompt_uk: "Якщо потяг запізниться, ми поїдемо автобусом."
+    answer: "Wenn der Zug Verspätung hat, nehmen wir den Bus."
+    accept: ["Wenn der Zug zu spät kommt, nehmen wir den Bus."]
+    key_tokens: ["Wenn", "hat", "nehmen", "wir"]
+    explain: {en: "The wenn-clause fills position 1. The main-clause verb therefore follows the comma immediately: nehmen wir, never wir nehmen.", ru: "Придаточное с wenn занимает позицию 1. Поэтому глагол главного идёт сразу после запятой: nehmen wir, а не wir nehmen.", uk: "Підрядне з wenn займає позицію 1. Тому дієслово головного йде одразу після коми: nehmen wir, а не wir nehmen."}
+  - id: variant-b
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: translate
+    focus: nebensatz-vorfeld
+    instruction: {en: "Begin with the weil-clause.", ru: "Начните с придаточного с weil.", uk: "Почніть із підрядного з weil."}
+    prompt_en: "Because I am working tomorrow, I am staying at home tonight."
+    prompt_ru: "Поскольку я завтра работаю, сегодня вечером я остаюсь дома."
+    prompt_uk: "Оскільки я завтра працюю, сьогодні ввечері я залишаюся вдома."
+    answer: "Weil ich morgen arbeite, bleibe ich heute Abend zu Hause."
+    key_tokens: ["Weil", "arbeite", "bleibe"]
+    explain: {en: "arbeite closes the reason clause. That whole clause occupies position 1, so the main verb bleibe comes before its subject ich.", ru: "arbeite закрывает придаточное причины. Всё придаточное занимает позицию 1, поэтому глагол главного bleibe стоит перед подлежащим ich.", uk: "arbeite закриває підрядне причини. Усе підрядне займає позицію 1, тому дієслово головного bleibe стоїть перед підметом ich."}
+  - id: variant-c
+    outcomes: [nebensatz-vorfeld-stellung]
+    type: translate
+    focus: nebensatz-vorfeld
+    instruction: {en: "Begin with the wenn-clause.", ru: "Начните с придаточного с wenn.", uk: "Почніть із підрядного з wenn."}
+    prompt_en: "If Anna calls, I will tell her everything."
+    prompt_ru: "Если Анна позвонит, я всё ей расскажу."
+    prompt_uk: "Якщо Анна зателефонує, я все їй розповім."
+    answer: "Wenn Anna anruft, erzähle ich ihr alles."
+    key_tokens: ["Wenn", "anruft", "erzähle", "ich"]
+    explain: {en: "anruft closes the fronted subordinate clause; erzähle must then be the first word after the comma, followed by ich.", ru: "anruft закрывает вынесенное придаточное; затем первым словом после запятой обязан быть erzähle, а уже за ним ich.", uk: "anruft закриває винесене підрядне; далі першим словом після коми має бути erzähle, а вже за ним ich."}

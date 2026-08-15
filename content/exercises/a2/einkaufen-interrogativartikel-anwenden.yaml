@@ -1,0 +1,42 @@
+topic: einkaufen-reklamation
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — aus einem bekannten Angebot wählen"
+title: {en: "Apply — choose from a known set", ru: "Применение — выбор из известного набора", uk: "Застосування — вибір із відомого набору"}
+items:
+  - id: translate-bus
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Which bus are we taking?"
+    prompt_ru: "На каком автобусе мы едем?"
+    prompt_uk: "Яким автобусом ми їдемо?"
+    answer: "Welchen Bus nehmen wir?"
+    key_tokens: ["Welchen", "Bus", "nehmen"]
+    explain: {en: "nehmen takes der Bus as an accusative object, so the masculine ending is -en: welchen Bus.", ru: "nehmen требует der Bus как дополнение в Akkusativ, поэтому окончание мужского рода — -en: welchen Bus.", uk: "nehmen потребує der Bus як додаток в Akkusativ, тому закінчення чоловічого роду — -en: welchen Bus."}
+  - id: translate-mit-welchem-zug
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Which train are you travelling on?"
+    prompt_ru: "На каком поезде вы едете?"
+    prompt_uk: "Яким потягом ви їдете?"
+    answer: "Mit welchem Zug fahren Sie?"
+    key_tokens: ["Mit", "welchem", "Zug"]
+    explain: {en: "mit governs the dative; masculine der Zug therefore takes welchem. The case comes from mit, not from the English or Russian question form.", ru: "mit требует Dativ; мужской der Zug поэтому получает welchem. Падеж задаёт mit, а не форма вопроса в переводе.", uk: "mit потребує Dativ; чоловічий der Zug тому має welchem. Відмінок задає mit, а не форма запитання в перекладі."}
+  - id: write-auswahl
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: write
+    focus: interrogativartikel
+    prompt: {en: "You and a friend are choosing between several products. Write two complete questions with welch- plus a noun.", ru: "Вы с другом выбираете из нескольких товаров. Напишите два полных вопроса с welch- и существительным.", uk: "Ви з другом обираєте з кількох товарів. Напишіть два повні запитання з welch- та іменником."}
+    goal: {en: "Use the noun's gender and sentence role to choose two different welch- endings.", ru: "Выберите два разных окончания welch- по роду и роли существительного.", uk: "Оберіть два різні закінчення welch- за родом і роллю іменника."}
+    requirements:
+      - {en: "Keep a noun immediately after each welch- form.", ru: "После каждой формы welch- поставьте существительное.", uk: "Після кожної форми welch- поставте іменник."}
+      - {en: "Use two different gender, number or case forms.", ru: "Используйте две разные формы рода, числа или падежа.", uk: "Використайте дві різні форми роду, числа або відмінка."}
+    min_words: 9
+    model_answer: "Welche Jacke gefällt dir besser? Welchen Pullover möchtest du anprobieren?"
+    model_translation: {en: "Which jacket do you like better? Which jumper would you like to try on?", ru: "Какая куртка тебе нравится больше? Какой свитер ты хотел бы примерить?", uk: "Яка куртка тобі подобається більше? Який светр ти хотів би приміряти?"}
+    explain: {en: "welch- is useful only when the options form a known set. The ending must agree with the noun and its case in your own sentence.", ru: "welch- уместно, когда варианты образуют известный набор. Окончание должно соответствовать роду и падежу существительного в вашем предложении.", uk: "welch- доречне, коли варіанти утворюють відомий набір. Закінчення має відповідати роду й відмінку іменника у вашому реченні."}

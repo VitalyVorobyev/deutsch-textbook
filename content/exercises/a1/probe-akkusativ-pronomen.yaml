@@ -1,0 +1,45 @@
+topic: akkusativ
+role: probe
+title: {en: "Probe — accusative pronouns", ru: "Проверка — местоимения в Akkusativ", uk: "Перевірка — займенники в Akkusativ"}
+arming:
+  - a1/akkusativ::match-pronomen
+  - a1/akkusativ::mc-pronomen-ihn
+  - a1/akkusativ::cloze-verstehen
+  - a1/akkusativ-praepositionen-pronomen::mc-bus-ihn
+  - a1/akkusativ-praepositionen-pronomen::mc-schwester-sie
+items:
+  - id: variant-a
+    outcomes: [akkusativ-objekte]
+    type: translate
+    focus: akkusativ-pronomen
+    instruction: {en: "Replace the repeated noun with a pronoun and translate.", ru: "Замените повтор существительного местоимением и переведите.", uk: "Замініть повтор іменника займенником і перекладіть."}
+    prompt_en: "The key? I am looking for it."
+    prompt_ru: "Ключ? Я его ищу."
+    prompt_uk: "Ключ? Я його шукаю."
+    answer: "Der Schlüssel? Ich suche ihn."
+    key_tokens: ["ihn"]
+    explain: {en: "der Schlüssel becomes er as a subject, but ihn as the direct object of suchen.", ru: "der Schlüssel заменяется на er как подлежащее, но на ihn как прямое дополнение при suchen.", uk: "der Schlüssel замінюється на er як підмет, але на ihn як прямий додаток при suchen."}
+  - id: variant-b
+    outcomes: [akkusativ-objekte]
+    type: translate
+    focus: akkusativ-pronomen
+    instruction: {en: "Translate with an accusative pronoun.", ru: "Переведите с местоимением в Akkusativ.", uk: "Перекладіть із займенником в Akkusativ."}
+    prompt_en: "Can you hear me?"
+    prompt_ru: "Ты меня слышишь?"
+    prompt_uk: "Ти мене чуєш?"
+    answer: "Hörst du mich?"
+    accept: ["Kannst du mich hören?"]
+    key_tokens: ["mich"]
+    explain: {en: "The speaker is the object of hören: ich becomes mich.", ru: "Говорящий — дополнение при hören: ich превращается в mich.", uk: "Мовець — додаток при hören: ich перетворюється на mich."}
+  - id: variant-c
+    outcomes: [akkusativ-objekte]
+    type: translate
+    focus: akkusativ-pronomen
+    instruction: {en: "Translate with an accusative pronoun.", ru: "Переведите с местоимением в Akkusativ.", uk: "Перекладіть із займенником в Akkusativ."}
+    prompt_en: "We are visiting you today."
+    prompt_ru: "Мы сегодня навещаем тебя."
+    prompt_uk: "Ми сьогодні відвідуємо тебе."
+    answer: "Wir besuchen dich heute."
+    accept: ["Heute besuchen wir dich."]
+    key_tokens: ["dich"]
+    explain: {en: "Informal du becomes dich when the person is the direct object of besuchen.", ru: "Неформальное du превращается в dich, когда человек — прямое дополнение при besuchen.", uk: "Неформальне du перетворюється на dich, коли людина — прямий додаток при besuchen."}

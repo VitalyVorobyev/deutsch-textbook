@@ -1003,11 +1003,13 @@ describe('cards: recognition | both', () => {
     // `Stadtpräsident`, `Pensionist` and `Bancomat` are n-declension (`Bancomat` and
     // `Bankomat-Karte` keep the manifest's c/k split, `e-card` its lowercase hyphen);
     // `in Pension gehen/sein` and `pensioniert werden/sein` ship as `pos: phrase` with
-    // IPA, unlike their `in Rente gehen/sein` precedent. The 73 rows still open after
-    // this wave are structurally cardless — bound morphemes (`hell-`, `-weise`),
-    // abbreviations (`bzw.`, `EG`), correlative frames (`je … desto`) and full forms
-    // whose short forms ship (`Personenkraftwagen`) — recorded as P25-6.
-    expect(cards).toBe(entries * 2 - 1387);
+    // IPA, unlike their `in Rente gehen/sein` precedent.
+    // P27-3f closes the final 73 rows by reviewing every row again instead of applying
+    // the old blanket no-card ruling: 12 written/official variants are recognition
+    // cards (`bzw.`, `EG`, `Personenkraftwagen`), six frequent forms are productive,
+    // and the remaining 55 bound pieces/frames are earned by learner-facing teaching.
+    // The twelve new recognition entries add twelve deliberate one-card exceptions.
+    expect(cards).toBe(entries * 2 - 1399);
   });
 
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {

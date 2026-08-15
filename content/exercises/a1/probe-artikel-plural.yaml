@@ -1,0 +1,43 @@
+topic: artikel-genus
+role: probe
+title: {en: "Probe — plural article", ru: "Проверка — артикль множественного числа", uk: "Перевірка — артикль множини"}
+arming:
+  - a1/artikel-genus::order-kinder
+  - a1/artikel-plural-kein::tabelle-plural-muster
+  - a1/artikel-plural-kein::cloze-plural-buecher
+  - a1/artikel-plural-kein::cloze-plural-zeitungen
+  - a1/artikel-plural-kein::cloze-plural-die
+items:
+  - id: variant-a
+    outcomes: [artikel-plural-verwenden]
+    type: translate
+    focus: plural-artikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The windows are open."
+    prompt_ru: "Окна открыты."
+    prompt_uk: "Вікна відкриті."
+    answer: "Die Fenster sind offen."
+    key_tokens: ["Die", "Fenster", "sind"]
+    explain: {en: "Singular das Fenster, plural die Fenster. Every nominative plural uses die and the plural verb sind.", ru: "В единственном числе das Fenster, во множественном die Fenster. Любое множественное число в именительном падеже берёт die и глагол sind.", uk: "В однині das Fenster, у множині die Fenster. Кожна множина в називному відмінку бере die й дієслово sind."}
+  - id: variant-b
+    outcomes: [artikel-plural-verwenden]
+    type: translate
+    focus: plural-artikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The men are here."
+    prompt_ru: "Мужчины здесь."
+    prompt_uk: "Чоловіки тут."
+    answer: "Die Männer sind hier."
+    key_tokens: ["Die", "Männer", "sind"]
+    explain: {en: "Singular der Mann changes both noun and article in the plural: die Männer. The old masculine article is irrelevant.", ru: "У der Mann во множественном числе меняются и существительное, и артикль: die Männer. Старый артикль мужского рода больше не действует.", uk: "У der Mann у множині змінюються і іменник, і артикль: die Männer. Старий артикль чоловічого роду більше не діє."}
+  - id: variant-c
+    outcomes: [artikel-plural-verwenden]
+    type: translate
+    focus: plural-artikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The tables are new."
+    prompt_ru: "Столы новые."
+    prompt_uk: "Столи нові."
+    answer: "Die Tische sind neu."
+    key_tokens: ["Die", "Tische", "sind"]
+    explain: {en: "Singular der Tisch becomes plural die Tische. The plural article is always die, regardless of singular gender.", ru: "der Tisch превращается во множественном числе в die Tische. Артикль множественного числа всегда die независимо от рода единственного.", uk: "der Tisch перетворюється у множині на die Tische. Артикль множини завжди die незалежно від роду однини."}

@@ -1,0 +1,46 @@
+topic: verbindungen-folgen
+role: probe
+title: {en: "Probe — darum and daher", ru: "Проверка — darum и daher", uk: "Перевірка — darum і daher"}
+arming:
+  - a2/verbindungen-darum-daher::mc-darum-v2
+  - a2/verbindungen-darum-daher::mc-richtung
+  - a2/verbindungen-darum-daher::mc-register
+  - a2/verbindungen-darum-daher::cloze-zwei-register
+  - a2/verbindungen-darum-daher-transfer::translate-gespraech
+  - a2/verbindungen-darum-daher-transfer::translate-mitteilung
+  - a2/verbindungen-darum-daher-transfer::translate-akku
+  - a2/verbindungen-darum-daher-transfer::translate-unterlagen
+items:
+  - id: variant-a
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the conversational consequence with darum.", ru: "Переведите разговорное следствие с darum.", uk: "Перекладіть розмовний наслідок із darum."}
+    prompt_en: "The shop is already closed. That's why we're coming back tomorrow."
+    prompt_ru: "Магазин уже закрыт. Поэтому мы вернёмся завтра."
+    prompt_uk: "Магазин уже зачинений. Тому ми повернемося завтра."
+    answer: "Das Geschäft ist schon geschlossen. Darum kommen wir morgen wieder."
+    key_tokens: ["Geschäft", "geschlossen", "Darum", "kommen", "wir", "morgen"]
+    explain: {en: "The closure is the cause; darum introduces the result and is followed by the finite verb kommen.", ru: "Закрытие — причина; darum вводит следствие, сразу после него стоит спрягаемое kommen.", uk: "Зачинення — причина; darum вводить наслідок, одразу після нього стоїть відмінюване kommen."}
+  - id: variant-b
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the formal result clause with correct V2 order.", ru: "Переведите официальное предложение-следствие с правильным Verbzweit.", uk: "Перекладіть офіційне речення-наслідок із правильним Verbzweit."}
+    prompt_en: "The road is closed. Therefore the bus is taking a different route today."
+    prompt_ru: "Дорога перекрыта. Поэтому автобус сегодня идёт по другому маршруту."
+    prompt_uk: "Дорогу перекрито. Тому автобус сьогодні їде іншим маршрутом."
+    answer: "Die Straße ist gesperrt. Daher fährt der Bus heute eine andere Strecke."
+    key_tokens: ["Straße", "gesperrt", "Daher", "fährt", "Bus", "Strecke"]
+    explain: {en: "daher fits the written explanation and occupies position 1; fährt is therefore position 2.", ru: "daher подходит письменному объяснению и занимает позицию 1; fährt поэтому стоит на позиции 2.", uk: "daher пасує письмовому поясненню й займає позицію 1; fährt тому стоїть на позиції 2."}
+  - id: variant-c
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the logical consequence into German with daher.", ru: "Переведите логичное следствие на немецкий с daher.", uk: "Перекладіть логічний наслідок німецькою з daher."}
+    prompt_en: "The registration is complete. Therefore we can process the application."
+    prompt_ru: "Регистрация заполнена полностью. Поэтому мы можем обработать заявление."
+    prompt_uk: "Реєстрацію заповнено повністю. Тому ми можемо опрацювати заяву."
+    answer: "Die Anmeldung ist vollständig. Daher können wir den Antrag bearbeiten."
+    key_tokens: ["Anmeldung", "vollständig", "Daher", "können", "Antrag", "bearbeiten"]
+    explain: {en: "A complete registration enables processing; daher introduces that result and is followed by the finite modal können.", ru: "Полная регистрация позволяет обработать заявление; daher вводит это следствие, затем стоит спрягаемый модальный глагол können.", uk: "Повна реєстрація дає змогу опрацювати заяву; daher вводить цей наслідок, далі стоїть відмінюване модальне können."}

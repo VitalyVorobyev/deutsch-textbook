@@ -1,0 +1,45 @@
+topic: praesens-wortstellung
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Pläne, Gegensätze und Gründe verbinden"
+title:
+  en: "Apply — connect plans, contrasts and reasons"
+  ru: "Применение — планы, противопоставления и причины"
+  uk: "Застосування — плани, протиставлення та причини"
+items:
+  - id: translate-aber-neuer-kontext
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate as two main clauses with aber.", ru: "Переведите двумя главными предложениями с aber.", uk: "Перекладіть двома головними реченнями з aber."}
+    prompt_en: "The course starts at nine, but I work until ten."
+    prompt_ru: "Курс начинается в девять, но я работаю до десяти."
+    prompt_uk: "Курс починається о дев'ятій, але я працюю до десятої."
+    answer: "Der Kurs beginnt um neun, aber ich arbeite bis zehn."
+    key_tokens: ["aber", "ich", "arbeite"]
+    explain: {en: "After aber comes the intact main clause ich arbeite bis zehn. The contrast changes the meaning, not the verb position.", ru: "После aber идёт неизменённое главное предложение ich arbeite bis zehn. Противопоставление меняет смысл, а не позицию глагола.", uk: "Після aber йде незмінене головне речення ich arbeite bis zehn. Протиставлення змінює зміст, а не позицію дієслова."}
+  - id: translate-denn-neuer-kontext
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Give the reason with denn.", ru: "Назовите причину с denn.", uk: "Назвіть причину з denn."}
+    prompt_en: "We are taking the bus because the train is late."
+    prompt_ru: "Мы едем на автобусе, потому что поезд опаздывает."
+    prompt_uk: "Ми їдемо автобусом, бо потяг запізнюється."
+    answer: "Wir fahren mit dem Bus, denn der Zug ist spät."
+    accept: ["Wir nehmen den Bus, denn der Zug ist spät."]
+    key_tokens: ["denn", "Zug", "spät"]
+    explain: {en: "The source languages suggest one dependent cause clause. With denn German instead adds a second main clause: der Zug ist spät — verb second.", ru: "Исходные языки подсказывают зависимое предложение причины. С denn немецкий добавляет второе главное: der Zug ist spät — глагол второй.", uk: "Вихідні мови підказують залежне речення причини. З denn німецька додає друге головне: der Zug ist spät — дієслово друге."}
+  - id: write-zwei-plaene
+    outcomes: [praesens-koordination]
+    type: write
+    prompt: {en: "Write two sentences about tonight: join two compatible plans with und, then contrast a plan and a problem with aber.", ru: "Напишите два предложения о сегодняшнем вечере: соедините два совместимых плана через und, затем противопоставьте план и проблему через aber.", uk: "Напишіть два речення про сьогоднішній вечір: поєднайте два сумісні плани через und, потім протиставте план і проблему через aber."}
+    goal: {en: "Two connected thoughts in which every clause remains a complete main clause.", ru: "Две связанные мысли, где каждая часть остаётся полным главным предложением.", uk: "Дві пов'язані думки, де кожна частина лишається повним головним реченням."}
+    requirements:
+      - {en: "Use und once and aber once.", ru: "Один раз используйте und и один раз aber.", uk: "Один раз використайте und і один раз aber."}
+      - {en: "Check the conjugated verb in every clause.", ru: "Проверьте спрягаемый глагол в каждой части.", uk: "Перевірте відмінюване дієслово в кожній частині."}
+    min_words: 10
+    model_answer: "Heute koche ich, und danach lese ich. Ich möchte spazieren gehen, aber es regnet."
+    model_translation: {en: "Today I cook and then read. I would like to go for a walk, but it is raining.", ru: "Сегодня я готовлю, а потом читаю. Я хочу пойти гулять, но идёт дождь.", uk: "Сьогодні я готую, а потім читаю. Я хочу піти гуляти, але йде дощ."}
+    explain: {en: "Compare clauses, not vocabulary: each side of und and aber must still have a conjugated verb in its normal main-clause position.", ru: "Сравнивайте каркас, а не слова: по обе стороны und и aber должен остаться спрягаемый глагол в обычной позиции главного предложения.", uk: "Порівнюйте каркас, а не слова: по обидва боки und і aber має лишитися відмінюване дієслово у звичайній позиції головного речення."}

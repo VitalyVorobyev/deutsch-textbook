@@ -1,0 +1,68 @@
+topic: wohnen-umzug
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Wege im Haus und in der Stadt"
+title: {en: "Transfer — routes in a building and town", ru: "Перенос — маршруты в доме и городе", uk: "Перенесення — маршрути в будинку й місті"}
+items:
+  - id: translate-paket-herauf
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You are waiting upstairs. Translate the request.", ru: "Вы ждёте наверху. Переведите просьбу.", uk: "Ви чекаєте нагорі. Перекладіть прохання."}
+    prompt_en: "Please bring the parcel up here."
+    prompt_ru: "Пожалуйста, принесите посылку сюда наверх."
+    prompt_uk: "Будь ласка, принесіть посилку сюди нагору."
+    answer: "Bringen Sie das Paket bitte herauf."
+    accept: ["Bitte bringen Sie das Paket herauf."]
+    key_tokens: ["bringen", "Paket", "herauf"]
+    explain: {en: "The destination is the speaker's upstairs position, so the full direction is herauf.", ru: "Цель — место говорящего наверху, поэтому полная форма направления — herauf.", uk: "Мета — місце мовця нагорі, тому повна форма напрямку — herauf."}
+  - id: translate-gleis-hinueber
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You stay on this platform and point to the platform across from you. Translate.", ru: "Вы остаётесь на этой платформе и указываете на платформу напротив. Переведите.", uk: "Ви лишаєтеся на цій платформі й указуєте на платформу навпроти. Перекладіть."}
+    prompt_en: "Go across to platform three."
+    prompt_ru: "Перейдите вон туда, на третью платформу."
+    prompt_uk: "Перейдіть он туди, на третю платформу."
+    answer: "Gehen Sie zum Gleis drei hinüber."
+    accept: ["Gehen Sie hinüber zum Gleis drei."]
+    key_tokens: ["Gehen", "Gleis", "hinüber"]
+    explain: {en: "The traveller moves away from the speaker and across to the other side: hin- plus -über.", ru: "Пассажир движется от говорящего на другую сторону: hin- + -über.", uk: "Пасажир рухається від мовця на інший бік: hin- + -über."}
+  - id: translate-werkzeug-herunter
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You are waiting in the basement and call to a colleague upstairs. Translate.", ru: "Вы ждёте в подвале и зовёте коллегу сверху. Переведите.", uk: "Ви чекаєте в підвалі й кличете колегу згори. Перекладіть."}
+    prompt_en: "Please bring the tools down here."
+    prompt_ru: "Пожалуйста, принесите инструменты сюда вниз."
+    prompt_uk: "Будь ласка, принесіть інструменти сюди вниз."
+    answer: "Bringen Sie das Werkzeug bitte herunter."
+    accept: ["Bitte bringen Sie das Werkzeug herunter."]
+    key_tokens: ["Bringen", "Werkzeug", "herunter"]
+    explain: {en: "The path goes down and ends at the speaker, so her- and -unter combine as herunter.", ru: "Путь идёт вниз и заканчивается у говорящего, поэтому her- и -unter образуют herunter.", uk: "Шлях іде вниз і закінчується біля мовця, тому her- та -unter утворюють herunter."}
+  - id: translate-balkon-hinauf
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You remain downstairs and direct a visitor to the balcony above. Translate.", ru: "Вы остаётесь внизу и направляете посетителя на балкон наверху. Переведите.", uk: "Ви лишаєтеся внизу й спрямовуєте відвідувача на балкон нагорі. Перекладіть."}
+    prompt_en: "Please go up to the balcony."
+    prompt_ru: "Пожалуйста, поднимитесь туда, на балкон."
+    prompt_uk: "Будь ласка, підніміться туди, на балкон."
+    answer: "Gehen Sie bitte zum Balkon hinauf."
+    accept: ["Bitte gehen Sie zum Balkon hinauf."]
+    key_tokens: ["Gehen", "Balkon", "hinauf"]
+    explain: {en: "The visitor moves up and away from the speaker's position: hinauf. herauf would bring the visitor to a speaker already upstairs.", ru: "Посетитель движется вверх от места говорящего: hinauf. herauf привело бы его к говорящему, уже находящемуся наверху.", uk: "Відвідувач рухається вгору від місця мовця: hinauf. herauf привело б його до мовця, який уже перебуває нагорі."}
+  - id: write-umzug-richtung
+    outcomes: [wo-wohin-position]
+    type: write
+    focus: richtungsadverb-her-hin
+    prompt: {en: "Write two clear instructions during a move: one movement towards you and one away from you.", ru: "Напишите две ясные команды при переезде: одно движение к вам и одно от вас.", uk: "Напишіть дві чіткі команди під час переїзду: один рух до вас і один від вас."}
+    goal: {en: "Make the speaker's location recoverable from the full direction forms.", ru: "Сделайте место говорящего понятным по полным формам направления.", uk: "Зробіть місце мовця зрозумілим із повних форм напрямку."}
+    requirements:
+      - {en: "Use one full her- form.", ru: "Используйте одну полную форму с her-.", uk: "Використайте одну повну форму з her-."}
+      - {en: "Use one full hin- form.", ru: "Используйте одну полную форму с hin-.", uk: "Використайте одну повну форму з hin-."}
+    min_words: 10
+    model_answer: "Bringt den Tisch bitte herein. Tragt die alten Stühle danach hinaus."
+    model_translation: {en: "Please bring the table in here. Then carry the old chairs out.", ru: "Пожалуйста, внесите стол сюда. Затем вынесите старые стулья наружу.", uk: "Будь ласка, занесіть стіл сюди. Потім винесіть старі стільці назовні."}
+    explain: {en: "herein ends at the speaker's inside position; hinaus leaves that position. Naming two opposed paths proves the deictic contrast rather than only recalling one word.", ru: "herein заканчивается у говорящего внутри, hinaus уводит от него наружу. Два противоположных пути проверяют сам контраст, а не память одного слова.", uk: "herein закінчується біля мовця всередині, hinaus веде від нього назовні. Два протилежні шляхи перевіряють сам контраст, а не пам'ять одного слова."}

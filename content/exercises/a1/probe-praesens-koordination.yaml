@@ -1,0 +1,45 @@
+topic: praesens-wortstellung
+role: probe
+title: {en: "Probe — coordination keeps main-clause order", ru: "Проверка — после союза сохраняется порядок главного предложения", uk: "Перевірка — після сполучника зберігається порядок головного речення"}
+arming:
+  - a1/praesens-koordination::mc-denn-wortstellung
+  - a1/praesens-koordination::order-aber
+  - a1/praesens-koordination::cloze-oder-verb
+  - a1/praesens-koordination::translate-und
+  - a1/praesens-koordination-anwenden::translate-aber-neuer-kontext
+  - a1/praesens-koordination-anwenden::translate-denn-neuer-kontext
+items:
+  - id: variant-a
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate with denn.", ru: "Переведите с denn.", uk: "Перекладіть з denn."}
+    prompt_en: "Mia is staying home because she is ill."
+    prompt_ru: "Миа остаётся дома, потому что она больна."
+    prompt_uk: "Міа лишається вдома, бо вона хвора."
+    answer: "Mia bleibt zu Hause, denn sie ist krank."
+    key_tokens: ["denn", "sie", "ist"]
+    explain: {en: "denn introduces a complete main clause: sie ist krank. The subject stays before the verb.", ru: "denn вводит полное главное предложение: sie ist krank. Подлежащее остаётся перед глаголом.", uk: "denn вводить повне головне речення: sie ist krank. Підмет лишається перед дієсловом."}
+  - id: variant-b
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate with aber.", ru: "Переведите с aber.", uk: "Перекладіть з aber."}
+    prompt_en: "The shop is open, but the café is closed."
+    prompt_ru: "Магазин открыт, но кафе закрыто."
+    prompt_uk: "Магазин відкритий, але кафе зачинене."
+    answer: "Das Geschäft ist offen, aber das Café ist geschlossen."
+    accept: ["Der Laden ist offen, aber das Café ist geschlossen."]
+    key_tokens: ["aber", "Café", "geschlossen"]
+    explain: {en: "aber adds the intact clause das Café ist geschlossen. It changes the relation, not the clause frame.", ru: "aber добавляет неизменённую часть das Café ist geschlossen. Меняется отношение между частями, не их каркас.", uk: "aber додає незмінену частину das Café ist geschlossen. Змінюється відношення між частинами, не їхній каркас."}
+  - id: variant-c
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate the alternative with oder.", ru: "Переведите альтернативу с oder.", uk: "Перекладіть альтернативу з oder."}
+    prompt_en: "Are you coming with us, or are you working today?"
+    prompt_ru: "Ты идёшь с нами или сегодня работаешь?"
+    prompt_uk: "Ти йдеш із нами чи сьогодні працюєш?"
+    answer: "Kommst du mit, oder arbeitest du heute?"
+    key_tokens: ["oder", "arbeitest"]
+    explain: {en: "Both halves are yes/no questions and each begins with its verb: Kommst du …? Arbeitest du …? oder only joins them.", ru: "Обе части — общие вопросы, и каждая начинается с глагола: Kommst du …? Arbeitest du …? oder только соединяет их.", uk: "Обидві частини — загальні питання, і кожна починається з дієслова: Kommst du …? Arbeitest du …? oder лише поєднує їх."}

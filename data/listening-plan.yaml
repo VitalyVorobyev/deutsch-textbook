@@ -41,6 +41,21 @@ units:
         register: "neutral, klar"
         item_types: [audio-comprehension]
         context_sound: "leiser Markt-Hintergrund"
+  - unit: wortbildung
+    level: A1
+    artifacts:
+      - id: ls-wortbildung-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Nachbarn lesen ein Hoffest-Plakat und entschlüsseln Komposita und transparente Adjektive"
+        outcomes: [wortbildung-komposita]
+        required_vocabulary: [Fahrplan, Sommerfest, kostenlos, zuckerlos]
+        grammar_target: "Letztes Nomen bestimmt den Artikel; -los bedeutet ohne"
+        duration_seconds: { min: 25, max: 35 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, klar"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Innenhof"
   - unit: menschen-familie
     level: A1
     artifacts:
@@ -429,9 +444,11 @@ units:
       - id: ls-aemter-dienstleistungen-01
         wave: 2
         purpose: model-input
-        scenario: "Gespräch am Schalter über Unterlagen und nächste Schritte"
+        scenario: "Wohnsitz anmelden: Unterlagen, Vollmacht und Meldebestätigung"
         outcomes: [unterlagen-erfragen]
-        duration_seconds: { min: 50, max: 60 }
+        required_vocabulary: [Wohnungsgeberbestätigung, Formular, Vollmacht, Meldebestätigung, kostenlos]
+        grammar_target: "Unterlagen erfragen und eine Verwaltungsauskunft verstehen"
+        duration_seconds: { min: 40, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich"
         item_types: [audio-comprehension]

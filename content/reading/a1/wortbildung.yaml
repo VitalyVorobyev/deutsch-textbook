@@ -1,0 +1,44 @@
+topic: wortbildung
+title_de: "Ein Zettel im Haus"
+text:
+  - >-
+    Im Haus hängt eine neue [[Information::notice, information::объявление,
+    информация::оголошення, інформація]]. Am Samstag ist ein Sommerfest im Hof.
+    Die Hausgemeinschaft sucht Helfer und Helferinnen. Auf dem Zettel stehen die
+    Arbeitszeiten: Aufbau von neun bis elf Uhr, Kuchenverkauf von zwei bis fünf
+    Uhr und Aufräumen ab sechs Uhr.
+  - >-
+    Lea liest den Zettel mit ihrem Nachbarn Amir. „Kuchenverkauf“, sagt Amir,
+    „das ist Kuchen plus Verkauf. Das letzte Wort ist der Verkauf, also heißt es
+    der Kuchenverkauf.“ Lea zeigt auf eine andere Zeile: „Und Kinderprogramm?
+    Das letzte Wort ist das Programm. Also das Kinderprogramm.“
+  - >-
+    Unten steht: Zuckerlose Getränke sind kostenlos. Lea versteht beide Wörter:
+    zuckerlos heißt ohne Zucker, kostenlos heißt ohne Kosten. Nur eine Adresse
+    ist [[unlesbar::illegible::неразборчивый::нерозбірливий]]. Amir schreibt sie
+    noch einmal groß und klar. Dann tragen sich beide in die Helferliste ein.
+questions:
+  - id: frage-arbeitszeit
+    outcomes: [wortbildung-komposita]
+    type: mc
+    prompt: "Wann ist der Aufbau?"
+    options: ["Von neun bis elf Uhr.", "Von zwei bis fünf Uhr.", "Ab sechs Uhr."]
+    correct: 0
+    translation: {en: "When is setup?", ru: "Когда подготовка?", uk: "Коли підготовка?"}
+    explain: {en: "The notice assigns Aufbau to von neun bis elf Uhr. The afternoon time belongs to selling cake, and six o'clock starts cleanup.", ru: "В объявлении Aufbau назначен с девяти до одиннадцати. Дневное время относится к продаже пирогов, а в шесть начинается уборка.", uk: "В оголошенні Aufbau призначено з дев'ятої до одинадцятої. Денний час стосується продажу пирогів, а о шостій починається прибирання."}
+  - id: frage-kinderprogramm
+    outcomes: [wortbildung-komposita]
+    type: mc
+    prompt: "Warum heißt es das Kinderprogramm?"
+    options: ["Das letzte Nomen ist das Programm.", "Kinder ist immer neutral.", "Jedes lange Wort nimmt das."]
+    correct: 0
+    translation: {en: "Why is it das Kinderprogramm?", ru: "Почему das Kinderprogramm?", uk: "Чому das Kinderprogramm?"}
+    explain: {en: "Lea applies the exact rule: the final noun is das Programm, so the compound inherits das. Kinder only specifies the program.", ru: "Леа применяет точное правило: последнее существительное — das Programm, поэтому сложное слово наследует das. Kinder лишь уточняет программу.", uk: "Леа застосовує точне правило: останній іменник — das Programm, тому складне слово успадковує das. Kinder лише уточнює програму."}
+  - id: frage-kostenlos
+    outcomes: [wortbildung-adjektive]
+    type: mc
+    prompt: "Was kosten die Getränke?"
+    options: ["Nichts.", "Wenig.", "Das steht nicht im Text."]
+    correct: 0
+    translation: {en: "What do the drinks cost?", ru: "Сколько стоят напитки?", uk: "Скільки коштують напої?"}
+    explain: {en: "kostenlos is unpacked in the text as ohne Kosten, so there is no charge. It does not mean merely inexpensive.", ru: "В тексте kostenlos разобрано как ohne Kosten, поэтому платить не нужно. Это не просто «недорогой».", uk: "У тексті kostenlos розібрано як ohne Kosten, тому платити не треба. Це не просто «недорогий»."}

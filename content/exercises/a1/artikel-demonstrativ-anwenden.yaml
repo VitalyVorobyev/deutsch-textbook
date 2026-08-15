@@ -1,0 +1,40 @@
+topic: artikel-genus
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — auf den richtigen Gegenstand zeigen"
+title: {en: "Apply — point to the right thing", ru: "Применение — указываем на нужный предмет", uk: "Застосування — вказуємо на потрібний предмет"}
+items:
+  - id: translate-fenster
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "This window is open."
+    prompt_ru: "Это окно открыто."
+    prompt_uk: "Це вікно відкрите."
+    answer: "Dieses Fenster ist offen."
+    key_tokens: ["Dieses", "Fenster"]
+    explain: {en: "das Fenster gives dieses. The source-language word for this does not show German gender; the noun's article does.", ru: "das Fenster даёт форму dieses. Слово «это» не показывает немецкий род; его показывает артикль существительного.", uk: "das Fenster дає форму dieses. Слово «це» не показує німецький рід; його показує артикль іменника."}
+  - id: translate-buecher
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "These books are new."
+    prompt_ru: "Эти книги новые."
+    prompt_uk: "Ці книжки нові."
+    answer: "Diese Bücher sind neu."
+    key_tokens: ["Diese", "Bücher", "sind"]
+    explain: {en: "All plural nouns use die, so the demonstrative is diese. The plural verb sind confirms the number.", ru: "У всех существительных во множественном числе артикль die, поэтому форма — diese. Глагол sind подтверждает число.", uk: "Усі іменники в множині мають артикль die, тому форма — diese. Дієслово sind підтверджує число."}
+  - id: translate-kaffee
+    outcomes: [artikel-demonstrativ-verwenden]
+    type: translate
+    focus: demonstrativartikel
+    instruction: {en: "Point to one particular coffee.", ru: "Укажите на один конкретный кофе.", uk: "Вкажіть на одну конкретну каву."}
+    prompt_en: "This coffee is cold."
+    prompt_ru: "Этот кофе холодный."
+    prompt_uk: "Ця кава холодна."
+    answer: "Dieser Kaffee ist kalt."
+    key_tokens: ["Dieser", "Kaffee"]
+    explain: {en: "German der Kaffee is masculine, regardless of the source-language noun. der → dieser.", ru: "Немецкое der Kaffee мужского рода независимо от рода перевода. der → dieser.", uk: "Німецьке der Kaffee чоловічого роду незалежно від роду перекладу. der → dieser."}

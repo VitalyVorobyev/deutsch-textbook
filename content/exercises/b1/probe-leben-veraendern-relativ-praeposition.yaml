@@ -1,0 +1,77 @@
+# Delayed probe family — ONE competence: the preposition opens the relative clause together
+# with the pronoun; the outside noun supplies gender/number and the preposition supplies case.
+# Three fresh governed-preposition contexts cover feminine dative, neuter accusative and
+# masculine dative. The exact arming list excludes the checkpoint.
+topic: leben-veraendern
+role: probe
+title:
+  en: "Delayed check — preposition plus relative pronoun"
+  ru: "Отложенная проверка — предлог с относительным местоимением"
+  uk: "Відкладена перевірка — прийменник із відносним займенником"
+  de: "Kontrolle mit Abstand — Präposition plus Relativpronomen"
+arming:
+  - b1/leben-veraendern::cloze-in-dem
+  - b1/leben-veraendern::mc-auf-die
+  - b1/leben-veraendern::order-von-der
+  - b1/leben-veraendern-produktion::uebersetzen-transfer-park
+  - b1/leben-veraendern-produktion::hoeren-diktat-haus
+items:
+  - id: variant-a
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Complete the preposition–pronoun pair that opens the relative clause."
+      ru: "Дополните пару из предлога и местоимения, которая открывает относительное придаточное."
+      uk: "Доповніть пару з прийменника й займенника, яка відкриває відносне підрядне."
+      de: "Ergänze das Paar aus Präposition und Pronomen am Anfang des Relativsatzes."
+    text: "Die Ärztin, {{bei der}} ich den Termin habe, arbeitet heute bis achtzehn Uhr."
+    translation:
+      en: "The doctor I have the appointment with is working until 18:00 today."
+      ru: "Врач, у которой у меня приём, сегодня работает до 18:00."
+      uk: "Лікарка, у якої в мене прийом, сьогодні працює до 18:00."
+    explain:
+      en: "The appointment is bei the doctor, and bei requires dative. Ärztin supplies feminine gender, so the pair is bei der and stays together at the start of the clause."
+      ru: "Приём назначен bei der Ärztin, а bei требует Dativ. Ärztin задаёт женский род, поэтому получается единая пара bei der в начале придаточного."
+      uk: "Прийом призначено bei der Ärztin, а bei вимагає Dativ. Ärztin задає жіночий рід, тому виходить єдина пара bei der на початку підрядного."
+      de: "Der Termin ist bei der Ärztin, und bei verlangt den Dativ. Ärztin liefert das feminine Genus, also steht das feste Paar bei der am Anfang des Nebensatzes."
+
+  - id: variant-b
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Complete the preposition–pronoun pair that opens the relative clause."
+      ru: "Дополните пару из предлога и местоимения, которая открывает относительное придаточное."
+      uk: "Доповніть пару з прийменника й займенника, яка відкриває відносне підрядне."
+      de: "Ergänze das Paar aus Präposition und Pronomen am Anfang des Relativsatzes."
+    text: "Das Angebot, {{für das}} ich mich entschieden habe, gilt noch bis Freitag."
+    translation:
+      en: "The offer I chose is still valid until Friday."
+      ru: "Предложение, которое я выбрал, действует ещё до пятницы."
+      uk: "Пропозиція, яку я обрав, діє ще до п'ятниці."
+    explain:
+      en: "sich entscheiden für fixes the preposition, and für always takes accusative. Angebot is neuter, so accusative neuter gives für das. The preposition cannot be stranded at the end."
+      ru: "sich entscheiden für задаёт предлог, а für всегда требует Akkusativ. Angebot среднего рода, поэтому получается für das. Оставить предлог в конце придаточного нельзя."
+      uk: "sich entscheiden für задає прийменник, а für завжди вимагає Akkusativ. Angebot середнього роду, тому виходить für das. Залишити прийменник наприкінці підрядного не можна."
+      de: "sich entscheiden für legt die Präposition fest, und für verlangt immer den Akkusativ. Angebot ist ein Neutrum, deshalb heißt das Paar für das. Die Präposition kann nicht am Satzende stranden."
+
+  - id: variant-c
+    outcomes: [relativsatz-praezisieren]
+    type: cloze
+    focus: relativ-praeposition
+    instruction:
+      en: "Complete the preposition–pronoun pair that opens the relative clause."
+      ru: "Дополните пару из предлога и местоимения, которая открывает относительное придаточное."
+      uk: "Доповніть пару з прийменника й займенника, яка відкриває відносне підрядне."
+      de: "Ergänze das Paar aus Präposition und Pronomen am Anfang des Relativsatzes."
+    text: "Der Kurs, {{an dem}} ich teilnehme, endet im September."
+    translation:
+      en: "The course I am taking ends in September."
+      ru: "Курс, в котором я участвую, заканчивается в сентябре."
+      uk: "Курс, у якому я беру участь, закінчується у вересні."
+    explain:
+      en: "teilnehmen governs an plus dative. Kurs supplies masculine gender, so the relative pair is an dem. Genus comes from the noun outside; case comes from the governed preposition inside."
+      ru: "teilnehmen управляет an + Dativ. Kurs задаёт мужской род, поэтому относительная пара — an dem. Род приходит от существительного снаружи, падеж — от управляемого предлога внутри."
+      uk: "teilnehmen керує an + Dativ. Kurs задає чоловічий рід, тому відносна пара — an dem. Рід приходить від іменника зовні, відмінок — від керованого прийменника всередині."
+      de: "teilnehmen regiert an plus Dativ. Kurs liefert das maskuline Genus, daher lautet das Relativpaar an dem. Das Genus kommt vom Nomen draußen, der Kasus von der regierten Präposition drinnen."

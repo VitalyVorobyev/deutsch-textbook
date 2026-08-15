@@ -31,7 +31,7 @@ feedback and linked readings have been checked in EN/RU/UK.
 | `duerfen-muessen` | corrected | The darf-nicht/muss-nicht contrast is taught and drilled correctly in all halves; the EN prompt "You must not smoke here" honestly admits the du-reading, so *Du darfst hier nicht rauchen* — the same dürfen choice — is now accepted instead of being logged as a duerfen-muessen failure. |
 | `trennbare-verben` | corrected | Bracket, modal and inseparable-prefix claims are correct, incl. the lexicalization warning; two target-preserving renderings are now accepted: *einkaufen gehen* (practice) and *mitnehmen* for «приведёт с собой» (probe) — both keep the graded bracket intact. |
 | `zeitangaben` | corrected | um/am/im scoping, *in der Nacht* and the halb-forward rule are correct; the EN half's "days take am — never … a bare noun" overstated (colloquial *Kommst du Montag?* is standard) and is scoped to the am/in contrast; the probe's «Музей открывается» now also accepts *macht … auf*. |
-| `gern` | corrected | Verb+gern, lieber and mögen+noun claims are consistent; the RU half's "*lieben* — про людей, не про футбол" was false (*Ich liebe Fußball* is fine German) and contradicted the UK half — it now makes the UK half's point: strong feeling vs the habitual verb+gern. |
+| `gern` | corrected | Verb+gern, lieber and mögen+noun claims are consistent; the RU half's "*lieben* — про людей, не про футбол" was false (*Ich liebe Fußball* is fine German) and contradicted the UK half — it now makes the UK half's point: strong feeling vs the habitual verb+gern. The 2026-08-15 profile pass also separated an availability answer (*Ja, da habe ich Zeit*) from accepting an actual proposal with *Ja, gern!* in all three support languages. |
 | `anrede-du-sie` | verified | Register guidance (Sie with strangers/offices, du with friends/first names), the Sie=plural-verb claim and the passen+Ihnen/dir contrast are correct across the drill, sets, article and the A1 preview item. |
 | `zahlen-uhrzeit` | verified | Cardinals, ordinals (erste/dritte/siebte/achte), clock readings (formal + halb/Viertel) and date patterns match the standard forms; the "back-to-front order holds for every two-digit number" note is scoped to 21–99 with a unit digit, since 11–19 and the round tens fall outside it. |
 | `perfekt` | corrected | Participle classes, the auxiliary rule (A→B movement, change of state, bleiben/sein/passieren) and the bracket are correct throughout; the claim "in speech only *war* and *hatte* are common" contradicted this course's own praeteritum point and now includes the modal Präteritum; the probe accepts *in die Schule* and *gerannt* renderings whose missing pinned participle would have logged a correct auxiliary as a haben-sein failure. |
@@ -165,3 +165,17 @@ corpus.
 
 Future findings append a dated note and update the row; the ledger is not replaced by
 the grammar coverage percentage.
+
+### 2026-08-15 — complete A1 topic-profile pass
+
+The P27-3g wave revisited the 11 original A1 profiles plus the new `wortbildung` topic across
+article, activities, readings, listening contracts and owned vocabulary. It found one pragmatic
+defect outside the structural diagnostics: `freizeit-koennen` presented *Hast du Zeit?* as if it
+were itself an invitation and prescribed *Ja, gern!* as the direct answer. Availability and proposal
+acceptance are now separate learner decisions in EN/RU/UK and in the German model table. The linked
+reading's singular *Kuchen* also had plural Russian and Ukrainian glosses; these are now contextual
+singulars and the answer explanation is idiomatic in each language.
+
+All other A1 topic profiles were verified or deliberately left bounded as recorded in the
+[topic-quality ledger](../curriculum/topic-quality-audit.md). This corpus pass did not change any
+manifest review status.

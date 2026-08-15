@@ -1,0 +1,44 @@
+topic: wortbildung
+role: probe
+title: {en: "Probe — noun formation", ru: "Проверка — образование существительных", uk: "Перевірка — утворення іменників"}
+arming:
+  - a1/wortbildung-nomen::cloze-lehrerin
+  - a1/wortbildung-nomen::mc-anmeldung-genus
+  - a1/wortbildung-nomen::cloze-broetchen-plural
+  - a1/wortbildung-nomen::mc-kuchen-grenze
+  - a1/wortbildung-anwenden::translate-arbeitszeit
+  - a1/wortbildung-anwenden::translate-katzchen
+items:
+  - id: variant-a
+    outcomes: [wortbildung-nomenformen]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the female profession Fahrerin.", ru: "Используйте женское название профессии Fahrerin.", uk: "Використайте жіночу назву професії Fahrerin."}
+    prompt_en: "The driver is here."
+    prompt_ru: "Водительница здесь."
+    prompt_uk: "Водійка тут."
+    answer: "Die Fahrerin ist hier."
+    key_tokens: ["Die", "Fahrerin"]
+    explain: {en: "der Fahrer → die Fahrerin. The suffix -in names the woman and fixes the feminine article.", ru: "der Fahrer → die Fahrerin. Суффикс -in называет женщину и задаёт артикль женского рода.", uk: "der Fahrer → die Fahrerin. Суфікс -in називає жінку й задає артикль жіночого роду."}
+  - id: variant-b
+    outcomes: [wortbildung-nomenformen]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the noun Prüfung.", ru: "Используйте существительное Prüfung.", uk: "Використайте іменник Prüfung."}
+    prompt_en: "The exam is tomorrow."
+    prompt_ru: "Экзамен завтра."
+    prompt_uk: "Іспит завтра."
+    answer: "Die Prüfung ist morgen."
+    key_tokens: ["Die", "Prüfung"]
+    explain: {en: "prüfen → die Prüfung. The productive -ung suffix fixes feminine gender and capitalisation as a noun.", ru: "prüfen → die Prüfung. Продуктивный суффикс -ung задаёт женский род и заглавную букву существительного.", uk: "prüfen → die Prüfung. Продуктивний суфікс -ung задає жіночий рід і велику літеру іменника."}
+  - id: variant-c
+    outcomes: [wortbildung-nomenformen]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the diminutive Häuschen.", ru: "Используйте уменьшительное Häuschen.", uk: "Використайте зменшувальне Häuschen."}
+    prompt_en: "The little house is old."
+    prompt_ru: "Домик старый."
+    prompt_uk: "Будиночок старий."
+    answer: "Das Häuschen ist alt."
+    key_tokens: ["Das", "Häuschen"]
+    explain: {en: "das Haus → das Häuschen: umlaut plus -chen. A genuine diminutive is neuter whatever the base noun's gender was.", ru: "das Haus → das Häuschen: умлаут плюс -chen. Настоящее уменьшительное среднего рода независимо от рода исходного слова.", uk: "das Haus → das Häuschen: умлаут плюс -chen. Справжній зменшувальний іменник середнього роду незалежно від роду початкового слова."}

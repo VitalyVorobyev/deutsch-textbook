@@ -1,0 +1,47 @@
+topic: infinitiv-mit-zu
+role: probe
+title: {en: "Probe — nicht brauchen zu", ru: "Проверка — nicht brauchen zu", uk: "Перевірка — nicht brauchen zu"}
+arming:
+  - a2/infinitiv-nicht-brauchen::mc-keine-pflicht
+  - a2/infinitiv-nicht-brauchen::cloze-rahmen
+  - a2/infinitiv-nicht-brauchen::mc-verbot
+  - a2/infinitiv-nicht-brauchen::cloze-anrufen
+  - a2/infinitiv-nicht-brauchen-transfer::translate-pass
+  - a2/infinitiv-nicht-brauchen-transfer::translate-online
+  - a2/infinitiv-nicht-brauchen-transfer::translate-ticket
+items:
+  - id: variant-a
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "You don't need to wait outside."
+    prompt_ru: "Вам не нужно ждать снаружи."
+    prompt_uk: "Вам не потрібно чекати надворі."
+    answer: "Sie brauchen draußen nicht zu warten."
+    accept: ["Sie brauchen nicht draußen zu warten."]
+    key_tokens: ["brauchen", "nicht", "zu", "warten"]
+    explain: {en: "Waiting is unnecessary but not forbidden. brauchen remains finite and zu warten closes the frame.", ru: "Ждать необязательно, но не запрещено. brauchen остаётся спрягаемым, zu warten закрывает рамку.", uk: "Чекати необов'язково, але не заборонено. brauchen лишається відмінюваним, zu warten закриває рамку."}
+  - id: variant-b
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "Translate the optional action with a separable infinitive.", ru: "Переведите необязательное действие с отделяемым инфинитивом.", uk: "Перекладіть необов'язкову дію з відокремлюваним інфінітивом."}
+    prompt_en: "You don't need to register for the short course."
+    prompt_ru: "Тебе не нужно регистрироваться на короткий курс."
+    prompt_uk: "Тобі не потрібно реєструватися на короткий курс."
+    answer: "Du brauchst dich für den kurzen Kurs nicht anzumelden."
+    key_tokens: ["brauchst", "dich", "Kurs", "nicht", "anzumelden"]
+    explain: {en: "anmelden is separable, so zu enters the word: anzumelden. The negated brauchen frame removes the registration requirement.", ru: "anmelden — отделяемый глагол, поэтому zu входит внутрь: anzumelden. Отрицательная рамка с brauchen снимает требование регистрации.", uk: "anmelden — відокремлюване дієслово, тому zu входить усередину: anzumelden. Заперечна рамка з brauchen знімає вимогу реєстрації."}
+  - id: variant-c
+    outcomes: [pflicht-aufheben]
+    type: translate
+    focus: nicht-brauchen-zu
+    instruction: {en: "The form may be submitted later, but submitting it is allowed now. Translate honestly.", ru: "Форму можно подать позже, но сейчас это тоже разрешено. Переведите точно.", uk: "Форму можна подати пізніше, але зараз це теж дозволено. Перекладіть точно."}
+    prompt_en: "You do not need to submit the form today."
+    prompt_ru: "Сегодня вам не нужно подавать формуляр."
+    prompt_uk: "Сьогодні вам не потрібно подавати формуляр."
+    answer: "Sie brauchen das Formular heute nicht abzugeben."
+    accept: ["Heute brauchen Sie das Formular nicht abzugeben."]
+    key_tokens: ["brauchen", "Formular", "heute", "nicht", "abzugeben"]
+    explain: {en: "The first sentence removes necessity and keeps zu inside abzugeben. The second prohibits submission; the third wrongly drops zu after brauchen.", ru: "Первое предложение снимает необходимость и сохраняет zu внутри abzugeben. Второе запрещает подачу; третье ошибочно опускает zu после brauchen.", uk: "Перше речення знімає необхідність і зберігає zu всередині abzugeben. Друге забороняє подання; третє хибно опускає zu після brauchen."}

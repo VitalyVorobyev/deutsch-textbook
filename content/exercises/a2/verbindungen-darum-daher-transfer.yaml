@@ -1,0 +1,65 @@
+topic: verbindungen-folgen
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Gespräch und schriftliche Begründung"
+title: {en: "Transfer — conversation and written explanation", ru: "Перенос — разговор и письменное обоснование", uk: "Перенесення — розмова й письмове обґрунтування"}
+items:
+  - id: translate-gespraech
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the conversational reply with darum.", ru: "Переведите разговорный ответ с darum.", uk: "Перекладіть розмовну відповідь із darum."}
+    prompt_en: "I have an early appointment. That's why I'm going home now."
+    prompt_ru: "У меня рано утром встреча. Поэтому я сейчас иду домой."
+    prompt_uk: "У мене рано-вранці зустріч. Тому я зараз іду додому."
+    answer: "Ich habe früh einen Termin. Darum gehe ich jetzt nach Hause."
+    key_tokens: ["Termin", "Darum", "gehe", "jetzt", "Hause"]
+    explain: {en: "The appointment is the cause; darum opens the consequence and pushes gehe before the subject ich.", ru: "Встреча — причина; darum открывает следствие и ставит gehe перед подлежащим ich.", uk: "Зустріч — причина; darum відкриває наслідок і ставить gehe перед підметом ich."}
+  - id: translate-mitteilung
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the written notice with daher.", ru: "Переведите письменное объявление с daher.", uk: "Перекладіть письмове оголошення з daher."}
+    prompt_en: "The lift is being serviced. It is therefore unavailable today."
+    prompt_ru: "Лифт проходит техническое обслуживание. Поэтому сегодня он недоступен."
+    prompt_uk: "Ліфт проходить технічне обслуговування. Тому сьогодні він недоступний."
+    answer: "Der Aufzug wird gewartet. Daher ist er heute nicht verfügbar."
+    key_tokens: ["Aufzug", "gewartet", "Daher", "ist", "nicht", "verfügbar"]
+    explain: {en: "daher fits the explanatory notice; as position 1 it is followed by ist, then the subject er.", ru: "daher подходит объяснительному объявлению; после него на позиции 2 стоит ist, затем подлежащее er.", uk: "daher пасує пояснювальному оголошенню; після нього на позиції 2 стоїть ist, далі підмет er."}
+  - id: translate-akku
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the conversational consequence with darum.", ru: "Переведите разговорное следствие с darum.", uk: "Перекладіть розмовний наслідок із darum."}
+    prompt_en: "My battery is empty. That's why I'm charging my phone now."
+    prompt_ru: "У меня разрядился аккумулятор. Поэтому я сейчас заряжаю телефон."
+    prompt_uk: "У мене розрядився акумулятор. Тому я зараз заряджаю телефон."
+    answer: "Mein Akku ist leer. Darum lade ich mein Handy jetzt auf."
+    accept: ["Mein Akku ist leer. Darum lade ich jetzt mein Handy auf."]
+    key_tokens: ["Akku", "leer", "Darum", "lade", "Handy", "auf"]
+    explain: {en: "darum is natural in the personal message. It occupies position 1, so the finite verb lade comes before ich; the prefix auf closes the clause.", ru: "darum естественно в личном сообщении. Оно занимает позицию 1, поэтому спрягаемое lade стоит перед ich; приставка auf закрывает предложение.", uk: "darum природно звучить в особистому повідомленні. Воно займає позицію 1, тому відмінюване lade стоїть перед ich; префікс auf завершує речення."}
+  - id: translate-unterlagen
+    outcomes: [folge-mit-register-ausdruecken]
+    type: translate
+    focus: darum-daher
+    instruction: {en: "Translate the written consequence with daher.", ru: "Переведите письменное следствие с daher.", uk: "Перекладіть письмовий наслідок із daher."}
+    prompt_en: "The documents are missing. Therefore we cannot process the application yet."
+    prompt_ru: "Документов не хватает. Поэтому мы пока не можем обработать заявление."
+    prompt_uk: "Документів бракує. Тому ми поки не можемо опрацювати заяву."
+    answer: "Die Unterlagen fehlen. Daher können wir den Antrag noch nicht bearbeiten."
+    key_tokens: ["Unterlagen", "fehlen", "Daher", "können", "Antrag", "nicht", "bearbeiten"]
+    explain: {en: "daher suits the administrative explanation. After the connector, the finite modal können is in position 2 and bearbeiten closes the verbal bracket.", ru: "daher подходит административному объяснению. После коннектора спрягаемый модальный können стоит на позиции 2, а bearbeiten закрывает глагольную рамку.", uk: "daher пасує адміністративному поясненню. Після конектора відмінюване модальне können стоїть на позиції 2, а bearbeiten закриває дієслівну рамку."}
+  - id: write-zwei-register
+    outcomes: [folge-mit-register-ausdruecken]
+    type: write
+    focus: darum-daher
+    prompt: {en: "Express one cause and result twice: first as a message to a friend, then as a short public notice.", ru: "Выразите одну причину и следствие дважды: сначала в сообщении другу, затем в кратком официальном объявлении.", uk: "Висловіть одну причину й наслідок двічі: спершу в повідомленні другові, потім у короткому публічному оголошенні."}
+    goal: {en: "Keep the logic and V2 constant while changing only the register cue.", ru: "Сохраните логику и Verbzweit, меняя только регистровую подсказку.", uk: "Збережіть логіку й Verbzweit, змінюючи лише регістрову підказку."}
+    requirements:
+      - {en: "Use Darum + finite verb in the message.", ru: "Используйте Darum + спрягаемый глагол в сообщении.", uk: "Використайте Darum + відмінюване дієслово в повідомленні."}
+      - {en: "Use Daher + finite verb in the notice.", ru: "Используйте Daher + спрягаемый глагол в объявлении.", uk: "Використайте Daher + відмінюване дієслово в оголошенні."}
+    min_words: 22
+    model_answer: "Ich bin heute leider krank. Darum komme ich nicht mit. Die Kursleiterin ist ebenfalls krank. Daher fällt der Unterricht heute am Vormittag aus."
+    model_translation: {en: "I am ill. That's why I am not coming along today. The teacher is ill. Therefore today's lesson is cancelled.", ru: "Я болен, поэтому сегодня не пойду с вами. Преподавательница больна, поэтому занятие сегодня отменяется.", uk: "Я хворий, тому сьогодні не піду з вами. Викладачка хвора, тому заняття сьогодні скасовується."}
+    explain: {en: "Both result clauses preserve adverb + finite verb + subject. The lexical choice signals the intended register without making the alternative ungrammatical.", ru: "Оба предложения-следствия сохраняют порядок наречие + спрягаемый глагол + подлежащее. Выбор слова показывает регистр, не объявляя альтернативу неграмматичной.", uk: "Обидва речення-наслідки зберігають порядок прислівник + відмінюване дієслово + підмет. Вибір слова показує регістр, не оголошуючи альтернативу неграматичною."}

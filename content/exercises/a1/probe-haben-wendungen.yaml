@@ -1,0 +1,41 @@
+topic: essen-trinken
+role: probe
+title: {en: "Probe — states with haben", ru: "Проверка — состояния с haben", uk: "Перевірка — стани з haben"}
+arming:
+  - a1/essen-trinken::cloze-hunger
+  - a1/essen-trinken::cloze-durst
+items:
+  - id: variant-a
+    outcomes: [essen-grundwortschatz]
+    type: translate
+    focus: haben-wendungen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "After sport I am thirsty."
+    prompt_ru: "После спорта я хочу пить."
+    prompt_uk: "Після спорту я хочу пити."
+    answer: "Nach dem Sport habe ich Durst."
+    accept: ["Ich habe nach dem Sport Durst."]
+    key_tokens: ["habe", "Durst"]
+    explain: {en: "German treats Durst as a noun in the fixed pattern haben + Durst, not as an adjective after sein.", ru: "В немецком Durst — существительное в модели haben + Durst, а не прилагательное после sein.", uk: "У німецькій Durst — іменник у моделі haben + Durst, а не прикметник після sein."}
+  - id: variant-b
+    outcomes: [essen-grundwortschatz]
+    type: translate
+    focus: haben-wendungen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The children are hungry."
+    prompt_ru: "Дети хотят есть."
+    prompt_uk: "Діти хочуть їсти."
+    answer: "Die Kinder haben Hunger."
+    key_tokens: ["haben", "Hunger"]
+    explain: {en: "With a plural subject, haben is plural: Die Kinder haben Hunger.", ru: "С подлежащим во множественном числе haben принимает форму haben: Die Kinder haben Hunger.", uk: "З підметом у множині haben має форму haben: Die Kinder haben Hunger."}
+  - id: variant-c
+    outcomes: [essen-grundwortschatz]
+    type: translate
+    focus: haben-wendungen
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Do you have time for a coffee?"
+    prompt_ru: "У вас есть время на кофе?"
+    prompt_uk: "У вас є час на каву?"
+    answer: "Haben Sie Zeit für einen Kaffee?"
+    key_tokens: ["Haben", "Sie", "Zeit"]
+    explain: {en: "Zeit haben uses the same noun pattern. In the formal yes/no question the conjugated verb comes first: Haben Sie …?", ru: "Zeit haben использует ту же модель с существительным. В вежливом общем вопросе спрягаемый глагол стоит первым: Haben Sie …?", uk: "Zeit haben використовує ту саму модель з іменником. У ввічливому загальному питанні відмінюване дієслово стоїть першим: Haben Sie …?"}

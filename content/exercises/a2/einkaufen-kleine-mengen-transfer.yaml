@@ -1,0 +1,65 @@
+topic: einkaufen-reklamation
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Mengen in Haushalt und Arbeit"
+title: {en: "Transfer — quantities at home and work", ru: "Перенос — количества дома и на работе", uk: "Перенесення — кількості вдома й на роботі"}
+items:
+  - id: translate-stuehle
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "The number is disappointingly low. Translate into German.", ru: "Количество оценивается как недостаточное. Переведите на немецкий.", uk: "Кількість оцінюється як недостатня. Перекладіть німецькою."}
+    prompt_en: "There are only a few chairs in the waiting room."
+    prompt_ru: "В приёмной только несколько стульев, и этого мало."
+    prompt_uk: "У приймальні лише кілька стільців, і цього мало."
+    answer: "Im Wartezimmer stehen nur wenige Stühle."
+    key_tokens: ["Wartezimmer", "nur", "wenige", "Stühle"]
+    explain: {en: "Countable plural Stühle plus an explicit low evaluation selects wenige, not neutral ein paar.", ru: "Счётное Plural Stühle и явная оценка недостатка требуют wenige, а не нейтрального ein paar.", uk: "Злічуваний Plural Stühle й явна оцінка нестачі потребують wenige, а не нейтрального ein paar."}
+  - id: translate-fragen
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "The number is neutral. Translate into German.", ru: "Количество нейтрально. Переведите на немецкий.", uk: "Кількість нейтральна. Перекладіть німецькою."}
+    prompt_en: "I still have a few questions."
+    prompt_ru: "У меня осталось несколько вопросов."
+    prompt_uk: "У мене залишилося кілька запитань."
+    answer: "Ich habe noch ein paar Fragen."
+    key_tokens: ["noch", "ein", "paar", "Fragen"]
+    explain: {en: "Fragen are countable plural and no shortage is evaluated, so ein paar is the neutral choice.", ru: "Fragen — счётное Plural, оценки недостатка нет, поэтому нейтральный выбор — ein paar.", uk: "Fragen — злічуваний Plural, оцінки нестачі немає, тому нейтральний вибір — ein paar."}
+  - id: translate-wohnungen
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "The speaker evaluates the number as too low. Translate into German.", ru: "Говорящий оценивает количество как слишком малое. Переведите на немецкий.", uk: "Мовець оцінює кількість як надто малу. Перекладіть німецькою."}
+    prompt_en: "Only a few flats here are affordable."
+    prompt_ru: "Здесь лишь немногие квартиры доступны по цене."
+    prompt_uk: "Тут лише небагато квартир доступні за ціною."
+    answer: "Nur wenige Wohnungen hier sind bezahlbar."
+    accept: ["Hier sind nur wenige Wohnungen bezahlbar."]
+    key_tokens: ["nur", "wenige", "Wohnungen", "bezahlbar"]
+    explain: {en: "Wohnungen are countable plural, and nur evaluates their number as insufficient: wenige Wohnungen.", ru: "Wohnungen — счётное Plural, а nur оценивает число как недостаточное: wenige Wohnungen.", uk: "Wohnungen — злічуваний Plural, а nur оцінює кількість як недостатню: wenige Wohnungen."}
+  - id: translate-platz
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "Translate the non-count amount into German.", ru: "Переведите неисчисляемое количество на немецкий.", uk: "Перекладіть незлічувану величину німецькою."}
+    prompt_en: "There is little space in the kitchen."
+    prompt_ru: "На кухне мало места."
+    prompt_uk: "На кухні мало місця."
+    answer: "In der Küche ist wenig Platz."
+    key_tokens: ["Küche", "ist", "wenig", "Platz"]
+    explain: {en: "Platz is measured as an uncountable amount of room in this meaning and stays singular with wenig.", ru: "Platz в значении свободного пространства измеряется как неисчисляемое количество и остаётся в Singular с wenig.", uk: "Platz у значенні вільного простору вимірюється як незлічувана величина й лишається в Singular із wenig."}
+  - id: write-vorrat
+    outcomes: [produkte-vergleichen]
+    type: write
+    focus: wenig-ein-paar
+    prompt: {en: "Write a short stock note containing one countable small number and one non-count amount.", ru: "Напишите короткую заметку о запасах с одним небольшим числом предметов и одним неисчисляемым количеством.", uk: "Напишіть коротку нотатку про запаси з однією невеликою кількістю предметів і однією незлічуваною величиною."}
+    goal: {en: "Show countability through the noun forms, not through a translation label.", ru: "Покажите счётность формами существительных, а не пояснением перевода.", uk: "Покажіть злічуваність формами іменників, а не поясненням перекладу."}
+    requirements:
+      - {en: "Use ein paar or wenige with a plural noun.", ru: "Используйте ein paar или wenige с существительным во множественном числе.", uk: "Використайте ein paar або wenige з іменником у множині."}
+      - {en: "Use wenig with a singular amount noun.", ru: "Используйте wenig с существительным количества в единственном числе.", uk: "Використайте wenig з іменником величини в однині."}
+    min_words: 12
+    model_answer: "Wir haben noch ein paar Flaschen Wasser, aber nur wenig Kaffee für das Treffen."
+    model_translation: {en: "We still have a few bottles of water, but only a little coffee for the meeting.", ru: "У нас осталось несколько бутылок воды, но для встречи мало кофе.", uk: "У нас лишилося кілька пляшок води, але для зустрічі мало кави."}
+    explain: {en: "Flaschen are countable plural units; Kaffee is measured as a substance. The contrast selects ein paar and wenig.", ru: "Flaschen — счётные единицы во множественном числе; Kaffee измеряется как вещество. Контраст требует ein paar и wenig.", uk: "Flaschen — злічувані одиниці в множині; Kaffee вимірюється як речовина. Контраст потребує ein paar і wenig."}

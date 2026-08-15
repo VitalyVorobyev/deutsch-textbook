@@ -251,3 +251,30 @@ items:
       en: "Two things to listen for when you play yourself back. First, the end of your indirect question: the last word must be the conjugated verb — müssen, with the infinitive abgeben in front of it. If you hear wann müssen wir die Hausaufgabe abgeben, you have said the bare question inside the wrapper, and that is the mistake this topic is about. Second, whether you named the problem. Ich verstehe nicht gives the teacher nothing to work with; Was bedeutet das Wort „Bedeutung“? gets you an answer in one move."
       ru: "Слушая запись, обратите внимание на две вещи. Во-первых, на конец вашего косвенного вопроса: последним словом должен быть спрягаемый глагол — müssen, а перед ним инфинитив abgeben. Если слышится wann müssen wir die Hausaufgabe abgeben, значит внутрь рамки попал самостоятельный вопрос, а это и есть та ошибка, ради которой существует тема. Во-вторых, назвали ли вы саму проблему. Фраза Ich verstehe nicht не даёт преподавателю ничего; вопрос Was bedeutet das Wort «Bedeutung»? приносит ответ с первого раза."
       uk: "Слухаючи запис, зверніть увагу на дві речі. По-перше, на кінець вашого непрямого питання: останнім словом має бути відмінюване дієслово — müssen, а перед ним інфінітив abgeben. Якщо чується wann müssen wir die Hausaufgabe abgeben, значить усередину рамки потрапило самостійне питання, а це й є та помилка, заради якої існує тема. По-друге, чи назвали ви саму проблему. Фраза Ich verstehe nicht не дає викладачеві нічого; питання Was bedeutet das Wort „Bedeutung“? приносить відповідь з першого разу."
+
+  - id: sprechen-lernweg
+    outcomes: [lernstrategien-sagen, meinung-kennzeichnen]
+    type: speak
+    mode: spoken-production
+    focus: meinung-nachgestellt
+    prompt:
+      en: "Record a short introduction for a new study group. Explain why and how you learn German, name one difficulty and evaluate one learning method as your own opinion."
+      ru: "Запишите короткое представление для новой учебной группы. Объясните, зачем и как вы учите немецкий, назовите одну трудность и оцените один метод как собственное мнение."
+      uk: "Запишіть коротке представлення для нової навчальної групи. Поясніть, навіщо і як ви вчите німецьку, назвіть одну складність і оцініть один метод як власну думку."
+    goal:
+      en: "Sustain a self-contained account of your learning instead of answering isolated teacher questions."
+      ru: "Постройте самостоятельный связный рассказ об учёбе, а не ответы на отдельные вопросы преподавателя."
+      uk: "Побудуйте самостійну зв'язну розповідь про навчання, а не відповіді на окремі запитання викладача."
+    checklist:
+      - {en: "I explained my purpose and one regular learning habit.", ru: "Я объяснил(а) свою цель и одну регулярную учебную привычку.", uk: "Я пояснив (пояснила) свою мету й одну регулярну навчальну звичку."}
+      - {en: "I named a concrete difficulty and what I do about it.", ru: "Я назвал(а) конкретную трудность и то, что с ней делаю.", uk: "Я назвав (назвала) конкретну складність і те, що з нею роблю."}
+      - {en: "I used meiner Meinung nach after the noun phrase and followed it with a complete clause.", ru: "Я поставил(а) meiner Meinung nach после именной группы и продолжил(а) полноценным предложением.", uk: "Я поставив (поставила) meiner Meinung nach після іменної групи й продовжив (продовжила) повним реченням."}
+    model_answer: "Ich lerne Deutsch, weil ich in Berlin arbeiten möchte. Jeden Morgen wiederhole ich Wörter, und zweimal pro Woche spreche ich mit einer Tandempartnerin. Spontan zu sprechen ist für mich noch schwierig, darum nehme ich kurze Sprachnachrichten auf. Meiner Meinung nach hilft diese Methode besonders gut, weil ich meine Fehler hören kann."
+    model_translation:
+      en: "I am learning German because I want to work in Berlin. Every morning I review words, and twice a week I speak with a tandem partner. Speaking spontaneously is still difficult for me, so I record short voice messages. In my opinion, this method helps especially well because I can hear my mistakes."
+      ru: "Я учу немецкий, потому что хочу работать в Берлине. Каждое утро повторяю слова, а дважды в неделю разговариваю с тандем-партнёршей. Мне пока трудно говорить спонтанно, поэтому я записываю короткие голосовые сообщения. По моему мнению, этот метод особенно полезен, потому что я могу слышать свои ошибки."
+      uk: "Я вчу німецьку, бо хочу працювати в Берліні. Щоранку повторюю слова, а двічі на тиждень розмовляю з тандем-партнеркою. Мені поки важко говорити спонтанно, тому я записую короткі голосові повідомлення. На мою думку, цей метод особливо корисний, бо я можу чути свої помилки."
+    explain:
+      en: "A production task must stand without an interviewer. The model links purpose, routine, difficulty, response and evaluation. In meiner Meinung nach, the dative phrase comes first and nach closes the fixed frame."
+      ru: "Задание на монолог должно быть понятным без вопросов собеседника. Образец связывает цель, привычку, трудность, действие и оценку. В meiner Meinung nach сначала идёт группа в Dativ, а nach закрывает устойчивую рамку."
+      uk: "Завдання на монолог має бути зрозумілим без запитань співрозмовника. Зразок пов'язує мету, звичку, складність, дію й оцінку. У meiner Meinung nach спочатку йде група в Dativ, а nach закриває сталу рамку."

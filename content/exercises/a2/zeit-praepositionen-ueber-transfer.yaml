@@ -1,0 +1,42 @@
+topic: zeit-praepositionen
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Dauer im Termin- und Arbeitskontext"
+title: {en: "Transfer — durations in appointments and work", ru: "Перенос — длительность встреч и работы", uk: "Перенесення — тривалість зустрічей і роботи"}
+items:
+  - id: translate-besprechung
+    outcomes: [dauer-schwelle-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The meeting lasted for over two hours."
+    prompt_ru: "Совещание длилось больше двух часов."
+    prompt_uk: "Нарада тривала понад дві години."
+    answer: "Die Besprechung hat über zwei Stunden gedauert."
+    key_tokens: ["über", "zwei", "Stunden", "gedauert"]
+    explain: {en: "The meeting is finished and crossed a two-hour threshold: über + accusative duration.", ru: "Совещание завершилось и превысило двухчасовой порог: über + длительность в Akkusativ.", uk: "Нарада завершилася й перевищила двогодинний поріг: über + тривалість в Akkusativ."}
+  - id: translate-arbeitsweg
+    outcomes: [dauer-schwelle-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Today my journey to work took over an hour."
+    prompt_ru: "Сегодня дорога на работу заняла больше часа."
+    prompt_uk: "Сьогодні дорога на роботу тривала понад годину."
+    answer: "Heute hat mein Arbeitsweg über eine Stunde gedauert."
+    key_tokens: ["Heute", "Arbeitsweg", "über", "eine", "Stunde"]
+    explain: {en: "Heute can occupy position 1, so the finite hat follows immediately. über eine Stunde measures the completed duration.", ru: "Heute занимает позицию 1, поэтому спрягаемое hat идёт сразу после него. über eine Stunde измеряет завершённую длительность.", uk: "Heute займає позицію 1, тому відмінюване hat іде одразу після нього. über eine Stunde вимірює завершену тривалість."}
+  - id: write-verspaetung
+    outcomes: [dauer-schwelle-nennen]
+    type: write
+    focus: ueber-dauer
+    prompt: {en: "Write a short delay report about a journey, appointment or repair that took longer than expected.", ru: "Напишите короткое сообщение о задержке поездки, встречи или ремонта, которые длились дольше ожидаемого.", uk: "Напишіть коротке повідомлення про затримку поїздки, зустрічі або ремонту, що тривали довше за очікуване."}
+    goal: {en: "State a concrete exceeded duration with über and make clear what event is finished.", ru: "Назовите конкретную превышенную длительность с über и ясно укажите завершённое событие.", uk: "Назвіть конкретну перевищену тривалість з über і чітко вкажіть завершену подію."}
+    requirements:
+      - {en: "Use über plus a duration in the accusative.", ru: "Используйте über с длительностью в Akkusativ.", uk: "Використайте über із тривалістю в Akkusativ."}
+      - {en: "Say what caused or experienced the delay.", ru: "Назовите событие или объект задержки.", uk: "Назвіть подію або об'єкт затримки."}
+    min_words: 12
+    model_answer: "Der Zug hatte über eine Stunde Verspätung, deshalb bin ich zu spät zum Termin gekommen."
+    model_translation: {en: "The train was delayed by over an hour, so I arrived late for the appointment.", ru: "Поезд опоздал больше чем на час, поэтому я поздно пришёл на встречу.", uk: "Потяг запізнився більш ніж на годину, тому я пізно прийшов на зустріч."}
+    explain: {en: "über must mean more than the stated duration, not merely during it. The model uses the common frame Verspätung haben.", ru: "über должно означать больше указанной длительности, а не просто в течение неё. В образце используется частая конструкция Verspätung haben.", uk: "über має означати понад зазначену тривалість, а не просто протягом неї. У зразку використано поширену конструкцію Verspätung haben."}

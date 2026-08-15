@@ -1,0 +1,41 @@
+topic: einkaufen-reklamation
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — ein paar, wenige, wenig"
+title: {en: "Core — ein paar, wenige, wenig", ru: "Основа — ein paar, wenige, wenig", uk: "Основа — ein paar, wenige, wenig"}
+items:
+  - id: mc-neutrale-zahl
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: wenig-ein-paar
+    instruction: {en: "The recipe needs a neutral small number of tomatoes. Choose the phrase.", ru: "Для рецепта нужно нейтральное небольшое количество помидоров. Выберите выражение.", uk: "Для рецепта потрібна нейтральна невелика кількість помідорів. Оберіть вираз."}
+    prompt: "Ich brauche ___ Tomaten."
+    options: ["ein paar", "wenig", "ein Paar"]
+    correct: 0
+    explain: {en: "Tomaten are countable and plural; ein paar reports a neutral small number. wenig needs a non-count amount, while ein Paar names a pair as one unit.", ru: "Tomaten — счётное Plural; ein paar нейтрально называет небольшое число. wenig требует неисчисляемого количества, ein Paar означает пару как единицу.", uk: "Tomaten — злічуваний Plural; ein paar нейтрально називає невелику кількість. wenig потребує незлічуваної величини, ein Paar означає пару як одиницю."}
+  - id: mc-zu-kleine-zahl
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: wenig-ein-paar
+    instruction: {en: "Only three sizes remain and the speaker considers that too few. Choose the phrase.", ru: "Осталось только три размера, и говорящий считает, что это мало. Выберите выражение.", uk: "Лишилося лише три розміри, і мовець вважає, що це мало. Оберіть вираз."}
+    prompt: "Es sind nur ___ Größen da."
+    options: ["wenige", "wenig", "ein paar"]
+    correct: 0
+    explain: {en: "Größen are countable plural and nur makes the low evaluation explicit: wenige Größen.", ru: "Größen — счётное Plural, а nur явно выражает оценку недостатка: wenige Größen.", uk: "Größen — злічуваний Plural, а nur явно виражає оцінку нестачі: wenige Größen."}
+  - id: mc-menge
+    outcomes: [produkte-vergleichen]
+    type: mc
+    focus: wenig-ein-paar
+    instruction: {en: "Choose the form for an amount that is not counted in units.", ru: "Выберите форму для количества, которое не считают отдельными единицами.", uk: "Оберіть форму для кількості, яку не рахують окремими одиницями."}
+    prompt: "Ich habe heute ___ Zeit."
+    options: ["wenig", "wenige", "ein paar"]
+    correct: 0
+    explain: {en: "Zeit is an abstract non-count amount here and stays singular: wenig Zeit.", ru: "Zeit здесь абстрактное неисчисляемое количество и остаётся в Singular: wenig Zeit.", uk: "Zeit тут абстрактна незлічувана величина й лишається в Singular: wenig Zeit."}
+  - id: cloze-drei-formen
+    outcomes: [produkte-vergleichen]
+    type: cloze
+    focus: wenig-ein-paar
+    instruction: {en: "Complete all three quantity decisions.", ru: "Дополните все три выражения количества.", uk: "Доповніть усі три вирази кількості."}
+    text: "Für die Suppe kaufe ich {{ein paar}} Kartoffeln. Im Laden gibt es heute nur {{wenige}} Angebote, und ich habe außerdem {{wenig}} Geld dabei."
+    explain: {en: "Potatoes are neutral countable units, offers are evaluated as too few, and money is treated as an amount: ein paar, wenige, wenig.", ru: "Картофель — нейтральное число единиц, предложений оценивается как мало, деньги выступают как количество: ein paar, wenige, wenig.", uk: "Картопля — нейтральна кількість одиниць, пропозицій оцінено як замало, гроші виступають як величина: ein paar, wenige, wenig."}

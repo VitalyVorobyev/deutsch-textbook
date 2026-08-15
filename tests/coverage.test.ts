@@ -44,6 +44,12 @@ describe('the taught surface is the German the course teaches', () => {
     expect(addresses('ich gehe manchmal ins kino', 'manch-')).toBe(false);
   });
 
+  test('a multiword stem inflects only at the end of the complete frame', () => {
+    expect(addresses('was für eine frist gilt hier', 'was für ein-')).toBe(true);
+    expect(addresses('was für ein dokument fehlt', 'was für ein-')).toBe(true);
+    expect(addresses('was steht für eine frist im text', 'was für ein-')).toBe(false);
+  });
+
   test('a phrase headword is matched after normalization, not before', () => {
     // `d.h.` has no space but folds to `d h`. Deciding phrase-vs-token on the raw
     // string takes the token branch and can never match anything.

@@ -368,3 +368,73 @@ entries:
       en: 'The plural keeps the Greek shape: das Lexikon, die Lexika. What separates it from A2 das Wörterbuch, in the deck `lernen-verstehen`, is what the entry gives you — a Wörterbuch gives the word in another language, a Lexikon explains the thing itself, so one is used while translating and the other while learning. Compounds narrow it: das Fachlexikon, das Musiklexikon, and das Konversationslexikon is the old name for a general one. Stress on the first syllable.'
       ru: 'Множественное сохраняет греческую форму: das Lexikon, die Lexika. От das Wörterbuch уровня A2 из колоды `lernen-verstehen` его отделяет то, что даёт статья: Wörterbuch даёт слово на другом языке, а Lexikon объясняет сам предмет, — потому одним пользуются при переводе, а другим при изучении. Сложные слова сужают значение: das Fachlexikon, das Musiklexikon, а das Konversationslexikon — старое название общей энциклопедии. Ударение на первом слоге.'
       uk: 'Множина зберігає грецьку форму: das Lexikon, die Lexika. Від das Wörterbuch рівня A2 з колоди `lernen-verstehen` його відділяє те, що дає стаття: Wörterbuch дає слово іншою мовою, а Lexikon пояснює сам предмет, — тому одним користуються під час перекладу, а другим під час навчання. Складні слова звужують значення: das Fachlexikon, das Musiklexikon, а das Konversationslexikon — стара назва загальної енциклопедії. Наголос на першому складі.'
+
+  # Written abbreviations are recognition cards: the prompt is the mark on the
+  # page, while the answer teaches how to expand and interpret it.
+  - de: "bzw."
+    ipa: "bəˈtsiːʊŋsˌvaɪ̯zə"
+    pos: phrase
+    cards: recognition
+    en: respectively; or rather (written abbreviation for beziehungsweise)
+    en_compact: respectively; or rather
+    ru: соответственно; точнее (письменное сокращение beziehungsweise)
+    uk: відповідно; точніше (письмове скорочення beziehungsweise)
+    example_de: Bitte bringen Sie Pass bzw. Ausweis mit.
+    example_en: Please bring your passport or, as applicable, your identity card.
+    example_ru: Возьмите с собой паспорт или, соответственно, удостоверение личности.
+    example_uk: Візьміть із собою паспорт або, відповідно, посвідчення особи.
+    note:
+      en: 'Expand it silently to beziehungsweise. It can correct a term (or rather) or assign parallel items respectively. It links like und/oder and does not send a verb to the end.'
+      ru: 'Мысленно разворачивайте в beziehungsweise. Оно либо уточняет сказанное («точнее»), либо распределяет параллельные элементы («соответственно»). Связывает как und/oder и не отправляет глагол в конец.'
+      uk: 'Подумки розгортайте в beziehungsweise. Воно або уточнює сказане («точніше»), або розподіляє паралельні елементи («відповідно»). Сполучає як und/oder і не відправляє дієслово в кінець.'
+
+  - de: "d. h."
+    ipa: "das ˈhaɪ̯st"
+    pos: phrase
+    cards: recognition
+    en: that is, in other words (written abbreviation for das heißt)
+    en_compact: that is; in other words
+    ru: то есть, иными словами (письменное сокращение das heißt)
+    uk: тобто, іншими словами (письмове скорочення das heißt)
+    example_de: Der Termin ist verbindlich, d. h., Sie müssen pünktlich kommen.
+    example_en: The appointment is binding; that is, you must arrive on time.
+    example_ru: Время записи обязательно, то есть вы должны прийти вовремя.
+    example_uk: Час запису обов’язковий, тобто ви маєте прийти вчасно.
+    note:
+      en: 'Read the two letters as the full phrase das heißt. It introduces an explanation or consequence. Spacing varies in real texts, but the standard form keeps a full stop after each abbreviated word.'
+      ru: 'Читайте две буквы как полную формулу das heißt. Она вводит пояснение или следствие. В реальных текстах пробелы варьируются, но нормативная запись сохраняет точку после каждого сокращённого слова.'
+      uk: 'Читайте дві літери як повну формулу das heißt. Вона вводить пояснення або наслідок. У реальних текстах пробіли різняться, але нормативний запис зберігає крапку після кожного скороченого слова.'
+
+  - de: "etc."
+    ipa: "ɛtˈtseːtɐa"
+    pos: phrase
+    cards: recognition
+    en: and so on (written abbreviation from Latin et cetera)
+    en_compact: and so on
+    ru: и так далее (письменное сокращение латинского et cetera)
+    uk: і так далі (письмове скорочення латинського et cetera)
+    example_de: Bitte nennen Sie Namen, Adresse, Telefonnummer etc.
+    example_en: Please give your name, address, telephone number and so on.
+    example_ru: Укажите имя, адрес, номер телефона и так далее.
+    example_uk: Укажіть ім’я, адресу, номер телефону тощо.
+    note:
+      en: 'In German prose, read etc. as et cetera or replace it mentally with und so weiter. Because et already means and, do not write und etc. in careful prose.'
+      ru: 'В немецком тексте читайте etc. как et cetera или мысленно заменяйте на und so weiter. Поскольку et уже означает «и», в аккуратном тексте не пишут und etc.'
+      uk: 'У німецькому тексті читайте etc. як et cetera або подумки замінюйте на und so weiter. Оскільки et уже означає «і», в акуратному тексті не пишуть und etc.'
+
+  - de: "vgl."
+    ipa: "fɛɐ̯ˈglaɪ̯çə"
+    pos: phrase
+    cards: recognition
+    en: compare, see (written abbreviation for vergleiche)
+    en_compact: compare; see
+    ru: сравни, см. (письменное сокращение vergleiche)
+    uk: порівняй, див. (письмове скорочення vergleiche)
+    example_de: Vgl. dazu die Tabelle auf Seite 12.
+    example_en: Compare the table on page 12 on this point.
+    example_ru: Сравните с таблицей на странице 12.
+    example_uk: Порівняйте з таблицею на сторінці 12.
+    note:
+      en: 'A cross-reference in academic and administrative writing. Read it as vergleiche: it sends you to a related passage, not necessarily to proof of the same claim. At the beginning of a sentence it is capitalised.'
+      ru: 'Перекрёстная ссылка в научном и административном тексте. Читайте как vergleiche: она отправляет к связанному месту, а не обязательно к доказательству того же тезиса. В начале предложения пишется с большой буквы.'
+      uk: 'Перехресне посилання в науковому й адміністративному тексті. Читайте як vergleiche: воно відсилає до пов’язаного місця, а не обов’язково до доказу тієї самої тези. На початку речення пишеться з великої літери.'

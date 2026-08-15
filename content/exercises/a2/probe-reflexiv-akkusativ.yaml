@@ -1,0 +1,43 @@
+topic: gesundheit-arzttermin
+role: probe
+title: {en: "Probe — accusative reflexive pronouns", ru: "Проверка — возвратные местоимения в Akkusativ", uk: "Перевірка — зворотні займенники в Akkusativ"}
+arming:
+  - a2/gesundheit-arzttermin::cloze-reflexiv
+  - a2/gesundheit-arzttermin-produktion::uebersetzen-reflexiv-frage
+  - a2/freunde-feste-produktion::cloze-sich-freuen-treffen
+items:
+  - id: variant-a
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-akkusativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I do not feel well today."
+    prompt_ru: "Сегодня я плохо себя чувствую."
+    prompt_uk: "Сьогодні я погано почуваюся."
+    answer: "Ich fühle mich heute nicht gut."
+    accept: ["Heute fühle ich mich nicht gut."]
+    key_tokens: ["fühle", "mich", "nicht", "gut"]
+    explain: {en: "sich fühlen has no other object here, so ich takes the accusative reflexive mich.", ru: "У sich fühlen здесь нет другого дополнения, поэтому ich получает возвратную форму Akkusativ mich.", uk: "У sich fühlen тут немає іншого додатка, тому ich має зворотну форму Akkusativ mich."}
+  - id: variant-b
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-akkusativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "After work, Paul rests."
+    prompt_ru: "После работы Пауль отдыхает."
+    prompt_uk: "Після роботи Пауль відпочиває."
+    answer: "Nach der Arbeit ruht Paul sich aus."
+    accept: ["Paul ruht sich nach der Arbeit aus."]
+    key_tokens: ["ruht", "sich", "aus"]
+    explain: {en: "The lexical verb is sich ausruhen; third-person singular uses sich and aus closes the bracket.", ru: "Словарная единица — sich ausruhen; третье лицо единственного числа требует sich, а aus закрывает рамку.", uk: "Словникова одиниця — sich ausruhen; третя особа однини потребує sich, а aus закриває рамку."}
+  - id: variant-c
+    outcomes: [beschwerden-beschreiben]
+    type: translate
+    focus: reflexiv-akkusativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Are you looking forward to the holiday?"
+    prompt_ru: "Ты радуешься предстоящему отпуску?"
+    prompt_uk: "Ти радієш майбутній відпустці?"
+    answer: "Freust du dich auf den Urlaub?"
+    key_tokens: ["Freust", "dich", "auf", "Urlaub"]
+    explain: {en: "du selects dich, and sich freuen auf keeps its fixed preposition plus accusative.", ru: "du требует dich, а sich freuen auf сохраняет фиксированный предлог с Akkusativ.", uk: "du потребує dich, а sich freuen auf зберігає фіксований прийменник з Akkusativ."}

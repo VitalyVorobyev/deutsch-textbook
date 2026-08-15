@@ -1,0 +1,39 @@
+topic: zeit-praepositionen
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — mit einer Schwelle, zwischen zwei Grenzen"
+title: {en: "Core — mit a threshold, zwischen two boundaries", ru: "Основа — mit для порога, zwischen для двух границ", uk: "Основа — mit для порога, zwischen для двох меж"}
+items:
+  - id: mc-mit-18
+    outcomes: [zeitraum-nennen]
+    type: mc
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Choose the expression for the age at which a permission begins.", ru: "Выберите выражение для возраста, с которого начинается разрешение.", uk: "Оберіть вираз для віку, з якого починається дозвіл."}
+    prompt: "___ darf man in Deutschland wählen."
+    options: ["Mit 18", "Um 18", "Seit 18"]
+    correct: 0
+    explain: {en: "mit 18 names the age threshold. um 18 would mean at 18:00, while seit 18 is incomplete and would describe a duration already running.", ru: "mit 18 называет возрастной порог. um 18 означало бы в 18:00, seit 18 неполно и описывало бы уже продолжающийся период.", uk: "mit 18 називає віковий поріг. um 18 означало б о 18:00, seit 18 неповне й описувало б уже тривалий період."}
+  - id: cloze-kursbeginn
+    outcomes: [zeitraum-nennen]
+    type: cloze
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Complete the threshold phrase with the visible dative form.", ru: "Дополните выражение порога с явной формой Dativ.", uk: "Доповніть вираз порога з явною формою Dativ."}
+    text: "{{Mit dem Kursbeginn}} ändert sich mein Arbeitsplan."
+    explain: {en: "The change starts at the threshold named by Kursbeginn. mit governs the dative, so der Kursbeginn becomes dem Kursbeginn.", ru: "Изменение начинается на границе Kursbeginn. mit требует Dativ, поэтому der Kursbeginn превращается в dem Kursbeginn.", uk: "Зміна починається на межі Kursbeginn. mit потребує Dativ, тому der Kursbeginn перетворюється на dem Kursbeginn."}
+  - id: mc-zwischen
+    outcomes: [zeitraum-nennen]
+    type: mc
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "The technician gives one bounded interval. Choose the complete frame.", ru: "Техник называет один ограниченный интервал. Выберите полную рамку.", uk: "Технік називає один обмежений інтервал. Оберіть повну рамку."}
+    prompt: "Der Techniker kommt ___."
+    options: ["zwischen Montag und Mittwoch", "von Montag und Mittwoch", "zwischen Montag bis Mittwoch"]
+    correct: 0
+    explain: {en: "zwischen pairs its first endpoint with und, not bis. The two days delimit one interval.", ru: "zwischen связывает первую границу с und, а не с bis. Два дня ограничивают один интервал.", uk: "zwischen поєднує першу межу з und, а не з bis. Два дні обмежують один інтервал."}
+  - id: cloze-zwischen-dativ
+    outcomes: [zeitraum-nennen]
+    type: cloze
+    focus: zeitgrenzen-mit-zwischen
+    instruction: {en: "Complete both dative endpoints.", ru: "Дополните обе границы в Dativ.", uk: "Доповніть обидві межі в Dativ."}
+    text: "Der Termin liegt {{zwischen dem ersten und dem dritten Mai}}."
+    explain: {en: "A temporal interval answers wann? and uses the dative here: dem ersten and dem dritten. Both endpoints stay inside the zwischen … und frame.", ru: "Временной интервал отвечает на wann? и здесь стоит в Dativ: dem ersten и dem dritten. Обе границы входят в рамку zwischen … und.", uk: "Часовий інтервал відповідає на wann? і тут стоїть у Dativ: dem ersten та dem dritten. Обидві межі входять до рамки zwischen … und."}

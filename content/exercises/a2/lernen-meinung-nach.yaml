@@ -1,0 +1,41 @@
+topic: lernen-verstehen
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — meiner Meinung nach"
+title: {en: "Core — meiner Meinung nach", ru: "Основа — meiner Meinung nach", uk: "Основа — meiner Meinung nach"}
+items:
+  - id: mc-nachgestellt
+    outcomes: [meinung-kennzeichnen]
+    type: mc
+    focus: meinung-nachgestellt
+    instruction: {en: "Choose the neutral fixed frame for the speaker's own view.", ru: "Выберите нейтральную устойчивую рамку для собственной точки зрения.", uk: "Оберіть нейтральну сталу рамку для власної думки."}
+    prompt: "___ ist der Abendkurs besser."
+    options: ["Meiner Meinung nach", "Nach meiner Meinung", "Meine Meinung nach"]
+    correct: 0
+    explain: {en: "The neutral frame is meiner Meinung nach: the dative noun phrase comes first and nach is postposed.", ru: "Нейтральная рамка — meiner Meinung nach: сначала именная группа в Dativ, затем отложенное nach.", uk: "Нейтральна рамка — meiner Meinung nach: спершу іменна група в Dativ, далі відкладене nach."}
+  - id: mc-v2
+    outcomes: [meinung-kennzeichnen]
+    type: mc
+    focus: meinung-nachgestellt
+    instruction: {en: "The whole opinion frame occupies position 1. Choose the correct word order.", ru: "Вся рамка мнения занимает позицию 1. Выберите правильный порядок слов.", uk: "Уся рамка думки займає позицію 1. Оберіть правильний порядок слів."}
+    prompt: "Meiner Meinung nach ___ der zweite Text leichter."
+    options: ["ist", "der zweite Text ist", "leichter ist"]
+    correct: 0
+    explain: {en: "The complete frame fills position 1, so the finite verb ist must follow in position 2 and the subject comes after it.", ru: "Полная рамка занимает позицию 1, поэтому спрягаемое ist следует на позиции 2, затем подлежащее.", uk: "Повна рамка займає позицію 1, тому відмінюване ist іде на позиції 2, далі підмет."}
+  - id: cloze-mittelfeld
+    outcomes: [meinung-kennzeichnen]
+    type: cloze
+    focus: meinung-nachgestellt
+    instruction: {en: "Place the complete frame in the middle of the sentence.", ru: "Вставьте полную рамку в середину предложения.", uk: "Вставте повну рамку в середину речення."}
+    text: "Der Onlinekurs ist {{meiner Meinung nach}} zu schnell."
+    explain: {en: "The frame can sit after the finite verb without splitting: meiner Meinung nach. It marks the evaluation as the speaker's judgement.", ru: "Рамка может стоять после спрягаемого глагола и не разделяется: meiner Meinung nach. Она помечает оценку как мнение говорящего.", uk: "Рамка може стояти після відмінюваного дієслова й не розділяється: meiner Meinung nach. Вона позначає оцінку як думку мовця."}
+  - id: mc-drei-nach
+    outcomes: [meinung-kennzeichnen]
+    type: mc
+    focus: meinung-nachgestellt
+    instruction: {en: "Which nach names the source of a judgement?", ru: "Какое nach называет источник суждения?", uk: "Яке nach називає джерело судження?"}
+    prompt: "Welche Wendung markiert eine Meinung?"
+    options: ["nach Berlin", "nach dem Kurs", "meiner Meinung nach"]
+    correct: 2
+    explain: {en: "Only meiner Meinung nach marks whose judgement the statement follows. The other phrases express direction and temporal succession.", ru: "Только meiner Meinung nach показывает, чьей оценке следует высказывание. Другие фразы обозначают направление и время после события.", uk: "Лише meiner Meinung nach показує, чиїй оцінці відповідає вислів. Інші фрази позначають напрямок і час після події."}

@@ -59,6 +59,22 @@ runtime invariants) — they are orphaned, which is the documented behaviour rat
 regression. `revision` is a per-*item* field, so removing an item bumps nothing: no surviving
 item's contract changed.
 
+## 2026-08-15 — factual retirement outside the duplicate-TTS batch
+
+`ls-aemter-dienstleistungen-01` was removed from the learner bundle after the A2 topic-profile pass
+found that its address-registration dialogue silently switched to a separate Personalausweis
+application: it promised an ID card after three weeks and attached a 37-euro fee to a conversation
+opened only as *Wohnsitz anmelden*. The
+[official Berlin service description](https://service.berlin.de/dienstleistung/120686/de_plain/)
+instead names the Meldebestätigung as the result of the address registration and lists that service
+as free; a Personalausweis application is a separate service.
+
+The exercise now uses a corrected TTS script about the Wohnungsgeberbestätigung, Vollmacht,
+immediate Meldebestätigung and free Anmeldung. A corrected reviewed recording remains planned under
+the stable id `ls-aemter-dienstleistungen-01`; it cannot re-enter `content/listening/` until a human approves the
+exact new audio and provenance. The old binary and artifact record remain recoverable from Git but
+are no longer shipped or indexed as live course material.
+
 ## Reproducing
 
 The ledger is a scratch script, not a committed gate — the three passes it runs are each already

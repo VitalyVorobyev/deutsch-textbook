@@ -1,0 +1,61 @@
+topic: wortbildung
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — Hinweise entschlüsseln und Wörter bilden"
+title: {en: "Apply — decode a notice and build useful words", ru: "Применение — разбираем объявление и строим слова", uk: "Застосування — розбираємо оголошення й будуємо слова"}
+items:
+  - id: translate-arbeitszeit
+    outcomes: [wortbildung-komposita]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the compound Arbeitszeit.", ru: "Используйте сложное слово Arbeitszeit.", uk: "Використайте складне слово Arbeitszeit."}
+    prompt_en: "The working time is from eight to four."
+    prompt_ru: "Рабочее время — с восьми до четырёх."
+    prompt_uk: "Робочий час — з восьмої до четвертої."
+    answer: "Die Arbeitszeit ist von acht bis vier."
+    key_tokens: ["Die", "Arbeitszeit", "von", "bis"]
+    explain: {en: "The final noun is die Zeit, so the compound is die Arbeitszeit. Arbeit narrows the kind of time; it does not provide the article.", ru: "Последнее существительное — die Zeit, поэтому всё слово — die Arbeitszeit. Arbeit уточняет вид времени, но не даёт артикль.", uk: "Останній іменник — die Zeit, тому все слово — die Arbeitszeit. Arbeit уточнює вид часу, але не дає артикль."}
+  - id: translate-katzchen
+    outcomes: [wortbildung-nomenformen]
+    type: translate
+    focus: wortbildung-nomen
+    instruction: {en: "Use the diminutive Kätzchen.", ru: "Используйте уменьшительное Kätzchen.", uk: "Використайте зменшувальне Kätzchen."}
+    prompt_en: "The kitten is small."
+    prompt_ru: "Котёнок маленький."
+    prompt_uk: "Кошеня маленьке."
+    answer: "Das Kätzchen ist klein."
+    key_tokens: ["Das", "Kätzchen"]
+    explain: {en: "die Katze becomes the genuine diminutive das Kätzchen: umlaut plus -chen, and the result is neuter.", ru: "die Katze превращается в настоящее уменьшительное das Kätzchen: умлаут плюс -chen, результат среднего рода.", uk: "die Katze перетворюється на справжнє зменшувальне das Kätzchen: умлаут плюс -chen, результат середнього роду."}
+  - id: translate-unlesbar
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Build one adjective from un- and lesbar.", ru: "Образуйте одно прилагательное из un- и lesbar.", uk: "Утворіть один прикметник з un- і lesbar."}
+    prompt_en: "The address is illegible."
+    prompt_ru: "Адрес невозможно прочитать."
+    prompt_uk: "Адресу неможливо прочитати."
+    answer: "Die Adresse ist unlesbar."
+    key_tokens: ["unlesbar"]
+    explain: {en: "lesbar means can be read; un- reverses it: unlesbar. One transparent adjective carries the whole proposition.", ru: "lesbar означает «можно прочитать»; un- переворачивает значение: unlesbar. Одно прозрачное прилагательное передаёт всю мысль.", uk: "lesbar означає «можна прочитати»; un- перевертає значення: unlesbar. Один прозорий прикметник передає всю думку."}
+  - id: mc-schild-verstehen
+    outcomes: [wortbildung-adjektive]
+    type: mc
+    focus: wortbildung-adjektiv
+    instruction: {en: "A café sign says Zuckerlose Getränke. What does it promise?", ru: "На вывеске кафе написано Zuckerlose Getränke. Что это обещает?", uk: "На вивісці кафе написано Zuckerlose Getränke. Що це обіцяє?"}
+    prompt: "Zuckerlose Getränke"
+    options: ["Getränke ohne Zucker", "Getränke mit wenig Wasser", "Zucker kann getrunken werden"]
+    correct: 0
+    explain: {en: "-los means without, so the drinks contain no sugar. The final adjective ending -e only agrees with the plural noun and does not change that meaning.", ru: "-los означает «без», значит в напитках нет сахара. Конечное -e лишь согласует прилагательное с существительным во множественном числе и не меняет значение.", uk: "-los означає «без», отже в напоях немає цукру. Кінцеве -e лише узгоджує прикметник з іменником у множині й не змінює значення."}
+  - id: write-drei-woerter
+    outcomes: [wortbildung-komposita, wortbildung-nomenformen, wortbildung-adjektive]
+    type: write
+    prompt: {en: "Write three short sentences: one with a compound noun, one with an -ung or -chen noun, and one with an adjective containing un-, -los or -bar. Use only words you have met.", ru: "Напишите три коротких предложения: одно со сложным существительным, одно с существительным на -ung или -chen и одно с прилагательным с un-, -los или -bar. Используйте только знакомые слова.", uk: "Напишіть три короткі речення: одне зі складним іменником, одне з іменником на -ung або -chen та одне з прикметником з un-, -los або -bar. Використайте лише знайомі слова."}
+    goal: {en: "Three transparent words used in complete sentences, with form and meaning both checked.", ru: "Три прозрачных слова в полных предложениях с проверкой формы и значения.", uk: "Три прозорі слова в повних реченнях із перевіркою форми та значення."}
+    requirements:
+      - {en: "Underline the final noun in the compound and check its article.", ru: "Подчеркните последнее существительное в сложном слове и проверьте его артикль.", uk: "Підкресліть останній іменник у складному слові й перевірте його артикль."}
+      - {en: "Capitalise both nouns and explain the affix in the adjective.", ru: "Напишите оба существительных с большой буквы и объясните аффикс в прилагательном.", uk: "Напишіть обидва іменники з великої літери й поясніть афікс у прикметнику."}
+    min_words: 9
+    model_answer: "Der Fahrplan ist neu. Die Wohnung ist klein. Die Information ist unklar."
+    model_translation: {en: "The timetable is new. The flat is small. The information is unclear.", ru: "Расписание новое. Квартира маленькая. Информация непонятна.", uk: "Розклад новий. Квартира маленька. Інформація незрозуміла."}
+    explain: {en: "The check has three independent passes: final noun for compound article, suffix for noun gender, affix for adjective meaning. A plausible sentence with the wrong article or an invented adjective is not finished.", ru: "Проверка идёт в три независимых прохода: последнее существительное для артикля сложного слова, суффикс для рода существительного, аффикс для значения прилагательного. Правдоподобное предложение с неверным артиклем или выдуманным прилагательным не закончено.", uk: "Перевірка йде в три незалежні проходи: останній іменник для артикля складного слова, суфікс для роду іменника, афікс для значення прикметника. Правдоподібне речення з неправильним артиклем або вигаданим прикметником не завершене."}

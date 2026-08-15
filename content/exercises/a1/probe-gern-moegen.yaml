@@ -1,0 +1,42 @@
+topic: freizeit-koennen
+role: probe
+title: {en: "Probe — gern describes an activity", ru: "Проверка — gern относится к действию", uk: "Перевірка — gern стосується дії"}
+arming:
+  - a1/freizeit-koennen::cloze-gern-lieber
+  - a1/freizeit-koennen::mc-gern-falle
+  - a1/freizeit-koennen::translate-gern-fussball
+items:
+  - id: variant-a
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    instruction: {en: "Translate with gern.", ru: "Переведите с gern.", uk: "Перекладіть із gern."}
+    prompt_en: "I like cooking on Sundays."
+    prompt_ru: "Я люблю готовить по воскресеньям."
+    prompt_uk: "Я люблю готувати щонеділі."
+    answer: "Ich koche sonntags gern."
+    accept: ["Sonntags koche ich gern."]
+    key_tokens: ["koche", "gern"]
+    explain: {en: "gern modifies the activity expressed by the verb: ich koche gern. It is not an adjective before a noun.", ru: "gern характеризует действие глагола: ich koche gern. Это не прилагательное перед существительным.", uk: "gern характеризує дію дієслова: ich koche gern. Це не прикметник перед іменником."}
+  - id: variant-b
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    instruction: {en: "Translate with gern.", ru: "Переведите с gern.", uk: "Перекладіть із gern."}
+    prompt_en: "Mila likes listening to music."
+    prompt_ru: "Мила любит слушать музыку."
+    prompt_uk: "Міла любить слухати музику."
+    answer: "Mila hört gern Musik."
+    key_tokens: ["hört", "gern"]
+    explain: {en: "German can express liking the activity without a separate verb meaning like: hört gern.", ru: "Немецкий может выразить любовь к действию без отдельного глагола «любить»: hört gern.", uk: "Німецька може виразити любов до дії без окремого дієслова «любити»: hört gern."}
+  - id: variant-c
+    outcomes: [freizeit-hobbys]
+    type: translate
+    focus: gern-moegen
+    instruction: {en: "Translate the contrast with lieber.", ru: "Переведите противопоставление с lieber.", uk: "Перекладіть протиставлення з lieber."}
+    prompt_en: "I like walking, but I prefer cycling."
+    prompt_ru: "Я люблю гулять, но больше люблю ездить на велосипеде."
+    prompt_uk: "Я люблю гуляти, але більше люблю їздити велосипедом."
+    answer: "Ich gehe gern spazieren, aber ich fahre lieber Fahrrad."
+    key_tokens: ["gern", "lieber"]
+    explain: {en: "gern marks a liked activity; lieber compares it with a preferred activity.", ru: "gern обозначает приятное действие, а lieber — действие, которому отдают предпочтение.", uk: "gern позначає приємну дію, а lieber — дію, якій віддають перевагу."}

@@ -1,0 +1,47 @@
+topic: einkaufen-reklamation
+role: probe
+title: {en: "Probe — small quantities", ru: "Проверка — малые количества", uk: "Перевірка — малі кількості"}
+arming:
+  - a2/einkaufen-kleine-mengen::mc-neutrale-zahl
+  - a2/einkaufen-kleine-mengen::mc-zu-kleine-zahl
+  - a2/einkaufen-kleine-mengen::mc-menge
+  - a2/einkaufen-kleine-mengen::cloze-drei-formen
+  - a2/einkaufen-kleine-mengen-transfer::translate-stuehle
+  - a2/einkaufen-kleine-mengen-transfer::translate-fragen
+  - a2/einkaufen-kleine-mengen-transfer::translate-wohnungen
+  - a2/einkaufen-kleine-mengen-transfer::translate-platz
+items:
+  - id: variant-a
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "The speaker regrets the low number. Translate precisely.", ru: "Говорящий сожалеет о малом числе. Переведите точно.", uk: "Мовець шкодує про малу кількість. Перекладіть точно."}
+    prompt_en: "Unfortunately, only a few guests are coming."
+    prompt_ru: "К сожалению, придёт лишь мало гостей."
+    prompt_uk: "На жаль, прийде лише мало гостей."
+    answer: "Leider kommen nur wenige Gäste."
+    key_tokens: ["Leider", "nur", "wenige", "Gäste"]
+    explain: {en: "Gäste are countable plural and leider plus nur evaluates the number as low: wenige Gäste.", ru: "Gäste — счётное Plural, а leider и nur оценивают число как недостаточное: wenige Gäste.", uk: "Gäste — злічуваний Plural, а leider та nur оцінюють кількість як недостатню: wenige Gäste."}
+  - id: variant-b
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We need a few plates for the balcony."
+    prompt_ru: "Нам нужно несколько тарелок для балкона."
+    prompt_uk: "Нам потрібно кілька тарілок для балкона."
+    answer: "Wir brauchen ein paar Teller für den Balkon."
+    key_tokens: ["brauchen", "ein", "paar", "Teller", "Balkon"]
+    explain: {en: "Teller are countable plural and the number is neutral, so ein paar is appropriate.", ru: "Teller — счётное Plural, число нейтрально, поэтому подходит ein paar.", uk: "Teller — злічуваний Plural, кількість нейтральна, тому пасує ein paar."}
+  - id: variant-c
+    outcomes: [produkte-vergleichen]
+    type: translate
+    focus: wenig-ein-paar
+    instruction: {en: "Translate the non-count amount into German.", ru: "Переведите неисчисляемое количество на немецкий.", uk: "Перекладіть незлічувану величину німецькою."}
+    prompt_en: "We have only a little money left for the repair."
+    prompt_ru: "На ремонт у нас осталось мало денег."
+    prompt_uk: "На ремонт у нас лишилося мало грошей."
+    answer: "Für die Reparatur bleibt uns nur wenig Geld."
+    accept: ["Uns bleibt nur wenig Geld für die Reparatur."]
+    key_tokens: ["Reparatur", "nur", "wenig", "Geld"]
+    explain: {en: "Geld is measured as an amount and remains singular, so wenig has no plural ending.", ru: "Geld измеряется как количество и остаётся в Singular, поэтому wenig не получает окончания множественного числа.", uk: "Geld вимірюється як величина й лишається в Singular, тому wenig не отримує закінчення множини."}

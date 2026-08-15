@@ -1,0 +1,46 @@
+topic: adjektive-deklination
+role: probe
+title: {en: "Probe — derselbe and identity", ru: "Проверка — derselbe и тождество", uk: "Перевірка — derselbe й тотожність"}
+arming:
+  - a2/adjektive-derselbe::mc-identischer-arzt
+  - a2/adjektive-derselbe::mc-zwei-handys
+  - a2/adjektive-derselbe::table-formen
+  - a2/adjektive-derselbe::cloze-dieselbe-wohnung
+  - a2/adjektive-derselbe-transfer::translate-kollege
+  - a2/adjektive-derselbe-transfer::translate-zimmer
+  - a2/adjektive-derselbe-transfer::translate-projekt
+items:
+  - id: variant-a
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Both letters have the same address."
+    prompt_ru: "На обоих письмах один и тот же адрес."
+    prompt_uk: "На обох листах та сама адреса."
+    answer: "Auf beiden Briefen steht dieselbe Adresse."
+    key_tokens: ["beiden", "Briefen", "dieselbe", "Adresse"]
+    explain: {en: "One identical feminine address is the nominative subject after steht: dieselbe Adresse.", ru: "Один и тот же адрес женского рода — подлежащее при steht: dieselbe Adresse.", uk: "Та сама адреса жіночого роду — підмет при steht: dieselbe Adresse."}
+  - id: variant-b
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We take the same bus every morning."
+    prompt_ru: "Каждое утро мы едем на одном и том же автобусе."
+    prompt_uk: "Щоранку ми їдемо тим самим автобусом."
+    answer: "Wir fahren jeden Morgen mit demselben Bus."
+    accept: ["Jeden Morgen fahren wir mit demselben Bus."]
+    key_tokens: ["jeden", "Morgen", "mit", "demselben", "Bus"]
+    explain: {en: "mit governs the dative and Bus is masculine: demselben Bus. The sentence means the identical service or vehicle in context.", ru: "mit требует Dativ, Bus мужского рода: demselben Bus. В контексте имеется в виду один и тот же рейс или автобус.", uk: "mit потребує Dativ, Bus чоловічого роду: demselben Bus. У контексті мається на увазі той самий рейс або автобус."}
+  - id: variant-c
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: translate
+    focus: derselbe-identitaet
+    instruction: {en: "Two neighbours bought separate but matching tables. Translate honestly.", ru: "Два соседа купили разные, но одинаковые столы. Переведите точно.", uk: "Двоє сусідів купили різні, але однакові столи. Перекладіть точно."}
+    prompt_en: "The neighbours have matching tables."
+    prompt_ru: "У соседей одинаковые, но разные столы."
+    prompt_uk: "У сусідів однакові, але різні столи."
+    answer: "Die Nachbarn haben gleiche Tische."
+    key_tokens: ["Nachbarn", "gleiche", "Tische"]
+    explain: {en: "Separate objects can be gleich, but not derselbe. The plural Tische makes the two-object reading explicit.", ru: "Разные предметы могут быть gleich, но не derselbe. Plural Tische явно показывает два объекта.", uk: "Різні предмети можуть бути gleich, але не derselbe. Plural Tische явно показує два об'єкти."}

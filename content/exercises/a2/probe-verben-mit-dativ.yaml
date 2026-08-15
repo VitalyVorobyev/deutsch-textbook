@@ -1,0 +1,48 @@
+topic: dativ
+role: probe
+title:
+  en: "Probe — verbs with the dative"
+  ru: "Проверка — глаголы с Dativ"
+  uk: "Перевірка — дієслова з Dativ"
+arming:
+  - a2/dativ::cloze-antworten
+  - a2/dativ::mc-danken
+  - a2/dativ::mc-gehoert
+  - a2/dativ-produktion::cloze-sehen-helfen
+  - a2/dativ-produktion::uebersetzen-helfen
+  - a2/dativ-produktion::uebersetzen-gehoeren
+items:
+  - id: variant-a
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "My parents like the soup."
+    prompt_ru: "Моим родителям нравится суп."
+    prompt_uk: "Моїм батькам смакує суп."
+    answer: "Die Suppe schmeckt meinen Eltern."
+    accept: ["Meinen Eltern schmeckt die Suppe.", "Die Suppe schmeckt meinen Eltern gut."]
+    key_tokens: ["schmeckt", "meinen", "Eltern"]
+    explain: {en: "schmecken makes the food the subject and the experiencer dative: meinen Eltern. English reverses that relation; the German verb decides the case.", ru: "У schmecken еда становится подлежащим, а тот, кому она нравится, — Dativ: meinen Eltern. Немецкий падеж задаёт сам глагол.", uk: "У schmecken їжа стає підметом, а той, кому вона смакує, — Dativ: meinen Eltern. Німецький відмінок задає саме дієслово."}
+  - id: variant-b
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Can you help our neighbour with the box?"
+    prompt_ru: "Ты можешь помочь нашему соседу с коробкой?"
+    prompt_uk: "Ти можеш допомогти нашому сусідові з коробкою?"
+    answer: "Kannst du unserem Nachbarn mit der Kiste helfen?"
+    key_tokens: ["unserem", "Nachbarn", "helfen"]
+    explain: {en: "helfen governs the dative: unser Nachbar becomes unserem Nachbarn. mit independently governs the dative too: mit der Kiste.", ru: "helfen требует Dativ: unser Nachbar превращается в unserem Nachbarn. mit отдельно тоже требует Dativ: mit der Kiste.", uk: "helfen вимагає Dativ: unser Nachbar перетворюється на unserem Nachbarn. mit окремо теж вимагає Dativ: mit der Kiste."}
+  - id: variant-c
+    outcomes: [dativ-verben]
+    type: translate
+    focus: verben-mit-dativ
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The bicycle belongs to my sister."
+    prompt_ru: "Велосипед принадлежит моей сестре."
+    prompt_uk: "Велосипед належить моїй сестрі."
+    answer: "Das Fahrrad gehört meiner Schwester."
+    key_tokens: ["gehört", "meiner", "Schwester"]
+    explain: {en: "gehören asks wem?, so the owner is dative: meiner Schwester. The bicycle remains the nominative subject.", ru: "gehören отвечает на wem?, поэтому владелец стоит в Dativ: meiner Schwester. Велосипед остаётся подлежащим в Nominativ.", uk: "gehören відповідає на wem?, тому власник стоїть у Dativ: meiner Schwester. Велосипед лишається підметом у Nominativ."}
