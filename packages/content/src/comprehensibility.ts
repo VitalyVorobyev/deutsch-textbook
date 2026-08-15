@@ -57,7 +57,7 @@
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { repoRoot } from './repo-root';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import * as YAML from 'yaml';
 import { normalize } from './coverage';
 import type { Level } from '@da/schema';
@@ -652,21 +652,33 @@ export function loadCorpus(root = repoRoot()): Corpus {
   };
   const order = atlas.units.flatMap((unit) => unit.topics);
 
+  // Identity comes from the manifest, not from the article.
+  //
+  // This read MDX frontmatter until 2026-08-15, and had therefore been resolving **zero topics**
+  // since ADR 0012 moved identity into `<id>.topic.yaml` and made the article prose-only. The
+  // failure was silent in the worst way the repo knows: `--rank` printed its legend and no rows,
+  // the detail form answered "No topic X on the spine" for topics that were plainly on it, and
+  // both exited 0. Meanwhile CLAUDE.md and coverage-instruments.md carried a table of level
+  // medians from this instrument that no command could reproduce any more.
   const byId = new Map<string, Omit<TopicSource, 'position'>>();
-  for (const file of walk(join(root, 'content/topics'), '.mdx')) {
-    const source = readFileSync(file, 'utf8');
-    const fm = frontmatterOf(source) as
-      | { id: string; level: Level; vocab?: string[]; exercises?: string[]; reading?: string[] }
-      | undefined;
-    if (!fm) continue;
-    byId.set(fm.id, {
-      id: fm.id,
-      level: fm.level,
-      file,
-      source,
-      vocab: fm.vocab ?? [],
-      exercises: fm.exercises ?? [],
-      reading: fm.reading ?? [],
+  for (const file of walk(join(root, 'content/topics'), '.topic.yaml')) {
+    const manifest = YAML.parse(readFileSync(file, 'utf8')) as {
+      id?: string;
+      level?: Level;
+      elements?: { article?: string; vocab?: string[]; exercises?: string[]; reading?: string[] };
+    } | undefined;
+    if (!manifest?.id || !manifest.level) continue;
+    const article = manifest.elements?.article;
+    const articleFile = article ? join(dirname(file), article) : undefined;
+    if (!articleFile || !existsSync(articleFile)) continue;
+    byId.set(manifest.id, {
+      id: manifest.id,
+      level: manifest.level,
+      file: articleFile,
+      source: readFileSync(articleFile, 'utf8'),
+      vocab: manifest.elements?.vocab ?? [],
+      exercises: manifest.elements?.exercises ?? [],
+      reading: manifest.elements?.reading ?? [],
     });
   }
 

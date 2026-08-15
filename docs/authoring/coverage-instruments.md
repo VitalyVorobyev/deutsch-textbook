@@ -132,9 +132,15 @@ From `bun scripts/comprehensibility.ts --rank`, level medians:
 
 | level | ahead/100 (article+reading) | mean words/sentence | Nebensatz/sentence | max terminology/100 |
 | --- | ---: | ---: | ---: | ---: |
-| A1 | 6.7 | 7.3 | 0.03 | 2.87 |
-| A2 | 3.9 | 8.4 | 0.10 | 5.30 |
-| B1 | 3.9 | 11.4 | 0.21 | 5.47 |
+| A1 | 6.9 | 7.4 | 0.01 | 3.26 |
+| A2 | 5.6 | 8.4 | 0.11 | 5.24 |
+| B1 | 3.8 | 11.2 | 0.28 | 4.76 |
+
+Re-measured 2026-08-15, and the previous figures should be read as of unknown date: the loader had
+been resolving **zero topics** since [ADR 0012](../adrs/0012-topic-manifests.md) moved topic
+identity out of MDX frontmatter, so between that change and the fix this table could not be
+reproduced by the command above. `--rank` printed its legend and no rows, the detail form answered
+"No topic X on the spine" for topics plainly on it, and both exited 0.
 
 Sentence length and subordination rise monotonically across the three levels and load does not,
 which is the shape a spine should have: later topics are syntactically harder and lexically no more
