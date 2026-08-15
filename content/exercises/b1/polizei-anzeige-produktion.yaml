@@ -132,3 +132,43 @@ items:
       en: "Check three things against the model. Your reported clause: does the verb sit at the very end, and did you resist changing its tense to match the reporting verb? German has no backshift. Your participle: does it carry an ending, and is that ending the one its article and case require — *das gestohlene* after a definite article, *mein gestohlenes* after a possessive. And the closing formula takes no comma before the name; the name simply follows on the next line."
       ru: "Сверьте с образцом три вещи. Ваше переданное придаточное: стоит ли глагол в самом конце и удержались ли вы от того, чтобы подогнать его время под глагол передачи? Согласования времён в немецком нет. Ваше причастие: есть ли у него окончание и то ли это окончание, которого требуют артикль и падеж, — *das gestohlene* после определённого артикля, *mein gestohlenes* после притяжательного. И после заключительной формулы запятая перед именем не ставится: имя просто идёт следующей строкой."
       uk: "Звірте зі зразком три речі. Ваше передане підрядне: чи стоїть дієслово в самому кінці і чи втрималися ви від того, щоб підігнати його час під дієслово передавання? Узгодження часів у німецькій немає. Ваш дієприкметник: чи є в нього закінчення і чи те це закінчення, якого вимагають артикль і відмінок, — *das gestohlene* після означеного артикля, *mein gestohlenes* після присвійного. І після заключної формули кома перед іменем не ставиться: ім'я просто йде наступним рядком."
+
+  - id: sprechen-weitergeben
+    outcomes: [aussage-wiedergeben]
+    type: speak
+    mode: spoken-production
+    focus: indirekte-rede
+    instruction:
+      en: "Say it aloud in one go — you are the one reporting, not the one being asked."
+      ru: "Скажите вслух одним куском: вы передаёте, а не отвечаете на вопросы."
+      uk: "Скажіть уголос одним шматком: ви передаєте, а не відповідаєте на питання."
+    prompt:
+      en: "A friend was not at the police station with you. Tell them in four sentences what the officer said and asked: that the report is enough, whether you have a photo of the bicycle, when you last saw it, and that you should ring back in two weeks."
+      ru: "Друга не было с вами в полиции. Расскажите ему в четырёх предложениях, что сказал и о чём спросил сотрудник: что заявления достаточно, есть ли у вас фотография велосипеда, когда вы видели его в последний раз и что перезвонить нужно через две недели."
+      uk: "Друга не було з вами в поліції. Розкажіть йому в чотирьох реченнях, що сказав і про що спитав працівник: що заяви достатньо, чи є у вас фотографія велосипеда, коли ви бачили його востаннє і що передзвонити треба за два тижні."
+    goal:
+      en: "Make it audible throughout that these are somebody else's words, not yours."
+      ru: "Сделать слышным на протяжении всего рассказа, что это чужие слова, а не ваши."
+      uk: "Зробити чутним упродовж усієї розповіді, що це чужі слова, а не ваші."
+    checklist:
+      - en: "Each reported clause opened with dass, ob or a question word, and the verb closed it."
+        ru: "Каждое переданное придаточное начиналось с dass, ob или вопросительного слова, а глагол его закрывал."
+        uk: "Кожне передане підрядне починалося з dass, ob або питального слова, а дієслово його закривало."
+      - en: "The yes/no question got ob, and I did not turn it back into a question."
+        ru: "Вопрос «да/нет» получил ob, и я не превратил(а) его обратно в вопрос."
+        uk: "Питання «так/ні» дістало ob, і я не перетворив(ла) його назад на питання."
+      - en: "The instruction came out as sollen, not as an imperative."
+        ru: "Указание вышло через sollen, а не императивом."
+        uk: "Вказівка вийшла через sollen, а не імперативом."
+      - en: "I did not shift any tense to match the reporting verb."
+        ru: "Я не сдвигал(а) время под глагол передачи."
+        uk: "Я не зсував(ла) час під дієслово передавання."
+    model_answer: "Der Beamte hat gesagt, dass die Anzeige reicht. Er hat gefragt, ob ich ein Foto von dem Fahrrad habe. Dann wollte er wissen, wann ich es zuletzt gesehen habe. Am Ende hat er gesagt, dass ich in zwei Wochen noch einmal anrufen soll."
+    model_translation:
+      en: "The officer said that the report is enough. He asked whether I have a photo of the bicycle. Then he wanted to know when I last saw it. At the end he said that I should ring again in two weeks."
+      ru: "Сотрудник сказал, что заявления достаточно. Он спросил, есть ли у меня фотография велосипеда. Потом он хотел знать, когда я видел его в последний раз. В конце он сказал, что через две недели мне нужно перезвонить."
+      uk: "Працівник сказав, що заяви достатньо. Він спитав, чи є в мене фотографія велосипеда. Потім він хотів знати, коли я бачив його востаннє. Наприкінці він сказав, що за два тижні мені треба передзвонити."
+    explain:
+      en: "Four clauses, four different openers, and speaking them is where the pattern breaks: the opener commits you to sending the verb to the end, and by the time you get there the sentence has grown. Play yourself back and check the last word of each clause — *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Then check the second one specifically: if it came out as *ob habe ich ein Foto*, the question shape survived the conjunction, which is the one error this task exists to catch."
+      ru: "Четыре придаточных, четыре разных начала, и ломается образец именно в устной речи: начало обязывает отправить глагол в конец, а к тому моменту предложение успевает вырасти. Прослушайте запись и проверьте последнее слово каждого придаточного: *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Потом отдельно проверьте второе: если вышло *ob habe ich ein Foto*, значит форма вопроса пережила союз, — а ради этой ошибки задание и существует."
+      uk: "Чотири підрядні, чотири різні початки, і ламається зразок саме в усному мовленні: початок зобов'язує відправити дієслово в кінець, а на той момент речення встигає вирости. Прослухайте запис і перевірте останнє слово кожного підрядного: *reicht*, *habe*, *gesehen habe*, *anrufen soll*. Потім окремо перевірте друге: якщо вийшло *ob habe ich ein Foto*, значить форма питання пережила сполучник, — а заради цієї помилки завдання й існує."

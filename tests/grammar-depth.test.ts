@@ -29,7 +29,7 @@ describe('grammar depth', () => {
   const FLOORS = {
     A1: { teaching: 13, production: 9, files: 4 },
     A2: { teaching: 9, production: 6, files: 3 },
-    B1: { teaching: 4, production: 3, files: 2 },
+    B1: { teaching: 6, production: 4, files: 3 },
   } as const;
 
   for (const [level, floor] of Object.entries(FLOORS) as [keyof typeof FLOORS, typeof FLOORS.A1][]) {
@@ -65,8 +65,8 @@ describe('grammar depth', () => {
     // Keep the corpus-wide ceilings honest: thin tags in later levels still remain editorial work,
     // but A2 may not silently recreate the debt this wave removed.
     expect([
-      totals.thin <= 15,
-      totals.singleFile <= 16,
+      totals.thin <= 7,
+      totals.singleFile <= 7,
       totals.noProbe <= 0,
     ]).toEqual([true, true, true]);
   });

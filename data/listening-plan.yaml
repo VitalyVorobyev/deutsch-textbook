@@ -767,3 +767,58 @@ units:
         register: "sachlich-höflich, Amtsgespräch"
         item_types: [audio-comprehension]
         context_sound: "leiser Amtsraum"
+  - unit: versicherungen-behoerden
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome for an artifact to measure. The genre it carries is the
+      # counter conversation in which the learner has to say they do not know — the one line
+      # this topic exists to make sayable, and the one a written model cannot rehearse.
+      - id: ls-versicherungen-behoerden-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Krankenkasse: eine Kundin weiß nicht, ob ein Schaden versichert ist, fragt nach und bittet um einen schriftlichen Nachweis"
+        outcomes: [versicherung-klaeren]
+        required_vocabulary: [versichert, Nachweis, Frist, Antrag, Behörde]
+        grammar_target: "ob-Nebensatz nach weiß nicht, Präpositionen mit Genitiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Schaltergespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Wartebereich"
+  - unit: sucht-lebensstil
+    level: B1
+    artifacts:
+      # model-input: the unit's outcomes are one reading, one writing and two spoken production,
+      # so no listening outcome exists to measure. The genre it carries is advice given without
+      # moralising — the register question this topic is really about.
+      - id: ls-sucht-lebensstil-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Bekannte sprechen über das Aufhören: die eine erzählt, was sie versucht hat, die andere rät vorsichtig und ohne Vorwurf"
+        outcomes: [rat-zum-aufhoeren]
+        required_vocabulary: [Zigarette, aufhören, Sucht, Alkohol, Nichtraucher]
+        grammar_target: "irreale Bedingung mit Konjunktiv II, lassen"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-vertraulich, Gespräch unter Bekannten"
+        context_sound: "leiser Küchen-Raumton"
+        item_types: [audio-comprehension]
+  - unit: bildungswege
+    level: B1
+    artifacts:
+      # model-input: one reading, two writing and one spoken-interaction outcome, so again no
+      # listening outcome. The audio carries the Kita counter — the conversation where a parent
+      # has to state a condition and a purpose in the same breath.
+      - id: ls-bildungswege-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anmeldung in der Kita: eine Mutter fragt nach einem Platz, nennt Bedingungen und begründet, warum sie den Platz braucht"
+        outcomes: [betreuung-klaeren]
+        required_vocabulary: [Kita, Platz, anmelden, Grundschule, Hochschule]
+        grammar_target: "falls gegen wenn, damit gegen um … zu"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-freundlich, Beratungsgespräch"
+        context_sound: "leiser Gruppenraum im Hintergrund"
+        item_types: [audio-comprehension]

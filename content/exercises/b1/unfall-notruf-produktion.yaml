@@ -139,3 +139,43 @@ items:
       en: "Read your draft against the model on three points. First find your *nachdem* clause and check its last two words: the participle must come before the auxiliary, *abgebogen war*, and the auxiliary must be *war* because *abbiegen* is a change of direction. Second, take your longest sentence and ask each adverbial its question in turn — *wann*, *warum*, *wo* — and see whether the answers come in that order; the model's second sentence is the test case. Third, check the injury: *mir die Schulter*, not *meine Schulter*."
       ru: "Сверьте черновик с образцом по трём точкам. Сначала найдите своё придаточное с *nachdem* и проверьте два его последних слова: причастие должно стоять перед вспомогательным, *abgebogen war*, и вспомогательным должно быть *war*, потому что *abbiegen* — смена направления. Затем возьмите самое длинное своё предложение и задайте каждому обстоятельству его вопрос по очереди — *wann*, *warum*, *wo* — и посмотрите, идут ли ответы в этом порядке; второе предложение образца и есть контрольный случай. Наконец проверьте травму: *mir die Schulter*, а не *meine Schulter*."
       uk: "Звірте чернетку зі зразком за трьома точками. Спершу знайдіть своє підрядне з *nachdem* і перевірте два його останні слова: дієприкметник має стояти перед допоміжним, *abgebogen war*, і допоміжним має бути *war*, бо *abbiegen* — зміна напрямку. Потім візьміть найдовше своє речення і поставте кожній обставині її питання по черзі — *wann*, *warum*, *wo* — і подивіться, чи йдуть відповіді в цьому порядку; друге речення зразка і є контрольний випадок. Нарешті перевірте травму: *mir die Schulter*, а не *meine Schulter*."
+
+  - id: sprechen-hergang
+    outcomes: [unfallhergang-schildern]
+    type: speak
+    mode: spoken-production
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Say it aloud in one go — no listener, no questions coming back."
+      ru: "Расскажите вслух одним куском — без собеседника и встречных вопросов."
+      uk: "Розкажіть уголос одним шматком — без співрозмовника і зустрічних питань."
+    prompt:
+      en: "Tell the story of the cycling accident from beginning to end, in four or five sentences: the rain, the car turning, the fall, the ambulance, the hospital. Nobody is going to prompt you."
+      ru: "Расскажите историю велосипедной аварии от начала до конца, в четырёх-пяти предложениях: дождь, поворачивающая машина, падение, скорая, больница. Подсказывать вам никто не будет."
+      uk: "Розкажіть історію велосипедної аварії від початку до кінця, у чотирьох-п'яти реченнях: дощ, машина, що повертає, падіння, швидка, лікарня. Підказувати вам ніхто не буде."
+    goal:
+      en: "Keep the order of events audible without saying zuerst and dann every time."
+      ru: "Сделать порядок событий слышным, не повторяя каждый раз zuerst и dann."
+      uk: "Зробити порядок подій чутним, не повторюючи щоразу zuerst і dann."
+    checklist:
+      - en: "I used nachdem at least once, with the earlier event in the Plusquamperfekt."
+        ru: "Я использовал(а) nachdem хотя бы раз, поставив более раннее событие в Plusquamperfekt."
+        uk: "Я використав(ла) nachdem хоча б раз, поставивши ранішу подію в Plusquamperfekt."
+      - en: "In that clause the auxiliary came last, after the participle — abgebogen war, not war abgebogen."
+        ru: "В этом придаточном вспомогательный глагол шёл последним, после причастия: abgebogen war, а не war abgebogen."
+        uk: "У цьому підрядному допоміжне дієслово йшло останнім, після дієприкметника: abgebogen war, а не war abgebogen."
+      - en: "One sentence carried three details behind the verb in the order time – cause – place."
+        ru: "В одном предложении за глаголом стояли три обстоятельства в порядке время — причина — место."
+        uk: "В одному реченні за дієсловом стояли три обставини в порядку час — причина — місце."
+      - en: "I said passieren with sein, not with haben."
+        ru: "Я употребил(а) passieren с sein, а не с haben."
+        uk: "Я вжив(ла) passieren з sein, а не з haben."
+    model_answer: "Der Unfall ist am Dienstag um acht Uhr passiert. Ich bin an diesem Morgen wegen des Regens langsam zur Arbeit gefahren. An der Kreuzung ist plötzlich ein Auto nach rechts abgebogen. Nachdem das Auto abgebogen war, konnte ich nicht mehr bremsen und bin gestürzt. Ich habe mir die Schulter verletzt, und der Krankenwagen ist nach acht Minuten gekommen."
+    model_translation:
+      en: "The accident happened on Tuesday at eight. That morning I was cycling to work slowly because of the rain. At the crossroads a car suddenly turned right. After the car had turned, I could no longer brake and I fell. I injured my shoulder, and the ambulance came after eight minutes."
+      ru: "Авария произошла во вторник в восемь. В то утро я из-за дождя ехал на работу медленно. На перекрёстке машина внезапно повернула направо. После того как машина повернула, я уже не смог затормозить и упал. Я повредил плечо, и через восемь минут приехала скорая."
+      uk: "Аварія сталася у вівторок о восьмій. Того ранку я через дощ їхав на роботу повільно. На перехресті машина раптово повернула праворуч. Після того як машина повернула, я вже не зміг загальмувати і впав. Я пошкодив плече, і за вісім хвилин приїхала швидка."
+    explain:
+      en: "Speaking this is harder than writing it, because the *nachdem* clause has to be planned before you start it: you commit to the conjunction and only then discover you need a Plusquamperfekt and an auxiliary at the end. Play yourself back and listen for the last two words of that clause. Then count your adverbials in the second sentence — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — and check they came out in that order rather than in the order they occurred to you."
+      ru: "Произнести это труднее, чем написать: придаточное с *nachdem* приходится спланировать заранее — вы уже сказали союз и только потом обнаруживаете, что нужны Plusquamperfekt и вспомогательный в конце. Прослушайте запись и вслушайтесь в два последних слова этого придаточного. Потом сосчитайте обстоятельства во втором предложении — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — и проверьте, вышли ли они в этом порядке, а не в том, в каком пришли вам в голову."
+      uk: "Вимовити це важче, ніж написати: підрядне з *nachdem* доводиться спланувати заздалегідь — ви вже сказали сполучник і лише потім виявляєте, що потрібні Plusquamperfekt і допоміжне в кінці. Прослухайте запис і вслухайтеся у два останні слова цього підрядного. Потім порахуйте обставини в другому реченні — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — і перевірте, чи вийшли вони в цьому порядку, а не в тому, у якому спали вам на думку."

@@ -91,10 +91,15 @@ describe('published progress claims match the content', () => {
     //   const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1; console.log(c)'
     expect([numeral(spine![1]), numeral(spine![2])]).toEqual([count('A1'), count('A2')]);
 
-    const b1 = /(\S+) of the (\S+) contracted B1 units\s+are live/.exec(readme);
+    // Until 2026-08-15 this was one claim — "N of the N contracted B1 units are live" — and the
+    // test equated the live B1 unit count with the contract length. That equation broke the
+    // moment B1 gained units the contract never named: the five Themen-Nachtrag topics that
+    // closed the DTZ denominator. They are two facts now, and both are checked.
+    const b1 = /(\S+) B1 units are live — the (\S+) of\s+the frozen contract plus (\S+) that close/.exec(readme);
     expect(b1).not.toBeNull();
     expect(numeral(b1![1])).toBe(count('B1'));
     expect(numeral(b1![2])).toBe(contractedB1Units());
+    expect(numeral(b1![3])).toBe(count('B1') - contractedB1Units());
   });
 
   test('the CLAUDE.md grammar digest matches the grammar-coverage instrument', () => {
@@ -167,9 +172,10 @@ describe('published progress claims match the content', () => {
       coverage.percent,
     ]);
 
-    // "… with units B1.1–B1.7 shipped" — the shipped range, not the contract.
-    const shipped = getCurriculum().units.filter((u) => u.level === 'B1').length;
-    expect(doc).toContain(`with units B1.1–B1.${shipped} shipped`);
+    // "… with the contracted units B1.1–B1.14 shipped". This reads the contract, not the live
+    // unit count: the two stopped being the same number when the Themen-Nachtrag topics landed,
+    // and a range written as B1.1–B1.19 would name five units the contract never numbered.
+    expect(doc).toContain(`with the contracted units B1.1–B1.${contractedB1Units()} shipped`);
 
     // "(22 of the 35 tags the B1 points name are registered so far …)"
     // `standard_level` was replaced by `level: {reception, production}` on 2026-08-14, and this

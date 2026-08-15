@@ -22,11 +22,15 @@ describe('listening production inventory', () => {
   // (2026-08-15) took it 50 → 51, model-input for the fourth time and for the same reason:
   // its four outcomes are one reading and three production, so there is no listening outcome
   // for the artifact to measure. What it adds is a radio forecast — the genre where the
-  // unstressed es the unit owns is hardest to hear.
+  // unstressed es the unit owns is hardest to hear. The five Themen-Nachtrag units that closed
+  // the DTZ Themen denominator on the same day took it 51 → 56, every one of them model-input:
+  // none of the five owns a listening outcome, because each was authored to close a theme and
+  // its outcomes are reading, writing and speaking. A model-input artifact claims no listening
+  // evidence, which is the honest shape when the unit never asked for any.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(51);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(51);
+    expect(rows).toHaveLength(56);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(56);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

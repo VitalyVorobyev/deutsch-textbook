@@ -26,17 +26,17 @@ describe('content graph', () => {
     // A note means a file did not match its schema. `bun run validate` is the gate; this asserts
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
-    expect(graph.topics.size).toBe(51);
-    expect(graph.sets.size).toBe(414);
-    expect(graph.readings.size).toBe(79);
+    expect(graph.topics.size).toBe(56);
+    expect(graph.sets.size).toBe(434);
+    expect(graph.readings.size).toBe(84);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(40);
     expect(graph.documents.size).toBe(5);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
     expect(graph.wortnetze.size).toBe(10);
-    expect(graph.units.length).toBe(51);
-    expect(graph.outcomes.size).toBe(196);
+    expect(graph.units.length).toBe(56);
+    expect(graph.outcomes.size).toBe(216);
     // 106 since 2026-08-15: the eight exact source-led A2 slices closed the DTZ tail with learner
     // evidence; they are inventory rows rather than aliases on broader existing structures.
     expect(graph.inventory.length).toBe(106);
@@ -80,7 +80,7 @@ describe('content graph', () => {
     const counts = new Map<ElementKind, number>();
     for (const element of graph.elements) counts.set(element.kind, (counts.get(element.kind) ?? 0) + 1);
     expect(Object.fromEntries([...counts].sort())).toEqual({
-      artikel: 51,
+      artikel: 56,
       checkpoint: 3,
       dokument: 5,
       drill: 19,
@@ -88,15 +88,15 @@ describe('content graph', () => {
       entdecken: 19,
       hoertext: 40,
       'lesetext-extensiv': 17,
-      'lesetext-intensiv': 62,
-      praxis: 189,
-      pretest: 51,
-      probe: 146,
+      'lesetext-intensiv': 67,
+      praxis: 199,
+      pretest: 56,
+      probe: 151,
       pruefungspraxis: 3,
       wortfeld: 2,
-      wortschatz: 42,
+      wortschatz: 47,
     });
-    expect(graph.elements.length).toBe(652);
+    expect(graph.elements.length).toBe(687);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -104,16 +104,16 @@ describe('content graph', () => {
     for (const element of graph.elements) byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(112);
-    expect(byStage.get('geruest')).toBe(71);
-    expect(byStage.get('nachpruefung')).toBe(149);
+    expect(byStage.get('transfer')).toBe(117);
+    expect(byStage.get('geruest')).toBe(76);
+    expect(byStage.get('nachpruefung')).toBe(154);
 
     const teaching = graph.elements.filter((element) => element.activity);
-    expect(teaching).toHaveLength(208);
+    expect(teaching).toHaveLength(218);
     expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
       activity,
       teaching.filter((element) => element.activity === activity).length,
-    ]))).toEqual({ core: 51, extension: 29, application: 109, remediation: 19 });
+    ]))).toEqual({ core: 56, extension: 29, application: 114, remediation: 19 });
     expect([...graph.topics.keys()].filter((topic) =>
       !(graph.elementsByTopic.get(topic) ?? []).some(
         (element) => element.activity === 'application' && element.touches.includes('produktion'),
@@ -132,12 +132,12 @@ describe('content graph', () => {
     expect(silent).toEqual([]);
   });
 
-  test('87 decks belong to no topic — the Wortliste completion decks', () => {
+  test('82 decks belong to no topic — the Wortliste completion decks', () => {
     // Listing one of these in a topic's `vocab:` would flip its fresh-card gate and bury hundreds
     // of words behind that topic (CLAUDE.md). The count is here so a stray `vocab:` entry shows up.
     const unowned = [...graph.vocab.keys()].filter((id) => !graph.deckOwners.has(id));
-    expect(unowned.length).toBe(87);
-    expect(graph.deckOwners.size).toBe(42);
+    expect(unowned.length).toBe(82);
+    expect(graph.deckOwners.size).toBe(47);
   });
 
   test('memoisation returns the same object, and can be bypassed', () => {

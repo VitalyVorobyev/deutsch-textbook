@@ -1,0 +1,54 @@
+topic: sucht-lebensstil
+role: pretest
+title:
+  en: "Before you read — habits, and what would be different"
+  ru: "Перед чтением — привычки и что было бы иначе"
+  uk: "Перед читанням — звички і що було б інакше"
+
+# Three guesses, one per decision the article answers: whether the wenn-half of an unreal
+# condition carries its own Konjunktiv II, which form lassen takes in front of a second verb, and
+# whether that second verb needs zu. Two are non-mc — a pretest is generation, not recognition.
+items:
+  - id: beide-haelften
+    outcomes: [folgen-abwaegen]
+    type: translate
+    key_tokens: ["würde", "hätte"]
+    prompt_en: "If I did not smoke, I would have more money."
+    prompt_ru: "Если бы я не курил, у меня было бы больше денег."
+    prompt_uk: "Якби я не курив, у мене було б більше грошей."
+    answer: "Wenn ich nicht rauchen würde, hätte ich mehr Geld."
+    explain:
+      en: "An unreal condition marks both halves. *Rauchen* is a full verb, so the *wenn*-clause takes *würde* + Infinitiv; *haben* owns a one-word form, so the main clause takes *hätte*. English marks only the main half with *would* and leaves a plain past in the *if*-half, so the first German marking has to be built rather than copied."
+      ru: "Нереальное условие помечает обе половины. *Rauchen* — полнозначный глагол, поэтому придаточное с *wenn* берёт *würde* + инфинитив; у *haben* есть однословная форма, поэтому в главном стоит *hätte*. Обе половины помечены и по-русски, но одним и тем же неизменным «бы», которое не спрягается, — так что каждую немецкую форму приходится строить отдельно."
+      uk: "Нереальна умова позначає обидві половини. *Rauchen* — повнозначне дієслово, тому підрядне з *wenn* бере *würde* + інфінітив; у *haben* є однослівна форма, тому в головному стоїть *hätte*. Обидві половини позначені й українською, але тією самою незмінною часткою «б/би», яка не відмінюється, — тож кожну німецьку форму доводиться будувати окремо."
+
+  - id: lassen-praesens
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    instruction:
+      en: "Fill in the right present-tense form of lassen."
+      ru: "Впишите нужную форму lassen в настоящем времени."
+      uk: "Впишіть потрібну форму lassen у теперішньому часі."
+    text: "Ab morgen {{lasse}} ich das Rauchen sein. Meine Frau {{lässt}} mich in der Wohnung sowieso nicht rauchen."
+    translation:
+      en: "From tomorrow I am giving up smoking. My wife does not let me smoke in the flat anyway."
+      ru: "С завтрашнего дня я бросаю курить. Жена всё равно не разрешает мне курить в квартире."
+      uk: "Із завтрашнього дня я кидаю курити. Дружина все одно не дозволяє мені курити в квартирі."
+    explain:
+      en: "*Lassen* conjugates with an umlaut like *schlafen → schläft*, so it is *ich lasse* but *sie lässt*. The two sentences also show two different jobs of the same verb: with *sein* it means stopping, and on its own it means allowing or refusing."
+      ru: "*Lassen* спрягается с умлаутом, как *schlafen → schläft*: *ich lasse*, но *sie lässt*. Две фразы заодно показывают две разные работы одного глагола: вместе с *sein* он значит «перестать», а сам по себе — «разрешать» или «не разрешать»."
+      uk: "*Lassen* відмінюється з умлаутом, як *schlafen → schläft*: *ich lasse*, але *sie lässt*. Дві фрази заразом показують дві різні роботи одного дієслова: разом із *sein* воно означає «перестати», а саме по собі — «дозволяти» або «не дозволяти»."
+
+  - id: blosser-infinitiv
+    outcomes: [hilfe-veranlassen]
+    type: mc
+    prompt: "Ich lasse mich in der Apotheke ___."
+    options:
+      - "beraten"
+      - "zu beraten"
+      - "beraten zu"
+    correct: 0
+    explain:
+      en: "After *lassen* the second verb is a bare infinitive at the very end — *lassen* behaves like a modal verb. The *zu*-infinitive belongs to *versuchen*, *anfangen* and their neighbours, and never reaches this verb."
+      ru: "После *lassen* второй глагол стоит голым инфинитивом в самом конце: *lassen* ведёт себя как модальный глагол. Инфинитив с *zu* относится к *versuchen*, *anfangen* и их соседям и до этого глагола не дотягивается."
+      uk: "Після *lassen* друге дієслово стоїть голим інфінітивом у самому кінці: *lassen* поводиться як модальне дієслово. Інфінітив із *zu* стосується *versuchen*, *anfangen* та їхніх сусідів і до цього дієслова не дотягується."

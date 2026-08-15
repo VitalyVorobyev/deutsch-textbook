@@ -1,0 +1,85 @@
+id: sucht-lebensstil
+level: B1
+kind: communication
+strand: communication
+group: person-alltag
+title_de: Rauchen, Alkohol & Gewohnheiten
+title_en: Smoking, alcohol and habits
+title_ru: Курение, алкоголь и привычки
+title_uk: Куріння, алкоголь і звички
+status: draft
+# `bun scripts/themen.ts B1` reported Rauchen/Drogen/Alkohol as one of the DTZ themes no topic
+# claimed, while the whole field — Zigarette, Raucher, Nichtraucher, Alkohol, Droge, Sucht,
+# süchtig, Suchtmittel — had already shipped as twenty-three flashcards in
+# `koerperpflege-lebensstil-b1`, a Wortliste completion deck no topic owned. This topic adopts it.
+#
+# The two confusions come from `bun scripts/grammar-depth.ts B1 --thin`, where both were sitting
+# at three items inside a single practice file: `irreale-bedingung` and `lassen-verwendung`.
+# Talking about a habit is the genre that needs both at once — you say what would be different if
+# you stopped, and you say what you have arranged to have done and what you are giving up.
+# Nothing here is a new confusion; the grammar of this topic is the second file each tag needed.
+tags:
+  - sucht
+  - rauchen
+  - alkohol
+  - gewohnheit
+  - lebensstil
+  - b1
+prerequisites:
+  - gesundheit-wohlbefinden
+  - reisen-probleme
+deepens:
+  # Both edges are earned: `gesundheit-wohlbefinden` introduces `lassen-verwendung` and
+  # `reisen-probleme` introduces `irreale-bedingung` (packages/content/src/focus-tags.ts), and this
+  # topic drills both tags. An edge to a topic sharing no tag would be inert, so there is no third.
+  - gesundheit-wohlbefinden
+  - reisen-probleme
+related: []
+outcomes:
+  - id: folgen-abwaegen
+    mode: spoken-production
+    domain: personal
+    de: Ich kann sagen, was anders wäre, wenn ich eine Gewohnheit ändern würde.
+    en: I can say what would be different if I changed a habit.
+    ru: Я умею сказать, что было бы иначе, если бы я изменил привычку.
+    uk: Я вмію сказати, що було б інакше, якби я змінив звичку.
+    claims:
+      - goethe-dtz-handlungen:haltungen-meinungen-ausdruecken
+  - id: hilfe-veranlassen
+    mode: writing
+    domain: personal
+    de: Ich kann mit lassen sagen, was ich machen lasse und was ich sein lasse.
+    en: I can use lassen to say what I have done for me and what I am giving up.
+    ru: Я умею с помощью lassen сказать, что мне делают другие и от чего я отказываюсь.
+    uk: Я вмію за допомогою lassen сказати, що мені роблять інші і від чого я відмовляюся.
+  - id: rat-zum-aufhoeren
+    mode: spoken-production
+    domain: personal
+    de: Ich kann jemandem raten, sich beraten zu lassen oder eine Gewohnheit sein zu lassen.
+    en: I can advise somebody to get advice or to give a habit up.
+    ru: Я умею посоветовать кому-либо обратиться за консультацией или бросить привычку.
+    uk: Я вмію порадити комусь звернутися по консультацію або кинути звичку.
+    claims:
+      - goethe-dtz-handlungen:rat-empfehlung-warnung
+  - id: gesundheitstext-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann einen kurzen Bericht über Rauchen, Alkohol und Sucht verstehen.
+    en: I can understand a short account of smoking, alcohol and addiction.
+    ru: Я понимаю короткий рассказ о курении, алкоголе и зависимости.
+    uk: Я розумію коротку розповідь про куріння, алкоголь і залежність.
+claims:
+  - goethe-dtz-themen:gesundheit-sucht
+elements:
+  article: sucht-lebensstil.mdx
+  pretest: b1/sucht-lebensstil-pretest
+  exercises:
+    - b1/sucht-lebensstil
+    - b1/sucht-lebensstil-produktion
+  primary_practice: b1/sucht-lebensstil
+  probes:
+    - b1/probe-sucht-lebensstil
+  reading:
+    - b1/sucht-lebensstil
+  vocab:
+    - koerperpflege-lebensstil-b1

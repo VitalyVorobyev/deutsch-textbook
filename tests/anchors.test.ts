@@ -58,8 +58,8 @@ describe('inventory anchors', () => {
    * threshold invented here would either be met by accident or ignored.
    */
   test('Sprachhandlung coverage does not fall', () => {
-    expect(handlungCoverage('A2').percent).toBeGreaterThanOrEqual(63);
-    expect(handlungCoverage('B1').percent).toBeGreaterThanOrEqual(63);
+    expect(handlungCoverage('A2').percent).toBeGreaterThanOrEqual(68);
+    expect(handlungCoverage('B1').percent).toBeGreaterThanOrEqual(68);
     // A1 has no handlung source: the DTZ starts at A2. `anchored: false` must stay distinguishable
     // from 0% — "nothing unclaimed" and "nothing measurable" print the same zero.
     expect(handlungCoverage('A1').anchored).toBe(false);
@@ -72,8 +72,8 @@ describe('inventory anchors', () => {
    * way is to add a claim to a topic that does not teach the theme. The floor rewards neither.
    */
   test('Thema coverage does not fall', () => {
-    expect(themaCoverage('A2').percent).toBeGreaterThanOrEqual(84);
-    expect(themaCoverage('B1').percent).toBeGreaterThanOrEqual(84);
+    expect(themaCoverage('A2').percent).toBeGreaterThanOrEqual(100);
+    expect(themaCoverage('B1').percent).toBeGreaterThanOrEqual(100);
     // The DTZ starts at A2, exactly as for Sprachhandlungen.
     expect(themaCoverage('A1').anchored).toBe(false);
   });

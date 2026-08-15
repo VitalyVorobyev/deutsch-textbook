@@ -26,10 +26,10 @@ mastered, and the next topic to learn.*
 
 - **A fully authored A1 and A2 course, and every B1 unit written** — twelve A1 and twenty-five A2
   units, each with a diagnostic pretest, a full article, a graded reading,
-  exercises, and its own vocabulary; fourteen of the fourteen contracted B1 units
-  are live, with an end-of-level checkpoint and an entry placement test, and
-  what B1 still owes is the rest of its vocabulary. Every headword of the
-  Goethe-Institut's A1 and A2 Wortlisten is covered, and the Über page reports
+  exercises, and its own vocabulary; nineteen B1 units are live — the fourteen of
+  the frozen contract plus five that close the DTZ Themen denominator — with an
+  end-of-level checkpoint and an entry placement test. Every headword of the
+  Goethe-Institut's A1, A2 and B1 Wortlisten is covered, and the Über page reports
   how far each level goes with figures measured from the content itself, not
   hand-written.
 
