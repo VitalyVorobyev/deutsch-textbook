@@ -274,3 +274,40 @@ Literal hyphenated labels keep the evidence addressable and prevent accidental c
   retaining the same finite ending whitelist; a regression test prevents arbitrary phrase matches.
 - B1 lexical coverage is now `3416/3416` (3297 card rows, 119 grammar rows, 0 missing, 0 late).
   This closes the Wortliste denominator, not the remaining bounded human topic-quality waves.
+
+### A1 topic-quality wave — 2026-08-15
+
+- The first P27-3g pass covered all 12 current A1 topic profiles, including their articles,
+  teaching/probe sets, 17 readings, ten listening contracts and 232 entries in seven owned decks.
+  The per-topic evidence and deliberate no-change decisions live in the
+  [topic-quality ledger](topic-quality-audit.md).
+- A zero derived queue did not catch the wave's substantive defect: `freizeit-koennen` conflated an
+  availability question with an invitation and prescribed *Hast du Zeit? — Ja, gern!* The three
+  support-language explanations and German model now distinguish a time answer from accepting a
+  real proposal. The associated *Kuchen* gloss was corrected from an RU/UK plural to independent
+  contextual singulars.
+- Five A1 profiles remain dense, but their extra sets have explicit core, extension, transfer or
+  named-remediation jobs. They were not merged to make the file count look smaller, and no extra set
+  was retained merely because it held historical progress.
+- This is a bounded corpus pass, not human approval. Existing `reviewed` states were preserved and
+  draft topics remain draft until the strict editorial/provenance transaction is completed.
+
+### A2 topic-quality wave — 2026-08-15
+
+- All 24 A2 topic profiles were read across their article, 114 teaching/remediation sets with 821
+  items, pretests, delayed families, 42 readings, 21 listening flows, documents/discoveries and 271
+  entries in 19 topic-owned decks. The reproducible set count comes from
+  `bun scripts/activity-audit.ts --json`; the graph-backed audit supplies the remaining counts.
+- Five material defect clusters were corrected despite the derived findings queue already being
+  empty: registration-versus-Personalausweis audio facts, the invented closed dative-verb list,
+  universal stranger/`Sie` advice, false past-tense and `sein` absolutes, and an overstated
+  habitual-versus-specific evening rule.
+- The obsolete registration recording and its provenance were removed from the live corpus but
+  remain recoverable from Git. The corrected TTS exercise is usable now; a replacement generated
+  recording cannot ship until a named human approves that exact audio revision.
+- All ten topics above the five-set density trigger received an explicit functional ruling. Set
+  count remains a review tripwire: separate files survive only for a distinct decision, stage,
+  recovery path or medium, never because their arithmetic total crosses a threshold.
+- The [topic-quality ledger](topic-quality-audit.md) records one concrete decision for every A2
+  topic. `verben-mit-kasus` returned from `reviewed` to `draft` because its learner-facing rule
+  changed after the prior human gate; no agent pass silently inherits that approval.

@@ -30,7 +30,7 @@ describe('content graph', () => {
     expect(graph.sets.size).toBe(410);
     expect(graph.readings.size).toBe(78);
     expect(graph.vocab.size).toBe(129);
-    expect(graph.listening.size).toBe(41);
+    expect(graph.listening.size).toBe(40);
     expect(graph.documents.size).toBe(5);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
@@ -86,7 +86,7 @@ describe('content graph', () => {
       drill: 19,
       einstufung: 3,
       entdecken: 19,
-      hoertext: 41,
+      hoertext: 40,
       'lesetext-extensiv': 17,
       'lesetext-intensiv': 61,
       praxis: 187,
@@ -96,7 +96,7 @@ describe('content graph', () => {
       wortfeld: 2,
       wortschatz: 40,
     });
-    expect(graph.elements.length).toBe(645);
+    expect(graph.elements.length).toBe(644);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {

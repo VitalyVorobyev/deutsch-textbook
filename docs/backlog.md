@@ -28,14 +28,13 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3f B1 lexical tail and topic waves**. P27-3e closes the live
-A1–B1 topic-profile queue: six deterministic A1 translations now declare their meaningful graded
-tokens without fictional focus tags, `pronomen-stellung` and `relativ-praeposition` have separate
-homogeneous three-variant delayed families, and all 17 former reading-length signals have received
-manual editorial review. Word count remains an indicator and never a defect by itself. A zero
-derived queue is not the stop condition: classify the remaining B1 Wortliste rows one by one, then
-continue the topic-by-topic article, exercise, reading, audio and vocabulary review. Internal A2
-remains 46/46, external A2 300/300, cumulative B1 164/164, and lexical A2 1449/1449.
+The current executable item is **P27-3g topic-quality waves**. P27-3f closed the B1 Wortliste at
+3416/3416 after classifying all 73 tail rows one by one. The live A1–B1 topic-profile queue is empty,
+but that is not the stop condition: every topic still receives a bounded article, exercise,
+reading, audio and vocabulary pass under the shared
+[content-quality contract](authoring/content-quality-audit.md). The A1 and A2 waves are complete and
+logged; B1 remains. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
+A1/A2/B1 673/673, 1449/1449 and 3416/3416.
 P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
