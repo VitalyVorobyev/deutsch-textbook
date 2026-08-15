@@ -53,9 +53,9 @@ describe('safe editorial article preview', () => {
       const coverage = languageCoverage(topic.id, topic.article, text);
       for (const entry of coverage.languages) totals[entry.language][entry.status] += 1;
     }
-    expect(totals.en).toEqual({ complete: 56, partial: 0, unsupported: 0 });
-    expect(totals.ru).toEqual({ complete: 56, partial: 0, unsupported: 0 });
-    expect(totals.uk).toEqual({ complete: 56, partial: 0, unsupported: 0 });
-    expect(totals.de).toEqual({ complete: 14, partial: 0, unsupported: 42 });
+    expect(totals.en).toEqual({ complete: 57, partial: 0, unsupported: 0 });
+    expect(totals.ru).toEqual({ complete: 57, partial: 0, unsupported: 0 });
+    expect(totals.uk).toEqual({ complete: 57, partial: 0, unsupported: 0 });
+    expect(totals.de).toEqual({ complete: 14, partial: 0, unsupported: 43 });
   });
 });
