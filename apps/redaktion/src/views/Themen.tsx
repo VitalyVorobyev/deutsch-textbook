@@ -203,6 +203,18 @@ function ThemaKarte({
         Anforderungen · {profile?.depth.items ?? 0} Aufgaben, {profile?.depth.production ?? 0} produktiv
       </p>
 
+      <div className="flex flex-wrap gap-1" aria-label="Verfasste Erklärungssprachen">
+        {topic.languageCoverage.map((entry) => (
+          <span
+            key={entry.language}
+            title={`${entry.authored}/${entry.required} Sprachblöcke`}
+            className={`rounded border px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase ${entry.status === 'complete' ? 'border-border-subtle text-ink' : entry.status === 'partial' ? 'border-brand text-brand-ink' : 'border-border-subtle text-ink-muted opacity-50'}`}
+          >
+            {entry.language}
+          </span>
+        ))}
+      </div>
+
       {/* A COUNT, not a stack of chips.
           All 49 topics carry findings, so six red chips per card painted the whole page red and
           made the differences between cards impossible to see. The number varies; the classes are

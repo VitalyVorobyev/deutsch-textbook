@@ -26,6 +26,7 @@ import { graphChunk, graphPayload, type ChunkName } from '@da/content/payload';
 import { repoRoot } from '@da/content/repo-root';
 import { applyPatch, writableFields, type WritePatch } from '@da/content/write';
 import { readSource, saveSource, type SaveFileInput } from '@da/content/editor';
+import { renderSource, type RenderSourceInput } from '@da/content/preview';
 
 const CHUNKS: ChunkName[] = ['items', 'vocab', 'texts'];
 
@@ -161,6 +162,21 @@ export function corpus(): Plugin {
               if (result.ok && result.changed) invalidateContentGraph(root);
               json(res, result);
             })
+            .catch((error: unknown) => {
+              res.statusCode = error instanceof SyntaxError ? 400 : 413;
+              json(res, { error: error instanceof Error ? error.message : String(error) });
+            });
+          return;
+        }
+        if (url === '/__render') {
+          if (req.method !== 'POST') {
+            res.statusCode = 405;
+            return json(res, { error: 'POST only' });
+          }
+          void readBody(req, MAX_SOURCE_BYTES + 64 * 1024)
+            .then((raw) => JSON.parse(raw) as RenderSourceInput)
+            .then((input) => renderSource(input))
+            .then((result) => json(res, result))
             .catch((error: unknown) => {
               res.statusCode = error instanceof SyntaxError ? 400 : 413;
               json(res, { error: error instanceof Error ? error.message : String(error) });

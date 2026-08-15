@@ -28,10 +28,13 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-2a renderer parity**: extract pure learner article and exercise renderers, prove editor
-mode has no progress side effects, and add fixtures for every artifact kind. Then add safe structured
-controls over the same source buffer and visible background-job status. Work the remaining
-reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
+The current executable item is **P27-2b external grammar denominator**: classify the 23 unclaimed
+DTZ structures, add only exact inventory claims, and turn the seven real holes into complete
+teaching slices. P27-2a removed the regex preview, added safe one-language MDX rendering, language
+coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
+semantic editor representations and must migrate to common React before pixel parity can be
+claimed. Then add safe structured controls over the same source buffer and visible background-job
+status. Work the remaining reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
 [roadmap](roadmap.md#redaction-p27); do not flatten them into one release claim.
 
 Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale

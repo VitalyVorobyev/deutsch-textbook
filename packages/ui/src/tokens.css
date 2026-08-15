@@ -35,6 +35,7 @@
  * `tests/design-tokens.test.ts` fails if a `.tsx` in this package sits outside every glob here.
  */
 @source './';
+@source '../../renderers/src';
 
 /*
  * THE RAMP IS STONE, shared with the learner application.
@@ -130,4 +131,59 @@
  */
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Shared, side-effect-free learner/editor renderers. The rules mirror the Atlas article surface
+   without relying on the typography plugin, which the standalone Redaktion build does not load. */
+.atlas-article-preview {
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  line-height: 1.72;
+}
+.atlas-article-preview > :first-child { margin-top: 0; }
+.atlas-article-preview h2 { margin: 2.25rem 0 0.8rem; font-family: ui-serif, Georgia, serif; font-size: 1.55rem; font-weight: 700; line-height: 1.25; }
+.atlas-article-preview h3 { margin: 1.8rem 0 0.65rem; font-size: 1.05rem; font-weight: 700; line-height: 1.35; }
+.atlas-article-preview h4 { margin: 1.35rem 0 0.5rem; font-weight: 700; }
+.atlas-article-preview p, .atlas-article-preview li { max-width: 68ch; }
+.atlas-article-preview p { margin: 0.75rem 0; }
+.atlas-article-preview ul, .atlas-article-preview ol { margin: 0.75rem 0; padding-left: 1.4rem; }
+.atlas-article-preview ul { list-style: disc; }
+.atlas-article-preview ol { list-style: decimal; }
+.atlas-article-preview li { margin: 0.3rem 0; padding-left: 0.2rem; }
+.atlas-article-preview strong { font-weight: 700; }
+.atlas-article-preview a { color: var(--color-info-ink); text-decoration: underline; text-underline-offset: 0.18em; }
+.atlas-article-preview code { border-radius: 0.25rem; background: var(--color-surface-sunken); padding: 0.08rem 0.3rem; font-size: 0.88em; }
+.atlas-article-preview blockquote { margin: 1rem 0; max-width: 68ch; border-left: 4px solid var(--color-brand); background: var(--color-brand-soft); padding: 0.55rem 1rem; font-style: normal; }
+.atlas-article-preview hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--color-border-subtle); }
+.atlas-preview-table-wrap { margin: 1rem 0 1.25rem; overflow-x: auto; }
+.atlas-article-preview table { min-width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+.atlas-article-preview th, .atlas-article-preview td { border: 1px solid var(--color-border-subtle); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
+.atlas-article-preview th { background: var(--color-surface-sunken); font-weight: 700; }
+.atlas-preview-diagnostics, .atlas-preview-unsupported { margin-bottom: 1rem; border-left: 4px solid var(--color-warn); background: var(--color-warn-soft); padding: 0.75rem 1rem; color: var(--color-warn-ink); font-size: 0.78rem; }
+.atlas-preview-diagnostics > p { font-weight: 700; }
+.atlas-preview-diagnostics ul { margin-top: 0.25rem; list-style: disc; padding-left: 1.1rem; }
+.atlas-preview-empty { display: grid; min-height: 16rem; place-items: center; color: var(--color-ink-muted); font-size: 0.85rem; text-align: center; }
+.atlas-preview-figure { margin: 1.25rem 0; overflow: hidden; border: 1px solid var(--color-border-subtle); border-radius: 0.6rem; background: var(--color-surface-raised); }
+.atlas-preview-figure > figcaption { border-bottom: 1px solid var(--color-border-subtle); padding: 0.55rem 0.8rem; color: var(--color-ink-muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.atlas-preview-component-note { padding: 0.9rem; color: var(--color-ink-muted); font-size: 0.78rem; }
+.atlas-preview-rail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem; padding: 1rem; }
+.atlas-preview-rail > span { display: flex; min-width: 0; flex-direction: column; border: 2px solid var(--color-border-subtle); border-radius: 0.5rem; background: var(--color-surface); padding: 0.5rem; text-align: center; }
+.atlas-preview-rail small { color: var(--color-ink-muted); font-size: 0.58rem; font-weight: 700; text-transform: uppercase; }
+.atlas-preview-rail strong { overflow-wrap: anywhere; font-size: 0.82rem; }
+
+.atlas-exercise-preview > header { margin-bottom: 0.8rem; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 0.7rem; }
+.atlas-exercise-preview > header p { color: var(--color-ink); font-weight: 700; }
+.atlas-exercise-preview > header span { color: var(--color-ink-muted); font-size: 0.7rem; }
+.atlas-exercise-preview > ol { display: grid; gap: 0.75rem; }
+.atlas-exercise-preview > ol > li { border: 1px solid var(--color-border-subtle); border-radius: 0.5rem; background: var(--color-surface); padding: 0.85rem; }
+.atlas-exercise-preview__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem; color: var(--color-ink-muted); font-size: 0.68rem; text-transform: uppercase; }
+.atlas-exercise-preview__prompt { margin-top: 0.55rem; white-space: pre-wrap; color: var(--color-ink); font-size: 0.9rem; font-weight: 600; }
+.atlas-exercise-preview__answer { margin-top: 0.65rem; border-left: 3px solid var(--color-ok); background: var(--color-ok-soft); padding: 0.55rem 0.7rem; color: var(--color-ok-ink); font-size: 0.78rem; }
+.atlas-exercise-preview__answer > span { font-weight: 700; }
+.atlas-exercise-preview__answer ul { margin-top: 0.2rem; list-style: disc; padding-left: 1rem; }
+.atlas-exercise-preview__explain { margin-top: 0.6rem; color: var(--color-info-ink); font-size: 0.78rem; }
+.atlas-exercise-preview__tags { margin-top: 0.65rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; color: var(--color-ink-muted); font-size: 0.68rem; }
+
+@media (min-width: 640px) {
+  .atlas-preview-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }

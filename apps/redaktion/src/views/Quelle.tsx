@@ -1,10 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 import YAML from 'yaml';
 import { Button, Chip, Empty, Label, Panel } from '@da/ui/primitives';
+import { ArticlePreview } from '@da/renderers/article';
+import { ExerciseSetPreview } from '@da/renderers/exercises';
+import type { ContentLanguage, PreviewPayload } from '@da/content/preview';
 import { corpusClient, type FileSnapshot, type GraphPayload, type ValidationRun } from '../data';
 import { blockNavigation } from '../router';
 
 const GITHUB = 'https://github.com/VitalyVorobyev/deutsch-textbook/blob/main';
+const LANGUAGE_LABEL: Record<ContentLanguage, string> = { de: 'DE', en: 'EN', ru: 'RU', uk: 'UK' };
+const CONTENT_LANGUAGES = Object.keys(LANGUAGE_LABEL) as ContentLanguage[];
 
 export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) {
   const [snapshot, setSnapshot] = useState<FileSnapshot>();
@@ -12,6 +17,14 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
   const [validation, setValidation] = useState<ValidationRun>();
+  const [language, setLanguage] = useState<ContentLanguage>(() => {
+    try {
+      const stored = localStorage.getItem('da:redaktion-preview-language');
+      return CONTENT_LANGUAGES.includes(stored as ContentLanguage) ? stored as ContentLanguage : 'en';
+    }
+    catch { return 'en'; }
+  });
+  const [preview, setPreview] = useState<PreviewPayload>();
 
   useEffect(() => {
     if (!path) return;
@@ -23,6 +36,26 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
     });
     return () => { cancelled = true; };
   }, [path]);
+
+  useEffect(() => {
+    if (!path || !snapshot || !['topic-article', 'discovery'].includes(snapshot.kind)) {
+      return;
+    }
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      void corpusClient.renderSource({ path, text, language }).then((result) => {
+        if (!cancelled) setPreview(result);
+      }).catch((reason: unknown) => {
+        if (!cancelled) setError(reason instanceof Error ? reason.message : String(reason));
+      });
+    }, 160);
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, [language, path, snapshot, text]);
+
+  const chooseLanguage = (next: ContentLanguage) => {
+    setLanguage(next);
+    try { localStorage.setItem('da:redaktion-preview-language', next); } catch { /* non-persistent private mode */ }
+  };
 
   const dirty = !!snapshot && text !== snapshot.text;
   useEffect(() => {
@@ -106,7 +139,7 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
 
       <div className="grid min-h-[68vh] gap-4 xl:grid-cols-2">
         <Panel title="Redaktionelle Vorschau" className="min-h-0 overflow-auto">
-          <EditorialPreview kind={snapshot.kind} text={text} />
+          <EditorialPreview kind={snapshot.kind} text={text} language={language} preview={preview?.path === path && preview.language === language ? preview : undefined} onLanguage={chooseLanguage} />
         </Panel>
         <section className="flex min-h-[68vh] min-w-0 flex-col overflow-hidden rounded-lg border border-border-subtle bg-surface-raised">
           <div className="flex items-center justify-between border-b border-border-subtle px-4 py-2">
@@ -126,7 +159,19 @@ export function Quelle({ graph, path }: { graph: GraphPayload; path?: string }) 
   );
 }
 
-function EditorialPreview({ kind, text }: { kind: FileSnapshot['kind']; text: string }) {
+function EditorialPreview({
+  kind,
+  text,
+  language,
+  preview,
+  onLanguage,
+}: {
+  kind: FileSnapshot['kind'];
+  text: string;
+  language: ContentLanguage;
+  preview?: PreviewPayload;
+  onLanguage: (language: ContentLanguage) => void;
+}) {
   const parsed = useMemo(() => {
     if (!['topic-article', 'discovery', 'text'].includes(kind)) {
       try { return YAML.parse(text) as unknown; } catch { return undefined; }
@@ -135,34 +180,58 @@ function EditorialPreview({ kind, text }: { kind: FileSnapshot['kind']; text: st
   }, [kind, text]);
 
   if (kind === 'topic-article' || kind === 'discovery') {
-    const headings = [...text.matchAll(/^(#{1,3})\s+(.+)$/gm)].map((match) => ({ depth: match[1]!.length, text: match[2]! }));
-    const prose = text.replace(/^---[\s\S]*?---\s*/m, '').replace(/<[^>]+>/g, '').split(/\n{2,}/).filter((part) => part.trim() && !part.trim().startsWith('#'));
     return (
-      <article className="prose prose-stone max-w-none text-sm">
-        <nav aria-label="Gliederung" className="not-prose mb-5 border-b border-border-subtle pb-4">
-          <Label>Gliederung</Label>
-          <ol className="mt-2 space-y-1 text-xs text-ink-muted">{headings.map((heading, index) => <li key={`${heading.text}-${index}`} style={{ paddingLeft: `${(heading.depth - 1) * 12}px` }}>{heading.text}</li>)}</ol>
-        </nav>
-        {prose.slice(0, 18).map((part, index) => <p key={index} className="whitespace-pre-wrap text-ink">{part}</p>)}
-      </article>
+      <div>
+        <LanguageSwitch language={language} preview={preview} onLanguage={onLanguage} />
+        {preview ? <ArticlePreview payload={preview} /> : <Empty>Vorschau wird aufgebaut …</Empty>}
+      </div>
     );
   }
   if (!parsed || typeof parsed !== 'object') return <Empty>Keine strukturierte Vorschau verfügbar.</Empty>;
-  return <StructuredPreview value={parsed as Record<string, unknown>} />;
+  return <StructuredPreview kind={kind} value={parsed as Record<string, unknown>} language={language} onLanguage={onLanguage} />;
 }
 
-function StructuredPreview({ value }: { value: Record<string, unknown> }) {
+function LanguageSwitch({ language, preview, onLanguage }: { language: ContentLanguage; preview?: PreviewPayload; onLanguage: (language: ContentLanguage) => void }) {
+  return (
+    <div className="mb-5 flex flex-wrap items-center gap-1.5 border-b border-border-subtle pb-3" role="group" aria-label="Vorschausprache">
+      {CONTENT_LANGUAGES.map((entry) => {
+        const coverage = preview?.languages.find((item) => item.language === entry);
+        const unsupported = coverage?.status === 'unsupported';
+        return (
+          <button
+            key={entry}
+            type="button"
+            onClick={() => onLanguage(entry)}
+            aria-pressed={language === entry}
+            title={coverage ? `${coverage.authored}/${coverage.required} Sprachblöcke` : undefined}
+            className={`rounded border px-2 py-1 text-[0.68rem] font-semibold ${language === entry ? 'border-brand bg-brand-soft text-brand-ink' : unsupported ? 'border-border-subtle text-ink-muted opacity-55' : 'border-border-subtle text-ink hover:bg-surface-sunken'}`}
+          >
+            {LANGUAGE_LABEL[entry]}{coverage ? ` · ${coverage.status === 'complete' ? 'vollständig' : coverage.status === 'partial' ? 'teilweise' : 'fehlt'}` : ''}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function StructuredPreview({ kind, value, language, onLanguage }: { kind: FileSnapshot['kind']; value: Record<string, unknown>; language: ContentLanguage; onLanguage: (language: ContentLanguage) => void }) {
   const items = Array.isArray(value.items) ? value.items as Record<string, unknown>[] : [];
   const entries = Array.isArray(value.entries) ? value.entries as Record<string, unknown>[] : [];
   const rows = items.length ? items : entries;
   return (
     <div className="space-y-5">
+      {kind === 'exercise-set' ? (
+        <>
+          <LanguageSwitch language={language} onLanguage={onLanguage} />
+          <ExerciseSetPreview value={value} language={language} />
+        </>
+      ) : null}
       <dl className="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-1 text-xs">
         {Object.entries(value).filter(([, item]) => !Array.isArray(item) && typeof item !== 'object').slice(0, 14).map(([key, item]) => (
           <div key={key} className="contents"><dt className="text-ink-muted">{key}</dt><dd className="break-words text-ink">{String(item)}</dd></div>
         ))}
       </dl>
-      {rows.length ? (
+      {rows.length && kind !== 'exercise-set' ? (
         <section>
           <Label>{items.length ? `Aufgaben (${items.length})` : `Einträge (${entries.length})`}</Label>
           <ol className="mt-2 space-y-3">
@@ -177,7 +246,7 @@ function StructuredPreview({ value }: { value: Record<string, unknown> }) {
             ))}
           </ol>
         </section>
-      ) : <pre className="overflow-auto whitespace-pre-wrap text-xs text-ink">{JSON.stringify(value, null, 2)}</pre>}
+      ) : kind !== 'exercise-set' ? <pre className="overflow-auto whitespace-pre-wrap text-xs text-ink">{JSON.stringify(value, null, 2)}</pre> : null}
     </div>
   );
 }

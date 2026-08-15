@@ -88,12 +88,18 @@ Save. `technisch blockierend` is reserved for a condition that the application r
 ## Edit an existing source
 
 1. Open a source link from **Themen**, **Materialien**, or a grammar detail.
-2. Read the editorial preview on the left and edit the exact YAML or MDX source on the right.
-3. Click **Speichern**. Save is explicit; Redaction never writes on every keystroke.
-4. Fix any file-local syntax or schema diagnostics. An invalid YAML/MDX file is not written.
-5. Click **Korpus prüfen** after a meaningful edit. Cross-file problems may exist in a saved draft,
+2. Read the editorial preview on the left and edit the exact YAML or MDX source on the right. For
+   an article, switch between **EN**, **RU**, **UK** and **DE** above the preview. Every button says
+   whether all, some or none of the article's authored explanation blocks support that language;
+   German examples do not manufacture a DE translation status.
+3. In an exercise set, use the same language switch and inspect every prompt, model answer,
+   accepted alternative, explanation, focus, outcome, key token and revision. This is editor mode:
+   answers are deliberately disclosed and no attempt or progress record is written.
+4. Click **Speichern**. Save is explicit; Redaction never writes on every keystroke.
+5. Fix any file-local syntax or schema diagnostics. An invalid YAML/MDX file is not written.
+6. Click **Korpus prüfen** after a meaningful edit. Cross-file problems may exist in a saved draft,
    but remain visible until resolved.
-6. Review the resulting repository diff with Git before committing or opening a pull request.
+7. Review the resulting repository diff with Git before committing or opening a pull request.
 
 Save uses the revision read when the editor was opened. If another program changes the file in the
 meantime, Redaction refuses to overwrite it. Reload the source and merge the two versions
@@ -130,10 +136,11 @@ Before each pilot session:
 - run `bun run validate` before committing content;
 - keep the topic as `draft` until the strict reviewed gate passes.
 
-Do not rely on the current preview as pixel-identical proof of the learner experience. It exposes
-source structure, answers, explanations, focus and outcomes, but the learner renderers have not yet
-all been extracted into shared pure editor-mode components. Check consequential presentation
-changes in the learner app too.
+The preview uses the Atlas article hierarchy, Markdown tables, emphasis, links and quotes and never
+executes MDX imports or JavaScript expressions. All current custom component names are allowlisted;
+`SentenceRail` has its full editor rendering and the other semantic figures currently use a named
+editor representation. Check consequential image composition and custom-figure layout in the
+learner app until their React renderers replace those representations.
 
 ## Current boundaries
 

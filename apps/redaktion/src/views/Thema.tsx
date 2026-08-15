@@ -274,6 +274,18 @@ function Ueberblick({
           </p>
         </Panel>
       </div>
+      <div className="mt-4">
+        <Panel title="Sprachfassungen">
+          <div className="flex flex-wrap gap-2">
+            {topic.languageCoverage.map((entry) => (
+              <Chip key={entry.language} tone={entry.status === 'complete' ? 'ok' : entry.status === 'partial' ? 'brand' : 'neutral'}>
+                {entry.language.toUpperCase()} · {entry.status === 'complete' ? 'vollständig' : entry.status === 'partial' ? 'teilweise' : 'fehlt'} · {entry.authored}/{entry.required}
+              </Chip>
+            ))}
+          </div>
+          <p className="mt-2 text-xs text-ink-muted">Gezählt werden verfasste Erklärungshälften; deutsche Beispiele allein gelten nicht als DE-Fassung.</p>
+        </Panel>
+      </div>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <Panel title="Grammatiklinien und Fokus">
           <div className="flex flex-wrap gap-1.5">

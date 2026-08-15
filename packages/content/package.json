@@ -19,6 +19,7 @@
     "./graph": "./src/graph.ts",
     "./handlungen": "./src/handlungen.ts",
     "./payload": "./src/payload.ts",
+    "./preview": "./src/preview.ts",
     "./profile": "./src/profile.ts",
     "./prose-shape": "./src/prose-shape.ts",
     "./refs": "./src/refs.ts",
@@ -31,7 +32,8 @@
   "dependencies": {
     "@da/grading": "workspace:*",
     "@da/schema": "workspace:*",
-    "@mdx-js/mdx": "^3.1.1"
+    "@mdx-js/mdx": "^3.1.1",
+    "remark-gfm": "^4.0.1"
   },
   "peerDependencies": {
     "yaml": "^2.9.0",
