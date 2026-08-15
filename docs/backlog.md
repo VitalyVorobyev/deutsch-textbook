@@ -32,8 +32,8 @@ The current executable item is **P27-3g topic-quality waves**. P27-3f closed the
 3416/3416 after classifying all 73 tail rows one by one. The live A1–B1 topic-profile queue is empty,
 but that is not the stop condition: every topic still receives a bounded article, exercise,
 reading, audio and vocabulary pass under the shared
-[content-quality contract](authoring/content-quality-audit.md). The A1 wave is complete and logged;
-A2 then B1 remain. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
+[content-quality contract](authoring/content-quality-audit.md). The A1 and A2 waves are complete and
+logged; B1 remains. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
 A1/A2/B1 673/673, 1449/1449 and 3416/3416.
 P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named

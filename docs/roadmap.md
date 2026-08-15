@@ -53,7 +53,7 @@ extensive-reading corpus, then cross-links/Referenz.
      six productive cards and 55 genuinely taught grammar/word-formation rows close B1 at
      3416/3416 with 0 missing and 0 late.
    - **P27-3g topic-quality waves are in progress:** A1's 11 original topics plus the new
-     `wortbildung` have completed the bounded corpus pass; A2 and B1 remain. Each wave records
+     `wortbildung`, and all 24 A2 topics, have completed the bounded corpus pass; B1 remains. Each wave records
      substantive language, task, reading, audio and vocabulary decisions under one shared contract;
      it does not impersonate the separate human `reviewed` gate. B1 may be called 100% des
      DTZ-Inventars only at 164/164; it is never labelled all conceivable B1 grammar.
@@ -215,6 +215,17 @@ and modelled *Hast du Zeit? — Ja, gern!*; the article now distinguishes the sp
 three support languages. The associated reading's singular *Kuchen* gloss and feedback were also
 corrected. The [topic ledger](curriculum/topic-quality-audit.md) records decisions per topic; draft
 statuses remain pending human approval.
+
+**P27-3g · A2 topic-quality wave shipped 2026-08-15.** All 24 A2 profiles were read across article,
+114 teaching/remediation sets, 42 readings, listening flows, documents and 271 entries in 19 owned
+decks. The empty diagnostics queue missed five substantive defect clusters: a Bürgeramt recording
+mixed Anmeldung with Personalausweis, the course invented a closed list of dative verbs, register
+guidance banned `du` with every stranger, past-tense/auxiliary advice used false absolutes, and the
+habitual/specific evening contrast was overstated. These contracts are corrected; the obsolete
+recording is retired until a human approves an exact replacement, and the substantively changed
+`verben-mit-kasus` topic returned to `draft`. Ten dense profiles were retained only where every set
+owns a distinct decision, stage or medium. The [topic ledger](curriculum/topic-quality-audit.md)
+records all 24 decisions.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
