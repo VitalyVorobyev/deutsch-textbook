@@ -58,8 +58,8 @@ describe('inventory anchors', () => {
    * threshold invented here would either be met by accident or ignored.
    */
   test('Sprachhandlung coverage does not fall', () => {
-    expect(handlungCoverage('A2').percent).toBeGreaterThanOrEqual(68);
-    expect(handlungCoverage('B1').percent).toBeGreaterThanOrEqual(68);
+    expect(handlungCoverage('A2').percent).toBeGreaterThanOrEqual(93);
+    expect(handlungCoverage('B1').percent).toBeGreaterThanOrEqual(93);
     // A1 has no handlung source: the DTZ starts at A2. `anchored: false` must stay distinguishable
     // from 0% — "nothing unclaimed" and "nothing measurable" print the same zero.
     expect(handlungCoverage('A1').anchored).toBe(false);
