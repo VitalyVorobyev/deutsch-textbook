@@ -28,9 +28,11 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-2b external grammar denominator**: classify the 23 unclaimed
-DTZ structures, add only exact inventory claims, and turn the seven real holes into complete
-teaching slices. P27-2a removed the regex preview, added safe one-language MDX rendering, language
+The current executable item is **P27-3a A1 grammar wave**: close `koordination`,
+`demonstrativartikel`, `wortbildung-nomen` and `wortbildung-adjektiv` with complete teaching,
+transfer and probe evidence; the new `wortbildung` topic also owns DTZ `-chen`. P27-2b classified
+the 23-row DTZ tail, claimed only the exact existing `mod-wie` evidence and left 22 named rows open
+in the audit ledger. P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
 claimed. Then add safe structured controls over the same source buffer and visible background-job

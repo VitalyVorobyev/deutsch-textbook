@@ -152,8 +152,12 @@ corpus fixture and the browser audit exercises the source route at 1440/1024/768
 renderer-parity work is migration of the nine image/reference learning figures from named semantic
 editor representations to the same React implementations used by the learner.
 
-The next course-quality slice is the **external grammar denominator**: account for the 23 unclaimed
-DTZ structures without aliases, then close the seven real teaching gaps before topic audit waves.
+**P27-2b · external grammar denominator is classified.** [ADR 0015](adrs/0015-provable-course-completeness.md)
+separates external alignment, internal catalog coverage, teaching depth and learner mastery. The
+23-row DTZ tail is grouped into coherent teaching slices in the
+[A1–B1 audit ledger](curriculum/a1-b1-completeness-audit.md); `mod-wie` was the one exact existing
+match, leaving 22 rows open. The next content slice closes the seven already exposed internal
+grammar gaps, including the full new A1 `wortbildung` topic, before the remaining DTZ slices.
 
 [ADR 0013](adrs/0013-redaction-repository-workbench.md) owns the architecture; backlog P27 owns the
 current implementation boundary. Completion is the full editor journey: locate a grammar line,
