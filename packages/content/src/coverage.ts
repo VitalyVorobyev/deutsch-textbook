@@ -78,17 +78,66 @@ export interface Coverage {
   onTimeCards: number;
 }
 
+/**
+ * Three per-root memos, and the reason they exist is a measurement rather than a hunch.
+ *
+ * `graphPayload` calls `goetheCoverage` once per level, and each call walks the same disk three
+ * times over: `deckLevels` and `deckHeadwords` each read and YAML-parse all 129 vocab decks, and
+ * `taughtSurface` reads all 50 topic articles, 78 readings and 410 exercise files. That is ~2,400
+ * redundant parses per payload build and 3.8 s of the 6.6 s a cold Redaktion start used to cost —
+ * the eight-passes problem `contentGraph()` was built to kill, reappearing one layer up.
+ *
+ * Memoised rather than rewritten to read the graph, because these five functions are also the CLI
+ * entry points (`bun scripts/coverage.ts`) and changing their signatures would move the boundary
+ * for no further gain. The pattern is `depthCache` in grammar-depth.ts, which took `levelDepth`
+ * from 250 ms to 5 ms the same way; like that one, these are cleared by `invalidateContentGraph`,
+ * so a watcher event drops them with the graph they belong to.
+ */
+const deckLevelsCache = new Map<string, Map<string, Level>>();
+const deckHeadwordsCache = new Map<string, Map<string, string[]>>();
+const taughtSurfaceCache = new Map<string, string>();
+const surfaceTokensCache = new Map<string, ReadonlySet<string>>();
+
+/** The taught surface as a token Set, memoised beside the surface it belongs to. */
+function surfaceTokensOf(root: string, surface: string): ReadonlySet<string> {
+  const cached = surfaceTokensCache.get(root);
+  if (cached) return cached;
+  const tokens = new Set(surface.split(' '));
+  surfaceTokensCache.set(root, tokens);
+  return tokens;
+}
+
+/** Drop the memos. Called by `invalidateContentGraph`; not part of the public surface. */
+export function invalidateCoverageCaches(root?: string): void {
+  if (root) {
+    deckLevelsCache.delete(root);
+    deckHeadwordsCache.delete(root);
+    taughtSurfaceCache.delete(root);
+    surfaceTokensCache.delete(root);
+  } else {
+    deckLevelsCache.clear();
+    deckHeadwordsCache.clear();
+    taughtSurfaceCache.clear();
+    surfaceTokensCache.clear();
+  }
+}
+
 function deckLevels(root: string): Map<string, Level> {
+  const cached = deckLevelsCache.get(root);
+  if (cached) return cached;
   const levels = new Map<string, Level>();
   for (const file of readdirSync(join(root, VOCAB_DIR)).filter((f) => f.endsWith('.yaml'))) {
     const data = YAML.parse(readFileSync(join(root, VOCAB_DIR, file), 'utf8')) as { id: string; level: Level };
     levels.set(data.id, data.level);
   }
+  deckLevelsCache.set(root, levels);
   return levels;
 }
 
 /** Every headword any deck teaches → the deck ids that teach it. */
 function deckHeadwords(root: string): Map<string, string[]> {
+  const cached = deckHeadwordsCache.get(root);
+  if (cached) return cached;
   const ownedBy = new Map<string, string[]>();
   const vocabDir = join(root, VOCAB_DIR);
   for (const file of readdirSync(vocabDir).filter((f) => f.endsWith('.yaml')).sort()) {
@@ -100,6 +149,7 @@ function deckHeadwords(root: string): Map<string, string[]> {
       ownedBy.set(entry.de, [...(ownedBy.get(entry.de) ?? []), data.id]);
     }
   }
+  deckHeadwordsCache.set(root, ownedBy);
   return ownedBy;
 }
 
@@ -210,6 +260,8 @@ function itemGerman(item: Record<string, unknown>): string[] {
  *     another word's example sentence is not itself taught.
  */
 export function taughtSurface(root = repoRoot()): string {
+  const cached = taughtSurfaceCache.get(root);
+  if (cached !== undefined) return cached;
   const parts: string[] = [];
   const caseViews = new Set<string>();
 
@@ -275,7 +327,9 @@ export function taughtSurface(root = repoRoot()): string {
     for (const item of data.items ?? []) parts.push(...itemGerman(item));
   }
 
-  return normalize(parts.join('\n'));
+  const surface = normalize(parts.join('\n'));
+  taughtSurfaceCache.set(root, surface);
+  return surface;
 }
 
 /**
@@ -323,9 +377,16 @@ const INFLECTIONS: Record<string, string[]> = {
     on purpose: this is what stops `manch-` being credited to `manchmal`. */
 const STEM_ENDINGS = ['', 'e', 'er', 'es', 'en', 'em'];
 
-/** Does the taught surface actually address this manifest word? */
-export function addresses(surface: string, word: string): boolean {
-  const tokens = new Set(surface.split(' '));
+/**
+ * Does the taught surface actually address this manifest word?
+ *
+ * The token Set is passed in rather than rebuilt, because it used to be rebuilt: this function
+ * ran `new Set(surface.split(' '))` on every call, and `goetheCoverage` calls it once per `~`
+ * word across three levels. Splitting a ~1 MB surface 5,538 times was 2.0 s of a 6.6 s cold
+ * Redaktion start — a hot loop hidden inside a one-line convenience, and invisible in a profile
+ * that only names the outer function.
+ */
+function addressesIn(surface: string, tokens: ReadonlySet<string>, word: string): boolean {
   const has = (w: string) => tokens.has(w);
 
   if (word.endsWith('-')) {
@@ -349,6 +410,14 @@ export function addresses(surface: string, word: string): boolean {
   if (n.includes(' ')) return ` ${surface} `.includes(` ${n} `);
 
   return (INFLECTIONS[n] ?? [n]).some(has);
+}
+
+/**
+ * The public shape, unchanged: callers that hold only a surface string still work, and the tests
+ * exercise this signature. Inside the coverage loop the Set is hoisted instead.
+ */
+export function addresses(surface: string, word: string): boolean {
+  return addressesIn(surface, new Set(surface.split(' ')), word);
 }
 
 export function hasManifest(level: Level, root = repoRoot()): boolean {
@@ -420,6 +489,8 @@ export function goetheCoverage(level: Level, root = repoRoot()): Coverage {
   const ownedBy = deckHeadwords(root);
   const levels = deckLevels(root);
   const surface = taughtSurface(root);
+  // Built once per call rather than once per manifest word — see `addressesIn`.
+  const surfaceTokens = surfaceTokensOf(root, surface);
 
   const sections: CoverageSection[] = [];
   const seen = new Set<string>();
@@ -439,7 +510,7 @@ export function goetheCoverage(level: Level, root = repoRoot()): Coverage {
     seen.add(word);
     if (isGrammar) {
       // An unearned `~` is not coverage, it is a claim. It counts as missing.
-      if (addresses(surface, word)) current?.grammar.push(word);
+      if (addressesIn(surface, surfaceTokens, word)) current?.grammar.push(word);
       else current?.unearned.push(word);
     } else if (ownedBy.has(word)) current?.covered.push(word);
     else current?.missing.push(word);

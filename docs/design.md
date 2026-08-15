@@ -12,7 +12,7 @@ Astro renders the textbook and reference surfaces; React islands provide statefu
 sessions, flashcards and progress views. A thin Tauri shell adds desktop filesystem integration
 without changing the learning model.
 
-Redaction is a separate React/Tauri workbench for that same repository. Its webview has no direct
+Redaktion is a separate React/Tauri workbench for that same repository. Its webview has no direct
 filesystem or shell authority: a compiled Bun sidecar loads `@da/content`, watches the selected
 checkout and accepts the narrow read, revision-checked save and validation contract in
 [ADR 0013](adrs/0013-redaction-repository-workbench.md). Browser development implements the same
@@ -90,9 +90,9 @@ edges naming the rows it is the deeper pass over, and `claims:` citations into
 `data/strukturenlisten/`, the external inventories the denominator is measured against
 ([ADR 0011](adrs/0011-external-grammar-anchors.md)). Grammar uses a dedicated A1–C2 CEFR contract;
 this does not extend the levels the learner runtime publishes. The explicit track catalog supplies
-the stable rows of Redaction's Grammatikatlas. Nothing in the learner runtime reads any of it: the
+the stable rows of Redaktion's Grammatikatlas. Nothing in the learner runtime reads any of it: the
 fields exist so the curriculum can be audited along the language's own axes rather than only along
-the spine, which is what Redaction renders and what `scripts/structures.ts` and
+the spine, which is what Redaktion renders and what `scripts/structures.ts` and
 `scripts/grammar-depth.ts` measure.
 
 A normal learning cycle combines:
@@ -241,7 +241,7 @@ EN/DE modes and a missing-UK fallback continue to show full English.
 German examples are source language, not proof that a record has a German-medium explanation.
 This distinction matters in reference data and Wortnetze.
 
-Redaction derives per-topic language coverage from authored `<Bilingual>` blocks. A language is
+Redaktion derives per-topic language coverage from authored `<Bilingual>` blocks. A language is
 `complete` only when every block carries its half, `partial` when some do, and `unsupported` when
 none do. The count is editorial visibility, not a request to backfill German.
 

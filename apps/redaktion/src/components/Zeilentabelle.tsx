@@ -86,7 +86,7 @@ export function Extern({ href, children }: { href: string; children: ReactNode }
   );
 }
 
-/** A source inside the selected checkout. It stays in Redaction and opens the preview/editor. */
+/** A source inside the selected checkout. It stays in Redaktion and opens the preview/editor. */
 export function Quelllink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a

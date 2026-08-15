@@ -88,11 +88,38 @@ export function corpus(): Plugin {
     configureServer(server: ViteDevServer) {
       // Watch the knowledge base, which lives outside this app's Vite root.
       server.watcher.add([`${root}/content`, `${root}/data`]);
+
+      // Coalesced, because the rebuild is not free and a save is rarely one file. Writing a topic
+      // manifest and its article together, a `git checkout`, or a formatter touching a directory
+      // each used to fire one full invalidation *per file* and one client refetch per event —
+      // several complete rebuilds for one logical edit. The window is short enough to feel
+      // immediate and long enough to swallow an editor's write-and-rename.
+      //
+      // This coalesces; it does not rebuild incrementally. `contentGraph()` derives every
+      // cross-file index it exposes (elementsByTag, neededBy, deepenedBy, spineIndex …), so
+      // re-deriving them for one changed file is most of the walk anyway. Since the payload
+      // memos landed the whole rebuild is ~2.7 s rather than ~6.6 s, which is what made the
+      // deeper change stop paying for itself.
+      const COALESCE_MS = 120;
+      let pending: ReturnType<typeof setTimeout> | undefined;
+      let changed: string[] = [];
       const invalidate = (file: string) => {
-        if (file.startsWith(`${root}/content`) || file.startsWith(`${root}/data`)) {
+        if (!file.startsWith(`${root}/content`) && !file.startsWith(`${root}/data`)) return;
+        changed.push(file);
+        if (pending) clearTimeout(pending);
+        pending = setTimeout(() => {
+          pending = undefined;
+          const files = changed;
+          changed = [];
           invalidateContentGraph(root);
-          server.ws.send({ type: 'custom', event: 'redaktion:corpus-changed', data: { file } });
-        }
+          // `file` stays a single path for the existing client contract; `files` carries the
+          // whole burst for anything that wants it.
+          server.ws.send({
+            type: 'custom',
+            event: 'redaktion:corpus-changed',
+            data: { file: files[files.length - 1], files },
+          });
+        }, COALESCE_MS);
       };
       server.watcher.on('change', invalidate);
       server.watcher.on('add', invalidate);
