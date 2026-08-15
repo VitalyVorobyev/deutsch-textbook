@@ -1,0 +1,142 @@
+topic: sucht-lebensstil
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — die Entscheidung"
+title:
+  en: "Apply — the decision"
+  ru: "Применение — решение"
+  uk: "Застосування — рішення"
+
+# Independent transfer: a flat that smells, a landlord who forbids something, and the learner's
+# own habit written down and said out loud. Fresh contexts, no scaffolding, and nothing that
+# re-skins a Grundübung item.
+#
+# Both thin tags get their second file here — `irreale-bedingung` in uebersetzen-irreal-wohnung
+# and `lassen-verwendung` in uebersetzen-lassen-balkon — which is what lifts each off the
+# single-file tail reported by `bun scripts/grammar-depth.ts B1 --thin`.
+items:
+  - id: uebersetzen-irreal-wohnung
+    outcomes: [folgen-abwaegen]
+    type: translate
+    focus: irreale-bedingung
+    key_tokens: ["würden", "würde"]
+    instruction:
+      en: "Translate — for 'smell of' take nach etwas stinken; both halves need a full verb."
+      ru: "Переведите — для «пахнуть чем-либо» возьмите nach etwas stinken; в обеих половинах полнозначный глагол."
+      uk: "Перекладіть — для «пахнути чимось» візьміть nach etwas stinken; в обох половинах повнозначне дієслово."
+    prompt_en: "If we did not smoke, the flat would not stink of cigarettes."
+    prompt_ru: "Если бы мы не курили, квартира не воняла бы сигаретами."
+    prompt_uk: "Якби ми не курили, квартира не смерділа б цигарками."
+    answer: "Wenn wir nicht rauchen würden, würde die Wohnung nicht nach Zigaretten stinken."
+    accept:
+      - "Wenn wir nicht rauchen würden, dann würde die Wohnung nicht nach Zigaretten stinken."
+      - "Die Wohnung würde nicht nach Zigaretten stinken, wenn wir nicht rauchen würden."
+    explain:
+      en: "The cell the core set never showed: both verbs are full verbs, so both halves build *würde* + Infinitiv and the sentence carries the helper twice. The two forms are not the same word — *würden* agrees with *wir*, *würde* with *die Wohnung* — and a learner who writes one of them twice has stopped agreeing with the subject. *Stinken* takes what it smells of through *nach* plus the dative."
+      ru: "Ячейка, которой основной блок не показывал: оба глагола полнозначные, поэтому обе половины строят *würde* + инфинитив, и вспомогательный стоит в предложении дважды. Это не одна и та же форма — *würden* согласовано с *wir*, *würde* с *die Wohnung*, — и тот, кто напишет одну из них дважды, перестал согласовывать с подлежащим. Источник запаха *stinken* вводит через *nach* с дативом."
+      uk: "Клітинка, якої основний блок не показував: обидва дієслова повнозначні, тому обидві половини будують *würde* + інфінітив, і допоміжне стоїть у реченні двічі. Це не та сама форма — *würden* узгоджене з *wir*, *würde* з *die Wohnung*, — і той, хто напише одну з них двічі, перестав узгоджувати з підметом. Джерело запаху *stinken* вводить через *nach* з давальним."
+
+  - id: uebersetzen-lassen-balkon
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    key_tokens: ["lässt", "rauchen"]
+    instruction:
+      en: "Translate with lassen — for 'the landlord' take der Vermieter."
+      ru: "Переведите через lassen — для «арендодателя» возьмите der Vermieter."
+      uk: "Перекладіть через lassen — для «орендодавця» візьміть der Vermieter."
+    prompt_en: "The landlord does not let us smoke on the balcony."
+    prompt_ru: "Арендодатель не разрешает нам курить на балконе."
+    prompt_uk: "Орендодавець не дозволяє нам курити на балконі."
+    answer: "Der Vermieter lässt uns auf dem Balkon nicht rauchen."
+    accept:
+      - "Der Vermieter lässt uns nicht auf dem Balkon rauchen."
+    explain:
+      en: "This is *lassen*'s second job — allowing, and here refusing — and the syntax does not change with the job: *lässt* in position 2, the bare infinitive *rauchen* at the very end, the person affected in the accusative as *uns*. Where *nicht* stands only shifts the emphasis; both accepted renderings deny the same thing. English agrees for once — *let us smoke* takes a bare infinitive too — so there is no reason at all to insert a *zu* here."
+      ru: "Это вторая работа *lassen* — разрешать, а здесь не разрешать, — и синтаксис от работы не меняется: *lässt* на втором месте, голый инфинитив *rauchen* в самом конце, затронутое лицо в аккузативе как *uns*. Место *nicht* лишь смещает акцент; оба принимаемых варианта отрицают одно и то же."
+      uk: "Це друга робота *lassen* — дозволяти, а тут не дозволяти, — і синтаксис від роботи не змінюється: *lässt* на другому місці, голий інфінітив *rauchen* у самому кінці, зачеплена особа в акузативі як *uns*. Місце *nicht* лише зміщує акцент; обидва прийняті варіанти заперечують одне й те саме."
+
+  - id: diktat-sein-lassen
+    outcomes: [gesundheitstext-verstehen]
+    type: listen
+    text: "Mein Bruder hat das Rauchen sein lassen."
+    translation:
+      en: "My brother has given up smoking."
+      ru: "Мой брат бросил курить."
+      uk: "Мій брат кинув курити."
+    explain:
+      en: "Two unstressed syllables at the end carry the whole grammar, and they are the hardest part to catch: *sein lassen*, not *sein gelassen*. If you heard a *ge-* that is not there, you have written the participle German only uses when *lassen* stands alone. *Das Rauchen* is capitalised because the infinitive is being used as a neuter noun."
+      ru: "Два безударных слога в конце несут всю грамматику, и расслышать их труднее всего: *sein lassen*, а не *sein gelassen*. Если вам послышалось *ge-*, которого там нет, вы записали причастие, которое немецкий употребляет лишь тогда, когда *lassen* стоит один. *Das Rauchen* пишется с большой буквы, потому что инфинитив здесь работает существительным среднего рода."
+      uk: "Два ненаголошені склади в кінці несуть усю граматику, і розчути їх найважче: *sein lassen*, а не *sein gelassen*. Якщо вам почулося *ge-*, якого там немає, ви записали дієприкметник, що його німецька вживає лише тоді, коли *lassen* стоїть сам. *Das Rauchen* пишеться з великої літери, бо інфінітив тут працює іменником середнього роду."
+
+  - id: sprechen-gewohnheit
+    outcomes: [folgen-abwaegen, rat-zum-aufhoeren]
+    type: speak
+    mode: spoken-production
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "Name one habit of your own that you would like to change — cigarettes, alcohol, sugar, too little sleep. Say what it costs you, what would be different if you changed it, and what you would advise a friend in the same situation. Around six sentences, aloud."
+      ru: "Назовите одну свою привычку, которую хотели бы изменить, — сигареты, алкоголь, сахар, слишком мало сна. Скажите, чего она вам стоит, что было бы иначе, если бы вы её изменили, и что вы посоветовали бы другу в такой же ситуации. Примерно шесть предложений, вслух."
+      uk: "Назвіть одну свою звичку, яку хотіли б змінити, — цигарки, алкоголь, цукор, замало сну. Скажіть, чого вона вам коштує, що було б інакше, якби ви її змінили, і що ви порадили б другові в такій самій ситуації. Приблизно шість речень, уголос."
+    goal:
+      en: "Weigh one habit out loud, with an unreal condition for the gain and lassen for the step."
+      ru: "Вслух взвесить одну привычку: нереальное условие для выигрыша и lassen для шага."
+      uk: "Уголос зважити одну звичку: нереальна умова для виграшу і lassen для кроку."
+    checklist:
+      - en: "I built at least one full unreal condition and marked both halves: Wenn ich …, hätte/wäre/könnte ich …"
+        ru: "Я построил(а) хотя бы одно полное нереальное условие и пометил(а) обе половины: Wenn ich …, hätte/wäre/könnte ich …"
+        uk: "Я побудував(ла) хоча б одну повну нереальну умову і позначив(ла) обидві половини: Wenn ich …, hätte/wäre/könnte ich …"
+      - en: "I used würde + infinitive for a full verb, and the short form for sein, haben or a modal."
+        ru: "Для полнозначного глагола я взял(а) würde + инфинитив, а для sein, haben или модального — короткую форму."
+        uk: "Для повнозначного дієслова я взяв(ла) würde + інфінітив, а для sein, haben або модального — коротку форму."
+      - en: "I said one thing I have done for me with lassen, and put the second verb at the end without zu."
+        ru: "Я назвал(а) через lassen одно дело, которое мне делают другие, и поставил(а) второй глагол в конец без zu."
+        uk: "Я назвав(ла) через lassen одну справу, яку мені роблять інші, і поставив(ла) друге дієслово в кінець без zu."
+      - en: "I gave the friend one piece of advice: Lass … sein or Lass dich beraten."
+        ru: "Я дал(а) другу один совет: Lass … sein или Lass dich beraten."
+        uk: "Я дав(ла) другові одну пораду: Lass … sein або Lass dich beraten."
+    model_answer: "Ich rauche seit zwölf Jahren. Am Anfang war es eine Gewohnheit, heute ist es eher eine Sucht. Jeden Monat gebe ich fast hundert Euro für Zigaretten aus. Wenn ich nicht rauchen würde, hätte ich mehr Geld und mehr Luft, und meine Jacke würde nicht nach Zigaretten stinken. Vor einer Woche habe ich mich in der Apotheke beraten lassen. Einem Freund würde ich sagen: Lass das Rauchen sein und lass dich beraten, allein ist es schwer."
+    model_translation:
+      en: "I have been smoking for twelve years. At the beginning it was a habit, today it is more of an addiction. Every month I spend almost a hundred euros on cigarettes. If I did not smoke, I would have more money and more air, and my jacket would not stink of cigarettes. A week ago I got advice at the pharmacy. To a friend I would say: give up smoking and get some advice — on your own it is hard."
+      ru: "Я курю двенадцать лет. Сначала это была привычка, сегодня скорее зависимость. Каждый месяц я трачу на сигареты почти сто евро. Если бы я не курил, у меня было бы больше денег и больше воздуха, и куртка не воняла бы сигаретами. Неделю назад я проконсультировался в аптеке. Другу я бы сказал: брось курить и обратись за консультацией, в одиночку это трудно."
+      uk: "Я курю дванадцять років. Спочатку це була звичка, сьогодні радше залежність. Щомісяця я витрачаю на цигарки майже сто євро. Якби я не курив, у мене було б більше грошей і більше повітря, і куртка не смерділа б цигарками. Тиждень тому я проконсультувався в аптеці. Другові я б сказав: кинь курити і звернися по консультацію, наодинці це важко."
+    explain:
+      en: "Play yourself back and find your *wenn*-sentence. Both halves must be marked: if the second one came out as *habe*, *ist* or *kann*, you described the real world and lost the point of the sentence. Then find your *lassen*. The second verb belongs at the very end with no *zu* in front of it, and in the perfect *lassen* itself stays an infinitive — *habe … beraten lassen*. Finally check the advice: *Lass* is the bare stem, with no ending, and *sein* closes the frame."
+      ru: "Прослушайте запись и найдите свою фразу с *wenn*. Обе половины должны быть помечены: если вторая вышла как *habe*, *ist* или *kann*, вы описали реальный мир и потеряли смысл фразы. Затем найдите своё *lassen*. Второй глагол стоит в самом конце, без *zu* перед ним, а в перфекте сам *lassen* остаётся инфинитивом: *habe … beraten lassen*. Наконец проверьте совет: *Lass* — голая основа без окончания, а *sein* закрывает рамку."
+      uk: "Прослухайте запис і знайдіть свою фразу з *wenn*. Обидві половини мають бути позначені: якщо друга вийшла як *habe*, *ist* або *kann*, ви описали реальний світ і втратили сенс фрази. Потім знайдіть своє *lassen*. Друге дієслово стоїть у самому кінці, без *zu* перед ним, а в перфекті сам *lassen* лишається інфінітивом: *habe … beraten lassen*. Нарешті перевірте пораду: *Lass* — гола основа без закінчення, а *sein* закриває рамку."
+
+  - id: schreiben-entschluss
+    outcomes: [hilfe-veranlassen]
+    type: write
+    prompt:
+      en: "Write a short message to a friend about a decision: what you are giving up, what you have already arranged, and what would be different in a year. Six or seven sentences."
+      ru: "Напишите короткое сообщение другу о своём решении: от чего вы отказываетесь, что вы уже организовали и что было бы иначе через год. Шесть-семь предложений."
+      uk: "Напишіть коротке повідомлення другові про своє рішення: від чого ви відмовляєтеся, що ви вже організували і що було б інакше через рік. Шість-сім речень."
+    goal:
+      en: "Make the decision concrete: a step already taken, and a named gain that is not yet real."
+      ru: "Сделать решение конкретным: уже сделанный шаг и названный выигрыш, которого пока нет."
+      uk: "Зробити рішення конкретним: уже зроблений крок і названий виграш, якого поки немає."
+    requirements:
+      - en: "Use lassen twice, in two different jobs — one thing you have arranged and one thing you are giving up."
+        ru: "Употребите lassen дважды, в двух разных работах: одно дело, которое вы организовали, и одно, от которого отказываетесь."
+        uk: "Уживіть lassen двічі, у двох різних роботах: одна справа, яку ви організували, і одна, від якої відмовляєтеся."
+      - en: "Write one full unreal condition and mark both halves (Wenn ich …, hätte/wäre/würde ich …)."
+        ru: "Напишите одно полное нереальное условие и пометьте обе половины (Wenn ich …, hätte/wäre/würde ich …)."
+        uk: "Напишіть одну повну нереальну умову і позначте обидві половини (Wenn ich …, hätte/wäre/würde ich …)."
+      - en: "Name at least three words from the field: Gewohnheit, Sucht, süchtig, Nichtraucher, Zigarette, Alkohol, Vitamin."
+        ru: "Назовите не меньше трёх слов из поля: Gewohnheit, Sucht, süchtig, Nichtraucher, Zigarette, Alkohol, Vitamin."
+        uk: "Назвіть не менше трьох слів із поля: Gewohnheit, Sucht, süchtig, Nichtraucher, Zigarette, Alkohol, Vitamin."
+    min_words: 55
+    model_answer: "Liebe Sonja, ich habe mich endlich entschieden. Ab Montag lasse ich das Rauchen sein. Zwölf Jahre lang war es nur eine Gewohnheit, aber inzwischen bin ich süchtig nach Zigaretten. Vor einer Woche habe ich mich in der Apotheke beraten lassen, und ich gehe jetzt jeden Abend eine halbe Stunde laufen. Wenn ich in einem Jahr Nichtraucherin wäre, hätte ich mehr Luft und über tausend Euro mehr. Ich esse auch mehr Obst, weil ich mehr Vitamine brauche. Wünsch mir Glück! Deine Anna"
+    model_translation:
+      en: "Dear Sonja, I have finally made up my mind. From Monday I am giving up smoking. For twelve years it was only a habit, but by now I am addicted to cigarettes. A week ago I got advice at the pharmacy, and I now go running for half an hour every evening. If I were a non-smoker in a year's time, I would have more air and over a thousand euros more. I am also eating more fruit, because I need more vitamins. Wish me luck! Yours, Anna"
+      ru: "Дорогая Соня, я наконец решилась. С понедельника я бросаю курить. Двенадцать лет это была просто привычка, но теперь я зависима от сигарет. Неделю назад я проконсультировалась в аптеке, и теперь каждый вечер по полчаса бегаю. Если бы через год я была некурящей, у меня было бы больше воздуха и больше тысячи евро. Ещё я ем больше фруктов, потому что мне нужно больше витаминов. Пожелай мне удачи! Твоя Анна"
+      uk: "Люба Соню, я нарешті наважилася. Від понеділка я кидаю курити. Дванадцять років це була просто звичка, але тепер я залежна від цигарок. Тиждень тому я проконсультувалася в аптеці, і тепер щовечора по пів години бігаю. Якби через рік я була тією, хто не курить, у мене було б більше повітря і більше тисячі євро. Ще я їм більше фруктів, бо мені потрібно більше вітамінів. Побажай мені щастя! Твоя Анна"
+    explain:
+      en: "Check three things against the model. Your two *lassen*: one should arrange something somebody else does (*beraten lassen*) and one should stop something (*das Rauchen sein lassen*) — and in the perfect *lassen* itself stays an infinitive. Your unreal condition: both halves marked, and *würde* only where the verb is a full verb. And the field words: *süchtig* takes *nach* plus the dative, and after *sein* a category noun goes without an article — *ich bin Nichtraucherin*, not *eine Nichtraucherin*."
+      ru: "Сверьте с образцом три вещи. Два ваших *lassen*: одно должно организовывать то, что делает кто-то другой (*beraten lassen*), а другое — прекращать (*das Rauchen sein lassen*); в перфекте сам *lassen* остаётся инфинитивом. Ваше нереальное условие: помечены обе половины, а *würde* стоит только там, где глагол полнозначный. И слова поля: *süchtig* требует *nach* с дативом, а после *sein* существительное-разряд идёт без артикля — *ich bin Nichtraucherin*, а не *eine Nichtraucherin*."
+      uk: "Звірте зі зразком три речі. Два ваші *lassen*: одне має організовувати те, що робить хтось інший (*beraten lassen*), а друге — припиняти (*das Rauchen sein lassen*); у перфекті сам *lassen* лишається інфінітивом. Ваша нереальна умова: позначені обидві половини, а *würde* стоїть лише там, де дієслово повнозначне. І слова поля: *süchtig* потребує *nach* з давальним, а після *sein* іменник-розряд іде без артикля — *ich bin Nichtraucherin*, а не *eine Nichtraucherin*."

@@ -1,0 +1,92 @@
+topic: unfall-notruf
+kind: intensive
+title_de: "Acht Minuten"
+text:
+  - >-
+    Am Dienstag um kurz nach acht ist an der Kreuzung Hauptstraße ein Unfall
+    [[passiert::happened — passieren always builds its perfect with sein::произошёл —
+    passieren всегда строит перфект с sein::стався — passieren завжди будує перфект
+    із sein]]. Eine Radfahrerin war
+    [[wegen des Regens::because of the rain — wegen with the genitive, the register a
+    report expects::из-за дождя — wegen с генитивом, регистр, которого ждёт
+    отчёт::через дощ — wegen з родовим, регістр, якого чекає звіт]] langsam
+    unterwegs. Ein Auto bog plötzlich nach rechts ab, und sie konnte nicht mehr
+    bremsen.
+  - >-
+    [[Nachdem sie gestürzt war::after she had fallen — the earlier event steps back
+    into the Plusquamperfekt::после того как она упала — более раннее событие
+    отступает в Plusquamperfekt::після того як вона впала — раніша подія відступає в
+    Plusquamperfekt]], blieb sie auf der Straße liegen. Ein Passant wählte sofort die
+    112 und nannte zuerst die Adresse. Dann sagte er, was passiert war, und wie viele
+    Personen
+    [[verletzt::injured — the state, not the thing: eine Verletzung would be the
+    injury itself::пострадали — состояние, а не предмет: eine Verletzung — сама
+    травма::постраждали — стан, а не предмет: eine Verletzung — сама травма]] waren.
+    Er blieb am Telefon, bis die
+    [[Leitstelle::control centre — the dispatcher's office, which ends the
+    call::диспетчерская — она и завершает разговор::диспетчерська — вона й завершує
+    розмову]] das Gespräch beendete.
+  - >-
+    Der [[Krankenwagen::ambulance::скорая помощь::швидка допомога]] kam nach acht
+    Minuten. Die Radfahrerin
+    [[blutete am Kopf::was bleeding from the head — bluten an plus dative::у неё была
+    кровь из головы — bluten an с дативом::у неї була кров із голови — bluten an з
+    давальним]] und konnte nicht aufstehen. Nachdem der Arzt sie in der
+    [[Notaufnahme::emergency department — the place; the Notruf is the phone
+    call::приёмный покой — место; Notruf — это звонок::приймальне відділення —
+    місце; Notruf — це дзвінок]] untersucht hatte, war klar: Die Schulter war
+    gebrochen, aber der Kopf war in Ordnung.
+questions:
+  - id: frage-reihenfolge
+    outcomes: [unfallbericht-verstehen]
+    type: mc
+    prompt: "Was hat der Passant zuerst gesagt?"
+    options:
+      - "Die Adresse."
+      - "Was passiert war."
+      - "Wie viele Personen verletzt waren."
+    correct: 0
+    translation:
+      en: What did the passer-by say first?
+      ru: Что прохожий сказал первым?
+      uk: Що перехожий сказав першим?
+    explain:
+      en: "„… wählte sofort die 112 und nannte zuerst die Adresse.“ The other two are in the text and both come after it — the order is the point of the passage, because the address is what starts the ambulance while the caller is still talking."
+      ru: "«… wählte sofort die 112 und nannte zuerst die Adresse». Два других варианта в тексте есть, но оба идут позже: порядок и есть суть отрывка, потому что именно адрес приводит скорую в движение, пока звонящий ещё говорит."
+      uk: "«… wählte sofort die 112 und nannte zuerst die Adresse». Два інші варіанти в тексті є, але обидва йдуть пізніше: порядок і є суть уривка, бо саме адреса приводить швидку в рух, поки той, хто телефонує, ще говорить."
+
+  - id: frage-verletzung
+    outcomes: [unfallbericht-verstehen, verletzung-benennen]
+    type: mc
+    prompt: "Welche Verletzung hatte die Radfahrerin?"
+    options:
+      - "Die Schulter war gebrochen."
+      - "Das Bein war gebrochen."
+      - "Sie hatte nur eine kleine Wunde am Arm."
+    correct: 0
+    translation:
+      en: What injury did the cyclist have?
+      ru: Какая травма была у велосипедистки?
+      uk: Яка травма була у велосипедистки?
+    explain:
+      en: "The last sentence: „Die Schulter war gebrochen, aber der Kopf war in Ordnung.“ The head is mentioned twice and neither mention is an injury diagnosis — she was bleeding from it, and it turned out to be fine. That gap between what is visible and what is broken is why the examination happens at all."
+      ru: "Последнее предложение: «Die Schulter war gebrochen, aber der Kopf war in Ordnung». Голова упоминается дважды, и ни одно упоминание не является диагнозом: из неё шла кровь, а в итоге с ней всё оказалось в порядке. Именно этот разрыв между видимым и сломанным и делает осмотр нужным."
+      uk: "Останнє речення: «Die Schulter war gebrochen, aber der Kopf war in Ordnung». Голова згадується двічі, і жодна згадка не є діагнозом: із неї йшла кров, а зрештою з нею все виявилося гаразд. Саме цей розрив між видимим і зламаним і робить огляд потрібним."
+
+  - id: frage-nachdem
+    outcomes: [unfallbericht-verstehen, unfallhergang-schildern]
+    type: mc
+    prompt: "„Nachdem der Arzt sie untersucht hatte, war klar …“ — was war zuerst?"
+    options:
+      - "Die Untersuchung."
+      - "Beides gleichzeitig."
+      - "Es war zuerst klar, dann kam die Untersuchung."
+    correct: 0
+    translation:
+      en: "„After the doctor had examined her, it was clear …“ — which came first?"
+      ru: "«После того как врач её осмотрел, стало ясно…» — что было раньше?"
+      uk: "«Після того як лікар її оглянув, стало зрозуміло…» — що було раніше?"
+    explain:
+      en: "The Plusquamperfekt *untersucht hatte* puts the examination one step further back than *war klar*, so the examination is finished before the clarity begins. Nothing in the sentence says *zuerst*; the two tenses carry the sequence on their own, which is exactly what *nachdem* is for."
+      ru: "Plusquamperfekt *untersucht hatte* отодвигает осмотр на шаг дальше, чем *war klar*, так что осмотр закончен до того, как наступила ясность. Слова *zuerst* в предложении нет: последовательность несут сами времена — ради этого *nachdem* и существует."
+      uk: "Plusquamperfekt *untersucht hatte* відсуває огляд на крок далі, ніж *war klar*, тож огляд закінчено до того, як настала ясність. Слова *zuerst* в реченні немає: послідовність несуть самі часи — заради цього *nachdem* і існує."

@@ -542,3 +542,116 @@ items:
       # what the tag grades, and it is unchanged here.
       - "Morgen fahre ich wegen eines Termins mit dem Zug nach Köln."
     explain: { en: "Four adverbials in one clause, and German has a default order for them: temporal before causal before modal before local — morgen, wegen eines Termins, mit dem Zug, nach Köln. Say it in the source-language order and the sentence comes out with the place too early, which is the one that sounds most wrong to a German ear. The order is a default and not a law: any one of them may be moved into position 1 for emphasis, and then the verb comes second and the rest keep their sequence.", ru: "Четыре обстоятельства в одном предложении, и у немецкого для них есть порядок по умолчанию: время — причина — образ действия — место: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказать это в русском порядке — значит вынести место слишком рано, а именно это немецкому уху и режет слух сильнее всего. Порядок — это умолчание, а не закон: любое из обстоятельств можно вынести на первое место для акцента, и тогда глагол идёт вторым, а остальные сохраняют свою последовательность.", uk: "Чотири обставини в одному реченні, і в німецької для них є порядок за замовчуванням: час — причина — спосіб дії — місце: morgen, wegen eines Termins, mit dem Zug, nach Köln. Сказати це в українському порядку — означає винести місце надто рано, а саме це німецькому вуху й ріже слух найдужче. Порядок — це замовчування, а не закон: будь-яку з обставин можна винести на перше місце для акценту, і тоді дієслово йде другим, а решта зберігають свою послідовність.", de: "Vier Angaben in einem Satz, und das Deutsche hat dafür eine Grundreihenfolge: temporal vor kausal vor modal vor lokal — morgen, wegen eines Termins, mit dem Zug, nach Köln. Wer sie in der Reihenfolge der Ausgangssprache sagt, setzt die Ortsangabe zu früh, und genau das klingt für ein deutsches Ohr am schiefsten. Die Reihenfolge ist eine Grundregel und kein Gesetz: Jede einzelne Angabe darf zur Betonung auf Position 1 rücken, dann steht das Verb an zweiter Stelle und der Rest behält seine Abfolge." }
+
+  # --- unfall-notruf ---
+  - id: unfall-nachdem
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    prompt_en: "After the ambulance had arrived, everything went quickly."
+    prompt_ru: "После того как приехала скорая, всё пошло быстро."
+    prompt_uk: "Після того як приїхала швидка, усе пішло швидко."
+    answer: "Nachdem der Krankenwagen gekommen war, ging alles schnell."
+    accept: ["Nachdem der Krankenwagen angekommen war, ging alles schnell.", "Nachdem der Krankenwagen gekommen war, ist alles schnell gegangen."]
+    key_tokens: ["Nachdem", "war"]
+    explain: { en: "nachdem names the earlier of two past events and puts it in the Plusquamperfekt; kommen builds its perfect with sein, so the auxiliary is war and it closes the Nebensatz behind the participle. One past tense in both halves loses the sequence, which is the only thing nachdem was used for.", ru: "nachdem называет более раннее из двух прошедших событий и ставит его в Plusquamperfekt; kommen строит перфект с sein, поэтому вспомогательный — war, и он закрывает придаточное за причастием. Одно прошедшее время в обеих половинах теряет последовательность, а ведь только ради неё nachdem и берут.", uk: "nachdem називає ранішу з двох минулих подій і ставить її в Plusquamperfekt; kommen будує перфект із sein, тому допоміжне — war, і воно закриває підрядне за дієприкметником. Один минулий час в обох половинах втрачає послідовність, а саме заради неї nachdem і беруть.", de: "nachdem nennt das frühere von zwei vergangenen Ereignissen und setzt es ins Plusquamperfekt; kommen bildet sein Perfekt mit sein, also lautet das Hilfsverb war und schließt den Nebensatz hinter dem Partizip. Ein einziges Vergangenheitstempus in beiden Hälften verliert die Abfolge — und nur dafür steht nachdem überhaupt da." }
+
+  - id: unfall-koerperteil
+    outcomes: [verletzung-benennen]
+    type: cloze
+    instruction: { en: "Fill in the reflexive pronoun and the article.", ru: "Вставьте возвратное местоимение и артикль.", uk: "Вставте зворотний займенник і артикль.", de: "Ergänze das Reflexivpronomen und den Artikel." }
+    text: "Ich habe {{mir}} {{den}} Arm verletzt und kann nicht arbeiten."
+    translation: { en: "I have injured my arm and cannot work.", ru: "Я повредил руку и не могу работать.", uk: "Я пошкодив руку і не можу працювати." }
+    explain: { en: "German marks whose body it is with a dative reflexive and keeps the ordinary definite article on the body part: mir den Arm. meinen Arm is understood but doubles what mir already says.", ru: "Немецкий отмечает принадлежность тела возвратным местоимением в дативе и сохраняет у части тела обычный определённый артикль: mir den Arm. Вариант meinen Arm поймут, но он дублирует то, что уже сказано словом mir.", uk: "Німецька позначає належність тіла зворотним займенником у давальному і зберігає в частини тіла звичайний означений артикль: mir den Arm. Варіант meinen Arm зрозуміють, але він дублює те, що вже сказано словом mir.", de: "Beim eigenen Körper markiert das Deutsche die Zugehörigkeit mit einem Reflexivpronomen im Dativ und behält am Körperteil den gewöhnlichen bestimmten Artikel: mir den Arm. meinen Arm versteht man, aber es verdoppelt, was mir schon gesagt hat." }
+
+  # --- polizei-anzeige ---
+  - id: polizei-indirekt
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    prompt_en: "The witness says that he did not see anything."
+    prompt_ru: "Свидетель говорит, что ничего не видел."
+    prompt_uk: "Свідок каже, що нічого не бачив."
+    answer: "Der Zeuge sagt, dass er nichts gesehen hat."
+    accept: ["Der Zeuge sagt, dass er nichts gesehen habe."]
+    key_tokens: ["dass", "hat"]
+    explain: { en: "dass opens a Nebensatz, so the conjugated verb closes it — in a perfect that is the auxiliary, behind the participle: gesehen hat. The Konjunktiv I habe is accepted because it is the written variant of the same report, but nothing in this course asks you to produce it.", ru: "dass открывает придаточное, поэтому спрягаемый глагол его закрывает — в перфекте это вспомогательный, за причастием: gesehen hat. Форма Konjunktiv I habe принимается как письменный вариант той же передачи, но производить её курс нигде не требует.", uk: "dass відкриває підрядне, тому відмінюване дієслово його закриває — у перфекті це допоміжне, за дієприкметником: gesehen hat. Форма Konjunktiv I habe приймається як писемний варіант того самого передавання, але виробляти її курс ніде не вимагає.", de: "dass eröffnet einen Nebensatz, also schließt ihn das konjugierte Verb — im Perfekt ist das das Hilfsverb, hinter dem Partizip: gesehen hat. Der Konjunktiv I habe wird akzeptiert, weil er die geschriebene Variante derselben Wiedergabe ist; produzieren muss man ihn in diesem Kurs nirgends." }
+
+  - id: polizei-partizip
+    outcomes: [diebstahl-melden]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction: { en: "Fill in the participle with the ending its position requires: stehlen.", ru: "Вставьте причастие с окончанием, которого требует позиция: stehlen.", uk: "Вставте дієприкметник із закінченням, якого вимагає позиція: stehlen.", de: "Ergänze das Partizip mit der Endung, die seine Position verlangt: stehlen." }
+    text: "Die Polizei hat das {{gestohlene}} Fahrrad gefunden."
+    translation: { en: "The police found the stolen bicycle.", ru: "Полиция нашла украденный велосипед.", uk: "Поліція знайшла украдений велосипед." }
+    explain: { en: "In front of a noun a Partizip II is an adjective and takes the ending its article and case demand — after das in the accusative neuter that is -e. A bare participle stands only after sein or werden: Das Fahrrad wurde gestohlen.", ru: "Перед существительным Partizip II — прилагательное и берёт окончание, которого требуют артикль и падеж: после das в винительном среднего рода это -e. Без окончания причастие стоит только после sein или werden: Das Fahrrad wurde gestohlen.", uk: "Перед іменником Partizip II — прикметник і бере закінчення, якого вимагають артикль і відмінок: після das у знахідному середнього роду це -e. Без закінчення дієприкметник стоїть лише після sein або werden: Das Fahrrad wurde gestohlen.", de: "Vor einem Nomen ist ein Partizip II ein Adjektiv und nimmt die Endung, die Artikel und Kasus verlangen — nach das im Akkusativ Neutrum also -e. Endungslos steht das Partizip nur nach sein oder werden: Das Fahrrad wurde gestohlen." }
+
+  # --- versicherungen-behoerden ---
+  - id: behoerden-genitiv
+    outcomes: [frist-nennen]
+    type: translate
+    focus: praeposition-genitiv
+    instruction: { en: "Write it in the register of a letter.", ru: "Напишите в регистре письма.", uk: "Напишіть у регістрі листа.", de: "Schreibe es im Briefregister." }
+    prompt_en: "Because of the move I am asking for a longer deadline."
+    prompt_ru: "В связи с переездом я прошу продлить срок."
+    prompt_uk: "У зв'язку з переїздом я прошу продовжити строк."
+    answer: "Wegen des Umzugs bitte ich um eine längere Frist."
+    accept: ["Ich bitte wegen des Umzugs um eine längere Frist."]
+    key_tokens: ["wegen", "des"]
+    explain: { en: "wegen governs the genitive in writing, and Umzug is masculine, so the case shows twice — on des and as the -s on the noun. The spoken wegen dem Umzug is real German and simply the wrong register for a letter; dropping the -s is the error proper.", ru: "wegen на письме управляет генитивом, а Umzug мужского рода, поэтому падеж виден дважды — на des и как -s у самого слова. Разговорное wegen dem Umzug — настоящий немецкий и просто неверный регистр для письма; собственно ошибка — это потеря -s.", uk: "wegen на письмі керує родовим, а Umzug чоловічого роду, тому відмінок видно двічі — на des і як -s у самого слова. Розмовне wegen dem Umzug — справжня німецька і просто неправильний регістр для листа; власне помилка — це втрата -s.", de: "wegen regiert im Schriftlichen den Genitiv, und Umzug ist maskulin, also zeigt sich der Kasus zweimal — an des und als -s am Nomen. Das gesprochene wegen dem Umzug ist echtes Deutsch und schlicht das falsche Register für einen Brief; der eigentliche Fehler ist das fehlende -s." }
+
+  - id: behoerden-nullartikel
+    outcomes: [personalien-angeben]
+    type: cloze
+    focus: adjektiv-nullartikel
+    instruction: { en: "One gap takes an article, the other takes none. Write — where no article belongs.", ru: "В один пропуск идёт артикль, в другой — ничего. Поставьте — там, где артикля нет.", uk: "В один пропуск іде артикль, в інший — нічого. Поставте — там, де артикля немає.", de: "In eine Lücke gehört ein Artikel, in die andere keiner. Schreibe — wo kein Artikel steht." }
+    text: "Wir brauchen {{—}} Unterlagen über Ihr Einkommen und {{das}} Original der Urkunde."
+    translation: { en: "We need documents about your income and the original of the certificate.", ru: "Нам нужны документы о вашем доходе и оригинал свидетельства.", uk: "Нам потрібні документи про ваш дохід і оригінал свідоцтва." }
+    explain: { en: "A general plural takes no article: unspecified documents, whichever apply. Das Original is one specific object, and the genitive der Urkunde says which one. The rule is about whether the reader already knows which you mean, not about the plural itself.", ru: "Обобщающее множественное артикля не берёт: неопределённые документы, те, что подойдут. Das Original — один конкретный предмет, и генитив der Urkunde говорит какой. Правило про то, знает ли читатель, о каких именно идёт речь, а не про множественное число само по себе.", uk: "Узагальнювальна множина артикля не бере: невизначені документи, ті, що підійдуть. Das Original — один конкретний предмет, і родовий der Urkunde каже який. Правило про те, чи знає читач, про які саме йдеться, а не про множину саму по собі.", de: "Ein verallgemeinernder Plural steht ohne Artikel: irgendwelche Unterlagen, die passenden eben. Das Original ist ein bestimmter Gegenstand, und der Genitiv der Urkunde sagt welcher. Die Regel betrifft das gemeinsame Wissen, nicht den Plural an sich." }
+
+  # --- sucht-lebensstil ---
+  - id: sucht-irreal
+    outcomes: [folgen-abwaegen]
+    type: translate
+    focus: irreale-bedingung
+    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    prompt_en: "If I did not smoke, I would have more money."
+    prompt_ru: "Если бы я не курил, у меня было бы больше денег."
+    prompt_uk: "Якби я не курив, у мене було б більше грошей."
+    answer: "Wenn ich nicht rauchen würde, hätte ich mehr Geld."
+    accept: ["Wenn ich nicht rauchte, hätte ich mehr Geld."]
+    key_tokens: ["würde", "hätte"]
+    explain: { en: "An unreal condition puts Konjunktiv II in both halves. Most verbs use würde plus the infinitive, but haben has its own short form and prefers it: hätte, not würde haben. Using the indicative in either half turns the sentence into a real condition and loses the whole point.", ru: "Нереальное условие ставит Konjunktiv II в обе половины. Большинство глаголов берут würde с инфинитивом, но у haben есть своя короткая форма, и она предпочтительна: hätte, а не würde haben. Индикатив в любой из половин превращает фразу в реальное условие и теряет весь смысл.", uk: "Нереальна умова ставить Konjunktiv II в обидві половини. Більшість дієслів беруть würde з інфінітивом, але в haben є своя коротка форма, і вона переважна: hätte, а не würde haben. Індикатив у будь-якій з половин перетворює фразу на реальну умову і втрачає весь сенс.", de: "Eine irreale Bedingung setzt den Konjunktiv II in beide Hälften. Die meisten Verben nehmen würde plus Infinitiv, aber haben hat eine eigene Kurzform und bevorzugt sie: hätte, nicht würde haben. Der Indikativ in einer der Hälften macht daraus eine reale Bedingung und verliert den ganzen Punkt." }
+
+  - id: sucht-lassen
+    outcomes: [hilfe-veranlassen]
+    type: cloze
+    focus: lassen-verwendung
+    instruction: { en: "Fill in the form of lassen and the missing participle.", ru: "Вставьте форму lassen и пропущенное причастие.", uk: "Вставте форму lassen і пропущений дієприкметник.", de: "Ergänze die Form von lassen und das fehlende Partizip." }
+    text: "Ich habe mich in der Apotheke {{beraten}} {{lassen}}."
+    translation: { en: "I got advice at the pharmacy.", ru: "Я проконсультировался в аптеке.", uk: "Я проконсультувався в аптеці." }
+    explain: { en: "lassen means having something done by somebody else, and in the perfect it does not become gelassen: the infinitive stands where the participle would, after the other infinitive — beraten lassen. That double infinitive is the shape to recognise, because nothing in the sentence looks like a past tense.", ru: "lassen значит «поручить сделать», и в перфекте он не превращается в gelassen: инфинитив стоит там, где было бы причастие, — после другого инфинитива: beraten lassen. Этот двойной инфинитив и надо узнавать, потому что на прошедшее время в предложении ничто не похоже.", uk: "lassen означає «доручити зробити», і в перфекті воно не перетворюється на gelassen: інфінітив стоїть там, де був би дієприкметник, — після іншого інфінітива: beraten lassen. Цей подвійний інфінітив і треба впізнавати, бо на минулий час у реченні ніщо не схоже.", de: "lassen heißt, etwas von jemand anderem machen zu lassen, und im Perfekt wird es nicht zu gelassen: Der Infinitiv steht dort, wo das Partizip stünde, nach dem anderen Infinitiv — beraten lassen. Diesen doppelten Infinitiv gilt es zu erkennen, denn nichts im Satz sieht nach Vergangenheit aus." }
+
+  # --- bildungswege ---
+  - id: bildung-falls
+    outcomes: [betreuung-klaeren]
+    type: cloze
+    focus: falls-wenn
+    instruction: { en: "Fill in falls or wenn.", ru: "Вставьте falls или wenn.", uk: "Вставте falls або wenn.", de: "Ergänze falls oder wenn." }
+    text: "{{Falls}} Ihr Kind einen Platz bekommt, melden wir uns. {{Wenn}} die Schule beginnt, ist es sechs Jahre alt."
+    translation: { en: "If your child gets a place, we will be in touch. When school starts, it will be six years old.", ru: "Если ваш ребёнок получит место, мы свяжемся с вами. Когда начнётся школа, ему будет шесть лет.", uk: "Якщо ваша дитина отримає місце, ми зв'яжемося з вами. Коли почнеться школа, їй буде шість років." }
+    explain: { en: "falls marks a condition that may or may not occur — a place is not certain. wenn in the second half is temporal: school starting is not in doubt, only its date. Both take a Nebensatz and both send the verb to the end, so the choice is about meaning, not about structure.", ru: "falls отмечает условие, которое может и не наступить: место не гарантировано. wenn во второй половине временное: то, что школа начнётся, сомнению не подлежит — под вопросом только дата. Оба открывают придаточное и оба отправляют глагол в конец, так что выбор здесь о смысле, а не о структуре. Русское «если» покрывает и то и другое.", uk: "falls позначає умову, яка може й не настати: місце не гарантоване. wenn у другій половині часове: те, що школа почнеться, сумніву не підлягає — під питанням лише дата. Обидва відкривають підрядне і обидва відправляють дієслово в кінець, тож вибір тут про зміст, а не про структуру. Українське «якщо» покриває і те й інше.", de: "falls markiert eine Bedingung, die eintreten kann oder nicht — ein Platz ist nicht sicher. wenn in der zweiten Hälfte ist temporal: Dass die Schule beginnt, steht außer Frage, nur wann. Beide eröffnen einen Nebensatz und schicken das Verb ans Ende; die Wahl betrifft also die Bedeutung, nicht den Bau." }
+
+  - id: bildung-damit
+    outcomes: [lernziel-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction: { en: "Two people, so watch which connector the purpose needs.", ru: "Действующих лиц двое — следите, какой союз нужен цели.", uk: "Дійових осіб двоє — стежте, який сполучник потрібен меті.", de: "Zwei Personen — achte darauf, welchen Konnektor der Zweck braucht." }
+    prompt_en: "I am registering my son so that he learns German earlier."
+    prompt_ru: "Я записываю сына, чтобы он раньше выучил немецкий."
+    prompt_uk: "Я записую сина, щоб він раніше вивчив німецьку."
+    answer: "Ich melde meinen Sohn an, damit er früher Deutsch lernt."
+    key_tokens: ["damit", "lernt"]
+    explain: { en: "The purpose belongs to somebody else — I register, he learns — and two different subjects require damit with a full clause. um … zu is only available when both halves share one subject, so um früher Deutsch zu lernen would say that I am the one learning. The verb closes the damit-clause like any Nebensatz.", ru: "Цель принадлежит другому: записываю я, а учит он, — и два разных подлежащих требуют damit с полным придаточным. Оборот um … zu возможен только при общем подлежащем, поэтому um früher Deutsch zu lernen сказало бы, что учу я. Глагол закрывает придаточное с damit, как всякое придаточное.", uk: "Мета належить іншому: записую я, а вчить він, — і два різні підмети вимагають damit з повним підрядним. Зворот um … zu можливий лише за спільного підмета, тому um früher Deutsch zu lernen сказало б, що вчу я. Дієслово закриває підрядне з damit, як будь-яке підрядне.", de: "Der Zweck gehört jemand anderem — ich melde an, er lernt — und zwei verschiedene Subjekte verlangen damit mit vollem Nebensatz. um … zu ist nur bei gemeinsamem Subjekt möglich, also würde um früher Deutsch zu lernen sagen, dass ich lerne. Das Verb schließt den damit-Satz wie jeden Nebensatz." }

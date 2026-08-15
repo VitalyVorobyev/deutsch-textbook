@@ -1,0 +1,92 @@
+id: versicherungen-behoerden
+level: B1
+kind: communication
+strand: communication
+group: behoerden-services
+title_de: Versicherungen & Personalien
+title_en: Insurance and personal details
+title_ru: Страхование и личные данные
+title_uk: Страхування та особисті дані
+status: draft
+# Versicherungen and Geschlecht were two of the DTZ themes no topic was about. Both had shipped
+# as flashcards in `verwaltung-behoerden-b1` — Versicherung, Versichertenkarte, Steuer,
+# Geschlecht, Personalien, Personenstand, Herkunft — a deck no topic owned.
+#
+# The candidate that did NOT survive checking is recorded here so the next pass does not
+# re-open it: `geld-vertraege` looked like the natural home for Versicherungen, but its
+# exercise file explicitly excludes insurance ("no Zinsen, no Versicherung") and its deck
+# carries no insurance word. Claiming it there would have manufactured coverage.
+#
+# The two confusions come from `bun scripts/grammar-depth.ts B1 --thin`: `praeposition-genitiv`
+# and `adjektiv-nullartikel`, each sitting in a single practice file. An insurance letter is the
+# genre that needs both — official German runs on genitive prepositions, and a form runs on
+# bare plurals with no article at all.
+tags:
+  - versicherung
+  - behoerde
+  - personalien
+  - formular
+  - antrag
+  - b1
+prerequisites:
+  - geld-vertraege
+  - gesundheit-wohlbefinden
+  - reisen-probleme
+deepens:
+  # Checked against the corpus rather than guessed: `praeposition-genitiv` is drilled by
+  # reisen-probleme and `adjektiv-nullartikel` by gesundheit-wohlbefinden, so those are the two
+  # edges that have a runtime channel. geld-vertraege is the obvious neighbour by subject and
+  # shares no confusion with this topic, so it stays a prerequisite — an edge to it would be
+  # inert, which is the one thing a deepens edge must not be.
+  - reisen-probleme
+  - gesundheit-wohlbefinden
+related: []
+outcomes:
+  - id: personalien-angeben
+    mode: writing
+    domain: public
+    de: Ich kann meine Personalien in ein Formular eintragen.
+    en: I can enter my personal details on a form.
+    ru: Я умею внести свои личные данные в бланк.
+    uk: Я вмію внести свої особисті дані до бланка.
+  - id: versicherung-klaeren
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann klären, ob und wofür ich versichert bin.
+    en: I can find out whether and for what I am insured.
+    ru: Я умею выяснить, застрахован ли я и от чего.
+    uk: Я вмію з'ясувати, чи застрахований я і від чого.
+    claims:
+      - goethe-dtz-handlungen:wissen-nichtwissen
+  - id: frist-nennen
+    mode: spoken-production
+    domain: public
+    de: Ich kann sagen, bis wann und warum etwas eingereicht werden muss.
+    en: I can say by when and why something has to be submitted.
+    ru: Я умею сказать, к какому сроку и почему нужно что-то подать.
+    uk: Я вмію сказати, до якого строку і чому потрібно щось подати.
+    claims:
+      - goethe-dtz-handlungen:zweck-angeben
+  - id: behoerdenbrief-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann einen kurzen Brief von einer Behörde verstehen.
+    en: I can understand a short letter from a public authority.
+    ru: Я понимаю короткое письмо из учреждения.
+    uk: Я розумію короткий лист з установи.
+claims:
+  - goethe-dtz-themen:dienstleistungen-versicherungen
+  - goethe-dtz-themen:person-geschlecht
+elements:
+  article: versicherungen-behoerden.mdx
+  pretest: b1/versicherungen-behoerden-pretest
+  exercises:
+    - b1/versicherungen-behoerden
+    - b1/versicherungen-behoerden-produktion
+  primary_practice: b1/versicherungen-behoerden
+  probes:
+    - b1/probe-versicherungen-behoerden
+  reading:
+    - b1/versicherungen-behoerden
+  vocab:
+    - verwaltung-behoerden-b1

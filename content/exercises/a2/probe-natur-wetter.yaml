@@ -1,0 +1,93 @@
+# Delayed probe family — ONE competence: fill the subject slot German insists on when nothing
+# real can occupy it. Three parallel translate variants, served in authoring order across the
+# 2/7/21 delays: one retention curve over one decision.
+#
+# The three variants sample three corners of that one decision rather than repeating a corner.
+# variant-a is the weather verb in the fronted position, where es sits behind the verb and the
+# source language offers nothing to translate into it. variant-b is sein plus adjective, where
+# the source has no subject at all and the adjective must additionally stay bare. variant-c is
+# the perfect, where es hides between the auxiliary and the participle — the position the
+# reading's last sentence uses and no practice item does.
+#
+# translate rather than cloze or mc: a cloze prints a gap exactly where the missing subject
+# belongs, which answers the only question this competence asks, and an mc would list es beside
+# its rivals. The learner has to notice that something is required before they can supply it.
+#
+# Pinned is es and, where the variant turns on it, the one other form the tag grades. The nouns,
+# the times of day and the lexical verbs are carrier material: a fumbled Nachmittag is not this
+# confusion. Each pinned token occurs exactly once in every accepted rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading by grepping
+# content/, not by re-reading them: Dienstag, Nachmittag, Nacht, Woche and Winter appear in no
+# arming item, so no variant can be answered from the memory of one.
+topic: natur-wetter
+role: probe
+# The clock starts only on items that teach the confusion this family measures — `bun run
+# validate` holds an arming key's focus equal to the family's, so nothing else could be listed
+# even by mistake. All five `es-unpersoenlich` items across both practice files arm it, which is
+# also why the tag was given two files: a probe armed from a single sitting measures one
+# encounter, not retention.
+arming:
+  - a2/natur-wetter::cloze-es-wetterverben
+  - a2/natur-wetter::cloze-es-umgestellt
+  - a2/natur-wetter::uebersetzen-es-regnet
+  - a2/natur-wetter-produktion::uebersetzen-wetterbericht
+  - a2/natur-wetter-produktion::uebersetzen-abkuehlung
+title:
+  en: "Delayed check — the subject that means nothing"
+  ru: "Отложенная проверка — подлежащее, которое ничего не значит"
+  uk: "Відкладена перевірка — підмет, який нічого не означає"
+items:
+  - id: variant-a
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["regnet", "es"]
+    prompt_en: "On Tuesday it rains all afternoon."
+    prompt_ru: "Во вторник дождь идёт весь день."
+    prompt_uk: "У вівторок дощ іде цілий день."
+    answer: "Am Dienstag regnet es den ganzen Nachmittag."
+    accept:
+      - "Es regnet am Dienstag den ganzen Nachmittag."
+    explain:
+      en: "The time phrase is in first place, so the verb takes second and the subject follows it: *Am Dienstag regnet es*. Dropping *es* leaves a verb with nothing to agree with, and ❌ *Am Dienstag regnet* is not a shorter sentence but an incomplete one. Putting the rain in the slot instead — ❌ *Am Dienstag regnet der Regen* — is not German either."
+      ru: "Обстоятельство времени на первом месте, поэтому глагол занимает второе, а подлежащее идёт за ним: *Am Dienstag regnet es*. Если опустить *es*, глаголу не с чем согласовываться, и ❌ *Am Dienstag regnet* — не более короткое предложение, а неполное. Поставить в это место сам дождь — ❌ *Am Dienstag regnet der Regen* — тоже не по-немецки: русское «дождь идёт» имеет настоящее подлежащее, немецкое предложение о дожде не имеет его вовсе."
+      uk: "Обставина часу на першому місці, тому дієслово посідає друге, а підмет іде за ним: *Am Dienstag regnet es*. Якщо опустити *es*, дієслову немає з чим узгоджуватися, і ❌ *Am Dienstag regnet* — не коротше речення, а неповне. Поставити на це місце сам дощ — ❌ *Am Dienstag regnet der Regen* — теж не по-німецьки: українське «дощ іде» має справжній підмет, німецьке речення про дощ не має його зовсім."
+
+  - id: variant-b
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["es", "kalt"]
+    prompt_en: "At night it was very cold."
+    prompt_ru: "Ночью было очень холодно."
+    prompt_uk: "Уночі було дуже холодно."
+    answer: "In der Nacht war es sehr kalt."
+    accept:
+      - "Nachts war es sehr kalt."
+      - "Es war in der Nacht sehr kalt."
+    explain:
+      en: "Two things have to be supplied that the source sentence does not contain. The subject: *war es*, because *sein* needs one exactly as a weather verb does. And the bare adjective: *kalt*, with no ending, because after *sein* an adjective never takes one — ❌ *war es sehr kaltes*. The source has neither a subject nor an adjective ending, so neither can be arrived at by translating; both come from the German rule."
+      ru: "Нужно добавить две вещи, которых в исходной фразе нет. Подлежащее: *war es*, потому что *sein* требует его точно так же, как погодный глагол. И голое прилагательное: *kalt*, без окончания, потому что после *sein* прилагательное его не берёт никогда — ❌ *war es sehr kaltes*. В русской фразе нет ни подлежащего, ни окончания у «холодно», так что ни то ни другое переводом не получить: и то и другое идёт из немецкого правила."
+      uk: "Потрібно додати дві речі, яких у вихідній фразі немає. Підмет: *war es*, бо *sein* потребує його так само, як погодне дієслово. І голий прикметник: *kalt*, без закінчення, бо після *sein* прикметник його не бере ніколи — ❌ *war es sehr kaltes*. В українській фразі немає ні підмета, ні закінчення в «холодно», тож ні того ні іншого перекладом не дістати: і те й інше йде з німецького правила."
+
+  - id: variant-c
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["hat", "geschneit"]
+    instruction:
+      en: "Use the Perfekt."
+      ru: "Используйте Perfekt."
+      uk: "Використайте Perfekt."
+    prompt_en: "Last winter it snowed for a whole week."
+    prompt_ru: "Прошлой зимой снег шёл целую неделю."
+    prompt_uk: "Минулої зими сніг ішов цілий тиждень."
+    answer: "Letzten Winter hat es eine ganze Woche geschneit."
+    accept:
+      - "Es hat letzten Winter eine ganze Woche geschneit."
+      - "Im letzten Winter hat es eine ganze Woche geschneit."
+    explain:
+      en: "The perfect puts the empty subject in its least visible position — between *hat* and the participle at the end, *hat es … geschneit* — and it is still obligatory there. *Schneien* takes *haben*, not *sein*: it reports weather happening rather than anything changing place, so the *sein* rule for movement verbs does not reach it. The time phrase *letzten Winter* stands in the accusative with no preposition, and *im letzten Winter* is the heavier alternative rather than a correction."
+      ru: "Перфект ставит пустое подлежащее в наименее заметную позицию — между *hat* и причастием в конце, *hat es … geschneit*, — и там оно по-прежнему обязательно. *Schneien* берёт *haben*, а не *sein*: он сообщает о погоде, а не о перемещении, поэтому правило *sein* для глаголов движения сюда не дотягивается. Обстоятельство *letzten Winter* стоит в винительном падеже без предлога, а *im letzten Winter* — не исправление, а более тяжёлый вариант."
+      uk: "Перфект ставить порожній підмет у найменш помітну позицію — між *hat* і дієприкметником у кінці, *hat es … geschneit*, — і там воно так само обов'язкове. *Schneien* бере *haben*, а не *sein*: воно повідомляє про погоду, а не про переміщення, тому правило *sein* для дієслів руху сюди не дотягується. Обставина *letzten Winter* стоїть у знахідному відмінку без прийменника, а *im letzten Winter* — не виправлення, а важчий варіант."

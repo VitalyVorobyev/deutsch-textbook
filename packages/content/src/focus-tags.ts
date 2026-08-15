@@ -67,6 +67,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'adjektiv-bestimmt': 'adjektive-deklination',
   'adjektiv-unbestimmt': 'adjektive-deklination',
   'derselbe-identitaet': 'adjektive-deklination',
+  'es-unpersoenlich': 'natur-wetter',
   'imperativ-form': 'stadt-wege',
   'seit-vor-zeit': 'gesundheit-arzttermin',
   'reflexiv-akkusativ': 'gesundheit-arzttermin',

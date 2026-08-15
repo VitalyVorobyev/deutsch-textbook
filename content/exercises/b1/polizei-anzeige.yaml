@@ -1,0 +1,245 @@
+topic: polizei-anzeige
+role: practice
+stage: geruest
+activity: core
+title_de: "Grundübung — melden, was passiert ist"
+title:
+  en: "Practice — reporting what happened"
+  ru: "Практика — сообщить о случившемся"
+  uk: "Практика — повідомити про те, що сталося"
+
+# The topic's primary practice set, so its item list is frozen once this ships.
+#
+# Eleven items over the article's three sections: reported speech (cloze-dass-ob,
+# uebersetzen-dass, table-indirekt, uebersetzen-frage, order-ob), the participle as an adjective
+# (cloze-partizip, uebersetzen-partizip, table-partizip) and the report itself
+# (match-recht, mc-stehlen-einbrechen, cloze-anzeige).
+#
+# Two tags, both recycled and both taken from `bun scripts/grammar-depth.ts B1 --thin`, where
+# each was sitting at three items inside one practice file: `indirekte-rede` and
+# `partizip-adjektiv`. This set is their second file. Konjunktiv I is deliberately absent from
+# every item — the frozen contract makes it a reading skill, and the article says so in its own
+# German rather than only in the explanation halves.
+#
+# Mix over this file: 1 mc of 11 (9%), mc+match+order 3 of 11 (27%), 3 translate, 1 order.
+#
+# Every noun is a headword of `recht-kriminalitaet-b1`, the deck this topic adopts, or of an
+# A1/A2 deck — grepped in content/vocab/ rather than remembered: Dieb, Einbruch, einbrechen,
+# stehlen, Zeuge, Zeugin, Verdacht, Beweis, festnehmen, Täter, Strafe, Anzeige, Fahrrad,
+# Keller, Schlüssel, Nachbarin, Polizei, Hof, Euro.
+items:
+  - id: cloze-dass-ob
+    outcomes: [aussage-wiedergeben]
+    type: cloze
+    focus: indirekte-rede
+    instruction:
+      en: "Fill in dass, ob or the question word."
+      ru: "Вставьте dass, ob или вопросительное слово."
+      uk: "Вставте dass, ob або питальне слово."
+    text: "Der Zeuge sagt, {{dass}} er nichts gesehen hat. Die Polizistin fragt, {{ob}} ich den Schlüssel verloren habe. Sie fragt auch, {{wann}} ich nach Hause gekommen bin."
+    translation:
+      en: "The witness says that he did not see anything. The police officer asks whether I lost the key. She also asks when I came home."
+      ru: "Свидетель говорит, что ничего не видел. Полицейская спрашивает, терял ли я ключ. Она также спрашивает, когда я вернулся домой."
+      uk: "Свідок каже, що нічого не бачив. Поліцейська питає, чи губив я ключ. Вона також питає, коли я повернувся додому."
+    explain:
+      en: "Three reported clauses, three different openings, and the choice is made by what was said, not by the reporting verb. A statement takes *dass*. A yes/no question has no question word to keep, so German supplies *ob*. A question that already has one keeps it — *wann*, and never *wenn*, which means *if*. All three end with the conjugated verb."
+      ru: "Три переданных придаточных, три разных начала, и выбор определяется тем, что было сказано, а не глаголом передачи. Утверждение берёт *dass*. У вопроса «да/нет» сохранять нечего, поэтому немецкий подставляет *ob*. Вопрос, у которого слово уже есть, сохраняет его — *wann*, и никогда *wenn*, которое значит «если». Все три заканчиваются спрягаемым глаголом."
+      uk: "Три передані підрядні, три різні початки, і вибір визначається тим, що було сказано, а не дієсловом передавання. Твердження бере *dass*. У питання «так/ні» зберігати нічого, тому німецька підставляє *ob*. Питання, у якого слово вже є, зберігає його — *wann*, і ніколи *wenn*, яке означає «якщо». Усі три закінчуються відмінюваним дієсловом."
+
+  - id: uebersetzen-dass
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["dass", "hat"]
+    prompt_en: "My neighbour says that she heard a noise."
+    prompt_ru: "Соседка говорит, что слышала шум."
+    prompt_uk: "Сусідка каже, що чула шум."
+    answer: "Meine Nachbarin sagt, dass sie Lärm gehört hat."
+    explain:
+      en: "The auxiliary closes the clause, behind the participle. Note also what does *not* happen: the reporting verb is present, but even with *sagte* the reported tense would stay perfect. German has no backshift, so you never move a tense to match the main clause."
+      ru: "Вспомогательный глагол закрывает придаточное, стоя за причастием. Обратите внимание и на то, чего *не* происходит: глагол передачи здесь в настоящем, но даже при *sagte* время в придаточном осталось бы перфектом. Согласования времён в немецком нет, так что подгонять время под главное предложение не нужно никогда."
+      uk: "Допоміжне дієслово закриває підрядне, стоячи за дієприкметником. Зверніть увагу і на те, чого *не* відбувається: дієслово передавання тут у теперішньому, але навіть за *sagte* час у підрядному лишився б перфектом. Узгодження часів у німецькій немає, тож підганяти час під головне речення не потрібно ніколи."
+
+  - id: table-indirekt
+    outcomes: [aussage-wiedergeben]
+    type: table
+    focus: indirekte-rede
+    title: "Direkt → indirekt"
+    instruction:
+      en: "Rewrite each sentence as reported speech."
+      ru: "Перепишите каждое предложение как косвенную речь."
+      uk: "Перепишіть кожне речення як непряму мову."
+    columns: ["indirekt"]
+    rows:
+      - label: "„Ich habe nichts gesehen.“ — Er sagt, …"
+        cells:
+          - { answer: "dass er nichts gesehen hat", given: true }
+      - label: "„Haben Sie den Täter erkannt?“ — Sie fragt, …"
+        cells:
+          - { answer: "ob ich den Täter erkannt habe" }
+      - label: "„Wo ist Ihr Fahrrad gestanden?“ — Er fragt, …"
+        cells:
+          - { answer: "wo mein Fahrrad gestanden ist" }
+      - label: "„Kommen Sie bitte mit.“ — Sie sagt, …"
+        cells:
+          - { answer: "dass ich mitkommen soll" }
+    explain:
+      en: "The last row is the one that has to be learned as a chunk rather than derived: an imperative cannot survive inside a Nebensatz, so the instruction is carried by *sollen*, which then lands at the end like every other conjugated verb. The third row shows the pronoun shift the other rows also make quietly — *Ihr Fahrrad* becomes *mein Fahrrad*, because the person reporting is now the owner."
+      ru: "Последнюю строку приходится запоминать целиком, а не выводить: императив внутри придаточного не выживает, поэтому указание несёт *sollen*, который затем встаёт в конец, как всякий спрягаемый глагол. Третья строка показывает сдвиг местоимения, который тихо происходит и в остальных: *Ihr Fahrrad* превращается в *mein Fahrrad*, потому что передающий и есть владелец."
+      uk: "Останній рядок доводиться запам'ятовувати цілком, а не виводити: імператив усередині підрядного не виживає, тому вказівку несе *sollen*, який потім стає в кінець, як будь-яке відмінюване дієслово. Третій рядок показує зсув займенника, що тихо відбувається й в інших: *Ihr Fahrrad* перетворюється на *mein Fahrrad*, бо той, хто передає, і є власником."
+
+  - id: uebersetzen-frage
+    outcomes: [aussage-wiedergeben]
+    type: translate
+    focus: indirekte-rede
+    key_tokens: ["ob", "ist"]
+    prompt_en: "The police officer asks whether the door was open."
+    prompt_ru: "Полицейский спрашивает, была ли дверь открыта."
+    prompt_uk: "Поліцейський питає, чи були двері відчинені."
+    answer: "Der Polizist fragt, ob die Tür offen war."
+    accept:
+      - "Der Polizist fragt, ob die Tür offen gewesen ist."
+    explain:
+      en: "A yes/no question becomes *ob*, and behind it the clause has ordinary subject-first order with the verb at the end — no inversion, even though the original was a question. The Russian and Ukrainian mark the same thing with a particle attached to the verb, so there is no word to translate into *ob*; it has to be supplied."
+      ru: "Вопрос «да/нет» превращается в *ob*, и за ним придаточное с обычным порядком «подлежащее первым» и глаголом в конце — никакой инверсии, хотя оригинал был вопросом. Русский отмечает то же самое частицей «ли» при глаголе, так что переводить в *ob* нечего: союз приходится ставить самому."
+      uk: "Питання «так/ні» перетворюється на *ob*, і за ним підрядне зі звичайним порядком «підмет першим» і дієсловом у кінці — жодної інверсії, хоча оригінал був питанням. Українська позначає те саме часткою «чи», яка стоїть на початку, тож відповідність є — але місце в реченні в неї інше."
+
+  - id: order-ob
+    outcomes: [aussage-wiedergeben]
+    type: order
+    focus: indirekte-rede
+    instruction:
+      en: "Build the reported question."
+      ru: "Составьте переданный вопрос."
+      uk: "Складіть передане питання."
+    words: ["Sie", "fragt,", "ob", "ich", "eine", "Anzeige", "schreiben", "will."]
+    translation:
+      en: "She asks whether I want to file a report."
+      ru: "Она спрашивает, хочу ли я подать заявление."
+      uk: "Вона питає, чи хочу я подати заяву."
+    explain:
+      en: "With a modal the clause ends in two verbs, and the order inside that pair is fixed: the infinitive first, the conjugated modal last — *schreiben will*. Putting *will* before *schreiben* is the shape of a main clause and is the commonest way this construction goes wrong."
+      ru: "С модальным глаголом придаточное заканчивается двумя глаголами, и порядок внутри этой пары закреплён: сначала инфинитив, спрягаемый модальный — последним: *schreiben will*. Поставить *will* перед *schreiben* — это форма главного предложения, и именно так эта конструкция чаще всего ломается."
+      uk: "З модальним дієсловом підрядне закінчується двома дієсловами, і порядок усередині цієї пари закріплений: спершу інфінітив, відмінюване модальне — останнім: *schreiben will*. Поставити *will* перед *schreiben* — це форма головного речення, і саме так ця конструкція найчастіше ламається."
+
+  - id: cloze-partizip
+    outcomes: [diebstahl-melden]
+    type: cloze
+    focus: partizip-adjektiv
+    instruction:
+      en: "Fill in the participle with the ending its position requires: stehlen, festnehmen."
+      ru: "Вставьте причастие с окончанием, которого требует позиция: stehlen, festnehmen."
+      uk: "Вставте дієприкметник із закінченням, якого вимагає позиція: stehlen, festnehmen."
+    text: "Das {{gestohlene}} Fahrrad stand im Hof. Der {{festgenommene}} Mann sagt nichts."
+    translation:
+      en: "The stolen bicycle was standing in the yard. The man who was arrested is saying nothing."
+      ru: "Украденный велосипед стоял во дворе. Задержанный мужчина ничего не говорит."
+      uk: "Украдений велосипед стояв у дворі. Затриманий чоловік нічого не каже."
+    explain:
+      en: "Both participles stand in front of a noun after a definite article, so both take the weak ending *-e* in the nominative singular. Note that *festgenommen* keeps its separable prefix and puts the *ge-* in the middle — the participle is one word, and the ending is added to the end of that one word."
+      ru: "Оба причастия стоят перед существительным после определённого артикля, поэтому оба берут слабое окончание *-e* в именительном единственного числа. Обратите внимание: *festgenommen* сохраняет отделяемую приставку и ставит *ge-* в середину — причастие есть одно слово, и окончание добавляется к концу этого одного слова."
+      uk: "Обидва дієприкметники стоять перед іменником після означеного артикля, тому обидва беруть слабке закінчення *-e* в називному однини. Зверніть увагу: *festgenommen* зберігає відокремлюваний префікс і ставить *ge-* всередину — дієприкметник є одним словом, і закінчення додається до кінця цього одного слова."
+
+  - id: uebersetzen-partizip
+    outcomes: [diebstahl-melden]
+    type: translate
+    focus: partizip-adjektiv
+    key_tokens: ["aufgebrochene"]
+    instruction:
+      en: "Use a participle in front of the noun, not a relative clause."
+      ru: "Используйте причастие перед существительным, а не придаточное определительное."
+      uk: "Використайте дієприкметник перед іменником, а не означальне підрядне."
+    prompt_en: "The police photographed the broken-open door."
+    prompt_ru: "Полиция сфотографировала взломанную дверь."
+    prompt_uk: "Поліція сфотографувала зламані двері."
+    answer: "Die Polizei hat die aufgebrochene Tür fotografiert."
+    accept:
+      - "Die Polizei fotografierte die aufgebrochene Tür."
+    explain:
+      en: "*Die Tür* is feminine and stands in the accusative after *fotografieren*, but the accusative feminine looks identical to the nominative after a definite article, so the ending is *-e* either way. The instruction rules out *die Tür, die aufgebrochen wurde* — correct German, and exactly the long form the participle exists to replace."
+      ru: "*Die Tür* женского рода и стоит в аккузативе после *fotografieren*, но аккузатив женского рода после определённого артикля выглядит так же, как номинатив, поэтому окончание в обоих случаях *-e*. Инструкция исключает *die Tür, die aufgebrochen wurde* — правильный немецкий и ровно та длинная форма, ради замены которой причастие и существует."
+      uk: "*Die Tür* жіночого роду і стоїть у знахідному після *fotografieren*, але знахідний жіночого роду після означеного артикля виглядає так само, як називний, тому закінчення в обох випадках *-e*. Інструкція виключає *die Tür, die aufgebrochen wurde* — правильна німецька і рівно та довга форма, заради заміни якої дієприкметник і існує."
+
+  - id: table-partizip
+    outcomes: [diebstahl-melden, polizeimeldung-verstehen]
+    type: table
+    focus: partizip-adjektiv
+    title: "Vom Ereignis zur Beschreibung"
+    instruction:
+      en: "Turn each event into a participle in front of its noun."
+      ru: "Превратите каждое событие в причастие перед существительным."
+      uk: "Перетворіть кожну подію на дієприкметник перед іменником."
+    columns: ["mit Partizip"]
+    rows:
+      - label: "Das Fahrrad wurde gestohlen."
+        cells:
+          - { answer: "das gestohlene Fahrrad", given: true }
+      - label: "Der Täter wurde festgenommen."
+        cells:
+          - { answer: "der festgenommene Täter" }
+      - label: "Die Anzeige wurde geschrieben."
+        cells:
+          - { answer: "die geschriebene Anzeige" }
+      - label: "Der Schlüssel wurde gefunden."
+        cells:
+          - { answer: "der gefundene Schlüssel" }
+    explain:
+      en: "Each row is the same move: take what was done, put it in front of the thing it was done to, and give it an adjective ending. All four are nominative after a definite article, so all four end in *-e* — which is deliberate, so that the transformation itself is what you practise here rather than the declension table. The case endings come back in the next item."
+      ru: "Каждая строка — одно и то же действие: возьмите то, что было сделано, поставьте перед предметом, с которым это сделали, и дайте окончание прилагательного. Все четыре — именительный после определённого артикля, поэтому все четыре кончаются на *-e*. Так задумано: отрабатывается именно преобразование, а не таблица склонения. Падежные окончания вернутся в следующем пункте."
+      uk: "Кожен рядок — та сама дія: візьміть те, що було зроблено, поставте перед предметом, із яким це зробили, і дайте закінчення прикметника. Усі чотири — називний після означеного артикля, тому всі чотири закінчуються на *-e*. Так задумано: відпрацьовується саме перетворення, а не таблиця відмінювання. Відмінкові закінчення повернуться в наступному пункті."
+
+  - id: mc-stehlen-einbrechen
+    outcomes: [diebstahl-melden]
+    type: mc
+    prompt: "In der Nacht war jemand im Keller und hat Werkzeug mitgenommen. Was sagen Sie?"
+    options:
+      - "Man ist in den Keller eingebrochen und hat Werkzeug gestohlen."
+      - "Man hat den Keller gestohlen und ist Werkzeug eingebrochen."
+      - "Man ist den Keller eingebrochen und hat Werkzeug gestohlen."
+    correct: 0
+    explain:
+      en: "*Einbrechen* is about the place and takes a direction — *in den Keller*, accusative — and builds its perfect with *sein*. *Stehlen* is about the thing and takes a direct object with *haben*. The near-miss to watch for is *Man ist den Keller eingebrochen* — right verbs, missing preposition — which is the version that actually happens: without *in*, *einbrechen* looks like an ordinary transitive verb."
+      ru: "*Einbrechen* относится к месту, требует направления — *in den Keller*, аккузатив — и строит перфект с *sein*. *Stehlen* относится к вещи и берёт прямое дополнение с *haben*. Опасная почти-верная форма — *Man ist den Keller eingebrochen*: глаголы правильные, предлог пропущен. Именно так ошибаются на практике: без *in* глагол *einbrechen* выглядит обычным переходным."
+      uk: "*Einbrechen* стосується місця, потребує напрямку — *in den Keller*, знахідний — і будує перфект із *sein*. *Stehlen* стосується речі й бере прямий додаток із *haben*. Небезпечна майже-правильна форма — *Man ist den Keller eingebrochen*: дієслова правильні, прийменник пропущено. Саме так помиляються на практиці: без *in* дієслово *einbrechen* виглядає звичайним перехідним."
+
+  - id: cloze-anzeige
+    outcomes: [anzeige-schreiben]
+    type: cloze
+    instruction:
+      en: "Fill in the missing word: Anzeige, Zeugin, Verdacht, Beweis."
+      ru: "Вставьте пропущенное слово: Anzeige, Zeugin, Verdacht, Beweis."
+      uk: "Вставте пропущене слово: Anzeige, Zeugin, Verdacht, Beweis."
+    text: "Ich habe bei der Polizei eine {{Anzeige}} geschrieben. Eine {{Zeugin}} hat in der Nacht etwas gehört. Ich habe einen {{Verdacht}}, aber keinen {{Beweis}}."
+    translation:
+      en: "I filed a report with the police. A witness heard something during the night. I have a suspicion but no proof."
+      ru: "Я подал заявление в полицию. Свидетельница ночью что-то слышала. У меня есть подозрение, но нет доказательства."
+      uk: "Я подав заяву в поліцію. Свідка вночі щось чула. У мене є підозра, але немає доказу."
+    explain:
+      en: "Two of these are worth keeping apart. A *Verdacht* is what you think and may be stated without naming anyone; a *Beweis* is what would settle it, and the police form asks for both separately. Note also *Zeugin* with the *-in* ending: German marks the feminine on the noun, and a report that names a woman as *Zeuge* reads as careless rather than neutral."
+      ru: "Две из них стоит держать порознь. *Verdacht* — то, что вы думаете, и высказать его можно, никого не называя; *Beweis* — то, что решило бы дело, и полицейский бланк спрашивает о них по отдельности. Обратите внимание и на *Zeugin* с окончанием *-in*: немецкий отмечает женский род на существительном, и заявление, называющее женщину *Zeuge*, читается как небрежное, а не нейтральное."
+      uk: "Дві з них варто тримати нарізно. *Verdacht* — те, що ви думаєте, і висловити його можна, нікого не називаючи; *Beweis* — те, що вирішило б справу, і поліцейський бланк питає про них окремо. Зверніть увагу й на *Zeugin* із закінченням *-in*: німецька позначає жіночий рід на іменнику, і заява, що називає жінку *Zeuge*, читається як недбала, а не нейтральна."
+
+  - id: match-recht
+    outcomes: [polizeimeldung-verstehen]
+    type: match
+    instruction:
+      en: "Match each word with its meaning."
+      ru: "Соотнесите каждое слово с его значением."
+      uk: "Зіставте кожне слово з його значенням."
+    pairs:
+      - left: "der Einbruch"
+        right: { en: "break-in", ru: "взлом, проникновение", uk: "злам, проникнення" }
+      - left: "der Täter"
+        right: { en: "the person who did it", ru: "тот, кто это сделал", uk: "той, хто це зробив" }
+      - left: "der Verdacht"
+        right: { en: "suspicion", ru: "подозрение", uk: "підозра" }
+      - left: "der Beweis"
+        right: { en: "proof, evidence", ru: "доказательство", uk: "доказ" }
+      - left: "festnehmen"
+        right: { en: "to detain, to take into custody", ru: "задержать", uk: "затримати" }
+      - left: "die Strafe"
+        right: { en: "penalty, punishment", ru: "наказание, штраф", uk: "покарання, штраф" }
+    explain:
+      en: "*Täter* names somebody who did it, and that is a stronger claim than it looks: before a court has decided, the word for the same person is *der Verdächtige*. A report should say what you saw, not who you think it was — which is why *Verdacht* and *Beweis* are separate boxes on the form."
+      ru: "*Täter* называет того, кто это сделал, и это утверждение сильнее, чем кажется: пока суд не решил, того же человека называют *der Verdächtige*. Заявление должно говорить о том, что вы видели, а не о том, кто это, по-вашему, был, — потому *Verdacht* и *Beweis* и стоят в бланке отдельными графами."
+      uk: "*Täter* називає того, хто це зробив, і це твердження сильніше, ніж здається: доки суд не вирішив, ту саму людину називають *der Verdächtige*. Заява має говорити про те, що ви бачили, а не про те, хто це, на вашу думку, був, — тому *Verdacht* і *Beweis* і стоять у бланку окремими графами."

@@ -1,0 +1,92 @@
+topic: natur-wetter
+kind: intensive
+title_de: "Vier Tage am See"
+text:
+  - >-
+    Im August waren wir vier Tage am See. Am ersten Tag
+    [[schien die Sonne::the sun shone — a real subject, the one weather sentence
+    without es::солнце светило — настоящее подлежащее, единственная погодная
+    фраза без es::сонце світило — справжній підмет, єдина погодна фраза без
+    es]] von morgens bis abends, und
+    [[es war sehr heiß::it was very hot — the empty es, and the adjective stays
+    bare::было очень жарко — пустое es, и прилагательное остаётся голым::було
+    дуже спекотно — порожнє es, і прикметник лишається голим]]:
+    einunddreißig [[Grad::degrees — after a number it never takes the -e
+    plural::градусов — после числа никогда не берёт множественное на -e::градусів —
+    після числа ніколи не бере множину на -e]].
+  - >-
+    Am zweiten Tag [[wurde es kühler::it got cooler — the same empty es, now
+    with werden::стало прохладнее — то же пустое es, теперь с werden::стало
+    прохолодніше — те саме порожнє es, тепер із werden]]. Der Himmel war
+    [[bewölkt::overcast::облачное::захмарене]], und am Nachmittag
+    [[gab es ein Gewitter::there was a thunderstorm — es gibt has a real object,
+    unlike es regnet::была гроза — у es gibt есть настоящее дополнение, в
+    отличие от es regnet::була гроза — у es gibt є справжній додаток, на відміну
+    від es regnet]]. Danach war die
+    [[Luft::air::воздух::повітря]] kühl und nass, und im Wald roch alles nach
+    Regen.
+  - >-
+    Die letzten zwei Tage waren
+    [[trockener als::drier than — the comparative plus als, because the days
+    differ::суше, чем — сравнительная степень с als, потому что дни
+    разные::сухіші, ніж — вищий ступінь з als, бо дні різні]] die ersten. Wir
+    sind jeden Morgen um den See gegangen. Auf dem Wasser saßen
+    [[Vögel::birds — plural of der Vogel, with an Umlaut::птицы — множественное
+    от der Vogel, с умлаутом::птахи — множина від der Vogel, з умлаутом]], und
+    am Wasser standen alte Bäume. Auf einem Weg im Wald haben wir ein
+    [[Pferd::horse::лошадь::кінь]] gesehen. Zu Hause in Hamburg hat es die
+    ganze Woche geregnet.
+questions:
+  - id: frage-erster-tag
+    outcomes: [wetterbericht-verstehen]
+    type: mc
+    prompt: "Wie war das Wetter am ersten Tag?"
+    options:
+      - "Sonnig und sehr heiß."
+      - "Bewölkt und kühl."
+      - "Nass, mit einem Gewitter."
+    correct: 0
+    translation:
+      en: What was the weather like on the first day?
+      ru: Какой была погода в первый день?
+      uk: Якою була погода першого дня?
+    explain:
+      en: "„Am ersten Tag schien die Sonne von morgens bis abends, und es war sehr heiß“ — thirty-one degrees. The clouds and the thunderstorm belong to the second day, and the rain in the last line is what was happening at home in Hamburg, not at the lake."
+      ru: "«Am ersten Tag schien die Sonne von morgens bis abends, und es war sehr heiß» — тридцать один градус. Облака и гроза относятся ко второму дню, а дождь в последней строке шёл дома в Гамбурге, а не на озере."
+      uk: "«Am ersten Tag schien die Sonne von morgens bis abends, und es war sehr heiß» — тридцять один градус. Хмари і гроза стосуються другого дня, а дощ в останньому рядку йшов удома в Гамбурзі, а не на озері."
+
+  - id: frage-vergleich
+    outcomes: [wetterbericht-verstehen, wetter-vergleichen]
+    type: mc
+    prompt: "Wie waren die letzten zwei Tage?"
+    options:
+      - "Trockener."
+      - "Nasser."
+      - "Genauso nass."
+    correct: 0
+    translation:
+      en: What were the last two days like compared with the first ones?
+      ru: Какими были последние два дня по сравнению с первыми?
+      uk: Якими були останні два дні порівняно з першими?
+    explain:
+      en: "„Die letzten zwei Tage waren trockener als die ersten“ — *als* marks a difference, so the two halves cannot be equal. Had they been, the text would have needed *so nass wie die ersten*, which is the pairing *wie* belongs to."
+      ru: "«Die letzten zwei Tage waren trockener als die ersten» — *als* отмечает различие, значит равными половины быть не могут. Будь они равны, потребовалось бы *so nass wie die ersten* — именно с этой связкой работает *wie*."
+      uk: "«Die letzten zwei Tage waren trockener als die ersten» — *als* позначає відмінність, отже рівними половини бути не можуть. Якби вони були рівні, знадобилося б *so nass wie die ersten* — саме з цією сполукою працює *wie*."
+
+  - id: frage-hamburg
+    outcomes: [wetterbericht-verstehen]
+    type: mc
+    prompt: "Was für Wetter war in der gleichen Woche in Hamburg?"
+    options:
+      - "Es hat die ganze Woche geregnet."
+      - "Es war heiß und trocken."
+      - "Der Text sagt nichts über Hamburg."
+    correct: 0
+    translation:
+      en: What was the weather in Hamburg in the same week?
+      ru: Какая погода была в Гамбурге на той же неделе?
+      uk: Яка погода була в Гамбурзі того самого тижня?
+    explain:
+      en: "The last sentence, and it is the only one about home: „Zu Hause in Hamburg hat es die ganze Woche geregnet.“ Note the empty *es* surviving into the perfect — *hat es … geregnet* — where it sits between the auxiliary and the participle and is easy to read past."
+      ru: "Последнее предложение, и оно единственное про дом: «Zu Hause in Hamburg hat es die ganze Woche geregnet». Обратите внимание, что пустое *es* сохраняется и в перфекте — *hat es … geregnet*, — где стоит между вспомогательным глаголом и причастием, и его легко пропустить при чтении."
+      uk: "Останнє речення, і воно єдине про дім: «Zu Hause in Hamburg hat es die ganze Woche geregnet». Зверніть увагу, що порожнє *es* зберігається і в перфекті — *hat es … geregnet*, — де стоїть між допоміжним дієсловом і дієприкметником, і його легко пропустити під час читання."

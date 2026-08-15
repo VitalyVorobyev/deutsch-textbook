@@ -1,0 +1,56 @@
+topic: natur-wetter
+role: pretest
+title:
+  en: "Before you read — what does German do with the weather?"
+  ru: "Перед чтением — что немецкий делает с погодой?"
+  uk: "Перед читанням — що німецька робить із погодою?"
+
+# Diagnostic generation, not practice: three guesses that frame what the article has to answer.
+# One per section that carries a decision — the empty subject, the bare predicate adjective, and
+# als vs wie — and deliberately none on the landscape vocabulary, which is a list to meet rather
+# than a rule to guess at.
+#
+# Every item is answerable wrongly in a way that is interesting: es-satz invites the Russian
+# "Дождь идёт" subject, praedikativ invites the ending Russian puts in both positions, and
+# vergleich invites wie, which is the one Russian «как»/«чем» does not disambiguate.
+items:
+  - id: es-satz
+    outcomes: [wetter-beschreiben]
+    type: translate
+    key_tokens: ["Es", "regnet"]
+    prompt_en: "It is raining."
+    prompt_ru: "Идёт дождь."
+    prompt_uk: "Іде дощ."
+    answer: "Es regnet."
+    explain:
+      en: "German has no acting rain. The weather verb *regnen* carries the whole fact and takes the placeholder *es* as its subject: *Es regnet.* Neither of the other two exists — *gehen* is not a weather verb, and *der Regen* cannot be the subject of *regnen*."
+      ru: "В немецком дождь не действует. Погодный глагол *regnen* несёт весь смысл и берёт в подлежащие пустое *es*: *Es regnet.* Двух других вариантов просто нет: *gehen* — не погодный глагол, а *der Regen* не может быть подлежащим при *regnen*. Русское «дождь идёт» — прямой источник обеих ошибок."
+      uk: "У німецькій дощ не діє. Погодне дієслово *regnen* несе весь зміст і бере в підмети порожнє *es*: *Es regnet.* Двох інших варіантів просто немає: *gehen* — не погодне дієслово, а *der Regen* не може бути підметом при *regnen*. Українське «дощ іде» — пряме джерело обох помилок."
+
+  - id: praedikativ
+    outcomes: [wetter-beschreiben]
+    type: mc
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Heute ist es kalt."
+      - "Heute ist es kaltes."
+      - "Heute ist es kalte."
+    correct: 0
+    explain:
+      en: "After *sein* the adjective takes no ending at all. Endings belong in front of a noun — *das kalte Wetter*, *ein kalter Tag* — and nowhere else. The test is quick: if *ist* or *wird* stands in front of the adjective, leave it bare."
+      ru: "После *sein* прилагательное вообще не берёт окончания. Окончания живут перед существительным — *das kalte Wetter*, *ein kalter Tag* — и больше нигде. Проверка быстрая: если перед прилагательным стоит *ist* или *wird*, оставьте его голым. По-русски окончание есть и в «холодная погода», и в «погода холодная», поэтому рука дописывает его и здесь."
+      uk: "Після *sein* прикметник узагалі не бере закінчення. Закінчення живуть перед іменником — *das kalte Wetter*, *ein kalter Tag* — і більше ніде. Перевірка швидка: якщо перед прикметником стоїть *ist* або *wird*, лишіть його голим. Українською закінчення є і в «холодна погода», і в «погода холодна», тому рука дописує його й тут."
+
+  - id: vergleich
+    outcomes: [wetter-vergleichen]
+    type: mc
+    prompt: "Heute sind es 20 Grad, gestern waren es 15 Grad. Wie sagt man das?"
+    options:
+      - "Heute ist es wärmer als gestern."
+      - "Heute ist es wärmer wie gestern."
+      - "Heute ist es so wärmer wie gestern."
+    correct: 0
+    explain:
+      en: "A comparative is followed by *als*. *Wie* says two things are the same and needs *so* in front of the adjective: *heute ist es so warm wie gestern* would mean the temperature did not move. Twenty against fifteen is a difference, so *als* is the only option."
+      ru: "После сравнительной степени стоит *als*. *Wie* говорит о равенстве и требует *so* перед прилагательным: *heute ist es so warm wie gestern* значило бы, что температура не изменилась. Двадцать против пятнадцати — это разница, поэтому только *als*."
+      uk: "Після вищого ступеня стоїть *als*. *Wie* каже про рівність і потребує *so* перед прикметником: *heute ist es so warm wie gestern* означало б, що температура не змінилася. Двадцять проти п'ятнадцяти — це різниця, тому лише *als*."

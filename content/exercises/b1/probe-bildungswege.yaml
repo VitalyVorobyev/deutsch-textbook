@@ -1,0 +1,78 @@
+# Delayed probe family — ONE competence: building a purpose clause when the doer changes, which
+# is the only direction of `damit-um-zu` that is genuinely forced. Three parallel translate
+# variants, served in authoring order across the 2/7/21 delays: one retention curve over one
+# decision.
+#
+# The three variants sample three corners of that decision rather than repeating a corner.
+# variant-a puts a full noun subject in the second slot and a plain present-tense verb at the wall.
+# variant-b negates that verb, so nicht has to land in front of it rather than at the end of the
+# clause. variant-c closes the clause with a modal, where two verbs stack and the conjugated one
+# goes last.
+#
+# translate rather than cloze: a cloze prints the connector's slot and thereby answers the first
+# question this competence asks, which is whether the compact frame is available at all.
+#
+# Pinned is the connector and the verb that has to reach the end. The nouns are carrier material:
+# a fumbled Bus is not this confusion. Each pinned token occurs exactly once in every accepted
+# rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading by parsing them,
+# not by re-reading them: Bus, Papiere, aufstehen and verstehen appear in no arming item, so no
+# variant can be answered from the memory of one.
+topic: bildungswege
+role: probe
+arming:
+  - b1/bildungswege::cloze-damit-um-zu
+  - b1/bildungswege::table-zweck
+  - b1/bildungswege::uebersetzen-damit-zeugnis
+  - b1/bildungswege::mc-damit-subjekt
+  - b1/bildungswege-produktion::uebersetzen-damit-studium
+title:
+  en: "Delayed check — a purpose with a second doer"
+  ru: "Отложенная проверка — цель со вторым деятелем"
+  uk: "Відкладена перевірка — мета з другим діячем"
+items:
+  - id: variant-a
+    outcomes: [lernziel-begruenden]
+    type: translate
+    focus: damit-um-zu
+    key_tokens: ["damit", "verstehen"]
+    prompt_en: "I am explaining everything once more so that the children understand it."
+    prompt_ru: "Я объясняю всё ещё раз, чтобы дети это поняли."
+    prompt_uk: "Я пояснюю все ще раз, щоб діти це зрозуміли."
+    answer: "Ich erkläre alles noch einmal, damit die Kinder es verstehen."
+    accept:
+      # Pronoun before or after the subject in the Mittelfeld — both neutral German.
+      - "Ich erkläre alles noch einmal, damit es die Kinder verstehen."
+    explain:
+      en: "I explain, the children understand — two different doers, and the compact *um … zu* frame owns no subject slot at all, so it could never hold the second one. *Damit* is the only form available, and as a subordinating conjunction it sends *verstehen* to the very end, behind the object *es*."
+      ru: "Объясняю я, понимают дети — два разных деятеля, а у компактной рамки *um … zu* места для подлежащего нет вовсе, так что второго она вместить не может. Остаётся только *damit*, и как подчинительный союз он отправляет *verstehen* в самый конец, за дополнение *es*."
+      uk: "Пояснюю я, розуміють діти — два різні діячі, а в компактної рамки *um … zu* місця для підмета немає взагалі, тож другого вона вмістити не може. Лишається тільки *damit*, і як підрядний сполучник він відправляє *verstehen* у самий кінець, за додаток *es*."
+
+  - id: variant-b
+    outcomes: [lernziel-begruenden]
+    type: translate
+    focus: damit-um-zu
+    key_tokens: ["damit", "verpasst"]
+    prompt_en: "I get up earlier so that my son does not miss the bus."
+    prompt_ru: "Я встаю раньше, чтобы сын не опоздал на автобус."
+    prompt_uk: "Я встаю раніше, щоб син не спізнився на автобус."
+    answer: "Ich stehe früher auf, damit mein Sohn den Bus nicht verpasst."
+    explain:
+      en: "I get up, he misses — again two doers, so *damit* is obligatory. Watch the negation as well: *nicht* stands in front of the verb it negates, and the verb is still the last word of the clause, so the order is *nicht verpasst*. The main clause is untouched by all of this and keeps its own separable prefix at its own end: *stehe … auf*."
+      ru: "Встаю я, опаздывает он — снова два деятеля, поэтому *damit* обязателен. Проследите и за отрицанием: *nicht* стоит перед глаголом, который отрицает, а глагол по-прежнему последнее слово придаточного, поэтому порядок *nicht verpasst*. Главного предложения всё это не касается: оно держит свою отделяемую приставку в своём конце: *stehe … auf*."
+      uk: "Встаю я, спізнюється він — знову два діячі, тому *damit* обов'язковий. Простежте і за запереченням: *nicht* стоїть перед дієсловом, яке заперечує, а дієслово й далі останнє слово підрядного, тому порядок *nicht verpasst*. Головного речення все це не стосується: воно тримає свій відокремлюваний префікс у своєму кінці: *stehe … auf*."
+
+  - id: variant-c
+    outcomes: [lernziel-begruenden]
+    type: translate
+    focus: damit-um-zu
+    key_tokens: ["damit", "muss"]
+    prompt_en: "I am picking up the papers so that my wife does not have to wait."
+    prompt_ru: "Я забираю документы, чтобы жене не пришлось ждать."
+    prompt_uk: "Я забираю документи, щоб дружині не довелося чекати."
+    answer: "Ich hole die Papiere ab, damit meine Frau nicht warten muss."
+    explain:
+      en: "Two doers again, so *damit* — and this time the clause ends in two verbs. Inside that pair the order is fixed: the infinitive first, the conjugated modal last, *warten muss*. Putting *muss warten* there is the shape of a main clause and is the commonest way this construction collapses. Note also that the negated obligation is *nicht warten muss*: what is denied is the waiting, not the ability to wait."
+      ru: "Снова два деятеля, значит *damit*, — и на этот раз придаточное заканчивается двумя глаголами. Порядок внутри пары закреплён: сначала инфинитив, спрягаемый модальный — последним: *warten muss*. Поставить там *muss warten* — это форма главного предложения, и именно так конструкция чаще всего ломается. Обратите внимание и на форму отрицания: *nicht warten muss* отрицает само ожидание, а не возможность его вынести."
+      uk: "Знову два діячі, отже *damit*, — і цього разу підрядне закінчується двома дієсловами. Порядок усередині пари закріплений: спершу інфінітив, відмінюване модальне — останнім: *warten muss*. Поставити там *muss warten* — це форма головного речення, і саме так конструкція найчастіше ламається. Зверніть увагу й на форму заперечення: *nicht warten muss* заперечує саме чекання, а не змогу його витримати."

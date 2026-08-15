@@ -1,0 +1,181 @@
+topic: unfall-notruf
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — anrufen und berichten"
+title:
+  en: "Apply — make the call and write the report"
+  ru: "Применение — позвонить и составить отчёт"
+  uk: "Застосування — зателефонувати і скласти звіт"
+
+# Independent transfer: three fresh contexts (a workplace fall, a cycling collision, a written
+# report to an insurer) and no scaffolding. Nothing here re-skins a Grundübung item.
+#
+# Both thin tags get a second production context here, which is what lifts them off the
+# single-file tail: `plusquamperfekt-nachdem` in uebersetzen-reihenfolge and
+# `angaben-reihenfolge` in uebersetzen-hergang.
+#
+# The speak and write tasks are minimal-ceremony by contract: attempt, then the model. Their
+# `checklist`/`requirements` render as guidance and gate nothing — the app cannot verify free
+# production, so the teaching has to live in the model and in what the guidance tells you to
+# check, not in a form that refuses to advance.
+items:
+  - id: uebersetzen-reihenfolge
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: plusquamperfekt-nachdem
+    key_tokens: ["Nachdem", "war"]
+    prompt_en: "After the ambulance had left, I called my wife."
+    prompt_ru: "После того как скорая уехала, я позвонил жене."
+    prompt_uk: "Після того як швидка поїхала, я зателефонував дружині."
+    answer: "Nachdem der Krankenwagen weggefahren war, habe ich meine Frau angerufen."
+    accept:
+      - "Nachdem der Krankenwagen weggefahren war, rief ich meine Frau an."
+    explain:
+      en: "*Wegfahren* is a change of place, so its Plusquamperfekt is built with *war* — and the separable prefix stays attached in the participle, *weggefahren*, because a participle is one word. The main clause may then be Perfekt or Präteritum; both are accepted."
+      ru: "*Wegfahren* — перемена места, поэтому Plusquamperfekt строится с *war*, а отделяемая приставка в причастии остаётся приклеенной: *weggefahren*, потому что причастие — одно слово. Главное предложение может стоять в Perfekt или Präteritum; принимаются оба."
+      uk: "*Wegfahren* — зміна місця, тому Plusquamperfekt будується з *war*, а відокремлюваний префікс у дієприкметнику лишається приклеєним: *weggefahren*, бо дієприкметник — одне слово. Головне речення може стояти в Perfekt або Präteritum; приймаються обидва."
+
+  - id: uebersetzen-hergang
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    focus: angaben-reihenfolge
+    key_tokens: ["heute", "wegen"]
+    instruction:
+      en: "Four details, all behind the verb."
+      ru: "Четыре обстоятельства, все после глагола."
+      uk: "Чотири обставини, усі після дієслова."
+    prompt_en: "The cyclist fell at the crossroads this morning because of the rain."
+    prompt_ru: "Сегодня утром из-за дождя велосипедист упал на перекрёстке."
+    prompt_uk: "Сьогодні вранці через дощ велосипедист упав на перехресті."
+    answer: "Der Radfahrer ist heute Morgen wegen des Regens an der Kreuzung gestürzt."
+    accept:
+      - "Heute Morgen ist der Radfahrer wegen des Regens an der Kreuzung gestürzt."
+    explain:
+      en: "Time, cause, place — and the place comes last even though it is where the reader's attention goes. *Wegen* governs the genitive here, *des Regens*, which is the register a written report expects. Note that the English and the Russian both put the cause and the time wherever the speaker likes; German does not, and that freedom is the error this item is looking for."
+      ru: "Время, причина, место — и место идёт последним, хотя именно туда направлено внимание читателя. *Wegen* управляет здесь генитивом, *des Regens*: это регистр, которого ждёт письменный отчёт. Заметьте, что и по-русски, и по-английски причину и время можно поставить где угодно; по-немецки — нельзя, и именно эту вольность пункт и ищет."
+      uk: "Час, причина, місце — і місце йде останнім, хоча саме туди спрямована увага читача. *Wegen* керує тут родовим, *des Regens*: це регістр, якого чекає письмовий звіт. Зауважте, що й українською причину і час можна поставити будь-де; німецькою — ні, і саме цю вольність пункт і шукає."
+
+  - id: diktat-notruf
+    outcomes: [notruf-absetzen]
+    type: listen
+    text: "Eine Person ist verletzt und blutet am Kopf."
+    translation:
+      en: "One person is injured and is bleeding from the head."
+      ru: "Пострадал один человек, у него кровь из головы."
+      uk: "Постраждала одна людина, у неї кров із голови."
+    explain:
+      en: "The sentence a dispatcher needs, and the two parts that carry the information are the ones that are hardest to hear: *verletzt* ends in an unstressed cluster, and *am Kopf* runs *an* and *dem* into one syllable. Writing it down once is the cheapest way to find out whether you would have produced it under pressure."
+      ru: "Фраза, которая нужна диспетчеру, и две несущие информацию части — самые трудные на слух: *verletzt* заканчивается безударным стечением согласных, а *am Kopf* сливает *an* и *dem* в один слог. Записать её один раз — самый дешёвый способ выяснить, произнесли бы вы её под давлением."
+      uk: "Фраза, потрібна диспетчерові, і дві частини, що несуть інформацію, — найважчі на слух: *verletzt* закінчується ненаголошеним збігом приголосних, а *am Kopf* зливає *an* і *dem* в один склад. Записати її один раз — найдешевший спосіб з'ясувати, чи вимовили б ви її під тиском."
+
+  - id: sprechen-notruf
+    outcomes: [notruf-absetzen, verletzung-benennen]
+    type: speak
+    mode: spoken-interaction
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "A colleague has fallen from a ladder at work, at Hauptstraße 14 in Bremen. She is conscious, her leg hurts and she cannot stand up. Make the emergency call aloud."
+      ru: "Коллега упала с лестницы на работе, по адресу Hauptstraße 14 в Бремене. Она в сознании, у неё болит нога и она не может встать. Произнесите вслух экстренный вызов."
+      uk: "Колега впала з драбини на роботі, за адресою Hauptstraße 14 у Бремені. Вона притомна, у неї болить нога і вона не може встати. Промовте вголос екстрений виклик."
+    goal:
+      en: "Get the ambulance moving in your first two sentences, then answer what you are asked."
+      ru: "Заставить скорую тронуться первыми двумя фразами, а дальше отвечать на вопросы."
+      uk: "Змусити швидку рушити першими двома фразами, а далі відповідати на питання."
+    checklist:
+      - en: "I gave the address before anything else — street, number, town."
+        ru: "Я назвал(а) адрес раньше всего остального — улицу, номер, город."
+        uk: "Я назвав(ла) адресу раніше за все інше — вулицю, номер, місто."
+      - en: "I said what happened in one sentence, with passieren taking sein (Ein Unfall ist passiert)."
+        ru: "Я сказал(а) в одной фразе, что случилось, употребив passieren с sein (Ein Unfall ist passiert)."
+        uk: "Я сказав(ла) в одній фразі, що сталося, вживши passieren з sein (Ein Unfall ist passiert)."
+      - en: "I named the injury with a body part: Ihr tut das Bein weh / Sie hat sich das Bein verletzt."
+        ru: "Я назвал(а) травму через часть тела: Ihr tut das Bein weh / Sie hat sich das Bein verletzt."
+        uk: "Я назвав(ла) травму через частину тіла: Ihr tut das Bein weh / Sie hat sich das Bein verletzt."
+      - en: "I did not hang up — I said I am staying on the line."
+        ru: "Я не положил(а) трубку — я сказал(а), что остаюсь на линии."
+        uk: "Я не поклав(ла) слухавку — я сказав(ла), що лишаюся на лінії."
+    model_answer: "Hauptstraße 14 in Bremen, in einer Werkstatt. Ein Unfall ist passiert: Meine Kollegin ist von einer Leiter gefallen. Eine Person ist verletzt. Sie ist wach, aber ihr tut das Bein weh und sie kann nicht aufstehen. Mein Name ist Petrova. Ich bleibe am Telefon."
+    model_translation:
+      en: "Hauptstraße 14 in Bremen, in a workshop. There has been an accident: my colleague has fallen off a ladder. One person is injured. She is awake, but her leg hurts and she cannot stand up. My name is Petrova. I am staying on the line."
+      ru: "Hauptstraße 14 в Бремене, в мастерской. Произошёл несчастный случай: моя коллега упала с лестницы. Пострадал один человек. Она в сознании, но у неё болит нога и она не может встать. Меня зовут Петрова. Я остаюсь на линии."
+      uk: "Hauptstraße 14 у Бремені, у майстерні. Стався нещасний випадок: моя колега впала з драбини. Постраждала одна людина. Вона притомна, але в неї болить нога і вона не може встати. Мене звати Петрова. Я лишаюся на лінії."
+    explain:
+      en: "Play yourself back and check the first six words. If they are not the address, the model is doing something yours is not: it spends its opening on the one piece of information that makes a vehicle move. Then check *ist passiert* — with *sein*, because nobody did it — and the injury sentence, where *ihr* is dative and *das Bein* is the subject. The last line matters more than it looks: the caller does not decide when the call ends."
+      ru: "Прослушайте запись и проверьте первые шесть слов. Если это не адрес, значит образец делает то, чего не делает ваш вариант: он тратит начало на единственную информацию, которая приводит машину в движение. Дальше проверьте *ist passiert* — с *sein*, потому что никто этого не делал, — и фразу о травме, где *ihr* стоит в дативе, а подлежащее — *das Bein*. Последняя строка важнее, чем кажется: не звонящий решает, когда разговор окончен."
+      uk: "Прослухайте запис і перевірте перші шість слів. Якщо це не адреса, значить зразок робить те, чого не робить ваш варіант: він витрачає початок на єдину інформацію, яка приводить машину в рух. Далі перевірте *ist passiert* — із *sein*, бо ніхто цього не робив, — і фразу про травму, де *ihr* стоїть у давальному, а підмет — *das Bein*. Останній рядок важливіший, ніж здається: не той, хто телефонує, вирішує, коли розмова скінчена."
+
+  - id: schreiben-unfallbericht
+    outcomes: [unfallhergang-schildern, unfallbericht-verstehen]
+    type: write
+    prompt:
+      en: "Your insurer asks for a short written account of a cycling accident: you were riding to work, it was raining, a car turned in front of you at the crossroads, and you fell and hurt your shoulder. Write five or six sentences."
+      ru: "Страховая просит короткое письменное изложение велосипедной аварии: вы ехали на работу, шёл дождь, на перекрёстке перед вами повернула машина, вы упали и повредили плечо. Напишите пять-шесть предложений."
+      uk: "Страхова просить короткий письмовий виклад велосипедної аварії: ви їхали на роботу, ішов дощ, на перехресті перед вами повернула машина, ви впали і пошкодили плече. Напишіть п'ять-шість речень."
+    goal:
+      en: "Make the sequence and the cause readable by someone who was not there."
+      ru: "Сделать последовательность и причину понятными тому, кого там не было."
+      uk: "Зробити послідовність і причину зрозумілими тому, кого там не було."
+    requirements:
+      - en: "Use nachdem at least once, with the earlier event in the Plusquamperfekt (Nachdem das Auto abgebogen war, …)."
+        ru: "Используйте nachdem хотя бы раз, поставив более раннее событие в Plusquamperfekt (Nachdem das Auto abgebogen war, …)."
+        uk: "Використайте nachdem хоча б раз, поставивши ранішу подію в Plusquamperfekt (Nachdem das Auto abgebogen war, …)."
+      - en: "Write one sentence with at least three details behind the verb, in the order time – cause – place."
+        ru: "Напишите одно предложение минимум с тремя обстоятельствами после глагола, в порядке время — причина — место."
+        uk: "Напишіть одне речення щонайменше з трьома обставинами після дієслова, у порядку час — причина — місце."
+      - en: "Name the injury with a body part (Ich habe mir die Schulter verletzt)."
+        ru: "Назовите травму через часть тела (Ich habe mir die Schulter verletzt)."
+        uk: "Назвіть травму через частину тіла (Ich habe mir die Schulter verletzt)."
+    min_words: 50
+    model_answer: "Der Unfall ist am Dienstag um acht Uhr passiert. Ich bin an diesem Morgen wegen des Regens langsam zur Arbeit gefahren. An der Kreuzung Hauptstraße ist ein Auto plötzlich nach rechts abgebogen. Nachdem das Auto abgebogen war, konnte ich nicht mehr bremsen und bin gestürzt. Ich habe mir die Schulter verletzt und bin in die Notaufnahme gefahren. Der Arzt hat die Verletzung untersucht und ein Pflaster angelegt."
+    model_translation:
+      en: "The accident happened on Tuesday at eight o'clock. That morning I was cycling to work slowly because of the rain. At the Hauptstraße crossroads a car suddenly turned right. After the car had turned, I could no longer brake and I fell. I injured my shoulder and went to the emergency department. The doctor examined the injury and put on a plaster."
+      ru: "Авария произошла во вторник в восемь часов. В то утро я из-за дождя ехал на работу медленно. На перекрёстке Hauptstraße машина внезапно повернула направо. После того как машина повернула, я уже не смог затормозить и упал. Я повредил плечо и поехал в приёмный покой. Врач осмотрел травму и наложил пластырь."
+      uk: "Аварія сталася у вівторок о восьмій годині. Того ранку я через дощ їхав на роботу повільно. На перехресті Hauptstraße машина раптово повернула праворуч. Після того як машина повернула, я вже не зміг загальмувати і впав. Я пошкодив плече і поїхав до приймального відділення. Лікар оглянув травму і наклав пов'язку."
+    explain:
+      en: "Read your draft against the model on three points. First find your *nachdem* clause and check its last two words: the participle must come before the auxiliary, *abgebogen war*, and the auxiliary must be *war* because *abbiegen* is a change of direction. Second, take your longest sentence and ask each adverbial its question in turn — *wann*, *warum*, *wo* — and see whether the answers come in that order; the model's second sentence is the test case. Third, check the injury: *mir die Schulter*, not *meine Schulter*."
+      ru: "Сверьте черновик с образцом по трём точкам. Сначала найдите своё придаточное с *nachdem* и проверьте два его последних слова: причастие должно стоять перед вспомогательным, *abgebogen war*, и вспомогательным должно быть *war*, потому что *abbiegen* — смена направления. Затем возьмите самое длинное своё предложение и задайте каждому обстоятельству его вопрос по очереди — *wann*, *warum*, *wo* — и посмотрите, идут ли ответы в этом порядке; второе предложение образца и есть контрольный случай. Наконец проверьте травму: *mir die Schulter*, а не *meine Schulter*."
+      uk: "Звірте чернетку зі зразком за трьома точками. Спершу знайдіть своє підрядне з *nachdem* і перевірте два його останні слова: дієприкметник має стояти перед допоміжним, *abgebogen war*, і допоміжним має бути *war*, бо *abbiegen* — зміна напрямку. Потім візьміть найдовше своє речення і поставте кожній обставині її питання по черзі — *wann*, *warum*, *wo* — і подивіться, чи йдуть відповіді в цьому порядку; друге речення зразка і є контрольний випадок. Нарешті перевірте травму: *mir die Schulter*, а не *meine Schulter*."
+
+  - id: sprechen-hergang
+    outcomes: [unfallhergang-schildern]
+    type: speak
+    mode: spoken-production
+    focus: plusquamperfekt-nachdem
+    instruction:
+      en: "Say it aloud in one go — no listener, no questions coming back."
+      ru: "Расскажите вслух одним куском — без собеседника и встречных вопросов."
+      uk: "Розкажіть уголос одним шматком — без співрозмовника і зустрічних питань."
+    prompt:
+      en: "Tell the story of the cycling accident from beginning to end, in four or five sentences: the rain, the car turning, the fall, the ambulance, the hospital. Nobody is going to prompt you."
+      ru: "Расскажите историю велосипедной аварии от начала до конца, в четырёх-пяти предложениях: дождь, поворачивающая машина, падение, скорая, больница. Подсказывать вам никто не будет."
+      uk: "Розкажіть історію велосипедної аварії від початку до кінця, у чотирьох-п'яти реченнях: дощ, машина, що повертає, падіння, швидка, лікарня. Підказувати вам ніхто не буде."
+    goal:
+      en: "Keep the order of events audible without saying zuerst and dann every time."
+      ru: "Сделать порядок событий слышным, не повторяя каждый раз zuerst и dann."
+      uk: "Зробити порядок подій чутним, не повторюючи щоразу zuerst і dann."
+    checklist:
+      - en: "I used nachdem at least once, with the earlier event in the Plusquamperfekt."
+        ru: "Я использовал(а) nachdem хотя бы раз, поставив более раннее событие в Plusquamperfekt."
+        uk: "Я використав(ла) nachdem хоча б раз, поставивши ранішу подію в Plusquamperfekt."
+      - en: "In that clause the auxiliary came last, after the participle — abgebogen war, not war abgebogen."
+        ru: "В этом придаточном вспомогательный глагол шёл последним, после причастия: abgebogen war, а не war abgebogen."
+        uk: "У цьому підрядному допоміжне дієслово йшло останнім, після дієприкметника: abgebogen war, а не war abgebogen."
+      - en: "One sentence carried three details behind the verb in the order time – cause – place."
+        ru: "В одном предложении за глаголом стояли три обстоятельства в порядке время — причина — место."
+        uk: "В одному реченні за дієсловом стояли три обставини в порядку час — причина — місце."
+      - en: "I said passieren with sein, not with haben."
+        ru: "Я употребил(а) passieren с sein, а не с haben."
+        uk: "Я вжив(ла) passieren з sein, а не з haben."
+    model_answer: "Der Unfall ist am Dienstag um acht Uhr passiert. Ich bin an diesem Morgen wegen des Regens langsam zur Arbeit gefahren. An der Kreuzung ist plötzlich ein Auto nach rechts abgebogen. Nachdem das Auto abgebogen war, konnte ich nicht mehr bremsen und bin gestürzt. Ich habe mir die Schulter verletzt, und der Krankenwagen ist nach acht Minuten gekommen."
+    model_translation:
+      en: "The accident happened on Tuesday at eight. That morning I was cycling to work slowly because of the rain. At the crossroads a car suddenly turned right. After the car had turned, I could no longer brake and I fell. I injured my shoulder, and the ambulance came after eight minutes."
+      ru: "Авария произошла во вторник в восемь. В то утро я из-за дождя ехал на работу медленно. На перекрёстке машина внезапно повернула направо. После того как машина повернула, я уже не смог затормозить и упал. Я повредил плечо, и через восемь минут приехала скорая."
+      uk: "Аварія сталася у вівторок о восьмій. Того ранку я через дощ їхав на роботу повільно. На перехресті машина раптово повернула праворуч. Після того як машина повернула, я вже не зміг загальмувати і впав. Я пошкодив плече, і за вісім хвилин приїхала швидка."
+    explain:
+      en: "Speaking this is harder than writing it, because the *nachdem* clause has to be planned before you start it: you commit to the conjunction and only then discover you need a Plusquamperfekt and an auxiliary at the end. Play yourself back and listen for the last two words of that clause. Then count your adverbials in the second sentence — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — and check they came out in that order rather than in the order they occurred to you."
+      ru: "Произнести это труднее, чем написать: придаточное с *nachdem* приходится спланировать заранее — вы уже сказали союз и только потом обнаруживаете, что нужны Plusquamperfekt и вспомогательный в конце. Прослушайте запись и вслушайтесь в два последних слова этого придаточного. Потом сосчитайте обстоятельства во втором предложении — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — и проверьте, вышли ли они в этом порядке, а не в том, в каком пришли вам в голову."
+      uk: "Вимовити це важче, ніж написати: підрядне з *nachdem* доводиться спланувати заздалегідь — ви вже сказали сполучник і лише потім виявляєте, що потрібні Plusquamperfekt і допоміжне в кінці. Прослухайте запис і вслухайтеся у два останні слова цього підрядного. Потім порахуйте обставини в другому реченні — *an diesem Morgen*, *wegen des Regens*, *zur Arbeit* — і перевірте, чи вийшли вони в цьому порядку, а не в тому, у якому спали вам на думку."

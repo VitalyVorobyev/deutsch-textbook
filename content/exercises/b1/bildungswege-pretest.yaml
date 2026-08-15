@@ -1,0 +1,55 @@
+topic: bildungswege
+role: pretest
+title:
+  en: "Before you read — conditions, purposes and the German school ladder"
+  ru: "Перед чтением — условия, цели и немецкая школьная лестница"
+  uk: "Перед читанням — умови, цілі та німецька шкільна драбина"
+
+# Three guesses, one per decision the article answers: which of the two condition words a
+# certain event allows, which purpose form two different subjects force, and where a
+# Hochschule actually sits in the chain. Two are non-mc — a pretest is generation, not
+# recognition.
+items:
+  - id: wenn-oder-falls
+    outcomes: [betreuung-klaeren]
+    type: cloze
+    instruction:
+      en: "Fill in wenn or falls. The first event is on the calendar; the second is a case nobody is counting on."
+      ru: "Вставьте wenn или falls. Первое событие стоит в календаре; второе — случай, на который никто не рассчитывает."
+      uk: "Вставте wenn або falls. Перша подія стоїть у календарі; друга — випадок, на який ніхто не розраховує."
+    text: "{{Wenn}} mein Sohn zehn wird, wechselt er die Schule. {{Falls|Wenn}} in der Kita kein Platz frei ist, warten wir bis zum Herbst."
+    translation:
+      en: "When my son turns ten, he will change school. In case there is no place free at the day-care centre, we will wait until the autumn."
+      ru: "Когда сыну исполнится десять, он сменит школу. Если в саду не окажется свободного места, мы подождём до осени."
+      uk: "Коли синові виповниться десять, він змінить школу. Якщо в садку не виявиться вільного місця, ми зачекаємо до осені."
+    explain:
+      en: "The birthday will arrive, so the first clause is about time, and *falls* has no temporal reading at all — only *wenn* fits. The second gap covers a case nobody expects: *falls* is the precise signal, but *wenn* stays grammatical there, because *wenn* can always stand in for *falls* and never the other way round."
+      ru: "День рождения наступит, поэтому первое придаточное — о времени, а у *falls* временно́го прочтения нет вовсе: подходит только *wenn*. Второй пропуск страхует случай, которого никто не ждёт: *falls* — точный сигнал, но *wenn* там остаётся грамматичным, потому что *wenn* всегда может заменить *falls* — и никогда наоборот."
+      uk: "День народження настане, тому перше підрядне — про час, а в *falls* часового прочитання немає взагалі: пасує лише *wenn*. Другий пропуск страхує випадок, якого ніхто не чекає: *falls* — точний сигнал, але *wenn* там лишається граматичним, бо *wenn* завжди може замінити *falls* — і ніколи навпаки."
+
+  - id: zweck-mit-zwei-subjekten
+    outcomes: [lernziel-begruenden]
+    type: translate
+    key_tokens: ["damit", "lernt"]
+    prompt_en: "I am registering my daughter so that she learns German sooner."
+    prompt_ru: "Я записываю дочь, чтобы она раньше выучила немецкий."
+    prompt_uk: "Я записую доньку, щоб вона раніше вивчила німецьку."
+    answer: "Ich melde meine Tochter an, damit sie früher Deutsch lernt."
+    explain:
+      en: "Two different people act here: I register, she learns. The compact *um … zu* frame has no subject slot at all, so it cannot hold the second doer — *damit* is the only form left, and as a subordinating conjunction it sends the finite verb to the very end: *Deutsch lernt*, never *lernt Deutsch*."
+      ru: "Здесь действуют два разных человека: записываю я, учит она. В компактной рамке *um … zu* места для подлежащего нет вовсе, поэтому второго деятеля она не вмещает — остаётся только *damit*, а как подчинительный союз он отправляет спрягаемый глагол в самый конец: *Deutsch lernt*, а не *lernt Deutsch*."
+      uk: "Тут діють двоє різних людей: записую я, вчить вона. У компактній рамці *um … zu* місця для підмета немає взагалі, тому другого діяча вона не вміщає — лишається тільки *damit*, а як підрядний сполучник він відправляє відмінюване дієслово в самий кінець: *Deutsch lernt*, а не *lernt Deutsch*."
+
+  - id: mc-hochschule
+    outcomes: [bildungsweg-erklaeren]
+    type: mc
+    prompt: "Wohin geht man nach dem Abitur?"
+    options:
+      - "an eine Hochschule"
+      - "in die Grundschule"
+      - "in die Krippe"
+    correct: 0
+    explain:
+      en: "A Hochschule is not a high school — it comes *after* school, and the Abitur is the ticket into it. The Grundschule is where a six-year-old starts and the Krippe takes children under three, so both of those sit at the very beginning of the chain rather than at its end."
+      ru: "Hochschule — не средняя школа: она идёт *после* школы, и пропуск туда — Abitur. Grundschule — то, с чего начинает шестилетний, а Krippe берёт детей младше трёх лет, так что оба стоят в самом начале цепочки, а не в её конце."
+      uk: "Hochschule — не середня школа: вона йде *після* школи, і перепустка туди — Abitur. Grundschule — те, з чого починає шестирічний, а Krippe бере дітей, молодших за три роки, тож обидва стоять на самому початку ланцюга, а не в його кінці."

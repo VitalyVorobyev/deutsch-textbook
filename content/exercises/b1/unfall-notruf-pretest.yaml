@@ -1,0 +1,58 @@
+topic: unfall-notruf
+role: pretest
+title:
+  en: "Before you read — reporting what happened"
+  ru: "Перед чтением — как сообщить о случившемся"
+  uk: "Перед читанням — як повідомити про те, що сталося"
+
+# Three guesses, one per decision the article has to answer: the tense nachdem forces, the fixed
+# order of the adverbials, and the number you dial. Two of the three are non-mc, because a
+# pretest is diagnostic generation and a recognition item at this level discriminates nothing.
+items:
+  - id: nachdem-zeit
+    outcomes: [unfallhergang-schildern]
+    type: cloze
+    instruction:
+      en: "Fill in the auxiliary the earlier event needs."
+      ru: "Вставьте вспомогательный глагол, которого требует более раннее событие."
+      uk: "Вставте допоміжне дієслово, якого потребує раніша подія."
+    text: "Nachdem der Krankenwagen gekommen {{war}}, ging alles sehr schnell."
+    translation:
+      en: "Once the ambulance had arrived, everything went very quickly."
+      ru: "После того как приехала скорая, всё пошло очень быстро."
+      uk: "Після того як приїхала швидка, усе пішло дуже швидко."
+    explain:
+      en: "*Nachdem* puts the earlier event one step further back, into the Plusquamperfekt — and *kommen* builds its perfect with *sein*, so the auxiliary is *war*, not *hatte*. The later clause then stays in the Präteritum: *ging*."
+      ru: "*Nachdem* отодвигает более раннее событие ещё на шаг назад — в Plusquamperfekt, а *kommen* строит перфект с *sein*, поэтому вспомогательный здесь *war*, а не *hatte*. Более поздняя часть остаётся в Präteritum: *ging*."
+      uk: "*Nachdem* відсуває ранішу подію ще на крок назад — у Plusquamperfekt, а *kommen* будує перфект із *sein*, тому допоміжне тут *war*, а не *hatte*. Пізніша частина лишається в Präteritum: *ging*."
+
+  - id: angaben-folge
+    outcomes: [unfallhergang-schildern]
+    type: translate
+    key_tokens: ["gestern", "langsam"]
+    instruction:
+      en: "Keep all three details after the verb."
+      ru: "Оставьте все три обстоятельства после глагола."
+      uk: "Залиште всі три обставини після дієслова."
+    prompt_en: "I walked across the road slowly yesterday."
+    prompt_ru: "Вчера я медленно перешёл дорогу."
+    prompt_uk: "Учора я повільно перейшов дорогу."
+    answer: "Ich bin gestern langsam über die Straße gegangen."
+    explain:
+      en: "German fixes the order of adverbials: time, then manner, then place. *Gestern* comes first even though the English sentence puts it last, and *über die Straße* comes last even though it feels like the main information. Reshuffling the middle is not a stylistic choice here."
+      ru: "Немецкий закрепляет порядок обстоятельств: время, потом образ действия, потом место. *Gestern* идёт первым, хотя по-русски «вчера» может стоять где угодно, а *über die Straße* — последним, хотя кажется главной информацией. Перетасовать середину нельзя."
+      uk: "Німецька закріплює порядок обставин: час, потім спосіб дії, потім місце. *Gestern* іде першим, хоча українською «учора» може стояти будь-де, а *über die Straße* — останнім, хоча здається головною інформацією. Перетасувати середину не можна."
+
+  - id: notrufnummer
+    outcomes: [notruf-absetzen]
+    type: mc
+    prompt: "Eine Person ist bei einem Unfall verletzt. Welche Nummer wählen Sie?"
+    options:
+      - "112"
+      - "110"
+      - "116117"
+    correct: 0
+    explain:
+      en: "112 reaches the fire brigade and the ambulance and is the number for anyone who is hurt. 110 is the police — right for a theft, not for an injury. 116117 is the out-of-hours medical service for cases that are not emergencies."
+      ru: "112 — пожарные и скорая, и это номер для любого пострадавшего. 110 — полиция: подходит для кражи, но не для травмы. 116117 — дежурная медицинская служба для случаев, которые не являются экстренными."
+      uk: "112 — пожежні та швидка, і це номер для будь-якого потерпілого. 110 — поліція: підходить для крадіжки, але не для травми. 116117 — чергова медична служба для випадків, які не є екстреними."

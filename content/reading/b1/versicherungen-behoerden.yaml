@@ -1,0 +1,94 @@
+topic: versicherungen-behoerden
+kind: intensive
+title_de: "Ein Brief vom Amt"
+text:
+  - >-
+    Sehr geehrte Frau Petrova, wir haben Ihren Antrag erhalten. Für die weitere
+    Bearbeitung brauchen wir noch
+    [[Nachweise::evidence — a general plural, so no article: some documents,
+    whichever apply::подтверждения — обобщающее множественное, поэтому без артикля:
+    какие-то документы, те, что подойдут::підтвердження — узагальнювальна множина,
+    тому без артикля: якісь документи, ті, що підійдуть]] über Ihr Einkommen.
+    Bitte schicken Sie diese
+    [[innerhalb der Frist::within the deadline — innerhalb governs the genitive; Frist
+    is feminine, so only the article changes::в течение установленного срока —
+    innerhalb управляет генитивом; Frist женского рода, поэтому меняется только
+    артикль::протягом встановленого строку — innerhalb керує родовим; Frist жіночого
+    роду, тому змінюється лише артикль]] von vier Wochen.
+  - >-
+    [[Wegen des Umzugs::because of the move — masculine, so the case shows twice: des
+    and the -s::в связи с переездом — мужской род, поэтому падеж виден дважды: des и
+    -s::у зв'язку з переїздом — чоловічий рід, тому відмінок видно двічі: des і -s]]
+    konnte Frau Petrova die
+    [[Unterlagen::the documents — with an article this time, because these are the
+    ones the letter asked for::документы — на этот раз с артиклем, потому что это
+    именно те, о которых просило письмо::документи — цього разу з артиклем, бо це
+    саме ті, про які просив лист]] nicht rechtzeitig schicken. Sie schrieb zurück und
+    bat um zwei Wochen mehr. Sie gab auch ihre neue Adresse an:
+    [[Wohnsitz::place of residence — a form label, and form labels carry no
+    article::место жительства — название графы, а названия граф идут без
+    артикля::місце проживання — назва графи, а назви граф ідуть без артикля]]
+    Hauptstraße 14, 28195 Bremen.
+  - >-
+    [[Trotz der Mahnung::in spite of the reminder — feminine again, so the noun is
+    untouched::несмотря на напоминание — снова женский род, поэтому существительное
+    не тронуто::попри нагадування — знову жіночий рід, тому іменник не зачеплено]],
+    die eine Woche später kam, blieb das Amt freundlich. Die neue Frist wurde
+    [[genehmigt::approved — the official word for granting something::одобрен —
+    официальное слово для предоставления::схвалено — офіційне слово для надання]].
+    Frau Petrova schickte die Unterlagen zwei Tage nach dem Umzug. Am Ende stand in
+    dem Brief nur ein Satz: Ihr Antrag ist bearbeitet.
+questions:
+  - id: frage-frist
+    outcomes: [behoerdenbrief-verstehen]
+    type: mc
+    prompt: "Wie viel Zeit gab das Amt im ersten Brief?"
+    options:
+      - "Vier Wochen."
+      - "Zwei Wochen."
+      - "Zwei Tage."
+    correct: 0
+    translation:
+      en: How much time did the office give in the first letter?
+      ru: Сколько времени дало учреждение в первом письме?
+      uk: Скільки часу дала установа в першому листі?
+    explain:
+      en: "„Bitte schicken Sie diese innerhalb der Frist von vier Wochen.“ The other two numbers are in the text and belong elsewhere: two weeks is what Frau Petrova asked for on top, and two days is how long after the move she actually sent them. Reading a letter from an authority means keeping the deadline it sets apart from the one you request."
+      ru: "«Bitte schicken Sie diese innerhalb der Frist von vier Wochen». Два других числа в тексте есть и относятся к другому: две недели — это то, что госпожа Петрова попросила сверху, а два дня — через сколько после переезда она их отправила. Читать письмо из учреждения значит держать порознь срок, который оно ставит, и срок, о котором вы просите."
+      uk: "«Bitte schicken Sie diese innerhalb der Frist von vier Wochen». Два інші числа в тексті є і стосуються іншого: два тижні — це те, що пані Петрова попросила понад те, а два дні — через скільки після переїзду вона їх надіслала. Читати лист з установи означає тримати нарізно строк, який воно ставить, і строк, про який ви просите."
+
+  - id: frage-artikel
+    outcomes: [behoerdenbrief-verstehen, personalien-angeben]
+    type: mc
+    prompt: "Warum steht im ersten Absatz „Nachweise“ ohne Artikel, im zweiten aber „die Unterlagen“ mit Artikel?"
+    options:
+      - "Im ersten Absatz sind es irgendwelche Nachweise, im zweiten die schon genannten."
+      - "Nachweise hat keinen Plural mit Artikel."
+      - "Nach brauchen steht nie ein Artikel."
+    correct: 0
+    translation:
+      en: "Why does „Nachweise“ appear without an article in the first paragraph but „die Unterlagen“ with one in the second?"
+      ru: "Почему в первом абзаце «Nachweise» без артикля, а во втором «die Unterlagen» с артиклем?"
+      uk: "Чому в першому абзаці «Nachweise» без артикля, а в другому «die Unterlagen» з артиклем?"
+    explain:
+      en: "The first paragraph introduces them — unspecified documents, whichever prove the income — and a general plural takes no article. By the second paragraph both sides know which ones are meant, so the definite article points at them. The rule is about shared knowledge, not about the word: the same noun would take an article the moment it had been named once."
+      ru: "Первый абзац их вводит — неопределённые документы, те, что подтвердят доход, — а обобщающее множественное артикля не берёт. Ко второму абзацу обе стороны знают, о каких идёт речь, поэтому определённый артикль на них и указывает. Правило про общее знание, а не про слово: то же существительное взяло бы артикль сразу же, как только было бы названо один раз."
+      uk: "Перший абзац їх уводить — невизначені документи, ті, що підтвердять дохід, — а узагальнювальна множина артикля не бере. До другого абзацу обидві сторони знають, про які йдеться, тому означений артикль на них і вказує. Правило про спільне знання, а не про слово: той самий іменник узяв би артикль одразу ж, щойно був би названий один раз."
+
+  - id: frage-mahnung
+    outcomes: [behoerdenbrief-verstehen]
+    type: mc
+    prompt: "Was ist mit der neuen Frist passiert?"
+    options:
+      - "Sie wurde genehmigt."
+      - "Sie wurde abgelehnt."
+      - "Das Amt hat nicht geantwortet."
+    correct: 0
+    translation:
+      en: What happened to the new deadline?
+      ru: Что произошло с новым сроком?
+      uk: Що сталося з новим строком?
+    explain:
+      en: "„Die neue Frist wurde genehmigt.“ The reminder arrived a week later and crossed her letter in the post — *trotz der Mahnung* says exactly that: the reminder happened and did not change the outcome. Reading *trotz* as a signal that something went wrong is the trap; it marks a contrast, not a refusal."
+      ru: "«Die neue Frist wurde genehmigt». Напоминание пришло неделей позже и разминулось с её письмом — *trotz der Mahnung* именно это и говорит: напоминание было и на исход не повлияло. Ловушка в том, чтобы прочитать *trotz* как сигнал, что что-то пошло не так; оно отмечает противопоставление, а не отказ."
+      uk: "«Die neue Frist wurde genehmigt». Нагадування прийшло тижнем пізніше і розминулося з її листом — *trotz der Mahnung* саме це й каже: нагадування було і на результат не вплинуло. Пастка в тому, щоб прочитати *trotz* як сигнал, що щось пішло не так; воно позначає протиставлення, а не відмову."

@@ -417,6 +417,16 @@ units:
     title_ru: "Время: предлоги"
     title_uk: "Час: прийменники"
     topics: [zeit-praepositionen]
+  # Appended rather than inserted: file order is the recommended path, and this topic's
+  # prerequisites (adjektive-deklination 10, einkaufen-reklamation 9, nebensaetze-plaene 14) all
+  # sit earlier, so the end of A2 is the first slot that satisfies them without renumbering.
+  - id: natur-wetter
+    level: A2
+    title_de: "Natur & Wetter"
+    title_en: "Nature and weather"
+    title_ru: "Природа и погода"
+    title_uk: "Природа і погода"
+    topics: [natur-wetter]
   - id: erfahrungen-erzaehlen
     level: B1
     title_de: "Erfahrungen erzählen"
@@ -515,3 +525,41 @@ units:
     title_ru: "Передача информации"
     title_uk: "Передавання інформації"
     topics: [informationen-vermitteln]
+  # Five themes the DTZ names that no topic was about — Unfall, Polizei, Rauchen/Drogen/Alkohol,
+  # Kinderbetreuung/Studium and Versicherungen/Geschlecht. Appended, never inserted: file order
+  # is the recommended path, and each of these deepens B1 units that come before it.
+  - id: unfall-notruf
+    level: B1
+    title_de: "Unfall & Notruf"
+    title_en: "Accident and emergency call"
+    title_ru: "Несчастный случай и вызов помощи"
+    title_uk: "Нещасний випадок і виклик допомоги"
+    topics: [unfall-notruf]
+  - id: polizei-anzeige
+    level: B1
+    title_de: "Polizei & Anzeige"
+    title_en: "Police and reporting a crime"
+    title_ru: "Полиция и заявление"
+    title_uk: "Поліція і заява"
+    topics: [polizei-anzeige]
+  - id: versicherungen-behoerden
+    level: B1
+    title_de: "Versicherungen & Personalien"
+    title_en: "Insurance and personal details"
+    title_ru: "Страхование и личные данные"
+    title_uk: "Страхування та особисті дані"
+    topics: [versicherungen-behoerden]
+  - id: sucht-lebensstil
+    level: B1
+    title_de: "Rauchen, Alkohol & Gewohnheiten"
+    title_en: "Smoking, alcohol and habits"
+    title_ru: "Курение, алкоголь и привычки"
+    title_uk: "Куріння, алкоголь і звички"
+    topics: [sucht-lebensstil]
+  - id: bildungswege
+    level: B1
+    title_de: "Kinderbetreuung & Bildungswege"
+    title_en: "Childcare and educational paths"
+    title_ru: "Уход за детьми и образовательные пути"
+    title_uk: "Догляд за дітьми та освітні шляхи"
+    topics: [bildungswege]

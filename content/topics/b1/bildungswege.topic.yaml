@@ -1,0 +1,90 @@
+id: bildungswege
+level: B1
+kind: communication
+strand: communication
+group: lernen-kurs
+title_de: Kinderbetreuung & Bildungswege
+title_en: Childcare and educational paths
+title_ru: Уход за детьми и образовательные пути
+title_uk: Догляд за дітьми та освітні шляхи
+status: draft
+# Kinderbetreuung and Studium were two of the DTZ Themen no topic was about, while the whole
+# field — Krippe, Kita, Grundschule, Gymnasium, Hochschule, Fachhochschule and the six marks a
+# Zeugnis is written in — had shipped as twenty-seven flashcards in `bildung-schulsystem-b1`, a
+# deck no topic owned. This topic adopts it.
+#
+# The two confusions are recycled rather than new, and both were picked because
+# `bun scripts/grammar-depth.ts B1 --thin` shows them living in one practice file each:
+# `falls-wenn` and `damit-um-zu`. A parent at the Kita counter needs both at once — the place
+# may or may not come free (falls), and every form asks what the course is for (damit / um … zu).
+#
+# The direction each tag grades is the one the focus-tag table calls genuinely forced:
+# `damit-um-zu` items build a two-subject purpose clause, and every `falls-wenn` item either
+# names falls in its instruction or is a certain, temporal case where only wenn fits.
+tags:
+  - bildung
+  - kinderbetreuung
+  - schule
+  - studium
+  - anmeldung
+  - b1
+prerequisites:
+  - lernen-zukunft
+  - versicherungen-behoerden
+deepens:
+  # One edge, because one topic drills both tags: lernen-zukunft introduces `falls-wenn` and
+  # `damit-um-zu` and owns every practice item carrying them. An edge to a topic that shares no
+  # tag would be inert, so versicherungen-behoerden stays a prerequisite and nothing more.
+  - lernen-zukunft
+related: []
+outcomes:
+  - id: betreuung-klaeren
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann in der Kita nach einem Platz und nach der Anmeldung fragen.
+    en: I can ask at a day-care centre about a place and about how to register.
+    ru: Я умею спросить в детском саду о месте и о том, как записать ребёнка.
+    uk: Я вмію запитати в дитячому садку про місце і про те, як записати дитину.
+    claims:
+      - goethe-dtz-handlungen:nachfragen
+  - id: bildungsweg-erklaeren
+    mode: writing
+    domain: educational
+    de: Ich kann erklären, welchen Weg ein Kind durch das deutsche Schulsystem geht.
+    en: I can explain the path a child takes through the German school system.
+    ru: Я умею объяснить, какой путь ребёнок проходит через немецкую школьную систему.
+    uk: Я вмію пояснити, який шлях дитина проходить через німецьку шкільну систему.
+    claims:
+      - goethe-dtz-handlungen:erklaeren
+  - id: lernziel-begruenden
+    mode: writing
+    domain: educational
+    de: Ich kann sagen, wozu ich oder mein Kind etwas lernt.
+    en: I can say what I or my child is learning something for.
+    ru: Я умею сказать, для чего я или мой ребёнок что-то учит.
+    uk: Я вмію сказати, для чого я або моя дитина щось вивчає.
+    claims:
+      - goethe-dtz-handlungen:zweck-angeben
+  - id: schulinfo-verstehen
+    mode: reading
+    domain: educational
+    de: Ich kann einen kurzen Text über Schulen, Abschlüsse und Noten verstehen.
+    en: I can understand a short text about schools, leaving certificates and marks.
+    ru: Я понимаю короткий текст о школах, аттестатах и оценках.
+    uk: Я розумію короткий текст про школи, атестати та оцінки.
+claims:
+  - goethe-dtz-themen:bildung-kinderbetreuung
+  - goethe-dtz-themen:bildung-studium
+elements:
+  article: bildungswege.mdx
+  pretest: b1/bildungswege-pretest
+  exercises:
+    - b1/bildungswege
+    - b1/bildungswege-produktion
+  primary_practice: b1/bildungswege
+  probes:
+    - b1/probe-bildungswege
+  reading:
+    - b1/bildungswege
+  vocab:
+    - bildung-schulsystem-b1

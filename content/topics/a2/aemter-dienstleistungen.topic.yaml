@@ -62,6 +62,11 @@ outcomes:
       - goethe-dtz-handlungen:bitte-ausdruecken
 claims:
   - goethe-dtz-themen:dienstleistungen-aemter
+  # `### Das Formular` teaches Geburtsort as a recognised field with a filled example, which is
+  # exactly the DTZ's sense of the theme — a form word you read and complete, never say aloud.
+  # It was an under-claim, and an under-claim manufactures a hole the way an over-claim
+  # manufactures coverage.
+  - goethe-dtz-themen:person-geburtsort
 elements:
   article: aemter-dienstleistungen.mdx
   pretest: a2/aemter-dienstleistungen-pretest

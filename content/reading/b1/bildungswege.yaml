@@ -1,0 +1,99 @@
+topic: bildungswege
+kind: intensive
+title_de: "Zwei Kinder, zwei Entscheidungen"
+text:
+  - >-
+    Marta hat zwei Kinder. Die kleine Lena ist drei Jahre alt und wartet auf einen
+    Platz in der
+    [[Kita::the short everyday name for a day-care centre; the long form on the letter
+    is die Kindertagesstätte::короткое обиходное название детского сада полного дня; в
+    письме стоит длинная форма die Kindertagesstätte::коротка побутова назва дитячого
+    садка повного дня; у листі стоїть довга форма die Kindertagesstätte]]. Falls im
+    Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause.
+  - >-
+    Ihr Bruder Tim ist neun und geht in die vierte Klasse der
+    [[Grundschule::the first school, years one to four, which every child in Germany
+    attends together::первая школа, классы с первого по четвёртый, куда все дети в
+    Германии идут вместе::перша школа, класи з першого по четвертий, куди всі діти в
+    Німеччині йдуть разом]]. Nach vier Jahren entscheidet die Familie:
+    [[Hauptschule::the shortest branch, ending after year nine and leading straight
+    into a trade::самая короткая ветвь: заканчивается после девятого класса и ведёт
+    прямо в рабочую профессию::найкоротша гілка: закінчується після дев'ятого класу і
+    веде просто в робітничий фах]], Realschule, Gymnasium oder
+    [[Gesamtschule::a school that holds all three branches under one roof, so the
+    choice can be changed later::школа, держащая все три ветви под одной крышей, так
+    что выбор можно изменить позже::школа, що тримає всі три гілки під одним дахом,
+    тож вибір можна змінити пізніше]]. Tim hat in Mathe eine Zwei und in Deutsch eine
+    Drei — eine Drei heißt
+    [[befriedigend::the mark 3 of 6, satisfactory: passed, unremarkable and very common
+    on a German report::отметка 3 из 6: сдано, ничем не примечательно и в немецком
+    табеле очень часто::оцінка 3 із 6: складено, нічим не примітно і в німецькому
+    табелі дуже часто]] und liegt genau in der Mitte.
+  - >-
+    Marta geht zur Lehrerin, damit sie das
+    [[Zeugnis::the report the school issues, with one mark per subject::табель, который
+    выдаёт школа, с отметкой по каждому предмету::табель, який видає школа, з оцінкою з
+    кожного предмета]] erklärt. Tim möchte später an einer
+    [[Fachhochschule::a college of higher education whose courses stay close to the
+    trade, with a work placement inside the degree::высшее учебное заведение,
+    держащееся ближе к профессии, с практикой внутри программы::вищий навчальний
+    заклад, що тримається ближче до фаху, з практикою всередині програми]] studieren.
+    Dafür braucht er das
+    [[Abitur::the leaving examination of a Gymnasium and the ticket into any
+    Hochschule::выпускной экзамен гимназии и пропуск в любой вуз::випускний іспит
+    гімназії і перепустка до будь-якого вишу]]. Er lernt jeden Abend, um ein besseres
+    Zeugnis zu bekommen.
+questions:
+  - id: frage-lena
+    outcomes: [schulinfo-verstehen]
+    type: mc
+    prompt: "Warum bleibt Lena vielleicht noch ein Jahr zu Hause?"
+    options:
+      - "Weil in der Kita vielleicht kein Platz frei wird."
+      - "Weil sie erst zwei Jahre alt ist."
+      - "Weil die Kita im Herbst zumacht."
+    correct: 0
+    translation:
+      en: Why might Lena stay at home for another year?
+      ru: Почему Лена, возможно, останется дома ещё на год?
+      uk: Чому Лена, можливо, залишиться вдома ще на рік?
+    explain:
+      en: "„Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause.“ The word *falls* is the whole answer: it marks a case the family does not expect but has to plan for. Lena's age is given in the first sentence — she is three, not two — and the text says nothing about the Kita closing."
+      ru: "«Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause». Всё держится на слове *falls*: оно помечает случай, которого семья не ждёт, но который приходится закладывать в план. Возраст Лены назван в первом предложении — ей три, а не два, — и о закрытии сада в тексте не сказано ничего."
+      uk: "«Falls im Herbst kein Platz frei wird, bleibt Lena noch ein Jahr zu Hause». Усе тримається на слові *falls*: воно позначає випадок, якого родина не чекає, але який доводиться закладати в план. Вік Лени названо в першому реченні — їй три, а не два, — і про зачинення садка в тексті не сказано нічого."
+
+  - id: frage-note
+    outcomes: [schulinfo-verstehen]
+    type: mc
+    prompt: "Was bedeutet Tims Note in Deutsch?"
+    options:
+      - "befriedigend — genau die Mitte."
+      - "sehr gut — die beste Note."
+      - "mangelhaft — nicht bestanden."
+    correct: 0
+    translation:
+      en: What does Tim's mark in German mean?
+      ru: Что означает отметка Тима по немецкому?
+      uk: Що означає оцінка Тіма з німецької?
+    explain:
+      en: "Tim has *eine Drei* in German, and the text spells the word out: *eine Drei heißt befriedigend*. The trap is the direction of the scale — 1 is the best mark and 6 the worst, so a three sits in the middle rather than near the bottom. *Sehr gut* is a one and *mangelhaft* is a five, which is already a fail."
+      ru: "По немецкому у Тима *eine Drei*, и текст прямо называет слово: *eine Drei heißt befriedigend*. Ловушка — в направлении шкалы: 1 лучшая, 6 худшая, поэтому тройка стоит посередине, а не у нижнего края. *Sehr gut* — это единица, а *mangelhaft* — пятёрка, то есть уже незачёт."
+      uk: "З німецької в Тіма *eine Drei*, і текст прямо називає слово: *eine Drei heißt befriedigend*. Пастка — у напрямі шкали: 1 найкраща, 6 найгірша, тому трійка стоїть посередині, а не біля нижнього краю. *Sehr gut* — це одиниця, а *mangelhaft* — п'ятірка, тобто вже незалік."
+
+  - id: frage-zweck
+    outcomes: [schulinfo-verstehen]
+    type: mc
+    prompt: "Wozu geht Marta zur Lehrerin?"
+    options:
+      - "Damit die Lehrerin das Zeugnis erklärt."
+      - "Damit Tim eine bessere Note bekommt."
+      - "Damit Lena einen Platz in der Kita bekommt."
+    correct: 0
+    translation:
+      en: What is Marta going to see the teacher for?
+      ru: Зачем Марта идёт к учительнице?
+      uk: Навіщо Марта йде до вчительки?
+    explain:
+      en: "„Marta geht zur Lehrerin, damit sie das Zeugnis erklärt.“ Note why the sentence needs *damit* rather than the shorter frame: Marta goes, the teacher explains — two different doers, and *um … zu* has no room for a second one. The other two answers name purposes that belong to other people in the text and to other sentences."
+      ru: "«Marta geht zur Lehrerin, damit sie das Zeugnis erklärt». Обратите внимание, почему предложению нужен именно *damit*, а не короткая рамка: идёт Марта, объясняет учительница — два разных деятеля, а в *um … zu* для второго места нет. Два других ответа называют цели, которые принадлежат другим людям текста и другим предложениям."
+      uk: "«Marta geht zur Lehrerin, damit sie das Zeugnis erklärt». Зверніть увагу, чому реченню потрібен саме *damit*, а не коротка рамка: іде Марта, пояснює вчителька — два різні діячі, а в *um … zu* для другого місця немає. Дві інші відповіді називають цілі, що належать іншим людям тексту та іншим реченням."

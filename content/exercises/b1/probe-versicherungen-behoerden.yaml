@@ -1,0 +1,87 @@
+# Delayed probe family — ONE competence: the genitive an official preposition governs, produced
+# cold and in the written register. Three parallel translate variants, served in authoring order
+# across the 2/7/21 delays: one retention curve over one decision.
+#
+# The three variants sample three corners rather than repeating one. variant-a is masculine, so
+# the case shows twice and the -s is the part that goes missing. variant-b is feminine, where
+# the article carries the whole marking and the noun must be left alone — the mirror error.
+# variant-c is neuter with the phrase fronted, so verb-second has to survive the genitive as
+# well.
+#
+# translate rather than cloze: a cloze prints the article's slot and thereby answers the
+# question, which is whether the genitive is called for at all. The learner has to reject the
+# spoken *wegen dem* on their own, and that rejection is what decays.
+#
+# Pinned is the preposition and the article it governs. The nouns are carrier material: a
+# fumbled Untersuchung is not this confusion. Each pinned token occurs exactly once in every
+# accepted rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading with the YAML
+# parser rather than by re-reading them: Vertrag, Untersuchung and Gespräch appear in no arming
+# item, so no variant can be answered from the memory of one.
+topic: versicherungen-behoerden
+role: probe
+arming:
+  - b1/versicherungen-behoerden::cloze-wegen-genitiv
+  - b1/versicherungen-behoerden::uebersetzen-innerhalb
+  - b1/versicherungen-behoerden::table-genitiv
+  - b1/versicherungen-behoerden::order-trotz
+  - b1/versicherungen-behoerden-produktion::uebersetzen-frist
+title:
+  en: "Delayed check — the genitive an office writes in"
+  ru: "Отложенная проверка — генитив, которым пишет учреждение"
+  uk: "Відкладена перевірка — родовий, яким пише установа"
+items:
+  - id: variant-a
+    outcomes: [frist-nennen]
+    type: translate
+    focus: praeposition-genitiv
+    key_tokens: ["wegen", "des"]
+    instruction:
+      en: "Write it as a letter would."
+      ru: "Напишите так, как написали бы в письме."
+      uk: "Напишіть так, як написали б у листі."
+    prompt_en: "Because of the contract I have a question."
+    prompt_ru: "В связи с договором у меня есть вопрос."
+    prompt_uk: "У зв'язку з договором у мене є питання."
+    answer: "Wegen des Vertrags habe ich eine Frage."
+    accept:
+      - "Ich habe wegen des Vertrags eine Frage."
+    explain:
+      en: "*Vertrag* is masculine, so the genitive shows twice — on the article and as the *-s* on the noun. Dropping the *-s* gives *wegen des Vertrag*, which is the commonest wrong form because the article already looks like enough marking. The spoken *wegen dem Vertrag* is real German and the wrong register for anything written."
+      ru: "*Vertrag* мужского рода, поэтому генитив виден дважды — на артикле и как *-s* у самого слова. Потеря *-s* даёт *wegen des Vertrag*: самая частая неверная форма, потому что артикль уже кажется достаточной пометой. Разговорное *wegen dem Vertrag* — настоящий немецкий и неверный регистр для всего письменного."
+      uk: "*Vertrag* чоловічого роду, тому родовий видно двічі — на артиклі і як *-s* у самого слова. Втрата *-s* дає *wegen des Vertrag*: найчастіша хибна форма, бо артикль уже здається достатньою позначкою. Розмовне *wegen dem Vertrag* — справжня німецька і неправильний регістр для всього писемного."
+
+  - id: variant-b
+    outcomes: [frist-nennen]
+    type: translate
+    focus: praeposition-genitiv
+    key_tokens: ["während", "der"]
+    prompt_en: "During the examination you may not eat anything."
+    prompt_ru: "Во время обследования ничего есть нельзя."
+    prompt_uk: "Під час обстеження нічого їсти не можна."
+    answer: "Während der Untersuchung dürfen Sie nichts essen."
+    accept:
+      - "Sie dürfen während der Untersuchung nichts essen."
+    explain:
+      en: "The mirror of the first variant: *Untersuchung* is feminine, so the article *der* carries the whole marking and the noun takes nothing at all. Adding an ending — *während der Untersuchungs* — is the error that follows from over-learning the masculine rule. Note also that *während* is a preposition here; the identical-looking conjunction opens a Nebensatz instead and is a different word."
+      ru: "Зеркало первого варианта: *Untersuchung* женского рода, поэтому всю пометку несёт артикль *der*, а существительное не берёт ничего. Приписать окончание — *während der Untersuchungs* — та ошибка, которая следует из переученного мужского правила. Обратите внимание и на то, что *während* здесь предлог; одинаково выглядящий союз открывает придаточное и является другим словом."
+      uk: "Дзеркало першого варіанта: *Untersuchung* жіночого роду, тому всю позначку несе артикль *der*, а іменник не бере нічого. Приписати закінчення — *während der Untersuchungs* — та помилка, що випливає з перевченого чоловічого правила. Зверніть увагу й на те, що *während* тут прийменник; однаково виглядний сполучник відкриває підрядне і є іншим словом."
+
+  - id: variant-c
+    outcomes: [frist-nennen]
+    type: translate
+    focus: praeposition-genitiv
+    key_tokens: ["Trotz", "des"]
+    instruction:
+      en: "Begin with the genitive phrase."
+      ru: "Начните с генитивного сочетания."
+      uk: "Почніть із родового сполучення."
+    prompt_en: "In spite of the conversation nothing has changed."
+    prompt_ru: "Несмотря на разговор, ничего не изменилось."
+    prompt_uk: "Попри розмову нічого не змінилося."
+    answer: "Trotz des Gesprächs hat sich nichts geändert."
+    explain:
+      en: "*Gespräch* is neuter and behaves like the masculine: article *des* and an *-s* on the noun. The instruction fronts the phrase on purpose, because that is where a second rule has to survive alongside the first — the genitive phrase counts as one element, so the conjugated verb takes second position and the reflexive follows it: *Trotz des Gesprächs **hat sich** nichts geändert*, never *… nichts hat sich geändert*."
+      ru: "*Gespräch* среднего рода и ведёт себя как мужской: артикль *des* и *-s* у существительного. Инструкция намеренно выносит сочетание вперёд, потому что именно там рядом с первым правилом должно уцелеть второе: генитивное сочетание считается одним элементом, поэтому спрягаемый глагол занимает второе место, а возвратное местоимение идёт за ним: *Trotz des Gesprächs **hat sich** nichts geändert*, а не *… nichts hat sich geändert*."
+      uk: "*Gespräch* середнього роду і поводиться як чоловічий: артикль *des* і *-s* в іменника. Інструкція навмисно виносить сполучення вперед, бо саме там поряд із першим правилом має вціліти друге: родове сполучення рахується одним елементом, тому відмінюване дієслово посідає друге місце, а зворотний займенник іде за ним: *Trotz des Gesprächs **hat sich** nichts geändert*, а не *… nichts hat sich geändert*."

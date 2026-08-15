@@ -65,7 +65,7 @@ describe('scoring and curriculum contracts', () => {
   test('the learner-led module keeps its required position in the A2 spine', () => {
     const curriculum = getCurriculum();
     const a2 = curriculum.spine.filter((id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2');
-    expect(a2).toHaveLength(24);
+    expect(a2).toHaveLength(25);
     const position = a2.indexOf('verben-mit-praepositionen');
     expect(a2[position - 1]).toBe('gesundheit-arzttermin');
     expect(a2[position + 1]).toBe('arbeit-beruf');

@@ -1,0 +1,89 @@
+id: unfall-notruf
+level: B1
+kind: communication
+strand: communication
+group: behoerden-services
+title_de: Unfall & Notruf
+title_en: Accident and emergency call
+title_ru: Несчастный случай и вызов помощи
+title_uk: Нещасний випадок і виклик допомоги
+status: draft
+# `bun scripts/themen.ts` named Unfall as a DTZ theme no topic was about, while the whole
+# injury-and-treatment field had shipped as forty-one flashcards in `koerper-medizin-b1`, a deck
+# no topic owned. A learner who can name Wunde, Verletzung and Krankenwagen one card at a time
+# still cannot make the call in which those three words have to arrive in the right order.
+#
+# The two confusions it drills are chosen from `bun scripts/grammar-depth.ts B1 --thin`, not from
+# what the vocabulary suggested: `plusquamperfekt-nachdem` and `angaben-reihenfolge` were both
+# living in a single practice file, met once and never interleaved again. An accident report is
+# the natural second context for both — it is the one everyday genre that forces a sequence of
+# past events and a pile-up of adverbials in the same sentence.
+tags:
+  - unfall
+  - notruf
+  - verletzung
+  - erste-hilfe
+  - krankenhaus
+  - b1
+prerequisites:
+  - erfahrungen-erzaehlen
+  - gesundheit-wohlbefinden
+  - informationen-vermitteln
+deepens:
+  # Both edges carry a tag the base topic drills, which is the only runtime channel they have:
+  # `plusquamperfekt-nachdem` for erfahrungen-erzaehlen and `angaben-reihenfolge` for
+  # informationen-vermitteln. gesundheit-wohlbefinden is a prerequisite and nothing more — it
+  # shares no confusion with this topic, so an edge to it would be inert.
+  - erfahrungen-erzaehlen
+  - informationen-vermitteln
+related: []
+outcomes:
+  - id: notruf-absetzen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann einen Notruf absetzen und sagen, wo etwas passiert ist und was passiert ist.
+    en: I can make an emergency call and say where something happened and what happened.
+    ru: Я умею вызвать экстренную помощь и сказать, где и что произошло.
+    uk: Я вмію викликати екстрену допомогу і сказати, де і що сталося.
+    claims:
+      - goethe-dtz-handlungen:beschreiben
+  - id: unfallhergang-schildern
+    mode: spoken-production
+    domain: public
+    de: Ich kann schildern, wie ein Unfall passiert ist, in der richtigen Reihenfolge.
+    en: I can describe how an accident happened, in the right order.
+    ru: Я умею рассказать, как произошёл несчастный случай, в правильном порядке.
+    uk: Я вмію розповісти, як стався нещасний випадок, у правильному порядку.
+    claims:
+      - goethe-dtz-handlungen:vergangenes-berichten
+  - id: verletzung-benennen
+    mode: spoken-interaction
+    domain: public
+    de: Ich kann eine Verletzung benennen und sagen, was weh tut.
+    en: I can name an injury and say what hurts.
+    ru: Я умею назвать травму и сказать, что болит.
+    uk: Я вмію назвати травму і сказати, що болить.
+    claims:
+      - goethe-dtz-handlungen:benennen-definieren
+  - id: unfallbericht-verstehen
+    mode: reading
+    domain: public
+    de: Ich kann einen kurzen Unfallbericht verstehen.
+    en: I can understand a short accident report.
+    ru: Я понимаю короткий отчёт о происшествии.
+    uk: Я розумію короткий звіт про подію.
+claims:
+  - goethe-dtz-themen:gesundheit-unfall
+elements:
+  article: unfall-notruf.mdx
+  pretest: b1/unfall-notruf-pretest
+  exercises:
+    - b1/unfall-notruf
+    - b1/unfall-notruf-produktion
+  primary_practice: b1/unfall-notruf
+  probes:
+    - b1/probe-unfall-notruf
+  reading:
+    - b1/unfall-notruf
+  vocab:
+    - koerper-medizin-b1

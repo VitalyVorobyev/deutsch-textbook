@@ -1,0 +1,93 @@
+# Delayed probe family — ONE competence: the verb bracket lassen opens. The second verb is a
+# bare infinitive at the very end — no zu, never a participle — and where lassen itself is not
+# the finite verb it keeps the shape of an infinitive too.
+#
+# Three parallel translate variants, served in authoring order across the 2/7/21 delays: one
+# retention curve over one decision. The three sample three corners of it rather than repeating a
+# corner. variant-a is the present, where lassen is the finite verb and only the second verb has
+# to reach the end; variant-b is the perfect, where the auxiliary is finite and lassen must resist
+# becoming gelassen; variant-c puts a modal in front, so three verbs queue up and the order inside
+# the pair at the end is what decides the sentence.
+#
+# translate rather than cloze: a cloze prints the slot the infinitive belongs in and thereby
+# answers the question — whether the second verb reaches the end at all, and in what shape.
+#
+# Pinned is the second verb and the form of lassen the construction requires. The nouns are
+# carrier material: a fumbled Werkstatt is not this confusion. Each pinned token occurs exactly
+# once in every accepted rendering.
+#
+# Carrier lexis checked against this topic's two practice sets and its reading by grepping
+# content/, not by re-reading them: Fahrrad, Werkstatt, reparieren, Kinder, fernsehen, Garten and
+# Firma appear in no arming item, so no variant can be answered from the memory of one.
+topic: sucht-lebensstil
+role: probe
+arming:
+  - b1/sucht-lebensstil::cloze-lassen-formen
+  - b1/sucht-lebensstil::uebersetzen-beraten-lassen
+  - b1/sucht-lebensstil::mc-ersatzinfinitiv
+  - b1/sucht-lebensstil::uebersetzen-rat-sein-lassen
+  - b1/sucht-lebensstil-produktion::uebersetzen-lassen-balkon
+title:
+  en: "Delayed check — the bare infinitive after lassen"
+  ru: "Отложенная проверка — голый инфинитив после lassen"
+  uk: "Відкладена перевірка — голий інфінітив після lassen"
+items:
+  - id: variant-a
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    key_tokens: ["lasse", "reparieren"]
+    instruction:
+      en: "Translate with lassen — for 'the workshop' take die Werkstatt."
+      ru: "Переведите через lassen — для «мастерской» возьмите die Werkstatt."
+      uk: "Перекладіть через lassen — для «майстерні» візьміть die Werkstatt."
+    prompt_en: "I have my bicycle repaired at the workshop."
+    prompt_ru: "Я отдаю велосипед в ремонт в мастерскую."
+    prompt_uk: "Я віддаю велосипед у ремонт до майстерні."
+    answer: "Ich lasse mein Fahrrad in der Werkstatt reparieren."
+    accept:
+      - "Mein Fahrrad lasse ich in der Werkstatt reparieren."
+    explain:
+      en: "*Lassen* is the finite verb here, so it stands in position 2 and *reparieren* goes to the very end as a bare infinitive. No *zu* — that rule belongs to *versuchen* and *anfangen* and never reaches this verb — and no participle either, however much the English *have something repaired* suggests one. Both clause orders are accepted; the bracket is what is graded."
+      ru: "*Lassen* здесь — спрягаемый глагол, поэтому он стоит на втором месте, а *reparieren* уходит в самый конец голым инфинитивом. Никакого *zu*: это правило принадлежит *versuchen* и *anfangen* и до этого глагола не дотягивается. И никакого причастия, как бы ни подсказывала его русская конструкция «отдать в ремонт». Оба порядка частей принимаются; оценивается рамка."
+      uk: "*Lassen* тут — відмінюване дієслово, тому воно стоїть на другому місці, а *reparieren* іде в самий кінець голим інфінітивом. Жодного *zu*: це правило належить *versuchen* і *anfangen* і до цього дієслова не дотягується. І жодного дієприкметника, хоч би як підказувала його українська конструкція «віддати в ремонт». Обидва порядки частин приймаються; оцінюється рамка."
+
+  - id: variant-b
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    key_tokens: ["fernsehen", "lassen"]
+    instruction:
+      en: "Translate in the perfect, with lassen — for 'watch television' take fernsehen, for 'for longer' länger."
+      ru: "Переведите в перфекте, через lassen — для «смотреть телевизор» возьмите fernsehen, для «подольше» — länger."
+      uk: "Перекладіть у перфекті, через lassen — для «дивитися телевізор» візьміть fernsehen, для «довше» — länger."
+    prompt_en: "Yesterday we let the children watch television for longer."
+    prompt_ru: "Вчера мы разрешили детям подольше посмотреть телевизор."
+    prompt_uk: "Учора ми дозволили дітям довше подивитися телевізор."
+    answer: "Gestern haben wir die Kinder länger fernsehen lassen."
+    accept:
+      - "Wir haben die Kinder gestern länger fernsehen lassen."
+    explain:
+      en: "The auxiliary is the finite verb now, so *lassen* has been pushed to the end — and there it keeps the shape of an infinitive: *fernsehen lassen*, never *fernsehen gelassen*. German does the same after the modals, *ich habe arbeiten müssen*. The two infinitives keep their order: the second verb first, *lassen* last, closing the clause."
+      ru: "Спрягаемый теперь вспомогательный, поэтому *lassen* вытеснен в конец — и там он сохраняет вид инфинитива: *fernsehen lassen*, а не *fernsehen gelassen*. Немецкий поступает так же после модальных: *ich habe arbeiten müssen*. Порядок двух инфинитивов закреплён: сначала второй глагол, *lassen* последним, закрывая предложение."
+      uk: "Відмінюване тепер допоміжне, тому *lassen* витіснений у кінець — і там він зберігає вигляд інфінітива: *fernsehen lassen*, а не *fernsehen gelassen*. Німецька робить так само після модальних: *ich habe arbeiten müssen*. Порядок двох інфінітивів закріплений: спершу друге дієслово, *lassen* останнім, закриваючи речення."
+
+  - id: variant-c
+    outcomes: [hilfe-veranlassen]
+    type: translate
+    focus: lassen-verwendung
+    key_tokens: ["pflegen", "lassen"]
+    instruction:
+      en: "Translate with wollen and lassen — for 'look after' take pflegen, for 'a company' eine Firma."
+      ru: "Переведите через wollen и lassen — для «ухаживать» возьмите pflegen, для «фирмы» — eine Firma."
+      uk: "Перекладіть через wollen і lassen — для «доглядати» візьміть pflegen, для «фірми» — eine Firma."
+    prompt_en: "We want to have the garden looked after by a company."
+    prompt_ru: "Мы хотим, чтобы за садом ухаживала фирма."
+    prompt_uk: "Ми хочемо, щоб за садом доглядала фірма."
+    answer: "Wir wollen den Garten von einer Firma pflegen lassen."
+    accept:
+      - "Den Garten wollen wir von einer Firma pflegen lassen."
+    explain:
+      en: "Three verbs, and only the modal is finite: *wollen* takes position 2 and the other two queue up at the end in the fixed order *pflegen lassen*. The source sentence uses a whole subordinate clause for what German packs into that pair, so nothing in it tells you where the two infinitives go — the bracket has to be built. Who does the work is named with *von* plus the dative."
+      ru: "Три глагола, и спрягаемый только модальный: *wollen* занимает второе место, а два других выстраиваются в конце в закреплённом порядке *pflegen lassen*. Русская фраза тратит на это целое придаточное, так что подсказки о месте двух инфинитивов в ней нет — рамку приходится строить. Исполнителя вводит *von* с дативом."
+      uk: "Три дієслова, і відмінюване лише модальне: *wollen* займає друге місце, а два інші шикуються в кінці в закріпленому порядку *pflegen lassen*. Українська фраза витрачає на це ціле підрядне, тож підказки про місце двох інфінітивів у ній немає — рамку доводиться будувати. Виконавця вводить *von* з давальним."
