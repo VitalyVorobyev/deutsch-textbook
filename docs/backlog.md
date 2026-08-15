@@ -28,13 +28,13 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3d A2 findings**. P27-3c closed the 21-row DTZ tail through
-eight exact teaching slices: internal A2 is 46/46, external A2 is 300/300, cumulative B1 is 164/164
-and A2 depth remains 8 teaching / 6 production / 3 files. The remaining A2 queue is sixteen
-editorial signals: manually read eight short-reading tripwires and change only real defects; convert
-the three open document translations to `write`; add genuine spoken production/interaction to
-`gesundheit-arzttermin`, `infinitiv-mit-zu` and `lernen-verstehen`; and give
-`verben-mit-dativ` plus `nebensatz-vorfeld` fresh three-variant probes. Lexical A2 remains 1449/1449.
+The current executable item is **P27-3g topic-quality waves**. P27-3f closed the B1 Wortliste at
+3416/3416 after classifying all 73 tail rows one by one. The live A1–B1 topic-profile queue is empty,
+but that is not the stop condition: every topic still receives a bounded article, exercise,
+reading, audio and vocabulary pass under the shared
+[content-quality contract](authoring/content-quality-audit.md). The A1 and A2 waves are complete and
+logged; B1 remains. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
+A1/A2/B1 673/673, 1449/1449 and 3416/3416.
 P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
@@ -436,20 +436,19 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   the same weak focus preempt band 1). The delayed probe runs 2/2 on this competence, so the loop
   is measurably an item-serving artifact, not lost competence. Fix alongside the PR-4 session work
   or PR-8 remediation design; measure the deal distribution before and after.
-  lexis wave 4b (2026-08-06) B1 coverage is 3343/3416: 3279 cards, 64 grammar `~`, 73 open. The 73
-  (the `NOCARD` set in the wave-4 partition) are bound morphemes (`hell-`, `-weise`, `irgend-`),
-  abbreviations (`bzw.`, `EG`, `vgl.`), correlative frames (`je … desto`, `sowohl … als auch`,
-  `um … zu`), and full forms whose short forms ship (`Personenkraftwagen`, `Akkumulator`). Several
-  of the frames are grammar-taught, so they may earn `~` markers — but a `~` must be earned (the
-  validator requires the word in the taught surface) and each needs a manifest line. Go row by row;
-  the rest stay open with this entry as the reason, and no coverage figure may round them away.
+  ~~P27-3f / P25-6 · B1 lexical tail~~ — **closed 2026-08-15.** The 3343/3416 baseline contained
+  3279 cards, 64 grammar rows and 73 open rows. A row-by-row re-audit rejected the old `NOCARD`
+  blanket: 12 written/official variants became recognition cards, six frequent forms productive
+  cards, and 55 true bound pieces/frames earned `~` only after learner-facing teaching. Current B1
+  coverage is 3416/3416: 3297 cards, 119 grammar, 0 missing, 0 late. The exact ledger is
+  [A1–B1 completeness audit](curriculum/a1-b1-completeness-audit.md).
   **The correlative frames are settled as of 2026-08-14 and are not lexis:** the DTZ
   Prüfungshandbuch §8.4 lists *entweder … oder*, *weder … noch*, *sowohl … als auch*, *nicht nur …
   sondern auch* and *je … desto* as **6.8 Doppelkonjunktionen**, and *um … zu* as a 6.5
   Nebensatz-Konjunktion — structures, in a grammar inventory, all six claimed by
-  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. So they are eligible for `~`;
-  what remains is the per-row manifest work and the taught-surface check the validator runs, which
-  is real work and is what is still open here. — when an existing
+  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. P27-3f completed the per-row
+  manifest work and backed each `~` with a complete learner-facing frame.
+- **IPA writer duplicate-key hazard** — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
   `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).

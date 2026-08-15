@@ -1344,9 +1344,11 @@ for (const [setId, { file, data }] of exerciseSets) {
             }
           }
         }
-        if (item.key_tokens.length > 0 && !item.focus) {
-          warn(where, 'key_tokens without a focus tag grades nothing');
-        }
+        // An untagged translation still needs an explicit graded surface. `key_tokens`
+        // decide which near-miss is a spelling slip even when there is deliberately no
+        // confusion tag to attribute (for example the formulaic first A1 introduction).
+        // Requiring a fictional focus here would turn honest language production into a
+        // false grammar signal, so the absence of `focus` is not itself a warning.
         break;
       }
       case 'table': {

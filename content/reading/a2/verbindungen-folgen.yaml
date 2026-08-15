@@ -19,9 +19,10 @@ text:
   - >-
     Als sie ihre Prüfung [[bestanden::passed::сдала::склала]] hat, war sie
     zweiundzwanzig. Heute gehört ihr die Bäckerei. Neulich hat sie eine junge
-    [[Auszubildende::apprentice, trainee::ученица::учениця]] eingestellt. „Sie war in der
-    Schule auch nicht gut“, sagt Nadja und lacht. „Deshalb habe ich sie
-    genommen.“
+    [[Auszubildende::apprentice, trainee::ученица::учениця]] eingestellt. Beim
+    [[Probearbeiten::trial shift::пробная смена::пробна зміна]] war die junge Frau
+    aufmerksam und schnell. „Sie war in der Schule auch nicht gut, aber sie lernt gern praktisch“,
+    sagt Nadja. „Deshalb habe ich ihr eine Chance gegeben.“
 questions:
   - id: q-warum-kein-studium
     type: mc
@@ -58,12 +59,12 @@ questions:
     outcomes: [folge-ausdruecken]
     prompt: "Warum hat Nadja die junge Auszubildende eingestellt?"
     options:
-      - "Weil das Mädchen in der Schule auch nicht gut war."
-      - "Weil das Mädchen sehr gute Noten hatte."
+      - "Weil sie beim Probearbeiten aufmerksam war und gern praktisch lernt."
+      - "Weil sie in der Schule schlechte Noten hatte."
       - "Weil das Mädchen ihre Nachbarin ist."
       - "Weil sie dringend Hilfe brauchte."
     correct: 0
     explain:
-      en: "Deshalb habe ich sie genommen — and the reason is the sentence before it, which is that the girl was no good at school either. The joke of the ending is that the same fact once cost Nadja the advice to study, and now buys someone else a job: the story uses the same connector for both turns."
-      ru: "Deshalb habe ich sie genommen — а причина в предыдущем предложении: девочка тоже не блистала в школе. Соль концовки в том, что один и тот же факт когда-то лишил Надю совета учиться, а теперь дал работу другой: рассказ использует один и тот же коннектор в обоих поворотах."
-      uk: "Deshalb habe ich sie genommen — а причина в попередньому реченні: дівчина теж не блищала в школі. Сіль кінцівки в тому, що той самий факт колись позбавив Надю поради вчитися, а тепер дав роботу іншій: розповідь використовує той самий конектор в обох поворотах."
+      en: "The trial shift supplies evidence: the applicant was attentive, quick and likes practical learning. Her school history explains why Nadja recognises her situation, but poor grades alone are not a reason to hire somebody. deshalb points to the demonstrated fit, not to a stereotype."
+      ru: "Пробная смена даёт реальные основания: кандидатка была внимательной, быстрой и любит учиться на практике. Школьная история объясняет, почему Надя узнаёт в ней себя, но плохие оценки сами по себе не причина нанимать человека. deshalb указывает на проявленные качества, а не на стереотип."
+      uk: "Пробна зміна дає реальні підстави: кандидатка була уважною, швидкою й любить учитися на практиці. Шкільна історія пояснює, чому Надя впізнає в ній себе, але погані оцінки самі по собі не причина наймати людину. deshalb указує на продемонстровані якості, а не на стереотип."

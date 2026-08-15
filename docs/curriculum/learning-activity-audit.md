@@ -51,11 +51,13 @@ Reproduce with `bun run activity:audit`:
 Medium: 120 mixed · 47 listening · 5 document. There are 172 teaching sets after the four new
 application files. Zero core activities are outside 8–15; zero topics lack productive application.
 
-The Redaction profile queue fell from the 265-opening baseline to **81**. The reduction is not a
-KPI; it means 184 invalid or now-closed claims disappeared. The remaining queue is specific:
-20 articles without addressable explanation subsections, 19 focus tags without a probe, 17 reading
-length reviews, 9 translations without `key_tokens`, 7 unpractised tags, 7 inventory points without
-an owner and 2 missing outcome modes.
+The Redaction profile queue fell from the 265-opening baseline to **81**. The reduction was not a
+KPI; it meant 184 invalid or closed claims disappeared. That historical queue contained 20 articles
+without addressable explanation subsections, 19 focus tags without a probe, 17 arithmetic reading
+length flags, 9 translations without `key_tokens`, 7 unpractised tags, 7 inventory points without an
+owner and 2 missing outcome modes. P27-3d retired reading length as a binary defect after manual
+review (the count remains an editorial tripwire) and left A2 with no open profile findings. The live
+cross-level queue is recorded in the A1–B1 audit ledger and backlog, not frozen in this baseline.
 
 ## Dense-topic decisions
 
