@@ -92,10 +92,11 @@ items:
       de: "Ein starkes Verb nimmt nie -te: gehen wechselt stattdessen den Vokal — ging. Die Form gehte überträgt einfach das Muster von machen → machte auf ein starkes Verb; im Deutschen gibt es sie nicht. Die starken Formen muss man einzeln kennen."
 
   - id: mc-nachdem-tense
+    revision: 2
     outcomes: [vorzeitigkeit-ausdruecken]
     type: mc
     focus: plusquamperfekt-nachdem
-    prompt: "Nachdem ich die E-Mail ___, rief ich sofort zurück."
+    prompt: "Welche Form markiert die Vorzeitigkeit ausdrücklich? Nachdem ich die E-Mail ___, rief ich sofort zurück."
     options:
       - "gelesen hatte"
       - "las"
@@ -105,10 +106,10 @@ items:
       ru: "После того как я прочитал письмо, я сразу перезвонил."
       uk: "Після того як я прочитав листа, я одразу передзвонив."
     explain:
-      en: "nachdem demands the tense staircase: its clause stands one step earlier than the main clause — Plusquamperfekt (gelesen hatte) against Präteritum (rief). With las, both events land on the same step and the before/after the sentence promises disappears."
-      ru: "nachdem требует лестницы времён: его придаточное стоит на ступень раньше главного — Plusquamperfekt (gelesen hatte) против Präteritum (rief). С las оба события оказываются на одной ступени, и обещанное предложением «до/после» исчезает."
-      uk: "nachdem вимагає сходів часів: його підрядне стоїть на сходинку раніше за головне — Plusquamperfekt (gelesen hatte) проти Präteritum (rief). З las обидві події опиняються на одній сходинці, і обіцяне реченням «до/після» зникає."
-      de: "nachdem verlangt die Zeitentreppe: Sein Nebensatz steht eine Stufe früher als der Hauptsatz — Plusquamperfekt (gelesen hatte) gegen Präteritum (rief). Mit las landen beide Ereignisse auf derselben Stufe, und der zeitliche Abstand, den nachdem verspricht, verschwindet."
+      en: "The question asks which form marks the earlier step explicitly: Plusquamperfekt (gelesen hatte) against narrative Präteritum (rief). nachdem already orders the events, so las can occur in real German; it is not the answer here because it does not itself encode Vorzeitigkeit."
+      ru: "Вопрос спрашивает, какая форма явно отмечает более раннюю ступень: Plusquamperfekt (gelesen hatte) на фоне повествовательного Präteritum (rief). Союз nachdem уже упорядочивает события, поэтому las встречается в реальном немецком; здесь это не ответ, потому что сама форма не выражает Vorzeitigkeit."
+      uk: "Питання запитує, яка форма явно позначає ранішу сходинку: Plusquamperfekt (gelesen hatte) на тлі оповідного Präteritum (rief). Сполучник nachdem уже впорядковує події, тому las трапляється в реальній німецькій; тут це не відповідь, бо сама форма не виражає Vorzeitigkeit."
+      de: "Gefragt ist die Form, die die Vorzeitigkeit ausdrücklich markiert: Plusquamperfekt (gelesen hatte) gegenüber dem Erzählpräteritum (rief). nachdem ordnet die Ereignisse bereits, deshalb kommt las im tatsächlichen Sprachgebrauch vor; hier ist es nicht die gesuchte Form, weil es Vorzeitigkeit nicht selbst kodiert."
 
   - id: cloze-gegessen-hatten
     outcomes: [vorzeitigkeit-ausdruecken]
