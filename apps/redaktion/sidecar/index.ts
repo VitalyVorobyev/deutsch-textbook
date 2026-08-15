@@ -15,7 +15,7 @@ interface RpcResponse { version: number; id: number; result?: unknown; error?: s
 
 let workspaceRoot: string | undefined;
 let revision = 0;
-let watcher: FSWatcher | undefined;
+let watchers: FSWatcher[] = [];
 
 function workspaceInfo() {
   return { root: workspaceRoot ?? '', writable: !!workspaceRoot, transport: 'tauri', platform: process.platform };
@@ -30,13 +30,32 @@ function validateCheckout(path: string): string {
 
 function openWorkspace(path: string) {
   workspaceRoot = validateCheckout(path);
-  watcher?.close();
-  watcher = watch(workspaceRoot, { recursive: true }, (_event, file) => {
-    const relative = String(file ?? '').replaceAll('\\', '/');
-    if (!relative.startsWith('content/') && !relative.startsWith('data/')) return;
-    invalidateContentGraph(workspaceRoot!);
-    revision += 1;
-  });
+  for (const w of watchers) w.close();
+  watchers = [];
+
+  // Two narrow watches rather than one recursive watch of the whole checkout. The old shape
+  // watched `workspaceRoot` recursively and filtered by prefix *after* the event arrived, so the
+  // OS was reporting every write under `node_modules/`, `dist/` and `src-tauri/target/` — a Rust
+  // build or a `bun install` delivered thousands of events the sidecar then discarded one by one.
+  // Watching the two directories the corpus actually lives in costs nothing and never sees them.
+  //
+  // Coalesced for the same reason as the Vite plugin: one logical edit is several file events,
+  // and each used to bump `revision`, which is what the client polls.
+  const COALESCE_MS = 120;
+  let pending: ReturnType<typeof setTimeout> | undefined;
+  const bump = () => {
+    if (pending) clearTimeout(pending);
+    pending = setTimeout(() => {
+      pending = undefined;
+      invalidateContentGraph(workspaceRoot!);
+      revision += 1;
+    }, COALESCE_MS);
+  };
+  for (const dir of ['content', 'data']) {
+    const target = join(workspaceRoot, dir);
+    if (!existsSync(target)) continue;
+    watchers.push(watch(target, { recursive: true }, bump));
+  }
   revision += 1;
   return workspaceInfo();
 }
@@ -139,4 +158,4 @@ lines.on('line', (line) => {
     process.stdout.write(`${JSON.stringify(response)}\n`);
   })();
 });
-lines.on('close', () => watcher?.close());
+lines.on('close', () => { for (const w of watchers) w.close(); });

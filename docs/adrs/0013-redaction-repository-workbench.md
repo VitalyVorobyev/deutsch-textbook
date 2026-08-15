@@ -1,4 +1,4 @@
-# ADR 0013: Redaction is a repository-backed desktop workbench
+# ADR 0013: Redaktion is a repository-backed desktop workbench
 
 Status: accepted · 2026-08-14
 
@@ -18,7 +18,7 @@ the primary editing surface for a local source tree.
 
 ## Decision
 
-**Redaction is a standalone Tauri application over one selected Deutsch-Atlas checkout.** It does
+**Redaktion is a standalone Tauri application over one selected Deutsch-Atlas checkout.** It does
 not share the learner shell or learner state. `@da/content` remains the only derived content model;
 there is no editorial content database and no Python backend.
 

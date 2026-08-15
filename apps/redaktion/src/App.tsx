@@ -181,7 +181,7 @@ export function App() {
       <header className="sticky top-0 z-30 h-14 border-b border-border-subtle bg-surface/95 backdrop-blur">
         <div className="flex h-full items-center gap-4 px-4 lg:px-6">
           <a href={href('uebersicht')} className="shrink-0 font-serif text-base font-semibold tracking-tight text-ink">
-            Redaction
+            Redaktion
             <span className="ml-2 font-sans text-xs font-normal uppercase tracking-[0.14em] text-ink-muted">Deutsch-Atlas</span>
           </a>
           <div className="flex shrink-0 items-center rounded-md border border-border-subtle p-0.5" aria-label="Navigationsverlauf">

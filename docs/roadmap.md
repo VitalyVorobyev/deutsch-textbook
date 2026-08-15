@@ -32,7 +32,7 @@ extensive-reading corpus, then cross-links/Referenz.
    internal grammar, an external structure inventory, the Goethe Wortliste and teaching depth remain
    separate. The German-medium edition is outside this gate.
 
-   - ~~P27-2a trustworthy Redaction preview~~ — shipped: safe one-language rendering and language
+   - ~~P27-2a trustworthy Redaktion preview~~ — shipped: safe one-language rendering and language
      visibility make source review possible.
    - ~~P27-2b denominator contract~~ — shipped: DTZ is the cumulative A2–B1 external anchor, with
      alignment separated from internal coverage and learner mastery.
@@ -106,9 +106,9 @@ figures: [archive](archive/2026-08-doc-slimming.md).
 Five named tracks, decided 2026-08-04. Each has an ADR that holds the reasoning and backlog entries
 that hold the work; a track can be picked up without re-deciding it. **They start after B1 closes.**
 
-### Redaction · P27
+### Redaktion · P27
 
-Redaction is being rebuilt as a local repository-backed editorial workstation, independently of
+Redaktion is being rebuilt as a local repository-backed editorial workstation, independently of
 learner features. The delivery sequence is intentionally vertical: each milestone must leave one
 complete editorial path usable rather than adding another disconnected report.
 
@@ -142,7 +142,7 @@ scenario passes without opening a new window or losing a draft.
 **P27-1b · learning-activity architecture shipped 2026-08-14.** Every topic-owned teaching set now
 has an explicit purpose, stage and German title. The migration replaced file-count arithmetic with
 topic-wide evidence and activity-contract checks, moved 21 productive items out of six overloaded
-cores, added four missing application activities, and made the learner page and Redaction present
+cores, added four missing application activities, and made the learner page and Redaktion present
 the same four-function model. [ADR 0014](adrs/0014-learning-activity-architecture.md) owns the
 contract; [the activity audit](curriculum/learning-activity-audit.md) records all 172 sets and the
 five intentionally dense topics.

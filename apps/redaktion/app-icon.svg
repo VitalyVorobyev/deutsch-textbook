@@ -1,0 +1,56 @@
+<!--
+  Redaktion's app icon — the master. Everything under src-tauri/icons/ and the favicon are
+  generated from it; edit here and re-run the two commands in apps/redaktion/README-icon.md.
+
+  Same family as the learner app on purpose. packages/ui/src/tokens.css says it plainly:
+  "Redaktion is denser, but density is a layout decision rather than a second brand." So the
+  ground, the corner radius and the diagonal are the Atlas tile's, and only the glyph changes:
+  white DA for the course, white pilcrow for the workbench that edits it.
+
+  The colours are the design tokens, not eyeballed: the brand token is amber-600 and the
+  brand-ink token is amber-700, both quoted here in the sRGB hex Tailwind's oklch values
+  resolve to, because an .icns file cannot hold a CSS variable.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <clipPath id="tile">
+      <rect x="0" y="0" width="1024" height="1024" rx="228" ry="228"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#tile)">
+    <!-- amber-600, the brand token -->
+    <rect x="0" y="0" width="1024" height="1024" fill="#d97706"/>
+    <!-- amber-700, the brand-ink token: the same diagonal wedge the Atlas tile carries -->
+    <polygon points="0,800 1024,560 1024,1024 0,1024" fill="#b45309" opacity="0.55"/>
+  </g>
+
+  <!--
+    The pilcrow, drawn rather than set in a font: an installed typeface is not a build input, and
+    `tauri icon` rasterizes whatever it is given without one. Proportions follow the Atlas
+    letterforms: same optical weight, same white, same generous margin.
+  -->
+  <g fill="#ffffff">
+    <!-- the bowl: a filled round-cornered form open at the bottom right -->
+    <path d="
+      M 700 268
+      L 700 348
+      L 622 348
+      L 622 756
+      L 536 756
+      L 536 348
+      L 486 348
+      L 486 756
+      L 400 756
+      L 400 552
+      C 316 552 252 490 252 410
+      C 252 330 316 268 400 268
+      Z
+      M 400 348
+      C 360 348 338 376 338 410
+      C 338 444 360 472 400 472
+      L 400 348
+      Z
+    " fill-rule="evenodd"/>
+  </g>
+</svg>
