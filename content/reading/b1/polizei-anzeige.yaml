@@ -1,0 +1,94 @@
+topic: polizei-anzeige
+kind: intensive
+title_de: "Das Fahrrad im Hof"
+text:
+  - >-
+    Am Samstagmorgen war das Fahrrad weg. Es hatte am Freitagabend noch im Hof
+    gestanden, angeschlossen an das Geländer. Jetzt lag dort nur noch das Schloss.
+    Frau Petrova ging zur Polizei und machte eine
+    [[Anzeige::report, the one you file with the police — the same word also means a
+    newspaper advertisement::заявление — то самое, которое подают в полицию; то же
+    слово значит и объявление в газете::заяву — саме ту, яку подають у поліцію; те
+    саме слово означає й оголошення в газеті]].
+  - >-
+    Der Beamte fragte,
+    [[ob sie etwas gehört habe::whether she had heard anything — ob supplies the
+    opener a yes/no question has none of::слышала ли она что-нибудь — ob подставляет
+    начало, которого у вопроса «да/нет» нет::чи чула вона щось — ob підставляє
+    початок, якого в питання «так/ні» немає]]. Sie sagte,
+    [[dass eine Nachbarin gegen Mitternacht ein Geräusch gehört hat::that a neighbour
+    heard a noise around midnight — dass, and the auxiliary closes the clause::что
+    соседка около полуночи слышала шум — dass, и вспомогательный закрывает
+    придаточное::що сусідка близько опівночі чула шум — dass, і допоміжне закриває
+    підрядне]]. Der Beamte fragte auch,
+    [[wann sie das Fahrrad zuletzt gesehen habe::when she had last seen the bicycle —
+    a question with a question word simply keeps it::когда она в последний раз видела
+    велосипед — вопрос с вопросительным словом просто сохраняет его::коли вона востаннє
+    бачила велосипед — питання з питальним словом просто зберігає його]].
+  - >-
+    Zwei Wochen später rief die Polizei an. Ein Mann war
+    [[festgenommen::detained — the participle, here still a full verb::задержан —
+    причастие, здесь ещё полноценный глагол::затриманий — дієприкметник, тут ще
+    повноцінне дієслово]] worden, und in seinem Keller stand
+    [[das gestohlene Fahrrad::the stolen bicycle — the same participle, now an
+    adjective with an ending::украденный велосипед — то же причастие, теперь
+    прилагательное с окончанием::украдений велосипед — той самий дієприкметник, тепер
+    прикметник із закінченням]]. Frau Petrova hatte einen
+    [[Verdacht::suspicion — what you think, which may be said without naming
+    anyone::подозрение — то, что вы думаете, и высказать это можно, никого не
+    называя::підозра — те, що ви думаєте, і висловити це можна, нікого не називаючи]]
+    gehabt, aber keinen Beweis. Sie hatte deshalb keinen Namen genannt.
+questions:
+  - id: frage-nachbarin
+    outcomes: [polizeimeldung-verstehen]
+    type: mc
+    prompt: "Wer hat in der Nacht ein Geräusch gehört?"
+    options:
+      - "Eine Nachbarin."
+      - "Frau Petrova selbst."
+      - "Der Beamte."
+    correct: 0
+    translation:
+      en: Who heard a noise during the night?
+      ru: Кто слышал шум ночью?
+      uk: Хто чув шум уночі?
+    explain:
+      en: "„Sie sagte, dass eine Nachbarin gegen Mitternacht ein Geräusch gehört hat.“ Frau Petrova is reporting somebody else's experience, not her own — which is the whole reason the sentence needs *dass* rather than a plain statement. Read the reported clause and the person inside it is the neighbour, not the speaker."
+      ru: "«Sie sagte, dass eine Nachbarin gegen Mitternacht ein Geräusch gehört hat». Госпожа Петрова передаёт чужой опыт, а не свой, — ради этого предложению и нужен *dass*, а не простое утверждение. Прочитайте придаточное: действующее лицо в нём — соседка, а не говорящая."
+      uk: "«Sie sagte, dass eine Nachbarin gegen Mitternacht ein Geräusch gehört hat». Пані Петрова передає чужий досвід, а не свій, — заради цього реченню й потрібен *dass*, а не просте твердження. Прочитайте підрядне: дійова особа в ньому — сусідка, а не мовиця."
+
+  - id: frage-partizip
+    outcomes: [polizeimeldung-verstehen, diebstahl-melden]
+    type: mc
+    prompt: "Was stand im Keller des Mannes?"
+    options:
+      - "Das gestohlene Fahrrad."
+      - "Nur das Schloss."
+      - "Ein zweites Fahrrad."
+    correct: 0
+    translation:
+      en: What was standing in the man's cellar?
+      ru: Что стояло в подвале у мужчины?
+      uk: Що стояло в підвалі в чоловіка?
+    explain:
+      en: "„… und in seinem Keller stand das gestohlene Fahrrad.“ The lock is in the first paragraph and is what was left behind in the yard, not what was found. Notice that *gestohlen* appears in this text only as an adjective with an ending — the event itself was never reported with a passive, because by the end the text is describing the bicycle rather than the theft."
+      ru: "«… und in seinem Keller stand das gestohlene Fahrrad». Замок — из первого абзаца: это то, что осталось во дворе, а не то, что нашли. Обратите внимание, что *gestohlen* встречается в тексте только как прилагательное с окончанием: само событие пассивом нигде не описано, потому что к концу текст говорит уже о велосипеде, а не о краже."
+      uk: "«… und in seinem Keller stand das gestohlene Fahrrad». Замок — із першого абзацу: це те, що лишилося у дворі, а не те, що знайшли. Зверніть увагу, що *gestohlen* трапляється в тексті лише як прикметник із закінченням: сама подія пасивом ніде не описана, бо під кінець текст говорить уже про велосипед, а не про крадіжку."
+
+  - id: frage-name
+    outcomes: [polizeimeldung-verstehen]
+    type: mc
+    prompt: "Warum hat Frau Petrova keinen Namen genannt?"
+    options:
+      - "Sie hatte einen Verdacht, aber keinen Beweis."
+      - "Sie kannte niemanden im Haus."
+      - "Der Beamte hat nicht danach gefragt."
+    correct: 0
+    translation:
+      en: Why did Frau Petrova not name anybody?
+      ru: Почему госпожа Петрова не назвала имени?
+      uk: Чому пані Петрова не назвала імені?
+    explain:
+      en: "The last two sentences say it directly: „Frau Petrova hatte einen Verdacht gehabt, aber keinen Beweis. Sie hatte deshalb keinen Namen genannt.“ The two words are the point of the paragraph — a suspicion is yours to state, a name is a claim about somebody else, and only a *Beweis* closes the gap between them."
+      ru: "Два последних предложения говорят прямо: «Frau Petrova hatte einen Verdacht gehabt, aber keinen Beweis. Sie hatte deshalb keinen Namen genannt». Эти два слова и есть смысл абзаца: подозрение — ваше и высказать его можно, имя — утверждение о другом человеке, и разрыв между ними закрывает только *Beweis*."
+      uk: "Два останні речення кажуть прямо: «Frau Petrova hatte einen Verdacht gehabt, aber keinen Beweis. Sie hatte deshalb keinen Namen genannt». Ці два слова і є сенс абзацу: підозра — ваша і висловити її можна, ім'я — твердження про іншу людину, і розрив між ними закриває лише *Beweis*."

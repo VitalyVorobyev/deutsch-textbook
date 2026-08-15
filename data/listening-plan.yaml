@@ -504,6 +504,27 @@ units:
         register: "informell-freundlich, Gespräch"
         item_types: [audio-comprehension]
         context_sound: "sehr leiser Café-Raumton"
+  - unit: natur-wetter
+    level: A2
+    artifacts:
+      # model-input, not listening-outcome: the unit's four outcomes are one reading and three
+      # production, so there is no listening outcome for an artifact to measure, and claiming one
+      # would be evidence the unit never asked for. What the audio adds is the genre in its spoken
+      # form — the empty `es` is unstressed and runs straight into the verb beside it, so a radio
+      # forecast is where the ear has to recover a word it can barely hear. The unit's dictation
+      # item makes that point in miniature; this artifact makes it in connected speech.
+      - id: ls-natur-wetter-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzer Wetterbericht im Radio: heute, morgen und das Wochenende, mit Temperaturen und einer Warnung vor einem Gewitter"
+        outcomes: [wetterbericht-verstehen]
+        required_vocabulary: [Wetter, Grad, Gewitter, bewölkt, trocken]
+        grammar_target: "unpersönliches es mit Wetterverben und mit sein/werden"
+        duration_seconds: { min: 35, max: 50 }
+        speakers: { min: 1, max: 1 }
+        register: "neutral-sachlich, Rundfunk"
+        item_types: [audio-comprehension]
+        context_sound: "kein Raumton, Studioaufnahme"
   - unit: erfahrungen-erzaehlen
     level: B1
     artifacts:
@@ -708,3 +729,96 @@ units:
         register: "nachbarschaftlich-freundlich, gesprochene Nachricht"
         item_types: [audio-comprehension]
         context_sound: "leises Treppenhaus"
+  - unit: unfall-notruf
+    level: B1
+    artifacts:
+      # listening-outcome is not available here either: the unit's four outcomes are one reading,
+      # two spoken interaction and one spoken production. model-input carries what the learner
+      # has to imitate — a real emergency call, where the dispatcher's questions arrive faster
+      # than a course dialogue and the caller has to answer in the order the system needs.
+      - id: ls-unfall-notruf-01
+        wave: 2
+        purpose: model-input
+        scenario: "Notruf 112: die Leitstelle fragt nach Adresse, Hergang und Verletzung, die anrufende Person antwortet knapp und bleibt am Telefon"
+        outcomes: [notruf-absetzen]
+        required_vocabulary: [Notruf, verletzt, Krankenwagen, bluten, Kreuzung]
+        grammar_target: "Reihenfolge der Angaben und die Perfektbildung von passieren"
+        duration_seconds: { min: 45, max: 65 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-dringlich, Telefongespräch"
+        item_types: [audio-comprehension]
+        context_sound: "Straßengeräusch im Hintergrund"
+  - unit: polizei-anzeige
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome to measure. What the audio adds is the counter itself —
+      # the officer's questions arrive as reported speech coming back at you, which is the one
+      # place the construction is heard rather than read.
+      - id: ls-polizei-anzeige-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Polizeiwache: eine Anzeige wegen Fahrraddiebstahl, der Beamte fragt nach Zeitraum, Ort und Zeugen und wiederholt die Angaben"
+        outcomes: [diebstahl-melden]
+        required_vocabulary: [Anzeige, gestohlen, Zeugin, Verdacht, Beweis]
+        grammar_target: "indirekte Rede mit dass und ob, Partizip als Adjektiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Amtsgespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Amtsraum"
+  - unit: versicherungen-behoerden
+    level: B1
+    artifacts:
+      # model-input: the unit's four outcomes are one reading, one writing and two spoken, so
+      # there is no listening outcome for an artifact to measure. The genre it carries is the
+      # counter conversation in which the learner has to say they do not know — the one line
+      # this topic exists to make sayable, and the one a written model cannot rehearse.
+      - id: ls-versicherungen-behoerden-01
+        wave: 2
+        purpose: model-input
+        scenario: "Am Schalter der Krankenkasse: eine Kundin weiß nicht, ob ein Schaden versichert ist, fragt nach und bittet um einen schriftlichen Nachweis"
+        outcomes: [versicherung-klaeren]
+        required_vocabulary: [versichert, Nachweis, Frist, Antrag, Behörde]
+        grammar_target: "ob-Nebensatz nach weiß nicht, Präpositionen mit Genitiv"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-höflich, Schaltergespräch"
+        item_types: [audio-comprehension]
+        context_sound: "leiser Wartebereich"
+  - unit: sucht-lebensstil
+    level: B1
+    artifacts:
+      # model-input: the unit's outcomes are one reading, one writing and two spoken production,
+      # so no listening outcome exists to measure. The genre it carries is advice given without
+      # moralising — the register question this topic is really about.
+      - id: ls-sucht-lebensstil-01
+        wave: 2
+        purpose: model-input
+        scenario: "Zwei Bekannte sprechen über das Aufhören: die eine erzählt, was sie versucht hat, die andere rät vorsichtig und ohne Vorwurf"
+        outcomes: [rat-zum-aufhoeren]
+        required_vocabulary: [Zigarette, aufhören, Sucht, Alkohol, Nichtraucher]
+        grammar_target: "irreale Bedingung mit Konjunktiv II, lassen"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "informell-vertraulich, Gespräch unter Bekannten"
+        context_sound: "leiser Küchen-Raumton"
+        item_types: [audio-comprehension]
+  - unit: bildungswege
+    level: B1
+    artifacts:
+      # model-input: one reading, two writing and one spoken-interaction outcome, so again no
+      # listening outcome. The audio carries the Kita counter — the conversation where a parent
+      # has to state a condition and a purpose in the same breath.
+      - id: ls-bildungswege-01
+        wave: 2
+        purpose: model-input
+        scenario: "Anmeldung in der Kita: eine Mutter fragt nach einem Platz, nennt Bedingungen und begründet, warum sie den Platz braucht"
+        outcomes: [betreuung-klaeren]
+        required_vocabulary: [Kita, Platz, anmelden, Grundschule, Hochschule]
+        grammar_target: "falls gegen wenn, damit gegen um … zu"
+        duration_seconds: { min: 55, max: 75 }
+        speakers: { min: 2, max: 2 }
+        register: "sachlich-freundlich, Beratungsgespräch"
+        context_sound: "leiser Gruppenraum im Hintergrund"
+        item_types: [audio-comprehension]

@@ -1,0 +1,94 @@
+topic: sucht-lebensstil
+kind: intensive
+title_de: "Zwölf Jahre"
+text:
+  - >-
+    Zwölf Jahre lang war ich Raucherin. Am Anfang war das Rauchen nur eine
+    [[Gewohnheit::habit — something a person could still decide to stop::привычка —
+    то, что человек ещё может решить прекратить::звичка — те, що людина ще може
+    вирішити припинити]], mit den Jahren ist daraus eine
+    [[Sucht::addiction — the point at which stopping is no longer a
+    decision::зависимость — точка, в которой остановка перестала быть
+    решением::залежність — точка, у якій зупинка перестала бути рішенням]]
+    geworden. Meine Jacke hat im Treppenhaus nach Zigaretten
+    [[gestunken::stunk — stinken, stank, hat gestunken::воняла — stinken, stank,
+    hat gestunken::смерділа — stinken, stank, hat gestunken]], und meine Tochter
+    hat mich jeden Morgen gefragt, wann ich endlich aufhöre.
+  - >-
+    Vor einem Jahr habe ich mich in der Apotheke
+    [[beraten lassen::had myself advised — the bare infinitive comes first and
+    lassen keeps its own infinitive shape in the perfect::проконсультировалась —
+    голый инфинитив идёт первым, а lassen в перфекте сохраняет форму
+    инфинитива::проконсультувалася — голий інфінітив іде першим, а lassen у
+    перфекті зберігає форму інфінітива]]. Dort hat man mir gesagt:
+    „[[Wenn Sie das Rauchen sein lassen würden::if you gave up smoking — both
+    halves of an unreal condition carry the Konjunktiv II::если бы вы бросили
+    курить — обе половины нереального условия несут конъюнктив II::якби ви кинули
+    курити — обидві половини нереальної умови несуть кон'юнктив II]], hätten Sie
+    nach vier Wochen mehr [[Luft::air — here it means breath::воздуха — здесь:
+    дыхания::повітря — тут: дихання]].“ Ich habe es nicht geglaubt, aber ich habe
+    es versucht.
+  - >-
+    Heute bin ich
+    [[Nichtraucherin::non-smoker (f) — after sein a category noun stands without
+    an article::некурящая — после sein существительное-разряд стоит без
+    артикля::та, хто не курить — після sein іменник-розряд стоїть без артикля]].
+    Ich esse mehr Obst, ich bin
+    [[schlanker::slimmer — the polite word, unlike dünn::стройнее — вежливое
+    слово, в отличие от dünn::стрункіша — ввічливе слово, на відміну від dünn]]
+    geworden und gebe jeden Monat hundert Euro weniger aus. Wenn mich heute jemand
+    fragt, sage ich nur einen Satz: Lassen Sie sich beraten. Allein ist es schwer.
+questions:
+  - id: frage-apotheke
+    outcomes: [gesundheitstext-verstehen, folgen-abwaegen]
+    type: mc
+    prompt: "Was hat man ihr in der Apotheke gesagt?"
+    options:
+      - "Ohne Zigaretten hätte sie nach vier Wochen mehr Luft."
+      - "Sie sollte sofort zum Arzt gehen."
+      - "Sie müsste jeden Tag mehr Obst essen."
+    correct: 0
+    translation:
+      en: What was she told at the pharmacy?
+      ru: Что ей сказали в аптеке?
+      uk: Що їй сказали в аптеці?
+    explain:
+      en: "„Wenn Sie das Rauchen sein lassen würden, hätten Sie nach vier Wochen mehr Luft.“ The other two options name things the text does mention — the doctor and the fruit — but neither was said in the pharmacy, and neither is offered as a condition. Note how the promise is built: both halves carry the Konjunktiv II, because at the moment it is spoken she has not stopped."
+      ru: "«Wenn Sie das Rauchen sein lassen würden, hätten Sie nach vier Wochen mehr Luft». Два других варианта называют то, о чём в тексте речь идёт, — врача и фрукты, — но ни то ни другое в аптеке не говорили и ни то ни другое не подано как условие. Обратите внимание, как построено обещание: обе половины несут Konjunktiv II, потому что в момент разговора она ещё не бросила."
+      uk: "«Wenn Sie das Rauchen sein lassen würden, hätten Sie nach vier Wochen mehr Luft». Два інші варіанти називають те, про що в тексті йдеться, — лікаря і фрукти, — але ні того ні того в аптеці не казали і ні те ні те не подано як умову. Зверніть увагу, як побудовано обіцянку: обидві половини несуть Konjunktiv II, бо в момент розмови вона ще не кинула."
+
+  - id: frage-gewohnheit
+    outcomes: [gesundheitstext-verstehen]
+    type: mc
+    prompt: "Wie beschreibt sie die zwölf Jahre?"
+    options:
+      - "Am Anfang war es eine Gewohnheit, später eine Sucht."
+      - "Am Anfang war es eine Sucht, später eine Gewohnheit."
+      - "Es war von Anfang an eine Sucht."
+    correct: 0
+    translation:
+      en: How does she describe the twelve years?
+      ru: Как она описывает эти двенадцать лет?
+      uk: Як вона описує ці дванадцять років?
+    explain:
+      en: "„Am Anfang war das Rauchen nur eine Gewohnheit, mit den Jahren ist daraus eine Sucht geworden.“ The order is the point of the paragraph, and the two words are not synonyms: a *Gewohnheit* is still a decision, and a *Sucht* is what is left when the decision stops working. *Daraus* points back to the habit — out of it something else grew."
+      ru: "«Am Anfang war das Rauchen nur eine Gewohnheit, mit den Jahren ist daraus eine Sucht geworden». Порядок и есть смысл абзаца, а два слова не синонимы: *Gewohnheit* — это ещё решение, а *Sucht* — то, что остаётся, когда решение перестаёт работать. *Daraus* указывает назад на привычку: из неё выросло другое."
+      uk: "«Am Anfang war das Rauchen nur eine Gewohnheit, mit den Jahren ist daraus eine Sucht geworden». Порядок і є сенс абзацу, а два слова не синоніми: *Gewohnheit* — це ще рішення, а *Sucht* — те, що лишається, коли рішення перестає працювати. *Daraus* вказує назад на звичку: з неї виросло інше."
+
+  - id: frage-heute
+    outcomes: [gesundheitstext-verstehen]
+    type: mc
+    prompt: "Was ist heute anders?"
+    options:
+      - "Sie raucht nicht mehr und gibt weniger Geld aus."
+      - "Sie raucht weniger und gibt mehr Geld aus."
+      - "Sie raucht nur noch im Treppenhaus."
+    correct: 0
+    translation:
+      en: What is different today?
+      ru: Что сегодня иначе?
+      uk: Що сьогодні інакше?
+    explain:
+      en: "„Heute bin ich Nichtraucherin … und gebe jeden Monat hundert Euro weniger aus.“ *Nichtraucherin* is a category, not a quantity — it says she does not smoke at all, so *sie raucht weniger* contradicts the text rather than softening it. The stairwell in the first paragraph is where the jacket smelled, never where she smoked."
+      ru: "«Heute bin ich Nichtraucherin … und gebe jeden Monat hundert Euro weniger aus». *Nichtraucherin* — это разряд, а не количество: слово говорит, что она не курит вовсе, поэтому *sie raucht weniger* тексту противоречит, а не смягчает его. Лестница в первом абзаце — место, где пахло от куртки, а не место, где она курила."
+      uk: "«Heute bin ich Nichtraucherin … und gebe jeden Monat hundert Euro weniger aus». *Nichtraucherin* — це розряд, а не кількість: слово каже, що вона не курить зовсім, тому *sie raucht weniger* текстові суперечить, а не пом'якшує його. Сходи в першому абзаці — місце, де пахло від куртки, а не місце, де вона курила."
