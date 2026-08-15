@@ -18,11 +18,15 @@ describe('listening production inventory', () => {
   // (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
   // same reason, and part three (zeit-praepositionen, 2026-08-12) took it 48 → 49 on the
   // same argument — one reading outcome, three writing ones. The full A1 Wortbildung slice took
-  // it 49 → 50 with a model-input plan tied to its compound-reading outcome.
+  // it 49 → 50 with a model-input plan tied to its compound-reading outcome. natur-wetter
+  // (2026-08-15) took it 50 → 51, model-input for the fourth time and for the same reason:
+  // its four outcomes are one reading and three production, so there is no listening outcome
+  // for the artifact to measure. What it adds is a radio forecast — the genre where the
+  // unstressed es the unit owns is hardest to hear.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(50);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(50);
+    expect(rows).toHaveLength(51);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(51);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

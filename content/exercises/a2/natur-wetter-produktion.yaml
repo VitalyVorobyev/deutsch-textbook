@@ -1,0 +1,162 @@
+topic: natur-wetter
+role: practice
+stage: transfer
+activity: application
+title_de: "Anwenden — vom Fenster aus berichten"
+title:
+  en: "Apply — report what you see from the window"
+  ru: "Применение — рассказать, что видно из окна"
+  uk: "Застосування — розповісти, що видно з вікна"
+
+# Independent transfer: the contexts are new (a message to a friend, a walk, a postcard), the
+# hints are gone, and nothing here re-skins a Grundübung item. Two of the five carry
+# `es-unpersoenlich`, which is what lifts that tag off the thin tail — five items across two
+# practice files rather than three items in one, so the confusion is met twice with real spacing
+# between the meetings rather than drilled once in a single sitting.
+#
+# The write task is minimal-ceremony by contract: attempt, then the model answer. Its
+# `requirements` render as guidance beside the task and gate nothing, because the app cannot
+# verify free production and must not charge steps for feedback it cannot give. The model is
+# written to be worth comparing against — it names the two places where the empty subject has to
+# appear, which is what the learner should check in their own draft.
+items:
+  - id: uebersetzen-wetterbericht
+    outcomes: [wetter-beschreiben, wetter-vergleichen]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["es", "warm"]
+    instruction:
+      en: "Start with the time word."
+      ru: "Начните со слова, называющего время."
+      uk: "Почніть зі слова, що називає час."
+    prompt_en: "Yesterday it was very warm here."
+    prompt_ru: "Вчера здесь было очень тепло."
+    prompt_uk: "Учора тут було дуже тепло."
+    answer: "Gestern war es hier sehr warm."
+    explain:
+      en: "Two things the source sentence does not give you. The subject: *sein* needs one as much as a weather verb does, and with *gestern* in front it lands behind the verb — *Gestern war es*. And the bare adjective: *warm* takes no ending after *war*. Neither can be reached by translating, because the source has no subject and no adjective ending to translate."
+      ru: "Две вещи, которых исходная фраза не даёт. Подлежащее: *sein* требует его не меньше, чем погодный глагол, и при вынесенном *gestern* оно оказывается за глаголом — *Gestern war es*. И голое прилагательное: после *war* у *warm* окончания нет. Ни то ни другое переводом не получить — в русской фразе нет ни подлежащего, ни окончания."
+      uk: "Дві речі, яких вихідна фраза не дає. Підмет: *sein* потребує його не менше, ніж погодне дієслово, і за винесеного *gestern* він опиняється за дієсловом — *Gestern war es*. І голий прикметник: після *war* у *warm* закінчення немає. Ні того ні іншого перекладом не дістати — в українській фразі немає ні підмета, ні закінчення."
+
+  - id: uebersetzen-abkuehlung
+    outcomes: [wetter-beschreiben]
+    type: translate
+    focus: es-unpersoenlich
+    key_tokens: ["wurde", "es"]
+    instruction:
+      en: "The weather changed, so use werden rather than sein."
+      ru: "Погода изменилась, поэтому используйте werden, а не sein."
+      uk: "Погода змінилася, тому використайте werden, а не sein."
+    prompt_en: "After the thunderstorm it got noticeably cooler."
+    prompt_ru: "После грозы стало заметно прохладнее."
+    prompt_uk: "Після грози стало помітно прохолодніше."
+    answer: "Nach dem Gewitter wurde es deutlich kühler."
+    accept:
+      - "Nach dem Gewitter wurde es viel kühler."
+    explain:
+      en: "*Werden* takes the same empty subject as *sein* and as the weather verbs — a change of weather has no more of a real subject than a state of it. With *nach dem Gewitter* in front, *es* again lands behind the verb. *Nach* answers *Wann?* here and governs the dative, so *dem Gewitter*; and *kühler* is the comparative, because the sentence reports a difference from before rather than a temperature."
+      ru: "*Werden* берёт то же пустое подлежащее, что *sein* и погодные глаголы: у смены погоды настоящего подлежащего не больше, чем у её состояния. При вынесенном *nach dem Gewitter* слово *es* снова оказывается за глаголом. *Nach* отвечает здесь на *Wann?* и требует дательного падежа — *dem Gewitter*; а *kühler* — сравнительная степень, потому что фраза сообщает не температуру, а разницу с тем, что было."
+      uk: "*Werden* бере той самий порожній підмет, що *sein* і погодні дієслова: у зміни погоди справжнього підмета не більше, ніж у її стану. За винесеного *nach dem Gewitter* слово *es* знову опиняється за дієсловом. *Nach* відповідає тут на *Wann?* і вимагає давального відмінка — *dem Gewitter*; а *kühler* — вищий ступінь, бо фраза повідомляє не температуру, а різницю з тим, що було."
+
+  - id: uebersetzen-landschaft
+    outcomes: [landschaft-beschreiben]
+    type: translate
+    key_tokens: ["Bäume", "Vögel"]
+    instruction:
+      en: "Both nouns are plural."
+      ru: "Оба существительных — во множественном числе."
+      uk: "Обидва іменники — у множині."
+    prompt_en: "Behind the house there are old trees, and birds live in them."
+    prompt_ru: "За домом стоят старые деревья, и в них живут птицы."
+    prompt_uk: "За будинком стоять старі дерева, і в них живуть птахи."
+    answer: "Hinter dem Haus stehen alte Bäume, und in ihnen leben Vögel."
+    accept:
+      - "Hinter dem Haus stehen alte Bäume, und Vögel leben in ihnen."
+    explain:
+      en: "Both plurals change their vowel, which is the part worth pinning: *der Baum → die Bäume*, *der Vogel → die Vögel*. Neither adds a syllable you can hear coming, so they have to be learned as forms rather than derived. *Alte* takes the bare plural ending because no article precedes it, and *hinter* is answering *Wo?*, so the dative *dem Haus* follows."
+      ru: "Обе формы множественного числа меняют гласную — это и есть то, что здесь закрепляется: *der Baum → die Bäume*, *der Vogel → die Vögel*. Ни одна не добавляет слога, который можно было бы предугадать, поэтому их учат как формы, а не выводят. *Alte* берёт окончание множественного числа без артикля, а *hinter* отвечает на *Wo?*, поэтому дальше дательный: *dem Haus*."
+      uk: "Обидві форми множини змінюють голосну — це і є те, що тут закріплюється: *der Baum → die Bäume*, *der Vogel → die Vögel*. Жодна не додає складу, який можна було б передбачити, тому їх вчать як форми, а не виводять. *Alte* бере закінчення множини без артикля, а *hinter* відповідає на *Wo?*, тому далі давальний: *dem Haus*."
+
+  - id: diktat-wetter
+    outcomes: [wetterbericht-verstehen]
+    type: listen
+    text: "Am Sonntag ist es sonnig und warm."
+    translation:
+      en: "On Sunday it is sunny and warm."
+      ru: "В воскресенье солнечно и тепло."
+      uk: "У неділю сонячно і тепло."
+    explain:
+      en: "A weather report read aloud, and the trap is in what you cannot hear as a separate idea: *es* is unstressed and runs straight into *ist*, so it is easy to write down only what carries meaning and lose the subject. Both adjectives stay bare after *ist*."
+      ru: "Прогноз погоды на слух, и ловушка в том, что не звучит как отдельная мысль: *es* безударно и сливается с *ist*, поэтому легко записать только то, что несёт смысл, и потерять подлежащее. Оба прилагательных после *ist* остаются голыми."
+      uk: "Прогноз погоди на слух, і пастка в тому, що не звучить як окрема думка: *es* ненаголошене і зливається з *ist*, тому легко записати лише те, що несе зміст, і загубити підмет. Обидва прикметники після *ist* лишаються голими."
+
+  - id: schreiben-postkarte
+    outcomes: [landschaft-beschreiben, wetter-vergleichen]
+    type: write
+    prompt:
+      en: "Write a short postcard (4–5 sentences) from a place with different weather. Say what the weather is like today, compare it with home, and name two things you can see outside."
+      ru: "Напишите короткую открытку (4–5 предложений) из места с другой погодой. Скажите, какая сегодня погода, сравните её с погодой дома и назовите две вещи, которые видно снаружи."
+      uk: "Напишіть коротку листівку (4–5 речень) із місця з іншою погодою. Скажіть, яка сьогодні погода, порівняйте її з погодою вдома і назвіть дві речі, які видно назовні."
+    goal:
+      en: "Tell a friend what the weather is doing where you are, and make them feel the difference from home."
+      ru: "Расскажите другу, какая у вас погода, и дайте почувствовать разницу с домом."
+      uk: "Розкажіть другові, яка у вас погода, і дайте відчути різницю з домом."
+    requirements:
+      - en: "Write one sentence with a weather verb (es regnet, es schneit) or with es ist plus an adjective — and keep the es even if the sentence starts with something else."
+        ru: "Напишите одно предложение с погодным глаголом (es regnet, es schneit) или с es ist и прилагательным — и сохраните es, даже если предложение начинается с другого слова."
+        uk: "Напишіть одне речення з погодним дієсловом (es regnet, es schneit) або з es ist і прикметником — і збережіть es, навіть якщо речення починається з іншого слова."
+      - en: "Compare the two places with als, and keep the preposition on the second half (kälter als zu Hause, wärmer als in Hamburg)."
+        ru: "Сравните два места через als и сохраните предлог во второй половине (kälter als zu Hause, wärmer als in Hamburg)."
+        uk: "Порівняйте два місця через als і збережіть прийменник у другій половині (kälter als zu Hause, wärmer als in Hamburg)."
+      - en: "Name two things you can see outside (Berg, Wald, Meer, See, Fluss, Baum, Blume, Vogel …)."
+        ru: "Назовите две вещи, которые видно снаружи (Berg, Wald, Meer, See, Fluss, Baum, Blume, Vogel …)."
+        uk: "Назвіть дві речі, які видно назовні (Berg, Wald, Meer, See, Fluss, Baum, Blume, Vogel …)."
+    min_words: 35
+    # No attributive adjective the learner has not met in this topic, and no B1 noun: the model
+    # is written to be copied, so it stays inside A2 and inside the two decks this topic adopts.
+    model_answer: "Liebe Anna, hier in den Bergen ist es viel kälter als zu Hause. Heute Morgen hat es geschneit, und jetzt scheint die Sonne. Vom Fenster aus sehe ich einen See und hinter dem See den Wald. Die Luft ist sehr trocken. Viele Grüße!"
+    model_translation:
+      en: "Dear Anna, here in the mountains it is much colder than at home. This morning it snowed, and now the sun is shining. From the window I can see a lake, and the forest behind it. The air is very dry. Best wishes!"
+      ru: "Дорогая Анна, здесь в горах гораздо холоднее, чем дома. Сегодня утром шёл снег, а сейчас светит солнце. Из окна я вижу озеро, а за озером лес. Воздух очень сухой. Большой привет!"
+      uk: "Люба Анно, тут у горах набагато холодніше, ніж удома. Сьогодні вранці йшов сніг, а зараз світить сонце. З вікна я бачу озеро, а за озером ліс. Повітря дуже сухе. Великий привіт!"
+    explain:
+      en: "Compare your draft with the model on three points rather than reading it whole. First the empty subject: the model has it twice — *ist es viel kälter* and *hat es geschneit* — and both are in the fronted position where it is easiest to lose. Second the comparison: *kälter als zu Hause* keeps the *zu* on the second half. Third the one sentence that has a real subject, *scheint die Sonne*, which is the exception this topic keeps pointing at."
+      ru: "Сравните свой черновик с образцом по трём точкам, а не читая его целиком. Первое — пустое подлежащее: в образце оно дважды, *ist es viel kälter* и *hat es geschneit*, и оба раза в вынесенной позиции, где его легче всего потерять. Второе — сравнение: *kälter als zu Hause* сохраняет *zu* во второй половине. Третье — единственное предложение с настоящим подлежащим, *scheint die Sonne*: это то исключение, на которое тема указывает всё время."
+      uk: "Порівняйте свій чернетковий текст зі зразком за трьома точками, а не читаючи його цілком. Перше — порожній підмет: у зразку він двічі, *ist es viel kälter* і *hat es geschneit*, і обидва рази у винесеній позиції, де його найлегше загубити. Друге — порівняння: *kälter als zu Hause* зберігає *zu* у другій половині. Третє — єдине речення зі справжнім підметом, *scheint die Sonne*: це той виняток, на який тема вказує весь час."
+
+  - id: sprechen-wetter
+    outcomes: [wetter-beschreiben, wetter-vergleichen]
+    type: speak
+    mode: spoken-production
+    focus: es-unpersoenlich
+    instruction:
+      en: "Say it aloud — and if you can, record yourself: the checklist names what to listen for."
+      ru: "Скажите вслух — и, если можете, запишите себя: чек-лист подсказывает, на что обращать внимание."
+      uk: "Скажіть уголос — і, якщо можете, запишіть себе: чек-лист підказує, на що звертати увагу."
+    prompt:
+      en: "A colleague asks how the weather has been this week. Answer in four or five sentences: what it was like yesterday, what it is doing right now, and what is supposed to happen tomorrow."
+      ru: "Коллега спрашивает, какая на этой неделе была погода. Ответьте четырьмя-пятью предложениями: как было вчера, что происходит прямо сейчас и что обещают на завтра."
+      uk: "Колега питає, яка цього тижня була погода. Відповідайте чотирма-п'ятьма реченнями: як було вчора, що відбувається просто зараз і що обіцяють на завтра."
+    goal:
+      en: "Get through three different times — yesterday, now, tomorrow — without losing the subject in any of them."
+      ru: "Пройти три разных времени — вчера, сейчас, завтра — и ни в одном не потерять подлежащее."
+      uk: "Пройти три різні часи — учора, зараз, завтра — і в жодному не загубити підмет."
+    checklist:
+      - en: "Every weather sentence had a subject, even the ones that began with a time word (Gestern war es …, Morgen wird es …)."
+        ru: "В каждом предложении о погоде было подлежащее — даже в тех, что начинались со слова времени (Gestern war es …, Morgen wird es …)."
+        uk: "У кожному реченні про погоду був підмет — навіть у тих, що починалися зі слова часу (Gestern war es …, Morgen wird es …)."
+      - en: "No adjective after ist, war or wird carried an ending."
+        ru: "Ни одно прилагательное после ist, war или wird не получило окончания."
+        uk: "Жоден прикметник після ist, war або wird не дістав закінчення."
+      - en: "At least one sentence compared two days with als."
+        ru: "Хотя бы одно предложение сравнивало два дня через als."
+        uk: "Хоча б одне речення порівнювало два дні через als."
+    model_answer: "Gestern war es noch sehr warm, fast dreißig Grad. Heute ist es viel kühler, und seit dem Morgen regnet es. Der Himmel ist den ganzen Tag bewölkt. Morgen soll es wieder trockener werden, aber kalt bleibt es."
+    model_translation:
+      en: "Yesterday it was still very warm, almost thirty degrees. Today it is much cooler, and it has been raining since the morning. The sky has been overcast all day. Tomorrow it is supposed to get drier again, but it will stay cold."
+      ru: "Вчера было ещё очень тепло, почти тридцать градусов. Сегодня гораздо прохладнее, и с утра идёт дождь. Небо весь день облачное. Завтра обещают, что снова станет суше, но холодно останется."
+      uk: "Учора було ще дуже тепло, майже тридцять градусів. Сьогодні набагато прохолодніше, і зранку йде дощ. Небо цілий день захмарене. Завтра обіцяють, що знову стане сухіше, але холодно залишиться."
+    explain:
+      en: "Play yourself back and count the subjects. The model has five weather sentences and every one of them contains *es* — including *Gestern war es*, *regnet es* and *soll es … werden*, where the time word or the modal has pushed it out of first place and made it easy to swallow. Then check the adjectives after *ist*, *war* and *wird*: *warm*, *kühler*, *bewölkt*, *kalt* — all bare. The one sentence with a real subject is *Der Himmel ist …*, and it is worth noticing that it feels no different to say."
+      ru: "Прослушайте запись и посчитайте подлежащие. В образце пять погодных предложений, и *es* есть в каждом — включая *Gestern war es*, *regnet es* и *soll es … werden*, где слово времени или модальный глагол вытеснили его с первого места, и его легко проглотить. Потом проверьте прилагательные после *ist*, *war* и *wird*: *warm*, *kühler*, *bewölkt*, *kalt* — все голые. Единственное предложение с настоящим подлежащим — *Der Himmel ist …*, и стоит заметить, что произносить его ничуть не иначе."
+      uk: "Прослухайте запис і порахуйте підмети. У зразку п'ять погодних речень, і *es* є в кожному — включно з *Gestern war es*, *regnet es* і *soll es … werden*, де слово часу або модальне дієслово витіснили його з першого місця, і його легко проковтнути. Потім перевірте прикметники після *ist*, *war* і *wird*: *warm*, *kühler*, *bewölkt*, *kalt* — усі голі. Єдине речення зі справжнім підметом — *Der Himmel ist …*, і варто помітити, що вимовляти його анітрохи не інакше."

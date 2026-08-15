@@ -504,6 +504,27 @@ units:
         register: "informell-freundlich, Gespräch"
         item_types: [audio-comprehension]
         context_sound: "sehr leiser Café-Raumton"
+  - unit: natur-wetter
+    level: A2
+    artifacts:
+      # model-input, not listening-outcome: the unit's four outcomes are one reading and three
+      # production, so there is no listening outcome for an artifact to measure, and claiming one
+      # would be evidence the unit never asked for. What the audio adds is the genre in its spoken
+      # form — the empty `es` is unstressed and runs straight into the verb beside it, so a radio
+      # forecast is where the ear has to recover a word it can barely hear. The unit's dictation
+      # item makes that point in miniature; this artifact makes it in connected speech.
+      - id: ls-natur-wetter-01
+        wave: 2
+        purpose: model-input
+        scenario: "Kurzer Wetterbericht im Radio: heute, morgen und das Wochenende, mit Temperaturen und einer Warnung vor einem Gewitter"
+        outcomes: [wetterbericht-verstehen]
+        required_vocabulary: [Wetter, Grad, Gewitter, bewölkt, trocken]
+        grammar_target: "unpersönliches es mit Wetterverben und mit sein/werden"
+        duration_seconds: { min: 35, max: 50 }
+        speakers: { min: 1, max: 1 }
+        register: "neutral-sachlich, Rundfunk"
+        item_types: [audio-comprehension]
+        context_sound: "kein Raumton, Studioaufnahme"
   - unit: erfahrungen-erzaehlen
     level: B1
     artifacts:
