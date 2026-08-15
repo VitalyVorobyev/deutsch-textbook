@@ -9,6 +9,7 @@ title:
   uk: 'Реєстрація місця проживання'
 items:
 - id: q1
+  revision: 2
   outcomes:
   - unterlagen-erfragen
   type: audio-comprehension
@@ -20,9 +21,9 @@ items:
     - speaker: Herr Demir
       text: Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?
     - speaker: Sachbearbeiterin
-      text: Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.
+      text: Ihren Pass, die Wohnungsgeberbestätigung und das ausgefüllte Formular.
     - speaker: Herr Demir
-      text: Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.
+      text: Die Wohnungsgeberbestätigung habe ich dabei. Das Formular nicht.
     - speaker: Sachbearbeiterin
       text: Das können Sie hier ausfüllen. Es liegt am Schalter drei.
     - speaker: Herr Demir
@@ -32,16 +33,13 @@ items:
     - speaker: Herr Demir
       text: Und wie lange dauert die Bearbeitung?
     - speaker: Sachbearbeiterin
-      text: Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen
-        per Post.
+      text: Die Meldebestätigung bekommen Sie nach der Prüfung sofort.
     - speaker: Herr Demir
       text: Kostet das etwas?
     - speaker: Sachbearbeiterin
-      text: Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie siebenunddreißig
-        Euro.
+      text: Nein, die Anmeldung ist kostenlos.
     - speaker: Herr Demir
       text: Gut, dann fülle ich das Formular jetzt aus.
-  recording: ls-aemter-dienstleistungen-01
   instruction:
     en: Listen and choose the correct answer.
     ru: Прослушайте и выберите правильный ответ.
@@ -49,7 +47,7 @@ items:
   question: Was hat Herr Demir nicht dabei?
   options:
   - Das ausgefüllte Formular.
-  - Die Bestätigung vom Vermieter.
+  - Die Wohnungsgeberbestätigung.
   - Seinen Pass.
   correct: 0
   explain:
@@ -60,6 +58,7 @@ items:
     uk: 'Перелічено три документи, і в одній репліці він відповідає про два: один має, другого — ні. Слово nicht стоїть наприкінці й несе всю відповідь.'
   max_replays: 3
 - id: q2
+  revision: 2
   outcomes:
   - unterlagen-erfragen
   type: audio-comprehension
@@ -71,9 +70,9 @@ items:
     - speaker: Herr Demir
       text: Ich möchte meinen Wohnsitz anmelden. Welche Unterlagen brauche ich?
     - speaker: Sachbearbeiterin
-      text: Ihren Pass, die Bestätigung vom Vermieter und das ausgefüllte Formular.
+      text: Ihren Pass, die Wohnungsgeberbestätigung und das ausgefüllte Formular.
     - speaker: Herr Demir
-      text: Die Bestätigung vom Vermieter habe ich dabei. Das Formular nicht.
+      text: Die Wohnungsgeberbestätigung habe ich dabei. Das Formular nicht.
     - speaker: Sachbearbeiterin
       text: Das können Sie hier ausfüllen. Es liegt am Schalter drei.
     - speaker: Herr Demir
@@ -83,31 +82,31 @@ items:
     - speaker: Herr Demir
       text: Und wie lange dauert die Bearbeitung?
     - speaker: Sachbearbeiterin
-      text: Die Bestätigung bekommen Sie sofort. Der Ausweis kommt in etwa drei Wochen
-        per Post.
+      text: Die Meldebestätigung bekommen Sie nach der Prüfung sofort.
     - speaker: Herr Demir
       text: Kostet das etwas?
     - speaker: Sachbearbeiterin
-      text: Die Anmeldung ist kostenlos. Nur für den Ausweis zahlen Sie siebenunddreißig
-        Euro.
+      text: Nein, die Anmeldung ist kostenlos.
     - speaker: Herr Demir
       text: Gut, dann fülle ich das Formular jetzt aus.
-  recording: ls-aemter-dienstleistungen-01
   instruction:
     en: Listen and choose the correct answer.
     ru: Прослушайте и выберите правильный ответ.
     uk: 'Прослухайте та оберіть правильну відповідь.'
-  question: Was kostet siebenunddreißig Euro?
+  question: Was braucht Herr Demir, wenn seine Frau nicht persönlich kommt?
   options:
-  - Der Ausweis.
-  - Die Anmeldung.
-  - Die Vollmacht.
+  - Eine Vollmacht von seiner Frau.
+  - Einen neuen Ausweis für seine Frau.
+  - Eine zweite Wohnungsgeberbestätigung.
   correct: 0
   explain:
-    en: The registration is called free in the sentence immediately before the price.
-      Two facts in one line, and the wrong answer is the one you keep if you stop
-      at the number.
-    ru: Регистрация названа бесплатной в предложении прямо перед ценой. Два факта
-      в одной реплике, и неверный ответ остаётся у того, кто остановился на числе.
-    uk: 'Реєстрацію названо безкоштовною в реченні просто перед ціною. Два факти в одній репліці, і хибну відповідь залишає собі той, хто зупинився на числі.'
+    en: His wife does not necessarily have to come in person, but he then needs her
+      written authorization — eine Vollmacht von ihr. No new ID card is part of this
+      address-registration procedure.
+    ru: Жене необязательно приходить лично, но тогда от неё нужна доверенность —
+      eine Vollmacht von ihr. Новый паспорт или удостоверение личности не является
+      частью регистрации адреса.
+    uk: Дружині необов'язково приходити особисто, але тоді від неї потрібна довіреність —
+      eine Vollmacht von ihr. Новий паспорт або посвідчення особи не є частиною
+      реєстрації адреси.
   max_replays: 3

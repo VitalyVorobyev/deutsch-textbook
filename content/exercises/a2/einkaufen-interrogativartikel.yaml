@@ -1,0 +1,54 @@
+topic: einkaufen-reklamation
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — welcher, welche, welches"
+title: {en: "Core — which one?", ru: "Основа — который?", uk: "Основа — який?"}
+items:
+  - id: table-welch-nominativ
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: table
+    focus: interrogativartikel
+    title: "welch- im Nominativ"
+    instruction: {en: "Complete the article word before each noun.", ru: "Дополните артикль перед каждым существительным.", uk: "Доповніть артикль перед кожним іменником."}
+    columns: ["Frage"]
+    rows:
+      - {label: "der Mantel", cells: [{answer: "welcher Mantel"}]}
+      - {label: "die Jacke", cells: [{answer: "welche Jacke"}]}
+      - {label: "das Hemd", cells: [{answer: "welches Hemd"}]}
+      - {label: "die Schuhe", cells: [{answer: "welche Schuhe"}]}
+    explain: {en: "welch- occupies the article position and copies the visible definite-article ending: der/-er, die/-e, das/-es, plural die/-e.", ru: "welch- занимает позицию артикля и повторяет видимое окончание определённого артикля: der/-er, die/-e, das/-es, множественное die/-e.", uk: "welch- займає позицію артикля й повторює видиме закінчення означеного артикля: der/-er, die/-e, das/-es, множина die/-e."}
+  - id: mc-welchen-film
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: mc
+    focus: interrogativartikel
+    prompt: "___ Film meinst du?"
+    options: ["Welcher", "Welchen", "Welchem"]
+    correct: 1
+    explain: {en: "meinen takes the film as its accusative object. Masculine der Film therefore gives welchen Film, not nominative welcher.", ru: "Film — прямое дополнение при meinen и стоит в Akkusativ. Мужской der Film поэтому даёт welchen Film, а не Nominativ welcher.", uk: "Film — прямий додаток при meinen і стоїть в Akkusativ. Чоловічий der Film тому дає welchen Film, а не Nominativ welcher."}
+  - id: cloze-mit-welcher
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: cloze
+    focus: interrogativartikel
+    instruction: {en: "Complete the question.", ru: "Дополните вопрос.", uk: "Доповніть запитання."}
+    text: "Mit {{welcher}} Karte möchten Sie bezahlen?"
+    explain: {en: "mit always governs the dative; feminine die Karte becomes mit welcher Karte. The preposition decides the case before the ending is chosen.", ru: "mit всегда требует Dativ; женское die Karte превращается в mit welcher Karte. Сначала предлог определяет падеж, затем выбирается окончание.", uk: "mit завжди потребує Dativ; жіноче die Karte перетворюється на mit welcher Karte. Спочатку прийменник визначає відмінок, потім обирається закінчення."}
+  - id: mc-alle-kunden
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: mc
+    focus: interrogativartikel
+    prompt: "Heute bekommen ___ Kunden zehn Prozent Rabatt."
+    options: ["alle", "alles", "allen"]
+    correct: 0
+    explain: {en: "Kunden is the plural subject, so alle carries the plural nominative -e. alles stands alone and is neuter singular; allen would be dative plural.", ru: "Kunden — подлежащее во множественном числе, поэтому alle получает окончание Nominativ Plural -e. alles употребляется самостоятельно и является средним родом единственного числа; allen — Dativ Plural.", uk: "Kunden — підмет у множині, тому alle має закінчення Nominativ Plural -e. alles уживається самостійно й має середній рід однини; allen — Dativ Plural."}
+  - id: translate-welche-groesse
+    outcomes: [produkt-mit-welch-bestimmen]
+    type: translate
+    focus: interrogativartikel
+    instruction: {en: "Ask the customer a question in German.", ru: "Задайте покупателю вопрос по-немецки.", uk: "Поставте покупцеві запитання німецькою."}
+    prompt_en: "Which size do you need?"
+    prompt_ru: "Какой размер вам нужен?"
+    prompt_uk: "Який розмір вам потрібен?"
+    answer: "Welche Größe brauchen Sie?"
+    key_tokens: ["Welche", "Größe", "brauchen"]
+    explain: {en: "die Größe is the accusative object, but feminine accusative looks like nominative: welche Größe. The noun must stay after the article word.", ru: "die Größe — дополнение в Akkusativ, но форма женского Akkusativ совпадает с Nominativ: welche Größe. Существительное обязательно остаётся после артикля.", uk: "die Größe — додаток в Akkusativ, але форма жіночого Akkusativ збігається з Nominativ: welche Größe. Іменник обов'язково лишається після артикля."}

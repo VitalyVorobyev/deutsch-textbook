@@ -1,0 +1,33 @@
+topic: man-und-besitz
+role: probe
+title: {en: "Probe — recognise the present passive", ru: "Проверка — распознавание Passiv Präsens", uk: "Перевірка — розпізнавання Passiv Präsens"}
+arming:
+  - a2/man-und-besitz-passiv::mc-futur-oder-passiv
+  - a2/man-und-besitz-passiv::match-passiv-man
+  - a2/man-und-besitz-passiv::mc-schild-lesen
+  - a2/man-und-besitz-passiv::match-passiv-partizip
+items:
+  - id: variant-a
+    outcomes: [passiv-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "Am Eingang steht: „Die Tür wird um 18 Uhr geschlossen.“ Was bedeutet das?"
+    options: ["Jemand schließt die Tür um 18 Uhr.", "Die Tür möchte um 18 Uhr schließen.", "Die Tür ist seit 18 Uhr offen."]
+    correct: 0
+    explain: {en: "wird + geschlossen is a passive event: someone closes the door, but the doer is not named.", ru: "wird + geschlossen обозначает пассивное событие: кто-то закрывает дверь, но исполнитель не назван.", uk: "wird + geschlossen позначає пасивну подію: хтось зачиняє двері, але виконавця не названо."}
+  - id: variant-b
+    outcomes: [passiv-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "Welcher Satz ist Passiv?"
+    options: ["Der Kurs wird im September beginnen.", "Der Kurs wird im Rathaus angeboten.", "Der Kurs wird interessant."]
+    correct: 1
+    explain: {en: "Only angeboten is a Partizip II after wird. beginnen is an infinitive (future), while interessant is an adjective (become interesting).", ru: "Только angeboten — Partizip II после wird. beginnen — инфинитив Futur, interessant — прилагательное со значением становления.", uk: "Лише angeboten — Partizip II після wird. beginnen — інфінітив Futur, interessant — прикметник зі значенням становлення."}
+  - id: variant-c
+    outcomes: [passiv-verstehen]
+    type: mc
+    focus: passiv-rezeptiv
+    prompt: "„Die Formulare werden heute geprüft.“ Welche aktive Aussage hat dieselbe Bedeutung?"
+    options: ["Jemand prüft die Formulare heute.", "Die Formulare prüfen jemanden heute.", "Die Formulare werden morgen ankommen."]
+    correct: 0
+    explain: {en: "The passive moves the affected thing into the subject position or uses impersonal es/zero, while the unnamed actor corresponds to man/jemand.", ru: "В Passiv затронутый предмет становится подлежащим либо конструкция безлична, а неназванный исполнитель соответствует man/jemand.", uk: "У Passiv заторкнутий предмет стає підметом або конструкція безособова, а неназваний виконавець відповідає man/jemand."}

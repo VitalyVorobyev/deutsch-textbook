@@ -10,6 +10,7 @@ here.
 | authoring or editing an **exercise item** (any type, `key_tokens`, item mix, placement sets, vocab entries) | [`item-authoring.md`](item-authoring.md) |
 | choosing or adding a **`focus` tag** | [`focus-tags.md`](focus-tags.md) |
 | shipping a **new topic**, or writing a **drill from learner progress** | [`authoring-checklists.md`](authoring-checklists.md) |
+| performing a **topic-wide content audit** across article, tasks, input and vocabulary | [`content-quality-audit.md`](content-quality-audit.md) |
 | touching a **coverage figure** (Wortliste `~`, grammar inventory, `/about`) | [`coverage-instruments.md`](coverage-instruments.md) |
 | hand-editing a vocab **`ipa`** | [`lautschrift.md`](lautschrift.md) |
 | authoring **Entdecken** material or adding a **document** | [`future-content-directions.md`](future-content-directions.md) |
@@ -22,6 +23,7 @@ What each doc is for, in one line:
 - [`item-authoring.md`](item-authoring.md) — exercise and vocabulary contracts, including `key_tokens`, item mix and placement rules.
 - [`focus-tags.md`](focus-tags.md) — the registered confusion taxonomy; an allowlist held equal to `focusIntroducedBy` by a test.
 - [`authoring-checklists.md`](authoring-checklists.md) — topic, drill and release checklists, and the drills-from-progress procedure.
+- [`content-quality-audit.md`](content-quality-audit.md) — the shared evidence states and manual review contract for a complete topic profile.
 - [`coverage-instruments.md`](coverage-instruments.md) — how lexical and grammar coverage figures are earned, never asserted.
 - [`lautschrift.md`](lautschrift.md) — IPA field conventions and the review procedure behind `bun run gen:ipa`.
 - [`future-content-directions.md`](future-content-directions.md) — the admission contract for Entdecken, documents and editorial media.

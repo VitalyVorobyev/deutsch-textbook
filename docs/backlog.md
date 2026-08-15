@@ -14,7 +14,7 @@ step*. Measurement essays, dated reads and PR history live in
 ### P27 · Redaction editorial workstation
 
 P27-0 and the foundation of P27-1/P27-2 are in the current implementation: ADR 0013; explicit
-A1–C2 `CefrLevel`, ten declared grammar tracks and all 98 points migrated; transport-neutral
+A1–C2 `CefrLevel`, ten declared grammar tracks and all 106 points migrated; transport-neutral
 `CorpusClient`; warm German app shell; Grammatikatlas; checkout selection; Bun JSONL sidecar and
 restricted Tauri command; exact source reads, revision conflicts, local parsing/schema checks and
 atomic saves. `bun run redaktion` remains the browser transport; `bun run redaktion:desktop` builds
@@ -28,11 +28,14 @@ filters, search and history traversal; empty focus details recover to a collecti
 profile findings no longer become fictional blockers merely because their topic says `reviewed`.
 The browser audit owns the complete regression journey.
 
-The current executable item is **P27-3b A2 grammar wave**: close `reziprokpronomen`,
-`interrogativartikel` and `ueber-dauer` with complete teaching, transfer and probe evidence; then
-remove the remaining A2 article/probe diagnostics through substantive review. P27-3a closed all
-four A1 gaps, added the full `wortbildung` topic and claimed DTZ `-chen`, leaving 21 named rows open
-in the audit ledger. P27-2a removed the regex preview, added safe one-language MDX rendering, language
+The current executable item is **P27-3g topic-quality waves**. P27-3f closed the B1 Wortliste at
+3416/3416 after classifying all 73 tail rows one by one. The live A1–B1 topic-profile queue is empty,
+but that is not the stop condition: every topic still receives a bounded article, exercise,
+reading, audio and vocabulary pass under the shared
+[content-quality contract](authoring/content-quality-audit.md). The A1 and A2 waves are complete and
+logged; B1 remains. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
+A1/A2/B1 673/673, 1449/1449 and 3416/3416.
+P27-2a removed the regex preview, added safe one-language MDX rendering, language
 coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
 semantic editor representations and must migrate to common React before pixel parity can be
 claimed. Then add safe structured controls over the same source buffer and visible background-job
@@ -90,10 +93,10 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   the meaning decisions behind *un-*, *-los*, *-bar* and adjective compounds.
 - **P26-4 · `demonstrativartikel` (A1) — delivered in P27-3a.** `artikel-genus` now carries
   A1 nominative *dieser/diese/dieses* through scaffold, transfer and delayed checks.
-- **P26-5 · `reziprokpronomen` (A2)** — *Wir sehen uns morgen*. Shares its FORM with the reflexive
+- **P26-5 · `reziprokpronomen` (A2) — delivered in P27-3b.** *Wir sehen uns morgen*. Shares its FORM with the reflexive
   and none of its meaning; EN marks the difference lexically (`each other`), RU/UK with «друг друга»,
   so neither hand supplies the German syncretism. Reception A1, production A2.
-- **P26-6 · `interrogativartikel` (A2)** — *welch-* as a determiner plus *alle*. The trap is the
+- **P26-6 · `interrogativartikel` (A2) — delivered in P27-3b.** *welch-* as a determiner plus *alle*. The trap is the
   case: *Welchen Film…?* is where a nominative *Welcher* slips in, and EN `which` / RU «какой»
   decline for neither or differently. Distinct from `indefinitpronomen`, which owns the free-standing
   *welch-* pronoun.
@@ -105,25 +108,25 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   is visible before any of it is done. Also open: the adult **Goethe-Zertifikat A2 Prüfungsziele** —
   the free A2 list here is *Fit in Deutsch 2*, the youth exam.
 - **P26-10 · The course never teaches turn-taking.** The first run of `bun scripts/handlungen.ts` (2026-08-14) reports 26/41 published Sprachhandlungen claimed, and **nine of the fifteen holes are one block**: the whole of DTZ §8.3 *Redeorganisation* — eine Äußerung einleiten/abschließen, um das Wort bitten, Zuhören signalisieren, zum Sprechen auffordern, gemeinsames Wissen andeuten, Beispiele geben, das Thema wechseln, Vermeidung. Six more: *Gefühle ausdrücken* (no outcome anywhere expresses feelings), *Wissen oder Nichtwissen ausdrücken*, *etwas bestätigen*, *Umgang mit der interkulturellen Begegnung*, *Umgang mit Wissensdivergenz*, *etwas hervorheben*. These are `spoken-interaction` competences and the corpus is already thin there; a discourse-strategy topic would close most of the block at once. Read the instrument before scoping — `beyond` is not a gap, only `unclaimed` is.
-- **P26-8 · `über` as a duration marker — RULED 2026-08-14, row added, still untaught.** The DTZ
+- **P26-8 · `über` as a duration marker — delivered in P27-3b.** The DTZ
   Prüfungshandbuch §8.4 5.1 files it under *temporal*, so two published standards agree and it is
-  not a quantifier. `ueber-dauer` is now an inventory row that **nothing teaches**: A2 grammar
-  coverage reads 35/38. Closing it means authoring the items, not editing this line.
-- **P26-9 · Fourteen findings remain for articles whose `## Erklärung` has no `###` subsections.**
-  P27-3a cleared all seven A1 articles (including the two grammar-owner articles already in flight);
-  thirteen A2 articles remain plus one B1 IPA warning. The original set included
+  not a quantifier. `ueber-dauer` now has owner teaching in `alltag-tagesablauf`, transfer in
+  `zeit-praepositionen` and a delayed probe family.
+- **P26-9 · Article subsection findings — delivered for A1–A2 in P27-3a/P27-3b.**
+  The seven A1 and thirteen A2 articles now expose named decision-level anchors; the unrelated B1
+  phrase IPA found by the same gate was also transcribed, so validation has no warnings. The original set included
   them (`a1/akkusativ`, `a2/dativ`), plus `a1/praesens-wortstellung`, `a2/modalverben`,
   `a2/perfekt-haben-sein`, `a2/wohnen-umzug`, `a2/verben-mit-praepositionen`. CLAUDE.md states the
   rule; `packages/content/src/prose-shape.ts:200-206` leaves it to the author; `bun run validate` now **warns**
   (exit 0) and the console badges each topic. The heading is the only addressable place a structure
   is explained, so an inventory row, a cross-link and the Struktur page all currently have nowhere to
   point but the whole article. Content work, one article at a time; the warning count is the counter.
-- **P26-10 · Eight taught A2 structures no probe ever re-asks** — `bun scripts/grammar-depth.ts
-  --by-point --no-probe`. P27-3a reduced A1 to zero; the A2 tail is `adjektiv-praedikativ`,
+- **P26-10 · Eight taught A2 structures no probe ever re-asks — delivered in P27-3b.** `bun scripts/grammar-depth.ts
+  --by-point --no-probe` now reports zero inventory structures without probes. The closed tail was `adjektiv-praedikativ`,
   `aber-sondern`, `reflexiv-akkusativ`,
   `reflexiv-dativ`, `um-zu`, `passiv-praesens`, `will-moechte`, `partizip2-system`). The lesson cycle
-  ends before its last step for each of them. Probe families are ordinary work since P19-4, but
-  **measure `armedAt` before and after** — a source reading is not a measurement.
+  and each now has a parallel three-variant family with verified arming; this delivery does not
+  retroactively create learner retention evidence.
 - **P26-11 · B1 has one drill set (8 items) against A2's thirteen (170)** — the remediation channel
   is effectively unbuilt at B1, which is what P23-3 sees from the other end. Median practice per
   confusion is 4 at B1 against 12 at A1, and 10 of 35 B1 tags live in exactly one practice file, so a
@@ -433,20 +436,19 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   the same weak focus preempt band 1). The delayed probe runs 2/2 on this competence, so the loop
   is measurably an item-serving artifact, not lost competence. Fix alongside the PR-4 session work
   or PR-8 remediation design; measure the deal distribution before and after.
-  lexis wave 4b (2026-08-06) B1 coverage is 3343/3416: 3279 cards, 64 grammar `~`, 73 open. The 73
-  (the `NOCARD` set in the wave-4 partition) are bound morphemes (`hell-`, `-weise`, `irgend-`),
-  abbreviations (`bzw.`, `EG`, `vgl.`), correlative frames (`je … desto`, `sowohl … als auch`,
-  `um … zu`), and full forms whose short forms ship (`Personenkraftwagen`, `Akkumulator`). Several
-  of the frames are grammar-taught, so they may earn `~` markers — but a `~` must be earned (the
-  validator requires the word in the taught surface) and each needs a manifest line. Go row by row;
-  the rest stay open with this entry as the reason, and no coverage figure may round them away.
+  ~~P27-3f / P25-6 · B1 lexical tail~~ — **closed 2026-08-15.** The 3343/3416 baseline contained
+  3279 cards, 64 grammar rows and 73 open rows. A row-by-row re-audit rejected the old `NOCARD`
+  blanket: 12 written/official variants became recognition cards, six frequent forms productive
+  cards, and 55 true bound pieces/frames earned `~` only after learner-facing teaching. Current B1
+  coverage is 3416/3416: 3297 cards, 119 grammar, 0 missing, 0 late. The exact ledger is
+  [A1–B1 completeness audit](curriculum/a1-b1-completeness-audit.md).
   **The correlative frames are settled as of 2026-08-14 and are not lexis:** the DTZ
   Prüfungshandbuch §8.4 lists *entweder … oder*, *weder … noch*, *sowohl … als auch*, *nicht nur …
   sondern auch* and *je … desto* as **6.8 Doppelkonjunktionen**, and *um … zu* as a 6.5
   Nebensatz-Konjunktion — structures, in a grammar inventory, all six claimed by
-  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. So they are eligible for `~`;
-  what remains is the per-row manifest work and the taught-surface check the validator runs, which
-  is real work and is what is still open here. — when an existing
+  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. P27-3f completed the per-row
+  manifest work and backed each `~` with a complete learner-facing frame.
+- **IPA writer duplicate-key hazard** — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
   `infinitiv-mit-zu`, `ort-richtung-verweis-b1`; hit and reverted during wave 2b, 2026-08-05).

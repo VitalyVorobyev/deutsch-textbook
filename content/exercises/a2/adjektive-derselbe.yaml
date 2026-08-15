@@ -1,0 +1,45 @@
+topic: adjektive-deklination
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — derselbe oder nur gleich?"
+title: {en: "Core — identical or merely alike?", ru: "Основа — тот же или лишь одинаковый?", uk: "Основа — той самий чи лише однаковий?"}
+items:
+  - id: mc-identischer-arzt
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: mc
+    focus: derselbe-identitaet
+    instruction: {en: "Mia and Leo go to one shared doctor. Choose the precise sentence.", ru: "Миа и Лео ходят к одному общему врачу. Выберите точное предложение.", uk: "Мія та Лео ходять до одного спільного лікаря. Оберіть точне речення."}
+    prompt: "Mia und Leo haben ___ Arzt."
+    options: ["denselben", "den gleichen", "derselbe"]
+    correct: 0
+    explain: {en: "One identical doctor requires derselbe. haben governs the accusative, so masculine der Arzt becomes denselben Arzt.", ru: "Один и тот же врач требует derselbe. haben управляет Akkusativ, поэтому мужское der Arzt превращается в denselben Arzt.", uk: "Той самий лікар потребує derselbe. haben керує Akkusativ, тому чоловіче der Arzt перетворюється на denselben Arzt."}
+  - id: mc-zwei-handys
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: mc
+    focus: derselbe-identitaet
+    instruction: {en: "Mia and Leo own two separate phones of one model. Which wording fits?", ru: "У Мии и Лео два разных телефона одной модели. Какая формулировка подходит?", uk: "У Мії та Лео два різні телефони однієї моделі. Яке формулювання пасує?"}
+    prompt: "Mia und Leo haben ___."
+    options: ["dasselbe Handy", "gleiche Handys", "demselben Handy"]
+    correct: 1
+    explain: {en: "There are two devices, so they are alike rather than identical: gleiche Handys. dasselbe Handy would claim one shared object.", ru: "Предметов два, поэтому они одинаковые, но не один и тот же: gleiche Handys. dasselbe Handy означало бы один общий предмет.", uk: "Предметів два, тому вони однакові, але не той самий: gleiche Handys. dasselbe Handy означало б один спільний предмет."}
+  - id: table-formen
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: table
+    focus: derselbe-identitaet
+    title: "derselbe nach Kasus"
+    instruction: {en: "Complete the identity determiner with the case selected by the sentence.", ru: "Дополните определитель тождества в падеже, который задаёт предложение.", uk: "Доповніть означник тотожності у відмінку, який задає речення."}
+    columns: ["Form"]
+    rows:
+      - {label: "Wir besuchen ___ Praxis.", cells: [{answer: "dieselbe Praxis"}]}
+      - {label: "Wir sprechen mit ___ Arzt.", cells: [{answer: "demselben Arzt"}]}
+      - {label: "Das ist ___ Haus.", cells: [{answer: "dasselbe Haus"}]}
+      - {label: "Wir haben ___ Termine.", cells: [{answer: "dieselben Termine"}]}
+    explain: {en: "The article half shows gender and case; selb- then takes the weak -e or -en ending just like an adjective after the definite article.", ru: "Первая половина показывает род и падеж; затем selb- получает слабое окончание -e или -en, как прилагательное после определённого артикля.", uk: "Перша половина показує рід і відмінок; далі selb- отримує слабке закінчення -e або -en, як прикметник після означеного артикля."}
+  - id: cloze-dieselbe-wohnung
+    outcomes: [identitaet-derselbe-ausdruecken]
+    type: cloze
+    focus: derselbe-identitaet
+    instruction: {en: "Complete the form for one identical flat.", ru: "Дополните форму для одной и той же квартиры.", uk: "Доповніть форму для тієї самої квартири."}
+    text: "Wir interessieren uns beide für {{dieselbe Wohnung}}."
+    explain: {en: "für governs the accusative; feminine accusative looks like nominative, so dieselbe Wohnung. The context says both people mean one listing.", ru: "für требует Akkusativ; форма женского Akkusativ совпадает с Nominativ — dieselbe Wohnung. Контекст говорит об одном объявлении.", uk: "für потребує Akkusativ; форма жіночого Akkusativ збігається з Nominativ — dieselbe Wohnung. Контекст говорить про одне оголошення."}

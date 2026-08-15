@@ -1,0 +1,38 @@
+topic: wohnen-umzug
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — Grenze, Kontakt und Weg"
+title: {en: "Core — boundary, contact and path", ru: "Основа — граница, контакт и путь", uk: "Основа — межа, контакт і шлях"}
+items:
+  - id: mc-ausserhalb
+    outcomes: [wohnung-beschreiben]
+    type: mc
+    focus: raumgrenze-pfad
+    prompt: "Die neue Wohnung liegt ___ des Zentrums."
+    options: ["außerhalb", "gegen", "um"]
+    correct: 0
+    explain: {en: "The flat lies beyond the centre's boundary, so außerhalb is the relevant relation and des Zentrums makes its genitive visible.", ru: "Квартира находится за границей центра, поэтому нужно außerhalb; форма des Zentrums явно показывает Genitiv.", uk: "Квартира розташована за межею центру, тому потрібне außerhalb; форма des Zentrums явно показує Genitiv."}
+  - id: cloze-gegen
+    outcomes: [wohnung-beschreiben]
+    type: cloze
+    focus: raumgrenze-pfad
+    instruction: {en: "Complete the contact path and its case.", ru: "Дополните направление к контакту и падеж.", uk: "Доповніть напрямок до контакту та відмінок."}
+    text: "Beim Tragen stößt der Schrank {{gegen die Wand}}."
+    explain: {en: "gegen points towards contact and always governs the accusative: die Wand stays die Wand.", ru: "gegen направляет к контакту и всегда требует Akkusativ: die Wand сохраняет форму die Wand.", uk: "gegen спрямовує до контакту й завжди потребує Akkusativ: die Wand зберігає форму die Wand."}
+  - id: cloze-um-herum
+    outcomes: [wohnung-beschreiben]
+    type: cloze
+    focus: raumgrenze-pfad
+    instruction: {en: "Complete the full frame around the masculine noun.", ru: "Дополните полную рамку вокруг существительного мужского рода.", uk: "Доповніть повну рамку навколо іменника чоловічого роду."}
+    text: "Wir gehen {{um den Park herum}}, weil der direkte Weg gesperrt ist."
+    explain: {en: "um opens the frame, herum closes it, and the masculine object shows the accusative as den Park.", ru: "um открывает рамку, herum закрывает её, а мужской род показывает Akkusativ формой den Park.", uk: "um відкриває рамку, herum закриває її, а чоловічий рід показує Akkusativ формою den Park."}
+  - id: mc-kein-wechselkasus
+    outcomes: [wohnung-beschreiben]
+    type: mc
+    focus: raumgrenze-pfad
+    instruction: {en: "Which sentence proves that movement alone does not select the case?", ru: "Какое предложение доказывает, что само движение не выбирает падеж?", uk: "Яке речення доводить, що сам рух не обирає відмінок?"}
+    prompt: "Welche Form ist richtig?"
+    options: ["Wir fahren außerhalb des Zentrums.", "Wir fahren außerhalb den Zentrum.", "Wir fahren außerhalb dem Zentrum."]
+    correct: 0
+    explain: {en: "außerhalb governs the genitive even though the sentence contains movement. Its relation fixes the case independently of Wo/Wohin.", ru: "außerhalb требует Genitiv, хотя в предложении есть движение. Падеж задаёт сама конструкция, независимо от Wo/Wohin.", uk: "außerhalb потребує Genitiv, хоча в реченні є рух. Відмінок задає сама конструкція, незалежно від Wo/Wohin."}
