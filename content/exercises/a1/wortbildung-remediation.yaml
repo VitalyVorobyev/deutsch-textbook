@@ -1,0 +1,46 @@
+topic: wortbildung
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt wiederholen — Wortgrenzen und Bedeutungen"
+title: {en: "Targeted retrieval — word boundaries and meanings", ru: "Точечное повторение — границы и значения частей слова", uk: "Точкове повторення — межі та значення частин слова"}
+items:
+  - id: cloze-wohnung
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Form the noun from the verb.", ru: "Образуйте существительное от глагола.", uk: "Утворіть іменник від дієслова."}
+    text: "wohnen → die {{Wohnung}}"
+    explain: {en: "The productive ending -ung forms a feminine noun: die Wohnung.", ru: "Продуктивный суффикс -ung образует существительное женского рода: die Wohnung.", uk: "Продуктивний суфікс -ung утворює іменник жіночого роду: die Wohnung."}
+  - id: cloze-haeuschen
+    outcomes: [wortbildung-nomenformen]
+    type: cloze
+    focus: wortbildung-nomen
+    instruction: {en: "Form the genuine diminutive with -chen.", ru: "Образуйте настоящее уменьшительное с -chen.", uk: "Утворіть справжню зменшувальну форму з -chen."}
+    text: "das Haus → das {{Häuschen}}"
+    explain: {en: "Haus has a recoverable base and a diminutive meaning here: Häuschen. The suffix -chen makes the result neuter.", ru: "Здесь видна основа Haus и есть уменьшительное значение: Häuschen. Суффикс -chen делает результат средним родом.", uk: "Тут видно основу Haus і є зменшувальне значення: Häuschen. Суфікс -chen робить результат середнього роду."}
+  - id: cloze-trinkbar
+    outcomes: [wortbildung-adjektive]
+    type: cloze
+    focus: wortbildung-adjektiv
+    instruction: {en: "Form the adjective meaning can be drunk.", ru: "Образуйте прилагательное со значением «можно пить».", uk: "Утворіть прикметник зі значенням «можна пити»."}
+    text: "Das Wasser kann man trinken. Es ist {{trinkbar}}."
+    explain: {en: "The verb stem trink- plus -bar expresses possibility: trinkbar.", ru: "Основа глагола trink- плюс -bar выражает возможность: trinkbar.", uk: "Основа дієслова trink- плюс -bar виражає можливість: trinkbar."}
+  - id: translate-zuckerlos
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Translate with a -los adjective.", ru: "Переведите с прилагательным на -los.", uk: "Перекладіть із прикметником на -los."}
+    prompt_en: "The tea has no sugar."
+    prompt_ru: "Чай без сахара."
+    prompt_uk: "Чай без цукру."
+    answer: "Der Tee ist zuckerlos."
+    key_tokens: ["zuckerlos"]
+    explain: {en: "zuckerlos carries the meaning without sugar. After ist the adjective needs no ending. The task asks for the derived adjective, not the analytic phrase ohne Zucker.", ru: "zuckerlos означает «без сахара». После ist прилагательному не нужно окончание. Задание просит производное прилагательное, а не аналитический вариант ohne Zucker.", uk: "zuckerlos означає «без цукру». Після ist прикметнику не потрібне закінчення. Завдання просить похідний прикметник, а не аналітичний варіант ohne Zucker."}
+  - id: cloze-hellblau
+    outcomes: [wortbildung-adjektive]
+    type: cloze
+    focus: wortbildung-adjektiv
+    instruction: {en: "Build the colour adjective.", ru: "Составьте прилагательное цвета.", uk: "Складіть прикметник кольору."}
+    text: "Die Jacke ist nicht dunkelblau, sondern {{hellblau}}."
+    explain: {en: "Two adjective meanings combine directly: hell + blau = hellblau.", ru: "Два значения прилагательных соединяются напрямую: hell + blau = hellblau.", uk: "Два значення прикметників поєднуються безпосередньо: hell + blau = hellblau."}

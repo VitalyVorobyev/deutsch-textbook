@@ -252,10 +252,23 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   await page.waitForTimeout(100);
   check(await page.getByRole('heading', { name: 'Erste Schritte' }).count() === 1, 'confirmed draft discard permits back navigation');
 
-  await page.goto(`${base}/#/fokus/ueber-dauer`);
-  await page.waitForLoadState('networkidle');
-  check(await page.getByText('Das ist ein Befund, kein Navigationsende.').count() === 1, 'empty focus detail explains the recovery path');
-  check(await page.getByRole('link', { name: 'Einführendes Thema' }).count() === 1, 'empty focus detail links to its introducing topic');
+  // Exercise the empty-detail recovery when the corpus actually has an orphan focus tag. Do not
+  // pin this to a named tag: a quality wave is supposed to give that tag material, and doing so
+  // must not make the UI audit fail. When the queue is empty, assert that stronger corpus state;
+  // the first future orphan will automatically put the recovery-path checks back in play.
+  const tags = await page.evaluate(async () => {
+    const graph = await fetch('/__graph').then((response) => response.json());
+    return graph.tags as Array<{ tag: string; elements: string[] }>;
+  });
+  const orphan = tags.find((tag) => tag.elements.length === 0);
+  if (orphan) {
+    await page.goto(`${base}/#/fokus/${orphan.tag}`);
+    await page.waitForLoadState('networkidle');
+    check(await page.getByText('Das ist ein Befund, kein Navigationsende.').count() === 1, 'empty focus detail explains the recovery path');
+    check(await page.getByRole('link', { name: 'Einführendes Thema' }).count() === 1, 'empty focus detail links to its introducing topic');
+  } else {
+    check(tags.length > 0 && tags.every((tag) => tag.elements.length > 0), 'every registered focus tag has material');
+  }
 
   await ctx.close();
 }

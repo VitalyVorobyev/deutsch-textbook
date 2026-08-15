@@ -330,6 +330,13 @@ export function addresses(surface: string, word: string): boolean {
 
   if (word.endsWith('-')) {
     const stem = normalize(word.slice(0, -1));
+    // Most citation stems are one token (`manch-` → `manche`). A small number
+    // are frames whose final word inflects (`was für ein-` → `was für eine`).
+    // Matching the latter through the token Set can never work because the stem
+    // itself contains spaces, so keep the same ending whitelist but compare the
+    // whole normalized phrase at word boundaries.
+    if (stem.includes(' '))
+      return STEM_ENDINGS.some((e) => ` ${surface} `.includes(` ${stem}${e} `));
     return STEM_ENDINGS.some((e) => has(stem + e));
   }
 

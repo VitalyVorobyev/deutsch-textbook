@@ -1,0 +1,41 @@
+topic: freunde-feste
+role: probe
+title: {en: "Probe — aber or sondern", ru: "Проверка — aber или sondern", uk: "Перевірка — aber чи sondern"}
+arming:
+  - a2/freunde-feste::cloze-aber-sondern
+  - a2/freunde-feste-produktion::cloze-plan-aendert-sich
+  - a2/freunde-feste-produktion::uebersetzen-aber-sondern-chat
+items:
+  - id: variant-a
+    outcomes: [einladen-zusagen-absagen]
+    type: translate
+    focus: aber-sondern
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "We are not meeting at the café, but at the station."
+    prompt_ru: "Мы встречаемся не в кафе, а на вокзале."
+    prompt_uk: "Ми зустрічаємося не в кафе, а на вокзалі."
+    answer: "Wir treffen uns nicht im Café, sondern am Bahnhof."
+    key_tokens: ["nicht", "sondern", "Bahnhof"]
+    explain: {en: "The station replaces the explicitly negated café, so sondern is required.", ru: "Вокзал заменяет явно отрицаемое кафе, поэтому требуется sondern.", uk: "Вокзал замінює явно заперечене кафе, тому потрібне sondern."}
+  - id: variant-b
+    outcomes: [einladen-zusagen-absagen]
+    type: translate
+    focus: aber-sondern
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "Nina is coming later, but she is bringing a cake."
+    prompt_ru: "Нина придёт позже, но принесёт торт."
+    prompt_uk: "Ніна прийде пізніше, але принесе торт."
+    answer: "Nina kommt später, aber sie bringt einen Kuchen mit."
+    key_tokens: ["aber", "Kuchen", "mit"]
+    explain: {en: "Both facts are true and nothing is corrected; aber links the contrast. sondern needs a negated alternative.", ru: "Оба факта верны и ничего не исправляется; контраст связывает aber. Для sondern нужна отрицаемая альтернатива.", uk: "Обидва факти правдиві й нічого не виправляється; контраст поєднує aber. Для sondern потрібна заперечена альтернатива."}
+  - id: variant-c
+    outcomes: [einladen-zusagen-absagen]
+    type: translate
+    focus: aber-sondern
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I am not bringing drinks; I am bringing a salad instead."
+    prompt_ru: "Я принесу не напитки, а салат."
+    prompt_uk: "Я принесу не напої, а салат."
+    answer: "Ich bringe keine Getränke mit, sondern einen Salat."
+    key_tokens: ["keine", "sondern", "Salat"]
+    explain: {en: "keine Getränke is rejected and einen Salat replaces it, the exact nicht/kein … sondern frame.", ru: "keine Getränke отвергается и заменяется на einen Salat — точная рамка nicht/kein … sondern.", uk: "keine Getränke відкидається й замінюється на einen Salat — точна рамка nicht/kein … sondern."}

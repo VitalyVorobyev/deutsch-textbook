@@ -1,0 +1,141 @@
+# B1 extension: word formation is used as a bounded reading strategy. The set
+# does not ask learners to manufacture arbitrary compounds; each closed item
+# starts from a conventional form in an authentic notice/register, and the open
+# item requires a paraphrase before reuse. No focus tag is attached: this is a
+# cross-lexical reading strategy, not one grammar confusion to feed mastery.
+topic: informationen-vermitteln
+role: practice
+stage: ausblenden
+activity: extension
+title:
+  en: "Extension — decode dense words before passing a notice on"
+  ru: "Расширение — разобрать плотные слова перед пересказом объявления"
+  uk: "Розширення — розібрати щільні слова перед переказом оголошення"
+  de: "Erweiterung — dichte Wörter vor dem Weitergeben entschlüsseln"
+items:
+  - id: mc-kompositum-kopf
+    outcomes: [text-zusammenfassen]
+    type: mc
+    instruction:
+      en: "Find the head before you infer the detail. What kind of thing is a Notausgang?"
+      ru: "Сначала найдите главное слово, затем выводите уточнение. Чем является Notausgang?"
+      uk: "Спершу знайдіть головне слово, потім виводьте уточнення. Чим є Notausgang?"
+      de: "Finde zuerst den Kopf und erschließe dann die Einzelheit. Was für eine Sache ist ein Notausgang?"
+    prompt: "Im Brandfall benutzen Sie bitte den Notausgang auf der Nordseite."
+    options:
+      - "ein Ausgang für einen Notfall"
+      - "eine Mitteilung über eine schlechte Schulnote"
+      - "ein Eingang zur Notaufnahme"
+    correct: 0
+    explain:
+      en: "The final noun Ausgang says what the thing is; Not- restricts its purpose to an emergency. Nordseite works the same way: it is a Seite, specified by direction. The school word Noten only happens to begin with the same letters and contributes nothing here."
+      ru: "Последнее существительное Ausgang говорит, что это за предмет; Not- сужает его назначение до экстренной ситуации. Nordseite устроено так же: это Seite, уточнённая направлением. Школьное слово Noten лишь начинается с тех же букв и здесь ничего не объясняет."
+      uk: "Останній іменник Ausgang каже, що це за предмет; Not- звужує його призначення до надзвичайної ситуації. Nordseite влаштоване так само: це Seite, уточнена напрямком. Шкільне слово Noten лише починається з тих самих літер і тут нічого не пояснює."
+      de: "Das letzte Nomen Ausgang sagt, was die Sache ist; Not- schränkt ihren Zweck auf den Notfall ein. Nordseite funktioniert genauso: eine Seite, durch die Richtung bestimmt. Das Schulwort Noten beginnt nur zufällig gleich und erklärt hier nichts."
+
+  - id: mc-kompositum-register
+    outcomes: [text-zusammenfassen]
+    type: mc
+    instruction:
+      en: "Use the final noun and the context of a housing advert. Which paraphrase is safe?"
+      ru: "Используйте последнее существительное и контекст объявления о жилье. Какой пересказ надёжен?"
+      uk: "Використайте останній іменник і контекст оголошення про житло. Який переказ надійний?"
+      de: "Nutze das letzte Nomen und den Kontext einer Wohnungsanzeige. Welche Umschreibung ist sicher?"
+    prompt: "Sonderangebot: helle Ferienwohnung im Südflügel, Stellplatz im UG."
+    options:
+      - "Ein besonderes Angebot für eine helle Wohnung im südlichen Gebäudeteil; der Stellplatz ist unten."
+      - "Eine Wohnung nur für den Süden; der Stellplatz ist unbekannt."
+      - "Eine dunkle Hauptwohnung mit einem Stellplatz auf dem Dach."
+    correct: 0
+    explain:
+      en: "Sonder- marks an exceptional offer, Ferien- the purpose of the flat, Süd- the wing's direction. UG is the written building label Untergeschoss. The paraphrase preserves what the notice commits to without inventing a feature."
+      ru: "Sonder- отмечает особое предложение, Ferien- — назначение квартиры, Süd- — направление крыла. UG — письменное обозначение Untergeschoss. Пересказ сохраняет обязательные факты объявления и ничего не додумывает."
+      uk: "Sonder- позначає особливу пропозицію, Ferien- — призначення квартири, Süd- — напрямок крила. UG — письмове позначення Untergeschoss. Переказ зберігає обов’язкові факти оголошення й нічого не вигадує."
+      de: "Sonder- markiert ein besonderes Angebot, Ferien- den Zweck der Wohnung und Süd- die Richtung des Flügels. UG ist die schriftliche Gebäudebezeichnung Untergeschoss. Die Umschreibung bewahrt die zugesagten Tatsachen, ohne etwas zu erfinden."
+
+  - id: cloze-stamm-endung
+    outcomes: [text-zusammenfassen]
+    type: cloze
+    instruction:
+      en: "The stems are heut- and nächst-. Add the endings required by the two noun phrases."
+      ru: "Основы — heut- и nächst-. Добавьте окончания, которых требуют две именные группы."
+      uk: "Основи — heut- і nächst-. Додайте закінчення, яких вимагають дві іменні групи."
+      de: "Die Stämme heißen heut- und nächst-. Ergänze die Endungen, die beide Nominalgruppen verlangen."
+    text: "Die {{heutige}} Sprechstunde fällt aus. Der {{nächste}} Termin ist am Freitag."
+    translation:
+      en: "Today's consultation hour is cancelled. The next appointment is on Friday."
+      ru: "Сегодняшний приём отменяется. Следующая запись — в пятницу."
+      uk: "Сьогоднішній прийом скасовано. Наступний запис — у п’ятницю."
+    explain:
+      en: "Both nouns are nominative singular after the definite article: die Sprechstunde and der Termin. The stable pieces carry the lexical meaning, while -ige and -e make the forms fit their noun phrases."
+      ru: "Оба существительных стоят в Nominativ Singular после определённого артикля: die Sprechstunde и der Termin. Устойчивые части несут лексическое значение, а -ige и -e встраивают формы в именные группы."
+      uk: "Обидва іменники стоять у Nominativ Singular після означеного артикля: die Sprechstunde і der Termin. Сталі частини несуть лексичне значення, а -ige та -e вбудовують форми в іменні групи."
+      de: "Beide Nomen stehen im Nominativ Singular nach dem bestimmten Artikel: die Sprechstunde und der Termin. Die stabilen Teile tragen die lexikalische Bedeutung, -ige und -e passen die Formen an ihre Nominalgruppen an."
+
+  - id: cloze-korrelative-addition
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    instruction:
+      en: "The notice requires both documents. Complete the two-part connector."
+      ru: "В объявлении требуются оба документа. Дополните двухчастный коннектор."
+      uk: "В оголошенні потрібні обидва документи. Доповніть двочастинний конектор."
+      de: "Der Aushang verlangt beide Dokumente. Ergänze den zweiteiligen Konnektor."
+    text: "Bitte bringen Sie {{sowohl}} den Pass {{als auch}} die Meldebescheinigung mit."
+    translation:
+      en: "Please bring both your passport and your registration certificate."
+      ru: "Принесите и паспорт, и справку о регистрации."
+      uk: "Принесіть і паспорт, і довідку про реєстрацію."
+    explain:
+      en: "sowohl … als auch confirms both parallel objects. entweder … oder would allow a choice; weder … noch would reject both. The two halves frame equal structures and do not alter main-clause word order."
+      ru: "sowohl … als auch подтверждает оба параллельных дополнения. entweder … oder разрешило бы выбор, weder … noch отвергло бы оба. Две части обрамляют одинаковые структуры и не меняют порядок слов главного предложения."
+      uk: "sowohl … als auch підтверджує обидва паралельні додатки. entweder … oder дозволило б вибір, weder … noch відкинуло б обидва. Дві частини обрамляють однакові структури й не змінюють порядок слів головного речення."
+      de: "sowohl … als auch bestätigt beide parallelen Objekte. entweder … oder ließe eine Wahl, weder … noch verneinte beide. Die zwei Hälften rahmen gleichartige Strukturen und verändern die Hauptsatzstellung nicht."
+
+  - id: mc-weise-lesen
+    outcomes: [text-zusammenfassen]
+    type: mc
+    instruction:
+      en: "Read -weise as a suffix, then choose the faithful summary."
+      ru: "Прочитайте -weise как суффикс и выберите точный пересказ."
+      uk: "Прочитайте -weise як суфікс і виберіть точний переказ."
+      de: "Lies -weise als Endung und wähle die genaue Zusammenfassung."
+    prompt: "Die Räume werden schrittweise renoviert; teilweise bleiben sie geöffnet."
+    options:
+      - "Die Renovierung geschieht in Etappen, und einige Bereiche bleiben offen."
+      - "Alle Räume schließen sofort bis zum Ende der Renovierung."
+      - "Die Renovierung betrifft nur die Treppen."
+    correct: 0
+    explain:
+      en: "-weise turns Schritt into the manner 'in steps'; teilweise limits the statement to a part. Neither word names a wise person: the suffix packages how or to what extent something happens."
+      ru: "-weise превращает Schritt в способ действия «поэтапно»; teilweise ограничивает утверждение частью. Ни одно слово не называет мудрого человека: суффикс упаковывает способ или степень действия."
+      uk: "-weise перетворює Schritt на спосіб дії «поетапно»; teilweise обмежує твердження частиною. Жодне слово не називає мудру людину: суфікс пакує спосіб або ступінь дії."
+      de: "-weise macht aus Schritt die Art und Weise schrittweise; teilweise begrenzt die Aussage auf einen Teil. Keines der Wörter bezeichnet eine weise Person: Die Endung verpackt, wie oder in welchem Umfang etwas geschieht."
+
+  - id: write-kompositum-paraphrasieren
+    outcomes: [text-zusammenfassen]
+    type: write
+    prompt:
+      en: "A notice says: Wegen einer Elektroprüfung bleibt der Westausgang teilweise geschlossen. Paraphrase it in one simple German sentence without using Elektroprüfung, Westausgang or teilweise."
+      ru: "В объявлении сказано: Wegen einer Elektroprüfung bleibt der Westausgang teilweise geschlossen. Перескажите это одним простым немецким предложением, не используя Elektroprüfung, Westausgang и teilweise."
+      uk: "В оголошенні сказано: Wegen einer Elektroprüfung bleibt der Westausgang teilweise geschlossen. Перекажіть це одним простим німецьким реченням, не використовуючи Elektroprüfung, Westausgang і teilweise."
+      de: "Im Aushang steht: Wegen einer Elektroprüfung bleibt der Westausgang teilweise geschlossen. Schreibe das in einem einfachen Satz um, ohne Elektroprüfung, Westausgang oder teilweise zu benutzen."
+    goal:
+      en: "Preserve cause, location and limited closure while replacing all three dense forms with known words."
+      ru: "Сохранить причину, место и ограниченный характер закрытия, заменив все три плотные формы знакомыми словами."
+      uk: "Зберегти причину, місце й обмежений характер закриття, замінивши всі три щільні форми знайомими словами."
+      de: "Bewahre Grund, Ort und die begrenzte Schließung und ersetze alle drei dichten Formen durch bekannte Wörter."
+    requirements:
+      - {en: "Say that electrical equipment is being checked.", ru: "Скажите, что проверяют электрическое оборудование.", uk: "Скажіть, що перевіряють електричне обладнання.", de: "Sag, dass elektrische Geräte geprüft werden."}
+      - {en: "Identify the exit on the western side.", ru: "Укажите выход с западной стороны.", uk: "Укажіть вихід із західного боку.", de: "Bezeichne den Ausgang auf der westlichen Seite."}
+      - {en: "Make clear that it is not completely closed.", ru: "Дайте понять, что он закрыт не полностью.", uk: "Дайте зрозуміти, що він закритий не повністю.", de: "Mach deutlich, dass er nicht vollständig geschlossen ist."}
+    min_words: 12
+    model_answer: "Weil elektrische Geräte geprüft werden, ist der Ausgang auf der westlichen Seite nicht vollständig geöffnet."
+    model_translation:
+      en: "Because electrical equipment is being checked, the exit on the western side is not fully open."
+      ru: "Поскольку проверяют электрооборудование, выход с западной стороны открыт не полностью."
+      uk: "Оскільки перевіряють електрообладнання, вихід із західного боку відкритий не повністю."
+    explain:
+      en: "A reliable summary does not need the source's densest words. Elektro- narrows Prüfung, West- narrows Ausgang, and -weise limits the extent; unpacking all three preserves the notice's commitments and proves that the compounds were understood rather than copied."
+      ru: "Надёжному пересказу не нужны самые плотные слова источника. Elektro- уточняет Prüfung, West- — Ausgang, а -weise ограничивает степень; развёртывание всех трёх сохраняет факты объявления и показывает, что сложные слова поняты, а не скопированы."
+      uk: "Надійному переказу не потрібні найщільніші слова джерела. Elektro- уточнює Prüfung, West- — Ausgang, а -weise обмежує ступінь; розгортання всіх трьох зберігає факти оголошення й показує, що складні слова зрозуміли, а не скопіювали."
+      de: "Eine verlässliche Zusammenfassung braucht nicht die dichtesten Wörter der Quelle. Elektro- schränkt Prüfung ein, West- den Ausgang, -weise den Umfang; alle drei aufzulösen bewahrt die Aussagen des Aushangs und zeigt, dass die Komposita verstanden und nicht nur kopiert wurden."

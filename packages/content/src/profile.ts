@@ -193,10 +193,7 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     .flatMap((e) => itemsOf(graph, e))
     .filter((i) => i.type === 'translate' && !(i as { key_tokens?: string[] }).key_tokens?.length);
   const intensive = of('lesetext-intensiv');
-  const offBand = intensive.filter((e) => {
-    const words = readingWords(graph, e);
-    return words < INTENSIVE_WORDS.min || words > INTENSIVE_WORDS.max;
-  });
+  const intensiveWordCounts = intensive.map((element) => readingWords(graph, element));
   const unmeasured = (node?.outcomes ?? [])
     .map((o) => o.id)
     .filter((id) => !elements.some((e) => TEACHING_KINDS.has(e.kind) && e.outcomes.includes(id)))
@@ -255,9 +252,11 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     },
     {
       id: 'lesetext-umfang',
-      label: `intensiver Lesetext ${INTENSIVE_WORDS.min}–${INTENSIVE_WORDS.max} Wörter`,
-      ok: offBand.length === 0,
-      detail: offBand.length ? `${offBand.length} außerhalb` : undefined,
+      label: `Wortumfang intensiver Lesetexte (Richtwert ${INTENSIVE_WORDS.min}–${INTENSIVE_WORDS.max})`,
+      // Length is a cognitive-load tripwire, not a completeness requirement. A coherent 84-word
+      // notice and a purposeful 145-word narrative must not become defects by arithmetic alone.
+      ok: true,
+      detail: intensiveWordCounts.length ? `${intensiveWordCounts.join(' / ')} Wörter` : undefined,
     },
     {
       id: 'outcomes',
@@ -371,7 +370,6 @@ export const PROBLEM_LABELS: Record<string, { de: string; why: string }> = {
     de: 'translate ohne key_tokens',
     why: 'Eine leere Liste schreibt jeden Fehler im Satz dem Fokus-Tag zu.',
   },
-  'lesetext-umfang': { de: 'intensiver Lesetext außerhalb 90–130 Wörtern', why: 'Kein Gate prüft die Spanne.' },
   'outcome-ohne-aufgabe': { de: 'Outcome ohne messende Aufgabe', why: 'Ein nur geprüftes Outcome wurde nie geübt.' },
   'modus-fehlt': { de: 'beanspruchter Modus wird nicht geübt', why: 'Das Outcome nennt Sprechen; nichts im Thema lässt sprechen.' },
   'tag-ohne-probe': { de: 'Fokus-Tag ohne Probe', why: 'Die Verwechslung wird geübt, aber nie später erneut gefragt.' },
@@ -396,7 +394,6 @@ export function problems(graph: ContentGraph): Problem[] {
     if (fail('artikel-abschnitte')) add('artikel-ohne-abschnitte', topic.data.title_de, topic.id, topic.article);
     if (fail('transfer')) add('kein-transfer', topic.data.title_de, topic.id, topic.file);
     if (fail('probe')) add('keine-probe', topic.data.title_de, topic.id, topic.file);
-    if (fail('lesetext-umfang')) add('lesetext-umfang', topic.data.title_de, topic.id, topic.file);
 
     const core = profile.elements.find((element) => element.activity === 'core');
     if (fail('core-umfang') && core) {

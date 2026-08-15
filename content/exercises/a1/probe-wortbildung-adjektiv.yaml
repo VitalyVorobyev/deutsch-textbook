@@ -1,0 +1,45 @@
+topic: wortbildung
+role: probe
+title: {en: "Probe — adjective formation", ru: "Проверка — образование прилагательных", uk: "Перевірка — утворення прикметників"}
+arming:
+  - a1/wortbildung-adjektiv::mc-unklar
+  - a1/wortbildung-adjektiv::mc-zuckerlos
+  - a1/wortbildung-adjektiv::mc-lesbar
+  - a1/wortbildung-adjektiv::cloze-trinkbar
+  - a1/wortbildung-adjektiv::mc-hellblau
+  - a1/wortbildung-anwenden::translate-unlesbar
+  - a1/wortbildung-anwenden::mc-schild-verstehen
+items:
+  - id: variant-a
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Use one adjective with un-.", ru: "Используйте одно прилагательное с un-.", uk: "Використайте один прикметник з un-."}
+    prompt_en: "The number is unknown."
+    prompt_ru: "Номер неизвестен."
+    prompt_uk: "Номер невідомий."
+    answer: "Die Nummer ist unbekannt."
+    key_tokens: ["unbekannt"]
+    explain: {en: "bekannt → unbekannt: un- reverses the adjective. The result is a common whole word, not an improvised form.", ru: "bekannt → unbekannt: un- переворачивает значение прилагательного. Результат — частое реальное слово, а не импровизация.", uk: "bekannt → unbekannt: un- перевертає значення прикметника. Результат — часте справжнє слово, а не імпровізація."}
+  - id: variant-b
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Use the adjective kostenlos.", ru: "Используйте прилагательное kostenlos.", uk: "Використайте прикметник kostenlos."}
+    prompt_en: "The course is free of charge."
+    prompt_ru: "Курс бесплатный."
+    prompt_uk: "Курс безкоштовний."
+    answer: "Der Kurs ist kostenlos."
+    key_tokens: ["kostenlos"]
+    explain: {en: "Kosten + -los gives ohne Kosten: kostenlos. The ending describes absence, not a low price.", ru: "Kosten + -los означает ohne Kosten: kostenlos. Суффикс выражает отсутствие расходов, а не низкую цену.", uk: "Kosten + -los означає ohne Kosten: kostenlos. Суфікс виражає відсутність витрат, а не низьку ціну."}
+  - id: variant-c
+    outcomes: [wortbildung-adjektive]
+    type: translate
+    focus: wortbildung-adjektiv
+    instruction: {en: "Use the adjective machbar.", ru: "Используйте прилагательное machbar.", uk: "Використайте прикметник machbar."}
+    prompt_en: "The plan is feasible."
+    prompt_ru: "План осуществим."
+    prompt_uk: "План здійсненний."
+    answer: "Der Plan ist machbar."
+    key_tokens: ["machbar"]
+    explain: {en: "machen loses infinitive -en and takes -bar: machbar, something that can be done.", ru: "У machen убирается инфинитивное -en и добавляется -bar: machbar — то, что можно сделать.", uk: "У machen забирається інфінітивне -en і додається -bar: machbar — те, що можна зробити."}

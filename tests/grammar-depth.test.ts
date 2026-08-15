@@ -27,7 +27,7 @@ import { focusIntroducedBy } from '@da/content/focus-tags';
 describe('grammar depth', () => {
   // Re-derive: bun scripts/grammar-depth.ts
   const FLOORS = {
-    A1: { teaching: 12, production: 6, files: 4 },
+    A1: { teaching: 13, production: 9, files: 4 },
     A2: { teaching: 8, production: 6, files: 3 },
     B1: { teaching: 4, production: 3, files: 2 },
   } as const;
@@ -61,16 +61,13 @@ describe('grammar depth', () => {
       },
       { thin: 0, singleFile: 0, noProbe: 0 },
     );
-    // 15 → 16 on 2026-08-14, and it is worth saying why a ratchet moved the wrong way. The DTZ
-    // Prüfungshandbuch settled a backlog ruling (P26-8) that `über + Akkusativ` as a duration is a
-    // temporal preposition, so `ueber-dauer` became an inventory row and a registered tag — with
-    // **zero items behind it**, because nothing teaches it yet. That is the entire point of adding
-    // it: the gap is now counted in three places (here, `grammar-coverage`, and the tag table)
-    // instead of being invisible. Lower it again by authoring the items, never by dropping the tag.
+    // The A2 wave closed the three zero-item structures and all eight structure-level probe gaps.
+    // Keep the corpus-wide ceilings honest: thin tags in later levels still remain editorial work,
+    // but A2 may not silently recreate the debt this wave removed.
     expect([
-      totals.thin <= 16,
-      totals.singleFile <= 18,
-      totals.noProbe <= 13,
+      totals.thin <= 15,
+      totals.singleFile <= 16,
+      totals.noProbe <= 0,
     ]).toEqual([true, true, true]);
   });
 
@@ -118,8 +115,8 @@ describe('grammar depth', () => {
   });
 
   test('a point with no teaching items is not counted as missing its delayed check', () => {
-    // Opening a denominator gap must not look like a retention regression. The four A1 rows the
-    // anchor pass opened have no items and no probes, and are excluded by construction.
+    // Opening a denominator gap must not look like a retention regression. The three open A2 rows
+    // have no items and no probes, and are excluded by construction.
     const untaught = pointDepths().filter((p) => p.teaching === 0);
     expect(untaught.length).toBeGreaterThan(0);
     const counted = (['A1', 'A2', 'B1'] as const).reduce((n, l) => n + levelDepth(l).pointsWithoutProbe, 0);

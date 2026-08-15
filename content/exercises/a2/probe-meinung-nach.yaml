@@ -1,0 +1,47 @@
+topic: lernen-verstehen
+role: probe
+title: {en: "Probe — meiner Meinung nach", ru: "Проверка — meiner Meinung nach", uk: "Перевірка — meiner Meinung nach"}
+arming:
+  - a2/lernen-meinung-nach::mc-nachgestellt
+  - a2/lernen-meinung-nach::mc-v2
+  - a2/lernen-meinung-nach::cloze-mittelfeld
+  - a2/lernen-meinung-nach::mc-drei-nach
+  - a2/lernen-meinung-nach-transfer::translate-uebungen
+  - a2/lernen-meinung-nach-transfer::translate-app
+  - a2/lernen-meinung-nach-transfer::translate-morgentermin
+  - a2/lernen-meinung-nach-transfer::translate-miete
+items:
+  - id: variant-a
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate into German and begin with the opinion frame.", ru: "Переведите на немецкий и начните с рамки мнения.", uk: "Перекладіть німецькою й почніть із рамки думки."}
+    prompt_en: "In my opinion, the text is understandable."
+    prompt_ru: "По-моему, текст понятный."
+    prompt_uk: "На мою думку, текст зрозумілий."
+    answer: "Meiner Meinung nach ist der Text verständlich."
+    key_tokens: ["Meiner", "Meinung", "nach", "ist", "Text", "verständlich"]
+    explain: {en: "The complete frame fills position 1; ist follows before the subject der Text.", ru: "Полная рамка занимает позицию 1; ist следует перед подлежащим der Text.", uk: "Повна рамка займає позицію 1; ist іде перед підметом der Text."}
+  - id: variant-b
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate with the fixed frame in the middle.", ru: "Переведите с устойчивой рамкой в середине.", uk: "Перекладіть зі сталою рамкою в середині."}
+    prompt_en: "The second exercise is, in my opinion, more difficult."
+    prompt_ru: "Второе задание, по-моему, труднее."
+    prompt_uk: "Друга вправа, на мою думку, складніша."
+    answer: "Die zweite Aufgabe ist meiner Meinung nach schwieriger."
+    key_tokens: ["zweite", "Aufgabe", "ist", "meiner", "Meinung", "nach", "schwieriger"]
+    explain: {en: "The noun phrase meiner Meinung precedes the postposition nach and stays together in the middle field.", ru: "Именная группа meiner Meinung предшествует отложенному nach и остаётся единой в середине предложения.", uk: "Іменна група meiner Meinung передує відкладеному nach і лишається єдиною в середині речення."}
+  - id: variant-c
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate with the opinion frame in position 1.", ru: "Переведите с рамкой мнения на позиции 1.", uk: "Перекладіть із рамкою думки на позиції 1."}
+    prompt_en: "In my opinion, the appointment suits us well."
+    prompt_ru: "По-моему, встреча нам хорошо подходит."
+    prompt_uk: "На мою думку, зустріч нам добре підходить."
+    answer: "Meiner Meinung nach passt der Termin uns gut."
+    accept: ["Meiner Meinung nach passt uns der Termin gut."]
+    key_tokens: ["Meiner", "Meinung", "nach", "passt", "Termin", "uns"]
+    explain: {en: "meiner marks the dative inside the frame, nach closes it, and passt is the finite verb in position 2.", ru: "meiner отмечает Dativ внутри рамки, nach закрывает её, passt — спрягаемый глагол на позиции 2.", uk: "meiner позначає Dativ усередині рамки, nach закриває її, passt — відмінюване дієслово на позиції 2."}

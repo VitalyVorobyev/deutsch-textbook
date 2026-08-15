@@ -17,11 +17,12 @@ describe('listening production inventory', () => {
   // outcomes are one reading and three writing. Part two of the same strand
   // (verben-mit-kasus, 2026-08-12) took it 47 → 48, `model-input` again and for the
   // same reason, and part three (zeit-praepositionen, 2026-08-12) took it 48 → 49 on the
-  // same argument — one reading outcome, three writing ones.
+  // same argument — one reading outcome, three writing ones. The full A1 Wortbildung slice took
+  // it 49 → 50 with a model-input plan tied to its compound-reading outcome.
   test('covers every live Atlas unit exactly once', () => {
     const rows = inventory(import.meta.dir + '/..');
-    expect(rows).toHaveLength(49);
-    expect(new Set(rows.map((row) => row.unit)).size).toBe(49);
+    expect(rows).toHaveLength(50);
+    expect(new Set(rows.map((row) => row.unit)).size).toBe(50);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
   });
 

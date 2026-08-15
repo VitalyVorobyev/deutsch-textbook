@@ -1,0 +1,59 @@
+topic: praesens-wortstellung
+role: practice
+stage: geruest
+activity: extension
+title_de: "Grundübung — zwei Hauptsätze verbinden"
+title:
+  en: "Core — join two main clauses"
+  ru: "Основа — соединяем два главных предложения"
+  uk: "Основа — поєднуємо два головні речення"
+items:
+  - id: mc-denn-wortstellung
+    outcomes: [praesens-koordination]
+    type: mc
+    focus: koordination-position-null
+    instruction: {en: "Choose the sentence with correct word order.", ru: "Выберите предложение с правильным порядком слов.", uk: "Оберіть речення з правильним порядком слів."}
+    prompt: "Lena kommt nicht, …"
+    options:
+      - "denn sie arbeitet heute."
+      - "denn arbeitet sie heute."
+      - "denn sie heute arbeitet."
+    correct: 0
+    explain:
+      en: "denn stands before the second main clause. Remove it and the clause is still Sie arbeitet heute: subject first, verb second. denn arbeitet sie wrongly treats denn like deshalb; denn sie heute arbeitet wrongly treats it like weil."
+      ru: "denn стоит перед вторым главным предложением. Уберите его — останется Sie arbeitet heute: подлежащее первое, глагол второй. denn arbeitet sie ошибочно обращается с denn как с deshalb, а denn sie heute arbeitet — как с weil."
+      uk: "denn стоїть перед другим головним реченням. Приберіть його — лишиться Sie arbeitet heute: підмет перший, дієслово друге. denn arbeitet sie помилково поводиться з denn як із deshalb, а denn sie heute arbeitet — як із weil."
+  - id: order-aber
+    outcomes: [praesens-koordination]
+    type: order
+    focus: koordination-position-null
+    instruction: {en: "Build the second clause after aber.", ru: "Составьте вторую часть после aber.", uk: "Складіть другу частину після aber."}
+    words: ["aber", "mein Bruder", "trinkt", "Tee."]
+    explain: {en: "aber is outside the clause positions: aber | mein Bruder | trinkt | Tee. The subject therefore stays before the verb.", ru: "aber находится вне позиций предложения: aber | mein Bruder | trinkt | Tee. Поэтому подлежащее остаётся перед глаголом.", uk: "aber перебуває поза позиціями речення: aber | mein Bruder | trinkt | Tee. Тому підмет лишається перед дієсловом."}
+  - id: cloze-oder-verb
+    outcomes: [praesens-koordination]
+    type: cloze
+    focus: koordination-position-null
+    instruction: {en: "Complete the second question with the correct verb form.", ru: "Дополните второй вопрос правильной формой глагола.", uk: "Доповніть друге питання правильною формою дієслова."}
+    text: "Kommst du mit, oder {{bleibst}} du zu Hause?"
+    explain: {en: "Each yes/no question begins with its verb: Kommst du …? Bleibst du …? oder only joins them and changes neither question.", ru: "Каждый общий вопрос начинается с глагола: Kommst du …? Bleibst du …? oder только соединяет их и не меняет порядок.", uk: "Кожне загальне питання починається з дієслова: Kommst du …? Bleibst du …? oder лише поєднує їх і не змінює порядок."}
+  - id: translate-und
+    outcomes: [praesens-koordination]
+    type: translate
+    focus: koordination-position-null
+    instruction: {en: "Translate into German with und.", ru: "Переведите на немецкий с und.", uk: "Перекладіть німецькою з und."}
+    prompt_en: "I live in Bonn, and my sister lives in Cologne."
+    prompt_ru: "Я живу в Бонне, а моя сестра живёт в Кёльне."
+    prompt_uk: "Я живу в Бонні, а моя сестра живе в Кельні."
+    answer: "Ich wohne in Bonn, und meine Schwester wohnt in Köln."
+    key_tokens: ["und", "Schwester", "wohnt"]
+    explain: {en: "The second clause is complete and keeps ordinary V2: meine Schwester wohnt. und stands before it and consumes no position.", ru: "Вторая часть самостоятельна и сохраняет обычный V2: meine Schwester wohnt. und стоит перед ней и не занимает позицию.", uk: "Друга частина самостійна й зберігає звичайний V2: meine Schwester wohnt. und стоїть перед нею й не займає позицію."}
+  - id: mc-bedeutung
+    outcomes: [praesens-koordination]
+    type: mc
+    focus: koordination-position-null
+    instruction: {en: "Choose the connector that gives a reason.", ru: "Выберите союз, который вводит причину.", uk: "Оберіть сполучник, що вводить причину."}
+    prompt: "Ich gehe früh ins Bett, ___ ich bin müde."
+    options: ["denn", "aber", "oder"]
+    correct: 0
+    explain: {en: "denn introduces the reason and keeps main-clause word order. aber would contradict; oder would offer an alternative.", ru: "denn вводит причину и сохраняет порядок главного предложения. aber создаёт противопоставление, oder — выбор.", uk: "denn вводить причину й зберігає порядок головного речення. aber створює протиставлення, oder — вибір."}

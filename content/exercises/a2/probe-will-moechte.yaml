@@ -1,0 +1,45 @@
+topic: modalverben
+role: probe
+title: {en: "Probe — wollen or möchte", ru: "Проверка — wollen или möchte", uk: "Перевірка — wollen чи möchte"}
+arming:
+  - a2/modalverben::cloze-moechten
+  - a2/modalverben::mc-magst
+  - a2/modalverben-produktion::cloze-mag-moechte-will
+  - a2/modalverben-produktion::uebersetzen-moechte-handtuch
+  - a2/modalverben-produktion::uebersetzen-moechte-bestellen
+  - a2/termine-vereinbaren::mc-hoeflich
+items:
+  - id: variant-a
+    outcomes: [modal-hoefliche-wuensche]
+    type: translate
+    focus: will-moechte
+    instruction: {en: "Ask politely at a bakery.", ru: "Вежливо попросите в пекарне.", uk: "Ввічливо попросіть у пекарні."}
+    prompt_en: "I would like two rolls, please."
+    prompt_ru: "Мне, пожалуйста, две булочки."
+    prompt_uk: "Мені, будь ласка, дві булочки."
+    answer: "Ich möchte bitte zwei Brötchen."
+    accept: ["Ich hätte gern zwei Brötchen, bitte."]
+    key_tokens: ["möchte", "zwei", "Brötchen"]
+    explain: {en: "möchte is the neutral polite request. will would announce a firm intention and is too blunt at the counter.", ru: "möchte — нейтральная вежливая просьба. will сообщает твёрдое намерение и у прилавка звучит слишком резко.", uk: "möchte — нейтральне ввічливе прохання. will повідомляє твердий намір і біля прилавка звучить надто різко."}
+  - id: variant-b
+    outcomes: [modal-hoefliche-wuensche]
+    type: translate
+    focus: will-moechte
+    instruction: {en: "State a firm personal plan in German, not a request.", ru: "Сообщите по-немецки твёрдый личный план, а не просьбу.", uk: "Повідомте німецькою твердий особистий план, а не прохання."}
+    prompt_en: "After the training, I intend to work in Berlin."
+    prompt_ru: "После обучения я намерен работать в Берлине."
+    prompt_uk: "Після навчання я маю намір працювати в Берліні."
+    answer: "Nach der Ausbildung will ich in Berlin arbeiten."
+    key_tokens: ["will", "Berlin", "arbeiten"]
+    explain: {en: "wollen expresses a firm intention. mögen is liking, and möchte never takes an extra reflexive mir.", ru: "wollen выражает твёрдое намерение. mögen означает предпочтение, а möchte не требует возвратного mir.", uk: "wollen виражає твердий намір. mögen означає вподобання, а möchte не потребує зворотного mir."}
+  - id: variant-c
+    outcomes: [modal-hoefliche-wuensche]
+    type: translate
+    focus: will-moechte
+    instruction: {en: "Make a polite appointment request.", ru: "Вежливо попросите о встрече.", uk: "Ввічливо попросіть про зустріч."}
+    prompt_en: "I would like to make an appointment."
+    prompt_ru: "Я хотел бы записаться на приём."
+    prompt_uk: "Я хотів би записатися на прийом."
+    answer: "Ich möchte einen Termin vereinbaren."
+    key_tokens: ["möchte", "Termin", "vereinbaren"]
+    explain: {en: "möchte occupies position 2 and the action infinitive vereinbaren closes the sentence.", ru: "möchte занимает позицию 2, а инфинитив действия vereinbaren закрывает предложение.", uk: "möchte займає позицію 2, а інфінітив дії vereinbaren закриває речення."}

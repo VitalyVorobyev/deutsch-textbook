@@ -61,9 +61,9 @@ backfill is not a gate for this program.
 - Existing content ids may change when a pedagogically incoherent activity is replaced. Preserving
   one pilot learner's history is secondary to a better course, while gratuitous id churn remains
   undesirable.
-- The 23-entry DTZ tail is worked as coherent teaching slices, not 23 token exercises. Its first
-  exact match, `mod-wie`, is already taught in `einkaufen-reklamation`; the other 22 remain
-  unclaimed until the slices recorded in the audit ship.
+- The 23-entry DTZ tail is worked as coherent teaching slices, not token exercises. `mod-wie` was
+  an exact existing match and `nachsilbe-chen` shipped with the full A1 Wortbildung slice; the
+  other 21 shipped as eight exact A2 slices with owner sections, scaffold, transfer and probes.
 - The final acceptance gate is conjunctive: external alignment, internal catalog coverage, depth,
   lexical coverage and zero A1–B1 attention findings must each pass independently.
 

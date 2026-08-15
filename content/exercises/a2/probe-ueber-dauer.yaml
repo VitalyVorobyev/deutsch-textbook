@@ -1,0 +1,45 @@
+topic: alltag-tagesablauf
+role: probe
+title: {en: "Probe — über for exceeded duration", ru: "Проверка — über для превышенной длительности", uk: "Перевірка — über для перевищеної тривалості"}
+arming:
+  - a2/alltag-ueber-dauer::mc-ueber-stunde
+  - a2/alltag-ueber-dauer::mc-akkusativ
+  - a2/alltag-ueber-dauer::cloze-tage-monat
+  - a2/alltag-ueber-dauer::mc-neutral-oder-ueber
+  - a2/alltag-ueber-dauer::translate-telefoniert
+  - a2/zeit-praepositionen-ueber-transfer::translate-besprechung
+  - a2/zeit-praepositionen-ueber-transfer::translate-arbeitsweg
+items:
+  - id: variant-a
+    outcomes: [dauer-ueber-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The film lasted for over three hours."
+    prompt_ru: "Фильм длился больше трёх часов."
+    prompt_uk: "Фільм тривав понад три години."
+    answer: "Der Film hat über drei Stunden gedauert."
+    key_tokens: ["über", "drei", "Stunden", "gedauert"]
+    explain: {en: "über marks that the film crossed the three-hour threshold.", ru: "über показывает, что фильм превысил трёхчасовой порог.", uk: "über показує, що фільм перевищив тригодинний поріг."}
+  - id: variant-b
+    outcomes: [dauer-ueber-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "I waited for over a month."
+    prompt_ru: "Я ждал больше месяца."
+    prompt_uk: "Я чекав понад місяць."
+    answer: "Ich habe über einen Monat gewartet."
+    key_tokens: ["über", "einen", "Monat", "gewartet"]
+    explain: {en: "Temporal über takes the accusative, which is visible in masculine einen Monat.", ru: "Временное über требует Akkusativ, который виден в мужской форме einen Monat.", uk: "Часове über потребує Akkusativ, який видно в чоловічій формі einen Monat."}
+  - id: variant-c
+    outcomes: [dauer-ueber-nennen]
+    type: translate
+    focus: ueber-dauer
+    instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
+    prompt_en: "The repair took more than a week."
+    prompt_ru: "Ремонт занял больше недели."
+    prompt_uk: "Ремонт тривав понад тиждень."
+    answer: "Die Reparatur hat über eine Woche gedauert."
+    key_tokens: ["über", "eine", "Woche", "gedauert"]
+    explain: {en: "die Woche remains eine Woche in the accusative; über supplies the more-than meaning.", ru: "die Woche сохраняет форму eine Woche в Akkusativ; über добавляет значение «больше».", uk: "die Woche зберігає форму eine Woche в Akkusativ; über додає значення «понад»."}
