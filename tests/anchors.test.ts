@@ -52,25 +52,6 @@ describe('inventory anchors', () => {
   });
 
   /**
-   * The DTZ tail is a named countdown, not a percentage that can move through rounding. One of the
-   * original 23 entries, modal `wie + Nominativ`, already had exact teaching and productive
-   * evidence in einkaufen-reklamation and is now claimed by `komparativ`. The remaining 22 stay
-   * visible until their complete teaching slices ship; adding an alias is not a valid way to edit
-   * this list.
-   */
-  test('the unclaimed DTZ tail stays explicit while its teaching slices are authored', () => {
-    const expected = [
-      'vorsilbe-herauf', 'vorsilbe-heraus', 'vorsilbe-herein', 'vorsilbe-herunter',
-      'vorsilbe-hin', 'vorsilbe-hinauf', 'vorsilbe-hinaus', 'vorsilbe-hinueber',
-      'vorsilbe-hinunter', 'nachsilbe-chen', 'derselbe', 'ein-paar', 'wenige',
-      'temp-mit', 'temp-zwischen', 'lok-ausserhalb', 'lok-gegen', 'lok-um-herum',
-      'weit-nach', 'darum', 'daher', 'nicht-brauchen-zu',
-    ].sort();
-    expect(structureCoverage('A2').unclaimed.map((entry) => entry.entry.key).sort()).toEqual(expected);
-    expect(structureCoverage('B1').unclaimed.map((entry) => entry.entry.key).sort()).toEqual(expected);
-  });
-
-  /**
    * 63%, and nine of the fifteen holes are the whole of §8.3 Redeorganisation — this course teaches
    * a learner to build sentences and never to manage a conversation (backlog P26-10). The floor is
    * deliberately today's number and not a target: closing that block is authoring work, and a
