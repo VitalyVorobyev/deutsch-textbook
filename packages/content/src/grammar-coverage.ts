@@ -167,7 +167,30 @@ export function exerciseLevelFromPath(file: string, base: string): Level {
  * while every real drill of it sits at A2, hiding a genuine sequencing fact
  * from the one category that exists to show it.
  */
+/**
+ * Two per-root memos, for the same measured reason as the ones in coverage.ts: `graphPayload`
+ * calls `grammarCoverage` once per level, and each call walks and YAML-parses all 410 exercise
+ * files through `drilledFocusTags` and re-reads the 72 KB inventory through `loadGrammarMap`.
+ * Four levels meant ~1,640 redundant parses and ~1.0 s per payload build. Cleared by
+ * `invalidateContentGraph`, like `depthCache`.
+ */
+const drilledCache = new Map<string, Map<string, Set<Level>>>();
+const inventoryCache = new Map<string, GrammarInventory>();
+
+/** Drop the memos. Called by `invalidateContentGraph`; not part of the public surface. */
+export function invalidateGrammarCoverageCaches(root?: string): void {
+  if (root) {
+    drilledCache.delete(root);
+    inventoryCache.delete(root);
+  } else {
+    drilledCache.clear();
+    inventoryCache.clear();
+  }
+}
+
 export function drilledFocusTags(root = repoRoot()): Map<string, Set<Level>> {
+  const cached = drilledCache.get(root);
+  if (cached) return cached;
   const tags = new Map<string, Set<Level>>();
   const base = join(root, 'content', 'exercises');
   for (const file of walk(base)) {
@@ -185,6 +208,7 @@ export function drilledFocusTags(root = repoRoot()): Map<string, Set<Level>> {
       tags.get(item.focus)!.add(level);
     }
   }
+  drilledCache.set(root, tags);
   return tags;
 }
 
@@ -194,6 +218,8 @@ export interface GrammarInventory {
 }
 
 export function loadGrammarMap(root = repoRoot()): GrammarInventory {
+  const cachedInventory = inventoryCache.get(root);
+  if (cachedInventory) return cachedInventory;
   const raw = readFileSync(join(root, 'data', 'grammar-inventory.yaml'), 'utf8');
   const parsed = YAML.parse(raw) as Partial<GrammarInventory>;
   const tracks = parsed.tracks ?? [];
@@ -208,7 +234,11 @@ export function loadGrammarMap(root = repoRoot()): GrammarInventory {
   if (badLevel) throw new Error(`point "${badLevel.id}" has no valid A1–C2 reception/production level`);
   const untracked = points.find((point) => !point.track || !ids.has(point.track));
   if (untracked) throw new Error(`point "${untracked.id}" names no declared grammar track`);
-  return { tracks, points };
+  // Memoised only after validation, so a malformed inventory throws on every call rather than
+  // once — a cached failure would look like a passing second run.
+  const inventory = { tracks, points };
+  inventoryCache.set(root, inventory);
+  return inventory;
 }
 
 export function loadGrammarInventory(root = repoRoot()): GrammarPoint[] {

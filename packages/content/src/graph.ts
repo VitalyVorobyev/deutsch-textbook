@@ -56,6 +56,8 @@ import {
   type GrammarTrack,
 } from './grammar-coverage';
 import { invalidateGrammarDepth } from './grammar-depth';
+import { invalidateCoverageCaches } from './coverage';
+import { invalidateGrammarCoverageCaches } from './grammar-coverage';
 import { loadStructureSources, type StructureSource } from './structures';
 import { idFromManifestPath, manifestFiles, MANIFEST_SUFFIX } from './topics';
 import {
@@ -670,6 +672,11 @@ export function invalidateContentGraph(root?: string): void {
   if (root) cache.delete(root);
   else cache.clear();
   invalidateGrammarDepth(root);
+  // The coverage and grammar-coverage memos hold parsed copies of the same files the graph does,
+  // so they belong to the graph's lifetime. Dropping the graph and leaving them would be the
+  // stale-number failure the memos were added to avoid causing.
+  invalidateCoverageCaches(root);
+  invalidateGrammarCoverageCaches(root);
 }
 
 export { productionLevel };

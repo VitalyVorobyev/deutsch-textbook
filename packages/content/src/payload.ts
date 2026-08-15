@@ -5,12 +5,17 @@
  * read from Node. None of that survives `JSON.stringify`, so this module is the one place that
  * decides what crosses the wire and in what shape — rather than every view inventing its own.
  *
- * TWO TIERS, on purpose. The **structure** (49 topics, 569 elements, 97 inventory rows, 179
- * outcomes, the problems, the profiles) is a few hundred kilobytes and ships on first paint,
- * because every view needs some of it and a second round-trip per view is the thing that made the
- * old generated console a single 2.4 MB file. The **bulk** (1 976 items, 3 554 vocabulary entries,
- * every reading's text) is an order of magnitude larger, is needed by two views out of nine, and
- * ships per chunk on demand.
+ * TWO TIERS, on purpose. The **structure** (the topics, elements, inventory rows, outcomes,
+ * problems and profiles) ships on first paint, because every view needs some of it and a second
+ * round-trip per view is the thing that made the old generated console a single 2.4 MB file. The
+ * **bulk** (every item, every vocabulary entry, every reading text) is several times larger, is
+ * needed by two views out of nine, and ships per chunk on demand.
+ *
+ * The header used to say the structure tier "is a few hundred kilobytes". It was 2.2 MB — within
+ * 12 % of the baked file this design replaced, which is the claim the sentence existed to make.
+ * Stripping the dead `ownedBy` maps (2026-08-15) took it to 1.87 MB. No count is written here any
+ * more, because a number in a module header has no gate: measure it with
+ * `JSON.stringify(graphPayload(contentGraph())).length` when you need one.
  */
 import { listeningAudioPath, type AtlasGroup, type AtlasUnit, type Level, type Outcome } from '@da/schema';
 import { CEFR_LEVELS, LEVELS } from '@da/schema';
@@ -247,8 +252,18 @@ function buildPayload(graph: ContentGraph): GraphPayload {
   // rather than fail — the silent-absence failure this whole model exists to make impossible.
   // Strip them here: no view needs them, and an absent field is a type error while an empty one
   // is a wrong answer.
-  const wireSafe = <T,>(value: T): T => JSON.parse(JSON.stringify(value, (_key, v) =>
-    v instanceof Map ? Object.fromEntries(v) : v)) as T;
+  //
+  // Until 2026-08-15 this comment was aspirational. `wireSafe` *converted* Maps to objects rather
+  // than dropping them, so `wortliste.ownedBy` shipped in full — 121 KB per level, the same
+  // level-independent map three times, 363 KB of a 2.2 MB payload, with zero readers in
+  // apps/redaktion or packages/ui. The `DROP_ON_WIRE` list makes the stated behaviour the real
+  // one. Add a key here only when nothing renders it; a view that needs one of these should get
+  // its own chunk instead, the way `items`/`vocab`/`texts` already do.
+  const DROP_ON_WIRE = new Set(['ownedBy', 'byType']);
+  const wireSafe = <T,>(value: T): T => JSON.parse(JSON.stringify(value, (key, v) => {
+    if (DROP_ON_WIRE.has(key)) return undefined;
+    return v instanceof Map ? Object.fromEntries(v) : v;
+  })) as T;
   const reports: LevelReport[] = LEVELS.map((level) => {
     const report: LevelReport = { level, medians: medians.get(level) };
     // Each measurement is imported, never reimplemented. A figure here that disagrees with

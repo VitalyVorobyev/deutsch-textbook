@@ -11,7 +11,7 @@ step*. Measurement essays, dated reads and PR history live in
 
 ## Doing
 
-### P27 · Redaction editorial workstation
+### P27 · Redaktion editorial workstation
 
 P27-0 and the foundation of P27-1/P27-2 are in the current implementation: ADR 0013; explicit
 A1–C2 `CefrLevel`, ten declared grammar tracks and all 106 points migrated; transport-neutral
@@ -40,7 +40,7 @@ coverage and answer-disclosed exercise preview. Nine custom image/reference figu
 semantic editor representations and must migrate to common React before pixel parity can be
 claimed. Then add safe structured controls over the same source buffer and visible background-job
 status. Work the remaining reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
-[roadmap](roadmap.md#redaction-p27); do not flatten them into one release claim.
+[roadmap](roadmap.md#redaktion-p27); do not flatten them into one release claim.
 
 Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale
 revision, invalid YAML/MDX and corpus-invalid-draft tests; all renderer fixtures; checkout/watcher/
@@ -736,7 +736,7 @@ These require a measured learning or usability need. They do not block the curri
 - **P27-1b · learning-activity architecture** (2026-08-14) — all 172 topic-owned teaching sets now
   declare one pedagogical function, authored stage and German editor title; every topic has exactly
   one 8–15-item Grundübung and a productive application; six overloaded cores were split by purpose;
-  the learner page, Redaction topic profile and material index share the same model. The old
+  the learner page, Redaktion topic profile and material index share the same model. The old
   per-file arithmetic was removed, reducing the editorial queue from the 265-finding baseline to
   81 evidence gaps. Contract, migration decisions and repeatable counts:
   [ADR 0014](adrs/0014-learning-activity-architecture.md) ·

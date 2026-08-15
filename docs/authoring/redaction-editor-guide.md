@@ -1,6 +1,6 @@
-# Redaction: editor guide
+# Redaktion: editor guide
 
-Redaction is the local editorial workbench for Deutsch-Atlas. It reads and edits the selected
+Redaktion is the local editorial workbench for Deutsch-Atlas. It reads and edits the selected
 repository checkout directly; it does not keep a second content database. The current release is
 appropriate for a **controlled macOS pilot** on existing `content/` and `data/` files. Keep normal
 Git review and `bun run validate` in the publishing workflow.
@@ -33,7 +33,7 @@ a distributed build still needs the project Apple signing credentials.
 
 On first launch, open **Einstellungen**, choose the Deutsch-Atlas checkout, and click **Checkout
 öffnen**. A valid checkout contains `content/atlas.yaml`, `data/grammar-inventory.yaml`, and
-`package.json`. Redaction remembers the selected path in its own application settings.
+`package.json`. Redaktion remembers the selected path in its own application settings.
 
 ## Find the editorial answer
 
@@ -77,7 +77,7 @@ totals.
 
 The durable contract and trade-offs are in [ADR 0014](../adrs/0014-learning-activity-architecture.md).
 
-The arrow buttons beside the Redaction wordmark traverse the history created by links, filters and
+The arrow buttons beside the Redaktion wordmark traverse the history created by links, filters and
 search. They stay disabled when no app-local destination exists; a dead-end detail also links back
 to its collection or owning topic.
 
@@ -95,14 +95,14 @@ Save. `technisch blockierend` is reserved for a condition that the application r
 3. In an exercise set, use the same language switch and inspect every prompt, model answer,
    accepted alternative, explanation, focus, outcome, key token and revision. This is editor mode:
    answers are deliberately disclosed and no attempt or progress record is written.
-4. Click **Speichern**. Save is explicit; Redaction never writes on every keystroke.
+4. Click **Speichern**. Save is explicit; Redaktion never writes on every keystroke.
 5. Fix any file-local syntax or schema diagnostics. An invalid YAML/MDX file is not written.
 6. Click **Korpus prüfen** after a meaningful edit. Cross-file problems may exist in a saved draft,
    but remain visible until resolved.
 7. Review the resulting repository diff with Git before committing or opening a pull request.
 
 Save uses the revision read when the editor was opened. If another program changes the file in the
-meantime, Redaction refuses to overwrite it. Reload the source and merge the two versions
+meantime, Redaktion refuses to overwrite it. Reload the source and merge the two versions
 deliberately. Writes are atomic and limited to existing supported text files below `content/` and
 `data/`; file creation, deletion, and moves remain repository operations.
 
@@ -115,7 +115,7 @@ not replace the local preview, local edit, or review of the eventual branch diff
 
 ## Mark a topic as reviewed
 
-Do not change a topic manifest from `draft` to `reviewed` in the source textarea. Redaction rejects
+Do not change a topic manifest from `draft` to `reviewed` in the source textarea. Redaktion rejects
 that shortcut. Instead:
 
 1. Save all draft changes.

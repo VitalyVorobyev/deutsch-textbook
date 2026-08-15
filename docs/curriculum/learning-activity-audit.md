@@ -31,7 +31,7 @@ adds file counts into a quality score.
 - Five A1 follow-on sets whose real job was productive use—not optional explanation—were promoted
   from extension/scaffold to application/transfer.
 - The learner page now shows one required Grundübung and collapses Vertiefen, Anwenden and Gezielt
-  üben as optional groups. Redaction presents function, stage and medium separately and filters the
+  üben as optional groups. Redaktion presents function, stage and medium separately and filters the
   material index by learning function.
 
 The move intentionally changes 21 set/item evidence keys. This was accepted because the current
@@ -51,7 +51,7 @@ Reproduce with `bun run activity:audit`:
 Medium: 120 mixed · 47 listening · 5 document. There are 172 teaching sets after the four new
 application files. Zero core activities are outside 8–15; zero topics lack productive application.
 
-The Redaction profile queue fell from the 265-opening baseline to **81**. The reduction was not a
+The Redaktion profile queue fell from the 265-opening baseline to **81**. The reduction was not a
 KPI; it meant 184 invalid or closed claims disappeared. That historical queue contained 20 articles
 without addressable explanation subsections, 19 focus tags without a probe, 17 arithmetic reading
 length flags, 9 translations without `key_tokens`, 7 unpractised tags, 7 inventory points without an
