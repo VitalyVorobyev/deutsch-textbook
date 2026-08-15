@@ -1,0 +1,74 @@
+# Delayed probe family — ONE competence: object pronouns precede noun objects, and with two
+# pronouns accusative precedes dative. The three variants cover both mixed-case directions and
+# the two-pronoun case in fresh contexts. They arm only from the two practice items that teach
+# this decision; the B1 checkpoint is evidence, never the start of a retention clock.
+topic: informationen-vermitteln
+role: probe
+title:
+  en: "Delayed check — pronoun objects in the middle field"
+  ru: "Отложенная проверка — местоименные дополнения в среднем поле"
+  uk: "Відкладена перевірка — займенникові додатки в середньому полі"
+  de: "Kontrolle mit Abstand — Pronomenobjekte im Mittelfeld"
+arming:
+  - b1/informationen-vermitteln::cloze-pronomen-stellung
+  - b1/informationen-vermitteln::uebersetzen-pronomen-stellung
+items:
+  - id: variant-a
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: pronomen-stellung
+    instruction:
+      en: "The invoice is already known. Put its pronoun and the noun recipient into the German order."
+      ru: "Счёт уже упомянут. Поставьте его местоимение и получателя-существительное в немецком порядке."
+      uk: "Рахунок уже згадано. Поставте його займенник і одержувача-іменник у німецькому порядку."
+      de: "Die Rechnung ist schon bekannt. Setz ihr Pronomen und den nominalen Empfänger in die deutsche Reihenfolge."
+    text: "Ich habe {{sie}} {{meinem Bruder}} gezeigt."
+    translation:
+      en: "I showed it to my brother."
+      ru: "Я показал её брату."
+      uk: "Я показав її братові."
+    explain:
+      en: "sie is the short, known accusative object and therefore precedes the new dative noun meinem Bruder. The noun-only rule 'dative before accusative' no longer decides once one object is a pronoun."
+      ru: "sie — короткое и уже известное дополнение в Akkusativ, поэтому оно стоит перед новым существительным в Dativ: meinem Bruder. Правило для двух существительных «сначала Dativ» больше не решает, если одно дополнение стало местоимением."
+      uk: "sie — короткий і вже відомий додаток в Akkusativ, тому він стоїть перед новим іменником у Dativ: meinem Bruder. Правило для двох іменників «спочатку Dativ» більше не вирішує, якщо один додаток став займенником."
+      de: "sie ist das kurze, bekannte Akkusativobjekt und steht deshalb vor dem neuen Dativnomen meinem Bruder. Die Nomenregel ‚Dativ vor Akkusativ‘ entscheidet nicht mehr, sobald ein Objekt ein Pronomen ist."
+
+  - id: variant-b
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: pronomen-stellung
+    instruction:
+      en: "Paul is already known. Put the pronoun referring to him and the noun object into the German order."
+      ru: "Пауль уже упомянут. Поставьте местоимение, которое на него указывает, и дополнение-существительное в немецком порядке."
+      uk: "Пауля вже згадано. Поставте займенник, що на нього вказує, і додаток-іменник у німецькому порядку."
+      de: "Paul ist schon bekannt. Setz das Pronomen für ihn und das nominale Objekt in die deutsche Reihenfolge."
+    text: "Ich gebe {{ihm}} {{den Schlüssel}} morgen zurück."
+    translation:
+      en: "I will give him the key back tomorrow."
+      ru: "Завтра я верну ему ключ."
+      uk: "Завтра я поверну йому ключ."
+    explain:
+      en: "This time the pronoun is dative, but the result is the same: ihm comes before the accusative noun den Schlüssel. Pronoun before noun is stronger than case order."
+      ru: "На этот раз местоимение стоит в Dativ, но результат тот же: ihm идёт перед существительным в Akkusativ den Schlüssel. Местоимение перед существительным — правило сильнее порядка падежей."
+      uk: "Цього разу займенник стоїть у Dativ, але результат той самий: ihm іде перед іменником в Akkusativ den Schlüssel. Займенник перед іменником — правило сильніше за порядок відмінків."
+      de: "Diesmal steht das Pronomen im Dativ, das Ergebnis bleibt gleich: ihm kommt vor dem Akkusativnomen den Schlüssel. Pronomen vor Nomen schlägt die Kasusreihenfolge."
+
+  - id: variant-c
+    outcomes: [mitteilung-weitergeben]
+    type: cloze
+    focus: pronomen-stellung
+    instruction:
+      en: "Both objects are pronouns. Put es (accusative) and ihm (dative) into the two slots in the German order."
+      ru: "Оба дополнения — местоимения. Поставьте es (Akkusativ) и ihm (Dativ) в два пропуска в немецком порядке."
+      uk: "Обидва додатки — займенники. Поставте es (Akkusativ) та ihm (Dativ) у два пропуски в німецькому порядку."
+      de: "Beide Objekte sind Pronomen. Setz es (Akkusativ) und ihm (Dativ) in der deutschen Reihenfolge in die beiden Lücken."
+    text: "Ich habe {{es}} {{ihm}} gestern geschickt."
+    translation:
+      en: "I sent it to him yesterday."
+      ru: "Я отправил это ему вчера."
+      uk: "Я надіслав це йому вчора."
+    explain:
+      en: "With two pronouns the order is accusative before dative: es ihm, never ihm es. Both stay together before the time phrase in the neutral middle field."
+      ru: "Если оба дополнения — местоимения, Akkusativ стоит перед Dativ: es ihm, никогда ihm es. В нейтральном среднем поле оба стоят вместе перед указанием времени."
+      uk: "Якщо обидва додатки — займенники, Akkusativ стоїть перед Dativ: es ihm, ніколи ihm es. У нейтральному середньому полі обидва стоять разом перед указівкою часу."
+      de: "Bei zwei Pronomen steht der Akkusativ vor dem Dativ: es ihm, nie ihm es. Im neutralen Mittelfeld bleiben beide vor der Zeitangabe zusammen."

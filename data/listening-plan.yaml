@@ -444,9 +444,11 @@ units:
       - id: ls-aemter-dienstleistungen-01
         wave: 2
         purpose: model-input
-        scenario: "Gespräch am Schalter über Unterlagen und nächste Schritte"
+        scenario: "Wohnsitz anmelden: Unterlagen, Vollmacht und Meldebestätigung"
         outcomes: [unterlagen-erfragen]
-        duration_seconds: { min: 50, max: 60 }
+        required_vocabulary: [Wohnungsgeberbestätigung, Formular, Vollmacht, Meldebestätigung, kostenlos]
+        grammar_target: "Unterlagen erfragen und eine Verwaltungsauskunft verstehen"
+        duration_seconds: { min: 40, max: 55 }
         speakers: { min: 2, max: 2 }
         register: "formell-höflich"
         item_types: [audio-comprehension]

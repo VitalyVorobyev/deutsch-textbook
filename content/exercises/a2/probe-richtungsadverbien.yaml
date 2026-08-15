@@ -1,0 +1,49 @@
+topic: wohnen-umzug
+role: probe
+title: {en: "Probe — speaker-centred direction", ru: "Проверка — направление от говорящего", uk: "Перевірка — напрямок від мовця"}
+arming:
+  - a2/wohnen-richtungsadverbien::mc-herein
+  - a2/wohnen-richtungsadverbien::mc-hinaus
+  - a2/wohnen-richtungsadverbien::cloze-herauf-hinunter
+  - a2/wohnen-richtungsadverbien::mc-kurzform
+  - a2/wohnen-richtungsadverbien-transfer::translate-paket-herauf
+  - a2/wohnen-richtungsadverbien-transfer::translate-gleis-hinueber
+  - a2/wohnen-richtungsadverbien-transfer::translate-werkzeug-herunter
+  - a2/wohnen-richtungsadverbien-transfer::translate-balkon-hinauf
+items:
+  - id: variant-a
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "The doctor is waiting inside the consulting room. Translate her request.", ru: "Врач ждёт в кабинете. Переведите её просьбу.", uk: "Лікарка чекає в кабінеті. Перекладіть її прохання."}
+    prompt_en: "Please come in."
+    prompt_ru: "Пожалуйста, войдите сюда."
+    prompt_uk: "Будь ласка, зайдіть сюди."
+    answer: "Kommen Sie bitte herein."
+    accept: ["Bitte kommen Sie herein."]
+    key_tokens: ["kommen", "herein"]
+    explain: {en: "The patient moves into the room towards the doctor who is speaking: herein.", ru: "Пациент входит в комнату к говорящему врачу: herein.", uk: "Пацієнт заходить до кімнати до лікарки, яка говорить: herein."}
+  - id: variant-b
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You remain upstairs and send the empty boxes downstairs. Translate.", ru: "Вы остаётесь наверху и отправляете пустые коробки вниз. Переведите.", uk: "Ви лишаєтеся нагорі й відправляєте порожні коробки вниз. Перекладіть."}
+    prompt_en: "Carry the empty boxes downstairs."
+    prompt_ru: "Отнесите пустые коробки вниз."
+    prompt_uk: "Віднесіть порожні коробки вниз."
+    answer: "Tragt die leeren Kartons hinunter."
+    accept: ["Tragen Sie die leeren Kartons hinunter."]
+    key_tokens: ["Kartons", "hinunter"]
+    explain: {en: "The movement is down and away from the speaker, so hinunter is the precise full form.", ru: "Движение идёт вниз и от говорящего, поэтому точная полная форма — hinunter.", uk: "Рух іде вниз і від мовця, тому точна повна форма — hinunter."}
+  - id: variant-c
+    outcomes: [wo-wohin-position]
+    type: translate
+    focus: richtungsadverb-her-hin
+    instruction: {en: "You stand in the courtyard and call to a child at the open window above. Translate.", ru: "Вы стоите во дворе и зовёте ребёнка у открытого окна наверху. Переведите.", uk: "Ви стоїте у дворі й кличете дитину біля відчиненого вікна нагорі. Перекладіть."}
+    prompt_en: "Please come down here to me."
+    prompt_ru: "Пожалуйста, спустись сюда ко мне."
+    prompt_uk: "Будь ласка, спустися сюди до мене."
+    answer: "Komm bitte zu mir herunter."
+    accept: ["Bitte komm zu mir herunter."]
+    key_tokens: ["komm", "herunter"]
+    explain: {en: "The child moves down towards the speaker: her- plus -unter, hence herunter.", ru: "Ребёнок движется вниз к говорящему: her- + -unter, то есть herunter.", uk: "Дитина рухається вниз до мовця: her- + -unter, тобто herunter."}

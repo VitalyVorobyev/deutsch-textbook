@@ -80,6 +80,21 @@ describe('authored translation candidates', () => {
 });
 
 describe('rule 1 — a slipped token is a spelling note, not a grammar error', () => {
+  test('an untagged translation still uses key tokens to define its graded surface', () => {
+    const introduction = {
+      answer: 'Ich spreche Russisch und ein bisschen Deutsch.',
+      keyTokens: ['spreche', 'Russisch', 'Deutsch'],
+    };
+
+    expect(gradeTranslation('Ich spreche Rusisch und ein bisschen Deutsch.', introduction)).toEqual({
+      kind: 'wrong',
+    });
+    expect(gradeTranslation('Ich spreche Russisch und ein bischen Deutsch.', introduction)).toEqual({
+      kind: 'spelling',
+      correction: { given: 'bischen', expected: 'bisschen' },
+    });
+  });
+
   test('an unpinned placement item forgives a misspelled infinitive', () => {
     // With nothing pinned, the infinitive is scaffolding and the slip is forgiven.
     // NOTE: this is *not* how the shipped item behaves — see the pair of tests below.

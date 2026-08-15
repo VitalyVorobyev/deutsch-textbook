@@ -1,0 +1,65 @@
+topic: lernen-verstehen
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Kurse bewerten und begründen"
+title: {en: "Transfer — evaluating and explaining courses", ru: "Перенос — оценка и обоснование курсов", uk: "Перенесення — оцінювання та обґрунтування курсів"}
+items:
+  - id: translate-uebungen
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate into German and front the opinion frame.", ru: "Переведите на немецкий и вынесите рамку мнения в начало.", uk: "Перекладіть німецькою й винесіть рамку думки на початок."}
+    prompt_en: "In my opinion, the exercises are too easy."
+    prompt_ru: "По-моему, упражнения слишком лёгкие."
+    prompt_uk: "На мою думку, вправи надто легкі."
+    answer: "Meiner Meinung nach sind die Übungen zu leicht."
+    key_tokens: ["Meiner", "Meinung", "nach", "sind", "Übungen", "leicht"]
+    explain: {en: "The whole frame occupies position 1, so sind precedes the plural subject die Übungen.", ru: "Вся рамка занимает позицию 1, поэтому sind стоит перед подлежащим во множественном числе die Übungen.", uk: "Уся рамка займає позицію 1, тому sind стоїть перед підметом у множині die Übungen."}
+  - id: translate-app
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate into German with the opinion frame in the middle.", ru: "Переведите на немецкий с рамкой мнения в середине.", uk: "Перекладіть німецькою з рамкою думки в середині."}
+    prompt_en: "This app is, in my opinion, useful for vocabulary."
+    prompt_ru: "Это приложение, по-моему, полезно для словарного запаса."
+    prompt_uk: "Цей застосунок, на мою думку, корисний для словникового запасу."
+    answer: "Diese App ist meiner Meinung nach nützlich für den Wortschatz."
+    key_tokens: ["App", "ist", "meiner", "Meinung", "nach", "nützlich", "Wortschatz"]
+    explain: {en: "After ist the complete frame remains contiguous; nützlich carries the evaluation that is being attributed to the speaker.", ru: "После ist полная рамка остаётся неразделённой; nützlich — оценка, которую говорящий представляет как собственную.", uk: "Після ist повна рамка лишається нерозділеною; nützlich — оцінка, яку мовець подає як власну."}
+  - id: translate-morgentermin
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate into German and front the opinion frame.", ru: "Переведите на немецкий и вынесите рамку мнения в начало.", uk: "Перекладіть німецькою й винесіть рамку думки на початок."}
+    prompt_en: "In my opinion, the morning appointment is better."
+    prompt_ru: "По-моему, утренняя встреча лучше."
+    prompt_uk: "На мою думку, ранкова зустріч краща."
+    answer: "Meiner Meinung nach ist der Termin am Morgen besser."
+    accept: ["Meiner Meinung nach ist der Morgentermin besser."]
+    key_tokens: ["Meiner", "Meinung", "nach", "ist", "Termin", "besser"]
+    explain: {en: "The frame fills position 1, so ist comes before the subject. The comparative is explicitly owned by the speaker.", ru: "Рамка занимает позицию 1, поэтому ist идёт перед подлежащим. Сравнительная оценка явно принадлежит говорящему.", uk: "Рамка займає позицію 1, тому ist іде перед підметом. Порівняльна оцінка явно належить мовцеві."}
+  - id: translate-miete
+    outcomes: [meinung-kennzeichnen]
+    type: translate
+    focus: meinung-nachgestellt
+    instruction: {en: "Translate into German with the opinion frame in the middle.", ru: "Переведите на немецкий с рамкой мнения в середине.", uk: "Перекладіть німецькою з рамкою думки в середині."}
+    prompt_en: "The rent is, in my opinion, too high."
+    prompt_ru: "Арендная плата, по-моему, слишком высокая."
+    prompt_uk: "Орендна плата, на мою думку, надто висока."
+    answer: "Die Miete ist meiner Meinung nach zu hoch."
+    key_tokens: ["Miete", "ist", "meiner", "Meinung", "nach", "hoch"]
+    explain: {en: "The frame remains together after ist and attributes the threshold judgement zu hoch to the speaker.", ru: "Рамка остаётся единой после ist и приписывает оценку превышения zu hoch говорящему.", uk: "Рамка лишається єдиною після ist і приписує оцінку перевищення zu hoch мовцеві."}
+  - id: write-kursbewertung
+    outcomes: [meinung-kennzeichnen]
+    type: write
+    focus: meinung-nachgestellt
+    prompt: {en: "Write a short course evaluation with one personal judgement and one concrete reason.", ru: "Напишите краткую оценку курса с одним личным суждением и одной конкретной причиной.", uk: "Напишіть коротку оцінку курсу з одним особистим судженням і однією конкретною причиною."}
+    goal: {en: "Separate the attribution of the view from the evidence that supports it.", ru: "Отделите обозначение собственной позиции от факта, которым вы её обосновываете.", uk: "Відокремте позначення власної позиції від факту, яким ви її обґрунтовуєте."}
+    requirements:
+      - {en: "Use meiner Meinung nach as one complete frame.", ru: "Используйте meiner Meinung nach как единую рамку.", uk: "Використайте meiner Meinung nach як єдину рамку."}
+      - {en: "Give a reason with weil or denn.", ru: "Назовите причину с weil или denn.", uk: "Назвіть причину з weil або denn."}
+    min_words: 16
+    model_answer: "Meiner Meinung nach ist der Kurs sehr praktisch, weil wir jeden Tag echte Gespräche im Unterricht üben."
+    model_translation: {en: "In my opinion, the course is very practical because we practise real conversations every day.", ru: "По-моему, курс очень практичный, потому что мы каждый день отрабатываем настоящие разговоры.", uk: "На мою думку, курс дуже практичний, бо ми щодня відпрацьовуємо справжні розмови."}
+    explain: {en: "The first frame owns the judgement; the weil-clause supplies observable support and keeps its verb at the end.", ru: "Первая рамка обозначает суждение; придаточное с weil даёт наблюдаемое обоснование и ставит глагол в конец.", uk: "Перша рамка позначає судження; підрядне з weil дає спостережуване обґрунтування й ставить дієслово в кінець."}

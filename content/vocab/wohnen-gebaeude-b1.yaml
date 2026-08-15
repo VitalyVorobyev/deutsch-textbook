@@ -730,3 +730,62 @@ entries:
       en: 'The feminine of the entry above: -in on the stem, and the plural doubles the n. Official German today usually writes both out — die Einwohnerinnen und Einwohner — or shortens that to die Einwohner*innen or die EinwohnerInnen on a form, a poster and a council report. A statistic giving one figure still uses the masculine plural for everybody, which is why the two words are not equally frequent.'
       ru: 'Женская пара к записи выше: -in на основе, а во множественном n удваивается. Официальный немецкий сегодня обычно выписывает обе формы — die Einwohnerinnen und Einwohner — или сокращает это до die Einwohner*innen и die EinwohnerInnen на бланке, афише и в отчёте муниципалитета. Статистика, дающая одну цифру, всё равно берёт мужское множественное на всех, поэтому частотность у слов разная.'
       uk: 'Жіноча пара до запису вище: -in на основі, а в множині n подвоюється. Офіційна німецька сьогодні зазвичай виписує обидві форми — die Einwohnerinnen und Einwohner — або скорочує це до die Einwohner*innen і die EinwohnerInnen на бланку, афіші та у звіті муніципалітету. Статистика, що дає одну цифру, все одно бере чоловічу множину на всіх, тому частотність у слів різна.'
+
+  # Lift panels and flat advertisements: read the labels, do not train them as
+  # spoken letter sequences.
+  - de: EG
+    ipa: "ˈeːɐ̯tgəˌʃɔs"
+    pos: noun
+    gender: n
+    plural: "die Erdgeschosse"
+    cards: recognition
+    en: ground floor (written abbreviation for Erdgeschoss)
+    en_compact: ground floor
+    ru: первый, нижний этаж (письменное сокращение Erdgeschoss)
+    uk: перший, нижній поверх (письмове скорочення Erdgeschoss)
+    example_de: Die Praxis liegt im EG, direkt neben dem Eingang.
+    example_en: The surgery is on the ground floor, right beside the entrance.
+    example_ru: Кабинет находится на первом этаже, прямо у входа.
+    example_uk: Кабінет міститься на першому поверсі, просто біля входу.
+    note:
+      en: 'On a plan or lift panel, read EG as Erdgeschoss, not as two spoken letters. With a location it is im EG. German ground-floor numbering starts below the first floor: above it comes das 1. OG.'
+      ru: 'На плане или панели лифта читайте EG как Erdgeschoss, а не как две буквы. Для местонахождения: im EG. В немецкой нумерации над нижним этажом идёт das 1. OG.'
+      uk: 'На плані або панелі ліфта читайте EG як Erdgeschoss, а не як дві літери. Для місця: im EG. У німецькій нумерації над нижнім поверхом іде das 1. OG.'
+
+  - de: OG
+    ipa: "ˈoːbɐgəˌʃɔs"
+    pos: noun
+    gender: n
+    plural: "die Obergeschosse"
+    cards: recognition
+    en: upper floor (written abbreviation for Obergeschoss)
+    en_compact: upper floor
+    ru: надземный этаж (письменное сокращение Obergeschoss)
+    uk: надземний поверх (письмове скорочення Obergeschoss)
+    example_de: Die Wohnung befindet sich im 3. OG.
+    example_en: The flat is on the third upper floor.
+    example_ru: Квартира находится на четвёртом этаже, обозначенном как 3. OG.
+    example_uk: Квартира розташована на четвертому поверсі, позначеному як 3. OG.
+    note:
+      en: 'Read 3. OG as drittes Obergeschoss. The label counts the floors above the Erdgeschoss, so its everyday floor number can differ from the convention in another country. For movement say ins 3. OG; for location, im 3. OG.'
+      ru: 'Читайте 3. OG как drittes Obergeschoss. Обозначение считает этажи над Erdgeschoss, поэтому бытовой номер может отличаться от привычного в другой стране. Направление: ins 3. OG; место: im 3. OG.'
+      uk: 'Читайте 3. OG як drittes Obergeschoss. Позначення рахує поверхи над Erdgeschoss, тому побутовий номер може відрізнятися від звичного в іншій країні. Напрямок: ins 3. OG; місце: im 3. OG.'
+
+  - de: UG
+    ipa: "ˈʊntɐgəˌʃɔs"
+    pos: noun
+    gender: n
+    plural: "die Untergeschosse"
+    cards: recognition
+    en: basement level (written abbreviation for Untergeschoss)
+    en_compact: basement level
+    ru: подвальный этаж (письменное сокращение Untergeschoss)
+    uk: підвальний поверх (письмове скорочення Untergeschoss)
+    example_de: Fahrräder stehen im UG in einem eigenen Raum.
+    example_en: Bicycles are kept in a separate room on the basement level.
+    example_ru: Велосипеды стоят в отдельном помещении на подвальном этаже.
+    example_uk: Велосипеди стоять в окремому приміщенні на підвальному поверсі.
+    note:
+      en: 'Read UG as Untergeschoss. It is a neutral building label for a floor below ground; Keller names the cellar itself. The useful pair is ins UG for destination and im UG for location.'
+      ru: 'Читайте UG как Untergeschoss. Это нейтральное обозначение уровня ниже земли; Keller называет сам подвал. Нужная пара: ins UG для направления и im UG для места.'
+      uk: 'Читайте UG як Untergeschoss. Це нейтральне позначення рівня нижче землі; Keller називає сам підвал. Потрібна пара: ins UG для напрямку та im UG для місця.'

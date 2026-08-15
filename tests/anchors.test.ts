@@ -36,29 +36,19 @@ describe('inventory anchors', () => {
    */
   test('structure coverage does not fall', () => {
     expect(structureCoverage('A1').percent).toBeGreaterThanOrEqual(100);
-    expect(structureCoverage('A2').percent).toBeGreaterThanOrEqual(92);
+    expect(structureCoverage('A2').percent).toBeGreaterThanOrEqual(100);
     expect(structureCoverage('B1').anchored).toBe(true);
-    expect(structureCoverage('B1').percent).toBeGreaterThanOrEqual(86);
+    expect(structureCoverage('B1').percent).toBeGreaterThanOrEqual(100);
   });
 
   /**
-   * The DTZ tail is a named countdown, not a percentage that can move through rounding. One of the
-   * original 23 entries, modal `wie + Nominativ`, already had exact teaching and productive
-   * evidence in einkaufen-reklamation and is now claimed by `komparativ`; `-chen` shipped with
-   * the full A1 Wortbildung slice. The remaining 21 stay
-   * visible until their complete teaching slices ship; adding an alias is not a valid way to edit
-   * this list.
+   * The original DTZ tail closed only after all eight teaching slices had exact article,
+   * scaffold, transfer and delayed-probe evidence. This ratchet prevents an edited source list or
+   * removed claim from quietly reopening either cumulative denominator.
    */
-  test('the unclaimed DTZ tail stays explicit while its teaching slices are authored', () => {
-    const expected = [
-      'vorsilbe-herauf', 'vorsilbe-heraus', 'vorsilbe-herein', 'vorsilbe-herunter',
-      'vorsilbe-hin', 'vorsilbe-hinauf', 'vorsilbe-hinaus', 'vorsilbe-hinueber',
-      'vorsilbe-hinunter', 'derselbe', 'ein-paar', 'wenige',
-      'temp-mit', 'temp-zwischen', 'lok-ausserhalb', 'lok-gegen', 'lok-um-herum',
-      'weit-nach', 'darum', 'daher', 'nicht-brauchen-zu',
-    ].sort();
-    expect(structureCoverage('A2').unclaimed.map((entry) => entry.entry.key).sort()).toEqual(expected);
-    expect(structureCoverage('B1').unclaimed.map((entry) => entry.entry.key).sort()).toEqual(expected);
+  test('the cumulative DTZ inventory has no unclaimed tail', () => {
+    expect(structureCoverage('A2').unclaimed).toEqual([]);
+    expect(structureCoverage('B1').unclaimed).toEqual([]);
   });
 
   /**

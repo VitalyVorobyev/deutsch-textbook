@@ -1,0 +1,53 @@
+topic: wohnen-umzug
+role: practice
+stage: transfer
+activity: application
+title_de: "Transfer — Umleitung und Hausordnung"
+title: {en: "Transfer — detours and house rules", ru: "Перенос — объезд и правила дома", uk: "Перенесення — обхід і правила будинку"}
+items:
+  - id: translate-oeffnungszeiten
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate the notice into German.", ru: "Переведите объявление на немецкий.", uk: "Перекладіть оголошення німецькою."}
+    prompt_en: "Deliveries are not possible outside opening hours."
+    prompt_ru: "Доставка вне часов работы невозможна."
+    prompt_uk: "Доставка поза годинами роботи неможлива."
+    answer: "Lieferungen sind außerhalb der Öffnungszeiten nicht möglich."
+    key_tokens: ["Lieferungen", "außerhalb", "Öffnungszeiten", "nicht", "möglich"]
+    explain: {en: "außerhalb marks the boundary of the opening hours and governs the genitive plural der Öffnungszeiten.", ru: "außerhalb обозначает границу часов работы и требует Genitiv Plural der Öffnungszeiten.", uk: "außerhalb позначає межу годин роботи й потребує Genitiv Plural der Öffnungszeiten."}
+  - id: translate-zaun
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate the incident report.", ru: "Переведите сообщение о происшествии.", uk: "Перекладіть повідомлення про подію."}
+    prompt_en: "The bicycle rolled against the fence."
+    prompt_ru: "Велосипед покатился и ударился о забор."
+    prompt_uk: "Велосипед покотився й ударився об паркан."
+    answer: "Das Fahrrad ist gegen den Zaun gerollt."
+    key_tokens: ["Fahrrad", "gegen", "den", "Zaun", "gerollt"]
+    explain: {en: "gegen names the endpoint of contact and governs the accusative; masculine der Zaun becomes den Zaun.", ru: "gegen называет точку контакта и требует Akkusativ; мужское der Zaun превращается в den Zaun.", uk: "gegen називає точку контакту й потребує Akkusativ; чоловіче der Zaun перетворюється на den Zaun."}
+  - id: translate-bahnhof-herum
+    outcomes: [wohnung-beschreiben]
+    type: translate
+    focus: raumgrenze-pfad
+    instruction: {en: "Translate the detour into German with the full path frame.", ru: "Переведите объезд на немецкий с полной рамкой пути.", uk: "Перекладіть обхід німецькою з повною рамкою шляху."}
+    prompt_en: "The replacement bus drives around the station."
+    prompt_ru: "Автобус-замена объезжает вокзал."
+    prompt_uk: "Автобус-замінник об'їжджає вокзал."
+    answer: "Der Ersatzbus fährt um den Bahnhof herum."
+    key_tokens: ["Ersatzbus", "fährt", "um", "den", "Bahnhof", "herum"]
+    explain: {en: "The station is the accusative object bracketed by um and herum; the sentence describes a path, not contact with the building.", ru: "Вокзал — объект в Akkusativ внутри рамки um … herum; предложение описывает путь, а не контакт со зданием.", uk: "Вокзал — об'єкт в Akkusativ усередині рамки um … herum; речення описує шлях, а не контакт із будівлею."}
+  - id: write-umleitung
+    outcomes: [wohnung-beschreiben]
+    type: write
+    focus: raumgrenze-pfad
+    prompt: {en: "Write a two-sentence detour notice around a closed building or area.", ru: "Напишите объявление из двух предложений об обходе закрытого здания или участка.", uk: "Напишіть оголошення з двох речень про обхід закритої будівлі або ділянки."}
+    goal: {en: "Locate the closure beyond a boundary and describe the path around an accusative object.", ru: "Расположите закрытие за границей и опишите путь вокруг объекта в Akkusativ.", uk: "Розташуйте закриття за межею й опишіть шлях навколо об'єкта в Akkusativ."}
+    requirements:
+      - {en: "Use außerhalb + genitive.", ru: "Используйте außerhalb + Genitiv.", uk: "Використайте außerhalb + Genitiv."}
+      - {en: "Use the full um … herum frame.", ru: "Используйте полную рамку um … herum.", uk: "Використайте повну рамку um … herum."}
+    min_words: 14
+    model_answer: "Der Eingang liegt wegen der Baustelle außerhalb des Hofes. Gehen Sie bitte um das Gebäude herum."
+    model_translation: {en: "The entrance is outside the courtyard. Please walk around the building.", ru: "Вход находится за пределами двора. Пожалуйста, обойдите здание.", uk: "Вхід розташований за межами подвір'я. Будь ласка, обійдіть будівлю."}
+    explain: {en: "des Hofes makes the boundary construction explicit; um das Gebäude herum brackets an accusative path object.", ru: "des Hofes явно показывает конструкцию границы; um das Gebäude herum заключает объект пути в Akkusativ в рамку.", uk: "des Hofes явно показує конструкцію межі; um das Gebäude herum бере об'єкт шляху в Akkusativ у рамку."}

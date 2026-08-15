@@ -74,7 +74,7 @@ describe('grammar coverage', () => {
     const coverage = grammarCoverage('A2');
     const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
     expect(missing).toEqual([]);
-    expect(coverage.covered).toBe(38);
+    expect(coverage.covered).toBe(46);
     expect(coverage.percent).toBe(100);
     expect(coverage.late).toBe(0);
   });
