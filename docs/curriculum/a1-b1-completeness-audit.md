@@ -51,6 +51,117 @@ lower internal coverage until learner-facing evidence pays for them.
 
 The ledger records delivery, not learning. Learner retention and transfer remain separate evidence.
 
+## B1 Wortliste tail — 73/73 classified and delivered
+
+The 2026-08-15 audit deliberately superseded the earlier blanket proposal to classify all 73
+remaining rows as grammar. Each row was read as a learner decision. Written labels and official
+long forms need receptive cards; frequent independent words and chunks need productive cards;
+only bound pieces and syntactic frames belong to the taught surface. The result is B1
+`3416/3416`: 3297 card rows, 119 grammar rows, 0 missing and 0 late.
+
+### Recognition cards — 12
+
+| Wortliste row | Owner deck | Why recognition, not production |
+| --- | --- | --- |
+| `Akkumulator` | `wissenschaft-technik-b1` | technical full form; productive everyday form is `Akku` |
+| `bzw.` | `text-schreiben-b1` | written abbreviation expanded to `beziehungsweise` |
+| `zirka` | `zahlen-mengen-masse-b1` | Austrian/Swiss spelling variant of productive `circa` |
+| `d. h.` | `text-schreiben-b1` | written abbreviation read as `das heißt` |
+| `EG` | `wohnen-gebaeude-b1` | plan/lift label read as `Erdgeschoss` |
+| `OG` | `wohnen-gebaeude-b1` | plan/lift label read as `Obergeschoss` |
+| `UG` | `wohnen-gebaeude-b1` | plan/lift label read as `Untergeschoss` |
+| `etc.` | `text-schreiben-b1` | written convention read as `et cetera` / `und so weiter` |
+| `Kraftfahrzeug` | `verkehr-auto-b1` | legal full form of productive `Kfz`/`Auto` |
+| `Lastkraftwagen` | `verkehr-auto-b1` | regulatory full form of productive `Lkw`/`Lastwagen` |
+| `Personenkraftwagen` | `verkehr-auto-b1` | administrative full form of productive `Pkw`/`Auto` |
+| `vgl.` | `text-schreiben-b1` | academic cross-reference read as `vergleiche` |
+
+### Productive cards — 6
+
+| Wortliste row | Owner deck | Productive decision |
+| --- | --- | --- |
+| `einhundert` | `zahlen-mengen-masse-b1` | write and say an explicit round number as one orthographic word |
+| `eintausend` | `zahlen-mengen-masse-b1` | same decision at the thousand boundary |
+| `herunter` | `ort-richtung-verweis-b1` | full directional form, contrasted with colloquial `runter` and away-pointing `hinunter` |
+| `so viel` | `graduierung-mengenwoerter-b1` | productive quantity chunk, explicitly separated from conjunction `soviel` |
+| `worüber` | `ort-richtung-verweis-b1` | productive `wo(r)-` question for `über + thing/topic`, contrasted with `über wen` |
+| `worum` | `ort-richtung-verweis-b1` | productive question in `es geht um`, contrasted with `um wen` |
+
+### Grammar frames — 5
+
+Every frame already belongs to an exact inventory point and now also appears as a complete,
+learner-facing frame in the B1 decoding section of `informationen-vermitteln`. It is not a card
+whose answer would be an ellipsis.
+
+| Wortliste row | Existing grammar owner | Consolidating B1 evidence |
+| --- | --- | --- |
+| `entweder … oder` | `zweiteilige-konnektoren` | choice row in the correlative-frame table |
+| `je … desto …` | `proportionalsatz-je-desto` | two coupled comparisons in a fresh information context |
+| `sowohl … als auch` | `zweiteilige-konnektoren` | both-required notice plus scaffolded cloze |
+| `weder … noch` | `zweiteilige-konnektoren` | dual negation contrasted with choice and addition |
+| `um … zu` | `um-zu` | same-agent purpose frame in a relay instruction |
+
+### Inflection and word formation — 50
+
+All rows below are taught in the named `### Unbekannte Wörter zerlegen, ohne sie zu erfinden`
+section of `informationen-vermitteln`; the attached extension makes the learner identify the head,
+infer a conventional whole word, inflect a stem, unpack a suffix and paraphrase rather than copy.
+Literal hyphenated labels keep the evidence addressable and prevent accidental credit from
+`Noten`, `Rücken` or adjective `weise`.
+
+| Wortliste row | Class | Learner-facing evidence |
+| --- | --- | --- |
+| `hell-` | colour modifier | `hellblau` beside `dunkelgrün` |
+| `dunkel-` | colour modifier | intensity contrast with `hell-` |
+| `Nord-` | direction element | `Nordseite` and four-way direction table |
+| `Ost-` | direction element | `Ostflügel` |
+| `Süd-` | direction element | `Süddeutschland` and housing-notice application |
+| `West-` | direction element | `Westausgang` plus paraphrase task |
+| `Bundes-` | compound first element | `Bundesgesetz`, federal level |
+| `aller-` | inflecting stem | `alle Unterlagen` |
+| `beid-` | inflecting stem | `beide Seiten` |
+| `besonder-` | inflecting stem | `ein besonderer Fall` |
+| `Bio-` | compound first element | `Bio-Laden`, with an explicit no-invention boundary |
+| `dies-` | inflecting determiner | `dieser Hinweis`, contrasted forms `dieser/diese/dieses` |
+| `Doppel-` | compound first element | `Doppelzimmer` |
+| `einzig-` | inflecting stem | `der einzige Termin` |
+| `Elektro-` | compound first element | `Elektrogerät` and unpacking task |
+| `erst-` | inflecting ordinal stem | `am ersten Tag` |
+| `Ferien-` | compound first element | `Ferienwohnung` in a housing notice |
+| `früher-` | inflecting stem | `die frühere Regel` |
+| `gesamt-` | inflecting stem | `die gesamte Summe` |
+| `Gesamt-` | compound first element | `die Gesamtzahl`, separated from inflected `gesamt-` |
+| `Groß-` | compound first element | `Großbetrieb` |
+| `Haupt-` | compound first element | `Hauptbahnhof` |
+| `heutig-` | inflecting stem | `die heutige Sprechstunde` in scaffolded cloze |
+| `inner-` | inflecting stem | `die innere Tür` |
+| `irgend-` | indefinite first element | `irgendein Fehler` |
+| `Kriminal-` | compound first element | `Kriminalpolizei` |
+| `link-` | inflecting direction stem | `die linke Spalte` |
+| `miss-` | derivational prefix | `missverstehen`, meaning wrong/failed |
+| `mittler-` | inflecting position stem | `im mittleren Fach` |
+| `nächst-` | inflecting position/time stem | `der nächste Termin` in scaffolded cloze |
+| `Not-` | compound first element | `Notruf/Notausgang/Notaufnahme`, explicitly not `Noten` |
+| `ober-` | inflecting position stem | `das obere Feld` |
+| `Öko-` | compound first element | `Öko-Strom`, with whole-word context boundary |
+| `recht-` | inflecting direction stem | `auf der rechten Seite` |
+| `rück-` | compound/prefix element | `Rückmeldung`, explicitly not body-part `Rücken` |
+| `Schwieger-` | compound first element | `Schwiegereltern` |
+| `selb-` | inflecting identity stem | `dieselbe Nummer` |
+| `sogenannt-` | inflecting citation marker | `die sogenannte Übergangsfrist` |
+| `solch-` | inflecting determiner | `solche Fälle` |
+| `Sonder-` | compound first element | `Sonderregel/Sonderangebot` |
+| `Speise-` | compound first element | `Speisekarte` |
+| `-speise` | compound head | `Hauptspeise`, carrying gender and core meaning on the right |
+| `Spezial-` | compound first element | `Spezialangebot` |
+| `Traum-` | evaluative first element | `Traumjob` |
+| `über-` | derivational/directional prefix | `Übergang`, contrasted with whole-word evidence |
+| `un-` | negative prefix | `unklar/unvollständig` |
+| `unter-` | derivational/directional prefix | `Untertitel` |
+| `vorder-` | inflecting position stem | `der vordere Eingang` |
+| `was für ein-` | inflecting question frame | `Was für ein Dokument? / Was für eine Frist?` |
+| `-weise` | adverbial suffix | `teilweise/schrittweise`, explicitly not adjective `weise` |
+
 ## Completed topic waves
 
 ### A1 grammar wave — 2026-08-14
@@ -127,3 +238,76 @@ The ledger records delivery, not learning. Learner retention and transfer remain
 - `verben-mit-dativ` and `nebensatz-vorfeld` gained separate three-variant delayed families with
   exact arming. A2 therefore has no remaining topic-profile finding; the global queue now contains
   only six A1 translations without semantic tokens and two B1 auxiliary tags without probes.
+
+### Residual findings wave — 2026-08-15
+
+- The five A1 texts (`akkusativ`, `artikel-genus`, `erste-schritte`, `menschen-familie`,
+  `praesens-wortstellung`) and four B1 texts (`arbeit-bewerbung`, `gesundheit-wohlbefinden`,
+  `leben-veraendern`, `reisen-probleme`) behind the remaining historical length signals were read
+  in full. Each has a clear purpose, coherent progression, level-appropriate load, useful glosses
+  and answerable questions with plausible distractors. None was padded or cut merely to enter the
+  90–130 band. Together with the A2 wave, all 17 former signals have now been manually reviewed.
+- Six A1 translations are genuinely short, deterministic retrieval tasks rather than open writing.
+  They remain `translate` and now pin the smallest meaningful lexical/grammatical surface. The two
+  formulaic `erste-schritte` items intentionally remain without a focus tag: `key_tokens` define
+  typo tolerance even when no grammar confusion can be attributed honestly.
+- `pronomen-stellung` and `relativ-praeposition` now have independent homogeneous delayed families.
+  Each supplies three fresh contexts and arms only from its own teaching items; checkpoints never
+  start the retention clock.
+- The derived Redaction topic-profile queue is now empty. This closes the known findings program,
+  not the full human audit of all 49 original topics; the B1 lexical tail and bounded content waves
+  remain the next deliverables.
+
+### B1 lexical-tail wave — 2026-08-15
+
+- Every one of the 73 formerly open rows was reclassified against learner use. The old plan to
+  give all of them `~` was rejected: 12 written/official variants received recognition cards, six
+  frequent independent forms received productive cards, five syntactic frames remain grammar and
+  only 50 genuinely bound pieces remain word formation.
+- The 18 cards live in seven semantic decks rather than a remainder deck. Each has reviewed IPA or
+  expansion pronunciation, form/register notes, natural examples and independent EN/RU/UK glosses.
+- `informationen-vermitteln` now teaches a bounded B1 decoding strategy: find the compound head,
+  separate stem from inflection, confirm the whole word in context and paraphrase before copying.
+  Its extension set practises inference and summarisation without asking the learner to invent
+  German compounds.
+- The taught-surface matcher now handles multiword inflecting frames such as `was für ein-` while
+  retaining the same finite ending whitelist; a regression test prevents arbitrary phrase matches.
+- B1 lexical coverage is now `3416/3416` (3297 card rows, 119 grammar rows, 0 missing, 0 late).
+  This closes the Wortliste denominator, not the remaining bounded human topic-quality waves.
+
+### A1 topic-quality wave — 2026-08-15
+
+- The first P27-3g pass covered all 12 current A1 topic profiles, including their articles,
+  teaching/probe sets, 17 readings, ten listening contracts and 232 entries in seven owned decks.
+  The per-topic evidence and deliberate no-change decisions live in the
+  [topic-quality ledger](topic-quality-audit.md).
+- A zero derived queue did not catch the wave's substantive defect: `freizeit-koennen` conflated an
+  availability question with an invitation and prescribed *Hast du Zeit? — Ja, gern!* The three
+  support-language explanations and German model now distinguish a time answer from accepting a
+  real proposal. The associated *Kuchen* gloss was corrected from an RU/UK plural to independent
+  contextual singulars.
+- Five A1 profiles remain dense, but their extra sets have explicit core, extension, transfer or
+  named-remediation jobs. They were not merged to make the file count look smaller, and no extra set
+  was retained merely because it held historical progress.
+- This is a bounded corpus pass, not human approval. Existing `reviewed` states were preserved and
+  draft topics remain draft until the strict editorial/provenance transaction is completed.
+
+### A2 topic-quality wave — 2026-08-15
+
+- All 24 A2 topic profiles were read across their article, 114 teaching/remediation sets with 821
+  items, pretests, delayed families, 42 readings, 21 listening flows, documents/discoveries and 271
+  entries in 19 topic-owned decks. The reproducible set count comes from
+  `bun scripts/activity-audit.ts --json`; the graph-backed audit supplies the remaining counts.
+- Five material defect clusters were corrected despite the derived findings queue already being
+  empty: registration-versus-Personalausweis audio facts, the invented closed dative-verb list,
+  universal stranger/`Sie` advice, false past-tense and `sein` absolutes, and an overstated
+  habitual-versus-specific evening rule.
+- The obsolete registration recording and its provenance were removed from the live corpus but
+  remain recoverable from Git. The corrected TTS exercise is usable now; a replacement generated
+  recording cannot ship until a named human approves that exact audio revision.
+- All ten topics above the five-set density trigger received an explicit functional ruling. Set
+  count remains a review tripwire: separate files survive only for a distinct decision, stage,
+  recovery path or medium, never because their arithmetic total crosses a threshold.
+- The [topic-quality ledger](topic-quality-audit.md) records one concrete decision for every A2
+  topic. `verben-mit-kasus` returned from `reviewed` to `draft` because its learner-facing rule
+  changed after the prior human gate; no agent pass silently inherits that approval.
