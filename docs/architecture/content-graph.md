@@ -75,22 +75,28 @@ bun run activity:audit
 bun -e 'import {contentGraph} from "@da/content/graph"; import {problems} from "@da/content/profile"; console.log(problems(contentGraph()).length)'
 ```
 
-The current editorial queue is 81 findings:
+**The editorial queue is empty (0 findings) as of 2026-08-15**, drained by the A1/A2 grammar waves,
+the DTZ tail slices and the A1/A2 topic-quality audits. Do not paste a queue snapshot back into
+this file — it goes stale silently and then advertises work that is done. Run the one-liner.
 
-| n | class | note |
-| --- | --- | --- |
-| 20 | `## Erklärung` with no `###` subsections | |
-| 19 | focus tag with no probe | drilled, never re-asked |
-| 17 | intensive reading outside 90–130 words | of 60, spread 78–152 |
-| 9 | `translate` without `key_tokens` | 16 corpus-wide |
-| 7 | inventory row no topic teaches | |
-| 7 | focus tag with no teaching item | |
-| 2 | outcome mode never exercised | |
+Two of the classes that made up the old 81 are worth knowing about, because they were closed by
+different means and only one of them is a content fix:
+
+- `lesetext-umfang` (*intensiver Lesetext außerhalb 90–130 Wörtern*, 17 rows) was **retired, not
+  satisfied**. The check now returns `ok: true` with its reasoning inline: length is a
+  cognitive-load judgement, and a coherent 84-word notice or a purposeful 145-word narrative must
+  not become a defect by arithmetic. `PROBLEM_LABELS` no longer declares it. CLAUDE.md's shipping
+  checklist states the 90–130 band as an authoring target and says plainly that no gate holds it.
+- Everything else — the missing `###` subsections, the untagged probes, the empty `key_tokens` —
+  was closed by editing content.
+
+`deck-ohne-thema` is declared in `PROBLEM_LABELS` and downgraded to `info` in `payload.ts`, but
+nothing in `problems()` emits it. It is a label without a producer.
 
 The activity contract itself is a validator failure: missing purpose/stage/title, a primary that is
-not the unique core, or a topic without productive application cannot ship. The remaining rows are
-editorial attention. Median teaching items per topic: A1 26 · A2 26.5 · B1 19.5; checks met 11 · 12
-· 13 of 13.
+not the unique core, or a topic without productive application cannot ship. `bun run activity:audit`
+currently reports 0 out-of-range core sets and 0 topics without productive application; its 15
+“dichte Themen” rows are editorial notes, not defects.
 
 ## The package boundary, and the leak it is there to stop
 

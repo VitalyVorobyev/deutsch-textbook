@@ -1,7 +1,9 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { contentGraph } from '@da/content/graph';
 import { getCurriculum } from '@da/content/curriculum';
+import { goetheCoverage } from '@da/content/coverage';
 import { grammarCoverage, loadGrammarInventory, productionLevel } from '@da/content/grammar-coverage';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 
@@ -108,6 +110,47 @@ describe('published progress claims match the content', () => {
       const coverage = grammarCoverage(level);
       expect([level, stated, total]).toEqual([level, coverage.taught, coverage.total]);
     }
+  });
+
+  /**
+   * The headline sentence of the project index is a published figure and had no guard, which is
+   * exactly how it went on saying "B1 Wortliste coverage stands at 3343/3416 (98%), and the 73 open
+   * rows are cardless" for the nine days after P27-3f closed the tail at 3416/3416. The grammar
+   * digest one screen below it *was* guarded and stayed correct the whole time — one claim in a
+   * paragraph being checked does not protect its neighbours.
+   */
+  test('the CLAUDE.md Wortliste headline matches the coverage instrument', () => {
+    // "Wortliste 673/673 · 1449/1449 · 3416/3416" — re-derive with `bun scripts/coverage.ts <level>`.
+    const line = /Wortliste (\d+)\/(\d+) · (\d+)\/(\d+) · (\d+)\/(\d+)/.exec(read('CLAUDE.md'));
+    expect(line).not.toBeNull();
+    const [, a1c, a1t, a2c, a2t, b1c, b1t] = line!.map(Number);
+    for (const [level, stated, total] of [
+      ['A1', a1c, a1t],
+      ['A2', a2c, a2t],
+      ['B1', b1c, b1t],
+    ] as const) {
+      const c = goetheCoverage(level);
+      expect([level, stated, total]).toEqual([level, c.cards + c.grammar, c.total]);
+    }
+    // 30s, not the 5s default: `goetheCoverage` re-reads and re-parses all 129 vocab decks twice
+    // and the entire taught surface once, per level — ~1.2 s locally and past 3 s on CI, three
+    // times over. That is the layering defect P27-4 fixes (the function should read the already
+    // built ContentGraph), not a slow test. Drop this argument once it does.
+  }, 30_000);
+
+  /**
+   * `handlungen.ts` reports "N/192 outcomes cite a published Sprachhandlung", and CLAUDE.md states
+   * the denominator in prose. A new topic adds outcomes, so this number moves whenever content
+   * ships — which is precisely the kind of figure that rots unwatched.
+   */
+  test('the CLAUDE.md outcome count matches the corpus', () => {
+    const line = /do the (\d+) `outcomes` contain/.exec(read('CLAUDE.md'));
+    expect(line).not.toBeNull();
+    const outcomes = [...contentGraph().topics.values()].reduce(
+      (n, t) => n + (t.data.outcomes?.length ?? 0),
+      0,
+    );
+    expect(Number(line![1])).toBe(outcomes);
   });
 
   test('the coverage-instruments B1 paragraph matches the instrument and the allowlist', () => {

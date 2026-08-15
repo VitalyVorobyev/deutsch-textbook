@@ -28,7 +28,7 @@ describe('grammar depth', () => {
   // Re-derive: bun scripts/grammar-depth.ts
   const FLOORS = {
     A1: { teaching: 13, production: 9, files: 4 },
-    A2: { teaching: 8, production: 6, files: 3 },
+    A2: { teaching: 9, production: 6, files: 3 },
     B1: { teaching: 4, production: 3, files: 2 },
   } as const;
 
