@@ -1,0 +1,31 @@
+{
+  "//": "Tonwerk — the audio studio's own workbench. A separate app from Redaktion on purpose: Redaktion reads the checked-out corpus through @da/content and never opens a socket, while Tonwerk talks HTTP to a local render engine and holds a bearer token. They share the repository and nothing else — not a design system, not a transport, not a data layer. Everything it renders comes from `atlas-listening serve` on 127.0.0.1:8765; the only thing it imports from the workspace is the Scene v1 contract in @da/schema.",
+  "name": "@da/tonwerk",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "bunx --bun vite build",
+    "preview": "bunx --bun vite preview",
+    "check": "bunx tsc --noEmit -p tsconfig.json",
+    "test": "bunx vitest run"
+  },
+  "dependencies": {
+    "@da/schema": "workspace:*",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.0",
+    "happy-dom": "^20.11.6",
+    "typescript": "^5.9.3",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.11"
+  }
+}
