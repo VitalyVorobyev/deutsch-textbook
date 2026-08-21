@@ -18,7 +18,9 @@ import pytest
 import soundfile as sf
 
 from listening_studio.dsp.chains import (
-    AFIR,
+    AFIR_PRENORMALIZED,
+    AFIR_PRENORMALIZED_LEGACY,
+    afir_disable_norm,
     DISTANCE_LOWPASS_AT_UNITY_HZ,
     device_chain,
     distance_chain,
@@ -140,7 +142,7 @@ def test_a_stem_with_neither_a_device_nor_a_distance_has_no_chain() -> None:
 def test_the_reverb_return_duplicates_a_mono_ir_and_adds_it_at_the_rooms_wet() -> None:
     assert reverb_chains(ir_index=5, wet=0.35) == [
         "[5:a]pan=stereo|c0=c0|c1=c0[ir]",
-        f"[send][ir]{AFIR}[reverb]",
+        f"[send][ir]{afir_disable_norm()}[reverb]",
         "[reverb]volume=0.3500[wet]",
     ]
 
@@ -153,7 +155,12 @@ def test_the_convolution_normalises_nothing_of_its_own() -> None:
     a station hall, because it penalises a long tail twice over.
     """
 
-    assert AFIR == "afir=irnorm=-1"
+    # Which spelling this machine gets is a property of its ffmpeg binary; what the test can
+    # pin machine-independently is that the probe picks one of the two disable spellings and
+    # NEVER an auto-gain default. The 6.x/9.x non-equivalence measurements live in chains.py.
+    assert afir_disable_norm() in {AFIR_PRENORMALIZED, AFIR_PRENORMALIZED_LEGACY}
+    assert AFIR_PRENORMALIZED == "afir=irnorm=-1"
+    assert AFIR_PRENORMALIZED_LEGACY == "afir=gtype=none"
 
 
 # -- what the chains actually do ----------------------------------------------
