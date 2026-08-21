@@ -6,35 +6,16 @@ The `--json` envelope is what an agent reads, so its shape is asserted rather th
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
 
 import pytest
-from typer.testing import CliRunner
 
+from conftest import RUNNER as runner
+from conftest import flat
 from listening_studio.domain import Stage
 from listening_studio.scene import cli as scene_cli
 from listening_studio.storage import Store
 from test_graph_render import cafe_scene, narration_scene, tone_in_store
-
-# The terminal is pinned, because the CI runner's is not ours: on GitHub Actions rich rendered
-# the same BadParameter in color at 80 columns, which wrapped `test-adapter` across a box border
-# and put escape codes inside every substring these tests assert on. Width and color are inputs
-# to the text under test, so the tests state them.
-runner = CliRunner(env={"NO_COLOR": "1", "TERM": "dumb", "COLUMNS": "200"})
-
-ANSI = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
-
-
-def flat(output: str) -> str:
-    """Typer boxes a `BadParameter` and hard-wraps it, splitting sentences across `│` borders.
-
-    Asserting on a message therefore needs the escape codes, the borders and the wrapping
-    removed first, or the test is really asserting on the terminal the runner happened to pick.
-    """
-
-    plain = ANSI.sub("", output)
-    return " ".join(plain.replace("│", " ").replace("╭", " ").replace("╰", " ").split())
 
 
 @pytest.fixture
