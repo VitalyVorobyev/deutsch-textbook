@@ -8,6 +8,7 @@ render still succeeds. Asserting the strings is the only screen either failure h
 
 from __future__ import annotations
 
+from listening_studio.dsp.chains import afir_disable_norm
 from listening_studio.dsp.ir import IR_IMPL_VERSION
 from listening_studio.generative.fake import FakeSpeech
 from listening_studio.generative.gateway import SpeechRequest
@@ -277,7 +278,7 @@ def test_the_room_is_a_send_return_with_one_convolution_for_the_whole_mix() -> N
             # The IR is input 4: after every stem, which is the one thing `evaluate_mix` and this
             # builder have to agree on.
             "[4:a]pan=stereo|c0=c0|c1=c0[ir]",
-            "[send][ir]afir=irnorm=-1[reverb]",
+            f"[send][ir]{afir_disable_norm()}[reverb]",
             "[reverb]volume=0.3500[wet]",
             "[dialogue][ambience][sfx][wet]amix=inputs=4:duration=longest:normalize=0,"
             f"{LIMITER}[out]",

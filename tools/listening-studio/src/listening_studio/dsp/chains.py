@@ -18,7 +18,9 @@ Two translations live here and nowhere else:
 
 from __future__ import annotations
 
+import functools
 import math
+import subprocess
 
 from .profiles import BandFilter, Compression, DeviceProfile
 
@@ -179,7 +181,33 @@ def stem_chain(device: DeviceProfile | None, distance: float) -> str:
 #: two things 12 dB apart. With the unit-energy IR passed through untouched, every one of the
 #: seven rooms returns within 0.21 dB of the dry level, which is what makes `wet` a number an
 #: editor can reason about.
-AFIR = "afir=irnorm=-1"
+#: The two spellings of "leave my IR alone", by ffmpeg generation. They are NOT interchangeable
+#: where both parse: on ffmpeg 9, `gtype` is a deprecated no-op and the default `irnorm=1` (L1)
+#: still applies — measured against a 4 s noise stem it put the same wet 34–46 dB down,
+#: tail-length-dependent, the exact defect the unit-energy IR exists to remove. On ffmpeg 6.x
+#: (Ubuntu's package, what CI runs) `irnorm` does not parse at all (exit 8) and `gtype=none` is
+#: the disable. Which spelling is right is a property of the *installed binary*, so it is probed
+#: from `ffmpeg -h filter=afir` once per process — at execution, never in node params, so node
+#: hashes stay machine-independent. The CI-run wet-level measurement is what proves the legacy
+#: spelling's semantics on 6.x rather than assuming them.
+AFIR_PRENORMALIZED = "afir=irnorm=-1"
+AFIR_PRENORMALIZED_LEGACY = "afir=gtype=none"
+
+
+@functools.cache
+def afir_disable_norm() -> str:
+    """The afir invocation that passes the pre-normalised IR through untouched, per binary."""
+
+    try:
+        probe = subprocess.run(
+            ["ffmpeg", "-hide_banner", "-h", "filter=afir"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise RuntimeError("ffmpeg is required to render (install it and retry)") from exc
+    return AFIR_PRENORMALIZED if "irnorm" in probe else AFIR_PRENORMALIZED_LEGACY
 
 
 def reverb_chains(*, ir_index: int, wet: float) -> list[str]:
@@ -198,6 +226,6 @@ def reverb_chains(*, ir_index: int, wet: float) -> list[str]:
 
     return [
         f"[{ir_index}:a]pan=stereo|c0=c0|c1=c0[ir]",
-        f"[send][ir]{AFIR}[reverb]",
+        f"[send][ir]{afir_disable_norm()}[reverb]",
         f"[reverb]volume={wet:.4f}[wet]",
     ]
