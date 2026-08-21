@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import secrets
+from html import escape
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -9,6 +10,7 @@ import yaml
 
 from fastapi import FastAPI, Form, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 
 from .adapters import (
     FakeTTS,
@@ -27,14 +29,18 @@ from .domain import (
     Line,
     RevisionPayload,
     Stage,
-    line_cache_key,
-    reassign_voices,
+    lock_voice_profiles,
+    reassign_voice_profiles,
 )
 from .adapters import model_lock
 from .export import sha256
 from .qa import check_transcripts
+from .speaker_qa import SpeakerQACalibration, check_speaker_consistency
+from .soundscape import soundscape_report
 from .storage import Store, remember_editor, remembered_editor
 from . import ui
+from .studio_api import router as studio_router
+from .reading_audio import load_reading_sources
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
@@ -49,6 +55,12 @@ def app(
 ) -> FastAPI:
     api = FastAPI(title="Deutsch-Atlas Listening Studio")
     secret = token or secrets.token_urlsafe(24)
+    frontend = PACKAGE_ROOT / "frontend" / "dist"
+    if frontend.exists():
+        # Vite's base is `/studio-assets/`, so the document requests
+        # `/studio-assets/assets/<hash>`. Mount the dist root, not dist/assets, or every built
+        # CSS/JS request gains one unmatched `assets/` segment and 404s.
+        api.mount("/studio-assets", StaticFiles(directory=frontend), name="studio-assets")
 
     @api.middleware("http")
     async def local_only(request: Request, call_next):  # type: ignore[no-untyped-def]
@@ -103,10 +115,39 @@ def app(
                 project = projects.get(artifact["id"])
                 state = "planned"
                 project_id = None
+                metrics: dict[str, object] = {
+                    "stage": "planned",
+                    "speaker_count": int(artifact.get("speakers", {}).get("min", 0)),
+                    "line_count": 0,
+                    "context_count": 0,
+                    "bed_count": 0,
+                    "event_count": 0,
+                    "duration_seconds": None,
+                    "within_similarity_min": None,
+                    "cross_similarity_max": None,
+                    "ambience_rms_dbfs": None,
+                }
                 if project:
                     project_id = project.id
                     _, revision, payload = store.get(project.id)
                     stage = Stage(project.stage)
+                    metrics.update(
+                        {
+                            "stage": str(stage),
+                            "speaker_count": len(payload.speakers),
+                            "line_count": len(payload.lines),
+                            "context_count": len(payload.context_sounds),
+                            "bed_count": sum(
+                                sound.role == "bed" for sound in payload.context_sounds
+                            ),
+                            "event_count": sum(
+                                sound.role == "event" for sound in payload.context_sounds
+                            ),
+                            "duration_seconds": wav_duration(
+                                store.root / "projects" / str(project.id) / "final.wav"
+                            ),
+                        }
+                    )
                     placeholder = any(
                         "redaktionellen Platzhalter" in line.display_text for line in payload.lines
                     )
@@ -117,13 +158,31 @@ def app(
                         qa = json.loads(revision.qa_json)
                         inner = qa.get("final", qa)
                         state = "qa_passed" if inner.get("passed") is True else "qa_failed"
+                        speaker = qa.get("speaker_consistency", {})
+                        if isinstance(speaker, dict):
+                            within = [
+                                float(row["minimum_similarity"])
+                                for row in speaker.get("characters", [])
+                                if isinstance(row, dict)
+                                and row.get("minimum_similarity") is not None
+                            ]
+                            cross = [
+                                float(row["similarity"])
+                                for row in speaker.get("different_characters", [])
+                                if isinstance(row, dict) and row.get("similarity") is not None
+                            ]
+                            metrics["within_similarity_min"] = min(within) if within else None
+                            metrics["cross_similarity_max"] = max(cross) if cross else None
+                        soundscape = qa.get("soundscape", {})
+                        if isinstance(soundscape, dict):
+                            metrics["ambience_rms_dbfs"] = soundscape.get(
+                                "measured_ambience_rms_dbfs"
+                            )
                     if stage is Stage.HUMAN_APPROVED:
                         state = "approved"
                     if stage is Stage.EXPORTED:
                         state = "published"
                 published = repo / "content" / "listening" / unit["level"].lower() / f"{artifact['id']}.mp3"
-                if published.exists():
-                    state = "published"
                 rows.append(
                     {
                         "id": artifact["id"],
@@ -133,6 +192,8 @@ def app(
                         "scenario": artifact["scenario"],
                         "state": state,
                         "project_id": project_id,
+                        "published_exists": published.exists(),
+                        **metrics,
                     }
                 )
         return rows
@@ -165,7 +226,24 @@ def app(
 
     @api.get("/", response_class=HTMLResponse)
     def index() -> HTMLResponse:
+        built = frontend / "index.html"
+        if built.exists():
+            # Keep the initial document self-describing for accessibility, smoke tests and a
+            # JavaScript failure. React fetches richer data from /api/dashboard after mount.
+            bootstrap = json.dumps(plan_rows(), ensure_ascii=False).replace("</", "<\u002f")
+            return HTMLResponse(
+                built.read_text().replace(
+                    "</body>",
+                    f"<script id='studio-bootstrap' type='application/json'>{bootstrap}</script>"
+                    "<noscript><span class='project-grid button-link'>Deutsch-Atlas Audiokorpus · "
+                    "Sprachniveau · geplant. Listening Studio requires JavaScript for charts "
+                    "and editing.</span></noscript>"
+                    "</body>",
+                )
+            )
         return HTMLResponse(ui.index_page(plan_rows()))
+
+    api.include_router(studio_router(store, repo))
 
     def voices_for(adapter: str) -> list[str]:
         lock = model_lock(PACKAGE_ROOT / "models.lock.json")
@@ -199,10 +277,12 @@ def app(
     async def save_script(project_id: int, request: Request) -> RedirectResponse:
         _, _, payload = store.get(project_id)
         form = {k: str(v) for k, v in (await request.form()).items()}
+        payload = lock_voice_profiles(payload)
         adapter = form.get("adapter", payload.tts_adapter)
         lines = [Line.model_validate(line) for line in ui.parse_lines(form, payload)]
+        profiles = ui.parse_voice_profiles(form, payload)
         if adapter != payload.tts_adapter:
-            lines = reassign_voices(lines, adapter)
+            profiles = reassign_voice_profiles(profiles, adapter)
         # Validate rather than `model_copy(update=...)`, which skips `consistent()` and would let
         # an inconsistent revision be stored — after which every `Store.get()` rejects it and the
         # project is unreachable through the Studio. A ValidationError is a ValueError, so the
@@ -211,6 +291,7 @@ def app(
             payload.model_dump()
             | {
                 "lines": [line.model_dump() for line in lines],
+                "voice_profiles": [profile.model_dump() for profile in profiles],
                 "tts_adapter": adapter,
                 "max_replays": int(form.get("max_replays", payload.max_replays)),
             }
@@ -317,14 +398,20 @@ def app(
             (work / f"qwen-failure-rev-{revision.number}.json").write_text(
                 json.dumps(failure, ensure_ascii=False, indent=2)
             )
-            fallback_voices = ["Nicole", "Christopher", "Megan", "Michelle"]
-            revised_lines = [
-                line.model_copy(update={"voice": fallback_voices[index % len(fallback_voices)]})
-                for index, line in enumerate(payload.lines)
-            ]
+            locked = lock_voice_profiles(payload)
+            assert locked.voice_profiles is not None
+            revised_profiles = reassign_voice_profiles(locked.voice_profiles, "parler_tts")
             store.revise(
                 project_id,
-                payload.model_copy(update={"tts_adapter": "parler_tts", "lines": revised_lines}),
+                RevisionPayload.model_validate(
+                    locked.model_dump(mode="json")
+                    | {
+                        "tts_adapter": "parler_tts",
+                        "voice_profiles": [
+                            profile.model_dump(mode="json") for profile in revised_profiles
+                        ],
+                    }
+                ),
             )
             raise HTTPException(
                 409,
@@ -341,6 +428,14 @@ def app(
         project, _, payload = store.get(project_id)
         if Stage(project.stage) != Stage.AUDIO_GENERATED:
             raise HTTPException(409, "generate first")
+        work = store.root / "projects" / str(project_id)
+        adapter_revision = (
+            QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
+        )
+        line_paths = {
+            line.id: work / "cache" / f"{payload.cache_key(line, adapter_revision)}.wav"
+            for line in payload.lines
+        }
         if payload.tts_adapter == "fake":
             if not allow_test_adapters:
                 raise HTTPException(409, "the test adapter cannot pass QA")
@@ -348,14 +443,8 @@ def app(
             dry_transcript = " ".join(transcripts.values())
             final_transcript = dry_transcript
         else:
-            adapter_revision = (
-                QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
-            )
-            work = store.root / "projects" / str(project_id)
             transcripts = {
-                line.id: transcribe(
-                    work / "cache" / f"{line_cache_key(line, adapter_revision)}.wav"
-                )
+                line.id: transcribe(line_paths[line.id])
                 for line in payload.lines
             }
             dry_transcript = transcribe(work / "dry.wav")
@@ -366,7 +455,25 @@ def app(
             "passed": dry_report.passed and final_report.passed,
             "dry": dry_report.model_dump(mode="json"),
             "final": final_report.model_dump(mode="json"),
+            "speaker_consistency": (
+                {"status": "not-run-test-adapter"}
+                if payload.tts_adapter == "fake"
+                else check_speaker_consistency(
+                    payload,
+                    line_paths,
+                    calibration=(
+                        SpeakerQACalibration.model_validate_json(
+                            (store.root / "speaker-qa-calibration.json").read_text()
+                        )
+                        if (store.root / "speaker-qa-calibration.json").exists()
+                        else None
+                    ),
+                ).model_dump(mode="json")
+            ),
             "context_sound_count": len(payload.context_sounds),
+            "soundscape": soundscape_report(
+                payload, work / "dry.wav", work / "final.wav"
+            ).model_dump(mode="json"),
         }
         store.transition(
             project_id,
@@ -455,6 +562,76 @@ def app(
             project_id, Stage.AUTOMATICALLY_CHECKED, Stage.HUMAN_APPROVED, approval=approval
         )
         return RedirectResponse(f"/projects/{project_id}", 303)
+
+    @api.get("/readings/{project_id}/approve", response_class=HTMLResponse)
+    def reading_approval_form(project_id: int) -> HTMLResponse:
+        project, revision, payload = store.get_reading(project_id)
+        if Stage(project.stage) != Stage.AUTOMATICALLY_CHECKED:
+            raise HTTPException(409, "reading QA must run before approval")
+        qa_data = json.loads(revision.qa_json or "{}")
+        if qa_data.get("passed") is not True:
+            raise HTTPException(409, "automatic reading QA failed")
+        final_wav = store.root / "readings" / str(project_id) / "final.wav"
+        if not final_wav.exists():
+            raise HTTPException(409, "no reading master to review")
+        editor = remembered_editor(store.root) or ""
+        checks = (
+            "natural_long_prosody", "sentence_connection", "quotation_delivery",
+            "cefr_clarity", "stable_narrator_identity", "no_fatigue_clicks_or_bad_joins",
+        )
+        items = "".join(f"<li><code>{key}</code></li>" for key in checks)
+        return HTMLResponse(
+            "<!doctype html><html lang='de'><meta charset='utf-8'><title>Lesetext prüfen</title>"
+            "<style>body{font:16px system-ui;max-width:780px;margin:40px auto;padding:0 24px;line-height:1.5}"
+            "audio{width:100%;margin:20px 0}button{padding:12px 18px}input{padding:9px;width:100%;box-sizing:border-box}</style>"
+            f"<h1>{escape(payload.title_de)}</h1><p>{escape(payload.reading_id)} · {escape(payload.narration_profile_id)}</p>"
+            "<p><strong>Сначала прослушайте целиком без чтения текста.</strong> Затем подтвердите, что проверили:</p>"
+            f"<audio controls src='/api/readings/{project_id}/audio'></audio><ul>{items}</ul>"
+            f"<form method='post' action='/readings/{project_id}/approve/confirm'>"
+            f"<label>Редактор<input name='editor' required value='{escape(editor, quote=True)}'></label>"
+            "<label><input name='certify' type='checkbox' value='yes' required style='width:auto'> Я прослушал(а) эти точные байты и подтверждаю весь список.</label><p>"
+            "<button type='submit'>Утвердить точную WAV-версию</button></p></form></html>"
+        )
+
+    @api.post("/readings/{project_id}/approve/confirm")
+    async def approve_reading(project_id: int, request: Request) -> RedirectResponse:
+        project, revision, payload = store.get_reading(project_id)
+        if Stage(project.stage) != Stage.AUTOMATICALLY_CHECKED:
+            raise HTTPException(409, "reading QA must run before approval")
+        qa_data = json.loads(revision.qa_json or "{}")
+        if qa_data.get("passed") is not True:
+            raise HTTPException(409, "automatic reading QA failed")
+        form = await request.form()
+        editor = str(form.get("editor", "")).strip()
+        if not editor or form.get("certify") != "yes":
+            raise HTTPException(400, "the named editor must certify the complete review")
+        final_wav = store.root / "readings" / str(project_id) / "final.wav"
+        if not final_wav.exists():
+            raise HTTPException(409, "no reading master to approve")
+        current_source = next(
+            (row for row in load_reading_sources(repo) if row.id == payload.reading_id), None
+        )
+        if current_source is None or current_source.source_sha256 != payload.source_sha256:
+            raise HTTPException(409, "the source Lesetext changed; create a new narration revision")
+        remember_editor(store.root, editor)
+        approval: dict[str, object] = {
+            "status": "complete",
+            "editor": editor,
+            "reviewed_at": datetime.now(UTC).isoformat(),
+            "checklist": [
+                "natural_long_prosody", "sentence_connection", "quotation_delivery",
+                "cefr_clarity", "stable_narrator_identity", "no_fatigue_clicks_or_bad_joins",
+            ],
+            "audio_sha256": sha256(final_wav),
+            "source_sha256": payload.source_sha256,
+        }
+        store.transition_reading(
+            project_id,
+            Stage.AUTOMATICALLY_CHECKED,
+            Stage.HUMAN_APPROVED,
+            approval=approval,
+        )
+        return RedirectResponse(f"/#/project/reading/{project_id}", 303)
 
     api.state.session_token = secret
     api.state.repo = repo

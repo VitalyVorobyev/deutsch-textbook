@@ -1,0 +1,158 @@
+version: 1
+characters:
+  - id: lena
+    version: 1
+    display_name: Lena
+    age_band: young-adult
+    persona: "Warm, aufmerksam und direkt; glaubwürdig in informellen Alltagsszenen."
+    registers: [informal, neutral]
+    roles: [friend, neighbour, learner, narrator]
+    casting_tags: [warm, everyday, narrative]
+    narration_capable: true
+    incompatible_with: [klara]
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Ich erzähle dir gern, wie mein Tag wirklich war."]
+    voice_profile: {voice: Vivian, seed: 100, style: "Sprich warm, natürlich und aufmerksam, ohne zu schauspielern.", pace: 0.96}
+  - id: mira
+    version: 1
+    display_name: Mira
+    age_band: young-adult
+    persona: "Lebendig, freundlich und praktisch; passend für Pläne, Lernen und soziale Szenen."
+    registers: [informal, neutral]
+    roles: [friend, colleague, learner]
+    casting_tags: [bright, social, practical]
+    narration_capable: false
+    incompatible_with: [noa]
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Komm, wir machen einen klaren Plan und legen gleich los."]
+    voice_profile: {voice: Serena, seed: 105, style: "Sprich lebendig, freundlich und klar, mit ruhiger Grundenergie.", pace: 0.98}
+  - id: anna-keller
+    version: 1
+    display_name: Anna Keller
+    age_band: adult
+    persona: "Ruhig, präzise und zugänglich; eine verlässliche redaktionelle und berufliche Stimme."
+    registers: [neutral, formal]
+    roles: [colleague, interviewer, narrator, adviser]
+    casting_tags: [precise, editorial, professional]
+    narration_capable: true
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Ich fasse die wichtigsten Informationen kurz und präzise zusammen."]
+    voice_profile: {voice: Ono_Anna, seed: 110, style: "Sprich natürlich, präzise und unaufdringlich wie in einem guten Magazinbeitrag.", pace: 1.0}
+  - id: so-yeon-park
+    version: 1
+    display_name: So-yeon Park
+    age_band: adult
+    persona: "Geduldig und ermutigend; macht neue Sprache gut verständlich, ohne langsam zu wirken."
+    registers: [neutral, formal]
+    roles: [teacher, adviser, receptionist, narrator]
+    casting_tags: [clear, patient, instructional]
+    narration_capable: true
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Nehmen wir uns einen Moment und gehen Schritt für Schritt vor."]
+    voice_profile: {voice: Sohee, seed: 115, style: "Sprich besonders verständlich, geduldig und natürlich; betone Sinnabschnitte, nicht einzelne Wörter.", pace: 0.92}
+  - id: jonas
+    version: 1
+    display_name: Jonas
+    age_band: young-adult
+    persona: "Entspannt und nachdenklich; stark in informellen Dialogen und bei Problemlösungen."
+    registers: [informal, neutral]
+    roles: [friend, colleague, learner, customer]
+    casting_tags: [relaxed, thoughtful, everyday]
+    narration_capable: false
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Wir finden bestimmt eine einfache Lösung für das Problem."]
+    voice_profile: {voice: Dylan, seed: 120, style: "Sprich entspannt, aufmerksam und natürlich, mit klaren Satzenden.", pace: 0.98}
+  - id: david
+    version: 1
+    display_name: David
+    age_band: adult
+    persona: "Bodenständig und pragmatisch; glaubwürdig bei Arbeit, Wohnen und Dienstleistungen."
+    registers: [neutral, formal]
+    roles: [colleague, resident, customer, official]
+    casting_tags: [grounded, pragmatic, professional]
+    narration_capable: false
+    incompatible_with: [paul]
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Ich prüfe das kurz und sage Ihnen dann, was als Nächstes passiert."]
+    voice_profile: {voice: Ryan, seed: 125, style: "Sprich ruhig, sachlich und zugewandt, ohne übertriebene Autorität.", pace: 1.0}
+  - id: emil-wagner
+    version: 1
+    display_name: Emil Wagner
+    age_band: older-adult
+    persona: "Bedächtig und souverän, ohne streng zu wirken; passend für formelle Informationen."
+    registers: [neutral, formal]
+    roles: [official, manager, expert, narrator]
+    casting_tags: [measured, formal, informative]
+    narration_capable: true
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Die Regel klingt streng, hat aber einen vernünftigen Grund."]
+    voice_profile: {voice: Eric, seed: 130, style: "Sprich gesammelt, sachlich und gut gegliedert wie eine seriöse Information.", pace: 0.98}
+  - id: amir
+    version: 1
+    display_name: Amir
+    age_band: young-adult
+    persona: "Neugierig und energisch, aber nie gehetzt; passend zu Reisen und Lernsituationen."
+    registers: [informal, neutral]
+    roles: [friend, traveller, learner, customer]
+    casting_tags: [curious, energetic, travel]
+    narration_capable: false
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Erzähl mal, was unterwegs passiert ist."]
+    voice_profile: {voice: Aiden, seed: 135, style: "Sprich interessiert, offen und klar, mit natürlicher Energie.", pace: 1.0}
+  - id: herr-wu
+    version: 1
+    display_name: Herr Wu
+    age_band: older-adult
+    persona: "Geduldig, trocken humorvoll und verlässlich; passend zu Nachbarn und erfahrenen Fachleuten."
+    registers: [informal, neutral, formal]
+    roles: [neighbour, expert, official, customer]
+    casting_tags: [experienced, patient, dry-humour]
+    narration_capable: false
+    incompatible_with: []
+    status: draft-profile
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Das lässt sich regeln, wenn wir die Unterlagen gemeinsam prüfen."]
+    voice_profile: {voice: Uncle_Fu, seed: 140, style: "Sprich ruhig, erfahren und freundlich, mit zurückhaltendem Humor.", pace: 0.96}
+  - id: klara
+    version: 1
+    display_name: Klara
+    age_band: adult
+    persona: "Fokussiert und entschieden; passend zu Schaltern und beruflicher Koordination."
+    registers: [neutral, formal]
+    roles: [manager, receptionist, official, colleague]
+    casting_tags: [decisive, service, focused]
+    narration_capable: false
+    incompatible_with: [lena]
+    status: provisional-shared-preset
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Haben Sie alles verstanden?", "Wir entscheiden das jetzt und halten den nächsten Schritt fest."]
+    voice_profile: {voice: Vivian, seed: 200, style: "Sprich fokussiert, höflich und zügig, mit stabiler sachlicher Energie.", pace: 1.02}
+  - id: paul
+    version: 1
+    display_name: Paul
+    age_band: adult
+    persona: "Offen und beruhigend; passend zu Gesundheit, Familie und unterstützenden Gesprächen."
+    registers: [informal, neutral]
+    roles: [friend, parent, patient, adviser]
+    casting_tags: [reassuring, supportive, calm]
+    narration_capable: false
+    incompatible_with: [david]
+    status: provisional-shared-preset
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Keine Sorge, wir schauen uns das ganz in Ruhe an."]
+    voice_profile: {voice: Ryan, seed: 205, style: "Sprich offen, ruhig und beruhigend, ohne künstlich weich zu werden.", pace: 0.96}
+  - id: noa
+    version: 1
+    display_name: Noa
+    age_band: child
+    persona: "Ein fiktives, neugieriges Schulkind, nur für pädagogisch notwendige Kinderrollen."
+    registers: [informal]
+    roles: [child, pupil, family-member]
+    casting_tags: [child, curious, fictional-synthetic]
+    narration_capable: false
+    incompatible_with: [mira]
+    status: provisional-shared-preset
+    demo_phrases: ["Heute treffen wir uns um halb sechs am Bahnhof.", "Hast du alles verstanden?", "Ich habe eine Idee, die wir gleich ausprobieren können!"]
+    voice_profile: {voice: Serena, seed: 210, style: "Sprich wie ein aufgewecktes Schulkind: natürlich, klar und ohne übertriebene Kinderstimme.", pace: 0.94}

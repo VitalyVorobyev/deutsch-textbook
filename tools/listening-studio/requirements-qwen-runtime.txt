@@ -4,6 +4,7 @@
 # candidates that appear in `qwen_tts` source imports, only gradio never loads — and gradio is
 # the one that would drag fastapi and starlette past the Studio's own pins.
 transformers==4.57.3
+numpy==2.2.6
 accelerate==1.14.0
 onnxruntime==1.28.0
 torch==2.13.0

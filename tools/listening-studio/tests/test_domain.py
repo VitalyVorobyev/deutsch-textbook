@@ -9,6 +9,8 @@ from listening_studio.domain import (
     Question,
     RevisionPayload,
     SingleChoice,
+    VoiceProfile,
+    lock_voice_profiles,
     line_cache_key,
     word_error_rate,
 )
@@ -48,6 +50,60 @@ def test_wer_and_cache_key() -> None:
     a = payload().lines[0]
     b = a.model_copy(update={"voice": "Aiden"})
     assert line_cache_key(a, "x") != line_cache_key(b, "x")
+
+
+def test_locking_identity_is_additive_and_deterministic() -> None:
+    legacy = payload()
+    assert legacy.voice_profiles is None
+    locked = lock_voice_profiles(legacy)
+    assert [(p.speaker, p.seed) for p in locked.voice_profiles or []] == [
+        ("Lea", 100),
+        ("Tom", 105),
+    ]
+    # The immutable legacy payload still parses exactly as it did before profiles existed.
+    assert RevisionPayload.model_validate_json(legacy.canonical_json()) == legacy
+
+
+def test_profile_cache_changes_only_the_affected_character() -> None:
+    locked = lock_voice_profiles(payload())
+    before = {line.id: locked.cache_key(line, "adapter") for line in locked.lines}
+    assert locked.voice_profiles is not None
+    changed_profiles = [
+        profile.model_copy(update={"seed": 999}) if profile.speaker == "Lea" else profile
+        for profile in locked.voice_profiles
+    ]
+    changed = locked.model_copy(update={"voice_profiles": changed_profiles})
+    after = {line.id: changed.cache_key(line, "adapter") for line in changed.lines}
+    assert before["l1"] != after["l1"]
+    assert before["l2"] == after["l2"]
+
+
+def test_legacy_dialogue_payload_gets_additive_artifact_discriminator() -> None:
+    raw = payload().model_dump(mode="json")
+    raw.pop("artifact_kind")
+    loaded = RevisionPayload.model_validate(raw)
+    assert loaded.artifact_kind == "dialogue"
+
+
+def test_profile_revision_never_reuses_a_matching_legacy_cache_key() -> None:
+    legacy = payload()
+    legacy.lines[0].seed = 100
+    locked = lock_voice_profiles(legacy)
+    assert legacy.cache_key(legacy.lines[0], "adapter") != locked.cache_key(
+        locked.lines[0], "adapter"
+    )
+
+
+def test_profile_identity_overrides_legacy_line_identity() -> None:
+    locked = lock_voice_profiles(payload())
+    assert locked.voice_profiles is not None
+    profiles = [
+        VoiceProfile(speaker="Lea", voice="Serena", seed=44, style="Sprich ruhig."),
+        locked.voice_profiles[1],
+    ]
+    updated = locked.model_copy(update={"voice_profiles": profiles})
+    resolved = updated.resolved_line(updated.lines[0])
+    assert (resolved.voice, resolved.seed, resolved.style) == ("Serena", 44, "Sprich ruhig.")
 
 
 def test_qa_passes_exact_transcript() -> None:

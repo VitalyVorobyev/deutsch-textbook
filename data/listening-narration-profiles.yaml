@@ -1,0 +1,39 @@
+version: 1
+profiles:
+  - id: didactic-clear
+    version: 1
+    character_id: so-yeon-park
+    label: Besonders klar
+    description: "Clear instructional reading with natural sense groups, primarily for intensive A1/A2 texts."
+    allowed_kinds: [intensive]
+    pace_by_level: {A1: 0.88, A2: 0.92, B1: 0.96}
+    paragraph_pause_ms: 650
+    instruction: "Lies besonders verständlich und geduldig. Gliedere nach Sinn, nicht Wort für Wort; bleibe natürlich."
+  - id: neutral-editorial
+    version: 1
+    character_id: anna-keller
+    label: Neutral redaktionell
+    description: "Unobtrusive magazine-style delivery for everyday and informational prose."
+    allowed_kinds: [intensive, extensive]
+    pace_by_level: {A1: 0.92, A2: 0.97, B1: 1.0}
+    paragraph_pause_ms: 550
+    instruction: "Lies natürlich, präzise und unaufdringlich wie einen gut redigierten Magazintext."
+  - id: warm-narrative
+    version: 1
+    character_id: lena
+    label: Warm erzählerisch
+    description: "Warm, coherent narration for stories and the recurring Lena reading series."
+    allowed_kinds: [intensive, extensive]
+    pace_by_level: {A1: 0.9, A2: 0.95, B1: 0.98}
+    paragraph_pause_ms: 700
+    instruction: "Erzähle warm und zusammenhängend. Direkte Rede nur leicht färben; bleibe dieselbe Erzählerin."
+  - id: formal-informational
+    version: 1
+    character_id: emil-wagner
+    label: Formell informativ
+    description: "Measured delivery for rules, administration, work and formal information."
+    allowed_kinds: [intensive]
+    pace_by_level: {A1: 0.9, A2: 0.95, B1: 0.99}
+    paragraph_pause_ms: 600
+    instruction: "Lies gesammelt, sachlich und klar gegliedert. Betone Regeln und Kontraste, ohne streng zu klingen."
+

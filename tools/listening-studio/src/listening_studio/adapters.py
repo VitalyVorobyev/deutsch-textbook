@@ -186,11 +186,9 @@ def write_with_pace(
     target: Path, samples: object, rate: int, pace: float, soundfile_module: Any
 ) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
-    if pace == 1.0:
-        soundfile_module.write(target, samples, rate)
-        return
     raw = target.with_suffix(".raw.wav")
     soundfile_module.write(raw, samples, rate)
+    filters = [f"atempo={pace}"] if pace != 1.0 else []
     subprocess.run(
         [
             "ffmpeg",
@@ -198,8 +196,13 @@ def write_with_pace(
             "error",
             "-i",
             str(raw),
-            "-filter:a",
-            f"atempo={pace}",
+            *(["-filter:a", ",".join(filters)] if filters else []),
+            "-ar",
+            "16000",
+            "-ac",
+            "1",
+            "-c:a",
+            "pcm_s16le",
             "-y",
             str(target),
         ],
@@ -318,10 +321,40 @@ def generate_drafts(
 def generate_lines(payload: RevisionPayload, root: Path, adapter: TTSAdapter) -> dict[str, Path]:
     paths: dict[str, Path] = {}
     for line in payload.lines:
-        key = line_cache_key(line, adapter.revision)
+        resolved = payload.resolved_line(line)
+        key = payload.cache_key(line, adapter.revision)
         path = root / "cache" / f"{key}.wav"
         if not path.exists():
-            adapter.synthesize(line, path)
+            profile = payload.profile_for(line.speaker)
+            previous = (
+                root
+                / "cache"
+                / f"{line_cache_key(resolved, adapter.revision, f'3-profile-v{profile.version}')}.wav"
+                if profile is not None
+                else None
+            )
+            if previous is not None and previous.exists():
+                path.parent.mkdir(parents=True, exist_ok=True)
+                subprocess.run(
+                    [
+                        "ffmpeg",
+                        "-v",
+                        "error",
+                        "-i",
+                        str(previous),
+                        "-ar",
+                        "16000",
+                        "-ac",
+                        "1",
+                        "-c:a",
+                        "pcm_s16le",
+                        "-y",
+                        str(path),
+                    ],
+                    check=True,
+                )
+            else:
+                adapter.synthesize(resolved, path)
         paths[line.id] = path
     return paths
 
@@ -403,16 +436,27 @@ def mix_context(payload: RevisionPayload, source_root: Path, dry: Path, target: 
         filters.append(f"[0:a]adelay={payload.lead_in_ms}|{payload.lead_in_ms}[speech]")
         speech = "[speech]"
     mix_inputs = [speech]
+    mix_duration = (wav_duration(dry) or 0) + payload.lead_in_ms / 1000
     for index, context in enumerate(payload.context_sounds, 1):
         source, source_path = load_source(source_root, context.source_sha256)
         if source.sound_id != context.sound_id:
             raise ValueError("context sound id does not match its imported source")
+        if context.role == "bed":
+            command.extend(["-stream_loop", "-1"])
         command.extend(["-i", str(source_path)])
         start = context.start_ms / 1000
         duration = context.duration_ms / 1000
+        if context.role == "bed":
+            fade_out = max(0.0, mix_duration - 0.45)
+            processing = (
+                f"atrim=start={start}:duration={mix_duration},asetpts=PTS-STARTPTS,"
+                f"afade=t=in:st=0:d=0.35,afade=t=out:st={fade_out}:d=0.45"
+            )
+        else:
+            processing = f"atrim=start={start}:duration={duration},asetpts=PTS-STARTPTS"
         filters.append(
-            f"[{index}:a]atrim=start={start}:duration={duration},asetpts=PTS-STARTPTS,"
-            f"adelay={context.delay_ms}|{context.delay_ms},volume={context.gain_db}dB[c{index}]"
+            f"[{index}:a]{processing},adelay={context.delay_ms}|{context.delay_ms},"
+            f"volume={context.gain_db}dB[c{index}]"
         )
         mix_inputs.append(f"[c{index}]")
     filters.append(

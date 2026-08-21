@@ -62,16 +62,32 @@ is the operational handoff for authors and visual generators.
 
 Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.
 It retains the exact generation brief, immutable model and adapter revisions, model licences,
-separate training-data evidence notes, official voice profile, script and audio hashes, QA results,
-and the human listening checklist. A permissive model licence is never presented as verified
+separate training-data evidence notes, versioned character voice profiles, script and audio hashes,
+speaker-similarity QA model revision/results, and the human identity/separation listening checklist.
+A permissive model licence is never presented as verified
 training-data or speaker-consent provenance. Voice cloning, reference recordings, unverified
 voices and music remain outside the supported authoring path. Short contextual effects may be
 manually downloaded from Freesound only under the reviewed CC0/CC BY policy: the exact original,
 source page, uploader, licence, retrieval date, hash, processing and an honest rights-risk note are
 retained. CC BY-NC, Sampling+, speech, brands and doubtful uploads are rejected; the uploader's
 licence assertion is never presented as independently verified ownership. Context cannot carry a
-correct answer by itself. No generated or mixed audio may enter `content/listening/` until a named
+correct answer by itself. Continuous beds and finite events remain distinct, and assisted
+placement stores its actual editorial reason rather than implying human authorship. No generated
+or mixed audio may enter `content/listening/` until a named
 human has approved that exact revision and WAV.
+
+A VoiceDesign-to-cloning comparison may run only in the non-publishing local benchmark workspace.
+Its references must be synthetic, use fictional non-imitation descriptions, and retain prompts,
+model revisions and hashes. Benchmark output and reference audio cannot enter the production cache,
+bundle or export path; adoption would require a later explicit policy and production decision.
+An identifiable human reference may be evaluated only through the separate
+`experiment-human-voice-clone` path under the gitignored `.private/` boundary. Its consent record
+must bind the exact reference hash, authorized purpose, retention rule and no-distribution scope;
+the runner refuses missing consent, output outside `.private/` and overwriting an earlier run. A
+minor additionally requires explicit guardian consent and child assent. Both were supplied for the
+2026-08-03 private technology evaluation; this authorizes local evaluation, not publication,
+production import, course export or general reuse. Any later casting or distribution decision
+requires its own agreement and product-policy change.
 
 ## Deferred commercialization checklist
 

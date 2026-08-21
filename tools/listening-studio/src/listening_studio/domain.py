@@ -10,6 +10,9 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, Field, model_validator
 
 
+ArtifactKind = Literal["dialogue", "reading"]
+
+
 class Stage(StrEnum):
     DRAFT = "draft"
     VALIDATED = "validated"
@@ -72,6 +75,15 @@ class ContextSound(BaseModel):
     duration_ms: int = Field(gt=0, le=120_000)
     delay_ms: int = Field(default=0, ge=0, le=600_000)
     gain_db: float = Field(default=-18.0, ge=-40.0, le=-12.0)
+    role: Literal["bed", "event"] = "event"
+    editorial_reason: str | None = None
+    placement_authoring: Literal["legacy", "ai-assisted", "human"] = "legacy"
+
+    @model_validator(mode="after")
+    def explain_new_placement(self) -> ContextSound:
+        if self.placement_authoring != "legacy" and not self.editorial_reason:
+            raise ValueError("new context-sound placements need an editorial reason")
+        return self
 
 
 class Line(BaseModel):
@@ -85,6 +97,10 @@ class Line(BaseModel):
     # two friends making plans — and register is most of what makes listening material sound
     # real. Written in German: the model takes the instruction in the language it speaks.
     style: str | None = None
+    # Per-turn delivery can change without changing who the character is. In profile-backed
+    # revisions `style` is legacy input only; synthesis combines the character's stable style
+    # with this optional delivery instruction.
+    delivery: str | None = None
     pace: float = Field(default=1.0, ge=0.7, le=1.15)
     pause_after_ms: int = Field(default=350, ge=0, le=5000)
     seed: int = 0
@@ -95,6 +111,26 @@ class Line(BaseModel):
         for override in self.pronunciation_overrides:
             text = text.replace(override.display, override.synthesis)
         return text
+
+
+class VoiceProfile(BaseModel):
+    """The synthesis identity of one declared character.
+
+    Lines deliberately keep their legacy identity fields so immutable historical revisions can
+    still be parsed and reproduced. New revisions resolve these four values from this profile.
+    """
+
+    version: int = Field(default=1, ge=1)
+    speaker: str
+    voice: str
+    seed: int = Field(ge=0)
+    style: str | None = None
+
+
+class CastAssignment(BaseModel):
+    speaker: str
+    character_id: str = Field(pattern=r"^[a-z0-9-]+$")
+    character_version: int = Field(ge=1)
 
 
 def reassign_voices(lines: list[Line], adapter: str) -> list[Line]:
@@ -121,6 +157,28 @@ def reassign_voices(lines: list[Line], adapter: str) -> list[Line]:
         taken = set(assigned.values())
         assigned[line.speaker] = next((v for v in voices if v not in taken), voices[0])
     return [line.model_copy(update={"voice": assigned[line.speaker]}) for line in lines]
+
+
+def reassign_voice_profiles(
+    profiles: list[VoiceProfile], adapter: str
+) -> list[VoiceProfile]:
+    """Move character profiles to an adapter while keeping characters distinct."""
+
+    voices = VOICE_SETS.get(adapter)
+    if not voices:
+        return profiles
+    assigned: dict[str, str] = {}
+    for profile in profiles:
+        if profile.voice in voices and profile.voice not in assigned.values():
+            assigned[profile.speaker] = profile.voice
+    for profile in profiles:
+        if profile.speaker in assigned:
+            continue
+        taken = set(assigned.values())
+        assigned[profile.speaker] = next((v for v in voices if v not in taken), voices[0])
+    return [
+        profile.model_copy(update={"voice": assigned[profile.speaker]}) for profile in profiles
+    ]
 
 
 class SingleChoice(BaseModel):
@@ -199,9 +257,18 @@ class Question(BaseModel):
 
 
 class RevisionPayload(BaseModel):
+    # Additive discriminator for the shared Studio API. Historical dialogue revisions did not
+    # store it, so the default keeps those rows readable without rewriting immutable history.
+    artifact_kind: Literal["dialogue"] = "dialogue"
     title: Bilingual
     brief: Brief
     speakers: list[str]
+    # None means an immutable legacy revision whose identity settings still live on each line.
+    # Every newly generated revision carries one profile per declared character.
+    voice_profiles: list[VoiceProfile] | None = None
+    # Catalog references are additive: resolved profiles remain embedded so an immutable revision
+    # does not change when the global character catalog advances.
+    cast: list[CastAssignment] | None = None
     lines: list[Line] = Field(min_length=1)
     questions: list[Question] = Field(min_length=1)
     tts_adapter: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
@@ -241,9 +308,54 @@ class RevisionPayload(BaseModel):
         if len(line_ids) != len(self.lines):
             raise ValueError("line ids must be unique")
         allowed_voices = VOICE_SETS.get(self.tts_adapter)
-        if allowed_voices and any(line.voice not in allowed_voices for line in self.lines):
-            raise ValueError(f"{self.tts_adapter} permits only publisher-documented preset voices")
+        if self.voice_profiles is None:
+            if allowed_voices and any(line.voice not in allowed_voices for line in self.lines):
+                raise ValueError(
+                    f"{self.tts_adapter} permits only publisher-documented preset voices"
+                )
+        else:
+            names = [profile.speaker for profile in self.voice_profiles]
+            if names != self.speakers:
+                raise ValueError("voice_profiles must match the declared speakers in order")
+            if len(set(names)) != len(names):
+                raise ValueError("voice profile speakers must be unique")
+            if allowed_voices and any(
+                profile.voice not in allowed_voices for profile in self.voice_profiles
+            ):
+                raise ValueError(
+                    f"{self.tts_adapter} permits only publisher-documented preset voices"
+                )
+        if self.cast is not None:
+            if [assignment.speaker for assignment in self.cast] != self.speakers:
+                raise ValueError("cast must match declared speakers in order")
+            if len({assignment.character_id for assignment in self.cast}) != len(self.cast):
+                raise ValueError("one character cannot play two roles in the same dialogue")
         return self
+
+    def profile_for(self, speaker: str) -> VoiceProfile | None:
+        if self.voice_profiles is None:
+            return None
+        return next(profile for profile in self.voice_profiles if profile.speaker == speaker)
+
+    def resolved_line(self, line: Line) -> Line:
+        """Materialize the exact adapter input without mutating the stored legacy line."""
+
+        profile = self.profile_for(line.speaker)
+        if profile is None:
+            return line
+        style_parts = [part.strip() for part in (profile.style, line.delivery) if part and part.strip()]
+        return line.model_copy(
+            update={
+                "voice": profile.voice,
+                "seed": profile.seed,
+                "style": " ".join(style_parts) or None,
+            }
+        )
+
+    def cache_key(self, line: Line, adapter_revision: str) -> str:
+        profile = self.profile_for(line.speaker)
+        processor = f"4-profile-v{profile.version}-16khz" if profile is not None else "2"
+        return line_cache_key(self.resolved_line(line), adapter_revision, processor)
 
     def canonical_json(self) -> str:
         return json.dumps(
@@ -252,6 +364,45 @@ class RevisionPayload(BaseModel):
 
     def sha256(self) -> str:
         return hashlib.sha256(self.canonical_json().encode()).hexdigest()
+
+
+def lock_voice_profiles(payload: RevisionPayload) -> RevisionPayload:
+    """Create deterministic character profiles without rewriting historical revisions.
+
+    Existing preset choices and a character's common style are preserved. Seeds are assigned by
+    first-speaking order (100, 105, ...); a profile revision therefore removes the line-index
+    randomness that made one character age through a dialogue.
+    """
+
+    if payload.voice_profiles is not None:
+        return payload
+    voices = VOICE_SETS.get(payload.tts_adapter, ())
+    profiles: list[VoiceProfile] = []
+    for index, speaker in enumerate(payload.speakers):
+        spoken = [line for line in payload.lines if line.speaker == speaker]
+        styles = {line.style for line in spoken}
+        if len(styles) > 1:
+            raise ValueError(
+                f'{speaker} has multiple legacy styles; choose one character style before locking'
+            )
+        used = {profile.voice for profile in profiles}
+        existing = spoken[0].voice if spoken else None
+        voice = existing if existing in voices else next((v for v in voices if v not in used), "")
+        if not voice:
+            # The fake adapter has no publisher voice list; retain the fixture/default identity.
+            voice = existing or "Ryan"
+        profiles.append(
+            VoiceProfile(
+                speaker=speaker,
+                voice=voice,
+                seed=100 + 5 * index,
+                style=next(iter(styles)) if styles else None,
+            )
+        )
+    return RevisionPayload.model_validate(
+        payload.model_dump(mode="json")
+        | {"voice_profiles": [profile.model_dump(mode="json") for profile in profiles]}
+    )
 
 
 class LineQA(BaseModel):

@@ -8,6 +8,7 @@ from fastapi.testclient import TestClient
 
 from listening_studio.domain import Stage
 from listening_studio.storage import Store
+from listening_studio.ui import script_form
 from listening_studio.web import app
 from test_domain import payload
 
@@ -28,6 +29,16 @@ def test_local_workflow_reaches_checked_but_needs_real_approval(tmp_path: Path) 
     assert revision.approval_json is None
 
 
+def test_script_editor_keeps_identity_controls_at_character_level() -> None:
+    draft = payload()
+    html = script_form(1, draft, ["Ryan", "Aiden"], ["fake"])
+    assert "profile.0.voice" in html
+    assert "profile.0.style" in html
+    assert "Neue Variante für diese Figur" in html
+    assert "line.0.voice" not in html
+    assert "line.0.seed" not in html
+
+
 def test_qwen_failure_creates_reviewable_parler_draft(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
     store = Store(tmp_path / "db.sqlite3")
     draft = payload().model_copy(update={"tts_adapter": "qwen_tts"})
@@ -44,7 +55,11 @@ def test_qwen_failure_creates_reviewable_parler_draft(tmp_path: Path, monkeypatc
     current, _, revised = store.get(project.id)
     assert current.stage == Stage.DRAFT
     assert revised.tts_adapter == "parler_tts"
-    assert {line.voice for line in revised.lines} <= {"Nicole", "Christopher", "Megan", "Michelle"}
+    assert revised.voice_profiles is not None
+    assert {profile.voice for profile in revised.voice_profiles} <= {
+        "Nicole", "Christopher", "Megan", "Michelle"
+    }
+    assert len({profile.voice for profile in revised.voice_profiles}) == 2
     assert list((tmp_path / "projects" / str(project.id)).glob("qwen-failure-*.json"))
 
 
@@ -90,6 +105,10 @@ def test_the_index_lists_every_planned_recording_by_slug(tmp_path: Path) -> None
     # whole corpus, and selection is by plan slug rather than by database id.
     assert "ls-review-01" in response.text
     assert "ls-not-planned-01" in response.text
+    assert "Deutsch-Atlas Audiokorpus" in response.text
+    assert "Sprachniveau" in response.text
+    assert "project-grid" in response.text
+    assert "button-link" in response.text
     # A project that is not in the plan is not production work and is not listed.
     assert "not-in-wave" not in response.text
 
@@ -200,10 +219,8 @@ def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadab
         form |= {
             f"line.{index}.speaker": line.speaker,
             f"line.{index}.text": line.display_text,
-            f"line.{index}.voice": line.voice,  # still the Parler voices — the form has no others
             f"line.{index}.pace": str(line.pace),
             f"line.{index}.pause": str(line.pause_after_ms),
-            f"line.{index}.seed": str(line.seed),
         }
     saved = client.post(
         f"/projects/{project.id}/script?token=test", data=form, headers=headers, follow_redirects=False
@@ -212,7 +229,8 @@ def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadab
 
     _, _, stored = store.get(project.id)  # the assertion: this used to raise
     assert stored.tts_adapter == "qwen_tts"
-    assert len({line.voice for line in stored.lines}) == 2
+    assert stored.voice_profiles is not None
+    assert len({profile.voice for profile in stored.voice_profiles}) == 2
     assert client.get(f"/projects/{project.id}?token=test", headers=headers).status_code == 200
 
 
@@ -275,6 +293,7 @@ def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Pa
 
     # Full sentences, not bare keys — and the level is named in the two checks that depend on it.
     assert "Es klingt nach einer sprechenden Person" in body
+    assert "Jede Figur bleibt über alle Repliken dieselbe erkennbare Person" in body
     assert "Auf A2 ist jedes Wort heraushörbar" in body
     # Stated above one button, not six checkboxes: six ticks were never six decisions.
     assert body.count("<li>Die Aussprache ist verständliches Standarddeutsch") == 1
@@ -291,11 +310,10 @@ def test_the_approval_page_shows_what_it_asks_the_editor_to_certify(tmp_path: Pa
     assert f"/projects/{project.id}/regenerate" in body
 
 
-def test_the_name_is_asked_once_and_the_record_still_carries_all_six(tmp_path: Path) -> None:
-    """One button, not six checkboxes and a name field retyped every time.
+def test_the_name_is_asked_once_and_the_record_still_carries_the_full_checklist(tmp_path: Path) -> None:
+    """One button, not seven checkboxes and a name field retyped every time.
 
-    The published manifest is unchanged — `scripts/validate.ts` requires the full six-item
-    checklist and gets it, because the six statements are printed directly above the button that
+    The manifest gets the full checklist because the seven statements are printed above the button that
     submits them. What is gone is the ceremony: a form whose boxes must all be ticked teaches a
     reviewer to tick without listening, which is the failure the review exists to prevent.
     """
@@ -320,6 +338,7 @@ def test_the_name_is_asked_once_and_the_record_still_carries_all_six(tmp_path: P
     assert approval["editor"] == "Vitaly Vorobyev"
     assert approval["checklist"] == [
         "accent",
+        "identity",
         "intelligibility",
         "naturalness",
         "pace",

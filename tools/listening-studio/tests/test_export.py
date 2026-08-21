@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 
 from listening_studio.adapters import FakeTTS, assemble, generate_lines
-from listening_studio.domain import ShortAnswer, TrueFalse
-from listening_studio.export import register_exercise, write_bundle
+from listening_studio.domain import Line, ShortAnswer, TrueFalse, lock_voice_profiles
+from listening_studio.export import publish, register_exercise, write_bundle
 from test_domain import payload
 
 
@@ -82,6 +82,76 @@ def test_a_set_with_nowhere_to_be_referenced_from_is_refused(tmp_path: Path) -> 
     (tmp_path / "content" / "topics" / "a1" / "ohne-liste.mdx").write_text("---\nid: x\n---\n")
     with pytest.raises(ValueError, match="no inline `exercises:"):
         register_exercise(tmp_path, "a1", "ohne-liste", "a1/ls-ohne-liste-01-hoeren")
+
+
+def test_republish_verifies_and_backs_up_the_existing_artifact(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    topic_article(repo, "a2", "termine-vereinbaren", "a2/termine-vereinbaren")
+    approval = {
+        "status": "complete",
+        "editor": "Synthetic test fixture",
+        "reviewed_at": "2026-08-02T12:00:00+00:00",
+        "checklist": [
+            "accent", "identity", "naturalness", "intelligibility", "speakers", "pace", "questions"
+        ],
+    }
+    models = {
+        "dependency_lock_sha256": "d" * 64,
+        "model_lock_sha256": "m" * 64,
+        "models": {
+            "fake": {
+                "revision": "fake-v1",
+                "license": "test-only",
+                "training_data_provenance": "synthetic fixture",
+            }
+        },
+    }
+
+    first_payload = lock_voice_profiles(payload())
+    first_work = tmp_path / "first"
+    first_lines = generate_lines(first_payload, first_work, FakeTTS())
+    first_wav = first_work / "final.wav"
+    assemble(first_payload, first_lines, first_wav)
+    first_bundle = tmp_path / "bundle-one"
+    write_bundle(first_bundle, "replace-me", first_payload, first_wav, {"passed": True}, approval, models)
+    publish(repo, "replace-me", first_payload, first_bundle)
+    old_mp3 = (repo / "content/listening/a2/replace-me.mp3").read_bytes()
+
+    changed_lines = list(first_payload.lines)
+    changed_lines[0] = Line(
+        **(changed_lines[0].model_dump() | {"display_text": "Der Termin ist am Montag."})
+    )
+    second_payload = first_payload.model_copy(update={"lines": changed_lines})
+    second_work = tmp_path / "second"
+    second_lines = generate_lines(second_payload, second_work, FakeTTS())
+    second_wav = second_work / "final.wav"
+    assemble(second_payload, second_lines, second_wav)
+    second_bundle = tmp_path / "bundle-two"
+    write_bundle(second_bundle, "replace-me", second_payload, second_wav, {"passed": True}, approval, models)
+
+    with pytest.raises(FileExistsError, match="publish would overwrite"):
+        publish(repo, "replace-me", second_payload, second_bundle)
+    backup = tmp_path / "backup"
+    publish(
+        repo,
+        "replace-me",
+        second_payload,
+        second_bundle,
+        replace_existing=True,
+        backup_root=backup,
+    )
+    assert (backup / "content/listening/a2/replace-me.mp3").read_bytes() == old_mp3
+    assert (repo / "content/listening/a2/replace-me.mp3").read_bytes() != old_mp3
+    (repo / "content/listening/a2/replace-me.mp3").write_bytes(b"changed outside the studio")
+    with pytest.raises(ValueError, match="no longer matches"):
+        publish(
+            repo,
+            "replace-me",
+            second_payload,
+            second_bundle,
+            replace_existing=True,
+            backup_root=tmp_path / "second-backup",
+        )
 
 
 def test_an_approval_without_hashes_cannot_vouch_for_audio(tmp_path: Path) -> None:

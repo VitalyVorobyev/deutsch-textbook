@@ -49,8 +49,31 @@ export function continuationWord(
 }
 
 /**
+ * The same string with its first letter capitalized, or `undefined` when it does not start with a
+ * lower-case letter.
+ *
+ * A cell is a box the learner types a **fragment** into, not a line they write a sentence on.
+ * Shown `Das Auto gehört meinem Bruder.` beside an input, a learner who typed `Das Auto von
+ * meinem Bruder` against a key of `das Auto von meinem Bruder` was scored wrong on one character
+ * (`a2/man-und-besitz:table-wem-gehoert`, 2026-08-02) — correct German, rejected for something no
+ * `focus` tag grades. 198 of the 232 asked cells in the corpus start lower-case, so the hazard is
+ * the shape of the item type rather than one author's slip.
+ *
+ * **One direction only.** A key that starts *upper*-case still demands it, so the capitalization
+ * German does grade — nouns, names, a sentence-initial `Deshalb` — stays strict.
+ */
+function capitalized(answer: string): string | undefined {
+  const first = answer[0];
+  if (!first || !/\p{Ll}/u.test(first)) return undefined;
+  const upper = first.toUpperCase();
+  // ß uppercases to two characters; no German word starts with one, but the key must stay 1:1.
+  if (upper === first || upper.length !== 1) return undefined;
+  return upper + answer.slice(1);
+}
+
+/**
  * Every rendering of `cells[index]` the grader accepts: the authored answer, plus the same answer
- * with the stub's trailing word restated in front of it.
+ * with the stub's trailing word restated in front of it, plus either one capitalized.
  *
  * Exactly one word of tolerance, and only the word the learner was just shown. Retyping more of
  * the stub (`Ich komme nicht, weil ich heute arbeite`) still fails — the instruction asks for the
@@ -62,5 +85,9 @@ export function acceptedCellAnswers(
 ): string[] {
   const answer = cells[index].answer;
   const word = continuationWord(cells, index);
-  return word ? [answer, `${word} ${answer}`] : [answer];
+  const keys = word ? [answer, `${word} ${answer}`] : [answer];
+  return keys.flatMap((key) => {
+    const upper = capitalized(key);
+    return upper ? [key, upper] : [key];
+  });
 }

@@ -5,6 +5,7 @@ import hashlib
 import shutil
 import subprocess
 import webbrowser
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal
 
@@ -13,11 +14,23 @@ import uvicorn
 import yaml
 from huggingface_hub import snapshot_download
 
-from .adapters import draft_prompt, generate_drafts, model_lock
+from .adapters import (
+    FakeTTS,
+    QwenTTS,
+    assemble,
+    draft_prompt,
+    generate_drafts,
+    generate_lines,
+    mix_context,
+    model_lock,
+    transcribe,
+)
 from .domain import (
     VOICE_SETS,
     Bilingual,
     Brief,
+    ContextSound,
+    CastAssignment,
     Dictation,
     Line,
     MultiSelect,
@@ -28,12 +41,27 @@ from .domain import (
     SingleChoice,
     Stage,
     TrueFalse,
-    reassign_voices,
+    lock_voice_profiles,
+    reassign_voice_profiles,
 )
 from .export import publish as publish_files, sha256, write_bundle
+from .human_voice_experiment import run_human_voice_experiment
+from .qa import check_transcripts
 from .storage import Store
+from .speaker_qa import (
+    SpeakerConsistencyReport,
+    WavLMSpeakerEmbedder,
+    check_speaker_consistency,
+    derive_calibration,
+)
+from .soundscape import soundscape_report
 from .sources import import_source, list_sources
+from .catalogs import CharacterDefinition, load_character_catalog, load_narration_catalog
+from .reading_audio import ReadingParagraph, ReadingRevisionPayload, default_profile_id, load_reading_sources
+from .reading_pipeline import generate_reading, reading_qa
+from .reading_export import publish_reading
 from .web import app as web_app
+from .voice_benchmark import BENCHMARK_SLUGS, run_benchmark
 
 app = typer.Typer(no_args_is_help=True)
 models = typer.Typer()
@@ -46,6 +74,40 @@ PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 # readable and re-runnable, but it is no longer what new work is generated with — see
 # ./install-qwen.sh for why the two cannot be installed at once.
 ENGINE: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
+
+
+def reading_payload(repo: Path, reading_id: str, profile_id: str | None = None) -> ReadingRevisionPayload:
+    source = next((row for row in load_reading_sources(repo) if row.id == reading_id), None)
+    if source is None:
+        raise typer.BadParameter(f"unknown reading {reading_id}")
+    profiles = load_narration_catalog(repo)
+    selected = profile_id or default_profile_id(source)
+    profile = next((row for row in profiles.profiles if row.id == selected), None)
+    if profile is None or source.kind not in profile.allowed_kinds:
+        raise typer.BadParameter(f"profile {selected} is not valid for {source.kind}")
+    character = next(
+        row for row in load_character_catalog(repo).characters if row.id == profile.character_id
+    )
+    return ReadingRevisionPayload(
+        reading_id=source.id,
+        level=source.level,
+        title_de=source.title_de,
+        kind=source.kind,
+        source_sha256=source.source_sha256,
+        narration_profile_id=profile.id,
+        narration_profile_version=profile.version,
+        character_id=character.id,
+        character_version=character.version,
+        voice=character.voice_profile.voice,
+        seed=character.voice_profile.seed,
+        style=f"{character.voice_profile.style} {profile.instruction}",
+        pace=profile.pace_by_level[source.level],
+        paragraph_pause_ms=profile.paragraph_pause_ms,
+        paragraphs=[
+            ReadingParagraph(index=index, display_text=text)
+            for index, text in enumerate(source.paragraphs)
+        ],
+    )
 
 
 @app.command()
@@ -64,6 +126,357 @@ def serve(repo: Path = typer.Option(Path.cwd()), port: int = 8765, no_open: bool
 def import_project(file: Path, slug: str) -> None:
     project = Store().create(slug, RevisionPayload.model_validate_json(file.read_text()))
     typer.echo(f"Created project {project.id}: {slug}")
+
+
+@app.command("seed-reading-corpus")
+def seed_reading_corpus(
+    repo: Path = typer.Option(Path.cwd()), yes: bool = False
+) -> None:
+    """Create one local draft for every Lesetext; never synthesize or approve implicitly."""
+
+    if not yes:
+        raise typer.BadParameter("this creates 59 local SQLite projects; use --yes")
+    repo = repo.resolve()
+    store = Store()
+    created = 0
+    for source in load_reading_sources(repo):
+        if store.get_reading_by_source(source.id):
+            continue
+        project = store.create_reading(reading_payload(repo, source.id))
+        created += 1
+        typer.echo(f"{source.id}: project {project.id} · {default_profile_id(source)}")
+    typer.echo(f"Created {created} reading draft(s); {len(store.reading_projects())} total")
+
+
+@app.command("recast-corpus")
+def recast_corpus(
+    repo: Path = typer.Option(Path.cwd()), dry_run: bool = False, yes: bool = False
+) -> None:
+    """Assign every planned dialogue to the stable catalog without rewriting history."""
+
+    if not dry_run and not yes:
+        raise typer.BadParameter("this invalidates current QA/approvals; use --yes or --dry-run")
+    repo = repo.resolve()
+    planned = {
+        artifact["id"]
+        for unit in yaml.safe_load((repo / "data" / "listening-plan.yaml").read_text())["units"]
+        for artifact in unit["artifacts"]
+    }
+    characters = load_character_catalog(repo).characters
+    usage = {character.id: 0 for character in characters}
+    store = Store()
+    if not dry_run:
+        stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+        backup = store.backup_database(store.root / "backups" / f"before-roster-recast-{stamp}.sqlite3")
+        typer.echo(f"Database backup: {backup}")
+    selected_projects = [project for project in reversed(store.projects()) if project.slug in planned]
+    for project in selected_projects:
+        _, _, payload = store.get(project.id)
+        locked = lock_voice_profiles(payload)
+        assert locked.voice_profiles is not None
+        chosen: list[CharacterDefinition] = []
+        for profile in locked.voice_profiles:
+            chosen_ids = {row.id for row in chosen}
+            child_role = any(
+                token in profile.speaker.casefold()
+                for token in ("kind", "schüler", "schülerin", "junge", "mädchen")
+            )
+            candidates = [
+                row for row in characters
+                if row.status != "retired"
+                and row.id not in chosen_ids
+                and not chosen_ids.intersection(row.incompatible_with)
+                and (row.age_band == "child") == child_role
+            ]
+            # Balance recurring identities across the corpus. The old preset is only the tie
+            # breaker: a full recast is allowed to change timbre, while assigning one familiar
+            # voice to every role would defeat the stable-roster goal.
+            character = min(
+                candidates,
+                key=lambda row: (
+                    usage[row.id],
+                    row.voice_profile.voice != profile.voice,
+                    row.id,
+                ),
+            )
+            chosen.append(character)
+            usage[character.id] += 1
+        cast = [
+            CastAssignment(
+                speaker=speaker,
+                character_id=character.id,
+                character_version=character.version,
+            )
+            for speaker, character in zip(locked.speakers, chosen, strict=True)
+        ]
+        profiles = [
+            {
+                "version": character.version,
+                "speaker": speaker,
+                "voice": character.voice_profile.voice,
+                "seed": character.voice_profile.seed,
+                "style": character.voice_profile.style,
+            }
+            for speaker, character in zip(locked.speakers, chosen, strict=True)
+        ]
+        typer.echo(
+            f"{project.slug}: "
+            + ", ".join(
+                f"{assignment.speaker} → {assignment.character_id}"
+                for assignment in cast
+            )
+        )
+        if not dry_run:
+            revised = RevisionPayload.model_validate(
+                locked.model_dump(mode="json")
+                | {
+                    "cast": [row.model_dump(mode="json") for row in cast],
+                    "voice_profiles": profiles,
+                }
+            )
+            store.revise(project.id, revised)
+    verb = "Would recast" if dry_run else "Recast"
+    typer.echo(f"{verb} {len(selected_projects)} dialogues; usage: {usage}")
+
+
+@app.command("generate-character-demos")
+def generate_character_demos(
+    repo: Path = typer.Option(Path.cwd()), test_adapter: bool = False
+) -> None:
+    """Generate three local comparison takes per roster character; never approve them."""
+
+    store = Store()
+    adapter = FakeTTS() if test_adapter else QwenTTS()
+    catalog = load_character_catalog(repo.resolve())
+    for character in catalog.characters:
+        target = store.root / "characters" / character.id
+        target.mkdir(parents=True, exist_ok=True)
+        hashes: list[str] = []
+        for index, phrase in enumerate(character.demo_phrases, 1):
+            path = target / f"demo-{index}.wav"
+            line = Line(
+                id=f"{character.id}-demo-{index}",
+                speaker=character.display_name,
+                display_text=phrase,
+                voice=character.voice_profile.voice,
+                seed=character.voice_profile.seed,
+                style=character.voice_profile.style,
+                pace=character.voice_profile.pace,
+            )
+            adapter.synthesize(line, path)
+            hashes.append(sha256(path))
+        (target / "manifest.json").write_text(
+            json.dumps(
+                {
+                    "character_id": character.id,
+                    "character_version": character.version,
+                    "adapter_revision": adapter.revision,
+                    "phrases": character.demo_phrases,
+                    "wav_sha256": hashes,
+                    "status": "pending-human-review",
+                },
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+            + "\n"
+        )
+        typer.echo(f"{character.id}: 3 draft demos")
+
+
+@app.command("generate-reading")
+def generate_reading_command(
+    project_id: int,
+    test_adapter: bool = False,
+) -> None:
+    """Validate and synthesize one reading project paragraph by paragraph."""
+
+    store = Store()
+    project, _, payload = store.get_reading(project_id)
+    if Stage(project.stage) != Stage.DRAFT:
+        raise typer.BadParameter(f"reading is at {project.stage}, expected draft")
+    store.transition_reading(project_id, Stage.DRAFT, Stage.VALIDATED)
+    adapter = FakeTTS() if test_adapter else QwenTTS()
+    try:
+        _, updated = generate_reading(
+            payload, store.root / "readings" / str(project_id), adapter
+        )
+        store.transition_reading(
+            project_id, Stage.VALIDATED, Stage.AUDIO_GENERATED, payload=updated
+        )
+    except Exception:
+        raise
+    typer.echo(f"Generated {payload.reading_id}; automatic QA is still required")
+
+
+@app.command("qa-reading")
+def qa_reading_command(project_id: int, test_adapter: bool = False) -> None:
+    """Run transcript, pace, cue and narrator-consistency QA for one Lesetext."""
+
+    store = Store()
+    project, _, payload = store.get_reading(project_id)
+    if Stage(project.stage) != Stage.AUDIO_GENERATED:
+        raise typer.BadParameter(f"reading is at {project.stage}, expected audio_generated")
+    revision = FakeTTS.revision if test_adapter else QwenTTS.revision
+    report = reading_qa(
+        payload,
+        store.root / "readings" / str(project_id),
+        revision,
+        fake=test_adapter,
+    )
+    store.transition_reading(
+        project_id, Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED, qa=report
+    )
+    typer.echo(
+        f"QA {'passed' if report['passed'] else 'needs review'} for {payload.reading_id}; human approval remains pending"
+    )
+
+
+@app.command("publish-reading")
+def publish_reading_command(
+    project_id: int, repo: Path = typer.Option(Path.cwd())
+) -> None:
+    """Publish only a QA-passed narration whose approval names these exact bytes."""
+
+    store = Store()
+    project, revision, payload = store.get_reading(project_id)
+    if Stage(project.stage) != Stage.HUMAN_APPROVED:
+        raise typer.BadParameter("reading must be human-approved before publication")
+    if not revision.qa_json or not revision.approval_json:
+        raise typer.BadParameter("reading is missing QA or approval provenance")
+    paths = publish_reading(
+        repo.resolve(),
+        store.root,
+        payload,
+        store.root / "readings" / str(project_id) / "final.wav",
+        json.loads(revision.qa_json),
+        json.loads(revision.approval_json),
+    )
+    store.transition_reading(project_id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+    typer.echo("Published " + ", ".join(str(path) for path in paths))
+
+
+READING_PILOT = (
+    "a1/erste-schritte",
+    "a1/praesens-wortstellung",
+    "a2/arbeit-beruf",
+    "a2/gesundheit-arzttermin",
+    "a1/lena-1-der-erste-tag",
+    "a2/lena-6-die-blaue-tasche",
+    "a2/aemter-dienstleistungen",
+    "b1/arbeit-bewerbung",
+)
+
+
+@app.command("process-reading-corpus")
+def process_reading_corpus(
+    repo: Path = typer.Option(Path.cwd()),
+    pilot: bool = False,
+    level: str | None = None,
+    test_adapter: bool = False,
+    yes: bool = False,
+) -> None:
+    """Resume synthesis and automatic QA for a pilot, level wave, or all readings."""
+
+    if not yes:
+        raise typer.BadParameter("this can synthesize many hours of audio; repeat with --yes")
+    if pilot and level:
+        raise typer.BadParameter("choose either --pilot or --level")
+    if level not in {None, "A1", "A2", "B1"}:
+        raise typer.BadParameter("level must be A1, A2 or B1")
+    repo = repo.resolve()
+    store = Store()
+    adapter = FakeTTS() if test_adapter else QwenTTS()
+    embedding_backend = None if test_adapter else WavLMSpeakerEmbedder()
+    selected = []
+    for project in store.reading_projects():
+        _, _, payload = store.get_reading(project.id)
+        if pilot and payload.reading_id not in READING_PILOT:
+            continue
+        if level and payload.level != level:
+            continue
+        selected.append(project)
+    failures: list[str] = []
+    for index, project in enumerate(selected, 1):
+        current, _, payload = store.get_reading(project.id)
+        typer.echo(f"[{index}/{len(selected)}] {payload.reading_id} · {current.stage}")
+        try:
+            stage = Stage(current.stage)
+            if stage == Stage.DRAFT:
+                store.transition_reading(project.id, Stage.DRAFT, Stage.VALIDATED)
+                stage = Stage.VALIDATED
+            if stage == Stage.VALIDATED:
+                _, generated = generate_reading(
+                    payload, store.root / "readings" / str(project.id), adapter
+                )
+                store.transition_reading(
+                    project.id,
+                    Stage.VALIDATED,
+                    Stage.AUDIO_GENERATED,
+                    payload=generated,
+                )
+                payload = generated
+                stage = Stage.AUDIO_GENERATED
+            if stage == Stage.AUDIO_GENERATED:
+                report = reading_qa(
+                    payload,
+                    store.root / "readings" / str(project.id),
+                    adapter.revision,
+                    fake=test_adapter,
+                    embedding_backend=embedding_backend,
+                )
+                store.transition_reading(
+                    project.id,
+                    Stage.AUDIO_GENERATED,
+                    Stage.AUTOMATICALLY_CHECKED,
+                    qa=report,
+                )
+            elif stage in {Stage.AUTOMATICALLY_CHECKED, Stage.HUMAN_APPROVED, Stage.EXPORTED}:
+                typer.echo("  already processed; left unchanged")
+        except Exception as exc:
+            failures.append(f"{payload.reading_id}: {exc}")
+            typer.echo(f"  failed: {exc}", err=True)
+    if failures:
+        typer.echo("Reading failures:\n" + "\n".join(failures), err=True)
+        raise typer.Exit(1)
+    typer.echo(f"Processed {len(selected)} readings; no human approval was inferred")
+
+
+@app.command("reaudit-reading-corpus")
+def reaudit_reading_corpus(
+    level: str | None = None, test_adapter: bool = False, yes: bool = False
+) -> None:
+    """Recompute reading QA against unchanged current bytes and invalidate failed approval."""
+
+    if not yes:
+        raise typer.BadParameter("this replaces current QA diagnostics; repeat with --yes")
+    if level not in {None, "A1", "A2", "B1"}:
+        raise typer.BadParameter("level must be A1, A2 or B1")
+    store = Store()
+    revision = FakeTTS.revision if test_adapter else QwenTTS.revision
+    embedding_backend = None if test_adapter else WavLMSpeakerEmbedder()
+    failures: list[str] = []
+    processed = 0
+    for project in store.reading_projects():
+        current, _, payload = store.get_reading(project.id)
+        if level and payload.level != level:
+            continue
+        if Stage(current.stage) not in {Stage.AUTOMATICALLY_CHECKED, Stage.HUMAN_APPROVED}:
+            continue
+        report = reading_qa(
+            payload,
+            store.root / "readings" / str(project.id),
+            revision,
+            fake=test_adapter,
+            embedding_backend=embedding_backend,
+        )
+        store.update_reading_qa(project.id, report)
+        processed += 1
+        if report["passed"] is not True:
+            failures.append(payload.reading_id)
+    typer.echo(f"Re-audited {processed} reading(s); QA review queue: {len(failures)}")
+    for reading_id in failures:
+        typer.echo(f"  {reading_id}")
 
 
 def payload_from_plan(
@@ -97,7 +510,7 @@ def payload_from_plan(
         # the plan's `item_types` says which item type will carry them.
         for index in range(int(artifact.get("questions", 3)))
     ]
-    return RevisionPayload(
+    return lock_voice_profiles(RevisionPayload(
         title=Bilingual(
             en=f"Listening — {unit['unit']}",
             ru=f"Аудирование — {unit['unit']}",
@@ -116,7 +529,7 @@ def payload_from_plan(
         lines=[line],
         questions=questions,
         tts_adapter=ENGINE,
-    )
+    ))
 
 
 @app.command("seed-wave")
@@ -248,6 +661,20 @@ def fetch_models(name: str) -> None:
     typer.echo(f"Downloaded immutable {name}: {target}")
 
 
+@models.command("fetch-benchmark")
+def fetch_benchmark_model(name: str) -> None:
+    """Fetch an immutable research model that is absent from production provenance."""
+
+    locked = model_lock(PACKAGE_ROOT / "benchmark-models.lock.json")["models"]
+    if not isinstance(locked, dict) or name not in locked:
+        raise typer.BadParameter(f"unknown benchmark model {name}")
+    spec = locked[name]
+    if not isinstance(spec, dict):
+        raise typer.BadParameter(f"invalid benchmark lock entry {name}")
+    target = snapshot_download(repo_id=str(spec["id"]), revision=str(spec["revision"]))
+    typer.echo(f"Downloaded immutable research-only {name}: {target}")
+
+
 @sources.command("import")
 def import_freesound(file: Path, metadata: Path = typer.Option(..., exists=True)) -> None:
     """Import one manually downloaded Freesound original; this never calls its API."""
@@ -352,11 +779,79 @@ def publish(project_id: int, repo: Path = typer.Option(Path.cwd()), yes: bool = 
 
 
 @app.command()
+def republish(project_id: int, repo: Path = typer.Option(Path.cwd()), yes: bool = False) -> None:
+    """Replace one already-published artifact after new QA and human approval."""
+
+    if not yes:
+        raise typer.BadParameter("review the replacement bundle, then repeat with --yes")
+    store = Store()
+    project, _, _ = store.get(project_id)
+    out, payload = bundle_project(project_id)
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    backup = store.root / "replaced" / project.slug / stamp
+    written = publish_files(
+        repo.resolve(),
+        project.slug,
+        payload,
+        out,
+        replace_existing=True,
+        backup_root=backup,
+    )
+    store.transition(project_id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+    typer.echo(
+        "Replaced:\n"
+        + "\n".join(str(path) for path in written)
+        + f"\nPrevious files retained at {backup}"
+    )
+
+
+@app.command()
 def benchmark() -> None:
     report = PACKAGE_ROOT / "examples" / "a2-zwei-sprecher" / "benchmark.json"
     if not report.exists():
         raise typer.BadParameter("no measured benchmark exists; run the fixed A2 fixture first")
     typer.echo(report.read_text())
+
+
+@app.command("benchmark-voice-consistency")
+def benchmark_voice_consistency(yes: bool = False) -> None:
+    """Run the six-dialogue CustomVoice/VoiceDesign-clone research comparison locally."""
+
+    if not yes:
+        raise typer.BadParameter(
+            "this generates substantial local audio; fetch both benchmark models, then use --yes"
+        )
+    store = Store()
+    by_slug = {project.slug: project for project in store.projects()}
+    missing = [slug for slug in BENCHMARK_SLUGS if slug not in by_slug]
+    if missing:
+        raise typer.BadParameter("missing benchmark projects: " + ", ".join(missing))
+    selected = [
+        (slug, store.get(by_slug[slug].id)[2])
+        for slug in BENCHMARK_SLUGS
+    ]
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    out = store.root / "benchmarks" / "voice-consistency" / stamp
+    typer.echo(f"Research-only workspace: {out}")
+    run_benchmark(selected, out)
+    typer.echo(f"Benchmark complete: {out / 'benchmark.json'}")
+
+
+@app.command("experiment-human-voice-clone")
+def experiment_human_voice_clone(
+    reference: Path = typer.Option(..., exists=True, dir_okay=False),
+    consent: Path = typer.Option(..., exists=True, dir_okay=False),
+    output: Path = typer.Option(...),
+    yes: bool = False,
+) -> None:
+    """Run consent-gated human-reference cloning only inside the gitignored private workspace."""
+
+    if not yes:
+        raise typer.BadParameter(
+            "confirm the consent record and private output path, then repeat with --yes"
+        )
+    result = run_human_voice_experiment(reference, consent, output)
+    typer.echo(f"Private experiment complete: {result / 'experiment.json'}")
 
 
 TODO_OPTION = "(Distraktor redaktionell ergänzen)"
@@ -433,12 +928,17 @@ def switch_adapter(adapter: str, dry_run: bool = False) -> None:
         _, _, payload = store.get(project.id)
         if payload.tts_adapter == adapter:
             continue
-        lines = reassign_voices(list(payload.lines), adapter)
+        locked = lock_voice_profiles(payload)
+        assert locked.voice_profiles is not None
+        profiles = reassign_voice_profiles(locked.voice_profiles, adapter)
         updated = RevisionPayload.model_validate(
-            payload.model_dump()
-            | {"tts_adapter": adapter, "lines": [line.model_dump() for line in lines]}
+            locked.model_dump(mode="json")
+            | {
+                "tts_adapter": adapter,
+                "voice_profiles": [profile.model_dump(mode="json") for profile in profiles],
+            }
         )
-        voices = ", ".join(sorted({line.voice for line in updated.lines}))
+        voices = ", ".join(profile.voice for profile in profiles)
         typer.echo(f"{project.slug}: {payload.tts_adapter} -> {adapter} ({voices})")
         touched += 1
         if not dry_run:
@@ -446,8 +946,327 @@ def switch_adapter(adapter: str, dry_run: bool = False) -> None:
     verb = "would move" if dry_run else "moved"
     typer.echo(
         f"{verb} {touched} project(s) to {adapter}. The voice assignment only keeps speakers "
-        "apart — adjust it per line in the editor, then regenerate."
+        "apart — adjust it per character in the editor, then regenerate."
     )
+
+
+@app.command("lock-voice-profiles")
+def lock_all_voice_profiles(
+    repo: Path = typer.Option(Path.cwd()), dry_run: bool = False, yes: bool = False
+) -> None:
+    """Create profile revisions for the planned listening corpus only.
+
+    Historical revisions are untouched. The new revision returns the project to draft and clears
+    QA/approval because its next generated bytes will use one seed per character.
+    """
+
+    if not dry_run and not yes:
+        raise typer.BadParameter("review with --dry-run, then repeat with --yes")
+    plan_path = repo.resolve() / "data" / "listening-plan.yaml"
+    if not plan_path.exists():
+        raise typer.BadParameter(f"listening plan not found: {plan_path}")
+    plan = yaml.safe_load(plan_path.read_text())
+    planned_ids = {
+        artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
+    }
+    store = Store()
+    if not dry_run:
+        stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+        backup = store.backup_database(store.root / "backups" / f"before-voice-profiles-{stamp}.sqlite3")
+        typer.echo(f"Database backup: {backup}")
+    touched = 0
+    for project in reversed(store.projects()):
+        if project.slug not in planned_ids:
+            continue
+        _, _, payload = store.get(project.id)
+        if payload.voice_profiles is not None:
+            continue
+        updated = lock_voice_profiles(payload)
+        assert updated.voice_profiles is not None
+        shown = ", ".join(
+            f"{profile.speaker}={profile.voice}/{profile.seed}"
+            for profile in updated.voice_profiles
+        )
+        typer.echo(f"{project.slug}: {shown}")
+        touched += 1
+        if not dry_run:
+            store.revise(project.id, updated)
+    typer.echo(
+        f"{'Would lock' if dry_run else 'Locked'} {touched} of {len(planned_ids)} "
+        "planned project(s)"
+    )
+
+
+EVENT_SOUND_IDS = {178819, 343388, 369880, 547253, 805574}
+MISSING_AMBIENCE: dict[str, tuple[int, int, str]] = {
+    "ls-erste-schritte-01": (135097, 4_000, "quiet service-office air behind the opening ring"),
+    "ls-alltag-zeit-01": (565536, 2_000, "quiet home room behind the answering-machine message"),
+    "ls-praesens-wortstellung-01": (146435, 5_000, "neutral course-room air without competing speech"),
+    "ls-modalverben-01": (565536, 2_000, "shared-flat room tone for the household discussion"),
+    "ls-perfekt-haben-sein-01": (579571, 4_000, "quiet domestic air for friends recounting a trip"),
+    "ls-adjektive-deklination-01": (637807, 8_000, "neutral interior air while two options are compared"),
+    "ls-verben-mit-praepositionen-01": (579571, 4_000, "quiet room tone for a personal conversation"),
+    "ls-nebensaetze-plaene-01": (579571, 4_000, "quiet room tone for friends changing plans"),
+    "ls-infinitiv-mit-zu-01": (146435, 5_000, "neutral planning-room air without intelligible bystanders"),
+    "ls-biografie-erfahrungen-01": (135097, 4_000, "quiet interview-room air"),
+    "ls-erfahrungen-erzaehlen-01": (135097, 4_000, "quiet interview-room air"),
+    "ls-leben-veraendern-01": (565536, 2_000, "domestic room tone for a housing discussion"),
+    "ls-gesundheit-wohlbefinden-01": (135097, 4_000, "quiet consultation-room air"),
+    "ls-meinung-medien-01": (146435, 5_000, "neutral studio-like room tone behind report and reactions"),
+}
+
+
+@app.command("complete-soundscapes")
+def complete_soundscapes(
+    repo: Path = typer.Option(Path.cwd()), dry_run: bool = False, yes: bool = False
+) -> None:
+    """Give every planned dialogue a continuous, provenance-labelled environment bed."""
+
+    if not dry_run and not yes:
+        raise typer.BadParameter("review with --dry-run, then repeat with --yes")
+    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    artifact_rows = {
+        artifact["id"]: (unit["level"], artifact["scenario"])
+        for unit in plan["units"]
+        for artifact in unit["artifacts"]
+    }
+    store = Store()
+    sources_by_id = {source.sound_id: source for source in list_sources(store.root)}
+    if not dry_run:
+        stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+        backup = store.backup_database(
+            store.root / "backups" / f"before-soundscapes-{stamp}.sqlite3"
+        )
+        typer.echo(f"Database backup: {backup}")
+    touched = 0
+    for project in reversed(store.projects()):
+        if project.slug not in artifact_rows:
+            continue
+        level, scenario = artifact_rows[project.slug]
+        _, _, payload = store.get(project.id)
+        bed_gain = {"A1": -24.0, "A2": -23.0, "B1": -22.0, "B2": -22.0}[level]
+        contexts = []
+        for sound in payload.context_sounds:
+            role = "event" if sound.sound_id in EVENT_SOUND_IDS else "bed"
+            gain = sound.gain_db
+            if role == "bed":
+                gain = -24.0 if sound.sound_id == 765127 else bed_gain
+            contexts.append(
+                sound.model_copy(
+                    update={
+                        "role": role,
+                        "gain_db": gain,
+                        "placement_authoring": "ai-assisted",
+                        "editorial_reason": (
+                            f"Existing reviewed source retained as a continuous {role} for: {scenario}"
+                        ),
+                    }
+                )
+            )
+        if not any(sound.role == "bed" for sound in contexts):
+            sound_id, start_ms, reason = MISSING_AMBIENCE[project.slug]
+            source = sources_by_id.get(sound_id)
+            if source is None:
+                raise typer.BadParameter(f"required imported ambience source {sound_id} is missing")
+            contexts.append(
+                ContextSound(
+                    source_sha256=source.original_sha256,
+                    sound_id=sound_id,
+                    start_ms=start_ms,
+                    duration_ms=min(120_000, round(source.duration_seconds * 1000) - start_ms),
+                    gain_db=bed_gain,
+                    role="bed",
+                    editorial_reason=reason,
+                    placement_authoring="ai-assisted",
+                )
+            )
+        lead_in = payload.lead_in_ms
+        if project.slug == "ls-alltag-zeit-01" and not any(
+            sound.sound_id == 369880 for sound in contexts
+        ):
+            beep = sources_by_id[369880]
+            contexts.append(
+                ContextSound(
+                    source_sha256=beep.original_sha256,
+                    sound_id=369880,
+                    start_ms=0,
+                    duration_ms=900,
+                    gain_db=-20,
+                    role="event",
+                    editorial_reason="one answering-machine beep before speech",
+                    placement_authoring="ai-assisted",
+                )
+            )
+            lead_in = 1_200
+        updated = payload.model_copy(update={"context_sounds": contexts, "lead_in_ms": lead_in})
+        shown = ", ".join(f"{sound.sound_id}:{sound.role}@{sound.gain_db:g}dB" for sound in contexts)
+        typer.echo(f"{project.slug}: {shown}")
+        if updated.canonical_json() != payload.canonical_json():
+            touched += 1
+            if not dry_run:
+                store.revise(project.id, updated)
+    typer.echo(f"{'Would update' if dry_run else 'Updated'} {touched} soundscapes")
+
+
+@app.command("calibrate-speaker-qa")
+def calibrate_speaker_qa(repo: Path = typer.Option(Path.cwd()), yes: bool = False) -> None:
+    """Derive warning bounds only after all planned recordings have identity approval."""
+
+    if not yes:
+        raise typer.BadParameter("inspect the reviewed corpus, then repeat with --yes")
+    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    planned_ids = {
+        artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
+    }
+    store = Store()
+    reports: list[SpeakerConsistencyReport] = []
+    seen: set[str] = set()
+    for project in store.projects():
+        if project.slug not in planned_ids:
+            continue
+        seen.add(project.slug)
+        _, revision, _ = store.get(project.id)
+        if Stage(project.stage) not in {Stage.HUMAN_APPROVED, Stage.EXPORTED}:
+            raise typer.BadParameter(f"{project.slug} has not received new human approval")
+        approval = json.loads(revision.approval_json or "{}")
+        if "identity" not in approval.get("checklist", []):
+            raise typer.BadParameter(f"{project.slug} lacks the character-identity review")
+        qa = json.loads(revision.qa_json or "{}")
+        raw = qa.get("speaker_consistency")
+        if not isinstance(raw, dict):
+            raise typer.BadParameter(f"{project.slug} lacks speaker-consistency QA")
+        reports.append(SpeakerConsistencyReport.model_validate(raw))
+    missing = sorted(planned_ids - seen)
+    if missing:
+        raise typer.BadParameter("missing planned projects: " + ", ".join(missing))
+    calibration = derive_calibration(reports)
+    target = store.root / "speaker-qa-calibration.json"
+    target.write_text(calibration.model_dump_json(indent=2))
+    typer.echo(f"Wrote reviewed-corpus warning bounds from {len(reports)} projects: {target}")
+
+
+@app.command("regenerate-voice-profile-corpus")
+def regenerate_voice_profile_corpus(
+    repo: Path = typer.Option(Path.cwd()),
+    slug: list[str] | None = typer.Option(None, "--slug"),
+    yes: bool = False,
+) -> None:
+    """Regenerate all planned draft projects through one loaded CustomVoice adapter."""
+
+    if not yes:
+        raise typer.BadParameter(
+            "this replaces every local working WAV and can take hours; repeat with --yes"
+        )
+    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    planned_ids = {
+        artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
+    }
+    requested = set(slug or planned_ids)
+    if unknown := requested - planned_ids:
+        raise typer.BadParameter("not planned listening projects: " + ", ".join(sorted(unknown)))
+    store = Store()
+    adapter = QwenTTS()
+    failures: list[str] = []
+    selected = [project for project in reversed(store.projects()) if project.slug in requested]
+    for index, project in enumerate(selected, 1):
+        current, _, payload = store.get(project.id)
+        if payload.voice_profiles is None:
+            failures.append(f"{project.slug}: no locked voice profiles")
+            continue
+        if Stage(current.stage) != Stage.DRAFT:
+            # Safe resume after an interrupted corpus run. Profile migration revisions carry no
+            # approval, and reset clears any QA that could describe the incomplete old take.
+            if Stage(current.stage) in {
+                Stage.VALIDATED,
+                Stage.AUDIO_GENERATED,
+                Stage.AUTOMATICALLY_CHECKED,
+            }:
+                store.reset_to(project.id, Stage.DRAFT)
+            else:
+                failures.append(f"{project.slug}: cannot replace approved stage {current.stage}")
+                continue
+        work = store.root / "projects" / str(project.id)
+        typer.echo(f"[{index}/{len(selected)}] {project.slug}")
+        try:
+            store.transition(project.id, Stage.DRAFT, Stage.VALIDATED)
+            paths = generate_lines(payload, work, adapter)
+            assemble(payload, paths, work / "dry.wav")
+            mix_context(payload, store.root, work / "dry.wav", work / "final.wav")
+            store.transition(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+        except Exception as exc:
+            current, _, _ = store.get(project.id)
+            if Stage(current.stage) == Stage.VALIDATED:
+                store.reset_to(project.id, Stage.DRAFT)
+            failures.append(f"{project.slug}: {exc}")
+            typer.echo(f"  failed: {exc}", err=True)
+    if failures:
+        typer.echo("Regeneration failures:\n" + "\n".join(failures), err=True)
+        raise typer.Exit(1)
+    typer.echo(f"Regenerated {len(selected)} planned recordings; all now require QA and review")
+
+
+@app.command("qa-voice-profile-corpus")
+def qa_voice_profile_corpus(
+    repo: Path = typer.Option(Path.cwd()),
+    slug: list[str] | None = typer.Option(None, "--slug"),
+    yes: bool = False,
+) -> None:
+    """Run Whisper and one shared pinned WavLM instance over regenerated corpus audio."""
+
+    if not yes:
+        raise typer.BadParameter("this runs local ASR and speaker QA for every take; use --yes")
+    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    planned_ids = {
+        artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
+    }
+    requested = set(slug or planned_ids)
+    if unknown := requested - planned_ids:
+        raise typer.BadParameter("not planned listening projects: " + ", ".join(sorted(unknown)))
+    store = Store()
+    embedder = WavLMSpeakerEmbedder()
+    failures: list[str] = []
+    selected = [project for project in reversed(store.projects()) if project.slug in requested]
+    for index, project in enumerate(selected, 1):
+        current, _, payload = store.get(project.id)
+        if Stage(current.stage) != Stage.AUDIO_GENERATED:
+            failures.append(f"{project.slug}: expected audio_generated, found {current.stage}")
+            continue
+        typer.echo(f"[{index}/{len(selected)}] {project.slug}")
+        work = store.root / "projects" / str(project.id)
+        line_paths = {
+            line.id: work / "cache" / f"{payload.cache_key(line, QwenTTS.revision)}.wav"
+            for line in payload.lines
+        }
+        try:
+            transcripts = {line.id: transcribe(line_paths[line.id]) for line in payload.lines}
+            dry_report = check_transcripts(payload, transcripts, transcribe(work / "dry.wav"))
+            final_report = check_transcripts(payload, transcripts, transcribe(work / "final.wav"))
+            speaker = check_speaker_consistency(payload, line_paths, backend=embedder)
+            report = {
+                "passed": dry_report.passed and final_report.passed,
+                "dry": dry_report.model_dump(mode="json"),
+                "final": final_report.model_dump(mode="json"),
+                "speaker_consistency": speaker.model_dump(mode="json"),
+                "context_sound_count": len(payload.context_sounds),
+                "soundscape": soundscape_report(
+                    payload, work / "dry.wav", work / "final.wav"
+                ).model_dump(mode="json"),
+            }
+            store.transition(
+                project.id,
+                Stage.AUDIO_GENERATED,
+                Stage.AUTOMATICALLY_CHECKED,
+                qa=report,
+            )
+            if not report["passed"]:
+                failures.append(f"{project.slug}: Whisper/protected-token QA failed")
+        except Exception as exc:
+            failures.append(f"{project.slug}: {exc}")
+            typer.echo(f"  failed: {exc}", err=True)
+    if failures:
+        typer.echo("QA review required:\n" + "\n".join(failures), err=True)
+        raise typer.Exit(1)
+    typer.echo(f"Checked {len(selected)} planned recordings; all await blind-first human review")
 
 
 @app.command("normalize-questions")

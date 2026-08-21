@@ -282,15 +282,20 @@ items:
       uk: "wo питає про місце, wie — про ім'я чи спосіб, was — про предмет. В усіх трьох дієслово лишається строго на другому місці."
 
   - id: cloze-verneinung-nicht-stellung
+    revision: 2
     outcomes: [praesens-verneinung]
     type: cloze
     focus: nicht-position
     instruction:
-      en: Put nicht in the right place.
-      ru: Поставьте nicht на правильное место.
-      uk: Поставте nicht на правильне місце.
-    text: "Ich arbeite heute {{nicht}}. Er kommt am Montag {{nicht}}. Sie ist {{nicht}} müde."
+      en: Complete each sentence — more than the negation goes in the gap.
+      ru: Дополните каждое предложение — в пропуск идёт не только отрицание.
+      uk: Доповніть кожне речення — у пропуск іде не лише заперечення.
+    text: "Ich arbeite {{heute nicht}}. Er kommt {{am Montag nicht}}. Sie ist {{nicht müde}}."
+    translation:
+      en: "I am not working today. He is not coming on Monday. She is not tired."
+      ru: "Я сегодня не работаю. Он не придёт в понедельник. Она не устала."
+      uk: "Я сьогодні не працюю. Він не прийде в понеділок. Вона не втомлена."
     explain:
-      en: "nicht goes after the verb and its time phrase, but *before* a predicative adjective: er kommt … nicht, yet sie ist nicht müde."
-      ru: "nicht ставится после глагола и обстоятельства времени, но перед прилагательным-сказуемым: er kommt … nicht, однако sie ist nicht müde."
-      uk: "nicht ставиться після дієслова та обставини часу, але перед прикметником-присудком: er kommt … nicht, проте sie ist nicht müde."
+      en: "The order inside the gap is the whole question. nicht comes after the verb and after a time phrase — arbeite heute nicht, kommt am Montag nicht — but directly before a predicative adjective: ist nicht müde. So the third gap reverses the order of the first two."
+      ru: "Весь вопрос — в порядке слов внутри пропуска. nicht стоит после глагола и после обстоятельства времени — arbeite heute nicht, kommt am Montag nicht, — но непосредственно перед прилагательным-сказуемым: ist nicht müde. То есть в третьем пропуске порядок обратный. По-русски «не» везде стоит перед словом, которое отрицает, — отсюда и соблазн написать nicht heute."
+      uk: "Уся суть — у порядку слів усередині пропуску. nicht стоїть після дієслова і після обставини часу — arbeite heute nicht, kommt am Montag nicht, — але безпосередньо перед прикметником-присудком: ist nicht müde. Тобто в третьому пропуску порядок зворотний. Українською «не» скрізь стоїть перед словом, яке заперечує, — звідси й спокуса написати nicht heute."

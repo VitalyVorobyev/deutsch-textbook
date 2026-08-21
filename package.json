@@ -25,6 +25,8 @@
     "redaktion:desktop": "bun run --filter @da/redaktion tauri:dev",
     "redaktion:desktop:build": "bun run --filter @da/redaktion tauri:build",
     "listening:inventory": "bun scripts/listening-inventory.ts",
+    "studio:build": "bun --cwd tools/listening-studio/frontend run build",
+    "studio:check": "bun --cwd tools/listening-studio/frontend run check",
     "progress:audit": "bun scripts/progress-audit.ts",
     "progress:pull": "bun scripts/progress-pull.ts",
     "deploy:smoke": "bun scripts/deploy-smoke.ts",
@@ -33,7 +35,7 @@
     "exam:ingest": "bun scripts/exam-ingest.ts",
     "check": "astro check && tsc --noEmit -p worker/tsconfig.json",
     "lint": "eslint .",
-    "test": "bun test",
+    "test": "bun test tests/",
     "tauri": "tauri"
   },
   "dependencies": {
