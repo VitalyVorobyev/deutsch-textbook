@@ -46,6 +46,9 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from ..adapters import conform
+from ..dsp.chains import reverb_chains
+from ..dsp.ir import IR_IMPL_VERSION, IR_RATE, write_ir
+from ..dsp.profiles import RoomProfile
 from ..generative.gateway import (
     AudioAsset,
     SoundGenerator,
@@ -90,12 +93,16 @@ BUSES = ("dialogue", "ambience", "sfx")
 
 # -- identity -----------------------------------------------------------------
 
-#: The cache-invalidation contract; see the module docstring. All eight start at 1.
+#: The cache-invalidation contract; see the module docstring. All nine start at 1 — including
+#: `ir`, whose version is `dsp.ir.IR_IMPL_VERSION` rather than a second number: the impulse
+#: response generator lives in `dsp` because it touches no node, and two versions for one
+#: computation would be two things to remember to bump.
 IMPL_VERSIONS: dict[str, int] = {
     "synth": 1,
     "pace": 1,
     "sound-gen": 1,
     "import": 1,
+    "ir": IR_IMPL_VERSION,
     "track": 1,
     "mix": 1,
     "loudnorm": 1,
@@ -174,20 +181,28 @@ def pan_filter(pan: float) -> str:
 
 
 def track_filters(
-    *, pan: float, gain_db: float, delay_ms: int, window_ms: int | None
+    *, pan: float, gain_db: float, delay_ms: int, window_ms: int | None, fx: str = ""
 ) -> str:
     """The filter chain that turns one mono take into one positioned stereo stem.
 
     Order is load-bearing. The window trim comes first so a looped bed is cut to length before
-    anything is spent on it; `pan` is next because it is what makes the stream stereo, and
-    `adelay` needs one value per channel; `volume` sits between them so the gain a placement asks
-    for is applied to the take rather than to the delay's silence.
+    anything is spent on it; the acoustic chain (`dsp.chains.stem_chain` — distance, then device)
+    runs next, while the take is still mono, because a telephone is a one-channel channel and
+    running its band-limiting twice on a panned pair costs double for the same result; `pan` is
+    what makes the stream stereo, and `adelay` needs one value per channel; `volume` sits between
+    them so the gain a placement asks for is applied to the take rather than to the delay's
+    silence.
+
+    `fx` defaults to empty and contributes nothing when it is, which is what keeps every stem in
+    every scene rendered before this PR on the node hash it already had.
     """
 
     chain: list[str] = []
     if window_ms is not None:
         chain.append(f"atrim=duration={_seconds(window_ms)}")
         chain.append("asetpts=PTS-STARTPTS")
+    if fx:
+        chain.append(fx)
     chain.append(pan_filter(pan))
     if gain_db:
         chain.append(f"volume={gain_db:g}dB")
@@ -198,7 +213,14 @@ def track_filters(
 
 @dataclass(frozen=True)
 class MixInput:
-    """One stem as the mixer sees it: which bus it belongs to, and its fade if it has one."""
+    """One stem as the mixer sees it: which bus it belongs to, and its fade if it has one.
+
+    `send_db` is this stem's level into the room's reverb bus, or None for a stem that is never
+    sent — which is every ambience bed, because a recorded room tone already *is* a room and
+    convolving it would put that room inside this one. It is read only when the mix has a room;
+    with no room there is no reverb bus, and a value that cannot reach the audio must not reach
+    the node hash either.
+    """
 
     stem_id: str
     bus: str
@@ -206,9 +228,20 @@ class MixInput:
     fade_in_start_ms: int = 0
     fade_out_ms: int = 0
     fade_out_start_ms: int = 0
+    send_db: float | None = None
 
 
-def mix_filtergraph(inputs: Sequence[MixInput]) -> str:
+@dataclass(frozen=True)
+class RoomMix:
+    """The scene's room, as the mixer needs it: which profile, how wet, and which IR asset."""
+
+    room_id: str
+    version: int
+    wet: float
+    ir_asset: str
+
+
+def mix_filtergraph(inputs: Sequence[MixInput], room: RoomMix | None = None) -> str:
     """Per-bus `amix`, then the master sum and the limiter, as one `-filter_complex` string.
 
     Fades are applied here rather than in `track_filters` because a fade is a statement about
@@ -220,12 +253,24 @@ def mix_filtergraph(inputs: Sequence[MixInput]) -> str:
     the assumption a bed extending past the last word breaks. `normalize=0` keeps every stem at
     the gain the scene asked for; amix's default divides by the input count, so adding one quiet
     sfx would silently drop the dialogue by 3 dB.
+
+    **The room is a send-return, not an insert.** Every sent stem is split: one copy goes to its
+    bus dry, the other through its own send gain into a single summed bus, which is convolved once
+    against the room's impulse response and added to the master as a fourth input. So a scene with
+    twelve stems still costs one convolution, and a distant speaker can still be wetter than a
+    close one.
+
+    The wet return is *added* at the room's level rather than crossfaded against the dry sum. A
+    `(1-wet)` dry gain would attenuate the ambience bus, which is the one bus this design promises
+    to leave alone, and the loudness normalisation downstream removes the level offset that adding
+    introduces.
     """
 
     if not inputs:
         raise ValueError("a mix needs at least one stem")
     chains: list[str] = []
     labels: dict[str, list[str]] = {bus: [] for bus in BUSES}
+    sends: list[str] = []
     for index, row in enumerate(inputs):
         source = f"[{index}:a]"
         filters: list[str] = []
@@ -237,7 +282,16 @@ def mix_filtergraph(inputs: Sequence[MixInput]) -> str:
             filters.append(
                 f"afade=t=out:st={_seconds(row.fade_out_start_ms)}:d={_seconds(row.fade_out_ms)}"
             )
-        if filters:
+        if room is not None and row.send_db is not None:
+            filters.append("asplit=2")
+            chains.append(f"{source}{','.join(filters)}[d{index}][w{index}]")
+            labels[row.bus].append(f"[d{index}]")
+            if row.send_db:
+                chains.append(f"[w{index}]volume={row.send_db:g}dB[x{index}]")
+                sends.append(f"[x{index}]")
+            else:
+                sends.append(f"[w{index}]")
+        elif filters:
             label = f"[s{index}]"
             chains.append(f"{source}{','.join(filters)}{label}")
             labels[row.bus].append(label)
@@ -254,6 +308,14 @@ def mix_filtergraph(inputs: Sequence[MixInput]) -> str:
             + f"amix=inputs={len(members)}:duration=longest:normalize=0[{bus}]"
         )
         bus_labels.append(f"[{bus}]")
+    if room is not None and sends:
+        chains.append(
+            "".join(sends) + f"amix=inputs={len(sends)}:duration=longest:normalize=0[send]"
+        )
+        # The IR is the last ffmpeg input, after every stem — `evaluate_mix` appends it in the
+        # same order, and the index is the one thing the two sides have to agree on.
+        chains.extend(reverb_chains(ir_index=len(inputs), wet=room.wet))
+        bus_labels.append("[wet]")
     chains.append(
         "".join(bus_labels)
         + f"amix=inputs={len(bus_labels)}:duration=longest:normalize=0,{LIMITER}[out]"
@@ -376,7 +438,8 @@ def evaluate_import(
     Downmixing a stereo original loses its native image, and that is a deliberate loss: a scene
     states one `Placement.pan` per sound and has no way to say "keep the source's own stereo
     field", so honouring the model means one law applied to one mono take. Preserving an imported
-    image is DSP work and belongs to the acoustics PR, next to rooms and devices.
+    image would need a field in the scene model that does not exist, and stays out of scope — the
+    acoustic layer beside this one places sounds, it does not inherit their recorded placement.
     """
 
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -390,15 +453,44 @@ def evaluate_import(
     )
 
 
-# -- TrackNode ----------------------------------------------------------------
+# -- IrNode -------------------------------------------------------------------
 
-#: Everything a scene can say that this PR cannot render. Warning and ignoring any of them would
-#: publish a scene that quietly is not the scene that was authored, which is the failure class
-#: this repository hunts; refusing names the PR that will implement it instead.
-DSP_PR = (
-    "acoustic simulation is the DSP PR (Tonwerk PR 5): rooms, distance, device profiles and "
-    "difficulty presets are not rendered here"
-)
+
+def ir_node(room_id: str, room: RoomProfile) -> Node:
+    """One room's impulse response. No inputs — a room is described, not derived from audio.
+
+    The room's editorial `version` is a parameter of its own, beside the five numbers the
+    generator actually reads. That is deliberate: bumping only the version leaves the generated
+    bytes identical, so content addressing alone would hand the render the same asset and the same
+    mix. The version in the hash is what lets an editor say "this is a different room now" without
+    having to change a number they were happy with.
+    """
+
+    return _node(
+        "ir",
+        {
+            "room": room_id,
+            "room_version": room.version,
+            "ir": room.ir.model_dump(mode="json"),
+            "rate": IR_RATE,
+            "channels": 1,
+            "codec": WORKING_CODEC,
+        },
+    )
+
+
+def evaluate_ir(room: RoomProfile, target: Path) -> dict[str, Any]:
+    return write_ir(
+        target,
+        seed=room.ir.seed,
+        decay_s=room.ir.decay_s,
+        pre_delay_ms=room.ir.pre_delay_ms,
+        lowpass_hz=room.ir.lowpass_hz,
+        early_reflections=room.ir.early_reflections,
+    )
+
+
+# -- TrackNode ----------------------------------------------------------------
 
 
 def track_node(
@@ -409,21 +501,37 @@ def track_node(
     window_ms: int | None,
     loop: bool,
     source_hash: str,
+    fx: str = "",
+    acoustics: Mapping[str, Any] | None = None,
 ) -> Node:
-    return _node(
-        "track",
-        {
-            "pan": pan,
-            "gain_db": gain_db,
-            "delay_ms": delay_ms,
-            "window_ms": window_ms,
-            "loop": loop,
-            "rate": WORKING_RATE,
-            "channels": WORKING_CHANNELS,
-            "codec": WORKING_CODEC,
-        },
-        [source_hash],
-    )
+    """One placed stem.
+
+    `fx` and `acoustics` are omitted from the parameters when there is nothing acoustic to say,
+    rather than written as `""` and `null`. Two reasons, and the second is the load-bearing one:
+    a stem with no device and unit distance computes exactly what it computed before this PR, so
+    it must hash to the same node and reuse the asset already in the store; and a parameter that
+    is always present but usually empty makes every manifest carry a field that means nothing.
+
+    Both are present together or not at all. `fx` is the filter chain, which is what decides the
+    audio; `acoustics` is the profile ids, versions and resolved distance behind it, which is what
+    makes the manifest readable — and what carries a device's `version` into the hash when an
+    editor bumps it without changing any of its numbers.
+    """
+
+    params: dict[str, Any] = {
+        "pan": pan,
+        "gain_db": gain_db,
+        "delay_ms": delay_ms,
+        "window_ms": window_ms,
+        "loop": loop,
+        "rate": WORKING_RATE,
+        "channels": WORKING_CHANNELS,
+        "codec": WORKING_CODEC,
+    }
+    if fx:
+        params["fx"] = fx
+        params["acoustics"] = dict(acoustics or {})
+    return _node("track", params, [source_hash])
 
 
 def evaluate_track(
@@ -435,8 +543,9 @@ def evaluate_track(
     delay_ms: int,
     window_ms: int | None,
     loop: bool,
+    fx: str = "",
 ) -> None:
-    """Place one take: loop it to its window if it is a bed, then pan, gain and delay it."""
+    """Place one take: loop it to its window if it is a bed, then treat, pan, gain and delay it."""
 
     target.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
@@ -448,7 +557,9 @@ def evaluate_track(
             *(["-stream_loop", "-1"] if loop else []),
             "-i", str(source),
             "-filter:a",
-            track_filters(pan=pan, gain_db=gain_db, delay_ms=delay_ms, window_ms=window_ms),
+            track_filters(
+                pan=pan, gain_db=gain_db, delay_ms=delay_ms, window_ms=window_ms, fx=fx
+            ),
             "-ar", str(WORKING_RATE), "-ac", str(WORKING_CHANNELS),
             "-c:a", WORKING_CODEC, "-y", str(target),
         ],
@@ -459,37 +570,72 @@ def evaluate_track(
 # -- MixNode ------------------------------------------------------------------
 
 
-def mix_node(inputs: Sequence[MixInput], stem_hashes: Sequence[str]) -> Node:
-    return _node(
-        "mix",
-        {
-            "inputs": [
-                {
-                    "stem_id": row.stem_id,
-                    "bus": row.bus,
-                    "fade_in_ms": row.fade_in_ms,
-                    "fade_in_start_ms": row.fade_in_start_ms,
-                    "fade_out_ms": row.fade_out_ms,
-                    "fade_out_start_ms": row.fade_out_start_ms,
-                }
-                for row in inputs
-            ],
-            "rate": WORKING_RATE,
-            "channels": WORKING_CHANNELS,
-            "codec": WORKING_CODEC,
-        },
-        stem_hashes,
-    )
+def mix_node(
+    inputs: Sequence[MixInput], stem_hashes: Sequence[str], room: RoomMix | None = None
+) -> Node:
+    """The mix, keyed by every stem, every fade, and the room if there is one.
+
+    `send_db` enters the parameters only when there is a room to send to, for the reason
+    `MixInput` states: with no reverb bus the value cannot reach the audio, so it must not be able
+    to move the hash.
+    """
+
+    rows: list[dict[str, Any]] = []
+    for row in inputs:
+        entry: dict[str, Any] = {
+            "stem_id": row.stem_id,
+            "bus": row.bus,
+            "fade_in_ms": row.fade_in_ms,
+            "fade_in_start_ms": row.fade_in_start_ms,
+            "fade_out_ms": row.fade_out_ms,
+            "fade_out_start_ms": row.fade_out_start_ms,
+        }
+        if room is not None:
+            entry["send_db"] = row.send_db
+        rows.append(entry)
+    params: dict[str, Any] = {
+        "inputs": rows,
+        "rate": WORKING_RATE,
+        "channels": WORKING_CHANNELS,
+        "codec": WORKING_CODEC,
+    }
+    hashes = list(stem_hashes)
+    if room is not None:
+        params["room"] = {
+            "id": room.room_id,
+            "version": room.version,
+            "wet": room.wet,
+            "ir": room.ir_asset,
+        }
+        hashes.append(room.ir_asset)
+    return _node("mix", params, hashes)
 
 
-def evaluate_mix(sources: Sequence[Path], inputs: Sequence[MixInput], target: Path) -> None:
+def evaluate_mix(
+    sources: Sequence[Path],
+    inputs: Sequence[MixInput],
+    target: Path,
+    *,
+    room: RoomMix | None = None,
+    ir_path: Path | None = None,
+) -> None:
+    """Sum the stems, and convolve the send bus against the room if the scene named one.
+
+    The IR is appended **after** every stem, because `mix_filtergraph` addresses it as input
+    `len(inputs)`. Order is the only contract between the two halves.
+    """
+
     target.parent.mkdir(parents=True, exist_ok=True)
     command = ["ffmpeg", "-v", "error"]
     for path in sources:
         command.extend(["-i", str(path)])
+    if room is not None:
+        if ir_path is None:  # pragma: no cover - the caller resolves the asset it named
+            raise ValueError("a room mix needs the impulse response it names")
+        command.extend(["-i", str(ir_path)])
     command.extend(
         [
-            "-filter_complex", mix_filtergraph(inputs),
+            "-filter_complex", mix_filtergraph(inputs, room),
             "-map", "[out]",
             "-ar", str(WORKING_RATE), "-ac", str(WORKING_CHANNELS),
             "-c:a", WORKING_CODEC, "-y", str(target),

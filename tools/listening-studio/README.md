@@ -212,6 +212,7 @@ carry a different seed on every line of one speaker, which is preserved as
 uv run atlas-listening scene from-dialogue a1/ls-erste-schritte-01 --repo ../.. --out scene.json
 uv run atlas-listening scene from-reading a1/erste-schritte --repo ../.. --import --json
 uv run atlas-listening scene validate scene.json --json
+uv run atlas-listening scene validate scene.json --repo ../.. --json   # + acoustic-id warnings
 uv run atlas-listening scene create --from scene.json --exercise scene.exercise.json --json
 uv run atlas-listening scene show ls-erste-schritte-01 --json
 uv run atlas-listening scene schema --repo ../.. --check
@@ -259,12 +260,66 @@ happens once before summing rather than once per bus. Two derivatives are always
 (stereo 48 kHz at 128 kbps — the shipped corpus's 64 kbps *mono* per-channel rate, doubled for the
 channel count).
 
-Placement is constant-power panning (`cos`/`sin`), so a voice keeps its level as it moves.
-Everything else a scene can *say* about acoustics — `Placement.device`, `distance != 1.0`,
-`SceneAcoustics.room`, and a difficulty variant with a preset or overrides — is **refused with a
-`ValueError` naming the DSP PR**, never warned about and rendered anyway. A `SoundSpec` reached
-without a sound generator is refused the same way: production renders have no generator until the
-Stable Audio PR, and silence where a sound was asked for is a defect nobody can hear.
+Placement is constant-power panning (`cos`/`sin`), so a voice keeps its level as it moves. A
+`SoundSpec` reached without a sound generator is refused with a `ValueError`, never warned about
+and rendered anyway: production renders have no generator until the Stable Audio PR, and silence
+where a sound was asked for is a defect nobody can hear.
+
+## Acoustics: rooms, devices and difficulty
+
+Everything else a scene can say about acoustics is **data**, in two files at the repository root,
+interpreted by `src/listening_studio/dsp/`. No generative model is involved anywhere in this
+layer, which is the split the concept document argues for in §2 and §15.
+
+`data/acoustic-profiles.yaml` holds seven **rooms** (`studio`, `small-room`, `cafe`, `office`,
+`station-hall`, `street`, `car`) and five **devices** (`telephone`, `mobile`, `pa`, `radio`,
+`next-room`). A room is five numbers — seed, RT60, pre-delay, damping cutoff, early-reflection
+count — from which `dsp/ir.py` synthesises a 48 kHz mono impulse response: seeded noise under an
+exponential decay with a swept one-pole damping filter, deterministic to the byte and stored as a
+content-addressed asset with the whole recipe in its provenance sidecar. It is normalised to
+**unit energy** and convolved with `afir=irnorm=-1`, so the same `wet` figure returns the same
+level in every room: measured against a 4 s noise stem, all seven land within 0.21 dB of each
+other, where afir's default L1 normalisation put `car` and `station-hall` 12 dB apart. A device
+is named acoustic parameters — band edges with a section count, compression in dB and ms, an
+optional bit crush, a room-send level, a gain offset — never an ffmpeg string; `dsp/chains.py`
+owns the translation, including dB to `acompressor`'s linear threshold and makeup.
+
+`data/acoustic-difficulty.yaml` holds three **presets** (`clean`, `natural`, `challenging`), and
+every field is a **delta against what the scene's author wrote**, never an absolute:
+`ambience_gain_db`, `wet`, `distance`, `pace`, `overlap_ms`. `natural` is exactly the identity.
+The concept document's §16 table is in absolutes, and the deltas reproduce it for a scene authored
+at `AmbienceEntry.gain_db`'s default of -24 dB: clean −11 → −35 dB of background, challenging
++6 → −18 dB. A `DifficultyVariant.overrides` replaces individual deltas by the same key names, and
+a key outside the vocabulary is refused with the vocabulary named.
+
+In the graph: a device chain and the distance formula (−6 dB per doubling, a lowpass inversely
+proportional to distance, and a larger send into the room) go into the **track** node's filter
+chain; the room is a **send-return on the mix** — every dialogue and sfx stem is split, its send
+gain applied, the sum convolved by a single `afir` and added to the master at the room's resolved
+wet level. **The ambience bus is never sent**: a recorded room tone already is a room. One
+convolution per render however many stems there are, and a distant speaker is still wetter than a
+close one because the send is per stem.
+
+Node identity carries all of it, and the rules are: a stem with no device and unit distance keeps
+the hash it had before this layer existed (`fx` is omitted, not written as `""`); a `send_db` is
+in the mix hash only when there is a room to send to; and each profile's editorial `version` is a
+hashed parameter, so bumping a version retires the cached audio even when no number changed.
+`render.json` gains an `acoustics` block: preset and room ids with their versions, every resolved
+delta, the resolved wet level, and the sha of each impulse response convolved.
+
+Unknown room, device and preset ids are **refused at render time with the path of the file that
+would have to define them** — before any synthesis runs. Scene documents themselves stay valid
+standalone (holding a published scene against a catalog it does not ship with would make it
+invalid on any older checkout), so the same check is offered as a *warning* by
+`scene validate <file> --repo ../..`.
+
+The difficulty layer is measured rather than listened to. `tests/test_dsp_chains.py` pushes seeded
+broadband noise through the real `telephone` chain and asserts by FFT that both stopbands are at
+least 20 dB below the passband — measured −22.5 dB below 250 Hz and −27.9 dB above 4 kHz on
+ffmpeg 9.0.1. Noise rather than a swept sine on purpose: a sweep presents the chain with one tone
+at a time, and the compressor's gain modulation on a single tone generates harmonics that land in
+the stopbands, so a sweep would measure the compressor's distortion rather than the channel's
+band.
 
 `scene qa` transcribes `qa.wav` whole and per utterance — the slices are cut from the **mix**
 using the timing table, because a bed that buries a word is a defect of the scene and a

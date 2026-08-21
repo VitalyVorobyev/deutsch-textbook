@@ -86,6 +86,64 @@ def test_validate_reports_a_sha_and_a_failure_in_the_same_shape(tmp_path: Path) 
     assert body["ok"] is False and body["errors"]
 
 
+def test_validate_repo_warns_about_unknown_acoustic_ids_and_still_passes(
+    tmp_path: Path,
+) -> None:
+    """A scene document is valid standalone. The catalog check is a warning, on purpose.
+
+    Holding a published scene against a catalog it does not ship with would make it invalid on any
+    machine whose `data/` is a week older than the scene. What the check is for is the other
+    direction: an id that will refuse at render time should be visible while the file is being
+    edited, not twenty minutes into a synthesis run.
+    """
+
+    source = tmp_path / "scene.json"
+    runner.invoke(
+        scene_cli.app,
+        ["from-reading", "a1/erste-schritte", "--repo", str(REPO), "--out", str(source)],
+    )
+    payload = json.loads(source.read_text())
+    payload["acoustics"]["room"] = "kitchen"
+    payload["variants"] = [{"id": "hard", "preset": "brutal", "overrides": {"snr_db": 6.0}}]
+    edited = tmp_path / "edited.json"
+    edited.write_text(json.dumps(payload))
+
+    # Without `--repo`, nothing is checked and nothing is reported.
+    plain = runner.invoke(scene_cli.app, ["validate", str(edited), "--json"])
+    assert plain.exit_code == 0
+    assert json.loads(plain.stdout)["warnings"] == []
+
+    checked = runner.invoke(
+        scene_cli.app, ["validate", str(edited), "--repo", str(REPO), "--json"]
+    )
+    assert checked.exit_code == 0, checked.output
+    warnings = json.loads(checked.stdout)["warnings"]
+    assert any("kitchen" in row and "acoustic-profiles.yaml" in row for row in warnings)
+    assert any("brutal" in row and "acoustic-difficulty.yaml" in row for row in warnings)
+    assert any("snr_db" in row for row in warnings)
+
+
+def test_validate_repo_says_nothing_about_a_scene_whose_ids_are_all_known(
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "scene.json"
+    runner.invoke(
+        scene_cli.app,
+        ["from-dialogue", "a1/ls-erste-schritte-01", "--repo", str(REPO), "--out", str(source)],
+    )
+    payload = json.loads(source.read_text())
+    payload["acoustics"]["room"] = "cafe"
+    payload["variants"] = [{"id": "challenging", "preset": "challenging", "overrides": {}}]
+    payload["timeline"][0]["placement"] = {"pan": 0.0, "distance": 1.0, "device": "telephone"}
+    edited = tmp_path / "edited.json"
+    edited.write_text(json.dumps(payload))
+    result = runner.invoke(
+        scene_cli.app, ["validate", str(edited), "--repo", str(REPO), "--json"]
+    )
+    assert result.exit_code == 0, result.output
+    assert json.loads(result.stdout)["warnings"] == []
+
+
 def test_create_then_show_round_trips_through_the_store(
     tmp_path: Path, local_store: Path
 ) -> None:

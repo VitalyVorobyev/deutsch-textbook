@@ -117,10 +117,16 @@ class Utterance(Strict):
 class Placement(Strict):
     """Where a sound sits in the stereo field and how far away it is.
 
-    `device` names an acoustic device profile — "telephone", "public-address". It is a free
-    string until the DSP layer lands (PR 5 of the Tonwerk roadmap), which is where the profile
-    table and the validation against it belong. Validating against a table that does not exist
-    yet would mean inventing the table here.
+    `device` names a row of `data/acoustic-profiles.yaml` — "telephone", "pa", "next-room" — and
+    is resolved against it **at render time**, not here. `distance` is resolved the same way: 1.0
+    is at the reference position and larger is further off, turned into a gain drop, a gentle
+    lowpass and a larger send into the room by `listening_studio.dsp.chains`. An unknown device id
+    is refused by the renderer with the path of the file that would have to define it.
+
+    Deliberately not validated on load. A scene is a published document that other tools read, and
+    holding it to a catalog it does not ship with would make a valid scene invalid on any machine
+    whose checkout of that catalog is older. `scene validate --repo` offers the check as a
+    *warning* for exactly that reason.
     """
 
     pan: float = Field(default=0.0, ge=-1.0, le=1.0)
@@ -224,8 +230,10 @@ TimelineEntry = Annotated[
 class SceneAcoustics(Strict):
     """Scene-wide acoustic treatment.
 
-    `room` names a room profile — "small-office", "station-hall". Free string until PR 5, for
-    the reason given on `Placement.device`.
+    `room` names a room profile in `data/acoustic-profiles.yaml` — "cafe", "station-hall" — and is
+    resolved against it at render time, where it becomes one synthetic impulse response convolved
+    on a send from the dialogue and sfx buses. The ambience bus is never sent: a recorded room
+    tone already is a room. Unvalidated on load for the reason given on `Placement.device`.
     """
 
     room: str | None = None
@@ -237,10 +245,15 @@ class SceneAcoustics(Strict):
 class DifficultyVariant(Strict):
     """One rendering of the same script at a different listening difficulty.
 
-    `overrides` is typed loosely on purpose. The difficulty vocabulary — what a key means, what
-    values it takes, which preset composes which — belongs to the DSP PR that implements it,
-    and naming keys here would freeze a vocabulary before anything can honour it. `preset` is
-    a preset id and is pinned against the preset table in the same PR.
+    `preset` names a row of `data/acoustic-difficulty.yaml` — "clean", "natural", "challenging" —
+    and `overrides` replaces individual deltas of that preset by the same key names. Both are
+    resolved at render time; the override vocabulary is `dsp.profiles.DELTA_KEYS`, and a key
+    outside it is refused with the vocabulary named rather than silently doing nothing.
+
+    `overrides` stays `dict[str, float | str]` rather than a typed model. The vocabulary is data
+    that ships in the repository, so freezing it into the published JSON Schema would mean a new
+    difficulty parameter is a schema version — and scene documents written before it existed are
+    still valid documents.
     """
 
     id: str = Field(pattern=KEBAB)
