@@ -20,6 +20,7 @@ from .adapters import (
 )
 from .generative.locks import locked_snapshot, models_root
 from .generative.qwen import QwenSpeech
+from .generative.qwen_clone import QwenBaseClone
 from .domain import RevisionPayload, lock_voice_profiles
 from .qa import check_transcripts
 from .speaker_qa import check_speaker_consistency
@@ -56,8 +57,11 @@ FICTIONAL_VOICE_PROMPTS = (
 )
 VOICE_DESIGN_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
 VOICE_DESIGN_REVISION = "5ecdb67327fd37bb2e042aab12ff7391903235d3"
-VOICE_CLONE_ID = "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
-VOICE_CLONE_REVISION = "5d83992436eae1d760afd27aff78a71d676296fc"
+#: Re-exported from the engine that owns the pin, not re-typed. The Base checkpoint is a
+#: production model now (`models.lock.json`), and it is still what this benchmark's second arm
+#: runs — two literals for one revision is one of them going stale unnoticed.
+VOICE_CLONE_ID = QwenBaseClone.model_id
+VOICE_CLONE_REVISION = QwenBaseClone.revision
 
 
 def sha256(path: Path) -> str:
@@ -159,12 +163,18 @@ def run_benchmark(
     if missing:
         raise ValueError("benchmark requires all six projects: " + ", ".join(missing))
     root.mkdir(parents=True, exist_ok=False)
-    locks = json.loads((Path(__file__).resolve().parents[2] / "benchmark-models.lock.json").read_text())
+    package_root = Path(__file__).resolve().parents[2]
+    locks = json.loads((package_root / "benchmark-models.lock.json").read_text())
+    # The cloning checkpoint's pin lives in the production lock now. It is still an arm of this
+    # comparison, so its row is read from there and recorded here: a benchmark manifest that named
+    # one of the two models it ran would be a provenance record with a hole in it.
+    production = json.loads((package_root / "models.lock.json").read_text())
+    models = dict(locks["models"]) | {"voice_clone": production["models"]["qwen_tts_base"]}
     run_manifest: dict[str, Any] = {
         "scope": "research-only; non-publishing",
         "synthetic_reference_claim": SYNTHETIC_REFERENCE_CLAIM,
         "reference_text": REFERENCE_TEXT,
-        "models": locks["models"],
+        "models": models,
         "projects": {},
     }
     swap_start = _swap_bytes()

@@ -12,13 +12,14 @@ import logging
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Any, Callable, cast
+from typing import Any, Callable, Mapping, cast
 
 from .domain import Line, RevisionPayload, line_cache_key
-from .generative.fake import FakeSound, FakeSpeech
-from .generative.gateway import SoundGenerator, SpeechGenerator, SpeechRequest
+from .generative.fake import FakeClone, FakeSound, FakeSpeech
+from .generative.gateway import ClonableVoice, SoundGenerator, SpeechGenerator, SpeechRequest
 from .generative.locks import locked_snapshot
 from .generative.qwen import QwenSpeech
+from .generative.qwen_clone import QwenBaseClone
 from .generative.stable_audio_mlx import StableAudioSfx
 from .sources import load_source
 
@@ -27,10 +28,18 @@ log = logging.getLogger(__name__)
 # The stored `tts_adapter` name, and the engine it selects. Two entries, and the switch used to
 # be written out at four call sites — web, the studio API, the CLI and the authoring reports —
 # which is four places to forget one when an engine is added or removed.
-ENGINES: dict[str, type[QwenSpeech] | type[FakeSpeech]] = {
+ENGINES: dict[str, type[QwenSpeech] | type[FakeSpeech] | type[QwenBaseClone] | type[FakeClone]] = {
     "qwen_tts": QwenSpeech,
+    "qwen_tts_base": QwenBaseClone,
     "fake": FakeSpeech,
+    "fake_clone": FakeClone,
 }
+
+#: The engines whose speech comes from a stored voice reference. One reading of that fact, because
+#: three places need it and each of them would otherwise carry its own list: the claims computation
+#: in `export`, the engine constructor below, and the render path that has to resolve voices before
+#: it can build an engine at all.
+CLONING_ENGINES: frozenset[str] = frozenset({"qwen_tts_base", "fake_clone"})
 
 # The same table for non-speech sound, and deliberately a second one rather than a merged
 # registry: the two protocols take different requests, and a caller that could look a speech
@@ -44,13 +53,23 @@ SOUND_ENGINES: dict[str, type[StableAudioSfx] | type[FakeSound]] = {
 }
 
 
-def engine_for(name: str) -> SpeechGenerator:
-    """The engine a stored payload names. Never a gate — the fake-engine gate stays at the caller."""
+def engine_for(name: str, voices: Mapping[str, ClonableVoice] | None = None) -> SpeechGenerator:
+    """The engine a stored payload names. Never a gate — the fake-engine gate stays at the caller.
+
+    `voices` is the resolved set of stored voice references this render may synthesize through, and
+    it reaches only a cloning engine. It is **injected here rather than looked up there** so that
+    `generative/` keeps knowing nothing about a database: the store, the app-data root and the
+    revocation check all live on this side of the boundary, and a model can be replaced without
+    taking the consent rules with it.
+    """
 
     try:
-        return ENGINES[name]()
+        engine = ENGINES[name]
     except KeyError:
         raise ValueError(f"unknown synthesis engine {name}") from None
+    if name in CLONING_ENGINES:
+        return cast(SpeechGenerator, engine(voices or {}))  # type: ignore[call-arg]
+    return cast(SpeechGenerator, engine())
 
 
 def engine_revision(name: str) -> str:

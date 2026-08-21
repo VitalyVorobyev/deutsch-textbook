@@ -19,7 +19,7 @@ from .domain import (
     RevisionPayload,
     SingleChoice,
 )
-from .adapters import wav_duration
+from .adapters import CLONING_ENGINES, wav_duration
 from .sources import load_source
 
 
@@ -170,6 +170,32 @@ def manifest(
     dry_wav: Path | None = None,
     source_root: Path | None = None,
 ) -> dict[str, object]:
+    """The published provenance for one **legacy dialogue** artifact.
+
+    One thing in here changed when cloning became a supported path, and it is the `claims` block.
+    `voice_cloning_used` used to be the literal `False`, which was true of every artifact this
+    function has ever written and is no longer true *by construction* — so it is now computed from
+    the payload's own adapter (`CLONING_ENGINES`), which still answers False for all forty of them
+    and would answer True the moment one was synthesized on a cloning engine. **A claim that is
+    hardcoded is a claim that stops being checked**, and the only difference between a correct
+    hardcoded value and a false one is a change nobody connected to it.
+
+    A `RevisionPayload` has no cast and therefore no `voice_ref`; the adapter name is the whole of
+    what it can say. That is the ceiling of this path and the reason the next one is different:
+
+    **The scene publisher (PR 11) writes its claims from `render.json`, not from here.** That
+    manifest carries a top-level `voices` map — cast role → the bound `VoiceRef` — filled in by
+    `graph.render`, so the two claims are one expression each and neither needs a node walk:
+
+        voice_cloning_used = bool(manifest["voices"])
+        consent_sha256     = sorted({row["consent_sha256"] for row in manifest["voices"].values()})
+
+    and `reference_audio_used` is the same boolean, because in this design a reference recording is
+    the only thing a cloned voice can come from. A publisher that computed these any other way —
+    from the scene document, from the engine name, from an editor's checkbox — would be answering a
+    question about *what was rendered* with something that is not the render.
+    """
+
     model_entries = models.get("models", {})
     selected_model: object = {}
     if isinstance(model_entries, dict):
@@ -203,6 +229,7 @@ def manifest(
                 "processing": context.model_dump(mode="json"),
             }
         )
+    cloned = payload.tts_adapter in CLONING_ENGINES
     return {
         "version": 1,
         "id": slug,
@@ -245,8 +272,11 @@ def manifest(
         "approval": approval,
         "claims": {
             "model_license_is_training_data_provenance": False,
-            "voice_cloning_used": False,
-            "reference_audio_used": False,
+            "voice_cloning_used": cloned,
+            "reference_audio_used": cloned,
+            # Empty for every legacy payload, and it is a list rather than a bool because the
+            # question a reader asks of a cloned artifact is *which consent*, not *whether*.
+            "consent_sha256": [],
         },
     }
 

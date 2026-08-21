@@ -32,6 +32,14 @@ class QwenSpeech:
             # Silently dropping an engine-specific parameter is the failure this gateway exists
             # to prevent; refusing is the only honest answer for an engine that takes none.
             raise ValueError(f"{self.name} accepts no engine parameters: {sorted(request.params)}")
+        if request.voice_ref is not None:
+            # CustomVoice has nine preset speakers and no cloning path. Ignoring the field would
+            # produce a perfectly good take **in the wrong person's voice** and report success —
+            # the one failure a consent-gated feature must not have.
+            raise ValueError(
+                f"{self.name} cannot synthesize through a voice reference "
+                f"({request.voice_ref}); cast the role on qwen_tts_base instead"
+            )
         try:
             import torch
             from qwen_tts import Qwen3TTSModel

@@ -9,7 +9,16 @@ from pathlib import Path
 from alembic import command
 from alembic.config import Config
 from platformdirs import user_data_path
-from sqlalchemy import ForeignKey, Integer, String, Text, create_engine, inspect, select
+from sqlalchemy import (
+    Boolean,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+    create_engine,
+    inspect,
+    select,
+)
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship
 
 from .domain import RevisionPayload, Stage
@@ -114,6 +123,40 @@ class SceneRevision(Base):
     qa_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     approval_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[str] = mapped_column(String(40))
+
+
+class VoiceReference(Base):
+    """One consented voice, as a row: who, at what scope, from which bytes, under which document.
+
+    **The reference audio is not in here and never will be.** The row carries its SHA-256; the
+    recording itself lives under app-data (`generative.voices.reference_path`), which is also why
+    `reference_present` is measured on every read rather than inferred from this table — a database
+    that travels without its app-data directory would otherwise report a voice it cannot speak in.
+
+    `reference_text` is a column the brief for this table did not name, and it is load-bearing: the
+    clone prompt conditions on what is *said* in the reference unless the voice is in
+    `x_vector_only` mode, so a row without it is a voice that can be listed and not synthesized.
+
+    Revocation is `revoked_at`, not a deletion. The row is what a published render's provenance
+    points at, and a withdrawn consent has to leave a record saying it was withdrawn — a missing
+    row would read as a voice that never existed, which is the opposite of the truth.
+    """
+
+    __tablename__ = "voice_references"
+    id: Mapped[str] = mapped_column(String(120), primary_key=True)
+    reference_sha256: Mapped[str] = mapped_column(String(64))
+    reference_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    subject_display_name: Mapped[str] = mapped_column(String(200))
+    scope: Mapped[str] = mapped_column(String(20))
+    consent_sha256: Mapped[str] = mapped_column(String(64))
+    guardian_consent: Mapped[bool] = mapped_column(Boolean, default=False)
+    child_assent: Mapped[bool] = mapped_column(Boolean, default=False)
+    retention: Mapped[str] = mapped_column(Text)
+    engine: Mapped[str] = mapped_column(String(60))
+    model_revision: Mapped[str] = mapped_column(String(80))
+    x_vector_only: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[str] = mapped_column(String(40))
+    revoked_at: Mapped[str | None] = mapped_column(String(40), nullable=True)
 
 
 def app_dir() -> Path:
@@ -651,6 +694,86 @@ class Store:
             revision.approval_json = json.dumps(decline, ensure_ascii=False, sort_keys=True)
             project.stage = Stage.DRAFT
             session.commit()
+
+    # ------------------------------------------------------------------
+    # Consented voice references
+    # ------------------------------------------------------------------
+    #
+    # No revision history and no stage machine, deliberately. A voice reference is not a document
+    # under editorial work — it is a **permission**, and a permission that could be revised would
+    # be a permission whose current text nobody could name. It is created once from a consent that
+    # was checked, and the only thing that ever happens to it afterwards is withdrawal.
+
+    def create_voice(
+        self,
+        *,
+        voice_id: str,
+        reference_sha256: str,
+        reference_text: str | None,
+        subject_display_name: str,
+        scope: str,
+        consent_sha256: str,
+        guardian_consent: bool,
+        child_assent: bool,
+        retention: str,
+        engine: str,
+        model_revision: str,
+        x_vector_only: bool,
+    ) -> VoiceReference:
+        now = datetime.now(UTC).isoformat()
+        with Session(self.engine) as session:
+            if session.get(VoiceReference, voice_id) is not None:
+                raise ValueError(f"voice reference {voice_id} already exists")
+            row = VoiceReference(
+                id=voice_id,
+                reference_sha256=reference_sha256,
+                reference_text=reference_text,
+                subject_display_name=subject_display_name,
+                scope=scope,
+                consent_sha256=consent_sha256,
+                guardian_consent=guardian_consent,
+                child_assent=child_assent,
+                retention=retention,
+                engine=engine,
+                model_revision=model_revision,
+                x_vector_only=x_vector_only,
+                created_at=now,
+            )
+            session.add(row)
+            session.commit()
+            session.refresh(row)
+            session.expunge(row)
+            return row
+
+    def voice_references(self) -> list[VoiceReference]:
+        with Session(self.engine) as session:
+            rows = list(session.scalars(select(VoiceReference).order_by(VoiceReference.id)))
+            for row in rows:
+                session.expunge(row)
+            return rows
+
+    def get_voice(self, voice_id: str) -> VoiceReference | None:
+        with Session(self.engine) as session:
+            row = session.get(VoiceReference, voice_id)
+            if row is None:
+                return None
+            session.expunge(row)
+            return row
+
+    def revoke_voice(self, voice_id: str, revoked_at: str) -> None:
+        """Mark consent withdrawn. Idempotent: the **first** date is the one that stands.
+
+        A second revocation moving the date would rewrite when consent was withdrawn, and that
+        date is the one fact a retirement decision is made against.
+        """
+
+        with Session(self.engine) as session:
+            row = session.get(VoiceReference, voice_id)
+            if row is None:
+                raise ValueError(f"voice reference {voice_id} does not exist")
+            if row.revoked_at is None:
+                row.revoked_at = revoked_at
+                session.commit()
 
     def transition_scene(
         self,
