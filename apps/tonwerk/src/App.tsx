@@ -5,9 +5,13 @@
  * `onUnauthorized`; the shell clears the stored token and renders `Anmeldung` with the engine's own
  * reason. No view needs an auth branch, and there is no state in which a screen is half-signed-in.
  *
- * **The nav names surfaces that do not exist yet.** Klangbibliothek, Lesetexte and Prüfung arrive
- * with the editor; they are listed, disabled, and marked `bald` rather than hidden, because the
- * shape of the tool is part of what the tool tells you about itself.
+ * **The nav names surfaces that do not exist yet.** Lesetexte and Prüfung are listed, disabled and
+ * marked *Folgt* rather than hidden, because the shape of the tool is part of what the tool tells
+ * you about itself. Klangbibliothek left that list when the editor arrived.
+ *
+ * **Tasten** is on the rail and not in a help page. There are two shortcuts and they are the two
+ * things this tool does all day — save, and play — so they are printed where the operator can see
+ * them without leaving what they are doing, the way a key legend is silkscreened on a desk.
  */
 import { useCallback, useMemo, useState } from 'react';
 import { createApi } from './api';
@@ -17,6 +21,7 @@ import { ApiContext } from './useEngine';
 import { href, navigate, useRoute, useScrollReset } from './router';
 import { Anmeldung } from './views/Anmeldung';
 import { Figuren } from './views/Figuren';
+import { Klangbibliothek } from './views/Klangbibliothek';
 import { Szene } from './views/Szene';
 import { Szenen } from './views/Szenen';
 import { Uebersicht } from './views/Uebersicht';
@@ -24,10 +29,17 @@ import { Uebersicht } from './views/Uebersicht';
 const WEGE = [
   { view: 'uebersicht', name: 'Übersicht' },
   { view: 'szenen', name: 'Szenen' },
+  { view: 'klangbibliothek', name: 'Klangbibliothek' },
   { view: 'figuren', name: 'Figuren' },
 ] as const;
 
-const WEGE_BALD = ['Klangbibliothek', 'Lesetexte', 'Prüfung'] as const;
+const WEGE_BALD = ['Lesetexte', 'Prüfung'] as const;
+
+/** Two shortcuts, printed on the rail. Anything a third one would do already has a button. */
+const TASTEN = [
+  { taste: '⌘/Strg + S', tut: 'Szene speichern' },
+  { taste: 'Leertaste', tut: 'abspielen / anhalten' },
+] as const;
 
 export function App(): React.JSX.Element {
   const [token, setTokenState] = useState(getToken);
@@ -86,6 +98,18 @@ export function App(): React.JSX.Element {
             ))}
           </div>
 
+          <div className="wege">
+            <span className="tafel" style={{ padding: '0 var(--ton-mass-3)' }}>
+              Tasten
+            </span>
+            {TASTEN.map((eintrag) => (
+              <span key={eintrag.taste} className="taste">
+                <span className="zahl">{eintrag.taste}</span>
+                <span className="entfernt">{eintrag.tut}</span>
+              </span>
+            ))}
+          </div>
+
           <div className="schiene-fuss">
             <span className="tafel">Engine</span>
             <span className="zahl entfernt">127.0.0.1:8765</span>
@@ -124,6 +148,8 @@ function render(view: string, id?: string): React.JSX.Element {
       return <Szenen />;
     case 'szene':
       return id ? <Szene slug={id} /> : <Szenen />;
+    case 'klangbibliothek':
+      return <Klangbibliothek />;
     case 'figuren':
       return <Figuren />;
     case 'uebersicht':

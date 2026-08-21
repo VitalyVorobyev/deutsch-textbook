@@ -159,6 +159,241 @@ export const charactersFixture = {
   ],
 };
 
+/**
+ * One scene document and the envelope around it.
+ *
+ * Stated in full — including the fields a Zod default would otherwise supply — because the editor
+ * reads the *stub's* objects, not a parsed copy: a fixture that omitted `renders[].timeline` would
+ * not fall back to an empty array, it would throw, and a fixture that omitted `pace` would make a
+ * round-trip assertion pass for the wrong reason.
+ */
+export const sceneDocumentFixture = {
+  slug: 'ls-wohnen-01',
+  kind: 'dialogue' as const,
+  schema_version: 1 as const,
+  authoring: 'manual' as const,
+  generation_prompt: null,
+  brief: {
+    scenario: 'Kurze Wohnungsbesichtigung',
+    level: 'A1' as const,
+    topic: 'wohnen',
+    grammar_target: null,
+    outcomes: ['wohnen-beschreiben'],
+    vocabulary: [],
+    duration_seconds: null,
+  },
+  acoustics: { lead_in_ms: 0, room: 'cafe' },
+  variants: [{ id: 'natural', preset: 'natural', overrides: {} }],
+  title: { en: 'A short flat viewing', ru: 'Короткий осмотр квартиры', uk: null },
+  cast: [
+    {
+      role: 'Maklerin',
+      character: { id: 'lena', version: 1 },
+      voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: 'Sprich freundlich.' },
+    },
+    {
+      role: 'Mieter',
+      character: null,
+      voice: { engine: 'qwen_tts', voice: 'Eric', seed: 120, style: null },
+    },
+  ],
+  script: [
+    {
+      id: 'line-1',
+      role: 'Maklerin',
+      display_text: 'Hier ist die Wohnung. Sie hat drei Zimmer.',
+      synthesis_text: null,
+      pace: 0.9,
+      pause_after_ms: 450,
+      pronunciation_overrides: [],
+      seed_override: null,
+    },
+    {
+      id: 'line-2',
+      role: 'Mieter',
+      display_text: 'Und wo ist die Küche?',
+      synthesis_text: null,
+      pace: 1,
+      pause_after_ms: 600,
+      pronunciation_overrides: [],
+      seed_override: null,
+    },
+  ],
+  timeline: [
+    { type: 'speech' as const, utterance_id: 'line-1', at_ms: null, placement: null },
+    { type: 'speech' as const, utterance_id: 'line-2', at_ms: null, placement: null },
+    {
+      type: 'ambience' as const,
+      sound: {
+        prompt: 'ruhige Wohnung, leiser Verkehr draußen',
+        seed: 4,
+        params: {},
+        duration_seconds: null,
+        negative_prompt: null,
+      },
+      start_ms: 0,
+      end_ms: null,
+      fade_in_ms: 350,
+      fade_out_ms: 450,
+      gain_db: -26,
+    },
+  ],
+};
+
+export const sceneDetailFixture = {
+  project_id: 3,
+  slug: 'ls-wohnen-01',
+  kind: 'dialogue',
+  stage: 'human_approved',
+  revision: 4,
+  scene_sha256: 'abc1234def5678',
+  scene: sceneDocumentFixture,
+  exercise: { questions: [{ id: 'frage-1' }] },
+  renders: [
+    {
+      variant: 'natural',
+      preset: 'natural',
+      rendered: true,
+      duration_ms: 31240,
+      created_at: '2026-08-14T09:10:00+00:00',
+      master_sha256: 'deadbeef1234',
+      has_master: true,
+      timing: [
+        { utterance_id: 'line-1', start_ms: 0, end_ms: 3120 },
+        { utterance_id: 'line-2', start_ms: 3570, end_ms: 5400 },
+      ],
+      timeline: [
+        { entry_id: 'line-1', type: 'speech', start_ms: 0, end_ms: 3120 },
+        { entry_id: 'line-2', type: 'speech', start_ms: 3570, end_ms: 5400 },
+        { entry_id: 'ambience-1', type: 'ambience', start_ms: 0, end_ms: 5400 },
+      ],
+      artifacts: [
+        { path: 'master.wav', sha256: 'deadbeef1234', kind: 'master' },
+        { path: 'stems/line-1.wav', sha256: 'c0ffee5678', kind: 'stem' },
+      ],
+    },
+  ],
+  history: [
+    { number: 4, scene_sha256: 'abc1234def5678', created_at: '2026-08-14T09:00:00+00:00', has_qa: true, has_approval: true, has_exercise: true },
+  ],
+  qa: {
+    passed: true,
+    scene_sha256: 'abc1234def5678',
+    variant: 'natural',
+    transcripts: {
+      full_wer: 0.021,
+      full_transcript: 'Hier ist die Wohnung.',
+      lines: [
+        {
+          line_id: 'line-1',
+          expected: 'Hier ist die Wohnung. Sie hat drei Zimmer.',
+          transcript: 'Hier ist die Wohnung. Sie hat drei Zimmer.',
+          wer: 0,
+          passed: true,
+          missing_protected: [],
+        },
+      ],
+      failures: [],
+      warnings: [],
+      passed: true,
+    },
+    speaker_qa: 'weights-missing',
+    soundscape: {
+      bed_count: 1,
+      event_count: 0,
+      continuous_ambience: true,
+      configured_coverage_ratio: 1,
+      configured_gain_min_db: -26,
+      configured_gain_max_db: -26,
+      measured_ambience_rms_dbfs: -31.4,
+      warnings: [],
+    },
+    timing: [{ utterance_id: 'line-1', start_ms: 0, end_ms: 3120 }],
+  },
+  approval: {
+    status: 'complete',
+    editor: 'Vitaly',
+    reviewed_at: '2026-08-14T09:12:00+00:00',
+    checklist: ['accent', 'naturalness'],
+    audio_sha256: 'deadbeef1234',
+    dry_audio_sha256: null,
+    scene_sha256: 'abc1234def5678',
+    variant: 'natural',
+  },
+  document: { valid: true, scene: sceneDocumentFixture },
+};
+
+export const acousticsFixture = {
+  profiles_version: 1,
+  difficulty_version: 1,
+  rooms: [
+    { id: 'studio', label: 'Aufnahmestudio', note: 'Fast trocken.', version: 1, wet: 0.04 },
+    { id: 'cafe', label: 'Café', note: 'Hart und voll.', version: 2, wet: 0.18 },
+  ],
+  devices: [
+    { id: 'telephone', label: 'Telefon', note: '300–3400 Hz.', version: 1 },
+    { id: 'pa', label: 'Lautsprecherdurchsage', note: 'Ein Horn an der Wand.', version: 1 },
+  ],
+  presets: [
+    {
+      id: 'natural',
+      label: 'Natürlich',
+      note: 'Die Identität.',
+      version: 1,
+      deltas: { ambience_gain_db: 0, wet: 0, distance: 1, pace: 1, overlap_ms: 0 },
+    },
+    {
+      id: 'challenging',
+      label: 'Anspruchsvoll',
+      note: 'Alles, was echtes Hören schwer macht.',
+      version: 1,
+      deltas: { ambience_gain_db: 6, wet: 0.15, distance: 1.25, pace: 1.05, overlap_ms: 220 },
+    },
+  ],
+  override_keys: ['ambience_gain_db', 'wet', 'distance', 'pace', 'overlap_ms'],
+};
+
+export const soundsFixture = [
+  {
+    origin: 'freesound',
+    original_sha256: 'a'.repeat(64),
+    sound_id: 4711,
+    page_url: 'https://freesound.org/s/4711',
+    title: 'Cafe room tone',
+    uploader: 'mikrofonist',
+    license: 'CC0-1.0',
+    license_url: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    description: 'Ruhiges Café am Vormittag.',
+    duration_seconds: 42.5,
+    usage_count: 2,
+    peaks: [0.2, 0.5, 0.9, 0.4],
+    editorial: {
+      category: 'room-tone',
+      scene_tags: ['cafe'],
+      allowed_roles: ['bed'],
+      default_gain_db: -24,
+      loop_quality: 'good',
+      review_status: 'reviewed',
+      notes: '',
+    },
+  },
+  {
+    origin: 'generated',
+    asset_sha256: 'b'.repeat(64),
+    engine: 'stable_audio_sfx',
+    model_id: 'stabilityai/stable-audio-3-optimized',
+    model_revision: '2204d50',
+    adapter_code_revision: 'Stability-AI/stable-audio-3@a0b57f5',
+    license: 'Stability AI Community License',
+    prompt: 'a cup set down on a saucer',
+    negative_prompt: null,
+    seed: 7,
+    duration_seconds: 1.2,
+    params: {},
+    peaks: [0.9, 0.3, 0.1],
+  },
+];
+
 /** A stub `Api`: no network, and every method fails loudly if a view calls one it should not. */
 export function stubApi(overrides: Partial<Api> = {}): Api {
   const refuse = (name: string) => () => Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
@@ -167,6 +402,14 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     scenes: refuse('scenes'),
     scene: refuse('scene'),
     characters: refuse('characters'),
+    // The editor reads three catalogs on mount and survives any of them failing, so these are
+    // stubbed with data rather than refusals: a spec about the script must not fail on a picker.
+    acoustics: () => Promise.resolve(acousticsFixture as never),
+    sounds: () => Promise.resolve(soundsFixture as never),
+    reviseScene: refuse('reviseScene'),
+    renderScene: refuse('renderScene'),
+    runQa: refuse('runQa'),
+    generateSound: refuse('generateSound'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
     ...overrides,
   } as Api;

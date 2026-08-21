@@ -175,6 +175,119 @@ describe('the scene document is parsed against the contract, and never silently 
   });
 });
 
+describe('the write endpoints', () => {
+  const revise = {
+    project_id: 3,
+    slug: 'ls-wohnen-01',
+    revision: 5,
+    scene_sha256: 'neu',
+    has_exercise: true,
+    stage: 'draft',
+  };
+
+  test('a revise is a PUT of scene and exercise as siblings, with the token', async () => {
+    const fetchImpl = vi.fn(async () => respond(revise));
+    const api = createApi({ token: () => 'geheim', fetchImpl });
+
+    const scene = { slug: 'ls-wohnen-01' } as never;
+    await api.reviseScene('ls-wohnen-01', scene, { questions: [] });
+
+    const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe('/api/scenes/ls-wohnen-01');
+    expect(init.method).toBe('PUT');
+    expect((init.headers as Record<string, string>).Authorization).toBe('Bearer geheim');
+    // The exercise is a sibling of the scene in the store, and a body without it deletes it.
+    expect(JSON.parse(String(init.body))).toEqual({
+      scene: { slug: 'ls-wohnen-01' },
+      exercise: { questions: [] },
+    });
+  });
+
+  test('a render names its variant, and omits the sound engine unless one was chosen', async () => {
+    const fetchImpl = vi.fn(async () =>
+      respond({
+        slug: 'a',
+        revision: 1,
+        scene_sha256: 'x',
+        stage: 'audio_generated',
+        variant: 'natural',
+        duration_ms: 1,
+        nodes_evaluated: 1,
+        nodes_cached: 0,
+        artifacts: [],
+      }),
+    );
+    const api = createApi({ token: () => 't', fetchImpl });
+
+    await api.renderScene('a', 'natural');
+    expect(JSON.parse(String((fetchImpl.mock.calls[0] as unknown as [string, RequestInit])[1].body))).toEqual({
+      variant: 'natural',
+    });
+
+    await api.renderScene('a', 'natural', 'fake');
+    expect(JSON.parse(String((fetchImpl.mock.calls[1] as unknown as [string, RequestInit])[1].body))).toEqual({
+      variant: 'natural',
+      sound_engine: 'fake',
+    });
+  });
+
+  test('a generation posts the SoundSpec fields the scene contract already uses', async () => {
+    const fetchImpl = vi.fn(async () => respond({ origin: 'generated', asset_sha256: 'a', peaks: [] }));
+    const api = createApi({ token: () => 't', fetchImpl });
+
+    await api.generateSound({
+      prompt: 'ein Ton',
+      negative_prompt: null,
+      seed: 3,
+      duration_seconds: 2,
+      engine: 'fake',
+    });
+
+    const [url, init] = fetchImpl.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe('/api/sounds/generate');
+    expect(init.method).toBe('POST');
+    expect((init.headers as Record<string, string>)['Content-Type']).toBe('application/json');
+  });
+});
+
+describe('a refusal carries the engine’s own words, in both shapes it uses', () => {
+  test('a hand-written HTTPException detail comes through as itself', async () => {
+    const fetchImpl = vi.fn(async () =>
+      respond({ detail: 'this scene is cast on the fake engine' }, { status: 409 }),
+    );
+    const error = await createApi({ token: () => 't', fetchImpl })
+      .renderScene('a', 'natural')
+      .catch((caught: unknown) => caught);
+
+    expect(error).toBeInstanceOf(EngineError);
+    expect((error as EngineError).message).toBe('this scene is cast on the fake engine');
+  });
+
+  test('a schema refusal names the field rather than saying 422', async () => {
+    // This is the shape the scene editor hits most, and `422 Unprocessable Entity` would tell the
+    // author that something is wrong and never which of ninety fields it was.
+    const fetchImpl = vi.fn(async () =>
+      respond(
+        {
+          detail: [
+            { loc: ['body', 'scene', 'script', 1, 'pace'], msg: 'Input should be less than or equal to 1.3' },
+            { loc: ['body', 'scene', 'cast'], msg: 'List should have at least 1 item' },
+          ],
+        },
+        { status: 422 },
+      ),
+    );
+    const error = await createApi({ token: () => 't', fetchImpl })
+      .reviseScene('a', {} as never, null)
+      .catch((caught: unknown) => caught);
+
+    expect((error as EngineError).message).toBe(
+      'scene.script.1.pace: Input should be less than or equal to 1.3 · ' +
+        'scene.cast: List should have at least 1 item',
+    );
+  });
+});
+
 describe('binary endpoints are fetched, not linked', () => {
   test('objectUrl sends the bearer header and returns a blob URL', async () => {
     const fetchImpl = vi.fn(async () => new Response(new Blob(['wav']), { status: 200 }));
