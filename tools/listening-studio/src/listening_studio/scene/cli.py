@@ -10,8 +10,10 @@ one command surface however the modules are split.
 from __future__ import annotations
 
 import json
+import sys
+from contextlib import contextmanager, redirect_stdout
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 import typer
 
@@ -29,6 +31,24 @@ app = typer.Typer(no_args_is_help=True, help="Scene v1: convert, validate, store
 
 def _emit(payload: dict[str, Any]) -> None:
     typer.echo(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
+
+
+@contextmanager
+def _only_json_on_stdout(active: bool) -> Iterator[None]:
+    """Keep the `--json` envelope the only thing a caller has to parse.
+
+    Measured, not anticipated: the pinned Qwen adapter prints a flash-attn banner to **stdout**
+    when it is imported, so the first real `scene render --json` produced four lines of text and
+    then a JSON document, and `json.loads` on the result fails. It lands there only when a real
+    engine runs, which is exactly where no test on `FakeSpeech` could ever see it. Library output
+    goes to stderr for the duration; it is diagnostics, and stderr is where diagnostics belong.
+    """
+
+    if not active:
+        yield
+        return
+    with redirect_stdout(sys.stderr):
+        yield
 
 
 def _import(scene: Scene, exercise: ExerciseAttachment | None, slug: str | None) -> dict[str, Any]:
@@ -186,6 +206,164 @@ def show_scene(slug: str, json_output: bool = typer.Option(False, "--json")) -> 
     typer.echo(f"{project.slug} · {project.kind} · {project.stage} · rev {revision.number}")
     for utterance in scene.script:
         typer.echo(f"  {utterance.role}: {utterance.display_text}")
+
+
+def _stored(slug: str) -> tuple[Any, Any, Scene]:
+    found = Store().get_scene_by_slug(slug)
+    if found is None:
+        raise typer.BadParameter(f"no scene project {slug}")
+    project, revision, scene, _exercise = found
+    return project, revision, scene
+
+
+@app.command("render")
+def render_command(
+    slug: str,
+    variant: str = typer.Option("natural", "--variant"),
+    engine: str | None = typer.Option(None, "--engine", help="qwen_tts or fake; overrides the cast"),
+    repo: Path = typer.Option(Path.cwd()),
+    test_adapter: bool = typer.Option(False, "--test-adapter"),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Render the current revision of one stored scene through the node graph."""
+
+    # Imported here, not at module scope: these pull the whole render stack (huggingface-hub, the
+    # adapters, soundfile), and the point of this module is that `scene validate` costs none of it.
+    from ..adapters import ENGINES, engine_for
+    from ..generative.fake import FakeSound
+    from ..generative.gateway import SoundGenerator, SpeechGenerator
+    from ..generative.locks import set_models_root
+    from ..graph.render import render_scene
+
+    if engine is not None and engine not in ENGINES:
+        raise typer.BadParameter(f"unknown engine {engine}; known: {', '.join(sorted(ENGINES))}")
+    # The gate the dialogue and reading verbs already use: the fake engines exist for workflow
+    # tests and generate no approvable audio, so reaching one is always an explicit request.
+    if engine == "fake" and not test_adapter:
+        raise typer.BadParameter("the fake engine needs --test-adapter; it renders no real audio")
+    set_models_root(repo.resolve())
+    store = Store()
+    project, revision, scene = _stored(slug)
+
+    names = sorted({member.voice.engine for member in scene.cast})
+    if engine is not None:
+        forced: SpeechGenerator = ENGINES[engine]()
+        speech_engines: dict[str, SpeechGenerator] = {name: forced for name in names}
+    else:
+        if "fake" in names and not test_adapter:
+            raise typer.BadParameter("this scene is cast on the fake engine; add --test-adapter")
+        speech_engines = {name: engine_for(name) for name in names}
+    # No `--sound-engine`. Production renders have no sound generator at all until the Stable
+    # Audio PR, and the fake one rides the same `--test-adapter` gate as the fake voice rather
+    # than a second flag that would only ever be passed beside it. A `SoundSpec` reached without
+    # one is refused by the renderer, not silently dropped.
+    sound_engine: SoundGenerator | None = FakeSound() if test_adapter else None
+
+    with _only_json_on_stdout(json_output):
+        result = render_scene(
+            scene,
+            store.root,
+            variant=variant,
+            speech_engines=speech_engines,
+            sound_engine=sound_engine,
+        )
+
+    stage = Stage(project.stage)
+    if stage == Stage.DRAFT:
+        store.transition_scene(project.id, Stage.DRAFT, Stage.VALIDATED)
+        stage = Stage.VALIDATED
+    if stage == Stage.VALIDATED:
+        store.transition_scene(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+        stage = Stage.AUDIO_GENERATED
+    # Anything later is left alone. A re-render of unchanged bytes is a cache walk, and dropping
+    # a QA report or an approval because someone re-ran it would be a workflow regression, not a
+    # safety measure — the scene sha is in the render path, so a *changed* scene is a new render.
+
+    payload = {
+        "task": "scene.render",
+        "slug": scene.slug,
+        "revision": revision.number,
+        "payload_sha256": revision.scene_sha256,
+        "stage": str(stage),
+        "variant": result.variant,
+        "duration_ms": result.duration_ms,
+        "nodes_evaluated": result.nodes_evaluated,
+        "nodes_cached": result.nodes_cached,
+        "artifacts": [
+            {"path": str(row.path), "sha256": row.sha256, "kind": row.kind}
+            for row in result.artifacts
+        ],
+    }
+    if json_output:
+        _emit(payload)
+        return
+    typer.echo(
+        f"{scene.slug} · {result.variant} · {result.duration_ms / 1000:.1f} s · "
+        f"{result.nodes_evaluated} evaluated, {result.nodes_cached} cached"
+    )
+    typer.echo(f"  {result.directory}")
+
+
+@app.command("qa")
+def qa_command(
+    slug: str,
+    variant: str = typer.Option("natural", "--variant"),
+    repo: Path = typer.Option(Path.cwd()),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Transcript, speaker and soundscape QA over one rendered scene."""
+
+    from ..adapters import transcribe
+    from ..generative.locks import set_models_root
+    from ..graph.scene_qa import scene_qa
+
+    set_models_root(repo.resolve())
+    store = Store()
+    project, revision, scene = _stored(slug)
+    directory = store.root / "renders" / scene.sha256() / variant
+    if not (directory / "render.json").exists():
+        raise typer.BadParameter(
+            f"{scene.slug} has no {variant} render of these bytes; run `scene render` first"
+        )
+    if Stage(project.stage) != Stage.AUDIO_GENERATED:
+        raise typer.BadParameter(
+            f"this scene is at {project.stage}; QA runs on {Stage.AUDIO_GENERATED}"
+        )
+    try:
+        with _only_json_on_stdout(json_output):
+            report = scene_qa(scene, directory, transcribe_fn=transcribe)
+    except RuntimeError as error:
+        # Whisper here is MLX and macOS-local. Say so once, clearly, rather than letting an
+        # ImportError traceback out of a verb an agent is calling.
+        typer.echo(f"scene qa needs the local ASR runtime: {error}", err=True)
+        raise typer.Exit(1) from error
+    store.transition_scene(
+        project.id, Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED, qa=report
+    )
+    manifest = json.loads((directory / "render.json").read_text())
+    payload = {
+        "task": "scene.qa",
+        "slug": scene.slug,
+        "revision": revision.number,
+        "payload_sha256": revision.scene_sha256,
+        "stage": str(Stage.AUTOMATICALLY_CHECKED),
+        "variant": variant,
+        "passed": report["passed"],
+        "qa": report,
+        "artifacts": [
+            {"path": str(directory / row["path"]), "sha256": row["sha256"], "kind": row["kind"]}
+            for row in manifest.get("artifacts", [])
+        ],
+    }
+    if json_output:
+        _emit(payload)
+        return
+    verdict = "passed" if report["passed"] else "needs review"
+    typer.echo(
+        f"{scene.slug} · {variant} · QA {verdict} · "
+        f"full WER {report['transcripts']['full_wer']:.1%} · "
+        f"speaker {report['speaker_qa'] if isinstance(report['speaker_qa'], str) else 'measured'}"
+    )
 
 
 @app.command("schema")

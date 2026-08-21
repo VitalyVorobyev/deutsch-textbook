@@ -75,6 +75,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ## Open
 
+### Tonwerk audio studio
+
+- **P28-1 · legacy `--json` CLI verbs can emit corrupted JSON under a real engine.** The pinned
+  Qwen package prints a flash-attn banner to stdout on import, so any `cli.py` verb that both
+  generates in-process and promises `--json` (the pre-scene ones) interleaves text with the
+  envelope. The scene verbs are already guarded (`_only_json_on_stdout`, `scene/cli.py`); first
+  step: apply the same guard where legacy verbs survive the API-consolidation PR, drop the rest.
+
 ### Curriculum and content
 
 **P26 · The seven rows the 2026-08-14 anchor pass reopened.** The four A1 rows are delivered by
