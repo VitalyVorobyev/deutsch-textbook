@@ -303,6 +303,11 @@ def render_command(
     slug: str,
     variant: str = typer.Option("natural", "--variant"),
     engine: str | None = typer.Option(None, "--engine", help="qwen_tts or fake; overrides the cast"),
+    sound_engine_name: str | None = typer.Option(
+        None,
+        "--sound-engine",
+        help="stable_audio_sfx or fake; without it a SoundSpec is refused, not silently dropped",
+    ),
     repo: Path = typer.Option(Path.cwd()),
     test_adapter: bool = typer.Option(False, "--test-adapter"),
     json_output: bool = typer.Option(False, "--json"),
@@ -311,7 +316,7 @@ def render_command(
 
     # Imported here, not at module scope: these pull the whole render stack (huggingface-hub, the
     # adapters, soundfile), and the point of this module is that `scene validate` costs none of it.
-    from ..adapters import ENGINES, engine_for
+    from ..adapters import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
     from ..generative.fake import FakeSound
     from ..generative.gateway import SoundGenerator, SpeechGenerator
     from ..generative.locks import set_models_root
@@ -319,10 +324,19 @@ def render_command(
 
     if engine is not None and engine not in ENGINES:
         raise typer.BadParameter(f"unknown engine {engine}; known: {', '.join(sorted(ENGINES))}")
+    if sound_engine_name is not None and sound_engine_name not in SOUND_ENGINES:
+        raise typer.BadParameter(
+            f"unknown sound engine {sound_engine_name}; "
+            f"known: {', '.join(sorted(SOUND_ENGINES))}"
+        )
     # The gate the dialogue and reading verbs already use: the fake engines exist for workflow
     # tests and generate no approvable audio, so reaching one is always an explicit request.
     if engine == "fake" and not test_adapter:
         raise typer.BadParameter("the fake engine needs --test-adapter; it renders no real audio")
+    if sound_engine_name == "fake" and not test_adapter:
+        raise typer.BadParameter(
+            "the fake sound engine needs --test-adapter; it renders a tone, not a sound"
+        )
     set_models_root(repo.resolve())
     store = Store()
     project, revision, scene = _stored(slug)
@@ -335,11 +349,15 @@ def render_command(
         if "fake" in names and not test_adapter:
             raise typer.BadParameter("this scene is cast on the fake engine; add --test-adapter")
         speech_engines = {name: engine_for(name) for name in names}
-    # No `--sound-engine`. Production renders have no sound generator at all until the Stable
-    # Audio PR, and the fake one rides the same `--test-adapter` gate as the fake voice rather
-    # than a second flag that would only ever be passed beside it. A `SoundSpec` reached without
-    # one is refused by the renderer, not silently dropped.
-    sound_engine: SoundGenerator | None = FakeSound() if test_adapter else None
+    # `--sound-engine` names the generator a `SoundSpec` resolves through; with none named a
+    # `SoundSpec` is refused by the renderer, not silently dropped. `--test-adapter` alone keeps
+    # dealing the fake one, which is what every workflow test written before the flag existed
+    # expects, and is not a way past the gate: `--sound-engine fake` needs it too.
+    sound_engine: SoundGenerator | None
+    if sound_engine_name is not None:
+        sound_engine = sound_engine_for(sound_engine_name)
+    else:
+        sound_engine = FakeSound() if test_adapter else None
 
     with _only_json_on_stdout(json_output):
         result = render_scene(

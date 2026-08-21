@@ -14,6 +14,8 @@ class QwenSpeech:
     revision = "85e237c12c027371202489a0ec509ded67b5e4b5"
     model_id = "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
     adapter_code_revision = "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e"
+    #: Matches the `qwen_tts` entry in `models.lock.json`; `tests/test_domain.py` holds them equal.
+    license = "Apache-2.0"
     # Measured, not assumed: upstream's `generate_custom_voice` runs
     # `if self.model.tts_model_size in "0b6": instruct = None`, and this checkpoint's
     # `tts_model_size` is exactly `"0b6"` — so every style instruction is discarded before it
@@ -72,6 +74,7 @@ class QwenSpeech:
             model_id=self.model_id,
             model_revision=self.revision,
             adapter_code_revision=self.adapter_code_revision,
+            license=self.license,
             seed=request.seed,
             request_sha256=request.sha256(),
             params=request.params,

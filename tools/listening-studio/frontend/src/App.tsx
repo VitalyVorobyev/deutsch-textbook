@@ -27,13 +27,25 @@ type Character = {
   casting_tags: string[]; narration_capable: boolean; incompatible_with: string[]; status: string;
   portrait_path: string | null; selected_portrait_url: string | null; portrait_candidate_urls: string[]; usage_count: number; demo_urls: string[]; demo_phrases: string[]; voice_profile: { voice: string; seed: number; style: string; pace: number };
 };
-type Sound = {
+// Two origins, two schemas, never one. An import is somebody else's recording with a reviewed
+// licence record; a generated sound is a prompt, a seed and a model revision. The discriminated
+// union is what stops a component reading `title` off a row that has a prompt instead.
+type ImportedSound = {
+  origin: 'freesound';
   original_sha256: string; sound_id: number; title: string; uploader: string; license: string; duration_seconds: number;
   description: string; usage_count: number; peaks: number[]; editorial: {
     category: string; scene_tags: string[]; allowed_roles: string[]; default_gain_db: number;
     loop_quality: string; review_status: string; notes: string;
   };
 };
+type GeneratedSound = {
+  origin: 'generated';
+  asset_sha256: string; engine: string; model_id: string; model_revision: string;
+  adapter_code_revision: string; license: string; prompt: string; negative_prompt: string | null;
+  seed: number; duration_seconds: number; params: Record<string, unknown>; peaks: number[];
+};
+type Sound = ImportedSound | GeneratedSound;
+const soundKey = (sound: Sound) => sound.origin === 'freesound' ? sound.original_sha256 : sound.asset_sha256;
 type ContextSound = { source_sha256: string; sound_id: number; start_ms: number; duration_ms: number; delay_ms: number; gain_db: number; role: 'bed' | 'event'; editorial_reason?: string; placement_authoring: 'legacy' | 'ai-assisted' | 'human' };
 
 const NAV = [
@@ -223,9 +235,19 @@ function Sounds() {
   const { data, error } = useApi<Sound[]>('/api/sounds');
   const audio = useRef<HTMLAudioElement>(null); const [playing, setPlaying] = useState(''); const [search, setSearch] = useState(''); const [category, setCategory] = useState('all');
   if (error) return <ErrorState message={error} />; if (!data) return <Loading />;
-  const categories = [...new Set(data.map((sound) => sound.editorial.category))].sort(); const visible = data.filter((sound) => (category === 'all' || sound.editorial.category === category) && `${sound.title} ${sound.description} ${sound.editorial.scene_tags.join(' ')}`.toLowerCase().includes(search.toLowerCase()));
-  const play = (sound: Sound) => { if (!audio.current) return; audio.current.src = `/api/sounds/${sound.original_sha256}/audio`; void audio.current.play(); setPlaying(sound.original_sha256); };
-  return <><Header eyebrow={`${data.length} imported source files`} title="Естественные звуки" /><div className="toolbar"><select value={category} onChange={(event) => setCategory(event.target.value)}><option value="all">Все категории</option>{categories.map((value) => <option key={value}>{value}</option>)}</select><label className="search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Название, описание или scene tag" /></label></div><audio ref={audio} onEnded={() => setPlaying('')} /><section className="panel sound-list">{visible.map((sound) => <article className="sound-row" key={sound.original_sha256}><button className="play" onClick={() => play(sound)} aria-label={`Прослушать ${sound.title}`}>{playing === sound.original_sha256 ? '■' : '▶'}</button><div className="sound-main"><div><strong>{sound.title}</strong><small>{sound.editorial.category} · {sound.duration_seconds.toFixed(1)} s · {sound.license} · {sound.usage_count} сцен</small></div><Waveform peaks={sound.peaks} /></div><div className="sound-tags">{sound.editorial.allowed_roles.map((tag) => <span key={tag}>{tag}</span>)}<Status value={sound.editorial.review_status} /></div></article>)}</section></>;
+  // `all` and `generated` are the two pseudo-categories: an editorial category is a reviewer's
+  // judgement about an import, and a generated sound has no reviewer to have made one.
+  const categories = [...new Set(data.flatMap((sound) => sound.origin === 'freesound' ? [sound.editorial.category] : []))].sort();
+  const haystack = (sound: Sound) => sound.origin === 'freesound' ? `${sound.title} ${sound.description} ${sound.editorial.scene_tags.join(' ')}` : `${sound.prompt} ${sound.engine}`;
+  const inCategory = (sound: Sound) => category === 'all' || (category === 'generated' ? sound.origin === 'generated' : sound.origin === 'freesound' && sound.editorial.category === category);
+  const visible = data.filter((sound) => inCategory(sound) && haystack(sound).toLowerCase().includes(search.toLowerCase()));
+  const play = (sound: Sound) => { if (!audio.current) return; audio.current.src = `/api/sounds/${soundKey(sound)}/audio`; void audio.current.play(); setPlaying(soundKey(sound)); };
+  const imported = data.filter((sound) => sound.origin === 'freesound').length;
+  return <><Header eyebrow={`${imported} imported · ${data.length - imported} generated`} title="Звуковая библиотека" /><div className="toolbar"><select value={category} onChange={(event) => setCategory(event.target.value)}><option value="all">Все категории</option><option value="generated">Сгенерированные</option>{categories.map((value) => <option key={value}>{value}</option>)}</select><label className="search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Название, промпт или scene tag" /></label></div><audio ref={audio} onEnded={() => setPlaying('')} /><section className="panel sound-list">{visible.map((sound) => <article className="sound-row" key={soundKey(sound)}><button className="play" onClick={() => play(sound)} aria-label={`Прослушать ${sound.origin === 'freesound' ? sound.title : sound.prompt}`}>{playing === soundKey(sound) ? '■' : '▶'}</button><div className="sound-main">{sound.origin === 'freesound'
+    ? <div><strong>{sound.title}</strong><small>{sound.editorial.category} · {sound.duration_seconds.toFixed(1)} s · {sound.license} · {sound.usage_count} сцен</small></div>
+    : <div><strong>{sound.prompt}</strong><small>{sound.engine} · seed {sound.seed} · {sound.duration_seconds.toFixed(1)} s · {sound.license}</small></div>}<Waveform peaks={sound.peaks} /></div><div className="sound-tags">{sound.origin === 'freesound'
+    ? <>{sound.editorial.allowed_roles.map((tag) => <span key={tag}>{tag}</span>)}<Status value={sound.editorial.review_status} /></>
+    : <span>generated</span>}</div></article>)}</section></>;
 }
 
 function Drafts({ rows }: { rows: Artifact[] }) { const drafts = rows.filter((row) => !row.approved); return <><Header eyebrow="Agent-first workflow" title="Черновики и редакторская очередь" /><div className="callout"><strong>Первую полную версию создаёт агент.</strong><p>Skill подбирает каст и окружение, синтезирует, запускает QA и останавливается до human approval. Здесь редактор слушает и исправляет результат.</p><code>Use $create-listening-scene to create …</code></div><ArtifactTable rows={drafts} /></>; }
@@ -233,9 +255,12 @@ function Drafts({ rows }: { rows: Artifact[] }) { const drafts = rows.filter((ro
 function SoundscapeEditor({ projectId, revision, current }: { projectId: string; revision: number; current: ContextSound[] }) {
   const { data: sounds, error } = useApi<Sound[]>('/api/sounds'); const [selected, setSelected] = useState(''); const [reason, setReason] = useState(''); const [busy, setBusy] = useState(false);
   if (error) return <ErrorState message={error} />;
-  const source = sounds?.find((row) => row.original_sha256 === selected);
+  // Imports only: a `ContextSound` names an imported `sound_id`, and the soundscape endpoint
+  // refuses anything else — offering a generated row here would be a control that cannot work.
+  const importable = sounds?.filter((row): row is ImportedSound => row.origin === 'freesound');
+  const source = importable?.find((row) => row.original_sha256 === selected);
   const assign = async () => { if (!source || !reason.trim()) return; setBusy(true); const role = source.editorial.allowed_roles[0] as 'bed' | 'event'; const next: ContextSound[] = [...current, { source_sha256: source.original_sha256, sound_id: source.sound_id, start_ms: 0, duration_ms: Math.min(120000, Math.max(1, Math.round(source.duration_seconds * 1000))), delay_ms: 0, gain_db: source.editorial.default_gain_db, role, editorial_reason: reason.trim(), placement_authoring: 'human' }]; const response = await fetch(`/api/projects/${projectId}/soundscape?revision_number=${revision}`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(next) }); if (!response.ok) { setBusy(false); throw new Error(await response.text()); } location.reload(); };
-  return <div className="sound-picker"><select value={selected} onChange={(event) => setSelected(event.target.value)}><option value="">Источник окружения…</option>{sounds?.map((sound) => <option value={sound.original_sha256} key={sound.original_sha256}>{sound.title} · {sound.editorial.allowed_roles.join('/')}</option>)}</select><input value={reason} onChange={(event) => setReason(event.target.value)} placeholder="Почему звук нужен этой сцене" /><button disabled={!source || !reason.trim() || busy} onClick={() => void assign()}>Назначить</button></div>;
+  return <div className="sound-picker"><select value={selected} onChange={(event) => setSelected(event.target.value)}><option value="">Источник окружения…</option>{importable?.map((sound) => <option value={sound.original_sha256} key={sound.original_sha256}>{sound.title} · {sound.editorial.allowed_roles.join('/')}</option>)}</select><input value={reason} onChange={(event) => setReason(event.target.value)} placeholder="Почему звук нужен этой сцене" /><button disabled={!source || !reason.trim() || busy} onClick={() => void assign()}>Назначить</button></div>;
 }
 
 function Project({ route }: { route: string }) {

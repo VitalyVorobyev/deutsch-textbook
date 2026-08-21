@@ -15,10 +15,11 @@ from pathlib import Path
 from typing import Any, Callable, cast
 
 from .domain import Line, RevisionPayload, line_cache_key
-from .generative.fake import FakeSpeech
-from .generative.gateway import SpeechGenerator, SpeechRequest
+from .generative.fake import FakeSound, FakeSpeech
+from .generative.gateway import SoundGenerator, SpeechGenerator, SpeechRequest
 from .generative.locks import locked_snapshot
 from .generative.qwen import QwenSpeech
+from .generative.stable_audio_mlx import StableAudioSfx
 from .sources import load_source
 
 log = logging.getLogger(__name__)
@@ -29,6 +30,17 @@ log = logging.getLogger(__name__)
 ENGINES: dict[str, type[QwenSpeech] | type[FakeSpeech]] = {
     "qwen_tts": QwenSpeech,
     "fake": FakeSpeech,
+}
+
+# The same table for non-speech sound, and deliberately a second one rather than a merged
+# registry: the two protocols take different requests, and a caller that could look a speech
+# engine up by a sound engine's name would be one typo away from a scene cast on a tone
+# generator. The key is the name a command line uses; `FakeSound.name` stays `fake_sound`, which
+# is what a provenance record and a render manifest report, because that is what produced the
+# bytes.
+SOUND_ENGINES: dict[str, type[StableAudioSfx] | type[FakeSound]] = {
+    "stable_audio_sfx": StableAudioSfx,
+    "fake": FakeSound,
 }
 
 
@@ -48,6 +60,17 @@ def engine_revision(name: str) -> str:
         return ENGINES[name].revision
     except KeyError:
         raise ValueError(f"unknown synthesis engine {name}") from None
+
+
+def sound_engine_for(name: str) -> SoundGenerator:
+    """The sound engine a command line names. Constructing it downloads and loads nothing."""
+
+    try:
+        return SOUND_ENGINES[name]()
+    except KeyError:
+        raise ValueError(
+            f"unknown sound engine {name}; known: {', '.join(sorted(SOUND_ENGINES))}"
+        ) from None
 
 
 def speech_request(line: Line) -> SpeechRequest:

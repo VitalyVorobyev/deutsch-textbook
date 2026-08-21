@@ -1,0 +1,19 @@
+# What Stability's MLX implementation of Stable Audio 3 actually imports on the text-to-audio
+# path, pinned to the versions this course's sounds are produced with.
+#
+# Derived the way requirements-qwen-runtime.txt was — by reading `sys.modules` after a real
+# generation rather than by copying upstream's `optimized/mlx/requirements.txt`. Two of that
+# file's five entries never load here: `soundfile` belongs to the LoRA pre-encode path
+# (`pre_encode_mlx.py`), and this engine generates only. The three that do load are below, plus
+# `huggingface_hub`, which the studio already depends on at an exact pin and which upstream's
+# `weights.ensure_local` reaches for — under HF_HUB_OFFLINE=1, so it can only resolve files the
+# pinned download already placed.
+#
+# `mlx` is not new: mlx-lm and mlx-whisper (the `[mlx]` extra) already put 0.32.1 in this venv,
+# and `uv pip install --dry-run` resolves this file with **one** package to add, sentencepiece.
+# There is no conflict with the Qwen runtime — no shared dependency moves, torch is untouched —
+# which is why this installs into the studio's own venv rather than a second one. The engine runs
+# `sys.executable`, so that is also the interpreter it needs the packages in.
+mlx==0.32.1
+numpy==2.2.6
+sentencepiece==0.2.2
