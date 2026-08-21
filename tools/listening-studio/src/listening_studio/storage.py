@@ -6,12 +6,26 @@ import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
+from alembic import command
+from alembic.config import Config
 from platformdirs import user_data_path
-from sqlalchemy import ForeignKey, Integer, String, Text, create_engine, select
+from sqlalchemy import ForeignKey, Integer, String, Text, create_engine, inspect, select
 from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship
 
 from .domain import RevisionPayload, Stage
 from .reading_audio import ReadingProjectState, ReadingRevisionPayload
+from .scene import ExerciseAttachment, Scene
+
+
+#: The one stage machine. Dialogue, reading and scene projects all step through it, and each one
+#: used to carry its own copy of this dict — three places for a new stage to be added to two of.
+STAGE_TRANSITIONS: dict[Stage, Stage] = {
+    Stage.DRAFT: Stage.VALIDATED,
+    Stage.VALIDATED: Stage.AUDIO_GENERATED,
+    Stage.AUDIO_GENERATED: Stage.AUTOMATICALLY_CHECKED,
+    Stage.AUTOMATICALLY_CHECKED: Stage.HUMAN_APPROVED,
+    Stage.HUMAN_APPROVED: Stage.EXPORTED,
+}
 
 
 class Base(DeclarativeBase):
@@ -68,6 +82,40 @@ class ReadingRevision(Base):
     created_at: Mapped[str] = mapped_column(String(40))
 
 
+class SceneProject(Base):
+    """A scene under editorial work: one slug, one head revision, one stage."""
+
+    __tablename__ = "scene_projects"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    slug: Mapped[str] = mapped_column(String(160), unique=True)
+    kind: Mapped[str] = mapped_column(String(20))
+    stage: Mapped[str] = mapped_column(String(40), default=Stage.DRAFT)
+    current_revision_id: Mapped[int | None] = mapped_column(
+        ForeignKey("scene_revisions.id"), nullable=True
+    )
+    created_at: Mapped[str] = mapped_column(String(40))
+
+
+class SceneRevision(Base):
+    """Immutable bytes. A scene is never edited in place; a new revision is appended.
+
+    `exercise_json` is nullable and separately stored rather than folded into `scene_json`,
+    because a question edit must not change `scene_sha256` — an approval vouches for audio, and
+    audio does not change when a distractor is rewritten.
+    """
+
+    __tablename__ = "scene_revisions"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    project_id: Mapped[int] = mapped_column(ForeignKey("scene_projects.id"))
+    number: Mapped[int] = mapped_column(Integer)
+    scene_json: Mapped[str] = mapped_column(Text)
+    scene_sha256: Mapped[str] = mapped_column(String(64))
+    exercise_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    qa_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    approval_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[str] = mapped_column(String(40))
+
+
 def app_dir() -> Path:
     path = Path(user_data_path("Deutsch-Atlas/Listening Studio", "Vitaly Vorobyev"))
     path.mkdir(parents=True, exist_ok=True)
@@ -90,13 +138,49 @@ def remember_editor(root: Path, editor: str) -> None:
     (root / "editor.txt").write_text(editor.strip())
 
 
+#: The package root, where `alembic.ini` and `migrations/` live. Resolved from this file so the
+#: migrations are found whatever directory the CLI was started in.
+PACKAGE_ROOT = Path(__file__).resolve().parents[2]
+
+#: The revision a database created by `Base.metadata.create_all` corresponds to. Every deployed
+#: database predates Alembic adoption: `Store.__init__` called `create_all`, so the tables exist
+#: and `alembic_version` does not. Running `upgrade head` against one of those would try to
+#: `CREATE TABLE projects` and fail — so a legacy database is stamped at this revision first,
+#: and the migrations after it are written to be safe on a database that already has the tables.
+LEGACY_REVISION = "0001"
+
+
+def alembic_config(database: Path) -> Config:
+    config = Config(PACKAGE_ROOT / "alembic.ini")
+    config.set_main_option("script_location", str(PACKAGE_ROOT / "migrations"))
+    # Escaped: an absolute path can contain a `%`, and ConfigParser interpolates it.
+    config.set_main_option("sqlalchemy.url", f"sqlite:///{database}".replace("%", "%%"))
+    return config
+
+
 class Store:
-    def __init__(self, database: Path | None = None):
+    def __init__(self, database: Path | None = None, *, migrate: bool = True):
         self.root = database.parent if database else app_dir()
         self.root.mkdir(parents=True, exist_ok=True)
         self.database = database or self.root / "studio.sqlite3"
         self.engine = create_engine(f"sqlite:///{self.database}")
-        Base.metadata.create_all(self.engine)
+        if migrate:
+            self.upgrade()
+        else:
+            # The one caller that may skip migrations is a throwaway in-memory or fixture
+            # database whose only job is to hold rows for the length of one test. Anything that
+            # a human will open again goes through Alembic, or the next schema change has no
+            # record of what it is changing.
+            Base.metadata.create_all(self.engine)
+
+    def upgrade(self) -> None:
+        """Bring this database to head, stamping a pre-Alembic one on the way."""
+
+        tables = set(inspect(self.engine).get_table_names())
+        config = alembic_config(self.database)
+        if "projects" in tables and "alembic_version" not in tables:
+            command.stamp(config, LEGACY_REVISION)
+        command.upgrade(config, "head")
 
     def backup_database(self, target: Path) -> Path:
         """Create a consistent SQLite backup without copying a live WAL piecemeal."""
@@ -283,14 +367,7 @@ class Store:
         qa: dict[str, object] | None = None,
         approval: dict[str, object] | None = None,
     ) -> None:
-        allowed = {
-            Stage.DRAFT: Stage.VALIDATED,
-            Stage.VALIDATED: Stage.AUDIO_GENERATED,
-            Stage.AUDIO_GENERATED: Stage.AUTOMATICALLY_CHECKED,
-            Stage.AUTOMATICALLY_CHECKED: Stage.HUMAN_APPROVED,
-            Stage.HUMAN_APPROVED: Stage.EXPORTED,
-        }
-        if allowed.get(expected) != target:
+        if STAGE_TRANSITIONS.get(expected) != target:
             raise ValueError(f"invalid reading transition {expected} → {target}")
         with Session(self.engine) as session:
             project = session.get(ReadingProject, project_id)
@@ -399,18 +476,11 @@ class Store:
         qa: dict[str, object] | None = None,
         approval: dict[str, object] | None = None,
     ) -> None:
-        allowed = {
-            Stage.DRAFT: Stage.VALIDATED,
-            Stage.VALIDATED: Stage.AUDIO_GENERATED,
-            Stage.AUDIO_GENERATED: Stage.AUTOMATICALLY_CHECKED,
-            Stage.AUTOMATICALLY_CHECKED: Stage.HUMAN_APPROVED,
-            Stage.HUMAN_APPROVED: Stage.EXPORTED,
-        }
         # Say what the stage actually is and what may follow it. The old message named only
         # the rejected pair, which in the UI meant a bare 500 on every button that was not the
         # one legal next step — and the legal step is exactly what the editor needed told.
-        if allowed.get(expected) != target:
-            following = allowed.get(expected)
+        if STAGE_TRANSITIONS.get(expected) != target:
+            following = STAGE_TRANSITIONS.get(expected)
             raise ValueError(
                 f"this project is at {expected}; "
                 + (f"the next step is {following}, not {target}" if following else f"{expected} is the final stage")
@@ -424,6 +494,163 @@ class Store:
                     f"this project moved to {Stage(project.stage)} while the page was open; reload it"
                 )
             revision = session.get(Revision, project.current_revision_id)
+            assert revision
+            if qa is not None:
+                revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)
+            if approval is not None:
+                revision.approval_json = json.dumps(approval, ensure_ascii=False, sort_keys=True)
+            project.stage = target
+            session.commit()
+
+    # ------------------------------------------------------------------
+    # Scene projects (Scene v1)
+    # ------------------------------------------------------------------
+    #
+    # Deliberately the same shape as the two above rather than a better one: the point of Scene
+    # v1 is that the dialogue and reading tables eventually collapse into this one, and a store
+    # that behaved differently would make that a migration of behaviour as well as of rows.
+
+    def create_scene(
+        self, scene: Scene, exercise: ExerciseAttachment | None = None
+    ) -> SceneProject:
+        now = datetime.now(UTC).isoformat()
+        with Session(self.engine) as session:
+            existing = session.scalar(select(SceneProject).where(SceneProject.slug == scene.slug))
+            if existing:
+                raise ValueError(f"scene project {scene.slug} already exists")
+            project = SceneProject(
+                slug=scene.slug, kind=scene.kind, stage=Stage.DRAFT, created_at=now
+            )
+            session.add(project)
+            session.flush()
+            revision = SceneRevision(
+                project_id=project.id,
+                number=1,
+                scene_json=scene.canonical_json(),
+                scene_sha256=scene.sha256(),
+                exercise_json=exercise.canonical_json() if exercise else None,
+                created_at=now,
+            )
+            session.add(revision)
+            session.flush()
+            project.current_revision_id = revision.id
+            session.commit()
+            session.refresh(project)
+            session.expunge(project)
+            return project
+
+    def scene_projects(self) -> list[SceneProject]:
+        with Session(self.engine) as session:
+            projects = list(session.scalars(select(SceneProject).order_by(SceneProject.id)))
+            for project in projects:
+                session.expunge(project)
+            return projects
+
+    def get_scene(
+        self, project_id: int
+    ) -> tuple[SceneProject, SceneRevision, Scene, ExerciseAttachment | None]:
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project or not project.current_revision_id:
+                raise KeyError(project_id)
+            revision = session.get(SceneRevision, project.current_revision_id)
+            assert revision
+            scene = Scene.model_validate_json(revision.scene_json)
+            exercise = (
+                ExerciseAttachment.model_validate_json(revision.exercise_json)
+                if revision.exercise_json
+                else None
+            )
+            session.expunge(project)
+            session.expunge(revision)
+            return project, revision, scene, exercise
+
+    def get_scene_by_slug(
+        self, slug: str
+    ) -> tuple[SceneProject, SceneRevision, Scene, ExerciseAttachment | None] | None:
+        with Session(self.engine) as session:
+            project = session.scalar(select(SceneProject).where(SceneProject.slug == slug))
+            project_id = project.id if project else None
+        return self.get_scene(project_id) if project_id is not None else None
+
+    def revise_scene(
+        self, project_id: int, scene: Scene, exercise: ExerciseAttachment | None = None
+    ) -> SceneRevision:
+        project, current, _, _ = self.get_scene(project_id)
+        if project.slug != scene.slug:
+            raise ValueError("a scene revision cannot change its slug")
+        now = datetime.now(UTC).isoformat()
+        with Session(self.engine) as session:
+            revision = SceneRevision(
+                project_id=project_id,
+                number=current.number + 1,
+                scene_json=scene.canonical_json(),
+                scene_sha256=scene.sha256(),
+                exercise_json=exercise.canonical_json() if exercise else None,
+                created_at=now,
+            )
+            session.add(revision)
+            session.flush()
+            stored = session.get(SceneProject, project_id)
+            assert stored
+            stored.current_revision_id = revision.id
+            # New bytes, so any QA or approval attached to the previous revision describes other
+            # audio. Back to draft, exactly as the two older stores do.
+            stored.stage = Stage.DRAFT
+            session.commit()
+            session.refresh(revision)
+            session.expunge(revision)
+            return revision
+
+    def scene_history(self, project_id: int) -> list[dict[str, object]]:
+        with Session(self.engine) as session:
+            revisions = list(
+                session.scalars(
+                    select(SceneRevision)
+                    .where(SceneRevision.project_id == project_id)
+                    .order_by(SceneRevision.number.desc())
+                )
+            )
+            return [
+                {
+                    "number": row.number,
+                    "scene_sha256": row.scene_sha256,
+                    "created_at": row.created_at,
+                    "has_exercise": row.exercise_json is not None,
+                    "has_qa": row.qa_json is not None,
+                    "has_approval": row.approval_json is not None,
+                }
+                for row in revisions
+            ]
+
+    def transition_scene(
+        self,
+        project_id: int,
+        expected: Stage,
+        target: Stage,
+        *,
+        qa: dict[str, object] | None = None,
+        approval: dict[str, object] | None = None,
+    ) -> None:
+        if STAGE_TRANSITIONS.get(expected) != target:
+            following = STAGE_TRANSITIONS.get(expected)
+            raise ValueError(
+                f"this scene is at {expected}; "
+                + (
+                    f"the next step is {following}, not {target}"
+                    if following
+                    else f"{expected} is the final stage"
+                )
+            )
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project:
+                raise ValueError(f"scene project {project_id} does not exist")
+            if Stage(project.stage) != expected:
+                raise ValueError(
+                    f"this scene moved to {Stage(project.stage)} while the action was running"
+                )
+            revision = session.get(SceneRevision, project.current_revision_id)
             assert revision
             if qa is not None:
                 revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)

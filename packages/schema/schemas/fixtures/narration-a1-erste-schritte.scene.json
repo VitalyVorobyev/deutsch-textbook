@@ -1,0 +1,83 @@
+{
+  "acoustics": {
+    "lead_in_ms": 0,
+    "room": null
+  },
+  "authoring": "generated",
+  "brief": {
+    "duration_seconds": null,
+    "grammar_target": null,
+    "level": "A1",
+    "outcomes": [],
+    "scenario": "Narration des Lesetexts „Im Deutschkurs“",
+    "topic": "erste-schritte",
+    "vocabulary": []
+  },
+  "cast": [
+    {
+      "character": {
+        "id": "so-yeon-park",
+        "version": 1
+      },
+      "role": "narrator",
+      "voice": {
+        "engine": "qwen_tts",
+        "seed": 115,
+        "style": "Sprich besonders verständlich, geduldig und natürlich; betone Sinnabschnitte, nicht einzelne Wörter. Lies besonders verständlich und geduldig. Gliedere nach Sinn, nicht Wort für Wort; bleibe natürlich.",
+        "voice": "Sohee"
+      }
+    }
+  ],
+  "generation_prompt": null,
+  "kind": "narration",
+  "schema_version": 1,
+  "script": [
+    {
+      "display_text": "Heute ist der erste Tag im Deutschkurs. Die Lehrerin sagt: „Guten Morgen! Ich heiße Frau Klein.“ Dann stellt sich Anna vor: „Ich komme aus Polen und ich wohne in Hamburg. Ich spreche Polnisch und Englisch.“",
+      "id": "p1",
+      "pace": 0.88,
+      "pause_after_ms": 650,
+      "pronunciation_overrides": [],
+      "role": "narrator",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Die Lehrerin fragt: „Wie schreibt man deinen Nachnamen?“ Anna antwortet: „Nowak: N – O – W – A – K.“ Danach gibt sie ihre Telefonnummer an: null eins sieben sechs, vier drei zwei eins. Auf dem Formular stehen auch Vorname, Adresse und Sprache.",
+      "id": "p2",
+      "pace": 0.88,
+      "pause_after_ms": 650,
+      "pronunciation_overrides": [],
+      "role": "narrator",
+      "seed_override": null,
+      "synthesis_text": null
+    }
+  ],
+  "slug": "a1-erste-schritte",
+  "timeline": [
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "p1"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "p2"
+    }
+  ],
+  "title": {
+    "en": "Im Deutschkurs",
+    "ru": "Im Deutschkurs",
+    "uk": null
+  },
+  "variants": [
+    {
+      "id": "natural",
+      "overrides": {},
+      "preset": null
+    }
+  ]
+}

@@ -1,0 +1,803 @@
+{
+  "$defs": {
+    "AmbienceEntry": {
+      "additionalProperties": false,
+      "description": "A continuous bed under some or all of the scene.\n\nThe fade defaults are the numbers today's mixer hard-codes (`adapters.mix_context`:\n`afade=t=in:d=0.35` and `afade=t=out:d=0.45`), so a converted scene renders as it always\ndid rather than as someone's idea of a good fade.\n\nThe gain ceiling is -6 dB rather than 0: a bed at speech level is not a bed. Events may go\nto 0 because a door slam is allowed to be the loudest thing in the room.",
+      "properties": {
+        "end_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Ms"
+        },
+        "fade_in_ms": {
+          "default": 350,
+          "maximum": 10000,
+          "minimum": 0,
+          "title": "Fade In Ms",
+          "type": "integer"
+        },
+        "fade_out_ms": {
+          "default": 450,
+          "maximum": 10000,
+          "minimum": 0,
+          "title": "Fade Out Ms",
+          "type": "integer"
+        },
+        "gain_db": {
+          "default": -24.0,
+          "maximum": -6.0,
+          "minimum": -40.0,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "sound": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "$ref": "#/$defs/SoundSpec"
+            }
+          ],
+          "title": "Sound"
+        },
+        "start_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Start Ms",
+          "type": "integer"
+        },
+        "type": {
+          "const": "ambience",
+          "default": "ambience",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sound"
+      ],
+      "title": "AmbienceEntry",
+      "type": "object"
+    },
+    "AssetRef": {
+      "additionalProperties": false,
+      "description": "A content-addressed sound already in the library, and the excerpt of it that is used.\n\nThe trim lives on the reference rather than on the timeline entry because it describes the\n*asset*, not the scene: `start_ms`/`end_ms` on an ambience entry say when the bed is\naudible, while `source_start_ms` says which ten seconds of a ninety-second room tone the\neditor chose. Both numbers exist in every published manifest and they are not the same\nnumber.",
+      "properties": {
+        "ref": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "source_duration_ms": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Duration Ms"
+        },
+        "source_start_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Source Start Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Bilingual": {
+      "properties": {
+        "en": {
+          "title": "En",
+          "type": "string"
+        },
+        "ru": {
+          "title": "Ru",
+          "type": "string"
+        },
+        "uk": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Uk"
+        }
+      },
+      "required": [
+        "en",
+        "ru"
+      ],
+      "title": "Bilingual",
+      "type": "object"
+    },
+    "CastMember": {
+      "additionalProperties": false,
+      "description": "One voice in the scene, and the name the script calls it by.",
+      "properties": {
+        "character": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CharacterRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "voice": {
+          "$ref": "#/$defs/VoiceSpec"
+        }
+      },
+      "required": [
+        "role",
+        "voice"
+      ],
+      "title": "CastMember",
+      "type": "object"
+    },
+    "CharacterRef": {
+      "additionalProperties": false,
+      "description": "A row of `data/listening-characters.yaml`, pinned to the version that was cast.\n\nVersion, not just id: the catalog advances, and a scene that stored only the id would\nquietly change voice when it did.",
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "CharacterRef",
+      "type": "object"
+    },
+    "DifficultyVariant": {
+      "additionalProperties": false,
+      "description": "One rendering of the same script at a different listening difficulty.\n\n`overrides` is typed loosely on purpose. The difficulty vocabulary — what a key means, what\nvalues it takes, which preset composes which — belongs to the DSP PR that implements it,\nand naming keys here would freeze a vocabulary before anything can honour it. `preset` is\na preset id and is pinned against the preset table in the same PR.",
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "overrides": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Overrides",
+          "type": "object"
+        },
+        "preset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preset"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "DifficultyVariant",
+      "type": "object"
+    },
+    "Placement": {
+      "additionalProperties": false,
+      "description": "Where a sound sits in the stereo field and how far away it is.\n\n`device` names an acoustic device profile — \"telephone\", \"public-address\". It is a free\nstring until the DSP layer lands (PR 5 of the Tonwerk roadmap), which is where the profile\ntable and the validation against it belong. Validating against a table that does not exist\nyet would mean inventing the table here.",
+      "properties": {
+        "device": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Device"
+        },
+        "distance": {
+          "default": 1.0,
+          "minimum": 0.0,
+          "title": "Distance",
+          "type": "number"
+        },
+        "pan": {
+          "default": 0.0,
+          "maximum": 1.0,
+          "minimum": -1.0,
+          "title": "Pan",
+          "type": "number"
+        }
+      },
+      "title": "Placement",
+      "type": "object"
+    },
+    "PronunciationOverride": {
+      "additionalProperties": false,
+      "description": "A display spelling and what the engine should be given instead.\n\nPorted rather than imported from `domain`: the domain model permits extra keys, and the\npublished JSON Schema for a scene must say that it does not.",
+      "properties": {
+        "display": {
+          "minLength": 1,
+          "title": "Display",
+          "type": "string"
+        },
+        "synthesis": {
+          "minLength": 1,
+          "title": "Synthesis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "display",
+        "synthesis"
+      ],
+      "title": "PronunciationOverride",
+      "type": "object"
+    },
+    "SceneAcoustics": {
+      "additionalProperties": false,
+      "description": "Scene-wide acoustic treatment.\n\n`room` names a room profile — \"small-office\", \"station-hall\". Free string until PR 5, for\nthe reason given on `Placement.device`.",
+      "properties": {
+        "lead_in_ms": {
+          "default": 0,
+          "maximum": 5000,
+          "minimum": 0,
+          "title": "Lead In Ms",
+          "type": "integer"
+        },
+        "room": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Room"
+        }
+      },
+      "title": "SceneAcoustics",
+      "type": "object"
+    },
+    "SceneBrief": {
+      "additionalProperties": false,
+      "description": "What the scene is *for* — the generalization of `domain.Brief` that fits narration too.\n\nTwo deliberate differences from `Brief`. There is no `speaker_count`: it is `len(cast)`, and\nkeeping both is how `RevisionPayload.consistent` came to need a rule holding them equal.\nAnd `duration_seconds` is a range rather than a point, because the plan that commissions a\nscene states a min and a max, and the single number the old brief stored was their midpoint\n— a target nobody set, checked against a window nobody kept.",
+      "properties": {
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Duration Seconds"
+        },
+        "grammar_target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Grammar Target"
+        },
+        "level": {
+          "default": "A2",
+          "enum": [
+            "A1",
+            "A2",
+            "B1",
+            "B2"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "outcomes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Outcomes",
+          "type": "array"
+        },
+        "scenario": {
+          "minLength": 1,
+          "title": "Scenario",
+          "type": "string"
+        },
+        "topic": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Topic"
+        },
+        "vocabulary": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Vocabulary",
+          "type": "array"
+        }
+      },
+      "required": [
+        "scenario"
+      ],
+      "title": "SceneBrief",
+      "type": "object"
+    },
+    "SfxEntry": {
+      "additionalProperties": false,
+      "description": "One non-speech event at one moment.\n\n`at_ms` is absolute scene time, measured from the start of the mix — *not* from the first\nword. `SceneAcoustics.lead_in_ms` delays the speech, so a ring placed at 0 is heard before\nanyone talks, which is the whole reason lead-in exists.",
+      "properties": {
+        "at_ms": {
+          "minimum": 0,
+          "title": "At Ms",
+          "type": "integer"
+        },
+        "gain_db": {
+          "default": -18.0,
+          "maximum": 0.0,
+          "minimum": -40.0,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "placement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Placement"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "sound": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "$ref": "#/$defs/SoundSpec"
+            }
+          ],
+          "title": "Sound"
+        },
+        "type": {
+          "const": "sfx",
+          "default": "sfx",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sound",
+        "at_ms"
+      ],
+      "title": "SfxEntry",
+      "type": "object"
+    },
+    "SoundSpec": {
+      "additionalProperties": false,
+      "description": "A sound that does not exist yet, described so a generator can be asked for it.\n\nResolved to an `AssetRef` at render time. Deliberately no engine name: see the module\ndocstring. `params` is the one opaque dict, the `generative.gateway` rule.",
+      "properties": {
+        "duration_seconds": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Duration Seconds"
+        },
+        "negative_prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Negative Prompt"
+        },
+        "params": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "title": "Params",
+          "type": "object"
+        },
+        "prompt": {
+          "minLength": 1,
+          "title": "Prompt",
+          "type": "string"
+        },
+        "seed": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Seed",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt"
+      ],
+      "title": "SoundSpec",
+      "type": "object"
+    },
+    "SpeechEntry": {
+      "additionalProperties": false,
+      "description": "One utterance, placed.",
+      "properties": {
+        "at_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "At Ms"
+        },
+        "placement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Placement"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "type": {
+          "const": "speech",
+          "default": "speech",
+          "title": "Type",
+          "type": "string"
+        },
+        "utterance_id": {
+          "minLength": 1,
+          "title": "Utterance Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "utterance_id"
+      ],
+      "title": "SpeechEntry",
+      "type": "object"
+    },
+    "Utterance": {
+      "additionalProperties": false,
+      "description": "One turn of speech, with the delivery that is applied after the engine returns.",
+      "properties": {
+        "display_text": {
+          "minLength": 1,
+          "title": "Display Text",
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "pace": {
+          "default": 1.0,
+          "maximum": 1.3,
+          "minimum": 0.7,
+          "title": "Pace",
+          "type": "number"
+        },
+        "pause_after_ms": {
+          "default": 600,
+          "maximum": 5000,
+          "minimum": 0,
+          "title": "Pause After Ms",
+          "type": "integer"
+        },
+        "pronunciation_overrides": {
+          "items": {
+            "$ref": "#/$defs/PronunciationOverride"
+          },
+          "title": "Pronunciation Overrides",
+          "type": "array"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        },
+        "seed_override": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seed Override"
+        },
+        "synthesis_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Synthesis Text"
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "display_text"
+      ],
+      "title": "Utterance",
+      "type": "object"
+    },
+    "VoiceSpec": {
+      "additionalProperties": false,
+      "description": "How this role is synthesized. Engine-neutral by name, engine-specific by value.",
+      "properties": {
+        "engine": {
+          "minLength": 1,
+          "title": "Engine",
+          "type": "string"
+        },
+        "seed": {
+          "minimum": 0,
+          "title": "Seed",
+          "type": "integer"
+        },
+        "style": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Style"
+        },
+        "voice": {
+          "minLength": 1,
+          "title": "Voice",
+          "type": "string"
+        }
+      },
+      "required": [
+        "engine",
+        "voice",
+        "seed"
+      ],
+      "title": "VoiceSpec",
+      "type": "object"
+    }
+  },
+  "$id": "https://deutsch-atlas.local/schemas/audio-scene.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A cast, a script, and one time axis that both speech and sound are placed on.",
+  "properties": {
+    "acoustics": {
+      "$ref": "#/$defs/SceneAcoustics"
+    },
+    "authoring": {
+      "default": "manual",
+      "enum": [
+        "manual",
+        "generated"
+      ],
+      "title": "Authoring",
+      "type": "string"
+    },
+    "brief": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SceneBrief"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cast": {
+      "items": {
+        "$ref": "#/$defs/CastMember"
+      },
+      "minItems": 1,
+      "title": "Cast",
+      "type": "array"
+    },
+    "generation_prompt": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Generation Prompt"
+    },
+    "kind": {
+      "enum": [
+        "dialogue",
+        "narration",
+        "custom"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "script": {
+      "items": {
+        "$ref": "#/$defs/Utterance"
+      },
+      "minItems": 1,
+      "title": "Script",
+      "type": "array"
+    },
+    "slug": {
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "title": "Slug",
+      "type": "string"
+    },
+    "timeline": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "ambience": "#/$defs/AmbienceEntry",
+            "sfx": "#/$defs/SfxEntry",
+            "speech": "#/$defs/SpeechEntry"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/SpeechEntry"
+          },
+          {
+            "$ref": "#/$defs/SfxEntry"
+          },
+          {
+            "$ref": "#/$defs/AmbienceEntry"
+          }
+        ]
+      },
+      "minItems": 1,
+      "title": "Timeline",
+      "type": "array"
+    },
+    "title": {
+      "$ref": "#/$defs/Bilingual"
+    },
+    "variants": {
+      "items": {
+        "$ref": "#/$defs/DifficultyVariant"
+      },
+      "title": "Variants",
+      "type": "array"
+    }
+  },
+  "required": [
+    "slug",
+    "kind",
+    "title",
+    "cast",
+    "script",
+    "timeline"
+  ],
+  "title": "Scene",
+  "type": "object"
+}
