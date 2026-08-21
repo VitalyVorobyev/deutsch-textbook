@@ -183,25 +183,17 @@ On Python 3.12, install the Parler compatibility set with `./install-parler.sh`;
 upstream resolver's Python-incompatible `librosa` choice while retaining immutable Parler,
 DAC and audiotools code revisions.
 
-## Measured M4 Pro notes (2026-08-01)
+## Measured reliability
 
-Machine: MacBook Pro M4 Pro, 12 CPU cores, 24 GB unified memory, macOS 26.5.2.
+Qwen3-TTS on this machine (M4 Pro): MPS + explicit `dtype=torch.float32`, 86 float32 generations
+with zero failures at warm RTF ≈ 1.0 and 3.3 GB resident. The 2026-08-01 "unreliable on this
+machine" verdict was a dtype accident — `from_pretrained` without arguments never stated a device
+or dtype, and float16 on MPS fails deterministically with the recorded error. Full record,
+per-config numbers and the probe that reproduces them:
+[`docs/quality/tts-reliability.md`](../../docs/quality/tts-reliability.md).
 
-- Qwen3-TTS 0.6B CustomVoice, official code `022e286…`, PyTorch 2.13 MPS: model load
-  **3.455 s**, maximum resident memory **2.98 GB**, no swap. The German smoke line failed after
-  **53.16 s** with `torch.AcceleratorError` (`inf`/`nan` probabilities). The pinned official
-  repository exposes no MLX extra, so Qwen is recorded as unreliable on this machine.
-- Parler-TTS fallback, exact revision `11b27d5…`: immutable 3.75 GB fetch **291 s**. The four-line
-  sample synthesized in approximately **170 s** to **21.444 s** of audio (observed RTF ≈ **7.9**);
-  cached reassembly took **0.088 s**. Post-QA server RSS was **1.84 GB**; this run did not capture
-  a trustworthy peak-RSS or swap delta, so neither is claimed.
-- MLX Whisper QA normalized spoken number words against digits. Full-audio WER was **6.98%**, but
-  only **2/4 lines passed**: line 3 omitted the protected token *können* and line 4 had **37.5%**
-  WER. The fallback therefore fails the fixed 90% line-pass gate on this sample. The checked WAV,
-  QA record and non-approved provenance are retained in `examples/a2-zwei-sprecher/`; they are not
-  publishable curriculum audio.
-- The fake adapter is only for automated workflow tests. Production generation, QA and approval
-  reject it.
+The fake adapter is only for automated workflow tests. Production generation, QA and approval
+reject it.
 
 ## Validation
 
