@@ -259,6 +259,53 @@ that had only ever been created by `Base.metadata.create_all` gained the migrati
 had (0002). `Store.__init__` now runs `alembic upgrade head`, stamping a pre-Alembic database at
 0001 first, so an existing local corpus is adopted rather than rebuilt.
 
+## The JSON API
+
+`src/listening_studio/api/` is the whole `/api` surface, one module per concern. It is what the
+Tonwerk desktop app is built on; the HTML forms in `ui.py` and `web.py` keep working untouched
+until that app reaches parity, and nothing new is built on them.
+
+```sh
+uv run atlas-listening serve --repo ../..     # prints the bearer token at startup
+curl -H "Authorization: Bearer $TOKEN" http://127.0.0.1:8765/api/registry
+```
+
+**Auth.** One secret, two ways to present it. `Authorization: Bearer <token>` is what a program
+uses; the cookie and `?token=` are what the legacy pages use and die with them. A present-but-
+wrong `Authorization` header is **401 JSON**, never a redirect and never quietly overruled by a
+cookie — a client whose token is stale must learn that from the first request rather than from
+whichever code path happens not to be browser-shaped. The origin check applies only to the cookie
+path: it is a CSRF guard, CSRF needs an ambient credential, and a CLI sends no `Origin` at all.
+The table is in `web.local_only`'s docstring and every row of it has a test.
+
+**Scenes** (`api/scenes.py`, `api/workflow.py`) — the same operations `atlas-listening scene`
+offers, with the same gates, because two surfaces that disagree about when the fake engine is
+allowed is how a test take reaches a learner.
+
+| | |
+| --- | --- |
+| `GET /api/scenes` · `GET /api/scenes/{slug}` | list; one scene with its exercise, QA, approval and which variants are rendered *of these exact bytes* |
+| `POST /api/scenes` · `PUT /api/scenes/{slug}` | create; revise — a new revision, back to `draft`, and the slug may not change |
+| `POST /api/scenes/{slug}/validate` | re-validate the stored bytes, plus the acoustic ids this repository does not define |
+| `POST /api/scenes/{slug}/render` | `{variant, sound_engine}`; the engine comes from the stored cast, never from the request |
+| `POST /api/scenes/{slug}/qa` | transcript, speaker and soundscape QA; **409 with a sentence** when the local MLX Whisper runtime is absent |
+| `GET …/renders/{variant}/master` · `/qa-report` | the audio, and the machine's report on exactly those bytes |
+| `POST /api/scenes/{slug}/approve` | the human signature: the eight-point checklist, the reviewer's name, **and the sha256 of the master they listened to** — a mismatch is 409 |
+| `POST /api/scenes/{slug}/decline` | with a reason; back to `draft`, QA and render left in place |
+
+**Registry** (`api/registry.py`) — `GET /api/registry` is `scripts/listening-inventory.ts` joined
+with the studio database and the exercise corpus. That script stays as it is, because CI and the
+authoring loop need an answer with no studio installed; this is the second implementation, and
+`tests/test_api_registry.py` holds the two status vocabularies equal. Against the real corpus the
+two agree exactly: 57 planned, **40 published · 16 planned · 1 drafted** (`bun run
+listening:inventory` prints the same line).
+
+The join buys three findings no single source can see. `stale` — published audio whose studio
+revision has moved on since — is the seventh status, and the first six are `deriveStatus`'s.
+`recordings_without_exercises` is **17 of 57** today: a reviewed recording nothing asks a question
+about. `exercises_without_recordings` is **55**: an `audio-comprehension` item that falls back to
+browser TTS, plus (none today) any naming a recording the plan does not contain.
+
 ## The render graph
 
 A scene is not rendered by a script that walks it; it is compiled to a graph of nodes and only

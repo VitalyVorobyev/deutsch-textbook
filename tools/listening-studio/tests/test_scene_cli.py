@@ -10,8 +10,8 @@ import json
 from pathlib import Path
 
 import pytest
-from typer.testing import CliRunner
 
+from conftest import RUNNER as runner
 from listening_studio.scene import cli as scene_cli
 from listening_studio.scene.model import Scene
 from listening_studio.scene.schema_export import SCHEMA_PATH
@@ -19,7 +19,6 @@ from listening_studio.storage import Store
 
 
 REPO = Path(__file__).resolve().parents[3]
-runner = CliRunner()
 
 
 @pytest.fixture

@@ -623,6 +623,35 @@ class Store:
                 for row in revisions
             ]
 
+    def decline_scene(self, project_id: int, decline: dict[str, object]) -> None:
+        """A human reviewer refusing a take: back to draft, with the reason written down.
+
+        Two decisions worth stating, because neither is obvious.
+
+        **The verdict goes in `approval_json`.** That column is not "the approval"; it is *the
+        human verdict on this revision*, and `status` is what distinguishes them — `"complete"`
+        for a sign-off, `"declined"` for a refusal. Everything that consumes an approval already
+        keys on that value (`scripts/listening-inventory.ts` reads
+        `approval.status === 'complete'`), so a declined revision cannot be mistaken for an
+        approved one by any existing reader. A separate column would have been a migration and a
+        second place for a future reader to forget to look.
+
+        **The QA report stays.** A decline is a statement about the audio, not about the
+        machine's measurement of it: the transcripts, the speaker check and the soundscape
+        numbers still describe exactly these bytes, and throwing them away would make the
+        reviewer's own evidence disappear the moment they acted on it.
+        """
+
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project:
+                raise ValueError(f"scene project {project_id} does not exist")
+            revision = session.get(SceneRevision, project.current_revision_id)
+            assert revision
+            revision.approval_json = json.dumps(decline, ensure_ascii=False, sort_keys=True)
+            project.stage = Stage.DRAFT
+            session.commit()
+
     def transition_scene(
         self,
         project_id: int,

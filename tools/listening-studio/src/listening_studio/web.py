@@ -8,7 +8,7 @@ from pathlib import Path
 
 import yaml
 
-from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi import FastAPI, Form, HTTPException, Request, Response
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -38,7 +38,8 @@ from .speaker_qa import SpeakerQACalibration, check_speaker_consistency
 from .soundscape import soundscape_report
 from .storage import Store, remember_editor, remembered_editor
 from . import ui
-from .studio_api import router as studio_router
+from .api import Transcriber
+from .api import router as studio_router
 from .reading_audio import load_reading_sources
 
 
@@ -51,6 +52,7 @@ def app(
     token: str | None = None,
     *,
     allow_test_adapters: bool = False,
+    transcribe_fn: Transcriber | None = None,
 ) -> FastAPI:
     api = FastAPI(title="Deutsch-Atlas Listening Studio")
     # The course repository this server was started against is also where `.models/` is looked
@@ -66,18 +68,69 @@ def app(
 
     @api.middleware("http")
     async def local_only(request: Request, call_next):  # type: ignore[no-untyped-def]
-        # /health is exempt from the token so a supervisor can poll it. It must therefore not
-        # hand one out: issuing the session cookie on every response meant any client could
-        # GET /health, keep the cookie, and reach every mutation endpoint without ever knowing
-        # the token — the exemption became the way in. The cookie is set only for a request
-        # that already proved it had the secret.
+        """One secret, two ways to present it, and one of them is on its way out.
+
+        **Bearer** — `Authorization: Bearer <secret>` — is what a program uses: the desktop app,
+        a CLI, an agent. **Cookie or `?token=`** is what a browser uses, and it exists only for
+        the legacy HTML pages in `ui.py`. When those are deleted, so is every branch below that
+        mentions a cookie; nothing new may be built on them.
+
+        The table, in the order the code tests it:
+
+        | Authorization | cookie / `?token=` | Origin       | result                       |
+        | ------------- | ------------------ | ------------ | ---------------------------- |
+        | correct       | anything           | any / absent | pass, no cookie issued       |
+        | present, wrong| anything           | any          | **401 JSON**                 |
+        | absent        | correct            | local/absent | pass, cookie (re)issued      |
+        | absent        | correct            | foreign      | 403 JSON                     |
+        | absent        | absent/wrong       | any          | 403 JSON (except `/health`)  |
+
+        Three of those rows are decisions rather than mechanics.
+
+        *A wrong bearer is 401 and never falls through to the cookie.* A client that presented
+        credentials and was let in by an ambient cookie would never learn its token is wrong —
+        it would work in the browser-shaped case and fail everywhere else, which is the hardest
+        kind of auth bug to see. 401, not 403, because the credential is the thing at fault, and
+        never a redirect: a redirect to an HTML page is unparseable to the caller that sent it.
+
+        *The origin check does not apply to a bearer request.* It is a CSRF guard, and CSRF is a
+        property of ambient credentials — a browser attaches a cookie to a cross-site request
+        without being asked, and never attaches an `Authorization` header. A CLI sends no
+        `Origin` at all, so requiring one would refuse exactly the caller this API is for.
+
+        *A bearer request is not issued a cookie.* It is not a browser session, and handing a
+        long-lived ambient credential to a program that already holds the token adds a way in
+        without adding a capability.
+
+        `/health` is exempt from the token so a supervisor can poll it. It must therefore not
+        hand one out: issuing the session cookie on every response meant any client could
+        GET /health, keep the cookie, and reach every mutation endpoint without ever knowing the
+        token — the exemption became the way in.
+        """
+
+        # Returned, not raised. An HTTPException raised inside an http middleware never reaches
+        # FastAPI's exception handler — Starlette lets it escape as an unhandled error — so
+        # every rejection here was answering 500 while looking like a 403 in the source.
+        header = request.headers.get("authorization")
+        if header is not None:
+            scheme, _, presented = header.partition(" ")
+            # Compared as bytes: `compare_digest` on `str` raises TypeError for anything outside
+            # ASCII, so a header with one accented character would leave the middleware as an
+            # unhandled 500 instead of the 401 a wrong credential deserves.
+            if scheme.lower() != "bearer" or not secrets.compare_digest(
+                presented.strip().encode("utf-8", "surrogatepass"), secret.encode()
+            ):
+                return JSONResponse(
+                    {"detail": "Invalid bearer token"},
+                    status_code=401,
+                    headers={"WWW-Authenticate": "Bearer"},
+                )
+            return await call_next(request)
+
         authenticated = (
             request.query_params.get("token") == secret
             or request.cookies.get("atlas_studio") == secret
         )
-        # Returned, not raised. An HTTPException raised inside an http middleware never reaches
-        # FastAPI's exception handler — Starlette lets it escape as an unhandled error — so
-        # every rejection here was answering 500 while looking like a 403 in the source.
         if not authenticated and request.url.path != "/health":
             return JSONResponse({"detail": "Invalid local session token"}, status_code=403)
         origin = request.headers.get("origin")
@@ -89,15 +142,21 @@ def app(
         return response
 
     @api.exception_handler(ValueError)
-    def workflow_error(request: Request, exc: ValueError) -> HTMLResponse:
+    def workflow_error(request: Request, exc: ValueError) -> Response:
         """A refused step is the editor's answer, not a server fault.
 
         `Store.transition` raises ValueError for anything that is not the legal next step, and
         nothing caught it — so a project already at `automatically_checked` answered a bare 500
         traceback to Validate, Generate and QA alike. That is most of the buttons for most of a
         project's life, showing a stack trace instead of one sentence.
+
+        Under `/api` the same refusal is JSON. An HTML error page is the right answer to a form
+        post from a browser and an unparseable one to the desktop app, which would see a 409 it
+        cannot read the reason out of.
         """
 
+        if request.url.path.startswith("/api/"):
+            return JSONResponse({"detail": str(exc)}, status_code=409)
         return HTMLResponse(
             ui.error_page(str(exc), request.headers.get("referer")), status_code=409
         )
@@ -245,7 +304,14 @@ def app(
             )
         return HTMLResponse(ui.index_page(plan_rows()))
 
-    api.include_router(studio_router(store, repo))
+    api.include_router(
+        studio_router(
+            store,
+            repo,
+            allow_test_adapters=allow_test_adapters,
+            transcribe_fn=transcribe_fn,
+        )
+    )
 
     def voices_for(adapter: str) -> list[str]:
         lock = model_lock(PACKAGE_ROOT / "models.lock.json")
