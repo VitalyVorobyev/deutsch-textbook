@@ -46,6 +46,9 @@ class FakeSpeech:
             model_id="none",
             model_revision=self.revision,
             adapter_code_revision=self.revision,
+            # No model, so no model licence. "none" rather than an empty string: a reader of a
+            # sidecar has to be able to tell a fake engine from a field somebody forgot to fill.
+            license="none",
             seed=request.seed,
             request_sha256=request.sha256(),
             params=request.params,
@@ -81,6 +84,9 @@ class FakeSound:
             model_id="none",
             model_revision=self.revision,
             adapter_code_revision=self.revision,
+            # No model, so no model licence. "none" rather than an empty string: a reader of a
+            # sidecar has to be able to tell a fake engine from a field somebody forgot to fill.
+            license="none",
             seed=request.seed,
             request_sha256=request.sha256(),
             params=request.params,

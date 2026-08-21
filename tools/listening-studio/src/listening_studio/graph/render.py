@@ -687,9 +687,9 @@ def _resolve_sound(
 ) -> str:
     """A timeline sound as an asset: imported and trimmed, or generated.
 
-    A `SoundSpec` with no generator is a **refusal**. Production renders have no sound engine
-    until the Stable Audio PR lands, and a scene that asked for a generated sound and got silence
-    would be a scene nobody could hear was wrong.
+    A `SoundSpec` with no generator is a **refusal**. A render is given a sound engine by name
+    (`scene render --sound-engine`) or it has none at all, and a scene that asked for a generated
+    sound and got silence would be a scene nobody could hear was wrong.
     """
 
     if isinstance(sound, AssetRef):
@@ -726,7 +726,17 @@ def _synth(engine: SpeechGenerator, request: SpeechRequest, target: Path) -> dic
 
 
 def _sound(engine: SoundGenerator, request: SoundRequest, target: Path) -> dict[str, Any]:
-    return evaluate_sound_gen(engine, request, target).provenance | {"kind": "generated-sound"}
+    """The engine's provenance plus the request that produced it.
+
+    `AudioAsset.provenance` carries `request_sha256` and not the request, which is right for a
+    hash but wrong for a library: a generated sound's prompt, negative prompt, seed and length
+    are the editorial record of *why these bytes*, and a sidecar that can only prove the request
+    was some request leaves the sound library with nothing to show beside a Freesound title.
+    `sources.list_generated_sounds` reads exactly this.
+    """
+
+    provenance = evaluate_sound_gen(engine, request, target).provenance
+    return provenance | {"kind": "generated-sound", "request": request.model_dump(mode="json")}
 
 
 def _paced(
