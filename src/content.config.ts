@@ -11,6 +11,7 @@ import {
   discoverySchema,
   referenceDataSchema,
   listeningArtifactSchema,
+  readingAudioArtifactSchema,
 } from '@da/schema';
 
 // Prose only: a topic's identity, titles and element lists live in the sibling
@@ -65,6 +66,11 @@ const listening = defineCollection({
   schema: listeningArtifactSchema,
 });
 
+const readingAudio = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './content/reading-audio' }),
+  schema: readingAudioArtifactSchema,
+});
+
 export const collections = {
   topics,
   vocab,
@@ -76,4 +82,5 @@ export const collections = {
   discovery,
   referenceData,
   listening,
+  readingAudio,
 };

@@ -43,6 +43,14 @@
       "original_revision": "41f01f3fe87f28c78e2fbf8b568835947dd65ed9",
       "license": "MIT",
       "training_data_provenance": "vendor-documented; not independently verified"
+    },
+    "speaker_qa": {
+      "id": "microsoft/wavlm-base-plus-sv",
+      "revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "adapter_code": "transformers@4.57.3 WavLMForXVector",
+      "license": "CC BY-SA 3.0",
+      "training_data_provenance": "vendor-documented Libri-Light, GigaSpeech, VoxPopuli pretraining and VoxCeleb1 speaker-verification fine-tuning; not independently verified",
+      "purpose": "local editorial warning only; never shipped to learners"
     }
   }
 }
