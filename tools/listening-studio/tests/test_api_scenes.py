@@ -586,11 +586,17 @@ def test_a_lesetext_becomes_a_narration_scene_and_only_once(tmp_path: Path) -> N
         "updated",
         "title",
         "level",
+        "narration",
+        "deletable",
     }
     assert row["slug"] == "a1-erste-schritte"
     assert row["kind"] == "narration"
     assert row["stage"] == str(Stage.DRAFT)
     assert row["has_exercise"] is False
+    # P28-5: the queue can now show which profile is in use rather than only offering a picker.
+    assert row["narration"] == {"profile_id": "didactic-clear", "profile_version": 1}
+    # P28-6: a draft at revision 1 that no provenance manifest names is the one deletable state.
+    assert row["deletable"] is True
     assert [listed["slug"] for listed in http.get("/api/scenes", headers=AUTH).json()] == [
         row["slug"]
     ]

@@ -4,7 +4,7 @@ import { ApiContext } from '../useEngine';
 import { lesetextSlug, lesetextZeilen, ziel } from '../lesetexte';
 import { narrationProfilesFixture, stubApi } from '../test/fixtures';
 import { Lesetexte } from './Lesetexte';
-import type { Api } from '../api';
+import { EngineError, type Api } from '../api';
 import type { ReactNode } from 'react';
 
 /**
@@ -84,6 +84,29 @@ const szenenFixture = [
     updated: '2026-08-19T10:00:00+00:00',
     title: { en: 'At the registration office', ru: 'В ведомстве', uk: null },
     level: 'A2',
+    // P28-5: which profile directed this narration. Version 1 of an id this build's catalog knows.
+    narration: { profile_id: 'formal-informational', profile_version: 1 },
+    // Past `draft` and at revision 2, so the engine would refuse a deletion twice over.
+    deletable: false,
+  },
+];
+
+/** A fresh draft nobody has rendered — the one state `DELETE /api/scenes/{slug}` accepts. */
+const entwurfFixture = [
+  {
+    project_id: 9,
+    slug: 'a1-erste-schritte',
+    kind: 'narration',
+    stage: 'draft',
+    revision: 1,
+    scene_sha256: 'beef0001',
+    has_exercise: false,
+    qa_passed: null,
+    updated: '2026-08-21T09:00:00+00:00',
+    title: { en: 'In the German course', ru: 'На курсе немецкого', uk: null },
+    level: 'A1',
+    narration: { profile_id: 'didactic-clear', profile_version: 2 },
+    deletable: true,
   },
 ];
 
@@ -247,5 +270,78 @@ describe('the queue', () => {
     await waitFor(() =>
       expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-a1/erste-schritte'),
     );
+  });
+});
+
+describe('the narration profile in use (P28-5)', () => {
+  test('the catalog label and the pinned version, and “–” where nothing was recorded', async () => {
+    mount(<Lesetexte />, api());
+
+    // The scene records `formal-informational` v1; the catalog gives it a German label.
+    expect(await screen.findByText('Sachlich informierend')).toBeTruthy();
+    expect(screen.getByText('v1')).toBeTruthy();
+    // The unconverted row has no scene and therefore no profile — and must not show the one the
+    // picker would default to. A default rendered as a fact is how a reviewer comes to believe a
+    // choice was made.
+    const zeilen = lesetextZeilen(registryFixture.rows as never, szenenFixture as never);
+    expect(zeilen[0]?.profil).toBeNull();
+    expect(zeilen[1]?.profil).toEqual({ id: 'formal-informational', version: 1 });
+  });
+
+  test('a profile id this build has no label for still appears, as itself', async () => {
+    mount(<Lesetexte />, api({ scenes: async () => entwurfFixture as never }));
+
+    // `didactic-clear` is not in this build's catalog fixture. It must be printed, not dropped:
+    // the column exists to say which profile was used, and a renamed one is exactly when that
+    // question matters. Same rule as the Klon-Assistent's unknown consent rule.
+    expect(await screen.findByText('didactic-clear')).toBeTruthy();
+    expect(screen.getByText('v2')).toBeTruthy();
+  });
+});
+
+describe('die stille Rücknahme (P28-6)', () => {
+  test('offered only where the engine says it would accept one', async () => {
+    mount(<Lesetexte />, api());
+    await screen.findByText('Beim Bürgeramt');
+    // The converted row is past `draft` at revision 2; the unconverted one has no scene at all.
+    expect(screen.queryByRole('button', { name: 'Löschen' })).toBeNull();
+  });
+
+  test('two presses, and the armed state is the only thing that wears the alarm hue', async () => {
+    const deleteScene = vi.fn(async () => ({ slug: 'a1-erste-schritte', deleted: true, project_id: 9 }));
+    mount(<Lesetexte />, api({ scenes: async () => entwurfFixture as never, deleteScene: deleteScene as never }));
+
+    const knopf = await screen.findByRole('button', { name: 'Löschen' });
+    // Resting: no hue, no border — an offer is not a verdict.
+    expect(knopf.className).toBe('ruecknahme');
+    fireEvent.click(knopf);
+
+    const scharf = screen.getByRole('button', { name: 'Szene wirklich löschen' });
+    expect(scharf.className).toContain('ruecknahme-ja');
+    expect(deleteScene).not.toHaveBeenCalled();
+
+    // Disarming is one press and does nothing else.
+    fireEvent.click(screen.getByRole('button', { name: 'Abbrechen' }));
+    expect(deleteScene).not.toHaveBeenCalled();
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Löschen' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Szene wirklich löschen' }));
+    await waitFor(() => expect(deleteScene).toHaveBeenCalledWith('a1-erste-schritte'));
+  });
+
+  test('a refusal is printed on its row and the list is reloaded', async () => {
+    const deleteScene = vi.fn(async () => {
+      throw new EngineError(409, 'a1-erste-schritte ist veröffentlicht.');
+    });
+    const scenes = vi.fn(async () => entwurfFixture as never);
+    mount(<Lesetexte />, api({ scenes: scenes as never, deleteScene: deleteScene as never }));
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Löschen' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Szene wirklich löschen' }));
+
+    // The engine's own words, not a sentence this app invented for a rule it does not own.
+    expect(await screen.findByText(/veröffentlicht/)).toBeTruthy();
+    // A 409 means this row was stale, so the queue re-reads rather than leaving it as it was.
+    await waitFor(() => expect(scenes.mock.calls.length).toBeGreaterThan(1));
   });
 });

@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -31,6 +31,7 @@ from ..scene.checks import catalog_warnings
 from ..scene.convert import reading_scene
 from ..scene.exercise import ExerciseAttachment
 from ..scene.model import Scene
+from ..scene.publish import deletion_refusal, published_slugs
 from ..storage import Store
 
 
@@ -112,7 +113,9 @@ def render_availability(store: Store, scene: Scene) -> list[dict[str, Any]]:
     return found
 
 
-def scene_row(project: Any, revision: Any, scene: Scene, exercise: Any) -> dict[str, Any]:
+def scene_row(
+    project: Any, revision: Any, document: Mapping[str, Any], *, published: bool = False
+) -> dict[str, Any]:
     """One row of `GET /api/scenes`.
 
     A function rather than an inline dict because `POST /api/scenes/from-reading` answers the
@@ -124,8 +127,19 @@ def scene_row(project: Any, revision: Any, scene: Scene, exercise: Any) -> dict[
     whether the verdict was yes or no, and the difference is between a take waiting for a human
     and a take waiting for a rewrite. `api/registry._project_status` makes the same split from the
     same field; this is the scene list's own copy of the answer, not a second rule.
+
+    `narration` is the profile the scene was directed by (backlog P28-5), so the Lesetexte queue
+    can show what is *in use* instead of only offering a picker. Null for every dialogue and for
+    any narration converted before the field existed — the honest answer in both cases, and a
+    different one from "the default profile", which is what a queue that guessed would print.
+
+    `document` is the stored scene as plain JSON rather than a validated `Scene`, because the list
+    reads three display fields and validating 130 documents to get them would make one drifted
+    document fail every row.
     """
 
+    brief = document.get("brief")
+    narration = document.get("narration")
     return {
         "project_id": project.id,
         "slug": project.slug,
@@ -133,7 +147,7 @@ def scene_row(project: Any, revision: Any, scene: Scene, exercise: Any) -> dict[
         "stage": project.stage,
         "revision": revision.number,
         "scene_sha256": revision.scene_sha256,
-        "has_exercise": exercise is not None,
+        "has_exercise": revision.exercise_json is not None,
         "qa_passed": (
             json.loads(revision.qa_json).get("passed") if revision.qa_json else None
         ),
@@ -141,9 +155,16 @@ def scene_row(project: Any, revision: Any, scene: Scene, exercise: Any) -> dict[
         # property of the newest bytes, and `created_at` on the project answers a question nobody
         # in a list view is asking.
         "updated": revision.created_at,
-        "title": scene.title.model_dump(mode="json"),
-        "level": scene.brief.level if scene.brief else None,
+        "title": document.get("title"),
+        "level": brief.get("level") if isinstance(brief, dict) else None,
+        "narration": narration if isinstance(narration, dict) else None,
+        # A draft at revision 1 that was never published is the only thing `DELETE` accepts, and
+        # the row says so rather than making the client re-derive the rule. `published` is the
+        # half a client cannot see: it is a file in the course repository, not a stage.
+        "deletable": not published and deletion_refusal(project, revision) is None,
     }
+
+
 
 
 def router(store: Store, repo: Path) -> APIRouter:
@@ -151,11 +172,23 @@ def router(store: Store, repo: Path) -> APIRouter:
 
     @api.get("/scenes")
     def scenes() -> list[dict[str, Any]]:
-        rows: list[dict[str, Any]] = []
-        for project in store.scene_projects():
-            _, revision, scene, exercise = store.get_scene(project.id)
-            rows.append(scene_row(project, revision, scene, exercise))
-        return rows
+        """Every scene project, in one query and one directory walk.
+
+        It used to be one query plus one per project (`scene_projects()` then `get_scene()` in the
+        loop) — unremarkable at eleven scenes and 131 statements once the corpus converts, which is
+        the half of backlog P28-4 this closes.
+        """
+
+        published = published_slugs(repo)
+        return [
+            scene_row(
+                project,
+                revision,
+                json.loads(revision.scene_json),
+                published=project.slug in published,
+            )
+            for project, revision in store.scene_rows()
+        ]
 
     @api.get("/scenes/{slug}")
     def scene_detail(slug: str) -> dict[str, Any]:
@@ -235,8 +268,13 @@ def router(store: Store, repo: Path) -> APIRouter:
             project = store.create_scene(scene, None)
         except ValueError as error:
             raise HTTPException(409, str(error)) from error
-        _, revision, stored, exercise = store.get_scene(project.id)
-        return scene_row(project, revision, stored, exercise)
+        _, revision, stored, _exercise = store.get_scene(project.id)
+        return scene_row(
+            project,
+            revision,
+            stored.model_dump(mode="json"),
+            published=project.slug in published_slugs(repo),
+        )
 
     @api.put("/scenes/{slug}")
     def revise_scene(slug: str, document: SceneDocument) -> dict[str, Any]:
@@ -260,6 +298,42 @@ def router(store: Store, repo: Path) -> APIRouter:
             # see that the approval and the QA report did not come with it.
             "stage": str(Stage.DRAFT),
         }
+
+    @api.delete("/scenes/{slug}", status_code=200)
+    def delete_scene(slug: str) -> dict[str, Any]:
+        """Undo a mis-created scene. Draft, revision 1, never published — nothing else (P28-6).
+
+        An 85-row narration wave and a 40-row regeneration wave both create scenes from a queue,
+        and until now every creation was irreversible: the Lesetexte queue's Enter key deliberately
+        refuses to create for exactly that reason. This is the undo, and it is deliberately the
+        narrowest one that makes the queue safe.
+
+        Each refusal is its own sentence because they are different losses. A scene past `draft`
+        has audio rendered against its sha and may carry a QA report or a signature. A scene at
+        revision 2 has edit history. And a published slug is named by a provenance manifest in the
+        course repository — deleting the project would leave that manifest's `scene_sha256`
+        pointing at a document nobody has, and the registry would report the row as an unconverted
+        legacy artifact for ever.
+
+        **Nothing outside the database is deleted.** A render tree is keyed by scene sha and shared
+        by every project that hashes to those bytes; reaping it is `renders/`' own question.
+        """
+
+        found = store.get_scene_by_slug(slug)
+        if found is None:
+            raise HTTPException(404, f"no scene project {slug}")
+        project, revision, _, _ = found
+        refusal = deletion_refusal(project, revision)
+        if refusal is not None:
+            raise HTTPException(409, refusal)
+        if slug in published_slugs(repo):
+            raise HTTPException(
+                409,
+                f"{slug} is published: a provenance manifest in this repository names it, and "
+                "deleting the project would leave that manifest pointing at a document nobody has",
+            )
+        store.delete_scene(project.id)
+        return {"slug": slug, "deleted": True, "project_id": project.id}
 
     @api.post("/scenes/{slug}/validate")
     def validate_scene(slug: str) -> dict[str, Any]:

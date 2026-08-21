@@ -228,6 +228,28 @@
       "title": "DifficultyVariant",
       "type": "object"
     },
+    "NarrationRef": {
+      "additionalProperties": false,
+      "description": "Which narration profile directed this reading, pinned to the version that directed it.\n\nA narration profile is a row of `data/listening-narration.yaml`: a character, a pace per\nlevel, a paragraph pause and an instruction sentence. `scene_from_reading` **resolves** all\nof that into a cast member and a per-utterance pace, and the resolution is lossy — the\ncomposed `style` string is `\"<character style> <profile instruction>\"`, from which neither\nhalf can be recovered, and the pace is a number that several profiles could have produced.\nSo \"which profile narrated this\" was unanswerable from a scene, and the Lesetexte queue\ncould offer a picker and never show what was already chosen (backlog P28-5).\n\nVersion, not just id, for `CharacterRef`'s reason: the catalog advances, and a scene storing\nonly the id would silently claim to have been directed by a profile that has since changed.",
+      "properties": {
+        "profile_id": {
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "title": "Profile Id",
+          "type": "string"
+        },
+        "profile_version": {
+          "minimum": 1,
+          "title": "Profile Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "profile_id",
+        "profile_version"
+      ],
+      "title": "NarrationRef",
+      "type": "object"
+    },
     "Placement": {
       "additionalProperties": false,
       "description": "Where a sound sits in the stereo field and how far away it is.\n\n`device` names a row of `data/acoustic-profiles.yaml` — \"telephone\", \"pa\", \"next-room\" — and\nis resolved against it **at render time**, not here. `distance` is resolved the same way: 1.0\nis at the reference position and larger is further off, turned into a gain drop, a gentle\nlowpass and a larger send into the room by `listening_studio.dsp.chains`. An unknown device id\nis refused by the renderer with the path of the file that would have to define it.\n\nDeliberately not validated on load. A scene is a published document that other tools read, and\nholding it to a catalog it does not ship with would make a valid scene invalid on any machine\nwhose checkout of that catalog is older. `scene validate --repo` offers the check as a\n*warning* for exactly that reason.",
@@ -746,6 +768,17 @@
       ],
       "title": "Kind",
       "type": "string"
+    },
+    "narration": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NarrationRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "schema_version": {
       "const": 1,

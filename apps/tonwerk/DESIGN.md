@@ -251,6 +251,44 @@ publisher's decision and not this build's — a disabled option would imply a ga
 yet. A cast referencing a revoked voice is an alarm on the row, not a removal: the scene still names
 it, and a render that failed with nothing on the page to explain why is the worse outcome.
 
+## Die stille Rücknahme — the danger affordance, and why it is the quietest control on the row
+
+`Loeschen` in `src/views/Lesetexte.tsx`, `.ruecknahme` in `app.css`. Two waves create in bulk — 85
+Lesetexte and 40 dialogues — and until the engine grew `DELETE /api/scenes/{slug}` every creation
+was permanent, which is why the queue's `Enter` deliberately refuses to create.
+
+The obvious design is a red button, and it is wrong here for the reason the whole palette exists:
+**red is a verdict, not a category of control.** A failed check and an approval that no longer
+covers its bytes are red because something has been found; an *offer* to delete has found nothing.
+Making it red would be the fifth meaning the colour system spends its whole argument on refusing,
+and it would put an alarm on every deletable row in a queue that is mostly deletable rows.
+
+So the control is the quietest thing in its cell — apparatus face, no border, `--ton-schrift-weg`,
+visibly less like a button than the two links beside it — and it wears `--ton-alarm` only in the
+**armed** state, where the label has stopped being an offer (*Löschen*) and become the consequence
+(*Szene wirklich löschen*). That is the Statuslampe's own move at control scale: the hue arrives
+when there is something to read.
+
+Three rules follow, and each one is a way the affordance could be wrong instead:
+
+- **Two presses, no dialogue.** A `confirm()` is a modal in a queue driven from the keyboard, and a
+  dialogue you dismiss without reading is the checkbox nobody ticks honestly. The second press is
+  on a *different sentence*, which is what makes it a decision rather than a repeat.
+- **It appears only where the engine would accept it.** The row carries `deletable`, the engine's
+  own answer; two of its three conditions are visible on the row and the third — a provenance
+  manifest in the course repository naming this slug — is not. A control that is offered and then
+  refused teaches that the offers are decoration.
+- **A refusal prints the engine's words and reloads the queue.** All three refusals are about state
+  this list is a snapshot of, so a 409 means the snapshot was stale; re-deriving the rule here would
+  be a second implementation free to disagree with the first. The Klon-Assistent's rule again.
+
+The Lesetexte queue also gained a **Profil** column, because a narration profile resolves into a
+composed style string that cannot be taken apart again — so until the engine recorded `profile_id`,
+"which profile narrated this" was unanswerable and the queue could only ever offer a picker. An
+unrecorded profile renders `–` and **never the picker's default**: a default printed as a fact is
+how a reviewer comes to believe a choice was made. An id this build has no label for is printed as
+itself, for the reason an unknown consent rule is.
+
 ## Motion
 
 Almost none, and all of it under `prefers-reduced-motion`. The Pegel's segments animate their width

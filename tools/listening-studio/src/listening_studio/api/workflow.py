@@ -17,6 +17,7 @@ endpoint keeps its discipline on the request side, before anything is stored.
 from __future__ import annotations
 
 import json
+import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
@@ -35,6 +36,14 @@ from ..generative.voices import ResolvedVoices, resolve_voices
 from ..graph.render import render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
+from ..scene.publish import (
+    PUBLISHED_VARIANT,
+    PublishRefusal,
+    default_backup_root,
+    plan_publish,
+    stage_publish,
+    write_publish,
+)
 from ..storage import Store, remember_editor
 
 #: One transcription of one file. The seam `graph.scene_qa` already defines and documents: the
@@ -99,6 +108,25 @@ class ApprovalRequest(BaseModel):
     master_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     checklist: list[str] = Field(min_length=1)
     variant: str = "natural"
+
+
+class PublishRequest(BaseModel):
+    """What a publish may be told, and the two things it may not.
+
+    `variant` is present rather than absent so that asking for a difficulty rendering is *refused
+    by name* instead of quietly publishing the natural one — a request nobody would see in a diff.
+
+    `level` exists for the scene that has no brief to read one off. It **overrides** the brief when
+    both are present, which is why every surface prints the level it resolved before it writes:
+    an artifact filed under the wrong level fails `bun run validate` in three places at once, and
+    a silent override is how it would get there.
+    """
+
+    #: Where a scene with no brief goes. `None` means "read it off the brief, or refuse".
+    level: str | None = None
+    variant: str = PUBLISHED_VARIANT
+    #: Stage every byte, report where each would land, write nothing.
+    dry_run: bool = False
 
 
 class DeclineRequest(BaseModel):
@@ -421,7 +449,11 @@ def router(
                 f"the passing QA report is for variant {report.get('variant')}, "
                 f"not {request.variant}",
             )
-        if any(member.voice.engine == "fake" for member in scene.cast) and not allow_test_adapters:
+        # startswith, not equality: fake_clone is as much a test engine as fake, and a guard
+        # naming one engine exactly is a guard the next test engine walks past.
+        if any(
+            member.voice.engine.startswith("fake") for member in scene.cast
+        ) and not allow_test_adapters:
             raise HTTPException(409, "test audio cannot be approved")
 
         directory = render_dir(scene, request.variant)
@@ -481,6 +513,59 @@ def router(
             "stage": str(Stage.HUMAN_APPROVED),
             "approval": approval,
         }
+
+    @api.post("/scenes/{slug}/publish")
+    def publish(slug: str, request: PublishRequest) -> dict[str, Any]:
+        """Write one approved scene into the course repository, or say which gate refused.
+
+        Every refusal is a **409 naming its gate**, because the client's next move differs per
+        gate and a sentence is not something a UI can branch on: `voice-scope` sends the editor to
+        Figuren, `approval-master-sha` sends them back to Freigabe, `exercise-turns` sends them to
+        the exercise set. The gate ids are `scene.publish`'s and are listed in that module.
+
+        `dry_run` stages every byte and stops before the rename, so what it reports is what a real
+        publish would put where — the same plan object, not a second description of it.
+
+        The backup goes under **app-data**, not under the repository: a backup inside the tree
+        being published to is a file the next `bun run validate` has to be taught to ignore.
+        """
+
+        try:
+            plan = plan_publish(store, repo, slug, level=request.level, variant=request.variant)
+        except PublishRefusal as refusal:
+            raise HTTPException(
+                409, {"gate": refusal.gate, "detail": refusal.detail}
+            ) from refusal
+        answer: dict[str, Any] = {
+            "slug": plan.slug,
+            "level": plan.level,
+            "variant": plan.variant,
+            "scene_sha256": plan.scene_sha256,
+            "dry_run": request.dry_run,
+            "files": plan.files(),
+            "replaces": [path.as_posix() for path in plan.replaces],
+            "claims": plan.manifest["claims"],
+            "duration_seconds": plan.artifact["duration_seconds"],
+        }
+        if request.dry_run:
+            with tempfile.TemporaryDirectory(prefix="scene-publish-dry-") as staging:
+                answer["staged"] = [
+                    target.as_posix() for _, target in stage_publish(plan, Path(staging))
+                ]
+            return answer
+        backup = default_backup_root(store.root, plan.slug) if plan.replaces else None
+        try:
+            written = write_publish(plan, repo, backup_root=backup)
+        except PublishRefusal as refusal:
+            raise HTTPException(
+                409, {"gate": refusal.gate, "detail": refusal.detail}
+            ) from refusal
+        project, _, _, _ = stored(slug)
+        store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+        answer["written"] = [str(path) for path in written]
+        answer["stage"] = str(Stage.EXPORTED)
+        answer["backup"] = str(backup) if backup else None
+        return answer
 
     @api.post("/scenes/{slug}/decline")
     def decline(slug: str, request: DeclineRequest) -> dict[str, Any]:

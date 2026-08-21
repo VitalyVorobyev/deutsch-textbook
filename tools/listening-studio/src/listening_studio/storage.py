@@ -616,6 +616,69 @@ class Store:
             project_id = project.id if project else None
         return self.get_scene(project_id) if project_id is not None else None
 
+    def scene_rows(self) -> list[tuple[SceneProject, SceneRevision]]:
+        """Every scene project with its head revision, in **one** query.
+
+        `GET /api/scenes` used to call `scene_projects()` and then `get_scene()` per row, which is
+        one statement plus one per project — invisible at eleven scenes and a hundred-and-thirty
+        statements per page load once the corpus converts (backlog P28-4). The join is on
+        `current_revision_id`, so a project whose head is missing is simply absent rather than
+        raising: that state means a half-written creation, and a list view must render the other
+        rows.
+
+        The scene *document* is returned as stored bytes and deliberately not validated here. A
+        list needs a title, a level and a narration profile; running `Scene.model_validate_json`
+        over 130 documents to read three fields costs the other half of the same page load, and it
+        makes one document written by a newer build fail the **whole** list rather than one row.
+        """
+
+        with Session(self.engine) as session:
+            rows = list(
+                session.execute(
+                    select(SceneProject, SceneRevision)
+                    .join(SceneRevision, SceneProject.current_revision_id == SceneRevision.id)
+                    .order_by(SceneProject.id)
+                ).all()
+            )
+            found: list[tuple[SceneProject, SceneRevision]] = []
+            for project, revision in rows:
+                session.expunge(project)
+                session.expunge(revision)
+                found.append((project, revision))
+            return found
+
+    def delete_scene(self, project_id: int) -> None:
+        """Remove one scene project and its revisions. **The caller owns the policy.**
+
+        Deliberately unconditional here and gated at both surfaces (`scene.publish`'s siblings in
+        `scene/cli.py` and `DELETE /api/scenes/{slug}`), for the reason every other method in this
+        class is written the same way: the store is the record, and a store that enforced "draft,
+        revision 1, never published" would be a second place for that rule to be stated and a
+        second place for it to drift from the first. What the store *does* guarantee is that a
+        deletion is whole — the revisions go with the project, so nothing is left pointing at a
+        row that is not there.
+
+        Nothing outside the database is touched. Renders live under `renders/<scene sha>/` and are
+        shared by every revision that hashes to those bytes, so deleting them here would remove
+        audio another project may still be reviewing; `renders/` has its own reaper question
+        (backlog P28-4).
+        """
+
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project:
+                raise ValueError(f"scene project {project_id} does not exist")
+            # The project's own pointer first: SQLite enforces the FK from `scene_projects` to
+            # `scene_revisions`, so deleting the head revision under a live pointer fails.
+            project.current_revision_id = None
+            session.flush()
+            for revision in session.scalars(
+                select(SceneRevision).where(SceneRevision.project_id == project_id)
+            ):
+                session.delete(revision)
+            session.delete(project)
+            session.commit()
+
     def revise_scene(
         self, project_id: int, scene: Scene, exercise: ExerciseAttachment | None = None
     ) -> SceneRevision:

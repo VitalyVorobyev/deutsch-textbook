@@ -36,8 +36,19 @@ export interface LesetextZeile {
   status: string;
   /** The studio-level stage, in German, or null when no scene has been made. */
   stufe: string | null;
+  /**
+   * The narration profile the scene was made with, or null.
+   *
+   * Null covers two different things and neither may be shown as a guess: no scene yet, and a
+   * scene converted before the engine recorded the profile. Both read as "–", because the one
+   * thing this column must not print is the profile the queue *would* choose — a picker's default
+   * rendered as a fact is how a reviewer comes to believe a choice was made.
+   */
+  profil: { id: string; version: number } | null;
   szene: SceneRow | null;
   quelleAbgewichen: boolean;
+  /** Whether the engine would accept `DELETE` on this scene. Its answer, never re-derived here. */
+  loeschbar: boolean;
 }
 
 /**
@@ -76,8 +87,12 @@ export function lesetextZeilen(
               ? stufeStatus(szene.stage, szene.qa_passed)
               : row.status,
         stufe: szene ? (STUFE_LABEL[szene.stage] ?? szene.stage) : null,
+        profil: szene?.narration
+          ? { id: szene.narration.profile_id, version: szene.narration.profile_version }
+          : null,
         szene,
         quelleAbgewichen: row.source_drift === true,
+        loeschbar: szene?.deletable === true,
       };
     })
     .sort(vergleichen);
@@ -129,10 +144,11 @@ export function ebenen(zeilen: readonly LesetextZeile[]): string[] {
 /**
  * Where `Enter` goes on a row, and why one of the three answers is "nowhere".
  *
- * A Lesetext with no scene has nothing to open. The tempting answer — make `Enter` create it — is
- * refused: the engine publishes no way to delete a scene project, so a mistaken key press in an
- * 85-row queue is 85 irreversible projects, one per stray repeat. `Enter` therefore *points at*
- * the button, and a second, deliberate press is what creates.
+ * A Lesetext with no scene has nothing to open, so `Enter` *points at* that row's create button
+ * and a second, deliberate press is what creates. The original reason was that a mistaken key
+ * press was irreversible; `DELETE /api/scenes/{slug}` now makes it reversible, and the rule stays
+ * anyway — an undo is a repair, not a licence to let a held-down key create eighty-five projects
+ * a reviewer then has to delete one at a time.
  */
 export function ziel(zeile: LesetextZeile): { art: 'freigabe' | 'szene'; slug: string } | { art: 'anlegen' } {
   if (!zeile.szene) return { art: 'anlegen' };

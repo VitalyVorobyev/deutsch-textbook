@@ -28,6 +28,7 @@ from .model import (
     CastMember,
     CharacterRef,
     Level,
+    NarrationRef,
     PronunciationOverride,
     Scene,
     SceneAcoustics,
@@ -364,6 +365,10 @@ def scene_from_reading(
         script=script,
         timeline=[SpeechEntry(utterance_id=utterance.id) for utterance in script],
         acoustics=SceneAcoustics(),
+        # The profile is recorded because resolving it is lossy: the style string it composed
+        # cannot be taken apart again and the pace is a number several profiles could produce.
+        # See `NarrationRef`.
+        narration=NarrationRef(profile_id=profile.id, profile_version=profile.version),
         # Matches `ReadingRevisionPayload.authoring`, whose default is the same value for the
         # same corpus. Changing the answer on the way through a converter would make the two
         # models disagree about the identical text.

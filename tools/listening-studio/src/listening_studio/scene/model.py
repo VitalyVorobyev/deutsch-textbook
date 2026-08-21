@@ -282,6 +282,25 @@ class DifficultyVariant(Strict):
     overrides: dict[str, float | str] = Field(default_factory=dict)
 
 
+class NarrationRef(Strict):
+    """Which narration profile directed this reading, pinned to the version that directed it.
+
+    A narration profile is a row of `data/listening-narration.yaml`: a character, a pace per
+    level, a paragraph pause and an instruction sentence. `scene_from_reading` **resolves** all
+    of that into a cast member and a per-utterance pace, and the resolution is lossy — the
+    composed `style` string is `"<character style> <profile instruction>"`, from which neither
+    half can be recovered, and the pace is a number that several profiles could have produced.
+    So "which profile narrated this" was unanswerable from a scene, and the Lesetexte queue
+    could offer a picker and never show what was already chosen (backlog P28-5).
+
+    Version, not just id, for `CharacterRef`'s reason: the catalog advances, and a scene storing
+    only the id would silently claim to have been directed by a profile that has since changed.
+    """
+
+    profile_id: str = Field(pattern=KEBAB)
+    profile_version: int = Field(ge=1)
+
+
 class SceneBrief(Strict):
     """What the scene is *for* — the generalization of `domain.Brief` that fits narration too.
 
@@ -333,6 +352,18 @@ class Scene(Strict):
     #: reconstructed from the finished script: after the editorial revision every draft receives,
     #: a rebuilt prompt is a generation history that did not happen.
     generation_prompt: str | None = None
+    #: The narration profile a `kind: narration` scene was directed by, or None.
+    #:
+    #: **On the scene rather than on the brief**, and the two reasons are independent. It is a fact
+    #: about how this document was *produced* — the sibling of `authoring` and `generation_prompt`,
+    #: not of `scenario` and `outcomes`, which say what the scene is *for*. And `brief` is nullable,
+    #: so a field there would be unrecordable for exactly the scenes that have no commissioning
+    #: brief and were still narrated by a profile.
+    #:
+    #: Additive and defaulted, so `schema_version` stays 1 — `VoiceSpec.voice_ref`'s argument:
+    #: every scene written before this field existed is still a valid Scene v1 document and still
+    #: renders to the same bytes.
+    narration: NarrationRef | None = None
 
     @model_validator(mode="after")
     def consistent(self) -> Scene:
