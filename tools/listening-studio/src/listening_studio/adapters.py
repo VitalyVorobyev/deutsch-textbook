@@ -45,6 +45,7 @@ class QwenTTS:
 
     def synthesize(self, line: Line, target: Path) -> None:
         try:
+            import torch
             from qwen_tts import Qwen3TTSModel
             import soundfile as sf
         except ImportError as exc:
@@ -53,8 +54,21 @@ class QwenTTS:
             ) from exc
         if self._model is None:
             model_path = locked_snapshot("Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice", self.revision)
-            self._model = Qwen3TTSModel.from_pretrained(model_path)
-        import torch
+            # Device and dtype are stated here, never inherited. `from_pretrained` with neither
+            # loads on CPU, and the upstream wrapper forwards whatever the loader picked — so the
+            # placement this engine runs on was an accident of the installed transformers rather
+            # than a decision. float16 on MPS is the accident that costs something: the talker's
+            # sampling logits overflow and generation dies with `torch.AcceleratorError:
+            # probability tensor contains either `inf`, `nan` or element < 0` — within half a
+            # second, on every line it was given, and it is the signature the 2026-08-01 run
+            # recorded as "Qwen is unreliable on this machine". float32 on MPS ran 74 generations
+            # with no failure and no NaN. Numbers, method and the rejected alternatives (bfloat16
+            # is faster and was still declined): docs/quality/tts-reliability.md.
+            self._model = Qwen3TTSModel.from_pretrained(
+                model_path,
+                device_map="mps" if torch.backends.mps.is_available() else "cpu",
+                dtype=torch.float32,
+            )
 
         torch.manual_seed(line.seed)
         style = {"instruct": line.style} if line.style else {}
@@ -270,7 +284,7 @@ def generate_drafts(
     """Generate several editorial drafts while loading the MLX model only once."""
 
     try:
-        from mlx_lm import generate, load  # type: ignore[attr-defined]
+        from mlx_lm import generate, load
     except ImportError as exc:
         raise RuntimeError("Install the pinned MLX generation adapter first") from exc
     model_path = locked_snapshot(
