@@ -134,6 +134,11 @@ def serve(repo: Path = typer.Option(Path.cwd()), port: int = 8765, no_open: bool
     token = api.state.session_token
     url = f"http://127.0.0.1:{port}/?token={token}"
     typer.echo(f"Listening Studio: {url}")
+    # The same secret, in the form a program presents it. Printed once at startup because there
+    # is nowhere else to get it: the token is generated per run and never written to disk, so an
+    # agent or the desktop app pairing with this server reads it from this line.
+    typer.echo(f"API bearer token: {token}")
+    typer.echo(f'  curl -H "Authorization: Bearer {token}" http://127.0.0.1:{port}/api/registry')
     if not no_open:
         webbrowser.open(url)
     uvicorn.run(api, host="127.0.0.1", port=port)

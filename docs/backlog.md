@@ -77,6 +77,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Tonwerk audio studio
 
+- **P28-3 · one qa_json per scene revision, but renders are per variant.** QA-ing a second
+  variant overwrites the first's report; correct while only `natural` renders, wrong the moment
+  difficulty variants ship to learners. The report endpoints already refuse to serve a report
+  under the wrong variant's URL. First step: key qa_json by variant in `scene_revisions`.
+- **P28-4 · renders/ has no reaper and no disk figure.** Revising a scene orphans its previous
+  render tree forever — deliberate (stems allow re-mixing without a model) but unmeasured; and
+  `GET /api/scenes` does an N+1 store lookup that will show once the corpus converts. First
+  step: a `renders du` figure in the dashboard row, then a keep-last-N policy decision.
 - **P28-2 · a scene ending on its last word has no reverb tail.** `afir` truncates at input EOF,
   so a station-hall scene stops dead instead of ringing out — audible on any long-decay room.
   Fix: pad the dialogue bus with trailing silence ≥ the room's decay before convolution
