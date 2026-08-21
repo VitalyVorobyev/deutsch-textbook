@@ -19,11 +19,14 @@ def test_glosses_reduce_to_their_german_surface() -> None:
     assert spoken_paragraph("Das ist [[ein Termin::an appointment::встреча]].") == "Das ist ein Termin."
 
 
-def test_inventory_is_the_real_fifty_nine_text_corpus() -> None:
+def test_inventory_is_the_full_reading_corpus() -> None:
+    # A tripwire, not a fixture: growing content/reading/ must move these numbers in the
+    # same change, or narration planning is projected from a corpus that no longer exists
+    # (the 59-text figure went stale exactly that way).
     sources = load_reading_sources(REPO)
-    assert len(sources) == 59
-    assert sum(len(row.paragraphs) for row in sources) == 197
-    assert sum(row.word_count for row in sources) == 8220
+    assert len(sources) == 85
+    assert sum(len(row.paragraphs) for row in sources) == 380
+    assert sum(row.word_count for row in sources) == 13514
 
 
 def test_profile_assignment_is_deterministic() -> None:
