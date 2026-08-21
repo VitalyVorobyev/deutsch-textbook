@@ -20,15 +20,25 @@
 import { z } from 'zod';
 import { getToken } from './auth';
 import {
+  acousticsSchema,
   charactersSchema,
+  qaResultSchema,
   registrySchema,
+  renderResultSchema,
+  reviseResultSchema,
   sceneDetailSchema,
   sceneRowSchema,
   sceneSchema,
+  soundRowSchema,
+  type Acoustics,
   type Characters,
+  type QaResult,
   type Registry,
+  type RenderResult,
+  type ReviseResult,
   type SceneDetail,
   type SceneRow,
+  type SoundRow,
 } from './contracts';
 import type { Scene } from '@da/schema/audio-scene';
 
@@ -81,12 +91,36 @@ export interface ApiOptions {
   onUnauthorized?: (reason: string) => void;
 }
 
+/** What a generation asks for: `SoundSpec`'s own fields, plus which engine is to make them. */
+export interface SoundGenerationRequest {
+  prompt: string;
+  negative_prompt?: string | null;
+  seed: number;
+  duration_seconds: number;
+  engine: string;
+}
+
 export interface Api {
   registry(signal?: AbortSignal): Promise<Registry>;
   scenes(signal?: AbortSignal): Promise<SceneRow[]>;
   scene(slug: string, signal?: AbortSignal): Promise<SceneDetail & { document: SceneDocument }>;
   characters(signal?: AbortSignal): Promise<Characters>;
+  acoustics(signal?: AbortSignal): Promise<Acoustics>;
+  sounds(signal?: AbortSignal): Promise<SoundRow[]>;
   objectUrl(path: string, signal?: AbortSignal): Promise<string>;
+
+  /**
+   * Save a scene as a **new revision**, which returns the project to `draft`.
+   *
+   * `exercise` is passed through and not optional in practice: the engine's `PUT` takes the scene
+   * and the exercise as siblings and stores what it was given, so a body that omitted an existing
+   * exercise would delete it. The editor never constructs one — it carries the envelope's own
+   * value back unchanged.
+   */
+  reviseScene(slug: string, scene: Scene, exercise: unknown): Promise<ReviseResult>;
+  renderScene(slug: string, variant: string, soundEngine?: string): Promise<RenderResult>;
+  runQa(slug: string, variant: string): Promise<QaResult>;
+  generateSound(request: SoundGenerationRequest): Promise<SoundRow>;
 }
 
 /**
@@ -114,17 +148,29 @@ const looseSceneSchema = z.looseObject({
   variants: z.array(z.looseObject({ id: z.string().default('') })).default([]),
 });
 
+/** A request that changes something. Reads pass nothing; there is no third kind. */
+interface Write {
+  method: 'PUT' | 'POST';
+  body: unknown;
+}
+
 export function createApi(options: ApiOptions = {}): Api {
   const token = options.token ?? getToken;
   const fetcher: Fetcher = options.fetchImpl ?? ((input, init) => globalThis.fetch(input, init));
   let reportedUnauthorized = false;
 
-  async function send(path: string, signal?: AbortSignal): Promise<Response> {
+  async function send(path: string, signal?: AbortSignal, write?: Write): Promise<Response> {
     let response: Response;
     try {
       response = await fetcher(path, {
         signal,
-        headers: { Authorization: `Bearer ${token()}`, Accept: 'application/json' },
+        method: write?.method ?? 'GET',
+        headers: {
+          Authorization: `Bearer ${token()}`,
+          Accept: 'application/json',
+          ...(write ? { 'Content-Type': 'application/json' } : {}),
+        },
+        ...(write ? { body: JSON.stringify(write.body) } : {}),
       });
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') throw error;
@@ -143,8 +189,13 @@ export function createApi(options: ApiOptions = {}): Api {
     return response;
   }
 
-  async function read<T>(path: string, schema: z.ZodType<T>, signal?: AbortSignal): Promise<T> {
-    const response = await send(path, signal);
+  async function read<T>(
+    path: string,
+    schema: z.ZodType<T>,
+    signal?: AbortSignal,
+    write?: Write,
+  ): Promise<T> {
+    const response = await send(path, signal, write);
     const body: unknown = await response.json();
     const parsed = schema.safeParse(body);
     if (!parsed.success) throw new ShapeError(path, parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join('; '));
@@ -154,6 +205,29 @@ export function createApi(options: ApiOptions = {}): Api {
   return {
     registry: (signal) => read('/api/registry', registrySchema, signal),
     scenes: (signal) => read('/api/scenes', z.array(sceneRowSchema), signal),
+    acoustics: (signal) => read('/api/acoustics', acousticsSchema, signal),
+    sounds: (signal) => read('/api/sounds', z.array(soundRowSchema), signal),
+
+    reviseScene: (slug, scene, exercise) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}`, reviseResultSchema, undefined, {
+        method: 'PUT',
+        body: { scene, exercise: exercise ?? null },
+      }),
+
+    renderScene: (slug, variant, soundEngine) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/render`, renderResultSchema, undefined, {
+        method: 'POST',
+        body: { variant, ...(soundEngine ? { sound_engine: soundEngine } : {}) },
+      }),
+
+    runQa: (slug, variant) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/qa`, qaResultSchema, undefined, {
+        method: 'POST',
+        body: { variant },
+      }),
+
+    generateSound: (request) =>
+      read('/api/sounds/generate', soundRowSchema, undefined, { method: 'POST', body: request }),
 
     async scene(slug, signal) {
       const detailResponse = await read(`/api/scenes/${encodeURIComponent(slug)}`, sceneDetailSchema, signal);
@@ -183,10 +257,35 @@ export function createApi(options: ApiOptions = {}): Api {
   };
 }
 
+/**
+ * The engine's own words for a refusal, in the two shapes FastAPI answers with.
+ *
+ * A hand-written `HTTPException` carries a string. A request that failed **schema** validation
+ * carries a list of `{loc, msg}` — which is the shape the scene editor hits most, because that is
+ * what a scene document with a bad field produces. Falling back to `422 Unprocessable Entity`
+ * there would tell the author that something is wrong and never which field, so the list is
+ * flattened into `script.0.pace: Input should be less than or equal to 1.3` — the path the engine
+ * itself names, unchanged.
+ */
 async function detail(response: Response, fallback: string): Promise<string> {
   try {
     const body: unknown = await response.json();
-    if (body && typeof body === 'object' && 'detail' in body && typeof body.detail === 'string') return body.detail;
+    if (!body || typeof body !== 'object' || !('detail' in body)) return fallback;
+    const { detail: reason } = body as { detail: unknown };
+    if (typeof reason === 'string') return reason;
+    if (Array.isArray(reason)) {
+      const zeilen = reason.flatMap((eintrag) => {
+        if (!eintrag || typeof eintrag !== 'object') return [];
+        const { loc, msg } = eintrag as { loc?: unknown; msg?: unknown };
+        if (typeof msg !== 'string') return [];
+        // `loc` starts with "body" on every request FastAPI validated; the reader knows.
+        const pfad = Array.isArray(loc)
+          ? loc.filter((teil) => teil !== 'body').join('.')
+          : '';
+        return [pfad ? `${pfad}: ${msg}` : msg];
+      });
+      if (zeilen.length) return zeilen.join(' · ');
+    }
   } catch {
     /* not JSON; the fallback is the honest answer */
   }

@@ -187,18 +187,31 @@ def _generated_sound(sha: str, sidecar: dict[str, Any]) -> GeneratedSound | None
         return None
 
 
+def generated_sound(root: Path, asset_sha256: str) -> GeneratedSound | None:
+    """One generated sound by digest, or None when that sidecar is not one.
+
+    The single-row half of `list_generated_sounds`, so the endpoint that generates a sound can
+    answer with exactly the row the library will show it as — rather than assembling a second
+    shape from the request it just served, which is how a listing and a creation response start
+    disagreeing about a field neither of them is wrong about alone.
+    """
+
+    sidecar = root / "assets" / f"{asset_sha256}.json"
+    try:
+        loaded = json.loads(sidecar.read_text())
+    except (OSError, ValueError):
+        return None
+    if not isinstance(loaded, dict):
+        return None
+    return _generated_sound(asset_sha256, loaded)
+
+
 def list_generated_sounds(root: Path) -> list[GeneratedSound]:
     """Every generated sound in the asset store, newest last by digest for a stable order."""
 
     rows = []
     for sidecar in sorted((root / "assets").glob("*.json")):
-        try:
-            loaded = json.loads(sidecar.read_text())
-        except (OSError, ValueError):
-            continue
-        if not isinstance(loaded, dict):
-            continue
-        row = _generated_sound(sidecar.stem, loaded)
+        row = generated_sound(root, sidecar.stem)
         if row is not None:
             rows.append(row)
     return rows

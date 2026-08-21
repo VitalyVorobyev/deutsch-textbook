@@ -133,6 +133,15 @@ def test_the_full_scene_lifecycle_reaches_a_human_approval(client: Any) -> None:
     natural = next(row for row in detail["renders"] if row["variant"] == "natural")
     assert natural["rendered"] is True and natural["has_master"] is True
     assert natural["duration_ms"] == render["duration_ms"]
+    # The render's own measurement of where everything landed, carried on the row it belongs to.
+    # A client can otherwise say a variant is rendered and nothing about what it sounds like.
+    assert [row["utterance_id"] for row in natural["timing"]] == [
+        utterance.id for utterance in scene.script
+    ]
+    assert {row["type"] for row in natural["timeline"]} == {"speech", "ambience", "sfx"}
+    assert {row["kind"] for row in natural["artifacts"]} == {
+        "master", "qa", "publish", "dry", "stem"
+    }
     assert detail["qa"] is None and detail["approval"] is None
 
     checked_qa = http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH)

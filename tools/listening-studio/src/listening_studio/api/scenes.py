@@ -49,6 +49,12 @@ def render_availability(store: Store, scene: Scene) -> list[dict[str, Any]]:
     Keyed by `scene.sha256()`, which is how `render_scene` lays the directory out — so a scene
     revised after rendering reports every variant unrendered rather than pointing the reviewer at
     audio of the previous text. That is the whole reason the render path carries the sha.
+
+    `timing`, `timeline` and `artifacts` are read straight out of the manifest this function
+    already opens. They are the render's **own measurement** of where everything landed — the
+    only account of the mix that is not a plan — and without them a client can say a variant is
+    rendered and nothing about what it sounds like. Absent before a render, and never invented:
+    the authored `at_ms` is a request, not a time.
     """
 
     found: list[dict[str, Any]] = []
@@ -63,6 +69,9 @@ def render_availability(store: Store, scene: Scene) -> list[dict[str, Any]]:
             "created_at": None,
             "master_sha256": None,
             "has_master": (directory / "master.wav").exists(),
+            "timing": [],
+            "timeline": [],
+            "artifacts": [],
         }
         if manifest_path.exists():
             manifest = json.loads(manifest_path.read_text())
@@ -78,6 +87,9 @@ def render_availability(store: Store, scene: Scene) -> list[dict[str, Any]]:
                 duration_ms=manifest.get("duration_ms"),
                 created_at=manifest.get("created_at"),
                 master_sha256=master["sha256"] if master else None,
+                timing=manifest.get("timing", []),
+                timeline=manifest.get("timeline", []),
+                artifacts=manifest.get("artifacts", []),
             )
         found.append(row)
     return found
