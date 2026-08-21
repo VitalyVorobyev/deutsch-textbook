@@ -7,7 +7,7 @@ import numpy as np
 import numpy.typing as npt
 from pydantic import BaseModel, Field
 
-from .adapters import locked_snapshot
+from .generative.locks import locked_snapshot
 from .domain import RevisionPayload
 
 

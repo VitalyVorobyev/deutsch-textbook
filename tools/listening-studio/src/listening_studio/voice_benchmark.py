@@ -12,14 +12,14 @@ from pathlib import Path
 from typing import Any
 
 from .adapters import (
-    QwenTTS,
     assemble,
     generate_lines,
-    locked_snapshot,
     transcribe,
     wav_duration,
     write_with_pace,
 )
+from .generative.locks import locked_snapshot, models_root
+from .generative.qwen import QwenSpeech
 from .domain import RevisionPayload, lock_voice_profiles
 from .qa import check_transcripts
 from .speaker_qa import check_speaker_consistency
@@ -58,7 +58,6 @@ VOICE_DESIGN_ID = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
 VOICE_DESIGN_REVISION = "5ecdb67327fd37bb2e042aab12ff7391903235d3"
 VOICE_CLONE_ID = "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
 VOICE_CLONE_REVISION = "5d83992436eae1d760afd27aff78a71d676296fc"
-COURSE_REPO = Path(__file__).resolve().parents[4]
 
 
 def sha256(path: Path) -> str:
@@ -149,7 +148,9 @@ def run_benchmark(
     """Run both dry-audio arms in an app-data workspace; no publisher is imported or called."""
 
     resolved_root = root.resolve()
-    if resolved_root == COURSE_REPO or resolved_root.is_relative_to(COURSE_REPO):
+    # Read now, not at import: the course repository is whatever `--repo` stated for this run.
+    course_repo = models_root()
+    if resolved_root == course_repo or resolved_root.is_relative_to(course_repo):
         raise ValueError("benchmark output must stay outside the course repository")
     unexpected = sorted({slug for slug, _ in projects} - set(BENCHMARK_SLUGS))
     if unexpected:
@@ -169,7 +170,7 @@ def run_benchmark(
     swap_start = _swap_bytes()
 
     # Arm 1: the production model, but every output remains under this benchmark root.
-    custom = QwenTTS()
+    custom = QwenSpeech()
     for slug, original in projects:
         payload = lock_voice_profiles(original)
         work = root / slug / "custom_voice"
