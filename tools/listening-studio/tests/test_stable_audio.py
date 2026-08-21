@@ -19,6 +19,8 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from typer.testing import CliRunner
 
+from test_graph_cli import flat
+
 from listening_studio.adapters import ENGINES, SOUND_ENGINES, sound_engine_for
 from listening_studio.domain import Bilingual
 from listening_studio.generative.fake import FakeSpeech
@@ -365,7 +367,9 @@ def stored_scene(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 
 
 def render(*flags: str) -> Any:
-    return CliRunner().invoke(
+    # The pinned terminal from test_graph_cli: CI's colored 80-column rich rendering wraps and
+    # colors BadParameter text, splitting the substrings these tests assert on.
+    return CliRunner(env={"NO_COLOR": "1", "TERM": "dumb", "COLUMNS": "200"}).invoke(
         scene_cli.app, ["render", "fixture-sound-engine", "--json", *flags]
     )
 
@@ -398,7 +402,7 @@ def test_an_unknown_sound_engine_is_refused_by_name_with_the_valid_ones(
 def test_the_fake_sound_engine_still_needs_the_test_gate(stored_scene: Path) -> None:
     result = render("--sound-engine", "fake")
     assert result.exit_code != 0
-    assert "needs --test-adapter" in result.output
+    assert "needs --test-adapter" in flat(result.output)
 
 
 def test_no_sound_engine_keeps_the_refusal(
