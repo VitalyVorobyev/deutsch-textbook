@@ -188,7 +188,7 @@
     },
     "DifficultyVariant": {
       "additionalProperties": false,
-      "description": "One rendering of the same script at a different listening difficulty.\n\n`overrides` is typed loosely on purpose. The difficulty vocabulary — what a key means, what\nvalues it takes, which preset composes which — belongs to the DSP PR that implements it,\nand naming keys here would freeze a vocabulary before anything can honour it. `preset` is\na preset id and is pinned against the preset table in the same PR.",
+      "description": "One rendering of the same script at a different listening difficulty.\n\n`preset` names a row of `data/acoustic-difficulty.yaml` — \"clean\", \"natural\", \"challenging\" —\nand `overrides` replaces individual deltas of that preset by the same key names. Both are\nresolved at render time; the override vocabulary is `dsp.profiles.DELTA_KEYS`, and a key\noutside it is refused with the vocabulary named rather than silently doing nothing.\n\n`overrides` stays `dict[str, float | str]` rather than a typed model. The vocabulary is data\nthat ships in the repository, so freezing it into the published JSON Schema would mean a new\ndifficulty parameter is a schema version — and scene documents written before it existed are\nstill valid documents.",
       "properties": {
         "id": {
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
@@ -230,7 +230,7 @@
     },
     "Placement": {
       "additionalProperties": false,
-      "description": "Where a sound sits in the stereo field and how far away it is.\n\n`device` names an acoustic device profile — \"telephone\", \"public-address\". It is a free\nstring until the DSP layer lands (PR 5 of the Tonwerk roadmap), which is where the profile\ntable and the validation against it belong. Validating against a table that does not exist\nyet would mean inventing the table here.",
+      "description": "Where a sound sits in the stereo field and how far away it is.\n\n`device` names a row of `data/acoustic-profiles.yaml` — \"telephone\", \"pa\", \"next-room\" — and\nis resolved against it **at render time**, not here. `distance` is resolved the same way: 1.0\nis at the reference position and larger is further off, turned into a gain drop, a gentle\nlowpass and a larger send into the room by `listening_studio.dsp.chains`. An unknown device id\nis refused by the renderer with the path of the file that would have to define it.\n\nDeliberately not validated on load. A scene is a published document that other tools read, and\nholding it to a catalog it does not ship with would make a valid scene invalid on any machine\nwhose checkout of that catalog is older. `scene validate --repo` offers the check as a\n*warning* for exactly that reason.",
       "properties": {
         "device": {
           "anyOf": [
@@ -285,7 +285,7 @@
     },
     "SceneAcoustics": {
       "additionalProperties": false,
-      "description": "Scene-wide acoustic treatment.\n\n`room` names a room profile — \"small-office\", \"station-hall\". Free string until PR 5, for\nthe reason given on `Placement.device`.",
+      "description": "Scene-wide acoustic treatment.\n\n`room` names a room profile in `data/acoustic-profiles.yaml` — \"cafe\", \"station-hall\" — and is\nresolved against it at render time, where it becomes one synthetic impulse response convolved\non a send from the dialogue and sfx buses. The ambience bus is never sent: a recorded room\ntone already is a room. Unvalidated on load for the reason given on `Placement.device`.",
       "properties": {
         "lead_in_ms": {
           "default": 0,

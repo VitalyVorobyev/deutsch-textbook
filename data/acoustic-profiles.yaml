@@ -1,0 +1,238 @@
+# Acoustic profiles: the rooms a scene can be heard in, and the devices it can be heard through.
+#
+# **These values are editorially reasonable starting points, not measurements.** Nothing here was
+# derived from an impulse-response capture of a real café or a real telephone line; they are
+# numbers chosen so that the seven rooms are audibly different from each other in the direction
+# their names claim, and so that the five devices are recognisable as what they are named after.
+# Treat every figure as revisable by ear against a rendered scene — and when you revise one,
+# **bump that entry's `version`**, because the version is part of the render node's hash and is
+# the only thing that retires the cached audio a previous value produced.
+#
+# Two things this file deliberately does not contain:
+#
+# * **No ffmpeg filter strings.** Every field is a named acoustic parameter and
+#   `listening_studio.dsp.chains` owns the translation into a filter chain. A data file that
+#   stored `highpass=f=300` would make the data format a second implementation of ffmpeg's
+#   syntax, and a typo in it would be a render failure nobody could validate.
+# * **No `mono: true` on a device.** A take is mono from synthesis until `TrackNode` positions it
+#   with the pan law, so every device chain already runs on one channel. A field saying so would
+#   describe something that is unconditionally true and could never be observed to be false.
+#
+# `room_send_db` on a device is a **send level into the scene's room**, not a reverb of its own:
+# the render has exactly one convolution (`SceneAcoustics.room`), and what a device changes is how
+# strongly its stem excites it. A public-address horn in a station hall excites the hall more than
+# a person standing next to you does. When a scene names no room there is no reverb bus and the
+# field applies to nothing — which the render manifest states as `room: null` rather than hiding.
+
+version: 1
+
+# Rooms are synthetic impulse responses (`listening_studio.dsp.ir`), convolved once per render on
+# a send from the dialogue and sfx buses. The ambience bus stays dry: a recorded room tone already
+# *is* a room, and convolving it would put that room inside this one.
+#
+#   seed               the noise seed; two rooms with the same shape and different seeds are two
+#                      different rooms, and the same seed always regenerates the same bytes
+#   decay_s            RT60 — the time the reverberant tail takes to fall 60 dB
+#   pre_delay_ms       the gap between the direct sound and the first reflection, which is how
+#                      the ear reads the *size* of a space rather than its liveness
+#   lowpass_hz         damping: the cutoff the tail starts at, swept downwards as it decays,
+#                      because soft surfaces absorb treble faster than bass
+#   early_reflections  how many discrete taps precede the diffuse tail
+#   wet                the default send level, 0..1, before any difficulty delta
+rooms:
+  studio:
+    version: 1
+    label: Aufnahmestudio
+    note: Near-dry. What a published corpus artifact sounds like today, with nothing added.
+    ir:
+      seed: 1101
+      decay_s: 0.25
+      pre_delay_ms: 4
+      lowpass_hz: 9000
+      early_reflections: 3
+    wet: 0.04
+
+  small-room:
+    version: 1
+    label: Kleiner Raum
+    note: A furnished living room or a bedroom — short, soft, close walls.
+    ir:
+      seed: 1102
+      decay_s: 0.45
+      pre_delay_ms: 8
+      lowpass_hz: 6500
+      early_reflections: 6
+    wet: 0.12
+
+  cafe:
+    version: 1
+    label: Café
+    note: Hard tables and a low ceiling; longer than a living room and brighter than an office.
+    ir:
+      seed: 1103
+      decay_s: 0.85
+      pre_delay_ms: 14
+      lowpass_hz: 5000
+      early_reflections: 10
+    wet: 0.20
+
+  office:
+    version: 1
+    label: Büro
+    note: Carpet, partitions and absorbent ceiling tiles — short and dull, not small.
+    ir:
+      seed: 1104
+      decay_s: 0.55
+      pre_delay_ms: 10
+      lowpass_hz: 5500
+      early_reflections: 7
+    wet: 0.14
+
+  station-hall:
+    version: 1
+    label: Bahnhofshalle
+    note: >-
+      The long one. A 2.6 s tail with a 28 ms pre-delay is what makes an announcement in a station
+      hard to follow — the words arrive twice.
+    ir:
+      seed: 1105
+      decay_s: 2.60
+      pre_delay_ms: 28
+      lowpass_hz: 4200
+      early_reflections: 14
+    wet: 0.34
+
+  street:
+    version: 1
+    label: Straße
+    note: >-
+      Open above, reflective on one side: a short slap off the façade and almost no diffuse tail.
+      The low reflection count is the point — a street is not a small room, it is a single wall.
+    ir:
+      seed: 1106
+      decay_s: 0.35
+      pre_delay_ms: 18
+      lowpass_hz: 7000
+      early_reflections: 4
+    wet: 0.08
+
+  car:
+    version: 1
+    label: Auto
+    note: Tiny and heavily damped. Almost no tail, and what there is has no treble left in it.
+    ir:
+      seed: 1107
+      decay_s: 0.16
+      pre_delay_ms: 3
+      lowpass_hz: 3200
+      early_reflections: 5
+    wet: 0.06
+
+# Devices are the transmission channel between the microphone and the listener, applied on the
+# stem itself. Fields:
+#
+#   highpass / lowpass  {hz, sections} — `sections` is the number of cascaded 2-pole biquads.
+#                       ffmpeg's `highpass`/`lowpass` top out at 12 dB/octave and a telephone band
+#                       is far steeper than that, so steepness is stated as a section count and
+#                       `dsp.chains` emits the cascade.
+#   compression         threshold and makeup in dB, times in ms; translated to `acompressor`.
+#   crush               subtle bit-reduction, for a codec-ish edge. `mix` is how much of it is
+#                       heard, so 0.3 is a hint and 1.0 would be a lo-fi effect.
+#   room_send_db        see the note at the top of this file.
+#   gain_db             a level offset applied last, for a device that is simply quieter.
+devices:
+  telephone:
+    version: 1
+    label: Telefon
+    note: >-
+      The 300–3400 Hz band, hard, plus the levelling every telephone network applies. The steep
+      sections are what makes it read as a phone rather than as a muffled voice.
+    highpass:
+      hz: 300
+      sections: 3
+    lowpass:
+      hz: 3400
+      sections: 3
+    compression:
+      threshold_db: -20.0
+      ratio: 4.0
+      attack_ms: 5.0
+      release_ms: 120.0
+      makeup_db: 4.0
+
+  mobile:
+    version: 1
+    label: Mobiltelefon
+    note: >-
+      Wider than a landline (a modern codec carries more band) and slightly ragged with it. The
+      crush is deliberately kept at a mix where it is an edge rather than an effect.
+    highpass:
+      hz: 200
+      sections: 2
+    lowpass:
+      hz: 5200
+      sections: 2
+    compression:
+      threshold_db: -18.0
+      ratio: 3.0
+      attack_ms: 5.0
+      release_ms: 140.0
+      makeup_db: 3.0
+    crush:
+      bits: 12.0
+      mix: 0.30
+
+  pa:
+    version: 1
+    label: Lautsprecherdurchsage
+    note: >-
+      A horn on a wall: no bass, no top, levelled hard so it carries — and a much bigger send into
+      whatever room the scene is in, which is where a station announcement loses its consonants.
+    highpass:
+      hz: 180
+      sections: 2
+    lowpass:
+      hz: 5600
+      sections: 2
+    compression:
+      threshold_db: -22.0
+      ratio: 3.5
+      attack_ms: 8.0
+      release_ms: 200.0
+      makeup_db: 3.0
+    room_send_db: 5.0
+    gain_db: -1.0
+
+  radio:
+    version: 1
+    label: Radio
+    note: >-
+      Broadcast processing rather than a bad channel: the band is wider than a phone's and the
+      compression is the loud, flat, always-present kind.
+    highpass:
+      hz: 120
+      sections: 2
+    lowpass:
+      hz: 6800
+      sections: 2
+    compression:
+      threshold_db: -26.0
+      ratio: 6.0
+      attack_ms: 3.0
+      release_ms: 90.0
+      makeup_db: 6.0
+
+  next-room:
+    version: 1
+    label: Nebenraum
+    note: >-
+      A wall, not a device. Everything above ~850 Hz is gone, the level drops by more than a
+      doubling of distance would cost, and proportionally more of what arrives is reflected.
+    highpass:
+      hz: 90
+      sections: 1
+    lowpass:
+      hz: 850
+      sections: 3
+    room_send_db: 4.0
+    gain_db: -13.0

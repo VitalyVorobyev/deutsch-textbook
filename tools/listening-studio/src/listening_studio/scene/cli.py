@@ -71,8 +71,79 @@ def _import(scene: Scene, exercise: ExerciseAttachment | None, slug: str | None)
     }
 
 
+def _catalog_warnings(scene: Scene, repo: Path) -> list[str]:
+    """Acoustic ids this scene names that the repository's catalogs do not define.
+
+    **Warnings, never failures.** A scene document is valid standalone — that is what makes it
+    publishable and readable by another implementation — so holding it against a catalog it does
+    not ship with would mean a scene becomes invalid on a machine whose `data/` is a week older.
+    What the check is genuinely for is the other direction: an id that will refuse at render time
+    should be visible while the file is being edited, not twenty minutes into a synthesis run.
+    """
+
+    from ..dsp.profiles import (
+        DELTA_KEYS,
+        DIFFICULTY_PATH,
+        PROFILES_PATH,
+        load_acoustic_profiles,
+        load_difficulty_presets,
+    )
+    from .model import SfxEntry, SpeechEntry
+
+    found: list[str] = []
+    try:
+        profiles = load_acoustic_profiles(repo)
+    except (OSError, ValueError) as error:
+        found.append(f"cannot read {PROFILES_PATH}: {error}")
+    else:
+        if scene.acoustics.room is not None and scene.acoustics.room not in profiles.rooms:
+            found.append(
+                f"room {scene.acoustics.room!r} is not in {PROFILES_PATH} "
+                f"(it defines: {', '.join(sorted(profiles.rooms))})"
+            )
+        named = sorted(
+            {
+                entry.placement.device
+                for entry in scene.timeline
+                if isinstance(entry, (SpeechEntry, SfxEntry))
+                and entry.placement is not None
+                and entry.placement.device is not None
+            }
+        )
+        for device in named:
+            if device not in profiles.devices:
+                found.append(
+                    f"device {device!r} is not in {PROFILES_PATH} "
+                    f"(it defines: {', '.join(sorted(profiles.devices))})"
+                )
+    try:
+        presets = load_difficulty_presets(repo)
+    except (OSError, ValueError) as error:
+        found.append(f"cannot read {DIFFICULTY_PATH}: {error}")
+        return found
+    for variant in scene.variants:
+        if variant.preset is not None and variant.preset not in presets.presets:
+            found.append(
+                f"variant {variant.id}: preset {variant.preset!r} is not in {DIFFICULTY_PATH} "
+                f"(it defines: {', '.join(sorted(presets.presets))})"
+            )
+        unknown = sorted(set(variant.overrides) - set(DELTA_KEYS))
+        if unknown:
+            found.append(
+                f"variant {variant.id}: unknown override key(s) {', '.join(unknown)}; "
+                f"the vocabulary is {', '.join(DELTA_KEYS)}"
+            )
+    return found
+
+
 @app.command("validate")
-def validate_scene(file: Path, json_output: bool = typer.Option(False, "--json")) -> None:
+def validate_scene(
+    file: Path,
+    repo: Path | None = typer.Option(
+        None, "--repo", help="also warn about acoustic ids this repository does not define"
+    ),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
     """Load one scene document and run every model validator over it."""
 
     try:
@@ -85,10 +156,21 @@ def validate_scene(file: Path, json_output: bool = typer.Option(False, "--json")
         # JSON is a program, and a program cannot do anything with an indented traceback.
         _emit({"ok": False, "slug": None, "sha256": None, "errors": str(error).splitlines()})
         raise typer.Exit(1)
+    warnings = _catalog_warnings(scene, repo.resolve()) if repo is not None else []
     if json_output:
-        _emit({"ok": True, "slug": scene.slug, "sha256": scene.sha256(), "errors": []})
-    else:
-        typer.echo(f"{scene.slug}: {len(scene.script)} utterances, {scene.sha256()}")
+        _emit(
+            {
+                "ok": True,
+                "slug": scene.slug,
+                "sha256": scene.sha256(),
+                "errors": [],
+                "warnings": warnings,
+            }
+        )
+        return
+    typer.echo(f"{scene.slug}: {len(scene.script)} utterances, {scene.sha256()}")
+    for warning in warnings:
+        typer.echo(f"  warning: {warning}", err=True)
 
 
 @app.command("create")
@@ -266,6 +348,7 @@ def render_command(
             variant=variant,
             speech_engines=speech_engines,
             sound_engine=sound_engine,
+            repo=repo.resolve(),
         )
 
     stage = Stage(project.stage)
@@ -376,8 +459,13 @@ def schema(
     root = repo.resolve()
     if check:
         target = root / SCHEMA_PATH
-        current = target.read_text() if target.exists() else ""
-        if current == scene_schema_json():
+        if not target.exists():
+            # `repo` defaults to the CWD, and the natural place to run this tool is its own
+            # directory — where the schema path resolves to nothing and "does not match" would
+            # send someone regenerating a file that was never stale.
+            typer.echo(f"no {SCHEMA_PATH} under {root} — pass --repo <course repo>", err=True)
+            raise typer.Exit(1)
+        if target.read_text() == scene_schema_json():
             typer.echo(f"{SCHEMA_PATH} is current")
             return
         typer.echo(

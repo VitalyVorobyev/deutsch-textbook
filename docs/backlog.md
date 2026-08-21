@@ -77,6 +77,11 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Tonwerk audio studio
 
+- **P28-2 · a scene ending on its last word has no reverb tail.** `afir` truncates at input EOF,
+  so a station-hall scene stops dead instead of ringing out — audible on any long-decay room.
+  Fix: pad the dialogue bus with trailing silence ≥ the room's decay before convolution
+  (`graph/render.py` mix stage); the finding and reason live in `dsp/chains.py` (reverb_chains).
+
 - **P28-1 · legacy `--json` CLI verbs can emit corrupted JSON under a real engine.** The pinned
   Qwen package prints a flash-attn banner to stdout on import, so any `cli.py` verb that both
   generates in-process and promises `--json` (the pre-scene ones) interleaves text with the
