@@ -7,7 +7,8 @@ from pathlib import Path
 
 import pytest
 
-from listening_studio.adapters import FakeTTS, assemble, generate_lines, mix_context, wav_duration
+from listening_studio.adapters import assemble, generate_lines, mix_context, wav_duration
+from listening_studio.generative.fake import FakeSpeech
 from listening_studio.domain import ContextSound
 from listening_studio.soundscape import soundscape_report
 from listening_studio.sources import import_source, load_source
@@ -63,7 +64,7 @@ def test_manual_source_import_and_deterministic_mix(tmp_path: Path) -> None:
             ]
         }
     )
-    lines = generate_lines(project, tmp_path / "project", FakeTTS())
+    lines = generate_lines(project, tmp_path / "project", FakeSpeech())
     dry = tmp_path / "dry.wav"
     assemble(project, lines, dry)
     first = tmp_path / "first.wav"
@@ -113,7 +114,7 @@ def test_lead_in_puts_the_scene_sound_before_the_speech(tmp_path: Path) -> None:
     plain = payload().model_copy(update={"context_sounds": [sound]})
     delayed = payload().model_copy(update={"context_sounds": [sound], "lead_in_ms": 1500})
 
-    lines = generate_lines(plain, tmp_path / "project", FakeTTS())
+    lines = generate_lines(plain, tmp_path / "project", FakeSpeech())
     dry = tmp_path / "dry.wav"
     assemble(plain, lines, dry)
 
@@ -135,7 +136,7 @@ def test_lead_in_alone_still_mixes(tmp_path: Path) -> None:
     """Without this the early return copies the dry take and silently drops the lead-in."""
 
     project = payload().model_copy(update={"lead_in_ms": 800})
-    lines = generate_lines(project, tmp_path / "project", FakeTTS())
+    lines = generate_lines(project, tmp_path / "project", FakeSpeech())
     dry = tmp_path / "dry.wav"
     assemble(project, lines, dry)
     out = tmp_path / "out.wav"
@@ -163,7 +164,7 @@ def test_environment_bed_loops_under_the_complete_dialogue(tmp_path: Path) -> No
         placement_authoring="ai-assisted",
     )
     project = payload().model_copy(update={"context_sounds": [sound]})
-    lines = generate_lines(project, tmp_path / "project", FakeTTS())
+    lines = generate_lines(project, tmp_path / "project", FakeSpeech())
     dry = tmp_path / "dry.wav"
     assemble(project, lines, dry)
     mixed = tmp_path / "mixed.wav"

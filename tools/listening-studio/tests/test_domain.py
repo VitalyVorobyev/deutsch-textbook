@@ -141,15 +141,17 @@ def test_a_legacy_question_still_loads() -> None:
 
 
 def test_switching_the_model_leaves_a_payload_the_store_can_still_load() -> None:
-    """P22-3: `model_copy(update=...)` skipped `consistent()`, so a Parler voice could be saved
-    under `qwen_tts` — and every later `Store.get()` then refused the project."""
+    """P22-3: `model_copy(update=...)` skipped `consistent()`, so another engine's voice could be
+    saved under `qwen_tts` — and every later `Store.get()` then refused the project."""
 
     from listening_studio.domain import VOICE_SETS, reassign_voices
 
     base = payload()
-    parler = base.model_copy(
+    # The fake engine publishes no voice list, so it is the one that can carry names Qwen has
+    # never heard of — which is exactly the state the form used to store under `qwen_tts`.
+    other = base.model_copy(
         update={
-            "tts_adapter": "parler_tts",
+            "tts_adapter": "fake",
             "lines": [
                 base.lines[0].model_copy(update={"voice": "Nicole"}),
                 base.lines[1].model_copy(update={"voice": "Christopher"}),
@@ -158,13 +160,13 @@ def test_switching_the_model_leaves_a_payload_the_store_can_still_load() -> None
     )
 
     # Watching it fail: the unvalidated copy the form used to build is not loadable.
-    broken = parler.model_copy(update={"tts_adapter": "qwen_tts"})
+    broken = other.model_copy(update={"tts_adapter": "qwen_tts"})
     with pytest.raises(ValidationError):
         RevisionPayload.model_validate_json(broken.canonical_json())
 
-    lines = reassign_voices(list(parler.lines), "qwen_tts")
+    lines = reassign_voices(list(other.lines), "qwen_tts")
     fixed = RevisionPayload.model_validate(
-        parler.model_dump() | {"tts_adapter": "qwen_tts", "lines": [line.model_dump() for line in lines]}
+        other.model_dump() | {"tts_adapter": "qwen_tts", "lines": [line.model_dump() for line in lines]}
     )
     assert RevisionPayload.model_validate_json(fixed.canonical_json()) == fixed
     # Two speakers still sound like two people — that is the property the reassignment keeps.
@@ -190,28 +192,52 @@ def test_the_voice_lists_match_the_provenance_record() -> None:
         assert tuple(lock["models"][adapter]["voices"]) == voices, adapter
 
 
-def test_a_local_checkout_is_accepted_only_at_the_pinned_revision(tmp_path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+def test_a_local_checkout_is_accepted_only_at_the_pinned_revision(tmp_path) -> None:  # type: ignore[no-untyped-def]
     """The published manifest states the model revision as fact, so a directory that merely has
     the right name must not satisfy it."""
 
-    from listening_studio import adapters
+    from listening_studio.generative import locks
 
     models = tmp_path / ".models" / "Some-Model"
     download = models / ".cache" / "huggingface" / "download"
     download.mkdir(parents=True)
-    monkeypatch.setattr(adapters, "REPO_ROOT", tmp_path)
 
     pinned = "a" * 40
     # No metadata at all: a directory of weights nobody can date.
-    assert adapters.local_checkout("Org/Some-Model", pinned) is None
+    assert locks.local_checkout("Org/Some-Model", pinned, tmp_path) is None
 
     (download / "config.json.metadata").write_text(f"{pinned}\nsha\n1.0\n")
     (download / "model.safetensors.metadata").write_text(f"{pinned}\nsha\n1.0\n")
-    assert adapters.local_checkout("Org/Some-Model", pinned) == models
+    assert locks.local_checkout("Org/Some-Model", pinned, tmp_path) == models
 
     # One file from a different commit is a mixed checkout, not the pinned revision.
     (download / "model.safetensors.metadata").write_text(f"{'b' * 40}\nsha\n1.0\n")
-    assert adapters.local_checkout("Org/Some-Model", pinned) is None
+    assert locks.local_checkout("Org/Some-Model", pinned, tmp_path) is None
+
+
+def test_the_models_root_is_the_repository_the_run_was_started_against(tmp_path) -> None:  # type: ignore[no-untyped-def]
+    """`--repo` decides where `.models/` is read from; the path-derived root is only a fallback.
+
+    Watching it fail: without `set_models_root`, `local_checkout` looks under this package's own
+    parent directories, where the fabricated checkout below does not exist — and reports the
+    checkpoint as absent rather than as looked for in the wrong place.
+    """
+
+    from listening_studio.generative import locks
+
+    pinned = "c" * 40
+    download = tmp_path / ".models" / "Some-Model" / ".cache" / "huggingface" / "download"
+    download.mkdir(parents=True)
+    (download / "config.json.metadata").write_text(f"{pinned}\nsha\n1.0\n")
+
+    assert locks.local_checkout("Org/Some-Model", pinned) is None
+    try:
+        locks.set_models_root(tmp_path)
+        assert locks.models_root() == tmp_path.resolve()
+        assert locks.local_checkout("Org/Some-Model", pinned) == tmp_path / ".models" / "Some-Model"
+    finally:
+        locks.set_models_root(None)
+    assert locks.local_checkout("Org/Some-Model", pinned) is None
 
 
 def test_a_price_said_in_german_order_is_not_two_errors() -> None:

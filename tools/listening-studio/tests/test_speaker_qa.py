@@ -84,11 +84,19 @@ def test_short_lines_are_sent_to_manual_review(tmp_path: Path) -> None:
 
 
 def test_missing_pinned_weights_are_a_readable_failure(monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    """Speaker QA can be unavailable two ways, and both must be a sentence rather than a traceback.
+
+    Which one fires depends on the environment, so the test states both: a machine that has run
+    `install-qwen.sh` reaches the weights lookup and reports the missing checkout, while CI and
+    any fresh checkout have no torch at all and stop one step earlier. Matching only the first
+    made this test a claim about the developer's laptop.
+    """
+
     def missing(*_args, **_kwargs):  # type: ignore[no-untyped-def]
         raise RuntimeError("run atlas-listening models fetch first")
 
     monkeypatch.setattr("listening_studio.speaker_qa.locked_snapshot", missing)
-    with pytest.raises(RuntimeError, match="models fetch"):
+    with pytest.raises(RuntimeError, match="models fetch first|runtime is not installed"):
         WavLMSpeakerEmbedder()
 
 

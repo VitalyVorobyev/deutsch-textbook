@@ -1,13 +1,95 @@
 {
-  "title": {"en": "Listening — changing an appointment", "ru": "Аудирование — перенос встречи"},
-  "brief": {"source_text": "", "level": "A2", "vocabulary": ["Termin", "verschieben"], "grammar_target": "können + Infinitiv", "focus": "modal-satzklammer", "scenario": "Two colleagues reschedule an appointment by phone.", "duration_seconds": 35, "speaker_count": 2, "topic": "termine-vereinbaren", "outcomes": ["termine-aushandeln"]},
-  "speakers": ["Mara", "Jonas"],
-  "lines": [
-    {"id": "l1", "speaker": "Mara", "display_text": "Hallo Jonas, können wir unseren Termin am Dienstag verschieben?", "voice": "Nicole", "pace": 0.95, "pause_after_ms": 450, "seed": 17},
-    {"id": "l2", "speaker": "Jonas", "display_text": "Ja, am Dienstag muss ich länger arbeiten. Passt dir Mittwoch um zehn Uhr?", "voice": "Christopher", "pace": 0.95, "pause_after_ms": 450, "seed": 23},
-    {"id": "l3", "speaker": "Mara", "display_text": "Mittwoch um zehn kann ich leider nicht. Können wir uns um elf treffen?", "voice": "Megan", "pace": 0.95, "pause_after_ms": 450, "seed": 29},
-    {"id": "l4", "speaker": "Jonas", "display_text": "Ja, elf Uhr passt gut. Dann bis Mittwoch!", "voice": "Michelle", "pace": 0.95, "pause_after_ms": 300, "seed": 31}
+  "title": {
+    "en": "Listening — changing an appointment",
+    "ru": "Аудирование — перенос встречи"
+  },
+  "brief": {
+    "source_text": "",
+    "level": "A2",
+    "vocabulary": [
+      "Termin",
+      "verschieben"
+    ],
+    "grammar_target": "können + Infinitiv",
+    "focus": "modal-satzklammer",
+    "scenario": "Two colleagues reschedule an appointment by phone.",
+    "duration_seconds": 35,
+    "speaker_count": 2,
+    "topic": "termine-vereinbaren",
+    "outcomes": [
+      "termine-aushandeln"
+    ]
+  },
+  "speakers": [
+    "Mara",
+    "Jonas"
   ],
-  "questions": [{"id": "hoeren-termin-neu", "instruction": {"en": "Listen. When is the new appointment?", "ru": "Прослушайте. Когда состоится новая встреча?"}, "response": {"kind": "single-choice", "prompt": "Wann treffen sich Mara und Jonas?", "options": ["Am Dienstag um zehn Uhr.", "Am Mittwoch um zehn Uhr.", "Am Mittwoch um elf Uhr."], "correct": 2}, "explain": {"en": "Mara cannot meet at ten and proposes eleven; Jonas accepts.", "ru": "Мара не может в десять и предлагает одиннадцать; Йонас соглашается."}, "translation": {"en": "When do Mara and Jonas meet?", "ru": "Когда встречаются Мара и Йонас?"}, "focus": null}],
-  "tts_adapter": "parler_tts", "max_replays": 3
+  "lines": [
+    {
+      "id": "l1",
+      "speaker": "Mara",
+      "display_text": "Hallo Jonas, können wir unseren Termin am Dienstag verschieben?",
+      "voice": "Vivian",
+      "pace": 0.95,
+      "pause_after_ms": 450,
+      "seed": 17
+    },
+    {
+      "id": "l2",
+      "speaker": "Jonas",
+      "display_text": "Ja, am Dienstag muss ich länger arbeiten. Passt dir Mittwoch um zehn Uhr?",
+      "voice": "Dylan",
+      "pace": 0.95,
+      "pause_after_ms": 450,
+      "seed": 23
+    },
+    {
+      "id": "l3",
+      "speaker": "Mara",
+      "display_text": "Mittwoch um zehn kann ich leider nicht. Können wir uns um elf treffen?",
+      "voice": "Vivian",
+      "pace": 0.95,
+      "pause_after_ms": 450,
+      "seed": 29
+    },
+    {
+      "id": "l4",
+      "speaker": "Jonas",
+      "display_text": "Ja, elf Uhr passt gut. Dann bis Mittwoch!",
+      "voice": "Dylan",
+      "pace": 0.95,
+      "pause_after_ms": 300,
+      "seed": 31
+    }
+  ],
+  "questions": [
+    {
+      "id": "hoeren-termin-neu",
+      "instruction": {
+        "en": "Listen. When is the new appointment?",
+        "ru": "Прослушайте. Когда состоится новая встреча?"
+      },
+      "response": {
+        "kind": "single-choice",
+        "prompt": "Wann treffen sich Mara und Jonas?",
+        "options": [
+          "Am Dienstag um zehn Uhr.",
+          "Am Mittwoch um zehn Uhr.",
+          "Am Mittwoch um elf Uhr."
+        ],
+        "correct": 2
+      },
+      "explain": {
+        "en": "Mara cannot meet at ten and proposes eleven; Jonas accepts.",
+        "ru": "Мара не может в десять и предлагает одиннадцать; Йонас соглашается."
+      },
+      "translation": {
+        "en": "When do Mara and Jonas meet?",
+        "ru": "Когда встречаются Мара и Йонас?"
+      },
+      "focus": null
+    }
+  ],
+  "tts_adapter": "qwen_tts",
+  "max_replays": 3
 }

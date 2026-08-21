@@ -15,16 +15,18 @@ import yaml
 from huggingface_hub import snapshot_download
 
 from .adapters import (
-    FakeTTS,
-    QwenTTS,
     assemble,
     draft_prompt,
     generate_drafts,
     generate_lines,
     mix_context,
     model_lock,
+    render_line,
     transcribe,
 )
+from .generative.fake import FakeSpeech
+from .generative.locks import set_models_root
+from .generative.qwen import QwenSpeech
 from .domain import (
     VOICE_SETS,
     Bilingual,
@@ -70,10 +72,21 @@ app.add_typer(models, name="models")
 app.add_typer(sources, name="sources")
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 
-# The synthesis model a newly seeded project starts on. Parler produced Wave 1 and stays
-# readable and re-runnable, but it is no longer what new work is generated with — see
-# ./install-qwen.sh for why the two cannot be installed at once.
-ENGINE: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
+# The synthesis model a newly seeded project starts on, and the only one that generates
+# approvable audio; `fake` exists for workflow tests.
+ENGINE: Literal["qwen_tts", "fake"] = "qwen_tts"
+
+
+def repo_root(repo: Path) -> Path:
+    """Resolve `--repo` once, and make it the root `.models/` is looked for under.
+
+    Every command that can reach a model takes the repository as an option already. Stating it
+    here is what keeps the weights lookup from depending on where this package happens to sit.
+    """
+
+    resolved = repo.resolve()
+    set_models_root(resolved)
+    return resolved
 
 
 def reading_payload(repo: Path, reading_id: str, profile_id: str | None = None) -> ReadingRevisionPayload:
@@ -113,7 +126,7 @@ def reading_payload(repo: Path, reading_id: str, profile_id: str | None = None) 
 @app.command()
 def serve(repo: Path = typer.Option(Path.cwd()), port: int = 8765, no_open: bool = False) -> None:
     store = Store()
-    api = web_app(store, repo.resolve())
+    api = web_app(store, repo_root(repo))
     token = api.state.session_token
     url = f"http://127.0.0.1:{port}/?token={token}"
     typer.echo(f"Listening Studio: {url}")
@@ -136,7 +149,7 @@ def seed_reading_corpus(
 
     if not yes:
         raise typer.BadParameter("this creates 59 local SQLite projects; use --yes")
-    repo = repo.resolve()
+    repo = repo_root(repo)
     store = Store()
     created = 0
     for source in load_reading_sources(repo):
@@ -156,7 +169,7 @@ def recast_corpus(
 
     if not dry_run and not yes:
         raise typer.BadParameter("this invalidates current QA/approvals; use --yes or --dry-run")
-    repo = repo.resolve()
+    repo = repo_root(repo)
     planned = {
         artifact["id"]
         for unit in yaml.safe_load((repo / "data" / "listening-plan.yaml").read_text())["units"]
@@ -246,8 +259,8 @@ def generate_character_demos(
     """Generate three local comparison takes per roster character; never approve them."""
 
     store = Store()
-    adapter = FakeTTS() if test_adapter else QwenTTS()
-    catalog = load_character_catalog(repo.resolve())
+    engine = FakeSpeech() if test_adapter else QwenSpeech()
+    catalog = load_character_catalog(repo_root(repo))
     for character in catalog.characters:
         target = store.root / "characters" / character.id
         target.mkdir(parents=True, exist_ok=True)
@@ -263,14 +276,14 @@ def generate_character_demos(
                 style=character.voice_profile.style,
                 pace=character.voice_profile.pace,
             )
-            adapter.synthesize(line, path)
+            render_line(engine, line, path)
             hashes.append(sha256(path))
         (target / "manifest.json").write_text(
             json.dumps(
                 {
                     "character_id": character.id,
                     "character_version": character.version,
-                    "adapter_revision": adapter.revision,
+                    "adapter_revision": engine.revision,
                     "phrases": character.demo_phrases,
                     "wav_sha256": hashes,
                     "status": "pending-human-review",
@@ -296,10 +309,10 @@ def generate_reading_command(
     if Stage(project.stage) != Stage.DRAFT:
         raise typer.BadParameter(f"reading is at {project.stage}, expected draft")
     store.transition_reading(project_id, Stage.DRAFT, Stage.VALIDATED)
-    adapter = FakeTTS() if test_adapter else QwenTTS()
+    engine = FakeSpeech() if test_adapter else QwenSpeech()
     try:
         _, updated = generate_reading(
-            payload, store.root / "readings" / str(project_id), adapter
+            payload, store.root / "readings" / str(project_id), engine
         )
         store.transition_reading(
             project_id, Stage.VALIDATED, Stage.AUDIO_GENERATED, payload=updated
@@ -317,7 +330,7 @@ def qa_reading_command(project_id: int, test_adapter: bool = False) -> None:
     project, _, payload = store.get_reading(project_id)
     if Stage(project.stage) != Stage.AUDIO_GENERATED:
         raise typer.BadParameter(f"reading is at {project.stage}, expected audio_generated")
-    revision = FakeTTS.revision if test_adapter else QwenTTS.revision
+    revision = FakeSpeech.revision if test_adapter else QwenSpeech.revision
     report = reading_qa(
         payload,
         store.root / "readings" / str(project_id),
@@ -345,7 +358,7 @@ def publish_reading_command(
     if not revision.qa_json or not revision.approval_json:
         raise typer.BadParameter("reading is missing QA or approval provenance")
     paths = publish_reading(
-        repo.resolve(),
+        repo_root(repo),
         store.root,
         payload,
         store.root / "readings" / str(project_id) / "final.wav",
@@ -384,9 +397,9 @@ def process_reading_corpus(
         raise typer.BadParameter("choose either --pilot or --level")
     if level not in {None, "A1", "A2", "B1"}:
         raise typer.BadParameter("level must be A1, A2 or B1")
-    repo = repo.resolve()
+    repo = repo_root(repo)
     store = Store()
-    adapter = FakeTTS() if test_adapter else QwenTTS()
+    engine = FakeSpeech() if test_adapter else QwenSpeech()
     embedding_backend = None if test_adapter else WavLMSpeakerEmbedder()
     selected = []
     for project in store.reading_projects():
@@ -407,7 +420,7 @@ def process_reading_corpus(
                 stage = Stage.VALIDATED
             if stage == Stage.VALIDATED:
                 _, generated = generate_reading(
-                    payload, store.root / "readings" / str(project.id), adapter
+                    payload, store.root / "readings" / str(project.id), engine
                 )
                 store.transition_reading(
                     project.id,
@@ -421,7 +434,7 @@ def process_reading_corpus(
                 report = reading_qa(
                     payload,
                     store.root / "readings" / str(project.id),
-                    adapter.revision,
+                    engine.revision,
                     fake=test_adapter,
                     embedding_backend=embedding_backend,
                 )
@@ -453,7 +466,7 @@ def reaudit_reading_corpus(
     if level not in {None, "A1", "A2", "B1"}:
         raise typer.BadParameter("level must be A1, A2 or B1")
     store = Store()
-    revision = FakeTTS.revision if test_adapter else QwenTTS.revision
+    revision = FakeSpeech.revision if test_adapter else QwenSpeech.revision
     embedding_backend = None if test_adapter else WavLMSpeakerEmbedder()
     failures: list[str] = []
     processed = 0
@@ -539,8 +552,8 @@ def seed_wave(
 ) -> None:
     """Create local editor projects from the reviewed plan; no curriculum files are written."""
 
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
-    atlas = yaml.safe_load((repo.resolve() / "content" / "atlas.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
+    atlas = yaml.safe_load((repo_root(repo) / "content" / "atlas.yaml").read_text())
     topic_by_unit = {unit["id"]: unit["topics"][0] for unit in atlas["units"]}
     store = Store()
     existing = {project.slug: project for project in store.projects()}
@@ -574,7 +587,7 @@ def draft_wave(
 ) -> None:
     """Generate structured local drafts for seeded projects with one MLX model load."""
 
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
     planned_ids = {
         artifact["id"]
         for unit in plan["units"]
@@ -773,7 +786,7 @@ def publish(project_id: int, repo: Path = typer.Option(Path.cwd()), yes: bool = 
     store = Store()
     project, _, _ = store.get(project_id)
     out, payload = bundle_project(project_id)
-    written = publish_files(repo.resolve(), project.slug, payload, out)
+    written = publish_files(repo_root(repo), project.slug, payload, out)
     store.transition(project_id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
     typer.echo("Published:\n" + "\n".join(str(path) for path in written))
 
@@ -790,7 +803,7 @@ def republish(project_id: int, repo: Path = typer.Option(Path.cwd()), yes: bool 
     stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     backup = store.root / "replaced" / project.slug / stamp
     written = publish_files(
-        repo.resolve(),
+        repo_root(repo),
         project.slug,
         payload,
         out,
@@ -921,7 +934,8 @@ def switch_adapter(adapter: str, dry_run: bool = False) -> None:
     """
 
     if adapter not in VOICE_SETS and adapter != "fake":
-        raise typer.BadParameter(f"unknown adapter {adapter}; try {', '.join(VOICE_SETS)}")
+        allowed = ", ".join(sorted({*VOICE_SETS, "fake"}))
+        raise typer.BadParameter(f"unknown adapter {adapter}; try {allowed}")
     store = Store()
     touched = 0
     for project in store.projects():
@@ -962,7 +976,7 @@ def lock_all_voice_profiles(
 
     if not dry_run and not yes:
         raise typer.BadParameter("review with --dry-run, then repeat with --yes")
-    plan_path = repo.resolve() / "data" / "listening-plan.yaml"
+    plan_path = repo_root(repo) / "data" / "listening-plan.yaml"
     if not plan_path.exists():
         raise typer.BadParameter(f"listening plan not found: {plan_path}")
     plan = yaml.safe_load(plan_path.read_text())
@@ -1024,7 +1038,7 @@ def complete_soundscapes(
 
     if not dry_run and not yes:
         raise typer.BadParameter("review with --dry-run, then repeat with --yes")
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
     artifact_rows = {
         artifact["id"]: (unit["level"], artifact["scenario"])
         for unit in plan["units"]
@@ -1114,7 +1128,7 @@ def calibrate_speaker_qa(repo: Path = typer.Option(Path.cwd()), yes: bool = Fals
 
     if not yes:
         raise typer.BadParameter("inspect the reviewed corpus, then repeat with --yes")
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
     planned_ids = {
         artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
     }
@@ -1157,7 +1171,7 @@ def regenerate_voice_profile_corpus(
         raise typer.BadParameter(
             "this replaces every local working WAV and can take hours; repeat with --yes"
         )
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
     planned_ids = {
         artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
     }
@@ -1165,7 +1179,7 @@ def regenerate_voice_profile_corpus(
     if unknown := requested - planned_ids:
         raise typer.BadParameter("not planned listening projects: " + ", ".join(sorted(unknown)))
     store = Store()
-    adapter = QwenTTS()
+    engine = QwenSpeech()
     failures: list[str] = []
     selected = [project for project in reversed(store.projects()) if project.slug in requested]
     for index, project in enumerate(selected, 1):
@@ -1189,7 +1203,7 @@ def regenerate_voice_profile_corpus(
         typer.echo(f"[{index}/{len(selected)}] {project.slug}")
         try:
             store.transition(project.id, Stage.DRAFT, Stage.VALIDATED)
-            paths = generate_lines(payload, work, adapter)
+            paths = generate_lines(payload, work, engine)
             assemble(payload, paths, work / "dry.wav")
             mix_context(payload, store.root, work / "dry.wav", work / "final.wav")
             store.transition(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
@@ -1215,7 +1229,7 @@ def qa_voice_profile_corpus(
 
     if not yes:
         raise typer.BadParameter("this runs local ASR and speaker QA for every take; use --yes")
-    plan = yaml.safe_load((repo.resolve() / "data" / "listening-plan.yaml").read_text())
+    plan = yaml.safe_load((repo_root(repo) / "data" / "listening-plan.yaml").read_text())
     planned_ids = {
         artifact["id"] for unit in plan["units"] for artifact in unit["artifacts"]
     }
@@ -1234,7 +1248,7 @@ def qa_voice_profile_corpus(
         typer.echo(f"[{index}/{len(selected)}] {project.slug}")
         work = store.root / "projects" / str(project.id)
         line_paths = {
-            line.id: work / "cache" / f"{payload.cache_key(line, QwenTTS.revision)}.wav"
+            line.id: work / "cache" / f"{payload.cache_key(line, QwenSpeech.revision)}.wav"
             for line in payload.lines
         }
         try:
