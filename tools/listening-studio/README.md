@@ -222,6 +222,62 @@ that had only ever been created by `Base.metadata.create_all` gained the migrati
 had (0002). `Store.__init__` now runs `alembic upgrade head`, stamping a pre-Alembic database at
 0001 first, so an existing local corpus is adopted rather than rebuilt.
 
+## The render graph
+
+A scene is not rendered by a script that walks it; it is compiled to a graph of nodes and only
+the nodes whose inputs changed are evaluated (`src/listening_studio/graph/`). Every node is
+identified by
+
+```text
+node_hash = sha256(type + ":" + impl_version + ":" + canonical_json(params) + ":" + sorted(inputs))
+```
+
+and its output is stored by the hash of its own bytes under `assets/<sha256>.wav`, with a
+provenance sidecar beside it. **Each node type carries its own `impl_version`** — bumping one
+invalidates exactly that class of computation, which is what the single global
+`processor_version` on the legacy line cache could not do: one DSP fix there threw away every
+take. Imported Freesound originals are *referenced*, never copied: the sidecar names the source
+sha and the licence id, and `sources/<sha>/source.json` stays the one reviewed record.
+
+```sh
+uv run atlas-listening scene render ls-wohnen-01 --repo ../.. --json
+uv run atlas-listening scene qa ls-wohnen-01 --repo ../.. --json
+```
+
+Layout, under the studio work directory: `renders/<scene-sha256>/<variant>/` holds
+`stems/<entry-id>.wav`, `master.wav`, `dry.wav`, `qa.wav`, `publish.mp3` and `render.json`. The
+manifest carries every node hash and impl version, every asset sha and its provenance, the
+`models.lock.json` rows for the engines that ran, the ffmpeg version captured at render time, and
+the **timing table** — one `{utterance_id, start_ms, end_ms}` per turn, which is the
+generalization of the narration `ParagraphCue` and the cue source for publishing. Stems and
+masters are kept per scene sha forever; nothing here deletes a render.
+
+Formats: the working master is stereo 48 kHz `pcm_s24le`. A 24 kHz model take upsampled to 48 kHz
+is a resample and not new detail — 48 kHz is the rate the mix is *computed* at, so resampling
+happens once before summing rather than once per bus. Two derivatives are always produced:
+`qa.wav` (mono 16 kHz, the only format Whisper and WavLM are given here) and `publish.mp3`
+(stereo 48 kHz at 128 kbps — the shipped corpus's 64 kbps *mono* per-channel rate, doubled for the
+channel count).
+
+Placement is constant-power panning (`cos`/`sin`), so a voice keeps its level as it moves.
+Everything else a scene can *say* about acoustics — `Placement.device`, `distance != 1.0`,
+`SceneAcoustics.room`, and a difficulty variant with a preset or overrides — is **refused with a
+`ValueError` naming the DSP PR**, never warned about and rendered anyway. A `SoundSpec` reached
+without a sound generator is refused the same way: production renders have no generator until the
+Stable Audio PR, and silence where a sound was asked for is a defect nobody can hear.
+
+`scene qa` transcribes `qa.wav` whole and per utterance — the slices are cut from the **mix**
+using the timing table, because a bed that buries a word is a defect of the scene and a
+take-by-take check would pass it — then measures speaker consistency against the same slices and
+reports the soundscape by comparing the master with `dry.wav`, the dialogue bus alone. The
+transcript thresholds are `qa.check_units`, the one table the dialogue pipeline also uses. When
+the pinned WavLM weights are absent the report says `"speaker_qa": "weights-missing"`; an omitted
+field would read exactly like a report that passed identity. Whisper is MLX and macOS-local, so
+in CI the verb fails fast with a readable message and the unit tests inject `transcribe_fn`.
+
+The legacy `RevisionPayload` pipeline (`adapters.generate_lines`, `assemble`, `mix_context`) is
+untouched and keeps rendering the published dialogues exactly as it did.
+
 ## Measured reliability
 
 Qwen3-TTS on this machine (M4 Pro): MPS + explicit `dtype=torch.float32`, 86 float32 generations
