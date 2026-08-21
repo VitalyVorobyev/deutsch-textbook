@@ -10,6 +10,7 @@ exactly as they do through `atlas-listening scene`.
 from __future__ import annotations
 
 import hashlib
+import json
 import shutil
 from pathlib import Path
 from typing import Any
@@ -17,8 +18,7 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from listening_studio import ui
-from listening_studio.api.workflow import APPROVAL_CHECKLIST
+from listening_studio.api.workflow import APPROVAL_CHECKLIST, _required_checks
 from listening_studio.domain import Stage
 from listening_studio.scene.model import Scene
 from listening_studio.storage import Store
@@ -108,6 +108,8 @@ def test_the_full_scene_lifecycle_reaches_a_human_approval(client: Any) -> None:
     assert listed[0]["scene_sha256"] == scene.sha256()
     assert listed[0]["has_exercise"] is False
     assert listed[0]["updated"]
+    # Nothing has measured these bytes yet, which is a third answer and not `False`.
+    assert listed[0]["qa_passed"] is None
 
     # Validate against a repository that defines the acoustic catalogs: no errors, no warnings.
     checked = http.post(f"/api/scenes/{scene.slug}/validate", headers=AUTH).json()
@@ -148,6 +150,8 @@ def test_the_full_scene_lifecycle_reaches_a_human_approval(client: Any) -> None:
     assert checked_qa.status_code == 200, checked_qa.text
     assert checked_qa.json()["passed"] is True
     assert checked_qa.json()["stage"] == str(Stage.AUTOMATICALLY_CHECKED)
+    # And the list can now tell a take waiting for a human from one waiting for a rewrite.
+    assert http.get("/api/scenes", headers=AUTH).json()[0]["qa_passed"] is True
 
     # Both review surfaces: the bytes and the machine's report on exactly those bytes.
     audio = http.get(f"/api/scenes/{scene.slug}/renders/natural/master", headers=AUTH)
@@ -255,6 +259,41 @@ def test_an_approval_that_does_not_certify_the_required_checks_is_refused(client
     )
     assert invented.status_code == 400
     assert "unknown checklist key(s) vibes" in invented.json()["detail"]
+
+
+def test_an_approval_without_a_name_is_refused(client: Any) -> None:
+    """The name is the provenance record. No amount of removed ceremony removes the identity.
+
+    Ported from the deleted `test_web.py`, which asserted it about the HTML form: two ways to
+    give nothing — an empty string, which the schema refuses, and whitespace, which it does not
+    and the handler does.
+    """
+
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+    assert http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).status_code == 200
+    assert http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH).status_code == 200
+    detail = http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()
+    digest = next(row for row in detail["renders"] if row["variant"] == "natural")["master_sha256"]
+    full = ["accent", "naturalness", "intelligibility", "identity", "speakers", "pace", "context"]
+
+    empty = http.post(
+        f"/api/scenes/{scene.slug}/approve",
+        json={"editor": "", "master_sha256": digest, "checklist": full},
+        headers=AUTH,
+    )
+    assert empty.status_code == 422
+
+    blank = http.post(
+        f"/api/scenes/{scene.slug}/approve",
+        json={"editor": "   ", "master_sha256": digest, "checklist": full},
+        headers=AUTH,
+    )
+    assert blank.status_code == 400
+    assert "name of the person giving it" in blank.json()["detail"]
+
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None and stored[1].approval_json is None
 
 
 def test_declining_returns_the_scene_to_draft_with_the_reason_recorded(client: Any) -> None:
@@ -402,13 +441,176 @@ def test_the_fake_engine_is_gated_exactly_as_the_cli_gates_it(tmp_path: Path) ->
     assert "cast on the fake engine" in refused.json()["detail"]
 
 
-def test_the_api_checklist_is_the_one_the_html_form_certifies() -> None:
-    """`api.workflow` re-declares the eight keys rather than importing them from `ui`.
+def test_the_checklist_has_one_home_and_two_of_its_points_are_conditional(client: Any) -> None:
+    """`api.workflow` is where the eight keys live. It used to be one of two places.
 
-    `ui.py` is the legacy HTML surface and is deleted when the desktop app reaches parity, so the
-    API must not be what keeps it alive. This test is the seam that makes the duplication safe:
-    the two lists are held equal today, and on the day `ui.py` goes the assertion goes with it —
-    a deliberate one-line change instead of a checklist key quietly disappearing.
+    `ui.py` declared the same eight as full German sentences for the HTML form, and this test used
+    to hold the two lists equal so the duplication could not drift. `ui.py` is deleted, the
+    sentences are Tonwerk's, and what is worth asserting is no longer an equality but the rule the
+    form could only half-express: **two of the eight are conditional**, and certifying a point
+    about something the scene does not contain is a signature on nothing.
     """
 
-    assert set(APPROVAL_CHECKLIST) == set(ui.APPROVAL_CHECKS)
+    _http, _store, scene = client
+    assert set(APPROVAL_CHECKLIST) == {
+        "accent",
+        "naturalness",
+        "intelligibility",
+        "identity",
+        "speakers",
+        "pace",
+        "questions",
+        "context",
+    }
+
+    always = set(APPROVAL_CHECKLIST) - {"context", "questions"}
+    # This scene has an ambience bed and an sfx event, and carries no exercise.
+    assert _required_checks(scene, has_exercise=False) == always | {"context"}
+    assert _required_checks(scene, has_exercise=True) == always | {"context", "questions"}
+
+    silent = scene.model_copy(
+        update={"timeline": [row for row in scene.timeline if row.type == "speech"]}
+    )
+    assert _required_checks(silent, has_exercise=False) == always
+
+
+def test_a_render_failure_is_recorded_beside_the_render_and_reported_as_itself(
+    client: Any, monkeypatch: Any
+) -> None:
+    """There is one engine, so a failure has nowhere to fall back to — and never had a reason to.
+
+    Ported from the deleted `test_web.py`, which asserted this about the dialogue form's Generate
+    button. The old path answered a Qwen crash by rewriting the project onto Parler, which meant a
+    hardware-shaped failure silently changed which voices the editor was reviewing. The scene must
+    stay exactly where it was, with the failure written down beside the render it was trying to
+    produce — under the scene sha, so a failure and the audio it failed to make share an address.
+    """
+
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+
+    def fail(*_args: Any, **_kwargs: Any) -> None:
+        raise RuntimeError("MPS generated invalid probabilities")
+
+    monkeypatch.setattr("listening_studio.api.workflow.render_scene", fail)
+
+    refused = http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH)
+    assert refused.status_code == 409
+    assert "MPS generated invalid probabilities" in refused.json()["detail"]
+    assert "Traceback" not in refused.text
+
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None and stored[0].stage == Stage.DRAFT
+
+    directory = store.root / "renders" / scene.sha256() / "natural"
+    recorded = list(directory.glob("*-failure-rev-1.json"))
+    assert recorded, sorted(path.name for path in directory.iterdir())
+    written = json.loads(recorded[0].read_text())
+    assert written["error_type"] == "RuntimeError"
+    assert written["scene_sha256"] == scene.sha256()
+    assert written["variant"] == "natural"
+    assert set(written["engines"]) == {"fake"}
+
+
+def test_a_render_artifact_is_served_only_when_the_manifest_declares_it(client: Any) -> None:
+    """The allowlist is `render.json`, never the filesystem — which is the whole security story.
+
+    Per-take playback is what makes a mix reviewable one voice at a time, and it needs a path for
+    every stem. Deriving that path from the request would make the render directory browsable; the
+    manifest already lists exactly what the run wrote, so it is the list, and a path outside it is
+    a 404 whether or not a file of that name exists.
+    """
+
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+    rendered = http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH)
+    assert rendered.status_code == 200, rendered.text
+
+    directory = store.root / "renders" / scene.sha256() / "natural"
+    base = f"/api/scenes/{scene.slug}/renders/natural/artifact"
+    declared = {row["path"]: row for row in rendered.json()["artifacts"]}
+    stem = next(path for path, row in declared.items() if row["kind"] == "stem")
+
+    served = http.get(f"{base}/{stem}", headers=AUTH)
+    assert served.status_code == 200, served.text
+    assert served.headers["content-type"] == "audio/wav"
+    assert served.content == (directory / stem).read_bytes()
+
+    # Every declared artifact is reachable, master and dry mix included.
+    for path in declared:
+        assert http.get(f"{base}/{path}", headers=AUTH).status_code == 200, path
+
+    # The manifest itself is not one of its own artifacts, and it exists on disk — which is
+    # exactly the case that separates "allowlist from the manifest" from "check the file is there".
+    assert (directory / "render.json").is_file()
+    assert http.get(f"{base}/render.json", headers=AUTH).status_code == 404
+
+    # Nor is anything above the render directory, though `db.sqlite3` is certainly on disk.
+    assert (store.root / "db.sqlite3").is_file()
+    escaped = http.get(f"{base}/../../../db.sqlite3", headers=AUTH)
+    assert escaped.status_code == 404
+
+    # And a variant nobody rendered has no artifacts at all, rather than the natural mix's.
+    other = http.get(
+        f"/api/scenes/{scene.slug}/renders/challenging/artifact/{stem}", headers=AUTH
+    )
+    assert other.status_code == 404
+    assert "no challenging render" in other.json()["detail"]
+
+
+def test_a_lesetext_becomes_a_narration_scene_and_only_once(tmp_path: Path) -> None:
+    """`POST /api/scenes/from-reading` is `scene from-reading --import` over HTTP.
+
+    Read against the real course repository: the conversion resolves a Lesetext, a narration
+    profile and a character catalog, and a fixture repo would exercise the absent branch of all
+    three. The store is a throwaway, so the duplicate refusal is about this test's own creation.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    http = TestClient(app(store, REPO, token="test"), raise_server_exceptions=False)
+    reading = "a1/erste-schritte"
+
+    created = http.post("/api/scenes/from-reading", json={"reading_id": reading}, headers=AUTH)
+    assert created.status_code == 201, created.text
+    row = created.json()
+    # The scenes-list row shape, so a queue can put the answer straight into the list it shows.
+    assert set(row) == {
+        "project_id",
+        "slug",
+        "kind",
+        "stage",
+        "revision",
+        "scene_sha256",
+        "has_exercise",
+        "qa_passed",
+        "updated",
+        "title",
+        "level",
+    }
+    assert row["slug"] == "a1-erste-schritte"
+    assert row["kind"] == "narration"
+    assert row["stage"] == str(Stage.DRAFT)
+    assert row["has_exercise"] is False
+    assert [listed["slug"] for listed in http.get("/api/scenes", headers=AUTH).json()] == [
+        row["slug"]
+    ]
+
+    # One Lesetext is one narration project. A second create is the queue's row being stale.
+    again = http.post("/api/scenes/from-reading", json={"reading_id": reading}, headers=AUTH)
+    assert again.status_code == 409
+    assert "already exists" in again.json()["detail"]
+
+    missing = http.post(
+        "/api/scenes/from-reading", json={"reading_id": "a1/gibt-es-nicht"}, headers=AUTH
+    )
+    assert missing.status_code == 404
+
+    # A real Lesetext and an impossible pairing are different failures: 404 says nothing can be
+    # made here, 409 says not like that.
+    unknown_profile = http.post(
+        "/api/scenes/from-reading",
+        json={"reading_id": "a1/akkusativ", "profile": "gibt-es-nicht"},
+        headers=AUTH,
+    )
+    assert unknown_profile.status_code == 409
+    assert "gibt-es-nicht" in unknown_profile.json()["detail"]

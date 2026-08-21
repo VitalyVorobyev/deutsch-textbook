@@ -75,24 +75,38 @@ describe('routing', () => {
   test('an unknown hash says so rather than rendering the overview under a broken link', () => {
     setToken('geheim');
     vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
-    window.location.hash = '#/lesetexte';
+    window.location.hash = '#/archiv';
 
     render(<App />);
 
     expect(screen.getByText('Diese Seite gibt es nicht')).toBeTruthy();
   });
 
-  test('the sections that have not arrived yet are listed but not navigable', () => {
+  test('every section on the rail is a link now — nothing is listed as “Folgt”', () => {
     setToken('geheim');
     vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
 
     render(<App />);
 
-    for (const name of ['Lesetexte', 'Prüfung']) {
-      const eintrag = screen.getByText(name);
-      expect(eintrag.getAttribute('aria-disabled')).toBe('true');
-      expect(eintrag.tagName).not.toBe('A');
+    // The two that used to be disabled placeholders arrived in PR 9b. A heading over an empty
+    // "coming" list says nothing, so the group went with them rather than staying as a label.
+    expect(screen.queryByText('Folgt')).toBeNull();
+    for (const [name, ziel] of [
+      ['Lesetexte', '#/lesetexte'],
+      ['Prüfung', '#/pruefung'],
+    ] as const) {
+      expect(screen.getByRole('link', { name }).getAttribute('href')).toBe(ziel);
     }
+  });
+
+  test('a Freigabe is a place inside Prüfung, so the rail keeps Prüfung lit', () => {
+    setToken('geheim');
+    vi.stubGlobal('fetch', vi.fn(async () => antwort({ detail: 'no scene project x' }, { status: 404 })));
+    window.location.hash = '#/pruefung/ls-wohnen-01';
+
+    render(<App />);
+
+    expect(screen.getByRole('link', { name: 'Prüfung' }).getAttribute('aria-current')).toBe('page');
   });
 
   test('the Klangbibliothek is a real section now, and it is reachable', () => {
@@ -105,13 +119,16 @@ describe('routing', () => {
     expect(weg.getAttribute('href')).toBe('#/klangbibliothek');
   });
 
-  test('the two shortcuts are printed on the rail rather than hidden in a help page', () => {
+  test('the shortcuts are printed on the rail rather than hidden in a help page', () => {
     setToken('geheim');
     vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
 
     render(<App />);
 
-    expect(screen.getByText('⌘/Strg + S')).toBeTruthy();
-    expect(screen.getByText('Leertaste')).toBeTruthy();
+    // Two for the editor, two for a queue. A legend that grew with the app rather than a help page
+    // that had to be found.
+    for (const taste of ['⌘/Strg + S', 'Leertaste', 'J / K', 'Enter']) {
+      expect(screen.getByText(taste)).toBeTruthy();
+    }
   });
 });

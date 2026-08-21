@@ -12,19 +12,11 @@
  */
 import { useMemo } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
+import { STUFE_LABEL } from '../contracts';
 import { kurzSha, zahl, zeitpunkt } from '../format';
 import { href } from '../router';
 import { useApi, useEngineRead } from '../useEngine';
 import { fehlerText } from './fehler';
-
-/** The engine's stage vocabulary, in German. Same five words the workflow endpoints move between. */
-const STUFE: Record<string, string> = {
-  draft: 'Entwurf',
-  automatically_checked: 'automatisch geprüft',
-  human_approved: 'freigegeben',
-  exported: 'veröffentlicht',
-  declined: 'abgelehnt',
-};
 
 export function Szenen(): React.JSX.Element {
   const api = useApi();
@@ -86,7 +78,7 @@ export function Szenen(): React.JSX.Element {
                         </Marke>
                       </td>
                       <td className="zahl">{row.level ?? <span className="leer" />}</td>
-                      <td className="leise">{STUFE[row.stage] ?? row.stage}</td>
+                      <td className="leise">{STUFE_LABEL[row.stage] ?? row.stage}</td>
                       <td className="zahl-rechts zahl">{row.revision}</td>
                       <td className="zahl entfernt" title={row.scene_sha256}>
                         {kurzSha(row.scene_sha256)}

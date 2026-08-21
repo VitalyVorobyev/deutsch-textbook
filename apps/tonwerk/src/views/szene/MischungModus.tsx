@@ -18,13 +18,16 @@
  * node counts are on the answer, because "24 of 26 nodes came from the cache" is the argument the
  * whole graph exists to make.
  *
- * This view is read-mostly on purpose: approval is PR 9b's, and the approval already recorded is
- * shown here because a reviewer must see whether it still covers these bytes.
+ * **This view produces audio; it never signs it.** The approval already recorded is shown here
+ * because a reviewer editing a scene must see whether it still covers these bytes — but giving one
+ * is Prüfung's, on a page whose whole layout is the listen-first discipline. A "freigeben" button
+ * beside the render button would put a signature one click from the thing that invalidates it.
  */
 import { useMemo, useRef } from 'react';
 import { Marke, Platte, Zustand } from '../../components/Platte';
 import { Spielbereich, Spieler } from '../../components/Spieler';
 import { dauer, kurzSha, prozent, sekunden, zahl, zeitpunkt } from '../../format';
+import { href } from '../../router';
 import { useVorgang } from '../../vorgang';
 import { fehlerText } from '../fehler';
 import type { Api } from '../../api';
@@ -45,6 +48,7 @@ export function MischungModus({
   sceneSha,
   variante,
   setVariante,
+  stage,
   geaendert,
   api,
   nachLauf,
@@ -57,6 +61,8 @@ export function MischungModus({
   sceneSha: string;
   variante: string;
   setVariante(next: string): void;
+  /** The project's stage, so this view can point at the review instead of imitating it. */
+  stage: string;
   /** The draft has unsaved edits, so the render on screen is of other bytes. */
   geaendert: boolean;
   api: Api;
@@ -283,8 +289,8 @@ export function MischungModus({
         <Bericht qa={qa} />
       </div>
 
-      <Stuecke stand={stand} />
-      <Freigabe approval={approval} sceneSha={sceneSha} />
+      <Stuecke stand={stand} slug={slug} variante={variante} />
+      <Freigabe approval={approval} sceneSha={sceneSha} slug={slug} stage={stage} />
     </Spielbereich>
   );
 }
@@ -513,19 +519,32 @@ function Bericht({ qa }: { qa: QaReport | null }): React.JSX.Element {
 }
 
 /**
- * What the render wrote, beside what can be played.
+ * What the render wrote, and every piece of it playable.
  *
- * Only the master is served over HTTP today (`GET …/renders/{variant}/master`), so the stems are
- * listed with their digests and not offered a transport. A play button that did nothing would be
- * worse than the list: it would say the studio can audition one voice on its own, and it cannot.
+ * Until PR 9b only the master had a path, so the stems were a list of digests: a mix could be
+ * judged whole and never taken apart, which is the wrong way round — a masked syllable or a voice
+ * that drifts is audible on its own take and inaudible under a bed.
+ * `GET …/renders/{variant}/artifact/{path}` serves anything the manifest declares, so the file
+ * names printed here are also the addresses they are fetched from, and the two cannot disagree.
+ *
+ * A non-audio artifact (the render's own `publish` sidecar) keeps its row and gets no transport:
+ * a play button that did nothing would claim the studio can audition JSON.
  */
-function Stuecke({ stand }: { stand: RenderRow | null }): React.JSX.Element {
+function Stuecke({
+  stand,
+  slug,
+  variante,
+}: {
+  stand: RenderRow | null;
+  slug: string;
+  variante: string;
+}): React.JSX.Element {
   const stuecke = stand?.artifacts ?? [];
   return (
     <Platte
       titel="Renderstücke"
       zaehler={`${zahl(stuecke.length)}`}
-      erklaerung="Was dieser Lauf geschrieben hat. Anhören lässt sich hier nur der Master — die Engine gibt die Einzelspuren noch über keinen Pfad heraus."
+      erklaerung="Was dieser Lauf geschrieben hat. Jede Datei, die der Renderbericht nennt, lässt sich einzeln hören — eine Stimme ohne Bett klingt anders als dieselbe Stimme darunter."
       randlos
     >
       {stuecke.length === 0 ? (
@@ -538,6 +557,7 @@ function Stuecke({ stand }: { stand: RenderRow | null }): React.JSX.Element {
                 <th scope="col">Art</th>
                 <th scope="col">Datei</th>
                 <th scope="col">Sha</th>
+                <th scope="col">Anhören</th>
               </tr>
             </thead>
             <tbody>
@@ -549,6 +569,17 @@ function Stuecke({ stand }: { stand: RenderRow | null }): React.JSX.Element {
                   <td className="zahl leise">{stueck.path}</td>
                   <td className="zahl entfernt" title={stueck.sha256}>
                     {kurzSha(stueck.sha256)}
+                  </td>
+                  <td>
+                    {/\.(wav|flac|mp3)$/i.test(stueck.path) ? (
+                      <Spieler
+                        kompakt
+                        pfad={`/api/scenes/${encodeURIComponent(slug)}/renders/${encodeURIComponent(variante)}/artifact/${stueck.path.split('/').map(encodeURIComponent).join('/')}`}
+                        name={`${stueck.kind} ${stueck.path}`}
+                      />
+                    ) : (
+                      <span className="leer" />
+                    )}
                   </td>
                 </tr>
               ))}
@@ -563,14 +594,25 @@ function Stuecke({ stand }: { stand: RenderRow | null }): React.JSX.Element {
 function Freigabe({
   approval,
   sceneSha,
+  slug,
+  stage,
 }: {
   approval: Approval | null;
   sceneSha: string;
+  slug: string;
+  stage: string;
 }): React.JSX.Element {
   if (!approval) {
     return (
       <Platte titel="Freigabe">
         <Zustand art="leer" text="Diese Revision ist von niemandem freigegeben." />
+        {stage === 'automatically_checked' ? (
+          <div className="platte-leib" style={{ paddingTop: 0 }}>
+            <a className="knopf knopf-signal" href={href('pruefung', slug)}>
+              Freigabe öffnen
+            </a>
+          </div>
+        ) : null}
       </Platte>
     );
   }

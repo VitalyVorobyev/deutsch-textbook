@@ -64,6 +64,44 @@ export function isRegistryStatus(value: string): value is RegistryStatus {
   return (REGISTRY_STATUSES as readonly string[]).includes(value);
 }
 
+/**
+ * The engine's *stage* vocabulary in German — a different axis from the registry status above.
+ *
+ * A status answers "where is this artifact in the course", joined across four sources. A stage
+ * answers "where is this project in the studio's own machine", and only the studio has one. Three
+ * views need the German for it, so it is written down once here rather than copied into each.
+ */
+export const STUFE_LABEL: Record<string, string> = {
+  draft: 'Entwurf',
+  validated: 'geprüft',
+  audio_generated: 'gerendert',
+  automatically_checked: 'automatisch geprüft',
+  human_approved: 'freigegeben',
+  exported: 'veröffentlicht',
+  declined: 'abgelehnt',
+};
+
+/** The stage a scene sits at while it waits for a person. The only one Prüfung queues. */
+export const STUFE_WARTET = 'automatically_checked';
+
+/**
+ * The registry status a scene project's own row would carry, from the two facts the list gives.
+ *
+ * The same split `api/registry._project_status` makes, and made here for the same reason: an
+ * `automatically_checked` scene whose QA failed is not waiting for a signature, it is waiting for
+ * a rewrite, and a queue that draws both with one lamp is telling the reviewer to open twenty
+ * pages to find out which.
+ */
+export function stufeStatus(stage: string, qaPassed: boolean | null | undefined): RegistryStatus {
+  if (stage === 'human_approved') return 'approved';
+  if (stage === 'exported') return 'published';
+  if (stage === STUFE_WARTET) {
+    if (qaPassed === true) return 'awaiting_approval';
+    if (qaPassed === false) return 'qa_failed';
+  }
+  return 'drafted';
+}
+
 /** The status as read: the vocabulary, or an unrecognised word the engine has started using. */
 const statusSchema = z.string();
 
@@ -157,6 +195,8 @@ export const sceneRowSchema = z.looseObject({
   revision: z.number(),
   scene_sha256: z.string(),
   has_exercise: z.boolean(),
+  /** Three answers, not two: `null` means nothing has measured these bytes yet. */
+  qa_passed: z.boolean().nullable().optional(),
   updated: z.string().nullable().optional(),
   title: sceneTitleSchema,
   level: z.string().nullable().optional(),
@@ -491,3 +531,51 @@ export const qaResultSchema = z.looseObject({
   qa: qaReportSchema,
 });
 export type QaResult = z.infer<typeof qaResultSchema>;
+
+/** What an approval answers: the record the engine stored, verbatim. */
+export const approvalResultSchema = z.looseObject({
+  slug: z.string(),
+  revision: z.number(),
+  stage: z.string(),
+  approval: approvalSchema,
+});
+export type ApprovalResult = z.infer<typeof approvalResultSchema>;
+
+/** What a decline answers. `stage` is `draft` again; the QA report and the render stay. */
+export const declineResultSchema = z.looseObject({
+  slug: z.string(),
+  revision: z.number(),
+  stage: z.string(),
+  decline: z.looseObject({
+    status: z.string().optional(),
+    editor: z.string().nullable().optional(),
+    reviewed_at: z.string().optional(),
+    reason: z.string().optional(),
+    scene_sha256: z.string().nullable().optional(),
+  }),
+});
+export type DeclineResult = z.infer<typeof declineResultSchema>;
+
+/**
+ * The narration profiles, read from the engine like every other vocabulary.
+ *
+ * `allowed_kinds` is the field that matters to a picker: a profile is not offered for a Lesetext
+ * whose `kind` it refuses, because the engine would answer 409 and the reviewer would learn the
+ * rule from a refusal. `label` and `description` are what a person chooses by; the id is what is
+ * sent.
+ */
+export const narrationProfileSchema = z.looseObject({
+  id: z.string(),
+  version: z.number().optional(),
+  character_id: z.string().optional(),
+  label: z.string(),
+  description: z.string().default(''),
+  allowed_kinds: z.array(z.string()).default([]),
+});
+export type NarrationProfile = z.infer<typeof narrationProfileSchema>;
+
+export const narrationProfilesSchema = z.looseObject({
+  version: z.number().optional(),
+  profiles: z.array(narrationProfileSchema),
+});
+export type NarrationProfiles = z.infer<typeof narrationProfilesSchema>;

@@ -89,11 +89,17 @@ export function Spieler({
   pfad,
   name,
   kompakt,
+  gross,
 }: {
   /** An engine path, or null when there is nothing to play yet. */
   pfad: string | null;
   name: string;
   kompakt?: boolean;
+  /**
+   * The full-width transport. Exactly one player on a page may be this: the master under review,
+   * on the Freigabe page, where it is not a control beside the work but the work itself.
+   */
+  gross?: boolean;
 }): React.JSX.Element {
   const [geweckt, setGeweckt] = useState(false);
   const blob = useEngineBlob(geweckt ? pfad : null);
@@ -121,9 +127,11 @@ export function Spieler({
     return <span className="entfernt spieler-leer">nichts zu hören</span>;
   }
 
+  const klasse = `spieler${kompakt ? ' spieler-kompakt' : ''}${gross ? ' spieler-gross' : ''}`;
+
   if (!geweckt) {
     return (
-      <span className={kompakt ? 'spieler spieler-kompakt' : 'spieler'}>
+      <span className={klasse}>
         <button
           type="button"
           className="knopf knopf-transport"
@@ -141,7 +149,7 @@ export function Spieler({
   }
 
   return (
-    <span className={kompakt ? 'spieler spieler-kompakt' : 'spieler'}>
+    <span className={klasse}>
       <button
         type="button"
         className="knopf knopf-transport"

@@ -23,6 +23,7 @@
  */
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
+import { STUFE_LABEL } from '../contracts';
 import { kurzSha, zahl, zeitpunkt } from '../format';
 import { href, navigate, sperreNavigation, useQueryState } from '../router';
 import { istGeaendert } from '../scene-draft';
@@ -34,14 +35,6 @@ import { fehlerText } from './fehler';
 import type { Api, SceneDocument } from '../api';
 import type { SceneDetail } from '../contracts';
 import type { Scene } from '@da/schema/audio-scene';
-
-const STUFE: Record<string, string> = {
-  draft: 'Entwurf',
-  automatically_checked: 'automatisch geprüft',
-  human_approved: 'freigegeben',
-  exported: 'veröffentlicht',
-  declined: 'abgelehnt',
-};
 
 const MODI = [
   { id: 'skript', name: 'Skript' },
@@ -175,7 +168,7 @@ function Editor({
     return () => window.removeEventListener('keydown', taste);
   }, [speichern]);
 
-  const stufe = STUFE[data.stage] ?? data.stage;
+  const stufe = STUFE_LABEL[data.stage] ?? data.stage;
   const kopfMarke = useMemo(() => {
     if (geaendert) return <Marke ton="signal">ungespeichert</Marke>;
     if (data.stage === 'human_approved' || data.stage === 'exported')
@@ -314,6 +307,7 @@ function Editor({
           sceneSha={data.scene_sha256}
           variante={variante}
           setVariante={setVariante}
+          stage={data.stage}
           geaendert={geaendert}
           api={api}
           nachLauf={neuLaden}

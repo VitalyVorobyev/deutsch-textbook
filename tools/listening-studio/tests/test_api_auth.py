@@ -1,9 +1,9 @@
-"""Two ways to present one secret, and the rules that keep them from covering for each other.
+"""One secret, one way to present it, and the three things that are open on purpose.
 
-`Authorization: Bearer` is what the desktop app and any CLI or agent use. The cookie and
-`?token=` are what the legacy HTML pages use and die with them. Every row of the table in
-`web.local_only`'s docstring has a test here, because an auth rule that is only *described* is a
-rule nobody notices the day it stops holding.
+Every row of the table in `web.local_only`'s docstring has a test here, because an auth rule that
+is only *described* is a rule nobody notices the day it stops holding. Since PR 9b the table is
+four rows rather than seven: the cookie, `?token=` and the origin check went with the HTML forms,
+and this file is what proves they are gone rather than merely unused.
 """
 
 from __future__ import annotations
@@ -33,8 +33,7 @@ def test_a_valid_bearer_token_is_accepted(tmp_path: Path) -> None:
     response = http.get("/api/scenes", headers={"Authorization": "Bearer test"})
     assert response.status_code == 200
     assert response.json() == []
-    # A program is not a browser session: it already holds the token, and handing it an ambient
-    # credential as well would add a way in without adding a capability.
+    # Nothing ambient is ever handed out. There is no session to have.
     assert http.cookies.get("atlas_studio") is None
 
 
@@ -66,62 +65,119 @@ def test_a_wrong_bearer_token_is_401_json_and_never_a_redirect(tmp_path: Path) -
     assert http.get("/api/scenes", headers={"Authorization": "Bearer"}).status_code == 401
 
 
-def test_a_wrong_bearer_is_refused_even_beside_a_valid_cookie(tmp_path: Path) -> None:
-    """A presented credential is never quietly overruled by an ambient one.
+def test_no_credential_at_all_is_also_401_and_says_which_it_was(tmp_path: Path) -> None:
+    """The 403 row is gone with the cookie that made it mean something.
 
-    Otherwise a client with a stale token works in every browser-shaped case and fails in every
-    other, which is the hardest kind of auth bug to see: the failure is somewhere the token was
-    never the thing being tested.
+    It used to say "you are not this machine", which was answerable — present the cookie, or come
+    from localhost. With one credential and one way to present it there is nothing else to try, so
+    a missing bearer and a wrong one get the same status and different words. 401 is also what
+    Tonwerk turns back into its token screen; a 403 would leave a stale session staring at an
+    error it could not act on.
     """
 
     http = studio(tmp_path)
-    assert http.get("/api/scenes?token=test").status_code == 200
-    assert http.cookies.get("atlas_studio") == "test"
+    missing = http.get("/api/scenes")
+    assert missing.status_code == 401
+    assert missing.json() == {"detail": "Missing bearer token"}
+    assert missing.headers.get("www-authenticate") == "Bearer"
 
-    refused = http.get("/api/scenes", headers={"Authorization": "Bearer wrong"})
-    assert refused.status_code == 401
 
+def test_the_cookie_and_query_token_paths_are_gone(tmp_path: Path) -> None:
+    """Both legacy presentations are refused, and neither leaves a session behind.
 
-def test_a_request_with_no_origin_and_a_valid_bearer_passes(tmp_path: Path) -> None:
-    """A CLI sends no `Origin`. The origin check is a CSRF guard and CSRF needs a cookie.
-
-    Applying it to a header-authenticated request would refuse exactly the caller this API is
-    for — and would not make a cookie-authenticated one any safer.
+    `?token=` used to authenticate and set a cookie that carried the *next* request. A regression
+    here is silent in exactly the way that matters: everything keeps working in a browser and the
+    credential nobody meant to keep issuing is back.
     """
 
     http = studio(tmp_path)
-    assert "origin" not in {key.lower() for key in http.headers}
-    assert http.get("/api/scenes", headers={"Authorization": "Bearer test"}).status_code == 200
-    # Even a foreign origin, which the cookie path refuses, is irrelevant with a bearer token:
-    # no browser attaches an `Authorization` header to a cross-site request on its own.
+    assert http.get("/api/scenes?token=test").status_code == 401
+    assert http.cookies.get("atlas_studio") is None
+
+    http.cookies.set("atlas_studio", "test")
+    assert http.get("/api/scenes").status_code == 401
+
+
+def test_the_origin_check_is_gone_because_there_is_nothing_ambient_left(tmp_path: Path) -> None:
+    """It was a CSRF guard, and CSRF is a property of credentials a browser attaches by itself.
+
+    A bearer request has always been exempt (a CLI sends no `Origin` at all). With the cookie
+    deleted, every request is a bearer request — so the check now only ever had one possible
+    subject, and that subject was never at risk. It is removed rather than left as a no-op.
+    """
+
+    http = studio(tmp_path)
     foreign = http.get(
         "/api/scenes", headers={"Authorization": "Bearer test", "Origin": "https://evil.example"}
     )
     assert foreign.status_code == 200
+    assert "access-control-allow-origin" not in {key.lower() for key in foreign.headers}
 
 
-def test_the_cookie_and_query_paths_still_work_exactly_as_before(tmp_path: Path) -> None:
+def test_health_is_open_hands_out_nothing_and_opens_nothing(tmp_path: Path) -> None:
+    """/health is token-exempt so a supervisor can poll it; that must not be a way in.
+
+    Every response used to carry the session cookie, so any client could GET /health, keep the
+    cookie it was given, and reach every mutation endpoint without ever knowing the token. There
+    is no cookie to be given now, and this asserts both halves: the poll works, and it buys the
+    same client nothing on the next request.
+    """
+
     http = studio(tmp_path)
-    assert http.get("/api/scenes").status_code == 403
-    assert http.get("/api/scenes?token=test").status_code == 200
-    assert http.cookies.get("atlas_studio") == "test"
-    # The cookie alone carries the next request, which is what the HTML pages rely on.
-    assert http.get("/api/scenes").status_code == 200
-    # And the origin check still applies to it.
-    blocked = http.get("/api/scenes", headers={"Origin": "https://evil.example"})
-    assert blocked.status_code == 403
-    assert blocked.json() == {"detail": "Invalid origin"}
-
-
-def test_health_is_still_exempt_and_still_hands_out_nothing(tmp_path: Path) -> None:
-    http = studio(tmp_path)
-    assert http.get("/health").status_code == 200
+    health = http.get("/health")
+    assert health.status_code == 200
+    assert "atlas_studio" not in health.cookies
     assert http.cookies.get("atlas_studio") is None
-    assert http.get("/api/scenes").status_code == 403
+    assert http.get("/api/scenes").status_code == 401
 
 
-def test_the_react_dashboard_endpoints_answer_the_same_shape_as_before(tmp_path: Path) -> None:
-    """The split into `api/` moved code, not paths. The dashboard reads these two on every load.
+def test_the_workbench_is_served_open_because_it_is_what_asks_for_the_token(
+    tmp_path: Path,
+) -> None:
+    """`/` carries no studio data, and a token screen behind the token is unreachable.
+
+    Which of the two answers arrives depends on whether `apps/tonwerk/dist` exists in this
+    checkout, and both are correct — what is being asserted is that neither is a 401.
+    """
+
+    http = studio(tmp_path)
+    root = http.get("/")
+    assert root.status_code in {200, 503}
+    if root.status_code == 503:
+        assert "bun run tonwerk:build" in root.text
+
+
+def test_the_only_routes_outside_api_are_health_and_the_workbench(tmp_path: Path) -> None:
+    """No form route survived the deletion, asserted against the route table rather than by GET.
+
+    By request, because the answer to a GET depends on the checkout: with `apps/tonwerk/dist`
+    built, the static mount at `/` answers 404 for `/projects/1` and **405** for a POST to it,
+    which is the right behaviour and a useless assertion. The route table is the fact.
+
+    It matters beyond tidiness: `/projects/{id}/script` and its siblings wrote a `RevisionPayload`
+    through an HTML form, and those projects are frozen data until PR 11 converts them.
+    """
+
+    store = Store(tmp_path / "db.sqlite3")
+    api = app(store, tmp_path, token="test")
+    paths = {str(getattr(route, "path", "")) for route in api.routes}
+    outside = {path for path in paths if not path.startswith("/api")}
+    # `/openapi.json` and the two doc pages are FastAPI's own and were never part of the surface.
+    # The empty string is the static mount: Starlette normalises a `Mount` at `/` to a `""` prefix.
+    assert outside <= {
+        "",
+        "/",
+        "/health",
+        "/openapi.json",
+        "/docs",
+        "/docs/oauth2-redirect",
+        "/redoc",
+    }
+    assert not [path for path in paths if path.startswith(("/projects", "/readings"))]
+
+
+def test_the_dashboard_endpoints_answer_the_same_shape_as_before(tmp_path: Path) -> None:
+    """The pre-scene projects are frozen data, and they stay readable.
 
     Read against the real course repository, because both endpoints join the plan, the character
     catalog and the Lesetext corpus — a fixture repo would exercise the empty branch of all
@@ -130,7 +186,8 @@ def test_the_react_dashboard_endpoints_answer_the_same_shape_as_before(tmp_path:
 
     store = Store(tmp_path / "db.sqlite3")
     http = TestClient(app(store, REPO, token="test"), raise_server_exceptions=False)
-    dashboard = http.get("/api/dashboard?token=test")
+    auth = {"Authorization": "Bearer test"}
+    dashboard = http.get("/api/dashboard", headers=auth)
     assert dashboard.status_code == 200
     assert set(dashboard.json()) == {"dialogues", "readings", "issues", "summary"}
     assert set(dashboard.json()["summary"]) == {
@@ -145,9 +202,9 @@ def test_the_react_dashboard_endpoints_answer_the_same_shape_as_before(tmp_path:
     assert dashboard.json()["summary"]["dialogues"] > 0
     assert dashboard.json()["summary"]["readings"] > 0
 
-    sounds = http.get("/api/sounds?token=test")
+    sounds = http.get("/api/sounds", headers=auth)
     assert sounds.status_code == 200 and sounds.json() == []
-    projects = http.get("/api/projects?token=test")
+    projects = http.get("/api/projects", headers=auth)
     assert projects.status_code == 200
     assert {row["kind"] for row in projects.json()} == {"dialogue", "reading"}
-    assert http.get("/api/narration-profiles?token=test").status_code == 200
+    assert http.get("/api/narration-profiles", headers=auth).status_code == 200
