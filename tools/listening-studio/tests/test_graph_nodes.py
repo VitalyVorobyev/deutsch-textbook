@@ -8,6 +8,7 @@ render still succeeds. Asserting the strings is the only screen either failure h
 
 from __future__ import annotations
 
+from listening_studio.dsp.ir import IR_IMPL_VERSION
 from listening_studio.generative.fake import FakeSpeech
 from listening_studio.generative.gateway import SpeechRequest
 from listening_studio.graph.nodes import (
@@ -16,6 +17,7 @@ from listening_studio.graph.nodes import (
     LOUDNORM,
     MixInput,
     Node,
+    RoomMix,
     import_filters,
     mix_filtergraph,
     pan_filter,
@@ -86,9 +88,15 @@ def test_an_impl_version_bump_changes_the_hash() -> None:
 
 def test_every_node_type_starts_at_impl_version_one() -> None:
     assert set(IMPL_VERSIONS) == {
-        "synth", "pace", "sound-gen", "import", "track", "mix", "loudnorm", "encode"
+        "synth", "pace", "sound-gen", "import", "ir", "track", "mix", "loudnorm", "encode"
     }
     assert set(IMPL_VERSIONS.values()) == {1}
+
+
+def test_the_ir_node_takes_its_version_from_the_generator_that_writes_it() -> None:
+    """One number, not two. The IR generator lives in `dsp` and its version is the node's."""
+
+    assert IMPL_VERSIONS["ir"] == IR_IMPL_VERSION
 
 
 def test_a_synth_node_is_keyed_by_the_engine_that_actually_ran() -> None:
@@ -201,3 +209,103 @@ def test_the_loudness_target_is_the_shipped_corpus_target() -> None:
     """A scene rendered louder than the 41 artifacts beside it is a defect no gate would see."""
 
     assert LOUDNORM == "loudnorm=I=-19:TP=-1.5:LRA=7"
+
+
+# -- acoustics in the filtergraph ---------------------------------------------
+
+
+def test_an_acoustic_chain_runs_while_the_take_is_still_mono() -> None:
+    """Before the pan law: a telephone is a one-channel channel, and running it on a stereo pair
+    would cost twice as much for the same audio."""
+
+    built = track_filters(
+        pan=0.0, gain_db=0.0, delay_ms=800, window_ms=None, fx="highpass=f=300:p=2"
+    )
+    assert built == (
+        "highpass=f=300:p=2,pan=stereo|c0=0.707107*c0|c1=0.707107*c0,adelay=800|800"
+    )
+
+
+def test_an_empty_acoustic_chain_leaves_the_track_exactly_as_it_was() -> None:
+    """The property that keeps every stem rendered before the DSP layer on the hash it had."""
+
+    assert track_filters(pan=0.0, gain_db=0.0, delay_ms=0, window_ms=None, fx="") == (
+        track_filters(pan=0.0, gain_db=0.0, delay_ms=0, window_ms=None)
+    )
+
+
+def test_a_mix_with_no_room_ignores_every_send_level() -> None:
+    """A value that cannot reach the audio must not reach the filtergraph — or the hash."""
+
+    with_sends = mix_filtergraph(
+        [MixInput(stem_id="line-1", bus="dialogue", send_db=6.0)], room=None
+    )
+    assert with_sends == mix_filtergraph([MixInput(stem_id="line-1", bus="dialogue")])
+    assert "asplit" not in with_sends and "afir" not in with_sends
+
+
+def test_the_room_is_a_send_return_with_one_convolution_for_the_whole_mix() -> None:
+    """Three stems, three sends, one `afir` — and the bed is not among them."""
+
+    graph = mix_filtergraph(
+        [
+            MixInput(stem_id="line-1", bus="dialogue", send_db=0.0),
+            MixInput(stem_id="line-2", bus="dialogue", send_db=4.375),
+            MixInput(
+                stem_id="ambience-1",
+                bus="ambience",
+                fade_in_ms=350,
+                fade_in_start_ms=0,
+                fade_out_ms=450,
+                fade_out_start_ms=9550,
+            ),
+            MixInput(stem_id="sfx-1", bus="sfx", send_db=0.0),
+        ],
+        room=RoomMix(room_id="cafe", version=1, wet=0.35, ir_asset="c" * 64),
+    )
+    assert graph == ";".join(
+        [
+            "[0:a]asplit=2[d0][w0]",
+            "[1:a]asplit=2[d1][w1]",
+            "[w1]volume=4.375dB[x1]",
+            "[2:a]afade=t=in:st=0.000:d=0.350,afade=t=out:st=9.550:d=0.450[s2]",
+            "[3:a]asplit=2[d3][w3]",
+            "[d0][d1]amix=inputs=2:duration=longest:normalize=0[dialogue]",
+            "[s2]amix=inputs=1:duration=longest:normalize=0[ambience]",
+            "[d3]amix=inputs=1:duration=longest:normalize=0[sfx]",
+            "[w0][x1][w3]amix=inputs=3:duration=longest:normalize=0[send]",
+            # The IR is input 4: after every stem, which is the one thing `evaluate_mix` and this
+            # builder have to agree on.
+            "[4:a]pan=stereo|c0=c0|c1=c0[ir]",
+            "[send][ir]afir=irnorm=-1[reverb]",
+            "[reverb]volume=0.3500[wet]",
+            "[dialogue][ambience][sfx][wet]amix=inputs=4:duration=longest:normalize=0,"
+            f"{LIMITER}[out]",
+        ]
+    )
+    # One convolution, however many stems were sent.
+    assert graph.count("afir") == 1
+
+
+def test_a_bed_is_never_sent_into_the_room_it_already_is() -> None:
+    graph = mix_filtergraph(
+        [
+            MixInput(stem_id="line-1", bus="dialogue", send_db=0.0),
+            MixInput(stem_id="ambience-1", bus="ambience", send_db=None),
+        ],
+        room=RoomMix(room_id="cafe", version=1, wet=0.2, ir_asset="c" * 64),
+    )
+    # Exactly one split, and it is the dialogue stem's.
+    assert graph.count("asplit") == 1
+    assert "[1:a]amix=inputs=1:duration=longest:normalize=0[ambience]" in graph
+
+
+def test_the_wet_return_is_added_rather_than_crossfaded_against_the_dry_sum() -> None:
+    """A `(1-wet)` dry gain would attenuate the ambience bus, which stays untouched by design."""
+
+    graph = mix_filtergraph(
+        [MixInput(stem_id="line-1", bus="dialogue", send_db=0.0)],
+        room=RoomMix(room_id="studio", version=1, wet=0.04, ir_asset="c" * 64),
+    )
+    assert "[dialogue][wet]amix=inputs=2" in graph
+    assert "[dialogue]volume" not in graph

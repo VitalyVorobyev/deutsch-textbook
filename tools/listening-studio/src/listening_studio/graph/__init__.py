@@ -5,7 +5,8 @@ content-addressed store — bytes named by their own hash, with a provenance sid
 what each computation is, what identifies it and how it is run, including every ffmpeg filter
 string in this pipeline. `render` builds the graph for one scene, evaluates only what changed,
 and writes the manifest that makes the result a reproducible build artifact rather than a WAV
-somebody has.
+somebody has. The acoustic profiles those nodes are parameterised from live one level up, in
+`listening_studio.dsp`, which knows nothing about nodes — the dependency runs one way.
 
 Nothing here touches the legacy `RevisionPayload` pipeline (`adapters.generate_lines`,
 `assemble`, `mix_context`), which keeps rendering the 41 published dialogues exactly as it did.
@@ -23,6 +24,7 @@ from .nodes import (
     WORKING_RATE,
     MixInput,
     Node,
+    RoomMix,
     mix_filtergraph,
     pan_filter,
     track_filters,
@@ -33,6 +35,7 @@ from .render import (
     NodeCache,
     NodeRun,
     RenderResult,
+    ResolvedAcoustics,
     UtteranceTiming,
     render_scene,
 )
@@ -51,6 +54,8 @@ __all__ = [
     "PUBLISH_BITRATE",
     "QA_RATE",
     "RenderResult",
+    "ResolvedAcoustics",
+    "RoomMix",
     "UtteranceTiming",
     "WORKING_CHANNELS",
     "WORKING_CODEC",

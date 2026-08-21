@@ -1,0 +1,73 @@
+# Acoustic difficulty presets: the same script, made harder to *hear* without changing a word.
+#
+# This is the lever the concept document (§16) argues is the strongest thing the whole audio
+# system can offer a textbook — one dialogue that can be listened to at A1 and again at B1, with
+# nothing rewritten. So the values here are a teaching decision as much as a DSP one, and the same
+# warning applies as to `acoustic-profiles.yaml`: **editorially reasonable starting points, not
+# measurements.** Revise by ear against a rendered scene and bump that preset's `version`, which
+# participates in the render node hashes and is what retires the audio the old value produced.
+#
+# **Every field is a DELTA against what the scene author wrote, never an absolute.** That is the
+# whole design. A scene states the bed level *it* wants, because the author heard it against
+# these particular voices; a preset says "quieter than the author asked for" or "louder", and the
+# authored value stays the reference. Absolutes would mean a preset silently overruling every
+# editorial decision in every scene at once, and the author would have no way to say "not this
+# one". It also makes `natural` exactly the identity — nothing done to the scene — which is what
+# `DifficultyVariant` already promises.
+#
+#   ambience_gain_db  dB added to each ambience bed's `gain_db`, then clamped to the model's
+#                     -40..-6 window
+#   wet               added to the room profile's `wet`, then clamped to 0..1
+#   distance          multiplies every speech and sfx placement's `distance`
+#   pace              multiplies every utterance's `pace`, then clamped to the model's 0.7..1.3
+#   overlap_ms        how much of the previous speaker's pause the next speaker may eat into.
+#                     Only across roles — nobody overlaps themselves — and never before the
+#                     scene's speech start.
+#
+# The concept document's table is written in absolutes (clean ≈ background -35 dB, challenging
+# ≈ -18 dB with moderate reverb and overlap). The deltas below reproduce exactly those figures
+# for a scene authored at `AmbienceEntry.gain_db`'s default of -24 dB, which is what the converted
+# corpus uses: -24 - 11 = -35, and -24 + 6 = -18.
+
+version: 1
+
+presets:
+  clean:
+    version: 1
+    label: Klar
+    note: >-
+      Maximum intelligibility. The bed drops to the edge of audibility, the room is pulled back
+      towards dry, everyone stands closer and speaks a little more slowly. Nothing is removed —
+      a scene whose bed carries information still has it.
+    ambience_gain_db: -11.0
+    wet: -0.15
+    distance: 0.85
+    pace: 0.95
+    overlap_ms: 0
+
+  natural:
+    version: 1
+    label: Natürlich
+    note: >-
+      The identity. Every delta is a no-op, so `natural` renders the scene exactly as it was
+      authored — which is what makes it the default variant and the reference the other two are
+      heard against. Do not put values here; put them in the scene.
+    ambience_gain_db: 0.0
+    wet: 0.0
+    distance: 1.0
+    pace: 1.0
+    overlap_ms: 0
+
+  challenging:
+    version: 1
+    label: Anspruchsvoll
+    note: >-
+      Everything that makes real listening hard, in the small doses that are still fair: the bed
+      comes up under the voices, the room gets wetter, the speakers stand further off, and the
+      next turn starts before the previous pause has finished. 220 ms of overlap is about one
+      syllable — enough to lose an article, not enough to lose a clause.
+    ambience_gain_db: 6.0
+    wet: 0.15
+    distance: 1.25
+    pace: 1.05
+    overlap_ms: 220
