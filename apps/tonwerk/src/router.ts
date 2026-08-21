@@ -29,7 +29,13 @@ export interface Route {
 const listeners = new Set<() => void>();
 
 function subscribe(listener: () => void): () => void {
-  if (listeners.size === 0) window.addEventListener('hashchange', notify);
+  if (listeners.size === 0) {
+    // The address the app is *showing* — recorded here, at the moment anything starts reading the
+    // route, rather than at module load. A module-level snapshot taken at import time is a hash
+    // nobody has rendered yet, and restoring to it would send a declined navigation to `#/`.
+    letzterHash = window.location.hash;
+    window.addEventListener('hashchange', notify);
+  }
   listeners.add(listener);
   return () => {
     listeners.delete(listener);
@@ -37,7 +43,40 @@ function subscribe(listener: () => void): () => void {
   };
 }
 
+/**
+ * Navigating away from an unsaved draft, and the one way this router can stop it.
+ *
+ * The links in this app are ordinary `<a href="#/…">`, which is what makes them shareable and
+ * middle-clickable — and what means there is no click to intercept: by the time anything runs, the
+ * hash has already changed. So the guard runs *after* the change and puts the address back with
+ * `replaceState`, which does not fire a second `hashchange` and therefore cannot loop.
+ *
+ * The cost is honest and small: a declined navigation replaces the new history entry instead of
+ * popping it, so the forward button loses one step. The alternative — a router that owns every
+ * link — is Redaktion's, and it is the right trade there because Redaktion has a real history
+ * stack to protect. Tonwerk has four routes.
+ */
+const sperren = new Set<() => boolean>();
+
+/** Register a guard. It returns `true` to allow the navigation. */
+export function sperreNavigation(darf: () => boolean): () => void {
+  sperren.add(darf);
+  return () => {
+    sperren.delete(darf);
+  };
+}
+
+let letzterHash = '';
+
 function notify(): void {
+  const neu = window.location.hash;
+  if (neu !== letzterHash && sperren.size > 0 && ![...sperren].every((darf) => darf())) {
+    const zurueck = letzterHash;
+    window.history.replaceState(window.history.state, '', zurueck || '#/');
+    letzterHash = zurueck;
+  } else {
+    letzterHash = neu;
+  }
   for (const listener of listeners) listener();
 }
 

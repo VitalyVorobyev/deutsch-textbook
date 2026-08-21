@@ -163,7 +163,39 @@ export const sceneRowSchema = z.looseObject({
 });
 export type SceneRow = z.infer<typeof sceneRowSchema>;
 
-/** Which of a scene's declared variants have a render of *these exact bytes*. */
+/** Where each utterance actually landed in the rendered master. Present only after a render. */
+export const timingSchema = z.looseObject({
+  utterance_id: z.string(),
+  start_ms: z.number(),
+  end_ms: z.number(),
+});
+export type Timing = z.infer<typeof timingSchema>;
+
+/** Where any timeline entry landed in the finished mix — speech, bed and event alike. */
+export const spanSchema = z.looseObject({
+  entry_id: z.string(),
+  type: z.string(),
+  start_ms: z.number(),
+  end_ms: z.number(),
+});
+export type Span = z.infer<typeof spanSchema>;
+
+/** One file a render wrote: the master, the dry mix, the QA cut, a per-entry stem. */
+export const artifactSchema = z.looseObject({
+  path: z.string(),
+  sha256: z.string(),
+  kind: z.string(),
+});
+export type Artifact = z.infer<typeof artifactSchema>;
+
+/**
+ * Which of a scene's declared variants have a render of *these exact bytes*.
+ *
+ * `timing`, `timeline` and `artifacts` come from that render's own manifest and are its
+ * **measurement**, not the scene's plan: `at_ms` in a document is a request, and only a render can
+ * say where a turn actually fell. They are empty before a render, and the Mischung view draws
+ * nothing rather than drawing the authored numbers as if they were times.
+ */
 export const renderRowSchema = z.looseObject({
   variant: z.string(),
   preset: z.string().nullable().optional(),
@@ -172,6 +204,9 @@ export const renderRowSchema = z.looseObject({
   created_at: z.string().nullable().optional(),
   master_sha256: z.string().nullable().optional(),
   has_master: z.boolean().optional(),
+  timing: z.array(timingSchema).default([]),
+  timeline: z.array(spanSchema).default([]),
+  artifacts: z.array(artifactSchema).default([]),
 });
 export type RenderRow = z.infer<typeof renderRowSchema>;
 
@@ -238,14 +273,6 @@ export const soundscapeSchema = z.looseObject({
   warnings: z.array(z.string()).optional(),
 });
 export type Soundscape = z.infer<typeof soundscapeSchema>;
-
-/** Where each utterance actually landed in the rendered master. Present only after a render. */
-export const timingSchema = z.looseObject({
-  utterance_id: z.string(),
-  start_ms: z.number(),
-  end_ms: z.number(),
-});
-export type Timing = z.infer<typeof timingSchema>;
 
 export const qaReportSchema = z.looseObject({
   passed: z.boolean().optional(),
@@ -351,3 +378,116 @@ export const charactersSchema = z.looseObject({
   characters: z.array(characterSchema),
 });
 export type Characters = z.infer<typeof charactersSchema>;
+
+/**
+ * The acoustic vocabularies, read from the engine rather than held here.
+ *
+ * `room`, `device` and `preset` are free strings in the Scene contract and closed vocabularies at
+ * render time — `data/acoustic-profiles.yaml` and `data/acoustic-difficulty.yaml` decide what
+ * exists. A picker with its own copy of that list keeps offering a room after it is renamed, and
+ * the render that refuses is the first anyone hears about it. So Tonwerk hardcodes no id.
+ */
+const acousticEntrySchema = z.looseObject({
+  id: z.string(),
+  label: z.string(),
+  note: z.string().default(''),
+  version: z.number(),
+});
+export type AcousticEntry = z.infer<typeof acousticEntrySchema>;
+
+export const acousticsSchema = z.looseObject({
+  rooms: z.array(acousticEntrySchema.extend({ wet: z.number().optional() })),
+  devices: z.array(acousticEntrySchema),
+  presets: z.array(
+    acousticEntrySchema.extend({ deltas: z.record(z.string(), z.number()).default({}) }),
+  ),
+  /** The keys a `DifficultyVariant.overrides` may name. The renderer refuses anything else. */
+  override_keys: z.array(z.string()),
+});
+export type Acoustics = z.infer<typeof acousticsSchema>;
+
+/**
+ * One row of the sound library.
+ *
+ * Two origins under one loose schema and **not** a discriminated union: the list shows, filters
+ * and plays them together, and the engine keeps them in two Python schemas precisely so neither
+ * has to carry a field that means something else. `origin` is what a reader narrows on.
+ */
+export const soundRowSchema = z.looseObject({
+  origin: z.string(),
+  peaks: z.array(z.number()).default([]),
+
+  // Imported originals.
+  original_sha256: z.string().optional(),
+  sound_id: z.number().optional(),
+  title: z.string().optional(),
+  uploader: z.string().optional(),
+  page_url: z.string().optional(),
+  license: z.string().optional(),
+  license_url: z.string().optional(),
+  description: z.string().optional(),
+  duration_seconds: z.number().optional(),
+  usage_count: z.number().optional(),
+  editorial: z
+    .looseObject({
+      category: z.string().default('uncategorized'),
+      scene_tags: z.array(z.string()).default([]),
+      allowed_roles: z.array(z.string()).default([]),
+      default_gain_db: z.number().optional(),
+      loop_quality: z.string().optional(),
+      review_status: z.string().optional(),
+      notes: z.string().default(''),
+    })
+    .optional(),
+
+  // Generated assets.
+  asset_sha256: z.string().optional(),
+  engine: z.string().optional(),
+  model_id: z.string().optional(),
+  model_revision: z.string().optional(),
+  prompt: z.string().optional(),
+  negative_prompt: z.string().nullable().optional(),
+  seed: z.number().optional(),
+  /** Only on the answer to a generation: whether the node was already in the cache. */
+  cached: z.boolean().optional(),
+});
+export type SoundRow = z.infer<typeof soundRowSchema>;
+
+/** The digest a row is played and referenced by, whichever origin it came from. */
+export function klangSha(row: SoundRow): string {
+  return row.original_sha256 ?? row.asset_sha256 ?? '';
+}
+
+/** What a revise answers: the new revision, and the stage it put the project back to. */
+export const reviseResultSchema = z.looseObject({
+  project_id: z.number(),
+  slug: z.string(),
+  revision: z.number(),
+  scene_sha256: z.string(),
+  has_exercise: z.boolean().optional(),
+  stage: z.string(),
+});
+export type ReviseResult = z.infer<typeof reviseResultSchema>;
+
+/** What a render answers. `nodes_evaluated`/`nodes_cached` is the incremental story, shown. */
+export const renderResultSchema = z.looseObject({
+  slug: z.string(),
+  revision: z.number(),
+  scene_sha256: z.string(),
+  stage: z.string(),
+  variant: z.string(),
+  duration_ms: z.number(),
+  nodes_evaluated: z.number(),
+  nodes_cached: z.number(),
+  artifacts: z.array(artifactSchema).default([]),
+});
+export type RenderResult = z.infer<typeof renderResultSchema>;
+
+export const qaResultSchema = z.looseObject({
+  slug: z.string(),
+  stage: z.string(),
+  variant: z.string(),
+  passed: z.boolean(),
+  qa: qaReportSchema,
+});
+export type QaResult = z.infer<typeof qaResultSchema>;

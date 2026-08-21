@@ -22,7 +22,17 @@ from pathlib import Path
 from fastapi import APIRouter
 
 from ..storage import Store
-from . import characters, dashboard, projects, readings, registry, scenes, sounds, workflow
+from . import (
+    acoustics,
+    characters,
+    dashboard,
+    projects,
+    readings,
+    registry,
+    scenes,
+    sounds,
+    workflow,
+)
 from .workflow import Transcriber
 
 __all__ = ["Transcriber", "router"]
@@ -47,7 +57,10 @@ def router(
         )
     )
     api.include_router(characters.router(store, repo))
-    api.include_router(sounds.router(store, repo))
+    api.include_router(acoustics.router(store, repo))
+    api.include_router(
+        sounds.router(store, repo, allow_test_adapters=allow_test_adapters)
+    )
     api.include_router(projects.router(store, repo))
     # Last: its final route is a greedy `:path` under `/api/readings/`.
     api.include_router(readings.router(store, repo))

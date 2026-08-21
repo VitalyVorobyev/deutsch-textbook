@@ -12,6 +12,16 @@ if (typeof URL.createObjectURL !== 'function') {
   URL.revokeObjectURL = () => {};
 }
 
+/**
+ * happy-dom implements no `window.confirm`, and the dirty guard is built on one. A default that
+ * *allows* the navigation is the right stand-in: a spec that forgets to stub it then behaves like
+ * a person who clicked through, which is the failure a missing guard produces — so a guard test
+ * that stops working fails rather than passing on the absence of a function.
+ */
+if (typeof window.confirm !== 'function') {
+  window.confirm = () => true;
+}
+
 afterEach(() => {
   cleanup();
 });

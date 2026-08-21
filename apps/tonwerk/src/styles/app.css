@@ -504,6 +504,434 @@
   height: 2rem;
 }
 
+/* --- Tasten: the key legend on the rail --------------------------------------------------- */
+
+.taste {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ton-mass-2);
+  padding: 2px var(--ton-mass-3);
+  font-size: var(--ton-grad-11);
+}
+
+/* --- Die Werkbank: the editor's own bar --------------------------------------------------- */
+/*
+ * Mode, state and the two write controls in one strip above the panels. It is a rack unit like
+ * everything else, but it is the only one that is *sticky*: the Save button and the unsaved
+ * marker have to stay reachable while the author is twelve utterances down a script.
+ */
+
+.werkbank {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  background: var(--ton-platte);
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+}
+
+.werkbank-stand {
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-3);
+  font-size: var(--ton-grad-11);
+}
+
+.werkbank-knoepfe {
+  margin-left: auto;
+  display: flex;
+  gap: var(--ton-mass-2);
+}
+
+/* The mode selector: a bank of channel keys, one lit. Not a pill group — this is a rack. */
+.modi {
+  display: flex;
+  border: 1px solid var(--ton-kante-hell);
+  border-radius: var(--ton-rund);
+  overflow: hidden;
+}
+
+.modus {
+  padding: var(--ton-mass-2) var(--ton-mass-4);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--ton-kante);
+  border-bottom: 2px solid transparent;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-ab);
+  cursor: pointer;
+  transition: color var(--ton-regung), background var(--ton-regung),
+    border-color var(--ton-regung);
+}
+
+.modus:last-child {
+  border-right: 0;
+}
+
+.modus:hover {
+  color: var(--ton-schrift);
+  background: var(--ton-platte-hoch);
+}
+
+.modus[aria-pressed='true'] {
+  color: var(--ton-schrift);
+  background: var(--ton-platte-hoch);
+  border-bottom-color: var(--ton-signal);
+}
+
+/* --- Felder: the controls the editor is built from ---------------------------------------- */
+
+.feld-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-1);
+  min-width: 0;
+}
+
+.feld-legende {
+  display: block;
+}
+
+.feld-einheit {
+  color: var(--ton-ruhe);
+}
+
+.feld-hinweis {
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+  line-height: 1.4;
+}
+
+.feld {
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+}
+
+.feld:focus {
+  border-color: var(--ton-kante-hell);
+}
+
+/* The German being manufactured wears the script face, in an input as much as in a paragraph. */
+.feld-skript {
+  font-family: var(--ton-fassung-skript);
+  font-size: var(--ton-grad-16);
+  line-height: 1.45;
+  letter-spacing: 0;
+  resize: vertical;
+}
+
+.feld-zahl {
+  font-variant-numeric: tabular-nums;
+}
+
+.feld-wahl {
+  appearance: none;
+  background: var(--ton-platte-hoch);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.feld:disabled,
+.feld-wahl:disabled {
+  color: var(--ton-schrift-weg);
+  cursor: not-allowed;
+}
+
+.feldreihe {
+  display: grid;
+  gap: var(--ton-mass-3) var(--ton-mass-4);
+  margin-top: var(--ton-mass-3);
+}
+
+/* Der Panoramaregler: a pan pot with its reading printed beside it. */
+.regler {
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-3);
+}
+
+.regler input[type='range'] {
+  flex: 1;
+  min-width: 5rem;
+  accent-color: var(--ton-signal);
+}
+
+.regler-wert {
+  flex: none;
+  min-width: 4rem;
+  text-align: right;
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-ab);
+}
+
+/* --- Skript: cast rows and utterances ----------------------------------------------------- */
+
+.besetzung-zeile,
+.aeusserung,
+.variante,
+.klang-eintrag {
+  padding: var(--ton-mass-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+/* Number, role, id, then the move controls pushed to the far edge. Fixed columns rather than
+   fractions: a role picker four inches wide reads as the most important thing on the row. */
+.aeusserung-kopf {
+  display: grid;
+  grid-template-columns: 2.5rem 13rem 13rem 1fr auto;
+  gap: var(--ton-mass-3);
+  align-items: start;
+}
+
+.aeusserung-kopf > :nth-child(4) {
+  grid-column: 5;
+}
+
+.aeusserung-nummer {
+  font-size: var(--ton-grad-19);
+  padding-top: var(--ton-mass-3);
+}
+
+.aeusserung-id {
+  font-family: var(--ton-fassung-tafel);
+  font-size: var(--ton-grad-13);
+  color: var(--ton-schrift-ab);
+  padding: var(--ton-mass-2) 0;
+}
+
+.aeusserung-knoepfe {
+  display: flex;
+  gap: var(--ton-mass-1);
+  padding-top: var(--ton-mass-4);
+}
+
+.aeusserung-knoepfe .knopf {
+  padding: var(--ton-mass-1) var(--ton-mass-3);
+}
+
+.aeusserung-mehr {
+  margin-top: var(--ton-mass-3);
+}
+
+.aussprache {
+  margin-top: var(--ton-mass-4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ton-mass-2);
+}
+
+.aussprache-leer {
+  font-size: var(--ton-grad-11);
+}
+
+.aussprache-paar {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(6rem, 1fr) auto;
+  gap: var(--ton-mass-3);
+  align-items: end;
+  width: 100%;
+}
+
+/* --- Szene: variants and sound entries ---------------------------------------------------- */
+
+.abweichungen {
+  margin-top: var(--ton-mass-4);
+}
+
+/* The picker that adds one; a full-width select reads as the panel's main control, and it is not. */
+.abweichungen > .feld-block {
+  max-width: 18rem;
+  margin-top: var(--ton-mass-3);
+}
+
+.abweichung {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+  align-items: flex-start;
+}
+
+.klangquelle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-3);
+  margin: var(--ton-mass-3) 0;
+}
+
+.klang-kopf {
+  justify-content: space-between;
+}
+
+/* --- Mischung: the rendered timeline ------------------------------------------------------ */
+
+.variantenwahl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ton-mass-2);
+}
+
+.variantenknopf {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--ton-mass-2) var(--ton-mass-4);
+  background: var(--ton-platte-hoch);
+  border: 1px solid var(--ton-kante);
+  border-left: 2px solid transparent;
+  border-radius: var(--ton-rund);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--ton-regung);
+}
+
+.variantenknopf[aria-pressed='true'] {
+  border-left-color: var(--ton-signal);
+}
+
+.variantenknopf .zahl {
+  font-size: var(--ton-grad-13);
+}
+
+.variantenknopf-stand {
+  font-family: var(--ton-fassung-tafel);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+}
+
+.lauf-ergebnis {
+  margin-top: var(--ton-mass-4);
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+  font-size: var(--ton-grad-13);
+  color: var(--ton-schrift-ab);
+}
+
+.spuren {
+  padding: var(--ton-mass-4);
+  overflow-x: auto;
+}
+
+.spur-name {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+}
+
+/* The scale plate carries a unit, and a unit is not silkscreened in capitals: `0,0 S` is not a
+   second. Mono and tabular, like every other number in this app, and otherwise left alone. */
+.spur-skala {
+  font-family: var(--ton-fassung-tafel);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Spieler ------------------------------------------------------------------------------ */
+
+.spielbereich {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-5);
+  outline: none;
+}
+
+.spieler {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-3);
+}
+
+.spieler audio {
+  height: 2rem;
+  max-width: 22rem;
+}
+
+.spieler-kompakt audio {
+  max-width: 15rem;
+}
+
+.knopf-transport {
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  min-width: 2.5rem;
+  justify-content: center;
+}
+
+.spieler-stelle {
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+  min-width: 4.5rem;
+}
+
+.spieler-leer {
+  font-size: var(--ton-grad-11);
+}
+
+/* --- Klangbibliothek ---------------------------------------------------------------------- */
+
+.klaenge {
+  display: grid;
+  gap: var(--ton-mass-4);
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+}
+
+.klang-titel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ton-mass-3);
+  padding: var(--ton-mass-4);
+  border-bottom: 1px solid var(--ton-kante);
+}
+
+.klang-name {
+  font-size: var(--ton-grad-16);
+  line-height: 1.3;
+}
+
+.klang-kennung {
+  font-size: var(--ton-grad-11);
+  margin-top: var(--ton-mass-1);
+}
+
+.klang-welle {
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  background: var(--ton-raum);
+}
+
+.welle {
+  display: block;
+  width: 100%;
+}
+
+.welle-leer {
+  display: grid;
+  place-items: center;
+  font-size: var(--ton-grad-11);
+}
+
+.klang-fuss {
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.klang-werte {
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.klang-marken {
+  border-top: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+  gap: var(--ton-mass-2);
+}
+
 /* --- Zustände ----------------------------------------------------------------------------- */
 
 .zustand {

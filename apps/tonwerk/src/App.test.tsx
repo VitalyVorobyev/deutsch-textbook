@@ -75,23 +75,43 @@ describe('routing', () => {
   test('an unknown hash says so rather than rendering the overview under a broken link', () => {
     setToken('geheim');
     vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
-    window.location.hash = '#/klangbibliothek';
+    window.location.hash = '#/lesetexte';
 
     render(<App />);
 
     expect(screen.getByText('Diese Seite gibt es nicht')).toBeTruthy();
   });
 
-  test('the sections that arrive with the editor are listed but not navigable', () => {
+  test('the sections that have not arrived yet are listed but not navigable', () => {
     setToken('geheim');
     vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
 
     render(<App />);
 
-    for (const name of ['Klangbibliothek', 'Lesetexte', 'Prüfung']) {
+    for (const name of ['Lesetexte', 'Prüfung']) {
       const eintrag = screen.getByText(name);
       expect(eintrag.getAttribute('aria-disabled')).toBe('true');
       expect(eintrag.tagName).not.toBe('A');
     }
+  });
+
+  test('the Klangbibliothek is a real section now, and it is reachable', () => {
+    setToken('geheim');
+    vi.stubGlobal('fetch', vi.fn(async () => antwort([])));
+
+    render(<App />);
+
+    const weg = screen.getByRole('link', { name: 'Klangbibliothek' });
+    expect(weg.getAttribute('href')).toBe('#/klangbibliothek');
+  });
+
+  test('the two shortcuts are printed on the rail rather than hidden in a help page', () => {
+    setToken('geheim');
+    vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
+
+    render(<App />);
+
+    expect(screen.getByText('⌘/Strg + S')).toBeTruthy();
+    expect(screen.getByText('Leertaste')).toBeTruthy();
   });
 });
