@@ -35,7 +35,7 @@
     "exam:ingest": "bun scripts/exam-ingest.ts",
     "check": "astro check && tsc --noEmit -p worker/tsconfig.json",
     "lint": "eslint .",
-    "test": "bun test",
+    "test": "bun test tests/",
     "tauri": "tauri"
   },
   "dependencies": {
