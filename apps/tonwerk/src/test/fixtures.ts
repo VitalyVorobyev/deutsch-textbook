@@ -556,6 +556,7 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     approveScene: refuse('approveScene'),
     declineScene: refuse('declineScene'),
     sceneFromReading: refuse('sceneFromReading'),
+    deleteScene: refuse('deleteScene'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
     // Read on mount by both Figuren and the scene editor's cast panel, so it is stubbed with data
     // rather than a refusal — for the same reason the three catalogs above are.

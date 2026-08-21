@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
+import time
 from contextlib import contextmanager, redirect_stdout
 from pathlib import Path
 from typing import Any, Iterator
@@ -25,9 +27,24 @@ from .checks import catalog_warnings
 from .convert import dialogue_scene, reading_scene
 from .exercise import ExerciseAttachment
 from .model import Scene
+from .publish import (
+    PUBLISHED_VARIANT,
+    PublishPlan,
+    PublishRefusal,
+    default_backup_root,
+    deletion_refusal,
+    plan_publish,
+    published_slugs,
+    stage_publish,
+    write_publish,
+)
 from .schema_export import SCHEMA_PATH, scene_schema_json, write_scene_schema
+from .wave import DEFAULT_VARIANT, run_wave, wave_summary, wave_targets
 
-app = typer.Typer(no_args_is_help=True, help="Scene v1: convert, validate, store, publish schema")
+app = typer.Typer(
+    no_args_is_help=True,
+    help="Scene v1: convert, validate, store, render, QA, publish — and the corpus-wide wave",
+)
 
 
 def _emit(payload: dict[str, Any]) -> None:
@@ -417,6 +434,316 @@ def qa_command(
         f"full WER {report['transcripts']['full_wer']:.1%} · "
         f"speaker {report['speaker_qa'] if isinstance(report['speaker_qa'], str) else 'measured'}"
     )
+
+
+# ---------------------------------------------------------------------------
+# The regeneration wave
+# ---------------------------------------------------------------------------
+
+
+@app.command("regenerate-corpus")
+def regenerate_corpus(
+    repo: Path = typer.Option(Path.cwd()),
+    level: str | None = typer.Option(None, "--level", help="A1, A2 or B1; default all three"),
+    only: list[str] = typer.Option(
+        [], "--only", help="one artifact id, repeatable — the whole wave restricted to it"
+    ),
+    variant: str = typer.Option(DEFAULT_VARIANT, "--variant"),
+    engine: str | None = typer.Option(
+        None, "--engine", help="qwen_tts or fake; overrides the cast (fake needs --test-adapter)"
+    ),
+    test_adapter: bool = typer.Option(False, "--test-adapter"),
+    speaker_qa: bool = typer.Option(
+        True, "--speaker-qa/--no-speaker-qa", help="WavLM identity check when the weights are here"
+    ),
+    dry_run: bool = typer.Option(False, "--dry-run"),
+    yes: bool = typer.Option(False, "--yes"),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Convert, render and QA the published dialogue corpus **in one process**.
+
+    The reasoning — why one process, why it stops before the human, why a failure is a row — is in
+    `scene.wave`, which is also where a test drives it with a fake transcriber. This verb is the
+    flags, the progress lines and the final table.
+    """
+
+    from ..adapters import ENGINES
+    from ..generative.locks import set_models_root
+
+    if engine is not None and engine not in ENGINES:
+        raise typer.BadParameter(f"unknown engine {engine}; known: {', '.join(sorted(ENGINES))}")
+    if engine is not None and engine.startswith("fake") and not test_adapter:
+        raise typer.BadParameter("the fake engine needs --test-adapter; it renders no real audio")
+    if not dry_run and not yes:
+        raise typer.BadParameter("review the plan with --dry-run, then repeat with --yes")
+
+    root = repo.resolve()
+    set_models_root(root)
+    store = Store()
+    targets = wave_targets(root, level, list(only))
+    if not targets:
+        raise typer.BadParameter(
+            f"no published listening artifact matches {level or 'any level'}"
+            + (f" and --only {', '.join(only)}" if only else "")
+        )
+    started = time.monotonic()
+    # Progress goes to **stderr** even without `--json`: it is a running commentary on a job that
+    # takes half an hour, and a table printed at the end is what a caller parses.
+    with _only_json_on_stdout(json_output):
+        rows = run_wave(
+            store,
+            root,
+            targets,
+            variant=variant,
+            engine=engine,
+            test_adapter=test_adapter,
+            speaker_qa=speaker_qa,
+            dry_run=dry_run,
+            progress=lambda line: typer.echo(line, err=True),
+        )
+
+    outcomes = wave_summary(rows)
+    payload = {
+        "task": "scene.regenerate-corpus",
+        "level": level.upper() if level else None,
+        "variant": variant,
+        "dry_run": dry_run,
+        "planned": len(targets),
+        "elapsed_seconds": round(time.monotonic() - started, 1),
+        "rows": rows,
+        "summary": outcomes,
+        "failures": [row for row in rows if row.get("outcome") == "failed"],
+    }
+    if json_output:
+        _emit(payload)
+        if outcomes.get("failed"):
+            raise typer.Exit(1)
+        return
+    typer.echo("")
+    typer.echo(f"{'n':>3}  {'artifact':<32} {'outcome':<12} {'s':>6}  {'eval/cache':>10}  WER")
+    for row in rows:
+        wer = row.get("full_wer")
+        nodes = f"{row.get('nodes_evaluated', '-')}/{row.get('nodes_cached', '-')}"
+        typer.echo(
+            f"{row['n']:>3}  {row['slug']:<32} {str(row.get('outcome')):<12} "
+            f"{row.get('seconds', '-'):>6}  {nodes:>10}  "
+            f"{f'{wer:.1%}' if isinstance(wer, float) else '-'}"
+        )
+    typer.echo(
+        f"{len(targets)} artifact(s) · "
+        + " · ".join(f"{count} {name}" for name, count in sorted(outcomes.items()))
+        + f" · {payload['elapsed_seconds']} s"
+    )
+    if outcomes.get("failed"):
+        raise typer.Exit(1)
+
+
+# ---------------------------------------------------------------------------
+# Publishing
+# ---------------------------------------------------------------------------
+
+
+def _refusal(error: PublishRefusal) -> typer.BadParameter:
+    """A gate id in front of its sentence, so a log line is greppable by gate."""
+
+    return typer.BadParameter(f"{error.gate}: {error.detail}")
+
+
+def _plan_payload(plan: PublishPlan, *, dry_run: bool) -> dict[str, Any]:
+    return {
+        "task": "scene.publish",
+        "slug": plan.slug,
+        "level": plan.level,
+        "variant": plan.variant,
+        "scene_sha256": plan.scene_sha256,
+        "dry_run": dry_run,
+        "files": plan.files(),
+        "replaces": [path.as_posix() for path in plan.replaces],
+        "claims": plan.manifest["claims"],
+        "duration_seconds": plan.artifact["duration_seconds"],
+    }
+
+
+def _print_plan(plan: PublishPlan, *, dry_run: bool) -> None:
+    verb = "Would write" if dry_run else "Wrote"
+    typer.echo(
+        f"{plan.slug} · {plan.level} · {plan.variant} · "
+        f"{plan.artifact['duration_seconds']} s · scene {plan.scene_sha256[:12]}"
+    )
+    for target, kind in plan.files().items():
+        mark = " (replaces)" if Path(target) in plan.replaces else ""
+        typer.echo(f"  {verb} {target}  [{kind}]{mark}")
+
+
+@app.command("publish")
+def publish_command(
+    slug: str,
+    repo: Path = typer.Option(Path.cwd()),
+    level: str | None = typer.Option(
+        None, "--level", help="A1/A2/B1/B2, for a scene whose brief cannot supply one"
+    ),
+    variant: str = typer.Option(
+        PUBLISHED_VARIANT,
+        "--variant",
+        help=f"only {PUBLISHED_VARIANT} is published; anything else is refused by name",
+    ),
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="stage every byte, report where it would land, write nothing"
+    ),
+    yes: bool = typer.Option(False, "--yes"),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Publish one human-approved scene into the course repository.
+
+    `--dry-run` runs **every** gate and stages **every** byte, stopping before the rename. It is
+    not a lighter check that might disagree with the real one: the plan it prints is the object a
+    real publish then writes.
+    """
+
+    if not dry_run and not yes:
+        raise typer.BadParameter("review the plan with --dry-run, then repeat with --yes")
+    store = Store()
+    root = repo.resolve()
+    try:
+        plan = plan_publish(store, root, slug, level=level, variant=variant)
+    except PublishRefusal as error:
+        raise _refusal(error) from error
+    if dry_run:
+        with tempfile.TemporaryDirectory(prefix="scene-publish-dry-") as staging:
+            staged = [target.as_posix() for _, target in stage_publish(plan, Path(staging))]
+        payload = _plan_payload(plan, dry_run=True) | {"staged": staged}
+        if json_output:
+            _emit(payload)
+        else:
+            _print_plan(plan, dry_run=True)
+        return
+    backup = default_backup_root(store.root, plan.slug) if plan.replaces else None
+    try:
+        written = write_publish(plan, root, backup_root=backup)
+    except PublishRefusal as error:
+        raise _refusal(error) from error
+    project, _, _ = _stored(slug)
+    store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+    payload = _plan_payload(plan, dry_run=False) | {
+        "written": [str(path) for path in written],
+        "stage": str(Stage.EXPORTED),
+        "backup": str(backup) if backup else None,
+    }
+    if json_output:
+        _emit(payload)
+        return
+    _print_plan(plan, dry_run=False)
+    if backup is not None:
+        typer.echo(f"  Previous files retained at {backup}")
+
+
+@app.command("publish-approved")
+def publish_approved_command(
+    repo: Path = typer.Option(Path.cwd()),
+    level: str | None = typer.Option(None, "--level", help="A1, A2 or B1; default every level"),
+    dry_run: bool = typer.Option(False, "--dry-run"),
+    yes: bool = typer.Option(False, "--yes"),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Publish every `human_approved` scene in one pass — the content PR, after the review.
+
+    **A refused scene does not stop the pass.** Forty artifacts reviewed over several sittings will
+    contain one whose approval no longer covers its render or whose cast voice was withdrawn, and
+    a run that aborted on the first would make the operator publish the other thirty-nine one at a
+    time. Every refusal is recorded with its gate and printed at the end — the failure-JSON
+    discipline the wave runner uses, applied to the step after it.
+
+    The level filter reads the level the publisher **resolved**, not the slug: `--level A1` and a
+    scene whose brief says A2 is not a match however the slug is spelled.
+    """
+
+    if not dry_run and not yes:
+        raise typer.BadParameter("review the plan with --dry-run, then repeat with --yes")
+    store = Store()
+    root = repo.resolve()
+    wanted = level.upper() if level else None
+    published: list[dict[str, Any]] = []
+    refused: list[dict[str, Any]] = []
+    for project, _revision in store.scene_rows():
+        if Stage(project.stage) != Stage.HUMAN_APPROVED:
+            continue
+        try:
+            plan = plan_publish(store, root, project.slug)
+        except PublishRefusal as error:
+            refused.append({"slug": project.slug, "gate": error.gate, "detail": error.detail})
+            continue
+        if wanted is not None and plan.level != wanted:
+            continue
+        if dry_run:
+            published.append(_plan_payload(plan, dry_run=True))
+            continue
+        backup = default_backup_root(store.root, plan.slug) if plan.replaces else None
+        try:
+            written = write_publish(plan, root, backup_root=backup)
+        except PublishRefusal as error:
+            refused.append({"slug": project.slug, "gate": error.gate, "detail": error.detail})
+            continue
+        store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+        published.append(
+            _plan_payload(plan, dry_run=False) | {"written": [str(path) for path in written]}
+        )
+    payload = {
+        "task": "scene.publish-approved",
+        "level": wanted,
+        "dry_run": dry_run,
+        "published": published,
+        "refused": refused,
+        "summary": {"published": len(published), "refused": len(refused)},
+    }
+    if json_output:
+        _emit(payload)
+        return
+    for row in published:
+        typer.echo(
+            f"{'would publish' if dry_run else 'published'} {row['slug']} · {row['level']} · "
+            f"{len(row['files'])} files"
+        )
+    for row in refused:
+        typer.echo(f"refused {row['slug']} · {row['gate']}: {row['detail']}", err=True)
+    typer.echo(f"{len(published)} published, {len(refused)} refused")
+    if refused:
+        raise typer.Exit(1)
+
+
+@app.command("delete")
+def delete_command(
+    slug: str,
+    repo: Path = typer.Option(Path.cwd()),
+    yes: bool = typer.Option(False, "--yes"),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Delete a mis-created scene project: draft, revision 1, never published (backlog P28-6).
+
+    The undo an 85-row narration queue needs and did not have. It is the narrowest deletion that
+    makes creating from a queue safe, and the three refusals are three different losses — see
+    `scene.publish.deletion_refusal` and the published check below.
+    """
+
+    if not yes:
+        raise typer.BadParameter("deleting a scene project is not undoable; repeat with --yes")
+    store = Store()
+    found = store.get_scene_by_slug(slug)
+    if found is None:
+        raise typer.BadParameter(f"no scene project {slug}")
+    project, revision, _, _ = found
+    refusal = deletion_refusal(project, revision)
+    if refusal is not None:
+        raise typer.BadParameter(refusal)
+    if slug in published_slugs(repo.resolve()):
+        raise typer.BadParameter(
+            f"{slug} is published: a provenance manifest in this repository names it, and deleting "
+            "the project would leave that manifest pointing at a document nobody has"
+        )
+    store.delete_scene(project.id)
+    if json_output:
+        _emit({"task": "scene.delete", "slug": slug, "project_id": project.id, "deleted": True})
+        return
+    typer.echo(f"Deleted scene project {project.id}: {slug}")
 
 
 @app.command("schema")

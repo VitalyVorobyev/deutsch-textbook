@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from conftest import RUNNER as runner
+from conftest import RUNNER as runner, flat
 from listening_studio.scene import cli as scene_cli
 from listening_studio.scene.model import Scene
 from listening_studio.scene.schema_export import SCHEMA_PATH
@@ -222,3 +222,82 @@ def test_schema_check_fails_when_the_committed_contract_is_stale(tmp_path: Path)
     written = runner.invoke(scene_cli.app, ["schema", "--repo", str(tmp_path)])
     assert written.exit_code == 0
     assert stale.read_text() == (REPO / SCHEMA_PATH).read_text()
+
+
+# -- the three bulk verbs -----------------------------------------------------
+#
+# What is checked here is the *wiring*: the flags, the confirmation, the refusal formatting and
+# the `--json` envelope. What each verb does with the corpus is `test_scene_wave.py` and
+# `test_scene_publish.py`, which drive the functions directly rather than through typer.
+
+
+def test_the_wave_and_the_publisher_both_refuse_to_act_without_yes(local_store: Path) -> None:
+    """A bulk verb that ran on the first press would be a bulk verb nobody dry-ran."""
+
+    for argv in (
+        ["regenerate-corpus", "--repo", str(REPO), "--level", "A1"],
+        ["publish", "ls-erste-schritte-01", "--repo", str(REPO)],
+        ["publish-approved", "--repo", str(REPO)],
+        ["delete", "ls-erste-schritte-01"],
+    ):
+        result = runner.invoke(scene_cli.app, argv)
+        assert result.exit_code != 0, argv
+        assert "--yes" in flat(result.output), argv
+
+
+def test_the_wave_dry_run_lists_the_whole_level_and_creates_nothing(local_store: Path) -> None:
+    result = runner.invoke(
+        scene_cli.app,
+        ["regenerate-corpus", "--repo", str(REPO), "--level", "A1", "--dry-run", "--json"],
+    )
+    assert result.exit_code == 0, result.output
+    payload = json.loads(result.stdout)
+    assert payload["task"] == "scene.regenerate-corpus"
+    assert payload["level"] == "A1"
+    assert payload["planned"] == len(payload["rows"]) == 10
+    assert payload["summary"] == {"planned": 10}
+    assert all(row["action"] == "convert" for row in payload["rows"])
+    assert Store(local_store).scene_projects() == []
+
+
+def test_a_wave_restricted_to_nothing_says_so_rather_than_reporting_a_clean_run(
+    local_store: Path,
+) -> None:
+    """Zero rows and "0 failed" is a green run. It has to read as the mistake it is."""
+
+    result = runner.invoke(
+        scene_cli.app,
+        ["regenerate-corpus", "--repo", str(REPO), "--only", "gibt-es-nicht", "--dry-run"],
+    )
+    assert result.exit_code != 0
+    assert "no published listening artifact matches" in flat(result.output)
+
+
+def test_a_publish_refusal_names_its_gate_in_front_of_its_sentence(local_store: Path) -> None:
+    """`voice-scope:` is what a log line is grepped by; the sentence is what a person reads."""
+
+    result = runner.invoke(scene_cli.app, ["publish", "gibt-es-nicht", "--repo", str(REPO), "--yes"])
+    assert result.exit_code != 0
+    assert "scene: no scene project gibt-es-nicht" in flat(result.output)
+
+
+def test_publish_approved_reports_an_empty_pass_rather_than_failing(local_store: Path) -> None:
+    result = runner.invoke(
+        scene_cli.app, ["publish-approved", "--repo", str(REPO), "--dry-run", "--json"]
+    )
+    assert result.exit_code == 0, result.output
+    payload = json.loads(result.stdout)
+    assert payload == {
+        "task": "scene.publish-approved",
+        "level": None,
+        "dry_run": True,
+        "published": [],
+        "refused": [],
+        "summary": {"published": 0, "refused": 0},
+    }
+
+
+def test_delete_refuses_a_slug_nobody_created(local_store: Path) -> None:
+    result = runner.invoke(scene_cli.app, ["delete", "gibt-es-nicht", "--yes"])
+    assert result.exit_code != 0
+    assert "no scene project gibt-es-nicht" in flat(result.output)

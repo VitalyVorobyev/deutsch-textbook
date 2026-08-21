@@ -199,6 +199,20 @@ export const difficultyVariantSchema = z.strictObject({
 });
 export type DifficultyVariant = z.infer<typeof difficultyVariantSchema>;
 
+/**
+ * Which narration profile directed this reading, pinned to the version that directed it.
+ *
+ * A narration profile resolves into a cast member and a per-utterance pace, and the resolution is
+ * lossy — the composed `style` string cannot be taken apart again and the pace is a number several
+ * profiles could produce. So the id is recorded, and the Lesetexte queue can show what is in use
+ * instead of only offering a picker.
+ */
+export const narrationRefSchema = z.strictObject({
+  profile_id: kebab,
+  profile_version: z.number().int().min(1),
+});
+export type NarrationRef = z.infer<typeof narrationRefSchema>;
+
 /** What the scene is *for*: the pedagogical brief it was commissioned against. */
 export const sceneBriefSchema = z.strictObject({
   duration_seconds: z.tuple([z.number().int(), z.number().int()]).nullable().default(null),
@@ -219,6 +233,7 @@ export const sceneSchema = z.strictObject({
   cast: z.array(castMemberSchema).min(1),
   generation_prompt: z.string().nullable().default(null),
   kind: z.enum(['dialogue', 'narration', 'custom']),
+  narration: narrationRefSchema.nullable().default(null),
   schema_version: z.literal(1).default(1),
   script: z.array(utteranceSchema).min(1),
   slug: kebab,
@@ -242,6 +257,7 @@ export const AUDIO_SCENE_SHAPES = {
   CastMember: castMemberSchema,
   CharacterRef: characterRefSchema,
   DifficultyVariant: difficultyVariantSchema,
+  NarrationRef: narrationRefSchema,
   Placement: placementSchema,
   PronunciationOverride: pronunciationOverrideSchema,
   SceneAcoustics: sceneAcousticsSchema,

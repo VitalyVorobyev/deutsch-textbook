@@ -77,32 +77,20 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Tonwerk audio studio
 
-- **P28-7 · nothing yet refuses to publish a scene cast on an evaluation-scope voice.** Consented
-  cloning ships (`generative/voices.py`, `docs/authoring/product-protection.md`): a consent carries
-  `scope: evaluation | publication`, and the editor deliberately lets **any** scope be cast, because
-  casting is not publishing and a disabled picker would imply a gate that does not exist. The gate
-  belongs to the scene publisher, which does not exist yet — so today the only thing standing
-  between an evaluation-scope voice and a published artifact is the human approval step. The
-  material is already in place: `render.json` carries a top-level `voices` map with each voice's
-  consent digest, and `store.get_voice(id).scope` is the value to check. First step: in the scene
-  publisher, refuse when any cast voice's scope is not `publication`, naming the voice — and write
-  `voice_cloning_used` plus the consent hash list from that same map rather than from the scene.
-- **P28-5 · a narration scene records no profile id.** `scene_from_reading` stores the character
-  ref and the composed style string, not `profile.id`, so "which profile narrated this" is
-  unrecoverable from the scene — the Lesetexte queue can only offer a picker, never show the
-  profile in use. Blocks clean bookkeeping for the 85-text wave; first step: a provenance field
-  on the scene (or brief) written by the converter, schema-versioned.
-- **P28-6 · no way to delete a scene project.** Every creation is irreversible, which is why the
-  Lesetexte queue's Enter deliberately refuses to create. An 85-row wave needs an undo for a
-  mis-created scene; first step: DELETE /api/scenes/{slug} for stage=draft, revision 1 only.
+- **P28-8 · scripts/validate.ts predates consented cloning and manifest v2.** It requires
+  `claims.voice_cloning_used === false`, so the first publication-scope cloned voice fails the
+  corpus even with full consent provenance — the rule must become "false, or true with a
+  non-empty consent_sha256 list"; and nothing yet checks a v2 manifest's `version`/`scene_sha256`.
+  Both belong to the first real scene publish (the regeneration content PR).
+
 - **P28-3 · one qa_json per scene revision, but renders are per variant.** QA-ing a second
   variant overwrites the first's report; correct while only `natural` renders, wrong the moment
   difficulty variants ship to learners. The report endpoints already refuse to serve a report
   under the wrong variant's URL. First step: key qa_json by variant in `scene_revisions`.
 - **P28-4 · renders/ has no reaper and no disk figure.** Revising a scene orphans its previous
-  render tree forever — deliberate (stems allow re-mixing without a model) but unmeasured; and
-  `GET /api/scenes` does an N+1 store lookup that will show once the corpus converts. First
-  step: a `renders du` figure in the dashboard row, then a keep-last-N policy decision.
+  render tree forever — deliberate (stems allow re-mixing without a model) but unmeasured. First
+  step: a `renders du` figure in the dashboard row, then a keep-last-N policy decision. *(The
+  endpoint's N+1 half is closed: `GET /api/scenes` is one join, `Store.scene_rows`.)*
 - **P28-2 · a scene ending on its last word has no reverb tail.** `afir` truncates at input EOF,
   so a station-hall scene stops dead instead of ringing out — audible on any long-decay room.
   Fix: pad the dialogue bus with trailing silence ≥ the room's decay before convolution
@@ -764,6 +752,14 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 These require a measured learning or usability need. They do not block the curriculum.
 
 ## Recently completed
+
+- **P28-5 / P28-6 / P28-7 · the scene publisher and the two things it needed** (2026-08-21) —
+  `scene/publish.py` writes an approved scene into `content/listening/<level>/`, its MP3 and a
+  version-2 provenance manifest carrying `scene_sha256`, behind twenty named gates; `Scene.narration`
+  records the profile a Lesetext was narrated by (`scene/convert.py`, schema + mirrors + fixtures),
+  the Lesetexte queue shows it; `DELETE /api/scenes/{slug}` and `scene delete` undo a mis-created
+  draft. P28-7 is the publisher's `voice-scope` gate: a cast voice consented for `evaluation` is
+  refused by name, and the claims are computed from `render.json`'s `voices` map.
 
 - **P27-1b · learning-activity architecture** (2026-08-14) — all 172 topic-owned teaching sets now
   declare one pedagogical function, authored stage and German editor title; every topic has exactly
