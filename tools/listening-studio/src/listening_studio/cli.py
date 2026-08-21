@@ -62,6 +62,7 @@ from .catalogs import CharacterDefinition, load_character_catalog, load_narratio
 from .reading_audio import ReadingParagraph, ReadingRevisionPayload, default_profile_id, load_reading_sources
 from .reading_pipeline import generate_reading, reading_qa
 from .reading_export import publish_reading
+from .scene.cli import app as scene_app
 from .web import app as web_app
 from .voice_benchmark import BENCHMARK_SLUGS, run_benchmark
 
@@ -70,6 +71,9 @@ models = typer.Typer()
 sources = typer.Typer()
 app.add_typer(models, name="models")
 app.add_typer(sources, name="sources")
+# Scene v1. Defined in `scene/cli.py` rather than here so the verbs stay reachable without the
+# render stack this module imports at the top.
+app.add_typer(scene_app, name="scene")
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 
 # The synthesis model a newly seeded project starts on, and the only one that generates

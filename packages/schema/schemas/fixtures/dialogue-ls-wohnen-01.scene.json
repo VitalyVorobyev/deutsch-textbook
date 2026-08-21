@@ -1,0 +1,215 @@
+{
+  "acoustics": {
+    "lead_in_ms": 0,
+    "room": null
+  },
+  "authoring": "generated",
+  "brief": {
+    "duration_seconds": [
+      25,
+      35
+    ],
+    "grammar_target": null,
+    "level": "A1",
+    "outcomes": [
+      "wohnen-beschreiben"
+    ],
+    "scenario": "Kurze Wohnungsbesichtigung",
+    "topic": "wohnen",
+    "vocabulary": []
+  },
+  "cast": [
+    {
+      "character": null,
+      "role": "Maklerin",
+      "voice": {
+        "engine": "qwen_tts",
+        "seed": 100,
+        "style": "Sprich freundlich, ruhig und sachlich, wie am Schalter einer Behörde.",
+        "voice": "Vivian"
+      }
+    },
+    {
+      "character": null,
+      "role": "Interessent",
+      "voice": {
+        "engine": "qwen_tts",
+        "seed": 105,
+        "style": "Sprich höflich und etwas zögernd, wie jemand, der um Hilfe bittet.",
+        "voice": "Uncle_Fu"
+      }
+    }
+  ],
+  "generation_prompt": null,
+  "kind": "dialogue",
+  "schema_version": 1,
+  "script": [
+    {
+      "display_text": "Hier ist die Wohnung. Sie hat drei Zimmer.",
+      "id": "line-1",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Maklerin",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Wie groß ist die Küche?",
+      "id": "line-2",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Interessent",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Die Küche ist klein, aber das Wohnzimmer ist sehr groß.",
+      "id": "line-3",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Maklerin",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Gibt es einen Balkon?",
+      "id": "line-4",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Interessent",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Ja, der Balkon ist hinten. Das Bad hat ein Fenster.",
+      "id": "line-5",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Maklerin",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Und was kostet die Wohnung?",
+      "id": "line-6",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Interessent",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Sechshundert Euro im Monat, ohne Heizung.",
+      "id": "line-7",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Maklerin",
+      "seed_override": null,
+      "synthesis_text": null
+    },
+    {
+      "display_text": "Das ist nicht teuer. Ich nehme sie.",
+      "id": "line-8",
+      "pace": 0.9,
+      "pause_after_ms": 450,
+      "pronunciation_overrides": [],
+      "role": "Interessent",
+      "seed_override": null,
+      "synthesis_text": null
+    }
+  ],
+  "slug": "ls-wohnen-01",
+  "timeline": [
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-1"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-2"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-3"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-4"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-5"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-6"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-7"
+    },
+    {
+      "at_ms": null,
+      "placement": null,
+      "type": "speech",
+      "utterance_id": "line-8"
+    },
+    {
+      "at_ms": 0,
+      "gain_db": -20.0,
+      "placement": null,
+      "sound": {
+        "ref": "1af49d732c6d14106cb7997b23619a30e574e636ed9edf7286137876aa5ae422",
+        "source_duration_ms": 2500,
+        "source_start_ms": 0
+      },
+      "type": "sfx"
+    },
+    {
+      "end_ms": 45000,
+      "fade_in_ms": 350,
+      "fade_out_ms": 450,
+      "gain_db": -27.0,
+      "sound": {
+        "ref": "2424fd978ba6834dfeeef6313a5c0975921a5abd9b04f09a7e20cb25f66aba23",
+        "source_duration_ms": null,
+        "source_start_ms": 10000
+      },
+      "start_ms": 0,
+      "type": "ambience"
+    }
+  ],
+  "title": {
+    "en": "A short flat viewing",
+    "ru": "Короткий осмотр квартиры",
+    "uk": "Короткий огляд квартири"
+  },
+  "variants": [
+    {
+      "id": "natural",
+      "overrides": {},
+      "preset": null
+    }
+  ]
+}
