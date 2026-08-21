@@ -25,16 +25,26 @@ against the plan's `duration_seconds` window, and the script — collapsed, beca
 makes a reviewer hear words that were never spoken. Declining is a button, not closing the tab.
 
 Model weights are never downloaded implicitly by the editor. Use `models list` and
-`models fetch <generator|qwen_tts|parler_tts|parler_text_tokenizer|asr|speaker_qa>`. Voice cloning,
+`models fetch <generator|qwen_tts|asr|speaker_qa>`. Voice cloning,
 reference audio, VoiceDesign and music have no API or UI surface.
 
 ## Synthesis engine
 
-**Qwen3-TTS is the engine.** `./install-qwen.sh` installs it; `./install-parler.sh` puts Parler
-back. They cannot be installed at the same time — `qwen_tts` needs `transformers >= 4.48`
-(`ALL_ATTENTION_FUNCTIONS`) and `parler-tts` is pinned to 4.46.1 — so switching engines is a
-reinstall, not a setting. Parler produced Wave 1 and stays in the code and in `models.lock.json`
-because the manifests of that audio name it; new projects are seeded on Qwen (`cli.ENGINE`).
+**Qwen3-TTS is the engine**, and `./install-qwen.sh` installs it. New projects are seeded on it
+(`cli.ENGINE`); `fake` is the deterministic-silence engine the workflow tests run on and cannot
+produce approvable audio.
+
+Every engine is reached through one contract — `generative/gateway.py`: an engine-neutral
+`SpeechRequest`, an `AudioAsset` carrying the WAV's hash and its provenance, and the
+`SpeechGenerator`/`SoundGenerator` protocols. Engines return the model's raw output; pace,
+resampling and mixing happen afterwards in `adapters.py`, so one take can be re-paced or re-placed
+without asking the model again. `QwenSpeech.supports_style` is `False`, and the synthesis path
+warns once per run when a styled line meets it: the 0.6B checkpoint discards `instruct` upstream,
+so a delivery note is stored, hashed and inaudible.
+
+**Parler is gone** — the engine, its installer, its requirements and its lock entries. Git history
+keeps it, published artifacts keep the provenance manifests naming it, and local projects created
+in the Parler era are frozen data that this code no longer loads.
 
 The upstream package is installed with `--no-deps` on purpose: its declared dependencies pull
 gradio, which would move `fastapi` and `starlette` past the pins the Studio's own web layer uses.
@@ -42,11 +52,13 @@ gradio, which would move `fastapi` and `starlette` past the pins the Studio's ow
 `sys.modules` after a real `generate_custom_voice()` call rather than from the package metadata.
 
 Weights downloaded by `scripts/download-qwen3-tts.py` land in `<repo>/.models/`, which the Hub
-cache does not index. `adapters.local_checkout` finds them there and **verifies the pinned
+cache does not index. `generative.locks.local_checkout` finds them there and **verifies the pinned
 revision** from the per-file download metadata before use — a directory is never accepted on its
-name alone, because the published manifest states that revision as fact.
+name alone, because the published manifest states that revision as fact. Which repository is
+searched is stated, not guessed: `--repo` sets it through `set_models_root`, and the derivation
+from this package's own path is only the fallback for commands that take no `--repo`.
 
-`atlas-listening switch-adapter <adapter> [--dry-run]` moves every existing project at once,
+`atlas-listening switch-adapter <qwen_tts|fake> [--dry-run]` moves every existing project at once,
 reassigning voices per character and revalidating each payload before it is stored. Voice, fixed
 seed and baseline style belong to the character profile. Lines expose only text/pronunciation,
 delivery, pace and pause. “Neue Variante für diese Figur” changes the profile seed and invalidates
@@ -178,10 +190,6 @@ catalog portrait paths remain empty until a human selects a candidate.
 The curriculum-wide production specification is `data/listening-plan.yaml`; run
 `bun run listening:inventory` at the repository root to see derived status without maintaining a
 second status field.
-
-On Python 3.12, install the Parler compatibility set with `./install-parler.sh`; it avoids the
-upstream resolver's Python-incompatible `librosa` choice while retaining immutable Parler,
-DAC and audiotools code revisions.
 
 ## Measured reliability
 

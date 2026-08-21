@@ -21,7 +21,7 @@ not a machine limit.** The engine is fit for both the corpus regeneration and th
 narration.
 
 The recommendation is **MPS with an explicitly stated `dtype=torch.float32`**: 74 generations with
-no failure, warm real-time factor ≈ 1.0, peak RSS 3.3 GB. `adapters.py` now states device and dtype
+no failure, warm real-time factor ≈ 1.0, peak RSS 3.3 GB. `generative/qwen.py` now states device and dtype
 rather than inheriting them.
 
 Three findings decided that, and each one is a thing the old note could not have known:
@@ -205,7 +205,7 @@ weights are 4.2 GB in `.models/`.
 
 ## `line.style` is silently discarded, and the 1.7B model is why it would not be
 
-`QwenTTS.synthesize` passes `instruct=line.style`. Upstream drops it:
+`QwenSpeech.generate` passes `instruct=request.style`. Upstream drops it:
 
 ```python
 if self.model.tts_model_size in "0b6":  # for 0b6 model, instruct is not supported
@@ -213,11 +213,12 @@ if self.model.tts_model_size in "0b6":  # for 0b6 model, instruct is not support
 ```
 
 The 0.6B checkpoint's `tts_model_size` is exactly `"0b6"`, so **every style instruction the Studio
-sends today is discarded without a warning** — the field is authored, stored, hashed into the cache
-key, and has no effect on the audio. The 1.7B checkpoint reports `"1b7"` and would honour it.
+sends is discarded** — the field is authored, stored, hashed into the cache key, and has no effect
+on the audio. The 1.7B checkpoint reports `"1b7"` and would honour it.
 
-This is a finding, not a fix; it belongs with the adapter restructure rather than with a dtype
-change. Note also that the upstream test is a substring check on a string, so it is the identifier
+It is no longer silent: `QwenSpeech.supports_style` is `False`, and `generate_lines` logs one
+warning per generation run when a styled line meets an engine that discards style. The cache key
+still hashes the style, which the render-graph work will revisit. Note also that the upstream test is a substring check on a string, so it is the identifier
 `"0b6"` matching itself rather than a size comparison — a checkpoint named `"0b"` or `"b6"` would
 also be silently stripped.
 
@@ -244,13 +245,11 @@ Stated so nothing here is read as covering it:
 
 ```sh
 cd tools/listening-studio
-uv sync --extra test && ./install-qwen.sh     # ends Parler generation; install-parler.sh restores it
+uv sync --extra test && ./install-qwen.sh     # the generation runtime; nothing else installs it
 uv pip install mlx-whisper==0.4.3             # only for --qa
 ```
 
-`install-qwen.sh` verifies the pinned checkpoint revision on its last line. `uv run pytest` reports
-one pre-existing failure unrelated to this spike:
-`test_inventory_is_the_real_fifty_nine_text_corpus` asserts 59 reading sources and the corpus now
-holds 85 — the same 85 this document projects narration for. `uv run mypy` reports one pre-existing
-`unused-ignore` on the `mlx_lm` import. Both were confirmed present before the adapter change and
-are unchanged by it.
+`install-qwen.sh` verifies the pinned checkpoint revision on its last line. `uv run pytest`,
+`uv run ruff check .` and `uv run mypy` are all green — the two pre-existing findings the spike
+surfaced (a reading-corpus tripwire still asserting 59 texts against today's 85, and a dead
+`type: ignore`) were fixed in the change that landed this document.

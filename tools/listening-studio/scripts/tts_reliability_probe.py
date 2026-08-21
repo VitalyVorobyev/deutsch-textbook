@@ -122,8 +122,12 @@ def main() -> int:
     import torch
     import transformers
 
-    from listening_studio.adapters import locked_snapshot
+    from listening_studio.generative.locks import locked_snapshot, set_models_root
     from qwen_tts import Qwen3TTSModel
+
+    # This probe already knows which repository it is running in; say so rather than letting the
+    # weights lookup re-derive a root from the installed package's position.
+    set_models_root(REPO_ROOT)
 
     texts = (
         [(f"line{i + 1}", t) for i, t in enumerate(LINES)]

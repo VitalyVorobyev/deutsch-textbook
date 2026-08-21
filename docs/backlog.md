@@ -548,7 +548,7 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   unfiltered list, and use the filtered list only as the ratios' denominator.
 - **P22-20 · The documented Qwen download is unpinned and the loader is not** —
   `scripts/download-qwen3-tts.py:55` calls `snapshot_download` with no `revision`, while
-  `QwenTTS.revision` fixes `85e237c1…` and `locked_snapshot` accepts only that metadata. Today
+  `QwenSpeech.revision` fixes `85e237c1…` and `locked_snapshot` accepts only that metadata. Today
   upstream `main` happens to match; once it advances, `install-qwen.sh` pulls a multi-gigabyte
   checkpoint, exits 0, and the Studio then reports the model as not found — a failure that appears
   nowhere near the command that caused it. Fix: pass the pinned revision to the downloader.
@@ -558,13 +558,6 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   and a later `uv sync` downgrades it back. Two lines; pick one version and use it in both. While
   there: the 41 committed manifests record `dependency_lock_sha256` as it stood when the audio was
   approved, which is what a provenance record should say — do **not** refresh those hashes.
-- **P22-17 · `draft-wave` cannot draft a Qwen-seeded project** — `cli.py`'s `ENGINE` is now
-  `qwen_tts`, so `seed-wave` writes payloads carrying Qwen voices, but `generate_drafts` still
-  forces `"tts_adapter": "parler_tts"` into the final payload (`adapters.py:298`) without
-  reassigning them; Parler validates only its own voice set, so every draft is rejected and the wave
-  stays undrafted. The seeded payload's adapter is authoritative — the line should read
-  `payload.tts_adapter`. Verifying it end to end needs the MLX generation stack; it blocks the next
-  wave's first command, so do it before seeding Wave 3.
 - **P22-15 · The Studio cannot author a `uk` half, so the repo's copy is the only one** —
   `RevisionPayload` carries `Bilingual.uk` and it is `None` on all 41 artifacts, because no editor
   surface writes it. The 246 uk fields were authored by hand into the published YAML, so the Studio

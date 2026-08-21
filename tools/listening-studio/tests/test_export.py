@@ -3,7 +3,8 @@ import hashlib
 import json
 from pathlib import Path
 
-from listening_studio.adapters import FakeTTS, assemble, generate_lines
+from listening_studio.adapters import assemble, generate_lines
+from listening_studio.generative.fake import FakeSpeech
 from listening_studio.domain import Line, ShortAnswer, TrueFalse, lock_voice_profiles
 from listening_studio.export import publish, register_exercise, write_bundle
 from test_domain import payload
@@ -12,7 +13,7 @@ from test_domain import payload
 def test_bundle_is_deterministic_and_records_provenance(tmp_path: Path) -> None:
     project = payload()
     work = tmp_path / "project"
-    lines = generate_lines(project, work, FakeTTS())
+    lines = generate_lines(project, work, FakeSpeech())
     wav = work / "final.wav"
     assemble(project, lines, wav)
     approval = {
@@ -109,7 +110,7 @@ def test_republish_verifies_and_backs_up_the_existing_artifact(tmp_path: Path) -
 
     first_payload = lock_voice_profiles(payload())
     first_work = tmp_path / "first"
-    first_lines = generate_lines(first_payload, first_work, FakeTTS())
+    first_lines = generate_lines(first_payload, first_work, FakeSpeech())
     first_wav = first_work / "final.wav"
     assemble(first_payload, first_lines, first_wav)
     first_bundle = tmp_path / "bundle-one"
@@ -123,7 +124,7 @@ def test_republish_verifies_and_backs_up_the_existing_artifact(tmp_path: Path) -
     )
     second_payload = first_payload.model_copy(update={"lines": changed_lines})
     second_work = tmp_path / "second"
-    second_lines = generate_lines(second_payload, second_work, FakeTTS())
+    second_lines = generate_lines(second_payload, second_work, FakeSpeech())
     second_wav = second_work / "final.wav"
     assemble(second_payload, second_lines, second_wav)
     second_bundle = tmp_path / "bundle-two"

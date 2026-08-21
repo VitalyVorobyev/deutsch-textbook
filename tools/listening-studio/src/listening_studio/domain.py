@@ -44,7 +44,6 @@ VOICE_SETS: dict[str, tuple[str, ...]] = {
         "Ono_Anna",
         "Sohee",
     ),
-    "parler_tts": ("Nicole", "Christopher", "Megan", "Michelle"),
 }
 
 
@@ -271,7 +270,7 @@ class RevisionPayload(BaseModel):
     cast: list[CastAssignment] | None = None
     lines: list[Line] = Field(min_length=1)
     questions: list[Question] = Field(min_length=1)
-    tts_adapter: Literal["qwen_tts", "parler_tts", "fake"] = "qwen_tts"
+    tts_adapter: Literal["qwen_tts", "fake"] = "qwen_tts"
     context_sounds: list[ContextSound] = Field(default_factory=list, max_length=4)
     # Silence prepended to the speech so a scene-opening sound can be heard before anyone
     # talks. Without it the mixer can only ever place a sound *over* the dialogue: `adelay`

@@ -32,3 +32,37 @@ jobs:
 
       - name: Build
         run: bun run build
+
+  # The Python audio engine. A separate job because it shares nothing with the Bun one — no
+  # lockfile, no toolchain, no failure mode — and a red engine must not read as a red site.
+  engine:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/listening-studio
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      # The render half of the pipeline is ffmpeg: concatenation, pace, loudness and the context
+      # mix all shell out to it, and the tests exercise all four. It is not on the runner image.
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      # No `--extra mlx` and no install-qwen.sh: this environment has never seen torch, which is
+      # the property being checked. Every test runs on FakeSpeech, and an ML import that
+      # migrated to module scope fails here rather than on a laptop that happens to have it.
+      - name: Install dependencies
+        run: uv sync --extra test
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Type-check
+        run: uv run mypy
+
+      - name: Test
+        run: uv run pytest

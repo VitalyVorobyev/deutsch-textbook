@@ -39,10 +39,17 @@ def test_script_editor_keeps_identity_controls_at_character_level() -> None:
     assert "line.0.seed" not in html
 
 
-def test_qwen_failure_creates_reviewable_parler_draft(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+def test_a_synthesis_failure_is_recorded_and_reported_as_itself(tmp_path: Path, monkeypatch) -> None:  # type: ignore[no-untyped-def]
+    """There is one engine, so a failure has nowhere to fall back to — and never had a reason to.
+
+    The old path answered a Qwen crash by rewriting the project onto Parler, which meant a
+    hardware-shaped failure silently changed which voices the editor was reviewing. The project
+    must stay exactly where it was, validated, with the failure written down beside it.
+    """
+
     store = Store(tmp_path / "db.sqlite3")
     draft = payload().model_copy(update={"tts_adapter": "qwen_tts"})
-    project = store.create("fallback", draft)
+    project = store.create("failure", draft)
     store.transition(project.id, Stage.DRAFT, Stage.VALIDATED)
 
     def fail(*_args, **_kwargs) -> None:  # type: ignore[no-untyped-def]
@@ -52,15 +59,13 @@ def test_qwen_failure_creates_reviewable_parler_draft(tmp_path: Path, monkeypatc
     client = TestClient(app(store, tmp_path, token="test"))
     response = client.post(f"/projects/{project.id}/generate?token=test")
     assert response.status_code == 409
-    current, _, revised = store.get(project.id)
-    assert current.stage == Stage.DRAFT
-    assert revised.tts_adapter == "parler_tts"
-    assert revised.voice_profiles is not None
-    assert {profile.voice for profile in revised.voice_profiles} <= {
-        "Nicole", "Christopher", "Megan", "Michelle"
-    }
-    assert len({profile.voice for profile in revised.voice_profiles}) == 2
-    assert list((tmp_path / "projects" / str(project.id)).glob("qwen-failure-*.json"))
+    assert "MPS generated invalid probabilities" in response.text
+    current, _, unchanged = store.get(project.id)
+    assert current.stage == Stage.VALIDATED
+    assert unchanged.tts_adapter == "qwen_tts"
+    assert unchanged == draft
+    recorded = list((tmp_path / "projects" / str(project.id)).glob("qwen_tts-failure-*.json"))
+    assert recorded and json.loads(recorded[0].read_text())["error_type"] == "RuntimeError"
 
 
 def write_plan(repo: Path, wave_one: list[str]) -> None:
@@ -196,14 +201,14 @@ def test_switching_the_synthesis_model_through_the_form_keeps_the_project_loadab
     tmp_path: Path,
 ) -> None:
     """P22-3, end to end: the form used to store a payload `Store.get()` then refused, which put
-    the project permanently out of reach — and switching Parler → Qwen is move one of any
-    voice-quality pass."""
+    the project permanently out of reach — and moving a project onto the production engine is
+    move one of any voice-quality pass."""
 
     store = Store(tmp_path / "db.sqlite3")
     base = payload()
     draft = base.model_copy(
         update={
-            "tts_adapter": "parler_tts",
+            "tts_adapter": "fake",
             "lines": [
                 base.lines[0].model_copy(update={"voice": "Nicole"}),
                 base.lines[1].model_copy(update={"voice": "Christopher"}),

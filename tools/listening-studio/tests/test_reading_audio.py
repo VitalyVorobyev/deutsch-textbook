@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from listening_studio.adapters import FakeTTS
+from listening_studio.generative.fake import FakeSpeech
 from listening_studio.cli import reading_payload
 from listening_studio.reading_audio import ParagraphCue, ReadingRevisionPayload, load_reading_sources, spoken_paragraph, text_sha256
 from listening_studio.reading_pipeline import generate_reading, reading_qa
@@ -55,10 +55,10 @@ def test_fake_pipeline_persists_revision_and_reports_pending_human_review(tmp_pa
     payload = reading_payload(REPO, "a1/erste-schritte")
     store = Store(tmp_path / "studio.sqlite3")
     project = store.create_reading(payload)
-    target, generated = generate_reading(payload, tmp_path / "work", FakeTTS())
+    target, generated = generate_reading(payload, tmp_path / "work", FakeSpeech())
     assert target.exists()
     assert len(generated.cues) == len(payload.paragraphs)
-    report = reading_qa(generated, tmp_path / "work", FakeTTS.revision, fake=True)
+    report = reading_qa(generated, tmp_path / "work", FakeSpeech.revision, fake=True)
     assert report["passed"] is True
     assert report["cue_coverage"] == 1
     state = store.reading_state(project.id)
@@ -67,8 +67,8 @@ def test_fake_pipeline_persists_revision_and_reports_pending_human_review(tmp_pa
 
 def test_reading_publication_is_bound_to_the_approved_master(tmp_path: Path) -> None:
     payload = reading_payload(REPO, "a1/erste-schritte")
-    wav, generated = generate_reading(payload, tmp_path / "work", FakeTTS())
-    qa = reading_qa(generated, tmp_path / "work", FakeTTS.revision, fake=True)
+    wav, generated = generate_reading(payload, tmp_path / "work", FakeSpeech())
+    qa = reading_qa(generated, tmp_path / "work", FakeSpeech.revision, fake=True)
     approval = {
         "editor": "Human Editor",
         "reviewed_at": "2026-08-03T09:00:00+00:00",

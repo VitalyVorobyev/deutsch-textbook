@@ -6,7 +6,8 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
-from .adapters import TTSAdapter, transcribe, wav_duration
+from .adapters import render_line, transcribe, warn_if_style_is_inert, wav_duration
+from .generative.gateway import SpeechGenerator
 from .domain import Bilingual, Brief, Line, Question, RevisionPayload, SingleChoice, normalized_words, word_error_rate
 from .reading_audio import ParagraphCue, ReadingRevisionPayload, text_sha256
 from .speaker_qa import EmbeddingBackend, check_speaker_consistency
@@ -29,15 +30,19 @@ def paragraph_line(payload: ReadingRevisionPayload, index: int) -> Line:
 
 
 def generate_reading(
-    payload: ReadingRevisionPayload, root: Path, adapter: TTSAdapter
+    payload: ReadingRevisionPayload, root: Path, engine: SpeechGenerator
 ) -> tuple[Path, ReadingRevisionPayload]:
     cache = root / "cache"
+    # Narration is the larger instance of the inert-style hazard: every paragraph carries the
+    # narration profile's instruction as its style, so on a supports_style=False engine the whole
+    # profile text reaches nothing. Same once-per-run warning as the dialogue path.
+    warn_if_style_is_inert(engine, bool(payload.style))
     paths: list[Path] = []
     for index, paragraph in enumerate(payload.paragraphs):
-        path = cache / f"{payload.paragraph_cache_key(paragraph, adapter.revision)}.wav"
+        path = cache / f"{payload.paragraph_cache_key(paragraph, engine.revision)}.wav"
         if not path.exists():
             path.parent.mkdir(parents=True, exist_ok=True)
-            adapter.synthesize(paragraph_line(payload, index), path)
+            render_line(engine, paragraph_line(payload, index), path)
         paths.append(path)
 
     target = root / "final.wav"

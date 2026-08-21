@@ -13,12 +13,10 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Redirect
 from fastapi.staticfiles import StaticFiles
 
 from .adapters import (
-    FakeTTS,
-    ParlerTTS,
-    QwenTTS,
-    TTSAdapter,
     assemble,
     draft_prompt,
+    engine_for,
+    engine_revision,
     generate_draft,
     generate_lines,
     mix_context,
@@ -33,6 +31,7 @@ from .domain import (
     reassign_voice_profiles,
 )
 from .adapters import model_lock
+from .generative.locks import set_models_root
 from .export import sha256
 from .qa import check_transcripts
 from .speaker_qa import SpeakerQACalibration, check_speaker_consistency
@@ -54,6 +53,9 @@ def app(
     allow_test_adapters: bool = False,
 ) -> FastAPI:
     api = FastAPI(title="Deutsch-Atlas Listening Studio")
+    # The course repository this server was started against is also where `.models/` is looked
+    # for. Stated once here rather than re-derived from this file's position on every lookup.
+    set_models_root(repo)
     secret = token or secrets.token_urlsafe(24)
     frontend = PACKAGE_ROOT / "frontend" / "dist"
     if frontend.exists():
@@ -266,7 +268,9 @@ def app(
                 revision_number=revision.number,
                 payload=payload,
                 voices=voices_for(payload.tts_adapter),
-                adapters=["parler_tts", "qwen_tts"],
+                # Qwen is the engine; the project's own is listed beside it so a project on the
+                # test engine still shows what it is instead of silently reading as Qwen.
+                adapters=sorted({"qwen_tts", payload.tts_adapter}),
                 qa=json.loads(revision.qa_json) if revision.qa_json else None,
                 approval=json.loads(revision.approval_json) if revision.approval_json else None,
                 root=store.root,
@@ -374,48 +378,27 @@ def app(
         work = store.root / "projects" / str(project_id)
         if payload.tts_adapter == "fake" and not allow_test_adapters:
             raise HTTPException(409, "the test adapter cannot generate approvable audio")
-        adapter: TTSAdapter
-        if payload.tts_adapter == "qwen_tts":
-            adapter = QwenTTS()
-        elif payload.tts_adapter == "parler_tts":
-            adapter = ParlerTTS()
-        else:
-            adapter = FakeTTS()
+        engine = engine_for(payload.tts_adapter)
         try:
-            paths = generate_lines(payload, work, adapter)
+            paths = generate_lines(payload, work, engine)
         except Exception as exc:
-            if payload.tts_adapter != "qwen_tts":
-                raise
+            # The failure is recorded and then reported as itself. There is no second engine to
+            # revise the project onto any more, and a synthesis failure was never evidence that
+            # the script needed rewriting.
             failure = {
-                "adapter": "qwen_tts",
-                "revision": QwenTTS.revision,
+                "adapter": engine.name,
+                "revision": engine.revision,
                 "failed_at": datetime.now(UTC).isoformat(),
                 "error_type": type(exc).__name__,
                 "message": str(exc),
-                "fallback": "parler_tts",
             }
             work.mkdir(parents=True, exist_ok=True)
-            (work / f"qwen-failure-rev-{revision.number}.json").write_text(
+            (work / f"{engine.name}-failure-rev-{revision.number}.json").write_text(
                 json.dumps(failure, ensure_ascii=False, indent=2)
-            )
-            locked = lock_voice_profiles(payload)
-            assert locked.voice_profiles is not None
-            revised_profiles = reassign_voice_profiles(locked.voice_profiles, "parler_tts")
-            store.revise(
-                project_id,
-                RevisionPayload.model_validate(
-                    locked.model_dump(mode="json")
-                    | {
-                        "tts_adapter": "parler_tts",
-                        "voice_profiles": [
-                            profile.model_dump(mode="json") for profile in revised_profiles
-                        ],
-                    }
-                ),
             )
             raise HTTPException(
                 409,
-                "Qwen failed and the failure was recorded. The new draft uses Parler official German voices; review and validate it before generating again.",
+                f"{engine.name} failed and the failure was recorded: {exc}",
             ) from exc
         dry = work / "dry.wav"
         assemble(payload, paths, dry)
@@ -429,9 +412,7 @@ def app(
         if Stage(project.stage) != Stage.AUDIO_GENERATED:
             raise HTTPException(409, "generate first")
         work = store.root / "projects" / str(project_id)
-        adapter_revision = (
-            QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
-        )
+        adapter_revision = engine_revision(payload.tts_adapter)
         line_paths = {
             line.id: work / "cache" / f"{payload.cache_key(line, adapter_revision)}.wav"
             for line in payload.lines

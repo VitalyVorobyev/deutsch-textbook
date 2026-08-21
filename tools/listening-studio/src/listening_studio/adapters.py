@@ -1,181 +1,95 @@
+"""The render half of the pipeline: everything that happens to audio after a model made it.
+
+Generation itself lives in `generative/`. The boundary is deliberate — pace, resampling,
+concatenation and mixing are DSP, and asking a speech model for them is how one take ends up
+regenerated for every variant it appears in.
+"""
+
 from __future__ import annotations
 
 import json
+import logging
 import shutil
 import subprocess
-import wave
 from pathlib import Path
-from typing import Any, Callable, Protocol, cast
-
-from huggingface_hub import snapshot_download
+from typing import Any, Callable, cast
 
 from .domain import Line, RevisionPayload, line_cache_key
+from .generative.fake import FakeSpeech
+from .generative.gateway import SpeechGenerator, SpeechRequest
+from .generative.locks import locked_snapshot
+from .generative.qwen import QwenSpeech
 from .sources import load_source
 
+log = logging.getLogger(__name__)
 
-class TTSAdapter(Protocol):
-    name: str
-    revision: str
-
-    def synthesize(self, line: Line, target: Path) -> None: ...
-
-
-class FakeTTS:
-    """Deterministic silence adapter for tests and UI workflow development."""
-
-    name = "fake"
-    revision = "fake-v1"
-
-    def synthesize(self, line: Line, target: Path) -> None:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        frames = int(16000 * max(0.25, len(line.spoken_text()) / 14))
-        with wave.open(str(target), "wb") as wav:
-            wav.setnchannels(1)
-            wav.setsampwidth(2)
-            wav.setframerate(16000)
-            wav.writeframes(b"\0\0" * frames)
+# The stored `tts_adapter` name, and the engine it selects. Two entries, and the switch used to
+# be written out at four call sites — web, the studio API, the CLI and the authoring reports —
+# which is four places to forget one when an engine is added or removed.
+ENGINES: dict[str, type[QwenSpeech] | type[FakeSpeech]] = {
+    "qwen_tts": QwenSpeech,
+    "fake": FakeSpeech,
+}
 
 
-class QwenTTS:
-    name = "qwen_tts"
-    revision = "85e237c12c027371202489a0ec509ded67b5e4b5"
+def engine_for(name: str) -> SpeechGenerator:
+    """The engine a stored payload names. Never a gate — the fake-engine gate stays at the caller."""
 
-    def __init__(self) -> None:
-        self._model: Any = None
-
-    def synthesize(self, line: Line, target: Path) -> None:
-        try:
-            import torch
-            from qwen_tts import Qwen3TTSModel
-            import soundfile as sf
-        except ImportError as exc:
-            raise RuntimeError(
-                "Install the pinned Qwen MLX adapter before generating audio"
-            ) from exc
-        if self._model is None:
-            model_path = locked_snapshot("Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice", self.revision)
-            # Device and dtype are stated here, never inherited. `from_pretrained` with neither
-            # loads on CPU, and the upstream wrapper forwards whatever the loader picked — so the
-            # placement this engine runs on was an accident of the installed transformers rather
-            # than a decision. float16 on MPS is the accident that costs something: the talker's
-            # sampling logits overflow and generation dies with `torch.AcceleratorError:
-            # probability tensor contains either `inf`, `nan` or element < 0` — within half a
-            # second, on every line it was given, and it is the signature the 2026-08-01 run
-            # recorded as "Qwen is unreliable on this machine". float32 on MPS ran 74 generations
-            # with no failure and no NaN. Numbers, method and the rejected alternatives (bfloat16
-            # is faster and was still declined): docs/quality/tts-reliability.md.
-            self._model = Qwen3TTSModel.from_pretrained(
-                model_path,
-                device_map="mps" if torch.backends.mps.is_available() else "cpu",
-                dtype=torch.float32,
-            )
-
-        torch.manual_seed(line.seed)
-        style = {"instruct": line.style} if line.style else {}
-        wavs, rate = self._model.generate_custom_voice(
-            text=line.spoken_text(), language="German", speaker=line.voice, **style
-        )
-        write_with_pace(target, wavs[0], rate, line.pace, sf)
+    try:
+        return ENGINES[name]()
+    except KeyError:
+        raise ValueError(f"unknown synthesis engine {name}") from None
 
 
-class ParlerTTS:
-    name = "parler_tts"
-    revision = "11b27d57855dec1ce0914ba1f12363bf2ea75ba3"
+def engine_revision(name: str) -> str:
+    """The revision cache paths are keyed by, without constructing the engine."""
 
-    def __init__(self) -> None:
-        self._model: Any = None
-        self._tokenizer: Any = None
-        self._description_tokenizer: Any = None
-        self._device = "cpu"
-
-    def synthesize(self, line: Line, target: Path) -> None:
-        try:
-            import soundfile as sf
-            import torch
-            from parler_tts import ParlerTTSForConditionalGeneration
-            from transformers import AutoTokenizer
-        except ImportError as exc:
-            raise RuntimeError("Install the pinned Parler adapter before generating audio") from exc
-        if self._model is None:
-            model_path = locked_snapshot(
-                "parler-tts/parler-tts-mini-multilingual-v1.1", self.revision
-            )
-            self._device = "mps" if torch.backends.mps.is_available() else "cpu"
-            self._model = ParlerTTSForConditionalGeneration.from_pretrained(model_path).to(
-                self._device
-            )
-            # transformers ships py.typed from 4.48 on, and `from_pretrained` is untyped in it.
-            self._tokenizer = AutoTokenizer.from_pretrained(model_path)  # type: ignore[no-untyped-call]
-            tokenizer_path = locked_snapshot(
-                "google/flan-t5-large",
-                "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
-                [
-                    "tokenizer.json",
-                    "tokenizer_config.json",
-                    "spiece.model",
-                    "special_tokens_map.json",
-                ],
-            )
-            self._description_tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)  # type: ignore[no-untyped-call]
-        description = (
-            f"{line.voice}'s German voice is clear, close, natural, and has no background noise."
-        )
-        torch.manual_seed(line.seed)
-        input_ids = self._description_tokenizer(description, return_tensors="pt").input_ids.to(
-            self._device
-        )
-        prompt_ids = self._tokenizer(line.spoken_text(), return_tensors="pt").input_ids.to(
-            self._device
-        )
-        generation = self._model.generate(input_ids=input_ids, prompt_input_ids=prompt_ids)
-        write_with_pace(
-            target,
-            generation.cpu().numpy().squeeze(),
-            self._model.config.sampling_rate,
-            line.pace,
-            sf,
-        )
+    try:
+        return ENGINES[name].revision
+    except KeyError:
+        raise ValueError(f"unknown synthesis engine {name}") from None
 
 
-REPO_ROOT = Path(__file__).resolve().parents[4]
+def speech_request(line: Line) -> SpeechRequest:
+    """One resolved line, as the engine-neutral request. `pace` is not in it — it is DSP."""
+
+    return SpeechRequest(
+        text=line.spoken_text(),
+        voice=line.voice,
+        language="German",
+        style=line.style,
+        seed=line.seed,
+    )
 
 
-def local_checkout(model_id: str, revision: str) -> Path | None:
-    """A `.models/<repo-name>/` download of exactly `revision`, or None.
+def warn_if_style_is_inert(engine: SpeechGenerator, styled: bool) -> None:
+    """One warning per generation run when a styled line meets an engine that discards style.
 
-    `scripts/download-qwen3-tts.py` fetches with `local_dir=`, which puts the weights in the
-    repository and leaves the Hub cache holding little more than a ref pointer — so a
-    `snapshot_download(local_files_only=True)` by repo id does not find a 1.8 GB checkpoint
-    sitting on disk. The directory is still self-describing: `huggingface_hub` writes the source
-    commit as the first line of each `.cache/huggingface/download/<file>.metadata`, and that is
-    what is checked here. **Never accept the directory on its name alone** — the manifest
-    publishes the pinned revision, and a directory that merely looks right would turn that
-    published claim into an assumption.
+    Not per line: a twelve-turn dialogue would print twelve identical lines and teach the editor
+    to scroll past them. Not an error either — the style is still the editorial record of how the
+    turn should be delivered, and a bigger checkpoint would honour it.
     """
 
-    directory = REPO_ROOT / ".models" / model_id.rsplit("/", 1)[-1]
-    metadata = sorted((directory / ".cache" / "huggingface" / "download").glob("*.metadata"))
-    if not metadata:
-        return None
-    commits = {path.read_text().splitlines()[0].strip() for path in metadata if path.read_text()}
-    return directory if commits == {revision} else None
-
-
-def locked_snapshot(model_id: str, revision: str, allow_patterns: list[str] | None = None) -> str:
-    local = local_checkout(model_id, revision)
-    if local is not None:
-        return str(local)
-    try:
-        return snapshot_download(
-            repo_id=model_id,
-            revision=revision,
-            allow_patterns=allow_patterns,
-            local_files_only=True,
+    if styled and not engine.supports_style:
+        log.warning(
+            "%s does not apply style instructions: the delivery notes on these lines are stored "
+            "and hashed, but they do not reach the audio (docs/quality/tts-reliability.md)",
+            engine.name,
         )
-    except Exception as exc:
-        raise RuntimeError(
-            f"{model_id}@{revision} is not installed; run atlas-listening models fetch first"
-        ) from exc
+
+
+def render_line(engine: SpeechGenerator, line: Line, target: Path) -> None:
+    """Generate one line, then apply pace and the 16 kHz mono format outside the engine."""
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # Appended, not `with_suffix`: a target name containing a dot would otherwise lose part of
+    # itself and two lines could collide on one intermediate file.
+    raw = target.with_name(target.name + ".model.wav")
+    try:
+        engine.generate(speech_request(line), raw)
+        conform(raw, target, line.pace)
+    finally:
+        raw.unlink(missing_ok=True)
 
 
 def wav_duration(path: Path) -> float | None:
@@ -196,12 +110,15 @@ def wav_duration(path: Path) -> float | None:
         return None
 
 
-def write_with_pace(
-    target: Path, samples: object, rate: int, pace: float, soundfile_module: Any
-) -> None:
+def conform(source: Path, target: Path, pace: float = 1.0) -> None:
+    """Apply pace and the corpus format (16 kHz mono PCM) to a model's raw output.
+
+    The whole of what an engine's audio has done to it before it reaches the timeline. `atempo`
+    changes duration without changing pitch, which is why pace is a filter here rather than a
+    generation parameter — the same take can be re-paced without asking the model again.
+    """
+
     target.parent.mkdir(parents=True, exist_ok=True)
-    raw = target.with_suffix(".raw.wav")
-    soundfile_module.write(raw, samples, rate)
     filters = [f"atempo={pace}"] if pace != 1.0 else []
     subprocess.run(
         [
@@ -209,7 +126,7 @@ def write_with_pace(
             "-v",
             "error",
             "-i",
-            str(raw),
+            str(source),
             *(["-filter:a", ",".join(filters)] if filters else []),
             "-ar",
             "16000",
@@ -222,7 +139,20 @@ def write_with_pace(
         ],
         check=True,
     )
-    raw.unlink(missing_ok=True)
+
+
+def write_with_pace(
+    target: Path, samples: object, rate: int, pace: float, soundfile_module: Any
+) -> None:
+    """In-memory samples to a conformed WAV. For research paths that hold their own model."""
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    raw = target.with_suffix(".raw.wav")
+    soundfile_module.write(raw, samples, rate)
+    try:
+        conform(raw, target, pace)
+    finally:
+        raw.unlink(missing_ok=True)
 
 
 def transcribe(path: Path) -> str:
@@ -312,7 +242,11 @@ def generate_drafts(
             final.update(
                 {
                     "brief": payload.brief.model_dump(mode="json"),
-                    "tts_adapter": "parler_tts",
+                    # The project's own engine, not a hard-coded one. This used to force
+                    # `parler_tts` without reassigning the voices with it, so a draft could be
+                    # written with voices that engine does not offer — and the store then
+                    # refused to load the project it had just written.
+                    "tts_adapter": payload.tts_adapter,
                     "context_sounds": [
                         sound.model_dump(mode="json") for sound in payload.context_sounds
                     ],
@@ -332,18 +266,25 @@ def generate_drafts(
     return drafts
 
 
-def generate_lines(payload: RevisionPayload, root: Path, adapter: TTSAdapter) -> dict[str, Path]:
+def generate_lines(
+    payload: RevisionPayload, root: Path, engine: SpeechGenerator
+) -> dict[str, Path]:
+    resolved_lines = [payload.resolved_line(line) for line in payload.lines]
+    warn_if_style_is_inert(engine, any(line.style for line in resolved_lines))
     paths: dict[str, Path] = {}
-    for line in payload.lines:
-        resolved = payload.resolved_line(line)
-        key = payload.cache_key(line, adapter.revision)
+    for line, resolved in zip(payload.lines, resolved_lines, strict=True):
+        # Style is part of the cache key even where it is inert, so an engine that does honour it
+        # cannot be served a take generated without it. Cache identity is restructured by the
+        # render-graph work; until then, see docs/quality/tts-reliability.md for why a 0.6B key
+        # can differ while the audio cannot.
+        key = payload.cache_key(line, engine.revision)
         path = root / "cache" / f"{key}.wav"
         if not path.exists():
             profile = payload.profile_for(line.speaker)
             previous = (
                 root
                 / "cache"
-                / f"{line_cache_key(resolved, adapter.revision, f'3-profile-v{profile.version}')}.wav"
+                / f"{line_cache_key(resolved, engine.revision, f'3-profile-v{profile.version}')}.wav"
                 if profile is not None
                 else None
             )
@@ -368,7 +309,7 @@ def generate_lines(payload: RevisionPayload, root: Path, adapter: TTSAdapter) ->
                     check=True,
                 )
             else:
-                adapter.synthesize(resolved, path)
+                render_line(engine, resolved, path)
         paths[line.id] = path
     return paths
 

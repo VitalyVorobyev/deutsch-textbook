@@ -16,7 +16,8 @@ import numpy as np
 import numpy.typing as npt
 from pydantic import BaseModel, Field, model_validator
 
-from .adapters import locked_snapshot, transcribe, wav_duration, write_with_pace
+from .adapters import transcribe, wav_duration, write_with_pace
+from .generative.locks import locked_snapshot, models_root
 from .domain import normalized_words, word_error_rate
 from .speaker_qa import MODEL_ID as SPEAKER_MODEL_ID
 from .speaker_qa import MODEL_REVISION as SPEAKER_MODEL_REVISION
@@ -24,8 +25,14 @@ from .speaker_qa import WavLMSpeakerEmbedder
 from .voice_benchmark import VOICE_CLONE_ID, VOICE_CLONE_REVISION
 
 
-COURSE_REPO = Path(__file__).resolve().parents[4]
-PRIVATE_ROOT = COURSE_REPO / ".private"
+def private_root() -> Path:
+    """The gitignored directory every byte of this experiment must stay inside.
+
+    A function rather than a constant so it follows the repository root the run was started
+    against, instead of one derived from where this file happens to sit.
+    """
+
+    return models_root() / ".private"
 ASR_ID = "mlx-community/whisper-large-v3-turbo"
 ASR_REVISION = "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb"
 TEST_LINES = (
@@ -105,7 +112,7 @@ def load_consent(path: Path, reference: Path) -> HumanVoiceConsent:
 
 
 def validate_private_paths(reference: Path, consent: Path, output: Path) -> None:
-    private = PRIVATE_ROOT.resolve()
+    private = private_root().resolve()
     for label, path in (("reference", reference), ("consent", consent), ("output", output)):
         if not path.resolve().is_relative_to(private):
             raise ValueError(f"{label} must stay under the gitignored {private}")

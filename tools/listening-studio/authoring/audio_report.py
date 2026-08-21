@@ -34,7 +34,7 @@ from pathlib import Path
 import numpy as np
 import yaml
 
-from listening_studio.adapters import ParlerTTS, QwenTTS, wav_duration
+from listening_studio.adapters import engine_revision, wav_duration
 from listening_studio.storage import Store
 
 REPO = Path("../..").resolve()
@@ -159,7 +159,7 @@ def main() -> None:
         if project.id == 1 or (wanted and project.slug not in wanted):
             continue
         _, stored, payload = store.get(project.id)
-        revision = QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
+        revision = engine_revision(payload.tts_adapter)
         cache = store.root / "projects" / str(project.id) / "cache"
         notes: list[str] = []
 

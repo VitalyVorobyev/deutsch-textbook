@@ -542,7 +542,8 @@ def router(store: Store, repo: Path) -> APIRouter:
             raise HTTPException(404) from None
         if current_revision.number != revision_number:
             raise HTTPException(409, "reading revision changed; reload before generating previews")
-        from .adapters import QwenTTS
+        from .adapters import render_line
+        from .generative.qwen import QwenSpeech
         from .reading_pipeline import paragraph_line
 
         profiles = load_narration_catalog(repo)
@@ -551,7 +552,7 @@ def router(store: Store, repo: Path) -> APIRouter:
         # The paragraph closest to median length is stable, substantial and not simply the lead.
         ordered = sorted(source.paragraphs, key=len)
         representative = source.paragraphs.index(ordered[len(ordered) // 2])
-        adapter = QwenTTS()
+        engine = QwenSpeech()
         target = store.root / "readings" / str(project_id) / "previews"
         target.mkdir(parents=True, exist_ok=True)
         result: dict[str, str] = {}
@@ -573,7 +574,7 @@ def router(store: Store, repo: Path) -> APIRouter:
                 }
             )
             path = target / f"{profile.id}.wav"
-            adapter.synthesize(paragraph_line(preview, representative), path)
+            render_line(engine, paragraph_line(preview, representative), path)
             result[profile.id] = f"/api/readings/{project_id}/previews/{profile.id}/audio"
         return result
 
@@ -592,10 +593,10 @@ def router(store: Store, repo: Path) -> APIRouter:
             raise HTTPException(404) from None
         if paragraph_index < 0 or paragraph_index >= len(payload.paragraphs):
             raise HTTPException(404, "paragraph does not exist")
-        from .adapters import QwenTTS
+        from .generative.qwen import QwenSpeech
 
         paragraph = payload.paragraphs[paragraph_index]
-        target = store.root / "readings" / str(project_id) / "cache" / f"{payload.paragraph_cache_key(paragraph, QwenTTS.revision)}.wav"
+        target = store.root / "readings" / str(project_id) / "cache" / f"{payload.paragraph_cache_key(paragraph, QwenSpeech.revision)}.wav"
         if not target.exists():
             raise HTTPException(404, "paragraph audio has not been generated")
         return FileResponse(target, media_type="audio/wav")
@@ -682,9 +683,9 @@ def router(store: Store, repo: Path) -> APIRouter:
         cache = store.root / "projects" / str(project_id) / "cache"
         # Cache names are content hashes. Resolve the current line exactly when possible and
         # otherwise refuse rather than serve a different character's take.
-        from .adapters import ParlerTTS, QwenTTS
+        from .adapters import engine_revision
 
-        revision = QwenTTS.revision if payload.tts_adapter == "qwen_tts" else ParlerTTS.revision
+        revision = engine_revision(payload.tts_adapter)
         expected = cache / f"{payload.cache_key(line, revision)}.wav"
         if not expected.exists():
             raise HTTPException(404, "line audio has not been generated for this revision")
