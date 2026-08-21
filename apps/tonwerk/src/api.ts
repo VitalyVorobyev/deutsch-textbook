@@ -33,6 +33,10 @@ import {
   sceneRowSchema,
   sceneSchema,
   soundRowSchema,
+  voiceDemoSchema,
+  voiceSchema,
+  voicesSchema,
+  revocationSchema,
   type Acoustics,
   type ApprovalResult,
   type Characters,
@@ -45,6 +49,10 @@ import {
   type SceneDetail,
   type SceneRow,
   type SoundRow,
+  type Revocation,
+  type Voice,
+  type VoiceDemo,
+  type Voices,
 } from './contracts';
 import type { Scene } from '@da/schema/audio-scene';
 
@@ -148,6 +156,15 @@ export interface Api {
   declineScene(slug: string, reason: string, editor?: string): Promise<DeclineResult>;
   /** Convert one Lesetext into a narration scene project. 409 when it already has one. */
   sceneFromReading(readingId: string, profile?: string): Promise<SceneRow>;
+
+  /** Stored voice references, plus the consent rules a new one is held to. */
+  voices(signal?: AbortSignal): Promise<Voices>;
+  /** Register one consented voice. A 400 here names the consent rule that was not met. */
+  createVoice(submission: VoiceSubmission): Promise<Voice>;
+  /** Synthesize the three audition phrases through one stored voice. */
+  renderVoiceDemo(voiceId: string): Promise<VoiceDemo>;
+  /** Withdraw consent: future synthesis refused, recording and demos deleted. */
+  revokeVoice(voiceId: string): Promise<Revocation>;
 }
 
 /**
@@ -179,6 +196,27 @@ const looseSceneSchema = z.looseObject({
 interface Write {
   method: 'PUT' | 'POST';
   body: unknown;
+  /**
+   * A multipart body, sent as it is.
+   *
+   * The one endpoint that is not JSON: a reference recording is bytes, and base64 in a JSON field
+   * would be a third of the file again in memory on both sides for no gain. `Content-Type` is
+   * **deliberately not set** when this is true — the browser writes it, including the boundary
+   * token, and a hand-written `multipart/form-data` header without one produces a body the server
+   * cannot parse.
+   */
+  formData?: boolean;
+}
+
+/** What the Klon-Assistent sends: the recording, the consent document, and how to read them. */
+export interface VoiceSubmission {
+  voice_id: string;
+  /** The consent as JSON text. Built by the wizard, shown to the editor before it is sent. */
+  consent: string;
+  reference: File;
+  ref_text?: string;
+  x_vector_only: boolean;
+  engine: string;
 }
 
 export function createApi(options: ApiOptions = {}): Api {
@@ -195,9 +233,11 @@ export function createApi(options: ApiOptions = {}): Api {
         headers: {
           Authorization: `Bearer ${token()}`,
           Accept: 'application/json',
-          ...(write ? { 'Content-Type': 'application/json' } : {}),
+          ...(write && !write.formData ? { 'Content-Type': 'application/json' } : {}),
         },
-        ...(write ? { body: JSON.stringify(write.body) } : {}),
+        ...(write
+          ? { body: write.formData ? (write.body as FormData) : JSON.stringify(write.body) }
+          : {}),
       });
     } catch (error) {
       if (error instanceof DOMException && error.name === 'AbortError') throw error;
@@ -301,6 +341,38 @@ export function createApi(options: ApiOptions = {}): Api {
     },
 
     characters: (signal) => read('/api/characters', charactersSchema, signal),
+
+    voices: (signal) => read('/api/voices', voicesSchema, signal),
+
+    createVoice: (submission) => {
+      const form = new FormData();
+      form.set('voice_id', submission.voice_id);
+      form.set('consent', submission.consent);
+      form.set('reference', submission.reference, submission.reference.name);
+      form.set('x_vector_only', String(submission.x_vector_only));
+      form.set('engine', submission.engine);
+      // Omitted rather than sent empty: an empty transcript is not "no transcript" to a form
+      // parser, and the engine's own fallback (transcribe it locally) is what an absent field asks
+      // for. A blank string would ask for a voice conditioned on nothing.
+      if (submission.ref_text?.trim()) form.set('ref_text', submission.ref_text.trim());
+      return read('/api/voices', voiceSchema, undefined, {
+        method: 'POST',
+        body: form,
+        formData: true,
+      });
+    },
+
+    renderVoiceDemo: (voiceId) =>
+      read(`/api/voices/${encodeURIComponent(voiceId)}/demo`, voiceDemoSchema, undefined, {
+        method: 'POST',
+        body: {},
+      }),
+
+    revokeVoice: (voiceId) =>
+      read(`/api/voices/${encodeURIComponent(voiceId)}/revoke`, revocationSchema, undefined, {
+        method: 'POST',
+        body: {},
+      }),
 
     async objectUrl(path, signal) {
       const response = await send(path, signal);

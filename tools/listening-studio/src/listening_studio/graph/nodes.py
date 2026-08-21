@@ -55,6 +55,7 @@ from ..generative.gateway import (
     SoundRequest,
     SpeechGenerator,
     SpeechRequest,
+    VoiceRef,
 )
 
 # -- formats ------------------------------------------------------------------
@@ -326,23 +327,36 @@ def mix_filtergraph(inputs: Sequence[MixInput], room: RoomMix | None = None) -> 
 # -- SynthNode ----------------------------------------------------------------
 
 
-def synth_node(request: SpeechRequest, engine: SpeechGenerator) -> Node:
+def synth_node(
+    request: SpeechRequest, engine: SpeechGenerator, voice: VoiceRef | None = None
+) -> Node:
     """One take from one speech engine.
 
     The engine's **own** name and revision go into the parameters, never the name the scene's
     cast declared. They are normally the same string; they differ exactly when a render is forced
     onto another engine (`scene render --engine fake`), and that is the case that must not be
     able to write a fake take into the cache slot a Qwen take would be read from.
+
+    `voice` is the bound identity behind `request.voice_ref`, and it enters the hash for the same
+    reason: **the id alone is not the identity.** A voice id names a row; the recording and the
+    consent behind it are what the take was actually made from, and two takes whose reference or
+    consent digests differ are not interchangeable audio however equal their ids look. It is also
+    what puts both digests in `render.json` under `nodes[].params`, which is where a published
+    claim about consent is checked from.
+
+    Both the sub-dict and `request.voice_ref` are **absent** for a preset voice
+    (`SpeechRequest.identity_payload`), so every take already in the node cache keeps the hash it
+    has. A field that reaches no audio must not move a hash.
     """
 
-    return _node(
-        "synth",
-        {
-            "engine": engine.name,
-            "engine_revision": engine.revision,
-            "request": request.model_dump(mode="json"),
-        },
-    )
+    params: dict[str, Any] = {
+        "engine": engine.name,
+        "engine_revision": engine.revision,
+        "request": request.identity_payload(),
+    }
+    if voice is not None:
+        params["voice"] = voice.as_json()
+    return _node("synth", params)
 
 
 def evaluate_synth(engine: SpeechGenerator, request: SpeechRequest, target: Path) -> AudioAsset:

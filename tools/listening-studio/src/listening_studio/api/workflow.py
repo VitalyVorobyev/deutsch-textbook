@@ -31,6 +31,7 @@ from ..export import sha256
 from ..generative.fake import FakeSound
 from ..generative.gateway import SoundGenerator, SpeechGenerator
 from ..generative.locks import set_models_root
+from ..generative.voices import ResolvedVoices, resolve_voices
 from ..graph.render import render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
@@ -105,13 +106,19 @@ class DeclineRequest(BaseModel):
     editor: str | None = None
 
 
-def _speech_engines(scene: Scene, allow_test_adapters: bool) -> dict[str, SpeechGenerator]:
+def _speech_engines(
+    scene: Scene, allow_test_adapters: bool, resolved: ResolvedVoices
+) -> dict[str, SpeechGenerator]:
     """One engine per engine name the cast uses, with the same fake-engine gate as the CLI.
 
     There is no engine override on this endpoint. `scene render --engine` exists so a scene can
     be smoke-rendered on the fake engine from a shell; over HTTP the cast is the record of what
     this scene is synthesized with, and letting a request replace it would mean the stored scene
     and the audio under its sha disagree about which model produced it.
+
+    `resolved` is every stored voice the cast names, looked up before this point. It is handed to
+    the engine rather than fetched by it — the store, the app-data root and the revocation check
+    stay on this side of `generative/`.
     """
 
     names = sorted({member.voice.engine for member in scene.cast})
@@ -122,9 +129,28 @@ def _speech_engines(scene: Scene, allow_test_adapters: bool) -> dict[str, Speech
             f"this scene is cast on unknown engine(s) {', '.join(unknown)}; "
             f"known: {', '.join(sorted(ENGINES))}",
         )
-    if "fake" in names and not allow_test_adapters:
-        raise HTTPException(409, "this scene is cast on the fake engine; it renders no real audio")
-    return {name: engine_for(name) for name in names}
+    fake = sorted(name for name in names if name.startswith("fake"))
+    if fake and not allow_test_adapters:
+        raise HTTPException(
+            409,
+            f"this scene is cast on the {', '.join(fake)} engine(s); they render no real audio",
+        )
+    return {name: engine_for(name, resolved.clonable) for name in names}
+
+
+def _resolved_voices(store: Store, scene: Scene) -> ResolvedVoices:
+    """The stored voices this cast names, or a 409 saying which one is missing or withdrawn.
+
+    409 rather than 400: the request is well formed and the *machine* cannot answer it — either
+    this studio has never had the voice, or consent for it was withdrawn. Both are conflicts with
+    the state of the store, which is what the render endpoint's other 409s already mean.
+    """
+
+    ids = [member.voice.voice_ref for member in scene.cast if member.voice.voice_ref]
+    try:
+        return resolve_voices(store, store.root, ids)
+    except ValueError as error:
+        raise HTTPException(409, str(error)) from error
 
 
 def _sound_engine(name: str | None, allow_test_adapters: bool) -> SoundGenerator | None:
@@ -183,7 +209,8 @@ def router(
     @api.post("/scenes/{slug}/render")
     def render(slug: str, request: RenderRequest) -> dict[str, Any]:
         project, revision, scene, _ = stored(slug)
-        speech = _speech_engines(scene, allow_test_adapters)
+        resolved = _resolved_voices(store, scene)
+        speech = _speech_engines(scene, allow_test_adapters, resolved)
         sound = _sound_engine(request.sound_engine, allow_test_adapters)
         # The repository this server was started against is where `.models/` is looked for.
         set_models_root(repo)
@@ -193,6 +220,7 @@ def router(
                 store.root,
                 variant=request.variant,
                 speech_engines=speech,
+                voices=resolved.refs,
                 sound_engine=sound,
                 repo=repo,
             )

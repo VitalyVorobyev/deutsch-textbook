@@ -15,7 +15,7 @@ import soundfile as sf
 from listening_studio.catalogs import CatalogVoiceProfile, CharacterDefinition, NarrationProfile
 from listening_studio.domain import Bilingual
 from listening_studio.generative.fake import FakeSound, FakeSpeech
-from listening_studio.generative.gateway import SoundRequest
+from listening_studio.generative.gateway import SoundRequest, SpeechRequest
 from listening_studio.graph.assets import AssetStore
 from listening_studio.graph.nodes import QA_RATE, WORKING_RATE
 from listening_studio.graph.render import render_scene
@@ -708,3 +708,100 @@ def test_a_converted_narration_renders_one_timing_row_per_paragraph(tmp_path: Pa
     assert (result.directory / "dry.wav").read_bytes() == (
         result.directory / "master.wav"
     ).read_bytes()
+
+
+def cloned_scene() -> Scene:
+    """One role, cast on a consented voice reference rather than a preset speaker."""
+
+    return Scene(
+        slug="klon-probe",
+        kind="narration",
+        title=Bilingual(en="Cloned", ru="Клон"),
+        cast=[
+            CastMember(
+                role="erzaehler",
+                voice=VoiceSpec(
+                    engine="fake_clone", voice="Testperson", seed=100, voice_ref="testperson"
+                ),
+            )
+        ],
+        script=[
+            Utterance(id="u1", role="erzaehler", display_text="Guten Tag, ich lese diesen Text.")
+        ],
+        timeline=[SpeechEntry(utterance_id="u1")],
+    )
+
+
+def test_a_cloned_render_states_its_consent_in_the_manifest(tmp_path: Path) -> None:
+    """The claim a publisher computes from, and the reason it is a top-level key.
+
+    `voice_cloning_used` and the consent hash list are one expression each off `render.json`'s
+    `voices` map. Recovering them by walking `nodes` and knowing which node type carries a voice
+    would be a claim expensive enough that somebody eventually hardcodes it.
+    """
+
+    from listening_studio.generative.fake import FakeClone
+    from listening_studio.generative.gateway import ClonableVoice, VoiceRef
+
+    reference = tmp_path / "reference.wav"
+    FakeSpeech().generate(
+        SpeechRequest(text="Referenzaufnahme fuer den Test.", voice="Vivian"), reference
+    )
+    bound = VoiceRef(
+        id="testperson",
+        engine="fake_clone",
+        model_revision=FakeClone.revision,
+        reference_sha256="a" * 64,
+        consent_sha256="b" * 64,
+    )
+    engine = FakeClone(
+        {
+            "testperson": ClonableVoice(
+                ref=bound, reference_path=reference, ref_text="Referenz.", x_vector_only=False
+            )
+        }
+    )
+
+    result = render_scene(
+        cloned_scene(),
+        tmp_path / "store",
+        speech_engines={"fake_clone": engine},
+        voices={"testperson": bound},
+    )
+    manifest = json.loads(result.manifest_path.read_text())
+    assert manifest["version"] == 2
+    assert manifest["voices"] == {"erzaehler": bound.as_json()}
+
+    # What the publisher will write, as the publisher will write it.
+    assert bool(manifest["voices"]) is True
+    assert sorted({row["consent_sha256"] for row in manifest["voices"].values()}) == ["b" * 64]
+
+    # And the identity reached the take's own sidecar, not only the node parameters.
+    synth = [row for row in manifest["nodes"] if row["type"] == "synth"]
+    assert synth[0]["params"]["voice"] == bound.as_json()
+    assert manifest["assets"][synth[0]["asset"]]["voice"] == bound.as_json()
+
+
+def test_a_render_refuses_a_cast_voice_it_was_not_given(tmp_path: Path) -> None:
+    """A take whose consent hash the manifest cannot state is a take nothing can publish."""
+
+    from listening_studio.generative.fake import FakeClone
+
+    with pytest.raises(ValueError, match="voice reference testperson"):
+        render_scene(
+            cloned_scene(),
+            tmp_path / "store",
+            speech_engines={"fake_clone": FakeClone()},
+        )
+
+
+def test_a_preset_render_carries_no_voices_key_content(tmp_path: Path) -> None:
+    """Every scene shipped so far renders with an empty map, and the field says so plainly."""
+
+    result = render_scene(
+        cafe_scene(tone_in_store(tmp_path / "store")),
+        tmp_path / "store",
+        speech_engines={"fake": FakeSpeech()},
+        sound_engine=FakeSound(),
+    )
+    assert json.loads(result.manifest_path.read_text())["voices"] == {}

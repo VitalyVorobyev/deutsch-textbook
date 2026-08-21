@@ -156,17 +156,22 @@ RSS, swap delta, randomized blind copies, a private answer key, and an empty rev
 
 ```sh
 uv run atlas-listening models fetch-benchmark voice_design
-uv run atlas-listening models fetch-benchmark voice_clone
+uv run atlas-listening models fetch qwen_tts_base
 uv run atlas-listening benchmark-voice-consistency --yes
 ```
+
+The cloning checkpoint is fetched from the **production** lock now, not the benchmark one: it
+became a production model when consent-gated cloning was adopted. The benchmark still runs it as
+its second arm and records that row in its own manifest, so nothing it used goes unnamed.
 
 Benchmark output cannot be exported into the course. Any later adoption is a separate product,
 policy, provenance, model-lock and export-safeguard decision.
 
 ### Consented human-reference experiment
 
-An identifiable reference is never accepted by the synthetic benchmark or production Studio. A
-separate command exists for explicitly consented, local technology evaluation. Reference, consent
+An identifiable reference is never accepted by the synthetic benchmark. The production path accepts
+one **only** through the consent-gated voices store below; this command is the separate, local
+technology-evaluation path that predates it and remains for evaluation work under `.private/`. Reference, consent
 and output must all live under the repository's gitignored `.private/` directory; the consent JSON
 binds the exact reference SHA-256, purpose, retention and no-distribution rule. For a minor it must
 also affirm guardian consent and child assent. The runner uses only pinned local weights, refuses
@@ -184,6 +189,43 @@ HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 uv run atlas-listening \
 The experiment compares full-reference and x-vector-only Qwen Base cloning, runs local Whisper and
 WavLM diagnostics, retains exact hashes and produces a local `listen.html`. Metrics are review aids,
 not identity, naturalness or publication approval.
+
+## Consent-gated voice cloning
+
+A voice may be cloned from a consented recording and cast in published course audio. The policy is
+`docs/authoring/product-protection.md`; this is the mechanism.
+
+A consent document binds the **exact** reference SHA-256 and one scope. `evaluation` permits local
+work only; `publication` additionally requires a permitted use that explicitly allows publishing in
+this course, a retention statement, and — for a minor — guardian consent plus guardian-attested
+child assent. The engine refuses a document that does not satisfy a rule and **names the rule**
+(`publication-permits-course`), which is the same vocabulary `GET /api/voices` serves to Tonwerk's
+Klon-Assistent so the form can print the rules before it is held to them.
+
+The reference recording and its consent sidecar live under local application data
+(`voices/<sha256>.wav`), never in the repository and never in a database column. `voice_references`
+(Alembic 0004) holds the row; the audio is content-addressed beside it.
+
+```sh
+uv run atlas-listening models fetch qwen_tts_base
+uv run atlas-listening voices create mara-h \
+  --reference /path/outside/the/repo/reference.wav \
+  --consent /path/outside/the/repo/consent.json \
+  --ref-text "Wort für Wort, was in der Aufnahme gesagt wird."
+uv run atlas-listening voices list --json
+uv run atlas-listening voices demo mara-h --repo ../..
+uv run atlas-listening voices revoke mara-h
+```
+
+A scene casts one by setting `VoiceSpec.voice_ref`; `voice` then carries the display identity rather
+than an engine preset. The identity — voice id, reference digest, consent digest — enters the synth
+node's hash and `render.json`'s top-level `voices` map, so a published claim about consent is
+computed from the render rather than asserted beside it.
+
+`revoke` marks the row revoked, deletes the recording and every audition made from it, and makes the
+render path, the API and the CLI refuse further synthesis. Renders already produced keep their
+provenance; retiring published artifacts is `republish` or removal, which is a deliberate editorial
+act.
 
 ## Context sounds
 

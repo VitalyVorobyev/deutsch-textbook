@@ -7,7 +7,7 @@ import subprocess
 import webbrowser
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 import typer
 import uvicorn
@@ -15,8 +15,10 @@ import yaml
 from huggingface_hub import snapshot_download
 
 from .adapters import (
+    CLONING_ENGINES,
     assemble,
     draft_prompt,
+    engine_for,
     generate_drafts,
     generate_lines,
     mix_context,
@@ -25,6 +27,7 @@ from .adapters import (
     transcribe,
 )
 from .generative.fake import FakeSpeech
+from .generative.gateway import CloningSpeechGenerator
 from .generative.locks import set_models_root
 from .generative.qwen import QwenSpeech
 from .domain import (
@@ -62,15 +65,21 @@ from .catalogs import CharacterDefinition, load_character_catalog, load_narratio
 from .reading_audio import ReadingParagraph, ReadingRevisionPayload, default_profile_id, load_reading_sources
 from .reading_pipeline import generate_reading, reading_qa
 from .reading_export import publish_reading
-from .scene.cli import app as scene_app
+from .scene.cli import _only_json_on_stdout, app as scene_app
 from .web import TONWERK_DIST, app as web_app
 from .voice_benchmark import BENCHMARK_SLUGS, run_benchmark
 
 app = typer.Typer(no_args_is_help=True)
 models = typer.Typer()
 sources = typer.Typer()
+#: Consented voice references. Every verb mirrors a route of `/api/voices`, and that parity is the
+#: point rather than a convenience: an agent working this repository has a shell and not a browser,
+#: and a capability reachable only through the workbench is a capability half the operators of this
+#: studio cannot use.
+voices = typer.Typer()
 app.add_typer(models, name="models")
 app.add_typer(sources, name="sources")
+app.add_typer(voices, name="voices")
 # Scene v1. Defined in `scene/cli.py` rather than here so the verbs stay reachable without the
 # render stack this module imports at the top.
 app.add_typer(scene_app, name="scene")
@@ -307,6 +316,226 @@ def generate_character_demos(
             + "\n"
         )
         typer.echo(f"{character.id}: 3 draft demos")
+
+
+@voices.command("create")
+def create_voice(
+    voice_id: str,
+    reference: Path = typer.Option(..., exists=True, help="The consented recording (WAV)."),
+    consent: Path = typer.Option(..., exists=True, help="The consent document (JSON)."),
+    ref_text: str | None = typer.Option(None, help="What is said in the reference recording."),
+    x_vector_only: bool = typer.Option(False, help="Condition on the speaker embedding alone."),
+    engine: str = typer.Option("qwen_tts_base"),
+    repo: Path = typer.Option(Path.cwd()),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Register one consented voice reference. The recording is copied into app-data, never here.
+
+    The same order the API uses, and for the same reason: consent is checked before a byte is
+    written, the recording is bound to it by digest before an engine exists, and a row appears only
+    once an engine has said it can speak in this voice. A refusal names the rule it failed.
+    """
+
+    from .api.voices import INSTALL_HINT
+    from .generative.voices import (
+        ConsentViolation,
+        parse_consent,
+        reference_path,
+        store_reference,
+        voice_row,
+    )
+
+    root = repo_root(repo)
+    store = Store()
+    if store.get_voice(voice_id) is not None:
+        raise typer.BadParameter(f"voice reference {voice_id} already exists")
+    if engine not in CLONING_ENGINES:
+        raise typer.BadParameter(
+            f"{engine} has no cloning capability; "
+            f"engines that do: {', '.join(sorted(CLONING_ENGINES))}"
+        )
+    try:
+        document = parse_consent(consent.read_text())
+        reference_sha256, consent_sha256 = store_reference(
+            store.root, reference.read_bytes(), document
+        )
+    except ConsentViolation as error:
+        raise typer.BadParameter(str(error)) from error
+
+    transcript = (ref_text or "").strip() or None
+    if transcript is None and not x_vector_only:
+        try:
+            with _only_json_on_stdout(json_output):
+                transcript = (
+                    transcribe(reference_path(store.root, reference_sha256)).strip() or None
+                )
+        except Exception:
+            # Best effort. A missing local ASR is not a reason to refuse a consented recording;
+            # the engine refuses to synthesize until a transcript arrives, and the editor can type
+            # what was said, because they are the one who recorded it.
+            transcript = None
+
+    with _only_json_on_stdout(json_output):
+        clone = cast(CloningSpeechGenerator, engine_for(engine))
+    try:
+        bound = clone.make_voice(
+            voice_id=voice_id,
+            reference=reference_path(store.root, reference_sha256),
+            reference_sha256=reference_sha256,
+            ref_text=transcript,
+            consent_sha256=consent_sha256,
+            x_vector_only=x_vector_only,
+        )
+    except RuntimeError as error:
+        raise typer.BadParameter(f"{INSTALL_HINT} ({error})") from error
+
+    row = store.create_voice(
+        voice_id=voice_id,
+        reference_sha256=reference_sha256,
+        reference_text=transcript,
+        subject_display_name=document.subject.display_name,
+        scope=document.scope,
+        consent_sha256=consent_sha256,
+        guardian_consent=document.guardian_consent is not None
+        and document.guardian_consent.confirmed,
+        child_assent=document.child_assent is not None and document.child_assent.confirmed,
+        retention=document.retention.policy,
+        engine=bound.engine,
+        model_revision=bound.model_revision,
+        x_vector_only=x_vector_only,
+    )
+    record = voice_row(store.root, row)
+    if json_output:
+        typer.echo(json.dumps({"task": "voices.create", "voice": record}, ensure_ascii=False, indent=2, sort_keys=True))
+        return
+    typer.echo(
+        f"{voice_id}: {record['subject_display_name']} · {record['scope']} · "
+        f"reference {reference_sha256[:12]} · consent {consent_sha256[:12]}"
+    )
+    if transcript is None and not x_vector_only:
+        typer.echo(
+            "No reference transcript. Synthesis is refused until one is set — "
+            "the clone conditions on what is said in the recording."
+        )
+    del root
+
+
+@voices.command("list")
+def list_voices(json_output: bool = typer.Option(False, "--json")) -> None:
+    """Every stored voice reference, revoked ones included."""
+
+    from .api.voices import voices_json
+    from .generative.voices import voice_row
+
+    store = Store()
+    if json_output:
+        typer.echo(voices_json(store, store.root))
+        return
+    rows = store.voice_references()
+    if not rows:
+        typer.echo("No voice references. `atlas-listening voices create` registers one.")
+        return
+    for row in rows:
+        record = voice_row(store.root, row)
+        state = f"revoked {row.revoked_at[:10]}" if row.revoked_at else str(record["scope"])
+        typer.echo(
+            f"{row.id}\t{row.subject_display_name}\t{state}\t"
+            f"reference {'present' if record['reference_present'] else 'absent'}"
+        )
+
+
+@voices.command("demo")
+def demo_voice(
+    voice_id: str,
+    repo: Path = typer.Option(Path.cwd()),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Synthesize the three roster audition phrases through one stored voice."""
+
+    from .api.voices import demo_phrases
+    from .generative.gateway import SpeechRequest
+    from .generative.voices import clonable_of, demo_dir, reference_path
+
+    root = repo_root(repo)
+    store = Store()
+    row = store.get_voice(voice_id)
+    if row is None:
+        raise typer.BadParameter(f"no voice reference {voice_id}")
+    if row.revoked_at is not None:
+        raise typer.BadParameter(
+            f"voice reference {voice_id} was revoked on {row.revoked_at[:10]}; "
+            "no further synthesis is made through it"
+        )
+    if not reference_path(store.root, row.reference_sha256).exists():
+        raise typer.BadParameter(
+            f"voice reference {voice_id} has no reference recording on this machine"
+        )
+    target = demo_dir(store.root, voice_id)
+    target.mkdir(parents=True, exist_ok=True)
+    phrases = demo_phrases(root)
+    written: list[str] = []
+    # The guard `scene render --json` already needed, for the reason recorded there: the pinned Qwen
+    # adapter prints a flash-attn banner to **stdout** on import, so a verb that both generates in
+    # process and promises `--json` emits four lines of text and then a JSON document. It only
+    # happens under a real engine, which is exactly where no `FakeClone` test could see it.
+    with _only_json_on_stdout(json_output):
+        engine = engine_for(row.engine, {voice_id: clonable_of(store.root, row)})
+        for index, phrase in enumerate(phrases, 1):
+            path = target / f"demo-{index}.wav"
+            engine.generate(
+                SpeechRequest(
+                    text=phrase,
+                    voice=row.subject_display_name,
+                    language="German",
+                    seed=100,
+                    voice_ref=voice_id,
+                ),
+                path,
+            )
+            written.append(sha256(path))
+    if json_output:
+        typer.echo(
+            json.dumps(
+                {
+                    "task": "voices.demo",
+                    "id": voice_id,
+                    "phrases": phrases,
+                    "wav_sha256": written,
+                    "status": "pending-human-review",
+                },
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return
+    typer.echo(f"{voice_id}: {len(written)} draft demos under {target}")
+
+
+@voices.command("revoke")
+def revoke_voice(voice_id: str, json_output: bool = typer.Option(False, "--json")) -> None:
+    """Withdraw consent: refuse future synthesis, delete the recording and the demos.
+
+    Renders already produced keep their provenance — it is the record of what actually made those
+    bytes. Retiring published artifacts is the republish/retirement path, and it is a separate,
+    deliberate act; see `docs/authoring/product-protection.md`.
+    """
+
+    from .generative.voices import revoke as revoke_reference
+
+    store = Store()
+    try:
+        record = revoke_reference(store, store.root, voice_id)
+    except KeyError as error:
+        raise typer.BadParameter(f"no voice reference {voice_id}") from error
+    if json_output:
+        typer.echo(json.dumps({"task": "voices.revoke"} | record, ensure_ascii=False, indent=2, sort_keys=True))
+        return
+    typer.echo(
+        f"{voice_id}: revoked {str(record['revoked_at'])[:10]} · "
+        f"reference deleted: {record['reference_deleted']} · demos deleted: {record['demos_deleted']}"
+    )
+    typer.echo(str(record["note"]))
 
 
 @app.command("generate-reading")

@@ -12,11 +12,18 @@
  *
  * **An absent portrait is an empty state, not an error.** The roster has to be readable before the
  * portraits are generated; a missing one says so in the frame where it will appear.
+ *
+ * **Consented cloned voices live on this page too**, under the roster (`Stimmen`). They belong to
+ * the same question — who can speak in this course — and putting them elsewhere would have hidden
+ * the comparison the demos exist for: a cloned voice is auditioned on the roster's own three
+ * phrases, so it can be judged beside the twelve rather than on its own.
  */
+import { useCallback, useState } from 'react';
 import { Marke, Zustand } from '../components/Platte';
 import { zahl } from '../format';
 import { useApi, useEngineBlob, useEngineRead } from '../useEngine';
 import type { Character } from '../contracts';
+import { Stimmen } from './Stimmen';
 import { fehlerText } from './fehler';
 
 const REGISTER: Record<string, string> = {
@@ -28,6 +35,21 @@ const REGISTER: Record<string, string> = {
 export function Figuren(): React.JSX.Element {
   const api = useApi();
   const { data, error, laedt } = useEngineRead((signal) => api.characters(signal), [api]);
+  // A counter, not a refetch function: `useEngineRead` re-reads when its key list changes, and a
+  // key is the only way to say "again" without giving every child a copy of the fetch.
+  const [runde, setRunde] = useState(0);
+  const neuLesen = useCallback(() => setRunde((wert) => wert + 1), []);
+  const stimmen = useEngineRead((signal) => api.voices(signal), [api, runde]);
+  // **The last payload is kept while a re-read is in flight**, and this is not a flicker fix.
+  // `useEngineRead` blanks its data the moment its keys change, so rendering straight from it would
+  // unmount the whole voices subtree on every refresh — and the Klon-Assistent lives in that
+  // subtree. Creating a voice asks for a re-read, so the assistant would be destroyed and rebuilt
+  // at step one at exactly the moment it has something to show.
+  // Adjusted **during render**, not in an effect — `useEngineRead`'s own rule, one layer up: an
+  // effect runs one paint too late, so the panel would blank for a frame on every refresh.
+  const [letzte, setLetzte] = useState<typeof stimmen.data>(null);
+  if (stimmen.data && stimmen.data !== letzte) setLetzte(stimmen.data);
+  const gezeigt = stimmen.data ?? letzte;
 
   return (
     <>
@@ -49,6 +71,19 @@ export function Figuren(): React.JSX.Element {
             <Figur key={character.id} character={character} />
           ))}
         </div>
+      ) : null}
+
+      {stimmen.error ? (
+        <p className="hinweis hinweis-alarm" role="alert">{fehlerText(stimmen.error)}</p>
+      ) : null}
+      {gezeigt ? (
+        <Stimmen
+          voices={gezeigt.voices}
+          regeln={gezeigt.rules}
+          engines={gezeigt.engines}
+          phrasen={gezeigt.demo_phrases}
+          neuLesen={neuLesen}
+        />
       ) : null}
     </>
   );

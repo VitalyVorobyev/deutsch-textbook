@@ -87,12 +87,22 @@ export const characterRefSchema = z.strictObject({
 });
 export type CharacterRef = z.infer<typeof characterRefSchema>;
 
-/** The engine, voice, seed and style one cast member is synthesised with. */
+/**
+ * The engine, voice, seed and style one cast member is synthesised with.
+ *
+ * `voice_ref` names a **consented voice reference** the studio holds, and when it is set `voice` is
+ * the display identity — the subject's name as it reads in a cast list — rather than an engine
+ * preset. Neither is validated against a catalogue here or in the JSON Schema: a voice reference
+ * lives in one machine's app-data by design, so a document held to a store it cannot ship with
+ * would be invalid on every other checkout. The engine refuses an unknown or revoked one at render
+ * time, which is where the answer can be true.
+ */
 export const voiceSpecSchema = z.strictObject({
   engine: z.string().min(1),
   seed: z.number().int().min(0),
   style: z.string().nullable().default(null),
   voice: z.string().min(1),
+  voice_ref: kebab.nullable().default(null),
 });
 export type VoiceSpec = z.infer<typeof voiceSpecSchema>;
 

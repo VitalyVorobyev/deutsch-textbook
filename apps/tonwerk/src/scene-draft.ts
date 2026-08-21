@@ -224,6 +224,10 @@ export function besetzungHinzufuegen(scene: Scene): Scene {
           voice: vorlage?.voice ?? '',
           seed: 0,
           style: null,
+          // A new role starts on a preset voice even when the role beside it is cloned. Copying
+          // the template's `voice_ref` would cast a consented person in a part nobody assigned
+          // them to, which is a decision and not a default.
+          voice_ref: null,
         },
       },
     ],

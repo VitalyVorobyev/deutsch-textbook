@@ -1,16 +1,11 @@
 {
+  "//": "Research-only pins, absent from production provenance. The cloning checkpoint used to sit here; it moved to models.lock.json when consent-gated cloning became a supported, publishable path (docs/authoring/product-protection.md). The benchmark still runs it — it reads that row from the production lock and records it in its own manifest, so the comparison keeps naming every model it used.",
   "models": {
     "voice_design": {
       "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
       "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3",
       "license": "Apache-2.0",
       "purpose": "research-only synthetic reference generation; forbidden from production export"
-    },
-    "voice_clone": {
-      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
-      "revision": "5d83992436eae1d760afd27aff78a71d676296fc",
-      "license": "Apache-2.0",
-      "purpose": "research-only cloning from synthetic references or hash-bound consented human references; forbidden from production export"
     }
   }
 }

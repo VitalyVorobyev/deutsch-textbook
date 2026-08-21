@@ -10,8 +10,9 @@ import math
 import struct
 import wave
 from pathlib import Path
+from typing import Mapping
 
-from .gateway import AudioAsset, SoundRequest, SpeechRequest
+from .gateway import AudioAsset, ClonableVoice, SoundRequest, SpeechRequest, VoiceRef
 
 SAMPLE_RATE = 16000
 
@@ -35,6 +36,14 @@ class FakeSpeech:
     def generate(self, request: SpeechRequest, target: Path) -> AudioAsset:
         if request.params:
             raise ValueError(f"{self.name} accepts no engine parameters: {sorted(request.params)}")
+        if request.voice_ref is not None:
+            # The gateway's rule for an engine without the cloning capability, kept here too so the
+            # test engine cannot be the one place a `voice_ref` is silently ignored — which is
+            # exactly where an ignored one would never be noticed.
+            raise ValueError(
+                f"{self.name} cannot synthesize through a voice reference "
+                f"({request.voice_ref}); it has no cloning capability"
+            )
         # Length tracks the text so a fixture's timeline is at least plausible; ~14 characters
         # per second is roughly a German speaking rate.
         frames = int(SAMPLE_RATE * max(0.25, len(request.text) / 14))
@@ -52,6 +61,82 @@ class FakeSpeech:
             seed=request.seed,
             request_sha256=request.sha256(),
             params=request.params,
+        )
+
+
+class FakeClone:
+    """A cloning engine that clones nothing, so the consent pipeline around it can be tested.
+
+    **A sibling rather than a flag on `FakeSpeech`, deliberately.** `FakeSpeech` *refuses* a
+    `voice_ref`, and that refusal is itself under test — an engine that could be switched between
+    refusing and accepting would make the two behaviours one object, and the test suite could no
+    longer state which of them a given engine has.
+
+    It is the shape a real cloning engine has and nothing else: `make_voice` binds an identity,
+    `generate` refuses a request with no `voice_ref` and one naming a voice it was not given, and
+    the take's provenance carries the voice. The audio is the same deterministic silence
+    `FakeSpeech` writes — the *length* differs from `FakeSpeech`'s by a constant so that two
+    renders of one line on the two engines cannot land on identical bytes and hide a mix-up.
+    """
+
+    name = "fake_clone"
+    revision = "fake-clone-v1"
+    supports_style = False
+    supports_cloning = True
+
+    def __init__(self, voices: Mapping[str, ClonableVoice] | None = None) -> None:
+        self._voices: dict[str, ClonableVoice] = dict(voices or {})
+
+    def make_voice(
+        self,
+        *,
+        voice_id: str,
+        reference: Path,
+        reference_sha256: str,
+        ref_text: str | None,
+        consent_sha256: str,
+        x_vector_only: bool,
+    ) -> VoiceRef:
+        if not reference.exists():
+            raise ValueError(f"the reference recording {reference} is not on this machine")
+        del ref_text, x_vector_only
+        return VoiceRef(
+            id=voice_id,
+            engine=self.name,
+            model_revision=self.revision,
+            reference_sha256=reference_sha256,
+            consent_sha256=consent_sha256,
+        )
+
+    def generate(self, request: SpeechRequest, target: Path) -> AudioAsset:
+        if request.params:
+            raise ValueError(f"{self.name} accepts no engine parameters: {sorted(request.params)}")
+        if request.voice_ref is None:
+            raise ValueError(
+                f"{self.name} synthesizes only through a stored voice reference; "
+                "this request names none"
+            )
+        voice = self._voices.get(request.voice_ref)
+        if voice is None:
+            known = ", ".join(sorted(self._voices)) or "none"
+            raise ValueError(
+                f"{self.name} was not given voice reference {request.voice_ref}; "
+                f"resolved for this render: {known}"
+            )
+        frames = int(SAMPLE_RATE * max(0.30, len(request.text) / 12))
+        _write_wav(target, b"\0\0" * frames)
+        return AudioAsset.record(
+            target,
+            SAMPLE_RATE,
+            engine=self.name,
+            model_id="none",
+            model_revision=self.revision,
+            adapter_code_revision=self.revision,
+            license="none",
+            seed=request.seed,
+            request_sha256=request.sha256(),
+            params=request.params,
+            voice=voice.ref,
         )
 
 

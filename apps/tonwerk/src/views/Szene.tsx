@@ -118,6 +118,10 @@ function Editor({
   const figuren = useEngineRead((signal) => api.characters(signal), [api]);
   const akustik = useEngineRead((signal) => api.acoustics(signal), [api]);
   const klaenge = useEngineRead((signal) => api.sounds(signal), [api]);
+  // The cast panel offers consented voices beside the preset ones, so the editor needs the list.
+  // Read here rather than in the panel: `Szene` already owns every catalogue this page resolves an
+  // id against, and a second reader would mean a second place a stale list can be shown from.
+  const stimmen = useEngineRead((signal) => api.voices(signal), [api]);
 
   const speichern = useCallback(() => {
     if (!geaendert || speichert) return;
@@ -268,10 +272,10 @@ function Editor({
         </p>
       ) : null}
 
-      {figuren.error || akustik.error || klaenge.error ? (
+      {figuren.error || akustik.error || klaenge.error || stimmen.error ? (
         <p className="hinweis" role="status">
           Ein Katalog konnte nicht gelesen werden, die zugehörige Auswahl bleibt leer:{' '}
-          {[figuren.error, akustik.error, klaenge.error]
+          {[figuren.error, akustik.error, klaenge.error, stimmen.error]
             .filter((fehler): fehler is Error => Boolean(fehler))
             .map((fehler) => fehlerText(fehler))
             .join(' · ')}
@@ -284,6 +288,7 @@ function Editor({
           original={original}
           setEntwurf={bearbeitbar ? setEntwurf : () => undefined}
           figuren={figuren.data?.characters ?? []}
+          stimmen={stimmen.data?.voices ?? []}
         />
       ) : null}
 

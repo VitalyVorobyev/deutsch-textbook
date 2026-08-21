@@ -1256,3 +1256,151 @@
     padding: var(--ton-mass-4);
   }
 }
+
+/* --- Stimmen: consented voice references and der Klon-Assistent ---------------------------- */
+/*
+   No new hue and no new device. A voice reference row is a Platte body row like a cast row, its
+   scope is a Marke, its withdrawal is the alarm the system already spends red on, and the
+   assistant's chain is die Kette from the Freigabe page. The only thing that is *new* here is the
+   strike-through on a revoked row, and it is not decoration: it is the one state where a row is
+   still there to be read and no longer there to be used.
+*/
+
+.stimme {
+  padding: var(--ton-mass-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.stimme:last-child {
+  border-bottom: 0;
+}
+
+.stimme-kopf {
+  align-items: baseline;
+  gap: var(--ton-mass-2);
+}
+
+.stimme-name {
+  font-size: var(--ton-grad-19);
+  line-height: 1.2;
+}
+
+.stimme[data-widerrufen='ja'] .stimme-name {
+  text-decoration: line-through;
+  text-decoration-color: var(--ton-alarm);
+  color: var(--ton-schrift-ab);
+}
+
+.stimme[data-widerrufen='ja'] .stimme-werte {
+  color: var(--ton-schrift-weg);
+}
+
+.stimme-werte {
+  margin-top: var(--ton-mass-3);
+}
+
+.stimme-aufbewahrung {
+  margin-top: var(--ton-mass-2);
+  max-width: 62ch;
+}
+
+.stimme-knoepfe {
+  margin-top: var(--ton-mass-3);
+}
+
+/* The assistant's steps. A hairline between them and nothing else: the Kette above already says
+   where the reader is, and a second frame per step would draw four boxes around one form. */
+.assistent-stufe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-3);
+  padding-top: var(--ton-mass-4);
+  margin-top: var(--ton-mass-4);
+  border-top: 1px solid var(--ton-kante);
+}
+
+.assistent-dokument summary {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-ab);
+  cursor: pointer;
+}
+
+.assistent-dokument pre {
+  margin-top: var(--ton-mass-3);
+  padding: var(--ton-mass-3);
+  background: var(--ton-platte-hoch);
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+  font-size: var(--ton-grad-11);
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* The rules the engine will apply. Printed, never ticked: a mark this form computed itself would
+   be a check that could not run looking like a check that passed. A row goes red only because the
+   engine named it. */
+.regeln {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+  padding: var(--ton-mass-3) 0;
+}
+
+.regel-liste {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+}
+
+.regel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--ton-mass-3);
+  align-items: baseline;
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+  font-size: var(--ton-grad-13);
+  line-height: 1.5;
+  color: var(--ton-schrift-ab);
+}
+
+.regel:last-child {
+  border-bottom: 0;
+}
+
+.regel[data-verletzt='ja'] {
+  color: var(--ton-alarm);
+  border-left: 2px solid var(--ton-alarm);
+  padding-left: calc(var(--ton-mass-3) - 2px);
+}
+
+.regel-id {
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+}
+
+.regel[data-verletzt='ja'] .regel-id {
+  color: var(--ton-alarm);
+}
+
+/* Preset voice or consented clone, one role at a time. The Klangquelle device, unchanged. */
+.stimmquelle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+  padding-bottom: var(--ton-mass-3);
+  margin-bottom: var(--ton-mass-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 40%, transparent);
+}
+
+@media (max-width: 56rem) {
+  .regel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}

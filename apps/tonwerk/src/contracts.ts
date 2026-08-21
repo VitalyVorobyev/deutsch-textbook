@@ -579,3 +579,69 @@ export const narrationProfilesSchema = z.looseObject({
   profiles: z.array(narrationProfileSchema),
 });
 export type NarrationProfiles = z.infer<typeof narrationProfilesSchema>;
+
+/**
+ * A consented voice reference, and the rules a new one is held to.
+ *
+ * **The rules come from the engine and are not re-implemented here.** That is the one design
+ * decision in this whole surface worth stating twice: the wizard prints the requirements and the
+ * engine decides whether a document meets them, so there is no second copy of a consent rule to
+ * drift from the first. What the app does with `applies` and `minors_only` is *filter* — a rule
+ * that cannot apply, printed as a requirement, is the fastest way to teach an editor that the list
+ * is decoration.
+ */
+export const consentRuleSchema = z.looseObject({
+  id: z.string(),
+  applies: z.string(),
+  minors_only: z.boolean().default(false),
+  /** The engine's own English sentence, shown when this build has no German for a new rule id. */
+  requirement: z.string().default(''),
+});
+export type ConsentRule = z.infer<typeof consentRuleSchema>;
+
+export const voiceSchema = z.looseObject({
+  id: z.string(),
+  subject_display_name: z.string(),
+  scope: z.string(),
+  engine: z.string(),
+  model_revision: z.string().default(''),
+  reference_sha256: z.string(),
+  consent_sha256: z.string(),
+  guardian_consent: z.boolean().default(false),
+  child_assent: z.boolean().default(false),
+  retention: z.string().default(''),
+  x_vector_only: z.boolean().default(false),
+  created_at: z.string().default(''),
+  /** A date, or null. Never a deletion: a withdrawal is a fact somebody has to be able to see. */
+  revoked_at: z.string().nullable().default(null),
+  /**
+   * Measured on the engine, not inferred from `revoked_at`. A database that travelled without its
+   * app-data has the row and not the recording, and reporting that as a withdrawal would invent
+   * one that never happened.
+   */
+  reference_present: z.boolean().default(false),
+  demo_urls: z.array(z.string()).default([]),
+});
+export type Voice = z.infer<typeof voiceSchema>;
+
+export const voicesSchema = z.looseObject({
+  voices: z.array(voiceSchema),
+  rules: z.array(consentRuleSchema).default([]),
+  engines: z.array(z.string()).default([]),
+  demo_phrases: z.array(z.string()).default([]),
+});
+export type Voices = z.infer<typeof voicesSchema>;
+
+export const voiceDemoSchema = voiceSchema.extend({
+  phrases: z.array(z.string()).default([]),
+});
+export type VoiceDemo = z.infer<typeof voiceDemoSchema>;
+
+export const revocationSchema = z.looseObject({
+  id: z.string(),
+  revoked_at: z.string(),
+  reference_deleted: z.boolean().default(false),
+  demos_deleted: z.number().default(0),
+  note: z.string().default(''),
+});
+export type Revocation = z.infer<typeof revocationSchema>;

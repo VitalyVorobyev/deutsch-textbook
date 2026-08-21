@@ -214,6 +214,43 @@ mid-review, the page does not offer to retry — it says the master changed, tha
 recorded, and offers to reload and listen again. That 409 is the entire reason the request carries a
 sha, so the one place it surfaces has to read as the instruction it is.
 
+## Der Klon-Assistent, and printing a rule instead of ticking it
+
+`src/views/Stimmen.tsx`, under Figuren. A consented cloned voice is cast beside the twelve roster
+characters, so it is auditioned on the roster's own three phrases, on the roster's own page — a
+separate section would have hidden the one comparison the demos exist for. It is still a different
+*kind* of thing from a catalogue row, and the panel says so rather than blending them: a character
+is an entry, a voice reference is a **permission**, so both digests are printed, a scope badge is on
+every row, and a withdrawal is struck through with its date instead of leaving the list.
+
+The assistant reuses **die Kette** — `AUFNAHME → TEXT → EINWILLIGUNG → HÖRPROBE` — for the reason
+Freigabe has one: the order is the discipline and nobody may choose to be at the end of it. You
+cannot audition a voice before the consent that permits it exists. It is not a bank of channel keys,
+because it is not a selector; the current step is derived from what the draft actually contains.
+
+**The consent rules are printed and never evaluated here.** The engine owns them, publishes them
+through `GET /api/voices`, and gives the verdict; this page renders the ones that apply — filtered
+by the engine's own `applies`/`minors_only`, never by a rule re-implemented in TypeScript — and a
+row turns red only because a refusal named it. A green tick this form computed itself would be a
+check that could not run looking like a check that passed, and the second implementation behind it
+would be free to disagree with the first. For the same reason a rule id this build has no German for
+still appears, in the engine's own English: a rule added on the Python side must show up in the
+form, not vanish from it.
+
+Two refusals are written down rather than designed around. **The document is readable before it is
+sent** — the form assembles the consent JSON and prints it behind a disclosure whose summary says
+what it is, the Freigabe page's listen-first argument applied to a record somebody is vouching for.
+And **there is no in-browser recording**: MediaRecorder yields WebM/Opus, the clone path wants PCM,
+and a consent is bound to the SHA-256 of exact bytes, so a re-encode on the way in would break that
+binding silently.
+
+In the cast panel a role is a preset voice **or** a consented clone, the `Klangquelle` two-state
+control unchanged, and switching replaces the value rather than merging. Any scope is castable and
+the copy says plainly that whether a scene may be *published* with an evaluation-scope voice is the
+publisher's decision and not this build's — a disabled option would imply a gate that does not exist
+yet. A cast referencing a revoked voice is an alarm on the row, not a removal: the scene still names
+it, and a render that failed with nothing on the page to explain why is the worse outcome.
+
 ## Motion
 
 Almost none, and all of it under `prefers-reduced-motion`. The Pegel's segments animate their width

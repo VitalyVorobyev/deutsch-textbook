@@ -256,6 +256,7 @@ def render_command(
     from ..generative.fake import FakeSound
     from ..generative.gateway import SoundGenerator, SpeechGenerator
     from ..generative.locks import set_models_root
+    from ..generative.voices import resolve_voices
     from ..graph.render import render_scene
 
     if engine is not None and engine not in ENGINES:
@@ -267,7 +268,7 @@ def render_command(
         )
     # The gate the dialogue and reading verbs already use: the fake engines exist for workflow
     # tests and generate no approvable audio, so reaching one is always an explicit request.
-    if engine == "fake" and not test_adapter:
+    if engine is not None and engine.startswith("fake") and not test_adapter:
         raise typer.BadParameter("the fake engine needs --test-adapter; it renders no real audio")
     if sound_engine_name == "fake" and not test_adapter:
         raise typer.BadParameter(
@@ -278,13 +279,27 @@ def render_command(
     project, revision, scene = _stored(slug)
 
     names = sorted({member.voice.engine for member in scene.cast})
+    # Every consented voice this cast names, resolved before an engine exists. A `--engine` override
+    # does not skip it: forcing a render onto another engine is a smoke test of the *pipeline*, and
+    # a smoke test that could speak in a withdrawn voice is not a smoke test.
+    try:
+        resolved = resolve_voices(
+            store,
+            store.root,
+            [member.voice.voice_ref for member in scene.cast if member.voice.voice_ref],
+        )
+    except ValueError as error:
+        raise typer.BadParameter(str(error)) from error
     if engine is not None:
-        forced: SpeechGenerator = ENGINES[engine]()
+        forced: SpeechGenerator = engine_for(engine, resolved.clonable)
         speech_engines: dict[str, SpeechGenerator] = {name: forced for name in names}
     else:
-        if "fake" in names and not test_adapter:
-            raise typer.BadParameter("this scene is cast on the fake engine; add --test-adapter")
-        speech_engines = {name: engine_for(name) for name in names}
+        cast_fake = sorted(name for name in names if name.startswith("fake"))
+        if cast_fake and not test_adapter:
+            raise typer.BadParameter(
+                f"this scene is cast on the {', '.join(cast_fake)} engine(s); add --test-adapter"
+            )
+        speech_engines = {name: engine_for(name, resolved.clonable) for name in names}
     # `--sound-engine` names the generator a `SoundSpec` resolves through; with none named a
     # `SoundSpec` is refused by the renderer, not silently dropped. `--test-adapter` alone keeps
     # dealing the fake one, which is what every workflow test written before the flag existed
@@ -303,6 +318,7 @@ def render_command(
             speech_engines=speech_engines,
             sound_engine=sound_engine,
             repo=repo.resolve(),
+            voices=resolved.refs,
         )
 
     stage = Stage(project.stage)

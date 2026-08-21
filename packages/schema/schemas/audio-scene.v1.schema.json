@@ -638,7 +638,7 @@
     },
     "VoiceSpec": {
       "additionalProperties": false,
-      "description": "How this role is synthesized. Engine-neutral by name, engine-specific by value.",
+      "description": "How this role is synthesized. Engine-neutral by name, engine-specific by value.\n\n**`voice` is always the display identity, and `voice_ref` is what is actually spoken through.**\nThat is the rule, and it is the one that keeps the two from being \"both meaningful\". With\n`voice_ref` set, `voice` is a label — the subject's name as it appears in the cast list and in\nthe manifest — and it is looked up in no preset table by anything; with `voice_ref` null,\n`voice` is the engine's preset speaker, exactly as it has always been. So `voice` is required\nin both cases (a cast member with no name for its voice is unreadable in a transcript) and\nnever ambiguous, because which of the two meanings it carries is decided by one other field.\n\n**Neither field is validated against a catalogue here**, and that is the `Placement.device`\ndecision applied a second time: a scene is a published document read by other tools, and a\nvoice reference lives in one machine's app-data by design. Holding a document to a store it\ncannot ship with would make a valid scene invalid on every other checkout. The check happens\nwhere it can be honest — at render time, where an unknown, revoked or byte-less reference is\nrefused by name (`generative.voices.resolve_voices`), and where an engine without the cloning\ncapability refuses a `voice_ref` rather than quietly synthesizing somebody else.",
       "properties": {
         "engine": {
           "minLength": 1,
@@ -666,6 +666,19 @@
           "minLength": 1,
           "title": "Voice",
           "type": "string"
+        },
+        "voice_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Voice Ref"
         }
       },
       "required": [

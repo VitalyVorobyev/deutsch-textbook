@@ -264,12 +264,15 @@ export const sceneDocumentFixture = {
     {
       role: 'Maklerin',
       character: { id: 'lena', version: 1 },
-      voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: 'Sprich freundlich.' },
+      // `voice_ref` is stated rather than left to the schema's default: the cast panel branches on
+      // it, and a fixture that omitted it would be testing what `undefined` does instead of what a
+      // preset-voice cast member does.
+      voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: 'Sprich freundlich.', voice_ref: null },
     },
     {
       role: 'Mieter',
       character: null,
-      voice: { engine: 'qwen_tts', voice: 'Eric', seed: 120, style: null },
+      voice: { engine: 'qwen_tts', voice: 'Eric', seed: 120, style: null, voice_ref: null },
     },
   ],
   script: [
@@ -470,6 +473,70 @@ export const soundsFixture = [
 ];
 
 /** A stub `Api`: no network, and every method fails loudly if a view calls one it should not. */
+/**
+ * The consent rule vocabulary as the engine serves it, and one stored voice.
+ *
+ * The rules are the engine's own nine, verbatim including `applies` and `minors_only` — the wizard
+ * filters on exactly those two fields, so a fixture that simplified them would be testing a
+ * simplification. `requirement` carries the English the form falls back to for an id this build has
+ * no German for, which is what one of the specs is about.
+ */
+export const voicesFixture = {
+  voices: [
+    {
+      id: 'mara-h',
+      subject_display_name: 'Mara H.',
+      scope: 'publication',
+      engine: 'qwen_tts_base',
+      model_revision: '5d83992436eae1d760afd27aff78a71d676296fc',
+      reference_sha256: 'a'.repeat(64),
+      consent_sha256: 'b'.repeat(64),
+      guardian_consent: false,
+      child_assent: false,
+      retention: 'Referenzaufnahme bleibt bis zum Widerruf und wird dann gelöscht.',
+      x_vector_only: false,
+      created_at: '2026-08-20T09:00:00+00:00',
+      revoked_at: null,
+      reference_present: true,
+      demo_urls: ['/api/voices/mara-h/demo/0'],
+    },
+    {
+      id: 'jo-r',
+      subject_display_name: 'Jo R.',
+      scope: 'evaluation',
+      engine: 'qwen_tts_base',
+      model_revision: '5d83992436eae1d760afd27aff78a71d676296fc',
+      reference_sha256: 'c'.repeat(64),
+      consent_sha256: 'd'.repeat(64),
+      guardian_consent: true,
+      child_assent: true,
+      retention: 'Wird nach der Bewertung automatisch gelöscht.',
+      x_vector_only: true,
+      created_at: '2026-08-18T09:00:00+00:00',
+      revoked_at: '2026-08-21T11:00:00+00:00',
+      reference_present: false,
+      demo_urls: [],
+    },
+  ],
+  rules: [
+    { id: 'subject-named', applies: 'always', minors_only: false, requirement: 'The consent names the person whose voice was recorded.' },
+    { id: 'purpose-stated', applies: 'always', minors_only: false, requirement: 'The authorised purpose is written out, not implied.' },
+    { id: 'retention-stated', applies: 'always', minors_only: false, requirement: 'The consent states how long the reference recording is kept.' },
+    { id: 'reference-sha-binding', applies: 'always', minors_only: false, requirement: 'The consent names the SHA-256 of exactly this recording.' },
+    { id: 'minor-guardian', applies: 'always', minors_only: true, requirement: "A minor's guardian has given consent and attested it." },
+    { id: 'minor-assent', applies: 'always', minors_only: true, requirement: "A minor's own assent is confirmed and attested by the guardian." },
+    { id: 'evaluation-bars-publication', applies: 'evaluation', minors_only: false, requirement: 'Evaluation scope: the consent explicitly prohibits upload, publication and git.' },
+    { id: 'publication-permits-course', applies: 'publication', minors_only: false, requirement: 'Publication scope: a permitted use explicitly allows publishing in this course.' },
+    { id: 'publication-bars-redistribution', applies: 'publication', minors_only: false, requirement: 'Publication scope: redistribution outside the course is still prohibited.' },
+  ],
+  engines: ['qwen_tts_base'],
+  demo_phrases: [
+    'Heute treffen wir uns um halb sechs am Bahnhof.',
+    'Hast du alles verstanden?',
+    'Haben Sie alles verstanden?',
+  ],
+};
+
 export function stubApi(overrides: Partial<Api> = {}): Api {
   const refuse = (name: string) => () => Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
   return {
@@ -490,6 +557,12 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     declineScene: refuse('declineScene'),
     sceneFromReading: refuse('sceneFromReading'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
+    // Read on mount by both Figuren and the scene editor's cast panel, so it is stubbed with data
+    // rather than a refusal — for the same reason the three catalogs above are.
+    voices: () => Promise.resolve(voicesFixture as never),
+    createVoice: refuse('createVoice'),
+    renderVoiceDemo: refuse('renderVoiceDemo'),
+    revokeVoice: refuse('revokeVoice'),
     ...overrides,
   } as Api;
 }
