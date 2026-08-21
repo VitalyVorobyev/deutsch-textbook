@@ -5,13 +5,15 @@
  * `onUnauthorized`; the shell clears the stored token and renders `Anmeldung` with the engine's own
  * reason. No view needs an auth branch, and there is no state in which a screen is half-signed-in.
  *
- * **The nav names surfaces that do not exist yet.** Lesetexte and Prüfung are listed, disabled and
- * marked *Folgt* rather than hidden, because the shape of the tool is part of what the tool tells
- * you about itself. Klangbibliothek left that list when the editor arrived.
+ * **The nav lists six sections and nothing else.** It used to carry a *Folgt* group naming the two
+ * surfaces that had not arrived — the shape of the tool being part of what the tool says about
+ * itself — and both arrived in PR 9b. An empty "coming" list is not a statement, so the group is
+ * gone rather than kept as a heading over nothing.
  *
- * **Tasten** is on the rail and not in a help page. There are two shortcuts and they are the two
- * things this tool does all day — save, and play — so they are printed where the operator can see
- * them without leaving what they are doing, the way a key legend is silkscreened on a desk.
+ * **Tasten** is on the rail and not in a help page. Four keys, and every one of them is something
+ * this tool does all day — save, play, and the two that walk a review queue — so they are printed
+ * where the operator can see them without leaving what they are doing, the way a key legend is
+ * silkscreened on a desk.
  */
 import { useCallback, useMemo, useState } from 'react';
 import { createApi } from './api';
@@ -21,24 +23,39 @@ import { ApiContext } from './useEngine';
 import { href, navigate, useRoute, useScrollReset } from './router';
 import { Anmeldung } from './views/Anmeldung';
 import { Figuren } from './views/Figuren';
+import { Freigabe } from './views/Freigabe';
 import { Klangbibliothek } from './views/Klangbibliothek';
+import { Lesetexte } from './views/Lesetexte';
+import { Pruefung } from './views/Pruefung';
 import { Szene } from './views/Szene';
 import { Szenen } from './views/Szenen';
 import { Uebersicht } from './views/Uebersicht';
 
+/**
+ * The rail, in the order the work runs: what exists, what is being made, what is waiting for a
+ * person, and the two catalogues everything is made out of.
+ */
 const WEGE = [
   { view: 'uebersicht', name: 'Übersicht' },
   { view: 'szenen', name: 'Szenen' },
+  { view: 'lesetexte', name: 'Lesetexte' },
+  { view: 'pruefung', name: 'Prüfung' },
   { view: 'klangbibliothek', name: 'Klangbibliothek' },
   { view: 'figuren', name: 'Figuren' },
 ] as const;
 
-const WEGE_BALD = ['Lesetexte', 'Prüfung'] as const;
-
-/** Two shortcuts, printed on the rail. Anything a third one would do already has a button. */
+/**
+ * Four shortcuts, printed on the rail.
+ *
+ * The first two are what the editor does all day. The last two are what a *queue* does all day,
+ * and they say where they work: a legend listing a key that is inert on the screen you are looking
+ * at is worse than no legend, and a silkscreen that changes per screen is not a silkscreen.
+ */
 const TASTEN = [
   { taste: '⌘/Strg + S', tut: 'Szene speichern' },
   { taste: 'Leertaste', tut: 'abspielen / anhalten' },
+  { taste: 'J / K', tut: 'Zeile weiter / zurück' },
+  { taste: 'Enter', tut: 'Zeile öffnen' },
 ] as const;
 
 export function App(): React.JSX.Element {
@@ -89,17 +106,6 @@ export function App(): React.JSX.Element {
 
           <div className="wege">
             <span className="tafel" style={{ padding: '0 var(--ton-mass-3)' }}>
-              Folgt
-            </span>
-            {WEGE_BALD.map((name) => (
-              <span key={name} className="weg weg-bald" aria-disabled="true">
-                {name}
-              </span>
-            ))}
-          </div>
-
-          <div className="wege">
-            <span className="tafel" style={{ padding: '0 var(--ton-mass-3)' }}>
               Tasten
             </span>
             {TASTEN.map((eintrag) => (
@@ -112,7 +118,10 @@ export function App(): React.JSX.Element {
 
           <div className="schiene-fuss">
             <span className="tafel">Engine</span>
-            <span className="zahl entfernt">127.0.0.1:8765</span>
+            {/* Same-origin, always: in development Vite proxies `/api`, and in production the
+                engine serves this bundle itself. So the host is read rather than written down —
+                the port is a `--port` flag, and a hardcoded 8765 was wrong on any other one. */}
+            <span className="zahl entfernt">{window.location.host}</span>
             <button
               type="button"
               className="knopf"
@@ -136,7 +145,7 @@ export function App(): React.JSX.Element {
   );
 }
 
-/** `szene/<slug>` keeps `Szenen` lit: the detail is a place inside that list, not a fourth section. */
+/** A detail is a place inside its list, not a section of its own: `szene/<slug>` keeps Szenen lit. */
 function istAktiv(view: string, weg: string): boolean {
   if (weg === 'szenen') return view === 'szenen' || view === 'szene';
   return view === weg;
@@ -148,6 +157,12 @@ function render(view: string, id?: string): React.JSX.Element {
       return <Szenen />;
     case 'szene':
       return id ? <Szene slug={id} /> : <Szenen />;
+    case 'lesetexte':
+      return <Lesetexte />;
+    case 'pruefung':
+      // The queue and one review under one route: a Freigabe is a place inside the queue, and
+      // `#/pruefung/<slug>` is the address a reviewer sends to themselves for tomorrow.
+      return id ? <Freigabe slug={id} /> : <Pruefung />;
     case 'klangbibliothek':
       return <Klangbibliothek />;
     case 'figuren':

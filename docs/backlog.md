@@ -77,6 +77,14 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Tonwerk audio studio
 
+- **P28-5 · a narration scene records no profile id.** `scene_from_reading` stores the character
+  ref and the composed style string, not `profile.id`, so "which profile narrated this" is
+  unrecoverable from the scene — the Lesetexte queue can only offer a picker, never show the
+  profile in use. Blocks clean bookkeeping for the 85-text wave; first step: a provenance field
+  on the scene (or brief) written by the converter, schema-versioned.
+- **P28-6 · no way to delete a scene project.** Every creation is irreversible, which is why the
+  Lesetexte queue's Enter deliberately refuses to create. An 85-row wave needs an undo for a
+  mis-created scene; first step: DELETE /api/scenes/{slug} for stage=draft, revision 1 only.
 - **P28-3 · one qa_json per scene revision, but renders are per variant.** QA-ing a second
   variant overwrites the first's report; correct while only `natural` renders, wrong the moment
   difficulty variants ship to learners. The report endpoints already refuse to serve a report

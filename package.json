@@ -29,8 +29,6 @@
     "tonwerk:check": "bun run --cwd apps/tonwerk check",
     "tonwerk:test": "bun run --cwd apps/tonwerk test",
     "listening:inventory": "bun scripts/listening-inventory.ts",
-    "studio:build": "bun --cwd tools/listening-studio/frontend run build",
-    "studio:check": "bun --cwd tools/listening-studio/frontend run check",
     "progress:audit": "bun scripts/progress-audit.ts",
     "progress:pull": "bun scripts/progress-pull.ts",
     "deploy:smoke": "bun scripts/deploy-smoke.ts",

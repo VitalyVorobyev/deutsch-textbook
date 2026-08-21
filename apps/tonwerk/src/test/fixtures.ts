@@ -97,6 +97,7 @@ export const scenesFixture = [
     revision: 4,
     scene_sha256: 'abc1234def5678',
     has_exercise: true,
+    qa_passed: true,
     updated: '2026-08-14T09:12:00+00:00',
     title: { en: 'A short flat viewing', ru: 'Короткий осмотр квартиры', uk: null },
     level: 'A1',
@@ -109,11 +110,85 @@ export const scenesFixture = [
     revision: 1,
     scene_sha256: '99887766554433',
     has_exercise: false,
+    qa_passed: null,
     updated: '2026-08-19T11:05:00+00:00',
     title: { en: 'In the German course', ru: 'На курсе немецкого', uk: null },
     level: 'A1',
   },
 ];
+
+/**
+ * Three scenes at `automatically_checked`, which is the only stage Prüfung queues.
+ *
+ * Stated as its own fixture rather than derived from `scenesFixture`: the queue's two rules are
+ * *oldest first* and *a failed check is drawn as itself*, and both need rows that differ in
+ * exactly one field. `qa_passed` is `false` on one of them for that reason, and `null` on none of
+ * them — nothing reaches this stage unmeasured.
+ */
+export const warteschlangeFixture = [
+  {
+    project_id: 11,
+    slug: 'ls-spaet-01',
+    kind: 'dialogue',
+    stage: 'automatically_checked',
+    revision: 2,
+    scene_sha256: 'cccc111122223333',
+    has_exercise: true,
+    qa_passed: true,
+    updated: '2026-08-20T15:00:00+00:00',
+    title: { en: 'The late one', ru: 'Поздняя', uk: null },
+    level: 'A2',
+  },
+  {
+    project_id: 12,
+    slug: 'ls-frueh-02',
+    kind: 'dialogue',
+    stage: 'automatically_checked',
+    revision: 5,
+    scene_sha256: 'dddd444455556666',
+    has_exercise: false,
+    qa_passed: true,
+    updated: '2026-08-12T08:30:00+00:00',
+    title: { en: 'The early one', ru: 'Ранняя', uk: null },
+    level: 'A1',
+  },
+  {
+    project_id: 13,
+    slug: 'ls-durchgefallen-03',
+    kind: 'narration',
+    stage: 'automatically_checked',
+    revision: 1,
+    scene_sha256: 'eeee777788889999',
+    has_exercise: false,
+    qa_passed: false,
+    updated: '2026-08-18T12:00:00+00:00',
+    title: { en: 'The failed one', ru: 'Провалившаяся', uk: null },
+    level: 'B1',
+  },
+];
+
+/** The narration profiles, with `allowed_kinds` differing so the picker's filter is testable. */
+export const narrationProfilesFixture = {
+  version: 1,
+  profiles: [
+    {
+      id: 'warm-narrative',
+      version: 1,
+      character_id: 'lena',
+      label: 'Warm erzählend',
+      description: 'Nah und freundlich, für Erzähltexte.',
+      allowed_kinds: ['intensive', 'extensive'],
+    },
+    {
+      id: 'formal-informational',
+      version: 1,
+      character_id: 'klara',
+      label: 'Sachlich informierend',
+      description: 'Für Bescheide, Regeln und Aushänge.',
+      allowed_kinds: ['extensive'],
+    },
+  ],
+};
 
 export const charactersFixture = {
   version: 1,
@@ -410,6 +485,10 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     renderScene: refuse('renderScene'),
     runQa: refuse('runQa'),
     generateSound: refuse('generateSound'),
+    narrationProfiles: refuse('narrationProfiles'),
+    approveScene: refuse('approveScene'),
+    declineScene: refuse('declineScene'),
+    sceneFromReading: refuse('sceneFromReading'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
     ...overrides,
   } as Api;

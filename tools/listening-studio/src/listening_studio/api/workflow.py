@@ -41,13 +41,14 @@ from ..storage import Store, remember_editor
 #: environment that has never seen torch — which is precisely what CI is.
 Transcriber = Callable[[Path], str]
 
-#: What a human certifies when they approve a scene, key by key.
+#: What a human certifies when they approve a scene, key by key — **and this is its one home.**
 #:
-#: These are the same eight keys `ui.APPROVAL_CHECKS` states in full German sentences, and they
-#: are deliberately re-declared here rather than imported: `ui.py` is the legacy HTML surface and
-#: is deleted once the desktop app reaches parity, and the API must not be what keeps it alive.
-#: `tests/test_api_scenes.py` holds the two lists equal so the duplication cannot drift, and so
-#: that deletion is a one-line change to that test rather than a silent loss of a checklist key.
+#: Until PR 9b the same eight keys were also declared in `ui.py`, which stated each of them as a
+#: full German sentence for the HTML approval form, and `tests/test_api_scenes.py` held the two
+#: lists equal. `ui.py` is deleted; the sentences moved to Tonwerk, which is the surface that
+#: speaks German, and this tuple is the vocabulary they are keyed on. A Tonwerk checklist that
+#: drifted from it does not fail silently: an unknown key is refused with the vocabulary named,
+#: and a missing required one is refused with the missing keys named.
 #:
 #: The keys are written verbatim into the published provenance manifest, so they are fixed and
 #: must never be renamed; only the wording beside them moves.
@@ -61,6 +62,18 @@ APPROVAL_CHECKLIST: tuple[str, ...] = (
     "questions",
     "context",
 )
+
+
+#: What a render artifact is served as. Read off the suffix rather than guessed by `mimetypes`,
+#: which answers `audio/x-wav` on some platforms and nothing at all for a suffix it has not been
+#: taught — and a browser handed `application/octet-stream` for a WAV downloads it instead of
+#: playing it.
+MEDIA_TYPES = {
+    ".wav": "audio/wav",
+    ".flac": "audio/flac",
+    ".mp3": "audio/mpeg",
+    ".json": "application/json",
+}
 
 
 class RenderRequest(BaseModel):
@@ -136,8 +149,8 @@ def _required_checks(scene: Scene, has_exercise: bool) -> set[str]:
     not exist. `context` is about background sound masking a syllable, so it applies only to a
     scene that has non-speech material; `questions` is about the answer key, so it applies only
     to a scene that carries an exercise. The legacy dialogue form made the same `context`
-    decision (`web.py`: `certified.add("context")` only when there were context sounds) and could
-    not make the `questions` one, because a `RevisionPayload` always had questions.
+    decision — it certified `context` only when the payload had context sounds — and could not
+    make the `questions` one, because a `RevisionPayload` always had questions.
     """
 
     conditional = {"context", "questions"}
@@ -186,8 +199,40 @@ def router(
         except ValueError as error:
             # An unknown variant, an unknown room/device/preset id, or a `SoundSpec` with no
             # generator. All three are the caller asking for something this scene and this
-            # repository cannot produce — a conflict, not a server fault.
+            # repository cannot produce — a conflict, not a server fault, and nothing failed.
             raise HTTPException(409, str(error)) from error
+        except Exception as error:
+            # The engine itself fell over. Recorded, then reported as itself.
+            #
+            # This is the dialogue pipeline's rule, moved to the path that still exists: there is
+            # no second engine to revise the scene onto, and a synthesis failure was never
+            # evidence that the script needed rewriting. So the project stays exactly where it
+            # was and the failure is written down beside the render it was trying to produce —
+            # under the scene sha, so a failure and the audio it failed to make share an address.
+            names = "-".join(sorted(speech)) or "render"
+            directory = render_dir(scene, request.variant)
+            directory.mkdir(parents=True, exist_ok=True)
+            (directory / f"{names}-failure-rev-{revision.number}.json").write_text(
+                json.dumps(
+                    {
+                        "slug": scene.slug,
+                        "scene_sha256": scene.sha256(),
+                        "variant": request.variant,
+                        # One entry per engine the cast uses: a scene can be cast across two, and
+                        # "which model revision was this" is the first question a failure raises.
+                        "engines": {name: engine.revision for name, engine in speech.items()},
+                        "sound_engine": request.sound_engine,
+                        "failed_at": datetime.now(UTC).isoformat(),
+                        "error_type": type(error).__name__,
+                        "message": str(error),
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            raise HTTPException(
+                409, f"{names} failed and the failure was recorded: {error}"
+            ) from error
 
         stage = Stage(project.stage)
         if stage == Stage.DRAFT:
@@ -273,6 +318,43 @@ def router(
             raise HTTPException(404, f"{scene.slug} has no {variant} master of these bytes")
         return FileResponse(
             target, media_type="audio/wav", filename=f"{scene.slug}-{variant}.wav"
+        )
+
+    @api.get("/scenes/{slug}/renders/{variant}/artifact/{path:path}")
+    def artifact(slug: str, variant: str, path: str) -> FileResponse:
+        """Any one file this render **declared it wrote** — a stem, the dry mix, the QA cut.
+
+        The master has its own route because it is the thing a reviewer plays; this is what makes
+        the rest audible, so a mix can be taken apart one voice at a time instead of being judged
+        only as a whole.
+
+        **The allowlist is the manifest, never the filesystem.** `render.json` lists every artifact
+        the run produced, and a path that is not in that list is a 404 *whether or not a file of
+        that name exists* — which is what makes `../../db.sqlite3` unremarkable here rather than a
+        traversal to defend against with string checks. Two 404s are kept apart for the same
+        reason a QA report for another variant is: not declared, and declared but missing from
+        disk, are different failures and need different fixes.
+        """
+
+        _, _, scene, _ = stored(slug)
+        directory = render_dir(scene, variant)
+        manifest = directory / "render.json"
+        if not manifest.exists():
+            raise HTTPException(404, f"{scene.slug} has no {variant} render of these bytes")
+        declared = {
+            str(row.get("path"))
+            for row in json.loads(manifest.read_text()).get("artifacts", [])
+            if isinstance(row, dict)
+        }
+        if path not in declared:
+            raise HTTPException(404, f"{path} is not an artifact of this render")
+        target = directory / path
+        if not target.is_file():
+            raise HTTPException(404, f"{path} is declared by this render but is not on disk")
+        return FileResponse(
+            target,
+            media_type=MEDIA_TYPES.get(target.suffix.lower(), "application/octet-stream"),
+            filename=f"{scene.slug}-{variant}-{target.name}",
         )
 
     @api.get("/scenes/{slug}/renders/{variant}/qa-report")

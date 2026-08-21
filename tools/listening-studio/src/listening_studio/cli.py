@@ -63,7 +63,7 @@ from .reading_audio import ReadingParagraph, ReadingRevisionPayload, default_pro
 from .reading_pipeline import generate_reading, reading_qa
 from .reading_export import publish_reading
 from .scene.cli import app as scene_app
-from .web import app as web_app
+from .web import TONWERK_DIST, app as web_app
 from .voice_benchmark import BENCHMARK_SLUGS, run_benchmark
 
 app = typer.Typer(no_args_is_help=True)
@@ -132,13 +132,16 @@ def serve(repo: Path = typer.Option(Path.cwd()), port: int = 8765, no_open: bool
     store = Store()
     api = web_app(store, repo_root(repo))
     token = api.state.session_token
-    url = f"http://127.0.0.1:{port}/?token={token}"
-    typer.echo(f"Listening Studio: {url}")
-    # The same secret, in the form a program presents it. Printed once at startup because there
-    # is nowhere else to get it: the token is generated per run and never written to disk, so an
-    # agent or the desktop app pairing with this server reads it from this line.
+    url = f"http://127.0.0.1:{port}/"
+    typer.echo(f"Tonwerk: {url}")
+    # The one place the secret exists. It is generated per run and never written to disk, so this
+    # line is the only copy: Tonwerk's token screen is typed into from it, and so is any agent or
+    # CLI. The URL no longer carries it — `?token=` was the legacy HTML pages' way in and went
+    # with them, and a token in an address bar is a token in the shell history of whoever pastes it.
     typer.echo(f"API bearer token: {token}")
     typer.echo(f'  curl -H "Authorization: Bearer {token}" http://127.0.0.1:{port}/api/registry')
+    if not TONWERK_DIST.is_dir():
+        typer.echo("Tonwerk is not built; / answers a hint. Build it with: bun run tonwerk:build")
     if not no_open:
         webbrowser.open(url)
     uvicorn.run(api, host="127.0.0.1", port=port)
