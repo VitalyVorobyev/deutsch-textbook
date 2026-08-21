@@ -1,0 +1,557 @@
+/* The shell, the signature Pegel, and the view-level layout. */
+
+/* --- Shell -------------------------------------------------------------------------------- */
+
+.werk {
+  display: grid;
+  grid-template-columns: var(--ton-schiene) minmax(0, 1fr);
+  min-height: 100%;
+}
+
+.schiene {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-6);
+  padding: var(--ton-mass-5) var(--ton-mass-4);
+  border-right: 1px solid var(--ton-kante);
+  background: var(--ton-platte);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* --- Wortmarke ---------------------------------------------------------------------------- */
+
+.wortmarke {
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-3);
+}
+
+.wortmarke-name {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-weit);
+  font-size: var(--ton-grad-16);
+  font-weight: 600;
+  color: var(--ton-schrift);
+  line-height: 1.1;
+}
+
+.wortmarke-zusatz {
+  display: block;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-weit);
+  font-size: var(--ton-grad-11);
+  font-weight: 400;
+  color: var(--ton-signal);
+  line-height: 1.6;
+}
+
+/* The mark: the Pegel in miniature — four ticks, the last one over. */
+.wortmarke-mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 1.6rem;
+  flex: none;
+}
+
+.wortmarke-mark i {
+  display: block;
+  width: 3px;
+  background: var(--ton-ruhe);
+}
+
+.wortmarke-mark i:nth-child(1) { height: 42%; }
+.wortmarke-mark i:nth-child(2) { height: 62%; background: var(--ton-messung-ab); }
+.wortmarke-mark i:nth-child(3) { height: 100%; background: var(--ton-signal); }
+.wortmarke-mark i:nth-child(4) { height: 46%; background: var(--ton-alarm); margin-left: 2px; }
+
+/* --- Navigation --------------------------------------------------------------------------- */
+
+.wege {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.weg {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ton-mass-2);
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  border-left: 2px solid transparent;
+  border-radius: 0 var(--ton-rund) var(--ton-rund) 0;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-12);
+  color: var(--ton-schrift-ab);
+  transition: color var(--ton-regung), background var(--ton-regung),
+    border-color var(--ton-regung);
+}
+
+.weg:hover {
+  color: var(--ton-schrift);
+  background: var(--ton-platte-hoch);
+}
+
+.weg[aria-current='page'] {
+  color: var(--ton-schrift);
+  background: var(--ton-platte-hoch);
+  border-left-color: var(--ton-signal);
+}
+
+.weg-bald {
+  color: var(--ton-ruhe);
+  cursor: default;
+}
+
+.weg-bald:hover {
+  color: var(--ton-ruhe);
+  background: transparent;
+}
+
+.schiene-fuss {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+  font-size: var(--ton-grad-11);
+}
+
+/* --- Content ------------------------------------------------------------------------------ */
+
+.buehne {
+  min-width: 0;
+  padding: var(--ton-mass-5) var(--ton-mass-6) var(--ton-mass-7);
+}
+
+.bahn {
+  max-width: var(--ton-bahn);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-5);
+}
+
+.kopf-eyebrow {
+  display: block;
+  margin-bottom: var(--ton-mass-1);
+}
+
+.kopf h1 {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-weit);
+  font-size: var(--ton-grad-24);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.kopf p {
+  margin-top: var(--ton-mass-2);
+  max-width: 58ch;
+  color: var(--ton-schrift-ab);
+  font-size: var(--ton-grad-13);
+}
+
+.gitter-2 {
+  display: grid;
+  gap: var(--ton-mass-4);
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+}
+
+.reihe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ton-mass-3);
+}
+
+.stapel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-4);
+}
+
+.stapel-eng {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+}
+
+/* --- Der Pegel: the signature ------------------------------------------------------------- */
+/*
+ * The registry's statuses are a pipeline, so they are drawn as one: a segmented level bar whose
+ * segment widths are the counts. `stale` is not on the scale — it is a regression out of
+ * `published` — so it sits past the end of the bar behind a gap, exactly where a peak-programme
+ * meter puts its over indicator.
+ */
+
+.pegel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+}
+
+.pegel-bahn {
+  display: flex;
+  align-items: stretch;
+  gap: 3px;
+  height: 2.25rem;
+}
+
+.pegel-segment {
+  position: relative;
+  min-width: 6px;
+  border-radius: 1px;
+  background-color: var(--ton-ruhe);
+  /* Discrete ticks rather than a fill: a level bar is LEDs, not a progress bar. */
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+  transition: flex-grow var(--ton-regung-pegel);
+}
+
+.pegel-ueber {
+  margin-left: var(--ton-mass-3);
+  flex: none;
+  width: 0.75rem;
+  border-radius: 1px;
+  background-color: var(--ton-alarm);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+  mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px);
+}
+
+.pegel-ueber[data-leer='ja'] {
+  background-color: var(--ton-ruhe);
+}
+
+.pegel-skala {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ton-mass-2) var(--ton-mass-4);
+}
+
+.pegel-strich {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ton-mass-2);
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+  transition: color var(--ton-regung);
+}
+
+.pegel-strich:hover,
+.pegel-strich[aria-pressed='true'] {
+  color: var(--ton-schrift);
+}
+
+.pegel-strich-zahl {
+  font-size: var(--ton-grad-13);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  color: var(--ton-schrift);
+}
+
+/* --- Statuslampe: the Pegel at row scale -------------------------------------------------- */
+/*
+ * Ring = whose move it is next. Core = the last verdict recorded.
+ * Grey nobody · cyan the machine · brass the human · red an over.
+ */
+
+.lampe {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+  white-space: nowrap;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-ab);
+}
+
+.lampe-glas {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lampe-ring);
+  background: var(--lampe-kern, transparent);
+  box-shadow: var(--lampe-schein, none);
+}
+
+.lampe[data-status='planned'] { --lampe-ring: var(--ton-ruhe); }
+.lampe[data-status='drafted'] { --lampe-ring: var(--ton-messung-ab); }
+.lampe[data-status='qa_failed'] {
+  --lampe-ring: var(--ton-alarm);
+  --lampe-kern: var(--ton-alarm);
+  color: var(--ton-alarm);
+}
+.lampe[data-status='awaiting_approval'] {
+  --lampe-ring: var(--ton-signal);
+  --lampe-kern: var(--ton-messung);
+}
+.lampe[data-status='approved'] {
+  --lampe-ring: var(--ton-signal);
+  --lampe-kern: var(--ton-signal);
+}
+.lampe[data-status='published'] {
+  --lampe-ring: var(--ton-signal);
+  --lampe-kern: var(--ton-signal);
+  --lampe-schein: 0 0 0 3px color-mix(in srgb, var(--ton-signal) 22%, transparent);
+  color: var(--ton-schrift);
+}
+.lampe[data-status='stale'] {
+  --lampe-ring: var(--ton-signal);
+  --lampe-kern: var(--ton-alarm);
+  color: var(--ton-alarm);
+}
+
+/* --- Marke: a small fact attached to a row ------------------------------------------------ */
+
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-1);
+  padding: 1px var(--ton-mass-2);
+  border: 1px solid var(--ton-kante-hell);
+  border-radius: var(--ton-rund);
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+}
+
+.marke-messung {
+  border-color: var(--ton-messung-ab);
+  color: var(--ton-messung);
+}
+
+.marke-signal {
+  border-color: var(--ton-signal-ab);
+  color: var(--ton-signal);
+}
+
+.marke-alarm {
+  border-color: var(--ton-alarm);
+  color: var(--ton-alarm);
+}
+
+/* --- Anmeldung: the token screen ---------------------------------------------------------- */
+
+.anmeldung {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--ton-mass-6);
+}
+
+.anmeldung-platte {
+  width: min(34rem, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-5);
+}
+
+.anmeldung form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-3);
+}
+
+.anmeldung label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-2);
+}
+
+/* --- Werte: a definition grid for detail views -------------------------------------------- */
+
+.werte {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--ton-mass-4);
+}
+
+.wert dt {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+}
+
+.wert dd {
+  margin-top: 2px;
+  font-size: var(--ton-grad-14);
+}
+
+/* --- Skript: the script list -------------------------------------------------------------- */
+
+.zeile {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr) 9rem;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.zeile:last-child {
+  border-bottom: 0;
+}
+
+.zeile-rolle {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-signal);
+  padding-top: 3px;
+}
+
+.zeile-takt {
+  text-align: right;
+  font-family: var(--ton-fassung-tafel);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+  padding-top: 3px;
+}
+
+.zeile-neben {
+  margin-top: var(--ton-mass-1);
+  font-size: var(--ton-grad-12);
+  color: var(--ton-schrift-weg);
+}
+
+@media (max-width: 60rem) {
+  .zeile {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--ton-mass-1);
+  }
+
+  .zeile-takt {
+    text-align: left;
+  }
+}
+
+/* --- Figuren: the roster ------------------------------------------------------------------ */
+
+.figuren {
+  display: grid;
+  gap: var(--ton-mass-4);
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+.figur-kopf {
+  display: flex;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-4);
+  border-bottom: 1px solid var(--ton-kante);
+}
+
+.figur-portraet {
+  flex: none;
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--ton-rund);
+  border: 1px solid var(--ton-kante-hell);
+  object-fit: cover;
+  background: var(--ton-raum);
+}
+
+.figur-portraet-leer {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--ton-mass-1);
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-ruhe);
+}
+
+.figur-name {
+  font-family: var(--ton-fassung-skript);
+  font-size: var(--ton-grad-19);
+  line-height: 1.2;
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-1);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-top: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.demo audio {
+  width: 100%;
+  height: 2rem;
+}
+
+/* --- Zustände ----------------------------------------------------------------------------- */
+
+.zustand {
+  padding: var(--ton-mass-6) var(--ton-mass-4);
+  text-align: center;
+  color: var(--ton-schrift-ab);
+  font-size: var(--ton-grad-13);
+}
+
+/* Narrow screens: the rail becomes a strip across the top. This is a desktop tool, so the
+   breakpoint is a floor, not a mobile design. */
+@media (max-width: 56rem) {
+  .werk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .schiene {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ton-mass-4);
+    border-right: 0;
+    border-bottom: 1px solid var(--ton-kante);
+  }
+
+  .wege {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .weg {
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: var(--ton-rund);
+  }
+
+  .weg[aria-current='page'] {
+    border-left-color: transparent;
+    border-bottom-color: var(--ton-signal);
+  }
+
+  .schiene-fuss {
+    margin-top: 0;
+  }
+
+  .buehne {
+    padding: var(--ton-mass-4);
+  }
+}

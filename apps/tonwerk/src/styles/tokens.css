@@ -1,0 +1,80 @@
+/*
+ * Tonwerk design tokens. The whole identity is here; nothing below this file invents a colour,
+ * a size or a face. The reasoning lives in apps/tonwerk/DESIGN.md — this is the vocabulary.
+ *
+ * One theme, deliberately. Tonwerk is a control room for one person doing long QA sessions, and a
+ * light/dark switch would mean two calibrations of a colour system whose whole job is to be read
+ * like an instrument. The learner site is warm stone; Tonwerk is cold graphite. They should not
+ * look related.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Das Pult: the surfaces, cold graphite with a faint blue cast ---------------------- */
+  --ton-raum: #0c1013; /* the room — page ground */
+  --ton-platte: #13191e; /* the plate — panels, table body */
+  --ton-platte-hoch: #182027; /* a raised plate — table head, hover, inputs */
+  --ton-kante: #232d35; /* engraved hairline */
+  --ton-kante-hell: #35424c; /* a rule that has to be seen: inputs, focus tracks */
+
+  /* ---- Die Schrift: engraved white, three weights of quiet ------------------------------- */
+  --ton-schrift: #e7edf1;
+  --ton-schrift-ab: #96a5b0; /* secondary prose, values that are not the point */
+  --ton-schrift-weg: #7a8b96; /* scale ticks, column heads, units */
+
+  /* ---- Die Skala: hue means *who owns this state*, never decoration ---------------------- */
+  --ton-ruhe: #46545f; /* unlit — nobody has acted */
+  --ton-messung: #5fb6c8; /* the machine: rendered, measured, verdict given */
+  --ton-messung-ab: #2f6773; /* the machine, dimmed: work started, nothing measured */
+  --ton-signal: #c9a44c; /* the human: approved, published — brass, not honey */
+  --ton-signal-ab: #6d5a2a;
+  --ton-alarm: #e4614e; /* over: a failed check, or an approval that no longer covers the bytes */
+
+  /* ---- Die Fassung: three faces, and each one says what kind of thing you are looking at -- */
+  /* Apparatus. Uppercase and tracked: rack silkscreen, engraved scale plate, column heads. */
+  --ton-fassung-tafel: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  /* Interface prose: the app talking about the work. */
+  --ton-fassung-text: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  /* The German being manufactured — utterances, titles, personas, demo phrases. It is the
+     product, not the apparatus, so it does not wear the apparatus's face. */
+  --ton-fassung-skript: Charter, 'Bitstream Charter', 'Iowan Old Style', 'Palatino Linotype',
+    Palatino, Georgia, serif;
+
+  --ton-grad-11: 0.6875rem;
+  --ton-grad-12: 0.75rem;
+  --ton-grad-13: 0.8125rem;
+  --ton-grad-14: 0.875rem;
+  --ton-grad-16: 1rem;
+  --ton-grad-19: 1.1875rem;
+  --ton-grad-24: 1.5rem;
+  --ton-grad-32: 2rem;
+
+  --ton-sperr-weit: 0.18em; /* the wordmark, nav, panel legends */
+  --ton-sperr-eng: 0.08em; /* column heads, chips, units */
+
+  /* ---- Der Abstand: a 4px grid, because a rack is drilled on one -------------------------- */
+  --ton-mass-1: 0.25rem;
+  --ton-mass-2: 0.5rem;
+  --ton-mass-3: 0.75rem;
+  --ton-mass-4: 1rem;
+  --ton-mass-5: 1.5rem;
+  --ton-mass-6: 2rem;
+  --ton-mass-7: 3rem;
+
+  --ton-rund: 3px; /* a panel corner, not a pill and not a knife edge */
+  --ton-schiene: 15rem; /* the left rail */
+  --ton-bahn: 82rem; /* the widest a content column gets */
+
+  --ton-regung: 140ms cubic-bezier(0.2, 0, 0.2, 1);
+  --ton-regung-pegel: 420ms cubic-bezier(0.16, 0.8, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ton-regung: 0ms;
+    --ton-regung-pegel: 0ms;
+  }
+}

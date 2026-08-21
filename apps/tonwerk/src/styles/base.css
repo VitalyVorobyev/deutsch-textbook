@@ -1,0 +1,263 @@
+/* Reset and the primitives every view leans on. Layout lives in app.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#tonwerk {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ton-raum);
+  color: var(--ton-schrift);
+  font-family: var(--ton-fassung-text);
+  font-size: var(--ton-grad-14);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* One focus treatment for the whole app: a brass track, offset so it never sits on the glyphs.
+   Never removed — a keyboard is how this tool is meant to be driven. */
+:focus-visible {
+  outline: 2px solid var(--ton-signal);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* --- Apparatus type: the silkscreen ------------------------------------------------------ */
+
+.tafel {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-weit);
+  font-size: var(--ton-grad-11);
+  font-weight: 500;
+  color: var(--ton-schrift-weg);
+}
+
+/* Numbers and ids: mono, but never shouted. A sha is not a legend. */
+.zahl {
+  font-family: var(--ton-fassung-tafel);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+/* The German being manufactured. */
+.skript {
+  font-family: var(--ton-fassung-skript);
+  font-size: var(--ton-grad-16);
+  line-height: 1.5;
+  color: var(--ton-schrift);
+}
+
+.leise {
+  color: var(--ton-schrift-ab);
+}
+
+.entfernt {
+  color: var(--ton-schrift-weg);
+}
+
+/* An absent value. Never an empty cell: an empty cell reads as a bug. */
+.leer::after {
+  content: '–';
+  color: var(--ton-ruhe);
+}
+
+/* --- Panel: a rack unit ------------------------------------------------------------------ */
+
+.platte {
+  background: var(--ton-platte);
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+}
+
+/* The legend sits *on* the top rule, the way a panel is silkscreened above its controls. */
+.platte-kopf {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-bottom: 1px solid var(--ton-kante);
+}
+
+.platte-leib {
+  padding: var(--ton-mass-4);
+}
+
+.platte-leib-eng {
+  padding: 0;
+}
+
+/* --- Tafel: the dense table -------------------------------------------------------------- */
+
+.tabelle-rahmen {
+  overflow-x: auto;
+}
+
+table.tabelle {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ton-grad-13);
+}
+
+table.tabelle th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--ton-platte-hoch);
+  text-align: left;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  font-weight: 500;
+  color: var(--ton-schrift-weg);
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  border-bottom: 1px solid var(--ton-kante);
+  white-space: nowrap;
+}
+
+table.tabelle td {
+  padding: var(--ton-mass-2) var(--ton-mass-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+  vertical-align: baseline;
+}
+
+table.tabelle tbody tr:hover {
+  background: var(--ton-platte-hoch);
+}
+
+table.tabelle tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.zahl-rechts {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Controls ---------------------------------------------------------------------------- */
+
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+  padding: var(--ton-mass-2) var(--ton-mass-4);
+  background: var(--ton-platte-hoch);
+  border: 1px solid var(--ton-kante-hell);
+  border-radius: var(--ton-rund);
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift);
+  cursor: pointer;
+  transition: border-color var(--ton-regung), color var(--ton-regung);
+}
+
+.knopf:hover:not(:disabled) {
+  border-color: var(--ton-signal);
+  color: var(--ton-signal);
+}
+
+.knopf:disabled {
+  cursor: not-allowed;
+  color: var(--ton-schrift-weg);
+}
+
+.knopf-signal {
+  background: color-mix(in srgb, var(--ton-signal) 14%, var(--ton-platte-hoch));
+  border-color: var(--ton-signal-ab);
+  color: var(--ton-signal);
+}
+
+.feld {
+  width: 100%;
+  padding: var(--ton-mass-3);
+  background: var(--ton-raum);
+  border: 1px solid var(--ton-kante-hell);
+  border-radius: var(--ton-rund);
+  font-family: var(--ton-fassung-tafel);
+  font-size: var(--ton-grad-13);
+  letter-spacing: 0;
+}
+
+.feld::placeholder {
+  color: var(--ton-ruhe);
+}
+
+select.wahl {
+  padding: var(--ton-mass-1) var(--ton-mass-6) var(--ton-mass-1) var(--ton-mass-2);
+  background: var(--ton-platte-hoch);
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  cursor: pointer;
+}
+
+/* --- Notices ----------------------------------------------------------------------------- */
+
+.hinweis {
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  border-radius: var(--ton-rund);
+  border: 1px solid var(--ton-kante);
+  border-left: 3px solid var(--ton-schrift-weg);
+  background: var(--ton-platte);
+  font-size: var(--ton-grad-13);
+  color: var(--ton-schrift-ab);
+}
+
+.hinweis-alarm {
+  border-left-color: var(--ton-alarm);
+  color: var(--ton-schrift);
+}
+
+.hinweis code,
+code.pfad {
+  font-family: var(--ton-fassung-tafel);
+  font-size: 0.92em;
+  color: var(--ton-messung);
+}
