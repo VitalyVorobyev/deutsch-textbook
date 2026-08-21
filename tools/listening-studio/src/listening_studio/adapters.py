@@ -110,12 +110,26 @@ def wav_duration(path: Path) -> float | None:
         return None
 
 
-def conform(source: Path, target: Path, pace: float = 1.0) -> None:
-    """Apply pace and the corpus format (16 kHz mono PCM) to a model's raw output.
+def conform(
+    source: Path,
+    target: Path,
+    pace: float = 1.0,
+    *,
+    rate: int = 16000,
+    channels: int = 1,
+    codec: str = "pcm_s16le",
+) -> None:
+    """Apply pace and a target PCM format to a model's raw output.
 
     The whole of what an engine's audio has done to it before it reaches the timeline. `atempo`
     changes duration without changing pitch, which is why pace is a filter here rather than a
     generation parameter — the same take can be re-paced without asking the model again.
+
+    The three format arguments default to the corpus format (16 kHz mono `pcm_s16le`), which is
+    what every legacy caller passes and what the line cache, Whisper QA and `speaker_qa` all
+    require. They exist because the scene render graph works at 48 kHz (`graph.nodes`) and the
+    pace step there is the same computation against a different destination — re-implementing
+    `atempo` next to a second ffmpeg invocation is how two pace behaviours start to diverge.
     """
 
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -129,11 +143,11 @@ def conform(source: Path, target: Path, pace: float = 1.0) -> None:
             str(source),
             *(["-filter:a", ",".join(filters)] if filters else []),
             "-ar",
-            "16000",
+            str(rate),
             "-ac",
-            "1",
+            str(channels),
             "-c:a",
-            "pcm_s16le",
+            codec,
             "-y",
             str(target),
         ],

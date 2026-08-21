@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Protocol
+from typing import Mapping, Protocol, Sequence
 
 import numpy as np
 import numpy.typing as npt
@@ -14,6 +14,20 @@ from .domain import RevisionPayload
 MODEL_ID = "microsoft/wavlm-base-plus-sv"
 MODEL_REVISION = "1ca8d40afff4d98a4356cf2b1a2000f9ba645649"
 MIN_SPEECH_SAMPLES = 8_000  # 0.5 s at the studio's canonical 16 kHz
+
+
+def weights_available() -> bool:
+    """Whether the pinned WavLM checkout is on this machine, without downloading it.
+
+    A caller that skips speaker QA has to say so explicitly — the alternative is a QA report that
+    is silently missing its identity half, which reads exactly like one that passed it.
+    """
+
+    try:
+        locked_snapshot(MODEL_ID, MODEL_REVISION)
+    except RuntimeError:
+        return False
+    return True
 
 
 class EmbeddingBackend(Protocol):
@@ -166,65 +180,88 @@ def check_speaker_consistency(
     backend: EmbeddingBackend | None = None,
     calibration: SpeakerQACalibration | None = None,
 ) -> SpeakerConsistencyReport:
-    """Rank identity drift without pretending an uncalibrated score is a verdict."""
+    return check_unit_consistency(
+        [(line.id, line.speaker) for line in payload.lines],
+        payload.speakers,
+        paths,
+        backend=backend,
+        calibration=calibration,
+    )
+
+
+def check_unit_consistency(
+    units: Sequence[tuple[str, str]],
+    speakers: Sequence[str],
+    paths: Mapping[str, Path],
+    backend: EmbeddingBackend | None = None,
+    calibration: SpeakerQACalibration | None = None,
+) -> SpeakerConsistencyReport:
+    """Rank identity drift without pretending an uncalibrated score is a verdict.
+
+    A "unit" is `(id, speaker)`: a line of a `RevisionPayload` or an utterance of a `Scene`. The
+    two models name the same two facts differently and nothing else here depends on either, so
+    the measurement takes the pair rather than a payload — building a synthetic `RevisionPayload`
+    to reach this function would mean inventing a brief, a question and an adapter name that no
+    editor chose, in order to ask about a voice.
+    """
 
     embedder = backend or WavLMSpeakerEmbedder()
     embeddings: dict[str, npt.NDArray[np.float64]] = {}
     pitches: dict[str, float] = {}
     line_scores: dict[str, LineSimilarity] = {}
     warnings: list[str] = []
-    for line in payload.lines:
-        audio, rate = _trimmed_audio(paths[line.id])
+    for unit_id, speaker in units:
+        audio, rate = _trimmed_audio(paths[unit_id])
         if len(audio) < MIN_SPEECH_SAMPLES:
             reason = "less than 0.5 s of voiced audio; listen manually"
-            line_scores[line.id] = LineSimilarity(
-                line_id=line.id,
-                speaker=line.speaker,
+            line_scores[unit_id] = LineSimilarity(
+                line_id=unit_id,
+                speaker=speaker,
                 manual_review=True,
                 reason=reason,
             )
-            warnings.append(f"{line.id}: {reason}")
+            warnings.append(f"{unit_id}: {reason}")
             continue
-        embeddings[line.id] = _normalize(embedder.embed(audio, rate))
+        embeddings[unit_id] = _normalize(embedder.embed(audio, rate))
         pitch = _median_f0(audio, rate)
         if pitch is not None:
-            pitches[line.id] = pitch
+            pitches[unit_id] = pitch
 
     character_rows: list[CharacterSimilarity] = []
     centroids: dict[str, npt.NDArray[np.float64]] = {}
-    for speaker in payload.speakers:
-        speaker_lines = [line for line in payload.lines if line.speaker == speaker]
-        measured = [line for line in speaker_lines if line.id in embeddings]
+    for speaker in speakers:
+        speaker_units = [unit_id for unit_id, name in units if name == speaker]
+        measured = [unit_id for unit_id in speaker_units if unit_id in embeddings]
         if measured:
             centroids[speaker] = _normalize(
-                np.mean([embeddings[line.id] for line in measured], axis=0)
+                np.mean([embeddings[unit_id] for unit_id in measured], axis=0)
             )
         similarities: list[float] = []
-        speaker_pitches = [pitches[line.id] for line in speaker_lines if line.id in pitches]
+        speaker_pitches = [pitches[unit_id] for unit_id in speaker_units if unit_id in pitches]
         if len(measured) < 2:
             warnings.append(f"{speaker}: fewer than two measurable lines; identity is manual-only")
-        for line in measured:
-            others = [embeddings[other.id] for other in measured if other.id != line.id]
+        for unit_id in measured:
+            others = [embeddings[other] for other in measured if other != unit_id]
             if not others:
-                line_scores[line.id] = LineSimilarity(
-                    line_id=line.id,
+                line_scores[unit_id] = LineSimilarity(
+                    line_id=unit_id,
                     speaker=speaker,
                     manual_review=True,
                     reason="only one measurable line for this character",
                 )
                 continue
             aggregate = _normalize(np.mean(others, axis=0))
-            similarity = float(np.dot(embeddings[line.id], aggregate))
+            similarity = float(np.dot(embeddings[unit_id], aggregate))
             similarities.append(similarity)
-            line_scores[line.id] = LineSimilarity(
-                line_id=line.id,
+            line_scores[unit_id] = LineSimilarity(
+                line_id=unit_id,
                 speaker=speaker,
                 similarity_to_character=similarity,
             )
         character_rows.append(
             CharacterSimilarity(
                 speaker=speaker,
-                line_count=len(speaker_lines),
+                line_count=len(speaker_units),
                 measured_lines=len(measured),
                 minimum_similarity=min(similarities) if similarities else None,
                 pitch_min_hz=min(speaker_pitches) if speaker_pitches else None,
@@ -238,8 +275,9 @@ def check_speaker_consistency(
         )
 
     pairs: list[CharacterPairSimilarity] = []
-    for index, left in enumerate(payload.speakers):
-        for right in payload.speakers[index + 1 :]:
+    ordered_speakers = list(speakers)
+    for index, left in enumerate(ordered_speakers):
+        for right in ordered_speakers[index + 1 :]:
             if left in centroids and right in centroids:
                 pairs.append(
                     CharacterPairSimilarity(
@@ -250,15 +288,15 @@ def check_speaker_consistency(
 
     ordered_lines = [
         line_scores.get(
-            line.id,
+            unit_id,
             LineSimilarity(
-                line_id=line.id,
-                speaker=line.speaker,
+                line_id=unit_id,
+                speaker=speaker,
                 manual_review=True,
                 reason="no speaker embedding",
             ),
         )
-        for line in payload.lines
+        for unit_id, speaker in units
     ]
     if calibration is not None:
         for character_row in character_rows:

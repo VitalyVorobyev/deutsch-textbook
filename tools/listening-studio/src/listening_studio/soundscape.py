@@ -82,6 +82,25 @@ def _aligned_ambience_rms(
     return 20 * math.log10(max(float(np.sqrt(np.mean(ambience**2))), 1e-12))
 
 
+def ambience_rms_dbfs(dry: Path, final: Path, lead_in_ms: int) -> float | None:
+    """The bed level in the finished mix, measured against the speech-only reference.
+
+    Public because a scene render measures the same thing from a different manifest shape
+    (`graph.scene_qa`). The *measurement* is what must stay single-sourced — it is the part with
+    the limiter-latency correction in it — not the payload model it happens to be asked about.
+    """
+
+    if not dry.exists() or not final.exists():
+        return None
+    dry_audio, dry_rate = _read_mono(dry)
+    final_audio, final_rate = _read_mono(final)
+    if dry_rate != final_rate:
+        return None
+    return _aligned_ambience_rms(
+        dry_audio, final_audio, dry_rate, round(lead_in_ms * dry_rate / 1000)
+    )
+
+
 def soundscape_report(
     payload: RevisionPayload, dry: Path, final: Path
 ) -> SoundscapeReport:
@@ -95,14 +114,8 @@ def soundscape_report(
         warnings.append("no continuous environment bed; the scene falls silent between events")
 
     ambience_rms: float | None = None
-    if payload.context_sounds and dry.exists() and final.exists():
-        dry_audio, dry_rate = _read_mono(dry)
-        final_audio, final_rate = _read_mono(final)
-        if dry_rate == final_rate:
-            offset = round(payload.lead_in_ms * dry_rate / 1000)
-            ambience_rms = _aligned_ambience_rms(
-                dry_audio, final_audio, dry_rate, offset
-            )
+    if payload.context_sounds:
+        ambience_rms = ambience_rms_dbfs(dry, final, payload.lead_in_ms)
     gains = [sound.gain_db for sound in payload.context_sounds]
     return SoundscapeReport(
         bed_count=len(beds),
