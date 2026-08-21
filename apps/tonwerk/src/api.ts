@@ -29,6 +29,7 @@ import {
   registrySchema,
   renderResultSchema,
   reviseResultSchema,
+  sceneDeletionSchema,
   sceneDetailSchema,
   sceneRowSchema,
   sceneSchema,
@@ -47,6 +48,7 @@ import {
   type RenderResult,
   type ReviseResult,
   type SceneDetail,
+  type SceneDeletion,
   type SceneRow,
   type SoundRow,
   type Revocation,
@@ -156,6 +158,15 @@ export interface Api {
   declineScene(slug: string, reason: string, editor?: string): Promise<DeclineResult>;
   /** Convert one Lesetext into a narration scene project. 409 when it already has one. */
   sceneFromReading(readingId: string, profile?: string): Promise<SceneRow>;
+  /**
+   * Delete a mis-created scene project. Draft, revision 1, never published — nothing else.
+   *
+   * A 409 here is one of three sentences and the engine writes all three; this app prints what it
+   * was told rather than re-deriving the rule. The row's own `deletable` decides whether the
+   * affordance is offered at all, so a 409 means the list was stale — which is why the caller
+   * reloads it either way.
+   */
+  deleteScene(slug: string): Promise<SceneDeletion>;
 
   /** Stored voice references, plus the consent rules a new one is held to. */
   voices(signal?: AbortSignal): Promise<Voices>;
@@ -194,7 +205,12 @@ const looseSceneSchema = z.looseObject({
 
 /** A request that changes something. Reads pass nothing; there is no third kind. */
 interface Write {
-  method: 'PUT' | 'POST';
+  method: 'PUT' | 'POST' | 'DELETE';
+  /**
+   * What is sent. `undefined` means **no body at all**, which is what a DELETE wants: its whole
+   * argument is in the path, and `Content-Type: application/json` over the four bytes `null` is a
+   * request that says it carries a document and does not.
+   */
   body: unknown;
   /**
    * A multipart body, sent as it is.
@@ -233,9 +249,11 @@ export function createApi(options: ApiOptions = {}): Api {
         headers: {
           Authorization: `Bearer ${token()}`,
           Accept: 'application/json',
-          ...(write && !write.formData ? { 'Content-Type': 'application/json' } : {}),
+          ...(write && !write.formData && write.body !== undefined
+            ? { 'Content-Type': 'application/json' }
+            : {}),
         },
-        ...(write
+        ...(write && write.body !== undefined
           ? { body: write.formData ? (write.body as FormData) : JSON.stringify(write.body) }
           : {}),
       });
@@ -310,6 +328,12 @@ export function createApi(options: ApiOptions = {}): Api {
         // `editor` is optional on the engine's side and omitted rather than sent empty: a decline
         // by nobody is a real state, and `""` would record an editor whose name is nothing.
         body: { reason, ...(editor ? { editor } : {}) },
+      }),
+
+    deleteScene: (slug) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}`, sceneDeletionSchema, undefined, {
+        method: 'DELETE',
+        body: undefined,
       }),
 
     sceneFromReading: (readingId, profile) =>
@@ -409,6 +433,13 @@ async function detail(response: Response, fallback: string): Promise<string> {
         return [pfad ? `${pfad}: ${msg}` : msg];
       });
       if (zeilen.length) return zeilen.join(' · ');
+    }
+    // The publisher's refusals carry `{gate, detail}`: the gate id is what a caller branches on
+    // and the sentence is what a person reads, so both survive into the message rather than one
+    // of them being flattened to `[object Object]`.
+    if (reason && typeof reason === 'object' && 'gate' in reason && 'detail' in reason) {
+      const { gate, detail: satz } = reason as { gate: unknown; detail: unknown };
+      if (typeof gate === 'string' && typeof satz === 'string') return `${gate}: ${satz}`;
     }
   } catch {
     /* not JSON; the fallback is the honest answer */

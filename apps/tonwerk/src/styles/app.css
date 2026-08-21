@@ -975,6 +975,46 @@
   flex-wrap: wrap;
 }
 
+/*
+ * Die stille Rücknahme — the danger affordance, and the one rule it must not break.
+ *
+ * Red in this app is a **verdict**, never a category of control. So the resting state carries no
+ * hue at all: it is the plainest thing on the row — apparatus face, no border, dimmed — and looks
+ * less like a button than the two beside it, which is the point. An offer is not a warning.
+ *
+ * The hue arrives only when the control is **armed**, where the label has stopped being an offer
+ * and become the consequence. That is the Statuslampe's move at control scale: the colour is the
+ * reading, and it appears when there is something to read.
+ */
+.ruecknahme {
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+  cursor: pointer;
+  transition: color var(--ton-regung);
+}
+.ruecknahme:hover:not(:disabled) {
+  color: var(--ton-schrift);
+}
+.ruecknahme:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.ruecknahme-scharf {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-3);
+}
+.ruecknahme-ja,
+.ruecknahme-ja:hover:not(:disabled) {
+  color: var(--ton-alarm);
+}
+
 .wahl-feld {
   display: inline-flex;
   align-items: center;

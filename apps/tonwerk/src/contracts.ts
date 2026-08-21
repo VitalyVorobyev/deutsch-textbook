@@ -200,8 +200,36 @@ export const sceneRowSchema = z.looseObject({
   updated: z.string().nullable().optional(),
   title: sceneTitleSchema,
   level: z.string().nullable().optional(),
+  /**
+   * Which narration profile directed this scene, when one did.
+   *
+   * `null` for every dialogue and for any narration converted before the engine recorded it — the
+   * honest answer in both cases, and a different one from "the default profile", which is what a
+   * queue that guessed would print. Resolving a profile is lossy (the style string it composed
+   * cannot be taken apart again), so this is the only way the answer exists at all.
+   */
+  narration: z
+    .looseObject({ profile_id: z.string(), profile_version: z.number() })
+    .nullable()
+    .optional(),
+  /**
+   * Whether `DELETE /api/scenes/{slug}` would accept this row: draft, revision 1, never published.
+   *
+   * The engine's answer, not a rule re-derived here. Two of its three conditions are visible on
+   * this row and the third — a provenance manifest in the course repository naming this slug — is
+   * not, so a client that computed its own would offer the affordance on rows the engine refuses.
+   */
+  deletable: z.boolean().optional(),
 });
 export type SceneRow = z.infer<typeof sceneRowSchema>;
+
+/** What a deletion answers with. Small on purpose: the useful part is that it happened. */
+export const sceneDeletionSchema = z.looseObject({
+  slug: z.string(),
+  deleted: z.boolean(),
+  project_id: z.number(),
+});
+export type SceneDeletion = z.infer<typeof sceneDeletionSchema>;
 
 /** Where each utterance actually landed in the rendered master. Present only after a render. */
 export const timingSchema = z.looseObject({

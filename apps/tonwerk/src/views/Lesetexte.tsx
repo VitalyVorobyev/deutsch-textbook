@@ -85,6 +85,31 @@ export function Lesetexte(): React.JSX.Element {
     [api, laeuft, profilWahl],
   );
 
+  const loeschen = useCallback(
+    (row: LesetextZeile) => {
+      if (laeuft) return;
+      setLaeuft(row.id);
+      setProblem(null);
+      api.deleteScene(row.slug).then(
+        () => {
+          setLaeuft(null);
+          setStand((wert) => wert + 1);
+        },
+        (grund: unknown) => {
+          setLaeuft(null);
+          // A 409 here means this row was stale — the engine's three refusals are all about state
+          // this list is a snapshot of. Reload either way, and print what the engine said.
+          setStand((wert) => wert + 1);
+          setProblem({
+            id: row.id,
+            fehler: grund instanceof Error ? grund : new Error(String(grund)),
+          });
+        },
+      );
+    },
+    [api, laeuft],
+  );
+
   const oeffnen = useCallback(
     (id: string) => {
       const row = zeilen.find((eintrag) => eintrag.id === id);
@@ -193,6 +218,7 @@ export function Lesetexte(): React.JSX.Element {
                   </th>
                   <th scope="col">Status</th>
                   <th scope="col">Szene</th>
+                  <th scope="col">Profil</th>
                   <th scope="col">Nächster Schritt</th>
                 </tr>
               </thead>
@@ -231,6 +257,9 @@ export function Lesetexte(): React.JSX.Element {
                     </td>
                     <td className="leise">{row.stufe ?? <span className="leer" />}</td>
                     <td>
+                      <Profil row={row} profile={profile.data?.profiles ?? []} />
+                    </td>
+                    <td>
                       <Schritt
                         row={row}
                         profile={profile.data?.profiles ?? []}
@@ -241,6 +270,7 @@ export function Lesetexte(): React.JSX.Element {
                         laeuft={laeuft === row.id}
                         gesperrt={laeuft !== null}
                         anlegen={() => anlegen(row)}
+                        loeschen={() => loeschen(row)}
                       />
                       {problem?.id === row.id ? (
                         <div className="zeile-neben" role="alert">
@@ -265,6 +295,28 @@ export function Lesetexte(): React.JSX.Element {
  * A queue whose every row offers create, render, check and approve is a queue that asks the
  * reviewer to work out the order. There is only ever one next step, and the row shows it.
  */
+function Profil({
+  row,
+  profile,
+}: {
+  row: LesetextZeile;
+  profile: readonly NarrationProfile[];
+}): React.JSX.Element {
+  if (!row.profil) return <span className="leer" />;
+  const bekannt = profile.find((eintrag) => eintrag.id === row.profil?.id);
+  return (
+    <span className="leise" title={bekannt?.description ?? undefined}>
+      {/* The catalog's label when this build knows the id, and the **id itself** when it does not
+          — the Klon-Assistent's rule for an unknown consent rule, applied here: a profile the
+          catalogue has since renamed must still appear, not vanish from the column that exists to
+          say which one was used. The version is printed beside it because a profile pinned at
+          version 1 and a catalogue now at 2 are two different directions. */}
+      <span className="skript">{bekannt?.label ?? row.profil.id}</span>{' '}
+      <span className="zahl">v{row.profil.version}</span>
+    </span>
+  );
+}
+
 function Schritt({
   row,
   profile,
@@ -273,6 +325,7 @@ function Schritt({
   laeuft,
   gesperrt,
   anlegen,
+  loeschen,
 }: {
   row: LesetextZeile;
   profile: readonly NarrationProfile[];
@@ -281,6 +334,7 @@ function Schritt({
   laeuft: boolean;
   gesperrt: boolean;
   anlegen(): void;
+  loeschen(): void;
 }): React.JSX.Element {
   if (!row.szene) {
     // Only profiles this Lesetext's kind is allowed to use. Offering the others would mean
@@ -328,8 +382,73 @@ function Schritt({
   }
 
   return (
-    <a className="knopf" href={href('szene', row.slug)}>
-      {row.szene.stage === 'draft' ? 'Rendern' : 'Szene öffnen'}
-    </a>
+    <div className="schritt">
+      <a className="knopf" href={href('szene', row.slug)}>
+        {row.szene.stage === 'draft' ? 'Rendern' : 'Szene öffnen'}
+      </a>
+      {row.loeschbar ? <Loeschen row={row} gesperrt={gesperrt} laeuft={laeuft} loeschen={loeschen} /> : null}
+    </div>
+  );
+}
+
+/**
+ * Die stille Rücknahme — the undo for a scene created by mistake.
+ *
+ * **Quiet, and never a fourth meaning for the alarm hue.** Red in this app is a *verdict*: a check
+ * that failed, or an approval that no longer covers its bytes. An offer is not a verdict, so the
+ * resting state of this control is the plainest thing on the row — a text button in the apparatus
+ * face, no border, dimmed — and it wears `--ton-alarm` only in the **armed** state, where the
+ * sentence on it has stopped being an offer and become the consequence. That is the same move the
+ * Statuslampe makes with its ring and its core: the hue arrives when there is something to say.
+ *
+ * **Two presses, no dialogue.** The first press replaces the label with what will happen and what
+ * will not; the second does it. A `confirm()` would be a modal in a queue that is driven from the
+ * keyboard, and a dialogue you dismiss without reading is the checkbox nobody ticks honestly.
+ * Anywhere else in the row — including moving to another row — disarms it.
+ *
+ * It appears **only where the engine says it would accept one** (`row.loeschbar`, from the row's
+ * own `deletable`). A control that is offered and then refused teaches that the offers are
+ * decoration.
+ */
+function Loeschen({
+  row,
+  gesperrt,
+  laeuft,
+  loeschen,
+}: {
+  row: LesetextZeile;
+  gesperrt: boolean;
+  laeuft: boolean;
+  loeschen(): void;
+}): React.JSX.Element {
+  const [scharf, setScharf] = useState(false);
+  if (!scharf) {
+    return (
+      <button
+        type="button"
+        className="ruecknahme"
+        data-loeschen=""
+        disabled={gesperrt}
+        onClick={() => setScharf(true)}
+      >
+        Löschen
+      </button>
+    );
+  }
+  return (
+    <span className="ruecknahme-scharf" role="group" aria-label={`Szene ${row.slug} löschen`}>
+      <button
+        type="button"
+        className="ruecknahme ruecknahme-ja"
+        data-loeschen-bestaetigt=""
+        disabled={gesperrt}
+        onClick={loeschen}
+      >
+        {laeuft ? 'Löscht …' : 'Szene wirklich löschen'}
+      </button>
+      <button type="button" className="ruecknahme" onClick={() => setScharf(false)}>
+        Abbrechen
+      </button>
+    </span>
   );
 }
