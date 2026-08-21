@@ -76,6 +76,28 @@ placement stores its actual editorial reason rather than implying human authorsh
 or mixed audio may enter `content/listening/` until a named
 human has approved that exact revision and WAV.
 
+Contextual sound may also be **generated**, and that path is supported on the same terms as the
+imported one. The engine is Stable Audio 3 Small-SFX through Stability's own MLX implementation,
+with the weights repository and its revision, the adapter code repository and its commit, and the
+model licence pinned in `tools/listening-studio/models.lock.json`; the engine refuses to run
+against anything else. Every generated asset keeps its own provenance — prompt, negative prompt,
+seed, duration, resolved engine parameters, engine name, model and adapter revisions and the
+licence — in the asset-store sidecar beside the WAV and in the render manifest that shipped it.
+The licence is the **Stability AI Community License**: free for research, non-commercial and
+limited commercial use, terminating for a licensee whose annual revenue exceeds USD $1,000,000,
+who must then obtain an enterprise licence; commercial use also requires registration with
+Stability AI. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use.
+Stability's model card states that the training corpus is 1,278,902 recordings licensed from
+AudioSparx and taken from Freesound under CC0, CC BY or CC Sampling+, with copyrighted music
+screened out; that is recorded as **their statement, not an independently verified fact**, exactly
+as a permissive model licence is never presented as verified training-data provenance. Generated
+sound is subject to every rule the imported path already carries — a context sound must never
+carry a correct answer by itself, beds and events stay distinct, and nothing enters
+`content/listening/` until a named human has approved that exact revision and WAV. The sound
+library lists imported and generated assets side by side, each row labelled with its origin and
+keeping its own record: an import has an uploader, a source page and a reviewed rights note, a
+generated file has a prompt and a seed, and neither is described in the other's terms.
+
 A VoiceDesign-to-cloning comparison may run only in the non-publishing local benchmark workspace.
 Its references must be synthetic, use fictional non-imitation descriptions, and retain prompts,
 model revisions and hashes. Benchmark output and reference audio cannot enter the production cache,

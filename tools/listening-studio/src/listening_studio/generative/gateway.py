@@ -92,6 +92,7 @@ class AudioAsset:
         model_id: str,
         model_revision: str,
         adapter_code_revision: str,
+        license: str,
         seed: int,
         request_sha256: str,
         params: dict[str, Any],
@@ -101,6 +102,12 @@ class AudioAsset:
         Not a base class and not behaviour an engine can override — the shape of `provenance`
         is a published contract, and three engines each assembling their own dict is three
         chances for a field to go missing where no gate would see it.
+
+        `license` is the model's licence, and it is a field rather than a lookup because the
+        published render manifest has to be able to state it. An imported Freesound original
+        carries its licence in the reviewed `source.json`; a generated one has no such record,
+        and a licence that lives only in `models.lock.json` is a licence the asset sidecar
+        cannot answer for once it is one row in a sound library beside the imports.
         """
 
         digest = hashlib.sha256()
@@ -116,6 +123,7 @@ class AudioAsset:
                 "model_id": model_id,
                 "model_revision": model_revision,
                 "adapter_code_revision": adapter_code_revision,
+                "license": license,
                 "seed": seed,
                 "request_sha256": request_sha256,
                 "params": params,

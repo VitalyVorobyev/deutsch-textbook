@@ -42,6 +42,42 @@ without asking the model again. `QwenSpeech.supports_style` is `False`, and the 
 warns once per run when a styled line meets it: the 0.6B checkpoint discards `instruct` upstream,
 so a delivery note is stored, hashed and inaudible.
 
+## Sound engine
+
+**Stable Audio 3 Small-SFX is the sound engine**, through Stability's own MLX implementation, and
+`./install-stable-audio.sh` installs it: the runtime into this venv (one new package —
+`mlx` is already here for mlx-lm and mlx-whisper), the adapter code from the pinned GitHub commit
+into `<repo>/.models/stable-audio-3-mlx/`, and 1.8 GB of `.npz` bundles at the pinned Hugging Face
+revision beside them. Both pins are in `models.lock.json` and both are checked before a
+generation; `HF_HUB_OFFLINE=1` on the child process is what makes "never downloaded implicitly"
+enforcement rather than documentation. The weights come from the **ungated**
+`stabilityai/stable-audio-3-optimized`, not from the gated PyTorch checkpoint, so no licence
+acceptance is involved — it is the same model and the same Stability AI Community License, whose
+revenue condition and training-data claim are recorded in the lock entry and in
+[`product-protection.md`](../../docs/authoring/product-protection.md).
+
+`scene render --sound-engine stable_audio_sfx` resolves a `SoundSpec`; `--sound-engine fake`
+rides the same `--test-adapter` gate as the fake voice. `SOUND_ENGINES` (`adapters.py`) is a
+second registry beside `ENGINES` on purpose — the two protocols take different requests, and one
+merged table would let a scene be cast on a tone generator by a typo.
+
+The engine calls the pinned `scripts/sa3_mlx.py` as a **process**, because upstream ships no
+library API and the whole generation flow lives in its `main()`. Two things follow: this package
+never imports `mlx`, so the CI environment stays free of an ML runtime by construction; and the
+child's banner is captured and re-emitted on stderr, because `redirect_stdout` rebinds
+`sys.stdout` in *this* process and a subprocess writes to the file descriptor — the shape of the
+P28-1 defect, avoided rather than shipped.
+
+Measured on this machine (M4 Pro / 24 GB, MLX 0.32.1, fp16 DiT, 8 sampler steps): a 10 s clip
+takes **0.9 s** warm (~11× realtime; 2.3 s on the first run, which pays the model load) at a peak
+RSS of 1.5 GB, and generation is **byte-identical across runs at one seed** — through the ffmpeg
+conform as well as out of the model. Output is 16-bit stereo at 44.1 kHz and is conformed inside
+the engine to mono 48 kHz `pcm_s24le`: the sound path has no conform node between generation and
+placement, and `track_filters` takes one *mono* take, so a stereo one would lose a channel to
+`pan` with every gate green. A `negative_prompt` is **refused at `cfg` 1.0** rather than dropped —
+the sampler runs no unconditional branch there, and the same prompt with and without it produced
+identical bytes.
+
 **Parler is gone** — the engine, its installer, its requirements and its lock entries. Git history
 keeps it, published artifacts keep the provenance manifests naming it, and local projects created
 in the Parler era are frozen data that this code no longer loads.
@@ -262,7 +298,7 @@ channel count).
 
 Placement is constant-power panning (`cos`/`sin`), so a voice keeps its level as it moves. A
 `SoundSpec` reached without a sound generator is refused with a `ValueError`, never warned about
-and rendered anyway: production renders have no generator until the Stable Audio PR, and silence
+and rendered anyway: a render is given a sound engine by name or it has none, and silence
 where a sound was asked for is a defect nobody can hear.
 
 ## Acoustics: rooms, devices and difficulty
