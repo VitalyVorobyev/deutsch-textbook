@@ -31,7 +31,7 @@ import {
   rolleIstFrei,
   rolleUmbenennen,
 } from '../../scene-draft';
-import type { Character } from '../../contracts';
+import type { Character, Voice } from '../../contracts';
 import type { Scene, Utterance } from '@da/schema/audio-scene';
 
 export function SkriptModus({
@@ -39,11 +39,13 @@ export function SkriptModus({
   original,
   setEntwurf,
   figuren,
+  stimmen,
 }: {
   entwurf: Scene;
   original: Scene;
   setEntwurf(next: Scene): void;
   figuren: Character[];
+  stimmen: Voice[];
 }): React.JSX.Element {
   const sequentiell = istSequentiell(entwurf);
   const bekannt = new Set(original.script.map((utterance) => utterance.id));
@@ -55,7 +57,12 @@ export function SkriptModus({
 
   return (
     <>
-      <Besetzung entwurf={entwurf} setEntwurf={setEntwurf} figuren={figuren} />
+      <Besetzung
+        entwurf={entwurf}
+        setEntwurf={setEntwurf}
+        figuren={figuren}
+        stimmen={stimmen}
+      />
 
       <Platte
         titel="Skript"
@@ -113,12 +120,15 @@ function Besetzung({
   entwurf,
   setEntwurf,
   figuren,
+  stimmen,
 }: {
   entwurf: Scene;
   setEntwurf(next: Scene): void;
   figuren: Character[];
+  stimmen: Voice[];
 }): React.JSX.Element {
   const katalog = new Map(figuren.map((figur) => [figur.id, figur]));
+  const stimmenKatalog = new Map(stimmen.map((stimme) => [stimme.id, stimme]));
   return (
     <Platte
       titel="Besetzung"
@@ -128,8 +138,22 @@ function Besetzung({
     >
       {entwurf.cast.map((member) => {
         const figur = member.character ? katalog.get(member.character.id) : undefined;
+        // Truthiness, not `!== null`. The strict parse yields null, but the editor also renders a
+        // *lenient* read of a drifted document, where the field is simply absent — and `undefined
+        // !== null` would put every role of such a scene on a voice reference it does not have.
+        const geklont = Boolean(member.voice.voice_ref);
+        const stimme = member.voice.voice_ref
+          ? stimmenKatalog.get(member.voice.voice_ref)
+          : undefined;
         return (
           <div className="besetzung-zeile" key={member.role}>
+            <Stimmquelle
+              member={member}
+              stimmen={stimmen}
+              stimme={stimme}
+              setEntwurf={setEntwurf}
+              entwurf={entwurf}
+            />
             <Feldreihe spalten="12rem">
               <Rollenfeld
                 rolle={member.role}
@@ -137,10 +161,13 @@ function Besetzung({
               />
               <WahlFeld
                 legende="Figur"
+                disabled={geklont}
                 hinweis={
-                  member.character
-                    ? `gebunden an Version ${member.character.version}`
-                    : 'frei besetzt, ohne Katalogeintrag'
+                  geklont
+                    ? 'Eine geklonte Stimme ist kein Katalogeintrag.'
+                    : member.character
+                      ? `gebunden an Version ${member.character.version}`
+                      : 'frei besetzt, ohne Katalogeintrag'
                 }
                 wert={member.character?.id ?? ''}
                 optionen={[
@@ -160,6 +187,8 @@ function Besetzung({
               />
               <Feld
                 legende="Engine"
+                disabled={geklont}
+                hinweis={geklont ? 'Von der geklonten Stimme bestimmt.' : undefined}
                 wert={member.voice.engine}
                 onWert={(engine) =>
                   setEntwurf(
@@ -171,6 +200,11 @@ function Besetzung({
               />
               <Feld
                 legende="Stimme"
+                hinweis={
+                  geklont
+                    ? 'Anzeigename, keine Preset-Stimme: gesprochen wird über die Referenz.'
+                    : undefined
+                }
                 wert={member.voice.voice}
                 onWert={(voice) =>
                   setEntwurf(
@@ -207,7 +241,7 @@ function Besetzung({
             />
 
             <div className="reihe" style={{ marginTop: 'var(--ton-mass-3)' }}>
-              {figur ? (
+              {figur && !geklont ? (
                 <button
                   type="button"
                   className="knopf"
@@ -505,6 +539,139 @@ function Aeusserung({
           {overrides.length === 0 ? 'Aussprache überschreiben' : 'Aussprache hinzufügen'}
         </button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Preset voice or consented clone, for one role.
+ *
+ * The two-state control `Klangquelle` already established: a role is spoken by an engine preset or
+ * through a stored voice reference, never half of each, and switching **replaces** the value rather
+ * than merging — `{voice_ref, preset}` is not a thing the contract has a meaning for.
+ *
+ * Three honesty rules are printed here rather than enforced:
+ *
+ * * **Any scope is castable in the editor.** Whether a scene may be *published* with a voice
+ *   consented only for evaluation is the publisher's decision, and it is the next PR's. Saying so
+ *   is better than a disabled option that implies a gate this build does not have.
+ * * **A revoked voice is an alarm, not a removal.** The cast still names it, so the row says so in
+ *   red and the render will refuse — hiding it would leave a scene that fails at synthesis with
+ *   nothing on the page to explain why.
+ * * **A `voice_ref` this studio has never had is shown as unknown**, the way an unknown sound id
+ *   is: a scene document travels and a voice reference does not.
+ */
+function Stimmquelle({
+  member,
+  stimmen,
+  stimme,
+  entwurf,
+  setEntwurf,
+}: {
+  member: Scene['cast'][number];
+  stimmen: Voice[];
+  stimme: Voice | undefined;
+  entwurf: Scene;
+  setEntwurf(next: Scene): void;
+}): React.JSX.Element {
+  const geklont = Boolean(member.voice.voice_ref);
+  const waehlbar = stimmen.filter((row) => row.revoked_at === null || row.id === member.voice.voice_ref);
+
+  function besetzeStimme(id: string): void {
+    const gewaehlt = stimmen.find((row) => row.id === id);
+    if (!gewaehlt) return;
+    setEntwurf(
+      besetzungAendern(entwurf, member.role, {
+        voice: {
+          ...member.voice,
+          voice_ref: gewaehlt.id,
+          // The display identity, and the engine the reference was bound to. Both follow the voice
+          // rather than staying whatever the preset left behind: a cast row reading "Vivian" over a
+          // cloned reference would be a transcript that names the wrong speaker.
+          voice: gewaehlt.subject_display_name,
+          engine: gewaehlt.engine,
+        },
+      }),
+    );
+  }
+
+  return (
+    <div className="stimmquelle">
+      <div className="reihe">
+        <button
+          type="button"
+          className={geklont ? 'knopf' : 'knopf knopf-signal'}
+          aria-pressed={!geklont}
+          onClick={() => {
+            if (!geklont) return;
+            setEntwurf(
+              besetzungAendern(entwurf, member.role, {
+                voice: { ...member.voice, voice_ref: null, engine: 'qwen_tts' },
+              }),
+            );
+          }}
+        >
+          Preset-Stimme
+        </button>
+        <button
+          type="button"
+          className={geklont ? 'knopf knopf-signal' : 'knopf'}
+          aria-pressed={geklont}
+          disabled={!geklont && waehlbar.length === 0}
+          title={
+            waehlbar.length === 0 ? 'Es gibt keine eingewilligte Stimme in diesem Studio.' : undefined
+          }
+          onClick={() => {
+            if (geklont) return;
+            const erste = waehlbar[0];
+            if (erste) besetzeStimme(erste.id);
+          }}
+        >
+          Geklonte Stimme
+        </button>
+        {geklont && stimme ? (
+          <Marke
+            ton={stimme.revoked_at ? 'alarm' : stimme.scope === 'publication' ? 'signal' : 'messung'}
+          >
+            {stimme.scope === 'publication' ? 'Veröffentlichung' : 'Evaluation'}
+          </Marke>
+        ) : null}
+      </div>
+
+      {geklont ? (
+        <>
+          <WahlFeld
+            legende="Eingewilligte Stimme"
+            hinweis={
+              stimme
+                ? `Aufnahme ${stimme.reference_sha256.slice(0, 8)} · Einwilligung ${stimme.consent_sha256.slice(0, 8)}`
+                : 'Diese Kennung kennt dieses Studio nicht. Eine Aufnahme reist nicht mit einem Checkout.'
+            }
+            wert={member.voice.voice_ref ?? ''}
+            optionen={[
+              ...(stimme ? [] : [{ wert: member.voice.voice_ref ?? '', name: `${member.voice.voice_ref} (unbekannt)` }]),
+              ...waehlbar.map((row) => ({
+                wert: row.id,
+                name: `${row.subject_display_name} · ${row.id}`,
+              })),
+            ]}
+            onWert={besetzeStimme}
+          />
+          {stimme?.revoked_at ? (
+            <p className="hinweis hinweis-alarm" role="alert">
+              Die Einwilligung für {stimme.subject_display_name} wurde am{' '}
+              {stimme.revoked_at.slice(0, 10)} widerrufen. Diese Rolle lässt sich nicht mehr
+              rendern — besetze sie um.
+            </p>
+          ) : (
+            <p className="feld-hinweis">
+              Jede eingewilligte Stimme lässt sich hier besetzen. Ob eine Szene mit dem Umfang
+              „Evaluation“ veröffentlicht werden darf, entscheidet die Veröffentlichung; dieser
+              Editor prüft es nicht.
+            </p>
+          )}
+        </>
+      ) : null}
     </div>
   );
 }

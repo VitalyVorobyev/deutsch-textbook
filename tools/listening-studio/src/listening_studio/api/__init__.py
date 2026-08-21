@@ -33,6 +33,7 @@ from . import (
     registry,
     scenes,
     sounds,
+    voices,
     workflow,
 )
 from .workflow import Transcriber
@@ -59,6 +60,11 @@ def router(
         )
     )
     api.include_router(characters.router(store, repo))
+    api.include_router(
+        voices.router(
+            store, repo, allow_test_adapters=allow_test_adapters, transcribe_fn=transcribe_fn
+        )
+    )
     api.include_router(acoustics.router(store, repo))
     api.include_router(
         sounds.router(store, repo, allow_test_adapters=allow_test_adapters)

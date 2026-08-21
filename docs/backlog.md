@@ -77,6 +77,16 @@ Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Tonwerk audio studio
 
+- **P28-7 · nothing yet refuses to publish a scene cast on an evaluation-scope voice.** Consented
+  cloning ships (`generative/voices.py`, `docs/authoring/product-protection.md`): a consent carries
+  `scope: evaluation | publication`, and the editor deliberately lets **any** scope be cast, because
+  casting is not publishing and a disabled picker would imply a gate that does not exist. The gate
+  belongs to the scene publisher, which does not exist yet — so today the only thing standing
+  between an evaluation-scope voice and a published artifact is the human approval step. The
+  material is already in place: `render.json` carries a top-level `voices` map with each voice's
+  consent digest, and `store.get_voice(id).scope` is the value to check. First step: in the scene
+  publisher, refuse when any cast voice's scope is not `publication`, naming the voice — and write
+  `voice_cloning_used` plus the consent hash list from that same map rather than from the scene.
 - **P28-5 · a narration scene records no profile id.** `scene_from_reading` stores the character
   ref and the composed style string, not `profile.id`, so "which profile narrated this" is
   unrecoverable from the scene — the Lesetexte queue can only offer a picker, never show the

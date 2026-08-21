@@ -19,6 +19,15 @@
       "voices": ["Vivian", "Serena", "Uncle_Fu", "Dylan", "Eric", "Ryan", "Aiden", "Ono_Anna", "Sohee"],
       "forbidden_capabilities": ["voice-clone", "reference-audio", "voice-design"]
     },
+    "qwen_tts_base": {
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
+      "revision": "5d83992436eae1d760afd27aff78a71d676296fc",
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "license": "Apache-2.0",
+      "training_data_provenance": "vendor-documented; not independently verified. The licence is Apache-2.0 and says nothing about whose voices the checkpoint was trained on; consent for the voice this engine *clones* is a separate record entirely (`generative/voices.py`), bound to the reference recording's own hash.",
+      "purpose": "speech in a consented, stored voice reference; it has no preset speakers and refuses a request that names none",
+      "capability": "voice-clone"
+    },
     "stable_audio_sfx": {
       "id": "stabilityai/stable-audio-3-optimized",
       "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",

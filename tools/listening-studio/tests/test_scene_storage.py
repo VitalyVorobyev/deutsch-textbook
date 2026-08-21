@@ -122,7 +122,7 @@ def test_a_new_store_is_at_alembic_head(tmp_path: Path) -> None:
             "scene_projects", "scene_revisions"} <= set(inspect(engine).get_table_names())
     with engine.connect() as connection:
         version = connection.execute(text("select version_num from alembic_version"))
-        assert version.scalar() == "0003"
+        assert version.scalar() == "0004"
 
 
 def test_a_pre_alembic_database_is_stamped_rather_than_rebuilt(tmp_path: Path) -> None:
@@ -147,5 +147,5 @@ def test_a_pre_alembic_database_is_stamped_rather_than_rebuilt(tmp_path: Path) -
     assert "scene_projects" in set(inspect(upgraded.engine).get_table_names())
     with upgraded.engine.connect() as connection:
         version = connection.execute(text("select version_num from alembic_version"))
-        assert version.scalar() == "0003"
+        assert version.scalar() == "0004"
     assert legacy.database == upgraded.database

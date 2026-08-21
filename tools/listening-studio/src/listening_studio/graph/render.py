@@ -48,7 +48,13 @@ from ..dsp.profiles import (
     load_acoustic_profiles,
     load_difficulty_presets,
 )
-from ..generative.gateway import SoundGenerator, SoundRequest, SpeechGenerator, SpeechRequest
+from ..generative.gateway import (
+    SoundGenerator,
+    SoundRequest,
+    SpeechGenerator,
+    SpeechRequest,
+    VoiceRef,
+)
 from ..scene.model import (
     PACE_MAX,
     PACE_MIN,
@@ -104,7 +110,12 @@ REPO_ROOT = PACKAGE_ROOT.parents[1]
 #: leave it: a bed at speech level is not a bed, whatever a preset says.
 AMBIENCE_GAIN_MIN, AMBIENCE_GAIN_MAX = -40.0, -6.0
 
-MANIFEST_VERSION = 1
+#: `render.json`'s own version. 2 adds `voices`: the consented voice references a render spoke
+#: through, keyed by cast role. Additive — a version-1 manifest is a version-2 manifest with an
+#: empty `voices`, which is what every scene rendered before consent-gated cloning existed is —
+#: but a reader that computes a *claim* from this document has to be able to tell "this render had
+#: no cloned voices" from "this manifest predates the field", and only the version says which.
+MANIFEST_VERSION = 2
 
 #: Every bus, for the master sum. `graph.nodes.BUSES` states the order they are summed in.
 BUS_ALL = ("dialogue", "ambience", "sfx")
@@ -182,6 +193,9 @@ class RenderResult:
     acoustics: "ResolvedAcoustics | None" = None
     #: Room id → impulse-response asset sha, for every IR this render convolved with.
     ir_assets: dict[str, str] = field(default_factory=dict)
+    #: Cast role → the consented voice reference it was synthesized through. Empty for a scene
+    #: cast entirely on preset voices, which is every scene shipped so far.
+    voices: dict[str, VoiceRef] = field(default_factory=dict)
 
     @property
     def nodes_evaluated(self) -> int:
@@ -568,6 +582,7 @@ def render_scene(
     speech_engines: Mapping[str, SpeechGenerator],
     sound_engine: SoundGenerator | None = None,
     repo: Path | None = None,
+    voices: Mapping[str, VoiceRef] | None = None,
 ) -> RenderResult:
     """Render one scene under `store_dir`, reusing every node whose hash is already known.
 
@@ -575,6 +590,11 @@ def render_scene(
     Defaulted rather than required because a scene that names no room, no device and no preset
     reads neither file, and requiring the argument would make every caller supply a path for a
     lookup that never happens.
+
+    `voices` is the bound identity of every stored voice reference the cast names — resolved by
+    the caller, because resolving one means opening the studio database and this module opens no
+    database. A cast member with a `voice_ref` that is not in here is refused rather than rendered:
+    a take whose consent hash the manifest cannot state is a take nothing can publish honestly.
     """
 
     acoustics = _resolve_acoustics(scene, variant, repo or REPO_ROOT)
@@ -603,6 +623,7 @@ def render_scene(
         # -- pass 1: every take exists before anything is placed ---------------
 
         engines = _resolve_engines(scene, speech_engines)
+        cast_voices = _resolve_cast_voices(scene, voices or {})
         paced: dict[str, str] = {}
         for utterance in scene.script:
             member = scene.member(utterance.role)
@@ -613,8 +634,9 @@ def render_scene(
                 language="German",
                 style=member.voice.style,
                 seed=scene.seed_for(utterance),
+                voice_ref=member.voice.voice_ref,
             )
-            synth = synth_node(request, engine)
+            synth = synth_node(request, engine, cast_voices.get(utterance.role))
             # Synthesis is deliberately upstream of every acoustic parameter: a difficulty variant
             # changes what happens *to* a take, never what the model is asked for, so two variants
             # of one scene share their takes however far apart they sound.
@@ -699,9 +721,36 @@ def render_scene(
         duration_ms=scene_end,
         acoustics=acoustics,
         ir_assets={acoustics.room_id: ir_asset} if ir_asset and acoustics.room_id else {},
+        voices=cast_voices,
     )
     _write_manifest(result, scene, assets, engines, sound_engine)
     return result
+
+
+def _resolve_cast_voices(
+    scene: Scene, voices: Mapping[str, VoiceRef]
+) -> dict[str, VoiceRef]:
+    """One bound voice identity per cast role that names a reference, refusing an unresolved one.
+
+    Refused **here** rather than at the engine, because the engine's copy of a voice cannot say
+    what the manifest needs: a render that produced audio and could not state which consent
+    permitted it would be exactly the artifact this whole path exists to make impossible.
+    """
+
+    resolved: dict[str, VoiceRef] = {}
+    for member in scene.cast:
+        voice_ref = member.voice.voice_ref
+        if voice_ref is None:
+            continue
+        found = voices.get(voice_ref)
+        if found is None:
+            available = ", ".join(sorted(voices)) or "none"
+            raise ValueError(
+                f"role {member.role} is cast on voice reference {voice_ref}, which this render "
+                f"was not given; resolved: {available}"
+            )
+        resolved[member.role] = found
+    return resolved
 
 
 def _resolve_engines(
@@ -1069,6 +1118,15 @@ def _write_manifest(
             else None
         ),
         "ffmpeg": ffmpeg_version(),
+        # Every consented voice this render spoke through, by cast role. It is also in the synth
+        # nodes' parameters, and it is stated once more here on purpose: **this is the key a
+        # publisher computes its claims from.** `voice_cloning_used` is `bool(voices)` and the
+        # consent hash list is `[row.consent_sha256 for row in voices.values()]` — a top-level fact
+        # rather than something recovered by walking a node list and knowing which node type to
+        # look at. A claim that is expensive to compute is a claim somebody hardcodes.
+        "voices": {
+            role: voice.as_json() for role, voice in sorted(result.voices.items())
+        },
         "engines": {
             name: {"name": engine.name, "revision": engine.revision}
             for name, engine in sorted(

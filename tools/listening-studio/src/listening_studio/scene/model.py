@@ -67,12 +67,33 @@ class CharacterRef(Strict):
 
 
 class VoiceSpec(Strict):
-    """How this role is synthesized. Engine-neutral by name, engine-specific by value."""
+    """How this role is synthesized. Engine-neutral by name, engine-specific by value.
+
+    **`voice` is always the display identity, and `voice_ref` is what is actually spoken through.**
+    That is the rule, and it is the one that keeps the two from being "both meaningful". With
+    `voice_ref` set, `voice` is a label — the subject's name as it appears in the cast list and in
+    the manifest — and it is looked up in no preset table by anything; with `voice_ref` null,
+    `voice` is the engine's preset speaker, exactly as it has always been. So `voice` is required
+    in both cases (a cast member with no name for its voice is unreadable in a transcript) and
+    never ambiguous, because which of the two meanings it carries is decided by one other field.
+
+    **Neither field is validated against a catalogue here**, and that is the `Placement.device`
+    decision applied a second time: a scene is a published document read by other tools, and a
+    voice reference lives in one machine's app-data by design. Holding a document to a store it
+    cannot ship with would make a valid scene invalid on every other checkout. The check happens
+    where it can be honest — at render time, where an unknown, revoked or byte-less reference is
+    refused by name (`generative.voices.resolve_voices`), and where an engine without the cloning
+    capability refuses a `voice_ref` rather than quietly synthesizing somebody else.
+    """
 
     engine: str = Field(min_length=1)
     voice: str = Field(min_length=1)
     seed: int = Field(ge=0)
     style: str | None = None
+    #: A consented voice reference this studio holds, or None for a preset voice. Additive and
+    #: defaulted, so `schema_version` stays 1: every scene written before this field existed is
+    #: still a valid Scene v1 document and still renders to the same bytes.
+    voice_ref: str | None = Field(default=None, pattern=KEBAB)
 
 
 class CastMember(Strict):
