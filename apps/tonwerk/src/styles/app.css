@@ -932,6 +932,279 @@
   gap: var(--ton-mass-2);
 }
 
+/* --- Die Warteschlange: a queue you walk with the keyboard -------------------------------- */
+/*
+ * The selected row wears the same brass left edge as an active nav item and a chosen variant.
+ * That is not a fourth meaning for the colour: brass is "a person has acted", and where the
+ * reviewer is standing in an 85-row queue is precisely a person's act that nothing has recorded.
+ */
+
+.warteschlange {
+  outline: none;
+}
+
+/*
+ * The focused region draws no ring of its own while a row is selected: with
+ * `aria-activedescendant`, the selected row *is* the focus indicator, and a brass box around the
+ * whole table beside a brass mark on one row spends the colour twice on one fact. An empty or
+ * unselected queue has no mark, so it keeps the ring — focus is never invisible.
+ */
+.warteschlange table:focus-visible:not(:has(tr[aria-selected='true'])) {
+  outline: 2px solid var(--ton-signal);
+  outline-offset: -2px;
+}
+
+.warteschlange tbody tr[aria-selected='true'] {
+  background: var(--ton-platte-hoch);
+}
+
+/* An inset shadow rather than a border: a border on one cell of a collapsed table shifts the row. */
+.warteschlange tbody tr[aria-selected='true'] td:first-child {
+  box-shadow: inset 2px 0 0 var(--ton-signal);
+}
+
+.warteschlange tbody tr {
+  cursor: default;
+}
+
+/* The one next step on a row: a picker and the button that uses it, kept on one line. */
+.schritt {
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+  flex-wrap: wrap;
+}
+
+.wahl-feld {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+}
+
+/* --- Der Prüfstand: the review's own strip ------------------------------------------------ */
+/*
+ * The Werkbank's shape, for the Werkbank's reason: the two controls that write a verdict have to
+ * stay reachable while the reviewer is scrolling a QA table. What sits between them is the sha of
+ * the bytes the signature will name — the one fact the whole page exists to bind.
+ */
+
+.pruefstand {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  background: var(--ton-platte);
+  border: 1px solid var(--ton-kante);
+  border-radius: var(--ton-rund);
+}
+
+.pruefstand-bytes {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ton-mass-2);
+  font-size: var(--ton-grad-11);
+}
+
+.pruefstand-knoepfe {
+  margin-left: auto;
+  display: flex;
+  gap: var(--ton-mass-2);
+}
+
+/* Die Kette: three stages, one lit. A sequence, not a selector — so it is not a bank of keys. */
+.kette {
+  display: flex;
+  align-items: center;
+  gap: var(--ton-mass-2);
+}
+
+.kette-glied {
+  font-family: var(--ton-fassung-tafel);
+  text-transform: uppercase;
+  letter-spacing: var(--ton-sperr-eng);
+  font-size: var(--ton-grad-11);
+  color: var(--ton-ruhe);
+}
+
+.kette-glied + .kette-glied::before {
+  content: '→';
+  margin-right: var(--ton-mass-2);
+  color: var(--ton-kante-hell);
+}
+
+.kette-glied[data-lage='vorbei'] {
+  color: var(--ton-signal-ab);
+}
+
+.kette-glied[data-lage='jetzt'] {
+  color: var(--ton-signal);
+  border-bottom: 2px solid var(--ton-signal);
+  padding-bottom: 1px;
+}
+
+/* --- Die Abhöre: the master, alone and full width ----------------------------------------- */
+
+.abhoere {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-4);
+  align-items: flex-start;
+}
+
+.spieler-gross {
+  width: 100%;
+  gap: var(--ton-mass-4);
+}
+
+.spieler-gross audio {
+  flex: 1;
+  max-width: none;
+  height: 2.75rem;
+}
+
+/* The transport is the primary action of the listen stage, so it is sized like one. */
+.spieler-gross .knopf-transport {
+  padding: var(--ton-mass-4) var(--ton-mass-6);
+  font-size: var(--ton-grad-19);
+  border-color: var(--ton-messung-ab);
+  color: var(--ton-messung);
+}
+
+/* --- Der Schleier: the script, closed, with its reason on the outside --------------------- */
+
+.schleier > summary {
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+}
+
+.schleier > summary::-webkit-details-marker {
+  display: none;
+}
+
+.schleier-griff {
+  gap: var(--ton-mass-4);
+}
+
+.schleier-griff::after {
+  content: '▸';
+  color: var(--ton-schrift-weg);
+}
+
+.schleier[open] .schleier-griff::after {
+  content: '▾';
+}
+
+.schleier-grund {
+  font-size: var(--ton-grad-11);
+  max-width: 52ch;
+  text-align: right;
+}
+
+/* --- Gegenüberstellung: expected against heard -------------------------------------------- */
+/*
+ * Hue rules apply: a differing word is a *verdict of the machine's*, so it is red where the model
+ * missed something the script asked for and cyan where it heard something extra. Nothing here is
+ * decorative emphasis; an identical pair is drawn with no marks at all.
+ */
+
+.gegenueber {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ton-mass-1);
+}
+
+.gegenueber-marke {
+  display: inline-block;
+  min-width: 4.5rem;
+}
+
+.gegenueber [data-diff='fehlt'] {
+  color: var(--ton-alarm);
+  text-decoration: line-through;
+  text-decoration-color: var(--ton-signal-ab);
+}
+
+.gegenueber [data-diff='zusätzlich'] {
+  color: var(--ton-messung);
+}
+
+/* --- Die Punkte: the eight, one deliberate toggle each ------------------------------------ */
+/*
+ * A switch and not a checkbox, drawn as a lamp: it is the Statuslampe's vocabulary at control
+ * scale — empty means nobody has said anything, brass means a person has. The whole row is the
+ * target, because a sentence you have to read is a sentence that should also be the thing you hit.
+ */
+
+.punkt {
+  border-bottom: 1px solid color-mix(in srgb, var(--ton-kante) 55%, transparent);
+}
+
+.punkt:last-child {
+  border-bottom: 0;
+}
+
+.punkt-schalter {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ton-mass-3);
+  width: 100%;
+  padding: var(--ton-mass-3) var(--ton-mass-4);
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ton-schrift-ab);
+  transition: background var(--ton-regung), color var(--ton-regung);
+}
+
+.punkt-schalter:hover:not(:disabled) {
+  background: var(--ton-platte-hoch);
+  color: var(--ton-schrift);
+}
+
+.punkt-schalter:disabled {
+  cursor: not-allowed;
+}
+
+.punkt-lampe {
+  flex: none;
+  margin-top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ton-kante-hell);
+  background: transparent;
+  transition: background var(--ton-regung), border-color var(--ton-regung);
+}
+
+.punkt-schalter[aria-checked='true'] {
+  color: var(--ton-schrift);
+}
+
+.punkt-schalter[aria-checked='true'] .punkt-lampe {
+  border-color: var(--ton-signal);
+  background: var(--ton-signal);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ton-signal) 20%, transparent);
+}
+
+.punkt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--ton-grad-13);
+  line-height: 1.5;
+}
+
+.punkt-key {
+  font-size: var(--ton-grad-11);
+  color: var(--ton-schrift-weg);
+}
+
 /* --- Zustände ----------------------------------------------------------------------------- */
 
 .zustand {

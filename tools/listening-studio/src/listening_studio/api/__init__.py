@@ -3,7 +3,7 @@
 This package replaced a single 724-line `studio_api.py`. The split is by *what a caller is doing*
 rather than by what the data is: reading the corpus overview (`dashboard`, `registry`), editing a
 scene document (`scenes`), acting on one (`workflow`), and the legacy dialogue/reading endpoints
-the React dashboard still reads (`projects`, `characters`, `sounds`, `readings`).
+(`projects`, `characters`, `sounds`, `readings`).
 
 **Registration order is load-bearing.** FastAPI matches routes in the order they are included,
 and `readings.py` ends with `/api/readings/{reading_id:path}/seed` — a greedy converter, because
@@ -11,8 +11,10 @@ a reading id contains a slash. Anything registered after it that lives under `/a
 would be shadowed. Scenes and the registry are registered before it for that reason, and the
 readings router is last.
 
-Everything here is additive to the legacy HTML surface in `web.py` and `ui.py`, which keeps
-working untouched until the desktop app reaches parity.
+Since PR 9b this is the **whole** surface: the server-rendered forms that used to sit beside it
+are deleted, and Tonwerk reads nothing else. `projects.py` and the reading half of `readings.py`
+stay because the pre-scene `RevisionPayload` projects are still in the database — frozen data,
+readable through `GET /api/projects` and `GET /api/projects/{id}`, awaiting the PR 11 conversion.
 """
 
 from __future__ import annotations

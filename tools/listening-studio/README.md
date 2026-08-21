@@ -6,23 +6,42 @@ application-data directory. No learner state or audio is uploaded.
 
 ## Start
 
+The studio is **a JSON API and one app in front of it**: `serve` publishes `/api`, and
+[Tonwerk](../../apps/tonwerk) — a React workbench living in this repository — is what a person
+uses. There is no other interface; the server-rendered forms this tool grew up with were deleted in
+PR 9b, along with the cookie and `?token=` credentials that existed only to carry a browser through
+them.
+
 ```sh
+bun run tonwerk:build                    # once, and after any change to apps/tonwerk
 cd tools/listening-studio
 uv sync --extra test
 uv run atlas-listening doctor
-uv run atlas-listening import-project examples/a2-zwei-sprecher/project.json a2-zwei-sprecher
 uv run atlas-listening serve --repo ../..
 ```
 
-The editor accepts an Atlas brief, edits structured lines/questions, caches each line, assembles
-WAV audio, checks it with Whisper and speaker embeddings, and requires a real eight-point human review before `bundle` or
-`publish` succeeds. Saving an edit creates a new revision and returns the project to `draft`.
-`publish` refuses every existing target and requires `--yes` after reviewing the bundle.
+`serve` prints the bearer token once — it is minted per run and never written to disk — and opens
+`http://127.0.0.1:8765/`, where Tonwerk's token screen asks for it. If `apps/tonwerk/dist` has not
+been built, `/` answers a plain-text hint naming the command above and the API keeps working.
 
-The approval page shows everything those six checks are about, above the signature: both takes,
-the questions as the learner meets them with the key marked, the QA table, the measured length
-against the plan's `duration_seconds` window, and the script — collapsed, because reading along
-makes a reviewer hear words that were never spoken. Declining is a button, not closing the tab.
+Tonwerk's six sections cover the whole workflow: **Übersicht** (the registry join), **Szenen** (the
+scene editor: script, acoustics, render, QA), **Lesetexte** (the narration queue — one row per
+Lesetext, a scene created from it, keyboard-driven), **Prüfung** (the human approval queue and the
+listen-first Freigabe flow), **Klangbibliothek** and **Figuren**.
+
+An approval is still what it always was: a named person, a checklist, and the sha256 of the master
+they listened to. The Freigabe page shows the master first with the script collapsed — reading along
+makes a reviewer hear words that were never spoken — then the QA report in full, then the eight
+points as individual toggles, two of which are hidden when the scene has nothing for them to be
+about. Declining is a step with a reason, not closing the tab; it returns the scene to `draft` and
+leaves the render and the QA report where they are.
+
+Saving an edit creates a new revision and returns the project to `draft`. `publish` refuses every
+existing target and requires `--yes` after reviewing the bundle.
+
+The pre-scene `RevisionPayload` dialogue and reading projects are **frozen data**: readable through
+`GET /api/projects` and `GET /api/projects/{id}` (the registry join needs them), editable through
+nothing, and awaiting the PR 11 conversion to Scene v1.
 
 Model weights are never downloaded implicitly by the editor. Use `models list` and
 `models fetch <generator|qwen_tts|asr|speaker_qa>`. Voice cloning,
@@ -261,22 +280,26 @@ had (0002). `Store.__init__` now runs `alembic upgrade head`, stamping a pre-Ale
 
 ## The JSON API
 
-`src/listening_studio/api/` is the whole `/api` surface, one module per concern. It is what the
-Tonwerk desktop app is built on; the HTML forms in `ui.py` and `web.py` keep working untouched
-until that app reaches parity, and nothing new is built on them.
+`src/listening_studio/api/` is the whole surface, one module per concern — and since PR 9b, the
+whole surface full stop. `web.py` is now three things in registration order: `/health`, the API
+router, and the built Tonwerk bundle mounted at `/` (last, because a static mount at `/` shadows
+everything beneath it).
 
 ```sh
 uv run atlas-listening serve --repo ../..     # prints the bearer token at startup
 curl -H "Authorization: Bearer $TOKEN" http://127.0.0.1:8765/api/registry
 ```
 
-**Auth.** One secret, two ways to present it. `Authorization: Bearer <token>` is what a program
-uses; the cookie and `?token=` are what the legacy pages use and die with them. A present-but-
-wrong `Authorization` header is **401 JSON**, never a redirect and never quietly overruled by a
-cookie — a client whose token is stale must learn that from the first request rather than from
-whichever code path happens not to be browser-shaped. The origin check applies only to the cookie
-path: it is a CSRF guard, CSRF needs an ambient credential, and a CLI sends no `Origin` at all.
-The table is in `web.local_only`'s docstring and every row of it has a test.
+**Auth.** One secret, one way to present it: `Authorization: Bearer <token>`, on `/api/**`. A wrong
+one and a missing one are both **401 JSON** with `WWW-Authenticate`, never a redirect — a client
+whose token is stale must learn that from the first request, and 401 is what Tonwerk turns back into
+its token screen. `/health` and the workbench bundle are open: the bundle is the screen that *asks*
+for the token, and it carries no studio data.
+
+The cookie, `?token=` and the origin check all went with the HTML forms. The origin check was a CSRF
+guard, and CSRF is a property of credentials a browser attaches by itself — with no cookie left to
+attach, it had no possible subject. The table is in `web.local_only`'s docstring and every row of it
+has a test in `tests/test_api_auth.py`, including two that assert the deleted paths *stay* deleted.
 
 **Scenes** (`api/scenes.py`, `api/workflow.py`) — the same operations `atlas-listening scene`
 offers, with the same gates, because two surfaces that disagree about when the fake engine is
@@ -286,10 +309,12 @@ allowed is how a test take reaches a learner.
 | --- | --- |
 | `GET /api/scenes` · `GET /api/scenes/{slug}` | list; one scene with its exercise, QA, approval and which variants are rendered *of these exact bytes* |
 | `POST /api/scenes` · `PUT /api/scenes/{slug}` | create; revise — a new revision, back to `draft`, and the slug may not change |
+| `POST /api/scenes/from-reading` | `{reading_id, profile?}` — one Lesetext converted and imported as a narration draft; no `profile` means the engine's `default_profile_id`. 409 when that slug is already a project |
 | `POST /api/scenes/{slug}/validate` | re-validate the stored bytes, plus the acoustic ids this repository does not define |
 | `POST /api/scenes/{slug}/render` | `{variant, sound_engine}`; the engine comes from the stored cast, never from the request |
 | `POST /api/scenes/{slug}/qa` | transcript, speaker and soundscape QA; **409 with a sentence** when the local MLX Whisper runtime is absent |
 | `GET …/renders/{variant}/master` · `/qa-report` | the audio, and the machine's report on exactly those bytes |
+| `GET …/renders/{variant}/artifact/{path}` | any file the render **declared it wrote** — a stem, the dry mix, the QA cut. The allowlist is `render.json`'s `artifacts`, never the filesystem, so a path outside it is 404 whether or not the file exists |
 | `POST /api/scenes/{slug}/approve` | the human signature: the eight-point checklist, the reviewer's name, **and the sha256 of the master they listened to** — a mismatch is 409 |
 | `POST /api/scenes/{slug}/decline` | with a reason; back to `draft`, QA and render left in place |
 

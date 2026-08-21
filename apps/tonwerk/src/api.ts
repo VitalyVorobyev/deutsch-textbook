@@ -21,7 +21,10 @@ import { z } from 'zod';
 import { getToken } from './auth';
 import {
   acousticsSchema,
+  approvalResultSchema,
   charactersSchema,
+  declineResultSchema,
+  narrationProfilesSchema,
   qaResultSchema,
   registrySchema,
   renderResultSchema,
@@ -31,7 +34,10 @@ import {
   sceneSchema,
   soundRowSchema,
   type Acoustics,
+  type ApprovalResult,
   type Characters,
+  type DeclineResult,
+  type NarrationProfiles,
   type QaResult,
   type Registry,
   type RenderResult,
@@ -100,6 +106,19 @@ export interface SoundGenerationRequest {
   engine: string;
 }
 
+/** The signature, as the engine's `ApprovalRequest` takes it. */
+export interface ApprovalSubmission {
+  editor: string;
+  /**
+   * The sha256 of the master the reviewer actually listened to, read off the render row rather
+   * than derived here. The engine refuses a mismatch, which is the whole point of the field: if a
+   * re-render landed mid-review, the signature would otherwise vouch for bytes nobody heard.
+   */
+  master_sha256: string;
+  checklist: string[];
+  variant: string;
+}
+
 export interface Api {
   registry(signal?: AbortSignal): Promise<Registry>;
   scenes(signal?: AbortSignal): Promise<SceneRow[]>;
@@ -107,6 +126,7 @@ export interface Api {
   characters(signal?: AbortSignal): Promise<Characters>;
   acoustics(signal?: AbortSignal): Promise<Acoustics>;
   sounds(signal?: AbortSignal): Promise<SoundRow[]>;
+  narrationProfiles(signal?: AbortSignal): Promise<NarrationProfiles>;
   objectUrl(path: string, signal?: AbortSignal): Promise<string>;
 
   /**
@@ -121,6 +141,13 @@ export interface Api {
   renderScene(slug: string, variant: string, soundEngine?: string): Promise<RenderResult>;
   runQa(slug: string, variant: string): Promise<QaResult>;
   generateSound(request: SoundGenerationRequest): Promise<SoundRow>;
+
+  /** The human signature. A 409 here means the master changed — re-listen, do not retry. */
+  approveScene(slug: string, submission: ApprovalSubmission): Promise<ApprovalResult>;
+  /** A refusal, with its reason. The scene returns to `draft`; the QA report and render stay. */
+  declineScene(slug: string, reason: string, editor?: string): Promise<DeclineResult>;
+  /** Convert one Lesetext into a narration scene project. 409 when it already has one. */
+  sceneFromReading(readingId: string, profile?: string): Promise<SceneRow>;
 }
 
 /**
@@ -228,6 +255,31 @@ export function createApi(options: ApiOptions = {}): Api {
 
     generateSound: (request) =>
       read('/api/sounds/generate', soundRowSchema, undefined, { method: 'POST', body: request }),
+
+    narrationProfiles: (signal) => read('/api/narration-profiles', narrationProfilesSchema, signal),
+
+    approveScene: (slug, submission) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/approve`, approvalResultSchema, undefined, {
+        method: 'POST',
+        body: submission,
+      }),
+
+    declineScene: (slug, reason, editor) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/decline`, declineResultSchema, undefined, {
+        method: 'POST',
+        // `editor` is optional on the engine's side and omitted rather than sent empty: a decline
+        // by nobody is a real state, and `""` would record an editor whose name is nothing.
+        body: { reason, ...(editor ? { editor } : {}) },
+      }),
+
+    sceneFromReading: (readingId, profile) =>
+      read('/api/scenes/from-reading', sceneRowSchema, undefined, {
+        method: 'POST',
+        // No profile means the engine's own default for this Lesetext. Sending a value the picker
+        // guessed would put a copy of that rule in the frontend, which is the one place it must
+        // not be — a hardcoded id keeps being offered after the catalog renames it.
+        body: { reading_id: readingId, ...(profile ? { profile } : {}) },
+      }),
 
     async scene(slug, signal) {
       const detailResponse = await read(`/api/scenes/${encodeURIComponent(slug)}`, sceneDetailSchema, signal);
