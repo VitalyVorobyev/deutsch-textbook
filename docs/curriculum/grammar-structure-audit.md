@@ -1,7 +1,7 @@
 # Grammar-structure audit — the denominator's own denominator
 
 Date: 2026-08-14. Trigger: the owner asked for a review of the grammar's logic and completeness,
-using a pasted AI-generated grammar map (`docs/grammar-from-chatgpt.md`) as a checklist.
+using a pasted AI-generated grammar map as a checklist. That map was an outline, never a source, and was deleted once the audit closed; nothing here cites it.
 
 The course published **A1 23/23, A2 32/32, B1 32/32 — 100% at every level**. Two days earlier the
 A1 denominator itself had turned out to be missing rows ([level-completeness-audit](level-completeness-audit.md)),

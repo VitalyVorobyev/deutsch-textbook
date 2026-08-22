@@ -12,14 +12,19 @@ Each subdirectory carries its own README with a closer view of its documents.
 | [`design.md`](design.md) | Stable technical map, identities and data flow | active | a subsystem boundary or source of truth moves |
 | [`roadmap.md`](roadmap.md) | Current product direction and gates | active | priorities or milestone gates change |
 | [`backlog.md`](backlog.md) | Executable, calendar-blocked and deferred work | active | work starts, finishes or becomes blocked |
+| [`a1-goethe-schreiben-helper.md`](a1-goethe-schreiben-helper.md) | Study aid: how Goethe A1 Schreiben is scored, and the strategy that follows | reference | the published exam format or scoring changes |
 
 ## [`curriculum/`](curriculum/README.md)
 
 | Document | Purpose | Status | Update when |
 | --- | --- | --- | --- |
 | [`curriculum/a2-b1.md`](curriculum/a2-b1.md) | Frozen A2/B1 identities, ownership and unit contracts | authoritative | an owner-approved curriculum amendment is recorded |
-| [`curriculum/b1-authoring-handoff.md`](curriculum/b1-authoring-handoff.md) | Claude handoff contract for the current B1 two-unit window | active prompt | a unit window closes, or the frozen B1 contract or authorship gate changes |
 | [`curriculum/a2-learning-led-program.md`](curriculum/a2-learning-led-program.md) | Evidence cadence and drill decision rules | active procedure | the operating cadence or gate dates change |
+| [`curriculum/a1-b1-completeness-audit.md`](curriculum/a1-b1-completeness-audit.md) | The completeness contract: which denominators a level is called complete against | active | a denominator is added or a contract clause changes |
+| [`curriculum/level-completeness-audit.md`](curriculum/level-completeness-audit.md) | Per-level readings of those denominators | ledger | an instrument is rerun |
+| [`curriculum/grammar-structure-audit.md`](curriculum/grammar-structure-audit.md) | The inventory audit against the published external Strukturenlisten | ledger | an anchor list changes or is re-audited |
+| [`curriculum/learning-activity-audit.md`](curriculum/learning-activity-audit.md) | The activity-architecture pass under ADR 0014 | ledger | an activity audit is rerun |
+| [`curriculum/topic-quality-audit.md`](curriculum/topic-quality-audit.md) | Topic-by-topic A1–B1 quality ledger | ledger | a topic pass lands |
 
 ## [`authoring/`](authoring/README.md)
 
@@ -33,7 +38,16 @@ Each subdirectory carries its own README with a closer view of its documents.
 | [`authoring/lautschrift.md`](authoring/lautschrift.md) | IPA field conventions and review procedure | active | pronunciation authoring changes |
 | [`authoring/future-content-directions.md`](authoring/future-content-directions.md) | Admission contract for Entdecken, documents and editorial media | active | a new optional artifact class is admitted |
 | [`authoring/product-protection.md`](authoring/product-protection.md) | Ownership, licensing and authorship-provenance contract | authoritative | ownership, licence scope or the provenance gate changes |
-| [`authoring/redaction-editor-guide.md`](authoring/redaction-editor-guide.md) | Redaktion setup, editing tutorial, safety checklist and pilot boundaries | active pilot guide | the editor workflow, safety boundary or release readiness changes |
+
+## [`apps/`](apps/README.md)
+
+How to *use* the applications this repository ships, as opposed to how to change them.
+
+| Document | Purpose | Status | Update when |
+| --- | --- | --- | --- |
+| [`apps/README.md`](apps/README.md) | The three apps, what each is for, and how to start it | active | an app is added or its entry command changes |
+| [`apps/redaktion.md`](apps/redaktion.md) | Redaktion: setup, the editorial walkthroughs, the save contract and its boundaries | active | the editor workflow or safety boundary changes |
+| [`apps/tonwerk.md`](apps/tonwerk.md) | Tonwerk: engine setup, the six sections, the narration and approval walkthroughs | active | the studio workflow, the engine's entry commands or the approval contract change |
 
 ## [`architecture/`](architecture/README.md)
 
@@ -50,6 +64,8 @@ Each subdirectory carries its own README with a closer view of its documents.
 | [`quality/a1-linguistic-qa.md`](quality/a1-linguistic-qa.md) | A1 linguistic review ledger | ledger | an A1 review ruling lands |
 | [`quality/a2-linguistic-qa.md`](quality/a2-linguistic-qa.md) | A2 linguistic review ledger | ledger | an A2 review ruling lands |
 | [`quality/audio-retirement-ledger.md`](quality/audio-retirement-ledger.md) | Retired recordings, with the reason each one left | ledger | a recording is retired or kept with reasons |
+| [`quality/tts-reliability.md`](quality/tts-reliability.md) | What the synthesis engine measurably does on this machine | measured | the engine, the machine or the pinned revision changes |
+| [`quality/ux-audit-2026-08.md`](quality/ux-audit-2026-08.md) | Three-form-factor UX findings, ranked | ledger | a form-factor audit is rerun |
 
 ## [`adrs/`](adrs/README.md)
 
@@ -66,6 +82,13 @@ never reused, never silently rewritten — see the [ADR index](adrs/README.md).
 | [`adrs/0006-public-domain-classics-as-extensive-reading-corpus.md`](adrs/0006-public-domain-classics-as-extensive-reading-corpus.md) | Public-domain classics as the second extensive-reading strand | accepted | never rewritten — superseded by a new ADR |
 | [`adrs/0007-derived-cross-links-never-hand-maintained.md`](adrs/0007-derived-cross-links-never-hand-maintained.md) | Cross-links derived from focus tags, `deepens` and reference keys | accepted | never rewritten — superseded by a new ADR |
 | [`adrs/0008-character-ensemble-and-audio-studio.md`](adrs/0008-character-ensemble-and-audio-studio.md) | Recurring character ensemble and audio-studio productization | proposed | promoted or rejected by a new ADR |
+| [`adrs/0009-official-exam-materials-local-only.md`](adrs/0009-official-exam-materials-local-only.md) | Official exam materials stay local; the trainer degrades honestly without them | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0010-probe-failure-remediation.md`](adrs/0010-probe-failure-remediation.md) | What happens when a delayed check fails: a session-end card and a named exhausted state | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0011-external-grammar-anchors.md`](adrs/0011-external-grammar-anchors.md) | Published Goethe inventories as the grammar denominator's own denominator | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0012-topic-manifests.md`](adrs/0012-topic-manifests.md) | A topic declares itself in one file | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0013-redaction-repository-workbench.md`](adrs/0013-redaction-repository-workbench.md) | Redaktion's architecture, write path and security boundary | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0014-learning-activity-architecture.md`](adrs/0014-learning-activity-architecture.md) | Exercise files keep identity; learning activities own purpose and presentation | accepted | never rewritten — superseded by a new ADR |
+| [`adrs/0015-provable-course-completeness.md`](adrs/0015-provable-course-completeness.md) | Completeness is a set of evidence contracts, never one score | accepted | never rewritten — superseded by a new ADR |
 
 ## Archive
 

@@ -77,6 +77,11 @@ items:
       # is untouched by it.
       - "Mein Drucker funktioniert seit heute nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
       - "Mein Drucker funktioniert seit heute nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
+      # Fronting the time phrase is ordinary main-clause German and moves neither graded token.
+      - "Seit heute geht mein Drucker nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute geht mein Drucker nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute funktioniert mein Drucker nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute funktioniert mein Drucker nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
     key_tokens: ["sodass", "muss"]
     explain:
       en: "Graded are the two ends of the consequence clause: sodass opening it and muss at its wall, with the verb chain drucken muss whole and the finite verb last. sodass muss ich … would be the word order of deshalb, an adverb that pulls the verb straight behind itself; the source languages keep their own order after 'so', which is exactly the pull to resist."

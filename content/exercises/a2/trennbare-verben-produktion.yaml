@@ -44,8 +44,13 @@ items:
     prompt_uk: "Бен оплачує квиток на вокзалі."
     answer: "Ben bezahlt die Fahrkarte am Bahnhof."
     key_tokens: ["bezahlt"]
+    revision: 2
     accept:
       - "Am Bahnhof bezahlt Ben die Fahrkarte."
+      # das Ticket is the second everyday rendering of the same noun. The focus grades the
+      # inseparable be-, which the choice of noun does not touch.
+      - "Ben bezahlt das Ticket am Bahnhof."
+      - "Am Bahnhof bezahlt Ben das Ticket."
     explain:
       en: "be- is an inseparable prefix: it is unstressed and stays glued to the verb, so nothing travels to the end — Ben bezahlt die Fahrkarte. Only stressed prefixes such as ab-, an-, um- split off."
       ru: "be- — неотделяемая приставка: она безударная и остаётся при глаголе, поэтому в конец ничего не уходит — Ben bezahlt die Fahrkarte. Отделяются только ударные приставки вроде ab-, an-, um-."
