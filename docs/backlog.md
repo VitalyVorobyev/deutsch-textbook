@@ -1,53 +1,38 @@
 # Active backlog
 
 Status: active. The [roadmap](roadmap.md) owns direction; this file contains only executable or
-calendar-blocked work. **A finished item leaves this file** — one line under *Recently completed*,
-detail in an archive: [through 2026-07-26](archive/2026-07-backlog-full.md),
-[2026-07-28 → 2026-08-02](archive/2026-08-backlog-shipped.md).
+calendar-blocked work. **A finished item leaves this file** — it does not get a farewell paragraph.
 
 An entry is *what*, *why in one line*, *where the evidence is* (file:line or command) and *the first
-step*. Measurement essays, dated reads and PR history live in
-[the 2026-08 doc-slimming archive](archive/2026-08-doc-slimming.md).
+step*. Nothing here is a status report, a measurement essay or a record of what already landed.
 
 ## Doing
 
 ### P27 · Redaktion editorial workstation
 
-P27-0 and the foundation of P27-1/P27-2 are in the current implementation: ADR 0013; explicit
-A1–C2 `CefrLevel`, ten declared grammar tracks and all 106 points migrated; transport-neutral
-`CorpusClient`; warm German app shell; Grammatikatlas; checkout selection; Bun JSONL sidecar and
-restricted Tauri command; exact source reads, revision conflicts, local parsing/schema checks and
-atomic saves. `bun run redaktion` remains the browser transport; `bun run redaktion:desktop` builds
-the sidecars and launches Tauri.
+The current executable item is **P27-3g topic-quality waves**: every topic receives a bounded
+article, exercise, reading, audio and vocabulary pass under the shared
+[content-quality contract](authoring/content-quality-audit.md). A1 and A2 are done and logged in the
+[topic ledger](curriculum/topic-quality-audit.md); **B1 remains**. The derived findings queue being
+empty is not the stop condition — every A1 and A2 wave found substantive defects the queue could not
+see. First step: take the next B1 topic in unit order.
 
-Open before P27-1 can close: source-led subdivision of any overly broad tracks, persisted graph
-cache rather than process memoisation, point→focus→topic→material end-to-end desktop tests, watcher
-tests and a packaged macOS smoke run. P27-1a closes the first real-editor feedback loop: checkout
-source links stay inside the app; Back/Forward and the shared dirty-buffer guard cover links,
-filters, search and history traversal; empty focus details recover to a collection or owner; and
-profile findings no longer become fictional blockers merely because their topic says `reviewed`.
-The browser audit owns the complete regression journey.
+Also owed, in [roadmap](roadmap.md#redaktion-p27) order and not to be flattened into one release
+claim:
 
-The current executable item is **P27-3g topic-quality waves**. P27-3f closed the B1 Wortliste at
-3416/3416 after classifying all 73 tail rows one by one. The live A1–B1 topic-profile queue is empty,
-but that is not the stop condition: every topic still receives a bounded article, exercise,
-reading, audio and vocabulary pass under the shared
-[content-quality contract](authoring/content-quality-audit.md). The A1 and A2 waves are complete and
-logged; B1 remains. Internal A2 is 46/46, external A2 300/300, cumulative B1 164/164, and lexical
-A1/A2/B1 673/673, 1449/1449 and 3416/3416.
-P27-2a removed the regex preview, added safe one-language MDX rendering, language
-coverage and answer-disclosed exercise preview. Nine custom image/reference figures still use named
-semantic editor representations and must migrate to common React before pixel parity can be
-claimed. Then add safe structured controls over the same source buffer and visible background-job
-status. Work the remaining reviewed-topic debt in bounded topic batches under P27-3. P27-3…P27-6 remain sequenced in the
-[roadmap](roadmap.md#redaktion-p27); do not flatten them into one release claim.
+- **Renderer parity** — nine image and reference figures still use named semantic editor
+  representations instead of the React implementations the learner sees. Pixel parity cannot be
+  claimed until they migrate.
+- **P27-1 close** — source-led subdivision of any overly broad grammar track, a persisted graph
+  cache rather than process memoisation, point→focus→topic→material end-to-end desktop tests,
+  watcher tests, and a packaged macOS smoke run.
+- **P27-2 next** — safe structured controls over the same source buffer, and visible
+  background-job status.
 
-Acceptance gates: security tests for traversal/symlinks/types/sizes; byte-exact no-op, stale
-revision, invalid YAML/MDX and corpus-invalid-draft tests; all renderer fixtures; checkout/watcher/
-save/refetch/relaunch integration; keyboard and screen-reader navigation at 1440/1024/768; and a
-macOS `.app`/`.dmg` smoke build. Baseline findings and coverage are regression evidence, not KPIs:
-the original 49/49 topics with findings and 265 findings, grammar claims A1/A2/B1 100%/93%/87%, A2–B1
-Sprachhandlungen 63% and Themen 84% at the review that opened P27.
+Acceptance gates for the track: security tests for traversal, symlinks, types and sizes; byte-exact
+no-op, stale revision, invalid YAML/MDX and corpus-invalid-draft tests; all renderer fixtures;
+checkout, watcher, save, refetch and relaunch integration; keyboard and screen-reader navigation at
+1440/1024/768; and a macOS `.app`/`.dmg` smoke build.
 
 ### P5-11 · Evidence-led operating cadence
 
@@ -55,12 +40,10 @@ After every two B1 units: drain the grading queue, rerun `bun run progress:audit
 then decide whether content or drills need revision. **Never author a drill from a pre-triage
 weak-focus table** — a pre-triage table names confusions the scorer invented.
 
-Standing conclusion across five reads: **every persistent tag has a serving drill, so the owed
-action is the learner taking training, not authoring.** The one exception the 2026-08-03 read found
-— `temporal-nebensatz` persistent with nothing drilling it — is closed by
-`content/exercises/b1/drill-temporal-nebensatz.yaml`. Production assembly is the durable weakness:
-`translate` runs well under `cloze` and `mc` on every read. That read, and the drill notes banked
-from it but not yet authored: [archive](archive/2026-08-doc-slimming.md).
+Standing conclusion: **every persistent weak tag has a serving drill, so the owed action is the
+learner taking training, not authoring.** Production assembly is the durable weakness — `translate`
+runs well under `cloze` and `mc` on every read. Confirm both against the current audit before acting
+on either.
 
 ### P9-2 · Entdecken pieces
 
@@ -69,9 +52,11 @@ contract in [future-content-directions.md](authoring/future-content-directions.m
 
 ## Calendar gates
 
-### A2 checkpoint review — approximately 2026-08-14
+### A2 checkpoint review
 
-Review the checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
+Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger. It is due:
+`bun run progress:audit --profile vitaly --pull` says whether the evidence can be read yet
+(`--project <date>` answers that question on its own).
 
 ## Open
 
@@ -309,10 +294,6 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
     *anmelden* but the item is about lunch — ids are stable, do **not** rename.
   - The double-negative distractor class and the `ls-*` above-A2 lexis stay under their
     standing entries (P25-18).
-- **P25-21 · done (2026-08-12)** — the unpinned-accepted-synonym class is now a validator
-  hard-fail (`scripts/validate.ts`: every rendering of a focus-tagged translate must carry ≥1
-  graded position); the rule was watched failing on the 8 residual items (11 renderings) before
-  their pin unions landed with it.
 - **P25-20 · Non-material findings of the 2026-08-12 A2 audit, batch 6** (lernen-verstehen,
   aemter-dienstleistungen) — the material findings (thirteen from the reviewer plus one
   determiner-twin promotion) were fixed in the batch PR; these were real but below the bar:
@@ -345,8 +326,6 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   (the original "one family each" note predates the #169–#178 loop, so the remaining gap has to be
   measured, not read off this entry). P19-4's explicit `arming:` lists keep new families from
   moving existing clocks — measured again for family 4: all three siblings' `armedAt` unchanged.
-- **P18-6 · done (2026-08-12)** — `probe-konsum-umwelt-passiv-position`, translate ×3 on the frame's
-  two walls; sibling clocks measured unmoved, the family arms retroactively at 2026-07-29.
 - **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item** — B1.8 drills only the
   two-clause condition; the wish form sits in `### Feinheiten` with no item. First step: a later
   KII-touching unit owns one `translate` pinning the one-word form beside *doch*/*nur*.
@@ -463,18 +442,12 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   the same weak focus preempt band 1). The delayed probe runs 2/2 on this competence, so the loop
   is measurably an item-serving artifact, not lost competence. Fix alongside the PR-4 session work
   or PR-8 remediation design; measure the deal distribution before and after.
-  ~~P27-3f / P25-6 · B1 lexical tail~~ — **closed 2026-08-15.** The 3343/3416 baseline contained
-  3279 cards, 64 grammar rows and 73 open rows. A row-by-row re-audit rejected the old `NOCARD`
-  blanket: 12 written/official variants became recognition cards, six frequent forms productive
-  cards, and 55 true bound pieces/frames earned `~` only after learner-facing teaching. Current B1
-  coverage is 3416/3416: 3297 cards, 119 grammar, 0 missing, 0 late. The exact ledger is
-  [A1–B1 completeness audit](curriculum/a1-b1-completeness-audit.md).
-  **The correlative frames are settled as of 2026-08-14 and are not lexis:** the DTZ
+  **The correlative frames are settled and are not lexis:** the DTZ
   Prüfungshandbuch §8.4 lists *entweder … oder*, *weder … noch*, *sowohl … als auch*, *nicht nur …
   sondern auch* and *je … desto* as **6.8 Doppelkonjunktionen**, and *um … zu* as a 6.5
   Nebensatz-Konjunktion — structures, in a grammar inventory, all six claimed by
-  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. P27-3f completed the per-row
-  manifest work and backed each `~` with a complete learner-facing frame.
+  `zweiteilige-konnektoren`, `proportionalsatz-je-desto` and `um-zu`. Every `~` is backed by a
+  complete learner-facing frame; B1 lexical coverage is 3416/3416.
 - **IPA writer duplicate-key hazard** — when an existing
   `ipa` sits below a comment block it fails to see it and writes a second key
   (`charakter-eigenschaften-a2`, `eigenschaften-dinge-a2`, `erfahrungen-erzaehlen`,
@@ -742,6 +715,75 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 - **P5-7 · Listening retention pilot** — after the A1 gate, pilot only `termine-vereinbaren` and
   `reisen-verkehr`, then observe a complete 2/7/21-day cycle.
 
+## Learner feedback
+
+Items the learner raised in `feedback.md` that are real but are not a small edit. `feedback.md`
+itself holds only raw, untriaged capture; a triaged item is deleted when fixed or lands here.
+Triaged 2026-08-22.
+
+- **F-1 · In-text references are not links.** An article that says "Präteritum from B1.1" makes the
+  reader search for it. Evidence: `content/topics/b1/kultur-freizeit.mdx:291`, and
+  `src/components/topic/SeeAlso.astro` shows the derived cross-links that already exist under
+  [ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md) — a footer, not in-prose links.
+  Needs a back mechanism too, or a follow is a dead end. First step: decide whether the link is
+  authored markup or derived from the unit id it names.
+- **F-2 · There is no search.** No in-page find, no cross-page search, and no affordance at all on a
+  phone or tablet, where `⌘F` does not exist. Evidence: `find src -iname "*search*"` is empty. First
+  step: decide the scope — in-page find is a component, cross-page search is an index built at build
+  time.
+- **F-3 · Readings have no system.** No index, no stated role, and the boundary with Entdecken and
+  parts of Üben is undecided. The largest item in the file and the only one that is a design brief
+  rather than a defect. First step: an inventory of what the 85 readings are currently *for*, read
+  against `kind: intensive` versus `extensive`.
+- **F-4 · The mastery checklist and Siehe auch belong in a desktop side panel.** On a wide screen
+  both sit in the main column — the checklist inline in the header chip row, Siehe auch at the very
+  bottom. Evidence: `src/pages/topics/[...slug].astro`. First step: decide whether the topic page
+  gets a two-column layout or the checklist becomes a popover.
+- **F-5 · A probe grades mid-sentence capitalization.** `probe-reisen-probleme.yaml:63` is a
+  two-word cloze whose second gap is `Könnten`; a learner who writes the whole correct sentence is
+  marked wrong on a capital letter the gap position made unpredictable. Re-author the item; this is
+  not an accept-list fix.
+- **F-6 · `-ch` versus `-g` endings are not taught, and the request is ambiguous.** Nothing in
+  `content/` covers it. `-ig`/`-ich` pronunciation and the `-lich`/`-ig` adjective suffixes are two
+  different questions. First step: ask the learner which one they meant.
+- **F-7 · The item types do not cover preposition choice as its own task.** Requested: wohin/wo
+  preposition drills and verb+preposition drills as task types rather than as translations. The ten
+  current values are `audio-comprehension, cloze, listen, match, mc, order, speak, table, translate,
+  write`. A new type is a schema, grader and renderer change. First step: check whether a
+  `table`-typed paradigm task already does most of this before adding an eleventh type.
+- **F-8 · The separable-verb cloze is trivial.** `trennbare-verben.yaml:267` gives separable verbs
+  two gaps and inseparable verbs one, so the gap count answers the question the item asks. Re-author
+  so every verb gets the same shape.
+- **F-9 · A lapsed flashcard returns too soon to be a retrieval.** On *Nochmal* the card is spliced
+  back `Math.min(4, rest.length)` cards later (`src/components/srs/FlashcardSession.tsx:234`), so
+  short-term memory answers it and the grade means nothing. Deliberate today. First step: read it
+  under the `learning-science` skill and decide between a minimum gap, a session-end re-queue, or
+  keeping it.
+- **F-10 · No topic teaches that an event noun takes *zu*, not *in*.** *zur Führung gehen* is
+  drilled (`content/exercises/b1/kultur-freizeit.yaml:183`) and place-type→preposition is
+  systematized in `content/topics/a2/ort-richtung-praepositionen.mdx`, but the event case is not a
+  named point anywhere. First step: check `bun scripts/grammar-depth.ts --thin` for a tag this would
+  recycle rather than inventing one.
+- **F-11 · Mobile layout beyond the one screenshot.** The duplicated *Wiederholen* title is fixed
+  (`src/pages/ueben/wiederholen.astro:16`), but the learner's actual claim was that the class of
+  defect is widespread. Needs a sweep, not a fix. First step: name the surfaces — a phone-width
+  pass over Heute, Üben, a topic page and Fortschritt, listing what a hand actually reaches.
+
+**Ruled, no change.** Recorded so they are not re-triaged:
+
+- *"in die Führung" vs "zur Führung"* as an accept-list gap — it is a curriculum gap instead, and is
+  F-10.
+- *`Leider kann ich am Samstag nicht kommen, weil ich arbeiten muss.`* rejected by
+  `freunde-feste.yaml:266` — both prompts put the time inside the reason clause ("because I have to
+  work **on Saturday**"), so this is a mistranslation, not a grading gap. Verified against the
+  grader.
+- *Katze, Hund and Pferd sit at A2.* The placement follows the official Goethe A2 Wortliste, and a
+  word moving between decks changes its card identity and destroys its SRS history. The answer is to
+  say so, not to move them.
+- *Reflexive verbs missing `sich`.* All twenty remaining entries whose `valence` mentions `sich`
+  are transitive verbs with a reflexive alternative (`jemanden beschäftigen`), so the bare headword
+  is correct German. Checked by parsing every deck, not by reading them.
+
 ## Deferred
 
 - committed neural-TTS expansion;
@@ -751,70 +793,8 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 
 These require a measured learning or usability need. They do not block the curriculum.
 
-## Recently completed
+## What has shipped
 
-- **P28-5 / P28-6 / P28-7 · the scene publisher and the two things it needed** (2026-08-21) —
-  `scene/publish.py` writes an approved scene into `content/listening/<level>/`, its MP3 and a
-  version-2 provenance manifest carrying `scene_sha256`, behind twenty named gates; `Scene.narration`
-  records the profile a Lesetext was narrated by (`scene/convert.py`, schema + mirrors + fixtures),
-  the Lesetexte queue shows it; `DELETE /api/scenes/{slug}` and `scene delete` undo a mis-created
-  draft. P28-7 is the publisher's `voice-scope` gate: a cast voice consented for `evaluation` is
-  refused by name, and the claims are computed from `render.json`'s `voices` map.
-
-- **P27-1b · learning-activity architecture** (2026-08-14) — all 172 topic-owned teaching sets now
-  declare one pedagogical function, authored stage and German editor title; every topic has exactly
-  one 8–15-item Grundübung and a productive application; six overloaded cores were split by purpose;
-  the learner page, Redaktion topic profile and material index share the same model. The old
-  per-file arithmetic was removed, reducing the editorial queue from the 265-finding baseline to
-  81 evidence gaps. Contract, migration decisions and repeatable counts:
-  [ADR 0014](adrs/0014-learning-activity-architecture.md) ·
-  [activity audit](curriculum/learning-activity-audit.md) · `bun run activity:audit`.
-- **P24-4 · Klassiker wave** (2026-08-06) — all ten classics live as extensive readings on their
-  owning topics; four trimmed into the band; corpus source moved to `sources/klassiker/` (the
-  home decision ADR 0006 deferred); `klassiker-lesen` Entdecken piece indexes the strand.
-
-Detail in [the 2026-08 archive](archive/2026-08-backlog-shipped.md); closures before 2026-07-28 in
-[the 2026-07-26 archive](archive/2026-07-backlog-full.md).
-
-- **P24-7 (2026-08-06):** below 640 px the seven-link nav is a `<details>` disclosure — the trigger
-  shows the active tab, the panel holds all seven links at equal weight (44 px targets, outside-tap
-  and Escape dismiss, works without JS), ≥640 px unchanged; plus the Tippen-card spacing tightened
-  (~35 px reclaimed) so prompt-through-insert-bar fits with the iOS keyboard up (real-device
-  confirmation rides on the owner's next walk, same caveat as P24-10). The audit half of the entry
-  shipped 2026-08-05 as [ux-audit-2026-08.md](quality/ux-audit-2026-08.md).
-- **P24-6 · P24-10 (2026-08-05):** the mobile quick wins — `autoCorrect="off"` on all five exercise
-  inputs (plus `lang`/`autoCapitalize` on FormFill), `Write`'s textarea suppresses autocorrect while
-  **spellcheck stays on deliberately** (advisory-only assist boundary; flagged in the code); and the
-  flashcard rating row is sticky above `env(safe-area-inset-bottom)` on phones — sticky over
-  scroll-into-view because it also holds when the card back is taller than one viewport. Verified at
-  390×844 with a long-note card.
-- **P24-1 (2026-08-05):** the first-run gate offers optional sign-in below the first-class local
-  path — providers from the session, absent when the deployment has none and in the desktop app;
-  OAuth display name prefills the editable name field and nothing more; pending stated with the
-  AccountPanel wording. The entry's one server-side question answered: **no Worker change** —
-  `safeReturnTo` already accepts any same-origin path, so the gate signs in with the current page
-  as `returnTo` and lands back in the gate.
-- **P24-2 (2026-08-05):** sync state visible in the profile menu — pending/blocked from the session
-  the menu already fetches on open, bound/never/synced-N-ago from the persisted sync state, no
-  network request added. No persisted error variant on purpose: outcomes are ephemeral, and a stale
-  "synced N ago" is the honest outage signal ADR 0004 wants. The force button was demoted in P24-3.
-- **P24-3 (2026-08-05):** the merged Fortschritt/Konto surface — Konto merged into the Daten tab
-  (no fourth tab, per [ADR 0005](adrs/0005-one-surface-for-fortschritt-and-konto.md) as settled),
-  `/konto` now a query-preserving redirect, one snapshot-load path whose cloud push follows account
-  state, and Übersicht reordered summary-first: activity card (stats + heatmap) on top, topic/POS
-  vocab detail and the session table behind disclosures, the developer intro paragraph cut to one
-  learner-facing line.
-
-- **P22-1 (2026-08-02):** the reviewed unit listening corpus, **published** — 41 artifacts across
-  all live units, every one human-approved and hash-bound to the bytes that shipped, with 17
-  superseded TTS items retired against a per-item ledger
-  ([audio-retirement-ledger.md](quality/audio-retirement-ledger.md)). The A1 Goethe pack (P19-6)
-  remains open as its own task.
-- **P22-2 · P22-3 · P22-4 (2026-08-02):** master/derivative split decided before the first commit;
-  adapter switch can no longer save an unloadable payload; `bun tauri dev` serves recordings.
-- **P3-6 (2026-08-02):** A1 retention cohort read on its gate date — missed both bars, rule amended
-  to advisory. See [roadmap.md](roadmap.md#retention-gate).
-- **P12-4 · P12-5 · P19-4 · P5-11d (2026-07-31):** focus evidence separated from answer constraints,
-  inserted-token attribution, and probe arming keyed to exact verified items.
-- **P19-1 · P19-2 · P17-6 (2026-07-31):** A1 backfill of the five late grammar points; honest audit
-  label for the untagged A1 probe family; item-scoped document stimuli.
+Not here. A finished item leaves this file: the release record is [`../CHANGELOG.md`](../CHANGELOG.md)
+and `git log`, and the standing state of each denominator is `CLAUDE.md`'s command table. A backlog
+that keeps its own history stops being a list of what to do next.

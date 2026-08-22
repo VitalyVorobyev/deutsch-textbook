@@ -1,5 +1,9 @@
 # Deutsch-Atlas Listening Studio
 
+> **Looking for how to *use* the studio?** A person's guide to the workbench — starting the engine, the six
+> sections, narrating a Lesetext, approving a scene — is [`docs/apps/tonwerk.md`](../../docs/apps/tonwerk.md).
+> What follows is the engine: synthesis, DSP, model locks, corpus migrations and the consent mechanism.
+
 Local-first authoring for reviewed, committed listening exercises. The CLI starts a private
 FastAPI editor on `127.0.0.1`; projects and immutable revisions live in SQLite under the macOS
 application-data directory. No learner state or audio is uploaded.
