@@ -15,10 +15,14 @@ function slug(heading: string): string {
 }
 
 describe('documentation links', () => {
-  // Every .md under docs/, recursively — EXCLUDING docs/archive/, which is frozen history:
-  // archived files keep the links they shipped with and are never edited to track moves.
+  // Every .md under docs/, recursively, minus two directories:
+  //   archive/         — frozen history; archived files keep the links they shipped with.
+  //   GeotheInstitute/ — gitignored official exam material (ADR 0009). It is absent from a clean
+  //                      checkout and from CI, so a test that saw it locally would be a test that
+  //                      only ever failed on one machine.
+  const excluded = [`archive${sep}`, `GeotheInstitute${sep}`];
   const activeDocs = (readdirSync(join(root, 'docs'), { recursive: true }) as string[])
-    .filter((name) => name.endsWith('.md') && !name.startsWith(`archive${sep}`))
+    .filter((name) => name.endsWith('.md') && !excluded.some((dir) => name.startsWith(dir)))
     .map((name) => join(root, 'docs', name));
   const files = [join(root, 'README.md'), join(root, 'CLAUDE.md'), ...activeDocs];
 
@@ -57,5 +61,30 @@ describe('documentation links', () => {
     }
 
     expect(failures).toEqual([]);
+  });
+
+  // The mirror of the test above, and the one that was missing. Checking that every link RESOLVES
+  // says nothing about whether a document can be REACHED: nine files — two of them over a thousand
+  // lines — had drifted out of every index unnoticed, because nothing asked the question. An
+  // unindexed doc is not neutral; it is a document a reader will not find and an author will not
+  // update, which is how a stale claim survives.
+  test('every active doc is reachable from an index', () => {
+    const indexes = files.filter(
+      (file) => file.endsWith('README.md') || file.endsWith('CLAUDE.md'),
+    );
+    const linked = new Set<string>();
+    for (const index of indexes) {
+      for (const match of readFileSync(index, 'utf8').matchAll(/\]\(([^)\s#]+)/g)) {
+        const raw = match[1]!;
+        if (/^(?:https?:|mailto:)/.test(raw)) continue;
+        linked.add(resolve(dirname(index), decodeURIComponent(raw)));
+      }
+    }
+
+    const orphans = activeDocs
+      .filter((doc) => !doc.endsWith('README.md') && !linked.has(doc))
+      .map((doc) => relative(root, doc));
+
+    expect(orphans).toEqual([]);
   });
 });

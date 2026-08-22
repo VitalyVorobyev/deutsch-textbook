@@ -18,7 +18,14 @@ this skill is the procedure that gets you to them with clean inputs.
 
 `progress/<profile>/*.json` files run 300 KB+; Reading one wholesale blows the context for nothing.
 
-- Always: `bun run progress:audit --profile <slug>` (this repo's historical folder is `vitaly`).
+- Always: `bun run progress:audit --profile <slug> --pull` (this repo's historical folder is
+  `vitaly`). **Sync is not local any more**, so the newest evidence lives in the learner's cloud
+  snapshot: `--pull` fetches it from R2 first and audits nothing if that fetch fails. Needs
+  `source setenv.sh`; without it the command prints its own guidance and exits non-zero. Auditing a
+  file that is three weeks old does not look stale — it looks like an audit.
+- `bun run progress:pull --profile <slug>` does the fetch on its own (`--list`, `--account`,
+  `--date`). It refuses to shrink an existing file and parks the smaller state in a sibling
+  `*.conflict-*.json`; investigate that rather than deleting it.
 - `--item <set-id>:<item-id>` for focused evidence on one item — prompts, answers, every attempt.
 - `--json` only when piping into another tool, never for reading.
 

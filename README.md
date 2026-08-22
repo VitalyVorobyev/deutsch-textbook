@@ -141,9 +141,12 @@ schemas. Bun is the package manager and task runner.
 | `bun scripts/grammar-coverage.ts A1` | structural coverage against the grammar inventory (`A1`, `A2` or `B1`) |
 | `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
 
-Listening authors can launch the local Python studio documented in
-[`tools/listening-studio/README.md`](tools/listening-studio/README.md). It publishes only reviewed
-WAV, exercise and provenance artifacts and never handles learner data.
+Two more applications live in this repository, each with a guide of its own in
+[`docs/apps/`](docs/apps/README.md): **Redaktion** (`bun run redaktion`), the editorial workbench
+that reads and edits the corpus with the content graph beside it, and **Tonwerk**
+(`bun run tonwerk`), the studio where the listening audio is written, rendered, checked and
+approved. Tonwerk drives a local Python render engine; it publishes only reviewed WAV, exercise and
+provenance artifacts and never handles learner data.
 
 Before opening a pull request, run the complete gate — the same one CI runs:
 

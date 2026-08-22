@@ -25,6 +25,12 @@ diagnostics. Known figure imports are recognised by spelling but never resolved 
 `@da/renderers` renders the tree and disclosed exercise metadata without learner storage or
 progress effects. Both Vite and the Bun sidecar expose the same `renderSource` request.
 
+Tonwerk is the third application and the only one that is not a repository reader. It is a React app
+served by, and talking exclusively to, a local Python engine (`atlas-listening`) on `127.0.0.1:8765`,
+authenticated by a bearer token minted per run and never written to disk. It opens no files and
+imports nothing from the workspace except the Scene v1 contract in `@da/schema`; the engine owns the
+database, the models, the renders and the publish path. It is the studio's only interface.
+
 There is no server-side learner model. Content is build-time data; learner state belongs to a local
 profile and can be exported as a backward-compatible snapshot. An optional account adds a cloud copy
 of that snapshot and nothing else — the server has never parsed one.
@@ -168,43 +174,66 @@ absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`)
 ## Listening authoring boundary
 
 `tools/listening-studio/` is a local Python editorial service, not a learner service. SQLite keeps
-immutable drafts outside the repository. A committed listening artifact has a published MP3,
-canonical `content/listening/` record, exercise set referenced by its topic, and
-`data/audio-provenance/` manifest pinning both the approved master and the published derivative.
-Publishing refuses unapproved revisions, approvals that vouch for no bytes, existing targets, and
-topics with nowhere to reference the set from. A dialogue character owns one versioned preset
-voice, fixed seed and baseline style; line cache identity includes that resolved profile. Local
-WavLM speaker embeddings rank same-character drift and character separation for review, but remain
-warnings whose bounds can only be derived from the re-reviewed corpus. Guarded republishing checks
-the existing slug/hash, retains the previous bundle, stages the full replacement and rolls back a
-partial failure. Model licences and training-data provenance remain separate claims; automatic
-transcription or embedding similarity is not proof of natural pronunciation or human approval.
-Each dialogue also owns an explicit soundscape: continuous beds loop to the end, finite events do
-not, and every new assisted placement stores an honest authoring label and reason. QA reports both
-configured coverage and pause-bed loudness; the named editor still decides whether the setting is
-recognizable without masking speech. The React/TypeScript Studio dashboard derives dialogue and
-reading metrics, distributions and ranked review links from source content, current SQLite
-revisions and QA rather than maintaining another status ledger. FastAPI owns workflows and
-protected audio endpoints; the frontend owns navigation, charts, tables and local playback.
+immutable revisions outside the repository, and [Tonwerk](apps/tonwerk.md) is the only interface to
+it.
 
-High-quality reading narration is a second bounded audio corpus. The 59 Lesetexte are represented
-as immutable reading revisions with source hashes; Qwen synthesizes whole paragraphs, assembly
-derives exact cue points, and Whisper/WavLM QA remains separate from exact-byte human approval.
-Approved MP3s and records live in `content/reading-audio/`, provenance in
-`data/audio-provenance/readings/`, and the learner uses one full-text player with paragraph seek and
-browser TTS only as load/missing-artifact fallback. Changing one paragraph reuses every other
-paragraph cache entry but invalidates the master and approval. Vocabulary is a different boundary. Generating every
-headword, example, direction and normal/slow variant would multiply review and invalidation cost;
-word cards therefore keep browser TTS for now. A later small canonical headword cache may be added
-for listening-mode cards, but only with stable card/audio identity and the same exact-byte review
-and provenance rules—not by treating dynamic examples as listening artifacts.
+**A scene is the one artifact model.** Dialogue and narration are two kinds of one document
+(`@da/schema/audio-scene`, Scene v1): a cast, utterances, an acoustic setting and a soundscape.
+Rendering is a graph over that document — synthesis per line, then pace, placement, difficulty
+deltas and mixing in a separate stage — so a take can be re-paced or re-placed without asking the
+model again, and a warm render is a cache walk. Every render is keyed by the scene's own sha256 and
+is therefore true of exactly one revision; saving an edit creates a new revision and returns the
+project to `draft`.
 
-Human-reference voice cloning has a narrower research boundary than the synthetic benchmark. The
-`experiment-human-voice-clone` command accepts only a consent record and reference whose bytes are
-bound by SHA-256, and only when reference, consent and output all resolve beneath the gitignored
-`.private/` directory. It runs pinned local models offline, retains incomplete/rerun artifacts and
-has no publisher import. A successful metric report remains pending human listening and cannot be
-promoted into the Studio, content corpus or export path.
+**The line the whole subsystem is built on is between what a machine measured and what a person
+vouched for.** QA is automatic: transcription against the script, speaker-embedding drift, pause and
+bed loudness. Approval is not. An approval is a named person, a checklist the engine refuses to
+accept incomplete, and the sha256 of the master they listened to — so a re-render invalidates it
+rather than inheriting it, which is what `stale` names. Automatic scores are warnings whose bounds
+can only be derived from an already-reviewed corpus; transcription and embedding similarity are
+never proof of natural pronunciation or of human approval.
+
+A committed listening artifact has a published MP3, a canonical `content/listening/` record, an
+exercise set referenced by its topic, and a `data/audio-provenance/` manifest pinning both the
+approved master and the published derivative. Publishing refuses unapproved revisions, approvals
+that vouch for no bytes, existing targets, and topics with nowhere to reference the set from.
+Guarded republishing checks the existing slug and hash, retains the previous bundle, stages the full
+replacement and rolls back a partial failure. Model licences and training-data provenance remain
+separate claims from any of this.
+
+A character owns one versioned voice profile — voice, fixed seed and baseline style — and a line's
+cache identity includes that resolved profile, so a new variant for one character invalidates all
+and only that character's lines. Sound is a second registry beside speech, because the two protocols
+take different requests; a scene's sound is either a reference to bytes that exist, by digest, or a
+prompt and a seed for bytes that do not.
+
+High-quality reading narration is a second bounded corpus on the same model. The Lesetexte are
+narrated as scenes, assembly derives exact cue points, approved MP3s live in
+`content/reading-audio/` with provenance under `data/audio-provenance/readings/`, and the learner
+gets one full-text player with paragraph seek, with browser TTS only as a load or missing-artifact
+fallback. Changing one paragraph reuses every other paragraph's cache entry but invalidates the
+master and its approval.
+
+Vocabulary is deliberately a different boundary. Generating every headword, example, direction and
+speed variant would multiply review and invalidation cost past what the review can carry, so word
+cards keep browser TTS. A later canonical headword cache may be added for listening-mode cards, but
+only with stable card and audio identity and the same exact-byte review and provenance rules — not
+by treating dynamic examples as listening artifacts.
+
+**Voice cloning is consent-gated, and consent is bound to bytes.** A consent document names the
+exact SHA-256 of one reference recording and one scope: `evaluation` permits local work only, while
+`publication` additionally requires a permitted use that explicitly allows publishing in this
+course, a retention statement, and — for a minor — guardian consent and guardian-attested assent. A
+cloned voice may be cast in published course audio only under a `publication` scope; a withdrawal is
+recorded with its date rather than deleted, because a provenance record that edited itself on
+withdrawal would be a false one. Nothing is recorded in the browser: a re-encode on the way in would
+silently break the binding to exact bytes. The policy is
+[product-protection.md](authoring/product-protection.md); this is the mechanism.
+
+The research benchmark is a separate boundary again. It has its own model lock, writes only beneath
+local application data, refuses course-repository output, never imports the publisher, and its
+results cannot be exported into the course. Any later adoption is a separate product, policy,
+provenance, model-lock and export-safeguard decision.
 
 ## Progress and storage
 
