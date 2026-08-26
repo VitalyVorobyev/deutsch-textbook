@@ -168,6 +168,19 @@ validator says so.
 ## Vocab entries
 
 - Nouns need `gender` + `plural` (with article: "die Äpfel"); verbs need `partizip2`, `aux`, `praesens_3sg`, and `valence` when governed ("+ Dat").
+- **A gloss is a concise idiomatic translation — the retrieval cue, never a definition.** Target
+  1–4 words per language; *Herz* is "heart · сердце", not "the organ in the chest that pumps and
+  beats faster when you run". A definitional gloss breaks both card directions at once: as the
+  production prompt it makes the learner solve a riddle before retrieving the German, and as the
+  recognition answer it withholds the one word the card exists to anchor. The B1 lexis waves
+  shipped ~990 such glosses across 31 decks before the learner said so (2026-08-26) — no gate saw
+  it, because every entry was schema-valid. A short **disambiguating parenthetical** is allowed
+  only where two shipped cards would otherwise share a production prompt (the P22-11
+  `Angebot`/`Sonderangebot` hazard — `bun scripts/gloss-shape.ts` reports same-deck collisions),
+  and it still must not contain the German answer. Everything the definition was trying to teach
+  — usage, register, L1 contrast, idioms — lives in `note`, on the answer side. Measured by
+  `bun scripts/gloss-shape.ts`; `tests/gloss-shape.test.ts` pins each deck's count of ≥8-word
+  glosses and the numbers may only go down, one repair wave at a time.
 - **`en_compact` is the English half of a dual-language card, not a replacement for `en`.** Keep `en` complete and determinate for EN-only mode. If both English and RU/UK need a parenthetical or dash clarification, put the full distinction in each standalone gloss and add a shorter, plain English translation in `en_compact`; the RU/UK dual view then explains the distinction once. Extended usage teaching belongs in `note` on the answer side, and the note must add to rather than paraphrase the gloss.
 - **`ipa` (Lautschrift)** on every entry except sentence-length `phrase`s: Duden-flavoured IPA of the **headword alone**, generated with `bun run gen:ipa` and then **reviewed** — the generator is weakest on compounds, separable verbs and loanwords. The character set and the transcription rules (stress, uvular r, syllabic consonants, glottal stop, the U+0261 copy-paste trap) are enforced by `bun run validate` and written out in [`docs/authoring/lautschrift.md`](lautschrift.md) — read it before hand-editing an `ipa`.
 - **`accept` on a vocab entry** — other correct typed answers for the EN/RU→DE production card. It exists because `de` is *three* things at once: the Wortliste key (matched against the manifest character for character), the answer shown on the back, and the answer the learner must type. For most words those coincide; for four classes they do not, and without `accept` the card marks correct German **wrong**:
