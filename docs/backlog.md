@@ -106,6 +106,15 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
+- **P29-3 · The mid-tier gloss decks still hold 149 long glosses the ratchet pins.** The
+  2026-08-26 repair took the 31 learner-reported B1 decks from ~990 definitional glosses to zero;
+  `bun scripts/gloss-shape.ts --long-only` still lists a mid-tier the report was not scoped to —
+  `gefuehle-reflexive-verben-b1` (16), `beziehungen-familie-b1` (13), the three
+  `verben-handlungen-b1-*` decks (23 between them), `redemittel-chunks-a2` (6) and a tail of ones
+  and twos, some of which are legitimate disambiguating parentheticals. A judgement pass, not a
+  blind rewrite: read each against the concise-gloss rule, lower the deck's ratchet row in the
+  same commit. The duplicate column's `küssen≈Kuss` / `Abo≈Abonnement` class rides along.
+
 **P26 · The seven rows the 2026-08-14 anchor pass reopened.** The four A1 rows are delivered by
 P27-3a and their tags are registered; the three A2 rows remain deliberately unregistered, so
 `bun scripts/grammar-coverage.ts` reports them `✗`. Closing one means: content, register the tag in
