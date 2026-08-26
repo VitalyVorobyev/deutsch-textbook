@@ -7,6 +7,15 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [0.5.1] — 2026-08-26
+
+**The flashcards say "heart" again.** Content release so the desktop bundle carries the day's
+repairs: the B1 gloss repair (31 decks, ~1030 riddle-style definitional glosses rewritten to
+concise idiomatic EN/RU/UK translations — no card identities touched, no SRS history lost), the
+drained 30-rendering grading queue with eight accept-payments, and the repaired
+`probe-natur-wetter` prompt (the «весь день» sentence now accepts *den ganzen Tag* because the
+item finally asks for it in all three languages).
+
 ## [0.5.0] — 2026-08-26
 
 **A desktop app that can no longer lose a session silently — and everything shipped since 0.4.0:
