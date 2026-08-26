@@ -13,12 +13,15 @@ items:
     outcomes: [modal-hoefliche-wuensche]
     type: translate
     focus: will-moechte
+    revision: 2
     instruction: {en: "Ask politely at a bakery.", ru: "Вежливо попросите в пекарне.", uk: "Ввічливо попросіть у пекарні."}
     prompt_en: "I would like two rolls, please."
     prompt_ru: "Мне, пожалуйста, две булочки."
     prompt_uk: "Мені, будь ласка, дві булочки."
     answer: "Ich möchte bitte zwei Brötchen."
-    accept: ["Ich hätte gern zwei Brötchen, bitte."]
+    # The bitte-less hätte-gern rendering is exactly what one says at the counter —
+    # the politeness the prompt asks for is already carried by hätte gern. Ruled 2026-08-26.
+    accept: ["Ich hätte gern zwei Brötchen, bitte.", "Ich hätte gern zwei Brötchen."]
     key_tokens: ["möchte", "zwei", "Brötchen"]
     explain: {en: "möchte is the neutral polite request. will would announce a firm intention and is too blunt at the counter.", ru: "möchte — нейтральная вежливая просьба. will сообщает твёрдое намерение и у прилавка звучит слишком резко.", uk: "möchte — нейтральне ввічливе прохання. will повідомляє твердий намір і біля прилавка звучить надто різко."}
   - id: variant-b

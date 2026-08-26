@@ -1474,3 +1474,185 @@
   decision: confirm
   note: "können adds a possibility modal the RU does not carry, and kostet has lost its object Geld — both substantive."
   decidedAt: 2026-08-11
+
+# --- 2026-08-26 triage: the 30 renderings queued since the 2026-08-11 pass ---
+
+- item: a1/ort-richtung-praepositionen:uebersetzen-zu-und-von-der-tante
+  given: "Am Sonntag fahren wir zu meiner Tante. Um acht kommen wir von meiner Tante."
+  decision: accept
+  note: "kommen von X without zurück is a complete, natural return sentence — coming FROM the aunt's at eight carries the «возвращаемся» on its own; the graded pair (zu/von) is untouched. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a1/ort-richtung-praepositionen:uebersetzen-zu-und-von-der-tante
+  given: "Am Sonntag fahren wir zu meiner Tante. Um acht kommen wir von der Tante zurück"
+  decision: accept
+  note: "The RU/UK prompts drop the possessive on second mention («от тёти»/«від тітки»), so von der Tante is a faithful licensed rendering; zu and von both intact. Added to accept with the same bump."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-natur-wetter:variant-a
+  given: "Am Dienstag regnet es den ganzen Tag"
+  decision: accept
+  note: "The RU/UK prompts always said «весь день»/«цілий день» while prompt_en and the answer said Nachmittag — a cross-language prompt divergence, not a learner error. The item moved to the majority meaning (all day) in the same change; this rendering IS the new answer."
+  decidedAt: 2026-08-26
+
+- item: b1/unfall-notruf-pretest:angaben-folge
+  given: "Gestern ging ich langsam über die Straße"
+  decision: confirm
+  note: "Correct German with the te-ka-mo-lo relative order preserved, but the instruction explicitly pins all three Angaben after the verb, and fronting gestern bypasses exactly the drilled frame. Pretest — never weakness evidence either way."
+  decidedAt: 2026-08-26
+
+- item: a1/probe-haben-wendungen:variant-c
+  given: "Haben Sie Zeit für Kaffee?"
+  decision: accept
+  note: "Mass-noun Kaffee without the article is idiomatic (Zeit für Kaffee); all three graded tokens intact. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-will-moechte:variant-a
+  given: "Ich hätte gern zwei Brötchen"
+  decision: accept
+  note: "The already-accepted hätte-gern rendering minus bitte — the politeness the prompt asks for is carried by hätte gern itself; bakery-normal German. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a1/probe-artikel-plural:variant-a
+  given: "Die Fenster sind auf"
+  decision: accept
+  note: "auf = offen in ordinary spoken German; Die/Fenster/sind all intact. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a2/termine-produktion:uebersetzen-praxis-ihnen
+  given: "Passt es Ihnen am Freitag um sechzehn Uhr?"
+  decision: accept
+  note: "sechzehn spelled out is the very 24-hour rendering the accept list already licensed as um 16 Uhr. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a2/zeit-praepositionen:uebersetzen-seit-regen
+  given: "Es regnet schon seit drei Tagen"
+  decision: accept
+  note: "schon renders the prompt's own «уже»/«вже» (and the EN perfect progressive); seit is intact. Added to accept with a revision bump."
+  decidedAt: 2026-08-26
+
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-konnte-nicht-besuchen
+  given: "Vor zwei Jahren konnte ich meiner Familia zu besuchen. Ich hatte keinen Urlaub"
+  decision: confirm
+  note: "Familia is not German (Familie); meiner is the wrong case for besuchen + Akk; the spurious zu breaks the modal's bare infinitive. drill note: zu-infinitiv bleeding into modal constructions (same class as the 2026-08-11 arbeit-beruf ruling)."
+  decidedAt: 2026-08-26
+
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-konnte-nicht-besuchen
+  given: "Vor zwei Jahren konnte ich meine Familie nicht besuchen. Ich hatte kein Urlaub"
+  decision: confirm
+  note: "der Urlaub is masculine — the accusative needs keinen; kein is a real case error even though it sits outside the graded pair. drill note: kein-declension in the Akkusativ."
+  decidedAt: 2026-08-26
+
+- item: a2/dativ-produktion:uebersetzen-danken-freunde
+  given: "Jonas denkt seinen Freunden für das Hilfe"
+  decision: confirm
+  note: "denkt is the wrong verb (danken, not denken), and das Hilfe misgenders die Hilfe. drill note: danken/denken near-homophones."
+  decidedAt: 2026-08-26
+
+- item: a1/probe-ort-richtung-praepositionen:variant-a
+  given: "Um fünf sind die Kinder noch im Schwimmbad. Um sechs gehen sie aus den Schwimmbad."
+  decision: confirm
+  note: "aus governs the Dativ — aus dem Schwimmbad; aus den is the focus's own case error, so the rejection measures exactly what the tag names."
+  decidedAt: 2026-08-26
+
+- item: a2/dativ-produktion:uebersetzen-nach-arbeit
+  given: "Nach der Arbeit gehe ich zu Hause"
+  decision: confirm
+  note: "zu Hause is the location; the direction is nach Hause — a real and common confusion. drill note: nach Hause vs zu Hause."
+  decidedAt: 2026-08-26
+
+- item: a2/drill-nebensatz-verbende:uebersetzen-weil-studieren-moechte
+  given: "Sie lernt Deutsch, weil sie in Berlin lestudieren will"
+  decision: confirm
+  note: "lestudieren is not a word — a slip, but one that sinks the sentence; verb-end order and will are otherwise right. Instrument note: the P25-7 typo-outside-key-tokens class."
+  decidedAt: 2026-08-26
+
+- item: a2/drill-zu-infinitiv:uebersetzen-um-zu-erklaeren
+  given: "Ich rufe meiner Mutter, um ihr alles zu erklären"
+  decision: confirm
+  note: "anrufen loses its separable prefix (rufe … an), and rufen does not govern the Dativ — meiner Mutter is wrong either way. drill note: anrufen + Akk with the prefix in the bracket."
+  decidedAt: 2026-08-26
+
+- item: a1/probe-gern-moegen:variant-c
+  given: "Ich spaziere gern, aber ich fahrradfahre lieber"
+  decision: confirm
+  note: "Fahrrad fahren does not univerbate in V2 — ich fahre Fahrrad (or Rad); ich fahrradfahre is not a German finite form. spazieren alone is fine. gern/lieber themselves are right."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-verben-mit-dativ:variant-c
+  given: "Der Fahrrad gehört meiner Schwester"
+  decision: confirm
+  note: "das Fahrrad — Der Fahrrad misgenders the subject; the dative target (gehört meiner Schwester) is intact, and the attribution correctly stays off the focus."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-nebensatz-vorfeld:variant-b
+  given: "Weil ich morgen arbeite, bleibe ich heute zu Hausr"
+  decision: confirm
+  note: "Hausr is a typo for Hause; the fronted Nebensatz and the inversion are right. Instrument note: the P25-7 typo-outside-key-tokens class. heute for heute Abend is a lesser drop the typo makes moot."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-aber-sondern:variant-a
+  given: "Wir treffen uns nicht im Kaffee, sondern am Bahnhof"
+  decision: confirm
+  note: "im Kaffee is in the drink — the place is das Café. Written German keeps the pair apart even where speech does not. drill note: Café/Kaffee written distinction."
+  decidedAt: 2026-08-26
+
+- item: a2/probe-will-moechte:variant-b
+  given: "Nach der Schullung will ich in Berlin arbeiten"
+  decision: confirm
+  note: "Schullung is misspelled (die Schulung), and the course word for training here is die Ausbildung. will is right — the miss is lexical, not modal."
+  decidedAt: 2026-08-26
+
+- item: a2/aemter-dienstleistungen-produktion:uebersetzen-wuerde-gern-transfer
+  given: "Ich würde gern den Formular hier ausfühlen"
+  decision: confirm
+  note: "das Formular — den misgenders it; ausfühlen is not ausfüllen. würde gern itself is right."
+  decidedAt: 2026-08-26
+
+- item: a2/natur-wetter:uebersetzen-kaltes-wetter
+  given: "Das Wetter ist kalt. Das kalte Wetter gefählt mir nicht."
+  decision: confirm
+  note: "gefällt is misspelled (gefählt); the gefallen rendering of «не люблю» would itself be licensable, but not with a broken verb form. Instrument note: P25-7 class."
+  decidedAt: 2026-08-26
+
+- item: a1/ort-richtung-praepositionen-anwenden:uebersetzen-markt-see
+  given: "Ich bin auf dem Markt, dann fahre ich an den See"
+  decision: confirm
+  note: "jetzt is dropped and gehen became fahren — the prompt's «иду» names the mode of movement, and two substantive drops together are a mistranslation, not a variant. Both prepositions are right."
+  decidedAt: 2026-08-26
+
+- item: a2/verben-mit-kasus:uebersetzen-gefallen-stoeren
+  given: "Die neue Wohnung gefählt mir, aber das Musik stört mich"
+  decision: confirm
+  note: "gefählt is misspelled (gefällt) and das Musik misgenders die Musik. The mir/mich case pair — the graded target — is right."
+  decidedAt: 2026-08-26
+
+- item: a2/verben-mit-kasus:uebersetzen-fragen-antworten
+  given: "Ich frage meine Kollegin, aber sie antwortet mir nicht."
+  decision: confirm
+  note: "The meaning is reversed — 'but she does not answer me' for 'and she answers me'. Correct German, wrong sentence."
+  decidedAt: 2026-08-26
+
+- item: a2/freunde-feste:uebersetzen-schenken-schwester
+  given: "Yusuf schenckt seiner Schwester zum Geburdstag ein Buch."
+  decision: confirm
+  note: "schenckt and Geburdstag are both misspelled (schenkt, Geburtstag); the dative seiner Schwester — the graded token — is right. Instrument note: P25-7 class, two slips in one rendering."
+  decidedAt: 2026-08-26
+
+- item: a2/man-und-besitz:uebersetzen-man-regel
+  given: "Man muss vorher melden."
+  decision: confirm
+  note: "sich anmelden loses both the reflexive and the prefix — melden alone means to report something, not to register oneself. drill note: sich anmelden as a fixed reflexive chunk."
+  decidedAt: 2026-08-26
+
+- item: a2/drill-dativ-ausloeser:uebersetzen-fruehstueck-kueche
+  given: "Morgen frühstücken wir in der Küche"
+  decision: confirm
+  note: "Morgen adds a time the prompt does not contain — the habitual present became a plan for tomorrow. in der Küche — the graded token — is right."
+  decidedAt: 2026-08-26
+
+- item: b1/probe-digitales-leben:variant-b
+  given: "Die linkte Taste reagiert nicht mehr, sodass ich das Menü nicht offnen kann."
+  decision: confirm
+  note: "linkte is not a form of link- (die linke Taste), and offnen is missing its umlaut (öffnen). sodass and kann — the graded pair — are right. Instrument note: P25-7 class."
+  decidedAt: 2026-08-26

@@ -214,6 +214,7 @@ items:
     outcomes: [dauer-nennen]
     type: translate
     focus: seit-vor-zeit
+    revision: 2
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
@@ -224,6 +225,8 @@ items:
     answer: "Es regnet seit drei Tagen."
     accept:
       - "Seit drei Tagen regnet es."
+      # schon renders the prompt's own «уже»/«вже» ("has been raining"). Ruled 2026-08-26.
+      - "Es regnet schon seit drei Tagen."
     key_tokens: ["seit"]
     explain:
       en: "English offers 'for' here and 'since' in Seit Montag regnet es, and German answers both with seit — so the English word is no guide at all. What decides is that the rain is still falling: something running gets seit and, with it, the present tense. Three days that were over would be vor drei Tagen and a past tense."
