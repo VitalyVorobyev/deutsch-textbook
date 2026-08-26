@@ -23,7 +23,6 @@ import { glossShapeReport } from '@da/content/gloss-shape';
 import { repoRoot } from '@da/content/repo-root';
 
 const PINNED_LONG: ReadonlyArray<readonly [string, number]> = [
-  ['abstrakte-begriffe-b1', 37],
   ['alltag-tagesablauf', 1],
   ['alltag-zeit', 1],
   ['arbeit-ausbildung-a2', 3],
@@ -32,10 +31,8 @@ const PINNED_LONG: ReadonlyArray<readonly [string, number]> = [
   ['beziehungen-familie-b1', 13],
   ['biografie-erfahrungen', 3],
   ['charakter-verhalten-b1', 1],
-  ['computer-internet-b1', 27],
   ['digitales-leben', 5],
   ['eigenschaften-bewertung-b1', 4],
-  ['einkaufen-geld-b1', 30],
   ['einkaufen-reklamation', 1],
   ['erste-schritte', 3],
   ['essen-trinken-a2', 2],
@@ -43,7 +40,6 @@ const PINNED_LONG: ReadonlyArray<readonly [string, number]> = [
   ['gefuehle-reflexive-a2', 1],
   ['gefuehle-reflexive-verben-b1', 16],
   ['geld-vertraege', 5],
-  ['gesellschaft-migration-b1', 24],
   ['gesellschaft-zusammenleben', 5],
   ['gesundheit-arzttermin', 1],
   ['gesundheit-wohlbefinden', 1],
@@ -57,7 +53,6 @@ const PINNED_LONG: ReadonlyArray<readonly [string, number]> = [
   ['kultur-literatur-presse-b1', 21],
   ['leben-veraendern', 2],
   ['lernen-verstehen', 1],
-  ['medien-digital-b1', 25],
   ['meinung-medien', 2],
   ['menschen-beziehungen-a2', 1],
   ['nebensaetze-plaene', 1],
