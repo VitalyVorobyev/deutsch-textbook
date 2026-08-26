@@ -231,6 +231,7 @@ items:
     outcomes: [ziel-nennen, herkunft-nennen]
     type: translate
     focus: wohin-wo-woher
+    revision: 2
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
@@ -245,6 +246,14 @@ items:
       # part of the graded pair (zu/von), so the fahren renderings stay target-preserving.
       - "Am Sonntag fahren wir zu meiner Tante. Um acht fahren wir von meiner Tante zurück."
       - "Wir fahren am Sonntag zu meiner Tante. Wir fahren um acht von meiner Tante zurück."
+      # Um acht kommen wir von meiner Tante — without zurück — is a complete, natural
+      # return sentence: coming FROM the aunt's at eight carries the «возвращаемся» on
+      # its own, and the graded pair (zu/von) is untouched. Ruled 2026-08-26.
+      - "Am Sonntag fahren wir zu meiner Tante. Um acht kommen wir von meiner Tante."
+      - "Wir fahren am Sonntag zu meiner Tante. Wir kommen um acht von meiner Tante."
+      # The RU/UK prompts drop the possessive on second mention («от тёти»), so von der
+      # Tante is a faithful licensed rendering there. Ruled 2026-08-26.
+      - "Am Sonntag fahren wir zu meiner Tante. Um acht kommen wir von der Tante zurück."
     key_tokens: ["zu", "von"]
     explain:
       en: "Both halves name the same person, and the preposition does all the work: zu answers Wohin?, von answers Woher?. What follows is untouched — meiner Tante is written the same way in both sentences, so only the first word has to be chosen. The two errors to avoid are in meine Tante — a person is not a room — and aus meiner Tante, which is the phrase for coming out of a building."

@@ -58,6 +58,7 @@ items:
     outcomes: [termine-hoeflich-telefonieren]
     type: translate
     focus: du-sie
+    revision: 2
     instruction:
       en: You are on the phone with the practice. Translate into German.
       ru: Вы говорите по телефону с приёмной. Переведите на немецкий.
@@ -68,6 +69,9 @@ items:
     answer: "Passt es Ihnen am Freitag um vier Uhr?"
     accept:
       - "Passt es Ihnen am Freitag um 16 Uhr?"
+      # sechzehn spelled out is the same 24-hour rendering the line above already
+      # licenses. Ruled 2026-08-26.
+      - "Passt es Ihnen am Freitag um sechzehn Uhr?"
     key_tokens: ["Ihnen"]
     explain:
       en: "The receptionist is a stranger, so the addressee is Sie — and after passen the dative of Sie is Ihnen, always capitalized. Both halves of that word matter here: the case comes from the verb, the capital letter from the register. Practices run on the 24-hour clock, so um 16 Uhr is just as good as um vier Uhr."
