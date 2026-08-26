@@ -2,7 +2,7 @@ import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import type { Reading, ReadingAudioArtifact } from '@da/schema';
 import { parseGlosses } from '@da/schema/gloss';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
-import { logAttempt } from '../../lib/store';
+import { logAttemptDurably } from '../../lib/write-journal';
 import { pick, pickLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -132,7 +132,7 @@ export default function ReadingText({ readingId, reading, narration }: Props) {
     if (!question) return;
     setCurrentDone(true);
     setAnswered((a) => [...a, result.correct]);
-    void logAttempt({
+    void logAttemptDurably({
       setId: `reading:${readingId}`,
       itemId: question.id,
       itemType: question.type,

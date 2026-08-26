@@ -687,6 +687,45 @@ export const STRINGS = {
   'update.apply': { de: 'Neu laden', en: 'Reload', ru: 'Перезагрузить', uk: 'Перезавантажити' },
   'update.dismiss': { de: 'Später', en: 'Later', ru: 'Позже', uk: 'Пізніше' },
 
+  // Persistence alert (PersistenceAlert.tsx): unsaved journaled writes and stalled
+  // reads. Loud by contract — a stalled store must never look like an empty one.
+  'persist.unsavedOne': {
+    de: 'Antwort noch nicht gespeichert — Fenster nicht schließen',
+    en: 'answer not saved yet — do not close the window',
+    ru: 'ответ ещё не сохранён — не закрывайте окно',
+    uk: 'відповідь ще не збережена — не закривайте вікно',
+  },
+  'persist.unsavedMany': {
+    de: 'Antworten noch nicht gespeichert — Fenster nicht schließen',
+    en: 'answers not saved yet — do not close the window',
+    ru: 'ответов ещё не сохранено — не закрывайте окно',
+    uk: 'відповідей ще не збережено — не закривайте вікно',
+  },
+  'persist.retry': {
+    de: 'Jetzt erneut versuchen',
+    en: 'Retry now',
+    ru: 'Повторить сейчас',
+    uk: 'Повторити зараз',
+  },
+  'persist.overflow': {
+    de: 'Einige ältere ungespeicherte Einträge gingen über die Journalgrenze hinaus.',
+    en: 'Some older unsaved entries exceeded the journal limit.',
+    ru: 'Часть старых несохранённых записей вышла за предел журнала.',
+    uk: 'Частина старих незбережених записів вийшла за межу журналу.',
+  },
+  'persist.loadError': {
+    de: 'Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert — bitte erneut versuchen oder die App neu starten.',
+    en: 'Progress could not be loaded. Your data is stored — please retry or restart the app.',
+    ru: 'Не удалось загрузить прогресс. Данные сохранены — попробуйте ещё раз или перезапустите приложение.',
+    uk: 'Не вдалося завантажити прогрес. Дані збережено — спробуйте ще раз або перезапустіть застосунок.',
+  },
+  'persist.loadRetry': {
+    de: 'Erneut versuchen',
+    en: 'Retry',
+    ru: 'Повторить',
+    uk: 'Повторити',
+  },
+
   'footer.tagline': {
     de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',
     en: 'Deutsch-Atlas by Vitaly Vorobyev · AI-assisted, human-directed and edited',

@@ -5,6 +5,7 @@ import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
 import {
+  attemptKey,
   mergeAttempts,
   mergeCards,
   mergeFeedback,
@@ -147,6 +148,114 @@ export function withVisibilityRetry<T>(
 }
 
 // ---------------------------------------------------------------------------
+// Persistence retry with a deadline: a stalled write becomes an error, never silence
+// ---------------------------------------------------------------------------
+
+/** A store operation that did not settle within its deadline. The caller (the write
+    journal, a load surface) treats this as "the store is stalled", which is a state
+    the learner must be shown — never as "the data does not exist". */
+export class StoreStallError extends Error {
+  constructor(message = 'IndexedDB operation did not settle within its deadline') {
+    super(message);
+    this.name = 'StoreStallError';
+  }
+}
+
+/** Backoff schedule for critical writes: when the previous attempt has not settled by
+    each offset (ms from start), another attempt is fired. The op must be idempotent —
+    `logAttempt` dedupes by attempt key and card grades go through `applyGradeAt`'s
+    ts-guard, so N landed attempts equal one. */
+export const PERSISTENCE_RETRY_SCHEDULE_MS = [4000, 8000, 16000];
+
+/** Hard deadline after which `withPersistenceRetry` stops waiting and rejects with
+    `StoreStallError`. The write may still land later (attempts are never cancelled);
+    rejection only means "stop trusting silence" — the journal keeps the op. */
+export const PERSISTENCE_DEADLINE_MS = 45000;
+
+/**
+ * Run an IDEMPOTENT store operation with timed retries and a hard deadline.
+ *
+ * `withVisibilityRetry` (below) retries only when the document becomes visible —
+ * the right medicine for the backgrounded-tab stall, and useless for a stall while
+ * the window stays visible (observed on the desktop WKWebView: sessions whose
+ * writes never landed while the learner was actively grading). This wrapper fires
+ * additional attempts on a timer, keeps the visibility retry as one more trigger,
+ * settles with the first attempt that finishes, and — unlike `withVisibilityRetry`,
+ * which deliberately waits forever — rejects with `StoreStallError` at `deadlineMs`
+ * so the caller can go loud instead of staying silent.
+ */
+export function withPersistenceRetry<T>(
+  op: () => Promise<T>,
+  {
+    schedule = PERSISTENCE_RETRY_SCHEDULE_MS,
+    deadlineMs = PERSISTENCE_DEADLINE_MS,
+  }: { schedule?: readonly number[]; deadlineMs?: number } = {},
+): Promise<T> {
+  if (typeof document === 'undefined') return op();
+
+  return new Promise<T>((resolve, reject) => {
+    let settled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    const cleanup = () => {
+      settled = true;
+      for (const t of timers) clearTimeout(t);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
+    const settleResolve = (value: T) => {
+      if (settled) return;
+      cleanup();
+      resolve(value);
+    };
+    const settleReject = (err: unknown) => {
+      if (settled) return;
+      cleanup();
+      reject(err);
+    };
+    const attempt = () => {
+      if (settled) return;
+      op().then(settleResolve, settleReject);
+    };
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') attempt();
+    };
+
+    attempt();
+    for (const at of schedule) timers.push(setTimeout(attempt, at));
+    timers.push(
+      setTimeout(() => {
+        if (!settled) {
+          cleanup();
+          reject(new StoreStallError());
+        }
+      }, deadlineMs),
+    );
+    document.addEventListener('visibilitychange', onVisible);
+  });
+}
+
+/** Give a read a deadline: past `ms` it rejects with `StoreStallError` instead of
+    hanging. Load surfaces use it so a stalled read renders an explicit error state,
+    never an empty (fresh-profile-looking) view. The underlying read keeps running —
+    a retry button simply calls the loader again. */
+export function withReadDeadline<T>(p: Promise<T>, ms = 10000): Promise<T> {
+  if (typeof document === 'undefined') return p;
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new StoreStallError()), ms);
+    p.then(
+      (v) => {
+        clearTimeout(timer);
+        resolve(v);
+      },
+      (e) => {
+        clearTimeout(timer);
+        reject(e);
+      },
+    );
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Exercise attempts
 // ---------------------------------------------------------------------------
 
@@ -213,7 +322,18 @@ export type NewAttempt = Omit<Attempt, 'itemRevision'> & { itemRevision: number 
 export const ATTEMPT_EVENT = 'da:attempt';
 
 export async function logAttempt(attempt: NewAttempt): Promise<void> {
-  await update<Attempt[]>('attempts', (arr) => [...(arr ?? []), attempt], await getStore());
+  // Deduped by the merge key inside the read-modify-write, so a timed retry or a
+  // journal replay of an attempt that actually landed appends nothing — the same
+  // idempotency contract mergeAttempts already gives cross-device imports.
+  await update<Attempt[]>(
+    'attempts',
+    (arr) => {
+      const cur = arr ?? [];
+      const key = attemptKey(attempt);
+      return cur.some((a) => attemptKey(a) === key) ? cur : [...cur, attempt];
+    },
+    await getStore(),
+  );
   if (typeof window !== 'undefined')
     window.dispatchEvent(new CustomEvent(ATTEMPT_EVENT, { detail: attempt.setId }));
   scheduleAutoSync();
@@ -257,6 +377,35 @@ export async function setCardState(cardId: string, card: StoredCard): Promise<vo
     await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), await getStore());
   });
   scheduleAutoSync();
+}
+
+/**
+ * Atomic read-modify-write of one card's state; returns the value actually written.
+ *
+ * The grading path persists through this rather than `setCardState`, because the
+ * mutate runs against the FRESHEST stored card inside the `update()` transaction: a
+ * cloud pull-merge that landed after the session mounted is graded on top of, never
+ * clobbered from a component's mount-time state map. Pair with `applyGradeAt`
+ * (src/lib/srs.ts) so retries and journal replays are idempotent.
+ */
+export async function updateCardState(
+  cardId: string,
+  mutate: (prev: StoredCard | undefined) => StoredCard,
+): Promise<StoredCard> {
+  let written: StoredCard | undefined;
+  await update<CardStates>(
+    'cards',
+    (m) => {
+      const cur = m ?? {};
+      written = mutate(cur[cardId]);
+      return { ...cur, [cardId]: written };
+    },
+    await getStore(),
+  );
+  scheduleAutoSync();
+  // The callback runs synchronously inside update(); by the time the await above
+  // resolves, `written` is always assigned.
+  return written!;
 }
 
 // ---------------------------------------------------------------------------
