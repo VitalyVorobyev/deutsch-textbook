@@ -66,6 +66,29 @@ A push whose body hashes the same as the last accepted one is skipped. That is n
 optimisation: `mergeSnapshot` ends with `scheduleAutoSync()`, so pull → merge → push would
 otherwise re-trigger itself.
 
+**The session probe caches only definitive answers** (`classifySessionResponse`,
+`src/lib/sync-remote.ts`). A parseable 2xx and a 401/404 are facts about the account and are
+memoized per page load; a 5xx, a gateway page or a non-JSON 2xx is a fact about the moment — it is
+never cached, and `syncNow` reports it as `error / session-probe`, never `off / signed-out`. This
+rule exists because the probe once memoized a transient failure as "signed out" for the lifetime
+of the app window, and a desktop "page load" lasts as long as the app is open — the #143 class,
+where sync silently stopped with every gate green. The UI's `getSession` maps an unanswerable
+probe to signed-out *for rendering* (the sign-in button is right either way) but shares the same
+never-cache-transients rule.
+
+**Quitting the desktop app flushes first.** `pagehide` does not reliably fire in the Tauri webview
+on window close or Cmd+Q, so the shell (`src-tauri/src/main.rs`) intercepts the close once, emits
+`da:close-requested`, and waits for the frontend's `flushForExit` (`src/lib/autosync.ts`): the
+local snapshot write is awaited, the remote push gets a 1200 ms budget, and the `flush_complete`
+command closes the window — with a 2 s Rust-side fallback so a hung webview can never make the
+window unclosable.
+
+**The desktop snapshot writer never shrinks the daily file.** `writeSnapshotToSyncDir` parks an
+incoming snapshot with fewer attempts than the existing file as `<date>.conflict-<stamp>.json` —
+the same invariant `progress:pull` and the dev middleware hold, closing the one writer that could
+silently flatten a day's backup (a stale second WKWebView container, a stalled read exporting an
+empty store).
+
 ## Accounts: self-serve sign-in, owner-granted storage
 
 Anyone may sign in. A new account is created **`pending`**, and pending grants no storage at all —

@@ -255,22 +255,36 @@ const SIGNED_OUT: RemoteSession = { signedIn: false, providers: [] };
 
 let sessionCache: Promise<RemoteSession> | undefined;
 
+/** The session probe got an answer that is a fact about the MOMENT, not the account —
+    a 5xx, a gateway page, an unparseable body. Never cached: caching it once made a
+    whole desktop session silently never sync (#143's four-hour outage was this class,
+    and in the desktop app a "page load" lasts as long as the app is open). */
+export class TransientSessionError extends Error {
+  constructor(detail: string) {
+    super(`session probe failed transiently: ${detail}`);
+    this.name = 'TransientSessionError';
+  }
+}
+
 /**
- * Who is signed in, memoized per page load.
+ * The one place the probe's answer is classified, pure so it is testable:
  *
- * Anything that is not a 2xx JSON body means signed out — including Astro's
- * 404 HTML under `astro dev`, where no Worker is running. That is why remote
- * sync needs no environment flag: where there is no API, there is no session.
- *
- * **A probe that failed on the network is not cached.** The answer "signed out"
- * is a fact about the account; "the request did not complete" is a fact about
- * the moment. Caching the second one would strand a device that opened offline
- * — and in the desktop app a "page load" lasts as long as the app is open, so a
- * laptop started on a train would never sync again until it was restarted.
+ * - `session`: a 2xx whose body parses to `{signedIn: boolean}` — cacheable.
+ * - `signed-out`: a 401, or a 404 (Astro's HTML under `astro dev`, where no Worker
+ *   runs — that is why remote sync needs no environment flag: where there is no
+ *   API, there is no session). A definitive fact about the account — cacheable.
+ * - `transient`: everything else — a 5xx, a 403 from an edge proxy, a 2xx that is
+ *   not the session JSON. A fact about the moment, never cached.
  */
-export function getSession(force = false): Promise<RemoteSession> {
-  if (force) sessionCache = undefined;
-  return (sessionCache ??= fetchSession().catch(() => SIGNED_OUT));
+export function classifySessionResponse(
+  status: number,
+  body: unknown,
+): 'session' | 'signed-out' | 'transient' {
+  if (status === 401 || status === 404) return 'signed-out';
+  if (status >= 200 && status < 300) {
+    return typeof (body as RemoteSession | null)?.signedIn === 'boolean' ? 'session' : 'transient';
+  }
+  return 'transient';
 }
 
 async function fetchSession(): Promise<RemoteSession> {
@@ -282,10 +296,37 @@ async function fetchSession(): Promise<RemoteSession> {
     sessionCache = undefined;
     throw error;
   }
-  if (!response.ok) return SIGNED_OUT;
+  const body: unknown = await response.json().catch(() => null);
+  switch (classifySessionResponse(response.status, body)) {
+    case 'session':
+      return body as RemoteSession;
+    case 'signed-out':
+      return SIGNED_OUT;
+    default:
+      sessionCache = undefined;
+      throw new TransientSessionError(String(response.status));
+  }
+}
+
+/**
+ * Who is signed in, memoized per page load — the STRICT form: only definitive
+ * answers are ever cached, and a transient failure (offline, no token, 5xx)
+ * rejects so `syncNow` can report what actually happened instead of `signed-out`.
+ */
+function getSessionStrict(): Promise<RemoteSession> {
+  return (sessionCache ??= fetchSession());
+}
+
+/**
+ * The UI's view of the session: same cache, but a probe that could not complete
+ * reads as signed out for rendering purposes (the sign-in button is the right
+ * thing to show either way). The failure itself is never cached — the next call
+ * probes again.
+ */
+export async function getSession(force = false): Promise<RemoteSession> {
+  if (force) sessionCache = undefined;
   try {
-    const data = (await response.json()) as RemoteSession;
-    return typeof data?.signedIn === 'boolean' ? data : SIGNED_OUT;
+    return await getSessionStrict();
   } catch {
     return SIGNED_OUT;
   }
@@ -327,7 +368,17 @@ export async function syncNow(): Promise<SyncOutcome> {
   if (typeof window === 'undefined') return { state: 'off', reason: 'signed-out' };
   if (!compressionSupported()) return { state: 'off', reason: 'unsupported' };
 
-  const session = await getSession();
+  // Strict probe: a transient failure must surface as an error, not as `off /
+  // signed-out` — the cached-signed-out misreport is how #143's outage stayed
+  // invisible for four hours with every gate green.
+  let session: RemoteSession;
+  try {
+    session = await getSessionStrict();
+  } catch (error) {
+    if (error instanceof NoTokenError) return { state: 'off', reason: 'no-token' };
+    if (error instanceof TransientSessionError) return { state: 'error', reason: 'session-probe' };
+    return { state: 'error', reason: 'network' };
+  }
   if (!session.signedIn || !session.user) return { state: 'off', reason: 'signed-out' };
   if (session.user.status === 'blocked') return { state: 'blocked' };
   if (session.user.status !== 'approved') return { state: 'pending' };

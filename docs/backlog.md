@@ -87,6 +87,23 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   envelope. The scene verbs are already guarded (`_only_json_on_stdout`, `scene/cli.py`); first
   step: apply the same guard where legacy verbs survive the API-consolidation PR, drop the rest.
 
+### Desktop shell
+
+- **P29-1 · A bundle-less run creates a second WKWebView container that impersonates the
+  profile.** `/Applications/Deutsch-Atlas.app` stores IndexedDB under
+  `~/Library/WebKit/dev.nonvision.deutsch-atlas/`; running `src-tauri/target/release/deutsch-atlas`
+  directly (or any run without the bundle identifier) lands in `~/Library/WebKit/deutsch-atlas/` —
+  a separate database that also holds `da:profiles = vitaly`, shows no first-run gate, and froze at
+  2026-08-11 on this machine. A session there looks like total data loss and (before the shrink
+  guard) could flatten the day's backup, since both containers share one
+  `appDataDir()`-based sync folder. The shrink guard (v0.5.0) removes the destructive half; the
+  confusing half remains. First step: decide detect-and-warn (compare a container marker against
+  the sync folder's newest snapshot) vs documenting "never run the raw binary".
+- **P29-2 · Release cadence: tag after any PR that changes the desktop runtime or bundled
+  content.** Every commit from v0.4.0 (2026-07-19) to v0.5.0 (2026-08-26) was unreleased, so the
+  learner ran ad-hoc working-tree builds — which is why the build actually running during the
+  data-loss window could not be named. A tag costs one push (`release.yml` does the rest).
+
 ### Curriculum and content
 
 **P26 · The seven rows the 2026-08-14 anchor pass reopened.** The four A1 rows are delivered by

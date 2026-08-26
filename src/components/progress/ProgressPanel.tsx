@@ -249,12 +249,14 @@ export default function ProgressPanel({
     setSyncDir(dir);
     // write a snapshot right away so the new folder visibly works
     const snapshot = await exportSnapshot(getActiveProfile().label);
-    const path = await writeSnapshotToSyncDir(
+    const written = await writeSnapshotToSyncDir(
       getActiveProfileId(),
       JSON.stringify(snapshot, null, 2),
       localDateString(),
     );
-    setMessage(pick(lang, UI.writtenTo).replace('{path}', path));
+    // A parked write still names the file it produced — the conflict path IS the
+    // message the learner should see (the folder holds a fatter daily file).
+    setMessage(pick(lang, UI.writtenTo).replace('{path}', written.path));
   }
 
   async function doExport() {
@@ -286,8 +288,8 @@ export default function ProgressPanel({
     // Desktop app: write into the sync folder.
     if (isTauri()) {
       try {
-        const path = await writeSnapshotToSyncDir(profileId, body, localDateString());
-        setMessage(pick(lang, UI.writtenTo).replace('{path}', path));
+        const written = await writeSnapshotToSyncDir(profileId, body, localDateString());
+        setMessage(pick(lang, UI.writtenTo).replace('{path}', written.path));
         return;
       } catch {
         // sync folder unwritable — fall back to a download.
