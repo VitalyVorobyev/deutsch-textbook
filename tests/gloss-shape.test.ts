@@ -56,7 +56,6 @@ const PINNED_LONG: ReadonlyArray<readonly [string, number]> = [
   ['haushalt-geschirr-a2', 1],
   ['haushalt-notfall-b1', 41],
   ['informationen-vermitteln', 20],
-  ['koerper-medizin-b1', 39],
   ['koerper-pflege-a2', 2],
   ['koerperpflege-lebensstil-b1', 19],
   ['konnektoren-partikeln-b1', 2],
