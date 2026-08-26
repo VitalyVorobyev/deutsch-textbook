@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState, withReadDeadline } from '../../lib/store';
+import { hasSeenData } from '../../lib/write-journal';
 import { hasStartedLearning } from '../../lib/placement';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
@@ -72,7 +73,12 @@ export default function FirstSteps({ first, placement }: Props) {
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
+    // Fails safe: `fresh` defaults to false, so a stalled read (deadline
+    // rejection, swallowed below) simply never shows this card. The marker check
+    // covers the read that "succeeds" empty — a veteran profile must never be
+    // greeted as a beginner by a stalled store.
+    if (hasSeenData('cards') || hasSeenData('attempts')) return;
+    void withReadDeadline(Promise.all([getAttempts(), getCardStates(), getTopicsState()])).then(
       ([attempts, cards, topics]) => {
         // The rule itself lives in `hasStartedLearning` (src/lib/placement.ts), pure and
         // tested: a placement attempt is not evidence of having started learning, and
@@ -81,6 +87,9 @@ export default function FirstSteps({ first, placement }: Props) {
         const setIds = placement?.setIds ?? [];
         setStarted(attempts.some((a) => setIds.includes(a.setId)));
         setFresh(!hasStartedLearning(attempts, Object.keys(cards), topics, setIds));
+      },
+      () => {
+        // stalled read — keep the card hidden (fresh stays false)
       },
     );
   }, [placement?.setIds]);

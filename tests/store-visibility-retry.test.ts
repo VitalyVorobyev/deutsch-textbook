@@ -93,6 +93,79 @@ describe('withVisibilityRetry', () => {
   });
 });
 
+describe('withPersistenceRetry', () => {
+  // The difference from withVisibilityRetry, whose contract is pinned above and unchanged:
+  // retries fire on a TIMER (a stall while the window stays visible — the desktop failure
+  // mode — never produces a visibilitychange), and silence has a deadline: past it the
+  // caller gets StoreStallError instead of waiting forever. Requires an idempotent op.
+  test('a stalled first attempt is superseded by a timed retry, no visibility event needed', async () => {
+    const { withPersistenceRetry } = await import('../src/lib/store');
+    let calls = 0;
+    const op = () => {
+      calls++;
+      if (calls === 1) return new Promise<string>(() => {});
+      return Promise.resolve('timed retry settled');
+    };
+
+    const settled = withPersistenceRetry(op, { schedule: [20], deadlineMs: 500 });
+    expect(await settled).toBe('timed retry settled');
+    expect(calls).toBe(2);
+  });
+
+  test('a fast attempt settles on its own — no retry ever fires', async () => {
+    const { withPersistenceRetry } = await import('../src/lib/store');
+    let calls = 0;
+    const op = () => {
+      calls++;
+      return Promise.resolve('fast');
+    };
+    expect(await withPersistenceRetry(op, { schedule: [20], deadlineMs: 500 })).toBe('fast');
+    await Bun.sleep(40);
+    expect(calls).toBe(1);
+  });
+
+  test('every attempt stalled → rejects with StoreStallError at the deadline', async () => {
+    const { withPersistenceRetry, StoreStallError } = await import('../src/lib/store');
+    let calls = 0;
+    const op = () => {
+      calls++;
+      return new Promise<void>(() => {});
+    };
+    const settled = withPersistenceRetry(op, { schedule: [10, 20], deadlineMs: 60 });
+    await expect(settled).rejects.toBeInstanceOf(StoreStallError);
+    expect(calls).toBe(3); // initial + both scheduled retries were attempted first
+  });
+
+  test('the visibility retry still composes on top of the timer', async () => {
+    const { withPersistenceRetry } = await import('../src/lib/store');
+    let calls = 0;
+    const op = () => {
+      calls++;
+      if (calls < 3) return new Promise<string>(() => {});
+      return Promise.resolve('visibility attempt settled');
+    };
+    // One timed retry stalls too; the visibilitychange fires the third attempt.
+    const settled = withPersistenceRetry(op, { schedule: [10], deadlineMs: 1000 });
+    await Bun.sleep(30);
+    fireVisible();
+    expect(await settled).toBe('visibility attempt settled');
+  });
+});
+
+describe('withReadDeadline', () => {
+  test('a fast read passes through', async () => {
+    const { withReadDeadline } = await import('../src/lib/store');
+    expect(await withReadDeadline(Promise.resolve('data'), 50)).toBe('data');
+  });
+
+  test('a stalled read rejects with StoreStallError instead of hanging', async () => {
+    const { withReadDeadline, StoreStallError } = await import('../src/lib/store');
+    await expect(withReadDeadline(new Promise(() => {}), 20)).rejects.toBeInstanceOf(
+      StoreStallError,
+    );
+  });
+});
+
 describe('the store path, decomposed (CI-safe)', () => {
   // The full round trip below is quarantined on CI (see its comment for the
   // evidence), so the composition it exercises is pinned here piece by piece,

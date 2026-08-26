@@ -20,6 +20,7 @@ authoring rules. Historical failures and extended rationale are
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
+| Durable write path (journal, replay, retry deadline) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md)) | write-journal and store-visibility-retry tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard |
 
 ## Non-negotiable invariants
@@ -35,6 +36,13 @@ authoring rules. Historical failures and extended rationale are
 - References, documents, discovery pieces and learning figures create no progress or review debt.
 - Persisted UI choices receive migrations when their value domain changes.
 - Build-time claims on `/about` are computed from content, never typed by hand.
+- A progress write is journaled synchronously before it is attempted, retried on a timer, and
+  loud in the UI once it is late — silence is never an outcome ([ADR 0016](../adrs/0016-durable-progress-writes.md)).
+  Every write behind `withPersistenceRetry` or the journal must be idempotent (`attemptKey`
+  dedupe, `applyGradeAt` ts-guard); a non-idempotent write may not use them.
+- A stalled or implausibly empty progress read renders an explicit error state — never a
+  fresh-profile view, and never feeds `planReview`. "Implausibly empty" means empty against the
+  profile's one-way `da:seen-data` marker.
 - No input is sized, capped or captioned from the answer it is waiting for. A cloze gap was
   drawn at `answers[0].length + 2`, so `Es gibt hier ___ Supermarkt.` fitted only *einen* of
   *einen / eine / ein* and the item scored a width judgement as accusative mastery. Every gap
