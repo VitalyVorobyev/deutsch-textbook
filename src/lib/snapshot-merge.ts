@@ -7,7 +7,10 @@ import type {
   TopicsState,
 } from './store';
 
-const attemptKey = (attempt: Attempt) => `${attempt.setId}|${attempt.itemId}|${attempt.ts}`;
+/** Identity of one logged attempt — the dedupe key for merges AND for retried writes
+    (`logAttempt` dedupes on it inside its read-modify-write, which is what makes a
+    journal replay or a timed retry of the same attempt safe). */
+export const attemptKey = (attempt: Attempt) => `${attempt.setId}|${attempt.itemId}|${attempt.ts}`;
 
 export function mergeAttempts(a: Attempt[], b: Attempt[]): Attempt[] {
   const seen = new Set(a.map(attemptKey));

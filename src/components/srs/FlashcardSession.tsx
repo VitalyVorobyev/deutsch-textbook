@@ -6,9 +6,11 @@ import {
   getCardStates,
   getLearningGoal,
   getTopicsState,
-  setCardState,
+  withReadDeadline,
   type CardStates,
 } from '../../lib/store';
+import { gradeCardDurably, hasSeenData } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import { cardMeaning, getCardInputMode, pick, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import {
@@ -82,6 +84,8 @@ export default function FlashcardSession({
   const uiLang = useUiLang();
   const [queue, setQueue] = useState<CardDef[] | null>(null);
   const [states, setStates] = useState<CardStates>({});
+  const [loadError, setLoadError] = useState(false);
+  const [loadRound, setLoadRound] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const canTts = ttsAvailable();
   const [inputMode, setInputMode] = useState<CardInputMode>(() => {
@@ -105,29 +109,48 @@ export default function FlashcardSession({
     let cancelled = false;
     if (presetQueue) {
       // Pre-planned queue: states still load for grading, planning is skipped.
-      void getCardStates().then((s) => {
-        if (cancelled) return;
-        setStates(s);
-        setQueue([...presetQueue]);
-      });
+      void withReadDeadline(getCardStates()).then(
+        (s) => {
+          if (cancelled) return;
+          setStates(s);
+          setQueue([...presetQueue]);
+        },
+        () => {
+          if (!cancelled) setLoadError(true);
+        },
+      );
       return () => {
         cancelled = true;
       };
     }
-    void Promise.all([
-      getCardStates(),
-      gate ? getAttempts() : [],
-      gate ? getTopicsState() : {},
-      gate ? getLearningGoal() : undefined,
-    ]).then(([s, attempts, topics, goal]) => {
-      if (cancelled) return;
-      setStates(s);
-      setQueue(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }).queue);
-    });
+    void withReadDeadline(
+      Promise.all([
+        getCardStates(),
+        gate ? getAttempts() : [],
+        gate ? getTopicsState() : {},
+        gate ? getLearningGoal() : undefined,
+      ]),
+    ).then(
+      ([s, attempts, topics, goal]) => {
+        if (cancelled) return;
+        // Plausibility gate: this profile has graded cards before, and the read
+        // says there are none — a stalled store or the wrong database. Planning
+        // from that map would deal mastered cards as new; error out instead.
+        if (Object.keys(s).length === 0 && hasSeenData('cards')) {
+          setLoadError(true);
+          return;
+        }
+        setStates(s);
+        setQueue(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }).queue);
+      },
+      () => {
+        if (!cancelled) setLoadError(true);
+      },
+    );
     return () => {
       cancelled = true;
     };
-  }, [cards, newLimit, gate, presetQueue]);
+  }, [cards, newLimit, gate, presetQueue, loadRound]);
 
   const card = queue?.[0];
   // 'listen' turns recognition (de-x) cards into dictation; production (x-de)
@@ -180,6 +203,17 @@ export default function FlashcardSession({
     }
   }, [queue, onFinished]);
 
+  if (loadError) {
+    return (
+      <ProgressLoadError
+        onRetry={() => {
+          setLoadError(false);
+          setLoadRound((r) => r + 1);
+        }}
+      />
+    );
+  }
+
   if (queue === null) {
     return <p className="text-sm text-stone-500">…</p>;
   }
@@ -220,16 +254,16 @@ export default function FlashcardSession({
 
   function grade(g: Grade) {
     if (!card) return;
-    const nextState = gradeCard(states[card.id], g);
+    const ts = Date.now();
+    const nextState = gradeCard(states[card.id], g, new Date(ts));
     // Optimistic: every visible state update lands synchronously, before the
-    // persisted write is even awaited. A stalled IndexedDB write (a
-    // backgrounded tab; WebKit is documented to stall IDB transactions there)
-    // used to sit ahead of all of these, so the click read as dead — nothing
-    // moved until the write settled, which could be never. The write itself
-    // still happens, just after the UI has already moved on; its failure is
-    // logged, not swallowed, and a lost write costs exactly one rep: card
-    // state is a full value per card id, so the next successful grade
-    // overwrites it (the same idempotency `scheduleAutoSync` already trusts).
+    // persisted write is even awaited — a stalled IndexedDB write must not make
+    // the button read as dead. The DISPLAY state comes from the mount-time map;
+    // the PERSISTED state is computed inside `gradeCardDurably`'s atomic RMW
+    // against whatever is in the store at commit time, so a cloud merge that
+    // landed mid-session is graded on top of, never overwritten from here. The
+    // write is journaled before it starts: a stall keeps the op in the journal,
+    // PersistenceAlert goes loud, and the next launch replays it.
     setStates((s) => ({ ...s, [card.id]: nextState }));
     setStats((st) => ({ reviewed: st.reviewed + 1, again: st.again + (g === Rating.Again ? 1 : 0) }));
     setQueue((q) => {
@@ -245,8 +279,11 @@ export default function FlashcardSession({
     setRevealed(false);
     setTyped('');
     setVerdict(null);
-    setCardState(card.id, nextState).catch((err) => {
-      console.error('setCardState failed', card.id, err);
+    void gradeCardDurably(card.id, g, ts).then((written) => {
+      // Adopt the state actually written (it may sit on top of a merged, newer
+      // card) so a same-session regrade builds on truth. null = stalled: the
+      // journal keeps the op and the alert is already loud.
+      if (written) setStates((s) => ({ ...s, [card.id]: written }));
     });
   }
 

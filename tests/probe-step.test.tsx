@@ -5,7 +5,7 @@
  * it against the next item's key, and — being already `checked` — could not be answered
  * or logged at all. That shipped, and no pure-logic suite could have seen it.
  */
-import { afterEach, beforeAll, describe, expect, mock, test } from 'bun:test';
+import { afterAll, afterEach, beforeAll, describe, expect, mock, test } from 'bun:test';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import { translateItemSchema } from '@da/schema';
@@ -15,8 +15,20 @@ import * as store from '../src/lib/store';
 
 // Only logAttempt is stubbed — the rest of the store module stays real, or every
 // module that imports another of its exports would fail to resolve.
+// Captured BEFORE mock.module patches the registry: the `store` namespace is live-bound,
+// so reading `store.logAttempt` after the mock would return the mock itself and the
+// afterAll delegation below would recurse forever.
+const realLogAttempt = store.logAttempt;
 const logAttempt = mock(() => Promise.resolve());
 mock.module('../src/lib/store', () => ({ ...store, logAttempt }));
+
+// mock.module is process-global and never torn down (see tests/sync-remote.test.ts for the
+// history): every file loaded after this one resolves the patched module, and a module that
+// captured the stubbed `logAttempt` binding (write-journal.ts) would silently drop attempts
+// in ITS tests. Delegate back to the real implementation once this suite is done.
+afterAll(() => {
+  logAttempt.mockImplementation(realLogAttempt as never);
+});
 
 /** SWAP_GUARD_MS in shared.tsx swallows a Weiter click within 500ms of Prüfen. */
 const PAST_SWAP_GUARD = 550;

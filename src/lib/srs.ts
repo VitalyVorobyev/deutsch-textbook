@@ -270,6 +270,22 @@ export function gradeCard(stored: StoredCard | undefined, grade: Grade, now = ne
 }
 
 /**
+ * Grade a card against the FRESHEST stored state, idempotently.
+ *
+ * The mutate half of the durable grading write (`gradeCardDurably`, write-journal.ts):
+ * it runs inside `update('cards', …)`, so `prev` is whatever is in the store at commit
+ * time — a cloud merge that landed mid-session is graded on top of, never overwritten
+ * from a component's mount-time map. The `ts` guard is what makes N applications equal
+ * to one: a timed retry whose first attempt lands late, or a journal replay of a write
+ * that actually succeeded, sees `last_review >= ts` and returns `prev` unchanged —
+ * without it, a retried grade would double-apply FSRS (reps +2 for one answer).
+ */
+export function applyGradeAt(prev: StoredCard | undefined, grade: Grade, ts: number): StoredCard {
+  if (prev?.last_review && Date.parse(prev.last_review) >= ts) return prev;
+  return gradeCard(prev, grade, new Date(ts));
+}
+
+/**
  * How many never-seen cards the learner has already been dealt today, across every
  * surface. `newLimit` alone cannot answer this: it caps a single *queue build*, and
  * `planReview` re-runs on every mount, so reloading the review page five times used

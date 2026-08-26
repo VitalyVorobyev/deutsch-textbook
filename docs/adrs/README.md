@@ -44,6 +44,7 @@ relationship.
 | [`0013`](0013-redaction-repository-workbench.md) | Redaction is a repository-backed desktop workbench | accepted · 2026-08-14 |
 | [`0014`](0014-learning-activity-architecture.md) | Exercise files retain identity; learning activities own purpose and presentation | accepted · 2026-08-14 |
 | [`0015`](0015-provable-course-completeness.md) | Course completeness is a set of evidence contracts, never one score | accepted · 2026-08-14 |
+| [`0016`](0016-durable-progress-writes.md) | A progress write is journaled, retried on a timer, and loud when late | accepted · 2026-08-26 |
 
 A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
 superseded by a new ADR rather than edited into an acceptance.

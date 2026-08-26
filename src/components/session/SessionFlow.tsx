@@ -9,7 +9,10 @@ import {
   localDateString,
   logSession,
   sessionDoneToday,
+  withReadDeadline,
 } from '../../lib/store';
+import { hasSeenData } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { withBase } from '../../lib/url';
 import type { TopicNode } from '../../lib/mastery';
@@ -125,6 +128,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   const [repeatAnyway, setRepeatAnyway] = useState(false);
   // bumped when the learner opts into reviewing the cards the cap left out
   const [planRound, setPlanRound] = useState(0);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -200,9 +204,20 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   // little is due — and only from eligible decks (see planReview in decks.ts).
   useEffect(() => {
     let cancelled = false;
-    void Promise.all([getCardStates(), getAttempts(), getTopicsState(), getLearningGoal()]).then(
+    void withReadDeadline(
+      Promise.all([getCardStates(), getAttempts(), getTopicsState(), getLearningGoal()]),
+    ).then(
       ([states, attempts, topics, goal]) => {
         if (cancelled) return;
+        // Plausibility gate: a profile that has graded cards before and reads back
+        // zero of them is a stalled store, not a fresh learner. Planning from that
+        // map would deal mastered cards as new (and a graded redo would overwrite
+        // real FSRS state) — render the error state instead.
+        if (Object.keys(states).length === 0 && hasSeenData('cards')) {
+          setLoadError(true);
+          return;
+        }
+        setLoadError(false);
         setPlan(
           planReview(
             cards,
@@ -211,6 +226,9 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             { maxDue: MAX_CARDS, maxTotal: MAX_CARDS, freshPolicy: { kind: 'top-up', minDue: MIN_DUE } },
           ),
         );
+      },
+      () => {
+        if (!cancelled) setLoadError(true);
       },
     );
     return () => {
@@ -295,6 +313,10 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
 
   // Step 0 exists only on days a probe is actually due — and today's budget allows one.
   const steps: Step[] = due !== null && due.length > 0 && probeCap > 0 ? [0, 1, 2, 3] : [1, 2, 3];
+
+  if (loadError) {
+    return <ProgressLoadError onRetry={() => setPlanRound((r) => r + 1)} />;
+  }
 
   if (doneToday === null || due === null) {
     return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;

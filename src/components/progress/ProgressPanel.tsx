@@ -6,10 +6,13 @@ import {
   getAttempts,
   getCardStates,
   getSessionLog,
+  withReadDeadline,
   type Attempt,
   type CardStates,
   type SessionLogEntry,
 } from '../../lib/store';
+import { hasSeenData } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
@@ -177,6 +180,7 @@ export default function ProgressPanel({
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const [data, setData] = useState<Data | null>(null);
+  const [loadError, setLoadError] = useState(false);
   const [view, setView] = useState<ProgressView>('uebersicht');
   const [message, setMessage] = useState<string | null>(null);
   const [syncDir, setSyncDir] = useState<string | null>(null);
@@ -184,16 +188,29 @@ export default function ProgressPanel({
   const importMode = useRef<'merge' | 'replace'>('merge');
 
   async function loadData(): Promise<Data> {
-    const [attempts, cards, sessions] = await Promise.all([
-      getAttempts(),
-      getCardStates(),
-      getSessionLog(),
-    ]);
+    const [attempts, cards, sessions] = await withReadDeadline(
+      Promise.all([getAttempts(), getCardStates(), getSessionLog()]),
+    );
+    // A profile that has persisted progress before and reads back nothing at all
+    // is a stalled store, not an empty history — "no progress" must never be
+    // faked by a read failure (the desktop symptom this guards was exactly that).
+    if (
+      attempts.length === 0 &&
+      Object.keys(cards).length === 0 &&
+      (hasSeenData('cards') || hasSeenData('attempts'))
+    ) {
+      throw new Error('implausibly empty progress read');
+    }
     return { attempts, cards, sessions };
   }
 
   async function refresh() {
-    setData(await loadData());
+    try {
+      setData(await loadData());
+      setLoadError(false);
+    } catch {
+      setLoadError(true);
+    }
   }
 
   useEffect(() => {
@@ -211,7 +228,13 @@ export default function ProgressPanel({
         setView(saved);
       }
     });
-    void loadData().then(setData);
+    void loadData().then(
+      (d) => {
+        setData(d);
+        setLoadError(false);
+      },
+      () => setLoadError(true),
+    );
     if (isTauri()) void getSyncDir().then(setSyncDir);
   }, []);
 
@@ -339,6 +362,7 @@ export default function ProgressPanel({
 
   return (
     <div className="space-y-8">
+      {loadError && <ProgressLoadError onRetry={() => void refresh()} />}
       {untouched && (
         <section className="rounded-lg border border-dashed border-stone-300 p-6 text-sm text-stone-500 dark:border-stone-600 dark:text-stone-400">
           {pick(lang, UI.untouched)}

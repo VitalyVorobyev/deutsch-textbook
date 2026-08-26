@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Level } from '@da/schema';
-import { getAttempts, getCardStates, getTopicsState, logAttempt } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import { logAttemptDurably } from '../../lib/write-journal';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { recommendedNext, type TopicNode } from '../../lib/mastery';
@@ -191,7 +192,7 @@ export default function MixedTraining({
     if (surface) {
       saveResume<TrainingResume>(surface, { uids: session.map((s) => s.uid), answered: next });
     }
-    void logAttempt({
+    void logAttemptDurably({
       setId: entry.setId,
       itemId: entry.item.id,
       itemType: entry.item.type,

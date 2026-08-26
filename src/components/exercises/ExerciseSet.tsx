@@ -1,6 +1,6 @@
 import { useState, type ReactElement } from 'react';
 import type { ExerciseItem, ExerciseSet as ExerciseSetData, VisualDocument } from '@da/schema';
-import { logAttempt } from '../../lib/store';
+import { logAttemptDurably } from '../../lib/write-journal';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { pick, type ExplainLang } from '../../lib/prefs';
@@ -166,7 +166,7 @@ export default function ExerciseSet({ setId, set, document, documents = {} }: Pr
     ];
     setAnswered(next);
     saveResume(resumeSurface, { answered: next });
-    void logAttempt({
+    void logAttemptDurably({
       setId,
       itemId: item.id,
       itemType: item.type,

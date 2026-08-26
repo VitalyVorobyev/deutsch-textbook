@@ -4,7 +4,7 @@ import { MAX_PROBES_PER_SESSION, PROBE_INTERVALS_DAYS, servedProbes } from '../.
 import type { ExerciseItem } from '@da/schema';
 import { focusForAttempt, responseModeForItem } from '../../lib/evidence';
 import { attemptScore } from '../../lib/scoring';
-import { logAttempt } from '../../lib/store';
+import { logAttemptDurably } from '../../lib/write-journal';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -85,7 +85,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
     if (!current) return;
     setCurrentDone(true);
     setAnswered((a) => [...a, { correct: result.correct, score: attemptScore(result) }]);
-    void logAttempt({
+    void logAttemptDurably({
       setId: current.setId,
       itemId: current.item.id,
       itemType: current.item.type,

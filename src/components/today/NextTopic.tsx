@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
 import { dueCheckpoint, type CheckpointRef } from '../../lib/checkpoint';
-import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState, withReadDeadline } from '../../lib/store';
+import { hasSeenData } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
@@ -32,17 +34,35 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
   const [suggestion, setSuggestion] = useState<TopicNode | null>(null);
   const [mastered, setMastered] = useState(0);
   const [checkpoint, setCheckpoint] = useState<CheckpointRef | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const [loadRound, setLoadRound] = useState(0);
 
   useEffect(() => {
-    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
+    void withReadDeadline(Promise.all([getAttempts(), getCardStates(), getTopicsState()])).then(
       ([attempts, cards, topics]) => {
+        // A veteran profile reading back empty is a stalled store — recommending
+        // unit 1 from it is the "shows no progress" defect. Error out instead.
+        if (
+          attempts.length === 0 &&
+          Object.keys(cards).length === 0 &&
+          (hasSeenData('cards') || hasSeenData('attempts'))
+        ) {
+          setLoadError(true);
+          return;
+        }
+        setLoadError(false);
         const ctx = { attempts, cards, topics };
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         setMastered(nodes.filter((n) => topicCompletion(n, ctx).tier === 'mastered').length);
         setCheckpoint(dueCheckpoint(checkpoints, nodes, ctx) ?? null);
       },
+      () => setLoadError(true),
     );
-  }, [spine, nodes, checkpoints]);
+  }, [spine, nodes, checkpoints, loadRound]);
+
+  if (loadError) {
+    return <ProgressLoadError onRetry={() => setLoadRound((r) => r + 1)} />;
+  }
 
   if (!suggestion && !checkpoint) return null;
 
