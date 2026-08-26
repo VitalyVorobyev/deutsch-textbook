@@ -42,13 +42,18 @@ items:
     outcomes: [wetter-beschreiben]
     type: translate
     focus: es-unpersoenlich
+    revision: 2
     key_tokens: ["regnet", "es"]
-    prompt_en: "On Tuesday it rains all afternoon."
+    # rev 2 (2026-08-26): the RU/UK prompts always said «весь день»/«цілий день» while
+    # prompt_en and the answer said Nachmittag — a learner's correct "den ganzen Tag"
+    # was rejected on carrier material outside the graded pair. The majority meaning
+    # (all day) wins; the time phrase never carried the focus.
+    prompt_en: "On Tuesday it rains all day."
     prompt_ru: "Во вторник дождь идёт весь день."
     prompt_uk: "У вівторок дощ іде цілий день."
-    answer: "Am Dienstag regnet es den ganzen Nachmittag."
+    answer: "Am Dienstag regnet es den ganzen Tag."
     accept:
-      - "Es regnet am Dienstag den ganzen Nachmittag."
+      - "Es regnet am Dienstag den ganzen Tag."
     explain:
       en: "The time phrase is in first place, so the verb takes second and the subject follows it: *Am Dienstag regnet es*. Dropping *es* leaves a verb with nothing to agree with, and ❌ *Am Dienstag regnet* is not a shorter sentence but an incomplete one. Putting the rain in the slot instead — ❌ *Am Dienstag regnet der Regen* — is not German either."
       ru: "Обстоятельство времени на первом месте, поэтому глагол занимает второе, а подлежащее идёт за ним: *Am Dienstag regnet es*. Если опустить *es*, глаголу не с чем согласовываться, и ❌ *Am Dienstag regnet* — не более короткое предложение, а неполное. Поставить в это место сам дождь — ❌ *Am Dienstag regnet der Regen* — тоже не по-немецки: русское «дождь идёт» имеет настоящее подлежащее, немецкое предложение о дожде не имеет его вовсе."

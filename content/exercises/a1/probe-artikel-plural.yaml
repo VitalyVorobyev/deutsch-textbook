@@ -12,11 +12,16 @@ items:
     outcomes: [artikel-plural-verwenden]
     type: translate
     focus: plural-artikel
+    revision: 2
     instruction: {en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою."}
     prompt_en: "The windows are open."
     prompt_ru: "Окна открыты."
     prompt_uk: "Вікна відкриті."
     answer: "Die Fenster sind offen."
+    accept:
+      # auf = offen in ordinary spoken German (Die Fenster sind auf); the graded
+      # plural article and verb are untouched. Ruled 2026-08-26.
+      - "Die Fenster sind auf."
     key_tokens: ["Die", "Fenster", "sind"]
     explain: {en: "Singular das Fenster, plural die Fenster. Every nominative plural uses die and the plural verb sind.", ru: "В единственном числе das Fenster, во множественном die Fenster. Любое множественное число в именительном падеже берёт die и глагол sind.", uk: "В однині das Fenster, у множині die Fenster. Кожна множина в називному відмінку бере die й дієслово sind."}
   - id: variant-b
