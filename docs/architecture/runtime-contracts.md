@@ -21,7 +21,9 @@ authoring rules. Historical failures and extended rationale are
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
 | Durable write path (journal, replay, retry deadline) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md)) | write-journal and store-visibility-retry tests |
-| Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard |
+| Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard, syncdir-shrink tests |
+| Desktop exit flush | `src-tauri/src/main.rs`, `src/lib/autosync.ts` (`initExitFlush`/`flushForExit`) | `cargo check`; manual Cmd+Q smoke (needs a webview) |
+| Session-probe caching | `src/lib/sync-remote.ts` (`classifySessionResponse`) | sync-remote session-probe tests |
 
 ## Non-negotiable invariants
 
@@ -43,6 +45,15 @@ authoring rules. Historical failures and extended rationale are
 - A stalled or implausibly empty progress read renders an explicit error state — never a
   fresh-profile view, and never feeds `planReview`. "Implausibly empty" means empty against the
   profile's one-way `da:seen-data` marker.
+- **No snapshot writer ever shrinks an existing snapshot file.** All three hold it the same way —
+  `progress:pull` refuses and parks, the dev middleware answers 409 `would-shrink`, and the
+  desktop writer (`writeSnapshotToSyncDir`) parks a sibling `<date>.conflict-<stamp>.json`. Fewer
+  attempts than the existing file means a staler state (a second container, a stalled read), and
+  an unparseable existing file is parked around, never overwritten.
+- **The session probe caches only definitive answers.** A parseable 2xx and a 401/404 are facts
+  about the account and may be memoized; everything else (5xx, gateway pages, non-JSON 2xx) is a
+  fact about the moment, is never cached, and surfaces from `syncNow` as `error /
+  session-probe` — never as `off / signed-out` (`classifySessionResponse`, the #143 class).
 - No input is sized, capped or captioned from the answer it is waiting for. A cloze gap was
   drawn at `answers[0].length + 2`, so `Es gibt hier ___ Supermarkt.` fitted only *einen* of
   *einen / eine / ein* and the item scored a width judgement as accusative mastery. Every gap
