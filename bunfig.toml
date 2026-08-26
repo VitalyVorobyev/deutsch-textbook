@@ -2,3 +2,10 @@
 # happy-dom's globals must exist before React is imported, so registration happens
 # in a preload rather than inside a test file (imports are hoisted).
 preload = ["./tests/setup-dom.ts"]
+# The bun test suite is tests/ and nothing else. Without this, a bare `bun test`
+# also collects apps/tonwerk's *.test.tsx — which run under vitest
+# (`bun run --cwd apps/tonwerk test`) and fail under bun's runner on vitest-only
+# APIs (vi.stubGlobal). That artifact read as a 61-failure baseline locally and
+# broke the v0.5.0 release workflow, whose gate runs `bun test` while ci.yml
+# runs `bun test tests/` — same suite, now by construction.
+root = "tests"
