@@ -1,7 +1,7 @@
 {
   "name": "deutsch-atlas",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "//workspaces": "The learner app is the root package and stays there: Astro requires its content collections to live under the project root, and content/ is shared with the editorial app, so it belongs at the repo root and the app has to meet it. Moving the app to apps/lernen and pointing `root` back at the repo was tried on 2026-08-14 — collections resolved, then the build failed in \"Rearranging server assets\" on every MDX outside the root that imports a component, and redirecting `root` produced a build with zero pages. apps/* holds the tools that are not the product; packages/* holds what both consume.",
   "workspaces": [
