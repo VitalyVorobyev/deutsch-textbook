@@ -27,9 +27,9 @@ entries:
     # Recognition only: the category word a form, a sign and a police report use. A
     # learner naming what is in front of them says A1 `Auto` or the kind itself.
     cards: recognition
-    en: anything built to carry people or goods along a road, as a rule or a sign counts it
-    ru: всё, что построено для перевозки людей или грузов по дороге, — как это считает правило или знак
-    uk: усе, що збудоване для перевезення людей чи вантажів дорогою, — як це рахує правило або знак
+    en: vehicle
+    ru: транспортное средство
+    uk: транспортний засіб
     example_de: Auf diesem Weg sind Fahrzeuge aller Art verboten.
     example_en: Vehicles of every kind are prohibited on this path.
     example_ru: На этой дороге запрещены любые транспортные средства.
@@ -47,9 +47,9 @@ entries:
     # Recognition only: A1 ships `Auto` ("car", stadt-wege) as the production card for
     # exactly this prompt — this is the same object one register up.
     cards: recognition
-    en: a car, in the abbreviation an official form and a traffic report use
-    ru: легковая машина в сокращении, которым пользуются официальный бланк и сводка о движении
-    uk: легковик у скороченні, яким послуговуються офіційний бланк і зведення про рух
+    en: car
+    ru: легковой автомобиль
+    uk: легковий автомобіль
     example_de: An dem Unfall waren zwei Pkws und ein Bus beteiligt.
     example_en: Two cars and a bus were involved in the accident.
     example_ru: В аварии участвовали две легковые машины и автобус.
@@ -67,9 +67,9 @@ entries:
     # Recognition only: pure officialese — it exists on forms, garage signs and
     # insurance policies, and has no spoken life a learner would need to produce.
     cards: recognition
-    en: any road vehicle with an engine, in the abbreviation German administration writes
-    ru: любое дорожное средство с двигателем — в сокращении, которым пишет немецкая администрация
-    uk: будь-який дорожній засіб із двигуном — у скороченні, яким пише німецька адміністрація
+    en: motor vehicle
+    ru: механическое транспортное средство
+    uk: механічний транспортний засіб
     example_de: Die Kfz-Versicherung muss jedes Jahr neu bezahlt werden.
     example_en: The vehicle insurance has to be paid again every year.
     example_ru: Страховку на транспортное средство нужно оплачивать каждый год.
@@ -87,9 +87,9 @@ entries:
     # Recognition only: A2 ships `Lkw` ("lorry, truck", verkehr-unterwegs-a2) as the
     # production card, and this is the same vehicle written out in full.
     cards: recognition
-    en: the big goods vehicle of the motorway, written out rather than abbreviated
-    ru: большая грузовая машина на автобане, названная полным словом, а не сокращением
-    uk: велика вантажна машина на автобані, названа повним словом, а не скороченням
+    en: lorry, truck
+    ru: грузовик
+    uk: вантажівка
     example_de: Vor der Baustelle stauen sich die Lastwagen.
     example_en: The lorries are backed up in front of the roadworks.
     example_ru: Перед стройплощадкой скопились грузовики.
@@ -107,9 +107,9 @@ entries:
     # Recognition only: the same vehicle as the two entries above, in the most informal
     # of the three names — one referent does not take a third production card.
     cards: recognition
-    en: that same goods vehicle in the short, familiar word a driver uses
-    ru: та же грузовая машина в коротком разговорном слове, каким пользуется водитель
-    uk: та сама вантажна машина в короткому розмовному слові, яким послуговується водій
+    en: lorry, truck
+    ru: грузовик
+    uk: вантажівка
     example_de: Ein alter Laster fuhr langsam den Berg hinauf.
     example_en: An old truck was driving slowly up the hill.
     example_ru: Старый грузовик медленно поднимался в гору.
@@ -124,9 +124,9 @@ entries:
     pos: noun
     gender: n
     plural: "die Motorräder"
-    en: the loud two-wheeled vehicle with an engine that a rider sits astride
-    ru: громкое двухколёсное средство с двигателем, на котором сидят верхом
-    uk: гучний двоколісний засіб із двигуном, на якому сидять верхи
+    en: motorbike
+    ru: мотоцикл
+    uk: мотоцикл
     example_de: Mein Nachbar fährt im Sommer jeden Tag Motorrad.
     example_en: My neighbour rides his motorbike every day in summer.
     example_ru: Летом мой сосед каждый день ездит на мотоцикле.
@@ -141,9 +141,9 @@ entries:
     pos: noun
     gender: n
     plural: "die E-Bikes"
-    en: a bicycle with a small motor that pushes along while you pedal
-    ru: велосипед с небольшим мотором, который подталкивает, пока крутишь педали
-    uk: велосипед із невеликим мотором, що підштовхує, поки крутиш педалі
+    en: e-bike
+    ru: электровелосипед
+    uk: електровелосипед
     example_de: Mit dem E-Bike schaffe ich die Steigung ohne Probleme.
     example_en: I manage the climb without any trouble on the e-bike.
     example_ru: На электровелосипеде я одолеваю подъём без труда.
@@ -158,9 +158,9 @@ entries:
     pos: noun
     gender: f
     plural: "die S-Bahnen"
-    en: the city railway that runs mostly above ground and out into the suburbs
-    ru: городская железная дорога, которая идёт в основном по поверхности и уходит в пригороды
-    uk: міська залізниця, що йде переважно поверхнею і виходить у передмістя
+    en: suburban train
+    ru: городская электричка
+    uk: міська електричка
     example_de: Vom Flughafen fährt alle zehn Minuten eine S-Bahn in die Stadt.
     example_en: There is a suburban train into town from the airport every ten minutes.
     example_ru: От аэропорта в город каждые десять минут идёт городская электричка.
@@ -178,9 +178,9 @@ entries:
     # Recognition only: A2 ships `Bahn` ("train; railway", reisen-urlaub) as the
     # production card, and this is the same idea in the older, fuller word.
     cards: recognition
-    en: the railway as a whole system of rails, trains and timetables, in the older word
-    ru: железная дорога как целая система рельсов, поездов и расписаний — в более старом слове
-    uk: залізниця як ціла система рейок, поїздів і розкладів — у давнішому слові
+    en: railway
+    ru: железная дорога
+    uk: залізниця
     example_de: Sein Großvater hat sein ganzes Leben bei der Eisenbahn gearbeitet.
     example_en: His grandfather worked for the railway all his life.
     example_ru: Его дед всю жизнь проработал на железной дороге.
@@ -195,9 +195,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Fähren"
-    en: the boat that carries cars and people across water on a fixed short route
-    ru: судно, которое возит машины и людей через воду по короткому постоянному маршруту
-    uk: судно, що возить машини й людей через воду коротким постійним маршрутом
+    en: ferry
+    ru: паром
+    uk: пором
     example_de: Nach Rügen kann man auch mit der Fähre fahren.
     example_en: You can also get to Rügen by ferry.
     example_ru: На Рюген можно добраться и на пароме.
@@ -213,9 +213,9 @@ entries:
     pos: noun
     gender: m
     plural: "die Fußgänger"
-    en: a man moving on foot in traffic, as the rules and the signs count him
-    ru: мужчина, который движется в потоке пешком, — как его считают правила и знаки
-    uk: чоловік, який рухається в потоці пішки, — як його рахують правила і знаки
+    en: pedestrian
+    ru: пешеход
+    uk: пішохід
     example_de: An dieser Kreuzung haben Fußgänger immer Vorrang.
     example_en: Pedestrians always have priority at this junction.
     example_ru: На этом перекрёстке пешеход всегда имеет преимущество.
@@ -234,9 +234,9 @@ entries:
     # form — the pair costs three cards rather than four, per the Movierung rule for
     # the B1 completion pass.
     cards: recognition
-    en: a woman moving on foot in traffic, in that same word of the rules
-    ru: женщина, которая движется в потоке пешком, — тем же словом правил
-    uk: жінка, яка рухається в потоці пішки, — тим самим словом правил
+    en: female pedestrian
+    ru: пешеход (женщина)
+    uk: пішохідка
     example_de: Eine Fußgängerin hatte den Unfall beobachtet.
     example_en: A pedestrian had witnessed the accident.
     example_ru: Свидетельницей аварии стала пешеход.
@@ -254,9 +254,9 @@ entries:
     # Recognition only: town-planning and signage register — what a learner says to
     # arrange a meeting is A1 `Zentrum` or the name of the street.
     cards: recognition
-    en: a street in a town centre closed to cars, with shops along both sides
-    ru: улица в центре города, закрытая для машин, с магазинами по обеим сторонам
-    uk: вулиця в центрі міста, закрита для машин, із крамницями з обох боків
+    en: pedestrian zone
+    ru: пешеходная зона
+    uk: пішохідна зона
     example_de: In der Fußgängerzone darf man nur zum Liefern fahren.
     example_en: You may only drive in the pedestrian precinct to make deliveries.
     example_ru: В пешеходной зоне можно ехать только для доставки.
@@ -274,9 +274,9 @@ entries:
     # Recognition only: one of three regional names for the same strip of pavement, and
     # a learner giving directions says `rechts` or names the street.
     cards: recognition
-    en: the raised strip beside a road where people walk and cars may not go
-    ru: приподнятая полоса вдоль дороги, где ходят люди и куда машинам нельзя
-    uk: піднята смуга вздовж дороги, де ходять люди і куди машинам не можна
+    en: pavement, sidewalk
+    ru: тротуар
+    uk: тротуар
     example_de: Auf dem Gehsteig standen überall Fahrräder.
     example_en: There were bicycles all over the pavement.
     example_ru: На тротуаре повсюду стояли велосипеды.
@@ -291,9 +291,9 @@ entries:
     pos: noun
     gender: m
     plural: "die Radfahrer"
-    en: a man riding a bicycle in traffic, as the rules and the signs count him
-    ru: мужчина, который едет в потоке на велосипеде, — как его считают правила и знаки
-    uk: чоловік, який їде в потоці на велосипеді, — як його рахують правила і знаки
+    en: cyclist
+    ru: велосипедист
+    uk: велосипедист
     example_de: Radfahrer müssen hier den rechten Weg benutzen.
     example_en: Cyclists have to use the right-hand path here.
     example_ru: Велосипедисты должны здесь пользоваться правой дорожкой.
@@ -312,9 +312,9 @@ entries:
     # form — the pair costs three cards rather than four, per the Movierung rule for
     # the B1 completion pass.
     cards: recognition
-    en: a woman riding a bicycle in traffic, in that same word of the rules
-    ru: женщина, которая едет в потоке на велосипеде, — тем же словом правил
-    uk: жінка, яка їде в потоці на велосипеді, — тим самим словом правил
+    en: female cyclist
+    ru: велосипедистка
+    uk: велосипедистка
     example_de: Die Radfahrerin hatte einen Helm auf.
     example_en: The cyclist was wearing a helmet.
     example_ru: Велосипедистка была в шлеме.
@@ -333,9 +333,9 @@ entries:
     # Recognition only: the technical half of a road, met in the Führerschein leaflet
     # and on a warning sign. A learner names A1 `Straße`.
     cards: recognition
-    en: the part of a road that vehicles run on, as against the strip beside it for walkers
-    ru: та часть дороги, по которой едут машины, — в отличие от полосы для пешеходов рядом
-    uk: та частина дороги, якою їдуть машини, — на відміну від смуги для пішоходів поряд
+    en: carriageway, roadway
+    ru: проезжая часть
+    uk: проїзна частина
     example_de: Bei Regen ist die Fahrbahn hier sehr glatt.
     example_en: The carriageway is very slippery here when it rains.
     example_ru: В дождь проезжая часть здесь очень скользкая.
@@ -354,9 +354,9 @@ entries:
     # of a road and a trace left behind — the `unheimlich`/`intensiv` ruling from
     # eigenschaften-bewertung-b1.
     cards: recognition
-    en: one of the marked strips a line of cars keeps to; also a mark left behind by something
-    ru: одна из размеченных полос, которой держится ряд машин; а также след, оставленный чем-то
-    uk: одна з розмічених смуг, якої тримається ряд машин; а також слід, залишений чимось
+    en: lane, trace
+    ru: полоса, след
+    uk: смуга, слід
     example_de: Auf der Autobahn müssen Sie jetzt die Spur wechseln.
     example_en: You have to change lane on the motorway now.
     example_ru: На автобане вам сейчас нужно перестроиться в другой ряд.
@@ -371,9 +371,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Kurven"
-    en: the place where a road stops running straight and swings to one side
-    ru: место, где дорога перестаёт идти прямо и уходит вбок
-    uk: місце, де дорога перестає йти прямо і повертає вбік
+    en: bend, curve
+    ru: поворот, изгиб
+    uk: поворот, вигин
     example_de: Fahr bitte langsamer, hinter der Kurve kommt eine Schule.
     example_en: Please drive more slowly, there is a school after the bend.
     example_ru: Пожалуйста, сбавь скорость, за поворотом школа.
@@ -391,10 +391,9 @@ entries:
     # Recognition only: A1 ships `Weg` ("way; path", stadt-wege) as the production card
     # in this field, and a prompt about a route cannot be kept clear of it.
     cards: recognition
-    en: the run between two points on a journey — how far it is, and the road or line it follows
-    en_compact: the run between two points on a journey
-    ru: отрезок между двумя точками поездки — и его протяжённость, и сама дорога или линия
-    uk: відрізок між двома точками поїздки — і його протяжність, і сама дорога чи лінія
+    en: route, distance
+    ru: маршрут, расстояние
+    uk: маршрут, відстань
     example_de: Die Strecke von Köln nach Bonn dauert etwa dreißig Minuten.
     example_en: The run from Cologne to Bonn takes about thirty minutes.
     example_ru: Дорога из Кёльна в Бонн занимает около тридцати минут.
@@ -412,9 +411,9 @@ entries:
     # Recognition only: sign register — a learner in the passenger seat says
     # `Da darf man nicht rein` rather than naming the category.
     cards: recognition
-    en: a street on which traffic may only move in one direction
-    ru: улица, по которой движение разрешено только в одну сторону
-    uk: вулиця, якою рух дозволено лише в один бік
+    en: one-way street
+    ru: улица с односторонним движением
+    uk: вулиця з одностороннім рухом
     example_de: Das ist eine Einbahnstraße, wir müssen außen herum.
     example_en: That is a one-way street, we have to go round the outside.
     example_ru: Это улица с односторонним движением, придётся объехать.
@@ -429,10 +428,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Ausfahrten"
-    en: the way out for vehicles — the slip road off a motorway, or the gate out of a yard
-    en_compact: the way out for vehicles
-    ru: выезд для машин — съезд с автобана или ворота со двора
-    uk: виїзд для машин — з’їзд з автобана або ворота з подвір’я
+    en: exit, way out
+    ru: выезд, съезд
+    uk: виїзд, з’їзд
     example_de: Nimm bitte die nächste Ausfahrt und dann rechts.
     example_en: Take the next exit please, and then right.
     example_ru: Пожалуйста, съезжай на ближайшем съезде, а потом направо.
@@ -450,9 +448,9 @@ entries:
     # Recognition only: it is above all a sign, and the sentence a learner produces
     # about it is the one on the sign itself, `Einfahrt freihalten`, as a chunk.
     cards: recognition
-    en: the way in for vehicles, and the sign that orders you to leave it clear
-    ru: въезд для машин и табличка, требующая его не загораживать
-    uk: в’їзд для машин і табличка, що вимагає його не загороджувати
+    en: entrance, way in
+    ru: въезд
+    uk: в’їзд
     example_de: Parken Sie bitte nicht vor der Einfahrt.
     example_en: Please do not park in front of the entrance.
     example_ru: Пожалуйста, не паркуйтесь перед въездом.
@@ -470,9 +468,9 @@ entries:
     # Recognition only: A2 ships `Schild` ("sign (road sign, notice)",
     # verkehr-unterwegs-a2) as the production card for the object at the roadside.
     cards: recognition
-    en: one of the metal plates at the roadside that tell a driver what is allowed
-    ru: одна из металлических табличек у дороги, которые говорят водителю, что можно
-    uk: одна з металевих табличок біля дороги, що кажуть водієві, що можна
+    en: road sign
+    ru: дорожный знак
+    uk: дорожній знак
     example_de: Dieses Verkehrszeichen bedeutet, dass hier Kinder spielen.
     example_en: This road sign means that children play here.
     example_ru: Этот дорожный знак означает, что здесь играют дети.
@@ -490,9 +488,9 @@ entries:
     # Recognition only: officialese of the first order — twenty-seven letters that a
     # driver replaces with `Tempo 50` or the number on the sign.
     cards: recognition
-    en: the upper limit on how fast traffic may go along a stretch of road
-    ru: верхний предел того, насколько быстро можно ехать на участке дороги
-    uk: верхня межа того, наскільки швидко можна їхати на ділянці дороги
+    en: speed limit
+    ru: ограничение скорости
+    uk: обмеження швидкості
     example_de: Auf dieser Strecke gilt eine Geschwindigkeitsbeschränkung von 80.
     example_en: A speed limit of 80 applies on this stretch.
     example_ru: На этом участке действует ограничение скорости 80.
@@ -511,9 +509,9 @@ entries:
     # rate at which something moves, and, in Germany, a paper handkerchief — the
     # `unheimlich`/`intensiv` ruling from eigenschaften-bewertung-b1.
     cards: recognition
-    en: the rate at which something moves or gets done; also, in Germany, a paper tissue
-    ru: темп, с которым что-то движется или делается; а в Германии ещё и бумажный платок
-    uk: темп, з яким щось рухається або робиться; а в Німеччині ще й паперова хустинка
+    en: pace, speed
+    ru: темп, скорость
+    uk: темп, швидкість
     example_de: Auf dieser Straße gilt Tempo 30.
     example_en: A thirty limit applies on this street.
     example_ru: На этой улице действует ограничение 30.
@@ -528,9 +526,9 @@ entries:
     pos: noun
     gender: f
     plural: "—"
-    en: the right to drive on first where two roads meet
-    ru: право проехать первым там, где сходятся две дороги
-    uk: право проїхати першим там, де сходяться дві дороги
+    en: right of way
+    ru: преимущество проезда
+    uk: перевага проїзду
     example_de: An dieser Kreuzung hat der Verkehr von rechts Vorfahrt.
     example_en: Traffic from the right has priority at this junction.
     example_ru: На этом перекрёстке преимущество у транспорта справа.
@@ -547,9 +545,9 @@ entries:
     praesens_3sg: biegt ab
     partizip2: abgebogen
     aux: sein
-    en: to leave the road you are on by turning into another one
-    ru: сворачивать с дороги, по которой едешь, на другую
-    uk: звертати з дороги, якою їдеш, на іншу
+    en: to turn off
+    ru: сворачивать
+    uk: звертати
     example_de: An der Ampel müssen Sie links abbiegen.
     example_en: You have to turn left at the traffic light.
     example_ru: На светофоре вам нужно повернуть налево.
@@ -566,9 +564,9 @@ entries:
     partizip2: überholt
     aux: haben
     valence: "+ Akk"
-    en: to pass a slower vehicle and carry on ahead of it
-    ru: обгонять более медленную машину и уходить вперёд
-    uk: обганяти повільнішу машину й іти вперед
+    en: to overtake
+    ru: обгонять
+    uk: обганяти
     example_de: Auf dieser Strecke darf man nicht überholen.
     example_en: Overtaking is not allowed on this stretch.
     example_ru: На этом участке обгон запрещён.
@@ -585,9 +583,9 @@ entries:
     partizip2: überquert
     aux: haben
     valence: "+ Akk"
-    en: to go across a street or a square from one side to the other
-    ru: пересекать улицу или площадь с одной стороны на другую
-    uk: перетинати вулицю чи площу з одного боку на інший
+    en: to cross
+    ru: пересекать
+    uk: перетинати
     example_de: Überqueren Sie die Straße bitte an der Ampel.
     example_en: Please cross the road at the traffic light.
     example_ru: Пожалуйста, переходите улицу на светофоре.
@@ -608,9 +606,9 @@ entries:
     # over, and to go past a stop or a red light by mistake — the `unheimlich` ruling
     # from eigenschaften-bewertung-b1.
     cards: recognition
-    en: to hit somebody or something with a vehicle and drive over them; also to go past a stop or a light by mistake
-    ru: сбить кого-то или что-то машиной и проехать по нему; а также по ошибке проехать остановку или знак
-    uk: збити когось або щось машиною і проїхати по ньому; а також помилково проїхати зупинку чи знак
+    en: to run over
+    ru: сбить, переехать
+    uk: збити, переїхати
     example_de: Er hat vor Schreck fast eine rote Ampel überfahren.
     example_en: He nearly went through a red light out of shock.
     example_ru: От испуга он чуть не проехал на красный.
@@ -630,9 +628,9 @@ entries:
     # Recognition only: two unrelated senses one prompt cannot name — approaching from
     # the other direction, and meeting somebody halfway in a disagreement.
     cards: recognition
-    en: to move towards somebody from the opposite direction; also to meet somebody halfway
-    ru: двигаться навстречу кому-то с противоположной стороны; а также идти навстречу в споре
-    uk: рухатися назустріч комусь із протилежного боку; а також іти назустріч у суперечці
+    en: to come towards
+    ru: двигаться навстречу
+    uk: рухатися назустріч
     example_de: Ein Lkw kam uns auf der schmalen Straße entgegen.
     example_en: A lorry came towards us on the narrow road.
     example_ru: По узкой дороге нам навстречу ехал грузовик.
@@ -648,9 +646,9 @@ entries:
     praesens_3sg: bremst
     partizip2: gebremst
     aux: haben
-    en: to slow a vehicle down or bring it to a stop
-    ru: сбавлять ход машины или останавливать её
-    uk: сповільнювати хід машини або зупиняти її
+    en: to brake, to slow down
+    ru: тормозить, сбавлять ход
+    uk: гальмувати, сповільнювати хід
     example_de: Er musste plötzlich stark bremsen.
     example_en: He had to brake hard all of a sudden.
     example_ru: Ему пришлось резко затормозить.
@@ -668,9 +666,9 @@ entries:
     # Recognition only: the deck sells its typed card in this pair to the verb above,
     # and the noun carries a second, unrelated sense as an insect.
     cards: recognition
-    en: the part a driver presses to slow the vehicle; also a large biting fly
-    ru: узел, на который водитель нажимает, чтобы сбавить ход; а также крупная кусачая муха
-    uk: вузол, на який водій натискає, щоб сповільнити хід; а також велика кусюча муха
+    en: brake
+    ru: тормоз
+    uk: гальмо
     example_de: In der Werkstatt haben sie die Bremsen erneuert.
     example_en: They replaced the brakes at the garage.
     example_ru: В мастерской заменили тормоза.
@@ -690,9 +688,9 @@ entries:
     # switching a device — and A2 `anmachen`/`ausmachen` (verben-handlungen-a2-1) own
     # the switching one as production cards.
     cards: recognition
-    en: to move a car into another gear; also to set a device or a light to another state
-    ru: переводить машину на другую передачу; а также переключать прибор или свет в иное состояние
-    uk: переводити машину на іншу передачу; а також перемикати прилад чи світло в інший стан
+    en: to change gear, to switch
+    ru: переключать
+    uk: перемикати
     example_de: Vor der Kurve müssen Sie in den zweiten Gang schalten.
     example_en: You have to change into second gear before the bend.
     example_ru: Перед поворотом нужно перейти на вторую передачу.
@@ -709,9 +707,9 @@ entries:
     partizip2: angeschnallt
     aux: haben
     valence: "+ Akk / sich"
-    en: to fasten the belt across yourself or a child before setting off
-    ru: пристёгивать ремень на себе или на ребёнке перед тем, как тронуться
-    uk: пристібати пас на собі або на дитині перед тим, як рушити
+    en: to buckle up
+    ru: пристёгивать ремень
+    uk: пристібати пасок
     example_de: Bitte schnallen Sie sich an, wir fahren gleich los.
     example_en: Please fasten your seat belt, we are setting off in a moment.
     example_ru: Пожалуйста, пристегнитесь, мы сейчас поедем.
@@ -730,9 +728,9 @@ entries:
     # Recognition only: heard far more often than said, and German traffic law allows
     # it only as a warning — a learner describing the scene says `Er war laut`.
     cards: recognition
-    en: to make a vehicle's horn sound
-    ru: подавать звуковой сигнал машины
-    uk: подавати звуковий сигнал машини
+    en: to honk
+    ru: сигналить
+    uk: сигналити
     example_de: Der Fahrer hinter uns hat zweimal gehupt.
     example_en: The driver behind us hooted twice.
     example_ru: Водитель позади нас дважды посигналил.
@@ -749,9 +747,9 @@ entries:
     praesens_3sg: tankt
     partizip2: getankt
     aux: haben
-    en: to fill a vehicle's tank with fuel before driving on
-    ru: заправлять бак машины топливом, прежде чем ехать дальше
-    uk: заправляти бак машини пальним, перш ніж їхати далі
+    en: to fill up
+    ru: заправляться
+    uk: заправлятися
     example_de: Wir müssen noch tanken, bevor wir auf die Autobahn fahren.
     example_en: We still have to fill up before we get on the motorway.
     example_ru: Нам нужно ещё заправиться, прежде чем выехать на автобан.
@@ -766,9 +764,9 @@ entries:
     pos: noun
     gender: f
     plural: "die Tankstellen"
-    en: the place beside a road where you stop to fill up and pay
-    ru: место у дороги, где останавливаются, чтобы заправиться и заплатить
-    uk: місце біля дороги, де зупиняються, щоб заправитися і заплатити
+    en: petrol station
+    ru: заправка
+    uk: заправка
     example_de: Die nächste Tankstelle ist erst in zwanzig Kilometern.
     example_en: The next petrol station is not for another twenty kilometres.
     example_ru: Ближайшая заправка только через двадцать километров.
@@ -783,9 +781,9 @@ entries:
     pos: noun
     gender: n
     plural: "—"
-    en: the fuel a petrol engine burns, sold by the litre at the pump
-    ru: топливо, на котором работает бензиновый двигатель, продаваемое литрами у колонки
-    uk: пальне, на якому працює бензиновий двигун, продаване літрами біля колонки
+    en: petrol
+    ru: бензин
+    uk: бензин
     example_de: Das Benzin ist in diesem Monat wieder teurer geworden.
     example_en: Petrol has gone up in price again this month.
     example_ru: В этом месяце бензин снова подорожал.
@@ -803,9 +801,9 @@ entries:
     # Recognition only: two unrelated senses one prompt cannot name — a number plate
     # and a distinguishing feature — and the plate itself is form vocabulary.
     cards: recognition
-    en: the plate of letters and numbers a car is registered under; also any feature that identifies something
-    ru: табличка из букв и цифр, под которой зарегистрирована машина; а также любой отличительный признак
-    uk: табличка з літер і цифр, під якою зареєстровано машину; а також будь-яка відмітна ознака
+    en: number plate
+    ru: номерной знак
+    uk: номерний знак
     example_de: Können Sie sich an das Kennzeichen des Wagens erinnern?
     example_en: Can you remember the car's registration number?
     example_ru: Вы можете вспомнить номер машины?
@@ -820,9 +818,9 @@ entries:
     pos: noun
     gender: m
     plural: "die Strafzettel"
-    en: the slip of paper a driver finds under the wiper after parking where they should not
-    ru: бумажка, которую водитель находит под дворником, припарковавшись там, где нельзя
-    uk: папірець, який водій знаходить під двірником, припаркувавшись там, де не можна
+    en: parking ticket
+    ru: штрафная квитанция
+    uk: штрафна квитанція
     example_de: Ich habe schon wieder einen Strafzettel bekommen.
     example_en: I have got another parking ticket.
     example_ru: Я снова получил штрафную квитанцию.
@@ -840,9 +838,9 @@ entries:
     # Recognition only: the deck sells its typed card in this pair to the verb below,
     # and the noun is freight-and-logistics register a learner reads rather than says.
     cards: recognition
-    en: the moving of goods over a distance, as a business or a bill of costs names it
-    ru: перевозка грузов на расстояние — так, как это называет фирма или счёт расходов
-    uk: перевезення вантажів на відстань — так, як це називає фірма чи рахунок витрат
+    en: transport, haulage
+    ru: перевозка
+    uk: перевезення
     example_de: Der Transport der Möbel kostet zweihundert Euro extra.
     example_en: Transporting the furniture costs two hundred euros extra.
     example_ru: Перевозка мебели стоит двести евро сверху.
@@ -859,9 +857,9 @@ entries:
     partizip2: transportiert
     aux: haben
     valence: "+ Akk"
-    en: to carry goods or people from one place to another, usually by vehicle
-    ru: перевозить грузы или людей из одного места в другое, обычно транспортом
-    uk: перевозити вантажі або людей з одного місця в інше, зазвичай транспортом
+    en: to transport
+    ru: перевозить
+    uk: перевозити
     example_de: Mit diesem Wagen können wir alles auf einmal transportieren.
     example_en: We can carry everything in one go with this van.
     example_ru: На этой машине мы можем перевезти всё за один раз.
@@ -879,10 +877,9 @@ entries:
     gender: m
     plural: "die Personenkraftwagen"
     cards: recognition
-    en: passenger motor vehicle (the legal full form of Pkw)
-    en_compact: passenger motor vehicle
-    ru: легковой автомобиль (официальная полная форма Pkw)
-    uk: легковий автомобіль (офіційна повна форма Pkw)
+    en: passenger car
+    ru: легковой автомобиль
+    uk: легковий автомобіль
     example_de: Im Vertrag steht die Fahrzeugart Personenkraftwagen.
     example_en: The vehicle type in the contract is listed as passenger motor vehicle.
     example_ru: В договоре тип транспортного средства указан как легковой автомобиль.
@@ -898,10 +895,9 @@ entries:
     gender: n
     plural: "die Kraftfahrzeuge"
     cards: recognition
-    en: motor vehicle (the legal full form of Kfz)
-    en_compact: motor vehicle
-    ru: механическое транспортное средство (официальная полная форма Kfz)
-    uk: механічний транспортний засіб (офіційна повна форма Kfz)
+    en: motor vehicle
+    ru: механическое транспортное средство
+    uk: механічний транспортний засіб
     example_de: Das Schild gilt für alle Kraftfahrzeuge.
     example_en: The sign applies to all motor vehicles.
     example_ru: Знак действует для всех механических транспортных средств.
@@ -917,10 +913,9 @@ entries:
     gender: m
     plural: "die Lastkraftwagen"
     cards: recognition
-    en: goods vehicle, lorry (the legal full form of Lkw)
-    en_compact: goods vehicle, lorry
-    ru: грузовой автомобиль (официальная полная форма Lkw)
-    uk: вантажний автомобіль (офіційна повна форма Lkw)
+    en: goods vehicle, lorry
+    ru: грузовой автомобиль
+    uk: вантажний автомобіль
     example_de: Lastkraftwagen über 7,5 Tonnen dürfen hier nicht fahren.
     example_en: Goods vehicles over 7.5 tonnes may not drive here.
     example_ru: Грузовым автомобилям тяжелее 7,5 тонны здесь проезд запрещён.
