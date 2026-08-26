@@ -329,4 +329,50 @@ describe('syncNow', () => {
     localStorage.setItem('da:profile', 'jemand-anders');
     expect(await syncNow()).toEqual({ state: 'off', reason: 'unbound' });
   });
+
+  test('a 5xx on the session probe reports an error, is never cached as signed-out, and the next sync recovers', async () => {
+    // The #143 class: a transient server failure on /api/auth/session used to be
+    // memoized as SIGNED_OUT for the whole page view — and a desktop "page view"
+    // lasts as long as the app is open, so a whole session silently never synced.
+    local.attempts = [attempt('a', 1)];
+    const healthy = globalThis.fetch;
+    globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      const path =
+        typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+      if (path.includes('/api/auth/session')) {
+        return new Response('<html>bad gateway</html>', { status: 502 });
+      }
+      return healthy(input as RequestInfo, init);
+    }) as typeof fetch;
+
+    const during = await syncNow();
+    expect(during).toEqual({ state: 'error', reason: 'session-probe' });
+
+    globalThis.fetch = healthy;
+    // No forgetSession(), no reload — the failure must not have been cached.
+    expect(await syncNow()).toMatchObject({ state: 'ok', pushed: true });
+    expect(ids(await remoteSnapshot())).toEqual(['a']);
+  });
+});
+
+describe('classifySessionResponse', () => {
+  test('definitive answers: parseable 2xx is a session, 401/404 are signed out', async () => {
+    const { classifySessionResponse } = await import('../src/lib/sync-remote');
+    expect(classifySessionResponse(200, { signedIn: true, providers: [] })).toBe('session');
+    expect(classifySessionResponse(200, { signedIn: false, providers: [] })).toBe('session');
+    expect(classifySessionResponse(401, null)).toBe('signed-out');
+    // Astro's dev 404: no Worker here means no session — the deliberate
+    // no-environment-flag design.
+    expect(classifySessionResponse(404, null)).toBe('signed-out');
+  });
+
+  test('everything else is transient and must never be cached', async () => {
+    const { classifySessionResponse } = await import('../src/lib/sync-remote');
+    expect(classifySessionResponse(500, null)).toBe('transient');
+    expect(classifySessionResponse(502, null)).toBe('transient');
+    expect(classifySessionResponse(403, null)).toBe('transient');
+    // A 2xx that is not the session JSON is a misrouted origin, not an account fact.
+    expect(classifySessionResponse(200, null)).toBe('transient');
+    expect(classifySessionResponse(200, { hello: 'world' })).toBe('transient');
+  });
 });

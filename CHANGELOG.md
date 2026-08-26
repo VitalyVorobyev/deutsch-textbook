@@ -7,6 +7,33 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [0.5.0] — 2026-08-26
+
+**A desktop app that can no longer lose a session silently — and everything shipped since 0.4.0:
+the full B1 catalog, the closed lexical/structural/thematic denominators, cloud accounts and sync,
+the exam trainer, Redaktion, Tonwerk and the published listening corpus.**
+
+This is the first tagged release since 0.4.0 (2026-07-19); the learner had been running
+working-tree builds in between. Highlights of this tag's own changes:
+
+### Fixed
+
+- **Progress writes are durable (ADR 0016).** The desktop app could lose a whole session's
+  answers to a silent WKWebView IndexedDB stall (the daily backup for 2026-08-19 simply does not
+  exist). Every card grade and attempt is now journaled synchronously before the database write,
+  retried on a timer with a hard deadline, replayed on the next launch when it never settled, and
+  loud in the UI once it is late. A stalled or implausibly empty read renders an explicit error
+  instead of a fresh-looking "no progress" view.
+- **A transient server failure can no longer silently stop cloud sync.** The session probe used
+  to cache any non-2xx as "signed out" for the lifetime of the app window (#143's four-hour
+  outage was this class); a 5xx now reports a sync error and is never cached.
+- **Quitting the app flushes the session.** The shell intercepts window close and Cmd+Q once,
+  gives the frontend a bounded window to write the local snapshot and push to the cloud, then
+  closes — `pagehide` never reliably fired in the webview.
+- **The desktop snapshot writer can no longer shrink a daily backup.** An incoming snapshot with
+  fewer attempts than the existing file is parked as a sibling `.conflict-*.json` instead of
+  overwriting it — the same invariant `progress:pull` and the dev middleware already held.
+
 ## [0.4.0] — 2026-07-19
 
 **A course that now speaks to Ukrainian learners, teaches the complete A2 grammar standard, and

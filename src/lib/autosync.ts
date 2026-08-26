@@ -105,6 +105,62 @@ export function flushRemoteSync(): Promise<void> {
   return runRemoteSync(true);
 }
 
+// ---------------------------------------------------------------------------
+// Desktop exit flush
+// ---------------------------------------------------------------------------
+
+let exitFlushArmed = false;
+
+/**
+ * Arm the desktop exit flush. `pagehide` does not reliably fire when a Tauri
+ * window is closed or the app is quit with Cmd+Q, so the Rust shell intercepts
+ * the close (src-tauri/src/main.rs), emits `da:close-requested`, and waits —
+ * bounded by its own 2 s fallback — for the frontend to flush and answer with
+ * the `flush_complete` command. Called once per page load (PersistenceAlert's
+ * mount); a no-op outside Tauri.
+ */
+export function initExitFlush(): void {
+  if (exitFlushArmed || typeof window === 'undefined' || !isTauri()) return;
+  exitFlushArmed = true;
+  void (async () => {
+    const { listen } = await import('@tauri-apps/api/event');
+    await listen('da:close-requested', () => {
+      void flushForExit();
+    });
+  })();
+}
+
+/**
+ * The bounded exit flush: the LOCAL snapshot file is the must-land write (same
+ * machine, milliseconds); the remote push is best-effort inside a 1200 ms
+ * window — the Rust fallback destroys the window at 2 s regardless, so the
+ * budget must leave room to answer. Always answers `flush_complete`, even when
+ * a flush step threw: the alternative is a window that refuses to close.
+ */
+async function flushForExit(): Promise<void> {
+  try {
+    window.clearTimeout(timer);
+    timer = undefined;
+    await sync();
+    window.clearTimeout(remoteTimer);
+    remoteTimer = undefined;
+    await Promise.race([
+      runRemoteSync(true),
+      new Promise((resolve) => setTimeout(resolve, 1200)),
+    ]);
+  } catch {
+    // flushing is best-effort on the way out; the journal (write-journal.ts)
+    // still holds anything a stalled store never confirmed
+  } finally {
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      await invoke('flush_complete');
+    } catch {
+      // the Rust-side 2 s fallback closes the window anyway
+    }
+  }
+}
+
 function flushPending(): void {
   if (timer !== undefined) {
     window.clearTimeout(timer);

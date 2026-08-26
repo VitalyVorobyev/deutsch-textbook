@@ -17,6 +17,7 @@
  * are LATE, not for writes in flight.
  */
 import { useCallback, useEffect, useState } from 'react';
+import { initExitFlush } from '../lib/autosync';
 import { resolveProfileState } from '../lib/profile';
 import {
   JOURNAL_EVENT,
@@ -49,6 +50,9 @@ export default function PersistenceAlert() {
   // Launch replay: only once the profile gate has resolved 'ready' — before that
   // there is no store to replay into (getStore parks on 'first-run').
   useEffect(() => {
+    // Desktop exit flush: armed from here because this island is on every page
+    // (Base.astro), so the listener exists before the first close can happen.
+    initExitFlush();
     let cancelled = false;
     void resolveProfileState().then((state) => {
       if (cancelled || state !== 'ready') return;

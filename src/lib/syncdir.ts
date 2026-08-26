@@ -37,19 +37,74 @@ export async function pickSyncDir(): Promise<string | null> {
   return dir;
 }
 
-/** Write a snapshot into the sync folder; returns the file path written. */
+/**
+ * Would writing `incomingRaw` over `existingRaw` lose attempts?
+ *
+ * The same rule as the dev writer (src/integrations/progress-writer.ts) and
+ * `progress:pull`: attempts only ever grow, so an incoming snapshot with fewer
+ * of them is not "today's state" — it is a different, staler state (a second
+ * container, a stalled read exporting an empty store) about to flatten a real
+ * day of work. An existing file that does not parse is treated the same way:
+ * park rather than overwrite, investigate rather than delete.
+ */
+export function snapshotWouldShrink(existingRaw: string, incomingRaw: string): boolean {
+  let had: number;
+  try {
+    const prior = JSON.parse(existingRaw) as { attempts?: unknown[] };
+    had = Array.isArray(prior.attempts) ? prior.attempts.length : 0;
+  } catch {
+    return true;
+  }
+  let now = 0;
+  try {
+    const next = JSON.parse(incomingRaw) as { attempts?: unknown[] };
+    now = Array.isArray(next.attempts) ? next.attempts.length : 0;
+  } catch {
+    return true;
+  }
+  return now < had;
+}
+
+export interface SyncDirWrite {
+  path: string;
+  /** true when the write was parked in a sibling conflict file instead of the daily name. */
+  parked: boolean;
+}
+
+/**
+ * Write a snapshot into the sync folder; returns the file path written.
+ *
+ * **Never shrinks the daily file.** All three snapshot writers hold this
+ * invariant (`progress:pull` refuses and parks; the dev middleware answers 409
+ * `would-shrink`); this one used to be the exception, and it is the one the
+ * desktop app relies on — a stale second WKWebView container writing through
+ * here could silently flatten the day's backup. On a would-shrink the incoming
+ * state is parked beside the daily file as `<date>.conflict-<stamp>.json`.
+ */
 export async function writeSnapshotToSyncDir(
   profileId: string,
   body: string,
   date: string,
-): Promise<string> {
-  const [{ mkdir, writeTextFile }, { join }] = await Promise.all([
+): Promise<SyncDirWrite> {
+  const [{ exists, mkdir, readTextFile, writeTextFile }, { join }] = await Promise.all([
     import('@tauri-apps/plugin-fs'),
     import('@tauri-apps/api/path'),
   ]);
   const folder = await join(await getSyncDir(), profileId);
   await mkdir(folder, { recursive: true });
   const path = await join(folder, `${date}.json`);
+  if (await exists(path)) {
+    const existing = await readTextFile(path).catch(() => null);
+    if (existing !== null && snapshotWouldShrink(existing, body)) {
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const parked = await join(folder, `${date}.conflict-${stamp}.json`);
+      await writeTextFile(parked, body);
+      console.warn(
+        `[syncdir] ${date}.json holds more attempts than the outgoing snapshot — not shrinking; parked at ${parked}`,
+      );
+      return { path: parked, parked: true };
+    }
+  }
   await writeTextFile(path, body);
-  return path;
+  return { path, parked: false };
 }
