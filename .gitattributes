@@ -1,0 +1,5 @@
+# CI builds on three platforms; the Windows runner checks out with CRLF by default,
+# which changes the bytes the listening files' provenance hashes cover and failed
+# the v0.5.0 Windows release job on "saved generation brief hash does not match
+# provenance". Every text file is LF everywhere, by construction.
+* text=auto eol=lf
