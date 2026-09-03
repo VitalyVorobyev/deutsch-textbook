@@ -21,6 +21,7 @@ authoring rules. Historical failures and extended rationale are
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
 | Durable write path (journal, replay, retry deadline) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md)) | write-journal and store-visibility-retry tests |
+| Recovering read path (timed retries, deadline, stall log) | `src/lib/store.ts` (`withReadRetry`), `src/lib/stall-log.ts` ([ADR 0018](../adrs/0018-progress-reads-recover.md)) | store-read-retry, stall-log and curriculum-path-loading tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard, syncdir-shrink tests |
 | Desktop exit flush | `src-tauri/src/main.rs`, `src/lib/autosync.ts` (`initExitFlush`/`flushForExit`) | `cargo check`; manual Cmd+Q smoke (needs a webview) |
 | Session-probe caching | `src/lib/sync-remote.ts` (`classifySessionResponse`) | sync-remote session-probe tests |
@@ -45,6 +46,18 @@ authoring rules. Historical failures and extended rationale are
 - A stalled or implausibly empty progress read renders an explicit error state — never a
   fresh-profile view, and never feeds `planReview`. "Implausibly empty" means empty against the
   profile's one-way `da:seen-data` marker.
+- **Reads get the same timed retries writes do, and every load surface distinguishes three
+  states**: still reading, read failed, confirmed empty ([ADR 0018](../adrs/0018-progress-reads-recover.md)).
+  Every critical-path read goes through `withReadRetry(op, { surface })` — attempts at 0/2/5 s,
+  `StoreStallError` at 10 s, the stall written to `da:stall-log:<profileId>` with counters only.
+  A read that *rejects* is not retried; only silence is. A surface making a claim about progress
+  renders `ProgressLoadError` with a retry; a badge or counter renders an explicit unknown, never
+  a confident `0`. Two supporting rules: **nothing may sit between `getStore()` and its handle** —
+  the A1 card-id migration used to be awaited there and hung the page from behind a 784 KB read;
+  it now has one owner (`PersistenceAlert`, once per launch) and runs behind
+  `da:cardid-migrated:<profileId>`, set only on success —
+  and **a repair that rewrites a whole blob commits in one `update()`**, never a `get` then a
+  `set`, or it drops the grade written in between.
 - **No snapshot writer ever shrinks an existing snapshot file.** All three hold it the same way —
   `progress:pull` refuses and parks, the dev middleware answers 409 `would-shrink`, and the
   desktop writer (`writeSnapshotToSyncDir`) parks a sibling `<date>.conflict-<stamp>.json`. Fewer

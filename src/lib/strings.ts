@@ -725,6 +725,66 @@ export const STRINGS = {
     ru: 'Повторить',
     uk: 'Повторити',
   },
+  'persist.loadErrorShort': {
+    de: 'Fortschritt nicht geladen.',
+    en: 'Progress not loaded.',
+    ru: 'Прогресс не загружен.',
+    uk: 'Прогрес не завантажено.',
+  },
+  'persist.diagTitle': {
+    de: 'Speicher-Diagnose',
+    en: 'Storage diagnostics',
+    ru: 'Диагностика хранилища',
+    uk: 'Діагностика сховища',
+  },
+  'persist.diagNone': {
+    de: 'Keine verzögerten Lesevorgänge in den letzten 7 Tagen.',
+    en: 'No stalled reads in the last 7 days.',
+    ru: 'За последние 7 дней зависших чтений не было.',
+    uk: 'За останні 7 днів зависань читання не було.',
+  },
+  'persist.diagCount': {
+    de: 'Verzögerte Lesevorgänge (7 Tage)',
+    en: 'Stalled reads (7 days)',
+    ru: 'Зависшие чтения (7 дней)',
+    uk: 'Зависання читання (7 днів)',
+  },
+  'persist.diagLast': {
+    de: 'Zuletzt',
+    en: 'Most recent',
+    ru: 'Последнее',
+    uk: 'Останнє',
+  },
+  'persist.diagRecovered': {
+    de: 'danach doch geladen',
+    en: 'loaded after all',
+    ru: 'позже загрузилось',
+    uk: 'згодом завантажилося',
+  },
+  'persist.diagNeverSettled': {
+    de: 'nie beantwortet',
+    en: 'never answered',
+    ru: 'ответа не было',
+    uk: 'відповіді не було',
+  },
+  'persist.diagBackup': {
+    de: 'Neueste lokale Sicherung',
+    en: 'Newest local backup',
+    ru: 'Последняя локальная резервная копия',
+    uk: 'Найновіша локальна резервна копія',
+  },
+  'persist.diagBackupNone': {
+    de: 'Noch keine Sicherungsdatei gefunden.',
+    en: 'No backup file found yet.',
+    ru: 'Файл резервной копии пока не найден.',
+    uk: 'Файл резервної копії ще не знайдено.',
+  },
+  'persist.diagStaleStore': {
+    de: 'Zweiter Datenspeicher gefunden. Er entsteht, wenn die Programmdatei ohne das App-Paket gestartet wird, und enthält einen eigenen, getrennten Fortschritt. Diese App liest ihn nicht — sie verändert ihn auch nicht.',
+    en: 'A second data store was found. It appears when the binary is launched without its app bundle, and holds its own separate progress. This app does not read it — and does not change it either.',
+    ru: 'Обнаружено второе хранилище данных. Оно появляется при запуске исполняемого файла без пакета приложения и содержит собственный отдельный прогресс. Это приложение его не читает — и не изменяет.',
+    uk: 'Виявлено друге сховище даних. Воно з’являється, коли виконуваний файл запускають без пакета застосунку, і містить власний окремий прогрес. Цей застосунок його не читає — і не змінює.',
+  },
 
   'footer.tagline': {
     de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',

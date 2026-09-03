@@ -5,7 +5,7 @@ import {
   remainingProbeBudget,
   type ProbeFamily,
 } from '../../lib/probes';
-import { getAttempts } from '../../lib/store';
+import { getAttempts, withReadRetry } from '../../lib/store';
 import { withBase } from '../../lib/url';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
@@ -45,12 +45,15 @@ export default function ProbeBacklog({ families }: Props) {
 
   useEffect(() => {
     let cancelled = false;
-    void getAttempts().then((attempts) => {
+    void withReadRetry(() => getAttempts(), { surface: 'heute/probe-backlog' }).then((attempts) => {
       if (cancelled) return;
       setState({
         due: dueProbes(families, attempts).length,
         budget: remainingProbeBudget(families, attempts),
       });
+    }, () => {
+      // Stalled: stay null, which renders nothing. This card is an offer, and an offer
+      // computed from a read that never came back would be a wrong number either way.
     });
     return () => {
       cancelled = true;

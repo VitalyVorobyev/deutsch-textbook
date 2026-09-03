@@ -7,6 +7,41 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [Unreleased]
+
+### Fixed
+
+- **Themen said "Загружаем ваш прогресс…" forever, and Heute said progress could not be
+  loaded, while 824 cards and 3919 attempts sat in the store.** An IndexedDB read in the
+  desktop webview stalled, and the app had no way back from it: reads had a 10 s deadline but
+  — unlike writes since 0.5.0 — no timed retry, so nothing ever tried again; the Lernpfad was
+  the one daily-loop surface with neither a deadline nor a rejection handler, so its loading
+  line was permanent; and `getStore()` awaited a 784 KB card-id migration that had been a
+  no-op for this learner since it ran, putting a deadline-less read in front of the page's
+  first data. Reads now retry at 2 s and 5 s inside the same deadline, every load surface
+  distinguishes *still reading* from *read failed* from *confirmed empty* — with a retry
+  button where it makes a claim about progress, and an explicit unknown rather than a
+  confident `0` where it is only a badge — and the migration has moved out of the store's
+  open path entirely, to one owner that runs it once per profile in a single transaction, so
+  it can no longer sit in front of a page nor drop a grade written beside it. Nothing here claims the stall itself is gone; it claims the app can no longer
+  render one as an absence of progress. → [ADR 0018](docs/adrs/0018-progress-reads-recover.md)
+
+### Added
+
+- **Fortschritt → Daten shows storage diagnostics.** The failure above left no evidence at
+  all: no record of which read stalled, how long it waited, or whether it ever came back, and
+  nothing in the app to say that a 1.7 MB backup written two hours earlier was sitting on
+  disk. Stalled reads are now recorded per profile (surface, wait, attempt count, timestamp —
+  **counters only, never learner content**, and a late arrival is marked as a recovery so
+  "the store unstuck itself" is distinguishable from "the store never answered"), shown
+  beside the newest local backup's date, card and attempt counts, and path.
+- **Three desktop guards**, each against a plausible cause rather than a proven one: a
+  single-instance lock, so a second launch focuses the existing window instead of putting a
+  second process on one WebKit container's SQLite files; devtools enabled in release builds,
+  because the app whose storage can stall is the installed one and it could not be inspected;
+  and a report of the second WebKit container that bundle-less runs of the binary create
+  (named in ADR 0016 and deferred then) — **reported, never read, moved or merged.**
+
 ## [0.5.1] — 2026-08-26
 
 **The flashcards say "heart" again.** Content release so the desktop bundle carries the day's

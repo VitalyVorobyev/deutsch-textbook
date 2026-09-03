@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAttempts, getCardStates, getTopicsState, withReadDeadline } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState, withReadRetry } from '../../lib/store';
 import { hasSeenData } from '../../lib/write-journal';
 import { hasStartedLearning } from '../../lib/placement';
 import { pick } from '../../lib/prefs';
@@ -78,7 +78,10 @@ export default function FirstSteps({ first, placement }: Props) {
     // covers the read that "succeeds" empty — a veteran profile must never be
     // greeted as a beginner by a stalled store.
     if (hasSeenData('cards') || hasSeenData('attempts')) return;
-    void withReadDeadline(Promise.all([getAttempts(), getCardStates(), getTopicsState()])).then(
+    void withReadRetry(
+      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
+      { surface: 'heute/first-steps' },
+    ).then(
       ([attempts, cards, topics]) => {
         // The rule itself lives in `hasStartedLearning` (src/lib/placement.ts), pure and
         // tested: a placement attempt is not evidence of having started learning, and

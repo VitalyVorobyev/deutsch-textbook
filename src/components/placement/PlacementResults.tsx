@@ -11,8 +11,10 @@ import {
   getCardStates,
   getTopicsState,
   setTopicPlacement,
+  withReadRetry,
   type Attempt,
 } from '../../lib/store';
+import ProgressLoadError from '../ProgressLoadError';
 import { levelPathDone, type TopicContext, type TopicNode } from '../../lib/mastery';
 import { barColor } from '../../lib/bars';
 import { pick } from '../../lib/prefs';
@@ -114,13 +116,24 @@ export default function PlacementResults({
   const uiLang = useUiLang();
   const [ctx, setCtx] = useState<TopicContext>({ attempts: [], cards: {}, topics: {} });
   const [busy, setBusy] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   // Returns the promise so `apply` can await it, but keeps the setState inside the `.then`
   // callback — the same shape every other island here uses, and what the effect rule wants.
+  // `ctx` starts empty, and on this surface empty is a claim: the summary would score
+  // every row against no history at all and offer to retire lessons off the back of it.
+  // A stalled read must therefore stop the page, not seed it.
   const reload = useCallback(
     () =>
-      Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
-        ([attempts, cards, topics]) => setCtx({ attempts, cards, topics }),
+      withReadRetry(
+        () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
+        { surface: 'einstufung' },
+      ).then(
+        ([attempts, cards, topics]) => {
+          setLoadError(false);
+          setCtx({ attempts, cards, topics });
+        },
+        () => setLoadError(true),
       ),
     [],
   );
@@ -131,6 +144,8 @@ export default function PlacementResults({
     window.addEventListener(ATTEMPT_EVENT, onAttempt);
     return () => window.removeEventListener(ATTEMPT_EVENT, onAttempt);
   }, [reload]);
+
+  if (loadError) return <ProgressLoadError onRetry={() => { setLoadError(false); void reload(); }} />;
 
   const summary = placementResults(items, ctx.attempts as Attempt[], setId, level, outcomeTopics);
   if (!summary) return null;

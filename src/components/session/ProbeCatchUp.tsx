@@ -5,7 +5,8 @@ import {
   remainingProbeBudget,
   type DueProbe,
 } from '../../lib/probes';
-import { getAttempts } from '../../lib/store';
+import { getAttempts, withReadRetry } from '../../lib/store';
+import ProgressLoadError from '../ProgressLoadError';
 import { withBase } from '../../lib/url';
 import { useExplainLang } from '../hooks';
 import type { TrainingSet } from '../training/MixedTraining';
@@ -34,20 +35,31 @@ export default function ProbeCatchUp({ sets }: { sets: TrainingSet[] }) {
   const families = useMemo(() => probeFamilies(sets), [sets]);
   // null = still reading the attempt log
   const [state, setState] = useState<{ due: DueProbe[]; budget: number } | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const [loadRound, setLoadRound] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
-    void getAttempts().then((attempts) => {
+    void withReadRetry(() => getAttempts(), { surface: 'proben' }).then((attempts) => {
       if (cancelled) return;
+      setLoadError(false);
       setState({
         due: dueProbes(families, attempts),
         budget: remainingProbeBudget(families, attempts),
       });
+    }, () => {
+      // "Keine Rückfragen fällig" from a stalled read is the one answer this page must
+      // never give: the probes stay due and the learner is told they are not.
+      if (!cancelled) setLoadError(true);
     });
     return () => {
       cancelled = true;
     };
-  }, [families]);
+  }, [families, loadRound]);
+
+  if (loadError) {
+    return <ProgressLoadError onRetry={() => { setLoadError(false); setLoadRound((r) => r + 1); }} />;
+  }
 
   if (state === null) {
     return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;

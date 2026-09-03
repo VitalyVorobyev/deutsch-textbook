@@ -4,6 +4,7 @@ import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord 
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
+import { recordRecovery, recordStall } from './stall-log';
 import {
   attemptKey,
   mergeAttempts,
@@ -37,13 +38,59 @@ async function getStore(): Promise<UseStore> {
   if (!s) {
     s = createStore(dbNameFor(id), 'progress');
     stores.set(id, s);
-    const handle = s;
-    await migrateStoredCardIds(
-      () => get<CardStates>('cards', handle),
-      (cards) => set('cards', cards, handle),
-    );
   }
   return s;
+}
+
+/** localStorage marker: this profile's live `cards` blob has already been through
+    the A1 rename. Set only after a SUCCESSFUL pass, so a stalled read simply tries
+    again at the next launch rather than skipping the migration forever. */
+function cardIdMigrationKey(id: string): string {
+  return `da:cardid-migrated:${id}`;
+}
+
+function cardIdMigrationDone(id: string): boolean {
+  try {
+    return localStorage.getItem(cardIdMigrationKey(id)) === '1';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The A1 card-id repair, run against one profile's live blob.
+ *
+ * Never rejects: nothing awaits it, so throwing here would be an unhandled rejection
+ * rather than a signal. A failed or stalled pass leaves the marker unset and is retried
+ * at the next launch — a stall must not be able to skip the repair forever.
+ */
+export async function runCardIdMigration(id: string, handle: UseStore): Promise<void> {
+  if (cardIdMigrationDone(id)) return;
+  try {
+    await migrateStoredCardIds((mutate) => update<CardStates>('cards', mutate, handle));
+    localStorage.setItem(cardIdMigrationKey(id), '1');
+  } catch {
+    // Stalled or unavailable: leave the marker unset and retry next launch. The
+    // migration is a repair, not a write the learner is waiting on.
+  }
+}
+
+/**
+ * Run the repair once for the active profile — the launch-time entry point.
+ *
+ * It has ONE owner (`PersistenceAlert`, the island Base.astro mounts on every page and
+ * which already performs launch-time repair) rather than being triggered by whoever
+ * happens to open the store first. It used to be `await`ed inside `getStore()`, where a
+ * 784 KB `cards` read with no deadline of its own sat between the page's first reader and
+ * its data: under the `Promise.all` every load surface uses, that one leg hanging hung the
+ * whole screen. Firing it from `getStore()` un-awaited fixed the hang and kept the other
+ * half of the problem — an unobserved transaction opened by any code path that touches the
+ * store, racing whatever else that page is reading. One owner, once per launch, after the
+ * profile gate has resolved.
+ */
+export async function runCardIdMigrationOnce(): Promise<void> {
+  const id = getActiveProfileId();
+  await runCardIdMigration(id, await getStore());
 }
 
 /**
@@ -54,22 +101,34 @@ async function getStore(): Promise<UseStore> {
  * deal them as fresh — roughly twelve days of the new-card budget spent on words they already
  * know, while their FSRS history sat stranded under the old keys.
  *
- * Runs once per profile per session, on store open, and only writes when a renamed id is
- * actually present, so after the first upgrade it costs one read and nothing else. Takes its
- * read/write as parameters because the test environment has no IndexedDB — the alternative
- * was leaving the one path that matters covered only by the import path's tests, which is
- * how the gap arose in the first place.
+ * Runs at most once per profile — `runCardIdMigration`'s marker retires it after the first
+ * success — and off the critical path, so no load surface ever waits on it.
  *
- * Returns whether it wrote.
+ * **One transaction, not a `get` then a `set`.** The rename runs inside a single
+ * `update()` read-modify-write, the same primitive `updateCardState` grades through. The
+ * previous get-then-set could drop a grade written in between by any reader that skipped
+ * the migration — and moving the migration off the critical path would have widened exactly
+ * that window.
+ *
+ * Takes the update as a parameter (rather than reaching for the module's memoized handle)
+ * because the test environment has no IndexedDB — the alternative was leaving the one path
+ * that matters covered only by the import path's tests, which is how the gap arose in the
+ * first place.
+ *
+ * Returns whether it renamed anything. It is now `runCardIdMigration`'s marker, not a
+ * write-count guard, that keeps this off the second launch — so the transaction commits once
+ * per profile whether or not there was anything to rename.
  */
 export async function migrateStoredCardIds(
-  read: () => Promise<CardStates | undefined>,
-  write: (cards: CardStates) => Promise<void>,
+  updateCards: (mutate: (cards: CardStates | undefined) => CardStates) => Promise<void>,
 ): Promise<boolean> {
-  const cards = await read();
-  if (!cards || !needsCardIdMigration(cards)) return false;
-  await write(migrateCardIds(cards, mergeCards));
-  return true;
+  let renamed = false;
+  await updateCards((cards) => {
+    if (!cards || !needsCardIdMigration(cards)) return cards ?? {};
+    renamed = true;
+    return migrateCardIds(cards, mergeCards);
+  });
+  return renamed;
 }
 
 // ---------------------------------------------------------------------------
@@ -234,24 +293,102 @@ export function withPersistenceRetry<T>(
   });
 }
 
-/** Give a read a deadline: past `ms` it rejects with `StoreStallError` instead of
-    hanging. Load surfaces use it so a stalled read renders an explicit error state,
-    never an empty (fresh-profile-looking) view. The underlying read keeps running —
-    a retry button simply calls the loader again. */
-export function withReadDeadline<T>(p: Promise<T>, ms = 10000): Promise<T> {
-  if (typeof document === 'undefined') return p;
+/**
+ * Backoff schedule for a critical-path READ: when nothing has settled by each
+ * offset (ms from start), another attempt is fired.
+ *
+ * A read needs no idempotency argument — that is exactly why it should have had
+ * this from the start. ADR 0016 gave writes `withPersistenceRetry` and left reads
+ * with a deadline and `withVisibilityRetry`, whose only trigger is
+ * `visibilitychange`; a stall while the window stays visible therefore had no
+ * automatic recovery at all, and the retry button was the whole mechanism. That
+ * is how a populated store (824 cards, 3919 attempts on disk) rendered as an
+ * error card on Heute and as a permanent loading line on Themen.
+ */
+export const READ_RETRY_SCHEDULE_MS = [2000, 5000];
+
+/** Hard deadline for a critical-path read: past this the caller is told the store
+    is stalled rather than being left to wait. Earlier attempts are never
+    cancelled — one of them may still settle, which `withReadRetry` records. */
+export const READ_DEADLINE_MS = 10000;
+
+/**
+ * Run a store READ with timed retries and a hard deadline.
+ *
+ * Fires `op()`, fires it again at each schedule offset if nothing has settled,
+ * keeps `visibilitychange` as one more trigger, settles with the first attempt to
+ * finish, and rejects with `StoreStallError` at `deadlineMs` so a load surface can
+ * render an explicit error instead of waiting forever. Every rejection and every
+ * late settle is written to the stall log, because the failure that produced this
+ * function left no evidence behind at all.
+ *
+ * Takes a THUNK, not a promise. Its predecessor `withReadDeadline` took an
+ * already-created promise, which is the structural reason reads could never retry;
+ * that variant is gone, so there is no wrong one to reach for.
+ *
+ * SSR-safe: without `document` there is no timer to hang a retry on, so this is a
+ * passthrough.
+ */
+export function withReadRetry<T>(
+  op: () => Promise<T>,
+  {
+    surface = 'read',
+    schedule = READ_RETRY_SCHEDULE_MS,
+    deadlineMs = READ_DEADLINE_MS,
+  }: { surface?: string; schedule?: readonly number[]; deadlineMs?: number } = {},
+): Promise<T> {
+  if (typeof document === 'undefined') return op();
+
   return new Promise<T>((resolve, reject) => {
-    const timer = setTimeout(() => reject(new StoreStallError()), ms);
-    p.then(
-      (v) => {
-        clearTimeout(timer);
-        resolve(v);
-      },
-      (e) => {
-        clearTimeout(timer);
-        reject(e);
-      },
+    let settled = false;
+    let attempts = 0;
+    let stallId: string | undefined;
+    const startedAt = Date.now();
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    const cleanup = () => {
+      settled = true;
+      for (const t of timers) clearTimeout(t);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
+    const settleResolve = (value: T) => {
+      // A late settle after the deadline has already rejected: nobody is waiting
+      // for it any more, but it is the fact that separates "the store unstuck
+      // itself" from "the store never answered". Record it and drop the value.
+      if (settled) {
+        if (stallId) recordRecovery(stallId, Date.now() - startedAt);
+        return;
+      }
+      cleanup();
+      resolve(value);
+    };
+    const settleReject = (err: unknown) => {
+      if (settled) return;
+      cleanup();
+      reject(err);
+    };
+    const attempt = () => {
+      if (settled) return;
+      attempts += 1;
+      op().then(settleResolve, settleReject);
+    };
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') attempt();
+    };
+
+    attempt();
+    for (const at of schedule) timers.push(setTimeout(attempt, at));
+    timers.push(
+      setTimeout(() => {
+        if (settled) return;
+        // cleanup() before recording, so a later settle sees `settled` and takes
+        // the recovery branch above instead of resolving a caller that has gone.
+        cleanup();
+        stallId = recordStall({ surface, waitedMs: Date.now() - startedAt, attempts });
+        reject(new StoreStallError());
+      }, deadlineMs),
     );
+    document.addEventListener('visibilitychange', onVisible);
   });
 }
 

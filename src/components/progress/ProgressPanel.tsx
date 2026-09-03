@@ -6,7 +6,7 @@ import {
   getAttempts,
   getCardStates,
   getSessionLog,
-  withReadDeadline,
+  withReadRetry,
   type Attempt,
   type CardStates,
   type SessionLogEntry,
@@ -15,7 +15,12 @@ import { hasSeenData } from '../../lib/write-journal';
 import ProgressLoadError from '../ProgressLoadError';
 import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
-import { isTauri, getSyncDir, pickSyncDir, writeSnapshotToSyncDir } from '../../lib/syncdir';
+import {
+  isTauri, getSyncDir, newestSnapshotBackup, pickSyncDir, writeSnapshotToSyncDir,
+  type SnapshotBackup,
+} from '../../lib/syncdir';
+import { legacyWebkitContainer, type LegacyStoreInfo } from '../../lib/legacy-store';
+import { recentStalls, type StallEntry } from '../../lib/stall-log';
 import { localDateString } from '../../lib/store';
 import { pick, type ExplainText } from '../../lib/prefs';
 import { forceSync, readSyncState } from '../../lib/sync-remote';
@@ -184,12 +189,16 @@ export default function ProgressPanel({
   const [view, setView] = useState<ProgressView>('uebersicht');
   const [message, setMessage] = useState<string | null>(null);
   const [syncDir, setSyncDir] = useState<string | null>(null);
+  const [stalls, setStalls] = useState<StallEntry[]>([]);
+  const [backup, setBackup] = useState<SnapshotBackup | null>(null);
+  const [legacyStore, setLegacyStore] = useState<LegacyStoreInfo | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const importMode = useRef<'merge' | 'replace'>('merge');
 
   async function loadData(): Promise<Data> {
-    const [attempts, cards, sessions] = await withReadDeadline(
-      Promise.all([getAttempts(), getCardStates(), getSessionLog()]),
+    const [attempts, cards, sessions] = await withReadRetry(
+      () => Promise.all([getAttempts(), getCardStates(), getSessionLog()]),
+      { surface: 'fortschritt' },
     );
     // A profile that has persisted progress before and reads back nothing at all
     // is a stalled store, not an empty history — "no progress" must never be
@@ -236,6 +245,14 @@ export default function ProgressPanel({
       () => setLoadError(true),
     );
     if (isTauri()) void getSyncDir().then(setSyncDir);
+    // Diagnostics: what the store did, and what is on disk regardless of what it did.
+    // The stall log is a synchronous localStorage read, so it goes through the same
+    // queueMicrotask the saved view above uses rather than setting state in the effect body.
+    queueMicrotask(() => setStalls(recentStalls()));
+    if (isTauri()) {
+      void newestSnapshotBackup(getActiveProfileId()).then(setBackup, () => setBackup(null));
+      void legacyWebkitContainer().then(setLegacyStore, () => setLegacyStore(null));
+    }
   }, []);
 
   function changeView(value: ProgressView) {
@@ -536,6 +553,76 @@ export default function ProgressPanel({
             )}
             {message && (
               <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
+            )}
+          </section>
+
+          {/* Storage diagnostics. Exists because the failure that motivated it — the red
+              "Fortschritt konnte nicht geladen werden" card while a healthy 1.7 MB backup
+              sat on disk — left the learner with no way to tell a stalled read from lost
+              data, and left the author with no evidence at all. Counters and file facts
+              only; nothing here is a measurement of learning. */}
+          <section className="mt-8 rounded-lg border border-stone-200 p-5 text-sm dark:border-stone-700">
+            <h3 className="font-bold">{t('persist.diagTitle', uiLang)}</h3>
+
+            {stalls.length === 0 ? (
+              <p className="mt-2 text-stone-500 dark:text-stone-400">
+                {t('persist.diagNone', uiLang)}
+              </p>
+            ) : (
+              <dl className="mt-2 space-y-1 text-stone-600 dark:text-stone-300">
+                <div className="flex justify-between gap-4">
+                  <dt className="text-stone-500 dark:text-stone-400">{t('persist.diagCount', uiLang)}</dt>
+                  <dd className="font-semibold tabular-nums">{stalls.length}</dd>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <dt className="text-stone-500 dark:text-stone-400">{t('persist.diagLast', uiLang)}</dt>
+                  <dd className="text-right">
+                    <span className="font-mono text-xs">{stalls[0].surface}</span>{' '}
+                    {new Date(stalls[0].at).toLocaleString()}{' '}
+                    <span className="tabular-nums">({Math.round(stalls[0].waitedMs / 1000)} s, {stalls[0].attempts}×)</span>{' '}
+                    {stalls[0].recoveredAfterMs === undefined
+                      ? t('persist.diagNeverSettled', uiLang)
+                      : t('persist.diagRecovered', uiLang)}
+                  </dd>
+                </div>
+              </dl>
+            )}
+
+            {isTauri() && (
+              <p className="mt-3 text-stone-600 dark:text-stone-300">
+                <span className="text-stone-500 dark:text-stone-400">
+                  {t('persist.diagBackup', uiLang)}:
+                </span>{' '}
+                {backup ? (
+                  <>
+                    <span className="tabular-nums">{backup.date}</span> ·{' '}
+                    <span className="tabular-nums">
+                      {backup.cards} / {backup.attempts}
+                    </span>{' '}
+                    · <span className="tabular-nums">{Math.round(backup.bytes / 1024)} KB</span>
+                    <br />
+                    <span className="break-all font-mono text-xs text-stone-400">{backup.path}</span>
+                  </>
+                ) : (
+                  t('persist.diagBackupNone', uiLang)
+                )}
+              </p>
+            )}
+
+            {legacyStore && (
+              <p className="mt-3 rounded-md bg-amber-50 p-3 text-amber-900 dark:bg-amber-900/20 dark:text-amber-200">
+                {t('persist.diagStaleStore', uiLang)}
+                <br />
+                <span className="break-all font-mono text-xs">{legacyStore.path}</span>
+                {legacyStore.modifiedAt > 0 && (
+                  <>
+                    {' · '}
+                    <span className="tabular-nums text-xs">
+                      {new Date(legacyStore.modifiedAt * 1000).toLocaleDateString()}
+                    </span>
+                  </>
+                )}
+              </p>
             )}
           </section>
           {/* The whole account surface, moved here from /konto (ADR 0005). It

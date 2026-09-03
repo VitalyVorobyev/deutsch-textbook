@@ -97,8 +97,18 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   2026-08-11 on this machine. A session there looks like total data loss and (before the shrink
   guard) could flatten the day's backup, since both containers share one
   `appDataDir()`-based sync folder. The shrink guard (v0.5.0) removes the destructive half; the
-  confusing half remains. First step: decide detect-and-warn (compare a container marker against
-  the sync folder's newest snapshot) vs documenting "never run the raw binary".
+  confusing half remains. **Detect-and-warn shipped in ADR 0018**: `legacy_webkit_container`
+  (src-tauri/src/main.rs) reports the other container's path and mtime on Fortschritt → Daten,
+  metadata only, and never reads or touches it. What is left is the *decision* — nothing tells
+  the learner what to do about the second store, and merging two divergent progress histories
+  is exactly the operation that must not happen automatically.
+- **P29-3 · `AccountPanel.bind()` decides a warning from an unguarded read.** It reads
+  `getAttempts()` to decide whether to confirm before binding a profile to a cloud account; a
+  stalled read resolves as "nothing to merge" and skips the dialog, so a device with real
+  history can be bound silently. Found while auditing every progress read for ADR 0018 and left
+  out of that change deliberately: different surface, different hazard (a missed confirmation,
+  not a false claim about progress). Fix is the same shape — `withReadRetry` plus an explicit
+  failure — but the failure branch has to decide whether to warn or to refuse.
 - **P29-2 · Release cadence: tag after any PR that changes the desktop runtime or bundled
   content.** Every commit from v0.4.0 (2026-07-19) to v0.5.0 (2026-08-26) was unreleased, so the
   learner ran ad-hoc working-tree builds — which is why the build actually running during the

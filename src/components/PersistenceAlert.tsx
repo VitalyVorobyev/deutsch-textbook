@@ -19,6 +19,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initExitFlush } from '../lib/autosync';
 import { resolveProfileState } from '../lib/profile';
+import { runCardIdMigrationOnce } from '../lib/store';
 import {
   JOURNAL_EVENT,
   journalOverflowed,
@@ -57,6 +58,9 @@ export default function PersistenceAlert() {
     void resolveProfileState().then((state) => {
       if (cancelled || state !== 'ready') return;
       if (journalPending().length > 0) void replayJournal().then(refresh);
+      // The A1 card-id repair, from its one owner (store.ts explains why it is here and
+      // not inside getStore). Un-awaited on purpose: no surface waits on a repair.
+      void runCardIdMigrationOnce();
     });
     return () => {
       cancelled = true;
