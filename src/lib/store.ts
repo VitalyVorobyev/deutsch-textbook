@@ -508,6 +508,35 @@ interface PendingWrite {
 
 let writeQueue: PendingWrite[] = [];
 let draining = false;
+/** Bumped by `__resetWriteQueueForTests`; a drain loop from an earlier generation exits. */
+let queueGeneration = 0;
+
+/**
+ * Test-only: abandon the queue and let a fresh one start.
+ *
+ * `writeQueue` and `draining` are module-level singletons and `bun test` shares ONE module
+ * registry across the whole suite, so a file that leaves a write in flight against the real
+ * commit primitive strands them: under happy-dom there is no IndexedDB, `getStore()` never
+ * answers, `draining` stays true, and every later `enqueueUpdate` in every later FILE waits for
+ * a drain that will never take it. That is what turned the write-queue tests red on CI while
+ * they passed locally — the leaked op was a card grade whose 12 s retry fired long after its own
+ * file had restored the real implementation, and only a slow enough run gives it the chance.
+ *
+ * The generation token is what makes this safe: a loop that is already running checks it each
+ * iteration and returns instead of racing the fresh one, and leaves `draining` alone because it
+ * no longer owns it. Waiters still IN THE QUEUE are rejected rather than dropped, so a leak is
+ * loud where it happens. Waiters whose batch is already in flight are **not** the reset's to
+ * settle — the wedged transaction still owns them, and it will reject them at the runner bound
+ * (`QUEUE_BATCH_TIMEOUT_MS`) or never. What the reset restores is the ability to drain at all,
+ * which is the part that was broken for every later test file.
+ */
+export function __resetWriteQueueForTests(): void {
+  queueGeneration += 1;
+  const abandoned = writeQueue;
+  writeQueue = [];
+  draining = false;
+  for (const w of abandoned) w.reject(new Error('write queue reset between tests'));
+}
 
 /** The commit primitive, injectable for tests — the same reason `migrateStoredCardIds` takes
     its updater as a parameter: the test environment has no IndexedDB, and the queue's ordering
@@ -547,6 +576,7 @@ function enqueueUpdate<V>(key: StoreKey, mutate: (current: V | undefined) => V):
 }
 
 async function drainWriteQueue(): Promise<void> {
+  const generation = queueGeneration;
   try {
     // Yield once before taking the first batch. Without it the very first enqueue drains alone,
     // because `enqueueUpdate`'s executor runs synchronously and starts the drain before its
@@ -555,6 +585,8 @@ async function drainWriteQueue(): Promise<void> {
     // not depend on how slow the commit happens to be.
     await Promise.resolve();
     while (writeQueue.length > 0) {
+      // A reset happened while this loop was awaiting: the queue belongs to a newer drain now.
+      if (generation !== queueGeneration) return;
       // FIFO by the head's key, taking every queued mutation for that key. A burst of eight
       // grades and one attempt becomes two transactions, not nine. Head-first means no key can
       // be starved by a steady stream of writes to another.
@@ -580,7 +612,9 @@ async function drainWriteQueue(): Promise<void> {
       }
     }
   } finally {
-    draining = false;
+    // Only the owning generation clears the flag; a superseded loop must not unset a drain it
+    // does not own.
+    if (generation === queueGeneration) draining = false;
   }
 }
 

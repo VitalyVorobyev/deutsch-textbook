@@ -16,12 +16,22 @@
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
 import type { CardStates, StoredCard } from '../src/lib/store';
 
-beforeEach(() => {
+// The queue is module-level singleton state and `bun test` shares one module registry across
+// the suite, so an earlier FILE that left a write in flight against the real commit primitive
+// (no IndexedDB under happy-dom — `getStore()` never answers) leaves `draining` true, and every
+// test here then waits for a drain that will never take it. That is exactly how these four went
+// red on CI while passing locally. Start from a known-empty queue rather than from whatever the
+// previous file happened to leave behind.
+beforeEach(async () => {
+  const store = await import('../src/lib/store');
+  store.__resetWriteQueueForTests();
   localStorage.clear();
   localStorage.setItem('da:profiles', JSON.stringify([{ id: 'test', label: 'Test' }]));
   localStorage.setItem('da:profile', 'test');
 });
-afterEach(() => {
+afterEach(async () => {
+  const store = await import('../src/lib/store');
+  store.__resetWriteQueueForTests();
   localStorage.clear();
 });
 
@@ -189,6 +199,39 @@ describe('the write queue', () => {
       await Promise.race([second, Bun.sleep(50)]);
       expect(started).toEqual(['cards']);
       expect(readStallLog()).toEqual([]);
+    } finally {
+      restore();
+    }
+  });
+
+  test('a wedged queue is recoverable: the reset rejects its waiters and a fresh drain runs', async () => {
+    // The guard the beforeEach above relies on. Without it a single stranded write — this file's
+    // own "wedged forever" case, or a retry that outlived an earlier file — makes `draining`
+    // true for the rest of the process and every later `enqueueUpdate` waits for a drain that
+    // will never take it. Silently: the promise simply never settles.
+    const store = await import('../src/lib/store');
+    const wedge = store.__setCommitBatchForTests((async () => {
+      await new Promise<void>(() => {});
+    }) as never);
+    // 'a' is taken into a batch immediately and wedges there; the session write is a different
+    // key, so it is still sitting in the queue behind it.
+    void store.updateCardState('a', () => card(1)).catch(() => {});
+    await Bun.sleep(5);
+    const queued = store.logSession({ date: '2026-09-15', reviewed: 1, correct: 1 });
+    wedge();
+
+    // A waiter still in the queue is rejected rather than left hanging, so a leak is loud where
+    // it happens. The wedged batch's own waiter is not the reset's to settle — see store.ts.
+    store.__resetWriteQueueForTests();
+    await expect(queued).rejects.toThrow('write queue reset');
+
+    // And the queue works again, which is the half that was broken on CI.
+    const { calls, data, commit } = fakeCommits();
+    const restore = store.__setCommitBatchForTests(commit as never);
+    try {
+      await store.updateCardState('b', () => card(2));
+      expect(calls).toEqual([{ key: 'cards' }]);
+      expect(Object.keys(data.cards as CardStates)).toEqual(['b']);
     } finally {
       restore();
     }
