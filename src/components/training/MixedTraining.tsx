@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { Level } from '@da/schema';
-import { getAttempts, getCardStates, getTopicsState } from '../../lib/store';
-import { logAttemptDurably } from '../../lib/write-journal';
+import { getAttempts, getCardStates, getTopicsState, withReadRetry } from '../../lib/store';
+import { hasSeenData, logAttemptDurably } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import { attemptScore, formatScore } from '../../lib/scoring';
 import { clearResume, loadResume, saveResume } from '../../lib/resume';
 import { recommendedNext, type TopicNode } from '../../lib/mastery';
@@ -137,12 +138,27 @@ export default function MixedTraining({
   const [answered, setAnswered] = useState<Answered[]>([]);
   const [currentDone, setCurrentDone] = useState(false);
   const [round, setRound] = useState(0);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    void Promise.all([getAttempts(), getCardStates(), getTopicsState()]).then(
+    void withReadRetry(
+      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
+      { surface: 'training/mixed' },
+    ).then(
       ([attempts, cards, topics]) => {
         if (cancelled) return;
+        // Building a queue from a stalled read means interleaving what the learner has
+        // never met and calling it revision. Say it failed instead.
+        if (
+          attempts.length === 0 &&
+          Object.keys(cards).length === 0 &&
+          (hasSeenData('cards') || hasSeenData('attempts'))
+        ) {
+          setLoadError(true);
+          return;
+        }
+        setLoadError(false);
         const ctx = { attempts, cards, topics };
         const eligible = eligibleTrainingSets(sets, spine, nodes, ctx);
         if (round === 0 && restored) {
@@ -162,6 +178,9 @@ export default function MixedTraining({
         setSuggestion(recommendedNext(spine, nodes, ctx) ?? null);
         if (surface && s.length > 0)
           saveResume<TrainingResume>(surface, { uids: s.map((x) => x.uid), answered: [] });
+      },
+      () => {
+        if (!cancelled) setLoadError(true);
       },
     );
     return () => {
@@ -224,6 +243,10 @@ export default function MixedTraining({
     setAnswered([]);
     setCurrentDone(false);
     setRound((r) => r + 1);
+  }
+
+  if (loadError) {
+    return <ProgressLoadError onRetry={() => { setLoadError(false); setRound((r) => r + 1); }} />;
   }
 
   if (!session) {

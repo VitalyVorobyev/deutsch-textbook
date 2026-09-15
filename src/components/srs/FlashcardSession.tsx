@@ -6,7 +6,7 @@ import {
   getCardStates,
   getLearningGoal,
   getTopicsState,
-  withReadDeadline,
+  withReadRetry,
   type CardStates,
 } from '../../lib/store';
 import { gradeCardDurably, hasSeenData } from '../../lib/write-journal';
@@ -109,7 +109,7 @@ export default function FlashcardSession({
     let cancelled = false;
     if (presetQueue) {
       // Pre-planned queue: states still load for grading, planning is skipped.
-      void withReadDeadline(getCardStates()).then(
+      void withReadRetry(() => getCardStates(), { surface: 'karten/preset-queue' }).then(
         (s) => {
           if (cancelled) return;
           setStates(s);
@@ -123,13 +123,15 @@ export default function FlashcardSession({
         cancelled = true;
       };
     }
-    void withReadDeadline(
-      Promise.all([
-        getCardStates(),
-        gate ? getAttempts() : [],
-        gate ? getTopicsState() : {},
-        gate ? getLearningGoal() : undefined,
-      ]),
+    void withReadRetry(
+      () =>
+        Promise.all([
+          getCardStates(),
+          gate ? getAttempts() : [],
+          gate ? getTopicsState() : {},
+          gate ? getLearningGoal() : undefined,
+        ]),
+      { surface: 'karten' },
     ).then(
       ([s, attempts, topics, goal]) => {
         if (cancelled) return;

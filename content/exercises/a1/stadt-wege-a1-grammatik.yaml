@@ -49,14 +49,26 @@ items:
     target_mode: reading
     focus: duerfen-muessen
     focus_evidence:
-      retained: ["\\bdürfen Sie nicht parken$"]
-      failed: ["\\bmüssen Sie nicht parken$"]
+      # Two renderings carry this tag — Hier dürfen Sie … and the impersonal Man darf … —
+      # so the predicates ask what duerfen-muessen actually grades (a dürfen-form, and the
+      # infinitive still last) rather than naming one word order. `retained` is conjunctive,
+      # so it is one pattern per claim, never one per rendering. (2026-09-15.)
+      retained: ["\\b(dürfen|darf|darfst|dürft)\\b", "\\bnicht parken$"]
+      failed: ["\\b(müssen|muss|musst|müsst)\\b"]
     instruction: { en: "Translate the prohibition using dürfen.", ru: "Переведите запрет с dürfen.", uk: "Перекладіть заборону з dürfen." }
     prompt_en: "You may not park here."
     prompt_ru: "Здесь нельзя парковаться."
     prompt_uk: "Тут не можна паркуватися."
     answer: "Hier dürfen Sie nicht parken."
-    key_tokens: ["dürfen", "nicht", "parken"]
+    accept:
+      # revision 2: the RU and UK prompts are impersonal («Здесь нельзя парковаться»), and the
+      # impersonal rendering is the one this course itself teaches — it is the *answer* of
+      # a2/man-und-besitz-produktion:uebersetzen-man-hier. It keeps dürfen, the negation and
+      # the final infinitive, which is everything the tag grades; darf joins the pins so the
+      # wrong modal is still attributed in that rendering. (2026-09-15.)
+      - "Man darf hier nicht parken."
+    key_tokens: ["dürfen", "darf", "nicht", "parken"]
+    revision: 2
     explain: { en: "darf/dürfen nicht expresses prohibition: the action is not allowed. The infinitive stays at the end.", ru: "darf/dürfen nicht выражает запрет: действие не разрешено. Инфинитив остаётся в конце.", uk: "darf/dürfen nicht виражає заборону: дію не дозволено. Інфінітив залишається в кінці." }
   - id: regel-muss-nicht
     type: cloze

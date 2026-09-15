@@ -5,8 +5,10 @@ import {
   getTopicsState,
   markTopicRead,
   setTopicManual,
+  withReadRetry,
   type TopicManual,
 } from '../../lib/store';
+import ProgressLoadError from '../ProgressLoadError';
 import {
   masteryGaps,
   topicCompletion,
@@ -90,13 +92,23 @@ export default function TopicProgress(props: Props) {
   };
   const [done, setDone] = useState<Completion | null>(null);
   const [gaps, setGaps] = useState<MasteryGap[]>([]);
+  const [loadError, setLoadError] = useState(false);
 
   async function refresh() {
-    const [attempts, cards, topics] = await Promise.all([
-      getAttempts(),
-      getCardStates(),
-      getTopicsState(),
-    ]);
+    let read;
+    try {
+      read = await withReadRetry(
+        () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
+        { surface: 'thema/fortschritt' },
+      );
+    } catch {
+      // The skeleton badge below is indistinguishable from "still loading", so a stall
+      // used to leave a pulsing placeholder on the topic page for good.
+      setLoadError(true);
+      return;
+    }
+    const [attempts, cards, topics] = read;
+    setLoadError(false);
     const ctx = { attempts, cards, topics };
     setDone(topicCompletion(node, ctx));
     setGaps(masteryGaps(node, ctx));
@@ -113,6 +125,10 @@ export default function TopicProgress(props: Props) {
   async function setManual(manual: TopicManual | null) {
     await setTopicManual(props.topicId, manual);
     await refresh();
+  }
+
+  if (loadError) {
+    return <ProgressLoadError compact onRetry={() => { setLoadError(false); void refresh(); }} />;
   }
 
   if (!done) {

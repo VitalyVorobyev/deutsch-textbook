@@ -97,8 +97,32 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   2026-08-11 on this machine. A session there looks like total data loss and (before the shrink
   guard) could flatten the day's backup, since both containers share one
   `appDataDir()`-based sync folder. The shrink guard (v0.5.0) removes the destructive half; the
-  confusing half remains. First step: decide detect-and-warn (compare a container marker against
-  the sync folder's newest snapshot) vs documenting "never run the raw binary".
+  confusing half remains. **Detect-and-warn shipped in ADR 0018**: `legacy_webkit_container`
+  (src-tauri/src/main.rs) reports the other container's path and mtime on Fortschritt → Daten,
+  metadata only, and never reads or touches it. What is left is the *decision* — nothing tells
+  the learner what to do about the second store, and merging two divergent progress histories
+  is exactly the operation that must not happen automatically. **[ADR 0019](adrs/0019-writes-single-flight-and-confirm-late.md)
+  does not touch this**: a second container is an independent explanation for progress that
+  appears to vanish, and the write-path repair makes it more visible, not less real.
+- **P29-3 · `AccountPanel.bind()` decides a warning from an unguarded read.** It reads
+  `getAttempts()` to decide whether to confirm before binding a profile to a cloud account; a
+  stalled read resolves as "nothing to merge" and skips the dialog, so a device with real
+  history can be bound silently. Found while auditing every progress read for ADR 0018 and left
+  out of that change deliberately: different surface, different hazard (a missed confirmation,
+  not a false claim about progress). Fix is the same shape — `withReadRetry` plus an explicit
+  failure — but the failure branch has to decide whether to warn or to refuse.
+- **P30-1 · A card grade rewrites the whole `cards` blob, because the store has six keys.**
+  All progress lives under six coarse keys in one object store, so one graded card is a
+  read-modify-write of a ~784 KB record and one answered item rewrites the entire `attempts`
+  array. [ADR 0019](adrs/0019-writes-single-flight-and-confirm-late.md) made a burst cost one
+  transaction instead of N, which is as far as a repair can go; the shape itself is the ceiling.
+  Per-record keys would make a grade a small write, and would touch every read path, the
+  snapshot format and the sync layer — a rewrite, not a fix, and worth doing only if the
+  measured write latency says so.
+- **P30-2 · `scheduleAutoSync()` fires once per queued waiter, not once per commit.** A coalesced
+  batch of eight grades schedules eight debounced syncs that the 2.5 s debounce collapses into
+  one, so this costs timers rather than writes. Moving the call to the batch boundary is a clean
+  follow-up that was deliberately left out of ADR 0019's change.
 - **P29-2 · Release cadence: tag after any PR that changes the desktop runtime or bundled
   content.** Every commit from v0.4.0 (2026-07-19) to v0.5.0 (2026-08-26) was unreleased, so the
   learner ran ad-hoc working-tree builds — which is why the build actually running during the
@@ -106,7 +130,7 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
-- **P29-3 · The mid-tier gloss decks still hold 149 long glosses the ratchet pins.** The
+- **P29-4 · The mid-tier gloss decks still hold 149 long glosses the ratchet pins.** The
   2026-08-26 repair took the 31 learner-reported B1 decks from ~990 definitional glosses to zero;
   `bun scripts/gloss-shape.ts --long-only` still lists a mid-tier the report was not scoped to —
   `gefuehle-reflexive-verben-b1` (16), `beziehungen-familie-b1` (13), the three
@@ -745,7 +769,7 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 
 Items the learner raised in `feedback.md` that are real but are not a small edit. `feedback.md`
 itself holds only raw, untriaged capture; a triaged item is deleted when fixed or lands here.
-Triaged 2026-08-22.
+Triaged 2026-08-22 and 2026-09-15.
 
 - **F-1 · In-text references are not links.** An article that says "Präteritum from B1.1" makes the
   reader search for it. Evidence: `content/topics/b1/kultur-freizeit.mdx:291`, and
@@ -794,6 +818,29 @@ Triaged 2026-08-22.
   (`src/pages/ueben/wiederholen.astro:16`), but the learner's actual claim was that the class of
   defect is widespread. Needs a sweep, not a fix. First step: name the surfaces — a phone-width
   pass over Heute, Üben, a topic page and Fortschritt, listing what a hand actually reaches.
+- **F-12 · Four verbs ship two production cards that answer the same prompt.** `beschweren`
+  (`gefuehle-reflexive-a2`) and `sich beschweren` (`regeln-verantwortung`) both gloss as "to
+  complain"; `entscheiden` (`leben-veraendern`) and `sich entscheiden` (`infinitiv-mit-zu`) both as
+  "to decide, to make up one's mind"; `kümmern`/`sich kümmern` and `freuen`/`sich freuen` overlap
+  the same way. All eight are `cards: both`, so one German word sits behind two near-identical x-de
+  prompts and the learner cannot know which the card wants. The duplication itself is earned — the
+  Goethe lists carry both forms as separate entries — and four other pairs (`bewerben`, `bedanken`,
+  `verlieben`, `beeilen`) already solve it by shipping the B1 half as `cards: recognition`, which
+  is not retrofittable here: flipping a shipped entry deletes its production-card SRS history.
+  Evidence: parse `content/vocab` with the `yaml` package and group verb headwords by their
+  `sich`-stripped form. First step: decide between disambiguating the glosses (CLAUDE.md licenses a
+  parenthetical exactly where two shipped cards share a production prompt) and merging each pair
+  into one deck — and check the bare-verb glosses while there, since plain `entscheiden` is *to
+  settle a question*, not *to make up one's mind*.
+- **F-13 · A cloze gap at a sentence head grades capitalization the gap position made
+  unpredictable.** `answerMatches` (`packages/grading/src/cloze.ts`) compares case-sensitively and
+  has no sentence-head fold, while `gradeTranslation` documents and implements exactly that fold,
+  for exactly this reason. Evidence: 66 of 645 cloze items open a gap at a sentence head, and three
+  carry a hand-patch spelling both cases (`{{Der|der}}` in `a1/artikel-genus.yaml` and
+  `a1/artikel-plural-kein.yaml`) — a convention nobody wrote down. `mc-kuchen-grenze` was the
+  unpatched one and is fixed by re-authoring the item, not by the grader. Same family as **F-5**.
+  First step: decide whether `sentenceInitialIndices` moves into the cloze path or the hand-patch
+  becomes the documented rule, and settle F-5 with it.
 
 **Ruled, no change.** Recorded so they are not re-triaged:
 
@@ -809,6 +856,21 @@ Triaged 2026-08-22.
 - *Reflexive verbs missing `sich`.* All twenty remaining entries whose `valence` mentions `sich`
   are transitive verbs with a reflexive alternative (`jemanden beschäftigen`), so the bare headword
   is correct German. Checked by parsing every deck, not by reading them.
+- *`gewöhnen` → `sich gewöhnen`* and *`sich kümmern` → `sich kümmern um`* as headword changes —
+  no. Both bare forms are real transitive verbs (*jemanden an etwas gewöhnen*, *das kümmert mich
+  nicht*), each headword is the Goethe Wortliste key, and a rename resets the card's SRS history:
+  the same ruling as the reflexive-`sich` entry above. What was missing is that `gewöhnen`'s card
+  never *said* it — `valence` renders in the Wortschatz table and nowhere on a card — so its `note`
+  now states the construction, which is that field's job. Both `kümmern` cards already did. The
+  residual, two cards for one verb, is F-12.
+- *"Isn't it too long?"* on `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` — the
+  two-question shape is deliberate and the file records why beside the item: those are the two
+  questions the enquiry turns on, neither appears in the `write` model, and with one of them the
+  outcome could never light up.
+- *The Cloudflare theory for "Fortschritt konnte nicht geladen werden".* Nothing on that path
+  touches the network — it is IndexedDB on the device, retried at 0/2/5 s behind a 10 s deadline
+  ([ADR 0018](adrs/0018-progress-reads-recover.md)). The message now names the local store, because
+  one that does not invites the learner to debug the wrong system.
 
 ## Deferred
 

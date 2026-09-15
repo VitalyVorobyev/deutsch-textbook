@@ -80,7 +80,14 @@ items:
     prompt_ru: "Можно мне кое-что спросить?"
     prompt_uk: "Можна мені дещо запитати?"
     answer: "Kann ich etwas fragen?"
-    key_tokens: ["Kann", "fragen"]
+    accept:
+      # revision 2: «Можно мне …?» is permission, which is darf's own territory — the RU and
+      # UK prompts render it at least as naturally as können. The tag is modal-satzklammer,
+      # the bracket, not which modal opens it; Darf joins the pins so it is still the near
+      # end of the bracket that gets graded in that rendering. (2026-09-15.)
+      - "Darf ich etwas fragen?"
+    key_tokens: ["Kann", "Darf", "fragen"]
+    revision: 2
     explain:
       en: "In a yes/no question the modal opens the sentence, but the far end of the bracket stays put: the bare infinitive fragen is still the last word."
       ru: "В вопросе без вопросительного слова модальный глагол выходит на первое место, но дальний конец рамки не двигается: голый инфинитив fragen по-прежнему стоит последним."

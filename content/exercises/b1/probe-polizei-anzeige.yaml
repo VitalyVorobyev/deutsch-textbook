@@ -41,6 +41,16 @@ items:
     prompt_ru: "Коллега говорит, что нашла кошелёк."
     prompt_uk: "Колега каже, що знайшла гаманець."
     answer: "Meine Kollegin sagt, dass sie das Portemonnaie gefunden hat."
+    accept:
+      # revision 2: same two freedoms the RU and UK prompts leave open as in the practice
+      # item this probe checks (b1/polizei-anzeige:uebersetzen-dass) — «Коллега» marks no
+      # possessor, and «кошелёк» is Portemonnaie or Geldbeutel, the standard southern word.
+      # dass and the closing auxiliary, which is all indirekte-rede grades, are intact in
+      # every rendering. (2026-09-15.)
+      - "Die Kollegin sagt, dass sie das Portemonnaie gefunden hat."
+      - "Meine Kollegin sagt, dass sie den Geldbeutel gefunden hat."
+      - "Die Kollegin sagt, dass sie den Geldbeutel gefunden hat."
+    revision: 2
     explain:
       en: "A reported statement opens with *dass*, and the clause it opens puts its conjugated verb last. In a perfect that conjugated part is the auxiliary, so the order is *gefunden hat*. Note what stays unchanged: the reporting verb is present here, but even a past *sagte* would leave the reported tense alone — German does not shift tenses to match."
       ru: "Переданное утверждение открывается словом *dass*, а открытое им придаточное ставит спрягаемый глагол последним. В перфекте спрягаемая часть — вспомогательный, поэтому порядок *gefunden hat*. Обратите внимание на то, что не меняется: глагол передачи здесь в настоящем, но даже прошедшее *sagte* оставило бы время придаточного в покое — согласования времён в немецком нет."

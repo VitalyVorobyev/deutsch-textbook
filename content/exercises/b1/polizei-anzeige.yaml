@@ -55,6 +55,18 @@ items:
     prompt_ru: "Соседка говорит, что слышала шум."
     prompt_uk: "Сусідка каже, що чула шум."
     answer: "Meine Nachbarin sagt, dass sie Lärm gehört hat."
+    accept:
+      # revision 2: the RU and UK prompts are «Соседка…»/«Сусідка…» — a bare noun marks no
+      # possessor, so Die Nachbarin renders them as faithfully as Meine does, and «шум» is
+      # Lärm, den Lärm or ein Geräusch alike. None of that is what indirekte-rede grades:
+      # dass opens the clause and the auxiliary closes it in every rendering below.
+      # (2026-09-15.)
+      - "Die Nachbarin sagt, dass sie Lärm gehört hat."
+      - "Meine Nachbarin sagt, dass sie den Lärm gehört hat."
+      - "Die Nachbarin sagt, dass sie den Lärm gehört hat."
+      - "Meine Nachbarin sagt, dass sie ein Geräusch gehört hat."
+      - "Die Nachbarin sagt, dass sie ein Geräusch gehört hat."
+    revision: 2
     explain:
       en: "The auxiliary closes the clause, behind the participle. Note also what does *not* happen: the reporting verb is present, but even with *sagte* the reported tense would stay perfect. German has no backshift, so you never move a tense to match the main clause."
       ru: "Вспомогательный глагол закрывает придаточное, стоя за причастием. Обратите внимание и на то, чего *не* происходит: глагол передачи здесь в настоящем, но даже при *sagte* время в придаточном осталось бы перфектом. Согласования времён в немецком нет, так что подгонять время под главное предложение не нужно никогда."

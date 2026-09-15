@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { recommendedNext, topicCompletion, type TopicNode } from '../../lib/mastery';
 import { dueCheckpoint, type CheckpointRef } from '../../lib/checkpoint';
-import { getAttempts, getCardStates, getTopicsState, withReadDeadline } from '../../lib/store';
+import { getAttempts, getCardStates, getTopicsState, withReadRetry } from '../../lib/store';
 import { hasSeenData } from '../../lib/write-journal';
 import ProgressLoadError from '../ProgressLoadError';
 import { pick } from '../../lib/prefs';
@@ -38,7 +38,10 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
   const [loadRound, setLoadRound] = useState(0);
 
   useEffect(() => {
-    void withReadDeadline(Promise.all([getAttempts(), getCardStates(), getTopicsState()])).then(
+    void withReadRetry(
+      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
+      { surface: 'heute/next-topic' },
+    ).then(
       ([attempts, cards, topics]) => {
         // A veteran profile reading back empty is a stalled store — recommending
         // unit 1 from it is the "shows no progress" defect. Error out instead.

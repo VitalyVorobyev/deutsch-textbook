@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { CardDef } from '../../lib/srs';
 import { planReview, type ReviewGate, type ReviewPlanResult } from '../../lib/decks';
-import { getAttempts, getCardStates, getLearningGoal, getTopicsState } from '../../lib/store';
+import { getAttempts, getCardStates, getLearningGoal, getTopicsState, withReadRetry } from '../../lib/store';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -36,14 +36,23 @@ export default function DueBadge({ cards, variant = 'compact', gate, newLimit = 
   const [started, setStarted] = useState(true);
 
   useEffect(() => {
-    void Promise.all([
-      getCardStates(),
-      gate ? getAttempts() : [],
-      gate ? getTopicsState() : {},
-      gate ? getLearningGoal() : undefined,
-    ]).then(([s, attempts, topics, goal]) => {
+    // A stalled read leaves `plan` null and the badge renders nothing. That is the
+     // honest state for a badge — but only the retries make it recoverable without a
+     // reload, and `planReview` must never be handed a read that did not come back.
+    void withReadRetry(
+      () =>
+        Promise.all([
+          getCardStates(),
+          gate ? getAttempts() : [],
+          gate ? getTopicsState() : {},
+          gate ? getLearningGoal() : undefined,
+        ]),
+      { surface: 'due-badge' },
+    ).then(([s, attempts, topics, goal]) => {
       setStarted(Object.keys(s).length > 0);
       setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }));
+    }, () => {
+      setPlan(null);
     });
   }, [cards, gate, newLimit]);
 

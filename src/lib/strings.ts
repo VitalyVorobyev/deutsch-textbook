@@ -713,17 +713,126 @@ export const STRINGS = {
     ru: 'Часть старых несохранённых записей вышла за предел журнала.',
     uk: 'Частина старих незбережених записів вийшла за межу журналу.',
   },
+
+  // The calm tier: past the ordinary round trip but still inside the write path's own retry
+  // budget. Not an incident — and quitting here is safe, because the journal is synchronous
+  // localStorage and replays at the next launch. Red at 10 s against a 45 s deadline is how a
+  // slow-but-fine write spent 35 seconds telling the learner not to close the window (ADR 0019).
+  'persist.savingOne': {
+    de: 'Antwort wird noch gespeichert …',
+    en: 'answer still saving …',
+    ru: 'ответ ещё сохраняется …',
+    uk: 'відповідь ще зберігається …',
+  },
+  'persist.savingMany': {
+    de: 'Antworten werden noch gespeichert …',
+    en: 'answers still saving …',
+    ru: 'ответов ещё сохраняется …',
+    uk: 'відповідей ще зберігається …',
+  },
+  // Quarantined: the store is fine, the op itself cannot be applied. Named separately because
+  // "retry" is not the remedy and pressing it forever is not a plan.
+  'persist.unreplayableOne': {
+    de: 'Eine Antwort konnte nicht gespeichert werden.',
+    en: 'One answer could not be saved.',
+    ru: 'Один ответ не удалось сохранить.',
+    uk: 'Одну відповідь не вдалося зберегти.',
+  },
+  'persist.unreplayableMany': {
+    de: 'Einige Antworten konnten nicht gespeichert werden.',
+    en: 'Some answers could not be saved.',
+    ru: 'Несколько ответов не удалось сохранить.',
+    uk: 'Кілька відповідей не вдалося зберегти.',
+  },
+  'persist.retryFailed': {
+    de: 'Erneuter Versuch fehlgeschlagen — der Speicher antwortet nicht.',
+    en: 'Retry failed — the store is not answering.',
+    ru: 'Повтор не удался — хранилище не отвечает.',
+    uk: 'Повтор не вдався — сховище не відповідає.',
+  },
+  'persist.storageBlocked': {
+    de: 'Der lokale Notizspeicher ist voll oder blockiert — der Zähler bleibt stehen.',
+    en: 'Local scratch storage is full or blocked — the count is frozen.',
+    ru: 'Локальное хранилище заметок переполнено или заблокировано — счётчик застыл.',
+    uk: 'Локальне сховище нотаток переповнене або заблоковане — лічильник завмер.',
+  },
+  // Names the LOCAL store on purpose. The learner who met this banner asked whether
+  // Cloudflare was down and whether the app was being too quick to give up; it is
+  // neither — nothing here touches the network, and the read has already been retried
+  // at 0/2/5 s and waited out a 10 s deadline (ADR 0018) before the banner appears.
+  // A message that says only "progress could not be loaded" invites the learner to
+  // debug the wrong system.
   'persist.loadError': {
-    de: 'Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert — bitte erneut versuchen oder die App neu starten.',
-    en: 'Progress could not be loaded. Your data is stored — please retry or restart the app.',
-    ru: 'Не удалось загрузить прогресс. Данные сохранены — попробуйте ещё раз или перезапустите приложение.',
-    uk: 'Не вдалося завантажити прогрес. Дані збережено — спробуйте ще раз або перезапустіть застосунок.',
+    de: 'Der lokale Speicher auf diesem Gerät antwortet nicht — der Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert (nichts geht verloren) — bitte erneut versuchen oder die App neu starten.',
+    en: 'The local store on this device is not responding — progress could not be loaded. Your data is stored and nothing is lost — please retry or restart the app.',
+    ru: 'Локальное хранилище на этом устройстве не отвечает — не удалось загрузить прогресс. Данные сохранены, ничего не потеряно — попробуйте ещё раз или перезапустите приложение.',
+    uk: 'Локальне сховище на цьому пристрої не відповідає — не вдалося завантажити прогрес. Дані збережено, нічого не втрачено — спробуйте ще раз або перезапустіть застосунок.',
   },
   'persist.loadRetry': {
     de: 'Erneut versuchen',
     en: 'Retry',
     ru: 'Повторить',
     uk: 'Повторити',
+  },
+  'persist.loadErrorShort': {
+    de: 'Fortschritt nicht geladen.',
+    en: 'Progress not loaded.',
+    ru: 'Прогресс не загружен.',
+    uk: 'Прогрес не завантажено.',
+  },
+  'persist.diagTitle': {
+    de: 'Speicher-Diagnose',
+    en: 'Storage diagnostics',
+    ru: 'Диагностика хранилища',
+    uk: 'Діагностика сховища',
+  },
+  'persist.diagNone': {
+    de: 'Keine verzögerten Speicherzugriffe in den letzten 7 Tagen.',
+    en: 'No stalled store operations in the last 7 days.',
+    ru: 'За последние 7 дней зависших обращений к хранилищу не было.',
+    uk: 'За останні 7 днів зависань у зверненнях до сховища не було.',
+  },
+  'persist.diagCount': {
+    de: 'Verzögerte Speicherzugriffe (7 Tage)',
+    en: 'Stalled store operations (7 days)',
+    ru: 'Зависшие обращения к хранилищу (7 дней)',
+    uk: 'Зависання у зверненнях до сховища (7 днів)',
+  },
+  'persist.diagLast': {
+    de: 'Zuletzt',
+    en: 'Most recent',
+    ru: 'Последнее',
+    uk: 'Останнє',
+  },
+  'persist.diagRecovered': {
+    de: 'danach doch geladen',
+    en: 'loaded after all',
+    ru: 'позже загрузилось',
+    uk: 'згодом завантажилося',
+  },
+  'persist.diagNeverSettled': {
+    de: 'nie beantwortet',
+    en: 'never answered',
+    ru: 'ответа не было',
+    uk: 'відповіді не було',
+  },
+  'persist.diagBackup': {
+    de: 'Neueste lokale Sicherung',
+    en: 'Newest local backup',
+    ru: 'Последняя локальная резервная копия',
+    uk: 'Найновіша локальна резервна копія',
+  },
+  'persist.diagBackupNone': {
+    de: 'Noch keine Sicherungsdatei gefunden.',
+    en: 'No backup file found yet.',
+    ru: 'Файл резервной копии пока не найден.',
+    uk: 'Файл резервної копії ще не знайдено.',
+  },
+  'persist.diagStaleStore': {
+    de: 'Zweiter Datenspeicher gefunden. Er entsteht, wenn die Programmdatei ohne das App-Paket gestartet wird, und enthält einen eigenen, getrennten Fortschritt. Diese App liest ihn nicht — sie verändert ihn auch nicht.',
+    en: 'A second data store was found. It appears when the binary is launched without its app bundle, and holds its own separate progress. This app does not read it — and does not change it either.',
+    ru: 'Обнаружено второе хранилище данных. Оно появляется при запуске исполняемого файла без пакета приложения и содержит собственный отдельный прогресс. Это приложение его не читает — и не изменяет.',
+    uk: 'Виявлено друге сховище даних. Воно з’являється, коли виконуваний файл запускають без пакета застосунку, і містить власний окремий прогрес. Цей застосунок його не читає — і не змінює.',
   },
 
   'footer.tagline': {
