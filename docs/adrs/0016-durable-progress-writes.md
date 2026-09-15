@@ -82,3 +82,12 @@ Silence is never an outcome of a progress write. Concretely:
   go through `withPersistenceRetry` or the journal.
 - The invariants live in [`docs/architecture/runtime-contracts.md`](../architecture/runtime-contracts.md);
   the tests are `tests/write-journal.test.ts` and `tests/store-visibility-retry.test.ts`.
+
+---
+
+**Amended by [ADR 0019](0019-writes-single-flight-and-confirm-late.md)** (2026-09-15). Three of
+the decisions above are superseded rather than merely extended: the 4/8/16 s concurrent retry
+schedule (it could not overtake the transaction it was rescuing, and queued three more full-blob
+rewrites behind it), the flat 10 s alert grace (unrelated to the 45 s deadline it was supposed to
+describe), and "removed after it settles" — which the code did not keep for a settle that arrived
+after the deadline, leaving journal entries that outlived the writes they described.

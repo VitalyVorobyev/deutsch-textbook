@@ -231,6 +231,13 @@ entries:
     example_uk: Привіт, Йонасе, можемо помінятися змінами? У суботу в мене свято.
   - de: Ich komme später, denn …
     pos: phrase
+    accept:
+      # The prompt is "because …" / «потому что …», and German renders a reason with denn,
+      # weil or da alike — the card may not grade which one the author had in mind. The denn
+      # frame stays the answer shown, and the note below is where it is taught.
+      # (Learner feedback, 2026-09-15.)
+      - "Ich komme später, weil …"
+      - "Ich komme später, da …"
     en: I'll come in later, because …
     ru: Я приду позже, потому что …
     uk: Я прийду пізніше, бо …

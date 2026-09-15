@@ -152,3 +152,109 @@ describe('replay through the real store (fake-indexeddb)', () => {
     },
   );
 });
+
+/**
+ * ADR 0019: the three ways a journal entry could outlive the write it describes, each of which
+ * pinned `PersistenceAlert` at a count that could never fall. Driven through the REAL store
+ * path — `__setCommitBatchForTests` stands in for the IndexedDB transaction — because the bug
+ * lived in the seam between the retry wrapper and the journal, and a fake journal would not
+ * have it.
+ */
+describe('a journal entry never outlives its own write', () => {
+  const ts = Date.parse('2026-09-15T08:00:00.000Z');
+
+  test('a grade whose write lands AFTER the deadline is removed from the journal', async () => {
+    const store = await import('../src/lib/store');
+    const { gradeCardDurably } = await import('../src/lib/write-journal');
+
+    let release: (() => void) | undefined;
+    const restore = store.__setCommitBatchForTests((async (
+      _key: string,
+      apply: (c: unknown) => unknown,
+    ) => {
+      await new Promise<void>((r) => { release = r; });
+      apply(undefined);
+    }) as never);
+
+    try {
+      const graded = gradeCardDurably('deck::wort::de-x', Rating.Good, ts, {
+        schedule: [],
+        deadlineMs: 30,
+      });
+      await Bun.sleep(60);
+      // The deadline has passed: the write is journaled and the alert would be red.
+      expect(journalPending()).toHaveLength(1);
+      expect(await graded).toBeNull();
+
+      release!();
+      await Bun.sleep(20);
+      // The transaction committed after all. Before ADR 0019 this entry stayed forever and the
+      // banner claimed "noch nicht gespeichert" about a card that was on disk.
+      expect(journalPending()).toEqual([]);
+    } finally {
+      restore();
+    }
+  });
+
+  test('an op that can never be applied is quarantined, and the ops behind it still replay', async () => {
+    const store = await import('../src/lib/store');
+    const { journalAppend, journalPoisoned, replayJournal } = await import(
+      '../src/lib/write-journal'
+    );
+
+    journalAppend(gradeOp('poison::card::de-x', ts));
+    journalAppend(gradeOp('healthy::card::de-x', ts + 1));
+
+    let calls = 0;
+    const restore = store.__setCommitBatchForTests((async (
+      _key: string,
+      apply: (c: unknown) => unknown,
+    ) => {
+      calls += 1;
+      // Not a stall — a rejection the store will repeat identically at every future launch.
+      if (calls === 1) throw new TypeError('unserializable value');
+      apply(undefined);
+    }) as never);
+
+    try {
+      const result = await replayJournal();
+      expect(result.poisoned).toBe(1);
+      expect(result.replayed).toBe(1);
+      expect(result.failed).toBe(0);
+      // Neither op is left to block the next launch, and the bad one is kept, not destroyed.
+      expect(journalPending()).toEqual([]);
+      expect(journalPoisoned()).toHaveLength(1);
+      expect(journalPoisoned()[0]!.error).toContain('unserializable value');
+    } finally {
+      restore();
+    }
+  });
+
+  test('a stalled replay stops and REPORTS, rather than swallowing its error', async () => {
+    const store = await import('../src/lib/store');
+    const { journalAppend, replayJournal } = await import('../src/lib/write-journal');
+
+    journalAppend(gradeOp('a::card::de-x', ts));
+    journalAppend(gradeOp('b::card::de-x', ts + 1));
+
+    // Wedged, but releasable: a commit left hanging forever would hold the single-flight queue
+    // for its full 45 s bound and stall whatever test file bun runs next — the very behaviour
+    // `QUEUE_BATCH_TIMEOUT_MS` bounds in production.
+    const releases: (() => void)[] = [];
+    const restore = store.__setCommitBatchForTests((async () => {
+      await new Promise<void>((r) => releases.push(r));
+    }) as never);
+    try {
+      const result = await replayJournal({ schedule: [], deadlineMs: 30 });
+      expect(result.replayed).toBe(0);
+      expect(result.failed).toBe(2);
+      expect(result.error).toBeInstanceOf(store.StoreStallError);
+      expect(journalPending()).toHaveLength(2);
+    } finally {
+      for (const r of releases) r();
+      await Bun.sleep(10);
+      restore();
+    }
+  });
+
+});

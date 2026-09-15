@@ -9,11 +9,17 @@ publish = false
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = [] }
+# devtools ships an inspector in release builds too (ADR 0018): the app whose storage
+# can stall is the installed one, and the release bundle had no way to be looked at.
+tauri = { version = "2", features = ["devtools"] }
 tauri-plugin-fs = "2"
 tauri-plugin-dialog = "2"
 tauri-plugin-persisted-scope = "2"
 tauri-plugin-http = "2"
+# Two processes on one WebKit container contend for its IndexedDB SQLite files; the
+# lock turns a second launch into a focus of the first (main.rs).
+tauri-plugin-single-instance = "2"
+serde_json = "1"
 
 [profile.release]
 codegen-units = 1

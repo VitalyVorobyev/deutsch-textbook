@@ -3,9 +3,11 @@ import type { AtlasGroup, CurriculumStrand } from '@da/schema';
 import { loadResume, saveResume } from '../../lib/resume';
 import { sanitizeThemenResume, type DrawerState, type ThemenResume } from './themen-resume';
 import {
-  getAttempts, getCardStates, getLearningGoal, getTopicsState, setLearningGoal,
+  getAttempts, getCardStates, getLearningGoal, getTopicsState, setLearningGoal, withReadRetry,
   type LearningGoal,
 } from '../../lib/store';
+import { hasSeenData } from '../../lib/write-journal';
+import ProgressLoadError from '../ProgressLoadError';
 import {
   goalRoute, levelRemaining, recommendedForGoal, recommendedNext, topicCompletion,
   type Completion, type TopicContext,
@@ -71,6 +73,8 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   const topics = useMemo(() => units.flatMap((unit) => unit.topics), [units]);
   const byId = useMemo(() => new Map(topics.map((topic) => [topic.id, topic])), [topics]);
   const [ctx, setCtx] = useState<TopicContext | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const [loadRound, setLoadRound] = useState(0);
   const [goal, setGoal] = useState<ActiveGoal>();
   const [view, setView] = useState<View>('atlas');
   const [level, setLevel] = useState<LevelFilter>('all');
@@ -127,13 +131,29 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
       }
       restored.current = true;
     });
-    void Promise.all([getAttempts(), getCardStates(), getTopicsState(), getLearningGoal()]).then(
+    void withReadRetry(
+      () => Promise.all([getAttempts(), getCardStates(), getTopicsState(), getLearningGoal()]),
+      { surface: 'themen' },
+    ).then(
       ([attempts, cards, topicState, activeGoal]) => {
+        // A profile that has persisted progress before and reads back nothing at all is a
+        // stalled store, not a learner with no history — and on this page "no history"
+        // means every topic wears its "Neu" badge and the Lernpfad points at unit 1.
+        if (
+          attempts.length === 0 &&
+          Object.keys(cards).length === 0 &&
+          (hasSeenData('cards') || hasSeenData('attempts'))
+        ) {
+          setLoadError(true);
+          return;
+        }
+        setLoadError(false);
         setCtx({ attempts, cards, topics: topicState });
         if (activeGoal?.topicId && byId.has(activeGoal.topicId)) setGoal(activeGoal as ActiveGoal);
       },
+      () => setLoadError(true),
     );
-  }, [byId, topics, groups]);
+  }, [byId, topics, groups, loadRound]);
 
   const persist = useCallback(() => {
     if (!restored.current) return;
@@ -217,6 +237,19 @@ export default function CurriculumPath({ units, groups, spine, checkpoints = NO_
   // backgrounded tab; WebKit is documented to stall IndexedDB transactions there) used
   // to render every topic "Neu" and assert no progress at all. Say so explicitly
   // instead: no badge, no path claim, until the data is real.
+  //
+  // And a read that never comes back is not "still loading": this was the only load
+  // surface with no deadline and no rejection handler, so `ctx` stayed null and that
+  // loading line was permanent — the learner-visible half of ADR 0018. The error state
+  // is checked FIRST, so a retry drops back into loading rather than the other way round.
+  if (loadError) {
+    return (
+      <div className="mt-6">
+        <ProgressLoadError onRetry={() => { setLoadError(false); setLoadRound((r) => r + 1); }} />
+      </div>
+    );
+  }
+
   if (ctx === null) {
     return (
       <p className="mt-6 text-sm text-stone-500 dark:text-stone-400">

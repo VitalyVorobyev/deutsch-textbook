@@ -198,7 +198,13 @@ items:
     prompt_ru: "Вам удобно во вторник в 9 часов?"
     prompt_uk: "Вам зручно у вівторок о 9 годині?"
     answer: "Passt es Ihnen am Dienstag um 9 Uhr?"
+    accept:
+      # revision 2: the prompt writes the hour as a numeral and German writes a clock time
+      # either way — um 9 Uhr and um neun Uhr are one time, and the tag is passen-dativ,
+      # which grades Ihnen and nothing else. (2026-09-15.)
+      - "Passt es Ihnen am Dienstag um neun Uhr?"
     key_tokens: ["Ihnen"]
+    revision: 2
     explain:
       en: "passen takes the dative: formal Sie → Ihnen (capitalized). Time phrases: am Dienstag (day), um 9 Uhr (clock time)."
       ru: "passen требует Dativ: вежливое Sie → Ihnen (с заглавной буквы). Обстоятельства времени: am Dienstag (день), um 9 Uhr (время по часам)."

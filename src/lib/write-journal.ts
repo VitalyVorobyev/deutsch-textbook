@@ -17,10 +17,23 @@
  * `logAttempt` dedupes by `setId|itemId|ts`, and a grade goes through
  * `applyGradeAt`, whose `last_review >= ts` guard makes a replay of a write that
  * actually landed a no-op.
+ *
+ * ADR 0019 added the three cases step 3 did not cover, each of which could pin the alert at a
+ * count that never fell:
+ *
+ *   - **A write that lands AFTER its deadline** still confirms itself, through
+ *     `withPersistenceRetry`'s `onLateSettle` — idb-keyval resolves on `transaction.oncomplete`,
+ *     so a resolve is a commit, and an entry that outlives its own landed write is the alert
+ *     lying about the learner's data.
+ *   - **An op that can never be applied** is quarantined (`journalPoison`) instead of blocking
+ *     every op behind it at every future launch.
+ *   - **A localStorage that refuses the write** is named (`journalWriteBlocked`) instead of
+ *     silently freezing appends and removals alike.
  */
 import { getActiveProfileId } from './profile';
 import {
   logAttempt,
+  StoreStallError,
   updateCardState,
   withPersistenceRetry,
   type NewAttempt,
@@ -46,6 +59,9 @@ function journalKey(): string {
 }
 function overflowKey(): string {
   return `da:journal-overflow:${getActiveProfileId()}`;
+}
+function poisonKey(): string {
+  return `da:journal-poison:${getActiveProfileId()}`;
 }
 function seenDataKey(kind: SeenDataKind): string {
   return `da:seen-data:${kind}:${getActiveProfileId()}`;
@@ -79,11 +95,32 @@ export function journalOverflowed(): boolean {
   }
 }
 
+/** Whether the last journal write failed. See `writeOps`. */
+let writeBlocked = false;
+
+/**
+ * True when localStorage refused the journal's last write.
+ *
+ * This is its own failure mode, and before it was named it was indistinguishable from a stalled
+ * store: a full or blocked localStorage makes `journalAppend` AND `journalRemove` both no-op, so
+ * the alert's count freezes at whatever it held — new answers never join it and confirmed ones
+ * never leave. "The count is stuck at N; it neither grows nor clears" is the signature, and no
+ * amount of repairing the IndexedDB side touches it.
+ */
+export function journalWriteBlocked(): boolean {
+  return writeBlocked;
+}
+
 function writeOps(ops: JournalOp[]): void {
   try {
     localStorage.setItem(journalKey(), JSON.stringify(ops));
-  } catch {
-    // storage blocked or full — the journal is a safety net, never a blocker
+    writeBlocked = false;
+  } catch (err) {
+    // The journal is a safety net, never a blocker — so this still does not throw. But it may
+    // no longer be silent: a swallowed failure here freezes the alert at a count that can
+    // never fall, which is worse than the write it was protecting.
+    writeBlocked = true;
+    console.error('journal write blocked — the alert count is frozen', err);
   }
   notify();
 }
@@ -133,6 +170,65 @@ export function hasSeenData(kind: SeenDataKind): boolean {
   }
 }
 
+/** An op that could not be applied, kept out of the replay queue but never destroyed. */
+export interface PoisonedOp {
+  op: JournalOp;
+  error: string;
+  at: number;
+}
+
+/** Keep the newest few: this list is evidence for the author, not a second copy of progress. */
+export const POISON_CAP = 20;
+
+export function journalPoisoned(): PoisonedOp[] {
+  try {
+    const raw = localStorage.getItem(poisonKey());
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? (parsed as PoisonedOp[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Quarantine an op that can never be applied: take it out of the journal and keep it, with its
+ * error, in a list the UI can name.
+ *
+ * Left in the journal such an op blocks every op behind it on every future replay — `replayJournal`
+ * stops at the first failure, by design, because a stalled store fails everything the same way.
+ * A failure that is NOT a stall breaks that assumption: it will fail identically at the next
+ * launch and the one after, so the count can never fall and the banner is permanent. The op is
+ * moved, never dropped, because a write the learner made is not ours to discard.
+ */
+function journalPoison(op: JournalOp, err: unknown): void {
+  const key = journalOpKey(op);
+  writeOps(journalPending().filter((o) => journalOpKey(o) !== key));
+  try {
+    const next = [...journalPoisoned(), { op, error: String(err), at: Date.now() }];
+    localStorage.setItem(poisonKey(), JSON.stringify(next.slice(-POISON_CAP)));
+  } catch {
+    // ignore — the op is already off the journal, which is what unblocks the replay
+  }
+  console.error('journal op cannot be applied — quarantined', key, err);
+}
+
+/**
+ * A write confirmed on disk: drop its journal entry and record that this profile has persisted
+ * this kind of progress at least once.
+ *
+ * Called from the ordinary success path AND from `withPersistenceRetry`'s `onLateSettle`. The
+ * two must not drift, because the drift WAS the bug: a write that landed after its deadline
+ * kept its journal entry forever and the alert called saved data unsaved (ADR 0019).
+ */
+function confirmOp(op: JournalOp): void {
+  journalRemove(op);
+  markSeenData(op.kind === 'attempt' ? 'attempts' : 'cards');
+}
+
+/** Retry knobs, exposed only so tests can drive real deadlines in milliseconds — the same
+    affordance `withPersistenceRetry` and `withReadRetry` already carry. */
+export type RetryOptions = { schedule?: readonly number[]; deadlineMs?: number };
+
 async function applyOp(op: JournalOp): Promise<void> {
   if (op.kind === 'attempt') {
     await logAttempt(op.attempt);
@@ -147,13 +243,19 @@ async function applyOp(op: JournalOp): Promise<void> {
  * is the surface that reports it (call sites were `void logAttempt(...)` with
  * no catch, which is exactly the silence this replaces).
  */
-export async function logAttemptDurably(attempt: NewAttempt): Promise<void> {
+export async function logAttemptDurably(
+  attempt: NewAttempt,
+  retry: RetryOptions = {},
+): Promise<void> {
   const op: JournalOp = { kind: 'attempt', attempt };
   journalAppend(op);
   try {
-    await withPersistenceRetry(() => logAttempt(attempt));
-    journalRemove(op);
-    markSeenData('attempts');
+    await withPersistenceRetry(() => logAttempt(attempt), {
+      surface: 'attempt',
+      ...retry,
+      onLateSettle: () => confirmOp(op),
+    });
+    confirmOp(op);
   } catch (err) {
     console.error('logAttempt stalled — kept in journal', attempt.setId, attempt.itemId, err);
   }
@@ -168,15 +270,16 @@ export async function gradeCardDurably(
   cardId: string,
   grade: Grade,
   ts = Date.now(),
+  retry: RetryOptions = {},
 ): Promise<StoredCard | null> {
   const op: JournalOp = { kind: 'grade', cardId, grade, ts };
   journalAppend(op);
   try {
-    const written = await withPersistenceRetry(() =>
-      updateCardState(cardId, (prev) => applyGradeAt(prev, grade, ts)),
+    const written = await withPersistenceRetry(
+      () => updateCardState(cardId, (prev) => applyGradeAt(prev, grade, ts)),
+      { surface: 'grade', ...retry, onLateSettle: () => confirmOp(op) },
     );
-    journalRemove(op);
-    markSeenData('cards');
+    confirmOp(op);
     return written;
   } catch (err) {
     console.error('gradeCard stalled — kept in journal', cardId, err);
@@ -190,18 +293,42 @@ export async function gradeCardDurably(
  * stall — a stalled store fails every subsequent op the same way, and the
  * remaining entries are exactly what the journal should keep.
  */
-export async function replayJournal(): Promise<{ replayed: number; failed: number }> {
+export interface ReplayResult {
+  replayed: number;
+  /** Still journaled: the store is stalled, and every op behind this one fails the same way. */
+  failed: number;
+  /** Moved to the poison list: these can never be applied, whatever the store does. */
+  poisoned: number;
+  /** The stall that stopped the replay, for the caller to report rather than swallow. */
+  error?: unknown;
+}
+
+export async function replayJournal(retry: RetryOptions = {}): Promise<ReplayResult> {
   const ops = journalPending();
   let replayed = 0;
+  let poisoned = 0;
   for (const op of ops) {
     try {
-      await withPersistenceRetry(() => applyOp(op), { schedule: [4000], deadlineMs: 15000 });
-      journalRemove(op);
-      markSeenData(op.kind === 'attempt' ? 'attempts' : 'cards');
+      await withPersistenceRetry(() => applyOp(op), {
+        surface: 'replay',
+        schedule: [4000],
+        deadlineMs: 15000,
+        ...retry,
+        onLateSettle: () => confirmOp(op),
+      });
+      confirmOp(op);
       replayed++;
-    } catch {
-      return { replayed, failed: ops.length - replayed };
+    } catch (err) {
+      if (err instanceof StoreStallError) {
+        return { replayed, poisoned, failed: ops.length - replayed - poisoned, error: err };
+      }
+      // Not a stall: this op can never be applied, so stopping here would block every op
+      // behind it at every future launch and pin the alert at a count that can never fall.
+      // Quarantine it with its error and carry on. The old bare `catch {}` made this class of
+      // failure permanent AND invisible.
+      journalPoison(op, err);
+      poisoned++;
     }
   }
-  return { replayed, failed: 0 };
+  return { replayed, failed: 0, poisoned };
 }

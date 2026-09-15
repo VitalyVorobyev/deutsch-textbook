@@ -1656,3 +1656,65 @@
   decision: confirm
   note: "linkte is not a form of link- (die linke Taste), and offnen is missing its umlaut (öffnen). sodass and kann — the graded pair — are right. Instrument note: P25-7 class."
   decidedAt: 2026-08-26
+
+# --- Learner feedback triage, 2026-09-15 (feedback.md, captured 2026-08-28 → 2026-09-10) ---
+
+- item: a1/stadt-wege-a1-grammatik:regel-darf-nicht
+  given: "Man darf hier nicht parken"
+  decision: accept
+  note: "The RU and UK prompts are impersonal («Здесь нельзя парковаться»), and the impersonal rendering is the one this course itself teaches — it is the answer of a2/man-und-besitz-produktion:uebersetzen-man-hier, which the learner has answered correctly twice. dürfen, the negation and the final infinitive — everything duerfen-muessen grades — are intact. Paid for by the accept list; darf joins the pins and focus_evidence now tests the tag rather than one word order (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: a1/drill-modal-satzklammer:uebersetzen-fragen
+  given: "Darf ich etwas fragen?"
+  decision: accept
+  note: "«Можно мне кое-что спросить?» asks permission, which is darf's own territory; können renders it too, and the item may not grade which modal the author had in mind. modal-satzklammer grades the bracket, and the bare infinitive fragen is still last. Paid for by the accept list, with Darf joining the pins so the near end of the bracket stays graded in that rendering (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: a2/drill-nebensatz-verbende:uebersetzen-dass-film-beginnt
+  given: "Ich denke, dass der Film um acht Uhr beginnt"
+  decision: accept
+  note: "um acht and um acht Uhr are one clock time; German states it either way and «в восемь» marks no preference. The tag grades only that the conjugated verb closes the dass-clause, which beginnt does. Paid for by four accept lines closing Uhr over the denke/glaube and beginnt/anfängt dimensions the item already concedes (revision 3)."
+  decidedAt: 2026-09-15
+
+- item: a2/drill-du-sie:uebersetzen-passt-ihnen
+  given: "Passt es Ihnen am Dienstag um neun Uhr?"
+  decision: accept
+  note: "A clock time may be written as a numeral or as a word — um 9 Uhr and um neun Uhr are the same time. passen-dativ grades Ihnen, which is right. Paid for by the accept list (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: b1/polizei-anzeige:uebersetzen-dass
+  given: "Die Nachbarin sagt, dass sie den Lärm gehört hat"
+  decision: accept
+  note: "«Соседка» is a bare noun and marks no possessor, so Die Nachbarin renders the RU and UK prompts as faithfully as Meine does, and «шум» is Lärm or den Lärm alike. dass opens the clause and the auxiliary closes it — all indirekte-rede grades. Paid for by the accept list (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: b1/polizei-anzeige:uebersetzen-dass
+  given: "Die Nachbarin sagt, dass sie ein Geräusch gehört hat"
+  decision: accept
+  note: "Same two freedoms as the sibling ruling above: no possessor in the RU/UK prompt, and «шум» rendered by the count noun Geräusch, which is what German uses for one noise heard once. The reported clause is correct. Paid for by the accept list (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: b1/polizei-anzeige:uebersetzen-dass
+  given: "Meine Nachbarin sagt, dass sie einen Lärm gehört hat"
+  decision: confirm
+  note: "Lärm is a mass noun: you hear Lärm or den Lärm, never einen Lärm. The count noun for a single noise is das Geräusch, which is why ein Geräusch is accepted above and einen Lärm is not. The dass-clause itself is correct, so today's grader attributes nothing to indirekte-rede. drill note: mass versus count nouns — Lärm/Geräusch, and the article a Russian bare noun leaves free."
+  decidedAt: 2026-09-15
+
+- item: b1/probe-polizei-anzeige:variant-a
+  given: "Maine Kollegin sagt, dass sie den Geldbeutel gefunden hat"
+  decision: accept
+  note: "The same two freedoms the practice item above leaves open — «Коллега» marks no possessor, and «кошелёк» is Portemonnaie or der Geldbeutel, the standard southern word. Maine for Meine is then a one-edit slip on an unpinned token, which the scorer's slip rule already forgives. dass and the closing auxiliary are intact. Paid for by the accept list (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: a2/natur-wetter:uebersetzen-kaltes-wetter
+  given: "Das Wetter ist kalt. Kaltes Wetter gefällt mir nicht"
+  decision: constrain
+  note: "Correct German, and it renders «Я не люблю холодную погоду» — but it replaces the weak ending after das with a strong one and so answers a different question from the one the item's explain argues (after das the ending is -e). The item shipped with no instruction at all; it now names mögen and the definite article (revision 2)."
+  decidedAt: 2026-09-15
+
+- item: a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule
+  given: "Können Sie mir sagen, wie hoch ist der Preis für den Kurs? Ich möchte auch wißen, ob ich die Prüfung bestehen muss"
+  decision: confirm
+  note: "The rejection is exactly the target: an embedded question puts its finite verb last — wie hoch der Preis für den Kurs ist — and this rendering keeps the direct-question V2, which is what indirekte-frage grades. Two further divergences: wißen is not a German word (wissen), and eine Prüfung bestehen means to pass an exam, not einen Test machen. drill note: the V2-in-an-embedded-question error recurs on the was/wie-viel question of this item."
+  decidedAt: 2026-09-15

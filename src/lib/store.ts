@@ -4,6 +4,7 @@ import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord 
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
+import { recordRecovery, recordStall } from './stall-log';
 import {
   attemptKey,
   mergeAttempts,
@@ -37,13 +38,90 @@ async function getStore(): Promise<UseStore> {
   if (!s) {
     s = createStore(dbNameFor(id), 'progress');
     stores.set(id, s);
-    const handle = s;
-    await migrateStoredCardIds(
-      () => get<CardStates>('cards', handle),
-      (cards) => set('cards', cards, handle),
-    );
   }
   return s;
+}
+
+/**
+ * Drop the memoized handle for a profile so the next store call opens a fresh connection.
+ *
+ * **Can** rescue a hung `indexedDB.open()`: idb-keyval memoizes the open promise in
+ * `createStore`'s own closure and clears it only from `db.onclose` — an event a hang never
+ * fires — so before this existed, every retry re-awaited the identical hung promise and the
+ * backoff schedule was incapable of doing anything the first attempt had not already done.
+ *
+ * **Cannot** rescue a wedged readwrite transaction: a new connection's transaction still
+ * queues behind it, because IndexedDB orders transactions by scope across the whole database,
+ * not per connection. Reconnecting is a narrow remedy, not a general one.
+ *
+ * **Leaks one connection per reset** — idb-keyval never exposes the `IDBDatabase`, so the old
+ * one cannot be `close()`d. Acceptable because a reset only happens on a stall, but real, and
+ * the reason retries reconnect twice rather than on every attempt.
+ */
+export function resetStoreHandle(profileId = getActiveProfileId()): void {
+  stores.delete(profileId);
+}
+
+/** Test-only: whether a live handle is memoized for a profile, so the reconnect path can be
+    observed without an IndexedDB. Mirrors `__resetProfileStateCacheForTests` in profile.ts. */
+export function __hasStoreHandleForTests(profileId = getActiveProfileId()): boolean {
+  return stores.has(profileId);
+}
+
+/** localStorage marker: this profile's live `cards` blob has already been through
+    the A1 rename. Set only after a SUCCESSFUL pass, so a stalled read simply tries
+    again at the next launch rather than skipping the migration forever. */
+function cardIdMigrationKey(id: string): string {
+  return `da:cardid-migrated:${id}`;
+}
+
+function cardIdMigrationDone(id: string): boolean {
+  try {
+    return localStorage.getItem(cardIdMigrationKey(id)) === '1';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The A1 card-id repair, run against one profile's live blob.
+ *
+ * Never rejects: nothing awaits it, so throwing here would be an unhandled rejection
+ * rather than a signal. A failed or stalled pass leaves the marker unset and is retried
+ * at the next launch — a stall must not be able to skip the repair forever.
+ */
+export async function runCardIdMigration(id: string, handle: UseStore): Promise<void> {
+  if (cardIdMigrationDone(id)) return;
+  try {
+    // Deliberately NOT through the write queue: this takes an injected `handle` so the
+    // marker-stays-unset-on-failure path can be driven without an IndexedDB
+    // (tests/store-visibility-retry.test.ts), and the queue resolves its own handle. It is a
+    // once-per-profile repair off the critical path, so the serialization the queue would buy
+    // is not worth giving up the seam. The race ADR 0018 left open stays open, and stays filed.
+    await migrateStoredCardIds((mutate) => update<CardStates>('cards', mutate, handle));
+    localStorage.setItem(cardIdMigrationKey(id), '1');
+  } catch {
+    // Stalled or unavailable: leave the marker unset and retry next launch. The
+    // migration is a repair, not a write the learner is waiting on.
+  }
+}
+
+/**
+ * Run the repair once for the active profile — the launch-time entry point.
+ *
+ * It has ONE owner (`PersistenceAlert`, the island Base.astro mounts on every page and
+ * which already performs launch-time repair) rather than being triggered by whoever
+ * happens to open the store first. It used to be `await`ed inside `getStore()`, where a
+ * 784 KB `cards` read with no deadline of its own sat between the page's first reader and
+ * its data: under the `Promise.all` every load surface uses, that one leg hanging hung the
+ * whole screen. Firing it from `getStore()` un-awaited fixed the hang and kept the other
+ * half of the problem — an unobserved transaction opened by any code path that touches the
+ * store, racing whatever else that page is reading. One owner, once per launch, after the
+ * profile gate has resolved.
+ */
+export async function runCardIdMigrationOnce(): Promise<void> {
+  const id = getActiveProfileId();
+  await runCardIdMigration(id, await getStore());
 }
 
 /**
@@ -54,22 +132,34 @@ async function getStore(): Promise<UseStore> {
  * deal them as fresh — roughly twelve days of the new-card budget spent on words they already
  * know, while their FSRS history sat stranded under the old keys.
  *
- * Runs once per profile per session, on store open, and only writes when a renamed id is
- * actually present, so after the first upgrade it costs one read and nothing else. Takes its
- * read/write as parameters because the test environment has no IndexedDB — the alternative
- * was leaving the one path that matters covered only by the import path's tests, which is
- * how the gap arose in the first place.
+ * Runs at most once per profile — `runCardIdMigration`'s marker retires it after the first
+ * success — and off the critical path, so no load surface ever waits on it.
  *
- * Returns whether it wrote.
+ * **One transaction, not a `get` then a `set`.** The rename runs inside a single
+ * `update()` read-modify-write, the same primitive `updateCardState` grades through. The
+ * previous get-then-set could drop a grade written in between by any reader that skipped
+ * the migration — and moving the migration off the critical path would have widened exactly
+ * that window.
+ *
+ * Takes the update as a parameter (rather than reaching for the module's memoized handle)
+ * because the test environment has no IndexedDB — the alternative was leaving the one path
+ * that matters covered only by the import path's tests, which is how the gap arose in the
+ * first place.
+ *
+ * Returns whether it renamed anything. It is now `runCardIdMigration`'s marker, not a
+ * write-count guard, that keeps this off the second launch — so the transaction commits once
+ * per profile whether or not there was anything to rename.
  */
 export async function migrateStoredCardIds(
-  read: () => Promise<CardStates | undefined>,
-  write: (cards: CardStates) => Promise<void>,
+  updateCards: (mutate: (cards: CardStates | undefined) => CardStates) => Promise<void>,
 ): Promise<boolean> {
-  const cards = await read();
-  if (!cards || !needsCardIdMigration(cards)) return false;
-  await write(migrateCardIds(cards, mergeCards));
-  return true;
+  let renamed = false;
+  await updateCards((cards) => {
+    if (!cards || !needsCardIdMigration(cards)) return cards ?? {};
+    renamed = true;
+    return migrateCardIds(cards, mergeCards);
+  });
+  return renamed;
 }
 
 // ---------------------------------------------------------------------------
@@ -161,11 +251,23 @@ export class StoreStallError extends Error {
   }
 }
 
-/** Backoff schedule for critical writes: when the previous attempt has not settled by
-    each offset (ms from start), another attempt is fired. The op must be idempotent —
-    `logAttempt` dedupes by attempt key and card grades go through `applyGradeAt`'s
-    ts-guard, so N landed attempts equal one. */
-export const PERSISTENCE_RETRY_SCHEDULE_MS = [4000, 8000, 16000];
+/**
+ * Backoff schedule for critical writes: when the previous attempt has not settled by each
+ * offset (ms from start), the memoized store handle is dropped and another attempt is fired.
+ *
+ * **Two retries, not three, and far apart — because a retry on the same connection cannot
+ * help.** All six progress keys live in ONE object store, so IndexedDB gives each readwrite
+ * exclusive access over the whole store: an attempt fired while the previous one is pending
+ * cannot begin until that one completes. The old 4/8/16 s schedule therefore never once
+ * overtook the transaction it was rescuing — it only queued three more full-blob
+ * read-modify-writes of a ~784 KB `cards` record behind it. What a retry CAN do that the
+ * first attempt could not is open a fresh connection (see `resetStoreHandle`), so that is
+ * what each offset now does. ADR 0016 set the old schedule; ADR 0019 supersedes it.
+ *
+ * The op must still be idempotent — `logAttempt` dedupes by attempt key and card grades go
+ * through `applyGradeAt`'s ts-guard, so N landed attempts equal one.
+ */
+export const PERSISTENCE_RETRY_SCHEDULE_MS = [12_000, 30_000];
 
 /** Hard deadline after which `withPersistenceRetry` stops waiting and rejects with
     `StoreStallError`. The write may still land later (attempts are never cancelled);
@@ -187,14 +289,25 @@ export const PERSISTENCE_DEADLINE_MS = 45000;
 export function withPersistenceRetry<T>(
   op: () => Promise<T>,
   {
+    surface = 'write',
     schedule = PERSISTENCE_RETRY_SCHEDULE_MS,
     deadlineMs = PERSISTENCE_DEADLINE_MS,
-  }: { schedule?: readonly number[]; deadlineMs?: number } = {},
+    onLateSettle,
+  }: {
+    surface?: string;
+    schedule?: readonly number[];
+    deadlineMs?: number;
+    onLateSettle?: (value: T) => void;
+  } = {},
 ): Promise<T> {
   if (typeof document === 'undefined') return op();
 
   return new Promise<T>((resolve, reject) => {
     let settled = false;
+    let lateFired = false;
+    let attempts = 0;
+    let stallId: string | undefined;
+    const startedAt = Date.now();
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     const cleanup = () => {
@@ -203,7 +316,123 @@ export function withPersistenceRetry<T>(
       document.removeEventListener('visibilitychange', onVisible);
     };
     const settleResolve = (value: T) => {
+      // A settle after the deadline already rejected. For a READ the value is worthless and
+      // only the fact is kept (`withReadRetry`, below). For a WRITE the fact is that it
+      // COMMITTED — idb-keyval resolves on `transaction.oncomplete`, so a resolve is a commit
+      // — and the caller has to be told, or its journal entry outlives the write it describes
+      // and the alert claims "noch nicht gespeichert" about data that is on disk. That was the
+      // permanently red banner of 2026-09-15, frozen at a count that could never fall.
+      if (settled) {
+        if (stallId) recordRecovery(stallId, Date.now() - startedAt);
+        if (!lateFired) {
+          lateFired = true;
+          onLateSettle?.(value);
+        }
+        return;
+      }
+      cleanup();
+      resolve(value);
+    };
+    const settleReject = (err: unknown) => {
+      // A late REJECTION is not a late settle: nothing landed, so the journal entry stays.
       if (settled) return;
+      cleanup();
+      reject(err);
+    };
+    const attempt = (reconnect: boolean) => {
+      if (settled) return;
+      if (reconnect) resetStoreHandle();
+      attempts += 1;
+      op().then(settleResolve, settleReject);
+    };
+    const onVisible = () => {
+      // The backgrounded-tab stall unsticks the EXISTING connection, so this trigger must not
+      // throw it away — reconnecting here would discard a handle that is about to answer.
+      if (document.visibilityState === 'visible') attempt(false);
+    };
+
+    attempt(false);
+    for (const at of schedule) timers.push(setTimeout(() => attempt(true), at));
+    timers.push(
+      setTimeout(() => {
+        if (settled) return;
+        // cleanup() before recording, so a later settle sees `settled` and takes the
+        // recovery/late branch above instead of resolving a caller that has gone.
+        cleanup();
+        stallId = recordStall({ surface, waitedMs: Date.now() - startedAt, attempts });
+        reject(new StoreStallError());
+      }, deadlineMs),
+    );
+    document.addEventListener('visibilitychange', onVisible);
+  });
+}
+
+/**
+ * Backoff schedule for a critical-path READ: when nothing has settled by each
+ * offset (ms from start), another attempt is fired.
+ *
+ * A read needs no idempotency argument — that is exactly why it should have had
+ * this from the start. ADR 0016 gave writes `withPersistenceRetry` and left reads
+ * with a deadline and `withVisibilityRetry`, whose only trigger is
+ * `visibilitychange`; a stall while the window stays visible therefore had no
+ * automatic recovery at all, and the retry button was the whole mechanism. That
+ * is how a populated store (824 cards, 3919 attempts on disk) rendered as an
+ * error card on Heute and as a permanent loading line on Themen.
+ */
+export const READ_RETRY_SCHEDULE_MS = [2000, 5000];
+
+/** Hard deadline for a critical-path read: past this the caller is told the store
+    is stalled rather than being left to wait. Earlier attempts are never
+    cancelled — one of them may still settle, which `withReadRetry` records. */
+export const READ_DEADLINE_MS = 10000;
+
+/**
+ * Run a store READ with timed retries and a hard deadline.
+ *
+ * Fires `op()`, fires it again at each schedule offset if nothing has settled,
+ * keeps `visibilitychange` as one more trigger, settles with the first attempt to
+ * finish, and rejects with `StoreStallError` at `deadlineMs` so a load surface can
+ * render an explicit error instead of waiting forever. Every rejection and every
+ * late settle is written to the stall log, because the failure that produced this
+ * function left no evidence behind at all.
+ *
+ * Takes a THUNK, not a promise. Its predecessor `withReadDeadline` took an
+ * already-created promise, which is the structural reason reads could never retry;
+ * that variant is gone, so there is no wrong one to reach for.
+ *
+ * SSR-safe: without `document` there is no timer to hang a retry on, so this is a
+ * passthrough.
+ */
+export function withReadRetry<T>(
+  op: () => Promise<T>,
+  {
+    surface = 'read',
+    schedule = READ_RETRY_SCHEDULE_MS,
+    deadlineMs = READ_DEADLINE_MS,
+  }: { surface?: string; schedule?: readonly number[]; deadlineMs?: number } = {},
+): Promise<T> {
+  if (typeof document === 'undefined') return op();
+
+  return new Promise<T>((resolve, reject) => {
+    let settled = false;
+    let attempts = 0;
+    let stallId: string | undefined;
+    const startedAt = Date.now();
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    const cleanup = () => {
+      settled = true;
+      for (const t of timers) clearTimeout(t);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
+    const settleResolve = (value: T) => {
+      // A late settle after the deadline has already rejected: nobody is waiting
+      // for it any more, but it is the fact that separates "the store unstuck
+      // itself" from "the store never answered". Record it and drop the value.
+      if (settled) {
+        if (stallId) recordRecovery(stallId, Date.now() - startedAt);
+        return;
+      }
       cleanup();
       resolve(value);
     };
@@ -214,6 +443,7 @@ export function withPersistenceRetry<T>(
     };
     const attempt = () => {
       if (settled) return;
+      attempts += 1;
       op().then(settleResolve, settleReject);
     };
     const onVisible = () => {
@@ -224,35 +454,200 @@ export function withPersistenceRetry<T>(
     for (const at of schedule) timers.push(setTimeout(attempt, at));
     timers.push(
       setTimeout(() => {
-        if (!settled) {
-          cleanup();
-          reject(new StoreStallError());
-        }
+        if (settled) return;
+        // cleanup() before recording, so a later settle sees `settled` and takes
+        // the recovery branch above instead of resolving a caller that has gone.
+        cleanup();
+        stallId = recordStall({ surface, waitedMs: Date.now() - startedAt, attempts });
+        reject(new StoreStallError());
       }, deadlineMs),
     );
     document.addEventListener('visibilitychange', onVisible);
   });
 }
 
-/** Give a read a deadline: past `ms` it rejects with `StoreStallError` instead of
-    hanging. Load surfaces use it so a stalled read renders an explicit error state,
-    never an empty (fresh-profile-looking) view. The underlying read keeps running —
-    a retry button simply calls the loader again. */
-export function withReadDeadline<T>(p: Promise<T>, ms = 10000): Promise<T> {
-  if (typeof document === 'undefined') return p;
-  return new Promise<T>((resolve, reject) => {
-    const timer = setTimeout(() => reject(new StoreStallError()), ms);
-    p.then(
-      (v) => {
-        clearTimeout(timer);
-        resolve(v);
-      },
-      (e) => {
-        clearTimeout(timer);
-        reject(e);
-      },
-    );
+// ---------------------------------------------------------------------------
+// The write queue: one readwrite transaction at a time, N mutations per commit
+// ---------------------------------------------------------------------------
+
+/**
+ * Every progress key lives in ONE object store (`createStore(dbNameFor(id), 'progress')`), so
+ * IndexedDB already gives each readwrite exclusive access across all of them: a burst of grades
+ * was never concurrent, only queued invisibly, each holding its own full-blob read-modify-write
+ * of a ~784 KB `cards` record. The queue models what the database does anyway and adds the one
+ * thing the database cannot — several mutations inside ONE transaction — so a burst of eight
+ * grades costs one read and one write rather than eight of each. ADR 0019.
+ *
+ * What it deliberately does NOT do is make the spread cheaper: each mutator still copies the
+ * record it was handed. That is a few thousand pointer copies against a structured clone of
+ * ~784 KB, so collapsing the transactions is the whole prize and rewriting the mutators to
+ * mutate in place would buy nothing worth the subtlety.
+ */
+type StoreKey = 'cards' | 'attempts' | 'sessions' | 'topics' | 'goal' | 'feedback';
+
+/**
+ * How long the runner WAITS for one batch before moving on to the next.
+ *
+ * Not a cancel — IndexedDB has none — and not a verdict: the orphaned transaction may still
+ * commit, and `runBatch` settles its own members if it does. That late resolve is what reaches
+ * `withPersistenceRetry`'s `onLateSettle` and clears the journal, which is why the late-settle
+ * branch is a prerequisite for this queue rather than an independent repair.
+ *
+ * Equal to the write deadline by construction: the runner stops waiting exactly when the
+ * callers do. Without it, one wedged commit would halt every later write for the life of the
+ * page — the single genuine regression single-flighting could introduce.
+ */
+export const QUEUE_BATCH_TIMEOUT_MS = PERSISTENCE_DEADLINE_MS;
+
+interface PendingWrite {
+  key: StoreKey;
+  mutate: (current: unknown) => unknown;
+  resolve: () => void;
+  reject: (err: unknown) => void;
+}
+
+let writeQueue: PendingWrite[] = [];
+let draining = false;
+/** Bumped by `__resetWriteQueueForTests`; a drain loop from an earlier generation exits. */
+let queueGeneration = 0;
+
+/**
+ * Test-only: abandon the queue and let a fresh one start.
+ *
+ * `writeQueue` and `draining` are module-level singletons and `bun test` shares ONE module
+ * registry across the whole suite, so a file that leaves a write in flight against the real
+ * commit primitive strands them: under happy-dom there is no IndexedDB, `getStore()` never
+ * answers, `draining` stays true, and every later `enqueueUpdate` in every later FILE waits for
+ * a drain that will never take it. That is what turned the write-queue tests red on CI while
+ * they passed locally — the leaked op was a card grade whose 12 s retry fired long after its own
+ * file had restored the real implementation, and only a slow enough run gives it the chance.
+ *
+ * The generation token is what makes this safe: a loop that is already running checks it each
+ * iteration and returns instead of racing the fresh one, and leaves `draining` alone because it
+ * no longer owns it. Waiters still IN THE QUEUE are rejected rather than dropped, so a leak is
+ * loud where it happens. Waiters whose batch is already in flight are **not** the reset's to
+ * settle — the wedged transaction still owns them, and it will reject them at the runner bound
+ * (`QUEUE_BATCH_TIMEOUT_MS`) or never. What the reset restores is the ability to drain at all,
+ * which is the part that was broken for every later test file.
+ */
+export function __resetWriteQueueForTests(): void {
+  queueGeneration += 1;
+  const abandoned = writeQueue;
+  writeQueue = [];
+  draining = false;
+  for (const w of abandoned) w.reject(new Error('write queue reset between tests'));
+}
+
+/** The commit primitive, injectable for tests — the same reason `migrateStoredCardIds` takes
+    its updater as a parameter: the test environment has no IndexedDB, and the queue's ordering
+    and coalescing are exactly what deserves pinning without one. */
+let commitBatch: (key: StoreKey, apply: (current: unknown) => unknown) => Promise<void> = async (
+  key,
+  apply,
+) => {
+  await update<unknown>(key, apply, await getStore());
+};
+
+/** Test-only: swap the commit primitive. Returns the restore function. */
+export function __setCommitBatchForTests(fn: typeof commitBatch): () => void {
+  const prev = commitBatch;
+  commitBatch = fn;
+  return () => {
+    commitBatch = prev;
+  };
+}
+
+/**
+ * Enqueue one read-modify-write.
+ *
+ * The mutate runs INSIDE the transaction against the freshest stored value (ADR 0016's
+ * invariant — a cloud merge that landed mid-session is written on top of, never clobbered) and
+ * against the accumulated result of every earlier mutate in the same batch, so two grades of
+ * one card in one batch compose exactly as they would in two transactions.
+ */
+function enqueueUpdate<V>(key: StoreKey, mutate: (current: V | undefined) => V): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    writeQueue.push({ key, mutate: mutate as (c: unknown) => unknown, resolve, reject });
+    if (!draining) {
+      draining = true;
+      void drainWriteQueue();
+    }
   });
+}
+
+async function drainWriteQueue(): Promise<void> {
+  const generation = queueGeneration;
+  try {
+    // Yield once before taking the first batch. Without it the very first enqueue drains alone,
+    // because `enqueueUpdate`'s executor runs synchronously and starts the drain before its
+    // siblings in the same tick have been pushed — so a burst submitted together would commit
+    // one transaction per op, which is the cost this queue exists to remove. Coalescing must
+    // not depend on how slow the commit happens to be.
+    await Promise.resolve();
+    while (writeQueue.length > 0) {
+      // A reset happened while this loop was awaiting: the queue belongs to a newer drain now.
+      if (generation !== queueGeneration) return;
+      // FIFO by the head's key, taking every queued mutation for that key. A burst of eight
+      // grades and one attempt becomes two transactions, not nine. Head-first means no key can
+      // be starved by a steady stream of writes to another.
+      const key = writeQueue[0]!.key;
+      const batch: PendingWrite[] = [];
+      const rest: PendingWrite[] = [];
+      for (const w of writeQueue) (w.key === key ? batch : rest).push(w);
+      writeQueue = rest;
+
+      const commit = runBatch(key, batch); // never rejects; settles its own members
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const answered = await Promise.race([
+        commit.then(() => true),
+        new Promise<false>((r) => {
+          timer = setTimeout(() => r(false), QUEUE_BATCH_TIMEOUT_MS);
+        }),
+      ]);
+      clearTimeout(timer);
+
+      if (!answered) {
+        recordStall({ surface: 'write-queue', waitedMs: QUEUE_BATCH_TIMEOUT_MS, attempts: 1 });
+        resetStoreHandle();
+      }
+    }
+  } finally {
+    // Only the owning generation clears the flag; a superseded loop must not unset a drain it
+    // does not own.
+    if (generation === queueGeneration) draining = false;
+  }
+}
+
+async function runBatch(key: StoreKey, batch: PendingWrite[]): Promise<void> {
+  const failures = new Map<PendingWrite, unknown>();
+  try {
+    await commitBatch(key, (current) => {
+      let acc = current;
+      for (const w of batch) {
+        // A mutate that throws must not abort the transaction: the other writes in this batch
+        // are innocent, and an abort would fail them all.
+        try {
+          acc = w.mutate(acc);
+        } catch (err) {
+          failures.set(w, err);
+        }
+      }
+      return acc;
+    });
+  } catch (err) {
+    for (const w of batch) w.reject(failures.has(w) ? failures.get(w) : err);
+    return;
+  }
+  for (const w of batch) {
+    if (failures.has(w)) w.reject(failures.get(w));
+    else w.resolve();
+  }
+}
+
+/** Wait until nothing is queued — for the destructive paths that must not interleave with an
+    ordinary write (`replaceSnapshot` clears the store before refilling it). */
+export async function flushWriteQueue(): Promise<void> {
+  while (draining || writeQueue.length > 0) await new Promise((r) => setTimeout(r, 0));
 }
 
 // ---------------------------------------------------------------------------
@@ -325,15 +720,11 @@ export async function logAttempt(attempt: NewAttempt): Promise<void> {
   // Deduped by the merge key inside the read-modify-write, so a timed retry or a
   // journal replay of an attempt that actually landed appends nothing — the same
   // idempotency contract mergeAttempts already gives cross-device imports.
-  await update<Attempt[]>(
-    'attempts',
-    (arr) => {
-      const cur = arr ?? [];
-      const key = attemptKey(attempt);
-      return cur.some((a) => attemptKey(a) === key) ? cur : [...cur, attempt];
-    },
-    await getStore(),
-  );
+  await enqueueUpdate<Attempt[]>('attempts', (arr) => {
+    const cur = arr ?? [];
+    const key = attemptKey(attempt);
+    return cur.some((a) => attemptKey(a) === key) ? cur : [...cur, attempt];
+  });
   if (typeof window !== 'undefined')
     window.dispatchEvent(new CustomEvent(ATTEMPT_EVENT, { detail: attempt.setId }));
   scheduleAutoSync();
@@ -374,7 +765,7 @@ export async function getCardStates(): Promise<CardStates> {
 
 export async function setCardState(cardId: string, card: StoredCard): Promise<void> {
   await withVisibilityRetry(async () => {
-    await update<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }), await getStore());
+    await enqueueUpdate<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }));
   });
   scheduleAutoSync();
 }
@@ -393,15 +784,11 @@ export async function updateCardState(
   mutate: (prev: StoredCard | undefined) => StoredCard,
 ): Promise<StoredCard> {
   let written: StoredCard | undefined;
-  await update<CardStates>(
-    'cards',
-    (m) => {
-      const cur = m ?? {};
-      written = mutate(cur[cardId]);
-      return { ...cur, [cardId]: written };
-    },
-    await getStore(),
-  );
+  await enqueueUpdate<CardStates>('cards', (m) => {
+    const cur = m ?? {};
+    written = mutate(cur[cardId]);
+    return { ...cur, [cardId]: written };
+  });
   scheduleAutoSync();
   // The callback runs synchronously inside update(); by the time the await above
   // resolves, `written` is always assigned.
@@ -423,7 +810,7 @@ export async function getLearningGoal(): Promise<LearningGoal | undefined> {
 }
 
 export async function setLearningGoal(goal: LearningGoal): Promise<void> {
-  await set('goal', goal, await getStore());
+  await enqueueUpdate<LearningGoal>('goal', () => goal);
   scheduleAutoSync();
 }
 
@@ -449,7 +836,7 @@ export function localDateString(d = new Date()): string {
 }
 
 export async function logSession(entry: SessionLogEntry): Promise<void> {
-  await update<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry], await getStore());
+  await enqueueUpdate<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry]);
   scheduleAutoSync();
 }
 
@@ -505,15 +892,11 @@ export async function getTopicsState(): Promise<TopicsState> {
 
 /** Mark a topic's article as read. Idempotent — keeps the earliest readAt. */
 export async function markTopicRead(topicId: string, ts = Date.now()): Promise<void> {
-  await update<TopicsState>(
-    'topics',
-    (m) => {
-      const cur = m ?? {};
-      if (cur[topicId]?.readAt) return cur;
-      return { ...cur, [topicId]: { ...cur[topicId], readAt: ts } };
-    },
-    await getStore(),
-  );
+  await enqueueUpdate<TopicsState>('topics', (m) => {
+    const cur = m ?? {};
+    if (cur[topicId]?.readAt) return cur;
+    return { ...cur, [topicId]: { ...cur[topicId], readAt: ts } };
+  });
   scheduleAutoSync();
 }
 
@@ -523,23 +906,19 @@ export async function setTopicManual(
   manual: TopicManual | null,
   ts = Date.now(),
 ): Promise<void> {
-  await update<TopicsState>(
-    'topics',
-    (m) => {
-      const cur = m ?? {};
-      const prev = cur[topicId] ?? {};
-      const next: TopicProgress = { ...prev };
-      if (manual === null) {
-        delete next.manual;
-        delete next.manualAt;
-      } else {
-        next.manual = manual;
-        next.manualAt = ts;
-      }
-      return { ...cur, [topicId]: next };
-    },
-    await getStore(),
-  );
+  await enqueueUpdate<TopicsState>('topics', (m) => {
+    const cur = m ?? {};
+    const prev = cur[topicId] ?? {};
+    const next: TopicProgress = { ...prev };
+    if (manual === null) {
+      delete next.manual;
+      delete next.manualAt;
+    } else {
+      next.manual = manual;
+      next.manualAt = ts;
+    }
+    return { ...cur, [topicId]: next };
+  });
   scheduleAutoSync();
 }
 
@@ -556,16 +935,12 @@ export async function setTopicPlacement(
   result: Omit<TopicPlacement, 'at'>,
   ts = Date.now(),
 ): Promise<void> {
-  await update<TopicsState>(
-    'topics',
-    (m) => {
-      const cur = m ?? {};
-      const prev = cur[topicId]?.placement;
-      if (prev && prev.score >= result.score) return cur;
-      return { ...cur, [topicId]: { ...cur[topicId], placement: { ...result, at: ts } } };
-    },
-    await getStore(),
-  );
+  await enqueueUpdate<TopicsState>('topics', (m) => {
+    const cur = m ?? {};
+    const prev = cur[topicId]?.placement;
+    if (prev && prev.score >= result.score) return cur;
+    return { ...cur, [topicId]: { ...cur[topicId], placement: { ...result, at: ts } } };
+  });
   scheduleAutoSync();
 }
 
@@ -591,11 +966,10 @@ export async function setArtifactFeedback(
   entry: Omit<ArtifactFeedback, 'ts'>,
 ): Promise<ArtifactFeedback> {
   const stamped = { ...entry, ts: Date.now() };
-  await update<ArtifactFeedbackState>(
-    'feedback',
-    (current) => ({ ...(current ?? {}), [stamped.artifactId]: stamped }),
-    await getStore(),
-  );
+  await enqueueUpdate<ArtifactFeedbackState>('feedback', (current) => ({
+    ...(current ?? {}),
+    [stamped.artifactId]: stamped,
+  }));
   scheduleAutoSync();
   return stamped;
 }
@@ -661,29 +1035,23 @@ export function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
  */
 export async function mergeSnapshot(snapshot: unknown): Promise<void> {
   const migrated = parseProgressSnapshot(snapshot);
-  const store = await getStore();
-  await update<Attempt[]>(
-    'attempts',
-    (cur) => mergeAttempts(cur ?? [], sanitizeAttempts(migrated.attempts)),
-    store,
+  // Through the queue like every other write: a merge is six back-to-back readwrites, which is
+  // exactly the backlog a grade issued mid-sync used to find itself behind (ADR 0019). Queued
+  // together they interleave with the session's own writes instead of monopolising the store.
+  await enqueueUpdate<Attempt[]>('attempts', (cur) =>
+    mergeAttempts(cur ?? [], sanitizeAttempts(migrated.attempts)),
   );
-  await update<CardStates>('cards', (cur) => mergeCards(cur ?? {}, migrated.cards), store);
-  await update<SessionLogEntry[]>(
-    'sessions',
-    (cur) => mergeSessions(cur ?? [], migrated.sessions),
-    store,
+  await enqueueUpdate<CardStates>('cards', (cur) => mergeCards(cur ?? {}, migrated.cards));
+  await enqueueUpdate<SessionLogEntry[]>('sessions', (cur) =>
+    mergeSessions(cur ?? [], migrated.sessions),
   );
-  await update<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, migrated.topics), store);
-  await update<ArtifactFeedbackState>(
-    'feedback',
-    (cur) => mergeFeedback(cur ?? {}, migrated.feedback),
-    store,
+  await enqueueUpdate<TopicsState>('topics', (cur) => mergeTopics(cur ?? {}, migrated.topics));
+  await enqueueUpdate<ArtifactFeedbackState>('feedback', (cur) =>
+    mergeFeedback(cur ?? {}, migrated.feedback),
   );
   if (migrated.goal) {
-    await update<LearningGoal | undefined>(
-      'goal',
-      (cur) => (!cur || migrated.goal!.setAt > cur.setAt ? migrated.goal : cur),
-      store,
+    await enqueueUpdate<LearningGoal | undefined>('goal', (cur) =>
+      !cur || migrated.goal!.setAt > cur.setAt ? migrated.goal : cur,
     );
   }
   scheduleAutoSync();
@@ -692,6 +1060,9 @@ export async function mergeSnapshot(snapshot: unknown): Promise<void> {
 /** Destructive: replaces the whole store with the snapshot's contents. */
 export async function replaceSnapshot(snapshot: unknown): Promise<void> {
   const migrated = parseProgressSnapshot(snapshot);
+  // The one path that must not interleave: it clears the store before refilling it, so a
+  // queued grade committing in between would be wiped by the clear or resurrected after it.
+  await flushWriteQueue();
   const store = await getStore();
   // The identity record names this database for discovery — it outlives its contents.
   const identity = await get<ProfileRecord>('profile', store);

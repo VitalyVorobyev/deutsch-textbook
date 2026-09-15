@@ -7,6 +7,77 @@ All notable changes to Deutsch-Atlas are recorded here. The format follows
 Releases are cut by pushing a `vX.Y.Z` tag; the section below the matching version becomes the
 GitHub Release notes.
 
+## [Unreleased]
+
+### Fixed
+
+- **Themen said "Загружаем ваш прогресс…" forever, and Heute said progress could not be
+  loaded, while 824 cards and 3919 attempts sat in the store.** An IndexedDB read in the
+  desktop webview stalled, and the app had no way back from it: reads had a 10 s deadline but
+  — unlike writes since 0.5.0 — no timed retry, so nothing ever tried again; the Lernpfad was
+  the one daily-loop surface with neither a deadline nor a rejection handler, so its loading
+  line was permanent; and `getStore()` awaited a 784 KB card-id migration that had been a
+  no-op for this learner since it ran, putting a deadline-less read in front of the page's
+  first data. Reads now retry at 2 s and 5 s inside the same deadline, every load surface
+  distinguishes *still reading* from *read failed* from *confirmed empty* — with a retry
+  button where it makes a claim about progress, and an explicit unknown rather than a
+  confident `0` where it is only a badge — and the migration has moved out of the store's
+  open path entirely, to one owner that runs it once per profile in a single transaction, so
+  it can no longer sit in front of a page nor drop a grade written beside it. Nothing here claims the stall itself is gone; it claims the app can no longer
+  render one as an absence of progress. → [ADR 0018](docs/adrs/0018-progress-reads-recover.md)
+- **Ten rejected renderings, ruled — seven of them correct German.** `feedback.md` had gone
+  untriaged since 2026-08-28, so the whole capture is decided in
+  `data/grading-decisions.yaml` and the file is empty again. Seven renderings were correct
+  German the prompt left free and are now accepted, each paid for by the item's `accept` list
+  and a `revision` bump: *Man darf hier nicht parken* for an impersonal Russian prompt (the
+  course teaches that very sentence elsewhere); *Darf ich etwas fragen?* where «Можно мне …?»
+  asks permission; *um acht Uhr* and *um neun Uhr*, since a clock time is written either way;
+  and *Die Nachbarin* / *ein Geräusch* / *den Geldbeutel*, where a bare Russian noun marks no
+  possessor and «шум»/«кошелёк» have two ordinary German words each. Where a pin decided which
+  word the item graded, the synonym joined it — `darf`, `Darf` — so the tag still fires on the
+  rendering it now accepts. One ruling went the other way: `uebersetzen-kaltes-wetter` shipped
+  with **no instruction at all**, and *Kaltes Wetter gefällt mir nicht* is good German that
+  answers a different question from the one the item teaches, so the instruction now names the
+  construction. Two rejections were confirmed, with the reason recorded.
+- **`{{der}} Kuchen` marked "Der Kuchen" wrong.** The item was a bare two-word fragment whose
+  gap *was* the first token, under an instruction that said "Complete the whole word" — nothing
+  told the learner whether the article opened a sentence or sat inside one, and the cloze grader
+  compares case-sensitively. It is now a sentence like every sibling in its set, with the true
+  diminutive beside the false one. The general case — 66 cloze items open a gap at a sentence
+  head, three of them hand-patched as `{{Der|der}}` — is filed as F-13.
+- **A dictation rejected `04879` for `null vier acht sieben neun`.** The validator has always
+  forbidden the *author* from writing digits in a `listen` text; nothing told the *learner*.
+  Thirteen shipped items carried that trap. Each now says so in all three languages, and a new
+  validator rule fails any `listen` item that spells a cardinal without telling the learner —
+  watched to fail before it was kept.
+- **A reason-chunk card graded which connector the author had in mind.** `Ich komme später,
+  denn …` is prompted as "because …", which *weil* and *da* render just as well; both are
+  accepted now, and the *denn* frame stays the answer shown.
+- **The progress-load banner said only that progress could not be loaded**, which sent the
+  learner looking for a Cloudflare outage. Nothing on that path touches the network: it is
+  IndexedDB on the device, already retried at 0/2/5 s behind a 10 s deadline. The message names
+  the local store and says the data is not lost.
+- **`gewöhnen`'s flashcard never said it was reflexive.** `valence` renders in the Wortschatz
+  table and nowhere on a card, so the answer-side `note` now states *sich an etwas gewöhnen*.
+  The headword stays as it is — it is the Goethe Wortliste key, and renaming it would reset the
+  card's SRS history.
+
+### Added
+
+- **Fortschritt → Daten shows storage diagnostics.** The failure above left no evidence at
+  all: no record of which read stalled, how long it waited, or whether it ever came back, and
+  nothing in the app to say that a 1.7 MB backup written two hours earlier was sitting on
+  disk. Stalled reads are now recorded per profile (surface, wait, attempt count, timestamp —
+  **counters only, never learner content**, and a late arrival is marked as a recovery so
+  "the store unstuck itself" is distinguishable from "the store never answered"), shown
+  beside the newest local backup's date, card and attempt counts, and path.
+- **Three desktop guards**, each against a plausible cause rather than a proven one: a
+  single-instance lock, so a second launch focuses the existing window instead of putting a
+  second process on one WebKit container's SQLite files; devtools enabled in release builds,
+  because the app whose storage can stall is the installed one and it could not be inspected;
+  and a report of the second WebKit container that bundle-less runs of the binary create
+  (named in ADR 0016 and deferred then) — **reported, never read, moved or merged.**
+
 ## [0.5.1] — 2026-08-26
 
 **The flashcards say "heart" again.** Content release so the desktop bundle carries the day's

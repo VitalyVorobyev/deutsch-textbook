@@ -61,6 +61,12 @@ items:
     outcomes: [wortbildung-nomenformen]
     type: cloze
     focus: wortbildung-nomen
-    instruction: {en: "Complete the whole word with its memorised article; it is not a diminutive.", ru: "Дополните цельное слово выученным артиклем; это не уменьшительное.", uk: "Доповніть цілісне слово вивченим артиклем; це не зменшувальне."}
-    text: "{{der}} Kuchen"
+    # revision 2: the item used to be the bare fragment "{{der}} Kuchen" — one gap, and the
+    # gap WAS the first token, so nothing told the learner whether the article opened a
+    # sentence (Der) or sat inside one (der), and "Complete the whole word" invited typing
+    # the whole phrase. It now reads as a sentence like every sibling in this set, with the
+    # true diminutive beside the false one. (Learner feedback, 2026-09-15.)
+    instruction: {en: "Complete the sentence with the right article. Only the first noun is a diminutive.", ru: "Дополните предложение нужным артиклем. Уменьшительное здесь только первое существительное.", uk: "Доповніть речення потрібним артиклем. Зменшувальний тут лише перший іменник."}
+    text: "Das Brötchen ist klein, aber {{der}} Kuchen ist groß."
+    revision: 2
     explain: {en: "The letters chen are not enough. Kuchen has no base *Ku* and no diminutive meaning, so it is the whole masculine word der Kuchen.", ru: "Одних букв chen недостаточно. У Kuchen нет основы *Ku* и уменьшительного значения, поэтому это цельное слово мужского рода der Kuchen.", uk: "Самих літер chen недостатньо. У Kuchen немає основи *Ku* й зменшувального значення, тому це цілісне слово чоловічого роду der Kuchen."}

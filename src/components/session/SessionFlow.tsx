@@ -9,7 +9,7 @@ import {
   localDateString,
   logSession,
   sessionDoneToday,
-  withReadDeadline,
+  withReadRetry,
 } from '../../lib/store';
 import { hasSeenData } from '../../lib/write-journal';
 import ProgressLoadError from '../ProgressLoadError';
@@ -153,9 +153,14 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   useEffect(() => {
     if (step !== 3) return;
     let cancelled = false;
-    void getAttempts().then((attempts) => {
-      if (!cancelled) setFailedToday(probeFailuresOn(families, attempts));
-    });
+    void withReadRetry(() => getAttempts(), { surface: 'session/probe-failures' }).then(
+      (attempts) => {
+        if (!cancelled) setFailedToday(probeFailuresOn(families, attempts));
+      },
+      () => {
+        if (!cancelled) setLoadError(true);
+      },
+    );
     return () => {
       cancelled = true;
     };
@@ -173,7 +178,9 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   }
   useEffect(() => {
     let cancelled = false;
-    void getAttempts().then((attempts) => {
+    // Probe state is derived from the attempt log and nowhere else, so a stalled read
+    // here does not "show no probes" — it silently skips a delayed check that was due.
+    void withReadRetry(() => getAttempts(), { surface: 'session/probes' }).then((attempts) => {
       if (cancelled) return;
       const owed = dueProbes(families, attempts);
       // The daily ceiling holds across surfaces: a catch-up run earlier today shrinks
@@ -191,6 +198,8 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
         // exists (probes all taken, or the budget spent by a catch-up run in between)
         setStep((s) => (s === 0 ? 1 : s));
       }
+    }, () => {
+      if (!cancelled) setLoadError(true);
     });
     return () => {
       cancelled = true;
@@ -204,8 +213,9 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   // little is due — and only from eligible decks (see planReview in decks.ts).
   useEffect(() => {
     let cancelled = false;
-    void withReadDeadline(
-      Promise.all([getCardStates(), getAttempts(), getTopicsState(), getLearningGoal()]),
+    void withReadRetry(
+      () => Promise.all([getCardStates(), getAttempts(), getTopicsState(), getLearningGoal()]),
+      { surface: 'session' },
     ).then(
       ([states, attempts, topics, goal]) => {
         if (cancelled) return;

@@ -24,7 +24,14 @@ import * as store from '../src/lib/store';
 // afterAll delegation below would recurse forever.
 const realUpdateCardState = store.updateCardState;
 const realGetCardStates = store.getCardStates;
-const updateCardState = mock(() => new Promise<never>(() => {}));
+// Stalled for the duration of the test, then RELEASED in afterEach — see the comment there.
+let releaseWrite: (() => void) | undefined;
+const updateCardState = mock(
+  () =>
+    new Promise<undefined>((resolve) => {
+      releaseWrite = () => resolve(undefined);
+    }),
+);
 const getCardStates = mock(() => Promise.resolve({}));
 mock.module('../src/lib/store', () => ({ ...store, updateCardState, getCardStates }));
 
@@ -36,8 +43,18 @@ beforeAll(async () => {
   ({ journalPending } = await import('../src/lib/write-journal'));
 });
 
-afterEach(() => {
+afterEach(async () => {
   cleanup();
+  // Release the stalled write before this file ends. `withPersistenceRetry` clears its 12 s and
+  // 30 s retry timers and its 45 s deadline only when the op settles, and `bun test` shares one
+  // process: a chain left running here fires those timers inside whatever file happens to be
+  // running then — by which point `afterAll` below has restored the REAL `updateCardState`,
+  // whose `getStore()` never answers under happy-dom. That wedges the module-level write queue
+  // for the rest of the suite, and is what took four of `tests/store-write-queue.test.ts`'s
+  // cases red on CI (a run slow enough for the timers to land) while every local run was green.
+  releaseWrite?.();
+  releaseWrite = undefined;
+  await Promise.resolve();
   updateCardState.mockClear();
   getCardStates.mockClear();
   localStorage.clear();

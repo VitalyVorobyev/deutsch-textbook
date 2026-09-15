@@ -8,8 +8,33 @@
 import { t } from '../lib/strings';
 import { useUiLang } from './hooks';
 
-export default function ProgressLoadError({ onRetry }: { onRetry: () => void }) {
+export default function ProgressLoadError({
+  onRetry,
+  compact = false,
+}: {
+  onRetry: () => void;
+  /** For a slot that holds a badge or an inline note rather than a panel — a mastery
+      badge's skeleton must still be able to say it failed, and a red block six lines
+      tall in a badge slot would be its own defect. Same text, same role, one line. */
+  compact?: boolean;
+}) {
   const uiLang = useUiLang();
+
+  if (compact) {
+    return (
+      <span role="alert" className="text-sm text-red-700 dark:text-red-300">
+        {t('persist.loadErrorShort', uiLang)}{' '}
+        <button
+          type="button"
+          onClick={onRetry}
+          className="font-semibold underline hover:no-underline"
+        >
+          {t('persist.loadRetry', uiLang)}
+        </button>
+      </span>
+    );
+  }
+
   return (
     <div
       role="alert"

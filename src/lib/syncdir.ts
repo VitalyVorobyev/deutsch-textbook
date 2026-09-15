@@ -108,3 +108,66 @@ export async function writeSnapshotToSyncDir(
   await writeTextFile(path, body);
   return { path, parked: false };
 }
+
+// ---------------------------------------------------------------------------
+// Reading the backups back — the honest answer to "my progress is gone"
+// ---------------------------------------------------------------------------
+
+/** What the newest daily backup holds. Counts, not content. */
+export interface SnapshotBackup {
+  path: string;
+  /** `YYYY-MM-DD`, the file's own name. */
+  date: string;
+  bytes: number;
+  attempts: number;
+  cards: number;
+}
+
+/** How far back `newestSnapshotBackup` probes. One `exists()` per day, so the cost is
+    bounded and small; a learner who has not opened the app in a month gets `null`, which
+    the view renders as "no backup found" rather than as a claim that none exists. */
+export const BACKUP_PROBE_DAYS = 30;
+
+/**
+ * Find the newest daily snapshot in the sync folder and report what it holds.
+ *
+ * Deliberately probes dated filenames with `exists()` instead of listing the directory:
+ * the capability set grants `fs:allow-exists` and `fs:allow-read-text-file` and no
+ * `read-dir`, and a diagnostic is not a good reason to widen what the app may read.
+ *
+ * This exists because the learner-facing failure it serves was *"progress could not be
+ * loaded"* while a 1.7 MB file holding 824 cards and 3919 attempts sat on disk, written
+ * two hours earlier. The store being stalled says nothing about the data being lost, and
+ * the app had no way to say so.
+ */
+export async function newestSnapshotBackup(
+  profileId: string,
+  days = BACKUP_PROBE_DAYS,
+): Promise<SnapshotBackup | null> {
+  if (!isTauri()) return null;
+  const [{ exists, readTextFile }, { join }] = await Promise.all([
+    import('@tauri-apps/plugin-fs'),
+    import('@tauri-apps/api/path'),
+  ]);
+  const folder = await join(await getSyncDir(), profileId);
+  for (let back = 0; back < days; back += 1) {
+    const day = new Date(Date.now() - back * 24 * 60 * 60 * 1000);
+    const date = day.toISOString().slice(0, 10);
+    const path = await join(folder, `${date}.json`);
+    if (!(await exists(path).catch(() => false))) continue;
+    const raw = await readTextFile(path).catch(() => null);
+    if (raw === null) continue;
+    let attempts = 0;
+    let cards = 0;
+    try {
+      const parsed = JSON.parse(raw) as { attempts?: unknown[]; cards?: Record<string, unknown> };
+      attempts = Array.isArray(parsed.attempts) ? parsed.attempts.length : 0;
+      cards = parsed.cards && typeof parsed.cards === 'object' ? Object.keys(parsed.cards).length : 0;
+    } catch {
+      // A file that does not parse is still evidence that a backup exists; report its size
+      // and zero counts rather than pretending there is nothing there.
+    }
+    return { path, date, bytes: raw.length, attempts, cards };
+  }
+  return null;
+}

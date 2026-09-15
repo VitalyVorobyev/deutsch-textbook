@@ -161,12 +161,22 @@ items:
     type: translate
     focus: adjektiv-praedikativ
     key_tokens: ["kalt", "kalte"]
+    # revision 2: the item had no instruction at all, and «Я не люблю холодную погоду» is
+    # rendered just as well by *Kaltes Wetter gefällt mir nicht* — correct German that
+    # replaces the weak ending after *das* with a strong one and so answers a different
+    # question from the one the explain below argues. The construction is named rather
+    # than guessed at. (Grading ruling, 2026-09-15.)
+    instruction:
+      en: "Translate both sentences. In the second, use mögen and the definite article: das … Wetter."
+      ru: "Переведите оба предложения. Во втором используйте mögen и определённый артикль: das … Wetter."
+      uk: "Перекладіть обидва речення. У другому вживайте mögen й означений артикль: das … Wetter."
     prompt_en: "The weather is cold. I do not like the cold weather."
     prompt_ru: "Погода холодная. Я не люблю холодную погоду."
     prompt_uk: "Погода холодна. Я не люблю холодну погоду."
     answer: "Das Wetter ist kalt. Ich mag das kalte Wetter nicht."
     accept:
       - "Das Wetter ist kalt. Das kalte Wetter mag ich nicht."
+    revision: 2
     explain:
       en: "One adjective, two sentences, and the difference between them is the whole rule. After *ist* it is bare: *kalt*. In front of *Wetter* it is declined, and after *das* the ending is *-e*: *das kalte Wetter*. Both German sentences are asked for at once so that the pair cannot be answered by habit — whichever form you reach for first, the other sentence needs the other one."
       ru: "Одно прилагательное, два предложения, и разница между ними — это всё правило. После *ist* оно голое: *kalt*. Перед *Wetter* оно склоняется, и после *das* окончание — *-e*: *das kalte Wetter*. Оба немецких предложения запрашиваются сразу, чтобы пару нельзя было ответить по привычке: какую форму вы ни возьмёте первой, второму предложению нужна другая. По-русски окончание есть в обоих («холодная», «холодную»), поэтому различие приходится строить, а не переводить."

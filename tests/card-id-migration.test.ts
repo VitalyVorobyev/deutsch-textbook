@@ -5,10 +5,18 @@
  * imported only by `parseProgressSnapshot`, so on a real device `planReview` would have
  * missed every renamed id and dealt 174 known cards as new.
  *
- * Scope, stated rather than implied: `migrateStoredCardIds` is exercised directly with
- * in-memory read/write, because the test environment has no IndexedDB. That covers the
- * rename, the collision merge, the write-only-when-needed guard and idempotency. It does
- * not execute `getStore`'s call site; only `bun run dev` against a seeded profile does.
+ * Scope, stated rather than implied: `migrateStoredCardIds` is exercised directly with an
+ * in-memory stand-in for its injected `update`, because the test environment has no
+ * IndexedDB. That covers the rename, the collision merge, the return value and idempotency.
+ * It does not execute `getStore`'s call site; only `bun run dev` against a seeded profile
+ * does.
+ *
+ * One contract moved here in the ADR 0018 change: the migration used to run on every store
+ * open, so "writes nothing when nothing needs renaming" was the guard that kept it cheap.
+ * It now runs at most once per profile behind `runCardIdMigration`'s marker and commits its
+ * read-modify-write in ONE transaction (the previous get-then-set could drop a grade written
+ * in between). So the transaction always commits; what the return value reports, and what
+ * the tests below assert, is whether anything was actually *renamed*.
  */
 import { describe, expect, test } from 'bun:test';
 import {
@@ -32,21 +40,24 @@ const card = (over: Partial<StoredCard> = {}): StoredCard => ({
   ...over,
 });
 
-/** An in-memory stand-in for the profile's `cards` blob. */
-function fakeStore(initial: CardStates) {
+/**
+ * An in-memory stand-in for the profile's `cards` blob, shaped like the one argument
+ * `migrateStoredCardIds` takes: an atomic update that hands the mutator the current value
+ * and stores what it returns. `commits` counts transactions, which is now one per call.
+ */
+function fakeStore(initial: CardStates | undefined) {
   let blob: CardStates | undefined = initial;
-  let writes = 0;
+  let commits = 0;
   return {
-    read: async () => blob,
-    write: async (cards: CardStates) => {
-      blob = cards;
-      writes += 1;
+    update: async (mutate: (cards: CardStates | undefined) => CardStates) => {
+      blob = mutate(blob);
+      commits += 1;
     },
     get blob() {
       return blob!;
     },
-    get writes() {
-      return writes;
+    get commits() {
+      return commits;
     },
   };
 }
@@ -58,7 +69,7 @@ describe('live card-id migration', () => {
       'a1/untouched::Haus::de-x': card(),
     });
 
-    expect(await migrateStoredCardIds(store.read, store.write)).toBe(true);
+    expect(await migrateStoredCardIds(store.update)).toBe(true);
     expect(store.blob['trennbare-a1-verben::anrufen::de-x']).toMatchObject({
       reps: 9,
       stability: 31,
@@ -75,29 +86,36 @@ describe('live card-id migration', () => {
       'erste-schritte::kommen::de-x': card({ reps: 2, stability: 3 }),
     });
 
-    await migrateStoredCardIds(store.read, store.write);
+    await migrateStoredCardIds(store.update);
     expect(Object.keys(store.blob)).toEqual(['erste-schritte::kommen::de-x']);
     expect(store.blob['erste-schritte::kommen::de-x']).toMatchObject({ reps: 12, stability: 40 });
   });
 
-  test('writes nothing when no renamed id is present, on every later open', async () => {
-    const store = fakeStore({ 'erste-schritte::Haus::de-x': card() });
-    expect(await migrateStoredCardIds(store.read, store.write)).toBe(false);
-    expect(store.writes).toBe(0);
+  test('renames nothing, and leaves the blob byte-identical, when no mapped id is present', async () => {
+    const before = { 'erste-schritte::Haus::de-x': card() };
+    const store = fakeStore(before);
+    expect(await migrateStoredCardIds(store.update)).toBe(false);
+    // The transaction commits (one per call, by design) but must put back exactly what it
+    // read — a migration that rewrites an untouched blob is a migration that can lose one.
+    expect(store.commits).toBe(1);
+    expect(store.blob).toEqual(before);
   });
 
   test('is idempotent — a second pass finds nothing left to rename', async () => {
     const store = fakeStore({ 'dativ-verben::helfen::x-de': card() });
-    expect(await migrateStoredCardIds(store.read, store.write)).toBe(true);
-    expect(await migrateStoredCardIds(store.read, store.write)).toBe(false);
-    expect(store.writes).toBe(1);
+    expect(await migrateStoredCardIds(store.update)).toBe(true);
+    const afterFirst = { ...store.blob };
+    expect(await migrateStoredCardIds(store.update)).toBe(false);
+    expect(store.blob).toEqual(afterFirst);
   });
 
-  test('an empty or absent blob is not a write', async () => {
-    let wrote = false;
-    expect(await migrateStoredCardIds(async () => undefined, async () => { wrote = true; })).toBe(false);
-    expect(await migrateStoredCardIds(async () => ({}), async () => { wrote = true; })).toBe(false);
-    expect(wrote).toBe(false);
+  test('an empty or absent blob renames nothing', async () => {
+    const absent = fakeStore(undefined);
+    expect(await migrateStoredCardIds(absent.update)).toBe(false);
+    expect(absent.blob).toEqual({});
+    const empty = fakeStore({});
+    expect(await migrateStoredCardIds(empty.update)).toBe(false);
+    expect(empty.blob).toEqual({});
   });
 
   test('every mapped id actually moves, and no new id is itself a key', () => {

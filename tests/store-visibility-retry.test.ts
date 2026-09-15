@@ -152,17 +152,56 @@ describe('withPersistenceRetry', () => {
   });
 });
 
-describe('withReadDeadline', () => {
-  test('a fast read passes through', async () => {
-    const { withReadDeadline } = await import('../src/lib/store');
-    expect(await withReadDeadline(Promise.resolve('data'), 50)).toBe('data');
+describe('runCardIdMigration (the marker that keeps it off the critical path)', () => {
+  // The A1 rename used to read the whole `cards` blob — 784 KB for a real learner — on
+  // EVERY store open, awaited by the first caller of the page, with no deadline and no
+  // retry of its own. Under the `Promise.all` every load surface uses, that one leg
+  // hanging hung the whole screen; and for anyone whose ids were already renamed it was
+  // a no-op every single time (0 of the 174 mapped ids were present in the learner's 824
+  // cards when this was measured). It is now out of `getStore()` entirely, with one owner
+  // (PersistenceAlert, once per launch, after the profile gate) — un-awaiting it inside
+  // `getStore` would have fixed the hang and kept the other half: an unobserved
+  // transaction opened by whichever code path happens to touch the store first.
+  //
+  // What is pinned here is the marker, which is what makes "once" true: only a SUCCESSFUL
+  // pass retires the repair, so a stall cannot skip it forever.
+  const fakeHandle = (impl: () => Promise<void>) =>
+    ((_mode: IDBTransactionMode, _cb: unknown) => impl()) as unknown as Parameters<
+      typeof import('../src/lib/store').runCardIdMigration
+    >[1];
+
+  test('a successful pass sets the marker, and the next launch does no read at all', async () => {
+    localStorage.setItem('da:profiles', JSON.stringify([{ id: 'mig-ok', label: 'Mig' }]));
+    const { runCardIdMigration } = await import('../src/lib/store');
+    let opens = 0;
+    const handle = fakeHandle(async () => {
+      opens += 1;
+    });
+
+    await runCardIdMigration('mig-ok', handle);
+    expect(opens).toBe(1);
+    expect(localStorage.getItem('da:cardid-migrated:mig-ok')).toBe('1');
+
+    await runCardIdMigration('mig-ok', handle);
+    expect(opens).toBe(1);
   });
 
-  test('a stalled read rejects with StoreStallError instead of hanging', async () => {
-    const { withReadDeadline, StoreStallError } = await import('../src/lib/store');
-    await expect(withReadDeadline(new Promise(() => {}), 20)).rejects.toBeInstanceOf(
-      StoreStallError,
-    );
+  test('a failed or stalled pass leaves the marker unset, so it is retried next launch', async () => {
+    localStorage.setItem('da:profiles', JSON.stringify([{ id: 'mig-fail', label: 'Mig' }]));
+    const { runCardIdMigration } = await import('../src/lib/store');
+    let opens = 0;
+    const failing = fakeHandle(async () => {
+      opens += 1;
+      throw new Error('IndexedDB unavailable');
+    });
+
+    // It must not reject: nothing is waiting on this, and a repair that throws into a
+    // fire-and-forget call site is an unhandled rejection, not a signal.
+    await runCardIdMigration('mig-fail', failing);
+    expect(localStorage.getItem('da:cardid-migrated:mig-fail')).toBeNull();
+
+    await runCardIdMigration('mig-fail', failing);
+    expect(opens).toBe(2);
   });
 });
 
@@ -194,6 +233,7 @@ describe('the store path, decomposed (CI-safe)', () => {
     );
     expect(await withVisibilityRetry(async () => get('cards', s))).toEqual({ c1: 'v1' });
   });
+
 });
 
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {

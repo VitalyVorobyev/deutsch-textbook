@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { CardDef } from '../../lib/srs';
-import { getCardStates, type CardStates } from '../../lib/store';
+import { getCardStates, withReadRetry, type CardStates } from '../../lib/store';
+import ProgressLoadError from '../ProgressLoadError';
 import { masteryCounts, rollupWords, type MasteryCounts, type WordMastery } from '../../lib/vocab-mastery';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
@@ -40,10 +41,20 @@ function MasteryLegend() {
   return <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-500" aria-label={pick(lang, UI.legendAria)}>{ORDER.map((status) => <span key={status}><i className={`mr-1 inline-block h-2.5 w-2.5 rounded-full ${COLORS[status]}`} />{pick(lang, LABELS[status])}</span>)}</div>;
 }
 
+/** `undefined` states means "still reading"; `error` means the read stalled and the
+    skeleton below it would otherwise stay forever. Every consumer must distinguish the
+    two — a mastery bar drawn from no data is a claim that nothing is learned. */
 function useStates() {
   const [states, setStates] = useState<CardStates>();
-  useEffect(() => { void getCardStates().then(setStates); }, []);
-  return states;
+  const [error, setError] = useState(false);
+  const [round, setRound] = useState(0);
+  useEffect(() => {
+    void withReadRetry(() => getCardStates(), { surface: 'wortschatz' }).then(
+      (s) => { setError(false); setStates(s); },
+      () => setError(true),
+    );
+  }, [round]);
+  return { states, error, retry: () => { setError(false); setRound((r) => r + 1); } };
 }
 
 export function MasteryBar({ counts, compact = false }: { counts: MasteryCounts; compact?: boolean }) {
@@ -59,7 +70,8 @@ export function MasteryBar({ counts, compact = false }: { counts: MasteryCounts;
 
 export function DeckMasterySummary({ cards }: { cards: CardDef[] }) {
   const uiLang = useUiLang();
-  const states = useStates();
+  const { states, error, retry } = useStates();
+  if (error) return <div className="mt-3"><ProgressLoadError compact onRetry={retry} /></div>;
   if (!states) return <div className="mt-3 h-2 rounded-full bg-stone-100 dark:bg-stone-700" />;
   const words = rollupWords(cards, states);
   return <div className="mt-3"><MasteryBar counts={masteryCounts(words)} compact /><p className="mt-1 text-xs text-stone-400">{t('vocab.deckSummary', uiLang).replace('{due}', String(words.filter((w) => w.due).length)).replace('{strong}', String(words.filter((w) => w.status === 'strong').length))}</p></div>;
@@ -68,7 +80,7 @@ export function DeckMasterySummary({ cards }: { cards: CardDef[] }) {
 export function VocabWordTable({ cards }: { cards: CardDef[] }) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
-  const states = useStates();
+  const { states, error, retry } = useStates();
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState<WordMastery | 'all'>('all');
   const [pos, setPos] = useState('all');
@@ -76,6 +88,7 @@ export function VocabWordTable({ cards }: { cards: CardDef[] }) {
   const defs = new Map(cards.filter((c) => c.dir === 'de-x').map((c) => [`${c.deckId}::${c.de}`, c]));
   const positions = [...new Set(words.map((w) => w.pos))].sort();
   const visible = words.filter((w) => (status === 'all' || w.status === status) && (pos === 'all' || w.pos === pos) && w.de.toLocaleLowerCase('de').includes(query.toLocaleLowerCase('de')));
+  if (error) return <ProgressLoadError compact onRetry={retry} />;
   if (!states) return <p className="text-sm text-stone-400">{t('vocab.loading', uiLang)}</p>;
   return <div>
     <MasteryBar counts={masteryCounts(words)} />

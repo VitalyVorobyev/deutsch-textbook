@@ -28,6 +28,11 @@ describe('safe editorial article preview', () => {
     expect(JSON.stringify(payload.root)).not.toContain('dangerous()');
   });
 
+  // 57 topic articles, each read from disk and parsed, plus the first `contentGraph()` walk of
+  // the whole corpus. That lands around 5 s on a shared CI runner and comfortably inside the
+  // default 5000 ms here — which is the worst possible margin: it went red on GitHub Actions
+  // while passing locally in half the time. The budget is explicit and generous rather than
+  // implicit and borderline; a real regression in the parser is orders of magnitude, not 20%.
   test('every current topic parses with only allowlisted components', () => {
     const graph = contentGraph();
     for (const topic of graph.topics.values()) {
@@ -36,7 +41,7 @@ describe('safe editorial article preview', () => {
       expect(payload.diagnostics, topic.article).toEqual([]);
       expect(payload.available, topic.article).toBe(true);
     }
-  });
+  }, 30_000);
 
   test('language coverage distinguishes authored German halves from German examples', () => {
     const text = '<Bilingual><En>EN</En><Ru>RU</Ru><Uk>UK</Uk></Bilingual>\n\nDeutsch bleibt im Beispiel.';
