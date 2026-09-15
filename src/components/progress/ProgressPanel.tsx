@@ -574,17 +574,26 @@ export default function ProgressPanel({
                   <dt className="text-stone-500 dark:text-stone-400">{t('persist.diagCount', uiLang)}</dt>
                   <dd className="font-semibold tabular-nums">{stalls.length}</dd>
                 </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-stone-500 dark:text-stone-400">{t('persist.diagLast', uiLang)}</dt>
-                  <dd className="text-right">
-                    <span className="font-mono text-xs">{stalls[0].surface}</span>{' '}
-                    {new Date(stalls[0].at).toLocaleString()}{' '}
-                    <span className="tabular-nums">({Math.round(stalls[0].waitedMs / 1000)} s, {stalls[0].attempts}×)</span>{' '}
-                    {stalls[0].recoveredAfterMs === undefined
-                      ? t('persist.diagNeverSettled', uiLang)
-                      : t('persist.diagRecovered', uiLang)}
-                  </dd>
-                </div>
+                {/* Three rows, not one: reads and writes share this log since ADR 0019, so a
+                    single most-recent entry is weak evidence — a stalled grade and a stalled
+                    Themen read are different bugs and both want to be visible. */}
+                {stalls.slice(0, 3).map((e, i) => (
+                  <div key={e.id} className="flex justify-between gap-4">
+                    <dt className="text-stone-500 dark:text-stone-400">
+                      {i === 0 ? t('persist.diagLast', uiLang) : ''}
+                    </dt>
+                    <dd className="text-right">
+                      <span className="font-mono text-xs">{e.surface}</span>{' '}
+                      {new Date(e.at).toLocaleString()}{' '}
+                      <span className="tabular-nums">
+                        ({Math.round(e.waitedMs / 1000)} s, {e.attempts}×)
+                      </span>{' '}
+                      {e.recoveredAfterMs === undefined
+                        ? t('persist.diagNeverSettled', uiLang)
+                        : t('persist.diagRecovered', uiLang)}
+                    </dd>
+                  </div>
+                ))}
               </dl>
             )}
 

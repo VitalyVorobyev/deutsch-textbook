@@ -20,7 +20,8 @@ authoring rules. Historical failures and extended rationale are
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
-| Durable write path (journal, replay, retry deadline) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md)) | write-journal and store-visibility-retry tests |
+| Durable write path (journal, replay, retry deadline, late-settle confirmation) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md), amended by [ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)) | write-journal, store-persistence-retry and journal-storage-blocked tests |
+| Single-flight coalescing write queue | `src/lib/store.ts` (`enqueueUpdate`, `QUEUE_BATCH_TIMEOUT_MS`) ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)) | store-write-queue and persistence-alert-tiers tests |
 | Recovering read path (timed retries, deadline, stall log) | `src/lib/store.ts` (`withReadRetry`), `src/lib/stall-log.ts` ([ADR 0018](../adrs/0018-progress-reads-recover.md)) | store-read-retry, stall-log and curriculum-path-loading tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard, syncdir-shrink tests |
 | Desktop exit flush | `src-tauri/src/main.rs`, `src/lib/autosync.ts` (`initExitFlush`/`flushForExit`) | `cargo check`; manual Cmd+Q smoke (needs a webview) |
@@ -43,6 +44,22 @@ authoring rules. Historical failures and extended rationale are
   loud in the UI once it is late — silence is never an outcome ([ADR 0016](../adrs/0016-durable-progress-writes.md)).
   Every write behind `withPersistenceRetry` or the journal must be idempotent (`attemptKey`
   dedupe, `applyGradeAt` ts-guard); a non-idempotent write may not use them.
+- A write that settles **after** its deadline still confirms itself: `withPersistenceRetry` calls
+  `onLateSettle`, the journal helpers pass `confirmOp`, and the entry comes off. idb-keyval
+  resolves on `transaction.oncomplete`, so a resolve is a commit — an entry that outlives its own
+  landed write is the alert claiming the learner's data is unsaved when it is on disk. A late
+  *rejection* is not a settle ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)).
+- Store writes go through `enqueueUpdate`: one readwrite transaction on `progress` at a time,
+  with all pending mutations for a key coalesced into one commit. The deadline clock runs from
+  **enqueue**, and the runner stops waiting for a batch at `QUEUE_BATCH_TIMEOUT_MS` (the write
+  deadline) so one wedged commit cannot halt every later write. `replaceSnapshot` flushes the
+  queue before its destructive `clear()`; the A1 card-id migration deliberately stays off it, to
+  keep the injected-handle seam its failure test needs
+  ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)).
+- An op that can never be applied is quarantined to `da:journal-poison:<profileId>` instead of
+  blocking the replay behind it, and a journal write `localStorage` refuses raises
+  `journalWriteBlocked()` instead of freezing the alert's count in silence
+  ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)).
 - A stalled or implausibly empty progress read renders an explicit error state — never a
   fresh-profile view, and never feeds `planReview`. "Implausibly empty" means empty against the
   profile's one-way `da:seen-data` marker.

@@ -713,6 +713,49 @@ export const STRINGS = {
     ru: 'Часть старых несохранённых записей вышла за предел журнала.',
     uk: 'Частина старих незбережених записів вийшла за межу журналу.',
   },
+
+  // The calm tier: past the ordinary round trip but still inside the write path's own retry
+  // budget. Not an incident — and quitting here is safe, because the journal is synchronous
+  // localStorage and replays at the next launch. Red at 10 s against a 45 s deadline is how a
+  // slow-but-fine write spent 35 seconds telling the learner not to close the window (ADR 0019).
+  'persist.savingOne': {
+    de: 'Antwort wird noch gespeichert …',
+    en: 'answer still saving …',
+    ru: 'ответ ещё сохраняется …',
+    uk: 'відповідь ще зберігається …',
+  },
+  'persist.savingMany': {
+    de: 'Antworten werden noch gespeichert …',
+    en: 'answers still saving …',
+    ru: 'ответов ещё сохраняется …',
+    uk: 'відповідей ще зберігається …',
+  },
+  // Quarantined: the store is fine, the op itself cannot be applied. Named separately because
+  // "retry" is not the remedy and pressing it forever is not a plan.
+  'persist.unreplayableOne': {
+    de: 'Eine Antwort konnte nicht gespeichert werden.',
+    en: 'One answer could not be saved.',
+    ru: 'Один ответ не удалось сохранить.',
+    uk: 'Одну відповідь не вдалося зберегти.',
+  },
+  'persist.unreplayableMany': {
+    de: 'Einige Antworten konnten nicht gespeichert werden.',
+    en: 'Some answers could not be saved.',
+    ru: 'Несколько ответов не удалось сохранить.',
+    uk: 'Кілька відповідей не вдалося зберегти.',
+  },
+  'persist.retryFailed': {
+    de: 'Erneuter Versuch fehlgeschlagen — der Speicher antwortet nicht.',
+    en: 'Retry failed — the store is not answering.',
+    ru: 'Повтор не удался — хранилище не отвечает.',
+    uk: 'Повтор не вдався — сховище не відповідає.',
+  },
+  'persist.storageBlocked': {
+    de: 'Der lokale Notizspeicher ist voll oder blockiert — der Zähler bleibt stehen.',
+    en: 'Local scratch storage is full or blocked — the count is frozen.',
+    ru: 'Локальное хранилище заметок переполнено или заблокировано — счётчик застыл.',
+    uk: 'Локальне сховище нотаток переповнене або заблоковане — лічильник завмер.',
+  },
   'persist.loadError': {
     de: 'Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert — bitte erneut versuchen oder die App neu starten.',
     en: 'Progress could not be loaded. Your data is stored — please retry or restart the app.',
@@ -738,16 +781,16 @@ export const STRINGS = {
     uk: 'Діагностика сховища',
   },
   'persist.diagNone': {
-    de: 'Keine verzögerten Lesevorgänge in den letzten 7 Tagen.',
-    en: 'No stalled reads in the last 7 days.',
-    ru: 'За последние 7 дней зависших чтений не было.',
-    uk: 'За останні 7 днів зависань читання не було.',
+    de: 'Keine verzögerten Speicherzugriffe in den letzten 7 Tagen.',
+    en: 'No stalled store operations in the last 7 days.',
+    ru: 'За последние 7 дней зависших обращений к хранилищу не было.',
+    uk: 'За останні 7 днів зависань у зверненнях до сховища не було.',
   },
   'persist.diagCount': {
-    de: 'Verzögerte Lesevorgänge (7 Tage)',
-    en: 'Stalled reads (7 days)',
-    ru: 'Зависшие чтения (7 дней)',
-    uk: 'Зависання читання (7 днів)',
+    de: 'Verzögerte Speicherzugriffe (7 Tage)',
+    en: 'Stalled store operations (7 days)',
+    ru: 'Зависшие обращения к хранилищу (7 дней)',
+    uk: 'Зависання у зверненнях до сховища (7 днів)',
   },
   'persist.diagLast': {
     de: 'Zuletzt',

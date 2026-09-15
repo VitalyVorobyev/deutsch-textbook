@@ -101,7 +101,9 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   (src-tauri/src/main.rs) reports the other container's path and mtime on Fortschritt → Daten,
   metadata only, and never reads or touches it. What is left is the *decision* — nothing tells
   the learner what to do about the second store, and merging two divergent progress histories
-  is exactly the operation that must not happen automatically.
+  is exactly the operation that must not happen automatically. **[ADR 0019](adrs/0019-writes-single-flight-and-confirm-late.md)
+  does not touch this**: a second container is an independent explanation for progress that
+  appears to vanish, and the write-path repair makes it more visible, not less real.
 - **P29-3 · `AccountPanel.bind()` decides a warning from an unguarded read.** It reads
   `getAttempts()` to decide whether to confirm before binding a profile to a cloud account; a
   stalled read resolves as "nothing to merge" and skips the dialog, so a device with real
@@ -109,6 +111,18 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
   out of that change deliberately: different surface, different hazard (a missed confirmation,
   not a false claim about progress). Fix is the same shape — `withReadRetry` plus an explicit
   failure — but the failure branch has to decide whether to warn or to refuse.
+- **P30-1 · A card grade rewrites the whole `cards` blob, because the store has six keys.**
+  All progress lives under six coarse keys in one object store, so one graded card is a
+  read-modify-write of a ~784 KB record and one answered item rewrites the entire `attempts`
+  array. [ADR 0019](adrs/0019-writes-single-flight-and-confirm-late.md) made a burst cost one
+  transaction instead of N, which is as far as a repair can go; the shape itself is the ceiling.
+  Per-record keys would make a grade a small write, and would touch every read path, the
+  snapshot format and the sync layer — a rewrite, not a fix, and worth doing only if the
+  measured write latency says so.
+- **P30-2 · `scheduleAutoSync()` fires once per queued waiter, not once per commit.** A coalesced
+  batch of eight grades schedules eight debounced syncs that the 2.5 s debounce collapses into
+  one, so this costs timers rather than writes. Moving the call to the batch boundary is a clean
+  follow-up that was deliberately left out of ADR 0019's change.
 - **P29-2 · Release cadence: tag after any PR that changes the desktop runtime or bundled
   content.** Every commit from v0.4.0 (2026-07-19) to v0.5.0 (2026-08-26) was unreleased, so the
   learner ran ad-hoc working-tree builds — which is why the build actually running during the
@@ -116,7 +130,7 @@ Read the A2 checkpoint's completed 2/7/21-day evidence as a B1 revision trigger.
 
 ### Curriculum and content
 
-- **P29-3 · The mid-tier gloss decks still hold 149 long glosses the ratchet pins.** The
+- **P29-4 · The mid-tier gloss decks still hold 149 long glosses the ratchet pins.** The
   2026-08-26 repair took the 31 learner-reported B1 decks from ~990 definitional glosses to zero;
   `bun scripts/gloss-shape.ts --long-only` still lists a mid-tier the report was not scoped to —
   `gefuehle-reflexive-verben-b1` (16), `beziehungen-familie-b1` (13), the three
