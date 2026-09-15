@@ -204,10 +204,18 @@ items:
       - "Ich glaube, dass der Film um acht beginnt."
       - "Ich denke, dass der Film um acht anfängt."
       - "Ich glaube, dass der Film um acht anfängt."
+      # revision 3: «в восемь» / "at eight" is a clock time, and German states one either
+      # bare or with Uhr — um acht and um acht Uhr are the same time, and neither is what
+      # nebensatz-verbende grades. Closed over the denke/glaube and beginnt/anfängt
+      # dimensions the item already concedes. (2026-09-15.)
+      - "Ich denke, dass der Film um acht Uhr beginnt."
+      - "Ich glaube, dass der Film um acht Uhr beginnt."
+      - "Ich denke, dass der Film um acht Uhr anfängt."
+      - "Ich glaube, dass der Film um acht Uhr anfängt."
     # revision 2: anfängt occupies the same wall position in its renderings, so it
     # joins the pins (P25-21 guard). (2026-08-12.)
     key_tokens: ["beginnt", "anfängt"]
-    revision: 2
+    revision: 3
     explain:
       en: "dass wraps the statement, and beginnt walks to the end of it: dass der Film um acht beginnt. If you reached for anfangen instead, notice what the wall does to it — the prefix comes home and it arrives as one word, anfängt. Only the final verb is graded; beginnt or anfängt is your choice."
       ru: "dass оборачивает утверждение, и beginnt уходит в его конец: dass der Film um acht beginnt. Если вам ближе anfangen, посмотрите, что делает с ним стена: приставка возвращается на место, и глагол приходит одним словом — anfängt. Оценивается только глагол у стены; beginnt или anfängt — ваш выбор."

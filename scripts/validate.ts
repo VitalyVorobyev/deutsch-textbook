@@ -559,6 +559,19 @@ for (const file of listFiles(join(CONTENT, 'exercises'), '.yaml')) {
   exerciseSets.set(id, { file: rel(file), data });
 }
 
+/**
+ * German cardinals a dictation can spell out, and the clause each instruction language
+ * must carry when it does (see the `listen` case below). Cardinals only — `ein`/`eine`
+ * are articles far more often than numbers.
+ */
+const NUMBER_WORDS =
+  /\b(null|eins|zwei|drei|vier|fünf|sechs|sieben|acht|neun|zehn|elf|zwölf|dreizehn|vierzehn|fünfzehn|sechzehn|siebzehn|achtzehn|neunzehn|zwanzig|dreißig|vierzig|fünfzig|sechzig|siebzig|achtzig|neunzig|hundert|tausend)\b/i;
+const NUMBER_CLAUSE = {
+  en: /numbers?\b[^.]*\bwords\b/i,
+  ru: /словами/i,
+  uk: /словами/i,
+} as const;
+
 const LISTENING_PLAN_FILE = 'data/listening-plan.yaml';
 let listeningPlan: ListeningPlan | undefined;
 try {
@@ -1403,6 +1416,32 @@ for (const [setId, { file, data }] of exerciseSets) {
       case 'listen': {
         if (/\d/.test(item.text))
           fail(where, 'listen text contains digits — write numbers as words so audio and answer agree');
+        /**
+         * The other half of that rule, which was missing for four years' worth of items:
+         * the author is forbidden to write digits, and until now nothing told the LEARNER.
+         * A dictation is scored on spelling (`normalizeDictation` keeps case and digits
+         * alike), so `04879` for `null vier acht sieben neun` and `um 6 Uhr` for `um sechs
+         * Uhr` are misses — and the learner who wrote the first of those reported, fairly,
+         * that nothing had said so. Thirteen shipped items carried the trap.
+         *
+         * Cardinals only: `ein`/`eine` are articles far more often than numbers, and an
+         * ordinal (`am dreißigsten Juni`) does not word-boundary-match its cardinal stem —
+         * such an item still wants the clause, but a rule that guessed at ordinals would
+         * fire on every participle.
+         */
+        if (NUMBER_WORDS.test(item.text)) {
+          const instruction = item.instruction;
+          const missing = (['en', 'ru', 'uk'] as const).filter(
+            (lang) => !NUMBER_CLAUSE[lang].test(instruction?.[lang] ?? ''),
+          );
+          if (missing.length)
+            fail(
+              where,
+              `listen text spells a number, but the ${missing.join('/')} instruction does not ` +
+                `tell the learner to write numbers as words — a digit answer is then scored ` +
+                `wrong for an orthography rule the item never stated`,
+            );
+        }
         const words = item.text.trim().split(/\s+/).length;
         if (words > 12)
           warn(where, `listen text has ${words} words — dictation beyond ~12 words overloads working memory`);

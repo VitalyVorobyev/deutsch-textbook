@@ -769,7 +769,7 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 
 Items the learner raised in `feedback.md` that are real but are not a small edit. `feedback.md`
 itself holds only raw, untriaged capture; a triaged item is deleted when fixed or lands here.
-Triaged 2026-08-22.
+Triaged 2026-08-22 and 2026-09-15.
 
 - **F-1 · In-text references are not links.** An article that says "Präteritum from B1.1" makes the
   reader search for it. Evidence: `content/topics/b1/kultur-freizeit.mdx:291`, and
@@ -818,6 +818,29 @@ Triaged 2026-08-22.
   (`src/pages/ueben/wiederholen.astro:16`), but the learner's actual claim was that the class of
   defect is widespread. Needs a sweep, not a fix. First step: name the surfaces — a phone-width
   pass over Heute, Üben, a topic page and Fortschritt, listing what a hand actually reaches.
+- **F-12 · Four verbs ship two production cards that answer the same prompt.** `beschweren`
+  (`gefuehle-reflexive-a2`) and `sich beschweren` (`regeln-verantwortung`) both gloss as "to
+  complain"; `entscheiden` (`leben-veraendern`) and `sich entscheiden` (`infinitiv-mit-zu`) both as
+  "to decide, to make up one's mind"; `kümmern`/`sich kümmern` and `freuen`/`sich freuen` overlap
+  the same way. All eight are `cards: both`, so one German word sits behind two near-identical x-de
+  prompts and the learner cannot know which the card wants. The duplication itself is earned — the
+  Goethe lists carry both forms as separate entries — and four other pairs (`bewerben`, `bedanken`,
+  `verlieben`, `beeilen`) already solve it by shipping the B1 half as `cards: recognition`, which
+  is not retrofittable here: flipping a shipped entry deletes its production-card SRS history.
+  Evidence: parse `content/vocab` with the `yaml` package and group verb headwords by their
+  `sich`-stripped form. First step: decide between disambiguating the glosses (CLAUDE.md licenses a
+  parenthetical exactly where two shipped cards share a production prompt) and merging each pair
+  into one deck — and check the bare-verb glosses while there, since plain `entscheiden` is *to
+  settle a question*, not *to make up one's mind*.
+- **F-13 · A cloze gap at a sentence head grades capitalization the gap position made
+  unpredictable.** `answerMatches` (`packages/grading/src/cloze.ts`) compares case-sensitively and
+  has no sentence-head fold, while `gradeTranslation` documents and implements exactly that fold,
+  for exactly this reason. Evidence: 66 of 645 cloze items open a gap at a sentence head, and three
+  carry a hand-patch spelling both cases (`{{Der|der}}` in `a1/artikel-genus.yaml` and
+  `a1/artikel-plural-kein.yaml`) — a convention nobody wrote down. `mc-kuchen-grenze` was the
+  unpatched one and is fixed by re-authoring the item, not by the grader. Same family as **F-5**.
+  First step: decide whether `sentenceInitialIndices` moves into the cloze path or the hand-patch
+  becomes the documented rule, and settle F-5 with it.
 
 **Ruled, no change.** Recorded so they are not re-triaged:
 
@@ -833,6 +856,21 @@ Triaged 2026-08-22.
 - *Reflexive verbs missing `sich`.* All twenty remaining entries whose `valence` mentions `sich`
   are transitive verbs with a reflexive alternative (`jemanden beschäftigen`), so the bare headword
   is correct German. Checked by parsing every deck, not by reading them.
+- *`gewöhnen` → `sich gewöhnen`* and *`sich kümmern` → `sich kümmern um`* as headword changes —
+  no. Both bare forms are real transitive verbs (*jemanden an etwas gewöhnen*, *das kümmert mich
+  nicht*), each headword is the Goethe Wortliste key, and a rename resets the card's SRS history:
+  the same ruling as the reflexive-`sich` entry above. What was missing is that `gewöhnen`'s card
+  never *said* it — `valence` renders in the Wortschatz table and nowhere on a card — so its `note`
+  now states the construction, which is that field's job. Both `kümmern` cards already did. The
+  residual, two cards for one verb, is F-12.
+- *"Isn't it too long?"* on `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` — the
+  two-question shape is deliberate and the file records why beside the item: those are the two
+  questions the enquiry turns on, neither appears in the `write` model, and with one of them the
+  outcome could never light up.
+- *The Cloudflare theory for "Fortschritt konnte nicht geladen werden".* Nothing on that path
+  touches the network — it is IndexedDB on the device, retried at 0/2/5 s behind a 10 s deadline
+  ([ADR 0018](adrs/0018-progress-reads-recover.md)). The message now names the local store, because
+  one that does not invites the learner to debug the wrong system.
 
 ## Deferred
 

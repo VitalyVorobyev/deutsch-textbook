@@ -756,11 +756,17 @@ export const STRINGS = {
     ru: 'Локальное хранилище заметок переполнено или заблокировано — счётчик застыл.',
     uk: 'Локальне сховище нотаток переповнене або заблоковане — лічильник завмер.',
   },
+  // Names the LOCAL store on purpose. The learner who met this banner asked whether
+  // Cloudflare was down and whether the app was being too quick to give up; it is
+  // neither — nothing here touches the network, and the read has already been retried
+  // at 0/2/5 s and waited out a 10 s deadline (ADR 0018) before the banner appears.
+  // A message that says only "progress could not be loaded" invites the learner to
+  // debug the wrong system.
   'persist.loadError': {
-    de: 'Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert — bitte erneut versuchen oder die App neu starten.',
-    en: 'Progress could not be loaded. Your data is stored — please retry or restart the app.',
-    ru: 'Не удалось загрузить прогресс. Данные сохранены — попробуйте ещё раз или перезапустите приложение.',
-    uk: 'Не вдалося завантажити прогрес. Дані збережено — спробуйте ще раз або перезапустіть застосунок.',
+    de: 'Der lokale Speicher auf diesem Gerät antwortet nicht — der Fortschritt konnte nicht geladen werden. Deine Daten sind gespeichert (nichts geht verloren) — bitte erneut versuchen oder die App neu starten.',
+    en: 'The local store on this device is not responding — progress could not be loaded. Your data is stored and nothing is lost — please retry or restart the app.',
+    ru: 'Локальное хранилище на этом устройстве не отвечает — не удалось загрузить прогресс. Данные сохранены, ничего не потеряно — попробуйте ещё раз или перезапустите приложение.',
+    uk: 'Локальне сховище на цьому пристрої не відповідає — не вдалося завантажити прогрес. Дані збережено, нічого не втрачено — спробуйте ще раз або перезапустіть застосунок.',
   },
   'persist.loadRetry': {
     de: 'Erneut versuchen',
