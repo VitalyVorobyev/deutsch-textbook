@@ -223,15 +223,18 @@ export function loadLidLessons(root = repoRoot()): LoadedLidLesson[] {
 }
 
 /**
- * The body's shape: it opens with `## Kurz gesagt` (only MDX comments may precede it), that
- * section holds exactly one `<Bilingual>` block with an `<En>` and a `<Ru>` half, and it is the
- * lesson's only bilingual block — everything after it is German, in `##` sections. No `#`
- * heading: the page already has its title.
+ * The body's shape (ADR 0021). The lesson is German — the exam's language — and it opens with
+ * `## Kurz gesagt` (only MDX comments may precede it). Every section with German text, each
+ * `##`/`###` up to the next heading, closes with exactly one `<Translation>`: an `<En>` and a
+ * `<Ru>` half, and a `<Uk>` half once the file carries Ukrainian anywhere (`forceUk` bridges the
+ * frontmatter). The summary's is `<Translation open>` — read in both languages at once — and every
+ * other one is collapsed, opened on demand. A heading with only a subsection under it has nothing
+ * to translate. No `<Bilingual>` block, and no `#` heading: the page already has its title.
  */
-export function lidLessonBodyProblems(body: string): string[] {
+export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } = {}): string[] {
   const problems: string[] = [];
   const heading = /^(#{1,6})[ \t]+(.+?)[ \t]*$/gm;
-  const headings = [...body.matchAll(heading)].map((m) => ({ depth: m[1]!.length, text: m[2]!, at: m.index }));
+  const headings = [...body.matchAll(heading)].map((m) => ({ depth: m[1]!.length, text: m[2]!, at: m.index, end: m.index + m[0].length }));
   const first = headings[0];
   if (!first || first.depth !== 2 || first.text !== 'Kurz gesagt') {
     problems.push(
@@ -239,21 +242,39 @@ export function lidLessonBodyProblems(body: string): string[] {
     );
     return problems;
   }
-  const before = body.slice(0, first.at).replace(/\{\/\*[\s\S]*?\*\/\}/g, '').trim();
+  const comments = /\{\/\*[\s\S]*?\*\/\}/g;
+  const before = body.slice(0, first.at).replace(comments, '').trim();
   if (before) problems.push(`nothing but MDX comments may precede "## Kurz gesagt": "${before.slice(0, 60)}"`);
   if (headings.some((h) => h.depth === 1)) problems.push('no "#" heading — the page renders the lesson title itself');
+  if (!headings.some((h) => h.at > first.at && h.depth === 2))
+    problems.push('after "## Kurz gesagt" comes at least one "##" section in German');
+  const bilinguals = (body.match(/<Bilingual\b/g) ?? []).length;
+  if (bilinguals) problems.push(`${bilinguals} <Bilingual> block(s) — the lesson is German, and each section closes with a <Translation>`);
 
-  const next = headings.find((h) => h.at > first.at && h.depth <= 2);
-  if (!next) problems.push('after "## Kurz gesagt" comes at least one "##" section in German');
-  const section = body.slice(first.at, next?.at ?? body.length);
-  const blocks = section.match(/<Bilingual>[\s\S]*?<\/Bilingual>/g) ?? [];
-  if (blocks.length !== 1)
-    problems.push(`"## Kurz gesagt" holds exactly one <Bilingual> block, found ${blocks.length}`);
-  else if (!blocks[0]!.includes('<En>') || !blocks[0]!.includes('<Ru>'))
-    problems.push('the <Bilingual> block of "## Kurz gesagt" needs an <En> and a <Ru> half');
-  const elsewhere = (body.match(/<Bilingual\b/g) ?? []).length - (section.match(/<Bilingual\b/g) ?? []).length;
-  if (elsewhere > 0)
-    problems.push(`${elsewhere} <Bilingual> block(s) outside "## Kurz gesagt" — the lesson body after it is German only`);
+  const halves = ['En', 'Ru', ...(opts.forceUk || body.includes('<Uk>') ? ['Uk'] : [])];
+  const translation = /<Translation(?: open)?>[\s\S]*?<\/Translation>/g;
+  headings.forEach((h, i) => {
+    const section = body.slice(h.end, headings[i + 1]?.at ?? body.length);
+    const label = `"${'#'.repeat(h.depth)} ${h.text}"`;
+    const blocks = section.match(translation) ?? [];
+    const german = section.replace(translation, '').replace(comments, '').trim();
+    if (!german) {
+      if (blocks.length) problems.push(`${label} has a <Translation> but no German text to translate`);
+      return;
+    }
+    if (blocks.length !== 1) {
+      problems.push(`${label} closes with exactly one <Translation>, found ${blocks.length}`);
+      return;
+    }
+    if (!section.replace(comments, '').trimEnd().endsWith('</Translation>'))
+      problems.push(`${label}: the <Translation> comes last, after the German it translates`);
+    for (const half of halves)
+      if (!blocks[0]!.includes(`<${half}>`)) problems.push(`${label}: its <Translation> has no <${half}> half`);
+    const open = blocks[0]!.startsWith('<Translation open>');
+    if (h === first && !open)
+      problems.push(`${label}: the summary's translation is <Translation open> — it is read in both languages at once`);
+    if (h !== first && open) problems.push(`${label}: only "## Kurz gesagt" opens its <Translation>; a section translates on demand`);
+  });
   return problems;
 }
 
@@ -286,9 +307,9 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string
   for (const source of sources) {
     const { file, body } = source;
     if (!LID_LESSON_ID.test(source.id)) at(file, `"${source.id}" is not a lesson id — the file name is the id, kebab-case ASCII`);
-    for (const p of lidLessonBodyProblems(body)) at(file, p);
-
     const fm = source.frontmatter.ok ? source.frontmatter.data : undefined;
+    for (const p of lidLessonBodyProblems(body, { forceUk: hasUkField(fm) })) at(file, p);
+
     if (!source.frontmatter.ok) at(file, source.frontmatter.error);
     for (const p of langFieldProblems(fm)) at(file, p);
     for (const p of ukParityProblems(fm, { forceUk: body.includes('<Uk>') })) at(file, p);

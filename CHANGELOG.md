@@ -9,6 +9,30 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.7] — 2026-10-10
+
+### Changed
+
+- **Every Leben-in-Deutschland lesson section now has a translation you can open.** The lessons
+  stay German — the exam is German — but each section, the summary included, ends with a collapsed
+  *Übersetzung* in your Lernsprache (English, Russian or Ukrainian), translated from the German
+  with nothing added or left out. Under Lernsprache *Deutsch* the translations are hidden. Before,
+  only the summary was in your language and the sections were German only, which left a hard
+  paragraph with nothing to check it against.
+- **Each lesson's *Kurz gesagt* now has a German version**, shown first, with its translation in
+  your Lernsprache open right under it — the summary is read in both languages at once; only the
+  sections below translate on demand.
+
+### Fixed
+
+- *Ministerpräsident* was rendered "state premier" / «премьер-министр земли» in the Bayern lesson's
+  glossary and in four lesson translations, and «премьер-министр» in one Russian answer option —
+  next to an exam question whose wrong answer is "Premierminister". It now reads
+  "Minister-President" / «министр-президент» throughout, as the other question notes already did.
+- *Rosenmontag* was «Розовый понедельник» ("pink Monday") in the Russian notes and glossary; it is
+  «Розенмонтаг», as in Russian and in the Ukrainian half. *Stolpersteine* is «камни преткновения»
+  in the Russian lesson, matching the question note.
+
 ## [0.6.6] — 2026-10-10
 
 ### Changed
