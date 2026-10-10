@@ -52,6 +52,12 @@ html:not([data-tts="ready"]) [data-speak] {
   display: none;
 }
 
+/* A Leben-in-Deutschland lesson's per-section translation (src/components/lid/Translation.astro):
+   under Lernsprache `de` the German above it is all there is to read. */
+[data-explain-lang="de"] .lid-translation {
+  display: none;
+}
+
 /* Inside the installed app (Tauri shell or standalone PWA — the pre-paint script in
    Base.astro sets the flag) the footer does not offer to install what is already running. */
 html[data-installed] .install-link {

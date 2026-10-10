@@ -1108,6 +1108,7 @@ export const STRINGS = {
     uk: 'Екзаменаційних питань: {n}',
   },
   'lid.lessonTerms': { de: 'Wichtige Begriffe', en: 'Key terms', ru: 'Важные термины', uk: 'Важливі терміни' },
+  'lid.lessonTranslation': { de: 'Übersetzung', en: 'Translation', ru: 'Перевод', uk: 'Переклад' },
   'lid.lessonQuestionsTitle': {
     de: 'Fragen zu diesem Thema',
     en: 'Questions on this topic',
