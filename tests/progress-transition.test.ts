@@ -6,6 +6,7 @@ import * as store from '../src/lib/store';
 import * as journal from '../src/lib/write-journal';
 import { Rating } from '../src/lib/srs';
 import { __resetProfileStateCacheForTests } from '../src/lib/profile';
+import { eventually } from './eventually';
 
 let restore: (() => void) | undefined;
 beforeEach(() => {
@@ -78,7 +79,7 @@ test('timed-out callers and manual retries share the same still-running write', 
   expect(commits).toBe(1);
   expect(journal.journalPending()).toHaveLength(1);
   release!();
-  await Bun.sleep(10);
+  await eventually(() => journal.journalPending().length === 0);
   expect(journal.journalPending()).toEqual([]);
 });
 
