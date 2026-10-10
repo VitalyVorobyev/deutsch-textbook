@@ -10,7 +10,7 @@ import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import LidImages from '../../components/lid/LidImages.astro';
 import LidSource from '../../components/lid/LidSource.astro';
-import { LID_OPTION_ORDER, lidText, questionAnchor, questionLabel, topicAnchor } from '../../components/lid/shared';
+import { LID_OPTION_ORDER, questionAnchor, questionLabel, topicAnchor } from '../../components/lid/shared';
 import { getLidCatalogue } from '../../lib/content';
 import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
@@ -27,10 +27,10 @@ const topicsOf = (m: (typeof modules)[number]) =>
     <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
     <span> / <Chrome k="lid.catalogue" /></span>
   </nav>
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="lid.catalogue" /></h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">{lidText('lid.catalogueIntro', 'de', { n: entries.length })}</p>
+  <!-- The breadcrumb names the page, and the overview card that leads here says what it holds. -->
+  <h1 class="sr-only"><Chrome k="lid.catalogue" /></h1>
 
-  <nav aria-labelledby="lid-contents" class="mt-6 rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">
+  <nav aria-labelledby="lid-contents" class="mt-4 rounded-lg border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-800">
     <p id="lid-contents" class="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400"><Chrome k="lid.contents" /></p>
     <ul class="mt-2 space-y-3 text-sm">
       {

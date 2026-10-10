@@ -52,6 +52,12 @@ html:not([data-tts="ready"]) [data-speak] {
   display: none;
 }
 
+/* Inside the installed app (Tauri shell or standalone PWA — the pre-paint script in
+   Base.astro sets the flag) the footer does not offer to install what is already running. */
+html[data-installed] .install-link {
+  display: none;
+}
+
 :root {
   color-scheme: light;
 }
@@ -76,8 +82,10 @@ body {
     prose-table:text-sm;
 }
 
-/* Keep wide reference tables available without making the whole lesson overflow. */
-.article-prose > table {
+/* Keep wide reference tables available without making the whole lesson overflow — at any depth:
+   a table inside a <Bilingual> half or a component wrapper pushed a 360 px phone 18 px sideways
+   when this matched direct children only. */
+.article-prose table {
   display: block;
   max-width: 100%;
   overflow-x: auto;

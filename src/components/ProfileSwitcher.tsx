@@ -195,7 +195,9 @@ export default function ProfileSwitcher() {
         title={pick(lang, UI.switchProfile)}
       >
         <span aria-hidden>👤</span>
-        <span className="max-w-24 truncate">{active?.label ?? '…'}</span>
+        {/* Below 640px the header is one row, and the name is what does not fit: it stays in
+            the accessibility tree and in the open menu. */}
+        <span className="sr-only sm:not-sr-only sm:max-w-24 sm:truncate">{active?.label ?? '…'}</span>
         <span aria-hidden className="text-stone-400">▾</span>
       </button>
 

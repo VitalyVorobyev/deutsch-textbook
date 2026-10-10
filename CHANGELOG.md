@@ -9,6 +9,40 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.6] — 2026-10-10
+
+### Changed
+
+- **A missed flashcard comes back later, not four cards later.** "Again" still shows the answer
+  at once, but the retry now waits 8 cards for a word you could not retrieve at all and 50 for a
+  word you had learned before or nearly got (only the article or an umlaut wrong); every further
+  miss halves the wait, never below 3, and a short queue puts the card last. The old four-card
+  retry came back within about a minute and was answered from working memory; delaying the next
+  retrieval is what carries to long-term memory. The counts are heuristics, the delay is the
+  research — `src/lib/requeue.ts` names the studies.
+- **Page headers no longer repeat the navigation.** Wiederholen, Training, Wortschatz, Leben in
+  Deutschland and its sub-pages, Themen, Entdecken, Referenz, Fortschritt and the daily session
+  drop the heading that restated the tab or breadcrumb above it and the standing description under
+  it; the description is now the tooltip of the tab or link that leads there, in your Lernsprache.
+  Heute opens on the session card (the greeting and the quick-access row, whose links the
+  navigation already has, are gone). Chips, eyebrows and breadcrumb tails that repeated a page's
+  own title are gone too, and Wortschatz deck cards show one due count instead of two in different
+  units. On the pages that changed, content starts up to 216 px higher on a 1280 px screen and up
+  to 378 px higher on a phone.
+- **One header row on every screen.** On a phone the section menu moves into the top row and the
+  profile button shows only its icon: the sticky header is 57 px instead of 103. The menu now
+  serves every width below 768 px, where the link row used to wrap onto a second line.
+- The flashcard toolbar drops its "Eingabe:" label, and the direction label shows only where
+  nothing else says it (listening, and revealing a German answer).
+- The installed app no longer offers "App installieren" in its own footer.
+
+### Fixed
+
+- Tables nested inside an article block now scroll inside themselves instead of pushing the page
+  sideways on a narrow phone, as do the Zahlen reference grid and a lesson's question list; no page
+  scrolls horizontally at 360 px.
+- The vocabulary progress note no longer says A1 and A2 are "still being completed".
+
 ## [0.6.5] — 2026-10-10
 
 ### Maintenance

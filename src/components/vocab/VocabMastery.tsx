@@ -21,8 +21,8 @@ const LABELS: Record<WordMastery, { en: string; ru: string }> = {
 const UI = {
   legendAria: { en: 'Vocabulary status legend', ru: 'Легенда статусов слов' },
   uniqueWords: {
-    en: 'These are unique headwords currently authored in the course: two card directions count as one word. A1 and A2 are still being completed; the bars show your mastery of the material that exists today.',
-    ru: 'Показаны уникальные слова, уже добавленные в курс: два направления карточек считаются одним словом. Курсы A1 и A2 ещё дополняются; полосы показывают ваш прогресс только по существующему материалу.',
+    en: 'These are the unique headwords in the course: two card directions count as one word.',
+    ru: 'Показаны уникальные слова курса: два направления карточек считаются одним словом.',
   },
   currentlyAuthored: { en: 'currently authored', ru: 'сейчас в курсе' },
   // A `cards: recognition` word has one card, not two, so it can never show production

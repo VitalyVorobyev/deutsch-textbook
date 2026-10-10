@@ -137,6 +137,8 @@ arc written down. All of it is validated.
 Load-bearing, and each one silent when broken. Mechanism and history: [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md).
 
 - **`planReview()` (`src/lib/decks.ts`) is the ONE rule for what a review queue contains.** New cards are rationed **per day, not per queue** (`DAILY_NEW_CARDS = 15`) — `planReview` re-runs on every mount, so a per-queue cap alone dealt a reloading learner 75 new cards and months of review debt. Fresh-card ties break at random, never by card id.
+- **A page header never repeats the navigation.** An H1 the active tab, nav link or breadcrumb already says is `sr-only`; a page's "what this is for" line is its nav link's `title` (`src/lib/nav-hints.ts`), never a standing paragraph. Content titles stay. → [`docs/design.md`](docs/design.md#page-chrome)
+- **A missed card is retried later, not next.** "Again" shows the answer at once and re-queues the card after 8 cards (not retrieved at all) or 50 (a lapse or near miss), halved per further miss, floor 3 — `recordMiss` in `src/lib/requeue.ts`, whose header carries the evidence. The counts are heuristics; the delay is the finding. FSRS alone schedules across sessions.
 - **Never mount a React island per table row.** In `.astro` templates use `src/components/SpeakButton.astro` — one hoisted, delegated listener for the whole page.
 - **Probe state is derived from the attempt log, never stored.** A due probe opens the session as step 0, *before* review and training. `MAX_PROBES_PER_SESSION = 5`.
 - **Checkpoints and placements are data, not wiring** — discovered by role, level read off the directory. Shipping the next level's is one new YAML file and no code. One of each per level.

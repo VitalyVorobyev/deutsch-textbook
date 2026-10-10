@@ -309,6 +309,21 @@ Redaktion derives per-topic language coverage from authored `<Bilingual>` blocks
 `complete` only when every block carries its half, `partial` when some do, and `unsupported` when
 none do. The count is editorial visibility, not a request to backfill German.
 
+## Page chrome
+
+A visible page header says only what the navigation does not. The active top-nav link, Üben
+sub-tab, breadcrumb or (below 768 px) the section menu already names the page, so an H1 that
+repeats it is `sr-only`: it stays in the accessibility tree and costs no screen. A page's standing
+"what this is for" description is the `title` tooltip of the link that leads to it
+(`src/lib/nav-hints.ts`), in the explanation language, so it answers the question before the click
+rather than on every visit after it. Content headers stay visible — a topic, deck, lesson,
+discovery piece or reference table is named by its title, not by the navigation — and so do
+instructions a learner needs before acting (Checkpoint, Einstufung, the unverified-practice note).
+
+The header is one row at every width: a sticky header that wraps charges that row on every screen
+of every page (it was 103 px on a phone and 83 px at 700 px before 0.6.6, 57 px after). Inside
+the installed app, the footer does not offer to install it.
+
 ## Reference and discovery extensions
 
 Reference pages are read-only projections of canonical content. Wortfelder organize words by

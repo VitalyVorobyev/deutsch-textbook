@@ -13,13 +13,10 @@ const memberDe = (member: (typeof networks)[number]['members'][number]) =>
 ---
 
 <Base title="Wortnetze">
-  <nav class="mb-5 text-sm text-stone-400">
-    <a href={withBase('/referenz')} class="hover:text-stone-700">Referenz</a> / Wortnetze
-  </nav>
+  <nav class="mb-3 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a></nav>
 
   <header>
-    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
-    <h1 class="mt-2 text-3xl font-bold">Wortnetze</h1>
+    <h1 class="text-3xl font-bold">Wortnetze</h1>
     <p class="mt-2 max-w-3xl text-stone-500">
       <span class="lang-en">Word families and close meanings, organised around structure, usage and contrast. A memory bridge is a recall aid, never a promise that a prefix lets you calculate the meaning.</span>
       <span class="lang-ru">Семьи слов и близкие значения через структуру, употребление и контраст. Мостик для памяти помогает вспомнить слово, но не обещает, что значение можно вычислить по приставке.</span>

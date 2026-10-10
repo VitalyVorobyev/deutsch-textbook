@@ -148,7 +148,7 @@ export const STRINGS = {
   'reading.gist': { de: 'Worum geht es?', en: 'What is it about?', ru: 'О чём текст?', uk: 'Про що текст?' },
 
   // Flashcard session furniture.
-  'flashcards.input': { de: 'Eingabe:', en: 'Input:', ru: 'Ввод:', uk: 'Введення:' },
+  'flashcards.input': { de: 'Eingabe', en: 'Input', ru: 'Ввод', uk: 'Введення' },
   'flashcards.modeTyped': { de: 'Tippen', en: 'Type', ru: 'Печатать', uk: 'Друкувати' },
   'flashcards.modeReveal': { de: 'Aufdecken', en: 'Reveal', ru: 'Показать', uk: 'Показати' },
   'flashcards.modeListen': { de: 'Hören', en: 'Listen', ru: 'Слушать', uk: 'Слухати' },
@@ -164,7 +164,6 @@ export const STRINGS = {
     ru: '🔊 Слушать → писать',
     uk: '🔊 Слухати → писати',
   },
-  'flashcards.dirFromDe': { de: 'Deutsch →', en: 'German →', ru: 'Немецкий →', uk: 'Німецька →' },
   'flashcards.dirToDe': { de: '→ Deutsch', en: '→ German', ru: '→ Немецкий', uk: '→ Німецька' },
   'flashcards.typePlaceholder': {
     de: 'Auf Deutsch …',
@@ -605,9 +604,7 @@ export const STRINGS = {
   'evidence.spaced': { de: '2 Tage', en: '2 days', ru: '2 дня', uk: '2 дні' },
   'evidence.vocab': { de: 'Vokabeln', en: 'Vocab', ru: 'Слова', uk: 'Слова' },
   // Static pages: Heute, Session, Üben, topic/vocab/discovery furniture, footer.
-  'today.greeting': { de: 'Guten Tag!', en: 'Good day!', ru: 'Добрый день!', uk: 'Доброго дня!' },
   'today.startSession': { de: 'Session starten →', en: 'Start session →', ru: 'Начать сессию →', uk: 'Почати сесію →' },
-  'today.quickAccess': { de: 'Schnellzugriff', en: 'Quick access', ru: 'Быстрый доступ', uk: 'Швидкий доступ' },
   'session.pageTitle': { de: 'Tägliche Session', en: 'Daily session', ru: 'Ежедневная сессия', uk: 'Щоденна сесія' },
   'training.pageTitle': { de: 'Gemischtes Training', en: 'Mixed training', ru: 'Смешанная тренировка', uk: 'Змішане тренування' },
   'about.pageTitle': { de: 'Über Deutsch-Atlas', en: 'About Deutsch-Atlas', ru: 'О Deutsch-Atlas', uk: 'Про Deutsch-Atlas' },
@@ -854,12 +851,6 @@ export const STRINGS = {
   // (`lidText`, src/components/lid/shared.ts). The two pass marks are different tests with
   // different purposes, so every string that names one names which.
   'lid.title': { de: 'Leben in Deutschland', en: 'Life in Germany', ru: 'Жизнь в Германии', uk: 'Життя в Німеччині' },
-  'lid.subtitle': {
-    de: 'Einbürgerungstest und Test „Leben in Deutschland“ · {state}',
-    en: 'Citizenship test and “Life in Germany” test · {state}',
-    ru: 'Тест на гражданство и тест «Жизнь в Германии» · {state}',
-    uk: 'Тест на громадянство і тест «Життя в Німеччині» · {state}',
-  },
   'lid.practice': { de: 'Üben', en: 'Practise', ru: 'Тренировка', uk: 'Тренування' },
   'lid.queueCounts': {
     de: '{due} fällig · {fresh} neu heute',
@@ -1094,12 +1085,6 @@ export const STRINGS = {
   'lid.correctAnswer': { de: 'richtige Antwort', en: 'correct answer', ru: 'правильный ответ', uk: 'правильна відповідь' },
   'lid.newMock': { de: 'Neue Simulation', en: 'New mock exam', ru: 'Новый пробный экзамен', uk: 'Новий пробний іспит' },
   'lid.contents': { de: 'Inhalt', en: 'Contents', ru: 'Содержание', uk: 'Зміст' },
-  'lid.catalogueIntro': {
-    de: 'Alle {n} Fragen des amtlichen Katalogs, nach Themen geordnet. Die richtige Antwort ist markiert.',
-    en: 'All {n} questions of the official catalogue, grouped by topic. The correct answer is marked.',
-    ru: 'Все вопросы официального каталога ({n}), по темам. Правильный ответ отмечен.',
-    uk: 'Усі питання офіційного каталогу ({n}), за темами. Правильну відповідь позначено.',
-  },
   'lid.aboutTest': { de: 'Der Test', en: 'The test', ru: 'Об экзамене', uk: 'Про іспит' },
   'lid.pdfLink': {
     de: 'Gesamtfragenkatalog (PDF, BAMF)',
