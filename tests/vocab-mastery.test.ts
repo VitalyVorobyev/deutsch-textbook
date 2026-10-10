@@ -5,7 +5,7 @@ import type { StoredCard } from '../src/lib/store';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { deckCardRefs, deckWords, rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
+import { deckCardRefs, deckWords, decksOf, rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
 
 function state(overrides: Partial<StoredCard> = {}): StoredCard {
   return {
@@ -108,6 +108,16 @@ describe('deckWords → deckCardRefs rebuilds exactly the built cards', () => {
     const deck = deckWords('d', built);
     expect(deck).toEqual({ id: 'd', words: ['Tisch', 'Zuschlag', 'Stuhl'], recognitionOnly: ['Zuschlag'] });
     expect(ids(deckCardRefs(deck))).toEqual(ids(built));
+  });
+
+  test('decksOf splits a mixed card list by deck, and the refs come back in the same order', () => {
+    const built = [
+      ...buildDeck('a', [entry('Tisch', 'both'), entry('Zuschlag', 'recognition')] as never),
+      ...buildDeck('b', [entry('Stuhl', 'both')] as never),
+    ];
+    const decks = decksOf(built);
+    expect(decks.map((d) => d.id)).toEqual(['a', 'b']);
+    expect(ids(decks.flatMap(deckCardRefs))).toEqual(ids(built));
   });
 
   test('for every deck in the corpus', () => {

@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import type { CardDef } from '../../lib/srs';
+import { useEffect, useMemo, useState } from 'react';
 import { planReview, type ReviewGate, type ReviewPlanResult } from '../../lib/decks';
+import type { CardRef } from '../../lib/srs';
 import { getAttempts, getCardStates, getLearningGoal, getTopicsState, withReadRetry } from '../../lib/store';
+import { deckCardRefs, type DeckWords } from '../../lib/vocab-mastery';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -17,7 +18,10 @@ const UI = {
 } as const satisfies Record<string, { en: string; ru: string }>;
 
 interface Props {
-  cards: CardDef[];
+  /** The decks to count, as headwords: the badge plans from card ids alone. Handing it the built
+      cards inlined every gloss and example of the corpus into Heute — 9.2 MB to show a number
+      (backlog P23-1). */
+  decks: DeckWords[];
   /** compact renders just "n due" text; full renders the Today-page call to action */
   variant?: 'compact' | 'full';
   /** when set, the "new" count only counts eligible decks — must match the
@@ -29,10 +33,11 @@ interface Props {
   newLimit?: number;
 }
 
-export default function DueBadge({ cards, variant = 'compact', gate, newLimit = 15 }: Props) {
+export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 15 }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
-  const [plan, setPlan] = useState<ReviewPlanResult | null>(null);
+  const cards = useMemo(() => decks.flatMap(deckCardRefs), [decks]);
+  const [plan, setPlan] = useState<ReviewPlanResult<CardRef> | null>(null);
   const [started, setStarted] = useState(true);
 
   useEffect(() => {
