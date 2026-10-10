@@ -9,6 +9,17 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.3] — 2026-10-10
+
+### Added
+
+- **Leben in Deutschland: the last five lessons** — Deutschland in Europa; Recht, Behörden und
+  Alltag; Arbeit und soziale Sicherung; Familie, Kinder und Bildung; Staatssymbole, Religion und
+  Feste. With them, all 18 topics and every one of the 310 questions belong to a lesson, and each
+  author mapped every question to the section that teaches it. Where Bavarian practice differs
+  from the simplified key — the optional or abolished Widerspruch — the lesson teaches the key and
+  says how to read the letter's own instructions.
+
 ## [0.6.2] — 2026-10-10
 
 ### Added
