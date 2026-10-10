@@ -9,6 +9,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.4] — 2026-10-10
+
+### Added
+
+- **Leben in Deutschland in Ukrainian.** Under Lernsprache *Українська*, the unofficial
+  translation of every one of the 310 questions, its four options and its key terms now shows a
+  Ukrainian half beside the English, and every lesson has a Ukrainian orientation and glossary.
+  The Ukrainian was written from the official German, not from the Russian. LiD material counts
+  toward the UK-coverage figure again.
+
 ## [0.6.3] — 2026-10-10
 
 ### Added

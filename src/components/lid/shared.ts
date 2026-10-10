@@ -15,9 +15,9 @@ export interface LidNoteView {
   rationale_de?: string;
   source?: string;
   /** an UNOFFICIAL translation; practice only, never the mock exam */
-  question?: { en: string; ru: string };
-  options?: Record<LidOptionKey, { en: string; ru: string }>;
-  terms?: { de: string; en: string; ru: string }[];
+  question?: { en: string; ru: string; uk?: string };
+  options?: Record<LidOptionKey, { en: string; ru: string; uk?: string }>;
+  terms?: { de: string; en: string; ru: string; uk?: string }[];
   status: 'draft' | 'reviewed';
 }
 

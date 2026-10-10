@@ -6,15 +6,16 @@ notes:
     question:
       en: "Elections in Germany are free. What does that mean?"
       ru: "Выборы в Германии свободные. Что это означает?"
+      uk: "Вибори в Німеччині вільні. Що це означає?"
     options:
-      a: { en: "You may accept money if you vote for a particular candidate in return.", ru: "Можно брать деньги, если за это проголосовать за определённую кандидатку или определённого кандидата." }
-      b: { en: "Only people who have never been in prison may vote.", ru: "Голосовать могут только люди, которые никогда не были в тюрьме." }
-      c: { en: "Voters may neither be influenced nor forced to vote in a particular way, and they may suffer no disadvantage because of the election.", ru: "На избирательницу или избирателя нельзя влиять на выборах, нельзя принуждать её или его голосовать определённым образом, и из-за выборов у неё или у него не должно быть никаких невыгод." }
-      d: { en: "All persons entitled to vote must vote.", ru: "Все, кто имеет право голоса, обязаны голосовать." }
+      a: { en: "You may accept money if you vote for a particular candidate in return.", ru: "Можно брать деньги, если за это проголосовать за определённую кандидатку или определённого кандидата.", uk: "Можна брати гроші, якщо за це голосуєш за певну кандидатку чи певного кандидата." }
+      b: { en: "Only people who have never been in prison may vote.", ru: "Голосовать могут только люди, которые никогда не были в тюрьме.", uk: "Голосувати мають право лише люди, які ніколи не були у в’язниці." }
+      c: { en: "Voters may neither be influenced nor forced to vote in a particular way, and they may suffer no disadvantage because of the election.", ru: "На избирательницу или избирателя нельзя влиять на выборах, нельзя принуждать её или его голосовать определённым образом, и из-за выборов у неё или у него не должно быть никаких невыгод.", uk: "На виборницю чи виборця під час виборів не можна ні впливати, ні змушувати голосувати певним чином, і через вибори вона чи він не повинні зазнати жодної шкоди." }
+      d: { en: "All persons entitled to vote must vote.", ru: "Все, кто имеет право голоса, обязаны голосовать.", uk: "Усі, хто має право голосу, зобов’язані голосувати." }
     terms:
-      - { de: "die Stimmabgabe", en: "casting a vote", ru: "подача голоса" }
-      - { de: "beeinflussen", en: "to influence", ru: "влиять" }
-      - { de: "der Nachteil", en: "disadvantage", ru: "невыгода" }
+      - { de: "die Stimmabgabe", en: "casting a vote", ru: "подача голоса", uk: "голосування" }
+      - { de: "beeinflussen", en: "to influence", ru: "влиять", uk: "впливати" }
+      - { de: "der Nachteil", en: "disadvantage", ru: "невыгода", uk: "невигода, шкода" }
     status: reviewed
   - id: general-028
     rationale_de: >-
@@ -23,14 +24,15 @@ notes:
     question:
       en: "Who elects the members of the Bundestag in Germany?"
       ru: "Кто в Германии избирает депутатов бундестага?"
+      uk: "Хто в Німеччині обирає депутатів Бундестагу?"
     options:
-      a: { en: "the military", ru: "армия" }
-      b: { en: "the business sector", ru: "экономика" }
-      c: { en: "the people entitled to vote", ru: "народ, имеющий право голоса" }
-      d: { en: "the administration", ru: "администрация" }
+      a: { en: "the military", ru: "армия", uk: "армія" }
+      b: { en: "the business sector", ru: "экономика", uk: "економіка" }
+      c: { en: "the people entitled to vote", ru: "народ, имеющий право голоса", uk: "народ, що має право голосу" }
+      d: { en: "the administration", ru: "администрация", uk: "адміністрація" }
     terms:
-      - { de: "wahlberechtigt", en: "entitled to vote", ru: "имеющий право голоса" }
-      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат" }
+      - { de: "wahlberechtigt", en: "entitled to vote", ru: "имеющий право голоса", uk: "з правом голосу" }
+      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат", uk: "депутат, депутатка" }
     status: reviewed
   - id: general-031
     rationale_de: >-
@@ -38,14 +40,15 @@ notes:
     question:
       en: "In Germany, the cooperation of parties to form a government is called …"
       ru: "Сотрудничество партий для формирования правительства в Германии называется …"
+      uk: "Співпрацю партій для формування уряду в Німеччині називають …"
     options:
-      a: { en: "unity.", ru: "единство." }
-      b: { en: "coalition.", ru: "коалиция." }
-      c: { en: "ministry.", ru: "министерство." }
-      d: { en: "parliamentary group.", ru: "фракция." }
+      a: { en: "unity.", ru: "единство.", uk: "єдністю." }
+      b: { en: "coalition.", ru: "коалиция.", uk: "коаліцією." }
+      c: { en: "ministry.", ru: "министерство.", uk: "міністерством." }
+      d: { en: "parliamentary group.", ru: "фракция.", uk: "фракцією." }
     terms:
-      - { de: "die Koalition", en: "coalition", ru: "коалиция" }
-      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция" }
+      - { de: "die Koalition", en: "coalition", ru: "коалиция", uk: "коаліція" }
+      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция", uk: "фракція" }
     status: reviewed
   - id: general-062
     rationale_de: >-
@@ -54,14 +57,15 @@ notes:
     question:
       en: "When the parliament of a German federal state is elected, it is called …"
       ru: "Когда избирают парламент федеральной земли Германии, это называется …"
+      uk: "Коли обирають парламент німецької федеральної землі, це називається …"
     options:
-      a: { en: "local election", ru: "муниципальные выборы" }
-      b: { en: "Landtag election", ru: "выборы в ландтаг" }
-      c: { en: "European election", ru: "выборы в Европейский парламент" }
-      d: { en: "Bundestag election", ru: "выборы в бундестаг" }
+      a: { en: "local election", ru: "муниципальные выборы", uk: "місцеві вибори" }
+      b: { en: "Landtag election", ru: "выборы в ландтаг", uk: "вибори до ландтагу" }
+      c: { en: "European election", ru: "выборы в Европейский парламент", uk: "вибори до Європейського парламенту" }
+      d: { en: "Bundestag election", ru: "выборы в бундестаг", uk: "вибори до Бундестагу" }
     terms:
-      - { de: "die Landtagswahl", en: "state election", ru: "выборы в ландтаг" }
-      - { de: "die Kommunalwahl", en: "local election", ru: "муниципальные выборы" }
+      - { de: "die Landtagswahl", en: "state election", ru: "выборы в ландтаг", uk: "вибори до ландтагу" }
+      - { de: "die Kommunalwahl", en: "local election", ru: "муниципальные выборы", uk: "місцеві вибори" }
     status: reviewed
   - id: general-076
     rationale_de: >-
@@ -69,13 +73,14 @@ notes:
     question:
       en: "What does the abbreviation CDU stand for in Germany?"
       ru: "Что означает аббревиатура CDU в Германии?"
+      uk: "Що означає абревіатура CDU в Німеччині?"
     options:
-      a: { en: "Christian German Union", ru: "Христианский немецкий союз" }
-      b: { en: "Club of German Entrepreneurs", ru: "Клуб немецких предпринимателей" }
-      c: { en: "Christian German Environmental Protection", ru: "Христианская немецкая защита окружающей среды" }
-      d: { en: "Christian Democratic Union", ru: "Христианско-демократический союз" }
+      a: { en: "Christian German Union", ru: "Христианский немецкий союз", uk: "Християнський німецький союз" }
+      b: { en: "Club of German Entrepreneurs", ru: "Клуб немецких предпринимателей", uk: "Клуб німецьких підприємців" }
+      c: { en: "Christian German Environmental Protection", ru: "Христианская немецкая защита окружающей среды", uk: "Християнський німецький захист довкілля" }
+      d: { en: "Christian Democratic Union", ru: "Христианско-демократический союз", uk: "Християнсько-демократичний союз" }
     terms:
-      - { de: "die Schwesterpartei", en: "sister party", ru: "партия-сестра" }
+      - { de: "die Schwesterpartei", en: "sister party", ru: "партия-сестра", uk: "сестринська партія" }
     status: reviewed
   - id: general-078
     rationale_de: >-
@@ -83,13 +88,14 @@ notes:
     question:
       en: "What does the abbreviation SPD stand for?"
       ru: "Что означает аббревиатура SPD?"
+      uk: "Що означає абревіатура SPD?"
     options:
-      a: { en: "Socialist Party of Germany", ru: "Социалистическая партия Германии" }
-      b: { en: "Social Policy Party of Germany", ru: "Партия социальной политики Германии" }
-      c: { en: "Social Democratic Party of Germany", ru: "Социал-демократическая партия Германии" }
-      d: { en: "Socially Just Party of Germany", ru: "Партия социальной справедливости Германии" }
+      a: { en: "Socialist Party of Germany", ru: "Социалистическая партия Германии", uk: "Соціалістична партія Німеччини" }
+      b: { en: "Social Policy Party of Germany", ru: "Партия социальной политики Германии", uk: "Соціально-політична партія Німеччини" }
+      c: { en: "Social Democratic Party of Germany", ru: "Социал-демократическая партия Германии", uk: "Соціал-демократична партія Німеччини" }
+      d: { en: "Socially Just Party of Germany", ru: "Партия социальной справедливости Германии", uk: "Соціально справедлива партія Німеччини" }
     terms:
-      - { de: "sozialdemokratisch", en: "social democratic", ru: "социал-демократический" }
+      - { de: "sozialdemokratisch", en: "social democratic", ru: "социал-демократический", uk: "соціал-демократичний" }
     status: reviewed
   - id: general-079
     rationale_de: >-
@@ -97,13 +103,14 @@ notes:
     question:
       en: "What does the abbreviation FDP stand for in Germany?"
       ru: "Что означает аббревиатура FDP в Германии?"
+      uk: "Що означає абревіатура FDP в Німеччині?"
     options:
-      a: { en: "Peaceful Demonstrative Party", ru: "Мирная демонстративная партия" }
-      b: { en: "Free Germany Party", ru: "Партия свободной Германии" }
-      c: { en: "Leading Democratic Party", ru: "Ведущая демократическая партия" }
-      d: { en: "Free Democratic Party", ru: "Свободная демократическая партия" }
+      a: { en: "Peaceful Demonstrative Party", ru: "Мирная демонстративная партия", uk: "Мирна демонстративна партія" }
+      b: { en: "Free Germany Party", ru: "Партия свободной Германии", uk: "Партія вільної Німеччини" }
+      c: { en: "Leading Democratic Party", ru: "Ведущая демократическая партия", uk: "Провідна демократична партія" }
+      d: { en: "Free Democratic Party", ru: "Свободная демократическая партия", uk: "Вільна демократична партія" }
     terms:
-      - { de: "liberal", en: "liberal", ru: "либеральный" }
+      - { de: "liberal", en: "liberal", ru: "либеральный", uk: "ліберальний" }
     status: reviewed
   - id: general-092
     rationale_de: >-
@@ -111,13 +118,14 @@ notes:
     question:
       en: "What does the abbreviation CSU stand for in Germany?"
       ru: "Что означает аббревиатура CSU в Германии?"
+      uk: "Що означає абревіатура CSU в Німеччині?"
     options:
-      a: { en: "Christian Safe Union", ru: "Христианский надёжный союз" }
-      b: { en: "Christian South German Union", ru: "Христианский южногерманский союз" }
-      c: { en: "Christian Social Employers' Association", ru: "Христианско-социальное объединение предпринимателей" }
-      d: { en: "Christian Social Union", ru: "Христианско-социальный союз" }
+      a: { en: "Christian Safe Union", ru: "Христианский надёжный союз", uk: "Християнський безпечний союз" }
+      b: { en: "Christian South German Union", ru: "Христианский южногерманский союз", uk: "Християнський південнонімецький союз" }
+      c: { en: "Christian Social Employers' Association", ru: "Христианско-социальное объединение предпринимателей", uk: "Християнсько-соціальна спілка підприємців" }
+      d: { en: "Christian Social Union", ru: "Христианско-социальный союз", uk: "Християнсько-соціальний союз" }
     terms:
-      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция" }
+      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция", uk: "фракція" }
     status: reviewed
   - id: general-093
     rationale_de: >-
@@ -126,15 +134,16 @@ notes:
     question:
       en: "The more “second votes” a party receives in a Bundestag election, the …"
       ru: "Чем больше «вторых голосов» получает партия на выборах в бундестаг, тем …"
+      uk: "Що більше «других голосів» партія отримує на виборах до Бундестагу, то …"
     options:
-      a: { en: "fewer first votes it can have.", ru: "меньше первых голосов она может иметь." }
-      b: { en: "more of the party's constituency candidates enter parliament.", ru: "больше прямых кандидатов от партии проходит в парламент." }
-      c: { en: "greater the risk of having to form a coalition.", ru: "выше риск, что придётся создавать коалицию." }
-      d: { en: "more seats the party receives in parliament.", ru: "больше мест получает партия в парламенте." }
+      a: { en: "fewer first votes it can have.", ru: "меньше первых голосов она может иметь.", uk: "менше перших голосів вона може мати." }
+      b: { en: "more of the party's constituency candidates enter parliament.", ru: "больше прямых кандидатов от партии проходит в парламент.", uk: "більше кандидатів партії від виборчих округів проходить до парламенту." }
+      c: { en: "greater the risk of having to form a coalition.", ru: "выше риск, что придётся создавать коалицию.", uk: "більший ризик, що доведеться утворювати коаліцію." }
+      d: { en: "more seats the party receives in parliament.", ru: "больше мест получает партия в парламенте.", uk: "більше місць партія отримує в парламенті." }
     terms:
-      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос" }
-      - { de: "die Erststimme", en: "first vote", ru: "первый голос" }
-      - { de: "der Sitz", en: "seat", ru: "место в парламенте" }
+      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос", uk: "другий голос" }
+      - { de: "die Erststimme", en: "first vote", ru: "первый голос", uk: "перший голос" }
+      - { de: "der Sitz", en: "seat", ru: "место в парламенте", uk: "місце в парламенті" }
     status: reviewed
   - id: general-094
     rationale_de: >-
@@ -143,13 +152,14 @@ notes:
     question:
       en: "From what age may you take part in the election to the German Bundestag?"
       ru: "С какого возраста в Германии можно участвовать в выборах в германский бундестаг?"
+      uk: "З якого віку в Німеччині можна брати участь у виборах до німецького Бундестагу?"
     options:
-      a: { en: "16", ru: "16" }
-      b: { en: "18", ru: "18" }
-      c: { en: "21", ru: "21" }
-      d: { en: "23", ru: "23" }
+      a: { en: "16", ru: "16", uk: "16" }
+      b: { en: "18", ru: "18", uk: "18" }
+      c: { en: "21", ru: "21", uk: "21" }
+      d: { en: "23", ru: "23", uk: "23" }
     terms:
-      - { de: "teilnehmen an", en: "to take part in", ru: "участвовать в" }
+      - { de: "teilnehmen an", en: "to take part in", ru: "участвовать в", uk: "брати участь у" }
     status: reviewed
   - id: general-103
     rationale_de: >-
@@ -157,14 +167,15 @@ notes:
     question:
       en: "What is called a “traffic-light coalition” in Germany? The cooperation …"
       ru: "Что в Германии называют «коалицией светофора»? Сотрудничество …"
+      uk: "Що в Німеччині називають «світлофорною коаліцією» (Ampelkoalition)? Співпрацю …"
     options:
-      a: { en: "of the CDU and CSU parliamentary groups in the Bundestag", ru: "фракций ХДС и ХСС в бундестаге" }
-      b: { en: "of the SPD, FDP and Bündnis 90/Die Grünen in one government", ru: "СДПГ, СвДП и Союза 90/Зелёных в одном правительстве" }
-      c: { en: "of the CSU, Die Linke and Bündnis 90/Die Grünen in one government", ru: "ХСС, Левых и Союза 90/Зелёных в одном правительстве" }
-      d: { en: "of the CDU and SPD parliamentary groups in the Bundestag", ru: "фракций ХДС и СДПГ в бундестаге" }
+      a: { en: "of the CDU and CSU parliamentary groups in the Bundestag", ru: "фракций ХДС и ХСС в бундестаге", uk: "фракцій CDU і CSU в Бундестазі" }
+      b: { en: "of the SPD, FDP and Bündnis 90/Die Grünen in one government", ru: "СДПГ, СвДП и Союза 90/Зелёных в одном правительстве", uk: "SPD, FDP і «Союзу 90/Зелених» в одному уряді" }
+      c: { en: "of the CSU, Die Linke and Bündnis 90/Die Grünen in one government", ru: "ХСС, Левых и Союза 90/Зелёных в одном правительстве", uk: "CSU, «Лівих» і «Союзу 90/Зелених» в одному уряді" }
+      d: { en: "of the CDU and SPD parliamentary groups in the Bundestag", ru: "фракций ХДС и СДПГ в бундестаге", uk: "фракцій CDU і SPD в Бундестазі" }
     terms:
-      - { de: "die Ampel", en: "traffic light", ru: "светофор" }
-      - { de: "die Koalition", en: "coalition", ru: "коалиция" }
+      - { de: "die Ampel", en: "traffic light", ru: "светофор", uk: "світлофор" }
+      - { de: "die Koalition", en: "coalition", ru: "коалиция", uk: "коаліція" }
     status: reviewed
   - id: general-105
     rationale_de: >-
@@ -173,14 +184,15 @@ notes:
     question:
       en: "What is one task of election workers in Germany?"
       ru: "Что входит в задачи помощников на выборах в Германии?"
+      uk: "Що є одним із завдань помічників на виборах у Німеччині?"
     options:
-      a: { en: "They help elderly people cast their vote in the voting booth.", ru: "Они помогают пожилым людям голосовать в кабине для голосования." }
-      b: { en: "They write the election notifications before the election.", ru: "Они пишут уведомления о выборах перед выборами." }
-      c: { en: "They pass interim results on to the media.", ru: "Они передают промежуточные результаты средствам массовой информации." }
-      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов." }
+      a: { en: "They help elderly people cast their vote in the voting booth.", ru: "Они помогают пожилым людям голосовать в кабине для голосования.", uk: "Вони допомагають літнім людям голосувати в кабіні для голосування." }
+      b: { en: "They write the election notifications before the election.", ru: "Они пишут уведомления о выборах перед выборами.", uk: "Перед виборами вони пишуть повідомлення про вибори." }
+      c: { en: "They pass interim results on to the media.", ru: "Они передают промежуточные результаты средствам массовой информации.", uk: "Вони передають проміжні результати медіа." }
+      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов.", uk: "Вони підраховують голоси після закінчення виборів." }
     terms:
-      - { de: "das Wahllokal", en: "polling station", ru: "избирательный участок" }
-      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах" }
+      - { de: "das Wahllokal", en: "polling station", ru: "избирательный участок", uk: "виборча дільниця" }
+      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах", uk: "повідомлення про вибори" }
     status: reviewed
   - id: general-106
     rationale_de: >-
@@ -189,14 +201,15 @@ notes:
     question:
       en: "In Germany, volunteer election workers help at elections. What is one task of election workers?"
       ru: "В Германии на выборах помогают помощники-добровольцы. Что входит в задачи помощников на выборах?"
+      uk: "У Німеччині на виборах допомагають помічниці й помічники, що працюють на громадських засадах. Що є одним із завдань помічників на виборах?"
     options:
-      a: { en: "They help children and elderly people to vote.", ru: "Они помогают детям и пожилым людям голосовать." }
-      b: { en: "They write cards and letters stating the polling station.", ru: "Они пишут открытки и письма с указанием избирательного участка." }
-      c: { en: "They pass interim results on to journalists.", ru: "Они передают промежуточные результаты журналистам." }
-      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов." }
+      a: { en: "They help children and elderly people to vote.", ru: "Они помогают детям и пожилым людям голосовать.", uk: "Вони допомагають дітям і літнім людям голосувати." }
+      b: { en: "They write cards and letters stating the polling station.", ru: "Они пишут открытки и письма с указанием избирательного участка.", uk: "Вони пишуть листівки й листи із зазначенням виборчої дільниці." }
+      c: { en: "They pass interim results on to journalists.", ru: "Они передают промежуточные результаты журналистам.", uk: "Вони передають проміжні результати журналістам." }
+      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов.", uk: "Вони підраховують голоси після закінчення виборів." }
     terms:
-      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах" }
-      - { de: "die Wahlkabine", en: "voting booth", ru: "кабина для голосования" }
+      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах", uk: "на громадських засадах" }
+      - { de: "die Wahlkabine", en: "voting booth", ru: "кабина для голосования", uk: "кабіна для голосування" }
     status: reviewed
   - id: general-107
     rationale_de: >-
@@ -205,13 +218,14 @@ notes:
     question:
       en: "For how many years is the Bundestag in Germany elected?"
       ru: "На сколько лет избирается бундестаг в Германии?"
+      uk: "На скільки років обирають Бундестаг у Німеччині?"
     options:
-      a: { en: "2 years", ru: "2 года" }
-      b: { en: "4 years", ru: "4 года" }
-      c: { en: "6 years", ru: "6 лет" }
-      d: { en: "8 years", ru: "8 лет" }
+      a: { en: "2 years", ru: "2 года", uk: "2 роки" }
+      b: { en: "4 years", ru: "4 года", uk: "4 роки" }
+      c: { en: "6 years", ru: "6 лет", uk: "6 років" }
+      d: { en: "8 years", ru: "8 лет", uk: "8 років" }
     terms:
-      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий" }
+      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий", uk: "строк повноважень" }
     status: reviewed
   - id: general-108
     rationale_de: >-
@@ -220,14 +234,15 @@ notes:
     question:
       en: "In a Bundestag election in Germany, everyone may vote who …"
       ru: "На выборах в бундестаг в Германии может голосовать каждая или каждый, кто …"
+      uk: "На виборах до Бундестагу в Німеччині має право голосувати кожна чи кожен, хто …"
     options:
-      a: { en: "lives in the Federal Republic of Germany and wants to vote.", ru: "живёт в Федеративной Республике Германия и хочет голосовать." }
-      b: { en: "is a citizen of the Federal Republic of Germany and is at least 18 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 18 лет." }
-      c: { en: "has lived in the Federal Republic of Germany for at least 3 years.", ru: "живёт в Федеративной Республике Германия не меньше 3 лет." }
-      d: { en: "is a citizen of the Federal Republic of Germany and is at least 21 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 21 года." }
+      a: { en: "lives in the Federal Republic of Germany and wants to vote.", ru: "живёт в Федеративной Республике Германия и хочет голосовать.", uk: "живе у Федеративній Республіці Німеччина й хоче голосувати." }
+      b: { en: "is a citizen of the Federal Republic of Germany and is at least 18 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 18 лет.", uk: "є громадянкою чи громадянином Федеративної Республіки Німеччина віком щонайменше 18 років." }
+      c: { en: "has lived in the Federal Republic of Germany for at least 3 years.", ru: "живёт в Федеративной Республике Германия не меньше 3 лет.", uk: "щонайменше 3 роки живе у Федеративній Республіці Німеччина." }
+      d: { en: "is a citizen of the Federal Republic of Germany and is at least 21 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 21 года.", uk: "є громадянкою чи громадянином Федеративної Республіки Німеччина віком щонайменше 21 рік." }
     terms:
-      - { de: "die Bürgerin / der Bürger", en: "citizen", ru: "гражданка / гражданин" }
-      - { de: "die Staatsangehörigkeit", en: "nationality", ru: "гражданство" }
+      - { de: "die Bürgerin / der Bürger", en: "citizen", ru: "гражданка / гражданин", uk: "громадянка / громадянин" }
+      - { de: "die Staatsangehörigkeit", en: "nationality", ru: "гражданство", uk: "громадянство" }
     status: reviewed
   - id: general-109
     rationale_de: >-
@@ -236,13 +251,14 @@ notes:
     question:
       en: "How often are there normally Bundestag elections in Germany?"
       ru: "Как часто обычно проходят выборы в бундестаг в Германии?"
+      uk: "Як часто зазвичай відбуваються вибори до Бундестагу в Німеччині?"
     options:
-      a: { en: "every three years", ru: "каждые три года" }
-      b: { en: "every four years", ru: "каждые четыре года" }
-      c: { en: "every five years", ru: "каждые пять лет" }
-      d: { en: "every six years", ru: "каждые шесть лет" }
+      a: { en: "every three years", ru: "каждые три года", uk: "кожні три роки" }
+      b: { en: "every four years", ru: "каждые четыре года", uk: "кожні чотири роки" }
+      c: { en: "every five years", ru: "каждые пять лет", uk: "кожні п’ять років" }
+      d: { en: "every six years", ru: "каждые шесть лет", uk: "кожні шість років" }
     terms:
-      - { de: "vorzeitig", en: "early", ru: "досрочно" }
+      - { de: "vorzeitig", en: "early", ru: "досрочно", uk: "достроковий" }
     status: reviewed
   - id: general-110
     rationale_de: >-
@@ -251,13 +267,14 @@ notes:
     question:
       en: "For how many years is the Bundestag in Germany elected?"
       ru: "На сколько лет избирается бундестаг в Германии?"
+      uk: "На скільки років обирають Бундестаг у Німеччині?"
     options:
-      a: { en: "2 years", ru: "2 года" }
-      b: { en: "3 years", ru: "3 года" }
-      c: { en: "4 years", ru: "4 года" }
-      d: { en: "5 years", ru: "5 лет" }
+      a: { en: "2 years", ru: "2 года", uk: "2 роки" }
+      b: { en: "3 years", ru: "3 года", uk: "3 роки" }
+      c: { en: "4 years", ru: "4 года", uk: "4 роки" }
+      d: { en: "5 years", ru: "5 лет", uk: "5 років" }
     terms:
-      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий" }
+      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий", uk: "строк повноважень" }
     status: reviewed
   - id: general-112
     rationale_de: >-
@@ -266,14 +283,15 @@ notes:
     question:
       en: "Elections in Germany are …"
       ru: "Выборы в Германии …"
+      uk: "Вибори в Німеччині …"
     options:
-      a: { en: "special.", ru: "особые." }
-      b: { en: "secret.", ru: "тайные." }
-      c: { en: "occupation-based.", ru: "связаны с профессией." }
-      d: { en: "gender-dependent.", ru: "зависят от пола." }
+      a: { en: "special.", ru: "особые.", uk: "особливі." }
+      b: { en: "secret.", ru: "тайные.", uk: "таємні." }
+      c: { en: "occupation-based.", ru: "связаны с профессией.", uk: "пов’язані з професією." }
+      d: { en: "gender-dependent.", ru: "зависят от пола.", uk: "залежать від статі." }
     terms:
-      - { de: "geheim", en: "secret", ru: "тайный" }
-      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень" }
+      - { de: "geheim", en: "secret", ru: "тайный", uk: "таємний" }
+      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень", uk: "виборчий бюлетень" }
     status: reviewed
   - id: general-113
     rationale_de: >-
@@ -282,14 +300,15 @@ notes:
     question:
       en: "Elections in Germany are won by the party that …"
       ru: "На выборах в Германии побеждает партия, которая …"
+      uk: "На виборах у Німеччині перемагає партія, яка …"
     options:
-      a: { en: "receives the most votes.", ru: "получает больше всего голосов." }
-      b: { en: "the majority of men voted for.", ru: "за которую проголосовало большинство мужчин." }
-      c: { en: "has received the most votes among workers.", ru: "получила больше всего голосов среди рабочих." }
-      d: { en: "has received the most first votes for its candidate for chancellor.", ru: "получила больше всего первых голосов за своего кандидата в канцлеры." }
+      a: { en: "receives the most votes.", ru: "получает больше всего голосов.", uk: "отримує найбільше голосів." }
+      b: { en: "the majority of men voted for.", ru: "за которую проголосовало большинство мужчин.", uk: "за яку проголосувала більшість чоловіків." }
+      c: { en: "has received the most votes among workers.", ru: "получила больше всего голосов среди рабочих.", uk: "отримала найбільше голосів серед робітників." }
+      d: { en: "has received the most first votes for its candidate for chancellor.", ru: "получила больше всего первых голосов за своего кандидата в канцлеры.", uk: "отримала найбільше перших голосів за свого кандидата в канцлери." }
     terms:
-      - { de: "die Stimme", en: "vote", ru: "голос" }
-      - { de: "die Kanzlerkandidatin / der Kanzlerkandidat", en: "candidate for chancellor", ru: "кандидат в канцлеры" }
+      - { de: "die Stimme", en: "vote", ru: "голос", uk: "голос" }
+      - { de: "die Kanzlerkandidatin / der Kanzlerkandidat", en: "candidate for chancellor", ru: "кандидат в канцлеры", uk: "кандидат у канцлери" }
     status: reviewed
   - id: general-114
     rationale_de: >-
@@ -298,14 +317,15 @@ notes:
     question:
       en: "Taking part in democratic elections in Germany is …"
       ru: "Участие в демократических выборах в Германии — это …"
+      uk: "Брати участь у демократичних виборах у Німеччині — це …"
     options:
-      a: { en: "a duty.", ru: "обязанность." }
-      b: { en: "a right.", ru: "право." }
-      c: { en: "a compulsion.", ru: "принуждение." }
-      d: { en: "a burden.", ru: "бремя." }
+      a: { en: "a duty.", ru: "обязанность.", uk: "обов’язок." }
+      b: { en: "a right.", ru: "право.", uk: "право." }
+      c: { en: "a compulsion.", ru: "принуждение.", uk: "примус." }
+      d: { en: "a burden.", ru: "бремя.", uk: "тягар." }
     terms:
-      - { de: "die Pflicht", en: "duty", ru: "обязанность" }
-      - { de: "der Zwang", en: "compulsion", ru: "принуждение" }
+      - { de: "die Pflicht", en: "duty", ru: "обязанность", uk: "обов’язок" }
+      - { de: "der Zwang", en: "compulsion", ru: "принуждение", uk: "примус" }
     status: reviewed
   - id: general-115
     rationale_de: >-
@@ -314,14 +334,15 @@ notes:
     question:
       en: "What does “active right to vote” mean in Germany?"
       ru: "Что означает «активное избирательное право» в Германии?"
+      uk: "Що означає в Німеччині «активне виборче право»?"
     options:
-      a: { en: "You can be elected.", ru: "Можно быть избранным." }
-      b: { en: "You must go and vote.", ru: "Нужно обязательно идти на выборы." }
-      c: { en: "You can vote.", ru: "Можно голосовать." }
-      d: { en: "You must go to the counting of the votes.", ru: "Нужно идти на подсчёт голосов." }
+      a: { en: "You can be elected.", ru: "Можно быть избранным.", uk: "Можна бути обраним." }
+      b: { en: "You must go and vote.", ru: "Нужно обязательно идти на выборы.", uk: "Треба обов’язково йти на вибори." }
+      c: { en: "You can vote.", ru: "Можно голосовать.", uk: "Можна голосувати." }
+      d: { en: "You must go to the counting of the votes.", ru: "Нужно идти на подсчёт голосов.", uk: "Треба йти на підрахунок голосів." }
     terms:
-      - { de: "das aktive Wahlrecht", en: "right to vote", ru: "активное избирательное право" }
-      - { de: "das passive Wahlrecht", en: "right to stand for election", ru: "пассивное избирательное право" }
+      - { de: "das aktive Wahlrecht", en: "right to vote", ru: "активное избирательное право", uk: "активне виборче право" }
+      - { de: "das passive Wahlrecht", en: "right to stand for election", ru: "пассивное избирательное право", uk: "пасивне виборче право" }
     status: reviewed
   - id: general-116
     rationale_de: >-
@@ -330,14 +351,15 @@ notes:
     question:
       en: "If you are allowed to vote in a Bundestag election in Germany, this is called …"
       ru: "Если вы имеете право голосовать на выборах в бундестаг в Германии, это называется …"
+      uk: "Якщо ви маєте право голосувати на виборах до Бундестагу в Німеччині, це називається …"
     options:
-      a: { en: "active election campaign.", ru: "активная избирательная кампания." }
-      b: { en: "active electoral procedure.", ru: "активная избирательная процедура." }
-      c: { en: "active electioneering.", ru: "активная предвыборная борьба." }
-      d: { en: "active right to vote.", ru: "активное избирательное право." }
+      a: { en: "active election campaign.", ru: "активная избирательная кампания.", uk: "активна виборча кампанія." }
+      b: { en: "active electoral procedure.", ru: "активная избирательная процедура.", uk: "активна виборча процедура." }
+      c: { en: "active electioneering.", ru: "активная предвыборная борьба.", uk: "активна передвиборча боротьба." }
+      d: { en: "active right to vote.", ru: "активное избирательное право.", uk: "активне виборче право." }
     terms:
-      - { de: "der Wahlkampf", en: "election campaign", ru: "предвыборная борьба" }
-      - { de: "werben um", en: "to canvass for", ru: "агитировать за" }
+      - { de: "der Wahlkampf", en: "election campaign", ru: "предвыборная борьба", uk: "передвиборча боротьба" }
+      - { de: "werben um", en: "to canvass for", ru: "агитировать за", uk: "агітувати за" }
     status: reviewed
   - id: general-117
     rationale_de: >-
@@ -346,14 +368,15 @@ notes:
     question:
       en: "What minimum percentage of second votes must parties receive in order to be elected to the German Bundestag?"
       ru: "Какой минимальный процент вторых голосов должны получить партии, чтобы пройти в германский бундестаг?"
+      uk: "Скільки відсотків других голосів мають щонайменше отримати партії, щоб їх обрали до німецького Бундестагу?"
     options:
-      a: { en: "3%", ru: "3%" }
-      b: { en: "4%", ru: "4%" }
-      c: { en: "5%", ru: "5%" }
-      d: { en: "6%", ru: "6%" }
+      a: { en: "3%", ru: "3%", uk: "3%" }
+      b: { en: "4%", ru: "4%", uk: "4%" }
+      c: { en: "5%", ru: "5%", uk: "5%" }
+      d: { en: "6%", ru: "6%", uk: "6%" }
     terms:
-      - { de: "die Fünf-Prozent-Hürde", en: "five-percent threshold", ru: "пятипроцентный барьер" }
-      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос" }
+      - { de: "die Fünf-Prozent-Hürde", en: "five-percent threshold", ru: "пятипроцентный барьер", uk: "п’ятивідсотковий бар’єр" }
+      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос", uk: "другий голос" }
     status: reviewed
   - id: general-119
     rationale_de: >-
@@ -362,14 +385,15 @@ notes:
     question:
       en: "Elections in Germany are free. What does that mean?"
       ru: "Выборы в Германии свободные. Что это означает?"
+      uk: "Вибори в Німеччині вільні. Що це означає?"
     options:
-      a: { en: "No convicted offender may vote.", ru: "Все осуждённые преступники не имеют права голосовать." }
-      b: { en: "If I want to go and vote, my employer must give me time off.", ru: "Если я хочу пойти на выборы, работодательница или работодатель обязаны меня отпустить." }
-      c: { en: "Every person can decide without coercion whether they want to vote and whom they want to vote for.", ru: "Каждый человек может без принуждения решить, хочет ли он голосовать и за кого." }
-      d: { en: "I can freely decide where I want to go to vote.", ru: "Я могу свободно решить, где мне голосовать." }
+      a: { en: "No convicted offender may vote.", ru: "Все осуждённые преступники не имеют права голосовать.", uk: "Усі засуджені злочинці не мають права голосувати." }
+      b: { en: "If I want to go and vote, my employer must give me time off.", ru: "Если я хочу пойти на выборы, работодательница или работодатель обязаны меня отпустить.", uk: "Якщо я хочу піти на вибори, мій роботодавець мусить мене відпустити." }
+      c: { en: "Every person can decide without coercion whether they want to vote and whom they want to vote for.", ru: "Каждый человек может без принуждения решить, хочет ли он голосовать и за кого.", uk: "Кожна людина може без примусу вирішити, чи хоче вона голосувати і за кого." }
+      d: { en: "I can freely decide where I want to go to vote.", ru: "Я могу свободно решить, где мне голосовать.", uk: "Я можу вільно вирішити, де хочу голосувати." }
     terms:
-      - { de: "der Zwang", en: "coercion", ru: "принуждение" }
-      - { de: "die Straftäterin / der Straftäter", en: "offender", ru: "преступница / преступник" }
+      - { de: "der Zwang", en: "coercion", ru: "принуждение", uk: "примус" }
+      - { de: "die Straftäterin / der Straftäter", en: "offender", ru: "преступница / преступник", uk: "злочинниця / злочинець" }
     status: reviewed
   - id: general-120
     rationale_de: >-
@@ -378,15 +402,16 @@ notes:
     question:
       en: "The electoral system in Germany is a …"
       ru: "Избирательная система в Германии — это …"
+      uk: "Виборча система в Німеччині — це …"
     options:
-      a: { en: "census suffrage.", ru: "цензовое избирательное право." }
-      b: { en: "three-class franchise.", ru: "трёхклассное избирательное право." }
-      c: { en: "majority and proportional voting system.", ru: "мажоритарное и пропорциональное избирательное право." }
-      d: { en: "universal male suffrage.", ru: "всеобщее избирательное право для мужчин." }
+      a: { en: "census suffrage.", ru: "цензовое избирательное право.", uk: "цензове виборче право." }
+      b: { en: "three-class franchise.", ru: "трёхклассное избирательное право.", uk: "трикласне виборче право." }
+      c: { en: "majority and proportional voting system.", ru: "мажоритарное и пропорциональное избирательное право.", uk: "мажоритарне і пропорційне виборче право." }
+      d: { en: "universal male suffrage.", ru: "всеобщее избирательное право для мужчин.", uk: "загальне виборче право для чоловіків." }
     terms:
-      - { de: "die Mehrheitswahl", en: "majority vote", ru: "мажоритарные выборы" }
-      - { de: "die Verhältniswahl", en: "proportional representation", ru: "пропорциональные выборы" }
-      - { de: "der Wahlkreis", en: "constituency", ru: "избирательный округ" }
+      - { de: "die Mehrheitswahl", en: "majority vote", ru: "мажоритарные выборы", uk: "мажоритарні вибори" }
+      - { de: "die Verhältniswahl", en: "proportional representation", ru: "пропорциональные выборы", uk: "пропорційні вибори" }
+      - { de: "der Wahlkreis", en: "constituency", ru: "избирательный округ", uk: "виборчий округ" }
     status: reviewed
   - id: general-121
     rationale_de: >-
@@ -395,14 +420,15 @@ notes:
     question:
       en: "A party wants to get into the German Bundestag. But it must have a minimum share of the votes. This is called …"
       ru: "Партия хочет пройти в германский бундестаг. Но она должна получить минимальную долю голосов избирателей. Это называется …"
+      uk: "Партія хоче потрапити до німецького Бундестагу. Але вона мусить мати мінімальну частку голосів виборців. Це називається …"
     options:
-      a: { en: "5% hurdle.", ru: "5-процентный барьер." }
-      b: { en: "admission limit.", ru: "порог допуска." }
-      c: { en: "base value.", ru: "базовое значение." }
-      d: { en: "guideline.", ru: "директива." }
+      a: { en: "5% hurdle.", ru: "5-процентный барьер.", uk: "5-відсотковий бар’єр." }
+      b: { en: "admission limit.", ru: "порог допуска.", uk: "поріг допуску." }
+      c: { en: "base value.", ru: "базовое значение.", uk: "базове значення." }
+      d: { en: "guideline.", ru: "директива.", uk: "директива." }
     terms:
-      - { de: "die Hürde", en: "hurdle", ru: "барьер" }
-      - { de: "der Mindestanteil", en: "minimum share", ru: "минимальная доля" }
+      - { de: "die Hürde", en: "hurdle", ru: "барьер", uk: "бар’єр" }
+      - { de: "der Mindestanteil", en: "minimum share", ru: "минимальная доля", uk: "мінімальна частка" }
     status: reviewed
   - id: general-122
     rationale_de: >-
@@ -411,14 +437,15 @@ notes:
     question:
       en: "Which principle are elections in Germany subject to? Elections in Germany are …"
       ru: "Каким принципам подчиняются выборы в Германии? Выборы в Германии …"
+      uk: "Якому принципу підлягають вибори в Німеччині? Вибори в Німеччині …"
     options:
-      a: { en: "free, equal, secret.", ru: "свободные, равные, тайные." }
-      b: { en: "open, safe, free.", ru: "открытые, безопасные, свободные." }
-      c: { en: "closed, equal, safe.", ru: "закрытые, равные, безопасные." }
-      d: { en: "safe, open, voluntary.", ru: "безопасные, открытые, добровольные." }
+      a: { en: "free, equal, secret.", ru: "свободные, равные, тайные.", uk: "вільні, рівні, таємні." }
+      b: { en: "open, safe, free.", ru: "открытые, безопасные, свободные.", uk: "відкриті, безпечні, вільні." }
+      c: { en: "closed, equal, safe.", ru: "закрытые, равные, безопасные.", uk: "закриті, рівні, безпечні." }
+      d: { en: "safe, open, voluntary.", ru: "безопасные, открытые, добровольные.", uk: "безпечні, відкриті, добровільні." }
     terms:
-      - { de: "der Grundsatz", en: "principle", ru: "принцип" }
-      - { de: "unterliegen", en: "to be subject to", ru: "подчиняться" }
+      - { de: "der Grundsatz", en: "principle", ru: "принцип", uk: "принцип" }
+      - { de: "unterliegen", en: "to be subject to", ru: "подчиняться", uk: "підлягати" }
     status: reviewed
   - id: general-123
     rationale_de: >-
@@ -427,14 +454,15 @@ notes:
     question:
       en: "What is the “5% hurdle” in Germany?"
       ru: "Что такое «5-процентный барьер» в Германии?"
+      uk: "Що таке в Німеччині «5-відсотковий бар’єр»?"
     options:
-      a: { en: "a voting rule in the Bundestag for small parties", ru: "правило голосования в бундестаге для малых партий" }
-      b: { en: "an attendance check in the Bundestag for votes", ru: "проверка присутствия в бундестаге при голосованиях" }
-      c: { en: "a minimum share of the votes needed to get into parliament", ru: "минимальная доля голосов избирателей, чтобы попасть в парламент" }
-      d: { en: "an attendance check in the Bundesrat for votes", ru: "проверка присутствия в бундесрате при голосованиях" }
+      a: { en: "a voting rule in the Bundestag for small parties", ru: "правило голосования в бундестаге для малых партий", uk: "правило голосування в Бундестазі для малих партій" }
+      b: { en: "an attendance check in the Bundestag for votes", ru: "проверка присутствия в бундестаге при голосованиях", uk: "перевірка присутності в Бундестазі під час голосувань" }
+      c: { en: "a minimum share of the votes needed to get into parliament", ru: "минимальная доля голосов избирателей, чтобы попасть в парламент", uk: "мінімальна частка голосів виборців, щоб потрапити до парламенту" }
+      d: { en: "an attendance check in the Bundesrat for votes", ru: "проверка присутствия в бундесрате при голосованиях", uk: "перевірка присутності в Бундесраті під час голосувань" }
     terms:
-      - { de: "die Abstimmung", en: "vote (in parliament)", ru: "голосование" }
-      - { de: "die Anwesenheit", en: "attendance", ru: "присутствие" }
+      - { de: "die Abstimmung", en: "vote (in parliament)", ru: "голосование", uk: "голосування" }
+      - { de: "die Anwesenheit", en: "attendance", ru: "присутствие", uk: "присутність" }
     status: reviewed
   - id: general-124
     rationale_de: >-
@@ -443,14 +471,15 @@ notes:
     question:
       en: "The Bundestag election in Germany is the election …"
       ru: "Выборы в бундестаг в Германии — это выборы …"
+      uk: "Вибори до Бундестагу в Німеччині — це вибори …"
     options:
-      a: { en: "of the Federal Chancellor.", ru: "федерального канцлера." }
-      b: { en: "of the parliaments of the federal states.", ru: "парламентов федеральных земель." }
-      c: { en: "of the parliament for Germany.", ru: "парламента Германии." }
-      d: { en: "of the Federal President.", ru: "федерального президента." }
+      a: { en: "of the Federal Chancellor.", ru: "федерального канцлера.", uk: "федерального канцлера." }
+      b: { en: "of the parliaments of the federal states.", ru: "парламентов федеральных земель.", uk: "парламентів федеральних земель." }
+      c: { en: "of the parliament for Germany.", ru: "парламента Германии.", uk: "парламенту Німеччини." }
+      d: { en: "of the Federal President.", ru: "федерального президента.", uk: "федерального президента." }
     terms:
-      - { de: "die Bundestagswahl", en: "federal election", ru: "выборы в бундестаг" }
-      - { de: "die Bundesversammlung", en: "Federal Convention", ru: "Федеральное собрание (выборы президента)" }
+      - { de: "die Bundestagswahl", en: "federal election", ru: "выборы в бундестаг", uk: "вибори до Бундестагу" }
+      - { de: "die Bundesversammlung", en: "Federal Convention", ru: "Федеральное собрание (выборы президента)", uk: "Федеральні збори (вибори президента)" }
     status: reviewed
   - id: general-125
     rationale_de: >-
@@ -459,14 +488,15 @@ notes:
     question:
       en: "In a democracy, one function of regular elections is …"
       ru: "В демократии одна из функций регулярных выборов — …"
+      uk: "У демократії одна з функцій регулярних виборів — …"
     options:
-      a: { en: "to force citizens to cast their vote.", ru: "заставлять граждан голосовать." }
-      b: { en: "to make a change of government possible in line with the will of the majority of voters.", ru: "давать возможность сменить правительство по воле большинства избирателей." }
-      c: { en: "to keep the laws that already exist in the country.", ru: "сохранять действующие в стране законы." }
-      d: { en: "to give the poor more power.", ru: "давать бедным больше власти." }
+      a: { en: "to force citizens to cast their vote.", ru: "заставлять граждан голосовать.", uk: "змушувати громадян голосувати." }
+      b: { en: "to make a change of government possible in line with the will of the majority of voters.", ru: "давать возможность сменить правительство по воле большинства избирателей.", uk: "давати змогу змінити уряд за волею більшості виборців." }
+      c: { en: "to keep the laws that already exist in the country.", ru: "сохранять действующие в стране законы.", uk: "зберігати чинні в країні закони." }
+      d: { en: "to give the poor more power.", ru: "давать бедным больше власти.", uk: "давати бідним більше влади." }
     terms:
-      - { de: "der Wechsel", en: "change", ru: "смена" }
-      - { de: "die Wählermehrheit", en: "majority of voters", ru: "большинство избирателей" }
+      - { de: "der Wechsel", en: "change", ru: "смена", uk: "зміна" }
+      - { de: "die Wählermehrheit", en: "majority of voters", ru: "большинство избирателей", uk: "більшість виборців" }
     status: reviewed
   - id: general-126
     rationale_de: >-
@@ -475,15 +505,16 @@ notes:
     question:
       en: "What do citizens entitled to vote in Germany receive before an election?"
       ru: "Что получают граждане Германии, имеющие право голоса, перед выборами?"
+      uk: "Що отримують перед виборами громадяни Німеччини, які мають право голосу?"
     options:
-      a: { en: "an election notification from the municipality", ru: "уведомление о выборах от общины" }
-      b: { en: "a permit to vote from the Federal President", ru: "разрешение на голосование от федерального президента" }
-      c: { en: "a notification from the Federal Convention", ru: "уведомление от Федерального собрания" }
-      d: { en: "a notification from the parish office", ru: "уведомление от приходской канцелярии" }
+      a: { en: "an election notification from the municipality", ru: "уведомление о выборах от общины", uk: "повідомлення про вибори від громади" }
+      b: { en: "a permit to vote from the Federal President", ru: "разрешение на голосование от федерального президента", uk: "дозвіл голосувати від федерального президента" }
+      c: { en: "a notification from the Federal Convention", ru: "уведомление от Федерального собрания", uk: "повідомлення від Федеральних зборів" }
+      d: { en: "a notification from the parish office", ru: "уведомление от приходской канцелярии", uk: "повідомлення від парафіяльної канцелярії" }
     terms:
-      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах" }
-      - { de: "die Gemeinde", en: "municipality", ru: "община" }
-      - { de: "das Pfarramt", en: "parish office", ru: "приходская канцелярия" }
+      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах", uk: "повідомлення про вибори" }
+      - { de: "die Gemeinde", en: "municipality", ru: "община", uk: "громада" }
+      - { de: "das Pfarramt", en: "parish office", ru: "приходская канцелярия", uk: "парафіяльна канцелярія" }
     status: reviewed
   - id: general-127
     rationale_de: >-
@@ -491,14 +522,15 @@ notes:
     question:
       en: "Why is there a 5% hurdle in the electoral law of the Federal Republic of Germany? It exists because …"
       ru: "Почему в законе о выборах Федеративной Республики Германия есть 5-процентный барьер? Он существует, потому что …"
+      uk: "Чому в законі про вибори Федеративної Республіки Німеччина є 5-відсотковий бар’єр? Він існує, бо …"
     options:
-      a: { en: "the programmes of many small parties have a lot in common.", ru: "программы многих малых партий во многом похожи." }
-      b: { en: "citizens can lose their bearings when there are many small parties.", ru: "при множестве малых партий граждане могут потерять ориентацию." }
-      c: { en: "many small parties make it harder to form a government.", ru: "множество малых партий затрудняет формирование правительства." }
-      d: { en: "small parties do not have enough money to pay politicians.", ru: "у малых партий не хватает денег, чтобы платить политикам." }
+      a: { en: "the programmes of many small parties have a lot in common.", ru: "программы многих малых партий во многом похожи.", uk: "програми багатьох малих партій мають багато спільного." }
+      b: { en: "citizens can lose their bearings when there are many small parties.", ru: "при множестве малых партий граждане могут потерять ориентацию.", uk: "громадяни можуть заплутатися серед багатьох малих партій." }
+      c: { en: "many small parties make it harder to form a government.", ru: "множество малых партий затрудняет формирование правительства.", uk: "багато малих партій ускладнюють формування уряду." }
+      d: { en: "small parties do not have enough money to pay politicians.", ru: "у малых партий не хватает денег, чтобы платить политикам.", uk: "малі партії не мають достатньо грошей, щоб платити політикам." }
     terms:
-      - { de: "die Regierungsbildung", en: "forming a government", ru: "формирование правительства" }
-      - { de: "erschweren", en: "to make harder", ru: "затруднять" }
+      - { de: "die Regierungsbildung", en: "forming a government", ru: "формирование правительства", uk: "формування уряду" }
+      - { de: "erschweren", en: "to make harder", ru: "затруднять", uk: "ускладнювати" }
     status: reviewed
   - id: general-128
     rationale_de: >-
@@ -507,14 +539,15 @@ notes:
     question:
       en: "Members of parliament who are elected by the citizens are called …"
       ru: "Членов парламента, которых избирают граждане, называют …"
+      uk: "Членів парламенту, яких обирають громадяни, називають …"
     options:
-      a: { en: "deputies.", ru: "депутатами." }
-      b: { en: "chancellors.", ru: "канцлерами." }
-      c: { en: "ambassadors.", ru: "послами." }
-      d: { en: "minister-presidents.", ru: "министрами-президентами." }
+      a: { en: "deputies.", ru: "депутатами.", uk: "депутатами." }
+      b: { en: "chancellors.", ru: "канцлерами.", uk: "канцлерами." }
+      c: { en: "ambassadors.", ru: "послами.", uk: "послами." }
+      d: { en: "minister-presidents.", ru: "министрами-президентами.", uk: "міністрами-президентами земель." }
     terms:
-      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат" }
-      - { de: "die Botschafterin / der Botschafter", en: "ambassador", ru: "посол" }
+      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат", uk: "депутат, депутатка" }
+      - { de: "die Botschafterin / der Botschafter", en: "ambassador", ru: "посол", uk: "посол" }
     status: reviewed
   - id: general-129
     rationale_de: >-
@@ -523,13 +556,14 @@ notes:
     question:
       en: "In Germany, the people elect …"
       ru: "В Германии народ избирает …"
+      uk: "У Німеччині народ обирає …"
     options:
-      a: { en: "the Federal Chancellor.", ru: "федерального канцлера." }
-      b: { en: "the minister-president of a federal state.", ru: "министра-президента федеральной земли." }
-      c: { en: "the Bundestag.", ru: "бундестаг." }
-      d: { en: "the Federal President.", ru: "федерального президента." }
+      a: { en: "the Federal Chancellor.", ru: "федерального канцлера.", uk: "федерального канцлера." }
+      b: { en: "the minister-president of a federal state.", ru: "министра-президента федеральной земли.", uk: "міністра-президента федеральної землі." }
+      c: { en: "the Bundestag.", ru: "бундестаг.", uk: "Бундестаг." }
+      d: { en: "the Federal President.", ru: "федерального президента.", uk: "федерального президента." }
     terms:
-      - { de: "das Volk", en: "the people", ru: "народ" }
+      - { de: "das Volk", en: "the people", ru: "народ", uk: "народ" }
     status: reviewed
   - id: general-130
     rationale_de: >-
@@ -538,14 +572,15 @@ notes:
     question:
       en: "Which ballot paper would be valid in a Bundestag election? Based on the Federal Electoral Regulations (BWO), Annex 26"
       ru: "Какой избирательный бюллетень был бы действительным на выборах в бундестаг? По образцу Федерального положения о выборах (BWO), приложение 26"
+      uk: "Який виборчий бюлетень був би дійсним на виборах до Бундестагу? За зразком Федерального виборчого регламенту (BWO), додаток 26"
     options:
-      a: { en: "1", ru: "1" }
-      b: { en: "2", ru: "2" }
-      c: { en: "3", ru: "3" }
-      d: { en: "4", ru: "4" }
+      a: { en: "1", ru: "1", uk: "1" }
+      b: { en: "2", ru: "2", uk: "2" }
+      c: { en: "3", ru: "3", uk: "3" }
+      d: { en: "4", ru: "4", uk: "4" }
     terms:
-      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень" }
-      - { de: "gültig", en: "valid", ru: "действительный" }
+      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень", uk: "виборчий бюлетень" }
+      - { de: "gültig", en: "valid", ru: "действительный", uk: "дійсний" }
     status: reviewed
   - id: general-132
     rationale_de: >-
@@ -553,15 +588,16 @@ notes:
     question:
       en: "Many people in Germany work “ehrenamtlich” in their free time. What does that mean?"
       ru: "Многие люди в Германии в свободное время работают «ehrenamtlich». Что это значит?"
+      uk: "Багато людей у Німеччині у вільний час працюють «ehrenamtlich». Що це означає?"
     options:
-      a: { en: "They work as soldiers.", ru: "Они служат солдатами." }
-      b: { en: "They work voluntarily and without pay in clubs and associations.", ru: "Они работают добровольно и бесплатно в клубах и объединениях." }
-      c: { en: "They work in the federal government.", ru: "Они работают в федеральном правительстве." }
-      d: { en: "They work in a hospital and earn money doing so.", ru: "Они работают в больнице и получают за это деньги." }
+      a: { en: "They work as soldiers.", ru: "Они служат солдатами.", uk: "Вони працюють солдатами." }
+      b: { en: "They work voluntarily and without pay in clubs and associations.", ru: "Они работают добровольно и бесплатно в клубах и объединениях.", uk: "Вони працюють добровільно й безоплатно в об’єднаннях і спілках." }
+      c: { en: "They work in the federal government.", ru: "Они работают в федеральном правительстве.", uk: "Вони працюють у федеральному уряді." }
+      d: { en: "They work in a hospital and earn money doing so.", ru: "Они работают в больнице и получают за это деньги.", uk: "Вони працюють у лікарні й отримують за це гроші." }
     terms:
-      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах" }
-      - { de: "der Verein", en: "club", ru: "клуб" }
-      - { de: "der Verband", en: "association", ru: "объединение" }
+      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах", uk: "на громадських засадах" }
+      - { de: "der Verein", en: "club", ru: "клуб", uk: "об’єднання, клуб" }
+      - { de: "der Verband", en: "association", ru: "объединение", uk: "спілка" }
     status: reviewed
   - id: general-133
     rationale_de: >-
@@ -570,14 +606,15 @@ notes:
     question:
       en: "What is permitted in Bundestag and Landtag elections in Germany?"
       ru: "Что разрешено на выборах в бундестаг и в ландтаг в Германии?"
+      uk: "Що дозволено на виборах до Бундестагу й ландтагів у Німеччині?"
     options:
-      a: { en: "A husband votes on behalf of his wife as well.", ru: "Муж голосует и за свою жену." }
-      b: { en: "You can cast your vote by postal vote.", ru: "Можно отдать свой голос, проголосовав по почте." }
-      c: { en: "You can cast your vote by telephone on election day.", ru: "В день выборов можно отдать свой голос по телефону." }
-      d: { en: "Children aged 14 and over may vote.", ru: "Дети с 14 лет могут голосовать." }
+      a: { en: "A husband votes on behalf of his wife as well.", ru: "Муж голосует и за свою жену.", uk: "Чоловік голосує також за свою дружину." }
+      b: { en: "You can cast your vote by postal vote.", ru: "Можно отдать свой голос, проголосовав по почте.", uk: "Можна віддати свій голос поштою." }
+      c: { en: "You can cast your vote by telephone on election day.", ru: "В день выборов можно отдать свой голос по телефону.", uk: "У день виборів можна віддати свій голос телефоном." }
+      d: { en: "Children aged 14 and over may vote.", ru: "Дети с 14 лет могут голосовать.", uk: "Діти з 14 років мають право голосувати." }
     terms:
-      - { de: "die Briefwahl", en: "postal vote", ru: "голосование по почте" }
-      - { de: "die Stimme abgeben", en: "to cast a vote", ru: "отдать голос" }
+      - { de: "die Briefwahl", en: "postal vote", ru: "голосование по почте", uk: "голосування поштою" }
+      - { de: "die Stimme abgeben", en: "to cast a vote", ru: "отдать голос", uk: "віддати голос" }
     status: reviewed
   - id: general-134
     rationale_de: >-
@@ -585,14 +622,15 @@ notes:
     question:
       en: "There are plans to scrap the bus route you always take to work. What can you do to keep the bus route?"
       ru: "Автобусный маршрут, по которому вы всегда ездите на работу, хотят отменить. Что вы можете сделать, чтобы его сохранить?"
+      uk: "Автобусний маршрут, яким ви завжди їздите на роботу, хочуть скасувати. Що ви можете зробити, щоб зберегти цей маршрут?"
     options:
-      a: { en: "I take part in a citizens' initiative to keep the bus route, or I start an initiative myself.", ru: "Я участвую в гражданской инициативе за сохранение маршрута или сам создаю инициативу." }
-      b: { en: "I join a sports club and train cycling.", ru: "Я вступаю в спортивный клуб и тренируюсь ездить на велосипеде." }
-      c: { en: "I contact the tax office, because as a taxpayer I have a right to the bus route.", ru: "Я обращаюсь в налоговую инспекцию, потому что как налогоплательщик имею право на этот маршрут." }
-      d: { en: "I write a letter to the municipality's forestry office.", ru: "Я пишу письмо в лесное управление общины." }
+      a: { en: "I take part in a citizens' initiative to keep the bus route, or I start an initiative myself.", ru: "Я участвую в гражданской инициативе за сохранение маршрута или сам создаю инициативу.", uk: "Я долучаюся до громадянської ініціативи за збереження маршруту або сам засновую ініціативу." }
+      b: { en: "I join a sports club and train cycling.", ru: "Я вступаю в спортивный клуб и тренируюсь ездить на велосипеде.", uk: "Я вступаю до спортивного клубу й тренуюся їздити на велосипеді." }
+      c: { en: "I contact the tax office, because as a taxpayer I have a right to the bus route.", ru: "Я обращаюсь в налоговую инспекцию, потому что как налогоплательщик имею право на этот маршрут.", uk: "Я звертаюся до податкової служби, бо як платник податків маю право на цей маршрут." }
+      d: { en: "I write a letter to the municipality's forestry office.", ru: "Я пишу письмо в лесное управление общины.", uk: "Я пишу лист до лісництва громади." }
     terms:
-      - { de: "die Bürgerinitiative", en: "citizens' initiative", ru: "гражданская инициатива" }
-      - { de: "abschaffen", en: "to scrap", ru: "отменять" }
+      - { de: "die Bürgerinitiative", en: "citizens' initiative", ru: "гражданская инициатива", uk: "громадянська ініціатива" }
+      - { de: "abschaffen", en: "to scrap", ru: "отменять", uk: "скасовувати" }
     status: reviewed
   - id: general-282
     rationale_de: >-
@@ -601,12 +639,13 @@ notes:
     question:
       en: "Which honorary office must German citizens take on if they are asked to?"
       ru: "Какую общественную должность обязаны взять на себя граждане Германии, если их к этому призовут?"
+      uk: "Яку громадську посаду зобов’язані обійняти громадянки й громадяни Німеччини, якщо їх до цього закличуть?"
     options:
-      a: { en: "club coach", ru: "тренер в клубе" }
-      b: { en: "election worker", ru: "помощник на выборах" }
-      c: { en: "library supervisor", ru: "дежурный в библиотеке" }
-      d: { en: "teacher", ru: "учитель" }
+      a: { en: "club coach", ru: "тренер в клубе", uk: "тренер у клубі" }
+      b: { en: "election worker", ru: "помощник на выборах", uk: "помічник на виборах" }
+      c: { en: "library supervisor", ru: "дежурный в библиотеке", uk: "черговий у бібліотеці" }
+      d: { en: "teacher", ru: "учитель", uk: "учитель" }
     terms:
-      - { de: "das Ehrenamt", en: "honorary office", ru: "общественная должность" }
-      - { de: "auffordern", en: "to call upon", ru: "призывать" }
+      - { de: "das Ehrenamt", en: "honorary office", ru: "общественная должность", uk: "громадська посада" }
+      - { de: "auffordern", en: "to call upon", ru: "призывать", uk: "закликати" }
     status: reviewed

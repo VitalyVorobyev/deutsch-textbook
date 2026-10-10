@@ -6,15 +6,16 @@ notes:
     question:
       en: "In Germany, most people in work are …"
       ru: "В Германии большинство работающих …"
+      uk: "У Німеччині більшість працюючих …"
     options:
-      a: { en: "employed in small family businesses.", ru: "заняты на небольших семейных предприятиях." }
-      b: { en: "working on a voluntary basis for a federal state.", ru: "работают на общественных началах на федеральную землю." }
-      c: { en: "self-employed with their own company.", ru: "работают самостоятельно, имея собственную фирму." }
-      d: { en: "employed by a company or a public authority.", ru: "работают по найму в фирме или в государственном учреждении." }
+      a: { en: "employed in small family businesses.", ru: "заняты на небольших семейных предприятиях.", uk: "працюють на невеликих сімейних підприємствах." }
+      b: { en: "working on a voluntary basis for a federal state.", ru: "работают на общественных началах на федеральную землю.", uk: "працюють на громадських засадах на федеральну землю." }
+      c: { en: "self-employed with their own company.", ru: "работают самостоятельно, имея собственную фирму.", uk: "працюють самостійно, маючи власну фірму." }
+      d: { en: "employed by a company or a public authority.", ru: "работают по найму в фирме или в государственном учреждении.", uk: "працюють у фірмі чи в державній установі." }
     terms:
-      - { de: "die Erwerbstätigen", en: "people in work", ru: "работающие" }
-      - { de: "selbstständig", en: "self-employed", ru: "самозанятый" }
-      - { de: "die Behörde", en: "public authority", ru: "ведомство" }
+      - { de: "die Erwerbstätigen", en: "people in work", ru: "работающие", uk: "працюючі" }
+      - { de: "selbstständig", en: "self-employed", ru: "самозанятый", uk: "самозайнятий" }
+      - { de: "die Behörde", en: "public authority", ru: "ведомство", uk: "державна установа" }
     status: reviewed
   - id: general-035
     rationale_de: >-
@@ -23,14 +24,15 @@ notes:
     question:
       en: "How does the German state finance social insurance?"
       ru: "За счёт чего немецкое государство финансирует социальное страхование?"
+      uk: "За рахунок чого німецька держава фінансує соціальне страхування?"
     options:
-      a: { en: "church tax", ru: "церковный налог" }
-      b: { en: "social security contributions", ru: "социальные взносы" }
-      c: { en: "donations", ru: "пожертвования" }
-      d: { en: "club membership fees", ru: "членские взносы в клубах" }
+      a: { en: "church tax", ru: "церковный налог", uk: "церковний податок" }
+      b: { en: "social security contributions", ru: "социальные взносы", uk: "соціальні внески" }
+      c: { en: "donations", ru: "пожертвования", uk: "пожертви" }
+      d: { en: "club membership fees", ru: "членские взносы в клубах", uk: "членські внески до товариств" }
     terms:
-      - { de: "die Sozialabgaben", en: "social security contributions", ru: "социальные взносы" }
-      - { de: "die Sozialversicherung", en: "social insurance", ru: "социальное страхование" }
+      - { de: "die Sozialabgaben", en: "social security contributions", ru: "социальные взносы", uk: "соціальні внески" }
+      - { de: "die Sozialversicherung", en: "social insurance", ru: "социальное страхование", uk: "соціальне страхування" }
     status: reviewed
   - id: general-036
     rationale_de: >-
@@ -39,14 +41,15 @@ notes:
     question:
       en: "Which measure creates social security in Germany?"
       ru: "Какая мера в Германии обеспечивает социальную защищённость?"
+      uk: "Який захід у Німеччині забезпечує соціальну захищеність?"
     options:
-      a: { en: "health insurance", ru: "медицинское страхование" }
-      b: { en: "car insurance", ru: "автострахование" }
-      c: { en: "building insurance", ru: "страхование зданий" }
-      d: { en: "liability insurance", ru: "страхование гражданской ответственности" }
+      a: { en: "health insurance", ru: "медицинское страхование", uk: "медичне страхування" }
+      b: { en: "car insurance", ru: "автострахование", uk: "автострахування" }
+      c: { en: "building insurance", ru: "страхование зданий", uk: "страхування будівель" }
+      d: { en: "liability insurance", ru: "страхование гражданской ответственности", uk: "страхування цивільної відповідальності" }
     terms:
-      - { de: "die soziale Sicherheit", en: "social security", ru: "социальная защищённость" }
-      - { de: "die Haftpflichtversicherung", en: "liability insurance", ru: "страхование ответственности" }
+      - { de: "die soziale Sicherheit", en: "social security", ru: "социальная защищённость", uk: "соціальна захищеність" }
+      - { de: "die Haftpflichtversicherung", en: "liability insurance", ru: "страхование ответственности", uk: "страхування відповідальності" }
     status: reviewed
   - id: general-045
     rationale_de: >-
@@ -55,14 +58,15 @@ notes:
     question:
       en: "Which insurance does long-term care insurance belong to?"
       ru: "К какому страхованию относится страхование на случай потребности в уходе?"
+      uk: "До якого страхування належить страхування на випадок потреби в догляді?"
     options:
-      a: { en: "social insurance", ru: "социальное страхование" }
-      b: { en: "accident insurance", ru: "страхование от несчастных случаев" }
-      c: { en: "household contents insurance", ru: "страхование домашнего имущества" }
-      d: { en: "liability and fire insurance", ru: "страхование ответственности и от пожара" }
+      a: { en: "social insurance", ru: "социальное страхование", uk: "соціальне страхування" }
+      b: { en: "accident insurance", ru: "страхование от несчастных случаев", uk: "страхування від нещасних випадків" }
+      c: { en: "household contents insurance", ru: "страхование домашнего имущества", uk: "страхування домашнього майна" }
+      d: { en: "liability and fire insurance", ru: "страхование ответственности и от пожара", uk: "страхування відповідальності та від пожежі" }
     terms:
-      - { de: "die Pflegeversicherung", en: "long-term care insurance", ru: "страхование по уходу" }
-      - { de: "die Pflege", en: "care", ru: "уход" }
+      - { de: "die Pflegeversicherung", en: "long-term care insurance", ru: "страхование по уходу", uk: "страхування з догляду" }
+      - { de: "die Pflege", en: "care", ru: "уход", uk: "догляд" }
     status: reviewed
   - id: general-050
     rationale_de: >-
@@ -71,14 +75,15 @@ notes:
     question:
       en: "The economic system in Germany is called …"
       ru: "Экономическая система Германии называется …"
+      uk: "Економічна система Німеччини називається …"
     options:
-      a: { en: "free central economy.", ru: "свободная централизованная экономика." }
-      b: { en: "social market economy.", ru: "социальная рыночная экономика." }
-      c: { en: "controlled central economy.", ru: "управляемая централизованная экономика." }
-      d: { en: "planned economy.", ru: "плановая экономика." }
+      a: { en: "free central economy.", ru: "свободная централизованная экономика.", uk: "вільна централізована економіка." }
+      b: { en: "social market economy.", ru: "социальная рыночная экономика.", uk: "соціальна ринкова економіка." }
+      c: { en: "controlled central economy.", ru: "управляемая централизованная экономика.", uk: "керована централізована економіка." }
+      d: { en: "planned economy.", ru: "плановая экономика.", uk: "планова економіка." }
     terms:
-      - { de: "die soziale Marktwirtschaft", en: "social market economy", ru: "социальная рыночная экономика" }
-      - { de: "die Planwirtschaft", en: "planned economy", ru: "плановая экономика" }
+      - { de: "die soziale Marktwirtschaft", en: "social market economy", ru: "социальная рыночная экономика", uk: "соціальна ринкова економіка" }
+      - { de: "die Planwirtschaft", en: "planned economy", ru: "плановая экономика", uk: "планова економіка" }
     status: reviewed
   - id: general-097
     rationale_de: >-
@@ -87,14 +92,15 @@ notes:
     question:
       en: "What do you pay automatically in Germany if you are in permanent employment?"
       ru: "Что в Германии вы платите автоматически, если работаете по найму на постоянной основе?"
+      uk: "Що в Німеччині сплачують автоматично, якщо працюють за наймом на постійній основі?"
     options:
-      a: { en: "social insurance", ru: "социальное страхование" }
-      b: { en: "social assistance", ru: "социальная помощь" }
-      c: { en: "child benefit", ru: "пособие на ребёнка" }
-      d: { en: "housing benefit", ru: "пособие на жильё" }
+      a: { en: "social insurance", ru: "социальное страхование", uk: "соціальне страхування" }
+      b: { en: "social assistance", ru: "социальная помощь", uk: "соціальна допомога" }
+      c: { en: "child benefit", ru: "пособие на ребёнка", uk: "допомога на дитину" }
+      d: { en: "housing benefit", ru: "пособие на жильё", uk: "допомога на житло" }
     terms:
-      - { de: "fest angestellt", en: "permanently employed", ru: "работающий на постоянной основе" }
-      - { de: "die Leistung", en: "benefit", ru: "выплата" }
+      - { de: "fest angestellt", en: "permanently employed", ru: "работающий на постоянной основе", uk: "постійно працевлаштований" }
+      - { de: "die Leistung", en: "benefit", ru: "выплата", uk: "виплата" }
     status: reviewed
   - id: general-099
     rationale_de: >-
@@ -103,15 +109,16 @@ notes:
     question:
       en: "Who pays for the social insurance schemes in Germany?"
       ru: "Кто в Германии платит за социальное страхование?"
+      uk: "Хто в Німеччині оплачує соціальне страхування?"
     options:
-      a: { en: "employers and employees", ru: "работодатели и работники" }
-      b: { en: "only employees", ru: "только работники" }
-      c: { en: "all nationals", ru: "все граждане" }
-      d: { en: "only employers", ru: "только работодатели" }
+      a: { en: "employers and employees", ru: "работодатели и работники", uk: "роботодавці та працівники" }
+      b: { en: "only employees", ru: "только работники", uk: "лише працівники" }
+      c: { en: "all nationals", ru: "все граждане", uk: "усі громадяни" }
+      d: { en: "only employers", ru: "только работодатели", uk: "лише роботодавці" }
     terms:
-      - { de: "die Arbeitgeberin / der Arbeitgeber", en: "employer", ru: "работодатель" }
-      - { de: "die Arbeitnehmerin / der Arbeitnehmer", en: "employee", ru: "работник" }
-      - { de: "der Beitrag", en: "contribution", ru: "взнос" }
+      - { de: "die Arbeitgeberin / der Arbeitgeber", en: "employer", ru: "работодатель", uk: "роботодавець" }
+      - { de: "die Arbeitnehmerin / der Arbeitnehmer", en: "employee", ru: "работник", uk: "працівник" }
+      - { de: "der Beitrag", en: "contribution", ru: "взнос", uk: "внесок" }
     status: reviewed
   - id: general-100
     rationale_de: >-
@@ -120,14 +127,15 @@ notes:
     question:
       en: "What is not part of statutory social insurance?"
       ru: "Что не относится к обязательному социальному страхованию?"
+      uk: "Що не належить до обов’язкового соціального страхування?"
     options:
-      a: { en: "life insurance", ru: "страхование жизни" }
-      b: { en: "statutory pension insurance", ru: "обязательное пенсионное страхование" }
-      c: { en: "unemployment insurance", ru: "страхование на случай безработицы" }
-      d: { en: "long-term care insurance", ru: "страхование по уходу" }
+      a: { en: "life insurance", ru: "страхование жизни", uk: "страхування життя" }
+      b: { en: "statutory pension insurance", ru: "обязательное пенсионное страхование", uk: "обов’язкове пенсійне страхування" }
+      c: { en: "unemployment insurance", ru: "страхование на случай безработицы", uk: "страхування на випадок безробіття" }
+      d: { en: "long-term care insurance", ru: "страхование по уходу", uk: "страхування на випадок потреби в догляді" }
     terms:
-      - { de: "gesetzlich", en: "statutory", ru: "обязательный по закону" }
-      - { de: "die Lebensversicherung", en: "life insurance", ru: "страхование жизни" }
+      - { de: "gesetzlich", en: "statutory", ru: "обязательный по закону", uk: "обов’язковий за законом" }
+      - { de: "die Lebensversicherung", en: "life insurance", ru: "страхование жизни", uk: "страхування життя" }
     status: reviewed
   - id: general-101
     rationale_de: >-
@@ -136,15 +144,16 @@ notes:
     question:
       en: "Trade unions are interest groups of …"
       ru: "Профсоюзы — это объединения, представляющие интересы …"
+      uk: "Профспілки — це об’єднання, які представляють інтереси …"
     options:
-      a: { en: "young people.", ru: "молодёжи." }
-      b: { en: "employees.", ru: "работников." }
-      c: { en: "pensioners.", ru: "пенсионеров." }
-      d: { en: "employers.", ru: "работодателей." }
+      a: { en: "young people.", ru: "молодёжи.", uk: "молоді." }
+      b: { en: "employees.", ru: "работников.", uk: "працівників." }
+      c: { en: "pensioners.", ru: "пенсионеров.", uk: "пенсіонерів." }
+      d: { en: "employers.", ru: "работодателей.", uk: "роботодавців." }
     terms:
-      - { de: "die Gewerkschaft", en: "trade union", ru: "профсоюз" }
-      - { de: "der Interessenverband", en: "interest group", ru: "объединение по интересам" }
-      - { de: "der Tarifvertrag", en: "collective agreement", ru: "коллективный договор" }
+      - { de: "die Gewerkschaft", en: "trade union", ru: "профсоюз", uk: "профспілка" }
+      - { de: "der Interessenverband", en: "interest group", ru: "объединение по интересам", uk: "об’єднання за інтересами" }
+      - { de: "der Tarifvertrag", en: "collective agreement", ru: "коллективный договор", uk: "колективний договір" }
     status: reviewed
   - id: general-104
     rationale_de: >-
@@ -153,15 +162,16 @@ notes:
     question:
       en: "A woman in Germany loses her job. What must not be the reason for this dismissal?"
       ru: "Женщина в Германии теряет работу. Что не может быть причиной этого увольнения?"
+      uk: "Жінка в Німеччині втрачає роботу. Що не може бути причиною цього звільнення?"
     options:
-      a: { en: "The woman has been ill for a long time and is unable to work.", ru: "Женщина долго болеет и нетрудоспособна." }
-      b: { en: "The woman often came to work late.", ru: "Женщина часто опаздывала на работу." }
-      c: { en: "The woman does private things during working hours.", ru: "Женщина занимается личными делами в рабочее время." }
-      d: { en: "The woman is having a baby and her boss knows this.", ru: "Женщина ждёт ребёнка, и её начальник об этом знает." }
+      a: { en: "The woman has been ill for a long time and is unable to work.", ru: "Женщина долго болеет и нетрудоспособна.", uk: "Жінка довго хворіє і непрацездатна." }
+      b: { en: "The woman often came to work late.", ru: "Женщина часто опаздывала на работу.", uk: "Жінка часто запізнювалася на роботу." }
+      c: { en: "The woman does private things during working hours.", ru: "Женщина занимается личными делами в рабочее время.", uk: "Жінка займається особистими справами в робочий час." }
+      d: { en: "The woman is having a baby and her boss knows this.", ru: "Женщина ждёт ребёнка, и её начальник об этом знает.", uk: "Жінка чекає на дитину, і її начальник про це знає." }
     terms:
-      - { de: "die Entlassung", en: "dismissal", ru: "увольнение" }
-      - { de: "schwanger", en: "pregnant", ru: "беременная" }
-      - { de: "die Abmahnung", en: "formal warning", ru: "предупреждение" }
+      - { de: "die Entlassung", en: "dismissal", ru: "увольнение", uk: "звільнення" }
+      - { de: "schwanger", en: "pregnant", ru: "беременная", uk: "вагітна" }
+      - { de: "die Abmahnung", en: "formal warning", ru: "предупреждение", uk: "письмове попередження" }
     status: reviewed
   - id: general-135
     rationale_de: >-
@@ -170,15 +180,16 @@ notes:
     question:
       en: "Whom do trade unions in Germany represent?"
       ru: "Кого представляют профсоюзы в Германии?"
+      uk: "Кого представляють профспілки в Німеччині?"
     options:
-      a: { en: "large companies", ru: "крупные предприятия" }
-      b: { en: "small companies", ru: "малые предприятия" }
-      c: { en: "self-employed people", ru: "самозанятых" }
-      d: { en: "employees", ru: "работников" }
+      a: { en: "large companies", ru: "крупные предприятия", uk: "великі підприємства" }
+      b: { en: "small companies", ru: "малые предприятия", uk: "малі підприємства" }
+      c: { en: "self-employed people", ru: "самозанятых", uk: "самозайнятих" }
+      d: { en: "employees", ru: "работников", uk: "працівників" }
     terms:
-      - { de: "vertreten", en: "to represent", ru: "представлять" }
-      - { de: "der Streik", en: "strike", ru: "забастовка" }
-      - { de: "der Arbeitgeberverband", en: "employers' association", ru: "объединение работодателей" }
+      - { de: "vertreten", en: "to represent", ru: "представлять", uk: "представляти" }
+      - { de: "der Streik", en: "strike", ru: "забастовка", uk: "страйк" }
+      - { de: "der Arbeitgeberverband", en: "employers' association", ru: "объединение работодателей", uk: "об’єднання роботодавців" }
     status: reviewed
   - id: general-136
     rationale_de: >-
@@ -187,15 +198,16 @@ notes:
     question:
       en: "In Germany, you go to the labour court in the case of …"
       ru: "В Германии вы обращаетесь в суд по трудовым делам в случае …"
+      uk: "У Німеччині ви звертаєтеся до трудового суду (Arbeitsgericht) у разі …"
     options:
-      a: { en: "an incorrect statement of service charges.", ru: "неправильного расчёта коммунальных платежей." }
-      b: { en: "unjustified dismissal by your boss.", ru: "необоснованного увольнения вашей начальницей или вашим начальником." }
-      c: { en: "problems with the neighbours.", ru: "проблем с соседями." }
-      d: { en: "difficulties after a road accident.", ru: "трудностей после дорожно-транспортного происшествия." }
+      a: { en: "an incorrect statement of service charges.", ru: "неправильного расчёта коммунальных платежей.", uk: "неправильного розрахунку комунальних платежів." }
+      b: { en: "unjustified dismissal by your boss.", ru: "необоснованного увольнения вашей начальницей или вашим начальником.", uk: "необґрунтованого звільнення вашою начальницею чи вашим начальником." }
+      c: { en: "problems with the neighbours.", ru: "проблем с соседями.", uk: "проблем із сусідами." }
+      d: { en: "difficulties after a road accident.", ru: "трудностей после дорожно-транспортного происшествия.", uk: "труднощів після дорожньо-транспортної пригоди." }
     terms:
-      - { de: "das Arbeitsgericht", en: "labour court", ru: "суд по трудовым делам" }
-      - { de: "die Nebenkostenabrechnung", en: "service charge statement", ru: "расчёт коммунальных платежей" }
-      - { de: "ungerechtfertigt", en: "unjustified", ru: "необоснованный" }
+      - { de: "das Arbeitsgericht", en: "labour court", ru: "суд по трудовым делам", uk: "трудовий суд" }
+      - { de: "die Nebenkostenabrechnung", en: "service charge statement", ru: "расчёт коммунальных платежей", uk: "розрахунок комунальних платежів" }
+      - { de: "ungerechtfertigt", en: "unjustified", ru: "необоснованный", uk: "необґрунтований" }
     status: reviewed
   - id: general-137
     rationale_de: >-
@@ -204,14 +216,15 @@ notes:
     question:
       en: "Which court in Germany is responsible for conflicts in the world of work?"
       ru: "Какой суд в Германии отвечает за конфликты в сфере труда?"
+      uk: "Який суд у Німеччині відповідає за конфлікти у сфері праці?"
     options:
-      a: { en: "the family court", ru: "суд по семейным делам" }
-      b: { en: "the criminal court", ru: "уголовный суд" }
-      c: { en: "the labour court", ru: "суд по трудовым делам" }
-      d: { en: "the local court", ru: "участковый суд" }
+      a: { en: "the family court", ru: "суд по семейным делам", uk: "сімейний суд" }
+      b: { en: "the criminal court", ru: "уголовный суд", uk: "кримінальний суд" }
+      c: { en: "the labour court", ru: "суд по трудовым делам", uk: "трудовий суд" }
+      d: { en: "the local court", ru: "участковый суд", uk: "дільничний суд" }
     terms:
-      - { de: "zuständig", en: "responsible", ru: "компетентный" }
-      - { de: "die Arbeitswelt", en: "world of work", ru: "сфера труда" }
+      - { de: "zuständig", en: "responsible", ru: "компетентный", uk: "компетентний" }
+      - { de: "die Arbeitswelt", en: "world of work", ru: "сфера труда", uk: "сфера праці" }
     status: reviewed
   - id: general-138
     rationale_de: >-
@@ -220,15 +233,16 @@ notes:
     question:
       en: "What can I do in Germany if my employer has wrongfully dismissed me?"
       ru: "Что я могу сделать в Германии, если работодательница или работодатель незаконно меня уволили?"
+      uk: "Що я можу зробити в Німеччині, якщо моя роботодавиця чи мій роботодавець незаконно мене звільнили?"
     options:
-      a: { en: "keep working and be friendly to the boss", ru: "продолжать работать и быть дружелюбным с начальницей или начальником" }
-      b: { en: "bring a payment-order procedure against the employer", ru: "начать против работодателя приказное производство о взыскании долга" }
-      c: { en: "file an action for protection against dismissal", ru: "подать иск о защите от увольнения" }
-      d: { en: "report the employer to the police", ru: "заявить на работодателя в полицию" }
+      a: { en: "keep working and be friendly to the boss", ru: "продолжать работать и быть дружелюбным с начальницей или начальником", uk: "далі працювати й бути привітним із начальницею чи начальником" }
+      b: { en: "bring a payment-order procedure against the employer", ru: "начать против работодателя приказное производство о взыскании долга", uk: "почати проти роботодавця наказне провадження" }
+      c: { en: "file an action for protection against dismissal", ru: "подать иск о защите от увольнения", uk: "подати позов про захист від звільнення" }
+      d: { en: "report the employer to the police", ru: "заявить на работодателя в полицию", uk: "подати на роботодавця заяву до поліції" }
     terms:
-      - { de: "die Kündigungsschutzklage", en: "unfair dismissal claim", ru: "иск о защите от увольнения" }
-      - { de: "zu Unrecht", en: "wrongfully", ru: "незаконно" }
-      - { de: "das Mahnverfahren", en: "payment-order procedure", ru: "приказное производство" }
+      - { de: "die Kündigungsschutzklage", en: "unfair dismissal claim", ru: "иск о защите от увольнения", uk: "позов про захист від звільнення" }
+      - { de: "zu Unrecht", en: "wrongfully", ru: "незаконно", uk: "незаконно" }
+      - { de: "das Mahnverfahren", en: "payment-order procedure", ru: "приказное производство", uk: "наказне провадження" }
     status: reviewed
   - id: general-171
     rationale_de: >-
@@ -237,14 +251,15 @@ notes:
     question:
       en: "Social market economy means that the economy …"
       ru: "Социальная рыночная экономика означает, что экономика …"
+      uk: "Соціальна ринкова економіка означає, що економіка …"
     options:
-      a: { en: "regulates itself solely by supply and demand.", ru: "регулируется только спросом и предложением." }
-      b: { en: "is planned and steered by the state; supply and demand are not taken into account.", ru: "планируется и управляется государством, спрос и предложение не учитываются." }
-      c: { en: "is guided by demand abroad.", ru: "ориентируется на спрос за границей." }
-      d: { en: "is guided by supply and demand, but the state ensures social balance.", ru: "ориентируется на спрос и предложение, но государство обеспечивает социальное выравнивание." }
+      a: { en: "regulates itself solely by supply and demand.", ru: "регулируется только спросом и предложением.", uk: "регулюється лише попитом і пропозицією." }
+      b: { en: "is planned and steered by the state; supply and demand are not taken into account.", ru: "планируется и управляется государством, спрос и предложение не учитываются.", uk: "планується й керується державою, попит і пропозиція не враховуються." }
+      c: { en: "is guided by demand abroad.", ru: "ориентируется на спрос за границей.", uk: "орієнтується на попит за кордоном." }
+      d: { en: "is guided by supply and demand, but the state ensures social balance.", ru: "ориентируется на спрос и предложение, но государство обеспечивает социальное выравнивание.", uk: "орієнтується на попит і пропозицію, але держава забезпечує соціальне вирівнювання." }
     terms:
-      - { de: "Angebot und Nachfrage", en: "supply and demand", ru: "спрос и предложение" }
-      - { de: "der Ausgleich", en: "balance", ru: "выравнивание" }
+      - { de: "Angebot und Nachfrage", en: "supply and demand", ru: "спрос и предложение", uk: "попит і пропозиція" }
+      - { de: "der Ausgleich", en: "balance", ru: "выравнивание", uk: "вирівнювання" }
     status: reviewed
   - id: general-280
     rationale_de: >-
@@ -253,15 +268,16 @@ notes:
     question:
       en: "If you want to challenge an incorrect tax assessment in Germany, you must …"
       ru: "Если вы хотите оспорить неправильное налоговое уведомление в Германии, вы должны …"
+      uk: "Якщо ви в Німеччині хочете оскаржити неправильне податкове повідомлення, ви повинні …"
     options:
-      a: { en: "do nothing.", ru: "ничего не делать." }
-      b: { en: "throw the notice away.", ru: "выбросить уведомление." }
-      c: { en: "lodge an objection.", ru: "подать возражение." }
-      d: { en: "wait until another notice arrives.", ru: "ждать, пока придёт другое уведомление." }
+      a: { en: "do nothing.", ru: "ничего не делать.", uk: "нічого не робити." }
+      b: { en: "throw the notice away.", ru: "выбросить уведомление.", uk: "викинути повідомлення." }
+      c: { en: "lodge an objection.", ru: "подать возражение.", uk: "подати заперечення." }
+      d: { en: "wait until another notice arrives.", ru: "ждать, пока придёт другое уведомление.", uk: "чекати, доки прийде інше повідомлення." }
     terms:
-      - { de: "der Steuerbescheid", en: "tax assessment", ru: "налоговое уведомление" }
-      - { de: "der Einspruch", en: "objection", ru: "возражение" }
-      - { de: "sich wehren gegen", en: "to challenge", ru: "оспаривать" }
+      - { de: "der Steuerbescheid", en: "tax assessment", ru: "налоговое уведомление", uk: "податкове повідомлення" }
+      - { de: "der Einspruch", en: "objection", ru: "возражение", uk: "заперечення" }
+      - { de: "sich wehren gegen", en: "to challenge", ru: "оспаривать", uk: "оскаржувати" }
     status: reviewed
   - id: general-285
     rationale_de: >-
@@ -270,15 +286,16 @@ notes:
     question:
       en: "Ms Frost is a permanent employee in an office. What does she not have to pay from her salary?"
       ru: "Госпожа Фрост работает в офисе на постоянной основе. Что ей не нужно платить из своей зарплаты?"
+      uk: "Пані Фрост працює в офісі як штатна співробітниця. Що їй не треба сплачувати зі своєї зарплати?"
     options:
-      a: { en: "wage tax", ru: "налог на заработную плату" }
-      b: { en: "contributions to unemployment insurance", ru: "взносы на страхование на случай безработицы" }
-      c: { en: "contributions to pension and health insurance", ru: "взносы на пенсионное и медицинское страхование" }
-      d: { en: "turnover tax", ru: "налог с оборота" }
+      a: { en: "wage tax", ru: "налог на заработную плату", uk: "податок на заробітну плату" }
+      b: { en: "contributions to unemployment insurance", ru: "взносы на страхование на случай безработицы", uk: "внески на страхування на випадок безробіття" }
+      c: { en: "contributions to pension and health insurance", ru: "взносы на пенсионное и медицинское страхование", uk: "внески на пенсійне та медичне страхування" }
+      d: { en: "turnover tax", ru: "налог с оборота", uk: "податок з обороту" }
     terms:
-      - { de: "die Lohnsteuer", en: "wage tax", ru: "налог на заработную плату" }
-      - { de: "die Umsatzsteuer", en: "VAT", ru: "налог на добавленную стоимость" }
-      - { de: "das Gehalt", en: "salary", ru: "зарплата" }
+      - { de: "die Lohnsteuer", en: "wage tax", ru: "налог на заработную плату", uk: "податок на заробітну плату" }
+      - { de: "die Umsatzsteuer", en: "VAT", ru: "налог на добавленную стоимость", uk: "податок на додану вартість" }
+      - { de: "das Gehalt", en: "salary", ru: "зарплата", uk: "зарплата" }
     status: reviewed
   - id: general-286
     rationale_de: >-
@@ -287,14 +304,15 @@ notes:
     question:
       en: "Which body in a company helps employees with problems with their employer?"
       ru: "Какая организация на предприятии помогает работникам при проблемах с работодателем?"
+      uk: "Яка організація на підприємстві допомагає працівникам у разі проблем із роботодавцем?"
     options:
-      a: { en: "the works council", ru: "производственный совет" }
-      b: { en: "the company auditor", ru: "ревизор, проверяющий предприятие" }
-      c: { en: "the company group", ru: "производственная группа" }
-      d: { en: "the company management", ru: "руководство предприятия" }
+      a: { en: "the works council", ru: "производственный совет", uk: "виробнича рада" }
+      b: { en: "the company auditor", ru: "ревизор, проверяющий предприятие", uk: "ревізор підприємства" }
+      c: { en: "the company group", ru: "производственная группа", uk: "виробнича група" }
+      d: { en: "the company management", ru: "руководство предприятия", uk: "керівництво підприємства" }
     terms:
-      - { de: "der Betriebsrat", en: "works council", ru: "производственный совет" }
-      - { de: "die Beschäftigten", en: "employees", ru: "работники" }
+      - { de: "der Betriebsrat", en: "works council", ru: "производственный совет", uk: "виробнича рада" }
+      - { de: "die Beschäftigten", en: "employees", ru: "работники", uk: "працівники" }
     status: reviewed
   - id: general-287
     rationale_de: >-
@@ -303,12 +321,13 @@ notes:
     question:
       en: "You want to end your employment with a company in Germany. What must you bear in mind?"
       ru: "Вы хотите прекратить трудовые отношения с фирмой в Германии. На что нужно обратить внимание?"
+      uk: "Ви хочете припинити трудові відносини з фірмою в Німеччині. Що ви повинні врахувати?"
     options:
-      a: { en: "the salary payments", ru: "выплаты зарплаты" }
-      b: { en: "the working hours", ru: "рабочее время" }
-      c: { en: "the notice period", ru: "срок уведомления об увольнении" }
-      d: { en: "compulsory insurance", ru: "обязательное страхование" }
+      a: { en: "the salary payments", ru: "выплаты зарплаты", uk: "виплати заробітної плати" }
+      b: { en: "the working hours", ru: "рабочее время", uk: "робочий час" }
+      c: { en: "the notice period", ru: "срок уведомления об увольнении", uk: "строк попередження про звільнення" }
+      d: { en: "compulsory insurance", ru: "обязательное страхование", uk: "обов’язкове страхування" }
     terms:
-      - { de: "die Kündigungsfrist", en: "notice period", ru: "срок уведомления об увольнении" }
-      - { de: "das Arbeitsverhältnis", en: "employment", ru: "трудовые отношения" }
+      - { de: "die Kündigungsfrist", en: "notice period", ru: "срок уведомления об увольнении", uk: "строк попередження про звільнення" }
+      - { de: "das Arbeitsverhältnis", en: "employment", ru: "трудовые отношения", uk: "трудові відносини" }
     status: reviewed

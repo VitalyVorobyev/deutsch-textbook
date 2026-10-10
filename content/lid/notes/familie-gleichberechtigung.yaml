@@ -6,14 +6,15 @@ notes:
     question:
       en: "Ms Seger is having a baby. What does she have to do to receive parental allowance?"
       ru: "У госпожи Зегер будет ребёнок. Что ей нужно сделать, чтобы получать родительское пособие?"
+      uk: "У пані Зегер буде дитина. Що їй потрібно зробити, щоб отримати батьківську допомогу?"
     options:
-      a: { en: "She has to write to her health insurance fund.", ru: "Она должна написать в свою больничную кассу." }
-      b: { en: "She has to submit an application to the parental allowance office.", ru: "Она должна подать заявление в службу родительского пособия." }
-      c: { en: "She doesn't have to do anything, because she receives parental allowance automatically.", ru: "Ей ничего не нужно делать, потому что она получает родительское пособие автоматически." }
-      d: { en: "She has to ask the employment office for permission.", ru: "Она должна попросить разрешения в бюро по трудоустройству." }
+      a: { en: "She has to write to her health insurance fund.", ru: "Она должна написать в свою больничную кассу.", uk: "Вона має написати до своєї лікарняної каси." }
+      b: { en: "She has to submit an application to the parental allowance office.", ru: "Она должна подать заявление в службу родительского пособия.", uk: "Вона має подати заяву до служби батьківської допомоги." }
+      c: { en: "She doesn't have to do anything, because she receives parental allowance automatically.", ru: "Ей ничего не нужно делать, потому что она получает родительское пособие автоматически.", uk: "Їй нічого не треба робити, бо вона отримує батьківську допомогу автоматично." }
+      d: { en: "She has to ask the employment office for permission.", ru: "Она должна попросить разрешения в бюро по трудоустройству.", uk: "Вона має попросити дозволу в служби зайнятості." }
     terms:
-      - { de: "das Elterngeld", en: "parental allowance", ru: "родительское пособие" }
-      - { de: "einen Antrag stellen", en: "to apply", ru: "подать заявление" }
+      - { de: "das Elterngeld", en: "parental allowance", ru: "родительское пособие", uk: "батьківська допомога" }
+      - { de: "einen Antrag stellen", en: "to apply", ru: "подать заявление", uk: "подавати заяву" }
     status: reviewed
   - id: general-242
     rationale_de: >-
@@ -22,13 +23,14 @@ notes:
     question:
       en: "Who decides whether a child in Germany goes to kindergarten?"
       ru: "Кто решает, будет ли ребёнок в Германии ходить в детский сад?"
+      uk: "Хто вирішує, чи ходитиме дитина в Німеччині до дитячого садка?"
     options:
-      a: { en: "the state", ru: "государство" }
-      b: { en: "the federal states", ru: "федеральные земли" }
-      c: { en: "the parents/legal guardians", ru: "родители / законные представители" }
-      d: { en: "the schools", ru: "школы" }
+      a: { en: "the state", ru: "государство", uk: "держава" }
+      b: { en: "the federal states", ru: "федеральные земли", uk: "федеральні землі" }
+      c: { en: "the parents/legal guardians", ru: "родители / законные представители", uk: "батьки / законні представники" }
+      d: { en: "the schools", ru: "школы", uk: "школи" }
     terms:
-      - { de: "die Erziehungsberechtigten", en: "legal guardians", ru: "законные представители" }
+      - { de: "die Erziehungsberechtigten", en: "legal guardians", ru: "законные представители", uk: "законні представники" }
     status: reviewed
   - id: general-245
     rationale_de: >-
@@ -37,14 +39,15 @@ notes:
     question:
       en: "Who may not live together as a couple in Germany?"
       ru: "Кому в Германии нельзя жить вместе как пара?"
+      uk: "Хто в Німеччині не має права жити разом як пара?"
     options:
-      a: { en: "Hans (20 years old) and Marie (19 years old)", ru: "Ханс (20 лет) и Мари (19 лет)" }
-      b: { en: "Tom (20 years old) and Klaus (45 years old)", ru: "Том (20 лет) и Клаус (45 лет)" }
-      c: { en: "Sofie (35 years old) and Lisa (40 years old)", ru: "Софи (35 лет) и Лиза (40 лет)" }
-      d: { en: "Anne (13 years old) and Tim (25 years old)", ru: "Анне (13 лет) и Тим (25 лет)" }
+      a: { en: "Hans (20 years old) and Marie (19 years old)", ru: "Ханс (20 лет) и Мари (19 лет)", uk: "Ганс (20 років) і Марі (19 років)" }
+      b: { en: "Tom (20 years old) and Klaus (45 years old)", ru: "Том (20 лет) и Клаус (45 лет)", uk: "Том (20 років) і Клаус (45 років)" }
+      c: { en: "Sofie (35 years old) and Lisa (40 years old)", ru: "Софи (35 лет) и Лиза (40 лет)", uk: "Софі (35 років) і Ліза (40 років)" }
+      d: { en: "Anne (13 years old) and Tim (25 years old)", ru: "Анне (13 лет) и Тим (25 лет)", uk: "Анне (13 років) і Тім (25 років)" }
     terms:
-      - { de: "minderjährig", en: "underage", ru: "несовершеннолетний" }
-      - { de: "die Straftat", en: "criminal offence", ru: "преступление" }
+      - { de: "minderjährig", en: "underage", ru: "несовершеннолетний", uk: "неповнолітній" }
+      - { de: "die Straftat", en: "criminal offence", ru: "преступление", uk: "кримінальне правопорушення" }
     status: reviewed
   - id: general-246
     rationale_de: >-
@@ -53,14 +56,15 @@ notes:
     question:
       en: "At what age do you come of age in Germany?"
       ru: "С какого возраста в Германии человек становится совершеннолетним?"
+      uk: "З якого віку в Німеччині настає повноліття?"
     options:
-      a: { en: "16", ru: "16" }
-      b: { en: "18", ru: "18" }
-      c: { en: "19", ru: "19" }
-      d: { en: "21", ru: "21" }
+      a: { en: "16", ru: "16", uk: "16" }
+      b: { en: "18", ru: "18", uk: "18" }
+      c: { en: "19", ru: "19", uk: "19" }
+      d: { en: "21", ru: "21", uk: "21" }
     terms:
-      - { de: "volljährig", en: "of full age", ru: "совершеннолетний" }
-      - { de: "minderjährig", en: "underage", ru: "несовершеннолетний" }
+      - { de: "volljährig", en: "of full age", ru: "совершеннолетний", uk: "повнолітній" }
+      - { de: "minderjährig", en: "underage", ru: "несовершеннолетний", uk: "неповнолітній" }
     status: reviewed
   - id: general-247
     rationale_de: >-
@@ -69,15 +73,16 @@ notes:
     question:
       en: "A woman is pregnant. Shortly before and after the birth of her child she is specially protected by law. What is this protection called?"
       ru: "Женщина беременна. Незадолго до и после рождения ребёнка она находится под особой защитой закона. Как называется эта защита?"
+      uk: "Жінка вагітна. Незадовго до і після народження дитини закон особливо її захищає. Як називається цей захист?"
     options:
-      a: { en: "parental leave", ru: "родительский отпуск" }
-      b: { en: "maternity protection", ru: "защита материнства" }
-      c: { en: "preparation for birth", ru: "подготовка к родам" }
-      d: { en: "postpartum period", ru: "послеродовой период" }
+      a: { en: "parental leave", ru: "родительский отпуск", uk: "батьківська відпустка" }
+      b: { en: "maternity protection", ru: "защита материнства", uk: "захист материнства" }
+      c: { en: "preparation for birth", ru: "подготовка к родам", uk: "підготовка до пологів" }
+      d: { en: "postpartum period", ru: "послеродовой период", uk: "післяпологовий період" }
     terms:
-      - { de: "schwanger", en: "pregnant", ru: "беременная" }
-      - { de: "der Mutterschutz", en: "maternity protection", ru: "защита материнства" }
-      - { de: "die Elternzeit", en: "parental leave", ru: "родительский отпуск" }
+      - { de: "schwanger", en: "pregnant", ru: "беременная", uk: "вагітна" }
+      - { de: "der Mutterschutz", en: "maternity protection", ru: "защита материнства", uk: "захист материнства" }
+      - { de: "die Elternzeit", en: "parental leave", ru: "родительский отпуск", uk: "батьківська відпустка" }
     status: reviewed
   - id: general-248
     rationale_de: >-
@@ -86,14 +91,15 @@ notes:
     question:
       en: "In Germany, raising children is above all the task of …"
       ru: "В Германии воспитание детей — это прежде всего задача …"
+      uk: "Виховання дітей у Німеччині — це передусім завдання …"
     options:
-      a: { en: "the state.", ru: "государства." }
-      b: { en: "the parents.", ru: "родителей." }
-      c: { en: "the grandparents.", ru: "бабушек и дедушек." }
-      d: { en: "the schools.", ru: "школ." }
+      a: { en: "the state.", ru: "государства.", uk: "держави." }
+      b: { en: "the parents.", ru: "родителей.", uk: "батьків." }
+      c: { en: "the grandparents.", ru: "бабушек и дедушек.", uk: "бабусь і дідусів." }
+      d: { en: "the schools.", ru: "школ.", uk: "шкіл." }
     terms:
-      - { de: "die Erziehung", en: "upbringing", ru: "воспитание" }
-      - { de: "die Pflicht", en: "duty", ru: "обязанность" }
+      - { de: "die Erziehung", en: "upbringing", ru: "воспитание", uk: "виховання" }
+      - { de: "die Pflicht", en: "duty", ru: "обязанность", uk: "обов’язок" }
     status: reviewed
   - id: general-249
     rationale_de: >-
@@ -102,15 +108,16 @@ notes:
     question:
       en: "Who in Germany is mainly responsible for bringing up children?"
       ru: "Кто в Германии несёт главную ответственность за воспитание детей?"
+      uk: "Хто в Німеччині головним чином відповідає за виховання дітей?"
     options:
-      a: { en: "the state", ru: "государство" }
-      b: { en: "the parents", ru: "родители" }
-      c: { en: "the relatives", ru: "родственники" }
-      d: { en: "the schools", ru: "школы" }
+      a: { en: "the state", ru: "государство", uk: "держава" }
+      b: { en: "the parents", ru: "родители", uk: "батьки" }
+      c: { en: "the relatives", ru: "родственники", uk: "родичі" }
+      d: { en: "the schools", ru: "школы", uk: "школи" }
     terms:
-      - { de: "hauptsächlich", en: "mainly", ru: "главным образом" }
-      - { de: "verantwortlich", en: "responsible", ru: "ответственный" }
-      - { de: "die Kindererziehung", en: "bringing up children", ru: "воспитание детей" }
+      - { de: "hauptsächlich", en: "mainly", ru: "главным образом", uk: "головним чином" }
+      - { de: "verantwortlich", en: "responsible", ru: "ответственный", uk: "відповідальний" }
+      - { de: "die Kindererziehung", en: "bringing up children", ru: "воспитание детей", uk: "виховання дітей" }
     status: reviewed
   - id: general-251
     rationale_de: >-
@@ -119,15 +126,16 @@ notes:
     question:
       en: "If someone hits a child in Germany, …"
       ru: "Если в Германии кто-то бьёт ребёнка, …"
+      uk: "Якщо в Німеччині хтось б’є дитину, …"
     options:
-      a: { en: "it is nobody's business.", ru: "это никого не касается." }
-      b: { en: "it is only the family's business.", ru: "это касается только семьи." }
-      c: { en: "they cannot be punished for it.", ru: "за это не могут наказать." }
-      d: { en: "they can be punished for it.", ru: "за это могут наказать." }
+      a: { en: "it is nobody's business.", ru: "это никого не касается.", uk: "це нікого не стосується." }
+      b: { en: "it is only the family's business.", ru: "это касается только семьи.", uk: "це стосується лише родини." }
+      c: { en: "they cannot be punished for it.", ru: "за это не могут наказать.", uk: "за це не можуть покарати." }
+      d: { en: "they can be punished for it.", ru: "за это могут наказать.", uk: "за це можуть покарати." }
     terms:
-      - { de: "schlagen", en: "to hit", ru: "бить" }
-      - { de: "bestrafen", en: "to punish", ru: "наказывать" }
-      - { de: "die Gewalt", en: "violence", ru: "насилие" }
+      - { de: "schlagen", en: "to hit", ru: "бить", uk: "бити" }
+      - { de: "bestrafen", en: "to punish", ru: "наказывать", uk: "карати" }
+      - { de: "die Gewalt", en: "violence", ru: "насилие", uk: "насильство" }
     status: reviewed
   - id: general-252
     rationale_de: >-
@@ -136,14 +144,15 @@ notes:
     question:
       en: "In Germany …"
       ru: "В Германии …"
+      uk: "У Німеччині …"
     options:
-      a: { en: "you may be married to only one partner at a time.", ru: "можно состоять в браке одновременно только с одним партнёром или одной партнёршей." }
-      b: { en: "you can have several spouses at the same time.", ru: "можно иметь одновременно нескольких супругов." }
-      c: { en: "you may not marry again once you have been married.", ru: "нельзя снова вступить в брак, если однажды уже был в браке." }
-      d: { en: "a woman may not marry again if her husband has died.", ru: "женщине нельзя снова выйти замуж, если её муж умер." }
+      a: { en: "you may be married to only one partner at a time.", ru: "можно состоять в браке одновременно только с одним партнёром или одной партнёршей.", uk: "можна одночасно перебувати в шлюбі лише з однією партнеркою/одним партнером." }
+      b: { en: "you can have several spouses at the same time.", ru: "можно иметь одновременно нескольких супругов.", uk: "можна мати одночасно кількох дружин/чоловіків." }
+      c: { en: "you may not marry again once you have been married.", ru: "нельзя снова вступить в брак, если однажды уже был в браке.", uk: "не можна знову взяти шлюб, якщо людина вже колись перебувала в шлюбі." }
+      d: { en: "a woman may not marry again if her husband has died.", ru: "женщине нельзя снова выйти замуж, если её муж умер.", uk: "жінці не можна знову вийти заміж, якщо її чоловік помер." }
     terms:
-      - { de: "verheiratet", en: "married", ru: "состоящий в браке" }
-      - { de: "die Ehe", en: "marriage", ru: "брак" }
+      - { de: "verheiratet", en: "married", ru: "состоящий в браке", uk: "одружений, заміжня" }
+      - { de: "die Ehe", en: "marriage", ru: "брак", uk: "шлюб" }
     status: reviewed
   - id: general-254
     rationale_de: >-
@@ -152,15 +161,16 @@ notes:
     question:
       en: "In Germany, married couples may get divorced. To do so, they usually have to observe the “separation year”. What does this mean?"
       ru: "В Германии супруги могут развестись. Для этого им чаще всего нужно соблюсти «год расставания». Что это означает?"
+      uk: "У Німеччині подружні пари можуть розлучитися. Здебільшого для цього вони мають дотриматися «Trennungsjahr». Що це означає?"
     options:
-      a: { en: "The divorce proceedings take one year.", ru: "Бракоразводный процесс длится один год." }
-      b: { en: "The spouses are married for one year; then divorce is possible.", ru: "Супруги состоят в браке один год, после этого развод возможен." }
-      c: { en: "The visiting rights for the children apply for one year.", ru: "Право на встречи с детьми действует один год." }
-      d: { en: "The spouses lead their own lives separately for at least one year. After that, divorce is possible.", ru: "Супруги не меньше года живут раздельно, каждый своей жизнью. После этого развод возможен." }
+      a: { en: "The divorce proceedings take one year.", ru: "Бракоразводный процесс длится один год.", uk: "Процес розлучення триває один рік." }
+      b: { en: "The spouses are married for one year; then divorce is possible.", ru: "Супруги состоят в браке один год, после этого развод возможен.", uk: "Чоловік і дружина перебувають у шлюбі один рік, після цього розлучення можливе." }
+      c: { en: "The visiting rights for the children apply for one year.", ru: "Право на встречи с детьми действует один год.", uk: "Право на спілкування з дітьми діє один рік." }
+      d: { en: "The spouses lead their own lives separately for at least one year. After that, divorce is possible.", ru: "Супруги не меньше года живут раздельно, каждый своей жизнью. После этого развод возможен.", uk: "Чоловік і дружина щонайменше рік живуть окремо, кожен своїм життям. Після цього розлучення можливе." }
     terms:
-      - { de: "sich scheiden lassen", en: "to get divorced", ru: "развестись" }
-      - { de: "das Trennungsjahr", en: "separation year", ru: "год раздельного проживания" }
-      - { de: "der Ehegatte", en: "spouse", ru: "супруг" }
+      - { de: "sich scheiden lassen", en: "to get divorced", ru: "развестись", uk: "розлучатися" }
+      - { de: "das Trennungsjahr", en: "separation year", ru: "год раздельного проживания", uk: "рік окремого проживання" }
+      - { de: "der Ehegatte", en: "spouse", ru: "супруг", uk: "один із подружжя" }
     status: reviewed
   - id: general-255
     rationale_de: >-
@@ -169,14 +179,15 @@ notes:
     question:
       en: "If they have problems bringing up their children, parents in Germany can get help from the …"
       ru: "При проблемах с воспитанием детей родители в Германии могут получить помощь в …"
+      uk: "У разі проблем із вихованням батьки в Німеччині можуть отримати допомогу від …"
     options:
-      a: { en: "public order office.", ru: "ведомстве по охране общественного порядка." }
-      b: { en: "school authority.", ru: "школьном управлении." }
-      c: { en: "youth welfare office.", ru: "ведомстве по делам молодёжи." }
-      d: { en: "public health office.", ru: "ведомстве здравоохранения." }
+      a: { en: "public order office.", ru: "ведомстве по охране общественного порядка.", uk: "відомства громадського порядку." }
+      b: { en: "school authority.", ru: "школьном управлении.", uk: "шкільного управління." }
+      c: { en: "youth welfare office.", ru: "ведомстве по делам молодёжи.", uk: "відомства у справах молоді." }
+      d: { en: "public health office.", ru: "ведомстве здравоохранения.", uk: "відомства охорони здоров’я." }
     terms:
-      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи" }
-      - { de: "die Erziehung", en: "upbringing", ru: "воспитание" }
+      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи", uk: "відомство у справах молоді" }
+      - { de: "die Erziehung", en: "upbringing", ru: "воспитание", uk: "виховання" }
     status: reviewed
   - id: general-258
     rationale_de: >-
@@ -185,15 +196,16 @@ notes:
     question:
       en: "What may the youth welfare office do in Germany?"
       ru: "Что имеет право делать ведомство по делам молодёжи в Германии?"
+      uk: "Що має право робити відомство у справах молоді (Jugendamt) у Німеччині?"
     options:
-      a: { en: "It decides which school the child attends.", ru: "Оно решает, в какую школу ходит ребёнок." }
-      b: { en: "It can take a child who is beaten or has to go hungry out of the family.", ru: "Оно может забрать из семьи ребёнка, которого бьют или который вынужден голодать." }
-      c: { en: "It pays the child benefit to the parents.", ru: "Оно выплачивает родителям пособие на ребёнка." }
-      d: { en: "It checks whether the child attends a kindergarten.", ru: "Оно проверяет, ходит ли ребёнок в детский сад." }
+      a: { en: "It decides which school the child attends.", ru: "Оно решает, в какую школу ходит ребёнок.", uk: "Воно вирішує, до якої школи ходить дитина." }
+      b: { en: "It can take a child who is beaten or has to go hungry out of the family.", ru: "Оно может забрать из семьи ребёнка, которого бьют или который вынужден голодать.", uk: "Воно може забрати з родини дитину, яку б’ють або яка мусить голодувати." }
+      c: { en: "It pays the child benefit to the parents.", ru: "Оно выплачивает родителям пособие на ребёнка.", uk: "Воно виплачує батькам допомогу на дітей." }
+      d: { en: "It checks whether the child attends a kindergarten.", ru: "Оно проверяет, ходит ли ребёнок в детский сад.", uk: "Воно перевіряє, чи ходить дитина до дитячого садка." }
     terms:
-      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи" }
-      - { de: "hungern", en: "to go hungry", ru: "голодать" }
-      - { de: "die Inobhutnahme", en: "taking into care", ru: "изъятие из семьи" }
+      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи", uk: "відомство у справах молоді" }
+      - { de: "hungern", en: "to go hungry", ru: "голодать", uk: "голодувати" }
+      - { de: "die Inobhutnahme", en: "taking into care", ru: "изъятие из семьи", uk: "відібрання дитини" }
     status: reviewed
   - id: general-265
     rationale_de: >-
@@ -202,14 +214,15 @@ notes:
     question:
       en: "Where do you first have to go in Germany if you want to get married?"
       ru: "Куда в Германии нужно сначала пойти, если хочешь вступить в брак?"
+      uk: "Куди в Німеччині треба спершу піти, якщо хочеш узяти шлюб?"
     options:
-      a: { en: "to the residents' registration office", ru: "в ведомство регистрации жителей" }
-      b: { en: "to the public order office", ru: "в ведомство по охране общественного порядка" }
-      c: { en: "to the employment agency", ru: "в агентство по труду" }
-      d: { en: "to the registry office", ru: "в ЗАГС" }
+      a: { en: "to the residents' registration office", ru: "в ведомство регистрации жителей", uk: "до відомства реєстрації мешканців" }
+      b: { en: "to the public order office", ru: "в ведомство по охране общественного порядка", uk: "до відомства громадського порядку" }
+      c: { en: "to the employment agency", ru: "в агентство по труду", uk: "до агентства з питань праці" }
+      d: { en: "to the registry office", ru: "в ЗАГС", uk: "до РАЦСу" }
     terms:
-      - { de: "das Standesamt", en: "registry office", ru: "ЗАГС" }
-      - { de: "die Trauung", en: "wedding ceremony", ru: "бракосочетание" }
+      - { de: "das Standesamt", en: "registry office", ru: "ЗАГС", uk: "РАЦС" }
+      - { de: "die Trauung", en: "wedding ceremony", ru: "бракосочетание", uk: "шлюбна церемонія" }
     status: reviewed
   - id: general-267
     rationale_de: >-
@@ -218,15 +231,16 @@ notes:
     question:
       en: "A young woman in Germany, 22 years old, lives with her boyfriend. The woman's parents disapprove because they do not like the boyfriend. What can the parents do?"
       ru: "Молодая женщина в Германии, 22 года, живёт вместе со своим парнем. Родители женщины этого не одобряют, потому что её парень им не нравится. Что могут сделать родители?"
+      uk: "Молода жінка в Німеччині, 22 роки, живе разом зі своїм хлопцем. Батьки жінки цього не схвалюють, бо її хлопець їм не до вподоби. Що можуть зробити батьки?"
     options:
-      a: { en: "They must respect the decision of their adult daughter.", ru: "Они должны уважать решение своей совершеннолетней дочери." }
-      b: { en: "They have the right to bring their daughter back to the parental home.", ru: "Они имеют право вернуть дочь в квартиру родителей." }
-      c: { en: "They can go to the police and report their daughter.", ru: "Они могут пойти в полицию и заявить на дочь." }
-      d: { en: "They look for another man for their daughter.", ru: "Они ищут для дочери другого мужчину." }
+      a: { en: "They must respect the decision of their adult daughter.", ru: "Они должны уважать решение своей совершеннолетней дочери.", uk: "Вони мусять поважати рішення повнолітньої доньки." }
+      b: { en: "They have the right to bring their daughter back to the parental home.", ru: "Они имеют право вернуть дочь в квартиру родителей.", uk: "Вони мають право забрати доньку назад до батьківського помешкання." }
+      c: { en: "They can go to the police and report their daughter.", ru: "Они могут пойти в полицию и заявить на дочь.", uk: "Вони можуть піти до поліції й заявити на доньку." }
+      d: { en: "They look for another man for their daughter.", ru: "Они ищут для дочери другого мужчину.", uk: "Вони шукають для доньки іншого чоловіка." }
     terms:
-      - { de: "volljährig", en: "of full age", ru: "совершеннолетний" }
-      - { de: "respektieren", en: "to respect", ru: "уважать" }
-      - { de: "anzeigen", en: "to report (to police)", ru: "заявить в полицию" }
+      - { de: "volljährig", en: "of full age", ru: "совершеннолетний", uk: "повнолітній" }
+      - { de: "respektieren", en: "to respect", ru: "уважать", uk: "поважати" }
+      - { de: "anzeigen", en: "to report (to police)", ru: "заявить в полицию", uk: "заявити в поліцію" }
     status: reviewed
   - id: general-272
     rationale_de: >-
@@ -235,15 +249,16 @@ notes:
     question:
       en: "Which way of living is not allowed in Germany?"
       ru: "Какая форма совместной жизни в Германии не разрешена?"
+      uk: "Яка форма співжиття в Німеччині не дозволена?"
     options:
-      a: { en: "A man and a woman are divorced and live with new partners.", ru: "Мужчина и женщина разведены и живут с новыми партнёрами." }
-      b: { en: "Two women live together.", ru: "Две женщины живут вместе." }
-      c: { en: "A single father lives with his two children.", ru: "Отец-одиночка живёт со своими двумя детьми." }
-      d: { en: "A man is married to two women at the same time.", ru: "Мужчина одновременно женат на двух женщинах." }
+      a: { en: "A man and a woman are divorced and live with new partners.", ru: "Мужчина и женщина разведены и живут с новыми партнёрами.", uk: "Чоловік і жінка розлучені й живуть з новими партнерами." }
+      b: { en: "Two women live together.", ru: "Две женщины живут вместе.", uk: "Дві жінки живуть разом." }
+      c: { en: "A single father lives with his two children.", ru: "Отец-одиночка живёт со своими двумя детьми.", uk: "Батько-одинак живе разом зі своїми двома дітьми." }
+      d: { en: "A man is married to two women at the same time.", ru: "Мужчина одновременно женат на двух женщинах.", uk: "Чоловік одночасно перебуває в шлюбі з двома жінками." }
     terms:
-      - { de: "die Lebensform", en: "way of living", ru: "форма жизни" }
-      - { de: "geschieden", en: "divorced", ru: "разведённый" }
-      - { de: "alleinerziehend", en: "single (parent)", ru: "воспитывающий детей один" }
+      - { de: "die Lebensform", en: "way of living", ru: "форма жизни", uk: "форма співжиття" }
+      - { de: "geschieden", en: "divorced", ru: "разведённый", uk: "розлучений" }
+      - { de: "alleinerziehend", en: "single (parent)", ru: "воспитывающий детей один", uk: "який сам виховує дітей" }
     status: reviewed
   - id: general-273
     rationale_de: >-
@@ -252,14 +267,15 @@ notes:
     question:
       en: "If you have problems bringing up your children in Germany, you go …"
       ru: "При проблемах с воспитанием детей в Германии вы обращаетесь …"
+      uk: "У разі проблем із вихованням ви в Німеччині йдете …"
     options:
-      a: { en: "to the doctor.", ru: "к врачу." }
-      b: { en: "to the public health office.", ru: "в ведомство здравоохранения." }
-      c: { en: "to the residents' registration office.", ru: "в ведомство регистрации жителей." }
-      d: { en: "to the youth welfare office.", ru: "в ведомство по делам молодёжи." }
+      a: { en: "to the doctor.", ru: "к врачу.", uk: "до лікарки/лікаря." }
+      b: { en: "to the public health office.", ru: "в ведомство здравоохранения.", uk: "до відомства охорони здоров’я." }
+      c: { en: "to the residents' registration office.", ru: "в ведомство регистрации жителей.", uk: "до відомства реєстрації мешканців." }
+      d: { en: "to the youth welfare office.", ru: "в ведомство по делам молодёжи.", uk: "до відомства у справах молоді." }
     terms:
-      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи" }
-      - { de: "das Erziehungsproblem", en: "parenting problem", ru: "проблема воспитания" }
+      - { de: "das Jugendamt", en: "youth welfare office", ru: "ведомство по делам молодёжи", uk: "відомство у справах молоді" }
+      - { de: "das Erziehungsproblem", en: "parenting problem", ru: "проблема воспитания", uk: "проблема з вихованням" }
     status: reviewed
   - id: general-275
     rationale_de: >-
@@ -268,13 +284,14 @@ notes:
     question:
       en: "What do you need in Germany to get a divorce?"
       ru: "Что нужно в Германии для развода?"
+      uk: "Що потрібно в Німеччині для розлучення?"
     options:
-      a: { en: "the consent of the parents", ru: "согласие родителей" }
-      b: { en: "a doctor's certificate", ru: "справка от врача" }
-      c: { en: "the consent of the children", ru: "согласие детей" }
-      d: { en: "the support of a lawyer", ru: "помощь адвоката" }
+      a: { en: "the consent of the parents", ru: "согласие родителей", uk: "згода батьків" }
+      b: { en: "a doctor's certificate", ru: "справка от врача", uk: "медична довідка від лікарки/лікаря" }
+      c: { en: "the consent of the children", ru: "согласие детей", uk: "згода дітей" }
+      d: { en: "the support of a lawyer", ru: "помощь адвоката", uk: "допомога адвокатки/адвоката" }
     terms:
-      - { de: "die Ehescheidung", en: "divorce", ru: "развод" }
-      - { de: "die Einwilligung", en: "consent", ru: "согласие" }
-      - { de: "das Attest", en: "medical certificate", ru: "медицинская справка" }
+      - { de: "die Ehescheidung", en: "divorce", ru: "развод", uk: "розлучення" }
+      - { de: "die Einwilligung", en: "consent", ru: "согласие", uk: "згода" }
+      - { de: "das Attest", en: "medical certificate", ru: "медицинская справка", uk: "медична довідка" }
     status: reviewed
