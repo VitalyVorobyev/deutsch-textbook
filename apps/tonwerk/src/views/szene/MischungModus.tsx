@@ -317,15 +317,14 @@ function Spuren({
   urteile: Map<string, boolean>;
 }): React.JSX.Element {
   const gesamt = Math.max(dauerMs, ...spans.map((span) => span.end_ms), 1);
-  const spuren: { name: string; art: 'speech' | 'ambience' | 'sfx'; spans: Span[] }[] = [
-    ...reihenfolge.map((rolle) => ({
+  const spuren: { name: string; art: 'speech' | 'ambience' | 'sfx'; spans: Span[] }[] =
+    reihenfolge.map((rolle) => ({
       name: rolle,
       art: 'speech' as const,
       spans: spans.filter(
         (span) => span.type === 'speech' && rollen.get(span.entry_id) === rolle,
       ),
-    })),
-  ];
+    }));
   const betten = spans.filter((span) => span.type === 'ambience');
   const ereignisse = spans.filter((span) => span.type === 'sfx');
   if (betten.length) spuren.push({ name: 'Umgebung', art: 'ambience', spans: betten });

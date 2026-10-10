@@ -41,7 +41,7 @@ function initialiseHistory(): void {
   historyPosition = existingEntry ? position : 0;
   historyMaximum = existingEntry && Number.isFinite(stored) ? Math.max(historyPosition, stored) : historyPosition;
   if (!existingEntry) {
-    window.history.replaceState({ ...(state ?? {}), [HISTORY_POSITION]: historyPosition }, '', window.location.href);
+    window.history.replaceState({ ...state, [HISTORY_POSITION]: historyPosition }, '', window.location.href);
   }
   historyReady = true;
 }
@@ -115,7 +115,7 @@ export function navigateHref(target: string): boolean {
   historyMaximum = historyPosition;
   rememberMaximum();
   window.history.pushState(
-    { ...(window.history.state ?? {}), [HISTORY_POSITION]: historyPosition },
+    { ...window.history.state, [HISTORY_POSITION]: historyPosition },
     '',
     target,
   );
@@ -186,7 +186,7 @@ export function useRoute(): [Route, (view: string, id?: string, query?: Record<s
  * Filter state that lives in the URL instead of beside it.
  *
  * The alternative — `useState` seeded from the route in an effect — is what this replaced, and it
- * was wrong twice over: ESLint rejects `setState` inside an effect, and the two copies drift the
+ * was wrong twice over: the linter rejects `setState` inside an effect, and the two copies drift the
  * moment the reader uses the back button. Here the hash IS the state, so a scoped list is
  * addressable, shareable and survives a reload for free.
  */

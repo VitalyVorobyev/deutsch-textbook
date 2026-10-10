@@ -229,7 +229,7 @@ describe('the store path, decomposed (CI-safe)', () => {
     const s = createStore(dbNameFor('decomposed-test'), 'progress');
     expect(await withVisibilityRetry(async () => (await get('cards', s)) ?? {})).toEqual({});
     await withVisibilityRetry(async () =>
-      update<Record<string, string>>('cards', (m) => ({ ...(m ?? {}), c1: 'v1' }), s),
+      update<Record<string, string>>('cards', (m) => ({ ...m, c1: 'v1' }), s),
     );
     expect(await withVisibilityRetry(async () => get('cards', s))).toEqual({ c1: 'v1' });
   });

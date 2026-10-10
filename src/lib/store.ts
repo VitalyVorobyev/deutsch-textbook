@@ -707,7 +707,7 @@ export async function getCardStates(): Promise<CardStates> {
 
 export async function setCardState(cardId: string, card: StoredCard): Promise<void> {
   await withVisibilityRetry(async () => {
-    await enqueueUpdate<CardStates>('cards', (m) => ({ ...(m ?? {}), [cardId]: card }));
+    await enqueueUpdate<CardStates>('cards', (m) => ({ ...m, [cardId]: card }));
   });
   scheduleAutoSync();
 }
@@ -906,7 +906,7 @@ export async function setArtifactFeedback(
 ): Promise<ArtifactFeedback> {
   const stamped = { ...entry, ts: Date.now() };
   await enqueueUpdate<ArtifactFeedbackState>('feedback', (current) => ({
-    ...(current ?? {}),
+    ...current,
     [stamped.artifactId]: stamped,
   }));
   scheduleAutoSync();

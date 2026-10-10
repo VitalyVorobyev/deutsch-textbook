@@ -108,14 +108,14 @@ export function ipaProblems(de: string, ipa: string | undefined): string[] {
   // The contract keeps the glottal stop before a word-internal stressed vowel
   // (bəˈʔantvɔʁtn̩) and drops it word-initially — but the two look identical in a
   // transcription, so the wrong one slipped through twice before this check existed.
-  if (/^ʔ/.test(ipa))
+  if (ipa.startsWith('ʔ'))
     problems.push(`${at} starts with ʔ — a word-initial glottal stop is not transcribed`);
   if (/ɡ/.test(ipa)) problems.push(`${at} uses ɡ (U+0261) — house style is ASCII g`);
   if (/[rʀ]/.test(ipa)) problems.push(`${at} uses r/ʀ — German /r/ is ʁ (ɐ̯ when vocalized)`);
   if (/͡/.test(ipa)) problems.push(`${at} uses a tie bar — write ts / pf / tʃ untied`);
 
   if (!IPA_CHARS.test(ipa)) {
-    const bad = [...new Set([...ipa])]
+    const bad = [...new Set(ipa)]
       .filter((c) => !IPA_CHARS.test(c))
       .map((c) => `"${c}" (U+${c.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0')})`);
     problems.push(`${at} has characters outside the German set: ${bad.join(', ')}`);

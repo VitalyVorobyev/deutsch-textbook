@@ -50,7 +50,7 @@ This project uses **Bun** as its package manager and task runner (`bun install`,
 - `bun run validate` — content validation (**run after every content change; it must pass before you are done**)
 - `bun test` — domain regression tests
 - `bun run check` — Astro/TypeScript diagnostics
-- `bun run lint` — ESLint
+- `bun run lint` — Oxlint (`.oxlintrc.json`), with `--deny-warnings`: a warning fails it too
 - `bun run build` — production build (also type-checks content against schemas)
 - `bun run review:gate` — read-only merge gate: non-draft PR, green CI, no unresolved actionable threads, no outstanding change request. **It waits for no reviewer** — merge when it passes; a review that arrives later is answered in its threads (owner ruling, 2026-10-10)
 - `bun run progress:audit --profile <slug>` — aggregate the newest learner snapshot. **Never Read a raw snapshot**: they run 300 KB+ and the audit already aggregates everything. `--pull` runs `progress:pull` for the same profile first and audits nothing if that fetch fails (missing R2 env prints its own `source setenv.sh` guidance and exits non-zero), because a stale snapshot does not look stale — it looks like an audit. `--item <set-id>:<item-id>` for focused evidence on one item. `--project <YYYY-MM-DD>` answers a different question from the retention table — not *what is the percentage* but *can there be one*: how many competences can reach the readability floor by that date, given arming dates and the interval schedule alone. Ask it **before** a gate date, not on it.
@@ -238,7 +238,7 @@ Every rule above makes a *published* figure earned rather than asserted — the 
 - **An estimate you gave is a claim you owe a correction on.** The restructure that produced this file was estimated at −14% and delivered −4.4% on its first pass; the miss was reported rather than quietly absorbed.
 - **A pasted or generated source document is an outline, never an inventory.** Before authoring from it, check its completeness against `data/grammar-inventory.yaml`, the Goethe Wortliste and a reference grammar — the gaps in the source are the first thing to look for, and "found none" is itself a claim. The place-preposition topic shipped its system table without *an* (2026-08-12) because a ChatGPT draft's omission was reformatted instead of vetted.
 
-One mechanical hazard in the same family — silently wrong, and no gate catches it: **never write a literal NUL byte into source.** It is valid TypeScript, so tests, `astro check`, ESLint and the build all pass, but `file` reports the source as `data` and grep, ripgrep and editor search then **skip the file without saying so**. Two files sat that way. Use the escape in a template literal instead; `tests/source-hygiene.test.ts` fails on any tracked file containing one.
+One mechanical hazard in the same family — silently wrong, and no gate catches it: **never write a literal NUL byte into source.** It is valid TypeScript, so tests, `astro check`, the linter and the build all pass, but `file` reports the source as `data` and grep, ripgrep and editor search then **skip the file without saying so**. Two files sat that way. Use the escape in a template literal instead; `tests/source-hygiene.test.ts` fails on any tracked file containing one.
 
 ### Shipping a topic → [`docs/authoring/authoring-checklists.md`](docs/authoring/authoring-checklists.md)
 

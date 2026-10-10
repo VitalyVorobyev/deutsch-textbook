@@ -308,7 +308,7 @@ async function crosscheck(b: LidBank): Promise<void> {
     for (const q of b.questions) {
       const k = keys.get(q.id);
       const ours = LID_OPTION_KEYS.map((o) => norm(q.answers[o]));
-      if (!k || [...k.options.map(norm)].sort().join('|') !== [...ours].sort().join('|')) {
+      if (!k || k.options.map(norm).sort().join('|') !== [...ours].sort().join('|')) {
         unmatched.push(q.id);
         continue;
       }
