@@ -9,6 +9,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.5] — 2026-10-10
+
+### Maintenance
+
+- The site's MDX and React integrations move a major version (`@astrojs/mdx` 8, which hands MDX to
+  Astro's new Markdown processor; `@astrojs/react` 7 and `@vitejs/plugin-react` 6, which compile
+  JSX with Oxc instead of Babel). All 252 built HTML files are identical to the previous build's
+  once hashed bundle names are normalised; only the script bundles changed. Tonwerk's tests move to vitest 5, and CI's uv setup to
+  `setup-uv` v10.2.0. ESLint 10 and TypeScript 7 wait on upstream plugins (backlog P30-3).
+
 ## [0.6.4] — 2026-10-10
 
 ### Added
