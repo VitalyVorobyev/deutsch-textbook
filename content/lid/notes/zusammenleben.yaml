@@ -6,14 +6,15 @@ notes:
     question:
       en: "How many inhabitants does Germany have?"
       ru: "Сколько жителей в Германии?"
+      uk: "Скільки жителів у Німеччині?"
     options:
-      a: { en: "70 million", ru: "70 миллионов" }
-      b: { en: "78 million", ru: "78 миллионов" }
-      c: { en: "84 million", ru: "84 миллиона" }
-      d: { en: "90 million", ru: "90 миллионов" }
+      a: { en: "70 million", ru: "70 миллионов", uk: "70 мільйонів" }
+      b: { en: "78 million", ru: "78 миллионов", uk: "78 мільйонів" }
+      c: { en: "84 million", ru: "84 миллиона", uk: "84 мільйони" }
+      d: { en: "90 million", ru: "90 миллионов", uk: "90 мільйонів" }
     terms:
-      - { de: "der Einwohner", en: "inhabitant", ru: "житель" }
-      - { de: "die Bevölkerung", en: "population", ru: "население" }
+      - { de: "der Einwohner", en: "inhabitant", ru: "житель", uk: "житель" }
+      - { de: "die Bevölkerung", en: "population", ru: "население", uk: "населення" }
     status: reviewed
   - id: general-253
     rationale_de: >-
@@ -22,15 +23,16 @@ notes:
     question:
       en: "Where do you have to register if you move house in Germany?"
       ru: "Где вам нужно зарегистрироваться, если вы переезжаете в Германии?"
+      uk: "Де ви маєте зареєструватися, якщо переїжджаєте в Німеччині?"
     options:
-      a: { en: "at the residents' registration office", ru: "в ведомстве регистрации жителей" }
-      b: { en: "at the registry office", ru: "в ЗАГСе" }
-      c: { en: "at the public order office", ru: "в ведомстве по охране общественного порядка" }
-      d: { en: "at the trade office", ru: "в ведомстве по делам предпринимательства" }
+      a: { en: "at the residents' registration office", ru: "в ведомстве регистрации жителей", uk: "у відомстві реєстрації мешканців" }
+      b: { en: "at the registry office", ru: "в ЗАГСе", uk: "у РАЦСі" }
+      c: { en: "at the public order office", ru: "в ведомстве по охране общественного порядка", uk: "у відомстві громадського порядку" }
+      d: { en: "at the trade office", ru: "в ведомстве по делам предпринимательства", uk: "у відомстві у справах підприємництва" }
     terms:
-      - { de: "sich anmelden", en: "to register", ru: "зарегистрироваться" }
-      - { de: "umziehen", en: "to move house", ru: "переезжать" }
-      - { de: "das Einwohnermeldeamt", en: "residents' registration office", ru: "ведомство регистрации жителей" }
+      - { de: "sich anmelden", en: "to register", ru: "зарегистрироваться", uk: "реєструватися" }
+      - { de: "umziehen", en: "to move house", ru: "переезжать", uk: "переїжджати" }
+      - { de: "das Einwohnermeldeamt", en: "residents' registration office", ru: "ведомство регистрации жителей", uk: "відомство реєстрації мешканців" }
     status: reviewed
   - id: general-256
     rationale_de: >-
@@ -39,15 +41,16 @@ notes:
     question:
       en: "A married couple wants to open a restaurant in Germany. What do they absolutely need for this?"
       ru: "Супружеская пара хочет открыть ресторан в Германии. Что им для этого обязательно нужно?"
+      uk: "Подружня пара хоче відкрити ресторан у Німеччині. Що їй для цього обов’язково потрібно?"
     options:
-      a: { en: "permission from the police", ru: "разрешение полиции" }
-      b: { en: "approval from a political party", ru: "одобрение какой-либо партии" }
-      c: { en: "approval from the residents' registration office", ru: "разрешение ведомства регистрации жителей" }
-      d: { en: "a restaurant licence from the responsible authority", ru: "разрешение на ресторанную деятельность от компетентного ведомства" }
+      a: { en: "permission from the police", ru: "разрешение полиции", uk: "дозвіл поліції" }
+      b: { en: "approval from a political party", ru: "одобрение какой-либо партии", uk: "дозвіл якоїсь партії" }
+      c: { en: "approval from the residents' registration office", ru: "разрешение ведомства регистрации жителей", uk: "дозвіл відомства реєстрації мешканців" }
+      d: { en: "a restaurant licence from the responsible authority", ru: "разрешение на ресторанную деятельность от компетентного ведомства", uk: "дозвіл на заклад громадського харчування від компетентної державної установи" }
     terms:
-      - { de: "die Gaststättenerlaubnis", en: "restaurant licence", ru: "разрешение на ресторан" }
-      - { de: "die Behörde", en: "authority", ru: "ведомство" }
-      - { de: "zuständig", en: "responsible", ru: "компетентный" }
+      - { de: "die Gaststättenerlaubnis", en: "restaurant licence", ru: "разрешение на ресторан", uk: "дозвіл на заклад харчування" }
+      - { de: "die Behörde", en: "authority", ru: "ведомство", uk: "державна установа" }
+      - { de: "zuständig", en: "responsible", ru: "компетентный", uk: "компетентний" }
     status: reviewed
   - id: general-266
     rationale_de: >-
@@ -55,14 +58,15 @@ notes:
     question:
       en: "When does the statutory night-time quiet period begin in Germany?"
       ru: "Когда в Германии начинается установленное законом время ночной тишины?"
+      uk: "Коли в Німеччині починається встановлений законом час нічної тиші?"
     options:
-      a: { en: "when the sun goes down", ru: "когда заходит солнце" }
-      b: { en: "when the neighbours go to bed", ru: "когда соседи ложатся спать" }
-      c: { en: "at 0:00, midnight", ru: "в 0 часов, в полночь" }
-      d: { en: "at 22:00", ru: "в 22 часа" }
+      a: { en: "when the sun goes down", ru: "когда заходит солнце", uk: "коли заходить сонце" }
+      b: { en: "when the neighbours go to bed", ru: "когда соседи ложатся спать", uk: "коли сусіди лягають спати" }
+      c: { en: "at 0:00, midnight", ru: "в 0 часов, в полночь", uk: "о 0 годині, опівночі" }
+      d: { en: "at 22:00", ru: "в 22 часа", uk: "о 22 годині" }
     terms:
-      - { de: "die Nachtruhe", en: "night-time quiet", ru: "ночная тишина" }
-      - { de: "gesetzlich", en: "statutory", ru: "установленный законом" }
+      - { de: "die Nachtruhe", en: "night-time quiet", ru: "ночная тишина", uk: "нічна тиша" }
+      - { de: "gesetzlich", en: "statutory", ru: "установленный законом", uk: "встановлений законом" }
     status: reviewed
   - id: general-268
     rationale_de: >-
@@ -71,15 +75,16 @@ notes:
     question:
       en: "A young woman wants to get her driving licence. She is afraid of the test because her native language is not German. What is true?"
       ru: "Молодая женщина хочет получить водительские права. Она боится экзамена, потому что её родной язык не немецкий. Что верно?"
+      uk: "Молода жінка хоче отримати посвідчення водія. Вона боїться іспиту, бо її рідна мова не німецька. Що правильно?"
     options:
-      a: { en: "She must live in Germany for at least ten years before she can get a driving licence.", ru: "Она должна прожить в Германии не меньше десяти лет, прежде чем сможет получить права." }
-      b: { en: "If she cannot speak German, she may not have a driving licence.", ru: "Если она не знает немецкого, ей нельзя иметь водительские права." }
-      c: { en: "She has to get her driving licence in the country where her language is spoken.", ru: "Она должна получать права в той стране, где говорят на её языке." }
-      d: { en: "She may be able to take the theory test in her native language. There are more than ten languages to choose from.", ru: "Возможно, она сможет сдать теоретический экзамен на родном языке. На выбор есть больше десяти языков." }
+      a: { en: "She must live in Germany for at least ten years before she can get a driving licence.", ru: "Она должна прожить в Германии не меньше десяти лет, прежде чем сможет получить права.", uk: "Вона має прожити в Німеччині щонайменше десять років, перш ніж зможе отримати посвідчення водія." }
+      b: { en: "If she cannot speak German, she may not have a driving licence.", ru: "Если она не знает немецкого, ей нельзя иметь водительские права.", uk: "Якщо вона не знає німецької, їй не можна мати посвідчення водія." }
+      c: { en: "She has to get her driving licence in the country where her language is spoken.", ru: "Она должна получать права в той стране, где говорят на её языке.", uk: "Вона має отримувати посвідчення водія в тій країні, де розмовляють її мовою." }
+      d: { en: "She may be able to take the theory test in her native language. There are more than ten languages to choose from.", ru: "Возможно, она сможет сдать теоретический экзамен на родном языке. На выбор есть больше десяти языков.", uk: "Можливо, вона зможе скласти теоретичний іспит рідною мовою. На вибір є понад десять мов." }
     terms:
-      - { de: "der Führerschein", en: "driving licence", ru: "водительские права" }
-      - { de: "die Muttersprache", en: "native language", ru: "родной язык" }
-      - { de: "die Theorieprüfung", en: "theory test", ru: "теоретический экзамен" }
+      - { de: "der Führerschein", en: "driving licence", ru: "водительские права", uk: "посвідчення водія" }
+      - { de: "die Muttersprache", en: "native language", ru: "родной язык", uk: "рідна мова" }
+      - { de: "die Theorieprüfung", en: "theory test", ru: "теоретический экзамен", uk: "теоретичний іспит" }
     status: reviewed
   - id: general-276
     rationale_de: >-
@@ -88,15 +93,16 @@ notes:
     question:
       en: "What should you do if you are treated badly by your contact person at a German authority?"
       ru: "Что вам следует сделать, если ваше контактное лицо в немецком ведомстве плохо с вами обращается?"
+      uk: "Що вам слід зробити, якщо з вами погано поводиться ваша контактна особа в німецькій державній установі?"
     options:
-      a: { en: "I can't do anything.", ru: "Я ничего не могу сделать." }
-      b: { en: "I have to put up with this treatment.", ru: "Я должен терпеть такое обращение." }
-      c: { en: "I threaten the person.", ru: "Я угрожаю этому человеку." }
-      d: { en: "I can complain to the head of the authority.", ru: "Я могу пожаловаться руководителю ведомства." }
+      a: { en: "I can't do anything.", ru: "Я ничего не могу сделать.", uk: "Я нічого не можу зробити." }
+      b: { en: "I have to put up with this treatment.", ru: "Я должен терпеть такое обращение.", uk: "Я мушу миритися з таким поводженням." }
+      c: { en: "I threaten the person.", ru: "Я угрожаю этому человеку.", uk: "Я погрожую цій людині." }
+      d: { en: "I can complain to the head of the authority.", ru: "Я могу пожаловаться руководителю ведомства.", uk: "Я можу поскаржитися керівниці/керівникові установи." }
     terms:
-      - { de: "die Behörde", en: "public authority", ru: "ведомство" }
-      - { de: "sich beschweren", en: "to complain", ru: "жаловаться" }
-      - { de: "sich etwas gefallen lassen", en: "to put up with", ru: "терпеть что-либо" }
+      - { de: "die Behörde", en: "public authority", ru: "ведомство", uk: "державна установа" }
+      - { de: "sich beschweren", en: "to complain", ru: "жаловаться", uk: "скаржитися" }
+      - { de: "sich etwas gefallen lassen", en: "to put up with", ru: "терпеть что-либо", uk: "миритися з чимось" }
     status: reviewed
   - id: general-277
     rationale_de: >-
@@ -105,15 +111,16 @@ notes:
     question:
       en: "A woman with a two-year-old child applies for a job in Germany. What is an example of discrimination? She does not get the job only because she …"
       ru: "Женщина, у которой есть двухлетний ребёнок, претендует на работу в Германии. Что является примером дискриминации? Она не получает эту работу только потому, что она …"
+      uk: "Жінка, у якої є дворічна дитина, подає в Німеччині заявку на посаду. Що є прикладом дискримінації? Вона не отримує цю посаду лише тому, що вона …"
     options:
-      a: { en: "doesn't speak English.", ru: "не говорит по-английски." }
-      b: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату." }
-      c: { en: "has no experience in this profession.", ru: "не имеет опыта в этой профессии." }
-      d: { en: "is a mother.", ru: "мать." }
+      a: { en: "doesn't speak English.", ru: "не говорит по-английски.", uk: "не розмовляє англійською." }
+      b: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату.", uk: "має надто високі очікування щодо зарплати." }
+      c: { en: "has no experience in this profession.", ru: "не имеет опыта в этой профессии.", uk: "не має досвіду в цій професії." }
+      d: { en: "is a mother.", ru: "мать.", uk: "мати." }
     terms:
-      - { de: "die Diskriminierung", en: "discrimination", ru: "дискриминация" }
-      - { de: "sich bewerben", en: "to apply (for)", ru: "претендовать на работу" }
-      - { de: "die Gehaltsvorstellung", en: "salary expectation", ru: "желаемая зарплата" }
+      - { de: "die Diskriminierung", en: "discrimination", ru: "дискриминация", uk: "дискримінація" }
+      - { de: "sich bewerben", en: "to apply (for)", ru: "претендовать на работу", uk: "подавати заявку (на посаду)" }
+      - { de: "die Gehaltsvorstellung", en: "salary expectation", ru: "желаемая зарплата", uk: "очікування щодо зарплати" }
     status: reviewed
   - id: general-278
     rationale_de: >-
@@ -122,15 +129,16 @@ notes:
     question:
       en: "A man in a wheelchair has applied for a job as a bookkeeper. What is an example of discrimination? He does not get the job only because he …"
       ru: "Мужчина в инвалидной коляске подал заявку на место бухгалтера. Что является примером дискриминации? Он не получает эту работу только потому, что он …"
+      uk: "Чоловік у кріслі колісному подав заявку на посаду бухгалтера. Що є прикладом дискримінації? Він не отримує цю посаду лише тому, що він …"
     options:
-      a: { en: "is in a wheelchair.", ru: "сидит в инвалидной коляске." }
-      b: { en: "has no experience.", ru: "не имеет опыта." }
-      c: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату." }
-      d: { en: "doesn't speak English.", ru: "не говорит по-английски." }
+      a: { en: "is in a wheelchair.", ru: "сидит в инвалидной коляске.", uk: "сидить у кріслі колісному." }
+      b: { en: "has no experience.", ru: "не имеет опыта.", uk: "не має досвіду." }
+      c: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату.", uk: "має надто високі очікування щодо зарплати." }
+      d: { en: "doesn't speak English.", ru: "не говорит по-английски.", uk: "не розмовляє англійською." }
     terms:
-      - { de: "der Rollstuhl", en: "wheelchair", ru: "инвалидная коляска" }
-      - { de: "die Behinderung", en: "disability", ru: "инвалидность" }
-      - { de: "der Buchhalter", en: "bookkeeper", ru: "бухгалтер" }
+      - { de: "der Rollstuhl", en: "wheelchair", ru: "инвалидная коляска", uk: "крісло колісне" }
+      - { de: "die Behinderung", en: "disability", ru: "инвалидность", uk: "інвалідність" }
+      - { de: "der Buchhalter", en: "bookkeeper", ru: "бухгалтер", uk: "бухгалтер" }
     status: reviewed
   - id: general-279
     rationale_de: >-
@@ -138,15 +146,16 @@ notes:
     question:
       en: "Most apartment buildings in Germany have “house rules”. What do such “house rules” contain? They list …"
       ru: "В большинстве многоквартирных домов в Германии есть «домовой распорядок». Что написано в таком «домовом распорядке»? В нём указаны …"
+      uk: "У більшості багатоквартирних будинків у Німеччині є «Hausordnung». Що написано в такій «Hausordnung»? Вона називає …"
     options:
-      a: { en: "rules for using public transport.", ru: "правила пользования общественным транспортом." }
-      b: { en: "all the tenants in the building.", ru: "все квартиросъёмщики дома." }
-      c: { en: "rules that all residents must follow.", ru: "правила, которые должны соблюдать все жильцы." }
-      d: { en: "the address of the nearest public order office.", ru: "адрес ближайшего ведомства по охране общественного порядка." }
+      a: { en: "rules for using public transport.", ru: "правила пользования общественным транспортом.", uk: "правила користування громадським транспортом." }
+      b: { en: "all the tenants in the building.", ru: "все квартиросъёмщики дома.", uk: "усіх орендарок і орендарів у будинку." }
+      c: { en: "rules that all residents must follow.", ru: "правила, которые должны соблюдать все жильцы.", uk: "правила, яких мусять дотримуватися всі мешканки й мешканці." }
+      d: { en: "the address of the nearest public order office.", ru: "адрес ближайшего ведомства по охране общественного порядка.", uk: "адресу найближчого відомства громадського порядку." }
     terms:
-      - { de: "die Hausordnung", en: "house rules", ru: "правила дома" }
-      - { de: "das Mietshaus", en: "apartment building", ru: "многоквартирный дом" }
-      - { de: "der Bewohner", en: "resident", ru: "жилец" }
+      - { de: "die Hausordnung", en: "house rules", ru: "правила дома", uk: "правила проживання в будинку" }
+      - { de: "das Mietshaus", en: "apartment building", ru: "многоквартирный дом", uk: "багатоквартирний будинок" }
+      - { de: "der Bewohner", en: "resident", ru: "жилец", uk: "мешканець" }
     status: reviewed
   - id: general-289
     rationale_de: >-
@@ -155,15 +164,16 @@ notes:
     question:
       en: "A man with dark skin applies for a job as a waiter in a restaurant in Germany. What is an example of discrimination? He does not get the job only because …"
       ru: "Мужчина с тёмным цветом кожи претендует на место официанта в ресторане в Германии. Что является примером дискриминации? Он не получает эту работу только потому, что …"
+      uk: "Чоловік із темним кольором шкіри подає заявку на посаду офіціанта в ресторані в Німеччині. Що є прикладом дискримінації? Він не отримує цю посаду лише тому, що …"
     options:
-      a: { en: "his German is not good enough.", ru: "он недостаточно хорошо знает немецкий." }
-      b: { en: "he has salary expectations that are too high.", ru: "он хочет слишком высокую зарплату." }
-      c: { en: "he has dark skin.", ru: "у него тёмная кожа." }
-      d: { en: "he has no experience in the profession.", ru: "у него нет опыта в профессии." }
+      a: { en: "his German is not good enough.", ru: "он недостаточно хорошо знает немецкий.", uk: "його знання німецької надто слабкі." }
+      b: { en: "he has salary expectations that are too high.", ru: "он хочет слишком высокую зарплату.", uk: "він має надто високі очікування щодо зарплати." }
+      c: { en: "he has dark skin.", ru: "у него тёмная кожа.", uk: "у нього темна шкіра." }
+      d: { en: "he has no experience in the profession.", ru: "у него нет опыта в профессии.", uk: "у нього немає досвіду роботи за фахом." }
     terms:
-      - { de: "die Hautfarbe", en: "skin colour", ru: "цвет кожи" }
-      - { de: "der Kellner", en: "waiter", ru: "официант" }
-      - { de: "benachteiligen", en: "to discriminate against", ru: "ущемлять" }
+      - { de: "die Hautfarbe", en: "skin colour", ru: "цвет кожи", uk: "колір шкіри" }
+      - { de: "der Kellner", en: "waiter", ru: "официант", uk: "офіціант" }
+      - { de: "benachteiligen", en: "to discriminate against", ru: "ущемлять", uk: "ставити в гірше становище" }
     status: reviewed
   - id: general-290
     rationale_de: >-
@@ -172,13 +182,14 @@ notes:
     question:
       en: "You have bought a television in Germany. At home you unpack the television, but it doesn't work. The television is broken. What can you do?"
       ru: "Вы купили в Германии телевизор. Дома вы распаковываете телевизор, но он не работает. Телевизор сломан. Что вы можете сделать?"
+      uk: "Ви купили в Німеччині телевізор. Удома ви розпаковуєте телевізор, але він не працює. Телевізор зламаний. Що ви можете зробити?"
     options:
-      a: { en: "file a report with the police", ru: "написать заявление в полицию" }
-      b: { en: "make a complaint about the television", ru: "предъявить претензию по поводу телевизора" }
-      c: { en: "exchange the device without asking", ru: "без спроса обменять прибор" }
-      d: { en: "extend the warranty", ru: "продлить гарантию" }
+      a: { en: "file a report with the police", ru: "написать заявление в полицию", uk: "написати заяву до поліції" }
+      b: { en: "make a complaint about the television", ru: "предъявить претензию по поводу телевизора", uk: "подати рекламацію щодо телевізора" }
+      c: { en: "exchange the device without asking", ru: "без спроса обменять прибор", uk: "обміняти пристрій без дозволу" }
+      d: { en: "extend the warranty", ru: "продлить гарантию", uk: "продовжити гарантію" }
     terms:
-      - { de: "reklamieren", en: "to make a complaint", ru: "предъявить претензию" }
-      - { de: "die Gewährleistung", en: "statutory warranty", ru: "гарантия по закону" }
-      - { de: "die Garantie", en: "guarantee", ru: "гарантия" }
+      - { de: "reklamieren", en: "to make a complaint", ru: "предъявить претензию", uk: "подавати рекламацію" }
+      - { de: "die Gewährleistung", en: "statutory warranty", ru: "гарантия по закону", uk: "гарантія, передбачена законом" }
+      - { de: "die Garantie", en: "guarantee", ru: "гарантия", uk: "гарантія" }
     status: reviewed
