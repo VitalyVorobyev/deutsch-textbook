@@ -1,5 +1,5 @@
 import { State } from 'ts-fsrs';
-import { cardId, type CardDef, type Direction } from './srs';
+import { cardId, type CardRef, type Direction } from './srs';
 import type { CardStates, StoredCard } from './store';
 
 export const STRONG_INTERVAL_DAYS = 21;
@@ -52,9 +52,6 @@ export function wordMastery(recognition?: StoredCard, production?: StoredCard, o
     ? 'strong'
     : 'established';
 }
-
-/** What a mastery rollup reads of a card: its identity, never its content. */
-export type CardRef = Pick<CardDef, 'id' | 'deckId' | 'de' | 'dir'>;
 
 export function rollupWords(cards: readonly CardRef[], states: CardStates, now = new Date()): WordRollup[] {
   const grouped = new Map<string, CardRef[]>();
@@ -118,4 +115,11 @@ export function deckCardRefs({ id, words, recognitionOnly }: DeckWords): CardRef
     { id: cardId(id, de, 'de-x'), deckId: id, de, dir: 'de-x' },
     ...(once.has(de) ? [] : [{ id: cardId(id, de, 'x-de'), deckId: id, de, dir: 'x-de' as const }]),
   ]);
+}
+
+/** `deckWords` for every deck in a mixed card list, in first-seen deck order. */
+export function decksOf(cards: readonly CardRef[]): DeckWords[] {
+  const byDeck = new Map<string, CardRef[]>();
+  for (const card of cards) byDeck.set(card.deckId, [...(byDeck.get(card.deckId) ?? []), card]);
+  return [...byDeck].map(([deckId, deckCards]) => deckWords(deckId, deckCards));
 }

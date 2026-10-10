@@ -18,6 +18,7 @@ import DueBadge from '../../components/srs/DueBadge';
 import TopicProgress from '../../components/topic/TopicProgress';
 import type { StringKey } from '../../lib/strings';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
+import { deckWords } from '../../lib/vocab-mastery';
 import SeeAlso from '../../components/topic/SeeAlso.astro';
 import { getCurriculum } from '@da/content/curriculum';
 import { focusIntroducedBy } from '@da/content/focus-tags';
@@ -265,7 +266,7 @@ const KIND_KEY: Record<string, StringKey> = {
           <div class="mb-8">
             <div class="mb-2 flex items-center gap-3">
               <h3 lang="de" class="text-lg font-semibold">{v.title_de}</h3>
-              <DueBadge client:only="react" cards={buildDeck(v.id, v.entries, lexicalContexts)} />
+              <DueBadge client:only="react" decks={[deckWords(v.id, buildDeck(v.id, v.entries, lexicalContexts))]} />
               <a
                 href={withBase(`/vocab/${v.id}`)}
                 class="ml-auto text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"

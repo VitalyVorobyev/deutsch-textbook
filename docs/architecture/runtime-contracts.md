@@ -38,6 +38,10 @@ authoring rules. Historical failures and extended rationale are
 - Placement may advance the recommended path but never raises a topic’s measured tier.
 - Probe state is derived from the attempt log and served before contaminating practice.
 - Fresh-card introductions are budgeted per day, not per rendered queue.
+- Queue planning reads a card's identity only (`CardRef`: id, deck, headword, direction), so
+  `planReview` is generic over it. A surface that only counts (DueBadge) plans from ids rebuilt
+  from headwords (`decksOf`/`deckCardRefs`) instead of inlining the built cards. It is still the
+  same plan: `tests/review-plan.test.ts` holds the two queues equal under one seed.
 - A card missed in a session shows its answer at once but is retried only after other cards —
   8 for a word not retrieved at all, 50 for a lapse or a near miss, halved per further miss, never
   fewer than 3 (`recordMiss`). The gap orders today's queue only; FSRS alone schedules the card.
