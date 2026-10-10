@@ -87,8 +87,16 @@ question in exactly one topic and carries the course's rationale (simple German)
 **unofficial** EN/RU translations. A re-import never touches them. Translations appear in
 practice on request and never in the mock exam.
 
-**No Ukrainian half yet (owner decision, 2026-10-10).** The notes ship with EN and RU only,
-and `content/lid/` is outside the UK-parity ratchet (`ukHalfCoverage`) until the planned UK
+**Lessons are reading material, not spine topics.** `content/lid/lessons/<id>.mdx` teaches, in
+simple German, the system behind the questions of one or more topics: `## Kurz gesagt` with one
+EN/RU orientation, then German sections and a glossary. A lesson owns no exercises, probes or
+outcomes and enters no Themen, grammar or Wortliste denominator — its practice is its topics'
+official questions (`/leben/ueben?lektion=<id>`, every one of them, no daily cap). A topic belongs
+to **at most one** lesson, so a question links back to exactly one lesson or none; `bun run
+validate` enforces that, unique `order`, and the body's shape (`lidLessonProblems`).
+
+**No Ukrainian half yet (owner decision, 2026-10-10).** The notes and the lessons ship with EN and
+RU only, and `content/lid/` is outside the UK-parity ratchet (`ukHalfCoverage`) until the planned UK
 follow-up lands (backlog P31-1); under Lernsprache `uk` they fall back to English, as every
 missing half does. That follow-up removes the exemption in the same change.
 

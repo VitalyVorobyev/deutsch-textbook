@@ -9,7 +9,7 @@ import { getLidCatalogue } from '../../lib/content';
 import { t } from '../../lib/strings';
 import { LID_EXAM } from '@da/schema/lid';
 
-const { source, state, modules, entries } = getLidCatalogue();
+const { source, state, modules, entries, lessons } = getLidCatalogue();
 // Every figure in the orientation below is read from the bank or LID_EXAM, never written by hand.
 const land = stateName(state);
 const total = entries.length;
@@ -24,7 +24,7 @@ const { questions, stateQuestions, minutes, passEinbuergerung, passOrientierungs
     <p class="mt-1 text-stone-500 dark:text-stone-400">{lidText('lid.subtitle', 'de', { state: land })}</p>
   </header>
 
-  <LidOverview client:only="react" modules={modules} state={state} />
+  <LidOverview client:only="react" modules={modules} state={state} lessons={lessons.length} />
 
   <section class="mt-10 rounded-lg border border-stone-200 p-5 dark:border-stone-700">
     <h2 class="text-lg font-bold"><Chrome k="lid.aboutTest" /></h2>

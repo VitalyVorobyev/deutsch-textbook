@@ -8,20 +8,25 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import YAML from 'yaml';
 import {
+  LID_LESSON_ID,
   lidBankSchema,
+  lidLessonSchema,
   lidNotesFileSchema,
   lidTopicsSchema,
   type LidBank,
+  type LidLesson,
   type LidNote,
   type LidQuestion,
   type LidTopics,
 } from '@da/schema/lid';
-import { langFieldProblems } from '@da/schema/langcheck';
+import { hasUkField, langFieldProblems, mdxLangProblems, ukParityProblems } from '@da/schema/langcheck';
+import { proseShapeProblems } from './prose-shape';
 import { repoRoot } from './repo-root';
 
 export const LID_BANK_FILE = 'data/lid/bank.yaml';
 export const LID_TOPICS_FILE = 'content/lid/topics.yaml';
 export const LID_NOTES_DIR = 'content/lid/notes';
+export const LID_LESSONS_DIR = 'content/lid/lessons';
 
 export function loadLidBank(root = repoRoot()): LidBank {
   return lidBankSchema.parse(YAML.parse(readFileSync(join(root, LID_BANK_FILE), 'utf8')));
@@ -107,6 +112,9 @@ export function lidProblems(root = repoRoot()): string[] {
   const topicIds = topics.modules.flatMap((m) => m.topics.map((t) => t.id));
   if (new Set(topicIds).size !== topicIds.length) at(LID_TOPICS_FILE, 'duplicate topic id');
 
+  // The lessons: reading material over the topics, never a second placement of a question.
+  problems.push(...lidLessonProblems(root, topics));
+
   let notes: PlacedLidNote[];
   try {
     notes = loadLidNotes(root);
@@ -135,4 +143,156 @@ export function lidQuestionsWithNotes(root = repoRoot()): { question: LidQuestio
   const bank = loadLidBank(root);
   const notes = new Map(loadLidNotes(root).map((n) => [n.id, n]));
   return bank.questions.map((question) => ({ question, note: notes.get(question.id) }));
+}
+
+// ---------------------------------------------------------------------------
+// Lessons — `content/lid/lessons/<lesson-id>.mdx`, compact reading in simple German that teaches
+// the system behind a group of questions. Reading material, not spine topics (ADR 0021): no
+// exercises, no probes, no Themen or grammar denominators. A topic belongs to at most one lesson,
+// so a question has at most one lesson to point back to.
+
+const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
+
+/** One lesson file, read but not yet judged. */
+interface LidLessonSource {
+  /** the file name without `.mdx` — the lesson id */
+  id: string;
+  /** repo-relative, e.g. `content/lid/lessons/wahlen-parteien.mdx` */
+  file: string;
+  frontmatter: { ok: true; data: unknown } | { ok: false; error: string };
+  body: string;
+}
+
+function readLidLessonSources(root: string): LidLessonSource[] {
+  const dir = join(root, LID_LESSONS_DIR);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith('.mdx'))
+    .sort()
+    .map((name) => {
+      const source = readFileSync(join(dir, name), 'utf8');
+      const match = FRONTMATTER.exec(source);
+      const body = match ? source.slice(match[0].length) : source;
+      let frontmatter: LidLessonSource['frontmatter'];
+      if (!match) frontmatter = { ok: false, error: 'missing frontmatter block' };
+      else {
+        try {
+          frontmatter = { ok: true, data: YAML.parse(match[1]!) as unknown };
+        } catch (err) {
+          frontmatter = { ok: false, error: `frontmatter YAML parse error: ${err instanceof Error ? err.message : String(err)}` };
+        }
+      }
+      return { id: basename(name, '.mdx'), file: `${LID_LESSONS_DIR}/${name}`, frontmatter, body };
+    });
+}
+
+/** A lesson as the pages see it: its frontmatter, its id (the file name) and the file its body is in. */
+export type LoadedLidLesson = LidLesson & { id: string; bodyPath: string };
+
+/**
+ * Every lesson, sorted by `order`. An absent or empty directory is zero lessons. A malformed file
+ * throws, naming itself — `lidLessonProblems` is where `bun run validate` reports it properly.
+ */
+export function loadLidLessons(root = repoRoot()): LoadedLidLesson[] {
+  return readLidLessonSources(root)
+    .map((source) => {
+      if (!source.frontmatter.ok) throw new Error(`${source.file}: ${source.frontmatter.error}`);
+      const parsed = lidLessonSchema.safeParse(source.frontmatter.data);
+      if (!parsed.success) throw new Error(`${source.file}: ${parsed.error.message}`);
+      return { ...parsed.data, id: source.id, bodyPath: source.file };
+    })
+    .sort((a, b) => a.order - b.order || a.id.localeCompare(b.id));
+}
+
+/**
+ * The body's shape: it opens with `## Kurz gesagt` (only MDX comments may precede it), that
+ * section holds exactly one `<Bilingual>` block with an `<En>` and a `<Ru>` half, and it is the
+ * lesson's only bilingual block — everything after it is German, in `##` sections. No `#`
+ * heading: the page already has its title.
+ */
+export function lidLessonBodyProblems(body: string): string[] {
+  const problems: string[] = [];
+  const heading = /^(#{1,6})[ \t]+(.+?)[ \t]*$/gm;
+  const headings = [...body.matchAll(heading)].map((m) => ({ depth: m[1]!.length, text: m[2]!, at: m.index }));
+  const first = headings[0];
+  if (!first || first.depth !== 2 || first.text !== 'Kurz gesagt') {
+    problems.push(
+      `the first heading must be "## Kurz gesagt"${first ? `, found "${'#'.repeat(first.depth)} ${first.text}"` : ', found none'}`,
+    );
+    return problems;
+  }
+  const before = body.slice(0, first.at).replace(/\{\/\*[\s\S]*?\*\/\}/g, '').trim();
+  if (before) problems.push(`nothing but MDX comments may precede "## Kurz gesagt": "${before.slice(0, 60)}"`);
+  if (headings.some((h) => h.depth === 1)) problems.push('no "#" heading — the page renders the lesson title itself');
+
+  const next = headings.find((h) => h.at > first.at && h.depth <= 2);
+  if (!next) problems.push('after "## Kurz gesagt" comes at least one "##" section in German');
+  const section = body.slice(first.at, next?.at ?? body.length);
+  const blocks = section.match(/<Bilingual>[\s\S]*?<\/Bilingual>/g) ?? [];
+  if (blocks.length !== 1)
+    problems.push(`"## Kurz gesagt" holds exactly one <Bilingual> block, found ${blocks.length}`);
+  else if (!blocks[0]!.includes('<En>') || !blocks[0]!.includes('<Ru>'))
+    problems.push('the <Bilingual> block of "## Kurz gesagt" needs an <En> and a <Ru> half');
+  const elsewhere = (body.match(/<Bilingual\b/g) ?? []).length - (section.match(/<Bilingual\b/g) ?? []).length;
+  if (elsewhere > 0)
+    problems.push(`${elsewhere} <Bilingual> block(s) outside "## Kurz gesagt" — the lesson body after it is German only`);
+  return problems;
+}
+
+/**
+ * Everything `bun run validate` holds the lessons to (called by `lidProblems`; `topics` is passed
+ * when the caller already has them). Empty means valid, and zero lesson files is valid.
+ *
+ * Language discipline is the discovery pieces' (scripts/validate.ts `checkMdxLangDiscipline`):
+ * letter sets in frontmatter and body, prose shape, and uk parity bridged across the two — which
+ * fires only once a file carries some `uk`, so a lesson without any (ADR 0021, P31-1) passes. No
+ * de parity: a term's `de` is the German word itself, not a German-medium explanation half.
+ */
+export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string[] {
+  const problems: string[] = [];
+  const at = (file: string, msg: string) => problems.push(`${file}: ${msg}`);
+  const sources = readLidLessonSources(root);
+  if (sources.length === 0) return problems;
+
+  let known: Set<string>;
+  try {
+    known = new Set((topics ?? loadLidTopics(root)).modules.flatMap((m) => m.topics.map((t) => t.id)));
+  } catch (err) {
+    at(LID_TOPICS_FILE, String(err));
+    return problems;
+  }
+
+  const topicOwner = new Map<string, string>();
+  const orderOwner = new Map<number, string>();
+  for (const source of sources) {
+    const { file, body } = source;
+    if (!LID_LESSON_ID.test(source.id)) at(file, `"${source.id}" is not a lesson id — the file name is the id, kebab-case ASCII`);
+    for (const p of lidLessonBodyProblems(body)) at(file, p);
+
+    const fm = source.frontmatter.ok ? source.frontmatter.data : undefined;
+    if (!source.frontmatter.ok) at(file, source.frontmatter.error);
+    for (const p of langFieldProblems(fm)) at(file, p);
+    for (const p of ukParityProblems(fm, { forceUk: body.includes('<Uk>') })) at(file, p);
+    const report = mdxLangProblems(body, { forceUk: hasUkField(fm) });
+    for (const p of [...report.balance, ...report.letters, ...report.parity]) at(file, p);
+    for (const p of proseShapeProblems(body)) at(file, p);
+    if (!source.frontmatter.ok) continue;
+
+    const parsed = lidLessonSchema.safeParse(fm);
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) at(file, `${issue.path.join('.') || '(root)'}: ${issue.message}`);
+      continue;
+    }
+    const lesson = parsed.data;
+    for (const topic of new Set(lesson.topics)) {
+      if (!known.has(topic)) at(file, `"${topic}" is not a topic in ${LID_TOPICS_FILE}`);
+      const owner = topicOwner.get(topic);
+      if (owner) at(file, `topic "${topic}" already belongs to lesson "${owner}" — a topic belongs to at most one lesson`);
+      else topicOwner.set(topic, source.id);
+    }
+    const sameOrder = orderOwner.get(lesson.order);
+    if (sameOrder) at(file, `order ${lesson.order} is already taken by lesson "${sameOrder}"`);
+    else orderOwner.set(lesson.order, source.id);
+  }
+  return problems;
 }

@@ -28,7 +28,30 @@ export interface LidEntry {
   topicTitle: string;
   module: string;
   note?: LidNoteView;
+  /** The lesson that teaches this question's topic, if one does — practice feedback links it. */
+  lesson?: { id: string; title: string };
 }
+
+/**
+ * One lesson (`content/lid/lessons/<id>.mdx`) as the list, the lesson page and the practice island
+ * see it. Its questions are every in-scope question of its topics, in teaching order.
+ */
+export interface LidLessonView {
+  id: string;
+  title: string;
+  order: number;
+  summary: string;
+  status: 'draft' | 'reviewed';
+  topics: string[];
+  ids: string[];
+}
+
+/** What `/leben/ueben?lektion=<id>` needs of each lesson: its title and its questions. */
+export type LidLessonScopes = Record<string, { title: string; ids: string[] }>;
+
+/** The lessons as the practice island's scope map. */
+export const lessonScopes = (lessons: readonly LidLessonView[]): LidLessonScopes =>
+  Object.fromEntries(lessons.map((lesson) => [lesson.id, { title: lesson.title, ids: lesson.ids }]));
 
 export interface LidModuleView {
   id: string;
@@ -46,6 +69,8 @@ export interface LidCatalogue {
   modules: LidModuleView[];
   /** the general questions plus the state's, in TEACHING order: module → topic → official number */
   entries: LidEntry[];
+  /** the lessons, in their `order` */
+  lessons: LidLessonView[];
 }
 
 export const LID_OPTION_ORDER: readonly LidOptionKey[] = ['a', 'b', 'c', 'd'];

@@ -9,6 +9,25 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.2] — 2026-10-10
+
+### Added
+
+- **Leben in Deutschland: seven lessons** under *Lernen* — Bayern, Wahlen und Parteien, Wer
+  regiert Deutschland?, Demokratie/Rechtsstaat/Sozialstaat/Bundesstaat, Grundrechte, Teilung und
+  Einheit, Nationalsozialismus und Erinnerung. Each teaches the system behind its exam questions in
+  simple German, with an EN/RU orientation, a glossary in the learner's language, and a button to
+  practise exactly its questions. Together their topics hold 206 of the 310 questions, and each
+  author mapped every one of them to the section that teaches it. Each question's explanation links
+  to its lesson.
+- Practice can be scoped to a lesson (`/leben/ueben?lektion=…`): last mistakes first, then unseen
+  questions, then the rest.
+
+### Fixed
+
+- Tests of timer-driven storage recovery polled for the outcome instead of sleeping a guessed
+  duration, which the slower Windows release lane overran (#246).
+
 ## [0.6.1] — 2026-10-10
 
 ### Added

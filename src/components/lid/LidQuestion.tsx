@@ -3,7 +3,8 @@
  *
  *  - **practice** — options shuffled per presentation when `shouldShuffleOptions` allows (so a
  *    position cannot be memorised), no letters, answered by the first choice, then feedback:
- *    the verdict, the key, the course's rationale, and an unofficial translation on request.
+ *    the verdict, the key, the course's rationale, a link to the lesson on the question's topic
+ *    when one exists, and an unofficial translation on request.
  *  - **exam** — the options exactly as printed, lettered a–d, the choice controlled by the mock
  *    exam island and changeable until submission. No translation, no read-aloud, no hint.
  *    `reveal` turns it into the results view of one question: key, the learner's choice, and
@@ -395,6 +396,16 @@ export default function LidQuestion(props: LidQuestionProps) {
           {practiceChoice !== null && (
             <div className="mt-4 space-y-3 rounded-md border border-stone-200 bg-stone-50 px-4 py-3 text-sm dark:border-stone-700 dark:bg-stone-900/50">
               <Rationale note={note} />
+              {/* Practice only: the mock exam never points at teaching material, not even in its
+                  results — the same line the translation keeps. */}
+              {entry.lesson && (
+                <a
+                  href={withBase(`/leben/lernen/${entry.lesson.id}`)}
+                  className="inline-flex min-h-11 items-center font-medium text-amber-700 hover:underline dark:text-amber-400"
+                >
+                  {lidText('lid.moreInLesson', uiLang, { title: entry.lesson.title })}
+                </a>
+              )}
               {note && <Terms note={note} />}
               {note && <Translation note={note} order={order} />}
             </div>

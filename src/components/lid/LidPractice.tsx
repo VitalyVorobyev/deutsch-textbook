@@ -1,7 +1,9 @@
 /**
  * Leben-in-Deutschland practice (ADR 0021): due questions first, then today's new ones in
  * teaching order (`planLidPractice`), or — in `fehler` mode — every question whose last answer
- * was wrong (`lidMistakes`).
+ * was wrong (`lidMistakes`). `?lektion=<id>` narrows practice to one lesson's questions and deals
+ * all of them (`planLidScopedPractice`): the page is static, so the scope is read here, on the
+ * client, and an unknown id falls back to ordinary practice with a quiet note.
  *
  * Every answer is learning evidence and is graded by FSRS into the `lid` store key: logged
  * optimistically through the journal (`logLidAnswerDurably`, never awaited before the UI moves
@@ -13,7 +15,14 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { LidOptionKey } from '@da/schema/lid';
-import { applyLidAnswer, lidMistakes, planLidPractice, type LidAnswer, type LidState } from '../../lib/lid';
+import {
+  applyLidAnswer,
+  lidMistakes,
+  planLidPractice,
+  planLidScopedPractice,
+  type LidAnswer,
+  type LidState,
+} from '../../lib/lid';
 import { getLidState, withReadRetry } from '../../lib/store';
 import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
@@ -21,7 +30,16 @@ import { hasSeenData, logLidAnswerDurably } from '../../lib/write-journal';
 import { useUiLang } from '../hooks';
 import ProgressLoadError from '../ProgressLoadError';
 import LidQuestion from './LidQuestion';
-import { CARD, PRIMARY_BUTTON, QUIET_BUTTON, lidText, readNewPerDay, revealTop, type LidEntry } from './shared';
+import {
+  CARD,
+  PRIMARY_BUTTON,
+  QUIET_BUTTON,
+  lidText,
+  readNewPerDay,
+  revealTop,
+  type LidEntry,
+  type LidLessonScopes,
+} from './shared';
 
 /** A missed question re-enters this many places later — far enough not to be an echo. */
 const REQUEUE_GAP = 4;
@@ -31,6 +49,8 @@ interface Props {
   bankVersion: string;
   pdfUrl: string;
   mode?: 'practice' | 'fehler';
+  /** Every lesson's title and questions, for `?lektion=<id>` — practice mode only. */
+  lessons?: LidLessonScopes;
   /** Shuffle source for the options, injectable so a test can pin an order. */
   rng?: () => number;
 }
@@ -40,10 +60,26 @@ interface Planned {
   fresh: number;
 }
 
-export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'practice', rng }: Props) {
+type Scope = { kind: 'all' } | { kind: 'lesson'; id: string; title: string; ids: string[] } | { kind: 'unknown' };
+
+/** The `?lektion=` scope, read once from the URL. Only own keys count: `?lektion=constructor`
+    names no lesson. */
+function readScope(lessons: LidLessonScopes | undefined, mode: Props['mode']): Scope {
+  if (mode === 'fehler' || !lessons) return { kind: 'all' };
+  const id = new URLSearchParams(window.location.search).get('lektion');
+  if (!id) return { kind: 'all' };
+  const lesson = Object.hasOwn(lessons, id) ? lessons[id] : undefined;
+  return lesson ? { kind: 'lesson', id, ...lesson } : { kind: 'unknown' };
+}
+
+export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'practice', lessons, rng }: Props) {
   const uiLang = useUiLang();
-  const ids = useMemo(() => entries.map((entry) => entry.question.id), [entries]);
   const byId = useMemo(() => new Map(entries.map((entry) => [entry.question.id, entry])), [entries]);
+  const [scope] = useState<Scope>(() => readScope(lessons, mode));
+  const ids = useMemo(
+    () => (scope.kind === 'lesson' ? scope.ids.filter((id) => byId.has(id)) : entries.map((entry) => entry.question.id)),
+    [scope, entries, byId],
+  );
 
   const [loadRound, setLoadRound] = useState(0);
   const [loadError, setLoadError] = useState(false);
@@ -68,10 +104,13 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
           setLoadError(true);
           return;
         }
+        const now = new Date();
         const plan =
           mode === 'fehler'
             ? lidMistakes(state, ids)
-            : planLidPractice({ questionIds: ids, state, now: new Date(), newPerDay: readNewPerDay() });
+            : scope.kind === 'lesson'
+              ? planLidScopedPractice({ questionIds: ids, state, now })
+              : planLidPractice({ questionIds: ids, state, now, newPerDay: readNewPerDay() });
         const due = plan.filter((id) => state.cards[id]).length;
         setLoadError(false);
         setLid(state);
@@ -85,7 +124,7 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
     return () => {
       cancelled = true;
     };
-  }, [ids, mode, loadRound]);
+  }, [ids, mode, scope, loadRound]);
 
   // After Weiter, bring the next question's top back into view if the explanation had
   // scrolled it away — the learner should never have to hunt for the question they are on.
@@ -108,34 +147,55 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
   const answered = tally.right + tally.wrong;
   const current = queue[0] ? byId.get(queue[0]) : undefined;
 
+  // Which questions this sitting is about, said once above the card — and the way back.
+  const banner =
+    scope.kind === 'lesson' ? (
+      <p className="flex flex-wrap items-baseline justify-between gap-x-4">
+        <span lang="de" className="font-semibold">
+          {lidText('lid.scopeLesson', uiLang, { title: scope.title })}
+        </span>
+        <a
+          href={withBase(`/leben/lernen/${scope.id}`)}
+          className="inline-flex min-h-11 items-center text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
+        >
+          {t('lid.backToLesson', uiLang)}
+        </a>
+      </p>
+    ) : scope.kind === 'unknown' ? (
+      <p className="text-sm text-stone-500 dark:text-stone-400">{t('lid.scopeUnknown', uiLang)}</p>
+    ) : null;
+
   if (!current) {
     const mistakesLeft = lidMistakes(lid, ids).length;
     return (
-      <div className={`${CARD} p-6`}>
-        {answered > 0 ? (
-          <>
-            <p className="text-lg font-semibold">{t('lid.doneTitle', uiLang)}</p>
-            <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-              {lidText('lid.doneCounts', uiLang, { n: answered, right: tally.right, wrong: tally.wrong })}
+      <div className="space-y-3">
+        {banner}
+        <div className={`${CARD} p-6`}>
+          {answered > 0 ? (
+            <>
+              <p className="text-lg font-semibold">{t('lid.doneTitle', uiLang)}</p>
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
+                {lidText('lid.doneCounts', uiLang, { n: answered, right: tally.right, wrong: tally.wrong })}
+              </p>
+            </>
+          ) : (
+            <p className="text-stone-600 dark:text-stone-300">
+              {mode === 'fehler' ? t('lid.noMistakes', uiLang) : t('lid.nothingDue', uiLang)}
             </p>
-          </>
-        ) : (
-          <p className="text-stone-600 dark:text-stone-300">
-            {mode === 'fehler' ? t('lid.noMistakes', uiLang) : t('lid.nothingDue', uiLang)}
-          </p>
-        )}
-        <div className="mt-5 flex flex-wrap gap-2">
-          <a href={withBase('/leben/pruefung')} className={PRIMARY_BUTTON}>
-            {t('lid.mock', uiLang)}
-          </a>
-          {mistakesLeft > 0 && mode !== 'fehler' && (
-            <a href={withBase('/leben/fehler')} className={QUIET_BUTTON}>
-              {t('lid.mistakes', uiLang)} ({mistakesLeft})
-            </a>
           )}
-          <a href={withBase('/leben')} className={QUIET_BUTTON}>
-            {t('lid.toOverview', uiLang)}
-          </a>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <a href={withBase('/leben/pruefung')} className={PRIMARY_BUTTON}>
+              {t('lid.mock', uiLang)}
+            </a>
+            {mistakesLeft > 0 && mode !== 'fehler' && (
+              <a href={withBase('/leben/fehler')} className={QUIET_BUTTON}>
+                {t('lid.mistakes', uiLang)} ({mistakesLeft})
+              </a>
+            )}
+            <a href={withBase('/leben')} className={QUIET_BUTTON}>
+              {t('lid.toOverview', uiLang)}
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -177,11 +237,14 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
 
   return (
     <div className="space-y-3">
+      {banner}
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-stone-500 dark:text-stone-400">
         <span>
           {mode === 'fehler'
             ? lidText('lid.mistakesQueue', uiLang, { n: planned.due + planned.fresh })
-            : lidText('lid.queueCounts', uiLang, { due: planned.due, fresh: planned.fresh })}
+            : scope.kind === 'lesson'
+              ? lidText('lid.scopeQueue', uiLang, { n: planned.due + planned.fresh })
+              : lidText('lid.queueCounts', uiLang, { due: planned.due, fresh: planned.fresh })}
         </span>
         <span className="tabular-nums">{lidText('lid.progress', uiLang, { k: presentation + 1, n: total })}</span>
       </div>

@@ -152,6 +152,55 @@ export type LidNote = z.infer<typeof lidNoteSchema>;
 export const lidNotesFileSchema = z.object({ notes: z.array(lidNoteSchema).min(1) }).strict();
 export type LidNotesFile = z.infer<typeof lidNotesFileSchema>;
 
+/** A lesson id is its file name: kebab-case ASCII, like a topic id. */
+export const LID_LESSON_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+/**
+ * One glossary row of a lesson. `uk` is optional and, like every Ukrainian half, all-or-none per
+ * file (the validator's uk parity): the LiD material ships without it for now (ADR 0021, backlog
+ * P31-1), and the page renders a Ukrainian column only when the lesson carries one.
+ */
+export const lidLessonTermSchema = z
+  .object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+  .strict();
+export type LidLessonTerm = z.infer<typeof lidLessonTermSchema>;
+
+/**
+ * The frontmatter of `content/lid/lessons/<lesson-id>.mdx` — a compact reading lesson in simple
+ * German that teaches the system behind a group of exam questions. Reading material, not a spine
+ * topic: it owns no exercises, probes or denominators, and its practice is the official
+ * questions of its `topics` (ADR 0021). The body opens with `## Kurz gesagt` and one bilingual
+ * orientation; the rest is German. `bun run validate` holds the cross-file rules (`lidProblems`):
+ * every topic exists, a topic belongs to at most one lesson, `order` is unique.
+ */
+export const lidLessonSchema = z
+  .object({
+    title_de: z.string().min(1),
+    /** Position in the lesson list. Unique across lessons. */
+    order: z.number().int().positive(),
+    /** Topic ids from `content/lid/topics.yaml`. The lesson's questions are theirs. */
+    topics: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1),
+    summary_de: z.string().min(1),
+    /** A draft ships, marked „Entwurf“ — the trainer's notes follow the same rule. */
+    status: z.enum(['draft', 'reviewed']).default('draft'),
+    sources: z.array(z.object({ title: z.string().min(1), url: z.url().startsWith('https://') }).strict()).min(1),
+    terms: z.array(lidLessonTermSchema).min(1),
+  })
+  .strict()
+  .superRefine((lesson, ctx) => {
+    const seen = new Set<string>();
+    for (const topic of lesson.topics) {
+      if (seen.has(topic)) ctx.addIssue({ code: 'custom', path: ['topics'], message: `topic "${topic}" is listed twice` });
+      seen.add(topic);
+    }
+    const terms = new Set<string>();
+    for (const term of lesson.terms) {
+      if (terms.has(term.de)) ctx.addIssue({ code: 'custom', path: ['terms'], message: `term "${term.de}" is listed twice` });
+      terms.add(term.de);
+    }
+  });
+export type LidLesson = z.infer<typeof lidLessonSchema>;
+
 /** The test as the EinbTestV §1 defines it: 33 questions, 3 of them from the learner's state. */
 export const LID_EXAM = {
   questions: 33,
