@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { CardDef } from '../../lib/srs';
 import { getCardStates, withReadRetry, type CardStates } from '../../lib/store';
 import ProgressLoadError from '../ProgressLoadError';
-import { masteryCounts, rollupWords, type MasteryCounts, type WordMastery } from '../../lib/vocab-mastery';
+import { deckCardRefs, masteryCounts, rollupWords, type DeckWords, type MasteryCounts, type WordMastery, type WordRollup } from '../../lib/vocab-mastery';
 import { pick } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
@@ -68,13 +69,35 @@ export function MasteryBar({ counts, compact = false }: { counts: MasteryCounts;
   </div>;
 }
 
-export function DeckMasterySummary({ cards }: { cards: CardDef[] }) {
+function DeckSummary({ words }: { words: WordRollup[] }) {
   const uiLang = useUiLang();
-  const { states, error, retry } = useStates();
-  if (error) return <div className="mt-3"><ProgressLoadError compact onRetry={retry} /></div>;
-  if (!states) return <div className="mt-3 h-2 rounded-full bg-stone-100 dark:bg-stone-700" />;
-  const words = rollupWords(cards, states);
   return <div className="mt-3"><MasteryBar counts={masteryCounts(words)} compact /><p className="mt-1 text-xs text-stone-400">{t('vocab.deckSummary', uiLang).replace('{due}', String(words.filter((w) => w.due).length)).replace('{strong}', String(words.filter((w) => w.status === 'strong').length))}</p></div>;
+}
+
+/**
+ * Every deck's mastery line on /ueben/wortschatz, from one island and one store read. The deck
+ * cards stay static HTML; each line renders into its card's `[data-deck-summary]` slot through a
+ * portal. It was one island per deck, 133 of them, each handed its deck's full built cards, and
+ * the page weighed 11.1 MB (backlog P23-1). A failed read shows one error above the list, not
+ * one per deck.
+ */
+export function DeckMasterySummaries({ decks }: { decks: DeckWords[] }) {
+  const { states, error, retry } = useStates();
+  const refs = useMemo(() => decks.map((deck) => ({ id: deck.id, cards: deckCardRefs(deck) })), [decks]);
+  // client:only — the static deck cards are in the DOM before this first renders.
+  const [slots] = useState(() => new Map(
+    [...document.querySelectorAll<HTMLElement>('[data-deck-summary]')].map((el) => [el.dataset.deckSummary!, el]),
+  ));
+  if (error) return <div className="mb-3"><ProgressLoadError compact onRetry={retry} /></div>;
+  return <>{refs.map(({ id, cards }) => {
+    const slot = slots.get(id);
+    if (!slot) return null;
+    return createPortal(
+      states ? <DeckSummary words={rollupWords(cards, states)} /> : <div className="mt-3 h-2 rounded-full bg-stone-100 dark:bg-stone-700" />,
+      slot,
+      id,
+    );
+  })}</>;
 }
 
 export function VocabWordTable({ cards }: { cards: CardDef[] }) {
@@ -86,8 +109,8 @@ export function VocabWordTable({ cards }: { cards: CardDef[] }) {
   const [pos, setPos] = useState('all');
   const words = useMemo(() => states ? rollupWords(cards, states) : [], [cards, states]);
   const defs = new Map(cards.filter((c) => c.dir === 'de-x').map((c) => [`${c.deckId}::${c.de}`, c]));
-  const positions = [...new Set(words.map((w) => w.pos))].sort();
-  const visible = words.filter((w) => (status === 'all' || w.status === status) && (pos === 'all' || w.pos === pos) && w.de.toLocaleLowerCase('de').includes(query.toLocaleLowerCase('de')));
+  const positions = [...new Set(words.map((w) => defs.get(w.key)!.pos))].sort();
+  const visible = words.filter((w) => (status === 'all' || w.status === status) && (pos === 'all' || defs.get(w.key)!.pos === pos) && w.de.toLocaleLowerCase('de').includes(query.toLocaleLowerCase('de')));
   if (error) return <ProgressLoadError compact onRetry={retry} />;
   if (!states) return <p className="text-sm text-stone-400">{t('vocab.loading', uiLang)}</p>;
   return <div>
