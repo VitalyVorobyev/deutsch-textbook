@@ -54,8 +54,15 @@ export const ALERT_GRACE_MS = 10000;
  */
 export const ALERT_LATE_MS = PERSISTENCE_DEADLINE_MS;
 
+/** Exhaustive on purpose: a new op kind without a case here is a type error, not an age of NaN. */
 function opTs(op: JournalOp): number {
-  return op.kind === 'attempt' ? op.attempt.ts : op.kind === 'session' ? op.entry.ts : op.ts;
+  switch (op.kind) {
+    case 'attempt': return op.attempt.ts;
+    case 'session': return op.entry.ts;
+    case 'grade': return op.ts;
+    case 'lid-answer': return op.answer.ts;
+    case 'lid-exam': return op.run.submittedAt;
+  }
 }
 
 /**

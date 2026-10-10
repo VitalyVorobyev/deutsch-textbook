@@ -240,11 +240,13 @@ provenance, model-lock and export-safeguard decision.
 `src/lib/profile.ts` resolves local profiles. Each profile owns an IndexedDB database managed by
 `src/lib/store.ts`; same-day UI resume state lives separately in localStorage.
 `src/lib/managed-store.ts` owns connection and transaction recovery; the ordered localStorage
-journal protects grades, attempts and session completion ([ADR 0020](adrs/0020-owned-storage-recovery.md)). Snapshot validation
-and explicit v1–v7 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
+journal protects grades, attempts, session completion and Leben-in-Deutschland answers ([ADR 0020](adrs/0020-owned-storage-recovery.md)). Snapshot validation
+and explicit v1–v8 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
 semantics in `src/lib/snapshot-merge.ts`. Snapshot v7 relocates the A1 Wortliste card identities
 through the committed old-id → new-id inventory; collision merging preserves the most advanced
-FSRS record and never duplicates a direction.
+FSRS record and never duplicates a direction. Snapshot v8 adds the `lid` key — the LiD trainer's
+question states, answer log and mock runs, kept out of `cards` and `attempts`
+([ADR 0021](adrs/0021-leben-in-deutschland-trainer.md)); v1–v7 migrate to an empty one.
 
 The web app exports snapshots. Development middleware and the Tauri filesystem path can
 automatically write them to `progress/<profile>/`. `bun run progress:audit` reads the latest

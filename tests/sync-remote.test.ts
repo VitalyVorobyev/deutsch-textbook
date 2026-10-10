@@ -10,7 +10,7 @@
  * implementation loses a learner's day of work, and no server-side test can see
  * it: every request in the losing sequence is individually correct.
  */
-import { beforeEach, describe, expect, mock, test } from 'bun:test';
+import { afterAll, beforeEach, describe, expect, mock, test } from 'bun:test';
 import {
   mergeAttempts,
   mergeCards,
@@ -19,6 +19,7 @@ import {
   mergeTopics,
 } from '../src/lib/snapshot-merge';
 import type { Attempt, ProgressSnapshot } from '../src/lib/store';
+import { EMPTY_LID_STATE, mergeLid } from '../src/lib/lid';
 import worker from '../worker/index';
 import { makeEnv, seedUser } from './worker-fakes';
 
@@ -30,13 +31,14 @@ const ORIGIN = 'https://deutsch.vitavision.dev';
 
 function emptySnapshot(): ProgressSnapshot {
   return {
-    version: 7,
+    version: 8,
     exportedAt: new Date(0).toISOString(),
     attempts: [],
     cards: {},
     sessions: [],
     topics: {},
     feedback: {},
+    lid: { cards: {}, answers: [], exams: [] },
   };
 }
 
@@ -69,28 +71,44 @@ function attempt(id: string, ts: number): Attempt {
  * and that ordering is the filesystem's to decide.
  */
 const realStore = await import('../src/lib/store');
+// Captured as values BEFORE mock.module: the namespace is live-bound, so reading these off
+// `realStore` afterwards would return the stubs and the afterAll delegation would recurse.
+const realExportSnapshot = realStore.exportSnapshot;
+const realMergeSnapshot = realStore.mergeSnapshot;
+
+const exportSnapshot = mock(async (profile?: string): Promise<ProgressSnapshot> => ({
+  ...local,
+  profile,
+  exportedAt: new Date().toISOString(),
+}));
+const mergeSnapshot = mock(async (incoming: unknown) => {
+  const snapshot = incoming as ProgressSnapshot;
+  local = {
+    ...local,
+    attempts: mergeAttempts(local.attempts, snapshot.attempts),
+    cards: mergeCards(local.cards, snapshot.cards),
+    sessions: mergeSessions(local.sessions, snapshot.sessions),
+    topics: mergeTopics(local.topics, snapshot.topics),
+    feedback: mergeFeedback(local.feedback, snapshot.feedback),
+    lid: mergeLid(local.lid, snapshot.lid ?? EMPTY_LID_STATE),
+  };
+});
 
 mock.module('../src/lib/store', () => ({
   ...realStore,
-  exportSnapshot: async (profile?: string): Promise<ProgressSnapshot> => ({
-    ...local,
-    profile,
-    exportedAt: new Date().toISOString(),
-  }),
-  mergeSnapshot: async (incoming: unknown) => {
-    const snapshot = incoming as ProgressSnapshot;
-    local = {
-      ...local,
-      attempts: mergeAttempts(local.attempts, snapshot.attempts),
-      cards: mergeCards(local.cards, snapshot.cards),
-      sessions: mergeSessions(local.sessions, snapshot.sessions),
-      topics: mergeTopics(local.topics, snapshot.topics),
-      feedback: mergeFeedback(local.feedback, snapshot.feedback),
-    };
-  },
+  exportSnapshot,
+  mergeSnapshot,
   // No `localDateString` override: the real one supplies today's date for the
   // per-day R2 copy, which is what the Worker validates and what ships.
 }));
+
+// The stubs stay in the registry after this file, so a later file testing the real merge
+// (progress-transition, lid-progress) would merge into `local` above instead. Delegate back
+// once this suite is done — the pattern probe-step and flashcard-grade-optimistic use.
+afterAll(() => {
+  exportSnapshot.mockImplementation(realExportSnapshot);
+  mergeSnapshot.mockImplementation(realMergeSnapshot);
+});
 
 // Imported after the mock so the dynamic import inside syncNow resolves to it.
 const { bindActiveProfile, forgetSession, readSyncState, syncNow, SYNC_STATE_KEY } = await import(
