@@ -1,0 +1,70 @@
+---
+/**
+ * The static twin of `LidImages` in LidQuestion.tsx, for the catalogue page — which must not
+ * mount a React island per question (CLAUDE.md runtime invariant). Keep the two in step: one
+ * image above the options, several in a grid labelled "Bild 1…n", and a withheld press photo
+ * (ADR 0021) never requested — its credit and a link to the catalogue page stand in its place.
+ * Every picture has its size before it loads, so a link to `#frage-…` lands where it points.
+ */
+import type { LidQuestion } from '@da/schema/lid';
+import { t } from '../../lib/strings';
+import { withBase } from '../../lib/url';
+import { lidText, questionLabel } from './shared';
+
+interface Props {
+  question: LidQuestion;
+  pdfUrl: string;
+}
+const { question, pdfUrl } = Astro.props;
+const several = question.images.length > 1;
+const label = questionLabel(question, 'de');
+const pictures = question.images.map((image, index) => ({
+  image,
+  caption: several ? lidText('lid.imageLabel', 'de', { n: index + 1 }) : label,
+}));
+---
+
+{
+  question.images.length > 0 && (
+    <div class:list={['mt-3', several && 'grid grid-cols-2 gap-3 sm:grid-cols-4']}>
+      {pictures.map(({ image, caption }) => (
+        <figure class="flex flex-col gap-1">
+          {image.withheld ? (
+            <div class="rounded-md border border-dashed border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-600 dark:bg-stone-900/50 dark:text-stone-300">
+              <p>{lidText('lid.imageWithheld', 'de', { page: question.sourcePage, credit: image.withheld })}</p>
+              <a
+                href={`${pdfUrl}#page=${question.sourcePage}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-1 inline-flex min-h-11 items-center font-medium text-amber-700 hover:underline dark:text-amber-400"
+              >
+                {t('lid.imageOpenPdf', 'de')}
+              </a>
+            </div>
+          ) : (
+            <a
+              href={withBase(image.path)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[several ? 'flex h-36 items-center justify-center' : 'block']}
+            >
+              <img
+                src={withBase(image.path)}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                alt={lidText('lid.imageAlt', 'de', { question: caption })}
+                style={several ? undefined : `width: min(100%, ${image.width}px, calc(24rem * ${image.width / image.height}))`}
+                class:list={[
+                  'mx-auto h-auto max-w-full rounded-md border border-stone-200 bg-white object-contain dark:border-stone-700',
+                  several && 'max-h-full w-auto',
+                ]}
+              />
+            </a>
+          )}
+          {several && <figcaption class="text-center text-sm font-semibold">{caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  )
+}

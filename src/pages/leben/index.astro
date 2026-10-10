@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Chrome from '../../components/Chrome.astro';
+import UebenNav from '../../components/UebenNav.astro';
+import LidOverview from '../../components/lid/LidOverview';
+import LidSource from '../../components/lid/LidSource.astro';
+import { lidText, stateName } from '../../components/lid/shared';
+import { getLidCatalogue } from '../../lib/content';
+import { t } from '../../lib/strings';
+import { LID_EXAM } from '@da/schema/lid';
+
+const { source, state, modules, entries } = getLidCatalogue();
+// Every figure in the orientation below is read from the bank or LID_EXAM, never written by hand.
+const land = stateName(state);
+const total = entries.length;
+const general = LID_EXAM.questions - LID_EXAM.stateQuestions;
+const { questions, stateQuestions, minutes, passEinbuergerung, passOrientierungskurs } = LID_EXAM;
+---
+
+<Base title={t('lid.title', 'de')} description="Training für den Einbürgerungstest und den Test „Leben in Deutschland“">
+  <UebenNav active="leben" />
+  <header class="mb-6">
+    <h1 class="text-3xl font-bold tracking-tight"><Chrome k="lid.title" /></h1>
+    <p class="mt-1 text-stone-500 dark:text-stone-400">{lidText('lid.subtitle', 'de', { state: land })}</p>
+  </header>
+
+  <LidOverview client:only="react" modules={modules} state={state} />
+
+  <section class="mt-10 rounded-lg border border-stone-200 p-5 dark:border-stone-700">
+    <h2 class="text-lg font-bold"><Chrome k="lid.aboutTest" /></h2>
+    <p lang="de" class="mt-2">
+      Der Test „Leben in Deutschland“ und der Einbürgerungstest haben dasselbe Format: {questions} Fragen
+      in {minutes} Minuten, zu jeder Frage vier Antworten, von denen genau eine richtig ist. {general} Fragen
+      kommen aus dem allgemeinen Teil, {stateQuestions} zu deinem Bundesland ({land}). Alle Fragen stammen aus
+      einem öffentlichen Katalog – für {land} sind es {total} –, und genau diese übst du hier. Verschieden ist
+      nur die Grenze: Den Einbürgerungstest, den Nachweis für die Einbürgerung, bestehst du mit
+      {passEinbuergerung} richtigen Antworten. Den Test „Leben in Deutschland“ am Ende des Orientierungskurses
+      bestehst du mit {passOrientierungskurs}.
+    </p>
+    <!-- The German paragraph above is always shown; this is its explanation-language twin. Under
+         `de` the German IS the explanation, so the empty de half hides the EN fallback. -->
+    <p class="mt-3 text-sm text-stone-500 dark:text-stone-400">
+      <span class="lang-en">The “Leben in Deutschland” test and the citizenship test (Einbürgerungstest) share one format: {questions} questions in {minutes} minutes, each with four answers of which exactly one is right. {general} questions come from the general part, {stateQuestions} from your federal state ({land}). Every question comes from a public catalogue — {total} for {land} — and those are exactly what you practise here. Only the pass mark differs: {passEinbuergerung} correct answers pass the citizenship test, the proof required for naturalisation; {passOrientierungskurs} pass the “Leben in Deutschland” test at the end of the orientation course.</span>
+      <span class="lang-ru">Тест «Leben in Deutschland» и тест на гражданство (Einbürgerungstest) устроены одинаково: {questions} вопроса за {minutes} минут, к каждому — четыре ответа, из которых верен ровно один. {general} вопросов — из общей части, {stateQuestions} — о вашей федеральной земле ({land}). Все вопросы взяты из открытого каталога (для вашей земли их {total}), и здесь вы тренируете именно их. Различается только проходной балл: тест на гражданство, нужный для натурализации, сдан при {passEinbuergerung} верных ответах; тест «Leben in Deutschland» в конце ориентационного курса — при {passOrientierungskurs}.</span>
+      <span class="lang-uk">Тест «Leben in Deutschland» і тест на громадянство (Einbürgerungstest) мають однаковий формат: {questions} питання за {minutes} хвилин, до кожного — чотири відповіді, з яких правильна рівно одна. {general} питань — із загальної частини, {stateQuestions} — про вашу федеральну землю ({land}). Усі питання взято з відкритого каталогу (для вашої землі їх {total}), і тут ви тренуєте саме їх. Різниться лише прохідний бал: тест на громадянство, потрібний для натуралізації, складено за {passEinbuergerung} правильних відповідей; тест «Leben in Deutschland» наприкінці орієнтаційного курсу — за {passOrientierungskurs}.</span>
+      <span class="lang-de"></span>
+    </p>
+  </section>
+
+  <LidSource source={source} />
+</Base>

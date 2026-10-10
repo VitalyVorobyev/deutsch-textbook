@@ -12,6 +12,8 @@ import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from '@da/schema';
 import type { TopicNode } from './mastery';
 import { getCurriculum } from '@da/content/curriculum';
+import { loadLidBank, loadLidNotes, loadLidTopics } from '@da/content/lid';
+import type { LidCatalogue, LidEntry } from '../components/lid/shared';
 
 /**
  * The learner-facing view of every topic, from the manifests.
@@ -135,4 +137,65 @@ export function getCheckpoints(): Promise<CheckpointDescriptor[]> {
 /** Every `role: placement` set — the /einstufung/[level] route and the FirstSteps entry link. */
 export function getPlacements(): Promise<PlacementDescriptor[]> {
   return levelSets('placement', 'einstufung', (level) => `Einstufungstest ${level}`);
+}
+
+/**
+ * The Leben-in-Deutschland bank joined with the course's notes, for the /leben pages (ADR 0021).
+ *
+ * Scope is the general questions plus the learner's state (`bank.states[0]`) — the 33 a real
+ * test draws from. Order is TEACHING order, the order `planLidPractice` deals new questions in:
+ * topics.yaml's module order, then its topic order, then the official number within a topic.
+ * `bun run validate` guarantees every question sits in exactly one topic, so nothing is dropped.
+ */
+export function getLidCatalogue(): LidCatalogue {
+  const bank = loadLidBank();
+  const topics = loadLidTopics();
+  const notes = new Map(loadLidNotes().map((note) => [note.id, note]));
+  const state = bank.states[0]!;
+  const inScope = bank.questions.filter((q) => q.scope === 'general' || q.stateCode === state);
+
+  const byTopic = new Map<string, LidEntry[]>();
+  const modules = topics.modules.map((m) => ({
+    id: m.id,
+    title: m.title_de,
+    topics: m.topics.map((topic) => {
+      const entries: LidEntry[] = [];
+      byTopic.set(topic.id, entries);
+      return { id: topic.id, title: topic.title_de, ids: [] as string[] };
+    }),
+  }));
+  const topicInfo = new Map(
+    topics.modules.flatMap((m) => m.topics.map((topic) => [topic.id, { module: m.id, title: topic.title_de }] as const)),
+  );
+  for (const question of inScope) {
+    const note = notes.get(question.id);
+    const info = note ? topicInfo.get(note.topic) : undefined;
+    if (!note || !info) throw new Error(`LiD: ${question.id} belongs to no topic (run bun run validate)`);
+    // A note that only places its question carries nothing to show — leave it out of the payload.
+    const said = !!(note.rationale_de || note.source || note.question || note.terms?.length);
+    byTopic.get(note.topic)!.push({
+      question,
+      topic: note.topic,
+      topicTitle: info.title,
+      module: info.module,
+      ...(said && {
+        note: {
+          status: note.status,
+          ...(note.rationale_de ? { rationale_de: note.rationale_de } : {}),
+          ...(note.source ? { source: note.source } : {}),
+          ...(note.question && note.options ? { question: note.question, options: note.options } : {}),
+          ...(note.terms?.length ? { terms: note.terms } : {}),
+        },
+      }),
+    });
+  }
+
+  const entries: LidEntry[] = [];
+  for (const m of modules)
+    for (const topic of m.topics) {
+      const own = byTopic.get(topic.id)!.sort((a, b) => a.question.officialNumber - b.question.officialNumber);
+      topic.ids = own.map((entry) => entry.question.id);
+      entries.push(...own);
+    }
+  return { source: bank.source, bankVersion: bank.dataset.version, state, modules, entries };
 }

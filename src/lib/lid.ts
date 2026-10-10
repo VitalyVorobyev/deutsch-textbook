@@ -158,9 +158,22 @@ export function planLidPractice({ questionIds, state, now, newPerDay, limit }: L
     else if (Date.parse(card.due) <= now.getTime()) due.push(id);
   }
   due.sort((a, b) => Date.parse(state.cards[a]!.due) - Date.parse(state.cards[b]!.due));
-  const allowance = Math.max(0, newPerDay - introducedToday(state.cards, now));
+  const allowance = Math.max(0, newPerDay - practiceIntroducedToday(state, now));
   const queue = [...due, ...fresh.slice(0, allowance)];
   return limit === undefined ? queue : queue.slice(0, Math.max(0, limit));
+}
+
+/**
+ * New questions today's PRACTICE has already dealt. A question first met in a mock exam is not
+ * one of them: the mock schedules it (a miss comes back for review), but it must not spend the
+ * day's allowance — otherwise one mock on a fresh profile introduces 33 questions and practice
+ * offers nothing new until tomorrow, which is a month-long plan losing a day per mock.
+ */
+function practiceIntroducedToday(state: LidState, now: Date): number {
+  const metInExam = new Set<string>();
+  for (const [q, answers] of answersByQuestion(state.answers)) if (answers[0]!.mode === 'exam') metInExam.add(q);
+  const practiced = Object.fromEntries(Object.entries(state.cards).filter(([q]) => !metInExam.has(q)));
+  return introducedToday(practiced, now);
 }
 
 /** Questions whose MOST RECENT answer was wrong, most recent first — optionally within a set. */

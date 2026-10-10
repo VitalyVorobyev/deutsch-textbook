@@ -226,6 +226,19 @@ describe('planLidPractice', () => {
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 1 })).toEqual([]);
   });
 
+  test('questions first met in a mock exam today do not spend the practice allowance', () => {
+    const today = '2026-10-10';
+    const examAnswer = (q: string) => ({
+      q, chosen: 'a' as const, correct: false, ts: now.getTime() - 1000, mode: 'exam' as const, bank: 'v',
+    });
+    const state: LidState = {
+      ...EMPTY_LID_STATE,
+      cards: { 'general-099': card(now.getTime() + DAY, today), 'general-098': card(now.getTime() + DAY, today) },
+      answers: [examAnswer('general-099'), examAnswer('general-098')],
+    };
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual(['general-005', 'general-001']);
+  });
+
   test('a card introduced on another day does not spend today', () => {
     const state: LidState = { ...EMPTY_LID_STATE, cards: { 'general-099': card(now.getTime() + DAY, '2026-10-09') } };
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual(['general-005', 'general-001']);
