@@ -19,6 +19,11 @@
  * heuristics, not experimentally optimal values: the research supports delaying, not 8 or 50.
  * Across sessions the card's schedule stays FSRS's alone: this decides only the order of the
  * queue in front of the learner.
+ *
+ * Leben-in-Deutschland practice uses the same rule for a missed question (`LidPractice`): it
+ * shows the key and the explanation at once, and asking again 4 questions later had the same
+ * echo. A multiple-choice answer has no near miss, so only the question's FSRS state picks the
+ * gap.
  */
 import { State } from 'ts-fsrs';
 import type { StoredCard } from './store';

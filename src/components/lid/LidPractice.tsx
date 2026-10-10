@@ -8,8 +8,9 @@
  * Every answer is learning evidence and is graded by FSRS into the `lid` store key: logged
  * optimistically through the journal (`logLidAnswerDurably`, never awaited before the UI moves
  * on — a stalled write is the PersistenceAlert's job, not a frozen button) and folded into the
- * island's own copy with `applyLidAnswer`. A question answered wrong comes round again a few
- * questions later in the same sitting, as a missed flashcard does.
+ * island's own copy with `applyLidAnswer`. A question answered wrong comes round again later in
+ * the same sitting, on the missed flashcard's delay (`recordMiss`, src/lib/requeue.ts): never
+ * next, so the retry is not answered from the feedback still on screen.
  *
  * Calm and factual: counts, never points or streaks.
  */
@@ -23,6 +24,7 @@ import {
   type LidAnswer,
   type LidState,
 } from '../../lib/lid';
+import { recordMiss, requeueAfter, type MissRecord } from '../../lib/requeue';
 import { getLidState, withReadRetry } from '../../lib/store';
 import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
@@ -40,9 +42,6 @@ import {
   type LidEntry,
   type LidLessonScopes,
 } from './shared';
-
-/** A missed question re-enters this many places later — far enough not to be an echo. */
-const REQUEUE_GAP = 4;
 
 interface Props {
   entries: LidEntry[];
@@ -90,6 +89,9 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
   // presentation with a fresh option order rather than the old one with its answer still on it.
   const [presentation, setPresentation] = useState(0);
   const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
+  /** How many questions the one just missed waits before it is asked again. */
+  const [retryGap, setRetryGap] = useState<number | null>(null);
+  const misses = useRef(new Map<string, MissRecord>());
   const [tally, setTally] = useState({ right: 0, wrong: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -215,18 +217,26 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
     setLid((state) => (state ? applyLidAnswer(state, record) : state));
     setTally((s) => (correct ? { ...s, right: s.right + 1 } : { ...s, wrong: s.wrong + 1 }));
     setLastCorrect(correct);
+    if (!correct) {
+      // `lid` is still the state before this answer: its card says whether the question was
+      // new or still being learned (the short gap) or had been learned and lapsed (the long one).
+      // A multiple-choice answer has no near miss, so there is no verdict to pass.
+      const id = record.q;
+      const miss = recordMiss(misses.current.get(id), lid?.cards[id], null);
+      misses.current.set(id, miss);
+      setRetryGap(miss.gap);
+    }
   }
 
   function next() {
-    const missed = lastCorrect === false;
+    const gap = lastCorrect === false ? retryGap : null;
     setQueue((q) => {
       if (!q || q.length === 0) return q;
       const [head, ...rest] = q;
-      if (!missed) return rest;
-      const at = Math.min(REQUEUE_GAP, rest.length);
-      return [...rest.slice(0, at), head!, ...rest.slice(at)];
+      return gap === null ? rest : requeueAfter(rest, head!, gap);
     });
     setLastCorrect(null);
+    setRetryGap(null);
     setPresentation((p) => p + 1);
   }
 

@@ -9,6 +9,17 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.9] — 2026-10-10
+
+### Changed
+
+- **A Leben-in-Deutschland question you get wrong now comes back later, not 4 questions later.**
+  It follows the rule flashcards have used since 0.6.6. A question that was new or still being
+  learned is asked again after 8 others; one you had already learned, after 50, or at the end of
+  the sitting if fewer are left. Each further miss halves the wait, down to 3. Asked again only
+  4 questions later, you were answering from the explanation still in mind rather than from
+  memory. This applies to practice and to *Fehler wiederholen*.
+
 ## [0.6.8] — 2026-10-10
 
 ### Maintenance
