@@ -10,6 +10,7 @@
  * **bounded** (a diagnostic may not be the reason a quota is hit) and it carries **no
  * learner content** (a diagnostic that does is a second copy of the data it diagnoses).
  */
+import { version } from '../package.json';
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
 import {
   STALL_LOG_CAP,
@@ -34,7 +35,7 @@ describe('stall log', () => {
     const id = recordStall({ surface: 'themen', waitedMs: 10_004, attempts: 3 });
     const log = readStallLog();
     expect(log).toEqual([
-      { id, surface: 'themen', waitedMs: 10_004, attempts: 3, at: log[0].at },
+      { id, surface: 'themen', waitedMs: 10_004, attempts: 3, at: log[0].at, build: version },
     ]);
     expect(log[0].at).toBeGreaterThan(0);
   });
@@ -72,7 +73,7 @@ describe('stall log', () => {
     const stored = Object.keys(readStallLog()[0]).sort();
     // Extending this list is a deliberate act: every field here goes to disk on a machine
     // whose learner is not expecting a diagnostic to hold their answers.
-    expect(stored).toEqual(['at', 'attempts', 'id', 'recoveredAfterMs', 'surface', 'waitedMs']);
+    expect(stored).toEqual(['at', 'attempts', 'build', 'id', 'recoveredAfterMs', 'surface', 'waitedMs']);
   });
 
   test('recentStalls windows by age and returns newest first', () => {

@@ -15,7 +15,7 @@
  * within the process and would leave every later test file writing into a throwing store.
  */
 import { afterEach, describe, expect, test } from 'bun:test';
-import { journalAppend, journalPending, journalWriteBlocked } from '../src/lib/write-journal';
+import { journalAppend, journalRemove, journalPending, journalWriteBlocked } from '../src/lib/write-journal';
 import { Rating } from '../src/lib/srs';
 
 afterEach(() => {
@@ -35,7 +35,8 @@ describe('a journal write that fails is named, never swallowed', () => {
 
     journalAppend(unserializable); // a safety net may never be the thing that throws
     expect(journalWriteBlocked()).toBe(true);
-    expect(journalPending()).toEqual([]);
+    expect(journalPending()).toEqual([unserializable]);
+    journalRemove(unserializable);
   });
 
   test('the flag clears as soon as a write succeeds again', () => {

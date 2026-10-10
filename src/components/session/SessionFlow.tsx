@@ -1,3 +1,4 @@
+import { logSessionDurably } from '../../lib/write-journal';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { CardDef } from '../../lib/srs';
 import { planReview, type ReviewPlanResult } from '../../lib/decks';
@@ -7,7 +8,6 @@ import {
   getLearningGoal,
   getTopicsState,
   localDateString,
-  logSession,
   sessionDoneToday,
   withReadRetry,
 } from '../../lib/store';
@@ -263,7 +263,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
       clearResume(RESUME_SURFACE);
       setTrainedCount(answered);
       setStep(3);
-      void logSession({
+      void logSessionDurably({
         date: localDateString(),
         reviewed: reviewedCount,
         trained: answered,

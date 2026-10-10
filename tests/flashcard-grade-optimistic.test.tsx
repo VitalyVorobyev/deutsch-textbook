@@ -9,8 +9,8 @@
  * This test stalls the store write and proves the click still advances the session AND the
  * journal is holding the op for replay.
  */
-import { afterAll, afterEach, beforeAll, describe, expect, mock, test } from 'bun:test';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterAll, afterEach, beforeEach, beforeAll, describe, expect, mock, test } from 'bun:test';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import type { CardDef } from '../src/lib/srs';
 import * as store from '../src/lib/store';
@@ -43,6 +43,11 @@ beforeAll(async () => {
   ({ journalPending } = await import('../src/lib/write-journal'));
 });
 
+beforeEach(() => {
+  localStorage.setItem('da:profiles', JSON.stringify([{ id: 'optimistic-test', label: 'Test' }]));
+  localStorage.setItem('da:profile', 'optimistic-test');
+});
+
 afterEach(async () => {
   cleanup();
   // Release the stalled write before this file ends. `withPersistenceRetry` clears its 12 s and
@@ -54,7 +59,7 @@ afterEach(async () => {
   // cases red on CI (a run slow enough for the timers to land) while every local run was green.
   releaseWrite?.();
   releaseWrite = undefined;
-  await Promise.resolve();
+  await waitFor(() => expect(journalPending()).toEqual([]));
   updateCardState.mockClear();
   getCardStates.mockClear();
   localStorage.clear();
@@ -107,7 +112,7 @@ describe('grade() with a never-resolving store write', () => {
 
     // The write was attempted — off the critical path — and the journal is holding the op,
     // so a quit right now would replay it on the next launch instead of losing the answer.
-    expect(updateCardState).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(updateCardState).toHaveBeenCalledTimes(1));
     expect(updateCardState.mock.calls[0]![0]).toBe(CARD_A.id);
     const pending = journalPending();
     expect(pending).toHaveLength(1);
