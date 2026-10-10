@@ -22,9 +22,10 @@
  * not to close the window, and a warning that cries wolf stops being read.
  */
 import { useCallback, useEffect, useState } from 'react';
+import { StorageRestartRequiredError } from '../lib/managed-store';
 import { initExitFlush } from '../lib/autosync';
 import { resolveProfileState } from '../lib/profile';
-import { PERSISTENCE_DEADLINE_MS, runCardIdMigrationOnce } from '../lib/store';
+import { PERSISTENCE_DEADLINE_MS, runCardIdMigrationOnce, storageNeedsRestart } from '../lib/store';
 import {
   JOURNAL_EVENT,
   journalOverflowed,
@@ -54,7 +55,7 @@ export const ALERT_GRACE_MS = 10000;
 export const ALERT_LATE_MS = PERSISTENCE_DEADLINE_MS;
 
 function opTs(op: JournalOp): number {
-  return op.kind === 'attempt' ? op.attempt.ts : op.ts;
+  return op.kind === 'attempt' ? op.attempt.ts : op.kind === 'session' ? op.entry.ts : op.ts;
 }
 
 /**
@@ -86,11 +87,13 @@ export default function PersistenceAlert() {
   const [blocked, setBlocked] = useState(() => journalWriteBlocked());
   const [retrying, setRetrying] = useState(false);
   const [retryFailed, setRetryFailed] = useState(false);
+  const [restartRequired, setRestartRequired] = useState(false);
 
   const refresh = useCallback(() => {
     setCounts(classify());
     setPoisoned(journalPoisoned().length);
     setBlocked(journalWriteBlocked());
+    setRestartRequired(storageNeedsRestart());
   }, []);
 
   // Launch replay: only once the profile gate has resolved 'ready' — before that
@@ -109,6 +112,7 @@ export default function PersistenceAlert() {
           if (result.failed > 0 || result.poisoned > 0) {
             console.error('journal replay incomplete', result);
           }
+          setRestartRequired(result.error instanceof StorageRestartRequiredError);
           refresh();
         });
       }
@@ -138,6 +142,7 @@ export default function PersistenceAlert() {
     try {
       const result = await replayJournal();
       setRetryFailed(result.failed > 0);
+      setRestartRequired(result.error instanceof StorageRestartRequiredError);
       if (result.failed > 0) console.error('journal replay failed', result.error);
     } finally {
       setRetrying(false);
@@ -156,7 +161,7 @@ export default function PersistenceAlert() {
         <div className="pointer-events-auto flex flex-wrap items-center gap-3 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm shadow-lg dark:border-red-800 dark:bg-red-950">
           {unsaved > 0 && (
             <span className="font-medium text-red-800 dark:text-red-200">
-              {unsaved} {t(unsaved === 1 ? 'persist.unsavedOne' : 'persist.unsavedMany', uiLang)}
+              {unsaved} {t(restartRequired && !blocked ? 'persist.pendingRestart' : unsaved === 1 ? 'persist.unsavedOne' : 'persist.unsavedMany', uiLang)}
             </span>
           )}
           {poisoned > 0 && (
@@ -174,9 +179,9 @@ export default function PersistenceAlert() {
               {t('persist.overflow', uiLang)}
             </span>
           )}
-          {retryFailed && (
+          {(retryFailed || restartRequired) && (
             <span className="text-xs text-red-700 dark:text-red-300">
-              {t('persist.retryFailed', uiLang)}
+              {t(restartRequired && !blocked ? 'persist.restartRequired' : 'persist.retryFailed', uiLang)}
             </span>
           )}
           {unsaved > 0 && (

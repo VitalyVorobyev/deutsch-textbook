@@ -22,6 +22,7 @@
  * remedy differs. `withReadRetry` (`store.ts`) writes both.
  */
 import { getActiveProfileId } from './profile';
+import { version } from '../../package.json';
 
 /** Keep the newest entries only. Twenty is enough to see a pattern across a few
     sessions and small enough that it can never be the reason a quota is hit. */
@@ -40,15 +41,19 @@ export interface StallEntry {
   at: number;
   /** Set once a late attempt settled: ms from the first attempt to that settle. */
   recoveredAfterMs?: number;
+  phase?: 'open' | 'transaction' | 'abort';
+  outcome?: 'retry' | 'restart-required' | 'recovered';
+  queueDepth?: number;
+  build?: string;
 }
 
-function logKey(): string {
-  return `da:stall-log:${getActiveProfileId()}`;
+function logKey(profileId = getActiveProfileId()): string {
+  return `da:stall-log:${profileId}`;
 }
 
-export function readStallLog(): StallEntry[] {
+export function readStallLog(profileId = getActiveProfileId()): StallEntry[] {
   try {
-    const raw = localStorage.getItem(logKey());
+    const raw = localStorage.getItem(logKey(profileId));
     if (!raw) return [];
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
@@ -64,9 +69,9 @@ export function readStallLog(): StallEntry[] {
   }
 }
 
-function write(entries: StallEntry[]): void {
+function write(entries: StallEntry[], profileId = getActiveProfileId()): void {
   try {
-    localStorage.setItem(logKey(), JSON.stringify(entries.slice(-STALL_LOG_CAP)));
+    localStorage.setItem(logKey(profileId), JSON.stringify(entries.slice(-STALL_LOG_CAP)));
   } catch {
     // A diagnostic may never be the thing that breaks the app it is diagnosing.
   }
@@ -74,18 +79,22 @@ function write(entries: StallEntry[]): void {
 
 /** Record a read that hit its deadline. Returns the entry id, so the caller can
     mark it recovered if a late attempt settles after all. */
-export function recordStall(input: { surface?: string; waitedMs: number; attempts: number }): string {
+export function recordStall(input: { surface?: string; waitedMs: number; attempts: number; profileId?: string } & Pick<StallEntry, 'phase' | 'outcome' | 'queueDepth'>): string {
   const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
   write([
-    ...readStallLog(),
+    ...readStallLog(input.profileId),
     {
       id,
       surface: input.surface ?? 'read',
       waitedMs: Math.round(input.waitedMs),
       attempts: input.attempts,
       at: Date.now(),
+      phase: input.phase,
+      outcome: input.outcome,
+      queueDepth: input.queueDepth,
+      build: version,
     },
-  ]);
+  ], input.profileId);
   return id;
 }
 

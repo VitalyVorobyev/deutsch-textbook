@@ -588,7 +588,11 @@ export default function ProgressPanel({
                       <span className="tabular-nums">
                         ({Math.round(e.waitedMs / 1000)} s, {e.attempts}×)
                       </span>{' '}
-                      {e.recoveredAfterMs === undefined
+                      {e.outcome ? (
+                        <span className="font-mono text-xs">
+                          {e.phase} · {e.outcome} · queue {e.queueDepth ?? 0} · v{e.build}
+                        </span>
+                      ) : e.recoveredAfterMs === undefined
                         ? t('persist.diagNeverSettled', uiLang)
                         : t('persist.diagRecovered', uiLang)}
                     </dd>

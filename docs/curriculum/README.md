@@ -43,3 +43,9 @@ The blueprint decides *what*; the program decides *when the evidence is read* an
 trigger. The authoring rules a unit is written under are `CLAUDE.md`'s and
 [`../../.agents/skills/authorship-provenance/SKILL.md`](../../.agents/skills/authorship-provenance/SKILL.md)'s. Product direction stays in
 [`../roadmap.md`](../roadmap.md) and implementation status in [`../backlog.md`](../backlog.md).
+
+## Leben in Deutschland
+
+[`leben-in-deutschland-brief.md`](leben-in-deutschland-brief.md) is the research brief behind the
+Leben-in-Deutschland (Bayern) trainer: the exam specification, the source inventory and the open
+rights questions. It is a reference written before the trainer existed, not a description of it.

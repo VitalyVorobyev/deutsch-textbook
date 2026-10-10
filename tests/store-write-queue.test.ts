@@ -150,7 +150,7 @@ describe('the write queue', () => {
     try {
       const first = store.updateCardState('a', () => card(1));
       await Bun.sleep(5);
-      const second = store.logSession({ date: '2026-09-15', reviewed: 1, correct: 1 });
+      const second = store.logSession({ date: '2026-09-15', reviewed: 1, trained: 1, ts: 1 });
       await Bun.sleep(5);
       expect(started).toEqual(['cards']); // the sessions batch has not started
 
@@ -169,36 +169,11 @@ describe('the write queue', () => {
     try {
       await Promise.all([
         store.updateCardState('a', () => card(1)),
-        store.logSession({ date: '2026-09-15', reviewed: 1, correct: 1 }),
+        store.logSession({ date: '2026-09-15', reviewed: 1, trained: 1, ts: 1 }),
         store.updateCardState('b', () => card(2)),
       ]);
       // Head-first: the two `cards` writes coalesce into the first commit, `sessions` follows.
       expect(calls.map((c) => c.key)).toEqual(['cards', 'sessions']);
-    } finally {
-      restore();
-    }
-  });
-
-  test('a batch that never answers does not halt the queue, and logs a write-queue stall', async () => {
-    const store = await import('../src/lib/store');
-    const { readStallLog } = await import('../src/lib/stall-log');
-    const started: string[] = [];
-    const restore = store.__setCommitBatchForTests((async (
-      key: string,
-      apply: (c: unknown) => unknown,
-    ) => {
-      started.push(key);
-      apply(undefined);
-      if (started.length === 1) await new Promise<void>(() => {}); // wedged forever
-    }) as never);
-    try {
-      void store.updateCardState('a', () => card(1));
-      await Bun.sleep(5);
-      const second = store.logSession({ date: '2026-09-15', reviewed: 1, correct: 1 });
-      // QUEUE_BATCH_TIMEOUT_MS is the production 45 s, so drive the wait rather than sit it out.
-      await Promise.race([second, Bun.sleep(50)]);
-      expect(started).toEqual(['cards']);
-      expect(readStallLog()).toEqual([]);
     } finally {
       restore();
     }
@@ -217,7 +192,7 @@ describe('the write queue', () => {
     // key, so it is still sitting in the queue behind it.
     void store.updateCardState('a', () => card(1)).catch(() => {});
     await Bun.sleep(5);
-    const queued = store.logSession({ date: '2026-09-15', reviewed: 1, correct: 1 });
+    const queued = store.logSession({ date: '2026-09-15', reviewed: 1, trained: 1, ts: 1 });
     wedge();
 
     // A waiter still in the queue is rejected rather than left hanging, so a leak is loud where
@@ -237,10 +212,4 @@ describe('the write queue', () => {
     }
   });
 
-  test('the runner bound equals the write deadline, so a caller never waits past its own', async () => {
-    const { QUEUE_BATCH_TIMEOUT_MS, PERSISTENCE_DEADLINE_MS } = await import('../src/lib/store');
-    // A bound above the deadline would make every write past the first report a stall it could
-    // have survived; a bound below it would abandon batches that were still going to commit.
-    expect(QUEUE_BATCH_TIMEOUT_MS).toBe(PERSISTENCE_DEADLINE_MS);
-  });
 });

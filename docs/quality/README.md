@@ -11,5 +11,8 @@
   machine, measured, with the command that produced each figure.
 - [`ux-audit-2026-08.md`](ux-audit-2026-08.md) — the three-form-factor UX findings, ranked. The
   fixes are backlog entries, not this document.
+- [`progress-persistence-verification.md`](progress-persistence-verification.md) — what the 0.5.2
+  storage-recovery release ([ADR 0020](../adrs/0020-owned-storage-recovery.md)) was verified
+  against: the automated suite and a native-app session in an isolated test bundle.
 - [`../curriculum/topic-quality-audit.md`](../curriculum/topic-quality-audit.md) — the active A1–B1
   topic-by-topic audit ledger; corpus-pass evidence is kept separate from human approval.

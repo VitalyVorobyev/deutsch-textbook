@@ -24,12 +24,21 @@
  * deadline. The wrapper's own timers, deadline and stall-log side effects are pinned against
  * the real implementation in store-read-retry.test.ts.
  */
-import { afterEach, beforeAll, beforeEach, describe, expect, mock, test } from 'bun:test';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, mock, test } from 'bun:test';
 import { act, cleanup, render, screen } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import type { CourseTopic, CourseUnit } from '../src/components/atlas/course';
 import type { AtlasGroup } from '@da/schema';
 import * as store from '../src/lib/store';
+
+// Captured BEFORE mock.module patches the registry: the `store` namespace is live-bound, so
+// reading these after the mock would return the mocks themselves (see probe-step.test.tsx).
+const real = {
+  getAttempts: store.getAttempts,
+  getCardStates: store.getCardStates,
+  getTopicsState: store.getTopicsState,
+  getLearningGoal: store.getLearningGoal,
+};
 
 const neverResolves = <T,>() => new Promise<T>(() => {});
 const getAttempts = mock(() => neverResolves<store.Attempt[]>());
@@ -61,6 +70,16 @@ mock.module('../src/lib/store', () => ({
   getTopicsState,
   getLearningGoal,
 }));
+
+// mock.module is process-global and never torn down: every file bun runs after this one would
+// otherwise read cards, attempts and topics from these stubs — which is how the real-store
+// replay test in write-journal.test.ts saw `{}` for a grade it had just committed.
+afterAll(() => {
+  getAttempts.mockImplementation(real.getAttempts as never);
+  getCardStates.mockImplementation(real.getCardStates as never);
+  getTopicsState.mockImplementation(real.getTopicsState as never);
+  getLearningGoal.mockImplementation(real.getLearningGoal as never);
+});
 
 let CurriculumPath: ComponentType<{ units: CourseUnit[]; groups: AtlasGroup[]; spine: string[] }>;
 
