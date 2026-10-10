@@ -43,7 +43,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v6
+      # setup-uv stopped publishing floating major tags at v8, so the release is pinned exactly.
+      - uses: astral-sh/setup-uv@v10.2.0
         with:
           enable-cache: true
 

@@ -435,18 +435,19 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 
 ### Instruments and gates
 
-- **P30-3 · Major-version upgrades deferred by the 2026-10-10 maintenance pass** — in-range updates
-  landed and `bun audit` fell 51 → 2; these cross a major and each needs its own migration:
-  TypeScript 7, ESLint 10 / `@eslint/js` 10, `eslint-plugin-astro` 3, `@astrojs/mdx` 8,
-  `@astrojs/react` 7, `@vitejs/plugin-react` 6, vitest 5 (Tonwerk). `bun outdated --filter '*'`
-  lists them. The two remaining advisories are dev/build-time only and parse nothing but this
-  repo's own source: `braces` ≤3.0.3 (no fixed release; via `eslint-plugin-astro` →
-  `fast-glob`) and `postcss-selector-parser` 6 (held by `@tailwindcss/typography`'s range).
-  `tools/listening-studio` (uv) was not refreshed — its torch line follows the model
-  constraints. First step: `eslint-plugin-astro` 3, which also clears both advisories' ESLint path.
-  Also owed: `.github/workflows/ci.yml` still pins `astral-sh/setup-uv@v6`, which runs on the
-  deprecated Node 20 runtime; `@v7` runs on Node 24. A one-line change, but pushing it needs a
-  token with the `workflow` scope (`gh auth refresh -s workflow`), which the agent's lacked.
+- **P30-3 · Two major upgrades are blocked upstream** — the 2026-10-10 passes landed every
+  in-range update and the unblocked majors (`@astrojs/mdx` 8, `@astrojs/react` 7,
+  `@vitejs/plugin-react` 6, vitest 5 in Tonwerk, `setup-uv` v10.2.0). Two remain, each waiting
+  on a dependency rather than on work here:
+  - **ESLint 10** with `@eslint/js` 10 and `eslint-plugin-astro` 3 (which requires ESLint ≥ 10):
+    `eslint-plugin-react`'s latest stable, 7.37.5, peers ESLint ≤ 9, and its ESLint-10 line is
+    still `7.8.0-rc.0`. Re-check with `npm view eslint-plugin-react peerDependencies`. This is
+    also what clears the two remaining `bun audit` advisories, both dev/build-time only:
+    `braces` ≤3.0.3 (no fixed release; via `eslint-plugin-astro` → `fast-glob`) and
+    `postcss-selector-parser` 6 (held by `@tailwindcss/typography`'s range).
+  - **TypeScript 7**: `typescript-eslint` 8.71 peers `typescript <6.1.0`. Re-check with
+    `npm view typescript-eslint peerDependencies`.
+  `tools/listening-studio` (uv) was not refreshed — its torch line follows the model constraints.
 - **P25-15 · Instrument note from the strand audit (2026-08-12)** — verified against
   `packages/grading/src/production.ts`, not fixed there yet (the audit's other two notes — the position-0-only
   case fold and the validator guard blind to it — were fixed the same day: sentence-head fold +
