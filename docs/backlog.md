@@ -671,11 +671,9 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   at 390 px, one card per deck for the whole corpus, and every Wortliste wave makes it longer.
   Group by level with collapsed sections and/or a filter row. Evidence and method:
   [ux-audit-2026-08.md](quality/ux-audit-2026-08.md). First step: pick grouping vs filter (the
-  Fortschritt vocab section's per-level summary is the in-house precedent).
-- **P25-2 · Topic-page paradigm tables have no overflow container** — five per topic page, no
-  viewport excepted; three-column paradigms fit 390 px by squeezing, and a wider paradigm clips
-  with no gate seeing it. Fix once at the prose-table rendering layer in the topic template, never
-  per-table. Evidence: [ux-audit-2026-08.md](quality/ux-audit-2026-08.md).
+  Fortschritt vocab section's per-level summary is the in-house precedent). The same page mounts one
+  `DeckMasterySummary` island per deck — 133 islands since 0.6.6 removed the duplicate `DueBadge`
+  (262 before); one island over all decks would read the store once instead of 129 times.
 - **P25-3 · Sub-44 px touch targets on the daily loop's surfaces** — measured at 390 px: theme
   toggle 30 px, profile button 30, Eingabe mode chips 28, "Mark as learned" 26, taught-in chips 22,
   crumb links 17. Apply the existing `min-h-11 sm:min-h-0` pattern to the listed sites; one pass,

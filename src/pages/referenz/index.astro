@@ -124,10 +124,10 @@ const groups: Group[] = [
 ---
 
 <Base title="Referenz">
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.referenz" /></h1>
-  <p class="mt-2 text-stone-500"><span class="lang-en">Compact lookup pages. Opening them does not change mastery or progress.</span><span class="lang-ru">Краткие справочные страницы. Их просмотр не влияет на освоение тем и прогресс.</span><span class="lang-uk">Компактні довідкові сторінки. Їхній перегляд не впливає на опанування тем і прогрес.</span></p>
-  {groups.map((group) => (
-    <section class="mt-10">
+  <!-- The highlighted nav link names the page; the description is its tooltip (docs/design.md, "Page chrome"). -->
+  <h1 class="sr-only"><Chrome k="nav.referenz" /></h1>
+  {groups.map((group, i) => (
+    <section class={i === 0 ? '' : 'mt-10'}>
       <h2 class="text-xl font-bold" lang="de">{group.title_de}</h2>
       <p class="mt-0.5 text-xs font-semibold uppercase tracking-wide text-amber-700"><span class="lang-en">{group.en}</span><span class="lang-ru">{group.ru}</span><span class="lang-uk">{group.uk}</span></p>
       <div class="mt-4 grid gap-4 sm:grid-cols-2">

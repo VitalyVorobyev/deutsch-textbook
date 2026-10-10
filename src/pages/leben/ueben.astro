@@ -18,8 +18,8 @@ const { source, bankVersion, entries, lessons } = getLidCatalogue();
     <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
     <span> / <Chrome k="lid.practice" /></span>
   </nav>
-  <!-- The breadcrumb already names the page on a phone; the H1 stays for the accessibility tree. -->
-  <h1 class="sr-only text-2xl font-bold sm:not-sr-only sm:mb-4"><Chrome k="lid.practice" /></h1>
+  <!-- The breadcrumb names the page; the H1 is for the accessibility tree. -->
+  <h1 class="sr-only"><Chrome k="lid.practice" /></h1>
   <!-- `?lektion=<id>` narrows practice to one lesson; the island reads it, since the page is static. -->
   <LidPractice
     client:only="react"

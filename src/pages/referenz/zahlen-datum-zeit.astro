@@ -11,10 +11,9 @@ const data = zahlenDatumZeitReferenceSchema.parse(entry.data);
 ---
 
 <Base title="Zahlen, Datum & Zeit">
-  <nav class="mb-5 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700">Referenz</a> / Zahlen, Datum & Zeit</nav>
+  <nav class="mb-3 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a></nav>
   <header>
-    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
-    <h1 class="mt-2 text-3xl font-bold">Zahlen, Datum &amp; Zeit</h1>
+    <h1 class="text-3xl font-bold">Zahlen, Datum &amp; Zeit</h1>
     <p class="mt-2 max-w-2xl text-stone-500">
       <span class="lang-en">Numbers, ordinals, the clock and the calendar in one place. The lessons teach each part; this page just puts the forms next to each other.</span>
       <span class="lang-ru">Числа, порядковые числительные, время и календарь в одном месте. Уроки объясняют части по отдельности; здесь формы просто собраны рядом.</span>
@@ -28,7 +27,7 @@ const data = zahlenDatumZeitReferenceSchema.parse(entry.data);
       {data.cardinals.map((n) => (
         <div class="flex items-baseline gap-2 border-b border-stone-100 py-1 dark:border-stone-800">
           <span class="w-14 shrink-0 text-right tabular-nums text-stone-400">{n.value}</span>
-          <span lang="de" class="font-medium">{n.word}</span>
+          <span lang="de" class="min-w-0 font-medium break-words hyphens-auto">{n.word}</span>
         </div>
       ))}
     </div>
@@ -40,7 +39,7 @@ const data = zahlenDatumZeitReferenceSchema.parse(entry.data);
       {data.ordinals.map((n) => (
         <div class="flex items-baseline gap-2 border-b border-stone-100 py-1 dark:border-stone-800">
           <span class="w-14 shrink-0 text-right tabular-nums text-stone-400">{n.value}</span>
-          <span lang="de" class="font-medium">{n.word}</span>
+          <span lang="de" class="min-w-0 font-medium break-words hyphens-auto">{n.word}</span>
         </div>
       ))}
     </div>
