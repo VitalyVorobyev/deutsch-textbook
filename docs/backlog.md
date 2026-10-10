@@ -651,11 +651,6 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   direction-dependent alignment, so a transposition can mark different words on the two sides.
   Display only — scoring and attribution are untouched. Return both flag arrays from one traversal
   in `packages/grading/src/worddiff.ts`.
-- **P18-8 · `review:gate` cannot see a review whose body omits the Reviewed-commit line** —
-  `scripts/pr-review-gate.ts` proves review-of-HEAD only by parsing "Reviewed commit: `sha`" out of
-  review bodies, and a review can carry the exact HEAD sha in its API `commit_id` while omitting the
-  line. Also read `commit_id`; keep the body regex as fallback. Until then verify by hand:
-  `gh api "repos/{owner}/{repo}/pulls/<n>/reviews" --jq '[.[] | select(.user.login == "chatgpt-codex-connector[bot]")] | last | .commit_id'`
 - **P20-3 · The live card-id migration's call site has no automated coverage** — the test
   environment has no IndexedDB, so `tests/card-id-migration.test.ts` cannot execute `getStore`'s
   call into `migrateStoredCardIds`, and that seam is where a shipped P1 defect lived. Add
