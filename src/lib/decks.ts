@@ -1,6 +1,6 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
-import { introducedToday, rankDueCards, spaceSiblings, splitQueue, type CardDef } from './srs';
+import { introducedToday, rankDueCards, spaceSiblings, splitQueue, type CardDef, type CardRef } from './srs';
 import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
@@ -22,13 +22,13 @@ import type { LearningGoal } from './store';
  * not the trap CLAUDE.md warns about, which is about listing an unowned Wortliste deck in
  * a topic's `vocab:` and thereby flipping *that deck's* gate.
  */
-export function eligibleFreshCards(
-  fresh: CardDef[],
+export function eligibleFreshCards<C extends CardRef>(
+  fresh: readonly C[],
   spine: string[],
   nodes: TopicNode[],
   deckLevels: Record<string, string>,
   ctx: TopicContext,
-): CardDef[] {
+): C[] {
   const owners = new Map<string, TopicNode[]>();
   for (const n of nodes) {
     for (const v of n.vocabIds) owners.set(v, [...(owners.get(v) ?? []), n]);
@@ -55,14 +55,14 @@ export function eligibleFreshCards(
 }
 
 /** Goal route first, then the current topic, level-core decks, and everything else. */
-export function prioritizeFreshCards(
-  cards: CardDef[],
+export function prioritizeFreshCards<C extends CardRef>(
+  cards: readonly C[],
   spine: string[],
   nodes: TopicNode[],
   deckLevels: Record<string, string>,
   ctx: TopicContext,
   goal?: LearningGoal,
-): CardDef[] {
+): C[] {
   const routeDecks = new Set(
     (goal?.topicId ? goalRoute(goal.topicId, spine, nodes) : [])
       .filter((node) => !pathDone(node, ctx))
@@ -86,7 +86,7 @@ export function prioritizeFreshCards(
   // A deck no topic lists in `vocab:` is a Wortliste completion deck. It teaches
   // the level's lexis, not any lesson's, so it belongs behind the decks that do.
   const owned = new Set(nodes.flatMap((n) => n.vocabIds));
-  function priority(card: CardDef) {
+  function priority(card: CardRef) {
     if (routeDecks.has(card.deckId)) return 0;
     if (nextDecks.has(card.deckId)) return 1;
     // Band 2 used to hold every deck at the current level, owned or not. Closing the
@@ -154,9 +154,9 @@ export interface ReviewPlanOpts {
   now?: Date;
 }
 
-export interface ReviewPlanResult {
+export interface ReviewPlanResult<C extends CardRef = CardDef> {
   /** ranked due cards (capped) followed by prioritized fresh cards (capped) */
-  queue: CardDef[];
+  queue: C[];
   /** due cards actually in the queue */
   dueCount: number;
   /** fresh cards actually in the queue */
@@ -175,12 +175,12 @@ export interface ReviewPlanResult {
  * numbers can never disagree. Without a gate the fresh pool is ungated and
  * shuffled (the per-deck page: studying a deck directly is an opt-in).
  */
-export function planReview(
-  cards: CardDef[],
+export function planReview<C extends CardRef>(
+  cards: readonly C[],
   gate: ReviewGate | undefined,
   ctx: ReviewContext,
   opts: ReviewPlanOpts = {},
-): ReviewPlanResult {
+): ReviewPlanResult<C> {
   const {
     newLimit = 15,
     dailyNewCap = gate ? DAILY_NEW_CARDS : Infinity,
@@ -198,7 +198,7 @@ export function planReview(
 
   const wantFresh =
     freshPolicy.kind === 'always' || (due.length > 0 && due.length < freshPolicy.minDue);
-  let freshQueue: CardDef[] = [];
+  let freshQueue: C[] = [];
   if (wantFresh) {
     const pool = gate
       ? eligibleFreshCards(fresh, gate.spine, gate.nodes, gate.deckLevels, ctx)

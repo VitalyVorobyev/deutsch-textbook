@@ -337,3 +337,34 @@ describe('gradeCard stamps introducedAt exactly once, and only on a real introdu
     expect(plan.freshCount).toBe(15);
   });
 });
+
+// Heute's due tile plans from card refs (ids rebuilt from headwords), not from the built
+// cards, so the page stops inlining the corpus (backlog P23-1). The tile's numbers and the
+// queue /ueben/wiederholen deals must still be the same plan: same input order, same random
+// draws, same queue.
+describe('planReview over card refs', () => {
+  /** A seeded Math.random, so two plans make the same shuffle draws. */
+  function seeded<T>(run: () => T): T {
+    const original = Math.random;
+    let s = 20261010;
+    Math.random = () => ((s = (s * 1664525 + 1013904223) % 2 ** 32) / 2 ** 32);
+    try { return run(); } finally { Math.random = original; }
+  }
+
+  test('deals exactly the queue the built cards do', () => {
+    const built = [
+      ...['Alt0', 'Alt1', 'Alt2'].flatMap((de) => bothDirections('basis-deck', de)),
+      ...Array.from({ length: 12 }, (_, i) => bothDirections('basis-deck', `Neu${i}`)).flat(),
+      ...Array.from({ length: 6 }, (_, i) => bothDirections('zweit-deck', `Zwei${i}`)).flat(),
+    ];
+    const states = Object.fromEntries(built.slice(0, 6).map((c, i) => [c.id, dueState(i + 1)]));
+    const refs = built.map(({ id, deckId, de, dir }) => ({ id, deckId, de, dir }));
+    const fromCards = seeded(() => planReview(built, gate, ctx(states), { newLimit: 8 }));
+    const fromRefs = seeded(() => planReview(refs, gate, ctx(states), { newLimit: 8 }));
+    expect(fromRefs.queue.map((c) => c.id)).toEqual(fromCards.queue.map((c) => c.id));
+    expect([fromRefs.dueCount, fromRefs.freshCount, fromRefs.dueRemaining])
+      .toEqual([fromCards.dueCount, fromCards.freshCount, fromCards.dueRemaining]);
+    expect(fromCards.dueCount).toBe(6);
+    expect(fromCards.freshCount).toBe(8);
+  });
+});

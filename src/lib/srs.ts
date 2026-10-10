@@ -305,19 +305,26 @@ export function introducedToday(states: Record<string, StoredCard>, now = new Da
 // Session queue
 // ---------------------------------------------------------------------------
 
-export interface QueueSplit {
-  due: CardDef[];
-  fresh: CardDef[];
+/**
+ * What queue planning reads of a card: its identity, never its content. Planning is generic
+ * over it so a surface that only counts (Heute's due tile) can plan from ids alone instead of
+ * inlining every gloss and example of the corpus (backlog P23-1).
+ */
+export type CardRef = Pick<CardDef, 'id' | 'deckId' | 'de' | 'dir'>;
+
+export interface QueueSplit<C extends CardRef = CardDef> {
+  due: C[];
+  fresh: C[];
 }
 
 /** Split a deck into due cards (have state, due <= now) and new cards (no state). */
-export function splitQueue(
-  cards: CardDef[],
+export function splitQueue<C extends CardRef>(
+  cards: readonly C[],
   states: Record<string, StoredCard>,
   now = new Date(),
-): QueueSplit {
-  const due: CardDef[] = [];
-  const fresh: CardDef[] = [];
+): QueueSplit<C> {
+  const due: C[] = [];
+  const fresh: C[] = [];
   for (const c of cards) {
     const s = states[c.id];
     if (!s) fresh.push(c);
@@ -336,7 +343,7 @@ export function splitQueue(
  * instead of recalling words. Array.sort is stable, so shuffling first is what
  * randomizes the ties while the overdue ranking above them stays exact.
  */
-export function rankDueCards(cards: CardDef[], states: Record<string, StoredCard>): CardDef[] {
+export function rankDueCards<C extends CardRef>(cards: readonly C[], states: Record<string, StoredCard>): C[] {
   return shuffle(cards).sort((a, b) => {
     const sa = states[a.id];
     const sb = states[b.id];
@@ -348,7 +355,7 @@ export function rankDueCards(cards: CardDef[], states: Record<string, StoredCard
 }
 
 /** The word a card asks about — its two directions share one. */
-const wordKey = (card: CardDef): string => `${card.deckId}::${card.de}`;
+const wordKey = (card: CardRef): string => `${card.deckId}::${card.de}`;
 
 /**
  * Pull the two directions of the same word apart.
@@ -361,12 +368,12 @@ const wordKey = (card: CardDef): string => `${card.deckId}::${card.de}`;
  * small to separate them (a two-card deck) takes the card anyway rather than
  * dropping it.
  */
-export function spaceSiblings(cards: CardDef[], gap = 4): CardDef[] {
+export function spaceSiblings<C extends CardRef>(cards: readonly C[], gap = 4): C[] {
   const pool = [...cards];
   const waiting = new Map<string, number>();
   for (const card of pool) waiting.set(wordKey(card), (waiting.get(wordKey(card)) ?? 0) + 1);
 
-  const out: CardDef[] = [];
+  const out: C[] = [];
   while (pool.length > 0) {
     const recent = new Set(out.slice(-gap).map(wordKey));
     const free = pool.filter((card) => !recent.has(wordKey(card)));

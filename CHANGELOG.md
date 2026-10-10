@@ -9,6 +9,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.11] — 2026-10-10
+
+### Changed
+
+- **Heute, the page the app opens on, is 0.51 MB instead of 11.3 MB.** Its review tile carried
+  every flashcard in the course, glosses and examples included, to work out one number. It now
+  counts from the cards' identities alone, by the same rule the review session uses, so the
+  numbers still agree. Topic pages lose the same weight from their per-deck due badges, 3.2 MB
+  across all of them.
+
 ## [0.6.10] — 2026-10-10
 
 ### Changed
