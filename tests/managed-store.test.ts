@@ -4,15 +4,20 @@ import { get, set } from 'idb-keyval';
 import { createManagedStore, StorageRestartRequiredError, type StorageDiagnostic } from '../src/lib/managed-store';
 import { eventually } from './eventually';
 
-// The transaction and abort deadlines are what these tests drive, so they stay short. The open
-// deadline is not (the late-open test builds its own store): at 20 ms the re-open after a
-// retry missed it on a loaded Windows runner, added a second 'retry' event, and failed the
-// v0.6.7 release build.
+// Every deadline these tests drive is crossed by a transaction that never finishes, so its
+// length changes nothing they assert. What a short deadline does break is the work that IS
+// meant to finish inside one, on a loaded runner. At 20 ms, two such misses failed the Windows
+// release build:
+// - v0.6.7: the re-open after a retry missed `openMs` and added a second 'retry' event;
+// - v0.6.9: the late-completion test's commit, 5 ms after the abort, missed the 20 ms
+//   `abortMs` grace and blocked the store.
+// Both are reproduced by delaying the open or the commit 30 ms. The late-open test builds its
+// own store with a short `openMs`, because that deadline is the one it drives.
 function fixture() {
   const factory = new IDBFactory();
   const events: StorageDiagnostic[] = [];
   const manager = createManagedStore('managed-test', {
-    factory: () => factory, transactionMs: 20, openMs: 2000, abortMs: 20,
+    factory: () => factory, transactionMs: 100, openMs: 2000, abortMs: 250,
     report: (event) => events.push(event),
   });
   return { ...manager, factory, events };

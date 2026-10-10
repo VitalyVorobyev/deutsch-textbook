@@ -672,9 +672,8 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   at 390 px, one card per deck for the whole corpus, and every Wortliste wave makes it longer.
   Group by level with collapsed sections and/or a filter row. Evidence and method:
   [ux-audit-2026-08.md](quality/ux-audit-2026-08.md). First step: pick grouping vs filter (the
-  Fortschritt vocab section's per-level summary is the in-house precedent). The same page mounts one
-  `DeckMasterySummary` island per deck — 133 islands since 0.6.6 removed the duplicate `DueBadge`
-  (262 before); one island over all decks would read the store once instead of 129 times.
+  Fortschritt vocab section's per-level summary is the in-house precedent). Its islands are done: one
+  `DeckMasterySummaries` reads the store once for all 129 decks (0.6.10, P23-1).
 - **P25-3 · Sub-44 px touch targets on the daily loop's surfaces** — measured at 390 px: theme
   toggle 30 px, profile button 30, Eingabe mode chips 28, "Mark as learned" 26, taught-in chips 22,
   crumb links 17. Apply the existing `min-h-11 sm:min-h-0` pattern to the listed sites; one pass,
@@ -696,13 +695,20 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   What remains here: the P25-4 in-page anchor nav, and finer-grained per-section edges where a
   page's data supports them (sentence-connector relations already have ids). Where an editorial
   relation has no data behind it, add the datum, not a link.
-- **P23-1 · Six pages inline most of the corpus and run 4.6–10.7 MB of HTML** —
-  `find dist -name '*.html' -exec wc -c {} + | sort -rn` over a current build: 162 pages at a
-  137 KB median, but `/ueben/wortschatz`, `/session`, `/progress`, `/`, `/ueben/wiederholen` and
-  `/ueben/training` carry **42 MB of the 68 MB** between them, and those six are the pages the daily
-  loop starts from. Fix by not inlining the whole deck/item set into the island's props and fetching
-  it per view; sizing that is its own task. Do **not** treat the service worker's byte budget as the
-  fix.
+- **P23-1 · Six daily-loop pages inline most of the corpus and run 7.0–18.2 MB of HTML** —
+  `find dist -name '*.html' -exec wc -c {} + | sort -rn | head` (2026-10-10, 252 pages, 116 MB):
+  `/session` 18.2 MB, `/progress` 12.2, `/` 11.3, `/ueben/wiederholen` 11.1, `/ueben/training` 7.1,
+  `/ueben/proben` 7.0. Nearly all of each is ONE island's props: SessionFlow, ProgressPanel,
+  **DueBadge** (on `/`, 9.2 MB to show a due count), FlashcardSession, MixedTraining, ProbeCatchUp.
+  Two kinds of fix:
+  - **A consumer that needs card identities, not content, gets ids.** `/ueben/wortschatz` was
+    11.1 MB and is 0.26 MB since its 133 per-deck islands became one that ships headwords
+    (`deckWords`/`deckCardRefs`, 0.6.10). Next cheapest: `/`'s DueBadge, whose `planReview` call
+    would have to accept card refs. That function is the one queue rule, so read
+    `runtime-contracts.md` first. ProgressPanel's vocabulary bars are the same case.
+  - **A session that shows the cards** needs their content, so fetch the deck/item set per view
+    instead of inlining it; sizing that is its own task. Do **not** treat the service worker's byte
+    budget as the fix.
 - **P21-1 · Standard written forms are taught but never practised as forms** — the course teaches
   the parts (`content/reference-data/briefe.yaml`) and names the situations, but nothing asks the
   learner to *assemble* a Bewerbung, Beschwerde or formal e-mail with meaningful feedback. `write`

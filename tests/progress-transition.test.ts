@@ -22,7 +22,9 @@ const entry = { date: '2026-09-17', reviewed: 1, trained: 1, ts: 1789660000000 }
 
 test('session → cards preserves ordering through a real transaction stall, merge and replay', async () => {
   const manager = createManagedStore('transition', {
-    factory: () => factory, transactionMs: 20, abortMs: 20,
+    // Margins as in managed-store.test.ts: the stalled transaction crosses any deadline, and
+    // the writes behind it must not be the ones that miss theirs on a loaded runner.
+    factory: () => factory, transactionMs: 100, abortMs: 250,
   });
   const factory = new IDBFactory();
   let starts = 0;

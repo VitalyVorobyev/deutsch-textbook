@@ -1,5 +1,5 @@
 import { State } from 'ts-fsrs';
-import type { CardDef, Direction } from './srs';
+import { cardId, type CardDef, type Direction } from './srs';
 import type { CardStates, StoredCard } from './store';
 
 export const STRONG_INTERVAL_DAYS = 21;
@@ -14,7 +14,6 @@ export interface WordRollup {
   key: string;
   deckId: string;
   de: string;
-  pos: string;
   status: WordMastery;
   /** true when the entry is `cards: recognition` — understood, never produced */
   recognitionOnly: boolean;
@@ -54,8 +53,11 @@ export function wordMastery(recognition?: StoredCard, production?: StoredCard, o
     : 'established';
 }
 
-export function rollupWords(cards: CardDef[], states: CardStates, now = new Date()): WordRollup[] {
-  const grouped = new Map<string, CardDef[]>();
+/** What a mastery rollup reads of a card: its identity, never its content. */
+export type CardRef = Pick<CardDef, 'id' | 'deckId' | 'de' | 'dir'>;
+
+export function rollupWords(cards: readonly CardRef[], states: CardStates, now = new Date()): WordRollup[] {
+  const grouped = new Map<string, CardRef[]>();
   for (const card of cards) {
     const key = `${card.deckId}::${card.de}`;
     grouped.set(key, [...(grouped.get(key) ?? []), card]);
@@ -69,7 +71,6 @@ export function rollupWords(cards: CardDef[], states: CardStates, now = new Date
       key,
       deckId: defs[0].deckId,
       de: defs[0].de,
-      pos: defs[0].pos,
       // `buildDeck` omits the x-de card for a `cards: recognition` entry, so the built deck
       // is the authority on which directions exist — no second read of the schema, and no
       // way for the two to disagree.
@@ -89,4 +90,32 @@ export function masteryCounts(words: WordRollup[]): MasteryCounts {
   const counts: MasteryCounts = { new: 0, learning: 0, established: 0, strong: 0 };
   for (const word of words) counts[word.status]++;
   return counts;
+}
+
+/**
+ * A deck reduced to what its mastery summary needs: the headwords, and which of them have no
+ * production card. A page listing every deck ships this instead of the built cards — the cards
+ * carry glosses, examples and notes, and /ueben/wortschatz once inlined 9 MB of them as island
+ * props to draw one bar per deck (backlog P23-1).
+ */
+export interface DeckWords {
+  id: string;
+  words: string[];
+  /** Headwords built without an x-de card (`cards: recognition`). */
+  recognitionOnly: string[];
+}
+
+export function deckWords(deckId: string, cards: readonly CardRef[]): DeckWords {
+  const words = [...new Set(cards.map((card) => card.de))];
+  const produced = new Set(cards.filter((card) => card.dir === 'x-de').map((card) => card.de));
+  return { id: deckId, words, recognitionOnly: words.filter((de) => !produced.has(de)) };
+}
+
+/** The card identities `deckWords` was built from, through the same `cardId` the deck uses. */
+export function deckCardRefs({ id, words, recognitionOnly }: DeckWords): CardRef[] {
+  const once = new Set(recognitionOnly);
+  return words.flatMap((de): CardRef[] => [
+    { id: cardId(id, de, 'de-x'), deckId: id, de, dir: 'de-x' },
+    ...(once.has(de) ? [] : [{ id: cardId(id, de, 'x-de'), deckId: id, de, dir: 'x-de' as const }]),
+  ]);
 }
