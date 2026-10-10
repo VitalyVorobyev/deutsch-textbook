@@ -658,6 +658,12 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
 
 ### Product surfaces
 
+- **P31-1 · Ukrainian half for the 310 Leben-in-Deutschland notes** — `content/lid/notes/*.yaml`
+  carry unofficial EN/RU translations of each question, its options and terms, but no `uk`. The
+  owner shipped them without it on 2026-10-10 and exempted `content/lid/` from the UK-parity
+  ratchet (`ukHalfCoverage`, `packages/content/src/coverage.ts`) until this lands. First step:
+  author `uk` beside every `ru` from the German (never from the Russian), file by file; then
+  delete the exemption, so `tests/i18n-content.test.ts` counts the 18 files again.
 - **P25-8 · Seven top-level nav tabs is still past comfortable — finish the IA consolidation pass** —
   `nav` in `src/layouts/Base.astro` lists Heute, Themen, Entdecken, Referenz, Üben, Fortschritt,
   Über; Prüfung was folded into Üben as its fourth sub-tab (PR #179, 2026-08-12) on the owner's
