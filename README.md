@@ -133,7 +133,7 @@ schemas. Bun is the package manager and task runner.
 | `bun run validate` | validate all content against schemas and cross-references |
 | `bun test` | domain regression tests |
 | `bun run check` | type-check (`astro check`) |
-| `bun run lint` | ESLint over `src/` and `scripts/` |
+| `bun run lint` | Oxlint over the whole repo (`.oxlintrc.json`) |
 | `bun run build` | static production build |
 | `bun run review:gate` | require green CI, resolved review threads and no outstanding change request — it waits for no reviewer |
 | `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |

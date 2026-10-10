@@ -4,11 +4,15 @@ import { get, set } from 'idb-keyval';
 import { createManagedStore, StorageRestartRequiredError, type StorageDiagnostic } from '../src/lib/managed-store';
 import { eventually } from './eventually';
 
+// The transaction and abort deadlines are what these tests drive, so they stay short. The open
+// deadline is not (the late-open test builds its own store): at 20 ms the re-open after a
+// retry missed it on a loaded Windows runner, added a second 'retry' event, and failed the
+// v0.6.7 release build.
 function fixture() {
   const factory = new IDBFactory();
   const events: StorageDiagnostic[] = [];
   const manager = createManagedStore('managed-test', {
-    factory: () => factory, transactionMs: 20, openMs: 20, abortMs: 20,
+    factory: () => factory, transactionMs: 20, openMs: 2000, abortMs: 20,
     report: (event) => events.push(event),
   });
   return { ...manager, factory, events };

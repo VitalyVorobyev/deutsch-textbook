@@ -124,8 +124,9 @@ workspace root package. Tried and reverted on 2026-08-14; recorded beside the `w
 The attempt was not wasted: declaring workspaces switches Bun from hoisted to isolated linking, and
 two dependencies this repo *uses and never declared* stopped resolving —
 `@typescript-eslint/parser` (without which `astro-eslint-parser` cannot read a `.astro` frontmatter
-at all, so every `.astro` file would have become silently unlinted while `eslint .` stayed green)
-and `vite` (a direct `import type` in `progress-writer.ts`).
+at all, so every `.astro` file would have become silently unlinted while `eslint .` stayed green;
+both left with ESLint on 2026-10-10, when Oxlint replaced it) and `vite` (a direct `import type` in
+`progress-writer.ts`).
 
 ## Redaktion
 

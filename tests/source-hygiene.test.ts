@@ -2,7 +2,7 @@
  * Properties of the source files themselves, not of the code in them.
  *
  * This exists because the defect it catches survives every other gate. A NUL byte in a
- * `.ts` file is valid TypeScript, so tests, `astro check`, ESLint and the production build
+ * `.ts` file is valid TypeScript, so tests, `astro check`, the linter and the production build
  * all pass — but `file` reports the source as `data` instead of text, and grep, ripgrep and
  * every editor search then **skip the file silently**, returning "no matches" rather than
  * an error. Two files in this repo sat that way; working out why a search over
