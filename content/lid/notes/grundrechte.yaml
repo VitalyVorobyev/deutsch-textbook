@@ -1,21 +1,330 @@
 notes:
   - id: general-001
+    rationale_de: >-
+      In Deutschland gilt Meinungsfreiheit. Das steht im Grundgesetz, Artikel 5. Jeder darf seine Meinung sagen – auch Kritik an der Regierung. Religionsfreiheit, Steuern und Wahlrecht sind wichtig, erklären das aber nicht.
+    source: GG Art. 5
+    question:
+      en: "In Germany, people may openly speak out against the government because …"
+      ru: "В Германии люди могут открыто высказываться против правительства, потому что …"
+    options:
+      a: { en: "freedom of religion applies here.", ru: "здесь действует свобода вероисповедания." }
+      b: { en: "people pay taxes.", ru: "люди платят налоги." }
+      c: { en: "people have the right to vote.", ru: "у людей есть избирательное право." }
+      d: { en: "freedom of opinion applies here.", ru: "здесь действует свобода мнений." }
+    terms:
+      - { de: "die Meinungsfreiheit", en: "freedom of opinion", ru: "свобода мнений" }
+    status: draft
   - id: general-002
+    rationale_de: >-
+      Religionsunterricht ist an vielen Schulen ein normales Fach. Aber das Grundgesetz sagt in Artikel 7: Die Eltern bestimmen, ob ihr Kind daran teilnimmt. Bei Geschichte, Politik oder Sprachen haben die Eltern diese Wahl nicht.
+    source: GG Art. 7 Abs. 2
+    question:
+      en: "In Germany, until their child is 14, parents can decide whether at school the child takes part in …"
+      ru: "В Германии до 14 лет ребёнка родители могут решать, будет ли он в школе посещать …"
+    options:
+      a: { en: "history lessons.", ru: "уроки истории." }
+      b: { en: "religious education.", ru: "уроки религии." }
+      c: { en: "politics lessons.", ru: "уроки политики." }
+      d: { en: "language lessons.", ru: "уроки языка." }
+    terms:
+      - { de: "der Religionsunterricht", en: "religious education", ru: "уроки религии" }
+      - { de: "das Lebensjahr", en: "year of life", ru: "год жизни" }
+    status: draft
   - id: general-004
+    rationale_de: >-
+      Die Meinungsfreiheit ist ein Grundrecht – sie steht im Grundgesetz, Artikel 5. Faustrecht und Selbstjustiz sind dagegen verboten: Strafen dürfen nur Gerichte bestimmen, nicht einzelne Menschen. Waffenbesitz ist kein Grundrecht, sondern durch Gesetze streng geregelt.
+    source: GG Art. 5
+    question:
+      en: "Which right is one of the fundamental rights in Germany?"
+      ru: "Какое право относится к основным правам в Германии?"
+    options:
+      a: { en: "gun ownership", ru: "владение оружием" }
+      b: { en: "the law of the fist", ru: "кулачное право" }
+      c: { en: "freedom of opinion", ru: "свобода мнений" }
+      d: { en: "vigilante justice", ru: "самосуд" }
+    terms:
+      - { de: "das Grundrecht", en: "fundamental right", ru: "основное право" }
+      - { de: "die Selbstjustiz", en: "vigilante justice", ru: "самосуд" }
+      - { de: "das Faustrecht", en: "law of the fist", ru: "кулачное право" }
+    status: draft
   - id: general-006
+    rationale_de: >-
+      Die deutsche Verfassung heißt Grundgesetz, und sie gilt seit 1949. Man nannte sie damals nicht „Verfassung“, weil Deutschland geteilt war: Das Grundgesetz sollte nur für eine Übergangszeit gelten. Seit der Wiedervereinigung 1990 ist es die Verfassung für ganz Deutschland.
+    source: GG Art. 146
+    question:
+      en: "What is the German constitution called?"
+      ru: "Как называется конституция Германии?"
+    options:
+      a: { en: "People's Law", ru: "Народный закон" }
+      b: { en: "Federal Law", ru: "Федеральный закон" }
+      c: { en: "German Law", ru: "Немецкий закон" }
+      d: { en: "Basic Law", ru: "Основной закон" }
+    terms:
+      - { de: "das Grundgesetz", en: "Basic Law", ru: "Основной закон" }
+      - { de: "die Verfassung", en: "constitution", ru: "конституция" }
+    status: draft
   - id: general-007
+    rationale_de: >-
+      Das Grundgesetz garantiert in Artikel 4 die Glaubens- und Gewissensfreiheit. Jeder darf selbst entscheiden, woran er glaubt – oder ob er an gar nichts glaubt. Ein Recht auf Arbeit oder auf eine Wohnung steht nicht im Grundgesetz; es schützt aber die freie Wahl des Berufs (Artikel 12).
+    source: GG Art. 4, Art. 12
+    question:
+      en: "Which right is one of the fundamental rights guaranteed by the German constitution? The right to …"
+      ru: "Какое право относится к основным правам, которые гарантирует конституция Германии? Право на …"
+    options:
+      a: { en: "freedom of belief and conscience", ru: "свободу вероисповедания и совести" }
+      b: { en: "entertainment", ru: "развлечения" }
+      c: { en: "work", ru: "труд" }
+      d: { en: "housing", ru: "жильё" }
+    terms:
+      - { de: "die Glaubensfreiheit", en: "freedom of belief", ru: "свобода вероисповедания" }
+      - { de: "die Gewissensfreiheit", en: "freedom of conscience", ru: "свобода совести" }
+      - { de: "garantieren", en: "to guarantee", ru: "гарантировать" }
+    status: draft
   - id: general-008
+    rationale_de: >-
+      Im Grundgesetz steht nicht, dass alle Menschen gleich viel Geld haben sollen. Es schützt aber die Würde des Menschen (Artikel 1), die Meinungsfreiheit (Artikel 5) und die Gleichheit vor dem Gesetz (Artikel 3). Gleich vor dem Gesetz heißt: Für Arme und Reiche gelten dieselben Regeln.
+    source: GG Art. 1, Art. 3, Art. 5
+    question:
+      en: "What is not in Germany's Basic Law?"
+      ru: "Чего нет в Основном законе Германии?"
+    options:
+      a: { en: "Human dignity is inviolable.", ru: "Достоинство человека неприкосновенно." }
+      b: { en: "Everyone should have the same amount of money.", ru: "У всех должно быть одинаковое количество денег." }
+      c: { en: "Every person may express their opinion.", ru: "Каждый человек может высказывать своё мнение." }
+      d: { en: "All people are equal before the law.", ru: "Все равны перед законом." }
+    terms:
+      - { de: "die Würde", en: "dignity", ru: "достоинство" }
+      - { de: "unantastbar", en: "inviolable", ru: "неприкосновенный" }
+    status: draft
   - id: general-009
+    rationale_de: >-
+      Das Asylrecht steht im Grundgesetz, Artikel 16a: Politisch Verfolgte bekommen Schutz in Deutschland. Nur Ausländerinnen und Ausländer brauchen dieses Recht – Deutsche müssen in ihrem eigenen Land nicht um Asyl bitten. Menschenwürde, Schutz der Familie und Meinungsfreiheit gelten dagegen für alle Menschen in Deutschland.
+    source: GG Art. 16a
+    question:
+      en: "Which fundamental right in Germany applies only to foreigners? The fundamental right to …"
+      ru: "Какое основное право в Германии действует только для иностранцев? Основное право на …"
+    options:
+      a: { en: "protection of the family", ru: "защиту семьи" }
+      b: { en: "human dignity", ru: "человеческое достоинство" }
+      c: { en: "asylum", ru: "убежище" }
+      d: { en: "freedom of opinion", ru: "свободу мнений" }
+    terms:
+      - { de: "das Asyl", en: "asylum", ru: "убежище" }
+      - { de: "politisch verfolgt", en: "politically persecuted", ru: "политически преследуемый" }
+    status: draft
   - id: general-010
+    rationale_de: >-
+      Eine Geldstrafe ist erlaubt: Ein Gericht kann bestimmen, dass jemand Geld zahlen muss. Die Todesstrafe ist abgeschafft – so steht es in Artikel 102 des Grundgesetzes. Folter und Prügelstrafe verletzen die Würde des Menschen und sind verboten.
+    source: GG Art. 1, Art. 102, Art. 104
+    question:
+      en: "What is compatible with the German Basic Law?"
+      ru: "Что совместимо с Основным законом Германии?"
+    options:
+      a: { en: "corporal punishment", ru: "телесные наказания" }
+      b: { en: "torture", ru: "пытки" }
+      c: { en: "the death penalty", ru: "смертная казнь" }
+      d: { en: "a fine", ru: "денежный штраф" }
+    terms:
+      - { de: "die Geldstrafe", en: "fine", ru: "денежный штраф" }
+      - { de: "die Todesstrafe", en: "death penalty", ru: "смертная казнь" }
+      - { de: "vereinbar", en: "compatible", ru: "совместимый" }
+    status: draft
   - id: general-011
+    rationale_de: >-
+      Die Verfassung der Bundesrepublik heißt Grundgesetz, abgekürzt GG. Darin stehen die Grundrechte und die wichtigsten Regeln für den Staat. „Bundesverfassung“ klingt ähnlich – so heißt aber die Verfassung der Schweiz.
+    source: GG Präambel
+    question:
+      en: "What is the constitution of the Federal Republic of Germany called?"
+      ru: "Как называется конституция Федеративной Республики Германия?"
+    options:
+      a: { en: "Basic Law", ru: "Основной закон" }
+      b: { en: "Federal Constitution", ru: "Федеральная конституция" }
+      c: { en: "Code of Law", ru: "Свод законов" }
+      d: { en: "Constitutional Treaty", ru: "Конституционный договор" }
+    terms:
+      - { de: "das Grundgesetz", en: "Basic Law", ru: "Основной закон" }
+      - { de: "die Verfassung", en: "constitution", ru: "конституция" }
+    status: draft
   - id: general-012
+    rationale_de: >-
+      Die Pressefreiheit ist ein Grundrecht – sie steht im Grundgesetz, Artikel 5. Grundrechte sind besonders geschützt: Ihr Kern darf nie verletzt werden (Artikel 19). Darum kann auch eine große Mehrheit im Bundestag die Pressefreiheit nicht abschaffen.
+    source: GG Art. 5, Art. 19
+    question:
+      en: "A party in the German Bundestag wants to abolish freedom of the press. Is that possible?"
+      ru: "Одна из партий в германском бундестаге хочет отменить свободу прессы. Возможно ли это?"
+    options:
+      a: { en: "Yes, if more than half of the members of the Bundestag are in favour.", ru: "Да, если за это выступает больше половины депутатов бундестага." }
+      b: { en: "Yes, but for that two thirds of the members of the Bundestag must be in favour.", ru: "Да, но для этого за должны быть две трети депутатов бундестага." }
+      c: { en: "No, because freedom of the press is a fundamental right. It cannot be abolished.", ru: "Нет, потому что свобода прессы — основное право. Её нельзя отменить." }
+      d: { en: "No, because only the Bundesrat can abolish freedom of the press.", ru: "Нет, потому что отменить свободу прессы может только бундесрат." }
+    terms:
+      - { de: "die Pressefreiheit", en: "freedom of the press", ru: "свобода прессы" }
+      - { de: "abschaffen", en: "to abolish", ru: "отменить" }
+      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат" }
+    status: draft
   - id: general-014
+    rationale_de: >-
+      Meinungsfreiheit heißt: Ich darf meine Meinung sagen und schreiben – auch im Internet und auch gegen die Regierung (Grundgesetz, Artikel 5). Die Freiheit hat aber Grenzen. Wer andere Menschen beschimpft oder Symbole verbotener Organisationen wie Nazi-Symbole öffentlich zeigt, kann dafür bestraft werden.
+    source: GG Art. 5; StGB § 86a, § 185
+    question:
+      en: "Freedom of opinion in Germany means that I …"
+      ru: "Свобода мнений в Германии означает, что я …"
+    options:
+      a: { en: "may insult passers-by on the street.", ru: "могу оскорблять прохожих на улице." }
+      b: { en: "can express my opinion on the internet.", ru: "могу высказывать своё мнение в интернете." }
+      c: { en: "may wear Nazi, Hamas or Islamic State symbols in public.", ru: "могу публично носить символику нацистов, ХАМАС или «Исламского государства»." }
+      d: { en: "may only express my opinion as long as I do not contradict the government.", ru: "могу высказывать своё мнение, только пока не возражаю правительству." }
+    terms:
+      - { de: "beschimpfen", en: "to insult", ru: "оскорблять" }
+      - { de: "äußern", en: "to express", ru: "высказывать" }
+    status: draft
   - id: general-015
+    rationale_de: >-
+      Das Grundgesetz sagt in Artikel 12: Niemand darf zu einer bestimmten Arbeit gezwungen werden. Zwangsarbeit ist deshalb verboten – eine Ausnahme gibt es nur im Gefängnis. Die freie Berufswahl ist dagegen ein Grundrecht, und Militärdienst erlaubt das Grundgesetz ausdrücklich (Artikel 12a).
+    source: GG Art. 12, Art. 12a
+    question:
+      en: "What does the German Basic Law prohibit?"
+      ru: "Что запрещает Основной закон Германии?"
+    options:
+      a: { en: "military service", ru: "военную службу" }
+      b: { en: "forced labour", ru: "принудительный труд" }
+      c: { en: "free choice of occupation", ru: "свободный выбор профессии" }
+      d: { en: "working abroad", ru: "работу за границей" }
+    terms:
+      - { de: "die Zwangsarbeit", en: "forced labour", ru: "принудительный труд" }
+      - { de: "die Berufswahl", en: "choice of occupation", ru: "выбор профессии" }
+    status: draft
   - id: general-016
+    rationale_de: >-
+      Die Meinungsfreiheit hat Grenzen, und eine wichtige Grenze ist die Ehre anderer Menschen (Grundgesetz, Artikel 5, Absatz 2). Wer öffentlich Falsches über eine bestimmte Person behauptet, kann dafür bestraft werden. Kritik an der Regierung oder am Staat und Gespräche über Religionen sind dagegen erlaubt.
+    source: GG Art. 5 Abs. 2; StGB § 186, § 187
+    question:
+      en: "When is freedom of opinion restricted in Germany?"
+      ru: "Когда в Германии ограничивается свобода мнений?"
+    options:
+      a: { en: "when false claims about individual people are spread in public", ru: "при публичном распространении ложных утверждений об отдельных людях" }
+      b: { en: "when opinions are expressed about the federal government", ru: "при высказываниях о федеральном правительстве" }
+      c: { en: "in discussions about religions", ru: "при обсуждении религий" }
+      d: { en: "when the state is criticised", ru: "при критике государства" }
+    terms:
+      - { de: "die Behauptung", en: "claim", ru: "утверждение" }
+      - { de: "verbreiten", en: "to spread", ru: "распространять" }
+      - { de: "einschränken", en: "to restrict", ru: "ограничивать" }
+    status: draft
   - id: general-017
+    rationale_de: >-
+      Der Staat muss alle Menschen gleich behandeln. Das steht im Grundgesetz, Artikel 3: Alle Menschen sind vor dem Gesetz gleich. Meinungsfreiheit, Petitionen und Versammlungsfreiheit sind dagegen Grundrechte – sie sind erlaubt und geschützt.
+    source: GG Art. 3
+    question:
+      en: "German laws prohibit …"
+      ru: "Немецкие законы запрещают …"
+    options:
+      a: { en: "freedom of opinion of the inhabitants.", ru: "свободу мнений жителей." }
+      b: { en: "petitions by citizens.", ru: "петиции граждан." }
+      c: { en: "freedom of assembly of the inhabitants.", ru: "свободу собраний жителей." }
+      d: { en: "unequal treatment of citizens by the state.", ru: "неравное обращение государства с гражданами." }
+    terms:
+      - { de: "die Ungleichbehandlung", en: "unequal treatment", ru: "неравное обращение" }
+      - { de: "die Petition", en: "petition", ru: "петиция" }
+      - { de: "die Versammlungsfreiheit", en: "freedom of assembly", ru: "свобода собраний" }
+    status: draft
   - id: general-018
+    rationale_de: >-
+      Artikel 1 des Grundgesetzes beginnt mit dem Satz: „Die Würde des Menschen ist unantastbar.“ Das heißt: Niemand darf die Würde eines Menschen verletzen – auch nicht der Staat. Das Recht auf Leben steht in Artikel 2, die Religionsfreiheit in Artikel 4 und die Meinungsfreiheit in Artikel 5.
+    source: GG Art. 1
+    question:
+      en: "Which fundamental right is guaranteed in Article 1 of the Basic Law of the Federal Republic of Germany?"
+      ru: "Какое основное право гарантирует статья 1 Основного закона Федеративной Республики Германия?"
+    options:
+      a: { en: "the inviolability of human dignity", ru: "неприкосновенность человеческого достоинства" }
+      b: { en: "the right to life", ru: "право на жизнь" }
+      c: { en: "freedom of religion", ru: "свобода вероисповедания" }
+      d: { en: "freedom of opinion", ru: "свобода мнений" }
+    terms:
+      - { de: "die Würde des Menschen", en: "human dignity", ru: "человеческое достоинство" }
+      - { de: "unantastbar", en: "inviolable", ru: "неприкосновенный" }
+    status: draft
   - id: general-019
+    rationale_de: >-
+      Freizügigkeit heißt: Man darf selbst entscheiden, wo man in Deutschland wohnt, und man darf frei umziehen. Für alle Deutschen garantiert das Grundgesetz dieses Recht in Artikel 11. Vorsicht: Das Adjektiv „freizügig“ kann auch „leicht bekleidet“ bedeuten – mit diesem Recht hat das nichts zu tun.
+    source: GG Art. 11
+    question:
+      en: "What is meant in Germany by the right to “freedom of movement”?"
+      ru: "Что понимается в Германии под правом на «свободу передвижения»?"
+    options:
+      a: { en: "You may choose your place of residence yourself.", ru: "Можно самому выбирать место жительства." }
+      b: { en: "You can change your job.", ru: "Можно сменить профессию." }
+      c: { en: "You may decide on a different religion.", ru: "Можно выбрать другую религию." }
+      d: { en: "In public you may only move about lightly dressed.", ru: "На публике можно появляться только в лёгкой одежде." }
+    terms:
+      - { de: "die Freizügigkeit", en: "freedom of movement", ru: "свобода передвижения" }
+      - { de: "der Wohnort", en: "place of residence", ru: "место жительства" }
+    status: draft
   - id: general-243
+    rationale_de: >-
+      Das Grundgesetz garantiert die Versammlungsfreiheit (Artikel 8). Für eine Demonstration unter freiem Himmel braucht man keine Erlaubnis, aber man muss sie vorher bei der zuständigen Behörde anmelden. So kann die Polizei zum Beispiel den Verkehr regeln und die Demonstration schützen.
+    source: GG Art. 8; VersG § 14, BayVersG Art. 13
+    question:
+      en: "Maik and Sybille want to hold a street demonstration with friends in the German town where they live. What do they have to do beforehand?"
+      ru: "Майк и Зибилле хотят вместе с друзьями провести уличную демонстрацию в немецком городе, где они живут. Что им нужно сделать заранее?"
+    options:
+      a: { en: "They must register the demonstration.", ru: "Они должны зарегистрировать демонстрацию." }
+      b: { en: "They do not have to do anything. In Germany you may demonstrate anywhere at any time.", ru: "Им ничего не нужно делать. В Германии можно проводить демонстрации где угодно и когда угодно." }
+      c: { en: "They cannot do anything at all, because demonstrations are generally prohibited in Germany.", ru: "Они ничего не могут сделать, потому что демонстрации в Германии в принципе запрещены." }
+      d: { en: "Maik and Sybille must found a new association, because only associations may demonstrate.", ru: "Майк и Зибилле должны основать новое объединение, потому что проводить демонстрации могут только объединения." }
+    terms:
+      - { de: "anmelden", en: "to register, give notice", ru: "заявить, уведомить" }
+      - { de: "die Demonstration", en: "demonstration", ru: "демонстрация" }
+      - { de: "die Versammlungsfreiheit", en: "freedom of assembly", ru: "свобода собраний" }
+    status: draft
   - id: general-262
+    rationale_de: >-
+      Gleichbehandlung heißt: Niemand darf schlechter behandelt werden, weil er zum Beispiel eine Behinderung hat. Das steht im Grundgesetz, Artikel 3: „Niemand darf wegen seiner Behinderung benachteiligt werden.“ Wer benachteiligt wird, kann sich wehren und auch vor Gericht klagen.
+    source: GG Art. 3 Abs. 3; AGG
+    question:
+      en: "What does the principle of equal treatment mean in Germany?"
+      ru: "Что означает в Германии принцип равного обращения?"
+    options:
+      a: { en: "No one may be disadvantaged, e.g. because of a disability.", ru: "Никого нельзя ущемлять, например, из-за инвалидности." }
+      b: { en: "You may disadvantage other people if there are sufficient personal reasons for it.", ru: "Можно ущемлять других людей, если для этого есть достаточные личные причины." }
+      c: { en: "No one may take legal action against people if they have been disadvantaged.", ru: "Никто не имеет права подавать в суд на людей, если они были ущемлены." }
+      d: { en: "It is the law for everyone to donate money to disadvantaged groups every year.", ru: "По закону все обязаны ежегодно жертвовать деньги ущемлённым группам." }
+    terms:
+      - { de: "die Gleichbehandlung", en: "equal treatment", ru: "равное обращение" }
+      - { de: "benachteiligen", en: "to disadvantage", ru: "ущемлять" }
+      - { de: "die Behinderung", en: "disability", ru: "инвалидность" }
+    status: draft
   - id: general-274
+    rationale_de: >-
+      Briefe sind durch das Briefgeheimnis geschützt (Grundgesetz, Artikel 10). Nur die Person, an die der Brief adressiert ist, darf ihn öffnen und lesen – wer absichtlich einen fremden Brief öffnet, kann sogar bestraft werden. Die Schweigepflicht ist etwas anderes: Sie gilt zum Beispiel für Ärztinnen und Ärzte.
+    source: GG Art. 10; StGB § 202
+    question:
+      en: "In Germany, you have deliberately opened a letter addressed to another person. What have you not respected?"
+      ru: "Вы в Германии намеренно вскрыли письмо, адресованное другому человеку. Что вы не соблюли?"
+    options:
+      a: { en: "the right to remain silent", ru: "право хранить молчание" }
+      b: { en: "the privacy of correspondence", ru: "тайну переписки" }
+      c: { en: "the duty of confidentiality", ru: "обязанность хранить тайну" }
+      d: { en: "freedom of opinion", ru: "свободу мнений" }
+    terms:
+      - { de: "das Briefgeheimnis", en: "privacy of correspondence", ru: "тайна переписки" }
+      - { de: "die Schweigepflicht", en: "duty of confidentiality", ru: "обязанность хранить тайну" }
+      - { de: "absichtlich", en: "deliberately", ru: "намеренно" }
+    status: draft
   - id: general-281
+    rationale_de: >-
+      Hier wird das Recht auf Gleichbehandlung verletzt. Das Grundgesetz sagt in Artikel 3: Niemand darf wegen seiner Abstammung oder Herkunft benachteiligt werden. Darum dürfen die beiden Freunde genauso ins Schwimmbad wie alle anderen.
+    source: GG Art. 3 Abs. 3; AGG
+    question:
+      en: "Two friends want to go to a public swimming pool in Germany. Both have dark skin and are not let in because of it. Which right is being violated in this situation? The right to …"
+      ru: "Двое друзей хотят пойти в общественный бассейн в Германии. У обоих тёмный цвет кожи, и поэтому их не пускают. Какое право нарушается в этой ситуации? Право на …"
+    options:
+      a: { en: "freedom of opinion", ru: "свободу мнений" }
+      b: { en: "equal treatment", ru: "равное обращение" }
+      c: { en: "freedom of assembly", ru: "свободу собраний" }
+      d: { en: "freedom of movement", ru: "свободу передвижения" }
+    terms:
+      - { de: "verletzen", en: "to violate", ru: "нарушать" }
+      - { de: "die Hautfarbe", en: "skin colour", ru: "цвет кожи" }
+      - { de: "die Gleichbehandlung", en: "equal treatment", ru: "равное обращение" }
+    status: draft
