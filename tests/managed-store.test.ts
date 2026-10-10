@@ -2,6 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { IDBFactory } from 'fake-indexeddb';
 import { get, set } from 'idb-keyval';
 import { createManagedStore, StorageRestartRequiredError, type StorageDiagnostic } from '../src/lib/managed-store';
+import { eventually } from './eventually';
 
 function fixture() {
   const factory = new IDBFactory();
@@ -65,7 +66,7 @@ describe('managed IndexedDB recovery', () => {
       return new Promise<void>(() => {});
     });
     try {
-      await Bun.sleep(90);
+      await eventually(needsRestart);
       expect(needsRestart()).toBe(true);
       await expect(set('later', true, use)).rejects.toBeInstanceOf(StorageRestartRequiredError);
       expect(calls).toBe(1);
@@ -100,7 +101,7 @@ describe('managed IndexedDB recovery', () => {
       keepAlive(store, () => running);
       return Promise.resolve();
     });
-    await Bun.sleep(90);
+    await eventually(needsRestart);
     expect(needsRestart()).toBe(true);
     running = false;
     await expect(write).resolves.toBeUndefined();
@@ -139,7 +140,9 @@ describe('managed IndexedDB recovery', () => {
     }) as IDBFactory['open'];
     const { use } = createManagedStore('late-open', { factory: () => factory, openMs: 20 });
     await set('value', 'fresh', use);
-    await Bun.sleep(80);
+    await eventually(() => {
+      try { first!.result.transaction('progress'); return false; } catch { return true; }
+    });
     expect(() => first!.result.transaction('progress')).toThrow();
     expect(await get('value', use)).toBe('fresh');
   });
