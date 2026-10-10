@@ -14,12 +14,17 @@
  * aborted transaction up to three times, and a page that dies between commit and removal
  * replays the op at the next launch. Each kind is idempotent at the store layer —
  * `logAttempt` dedupes by `setId|itemId|ts`, a grade goes through `applyGradeAt`, whose
- * `last_review >= ts` guard makes a replay of a landed grade a no-op, and `logSession` merges
- * through `mergeSessions`, keyed by date and ts. A new op kind needs the same property.
+ * `last_review >= ts` guard makes a replay of a landed grade a no-op, `logSession` merges
+ * through `mergeSessions`, keyed by date and ts, a LiD answer dedupes by `q|ts` before it grades
+ * (`applyLidAnswer`), and a LiD mock run by its id (`applyLidExam`). A new op kind needs the
+ * same property.
  */
 import { getActiveProfileId } from './profile';
+import type { LidAnswer, LidExamRun } from './lid';
 import {
   logAttempt,
+  logLidAnswer,
+  logLidExam,
   logSession,
   type SessionLogEntry,
   updateCardState,
@@ -32,7 +37,9 @@ import { applyGradeAt, type Grade } from './srs';
 export type JournalOp =
   | { kind: 'attempt'; attempt: NewAttempt }
   | { kind: 'grade'; cardId: string; grade: Grade; ts: number }
-  | { kind: 'session'; entry: SessionLogEntry };
+  | { kind: 'session'; entry: SessionLogEntry }
+  | { kind: 'lid-answer'; answer: LidAnswer }
+  | { kind: 'lid-exam'; run: LidExamRun };
 
 /** Fired on every journal change (append, remove, replay) so the alert island can
     observe pending writes without polling. Same fire-and-forget shape as `da:attempt`. */
@@ -57,10 +64,13 @@ function seenDataKey(kind: SeenDataKind, profileId = getActiveProfileId()): stri
 
 /** Identity of an op, for removal after its write settles. */
 export function journalOpKey(op: JournalOp): string {
-  if (op.kind === 'session') return `session|${op.entry.date}|${op.entry.ts}`;
-  return op.kind === 'attempt'
-    ? `attempt|${op.attempt.setId}|${op.attempt.itemId}|${op.attempt.ts}`
-    : `grade|${op.cardId}|${op.ts}`;
+  switch (op.kind) {
+    case 'session': return `session|${op.entry.date}|${op.entry.ts}`;
+    case 'attempt': return `attempt|${op.attempt.setId}|${op.attempt.itemId}|${op.attempt.ts}`;
+    case 'grade': return `grade|${op.cardId}|${op.ts}`;
+    case 'lid-answer': return `lid-answer|${op.answer.q}|${op.answer.ts}`;
+    case 'lid-exam': return `lid-exam|${op.run.id}`;
+  }
 }
 
 function notify(): void {
@@ -139,7 +149,7 @@ export function journalRemove(op: JournalOp, profileId = getActiveProfileId()): 
  * fresh-profile view (and never feed `planReview`). Per kind, not global: a
  * learner who has only ever trained has legitimately empty cards.
  */
-export type SeenDataKind = 'cards' | 'attempts';
+export type SeenDataKind = 'cards' | 'attempts' | 'lid';
 
 export function markSeenData(kind: SeenDataKind, profileId = getActiveProfileId()): void {
   try {
@@ -191,7 +201,11 @@ function journalPoison(op: JournalOp, err: unknown, profileId: string): boolean 
 
 function confirmOp(op: JournalOp, profileId: string): void {
   journalRemove(op, profileId);
-  if (op.kind !== 'session') markSeenData(op.kind === 'attempt' ? 'attempts' : 'cards', profileId);
+  // Per kind, and LiD never as `cards`: a LiD-only learner's empty vocabulary store is real, and
+  // marking it "seen" would make every card surface render it as a stalled read.
+  if (op.kind === 'attempt') markSeenData('attempts', profileId);
+  else if (op.kind === 'grade') markSeenData('cards', profileId);
+  else if (op.kind === 'lid-answer' || op.kind === 'lid-exam') markSeenData('lid', profileId);
 }
 
 /** Retry knobs, exposed only so tests can drive real deadlines in milliseconds — the same
@@ -205,6 +219,8 @@ const results = new Map<string, StoredCard>();
 async function applyOp(op: JournalOp): Promise<StoredCard | undefined> {
   if (op.kind === 'attempt') await logAttempt(op.attempt);
   else if (op.kind === 'session') await logSession(op.entry);
+  else if (op.kind === 'lid-answer') await logLidAnswer(op.answer);
+  else if (op.kind === 'lid-exam') await logLidExam(op.run);
   else return updateCardState(op.cardId, (prev) => applyGradeAt(prev, op.grade, op.ts));
   return undefined;
 }
@@ -274,6 +290,26 @@ export async function logAttemptDurably(attempt: NewAttempt, retry: RetryOptions
 
 export async function logSessionDurably(entry: SessionLogEntry, retry: RetryOptions = {}): Promise<void> {
   journalAppend({ kind: 'session', entry });
+  await replayJournal(retry);
+}
+
+/** A LiD answer: journaled, then graded into the `lid` key by the one drain (ADR 0021). */
+export async function logLidAnswerDurably(answer: LidAnswer, retry: RetryOptions = {}): Promise<void> {
+  journalAppend({ kind: 'lid-answer', answer });
+  await replayJournal(retry);
+}
+
+/**
+ * A submitted LiD mock: the run, plus one exam-mode answer per item (`lidExamAnswers`, lid.ts),
+ * so a question missed in a mock is scheduled for review like a missed practice one. Every op is
+ * journaled in one synchronous pass before the drain is awaited, so the run and its answers are
+ * pending together and replay together.
+ */
+export async function logLidExamDurably(
+  run: LidExamRun, answers: LidAnswer[], retry: RetryOptions = {},
+): Promise<void> {
+  journalAppend({ kind: 'lid-exam', run });
+  for (const answer of answers) journalAppend({ kind: 'lid-answer', answer });
   await replayJournal(retry);
 }
 

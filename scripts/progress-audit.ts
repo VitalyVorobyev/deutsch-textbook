@@ -13,6 +13,9 @@
  *   bun run progress:audit --profile vitaly --item a2/perfekt-haben-sein:uebersetzen-pizza
  *   bun run progress:audit --profile vitaly --project 2026-08-02
  *   bun run progress:audit --profile vitaly --lapses
+ *
+ * A snapshot holding Leben-in-Deutschland answers (v8, ADR 0021) gets one more section at the
+ * end. That trainer keeps its own store key, so nothing above it counts a LiD answer.
  */
 import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -27,7 +30,10 @@ import {
 import { attemptScore, isVerifiedEvidence } from '../src/lib/scoring';
 import { isPretestAttempt, isRetiredRevision, type RevisionLookup } from '../src/lib/weakness';
 import { decisionKey, loadGradingDecisions } from '@da/content/grading-decisions';
+import { loadLidBank, loadLidNotes, loadLidTopics, lidTopicModules } from '@da/content/lid';
 import type { GradingDecision } from '@da/schema';
+import { LID_EXAM, type LidBank, type LidTopics } from '@da/schema/lid';
+import { lidReadiness, type LidState } from '../src/lib/lid';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   armedAt,
@@ -112,6 +118,8 @@ export interface AuditSnapshot {
   sessions?: Array<{ date: string; reviewed: number | null; trained: number; ts: number }>;
   topics?: Record<string, unknown>;
   feedback?: Record<string, { artifactId: string; difficulty?: string; useful?: boolean; wantsMore?: boolean; ts: number }>;
+  /** Leben in Deutschland (v8+); absent from older snapshots */
+  lid?: LidState;
 }
 
 export interface ExerciseItem {
@@ -291,7 +299,50 @@ export interface ProgressAudit {
   };
   focusSignals: FocusSignal[];
   feedback: AuditSnapshot['feedback'];
+  /** present only when the snapshot holds LiD answers */
+  lid?: LidAudit;
   detail?: ItemDetail;
+}
+
+/** The Leben-in-Deutschland trainer, reported as facts (ADR 0021): no pass probability. */
+export interface LidAudit {
+  answers: number;
+  /** questions in the bank */
+  total: number;
+  seen: number;
+  /** questions whose two most recent answers are both correct */
+  lastTwoCorrect: number;
+  /** question states due at the snapshot's export time */
+  due: number;
+  /** most recent answer per question, by module and then by topic, in topics.yaml order */
+  byGroup: Array<{
+    module: string;
+    /** absent on a module's own total row */
+    topic?: string;
+    questions: number;
+    seen: number;
+    latestCorrect: number;
+  }>;
+  /** answered wrong most often, every mode counted */
+  mostMissed: Array<{ id: string; wrong: number; answers: number; question: string }>;
+  /** mocks, most recent first */
+  exams: Array<{
+    date: string;
+    correct: number;
+    items: number;
+    passEinbuergerung: boolean;
+    passOrientierungskurs: boolean;
+    timedOut: boolean;
+  }>;
+  examsTotal: number;
+}
+
+/** What the LiD section joins answers to: the bank, its topics and the notes that place them. */
+export interface LidAuditContext {
+  bank: Pick<LidBank, 'questions'>;
+  topics: LidTopics;
+  /** question id → topic id */
+  placement: Map<string, string>;
 }
 
 export interface AuditOptions {
@@ -299,6 +350,8 @@ export interface AuditOptions {
   catalog: Map<string, CatalogItem>;
   /** committed linguistic rulings (data/grading-decisions.yaml) */
   decisions?: GradingDecision[];
+  /** the LiD bank and topics — needed only when the snapshot holds LiD answers */
+  lid?: LidAuditContext;
   now?: number;
   limit?: number;
   itemRef?: string;
@@ -365,6 +418,94 @@ export function readSnapshot(path: string): AuditSnapshot {
     sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
     topics: parsed.topics && typeof parsed.topics === 'object' ? parsed.topics : {},
     feedback: parsed.feedback && typeof parsed.feedback === 'object' ? parsed.feedback : {},
+    ...(hasLidAnswers(parsed) ? { lid: parsed.lid } : {}),
+  };
+}
+
+function hasLidAnswers(snapshot: Partial<AuditSnapshot>): snapshot is Partial<AuditSnapshot> & { lid: LidState } {
+  const lid = snapshot.lid;
+  return !!lid && typeof lid === 'object' && Array.isArray(lid.answers) && lid.answers.length > 0 &&
+    !!lid.cards && typeof lid.cards === 'object' && Array.isArray(lid.exams);
+}
+
+/**
+ * The LiD section. Accuracy is the MOST RECENT answer per question, not every answer pooled: a
+ * question missed three times last week and right twice since is a question the learner now
+ * knows, and pooling would keep reporting it as weak. The most-missed list is the opposite
+ * question — which items keep costing answers — so it counts every wrong answer.
+ */
+function lidSummary(lid: LidState, context: LidAuditContext, exportedAt: number, limit: number): LidAudit {
+  const ids = context.bank.questions.map((q) => q.id);
+  const text = new Map(context.bank.questions.map((q) => [q.id, q.question]));
+  const readiness = lidReadiness(lid, ids, new Date(exportedAt));
+
+  const latest = new Map<string, { correct: boolean; ts: number }>();
+  const tally = new Map<string, { wrong: number; answers: number; lastWrong: number }>();
+  for (const answer of lid.answers) {
+    const prior = latest.get(answer.q);
+    if (!prior || answer.ts >= prior.ts) latest.set(answer.q, { correct: answer.correct, ts: answer.ts });
+    const row = tally.get(answer.q) ?? { wrong: 0, answers: 0, lastWrong: 0 };
+    row.answers += 1;
+    if (!answer.correct) {
+      row.wrong += 1;
+      row.lastWrong = Math.max(row.lastWrong, answer.ts);
+    }
+    tally.set(answer.q, row);
+  }
+
+  const topicOf = lidTopicModules(context.topics);
+  const byGroup: LidAudit['byGroup'] = [];
+  for (const module of context.topics.modules) {
+    const total = { module: module.title_de, questions: 0, seen: 0, latestCorrect: 0 };
+    const rows = module.topics.map((topic) => ({ module: module.title_de, topic: topic.title_de, questions: 0, seen: 0, latestCorrect: 0 }));
+    for (const id of ids) {
+      const topic = context.placement.get(id);
+      const place = topic ? topicOf.get(topic) : undefined;
+      if (!place || place.module !== module.id) continue;
+      const row = rows[module.topics.findIndex((t) => t.id === topic)]!;
+      const answer = latest.get(id);
+      for (const r of [total, row]) {
+        r.questions += 1;
+        if (answer) {
+          r.seen += 1;
+          if (answer.correct) r.latestCorrect += 1;
+        }
+      }
+    }
+    byGroup.push(total, ...rows.filter((row) => row.seen > 0));
+  }
+
+  const exams = [...lid.exams].sort((a, b) => b.submittedAt - a.submittedAt);
+  return {
+    answers: lid.answers.length,
+    total: readiness.total,
+    seen: readiness.seen,
+    lastTwoCorrect: readiness.lastTwoCorrect,
+    due: readiness.due,
+    byGroup,
+    mostMissed: [...tally.entries()]
+      .filter(([, row]) => row.wrong > 0)
+      .sort(([a, x], [b, y]) => y.wrong - x.wrong || y.lastWrong - x.lastWrong || a.localeCompare(b))
+      .slice(0, limit)
+      .map(([id, row]) => ({ id, wrong: row.wrong, answers: row.answers, question: text.get(id) ?? '(not in the bank)' })),
+    exams: exams.slice(0, limit).map((run) => ({
+      date: iso(run.submittedAt).slice(0, 10),
+      correct: run.correct,
+      items: run.items.length,
+      passEinbuergerung: run.correct >= LID_EXAM.passEinbuergerung,
+      passOrientierungskurs: run.correct >= LID_EXAM.passOrientierungskurs,
+      timedOut: run.timedOut,
+    })),
+    examsTotal: exams.length,
+  };
+}
+
+/** Load what the LiD section joins to — only called when a snapshot holds LiD answers. */
+export function loadLidAuditContext(root: string): LidAuditContext {
+  return {
+    bank: loadLidBank(root),
+    topics: loadLidTopics(root),
+    placement: new Map(loadLidNotes(root).map((note) => [note.id, note.topic])),
   };
 }
 
@@ -1180,8 +1321,16 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
         return item ? item.revision ?? 1 : undefined;
       }),
     feedback: snapshot.feedback ?? {},
+    ...(snapshot.lid?.answers.length
+      ? { lid: lidSummary(snapshot.lid, requireLidContext(options.lid), exportedAt, limit) }
+      : {}),
     ...(detail ? { detail } : {}),
   };
+}
+
+function requireLidContext(context: LidAuditContext | undefined): LidAuditContext {
+  if (!context) throw new Error('The snapshot holds LiD answers; pass the LiD bank and topics (options.lid).');
+  return context;
 }
 
 const md = (value: unknown) =>
@@ -1343,6 +1492,52 @@ function readabilitySection(
  * row: it is a work-list, not a top-10. Every row is a production card by construction —
  * that is the rule's own scope — so the direction is stated once rather than columned.
  */
+function lidSection(lid: LidAudit | undefined): string[] {
+  if (!lid) return [];
+  const share = (n: number, of: number) => `${n}/${of} (${pct(n, of)})`;
+  return [
+    '## Leben in Deutschland',
+    '',
+    `Coverage: ${lid.seen}/${lid.total} questions answered at least once; ${lid.lastTwoCorrect} ` +
+      `correct on their last two answers; ${lid.due} due at export. ${lid.answers} answer(s) in all.`,
+    '',
+    'Accuracy is each question’s most recent answer. A module row covers all its questions; ' +
+      'topic rows appear once one of theirs has been answered.',
+    '',
+    '| Module | Topic | Seen | Latest correct |',
+    '| --- | --- | ---: | ---: |',
+    ...lid.byGroup.map((row) =>
+      row.topic === undefined
+        ? `| **${md(row.module)}** | all | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`
+        : `| ${md(row.module)} | ${md(row.topic)} | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`),
+    '',
+    ...(lid.mostMissed.length
+      ? [
+          '| Most often wrong | Wrong / answers | Question |',
+          '| --- | ---: | --- |',
+          ...lid.mostMissed.map((row) =>
+            `| ${md(row.id)} | ${row.wrong}/${row.answers} | ${md(row.question)} |`),
+          '',
+        ]
+      : ['No LiD question answered wrong yet.', '']),
+    ...(lid.examsTotal
+      ? [
+          `Mock exams (${lid.examsTotal}${lid.examsTotal > lid.exams.length ? `, latest ${lid.exams.length} shown` : ''}) — ` +
+            `pass marks ${LID_EXAM.passEinbuergerung}/${LID_EXAM.questions} for the Einbürgerungstest and ` +
+            `${LID_EXAM.passOrientierungskurs}/${LID_EXAM.questions} for the Orientierungskurs test, ` +
+            'two different tests. A mock is a simulation, never an official sheet.',
+          '',
+          '| Date | Score | Einbürgerung | Orientierungskurs | Timed out |',
+          '| --- | ---: | --- | --- | --- |',
+          ...lid.exams.map((run) =>
+            `| ${run.date} | ${run.correct}/${run.items} | ${run.passEinbuergerung ? 'pass' : 'fail'} | ` +
+            `${run.passOrientierungskurs ? 'pass' : 'fail'} | ${run.timedOut ? 'yes' : 'no'} |`),
+          '',
+        ]
+      : ['No mock exam taken yet.', '']),
+  ];
+}
+
 function lapseReviewSection(
   rows: ProgressAudit['cards']['needingReview'],
   show: boolean,
@@ -1503,6 +1698,7 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     ...feedback.map((entry) => `| ${md(entry.artifactId)} | ${md(entry.difficulty ?? '—')} | ${entry.useful === undefined ? '—' : entry.useful ? 'yes' : 'no'} | ${entry.wantsMore === undefined ? '—' : entry.wantsMore ? 'yes' : 'no'} |`),
     '',
   );
+  out.push(...lidSection(audit.lid));
   if (audit.detail) {
     out.push(`## Item detail — \`${audit.detail.ref}\``, '');
     if (audit.detail.item) {
@@ -1612,6 +1808,8 @@ export function run(argv = process.argv.slice(2), root = process.cwd()): string 
     snapshotPath: relative(root, snapshotPath) || snapshotPath,
     catalog: loadExerciseCatalog(root),
     decisions: loadGradingDecisions(root),
+    // Read only when needed: a snapshot without LiD answers must not depend on the bank existing.
+    ...(snapshot.lid?.answers.length ? { lid: loadLidAuditContext(root) } : {}),
     itemRef: args.item,
     projectTo,
   });

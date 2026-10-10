@@ -2,7 +2,8 @@
 import { createEmptyCard, fsrs, type Card, type Grade } from 'ts-fsrs';
 import type { VocabEntry, WordField, Wortnetz } from '@da/schema';
 import { shuffle } from './shuffle';
-import { localDateString, type StoredCard } from './store';
+import { localDateString } from './local-date';
+import type { StoredCard } from './store';
 
 export { Rating } from 'ts-fsrs';
 export type { Grade };

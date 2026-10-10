@@ -1,0 +1,23 @@
+---
+/**
+ * The source line every /leben page ends with. The bank is an official work shipped verbatim
+ * (ADR 0021, §5 Abs. 2 UrhG): no alteration, and the source named — this component is the
+ * "named". The attribution also says which parts are the course's own and unofficial.
+ */
+import type { LidBank } from '@da/schema/lid';
+import Chrome from '../Chrome.astro';
+
+interface Props {
+  source: LidBank['source'];
+}
+const { source } = Astro.props;
+---
+
+<footer class="mt-12 border-t border-stone-200 pt-4 text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
+  <p lang="de">{source.attribution}</p>
+  <p lang="de" class="mt-1">
+    {source.edition} ·
+    <a href={source.pdfUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-stone-700 dark:hover:text-stone-200"><Chrome k="lid.pdfLink" /></a>
+    · {source.legalBasis}
+  </p>
+</footer>
