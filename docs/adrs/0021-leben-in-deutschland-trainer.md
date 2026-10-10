@@ -88,8 +88,13 @@ question in exactly one topic and carries the course's rationale (simple German)
 practice on request and never in the mock exam.
 
 **Lessons are reading material, not spine topics.** `content/lid/lessons/<id>.mdx` teaches, in
-simple German, the system behind the questions of one or more topics: `## Kurz gesagt` with one
-EN/RU orientation, then German sections and a glossary. A lesson owns no exercises, probes or
+simple German, the system behind the questions of one or more topics: German sections, `## Kurz
+gesagt` first, and a glossary. **Every section with German text closes with a collapsed
+`<Translation>`** — EN, RU and UK halves translated from the German, nothing added — that the
+learner opens when a paragraph does not land; under Lernsprache `de` it is hidden. The German stays
+the visible text because the exam is German. This replaced, on the owner's ruling of 2026-10-10,
+the first shape — an EN/RU/UK orientation and German-only sections — which gave a B1 reader
+nothing to check a hard paragraph against and no German summary at all. A lesson owns no exercises, probes or
 outcomes and enters no Themen, grammar or Wortliste denominator — its practice is its topics'
 official questions (`/leben/ueben?lektion=<id>`, every one of them, no daily cap). A topic belongs
 to **at most one** lesson, so a question links back to exactly one lesson or none; `bun run

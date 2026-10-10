@@ -1,8 +1,8 @@
 ---
 /**
- * One Leben-in-Deutschland lesson (ADR 0021): the MDX article — `## Kurz gesagt` with its one
- * bilingual orientation, then German sections — its glossary, every exam question of its
- * topics in teaching order, and the way into practising exactly those.
+ * One Leben-in-Deutschland lesson (ADR 0021): the MDX article — German sections, `## Kurz gesagt`
+ * first, each closed by a collapsed <Translation> in the learner's Lernsprache — its glossary,
+ * every exam question of its topics in teaching order, and the way into practising exactly those.
  *
  * Static throughout, no island per row (CLAUDE.md runtime invariant). The glossary obeys the EN
  * surface rule with the site's `.lang-*` classes: German and English always, the Russian column
@@ -11,14 +11,13 @@
  */
 import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
-import Bilingual from '../../../components/Bilingual.astro';
 import Chrome from '../../../components/Chrome.astro';
 import En from '../../../components/En.astro';
 import Ru from '../../../components/Ru.astro';
 import Uk from '../../../components/Uk.astro';
-import De from '../../../components/De.astro';
 import UebenNav from '../../../components/UebenNav.astro';
 import LidSource from '../../../components/lid/LidSource.astro';
+import Translation from '../../../components/lid/Translation.astro';
 import { lidText, questionAnchor, questionLabel } from '../../../components/lid/shared';
 import { getLidCatalogue } from '../../../lib/content';
 import { t } from '../../../lib/strings';
@@ -71,7 +70,7 @@ const draft = lesson.status === 'draft';
     </a>
   </header>
 
-  <article lang="de" class="article-prose mt-6"><Content components={{ Bilingual, En, Ru, Uk, De }} /></article>
+  <article lang="de" class="article-prose mt-6"><Content components={{ Translation, En, Ru, Uk }} /></article>
 
   <section class="mt-10" aria-labelledby="begriffe">
     <h2 id="begriffe" class="text-xl font-bold"><Chrome k="lid.lessonTerms" /></h2>

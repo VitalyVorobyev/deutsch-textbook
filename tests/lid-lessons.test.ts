@@ -113,7 +113,9 @@ describe('the cross-file rules', () => {
   });
 });
 
-describe('the body: "## Kurz gesagt" first, one bilingual block, German after it', () => {
+describe('the body: German, "## Kurz gesagt" first, every section closed by a <Translation>', () => {
+  const blocks = () => FIXTURE.match(/<Translation>[\s\S]*?<\/Translation>/g)!;
+
   test('missing "## Kurz gesagt"', () => {
     expect(only(edit(FIXTURE, '## Kurz gesagt\n', '')).join('\n')).toContain(
       'the first heading must be "## Kurz gesagt", found "## Die Flagge"',
@@ -133,18 +135,37 @@ describe('the body: "## Kurz gesagt" first, one bilingual block, German after it
     expect(only(edit(FIXTURE, '## Kurz gesagt\n', '{/* Quelle geprüft */}\n\n## Kurz gesagt\n'))).toEqual([]);
   });
 
-  test('"## Kurz gesagt" holds exactly one Bilingual block, with an En and a Ru half', () => {
-    const block = FIXTURE.match(/<Bilingual>[\s\S]*?<\/Bilingual>/)![0];
-    expect(only(edit(FIXTURE, block, 'Nur Deutsch.')).join('\n')).toContain('exactly one <Bilingual> block, found 0');
-    expect(only(edit(FIXTURE, block, `${block}\n\n${block}`)).join('\n')).toContain('exactly one <Bilingual> block, found 2');
-    const noRu = block.replace(/<Ru>[\s\S]*?<\/Ru>\n/, '');
-    expect(only(edit(FIXTURE, block, noRu)).join('\n')).toContain('needs an <En> and a <Ru> half');
+  test('a section with German text and no translation, or two', () => {
+    const [, flag] = blocks();
+    expect(only(edit(FIXTURE, flag!, '')).join('\n')).toContain('"## Die Flagge" closes with exactly one <Translation>, found 0');
+    expect(only(edit(FIXTURE, flag!, `${flag}\n\n${flag}`)).join('\n')).toContain('found 2');
+    // Kurz gesagt is a section like any other: its German needs its translation too.
+    expect(only(edit(FIXTURE, blocks()[0]!, '')).join('\n')).toContain('"## Kurz gesagt" closes with exactly one <Translation>, found 0');
   });
 
-  test('no Bilingual block after it — the rest of the lesson is German', () => {
-    const block = FIXTURE.match(/<Bilingual>[\s\S]*?<\/Bilingual>/)![0];
-    expect(only(edit(FIXTURE, '### Die Hauptstadt\n', `### Die Hauptstadt\n\n${block}\n`)).join('\n')).toContain(
-      '1 <Bilingual> block(s) outside "## Kurz gesagt"',
+  test('the translation comes after the German it translates', () => {
+    const [, flag] = blocks();
+    const moved = edit(edit(FIXTURE, flag!, ''), '## Die Flagge\n\n', `## Die Flagge\n\n${flag}\n\n`);
+    expect(only(moved).join('\n')).toContain('"## Die Flagge": the <Translation> comes last');
+  });
+
+  test('a heading with only a subsection under it needs none, and may not have one', () => {
+    const bare = edit(edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', ''), blocks()[1]!, '');
+    expect(only(bare)).toEqual([]);
+    const stray = edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', '');
+    expect(only(stray).join('\n')).toContain('"## Die Flagge" has a <Translation> but no German text to translate');
+  });
+
+  test('every translation has an <En> and a <Ru> half', () => {
+    const [, flag] = blocks();
+    const noRu = flag!.replace(/<Ru>[\s\S]*?<\/Ru>\n/, '');
+    expect(only(edit(FIXTURE, flag!, noRu)).join('\n')).toContain('"## Die Flagge": its <Translation> has no <Ru> half');
+  });
+
+  test('no <Bilingual> block — the old orientation-only shape is gone', () => {
+    const bilingual = '<Bilingual>\n<En>\nOld.\n</En>\n<Ru>\nСтарое.\n</Ru>\n</Bilingual>';
+    expect(only(edit(FIXTURE, '### Die Hauptstadt\n', `### Die Hauptstadt\n\n${bilingual}\n`)).join('\n')).toContain(
+      '1 <Bilingual> block(s)',
     );
   });
 
@@ -176,7 +197,7 @@ describe('language discipline', () => {
     const someUk = edit(FIXTURE, 'ru: федеральный флаг }', 'ru: федеральный флаг, uk: федеральний прапор }');
     const problems = only(someUk).join('\n');
     expect(problems).toContain('terms[1].ru has no uk sibling');
-    expect(problems).toContain('<Bilingual> block 1 has no <Uk> half');
+    expect(problems).toContain('"## Kurz gesagt": its <Translation> has no <Uk> half');
   });
 });
 
@@ -192,7 +213,7 @@ describe('UK parity coverage', () => {
       ),
       '</Ru>\n',
       '</Ru>\n<Uk>\nТестовий урок для перевірки механізму уроків, а не навчальний матеріал.\n</Uk>\n',
-    );
+    ).replaceAll('</Ru>\n</Translation>', '</Ru>\n<Uk>\nПереклад.\n</Uk>\n</Translation>');
     const root = rootWith({ 'zz-fixture': withUk });
     expect(lidLessonProblems(root)).toEqual([]);
     expect(ukHalfCoverage(root)).toEqual({ authored: 1, total: 1 });
