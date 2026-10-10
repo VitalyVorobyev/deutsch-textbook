@@ -169,8 +169,9 @@ function Rationale({ note }: { note: LidNoteView | undefined }) {
 
 /**
  * The unofficial translation, behind a toggle. EN surface rule: English always, plus the
- * explanation language's own half through `pickSecond` — Russian under `ru`, nothing under
- * `en`, `de` or `uk` (the notes carry no Ukrainian, and a UK reader is never handed Russian).
+ * explanation language's own half through `pickSecond` — Russian under `ru`, Ukrainian under
+ * `uk`, nothing under `en` or `de`. A UK reader is never handed Russian: a note without its `uk`
+ * shows English alone.
  */
 function Translation({ note, order }: { note: LidNoteView; order: readonly LidOptionKey[] }) {
   const uiLang = useUiLang();
@@ -179,7 +180,8 @@ function Translation({ note, order }: { note: LidNoteView; order: readonly LidOp
   const regionId = useId();
   if (!note.question || !note.options) return null;
   const { question, options } = note;
-  const second = (text: { ru: string }) => pickSecond(lang, { ru: text.ru });
+  const second = (text: { ru: string; uk?: string }) => pickSecond(lang, text);
+  const secondLang = lang === 'uk' ? 'uk' : 'ru';
 
   return (
     <div>
@@ -196,14 +198,14 @@ function Translation({ note, order }: { note: LidNoteView; order: readonly LidOp
         <div id={regionId} className="mt-1 space-y-2 text-stone-600 dark:text-stone-300">
           <div>
             <p lang="en">{question.en}</p>
-            {second(question) && <p lang="ru">{second(question)}</p>}
+            {second(question) && <p lang={secondLang}>{second(question)}</p>}
           </div>
           <ul className="list-disc space-y-1 pl-5">
             {order.map((key) => (
               <li key={key}>
                 <span lang="en">{options[key].en}</span>
                 {second(options[key]) && (
-                  <span lang="ru" className="block">
+                  <span lang={secondLang} className="block">
                     {second(options[key])}
                   </span>
                 )}
@@ -227,16 +229,16 @@ function Terms({ note }: { note: LidNoteView }) {
       </p>
       <dl className="mt-1 space-y-1">
         {note.terms.map((term) => {
-          const ru = pickSecond(lang, { ru: term.ru });
+          const second = pickSecond(lang, term);
           return (
             <div key={term.de}>
               <dt className="inline font-medium">{term.de}</dt>
               <dd className="inline text-stone-600 dark:text-stone-300">
                 {' — '}
                 <span lang="en">{term.en}</span>
-                {ru && (
-                  <span lang="ru" className="block pl-4">
-                    {ru}
+                {second && (
+                  <span lang={lang === 'uk' ? 'uk' : 'ru'} className="block pl-4">
+                    {second}
                   </span>
                 )}
               </dd>

@@ -123,7 +123,12 @@ export const lidTopicsSchema = z
   .strict();
 export type LidTopics = z.infer<typeof lidTopicsSchema>;
 
-const enRu = z.object({ en: z.string().min(1), ru: z.string().min(1) }).strict();
+/**
+ * One unofficial rendering of an official German text. `uk` is optional in the shape only: like
+ * every Ukrainian half it is all-or-none per file (`lidProblems` → `ukParityProblems`), and
+ * `tests/i18n-content.test.ts` holds every notes file to carrying it.
+ */
+const enRuUk = z.object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() }).strict();
 
 export const lidNoteSchema = z
   .object({
@@ -131,10 +136,16 @@ export const lidNoteSchema = z
     /** Why the correct answer is correct, in simple (B1) German. Never contradicts the key. */
     rationale_de: z.string().min(1).optional(),
     /** An UNOFFICIAL translation, shown on demand in practice only — never in the mock exam. */
-    question: enRu.optional(),
-    options: z.object({ a: enRu, b: enRu, c: enRu, d: enRu }).strict().optional(),
+    question: enRuUk.optional(),
+    options: z.object({ a: enRuUk, b: enRuUk, c: enRuUk, d: enRuUk }).strict().optional(),
     /** Key terms of the question, glossed — candidates for a later recognition deck. */
-    terms: z.array(z.object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1) }).strict()).optional(),
+    terms: z
+      .array(
+        z
+          .object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+          .strict(),
+      )
+      .optional(),
     /** Where the rationale's fact comes from, e.g. `GG Art. 5`. */
     source: z.string().min(1).optional(),
     status: z.enum(['draft', 'reviewed']).default('draft'),
@@ -156,9 +167,9 @@ export type LidNotesFile = z.infer<typeof lidNotesFileSchema>;
 export const LID_LESSON_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 /**
- * One glossary row of a lesson. `uk` is optional and, like every Ukrainian half, all-or-none per
- * file (the validator's uk parity): the LiD material ships without it for now (ADR 0021, backlog
- * P31-1), and the page renders a Ukrainian column only when the lesson carries one.
+ * One glossary row of a lesson. `uk` is optional in the shape and, like every Ukrainian half,
+ * all-or-none per file (the validator's uk parity bridges the frontmatter and the `<Uk>` half of
+ * `## Kurz gesagt`); the page renders a Ukrainian column only when the lesson carries one.
  */
 export const lidLessonTermSchema = z
   .object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })

@@ -132,9 +132,27 @@ export function lidProblems(root = repoRoot()): string[] {
     placed.set(note.id, note.topic);
     for (const p of langFieldProblems(note)) at(file, `${note.id}: ${p}`);
   }
+  problems.push(...lidNotesUkProblems(notes));
   const unplaced = bank.questions.filter((q) => !placed.has(q.id)).map((q) => q.id);
   if (unplaced.length)
     at(LID_NOTES_DIR, `${unplaced.length} question(s) belong to no topic: ${unplaced.slice(0, 12).join(', ')}${unplaced.length > 12 ? ' …' : ''}`);
+  return problems;
+}
+
+/**
+ * Ukrainian is all-or-none per notes file, the scope every other content file is held to: one `uk`
+ * anywhere in `notes/<topic>.yaml` obliges a `uk` beside every `ru` in it — question, options and
+ * terms. A file with none passes here; `tests/i18n-content.test.ts` is what holds every file to
+ * carrying one.
+ */
+export function lidNotesUkProblems(notes: PlacedLidNote[]): string[] {
+  const problems: string[] = [];
+  for (const topic of new Set(notes.map((n) => n.topic))) {
+    const inFile = notes.filter((n) => n.topic === topic);
+    if (!hasUkField(inFile)) continue;
+    for (const note of inFile)
+      for (const p of ukParityProblems(note, { forceUk: true })) problems.push(`${LID_NOTES_DIR}/${topic}.yaml: ${note.id}: ${p}`);
+  }
   return problems;
 }
 
