@@ -13,6 +13,7 @@ import {
   listeningArtifactSchema,
   readingAudioArtifactSchema,
 } from '@da/schema';
+import { lidLessonSchema } from '@da/schema/lid';
 
 // Prose only: a topic's identity, titles and element lists live in the sibling
 // `<id>.topic.yaml`, which `getCurriculum()` reads. The collection exists to render the article.
@@ -71,6 +72,14 @@ const readingAudio = defineCollection({
   schema: readingAudioArtifactSchema,
 });
 
+// Leben-in-Deutschland lessons (ADR 0021): reading over the official questions' topics. The file
+// name is the lesson id; `bun run validate` (`lidProblems`) holds the cross-file rules. The
+// directory may hold no lesson at all — `.gitkeep` keeps it present in a clean checkout.
+const lidLessons = defineCollection({
+  loader: glob({ pattern: '*.mdx', base: './content/lid/lessons' }),
+  schema: lidLessonSchema,
+});
+
 export const collections = {
   topics,
   vocab,
@@ -83,4 +92,5 @@ export const collections = {
   referenceData,
   listening,
   readingAudio,
+  lidLessons,
 };

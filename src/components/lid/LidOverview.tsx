@@ -6,7 +6,7 @@
  * read renders `ProgressLoadError`, never zeros; a learner with no LiD answers yet gets an
  * invitation instead of a wall of zeros, but only when `hasSeenData('lid')` says that is true.
  *
- * The four entries render whatever the read does, so a stalled store never hides the way in.
+ * The five entries render whatever the read does, so a stalled store never hides the way in.
  */
 import { useEffect, useMemo, useState } from 'react';
 import { LID_EXAM } from '@da/schema/lid';
@@ -32,6 +32,8 @@ interface Props {
   modules: LidModuleView[];
   /** `bank.states[0]` */
   state: string;
+  /** how many lessons there are (`/leben/lernen`) */
+  lessons: number;
 }
 
 interface Loaded {
@@ -89,7 +91,7 @@ function MockChart({ exams }: { exams: LidReadiness['exams'] }) {
   );
 }
 
-export default function LidOverview({ modules, state }: Props) {
+export default function LidOverview({ modules, state, lessons }: Props) {
   const uiLang = useUiLang();
   const ids = useMemo(() => modules.flatMap((m) => m.topics.flatMap((topic) => topic.ids)), [modules]);
   const [newPerDay, setNewPerDay] = useState(() => readNewPerDay());
@@ -159,7 +161,7 @@ export default function LidOverview({ modules, state }: Props) {
             {plan ? lidText('lid.queueCounts', uiLang, { due: plan.due, fresh: plan.fresh }) : ' '}
           </span>
         </a>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2">
           <a href={withBase('/leben/fehler')} className={entryLink}>
             <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.mistakes', uiLang)}</span>
             {readiness && (
@@ -178,6 +180,12 @@ export default function LidOverview({ modules, state }: Props) {
                 state: stateName(state),
                 minutes: LID_EXAM.minutes,
               })}
+            </span>
+          </a>
+          <a href={withBase('/leben/lernen')} className={entryLink}>
+            <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.learn', uiLang)}</span>
+            <span className="text-sm text-stone-500 dark:text-stone-400">
+              {lessons > 0 ? lidText('lid.learnHint', uiLang, { n: lessons }) : t('lid.lessonsNone', uiLang)}
             </span>
           </a>
           <a href={withBase('/leben/fragen')} className={entryLink}>

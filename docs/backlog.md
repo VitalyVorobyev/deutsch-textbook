@@ -664,6 +664,7 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   ratchet (`ukHalfCoverage`, `packages/content/src/coverage.ts`) until this lands. First step:
   author `uk` beside every `ru` from the German (never from the Russian), file by file; then
   delete the exemption, so `tests/i18n-content.test.ts` counts the 18 files again.
+  Scope includes the lessons (`content/lid/lessons/*.mdx`): a `<Uk>` half in `## Kurz gesagt` and `uk` on every glossary term.
 - **P25-8 · Seven top-level nav tabs is still past comfortable — finish the IA consolidation pass** —
   `nav` in `src/layouts/Base.astro` lists Heute, Themen, Entdecken, Referenz, Üben, Fortschritt,
   Über; Prüfung was folded into Üben as its fourth sub-tab (PR #179, 2026-08-12) on the owner's

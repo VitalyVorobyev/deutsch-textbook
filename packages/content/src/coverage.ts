@@ -456,9 +456,10 @@ export interface UkCoverage {
  *   per the earned-claims rule, rather than trusting the bridge.
  *
  * `content/lid/` is out of scope by owner decision (2026-10-10, ADR 0021) until its planned UK
- * follow-up (backlog P31-1): its EN/RU fields are unofficial translations of the official
- * Leben-in-Deutschland questions, shipped before their Ukrainian half. Under Lernsprache `uk`
- * they fall back to English, as every missing half does. The follow-up deletes this exemption.
+ * follow-up (backlog P31-1): its EN/RU halves — the notes' unofficial translations of the
+ * official Leben-in-Deutschland questions (`.yaml`) and the lessons' orientations and glossaries
+ * (`lessons/*.mdx`) — shipped before their Ukrainian half. Under Lernsprache `uk` they fall back
+ * to English, as every missing half does. The follow-up deletes this exemption, for both.
  */
 export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;
@@ -479,6 +480,7 @@ export function ukHalfCoverage(root = repoRoot()): UkCoverage {
     count(hasRuField(data), fullyAuthored);
   }
   for (const file of walk(join(root, 'content'), '.mdx')) {
+    if (file.startsWith(lid)) continue;
     const source = readFileSync(file, 'utf8');
     const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(\r?\n|$)/);
     const fm = frontmatter ? (YAML.parse(frontmatter[1]!) as unknown) : undefined;

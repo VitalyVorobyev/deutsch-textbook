@@ -8,6 +8,9 @@
  *    An EN reader is never handed Russian, and the exam never shows a translation at all.
  *  - **One answer, one write.** The first choice is final and is logged exactly once.
  *  - **A failed read is an error, never a fresh start** (CLAUDE.md runtime invariant).
+ *  - **Lessons stay out of the exam.** Practice feedback links the lesson on the question's
+ *    topic; the mock exam never does. `?lektion=<id>` narrows practice to that lesson's questions,
+ *    and an unknown id falls back to ordinary practice instead of an empty page.
  *
  * Only `getLidState` and the two LiD loggers are stubbed. `mock.module` is process-global in
  * bun, so both stubs delegate back to the real implementations in afterAll (the pattern of
@@ -17,7 +20,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, mock, tes
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import type { LidOptionKey, LidQuestion as LidQuestionData } from '@da/schema/lid';
-import type { LidEntry } from '../src/components/lid/shared';
+import type { LidEntry, LidLessonScopes } from '../src/components/lid/shared';
 import type { LidQuestionProps } from '../src/components/lid/LidQuestion';
 import { EMPTY_LID_STATE, type LidState } from '../src/lib/lid';
 import * as store from '../src/lib/store';
@@ -104,7 +107,13 @@ const PDF = 'https://example.invalid/katalog.pdf';
 const ZERO = () => 0;
 
 let LidQuestion: ComponentType<LidQuestionProps>;
-let LidPractice: ComponentType<{ entries: LidEntry[]; bankVersion: string; pdfUrl: string; rng?: () => number }>;
+let LidPractice: ComponentType<{
+  entries: LidEntry[];
+  bankVersion: string;
+  pdfUrl: string;
+  lessons?: LidLessonScopes;
+  rng?: () => number;
+}>;
 
 beforeAll(async () => {
   ({ default: LidQuestion } = await import('../src/components/lid/LidQuestion'));
@@ -275,5 +284,60 @@ describe('LidPractice', () => {
     render(<LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} />);
     await waitFor(() => expect(screen.getByRole('alert')).toBeTruthy());
     expect(screen.queryByText(TEXT.question.question)).toBeNull();
+  });
+});
+
+describe('lessons', () => {
+  const LESSON = { id: 'staat-symbole', title: 'Staatssymbole' };
+  const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } }).happyDOM;
+  const at = (search: string) => happyDom.setURL(`http://localhost/leben/ueben${search}`);
+  const IN_LESSON: LidEntry = { ...IMAGES, lesson: LESSON };
+  const lessonLink = () => screen.queryByRole('link', { name: /Mehr dazu: Lektion „Staatssymbole“/ });
+
+  afterEach(() => happyDom.setURL('about:blank'));
+
+  test('practice feedback links the lesson on the question\'s topic', () => {
+    practice(IN_LESSON);
+    expect(lessonLink()).toBeNull(); // feedback only, after the answer
+    fireEvent.click(screen.getByText('Bild 2', { selector: 'button span' }));
+    expect((lessonLink() as HTMLAnchorElement).getAttribute('href')).toBe('/leben/lernen/staat-symbole');
+  });
+
+  test('the exam never links a lesson — not while answering, not in its results', () => {
+    render(<LidQuestion mode="exam" entry={IN_LESSON} pdfUrl={PDF} chosen="b" onChoose={() => {}} />);
+    expect(lessonLink()).toBeNull();
+    cleanup();
+    render(<LidQuestion mode="exam" entry={IN_LESSON} pdfUrl={PDF} chosen="b" reveal />);
+    expect(screen.getByText('Noch keine Erklärung')).toBeTruthy(); // the results view did render
+    expect(lessonLink()).toBeNull();
+  });
+
+  test('?lektion=<id> deals only that lesson\'s questions, names it and links back', async () => {
+    at('?lektion=staat-symbole');
+    const lessons: LidLessonScopes = { 'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] } };
+    render(<LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} lessons={lessons} rng={ZERO} />);
+    await screen.findByText(IMAGES.question.question);
+    expect(screen.getByText('Lektion „Staatssymbole“')).toBeTruthy();
+    expect(screen.getByText('1 Fragen dieser Lektion')).toBeTruthy();
+    expect(screen.getByText('1 von 1')).toBeTruthy();
+    expect(screen.getByRole('link', { name: '← Zur Lektion' }).getAttribute('href')).toBe('/leben/lernen/staat-symbole');
+    expect(screen.queryByText(TEXT.question.question)).toBeNull();
+  });
+
+  test('an unknown lesson falls back to ordinary practice, with a quiet note', async () => {
+    at('?lektion=gibt-es-nicht');
+    const lessons: LidLessonScopes = { 'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] } };
+    render(<LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} lessons={lessons} rng={ZERO} />);
+    await screen.findByText(TEXT.question.question);
+    expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
+    expect(screen.getByText('0 fällig · 2 neu heute')).toBeTruthy();
+    expect(screen.queryByText(/Zur Lektion/)).toBeNull();
+  });
+
+  test('?lektion=constructor names no lesson — only own keys count', async () => {
+    at('?lektion=constructor');
+    render(<LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} lessons={{}} rng={ZERO} />);
+    await screen.findByText(TEXT.question.question);
+    expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
   });
 });
