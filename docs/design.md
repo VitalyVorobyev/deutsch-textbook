@@ -238,7 +238,9 @@ provenance, model-lock and export-safeguard decision.
 ## Progress and storage
 
 `src/lib/profile.ts` resolves local profiles. Each profile owns an IndexedDB database managed by
-`src/lib/store.ts`; same-day UI resume state lives separately in localStorage. Snapshot validation
+`src/lib/store.ts`; same-day UI resume state lives separately in localStorage.
+`src/lib/managed-store.ts` owns connection and transaction recovery; the ordered localStorage
+journal protects grades, attempts and session completion ([ADR 0020](adrs/0020-owned-storage-recovery.md)). Snapshot validation
 and explicit v1–v7 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
 semantics in `src/lib/snapshot-merge.ts`. Snapshot v7 relocates the A1 Wortliste card identities
 through the committed old-id → new-id inventory; collision merging preserves the most advanced

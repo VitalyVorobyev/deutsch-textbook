@@ -100,11 +100,11 @@ describe('journal round trip', () => {
     expect(journalPending().map(journalOpKey)).toEqual([journalOpKey(op2)]);
   });
 
-  test('overflow keeps the newest ops and raises the flag rather than dropping silently', () => {
+  test('overflow preserves every unconfirmed op and raises the flag', () => {
     for (let i = 0; i < JOURNAL_CAP + 5; i++) journalAppend(gradeOp('c', i));
     const pending = journalPending();
-    expect(pending).toHaveLength(JOURNAL_CAP);
-    expect((pending[0] as { ts: number }).ts).toBe(5); // oldest five dropped
+    expect(pending).toHaveLength(JOURNAL_CAP + 5);
+    expect((pending[0] as { ts: number }).ts).toBe(0); // oldest entries still recoverable
     expect(journalOverflowed()).toBe(true);
   });
 });

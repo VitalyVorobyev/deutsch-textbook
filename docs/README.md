@@ -25,6 +25,7 @@ Each subdirectory carries its own README with a closer view of its documents.
 | [`curriculum/grammar-structure-audit.md`](curriculum/grammar-structure-audit.md) | The inventory audit against the published external Strukturenlisten | ledger | an anchor list changes or is re-audited |
 | [`curriculum/learning-activity-audit.md`](curriculum/learning-activity-audit.md) | The activity-architecture pass under ADR 0014 | ledger | an activity audit is rerun |
 | [`curriculum/topic-quality-audit.md`](curriculum/topic-quality-audit.md) | Topic-by-topic A1–B1 quality ledger | ledger | a topic pass lands |
+| [`curriculum/leben-in-deutschland-brief.md`](curriculum/leben-in-deutschland-brief.md) | Research brief for the Leben-in-Deutschland (Bayern) trainer: exam spec, sources, rights questions | reference | the exam specification or a source changes |
 
 ## [`authoring/`](authoring/README.md)
 
@@ -66,6 +67,7 @@ How to *use* the applications this repository ships, as opposed to how to change
 | [`quality/audio-retirement-ledger.md`](quality/audio-retirement-ledger.md) | Retired recordings, with the reason each one left | ledger | a recording is retired or kept with reasons |
 | [`quality/tts-reliability.md`](quality/tts-reliability.md) | What the synthesis engine measurably does on this machine | measured | the engine, the machine or the pinned revision changes |
 | [`quality/ux-audit-2026-08.md`](quality/ux-audit-2026-08.md) | Three-form-factor UX findings, ranked | ledger | a form-factor audit is rerun |
+| [`quality/progress-persistence-verification.md`](quality/progress-persistence-verification.md) | What the 0.5.2 storage-recovery release was verified against, automated and on the native app | measured | the persistence path changes or is re-verified |
 
 ## [`adrs/`](adrs/README.md)
 

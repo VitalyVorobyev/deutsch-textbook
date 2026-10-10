@@ -1,10 +1,11 @@
 /** IndexedDB-backed progress store (client-side only), namespaced per profile. */
-import { createStore, get, set, update, clear, type UseStore } from 'idb-keyval';
-import { getActiveProfileId, dbNameFor, resolveProfileState, type ProfileRecord } from './profile';
+import { get, set, update, clear, type UseStore } from 'idb-keyval';
+import { getActiveProfileId, dbNameFor, resolveProfileState, listProfiles, type ProfileRecord } from './profile';
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
 import { recordRecovery, recordStall } from './stall-log';
+import { createManagedStore } from './managed-store';
 import {
   attemptKey,
   mergeAttempts,
@@ -22,44 +23,35 @@ import {
 // connection on every operation. The active profile is read inside each call
 // (not at module load) so a mid-session profile switch + reload picks the right
 // database. The legacy profile aliases the pre-profile `deutsch-atlas` DB.
-const stores = new Map<string, UseStore>();
+const stores = new Map<string, ReturnType<typeof createManagedStore>>();
 
 // Awaits the first-run/legacy decision before touching IndexedDB: creating a
 // store here would otherwise race the legacy-DB detection in profile.ts (e.g.
 // markTopicRead fires on topic-page mount with no user interaction). While the
 // first-run gate is up there is no profile to own a write, so park forever —
 // creating the profile reloads the page, which discards parked operations.
-async function getStore(): Promise<UseStore> {
+async function getStore(profileId?: string): Promise<UseStore> {
   if ((await resolveProfileState()) === 'first-run') {
     await new Promise<never>(() => {});
   }
-  const id = getActiveProfileId();
+  const id = profileId ?? getActiveProfileId();
   let s = stores.get(id);
   if (!s) {
-    s = createStore(dbNameFor(id), 'progress');
+    s = createManagedStore(dbNameFor(id), {
+      report: (entry) => recordStall({ ...entry, surface: 'storage', queueDepth: writeQueue.length, profileId: id }),
+    });
     stores.set(id, s);
   }
-  return s;
+  return s.use;
 }
 
-/**
- * Drop the memoized handle for a profile so the next store call opens a fresh connection.
- *
- * **Can** rescue a hung `indexedDB.open()`: idb-keyval memoizes the open promise in
- * `createStore`'s own closure and clears it only from `db.onclose` — an event a hang never
- * fires — so before this existed, every retry re-awaited the identical hung promise and the
- * backoff schedule was incapable of doing anything the first attempt had not already done.
- *
- * **Cannot** rescue a wedged readwrite transaction: a new connection's transaction still
- * queues behind it, because IndexedDB orders transactions by scope across the whole database,
- * not per connection. Reconnecting is a narrow remedy, not a general one.
- *
- * **Leaks one connection per reset** — idb-keyval never exposes the `IDBDatabase`, so the old
- * one cannot be `close()`d. Acceptable because a reset only happens on a stall, but real, and
- * the reason retries reconnect twice rather than on every attempt.
- */
+/** Retire idle connections only. Active transactions own their watchdog and recovery. */
 export function resetStoreHandle(profileId = getActiveProfileId()): void {
-  stores.delete(profileId);
+  stores.get(profileId)?.reset();
+}
+
+export function storageNeedsRestart(): boolean {
+  return stores.get(getActiveProfileId())?.needsRestart() ?? false;
 }
 
 /** Test-only: whether a live handle is memoized for a profile, so the reconnect path can be
@@ -251,22 +243,8 @@ export class StoreStallError extends Error {
   }
 }
 
-/**
- * Backoff schedule for critical writes: when the previous attempt has not settled by each
- * offset (ms from start), the memoized store handle is dropped and another attempt is fired.
- *
- * **Two retries, not three, and far apart — because a retry on the same connection cannot
- * help.** All six progress keys live in ONE object store, so IndexedDB gives each readwrite
- * exclusive access over the whole store: an attempt fired while the previous one is pending
- * cannot begin until that one completes. The old 4/8/16 s schedule therefore never once
- * overtook the transaction it was rescuing — it only queued three more full-blob
- * read-modify-writes of a ~784 KB `cards` record behind it. What a retry CAN do that the
- * first attempt could not is open a fresh connection (see `resetStoreHandle`), so that is
- * what each offset now does. ADR 0016 set the old schedule; ADR 0019 supersedes it.
- *
- * The op must still be idempotent — `logAttempt` dedupes by attempt key and card grades go
- * through `applyGradeAt`'s ts-guard, so N landed attempts equal one.
- */
+/** Legacy generic retry schedule. Journal writes use a single managed operation;
+ * their adapter owns abort/retry, while this wrapper supplies the caller deadline. */
 export const PERSISTENCE_RETRY_SCHEDULE_MS = [12_000, 30_000];
 
 /** Hard deadline after which `withPersistenceRetry` stops waiting and rejects with
@@ -485,21 +463,8 @@ export function withReadRetry<T>(
  */
 type StoreKey = 'cards' | 'attempts' | 'sessions' | 'topics' | 'goal' | 'feedback';
 
-/**
- * How long the runner WAITS for one batch before moving on to the next.
- *
- * Not a cancel — IndexedDB has none — and not a verdict: the orphaned transaction may still
- * commit, and `runBatch` settles its own members if it does. That late resolve is what reaches
- * `withPersistenceRetry`'s `onLateSettle` and clears the journal, which is why the late-settle
- * branch is a prerequisite for this queue rather than an independent repair.
- *
- * Equal to the write deadline by construction: the runner stops waiting exactly when the
- * callers do. Without it, one wedged commit would halt every later write for the life of the
- * page — the single genuine regression single-flighting could introduce.
- */
-export const QUEUE_BATCH_TIMEOUT_MS = PERSISTENCE_DEADLINE_MS;
-
 interface PendingWrite {
+  profileId?: string;
   key: StoreKey;
   mutate: (current: unknown) => unknown;
   resolve: () => void;
@@ -511,25 +476,7 @@ let draining = false;
 /** Bumped by `__resetWriteQueueForTests`; a drain loop from an earlier generation exits. */
 let queueGeneration = 0;
 
-/**
- * Test-only: abandon the queue and let a fresh one start.
- *
- * `writeQueue` and `draining` are module-level singletons and `bun test` shares ONE module
- * registry across the whole suite, so a file that leaves a write in flight against the real
- * commit primitive strands them: under happy-dom there is no IndexedDB, `getStore()` never
- * answers, `draining` stays true, and every later `enqueueUpdate` in every later FILE waits for
- * a drain that will never take it. That is what turned the write-queue tests red on CI while
- * they passed locally — the leaked op was a card grade whose 12 s retry fired long after its own
- * file had restored the real implementation, and only a slow enough run gives it the chance.
- *
- * The generation token is what makes this safe: a loop that is already running checks it each
- * iteration and returns instead of racing the fresh one, and leaves `draining` alone because it
- * no longer owns it. Waiters still IN THE QUEUE are rejected rather than dropped, so a leak is
- * loud where it happens. Waiters whose batch is already in flight are **not** the reset's to
- * settle — the wedged transaction still owns them, and it will reject them at the runner bound
- * (`QUEUE_BATCH_TIMEOUT_MS`) or never. What the reset restores is the ability to drain at all,
- * which is the part that was broken for every later test file.
- */
+/** Test-only: isolate injected commits between tests. */
 export function __resetWriteQueueForTests(): void {
   queueGeneration += 1;
   const abandoned = writeQueue;
@@ -541,11 +488,12 @@ export function __resetWriteQueueForTests(): void {
 /** The commit primitive, injectable for tests — the same reason `migrateStoredCardIds` takes
     its updater as a parameter: the test environment has no IndexedDB, and the queue's ordering
     and coalescing are exactly what deserves pinning without one. */
-let commitBatch: (key: StoreKey, apply: (current: unknown) => unknown) => Promise<void> = async (
+let commitBatch: (key: StoreKey, apply: (current: unknown) => unknown, profileId?: string) => Promise<void> = async (
   key,
   apply,
+  profileId,
 ) => {
-  await update<unknown>(key, apply, await getStore());
+  await update<unknown>(key, apply, await getStore(profileId));
 };
 
 /** Test-only: swap the commit primitive. Returns the restore function. */
@@ -566,8 +514,10 @@ export function __setCommitBatchForTests(fn: typeof commitBatch): () => void {
  * one card in one batch compose exactly as they would in two transactions.
  */
 function enqueueUpdate<V>(key: StoreKey, mutate: (current: V | undefined) => V): Promise<void> {
+  const activeId = getActiveProfileId();
+  const profileId = listProfiles().some((profile) => profile.id === activeId) ? activeId : undefined;
   return new Promise<void>((resolve, reject) => {
-    writeQueue.push({ key, mutate: mutate as (c: unknown) => unknown, resolve, reject });
+    writeQueue.push({ profileId, key, mutate: mutate as (c: unknown) => unknown, resolve, reject });
     if (!draining) {
       draining = true;
       void drainWriteQueue();
@@ -590,26 +540,15 @@ async function drainWriteQueue(): Promise<void> {
       // FIFO by the head's key, taking every queued mutation for that key. A burst of eight
       // grades and one attempt becomes two transactions, not nine. Head-first means no key can
       // be starved by a steady stream of writes to another.
-      const key = writeQueue[0]!.key;
+      const { key, profileId } = writeQueue[0]!;
       const batch: PendingWrite[] = [];
       const rest: PendingWrite[] = [];
-      for (const w of writeQueue) (w.key === key ? batch : rest).push(w);
+      for (const w of writeQueue) (w.key === key && w.profileId === profileId ? batch : rest).push(w);
       writeQueue = rest;
 
-      const commit = runBatch(key, batch); // never rejects; settles its own members
-      let timer: ReturnType<typeof setTimeout> | undefined;
-      const answered = await Promise.race([
-        commit.then(() => true),
-        new Promise<false>((r) => {
-          timer = setTimeout(() => r(false), QUEUE_BATCH_TIMEOUT_MS);
-        }),
-      ]);
-      clearTimeout(timer);
-
-      if (!answered) {
-        recordStall({ surface: 'write-queue', waitedMs: QUEUE_BATCH_TIMEOUT_MS, attempts: 1 });
-        resetStoreHandle();
-      }
+      // The managed adapter aborts and retries this batch BEFORE the next one starts.
+      // Never abandon a live transaction: later writes would queue behind its lock.
+      await runBatch(key, batch);
     }
   } finally {
     // Only the owning generation clears the flag; a superseded loop must not unset a drain it
@@ -622,6 +561,7 @@ async function runBatch(key: StoreKey, batch: PendingWrite[]): Promise<void> {
   const failures = new Map<PendingWrite, unknown>();
   try {
     await commitBatch(key, (current) => {
+      failures.clear();
       let acc = current;
       for (const w of batch) {
         // A mutate that throws must not abort the transaction: the other writes in this batch
@@ -633,7 +573,7 @@ async function runBatch(key: StoreKey, batch: PendingWrite[]): Promise<void> {
         }
       }
       return acc;
-    });
+    }, batch[0]!.profileId);
   } catch (err) {
     for (const w of batch) w.reject(failures.has(w) ? failures.get(w) : err);
     return;
@@ -836,7 +776,7 @@ export function localDateString(d = new Date()): string {
 }
 
 export async function logSession(entry: SessionLogEntry): Promise<void> {
-  await enqueueUpdate<SessionLogEntry[]>('sessions', (arr) => [...(arr ?? []), entry]);
+  await enqueueUpdate<SessionLogEntry[]>('sessions', (arr) => mergeSessions(arr ?? [], [entry]));
   scheduleAutoSync();
 }
 

@@ -2,6 +2,8 @@
 
 Status: accepted · 2026-09-15 · **amends [ADR 0016](0016-durable-progress-writes.md)**
 
+Transaction recovery and quarantine are amended by [ADR 0020](0020-owned-storage-recovery.md).
+
 ## Context
 
 The desktop app showed a permanent red banner — `2 Antworten noch nicht gespeichert — Fenster

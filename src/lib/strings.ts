@@ -750,11 +750,23 @@ export const STRINGS = {
     ru: 'Повтор не удался — хранилище не отвечает.',
     uk: 'Повтор не вдався — сховище не відповідає.',
   },
+  'persist.pendingRestart': {
+    de: 'Einträge warten auf Wiederherstellung.',
+    en: 'entries await recovery.',
+    ru: 'записей ожидают восстановления.',
+    uk: 'записів очікують відновлення.',
+  },
+  'persist.restartRequired': {
+    de: 'Bitte die App neu starten. Die vorgemerkten Einträge werden beim nächsten Start erneut gespeichert.',
+    en: 'Please restart the app. Journaled entries will be retried on the next launch.',
+    ru: 'Перезапустите приложение. Сохранение записей из журнала повторится при следующем запуске.',
+    uk: 'Перезапустіть застосунок. Збереження записів із журналу повториться під час наступного запуску.',
+  },
   'persist.storageBlocked': {
-    de: 'Der lokale Notizspeicher ist voll oder blockiert — der Zähler bleibt stehen.',
-    en: 'Local scratch storage is full or blocked — the count is frozen.',
-    ru: 'Локальное хранилище заметок переполнено или заблокировано — счётчик застыл.',
-    uk: 'Локальне сховище нотаток переповнене або заблоковане — лічильник завмер.',
+    de: 'Der Wiederherstellungsspeicher ist voll oder blockiert — bitte die App nicht schließen.',
+    en: 'Recovery storage is full or blocked — please keep the app open.',
+    ru: 'Хранилище восстановления переполнено или заблокировано — не закрывайте приложение.',
+    uk: 'Сховище відновлення переповнене або заблоковане — не закривайте застосунок.',
   },
   // Names the LOCAL store on purpose. The learner who met this banner asked whether
   // Cloudflare was down and whether the app was being too quick to give up; it is

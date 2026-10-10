@@ -9,7 +9,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.5.2] — 2026-10-10
+
 ### Fixed
+
+- Progress writes now abort stalled local transactions before retrying, instead of opening
+  connections behind the same lock. Retries share one ordered journal drain; daily-session
+  completion is journaled too. If the database cannot recover, the app requests a restart
+  while keeping pending entries. Storage failures no longer quarantine valid answers.
+- Storage diagnostics include transaction phase, recovery outcome, queue depth and build
+  version. The underlying WKWebView stall trigger is not yet established.
 
 - **Themen said "Загружаем ваш прогресс…" forever, and Heute said progress could not be
   loaded, while 824 cards and 3919 attempts sat in the store.** An IndexedDB read in the
