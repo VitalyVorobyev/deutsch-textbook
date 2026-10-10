@@ -87,6 +87,11 @@ question in exactly one topic and carries the course's rationale (simple German)
 **unofficial** EN/RU translations. A re-import never touches them. Translations appear in
 practice on request and never in the mock exam.
 
+**No Ukrainian half yet (owner decision, 2026-10-10).** The notes ship with EN and RU only,
+and `content/lid/` is outside the UK-parity ratchet (`ukHalfCoverage`) until the planned UK
+follow-up lands (backlog P31-1); under Lernsprache `uk` they fall back to English, as every
+missing half does. That follow-up removes the exemption in the same change.
+
 ## Consequences
 
 - The trainer works everywhere the app does — web, phone, desktop release — with no local-only

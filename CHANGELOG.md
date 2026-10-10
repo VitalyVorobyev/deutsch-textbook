@@ -9,6 +9,20 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.1] — 2026-10-10
+
+### Added
+
+- **Every Leben-in-Deutschland question now explains itself.** After answering in practice, all
+  310 show a short rationale in simple German with its source, the key terms, and an unofficial
+  English/Russian translation on request. Written in four topic waves, each read against the
+  official key; an independent fact-check of all 310 found three errors, now fixed.
+
+### Fixed
+
+- The Windows release lane failed a keyboard test that pressed its key before the listener was
+  bound. The test now waits for effects to flush.
+
 ## [0.6.0] — 2026-10-10
 
 ### Added
