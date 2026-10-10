@@ -1,12 +1,184 @@
 notes:
   - id: general-213
+    rationale_de: >-
+      In Deutschland leben etwa 84 Millionen Menschen – mehr als in jedem anderen Land der Europäischen Union. Etwa 13 Millionen davon wohnen in Bayern. Seit Jahrzehnten sterben in Deutschland mehr Menschen, als Kinder geboren werden; ohne Zuwanderung würde die Bevölkerung also schrumpfen.
+    source: Statistisches Bundesamt (Destatis)
+    question:
+      en: "How many inhabitants does Germany have?"
+      ru: "Сколько жителей в Германии?"
+    options:
+      a: { en: "70 million", ru: "70 миллионов" }
+      b: { en: "78 million", ru: "78 миллионов" }
+      c: { en: "84 million", ru: "84 миллиона" }
+      d: { en: "90 million", ru: "90 миллионов" }
+    terms:
+      - { de: "der Einwohner", en: "inhabitant", ru: "житель" }
+      - { de: "die Bevölkerung", en: "population", ru: "население" }
+    status: reviewed
   - id: general-253
+    rationale_de: >-
+      Wer in eine neue Wohnung zieht, muss sich innerhalb von zwei Wochen beim Einwohnermeldeamt anmelden; in vielen Städten heißt es Bürgerbüro oder Bürgeramt. Dafür braucht man den Ausweis oder Pass und eine Bestätigung vom Vermieter. Das Standesamt ist dagegen für Geburten, Ehen und Sterbefälle zuständig, das Gewerbeamt für die Anmeldung von Firmen.
+    source: BMG § 17
+    question:
+      en: "Where do you have to register if you move house in Germany?"
+      ru: "Где вам нужно зарегистрироваться, если вы переезжаете в Германии?"
+    options:
+      a: { en: "at the residents' registration office", ru: "в ведомстве регистрации жителей" }
+      b: { en: "at the registry office", ru: "в ЗАГСе" }
+      c: { en: "at the public order office", ru: "в ведомстве по охране общественного порядка" }
+      d: { en: "at the trade office", ru: "в ведомстве по делам предпринимательства" }
+    terms:
+      - { de: "sich anmelden", en: "to register", ru: "зарегистрироваться" }
+      - { de: "umziehen", en: "to move house", ru: "переезжать" }
+      - { de: "das Einwohnermeldeamt", en: "residents' registration office", ru: "ведомство регистрации жителей" }
+    status: reviewed
   - id: general-256
+    rationale_de: >-
+      Wer ein Restaurant eröffnet und dort Alkohol ausschenkt, braucht dafür in der Regel eine Gaststättenerlaubnis. Man beantragt sie bei der zuständigen Behörde, meistens bei der Stadt oder Gemeinde. Die Behörde prüft zum Beispiel, ob der Wirt zuverlässig ist und ob die Räume geeignet sind. Polizei, Parteien und Einwohnermeldeamt erteilen solche Erlaubnisse nicht.
+    source: Gaststättenrecht der Länder
+    question:
+      en: "A married couple wants to open a restaurant in Germany. What do they absolutely need for this?"
+      ru: "Супружеская пара хочет открыть ресторан в Германии. Что им для этого обязательно нужно?"
+    options:
+      a: { en: "permission from the police", ru: "разрешение полиции" }
+      b: { en: "approval from a political party", ru: "одобрение какой-либо партии" }
+      c: { en: "approval from the residents' registration office", ru: "разрешение ведомства регистрации жителей" }
+      d: { en: "a restaurant licence from the responsible authority", ru: "разрешение на ресторанную деятельность от компетентного ведомства" }
+    terms:
+      - { de: "die Gaststättenerlaubnis", en: "restaurant licence", ru: "разрешение на ресторан" }
+      - { de: "die Behörde", en: "authority", ru: "ведомство" }
+      - { de: "zuständig", en: "responsible", ru: "компетентный" }
+    status: reviewed
   - id: general-266
+    rationale_de: >-
+      Die Nachtruhe beginnt in Deutschland um 22 Uhr und dauert meistens bis 6 Uhr morgens. In dieser Zeit soll man Lärm vermeiden, zum Beispiel laute Musik, Partys oder Bohren. An Sonn- und Feiertagen soll es den ganzen Tag ruhig sein, und viele Hausordnungen haben zusätzlich eine Mittagsruhe.
+    question:
+      en: "When does the statutory night-time quiet period begin in Germany?"
+      ru: "Когда в Германии начинается установленное законом время ночной тишины?"
+    options:
+      a: { en: "when the sun goes down", ru: "когда заходит солнце" }
+      b: { en: "when the neighbours go to bed", ru: "когда соседи ложатся спать" }
+      c: { en: "at 0:00, midnight", ru: "в 0 часов, в полночь" }
+      d: { en: "at 22:00", ru: "в 22 часа" }
+    terms:
+      - { de: "die Nachtruhe", en: "night-time quiet", ru: "ночная тишина" }
+      - { de: "gesetzlich", en: "statutory", ru: "установленный законом" }
+    status: reviewed
   - id: general-268
+    rationale_de: >-
+      Die theoretische Führerscheinprüfung kann man in Deutschland nicht nur auf Deutsch machen, sondern auch in vielen anderen Sprachen, zum Beispiel auf Englisch, Türkisch, Arabisch oder Russisch. Die Muttersprache ist also kein Hindernis. Man muss auch nicht zehn Jahre in Deutschland leben, bevor man den Führerschein machen darf.
+    source: Fahrerlaubnis-Verordnung (FeV)
+    question:
+      en: "A young woman wants to get her driving licence. She is afraid of the test because her native language is not German. What is true?"
+      ru: "Молодая женщина хочет получить водительские права. Она боится экзамена, потому что её родной язык не немецкий. Что верно?"
+    options:
+      a: { en: "She must live in Germany for at least ten years before she can get a driving licence.", ru: "Она должна прожить в Германии не меньше десяти лет, прежде чем сможет получить права." }
+      b: { en: "If she cannot speak German, she may not have a driving licence.", ru: "Если она не знает немецкого, ей нельзя иметь водительские права." }
+      c: { en: "She has to get her driving licence in the country where her language is spoken.", ru: "Она должна получать права в той стране, где говорят на её языке." }
+      d: { en: "She may be able to take the theory test in her native language. There are more than ten languages to choose from.", ru: "Возможно, она сможет сдать теоретический экзамен на родном языке. На выбор есть больше десяти языков." }
+    terms:
+      - { de: "der Führerschein", en: "driving licence", ru: "водительские права" }
+      - { de: "die Muttersprache", en: "native language", ru: "родной язык" }
+      - { de: "die Theorieprüfung", en: "theory test", ru: "теоретический экзамен" }
+    status: reviewed
   - id: general-276
+    rationale_de: >-
+      Wer in einer Behörde unfreundlich oder unfair behandelt wird, kann sich bei der Leitung der Behörde beschweren. Das nennt man Dienstaufsichtsbeschwerde; sie kostet nichts und braucht keine besondere Form. Das Grundgesetz gibt in Artikel 17 jedem das Recht, sich bei Behörden zu beschweren. Eine Drohung ist dagegen keine Lösung und kann sogar strafbar sein.
+    source: GG Art. 17
+    question:
+      en: "What should you do if you are treated badly by your contact person at a German authority?"
+      ru: "Что вам следует сделать, если ваше контактное лицо в немецком ведомстве плохо с вами обращается?"
+    options:
+      a: { en: "I can't do anything.", ru: "Я ничего не могу сделать." }
+      b: { en: "I have to put up with this treatment.", ru: "Я должен терпеть такое обращение." }
+      c: { en: "I threaten the person.", ru: "Я угрожаю этому человеку." }
+      d: { en: "I can complain to the head of the authority.", ru: "Я могу пожаловаться руководителю ведомства." }
+    terms:
+      - { de: "die Behörde", en: "public authority", ru: "ведомство" }
+      - { de: "sich beschweren", en: "to complain", ru: "жаловаться" }
+      - { de: "sich etwas gefallen lassen", en: "to put up with", ru: "терпеть что-либо" }
+    status: reviewed
   - id: general-277
+    rationale_de: >-
+      Diskriminierung heißt: Jemand wird wegen eines persönlichen Merkmals schlechter behandelt, das mit der Arbeit nichts zu tun hat. Dass die Frau Mutter ist, sagt nichts darüber, ob sie die Arbeit gut machen kann. Lehnt man sie nur deshalb ab, ist das nach dem Allgemeinen Gleichbehandlungsgesetz eine Benachteiligung wegen des Geschlechts. Fehlende Englischkenntnisse, zu hohe Gehaltswünsche oder fehlende Erfahrung können dagegen sachliche Gründe sein.
+    source: AGG § 1, § 3
+    question:
+      en: "A woman with a two-year-old child applies for a job in Germany. What is an example of discrimination? She does not get the job only because she …"
+      ru: "Женщина, у которой есть двухлетний ребёнок, претендует на работу в Германии. Что является примером дискриминации? Она не получает эту работу только потому, что она …"
+    options:
+      a: { en: "doesn't speak English.", ru: "не говорит по-английски." }
+      b: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату." }
+      c: { en: "has no experience in this profession.", ru: "не имеет опыта в этой профессии." }
+      d: { en: "is a mother.", ru: "мать." }
+    terms:
+      - { de: "die Diskriminierung", en: "discrimination", ru: "дискриминация" }
+      - { de: "sich bewerben", en: "to apply (for)", ru: "претендовать на работу" }
+      - { de: "die Gehaltsvorstellung", en: "salary expectation", ru: "желаемая зарплата" }
+    status: reviewed
   - id: general-278
+    rationale_de: >-
+      Ob ein Mann im Rollstuhl sitzt, sagt nichts darüber, ob er gut als Buchhalter arbeiten kann. Lehnt man ihn nur deshalb ab, benachteiligt man ihn wegen einer Behinderung. Das verbietet das Allgemeine Gleichbehandlungsgesetz, und auch das Grundgesetz sagt in Artikel 3: Niemand darf wegen seiner Behinderung benachteiligt werden. Fehlende Erfahrung kann dagegen ein sachlicher Grund sein.
+    source: GG Art. 3 Abs. 3; AGG § 1
+    question:
+      en: "A man in a wheelchair has applied for a job as a bookkeeper. What is an example of discrimination? He does not get the job only because he …"
+      ru: "Мужчина в инвалидной коляске подал заявку на место бухгалтера. Что является примером дискриминации? Он не получает эту работу только потому, что он …"
+    options:
+      a: { en: "is in a wheelchair.", ru: "сидит в инвалидной коляске." }
+      b: { en: "has no experience.", ru: "не имеет опыта." }
+      c: { en: "has salary expectations that are too high.", ru: "хочет слишком высокую зарплату." }
+      d: { en: "doesn't speak English.", ru: "не говорит по-английски." }
+    terms:
+      - { de: "der Rollstuhl", en: "wheelchair", ru: "инвалидная коляска" }
+      - { de: "die Behinderung", en: "disability", ru: "инвалидность" }
+      - { de: "der Buchhalter", en: "bookkeeper", ru: "бухгалтер" }
+    status: reviewed
   - id: general-279
+    rationale_de: >-
+      Die Hausordnung regelt das Zusammenleben in einem Mietshaus. Dort steht zum Beispiel, wann Ruhezeiten sind, wer das Treppenhaus putzt und wo man Müll und Fahrräder abstellt. Alle Bewohnerinnen und Bewohner müssen sich daran halten; oft ist die Hausordnung ein Teil des Mietvertrags.
+    question:
+      en: "Most apartment buildings in Germany have “house rules”. What do such “house rules” contain? They list …"
+      ru: "В большинстве многоквартирных домов в Германии есть «домовой распорядок». Что написано в таком «домовом распорядке»? В нём указаны …"
+    options:
+      a: { en: "rules for using public transport.", ru: "правила пользования общественным транспортом." }
+      b: { en: "all the tenants in the building.", ru: "все квартиросъёмщики дома." }
+      c: { en: "rules that all residents must follow.", ru: "правила, которые должны соблюдать все жильцы." }
+      d: { en: "the address of the nearest public order office.", ru: "адрес ближайшего ведомства по охране общественного порядка." }
+    terms:
+      - { de: "die Hausordnung", en: "house rules", ru: "правила дома" }
+      - { de: "das Mietshaus", en: "apartment building", ru: "многоквартирный дом" }
+      - { de: "der Bewohner", en: "resident", ru: "жилец" }
+    status: reviewed
   - id: general-289
+    rationale_de: >-
+      Die Hautfarbe sagt nichts darüber, ob jemand ein guter Kellner ist. Wer einen Bewerber nur wegen seiner Hautfarbe ablehnt, diskriminiert ihn aus rassistischen Gründen – das verbietet das Allgemeine Gleichbehandlungsgesetz. Wer so benachteiligt wird, kann eine Entschädigung verlangen; Hilfe gibt es zum Beispiel bei der Antidiskriminierungsstelle des Bundes. Schlechte Deutschkenntnisse oder fehlende Erfahrung können dagegen sachliche Gründe sein.
+    source: AGG § 1, § 15
+    question:
+      en: "A man with dark skin applies for a job as a waiter in a restaurant in Germany. What is an example of discrimination? He does not get the job only because …"
+      ru: "Мужчина с тёмным цветом кожи претендует на место официанта в ресторане в Германии. Что является примером дискриминации? Он не получает эту работу только потому, что …"
+    options:
+      a: { en: "his German is not good enough.", ru: "он недостаточно хорошо знает немецкий." }
+      b: { en: "he has salary expectations that are too high.", ru: "он хочет слишком высокую зарплату." }
+      c: { en: "he has dark skin.", ru: "у него тёмная кожа." }
+      d: { en: "he has no experience in the profession.", ru: "у него нет опыта в профессии." }
+    terms:
+      - { de: "die Hautfarbe", en: "skin colour", ru: "цвет кожи" }
+      - { de: "der Kellner", en: "waiter", ru: "официант" }
+      - { de: "benachteiligen", en: "to discriminate against", ru: "ущемлять" }
+    status: reviewed
   - id: general-290
+    rationale_de: >-
+      Ein neu gekauftes Gerät, das nicht funktioniert, kann man beim Verkäufer reklamieren. Das Gesetz gibt Käufern dafür zwei Jahre Gewährleistung: Der Käufer kann wählen, ob der Verkäufer das Gerät repariert oder ein neues liefert. Einfach selbst ein anderes Gerät aus dem Geschäft mitnehmen darf man nicht, und eine Anzeige bei der Polizei ist nicht nötig.
+    source: BGB § 437, § 439
+    question:
+      en: "You have bought a television in Germany. At home you unpack the television, but it doesn't work. The television is broken. What can you do?"
+      ru: "Вы купили в Германии телевизор. Дома вы распаковываете телевизор, но он не работает. Телевизор сломан. Что вы можете сделать?"
+    options:
+      a: { en: "file a report with the police", ru: "написать заявление в полицию" }
+      b: { en: "make a complaint about the television", ru: "предъявить претензию по поводу телевизора" }
+      c: { en: "exchange the device without asking", ru: "без спроса обменять прибор" }
+      d: { en: "extend the warranty", ru: "продлить гарантию" }
+    terms:
+      - { de: "reklamieren", en: "to make a complaint", ru: "предъявить претензию" }
+      - { de: "die Gewährleistung", en: "statutory warranty", ru: "гарантия по закону" }
+      - { de: "die Garantie", en: "guarantee", ru: "гарантия" }
+    status: reviewed

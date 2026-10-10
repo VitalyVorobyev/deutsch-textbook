@@ -454,6 +454,11 @@ export interface UkCoverage {
  *   the uk half. The validator bridges the two sides into one parity scope, so
  *   a half-done file cannot ship; this rule keeps the figure robust on its own,
  *   per the earned-claims rule, rather than trusting the bridge.
+ *
+ * `content/lid/` is out of scope by owner decision (2026-10-10, ADR 0021) until its planned UK
+ * follow-up (backlog P31-1): its EN/RU fields are unofficial translations of the official
+ * Leben-in-Deutschland questions, shipped before their Ukrainian half. Under Lernsprache `uk`
+ * they fall back to English, as every missing half does. The follow-up deletes this exemption.
  */
 export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;
@@ -464,7 +469,9 @@ export function ukHalfCoverage(root = repoRoot()): UkCoverage {
     if (uk) authored += 1;
   };
 
+  const lid = join(root, 'content', 'lid');
   for (const file of walk(join(root, 'content'), '.yaml')) {
+    if (file.startsWith(lid)) continue;
     const data = YAML.parse(readFileSync(file, 'utf8')) as unknown;
     const fullyAuthored = file.endsWith(join('content', 'atlas.yaml'))
       ? hasUkField(data) && ukParityProblems(data, { forceUk: true }).length === 0

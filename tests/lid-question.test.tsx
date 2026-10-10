@@ -14,7 +14,7 @@
  * tests/probe-step.test.tsx): a later file must see the real store and the real journal.
  */
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, mock, test } from 'bun:test';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ComponentType } from 'react';
 import type { LidOptionKey, LidQuestion as LidQuestionData } from '@da/schema/lid';
 import type { LidEntry } from '../src/components/lid/shared';
@@ -253,6 +253,10 @@ describe('LidPractice', () => {
   test('keys 1–4 choose the option in that displayed position', async () => {
     render(<LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
     await screen.findByText(TEXT.question.question);
+    // The question can be in the DOM before the effect that binds the keyboard has run: the read
+    // resolves outside act, so React may defer that passive effect. A slow runner (the Windows
+    // release lane) pressed the key into that gap. Flush effects first.
+    await act(async () => {});
     fireEvent.keyDown(window, { key: '3' }); // displayed b, c, d, a → d, the key
     expect(screen.getByText('Richtig! ✓')).toBeTruthy();
     expect(logLidAnswerDurably).toHaveBeenCalledTimes(1);
