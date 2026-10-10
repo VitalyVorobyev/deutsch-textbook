@@ -181,11 +181,24 @@ describe('language discipline', () => {
 });
 
 describe('UK parity coverage', () => {
-  test('ukHalfCoverage leaves lessons out, as it does the notes (ADR 0021, P31-1)', () => {
-    const root = rootWith({ 'zz-fixture': FIXTURE });
-    expect(ukHalfCoverage(root)).toEqual({ authored: 0, total: 0 });
-    mkdirSync(join(root, 'content', 'discovery', 'a1'), { recursive: true });
-    writeFileSync(join(root, 'content', 'discovery', 'a1', 'x.mdx'), '---\ntitle_ru: Тема\n---\n');
-    expect(ukHalfCoverage(root)).toEqual({ authored: 0, total: 1 });
+  test('ukHalfCoverage counts a lesson like any other mdx — authored only with uk in frontmatter and body', () => {
+    expect(ukHalfCoverage(rootWith({ 'zz-fixture': FIXTURE }))).toEqual({ authored: 0, total: 1 });
+
+    const withUk = edit(
+      edit(
+        edit(FIXTURE, 'ru: федеральный флаг }', 'ru: федеральный флаг, uk: федеральний прапор }'),
+        'ru: столица }',
+        'ru: столица, uk: столиця }',
+      ),
+      '</Ru>\n',
+      '</Ru>\n<Uk>\nТестовий урок для перевірки механізму уроків, а не навчальний матеріал.\n</Uk>\n',
+    );
+    const root = rootWith({ 'zz-fixture': withUk });
+    expect(lidLessonProblems(root)).toEqual([]);
+    expect(ukHalfCoverage(root)).toEqual({ authored: 1, total: 1 });
+
+    // The body alone is not enough: the glossary is the other ru-bearing side.
+    const bodyOnly = edit(FIXTURE, '</Ru>\n', '</Ru>\n<Uk>\nТестовий урок.\n</Uk>\n');
+    expect(ukHalfCoverage(rootWith({ 'zz-fixture': bodyOnly }))).toEqual({ authored: 0, total: 1 });
   });
 });

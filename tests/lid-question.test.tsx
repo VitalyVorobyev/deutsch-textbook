@@ -4,8 +4,10 @@
  *
  *  - **Order.** Practice shuffles so a position cannot be memorised — but never `Bild 1…4`
  *    options, which name pictures; the mock exam shows the catalogue's order, lettered a–d.
- *  - **The EN surface.** The unofficial translation shows English, plus Russian only under `ru`.
- *    An EN reader is never handed Russian, and the exam never shows a translation at all.
+ *  - **The EN surface.** The unofficial translation shows English, plus Russian only under `ru`
+ *    and Ukrainian only under `uk`. An EN reader is never handed Russian, a UK reader never
+ *    Russian either (a note without its uk half shows English alone), and the exam never shows a
+ *    translation at all.
  *  - **One answer, one write.** The first choice is final and is logged exactly once.
  *  - **A failed read is an error, never a fresh start** (CLAUDE.md runtime invariant).
  *  - **Lessons stay out of the exam.** Practice feedback links the lesson on the question's
@@ -206,7 +208,7 @@ describe('LidQuestion — translation', () => {
     expect(screen.queryByText(TEXT.note!.options!.d.ru)).toBeNull();
   });
 
-  test('under ru: English plus Russian; under uk: English alone (no Ukrainian half exists)', () => {
+  test('under ru: English plus Russian; under uk without a uk half: English alone', () => {
     document.documentElement.dataset.explainLang = 'ru';
     practice(TEXT);
     fireEvent.click(screen.getByText(TEXT.question.answers.a));
@@ -221,6 +223,34 @@ describe('LidQuestion — translation', () => {
     fireEvent.click(screen.getByRole('button', { name: /Übersetzung/ }));
     expect(screen.getByText(TEXT.note!.question!.en)).toBeTruthy();
     expect(screen.queryByText(TEXT.note!.question!.ru)).toBeNull();
+  });
+
+  test('under uk with a uk half: English plus Ukrainian — question, options and terms — never Russian', () => {
+    const uk: LidEntry = {
+      ...TEXT,
+      note: {
+        ...TEXT.note!,
+        question: { ...TEXT.note!.question!, uk: 'Люди можуть відкрито критикувати уряд, тому що …' },
+        options: {
+          a: { ...TEXT.note!.options!.a, uk: 'тут діє свобода віросповідання.' },
+          b: { ...TEXT.note!.options!.b, uk: 'люди сплачують податки.' },
+          c: { ...TEXT.note!.options!.c, uk: 'люди мають право голосу.' },
+          d: { ...TEXT.note!.options!.d, uk: 'тут діє свобода думки.' },
+        },
+        terms: [{ de: 'die Meinungsfreiheit', en: 'freedom of opinion', ru: 'свобода мнений', uk: 'свобода думки' }],
+      },
+    };
+    document.documentElement.dataset.explainLang = 'uk';
+    practice(uk);
+    fireEvent.click(screen.getByText(uk.question.answers.a));
+    fireEvent.click(screen.getByRole('button', { name: /Übersetzung/ }));
+    expect(screen.getByText(uk.note!.question!.en)).toBeTruthy();
+    expect(screen.getByText(uk.note!.question!.uk!).getAttribute('lang')).toBe('uk');
+    expect(screen.getByText(uk.note!.options!.b.uk!).getAttribute('lang')).toBe('uk');
+    expect(screen.getByText('свобода думки', { selector: 'dd span' }).getAttribute('lang')).toBe('uk');
+    expect(screen.queryByText(uk.note!.question!.ru)).toBeNull();
+    expect(screen.queryByText(uk.note!.options!.b.ru)).toBeNull();
+    expect(screen.queryByText('свобода мнений')).toBeNull();
   });
 });
 

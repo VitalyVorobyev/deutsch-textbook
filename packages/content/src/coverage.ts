@@ -455,11 +455,8 @@ export interface UkCoverage {
  *   a half-done file cannot ship; this rule keeps the figure robust on its own,
  *   per the earned-claims rule, rather than trusting the bridge.
  *
- * `content/lid/` is out of scope by owner decision (2026-10-10, ADR 0021) until its planned UK
- * follow-up (backlog P31-1): its EN/RU halves — the notes' unofficial translations of the
- * official Leben-in-Deutschland questions (`.yaml`) and the lessons' orientations and glossaries
- * (`lessons/*.mdx`) — shipped before their Ukrainian half. Under Lernsprache `uk` they fall back
- * to English, as every missing half does. The follow-up deletes this exemption, for both.
+ * `content/lid/` counts like everything else. Its notes' `.yaml` translations and its lessons'
+ * `.mdx` were exempt from 2026-10-10 until their Ukrainian half shipped (ADR 0021).
  */
 export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;
@@ -470,9 +467,7 @@ export function ukHalfCoverage(root = repoRoot()): UkCoverage {
     if (uk) authored += 1;
   };
 
-  const lid = join(root, 'content', 'lid');
   for (const file of walk(join(root, 'content'), '.yaml')) {
-    if (file.startsWith(lid)) continue;
     const data = YAML.parse(readFileSync(file, 'utf8')) as unknown;
     const fullyAuthored = file.endsWith(join('content', 'atlas.yaml'))
       ? hasUkField(data) && ukParityProblems(data, { forceUk: true }).length === 0
@@ -480,7 +475,6 @@ export function ukHalfCoverage(root = repoRoot()): UkCoverage {
     count(hasRuField(data), fullyAuthored);
   }
   for (const file of walk(join(root, 'content'), '.mdx')) {
-    if (file.startsWith(lid)) continue;
     const source = readFileSync(file, 'utf8');
     const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(\r?\n|$)/);
     const fm = frontmatter ? (YAML.parse(frontmatter[1]!) as unknown) : undefined;

@@ -6,8 +6,8 @@
  *
  * Static throughout, no island per row (CLAUDE.md runtime invariant). The glossary obeys the EN
  * surface rule with the site's `.lang-*` classes: German and English always, the Russian column
- * only under Lernsprache `ru` (global.css hides `.lang-ru` everywhere else), a Ukrainian column
- * only once the lesson carries one (P31-1).
+ * only under Lernsprache `ru` (global.css hides `.lang-ru` everywhere else), the Ukrainian column
+ * only under `uk` — and only when the lesson carries one, which the UK ratchet makes every lesson do.
  */
 import { getCollection, render } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
