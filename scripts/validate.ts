@@ -70,6 +70,7 @@ import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typi
 import { responseModeForItem } from '../src/lib/evidence';
 import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
 import { idFromManifestPath, manifestFiles } from '@da/content/topics';
+import { lidProblems } from '@da/content/lid';
 
 // The compiled Redaktion validator runs beside the desktop sidecar, not inside the selected
 // checkout. The environment override keeps the exact same gate reusable there; ordinary CLI and
@@ -2323,6 +2324,10 @@ for (const word of a1Boundary.late) {
     `"${word}" is covered only by a deck above A1 — A1 completion is a level-boundary claim`,
   );
 }
+
+// Leben in Deutschland (ADR 0021): the official bank exactly as imported — counts, ids, image
+// bytes — and every question placed in exactly one topic, with language discipline on the notes.
+for (const problem of lidProblems(ROOT)) errors.push(problem);
 
 // ---------------------------------------------------------------------------
 // Report

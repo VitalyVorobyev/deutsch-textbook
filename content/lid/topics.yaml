@@ -1,0 +1,56 @@
+# Leben in Deutschland — the course's grouping of the official questions (ADR 0021).
+#
+# The three modules are the Themenfelder the EinbTestV's own Vorbemerkung names for Teil I; the
+# fourth holds the ten state questions (Teil II). The topics inside them are this course's
+# editorial grouping — the catalogue itself assigns none. A question's topic is the notes file it
+# sits in: content/lid/notes/<topic-id>.yaml. Topic ids become progress-report keys, so treat
+# them as frozen once a learner has answered questions under them.
+modules:
+  - id: leben-in-der-demokratie
+    title_de: Leben in der Demokratie
+    topics:
+      - id: grundrechte
+        title_de: Grundgesetz und Grundrechte
+      - id: staatsprinzipien
+        title_de: Demokratie, Rechtsstaat und Sozialstaat
+      - id: verfassungsorgane
+        title_de: Bundestag, Bundesrat, Regierung und Bundespräsident
+      - id: wahlen-parteien
+        title_de: Wahlen, Parteien und Mitbestimmung
+      - id: foederalismus
+        title_de: Bund, Länder und Gemeinden
+      - id: recht-justiz
+        title_de: Recht, Gerichte und Verwaltung
+      - id: arbeit-sozialstaat
+        title_de: Arbeit, Steuern und soziale Sicherung
+      - id: staatssymbole
+        title_de: Staatssymbole
+      - id: europa
+        title_de: Deutschland in Europa
+  - id: geschichte-und-verantwortung
+    title_de: Geschichte und Verantwortung
+    topics:
+      - id: nationalsozialismus
+        title_de: Nationalsozialismus und Zweiter Weltkrieg
+      - id: erinnerung-juedisches-leben
+        title_de: Erinnerung, jüdisches Leben und Israel
+      - id: teilung
+        title_de: Nachkriegszeit, Bundesrepublik und DDR
+      - id: wiedervereinigung
+        title_de: Mauerfall und Wiedervereinigung
+  - id: mensch-und-gesellschaft
+    title_de: Mensch und Gesellschaft
+    topics:
+      - id: familie-gleichberechtigung
+        title_de: Familie, Partnerschaft und Gleichberechtigung
+      - id: bildung
+        title_de: Schule, Ausbildung und Weiterbildung
+      - id: religion-kultur
+        title_de: Religion, Feiertage und Kultur
+      - id: zusammenleben
+        title_de: Zusammenleben, Alltag und Behörden
+  - id: bayern
+    title_de: Bayern
+    topics:
+      - id: bayern
+        title_de: Freistaat Bayern
