@@ -9,6 +9,8 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.4] — 2026-10-10
+
 ### Added
 
 - **Leben in Deutschland in Ukrainian.** Under Lernsprache *Українська*, the unofficial
