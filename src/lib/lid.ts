@@ -163,6 +163,55 @@ export function planLidPractice({ questionIds, state, now, newPerDay, limit }: L
   return limit === undefined ? queue : queue.slice(0, Math.max(0, limit));
 }
 
+export interface LidScopedPracticeInput {
+  /** the questions in scope — a lesson's — in TEACHING order */
+  questionIds: readonly string[];
+  state: LidState;
+  /**
+   * The moment of the read, as `planLidPractice` takes it. The order does not depend on it — a
+   * drill deals every question, due or not, and sorting the answered ones by due date already
+   * puts the most overdue first — but the call reads one clock like every other planner here.
+   */
+  now: Date;
+}
+
+/**
+ * A deliberate "drill this topic now" (`/leben/ueben?lektion=<id>`): EVERY question in scope,
+ * with no daily allowance — the learner chose this set, so holding questions back would only
+ * hide part of it. Ordered by what most needs the attention:
+ *
+ *  1. last answer wrong, most recent first (`lidMistakes`);
+ *  2. never answered, in the given teaching order;
+ *  3. the rest by due date, soonest first — not-yet-due questions included. Ties keep the given
+ *     order, as `planLidPractice`'s do.
+ *
+ * A question first met here still gets its card through `applyLidAnswer`, so this queue spends
+ * the day's new-question allowance like any practice — what it skips is only the cap.
+ */
+export function planLidScopedPractice({ questionIds, state }: LidScopedPracticeInput): string[] {
+  const ids = [...new Set(questionIds)];
+  const wrong = lidMistakes(state, ids);
+  const wrongSet = new Set(wrong);
+  const answered = new Set(state.answers.map((answer) => answer.q));
+  const fresh: string[] = [];
+  const rest: string[] = [];
+  for (const id of ids) {
+    if (wrongSet.has(id)) continue;
+    if (!answered.has(id) && !state.cards[id]) fresh.push(id);
+    else rest.push(id);
+  }
+  // A question answered but without a state (it cannot arise through `applyLidAnswer`) sorts last.
+  const due = (id: string) => {
+    const card = state.cards[id];
+    return card ? Date.parse(card.due) : Number.POSITIVE_INFINITY;
+  };
+  rest.sort((a, b) => {
+    const [x, y] = [due(a), due(b)];
+    return x === y ? 0 : x < y ? -1 : 1;
+  });
+  return [...wrong, ...fresh, ...rest];
+}
+
 /**
  * New questions today's PRACTICE has already dealt. A question first met in a mock exam is not
  * one of them: the mock schedules it (a miss comes back for review), but it must not spend the

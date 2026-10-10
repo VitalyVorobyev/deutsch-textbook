@@ -4,11 +4,12 @@ import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
 import LidPractice from '../../components/lid/LidPractice';
 import LidSource from '../../components/lid/LidSource.astro';
+import { lessonScopes } from '../../components/lid/shared';
 import { getLidCatalogue } from '../../lib/content';
 import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
 
-const { source, bankVersion, entries } = getLidCatalogue();
+const { source, bankVersion, entries, lessons } = getLidCatalogue();
 ---
 
 <Base title={`${t('lid.practice', 'de')} · ${t('lid.title', 'de')}`}>
@@ -19,6 +20,13 @@ const { source, bankVersion, entries } = getLidCatalogue();
   </nav>
   <!-- The breadcrumb already names the page on a phone; the H1 stays for the accessibility tree. -->
   <h1 class="sr-only text-2xl font-bold sm:not-sr-only sm:mb-4"><Chrome k="lid.practice" /></h1>
-  <LidPractice client:only="react" entries={entries} bankVersion={bankVersion} pdfUrl={source.pdfUrl} />
+  <!-- `?lektion=<id>` narrows practice to one lesson; the island reads it, since the page is static. -->
+  <LidPractice
+    client:only="react"
+    entries={entries}
+    bankVersion={bankVersion}
+    pdfUrl={source.pdfUrl}
+    lessons={lessonScopes(lessons)}
+  />
   <LidSource source={source} />
 </Base>

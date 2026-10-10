@@ -1107,6 +1107,55 @@ export const STRINGS = {
     ru: 'Полный каталог вопросов (PDF, BAMF)',
     uk: 'Повний каталог питань (PDF, BAMF)',
   },
+  // Lessons (/leben/lernen): reading material over the topics; the questions remain the exam.
+  'lid.learn': { de: 'Lernen', en: 'Learn', ru: 'Изучение', uk: 'Вивчення' },
+  'lid.learnHint': {
+    de: '{n} Lektionen zum Hintergrund der Fragen',
+    en: '{n} lessons on the background of the questions',
+    ru: 'Уроков о том, что стоит за вопросами: {n}',
+    uk: 'Уроків про те, що стоїть за питаннями: {n}',
+  },
+  'lid.lessonsNone': { de: 'Noch keine Lektionen.', en: 'No lessons yet.', ru: 'Уроков пока нет.', uk: 'Уроків поки немає.' },
+  'lid.lessonQuestions': {
+    de: '{n} Prüfungsfragen',
+    en: '{n} exam questions',
+    ru: 'Экзаменационных вопросов: {n}',
+    uk: 'Екзаменаційних питань: {n}',
+  },
+  'lid.lessonTerms': { de: 'Wichtige Begriffe', en: 'Key terms', ru: 'Важные термины', uk: 'Важливі терміни' },
+  'lid.lessonQuestionsTitle': {
+    de: 'Fragen zu diesem Thema',
+    en: 'Questions on this topic',
+    ru: 'Вопросы по этой теме',
+    uk: 'Питання з цієї теми',
+  },
+  'lid.lessonPractice': {
+    de: 'Diese {n} Fragen üben',
+    en: 'Practise these {n} questions',
+    ru: 'Тренировать эти вопросы ({n})',
+    uk: 'Тренувати ці питання ({n})',
+  },
+  'lid.lessonSources': { de: 'Quellen', en: 'Sources', ru: 'Источники', uk: 'Джерела' },
+  'lid.scopeLesson': { de: 'Lektion „{title}“', en: 'Lesson “{title}”', ru: 'Урок «{title}»', uk: 'Урок «{title}»' },
+  'lid.scopeQueue': {
+    de: '{n} Fragen dieser Lektion',
+    en: '{n} questions of this lesson',
+    ru: 'Вопросов этого урока: {n}',
+    uk: 'Питань цього уроку: {n}',
+  },
+  'lid.backToLesson': { de: '← Zur Lektion', en: '← Back to the lesson', ru: '← К уроку', uk: '← До уроку' },
+  'lid.scopeUnknown': {
+    de: 'Diese Lektion gibt es nicht – hier übst du alle Fragen.',
+    en: 'There is no such lesson — you are practising all questions here.',
+    ru: 'Такого урока нет — здесь тренируются все вопросы.',
+    uk: 'Такого уроку немає — тут тренуються всі питання.',
+  },
+  'lid.moreInLesson': {
+    de: 'Mehr dazu: Lektion „{title}“ →',
+    en: 'More on this: lesson “{title}” →',
+    ru: 'Подробнее: урок «{title}» →',
+    uk: 'Докладніше: урок «{title}» →',
+  },
 
   'footer.tagline': {
     de: 'Deutsch-Atlas von Vitaly Vorobyev · KI-unterstützt, menschlich gestaltet und redigiert',

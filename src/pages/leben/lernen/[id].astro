@@ -1,0 +1,154 @@
+---
+/**
+ * One Leben-in-Deutschland lesson (ADR 0021): the MDX article — `## Kurz gesagt` with its one
+ * bilingual orientation, then German sections — its glossary, every exam question of its
+ * topics in teaching order, and the way into practising exactly those.
+ *
+ * Static throughout, no island per row (CLAUDE.md runtime invariant). The glossary obeys the EN
+ * surface rule with the site's `.lang-*` classes: German and English always, the Russian column
+ * only under Lernsprache `ru` (global.css hides `.lang-ru` everywhere else), a Ukrainian column
+ * only once the lesson carries one (P31-1).
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Bilingual from '../../../components/Bilingual.astro';
+import Chrome from '../../../components/Chrome.astro';
+import En from '../../../components/En.astro';
+import Ru from '../../../components/Ru.astro';
+import Uk from '../../../components/Uk.astro';
+import De from '../../../components/De.astro';
+import UebenNav from '../../../components/UebenNav.astro';
+import LidSource from '../../../components/lid/LidSource.astro';
+import { lidText, questionAnchor, questionLabel } from '../../../components/lid/shared';
+import { getLidCatalogue } from '../../../lib/content';
+import { t } from '../../../lib/strings';
+import { withBase } from '../../../lib/url';
+
+export async function getStaticPaths() {
+  // The catalogue joins each lesson to its questions; the collection renders its body. Both read
+  // content/lid/lessons/, so a lesson missing from either is a build error, not a quiet gap.
+  const { lessons } = getLidCatalogue();
+  const entries = new Map((await getCollection('lidLessons')).map((entry) => [entry.id, entry]));
+  return lessons.map((lesson) => {
+    const entry = entries.get(lesson.id);
+    if (!entry) throw new Error(`LiD lesson "${lesson.id}" is not in the lidLessons collection`);
+    return { params: { id: lesson.id }, props: { lesson, entry } };
+  });
+}
+
+const { lesson, entry } = Astro.props;
+const { Content } = await render(entry);
+const { source, entries } = getLidCatalogue();
+const byId = new Map(entries.map((e) => [e.question.id, e]));
+const questions = lesson.ids.map((id) => byId.get(id)!);
+// One heading per topic only when the lesson spans several; the order stays teaching order.
+const groups = lesson.topics.length > 1
+  ? [...new Set(questions.map((q) => q.topic))].map((topic) => ({
+      title: questions.find((q) => q.topic === topic)!.topicTitle,
+      questions: questions.filter((q) => q.topic === topic),
+    }))
+  : [{ title: undefined, questions }];
+const { terms, sources } = entry.data;
+const hasUk = terms.some((term) => term.uk);
+const draft = lesson.status === 'draft';
+---
+
+<Base title={`${lesson.title} · ${t('lid.title', 'de')}`} description={lesson.summary}>
+  <UebenNav active="leben" />
+  <nav class="mb-2 text-sm text-stone-400">
+    <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
+    <span> / </span>
+    <a href={withBase('/leben/lernen')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.learn" /></a>
+    <span lang="de"> / {lesson.title}</span>
+  </nav>
+  <header>
+    <h1 lang="de" class="text-3xl font-bold tracking-tight">
+      {lesson.title}
+      {draft && <span class="ml-1 align-middle text-base font-medium text-stone-500 dark:text-stone-400">({t('lid.draft', 'de')})</span>}
+    </h1>
+    <p lang="de" class="mt-1 text-stone-500 dark:text-stone-400">{lesson.summary}</p>
+    <a href="#fragen" class="mt-1 inline-flex min-h-11 items-center text-sm font-medium text-amber-700 hover:underline dark:text-amber-400">
+      {lidText('lid.lessonQuestions', 'de', { n: questions.length })} ↓
+    </a>
+  </header>
+
+  <article lang="de" class="article-prose mt-6"><Content components={{ Bilingual, En, Ru, Uk, De }} /></article>
+
+  <section class="mt-10" aria-labelledby="begriffe">
+    <h2 id="begriffe" class="text-xl font-bold"><Chrome k="lid.lessonTerms" /></h2>
+    <div class="mt-3 overflow-x-auto">
+      <table class="border-collapse text-sm">
+        <thead>
+          <tr class="border-b-2 border-stone-300 text-left dark:border-stone-600">
+            <th class="py-2 pr-8 font-semibold">Deutsch</th>
+            <th class="py-2 pr-8 font-semibold">English</th>
+            <th class="lang-ru py-2 pr-8 font-semibold">Русский</th>
+            {hasUk && <th class="lang-uk py-2 font-semibold">Українська</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            terms.map((term) => (
+              <tr class="border-b border-stone-200 align-top dark:border-stone-700">
+                <td lang="de" class="py-2 pr-8 font-medium">{term.de}</td>
+                <td lang="en" class="py-2 pr-8">{term.en}</td>
+                <td lang="ru" class="lang-ru py-2 pr-8">{term.ru}</td>
+                {hasUk && <td lang="uk" class="lang-uk py-2">{term.uk}</td>}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <a
+    href={withBase(`/leben/ueben?lektion=${lesson.id}`)}
+    class="mt-10 block rounded-lg bg-amber-600 p-5 text-white shadow-sm hover:bg-amber-700"
+  >
+    <span class="block text-xl font-bold">{lidText('lid.lessonPractice', 'de', { n: questions.length })} →</span>
+  </a>
+
+  <section id="fragen" class="mt-10 scroll-mt-32" aria-labelledby="fragen-titel">
+    <h2 id="fragen-titel" class="text-xl font-bold"><Chrome k="lid.lessonQuestionsTitle" /></h2>
+    {
+      groups.map((group) => (
+        <>
+          {group.title && <h3 lang="de" class="mt-5 font-semibold">{group.title}</h3>}
+          <ol class="mt-3 divide-y divide-stone-200 rounded-lg border border-stone-200 bg-white dark:divide-stone-700 dark:border-stone-700 dark:bg-stone-800">
+            {group.questions.map(({ question }) => (
+              <li>
+                <a
+                  href={withBase(`/leben/fragen#${questionAnchor(question.id)}`)}
+                  class="flex min-h-11 gap-3 px-4 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-700/50"
+                >
+                  <span class="w-20 shrink-0 pt-0.5 text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">
+                    {questionLabel(question, 'de')}
+                  </span>
+                  <span lang="de" class="min-w-0 flex-1">{question.question}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      ))
+    }
+  </section>
+
+  <section class="mt-10" aria-labelledby="quellen">
+    <h2 id="quellen" class="text-lg font-bold"><Chrome k="lid.lessonSources" /></h2>
+    <ul class="mt-2 space-y-1 text-sm">
+      {
+        sources.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-9 items-center text-amber-700 hover:underline dark:text-amber-400">
+              {s.title} ↗
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <LidSource source={source} />
+</Base>

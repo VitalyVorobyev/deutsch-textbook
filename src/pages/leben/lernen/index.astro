@@ -1,0 +1,75 @@
+---
+/**
+ * The Leben-in-Deutschland lessons, in their `order` (ADR 0021): short reading in simple German
+ * on the system behind a group of questions. Reading material, not the exam — the questions
+ * remain the exam, and every lesson ends in practice of exactly its questions. Server-rendered,
+ * no island: nothing here depends on progress.
+ */
+import Base from '../../../layouts/Base.astro';
+import Chrome from '../../../components/Chrome.astro';
+import UebenNav from '../../../components/UebenNav.astro';
+import LidSource from '../../../components/lid/LidSource.astro';
+import { lidText } from '../../../components/lid/shared';
+import { getLidCatalogue } from '../../../lib/content';
+import { t } from '../../../lib/strings';
+import { withBase } from '../../../lib/url';
+
+const { source, lessons } = getLidCatalogue();
+---
+
+<Base title={`${t('lid.learn', 'de')} · ${t('lid.title', 'de')}`} description="Lektionen zum Hintergrund der Fragen im Test „Leben in Deutschland“">
+  <UebenNav active="leben" />
+  <nav class="mb-2 text-sm text-stone-400">
+    <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
+    <span> / <Chrome k="lid.learn" /></span>
+  </nav>
+  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="lid.learn" /></h1>
+  <p lang="de" class="mt-2">
+    Jede Lektion erklärt kurz und in einfachem Deutsch, was hinter einer Gruppe von Prüfungsfragen steht.
+    Sie gibt dir den Hintergrund – die Prüfung bleiben die Fragen selbst. Am Ende jeder Lektion übst du
+    genau ihre Fragen.
+  </p>
+  <!-- The German above is always shown; this is its explanation-language twin. Under `de` the
+       German IS the explanation, so the empty de half hides the EN fallback. -->
+  <p class="mt-2 text-sm text-stone-500 dark:text-stone-400">
+    <span class="lang-en">Each lesson explains briefly, in simple German, what lies behind a group of exam questions. It gives you the background — the exam is still the questions themselves. At the end of every lesson you practise exactly its questions.</span>
+    <span class="lang-ru">Каждый урок коротко и на простом немецком объясняет, что стоит за группой экзаменационных вопросов. Он даёт фон, а сам экзамен — это по-прежнему вопросы. В конце каждого урока вы тренируете именно его вопросы.</span>
+    <span class="lang-uk">Кожен урок коротко й простою німецькою пояснює, що стоїть за групою екзаменаційних питань. Він дає контекст, а сам іспит — це, як і раніше, питання. Наприкінці кожного уроку ви тренуєте саме його питання.</span>
+    <span class="lang-de"></span>
+  </p>
+
+  {
+    lessons.length === 0 ? (
+      <p class="mt-8 rounded-lg border border-dashed border-stone-300 p-6 text-stone-500 dark:border-stone-600 dark:text-stone-400">
+        <Chrome k="lid.lessonsNone" />
+      </p>
+    ) : (
+      <ol class="mt-8 space-y-3">
+        {lessons.map((lesson, i) => (
+          <li>
+            <a
+              href={withBase(`/leben/lernen/${lesson.id}`)}
+              class="flex gap-4 rounded-lg border border-stone-200 bg-white px-4 py-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
+            >
+              <span class="mt-0.5 w-6 shrink-0 text-right font-semibold tabular-nums text-stone-400">{i + 1}</span>
+              <span class="min-w-0 flex-1">
+                <span lang="de" class="block font-semibold text-amber-700 dark:text-amber-400">
+                  {lesson.title}
+                  {lesson.status === 'draft' && (
+                    <span class="ml-1 font-normal text-stone-500 dark:text-stone-400">({t('lid.draft', 'de')})</span>
+                  )}
+                </span>
+                <span lang="de" class="mt-1 block text-sm text-stone-600 dark:text-stone-300">{lesson.summary}</span>
+                <span class="mt-1 block text-xs text-stone-500 dark:text-stone-400">
+                  {lidText('lid.lessonQuestions', 'de', { n: lesson.ids.length })}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )
+  }
+
+  <LidSource source={source} />
+</Base>

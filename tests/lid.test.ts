@@ -15,6 +15,7 @@ import {
   lidReadiness,
   mulberry32,
   planLidPractice,
+  planLidScopedPractice,
   scoreMock,
   shouldShuffleOptions,
   type LidAnswer,
@@ -249,6 +250,69 @@ describe('planLidPractice', () => {
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10, limit: 2 }))
       .toEqual(['general-002', 'general-005']);
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10, limit: 0 })).toEqual([]);
+  });
+});
+
+describe('planLidScopedPractice — a lesson drill deals every question', () => {
+  const now = new Date('2026-10-10T12:00:00');
+  const t = now.getTime();
+  const ids = Array.from({ length: 8 }, (_, i) => `general-${pad(i + 1, 3)}`);
+
+  function card(due: number, introducedAt?: string): StoredCard {
+    return {
+      due: new Date(due).toISOString(), stability: 1, difficulty: 5, elapsed_days: 0,
+      scheduled_days: 1, learning_steps: 0, reps: 1, lapses: 0, state: 2,
+      last_review: new Date(due - DAY).toISOString(), ...(introducedAt ? { introducedAt } : {}),
+    };
+  }
+
+  test('wrong last first (most recent first), then never answered in teaching order, then the rest by due date', () => {
+    const answered = replay(
+      EMPTY_LID_STATE,
+      answer('general-002', false, t - 3 * DAY), // wrong, the older miss
+      answer('general-004', false, t - 2 * DAY),
+      answer('general-006', false, t - DAY), // wrong, the newest miss
+      answer('general-004', true, t - DAY + 1), // corrected since: no longer a mistake
+      answer('BY-01', false, t), // a miss outside the lesson stays outside it
+    );
+    const state: LidState = {
+      ...answered,
+      cards: {
+        ...answered.cards,
+        'general-004': card(t + 5 * DAY),
+        'general-007': card(t - 2 * DAY), // overdue
+        'general-008': card(t + DAY), // not due yet — a drill deals it all the same
+      },
+    };
+    expect(planLidScopedPractice({ questionIds: ids, state, now })).toEqual([
+      'general-006', 'general-002',
+      'general-001', 'general-003', 'general-005',
+      'general-007', 'general-008', 'general-004',
+    ]);
+  });
+
+  test('no daily allowance: every never-answered question is dealt, however many today has introduced', () => {
+    const lesson = Array.from({ length: 40 }, (_, i) => `general-${pad(i + 101, 3)}`);
+    const today = '2026-10-10';
+    const cards = Object.fromEntries(
+      Array.from({ length: 30 }, (_, i) => [`general-${pad(i + 201, 3)}`, card(t + DAY, today)]),
+    );
+    const state: LidState = { ...EMPTY_LID_STATE, cards };
+    expect(planLidPractice({ questionIds: lesson, state, now, newPerDay: 15 })).toEqual([]);
+    expect(planLidScopedPractice({ questionIds: lesson, state, now })).toEqual(lesson);
+  });
+
+  test('a repeated id is dealt once, and due-date ties keep the given order', () => {
+    const state: LidState = {
+      ...EMPTY_LID_STATE,
+      cards: { 'general-003': card(t), 'general-001': card(t), 'general-002': card(t - DAY) },
+    };
+    expect(planLidScopedPractice({ questionIds: ['general-003', 'general-001', 'general-003', 'general-002'], state, now }))
+      .toEqual(['general-002', 'general-003', 'general-001']);
+  });
+
+  test('an empty scope is an empty queue', () => {
+    expect(planLidScopedPractice({ questionIds: [], state: EMPTY_LID_STATE, now })).toEqual([]);
   });
 });
 

@@ -12,8 +12,8 @@ import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from '@da/schema';
 import type { TopicNode } from './mastery';
 import { getCurriculum } from '@da/content/curriculum';
-import { loadLidBank, loadLidNotes, loadLidTopics } from '@da/content/lid';
-import type { LidCatalogue, LidEntry } from '../components/lid/shared';
+import { loadLidBank, loadLidLessons, loadLidNotes, loadLidTopics } from '@da/content/lid';
+import type { LidCatalogue, LidEntry, LidLessonView } from '../components/lid/shared';
 
 /**
  * The learner-facing view of every topic, from the manifests.
@@ -146,11 +146,19 @@ export function getPlacements(): Promise<PlacementDescriptor[]> {
  * test draws from. Order is TEACHING order, the order `planLidPractice` deals new questions in:
  * topics.yaml's module order, then its topic order, then the official number within a topic.
  * `bun run validate` guarantees every question sits in exactly one topic, so nothing is dropped.
+ *
+ * Lessons (`content/lid/lessons/`) are joined here too: each question learns the lesson that
+ * teaches its topic, and each lesson its questions in teaching order. A topic belongs to at most
+ * one lesson (validated), so the join is a function, never a choice.
  */
 export function getLidCatalogue(): LidCatalogue {
   const bank = loadLidBank();
   const topics = loadLidTopics();
   const notes = new Map(loadLidNotes().map((note) => [note.id, note]));
+  const lessonFiles = loadLidLessons();
+  const lessonOf = new Map(
+    lessonFiles.flatMap((lesson) => lesson.topics.map((topic) => [topic, { id: lesson.id, title: lesson.title_de }] as const)),
+  );
   const state = bank.states[0]!;
   const inScope = bank.questions.filter((q) => q.scope === 'general' || q.stateCode === state);
 
@@ -173,11 +181,13 @@ export function getLidCatalogue(): LidCatalogue {
     if (!note || !info) throw new Error(`LiD: ${question.id} belongs to no topic (run bun run validate)`);
     // A note that only places its question carries nothing to show — leave it out of the payload.
     const said = !!(note.rationale_de || note.source || note.question || note.terms?.length);
+    const lesson = lessonOf.get(note.topic);
     byTopic.get(note.topic)!.push({
       question,
       topic: note.topic,
       topicTitle: info.title,
       module: info.module,
+      ...(lesson && { lesson }),
       ...(said && {
         note: {
           status: note.status,
@@ -197,5 +207,17 @@ export function getLidCatalogue(): LidCatalogue {
       topic.ids = own.map((entry) => entry.question.id);
       entries.push(...own);
     }
-  return { source: bank.source, bankVersion: bank.dataset.version, state, modules, entries };
+  const lessons: LidLessonView[] = lessonFiles.map((lesson) => {
+    const own = new Set(lesson.topics);
+    return {
+      id: lesson.id,
+      title: lesson.title_de,
+      order: lesson.order,
+      summary: lesson.summary_de,
+      status: lesson.status,
+      topics: lesson.topics,
+      ids: entries.filter((entry) => own.has(entry.topic)).map((entry) => entry.question.id),
+    };
+  });
+  return { source: bank.source, bankVersion: bank.dataset.version, state, modules, entries, lessons };
 }
