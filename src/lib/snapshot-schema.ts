@@ -1,5 +1,7 @@
 import { z } from 'zod';
+import { lidOptionKeySchema } from '@da/schema/lid';
 import type { ProgressSnapshot } from './store';
+import type { LidState } from './lid';
 import { migrateCardIds } from './a1-card-id-migration';
 import { mergeCards } from './snapshot-merge';
 
@@ -93,6 +95,38 @@ const feedbackSchema = z.object({
   ts: z.number(),
 });
 
+// Leben in Deutschland (ADR 0021): its own key, with the course's card shape reused for the
+// question states — the same FSRS record, kept out of `cards` so it never counts as vocabulary.
+const lidAnswerSchema = z.object({
+  q: z.string().min(1),
+  chosen: lidOptionKeySchema.nullable(),
+  correct: z.boolean(),
+  ts: z.number(),
+  mode: z.enum(['practice', 'exam']),
+  bank: z.string().min(1),
+});
+
+const lidExamSchema = z.object({
+  id: z.string().min(1),
+  state: z.string().min(1),
+  bank: z.string().min(1),
+  startedAt: z.number(),
+  submittedAt: z.number(),
+  items: z.array(z.string().min(1)),
+  answers: z.record(z.string(), lidOptionKeySchema.nullable()),
+  correct: z.number().int().min(0),
+  timedOut: z.boolean(),
+});
+
+export const lidStateSchema = z.object({
+  cards: z.record(z.string(), cardSchema),
+  answers: z.array(lidAnswerSchema),
+  exams: z.array(lidExamSchema),
+});
+
+/** A fresh empty state per snapshot, never a shared object a caller could mutate. */
+const emptyLid = (): LidState => ({ cards: {}, answers: [], exams: [] });
+
 const snapshotBody = z.object({
   exportedAt: z.string(),
   profile: z.string().optional(),
@@ -112,6 +146,7 @@ const snapshotSchemas = {
   5: snapshotBody.extend({ version: z.literal(5) }),
   6: snapshotBody.extend({ version: z.literal(6) }),
   7: snapshotBody.extend({ version: z.literal(7) }),
+  8: snapshotBody.extend({ version: z.literal(8), lid: lidStateSchema.default(emptyLid) }),
 } as const;
 
 /**
@@ -125,20 +160,26 @@ export const SUPPORTED_SNAPSHOT_VERSIONS = Object.keys(snapshotSchemas)
 
 type NormalizedSnapshot = z.infer<(typeof snapshotSchemas)[keyof typeof snapshotSchemas]>;
 
-function asV7(snapshot: NormalizedSnapshot): ProgressSnapshot {
+/**
+ * The one normalization every version passes through. `lid` is explicit rather than spread
+ * through: v1-v7 predate it, and zod strips unknown keys from their bodies, so the only LiD state
+ * a migrated snapshot can carry is the one its own v8 schema parsed.
+ */
+function asV8(snapshot: NormalizedSnapshot, lid: LidState): ProgressSnapshot {
   // The same map the live store applies on open — one implementation, two entry points.
   const cards = migrateCardIds(snapshot.cards, mergeCards);
-  return { ...snapshot, cards, version: 7 } as ProgressSnapshot;
+  return { ...snapshot, cards, lid, version: 8 } as ProgressSnapshot;
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */
-export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV7(snapshot);
-export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV7(snapshot);
-export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV7(snapshot);
-export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV7(snapshot);
-export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV7(snapshot);
-export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV7(snapshot);
-export const migrateSnapshotV7 = (snapshot: z.infer<typeof snapshotSchemas[7]>) => asV7(snapshot);
+export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV7 = (snapshot: z.infer<typeof snapshotSchemas[7]>) => asV8(snapshot, emptyLid());
+export const migrateSnapshotV8 = (snapshot: z.infer<typeof snapshotSchemas[8]>) => asV8(snapshot, snapshot.lid);
 
 /** Parse and normalize every supported snapshot version at the import boundary. */
 export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
@@ -153,6 +194,7 @@ export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
     case 5: return migrateSnapshotV5(snapshotSchemas[5].parse(input));
     case 6: return migrateSnapshotV6(snapshotSchemas[6].parse(input));
     case 7: return migrateSnapshotV7(snapshotSchemas[7].parse(input));
+    case 8: return migrateSnapshotV8(snapshotSchemas[8].parse(input));
     default:
       throw new Error(
         `Unsupported progress snapshot version: ${String((input as { version?: unknown }).version)}`,

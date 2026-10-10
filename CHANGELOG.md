@@ -9,6 +9,17 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-10-10
+
+### Added
+
+- **Leben in Deutschland (Bayern)** under Üben: practice with spaced review of all 310 official
+  questions, a mistakes queue, a timed 33-question mock exam scored against both pass marks
+  (17 for the Einbürgerungstest, 15 for the Orientierungskurs), and the full catalogue. The bank
+  is the official text, verified on import; LiD progress syncs as snapshot v8 (ADR 0021).
+  **Update every device:** a 0.5.x app cannot read a v8 snapshot, so it stops syncing (it never
+  overwrites one) until it is updated.
+
 ### Maintenance
 
 - Dependencies refreshed within their ranges across the workspace, Tauri 2.11 → 2.12 on both

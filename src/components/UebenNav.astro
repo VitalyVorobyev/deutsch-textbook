@@ -1,13 +1,15 @@
 ---
 /**
- * Sub-navigation for the merged Üben tab: Wiederholen | Training | Wortschatz | Prüfung.
- * Server-rendered links; the owning page declares which tab is active.
+ * Sub-navigation for the merged Üben tab: Wiederholen | Training | Wortschatz | Prüfung | Leben in D.
+ * Server-rendered links; the owning page declares which tab is active. The Leben-in-Deutschland
+ * trainer is a sub-tab rather than a top-level one (backlog P25-8: exam training is training).
+ * The row scrolls inside itself when five tabs outgrow a phone (`overflow-x-auto`).
  */
 import Chrome from './Chrome.astro';
 import { withBase } from '../lib/url';
 
 interface Props {
-  active: 'wiederholen' | 'training' | 'wortschatz' | 'pruefung';
+  active: 'wiederholen' | 'training' | 'wortschatz' | 'pruefung' | 'leben';
 }
 const { active } = Astro.props;
 
@@ -16,6 +18,7 @@ const tabs = [
   { id: 'training', href: withBase('/ueben/training'), label: 'ueben.tabTraining' },
   { id: 'wortschatz', href: withBase('/ueben/wortschatz'), label: 'ueben.tabWortschatz' },
   { id: 'pruefung', href: withBase('/pruefung/a1'), label: 'ueben.tabPruefung' },
+  { id: 'leben', href: withBase('/leben'), label: 'ueben.tabLeben' },
 ] as const;
 ---
 
@@ -40,3 +43,20 @@ const tabs = [
     ))
   }
 </nav>
+<script is:inline>
+  // Five tabs outgrow a phone and the row scrolls inside itself — so the active tab, last of
+  // all on /leben, would load clipped off the edge. Scroll it into view before first paint, and
+  // once more on `load` for when the stylesheet arrived after this ran (the dev server injects
+  // CSS from JS). Idempotent: a tab already in view measures no overshoot.
+  (function () {
+    const nav = document.currentScript && document.currentScript.previousElementSibling;
+    const active = nav && nav.querySelector('[aria-current="page"]');
+    if (!active) return;
+    const reveal = () => {
+      const overshoot = active.getBoundingClientRect().right - nav.getBoundingClientRect().right;
+      if (overshoot > 0) nav.scrollLeft += overshoot + 16;
+    };
+    reveal();
+    window.addEventListener('load', reveal, { once: true });
+  })();
+</script>

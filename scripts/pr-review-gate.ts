@@ -1,5 +1,10 @@
 /**
- * Read-only merge gate for the current pull request.
+ * Read-only merge gate for the current pull request: not a draft, CI green, no unresolved review
+ * thread and no outstanding change request.
+ *
+ * It does NOT wait for any reviewer. A required Codex review of HEAD used to be part of the gate;
+ * the owner retired it on 2026-10-10 ("do not wait for codex") — a review that never arrives held
+ * green PRs for no evidence. A review that does arrive still binds through its threads.
  *
  * It intentionally uses thread-aware GraphQL data: `gh pr view` flattens review
  * comments and cannot tell whether an inline thread was resolved.
@@ -17,21 +22,9 @@ export interface PullRequestGateInput {
     state?: string;
   }>;
   reviewDecision?: string | null;
-  reviews: Array<{
-    author?: { login?: string };
-    body?: string;
-    state?: string;
-    submittedAt?: string;
-  }>;
-  comments: Array<{ author?: { login?: string }; body?: string }>;
   opinionatedReviews: Array<{ author?: { login?: string }; state?: string }>;
   threads: Array<{ isResolved: boolean; isOutdated: boolean; path: string; line?: number | null }>;
 }
-
-const CODEX_REVIEW_LOGINS = new Set([
-  'chatgpt-codex-connector',
-  'chatgpt-codex-connector[bot]',
-]);
 
 const successfulCheck = (check: PullRequestGateInput['statusCheckRollup'][number]): boolean => {
   if (check.state) return ['SUCCESS', 'NEUTRAL', 'SKIPPED'].includes(check.state);
@@ -70,16 +63,6 @@ export function pullRequestGateProblems(input: PullRequestGateInput): string[] {
         problems.push(`CI check "${check.name ?? check.context ?? 'unnamed'}" is not successful`);
     }
   }
-
-  // Codex submits a GitHub review when it has inline findings, but records a
-  // clean result as an issue comment. Both are trusted only by exact bot login
-  // and an explicit sufficiently long current-HEAD hash.
-  const codexReviewedHead = [...input.reviews, ...input.comments].some((report) => {
-    if (!report.author?.login || !CODEX_REVIEW_LOGINS.has(report.author.login)) return false;
-    const reviewedCommit = report.body?.match(/Reviewed commit:\*{0,2}\s*`([a-f0-9]{10,40})`/i)?.[1];
-    return !!reviewedCommit && input.headRefOid.startsWith(reviewedCommit);
-  });
-  if (!codexReviewedHead) problems.push(`Codex review has not completed against HEAD ${input.headRefOid.slice(0, 12)}`);
 
   return problems;
 }
@@ -195,20 +178,11 @@ export function runPullRequestGate(): void {
     isDraft: boolean;
     headRefOid: string;
     statusCheckRollup: PullRequestGateInput['statusCheckRollup'];
-    latestReviews: PullRequestGateInput['reviews'];
-    comments: PullRequestGateInput['comments'];
-  }>([
-    'pr',
-    'view',
-    '--json',
-    'number,url,isDraft,headRefOid,statusCheckRollup,latestReviews,comments',
-  ]);
+  }>(['pr', 'view', '--json', 'number,url,isDraft,headRefOid,statusCheckRollup']);
   const input: PullRequestGateInput = {
     isDraft: pr.isDraft,
     headRefOid: pr.headRefOid,
     statusCheckRollup: pr.statusCheckRollup,
-    reviews: pr.latestReviews,
-    comments: pr.comments,
     ...fetchReviewStatus(owner, repo, pr.number),
     threads: fetchThreads(owner, repo, pr.number),
   };

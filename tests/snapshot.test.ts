@@ -23,22 +23,23 @@ const legacy = (version: number) => ({
   cards: {},
 });
 
-describe('snapshot v7', () => {
-  test('migrates every supported version through an explicit v7 boundary', () => {
-    for (const version of [1, 2, 3, 4, 5, 6, 7]) {
+describe('snapshot v8', () => {
+  test('migrates every supported version through an explicit v8 boundary', () => {
+    for (const version of [1, 2, 3, 4, 5, 6, 7, 8]) {
       const migrated = parseProgressSnapshot(legacy(version));
-      expect(migrated.version).toBe(7);
+      expect(migrated.version).toBe(8);
       expect(migrated.attempts).toHaveLength(1);
       expect(migrated.sessions).toEqual([]);
       expect(migrated.topics).toEqual({});
       expect(migrated.feedback).toEqual({});
+      expect(migrated.lid).toEqual({ cards: {}, answers: [], exams: [] });
     }
   });
 
   test('rejects malformed nested progress instead of shallowly accepting it', () => {
     expect(() => parseProgressSnapshot({ ...legacy(6), attempts: [{ correct: true }] })).toThrow();
     expect(() => parseProgressSnapshot({ ...legacy(6), cards: { x: { reps: 1 } } })).toThrow();
-    expect(() => parseProgressSnapshot(legacy(8))).toThrow();
+    expect(() => parseProgressSnapshot(legacy(9))).toThrow();
   });
 
   test('carries placement across the v5 boundary in both directions', () => {

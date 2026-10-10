@@ -135,7 +135,7 @@ schemas. Bun is the package manager and task runner.
 | `bun run check` | type-check (`astro check`) |
 | `bun run lint` | ESLint over `src/` and `scripts/` |
 | `bun run build` | static production build |
-| `bun run review:gate` | require green CI, resolved review threads and a current-HEAD Codex review |
+| `bun run review:gate` | require green CI, resolved review threads and no outstanding change request — it waits for no reviewer |
 | `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
 | `bun scripts/coverage.ts A1` | Goethe Wortliste coverage report (`A1`, `A2` or `B1`) |
 | `bun scripts/grammar-coverage.ts A1` | structural coverage against the grammar inventory (`A1`, `A2` or `B1`) |

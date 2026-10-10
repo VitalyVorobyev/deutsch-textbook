@@ -6,6 +6,8 @@ import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
 import { recordRecovery, recordStall } from './stall-log';
 import { createManagedStore } from './managed-store';
+import { localDateString } from './local-date';
+import { applyLidAnswer, applyLidExam, EMPTY_LID_STATE, mergeLid, type LidAnswer, type LidExamRun, type LidState } from './lid';
 import {
   attemptKey,
   mergeAttempts,
@@ -461,7 +463,7 @@ export function withReadRetry<T>(
  * ~784 KB, so collapsing the transactions is the whole prize and rewriting the mutators to
  * mutate in place would buy nothing worth the subtlety.
  */
-type StoreKey = 'cards' | 'attempts' | 'sessions' | 'topics' | 'goal' | 'feedback';
+type StoreKey = 'cards' | 'attempts' | 'sessions' | 'topics' | 'goal' | 'feedback' | 'lid';
 
 interface PendingWrite {
   profileId?: string;
@@ -768,12 +770,9 @@ export interface SessionLogEntry {
   ts: number;
 }
 
-/** Local calendar date — not UTC, so a late-evening session still counts for its own day. */
-export function localDateString(d = new Date()): string {
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${d.getFullYear()}-${m}-${day}`;
-}
+/** Local calendar date — defined in `local-date.ts` (see there for why), re-exported here for
+    every existing importer. */
+export { localDateString };
 
 export async function logSession(entry: SessionLogEntry): Promise<void> {
   await enqueueUpdate<SessionLogEntry[]>('sessions', (arr) => mergeSessions(arr ?? [], [entry]));
@@ -915,12 +914,38 @@ export async function setArtifactFeedback(
 }
 
 // ---------------------------------------------------------------------------
+// Leben in Deutschland (ADR 0021): question states, the answer log and mock runs
+// ---------------------------------------------------------------------------
+
+/**
+ * The LiD trainer's whole state, under its own key. Never `cards` or `attempts`: those feed the
+ * vocabulary counters, the shared new-card budget and `progress:audit`, and a citizenship
+ * question is none of those things. The shape and its rules live in `lid.ts`.
+ */
+export async function getLidState(): Promise<LidState> {
+  return withVisibilityRetry(async () => (await get<LidState>('lid', await getStore())) ?? EMPTY_LID_STATE);
+}
+
+/** Append one answer and grade its question — idempotent by `q|ts` (`applyLidAnswer`), which is
+    what lets the journal replay it. Callers go through `logLidAnswerDurably` (write-journal.ts). */
+export async function logLidAnswer(answer: LidAnswer): Promise<void> {
+  await enqueueUpdate<LidState>('lid', (s) => applyLidAnswer(s ?? EMPTY_LID_STATE, answer));
+  scheduleAutoSync();
+}
+
+/** Record one submitted mock — idempotent by run id. Callers go through `logLidExamDurably`. */
+export async function logLidExam(run: LidExamRun): Promise<void> {
+  await enqueueUpdate<LidState>('lid', (s) => applyLidExam(s ?? EMPTY_LID_STATE, run));
+  scheduleAutoSync();
+}
+
+// ---------------------------------------------------------------------------
 // Export / import (the agent personalization loop reads these snapshots)
 // ---------------------------------------------------------------------------
 
 export interface ProgressSnapshot {
-  /** written as 7; import accepts v1-v7 through explicit migration. */
-  version: 7;
+  /** written as 8; import accepts v1-v8 through explicit migration (v1-v7 gain an empty `lid`). */
+  version: 8;
   exportedAt: string;
   /** profile label, informational only */
   profile?: string;
@@ -930,11 +955,14 @@ export interface ProgressSnapshot {
   topics: TopicsState;
   goal?: LearningGoal;
   feedback: ArtifactFeedbackState;
+  /** Leben in Deutschland (ADR 0021) — the reason for v8: a v7 client would strip it silently
+      and push the stripped copy, where a v8 snapshot makes that client refuse instead. */
+  lid: LidState;
 }
 
 export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot> {
   return {
-    version: 7,
+    version: 8,
     exportedAt: new Date().toISOString(),
     profile,
     attempts: await getAttempts(),
@@ -943,6 +971,7 @@ export async function exportSnapshot(profile?: string): Promise<ProgressSnapshot
     topics: await getTopicsState(),
     goal: await getLearningGoal(),
     feedback: await getArtifactFeedback(),
+    lid: await getLidState(),
   };
 }
 
@@ -970,12 +999,13 @@ export function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
 
 /**
  * Non-destructive merge: unions attempts/sessions (dedup), keeps the
- * more-advanced card state, and last-write-wins for topic manual overrides.
+ * more-advanced card state, and last-write-wins for topic manual overrides;
+ * the LiD state merges by the same rules through `mergeLid`.
  * This is the default import so two devices/profiles don't clobber each other.
  */
 export async function mergeSnapshot(snapshot: unknown): Promise<void> {
   const migrated = parseProgressSnapshot(snapshot);
-  // Through the queue like every other write: a merge is six back-to-back readwrites, which is
+  // Through the queue like every other write: a merge is seven back-to-back readwrites, which is
   // exactly the backlog a grade issued mid-sync used to find itself behind (ADR 0019). Queued
   // together they interleave with the session's own writes instead of monopolising the store.
   await enqueueUpdate<Attempt[]>('attempts', (cur) =>
@@ -989,6 +1019,7 @@ export async function mergeSnapshot(snapshot: unknown): Promise<void> {
   await enqueueUpdate<ArtifactFeedbackState>('feedback', (cur) =>
     mergeFeedback(cur ?? {}, migrated.feedback),
   );
+  await enqueueUpdate<LidState>('lid', (cur) => mergeLid(cur ?? EMPTY_LID_STATE, migrated.lid));
   if (migrated.goal) {
     await enqueueUpdate<LearningGoal | undefined>('goal', (cur) =>
       !cur || migrated.goal!.setAt > cur.setAt ? migrated.goal : cur,
@@ -1013,6 +1044,7 @@ export async function replaceSnapshot(snapshot: unknown): Promise<void> {
   await set('sessions', migrated.sessions, store);
   await set('topics', migrated.topics, store);
   await set('feedback', migrated.feedback, store);
+  await set('lid', migrated.lid, store);
   if (migrated.goal) await set('goal', migrated.goal, store);
   scheduleAutoSync();
 }

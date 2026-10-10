@@ -722,3 +722,69 @@ describe('--project rejects a date that does not exist', () => {
     expect(() => run(['--profile', 'p', '--project', '2026-08-02'], auditRoot())).not.toThrow();
   });
 });
+
+describe('Leben in Deutschland section', () => {
+  const iso = (value: number) => new Date(value).toISOString().slice(0, 10);
+  const question = (id: string, scope: 'general' | 'state' = 'general') => ({
+    id, officialNumber: 1, scope, stateCode: scope === 'state' ? 'BY' : null, bamfInternalId: id,
+    sourcePage: 1, question: `Frage ${id}?`, answers: { a: 'a', b: 'b', c: 'c', d: 'd' },
+    solution: 'a' as const, images: [],
+  });
+  const context = {
+    bank: { questions: [question('general-001'), question('general-002'), question('general-003'), question('BY-01', 'state')] },
+    topics: { modules: [
+      { id: 'demokratie', title_de: 'Leben in der Demokratie', topics: [
+        { id: 'grundrechte', title_de: 'Grundrechte' }, { id: 'wahlen', title_de: 'Wahlen' }] },
+      { id: 'bayern', title_de: 'Bayern', topics: [{ id: 'bayern', title_de: 'Freistaat Bayern' }] },
+    ] },
+    placement: new Map([['general-001', 'grundrechte'], ['general-002', 'grundrechte'], ['general-003', 'wahlen'], ['BY-01', 'bayern']]),
+  };
+  const answer = (q: string, correct: boolean, day: number, mode: 'practice' | 'exam' = 'practice') =>
+    ({ q, chosen: correct ? 'a' as const : 'b' as const, correct, ts: ts(day), mode, bank: 'test' });
+  const lid = {
+    cards: {},
+    answers: [
+      answer('general-001', false, 1), answer('general-001', false, 2), answer('general-001', true, 3),
+      answer('general-002', false, 4), answer('BY-01', true, 5, 'exam'),
+    ],
+    exams: [{
+      id: 'm1', state: 'BY', bank: 'test', startedAt: ts(5) - 1000, submittedAt: ts(5),
+      items: Array.from({ length: 33 }, (_, i) => `q${i}`), answers: {}, correct: 16, timedOut: true,
+    }],
+  };
+
+  test('reports latest-answer accuracy by module and topic, the most missed, and mocks against both marks', () => {
+    const audit = buildAudit(snapshot({ version: 8, lid }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(), lid: context, now: ts(13),
+    });
+    expect(audit.lid).toMatchObject({ answers: 5, total: 4, seen: 3, lastTwoCorrect: 0 });
+    expect(audit.lid!.byGroup).toEqual([
+      { module: 'Leben in der Demokratie', questions: 3, seen: 2, latestCorrect: 1 },
+      { module: 'Leben in der Demokratie', topic: 'Grundrechte', questions: 2, seen: 2, latestCorrect: 1 },
+      { module: 'Bayern', questions: 1, seen: 1, latestCorrect: 1 },
+      { module: 'Bayern', topic: 'Freistaat Bayern', questions: 1, seen: 1, latestCorrect: 1 },
+    ]);
+    expect(audit.lid!.mostMissed).toEqual([
+      { id: 'general-001', wrong: 2, answers: 3, question: 'Frage general-001?' },
+      { id: 'general-002', wrong: 1, answers: 1, question: 'Frage general-002?' },
+    ]);
+    // 16 of 33 passes the Orientierungskurs test and fails the Einbürgerungstest: two marks.
+    expect(audit.lid!.exams).toEqual([{
+      date: iso(ts(5)), correct: 16, items: 33, passEinbuergerung: false, passOrientierungskurs: true, timedOut: true,
+    }]);
+    const rendered = renderMarkdown(audit);
+    expect(rendered).toContain('## Leben in Deutschland');
+    expect(rendered).toContain('| 16/33 | fail | pass | yes |');
+  });
+
+  test('is absent without LiD answers, and refuses to guess when the bank was not loaded', () => {
+    const none = buildAudit(snapshot({ version: 8, lid: { cards: {}, answers: [], exams: [] } }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13),
+    });
+    expect(none.lid).toBeUndefined();
+    expect(renderMarkdown(none)).not.toContain('Leben in Deutschland');
+    expect(() => buildAudit(snapshot({ version: 8, lid }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13),
+    })).toThrow('LiD');
+  });
+});

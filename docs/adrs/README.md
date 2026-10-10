@@ -48,6 +48,7 @@ relationship.
 | [`0018`](0018-progress-reads-recover.md) | Reads recover on a timer, and no surface renders a stall as emptiness | accepted · 2026-09-03 |
 | [`0019`](0019-writes-single-flight-and-confirm-late.md) | A write that lands late still confirms itself, and only one runs at a time | accepted · 2026-09-15 |
 | [`0020`](0020-owned-storage-recovery.md) | A stalled transaction is aborted before a retry, and one ordered journal drain owns every durable write | accepted · 2026-09-17 |
+| [`0021`](0021-leben-in-deutschland-trainer.md) | The Leben-in-Deutschland bank ships verbatim, and practising it is learning, not calibration | accepted · 2026-10-10 |
 
 A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
 superseded by a new ADR rather than edited into an acceptance.
