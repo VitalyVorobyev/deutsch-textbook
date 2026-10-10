@@ -237,12 +237,14 @@ describe('a journal entry never outlives its own write', () => {
     journalAppend(gradeOp('a::card::de-x', ts));
     journalAppend(gradeOp('b::card::de-x', ts + 1));
 
-    // Wedged, but releasable: a commit left hanging forever would hold the single-flight queue
-    // for its full 45 s bound and stall whatever test file bun runs next — the very behaviour
-    // `QUEUE_BATCH_TIMEOUT_MS` bounds in production.
+    // Wedged, but releasable — and released for good. The profile's journal drain outlives this
+    // caller's deadline by design (ADR 0020), so once the held commit is let go it moves on to
+    // the next op; a mock that wedged that one too would leave a drain no test can finish, and
+    // every durable write in every later file would queue behind it.
     const releases: (() => void)[] = [];
+    let released = false;
     const restore = store.__setCommitBatchForTests((async () => {
-      await new Promise<void>((r) => releases.push(r));
+      if (!released) await new Promise<void>((r) => releases.push(r));
     }) as never);
     try {
       const result = await replayJournal({ schedule: [], deadlineMs: 30 });
@@ -251,8 +253,9 @@ describe('a journal entry never outlives its own write', () => {
       expect(result.error).toBeInstanceOf(store.StoreStallError);
       expect(journalPending()).toHaveLength(2);
     } finally {
+      released = true;
       for (const r of releases) r();
-      await Bun.sleep(10);
+      await replayJournal(); // joins the still-running drain and waits for it to finish
       restore();
     }
   });
