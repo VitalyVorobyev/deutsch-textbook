@@ -9,6 +9,12 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Maintenance
+
+- Dependencies refreshed within their ranges across the workspace, Tauri 2.11 → 2.12 on both
+  the JavaScript and the Rust side of both desktop apps. `bun audit` reports 2 advisories instead
+  of 51; the remaining two are build-time only. Major upgrades are deferred (backlog P30-3).
+
 ## [0.5.2] — 2026-10-10
 
 ### Fixed
