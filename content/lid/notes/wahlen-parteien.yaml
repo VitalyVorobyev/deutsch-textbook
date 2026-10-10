@@ -1,40 +1,612 @@
 notes:
   - id: general-005
+    rationale_de: >-
+      Freie Wahl heißt: Niemand darf Sie zwingen, eine bestimmte Partei oder Person zu wählen, und niemand darf Sie unter Druck setzen. Wegen Ihrer Wahl dürfen Sie keine Nachteile haben. Das steht im Grundgesetz, Artikel 38. Geld für eine Stimme anzunehmen ist verboten, und eine Wahlpflicht gibt es in Deutschland nicht.
+    source: GG Art. 38 Abs. 1; StGB § 108b
+    question:
+      en: "Elections in Germany are free. What does that mean?"
+      ru: "Выборы в Германии свободные. Что это означает?"
+    options:
+      a: { en: "You may accept money if you vote for a particular candidate in return.", ru: "Можно брать деньги, если за это проголосовать за определённую кандидатку или определённого кандидата." }
+      b: { en: "Only people who have never been in prison may vote.", ru: "Голосовать могут только люди, которые никогда не были в тюрьме." }
+      c: { en: "Voters may neither be influenced nor forced to vote in a particular way, and they may suffer no disadvantage because of the election.", ru: "На избирательницу или избирателя нельзя влиять на выборах, нельзя принуждать её или его голосовать определённым образом, и из-за выборов у неё или у него не должно быть никаких невыгод." }
+      d: { en: "All persons entitled to vote must vote.", ru: "Все, кто имеет право голоса, обязаны голосовать." }
+    terms:
+      - { de: "die Stimmabgabe", en: "casting a vote", ru: "подача голоса" }
+      - { de: "beeinflussen", en: "to influence", ru: "влиять" }
+      - { de: "der Nachteil", en: "disadvantage", ru: "невыгода" }
+    status: draft
   - id: general-028
+    rationale_de: >-
+      In einer Demokratie geht alle Staatsgewalt vom Volk aus (Grundgesetz, Artikel 20). Darum wählen die wahlberechtigten Bürgerinnen und Bürger die Abgeordneten des Bundestages – direkt und für vier Jahre (Artikel 38 und 39). Militär, Wirtschaft und Verwaltung haben bei der Wahl keine besondere Stimme.
+    source: GG Art. 20 Abs. 2, Art. 38
+    question:
+      en: "Who elects the members of the Bundestag in Germany?"
+      ru: "Кто в Германии избирает депутатов бундестага?"
+    options:
+      a: { en: "the military", ru: "армия" }
+      b: { en: "the business sector", ru: "экономика" }
+      c: { en: "the people entitled to vote", ru: "народ, имеющий право голоса" }
+      d: { en: "the administration", ru: "администрация" }
+    terms:
+      - { de: "wahlberechtigt", en: "entitled to vote", ru: "имеющий право голоса" }
+      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат" }
+    status: draft
   - id: general-031
+    rationale_de: >-
+      Meistens bekommt keine Partei allein die Mehrheit im Bundestag. Dann arbeiten zwei oder mehr Parteien zusammen und bilden gemeinsam eine Regierung – das ist eine Koalition. Eine Fraktion ist etwas anderes: So nennt man die Gruppe der Abgeordneten einer Partei im Parlament.
+    question:
+      en: "In Germany, the cooperation of parties to form a government is called …"
+      ru: "Сотрудничество партий для формирования правительства в Германии называется …"
+    options:
+      a: { en: "unity.", ru: "единство." }
+      b: { en: "coalition.", ru: "коалиция." }
+      c: { en: "ministry.", ru: "министерство." }
+      d: { en: "parliamentary group.", ru: "фракция." }
+    terms:
+      - { de: "die Koalition", en: "coalition", ru: "коалиция" }
+      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция" }
+    status: draft
   - id: general-062
+    rationale_de: >-
+      Das Parlament eines Bundeslandes heißt meistens Landtag – darum spricht man von der Landtagswahl. In Bayern wird der Landtag alle fünf Jahre gewählt. Bei der Kommunalwahl wählt man dagegen zum Beispiel den Gemeinderat oder den Stadtrat.
+    source: Bayerische Verfassung Art. 16
+    question:
+      en: "When the parliament of a German federal state is elected, it is called …"
+      ru: "Когда избирают парламент федеральной земли Германии, это называется …"
+    options:
+      a: { en: "local election", ru: "муниципальные выборы" }
+      b: { en: "Landtag election", ru: "выборы в ландтаг" }
+      c: { en: "European election", ru: "выборы в Европейский парламент" }
+      d: { en: "Bundestag election", ru: "выборы в бундестаг" }
+    terms:
+      - { de: "die Landtagswahl", en: "state election", ru: "выборы в ландтаг" }
+      - { de: "die Kommunalwahl", en: "local election", ru: "муниципальные выборы" }
+    status: draft
   - id: general-076
+    rationale_de: >-
+      CDU heißt Christlich Demokratische Union. Die Partei wurde 1945 gegründet, und Konrad Adenauer war ihr erster Bundeskanzler. In Bayern tritt die CDU nicht zur Wahl an – dort gibt es ihre Schwesterpartei, die CSU.
+    question:
+      en: "What does the abbreviation CDU stand for in Germany?"
+      ru: "Что означает аббревиатура CDU в Германии?"
+    options:
+      a: { en: "Christian German Union", ru: "Христианский немецкий союз" }
+      b: { en: "Club of German Entrepreneurs", ru: "Клуб немецких предпринимателей" }
+      c: { en: "Christian German Environmental Protection", ru: "Христианская немецкая защита окружающей среды" }
+      d: { en: "Christian Democratic Union", ru: "Христианско-демократический союз" }
+    terms:
+      - { de: "die Schwesterpartei", en: "sister party", ru: "партия-сестра" }
+    status: draft
   - id: general-078
+    rationale_de: >-
+      SPD heißt Sozialdemokratische Partei Deutschlands. Sie ist die älteste Partei in Deutschland; ihre Geschichte beginnt 1863. Bundeskanzler aus der SPD waren zum Beispiel Willy Brandt, Helmut Schmidt, Gerhard Schröder und Olaf Scholz.
+    question:
+      en: "What does the abbreviation SPD stand for?"
+      ru: "Что означает аббревиатура SPD?"
+    options:
+      a: { en: "Socialist Party of Germany", ru: "Социалистическая партия Германии" }
+      b: { en: "Social Policy Party of Germany", ru: "Партия социальной политики Германии" }
+      c: { en: "Social Democratic Party of Germany", ru: "Социал-демократическая партия Германии" }
+      d: { en: "Socially Just Party of Germany", ru: "Партия социальной справедливости Германии" }
+    terms:
+      - { de: "sozialdemokratisch", en: "social democratic", ru: "социал-демократический" }
+    status: draft
   - id: general-079
+    rationale_de: >-
+      FDP heißt Freie Demokratische Partei. Sie ist eine liberale Partei: Die Freiheit der einzelnen Menschen und eine freie Wirtschaft sind ihr besonders wichtig. Die FDP war oft an Bundesregierungen beteiligt, zuletzt in der Ampelkoalition von 2021 bis 2024.
+    question:
+      en: "What does the abbreviation FDP stand for in Germany?"
+      ru: "Что означает аббревиатура FDP в Германии?"
+    options:
+      a: { en: "Peaceful Demonstrative Party", ru: "Мирная демонстративная партия" }
+      b: { en: "Free Germany Party", ru: "Партия свободной Германии" }
+      c: { en: "Leading Democratic Party", ru: "Ведущая демократическая партия" }
+      d: { en: "Free Democratic Party", ru: "Свободная демократическая партия" }
+    terms:
+      - { de: "liberal", en: "liberal", ru: "либеральный" }
+    status: draft
   - id: general-092
+    rationale_de: >-
+      CSU heißt Christlich-Soziale Union. Es gibt sie nur in Bayern, und seit 1957 kommen alle bayerischen Ministerpräsidenten aus der CSU. Im Bundestag bildet die CSU mit der CDU eine gemeinsame Fraktion, die man auch „die Union“ nennt.
+    question:
+      en: "What does the abbreviation CSU stand for in Germany?"
+      ru: "Что означает аббревиатура CSU в Германии?"
+    options:
+      a: { en: "Christian Safe Union", ru: "Христианский надёжный союз" }
+      b: { en: "Christian South German Union", ru: "Христианский южногерманский союз" }
+      c: { en: "Christian Social Employers' Association", ru: "Христианско-социальное объединение предпринимателей" }
+      d: { en: "Christian Social Union", ru: "Христианско-социальный союз" }
+    terms:
+      - { de: "die Fraktion", en: "parliamentary group", ru: "фракция" }
+    status: draft
   - id: general-093
+    rationale_de: >-
+      Mit der Zweitstimme wählt man eine Partei. Nach dem Anteil der Zweitstimmen wird berechnet, wie viele Sitze jede Partei im Bundestag bekommt. Mit der Erststimme wählt man dagegen eine Person im eigenen Wahlkreis.
+    source: BWahlG
+    question:
+      en: "The more “second votes” a party receives in a Bundestag election, the …"
+      ru: "Чем больше «вторых голосов» получает партия на выборах в бундестаг, тем …"
+    options:
+      a: { en: "fewer first votes it can have.", ru: "меньше первых голосов она может иметь." }
+      b: { en: "more of the party's constituency candidates enter parliament.", ru: "больше прямых кандидатов от партии проходит в парламент." }
+      c: { en: "greater the risk of having to form a coalition.", ru: "выше риск, что придётся создавать коалицию." }
+      d: { en: "more seats the party receives in parliament.", ru: "больше мест получает партия в парламенте." }
+    terms:
+      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос" }
+      - { de: "die Erststimme", en: "first vote", ru: "первый голос" }
+      - { de: "der Sitz", en: "seat", ru: "место в парламенте" }
+    status: draft
   - id: general-094
+    rationale_de: >-
+      Bei der Bundestagswahl darf man ab 18 Jahren wählen. Das steht im Grundgesetz, Artikel 38. Bei der Europawahl dürfen in Deutschland seit 2024 schon 16-Jährige wählen – bei der Bundestagswahl aber nicht.
+    source: GG Art. 38 Abs. 2
+    question:
+      en: "From what age may you take part in the election to the German Bundestag?"
+      ru: "С какого возраста в Германии можно участвовать в выборах в германский бундестаг?"
+    options:
+      a: { en: "16", ru: "16" }
+      b: { en: "18", ru: "18" }
+      c: { en: "21", ru: "21" }
+      d: { en: "23", ru: "23" }
+    terms:
+      - { de: "teilnehmen an", en: "to take part in", ru: "участвовать в" }
+    status: draft
   - id: general-103
+    rationale_de: >-
+      Viele Parteien haben eine Farbe: Die SPD ist rot, die FDP gelb und die Grünen sind grün – wie eine Ampel. Darum heißt eine Koalition aus SPD, FDP und Grünen Ampelkoalition. Im Bund regierte so eine Koalition von 2021 bis 2024, mit Olaf Scholz (SPD) als Kanzler.
+    question:
+      en: "What is called a “traffic-light coalition” in Germany? The cooperation …"
+      ru: "Что в Германии называют «коалицией светофора»? Сотрудничество …"
+    options:
+      a: { en: "of the CDU and CSU parliamentary groups in the Bundestag", ru: "фракций ХДС и ХСС в бундестаге" }
+      b: { en: "of the SPD, FDP and Bündnis 90/Die Grünen in one government", ru: "СДПГ, СвДП и Союза 90/Зелёных в одном правительстве" }
+      c: { en: "of the CSU, Die Linke and Bündnis 90/Die Grünen in one government", ru: "ХСС, Левых и Союза 90/Зелёных в одном правительстве" }
+      d: { en: "of the CDU and SPD parliamentary groups in the Bundestag", ru: "фракций ХДС и СДПГ в бундестаге" }
+    terms:
+      - { de: "die Ampel", en: "traffic light", ru: "светофор" }
+      - { de: "die Koalition", en: "coalition", ru: "коалиция" }
+    status: draft
   - id: general-105
+    rationale_de: >-
+      Wahlhelferinnen und Wahlhelfer arbeiten am Wahltag im Wahllokal. Ihre wichtigste Aufgabe: Wenn die Wahl um 18 Uhr endet, zählen sie die Stimmen – und jeder darf dabei zusehen. Die Wahlbenachrichtigungen verschickt dagegen die Gemeinde schon vor der Wahl.
+    source: BWahlG § 31; BWO § 19
+    question:
+      en: "What is one task of election workers in Germany?"
+      ru: "Что входит в задачи помощников на выборах в Германии?"
+    options:
+      a: { en: "They help elderly people cast their vote in the voting booth.", ru: "Они помогают пожилым людям голосовать в кабине для голосования." }
+      b: { en: "They write the election notifications before the election.", ru: "Они пишут уведомления о выборах перед выборами." }
+      c: { en: "They pass interim results on to the media.", ru: "Они передают промежуточные результаты средствам массовой информации." }
+      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов." }
+    terms:
+      - { de: "das Wahllokal", en: "polling station", ru: "избирательный участок" }
+      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах" }
+    status: draft
   - id: general-106
+    rationale_de: >-
+      Die wichtigste Aufgabe der Wahlhelferinnen und Wahlhelfer ist das Zählen der Stimmen nach dem Ende der Wahl. Sie machen das ehrenamtlich, also ohne Lohn; sie bekommen nur ein kleines Erfrischungsgeld. Kinder dürfen gar nicht wählen, und in der Wahlkabine ist jede Person normalerweise allein.
+    source: BWahlG § 11
+    question:
+      en: "In Germany, volunteer election workers help at elections. What is one task of election workers?"
+      ru: "В Германии на выборах помогают помощники-добровольцы. Что входит в задачи помощников на выборах?"
+    options:
+      a: { en: "They help children and elderly people to vote.", ru: "Они помогают детям и пожилым людям голосовать." }
+      b: { en: "They write cards and letters stating the polling station.", ru: "Они пишут открытки и письма с указанием избирательного участка." }
+      c: { en: "They pass interim results on to journalists.", ru: "Они передают промежуточные результаты журналистам." }
+      d: { en: "They count the votes after the election has closed.", ru: "Они подсчитывают голоса после окончания выборов." }
+    terms:
+      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах" }
+      - { de: "die Wahlkabine", en: "voting booth", ru: "кабина для голосования" }
+    status: draft
   - id: general-107
+    rationale_de: >-
+      Der Bundestag wird für vier Jahre gewählt – das steht im Grundgesetz, Artikel 39. Diese Zeit nennt man Wahlperiode oder Legislaturperiode. Danach gibt es eine neue Bundestagswahl.
+    source: GG Art. 39 Abs. 1
+    question:
+      en: "For how many years is the Bundestag in Germany elected?"
+      ru: "На сколько лет избирается бундестаг в Германии?"
+    options:
+      a: { en: "2 years", ru: "2 года" }
+      b: { en: "4 years", ru: "4 года" }
+      c: { en: "6 years", ru: "6 лет" }
+      d: { en: "8 years", ru: "8 лет" }
+    terms:
+      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий" }
+    status: draft
   - id: general-108
+    rationale_de: >-
+      Bei der Bundestagswahl dürfen nur deutsche Staatsangehörige wählen, und sie müssen mindestens 18 Jahre alt sein (Grundgesetz, Artikel 38; Bundeswahlgesetz, § 12). Wer in Deutschland wohnt, aber nicht deutsch ist, darf also nicht mitwählen – auch nach vielen Jahren nicht. Bürgerinnen und Bürger anderer EU-Länder dürfen aber bei Kommunalwahlen und bei der Europawahl wählen.
+    source: GG Art. 38 Abs. 2, Art. 28 Abs. 1; BWahlG § 12
+    question:
+      en: "In a Bundestag election in Germany, everyone may vote who …"
+      ru: "На выборах в бундестаг в Германии может голосовать каждая или каждый, кто …"
+    options:
+      a: { en: "lives in the Federal Republic of Germany and wants to vote.", ru: "живёт в Федеративной Республике Германия и хочет голосовать." }
+      b: { en: "is a citizen of the Federal Republic of Germany and is at least 18 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 18 лет." }
+      c: { en: "has lived in the Federal Republic of Germany for at least 3 years.", ru: "живёт в Федеративной Республике Германия не меньше 3 лет." }
+      d: { en: "is a citizen of the Federal Republic of Germany and is at least 21 years old.", ru: "является гражданкой или гражданином Федеративной Республики Германия в возрасте не моложе 21 года." }
+    terms:
+      - { de: "die Bürgerin / der Bürger", en: "citizen", ru: "гражданка / гражданин" }
+      - { de: "die Staatsangehörigkeit", en: "nationality", ru: "гражданство" }
+    status: draft
   - id: general-109
+    rationale_de: >-
+      Normalerweise wählen die Deutschen alle vier Jahre einen neuen Bundestag (Grundgesetz, Artikel 39). Manchmal gibt es eine Wahl früher: 2025 wurde vorzeitig gewählt, weil die Regierung keine Mehrheit mehr hatte. Alle fünf Jahre wählt man dagegen zum Beispiel den Bayerischen Landtag und das Europäische Parlament.
+    source: GG Art. 39 Abs. 1, Art. 68
+    question:
+      en: "How often are there normally Bundestag elections in Germany?"
+      ru: "Как часто обычно проходят выборы в бундестаг в Германии?"
+    options:
+      a: { en: "every three years", ru: "каждые три года" }
+      b: { en: "every four years", ru: "каждые четыре года" }
+      c: { en: "every five years", ru: "каждые пять лет" }
+      d: { en: "every six years", ru: "каждые шесть лет" }
+    terms:
+      - { de: "vorzeitig", en: "early", ru: "досрочно" }
+    status: draft
   - id: general-110
+    rationale_de: >-
+      Die Wahlperiode des Bundestages dauert vier Jahre (Grundgesetz, Artikel 39). Fünf Jahre ist für den Bundestag falsch – so lange dauert aber die Wahlperiode des Bayerischen Landtages und des Europäischen Parlaments. Für den Bundestag gilt also: vier Jahre.
+    source: GG Art. 39 Abs. 1; Bayerische Verfassung Art. 16
+    question:
+      en: "For how many years is the Bundestag in Germany elected?"
+      ru: "На сколько лет избирается бундестаг в Германии?"
+    options:
+      a: { en: "2 years", ru: "2 года" }
+      b: { en: "3 years", ru: "3 года" }
+      c: { en: "4 years", ru: "4 года" }
+      d: { en: "5 years", ru: "5 лет" }
+    terms:
+      - { de: "die Wahlperiode", en: "electoral term", ru: "срок полномочий" }
+    status: draft
   - id: general-112
+    rationale_de: >-
+      Wahlen in Deutschland sind geheim: Sie kreuzen den Stimmzettel allein in der Wahlkabine an, und niemand darf sehen, wen Sie wählen. So kann Sie niemand unter Druck setzen. Beruf und Geschlecht spielen bei der Wahl keine Rolle – jede Stimme zählt gleich (Grundgesetz, Artikel 38).
+    source: GG Art. 38 Abs. 1
+    question:
+      en: "Elections in Germany are …"
+      ru: "Выборы в Германии …"
+    options:
+      a: { en: "special.", ru: "особые." }
+      b: { en: "secret.", ru: "тайные." }
+      c: { en: "occupation-based.", ru: "связаны с профессией." }
+      d: { en: "gender-dependent.", ru: "зависят от пола." }
+    terms:
+      - { de: "geheim", en: "secret", ru: "тайный" }
+      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень" }
+    status: draft
   - id: general-113
+    rationale_de: >-
+      Die Wahl gewinnt die Partei mit den meisten Stimmen; jede Stimme zählt dabei gleich. Den Kanzler oder die Kanzlerin wählt das Volk nicht direkt – das macht danach der Bundestag (Grundgesetz, Artikel 63). Darum regiert der Gewinner nicht automatisch: Er braucht eine Mehrheit im Bundestag, oft mit einer Koalition.
+    source: GG Art. 38, Art. 63
+    question:
+      en: "Elections in Germany are won by the party that …"
+      ru: "На выборах в Германии побеждает партия, которая …"
+    options:
+      a: { en: "receives the most votes.", ru: "получает больше всего голосов." }
+      b: { en: "the majority of men voted for.", ru: "за которую проголосовало большинство мужчин." }
+      c: { en: "has received the most votes among workers.", ru: "получила больше всего голосов среди рабочих." }
+      d: { en: "has received the most first votes for its candidate for chancellor.", ru: "получила больше всего первых голосов за своего кандидата в канцлеры." }
+    terms:
+      - { de: "die Stimme", en: "vote", ru: "голос" }
+      - { de: "die Kanzlerkandidatin / der Kanzlerkandidat", en: "candidate for chancellor", ru: "кандидат в канцлеры" }
+    status: draft
   - id: general-114
+    rationale_de: >-
+      Wählen ist in Deutschland ein Recht, aber keine Pflicht. Jede Bürgerin und jeder Bürger entscheidet selbst, ob sie oder er wählen geht. Viele Menschen finden es trotzdem wichtig, zu wählen – denn so bestimmen sie mit, wer regiert.
+    source: GG Art. 38
+    question:
+      en: "Taking part in democratic elections in Germany is …"
+      ru: "Участие в демократических выборах в Германии — это …"
+    options:
+      a: { en: "a duty.", ru: "обязанность." }
+      b: { en: "a right.", ru: "право." }
+      c: { en: "a compulsion.", ru: "принуждение." }
+      d: { en: "a burden.", ru: "бремя." }
+    terms:
+      - { de: "die Pflicht", en: "duty", ru: "обязанность" }
+      - { de: "der Zwang", en: "compulsion", ru: "принуждение" }
+    status: draft
   - id: general-115
+    rationale_de: >-
+      Aktives Wahlrecht heißt: Sie dürfen wählen. Passives Wahlrecht heißt dagegen: Sie dürfen gewählt werden, zum Beispiel als Abgeordnete oder Abgeordneter. Eine Pflicht zu wählen gibt es in Deutschland nicht.
+    source: GG Art. 38 Abs. 2
+    question:
+      en: "What does “active right to vote” mean in Germany?"
+      ru: "Что означает «активное избирательное право» в Германии?"
+    options:
+      a: { en: "You can be elected.", ru: "Можно быть избранным." }
+      b: { en: "You must go and vote.", ru: "Нужно обязательно идти на выборы." }
+      c: { en: "You can vote.", ru: "Можно голосовать." }
+      d: { en: "You must go to the counting of the votes.", ru: "Нужно идти на подсчёт голосов." }
+    terms:
+      - { de: "das aktive Wahlrecht", en: "right to vote", ru: "активное избирательное право" }
+      - { de: "das passive Wahlrecht", en: "right to stand for election", ru: "пассивное избирательное право" }
+    status: draft
   - id: general-116
+    rationale_de: >-
+      Das Recht zu wählen heißt aktives Wahlrecht. Bei der Bundestagswahl hat es, wer deutsche Staatsangehörige oder deutscher Staatsangehöriger und mindestens 18 Jahre alt ist. Wahlkampf und Wahlkampagne machen dagegen die Parteien: Sie werben vor der Wahl um Stimmen.
+    source: GG Art. 38 Abs. 2; BWahlG § 12
+    question:
+      en: "If you are allowed to vote in a Bundestag election in Germany, this is called …"
+      ru: "Если вы имеете право голосовать на выборах в бундестаг в Германии, это называется …"
+    options:
+      a: { en: "active election campaign.", ru: "активная избирательная кампания." }
+      b: { en: "active electoral procedure.", ru: "активная избирательная процедура." }
+      c: { en: "active electioneering.", ru: "активная предвыборная борьба." }
+      d: { en: "active right to vote.", ru: "активное избирательное право." }
+    terms:
+      - { de: "der Wahlkampf", en: "election campaign", ru: "предвыборная борьба" }
+      - { de: "werben um", en: "to canvass for", ru: "агитировать за" }
+    status: draft
   - id: general-117
+    rationale_de: >-
+      Eine Partei braucht mindestens 5 % der Zweitstimmen, damit sie Sitze im Bundestag bekommt. Das nennt man die Fünf-Prozent-Hürde; sie steht im Bundeswahlgesetz. Es gibt nur wenige Ausnahmen, zum Beispiel für Parteien nationaler Minderheiten.
+    source: BWahlG
+    question:
+      en: "What minimum percentage of second votes must parties receive in order to be elected to the German Bundestag?"
+      ru: "Какой минимальный процент вторых голосов должны получить партии, чтобы пройти в германский бундестаг?"
+    options:
+      a: { en: "3%", ru: "3%" }
+      b: { en: "4%", ru: "4%" }
+      c: { en: "5%", ru: "5%" }
+      d: { en: "6%", ru: "6%" }
+    terms:
+      - { de: "die Fünf-Prozent-Hürde", en: "five-percent threshold", ru: "пятипроцентный барьер" }
+      - { de: "die Zweitstimme", en: "second vote", ru: "второй голос" }
+    status: draft
   - id: general-119
+    rationale_de: >-
+      Freie Wahl heißt: Sie entscheiden ohne Druck, ob Sie wählen und wen Sie wählen (Grundgesetz, Artikel 38). Wo Sie wählen, können Sie dagegen nicht einfach aussuchen: Normalerweise wählen Sie in dem Wahllokal, das auf Ihrer Wahlbenachrichtigung steht. Bundestagswahlen sind immer an einem Sonntag oder Feiertag, darum muss die Chefin oder der Chef nicht frei geben.
+    source: GG Art. 38 Abs. 1; BWahlG § 16
+    question:
+      en: "Elections in Germany are free. What does that mean?"
+      ru: "Выборы в Германии свободные. Что это означает?"
+    options:
+      a: { en: "No convicted offender may vote.", ru: "Все осуждённые преступники не имеют права голосовать." }
+      b: { en: "If I want to go and vote, my employer must give me time off.", ru: "Если я хочу пойти на выборы, работодательница или работодатель обязаны меня отпустить." }
+      c: { en: "Every person can decide without coercion whether they want to vote and whom they want to vote for.", ru: "Каждый человек может без принуждения решить, хочет ли он голосовать и за кого." }
+      d: { en: "I can freely decide where I want to go to vote.", ru: "Я могу свободно решить, где мне голосовать." }
+    terms:
+      - { de: "der Zwang", en: "coercion", ru: "принуждение" }
+      - { de: "die Straftäterin / der Straftäter", en: "offender", ru: "преступница / преступник" }
+    status: draft
   - id: general-120
+    rationale_de: >-
+      Mit der Erststimme wählt man eine Person im Wahlkreis – wer dort die meisten Stimmen bekommt, gewinnt den Wahlkreis (Mehrheitswahl). Mit der Zweitstimme wählt man eine Partei, und nach dem Anteil der Zweitstimmen werden die Sitze verteilt (Verhältniswahl). Zensus- und Dreiklassenwahlrecht gab es früher: Da durften nur Reiche wählen, oder ihre Stimme zählte mehr.
+    source: BWahlG § 1
+    question:
+      en: "The electoral system in Germany is a …"
+      ru: "Избирательная система в Германии — это …"
+    options:
+      a: { en: "census suffrage.", ru: "цензовое избирательное право." }
+      b: { en: "three-class franchise.", ru: "трёхклассное избирательное право." }
+      c: { en: "majority and proportional voting system.", ru: "мажоритарное и пропорциональное избирательное право." }
+      d: { en: "universal male suffrage.", ru: "всеобщее избирательное право для мужчин." }
+    terms:
+      - { de: "die Mehrheitswahl", en: "majority vote", ru: "мажоритарные выборы" }
+      - { de: "die Verhältniswahl", en: "proportional representation", ru: "пропорциональные выборы" }
+      - { de: "der Wahlkreis", en: "constituency", ru: "избирательный округ" }
+    status: draft
   - id: general-121
+    rationale_de: >-
+      Diese Regel heißt Fünf-Prozent-Hürde: Eine Partei muss mindestens 5 % der Zweitstimmen bekommen, sonst bekommt sie normalerweise keine Sitze im Bundestag. Eine Hürde ist eigentlich ein Hindernis, über das man springen muss – wie beim Sport. Auch für den Bayerischen Landtag gibt es eine Fünf-Prozent-Hürde.
+    source: BWahlG; Bayerische Verfassung Art. 14 Abs. 4
+    question:
+      en: "A party wants to get into the German Bundestag. But it must have a minimum share of the votes. This is called …"
+      ru: "Партия хочет пройти в германский бундестаг. Но она должна получить минимальную долю голосов избирателей. Это называется …"
+    options:
+      a: { en: "5% hurdle.", ru: "5-процентный барьер." }
+      b: { en: "admission limit.", ru: "порог допуска." }
+      c: { en: "base value.", ru: "базовое значение." }
+      d: { en: "guideline.", ru: "директива." }
+    terms:
+      - { de: "die Hürde", en: "hurdle", ru: "барьер" }
+      - { de: "der Mindestanteil", en: "minimum share", ru: "минимальная доля" }
+    status: draft
   - id: general-122
+    rationale_de: >-
+      Das Grundgesetz sagt in Artikel 38: Die Wahlen sind allgemein, unmittelbar, frei, gleich und geheim. Frei heißt ohne Zwang, gleich heißt: Jede Stimme zählt gleich viel, und geheim heißt: Niemand sieht, wen Sie wählen. „Offen“ ist falsch – eine offene Wahl wäre das Gegenteil von geheim.
+    source: GG Art. 38 Abs. 1
+    question:
+      en: "Which principle are elections in Germany subject to? Elections in Germany are …"
+      ru: "Каким принципам подчиняются выборы в Германии? Выборы в Германии …"
+    options:
+      a: { en: "free, equal, secret.", ru: "свободные, равные, тайные." }
+      b: { en: "open, safe, free.", ru: "открытые, безопасные, свободные." }
+      c: { en: "closed, equal, safe.", ru: "закрытые, равные, безопасные." }
+      d: { en: "safe, open, voluntary.", ru: "безопасные, открытые, добровольные." }
+    terms:
+      - { de: "der Grundsatz", en: "principle", ru: "принцип" }
+      - { de: "unterliegen", en: "to be subject to", ru: "подчиняться" }
+    status: draft
   - id: general-123
+    rationale_de: >-
+      Die Fünf-Prozent-Hürde ist eine Regel für die Wahl, nicht für die Arbeit im Parlament. Eine Partei braucht mindestens 5 % der Zweitstimmen, sonst bekommt sie normalerweise keine Sitze im Bundestag. Mit Abstimmungen im Bundestag oder im Bundesrat hat die Hürde nichts zu tun.
+    source: BWahlG
+    question:
+      en: "What is the “5% hurdle” in Germany?"
+      ru: "Что такое «5-процентный барьер» в Германии?"
+    options:
+      a: { en: "a voting rule in the Bundestag for small parties", ru: "правило голосования в бундестаге для малых партий" }
+      b: { en: "an attendance check in the Bundestag for votes", ru: "проверка присутствия в бундестаге при голосованиях" }
+      c: { en: "a minimum share of the votes needed to get into parliament", ru: "минимальная доля голосов избирателей, чтобы попасть в парламент" }
+      d: { en: "an attendance check in the Bundesrat for votes", ru: "проверка присутствия в бундесрате при голосованиях" }
+    terms:
+      - { de: "die Abstimmung", en: "vote (in parliament)", ru: "голосование" }
+      - { de: "die Anwesenheit", en: "attendance", ru: "присутствие" }
+    status: draft
   - id: general-124
+    rationale_de: >-
+      Bei der Bundestagswahl wählt das Volk das Parlament für ganz Deutschland, den Bundestag. Den Kanzler oder die Kanzlerin wählt danach der Bundestag (Grundgesetz, Artikel 63), das Staatsoberhaupt die Bundesversammlung (Artikel 54). Die Parlamente der Länder werden bei den Landtagswahlen gewählt.
+    source: GG Art. 38, Art. 54, Art. 63
+    question:
+      en: "The Bundestag election in Germany is the election …"
+      ru: "Выборы в бундестаг в Германии — это выборы …"
+    options:
+      a: { en: "of the Federal Chancellor.", ru: "федерального канцлера." }
+      b: { en: "of the parliaments of the federal states.", ru: "парламентов федеральных земель." }
+      c: { en: "of the parliament for Germany.", ru: "парламента Германии." }
+      d: { en: "of the Federal President.", ru: "федерального президента." }
+    terms:
+      - { de: "die Bundestagswahl", en: "federal election", ru: "выборы в бундестаг" }
+      - { de: "die Bundesversammlung", en: "Federal Convention", ru: "Федеральное собрание" }
+    status: draft
   - id: general-125
+    rationale_de: >-
+      In einer Demokratie bekommt eine Regierung ihre Macht nur auf Zeit. Bei der nächsten Wahl entscheiden die Wählerinnen und Wähler neu: Wenn die Mehrheit es will, kommt eine andere Regierung – friedlich und ohne Gewalt. Gesetze bleiben dabei nicht automatisch gleich; ein neues Parlament kann sie ändern.
+    source: GG Art. 20 Abs. 2, Art. 39
+    question:
+      en: "In a democracy, one function of regular elections is …"
+      ru: "В демократии одна из функций регулярных выборов — …"
+    options:
+      a: { en: "to force citizens to cast their vote.", ru: "заставлять граждан голосовать." }
+      b: { en: "to make a change of government possible in line with the will of the majority of voters.", ru: "давать возможность сменить правительство по воле большинства избирателей." }
+      c: { en: "to keep the laws that already exist in the country.", ru: "сохранять действующие в стране законы." }
+      d: { en: "to give the poor more power.", ru: "давать бедным больше власти." }
+    terms:
+      - { de: "der Wechsel", en: "change", ru: "смена" }
+      - { de: "die Wählermehrheit", en: "majority of voters", ru: "большинство избирателей" }
+    status: draft
   - id: general-126
+    rationale_de: >-
+      Ein paar Wochen vor der Wahl schickt die Gemeinde allen Wahlberechtigten eine Wahlbenachrichtigung. Darauf steht, wann und in welchem Wahllokal Sie wählen können. Mit dieser Benachrichtigung können Sie auch die Briefwahl beantragen.
+    source: BWO § 19
+    question:
+      en: "What do citizens entitled to vote in Germany receive before an election?"
+      ru: "Что получают граждане Германии, имеющие право голоса, перед выборами?"
+    options:
+      a: { en: "an election notification from the municipality", ru: "уведомление о выборах от общины" }
+      b: { en: "a permit to vote from the Federal President", ru: "разрешение на голосование от федерального президента" }
+      c: { en: "a notification from the Federal Convention", ru: "уведомление от Федерального собрания" }
+      d: { en: "a notification from the parish office", ru: "уведомление от приходской канцелярии" }
+    terms:
+      - { de: "die Wahlbenachrichtigung", en: "election notification", ru: "уведомление о выборах" }
+      - { de: "die Gemeinde", en: "municipality", ru: "община" }
+      - { de: "das Pfarramt", en: "parish office", ru: "приходская канцелярия" }
+    status: draft
   - id: general-127
+    rationale_de: >-
+      Wenn sehr viele kleine Parteien im Parlament sind, ist es schwer, eine stabile Mehrheit für eine Regierung zu finden. Das hat Deutschland in der Weimarer Republik erlebt: Dort gab es keine solche Hürde, und viele Regierungen hielten nur kurze Zeit. Darum gibt es heute die Fünf-Prozent-Hürde.
+    question:
+      en: "Why is there a 5% hurdle in the electoral law of the Federal Republic of Germany? It exists because …"
+      ru: "Почему в законе о выборах Федеративной Республики Германия есть 5-процентный барьер? Он существует, потому что …"
+    options:
+      a: { en: "the programmes of many small parties have a lot in common.", ru: "программы многих малых партий во многом похожи." }
+      b: { en: "citizens can lose their bearings when there are many small parties.", ru: "при множестве малых партий граждане могут потерять ориентацию." }
+      c: { en: "many small parties make it harder to form a government.", ru: "множество малых партий затрудняет формирование правительства." }
+      d: { en: "small parties do not have enough money to pay politicians.", ru: "у малых партий не хватает денег, чтобы платить политикам." }
+    terms:
+      - { de: "die Regierungsbildung", en: "forming a government", ru: "формирование правительства" }
+      - { de: "erschweren", en: "to make harder", ru: "затруднять" }
+    status: draft
   - id: general-128
+    rationale_de: >-
+      Die Mitglieder des Parlaments heißen Abgeordnete. Sie werden vom Volk gewählt und entscheiden frei nach ihrem Gewissen (Grundgesetz, Artikel 38). Botschafterinnen und Botschafter vertreten Deutschland im Ausland, und Kanzler oder Ministerpräsidenten wählt das Parlament, nicht direkt das Volk.
+    source: GG Art. 38 Abs. 1
+    question:
+      en: "Members of parliament who are elected by the citizens are called …"
+      ru: "Членов парламента, которых избирают граждане, называют …"
+    options:
+      a: { en: "deputies.", ru: "депутатами." }
+      b: { en: "chancellors.", ru: "канцлерами." }
+      c: { en: "ambassadors.", ru: "послами." }
+      d: { en: "minister-presidents.", ru: "министрами-президентами." }
+    terms:
+      - { de: "der/die Abgeordnete", en: "member of parliament", ru: "депутат" }
+      - { de: "die Botschafterin / der Botschafter", en: "ambassador", ru: "посол" }
+    status: draft
   - id: general-129
+    rationale_de: >-
+      Das Volk wählt in Deutschland direkt den Bundestag. Die Bundeskanzlerin oder den Bundeskanzler wählt dann der Bundestag, das Staatsoberhaupt die Bundesversammlung. Auch die Ministerpräsidentin oder den Ministerpräsidenten eines Landes wählt das Landesparlament – in Bayern der Landtag.
+    source: GG Art. 38, Art. 54, Art. 63; Bayerische Verfassung Art. 44
+    question:
+      en: "In Germany, the people elect …"
+      ru: "В Германии народ избирает …"
+    options:
+      a: { en: "the Federal Chancellor.", ru: "федерального канцлера." }
+      b: { en: "the minister-president of a federal state.", ru: "министра-президента федеральной земли." }
+      c: { en: "the Bundestag.", ru: "бундестаг." }
+      d: { en: "the Federal President.", ru: "федерального президента." }
+    terms:
+      - { de: "das Volk", en: "the people", ru: "народ" }
+    status: draft
   - id: general-130
+    rationale_de: >-
+      Auf Stimmzettel 1 gibt es genau ein Kreuz bei der Erststimme (links) und genau ein Kreuz bei der Zweitstimme (rechts). Das ist gültig – auch wenn die beiden Kreuze für verschiedene Parteien sind. Auf den Stimmzetteln 2, 3 und 4 stehen zwei oder drei Kreuze in derselben Spalte; dann ist diese Stimme ungültig.
+    source: BWahlG § 39; BWO Anlage 26
+    question:
+      en: "Which ballot paper would be valid in a Bundestag election? Based on the Federal Electoral Regulations (BWO), Annex 26"
+      ru: "Какой избирательный бюллетень был бы действительным на выборах в бундестаг? По образцу Федерального положения о выборах (BWO), приложение 26"
+    options:
+      a: { en: "1", ru: "1" }
+      b: { en: "2", ru: "2" }
+      c: { en: "3", ru: "3" }
+      d: { en: "4", ru: "4" }
+    terms:
+      - { de: "der Stimmzettel", en: "ballot paper", ru: "избирательный бюллетень" }
+      - { de: "gültig", en: "valid", ru: "действительный" }
+    status: draft
   - id: general-132
+    rationale_de: >-
+      Ehrenamtlich heißt: Man arbeitet freiwillig und bekommt keinen Lohn dafür. Viele Menschen machen das in Vereinen und Verbänden, zum Beispiel als Trainerin im Sportverein oder bei der Freiwilligen Feuerwehr. Wer im Krankenhaus arbeitet und dafür Geld verdient, arbeitet dagegen nicht ehrenamtlich.
+    question:
+      en: "Many people in Germany work “ehrenamtlich” in their free time. What does that mean?"
+      ru: "Многие люди в Германии в свободное время работают «ehrenamtlich». Что это значит?"
+    options:
+      a: { en: "They work as soldiers.", ru: "Они служат солдатами." }
+      b: { en: "They work voluntarily and without pay in clubs and associations.", ru: "Они работают добровольно и бесплатно в клубах и объединениях." }
+      c: { en: "They work in the federal government.", ru: "Они работают в федеральном правительстве." }
+      d: { en: "They work in a hospital and earn money doing so.", ru: "Они работают в больнице и получают за это деньги." }
+    terms:
+      - { de: "ehrenamtlich", en: "voluntary, unpaid", ru: "на общественных началах" }
+      - { de: "der Verein", en: "club", ru: "клуб" }
+      - { de: "der Verband", en: "association", ru: "объединение" }
+    status: draft
   - id: general-133
+    rationale_de: >-
+      Bei der Briefwahl wählt man per Post: Man beantragt die Unterlagen bei der Gemeinde, kreuzt zu Hause an und schickt den Stimmzettel rechtzeitig zurück. Jede Person wählt selbst und geheim – niemand darf für eine andere Person wählen, auch nicht der Ehemann. Am Telefon kann man nicht wählen.
+    source: BWahlG § 36
+    question:
+      en: "What is permitted in Bundestag and Landtag elections in Germany?"
+      ru: "Что разрешено на выборах в бундестаг и в ландтаг в Германии?"
+    options:
+      a: { en: "A husband votes on behalf of his wife as well.", ru: "Муж голосует и за свою жену." }
+      b: { en: "You can cast your vote by postal vote.", ru: "Можно отдать свой голос, проголосовав по почте." }
+      c: { en: "You can cast your vote by telephone on election day.", ru: "В день выборов можно отдать свой голос по телефону." }
+      d: { en: "Children aged 14 and over may vote.", ru: "Дети с 14 лет могут голосовать." }
+    terms:
+      - { de: "die Briefwahl", en: "postal vote", ru: "голосование по почте" }
+      - { de: "die Stimme abgeben", en: "to cast a vote", ru: "отдать голос" }
+    status: draft
   - id: general-134
+    rationale_de: >-
+      In einer Bürgerinitiative tun sich Menschen zusammen, die ein gemeinsames Ziel haben – hier: Die Buslinie soll bleiben. Sie sammeln zum Beispiel Unterschriften und sprechen mit der Gemeinde oder dem Verkehrsbetrieb. Das Finanzamt ist nur für Steuern zuständig, und ein Recht auf eine bestimmte Buslinie gibt es nicht.
+    question:
+      en: "There are plans to scrap the bus route you always take to work. What can you do to keep the bus route?"
+      ru: "Автобусный маршрут, по которому вы всегда ездите на работу, хотят отменить. Что вы можете сделать, чтобы его сохранить?"
+    options:
+      a: { en: "I take part in a citizens' initiative to keep the bus route, or I start an initiative myself.", ru: "Я участвую в гражданской инициативе за сохранение маршрута или сам создаю инициативу." }
+      b: { en: "I join a sports club and train cycling.", ru: "Я вступаю в спортивный клуб и тренируюсь ездить на велосипеде." }
+      c: { en: "I contact the tax office, because as a taxpayer I have a right to the bus route.", ru: "Я обращаюсь в налоговую инспекцию, потому что как налогоплательщик имею право на этот маршрут." }
+      d: { en: "I write a letter to the municipality's forestry office.", ru: "Я пишу письмо в лесное управление общины." }
+    terms:
+      - { de: "die Bürgerinitiative", en: "citizens' initiative", ru: "гражданская инициатива" }
+      - { de: "abschaffen", en: "to scrap", ru: "отменять" }
+    status: draft
   - id: general-282
+    rationale_de: >-
+      Wer bei der Bundestagswahl wählen darf, muss auch Wahlhelferin oder Wahlhelfer werden, wenn er dazu aufgefordert wird (Bundeswahlgesetz, § 11). Ablehnen kann man nur aus einem wichtigen Grund, zum Beispiel bei Krankheit. Trainerin im Verein oder Aufsicht in der Bibliothek sind dagegen freiwillige Ehrenämter.
+    source: BWahlG § 11
+    question:
+      en: "Which honorary office must German citizens take on if they are asked to?"
+      ru: "Какую общественную должность обязаны взять на себя граждане Германии, если их к этому призовут?"
+    options:
+      a: { en: "club coach", ru: "тренер в клубе" }
+      b: { en: "election worker", ru: "помощник на выборах" }
+      c: { en: "library supervisor", ru: "дежурный в библиотеке" }
+      d: { en: "teacher", ru: "учитель" }
+    terms:
+      - { de: "das Ehrenamt", en: "honorary office", ru: "общественная должность" }
+      - { de: "auffordern", en: "to call upon", ru: "призывать" }
+    status: draft

@@ -1,20 +1,314 @@
 notes:
   - id: general-023
+    rationale_de: >-
+      Die große Mehrheit der Erwerbstätigen in Deutschland ist angestellt – bei einer Firma oder bei einer Behörde. Sie sind Arbeitnehmerinnen und Arbeitnehmer und bekommen jeden Monat Lohn oder Gehalt. Nur ein kleiner Teil arbeitet selbstständig mit einer eigenen Firma.
+    source: Statistisches Bundesamt
+    question:
+      en: "In Germany, most people in work are …"
+      ru: "В Германии большинство работающих …"
+    options:
+      a: { en: "employed in small family businesses.", ru: "заняты на небольших семейных предприятиях." }
+      b: { en: "working on a voluntary basis for a federal state.", ru: "работают на общественных началах на федеральную землю." }
+      c: { en: "self-employed with their own company.", ru: "работают самостоятельно, имея собственную фирму." }
+      d: { en: "employed by a company or a public authority.", ru: "работают по найму в фирме или в государственном учреждении." }
+    terms:
+      - { de: "die Erwerbstätigen", en: "people in work", ru: "работающие" }
+      - { de: "selbstständig", en: "self-employed", ru: "самозанятый" }
+      - { de: "die Behörde", en: "public authority", ru: "ведомство" }
+    status: draft
   - id: general-035
+    rationale_de: >-
+      Die Sozialversicherung wird vor allem mit Sozialabgaben bezahlt. Das sind Beiträge, die Arbeitnehmer und Arbeitgeber jeden Monat zahlen; den Anteil der Beschäftigten zieht der Arbeitgeber direkt vom Lohn ab. Die Kirchensteuer bekommen dagegen die Kirchen, und Spenden sind freiwillig.
+    source: SGB IV § 20
+    question:
+      en: "How does the German state finance social insurance?"
+      ru: "За счёт чего немецкое государство финансирует социальное страхование?"
+    options:
+      a: { en: "church tax", ru: "церковный налог" }
+      b: { en: "social security contributions", ru: "социальные взносы" }
+      c: { en: "donations", ru: "пожертвования" }
+      d: { en: "club membership fees", ru: "членские взносы в клубах" }
+    terms:
+      - { de: "die Sozialabgaben", en: "social security contributions", ru: "социальные взносы" }
+      - { de: "die Sozialversicherung", en: "social insurance", ru: "социальное страхование" }
+    status: draft
   - id: general-036
+    rationale_de: >-
+      Die Krankenversicherung ist ein Teil der Sozialversicherung. Sie schützt die Menschen, wenn sie krank werden: Die Kasse bezahlt zum Beispiel Arzt und Krankenhaus. In Deutschland muss jeder Mensch krankenversichert sein. Auto-, Gebäude- und Haftpflichtversicherung sind dagegen private Versicherungen für Dinge und Schäden.
+    source: SGB IV § 1
+    question:
+      en: "Which measure creates social security in Germany?"
+      ru: "Какая мера в Германии обеспечивает социальную защищённость?"
+    options:
+      a: { en: "health insurance", ru: "медицинское страхование" }
+      b: { en: "car insurance", ru: "автострахование" }
+      c: { en: "building insurance", ru: "страхование зданий" }
+      d: { en: "liability insurance", ru: "страхование гражданской ответственности" }
+    terms:
+      - { de: "die soziale Sicherheit", en: "social security", ru: "социальная защищённость" }
+      - { de: "die Haftpflichtversicherung", en: "liability insurance", ru: "страхование ответственности" }
+    status: draft
   - id: general-045
+    rationale_de: >-
+      Die Pflegeversicherung gibt es seit 1995. Sie ist eine der fünf Säulen der Sozialversicherung, neben Kranken-, Renten-, Arbeitslosen- und Unfallversicherung. Sie zahlt, wenn ein Mensch zum Beispiel im Alter Pflege braucht.
+    source: SGB IV § 1; SGB XI
+    question:
+      en: "Which insurance does long-term care insurance belong to?"
+      ru: "К какому страхованию относится страхование на случай потребности в уходе?"
+    options:
+      a: { en: "social insurance", ru: "социальное страхование" }
+      b: { en: "accident insurance", ru: "страхование от несчастных случаев" }
+      c: { en: "household contents insurance", ru: "страхование домашнего имущества" }
+      d: { en: "liability and fire insurance", ru: "страхование ответственности и от пожара" }
+    terms:
+      - { de: "die Pflegeversicherung", en: "long-term care insurance", ru: "страхование по уходу" }
+      - { de: "die Pflege", en: "care", ru: "уход" }
+    status: draft
   - id: general-050
+    rationale_de: >-
+      Deutschland hat eine soziale Marktwirtschaft. Unternehmen und Kunden entscheiden frei, was sie produzieren und kaufen; der Staat sorgt aber für sozialen Ausgleich, zum Beispiel mit dem Arbeitslosengeld. Eine Planwirtschaft gab es dagegen in der DDR.
+    source: "bpb: Soziale Marktwirtschaft"
+    question:
+      en: "The economic system in Germany is called …"
+      ru: "Экономическая система Германии называется …"
+    options:
+      a: { en: "free central economy.", ru: "свободная централизованная экономика." }
+      b: { en: "social market economy.", ru: "социальная рыночная экономика." }
+      c: { en: "controlled central economy.", ru: "управляемая централизованная экономика." }
+      d: { en: "planned economy.", ru: "плановая экономика." }
+    terms:
+      - { de: "die soziale Marktwirtschaft", en: "social market economy", ru: "социальная рыночная экономика" }
+      - { de: "die Planwirtschaft", en: "planned economy", ru: "плановая экономика" }
+    status: draft
   - id: general-097
+    rationale_de: >-
+      Wer fest angestellt ist, zahlt automatisch Beiträge zur Sozialversicherung. Der Arbeitgeber zieht sie jeden Monat vom Lohn ab und zahlt seinen eigenen Anteil dazu. Sozialhilfe, Kindergeld und Wohngeld zahlt man dagegen nicht – das sind Leistungen, die man vom Staat bekommen kann.
+    source: SGB IV
+    question:
+      en: "What do you pay automatically in Germany if you are in permanent employment?"
+      ru: "Что в Германии вы платите автоматически, если работаете по найму на постоянной основе?"
+    options:
+      a: { en: "social insurance", ru: "социальное страхование" }
+      b: { en: "social assistance", ru: "социальная помощь" }
+      c: { en: "child benefit", ru: "пособие на ребёнка" }
+      d: { en: "housing benefit", ru: "пособие на жильё" }
+    terms:
+      - { de: "fest angestellt", en: "permanently employed", ru: "работающий на постоянной основе" }
+      - { de: "die Leistung", en: "benefit", ru: "выплата" }
+    status: draft
   - id: general-099
+    rationale_de: >-
+      Die Beiträge zur Sozialversicherung zahlen Arbeitgeber und Arbeitnehmer zusammen, meistens jeder etwa die Hälfte. So ist es bei der Kranken-, Pflege-, Renten- und Arbeitslosenversicherung. Nur die Unfallversicherung bezahlt der Arbeitgeber allein.
+    source: SGB IV § 20; SGB VII
+    question:
+      en: "Who pays for the social insurance schemes in Germany?"
+      ru: "Кто в Германии платит за социальное страхование?"
+    options:
+      a: { en: "employers and employees", ru: "работодатели и работники" }
+      b: { en: "only employees", ru: "только работники" }
+      c: { en: "all nationals", ru: "все граждане" }
+      d: { en: "only employers", ru: "только работодатели" }
+    terms:
+      - { de: "die Arbeitgeberin / der Arbeitgeber", en: "employer", ru: "работодатель" }
+      - { de: "die Arbeitnehmerin / der Arbeitnehmer", en: "employee", ru: "работник" }
+      - { de: "der Beitrag", en: "contribution", ru: "взнос" }
+    status: draft
   - id: general-100
+    rationale_de: >-
+      Eine Lebensversicherung ist eine private Versicherung: Man schließt sie freiwillig bei einer Versicherungsfirma ab. Zur gesetzlichen Sozialversicherung gehören dagegen die Renten-, Arbeitslosen-, Pflege-, Kranken- und Unfallversicherung. Für die meisten Angestellten sind sie Pflicht.
+    source: SGB IV § 1
+    question:
+      en: "What is not part of statutory social insurance?"
+      ru: "Что не относится к обязательному социальному страхованию?"
+    options:
+      a: { en: "life insurance", ru: "страхование жизни" }
+      b: { en: "statutory pension insurance", ru: "обязательное пенсионное страхование" }
+      c: { en: "unemployment insurance", ru: "страхование на случай безработицы" }
+      d: { en: "long-term care insurance", ru: "страхование по уходу" }
+    terms:
+      - { de: "gesetzlich", en: "statutory", ru: "обязательный по закону" }
+      - { de: "die Lebensversicherung", en: "life insurance", ru: "страхование жизни" }
+    status: draft
   - id: general-101
+    rationale_de: >-
+      Gewerkschaften vertreten die Interessen der Arbeitnehmerinnen und Arbeitnehmer. Sie verhandeln mit den Arbeitgebern zum Beispiel über Löhne und Arbeitszeit und schließen Tarifverträge ab. Große Gewerkschaften sind zum Beispiel die IG Metall und ver.di; die Arbeitgeber haben eigene Verbände.
+    source: GG Art. 9 Abs. 3
+    question:
+      en: "Trade unions are interest groups of …"
+      ru: "Профсоюзы — это объединения, представляющие интересы …"
+    options:
+      a: { en: "young people.", ru: "молодёжи." }
+      b: { en: "employees.", ru: "работников." }
+      c: { en: "pensioners.", ru: "пенсионеров." }
+      d: { en: "employers.", ru: "работодателей." }
+    terms:
+      - { de: "die Gewerkschaft", en: "trade union", ru: "профсоюз" }
+      - { de: "der Interessenverband", en: "interest group", ru: "объединение по интересам" }
+      - { de: "der Tarifvertrag", en: "collective agreement", ru: "коллективный договор" }
+    status: draft
   - id: general-104
+    rationale_de: >-
+      Einer schwangeren Frau darf der Arbeitgeber normalerweise nicht kündigen – das regelt das Mutterschutzgesetz. Der Schutz gilt in der Schwangerschaft und bis vier Monate nach der Geburt. Wer oft zu spät kommt oder während der Arbeit private Dinge erledigt, kann dagegen eine Kündigung bekommen, meistens nach einer Abmahnung.
+    source: MuSchG § 17
+    question:
+      en: "A woman in Germany loses her job. What must not be the reason for this dismissal?"
+      ru: "Женщина в Германии теряет работу. Что не может быть причиной этого увольнения?"
+    options:
+      a: { en: "The woman has been ill for a long time and is unable to work.", ru: "Женщина долго болеет и нетрудоспособна." }
+      b: { en: "The woman often came to work late.", ru: "Женщина часто опаздывала на работу." }
+      c: { en: "The woman does private things during working hours.", ru: "Женщина занимается личными делами в рабочее время." }
+      d: { en: "The woman is having a baby and her boss knows this.", ru: "Женщина ждёт ребёнка, и её начальник об этом знает." }
+    terms:
+      - { de: "die Entlassung", en: "dismissal", ru: "увольнение" }
+      - { de: "schwanger", en: "pregnant", ru: "беременная" }
+      - { de: "die Abmahnung", en: "formal warning", ru: "предупреждение" }
+    status: draft
   - id: general-135
+    rationale_de: >-
+      Gewerkschaften vertreten die Arbeitnehmerinnen und Arbeitnehmer. Sie setzen sich zum Beispiel für höhere Löhne und bessere Arbeitsbedingungen ein – wenn nötig auch mit einem Streik. Die Unternehmen haben eigene Organisationen, die Arbeitgeberverbände.
+    source: GG Art. 9 Abs. 3
+    question:
+      en: "Whom do trade unions in Germany represent?"
+      ru: "Кого представляют профсоюзы в Германии?"
+    options:
+      a: { en: "large companies", ru: "крупные предприятия" }
+      b: { en: "small companies", ru: "малые предприятия" }
+      c: { en: "self-employed people", ru: "самозанятых" }
+      d: { en: "employees", ru: "работников" }
+    terms:
+      - { de: "vertreten", en: "to represent", ru: "представлять" }
+      - { de: "der Streik", en: "strike", ru: "забастовка" }
+      - { de: "der Arbeitgeberverband", en: "employers' association", ru: "объединение работодателей" }
+    status: draft
   - id: general-136
+    rationale_de: >-
+      Das Arbeitsgericht ist für Streit zwischen Arbeitnehmern und Arbeitgebern zuständig, zum Beispiel bei einer Kündigung. Wer eine Kündigung für ungerecht hält, muss schnell sein: Die Klage muss innerhalb von drei Wochen beim Arbeitsgericht sein. Bei Streit mit dem Vermieter, mit Nachbarn oder nach einem Unfall sind andere Gerichte zuständig.
+    source: ArbGG § 2; KSchG § 4
+    question:
+      en: "In Germany, you go to the labour court in the case of …"
+      ru: "В Германии вы обращаетесь в суд по трудовым делам в случае …"
+    options:
+      a: { en: "an incorrect statement of service charges.", ru: "неправильного расчёта коммунальных платежей." }
+      b: { en: "unjustified dismissal by your boss.", ru: "необоснованного увольнения вашей начальницей или вашим начальником." }
+      c: { en: "problems with the neighbours.", ru: "проблем с соседями." }
+      d: { en: "difficulties after a road accident.", ru: "трудностей после дорожно-транспортного происшествия." }
+    terms:
+      - { de: "das Arbeitsgericht", en: "labour court", ru: "суд по трудовым делам" }
+      - { de: "die Nebenkostenabrechnung", en: "service charge statement", ru: "расчёт коммунальных платежей" }
+      - { de: "ungerechtfertigt", en: "unjustified", ru: "необоснованный" }
+    status: draft
   - id: general-137
+    rationale_de: >-
+      Bei Konflikten in der Arbeitswelt ist das Arbeitsgericht zuständig – zum Beispiel bei Streit um Lohn, Urlaub oder eine Kündigung. Das Familiengericht entscheidet über Familiensachen wie eine Scheidung, das Strafgericht über Straftaten. Das Amtsgericht ist für viele andere Streitfälle zuständig, aber nicht für das Arbeitsrecht.
+    source: ArbGG § 2
+    question:
+      en: "Which court in Germany is responsible for conflicts in the world of work?"
+      ru: "Какой суд в Германии отвечает за конфликты в сфере труда?"
+    options:
+      a: { en: "the family court", ru: "суд по семейным делам" }
+      b: { en: "the criminal court", ru: "уголовный суд" }
+      c: { en: "the labour court", ru: "суд по трудовым делам" }
+      d: { en: "the local court", ru: "участковый суд" }
+    terms:
+      - { de: "zuständig", en: "responsible", ru: "компетентный" }
+      - { de: "die Arbeitswelt", en: "world of work", ru: "сфера труда" }
+    status: draft
   - id: general-138
+    rationale_de: >-
+      Gegen eine ungerechte Kündigung kann man beim Arbeitsgericht eine Kündigungsschutzklage erheben. Dafür hat man nur drei Wochen Zeit, nachdem man die schriftliche Kündigung bekommen hat (Kündigungsschutzgesetz, § 4). Eine Kündigung ist keine Straftat, darum hilft die Polizei hier nicht, und ein Mahnverfahren ist für offene Rechnungen da.
+    source: KSchG § 4
+    question:
+      en: "What can I do in Germany if my employer has wrongfully dismissed me?"
+      ru: "Что я могу сделать в Германии, если работодательница или работодатель незаконно меня уволили?"
+    options:
+      a: { en: "keep working and be friendly to the boss", ru: "продолжать работать и быть дружелюбным с начальницей или начальником" }
+      b: { en: "bring a payment-order procedure against the employer", ru: "начать против работодателя приказное производство о взыскании долга" }
+      c: { en: "file an action for protection against dismissal", ru: "подать иск о защите от увольнения" }
+      d: { en: "report the employer to the police", ru: "заявить на работодателя в полицию" }
+    terms:
+      - { de: "die Kündigungsschutzklage", en: "unfair dismissal claim", ru: "иск о защите от увольнения" }
+      - { de: "zu Unrecht", en: "wrongfully", ru: "незаконно" }
+      - { de: "das Mahnverfahren", en: "payment-order procedure", ru: "приказное производство" }
+    status: draft
   - id: general-171
+    rationale_de: >-
+      In der sozialen Marktwirtschaft bestimmen Angebot und Nachfrage die Preise – das ist der Markt. Der Staat greift aber ein, damit es sozial gerecht bleibt: Es gibt zum Beispiel Mindestlohn, Arbeitslosengeld und Kindergeld. Ein Markt ganz ohne Regeln vom Staat wäre dagegen nicht „sozial“.
+    source: "bpb: Soziale Marktwirtschaft"
+    question:
+      en: "Social market economy means that the economy …"
+      ru: "Социальная рыночная экономика означает, что экономика …"
+    options:
+      a: { en: "regulates itself solely by supply and demand.", ru: "регулируется только спросом и предложением." }
+      b: { en: "is planned and steered by the state; supply and demand are not taken into account.", ru: "планируется и управляется государством, спрос и предложение не учитываются." }
+      c: { en: "is guided by demand abroad.", ru: "ориентируется на спрос за границей." }
+      d: { en: "is guided by supply and demand, but the state ensures social balance.", ru: "ориентируется на спрос и предложение, но государство обеспечивает социальное выравнивание." }
+    terms:
+      - { de: "Angebot und Nachfrage", en: "supply and demand", ru: "спрос и предложение" }
+      - { de: "der Ausgleich", en: "balance", ru: "выравнивание" }
+    status: draft
   - id: general-280
+    rationale_de: >-
+      Gegen einen falschen Steuerbescheid legt man beim Finanzamt Einspruch ein – bei anderen Behörden heißt das meistens Widerspruch. Dafür hat man einen Monat Zeit (Abgabenordnung, § 355). Wer nichts tut, muss am Ende den Betrag zahlen, der im Bescheid steht.
+    source: AO § 347, § 355
+    question:
+      en: "If you want to challenge an incorrect tax assessment in Germany, you must …"
+      ru: "Если вы хотите оспорить неправильное налоговое уведомление в Германии, вы должны …"
+    options:
+      a: { en: "do nothing.", ru: "ничего не делать." }
+      b: { en: "throw the notice away.", ru: "выбросить уведомление." }
+      c: { en: "lodge an objection.", ru: "подать возражение." }
+      d: { en: "wait until another notice arrives.", ru: "ждать, пока придёт другое уведомление." }
+    terms:
+      - { de: "der Steuerbescheid", en: "tax assessment", ru: "налоговое уведомление" }
+      - { de: "der Einspruch", en: "objection", ru: "возражение" }
+      - { de: "sich wehren gegen", en: "to challenge", ru: "оспаривать" }
+    status: draft
   - id: general-285
+    rationale_de: >-
+      Vom Gehalt werden die Lohnsteuer und die Beiträge zur Sozialversicherung direkt abgezogen – also auch Arbeitslosen-, Renten- und Krankenversicherung. Die Umsatzsteuer, auch Mehrwertsteuer genannt, steckt dagegen in den Preisen beim Einkaufen. An das Finanzamt zahlen sie die Unternehmen, nicht die Angestellten aus ihrem Gehalt.
+    source: EStG § 38; UStG
+    question:
+      en: "Ms Frost is a permanent employee in an office. What does she not have to pay from her salary?"
+      ru: "Госпожа Фрост работает в офисе на постоянной основе. Что ей не нужно платить из своей зарплаты?"
+    options:
+      a: { en: "wage tax", ru: "налог на заработную плату" }
+      b: { en: "contributions to unemployment insurance", ru: "взносы на страхование на случай безработицы" }
+      c: { en: "contributions to pension and health insurance", ru: "взносы на пенсионное и медицинское страхование" }
+      d: { en: "turnover tax", ru: "налог с оборота" }
+    terms:
+      - { de: "die Lohnsteuer", en: "wage tax", ru: "налог на заработную плату" }
+      - { de: "die Umsatzsteuer", en: "VAT", ru: "налог на добавленную стоимость" }
+      - { de: "das Gehalt", en: "salary", ru: "зарплата" }
+    status: draft
   - id: general-286
+    rationale_de: >-
+      Der Betriebsrat vertritt die Interessen der Beschäftigten in einer Firma. Die Arbeitnehmerinnen und Arbeitnehmer wählen ihn selbst; das ist in Firmen mit mindestens fünf Beschäftigten möglich (Betriebsverfassungsgesetz, § 1). Eine Betriebsprüferin oder ein Betriebsprüfer kommt dagegen vom Finanzamt und prüft die Steuern der Firma.
+    source: BetrVG § 1
+    question:
+      en: "Which body in a company helps employees with problems with their employer?"
+      ru: "Какая организация на предприятии помогает работникам при проблемах с работодателем?"
+    options:
+      a: { en: "the works council", ru: "производственный совет" }
+      b: { en: "the company auditor", ru: "ревизор, проверяющий предприятие" }
+      c: { en: "the company group", ru: "производственная группа" }
+      d: { en: "the company management", ru: "руководство предприятия" }
+    terms:
+      - { de: "der Betriebsrat", en: "works council", ru: "производственный совет" }
+      - { de: "die Beschäftigten", en: "employees", ru: "работники" }
+    status: draft
   - id: general-287
+    rationale_de: >-
+      Wer selbst kündigen möchte, muss die Kündigungsfrist einhalten. Im Gesetz steht: mindestens vier Wochen, zum 15. oder zum Ende eines Monats (Bürgerliches Gesetzbuch, § 622). Im Arbeitsvertrag oder Tarifvertrag kann eine andere Frist stehen. Die Kündigung muss außerdem schriftlich sein, auf Papier mit Unterschrift – eine E-Mail reicht nicht.
+    source: BGB § 622, § 623
+    question:
+      en: "You want to end your employment with a company in Germany. What must you bear in mind?"
+      ru: "Вы хотите прекратить трудовые отношения с фирмой в Германии. На что нужно обратить внимание?"
+    options:
+      a: { en: "the salary payments", ru: "выплаты зарплаты" }
+      b: { en: "the working hours", ru: "рабочее время" }
+      c: { en: "the notice period", ru: "срок уведомления об увольнении" }
+      d: { en: "compulsory insurance", ru: "обязательное страхование" }
+    terms:
+      - { de: "die Kündigungsfrist", en: "notice period", ru: "срок уведомления об увольнении" }
+      - { de: "das Arbeitsverhältnis", en: "employment", ru: "трудовые отношения" }
+    status: draft
