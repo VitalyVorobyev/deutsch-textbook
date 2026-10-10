@@ -1,11 +1,159 @@
 notes:
   - id: general-095
+    rationale_de: >-
+      In Deutschland gilt die Schulpflicht: Kinder müssen eine Schule besuchen, meistens ab etwa sechs Jahren. Die genauen Regeln machen die Bundesländer – in Bayern dauert die Schulpflicht zwölf Jahre, die Berufsschule eingerechnet. Eine Wahlpflicht gibt es dagegen nicht: Wählen ist ein Recht, aber keine Pflicht.
+    source: BayEUG
+    question:
+      en: "What applies to most children in Germany?"
+      ru: "Что действует для большинства детей в Германии?"
+    options:
+      a: { en: "compulsory voting", ru: "обязанность голосовать" }
+      b: { en: "compulsory schooling", ru: "обязательное школьное обучение" }
+      c: { en: "duty of confidentiality", ru: "обязанность хранить тайну" }
+      d: { en: "compulsory religion", ru: "обязательная религия" }
+    terms:
+      - { de: "die Schulpflicht", en: "compulsory schooling", ru: "обязательное школьное обучение" }
+      - { de: "die Pflicht", en: "duty", ru: "обязанность" }
+    status: draft
   - id: general-244
+    rationale_de: >-
+      Das Abitur ist der Schulabschluss, mit dem man normalerweise an einer Universität studieren darf. Man macht es meistens am Gymnasium. Ein Diplom bekommt man dagegen erst am Ende eines Studiums, die Gesellenprüfung am Ende einer Ausbildung im Handwerk, und die Prokura ist eine Vollmacht in einer Firma.
+    question:
+      en: "Which school-leaving qualification do you normally need to start a degree at a university in Germany?"
+      ru: "Какой школьный аттестат обычно нужен, чтобы начать учёбу в университете в Германии?"
+    options:
+      a: { en: "the Abitur", ru: "абитур" }
+      b: { en: "a diploma", ru: "диплом" }
+      c: { en: "the Prokura (commercial power of attorney)", ru: "прокура (торговая доверенность)" }
+      d: { en: "a journeyman's examination", ru: "экзамен на звание подмастерья" }
+    terms:
+      - { de: "das Abitur", en: "upper-secondary leaving exam", ru: "аттестат зрелости" }
+      - { de: "der Schulabschluss", en: "school-leaving qualification", ru: "школьный аттестат" }
+      - { de: "das Studium", en: "university studies", ru: "учёба в вузе" }
+    status: draft
   - id: general-250
+    rationale_de: >-
+      Wer eine gute Ausbildung oder ein Studium hat, findet in Deutschland meistens leichter eine gut bezahlte Arbeit. Religion, Geschlecht oder eine Parteimitgliedschaft sollen dabei keine Rolle spielen. Wegen der Religion oder des Geschlechts darf ein Arbeitgeber niemanden benachteiligen – das verbietet das Allgemeine Gleichbehandlungsgesetz.
+    source: AGG § 1
+    question:
+      en: "In Germany, you have the best chances of a well-paid job if you …"
+      ru: "В Германии лучшие шансы на хорошо оплачиваемую работу у того, кто …"
+    options:
+      a: { en: "are Catholic.", ru: "католик." }
+      b: { en: "are well trained.", ru: "хорошо подготовлен профессионально." }
+      c: { en: "are a woman.", ru: "женщина." }
+      d: { en: "are a member of a party.", ru: "член какой-либо партии." }
+    terms:
+      - { de: "gut ausgebildet", en: "well trained", ru: "хорошо подготовленный" }
+      - { de: "die Ausbildung", en: "vocational training", ru: "профессиональное обучение" }
+    status: draft
   - id: general-257
+    rationale_de: >-
+      Am Abendgymnasium können Erwachsene das Abitur nachholen. Der Unterricht ist am Abend, darum kann man tagsüber weiter arbeiten. Eine Hochschule oder eine Privatuniversität setzt das Abitur normalerweise schon voraus, und die Hauptschule – in Bayern heißt sie Mittelschule – führt nicht zum Abitur.
+    question:
+      en: "An adult woman in Germany wants to catch up on her Abitur. She can do this at …"
+      ru: "Взрослая женщина в Германии хочет дополнительно получить абитур. Она может сделать это в …"
+    options:
+      a: { en: "an institution of higher education.", ru: "высшем учебном заведении." }
+      b: { en: "an evening grammar school.", ru: "вечерней гимназии." }
+      c: { en: "a Hauptschule (lower secondary school).", ru: "хауптшуле (основной школе)." }
+      d: { en: "a private university.", ru: "частном университете." }
+    terms:
+      - { de: "nachholen", en: "to catch up on", ru: "наверстать" }
+      - { de: "das Abendgymnasium", en: "evening grammar school", ru: "вечерняя гимназия" }
+    status: draft
   - id: general-259
+    rationale_de: >-
+      Im Berufsinformationszentrum, kurz BIZ, bekommt man Informationen über Berufe, Ausbildungen und Studiengänge. Besonders junge Menschen finden dort Hilfe bei der Suche nach einer Lehrstelle, also einem Ausbildungsplatz. Für die Rente ist dagegen die Rentenversicherung zuständig, für die Steuererklärung das Finanzamt.
+    source: Bundesagentur für Arbeit
+    question:
+      en: "The career information centre (BIZ) at the Federal Employment Agency in Germany helps with …"
+      ru: "Центр профессиональной информации BIZ при Федеральном агентстве по труду в Германии помогает в …"
+    options:
+      a: { en: "pension calculation.", ru: "расчёте пенсии." }
+      b: { en: "the search for an apprenticeship.", ru: "поиске места для профессионального обучения." }
+      c: { en: "the tax return.", ru: "составлении налоговой декларации." }
+      d: { en: "health insurance.", ru: "медицинском страховании." }
+    terms:
+      - { de: "die Lehrstelle", en: "apprenticeship", ru: "место ученика" }
+      - { de: "die Ausbildung", en: "vocational training", ru: "профессиональное обучение" }
+    status: draft
   - id: general-260
+    rationale_de: >-
+      Wegen der Schulpflicht muss ein Kind regelmäßig zum Unterricht kommen. Wenn es krank ist, müssen die Eltern es in der Schule entschuldigen. Fehlt ein Kind ohne Grund, kann das für die Eltern ein Bußgeld bedeuten. Die meisten Fächer schreibt der Lehrplan vor, und Schulgeld ist eine Gebühr – an öffentlichen Schulen zahlt man keines.
+    question:
+      en: "In Germany, a child at school has …"
+      ru: "В Германии у ребёнка в школе есть …"
+    options:
+      a: { en: "a right to unlimited free time.", ru: "право на неограниченное свободное время." }
+      b: { en: "free choice of all subjects.", ru: "свобода выбора всех предметов." }
+      c: { en: "an entitlement to school fees.", ru: "право на плату за обучение." }
+      d: { en: "compulsory attendance.", ru: "обязанность присутствовать на уроках." }
+    terms:
+      - { de: "die Anwesenheitspflicht", en: "compulsory attendance", ru: "обязательное присутствие" }
+      - { de: "das Schulgeld", en: "school fees", ru: "плата за обучение" }
+    status: draft
   - id: general-261
+    rationale_de: >-
+      Auch mit 30 Jahren kann man das Abitur noch machen, zum Beispiel an einem Abendgymnasium. Dort lernen Erwachsene am Abend und können tagsüber weiter in ihrem Beruf arbeiten. Wer lieber tagsüber lernt, kann ein Kolleg besuchen. An einer Hochschule studiert man dagegen normalerweise erst nach dem Abitur.
+    question:
+      en: "A man aged 30 wants to catch up on his Abitur in Germany. Where can he do this? At …"
+      ru: "Мужчина в 30 лет хочет дополнительно получить в Германии абитур. Где он может это сделать? В …"
+    options:
+      a: { en: "an institution of higher education.", ru: "высшем учебном заведении." }
+      b: { en: "an evening grammar school.", ru: "вечерней гимназии." }
+      c: { en: "a Hauptschule (lower secondary school).", ru: "хауптшуле (основной школе)." }
+      d: { en: "a private university.", ru: "частном университете." }
+    terms:
+      - { de: "nachholen", en: "to catch up on", ru: "наверстать" }
+      - { de: "das Abendgymnasium", en: "evening grammar school", ru: "вечерняя гимназия" }
+    status: draft
   - id: general-269
+    rationale_de: >-
+      Kinder haben in Deutschland vom dritten Geburtstag bis zum Schulbeginn einen Rechtsanspruch auf einen Platz im Kindergarten. Schon ab dem ersten Geburtstag gibt es ein Recht auf einen Platz in einer Kita oder in der Kindertagespflege, zum Beispiel bei einer Tagesmutter. Taschengeld, ein Platz im Sportverein oder ein Ferienpass sind dagegen keine Rechte aus dem Gesetz.
+    source: SGB VIII § 24
+    question:
+      en: "In Germany, from the age of three until they start school, children are entitled to …"
+      ru: "В Германии дети с трёх лет и до поступления в школу имеют право на …"
+    options:
+      a: { en: "monthly pocket money.", ru: "ежемесячные карманные деньги." }
+      b: { en: "a place in a sports club.", ru: "место в спортивном клубе." }
+      c: { en: "a place in kindergarten.", ru: "место в детском саду." }
+      d: { en: "a holiday pass.", ru: "каникулярный абонемент." }
+    terms:
+      - { de: "der Anspruch", en: "entitlement", ru: "право" }
+      - { de: "die Ersteinschulung", en: "starting school", ru: "поступление в школу" }
+      - { de: "der Kindergartenplatz", en: "kindergarten place", ru: "место в детском саду" }
+    status: draft
   - id: general-270
+    rationale_de: >-
+      Die Volkshochschule, kurz VHS, ist eine Einrichtung zur Weiterbildung. Dort gibt es zum Beispiel Sprachkurse, Computerkurse, Kochkurse und oft auch Integrationskurse. Die Kurse sind meistens günstig und für Menschen jeden Alters offen – nicht nur für Jugendliche oder für Rentnerinnen und Rentner.
+    question:
+      en: "The Volkshochschule in Germany is an institution …"
+      ru: "Фольксхохшуле в Германии — это учреждение …"
+    options:
+      a: { en: "for religious education.", ru: "для уроков религии." }
+      b: { en: "only for young people.", ru: "только для молодёжи." }
+      c: { en: "for further education.", ru: "для дополнительного образования." }
+      d: { en: "only for pensioners.", ru: "только для пенсионеров." }
+    terms:
+      - { de: "die Volkshochschule", en: "adult education centre", ru: "народный университет" }
+      - { de: "die Weiterbildung", en: "further education", ru: "дополнительное образование" }
+      - { de: "die Einrichtung", en: "institution", ru: "учреждение" }
+    status: draft
   - id: general-284
+    rationale_de: >-
+      Viele Berufe ändern sich schnell, zum Beispiel durch neue Technik und die Digitalisierung. Darum ist es wichtig, auch nach der Ausbildung oder dem Studium weiterzulernen – man spricht vom lebenslangen Lernen. Dafür gibt es zum Beispiel Weiterbildungen, Kurse an der Volkshochschule und Angebote der Arbeitgeber und der Agentur für Arbeit.
+    question:
+      en: "What you need to be able to do for work will change very quickly in the future. What can you do?"
+      ru: "То, что нужно уметь для работы, в будущем будет очень быстро меняться. Что можно сделать?"
+    options:
+      a: { en: "It doesn't matter what you learn.", ru: "Неважно, чему учиться." }
+      b: { en: "Adults must keep on learning even after their training.", ru: "Взрослые должны продолжать учиться и после профессионального обучения." }
+      c: { en: "Children learn at school everything that is important for their job. After school you don't need to keep learning.", ru: "Дети учат в школе всё, что важно для профессии. После школы учиться дальше не нужно." }
+      d: { en: "Everyone has to stop working earlier, because everything is changing.", ru: "Все должны раньше прекращать работать, потому что всё меняется." }
+    terms:
+      - { de: "die Ausbildung", en: "vocational training", ru: "профессиональное обучение" }
+      - { de: "die Weiterbildung", en: "further education", ru: "дополнительное образование" }
+      - { de: "lebenslanges Lernen", en: "lifelong learning", ru: "обучение всю жизнь" }
+    status: draft
