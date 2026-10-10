@@ -168,7 +168,7 @@ export function wortDiff(erwartet: string, erkannt: string): { erwartet: DiffWor
   const b = rechts.map(normalisieren);
 
   const tabelle: number[][] = Array.from({ length: a.length + 1 }, () =>
-    new Array<number>(b.length + 1).fill(0),
+    Array.from({ length: b.length + 1 }, () => 0),
   );
   for (let i = a.length - 1; i >= 0; i -= 1) {
     for (let j = b.length - 1; j >= 0; j -= 1) {

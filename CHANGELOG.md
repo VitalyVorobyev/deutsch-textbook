@@ -9,6 +9,20 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.8] — 2026-10-10
+
+### Maintenance
+
+- Linting moves from ESLint to **Oxlint**: about 0.1 s instead of 7.8 s. ESLint's rules carry over,
+  including React's compiler rules, which Oxlint now runs natively, and Oxlint's own correctness
+  rules join them. `eslint-plugin-astro`'s eight rules are dropped; `astro check` and the build
+  already fail on most of what they catch. Warnings now fail the lint too. The 13 places the new
+  rules flagged are rewritten without changing behaviour. Only the script
+  bundles changed; all 252 built HTML files are identical once hashed bundle names are normalised.
+  With ESLint gone, so is the one high-severity `bun audit` advisory (`braces`).
+- TypeScript moves to 6.0.3, and the configuration drops what TypeScript 7 rejects. TypeScript 7
+  itself waits only on `astro check` (backlog P30-3).
+
 ## [0.6.7] — 2026-10-10
 
 ### Changed

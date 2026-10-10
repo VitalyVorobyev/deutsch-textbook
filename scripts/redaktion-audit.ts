@@ -3,7 +3,7 @@
  *
  * WHY THIS EXISTS AND WHY IT IS NOT A `bun test`. Every rule below is about geometry *after* CSS —
  * row height, how many links land in one cell, whether a class in the DOM resolved to an actual
- * padding. None of it is visible to `bun run validate`, `astro check`, ESLint or the type system,
+ * padding. None of it is visible to `bun run validate`, `astro check`, the linter or the type system,
  * and the failure that prompted the redesign is the proof: `packages/ui` sat outside Tailwind's
  * scan path, so `Panel`'s `p-5` computed to **`padding: 0px`** while the class was right there in
  * the DOM looking correct. Build green, tests green, app unusable. It stays out of `bun test`

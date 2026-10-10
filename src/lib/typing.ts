@@ -184,7 +184,7 @@ export function diffExpected(expected: string, given: string): DiffSeg[] {
     }
   }
 
-  const miss: boolean[] = new Array<boolean>(n).fill(true);
+  const miss: boolean[] = Array.from({ length: n }, () => true);
   let i = 0;
   let j = 0;
   while (i < n && j < m) {

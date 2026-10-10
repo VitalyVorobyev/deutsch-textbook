@@ -33,7 +33,10 @@ function Node({ node }: { node: PreviewNode }): ReactNode {
     case 'thematicBreak': return <hr />;
     case 'link': {
       const href = safeHref(node.url);
-      return href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}>{children(node.children)}</a> : <span>{children(node.children)}</span>;
+      if (!href) return <span>{children(node.children)}</span>;
+      return href.startsWith('http')
+        ? <a href={href} target="_blank" rel="noreferrer">{children(node.children)}</a>
+        : <a href={href}>{children(node.children)}</a>;
     }
     case 'image': return <figure><img src={safeHref(node.url)} alt={node.alt ?? ''} /><figcaption>{node.alt}</figcaption></figure>;
     case 'list': {
