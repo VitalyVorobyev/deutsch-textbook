@@ -9,6 +9,14 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.12] — 2026-10-10
+
+### Changed
+
+- **Fortschritt is 1.37 MB instead of 12.2 MB.** Its vocabulary section received every
+  flashcard in the course to draw per-level, per-deck and per-word-type bars. It now draws them
+  from the cards' identities. All 143 rows show the same word counts as before.
+
 ## [0.6.11] — 2026-10-10
 
 ### Changed

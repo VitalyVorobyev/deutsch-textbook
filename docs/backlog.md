@@ -695,16 +695,17 @@ P27-3a and their tags are registered; the three A2 rows remain deliberately unre
   What remains here: the P25-4 in-page anchor nav, and finer-grained per-section edges where a
   page's data supports them (sentence-connector relations already have ids). Where an editorial
   relation has no data behind it, add the datum, not a link.
-- **P23-1 · Five daily-loop pages inline most of the corpus and run 7.0–18.2 MB of HTML** —
-  `find dist -name '*.html' -exec wc -c {} + | sort -rn | head` (2026-10-10, 252 pages, 102 MB):
-  `/session` 18.2 MB, `/progress` 12.2, `/ueben/wiederholen` 11.1, `/ueben/training` 7.1,
-  `/ueben/proben` 7.0. Nearly all of each is ONE island's props: SessionFlow, ProgressPanel,
-  FlashcardSession, MixedTraining, ProbeCatchUp. Two kinds of fix:
+- **P23-1 · Four session pages inline most of the corpus and run 7.0–18.2 MB of HTML** —
+  `find dist -name '*.html' -exec wc -c {} + | sort -rn | head` (2026-10-10, 252 pages, 91 MB):
+  `/session` 18.2 MB, `/ueben/wiederholen` 11.1, `/ueben/training` 7.1, `/ueben/proben` 7.0.
+  Nearly all of each is ONE island's props: SessionFlow, FlashcardSession, MixedTraining,
+  ProbeCatchUp. Two kinds of fix:
   - **A consumer that needs card identities, not content, gets ids.** `/ueben/wortschatz` was
     11.1 MB and is 0.26 MB since its 133 per-deck islands became one that ships headwords
     (`deckWords`/`deckCardRefs`, 0.6.10). `/` was 11.3 MB and is 0.51 MB since DueBadge plans
     from card refs (`planReview` is generic over `CardRef`, 0.6.11); topic pages fell from
-    17.0 MB to 13.8 MB in total with it. Next: ProgressPanel's vocabulary bars, the same case.
+    17.0 MB to 13.8 MB in total with it. `/progress` was 12.2 MB and is 1.37 MB since its
+    vocabulary bars read refs too (0.6.12). That was the last identity-only consumer.
   - **A session that shows the cards** needs their content, so fetch the deck/item set per view
     instead of inlining it; sizing that is its own task. Do **not** treat the service worker's byte
     budget as the fix.

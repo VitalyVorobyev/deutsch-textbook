@@ -5,6 +5,7 @@ import ProgressPanel from '../components/progress/ProgressPanel';
 import { getCheckpoints, getTopicNodes } from '../lib/content';
 import { getCurriculum } from '@da/content/curriculum';
 import { getAllCards } from '../lib/content';
+import { decksOf } from '../lib/vocab-mastery';
 import { getCollection } from 'astro:content';
 import { probeFamilies } from '../lib/probes';
 import type { VocabGroup } from '../components/vocab/VocabMastery';
@@ -79,6 +80,6 @@ const outcomeLabels = Object.fromEntries(
   <h1 class="sr-only"><Chrome k="nav.fortschritt" /></h1>
 
   <div>
-    <ProgressPanel client:only="react" outcomeModes={outcomeModes} cards={cards} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} probeTopicPaths={probeTopicPaths} />
+    <ProgressPanel client:only="react" outcomeModes={outcomeModes} decks={decksOf(cards)} vocabularyGroups={vocabularyGroups} checkpoints={checkpoints} outcomeLabels={outcomeLabels} probeFamilies={families} probeLabels={probeLabels} probeTopicPaths={probeTopicPaths} />
   </div>
 </Base>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   exportSnapshot,
   mergeSnapshot,
@@ -30,7 +30,7 @@ import AccountPanel from '../account/AccountPanel';
 import { Heatmap } from './Heatmap';
 import { WeaknessTrends } from './WeaknessTrends';
 import { SessionLog } from './SessionLog';
-import type { CardDef } from '../../lib/srs';
+import { deckCardRefs, type DeckWords } from '../../lib/vocab-mastery';
 import { VocabularyProgress, type VocabGroup } from '../vocab/VocabMastery';
 import { CheckpointResults, type CheckpointInfo } from './CheckpointResults';
 import { ProbeResults } from './ProbeResults';
@@ -159,7 +159,9 @@ function importErrorReason(error: unknown): { en: string; ru: string } {
 
 interface Props {
   outcomeModes: Record<string, string>;
-  cards: CardDef[];
+  /** Every deck as headwords: the vocabulary bars need card identities, never card content.
+      The built cards inlined here made /progress a 12.2 MB page (backlog P23-1). */
+  decks: DeckWords[];
   /** group titles are chrome-string keys, rendered by VocabularyProgress */
   vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }>;
   /** every level checkpoint in the content — each panel hides itself until taken */
@@ -174,7 +176,7 @@ interface Props {
 
 export default function ProgressPanel({
   outcomeModes,
-  cards,
+  decks,
   vocabularyGroups,
   checkpoints = [],
   outcomeLabels,
@@ -184,6 +186,7 @@ export default function ProgressPanel({
 }: Props) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
+  const cardRefs = useMemo(() => decks.flatMap(deckCardRefs), [decks]);
   const [data, setData] = useState<Data | null>(null);
   const [loadError, setLoadError] = useState(false);
   const [view, setView] = useState<ProgressView>('uebersicht');
@@ -434,7 +437,7 @@ export default function ProgressPanel({
       )}
 
       {view === 'uebersicht' && data && (
-        <VocabularyProgress cards={cards} groups={vocabularyGroups} states={data.cards} />
+        <VocabularyProgress cards={cardRefs} groups={vocabularyGroups} states={data.cards} />
       )}
 
       {view === 'uebersicht' && data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
