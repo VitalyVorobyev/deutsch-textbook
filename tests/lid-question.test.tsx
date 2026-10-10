@@ -371,3 +371,51 @@ describe('lessons', () => {
     expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
   });
 });
+
+describe('LidPractice — a missed question comes back later, not next', () => {
+  /** n fresh copies of TEXT (key d), numbered from 101. */
+  const copies = (n: number): LidEntry[] =>
+    Array.from({ length: n }, (_, i) => ({ ...TEXT, question: question(`general-${101 + i}`, TEXT.question.answers, 'd') }));
+
+  /** Answers `count` presentations, wrong at the 1-based positions in `wrongAt`; returns the ids asked. */
+  async function sitThrough(count: number, wrongAt: number[]): Promise<number[]> {
+    await screen.findByText(/^Testfrage \d+\?$/);
+    await act(async () => {});
+    const asked: number[] = [];
+    for (let p = 1; p <= count; p++) {
+      asked.push(Number(screen.getByText(/^Testfrage \d+\?$/).textContent!.match(/\d+/)![0]));
+      fireEvent.click(screen.getByText(wrongAt.includes(p) ? TEXT.question.answers.b : TEXT.question.answers.d));
+      fireEvent.keyDown(document.body, { key: 'Enter' });
+      await act(async () => {});
+    }
+    return asked;
+  }
+
+  test('a new question returns after 8 others, then after half that', async () => {
+    render(<LidPractice entries={copies(14)} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    const asked = await sitThrough(16, [1, 10]);
+    const missed = asked[0];
+    expect(asked.flatMap((id, i) => (id === missed ? [i + 1] : []))).toEqual([1, 10, 15]);
+    expect(new Set(asked).size).toBe(14);
+  });
+
+  test('a learned question that lapses waits the long gap — here, the end of the sitting', async () => {
+    const entries = copies(12);
+    const learned = entries[0]!.question.id;
+    lidState = {
+      ...EMPTY_LID_STATE,
+      cards: {
+        [learned]: {
+          due: '2026-01-01T00:00:00.000Z', stability: 10, difficulty: 5, elapsed_days: 10,
+          scheduled_days: 10, learning_steps: 0, reps: 3, lapses: 0, state: 2, // State.Review
+          last_review: '2025-12-22T00:00:00.000Z',
+        },
+      },
+    };
+    render(<LidPractice entries={entries} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    const asked = await sitThrough(13, [1]);
+    expect(asked[0]).toBe(101); // due before new
+    // After 8 others it would be the 10th; a lapse waits 50, which here is the end.
+    expect(asked.lastIndexOf(101) + 1).toBe(13);
+  });
+});

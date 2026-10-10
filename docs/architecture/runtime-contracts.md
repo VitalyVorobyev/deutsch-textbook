@@ -9,7 +9,7 @@ authoring rules. Historical failures and extended rationale are
 | Content shapes | `packages/schema/src/index.ts`, `src/content.config.ts` | validator and schema tests |
 | Curriculum order and graph | `content/atlas.yaml`, `packages/content/src/curriculum.ts` | contracts/deepens tests |
 | Review queue and daily new-card budget | `src/lib/decks.ts` | review-plan tests |
-| In-session retry after "Again" | `src/lib/requeue.ts` | requeue tests |
+| In-session retry after "Again" or a missed LiD question | `src/lib/requeue.ts` | requeue tests, `tests/lid-question.test.tsx` |
 | Training eligibility and interleaving | `src/lib/training.ts` | eligibility/broad-retrieval tests |
 | Mastery and navigation evidence | `src/lib/mastery.ts`, `src/lib/placement.ts` | mastery/placement tests |
 | Delayed probes | `src/lib/probes.ts` | probe tests and progress audit |
@@ -41,6 +41,7 @@ authoring rules. Historical failures and extended rationale are
 - A card missed in a session shows its answer at once but is retried only after other cards —
   8 for a word not retrieved at all, 50 for a lapse or a near miss, halved per further miss, never
   fewer than 3 (`recordMiss`). The gap orders today's queue only; FSRS alone schedules the card.
+  A missed Leben-in-Deutschland question follows the same rule (`LidPractice`).
 - No database is created before a learner profile exists; the final profile cannot be deleted.
 - References, documents, discovery pieces and learning figures create no progress or review debt.
 - Persisted UI choices receive migrations when their value domain changes.
