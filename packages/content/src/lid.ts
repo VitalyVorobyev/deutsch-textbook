@@ -263,7 +263,8 @@ export function lidLessonBodyProblems(body: string): string[] {
  *
  * Language discipline is the discovery pieces' (scripts/validate.ts `checkMdxLangDiscipline`):
  * letter sets in frontmatter and body, prose shape, and uk parity bridged across the two — which
- * fires only once a file carries some `uk`, so a lesson without any (ADR 0021, P31-1) passes. No
+ * fires only once a file carries some `uk` (the corpus ratchet in tests/i18n-content.test.ts is what
+ * holds every lesson to carrying it). No
  * de parity: a term's `de` is the German word itself, not a German-medium explanation half.
  */
 export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string[] {

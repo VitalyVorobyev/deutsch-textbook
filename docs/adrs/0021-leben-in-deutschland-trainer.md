@@ -95,10 +95,12 @@ official questions (`/leben/ueben?lektion=<id>`, every one of them, no daily cap
 to **at most one** lesson, so a question links back to exactly one lesson or none; `bun run
 validate` enforces that, unique `order`, and the body's shape (`lidLessonProblems`).
 
-**No Ukrainian half yet (owner decision, 2026-10-10).** The notes and the lessons ship with EN and
-RU only, and `content/lid/` is outside the UK-parity ratchet (`ukHalfCoverage`) until the planned UK
-follow-up lands (backlog P31-1); under Lernsprache `uk` they fall back to English, as every
-missing half does. That follow-up removes the exemption in the same change.
+**The Ukrainian half came second (owner decision, 2026-10-10).** The notes and the lessons
+first shipped with EN and RU only, and `content/lid/` sat outside the UK-parity ratchet
+(`ukHalfCoverage`) until their UK half was authored. It was written from the German, in the same
+release cycle. The exemption is gone: every notes file and lesson is held all-or-none per file
+(`lidNotesUkProblems`, and the lessons' frontmatter–body bridge), and the corpus ratchet counts
+them.
 
 ## Consequences
 
