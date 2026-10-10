@@ -112,13 +112,12 @@ describe('chrome strings table', () => {
     expect(t('reading.questions', 'de')).toBe('Fragen zum Text');
     expect(t('reading.gist', 'de')).toBe('Worum geht es?');
     // Flashcard furniture.
-    expect(t('flashcards.input', 'de')).toBe('Eingabe:');
+    expect(t('flashcards.input', 'de')).toBe('Eingabe');
     expect(t('flashcards.modeTyped', 'de')).toBe('Tippen');
     expect(t('flashcards.modeReveal', 'de')).toBe('Aufdecken');
     expect(t('flashcards.modeListen', 'de')).toBe('Hören');
     expect(t('flashcards.ttsUnavailable', 'de')).toBe('Audio ist auf diesem Gerät nicht verfügbar');
     expect(t('flashcards.dirListen', 'de')).toBe('🔊 Hören → Schreiben');
-    expect(t('flashcards.dirFromDe', 'de')).toBe('Deutsch →');
     expect(t('flashcards.dirToDe', 'de')).toBe('→ Deutsch');
     expect(t('flashcards.typePlaceholder', 'de')).toBe('Auf Deutsch …');
     expect(t('flashcards.typedCorrect', 'de')).toBe('✓ Richtig!');

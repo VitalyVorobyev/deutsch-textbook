@@ -63,17 +63,13 @@ const placement = firstPlacement && {
 ---
 
 <Base title="Heute">
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="today.greeting" /> 👋</h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">
-    <span class="lang-en">Your German atlas — a textbook, exercises and flashcards in one place.</span>
-    <span class="lang-ru">Ваш атлас немецкого — учебник, упражнения и карточки в одном месте.</span>
-    <span class="lang-uk">Ваш атлас німецької — підручник, вправи та картки в одному місці.</span>
-  </p>
+  <!-- No greeting or tagline: the page opens on what to do today (docs/design.md, "Page chrome"). -->
+  <h1 class="sr-only"><Chrome k="nav.heute" /></h1>
 
   <FirstSteps client:only="react" first={first} placement={placement} />
   <a
     href={withBase('/session')}
-    class="mt-8 block rounded-lg bg-amber-600 p-6 text-white shadow-sm hover:bg-amber-700"
+    class="block rounded-lg bg-amber-600 p-6 text-white shadow-sm hover:bg-amber-700"
   >
     <p class="text-xl font-bold"><Chrome k="today.startSession" /></p>
     <p class="mt-1 text-sm text-amber-100">
@@ -105,19 +101,4 @@ const placement = firstPlacement && {
       <NextTopic client:only="react" spine={spine} nodes={nodes} checkpoints={checkpoints} />
     </div>
   </div>
-
-  <section class="mt-10">
-    <h2 class="text-lg font-bold"><Chrome k="today.quickAccess" /></h2>
-    <div class="mt-3 flex flex-wrap gap-3 text-sm">
-      <a href={withBase('/topics')} class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
-        📚 <Chrome k="topics.tabOverview" />
-      </a>
-      <a href={withBase('/ueben/wortschatz')} class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
-        🗂 <Chrome k="ueben.tabWortschatz" />
-      </a>
-      <a href={withBase('/progress')} class="rounded-md border border-stone-300 px-3 py-1.5 font-medium hover:border-amber-500 dark:border-stone-600">
-        📈 <Chrome k="nav.fortschritt" />
-      </a>
-    </div>
-  </section>
 </Base>

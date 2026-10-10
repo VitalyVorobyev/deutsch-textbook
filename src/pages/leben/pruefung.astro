@@ -17,7 +17,8 @@ const { source, bankVersion, state, entries } = getLidCatalogue();
     <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
     <span> / <Chrome k="lid.mock" /></span>
   </nav>
-  <h1 class="mb-4 text-2xl font-bold"><Chrome k="lid.mock" /></h1>
+  <!-- The breadcrumb names the page; the H1 is for the accessibility tree. -->
+  <h1 class="sr-only"><Chrome k="lid.mock" /></h1>
   <LidMockExam client:only="react" entries={entries} bankVersion={bankVersion} state={state} pdfUrl={source.pdfUrl} />
   <LidSource source={source} />
 </Base>

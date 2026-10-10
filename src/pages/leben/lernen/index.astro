@@ -23,28 +23,16 @@ const { source, lessons } = getLidCatalogue();
     <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
     <span> / <Chrome k="lid.learn" /></span>
   </nav>
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="lid.learn" /></h1>
-  <p lang="de" class="mt-2">
-    Jede Lektion erklärt kurz und in einfachem Deutsch, was hinter einer Gruppe von Prüfungsfragen steht.
-    Sie gibt dir den Hintergrund – die Prüfung bleiben die Fragen selbst. Am Ende jeder Lektion übst du
-    genau ihre Fragen.
-  </p>
-  <!-- The German above is always shown; this is its explanation-language twin. Under `de` the
-       German IS the explanation, so the empty de half hides the EN fallback. -->
-  <p class="mt-2 text-sm text-stone-500 dark:text-stone-400">
-    <span class="lang-en">Each lesson explains briefly, in simple German, what lies behind a group of exam questions. It gives you the background — the exam is still the questions themselves. At the end of every lesson you practise exactly its questions.</span>
-    <span class="lang-ru">Каждый урок коротко и на простом немецком объясняет, что стоит за группой экзаменационных вопросов. Он даёт фон, а сам экзамен — это по-прежнему вопросы. В конце каждого урока вы тренируете именно его вопросы.</span>
-    <span class="lang-uk">Кожен урок коротко й простою німецькою пояснює, що стоїть за групою екзаменаційних питань. Він дає контекст, а сам іспит — це, як і раніше, питання. Наприкінці кожного уроку ви тренуєте саме його питання.</span>
-    <span class="lang-de"></span>
-  </p>
+  <!-- The breadcrumb names the page, and the overview card that leads here says what it holds. -->
+  <h1 class="sr-only"><Chrome k="lid.learn" /></h1>
 
   {
     lessons.length === 0 ? (
-      <p class="mt-8 rounded-lg border border-dashed border-stone-300 p-6 text-stone-500 dark:border-stone-600 dark:text-stone-400">
+      <p class="mt-4 rounded-lg border border-dashed border-stone-300 p-6 text-stone-500 dark:border-stone-600 dark:text-stone-400">
         <Chrome k="lid.lessonsNone" />
       </p>
     ) : (
-      <ol class="mt-8 space-y-3">
+      <ol class="mt-4 space-y-3">
         {lessons.map((lesson, i) => (
           <li>
             <a

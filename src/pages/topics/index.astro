@@ -32,16 +32,10 @@ const checkpoints = (await getCheckpoints()).map(({ setId, level, path, title, i
 ---
 
 <Base title="Themen">
-  <header>
-    <h1 class="text-3xl font-bold tracking-tight"><Chrome k="nav.themen" /></h1>
-    <p class="mt-1 text-stone-500 dark:text-stone-400">
-      <span class="lang-en">Your course path — continue clearly, explore freely.</span>
-      <span class="lang-ru">Ваш учебный путь: понятный следующий шаг и свободный выбор тем.</span>
-      <span class="lang-uk">Ваш навчальний шлях — чіткий наступний крок і вільний вибір тем.</span>
-    </p>
-  </header>
+  <!-- The highlighted nav link names the page; the description is its tooltip (docs/design.md, "Page chrome"). -->
+  <h1 class="sr-only"><Chrome k="nav.themen" /></h1>
 
-  <div class="mt-6">
+  <div>
     <CurriculumPath client:load units={units} groups={curriculum.groups} spine={curriculum.spine} checkpoints={checkpoints} />
   </div>
 </Base>

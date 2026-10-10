@@ -10,6 +10,7 @@ import {
   type CardStates,
 } from '../../lib/store';
 import { gradeCardDurably, hasSeenData } from '../../lib/write-journal';
+import { recordMiss, requeueAfter, type MissRecord } from '../../lib/requeue';
 import ProgressLoadError from '../ProgressLoadError';
 import { cardMeaning, getCardInputMode, pick, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
@@ -104,6 +105,8 @@ export default function FlashcardSession({
   const finishedFired = useRef(false);
   // iOS allows programmatic TTS only after one user-gesture speak — track it
   const hasPlayedManually = useRef(false);
+  // This session's misses per card: the retry gap shrinks with each one (src/lib/requeue.ts).
+  const misses = useRef(new Map<string, MissRecord>());
 
   useEffect(() => {
     let cancelled = false;
@@ -161,6 +164,14 @@ export default function FlashcardSession({
   const typing =
     !!card && ((card.dir === 'x-de' && inputMode !== 'reveal') || listening);
   const answered = typing ? verdict !== null : revealed;
+  // The direction label only where nothing else on the card says it: a German word on the front
+  // is plainly German, and the typed answer's placeholder already reads "Auf Deutsch …". Listening
+  // and revealing a production card leave the label as the only cue.
+  const dirLabel: StringKey | null = listening
+    ? 'flashcards.dirListen'
+    : card?.dir === 'x-de' && !typing
+      ? 'flashcards.dirToDe'
+      : null;
   const suggested: Grade = verdict?.kind === 'correct' ? Rating.Good : Rating.Again;
 
   // Focus the answer field whenever a typed card is waiting for input.
@@ -257,6 +268,12 @@ export default function FlashcardSession({
   function grade(g: Grade) {
     if (!card) return;
     const ts = Date.now();
+    let missGap = 0;
+    if (g === Rating.Again) {
+      const miss = recordMiss(misses.current.get(card.id), states[card.id], typing ? verdict : null);
+      misses.current.set(card.id, miss);
+      missGap = miss.gap;
+    }
     const nextState = gradeCard(states[card.id], g, new Date(ts));
     // Optimistic: every visible state update lands synchronously, before the
     // persisted write is even awaited — a stalled IndexedDB write must not make
@@ -271,12 +288,9 @@ export default function FlashcardSession({
     setQueue((q) => {
       if (!q) return q;
       const rest = q.slice(1);
-      // "Again" re-enters the session a few cards later
-      if (g === Rating.Again) {
-        const pos = Math.min(4, rest.length);
-        return [...rest.slice(0, pos), card, ...rest.slice(pos)];
-      }
-      return rest;
+      // "Again" re-enters the session after a gap that depends on how nearly the word was
+      // known and how often it has been missed today (src/lib/requeue.ts has the rationale).
+      return g === Rating.Again ? requeueAfter(rest, card, missGap) : rest;
     });
     setRevealed(false);
     setTyped('');
@@ -397,8 +411,8 @@ export default function FlashcardSession({
   return (
     <div>
       <div className="mb-2 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1 text-xs">
-          <span className="text-stone-400">{t('flashcards.input', uiLang)}</span>
+        {/* The three modes explain themselves; the group's label is for assistive tech only. */}
+        <div role="group" aria-label={t('flashcards.input', uiLang)} className="flex items-center gap-1 text-xs">
           {(
             [
               ['typed', 'flashcards.modeTyped'],
@@ -431,13 +445,9 @@ export default function FlashcardSession({
         </p>
       </div>
       <div className="rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
-        <p className="text-center text-xs uppercase tracking-wide text-stone-400">
-          {listening
-            ? t('flashcards.dirListen', uiLang)
-            : card.dir === 'de-x'
-              ? t('flashcards.dirFromDe', uiLang)
-              : t('flashcards.dirToDe', uiLang)}
-        </p>
+        {dirLabel && (
+          <p className="text-center text-xs uppercase tracking-wide text-stone-400">{t(dirLabel, uiLang)}</p>
+        )}
         {listening && verdict === null ? (
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             <button
@@ -464,7 +474,7 @@ export default function FlashcardSession({
         ) : (
           <p
             lang={card.dir === 'de-x' && !listening ? 'de' : undefined}
-            className="mt-3 text-center text-xl font-bold sm:mt-4 sm:text-3xl"
+            className={`${dirLabel ? 'mt-3 sm:mt-4' : ''} text-center text-xl font-bold sm:text-3xl`}
           >
             {front}
             {card.dir === 'de-x' && !listening && (

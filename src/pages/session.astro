@@ -43,23 +43,9 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
 ---
 
 <Base title="Session">
-  <h1 class="text-3xl font-bold tracking-tight"><Chrome k="session.pageTitle" /></h1>
-  <p class="mt-1 text-stone-500 dark:text-stone-400">
-    <span class="lang-en">
-      One guided session — review, mixed training, then your next topic. About 15 minutes,
-      nothing to decide.
-    </span>
-    <span class="lang-ru">
-      Одна структурированная сессия — повторение, смешанная тренировка и следующая тема.
-      Около 15 минут, ничего решать не нужно.
-    </span>
-    <span class="lang-uk">
-      Одне кероване заняття — повторення, змішане тренування, а потім наступна тема.
-      Близько 15 хвилин, і нічого вирішувати не треба.
-    </span>
-  </p>
-
-  <div class="mt-8">
+  <!-- The stepper names the three steps, and the Heute card that leads here says what they are. -->
+  <h1 class="sr-only"><Chrome k="session.pageTitle" /></h1>
+  <div>
     <SessionFlow client:only="react" cards={cards} sets={sets} spine={spine} nodes={nodes} deckLevels={deckLevels} />
   </div>
 </Base>

@@ -40,14 +40,10 @@ const sectionTitle = new Map(data.sections.map((section) => [section.id, section
 ---
 
 <Base title="Briefe & Nachrichten">
-  <nav class="mb-5 text-sm text-stone-400">
-    <a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a>
-    <span> / Briefe &amp; Nachrichten</span>
-  </nav>
+  <nav class="mb-3 text-sm text-stone-400"><a href={withBase('/referenz')} class="hover:text-stone-700 dark:hover:text-stone-200">Referenz</a></nav>
 
   <header>
-    <span class="text-xs font-bold uppercase tracking-wide text-amber-700">Nachschlagen · kein Lernstatus</span>
-    <h1 class="mt-1 text-3xl font-bold tracking-tight">Briefe &amp; Nachrichten</h1>
+    <h1 class="text-3xl font-bold tracking-tight">Briefe &amp; Nachrichten</h1>
     <p class="mt-2 max-w-2xl text-stone-500">
       <span class="lang-en">The parts a German message is built from, in the order they appear — and three complete models at three registers. Choose <b>du</b> or <b>Sie</b> once and hold it to the last line.</span>
       <span class="lang-ru">Части, из которых строится немецкое сообщение, в порядке их следования — и три полных образца в трёх регистрах. Выберите <b>du</b> или <b>Sie</b> один раз и держитесь этого до последней строки.</span>

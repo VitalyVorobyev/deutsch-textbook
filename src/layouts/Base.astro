@@ -6,6 +6,7 @@ import UpdatePrompt from '../components/UpdatePrompt';
 import PersistenceAlert from '../components/PersistenceAlert';
 import { withBase } from '../lib/url';
 import { t, type StringKey } from '../lib/strings';
+import { hintAttrs, type HintKey } from '../lib/nav-hints';
 
 interface Props {
   title: string;
@@ -20,14 +21,16 @@ interface NavItem {
   label: StringKey;
   /** Extra path prefixes that also count as "this tab" (e.g. /vocab/<deck> → Üben). */
   match?: string[];
+  /** The page's description, shown as the link's tooltip instead of under its H1. */
+  hint?: HintKey;
 }
 const nav: NavItem[] = [
   { href: home, label: 'nav.heute' },
-  { href: withBase('/topics'), label: 'nav.themen' },
-  { href: withBase('/entdecken'), label: 'nav.entdecken' },
-  { href: withBase('/referenz'), label: 'nav.referenz' },
+  { href: withBase('/topics'), label: 'nav.themen', hint: 'themen' },
+  { href: withBase('/entdecken'), label: 'nav.entdecken', hint: 'entdecken' },
+  { href: withBase('/referenz'), label: 'nav.referenz', hint: 'referenz' },
   { href: withBase('/ueben'), label: 'nav.ueben', match: [withBase('/vocab'), withBase('/pruefung'), withBase('/leben')] },
-  { href: withBase('/progress'), label: 'nav.fortschritt' },
+  { href: withBase('/progress'), label: 'nav.fortschritt', hint: 'fortschritt' },
   { href: withBase('/about'), label: 'nav.ueber' },
 ];
 const current = Astro.url.pathname;
@@ -91,6 +94,14 @@ const activeItem = nav.find(isActive);
         }
         if (lang === 'en' || lang === 'ru' || lang === 'uk' || lang === 'de')
           document.documentElement.dataset.explainLang = lang;
+        // Running as an installed app — the Tauri desktop shell, or the PWA in its own window —
+        // so the footer's "App installieren" would offer what the learner is already using.
+        if (
+          '__TAURI_INTERNALS__' in window ||
+          matchMedia('(display-mode: standalone)').matches ||
+          navigator.standalone === true
+        )
+          document.documentElement.dataset.installed = '';
       })();
     </script>
   </head>
@@ -99,21 +110,22 @@ const activeItem = nav.find(isActive);
     <UpdatePrompt client:only="react" />
     <PersistenceAlert client:only="react" />
     <header class="sticky top-0 z-10 border-b border-stone-200 bg-stone-50/90 pt-[env(safe-area-inset-top)] backdrop-blur dark:border-stone-700 dark:bg-stone-900/90">
-      <div class="mx-auto flex max-w-4xl flex-wrap items-center gap-x-6 gap-y-1 px-4 py-3">
-        <a href={home} class="text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100">
+      {/* One row at every width: a sticky header that wraps costs that row on every screen of
+          every page (it was 103 px on a phone, 83 px at 700 px). `relative` anchors the phone
+          menu's panel to the full header width rather than to its button. */}
+      <div class="relative mx-auto flex max-w-4xl items-center gap-x-3 px-4 py-1.5 md:gap-x-4 md:py-3">
+        <a href={home} class="shrink-0 text-base font-bold tracking-tight text-stone-900 sm:text-lg dark:text-stone-100">
           Deutsch-<span class="text-amber-600 dark:text-amber-400">Atlas</span>
         </a>
-        {/* ≥640px: the flat eight-link row, unchanged. */}
-        <nav
-          aria-label="Hauptnavigation"
-          class="order-3 hidden gap-x-4 text-sm sm:order-none sm:flex sm:flex-wrap"
-        >
+        {/* ≥768px: the flat link row. Each link's tooltip is its page's description. */}
+        <nav aria-label="Hauptnavigation" class="hidden gap-x-4 text-sm md:flex">
           {
             nav.map((item) => (
               <a
                 href={item.href}
+                {...hintAttrs(item.hint)}
                 class:list={[
-                  'py-1 font-medium',
+                  'py-1 font-medium whitespace-nowrap',
                   isActive(item)
                     ? 'text-amber-700 dark:text-amber-400'
                     : 'text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
@@ -124,20 +136,20 @@ const activeItem = nav.find(isActive);
             ))
           }
         </nav>
-        {/* <640px: disclosure instead of the old overflow-x scroller (P24-7) —
-            all eight links, equal weight, in a panel that overlays the page
-            rather than growing the sticky header. Works without JS; the
-            dismiss script at the end of <body> only adds outside-tap/Escape. */}
-        <details id="nav-menu" class="group relative order-3 w-full sm:hidden">
+        {/* <768px: a disclosure in the brand row, named after the current section — so a page
+            needs no visible H1 to say where the learner is. All links at equal weight in a panel
+            that overlays the page rather than growing the sticky header (P24-7). Works without
+            JS; the dismiss script at the end of <body> only adds outside-tap/Escape. */}
+        <details id="nav-menu" class="group min-w-0 md:hidden">
           <summary
-            class="flex min-h-11 w-full cursor-pointer list-none items-center justify-between gap-2 rounded-md border border-stone-300 px-3 text-sm font-medium text-stone-700 [&::-webkit-details-marker]:hidden dark:border-stone-600 dark:text-stone-200"
+            class="flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-md border border-stone-300 px-3 text-sm font-medium text-stone-700 [&::-webkit-details-marker]:hidden dark:border-stone-600 dark:text-stone-200"
           >
-            <span>{t(activeItem?.label ?? 'nav.menu', 'de')}</span>
+            <span class="truncate">{t(activeItem?.label ?? 'nav.menu', 'de')}</span>
             <span aria-hidden="true" class="text-xs text-stone-400 transition-transform group-open:rotate-90">▸</span>
           </summary>
           <nav
             aria-label="Hauptnavigation"
-            class="absolute inset-x-0 top-full z-20 mt-1 grid grid-cols-2 gap-1 rounded-md border border-stone-200 bg-stone-50 p-2 shadow-lg dark:border-stone-700 dark:bg-stone-900"
+            class="absolute inset-x-4 top-full z-20 mt-1 grid grid-cols-2 gap-1 rounded-md border border-stone-200 bg-stone-50 p-2 shadow-lg dark:border-stone-700 dark:bg-stone-900"
           >
             {
               nav.map((item) => (
@@ -156,7 +168,7 @@ const activeItem = nav.find(isActive);
             }
           </nav>
         </details>
-        <div class="ml-auto flex items-center gap-2">
+        <div class="ml-auto flex shrink-0 items-center gap-2">
           <ProfileSwitcher client:only="react" />
           <button
             type="button"
@@ -170,21 +182,28 @@ const activeItem = nav.find(isActive);
       </div>
     </header>
 
-    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-8">
+    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-5 sm:py-8">
       <slot />
     </main>
 
     <footer class="border-t border-stone-200 py-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-center text-xs text-stone-500 dark:border-stone-700 dark:text-stone-400">
       {t('footer.tagline', 'de')}
-      <a href={withBase('/install')} class="ml-2 underline decoration-dotted hover:text-stone-700 dark:hover:text-stone-200">App installieren</a>
+      <a href={withBase('/install')} class="install-link ml-2 underline decoration-dotted hover:text-stone-700 dark:hover:text-stone-200">App installieren</a>
     </footer>
 
     <script>
       import { setTheme } from '../lib/prefs';
+      import { applyHints } from '../lib/nav-hints';
 
       document.getElementById('theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         setTheme(next);
+      });
+
+      // Navigation tooltips follow Lernsprache, including a switch made without a reload.
+      applyHints(document, document.documentElement.dataset.explainLang);
+      window.addEventListener('da:langchange', (e) => {
+        applyHints(document, (e as CustomEvent<string>).detail);
       });
     </script>
     <script is:inline>
