@@ -114,7 +114,7 @@ describe('the cross-file rules', () => {
 });
 
 describe('the body: German, "## Kurz gesagt" first, every section closed by a <Translation>', () => {
-  const blocks = () => FIXTURE.match(/<Translation>[\s\S]*?<\/Translation>/g)!;
+  const blocks = () => FIXTURE.match(/<Translation(?: open)?>[\s\S]*?<\/Translation>/g)!;
 
   test('missing "## Kurz gesagt"', () => {
     expect(only(edit(FIXTURE, '## Kurz gesagt\n', '')).join('\n')).toContain(
@@ -154,6 +154,16 @@ describe('the body: German, "## Kurz gesagt" first, every section closed by a <T
     expect(only(bare)).toEqual([]);
     const stray = edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', '');
     expect(only(stray).join('\n')).toContain('"## Die Flagge" has a <Translation> but no German text to translate');
+  });
+
+  test('the summary\'s translation is open, and only the summary\'s', () => {
+    expect(only(edit(FIXTURE, '<Translation open>', '<Translation>')).join('\n')).toContain(
+      '"## Kurz gesagt": the summary\'s translation is <Translation open>',
+    );
+    const [, flag] = blocks();
+    expect(only(edit(FIXTURE, flag!, flag!.replace('<Translation>', '<Translation open>'))).join('\n')).toContain(
+      '"## Die Flagge": only "## Kurz gesagt" opens its <Translation>',
+    );
   });
 
   test('every translation has an <En> and a <Ru> half', () => {

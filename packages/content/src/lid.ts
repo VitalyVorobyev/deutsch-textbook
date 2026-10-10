@@ -225,10 +225,11 @@ export function loadLidLessons(root = repoRoot()): LoadedLidLesson[] {
 /**
  * The body's shape (ADR 0021). The lesson is German — the exam's language — and it opens with
  * `## Kurz gesagt` (only MDX comments may precede it). Every section with German text, each
- * `##`/`###` up to the next heading, closes with exactly one collapsed `<Translation>`: an `<En>`
- * and a `<Ru>` half, and a `<Uk>` half once the file carries Ukrainian anywhere (`forceUk` bridges
- * the frontmatter). A heading with only a subsection under it has nothing to translate. No
- * `<Bilingual>` block, and no `#` heading: the page already has its title.
+ * `##`/`###` up to the next heading, closes with exactly one `<Translation>`: an `<En>` and a
+ * `<Ru>` half, and a `<Uk>` half once the file carries Ukrainian anywhere (`forceUk` bridges the
+ * frontmatter). The summary's is `<Translation open>` — read in both languages at once — and every
+ * other one is collapsed, opened on demand. A heading with only a subsection under it has nothing
+ * to translate. No `<Bilingual>` block, and no `#` heading: the page already has its title.
  */
 export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } = {}): string[] {
   const problems: string[] = [];
@@ -251,7 +252,7 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
   if (bilinguals) problems.push(`${bilinguals} <Bilingual> block(s) — the lesson is German, and each section closes with a <Translation>`);
 
   const halves = ['En', 'Ru', ...(opts.forceUk || body.includes('<Uk>') ? ['Uk'] : [])];
-  const translation = /<Translation>[\s\S]*?<\/Translation>/g;
+  const translation = /<Translation(?: open)?>[\s\S]*?<\/Translation>/g;
   headings.forEach((h, i) => {
     const section = body.slice(h.end, headings[i + 1]?.at ?? body.length);
     const label = `"${'#'.repeat(h.depth)} ${h.text}"`;
@@ -269,6 +270,10 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
       problems.push(`${label}: the <Translation> comes last, after the German it translates`);
     for (const half of halves)
       if (!blocks[0]!.includes(`<${half}>`)) problems.push(`${label}: its <Translation> has no <${half}> half`);
+    const open = blocks[0]!.startsWith('<Translation open>');
+    if (h === first && !open)
+      problems.push(`${label}: the summary's translation is <Translation open> — it is read in both languages at once`);
+    if (h !== first && open) problems.push(`${label}: only "## Kurz gesagt" opens its <Translation>; a section translates on demand`);
   });
   return problems;
 }

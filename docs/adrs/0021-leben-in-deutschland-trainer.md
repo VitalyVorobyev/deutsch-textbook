@@ -89,9 +89,10 @@ practice on request and never in the mock exam.
 
 **Lessons are reading material, not spine topics.** `content/lid/lessons/<id>.mdx` teaches, in
 simple German, the system behind the questions of one or more topics: German sections, `## Kurz
-gesagt` first, and a glossary. **Every section with German text closes with a collapsed
-`<Translation>`** — EN, RU and UK halves translated from the German, nothing added — that the
-learner opens when a paragraph does not land; under Lernsprache `de` it is hidden. The German stays
+gesagt` first, and a glossary. **Every section with German text closes with a `<Translation>`**
+— EN, RU and UK halves translated from the German, nothing added. The summary's starts open,
+because the orientation is read in both languages at once; every later one is collapsed and opened
+when a paragraph does not land. Under Lernsprache `de` they are hidden. The German stays
 the visible text because the exam is German. This replaced, on the owner's ruling of 2026-10-10,
 the first shape — an EN/RU/UK orientation and German-only sections — which gave a B1 reader
 nothing to check a hard paragraph against and no German summary at all. A lesson owns no exercises, probes or

@@ -7,11 +7,20 @@
  *
  * Holds an <En>, a <Ru> and, once the lesson carries Ukrainian, a <Uk> half — the validator's
  * rule (`lidLessonBodyProblems`), one block at the end of every section that has German text.
+ *
+ * `open` is for `## Kurz gesagt` alone (validator-enforced): the summary is read in both languages
+ * at once — German, then the learner's own — so it starts expanded, while every later section
+ * translates on demand. It can still be collapsed.
  */
 import Chrome from '../Chrome.astro';
+
+interface Props {
+  open?: boolean;
+}
+const { open = false } = Astro.props;
 ---
 
-<details class="lid-translation mb-6 rounded-md border border-stone-200 dark:border-stone-700">
+<details open={open} class="lid-translation mb-6 rounded-md border border-stone-200 dark:border-stone-700">
   <summary class="cursor-pointer select-none px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200">
     <Chrome k="lid.lessonTranslation" />
   </summary>

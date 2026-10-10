@@ -19,8 +19,9 @@ GitHub Release notes.
   with nothing added or left out. Under Lernsprache *Deutsch* the translations are hidden. Before,
   only the summary was in your language and the sections were German only, which left a hard
   paragraph with nothing to check it against.
-- **Each lesson's *Kurz gesagt* now has a German version**, shown first, with its translation
-  under it like every other section.
+- **Each lesson's *Kurz gesagt* now has a German version**, shown first, with its translation in
+  your Lernsprache open right under it — the summary is read in both languages at once; only the
+  sections below translate on demand.
 
 ### Fixed
 
