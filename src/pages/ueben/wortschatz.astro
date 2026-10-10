@@ -6,7 +6,8 @@ import UebenNav from '../../components/UebenNav.astro';
 import { buildDeck, wordFieldContexts } from '../../lib/srs';
 import { t } from '../../lib/strings';
 import { withBase } from '../../lib/url';
-import { DeckMasterySummary } from '../../components/vocab/VocabMastery';
+import { DeckMasterySummaries } from '../../components/vocab/VocabMastery';
+import { deckWords } from '../../lib/vocab-mastery';
 
 const [vocab, fields] = await Promise.all([getCollection('vocab'), getCollection('wortfelder')]);
 const lexicalContexts = wordFieldContexts(fields.map((field) => field.data));
@@ -19,6 +20,7 @@ const decks = vocab
   <UebenNav active="wortschatz" />
   <!-- The active tab names the page; the description is its tooltip (docs/design.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="ueben.tabWortschatz" /></h1>
+  <DeckMasterySummaries client:only="react" decks={decks.map(({ data, cards }) => deckWords(data.id, cards))} />
   <div class="grid gap-3 sm:grid-cols-2">
     {
       decks.map(({ data, cards }) => (
@@ -42,7 +44,7 @@ const decks = vocab
               .replace('{words}', String(data.entries.length))
               .replace('{cards}', String(cards.length))}
           </p>
-          <DeckMasterySummary client:only="react" cards={cards} />
+          <div data-deck-summary={data.id} />
         </a>
       ))
     }

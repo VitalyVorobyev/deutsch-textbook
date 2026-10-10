@@ -9,6 +9,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.10] — 2026-10-10
+
+### Changed
+
+- **The Wortschatz page is about 42 times smaller: 264 KB instead of 11.1 MB.** It drew one mastery
+  bar per deck from 129 separate islands, and each was handed its deck's complete flashcards
+  (glosses, examples, notes) to count words. One island now draws every bar, from the
+  headwords alone, and reads your progress once instead of 129 times. The bars show the same
+  counts.
+
 ## [0.6.9] — 2026-10-10
 
 ### Changed

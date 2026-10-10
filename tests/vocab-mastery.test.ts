@@ -2,7 +2,10 @@ import { describe, expect, test } from 'bun:test';
 import { State } from 'ts-fsrs';
 import { buildDeck, rankDueCards, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
-import { rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import YAML from 'yaml';
+import { deckCardRefs, deckWords, rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
 
 function state(overrides: Partial<StoredCard> = {}): StoredCard {
   return {
@@ -86,5 +89,36 @@ describe('rollupWords reports which words have no production card', () => {
     const cards = buildDeck('d', [{ ...entry, cards: 'both' }] as never);
     const [word] = rollupWords(cards, {});
     expect(word!.recognitionOnly).toBe(false);
+  });
+});
+
+// /ueben/wortschatz ships each deck as headwords plus its recognition-only list and rebuilds the
+// card ids in the browser, instead of inlining the built cards (9 MB of island props, P23-1).
+// A rebuilt id that differs from the built one would read no state and show a mastered word as
+// new — silently, since the bar still renders.
+describe('deckWords → deckCardRefs rebuilds exactly the built cards', () => {
+  const ids = (cards: readonly { id: string }[]) => cards.map((card) => card.id);
+  const entry = (de: string, cards: 'both' | 'recognition') => ({
+    de, pos: 'noun', gender: 'm', plural: `die ${de}e`, ipa: 'x', en: de, ru: 'слово', cards,
+    example_de: `Der ${de}.`, example_en: `The ${de}.`, example_ru: 'Слово.',
+  });
+
+  test('a mixed deck: one card for a recognition-only word, two for the rest, in deck order', () => {
+    const built = buildDeck('d', [entry('Tisch', 'both'), entry('Zuschlag', 'recognition'), entry('Stuhl', 'both')] as never);
+    const deck = deckWords('d', built);
+    expect(deck).toEqual({ id: 'd', words: ['Tisch', 'Zuschlag', 'Stuhl'], recognitionOnly: ['Zuschlag'] });
+    expect(ids(deckCardRefs(deck))).toEqual(ids(built));
+  });
+
+  test('for every deck in the corpus', () => {
+    type Entry = Parameters<typeof buildDeck>[1][number];
+    const root = join(process.cwd(), 'content', 'vocab');
+    const files = readdirSync(root).filter((f) => f.endsWith('.yaml'));
+    expect(files.length).toBeGreaterThan(100);
+    for (const f of files) {
+      const { id, entries } = YAML.parse(readFileSync(join(root, f), 'utf8')) as { id: string; entries: Entry[] };
+      const built = buildDeck(id, entries);
+      expect({ id, cards: ids(deckCardRefs(deckWords(id, built))) }).toEqual({ id, cards: ids(built) });
+    }
   });
 });
