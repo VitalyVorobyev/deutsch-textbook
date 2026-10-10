@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import type { CardDef } from '../../lib/srs';
+import type { CardDef, CardRef } from '../../lib/srs';
 import { getCardStates, withReadRetry, type CardStates } from '../../lib/store';
 import ProgressLoadError from '../ProgressLoadError';
 import { deckCardRefs, masteryCounts, rollupWords, type DeckWords, type MasteryCounts, type WordMastery, type WordRollup } from '../../lib/vocab-mastery';
@@ -129,7 +129,7 @@ export interface VocabGroup { id: string; label: string; cardIds: string[] }
 // Only the first group (the per-level bars) is open by default; the per-topic
 // and per-POS breakdowns sit behind one <details>. Render-only: the groups prop
 // and its card-id lists are unchanged, nothing new is computed or inlined.
-export function VocabularyProgress({ cards, groups, states }: { cards: CardDef[]; groups: Array<{ title: StringKey; items: VocabGroup[] }>; states: CardStates }) {
+export function VocabularyProgress({ cards, groups, states }: { cards: readonly CardRef[]; groups: Array<{ title: StringKey; items: VocabGroup[] }>; states: CardStates }) {
   const lang = useExplainLang();
   const uiLang = useUiLang();
   const renderGroup = (group: { title: StringKey; items: VocabGroup[] }) => <div key={group.title} className="mt-5"><h3 className="text-xs font-semibold uppercase tracking-wide text-stone-400">{t(group.title, uiLang)}{group.title === 'filter.level' && <span className="ml-2 font-normal normal-case tracking-normal">· {pick(lang, UI.currentlyAuthored)}</span>}</h3><div className="mt-2 grid gap-3 sm:grid-cols-2">{group.items.map((item) => { const ids = new Set(item.cardIds); const words = rollupWords(cards.filter((card) => ids.has(card.id)), states); return words.length ? <div key={item.id} className="rounded-md bg-stone-50 p-3 dark:bg-stone-900/50"><div className="mb-2 flex justify-between gap-2 text-sm"><span className="font-medium">{item.label}</span><span className="text-stone-400">{words.length}</span></div><MasteryBar counts={masteryCounts(words)} compact /></div> : null; })}</div></div>;
