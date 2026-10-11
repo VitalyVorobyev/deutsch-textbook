@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.10 `gesellschaft-zusammenleben`.
+  Next: B1.11 `digitales-leben`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -171,6 +171,20 @@ record of what shipped.
   P19-4); the Hören q1 explain says advice sessions "almost always" end with an ordered pair; the
   EN article's "in case" for *falls* reads in British English as a precaution, not a condition;
   the `sprechen-abendkurs` DE prompt's "ohne was du nicht entschieden hast"; C6-1 still owed.
+- `b1/gesellschaft-zusammenleben`: Herr Weber votes for the playground in `hoeren-abstimmung`,
+  demands the whole courtyard as parking in `sprechen-einwand` and "war dagegen" in the *dagegen*
+  card's example — one name, two positions; the `hoeren-abstimmung` instruction ("votes for
+  something else") rules out one option before the audio plays, and its closing *Die Mehrheit ist
+  für den Spielplatz* points at the answer without the *obwohl* decoding; `frage-einwand`'s key
+  copies the reading's sentence word for word; the reading's *einen Kompromiss vorgeschlagen, was
+  … alle überzeugt hat* reads more naturally with *der*, since the compromise convinced and not the
+  proposing; *Bewohner*, *Spielplatz* and *Grill* are produced in translate items but carded
+  recognition-only; the *dagegen* RU gloss «зато» names *dafür*'s
+  compensation, not *dagegen*'s contrast; the *Gemeinschaft* note calls *gemeinsam handeln* "the
+  verb behind it"; `match-redemittel`'s explain gives a discussion "five moves in a fixed order";
+  the speaking checklist and the `konjunktionaladverb-inversion` tag row name only
+  position 1 for *trotzdem*; the primary and production headers say outcomes arm the
+  families (arming is by item key since P19-4); C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

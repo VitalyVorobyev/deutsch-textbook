@@ -55,6 +55,10 @@ arming:
   - b1/gesellschaft-zusammenleben-produktion::uebersetzen-obwohl-perfekt
 items:
   - id: variant-a
+    # revision 2: the RU/UK prompts write the name in Latin script (Cyrillic left its
+    # spelling free), and the main clause may front Am Samstag when the concession
+    # follows — rejected with obwohl … mag intact.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: obwohl-trotzdem
@@ -64,13 +68,14 @@ items:
       uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «любити» візьміть mögen, для «мангал» — der Grill, для «допомагати» — helfen."
       de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für das Mögen nimm mögen, für den Grill der Grill, für das Helfen helfen."
     prompt_en: "Although Frau Radek does not like the barbecue, she helps in the courtyard on Saturday."
-    prompt_ru: "Хотя госпожа Радек не любит мангал, она помогает в субботу во дворе."
-    prompt_uk: "Хоча пані Радек не любить мангал, вона допомагає в суботу у дворі."
+    prompt_ru: "Хотя Frau Radek не любит мангал, она помогает в субботу во дворе."
+    prompt_uk: "Хоча Frau Radek не любить мангал, вона допомагає в суботу у дворі."
     answer: "Obwohl Frau Radek den Grill nicht mag, hilft sie am Samstag im Hof."
     accept:
       # The concession may stand second; then the name leads and the clause takes the
-      # pronoun. Nothing else moves, and the graded pair is unchanged.
+      # pronoun, or the main clause fronts Am Samstag. The graded pair is unchanged.
       - "Frau Radek hilft am Samstag im Hof, obwohl sie den Grill nicht mag."
+      - "Am Samstag hilft Frau Radek im Hof, obwohl sie den Grill nicht mag."
     key_tokens: ["Obwohl", "obwohl", "mag"]
     explain:
       en: "Graded are the two ends of the conjunction's rule: obwohl and the clause-final mag. Only a conjunction can open a Nebensatz, so trotzdem is out — it is an adverb and needs a whole main clause behind it. And the conjunction sends the finite verb to the very end: den Grill nicht mag, never mag den Grill nicht. Where the clause stands is free: first, and the main clause opens with hilft; second, and nothing else moves."
@@ -79,6 +84,12 @@ items:
       de: "Bewertet werden die zwei Enden der Konjunktionsregel: obwohl und das satzfinale mag. Einen Nebensatz kann nur eine Konjunktion eröffnen, also fällt trotzdem aus — es ist ein Adverb und braucht einen ganzen Hauptsatz hinter sich. Und die Konjunktion schickt das finite Verb ganz ans Ende: den Grill nicht mag, nie mag den Grill nicht. Wo der Nebensatz steht, ist frei: vorn, dann beginnt der Hauptsatz mit hilft; hinten, dann bewegt sich sonst nichts."
 
   - id: variant-b
+    # revision 2: the RU/UK prompts write the name in Latin script; "the party" is the
+    # course's own card for die Party (freizeit-koennen), «праздник» / «свято» its card
+    # for das Fest, and die Feier fits both — the noun is carrier material, so all three
+    # are accepted, as is schon after die Tische. Each was rejected with obwohl … anfängt
+    # intact.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: obwohl-trotzdem
@@ -88,20 +99,35 @@ items:
       uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «починатися» візьміть anfangen, для «лише о шостій» — erst um sechs, для «накривати на стіл» — die Tische decken."
       de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für den Beginn nimm anfangen, für die Uhrzeit erst um sechs, für das Eindecken die Tische decken."
     prompt_en: "Although the party does not start until six, Frau Brandt is already setting the tables."
-    prompt_ru: "Хотя праздник начинается только в шесть, госпожа Брандт уже накрывает столы."
-    prompt_uk: "Хоча свято починається лише о шостій, пані Брандт уже накриває столи."
+    prompt_ru: "Хотя праздник начинается только в шесть, Frau Brandt уже накрывает столы."
+    prompt_uk: "Хоча свято починається лише о шостій, Frau Brandt уже накриває столи."
     answer: "Obwohl das Fest erst um sechs anfängt, deckt Frau Brandt schon die Tische."
     accept:
-      # The concession may stand second; the separable verb still closes it.
+      # The concession may stand second; the separable verb still closes it. The party
+      # is das Fest, die Party or die Feier, and schon may follow die Tische.
       - "Frau Brandt deckt schon die Tische, obwohl das Fest erst um sechs anfängt."
+      - "Obwohl das Fest erst um sechs anfängt, deckt Frau Brandt die Tische schon."
+      - "Frau Brandt deckt die Tische schon, obwohl das Fest erst um sechs anfängt."
+      - "Obwohl die Party erst um sechs anfängt, deckt Frau Brandt schon die Tische."
+      - "Frau Brandt deckt schon die Tische, obwohl die Party erst um sechs anfängt."
+      - "Obwohl die Party erst um sechs anfängt, deckt Frau Brandt die Tische schon."
+      - "Frau Brandt deckt die Tische schon, obwohl die Party erst um sechs anfängt."
+      - "Obwohl die Feier erst um sechs anfängt, deckt Frau Brandt schon die Tische."
+      - "Frau Brandt deckt schon die Tische, obwohl die Feier erst um sechs anfängt."
+      - "Obwohl die Feier erst um sechs anfängt, deckt Frau Brandt die Tische schon."
+      - "Frau Brandt deckt die Tische schon, obwohl die Feier erst um sechs anfängt."
     key_tokens: ["Obwohl", "obwohl", "anfängt"]
     explain:
-      en: "Graded are obwohl and the clause-final anfängt — and a separable verb makes the wall visible twice over. In a main clause the two halves stand apart (Das Fest fängt erst um sechs an); inside a Nebensatz the conjunction pulls the finite verb to the end, where it lands behind its own prefix and is written as one word: erst um sechs anfängt. trotzdem could not do this at all: an adverb opens no clause, it only fills position 1 of a new main clause."
-      ru: "Оцениваются obwohl и anfängt в самом конце — а отделяемая приставка показывает стену дважды. В главном предложении половинки стоят порознь (Das Fest fängt erst um sechs an); в придаточном союз утягивает спрягаемый глагол в конец, где он оказывается позади собственной приставки и пишется одним словом: erst um sechs anfängt. trotzdem этого не может вовсе: наречие не открывает придаточных, оно лишь занимает первую позицию нового главного предложения."
-      uk: "Оцінюються obwohl і anfängt у самому кінці — а відокремлюваний префікс показує стіну двічі. У головному реченні половинки стоять окремо (Das Fest fängt erst um sechs an); у підрядному сполучник тягне відмінюване дієслово в кінець, де воно опиняється позаду власного префікса й пишеться одним словом: erst um sechs anfängt. trotzdem цього не може зовсім: прислівник не відкриває підрядних, він лише займає першу позицію нового головного речення."
-      de: "Bewertet werden obwohl und das satzfinale anfängt — und ein trennbares Verb zeigt die Wand gleich doppelt. Im Hauptsatz stehen die beiden Teile getrennt (Das Fest fängt erst um sechs an); im Nebensatz zieht die Konjunktion das finite Verb ans Ende, wo es hinter dem eigenen Präfix landet und zusammengeschrieben wird: erst um sechs anfängt. trotzdem kann das gar nicht: Ein Adverb eröffnet keinen Nebensatz, es füllt nur Position 1 eines neuen Hauptsatzes."
+      en: "Graded are obwohl and the clause-final anfängt — and a separable verb makes the wall visible twice over. In a main clause the two halves stand apart (Das Fest fängt erst um sechs an); inside a Nebensatz the conjunction pulls the finite verb to the end, where it lands behind its own prefix and is written as one word: erst um sechs anfängt. trotzdem could not do this at all: an adverb opens no clause; it stands inside a main clause, in position 1 or further in."
+      ru: "Оцениваются obwohl и anfängt в самом конце — а отделяемая приставка показывает стену дважды. В главном предложении половинки стоят порознь (Das Fest fängt erst um sechs an); в придаточном союз утягивает спрягаемый глагол в конец, где он оказывается позади собственной приставки и пишется одним словом: erst um sechs anfängt. trotzdem этого не может вовсе: наречие не открывает придаточных, оно стоит внутри главного предложения — на первой позиции или дальше."
+      uk: "Оцінюються obwohl і anfängt у самому кінці — а відокремлюваний префікс показує стіну двічі. У головному реченні половинки стоять окремо (Das Fest fängt erst um sechs an); у підрядному сполучник тягне відмінюване дієслово в кінець, де воно опиняється позаду власного префікса й пишеться одним словом: erst um sechs anfängt. trotzdem цього не може зовсім: прислівник не відкриває підрядних, він стоїть усередині головного речення — на першій позиції чи далі."
+      de: "Bewertet werden obwohl und das satzfinale anfängt — und ein trennbares Verb zeigt die Wand gleich doppelt. Im Hauptsatz stehen die beiden Teile getrennt (Das Fest fängt erst um sechs an); im Nebensatz zieht die Konjunktion das finite Verb ans Ende, wo es hinter dem eigenen Präfix landet und zusammengeschrieben wird: erst um sechs anfängt. trotzdem kann das gar nicht: Ein Adverb eröffnet keinen Nebensatz, es steht im Hauptsatz, auf Position 1 oder weiter hinten."
 
   - id: variant-c
+    # revision 2: the RU/UK prompts write the name in Latin script (Каминский /
+    # Камінський left Kaminski, Kaminskij and Kaminskyj open). The logged *stellt … sein
+    # Fahrrad im Hof* (2026-10-11 ruling) loses no pinned token and stays unattributed.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: obwohl-trotzdem
@@ -111,8 +137,8 @@ items:
       uk: "Перекладіть одним реченням, оформивши поступку як Nebensatz. Для «досить великий» візьміть groß genug, для «велосипед» — das Fahrrad, для «ставити» — stellen."
       de: "Übersetze in einem Satz und mach das Zugeständnis zu einem Nebensatz. Für die Größe nimm groß genug, für das Rad das Fahrrad, für das Abstellen stellen."
     prompt_en: "Although the cellar is big enough, Herr Kaminski puts his bicycle in the courtyard."
-    prompt_ru: "Хотя подвал достаточно большой, господин Каминский ставит свой велосипед во двор."
-    prompt_uk: "Хоча підвал досить великий, пан Камінський ставить свій велосипед у двір."
+    prompt_ru: "Хотя подвал достаточно большой, Herr Kaminski ставит свой велосипед во двор."
+    prompt_uk: "Хоча підвал досить великий, Herr Kaminski ставить свій велосипед у двір."
     answer: "Obwohl der Keller groß genug ist, stellt Herr Kaminski sein Fahrrad in den Hof."
     accept:
       # The concession may stand second; the copula still closes it.
