@@ -178,10 +178,10 @@ items:
       ru: "Со вчерашнего дня доступ не работает, так что книгу я загрузить больше не могу."
       uk: "Від учора доступ не працює, так що книжку я завантажити більше не можу."
     explain:
-      en: "sodass is a conjunction like weil: subject straight after it, finite verb at the very end — kann closes the clause. sodass kann ich … gives it the grammar of deshalb, an adverb that pulls the verb behind itself. sodass ich kann … keeps main-clause order, which is what the source languages do after their own 'so'."
-      ru: "sodass — союз, как weil: сразу за ним подлежащее, спрягаемый глагол в самом конце, и придаточное закрывает kann. Вариант sodass kann ich … даёт ему грамматику deshalb — наречия, которое тянет глагол за собой. Вариант sodass ich kann … сохраняет порядок главного предложения: именно так ведёт себя русское «так что»."
-      uk: "sodass — сполучник, як weil: одразу за ним підмет, відмінюване дієслово в самому кінці, і підрядне закриває kann. Варіант sodass kann ich … дає йому граматику deshalb — прислівника, що тягне дієслово за собою. Варіант sodass ich kann … зберігає порядок головного речення: саме так поводиться українське «так що»."
-      de: "sodass ist eine Konjunktion wie weil: direkt danach das Subjekt, das finite Verb ganz am Ende — kann schließt den Satz. sodass kann ich … gibt ihm die Grammatik von deshalb, einem Adverb, das das Verb hinter sich zieht. sodass ich kann … behält die Hauptsatzstellung, die die Ausgangssprachen nach ihrem eigenen „so\" beibehalten."
+      en: "sodass is a conjunction like weil: the finite verb goes to the very end — kann closes the clause — and here the subject follows the conjunction directly. sodass kann ich … gives it the grammar of deshalb, an adverb that pulls the verb behind itself. sodass ich kann … keeps main-clause order, which is what the source languages do after their own 'so'."
+      ru: "sodass — союз, как weil: спрягаемый глагол уходит в самый конец — придаточное закрывает kann, — а подлежащее здесь стоит сразу после союза. Вариант sodass kann ich … даёт ему грамматику deshalb — наречия, которое тянет глагол за собой. Вариант sodass ich kann … сохраняет порядок главного предложения: именно так ведёт себя русское «так что»."
+      uk: "sodass — сполучник, як weil: відмінюване дієслово йде в самий кінець — підрядне закриває kann, — а підмет тут стоїть одразу після сполучника. Варіант sodass kann ich … дає йому граматику deshalb — прислівника, що тягне дієслово за собою. Варіант sodass ich kann … зберігає порядок головного речення: саме так поводиться українське «так що»."
+      de: "sodass ist eine Konjunktion wie weil: Das finite Verb geht ganz ans Ende — kann schließt den Satz —, und das Subjekt steht hier direkt nach der Konjunktion. sodass kann ich … gibt ihm die Grammatik von deshalb, einem Adverb, das das Verb hinter sich zieht. sodass ich kann … behält die Hauptsatzstellung, die die Ausgangssprachen nach ihrem eigenen „so\" beibehalten."
 
   - id: uebersetzen-sodass-bildschirm
     outcomes: [technikproblem-schildern]
@@ -228,6 +228,8 @@ items:
       de: "Eine Frage, die in Können Sie mir sagen … eingepackt wird, ist ein Nebensatz, und im Nebensatz steht das finite Verb zuletzt: muss schließt ihn. ob muss ich behält die Inversion der direkten Frage, ob ich muss installieren die Hauptsatzstellung. Eine höfliche Frage, einmal gestellt, nützt dem Support mehr als drei ungeduldige."
 
   - id: uebersetzen-hoeflich-bitte
+    # revision 2: Würden Sie is accepted and pinned beside Könnten.
+    revision: 2
     outcomes: [technikproblem-schildern]
     type: translate
     focus: hoeflich-konjunktiv
@@ -245,28 +247,41 @@ items:
       # already under discussion; both determiners render the same request. The polite
       # form carries the request on its own, so bitte is optional in every one of them —
       # and where it stands is not graded either: after mir and after the object are both
-      # native positions, and the tag pins Könnten alone.
+      # native positions, and the tag pins the polite verb alone.
       - "Könnten Sie mir bitte diese Meldung erklären?"
       - "Könnten Sie mir die Meldung erklären?"
       - "Könnten Sie mir diese Meldung erklären?"
       - "Könnten Sie mir die Meldung bitte erklären?"
       - "Könnten Sie mir diese Meldung bitte erklären?"
-    key_tokens: ["Könnten"]
+      # Würden Sie is the other polite Konjunktiv II and makes the same request; it was
+      # charged to this tag with the polite form intact. B1 precedent:
+      # gespraech-steuern-produktion::uebersetzen-koennten accepts it for the same prompt.
+      - "Würden Sie mir bitte die Meldung erklären?"
+      - "Würden Sie mir bitte diese Meldung erklären?"
+      - "Würden Sie mir die Meldung erklären?"
+      - "Würden Sie mir diese Meldung erklären?"
+      - "Würden Sie mir die Meldung bitte erklären?"
+      - "Würden Sie mir diese Meldung bitte erklären?"
+    key_tokens: ["Könnten", "Würden"]
     explain:
-      en: "Graded is Könnten alone — the umlaut plus the Konjunktiv -e is the whole polite form, and the request the chapter needs. Können Sie is not wrong, but it asks whether you are able to; Könnten Sie asks whether you would. Which message is meant is carrier material here, so die and diese are both accepted."
-      ru: "Оценивается одно Könnten: умлаут плюс конъюнктивное -e и есть вся вежливая форма — та просьба, которая нужна этой главе. Können Sie не ошибка, но спрашивает, способны ли вы; Könnten Sie спрашивает, согласны ли. Какое именно сообщение имеется в виду, здесь неважно, поэтому принимаются и die, и diese."
-      uk: "Оцінюється одне Könnten: умлаут плюс кон'юнктивне -e і є вся ввічлива форма — те прохання, якого потребує цей розділ. Können Sie не помилка, але питає, чи здатні ви; Könnten Sie питає, чи згодні. Яке саме повідомлення мається на увазі, тут не важить, тому приймаються і die, і diese."
-      de: "Bewertet wird allein Könnten — Umlaut plus Konjunktiv-e ergeben die höfliche Form, um die es hier geht. Können Sie ist nicht falsch, fragt aber nach der Fähigkeit; Könnten Sie fragt nach der Bereitschaft. Welche Meldung gemeint ist, ist hier Trägermaterial, also gelten die und diese gleichermaßen."
+      en: "Graded is Könnten — the umlaut plus the Konjunktiv -e is the whole polite form, and the request the chapter needs; Würden Sie, the other polite Konjunktiv, is graded and accepted the same way. Können Sie is not wrong, but it asks whether you are able to; Könnten Sie asks whether you would. Which message is meant is carrier material here, so die and diese are both accepted."
+      ru: "Оценивается Könnten: умлаут плюс конъюнктивное -e и есть вся вежливая форма — та просьба, которая нужна этой главе; Würden Sie, второй вежливый конъюнктив, оценивается и принимается так же. Können Sie не ошибка, но спрашивает, способны ли вы; Könnten Sie спрашивает, согласны ли. Какое именно сообщение имеется в виду, здесь неважно, поэтому принимаются и die, и diese."
+      uk: "Оцінюється Könnten: умлаут плюс кон'юнктивне -e і є вся ввічлива форма — те прохання, якого потребує цей розділ; Würden Sie, другий увічливий кон'юнктив, оцінюється й приймається так само. Können Sie не помилка, але питає, чи здатні ви; Könnten Sie питає, чи згодні. Яке саме повідомлення мається на увазі, тут не важить, тому приймаються і die, і diese."
+      de: "Bewertet wird Könnten — Umlaut plus Konjunktiv-e ergeben die höfliche Form, um die es hier geht; Würden Sie, der zweite höfliche Konjunktiv, wird genauso bewertet und angenommen. Können Sie ist nicht falsch, fragt aber nach der Fähigkeit; Könnten Sie fragt nach der Bereitschaft. Welche Meldung gemeint ist, ist hier Trägermaterial, also gelten die und diese gleichermaßen."
 
   - id: uebersetzen-um-zu-medien
+    # revision 2: 'phone' is named — the course's own card for «телефон» / "phone" is
+    # das Telefon (kommunikation-medien), which rendered the prompt correctly and was
+    # rejected — and the accepts close over der Familie and both positions of vor allem.
+    revision: 2
     outcomes: [mediennutzung-berichten]
     type: translate
     focus: um-zu-zweck
     instruction:
-      en: "Name the purpose with um … zu. For 'speak' take sprechen, for 'above all' vor allem."
-      ru: "Назовите цель через um … zu. Для «разговаривать» возьмите sprechen, для «прежде всего» — vor allem."
-      uk: "Назвіть мету через um … zu. Для «розмовляти» візьміть sprechen, для «передусім» — vor allem."
-      de: "Nenn den Zweck mit um … zu. Für das Sprechen nimm sprechen, für die Gewichtung vor allem."
+      en: "Name the purpose with um … zu. For 'phone' take Handy, for 'speak' sprechen, for 'above all' vor allem."
+      ru: "Назовите цель через um … zu. Для «телефон» возьмите Handy, для «разговаривать» — sprechen, для «прежде всего» — vor allem."
+      uk: "Назвіть мету через um … zu. Для «телефон» візьміть Handy, для «розмовляти» — sprechen, для «передусім» — vor allem."
+      de: "Nenn den Zweck mit um … zu. Für das Telefon nimm Handy, für das Sprechen sprechen, für die Gewichtung vor allem."
     prompt_en: "I use my phone above all to speak with my family."
     prompt_ru: "Телефоном я пользуюсь прежде всего, чтобы разговаривать с семьёй."
     prompt_uk: "Телефоном я користуюся передусім, щоб розмовляти з родиною."
@@ -284,6 +299,43 @@ items:
       - "Das Handy benutze ich vor allem, um mit meiner Familie zu sprechen."
       - "Mein Handy nutze ich vor allem, um mit meiner Familie zu sprechen."
       - "Mein Handy benutze ich vor allem, um mit meiner Familie zu sprechen."
+      # «с семьёй» / «з родиною» leave the possessive free, and mit der Familie is how German
+      # often says one's own family; closed over both verbs, both determiners, both orders.
+      - "Ich nutze das Handy vor allem, um mit der Familie zu sprechen."
+      - "Ich benutze das Handy vor allem, um mit der Familie zu sprechen."
+      - "Ich nutze mein Handy vor allem, um mit der Familie zu sprechen."
+      - "Ich benutze mein Handy vor allem, um mit der Familie zu sprechen."
+      - "Das Handy nutze ich vor allem, um mit der Familie zu sprechen."
+      - "Das Handy benutze ich vor allem, um mit der Familie zu sprechen."
+      - "Mein Handy nutze ich vor allem, um mit der Familie zu sprechen."
+      - "Mein Handy benutze ich vor allem, um mit der Familie zu sprechen."
+      # vor allem may lead the sentence — the unit's own spoken model says Vor allem nutze ich
+      # es zum Lesen — or stand inside the purpose clause, where it was charged to the tag
+      # with um … zu intact; the frame is the same in every one of them.
+      - "Vor allem nutze ich das Handy, um mit meiner Familie zu sprechen."
+      - "Vor allem benutze ich das Handy, um mit meiner Familie zu sprechen."
+      - "Vor allem nutze ich mein Handy, um mit meiner Familie zu sprechen."
+      - "Vor allem benutze ich mein Handy, um mit meiner Familie zu sprechen."
+      - "Vor allem nutze ich das Handy, um mit der Familie zu sprechen."
+      - "Vor allem benutze ich das Handy, um mit der Familie zu sprechen."
+      - "Vor allem nutze ich mein Handy, um mit der Familie zu sprechen."
+      - "Vor allem benutze ich mein Handy, um mit der Familie zu sprechen."
+      - "Ich nutze das Handy, um vor allem mit meiner Familie zu sprechen."
+      - "Ich benutze das Handy, um vor allem mit meiner Familie zu sprechen."
+      - "Ich nutze mein Handy, um vor allem mit meiner Familie zu sprechen."
+      - "Ich benutze mein Handy, um vor allem mit meiner Familie zu sprechen."
+      - "Ich nutze das Handy, um vor allem mit der Familie zu sprechen."
+      - "Ich benutze das Handy, um vor allem mit der Familie zu sprechen."
+      - "Ich nutze mein Handy, um vor allem mit der Familie zu sprechen."
+      - "Ich benutze mein Handy, um vor allem mit der Familie zu sprechen."
+      - "Das Handy nutze ich, um vor allem mit meiner Familie zu sprechen."
+      - "Das Handy benutze ich, um vor allem mit meiner Familie zu sprechen."
+      - "Mein Handy nutze ich, um vor allem mit meiner Familie zu sprechen."
+      - "Mein Handy benutze ich, um vor allem mit meiner Familie zu sprechen."
+      - "Das Handy nutze ich, um vor allem mit der Familie zu sprechen."
+      - "Das Handy benutze ich, um vor allem mit der Familie zu sprechen."
+      - "Mein Handy nutze ich, um vor allem mit der Familie zu sprechen."
+      - "Mein Handy benutze ich, um vor allem mit der Familie zu sprechen."
     key_tokens: ["um", "zu", "sprechen"]
     explain:
       en: "Graded is the frame: um at the front, zu in front of the infinitive, sprechen at the end. It has two ends and both are needed — um alone leaves the clause unfinished, and für plus a bare infinitive is no German construction. Saying what a device is for is what turns a number of hours into a report."
@@ -311,6 +363,8 @@ items:
       de: "Eine Zahl allein beantwortet nichts, denn niemand hört ihr an, ob sie viel ist. Drei billige Züge ordnen sie ein: der Vergleich mit früher (Früher …, heute …), die Bewertung (Das ist mir zu viel) und die ehrliche Einschränkung (Allerdings brauche ich das Handy für die Arbeit). Je ein Satz, und der Bericht steht."
 
   - id: uebersetzen-frueher-heute
+    # revision 2: the Präteritum Früher las ich is accepted and las pinned.
+    revision: 2
     outcomes: [mediennutzung-berichten]
     type: translate
     focus: verbzweit
@@ -331,9 +385,16 @@ items:
       - "Früher habe ich abends die Zeitung gelesen, heute lese ich digital."
       - "Früher habe ich abends Zeitung gelesen. Heute lese ich digital."
       - "Früher habe ich abends die Zeitung gelesen. Heute lese ich digital."
-    key_tokens: ["Früher", "habe", "heute", "Heute", "lese"]
+      # No tense is asked for, and "used to read" / «читал» is as much the Präteritum as the
+      # Perfekt; Früher las ich was charged to this tag with both inversions intact. las is
+      # pinned so that Früher ich las stays attributed.
+      - "Früher las ich abends Zeitung, heute lese ich digital."
+      - "Früher las ich abends die Zeitung, heute lese ich digital."
+      - "Früher las ich abends Zeitung. Heute lese ich digital."
+      - "Früher las ich abends die Zeitung. Heute lese ich digital."
+    key_tokens: ["Früher", "habe", "las", "heute", "Heute", "lese"]
     explain:
-      en: "Graded are both time words and both finite verbs, because that is the rule: whatever fills position 1, the conjugated verb comes second and the subject moves behind it — habe ich, lese ich. Früher ich habe is the order the source languages keep. The pair Früher …, heute … is the cheapest way to place a habit instead of listing it."
-      ru: "Оцениваются оба слова времени и оба спрягаемых глагола — в этом и правило: что бы ни стояло на первой позиции, спрягаемый глагол идёт вторым, а подлежащее уходит за него: habe ich, lese ich. Früher ich habe — это русский порядок слов. Пара Früher …, heute … — самый дешёвый способ поместить привычку во времени, а не просто её назвать."
-      uk: "Оцінюються обидва слова часу й обидва відмінювані дієслова — у цьому й правило: що б не стояло на першій позиції, відмінюване дієслово йде другим, а підмет відходить за нього: habe ich, lese ich. Früher ich habe — це український порядок слів. Пара Früher …, heute … — найдешевший спосіб помістити звичку в часі, а не просто її назвати."
-      de: "Bewertet werden beide Zeitwörter und beide finiten Verben, denn genau darum geht es: Was auch immer Position 1 füllt, das konjugierte Verb steht an zweiter Stelle und das Subjekt dahinter — habe ich, lese ich. Früher ich habe ist die Stellung der Ausgangssprachen. Das Paar Früher …, heute … ordnet eine Gewohnheit ein, statt sie nur zu nennen."
+      en: "Graded are both time words and both finite verbs, because that is the rule: whatever fills position 1, the conjugated verb comes second and the subject moves behind it — habe ich (or las ich), lese ich. Früher ich habe is the order the source languages keep. The pair Früher …, heute … is the cheapest way to place a habit instead of listing it."
+      ru: "Оцениваются оба слова времени и оба спрягаемых глагола — в этом и правило: что бы ни стояло на первой позиции, спрягаемый глагол идёт вторым, а подлежащее уходит за него: habe ich (или las ich), lese ich. Früher ich habe — это русский порядок слов. Пара Früher …, heute … — самый дешёвый способ поместить привычку во времени, а не просто её назвать."
+      uk: "Оцінюються обидва слова часу й обидва відмінювані дієслова — у цьому й правило: що б не стояло на першій позиції, відмінюване дієслово йде другим, а підмет відходить за нього: habe ich (або las ich), lese ich. Früher ich habe — це український порядок слів. Пара Früher …, heute … — найдешевший спосіб помістити звичку в часі, а не просто її назвати."
+      de: "Bewertet werden beide Zeitwörter und beide finiten Verben, denn genau darum geht es: Was auch immer Position 1 füllt, das konjugierte Verb steht an zweiter Stelle und das Subjekt dahinter — habe ich (oder las ich), lese ich. Früher ich habe ist die Stellung der Ausgangssprachen. Das Paar Früher …, heute … ordnet eine Gewohnheit ein, statt sie nur zu nennen."

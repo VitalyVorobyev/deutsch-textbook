@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.11 `digitales-leben`.
+  Next: B1.12 `kultur-freizeit`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -144,8 +144,7 @@ record of what shipped.
   reading, write task, placement) are on no Wortliste and in no deck; *Treppenhaus* is produced in
   `uebersetzen-rauchen` but carded recognition-only; neither the article's agreement rule nor the
   `uebersetzen-rauchen` explain says why the modal stays singular in a subjectless passive (the
-  logged *dürfen nicht geraucht*); "subject straight after *sodass*" still stands in
-  `b1/digitales-leben-pretest:pre-mc-sodass` and the `sodass-folge` tag row; the *Feinheiten* calls
+  logged *dürfen nicht geraucht*); the *Feinheiten* calls
   *so dass* the "ältere Schreibung" though it remains a current variant; the *werktags* note sets
   Monday–Saturday beside an everyday *Montag bis Freitag*; the primary set's and the three probe
   headers say outcomes arm the families (arming is by item key since P19-4); the `frage-aufzug` DE
@@ -185,6 +184,20 @@ record of what shipped.
   the speaking checklist and the `konjunktionaladverb-inversion` tag row name only
   position 1 for *trotzdem*; the primary and production headers say outcomes arm the
   families (arming is by item key since P19-4); C6-1 still owed.
+- `b1/digitales-leben`: the reading's *Schildern Sie …, sodass wir Ihnen schnell antworten
+  können* states an aim after an imperative — *damit*'s job (B1.9) — and `frage-kontaktformular`'s
+  explain and the *sodass* probe header lean on it; `uebersetzen-sodass-software` and the *sodass*
+  probe's variant-c pin the lexical verb at the wall, and the passive items their named
+  participles, so a swapped or passive verb in the right slot (*gestartet wird*, *gewählt*,
+  *abgesendet*) is charged to `sodass-folge` or `passiv-bildung` — predicates owed if the log shows
+  it; "never *ladet*" (*Feinheiten*, the *aufladen* note) against regional *ladet*; the EN *Häufige
+  Fehler*'s "No English verb changes its stem vowel in the third person" (*does*, *says* in sound);
+  the *Netz* note and *Feinheiten* row say everyday German does not separate reception, WLAN and
+  internet (*kein WLAN*); the *Akku* note's "die Batterie you throw away" (*Autobatterie*); the DE
+  halves write *der Präfix* five times where Duden's lemma is *das Präfix*; *Software*, *Menü* and
+  *sichern* are produced in translate items (named in the instruction) but carded
+  recognition-only, and *mitnehmen*, *abschicken* and *Neustart* are named and produced but on no
+  Goethe list and in no deck; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
