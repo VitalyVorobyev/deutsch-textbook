@@ -11,6 +11,16 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.19] — 2026-10-11
+
+### Fixed
+
+- **Meinung & Medien (B1.5), checked end to end.** An explanation showed the word order after
+  *denn* backwards; it is *denn sie ist*. A delayed check printed its own answer in the
+  instructions. Two exercises accept correct answers they rejected (*In der Meldung geht es um …*,
+  *am Morgen*, *sich die Nachrichten ansehen*). Explanations no longer claim a reason someone asks
+  for is always new information.
+
 ## [0.6.18] — 2026-10-11
 
 ### Fixed
