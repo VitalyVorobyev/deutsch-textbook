@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.8 `reisen-probleme`.
+  Next: B1.9 `lernen-zukunft`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -150,6 +150,19 @@ record of what shipped.
   Monday–Saturday beside an everyday *Montag bis Freitag*; the primary set's and the three probe
   headers say outcomes arm the families (arming is by item key since P19-4); the `frage-aufzug` DE
   explain reads "mit der Verbkette und kann ganz am Ende"; C6-1 still owed.
+- `b1/reisen-probleme`: the RU/UK *Häufige Fehler* say «бы» from the first half seems to cover the
+  whole sentence, against their own *Erklärung* («бы» stands in both halves); *Ich an deiner Stelle
+  würde …* is charged to `konjunktiv2-ratschlag`, and *bei dem Hotel* (ruled unobjectionable on
+  2026-08-03) and *… beim Hotel sofort beschweren* are rejected in `uebersetzen-an-deiner-stelle`;
+  the drill's `uebersetzen-bus-taxi` rejects *bräuchte … kein Taxi zu nehmen* (the corpus-wide
+  *brauchen nicht zu* ruling above) and `uebersetzen-freier-tag` *einen Tag frei hätten*; the
+  polite-form probe's variant-a EN explain reads "a plain konnten-less indicative"; the `Empfang`
+  note puts *Rezeption* at A2 (it is an A1 card); the Hören script states compensation rules (25 %
+  from 60 minutes, hotel costs up to 80 euros) against the brief's compensation-law exclusion, and
+  Frau Kraus is a second cast beside Lena's arc; the primary set's and the three probe headers say
+  outcomes arm the families (arming is by item key since P19-4); `focus-tags.md` still has
+  *trotzdem* opening a new main clause (`praeposition-genitiv`) and filling its position 1
+  (`obwohl-trotzdem`); C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
