@@ -1,0 +1,206 @@
+# Drill from progress (2026-10-11 audit, post-triage): praeteritum-vollverben is persistent —
+# 17 wrong of 57 across 12 items. The logged forms name the confusion exactly. Three strong
+# verbs were given the weak recipe: gefielt for gefiel, schriebte for schrieb, sprechte for
+# sprach. One strong verb was swapped for its sound-alike, sahen (sehen) for saßen (sitzen). And
+# one weak plural came apart, lahen for lachten. What the learner lacks is not the rule — the
+# article states it in one line — but the habit of deciding per verb which recipe applies, when
+# a weak verb in the same sentence makes -te feel like the narrative ending.
+#
+# So the first cloze and four of the five translate items put verbs of two types side by side;
+# fuhr-schrieb pairs two strong verbs on purpose, because schriebte was one of the logged forms.
+# Strong forms carry the weight (sprach, gefiel, saßen, verstand, fuhr, schrieb); weak forms are
+# the contrast (besuchte, lachten, buchten, sagte, erzählte); the mixed group (wusste, brachte,
+# dachte) gets its own cloze, because there the vowel changes and -te stays. Persons alternate
+# between ich/er/sie and the plural -en/-ten. Every translate item pins exactly its Präteritum
+# verbs.
+#
+# Contexts are fresh. None re-skins the window/jacket/notebook probe or the concert-hall probe
+# of kultur-freizeit, and no sentence reuses an item of erfahrungen-erzaehlen.
+topic: erfahrungen-erzaehlen
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Präteritum: -te oder neuer Vokal?"
+title:
+  en: "Drill — Präteritum: -te or a new vowel?"
+  ru: "Тренажёр — Präteritum: -te или новая гласная?"
+  uk: "Тренажер — Präteritum: -te чи нова голосна?"
+  de: "Übung — Präteritum: -te oder neuer Vokal?"
+items:
+  - id: cloze-besuch-tante
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "A written narrative: put each verb in brackets into the Präteritum. Two are weak and two are strong — decide for each verb separately."
+      ru: "Письменный рассказ: поставьте каждый глагол из скобок в Präteritum. Два из них слабые, два — сильные; решайте для каждого глагола отдельно."
+      uk: "Письмова розповідь: поставте кожне дієслово з дужок у Präteritum. Два з них слабкі, два — сильні; вирішуйте для кожного дієслова окремо."
+      de: "Eine schriftliche Erzählung: Setz jedes Verb in Klammern ins Präteritum. Zwei sind schwach, zwei stark — entscheide für jedes Verb einzeln."
+    text: "Am Samstag {{besuchte}} (besuchen) ich meine Tante in Köln. Sie {{sprach}} (sprechen) den ganzen Nachmittag über ihren Garten, und wir {{lachten}} (lachen) viel. Ihre neue Wohnung {{gefiel}} (gefallen) mir sehr."
+    translation:
+      en: "On Saturday I visited my aunt in Cologne. She talked about her garden all afternoon, and we laughed a lot. I liked her new flat very much."
+      ru: "В субботу я навестил тётю в Кёльне. Она до вечера рассказывала о своём саде, и мы много смеялись. Её новая квартира мне очень понравилась."
+      uk: "У суботу я провідав тітку в Кельні. Вона до вечора розповідала про свій сад, і ми багато сміялися. Її нова квартира мені дуже сподобалася."
+    explain:
+      en: "besuchen and lachen are weak: the stem stays and -te- goes in — besuchte, and for wir lachten, with the plural -ten. sprechen and gefallen are strong: the vowel changes and nothing is added — sprach, gefiel. For ich and er/sie the strong form has no ending at all, so sprechte and gefielt are the weak recipe laid over a strong verb. One sentence can hold both types; the verb decides, not the sentence."
+      ru: "besuchen и lachen — слабые: основа не меняется, вставляется -te- — besuchte, а для wir lachten, с окончанием множественного числа -ten. sprechen и gefallen — сильные: меняется гласная, и ничего не добавляется — sprach, gefiel. У ich и er/sie сильная форма вообще без окончания, так что sprechte и gefielt — это рецепт слабого глагола, наложенный на сильный. В одном предложении могут стоять оба типа: решает глагол, а не предложение."
+      uk: "besuchen і lachen — слабкі: основа лишається, вставляється -te- — besuchte, а для wir lachten, із закінченням множини -ten. sprechen і gefallen — сильні: змінюється голосна, і нічого не додається — sprach, gefiel. В ich та er/sie сильна форма взагалі без закінчення, тож sprechte і gefielt — це рецепт слабкого дієслова, накладений на сильне. В одному реченні можуть стояти обидва типи: вирішує дієслово, а не речення."
+      de: "besuchen und lachen sind schwach: Der Stamm bleibt, -te- kommt hinein — besuchte, und für wir lachten, mit der Pluralendung -ten. sprechen und gefallen sind stark: Der Vokal wechselt, und nichts kommt dazu — sprach, gefiel. Für ich und er/sie hat die starke Form gar keine Endung, also sind sprechte und gefielt das schwache Rezept auf einem starken Verb. Ein Satz kann beide Typen enthalten; es entscheidet das Verb, nicht der Satz."
+
+  - id: cloze-gemischte-verben
+    outcomes: [praeteritum-erzaehlen]
+    type: cloze
+    focus: praeteritum-vollverben
+    instruction:
+      en: "The mixed type: put wissen, bringen and denken into the Präteritum. Watch both the vowel and the ending."
+      ru: "Смешанный тип: поставьте wissen, bringen и denken в Präteritum. Следите и за гласной, и за окончанием."
+      uk: "Змішаний тип: поставте wissen, bringen і denken у Präteritum. Стежте і за голосною, і за закінченням."
+      de: "Der gemischte Typ: Setz wissen, bringen und denken ins Präteritum. Achte auf den Vokal und auf die Endung."
+    text: "Am ersten Kurstag {{wussten}} (wissen) wir nicht, wo unser Raum war. Der Hausmeister {{brachte}} (bringen) uns in den dritten Stock, und ich {{dachte}} (denken) die ganze Zeit an meinen ersten Schultag."
+    translation:
+      en: "On the first day of the course we didn't know where our room was. The caretaker took us to the third floor, and the whole time I was thinking about my first day at school."
+      ru: "В первый день курса мы не знали, где наша аудитория. Завхоз отвёл нас на третий этаж, и всё это время я думал о своём первом школьном дне."
+      uk: "Першого дня курсу ми не знали, де наша аудиторія. Завгосп відвів нас на третій поверх, і весь цей час я думав про свій перший шкільний день."
+    explain:
+      en: "wissen, bringen and denken change their vowel like strong verbs — wuss-, brach-, dach- — and then take the weak -te endings on top: wussten, brachte, dachte. So neither recipe works on its own: wisste, bringte and denkte keep the old vowel, while a bare vowel change without -te gives no form at all. kennen → kannte belongs to the same small group."
+      ru: "wissen, bringen и denken меняют гласную, как сильные глаголы, — wuss-, brach-, dach-, — а сверху получают слабые окончания с -te: wussten, brachte, dachte. Поэтому ни один рецепт в одиночку не работает: wisste, bringte и denkte сохраняют старую гласную, а одна смена гласной без -te вообще не даёт формы. kennen → kannte — из той же маленькой группы."
+      uk: "wissen, bringen і denken змінюють голосну, як сильні дієслова, — wuss-, brach-, dach-, — а згори отримують слабкі закінчення з -te: wussten, brachte, dachte. Тому жоден рецепт сам по собі не працює: wisste, bringte і denkte зберігають стару голосну, а сама зміна голосної без -te взагалі не дає форми. kennen → kannte — із тієї ж невеликої групи."
+      de: "wissen, bringen und denken wechseln den Vokal wie starke Verben — wuss-, brach-, dach- — und bekommen darauf die schwachen -te-Endungen: wussten, brachte, dachte. Kein Rezept reicht also allein: wisste, bringte und denkte behalten den alten Vokal, und ein Vokalwechsel ohne -te ergibt gar keine Form. kennen → kannte gehört zur selben kleinen Gruppe."
+
+  - id: mc-sprachen-film
+    outcomes: [praeteritum-erzaehlen]
+    type: mc
+    focus: praeteritum-vollverben
+    prompt: "Nach dem Film ___ wir noch lange über das Ende."
+    options:
+      - "sprechten"
+      - "sprachten"
+      - "sprachen"
+    correct: 2
+    translation:
+      en: "After the film we talked about the ending for a long time."
+      ru: "После фильма мы ещё долго говорили о концовке."
+      uk: "Після фільму ми ще довго говорили про кінцівку."
+    explain:
+      en: "sprechen is strong: the vowel switches to a, and the plural adds only -en — wir sprachen. sprechten lays the weak -te onto the old stem. sprachten changes the vowel and still adds -te, which is the recipe of the small mixed group (brachte, dachte), not of sprechen. A strong verb never takes -te."
+      ru: "sprechen — сильный глагол: гласная меняется на a, а во множественном числе добавляется только -en — wir sprachen. sprechten приклеивает слабое -te к старой основе. sprachten и гласную меняет, и -te добавляет — так образует формы маленькая смешанная группа (brachte, dachte), но не sprechen. Сильный глагол -te не берёт никогда."
+      uk: "sprechen — сильне дієслово: голосна змінюється на a, а в множині додається лише -en — wir sprachen. sprechten приліплює слабке -te до старої основи. sprachten і голосну змінює, і -te додає — так утворює форми невелика змішана група (brachte, dachte), але не sprechen. Сильне дієслово -te не бере ніколи."
+      de: "sprechen ist stark: Der Vokal wechselt zu a, und im Plural kommt nur -en dazu — wir sprachen. sprechten klebt das schwache -te an den alten Stamm. sprachten wechselt den Vokal und hängt trotzdem -te an — das ist das Rezept der kleinen gemischten Gruppe (brachte, dachte), nicht das von sprechen. Ein starkes Verb nimmt nie -te."
+
+  - id: uebersetzen-besuch-garten
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Translate as written narrative — Präteritum. For 'visit' take besuchen, for 'sit' sitzen."
+      ru: "Переведите как письменный рассказ — в Präteritum. Для «навестить» возьмите besuchen, для «сидеть» — sitzen."
+      uk: "Перекладіть як письмову розповідь — у Präteritum. Для «провідати» візьміть besuchen, для «сидіти» — sitzen."
+      de: "Übersetze als schriftliche Erzählung — im Präteritum, mit besuchen und sitzen."
+    prompt_en: "On Sunday my friends visited me, and we sat in the garden for a long time."
+    prompt_ru: "В воскресенье меня навестили мои друзья, и мы долго сидели в саду."
+    prompt_uk: "У неділю мене провідали мої друзі, і ми довго сиділи в саду."
+    answer: "Am Sonntag besuchten mich meine Freunde, und wir saßen lange im Garten."
+    accept:
+      - "Meine Freunde besuchten mich am Sonntag, und wir saßen lange im Garten."
+      # A pronoun object usually precedes a noun subject, but the other order is grammatical.
+      - "Am Sonntag besuchten meine Freunde mich, und wir saßen lange im Garten."
+    key_tokens: ["besuchten", "saßen"]
+    explain:
+      en: "One weak verb, one strong. besuchen keeps its stem and takes -ten for the plural: besuchten. sitzen is strong, and it changes more than its vowel: saßen, with ß. Keep it apart from sahen, the Präteritum of sehen — the two sound close and mean different things."
+      ru: "Один глагол слабый, другой сильный. besuchen сохраняет основу и во множественном числе получает -ten: besuchten. sitzen — сильный и меняет не только гласную: saßen, с ß. Не путайте его с sahen — это Präteritum от sehen: звучат похоже, значат разное."
+      uk: "Одне дієслово слабке, друге сильне. besuchen зберігає основу і в множині отримує -ten: besuchten. sitzen — сильне і змінює не лише голосну: saßen, з ß. Не плутайте його із sahen — це Präteritum від sehen: звучать схоже, означають різне."
+      de: "Ein schwaches Verb, ein starkes. besuchen behält seinen Stamm und bekommt im Plural -ten: besuchten. sitzen ist stark und ändert mehr als den Vokal: saßen, mit ß. Halte es von sahen fern, dem Präteritum von sehen — die beiden klingen ähnlich und bedeuten Verschiedenes."
+
+  - id: uebersetzen-witz-verstand
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Translate as written narrative — Präteritum. For 'tell' take erzählen, for 'joke' der Witz."
+      ru: "Переведите как письменный рассказ — в Präteritum. Для «рассказать» возьмите erzählen, для «анекдота» — der Witz."
+      uk: "Перекладіть як письмову розповідь — у Präteritum. Для «розповісти» візьміть erzählen, для «анекдоту» — der Witz."
+      de: "Übersetze als schriftliche Erzählung — im Präteritum, mit erzählen und der Witz."
+    prompt_en: "Lena told a joke, and everyone laughed. Only Tom didn't understand it."
+    prompt_ru: "Lena рассказала анекдот, и все смеялись. Только Tom его не понял."
+    prompt_uk: "Lena розповіла анекдот, і всі сміялися. Тільки Tom його не зрозумів."
+    answer: "Lena erzählte einen Witz, und alle lachten. Nur Tom verstand ihn nicht."
+    key_tokens: ["erzählte", "lachten", "verstand"]
+    explain:
+      en: "Three narrative verbs, two recipes. erzählen and lachen are weak: erzählte for Lena, lachten for alle with the plural -ten. verstehen is strong — it is stehen with a prefix, and stehen becomes stand, so verstehen becomes verstand, with no -te and no ending for er."
+      ru: "Три глагола рассказа, два рецепта. erzählen и lachen — слабые: erzählte у Lena, lachten у alle, с окончанием множественного числа -ten. verstehen — сильный: это stehen с приставкой, а stehen даёт stand, поэтому verstehen даёт verstand — без -te и без окончания у er."
+      uk: "Три дієслова розповіді, два рецепти. erzählen і lachen — слабкі: erzählte в Lena, lachten в alle, із закінченням множини -ten. verstehen — сильне: це stehen із префіксом, а stehen дає stand, тому verstehen дає verstand — без -te і без закінчення в er."
+      de: "Drei Erzählverben, zwei Rezepte. erzählen und lachen sind schwach: erzählte für Lena, lachten für alle, mit der Pluralendung -ten. verstehen ist stark — es ist stehen mit Vorsilbe, und aus stehen wird stand, also aus verstehen verstand, ohne -te und ohne Endung bei er."
+
+  - id: uebersetzen-stadt-gefiel
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Translate as written narrative — Präteritum. For 'like' take gefallen, for 'book' buchen."
+      ru: "Переведите как письменный рассказ — в Präteritum. Для «понравиться» возьмите gefallen, для «забронировать» — buchen."
+      uk: "Перекладіть як письмову розповідь — у Präteritum. Для «сподобатися» візьміть gefallen, для «забронювати» — buchen."
+      de: "Übersetze als schriftliche Erzählung — im Präteritum, mit gefallen und buchen."
+    prompt_en: "We liked the city very much, and we booked two more nights."
+    prompt_ru: "Город нам очень понравился, и мы забронировали ещё две ночи."
+    prompt_uk: "Місто нам дуже сподобалося, і ми забронювали ще дві ночі."
+    answer: "Die Stadt gefiel uns sehr gut, und wir buchten noch zwei Nächte."
+    accept:
+      # sehr and sehr gut both carry 'very much' with gefallen; uns may open the clause.
+      - "Die Stadt gefiel uns sehr, und wir buchten noch zwei Nächte."
+      - "Uns gefiel die Stadt sehr gut, und wir buchten noch zwei Nächte."
+      - "Uns gefiel die Stadt sehr, und wir buchten noch zwei Nächte."
+    key_tokens: ["gefiel", "buchten"]
+    explain:
+      en: "gefallen is strong: gefiel, and for die Stadt that bare form is the whole verb — no -t, no -te. gefielt hangs a present-tense ending on the past stem. buchen is weak and simply takes -ten for wir: buchten. The cases are the old ones from A2: the city is the subject, the people who like it stand in the dative, uns."
+      ru: "gefallen — сильный: gefiel, и для die Stadt эта голая форма и есть весь глагол — без -t и без -te. gefielt вешает окончание настоящего времени на основу прошедшего. buchen — слабый и для wir просто получает -ten: buchten. Падежи прежние, из A2: город — подлежащее, а тот, кому нравится, стоит в дательном падеже — uns. Здесь немецкий совпадает с русским «нам понравился»."
+      uk: "gefallen — сильне: gefiel, і для die Stadt ця гола форма і є все дієслово — без -t і без -te. gefielt чіпляє закінчення теперішнього часу до основи минулого. buchen — слабке і для wir просто отримує -ten: buchten. Відмінки ті самі, що в A2: місто — підмет, а той, кому подобається, стоїть у давальному — uns. Тут німецька збігається з українським «нам сподобалося»."
+      de: "gefallen ist stark: gefiel, und für die Stadt ist diese nackte Form das ganze Verb — kein -t, kein -te. gefielt hängt eine Präsensendung an den Vergangenheitsstamm. buchen ist schwach und bekommt für wir einfach -ten: buchten. Die Fälle kennst du aus A2: Die Stadt ist das Subjekt, wem sie gefällt, steht im Dativ — uns."
+
+  - id: uebersetzen-wusste-antwort
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Translate as written narrative — Präteritum. For 'know' take wissen."
+      ru: "Переведите как письменный рассказ — в Präteritum. Для «знать» возьмите wissen."
+      uk: "Перекладіть як письмову розповідь — у Präteritum. Для «знати» візьміть wissen."
+      de: "Übersetze als schriftliche Erzählung — im Präteritum, mit wissen."
+    prompt_en: "Selin knew the answer, but she didn't say anything."
+    prompt_ru: "Selin знала ответ, но ничего не сказала."
+    prompt_uk: "Selin знала відповідь, але нічого не сказала."
+    answer: "Selin wusste die Antwort, aber sie sagte nichts."
+    accept:
+      # The second subject may be dropped after aber, with or without aber moving inward.
+      - "Selin wusste die Antwort, sagte aber nichts."
+      - "Selin wusste die Antwort, aber sagte nichts."
+    key_tokens: ["wusste", "sagte"]
+    explain:
+      en: "wissen belongs to the mixed type: a new vowel, u, and then the weak -te — wusste. Weak sagen takes the -te and changes nothing else: sagte. So mixed is not a third set of endings; it is a vowel change in front of the familiar weak ones."
+      ru: "wissen относится к смешанному типу: новая гласная u, а за ней слабое -te — wusste. Слабый sagen получает -te и больше ничего не меняет: sagte. Так что смешанный тип — не третий набор окончаний, а смена гласной перед уже знакомыми слабыми."
+      uk: "wissen належить до змішаного типу: нова голосна u, а за нею слабке -te — wusste. Слабке sagen отримує -te і більше нічого не змінює: sagte. Тож змішаний тип — не третій набір закінчень, а зміна голосної перед уже знайомими слабкими."
+      de: "wissen gehört zum gemischten Typ: ein neuer Vokal, u, und dann das schwache -te — wusste. Das schwache sagen nimmt -te und ändert sonst nichts: sagte. Gemischt ist also kein dritter Satz Endungen, sondern ein Vokalwechsel vor den bekannten schwachen."
+
+  - id: uebersetzen-fuhr-schrieb
+    outcomes: [praeteritum-erzaehlen]
+    type: translate
+    focus: praeteritum-vollverben
+    instruction:
+      en: "Translate as written narrative — Präteritum. For 'go home' take nach Hause fahren, for 'write' schreiben."
+      ru: "Переведите как письменный рассказ — в Präteritum. Для «поехать домой» возьмите nach Hause fahren, для «написать» — schreiben."
+      uk: "Перекладіть як письмову розповідь — у Präteritum. Для «поїхати додому» візьміть nach Hause fahren, для «написати» — schreiben."
+      de: "Übersetze als schriftliche Erzählung — im Präteritum, mit nach Hause fahren und schreiben."
+    prompt_en: "After the course Tom went home and wrote his sister a letter."
+    prompt_ru: "После курса Tom поехал домой и написал сестре письмо."
+    prompt_uk: "Після курсу Tom поїхав додому і написав сестрі листа."
+    answer: "Nach dem Kurs fuhr Tom nach Hause und schrieb seiner Schwester einen Brief."
+    accept:
+      - "Tom fuhr nach dem Kurs nach Hause und schrieb seiner Schwester einen Brief."
+      # Dative object or an + accusative: both are ordinary German for writing to someone.
+      - "Nach dem Kurs fuhr Tom nach Hause und schrieb einen Brief an seine Schwester."
+      - "Tom fuhr nach dem Kurs nach Hause und schrieb einen Brief an seine Schwester."
+    key_tokens: ["fuhr", "schrieb"]
+    explain:
+      en: "Two strong verbs, two vowel changes, and no -te anywhere: fahren → fuhr, schreiben → schrieb. schriebte stacks the weak suffix on a form that is already past — the vowel has done that job. For Tom, as for ich, the strong Präteritum has no ending at all."
+      ru: "Два сильных глагола, две смены гласной — и нигде нет -te: fahren → fuhr, schreiben → schrieb. schriebte надстраивает слабый суффикс над формой, которая уже прошедшая: эту работу сделала гласная. У Tom, как и у ich, сильный Präteritum вовсе без окончания."
+      uk: "Два сильні дієслова, дві зміни голосної — і ніде немає -te: fahren → fuhr, schreiben → schrieb. schriebte надбудовує слабкий суфікс над формою, яка вже минула: цю роботу виконала голосна. У Tom, як і в ich, сильний Präteritum зовсім без закінчення."
+      de: "Zwei starke Verben, zwei Vokalwechsel und nirgends -te: fahren → fuhr, schreiben → schrieb. schriebte setzt die schwache Endung auf eine Form, die schon Vergangenheit ist — diese Arbeit hat der Vokal erledigt. Für Tom hat das starke Präteritum, wie für ich, gar keine Endung."

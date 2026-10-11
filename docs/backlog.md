@@ -291,6 +291,12 @@ Triaged from `feedback.md`, which holds only raw capture.
   Either key the practice gaps `{{Da}}` and amend the tag rule to "or the direction the instruction
   constrains", or let the probe accept *Weil* (then only variant-a measures). Also: who drafted
   this unit's UK/DE halves and ran its C6-1 review is not in its provenance record.
+- **The grader's closed-class guard lacks *dies-*, *jed-*, *welch-* and *euer*.** `CLOSED_CLASS`
+  (`packages/grading/src/production.ts`) lists articles, possessives and pronouns, so `den` for
+  `dem` is a choice; but *dieser* for *dieses* is one edit and forgiven as a slip, although
+  `demonstrativartikel` and `interrogativartikel` grade exactly that ending. Found on
+  `b1/drill-irreale-bedingung:uebersetzen-zimmer-balkon`. First step: add the four paradigms and
+  run the determiner-twin sweep for renderings the change newly rejects.
 - **The grading queue reads predicate-bearing items through `key_tokens` alone.** `gradingReview`
   (`scripts/progress-audit.ts`) queues a rejected rendering and re-attributes a confirmed one with
   `gradeTranslation`, while the runtime logs the item's `focus_evidence` verdict. Routing it through

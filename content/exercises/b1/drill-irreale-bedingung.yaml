@@ -1,0 +1,234 @@
+# Drill from progress (2026-10-11 audit, post-triage): irreale-bedingung is persistent. Two of
+# its misses were the item's fault and were fixed the same day (cloze-wenn-puenktlich now
+# accepts {{würden|könnten}}). The misses that remain are the confusion itself. One half of the
+# condition falls back into the indicative: the wenn-half in `war … könnten`, the main half in
+# `wäre … konnte`, `wäre … hatten` and `Wenn ich mein Handy hätte, rufe ich ans Hotel an`. One
+# answer also crossed the present unreal with a past one, `würden wir für drei Nächte
+# geblieben`. RU/UK carry the whole unreality in «бы»/«б» over plain past forms, so the German
+# verb is left as a plain past. The drill therefore checks both halves of every sentence.
+#
+# The scope is what reisen-probleme teaches: Konjunktiv II Gegenwart only (hätte, wäre, the
+# modals, würde + Infinitiv), no hätte … gewesen. Full verbs take würde + Infinitiv, as the
+# article prescribes, and every translate instruction says so, which keeps the items
+# determinate against one-word forms (führe, spräche) that this course does not produce. Where a
+# gap leaves the helper open, both würde and a modal's Konjunktiv II are accepted, after the
+# cloze-wenn-puenktlich precedent. The one translate item whose prompt leaves it open
+# (uebersetzen-tom-fahrer) accepts sprechen könnte, sprechen würde and Deutsch könnte.
+#
+# Each translate item pins the Konjunktiv II marker of both halves. Where a half is built with
+# würde, the infinitive is pinned too, because würde + Partizip (the geblieben shape) is a
+# failure of the same form. The renderings the siblings accept are accepted here too: wenn-clause
+# first with or without dann, main clause first, and the verb-first condition wherever it reads
+# naturally (not with würde in both halves).
+#
+# Contexts are fresh. None re-skins the train, the quiet room, the expensive tickets, the
+# overnight stay or the phone.
+topic: reisen-probleme
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — Konjunktiv II in beiden Hälften"
+title:
+  en: "Drill — Konjunktiv II in both halves"
+  ru: "Тренажёр — Konjunktiv II в обеих половинах"
+  uk: "Тренажер — Konjunktiv II в обох половинах"
+  de: "Übung — Konjunktiv II in beiden Hälften"
+items:
+  - id: cloze-auto-strand
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: irreale-bedingung
+    instruction:
+      en: "Two unreal conditions, and every gap takes a Konjunktiv II. Use the verb in brackets; the gap without brackets needs a plural Konjunktiv II helper for fahren."
+      ru: "Два нереальных условия, и в каждый пропуск идёт Konjunktiv II. Берите глагол из скобок; в пропуск без скобок нужен вспомогательный глагол в Konjunktiv II во множественном числе — для fahren."
+      uk: "Дві нереальні умови, і в кожен пропуск іде Konjunktiv II. Беріть дієслово з дужок; у пропуск без дужок потрібне допоміжне дієслово в Konjunktiv II у множині — для fahren."
+      de: "Zwei irreale Bedingungen, und in jede Lücke gehört ein Konjunktiv II. Nimm das Verb in Klammern; die Lücke ohne Klammer braucht ein pluralisches Hilfsverb im Konjunktiv II für fahren."
+    text: "Wenn wir ein Auto {{hätten}} (haben), {{würden|könnten}} wir am Wochenende ans Meer fahren. Wenn das Hotel näher am Strand {{wäre}} (sein), {{müssten}} (müssen) wir nicht jeden Tag den Bus nehmen."
+    translation:
+      en: "If we had a car, we would drive to the sea at the weekend. If the hotel were closer to the beach, we wouldn't have to take the bus every day."
+      ru: "Если бы у нас была машина, мы бы съездили на выходных к морю. Если бы отель был ближе к пляжу, нам не пришлось бы каждый день ездить на автобусе."
+      uk: "Якби в нас була машина, ми б поїхали на вихідних до моря. Якби готель був ближче до пляжу, нам не доводилося б щодня їздити автобусом."
+    explain:
+      en: "Four gaps, two per sentence, because the rule has two halves. hätten and wäre are the one-word forms of haben and sein — the umlaut is the only difference from hatten and war, and without it the wenn-half becomes a plain statement about the past. The main halves stay unreal too: würden (or könnten) + fahren, and müssten with its umlaut, since mussten nicht would report a real past."
+      ru: "Четыре пропуска, по два на предложение, — потому что у правила две половины. hätten и wäre — однословные формы haben и sein: от hatten и war их отличает только умлаут, и без него придаточное с wenn превращается в обычное сообщение о прошлом. Главная часть тоже остаётся нереальной: würden (или könnten) + fahren и müssten с умлаутом — mussten nicht сообщило бы о реальном прошлом. В русском всю нереальность несёт «бы», а глагол остаётся в прошедшем; в немецком частицы нет, и меняться должен сам глагол — в обеих половинах."
+      uk: "Чотири пропуски, по два на речення, — бо правило має дві половини. hätten і wäre — однослівні форми haben і sein: від hatten і war їх відрізняє лише умлаут, і без нього підрядне з wenn стає звичайним повідомленням про минуле. Головна частина теж лишається нереальною: würden (або könnten) + fahren і müssten з умлаутом — mussten nicht повідомило б про реальне минуле. В українській нереальність несе «б», а дієслово лишається в минулому часі; у німецькій такої частки немає, тож змінюватися мусить саме дієслово — в обох половинах."
+      de: "Vier Lücken, zwei pro Satz, weil die Regel zwei Hälften hat. hätten und wäre sind die Einwortformen von haben und sein — der Umlaut ist der einzige Unterschied zu hatten und war, und ohne ihn wird der wenn-Satz zu einer schlichten Aussage über die Vergangenheit. Auch die Hauptsätze bleiben irreal: würden (oder könnten) + fahren und müssten mit Umlaut, denn mussten nicht würde eine echte Vergangenheit berichten."
+
+  - id: cloze-fruehstueck-muede
+    outcomes: [irreale-bedingung-nutzen]
+    type: cloze
+    focus: irreale-bedingung
+    instruction:
+      en: "Two unreal conditions: put every verb in brackets into the Konjunktiv II. Check the main half as carefully as the wenn-half."
+      ru: "Два нереальных условия: поставьте каждый глагол из скобок в Konjunktiv II. Главную часть проверяйте так же внимательно, как придаточное с wenn."
+      uk: "Дві нереальні умови: поставте кожне дієслово з дужок у Konjunktiv II. Головну частину перевіряйте так само уважно, як підрядне з wenn."
+      de: "Zwei irreale Bedingungen: Setz jedes Verb in Klammern in den Konjunktiv II. Prüf den Hauptsatz so genau wie den wenn-Satz."
+    text: "Wenn das Frühstück nicht so teuer {{wäre}} (sein), {{hätten}} (haben) wir mehr Geld für Ausflüge. Und wenn ich besser schlafen {{könnte}} (können), {{wäre}} (sein) ich nicht so müde."
+    translation:
+      en: "If breakfast weren't so expensive, we would have more money for trips. And if I could sleep better, I wouldn't be so tired."
+      ru: "Если бы завтрак не был таким дорогим, у нас было бы больше денег на экскурсии. И если бы я мог лучше спать, я бы не был таким уставшим."
+      uk: "Якби сніданок не був таким дорогим, у нас було б більше грошей на екскурсії. І якби я міг краще спати, я не був би таким утомленим."
+    explain:
+      en: "haben, sein and können keep their one-word Konjunktiv II on either side of the comma: hätten, wäre, könnte. The main half is where the hand slips. hatten, konnte or war there would each report a real past — the money really was there, I really was tired — and the sentence would stop being a condition. Look for the umlaut in both halves."
+      ru: "У haben, sein и können однословный Konjunktiv II стоит по обе стороны от запятой: hätten, wäre, könnte. Рука ошибается как раз в главной части. hatten, konnte или war сообщили бы там о реальном прошлом — деньги действительно были, я действительно устал, — и предложение перестало бы быть условием. Ищите умлаут в обеих половинах."
+      uk: "У haben, sein і können однослівний Konjunktiv II стоїть по обидва боки коми: hätten, wäre, könnte. Рука помиляється саме в головній частині. hatten, konnte чи war повідомили б там про реальне минуле — гроші справді були, я справді втомився, — і речення перестало б бути умовою. Шукайте умлаут в обох половинах."
+      de: "haben, sein und können behalten ihren Einwort-Konjunktiv-II auf beiden Seiten des Kommas: hätten, wäre, könnte. Im Hauptsatz rutscht die Hand am leichtesten ab. hatten, konnte oder war würden dort eine echte Vergangenheit berichten — das Geld war wirklich da, ich war wirklich müde —, und der Satz wäre keine Bedingung mehr. Such den Umlaut in beiden Hälften."
+
+  - id: mc-wenn-haelfte-hatte
+    outcomes: [irreale-bedingung-nutzen]
+    type: mc
+    focus: irreale-bedingung
+    prompt: "Wenn ich mehr Zeit ___, würde ich noch eine Woche bleiben."
+    options:
+      - "hatte"
+      - "hätte"
+      - "habe"
+    correct: 1
+    translation:
+      en: "If I had more time, I would stay another week."
+      ru: "Если бы у меня было больше времени, я бы остался ещё на неделю."
+      uk: "Якби в мене було більше часу, я залишився б ще на тиждень."
+    explain:
+      en: "The main half already has würde, and that is not enough: German marks both halves. English writes 'if I had' with a plain past, which is exactly why hatte feels right — but hatte is the indicative past, 'when I had more time'. habe makes the condition real and open. Only the umlauted hätte keeps the wenn-half unreal."
+      ru: "В главной части уже стоит würde, но этого мало: немецкий отмечает обе половины. По-русски «было бы» строится из обычного прошедшего «было» плюс «бы», и рука переносит в немецкий одно прошедшее — hatte. Но hatte — обычный индикатив: «когда у меня было больше времени». habe делает условие реальным и открытым. Только hätte с умлаутом оставляет придаточное нереальным."
+      uk: "У головній частині вже є würde, але цього замало: німецька позначає обидві половини. Українське «було б» складається з простого минулого «було» та «б», і рука переносить у німецьку саме минуле — hatte. Але hatte — звичайний індикатив: «коли в мене було більше часу». habe робить умову реальною й відкритою. Лише hätte з умлаутом лишає підрядне нереальним."
+      de: "Im Hauptsatz steht schon würde, und das reicht nicht: Das Deutsche markiert beide Hälften. hatte ist das indikativische Präteritum — als ich mehr Zeit hatte. habe macht die Bedingung real und offen. Nur hätte mit Umlaut hält den wenn-Satz irreal."
+
+  - id: uebersetzen-freier-tag
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — an unreal condition. Full verbs take würde + infinitive. For 'look round' take besichtigen."
+      ru: "Переведите — это нереальное условие. Полнозначные глаголы — с würde + инфинитив. Для «осмотреть» возьмите besichtigen."
+      uk: "Перекладіть — це нереальна умова. Повнозначні дієслова — з würde + інфінітив. Для «оглянути» візьміть besichtigen."
+      de: "Übersetze — eine irreale Bedingung. Vollverben nehmen würde + Infinitiv. Nimm besichtigen."
+    prompt_en: "If we had a free day, we would look round the city."
+    prompt_ru: "Если бы у нас был свободный день, мы бы осмотрели город."
+    prompt_uk: "Якби в нас був вільний день, ми б оглянули місто."
+    answer: "Wenn wir einen freien Tag hätten, würden wir die Stadt besichtigen."
+    accept:
+      - "Wenn wir einen freien Tag hätten, dann würden wir die Stadt besichtigen."
+      - "Wir würden die Stadt besichtigen, wenn wir einen freien Tag hätten."
+      # The wenn-less verb-first condition is the same unreal condition, both halves marked.
+      - "Hätten wir einen freien Tag, würden wir die Stadt besichtigen."
+      - "Hätten wir einen freien Tag, dann würden wir die Stadt besichtigen."
+    key_tokens: ["hätten", "würden", "besichtigen"]
+    explain:
+      en: "Graded are the marker of each half: hätten in the wenn-clause, and würden … besichtigen in the main clause, infinitive included. hatten would turn the condition into a fact about the past, and würden … besichtigt would mix in a past unreal form this unit does not use. Clause order is free; neither half may slip."
+      ru: "Оцениваются показатели обеих половин: hätten в придаточном и würden … besichtigen в главном — вместе с инфинитивом. hatten превратило бы условие в факт о прошлом, а würden … besichtigt подмешало бы нереальное прошедшее, которого в этой теме нет. Порядок частей свободный; соскальзывать не должна ни одна половина."
+      uk: "Оцінюються показники обох половин: hätten у підрядному і würden … besichtigen у головному — разом з інфінітивом. hatten перетворило б умову на факт про минуле, а würden … besichtigt домішало б нереальне минуле, якого в цій темі немає. Порядок частин вільний; не має зісковзувати жодна половина."
+      de: "Bewertet wird das Signal jeder Hälfte: hätten im wenn-Satz und würden … besichtigen im Hauptsatz, samt Infinitiv. hatten würde die Bedingung zu einer Tatsache über die Vergangenheit machen, und würden … besichtigt würde eine irreale Vergangenheit hineinmischen, die diese Einheit nicht verwendet. Die Reihenfolge der Sätze ist frei; keine Hälfte darf abrutschen."
+
+  - id: uebersetzen-wetter-draussen
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — an unreal condition. For 'outside' take draußen."
+      ru: "Переведите — это нереальное условие. Для «на улице» возьмите draußen."
+      uk: "Перекладіть — це нереальна умова. Для «надворі» візьміть draußen."
+      de: "Übersetze — eine irreale Bedingung. Nimm draußen."
+    prompt_en: "If the weather were better, we could eat outside."
+    prompt_ru: "Если бы погода была лучше, мы могли бы поесть на улице."
+    prompt_uk: "Якби погода була кращою, ми могли б поїсти надворі."
+    answer: "Wenn das Wetter besser wäre, könnten wir draußen essen."
+    accept:
+      - "Wenn das Wetter besser wäre, dann könnten wir draußen essen."
+      - "Wir könnten draußen essen, wenn das Wetter besser wäre."
+      - "Wäre das Wetter besser, könnten wir draußen essen."
+      - "Wäre das Wetter besser, dann könnten wir draußen essen."
+    key_tokens: ["wäre", "Wäre", "könnten"]
+    explain:
+      en: "Graded are wäre and könnten — one marker per half, and here both are one-word forms, because sein and können need no würde. war would make the weather a fact; konnten would report what we were really able to do. The umlaut on both sides is what keeps the sentence in the world as it is not."
+      ru: "Оцениваются wäre и könnten — по одному показателю на половину; здесь оба однословные, потому что sein и können обходятся без würde. war сделало бы погоду фактом, konnten сообщило бы о том, что мы действительно могли сделать. Именно умлаут с обеих сторон держит предложение в мире, которого нет. Русское «могли бы» — то же прошедшее «могли» плюс «бы»; немецкому нужна другая форма самого глагола."
+      uk: "Оцінюються wäre і könnten — по одному показнику на половину; тут обидва однослівні, бо sein і können обходяться без würde. war зробило б погоду фактом, konnten повідомило б про те, що ми справді могли зробити. Саме умлаут з обох боків тримає речення у світі, якого немає. Українське «могли б» — те саме минуле «могли» плюс «б»; німецькій потрібна інша форма самого дієслова."
+      de: "Bewertet werden wäre und könnten — ein Signal pro Hälfte, und hier sind beide Einwortformen, weil sein und können kein würde brauchen. war würde das Wetter zur Tatsache machen, konnten würde berichten, was wir wirklich tun konnten. Der Umlaut auf beiden Seiten hält den Satz in der Welt, wie sie nicht ist."
+
+  - id: uebersetzen-tom-fahrer
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — an unreal condition. Full verbs take würde + infinitive or a modal's Konjunktiv II. For 'ask' take fragen."
+      ru: "Переведите — это нереальное условие. Полнозначные глаголы — с würde + инфинитив или с модальным глаголом в Konjunktiv II. Для «спросить» возьмите fragen."
+      uk: "Перекладіть — це нереальна умова. Повнозначні дієслова — з würde + інфінітив або з модальним дієсловом у Konjunktiv II. Для «запитати» візьміть fragen."
+      de: "Übersetze — eine irreale Bedingung. Vollverben nehmen würde + Infinitiv oder ein Modalverb im Konjunktiv II. Nimm fragen."
+    prompt_en: "If Tom spoke German, he would ask the driver."
+    prompt_ru: "Если бы Tom говорил по-немецки, он бы спросил водителя."
+    prompt_uk: "Якби Tom говорив німецькою, він би запитав водія."
+    answer: "Wenn Tom Deutsch sprechen könnte, würde er den Fahrer fragen."
+    accept:
+      # 'spoke' leaves the helper open: sprechen könnte, sprechen würde and Deutsch könnte
+      # are all Konjunktiv II in the wenn-half (the cloze-wenn-puenktlich precedent).
+      - "Wenn Tom Deutsch sprechen könnte, dann würde er den Fahrer fragen."
+      - "Tom würde den Fahrer fragen, wenn er Deutsch sprechen könnte."
+      - "Könnte Tom Deutsch sprechen, würde er den Fahrer fragen."
+      - "Könnte Tom Deutsch sprechen, dann würde er den Fahrer fragen."
+      - "Wenn Tom Deutsch sprechen würde, würde er den Fahrer fragen."
+      - "Wenn Tom Deutsch sprechen würde, dann würde er den Fahrer fragen."
+      - "Tom würde den Fahrer fragen, wenn er Deutsch sprechen würde."
+      - "Wenn Tom Deutsch könnte, würde er den Fahrer fragen."
+      - "Wenn Tom Deutsch könnte, dann würde er den Fahrer fragen."
+      - "Tom würde den Fahrer fragen, wenn er Deutsch könnte."
+      - "Könnte Tom Deutsch, würde er den Fahrer fragen."
+      - "Könnte Tom Deutsch, dann würde er den Fahrer fragen."
+    # würde twice: the renderings with würde in both halves grade both slots on purpose.
+    key_tokens: ["könnte", "Könnte", "würde", "würde", "fragen"]
+    explain:
+      en: "'If Tom spoke' leaves the helper open, so könnte (sprechen könnte, or just Deutsch könnte) and sprechen würde are all accepted — each is a Konjunktiv II. What is graded is that both halves carry one: the wenn-half's könnte or würde, and würde … fragen in the main half. Wenn Tom Deutsch sprach is the English plain past carried over, and it leaves the wenn-half indicative."
+      ru: "«Если бы Tom говорил» не задаёт вспомогательный глагол, поэтому принимаются и könnte (sprechen könnte или просто Deutsch könnte), и sprechen würde: всё это Konjunktiv II. Оценивается другое — чтобы он был в обеих половинах: könnte или würde в придаточном и würde … fragen в главном. Wenn Tom Deutsch sprach — это русское «говорил» без «бы»: придаточное остаётся в индикативе."
+      uk: "«Якби Tom говорив» не задає допоміжне дієслово, тож приймаються і könnte (sprechen könnte або просто Deutsch könnte), і sprechen würde: усе це Konjunktiv II. Оцінюється інше — щоб він був в обох половинах: könnte чи würde в підрядному і würde … fragen у головному. Wenn Tom Deutsch sprach — це українське «говорив» без «б»: підрядне лишається в індикативі."
+      de: "'If Tom spoke' lässt das Hilfsverb offen, deshalb gelten könnte (sprechen könnte oder einfach Deutsch könnte) und sprechen würde gleichermaßen — alles Konjunktiv II. Bewertet wird, dass beide Hälften einen tragen: könnte oder würde im wenn-Satz und würde … fragen im Hauptsatz. Wenn Tom Deutsch sprach lässt den wenn-Satz im Indikativ."
+
+  - id: uebersetzen-bus-taxi
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — an unreal condition. Full verbs take würde + infinitive. For 'run' take fahren, for 'more often' öfter, for 'take a taxi' ein Taxi nehmen."
+      ru: "Переведите — это нереальное условие. Полнозначные глаголы — с würde + инфинитив. Для «ходить» (об автобусе) возьмите fahren, для «чаще» — öfter, для «брать такси» — ein Taxi nehmen."
+      uk: "Перекладіть — це нереальна умова. Повнозначні дієслова — з würde + інфінітив. Для «ходити» (про автобус) візьміть fahren, для «частіше» — öfter, для «брати таксі» — ein Taxi nehmen."
+      de: "Übersetze — eine irreale Bedingung. Vollverben nehmen würde + Infinitiv. Nimm fahren, öfter und ein Taxi nehmen."
+    prompt_en: "If the bus ran more often, I wouldn't have to take a taxi."
+    prompt_ru: "Если бы автобус ходил чаще, мне не пришлось бы брать такси."
+    prompt_uk: "Якби автобус ходив частіше, мені не довелося б брати таксі."
+    answer: "Wenn der Bus öfter fahren würde, müsste ich kein Taxi nehmen."
+    accept:
+      - "Wenn der Bus öfter fahren würde, dann müsste ich kein Taxi nehmen."
+      - "Ich müsste kein Taxi nehmen, wenn der Bus öfter fahren würde."
+      - "Würde der Bus öfter fahren, müsste ich kein Taxi nehmen."
+      - "Würde der Bus öfter fahren, dann müsste ich kein Taxi nehmen."
+    key_tokens: ["würde", "fahren", "müsste"]
+    explain:
+      en: "The hard half is the wenn-clause. fahren is a full verb, so it takes würde + infinitive even there: wenn der Bus öfter fahren würde, with würde at the very end because the clause is verb-final. In the main half the modal needs no helper: müsste, umlaut included. Wenn der Bus öfter fährt or fuhr would be indicative, and musste would say I really had to."
+      ru: "Трудная половина здесь — придаточное с wenn. fahren — полнозначный глагол, поэтому и там он берёт würde + инфинитив: wenn der Bus öfter fahren würde, причём würde в самом конце, ведь в придаточном глагол последний. В главной части модальному глаголу помощник не нужен: müsste, с умлаутом. Wenn der Bus öfter fährt или fuhr — это индикатив, а musste значило бы, что мне действительно пришлось."
+      uk: "Складна половина тут — підрядне з wenn. fahren — повнозначне дієслово, тому й там воно бере würde + інфінітив: wenn der Bus öfter fahren würde, причому würde в самому кінці, адже в підрядному дієслово останнє. У головній частині модальному дієслову помічник не потрібен: müsste, з умлаутом. Wenn der Bus öfter fährt чи fuhr — це індикатив, а musste означало б, що мені справді довелося."
+      de: "Die schwierige Hälfte ist der wenn-Satz. fahren ist ein Vollverb und nimmt deshalb auch dort würde + Infinitiv: wenn der Bus öfter fahren würde, mit würde ganz am Ende, weil der Nebensatz verbfinal ist. Im Hauptsatz braucht das Modalverb keine Hilfe: müsste, mit Umlaut. Wenn der Bus öfter fährt oder fuhr wäre Indikativ, und musste hieße, dass ich wirklich musste."
+
+  - id: uebersetzen-zimmer-balkon
+    outcomes: [irreale-bedingung-nutzen]
+    type: translate
+    focus: irreale-bedingung
+    instruction:
+      en: "Translate — an unreal condition. Full verbs take würde + infinitive. For 'book' take buchen; say what the room has with haben."
+      ru: "Переведите — это нереальное условие. Полнозначные глаголы — с würde + инфинитив. Для «забронировать» возьмите buchen; то, что есть у номера, выразите через haben."
+      uk: "Перекладіть — це нереальна умова. Повнозначні дієслова — з würde + інфінітив. Для «забронювати» візьміть buchen; те, що є в номері, передайте через haben."
+      de: "Übersetze — eine irreale Bedingung. Vollverben nehmen würde + Infinitiv. Nimm buchen, und drück mit haben aus, was das Zimmer hat."
+    prompt_en: "I would book this room if it had a balcony."
+    prompt_ru: "Я бы забронировал этот номер, если бы у него был балкон."
+    prompt_uk: "Я забронював би цей номер, якби в нього був балкон."
+    answer: "Ich würde dieses Zimmer buchen, wenn es einen Balkon hätte."
+    accept:
+      - "Wenn dieses Zimmer einen Balkon hätte, würde ich es buchen."
+      - "Wenn dieses Zimmer einen Balkon hätte, dann würde ich es buchen."
+      - "Wenn das Zimmer einen Balkon hätte, würde ich es buchen."
+      - "Wenn das Zimmer einen Balkon hätte, dann würde ich es buchen."
+      - "Hätte dieses Zimmer einen Balkon, würde ich es buchen."
+      - "Hätte das Zimmer einen Balkon, würde ich es buchen."
+    key_tokens: ["würde", "buchen", "hätte", "Hätte"]
+    explain:
+      en: "Main clause first this time, and the rule does not care: würde … buchen in the main half, hätte in the wenn-half. Ich buche dieses Zimmer, wenn es einen Balkon hätte keeps only one half unreal — the error that lets reality back in. If you put the wenn-clause first, the room becomes es in the main half."
+      ru: "На этот раз главное предложение впереди, но правилу это безразлично: würde … buchen в главной половине, hätte в придаточном. Ich buche dieses Zimmer, wenn es einen Balkon hätte оставляет нереальной только одну половину — и реальность возвращается. Если начать с wenn, номер в главной части становится местоимением es."
+      uk: "Цього разу головне речення попереду, але правилу це байдуже: würde … buchen у головній половині, hätte в підрядному. Ich buche dieses Zimmer, wenn es einen Balkon hätte лишає нереальною лише одну половину — і реальність повертається. Якщо почати з wenn, номер у головній частині стає займенником es."
+      de: "Diesmal steht der Hauptsatz vorn, und der Regel ist das gleich: würde … buchen in der Haupthälfte, hätte im wenn-Satz. Ich buche dieses Zimmer, wenn es einen Balkon hätte hält nur eine Hälfte irreal — und die Wirklichkeit ist zurück. Beginnst du mit wenn, wird das Zimmer im Hauptsatz zu es."
