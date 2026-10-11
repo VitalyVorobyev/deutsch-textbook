@@ -1,0 +1,218 @@
+# Drill from progress (2026-10-11 audit, post-triage): damit-um-zu is persistent — 7 wrong of
+# 12 across 4 items. Every logged miss sits in a sentence with two subjects, and every one is
+# the same fusion of two machines the learner already knows. Either the second doer is squeezed
+# into um … zu (`um Frau Weber mir den Kurs zu empfehlen`, `um die ganze Familie ihn zu sehen`,
+# `um ihre Kinder die Sprache zu hören`), or damit is chosen and the zu-infinitive comes along
+# with it (`damit Frau Weber mir einen Kurs zu empfehlen`; the same hybrid once after sodass).
+# So the gap is not knowing either form. It is building the clause before running the subject
+# test.
+#
+# Weighting follows the errors. Five translate items, the mc and two of the three cloze clauses
+# have two subjects. The shared-subject case appears twice. In the cloze, the gap is followed by
+# no subject at all, so um is forced. In uebersetzen-um-zu-bibliothek, damit ich … is accepted
+# beside um … zu, because with one subject damit stays grammatical and an item may grade only
+# the direction that is forced (focus-tags.md).
+#
+# Every translate item pins the two ends of the form it forces: damit and the clause-final
+# finite verb. Both logged shapes therefore lose a pinned token and are attributed.
+#
+# Contexts are fresh. None re-skins the Beratung, the plan on the wall, Marta's notes, the
+# course instructor's explanation or Marta's children.
+topic: lernen-zukunft
+role: drill
+stage: ausblenden
+activity: remediation
+title_de: "Gezielt üben — ein Subjekt oder zwei: um … zu oder damit"
+title:
+  en: "Drill — one subject or two: um … zu or damit"
+  ru: "Тренажёр — одно подлежащее или два: um … zu или damit"
+  uk: "Тренажер — один підмет чи два: um … zu чи damit"
+  de: "Übung — ein Subjekt oder zwei: um … zu oder damit"
+items:
+  - id: cloze-subjekt-zaehlen
+    outcomes: [ziele-begruenden]
+    type: cloze
+    focus: damit-um-zu
+    instruction:
+      en: "Three purpose clauses — each answers wozu?. Fill in the connector, then the verb in brackets in the form that connector needs. Before you write, check whether the clause has a subject of its own."
+      ru: "Три придаточных цели, каждое отвечает на wozu?. Впишите союз, а затем глагол из скобок в той форме, которой этот союз требует. Прежде чем писать, проверьте, есть ли у оборота собственное подлежащее."
+      uk: "Три підрядні мети, кожне відповідає на wozu?. Впишіть сполучник, а тоді дієслово з дужок у тій формі, якої цей сполучник вимагає. Перш ніж писати, перевірте, чи має зворот власний підмет."
+      de: "Drei Finalsätze, jeder antwortet auf wozu?. Ergänze die Konjunktion und dann das Verb in Klammern in der Form, die diese Konjunktion verlangt. Prüf vorher, ob der Satz ein eigenes Subjekt hat."
+    text: "Ich höre jeden Morgen deutsches Radio, {{um}} neue Wörter {{zu lernen}} (lernen). Meine Kollegin spricht mit mir nur Deutsch, {{damit}} ich mehr {{übe|üben kann}} (üben). Und am Dienstag kocht mein Mann, {{damit}} ich pünktlich zum Kurs {{komme|kommen kann}} (kommen)."
+    translation:
+      en: "Every morning I listen to German radio in order to learn new words. My colleague speaks only German with me so that I practise more. And on Tuesday my husband cooks so that I get to the course on time."
+      ru: "Каждое утро я слушаю немецкое радио, чтобы учить новые слова. Коллега говорит со мной только по-немецки, чтобы я больше практиковалась. А во вторник готовит муж, чтобы я успела на курс."
+      uk: "Щоранку я слухаю німецьке радіо, щоб вивчати нові слова. Колега розмовляє зі мною лише німецькою, щоб я більше практикувалася. А у вівторок готує чоловік, щоб я встигла на курс."
+    explain:
+      en: "Count the doers clause by clause. In the first, the one who listens is the one who learns, and nothing after the gap could be a subject — so um, and zu lernen closes the clause. In the other two a new subject stands right after the gap: ich. um … zu has no slot for it, so the connector is damit, and damit wants a conjugated verb at the end — übe, komme (or üben kann, kommen kann). damit ich mehr zu üben fuses the two forms into one, and neither of them allows that."
+      ru: "Подсказка есть в самом русском «чтобы». Где после него инфинитив («чтобы учить»), там подлежащее одно — и в немецком это um … zu: после пропуска нет никакого подлежащего, а оборот замыкает zu lernen. Где после «чтобы» стоит своё подлежащее с глаголом в прошедшей форме («чтобы я практиковалась», «чтобы я успела»), там нужен damit. Оборот с damit — обычное придаточное: подлежащее ich и спрягаемый глагол в конце — übe, komme (подходят и üben kann, kommen kann). Инфинитиву с zu после damit места нет: damit ich mehr zu üben — гибрид двух конструкций."
+      uk: "Підказку дає саме українське «щоб». Якщо по ньому стоїть інфінітив («щоб вивчати»), підмет один — і німецькою це um … zu: після пропуску немає жодного підмета, а зворот закриває zu lernen. Якщо по «щоб» іде власний підмет із дієсловом у минулій формі («щоб я практикувалася», «щоб я встигла»), потрібне damit. Зворот із damit — звичайне підрядне: підмет ich і відмінюване дієслово в кінці — übe, komme (годяться й üben kann, kommen kann). Інфінітиву із zu після damit місця немає: damit ich mehr zu üben — гібрид двох конструкцій."
+      de: "Zähl die Handelnden Satz für Satz. Im ersten hört und lernt dieselbe Person, und nach der Lücke steht nichts, was Subjekt sein könnte — also um, und zu lernen schließt den Satz. In den beiden anderen steht direkt nach der Lücke ein neues Subjekt: ich. Dafür hat um … zu keinen Platz, also heißt die Konjunktion damit, und damit verlangt am Ende ein konjugiertes Verb — übe, komme (oder üben kann, kommen kann). damit ich mehr zu üben verschmilzt zwei Bauweisen, und keine von beiden erlaubt das."
+
+  - id: mc-heft-korrigieren
+    outcomes: [ziele-begruenden]
+    type: mc
+    focus: damit-um-zu
+    prompt: "Welcher Satz ist richtig?"
+    options:
+      - "Ich gebe der Lehrerin mein Heft, um sie meine Fehler zu korrigieren."
+      - "Ich gebe der Lehrerin mein Heft, damit sie meine Fehler korrigiert."
+      - "Ich gebe der Lehrerin mein Heft, damit sie meine Fehler zu korrigieren."
+      - "Ich gebe der Lehrerin mein Heft, damit sie korrigiert meine Fehler."
+    correct: 1
+    translation:
+      en: "I give the teacher my exercise book so that she corrects my mistakes."
+      ru: "Я отдаю учительнице тетрадь, чтобы она исправила мои ошибки."
+      uk: "Я віддаю вчительці зошит, щоб вона виправила мої помилки."
+    explain:
+      en: "I give, she corrects — two doers, and a clause with a doer of its own cannot be um … zu. That frame owns no subject slot, so in um sie meine Fehler zu korrigieren German can only read sie as an object. damit opens a full Nebensatz, which demands two things at once: a conjugated verb (korrigiert, not zu korrigieren) and that verb at the very end (not korrigiert meine Fehler). Each wrong option gets one of those wrong."
+      ru: "Отдаю я, исправляет она — подлежащих два, и уже поэтому um … zu не подходит. В этой рамке нет места для подлежащего, поэтому в um sie meine Fehler zu korrigieren немецкий может понять sie только как дополнение. damit открывает полноценное придаточное, а оно требует сразу двух вещей: спрягаемого глагола (korrigiert, а не zu korrigieren) и этого глагола в самом конце (не korrigiert meine Fehler). Каждый неверный вариант нарушает одно из этих условий."
+      uk: "Віддаю я, виправляє вона — підметів два, і вже тому um … zu не годиться. У цій рамці немає місця для підмета, тож у um sie meine Fehler zu korrigieren німецька може прочитати sie лише як додаток. damit відкриває повноцінне підрядне, а воно вимагає одразу двох речей: відмінюваного дієслова (korrigiert, а не zu korrigieren) і цього дієслова в самому кінці (не korrigiert meine Fehler). Кожен хибний варіант порушує одну з цих умов."
+      de: "Ich gebe, sie korrigiert — zwei Handelnde, und schon deshalb scheidet um … zu aus. Dieser Rahmen hat keinen Subjektplatz, deshalb kann das Deutsche sie in um sie meine Fehler zu korrigieren nur als Objekt lesen. damit eröffnet einen vollen Nebensatz, und der verlangt zweierlei: ein konjugiertes Verb (korrigiert, nicht zu korrigieren) und dieses Verb ganz am Ende (nicht korrigiert meine Fehler). Jede falsche Option verfehlt eine dieser Bedingungen."
+
+  - id: uebersetzen-damit-blumen
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects before you choose the form. For 'give' take geben, for 'water' gießen."
+      ru: "Переведите — сосчитайте подлежащие, прежде чем выбрать форму. Для «отдавать» возьмите geben, для «поливать» — gießen."
+      uk: "Перекладіть — порахуйте підмети, перш ніж вибрати форму. Для «віддавати» візьміть geben, для «поливати» — gießen."
+      de: "Übersetze — zähl die Subjekte, bevor du die Form wählst. Nimm geben und gießen."
+    prompt_en: "I am giving Frau Novak my key so that she waters my flowers."
+    prompt_ru: "Я отдаю Frau Novak свой ключ, чтобы она поливала мои цветы."
+    prompt_uk: "Я віддаю Frau Novak свій ключ, щоб вона поливала мої квіти."
+    answer: "Ich gebe Frau Novak meinen Schlüssel, damit sie meine Blumen gießt."
+    key_tokens: ["damit", "gießt"]
+    explain:
+      en: "Graded are the two ends of the form the sentence forces: damit and the clause-final gießt. I give, Frau Novak waters — two subjects, so um … zu cannot hold her (um Frau Novak meine Blumen zu gießen would put her where only an object fits). And because damit subordinates like weil, its verb is conjugated and last: sie meine Blumen gießt, never zu gießen."
+      ru: "Оцениваются два конца формы, которую требует предложение: damit и gießt в самом конце. Отдаю я, поливает Frau Novak — подлежащих два, поэтому в um … zu ей места нет (в um Frau Novak meine Blumen zu gießen она оказалась бы там, где может стоять только дополнение). А раз damit подчиняет так же, как weil, его глагол спрягается и стоит последним: sie meine Blumen gießt, а не zu gießen."
+      uk: "Оцінюються два кінці форми, якої вимагає речення: damit і gießt у самому кінці. Віддаю я, поливає Frau Novak — підметів два, тож в um … zu їй місця немає (в um Frau Novak meine Blumen zu gießen вона опинилася б там, де може стояти лише додаток). А що damit підпорядковує так само, як weil, його дієслово відмінюється і стоїть останнім: sie meine Blumen gießt, а не zu gießen."
+      de: "Bewertet werden die zwei Enden der Form, die der Satz erzwingt: damit und das satzfinale gießt. Ich gebe, Frau Novak gießt — zwei Subjekte, also kann um … zu sie nicht aufnehmen (in um Frau Novak meine Blumen zu gießen stünde sie dort, wo nur ein Objekt Platz hat). Und weil damit unterordnet wie weil, ist sein Verb konjugiert und steht am Schluss: sie meine Blumen gießt, nie zu gießen."
+
+  - id: uebersetzen-damit-kalender
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects first. For 'appointment' take der Termin; for 'write' schreiben."
+      ru: "Переведите — сначала сосчитайте подлежащие. Для «встречи» возьмите der Termin, для «записывать» — schreiben."
+      uk: "Перекладіть — спершу порахуйте підмети. Для «зустрічі» візьміть der Termin, для «записувати» — schreiben."
+      de: "Übersetze — zähl zuerst die Subjekte. Nimm der Termin und schreiben."
+    prompt_en: "I am writing the appointment in the calendar so that Tom doesn't forget it."
+    prompt_ru: "Я записываю встречу в календарь, чтобы Tom о ней не забыл."
+    prompt_uk: "Я записую зустріч у календар, щоб Tom про неї не забув."
+    answer: "Ich schreibe den Termin in den Kalender, damit Tom ihn nicht vergisst."
+    accept:
+      # The pronoun may stand on either side of the name in the Mittelfeld.
+      - "Ich schreibe den Termin in den Kalender, damit ihn Tom nicht vergisst."
+      # «в календарь» / «у календар» leave the possessive open; meinen Kalender is as natural.
+      - "Ich schreibe den Termin in meinen Kalender, damit Tom ihn nicht vergisst."
+      - "Ich schreibe den Termin in meinen Kalender, damit ihn Tom nicht vergisst."
+    key_tokens: ["damit", "vergisst"]
+    explain:
+      en: "Graded are damit and the clause-final vergisst. I write, Tom forgets — two people, so the subjectless um … zu has nowhere to put Tom (um Tom ihn nicht zu vergessen is the impossible sentence). Inside the damit-clause nicht stands just before the verb it negates, and the verb closes the clause. ihn may come before or after Tom."
+      ru: "Оцениваются damit и vergisst в конце придаточного. Записываю я, забывает Tom — это два человека, и в бессубъектном um … zu для Tom места нет (um Tom ihn nicht zu vergessen — то самое невозможное предложение). Внутри придаточного с damit nicht стоит прямо перед глаголом, который отрицает, а глагол закрывает предложение. ihn может стоять и до, и после Tom."
+      uk: "Оцінюються damit і vergisst у кінці підрядного. Записую я, забуває Tom — це дві людини, і в безпідметовому um … zu для Tom місця немає (um Tom ihn nicht zu vergessen — те саме неможливе речення). Усередині підрядного з damit nicht стоїть просто перед дієсловом, яке заперечує, а дієслово закриває речення. ihn може стояти і перед Tom, і після."
+      de: "Bewertet werden damit und das satzfinale vergisst. Ich schreibe, Tom vergisst — zwei Personen, also hat das subjektlose um … zu keinen Platz für Tom (um Tom ihn nicht zu vergessen ist der unmögliche Satz). Im damit-Satz steht nicht direkt vor dem Verb, das es verneint, und das Verb schließt den Satz. ihn darf vor oder nach Tom stehen."
+
+  - id: uebersetzen-damit-umziehen
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects first. For 'move' take umziehen; for 'go to a school' eine Schule besuchen."
+      ru: "Переведите — сначала сосчитайте подлежащие. Для «переезжать» возьмите umziehen, для «ходить в школу» — eine Schule besuchen."
+      uk: "Перекладіть — спершу порахуйте підмети. Для «переїжджати» візьміть umziehen, для «ходити до школи» — eine Schule besuchen."
+      de: "Übersetze — zähl zuerst die Subjekte. Nimm umziehen und eine Schule besuchen."
+    prompt_en: "We are moving next year so that our children can go to a better school."
+    prompt_ru: "В следующем году мы переезжаем, чтобы наши дети могли ходить в школу получше."
+    prompt_uk: "Наступного року ми переїжджаємо, щоб наші діти могли ходити до кращої школи."
+    answer: "Nächstes Jahr ziehen wir um, damit unsere Kinder eine bessere Schule besuchen können."
+    accept:
+      # The time phrase may open the sentence or follow the verb, with or without im.
+      - "Wir ziehen nächstes Jahr um, damit unsere Kinder eine bessere Schule besuchen können."
+      - "Im nächsten Jahr ziehen wir um, damit unsere Kinder eine bessere Schule besuchen können."
+      - "Wir ziehen im nächsten Jahr um, damit unsere Kinder eine bessere Schule besuchen können."
+    key_tokens: ["damit", "können"]
+    explain:
+      en: "Graded are damit and the clause-final können. We move, the children attend — two subjects. Note the order at the end of the damit-clause: infinitive first, modal last, besuchen können, exactly as after weil. The um in ziehen … um is the separable prefix of umziehen and has nothing to do with um … zu."
+      ru: "Оцениваются damit и können в самом конце. Переезжаем мы, а в школу ходят дети — подлежащих два. Обратите внимание на порядок в конце придаточного: сначала инфинитив, потом модальный глагол — besuchen können, точно как после weil. um в ziehen … um — это отделяемая приставка глагола umziehen, к um … zu она отношения не имеет."
+      uk: "Оцінюються damit і können у самому кінці. Переїжджаємо ми, а до школи ходять діти — підметів два. Зверніть увагу на порядок у кінці підрядного: спочатку інфінітив, потім модальне дієслово — besuchen können, як і після weil. um у ziehen … um — це відокремлюваний префікс дієслова umziehen, з um … zu він не пов'язаний."
+      de: "Bewertet werden damit und das satzfinale können. Wir ziehen um, die Kinder besuchen die Schule — zwei Subjekte. Achte auf die Reihenfolge am Ende des damit-Satzes: erst der Infinitiv, dann das Modalverb — besuchen können, genau wie nach weil. Das um in ziehen … um ist die abtrennbare Vorsilbe von umziehen und hat mit um … zu nichts zu tun."
+
+  - id: uebersetzen-damit-fernseher
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects first. For 'switch off' take ausmachen. You may start with either clause."
+      ru: "Переведите — сначала сосчитайте подлежащие. Для «выключать» возьмите ausmachen. Начать можно с любой части."
+      uk: "Перекладіть — спершу порахуйте підмети. Для «вимикати» візьміть ausmachen. Почати можна з будь-якої частини."
+      de: "Übersetze — zähl zuerst die Subjekte. Nimm ausmachen. Du kannst mit jedem der beiden Sätze beginnen."
+    prompt_en: "So that the children can sleep, we switch off the TV."
+    prompt_ru: "Чтобы дети могли спать, мы выключаем телевизор."
+    prompt_uk: "Щоб діти могли спати, ми вимикаємо телевізор."
+    answer: "Damit die Kinder schlafen können, machen wir den Fernseher aus."
+    accept:
+      # «дети» / «діти» leave die and unsere equally open.
+      - "Damit unsere Kinder schlafen können, machen wir den Fernseher aus."
+      - "Wir machen den Fernseher aus, damit die Kinder schlafen können."
+      - "Wir machen den Fernseher aus, damit unsere Kinder schlafen können."
+    key_tokens: ["damit", "können"]
+    explain:
+      en: "Graded are damit and können at the end of its clause. The children sleep, we switch off — two subjects, so damit, whichever clause comes first. Put it in front and the whole damit-clause fills position 1, which is why the main clause then opens with its verb: machen wir. That inversion is a separate rule and is not graded here."
+      ru: "Оцениваются damit и können в конце придаточного. Спят дети, выключаем мы — подлежащих два, значит, damit, с какой бы части ни начиналось предложение. Если поставить его вперёд, всё придаточное займёт первую позицию — поэтому главное предложение начинается с глагола: machen wir. Эта инверсия — отдельное правило, здесь она не оценивается."
+      uk: "Оцінюються damit і können у кінці підрядного. Сплять діти, вимикаємо ми — підметів два, отже, damit, хоч би з якої частини починалося речення. Якщо поставити його наперед, усе підрядне займе першу позицію — тому головне речення починається з дієслова: machen wir. Ця інверсія — окреме правило, тут вона не оцінюється."
+      de: "Bewertet werden damit und können am Ende seines Satzes. Die Kinder schlafen, wir machen aus — zwei Subjekte, also damit, egal welcher Satz vorne steht. Stellst du ihn voran, besetzt der ganze damit-Satz Position 1, und deshalb beginnt der Hauptsatz dann mit seinem Verb: machen wir. Diese Umstellung ist eine eigene Regel und wird hier nicht bewertet."
+
+  - id: uebersetzen-damit-woerterbuch
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects first. For 'put' take legen, for 'use' benutzen."
+      ru: "Переведите — сначала сосчитайте подлежащие. Для «класть» возьмите legen, для «пользоваться» — benutzen."
+      uk: "Перекладіть — спершу порахуйте підмети. Для «класти» візьміть legen, для «користуватися» — benutzen."
+      de: "Übersetze — zähl zuerst die Subjekte. Nimm legen und benutzen."
+    prompt_en: "I am putting the dictionary on the table so that everyone can use it."
+    prompt_ru: "Я кладу словарь на стол, чтобы все могли им пользоваться."
+    prompt_uk: "Я кладу словник на стіл, щоб усі могли ним користуватися."
+    answer: "Ich lege das Wörterbuch auf den Tisch, damit alle es benutzen können."
+    accept:
+      # The unstressed pronoun usually stands before alle; both orders are neutral German.
+      - "Ich lege das Wörterbuch auf den Tisch, damit es alle benutzen können."
+    key_tokens: ["damit", "können"]
+    explain:
+      en: "Graded are damit and the closing können. I put, everyone uses — the second subject is alle, and um … zu has no room for it (um alle es zu benutzen is impossible). With a modal the damit-clause ends in two verbs, and the conjugated one comes last: benutzen können. The pronoun es may stand before or after alle."
+      ru: "Оцениваются damit и können в конце. Кладу я, пользуются все — второе подлежащее alle, и в um … zu ему места нет (um alle es zu benutzen невозможно). С модальным глаголом придаточное заканчивается двумя глаголами, и спрягаемый стоит последним: benutzen können. Местоимение es может стоять перед alle или после."
+      uk: "Оцінюються damit і können у кінці. Кладу я, користуються всі — другий підмет alle, і в um … zu для нього місця немає (um alle es zu benutzen неможливо). З модальним дієсловом підрядне закінчується двома дієсловами, і відмінюване стоїть останнім: benutzen können. Займенник es може стояти перед alle або після."
+      de: "Bewertet werden damit und das abschließende können. Ich lege, alle benutzen — das zweite Subjekt ist alle, und um … zu hat dafür keinen Platz (um alle es zu benutzen ist unmöglich). Mit einem Modalverb endet der damit-Satz auf zwei Verben, und das konjugierte steht zuletzt: benutzen können. Das Pronomen es darf vor oder nach alle stehen."
+
+  - id: uebersetzen-um-zu-bibliothek
+    outcomes: [ziele-begruenden]
+    type: translate
+    focus: damit-um-zu
+    instruction:
+      en: "Translate — count the subjects first. For 'go to the library' take in die Bibliothek gehen; for 'in peace' in Ruhe; for 'study' lernen."
+      ru: "Переведите — сначала сосчитайте подлежащие. Для «ходить в библиотеку» возьмите in die Bibliothek gehen, для «спокойно» — in Ruhe, для «заниматься» — lernen."
+      uk: "Перекладіть — спершу порахуйте підмети. Для «ходити до бібліотеки» візьміть in die Bibliothek gehen, для «спокійно» — in Ruhe, для «вчитися» — lernen."
+      de: "Übersetze — zähl zuerst die Subjekte. Nimm in die Bibliothek gehen, in Ruhe und lernen."
+    prompt_en: "I go to the library in order to study in peace."
+    prompt_ru: "Я хожу в библиотеку, чтобы спокойно заниматься."
+    prompt_uk: "Я ходжу до бібліотеки, щоб спокійно вчитися."
+    answer: "Ich gehe in die Bibliothek, um in Ruhe zu lernen."
+    accept:
+      - "Um in Ruhe zu lernen, gehe ich in die Bibliothek."
+      # One shared subject: damit stays grammatical, so it is accepted (focus-tags.md —
+      # an item grades only the direction that is forced).
+      - "Ich gehe in die Bibliothek, damit ich in Ruhe lerne."
+      - "Ich gehe in die Bibliothek, damit ich in Ruhe lernen kann."
+      - "Damit ich in Ruhe lerne, gehe ich in die Bibliothek."
+      - "Damit ich in Ruhe lernen kann, gehe ich in die Bibliothek."
+    key_tokens: ["um", "zu", "lernen", "damit", "lerne", "kann"]
+    explain:
+      en: "One doer this time: the one who goes is the one who studies. Then German has two correct shapes, and this course produces the compact one — um in Ruhe zu lernen, no subject, zu + infinitive at the end. damit ich in Ruhe lerne is accepted too, because it is not wrong, only longer. What is never right is a mix: um ich … zu lernen puts a subject where the frame has no slot, and damit ich … zu lernen puts a zu-infinitive where damit needs a conjugated verb."
+      ru: "На этот раз действующее лицо одно: кто идёт, тот и занимается. Здесь русское «чтобы» + инфинитив подсказывает верно: в немецком возможны две правильные формы, и курс выбирает компактную — um in Ruhe zu lernen, без подлежащего, с zu + инфинитивом в конце. damit ich in Ruhe lerne тоже принимается: это не ошибка, просто длиннее. Неверна только смесь: um ich … zu lernen (подлежащее там, где для него нет места) и damit ich … zu lernen (инфинитив с zu там, где damit требует спрягаемого глагола)."
+      uk: "Цього разу діяч один: хто йде, той і вчиться. Тут українське «щоб» + інфінітив підказує правильно: у німецькій можливі дві правильні форми, і курс обирає компактну — um in Ruhe zu lernen, без підмета, із zu + інфінітивом у кінці. damit ich in Ruhe lerne теж приймається: це не помилка, просто довше. Хибна лише суміш: um ich … zu lernen (підмет там, де для нього немає місця) і damit ich … zu lernen (інфінітив із zu там, де damit вимагає відмінюваного дієслова)."
+      de: "Diesmal gibt es nur eine handelnde Person: Wer geht, lernt auch. Dann hat das Deutsche zwei richtige Formen, und dieser Kurs produziert die kompakte — um in Ruhe zu lernen, ohne Subjekt, mit zu + Infinitiv am Ende. damit ich in Ruhe lerne wird ebenfalls akzeptiert, denn es ist nicht falsch, nur länger. Falsch ist immer nur die Mischung: um ich … zu lernen setzt ein Subjekt, wo der Rahmen keinen Platz hat, und damit ich … zu lernen einen zu-Infinitiv, wo damit ein konjugiertes Verb braucht."

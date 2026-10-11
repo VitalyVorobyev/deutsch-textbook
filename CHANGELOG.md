@@ -13,6 +13,13 @@ GitHub Release notes.
 
 ### Added
 
+- **Three B1 drills for weak spots your answers show.** Each has 8 exercises:
+  - *damit* or *um … zu* — one subject or two;
+  - the Präteritum of strong, weak and mixed verbs (*sprach*, *gefiel*, *wusste*);
+  - an unreal condition with Konjunktiv II in both halves.
+
+  Training serves them while the weakness lasts.
+
 - **Leben in Deutschland lessons have maps and pictures.** Bayern shows its seven
   Regierungsbezirke, its coat of arms beside the three it is confused with, both flags, and the
   exam's own map with Bayern marked. Seven lessons in all gain 18 figures: the Länder and
