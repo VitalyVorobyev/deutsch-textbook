@@ -16,6 +16,14 @@ items:
     outcomes: [besitz-ausdruecken]
     type: translate
     focus: genitiv-eigenname
+    # A translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), and key_tokens cannot attribute an INSERTED token — so `Das ist die
+    # Mareks Wohnung` (logged 2026-07-26) scored as the -s genitive surviving, though the
+    # article teaches that the name takes the article's place (never das Annas Auto). The
+    # predicates decide instead and restate the pin: Mareks missing (an apostrophe, von).
+    focus_evidence:
+      failed: ["\\b(der|die|das|den|dem|des|ein|eine)\\s+Mareks\\b", "^(?!.*\\bMareks\\b)"]
+      retained: ["\\bMareks Wohnung\\b"]
     instruction:
       en: "Use the name with -s (not von)."
       ru: "Используйте имя с -s (не von)."

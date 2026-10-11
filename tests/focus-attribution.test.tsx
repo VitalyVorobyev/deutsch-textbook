@@ -126,3 +126,53 @@ describe('dictation focus attribution', () => {
     expect(hear(item, 'Meine Schwester spricht vier Sprachen.')).toBe('verb-endungen');
   });
 });
+
+describe('an authored failed predicate beats the dictation slip', () => {
+  // Both of this item's own errors are one letter off the target and outside the closed class,
+  // so `dictationSlip` calls each a typo. `adjektiv-nomen` is the capital and the -es.
+  const neuesItem = (focus_evidence?: { retained: string[]; failed: string[]; case_sensitive?: boolean }) =>
+    listenItemSchema.parse({
+      id: 'hoeren-diktat-neues',
+      type: 'listen',
+      focus: 'adjektiv-nomen',
+      text: 'Als Verkäufer habe ich immer etwas Neues gelernt.',
+      ...(focus_evidence ? { focus_evidence } : {}),
+    });
+  const PREDICATES = {
+    case_sensitive: true,
+    failed: ['\\betwas neu', '\\betwas Neu(e[mnr]?)?\\b'],
+    retained: ['\\betwas Neues\\b'],
+  };
+
+  function hear(item: ReturnType<typeof neuesItem>, typed: string) {
+    cleanup();
+    const onResult = mock(() => {});
+    render(<Listen item={item} lang="en" onResult={onResult} locked={false}
+      onNext={mock(() => {})} nextLabel="Weiter →" />);
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: typed } });
+    fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
+    const result = (onResult.mock.calls[0] as unknown[])[0] as { focus?: string | null; correct: boolean };
+    return { correct: result.correct, focus: focusForAttempt(item, result) };
+  }
+
+  test('a slip the predicate names is logged against the tag', () => {
+    const item = neuesItem(PREDICATES);
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas neues gelernt.'))
+      .toEqual({ correct: false, focus: 'adjektiv-nomen' });
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neue gelernt.'))
+      .toEqual({ correct: false, focus: 'adjektiv-nomen' });
+  });
+
+  test('a slip elsewhere stays disclaimed, and the target keeps its tag', () => {
+    const item = neuesItem(PREDICATES);
+    expect(hear(item, 'Als Verkaufer habe ich immer etwas Neues gelernt.'))
+      .toEqual({ correct: false, focus: undefined });
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neues gelernt.'))
+      .toEqual({ correct: true, focus: 'adjektiv-nomen' });
+  });
+
+  test('without predicates the same slip is still forgiven — the override is opt-in', () => {
+    expect(hear(neuesItem(), 'Als Verkäufer habe ich immer etwas neues gelernt.'))
+      .toEqual({ correct: false, focus: undefined });
+  });
+});

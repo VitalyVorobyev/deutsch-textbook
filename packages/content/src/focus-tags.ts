@@ -139,3 +139,51 @@ export const focusIntroducedBy: Record<string, string> = {
   'pronomen-stellung': 'informationen-vermitteln',
   'partizip-adjektiv': 'informationen-vermitteln',
 };
+
+/**
+ * A confusion whose signature error ADDS a word, and where in the sentence it lands.
+ *
+ * `key_tokens` attribute a miss when a graded token is absent or displaced — never when a token is
+ * added, because an inserted word changes the token count and the scorer then sees neither a
+ * missing nor a misplaced pin. On an ordinary item that is an honest gap. On a delayed probe it is
+ * a false pass: `classifyProbe` (`scripts/progress-audit.ts`) reads an unattributed miss as the
+ * competence surviving, so `ich lasse meine Wohnung zu putzen` scored as retention of the very
+ * rule it breaks.
+ *
+ * Only an authored `focus_evidence.failed` predicate can see the insertion, so `bun run validate`
+ * (`focusEvidenceProblems`, packages/content/src/focus-evidence.ts) builds the error from every
+ * accepted rendering of a `translate` probe item carrying one of these tags — `word` put in front
+ * of the last pinned token that matches `before` — and requires a `failed` predicate that catches
+ * it. A rendering with no such pin has no insertion site and needs nothing: the seit/vor and
+ * am/um variants of the `zeitangaben-system` family carry no bare-accusative time phrase.
+ *
+ * `word` is one representative; the item's predicate should catch the siblings too (any
+ * preposition before *jeden Tag*, any article before *Mareks*). The table in
+ * `docs/authoring/focus-tags.md` ("Errors that add a word") is the same list, held equal by
+ * `tests/focus-tags.test.ts`.
+ */
+export interface InsertionError {
+  /** the word the learner adds */
+  word: string;
+  /** the pinned token it lands in front of: the last `key_tokens` entry of the rendering that matches */
+  before: RegExp;
+}
+
+/** Any pinned token — the last one of a bracket rule is its clause-final infinitive. */
+const CLOSING_PIN = /./u;
+
+export const insertionErrors: Record<string, InsertionError> = {
+  // ❌ Ich kann zu schwimmen — the modal's infinitive is bare (focus-tags.md: "bare infinitive").
+  'modal-satzklammer': { word: 'zu', before: CLOSING_PIN },
+  // ❌ Ich lasse mein Fahrrad zu reparieren — "no zu".
+  'lassen-verwendung': { word: 'zu', before: CLOSING_PIN },
+  // ❌ Ich werde morgen zu kommen — "werden + bare infinitive".
+  'futur-werden': { word: 'zu', before: CLOSING_PIN },
+  // ❌ am jeden Tag — the bare-accusative family takes no preposition at all.
+  'zeitangaben-system': {
+    word: 'am',
+    before: /^(jeden|jede|jedes|nächste|nächsten|nächstes|letzte|letzten|letztes)$/iu,
+  },
+  // ❌ die Mareks Wohnung — the -s name takes the article's place (logged 2026-07-26).
+  'genitiv-eigenname': { word: 'das', before: /^\p{Lu}\p{Ll}*s$/u },
+};

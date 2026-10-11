@@ -136,7 +136,10 @@ Focused free-typed tasks may carry `focus_evidence` response predicates. Where a
 them, the attempt carries an explicit `retained`, `failed` or `unknown` verdict and that verdict
 decides attribution — an unmatched whole-sentence error is not guessed into the weakness signal.
 Where an item declares none, the attempt carries no verdict and attribution stays as it was
-(`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are **additive on purpose**:
+(`key_tokens` for `translate`, `dictationSlip` for `listen`); where it does, a `failed` match wins
+even over a dictation slip. A `translate` probe whose tag names an *added* word must declare them,
+because no pin can attribute an insertion and the probe table would read it as retained
+([item-authoring](authoring/item-authoring.md#focus-evidence-predicates)). Predicates are **additive on purpose**:
 silencing every unmatched free-typed miss corpus-wide was measured against the learner's log and
 inverts the signal rather than gapping it (backlog P12-6). Checkpoint scores exclude both open writing and speech while their attempts still count as
 coverage.

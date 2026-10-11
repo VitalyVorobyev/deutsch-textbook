@@ -65,7 +65,12 @@ export function Listen({
       // every unmatched miss corpus-wide inverts the weakness signal rather than honesty-gapping
       // it (see the measurement in Translate.tsx). A1 dictations all carry predicates; the
       // validator enforces it, which is P12-6's A1 half.
-      ...(!isCorrect && (slipped || (item.focus_evidence && focusEvidence !== 'failed'))
+      //
+      // An authored `failed` predicate also beats the slip. One edit away is exactly what the
+      // item's own error can look like: `etwas neues` and `etwas Neue` are each one letter off
+      // `etwas Neues`, and both are the `adjektiv-nomen` decision, not a typo. `dictationSlip`
+      // cannot know which letters carry the grammar; the author who wrote the predicate does.
+      ...(!isCorrect && focusEvidence !== 'failed' && (slipped || item.focus_evidence)
         ? { focus: null }
         : {}),
       focusEvidence,

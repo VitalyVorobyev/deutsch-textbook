@@ -308,6 +308,9 @@ export const focusEvidenceSchema = z.object({
   retained: z.array(z.string().min(1)).default([]),
   /** Any failed predicate matching the normalized response is explicit focus failure. */
   failed: z.array(z.string().min(1)).default([]),
+  /** Opt-in: match case-sensitively (default: case-insensitive). For an item whose graded
+      decision is a capital — `etwas Neues` against the slip `etwas neues`. */
+  case_sensitive: z.boolean().optional(),
 }).refine((value) => value.retained.length + value.failed.length > 0, {
   message: 'focus_evidence needs at least one retained or failed predicate',
 });
