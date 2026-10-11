@@ -10,6 +10,7 @@ import {
 import { topicPath, withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from '@da/schema';
+import { shownHeadwordIndex } from '@da/schema/headword';
 import type { TopicNode } from './mastery';
 import type { TrainingSet } from './training';
 import { getCurriculum } from '@da/content/curriculum';
@@ -85,7 +86,10 @@ export async function getAllCards(): Promise<CardDef[]> {
   ]);
   const contexts = mergeLexicalContexts(
     wordFieldContexts(fields.map((field) => field.data)),
-    wortnetzContexts(networks.map((network) => network.data)),
+    wortnetzContexts(
+      networks.map((network) => network.data),
+      shownHeadwordIndex(vocab.map((v) => v.data)),
+    ),
   );
   return vocab.flatMap((v) => buildDeck(v.data.id, v.data.entries, contexts));
 }

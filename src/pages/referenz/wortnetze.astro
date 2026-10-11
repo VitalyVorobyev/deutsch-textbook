@@ -2,14 +2,19 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { withBase } from '../../lib/url';
+import { shownHeadwordIndex } from '@da/schema/headword';
 
 const entries = await getCollection('wortnetze');
 const networks = entries
   .map((entry) => entry.data)
   .sort((a, b) => a.level.localeCompare(b.level) || a.title_de.localeCompare(b.title_de, 'de'));
 
+// A card member names its entry by the raw key; print it as the card shows it (`sich gewöhnen`).
+const shown = shownHeadwordIndex((await getCollection('vocab')).map((v) => v.data));
 const memberDe = (member: (typeof networks)[number]['members'][number]) =>
-  member.kind === 'card' ? member.ref.de : member.de;
+  member.kind === 'card'
+    ? (shown.get(`${member.ref.deck}::${member.ref.de}`) ?? member.ref.de)
+    : member.de;
 ---
 
 <Base title="Wortnetze">

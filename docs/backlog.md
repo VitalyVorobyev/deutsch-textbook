@@ -206,10 +206,17 @@ Triaged from `feedback.md`, which holds only raw capture.
   `bun scripts/grammar-depth.ts --thin` for a tag to recycle.
 - **F-11 · Mobile sweep.** A phone-width pass over Heute, Üben, a topic page and Fortschritt,
   listing what a hand reaches; with P25-3.
-- **F-12 · Four verbs ship two production cards for one prompt** — `beschweren`/`sich beschweren`,
-  `entscheiden`/`sich entscheiden`, `kümmern`/`sich kümmern`, `freuen`/`sich freuen`, all
-  `cards: both`. Flipping to recognition is not retrofittable. First step: disambiguating glosses
-  versus merging; plain `entscheiden` is *to settle*, not *to make up one's mind*.
+- **F-12 · Eight reflexive verbs ship two cards, one per Wortliste key** — an A2 bare key and a
+  B1 `sich` key (`bewerben`, `bedanken`, `verlieben`, `beschweren`, `beeilen`, `freuen`, `kümmern`,
+  `entscheiden`), all `cards: both`. Since the shown headword is derived (`shownHeadword`,
+  `@da/schema/headword`), both cards of a pair read `sich freuen`. Flipping to recognition is not
+  retrofittable. First step: disambiguating glosses versus merging; plain `entscheiden` is
+  *to settle*, not *to make up one's mind*.
+- **F-14 · A `table` cell has no `accept`**, so a correct alternative form is wrong: the
+  du-imperative *gehe*, *trinke*, *bleibe* beside *geh*, *trink*, *bleib*
+  (`a1/stadt-wege-a1-grammatik:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
+  First step: an optional `accept` on a cell, read by `acceptedCellAnswers` (`src/lib/table.ts`) so
+  `validate.ts` and `TableFill` cannot disagree.
 
 **Ruled, no change** — so they are not re-triaged:
 
@@ -217,8 +224,9 @@ Triaged from `feedback.md`, which holds only raw capture.
 - `freunde-feste.yaml:266` rightly rejects a time outside the reason clause.
 - *Katze*, *Hund*, *Pferd* stay at A2: the Goethe A2 Wortliste places them, and moving a word
   resets its cards.
-- Bare transitive headwords with a reflexive alternative (`beschäftigen`, `gewöhnen`, `kümmern`) are
-  correct and stay; the `note` states the construction.
+- A Wortliste key stays bare even when the verb is used reflexively (`gewöhnen`, `kümmern`): the
+  key is the manifest's. What the learner reads is derived — a `valence` that leads with `sich`
+  shows `sich gewöhnen`; a dual valence (`beschäftigen`: `+ Akk / sich …`) stays bare.
 - `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` asks two questions on purpose.
 - "Fortschritt konnte nicht geladen werden" is a local IndexedDB read, never the network
   ([ADR 0018](adrs/0018-progress-reads-recover.md)).
