@@ -9,9 +9,8 @@ record of what shipped.
 
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
-  the A2 topic `natur-wetter`, added after the A2 pass, is owed the same. Progress and per-topic
-  results: [topic-quality-audit.md](curriculum/topic-quality-audit.md). Next: `natur-wetter`, then
-  B1.2 `leben-veraendern`.
+  progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
+  Next: B1.2 `leben-veraendern`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -105,6 +104,16 @@ record of what shipped.
   *Bevor er heimging* on the tag; the `nachdem` probe's variant-b rejects *ging alles ganz schnell*.
 
 **A2 findings below the material bar**, for the next time each file is touched:
+
+- `a2/natur-wetter`: *Kurz gesagt* says every weather kind offers three words (its own table
+  disagrees) and omits the comparison outcome; the table's Wind row has no verb while *weht*
+  parallels *scheint*; "masculine measurement nouns" (neuter ones behave the same); the landscape
+  explain says neither plural adds a syllable (*Bäume* does); `diktat-wetter` counts toward a
+  reading outcome; the speak model lacks the *als* its checklist asks for; stale header comments
+  in the production set and pretest; `uebersetzen-es-regnet` rejects *fast täglich*; *Wetterlage*
+  and *ringsum* are above A2; the reading runs 163 words with an unglossed *roch*; the
+  *wunderschön* example translates as "wonderful"; vocab notes say *bewölkt* has no -ig twin and
+  some weather adjectives never stand without *es*.
 
 - `a1/ort-richtung-praepositionen`: the *zu – bei – von* row is labelled **Person** only; the
   *zu*-taking buildings live as four Feinheiten exceptions.
@@ -232,6 +241,13 @@ Triaged from `feedback.md`, which holds only raw capture.
   `npm view @astrojs/check peerDependencies`). When it allows 7, bump `typescript` in both
   `package.json` files. `bun audit` reports one moderate build-time advisory,
   `postcss-selector-parser` 6 via `@tailwindcss/typography`.
+- **Grading rulings carry no item revision, so a probe cannot be repaired past one.** An
+  `accept` ruling must pass today's grader (`packages/content/src/grading-decisions.ts`), so
+  once a ruling accepts a rendering, the item can never stop accepting it. Found on
+  `a2/probe-natur-wetter:variant-a`: *Am Dienstag regnet es den ganzen Tag* is almost the practice
+  cloze `cloze-es-umgestellt` word for word, so the probe can be answered from memory of it — but
+  the 2026-08-26 ruling accepting exactly that rendering blocks changing the carrier. First step:
+  give a ruling an optional `revision` and check `accept` only against that revision.
 - **P23-3 · Six of the seven tags the runtime prioritises have no drill, all B1.** Cross
   `weakFocuses` (`src/lib/weakness.ts`) with every `role: drill` item's `focus`. `weakFocuses` (last
   ~30 attempts, ≥35% errors) and the audit's `persistent` table disagree, and neither is wrong. Take
