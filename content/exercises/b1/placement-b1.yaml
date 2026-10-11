@@ -286,6 +286,7 @@ items:
 
   # --- regeln-verantwortung ---
   - id: regeln-passiv-modal-uebersetzen
+    revision: 2
     outcomes: [pflichten-verstehen]
     type: translate
     focus: passiv-modal
@@ -298,12 +299,23 @@ items:
     prompt_ru: "Велосипеды нужно ставить во дворе."
     prompt_uk: "Велосипеди треба ставити у дворі."
     answer: "Die Fahrräder müssen im Hof abgestellt werden."
-    key_tokens: ["müssen", "abgestellt", "werden"]
+    # The EN prompt says "parked" and names no verb: parken (A2 Wortliste) is as right as
+    # abstellen (on no Wortliste), and without it geparkt was charged to passiv-modal.
+    # RU/UK «Велосипеды» / «Велосипеди» carry no article, so the bare plural joins too.
+    # Both participles pinned; closed over article × order × verb.
+    key_tokens: ["müssen", "abgestellt", "geparkt", "werden"]
     accept:
       - "Im Hof müssen die Fahrräder abgestellt werden."
+      - "Fahrräder müssen im Hof abgestellt werden."
+      - "Im Hof müssen Fahrräder abgestellt werden."
+      - "Die Fahrräder müssen im Hof geparkt werden."
+      - "Im Hof müssen die Fahrräder geparkt werden."
+      - "Fahrräder müssen im Hof geparkt werden."
+      - "Im Hof müssen Fahrräder geparkt werden."
     explain: { en: "Graded are the three anchors: müssen agreeing with die Fahrräder, and the pair abgestellt werden closing the clause in exactly that order. A modal changes nothing about the passive frame, it only occupies position 2 and pushes the passive infinitive to the end. The active with man says the same thing — Man muss die Fahrräder im Hof abstellen — and is not how a rule is written down, because a rule addresses nobody in particular.", ru: "Оцениваются три якоря: müssen, согласованный с die Fahrräder, и пара abgestellt werden, закрывающая предложение именно в таком порядке. Модальный глагол в пассивной рамке ничего не меняет: он лишь занимает второе место и отодвигает пассивный инфинитив в конец. Актив с man говорит то же самое — Man muss die Fahrräder im Hof abstellen, — но правила так не пишут: правило ни к кому конкретно не обращается.", uk: "Оцінюються три якорі: müssen, узгоджений із die Fahrräder, і пара abgestellt werden, що закриває речення саме в такому порядку. Модальне дієслово в пасивній рамці нічого не змінює: воно лише займає друге місце й відсуває пасивний інфінітив у кінець. Актив із man каже те саме — Man muss die Fahrräder im Hof abstellen, — але правила так не пишуть: правило ні до кого конкретно не звертається.", de: "Bewertet werden drei Anker: müssen passend zu die Fahrräder und das Paar abgestellt werden, das den Satz genau in dieser Reihenfolge schließt. Ein Modalverb ändert am Passivrahmen nichts, es besetzt nur Position 2 und schiebt den Passivinfinitiv ans Ende. Das Aktiv mit man sagt dasselbe — Man muss die Fahrräder im Hof abstellen — und ist nicht die Schreibweise einer Regel, denn eine Regel spricht niemanden persönlich an." }
 
   - id: regeln-sodass-uebersetzen
+    revision: 2
     outcomes: [folgen-benennen]
     type: translate
     focus: sodass-folge
@@ -317,6 +329,17 @@ items:
     prompt_uk: "Магазин зачиняється о шостій, тож нам треба поспішити."
     answer: "Der Laden schließt um sechs, sodass wir uns beeilen müssen."
     key_tokens: ["sodass", "müssen"]
+    # so dass is the same conjunction (the article's Feinheiten, the tag) and was charged
+    # to sodass-folge; Geschäft renders "shop" / «Магазин» as well as Laden, and um sechs
+    # Uhr as well as um sechs. Closed over all three.
+    accept:
+      - "Der Laden schließt um sechs, so dass wir uns beeilen müssen."
+      - "Der Laden schließt um sechs Uhr, sodass wir uns beeilen müssen."
+      - "Der Laden schließt um sechs Uhr, so dass wir uns beeilen müssen."
+      - "Das Geschäft schließt um sechs, sodass wir uns beeilen müssen."
+      - "Das Geschäft schließt um sechs, so dass wir uns beeilen müssen."
+      - "Das Geschäft schließt um sechs Uhr, sodass wir uns beeilen müssen."
+      - "Das Geschäft schließt um sechs Uhr, so dass wir uns beeilen müssen."
     explain: { en: "Both ends are graded: sodass opening the clause and müssen closing it. sodass is a conjunction, so what follows is a subordinate clause and the finite verb goes to the very wall, with the infinitive in front of it — sodass wir uns beeilen müssen. Writing sodass müssen wir uns beeilen treats it like the adverb deshalb, which really does take position 1 and put the verb second: Deshalb müssen wir uns beeilen.", ru: "Оцениваются оба конца: sodass, открывающий придаточное, и müssen, закрывающий его. sodass — союз, поэтому дальше идёт придаточное, и спрягаемый глагол уходит к самой стене, а инфинитив стоит перед ним: sodass wir uns beeilen müssen. Вариант sodass müssen wir uns beeilen обращается с ним как с наречием deshalb, которое действительно занимает первое место и ставит глагол вторым: Deshalb müssen wir uns beeilen.", uk: "Оцінюються обидва кінці: sodass, що відкриває підрядне, і müssen, що його закриває. sodass — сполучник, тому далі йде підрядне, і відмінюване дієслово йде до самої стіни, а інфінітив стоїть перед ним: sodass wir uns beeilen müssen. Варіант sodass müssen wir uns beeilen поводиться з ним як із прислівником deshalb, який справді займає перше місце і ставить дієслово другим: Deshalb müssen wir uns beeilen.", de: "Bewertet werden beide Enden: sodass am Anfang des Nebensatzes und müssen an seinem Ende. sodass ist eine Konjunktion, dahinter steht also ein Nebensatz, das finite Verb geht an die Wand und der Infinitiv davor — sodass wir uns beeilen müssen. Wer sodass müssen wir uns beeilen schreibt, behandelt es wie das Adverb deshalb, das tatsächlich auf Position 1 steht und das Verb an zweiter Stelle hat: Deshalb müssen wir uns beeilen." }
 
   # --- reisen-probleme ---

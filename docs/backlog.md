@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.7 `regeln-verantwortung`.
+  Next: B1.8 `reisen-probleme`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -136,6 +136,20 @@ record of what shipped.
   headers say outcomes arm the families (arming is by item key since P19-4), probe headers and
   the provenance record count three families of four; who drafted the UK/DE halves and the fourth probe family is not in the provenance record; C6-1
   still owed.
+- `b1/regeln-verantwortung`: *brauchen nicht zu* (A2 `nicht-brauchen-zu`, the released duty) is
+  rejected by every *muss nicht* translate item in the corpus — here `uebersetzen-miete` and the
+  dürfen/müssen probe's variants a and c, at A2 `modalverben-produktion` and `probe-arbeit-beruf` —
+  an accept ruling owed corpus-wide (this unit's predicates already read it as retained);
+  *streichen* (now named), *sperren* (the dictation, two article examples) and *abstellen* (article,
+  reading, write task, placement) are on no Wortliste and in no deck; *Treppenhaus* is produced in
+  `uebersetzen-rauchen` but carded recognition-only; neither the article's agreement rule nor the
+  `uebersetzen-rauchen` explain says why the modal stays singular in a subjectless passive (the
+  logged *dürfen nicht geraucht*); "subject straight after *sodass*" still stands in
+  `b1/digitales-leben-pretest:pre-mc-sodass` and the `sodass-folge` tag row; the *Feinheiten* calls
+  *so dass* the "ältere Schreibung" though it remains a current variant; the *werktags* note sets
+  Monday–Saturday beside an everyday *Montag bis Freitag*; the primary set's and the three probe
+  headers say outcomes arm the families (arming is by item key since P19-4); the `frage-aufzug` DE
+  explain reads "mit der Verbkette und kann ganz am Ende"; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
