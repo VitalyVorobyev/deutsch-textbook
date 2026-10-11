@@ -5,7 +5,7 @@
 # The three variants sample three corners of that one decision rather than repeating a corner.
 # variant-a is the weather verb in the fronted position, where es sits behind the verb and the
 # source language offers nothing to translate into it. variant-b is sein plus adjective, where
-# the source has no subject at all and the adjective must additionally stay bare. variant-c is
+# the source has no subject at all. variant-c is
 # the perfect, where es hides between the auxiliary and the participle — the position the
 # reading's last sentence uses and no practice item does.
 #
@@ -13,12 +13,13 @@
 # belongs, which answers the only question this competence asks, and an mc would list es beside
 # its rivals. The learner has to notice that something is required before they can supply it.
 #
-# Pinned is es and, where the variant turns on it, the one other form the tag grades. The nouns,
-# the times of day and the lexical verbs are carrier material: a fumbled Nachmittag is not this
-# confusion. Each pinned token occurs exactly once in every accepted rendering.
+# Pinned is es and, where the variant turns on its position, the verb it stands behind. The
+# nouns, the times of day, the adjectives and the auxiliary are carrier material: a fumbled
+# Nacht or a *kaltes* is not this confusion. Each pinned token occurs exactly once in every
+# accepted rendering.
 #
 # Carrier lexis checked against this topic's two practice sets and its reading by grepping
-# content/, not by re-reading them: Dienstag, Nachmittag, Nacht, Woche and Winter appear in no
+# content/, not by re-reading them: Dienstag, Nacht, Woche and Winter appear in no
 # arming item, so no variant can be answered from the memory of one.
 topic: natur-wetter
 role: probe
@@ -63,7 +64,10 @@ items:
     outcomes: [wetter-beschreiben]
     type: translate
     focus: es-unpersoenlich
-    key_tokens: ["es", "kalt"]
+    revision: 2
+    # rev 2: kalt was pinned, so *kaltes* (adjektiv-praedikativ) and *kühl* (a word choice)
+    # were logged as es-unpersoenlich. Pinned now: the verb and the es behind it.
+    key_tokens: ["war", "es"]
     prompt_en: "At night it was very cold."
     prompt_ru: "Ночью было очень холодно."
     prompt_uk: "Уночі було дуже холодно."
@@ -80,7 +84,10 @@ items:
     outcomes: [wetter-beschreiben]
     type: translate
     focus: es-unpersoenlich
-    key_tokens: ["hat", "geschneit"]
+    revision: 2
+    # rev 2: hat + geschneit never pinned es, so a dropped es — the competence — went unattributed,
+    # while a haben/sein slip was logged under this tag. Pinned now: es alone.
+    key_tokens: ["es"]
     instruction:
       en: "Use the Perfekt."
       ru: "Используйте Perfekt."
@@ -92,6 +99,9 @@ items:
     accept:
       - "Es hat letzten Winter eine ganze Woche geschneit."
       - "Im letzten Winter hat es eine ganze Woche geschneit."
+      - "Letzten Winter hat es eine ganze Woche lang geschneit."
+      - "Es hat letzten Winter eine ganze Woche lang geschneit."
+      - "Im letzten Winter hat es eine ganze Woche lang geschneit."
     explain:
       en: "The perfect puts the empty subject in its least visible position — between *hat* and the participle at the end, *hat es … geschneit* — and it is still obligatory there. *Schneien* takes *haben*, not *sein*: it reports weather happening rather than anything changing place, so the *sein* rule for movement verbs does not reach it. The time phrase *letzten Winter* stands in the accusative with no preposition, and *im letzten Winter* is the heavier alternative rather than a correction."
       ru: "Перфект ставит пустое подлежащее в наименее заметную позицию — между *hat* и причастием в конце, *hat es … geschneit*, — и там оно по-прежнему обязательно. *Schneien* берёт *haben*, а не *sein*: он сообщает о погоде, а не о перемещении, поэтому правило *sein* для глаголов движения сюда не дотягивается. Обстоятельство *letzten Winter* стоит в винительном падеже без предлога, а *im letzten Winter* — не исправление, а более тяжёлый вариант."

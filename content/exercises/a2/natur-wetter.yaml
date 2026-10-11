@@ -92,6 +92,7 @@ items:
   - id: table-wortarten
     outcomes: [wetter-beschreiben]
     type: table
+    revision: 2
     title: "Ein Wetter, drei Wortarten"
     instruction:
       en: "Complete the row: the noun with its article, the adjective, and the whole sentence with the verb."
@@ -117,7 +118,8 @@ items:
       - label: "Wolke"
         cells:
           - { answer: "die Wolke" }
-          - { answer: "bewölkt" }
+          # given: wolkig is equally correct (heiter bis wolkig), and a cell takes one answer.
+          - { answer: "bewölkt", given: true }
           - { answer: "—", given: true }
     explain:
       en: "The table is one question asked four times: which word classes does this weather actually have? Snow has no adjective of its own, and wind and cloud have no verb — the gaps are as much a fact about the word as the forms are. Sun is the row that breaks the pattern: its sentence is *Die Sonne scheint*, with a real subject and an ordinary verb, so it is the one weather sentence in this topic that needs no placeholder at all."
