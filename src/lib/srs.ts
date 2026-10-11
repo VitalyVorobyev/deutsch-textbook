@@ -1,6 +1,7 @@
 /** FSRS scheduling and deck building. */
 import { createEmptyCard, fsrs, type Card, type Grade } from 'ts-fsrs';
 import type { VocabEntry, WordField, Wortnetz } from '@da/schema';
+import { shownHeadword } from '@da/schema/headword';
 import { shuffle } from './shuffle';
 import { localDateString } from './local-date';
 import type { StoredCard } from './store';
@@ -40,6 +41,10 @@ export interface CardDef {
   ipa?: string;
   /** display form with article/plural for nouns, aux+partizip for verbs */
   deDetail?: string;
+  /** The headword as the learner reads it, present only where it differs from `de`:
+      `sich gewöhnen` for the Wortliste key `gewöhnen` (`shownHeadword`, @da/schema/headword).
+      Display and speech only — `de` stays the identity and the grading target. */
+  deShown?: string;
   exampleDe: string;
   exampleEn: string;
   exampleRu: string;
@@ -109,8 +114,13 @@ export function wordFieldContexts(fields: WordField[]): LexicalContextMap {
 }
 
 /** Cross-topic network relations shown on an existing card's answer side.
-    Receptive members remain context only: this function never builds cards. */
-export function wortnetzContexts(networks: Wortnetz[]): LexicalContextMap {
+    Receptive members remain context only: this function never builds cards.
+    `shown` (`shownHeadwordIndex`) prints a card target as the learner reads it —
+    `sich gewöhnen`, not the key `gewöhnen`. */
+export function wortnetzContexts(
+  networks: Wortnetz[],
+  shown: ReadonlyMap<string, string> = new Map(),
+): LexicalContextMap {
   const contexts: LexicalContextMap = {};
   for (const network of networks) {
     const members = new Map(network.members.map((member) => [member.id, member]));
@@ -119,7 +129,10 @@ export function wortnetzContexts(networks: Wortnetz[]): LexicalContextMap {
       const target = members.get(relation.to);
       if (!source || source.kind !== 'card' || !target) continue;
       const key = lexicalKey(source.ref.deck, source.ref.de);
-      const targetDe = target.kind === 'card' ? target.ref.de : target.de;
+      const targetDe =
+        target.kind === 'card'
+          ? (shown.get(lexicalKey(target.ref.deck, target.ref.de)) ?? target.ref.de)
+          : target.de;
       const entry: LexicalContext = {
         type: relation.type,
         de: targetDe,
@@ -168,9 +181,11 @@ export function buildDeck(
 ): CardDef[] {
   const cards: CardDef[] = [];
   for (const e of entries) {
+    const shown = shownHeadword(e);
     const base = {
       deckId,
       de: e.de,
+      deShown: shown === e.de ? undefined : shown,
       en: e.en,
       enCompact: e.en_compact,
       ru: e.ru,

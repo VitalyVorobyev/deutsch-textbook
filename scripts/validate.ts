@@ -12,6 +12,7 @@ import { createHash } from 'node:crypto';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
 import { z } from 'zod';
+import { reflexivityDeclared } from '@da/schema/headword';
 import {
   atlasSchema,
   exerciseSetSchema,
@@ -265,10 +266,10 @@ function checkIpa(where: string, e: VocabEntry): void {
 // otherwise print the same Perfekt). Reflexivity counts as declared when the
 // headword carries `sich` or the valence leads with it; a verb whose valence
 // offers both readings ("+ Akk / sich") is genuinely dual and stays bare.
+// `reflexivityDeclared` is the same function that decides the learner sees
+// `sich gewöhnen` for the key `gewöhnen`, so the two cannot disagree.
 function checkReflexiveForms(where: string, e: VocabEntry): void {
-  if (e.pos !== 'verb') return;
-  const declared = /^sich\s/.test(e.de) || /^sich\b/.test(e.valence ?? '');
-  if (!declared) return;
+  if (!reflexivityDeclared(e)) return;
   for (const [field, value] of [
     ['praesens_3sg', e.praesens_3sg],
     ['partizip2', e.partizip2],

@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { withBase } from '../../lib/url';
+import { shownHeadword } from '@da/schema/headword';
 
 // Derived at build time from the vocab decks: this table is generated from the
 // same YAML that builds the flashcards, so the forms here cannot drift from the
@@ -9,6 +10,9 @@ import { withBase } from '../../lib/url';
 const vocab = await getCollection('vocab');
 
 interface VerbRow {
+  /** the raw key — sorts the table, so no row moves */
+  key: string;
+  /** the infinitive as printed: `sich gewöhnen` for the key `gewöhnen` */
   de: string;
   ipa?: string;
   praesens_3sg?: string;
@@ -25,7 +29,8 @@ const verbs: VerbRow[] = vocab.flatMap((v) =>
   v.data.entries
     .filter((e) => e.pos === 'verb')
     .map((e) => ({
-      de: e.de,
+      key: e.de,
+      de: shownHeadword(e),
       ipa: e.ipa,
       praesens_3sg: e.praesens_3sg,
       partizip2: e.partizip2,
@@ -46,7 +51,7 @@ const byLevel = [...new Set(verbs.map((v) => v.level))]
   .sort()
   .map((level) => ({
     level,
-    rows: verbs.filter((v) => v.level === level).sort((a, b) => a.de.localeCompare(b.de, 'de')),
+    rows: verbs.filter((v) => v.level === level).sort((a, b) => a.key.localeCompare(b.key, 'de')),
   }));
 ---
 

@@ -15,11 +15,11 @@ import ProgressLoadError from '../ProgressLoadError';
 import { cardMeaning, getCardInputMode, pick, setCardInputMode, type CardInputMode } from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import {
-  articledForm,
-  checkTypedAnswer,
+  checkCardAnswer,
   diffExpected,
   GERMAN_INPUT_KEYS,
   normalizeTyped,
+  shownAnswer,
   type AnswerVerdict,
 } from '../../lib/typing';
 import { SLOW_RATE, speakGerman, ttsAvailable } from '../../lib/speech';
@@ -183,7 +183,7 @@ export default function FlashcardSession({
   // play once (iOS unlocks speechSynthesis on the first user-gesture speak).
   useEffect(() => {
     if (listening && verdict === null && card && hasPlayedManually.current) {
-      speakGerman(articledForm(card.de, card.gender));
+      speakGerman(shownAnswer(card));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card?.id, listening, verdict === null]);
@@ -247,8 +247,10 @@ export default function FlashcardSession({
     );
   }
 
-  // Nouns are shown and must be answered WITH their article ("der Apfel").
-  const answerDe = articledForm(card.de, card.gender);
+  // Nouns are shown and must be answered WITH their article ("der Apfel"); a reflexive verb
+  // keyed bare is shown with its pronoun ("sich gewöhnen"). Shown, spoken and diffed against —
+  // but `check()` grades against the raw key plus `accept` (checkCardAnswer).
+  const answerDe = shownAnswer(card);
   // The meaning side: compact EN plus the explanation-language gloss when one
   // exists; otherwise full EN. `en · ru` today, `en · uk` where a wave authored
   // it, EN alone under 'uk' without a gloss and always under 'de'.
@@ -314,7 +316,7 @@ export default function FlashcardSession({
 
   function check() {
     if (!card) return;
-    setVerdict(checkTypedAnswer(typed, articledForm(card.de, card.gender), card.pos, card.accept));
+    setVerdict(checkCardAnswer(typed, card));
   }
 
   function insertChar(ch: string) {

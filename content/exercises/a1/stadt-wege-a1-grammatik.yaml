@@ -28,20 +28,30 @@ items:
     answer: "Gehen Sie geradeaus und dann links."
     key_tokens: ["Gehen", "Sie"]
     explain: { en: "The polite imperative keeps the infinitive-looking verb and places Sie directly after it: Gehen Sie …", ru: "Вежливый Imperativ сохраняет форму, похожую на инфинитив, а Sie ставится сразу после глагола: Gehen Sie …", uk: "Ввічливий Imperativ зберігає форму, схожу на інфінітив, а Sie стоїть одразу після дієслова: Gehen Sie …" }
+  # Revision 2 (2026-10-11): the key read `Geh!` / `Geht!` / `Gehen Sie!`, and nothing said whether
+  # to write a bare form or a command. The grader strips the `!` but keeps case, so `geh / geht`
+  # — the right forms — scored wrong twice. Keys are now the forms in lowercase, which accepts
+  # `geh`, `Geh` and `Geh!` alike; the instruction says what to write, as `table-imperativ` in
+  # a2/gesundheit-arzttermin does. `gehen` alone for Sie stays wrong: that is the grammar.
   - id: imperativ-drei-formen
     type: table
+    revision: 2
     outcomes: [stadt-wegbeschreibung-geben]
     target_mode: writing
     focus: imperativ-form
     title: "Imperativ: gehen"
-    columns: ["Form"]
+    instruction:
+      en: "Write the imperative of gehen for each person — only the verb form, with Sie where it belongs."
+      ru: "Напишите императив глагола gehen для каждого лица — только глагольную форму, с Sie там, где оно нужно."
+      uk: "Напишіть імператив дієслова gehen для кожної особи — лише дієслівну форму, із Sie там, де воно потрібне."
+    columns: ["Imperativ"]
     rows:
       - label: "du"
-        cells: [{ answer: "Geh!" }]
+        cells: [{ answer: "geh" }]
       - label: "ihr"
-        cells: [{ answer: "Geht!" }]
+        cells: [{ answer: "geht" }]
       - label: "Sie"
-        cells: [{ answer: "Gehen Sie!" }]
+        cells: [{ answer: "gehen Sie" }]
     explain: { en: "For du, remove -st and the pronoun; ihr uses the ordinary ihr-form without the pronoun; the polite form is infinitive + Sie.", ru: "Для du уберите -st и само местоимение; ihr совпадает с обычной формой без местоимения; вежливая форма — инфинитив + Sie.", uk: "Для du приберіть -st і сам займенник; ihr збігається зі звичайною формою без займенника; ввічлива форма — інфінітив + Sie." }
   - id: regel-darf-nicht
     type: translate
