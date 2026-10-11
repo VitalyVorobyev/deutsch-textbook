@@ -11,6 +11,17 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.16] — 2026-10-11
+
+### Fixed
+
+- **Leben verändern (B1.2), checked end to end.** Seven exercises and delayed checks accept correct
+  answers they rejected: *günstigere* or *preiswertere* for "cheaper", other word orders, *unserer
+  früheren Wohnung*, *Freundinnen* and *Kolleginnen*, *Kinds* beside *Kindes*, and *mit der* for
+  "the doctor I have the appointment with". One exercise let *Wohnungs* through as a typo, though a
+  feminine noun never takes that *-s*. It now marks it wrong. The Russian and Ukrainian
+  explanations no longer say German never compares with *mehr*.
+
 ## [0.6.15] — 2026-10-11
 
 ### Fixed
