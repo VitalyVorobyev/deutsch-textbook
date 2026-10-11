@@ -1,8 +1,6 @@
 # The content graph, the packages, and Redaktion
 
-*Written 2026-08-14, when the editorial console stopped being a generated file and became an app.*
-
-`CLAUDE.md` carries the rules. This carries the reasoning, and the measurements behind it.
+`CLAUDE.md` carries the rules. This carries the reasoning.
 
 ## Why a graph at all
 
@@ -65,38 +63,22 @@ number, which is the self-certifying-metric failure this repo already keeps a me
 distributional figure is read against the level median the report computes — the
 `grammar-depth.ts` / `comprehensibility.ts` discipline.
 
-The first run produced 265 findings, including 86 “under 8 items”, 50 “under three types” and 48
-“no transfer”. [ADR 0014](../adrs/0014-learning-activity-architecture.md) showed that those three
-classes measured file shape and inferred metadata, not learning quality. After explicit
-classification, content normalization and productive transfer backfill, rerun:
+Checks that measure file shape or inferred metadata rather than learning quality do not belong
+here ([ADR 0014](../adrs/0014-learning-activity-architecture.md)). Reading length is one: it is a
+cognitive-load judgement, so the intensive-reading band is an authoring target that no check holds.
+The queue size is a command, never a figure pasted into this file:
 
 ```sh
 bun run activity:audit
 bun -e 'import {contentGraph} from "@da/content/graph"; import {problems} from "@da/content/profile"; console.log(problems(contentGraph()).length)'
 ```
 
-**The editorial queue is empty (0 findings) as of 2026-08-15**, drained by the A1/A2 grammar waves,
-the DTZ tail slices and the A1/A2 topic-quality audits. Do not paste a queue snapshot back into
-this file — it goes stale silently and then advertises work that is done. Run the one-liner.
-
-Two of the classes that made up the old 81 are worth knowing about, because they were closed by
-different means and only one of them is a content fix:
-
-- `lesetext-umfang` (*intensiver Lesetext außerhalb 90–130 Wörtern*, 17 rows) was **retired, not
-  satisfied**. The check now returns `ok: true` with its reasoning inline: length is a
-  cognitive-load judgement, and a coherent 84-word notice or a purposeful 145-word narrative must
-  not become a defect by arithmetic. `PROBLEM_LABELS` no longer declares it. CLAUDE.md's shipping
-  checklist states the 90–130 band as an authoring target and says plainly that no gate holds it.
-- Everything else — the missing `###` subsections, the untagged probes, the empty `key_tokens` —
-  was closed by editing content.
-
 `deck-ohne-thema` is declared in `PROBLEM_LABELS` and downgraded to `info` in `payload.ts`, but
 nothing in `problems()` emits it. It is a label without a producer.
 
 The activity contract itself is a validator failure: missing purpose/stage/title, a primary that is
-not the unique core, or a topic without productive application cannot ship. `bun run activity:audit`
-currently reports 0 out-of-range core sets and 0 topics without productive application; its 15
-“dichte Themen” rows are editorial notes, not defects.
+not the unique core, or a topic without productive application cannot ship. The “dichte Themen”
+rows of `bun run activity:audit` are editorial notes, not defects.
 
 ## The package boundary, and the leak it is there to stop
 
@@ -115,18 +97,14 @@ an empty object and reported "nothing" rather than failed. `payload.ts` converts
 ## Why the learner app is not under `apps/`
 
 Astro requires its content collections to live under the project root. With content at
-`../../content` the globs resolve and the build then dies in "Rearranging server assets"
-(`Received protocol 'astro:'`) on every MDX outside the root that imports a component; redirecting
-`root` back at the repo produced a build with **zero pages** where there are 222. `content/` is
-shared with the editorial app and belongs at the repo root, so the learner app stays there as the
-workspace root package. Tried and reverted on 2026-08-14; recorded beside the `workspaces` field.
+`../../content` the build dies in "Rearranging server assets" (`Received protocol 'astro:'`) on
+every MDX outside the root that imports a component, and redirecting `root` back at the repo builds
+**zero pages**. `content/` is shared with the editorial app and belongs at the repo root, so the
+learner app stays there as the workspace root package (recorded beside the `workspaces` field).
 
-The attempt was not wasted: declaring workspaces switches Bun from hoisted to isolated linking, and
-two dependencies this repo *uses and never declared* stopped resolving —
-`@typescript-eslint/parser` (without which `astro-eslint-parser` cannot read a `.astro` frontmatter
-at all, so every `.astro` file would have become silently unlinted while `eslint .` stayed green;
-both left with ESLint on 2026-10-10, when Oxlint replaced it) and `vite` (a direct `import type` in
-`progress-writer.ts`).
+Workspaces also switch Bun from hoisted to isolated linking, so a dependency the code uses must be
+declared, or it stops resolving — `vite`, for the direct `import type` in `progress-writer.ts`, is
+one.
 
 ## Redaktion
 

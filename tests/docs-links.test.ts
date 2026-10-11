@@ -15,12 +15,10 @@ function slug(heading: string): string {
 }
 
 describe('documentation links', () => {
-  // Every .md under docs/, recursively, minus two directories:
-  //   archive/         — frozen history; archived files keep the links they shipped with.
-  //   GeotheInstitute/ — gitignored official exam material (ADR 0009). It is absent from a clean
-  //                      checkout and from CI, so a test that saw it locally would be a test that
-  //                      only ever failed on one machine.
-  const excluded = [`archive${sep}`, `GeotheInstitute${sep}`];
+  // Every .md under docs/, recursively, minus GeotheInstitute/: gitignored official exam material
+  // (ADR 0009), absent from a clean checkout and from CI, so a test that saw it locally would be a
+  // test that only ever failed on one machine.
+  const excluded = [`GeotheInstitute${sep}`];
   const activeDocs = (readdirSync(join(root, 'docs'), { recursive: true }) as string[])
     .filter((name) => name.endsWith('.md') && !excluded.some((dir) => name.startsWith(dir)))
     .map((name) => join(root, 'docs', name));
@@ -86,5 +84,22 @@ describe('documentation links', () => {
       .map((doc) => relative(root, doc));
 
     expect(orphans).toEqual([]);
+  });
+
+  // A developer doc states the current contract, queue or procedure; history lives in `git log`
+  // (docs/README.md). The two shapes history took here were an archive directory and dated
+  // pass-log headings ("### 2026-07-19 — case cluster (batch 1)"), and both grew back unnoticed
+  // because nothing asked. ADRs are exempt: a decision record is dated by nature.
+  test('developer docs keep no history', () => {
+    expect(existsSync(join(root, 'docs', 'archive'))).toBe(false);
+    const dated = files
+      .filter((file) => !relative(root, file).startsWith(`docs${sep}adrs${sep}`))
+      .flatMap((file) =>
+        readFileSync(file, 'utf8')
+          .split('\n')
+          .filter((line) => /^#{1,6}\s.*\b20\d\d-\d\d-\d\d\b/.test(line))
+          .map((line) => `${relative(root, file)}: ${line}`),
+      );
+    expect(dated).toEqual([]);
   });
 });

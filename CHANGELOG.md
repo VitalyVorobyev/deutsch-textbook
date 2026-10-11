@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to Deutsch-Atlas are recorded here. The format follows
+What changed for the people who use Deutsch-Atlas, release by release. An entry says what a
+learner sees or can now do; a release that changes only tooling gets one plain line. How things
+work inside belongs in the developer documentation, not here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [semantic versioning](https://semver.org/spec/v2.0.0.html).
 

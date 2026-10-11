@@ -172,9 +172,9 @@ validator says so.
   1–4 words per language; *Herz* is "heart · сердце", not "the organ in the chest that pumps and
   beats faster when you run". A definitional gloss breaks both card directions at once: as the
   production prompt it makes the learner solve a riddle before retrieving the German, and as the
-  recognition answer it withholds the one word the card exists to anchor. The B1 lexis waves
-  shipped ~990 such glosses across 31 decks before the learner said so (2026-08-26) — no gate saw
-  it, because every entry was schema-valid. A short **disambiguating parenthetical** is allowed
+  recognition answer it withholds the one word the card exists to anchor. No schema check sees a
+  definitional gloss; `bun scripts/gloss-shape.ts` measures it. A short **disambiguating
+  parenthetical** is allowed
   only where two shipped cards would otherwise share a production prompt (the P22-11
   `Angebot`/`Sonderangebot` hazard — `bun scripts/gloss-shape.ts` reports same-deck collisions),
   and it still must not contain the German answer. Everything the definition was trying to teach
