@@ -21,10 +21,13 @@ title:
 # appear, which is what the learner should check in their own draft.
 items:
   - id: uebersetzen-wetterbericht
-    outcomes: [wetter-beschreiben, wetter-vergleichen]
+    outcomes: [wetter-beschreiben]
     type: translate
     focus: es-unpersoenlich
-    key_tokens: ["es", "warm"]
+    revision: 2
+    # rev 2: warm was pinned, so *warmes* and *heiß* were logged as es-unpersoenlich; and the
+    # item compares nothing, so it no longer claims wetter-vergleichen.
+    key_tokens: ["war", "es"]
     instruction:
       en: "Start with the time word."
       ru: "Начните со слова, называющего время."
@@ -42,11 +45,12 @@ items:
     outcomes: [wetter-beschreiben]
     type: translate
     focus: es-unpersoenlich
+    revision: 2
     key_tokens: ["wurde", "es"]
     instruction:
-      en: "The weather changed, so use werden rather than sein."
-      ru: "Погода изменилась, поэтому используйте werden, а не sein."
-      uk: "Погода змінилася, тому використайте werden, а не sein."
+      en: "The weather changed: use werden in the Präteritum, and start with the time phrase."
+      ru: "Погода изменилась: используйте werden в Präteritum и начните с обстоятельства времени."
+      uk: "Погода змінилася: використайте werden у Präteritum і почніть з обставини часу."
     prompt_en: "After the thunderstorm it got noticeably cooler."
     prompt_ru: "После грозы стало заметно прохладнее."
     prompt_uk: "Після грози стало помітно прохолодніше."
@@ -61,6 +65,7 @@ items:
   - id: uebersetzen-landschaft
     outcomes: [landschaft-beschreiben]
     type: translate
+    revision: 2
     key_tokens: ["Bäume", "Vögel"]
     instruction:
       en: "Both nouns are plural."
@@ -72,6 +77,11 @@ items:
     answer: "Hinter dem Haus stehen alte Bäume, und in ihnen leben Vögel."
     accept:
       - "Hinter dem Haus stehen alte Bäume, und Vögel leben in ihnen."
+      # "there are" invites gibt es; darin is the usual pronoun for things.
+      - "Hinter dem Haus stehen alte Bäume, und darin leben Vögel."
+      - "Hinter dem Haus gibt es alte Bäume, und in ihnen leben Vögel."
+      - "Hinter dem Haus gibt es alte Bäume, und darin leben Vögel."
+      - "Hinter dem Haus gibt es alte Bäume, und Vögel leben in ihnen."
     explain:
       en: "Both plurals change their vowel, which is the part worth pinning: *der Baum → die Bäume*, *der Vogel → die Vögel*. Neither adds a syllable you can hear coming, so they have to be learned as forms rather than derived. *Alte* takes the bare plural ending because no article precedes it, and *hinter* is answering *Wo?*, so the dative *dem Haus* follows."
       ru: "Обе формы множественного числа меняют гласную — это и есть то, что здесь закрепляется: *der Baum → die Bäume*, *der Vogel → die Vögel*. Ни одна не добавляет слога, который можно было бы предугадать, поэтому их учат как формы, а не выводят. *Alte* берёт окончание множественного числа без артикля, а *hinter* отвечает на *Wo?*, поэтому дальше дательный: *dem Haus*."

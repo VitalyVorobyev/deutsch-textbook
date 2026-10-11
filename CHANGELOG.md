@@ -11,6 +11,21 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.15] — 2026-10-11
+
+### Fixed
+
+- **Natur & Wetter (A2), checked end to end.** The delayed check and one exercise graded the
+  adjective instead of *es*. So *kaltes* or *heiß* counted as forgetting *es*, while a sentence
+  that actually dropped *es* was not counted as that mistake. Both now grade *es*. Three
+  exercises accept correct answers they used to reject (*eine ganze Woche lang*, *Hinter dem Haus
+  gibt es alte Bäume*), and the word-family table no longer asks for one specific word where
+  *wolkig* is just as right.
+- **The article no longer overstates its rules.** *Die Sonne scheint* is not the only weather
+  sentence without *es*, and an adjective after *sein* takes no ending. Not every short vowel gets
+  an Umlaut (*trocken → trockener*). *Es gewittert* exists. The *Pflanze* card now names
+  *pflanzen* as its verb.
+
 ## [0.6.14] — 2026-10-11
 
 ### Changed

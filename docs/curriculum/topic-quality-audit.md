@@ -13,7 +13,7 @@ corrected. It is **not** human editorial approval and not a claim about learning
 | Level | Topics | Pass |
 | --- | ---: | --- |
 | A1 | 12 | complete |
-| A2 | 25 | complete, except `natur-wetter` — added after the pass, owed |
+| A2 | 25 | complete |
 | B1 | 20 | in progress — rows below |
 
 An empty derived findings queue is never the stop condition: the A1 and the A2 waves each found
@@ -22,6 +22,16 @@ material defects that no instrument could see.
 **Dense profiles.** Five or more sets on one topic is a review trigger, not a defect. Each set must
 name its own learning activity, stage and decision or medium; a set that cannot is merged or
 removed, even when the topic's item count then falls.
+
+`natur-wetter` (A2, added after the A2 pass): corrected — the probe and one production item
+pinned the adjective instead of *es*, so *kaltes* and *heiß* were logged as the *es* confusion
+while a dropped *es* went unattributed; three items rejected correct German (*eine ganze Woche
+lang*, *gibt es … darin*, a Perfekt or *es*-first rendering the instruction allowed); a table
+cell rejected *wolkig*; a pretest explain named options a translate item does not have; the
+*Pflanze* note gave *gießen* as its verb; the article claimed *die Sonne scheint* is the one
+weather sentence without *es*, that an adjective always needs an ending, that every short vowel
+takes an Umlaut in the comparative, that *Gewitter* has no verb, and (RU) that Russian does not
+separate «чем» and «как». Status stays `draft`.
 
 ## B1
 
