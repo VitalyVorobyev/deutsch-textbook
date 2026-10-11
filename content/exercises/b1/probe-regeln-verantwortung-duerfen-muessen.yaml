@@ -10,6 +10,13 @@
 # Only the modal is pinned: the tag grades the choice, and a fumbled participle or frame
 # error elsewhere stays unattributed — the frame has its own family
 # (probe-regeln-verantwortung.yaml), and this one must not double-charge it.
+# A pin is a string, though, so on its own it charged the tag for any other form in the
+# modal's slot: *Handys darf …* (agreement), *Die Bescheinigung wird nicht nötig gedruckt*
+# (no modal at all), *Man muss nicht das Auto … parken* (the right choice, displaced by an
+# active frame) — all logged as this confusion. Every variant therefore declares
+# focus_evidence: `failed` only when the opposite modal was chosen, `retained` when the
+# right one stands with nicht (brauchen nicht zu, A2's release, counts as the right one),
+# anything else unknown.
 # Verb-plus-noun pairings fresh: Bescheinigung ausgedruckt, Handys benutzt, Auto geparkt
 # appear in no content sentence — checked by grepping ausgedruckt (nowhere in content/),
 # benutzt (pairs Waschmaschine, Hof, Aufzug, Container, Computer — never Handys) and
@@ -54,6 +61,9 @@ items:
     accept:
       - "Eine Bescheinigung muss nicht ausgedruckt werden."
     key_tokens: ["muss"]
+    focus_evidence:
+      failed: ["\\b(darf|dürfen|darfst|dürft)\\b"]
+      retained: ["\\b(muss|müssen|musst|müsst|brauch\\w*)\\b", "\\bnicht\\b"]
     explain:
       en: "\"Does not have to\" names a released duty, and the release is muss nicht — printing stays allowed, just unrequired. darf nicht would forbid it, which no office said. English \"must not\" is the falsest friend of this unit: it forbids, German muss nicht does not. Only the modal is graded; the frame belongs to its own delayed check."
       ru: "«Не обязательно» — снятая обязанность, и снимает её muss nicht: распечатать по-прежнему можно, просто не требуется. darf nicht запретил бы это, чего ведомство не говорило. Дословное «не должен» — самый ложный друг этой главы: звучит как запрет, а запретом не является. Оценивается только модальный глагол; рамка проверяется своей отдельной отложенной проверкой."
@@ -82,6 +92,9 @@ items:
       - "Die Handys dürfen während der Prüfung nicht benutzt werden."
       - "Während der Prüfung dürfen die Handys nicht benutzt werden."
     key_tokens: ["dürfen"]
+    focus_evidence:
+      failed: ["\\b(muss|müssen|musst|müsst)\\b"]
+      retained: ["\\b(darf|dürfen|darfst|dürft)\\b", "\\bnicht\\b"]
     explain:
       en: "\"May not\" marks the ban, and the ban is darf nicht — here plural dürfen, agreeing with Handys. müssen nicht would only announce that nobody requires phone use, a strange exam rule. English \"must not\" says exactly this ban, which is why the hand reaches for müssen — the wrong modal. Agreement and frame stay unpinned on purpose: this family grades the choice alone. Fronting während der Prüfung is equally correct and accepted."
       ru: "«Нельзя» — это запрет, а запрет — darf nicht: здесь во множественном числе dürfen, согласованно с Handys. müssen nicht лишь объявило бы, что пользоваться телефоном не обязательно, — странное правило экзамена. Согласование и рамка намеренно не закреплены: эта семья оценивает только выбор. Вынести während der Prüfung вперёд можно — вариант принимается."
@@ -104,6 +117,9 @@ items:
     accept:
       - "In der Garage muss das Auto nicht geparkt werden."
     key_tokens: ["muss"]
+    focus_evidence:
+      failed: ["\\b(darf|dürfen|darfst|dürft)\\b"]
+      retained: ["\\b(muss|müssen|musst|müsst|brauch\\w*)\\b", "\\bnicht\\b"]
     explain:
       en: "Again the released duty: the garage is allowed, not required, so muss nicht. darf nicht would ban the garage outright and turn a free choice into a prohibition — exactly the reversal a negotiation cannot afford when you restate a rule to the other side. In der Garage is position (wo?), hence dative, and the fronted variant is accepted."
       ru: "Снова снятая обязанность: гараж разрешён, но не требуется — значит muss nicht. darf nicht запретил бы гараж вовсе и превратил бы свободный выбор в запрет — ровно тот переворот, которого нельзя допустить, пересказывая правило другой стороне на переговорах. In der Garage — местоположение (wo?), поэтому Dativ; вариант с вынесенной группой принимается."
