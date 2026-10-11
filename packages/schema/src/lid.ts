@@ -200,9 +200,13 @@ export const lidFigureSchema = z
   .object({
     /** Kebab-case, unique across ALL lessons — `<Figure>` resolves it without knowing the lesson. */
     id: z.string().regex(LID_LESSON_ID),
-    /** Root-absolute public path, ready for `withBase`. */
-    src: z.string().regex(/^\/lid\/[A-Za-z0-9/-]+\.(png|jpe?g|webp)$/),
-    /** The file's pixel size — checked against the file by `bun run validate`. */
+    /**
+     * Root-absolute public path, ready for `withBase`. An `.svg` is a drawing the course made or
+     * adapted; `lidFigureProblems` holds it to carrying no script and no external reference, since
+     * the picture also opens on its own in a new tab.
+     */
+    src: z.string().regex(/^\/lid\/[A-Za-z0-9/-]+\.(png|jpe?g|webp|svg)$/),
+    /** The file's pixel size (an SVG's root `width`/`height`, else its `viewBox`) — checked against the file by `bun run validate`. */
     width: z.number().int().positive(),
     height: z.number().int().positive(),
     alt_de: z.string().min(1),

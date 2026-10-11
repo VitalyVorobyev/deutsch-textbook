@@ -77,8 +77,35 @@ describe('imageDimensions', () => {
     expect(imageDimensions(webp('VP8X', [0x10, 0, 0, 0, 0x83, 0x03, 0x00, 0xd9, 0x02, 0x00]))).toEqual({ width: 900, height: 730 });
   });
 
+  test('SVG: the root width and height when both are pixel lengths, else the viewBox', () => {
+    const svg = (text: string) => imageDimensions(new TextEncoder().encode(text));
+    const NS = 'xmlns="http://www.w3.org/2000/svg"';
+    expect(svg(`<svg ${NS} width="10" height="12"/>`)).toEqual({ width: 10, height: 12 });
+    expect(svg(`<svg ${NS} width='40px' height='30px' viewBox="0 0 4 3">`)).toEqual({ width: 40, height: 30 });
+    expect(svg(`<svg ${NS} viewBox="0 0 360 420">`)).toEqual({ width: 360, height: 420 });
+    expect(svg(`<svg ${NS} viewBox="-5,-5, 200 , 100">`)).toEqual({ width: 200, height: 100 });
+    // One length scales the viewBox, as a browser does for <img>; a relative one counts as absent.
+    expect(svg(`<svg ${NS} width="720" viewBox="0 0 360 420">`)).toEqual({ width: 720, height: 840 });
+    expect(svg(`<svg ${NS} height="210" viewBox="0 0 360 420">`)).toEqual({ width: 180, height: 210 });
+    expect(svg(`<svg ${NS} width="100%" height="100%" viewBox="0 0 360 420">`)).toEqual({ width: 360, height: 420 });
+    // The root may follow an XML declaration, comments and a doctype — and only those.
+    const prologue = '<?xml version="1.0" encoding="UTF-8"?>\n<!-- Karte -->\n<!DOCTYPE svg>\n';
+    expect(svg(`${prologue}<svg ${NS} viewBox="0 0 8 6">`)).toEqual({ width: 8, height: 6 });
+    expect(svg(`<html><svg ${NS} viewBox="0 0 8 6"></svg></html>`)).toBeUndefined();
+  });
+
+  test('an SVG without a readable size is undefined', () => {
+    const svg = (text: string) => imageDimensions(new TextEncoder().encode(text));
+    expect(svg('<svg/>')).toBeUndefined();
+    expect(svg('<svg width="10em" height="5em">')).toBeUndefined();
+    expect(svg('<svg width="10">')).toBeUndefined();
+    expect(svg('<svg viewBox="0 0 0 10">')).toBeUndefined();
+    expect(svg('<svg viewBox="0 0 10">')).toBeUndefined();
+    expect(svg('<svg viewBox="0 0 ten 10">')).toBeUndefined();
+  });
+
   test('anything else is undefined, never a guess', () => {
-    expect(imageDimensions(new TextEncoder().encode('<svg width="10" height="10"/>'))).toBeUndefined();
+    expect(imageDimensions(new TextEncoder().encode('width="10" height="10"'))).toBeUndefined();
     expect(imageDimensions(new Uint8Array([0xff, 0xd8, 0xff]))).toBeUndefined();
     expect(imageDimensions(webp('VP8 ', [0, 0, 0, 0, 0, 0]))).toBeUndefined();
   });
@@ -133,6 +160,8 @@ describe('lidFigureSchema — provenance', () => {
   test('a simulated figure needs no credit, but lives under /lid/lessons/ like every course figure', () => {
     const { attribution: _a, license: _l, license_url: _u, source_url: _s, ...bare } = REAL;
     expect(issues({ ...bare, sourceClass: 'simulated' })).toEqual([]);
+    expect(issues({ ...bare, sourceClass: 'simulated', src: '/lid/lessons/zz-schaubild.svg' })).toEqual([]);
+    expect(issues({ ...bare, sourceClass: 'simulated', src: '/lid/lessons/zz-schaubild.gif' }).length).toBeGreaterThan(0);
     expect(issues({ ...REAL, src: '/lid/zz-flagge.png' }).join('\n')).toContain('a course figure lives under /lid/lessons/');
   });
 
@@ -226,8 +255,47 @@ describe('lidFigureProblems — the cross-file rules', () => {
       'content/lid/lessons/zz.mdx: figure "zz-flagge": /lid/lessons/zz-flagge.png is 6×3, the figure says 5×3',
     ]);
     expect(problems([lesson()], { ...FILES, 'lid/lessons/zz-flagge.png': new TextEncoder().encode('<svg/>') })).toEqual([
-      'content/lid/lessons/zz.mdx: figure "zz-flagge": /lid/lessons/zz-flagge.png has no PNG, JPEG or WebP header to read its size from',
+      'content/lid/lessons/zz.mdx: figure "zz-flagge": /lid/lessons/zz-flagge.png has no PNG, JPEG, WebP or SVG header to read its size from',
     ]);
+  });
+
+  describe('an SVG figure', () => {
+    const SKETCH: LidFigure = { id: 'zz-schaubild', src: '/lid/lessons/zz-schaubild.svg', width: 360, height: 420, alt_de: 'Ein Schaubild', caption, sourceClass: 'simulated' };
+    const svgBody = 'Text.\n\n<Figure id="zz-schaubild" />\n';
+    /** A clean drawing: a marker referenced inside the file, with `extra` added to its body. */
+    const drawing = (extra = '', root = 'viewBox="0 0 360 420"') =>
+      new TextEncoder().encode(
+        `<svg xmlns="http://www.w3.org/2000/svg" ${root}><defs><marker id="m"><path d="M0 0L10 5z"/></marker></defs>` +
+          `<line x1="0" y1="0" x2="9" y2="9" marker-end="url(#m)"/><use href="#m"/>${extra}</svg>`,
+      );
+    const check = (bytes: Uint8Array, figure: LidFigure = SKETCH) =>
+      problems([lesson({ body: svgBody, figures: [figure] })], { 'lid/lessons/zz-schaubild.svg': bytes });
+    const hazard = (what: string) =>
+      `content/lid/lessons/zz.mdx: figure "zz-schaubild": /lid/lessons/zz-schaubild.svg carries ${what} — an SVG figure also opens on its own, so it holds no script and no external reference`;
+
+    test('is sized by its viewBox, and references inside the file are fine', () => {
+      expect(check(drawing())).toEqual([]);
+      expect(check(drawing('', 'width="720" height="840" viewBox="0 0 360 420"'))).toEqual([
+        'content/lid/lessons/zz.mdx: figure "zz-schaubild": /lid/lessons/zz-schaubild.svg is 720×840, the figure says 360×420',
+      ]);
+    });
+
+    test('carries no script, handler, embedded HTML or reference outside the file', () => {
+      expect(check(drawing('<script>alert(1)</script>'))).toEqual([hazard('<script>')]);
+      expect(check(drawing('<rect onclick="x()"/>'))).toEqual([hazard('an event handler (on…=)')]);
+      expect(check(drawing('<a href="javascript:void(0)"><text>x</text></a>'))).toEqual([
+        hazard('a javascript: URL'),
+        hazard('an href outside the file'),
+      ]);
+      expect(check(drawing('<foreignObject><div>x</div></foreignObject>'))).toEqual([hazard('<foreignObject>')]);
+      expect(check(drawing('<image xlink:href="https://example.org/x.png"/>'))).toEqual([hazard('an href outside the file')]);
+      expect(check(drawing('<rect style="fill:url(https://example.org/p.svg#a)"/>'))).toEqual([hazard('a url() outside the file')]);
+      expect(check(drawing('<style>@import "x.css";</style>'))).toEqual([hazard('an @import')]);
+    });
+
+    test('a raster figure is not read as SVG text', () => {
+      expect(problems([lesson()], { ...FILES, 'lid/lessons/zz-flagge.png': png(5, 3, 64) })).toEqual([]);
+    });
   });
 
   test(`a file over ${LID_FIGURE_MAX_BYTES / 1000} KB is refused; one at the ceiling is not`, () => {
