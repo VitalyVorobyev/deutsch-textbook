@@ -14,7 +14,7 @@ New topic — a topic is not done until every line here is:
    the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
    is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
    `status: reviewed`.
-1. `content/topics/<level>/<id>.mdx` with full frontmatter + article following the skeleton.
+1. `content/topics/<level>/<id>.topic.yaml` — the manifest — and `<id>.mdx` beside it: the article following the skeleton, prose only, no frontmatter ([ADR 0012](../adrs/0012-topic-manifests.md)).
 2. Learning activities in `content/exercises/<level>/` — every topic has exactly one
    `role: practice`, `activity: core`, `stage: geruest` Grundübung of 8–15 items, named explicitly by
    `primary_practice`; and at least one productive `activity: application`, `stage: transfer` in a
@@ -25,17 +25,17 @@ New topic — a topic is not done until every line here is:
    score. Compatibility with a test profile never justifies a pedagogically incoherent set.
 3. Pretest in `content/exercises/<level>/<id>-pretest.yaml` — 3 `mc` items probing the topic's core rules, referenced via `pretest`.
 4. Probe family in `content/exercises/<level>/probe-<id>.yaml` — `role: probe`, 3 **parallel variants**: different tasks, **one competence**. Never listed in `exercises`. Two rules, both validator-enforced, and both easy to get wrong in a way that looks fine:
-   - **All three variants carry the same `focus` and the same `outcomes`.** `dueProbe` serves one unused variant per interval, so variants that test *different* things measure each of them exactly once, at exactly one delay — and a retention curve needs the same competence at several delays. There is then nothing to compare, and the number that comes out looks like retention without being it. (The original sixteen families shipped this way and had to be rewritten.) A topic with two competences worth delayed evidence owns two families, not one family with two kinds of item.
+   - **All three variants carry the same `focus` and the same `outcomes`.** `dueProbe` serves one unused variant per interval, so variants that test *different* things measure each of them exactly once, at exactly one delay — and a retention curve needs the same competence at several delays. There is then nothing to compare, and the number that comes out looks like retention without being it. A topic with two competences worth delayed evidence owns two families, not one family with two kinds of item.
    - **A variant may not be answerable from memory of a practice item** — that measures recognition of the item, not retention. Write each against the topic's existing answer keys: new people, new situation, new lexis, same rule.
    **One family probes one competence; a topic may own several families** (`probe-<topic>-<competence>.yaml` beside the plain `probe-<topic>.yaml`). Start with the thing the lesson is *about* — a topic's other outcomes get their evidence from practice, which is where outcome mastery comes from anyway. A second family is worth authoring for one of two reasons, and both are measured, not assumed: to probe a competence the topic teaches but nothing checks after a delay, or to give an already-probed competence a **second response format**, since one family serves one variant per interval and so caps at three attempts, ever — below the readability floor the retention gate applies.
 
    Two hazards specific to a *second* family, neither of which the validator can see:
    - **Type decides what a format can grade.** A `cloze` gap grades a **form**, never a **position** — the slot is given, so the learner cannot put the word anywhere else. So `verbzweit`, `nicht-position`, `modal-satzklammer` and the other placement tags cannot get a cloze twin at all; their second family must probe a different (form) competence. `cloze` is otherwise the best second format: it is always attributed, because the gap *is* the graded token, so a miss cannot land in the "target retained, sentence missed elsewhere" bucket that a `translate` probe produces.
-   - **Adding a second family no longer re-arms the topic — but measure it anyway.** Every family commits its own explicit `arming:` list and `probeFamilies` reads nothing else — `armingItemKeys: [...(s.arming ?? [])]` in `src/lib/probes.ts`, with no `armingSetIds`, no `shared` flag and no set-membership fallback. A new family cannot touch an old one's clock, because that clock is a literal list in the old family's own YAML. It used to be able to, and the damage was silent: `probeResults` re-labelled probes already taken, filing a 4-day retention result as a 1-day one. **Still capture `armedAt` before and after**, because a source reading is not a measurement.
+   - **A second family never re-arms the topic — but measure it anyway.** Every family commits its own explicit `arming:` list and `probeFamilies` reads nothing else (`armingItemKeys: [...(s.arming ?? [])]`, `src/lib/probes.ts`), so a new family cannot touch an old one's clock. **Still capture `armedAt` before and after**, because a source reading is not a measurement.
 5. Reading text in `content/reading/<level>/<id>.yaml` — `kind: intensive`, normally ~90–130 words at the topic's level, 6–10 glosses, 3 comprehension questions; referenced via `reading`. The word band is a **tripwire, never a pass/fail requirement**: review purpose, coherence, input load, glosses and questions by hand, and keep a shorter or longer text when every sentence earns its place. Redaction displays the measured count but does not create a finding from it. An extensive reader is a *different artifact* (`kind: extensive`, 250–400 words, ≤2 questions, ~1 gloss per 40 words) and is meant to be read straight through.
 6. Vocab file if the topic introduces a word field (20–40 entries; A2 units are thinner — see below). Fill `ipa` with `bun run gen:ipa`, then review it against [`docs/authoring/lautschrift.md`](lautschrift.md) — the generator is weakest exactly on compounds, separable verbs and loanwords.
-7. Add the node (with 2–4 can-do `outcomes`) and its unit slot to `content/atlas.yaml`. **Every outcome must be referenced by at least one item in a `role: practice` or `role: drill` set, or by at least one reading question** (validator-enforced). Pretests, checkpoints and probes deliberately do not count: a pretest is a guess taken *before* the lesson, and a checkpoint or probe *tests* an outcome rather than teaching it — an outcome that is only ever tested was never practised. An outcome nothing measures can never light up, and a probe on it can never arm.
-8. New `focus` tags registered in the table above **and** in `focusIntroducedBy` (`packages/content/src/focus-tags.ts`).
+7. Add the unit slot to `content/atlas.yaml`, and 2–5 can-do `outcomes` to the manifest. **Every outcome must be referenced by at least one item in a `role: practice` or `role: drill` set, or by at least one reading question** (validator-enforced). Pretests, checkpoints and probes deliberately do not count: a pretest is a guess taken *before* the lesson, and a checkpoint or probe *tests* an outcome rather than teaching it — an outcome that is only ever tested was never practised. An outcome nothing measures can never light up, and a probe on it can never arm.
+8. New `focus` tags registered in [`focus-tags.md`](focus-tags.md) **and** in `focusIntroducedBy` (`packages/content/src/focus-tags.ts`).
 9. `bun run validate` must pass.
 
 **A2 vocabulary — recycle, never adopt.** The lexical fields are largely spent: twenty-five decks own 711 headwords, and the validator hard-fails a headword that appears in two of them. Eleven decks are deliberately *unowned* (the Goethe-A1 Wortliste completion decks); they gate their fresh cards on the learner's level rather than on a topic. Listing one of them in a new A2 topic's `vocab:` would flip that gate to "this A2 topic has been opened" and push hundreds of A1 words behind A2. So an A2 unit **recycles** the A1 field deck in its article, reading and exercises, and **owns one thin new `level: A2` deck** (12–24 entries) of language no deck already teaches — the genuinely A2 words plus the chunks that carry the function. Receptive-only language (announcements, listing abbreviations, form headings) belongs in readings and article tables, never in a deck: every vocab entry becomes *two* cards, so a deck cannot teach for recognition alone.
@@ -59,7 +59,25 @@ Each topic implements **pretest → model → explanation → scaffold → fade 
    a wrong probe attempt raises its focus tag's `weakFocuses` error rate like any
    other attempt, on purpose (docs/adrs/0010-probe-failure-remediation.md).
 
-Drills from progress (the personalization loop):
+## Decision rules
+
+What a progress read may and may not trigger:
+
+- Repeated plausible rejected German triggers answer-key review, not automatic acceptance.
+- **No rendering joins `accept` merely because it is grammatical in isolation.** The strongest-looking
+  candidates usually change definiteness (`den` → `einen`), communicative meaning (`wo ist` →
+  `wie komme ich`) or assert a narrower physical state (`ist` → `steht`). Revisit a rejected
+  rendering only when a new, revision-matched attempt supplies evidence.
+- A drill requires errors across multiple items plus recent or probe evidence.
+- Two failures on one competence or confusion trigger lesson or drill review; one triggers
+  inspection.
+- Two productive-direction (`x-de`) lapses on one lexeme trigger review of its forms, contrast and
+  context.
+- Optional content, document viewing, reference lookup and receptive Wortfeld entries never become
+  mastery evidence or cards.
+
+## Drills from progress (the personalization loop)
+
 1. Run `bun run progress:audit --profile <slug>` — **never Read the raw snapshot**; the files run 300 KB+ and the audit already aggregates everything below (folders are named after the learner's chosen profile; the historical folder here is `progress/vitaly/`). Attempts carry a `focus` tag — the audit's focus-signal table applies the `weakFocuses` logic (`src/lib/weakness.ts`: last ~30 attempts per focus, weak = ≥4 attempts and ≥35% errors) and its lapse tables surface cards with high `lapses`. Use `--item <set-id>:<item-id>` for focused evidence on one item. The full procedure, including the triage-first rule, is the `progress-review` skill.
 2. Diagnose via the weak focus tags, not individual failed items — the tag names the confusion (e.g. `haben-sein`, `dativ-pronomen`). For untagged failures, infer the confusion from `given` vs the answer key.
 3. Write a drill set targeting that confusion; give every drill item the matching `focus` tag (so future snapshots keep measuring it) and attach the set to the relevant topic's `exercises` list.

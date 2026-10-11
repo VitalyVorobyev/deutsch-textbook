@@ -1,8 +1,7 @@
 # Runtime contracts
 
 Status: active engineering checklist. [design.md](../design.md) is the system map; `CLAUDE.md` owns
-authoring rules. Historical failures and extended rationale are
-[archived](../archive/2026-07-runtime-contracts-full.md).
+authoring rules.
 
 | Contract | Source of truth | Required companion checks |
 | --- | --- | --- |
@@ -79,9 +78,9 @@ authoring rules. Historical failures and extended rationale are
   A read that *rejects* is not retried; only silence is. A surface making a claim about progress
   renders `ProgressLoadError` with a retry; a badge or counter renders an explicit unknown, never
   a confident `0`. Two supporting rules: **nothing may sit between `getStore()` and its handle** —
-  the A1 card-id migration used to be awaited there and hung the page from behind a 784 KB read;
-  it now has one owner (`PersistenceAlert`, once per launch) and runs behind
-  `da:cardid-migrated:<profileId>`, set only on success —
+  a migration awaited there hangs every page behind a full-blob read, so the card-id migration has
+  one owner (`PersistenceAlert`, once per launch) and runs behind `da:cardid-migrated:<profileId>`,
+  set only on success —
   and **a repair that rewrites a whole blob commits in one `update()`**, never a `get` then a
   `set`, or it drops the grade written in between.
 - **No snapshot writer ever shrinks an existing snapshot file.** All three hold it the same way —

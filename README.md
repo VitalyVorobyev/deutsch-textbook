@@ -74,7 +74,8 @@ browser.
 local — an account only adds a copy of your progress in the cloud so a second
 device can pick it up. New accounts are approved by hand, so if you sign in and
 are told your account is waiting, keep going: everything is saved on your device
-and uploads once it is approved.
+and uploads once it is approved. Connecting the desktop app, and the rest of
+account handling, is in the [accounts guide](docs/apps/accounts.md).
 
 **Or install it on your phone** — it is a Progressive Web App, so the same URL
 installs to the home screen on iOS (Safari → Share → *Zum Home-Bildschirm*) and
@@ -119,47 +120,10 @@ Import merges by default, so nothing is overwritten without asking.
 
 ## Development
 
-Project documentation is indexed in [`docs/README.md`](docs/README.md); authoring agents start with
-[`CLAUDE.md`](CLAUDE.md).
-
-Deutsch-Atlas is a static [Astro](https://astro.build) site with React islands,
-Tailwind CSS, and a thin [Tauri v2](https://tauri.app) shell for the desktop
-build; all content lives in the repo as MDX and YAML, validated against Zod
-schemas. Bun is the package manager and task runner.
-
-| Command | What it does |
-| --- | --- |
-| `bun run dev` | dev server |
-| `bun run validate` | validate all content against schemas and cross-references |
-| `bun test` | domain regression tests |
-| `bun run check` | type-check (`astro check`) |
-| `bun run lint` | Oxlint over the whole repo (`.oxlintrc.json`) |
-| `bun run build` | static production build |
-| `bun run review:gate` | require green CI, resolved review threads and no outstanding change request — it waits for no reviewer |
-| `bun run gen:ipa` | fill missing Lautschrift on vocabulary entries (needs `espeak-ng`) |
-| `bun scripts/coverage.ts A1` | Goethe Wortliste coverage report (`A1`, `A2` or `B1`) |
-| `bun scripts/grammar-coverage.ts A1` | structural coverage against the grammar inventory (`A1`, `A2` or `B1`) |
-| `bun tauri dev` / `bun tauri build` | desktop app (needs a [Rust toolchain](https://rustup.rs)) |
-
-Two more applications live in this repository, each with a guide of its own in
-[`docs/apps/`](docs/apps/README.md): **Redaktion** (`bun run redaktion`), the editorial workbench
-that reads and edits the corpus with the content graph beside it, and **Tonwerk**
-(`bun run tonwerk`), the studio where the listening audio is written, rendered, checked and
-approved. Tonwerk drives a local Python render engine; it publishes only reviewed WAV, exercise and
-provenance artifacts and never handles learner data.
-
-Before opening a pull request, run the complete gate — the same one CI runs:
-
-```sh
-bun run validate
-bun test
-bun run check
-bun run lint
-bun run build
-```
-
-Content authoring rules — bilingual voice, CEFR discipline, exercise and IPA
-conventions — are in [CLAUDE.md](CLAUDE.md).
+Changing the app or writing content starts at [`CLAUDE.md`](CLAUDE.md); [`docs/README.md`](docs/README.md)
+maps every developer document. Two more applications live in this repository, each with a user
+guide in [`docs/apps/`](docs/apps/README.md): **Redaktion**, the editorial workbench, and
+**Tonwerk**, the studio where the listening audio is made and approved.
 
 Deutsch-Atlas is AI-assisted, human-directed and edited. AI systems support drafting and asset
 generation; they are not credited as authors. The project’s ownership, licence boundaries and

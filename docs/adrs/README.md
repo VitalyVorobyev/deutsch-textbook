@@ -54,4 +54,4 @@ A `proposed` ADR records a direction and its open questions; it authorizes nothi
 superseded by a new ADR rather than edited into an acceptance.
 
 Rationale that predates this ADR practice — completed roadmaps, superseded design notes, dated
-evidence reviews — lives in [`../archive/`](../archive/), frozen as it shipped.
+evidence reviews — lives only in git history.
