@@ -258,3 +258,27 @@ assets:
     licenseReview: "Course-created deterministic instructional composition covered by content/LICENSE."
     legacy: true
     promptUnavailable: true
+  - path: public/lid/lessons/wer-waehlt-wen.svg
+    sha256: a7106de5ecb5e93c5f6e9a60e73c18dd4100f96ab871255d86ca11e0c0349ad2
+    creationMode: ai-assisted
+    generationTool: Claude Code (Anthropic)
+    prompt: data/prompts/2026-10-11-lid-wer-waehlt-wen-diagram.md
+    candidateCount: null
+    humanSelectionReason: null
+    humanEdits:
+      - "Recorded by the drafting agent, to be confirmed at review: the request came from Vitaly's session, and his learner feedback — the old table's two Bundespräsident rows read as duplicates — fixed the six numbered steps the diagram follows. No human edit of the drawn file yet."
+    licenseReview: "Course-created diagram written as SVG text; no external source, font or image embedded. content/LICENSE names public/documents/ and public/discovery/ but not public/lid/lessons/, and calls public/lid/ the unchanged official catalogue — the licence of course figures there is still the owner's decision."
+    legacy: false
+    promptUnavailable: false
+  - path: public/lid/lessons/gesetz-entsteht.svg
+    sha256: f1ac7cbdc000455c3159334110610cf05a59362e7a2073ec7a380ac0b51ce3ee
+    creationMode: ai-assisted
+    generationTool: Claude Code (Anthropic)
+    prompt: data/prompts/2026-10-11-lid-gesetz-entsteht-diagram.md
+    candidateCount: null
+    humanSelectionReason: null
+    humanEdits:
+      - "Recorded by the drafting agent, to be confirmed at review: the request came from Vitaly's session and fixed the content rule (only the section's five steps) and the form (vertical, a verb on every arrow, readable at 375 px). No human edit of the drawn file yet."
+    licenseReview: "Course-created diagram written as SVG text; no external source, font or image embedded. content/LICENSE names public/documents/ and public/discovery/ but not public/lid/lessons/, and calls public/lid/ the unchanged official catalogue — the licence of course figures there is still the owner's decision."
+    legacy: false
+    promptUnavailable: false

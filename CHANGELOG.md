@@ -19,6 +19,9 @@ GitHub Release notes.
   Germany's neighbours, the occupation zones and Berlin's sectors, the Wall, the DDR flag, the
   EU, the Reichstag and a Stolperstein. Every picture has a German caption with a translation in
   your language, and names its author and licence.
+- **Three more pictures for Leben in Deutschland.** Wahlen und Parteien shows two sample ballots
+  from the exam's own question — one valid, one not. Verfassungsorgane gains two diagrams: who
+  elects whom, step by step, and how a law is made.
 
 ### Fixed
 
@@ -32,6 +35,12 @@ GitHub Release notes.
 - **Leben in Deutschland — Wahlen und Parteien lists the parties in today's Bundestag.** The table
   adds the AfD and Die Linke, and says which parties have sat in the Bundestag since the 2025
   election: the FDP has not, and the test still asks what its name means.
+- **Leben in Deutschland — who elects whom reads as one procedure.** The table listed the
+  Bundespräsident twice, in an order that hid why; it is now six numbered steps, from the vote for
+  the Bundestag to the appointment of the ministers.
+- **Leben in Deutschland — what a majority in the Bundesrat is.** The lesson now explains that the
+  Bundesrat has no coalitions: each Land votes as one block, a divided Land government abstains,
+  and a law that needs the Bundesrat's consent needs 35 of its 69 votes.
 - **Leben in Deutschland — Bayern.** The three Freistaaten have no more rights than the other
   Länder because the name grants none, not "therefore"; the sentence is corrected in German and in
   every translation.
