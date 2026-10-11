@@ -50,6 +50,14 @@ GitHub Release notes.
   only added a word was counted as the rule still mastered.
 - **The B1 dictation *etwas Neues* now counts a small *n* or a missing ending as that mistake.**
   Before, both were forgiven as typos, so the weakness they show never reached your training.
+- **Eight translation exercises accept German they used to reject.** Examples:
+  - *ob die Tür geöffnet war*, *bis zur Kreuzung*, *in den Supermarkt*;
+  - *statt einfach Videos zu schauen*, *Kinder laufen in den Garten*;
+  - *den Film* where the Russian says only «фильм»;
+  - a clause joined with *dann* alone.
+  
+  Two prompts now write the person's name as German spells it (*Aylin*, *Clara*), and one says
+  *einen Film*.
 
 ## [0.6.19] — 2026-10-11
 

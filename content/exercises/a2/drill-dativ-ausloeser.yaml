@@ -125,9 +125,9 @@ items:
     type: translate
     focus: dativ-artikel
     instruction:
-      en: Translate into German. Use die Lehrerin and die Schüler.
-      ru: Переведите на немецкий. Используйте die Lehrerin и die Schüler.
-      uk: Перекладіть німецькою. Використайте die Lehrerin і die Schüler.
+      en: Translate into German. Use die Lehrerin, die Schüler and einen Film.
+      ru: Переведите на немецкий. Используйте die Lehrerin, die Schüler и einen Film.
+      uk: Перекладіть німецькою. Використайте die Lehrerin, die Schüler і einen Film.
     prompt_en: "The teacher shows the students a film."
     prompt_ru: "Учительница показывает ученикам фильм."
     prompt_uk: "Учителька показує учням фільм."
@@ -135,6 +135,9 @@ items:
     key_tokens: ["den", "Schülern"]
     accept:
       - "Den Schülern zeigt die Lehrerin einen Film."
+    # revision 2: «фильм» / «фільм» mark no definiteness, but den Film cannot be accepted —
+    # it repeats the pinned den — so the instruction names einen Film.
+    revision: 2
     explain:
       en: "zeigen has two objects: the receivers are the wem?-answer and stand in the dative plural, where both parts change — die → den and the noun adds -n: den Schülern. The film is the was?-answer and stays accusative: einen Film."
       ru: "У zeigen два дополнения: получатели отвечают на wem? и стоят в Dativ Plural — меняются обе части: die → den, а существительное получает -n: den Schülern. Фильм отвечает на was? и стоит в Akkusativ: einen Film."
