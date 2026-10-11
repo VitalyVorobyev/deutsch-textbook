@@ -69,6 +69,13 @@ GitHub Release notes.
   - *Wenn der Zug pünktlich wäre, könnten wir …* is now accepted alongside *würden*.
   - The *sich gewöhnen an* gap now gives *das Aufstehen* with its article. Before, a wrong gender
     counted against the verb's preposition.
+- **B1.6 Konsum & Umwelt — quality pass.**
+  - The lesson no longer says German always keeps the verb in a *je … desto* half. A short line
+    can drop both verbs: *Je billiger das Produkt, desto schlechter die Qualität*.
+  - The four *je … desto* translations now ask for two full clauses. Before, a correct short
+    answer was marked wrong and counted against the word order.
+  - *die Mülltonne* is accepted beside *die Tonne*.
+  - Three explanations now describe their own text and recording correctly.
 
 ## [0.6.19] — 2026-10-11
 

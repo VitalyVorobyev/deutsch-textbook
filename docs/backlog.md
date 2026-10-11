@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.6 `konsum-umwelt`.
+  Next: B1.7 `regeln-verantwortung`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -130,6 +130,12 @@ record of what shipped.
   *Verantwortung übernehmen* appear in arming items; `nomen-verb-verbindung` is thin (4 items, B1
   median 6); the reading's ad lacks (m/w/d); *Kündigungsfrist* in the listening script against the
   unit's labour-law exclusion; the unit has five casts rather than one mission scenario.
+- `b1/konsum-umwelt`: *leeren* (*geleert* ×7, produced in `uebersetzen-tonne-august` with the
+  verb named) is on no Wortliste and in no deck; the `regional` note puts *die Region* at A2 (it
+  is B1) and the `Sonderangebot` note *das Angebot* at A2 (A1); the primary set's and two probe
+  headers say outcomes arm the families (arming is by item key since P19-4), probe headers and
+  the provenance record count three families of four; who drafted the UK/DE halves and the fourth probe family is not in the provenance record; C6-1
+  still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
