@@ -7,8 +7,8 @@ Status: accepted · 2026-10-10
 The learner is preparing for the *Leben in Deutschland* test / *Einbürgerungstest* (Bayern)
 within about a month. The test draws 33 questions — 30 general, 3 from the learner's state — from
 a published pool of 310 (EinbTestV §1); 17 correct pass the Einbürgerungstest, 15 the
-Orientierungskurs test. The research brief is
-[`../curriculum/leben-in-deutschland-brief.md`](../curriculum/leben-in-deutschland-brief.md).
+Orientierungskurs test. The research brief behind this decision was removed once the trainer
+shipped; it is in git history (`git show 2fbdfa2:docs/curriculum/leben-in-deutschland-brief.md`).
 
 Two questions had to be settled before any code: may the official questions be committed to a
 public repository whose every merge deploys a public site, and is practising them the kind of

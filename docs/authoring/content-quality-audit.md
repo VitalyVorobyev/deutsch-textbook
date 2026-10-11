@@ -95,6 +95,44 @@ For each item:
   written labels, rare full forms and receptive variants. `~` is evidence-backed grammar or bound
   morphology, never a coverage escape hatch.
 
+## The unit gate
+
+A unit is complete only when the unit as a whole — not necessarily every topic in it — provides:
+
+1. low-stakes pretesting;
+2. comprehensible model input;
+3. concise explanation and worked examples;
+4. blocked explanatory practice;
+5. faded discrimination against confusable earlier material;
+6. listening with a hidden transcript;
+7. independent written production;
+8. spoken production or interaction;
+9. a coherent real-world mission joining several skills;
+10. a later parallel outcome probe;
+11. a connection to sustained reading or listening input where appropriate;
+12. evidence labelled by actual response mode and verification quality.
+
+**The mission (9) is a content rule, not a feature.** The unit's article examples, reading,
+listening, practice and transfer task share one concrete scenario — the same people, the same
+problem — and the unit ends with a fresh-context production task in which the learner does the
+thing the scenario was about. No mission engine is implied.
+
+Five design principles apply beside the gate:
+
+1. **Pronunciation:** perception before production, lexical and sentence stress, imitation. IPA and
+   TTS are support, not a curriculum.
+2. **Formulaic language:** high-frequency chunks are taught and retrieved as usable units, beside
+   compositional grammar.
+3. **Open production** is attempt → model answer → done (CLAUDE.md, *unverified practice*); the app
+   never gates it on feedback it cannot give.
+4. **Mode validity:** what an artifact teaches is distinguished from what the learner actually did.
+5. **Adaptive safeguards:** generated practice uses reviewed constraints and deterministic fixtures;
+   AI or ASR uncertainty never silently becomes mastery evidence.
+
+Learning is evaluated by parallel probes after about 2, 7 and 21 days: delayed retention, transfer
+to a new context, focus-error reduction, mode coverage and workload. Attempts, sessions and streaks
+are engagement signals and never stand in for learning.
+
 ## Closing a topic pass
 
 1. Record every artifact class checked and every correction or deliberate no-change decision in the

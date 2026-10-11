@@ -1,7 +1,6 @@
 # Entdecken, documents and editorial content
 
-Status: active admission and authoring contract. Earlier research, shipped pilots and rejected
-directions are [archived](../archive/2026-07-future-content-directions-full.md).
+Status: active admission and authoring contract.
 
 ## Admission test
 

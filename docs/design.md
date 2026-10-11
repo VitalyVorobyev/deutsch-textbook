@@ -138,8 +138,7 @@ decides attribution — an unmatched whole-sentence error is not guessed into th
 Where an item declares none, the attempt carries no verdict and attribution stays as it was
 (`key_tokens` for `translate`, `dictationSlip` for `listen`). Predicates are **additive on purpose**:
 silencing every unmatched free-typed miss corpus-wide was measured against the learner's log and
-inverts the signal rather than gapping it ([archive](archive/2026-08-doc-slimming.md), backlog
-P12-6). Checkpoint scores exclude both open writing and speech while their attempts still count as
+inverts the signal rather than gapping it (backlog P12-6). Checkpoint scores exclude both open writing and speech while their attempts still count as
 coverage.
 
 `src/lib/mastery.ts` derives topic evidence and mastery. `src/lib/weakness.ts` aggregates
@@ -167,8 +166,7 @@ what QA ran on and what the editor approved, not what a learner downloads.
 `PUBLIC_ATLAS_AUDIO_BUNDLE=1` copies the MP3s into a build, and **both shipping builds set it** —
 `bun run build:desktop` (in-process rather than as a shell prefix, so the Windows release build can
 run the same command) and the Cloudflare build. The flag therefore distinguishes a shipping build
-from a lean one with no binaries, not the desktop from the web
-([archive](archive/2026-08-doc-slimming.md)). TTS remains the live fallback for a recording that is
+from a lean one with no binaries, not the desktop from the web. TTS remains the live fallback for a recording that is
 absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`).
 
 ## Listening authoring boundary

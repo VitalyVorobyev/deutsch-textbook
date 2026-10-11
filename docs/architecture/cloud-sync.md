@@ -213,70 +213,13 @@ which produce tests that pass for the wrong reason:
 
 Every mechanism in this document has been watched failing: deleting the approval gate, the 428, the
 `If-None-Match` short-circuit, the HMAC comparison, the verified-email refusal, the byte cap, the
-device-token boundary and refuse-to-shrink each turn a named test red. One of those checks found a
-defect in the *test* rather than the code ([archive](../archive/2026-08-doc-slimming.md)) — the
-lesson being that "the test goes red when I delete the mechanism" is the only proof that it tests
-the mechanism.
+device-token boundary and refuse-to-shrink each turn a named test red. "The test goes red when I delete
+the mechanism" is the only proof that it tests the mechanism.
 
 ## Walkthroughs
 
-### Creating your own account and bringing your existing progress into it
-
-The owner's account is not seeded by a migration; it is created by signing in, and `OWNER_EMAILS`
-is what makes that first sign-in an approved owner rather than a pending learner.
-
-1. Finish the setup below (D1, R2, both OAuth apps, six secrets, migrations). `OWNER_EMAILS` must
-   contain the address you will sign in with.
-2. On the device that already holds your progress, open **Fortschritt → Daten → Export** and keep
-   the file. This is a safety net, not a required step — step 5 needs it only if you are moving to
-   a different browser.
-3. Open the profile menu in the header → **Anmelden**, and sign in. You should land on `/konto` as
-   `Aktiv` with the **Eigentümer** marker. If it says *Wartet auf Freigabe*, `OWNER_EMAILS` did not
-   match the verified email the provider returned — fix the secret and sign in again; it is
-   re-applied on every sign-in.
-4. Press **Verbinden · \<your profile\>**. This binds that local profile to the account. Because the
-   profile already has attempts, it asks first: connecting merges the local history with whatever
-   the account holds. On a fresh account it holds nothing, so this is a pure upload.
-5. Only if you are on a *different* browser from the one with your history: **Fortschritt
-   hochladen** and pick the exported file. It is merged into the local profile first and then
-   pushed, so nothing is lost in either direction.
-6. Confirm: `Zuletzt synchronisiert` gets a timestamp, and `bun run progress:pull --list` shows
-   `snapshots/<your account id>/current.json.gz`.
-
-A second device then needs only steps 3 and 4 — its first sync pulls the account state and merges
-it into whatever that device had.
-
-### Approving someone else
-
-1. They open the site and sign in with Google or GitHub. An account is created for them
-   **`pending`**, and nothing of theirs is stored server-side.
-2. They see *Wartet auf Freigabe* on `/konto` and can keep learning; their progress stays on their
-   device and uploads once you approve.
-3. You open `/konto`. The **Nutzer** section lists every account, pending ones first.
-4. **Freigeben** flips them to `approved` and their next sync uploads. **Sperren** stops an
-   approved account syncing without touching what is already stored. **Entfernen** deletes the
-   account, its sessions, its device tokens and its R2 objects.
-
-You cannot suspend or delete your own account from that list — the API refuses it, because the only
-surface that could undo it is the one you would be locking yourself out of. Use **Konto löschen**
-on your own card if you really mean it.
-
-### Connecting the desktop app
-
-The desktop webview is a different origin, so it cannot receive the session cookie. Rather than
-carrying a bearer token between machines, the app asks and you approve:
-
-1. In the desktop app, open **Konto** → **Geräte** → **Verbinden**. It shows an eight-symbol code
-   like `AC4K-MTQ9` and starts waiting.
-2. On any device where you are signed in to the website, open `/konto` → **Geräte**, type that code
-   and press **Weiter**.
-3. Check that the code and device name on screen match what the app is showing, then **Freigeben**.
-4. The desktop picks up its token within a few seconds and starts syncing.
-
-Codes expire after ten minutes; if one does, start again in step 1. Revoke a connected device from
-the website at any time. For a machine you cannot look at while you use the browser — a headless
-box, a VM, an SSH session — **Gerätecode von Hand ausstellen** on the website still issues a `dat_…`
-token to paste in directly.
+Creating the owner account, approving someone else and connecting the desktop app are user tasks;
+their step-by-step guide is [`../apps/accounts.md`](../apps/accounts.md).
 
 ## Setup
 
@@ -301,7 +244,7 @@ bun run deploy:smoke          # add --deep to also prove D1 and the migrations
 ```
 
 Seven checks against the live origin, three of which fail together when the Worker has lost its
-secrets. That is the failure this section exists for, and it has happened once.
+secrets — the failure this section exists for.
 
 **Symptom.** `/konto` shows its local-first paragraph and nothing else — no buttons, no error. Both
 providers redirect to `?auth=provider-unavailable`, and `/api/auth/session` answers
@@ -316,12 +259,10 @@ bunx wrangler versions list --name deutsch-textbook    # which version stopped c
 bunx wrangler versions view <id> --name deutsch-textbook
 ```
 
-On 2026-08-03 that history read: version `02e21b05` (`Secret Change`) carried all six secrets plus
-`DB`, `SNAPSHOTS` and `ASSETS`; version `c2f78b7e`, a build seven minutes later, carried **no
-bindings at all**. A version with no `ASSETS` binding is a build of the pre-Worker, assets-only
-`wrangler.toml`, which reached production while Workers Builds was still building every branch. It
-replaced the whole binding set. Every build after it restored the three bindings from the current
-file and had nothing to inherit for the secrets.
+The tell in the version history is a version carrying **no bindings at all** after one that
+carried the six secrets plus `DB`, `SNAPSHOTS` and `ASSETS`: a deploy from a config without `main`
+(an assets-only `wrangler.toml`) replaces the whole binding set, and every later build restores the
+three bindings from the file but has nothing to inherit for the secrets.
 
 **Recovery needs no rebuild.** `bunx wrangler secret put <NAME> --name deutsch-textbook` creates a
 version that inherits the deployed code and bindings, so sign-in returns as soon as the last of the

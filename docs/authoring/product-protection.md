@@ -153,9 +153,9 @@ non-publishing local benchmark workspace, with synthetic references, fictional n
 descriptions, and retained prompts, model revisions and hashes; benchmark output cannot enter the
 production cache, bundle or export path. An identifiable human reference may still be evaluated
 through the separate `experiment-human-voice-clone` path under the gitignored `.private/` boundary,
-whose runner refuses missing consent, output outside `.private/` and overwriting an earlier run. The
-2026-08-03 private technology evaluation ran under that path and authorized local evaluation only;
-publication of any voice requires its own publication-scope consent under the rules above.
+whose runner refuses missing consent, output outside `.private/` and overwriting an earlier run.
+That path authorizes local evaluation only; publication of any voice requires its own
+publication-scope consent under the rules above.
 
 The cloning checkpoint is pinned in `tools/listening-studio/models.lock.json` beside the other
 production models, with its licence and the same training-data honesty note they all carry. Its
