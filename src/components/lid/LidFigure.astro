@@ -1,0 +1,113 @@
+---
+/**
+ * A picture in a Leben-in-Deutschland lesson, injected as `<Figure>` (ADR 0021). The MDX writes
+ * `<Figure id="…" />` — or `<Figure ids="… …" />` for two or three small pictures in a row —
+ * OUTSIDE any <Translation>, so it shows under every Lernsprache. The id resolves against every
+ * lesson's `figures` (ids are unique across lessons; `lidProblems` holds that and the rest).
+ *
+ * The caption follows the lesson: German always, the learner's language beneath it through the
+ * `.lang-*` classes, and hidden with the section translations under `de` (`.lid-translation`).
+ * The picture sits on a white panel, so a transparent map stays readable in dark mode; it has its
+ * size before it loads, and opens full size in a new tab. The credit names author, licence and
+ * source page — or, for a catalogue picture, the catalogue — once per row.
+ */
+import { getCollection } from 'astro:content';
+import type { LidFigure } from '@da/schema/lid';
+import { t } from '../../lib/strings';
+import { withBase } from '../../lib/url';
+
+interface Props {
+  id?: string;
+  ids?: string;
+}
+const { id, ids } = Astro.props;
+// `?? []`: Astro's content cache keeps an unchanged lesson's data parsed before `figures` had a
+// default (the schema lives in @da/schema, outside the config digest), so the field can be absent.
+const all = new Map(
+  (await getCollection('lidLessons')).flatMap((entry) => (entry.data.figures ?? []).map((f) => [f.id, f] as const)),
+);
+const figures: LidFigure[] = (ids ?? id ?? '')
+  .split(/\s+/)
+  .filter(Boolean)
+  .map((name) => {
+    const figure = all.get(name);
+    if (!figure) throw new Error(`<Figure> "${name}" is declared by no LiD lesson (run bun run validate)`);
+    return figure;
+  });
+const row = figures.length > 1;
+
+type Credit = { text: string; license?: { label: string; url: string }; source?: { label: string; url: string } };
+const sourceLabel = (url: string) => (new URL(url).hostname === 'commons.wikimedia.org' ? 'Wikimedia Commons' : new URL(url).hostname);
+const credits = new Map<string, Credit>();
+for (const f of figures) {
+  const credit: Credit =
+    f.sourceClass === 'official'
+      ? { text: t('lid.figureOfficial', 'de') }
+      : {
+          text: f.attribution ?? '',
+          ...(f.license && f.license_url && { license: { label: f.license, url: f.license_url } }),
+          ...(f.source_url && { source: { label: sourceLabel(f.source_url), url: f.source_url } }),
+        };
+  if (credit.text || credit.license || credit.source) credits.set(JSON.stringify(credit), credit);
+}
+const link = 'underline decoration-dotted hover:text-stone-700 dark:hover:text-stone-200';
+---
+
+<div class="not-prose my-6">
+  <div class:list={[row && 'grid items-start gap-3', figures.length === 2 && 'grid-cols-2', figures.length === 3 && 'grid-cols-3']}>
+    {
+      figures.map((f) => (
+        <figure class="min-w-0">
+          <a
+            href={withBase(f.src)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              'block rounded-lg border border-stone-200 bg-white p-2 dark:border-stone-600',
+              row ? 'w-full' : 'mx-auto w-fit max-w-full',
+            ]}
+          >
+            <img
+              src={withBase(f.src)}
+              width={f.width}
+              height={f.height}
+              alt={f.alt_de}
+              loading="lazy"
+              decoding="async"
+              style={row ? undefined : `width: min(100%, ${f.width}px, calc(30rem * ${f.width / f.height}))`}
+              class:list={['mx-auto h-auto max-w-full ring-1 ring-stone-200', row && 'max-h-44 w-auto object-contain']}
+            />
+          </a>
+          <figcaption class="mt-1.5 text-sm leading-snug break-words hyphens-auto">
+            <span lang="de" class="block text-stone-800 dark:text-stone-200">{f.caption.de}</span>
+            <span class="lid-translation block text-stone-500 dark:text-stone-400">
+              <span lang="en" class="lang-en">{f.caption.en}</span><span lang="ru" class="lang-ru">{f.caption.ru}</span><span lang="uk" class="lang-uk">{f.caption.uk}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+  {
+    credits.size > 0 && (
+      <p class="mt-1 text-xs text-stone-500 dark:text-stone-400">
+        {[...credits.values()].map((c) => (
+          <span class="block">
+            {[
+              c.text && <span>{c.text}</span>,
+              c.license && <a href={c.license.url} target="_blank" rel="noopener noreferrer license" class={link}>{c.license.label}</a>,
+              c.source && <a href={c.source.url} target="_blank" rel="noopener noreferrer" class={link}>{c.source.label}</a>,
+            ]
+              .filter(Boolean)
+              .map((part, i) => (
+                <>
+                  {i > 0 && ' · '}
+                  {part}
+                </>
+              ))}
+          </span>
+        ))}
+      </p>
+    )
+  }
+</div>

@@ -8,18 +8,21 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import YAML from 'yaml';
 import {
+  LID_FIGURE_MAX_BYTES,
   LID_LESSON_ID,
   lidBankSchema,
   lidLessonSchema,
   lidNotesFileSchema,
   lidTopicsSchema,
   type LidBank,
+  type LidFigure,
   type LidLesson,
   type LidNote,
   type LidQuestion,
   type LidTopics,
 } from '@da/schema/lid';
 import { hasUkField, langFieldProblems, mdxLangProblems, ukParityProblems } from '@da/schema/langcheck';
+import { imageDimensions } from './image-size';
 import { proseShapeProblems } from './prose-shape';
 import { repoRoot } from './repo-root';
 
@@ -113,7 +116,7 @@ export function lidProblems(root = repoRoot()): string[] {
   if (new Set(topicIds).size !== topicIds.length) at(LID_TOPICS_FILE, 'duplicate topic id');
 
   // The lessons: reading material over the topics, never a second placement of a question.
-  problems.push(...lidLessonProblems(root, topics));
+  problems.push(...lidLessonProblems(root, topics, bank));
 
   let notes: PlacedLidNote[];
   try {
@@ -170,6 +173,8 @@ export function lidQuestionsWithNotes(root = repoRoot()): { question: LidQuestio
 // so a question has at most one lesson to point back to.
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
+/** Any `<Figure …>` tag in a lesson body — well-formed or not. */
+const FIGURE_TAG = /<Figure\b[^>]*>/g;
 
 /** One lesson file, read but not yet judged. */
 interface LidLessonSource {
@@ -257,7 +262,8 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
     const section = body.slice(h.end, headings[i + 1]?.at ?? body.length);
     const label = `"${'#'.repeat(h.depth)} ${h.text}"`;
     const blocks = section.match(translation) ?? [];
-    const german = section.replace(translation, '').replace(comments, '').trim();
+    // A <Figure> carries its own translated caption: it is not German text that needs a block.
+    const german = section.replace(translation, '').replace(comments, '').replace(FIGURE_TAG, '').trim();
     if (!german) {
       if (blocks.length) problems.push(`${label} has a <Translation> but no German text to translate`);
       return;
@@ -278,9 +284,91 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
   return problems;
 }
 
+/** The two spellings `LidFigure.astro` takes: one figure, or a row of two or three. */
+const FIGURE_FORM = /^<Figure\s+(id|ids)="([^"]*)"\s*\/>$/;
+
+/** The figure ids a body shows, in order, with what is wrong with how it shows them. */
+export function lidFigureRefs(body: string): { ids: string[]; problems: string[] } {
+  const ids: string[] = [];
+  const problems: string[] = [];
+  const comments = /\{\/\*[\s\S]*?\*\/\}/g;
+  for (const [tag] of body.replace(comments, '').matchAll(FIGURE_TAG)) {
+    const form = FIGURE_FORM.exec(tag);
+    if (!form) {
+      problems.push(`${tag} is not <Figure id="…" /> or <Figure ids="… …" />`);
+      continue;
+    }
+    const named = form[2]!.split(/\s+/).filter(Boolean);
+    if (form[1] === 'id' && named.length !== 1) problems.push(`${tag}: id names one figure — a row is ids="… …"`);
+    if (form[1] === 'ids' && (named.length < 2 || named.length > 3)) problems.push(`${tag}: a row holds two or three figures`);
+    ids.push(...named);
+  }
+  return { ids, problems };
+}
+
+/** One lesson's figures and body, as `lidFigureProblems` needs them. */
+interface LidFigureSource {
+  file: string;
+  body: string;
+  figures: LidFigure[];
+}
+
 /**
- * Everything `bun run validate` holds the lessons to (called by `lidProblems`; `topics` is passed
- * when the caller already has them). Empty means valid, and zero lesson files is valid.
+ * The cross-file figure rules (`bun run validate`): every `<Figure>` names a figure its own
+ * lesson declares, and every declared figure is shown; ids are unique across lessons, because the
+ * component resolves one without knowing its lesson; the file exists under `public/`, its pixel
+ * size is the declared one and it stays under the bundle ceiling; and an `official` figure is a
+ * picture of the bank that is not withheld (ADR 0021). The credit fields are the schema's.
+ */
+export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank: LidBank | undefined): string[] {
+  const problems: string[] = [];
+  const at = (file: string, msg: string) => problems.push(`${file}: ${msg}`);
+  const owner = new Map<string, string>();
+  for (const { file, figures } of lessons)
+    for (const figure of figures) {
+      const other = owner.get(figure.id);
+      if (other) at(file, `figure "${figure.id}" is already declared in ${other} — figure ids are unique across lessons`);
+      else owner.set(figure.id, file);
+    }
+  const bankImages = bank && new Map(bank.questions.flatMap((q) => q.images.map((image) => [image.path, image] as const)));
+
+  for (const { file, body, figures } of lessons) {
+    const refs = lidFigureRefs(body);
+    for (const p of refs.problems) at(file, p);
+    const declared = new Set(figures.map((f) => f.id));
+    for (const id of refs.ids)
+      if (!declared.has(id))
+        at(file, `<Figure> "${id}" is not one of this lesson's figures${owner.has(id) ? ` (it is declared in ${owner.get(id)})` : ''}`);
+    const shown = new Set(refs.ids);
+
+    for (const figure of figures) {
+      const label = `figure "${figure.id}"`;
+      if (!shown.has(figure.id)) at(file, `${label} is declared but no <Figure> shows it`);
+      const path = join(root, 'public', figure.src);
+      if (!existsSync(path)) at(file, `${label}: ${figure.src} does not exist under public/`);
+      else {
+        const bytes = readFileSync(path);
+        if (bytes.length > LID_FIGURE_MAX_BYTES)
+          at(file, `${label}: ${figure.src} is ${bytes.length} bytes, over the ${LID_FIGURE_MAX_BYTES}-byte ceiling`);
+        const size = imageDimensions(bytes);
+        if (!size) at(file, `${label}: ${figure.src} has no PNG, JPEG or WebP header to read its size from`);
+        else if (size.width !== figure.width || size.height !== figure.height)
+          at(file, `${label}: ${figure.src} is ${size.width}×${size.height}, the figure says ${figure.width}×${figure.height}`);
+      }
+      if (figure.sourceClass !== 'official') continue;
+      const image = bankImages?.get(figure.src);
+      if (!bankImages) at(file, `${label} is official, but there is no ${LID_BANK_FILE} to find it in`);
+      else if (!image) at(file, `${label}: ${figure.src} is not a picture of the official bank`);
+      else if (image.withheld) at(file, `${label}: ${figure.src} is withheld (${image.withheld}) — a withheld photo never ships`);
+    }
+  }
+  return problems;
+}
+
+/**
+ * Everything `bun run validate` holds the lessons to (called by `lidProblems`; `topics` and `bank`
+ * are passed when the caller already has them — without one, the bank is read if it exists).
+ * Empty means valid, and zero lesson files is valid.
  *
  * Language discipline is the discovery pieces' (scripts/validate.ts `checkMdxLangDiscipline`):
  * letter sets in frontmatter and body, prose shape, and uk parity bridged across the two — which
@@ -288,7 +376,7 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
  * holds every lesson to carrying it). No
  * de parity: a term's `de` is the German word itself, not a German-medium explanation half.
  */
-export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string[] {
+export function lidLessonProblems(root = repoRoot(), topics?: LidTopics, bank?: LidBank): string[] {
   const problems: string[] = [];
   const at = (file: string, msg: string) => problems.push(`${file}: ${msg}`);
   const sources = readLidLessonSources(root);
@@ -304,6 +392,7 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string
 
   const topicOwner = new Map<string, string>();
   const orderOwner = new Map<number, string>();
+  const withFigures: LidFigureSource[] = [];
   for (const source of sources) {
     const { file, body } = source;
     if (!LID_LESSON_ID.test(source.id)) at(file, `"${source.id}" is not a lesson id — the file name is the id, kebab-case ASCII`);
@@ -333,6 +422,17 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics): string
     const sameOrder = orderOwner.get(lesson.order);
     if (sameOrder) at(file, `order ${lesson.order} is already taken by lesson "${sameOrder}"`);
     else orderOwner.set(lesson.order, source.id);
+    withFigures.push({ file, body, figures: lesson.figures });
+  }
+  if (withFigures.some((lesson) => lesson.figures.length > 0 || /<Figure\b/.test(lesson.body))) {
+    let figureBank = bank;
+    if (!figureBank && existsSync(join(root, LID_BANK_FILE)))
+      try {
+        figureBank = loadLidBank(root);
+      } catch {
+        // lidProblems reports a malformed bank; an official figure then says it has none.
+      }
+    problems.push(...lidFigureProblems(root, withFigures, figureBank));
   }
   return problems;
 }

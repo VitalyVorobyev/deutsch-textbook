@@ -38,7 +38,7 @@ reader needs to cross, and copies nothing — duplicated text drifts.
 | [`authoring/content-quality-audit.md`](authoring/content-quality-audit.md) | The topic-profile review contract and the unit gate |
 | [`authoring/coverage-instruments.md`](authoring/coverage-instruments.md) | How every coverage figure is earned, never asserted |
 | [`authoring/lautschrift.md`](authoring/lautschrift.md) | IPA conventions and the review behind `bun run gen:ipa` |
-| [`authoring/future-content-directions.md`](authoring/future-content-directions.md) | Admission contract for Entdecken, documents and editorial media |
+| [`authoring/future-content-directions.md`](authoring/future-content-directions.md) | Admission contract for Entdecken, documents and editorial media; the LiD lesson-figure contract |
 | [`authoring/product-protection.md`](authoring/product-protection.md) | Ownership, licensing and the authorship-provenance contract |
 | **Architecture** | |
 | [`architecture/runtime-contracts.md`](architecture/runtime-contracts.md) | The engineering invariants behind `src/lib/`, with their source and test map |

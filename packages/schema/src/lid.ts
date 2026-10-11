@@ -176,6 +176,64 @@ export const lidLessonTermSchema = z
   .strict();
 export type LidLessonTerm = z.infer<typeof lidLessonTermSchema>;
 
+/** Where a lesson figure added by the course lives; the bank's own pictures stay at `/lid/<file>`. */
+export const LID_FIGURE_DIR = '/lid/lessons/';
+/** Per-file ceiling for a figure: every one ships in the desktop bundle. */
+export const LID_FIGURE_MAX_BYTES = 300_000;
+/** The bank's path shape (`lidImageSchema`): an `official` figure points at one of its pictures. */
+const LID_BANK_IMAGE_PATH = /^\/lid\/[A-Za-z0-9-]+\.(png|jpe?g)$/;
+const LID_FIGURE_CREDIT = ['attribution', 'license', 'license_url', 'source_url'] as const;
+
+/**
+ * One picture a lesson shows with `<Figure id="…" />` (or two or three in a row with
+ * `<Figure ids="… …" />`), placed outside any `<Translation>` so every Lernsprache sees it. The
+ * German caption is always shown; the learner's language sits beneath it, and every lesson
+ * carries UK, so `uk` is required.
+ *
+ * Provenance follows the discovery images' contract, with one more class: `official` is a picture
+ * of the BAMF catalogue already shipped under `/lid/` (§5 UrhG — never a `withheld` one, which
+ * `lidProblems` checks against the bank), credited as the catalogue, so it carries no credit
+ * fields. `real`/`adapted` are someone else's work and must name author, licence, licence URL
+ * and source page. Everything else lives under `/lid/lessons/`.
+ */
+export const lidFigureSchema = z
+  .object({
+    /** Kebab-case, unique across ALL lessons — `<Figure>` resolves it without knowing the lesson. */
+    id: z.string().regex(LID_LESSON_ID),
+    /** Root-absolute public path, ready for `withBase`. */
+    src: z.string().regex(/^\/lid\/[A-Za-z0-9/-]+\.(png|jpe?g|webp)$/),
+    /** The file's pixel size — checked against the file by `bun run validate`. */
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+    alt_de: z.string().min(1),
+    caption: z.object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1) }).strict(),
+    sourceClass: z.enum(['official', 'real', 'adapted', 'simulated']),
+    attribution: z.string().min(1).optional(),
+    license: z.string().min(1).optional(),
+    license_url: z.url().startsWith('https://').optional(),
+    /** The source's own page, e.g. the Wikimedia Commons file page. */
+    source_url: z.url().startsWith('https://').optional(),
+  })
+  .strict()
+  .superRefine((figure, ctx) => {
+    if (figure.sourceClass === 'official') {
+      if (!LID_BANK_IMAGE_PATH.test(figure.src))
+        ctx.addIssue({ code: 'custom', path: ['src'], message: 'an official figure is a bank picture at /lid/<file>.png|jpeg' });
+      const credit = LID_FIGURE_CREDIT.filter((key) => figure[key] !== undefined);
+      if (credit.length)
+        ctx.addIssue({ code: 'custom', message: `an official figure is credited as the catalogue — drop ${credit.join(', ')}` });
+      return;
+    }
+    if (!figure.src.startsWith(LID_FIGURE_DIR))
+      ctx.addIssue({ code: 'custom', path: ['src'], message: `a course figure lives under ${LID_FIGURE_DIR}` });
+    if (figure.sourceClass === 'real' || figure.sourceClass === 'adapted') {
+      const missing = LID_FIGURE_CREDIT.filter((key) => !figure[key]);
+      if (missing.length)
+        ctx.addIssue({ code: 'custom', message: `real/adapted figures require attribution, license, license_url and source_url — missing ${missing.join(', ')}` });
+    }
+  });
+export type LidFigure = z.infer<typeof lidFigureSchema>;
+
 /**
  * The frontmatter of `content/lid/lessons/<lesson-id>.mdx` — a compact reading lesson in simple
  * German that teaches the system behind a group of exam questions. Reading material, not a spine
@@ -196,9 +254,16 @@ export const lidLessonSchema = z
     status: z.enum(['draft', 'reviewed']).default('draft'),
     sources: z.array(z.object({ title: z.string().min(1), url: z.url().startsWith('https://') }).strict()).min(1),
     terms: z.array(lidLessonTermSchema).min(1),
+    /** Pictures the body shows with `<Figure>`; every one is used (`lidProblems`). */
+    figures: z.array(lidFigureSchema).default([]),
   })
   .strict()
   .superRefine((lesson, ctx) => {
+    const figures = new Set<string>();
+    for (const figure of lesson.figures) {
+      if (figures.has(figure.id)) ctx.addIssue({ code: 'custom', path: ['figures'], message: `figure "${figure.id}" is listed twice` });
+      figures.add(figure.id);
+    }
     const seen = new Set<string>();
     for (const topic of lesson.topics) {
       if (seen.has(topic)) ctx.addIssue({ code: 'custom', path: ['topics'], message: `topic "${topic}" is listed twice` });
