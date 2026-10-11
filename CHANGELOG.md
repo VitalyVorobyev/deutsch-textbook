@@ -11,6 +11,18 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.14] — 2026-10-11
+
+### Changed
+
+- **The daily practice pages no longer re-download the whole course on every visit.** Session,
+  Wiederholen, Training and Probe-Rückstand each carried every flashcard or every exercise —
+  7 to 18 MB of page — and fetched it again on each visit. They now share two content files that
+  are downloaded once and kept until the course content changes. The pages themselves are
+  19–118 KB. A repeat visit on a mobile-speed connection opens 4–6 times faster: 0.35–0.58 s
+  instead of 1.5–3.3 s. In the installed web app the files are stored at installation, so these
+  pages work offline from the first launch.
+
 ## [0.6.13] — 2026-10-11
 
 ### Fixed

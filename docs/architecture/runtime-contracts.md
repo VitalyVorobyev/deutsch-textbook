@@ -27,6 +27,7 @@ authoring rules.
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard, syncdir-shrink tests |
 | Desktop exit flush | `src-tauri/src/main.rs`, `src/lib/autosync.ts` (`initExitFlush`/`flushForExit`) | `cargo check`; manual Cmd+Q smoke (needs a webview) |
 | Session-probe caching | `src/lib/sync-remote.ts` (`classifySessionResponse`) | sync-remote session-probe tests |
+| Session content files and their cache | `src/lib/corpus-payload.ts`, `src/components/session/CorpusIslands.tsx`, `src/integrations/service-worker.js` ([ADR 0022](../adrs/0022-session-content-as-shared-data-files.md)) | corpus-gate and service-worker tests; `bun scripts/page-weight.ts` after a build |
 
 ## Non-negotiable invariants
 
@@ -45,6 +46,10 @@ authoring rules.
   8 for a word not retrieved at all, 50 for a lapse or a near miss, halved per further miss, never
   fewer than 3 (`recordMiss`). The gap orders today's queue only; FSRS alone schedules the card.
   A missed Leben-in-Deutschland question follows the same rule (`LidPractice`).
+- The session pages receive the corpus as URLs of content-hashed files, never as props
+  (`corpusUrl`), and an island never mounts on a missing file: `CorpusGate` shows loading or an
+  error with a retry until every file has arrived, because an empty list would plan "nothing due".
+  No HTML page may exceed 1.5 MB (`scripts/page-weight.ts`, run in CI).
 - No database is created before a learner profile exists; the final profile cannot be deleted.
 - References, documents, discovery pieces and learning figures create no progress or review debt.
 - Persisted UI choices receive migrations when their value domain changes.

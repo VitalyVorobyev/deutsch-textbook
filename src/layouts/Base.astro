@@ -11,8 +11,10 @@ import { hintAttrs, type HintKey } from '../lib/nav-hints';
 interface Props {
   title: string;
   description?: string;
+  /** Data files the page's island will fetch, requested while the HTML is still parsing. */
+  preload?: string[];
 }
-const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch' } = Astro.props;
+const { title, description = 'Deutsch-Atlas — ein interaktives Lehrbuch', preload = [] } = Astro.props;
 
 const home = withBase('/');
 interface NavItem {
@@ -104,6 +106,7 @@ const activeItem = nav.find(isActive);
           document.documentElement.dataset.installed = '';
       })();
     </script>
+    {preload.map((href) => <link rel="preload" href={href} as="fetch" crossorigin="anonymous" />)}
   </head>
   <body class="flex min-h-screen flex-col">
     <FirstRunGate client:only="react" />

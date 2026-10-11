@@ -2,41 +2,41 @@
  * Deutsch-Atlas service worker — source template.
  *
  * NOT bundled and NOT imported by the site. `src/integrations/pwa.ts` reads this file at
- * `astro:build:done`, substitutes the three `__…__` placeholders, and writes `dist/sw.js`.
+ * `astro:build:done`, substitutes the four `__…__` placeholders, and writes `dist/sw.js`.
  * Editing it therefore needs a rebuild, and `bun run build` is what proves it parses.
  *
- * Three caches, deliberately on different lifecycles:
+ * Four caches, deliberately on different lifecycles:
  *
  * - **shell** (versioned): the content-hashed `_astro/` bundle, icons and the offline page.
  *   Precached on install. Dropped wholesale on activate when the version changes, which is
  *   safe precisely because those filenames are content-hashed.
- * - **documents** (versioned): HTML, network-first. Versioned because a deploy changes every
- *   page's inlined content, and serving yesterday's page from cache after an update is how a
- *   learner ends up practising a retired item.
+ * - **data** (UNVERSIONED): the session pages' content files, `data/cards-<hash>.json` and
+ *   `data/sets-<hash>.json` (src/lib/corpus-payload.ts). Precached on install — so the daily loop
+ *   works offline from the first launch — and cache-first, because a name changes when its bytes
+ *   do. Outside the version so that a deploy which leaves the cards unchanged does not download
+ *   them again; on activate, every file the new build no longer lists is deleted.
+ * - **documents** (versioned): HTML, network-first. Versioned because a deploy changes pages, and
+ *   serving yesterday's page after an update is how a learner ends up practising a retired item.
+ *   Capped by bytes (60 MB) rather than by count, because page sizes span two orders of magnitude
+ *   (`find dist -name '*.html' -exec wc -c {} +`), so a count cap would not say what it costs.
  * - **media** (UNVERSIONED): `/audio/**`, cache-first. Deliberately outside the version, because
  *   the reviewed recordings are immutable — re-downloading 14.2 MB of MP3 on every deploy would
  *   be the single most expensive thing this worker could do.
- *
- * **Why documents are capped by bytes rather than by count.** Measured against this build
- * (`find dist -name '*.html' -exec wc -c {} +`): 162 pages, median 137 KB, p90 300 KB — but six
- * pages inline most of the corpus and run 4.6–10.7 MB (`/ueben/wortschatz` 10.7 MB,
- * `/session` 10.0 MB, `/progress` 6.1 MB, `/` 5.6 MB, `/ueben/wiederholen` 5.4 MB,
- * `/ueben/training` 4.7 MB), together 42 MB of the 68 MB total. A count cap of 40 would
- * therefore mean anything between 5 MB and 40 MB depending on which pages the learner opened.
- * A byte budget says what it means. Those six are also the pages a learner uses daily, so they
- * must be cachable rather than excluded — the page weight itself is a separate defect, filed in
- * the backlog rather than worked around here.
  */
 
 const VERSION = '__VERSION__';
 const BASE = '__BASE__';
 /** Content-hashed build assets + icons + the offline page. Filled in at build time. */
 const SHELL = /* __SHELL__ */ [];
+/** The session pages' content files, content-hashed. Filled in at build time. */
+const DATA = /* __DATA__ */ [];
 
 const SHELL_CACHE = `da-shell-${VERSION}`;
 const DOC_CACHE = `da-docs-${VERSION}`;
 /** Not versioned: reviewed audio is immutable, so a deploy must not evict it. */
 const MEDIA_CACHE = 'da-media-v1';
+/** Not versioned: a content file's name is its hash, so an unchanged one survives a deploy. */
+const DATA_CACHE = 'da-data-v1';
 
 const DOC_BUDGET_BYTES = 60 * 1024 * 1024;
 const MEDIA_BUDGET_BYTES = 40 * 1024 * 1024;
@@ -54,26 +54,44 @@ self.addEventListener('install', (event) => {
   // No skipWaiting here: an update must not swap the bundle under a learner who is
   // mid-exercise. The page asks for it explicitly (see SKIP_WAITING below).
   event.waitUntil(
-    caches.open(SHELL_CACHE).then((cache) =>
-      // addAll is atomic-or-nothing; one 404 would leave the worker permanently uninstalled,
-      // so each asset is added independently and a miss is merely logged.
-      Promise.all(
-        SHELL.map((url) =>
-          cache.add(new Request(url, { cache: 'reload' })).catch(() => {
-            console.warn('[sw] precache miss', url);
+    Promise.all([
+      caches.open(SHELL_CACHE).then((cache) =>
+        // addAll is atomic-or-nothing; one 404 would leave the worker permanently uninstalled,
+        // so each asset is added independently and a miss is merely logged.
+        Promise.all(
+          SHELL.map((url) =>
+            cache.add(new Request(url, { cache: 'reload' })).catch(() => {
+              console.warn('[sw] precache miss', url);
+            }),
+          ),
+        ),
+      ),
+      // A data file already held is the same bytes, so it is not fetched again.
+      caches.open(DATA_CACHE).then((cache) =>
+        Promise.all(
+          DATA.map(async (url) => {
+            if (await cache.match(url)) return;
+            await cache.add(new Request(url, { cache: 'reload' })).catch(() => {
+              console.warn('[sw] precache miss', url);
+            });
           }),
         ),
       ),
-    ),
+    ]),
   );
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
-      const keep = new Set([SHELL_CACHE, DOC_CACHE, MEDIA_CACHE]);
+      const keep = new Set([SHELL_CACHE, DOC_CACHE, MEDIA_CACHE, DATA_CACHE]);
       for (const name of await caches.keys()) {
         if (name.startsWith('da-') && !keep.has(name)) await caches.delete(name);
+      }
+      const current = new Set(DATA.map((url) => new URL(url, self.location.origin).href));
+      const data = await caches.open(DATA_CACHE);
+      for (const request of await data.keys()) {
+        if (!current.has(request.url)) await data.delete(request);
       }
       await self.clients.claim();
     })(),
@@ -158,6 +176,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (url.pathname.startsWith(`${BASE}data/`)) {
+    event.respondWith(handleData(request));
+    return;
+  }
+
   if (request.mode === 'navigate') {
     event.respondWith(handleDocument(request));
     return;
@@ -185,10 +208,28 @@ async function handleAsset(request) {
 }
 
 /**
+ * Content files: cache-first in their own cache. The name is the content hash, so a hit is
+ * never stale; a miss is fetched and kept. A failed fetch is a network error, which the page
+ * renders as "could not be loaded" with a retry — never as an empty session.
+ */
+async function handleData(request) {
+  const cache = await caches.open(DATA_CACHE);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  try {
+    const response = await fetch(request);
+    if (response.ok) await cache.put(request, response.clone());
+    return response;
+  } catch {
+    return Response.error();
+  }
+}
+
+/**
  * HTML: network-first, cache as fallback, offline page as last resort.
  *
- * Network-first rather than cache-first because a page's whole content is inlined at build
- * time — stale HTML is stale *course content*, not just stale chrome.
+ * Network-first rather than cache-first because a page's content is built into it — stale HTML
+ * is stale *course content*, not just stale chrome.
  */
 async function handleDocument(request) {
   try {

@@ -780,6 +780,18 @@ export const STRINGS = {
     ru: 'Локальное хранилище на этом устройстве не отвечает — не удалось загрузить прогресс. Данные сохранены, ничего не потеряно — попробуйте ещё раз или перезапустите приложение.',
     uk: 'Локальне сховище на цьому пристрої не відповідає — не вдалося завантажити прогрес. Дані збережено, нічого не втрачено — спробуйте ще раз або перезапустіть застосунок.',
   },
+  'corpus.loadError': {
+    de: 'Die Übungsinhalte konnten nicht geladen werden. Dein Fortschritt ist davon nicht betroffen — bitte erneut versuchen, sobald eine Verbindung besteht.',
+    en: 'The practice content could not be loaded. Your progress is not affected — please retry once you are online.',
+    ru: 'Не удалось загрузить учебные материалы. Ваш прогресс не затронут — попробуйте ещё раз, когда появится подключение.',
+    uk: 'Не вдалося завантажити навчальні матеріали. Ваш прогрес не постраждав — спробуйте ще раз, коли з’явиться з’єднання.',
+  },
+  'corpus.loading': {
+    de: 'Übungsinhalte werden geladen …',
+    en: 'Loading practice content …',
+    ru: 'Загружаем учебные материалы …',
+    uk: 'Завантажуємо навчальні матеріали …',
+  },
   'persist.loadRetry': {
     de: 'Erneut versuchen',
     en: 'Retry',
