@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.3 `gesundheit-wohlbefinden`.
+  Next: B1.4 `arbeit-bewerbung` (the first with a provenance record to check).
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -110,6 +110,13 @@ record of what shipped.
   count three families where there are four; the listening set tags comprehension questions
   `spoken-production` and its scenario is not the unit's; the `gewöhnen` note says "always
   reflexive"; the `zentral` RU/UK example; the `Gegend` and `Wohngemeinschaft` glosses run long.
+- `b1/gesundheit-wohlbefinden`: *Kurz gesagt* runs 116–125 words, 6 sentences; "it never changes
+  … takes second position" against *Lass uns …* in the same section; RU/UK call «я проверяю зрение»
+  reflexive; probe headers count three families of four; a comment in `klassiker-10-das-kalte-herz`
+  calls *könne/müsse/sei* Konjunktiv II (they are Konjunktiv I) and an explain there adds "bought
+  from rich men before Peter"; reading explains add claims the text does not
+  make; the reflexive probe's *Schmerzmittel* reads as medication tolerance; `ls-…-hoeren` q2
+  repeats the audio's last line; *Ich freue mich bereits auf* is rejected.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

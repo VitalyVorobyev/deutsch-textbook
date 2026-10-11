@@ -58,6 +58,15 @@ items:
     outcomes: [gewohnheiten-beschreiben]
     type: translate
     focus: lassen-verwendung
+    revision: 2
+    # rev 2: a translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), so the smuggled zu — the error this family exists to see — scored as the
+    # competence surviving. The predicates decide instead, and because they replace key_tokens
+    # attribution they also restate its two failures: a wrong or missing form of lassen, and the
+    # infinitive pulled out of the bracket.
+    focus_evidence:
+      failed: ["\\bzu putzen\\b", "\\bgeputzt\\b", "\\bputzen\\b.+$", "^(?!.*\\blasse\\b)"]
+      retained: ["\\blasse\\b.*\\bputzen$"]
     instruction:
       en: "Translate — say who arranges it, with lassen. For 'clean' take putzen."
       ru: "Переведите — назовите того, кто это организует, через lassen. Для «убирать» возьмите putzen."
@@ -73,6 +82,13 @@ items:
       - "Meine Wohnung lasse ich jeden Monat putzen."
       # Time adverbial before the object — the same bracket, the other Mittelfeld order.
       - "Ich lasse jeden Monat meine Wohnung putzen."
+      # «мне убирают квартиру» / «мені прибирають квартиру» leave the possessive open, and the
+      # dative mir is the natural German for it.
+      - "Ich lasse mir jeden Monat die Wohnung putzen."
+      - "Ich lasse mir die Wohnung jeden Monat putzen."
+      - "Jeden Monat lasse ich mir die Wohnung putzen."
+      - "Ich lasse die Wohnung jeden Monat putzen."
+      - "Jeden Monat lasse ich die Wohnung putzen."
     key_tokens: ["lasse", "putzen"]
     explain:
       en: "Graded are both ends of the bracket: lasse in second position, putzen as a bare infinitive at the very end. lassen behaves exactly like a modal verb here — and after a modal nobody writes zu, so ich lasse meine Wohnung zu putzen carries the A2 zu-infinitive rule to a verb that never takes it. The other tempting form is the participle (lasse … geputzt), borrowed from languages that build this meaning with a past participle; German does not. The sentence names no cleaner, and it does not have to: lassen says the work is arranged, not done by the subject."
@@ -84,6 +100,10 @@ items:
     outcomes: [gewohnheiten-beschreiben]
     type: translate
     focus: lassen-verwendung
+    revision: 2
+    focus_evidence:
+      failed: ["\\bzu abholen\\b", "\\babzuholen\\b", "\\babgeholt\\b", "\\babholen\\b.+$", "^(?!.*\\blassen\\b)"]
+      retained: ["\\blassen\\b.*\\babholen$"]
     instruction:
       en: "Translate — say who arranges it, with lassen. For 'pick up' take abholen, for 'wardrobe' der Schrank."
       ru: "Переведите — назовите того, кто это организует, через lassen. Для «забрать» возьмите abholen, для «шкаф» — der Schrank."
@@ -98,6 +118,9 @@ items:
       - "Am Samstag lassen wir den alten Schrank abholen."
       # Time adverbial before the object — the same bracket, the other Mittelfeld order.
       - "Wir lassen am Samstag den alten Schrank abholen."
+      # «у нас» / «в нас» invites the possessive.
+      - "Wir lassen unseren alten Schrank am Samstag abholen."
+      - "Am Samstag lassen wir unseren alten Schrank abholen."
     key_tokens: ["lassen", "abholen"]
     explain:
       en: "The same two ends, with a separable verb at the wall: lassen opens the bracket, abholen closes it — and it closes it whole. A separable verb splits only when it is the conjugated one; as the second verb after lassen it stays in one piece, so ab-holen never becomes lassen … den Schrank ab. Note also that lassen alone conjugates: wir lassen, and the infinitive after it never changes for person or number."
@@ -109,14 +132,18 @@ items:
     outcomes: [gewohnheiten-beschreiben]
     type: translate
     focus: lassen-verwendung
+    revision: 2
+    focus_evidence:
+      failed: ["\\bzu waschen\\b", "\\bgewaschen\\b", "\\bwaschen\\b.+$", "^(?!.*\\blässt\\b)"]
+      retained: ["\\blässt\\b.*\\bwaschen$"]
     instruction:
       en: "Translate — say who arranges it, with lassen. For 'wash' take waschen."
       ru: "Переведите — назовите того, кто это организует, через lassen. Для «мыть» возьмите waschen."
       uk: "Перекладіть — назвіть того, хто це організовує, через lassen. Для «мити» візьміть waschen."
       de: "Übersetze — sag mit lassen, wer es veranlasst. Für das Waschen nimm waschen."
     prompt_en: "My neighbour has her car washed every week."
-    prompt_ru: "Соседка каждую неделю отдаёт машину на мойку."
-    prompt_uk: "Сусідка щотижня віддає машину на мийку."
+    prompt_ru: "Моя соседка каждую неделю отдаёт свою машину на мойку."
+    prompt_uk: "Моя сусідка щотижня віддає свою машину на мийку."
     answer: "Meine Nachbarin lässt ihr Auto jede Woche waschen."
     accept:
       # Position 1 taken by the time phrase; the bracket is unchanged.
