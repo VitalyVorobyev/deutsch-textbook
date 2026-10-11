@@ -72,6 +72,7 @@ items:
       de: "Der Höflichkeits-Chunk aus A2 bei der Verhandlungsarbeit: Könnten macht aus der Fähigkeitsfrage Können einen Vorschlag, den die andere Seite ohne Streit ablehnen kann — genau das hält ein Gespräch offen. Bewertet wird allein die Konjunktivform; zusammen und gemeinsam sind gleich richtig. Es ist das Register der Amts-Einheit, wiederverwendet an der Tür des Hausmeisters."
 
   - id: hoeren-diktat
+    revision: 2
     outcomes: [pflichten-verstehen]
     type: listen
     focus: passiv-modal
@@ -81,6 +82,10 @@ items:
       uk: "Прослухайте і напишіть, що ви чуєте."
       de: "Hör zu und tippe, was du hörst."
     text: "Es wird gebaut, sodass der Weg gesperrt werden muss."
+    # sodass and so dass sound the same, and the course accepts both spellings everywhere
+    # else; without this a heard-perfect so dass was a miss charged to passiv-modal.
+    accept:
+      - "Es wird gebaut, so dass der Weg gesperrt werden muss."
     translation:
       en: "Building work is going on, so the path has to be closed."
       ru: "Идёт стройка, так что дорожку приходится перекрывать."
@@ -133,10 +138,10 @@ items:
       ru: "Уважаемая управляющая компания! Я прочитал объявление о велосипедном подвале. Подвалом нельзя пользоваться четыре недели, так что мне негде оставить велосипед. Я каждый день езжу на работу на велосипеде, так что место мне нужно срочно. Во дворе рядом с баками есть немного места. Нельзя ли на время перестройки ставить велосипеды там? Велосипедам ведь не обязательно стоять в подвале — им нужно лишь сухое место. Можем ли мы договориться о таком решении? С уважением, Л. Херманн"
       uk: "Шановна керуюча компаніє! Я прочитав оголошення про велосипедний підвал. Підвалом не можна користуватися чотири тижні, так що мені ніде залишити велосипед. Я щодня їжджу на роботу велосипедом, так що місце мені потрібне терміново. У дворі біля баків є трохи місця. Чи не можна на час перебудови ставити велосипеди там? Велосипедам же не обов'язково стояти в підвалі — їм потрібне лише сухе місце. Чи можемо ми домовитися про таке рішення? З повагою, Л. Херманн"
     explain:
-      en: "Compare your draft against the model's moves, not its words. The rule returns in the modal passive (darf nicht benutzt werden), two consequences hang on sodass with their verbs at the wall (abstellen kann, brauche), one muss nicht releases rather than forbids, and the proposal is a question the reader can grant — kann … abgestellt werden names no doer, so nobody is being ordered around."
-      ru: "Сверяйте черновик с ходами образца, а не со словами. Правило возвращается модальным пассивом (darf nicht benutzt werden), два следствия подвешены на sodass с глаголами у стены (abstellen kann, brauche), одно muss nicht освобождает, а не запрещает, и предложение — вопрос, на который читатель может согласиться: kann … abgestellt werden не называет исполнителя, так что никто не получает приказов."
-      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Правило повертається модальним пасивом (darf nicht benutzt werden), два наслідки підвішені на sodass з дієсловами біля стіни (abstellen kann, brauche), одне muss nicht звільняє, а не забороняє, і пропозиція — питання, на яке читач може погодитися: kann … abgestellt werden не називає виконавця, тож ніхто не отримує наказів."
-      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Die Regel kehrt im Modalpassiv zurück (darf nicht benutzt werden), zwei Folgen hängen an sodass mit den Verben an der Wand (abstellen kann, brauche), ein muss nicht befreit statt zu verbieten, und der Vorschlag ist eine Frage, die der Leser bewilligen kann — kann … abgestellt werden nennt keinen Täter, also wird niemand herumkommandiert."
+      en: "Compare your draft against the model's moves, not its words. The rule returns in the modal passive (darf nicht benutzt werden), two consequences hang on sodass with their verbs at the wall (abstellen kann, brauche), one muss nicht releases rather than forbids, and the proposal is a question the reader can grant — Könnten … abgestellt werden names no doer, so nobody is being ordered around."
+      ru: "Сверяйте черновик с ходами образца, а не со словами. Правило возвращается модальным пассивом (darf nicht benutzt werden), два следствия подвешены на sodass с глаголами у стены (abstellen kann, brauche), одно muss nicht освобождает, а не запрещает, и предложение — вопрос, на который читатель может согласиться: Könnten … abgestellt werden не называет исполнителя, так что никто не получает приказов."
+      uk: "Звіряйте чернетку з ходами зразка, а не зі словами. Правило повертається модальним пасивом (darf nicht benutzt werden), два наслідки підвішені на sodass з дієсловами біля стіни (abstellen kann, brauche), одне muss nicht звільняє, а не забороняє, і пропозиція — питання, на яке читач може погодитися: Könnten … abgestellt werden не називає виконавця, тож ніхто не отримує наказів."
+      de: "Vergleiche deinen Entwurf mit den Zügen des Musters, nicht mit seinen Wörtern. Die Regel kehrt im Modalpassiv zurück (darf nicht benutzt werden), zwei Folgen hängen an sodass mit den Verben an der Wand (abstellen kann, brauche), ein muss nicht befreit statt zu verbieten, und der Vorschlag ist eine Frage, die der Leser bewilligen kann — Könnten … abgestellt werden nennt keinen Täter, also wird niemand herumkommandiert."
 
   - id: sprechen-aushandeln
     outcomes: [loesung-aushandeln]
@@ -176,7 +181,7 @@ items:
       ru: "Извините, пожалуйста, — это был я, и мне жаль. Мы переехали на прошлой неделе, так что ещё нужно собрать много мебели. Я не следил за временем. Может быть, сверлить можно будет в субботу до обеда? Тогда вечером и ночью будет тихо. — Да, согласен, это честно. В воскресенье мы не будем делать вообще ничего, обещаю. И передайте, пожалуйста, соседям, что мне жаль. Спасибо за понимание!"
       uk: "Вибачте, будь ласка, — це був я, і мені прикро. Ми переїхали минулого тижня, так що ще треба зібрати багато меблів. Я не стежив за часом. Можливо, свердлити можна буде в суботу до обіду? Тоді ввечері й уночі буде тихо. — Так, згоден, це чесно. У неділю ми не робитимемо взагалі нічого, обіцяю. І перекажіть, будь ласка, сусідам, що мені прикро. Дякую за розуміння!"
     explain:
-      en: "The model makes the moves the checklist names, in order: apology, the reason hung on sodass with the chain aufgebaut werden müssen at its wall, a proposal that names no doer (kann … erledigt werden), and a close that repeats the caretaker's condition in its own words before accepting it. Say it a second time and listen for those three verb endings."
-      ru: "Образец делает ходы из чек-листа по порядку: извинение, причина на sodass с цепочкой aufgebaut werden müssen у стены, предложение без исполнителя (kann … erledigt werden) и финал, который повторяет условие коменданта своими словами и лишь потом принимает его. Произнесите текст второй раз и вслушайтесь в эти три глагольных конца."
-      uk: "Зразок робить ходи з чек-листа по порядку: вибачення, причина на sodass з ланцюжком aufgebaut werden müssen біля стіни, пропозиція без виконавця (kann … erledigt werden) і фінал, що повторює умову коменданта своїми словами і лише потім приймає її. Промовте текст удруге і вслухайтеся в ці три дієслівні кінці."
-      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Entschuldigung, der Grund an sodass mit der Kette aufgebaut werden müssen an der Wand, ein Vorschlag ohne Täter (kann … erledigt werden) und ein Schluss, der die Bedingung des Hausmeisters mit eigenen Worten wiederholt, bevor er sie annimmt. Sprich den Text ein zweites Mal und hör auf diese drei Verb-Enden."
+      en: "The model makes the moves the checklist names, in order: apology, the reason hung on sodass with the chain aufgebaut werden müssen at its wall, a proposal that names no doer (kann … erledigt werden), and a close that accepts the caretaker's condition and repeats it in its own words. Say it a second time and listen for those three verb endings."
+      ru: "Образец делает ходы из чек-листа по порядку: извинение, причина на sodass с цепочкой aufgebaut werden müssen у стены, предложение без исполнителя (kann … erledigt werden) и финал, который принимает условие коменданта и повторяет его своими словами. Произнесите текст второй раз и вслушайтесь в эти три глагольных конца."
+      uk: "Зразок робить ходи з чек-листа по порядку: вибачення, причина на sodass з ланцюжком aufgebaut werden müssen біля стіни, пропозиція без виконавця (kann … erledigt werden) і фінал, що приймає умову коменданта і повторює її своїми словами. Промовте текст удруге і вслухайтеся в ці три дієслівні кінці."
+      de: "Das Muster macht die Züge der Checkliste der Reihe nach: Entschuldigung, der Grund an sodass mit der Kette aufgebaut werden müssen an der Wand, ein Vorschlag ohne Täter (kann … erledigt werden) und ein Schluss, der die Bedingung des Hausmeisters annimmt und mit eigenen Worten wiederholt. Sprich den Text ein zweites Mal und hör auf diese drei Verb-Enden."

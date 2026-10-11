@@ -76,6 +76,19 @@ GitHub Release notes.
     answer was marked wrong and counted against the word order.
   - *die Mülltonne* is accepted beside *die Tonne*.
   - Three explanations now describe their own text and recording correctly.
+- **B1.7 Regeln & Verantwortung — quality pass.**
+  - A *dürfen/müssen* exercise counts against that choice only when you pick the wrong modal.
+    Before, a wrong ending (*dürfen nicht geraucht werden*), a missing modal, or the right modal
+    in an active sentence all counted as that mistake.
+  - Correct answers now accepted:
+    - bare *Fahrräder* where the Russian has no article;
+    - *so dass* beside *sodass*, in a dictation and a placement question;
+    - *geparkt* for "parked";
+    - *Geschäft* and *um sechs Uhr*.
+  - One exercise now names *streichen*, a verb no list teaches.
+  - The lesson no longer says the subject must follow *sodass* directly. Its own example
+    (*sodass sich die Nachbarn beschwert haben*) shows otherwise.
+  - Three explanations now describe their own model text or recording correctly.
 
 ## [0.6.19] — 2026-10-11
 

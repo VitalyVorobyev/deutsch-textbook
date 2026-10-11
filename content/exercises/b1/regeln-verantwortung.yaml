@@ -89,6 +89,7 @@ items:
       de: "Nach einem Modalverb steht jedes Verb im Infinitiv, also behält werden die Grundform — das einzige konjugierte Verb dieses Satzes ist muss. wird würde ein zweites Verb daneben konjugieren, und worden gehört in eine ganz andere Klammer: das gesprochene Vergangenheits-Passiv aus B1.6, ist … worden, das nie auf ein Modalverb folgt."
 
   - id: uebersetzen-fahrraeder
+    revision: 2
     outcomes: [pflichten-verstehen]
     type: translate
     focus: passiv-modal
@@ -106,6 +107,13 @@ items:
       # bis zum Sonntag renders the deadline just as correctly as bis Sonntag.
       - "Die Fahrräder müssen bis zum Sonntag in den Hof gestellt werden."
       - "Bis zum Sonntag müssen die Fahrräder in den Hof gestellt werden."
+      # RU/UK «Велосипеды» / «Велосипеди» carry no article, and the article's own notices
+      # write the bare plural (Fahrräder dürfen hier nicht abgestellt werden) — carrier
+      # under passiv-modal, so it joins accept, closed over both orders and both deadlines.
+      - "Fahrräder müssen bis Sonntag in den Hof gestellt werden."
+      - "Bis Sonntag müssen Fahrräder in den Hof gestellt werden."
+      - "Fahrräder müssen bis zum Sonntag in den Hof gestellt werden."
+      - "Bis zum Sonntag müssen Fahrräder in den Hof gestellt werden."
     key_tokens: ["müssen", "gestellt", "werden"]
     explain:
       en: "Graded are the three anchors of the form: müssen agreeing with the plural Fahrräder, and the passive infinitive gestellt werden closing the sentence in exactly that order. Everything else is carrier. Note in den Hof — direction, so accusative, as in A2's wohin-question. Fronting bis Sonntag is equally correct and accepted."
@@ -174,6 +182,14 @@ items:
       # mit Bargeld says "in cash" as correctly as bar / in bar.
       - "Die Miete muss nicht mit Bargeld bezahlt werden."
     key_tokens: ["muss"]
+    # The pin is a string, so it charged duerfen-muessen for anything but muss in that slot —
+    # an agreement slip (müssen), a missing modal, a man-sentence's shifted position — none of
+    # them the darf/muss confusion the tag names. The predicates decide instead: the tag fails
+    # only when the ban modal was chosen; muss/müssen (or the A2 brauchen-nicht-zu release)
+    # with nicht is the choice surviving a miss elsewhere; anything else logs no tag.
+    focus_evidence:
+      failed: ["\\b(darf|dürfen|darfst|dürft)\\b"]
+      retained: ["\\b(muss|müssen|musst|müsst|brauch\\w*)\\b", "\\bnicht\\b"]
     explain:
       en: "\"Does not have to\" names a released duty, and the release is muss nicht — darf nicht would forbid cash, which the landlord never said. English \"must not\" is the trap: it forbids, muss nicht does not. Only the modal is graded: the choice is this item's competence, and the frame around it belongs to other items. bar, in bar and mit Bargeld are all idiomatic."
       ru: "«Не обязательно» — снятая обязанность, и снимает её muss nicht; darf nicht запретил бы наличные, чего арендодатель не говорил. Оценивается только модальный глагол: выбор — компетенция этого задания, а рамка вокруг него — дело других заданий. bar, in bar и mit Bargeld одинаково идиоматичны."
@@ -196,6 +212,13 @@ items:
     accept:
       - "Es darf im Treppenhaus nicht geraucht werden."
     key_tokens: ["darf"]
+    # The pin charged duerfen-muessen for *Im Treppenhaus dürfen nicht geraucht werden* —
+    # the ban chosen correctly, with plural agreement in a subjectless passive. Agreement is
+    # passiv-modal's decision, not this tag's. The predicates decide: the tag fails only when
+    # the release modal was chosen; darf/dürfen with nicht is the choice surviving.
+    focus_evidence:
+      failed: ["\\b(muss|müssen|musst|müsst)\\b"]
+      retained: ["\\b(darf|dürfen|darfst|dürft)\\b", "\\bnicht\\b"]
     explain:
       en: "\"Not allowed\" marks the ban, and the ban is darf nicht — muss nicht would announce that smoking is merely optional, a strange notice. The sentence has no subject at all: the impersonal passive is how German signs forbid an activity itself, and the article's error list warns against muss nicht in exactly this sentence."
       ru: "«Нельзя» — это запрет, а запрет — darf nicht; muss nicht объявил бы, что курить просто не обязательно, — странная табличка. Подлежащего в предложении нет вовсе: безличный пассив — то, как немецкие таблички запрещают само действие, и список ошибок в статье предупреждает о muss nicht именно на этом предложении."
@@ -217,10 +240,10 @@ items:
       ru: "В доме весь день сверлят, так что ребёнок не может спать."
       uk: "У будинку цілий день свердлять, так що дитина не може спати."
     explain:
-      en: "sodass opens a Nebensatz: subject straight after the conjunction, finite verb at the very end — kann closes the clause. The version sodass kann das Baby … gives sodass the grammar of deshalb, an adverb that takes the verb right after itself; the version sodass das Baby kann … freezes main-clause order after a conjunction, the straight transfer from \"so the baby can't sleep\"."
-      ru: "sodass открывает придаточное: сразу после союза — подлежащее, спрягаемый глагол — в самом конце: придаточное закрывает kann. Вариант sodass kann das Baby … даёт sodass грамматику deshalb — наречия, которое ставит глагол сразу за собой; вариант sodass das Baby kann … замораживает порядок главного предложения после союза — прямой перенос русского «так что ребёнок не может спать»."
-      uk: "sodass відкриває підрядне: одразу після сполучника — підмет, відмінюване дієслово — у самому кінці: підрядне закриває kann. Варіант sodass kann das Baby … дає sodass граматику deshalb — прислівника, що ставить дієслово одразу за собою; варіант sodass das Baby kann … заморожує порядок головного речення після сполучника — прямий перенос українського «так що дитина не може спати»."
-      de: "sodass eröffnet einen Nebensatz: direkt nach der Konjunktion das Subjekt, das finite Verb ganz am Ende — kann schließt den Satz. Die Variante sodass kann das Baby … gibt sodass die Grammatik von deshalb, einem Adverb, das das Verb direkt hinter sich zieht; die Variante sodass das Baby kann … friert nach der Konjunktion die Hauptsatz-Stellung ein — die wörtliche Übertragung aus vielen Sprachen."
+      en: "sodass opens a Nebensatz: the finite verb goes to the very end — kann closes the clause — and here the subject follows the conjunction directly. The version sodass kann das Baby … gives sodass the grammar of deshalb, an adverb that takes the verb right after itself; the version sodass das Baby kann … freezes main-clause order after a conjunction, the straight transfer from \"so the baby can't sleep\"."
+      ru: "sodass открывает придаточное: спрягаемый глагол уходит в самый конец — придаточное закрывает kann, — а подлежащее здесь стоит сразу после союза. Вариант sodass kann das Baby … даёт sodass грамматику deshalb — наречия, которое ставит глагол сразу за собой; вариант sodass das Baby kann … замораживает порядок главного предложения после союза — прямой перенос русского «так что ребёнок не может спать»."
+      uk: "sodass відкриває підрядне: відмінюване дієслово йде в самий кінець — підрядне закриває kann, — а підмет тут стоїть одразу після сполучника. Варіант sodass kann das Baby … дає sodass граматику deshalb — прислівника, що ставить дієслово одразу за собою; варіант sodass das Baby kann … заморожує порядок головного речення після сполучника — прямий перенос українського «так що дитина не може спати»."
+      de: "sodass eröffnet einen Nebensatz: Das finite Verb geht ganz ans Ende — kann schließt den Satz —, und das Subjekt steht hier direkt nach der Konjunktion. Die Variante sodass kann das Baby … gibt sodass die Grammatik von deshalb, einem Adverb, das das Verb direkt hinter sich zieht; die Variante sodass das Baby kann … friert nach der Konjunktion die Hauptsatz-Stellung ein — die wörtliche Übertragung aus vielen Sprachen."
 
   - id: uebersetzen-hof-sodass
     outcomes: [folgen-benennen]
@@ -247,15 +270,18 @@ items:
       de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und können an seiner Wand — die Verbkette spielen können bleibt zusammen, das finite Verb zuletzt. sodass können die Kinder … wäre die Wortstellung von deshalb. Der Hauptsatz läuft im einfachen Passiv aus B1.6, hier reines Trägermaterial. Die ältere Schreibung so dass ist dieselbe Konjunktion und wird akzeptiert."
 
   - id: uebersetzen-deshalb-treppe
-    revision: 2
+    revision: 3
     outcomes: [folgen-benennen]
     type: translate
     focus: konjunktionaladverb-inversion
+    # streichen ("paint" a wall or a lift) is on no Goethe Wortliste and in no deck; the
+    # reading glosses gestrichen receptively, so the instruction names it rather than make
+    # the learner guess the one verb the carrier clause accepts.
     instruction:
-      en: "Translate — start the second sentence with deshalb."
-      ru: "Переведите — начните второе предложение с deshalb."
-      uk: "Перекладіть — почніть друге речення з deshalb."
-      de: "Übersetze — beginn den zweiten Satz mit deshalb."
+      en: "Translate — start the second sentence with deshalb; for 'paint' take streichen."
+      ru: "Переведите — начните второе предложение с deshalb; для «красить» возьмите streichen."
+      uk: "Перекладіть — почніть друге речення з deshalb; для «фарбувати» візьміть streichen."
+      de: "Übersetze — beginn den zweiten Satz mit deshalb; für das Verb im ersten Satz nimm streichen."
     prompt_en: "The lift is being painted. That is why I am taking the stairs this week."
     prompt_ru: "Лифт красят. Поэтому на этой неделе я пользуюсь лестницей."
     prompt_uk: "Ліфт фарбують. Тому цього тижня я користуюся сходами."
