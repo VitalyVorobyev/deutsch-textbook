@@ -12,7 +12,7 @@ authoring rules.
 | Training eligibility and interleaving | `src/lib/training.ts` | eligibility/broad-retrieval tests |
 | Mastery and navigation evidence | `src/lib/mastery.ts`, `src/lib/placement.ts` | mastery/placement tests |
 | Delayed probes | `src/lib/probes.ts` | probe tests and progress audit |
-| Scoring and focus attribution | `src/lib/scoring.ts`, `packages/grading/src/production.ts` | grading/contract tests |
+| Scoring and focus attribution | `src/lib/scoring.ts`, `packages/grading/src/production.ts`, `packages/grading/src/evidence.ts` (`focus_evidence` predicates: where an item declares them they decide attribution, and a `failed` match beats `dictationSlip`) | grading/contract, evidence, focus-attribution and focus-evidence tests |
 | Profiles and learner storage | `src/lib/profile.ts`, `src/lib/store.ts` | snapshot/store tests |
 | Snapshot compatibility | `src/lib/snapshot-schema.ts`, `src/lib/snapshot-merge.ts` | all-version migration tests |
 | Language selection | `src/lib/prefs.ts`, `packages/schema/src/langcheck.ts` | i18n tests and validator |

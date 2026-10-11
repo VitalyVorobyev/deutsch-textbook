@@ -24,6 +24,17 @@ items:
     type: translate
     focus: modal-satzklammer
     revision: 2
+    # A translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), and key_tokens cannot attribute an INSERTED token: a zu before the
+    # infinitive (muss … zu gehen) changes the token count, so neither pin looks
+    # missing or displaced, and the one error a "bare infinitive" rules out would score
+    # as the bracket surviving. The predicates decide instead (focus-tags.md, "Errors that add a
+    # word"), and because they replace key_tokens attribution they restate its failures:
+    # the infinitive not at the wall (missing, conjugated, a participle, or pulled out of the
+    # bracket) and the modal not in position 2.
+    focus_evidence:
+      failed: ["\\bzu gehen\\b", "^(?!.*\\bgehen$)", "^(?!(\\S+ ){1,2}muss\\b)"]
+      retained: ["\\bmuss\\b.*\\bgehen$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -49,6 +60,9 @@ items:
     type: translate
     focus: modal-satzklammer
     revision: 2
+    focus_evidence:
+      failed: ["\\bzu kochen\\b", "^(?!.*\\bkochen$)", "^(?!(\\S+ ){1,2}(will|möchte)\\b)"]
+      retained: ["\\b(will|möchte)\\b.*\\bkochen$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -83,6 +97,10 @@ items:
     outcomes: [modal-satzklammer]
     type: translate
     focus: modal-satzklammer
+    # The W-question puts kann straight after wo — position 2 is exactly one word in.
+    focus_evidence:
+      failed: ["\\bzu kaufen\\b", "^(?!.*\\bkaufen$)", "^(?!\\S+ kann\\b)"]
+      retained: ["\\bkann\\b.*\\bkaufen$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

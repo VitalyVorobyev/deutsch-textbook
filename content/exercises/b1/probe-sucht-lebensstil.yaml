@@ -37,6 +37,17 @@ items:
     type: translate
     focus: lassen-verwendung
     key_tokens: ["lasse", "reparieren"]
+    # A translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), and key_tokens cannot attribute an INSERTED token — so the smuggled
+    # zu (lasse … zu reparieren), the error lassen-verwendung names as "no zu", would score
+    # as the competence surviving; the sibling family probe-gesundheit-wohlbefinden-lassen-
+    # verwendung already caught it this way. The predicates decide instead, and because they
+    # replace key_tokens attribution they restate its failures: the bracket's last word not
+    # the bare infinitive (a participle, a zu-form, or the verb pulled forward), and the
+    # pinned finite lassen out of position 2.
+    focus_evidence:
+      failed: ["\\bzu reparieren\\b", "^(?!.*\\breparieren$)", "^(?!(\\S+ ){1,2}lasse\\b)"]
+      retained: ["\\blasse\\b.*\\breparieren$"]
     instruction:
       en: "Translate with lassen — for 'the workshop' take die Werkstatt."
       ru: "Переведите через lassen — для «мастерской» возьмите die Werkstatt."
@@ -57,6 +68,11 @@ items:
     type: translate
     focus: lassen-verwendung
     key_tokens: ["fernsehen", "lassen"]
+    # In the Perfekt the bracket closes on two infinitives, so the zu can land before
+    # either; the auxiliary haben is unpinned and stays out of failed.
+    focus_evidence:
+      failed: ["\\bzu (fernsehen|lassen)\\b", "^(?!.*\\bfernsehen lassen$)"]
+      retained: ["\\bhaben\\b.*\\bfernsehen lassen$"]
     instruction:
       en: "Translate in the perfect, with lassen — for 'watch television' take fernsehen, for 'for longer' länger."
       ru: "Переведите в перфекте, через lassen — для «смотреть телевизор» возьмите fernsehen, для «подольше» — länger."
@@ -77,6 +93,10 @@ items:
     type: translate
     focus: lassen-verwendung
     key_tokens: ["pflegen", "lassen"]
+    # wollen is unpinned (the instruction names it), so only the closing pair is graded.
+    focus_evidence:
+      failed: ["\\bzu (pflegen|lassen)\\b", "^(?!.*\\bpflegen lassen$)"]
+      retained: ["\\bwollen\\b.*\\bpflegen lassen$"]
     instruction:
       en: "Translate with wollen and lassen — for 'look after' take pflegen, for 'a company' eine Firma."
       ru: "Переведите через wollen и lassen — для «ухаживать» возьмите pflegen, для «фирмы» — eine Firma."

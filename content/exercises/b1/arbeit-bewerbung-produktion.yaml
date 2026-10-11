@@ -121,6 +121,15 @@ items:
     outcomes: [erfahrung-praesentieren]
     type: listen
     focus: adjektiv-nomen
+    # Both of this item's own errors are one letter off the target — etwas neues (the
+    # capital) and etwas Neue (the strong -es) — so dictationSlip forgave each as a typo and
+    # adjektiv-nomen never saw them. An authored failed predicate now beats the slip
+    # (Listen.tsx), and case_sensitive is what lets a predicate see the capital at all.
+    # Everything else wrong in the sentence is a mishearing, not this tag: unknown.
+    focus_evidence:
+      case_sensitive: true
+      failed: ["\\betwas neu", "\\betwas Neu(e[mnr]?)?\\b"]
+      retained: ["\\betwas Neues\\b"]
     instruction:
       en: "Listen and type what you hear."
       ru: "Прослушайте и напишите, что вы слышите."

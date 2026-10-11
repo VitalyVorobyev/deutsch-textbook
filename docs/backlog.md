@@ -285,18 +285,12 @@ Triaged from `feedback.md`, which holds only raw capture.
   Either key the practice gaps `{{Da}}` and amend the tag rule to "or the direction the instruction
   constrains", or let the probe accept *Weil* (then only variant-a measures). Also: who drafted
   this unit's UK/DE halves and ran its C6-1 review is not in its provenance record.
-- **An unattributed probe miss counts as retained.** `classifyProbe` (`scripts/progress-audit.ts`)
-  reads a translate miss with no attributed token as the competence surviving, and no pin can
-  attribute an *inserted* token — so on a probe whose signature error adds a word (the smuggled
-  *zu* after *lassen*, modals, *werden*) the error scores as retention. `b1/probe-gesundheit-wohlbefinden-lassen-verwendung`
-  now carries `focus_evidence` predicates. First step: list every probe family whose tag names an
-  insertion error and check each for predicates.
-- **Dictation slips swallow the error a `listen` item is tagged for.** `dictationSlip` forgives
-  `…etwas neues…` and `…etwas Neue…` on `b1/arbeit-bewerbung-produktion::hoeren-diktat-neues`, so
-  `adjektiv-nomen` never sees its own capital or ending; a `failed` predicate cannot override a slip
-  (`Listen.tsx`), and predicates match case-insensitively (`src/lib/evidence.ts`), so capitalisation
-  cannot be measured. First step: let an authored `failed` predicate win over the slip, and give
-  predicates an opt-in case-sensitive mode.
+- **The grading queue reads predicate-bearing items through `key_tokens` alone.** `gradingReview`
+  (`scripts/progress-audit.ts`) queues a rejected rendering and re-attributes a confirmed one with
+  `gradeTranslation`, while the runtime logs the item's `focus_evidence` verdict. Routing it through
+  the predicates queues 2 more renderings today, both on `a2/drill-zu-infinitiv:uebersetzen-formular-auszufuellen`
+  (a misspelt pin the predicates call `unknown`); no probe row moves. Decide whether such a miss
+  belongs in the review queue before wiring it.
 - **A probe's arming contract pins a tag on an item that should not carry it.**
   `b1/arbeit-bewerbung-produktion::hoeren-interview-verstehen` is a speaker-attribution listening
   item tagged `nomen-verb-verbindung` (its own explain says so), but it is in that probe family's

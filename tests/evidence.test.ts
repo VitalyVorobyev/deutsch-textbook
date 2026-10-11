@@ -65,3 +65,31 @@ describe('explicit focus evidence', () => {
     expect(evaluateFocusEvidence('Da ich keine Zeit habe', false)).toBe('unknown');
   });
 });
+
+describe('case-sensitive predicates', () => {
+  // The capital of a nominalized adjective is the graded decision, and the default matching
+  // folds case — so the slip `etwas neues` and the target `etwas Neues` are one string to it.
+  const neues = {
+    retained: ['\\betwas Neues\\b'],
+    failed: ['\\betwas neu', '\\betwas Neu(e[mnr]?)?\\b'],
+  };
+  const target = 'Als Verkäufer habe ich immer etwas Neues gelernt.';
+
+  test('are off by default: every predicate keeps the case-insensitive meaning it was written with', () => {
+    // Folded, the lower-case predicate fires on the correct capital — which is exactly why the
+    // validator refuses it on this item unless `case_sensitive` is declared.
+    expect(evaluateFocusEvidence(target, false, neues)).toBe('failed');
+    expect(evaluateFocusEvidence(target, false, { ...neues, case_sensitive: false })).toBe('failed');
+  });
+
+  test('opted in, they tell the capital from its slip', () => {
+    const strict = { ...neues, case_sensitive: true };
+    expect(evaluateFocusEvidence('Als Verkäufer habe ich immer etwas neues gelernt.', false, strict))
+      .toBe('failed');
+    expect(evaluateFocusEvidence('Als Verkäufer habe ich immer etwas Neue gelernt.', false, strict))
+      .toBe('failed');
+    // The noun phrase survived; the miss is elsewhere (a mishearing of Verkäufer).
+    expect(evaluateFocusEvidence('Als Verkaufer habe ich immer etwas Neues gelernt.', false, strict))
+      .toBe('retained');
+  });
+});

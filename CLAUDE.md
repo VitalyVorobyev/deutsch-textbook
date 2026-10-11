@@ -191,7 +191,10 @@ The table there is an **allowlist**: `bun run validate` rejects a tag not regist
 `focusIntroducedBy` (`packages/content/src/focus-tags.ts`), and `tests/focus-tags.test.ts` holds the
 two equal. Reuse an existing tag whenever possible; a new one is for a genuinely new confusion and
 joins both places in the same change. Leave mixed or pure-comprehension items untagged — **a false
-tag is worse than no tag**.
+tag is worse than no tag**. **A `translate` probe whose tag names an *added* word** (*zu* after a
+modal or *lassen*, an article before a name) **declares `focus_evidence.failed` predicates** —
+`key_tokens` cannot see an insertion, so the probe would read it as retained (validator-enforced;
+[`focus-tags.md`](docs/authoring/focus-tags.md#errors-that-add-a-word)).
 
 ### Vocab entries → [`docs/authoring/item-authoring.md`](docs/authoring/item-authoring.md#vocab-entries)
 

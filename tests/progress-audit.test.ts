@@ -462,6 +462,54 @@ describe('progress audit', () => {
   });
 
   /**
+   * `key_tokens` attribute a miss when a pinned token is absent or displaced — never when one is
+   * ADDED. On a probe, an unattributed translate miss reads as the competence retained, so the
+   * smuggled *zu* after *lassen* — both pins intact, one token more — counted as the bracket
+   * surviving. Where the item authors `focus_evidence`, the predicates decide, exactly as in
+   * `Translate.tsx`; a historical attempt with no stored verdict is re-read through them under
+   * the same revision gate as the `key_tokens` replay, and one answered to a different revision
+   * keeps its logged reading.
+   */
+  test('an inserted zu on a predicate-bearing probe is a failure, not retention', () => {
+    const lassen = {
+      setId: 'b1/probe-lassen', type: 'translate', topic: 'gesundheit-wohlbefinden',
+      role: 'probe', focus: 'lassen-verwendung', revision: 1,
+      answer: 'Ich lasse meine Wohnung jeden Monat putzen.', accept: [],
+      key_tokens: ['lasse', 'putzen'],
+    } as const;
+    const predicates = {
+      failed: ['\\bzu putzen\\b', '^(?!.*\\bputzen$)'],
+      retained: ['\\blasse\\b.*\\bputzen$'],
+    };
+    const items: CatalogItem[] = [
+      { ...lassen, id: 'variant-a', focus_evidence: predicates },
+      { ...lassen, id: 'variant-b', focus_evidence: predicates, revision: 2 },
+      { ...lassen, id: 'variant-c' }, // no predicates: today's key_tokens reading
+    ];
+    const inserted = 'Ich lasse meine Wohnung jeden Monat zu putzen.';
+    const attempts: AuditAttempt[] = [
+      // historical: logged before the item had predicates, so no stored verdict
+      { setId: 'b1/probe-lassen', itemId: 'variant-a', itemType: 'translate', correct: false,
+        given: inserted, itemRevision: 1, focus: undefined, ts: ts(4) },
+      // answered to revision 1 of an item now at 2: never replayed against the changed contract
+      { setId: 'b1/probe-lassen', itemId: 'variant-b', itemType: 'translate', correct: false,
+        given: inserted, itemRevision: 1, focus: undefined, ts: ts(9) },
+      { setId: 'b1/probe-lassen', itemId: 'variant-c', itemType: 'translate', correct: false,
+        given: inserted, itemRevision: 1, focus: undefined, ts: ts(12) },
+    ];
+    const audit = buildAudit(snapshot({ attempts }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+    });
+
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'lassen-verwendung')!;
+    expect(row.attempts).toBe(3);
+    // variant-a reads failed through its predicates; b keeps its logged (unattributed) reading
+    // under the revision gate, and c — no predicates — is the gap the predicates close.
+    expect({ failed: row.failed, retained: row.retained, unknown: row.unknown ?? 0 })
+      .toEqual({ failed: 1, retained: 2, unknown: 0 });
+  });
+
+  /**
    * An `unknown` verdict is a measurement the instrument declined to make. The pooled
    * retention percentage already excludes it; the format split has to as well, or a single
    * unmeasured response renders as `translate 0/1` — the weakest-looking row in the table,

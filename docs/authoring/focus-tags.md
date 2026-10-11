@@ -87,7 +87,7 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `darum-daher` | two further result adverbs with the same V2 inversion and the same cause→result direction as *deshalb*: ***darum*** is neutral and common in speech, ***daher*** is common in written or explanatory prose. Register may guide the choice, but both remain grammatical; the hard targets are consequence direction and ***Darum/Daher + Verb + Subjekt*** |
 | `als-wenn-vergangenheit` | past *when*: **als** for a single occasion, **wenn** for a repeated one — neither EN nor RU marks the difference |
 | `indefinitpronomen` | *man* is a subject German cannot omit and takes the *er*-form; *jemand*/*niemand*/*etwas*/*nichts* carry their own negation, so no second negative joins them |
-| `genitiv-eigenname` | A2 possession production: name + **-s** without an ordinary possessive apostrophe (*Annas Auto*), or the safe spoken route **von + Dativ** for noun phrases; full Genitiv is recognised, not rejected as ungrammatical |
+| `genitiv-eigenname` | A2 possession production: name + **-s** without an ordinary possessive apostrophe (*Annas Auto*), and the name takes the article's place, so no article joins it (❌ *das Annas Auto*); or the safe spoken route **von + Dativ** for noun phrases; full Genitiv is recognised, not rejected as ungrammatical |
 | `passiv-rezeptiv` | reading *werden* + Partizip II as a passive (*Hier wird gebaut*) and telling it from *werden* + Infinitiv (Futur) and *werden* + noun (*to become*) — recognition only at A2 |
 | `interrogativartikel` | *welch-* before a noun asks the listener to select one from a known set and takes the same gender/number/case ending as *dies-* (*Welcher Bus? Welchen Film? Mit welcher Karte?*); *alle* likewise occupies the article position and carries definite-article endings. Distinct from free-standing *welche* (*Hast du welche?*): this tag grades the article word together with its noun |
 | `relativpronomen-kasus` | the relative pronoun takes its gender/number from the noun outside but its **case from the role inside** its own clause (*der Mann, **den** ich kenne*) |
@@ -135,3 +135,30 @@ Use existing tags whenever possible; add a new one only for a genuinely new conf
 | `partizip-adjektiv` | Partizip I (Infinitiv + ***d***) and Partizip II standing as an **attribute** in front of the noun, each taking the ordinary adjective endings (*das **geplante** Treffen*, *die **lachenden** Kinder*, *mit dem **geänderten** Termin*) — a whole relative clause compressed into one word, which is what a notice is made of and what reading one means unpacking. The two mean opposite things: Partizip I says the noun does it itself (*die Kinder, die lachen*), Partizip II that it has it done to it (*das Treffen, das geplant wurde*), and the relative clause behind it is the test. Two errors, and they are separate: the wrong participle (❌ *das planende Treffen*) and the missing ending (❌ *das geplant Treffen*), because in front of a noun a participle **is** an adjective. Not every Partizip II works attributively — verbs with an accusative object (*geplant*) and *sein*-verbs (*angekommen*) do, ❌ *der geschlafene Mann* does not. Distinct from `adjektiv-nomen` (B1.4), where the participle becomes the noun itself |
 
 **The tag is also what makes a `deepens` edge real.** Weakness is aggregated per tag and is blind to the topic an attempt came from (`focusStats` in `src/lib/weakness.ts` keys only by `focus`), so an error while practising a deepening topic marks that confusion weak *course-wide*; mixed training's second band then pulls every item carrying it out of the whole eligible pool — the base topic's practice and drill sets included. That is the entire runtime meaning of `deepens`, and nothing else reads the field. A spiral revisit whose two ends share no focus tag can therefore resurface nothing, so `bun run validate` requires each `deepens: [base]` edge to share at least one tag between the deepening topic's items and a `practice`/`drill` item of the base. Do **not** add `deepens`-aware special cases to weakness aggregation or training priority: scoping a tag to a topic would *narrow* a signal that is deliberately global.
+
+## Errors that add a word
+
+`key_tokens` attribute a miss when a pinned token is **absent or displaced** — never when the
+learner **adds** one, because an added word changes the token count and the scorer then sees
+neither. On a practice item that is an honest gap; on a delayed probe it is a false pass, since
+the retention table reads an unattributed miss as the competence surviving (`classifyProbe`,
+`scripts/progress-audit.ts`). So a tag whose signature error adds a word is listed below and in
+`insertionErrors` (`packages/content/src/focus-tags.ts`) — `tests/focus-tags.test.ts` holds the
+two equal — and **every `translate` probe item carrying it must declare `focus_evidence.failed`
+predicates that catch the added word**. `bun run validate` builds the error from each accepted
+rendering (the word put in front of the last pinned token the site matches) and fails an item
+whose predicates do not call it `failed`; a rendering with no such pin has no site and needs
+nothing. Because predicates replace `key_tokens` attribution on the item, they restate its pins'
+failures too ([`item-authoring.md`](item-authoring.md#focus-evidence-predicates)).
+
+| Tag | Word added | In front of |
+| --- | --- | --- |
+| `modal-satzklammer` | `zu` | the clause-final infinitive (❌ *Ich kann zu schwimmen*) |
+| `lassen-verwendung` | `zu` | the clause-final infinitive (❌ *Ich lasse mein Fahrrad zu reparieren*) |
+| `futur-werden` | `zu` | the clause-final infinitive (❌ *Ich werde morgen zu kommen*) |
+| `zeitangaben-system` | `am` — any preposition | a bare-accusative time phrase: *jeden, nächste(n/s), letzte(n/s)* (❌ *am jeden Tag*) |
+| `genitiv-eigenname` | `das` — any article | the *-s* name (❌ *die Mareks Wohnung*) |
+
+A tag that names an added word without a single site is not listed, and its probes need checking
+by hand: `indefinitpronomen`'s second negative (❌ *Niemand kommt nicht*) has no fixed slot, and
+today's family probes *man* only.

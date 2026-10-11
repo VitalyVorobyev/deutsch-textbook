@@ -33,6 +33,17 @@ items:
     type: translate
     focus: modal-satzklammer
     revision: 3
+    # A translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), and key_tokens cannot attribute an INSERTED token: a zu before the
+    # infinitive (kann … zu fotografieren) changes the token count, so neither pin looks
+    # missing or displaced, and the one error a "bare infinitive" rules out would score
+    # as the bracket surviving. The predicates decide instead (focus-tags.md, "Errors that add a
+    # word"), and because they replace key_tokens attribution they restate its failures:
+    # the infinitive not at the wall (missing, conjugated, a participle, or pulled out of the
+    # bracket) and the modal not in position 2 (or 1, in the yes/no question).
+    focus_evidence:
+      failed: ["\\bzu (fotografieren|machen)\\b", "^(?!.*\\b(fotografieren|machen)$)", "^(?!(\\S+ ){1,2}kann\\b)"]
+      retained: ["\\bkann\\b.*\\b(fotografieren|machen)$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -59,6 +70,9 @@ items:
     outcomes: [freizeit-koennen-satz]
     type: translate
     focus: modal-satzklammer
+    focus_evidence:
+      failed: ["\\bzu tanzen\\b", "^(?!.*\\btanzen$)", "^(?!können\\b)"]
+      retained: ["^können\\b.*\\btanzen$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.
@@ -78,6 +92,9 @@ items:
     type: translate
     focus: modal-satzklammer
     revision: 2
+    focus_evidence:
+      failed: ["\\bzu singen\\b", "^(?!.*\\bsingen$)", "^(?!(\\S+ ){1,2}kann\\b)"]
+      retained: ["\\bkann\\b.*\\bsingen$"]
     instruction:
       en: Translate into German.
       ru: Переведите на немецкий.

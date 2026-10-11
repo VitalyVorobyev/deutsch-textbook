@@ -90,6 +90,15 @@ items:
     outcomes: [dauer-nennen, zeitpunkt-nennen, zeitraum-nennen]
     type: translate
     focus: zeitangaben-system
+    # A translate miss with no attributed token reads as RETAINED in the probe table
+    # (classifyProbe), and key_tokens cannot attribute an INSERTED token — so a preposition
+    # glued onto the bare accusative (am jeden Tag), the reflex the article's "Zeit ohne
+    # Präposition" section names, would score as the system surviving. Variants a and b carry no
+    # bare-accusative phrase and keep key_tokens. The predicates restate the two pins too:
+    # ab missing, jeden missing.
+    focus_evidence:
+      failed: ["\\b(an|am|in|im|um|zu|für|bei|seit)\\s+jeden\\b", "^(?!.*\\bab\\b)", "^(?!.*\\bjeden\\b)"]
+      retained: ["\\bab Oktober\\b", "\\bjeden Tag\\b"]
     instruction:
       en: "Translate into German."
       ru: "Переведите на немецкий."
