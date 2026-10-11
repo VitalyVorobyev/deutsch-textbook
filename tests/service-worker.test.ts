@@ -8,8 +8,12 @@
  * - **Range slicing.** Safari sends `Range: bytes=0-` for every `<audio>` element. A cached 200
  *   handed back to a Range request is why offline audio silently fails on iOS — the one platform
  *   the PWA route exists for.
- * - **Byte-budgeted eviction.** Six pages in this build run 4.6–10.7 MB, so an unbudgeted
- *   document cache is between 5 MB and 40 MB depending on where the learner went.
+ * - **Byte-budgeted eviction.** Page sizes span two orders of magnitude, so an unbudgeted
+ *   document cache costs whatever the learner happened to open.
+ * - **The data cache's lifecycle.** The session pages' content files are precached, served
+ *   cache-first, kept across a deploy that leaves them unchanged and pruned when the build stops
+ *   listing them. Each half failing looks like something else on a device: a stale queue, a
+ *   download on every deploy, or a cache that only grows.
  *
  * The Cache Storage fake is deliberately thin, but it keeps the two properties the worker's logic
  * actually rests on: `keys()` returns insertion order, and re-`put`ting a key does not reorder it.
@@ -27,14 +31,24 @@ const TEMPLATE = readFileSync(
   'utf8',
 );
 
-function substitute(shell: string[], { version = 'testbuild', base = '/' } = {}): string {
+function substitute(
+  shell: string[],
+  { version = 'testbuild', base = '/', data = [] as string[] } = {},
+): string {
   return TEMPLATE.replace("'__VERSION__'", JSON.stringify(version))
     .replace("'__BASE__'", JSON.stringify(base))
-    .replace('/* __SHELL__ */ []', JSON.stringify(shell));
+    .replace('/* __SHELL__ */ []', JSON.stringify(shell))
+    .replace('/* __DATA__ */ []', JSON.stringify(data));
 }
 
 class FakeCache {
   entries = new Map<string, Response>();
+  constructor(private readonly storage: FakeCacheStorage) {}
+  async add(request: Request | string) {
+    const response = await this.storage.fetcher(request);
+    if (!response.ok) throw new TypeError(`add: HTTP ${response.status}`);
+    await this.put(request, response);
+  }
   async put(request: Request | string, response: Response) {
     const key = typeof request === 'string' ? request : request.url;
     // Map preserves insertion order and re-setting an existing key does NOT move it — the same
@@ -58,9 +72,11 @@ class FakeCache {
 
 class FakeCacheStorage {
   caches = new Map<string, FakeCache>();
+  /** The network `cache.add` uses — the current worker's, so a redeployed worker is the one counted. */
+  constructor(public fetcher: (request: Request | string) => Promise<Response>) {}
   async open(name: string) {
     let cache = this.caches.get(name);
-    if (!cache) this.caches.set(name, (cache = new FakeCache()));
+    if (!cache) this.caches.set(name, (cache = new FakeCache(this)));
     return cache;
   }
   async keys() {
@@ -81,14 +97,22 @@ class FakeCacheStorage {
 interface Harness {
   fetchHandler: (event: { request: Request; respondWith: (r: Promise<Response>) => void }) => void;
   handle: (request: Request) => Promise<Response | undefined>;
+  /** Dispatch `install` or `activate` and wait for what it handed to `waitUntil`. */
+  lifecycle: (type: 'install' | 'activate') => Promise<void>;
   storage: FakeCacheStorage;
   network: Map<string, () => Response>;
+  /** Paths the worker fetched from the network, in order. */
+  fetched: string[];
 }
 
 /** Evaluate the substituted worker against a fake ServiceWorkerGlobalScope. */
-function load(shell: string[] = [], base = '/'): Harness {
-  const storage = new FakeCacheStorage();
+function load(
+  shell: string[] = [],
+  base = '/',
+  { data = [] as string[], version = 'testbuild', storage: shared }: { data?: string[]; version?: string; storage?: FakeCacheStorage } = {},
+): Harness {
   const network = new Map<string, () => Response>();
+  const fetched: string[] = [];
   const listeners = new Map<string, (event: unknown) => void>();
 
   const self = {
@@ -100,12 +124,17 @@ function load(shell: string[] = [], base = '/'): Harness {
 
   const fetchImpl = async (input: Request | string) => {
     const url = typeof input === 'string' ? input : input.url;
-    const make = network.get(new URL(url).pathname);
+    const path = new URL(url, ORIGIN).pathname;
+    fetched.push(path);
+    const make = network.get(path);
     if (!make) throw new Error(`no route: ${url}`);
     return make();
   };
+  // A storage passed in survives a "redeploy": the next worker version opens the same caches.
+  const storage = shared ?? new FakeCacheStorage(fetchImpl);
+  storage.fetcher = fetchImpl;
 
-  new Function('self', 'caches', 'fetch', 'console', substitute(shell, { base }))(
+  new Function('self', 'caches', 'fetch', 'console', substitute(shell, { base, data, version }))(
     self,
     storage,
     fetchImpl,
@@ -117,6 +146,12 @@ function load(shell: string[] = [], base = '/'): Harness {
     fetchHandler,
     storage,
     network,
+    fetched,
+    async lifecycle(type) {
+      let work: Promise<unknown> = Promise.resolve();
+      listeners.get(type)!({ waitUntil: (p: Promise<unknown>) => (work = p) });
+      await work;
+    },
     handle(request) {
       let answered: Promise<Response> | undefined;
       fetchHandler({ request, respondWith: (r) => (answered = r) });
@@ -175,6 +210,7 @@ describe('template substitution', () => {
     expect(out).not.toContain('__VERSION__');
     expect(out).not.toContain('__BASE__');
     expect(out).not.toContain('__SHELL__');
+    expect(out).not.toContain('__DATA__');
     expect(out).toContain('const SHELL = ["/favicon.png"]');
   });
 });
@@ -347,5 +383,58 @@ describe('byte-budgeted eviction', () => {
       .filter((k) => !k.includes('__sw-index'))
       .map((k) => new URL(k).pathname);
     expect(pages).toEqual(['/p/a/', '/p/c/']); // b evicted, not the freshly revisited a
+  });
+});
+
+describe('data: content files, precached and cache-first across deploys', () => {
+  const CARDS = `${ORIGIN}/data/cards-aaaaaaaaaaaa.json`;
+  const SETS = `${ORIGIN}/data/sets-bbbbbbbbbbbb.json`;
+  const json = (body: unknown) => () =>
+    new Response(JSON.stringify(body), { status: 200, headers: { 'content-type': 'application/json' } });
+
+  function withData(data = [CARDS, SETS], storage?: FakeCacheStorage) {
+    const h = load([], '/', { data, storage });
+    h.network.set('/data/cards-aaaaaaaaaaaa.json', json([{ id: 'deck::Brot::de-x' }]));
+    h.network.set('/data/sets-bbbbbbbbbbbb.json', json([{ setId: 'a1/x' }]));
+    return h;
+  }
+
+  test('install precaches every data file, so the first offline visit already works', async () => {
+    const h = withData();
+    await h.lifecycle('install');
+    h.network.clear();
+    const res = await h.handle(new Request(CARDS));
+    expect(await res!.json()).toEqual([{ id: 'deck::Brot::de-x' }]);
+  });
+
+  test('a miss is fetched once and then served without the network', async () => {
+    const h = withData();
+    expect((await h.handle(new Request(SETS)))!.status).toBe(200);
+    h.network.clear();
+    expect(await (await h.handle(new Request(SETS)))!.json()).toEqual([{ setId: 'a1/x' }]);
+  });
+
+  test('a failed fetch is a network error, never an empty success', async () => {
+    const h = withData();
+    h.network.clear();
+    const res = await h.handle(new Request(CARDS));
+    expect(res!.type).toBe('error');
+  });
+
+  test('a redeploy that keeps the cards file does not download it again, and drops the old sets file', async () => {
+    const first = withData();
+    await first.lifecycle('install');
+    await first.lifecycle('activate');
+
+    // The next build changed the exercises (new sets hash) but not the vocabulary.
+    const SETS2 = `${ORIGIN}/data/sets-cccccccccccc.json`;
+    const second = withData([CARDS, SETS2], first.storage);
+    second.network.set('/data/sets-cccccccccccc.json', json([{ setId: 'a1/y' }]));
+    await second.lifecycle('install');
+    expect(second.fetched).toEqual(['/data/sets-cccccccccccc.json']);
+
+    await second.lifecycle('activate');
+    const kept = [...second.storage.caches.get('da-data-v1')!.entries.keys()].sort();
+    expect(kept).toEqual([CARDS, SETS2].sort());
   });
 });

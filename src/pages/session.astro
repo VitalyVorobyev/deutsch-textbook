@@ -1,51 +1,24 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Chrome from '../components/Chrome.astro';
-import SessionFlow from '../components/session/SessionFlow';
-import type { TrainingSet } from '../components/training/MixedTraining';
-import { getAllCards, getDeckLevels, getTopicNodes } from '../lib/content';
+import { SessionFlowIsland } from '../components/session/CorpusIslands';
+import { getDeckLevels, getTopicNodes } from '../lib/content';
+import { corpusUrl } from '../lib/corpus-payload';
 import { getCurriculum } from '@da/content/curriculum';
 
-const [cards, nodes, deckLevels, exercises, documents] = await Promise.all([
-  getAllCards(),
+const [cardsUrl, setsUrl, nodes, deckLevels] = await Promise.all([
+  corpusUrl('cards'),
+  corpusUrl('sets'),
   getTopicNodes(),
   getDeckLevels(),
-  getCollection('exercises'),
-  getCollection('documents'),
 ]);
-const { spine, nodes: manifests } = getCurriculum();
-const topicById = new Map(manifests.map((t) => [t.id, t]));
-const documentById = new Map(documents.map((document) => [document.id, document.data]));
-
-// Same assembly as /training, but tolerant of in-flight content: an exercise
-// set whose topic hasn't landed yet is simply left out of the session.
-const sets: TrainingSet[] = exercises.flatMap((e) => {
-  const topic = topicById.get(e.data.topic);
-  if (!topic) return [];
-  return [
-    {
-      setId: e.id,
-      topicId: topic.id,
-      title_de: topic.title_de,
-      level: topic.level,
-      role: e.data.role,
-      arming: e.data.arming,
-      items: e.data.items,
-      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
-      // the set's own title, for the probe-failure remediation card's set link
-      // (remediationSetFor in src/lib/training.ts) — not needed by any other
-      // session.astro consumer, so the other TrainingSet assemblies leave it out
-      title: e.data.title,
-    },
-  ];
-});
+const { spine } = getCurriculum();
 ---
 
-<Base title="Session">
+<Base title="Session" preload={[cardsUrl, setsUrl]}>
   <!-- The stepper names the three steps, and the Heute card that leads here says what they are. -->
   <h1 class="sr-only"><Chrome k="session.pageTitle" /></h1>
   <div>
-    <SessionFlow client:only="react" cards={cards} sets={sets} spine={spine} nodes={nodes} deckLevels={deckLevels} />
+    <SessionFlowIsland client:only="react" cardsUrl={cardsUrl} setsUrl={setsUrl} spine={spine} nodes={nodes} deckLevels={deckLevels} />
   </div>
 </Base>

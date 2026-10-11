@@ -98,6 +98,10 @@ export function pwa(): AstroIntegration {
           // The offline page is precached under its route, not its file path.
           shell.push(base + rel.replace(/index\.html$/, ''));
         }
+        // The session pages' content files (src/lib/corpus-payload.ts). Their names are content
+        // hashes, so hashing the names is hashing the content; a changed corpus is a new build.
+        const data = collect(outDir, 'data').map((rel) => base + rel);
+        for (const url of data) hash.update(url);
         const buildId = hash.digest('hex').slice(0, 12);
 
         // Each placeholder is written so the template is itself valid, lintable JavaScript —
@@ -106,9 +110,10 @@ export function pwa(): AstroIntegration {
         const worker = source
           .replace("'__VERSION__'", JSON.stringify(buildId))
           .replace("'__BASE__'", JSON.stringify(base))
-          .replace('/* __SHELL__ */ []', JSON.stringify(shell, null, 2));
+          .replace('/* __SHELL__ */ []', JSON.stringify(shell, null, 2))
+          .replace('/* __DATA__ */ []', JSON.stringify(data, null, 2));
 
-        if (worker.includes('__VERSION__') || worker.includes('__BASE__') || worker.includes('__SHELL__')) {
+        if (['__VERSION__', '__BASE__', '__SHELL__', '__DATA__'].some((p) => worker.includes(p))) {
           // A silently unsubstituted placeholder ships a worker that caches the literal string
           // "__SHELL__" and serves nothing — a failure that only appears on a real device.
           throw new Error('[pwa] service-worker.js has an unsubstituted placeholder');
@@ -116,7 +121,7 @@ export function pwa(): AstroIntegration {
         writeFileSync(join(outDir, 'sw.js'), worker);
 
         logger.info(
-          `manifest + service worker (build ${buildId}) — ${shell.length} shell asset(s) precached`,
+          `manifest + service worker (build ${buildId}) — ${shell.length} shell asset(s) and ${data.length} data file(s) precached`,
         );
       },
     },

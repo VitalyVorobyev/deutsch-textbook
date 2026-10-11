@@ -17,9 +17,7 @@ export interface TrainingSet {
   arming?: string[];
   items: ExerciseItem[];
   document?: VisualDocument;
-  /** the set's own bilingual title, when authored — not every set carries one
-      (schema-optional), and pages that never need to name an individual set
-      (training.astro, proben.astro) do not populate it */
+  /** the set's own bilingual title, when authored — not every set carries one (schema-optional) */
   title?: Bilingual;
 }
 

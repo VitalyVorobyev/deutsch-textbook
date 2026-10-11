@@ -16,7 +16,13 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Reviewed recordings are immutable once published (docs/product-protection.md):
+# The session pages' content files (src/lib/corpus-payload.ts): named by a hash of their
+# bytes, so a cached copy is never stale. Without this rule a browser without the service
+# worker would re-download the corpus on each visit.
+/data/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Reviewed recordings are immutable once published (docs/authoring/product-protection.md):
 # republishing mints a new artifact rather than replacing bytes in place.
 /audio/*
   Cache-Control: public, max-age=31536000, immutable

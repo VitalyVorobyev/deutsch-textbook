@@ -2,22 +2,23 @@
 import Base from '../../layouts/Base.astro';
 import Chrome from '../../components/Chrome.astro';
 import UebenNav from '../../components/UebenNav.astro';
-import FlashcardSession from '../../components/srs/FlashcardSession';
-import { getAllCards, getDeckLevels, getTopicNodes } from '../../lib/content';
+import { FlashcardSessionIsland } from '../../components/session/CorpusIslands';
+import { getDeckLevels, getTopicNodes } from '../../lib/content';
+import { corpusUrl } from '../../lib/corpus-payload';
 import { getCurriculum } from '@da/content/curriculum';
 
-const [cards, nodes, deckLevels] = await Promise.all([
-  getAllCards(),
+const [cardsUrl, nodes, deckLevels] = await Promise.all([
+  corpusUrl('cards'),
   getTopicNodes(),
   getDeckLevels(),
 ]);
 const { spine } = getCurriculum();
 ---
 
-<Base title="Wiederholen">
+<Base title="Wiederholen" preload={[cardsUrl]}>
   <UebenNav active="wiederholen" />
   <!-- The active tab names the page, so the H1 is for the accessibility tree only, and the
        description is the tab's tooltip (docs/design.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="ueben.tabWiederholen" /></h1>
-  <FlashcardSession client:only="react" cards={cards} newLimit={15} gate={{ spine, nodes, deckLevels }} />
+  <FlashcardSessionIsland client:only="react" cardsUrl={cardsUrl} newLimit={15} gate={{ spine, nodes, deckLevels }} />
 </Base>
