@@ -11,6 +11,18 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.17] — 2026-10-11
+
+### Fixed
+
+- **Gesundheit & Wohlbefinden (B1.3), checked end to end.** The delayed check for *lassen*
+  counted its most typical mistake, *ich lasse meine Wohnung zu putzen*, as the rule
+  remembered. It now counts it as forgotten, along with the other *lassen* errors. Several
+  exercises accept correct answers they used to reject: *Ich lasse mir die Wohnung putzen*,
+  *Ein paar Wochen solltest du …*, *mehrere Wochen*, *eine kleine Pause*. One gap exercise no
+  longer prints its answer in the instructions. And the article no longer says *Obst* never
+  takes an article.
+
 ## [0.6.16] — 2026-10-11
 
 ### Fixed
