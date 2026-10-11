@@ -89,6 +89,22 @@ GitHub Release notes.
   - The lesson no longer says the subject must follow *sodass* directly. Its own example
     (*sodass sich die Nachbarn beschwert haben*) shows otherwise.
   - Three explanations now describe their own model text or recording correctly.
+- **B1.8 Reisen & Probleme — quality pass.**
+  - Twelve exercises accept correct German they used to reject. Several had also counted that
+    answer as the very mistake they drill. Examples:
+    - the *wenn*-clause first;
+    - *wegen* after the object;
+    - *einer Verspätung*, *des Unfalls*;
+    - the Präteritum where no tense was asked;
+    - *haben … stehen müssen*, *im Hotel anrufen*.
+  - The *wegen* gap no longer asks you to type the word its own instruction prints.
+  - *würden … gefahren* in a delayed check now counts against the Konjunktiv. Before, it counted
+    as the form kept.
+  - The lesson no longer says:
+    - that German keeps *würde* out of every *wenn*-clause;
+    - that *trotzdem* can only stand first;
+    - that *fände* or *käme* are written-only.
+  - Five explanations are corrected, including where Russian and Ukrainian put «бы».
 
 ## [0.6.19] — 2026-10-11
 

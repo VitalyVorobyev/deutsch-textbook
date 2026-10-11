@@ -70,6 +70,9 @@ items:
       de: "würde mit Umlaut ist das Arbeitspferd des höflichen Briefs: Ich würde Sie bitten macht aus einer Forderung eine Bitte. wurde ohne Punkte ist das Präteritum von werden — es würde eine vergangene Veränderung melden und kann diesen Satz nicht regieren. werden ist ein Infinitiv und ließe ich ganz ohne konjugiertes Verb zurück."
 
   - id: uebersetzen-freuen
+    # revision 2: the wenn-clause first is the same request, and it was charged to
+    # konjunktiv2-form because both pinned forms moved; accepted across the mir × bis cells.
+    revision: 2
     outcomes: [beschwerde-schreiben]
     type: translate
     focus: konjunktiv2-form
@@ -88,6 +91,10 @@ items:
       - "Ich würde mich freuen, wenn Sie bis Freitag antworten könnten."
       - "Ich würde mich freuen, wenn Sie mir bis zum Freitag antworten könnten."
       - "Ich würde mich freuen, wenn Sie bis zum Freitag antworten könnten."
+      - "Wenn Sie mir bis Freitag antworten könnten, würde ich mich freuen."
+      - "Wenn Sie bis Freitag antworten könnten, würde ich mich freuen."
+      - "Wenn Sie mir bis zum Freitag antworten könnten, würde ich mich freuen."
+      - "Wenn Sie bis zum Freitag antworten könnten, würde ich mich freuen."
     key_tokens: ["würde", "könnten"]
     explain:
       en: "Graded are the two Konjunktiv forms the letter's closing move runs on: würde opening the main clause and könnten closing the wenn-clause. Everything else is carrier. Note that each half carries its own marked form — the politeness does not stop at the comma. bis Freitag sits in the middle field, where its position is free."
@@ -162,8 +169,8 @@ items:
     key_tokens: ["wäre", "Wäre", "würde"]
     explain:
       en: "Graded are the two markers, one per half: wäre in the wenn-clause and würde in the main clause. English splits its marking — a plain past in the if-half, 'would' only in the main half; German symmetry demands a Konjunktiv II verb on both sides. The clause order is free — main clause first is accepted — but neither half may fall back into the indicative."
-      ru: "Оцениваются два маркера, по одному на половину: wäre в придаточном с wenn и würde в главном. Русское «бы» — одна неизменная частица на всё предложение, а немецкая симметрия требует помеченного глагола с обеих сторон. Порядок частей свободен — главное предложение первым принимается, — но ни одна половина не может вернуться в индикатив."
-      uk: "Оцінюються два маркери, по одному на половину: wäre в підрядному з wenn і würde в головному. Українська частка «б/би» — одна незмінна на все речення, а німецька симетрія вимагає позначеного дієслова з обох боків. Порядок частин вільний — головне речення першим приймається, — але жодна половина не може повернутися в індикатив."
+      ru: "Оцениваются два маркера, по одному на половину: wäre в придаточном с wenn и würde в главном. Русское «бы» стоит в обеих половинах, но это одна и та же неизменная частица при обычном прошедшем, а немецкая симметрия требует помеченного глагола с обеих сторон. Порядок частей свободен — главное предложение первым принимается, — но ни одна половина не может вернуться в индикатив."
+      uk: "Оцінюються два маркери, по одному на половину: wäre в підрядному з wenn і würde в головному. Українська частка «б/би» стоїть в обох половинах, але вона та сама й незмінна при звичайному минулому, а німецька симетрія вимагає позначеного дієслова з обох боків. Порядок частин вільний — головне речення першим приймається, — але жодна половина не може повернутися в індикатив."
       de: "Bewertet werden die zwei Markierungen, eine pro Hälfte: wäre im wenn-Satz und würde im Hauptsatz. Viele Sprachen verteilen ihre Markierung ungleich auf die Hälften; die deutsche Symmetrie verlangt auf beiden Seiten ein Konjunktiv-II-Verb. Die Satzfolge ist frei — Hauptsatz zuerst wird akzeptiert —, aber keine Hälfte darf in den Indikativ zurückfallen."
 
   - id: uebersetzen-an-deiner-stelle
@@ -195,12 +202,17 @@ items:
     outcomes: [panne-berichten]
     type: cloze
     focus: praeposition-genitiv
+    # revision 2: the instruction named wegen and still gapped it, at a sentence head the
+    # case-sensitive cloze grades as Wegen — so the lowercase wegen the instruction prints
+    # was a praeposition-genitiv failure. The case is the tag's decision; only the article
+    # is gapped now.
+    revision: 2
     instruction:
-      en: "The announcement names its cause with wegen — fill in the preposition and the genitive article (der Streik is masculine)."
-      ru: "Объявление называет причину предлогом wegen — впишите предлог и артикль в родительном падеже (der Streik — мужской род)."
-      uk: "Оголошення називає причину прийменником wegen — впишіть прийменник і артикль у родовому відмінку (der Streik — чоловічий рід)."
-      de: "Die Durchsage nennt ihren Grund mit wegen — ergänze die Präposition und den Genitiv-Artikel (der Streik ist maskulin)."
-    text: "{{Wegen}} {{des}} Streiks fahren heute nur wenige Züge nach Hamburg."
+      en: "The announcement names its cause with wegen — fill in the genitive article (der Streik is masculine)."
+      ru: "Объявление называет причину предлогом wegen — впишите артикль в родительном падеже (der Streik — мужской род)."
+      uk: "Оголошення називає причину прийменником wegen — впишіть артикль у родовому відмінку (der Streik — чоловічий рід)."
+      de: "Die Durchsage nennt ihren Grund mit wegen — ergänze den Genitiv-Artikel (der Streik ist maskulin)."
+    text: "Wegen {{des}} Streiks fahren heute nur wenige Züge nach Hamburg."
     translation:
       en: "Because of the strike only a few trains are going to Hamburg today."
       ru: "Из-за забастовки в Гамбург сегодня идут лишь немногие поезда."
@@ -226,12 +238,15 @@ items:
       ru: "Несмотря на опоздание, мы всё же успели на последний автобус до отеля."
       uk: "Попри запізнення ми все ж встигли на останній автобус до готелю."
     explain:
-      en: "What follows the gap is a noun phrase — der Verspätung — so only a preposition can stand there: trotz + Genitiv. trotzdem is an adverb; it defies a whole previous sentence from position 1 and can govern no noun. weil is a conjunction and would open a verb-final clause, not a noun phrase — and a delay is no reason for catching a bus anyway."
-      ru: "После пропуска стоит именная группа — der Verspätung, — значит, там может стоять только предлог: trotz + Genitiv. trotzdem — наречие: оно бросает вызов целому предыдущему предложению с первой позиции и существительным управлять не может. weil — союз, он открыл бы придаточное с глаголом в конце, а не именную группу — да и опоздание не причина успеть на автобус."
-      uk: "Після пропуску стоїть іменна група — der Verspätung, — отже, там може стояти лише прийменник: trotz + Genitiv. trotzdem — прислівник: воно кидає виклик цілому попередньому реченню з першої позиції та іменником керувати не може. weil — сполучник, воно відкрило б підрядне з дієсловом у кінці, а не іменну групу — та й запізнення не причина встигнути на автобус."
-      de: "Nach der Lücke steht eine Nominalgruppe — der Verspätung —, also kann dort nur eine Präposition stehen: trotz + Genitiv. trotzdem ist ein Adverb; es trotzt einem ganzen vorigen Satz von Position 1 aus und kann kein Nomen regieren. weil ist eine Konjunktion und eröffnete einen verbletzten Nebensatz, keine Nominalgruppe — und eine Verspätung ist ohnehin kein Grund, einen Bus zu erreichen."
+      en: "What follows the gap is a noun phrase — der Verspätung — so only a preposition can stand there: trotz + Genitiv. trotzdem is an adverb; it defies a whole previous sentence from inside a new clause and can govern no noun. weil is a conjunction and would open a verb-final clause, not a noun phrase — and a delay is no reason for catching a bus anyway."
+      ru: "После пропуска стоит именная группа — der Verspätung, — значит, там может стоять только предлог: trotz + Genitiv. trotzdem — наречие: оно бросает вызов целому предыдущему предложению из нового предложения и существительным управлять не может. weil — союз, он открыл бы придаточное с глаголом в конце, а не именную группу — да и опоздание не причина успеть на автобус."
+      uk: "Після пропуску стоїть іменна група — der Verspätung, — отже, там може стояти лише прийменник: trotz + Genitiv. trotzdem — прислівник: воно кидає виклик цілому попередньому реченню з нового речення та іменником керувати не може. weil — сполучник, воно відкрило б підрядне з дієсловом у кінці, а не іменну групу — та й запізнення не причина встигнути на автобус."
+      de: "Nach der Lücke steht eine Nominalgruppe — der Verspätung —, also kann dort nur eine Präposition stehen: trotz + Genitiv. trotzdem ist ein Adverb; es trotzt einem ganzen vorigen Satz aus einem neuen Satz heraus und kann kein Nomen regieren. weil ist eine Konjunktion und eröffnete einen verbletzten Nebensatz, keine Nominalgruppe — und eine Verspätung ist ohnehin kein Grund, einen Bus zu erreichen."
 
   - id: uebersetzen-waehrend-nacht
+    # revision 2: place before time in the middle field is correct German, and it was
+    # charged to praeposition-genitiv because the pinned während moved.
+    revision: 2
     outcomes: [panne-berichten]
     type: translate
     focus: praeposition-genitiv
@@ -249,6 +264,7 @@ items:
       - "Im Zimmer war es während der Nacht sehr laut."
       - "Es war während der Nacht im Zimmer sehr laut."
       - "Es war während der Nacht sehr laut im Zimmer."
+      - "Es war im Zimmer während der Nacht sehr laut."
     key_tokens: ["Während", "während", "der"]
     explain:
       en: "Graded are the preposition and its case: während + Genitiv, and feminine die Nacht shows the genitive in its article — der Nacht. The trap is the dative der looks identical to; what decides is that this der is the genitive of die, demanded by während in writing. The rest of the sentence may move freely, and the fronted variants are accepted."
@@ -257,6 +273,12 @@ items:
       de: "Bewertet werden die Präposition und ihr Kasus: während + Genitiv, und das feminine die Nacht zeigt den Genitiv im Artikel — der Nacht. Die Falle ist der Dativ, der genauso aussieht; entscheidend ist, dass dieses der der Genitiv von die ist, den während schriftlich verlangt. Der Rest des Satzes darf sich bewegen, die umgestellten Varianten werden akzeptiert."
 
   - id: uebersetzen-wegen-verspaetung
+    # revision 2: three renderings of correct German were rejected — the wegen-phrase after
+    # the object (charged to praeposition-genitiv), the Präteritum verpassten (the tense is
+    # carrier, and the instruction does not ask for the Perfekt), and einer Verspätung, which
+    # the bare RU/UK noun leaves as open as der (charged to the tag with its genitive intact).
+    # The accept list is the full product order × tense × article; einer joins the pins.
+    revision: 2
     outcomes: [panne-berichten]
     type: translate
     focus: praeposition-genitiv
@@ -271,14 +293,27 @@ items:
     answer: "Wegen der Verspätung haben wir den letzten Zug nach Hamburg verpasst."
     accept:
       - "Wir haben wegen der Verspätung den letzten Zug nach Hamburg verpasst."
-    key_tokens: ["Wegen", "wegen", "der"]
+      - "Wir haben den letzten Zug nach Hamburg wegen der Verspätung verpasst."
+      - "Wegen der Verspätung verpassten wir den letzten Zug nach Hamburg."
+      - "Wir verpassten wegen der Verspätung den letzten Zug nach Hamburg."
+      - "Wir verpassten den letzten Zug nach Hamburg wegen der Verspätung."
+      - "Wegen einer Verspätung haben wir den letzten Zug nach Hamburg verpasst."
+      - "Wir haben wegen einer Verspätung den letzten Zug nach Hamburg verpasst."
+      - "Wir haben den letzten Zug nach Hamburg wegen einer Verspätung verpasst."
+      - "Wegen einer Verspätung verpassten wir den letzten Zug nach Hamburg."
+      - "Wir verpassten wegen einer Verspätung den letzten Zug nach Hamburg."
+      - "Wir verpassten den letzten Zug nach Hamburg wegen einer Verspätung."
+    key_tokens: ["Wegen", "wegen", "der", "einer"]
     explain:
-      en: "Graded are wegen and the genitive it governs: feminine die Verspätung takes der — the same form the dative would show, but here it is the written genitive wegen demands. The Perfekt around it is carrier and has its own item. Fronting the wegen-phrase fills position 1, so haben follows immediately — both orders are accepted."
-      ru: "Оцениваются wegen и родительный, которым он управляет: женское die Verspätung берёт der — форма совпадает с дательным, но здесь это письменный родительный, которого требует wegen. Perfekt вокруг — носитель, у него своё задание. Вынесенная группа с wegen занимает первую позицию, поэтому haben идёт сразу за ней — оба порядка принимаются."
-      uk: "Оцінюються wegen і родовий, яким воно керує: жіноче die Verspätung бере der — форма збігається з давальним, але тут це письмовий родовий, якого вимагає wegen. Perfekt довкола — носій, у нього своє завдання. Винесена група з wegen займає першу позицію, тому haben іде одразу за нею — обидва порядки приймаються."
-      de: "Bewertet werden wegen und der Genitiv, den es regiert: Das feminine die Verspätung nimmt der — dieselbe Form, die auch der Dativ zeigte, aber hier ist es der schriftliche Genitiv, den wegen verlangt. Das Perfekt darum herum ist Träger und hat seine eigene Aufgabe. Die vorangestellte wegen-Gruppe besetzt Position 1, also folgt haben sofort — beide Ordnungen werden akzeptiert."
+      en: "Graded are wegen and the genitive it governs: feminine die Verspätung takes der — the same form the dative would show, but here it is the written genitive wegen demands; einer Verspätung is the same genitive and is accepted too. The past tense around it is carrier — Perfekt or Präteritum — and the Perfekt bracket has its own item. Fronting the wegen-phrase fills position 1, so the finite verb follows immediately; the phrase may also stand in the middle field."
+      ru: "Оцениваются wegen и родительный, которым он управляет: женское die Verspätung берёт der — форма совпадает с дательным, но здесь это письменный родительный, которого требует wegen; einer Verspätung — тот же родительный, он тоже принимается. Прошедшее время вокруг — носитель, Perfekt или Präteritum, а у рамки Perfekt своё задание. Вынесенная группа с wegen занимает первую позицию, поэтому спрягаемый глагол идёт сразу за ней; группа может стоять и в середине предложения."
+      uk: "Оцінюються wegen і родовий, яким воно керує: жіноче die Verspätung бере der — форма збігається з давальним, але тут це письмовий родовий, якого вимагає wegen; einer Verspätung — той самий родовий, його теж приймають. Минулий час довкола — носій, Perfekt чи Präteritum, а в рамки Perfekt своє завдання. Винесена група з wegen займає першу позицію, тому відмінюване дієслово йде одразу за нею; група може стояти й у середині речення."
+      de: "Bewertet werden wegen und der Genitiv, den es regiert: Das feminine die Verspätung nimmt der — dieselbe Form, die auch der Dativ zeigte, aber hier ist es der schriftliche Genitiv, den wegen verlangt; einer Verspätung ist derselbe Genitiv und wird ebenfalls akzeptiert. Die Vergangenheit darum herum ist Träger — Perfekt oder Präteritum —, und die Perfektklammer hat ihre eigene Aufgabe. Die vorangestellte wegen-Gruppe besetzt Position 1, also folgt das finite Verb sofort; die Gruppe darf auch im Mittelfeld stehen."
 
   - id: uebersetzen-anschluss-perfekt
+    # revision 2: in Hannover before the object is the commonest middle-field order and was
+    # rejected.
+    revision: 2
     outcomes: [panne-berichten]
     type: translate
     focus: perfekt-satzklammer
@@ -293,6 +328,7 @@ items:
     answer: "Wir haben unseren Anschluss in Hannover verpasst."
     accept:
       - "In Hannover haben wir unseren Anschluss verpasst."
+      - "Wir haben in Hannover unseren Anschluss verpasst."
     key_tokens: ["haben", "verpasst"]
     explain:
       en: "The A2 bracket carrying this unit's central mishap: haben conjugated in position 2, the participle verpasst at the very end, everything else in between. That frame is what every spoken Panne report stands on before any genitive preposition joins it. verpassen is inseparable, so its participle takes no ge-: verpasst."

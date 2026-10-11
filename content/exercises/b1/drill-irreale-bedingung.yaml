@@ -207,6 +207,10 @@ items:
       de: "Die schwierige Hälfte ist der wenn-Satz. fahren ist ein Vollverb und nimmt deshalb auch dort würde + Infinitiv: wenn der Bus öfter fahren würde, mit würde ganz am Ende, weil der Nebensatz verbfinal ist. Im Hauptsatz braucht das Modalverb keine Hilfe: müsste, mit Umlaut. Wenn der Bus öfter fährt oder fuhr wäre Indikativ, und musste hieße, dass ich wirklich musste."
 
   - id: uebersetzen-zimmer-balkon
+    # revision 2: das Zimmer was accepted only with the wenn-clause first, and the fronted
+    # object (Dieses Zimmer würde ich buchen, …) was charged to irreale-bedingung because
+    # würde moved; the main-clause-first cells now take both determiners and both orders.
+    revision: 2
     outcomes: [irreale-bedingung-nutzen]
     type: translate
     focus: irreale-bedingung
@@ -220,6 +224,9 @@ items:
     prompt_uk: "Я забронював би цей номер, якби в нього був балкон."
     answer: "Ich würde dieses Zimmer buchen, wenn es einen Balkon hätte."
     accept:
+      - "Ich würde das Zimmer buchen, wenn es einen Balkon hätte."
+      - "Dieses Zimmer würde ich buchen, wenn es einen Balkon hätte."
+      - "Das Zimmer würde ich buchen, wenn es einen Balkon hätte."
       - "Wenn dieses Zimmer einen Balkon hätte, würde ich es buchen."
       - "Wenn dieses Zimmer einen Balkon hätte, dann würde ich es buchen."
       - "Wenn das Zimmer einen Balkon hätte, würde ich es buchen."
