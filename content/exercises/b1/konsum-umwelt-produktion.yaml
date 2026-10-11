@@ -47,6 +47,7 @@ items:
       de: "Die A2-Erkennungsregel bei B1-Arbeit: Schau, was am Ende der Klammer steht. Werden … dauern schließt mit einem Infinitiv — Futur I, niemand tut etwas mit den Arbeiten. Werden … gemacht und werden … gestellt schließen mit einem Partizip II — Passiv, mit den Wegen und den Fahrrädern geschieht etwas. Einen Aushang zu lesen heißt großenteils, die Klammer und ihr letztes Wort zu finden."
 
   - id: uebersetzen-tonne-august
+    revision: 2
     outcomes: [passiv-beschreiben]
     type: translate
     focus: passiv-bildung
@@ -61,12 +62,16 @@ items:
     answer: "Die grüne Tonne wird im August nicht geleert."
     accept:
       - "Im August wird die grüne Tonne nicht geleert."
+      # die Mülltonne is this unit's own production card for "bin" (and the Wortliste
+      # form); die Tonne is its everyday short form. Both are correct here.
+      - "Die grüne Mülltonne wird im August nicht geleert."
+      - "Im August wird die grüne Mülltonne nicht geleert."
     key_tokens: ["wird", "geleert"]
     explain:
-      en: "Notice register, so the passive — and the instruction names leeren so that a synonym cannot cost you the point. Graded are the frame's two walls: wird in position 2, geleert at the very end. The negation slides in before the participle: wird im August nicht geleert. Fronting im August is equally correct and accepted — the fronted phrase pushes the subject behind wird."
-      ru: "Регистр объявления — значит пассив, а leeren назван в задании, чтобы синоним не стоил вам балла. Оцениваются две стены рамки: wird на втором месте, geleert в самом конце. Отрицание встаёт перед причастием: wird im August nicht geleert. Вынести im August вперёд можно — вариант принимается, и тогда вынесенная группа сдвигает подлежащее за wird."
-      uk: "Регістр оголошення — отже пасив, а leeren названо в завданні, щоб синонім не коштував вам бала. Оцінюються дві стіни рамки: wird на другому місці, geleert у самому кінці. Заперечення стає перед дієприкметником: wird im August nicht geleert. Винести im August уперед можна — варіант приймається, і тоді винесена група зсуває підмет за wird."
-      de: "Aushang-Register, also Passiv — und die Aufgabe nennt leeren, damit kein Synonym den Punkt kostet. Bewertet werden die beiden Wände der Klammer: wird auf Position 2, geleert ganz am Ende. Die Verneinung schiebt sich vor das Partizip: wird im August nicht geleert. Im August vorn ist genauso richtig und wird akzeptiert — die vorangestellte Angabe schiebt das Subjekt hinter wird."
+      en: "Notice register, so the passive — and the instruction names leeren so that a synonym cannot cost you the point. Graded are the frame's two walls: wird in position 2, geleert at the very end. The negation slides in before the participle: wird im August nicht geleert. Fronting im August is equally correct and accepted — the fronted phrase pushes the subject behind wird — and so is the full word die Mülltonne for die Tonne."
+      ru: "Регистр объявления — значит пассив, а leeren назван в задании, чтобы синоним не стоил вам балла. Оцениваются две стены рамки: wird на втором месте, geleert в самом конце. Отрицание встаёт перед причастием: wird im August nicht geleert. Вынести im August вперёд можно — вариант принимается, и тогда вынесенная группа сдвигает подлежащее за wird; полное слово die Mülltonne вместо die Tonne тоже принимается."
+      uk: "Регістр оголошення — отже пасив, а leeren названо в завданні, щоб синонім не коштував вам бала. Оцінюються дві стіни рамки: wird на другому місці, geleert у самому кінці. Заперечення стає перед дієприкметником: wird im August nicht geleert. Винести im August уперед можна — варіант приймається, і тоді винесена група зсуває підмет за wird; повне слово die Mülltonne замість die Tonne теж приймається."
+      de: "Aushang-Register, also Passiv — und die Aufgabe nennt leeren, damit kein Synonym den Punkt kostet. Bewertet werden die beiden Wände der Klammer: wird auf Position 2, geleert ganz am Ende. Die Verneinung schiebt sich vor das Partizip: wird im August nicht geleert. Im August vorn ist genauso richtig und wird akzeptiert — die vorangestellte Angabe schiebt das Subjekt hinter wird —, ebenso das volle Wort die Mülltonne statt die Tonne."
 
   - id: hoeren-durchsage
     outcomes: [hinweise-verstehen]
@@ -96,10 +101,10 @@ items:
       ru: "Что уже сделано?"
       uk: "Що вже зроблено?"
     explain:
-      en: "Every option quotes the announcement's words, so the ear has to catch the tense of each frame, not the vocabulary. Sind … weggebracht worden is the spoken past passive — done. Werden … gestellt is present with a future date (erst am Freitag) — still coming, so the answer about die neuen Tonnen turns a plan into a fact. And the container is weiter benutzt, not geleert — nothing in the announcement empties it."
-      ru: "Каждый вариант цитирует слова объявления, поэтому ухо должно поймать время каждой рамки, а не лексику. Sind … weggebracht worden — устный пассив прошедшего: сделано. Werden … gestellt — настоящее с будущей датой (erst am Freitag): ещё впереди, так что ответ про die neuen Tonnen выдаёт план за факт. А контейнер weiter benutzt, не geleert — его в объявлении никто не опорожняет."
-      uk: "Кожен варіант цитує слова оголошення, тому вухо має вловити час кожної рамки, а не лексику. Sind … weggebracht worden — усний пасив минулого: зроблено. Werden … gestellt — теперішнє з майбутньою датою (erst am Freitag): ще попереду, тож відповідь про die neuen Tonnen видає план за факт. А контейнер weiter benutzt, не geleert — його в оголошенні ніхто не спорожняє."
-      de: "Jede Option zitiert die Wörter der Durchsage — das Ohr muss also die Zeitform jeder Klammer hören, nicht den Wortschatz. Sind … weggebracht worden ist das gesprochene Vergangenheits-Passiv: erledigt. Werden … gestellt ist Präsens mit Zukunftsdatum (erst am Freitag): steht noch aus, und die Antwort über die neuen Tonnen macht aus einem Plan eine Tatsache. Und der Container wird weiter benutzt, nicht geleert — geleert wird er in der Durchsage nie."
+      en: "Every option names something from the announcement, so recognising the nouns decides nothing — the ear has to catch what each frame says. Sind … weggebracht worden is the spoken past passive — done. Werden … gestellt is present with a future date (erst am Freitag) — still coming, so the answer about die neuen Tonnen turns a plan into a fact. And the container is weiter benutzt, not geleert — nothing in the announcement empties it."
+      ru: "Каждый вариант называет что-то из объявления, поэтому узнать существительные мало — ухо должно поймать, что говорит каждая рамка. Sind … weggebracht worden — устный пассив прошедшего: сделано. Werden … gestellt — настоящее с будущей датой (erst am Freitag): ещё впереди, так что ответ про die neuen Tonnen выдаёт план за факт. А контейнер weiter benutzt, не geleert — его в объявлении никто не опорожняет."
+      uk: "Кожен варіант називає щось з оголошення, тому впізнати іменники замало — вухо має вловити, що каже кожна рамка. Sind … weggebracht worden — усний пасив минулого: зроблено. Werden … gestellt — теперішнє з майбутньою датою (erst am Freitag): ще попереду, тож відповідь про die neuen Tonnen видає план за факт. А контейнер weiter benutzt, не geleert — його в оголошенні ніхто не спорожняє."
+      de: "Jede Option nennt etwas aus der Durchsage — die Nomen wiederzuerkennen entscheidet also nichts; das Ohr muss hören, was jede Klammer sagt. Sind … weggebracht worden ist das gesprochene Vergangenheits-Passiv: erledigt. Werden … gestellt ist Präsens mit Zukunftsdatum (erst am Freitag): steht noch aus, und die Antwort über die neuen Tonnen macht aus einem Plan eine Tatsache. Und der Container wird weiter benutzt, nicht geleert — geleert wird er in der Durchsage nie."
 
   - id: hoeren-diktat-je
     outcomes: [konsum-vergleichen]

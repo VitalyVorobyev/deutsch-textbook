@@ -19,6 +19,10 @@
 # instruction also names the lexical verbs where their space is open (a: take the car;
 # c: get to the market) — lexis carries no part of the tag, and an unlisted correct
 # verb would log a false je-desto failure on a probe with three lifetime stages.
+# Revision 2 asks for two full clauses, each with its own verb: the RU/UK prompts are
+# verbless in one half («Чем ближе магазин», «тем свежее фрукты»), and a verbless German
+# half is correct terse German that skips the word order this family measures — so it is
+# constrained in the instruction, not called wrong. The instruction names no verb position.
 topic: konsum-umwelt
 role: probe
 title:
@@ -33,14 +37,15 @@ arming:
   - b1/konsum-umwelt::uebersetzen-je-desto
 items:
   - id: variant-a
+    revision: 2
     outcomes: [konsum-vergleichen]
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto. For the second half use das Auto nehmen or mit dem Auto fahren."
-      ru: "Переведите через je … desto. Во второй половине возьмите das Auto nehmen или mit dem Auto fahren."
-      uk: "Перекладіть через je … desto. У другій половині візьміть das Auto nehmen або mit dem Auto fahren."
-      de: "Übersetze mit je … desto. Für die zweite Hälfte: das Auto nehmen oder mit dem Auto fahren."
+      en: "Translate with je … desto as two full clauses, each with its own verb. For the second half use das Auto nehmen or mit dem Auto fahren."
+      ru: "Переведите через je … desto двумя полными частями, у каждой свой глагол. Во второй половине возьмите das Auto nehmen или mit dem Auto fahren."
+      uk: "Перекладіть через je … desto двома повними частинами, у кожної своє дієслово. У другій половині візьміть das Auto nehmen або mit dem Auto fahren."
+      de: "Übersetze mit je … desto in zwei vollständigen Hälften, jede mit eigenem Verb. Für die zweite Hälfte: das Auto nehmen oder mit dem Auto fahren."
     prompt_en: "The closer the shop is, the more rarely I take the car."
     prompt_ru: "Чем ближе магазин, тем реже я беру машину."
     prompt_uk: "Що ближча крамниця, то рідше я беру машину."
@@ -67,20 +72,21 @@ items:
       - "Je näher das Geschäft liegt, umso seltener fahre ich mit dem Auto."
     key_tokens: ["näher", "ist", "liegt", "seltener", "nehme", "fahre"]
     explain:
-      en: "Graded are both ends of both halves. Je drags näher to the front and sends the finite verb — ist or liegt — to the wall of its clause; German keeps it even where English can shrink to 'the closer the shop'. Then desto seltener itself fills position 1 of the main clause, so the finite verb comes immediately and ich after it. Umso, Geschäft, liegt and fahre ich mit dem Auto are all accepted renderings."
-      ru: "Оцениваются оба конца обеих половин. Je утаскивает näher вперёд и отправляет спрягаемый глагол — ist или liegt — к стене своего придаточного: русское «чем ближе магазин» обходится без связки, а немецкое придаточное без своего глагола не обходится. Затем desto seltener само занимает первую позицию главного предложения, поэтому спрягаемый глагол идёт сразу, а ich — за ним. Umso, Geschäft, liegt и fahre ich mit dem Auto — принимаемые варианты."
-      uk: "Оцінюються обидва кінці обох половин. Je витягає näher уперед і відправляє відмінюване дієслово — ist або liegt — до стіни свого підрядного: українське «що ближча крамниця» обходиться без зв'язки, а німецьке підрядне без свого дієслова не обходиться. Потім desto seltener саме займає першу позицію головного речення, тому відмінюване дієслово йде одразу, а ich — за ним. Umso, Geschäft, liegt і fahre ich mit dem Auto — прийнятні варіанти."
-      de: "Bewertet werden beide Enden beider Hälften. Je zieht näher nach vorn und schickt das finite Verb — ist oder liegt — an die Wand seines Nebensatzes; das Deutsche behält es, wo andere Sprachen hier ohne auskommen. Dann besetzt desto seltener selbst Position 1 des Hauptsatzes, also kommt das finite Verb sofort und ich danach. Umso, Geschäft, liegt und fahre ich mit dem Auto sind akzeptierte Varianten."
+      en: "Graded are both ends of both halves. Je drags näher to the front and sends the finite verb — ist or liegt — to the wall of its clause. A terse line could drop it, in German as in English ('the closer the shop'), which is why the instruction asks for full clauses. Then desto seltener itself fills position 1 of the main clause, so the finite verb comes immediately and ich after it. Umso, Geschäft, liegt and fahre ich mit dem Auto are all accepted renderings."
+      ru: "Оцениваются оба конца обеих половин. Je утаскивает näher вперёд и отправляет спрягаемый глагол — ist или liegt — к стене своего придаточного. Русское «чем ближе магазин» обходится без связки; немецкий опускает глагол только в короткой, сжатой фразе — поэтому задание и просит полные части. Затем desto seltener само занимает первую позицию главного предложения, поэтому спрягаемый глагол идёт сразу, а ich — за ним. Umso, Geschäft, liegt и fahre ich mit dem Auto — принимаемые варианты."
+      uk: "Оцінюються обидва кінці обох половин. Je витягає näher уперед і відправляє відмінюване дієслово — ist або liegt — до стіни свого підрядного. Українське «що ближча крамниця» обходиться без зв'язки; німецька опускає дієслово лише в короткій, стислій фразі — тому завдання й просить повні частини. Потім desto seltener саме займає першу позицію головного речення, тому відмінюване дієслово йде одразу, а ich — за ним. Umso, Geschäft, liegt і fahre ich mit dem Auto — прийнятні варіанти."
+      de: "Bewertet werden beide Enden beider Hälften. Je zieht näher nach vorn und schickt das finite Verb — ist oder liegt — an die Wand seines Nebensatzes. Weglassen kann man es nur in einem knappen, verkürzten Satz — deshalb verlangt die Aufgabe vollständige Hälften. Dann besetzt desto seltener selbst Position 1 des Hauptsatzes, also kommt das finite Verb sofort und ich danach. Umso, Geschäft, liegt und fahre ich mit dem Auto sind akzeptierte Varianten."
 
   - id: variant-b
+    revision: 2
     outcomes: [konsum-vergleichen]
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto."
-      ru: "Переведите через je … desto."
-      uk: "Перекладіть через je … desto."
-      de: "Übersetze mit je … desto."
+      en: "Translate with je … desto as two full clauses, each with its own verb."
+      ru: "Переведите через je … desto двумя полными частями, у каждой свой глагол."
+      uk: "Перекладіть через je … desto двома повними частинами, у кожної своє дієслово."
+      de: "Übersetze mit je … desto in zwei vollständigen Hälften, jede mit eigenem Verb."
     prompt_en: "The bigger the bottle is, the less a litre costs."
     prompt_ru: "Чем больше бутылка, тем меньше стоит литр."
     prompt_uk: "Що більша пляшка, то менше коштує літр."
@@ -103,14 +109,15 @@ items:
       de: "Dieselben zwei Stellungen im Ladenregal. Größer gehört zu je und eröffnet den Nebensatz mit ihm; ist wartet am Satzende. Weniger gehört zu desto, und weil das Paar Position 1 füllt, folgt kostet direkt — desto ein Liter kostet weniger wäre die Subjekt-zuerst-Übertragung, die dieser Rahmen verbietet. Umso für desto und der für ein werden akzeptiert."
 
   - id: variant-c
+    revision: 2
     outcomes: [konsum-vergleichen]
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto. For the first half use kommen or gehen."
-      ru: "Переведите через je … desto. В первой половине возьмите kommen или gehen."
-      uk: "Перекладіть через je … desto. У першій половині візьміть kommen або gehen."
-      de: "Übersetze mit je … desto. Für die erste Hälfte: kommen oder gehen."
+      en: "Translate with je … desto as two full clauses, each with its own verb. For the first half use kommen or gehen."
+      ru: "Переведите через je … desto двумя полными частями, у каждой свой глагол. В первой половине возьмите kommen или gehen."
+      uk: "Перекладіть через je … desto двома повними частинами, у кожної своє дієслово. У першій половині візьміть kommen або gehen."
+      de: "Übersetze mit je … desto in zwei vollständigen Hälften, jede mit eigenem Verb. Für die erste Hälfte: kommen oder gehen."
     prompt_en: "The earlier we get to the market, the fresher the fruit is."
     prompt_ru: "Чем раньше мы приходим на рынок, тем свежее фрукты."
     prompt_uk: "Що раніше ми приходимо на ринок, то свіжіші фрукти."
@@ -128,7 +135,7 @@ items:
       - "Je früher wir auf den Markt gehen, umso frischer ist das Obst."
     key_tokens: ["früher", "kommen", "gehen", "frischer", "ist"]
     explain:
-      en: "This variant puts the verbs the other way around, and the orders still hold: in the je-half the finite kommen (or gehen) goes to the end, after zum Markt; in the desto-half the finite ist follows frischer immediately and das Obst comes after the verb — English could drop that verb entirely ('the fresher the fruit'); German will not. Zum Markt and auf den Markt are both idiomatic, and umso is accepted for desto."
-      ru: "В этом варианте глаголы меняются ролями, а порядки те же: в половине с je спрягаемый kommen (или gehen) уходит в конец, после zum Markt; в половине с desto спрягаемый ist идёт сразу за frischer, а das Obst — после глагола. По-русски «тем свежее фрукты» обходится вовсе без связки — по-немецки нет. Zum Markt и auf den Markt одинаково идиоматичны, а umso вместо desto принимается."
-      uk: "У цьому варіанті дієслова міняються ролями, а порядки ті самі: у половині з je відмінюваний kommen (або gehen) іде в кінець, після zum Markt; у половині з desto відмінюваний ist іде одразу за frischer, а das Obst — після дієслова. Українською «то свіжіші фрукти» обходиться зовсім без зв'язки — німецькою ні. Zum Markt і auf den Markt однаково ідіоматичні, а umso замість desto приймається."
-      de: "Diese Variante vertauscht die Verben, und die Stellungen gelten trotzdem: In der je-Hälfte geht das finite kommen (oder gehen) ans Ende, nach zum Markt; in der desto-Hälfte folgt das finite ist sofort auf frischer, und das Obst kommt nach dem Verb — manche Sprachen kommen hier ganz ohne Verb aus, das Deutsche nicht. Zum Markt und auf den Markt sind beide idiomatisch, und umso wird für desto akzeptiert."
+      en: "This variant puts the verbs the other way around, and the orders still hold: in the je-half the finite kommen (or gehen) goes to the end, after zum Markt; in the desto-half the finite ist follows frischer immediately and das Obst comes after the verb. English could drop that verb ('the fresher the fruit'), and so could a terse German line, but the instruction asks for full clauses. Zum Markt and auf den Markt are both idiomatic, and umso is accepted for desto."
+      ru: "В этом варианте глаголы меняются ролями, а порядки те же: в половине с je спрягаемый kommen (или gehen) уходит в конец, после zum Markt; в половине с desto спрягаемый ist идёт сразу за frischer, а das Obst — после глагола. По-русски «тем свежее фрукты» обходится вовсе без связки; немецкий так может только в короткой, сжатой фразе, а задание просит полные части. Zum Markt и auf den Markt одинаково идиоматичны, а umso вместо desto принимается."
+      uk: "У цьому варіанті дієслова міняються ролями, а порядки ті самі: у половині з je відмінюваний kommen (або gehen) іде в кінець, після zum Markt; у половині з desto відмінюваний ist іде одразу за frischer, а das Obst — після дієслова. Українською «то свіжіші фрукти» обходиться зовсім без зв'язки; німецька так може лише в короткій, стислій фразі, а завдання просить повні частини. Zum Markt і auf den Markt однаково ідіоматичні, а umso замість desto приймається."
+      de: "Diese Variante vertauscht die Verben, und die Stellungen gelten trotzdem: In der je-Hälfte geht das finite kommen (oder gehen) ans Ende, nach zum Markt; in der desto-Hälfte folgt das finite ist sofort auf frischer, und das Obst kommt nach dem Verb. Ohne Verb ginge das nur in einem knappen, verkürzten Satz, und die Aufgabe verlangt vollständige Hälften. Zum Markt und auf den Markt sind beide idiomatisch, und umso wird für desto akzeptiert."
