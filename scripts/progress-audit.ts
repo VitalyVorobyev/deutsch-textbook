@@ -22,6 +22,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
 import { normalizeTranslation } from '@da/grading/cloze';
+import { evaluateFocusEvidence } from '@da/grading/evidence';
 import {
   closestTranslationCandidate,
   gradeTranslation,
@@ -134,6 +135,8 @@ export interface ExerciseItem {
   accept?: string[];
   focus?: string;
   key_tokens?: string[];
+  /** As written in the YAML: an omitted list is absent here, not the schema's `[]`. */
+  focus_evidence?: { retained?: string[]; failed?: string[]; case_sensitive?: boolean };
   outcomes?: string[];
 }
 
@@ -906,6 +909,13 @@ function cardSummary(cards: Record<string, AuditCard>) {
  *
  * `retained` therefore means "the target survived", not "nearly right": it is exactly the case
  * where `gradeTranslation` refused to attribute the miss to the item's own focus tag.
+ *
+ * Except where the item authors `focus_evidence`: then the predicates decide, as they do in
+ * `Translate.tsx`, because `key_tokens` cannot attribute a token the learner *added*. Without them
+ * the smuggled *zu* in `ich lasse meine Wohnung zu putzen` leaves both pins intact and reads as the
+ * `lassen` bracket surviving. An attempt logged before its item had predicates carries no stored
+ * verdict, so it is re-read through them here — the same replay, under the same revision gate,
+ * that already re-reads it through today's `key_tokens`.
  */
 type ProbeVerdict = 'correct' | 'retained' | 'failed' | 'unknown';
 
@@ -914,6 +924,10 @@ function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): Pr
   if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
     const verdict = gradeTranslation(attempt.given, currentSpec(item));
     if (verdict.kind !== 'wrong') return 'correct';
+    if (item.focus && item.focus_evidence) {
+      const { retained = [], failed = [], case_sensitive } = item.focus_evidence;
+      return evaluateFocusEvidence(attempt.given, false, { retained, failed, case_sensitive });
+    }
     return verdict.focus ? 'failed' : 'retained';
   }
   if (attempt.correct) return 'correct';

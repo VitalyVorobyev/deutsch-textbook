@@ -67,6 +67,7 @@ import {
 } from '@da/content/grading-decisions';
 import { wortnetzCardRefProblems } from '../src/lib/wortnetze';
 import { focusIntroducedBy } from '@da/content/focus-tags';
+import { focusEvidenceProblems } from '@da/content/focus-evidence';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
@@ -1190,18 +1191,9 @@ for (const [setId, { file, data }] of exerciseSets) {
     const where = `${file} → item "${item.id}"`;
     if (itemIds.has(item.id)) fail(where, 'duplicate item id within set');
     itemIds.add(item.id);
-    if (item.focus_evidence && !item.focus)
-      fail(where, 'focus_evidence requires a focus tag');
-    for (const pattern of [
-      ...(item.focus_evidence?.retained ?? []),
-      ...(item.focus_evidence?.failed ?? []),
-    ]) {
-      try {
-        new RegExp(pattern, 'iu');
-      } catch (error) {
-        fail(where, `invalid focus_evidence regex "${pattern}": ${error instanceof Error ? error.message : error}`);
-      }
-    }
+    // Compiles, never fires on an accepted rendering, and — on a translate probe whose tag names
+    // an added word — catches that insertion (packages/content/src/focus-evidence.ts).
+    for (const problem of focusEvidenceProblems(item, data.role)) fail(where, problem);
     if (setId.startsWith('a1/') && item.type === 'listen' && item.focus && !item.focus_evidence)
       fail(
         where,

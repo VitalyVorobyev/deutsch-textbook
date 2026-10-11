@@ -18,14 +18,29 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { focusIntroducedBy } from '@da/content/focus-tags';
+import { focusIntroducedBy, insertionErrors } from '@da/content/focus-tags';
 
 const ROOT = join(import.meta.dirname, '..');
 
+const INSERTIONS_HEADING = /^## Errors that add a word$/m;
+
+/** The doc, split at the insertion-error section: the taxonomy table comes before it. */
+function docParts(): { taxonomy: string; insertions: string } {
+  const doc = readFileSync(join(ROOT, 'docs', 'authoring', 'focus-tags.md'), 'utf8');
+  const [taxonomy, insertions = ''] = doc.split(INSERTIONS_HEADING);
+  return { taxonomy: taxonomy!, insertions };
+}
+
 /** Tags from the Markdown table: rows shaped `| \`tag\` | what it names |`. */
 function documentedTags(): string[] {
-  const doc = readFileSync(join(ROOT, 'docs', 'authoring', 'focus-tags.md'), 'utf8');
-  return [...doc.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|/gm)].map((m) => m[1]!);
+  return [...docParts().taxonomy.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|/gm)].map((m) => m[1]!);
+}
+
+/** Rows shaped `| \`tag\` | \`word\` … | site |` from "Errors that add a word". */
+function documentedInsertions(): Record<string, string> {
+  return Object.fromEntries(
+    [...docParts().insertions.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|\s*`([^`]+)`/gm)].map((m) => [m[1]!, m[2]!]),
+  );
 }
 
 describe('the focus-tag table and the validator allowlist are one list', () => {
@@ -47,6 +62,19 @@ describe('the focus-tag table and the validator allowlist are one list', () => {
     const seen = new Set<string>();
     const duplicated = tags.filter((tag) => !seen.add(tag));
     expect(duplicated).toEqual([]);
+  });
+
+  test('the insertion-error table and `insertionErrors` are one list, word for word', () => {
+    // A tag the validator treats as adding a word but the doc does not list is a rule an author
+    // meets only as a failure; one the doc lists and the registry lacks is a probe left reading
+    // the insertion as retention. The guard on the guard: the section must parse to something.
+    const documented = documentedInsertions();
+    expect(Object.keys(documented).length).toBeGreaterThan(0);
+    const registered = Object.fromEntries(
+      Object.entries(insertionErrors).map(([tag, error]) => [tag, error.word]),
+    );
+    expect(documented).toEqual(registered);
+    for (const tag of Object.keys(insertionErrors)) expect(focusIntroducedBy).toHaveProperty(tag);
   });
 
   test('every tag names a topic that introduces it', () => {

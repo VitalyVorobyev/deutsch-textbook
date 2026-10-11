@@ -44,6 +44,12 @@ GitHub Release notes.
 - **Leben in Deutschland — Bayern.** The three Freistaaten have no more rights than the other
   Länder because the name grants none, not "therefore"; the sentence is corrected in German and in
   every translation.
+- **Delayed checks no longer count an added word as the skill kept.** *Ich muss zu gehen*, *ich
+  lasse das Fahrrad zu reparieren*, *am jeden Tag* and *die Mareks Wohnung* now count against the
+  rule they break, in 11 delayed-check sentences across A1, A2 and B1. Before, a wrong answer that
+  only added a word was counted as the rule still mastered.
+- **The B1 dictation *etwas Neues* now counts a small *n* or a missing ending as that mistake.**
+  Before, both were forgiven as typos, so the weakness they show never reached your training.
 
 ## [0.6.19] — 2026-10-11
 

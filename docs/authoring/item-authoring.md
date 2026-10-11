@@ -12,6 +12,7 @@ it is a question about meaning — the text says so, and it is then on the autho
 - [Identity and revision](#identity-revision-and-item-types)
 - [Item types and their contracts](#identity-revision-and-item-types)
 - [`key_tokens` — the tokens the focus tag grades](#item-mix-validator-enforced-per-topic)
+- [Focus-evidence predicates](#focus-evidence-predicates)
 - [Item mix](#item-mix-validator-enforced-per-topic)
 - [Placement sets](#placement-sets-the-entry-test)
 - [Vocab entries](#vocab-entries)
@@ -79,6 +80,39 @@ it is a question about meaning — the text says so, and it is then on the autho
 - Every item declares `outcomes: [stable-outcome-id]`; ids, modes and domains live in `content/atlas.yaml`. Use `preview: true` only when an item intentionally uses a focus introduced later in the spine; the validator otherwise rejects curriculum-order leakage.
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
 - Every exercise item that clearly drills one confusion gets a `focus` tag (kebab-case ASCII, validated against `/^[a-z0-9]+(-[a-z0-9]+)*$/`) from the canonical table below. Leave genuinely mixed or pure-comprehension items (dialogue matching, lexical MC) untagged. Attempts carry the tag into progress snapshots; weakness detection and training prioritization aggregate per tag.
+
+---
+
+## Focus-evidence predicates
+
+A free-typed item (`translate`, `listen`) may declare `focus_evidence`: regexes run against the
+normalized response (`normalizeTranslation` — case kept, punctuation tokens dropped) that decide
+which misses its `focus` owns. `failed` — any match is a failure of the tag; `retained` — all
+matching is the tag surviving a miss elsewhere; anything else is `unknown` and logs no tag. The
+evaluator is `evaluateFocusEvidence` (`packages/grading/src/evidence.ts`), shared by the islands,
+the validator and the audit.
+
+- **Where an item declares predicates, they decide, and they replace the other attribution.** On
+  `translate` they replace `key_tokens`; on `listen` an authored `failed` match also **beats
+  `dictationSlip`** — one edit away is exactly what *etwas neues* and *etwas Neue* look like, and
+  both are the `adjektiv-nomen` decision. So a predicate set restates the pins' failures (the
+  pinned word missing, out of its slot) as well as the error it was written for, or those misses
+  go `unknown`.
+- **Reach for them when a pin cannot see the error.** A pin is attributed when it is absent or
+  displaced, never when the learner *adds* a word — so a `translate` probe whose tag names an added
+  word must declare a `failed` predicate that catches it (validator-enforced; the tags and their
+  sites are in [`focus-tags.md`](focus-tags.md#errors-that-add-a-word)).
+- **A `failed` predicate never fires on a rendering the item accepts** (validator-enforced, through
+  the same evaluator): it would charge the tag the moment a correct sentence carried any slip.
+- **Case is folded unless the item says `case_sensitive: true`.** Opt in only where the capital is
+  the graded decision; every predicate written without the flag keeps the meaning it had.
+- **Adding or changing predicates is not a `revision` bump.** They change neither the prompt nor
+  what counts as correct — the learner answered the same question — so a logged attempt keeps its
+  revision, and `progress:audit` re-reads a probe attempt through today's predicates under the same
+  revision gate as today's `key_tokens`. A change to prompt, answers or scoring made in the same
+  edit still bumps.
+- Without predicates nothing changes: silencing every unmatched miss corpus-wide was measured to
+  invert the weakness signal (backlog P12-6), so they are additive, item by item.
 
 ---
 

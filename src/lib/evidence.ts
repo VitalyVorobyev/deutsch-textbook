@@ -1,24 +1,14 @@
 import type { ExerciseItem } from '@da/schema';
 import type { Attempt } from './store';
-import { normalizeTranslation } from '@da/grading/cloze';
 
 export type ResponseMode = NonNullable<Attempt['responseMode']>;
 export type FocusEvidence = NonNullable<Attempt['focusEvidence']>;
 
-/** Evaluate authored regex predicates without guessing from a whole-sentence miss. */
-export function evaluateFocusEvidence(
-  given: string,
-  correct: boolean,
-  predicates?: { retained: string[]; failed: string[] },
-): FocusEvidence {
-  if (correct) return 'retained';
-  if (!predicates) return 'unknown';
-  const normalized = normalizeTranslation(given);
-  const matches = (pattern: string) => new RegExp(pattern, 'iu').test(normalized);
-  if (predicates.failed.some(matches)) return 'failed';
-  if (predicates.retained.length > 0 && predicates.retained.every(matches)) return 'retained';
-  return 'unknown';
-}
+/**
+ * The predicate evaluator lives in `@da/grading` (`packages/grading/src/evidence.ts`), because
+ * `bun run validate` and `progress:audit` must reach the very function the islands log with.
+ */
+export { evaluateFocusEvidence } from '@da/grading/evidence';
 
 /**
  * The focus tag to log for an attempt.
