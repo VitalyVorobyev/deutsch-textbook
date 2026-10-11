@@ -339,14 +339,18 @@ items:
     explain: { en: "Graded are both ends of the rule: sodass opening the clause and müssen closing it. sodass is a conjunction, so what follows it is a subordinate clause and the finite verb goes to the very wall — sodass wir die Treppe nehmen müssen, with the infinitive in front of the modal. The adverb route says the same thing with different machinery and a different order: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Mixing them produces sodass müssen wir …, which is the collapse this item watches for.", ru: "Оцениваются оба конца правила: sodass, открывающий придаточное, и müssen, закрывающий его. sodass — союз, поэтому за ним придаточное, и спрягаемый глагол уходит к самой стене: sodass wir die Treppe nehmen müssen, где инфинитив стоит перед модальным. Наречный путь выражает то же самое другим механизмом и другим порядком: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Смешение даёт sodass müssen wir … — именно эту ошибку задание и ловит.", uk: "Оцінюються обидва кінці правила: sodass, що відкриває підрядне, і müssen, що його закриває. sodass — сполучник, тому за ним підрядне, і відмінюване дієслово йде до самої стіни: sodass wir die Treppe nehmen müssen, де інфінітив стоїть перед модальним. Прислівниковий шлях виражає те саме іншим механізмом і іншим порядком: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Змішування дає sodass müssen wir … — саме цю помилку завдання й ловить.", de: "Bewertet werden beide Enden der Regel: sodass am Anfang des Nebensatzes und müssen an seinem Ende. sodass ist eine Konjunktion, dahinter steht also ein Nebensatz, und das finite Verb geht an die Wand — sodass wir die Treppe nehmen müssen, mit dem Infinitiv vor dem Modalverb. Der Adverbweg sagt dasselbe mit anderer Maschine und anderer Stellung: Der Aufzug ist kaputt. Deshalb müssen wir die Treppe nehmen. Wer beides mischt, schreibt sodass müssen wir … — genau darauf schaut diese Aufgabe." }
 
   - id: uebersetzen-ohne-zu
+    # revision 2: 'left' / «ушёл» and 'the meeting' / «встречи» named no verb and no noun,
+    # so Er ist aus der Besprechung gegangen or das Treffen were rejected; both are named.
+    # The fronted ohne-clause was rejected too and joins in both tenses.
+    revision: 2
     outcomes: [plan-formulieren]
     type: translate
     focus: ohne-statt-zu
     instruction:
-      en: "Translate into German. Use ohne … zu. For 'say goodbye' take sich verabschieden."
-      ru: "Переведите на немецкий. Используйте ohne … zu. Для «попрощаться» возьмите sich verabschieden."
-      uk: "Перекладіть німецькою. Використайте ohne … zu. Для «попрощатися» візьміть sich verabschieden."
-      de: "Übersetze ins Deutsche. Benutze ohne … zu. Für den Abschied nimm sich verabschieden."
+      en: "Translate into German. Use ohne … zu. For 'leave' take verlassen, for 'the meeting' die Besprechung, for 'say goodbye' sich verabschieden."
+      ru: "Переведите на немецкий. Используйте ohne … zu. Для «уйти» возьмите verlassen, для «встречи» — die Besprechung, для «попрощаться» — sich verabschieden."
+      uk: "Перекладіть німецькою. Використайте ohne … zu. Для «піти» візьміть verlassen, для «зустрічі» — die Besprechung, для «попрощатися» — sich verabschieden."
+      de: "Übersetze ins Deutsche. Benutze ohne … zu. Für das Gehen nimm verlassen, für das Treffen die Besprechung, für den Abschied sich verabschieden."
     prompt_en: "He left the meeting without saying goodbye."
     prompt_ru: "Он ушёл со встречи, не попрощавшись."
     prompt_uk: "Він пішов зі зустрічі, не попрощавшись."
@@ -355,6 +359,9 @@ items:
     accept:
       # Spoken German would tell the same thing in the Perfekt; the graded frame is untouched.
       - "Er hat die Besprechung verlassen, ohne sich zu verabschieden."
+      # The fronted ohne-clause fills position 1, main clause verb-first.
+      - "Ohne sich zu verabschieden, verließ er die Besprechung."
+      - "Ohne sich zu verabschieden, hat er die Besprechung verlassen."
     explain: { en: "ohne … zu is a two-ended frame like um … zu: ohne opens the clause, zu stands directly in front of the infinitive, and the infinitive is the last word. What sits between them here is the reflexive pronoun, which belongs to the verb and cannot be left out — sich verabschieden is one item. There is no subject inside the clause, which is why it works only when the two halves share one: it is he who left and he who did not say goodbye. And nothing in the clause is negated — the ohne already carries the negation.", ru: "ohne … zu — двусторонняя рамка, как um … zu: ohne открывает придаточное, zu стоит прямо перед инфинитивом, а инфинитив — последнее слово. Между ними здесь возвратное местоимение, которое принадлежит глаголу и опустить его нельзя: sich verabschieden — единое целое. Подлежащего внутри придаточного нет, поэтому конструкция работает только при общем подлежащем: ушёл он и не попрощался тоже он. И ничего внутри не отрицается — отрицание уже несёт само ohne.", uk: "ohne … zu — двобічна рамка, як um … zu: ohne відкриває підрядне, zu стоїть прямо перед інфінітивом, а інфінітив — останнє слово. Між ними тут зворотний займенник, який належить дієслову і його не можна опустити: sich verabschieden — єдине ціле. Підмета всередині підрядного немає, тому конструкція працює лише за спільного підмета: пішов він і не попрощався теж він. І нічого всередині не заперечується — заперечення вже несе саме ohne.", de: "ohne … zu ist ein Rahmen mit zwei Enden wie um … zu: ohne eröffnet den Satz, zu steht direkt vor dem Infinitiv, und der Infinitiv ist das letzte Wort. Dazwischen steht hier das Reflexivpronomen, das zum Verb gehört und nicht wegfallen darf — sich verabschieden ist eine Einheit. Ein Subjekt gibt es im Satz nicht, deshalb funktioniert er nur bei gemeinsamem Subjekt: Er ging, und er verabschiedete sich nicht. Und verneint wird darin nichts — die Verneinung steckt schon im ohne." }
 
   - id: uebersetzen-reflexiv-praeposition
