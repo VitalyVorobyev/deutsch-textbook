@@ -58,6 +58,10 @@ GitHub Release notes.
   
   Two prompts now write the person's name as German spells it (*Aylin*, *Clara*), and one says
   *einen Film*.
+- **Two B1 gap exercises stop marking the wrong thing.**
+  - *Wenn der Zug pünktlich wäre, könnten wir …* is now accepted alongside *würden*.
+  - The *sich gewöhnen an* gap now gives *das Aufstehen* with its article. Before, a wrong gender
+    counted against the verb's preposition.
 
 ## [0.6.19] — 2026-10-11
 
