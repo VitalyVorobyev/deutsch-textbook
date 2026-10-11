@@ -193,8 +193,8 @@ record of what shipped.
   it; "never *ladet*" (*Feinheiten*, the *aufladen* note) against regional *ladet*; the EN *Häufige
   Fehler*'s "No English verb changes its stem vowel in the third person" (*does*, *says* in sound);
   the *Netz* note and *Feinheiten* row say everyday German does not separate reception, WLAN and
-  internet (*kein WLAN*); the *Akku* note's "die Batterie you throw away" (*Autobatterie*); the DE
-  halves write *der Präfix* five times where Duden's lemma is *das Präfix*; *Software*, *Menü* and
+  internet (*kein WLAN*); the *Akku* note's "die Batterie you throw away" (*Autobatterie*); the two
+  *der Präfix* left in `kultur-freizeit` DE halves (Duden: *das Präfix*; fixed here); *Software*, *Menü* and
   *sichern* are produced in translate items (named in the instruction) but carded
   recognition-only, and *mitnehmen*, *abschicken* and *Neustart* are named and produced but on no
   Goethe list and in no deck; C6-1 still owed.
