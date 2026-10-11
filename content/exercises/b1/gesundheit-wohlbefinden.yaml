@@ -39,11 +39,15 @@ items:
     outcomes: [gewohnheiten-beschreiben]
     type: cloze
     focus: reflexiv-praeposition
+    # revision 2: three of four misses wrote an den (2026-07-27 – 09-14) — the accusative the frame
+    # asks for, on a noun taken for masculine. That is the gender of das Aufstehen, not the
+    # frame, so the instruction now gives both genders and the gaps grade case alone.
+    revision: 2
     instruction:
-      en: "Fill in the articles — one frame is always dative, one is two-way."
-      ru: "Впишите артикли — одна рамка всегда дативная, другая двусторонняя."
-      uk: "Впишіть артиклі — одна рамка завжди давальна, інша двостороння."
-      de: "Ergänze die Artikel — ein Rahmen ist immer Dativ, der andere hat eine Wechselpräposition."
+      en: "Fill in the articles — one frame is always dative, one is two-way (die Arbeit, das Aufstehen)."
+      ru: "Впишите артикли — одна рамка всегда дативная, другая двусторонняя (die Arbeit, das Aufstehen)."
+      uk: "Впишіть артиклі — одна рамка завжди давальна, інша двостороння (die Arbeit, das Aufstehen)."
+      de: "Ergänze die Artikel — ein Rahmen ist immer Dativ, der andere hat eine Wechselpräposition (die Arbeit, das Aufstehen)."
     text: "Nach einer anstrengenden Woche erhole ich mich am besten von {{der}} Arbeit, aber an {{das}} frühe Aufstehen gewöhne ich mich nie."
     translation:
       en: "After an exhausting week I recover best from work, but I will never get used to getting up early."

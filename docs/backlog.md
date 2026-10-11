@@ -44,6 +44,12 @@ record of what shipped.
   `erfahrungen-erzaehlen`, `leben-veraendern`, `meinung-medien`. Every unit reviewed so far had a
   material defect, usually a false fact inherited from the EN half. No structural screen predicts
   it, and authoring order does not either. Rides on P27-3g.
+- **A name in a Cyrillic prompt leaves its spelling free.** «Айлин» is Aylin, Ailin or Eilin and
+  «Клара» Clara or Klara, so a `translate` item whose answer names a person grades a spelling its
+  RU/UK prompt never gave. Two items now write the name in Latin script
+  (`a1/wortbildung-ausblenden:translate-fahrerin`,
+  `a2/freunde-feste-produktion:uebersetzen-transfer-blumen-karte`). First step: list the translate
+  items whose answer holds a name with more than one German spelling.
 - **P26-11 · B1 has one drill set** against A2's thirteen (`grep -l '^role: drill'
   content/exercises/b1/*.yaml`), so the remediation channel is unbuilt there; P23-3 sees it from the
   other end. B1 depth now reads median 6 items per confusion, 2 tags at ≤3 items, 1 tag in a single

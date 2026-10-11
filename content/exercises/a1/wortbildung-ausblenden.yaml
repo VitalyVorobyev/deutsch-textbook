@@ -18,8 +18,10 @@ items:
     focus: wortbildung-nomen
     instruction: {en: "Translate the profession.", ru: "Переведите название профессии.", uk: "Перекладіть назву професії."}
     prompt_en: "The bus driver is called Aylin."
-    prompt_ru: "Водительницу автобуса зовут Айлин."
-    prompt_uk: "Водійку автобуса звати Айлін."
+    # revision 2: the name is written as German writes it — «Айлин» leaves Aylin, Ailin and Eilin open.
+    prompt_ru: "Водительницу автобуса зовут Aylin."
+    prompt_uk: "Водійку автобуса звати Aylin."
+    revision: 2
     answer: "Die Busfahrerin heißt Aylin."
     key_tokens: ["Busfahrerin"]
     explain: {en: "Bus + Fahrer + -in produces the female profession Busfahrerin; the final -in also makes the article die.", ru: "Bus + Fahrer + -in образует женское название Busfahrerin; конечное -in также требует артикль die.", uk: "Bus + Fahrer + -in утворює жіночу назву Busfahrerin; кінцеве -in також вимагає артикль die."}
