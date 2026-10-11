@@ -306,6 +306,26 @@ export function lidFigureRefs(body: string): { ids: string[]; problems: string[]
   return { ids, problems };
 }
 
+/**
+ * What an SVG figure may not carry. `<img>` never runs a script or fetches a reference, but the
+ * figure links to its own file, and opened in a tab an SVG is a document of this origin — one
+ * that could read the learner's stored progress. So: no script, no handler, no `javascript:`, no
+ * embedded HTML, and every reference (`href`, `url()`) points inside the file.
+ */
+const SVG_HAZARDS: readonly (readonly [RegExp, string])[] = [
+  [/<script\b/i, '<script>'],
+  [/<foreignObject\b/i, '<foreignObject>'],
+  [/\son[a-z]+\s*=/i, 'an event handler (on…=)'],
+  [/javascript:/i, 'a javascript: URL'],
+  [/[\s:]href\s*=\s*["'](?!#)/i, 'an href outside the file'],
+  [/url\(\s*["']?(?!#)/i, 'a url() outside the file'],
+  [/@import\b/i, 'an @import'],
+];
+
+export function svgFigureHazards(svg: string): string[] {
+  return SVG_HAZARDS.filter(([pattern]) => pattern.test(svg)).map(([, hazard]) => hazard);
+}
+
 /** One lesson's figures and body, as `lidFigureProblems` needs them. */
 interface LidFigureSource {
   file: string;
@@ -317,7 +337,8 @@ interface LidFigureSource {
  * The cross-file figure rules (`bun run validate`): every `<Figure>` names a figure its own
  * lesson declares, and every declared figure is shown; ids are unique across lessons, because the
  * component resolves one without knowing its lesson; the file exists under `public/`, its pixel
- * size is the declared one and it stays under the bundle ceiling; and an `official` figure is a
+ * size is the declared one and it stays under the bundle ceiling; an SVG carries nothing
+ * `svgFigureHazards` names; and an `official` figure is a
  * picture of the bank that is not withheld (ADR 0021). The credit fields are the schema's.
  */
 export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank: LidBank | undefined): string[] {
@@ -351,9 +372,12 @@ export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank
         if (bytes.length > LID_FIGURE_MAX_BYTES)
           at(file, `${label}: ${figure.src} is ${bytes.length} bytes, over the ${LID_FIGURE_MAX_BYTES}-byte ceiling`);
         const size = imageDimensions(bytes);
-        if (!size) at(file, `${label}: ${figure.src} has no PNG, JPEG or WebP header to read its size from`);
+        if (!size) at(file, `${label}: ${figure.src} has no PNG, JPEG, WebP or SVG header to read its size from`);
         else if (size.width !== figure.width || size.height !== figure.height)
           at(file, `${label}: ${figure.src} is ${size.width}×${size.height}, the figure says ${figure.width}×${figure.height}`);
+        if (figure.src.endsWith('.svg'))
+          for (const hazard of svgFigureHazards(new TextDecoder().decode(bytes)))
+            at(file, `${label}: ${figure.src} carries ${hazard} — an SVG figure also opens on its own, so it holds no script and no external reference`);
       }
       if (figure.sourceClass !== 'official') continue;
       const image = bankImages?.get(figure.src);

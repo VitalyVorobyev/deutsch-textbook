@@ -1,10 +1,12 @@
 /**
  * Pixel size read from an image file's own header — PNG, JPEG and WebP (lossy VP8, lossless VP8L,
- * extended VP8X) — so a declared `width`/`height` is checked against the file, not trusted. Sync
- * and dependency-free, because `bun run validate` is. Anything else, or a truncated header, is
- * `undefined`: the caller reports an unreadable file rather than guessing.
+ * extended VP8X) — or an SVG's root element, so a declared `width`/`height` is checked against the
+ * file, not trusted. Sync and dependency-free, because `bun run validate` is. Anything else, or a
+ * truncated header, is `undefined`: the caller reports an unreadable file rather than guessing.
  */
 export function imageDimensions(bytes: Uint8Array): { width: number; height: number } | undefined {
+  const svg = svgDimensions(bytes);
+  if (svg !== null) return svg;
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
   const ascii = (at: number, n: number) => String.fromCharCode(...bytes.subarray(at, at + n));
   try {
@@ -43,4 +45,40 @@ export function imageDimensions(bytes: Uint8Array): { width: number; height: num
     // A header that claims more bytes than the file has: unreadable, not a crash.
   }
   return undefined;
+}
+
+/** What may precede an SVG's root element: a BOM, whitespace, the XML declaration, comments, a doctype. */
+const SVG_PROLOGUE = /^(?:\uFEFF|\s+|<\?xml[\s\S]*?\?>|<!--[\s\S]*?-->|<!DOCTYPE[^>]*>)*/;
+/** A user unit or `px` — the only lengths that are a pixel size; `%`, `em`, `mm` … are not. */
+const SVG_PIXELS = /^\s*(\d+(?:\.\d+)?)\s*(?:px)?\s*$/;
+
+/**
+ * An SVG's size as a browser gives it to `<img>`: the root's `width` and `height` when both are
+ * pixel lengths, otherwise the `viewBox` — scaled to whichever one of the two is given. `null`
+ * when the bytes are not an SVG document at all (so the raster readers get their turn), and
+ * `undefined` when they are one whose size cannot be read: no viewBox, a relative length, a
+ * malformed or empty viewBox.
+ */
+function svgDimensions(bytes: Uint8Array): { width: number; height: number } | undefined | null {
+  const text = new TextDecoder().decode(bytes.subarray(0, 64 * 1024));
+  const rest = text.slice(SVG_PROLOGUE.exec(text)![0].length);
+  const root = /^<svg\b([^>]*)>/.exec(rest);
+  if (!root) return rest.startsWith('<svg') ? undefined : null;
+  const attr = (name: string) => new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`).exec(root[1]!);
+  const pixels = (name: string) => {
+    const match = attr(name);
+    const value = match && SVG_PIXELS.exec(match[1] ?? match[2]!);
+    return value ? Number(value[1]) : undefined;
+  };
+  const width = pixels('width');
+  const height = pixels('height');
+  if (width && height) return { width, height };
+  const box = attr('viewBox');
+  const numbers = box ? (box[1] ?? box[2]!).trim().split(/[\s,]+/).map(Number) : [];
+  if (numbers.length !== 4 || numbers.some((n) => !Number.isFinite(n))) return undefined;
+  const [, , boxWidth, boxHeight] = numbers as [number, number, number, number];
+  if (boxWidth <= 0 || boxHeight <= 0) return undefined;
+  if (width) return { width, height: (width * boxHeight) / boxWidth };
+  if (height) return { width: (height * boxWidth) / boxHeight, height };
+  return { width: boxWidth, height: boxHeight };
 }

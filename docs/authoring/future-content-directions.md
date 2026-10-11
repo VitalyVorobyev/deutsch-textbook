@@ -52,8 +52,14 @@ three small ones in a row with `<Figure ids="… …" />` (`src/components/lid/L
   catalogue, and never one the bank marks `withheld`. `real` and `adapted` files live under
   `/lid/lessons/` and name `attribution`, `license`, `license_url` and `source_url`. A `simulated`
   one also needs its `data/asset-provenance.yaml` record.
+- A diagram the course draws is an SVG under `/lid/lessons/`: a `viewBox` and root `width` and
+  `height` equal to it — without them the picture has no size of its own and the panel shrinks it
+  to 300 px — German labels, a verb on every arrow, text of at least ~13 px at
+  phone width, system sans-serif. It carries no script, event handler, `<foreignObject>` or
+  reference outside the file, because the figure also opens on its own as a page of this site.
 - `bun run validate` checks the rest: every tag names a figure of its own lesson, every figure is
-  shown, ids are unique across lessons, the file exists with the declared pixel size, and it is at
+  shown, ids are unique across lessons, the file exists with the declared pixel size (an SVG's
+  root `width`/`height`, else its `viewBox`), an SVG carries none of the above, and it is at
   most 300 KB, because every file ships in the desktop bundle.
 
 ## Entdecken contract
