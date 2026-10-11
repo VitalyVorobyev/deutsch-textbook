@@ -73,6 +73,10 @@ items:
     prompt_ru: "Дети бегут в сад."
     prompt_uk: "Діти біжать у сад."
     answer: "Die Kinder laufen in den Garten."
+    # revision 2: «Дети» / «Діти» mark no definiteness; the bare plural is correct German, and
+    # in den Garten — the direction wo-wohin grades — is unchanged.
+    accept: ["Kinder laufen in den Garten."]
+    revision: 2
     key_tokens: ["den"]
     explain:
       en: "The same garden, but now a direction: Wohin? + Akkusativ — in den Garten. The pair with the previous sentence is the whole rule: im Garten (where) vs in den Garten (where to)."

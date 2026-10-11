@@ -99,21 +99,25 @@ items:
     outcomes: [irreale-bedingung-nutzen]
     type: cloze
     focus: irreale-bedingung
+    # revision 2: wäre … könnten is Konjunktiv II in both halves — the whole rule — and was
+    # rejected twice (2026-08-03, 2026-09-15). The second gap accepts it, and the instruction
+    # asks for a Konjunktiv II helper rather than the one the author had in mind.
+    revision: 2
     instruction:
-      en: "The unreal condition — fill in the Konjunktiv II of sein in the wenn-half and the plural helper that erreichen needs in the main half."
-      ru: "Нереальное условие — впишите Konjunktiv II глагола sein в половине с wenn и вспомогательный глагол во множественном числе, который нужен erreichen, в главной половине."
-      uk: "Нереальна умова — впишіть Konjunktiv II дієслова sein у половині з wenn і допоміжне дієслово у множині, яке потрібне erreichen, у головній половині."
-      de: "Die irreale Bedingung — ergänze den Konjunktiv II von sein im wenn-Satz und das Hilfsverb im Plural, das erreichen im Hauptsatz braucht."
-    text: "Wenn der Zug pünktlich {{wäre}}, {{würden}} wir den Anschluss noch erreichen."
+      en: "The unreal condition — fill in the Konjunktiv II of sein in the wenn-half and a plural Konjunktiv II helper for erreichen in the main half."
+      ru: "Нереальное условие — впишите Konjunktiv II глагола sein в половине с wenn и вспомогательный глагол в Konjunktiv II во множественном числе для erreichen в главной половине."
+      uk: "Нереальна умова — впишіть Konjunktiv II дієслова sein у половині з wenn і допоміжне дієслово в Konjunktiv II у множині для erreichen у головній половині."
+      de: "Die irreale Bedingung — ergänze den Konjunktiv II von sein im wenn-Satz und ein Hilfsverb im Konjunktiv II und im Plural für erreichen im Hauptsatz."
+    text: "Wenn der Zug pünktlich {{wäre}}, {{würden|könnten}} wir den Anschluss noch erreichen."
     translation:
       en: "If the train were on time, we would still make the connection."
       ru: "Если бы поезд шёл вовремя, мы бы ещё успели на пересадку."
       uk: "Якби поїзд ішов вчасно, ми б ще встигли на пересадку."
     explain:
-      en: "Both halves carry Konjunktiv II — that is the whole rule. sein brings its one-word form wäre into the wenn-clause; erreichen's one-word form erreichte looks exactly like its indicative past, so the main clause takes the unambiguous würden, agreeing with wir. An indicative in either half (ist … or werden …) would make the sentence real again — and reality already said no."
-      ru: "Konjunktiv II несут обе половины — в этом всё правило. sein приносит в придаточное однословную форму wäre; однословная форма erreichte неотличима от индикативного прошедшего, поэтому главное предложение берёт однозначное würden, согласованное с wir. Индикатив в любой половине (ist … или werden …) снова сделал бы предложение реальным — а реальность уже сказала «нет»."
-      uk: "Konjunktiv II несуть обидві половини — у цьому все правило. sein приносить у підрядне однослівну форму wäre; однослівна форма erreichte не відрізняється від індикативного минулого, тому головне речення бере однозначне würden, узгоджене з wir. Індикатив у будь-якій половині (ist … або werden …) знову зробив би речення реальним — а реальність уже сказала «ні»."
-      de: "Beide Hälften tragen Konjunktiv II — das ist die ganze Regel. sein bringt seine Einwortform wäre in den wenn-Satz; die Einwortform erreichte sähe genauso aus wie das Präteritum, also nimmt der Hauptsatz das eindeutige würden, im Plural zu wir. Ein Indikativ in einer der Hälften (ist … oder werden …) machte den Satz wieder real — und die Wirklichkeit hat schon Nein gesagt."
+      en: "Both halves carry Konjunktiv II — that is the whole rule. sein brings its one-word form wäre into the wenn-clause; erreichen's one-word form erreichte looks exactly like its indicative past, so the main clause takes the unambiguous würden, agreeing with wir. könnten works too: a modal's Konjunktiv II is just as unambiguous and only adds can. An indicative in either half (ist … or werden …) would make the sentence real again — and reality already said no."
+      ru: "Konjunktiv II несут обе половины — в этом всё правило. sein приносит в придаточное однословную форму wäre; однословная форма erreichte неотличима от индикативного прошедшего, поэтому главное предложение берёт однозначное würden, согласованное с wir. Подойдёт и könnten: Konjunktiv II модального глагола так же однозначен и лишь добавляет «могли бы». Индикатив в любой половине (ist … или werden …) снова сделал бы предложение реальным — а реальность уже сказала «нет»."
+      uk: "Konjunktiv II несуть обидві половини — у цьому все правило. sein приносить у підрядне однослівну форму wäre; однослівна форма erreichte не відрізняється від індикативного минулого, тому головне речення бере однозначне würden, узгоджене з wir. Підійде й könnten: Konjunktiv II модального дієслова так само однозначний і лише додає «могли б». Індикатив у будь-якій половині (ist … або werden …) знову зробив би речення реальним — а реальність уже сказала «ні»."
+      de: "Beide Hälften tragen Konjunktiv II — das ist die ganze Regel. sein bringt seine Einwortform wäre in den wenn-Satz; die Einwortform erreichte sähe genauso aus wie das Präteritum, also nimmt der Hauptsatz das eindeutige würden, im Plural zu wir. Auch könnten passt: Der Konjunktiv II eines Modalverbs ist ebenso eindeutig und fügt nur das Können hinzu. Ein Indikativ in einer der Hälften (ist … oder werden …) machte den Satz wieder real — und die Wirklichkeit hat schon Nein gesagt."
 
   - id: mc-beide-haelften
     outcomes: [irreale-bedingung-nutzen]

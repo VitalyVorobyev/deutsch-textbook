@@ -17,7 +17,9 @@ items:
     prompt_ru: "Сейчас я на рынке, а потом иду к озеру."
     prompt_uk: "Зараз я на ринку, а потім іду до озера."
     answer: "Ich bin jetzt auf dem Markt, und dann gehe ich an den See."
-    accept: ["Jetzt bin ich auf dem Markt, und dann gehe ich an den See."]
+    # revision 2: «а потом» joins the clauses with dann alone as readily as with und dann.
+    accept: ["Jetzt bin ich auf dem Markt, und dann gehe ich an den See.", "Ich bin jetzt auf dem Markt, dann gehe ich an den See.", "Jetzt bin ich auf dem Markt, dann gehe ich an den See."]
+    revision: 2
     key_tokens: ["auf", "dem", "an", "den"]
     explain: { en: "The market is an open place: wo → auf dem Markt. The lake has an edge: wohin → an den See.", ru: "Рынок — открытое место: wo → auf dem Markt. У озера есть край: wohin → an den See.", uk: "Ринок — відкрите місце: wo → auf dem Markt. Озеро має край: wohin → an den See." }
 

@@ -161,14 +161,21 @@ items:
       ru: "Переведите на немецкий. Ничего из этого в упражнениях ещё не встречалось — стройте по правилу, а не по памяти."
       uk: "Перекладіть німецькою. Нічого з цього у вправах ще не траплялося — будуйте за правилом, а не за пам'яттю."
     prompt_en: "Clara is bringing her brother flowers and writing him a card."
-    prompt_ru: "Клара принесёт своему брату цветы и напишет ему открытку."
-    prompt_uk: "Клара принесе своєму братові квіти і напише йому листівку."
+    # revision 2: the name is written as German writes it — «Клара» is Clara or Klara alike.
+    prompt_ru: "Clara принесёт своему брату цветы и напишет ему открытку."
+    prompt_uk: "Clara принесе своєму братові квіти і напише йому листівку."
+    revision: 2
     answer: "Clara bringt ihrem Bruder Blumen mit und schreibt ihm eine Karte."
     key_tokens: ["ihrem", "ihm"]
     accept:
       - "Clara bringt ihrem Bruder Blumen mit und sie schreibt ihm eine Karte."
       - "Clara bringt ihrem Bruder Blumen mit und schreibt ihm die Karte."
       - "Clara bringt ihrem Bruder Blumen mit und sie schreibt ihm die Karte."
+      # revision 2: «принесёт» is bringen as much as mitbringen, and «цветы» marks no
+      # definiteness; neither touches ihrem and ihm, which are what wechsel-akk-dat grades.
+      - "Clara bringt ihrem Bruder Blumen und schreibt ihm eine Karte."
+      - "Clara bringt ihrem Bruder die Blumen und schreibt ihm eine Karte."
+      - "Clara bringt ihrem Bruder die Blumen mit und schreibt ihm eine Karte."
     explain:
       en: "Two two-object sentences in one line, and each shows a different half of the rule. In the first, both objects are nouns: the person goes into the Dativ and comes first — ihrem Bruder — and Blumen, the thing, follows in the Akkusativ (a bare plural, so nothing on it changes). In the second the person is a pronoun, ihm, and a pronoun goes in front of a noun object — so it stands before eine Karte. Neither ihn nor ihr: the brother is masculine and he is the one receiving, which is the Dativ, and for er that is ihm. And the separable mit closes the first clause, behind the flowers."
       ru: "Две конструкции с двумя дополнениями в одной строке, и каждая показывает свою половину правила. В первой оба дополнения — существительные: человек стоит в Dativ и идёт первым (ihrem Bruder), а предмет, Blumen, следует за ним в Akkusativ (голое множественное число — там ничего не меняется). Во второй человек выражен местоимением ihm, а местоимение идёт впереди дополнения-существительного, поэтому стоит перед eine Karte. Не ihn и не ihr: брат — мужского рода и он получает, а это Dativ, и для er это ihm. Отделяемая приставка mit при этом закрывает первую часть — уже за цветами."

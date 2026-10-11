@@ -153,7 +153,9 @@ items:
     prompt_ru: "Мы ездим в супермаркет на велосипеде."
     prompt_uk: "Ми їздимо в супермаркет на велосипеді."
     answer: "Wir fahren mit dem Fahrrad zum Supermarkt."
-    accept: ["Wir fahren zum Supermarkt mit dem Fahrrad.", "Zum Supermarkt fahren wir mit dem Fahrrad.", "Mit dem Fahrrad fahren wir zum Supermarkt."]
+    # revision 2: «в супермаркет» is in den Supermarkt as readily as zum Supermarkt.
+    accept: ["Wir fahren zum Supermarkt mit dem Fahrrad.", "Zum Supermarkt fahren wir mit dem Fahrrad.", "Mit dem Fahrrad fahren wir zum Supermarkt.", "Wir fahren mit dem Fahrrad in den Supermarkt.", "Wir fahren in den Supermarkt mit dem Fahrrad.", "In den Supermarkt fahren wir mit dem Fahrrad.", "Mit dem Fahrrad fahren wir in den Supermarkt."]
+    revision: 2
     explain: { en: "'By bike' is the fixed chunk mit dem Fahrrad — always with the article. Places with der or das take zum: zum Supermarkt.", ru: "«На велосипеде» — устойчивая связка mit dem Fahrrad, обязательно с артиклем. Слова с der и das присоединяются через zum: zum Supermarkt.", uk: "«На велосипеді» — стала зв'язка mit dem Fahrrad, обов'язково з артиклем. Слова з der і das приєднуються через zum: zum Supermarkt." }
   - id: uebersetzen-orangensaft
     outcomes: [essen-bestellen, akkusativ-objekte]
