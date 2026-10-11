@@ -66,12 +66,16 @@ items:
       ru: "Я иду на вечерний курс, чтобы продолжать учиться параллельно с работой."
       uk: "Я йду на вечірній курс, щоб продовжувати вчитися поряд із роботою."
     explain:
-      en: "Look at what follows the gap: no subject of its own, and the clause closes with the zu-infinitive weiterzulernen. That shape belongs to um alone. damit and dass both open a full Nebensatz — they would need their own subject and a conjugated verb (damit ich … weiterlerne). English blurs the same line, because 'so that' and 'in order to' both translate a purpose — which is exactly why the hand reaches for damit here; the missing subject says no."
-      ru: "Посмотрите, что стоит после пропуска: собственного подлежащего нет, а оборот закрывает инфинитив с zu — weiterzulernen. Такая форма бывает только у um. damit и dass открывают полноценный Nebensatz — им нужны своё подлежащее и спрягаемый глагол (damit ich … weiterlerne). Русское «чтобы» одно на обе конструкции — потому рука и тянется к damit; отсутствие подлежащего говорит «нет»."
-      uk: "Подивіться, що стоїть після пропуску: власного підмета немає, а зворот закриває інфінітив із zu — weiterzulernen. Така форма буває лише в um. damit і dass відкривають повноцінний Nebensatz — їм потрібні свій підмет і відмінюване дієслово (damit ich … weiterlerne). Українське «щоб» одне на обидві конструкції — тому рука й тягнеться до damit; відсутність підмета каже «ні»."
-      de: "Sieh dir an, was nach der Lücke steht: kein eigenes Subjekt, und der Satz schließt mit dem zu-Infinitiv weiterzulernen. Diese Form gehört allein zu um. damit und dass eröffnen einen vollen Nebensatz — sie bräuchten ein eigenes Subjekt und ein konjugiertes Verb (damit ich … weiterlerne). Das fehlende Subjekt entscheidet."
+      en: "Look at what follows the gap: no subject of its own, and the clause closes with the zu-infinitive weiterzulernen. Of the three options, that shape belongs to um alone. damit and dass both open a full Nebensatz — they would need their own subject and a conjugated verb (damit ich … weiterlerne). English blurs the same line, because 'so that' and 'in order to' both translate a purpose — which is exactly why the hand reaches for damit here; the missing subject says no."
+      ru: "Посмотрите, что стоит после пропуска: собственного подлежащего нет, а оборот закрывает инфинитив с zu — weiterzulernen. Из трёх вариантов такая форма бывает только у um. damit и dass открывают полноценный Nebensatz — им нужны своё подлежащее и спрягаемый глагол (damit ich … weiterlerne). Русское «чтобы» одно на обе конструкции — потому рука и тянется к damit; отсутствие подлежащего говорит «нет»."
+      uk: "Подивіться, що стоїть після пропуску: власного підмета немає, а зворот закриває інфінітив із zu — weiterzulernen. З трьох варіантів така форма буває лише в um. damit і dass відкривають повноцінний Nebensatz — їм потрібні свій підмет і відмінюване дієслово (damit ich … weiterlerne). Українське «щоб» одне на обидві конструкції — тому рука й тягнеться до damit; відсутність підмета каже «ні»."
+      de: "Sieh dir an, was nach der Lücke steht: kein eigenes Subjekt, und der Satz schließt mit dem zu-Infinitiv weiterzulernen. Von den drei Optionen gehört diese Form allein zu um. damit und dass eröffnen einen vollen Nebensatz — sie bräuchten ein eigenes Subjekt und ein konjugiertes Verb (damit ich … weiterlerne). Das fehlende Subjekt entscheidet."
 
   - id: uebersetzen-damit-beratung
+    # revision 2: the RU/UK prompts write the name in Latin script (Cyrillic left its
+    # spelling free), and the bare «курс»/«курс» leaves the article open — den Kurs was
+    # rejected beside einen Kurs.
+    revision: 2
     outcomes: [ziele-begruenden]
     type: translate
     focus: damit-um-zu
@@ -81,15 +85,20 @@ items:
       uk: "Перекладіть — порахуйте підмети, перш ніж вибрати сполучник. Використайте zur Beratung gehen; для «порекомендувати» візьміть empfehlen."
       de: "Übersetze — zähl die Subjekte, bevor du die Konjunktion wählst. Nimm zur Beratung gehen; für die Empfehlung empfehlen."
     prompt_en: "I am going to the counselling session on Thursday so that Frau Weber recommends me a course."
-    prompt_ru: "В четверг я иду на консультацию, чтобы фрау Вебер порекомендовала мне курс."
-    prompt_uk: "У четвер я йду на консультацію, щоб пані Вебер порекомендувала мені курс."
+    prompt_ru: "В четверг я иду на консультацию, чтобы Frau Weber порекомендовала мне курс."
+    prompt_uk: "У четвер я йду на консультацію, щоб Frau Weber порекомендувала мені курс."
     answer: "Ich gehe am Donnerstag zur Beratung, damit mir Frau Weber einen Kurs empfiehlt."
     accept:
       # Both Mittelfeld orders of pronoun and subject are neutral German, and the
-      # time phrase may take position 1 — the product is 2 × 2 renderings.
+      # time phrase may take position 1; the bare «курс»/«курс» marks no definiteness,
+      # so den Kurs stands beside einen Kurs — the product is 2 × 2 × 2 renderings.
       - "Ich gehe am Donnerstag zur Beratung, damit Frau Weber mir einen Kurs empfiehlt."
       - "Am Donnerstag gehe ich zur Beratung, damit mir Frau Weber einen Kurs empfiehlt."
       - "Am Donnerstag gehe ich zur Beratung, damit Frau Weber mir einen Kurs empfiehlt."
+      - "Ich gehe am Donnerstag zur Beratung, damit mir Frau Weber den Kurs empfiehlt."
+      - "Ich gehe am Donnerstag zur Beratung, damit Frau Weber mir den Kurs empfiehlt."
+      - "Am Donnerstag gehe ich zur Beratung, damit mir Frau Weber den Kurs empfiehlt."
+      - "Am Donnerstag gehe ich zur Beratung, damit Frau Weber mir den Kurs empfiehlt."
     key_tokens: ["damit", "empfiehlt"]
     explain:
       en: "Graded are the two ends of the forced form: damit and the clause-final empfiehlt. I go, Frau Weber recommends — two subjects, so the subjectless um … zu has no room (um Frau Weber mir … zu empfehlen is exactly the impossible sentence). Inside the damit-clause, mir and Frau Weber may stand in either order, and the fronted Am Donnerstag simply pulls gehe to second position."
@@ -98,6 +107,9 @@ items:
       de: "Bewertet werden die zwei Enden der erzwungenen Form: damit und das satzfinale empfiehlt. Ich gehe, Frau Weber empfiehlt — zwei Subjekte, also hat das subjektlose um … zu keinen Raum (um Frau Weber mir … zu empfehlen ist genau der unmögliche Satz). Im damit-Satz dürfen mir und Frau Weber in beiden Reihenfolgen stehen, und das vorangestellte Am Donnerstag zieht gehe auf Position 2."
 
   - id: uebersetzen-um-zu-ziel
+    # revision 2: the bare «экзамен»/«іспит» leaves the article open — eine Prüfung was
+    # rejected beside die Prüfung.
+    revision: 2
     outcomes: [ziele-begruenden]
     type: translate
     focus: um-zu-zweck
@@ -111,8 +123,12 @@ items:
     prompt_uk: "Я повторюю граматику щовечора, щоб скласти іспит."
     answer: "Ich wiederhole jeden Abend Grammatik, um die Prüfung zu bestehen."
     accept:
+      # Three orders, each with die or eine Prüfung (the RU/UK noun marks no definiteness).
       - "Jeden Abend wiederhole ich Grammatik, um die Prüfung zu bestehen."
       - "Um die Prüfung zu bestehen, wiederhole ich jeden Abend Grammatik."
+      - "Ich wiederhole jeden Abend Grammatik, um eine Prüfung zu bestehen."
+      - "Jeden Abend wiederhole ich Grammatik, um eine Prüfung zu bestehen."
+      - "Um eine Prüfung zu bestehen, wiederhole ich jeden Abend Grammatik."
     key_tokens: ["um", "Um", "zu", "bestehen"]
     explain:
       en: "The one who revises and the one who passes are the same person, so the compact frame does it: um opens, zu bestehen closes, no subject in between. The frame has two ends and needs both — never für + infinitive and never um alone. This is the A2 machine; the new B1 fact is only that a second subject would break it and hand the sentence to damit."
@@ -161,6 +177,9 @@ items:
       de: "falls ist das Signal der bloßen Eventualität — „für den Fall, dass“ der Abendkurs voll ist, was der Sprecher gerade nicht erwartet. Die zwei anderen Sätze stehen auf wenns Heimatboden: ein Kursbeginn, der im Kalender steht, und ein Unterrichtsende, das jeden Tag kommt. Ein falls dort würde behaupten, der Stundenplan selbst sei zweifelhaft."
 
   - id: uebersetzen-falls-antwort
+    # revision 2: the fronted Am Montag and A2's werden-future (the article's own
+    # "present or werden" for plans) were rejected; both join across the clause orders.
+    revision: 2
     outcomes: [plan-formulieren]
     type: translate
     focus: falls-wenn
@@ -174,16 +193,29 @@ items:
     prompt_uk: "Якщо школа раптом не відповість, я зателефоную в понеділок."
     answer: "Falls die Schule nicht antwortet, rufe ich am Montag an."
     accept:
+      # Three clause orders — falls-clause first (with or without dann), main clause
+      # first, main clause first with Am Montag fronted — each in the present and in
+      # A2's werden-future.
       - "Falls die Schule nicht antwortet, dann rufe ich am Montag an."
       - "Ich rufe am Montag an, falls die Schule nicht antwortet."
+      - "Am Montag rufe ich an, falls die Schule nicht antwortet."
+      - "Falls die Schule nicht antwortet, werde ich am Montag anrufen."
+      - "Falls die Schule nicht antwortet, dann werde ich am Montag anrufen."
+      - "Ich werde am Montag anrufen, falls die Schule nicht antwortet."
+      - "Am Montag werde ich anrufen, falls die Schule nicht antwortet."
     key_tokens: ["Falls", "falls", "antwortet"]
     explain:
-      en: "Graded are falls and the wall: antwortet closes its clause, exactly as after wenn or weil — falls is a signal about expectancy, not new word order. The plan does not predict the school's silence; it survives it. Fronted, the whole condition fills position 1, so the main clause opens verb-first: rufe ich … an, with anrufen's prefix at the very end."
-      ru: "Оцениваются falls и стена: antwortet закрывает своё придаточное — ровно как после wenn или weil, ведь falls — сигнал об ожидании, а не новый порядок слов. План не предсказывает молчание школы — он его переживает. Вынесенное вперёд условие занимает первую позицию, и главное предложение начинается с глагола: rufe ich … an, приставка anrufen — в самом конце."
-      uk: "Оцінюються falls і стіна: antwortet закриває своє підрядне — рівно як після wenn чи weil, адже falls — сигнал про очікування, а не новий порядок слів. План не передбачає мовчання школи — він його переживає. Винесена наперед умова займає першу позицію, і головне речення починається з дієслова: rufe ich … an, префікс anrufen — у самому кінці."
-      de: "Bewertet werden falls und die Wand: antwortet schließt seinen Nebensatz — genau wie nach wenn oder weil, denn falls ist ein Signal über die Erwartung, keine neue Wortstellung. Der Plan sagt das Schweigen der Schule nicht voraus; er übersteht es. Vorangestellt besetzt die Bedingung Position 1, also beginnt der Hauptsatz mit dem Verb: rufe ich … an, das Präfix von anrufen ganz am Ende."
+      en: "Graded are falls and the wall: antwortet closes its clause, exactly as after wenn or weil — falls is a signal about expectancy, not new word order. The plan does not predict the school's silence; it survives it. Fronted, the whole condition fills position 1, so the main clause opens verb-first: rufe ich … an, with anrufen's prefix at the very end — or, with A2's future, werde ich … anrufen."
+      ru: "Оцениваются falls и стена: antwortet закрывает своё придаточное — ровно как после wenn или weil, ведь falls — сигнал об ожидании, а не новый порядок слов. План не предсказывает молчание школы — он его переживает. Вынесенное вперёд условие занимает первую позицию, и главное предложение начинается с глагола: rufe ich … an, приставка anrufen — в самом конце, а с будущим из A2 — werde ich … anrufen."
+      uk: "Оцінюються falls і стіна: antwortet закриває своє підрядне — рівно як після wenn чи weil, адже falls — сигнал про очікування, а не новий порядок слів. План не передбачає мовчання школи — він його переживає. Винесена наперед умова займає першу позицію, і головне речення починається з дієслова: rufe ich … an, префікс anrufen — у самому кінці, а з майбутнім часом з A2 — werde ich … anrufen."
+      de: "Bewertet werden falls und die Wand: antwortet schließt seinen Nebensatz — genau wie nach wenn oder weil, denn falls ist ein Signal über die Erwartung, keine neue Wortstellung. Der Plan sagt das Schweigen der Schule nicht voraus; er übersteht es. Vorangestellt besetzt die Bedingung Position 1, also beginnt der Hauptsatz mit dem Verb: rufe ich … an, das Präfix von anrufen ganz am Ende — oder, mit dem Futur aus A2, werde ich … anrufen."
 
   - id: uebersetzen-vorfeld-falls
+    # revision 2: "I will take" is as correctly A2's werden-future (the article's own
+    # "present or werden" for plans) — werde ich … nehmen was rejected and charged to
+    # the tag with its inversion intact. werde joins the pins: it is the verb after the
+    # comma there.
+    revision: 2
     outcomes: [plan-formulieren]
     type: translate
     focus: nebensatz-vorfeld
@@ -197,17 +229,22 @@ items:
     prompt_uk: "Якщо вечірній курс буде повний, я візьму суботній курс."
     answer: "Falls der Abendkurs voll ist, nehme ich den Kurs am Samstag."
     accept:
-      # dann may hold position 1 after the fronted clause, and the course goes by
-      # both its names — the product is 2 × 2 renderings.
+      # dann may hold position 1 after the fronted clause, the course goes by both its
+      # names, and the main clause may take A2's werden-future — the product is
+      # 2 × 2 × 2 renderings.
       - "Falls der Abendkurs voll ist, dann nehme ich den Kurs am Samstag."
       - "Falls der Abendkurs voll ist, nehme ich den Samstagskurs."
       - "Falls der Abendkurs voll ist, dann nehme ich den Samstagskurs."
-    key_tokens: ["nehme", "ich"]
+      - "Falls der Abendkurs voll ist, werde ich den Kurs am Samstag nehmen."
+      - "Falls der Abendkurs voll ist, dann werde ich den Kurs am Samstag nehmen."
+      - "Falls der Abendkurs voll ist, werde ich den Samstagskurs nehmen."
+      - "Falls der Abendkurs voll ist, dann werde ich den Samstagskurs nehmen."
+    key_tokens: ["nehme", "werde", "ich"]
     explain:
-      en: "Graded is the pair after the comma: nehme ich, never ich nehme. The fronted falls-clause is not a warm-up before the sentence — it is the sentence's position 1, so the finite verb must come straight after it. English keeps subject-first order there ('If the course is full, I will take …'), which is exactly the habit this item measures. With dann, that word holds position 1 and the verb is still second."
-      ru: "Оценивается пара после запятой: nehme ich, и никогда ich nehme. Вынесенное придаточное с falls — не разминка перед предложением, а его первая позиция, поэтому спрягаемый глагол обязан идти сразу за ним. Русский и украинский сохраняют там прямой порядок — ровно эту привычку задание и измеряет. С dann первую позицию занимает dann, и глагол всё равно второй."
-      uk: "Оцінюється пара після коми: nehme ich, і ніколи ich nehme. Винесене підрядне з falls — не розминка перед реченням, а його перша позиція, тому відмінюване дієслово мусить іти одразу за ним. Українська і російська зберігають там прямий порядок — рівно цю звичку завдання й вимірює. З dann першу позицію займає dann, і дієслово все одно друге."
-      de: "Bewertet wird das Paar nach dem Komma: nehme ich, niemals ich nehme. Der vorangestellte falls-Satz ist kein Aufwärmen vor dem Satz — er ist dessen Position 1, also muss das finite Verb direkt folgen. Die Ausgangssprachen behalten dort die Subjekt-zuerst-Ordnung, und genau diese Gewohnheit misst die Aufgabe. Mit dann besetzt dann Position 1, und das Verb bleibt zweites Element."
+      en: "Graded is the pair after the comma: nehme ich, never ich nehme. The fronted falls-clause is not a warm-up before the sentence — it is the sentence's position 1, so the finite verb must come straight after it. English keeps subject-first order there ('If the course is full, I will take …'), which is exactly the habit this item measures. With dann, that word holds position 1 and the verb is still second. A2's future follows the same rule: werde ich … nehmen."
+      ru: "Оценивается пара после запятой: nehme ich, и никогда ich nehme. Вынесенное придаточное с falls — не разминка перед предложением, а его первая позиция, поэтому спрягаемый глагол обязан идти сразу за ним. Русский и украинский сохраняют там прямой порядок — ровно эту привычку задание и измеряет. С dann первую позицию занимает dann, и глагол всё равно второй. Будущее время из A2 подчиняется тому же правилу: werde ich … nehmen."
+      uk: "Оцінюється пара після коми: nehme ich, і ніколи ich nehme. Винесене підрядне з falls — не розминка перед реченням, а його перша позиція, тому відмінюване дієслово мусить іти одразу за ним. Українська і російська зберігають там прямий порядок — рівно цю звичку завдання й вимірює. З dann першу позицію займає dann, і дієслово все одно друге. Майбутній час з A2 підкоряється тому самому правилу: werde ich … nehmen."
+      de: "Bewertet wird das Paar nach dem Komma: nehme ich, niemals ich nehme. Der vorangestellte falls-Satz ist kein Aufwärmen vor dem Satz — er ist dessen Position 1, also muss das finite Verb direkt folgen. Die Ausgangssprachen behalten dort die Subjekt-zuerst-Ordnung, und genau diese Gewohnheit misst die Aufgabe. Mit dann besetzt dann Position 1, und das Verb bleibt zweites Element. Das Futur aus A2 folgt derselben Regel: werde ich … nehmen."
 
   - id: uebersetzen-wissen-ob
     outcomes: [beratung-verstehen]
@@ -232,15 +269,19 @@ items:
       de: "Zwei Entscheidungen, beide bewertet. Eine Ja/Nein-Frage hat kein Fragewort, also muss ob den Nebensatz öffnen. Und das eingepackte Verb geht an die Wand: beginnt zuletzt, niemals ob beginnt der Abendkurs — das wäre die nackte Frage, hinter ob hineingeschmuggelt. Die A2-Maschine aus lernen-verstehen, jetzt bei der Vorbereitung des Donnerstagstermins."
 
   - id: cloze-ohne-zu
+    # revision 2: the second gap asked for benutzen, the very word the instruction
+    # printed, and the instruction's "the particle the infinitive clause never drops"
+    # named the first. One gap now asks for the clause's whole ending.
+    revision: 2
     outcomes: [beratung-verstehen]
     type: cloze
     focus: ohne-statt-zu
     instruction:
-      en: "The ohne-clause — fill in the particle the infinitive clause never drops, and the verb benutzen in the form the clause ends with."
-      ru: "Оборот с ohne — впишите частицу, которую инфинитивный оборот никогда не теряет, и глагол benutzen в той форме, которой оборот заканчивается."
-      uk: "Зворот з ohne — впишіть частку, яку інфінітивний зворот ніколи не втрачає, і дієслово benutzen у тій формі, якою зворот закінчується."
-      de: "Der ohne-Satz — ergänze die Partikel, die der Infinitivsatz nie verliert, und das Verb benutzen in der Form, mit der der Satz endet."
-    text: "Ich lese meinen Text am nächsten Tag noch einmal, ohne das Wörterbuch {{zu}} {{benutzen}}."
+      en: "The ohne-clause — put the verb benutzen into the form the clause ends with."
+      ru: "Оборот с ohne — поставьте глагол benutzen в ту форму, которой оборот заканчивается."
+      uk: "Зворот з ohne — поставте дієслово benutzen у ту форму, якою зворот закінчується."
+      de: "Der ohne-Satz — setz das Verb benutzen in die Form, mit der der Satz endet."
+    text: "Ich lese meinen Text am nächsten Tag noch einmal, ohne das Wörterbuch {{zu benutzen}}."
     translation:
       en: "I read my text again the next day without using the dictionary."
       ru: "На следующий день я перечитываю свой текст, не пользуясь словарём."
@@ -266,10 +307,10 @@ items:
       ru: "Вместо того чтобы ждать ответа школы, Марта просто звонит."
       uk: "Замість того щоб чекати відповіді школи, Марта просто телефонує."
     explain:
-      en: "The infinitive clause closes with zu + infinitive, and everything else stands before it: Statt auf die Antwort der Schule zu warten. The version with zu warten straight after statt copies the English order, where the verb comes right after 'instead of' — German parks it at the end. The version without zu drops what the clause is built on: statt never appears without it."
-      ru: "Инфинитивный оборот закрывается через zu + инфинитив, а всё остальное стоит перед ними: Statt auf die Antwort der Schule zu warten. Вариант, где zu warten стоит сразу после statt, копирует порядок «вместо того чтобы ждать…», где глагол идёт сразу после союза, — немецкий ставит его в конец. Вариант без zu теряет то, на чём оборот построен: statt без него не бывает."
-      uk: "Інфінітивний зворот закривається через zu + інфінітив, а все інше стоїть перед ними: Statt auf die Antwort der Schule zu warten. Варіант, де zu warten стоїть одразу після statt, копіює порядок «замість того щоб чекати…», де дієслово йде одразу після сполучника, — німецька ставить його в кінець. Варіант без zu губить те, на чому зворот побудований: statt без нього не буває."
-      de: "Der Infinitivsatz schließt mit zu + Infinitiv, alles andere steht davor: Statt auf die Antwort der Schule zu warten. Die Variante mit zu warten direkt nach statt kopiert die Ordnung der Ausgangssprachen, wo das Verb gleich nach dem Konnektor kommt — das Deutsche parkt es am Ende. Die Variante ohne zu lässt das fallen, worauf der Satz gebaut ist: statt steht nie ohne es."
+      en: "The infinitive clause closes with zu + infinitive, and everything else stands before it: Statt auf die Antwort der Schule zu warten. The version with zu warten straight after statt copies the English order, where the verb comes right after 'instead of' — German parks it at the end. The version without zu drops what the clause is built on: statt never takes a bare infinitive."
+      ru: "Инфинитивный оборот закрывается через zu + инфинитив, а всё остальное стоит перед ними: Statt auf die Antwort der Schule zu warten. Вариант, где zu warten стоит сразу после statt, копирует порядок «вместо того чтобы ждать…», где глагол идёт сразу после союза, — немецкий ставит его в конец. Вариант без zu теряет то, на чём оборот построен: голого инфинитива statt не берёт."
+      uk: "Інфінітивний зворот закривається через zu + інфінітив, а все інше стоїть перед ними: Statt auf die Antwort der Schule zu warten. Варіант, де zu warten стоїть одразу після statt, копіює порядок «замість того щоб чекати…», де дієслово йде одразу після сполучника, — німецька ставить його в кінець. Варіант без zu губить те, на чому зворот побудований: голого інфінітива statt не бере."
+      de: "Der Infinitivsatz schließt mit zu + Infinitiv, alles andere steht davor: Statt auf die Antwort der Schule zu warten. Die Variante mit zu warten direkt nach statt kopiert die Ordnung der Ausgangssprachen, wo das Verb gleich nach dem Konnektor kommt — das Deutsche parkt es am Ende. Die Variante ohne zu lässt das fallen, worauf der Satz gebaut ist: Einen bloßen Infinitiv nimmt statt nie."
 
   - id: uebersetzen-statt-videos
     revision: 3

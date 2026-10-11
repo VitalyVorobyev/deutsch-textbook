@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.9 `lernen-zukunft`.
+  Next: B1.10 `gesellschaft-zusammenleben`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -163,6 +163,14 @@ record of what shipped.
   outcomes arm the families (arming is by item key since P19-4); `focus-tags.md` still has
   *trotzdem* opening a new main clause (`praeposition-genitiv`) and filling its position 1
   (`obwohl-trotzdem`); C6-1 still owed.
+- `b1/lernen-zukunft`: `damit-um-zu` is not in `insertionErrors`, so `validate` does not require
+  predicates on its translate probes — `probe-bildungswege` variant-a reads *damit die Kinder es
+  zu verstehen* as an unattributed miss today, which the retention table counts as retained; the
+  production header describes a `hoeren-beratung` item the set does not hold; the primary,
+  production and three probe headers say outcomes arm the families (arming is by item key since
+  P19-4); the Hören q1 explain says advice sessions "almost always" end with an ordered pair; the
+  EN article's "in case" for *falls* reads in British English as a precaution, not a condition;
+  the `sprechen-abendkurs` DE prompt's "ohne was du nicht entschieden hast"; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

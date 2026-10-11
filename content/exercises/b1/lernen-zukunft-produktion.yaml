@@ -96,6 +96,10 @@ items:
       de: "Bewertet werden die zwei Enden der erzwungenen Form: damit und das satzfinale sieht. Ich hänge, die Familie sieht — zwei Subjekte, also hat das subjektlose um … zu hier keinen Raum (um die Familie ihn zu sehen ist genau der unmögliche Satz). Im damit-Satz darf das Pronomen ihn auf beiden Seiten des Subjekts stehen. Die Richtung an die Wand ist Träger: hängen zielt auf einen Punkt, also nimmt die Wechselpräposition den Akkusativ."
 
   - id: uebersetzen-ohne-nachdenken
+    # revision 2: the RU/UK prompts write the name in Latin script (Cyrillic left its
+    # spelling free between Marta and Martha), and the bare «вопросы»/«запитання» leaves
+    # the generic zero-article Fragen as open as die Fragen.
+    revision: 2
     outcomes: [beratung-verstehen]
     type: translate
     focus: ohne-statt-zu
@@ -105,8 +109,8 @@ items:
       uk: "Перекладіть — згорніть частину «не …» у зворот з ohne … zu. Для «роздумувати» візьміть nachdenken."
       de: "Übersetze — falte den Teil mit „ohne“ in einen ohne … zu-Satz. Für das Nachdenken nimm nachdenken."
     prompt_en: "Marta answers the questions without thinking for long."
-    prompt_ru: "Марта отвечает на вопросы, долго не раздумывая."
-    prompt_uk: "Марта відповідає на запитання, довго не роздумуючи."
+    prompt_ru: "Marta отвечает на вопросы, долго не раздумывая."
+    prompt_uk: "Marta відповідає на запитання, довго не роздумуючи."
     answer: "Marta beantwortet die Fragen, ohne lange nachzudenken."
     accept:
       # The fronted ohne-clause fills position 1, main clause verb-first.
@@ -114,6 +118,11 @@ items:
       # antworten auf renders the same move with the A2 frame.
       - "Marta antwortet auf die Fragen, ohne lange nachzudenken."
       - "Ohne lange nachzudenken, antwortet Marta auf die Fragen."
+      # The same four without the article.
+      - "Marta beantwortet Fragen, ohne lange nachzudenken."
+      - "Ohne lange nachzudenken, beantwortet Marta Fragen."
+      - "Marta antwortet auf Fragen, ohne lange nachzudenken."
+      - "Ohne lange nachzudenken, antwortet Marta auf Fragen."
     key_tokens: ["ohne", "Ohne", "nachzudenken"]
     explain:
       en: "Graded are ohne and the shape of nachzudenken. The English gerund 'without thinking' carries no particle, so the hand drops the zu — but the German clause is built on it, and in a separable verb the zu moves inside: nach + zu + denken, one word, at the very end of its clause. The subjects match, which is the family's entry condition: the one who answers is the one who skips the deliberating."
