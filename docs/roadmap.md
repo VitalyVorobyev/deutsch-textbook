@@ -21,11 +21,9 @@ transfer to a new context, not content volume or page views. Five boundaries hol
    B1 and being called complete is the whole-profile pass each A1 and A2 topic already received —
    and both earlier waves found material defects that no instrument could see. One topic per PR, in
    unit order. B1 may be called `100% des DTZ-Inventars`, never "all conceivable B1 grammar".
-2. **Page weight (P23-1).** The four session pages a learner opens daily inline most of the corpus.
-   Measure the alternatives, ship the winner, and gate page size in CI so it cannot regrow unseen.
-3. **Evidence between the windows (P5-11).** Drain the grading queue to zero, rerun the audit, and
+2. **Evidence between the windows (P5-11).** Drain the grading queue to zero, rerun the audit, and
    only then read the weak-focus table. The A2 checkpoint read is the next revision trigger.
-4. **The open tracks below**, in the order the owner sets.
+3. **The open tracks below**, in the order the owner sets.
 
 Two standing constraints: add a semantic figure only when a named relation is clearer spatially than
 in prose or a table, and keep the authentic-document and extensive-reading streams growing without
@@ -62,8 +60,7 @@ reviewed only through the green gate. [ADR 0013](adrs/0013-redaction-repository-
 
 ### Mobile and performance
 
-The phone is where the daily loop runs. Open: page weight (P23-1), the seven-tab navigation
-(P25-8), the Wortschatz deck list (P25-1), touch targets (P25-3) and a phone-width sweep (F-11).
+The phone is where the daily loop runs. Open: the seven-tab navigation (P25-8), the Wortschatz deck list (P25-1), touch targets (P25-3) and a phone-width sweep (F-11).
 
 ### Cross-links, Referenz and readings
 

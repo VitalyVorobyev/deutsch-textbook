@@ -12,15 +12,6 @@ record of what shipped.
   the A2 topic `natur-wetter`, added after the A2 pass, is owed the same. Progress and per-topic
   results: [topic-quality-audit.md](curriculum/topic-quality-audit.md). Next: `natur-wetter`, then
   B1.2 `leben-veraendern`.
-- **P23-1 · Four session pages inline most of the corpus.** `/session` 18.2 MB, `/ueben/wiederholen`
-  11.1, `/ueben/training` 7.1, `/ueben/proben` 7.0 (`find dist -name '*.html' -exec wc -c {} + |
-  sort -rn | head`). Nearly all of it is one island's props: 5,745 cards (8.3 MB, of which `note` is
-  4.8) and 438 exercise sets (5.7 MB, of which `explain` is 3.0). HTML is network-first in the
-  service worker, so every visit re-downloads it. The identity-only consumers are done; a session
-  that shows the cards needs their content, fetched once and shared rather than inlined per page.
-  First step: the measured experiments — shared content-hashed data files, a language split,
-  entry dedupe, lazy per-deck content — then ship the winner with a page-weight gate in CI. Do not
-  treat the service worker's byte budget as the fix.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic

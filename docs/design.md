@@ -272,19 +272,28 @@ permanently. The same build is an installable PWA: `src/integrations/pwa.ts` emi
 the service worker at `astro:build:done`, pinning a build id that is the content hash of everything
 precached, so a no-op rebuild does not invalidate a learner's cache.
 
-Three caches on three lifecycles. The **shell** is precached and versioned — content-hashed
-`_astro/` assets, the icons and the offline page. **Documents** are network-first and versioned,
-because each page inlines its content at build time and stale HTML is stale course material.
-**Media** is cache-first and deliberately *unversioned*, because reviewed recordings are immutable
-and re-downloading the whole MP3 corpus on every deploy would be the most expensive thing the worker
-could do. Both budgeted caches evict oldest-first against a byte budget rather than an entry count,
-because page weight in this build spans two orders of magnitude (backlog P23-1).
+**The session pages fetch the corpus rather than inlining it.** `/session` and the Üben pages
+read every card from `data/cards-<hash>.json` and every exercise set from `data/sets-<hash>.json`,
+built once per build by `src/lib/corpus-payload.ts`; the pages carry only the URLs. A file's name
+is its content hash, so it is immutable and shared by every page that needs it
+([ADR 0022](adrs/0022-session-content-as-shared-data-files.md)). `scripts/page-weight.ts` holds
+every HTML page under 1.5 MB in CI.
 
-Two behaviours carry the offline promise and are covered by `tests/service-worker.test.ts`, which
-evaluates the substituted template rather than a re-implementation: Range requests are sliced out
-of the cached body into real 206s (Safari sends `Range` for every `<audio>` element, and a cached
-200 is why offline audio silently fails on iOS), and eviction moves a re-visited entry to the back
-of the order. Updates are never applied silently — `sw.js` waits and the learner presses the
+Four caches on four lifecycles. The **shell** is precached and versioned — content-hashed
+`_astro/` assets, the icons and the offline page. The **data** files are precached and
+cache-first in an *unversioned* cache, so a deploy that leaves the cards unchanged does not
+download them again; activation drops the files a build no longer lists. **Documents** are
+network-first and versioned, because a page's content is built into it and stale HTML is stale
+course material. **Media** is cache-first and *unversioned*, because reviewed recordings are
+immutable and re-downloading the whole MP3 corpus on every deploy would be the most expensive thing
+the worker could do. Both budgeted caches evict oldest-first against a byte budget rather than an
+entry count, because page weight spans two orders of magnitude.
+
+Three behaviours carry the offline promise and are covered by `tests/service-worker.test.ts`,
+which evaluates the substituted template rather than a re-implementation: Range requests are sliced
+out of the cached body into real 206s (Safari sends `Range` for every `<audio>` element, and a
+cached 200 is why offline audio silently fails on iOS), eviction moves a re-visited entry to the
+back of the order, and the data cache is precached, kept across an unchanged deploy and pruned. Updates are never applied silently — `sw.js` waits and the learner presses the
 button, because reloading mid-exercise discards the attempt about to be logged.
 
 ## Multilingual rendering

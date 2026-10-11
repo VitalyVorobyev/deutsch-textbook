@@ -11,9 +11,36 @@ import { topicPath, withBase } from './url';
 import type { CheckpointItemRef } from './checkpoint';
 import type { ExerciseSet } from '@da/schema';
 import type { TopicNode } from './mastery';
+import type { TrainingSet } from './training';
 import { getCurriculum } from '@da/content/curriculum';
 import { loadLidBank, loadLidLessons, loadLidNotes, loadLidTopics } from '@da/content/lid';
 import type { LidCatalogue, LidEntry, LidLessonView } from '../components/lid/shared';
+
+/**
+ * Every exercise set, flattened with its owning topic's metadata — the one assembly behind the
+ * session pages' shared sets file (src/lib/corpus-payload.ts). A set naming a topic the curriculum
+ * does not have is a build error: `elements:` is closed, so validation already refuses it.
+ */
+export async function getTrainingSets(): Promise<TrainingSet[]> {
+  const [exercises, documents] = await Promise.all([getCollection('exercises'), getCollection('documents')]);
+  const topicById = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
+  const documentById = new Map(documents.map((document) => [document.id, document.data]));
+  return exercises.map((e) => {
+    const topic = topicById.get(e.data.topic);
+    if (!topic) throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
+    return {
+      setId: e.id,
+      topicId: topic.id,
+      title_de: topic.title_de,
+      level: topic.level,
+      role: e.data.role,
+      arming: e.data.arming,
+      items: e.data.items,
+      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
+      title: e.data.title,
+    };
+  });
+}
 
 /**
  * The learner-facing view of every topic, from the manifests.

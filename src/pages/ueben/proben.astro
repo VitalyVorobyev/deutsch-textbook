@@ -1,42 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Chrome from '../../components/Chrome.astro';
-import ProbeCatchUp from '../../components/session/ProbeCatchUp';
-import type { TrainingSet } from '../../components/training/MixedTraining';
-import { getCurriculum } from '@da/content/curriculum';
+import { ProbeCatchUpIsland } from '../../components/session/CorpusIslands';
+import { corpusUrl } from '../../lib/corpus-payload';
 
 // The probes-only catch-up run ("Probe-Rückstand"). Reached from the Heute card that
 // appears when more probes are due than one ordinary session serves. Deliberately
 // contains nothing else — no review, no training — so every answer is a cold-start
 // measurement of what survived the interval.
-const [exercises, documents] = await Promise.all([
-  getCollection('exercises'),
-  getCollection('documents'),
-]);
-const topicById = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
-const documentById = new Map(documents.map((document) => [document.id, document.data]));
-
-// Same tolerant assembly as /session: a set whose topic hasn't landed yet is left out.
-const sets: TrainingSet[] = exercises.flatMap((e) => {
-  const topic = topicById.get(e.data.topic);
-  if (!topic) return [];
-  return [
-    {
-      setId: e.id,
-      topicId: topic.id,
-      title_de: topic.title_de,
-      level: topic.level,
-      role: e.data.role,
-      arming: e.data.arming,
-      items: e.data.items,
-      document: e.data.stimulus ? documentById.get(e.data.stimulus) : undefined,
-    },
-  ];
-});
+const setsUrl = await corpusUrl('sets');
 ---
 
-<Base title="Probe-Rückstand">
+<Base title="Probe-Rückstand" preload={[setsUrl]}>
   <h1 class="text-3xl font-bold tracking-tight"><Chrome k="probe.backlogTitle" /></h1>
   <p class="mt-1 text-stone-500 dark:text-stone-400">
     <span class="lang-en">
@@ -57,6 +32,6 @@ const sets: TrainingSet[] = exercises.flatMap((e) => {
   </p>
 
   <div class="mt-8">
-    <ProbeCatchUp client:only="react" sets={sets} />
+    <ProbeCatchUpIsland client:only="react" setsUrl={setsUrl} />
   </div>
 </Base>
