@@ -52,6 +52,7 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
       en: "Translate as written narrative — join the clauses with bevor. Render 'went to bed' as ins Bett gehen; for 'set' take stellen, for 'alarm clock' der Wecker."
       ru: "Переведите как письменный рассказ — соедините части союзом bevor. «Лечь спать» передайте через ins Bett gehen; для «поставить» возьмите stellen, для «будильник» — der Wecker."
@@ -64,6 +65,9 @@ items:
     accept:
       # The trailing bevor-clause: same bracket, other order.
       - "Ich stellte den Wecker, bevor ich ins Bett ging."
+      # sich den Wecker stellen is as natural as den Wecker stellen.
+      - "Bevor ich ins Bett ging, stellte ich mir den Wecker."
+      - "Ich stellte mir den Wecker, bevor ich ins Bett ging."
     key_tokens: ["Bevor", "bevor", "ging"]
     explain:
       en: "Graded are both ends of the clause: bevor opens it, ging closes it. A temporal conjunction always builds a Nebensatz, so the finite verb walks past everything else to the wall — Bevor ich ins Bett ging, never Bevor ich ging ins Bett. The second graded fact is the tense: bevor needs no Plusquamperfekt, because the conjunction itself already says which event comes first, so both clauses simply share the Präteritum. Only nachdem demands the staircase. When the clause stands first it fills position 1 of the main sentence, which is why stellte follows the comma directly."

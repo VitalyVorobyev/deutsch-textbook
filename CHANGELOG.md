@@ -11,6 +11,21 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.13] — 2026-10-11
+
+### Fixed
+
+- **Erfahrungen erzählen (B1.1), checked end to end.** Eleven exercises and delayed checks marked
+  correct German wrong, or blamed a correct answer on the wrong rule. Examples: *meine Freundin*
+  for "my friend", *auf dem Hof*, *verließ sie das Zimmer*, a spoken Perfekt where the task never
+  asked for the Präteritum. They now accept these answers, or say which form they want. Two gap
+  exercises now name the verb they ask for. A listening explanation described the story wrongly,
+  and *Ereignis* had the wrong pronunciation.
+- **The article explains more.** It now contrasts German tenses with English, Russian and
+  Ukrainian. It also shows that *nachdem, bevor, während, bis* and *seitdem* each have an adverb
+  partner with the opposite word order: *Seitdem ich hier arbeite, …* versus *Seitdem spreche
+  ich …*. And it no longer marks a correct sentence about the past wrong.
+
 ## [0.6.12] — 2026-10-10
 
 ### Changed

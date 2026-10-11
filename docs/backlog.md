@@ -10,8 +10,8 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   the A2 topic `natur-wetter`, added after the A2 pass, is owed the same. Progress and per-topic
-  results: [topic-quality-audit.md](curriculum/topic-quality-audit.md). First step: B1.1
-  `erfahrungen-erzaehlen`, with P25-11 below in scope.
+  results: [topic-quality-audit.md](curriculum/topic-quality-audit.md). Next: `natur-wetter`, then
+  B1.2 `leben-veraendern`.
 - **P23-1 · Four session pages inline most of the corpus.** `/session` 18.2 MB, `/ueben/wiederholen`
   11.1, `/ueben/training` 7.1, `/ueben/proben` 7.0 (`find dist -name '*.html' -exec wc -c {} + |
   sort -rn | head`). Nearly all of it is one island's props: 5,745 cards (8.3 MB, of which `note` is
@@ -48,11 +48,6 @@ record of what shipped.
 
 ### Content
 
-- **P25-11 · `erfahrungen-erzaehlen` has no L1 contrast.** `grep -c "русск|English|англ|українськ"`
-  on its article returns 0, against 27/9/5 in `leben-veraendern`/`reisen-probleme`/`meinung-medien`,
-  on the topic where the gap is widest (RU/UK have one past tense; German splits Perfekt and
-  Präteritum by register, then adds the Plusquamperfekt step). A four-half rewrite. Also: one
-  sentence on adverbial `seitdem` (V2), which the unit's reading and model use unremarked.
 - **C6-1 · RU/UK calque review.** Instrument: the `textbook-text-reviewer` → `textbook-text-editor`
   loop ([article-prose.md](authoring/article-prose.md)), then a fresh verify; two edit cycles at
   most. Eight B1 units remain — all but `digitales-leben`, `kultur-freizeit`, `geld-vertraege`,
@@ -107,6 +102,16 @@ record of what shipped.
 - **P26-13 · A2 and B1 exam trainers.** The material is in `docs/GeotheInstitute/`
   (`SOURCES.md`); extending `exam:ingest` is config plus a cue pass whose labels and boundaries must
   be verified by ear or word-level ASR. ADR 0009 holds: nothing from these files enters the repo.
+
+**B1 findings below the material bar**, from the topic-quality pass:
+
+- `b1/erfahrungen-erzaehlen`: "the thirteen verbs … cover most narration" overreaches; the
+  `-produktion` header comments describe an interview no longer in the set; `hoeren-diktat-zug`
+  claims `interview-verstehen`; `muendlich-nacherzaehlen` is tagged on a written cloze and two
+  reading questions; the primary set's "participle first" instruction hands over the order its
+  explain teaches; `frage-reihenfolge` can be answered by copying; the reading's EN gloss should
+  be "What has Daniel been doing since then?"; `drill-temporal-nebensatz` blames a correct
+  *Bevor er heimging* on the tag; the `nachdem` probe's variant-b rejects *ging alles ganz schnell*.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

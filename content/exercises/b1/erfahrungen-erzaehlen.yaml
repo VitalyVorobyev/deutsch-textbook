@@ -194,6 +194,7 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: praeteritum-vollverben
+    revision: 2
     instruction:
       en: "Translate as written narrative — Präteritum."
       ru: "Переведите как письменный рассказ — в Präteritum."
@@ -206,6 +207,10 @@ items:
     accept:
       - "Ich ging gestern zum Bahnhof und wartete auf meinen Freund."
       - "Gestern ging ich zum Bahnhof und wartete dort auf meinen Freund."
+      # "my friend" leaves the gender open in English.
+      - "Gestern ging ich zum Bahnhof und wartete auf meine Freundin."
+      - "Ich ging gestern zum Bahnhof und wartete auf meine Freundin."
+      - "Gestern ging ich zum Bahnhof und wartete dort auf meine Freundin."
     key_tokens: ["ging", "wartete"]
     explain:
       en: "One strong form, one weak form: ging (vowel change, no -te) and wartete (-ete after the -t- stem). Only the two verbs are graded — the narrative register is the rule here, and warten auf with the accusative comes with it from A2."
@@ -217,11 +222,12 @@ items:
     outcomes: [vorzeitigkeit-ausdruecken]
     type: translate
     focus: plusquamperfekt-nachdem
+    revision: 2
     instruction:
-      en: "Translate. Express the earlier event with nachdem."
-      ru: "Переведите. Более раннее событие выразите через nachdem."
-      uk: "Перекладіть. Ранішу подію виразіть через nachdem."
-      de: "Übersetze. Drücke das frühere Ereignis mit nachdem aus."
+      en: "Translate as written narrative (Präteritum). Express the earlier event with nachdem."
+      ru: "Переведите как письменный рассказ (Präteritum). Более раннее событие выразите через nachdem."
+      uk: "Перекладіть як письмову розповідь (Präteritum). Ранішу подію виразіть через nachdem."
+      de: "Übersetze als geschriebene Erzählung (Präteritum). Drücke das frühere Ereignis mit nachdem aus."
     prompt_en: "After I had written the report, I went home."
     prompt_ru: "После того как я написал отчёт, я пошёл домой."
     prompt_uk: "Після того як я написав звіт, я пішов додому."
@@ -239,11 +245,12 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
-      en: "Translate. Join the clauses with während."
-      ru: "Переведите. Соедините части через während."
-      uk: "Перекладіть. З'єднайте частини через während."
-      de: "Übersetze. Verbinde die Teilsätze mit während."
+      en: "Translate as written narrative (Präteritum). Join the clauses with während."
+      ru: "Переведите как письменный рассказ (Präteritum). Соедините части через während."
+      uk: "Перекладіть як письмову розповідь (Präteritum). З'єднайте частини через während."
+      de: "Übersetze als geschriebene Erzählung (Präteritum). Verbinde die Teilsätze mit während."
     prompt_en: "While we were waiting, it began to rain."
     prompt_ru: "Пока мы ждали, начался дождь."
     prompt_uk: "Поки ми чекали, почався дощ."
@@ -252,12 +259,17 @@ items:
       - "Es begann zu regnen, während wir warteten."
       - "Während wir warteten, fing es an zu regnen."
       - "Es fing an zu regnen, während wir warteten."
+      - "Während wir warteten, fing es zu regnen an."
+      - "Es fing zu regnen an, während wir warteten."
+      # «начался дождь» / «почався дощ» rendered literally.
+      - "Während wir warteten, begann der Regen."
+      - "Der Regen begann, während wir warteten."
     key_tokens: ["Während", "warteten"]
     explain:
-      en: "während opens a Nebensatz: warteten goes to its end. Graded are the doorway and the wall — Während and the clause-final warteten. Whether the rain beginnt or fängt an is vocabulary, not the rule."
-      ru: "während открывает придаточное: warteten уходит в его конец. Оцениваются вход и стена — Während и конечное warteten. Начинается ли дождь через beginnen или anfangen — вопрос лексики, а не правила."
-      uk: "während відкриває підрядне: warteten іде в його кінець. Оцінюються вхід і стіна — Während і кінцеве warteten. Починається дощ через beginnen чи anfangen — питання лексики, а не правила."
-      de: "während eröffnet einen Nebensatz: warteten geht an dessen Ende. Es zählen beide Enden der Satzklammer — Während am Anfang und warteten ganz am Schluss. Ob der Regen beginnt oder anfängt, ist Wortschatz, nicht Regel."
+      en: "während opens a Nebensatz: warteten goes to its end. Graded are the doorway and the wall — Während and the clause-final warteten. Not Während warteten wir: that is the order after an adverb in position 1 (Dann warteten wir, Währenddessen warteten wir). während is a conjunction — the subject comes straight after it, the verb last. Whether the rain beginnt or fängt an is vocabulary, not the rule."
+      ru: "während открывает придаточное: warteten уходит в его конец. Оцениваются вход и стена — Während и конечное warteten. Не Während warteten wir: так строится фраза после наречия на первом месте (Dann warteten wir, Währenddessen warteten wir). während — союз: сразу за ним подлежащее, глагол в конце. Начинается ли дождь через beginnen или anfangen — вопрос лексики, а не правила."
+      uk: "während відкриває підрядне: warteten іде в його кінець. Оцінюються вхід і стіна — Während і кінцеве warteten. Не Während warteten wir: такий порядок буває після прислівника на першому місці (Dann warteten wir, Währenddessen warteten wir). während — сполучник: одразу за ним підмет, дієслово наприкінці. Починається дощ через beginnen чи anfangen — питання лексики, а не правила."
+      de: "während eröffnet einen Nebensatz: warteten geht an dessen Ende. Es zählen beide Enden der Satzklammer — Während am Anfang und warteten ganz am Schluss. Nicht Während warteten wir: So steht es nach einem Adverb auf Position 1 (Dann warteten wir, Währenddessen warteten wir). während ist eine Konjunktion — direkt danach das Subjekt, das Verb am Ende. Ob der Regen beginnt oder anfängt, ist Wortschatz, nicht Regel."
 
   - id: cloze-als-kind-hatte
     outcomes: [praeteritum-erzaehlen]
