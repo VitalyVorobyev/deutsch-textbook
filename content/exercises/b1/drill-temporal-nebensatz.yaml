@@ -53,11 +53,12 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: cloze
     focus: temporal-nebensatz
+    revision: 2
     instruction:
-      en: "Two gaps, two rules. Put the whole end of the bevor-clause in the first, and the start of the main clause in the second."
-      ru: "Два пропуска — два правила. В первый впишите весь конец придаточного с bevor, во второй — начало главного предложения."
-      uk: "Два пропуски — два правила. У перший впишіть увесь кінець підрядного з bevor, у другий — початок головного речення."
-      de: "Zwei Lücken, zwei Regeln. In die erste kommt das ganze Ende des bevor-Satzes, in die zweite der Anfang des Hauptsatzes."
+      en: "Two gaps, two rules — abfahren in the first, anrufen in the second, both in the Präteritum. Put the whole end of the bevor-clause in the first, and the start of the main clause in the second."
+      ru: "Два пропуска — два правила: в первом abfahren, во втором anrufen, оба в Präteritum. В первый впишите весь конец придаточного с bevor, во второй — начало главного предложения."
+      uk: "Два пропуски — два правила: у першому abfahren, у другому anrufen, обидва в Präteritum. У перший впишіть увесь кінець підрядного з bevor, у другий — початок головного речення."
+      de: "Zwei Lücken, zwei Regeln — abfahren in der ersten, anrufen in der zweiten, beide im Präteritum. In die erste kommt das ganze Ende des bevor-Satzes, in die zweite der Anfang des Hauptsatzes."
     text: "Bevor {{der Zug abfuhr}}, {{rief sie}} noch einmal an."
     translation:
       en: "Before the train left, she called once more."
@@ -73,6 +74,7 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
       en: "Start with the während-clause. For 'write' take schreiben in the Präteritum; for 'wait' warten."
       ru: "Начните с придаточного с während. Для «писать» возьмите schreiben в Präteritum, для «ждать» — warten."
@@ -82,6 +84,9 @@ items:
     prompt_ru: "Пока она писала письмо, остальные ждали снаружи."
     prompt_uk: "Поки вона писала листа, решта чекали надворі."
     answer: "Während sie den Brief schrieb, warteten die anderen draußen."
+    accept:
+      # «письмо» / «листа» leave the article open.
+      - "Während sie einen Brief schrieb, warteten die anderen draußen."
     key_tokens: ["Während", "schrieb", "warteten"]
     explain:
       en: "Both verbs are graded, because both rules are. schrieb closes the während-clause; warteten opens the main clause, because the fronted clause already fills position 1. Writing Während schrieb sie den Brief moves the first verb; writing die anderen warteten after the comma forgets the second."
@@ -112,16 +117,17 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: cloze
     focus: temporal-nebensatz
+    revision: 2
     instruction:
-      en: "Each gap takes the whole end of its clause — subject and verb together, in the right order."
-      ru: "В каждый пропуск идёт весь конец своего придаточного — подлежащее и глагол вместе, в правильном порядке."
-      uk: "У кожен пропуск іде весь кінець свого підрядного — підмет і дієслово разом, у правильному порядку."
-      de: "In jede Lücke kommt das ganze Ende ihres Satzes — Subjekt und Verb zusammen, in der richtigen Reihenfolge."
-    text: "Sobald {{ich ankam}}, war das Zimmer schon fertig. Seitdem {{wir umgezogen sind}}, ist es viel ruhiger."
+      en: "Each gap takes the whole end of its clause — subject and verb together, in the right order. The verbs are ankommen and umziehen."
+      ru: "В каждый пропуск идёт весь конец своего придаточного — подлежащее и глагол вместе, в правильном порядке. Глаголы — ankommen и umziehen."
+      uk: "У кожен пропуск іде весь кінець свого підрядного — підмет і дієслово разом, у правильному порядку. Дієслова — ankommen і umziehen."
+      de: "In jede Lücke kommt das ganze Ende ihres Satzes — Subjekt und Verb zusammen, in der richtigen Reihenfolge. Die Verben sind ankommen und umziehen."
+    text: "Sobald {{ich ankam|ich angekommen war}}, zeigte mir die Vermieterin das Zimmer. Seitdem {{wir umgezogen sind}}, ist es viel ruhiger."
     translation:
-      en: "As soon as I arrived, the room was already ready. Since we moved, it has been much quieter."
-      ru: "Как только я приехал, комната уже была готова. С тех пор как мы переехали, стало гораздо тише."
-      uk: "Щойно я приїхав, кімната вже була готова. Відтоді як ми переїхали, стало значно тихіше."
+      en: "As soon as I arrived, the landlady showed me the room. Since we moved, it has been much quieter."
+      ru: "Как только я приехал, хозяйка показала мне комнату. С тех пор как мы переехали, стало гораздо тише."
+      uk: "Щойно я приїхав, господиня показала мені кімнату. Відтоді як ми переїхали, стало значно тихіше."
     explain:
       en: "sobald and seit(dem) behave exactly like während and bevor — conjunction, then subject, then the verb last. In the second clause the verb is the two-part sind umgezogen, and it is the conjugated half, sind, that goes to the very end: wir umgezogen sind. A separable or compound verb changes nothing about where the finite part lands."
       ru: "sobald и seit(dem) ведут себя ровно как während и bevor: союз, потом подлежащее, глагол в конце. Во втором придаточном глагол составной — sind umgezogen, — и в самый конец уходит именно спрягаемая часть sind: wir umgezogen sind. Составная или отделяемая форма ничего не меняет в том, где оказывается спрягаемая часть."
@@ -154,6 +160,7 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
       en: "Put the main clause first this time. For 'read' take lesen in the Präteritum; for 'tidy up' aufräumen."
       ru: "На этот раз поставьте главное предложение первым. Для «читать» возьмите lesen в Präteritum, для «убирать» — aufräumen."
@@ -163,6 +170,10 @@ items:
     prompt_ru: "Он читал газету, пока она убирала кухню."
     prompt_uk: "Він читав газету, поки вона прибирала кухню."
     answer: "Er las die Zeitung, während sie die Küche aufräumte."
+    accept:
+      # «газету» leaves the article open, and Zeitung lesen needs none.
+      - "Er las Zeitung, während sie die Küche aufräumte."
+      - "Er las eine Zeitung, während sie die Küche aufräumte."
     key_tokens: ["las", "während", "aufräumte"]
     explain:
       en: "With the main clause in front, its verb sits in the ordinary second position — Er las — and nothing inverts. The während-clause behind the comma still ends with its verb: aufräumte, the separable prefix welded back on because a Nebensatz verb is never split. One rule switched off, the other unchanged."
@@ -174,6 +185,7 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
       en: "Start with the bis-clause. For 'get dark' take dunkel werden in the Präteritum; for 'play' spielen."
       ru: "Начните с придаточного с bis. Для «темнеть» возьмите dunkel werden в Präteritum, для «играть» — spielen."
@@ -183,6 +195,8 @@ items:
     prompt_ru: "Пока не стемнело, дети играли во дворе."
     prompt_uk: "Поки не стемніло, діти гралися у дворі."
     answer: "Bis es dunkel wurde, spielten die Kinder im Hof."
+    accept:
+      - "Bis es dunkel wurde, spielten die Kinder auf dem Hof."
     key_tokens: ["Bis", "wurde", "spielten"]
     explain:
       en: "The same pair one last time, with bis. wurde ends the fronted clause; spielten opens the main clause because that clause is sitting in position 1. Note also that bis needs no negation of its own: 'until it got dark' is Bis es dunkel wurde, never Bis es nicht dunkel wurde."

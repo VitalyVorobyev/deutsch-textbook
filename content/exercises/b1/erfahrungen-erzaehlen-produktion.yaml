@@ -37,11 +37,12 @@ items:
     outcomes: [praeteritum-erzaehlen]
     type: translate
     focus: temporal-nebensatz
+    revision: 2
     instruction:
-      en: "Translate. Close the interval with bis."
-      ru: "Переведите. Закройте интервал через bis."
-      uk: "Перекладіть. Закрийте інтервал через bis."
-      de: "Übersetze. Schließe den Zeitraum mit bis ab."
+      en: "Translate as written narrative (Präteritum). Close the interval with bis."
+      ru: "Переведите как письменный рассказ (Präteritum). Закройте интервал через bis."
+      uk: "Перекладіть як письмову розповідь (Präteritum). Закрийте інтервал через bis."
+      de: "Übersetze als geschriebene Erzählung (Präteritum). Schließe den Zeitraum mit bis ab."
     prompt_en: "We stayed in the café until the rain stopped."
     prompt_ru: "Мы оставались в кафе, пока дождь не закончился."
     prompt_uk: "Ми залишалися в кафе, поки дощ не скінчився."
@@ -53,7 +54,7 @@ items:
       - "Wir blieben so lange im Café, bis der Regen aufhörte."
     key_tokens: ["bis", "aufhörte"]
     explain:
-      en: "bis closes the interval: the staying lasts exactly until the rain's end. Russian needs a negation in this clause; German does not — bis der Regen aufhörte has no nicht in it. The verb stands at the end, like after every temporal conjunction."
+      en: "bis closes the interval: the staying lasts exactly until the rain's end. bis already names that endpoint, so the clause takes no nicht — bis der Regen aufhörte. The verb stands at the end, like after every temporal conjunction."
       ru: "bis закрывает интервал: сидение в кафе длится ровно до конца дождя. Русскому в этом придаточном нужна частица «не» — немецкому нет: в bis der Regen aufhörte нет никакого nicht. Глагол стоит в конце, как после любого временного союза."
       uk: "bis закриває інтервал: сидіння в кафе триває рівно до кінця дощу. Українській у цьому підрядному потрібна частка «не» — німецькій ні: у bis der Regen aufhörte немає жодного nicht. Дієслово стоїть у кінці, як після будь-якого часового сполучника."
       de: "bis schließt den Zeitraum ab: Das Bleiben dauert genau bis zum Ende des Regens. Die Konjunktion nennt diesen Endpunkt schon selbst, deshalb steht im Nebensatz kein zusätzliches nicht. Vergleiche: Wir blieben im Café, während es regnete — dieselbe Zeitspanne, aber ohne den Endpunkt. Das Verb steht am Ende, wie nach jeder temporalen Konjunktion."

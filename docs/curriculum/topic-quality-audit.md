@@ -32,3 +32,4 @@ editorial sign-off is kept distinct from agent assistance. Units still owed the 
 
 | Topic | Result | Status |
 | --- | --- | --- |
+| `erfahrungen-erzaehlen` | corrected — 11 items (3 primary practice, 1 production, 5 drill, 2 probe) rejected correct German or blamed a correct rendering on the tag: accepts widened, instructions ask for the Präteritum where a Perfekt rendering is also correct German, two clozes now name their verbs; a listening explain contradicted its transcript; *Ereignis* IPA [ɡ]→[k]; the article gained L1 contrast in three halves and the conjunction/adverb pairs (adverbial *seitdem*, verb second, was modelled but never taught), and no longer marks a correct past-narrative *seitdem* sentence ❌. One finding rejected: the *schon … als* Plusquamperfekt cloze matches the article. | `draft` |
