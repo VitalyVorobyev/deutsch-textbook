@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.5 `meinung-medien`.
+  Next: B1.6 `konsum-umwelt`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -270,6 +270,13 @@ Triaged from `feedback.md`, which holds only raw capture.
   cloze `cloze-es-umgestellt` word for word, so the probe can be answered from memory of it — but
   the 2026-08-26 ruling accepting exactly that rendering blocks changing the carrier. First step:
   give a ruling an optional `revision` and check `accept` only against that revision.
+- **Owner decision: does the `da-weil` probe grade a preference?** `focus-tags.md` says *weil* is
+  grammatical wherever *da* is, so an item may grade only a forced choice, and practice
+  (`cloze-da-weil-bekannt-neu`, `-produktion::cloze-da-weil-transfer`) accepts *Weil*; but
+  `probe-meinung-medien-da-weil` variants b and c, under the same instruction, accept only *Da*.
+  Either key the practice gaps `{{Da}}` and amend the tag rule to "or the direction the instruction
+  constrains", or let the probe accept *Weil* (then only variant-a measures). Also: who drafted
+  this unit's UK/DE halves and ran its C6-1 review is not in its provenance record.
 - **An unattributed probe miss counts as retained.** `classifyProbe` (`scripts/progress-audit.ts`)
   reads a translate miss with no attributed token as the competence surviving, and no pin can
   attribute an *inserted* token — so on a probe whose signature error adds a word (the smuggled
