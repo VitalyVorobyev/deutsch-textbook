@@ -19,6 +19,7 @@ items:
     outcomes: [ratschlaege-formulieren]
     type: translate
     focus: konjunktiv2-ratschlag
+    revision: 2
     instruction:
       en: "Translate — advice to a friend (du). Use sollen in the Konjunktiv II and verzichten."
       ru: "Переведите — совет другу (du). Используйте sollen в Konjunktiv II и verzichten."
@@ -34,6 +35,14 @@ items:
       - "Du solltest einige Wochen auf Zucker verzichten."
       - "Du solltest für einige Wochen auf Zucker verzichten."
       - "Du solltest einige Wochen lang auf Zucker verzichten."
+      # The time span may open the sentence; «несколько» / «кілька» is also mehrere.
+      - "Ein paar Wochen solltest du auf Zucker verzichten."
+      - "Für ein paar Wochen solltest du auf Zucker verzichten."
+      - "Einige Wochen solltest du auf Zucker verzichten."
+      - "Für einige Wochen solltest du auf Zucker verzichten."
+      - "Du solltest mehrere Wochen auf Zucker verzichten."
+      - "Du solltest für mehrere Wochen auf Zucker verzichten."
+      - "Du solltest mehrere Wochen lang auf Zucker verzichten."
     key_tokens: ["solltest"]
     explain:
       en: "Graded is only the advice form: solltest, the Konjunktiv II of sollen — the softened du solltest behind the A2 doctor's Sie sollten. Indicative sollst would turn the advice into an order from above. The frame auf + Akkusativ belongs to verzichten, and the time span works bare (ein paar Wochen), with für or with lang — all three are idiomatic."

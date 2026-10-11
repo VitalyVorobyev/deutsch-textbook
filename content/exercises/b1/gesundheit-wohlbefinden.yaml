@@ -102,11 +102,13 @@ items:
     outcomes: [ratschlaege-formulieren]
     type: cloze
     focus: konjunktiv2-ratschlag
+    revision: 2
+    # rev 2: the instruction printed würde, so the first gap measured copying.
     instruction:
-      en: "Advice to a colleague: the An-Ihrer-Stelle frame takes würde; the second gap is sollen in the Konjunktiv II."
-      ru: "Совет коллеге: рамка An Ihrer Stelle берёт würde; во втором пропуске — sollen в Konjunktiv II."
-      uk: "Порада колезі: рамка An Ihrer Stelle бере würde; у другому пропуску — sollen у Konjunktiv II."
-      de: "Ein Rat an eine Kollegin: Der Rahmen An Ihrer Stelle nimmt würde; in der zweiten Lücke steht sollen im Konjunktiv II."
+      en: "Advice to a colleague: the first gap is werden, the second sollen — both in the Konjunktiv II."
+      ru: "Совет коллеге: в первом пропуске — werden, во втором — sollen, оба в Konjunktiv II."
+      uk: "Порада колезі: у першому пропуску — werden, у другому — sollen, обидва в Konjunktiv II."
+      de: "Ein Rat an eine Kollegin: In die erste Lücke kommt werden, in die zweite sollen — beide im Konjunktiv II."
     text: "An Ihrer Stelle {{würde}} ich mehr Wasser trinken, und Sie {{sollten}} öfter eine kurze Pause machen."
     translation:
       en: "In your place I would drink more water, and you should take a short break more often."
@@ -204,15 +206,19 @@ items:
     outcomes: [ratschlaege-formulieren]
     type: translate
     focus: lassen-verwendung
+    revision: 2
     instruction:
-      en: "Translate — a suggestion to one friend (du), with lassen."
-      ru: "Переведите — предложение одному другу (du), через lassen."
-      uk: "Перекладіть — пропозиція одному другові (du), через lassen."
-      de: "Übersetze — ein Vorschlag an einen Freund (du), mit lassen."
+      en: "Translate — a suggestion to one friend (du), with lassen and eine Pause machen."
+      ru: "Переведите — предложение одному другу (du), через lassen и eine Pause machen."
+      uk: "Перекладіть — пропозиція одному другові (du), через lassen і eine Pause machen."
+      de: "Übersetze — ein Vorschlag an einen Freund (du), mit lassen und eine Pause machen."
     prompt_en: "Let's take a short break!"
     prompt_ru: "Давай сделаем короткую паузу!"
     prompt_uk: "Давай зробимо коротку паузу!"
     answer: "Lass uns eine kurze Pause machen!"
+    accept:
+      - "Lass uns eine kleine Pause machen!"
+      - "Lass uns kurz eine Pause machen!"
     key_tokens: ["Lass", "machen"]
     explain:
       en: "Lass uns + infinitive at the end is lassen's third job — the suggestion, English let's. Graded are both ends of the frame: Lass opens it (du-imperative, bare stem), machen closes it as a bare infinitive. Everything else lines up in between, as in every German verb bracket."
