@@ -11,6 +11,17 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.18] — 2026-10-11
+
+### Fixed
+
+- **Arbeit & Bewerbung (B1.4), checked end to end.** Three exercises accept correct answers
+  they rejected: *Bankangestellter*, *mit dem Kollegen*, *Einladung zum Vorstellungsgespräch*. The
+  application-letter task named a different contact person than the job ad printed beside it; it
+  now clearly describes a different shop. The article no longer calls *Für weitere Fragen stehe ich
+  Ihnen gern zur Verfügung* the one fixed closing line. And it now mentions *der Friede* beside
+  *der Name*.
+
 ## [0.6.17] — 2026-10-11
 
 ### Fixed

@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.4 `arbeit-bewerbung` (the first with a provenance record to check).
+  Next: B1.5 `meinung-medien`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -117,6 +117,13 @@ record of what shipped.
   from rich men before Peter"; reading explains add claims the text does not
   make; the reflexive probe's *Schmerzmittel* reads as medication tolerance; `ls-…-hoeren` q2
   repeats the audio's last line; *Ich freue mich bereits auf* is rejected.
+- `b1/arbeit-bewerbung`: "the verbs never survive translation" (rarely); the table note promises
+  an address row it lacks; plural *mit den Kunden* cited as n-declension evidence; *Buchstabe*
+  called abstract; a DE explain says *deinen* for *Ihren*; *Position* rejected though the *Stelle*
+  card glosses "position"; probe headers claim carrier lexis is fresh when *Kunde* and
+  *Verantwortung übernehmen* appear in arming items; `nomen-verb-verbindung` is thin (4 items, B1
+  median 6); the reading's ad lacks (m/w/d); *Kündigungsfrist* in the listening script against the
+  unit's labour-law exclusion; the unit has five casts rather than one mission scenario.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
@@ -263,6 +270,23 @@ Triaged from `feedback.md`, which holds only raw capture.
   cloze `cloze-es-umgestellt` word for word, so the probe can be answered from memory of it — but
   the 2026-08-26 ruling accepting exactly that rendering blocks changing the carrier. First step:
   give a ruling an optional `revision` and check `accept` only against that revision.
+- **An unattributed probe miss counts as retained.** `classifyProbe` (`scripts/progress-audit.ts`)
+  reads a translate miss with no attributed token as the competence surviving, and no pin can
+  attribute an *inserted* token — so on a probe whose signature error adds a word (the smuggled
+  *zu* after *lassen*, modals, *werden*) the error scores as retention. `b1/probe-gesundheit-wohlbefinden-lassen-verwendung`
+  now carries `focus_evidence` predicates. First step: list every probe family whose tag names an
+  insertion error and check each for predicates.
+- **Dictation slips swallow the error a `listen` item is tagged for.** `dictationSlip` forgives
+  `…etwas neues…` and `…etwas Neue…` on `b1/arbeit-bewerbung-produktion::hoeren-diktat-neues`, so
+  `adjektiv-nomen` never sees its own capital or ending; a `failed` predicate cannot override a slip
+  (`Listen.tsx`), and predicates match case-insensitively (`src/lib/evidence.ts`), so capitalisation
+  cannot be measured. First step: let an authored `failed` predicate win over the slip, and give
+  predicates an opt-in case-sensitive mode.
+- **A probe's arming contract pins a tag on an item that should not carry it.**
+  `b1/arbeit-bewerbung-produktion::hoeren-interview-verstehen` is a speaker-attribution listening
+  item tagged `nomen-verb-verbindung` (its own explain says so), but it is in that probe family's
+  `arming:` list, and the validator requires arming items to carry the family's focus. Removing it
+  moves the family's clock: measure `armedAt` on a current snapshot before changing either.
 - **A reordered main clause is blamed on the relative pronoun.** The misplaced-token check
   attributes a correct rendering whose main clause is reordered (*Jetzt helfen mir die Kollegen,
   denen …*) to the pinned token's focus, because the token count is unchanged. Every
