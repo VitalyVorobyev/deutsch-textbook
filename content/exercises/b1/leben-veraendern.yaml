@@ -57,6 +57,7 @@ items:
     outcomes: [relativsatz-praezisieren]
     type: translate
     focus: relativpronomen-dativ
+    revision: 2
     instruction:
       en: "Translate. Use a relative clause."
       ru: "Переведите. Используйте относительное придаточное."
@@ -69,6 +70,10 @@ items:
     accept:
       - "Die Freunde, denen wir oft helfen, wohnen direkt um die Ecke."
       - "Die Freunde, denen wir oft helfen, wohnen um die Ecke."
+      # "friends" leaves the gender open.
+      - "Die Freundinnen, denen wir oft helfen, wohnen gleich um die Ecke."
+      - "Die Freundinnen, denen wir oft helfen, wohnen direkt um die Ecke."
+      - "Die Freundinnen, denen wir oft helfen, wohnen um die Ecke."
     key_tokens: ["denen"]
     explain:
       en: "Only the pronoun is graded: helfen demands the dative, and in the plural that is denen — the article form den is not enough. Whether the corner is gleich or direkt um die Ecke is vocabulary, not the rule."
@@ -151,10 +156,10 @@ items:
       ru: "Мы ищем более светлую комнату для нашего ребёнка."
       uk: "Ми шукаємо світлішу кімнату для нашої дитини."
     explain:
-      en: "Build the comparative first (heller-), then treat it as an ordinary adjective stem: after ein before a neuter noun the ending is -es — exactly what kleines would take. The comparative is never a frozen form in front of a noun."
-      ru: "Сначала постройте сравнительную степень (heller-), затем считайте её обычной основой прилагательного: после ein перед существительным среднего рода окончание -es — ровно то, что взяло бы kleines. Перед существительным компаратив никогда не бывает застывшей формой."
-      uk: "Спочатку побудуйте вищий ступінь (heller-), потім вважайте його звичайною основою прикметника: після ein перед іменником середнього роду закінчення -es — рівно те, що взяло б kleines. Перед іменником компаратив ніколи не буває застиглою формою."
-      de: "Bilde zuerst den Komparativ (heller-) und behandle ihn dann als normalen Adjektivstamm: nach ein vor einem neutralen Nomen heißt die Endung -es — genau die Endung, die auch kleines nimmt. Vor einem Nomen ist der Komparativ nie eine feste Form."
+      en: "Build the comparative first (heller-), then treat it as an ordinary adjective stem: after ein before a neuter noun the ending is -es — exactly what kleines would take. An adjective's comparative never stays frozen in front of a noun (mehr and weniger, which count amounts, are the exception: mehr Geld)."
+      ru: "Сначала постройте сравнительную степень (heller-), затем считайте её обычной основой прилагательного: после ein перед существительным среднего рода окончание -es — ровно то, что взяло бы kleines. Перед существительным сравнительная степень прилагательного никогда не остаётся застывшей (исключение — mehr и weniger, которые считают количество: mehr Geld)."
+      uk: "Спочатку побудуйте вищий ступінь (heller-), потім вважайте його звичайною основою прикметника: після ein перед іменником середнього роду закінчення -es — рівно те, що взяло б kleines. Перед іменником вищий ступінь прикметника ніколи не лишається застиглим (виняток — mehr і weniger, що рахують кількість: mehr Geld)."
+      de: "Bilde zuerst den Komparativ (heller-) und behandle ihn dann als normalen Adjektivstamm: nach ein vor einem neutralen Nomen heißt die Endung -es — genau die Endung, die auch kleines nimmt. Vor einem Nomen bleibt der Komparativ eines Adjektivs nie unverändert (mehr und weniger, die Mengen zählen, sind die Ausnahme: mehr Geld)."
 
   - id: mc-ruhigeren
     outcomes: [wohnsituation-vergleichen]
@@ -180,6 +185,7 @@ items:
     outcomes: [wohnsituation-vergleichen]
     type: translate
     focus: komparativ-attributiv
+    revision: 2
     instruction:
       en: "Translate — put both comparatives in front of their nouns."
       ru: "Переведите — оба компаратива поставьте перед существительными."
@@ -194,7 +200,11 @@ items:
       - "Wir haben in einer ruhigeren Straße eine billigere Wohnung gefunden."
       - "Wir fanden eine billigere Wohnung in einer ruhigeren Straße."
       - "Wir fanden eine günstigere Wohnung in einer ruhigeren Straße."
-    key_tokens: ["billigere", "ruhigeren", "günstigere"]
+      - "Wir haben in einer ruhigeren Straße eine günstigere Wohnung gefunden."
+      - "Wir fanden in einer ruhigeren Straße eine billigere Wohnung."
+      - "Wir fanden in einer ruhigeren Straße eine günstigere Wohnung."
+      - "Wir haben eine preiswertere Wohnung in einer ruhigeren Straße gefunden."
+    key_tokens: ["billigere", "ruhigeren", "günstigere", "preiswertere"]
     explain:
       en: "Two comparatives, two ordinary adjective slots: -e after eine in the accusative (eine billigere Wohnung), -en after einer in the dative (in einer ruhigeren Straße). Graded are exactly those declined forms — billiger or ruhiger without the ending is the frozen-form error. These ordinary gradable adjectives form their comparative with -er."
       ru: "Два компаратива, две обычные позиции прилагательного: -e после eine в аккузативе (eine billigere Wohnung), -en после einer в дативе (in einer ruhigeren Straße). Оцениваются именно эти склоняемые формы — billiger или ruhiger без окончания было бы ошибкой застывшей формы. Эти обычные качественные прилагательные образуют компаратив с -er."
@@ -225,26 +235,28 @@ items:
     outcomes: [veraenderung-berichten]
     type: cloze
     focus: genitiv-form
+    revision: 2
     instruction:
       en: "unser Kind in the genitive — mind the noun's own ending."
       ru: "unser Kind в генитиве — не забудьте окончание существительного."
       uk: "unser Kind у родовому відмінку — не забудьте закінчення іменника."
       de: "unser Kind im Genitiv — achte auf die Endung des Nomens."
-    text: "Das Zimmer {{unseres}} {{Kindes}} liegt neben der Küche."
+    text: "Das Zimmer {{unseres}} {{Kindes|Kinds}} liegt neben der Küche."
     translation:
       en: "Our child's room is next to the kitchen."
       ru: "Комната нашего ребёнка находится рядом с кухней."
       uk: "Кімната нашої дитини розташована поруч із кухнею."
     explain:
-      en: "A possessive declines like the article: unseres for a neuter noun. And in the genitive the article alone is not enough — a neuter noun carries the case itself: one-syllable Kind takes -es, so Kindes. Feminine nouns would stay unchanged; masculine and neuter never do."
-      ru: "Притяжательное склоняется как артикль: unseres при среднем роде. И в генитиве одного артикля мало — существительное среднего рода несёт падеж само: односложное Kind берёт -es, поэтому Kindes. Женский род остался бы без изменений; мужской и средний — никогда."
-      uk: "Присвійне відмінюється як артикль: unseres при середньому роді. І в родовому відмінку самого артикля мало — іменник середнього роду несе відмінок сам: односкладове Kind бере -es, тому Kindes. Жіночий рід залишився б без змін; чоловічий і середній — ніколи."
-      de: "Ein Possessivartikel geht wie der Artikel: unseres beim Neutrum. Und im Genitiv reicht der Artikel allein nicht — ein neutrales Nomen trägt den Kasus selbst: Das einsilbige Kind nimmt -es, also Kindes. Feminina bleiben unverändert, Maskulinum und Neutrum nie."
+      en: "A possessive declines like the article: unseres for a neuter noun. And in the genitive the article alone is not enough — a neuter noun carries the case itself: a one-syllable noun usually takes -es, so Kindes (Kinds is also correct). Feminine nouns would stay unchanged; masculine and neuter never do."
+      ru: "Притяжательное склоняется как артикль: unseres при среднем роде. И в генитиве одного артикля мало — существительное среднего рода несёт падеж само: односложное существительное обычно берёт -es, поэтому Kindes (Kinds тоже верно). Женский род остался бы без изменений; мужской и средний — никогда."
+      uk: "Присвійне відмінюється як артикль: unseres при середньому роді. І в родовому відмінку самого артикля мало — іменник середнього роду несе відмінок сам: односкладовий іменник зазвичай бере -es, тому Kindes (Kinds теж правильно). Жіночий рід залишився б без змін; чоловічий і середній — ніколи."
+      de: "Ein Possessivartikel geht wie der Artikel: unseres beim Neutrum. Und im Genitiv reicht der Artikel allein nicht — ein neutrales Nomen trägt den Kasus selbst: Ein einsilbiges Nomen nimmt meist -es, also Kindes (Kinds ist auch richtig). Feminina bleiben unverändert, Maskulinum und Neutrum nie."
 
   - id: uebersetzen-genitiv
     outcomes: [veraenderung-berichten]
     type: translate
     focus: genitiv-form
+    revision: 2
     instruction:
       en: "Translate for a written report — use the genitive."
       ru: "Переведите для письменного отчёта — используйте генитив."
@@ -254,12 +266,18 @@ items:
     prompt_ru: "Окна нашей старой квартиры были маленькими и тёмными."
     prompt_uk: "Вікна нашої старої квартири були маленькими й темними."
     answer: "Die Fenster unserer alten Wohnung waren klein und dunkel."
-    key_tokens: ["unserer", "alten"]
+    accept:
+      # "old" / «старой» also means "former".
+      - "Die Fenster unserer früheren Wohnung waren klein und dunkel."
+      - "Die Fenster unserer ehemaligen Wohnung waren klein und dunkel."
+    # Wohnung is pinned because a feminine noun takes no genitive -s: unpinned, *Wohnungs* was
+    # forgiven as a spelling slip — the one error this item exists to catch.
+    key_tokens: ["unserer", "alten", "früheren", "ehemaligen", "Wohnung"]
     explain:
-      en: "In writing the genitive replaces the spoken von-route: unserer alten Wohnung, with the possessive in the feminine genitive and the weak -en on the adjective. Graded are both forms the paradigm demands — unserer and alten; von unserer alten Wohnung would be perfectly good speech, but the report register asks for the genitive."
-      ru: "На письме генитив заменяет разговорный путь через von: unserer alten Wohnung — притяжательное в генитиве женского рода и слабое -en у прилагательного. Оцениваются обе формы парадигмы — unserer и alten; von unserer alten Wohnung — совершенно нормальная речь, но регистр отчёта требует генитива."
-      uk: "На письмі родовий відмінок заміняє розмовний шлях через von: unserer alten Wohnung — присвійне в родовому відмінку жіночого роду і слабке -en у прикметника. Оцінюються обидві форми парадигми — unserer і alten; von unserer alten Wohnung — цілком нормальне мовлення, але регістр звіту вимагає родового відмінка."
-      de: "Auf dem Papier ersetzt der Genitiv den gesprochenen Weg über von: unserer alten Wohnung, mit dem Possessivartikel im Genitiv Feminin und dem schwachen -en am Adjektiv. Es zählen beide Formen, die das Paradigma verlangt — unserer und alten. von unserer alten Wohnung ist im Gespräch völlig korrekt, aber das Berichtsregister erwartet den Genitiv."
+      en: "In writing the genitive replaces the spoken von-route: unserer alten Wohnung, with the possessive in the feminine genitive and the weak -en on the adjective. Graded are the forms the paradigm demands — unserer, alten, and Wohnung with no -s, since a feminine noun never takes one; von unserer alten Wohnung would be perfectly good speech, but the report register asks for the genitive."
+      ru: "На письме генитив заменяет разговорный путь через von: unserer alten Wohnung — притяжательное в генитиве женского рода и слабое -en у прилагательного. Оцениваются формы, которых требует парадигма, — unserer, alten и Wohnung без -s: существительное женского рода его не получает; von unserer alten Wohnung — совершенно нормальная речь, но регистр отчёта требует генитива."
+      uk: "На письмі родовий відмінок заміняє розмовний шлях через von: unserer alten Wohnung — присвійне в родовому відмінку жіночого роду і слабке -en у прикметника. Оцінюються форми, яких вимагає парадигма, — unserer, alten і Wohnung без -s: іменник жіночого роду його не отримує; von unserer alten Wohnung — цілком нормальне мовлення, але регістр звіту вимагає родового відмінка."
+      de: "Auf dem Papier ersetzt der Genitiv den gesprochenen Weg über von: unserer alten Wohnung, mit dem Possessivartikel im Genitiv Feminin und dem schwachen -en am Adjektiv. Es zählen die Formen, die das Paradigma verlangt — unserer, alten und Wohnung ohne -s, denn ein Femininum bekommt keins. von unserer alten Wohnung ist im Gespräch völlig korrekt, aber das Berichtsregister erwartet den Genitiv."
 
   - id: cloze-relativ-akk
     outcomes: [relativsatz-praezisieren]

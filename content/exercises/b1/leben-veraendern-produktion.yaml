@@ -15,6 +15,7 @@ items:
     outcomes: [relativsatz-praezisieren]
     type: translate
     focus: relativpronomen-dativ
+    revision: 2
     instruction:
       en: "Translate. Use a relative clause."
       ru: "Переведите. Используйте относительное придаточное."
@@ -26,6 +27,12 @@ items:
     answer: "Die Kollegen, denen ich das Problem erklärt habe, helfen mir jetzt."
     accept:
       - "Die Kollegen, denen ich das Problem erklärte, helfen mir jetzt."
+      # "colleagues" / «Коллеги» / «Колеги» leave the gender open.
+      - "Die Kolleginnen, denen ich das Problem erklärt habe, helfen mir jetzt."
+      - "Die Kolleginnen, denen ich das Problem erklärte, helfen mir jetzt."
+      # The main clause may front jetzt; denen is in the same place in its clause.
+      - "Jetzt helfen mir die Kollegen, denen ich das Problem erklärt habe."
+      - "Jetzt helfen mir die Kollegen, denen ich das Problem erklärte."
     key_tokens: ["denen"]
     explain:
       en: "A fresh context, the same rule: erklären gives the person in the dative, and the plural relative pronoun is denen — never the article's den. English drops the pronoun entirely (the colleagues I explained the problem to); German shows the whole grammar in it."
