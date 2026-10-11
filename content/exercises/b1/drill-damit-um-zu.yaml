@@ -14,7 +14,16 @@
 # the direction that is forced (focus-tags.md).
 #
 # Every translate item pins the two ends of the form it forces: damit and the clause-final
-# finite verb. Both logged shapes therefore lose a pinned token and are attributed.
+# finite verb. Where that verb is spelt differently from its infinitive (gießt, vergisst),
+# both logged shapes lose a pinned token and are attributed. Where it is a modal after its
+# infinitive (besuchen können, schlafen können, benutzen können), the hybrid keeps every
+# pin in place (besuchen zu können) and would go unattributed, and in
+# uebersetzen-um-zu-bibliothek a subject squeezed into um … zu (um ich in Ruhe zu lernen)
+# is an added word no pin sees. Those four items carry focus_evidence instead: it fails a
+# missing damit (or, in the one-subject item, any purpose connector), a zu-infinitive
+# inside the damit-clause, a finite verb ahead of the clause end and a subject inside
+# um … zu, and reads the right form with its verb at the end as retained. A dropped zu
+# in um … zu stays unknown here; that is um-zu-zweck's decision.
 #
 # Contexts are fresh. None re-skins the Beratung, the plan on the wall, Marta's notes, the
 # course instructor's explanation or Marta's children.
@@ -135,6 +144,9 @@ items:
       - "Im nächsten Jahr ziehen wir um, damit unsere Kinder eine bessere Schule besuchen können."
       - "Wir ziehen im nächsten Jahr um, damit unsere Kinder eine bessere Schule besuchen können."
     key_tokens: ["damit", "können"]
+    focus_evidence:
+      failed: ["^(?!.*\\bdamit\\b)", "\\bdamit\\b.*\\bzu\\s+(besuch\\w*|kann|können)\\b", "\\bdamit\\b.*\\b(kann|können)\\b.*\\bbesuch\\w*"]
+      retained: ["\\bdamit\\b", "\\bbesuchen\\s+(kann|können)$"]
     explain:
       en: "Graded are damit and the clause-final können. We move, the children attend — two subjects. Note the order at the end of the damit-clause: infinitive first, modal last, besuchen können, exactly as after weil. The um in ziehen … um is the separable prefix of umziehen and has nothing to do with um … zu."
       ru: "Оцениваются damit и können в самом конце. Переезжаем мы, а в школу ходят дети — подлежащих два. Обратите внимание на порядок в конце придаточного: сначала инфинитив, потом модальный глагол — besuchen können, точно как после weil. um в ziehen … um — это отделяемая приставка глагола umziehen, к um … zu она отношения не имеет."
@@ -160,6 +172,9 @@ items:
       - "Wir machen den Fernseher aus, damit die Kinder schlafen können."
       - "Wir machen den Fernseher aus, damit unsere Kinder schlafen können."
     key_tokens: ["damit", "können"]
+    focus_evidence:
+      failed: ["^(?!.*\\bdamit\\b)", "\\bdamit\\b.*\\bzu\\s+(schlaf\\w*|kann|können)\\b", "\\bdamit\\b.*\\b(kann|können)\\b.*\\bschlaf\\w*"]
+      retained: ["\\bdamit\\b", "\\bschlafen\\s+(kann|können)\\b"]
     explain:
       en: "Graded are damit and können at the end of its clause. The children sleep, we switch off — two subjects, so damit, whichever clause comes first. Put it in front and the whole damit-clause fills position 1, which is why the main clause then opens with its verb: machen wir. That inversion is a separate rule and is not graded here."
       ru: "Оцениваются damit и können в конце придаточного. Спят дети, выключаем мы — подлежащих два, значит, damit, с какой бы части ни начиналось предложение. Если поставить его вперёд, всё придаточное займёт первую позицию — поэтому главное предложение начинается с глагола: machen wir. Эта инверсия — отдельное правило, здесь она не оценивается."
@@ -167,6 +182,9 @@ items:
       de: "Bewertet werden damit und können am Ende seines Satzes. Die Kinder schlafen, wir machen aus — zwei Subjekte, also damit, egal welcher Satz vorne steht. Stellst du ihn voran, besetzt der ganze damit-Satz Position 1, und deshalb beginnt der Hauptsatz dann mit seinem Verb: machen wir. Diese Umstellung ist eine eigene Regel und wird hier nicht bewertet."
 
   - id: uebersetzen-damit-woerterbuch
+    # revision 2: 'everyone' is as idiomatically jeder (… benutzen kann) as alle, and
+    # damit jeder es benutzen kann was rejected and charged to the tag — kann missing.
+    revision: 2
     outcomes: [ziele-begruenden]
     type: translate
     focus: damit-um-zu
@@ -182,12 +200,18 @@ items:
     accept:
       # The unstressed pronoun usually stands before alle; both orders are neutral German.
       - "Ich lege das Wörterbuch auf den Tisch, damit es alle benutzen können."
-    key_tokens: ["damit", "können"]
+      # 'everyone' renders as singular jeder too, in both pronoun orders.
+      - "Ich lege das Wörterbuch auf den Tisch, damit jeder es benutzen kann."
+      - "Ich lege das Wörterbuch auf den Tisch, damit es jeder benutzen kann."
+    key_tokens: ["damit", "können", "kann"]
+    focus_evidence:
+      failed: ["^(?!.*\\bdamit\\b)", "\\bdamit\\b.*\\bzu\\s+(benutz\\w*|kann|können)\\b", "\\bdamit\\b.*\\b(kann|können)\\b.*\\bbenutz\\w*"]
+      retained: ["\\bdamit\\b", "\\bbenutzen\\s+(kann|können)$"]
     explain:
-      en: "Graded are damit and the closing können. I put, everyone uses — the second subject is alle, and um … zu has no room for it (um alle es zu benutzen is impossible). With a modal the damit-clause ends in two verbs, and the conjugated one comes last: benutzen können. The pronoun es may stand before or after alle."
-      ru: "Оцениваются damit и können в конце. Кладу я, пользуются все — второе подлежащее alle, и в um … zu ему места нет (um alle es zu benutzen невозможно). С модальным глаголом придаточное заканчивается двумя глаголами, и спрягаемый стоит последним: benutzen können. Местоимение es может стоять перед alle или после."
-      uk: "Оцінюються damit і können у кінці. Кладу я, користуються всі — другий підмет alle, і в um … zu для нього місця немає (um alle es zu benutzen неможливо). З модальним дієсловом підрядне закінчується двома дієсловами, і відмінюване стоїть останнім: benutzen können. Займенник es може стояти перед alle або після."
-      de: "Bewertet werden damit und das abschließende können. Ich lege, alle benutzen — das zweite Subjekt ist alle, und um … zu hat dafür keinen Platz (um alle es zu benutzen ist unmöglich). Mit einem Modalverb endet der damit-Satz auf zwei Verben, und das konjugierte steht zuletzt: benutzen können. Das Pronomen es darf vor oder nach alle stehen."
+      en: "Graded are damit and the closing können. I put, everyone uses — the second subject is alle, and um … zu has no room for it (um alle es zu benutzen is impossible). With a modal the damit-clause ends in two verbs, and the conjugated one comes last: benutzen können (with jeder, benutzen kann). The pronoun es may stand before or after alle."
+      ru: "Оцениваются damit и können в конце. Кладу я, пользуются все — второе подлежащее alle, и в um … zu ему места нет (um alle es zu benutzen невозможно). С модальным глаголом придаточное заканчивается двумя глаголами, и спрягаемый стоит последним: benutzen können (с jeder — benutzen kann). Местоимение es может стоять перед alle или после."
+      uk: "Оцінюються damit і können у кінці. Кладу я, користуються всі — другий підмет alle, і в um … zu для нього місця немає (um alle es zu benutzen неможливо). З модальним дієсловом підрядне закінчується двома дієсловами, і відмінюване стоїть останнім: benutzen können (з jeder — benutzen kann). Займенник es може стояти перед alle або після."
+      de: "Bewertet werden damit und das abschließende können. Ich lege, alle benutzen — das zweite Subjekt ist alle, und um … zu hat dafür keinen Platz (um alle es zu benutzen ist unmöglich). Mit einem Modalverb endet der damit-Satz auf zwei Verben, und das konjugierte steht zuletzt: benutzen können (mit jeder: benutzen kann). Das Pronomen es darf vor oder nach alle stehen."
 
   - id: uebersetzen-um-zu-bibliothek
     outcomes: [ziele-begruenden]
@@ -211,6 +235,9 @@ items:
       - "Damit ich in Ruhe lerne, gehe ich in die Bibliothek."
       - "Damit ich in Ruhe lernen kann, gehe ich in die Bibliothek."
     key_tokens: ["um", "zu", "lernen", "damit", "lerne", "kann"]
+    focus_evidence:
+      failed: ["^(?!.*\\b(um|damit)\\b)", "\\bum\\s+ich\\b", "\\bdamit\\b.*\\bzu\\s+(lern\\w*|kann|können)\\b", "\\bdamit\\s+ich\\s+(lerne|kann)\\s+(in|lernen)\\b"]
+      retained: ["(\\bum\\b.*\\bzu\\s+lernen\\b|\\bdamit\\b.*\\b(lerne|kann)\\b)"]
     explain:
       en: "One doer this time: the one who goes is the one who studies. Then German has two correct shapes, and this course produces the compact one — um in Ruhe zu lernen, no subject, zu + infinitive at the end. damit ich in Ruhe lerne is accepted too, because it is not wrong, only longer. What is never right is a mix: um ich … zu lernen puts a subject where the frame has no slot, and damit ich … zu lernen puts a zu-infinitive where damit needs a conjugated verb."
       ru: "На этот раз действующее лицо одно: кто идёт, тот и занимается. Здесь русское «чтобы» + инфинитив подсказывает верно: в немецком возможны две правильные формы, и курс выбирает компактную — um in Ruhe zu lernen, без подлежащего, с zu + инфинитивом в конце. damit ich in Ruhe lerne тоже принимается: это не ошибка, просто длиннее. Неверна только смесь: um ich … zu lernen (подлежащее там, где для него нет места) и damit ich … zu lernen (инфинитив с zu там, где damit требует спрягаемого глагола)."

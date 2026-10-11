@@ -105,6 +105,19 @@ GitHub Release notes.
     - that *trotzdem* can only stand first;
     - that *fände* or *käme* are written-only.
   - Five explanations are corrected, including where Russian and Ukrainian put «бы».
+- **B1.9 Lernen & Zukunft — quality pass.**
+  - *damit … zu* + infinitive (*damit alle sie zu verstehen*) now counts as the *damit/um … zu*
+    mistake in delayed checks and in the new drill. Before, it was read as the form kept.
+  - Correct German now accepted in eleven exercises:
+    - *jeder … kann* for "everyone";
+    - the *werden*-future for a plan;
+    - *den Kurs*, *eine Prüfung* where the Russian has no article;
+    - the *damit*-clause put first;
+    - the fronted *ohne*-clause.
+  - Names in Russian and Ukrainian prompts are written as German spells them (*Marta*, *Frau Weber*).
+  - A gap no longer asks for the word its own instruction prints.
+  - The lesson no longer says that *ohne* and *statt* always take *zu*, or that only *um* has that
+    shape.
 
 ## [0.6.19] — 2026-10-11
 
