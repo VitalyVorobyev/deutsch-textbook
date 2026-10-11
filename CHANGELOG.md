@@ -130,6 +130,18 @@ GitHub Release notes.
       *teilnehmen* already ask for.
     - *Respekt*, *Einwand*, *Gemeinschaft* and *Verständnis* get a note on their gender or sense.
   - The lesson no longer calls *einige*, *manche* and *viele* always plural.
+- **B1.11 Digitales Leben — quality pass.**
+  - Correct German is accepted in six exercises, and no longer counted as the mistake the
+    exercise drills:
+    - the Präteritum *Früher las ich …*;
+    - *Würden Sie …* as a polite request;
+    - *Vor allem nutze ich …* and *um vor allem mit … zu sprechen*;
+    - *aufmachen* for "open";
+    - *Antwort* for "reply".
+  - The *sodass* exercises stop saying the subject always comes right after it.
+  - The *einschalten* card now asks for its own word, not *anmachen*'s.
+  - Four card notes no longer teach something false (*Taste*, *ausdrucken*, *aufladen*,
+    *hochladen*).
 
 ## [0.6.19] — 2026-10-11
 

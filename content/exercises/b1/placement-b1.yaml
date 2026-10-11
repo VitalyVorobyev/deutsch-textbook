@@ -476,6 +476,10 @@ items:
     explain: { en: "The order on the page is not the order of the steps, and bevor is what says so: whatever follows bevor happens later, whatever precedes it happens first. So switching off comes before taking the battery out, even though the battery is mentioned in the same sentence. danach then keeps the rest in sequence. Instructions are read for these two words before they are read for the verbs.", ru: "Порядок на странице не равен порядку действий, и говорит об этом bevor: то, что стоит после bevor, происходит позже, а то, что перед ним, — раньше. Значит, выключение идёт до извлечения батареи, хотя батарея упомянута в том же предложении. Дальше danach выстраивает остальное по порядку. В инструкции сначала читают эти два слова и только потом глаголы.", uk: "Порядок на сторінці не дорівнює порядку дій, і каже про це bevor: те, що стоїть після bevor, відбувається пізніше, а те, що перед ним, — раніше. Отже, вимкнення йде до виймання батареї, хоча батарея згадана в тому самому реченні. Далі danach вибудовує решту по черзі. В інструкції спочатку читають ці два слова і лише потім дієслова.", de: "Die Reihenfolge auf dem Papier ist nicht die Reihenfolge der Schritte, und bevor sagt das: Was nach bevor steht, geschieht später, was davor steht, zuerst. Also kommt das Ausschalten vor dem Herausnehmen der Batterie, obwohl die Batterie im selben Satz steht. danach ordnet dann den Rest. Eine Anleitung liest man nach diesen beiden Wörtern, bevor man sie nach den Verben liest." }
 
   - id: digitales-problem-uebersetzen
+    # revision 2: "a short reply" / «коротком ответе» is Antwort as much as Rückmeldung (A1
+    # Antwort was rejected in a placement, where a miss withholds the topic), and the
+    # article-less business formula um kurze Rückmeldung is accepted with both nouns.
+    revision: 2
     outcomes: [technikproblem-schildern]
     type: translate
     focus: verb-praeposition-b1
@@ -488,6 +492,10 @@ items:
     prompt_ru: "Прошу вас о коротком ответе."
     prompt_uk: "Прошу вас про коротку відповідь."
     answer: "Ich bitte Sie um eine kurze Rückmeldung."
+    accept:
+      - "Ich bitte Sie um eine kurze Antwort."
+      - "Ich bitte Sie um kurze Rückmeldung."
+      - "Ich bitte Sie um kurze Antwort."
     key_tokens: ["bitte", "um"]
     explain: { en: "The preposition belongs to the verb and has to be learned with it: bitten um, and the noun after um goes into the accusative — um eine kurze Rückmeldung. Note the two objects: the person asked is a direct accusative (Ich bitte Sie), while what is asked for arrives through um. fragen is not a substitute — Ich frage Sie asks a question, it does not make a request.", ru: "Предлог принадлежит глаголу и заучивается вместе с ним: bitten um, а существительное после um идёт в аккузативе — um eine kurze Rückmeldung. Обратите внимание на два дополнения: тот, кого просят, стоит в прямом аккузативе (Ich bitte Sie), а то, о чём просят, приходит через um. fragen здесь не замена: Ich frage Sie — это «задаю вопрос», а не «прошу».", uk: "Прийменник належить дієслову й заучується разом із ним: bitten um, а іменник після um іде в акузативі — um eine kurze Rückmeldung. Зверніть увагу на два додатки: той, кого просять, стоїть у прямому акузативі (Ich bitte Sie), а те, про що просять, приходить через um. fragen тут не заміна: Ich frage Sie — це «ставлю питання», а не «прошу».", de: "Die Präposition gehört zum Verb und wird mit ihm gelernt: bitten um, und das Nomen nach um steht im Akkusativ — um eine kurze Rückmeldung. Beachte die zwei Objekte: Die gebetene Person steht im reinen Akkusativ (Ich bitte Sie), das Erbetene kommt über um. fragen ist kein Ersatz — Ich frage Sie stellt eine Frage und bittet um nichts." }
 

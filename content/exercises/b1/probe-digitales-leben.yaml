@@ -58,6 +58,9 @@ arming:
   - b1/digitales-leben-produktion::uebersetzen-sodass-software
 items:
   - id: variant-a
+    # revision 2: the plain negation (funktioniert seit heute nicht) is accepted beside
+    # nicht mehr, which neither prompt asks for.
+    revision: 2
     outcomes: [technikproblem-schildern]
     type: translate
     focus: sodass-folge
@@ -82,6 +85,16 @@ items:
       - "Seit heute geht mein Drucker nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
       - "Seit heute funktioniert mein Drucker nicht mehr, sodass ich die Seiten in der Bibliothek drucken muss."
       - "Seit heute funktioniert mein Drucker nicht mehr, so dass ich die Seiten in der Bibliothek drucken muss."
+      # Neither prompt says "any more" («не работает»), so the plain negation renders the cause
+      # as faithfully as nicht mehr — a logged attempt wrote funktioniert … nicht.
+      - "Mein Drucker geht seit heute nicht, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute geht mein Drucker nicht, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Mein Drucker funktioniert seit heute nicht, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute funktioniert mein Drucker nicht, sodass ich die Seiten in der Bibliothek drucken muss."
+      - "Mein Drucker geht seit heute nicht, so dass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute geht mein Drucker nicht, so dass ich die Seiten in der Bibliothek drucken muss."
+      - "Mein Drucker funktioniert seit heute nicht, so dass ich die Seiten in der Bibliothek drucken muss."
+      - "Seit heute funktioniert mein Drucker nicht, so dass ich die Seiten in der Bibliothek drucken muss."
     key_tokens: ["sodass", "muss"]
     explain:
       en: "Graded are the two ends of the consequence clause: sodass opening it and muss at its wall, with the verb chain drucken muss whole and the finite verb last. sodass muss ich … would be the word order of deshalb, an adverb that pulls the verb straight behind itself; the source languages keep their own order after 'so', which is exactly the pull to resist."
@@ -90,6 +103,8 @@ items:
       de: "Bewertet werden die zwei Enden des Folgesatzes: sodass, das ihn eröffnet, und muss an seiner Wand — die Kette drucken muss bleibt zusammen, das finite Verb zuletzt. sodass muss ich … wäre die Stellung von deshalb, einem Adverb, das das Verb direkt hinter sich zieht. Die Ausgangssprachen behalten nach ihrem „so\" ihre eigene Stellung bei."
 
   - id: variant-b
+    # revision 2: aufmachen, the course's own card for 'open', is accepted beside öffnen.
+    revision: 2
     outcomes: [technikproblem-schildern]
     type: translate
     focus: sodass-folge
@@ -107,6 +122,12 @@ items:
       # The key may be placed rather than declined; nothing else moves.
       - "Die Taste links reagiert nicht mehr, sodass ich das Menü nicht öffnen kann."
       - "Die Taste links reagiert nicht mehr, so dass ich das Menü nicht öffnen kann."
+      # 'open' is not named, and aufmachen is the course's own card for it (trennbare-verben);
+      # the graded pair is untouched.
+      - "Die linke Taste reagiert nicht mehr, sodass ich das Menü nicht aufmachen kann."
+      - "Die linke Taste reagiert nicht mehr, so dass ich das Menü nicht aufmachen kann."
+      - "Die Taste links reagiert nicht mehr, sodass ich das Menü nicht aufmachen kann."
+      - "Die Taste links reagiert nicht mehr, so dass ich das Menü nicht aufmachen kann."
     key_tokens: ["sodass", "kann"]
     explain:
       en: "Graded are sodass and the clause-final kann. Two negations sit in this sentence and neither of them touches the rule: nicht mehr in the main clause, nicht in the consequence, and the finite kann still stands last, behind the infinitive it governs. Only the position of the verb is the tag's business."
