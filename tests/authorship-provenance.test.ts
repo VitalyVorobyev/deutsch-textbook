@@ -53,6 +53,30 @@ describe('authorship provenance', () => {
     }
   });
 
+  test('a simulated LiD lesson figure enters the provenance boundary; a credited one does not', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'atlas-lid-figures-'));
+    try {
+      const lessons = join(dir, 'content/lid/lessons');
+      mkdirSync(lessons, { recursive: true });
+      writeFileSync(
+        join(lessons, 'zz.mdx'),
+        [
+          '---',
+          'figures:',
+          '  - { id: zz-skizze, src: /lid/lessons/zz-skizze.webp, sourceClass: simulated }',
+          '  - { id: zz-foto, src: /lid/lessons/zz-foto.webp, sourceClass: real }',
+          '  - { id: zz-karte, src: /lid/ZZ-01.png, sourceClass: official }',
+          '---',
+          '',
+          '## Kurz gesagt',
+        ].join('\n'),
+      );
+      expect(simulatedInstructionalAssetPaths(dir)).toEqual(['public/lid/lessons/zz-skizze.webp']);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   test('asset prompts and briefs must be real files inside the prompt archive', () => {
     const dir = mkdtempSync(join(tmpdir(), 'atlas-prompts-'));
     try {

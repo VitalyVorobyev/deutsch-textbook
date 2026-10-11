@@ -982,6 +982,13 @@ export const STRINGS = {
     ru: 'Открыть страницу в каталоге BAMF ↗',
     uk: 'Відкрити сторінку в каталозі BAMF ↗',
   },
+  // The credit of a lesson figure taken from the catalogue (ADR 0021: an official work, §5 UrhG).
+  'lid.figureOfficial': {
+    de: 'Amtliches Werk (§ 5 UrhG): BAMF, Gesamtfragenkatalog',
+    en: 'Official work (§ 5 UrhG): BAMF, full question catalogue',
+    ru: 'Официальный документ (§ 5 UrhG): BAMF, полный каталог вопросов',
+    uk: 'Офіційний документ (§ 5 UrhG): BAMF, повний каталог питань',
+  },
   'lid.doneTitle': { de: 'Fertig für jetzt', en: 'Done for now', ru: 'На сейчас всё', uk: 'Наразі все' },
   'lid.doneCounts': {
     de: '{n} Antworten · {right} richtig · {wrong} falsch',
