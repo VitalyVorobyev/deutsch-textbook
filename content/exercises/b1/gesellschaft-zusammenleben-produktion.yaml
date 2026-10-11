@@ -87,6 +87,12 @@ items:
       de: "Neun Wörter und zweimal dieselbe Verbform. jeder und niemand meinen beide einen ganzen Raum voller Leute und bleiben beide grammatisch Singular, also heißt es auf beiden Seiten hat — nie haben. Wer haben tippt, hat gehört, wie viele Leute im Raum sind, und die Hand hat sich nach der Bedeutung statt nach dem Wort gerichtet."
 
   - id: uebersetzen-obwohl-perfekt
+    # revision 2: the RU/UK prompts write the name in Latin script (Cyrillic left its
+    # spelling free); «жильцы» / «мешканців» leave Mieter as open as Bewohner — the
+    # article renders its own Jeder Mieter as «каждого жильца» / «кожен мешканець» — and
+    # "still" is noch immer as well as noch and immer noch. Mieter and noch immer were
+    # rejected with obwohl … hat intact.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: obwohl-trotzdem
@@ -96,16 +102,24 @@ items:
       uk: "Приєднайте поступку сполучником obwohl. Для «пояснити» візьміть erklären у перфекті; для «бути невпевненим» — unsicher sein."
       de: "Häng das Zugeständnis mit obwohl an. Für das Erklären nimm erklären im Perfekt, für die Unsicherheit unsicher sein."
     prompt_en: "Many residents are still unsure, although Frau Kolb has explained everything."
-    prompt_ru: "Многие жильцы всё ещё не уверены, хотя фрау Кольб всё объяснила."
-    prompt_uk: "Багато мешканців усе ще не впевнені, хоча пані Кольб усе пояснила."
+    prompt_ru: "Многие жильцы всё ещё не уверены, хотя Frau Kolb всё объяснила."
+    prompt_uk: "Багато мешканців усе ще не впевнені, хоча Frau Kolb усе пояснила."
     answer: "Viele Bewohner sind noch unsicher, obwohl Frau Kolb alles erklärt hat."
     accept:
       # The concession may lead; then it holds position 1 and the main clause opens
-      # with its finite verb. And "still" renders as noch or immer noch — the product
-      # is 2 x 2 renderings.
+      # with its finite verb. "still" renders as noch, immer noch or noch immer, and the
+      # residents as Bewohner or Mieter — the product is 2 x 3 x 2 renderings.
       - "Obwohl Frau Kolb alles erklärt hat, sind viele Bewohner noch unsicher."
       - "Viele Bewohner sind immer noch unsicher, obwohl Frau Kolb alles erklärt hat."
       - "Obwohl Frau Kolb alles erklärt hat, sind viele Bewohner immer noch unsicher."
+      - "Viele Bewohner sind noch immer unsicher, obwohl Frau Kolb alles erklärt hat."
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Bewohner noch immer unsicher."
+      - "Viele Mieter sind noch unsicher, obwohl Frau Kolb alles erklärt hat."
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Mieter noch unsicher."
+      - "Viele Mieter sind immer noch unsicher, obwohl Frau Kolb alles erklärt hat."
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Mieter immer noch unsicher."
+      - "Viele Mieter sind noch immer unsicher, obwohl Frau Kolb alles erklärt hat."
+      - "Obwohl Frau Kolb alles erklärt hat, sind viele Mieter noch immer unsicher."
     key_tokens: ["obwohl", "Obwohl", "hat"]
     explain:
       en: "Graded are obwohl and the finite hat. In a Perfekt clause the wall takes the auxiliary, not the participle: erklärt hat, in that order, at the very end — obwohl Frau Kolb hat alles erklärt is the main-clause order surviving into a Nebensatz. Put the clause first instead and it fills position 1, so the main clause opens with sind."

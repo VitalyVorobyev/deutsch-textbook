@@ -118,6 +118,18 @@ GitHub Release notes.
   - A gap no longer asks for the word its own instruction prints.
   - The lesson no longer says that *ohne* and *statt* always take *zu*, or that only *um* has that
     shape.
+- **B1.10 Gesellschaft & Zusammenleben — quality pass.**
+  - *trotzdem* inside the clause (*Die Mehrheit stimmt trotzdem …*) no longer counts as a
+    word-order mistake. The lesson stops saying *trotzdem* can only stand first.
+  - The Präteritum is accepted in the *obwohl* placement question.
+  - Correct German is accepted in seven other exercises, for example *die Party*, *die Feier* and
+    *noch immer*.
+  - Four names in Russian and Ukrainian prompts are written as German spells them.
+  - Cards:
+    - *abstimmen* and *sich beteiligen* now ask for their own meaning, not the one *wählen* and
+      *teilnehmen* already ask for.
+    - *Respekt*, *Einwand*, *Gemeinschaft* and *Verständnis* get a note on their gender or sense.
+  - The lesson no longer calls *einige*, *manche* and *viele* always plural.
 
 ## [0.6.19] — 2026-10-11
 
