@@ -95,14 +95,24 @@ items:
       de: "Bewertet werden die zwei Enden der Konjunktionsregel: obwohl und das satzfinale kostet. Die Ausgangssprachen rühren nach „obwohl“ die Wortstellung nicht an, also schreibt die Hand obwohl der Garten kostet Geld — genau der Einsturz, für den es diesen Tag gibt. Wo der Nebensatz steht, ist frei: vorn, dann beginnt der Hauptsatz mit bin; hinten, dann ändert sich sonst nichts."
 
   - id: uebersetzen-trotzdem-mehrheit
+    # revision 2: trotzdem may also stand inside the clause (Die Mehrheit stimmt trotzdem
+    # für …), as the article's own Verschiebeprobe teaches — correct German that shows no
+    # inversion, and it was charged to the tag. The instruction now asks for trotzdem at
+    # the head of the second half. «И всё же» / «І все ж» invite Und trotzdem stimmt …,
+    # the same inversion behind a coordinating und: accepted in both punctuations.
+    # focus_evidence fails only trotzdem at a clause head with the subject straight
+    # behind it, so a reordering that keeps trotzdem inside the clause (Für den Spielplatz
+    # stimmt trotzdem die Mehrheit) is never charged, and a slip elsewhere behind an
+    # intact Trotzdem stimm… reads as retained.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: konjunktionaladverb-inversion
     instruction:
-      en: "Join the two halves with trotzdem. For 'vote for' take stimmen für."
-      ru: "Соедините две части словом trotzdem. Для «голосовать за» возьмите stimmen für."
-      uk: "З'єднайте дві частини словом trotzdem. Для «голосувати за» візьміть stimmen für."
-      de: "Verbinde die beiden Hälften mit trotzdem. Für das Abstimmen nimm stimmen für."
+      en: "Join the two halves with trotzdem at the head of the second one. For 'vote for' take stimmen für."
+      ru: "Соедините две части словом trotzdem в начале второй. Для «голосовать за» возьмите stimmen für."
+      uk: "З'єднайте дві частини словом trotzdem на початку другої. Для «голосувати за» візьміть stimmen für."
+      de: "Verbinde die beiden Hälften mit trotzdem am Anfang der zweiten. Für das Abstimmen nimm stimmen für."
     prompt_en: "The parking spaces are important. Nevertheless the majority votes for the playground."
     prompt_ru: "Парковочные места важны. И всё же большинство голосует за детскую площадку."
     prompt_uk: "Паркомісця важливі. І все ж більшість голосує за дитячий майданчик."
@@ -114,14 +124,25 @@ items:
     # does not fix and no focus tag grades.
     accept:
       - "Die Parkplätze sind wichtig, trotzdem stimmt die Mehrheit für den Spielplatz."
+      - "Die Parkplätze sind wichtig. Und trotzdem stimmt die Mehrheit für den Spielplatz."
+      - "Die Parkplätze sind wichtig, und trotzdem stimmt die Mehrheit für den Spielplatz."
     key_tokens: ["Trotzdem", "trotzdem", "stimmt"]
+    focus_evidence:
+      case_sensitive: true
+      failed: ["(?:^|\\s)Trotzdem (?:die |der |eine )?Mehrheit\\b", "\\b(?:wichtig|[Uu]nd) trotzdem (?:die |der |eine )?Mehrheit\\b"]
+      retained: ["\\b[Tt]rotzdem stimm\\w*"]
     explain:
-      en: "Graded is the pair Trotzdem stimmt. trotzdem is an adverb, so it fills position 1 of a new main clause and the finite verb has to come second — never Trotzdem die Mehrheit stimmt. That is the A2 rule for deshalb, dann and trotzdem alike, and it is the exact opposite of what obwohl does with the same thought."
-      ru: "Оценивается пара Trotzdem stimmt. trotzdem — наречие, оно занимает первую позицию нового главного предложения, и спрягаемый глагол обязан идти вторым — никогда Trotzdem die Mehrheit stimmt. Это правило A2 для deshalb, dann и trotzdem, и оно ровно противоположно тому, что делает с той же мыслью obwohl."
-      uk: "Оцінюється пара Trotzdem stimmt. trotzdem — прислівник, він займає першу позицію нового головного речення, і відмінюване дієслово мусить іти другим — ніколи Trotzdem die Mehrheit stimmt. Це правило A2 для deshalb, dann і trotzdem, і воно рівно протилежне тому, що робить із тією самою думкою obwohl."
-      de: "Bewertet wird das Paar Trotzdem stimmt. trotzdem ist ein Adverb, besetzt also Position 1 eines neuen Hauptsatzes, und das finite Verb muss an zweiter Stelle stehen — nie Trotzdem die Mehrheit stimmt. Das ist die A2-Regel für deshalb, dann und trotzdem, und sie ist das genaue Gegenteil dessen, was obwohl mit demselben Gedanken macht."
+      en: "Graded is the pair Trotzdem stimmt. trotzdem is an adverb: at the head of the clause it fills position 1, so the finite verb has to come second — never Trotzdem die Mehrheit stimmt. That is the A2 rule for deshalb, dann and trotzdem alike, and the exact opposite of what obwohl does with the same thought. Die Mehrheit stimmt trotzdem … is correct German too, but it shows no inversion, so the instruction asks for trotzdem first; an und in front of it changes nothing."
+      ru: "Оценивается пара Trotzdem stimmt. trotzdem — наречие: в начале предложения оно занимает первую позицию, и спрягаемый глагол обязан идти вторым — никогда Trotzdem die Mehrheit stimmt. Это правило A2 для deshalb, dann и trotzdem, и оно ровно противоположно тому, что делает с той же мыслью obwohl. Die Mehrheit stimmt trotzdem … — тоже правильный немецкий, но инверсии в нём не видно, поэтому задание просит поставить trotzdem первым; und перед ним ничего не меняет."
+      uk: "Оцінюється пара Trotzdem stimmt. trotzdem — прислівник: на початку речення він займає першу позицію, і відмінюване дієслово мусить іти другим — ніколи Trotzdem die Mehrheit stimmt. Це правило A2 для deshalb, dann і trotzdem, і воно рівно протилежне тому, що робить із тією самою думкою obwohl. Die Mehrheit stimmt trotzdem … — теж правильна німецька, але інверсії в ній не видно, тому завдання просить поставити trotzdem першим; und перед ним нічого не змінює."
+      de: "Bewertet wird das Paar Trotzdem stimmt. trotzdem ist ein Adverb: Am Satzanfang besetzt es Position 1, und das finite Verb muss an zweiter Stelle stehen — nie Trotzdem die Mehrheit stimmt. Das ist die A2-Regel für deshalb, dann und trotzdem, und sie ist das genaue Gegenteil dessen, was obwohl mit demselben Gedanken macht. Die Mehrheit stimmt trotzdem … ist ebenfalls richtig, zeigt aber keine Inversion, deshalb verlangt die Aufgabe trotzdem vorn; ein und davor ändert nichts."
 
   - id: uebersetzen-nicht-sondern
+    # revision 2: the two years may each take either form (dieses Jahr / in diesem Jahr,
+    # nächstes Jahr / im nächsten Jahr), and the first Jahr may be left to the second
+    # (nicht dieses, sondern nächstes Jahr); the mixed and the elliptical renderings were
+    # rejected with nicht … sondern intact.
+    revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate
     focus: aber-sondern
@@ -135,8 +156,13 @@ items:
     prompt_uk: "Сад з'явиться не цього року, а наступного."
     answer: "Der Garten kommt nicht dieses Jahr, sondern nächstes Jahr."
     accept:
-      # The same correction with the years in prepositional phrases.
+      # The same correction with the years in prepositional phrases, mixed, or with the
+      # first Jahr left to the second.
       - "Der Garten kommt nicht in diesem Jahr, sondern im nächsten Jahr."
+      - "Der Garten kommt nicht dieses Jahr, sondern im nächsten Jahr."
+      - "Der Garten kommt nicht in diesem Jahr, sondern nächstes Jahr."
+      - "Der Garten kommt nicht dieses, sondern nächstes Jahr."
+      - "Der Garten kommt nicht in diesem, sondern im nächsten Jahr."
     key_tokens: ["nicht", "sondern"]
     explain:
       en: "Graded is the frame nicht …, sondern …. sondern may only follow a negation and it replaces exactly what was denied — this year out, next year in. aber would merely add a second, compatible statement, which is not what a counter-proposal does. English uses one word, 'but', for both, so the frame has to be built from the negation, not from the translation."
@@ -210,7 +236,11 @@ items:
       de: "Beide Wörter meinen dieselben Leute und verlangen entgegengesetzte Verbformen. alle ist Plural: sind gekommen. jeder ist Singular: will. Die Fassung mit richtigem Alle sind gekommen und trotzdem jeder wollen zeigt die übliche Richtung des Fehlers: Die Bedeutung ist eindeutig plural, und das plurale Verb rutscht hinter die Singularform."
 
   - id: uebersetzen-alle-jeder
-    revision: 2
+    # revision 3: the English prompt said "Not everybody", which the course renders as alle
+    # and as jeder alike (mc-jeder-singular glosses both "everybody"), so the correct
+    # Nicht jeder ist hier was charged to the tag; "Not all" fixes alle as RU «не все» and
+    # UK «не всі» already do.
+    revision: 3
     outcomes: [diskussion-folgen]
     type: translate
     focus: indefinitpronomen-erweitert
@@ -219,7 +249,7 @@ items:
       ru: "Для «быть здесь» возьмите hier sein или da sein; для «жилец» — Bewohner."
       uk: "Для «бути тут» візьміть hier sein або da sein; для «мешканець» — Bewohner."
       de: "Für „hier sein“ nimm hier sein oder da sein; für die Person im Haus das Wort Bewohner."
-    prompt_en: "Not everybody is here, but every resident has a vote."
+    prompt_en: "Not all are here, but every resident has a vote."
     prompt_ru: "Здесь не все, но у каждого жильца есть голос."
     prompt_uk: "Тут не всі, але кожен мешканець має голос."
     answer: "Nicht alle sind hier, aber jeder Bewohner hat eine Stimme."
