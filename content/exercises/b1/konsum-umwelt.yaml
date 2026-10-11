@@ -259,14 +259,18 @@ items:
       de: "Desto weniger Müll ist eine Einheit und füllt Position 1, also muss das finite Verb kommt sofort folgen. Desto die graue Tonne … stellt das Subjekt nach vorn — die wörtliche Übertragung aus Sprachen, die hier nicht invertieren. Die Variante desto weniger Müll in die graue Tonne kommt schickt kommt ans Ende und behandelt die desto-Hälfte als Nebensatz; ein Nebensatz ist aber nur die je-Hälfte."
 
   - id: uebersetzen-je-desto
+    # revision 2: the RU/UK prompts leave the je-half verbless, and a verbless German je-half
+    # is correct terse German that skips the verb-final half of the tag — so the instruction
+    # now asks for two full clauses instead of calling that rendering wrong.
+    revision: 2
     outcomes: [konsum-vergleichen]
     type: translate
     focus: je-desto
     instruction:
-      en: "Translate with je … desto — give each half its own word order; for 'breaks' use kaputtgehen."
-      ru: "Переведите через je … desto — дайте каждой половине её собственный порядок слов; для «ломается» возьмите kaputtgehen."
-      uk: "Перекладіть через je … desto — дайте кожній половині її власний порядок слів; для «ламається» візьміть kaputtgehen."
-      de: "Übersetze mit je … desto — gib jeder Hälfte ihre eigene Wortstellung; nimm kaputtgehen."
+      en: "Translate with je … desto as two full clauses — give each half its own verb and its own word order; for 'breaks' use kaputtgehen."
+      ru: "Переведите через je … desto двумя полными частями — у каждой половины свой глагол и свой порядок слов; для «ломается» возьмите kaputtgehen."
+      uk: "Перекладіть через je … desto двома повними частинами — у кожної половини своє дієслово і свій порядок слів; для «ламається» візьміть kaputtgehen."
+      de: "Übersetze mit je … desto in zwei vollständigen Hälften — jede mit eigenem Verb und eigener Wortstellung; nimm kaputtgehen."
     prompt_en: "The cheaper a product is, the faster it breaks."
     prompt_ru: "Чем дешевле продукт, тем быстрее он ломается."
     prompt_uk: "Що дешевший продукт, то швидше він ламається."
@@ -277,7 +281,7 @@ items:
       - "Je billiger das Produkt ist, umso schneller geht es kaputt."
     key_tokens: ["billiger", "ist", "schneller", "geht"]
     explain:
-      en: "Graded are both ends of both halves: billiger fronted with je and ist at the wall of its clause; then schneller glued to desto and geht immediately after the pair. Note that German keeps the finite ist in the je-clause even where English can shrink to 'the cheaper the product', and that breaking is geht kaputt — the process, not ist kaputt, the state. Umso for desto is equally correct and accepted."
-      ru: "Оцениваются оба конца обеих половин: billiger, утащенный вперёд вместе с je, и ist у стены своего придаточного; затем schneller, приклеенный к desto, и geht сразу за парой. Русское «чем дешевле продукт» обходится без связки — а немецкое придаточное без своего ist не обходится. «Ломается» — это процесс geht kaputt, а не состояние ist kaputt. Umso вместо desto столь же верно и принимается."
-      uk: "Оцінюються обидва кінці обох половин: billiger, витягнутий уперед разом із je, і ist біля стіни свого підрядного; потім schneller, приклеєний до desto, і geht одразу за парою. Українське «що дешевший продукт» обходиться без зв'язки — а німецьке підрядне без свого ist не обходиться. «Ламається» — це процес geht kaputt, а не стан ist kaputt. Umso замість desto так само правильно і приймається."
-      de: "Bewertet werden beide Enden beider Hälften: billiger, von je nach vorn gezogen, und ist an der Wand seines Nebensatzes; dann schneller, an desto geklebt, und geht direkt nach dem Paar. Der je-Satz behält sein finites ist, auch wenn andere Sprachen es weglassen — und kaputtgehen ist der Vorgang, ist kaputt der Zustand. Umso statt desto ist genauso richtig und wird akzeptiert."
+      en: "Graded are both ends of both halves: billiger fronted with je and ist at the wall of its clause; then schneller glued to desto and geht immediately after the pair. A terse German line can drop the verb, as English does in 'the cheaper the product' (Je billiger das Produkt, desto schlechter die Qualität) — so the instruction asks for full clauses, and a full je-clause keeps ist at its end. Breaking is geht kaputt — the process, not ist kaputt, the state. Umso for desto is equally correct and accepted."
+      ru: "Оцениваются оба конца обеих половин: billiger, утащенный вперёд вместе с je, и ist у стены своего придаточного; затем schneller, приклеенный к desto, и geht сразу за парой. Русское «чем дешевле продукт» обходится без связки; немецкий опускает глагол только в короткой, сжатой фразе (Je billiger das Produkt, desto schlechter die Qualität) — поэтому задание просит полные части, а в полном придаточном ist стоит в конце. «Ломается» — это процесс geht kaputt, а не состояние ist kaputt. Umso вместо desto столь же верно и принимается."
+      uk: "Оцінюються обидва кінці обох половин: billiger, витягнутий уперед разом із je, і ist біля стіни свого підрядного; потім schneller, приклеєний до desto, і geht одразу за парою. Українське «що дешевший продукт» обходиться без зв'язки; німецька опускає дієслово лише в короткій, стислій фразі (Je billiger das Produkt, desto schlechter die Qualität) — тому завдання просить повні частини, а в повному підрядному ist стоїть у кінці. «Ламається» — це процес geht kaputt, а не стан ist kaputt. Umso замість desto так само правильно і приймається."
+      de: "Bewertet werden beide Enden beider Hälften: billiger, von je nach vorn gezogen, und ist an der Wand seines Nebensatzes; dann schneller, an desto geklebt, und geht direkt nach dem Paar. Ohne Verb kommt nur ein knapper, verkürzter Satz aus (Je billiger das Produkt, desto schlechter die Qualität) — deshalb verlangt die Aufgabe vollständige Hälften, und im vollständigen je-Satz steht ist am Ende. Kaputtgehen ist der Vorgang, ist kaputt der Zustand. Umso statt desto ist genauso richtig und wird akzeptiert."
