@@ -1,5 +1,6 @@
 ---
 import type { VocabEntry } from '@da/schema';
+import { shownHeadword } from '@da/schema/headword';
 import SpeakButton from './SpeakButton.astro';
 
 interface Props {
@@ -7,12 +8,13 @@ interface Props {
 }
 const { entries } = Astro.props;
 
+// Printed and spoken: a noun with its article, a reflexive verb keyed bare with its `sich`.
 function headword(e: VocabEntry): string {
   if (e.pos === 'noun' && e.gender) {
     const article = { m: 'der', f: 'die', n: 'das' }[e.gender];
     return `${article} ${e.de}`;
   }
-  return e.de;
+  return shownHeadword(e);
 }
 
 function forms(e: VocabEntry): string {

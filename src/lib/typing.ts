@@ -60,6 +60,30 @@ export function articledForm(de: string, gender?: 'm' | 'f' | 'n'): string {
   return gender ? `${ARTICLES[gender]} ${de}` : de;
 }
 
+/** The fields of a built card (`CardDef`) the two functions below read. */
+interface CardAnswerFields {
+  de: string;
+  deShown?: string;
+  gender?: 'm' | 'f' | 'n';
+  pos?: string;
+  accept?: string[];
+}
+
+/** A flashcard's German side as the learner reads and hears it: the shown headword
+    (`sich gewöhnen` for the Wortliste key `gewöhnen`, see `@da/schema/headword`) with a
+    noun's article. Display and speech only — `checkCardAnswer` grades against `de`. */
+export function shownAnswer(card: CardAnswerFields): string {
+  return articledForm(card.deShown ?? card.de, card.gender);
+}
+
+/** Grade typed input on a flashcard. The target is the raw `de` plus `accept`, never the
+    shown form: showing `sich gewöhnen` changes what the card prints, not what it accepts —
+    `accept: ["sich gewöhnen"]` already made the full form correct, and the bare key stays
+    correct as it always was. */
+export function checkCardAnswer(given: string, card: CardAnswerFields): AnswerVerdict {
+  return checkTypedAnswer(given, articledForm(card.de, card.gender), card.pos, card.accept);
+}
+
 /** Split a noun headword like "der Apfel" into article + noun, or null. */
 export function splitArticle(de: string): { article: string; noun: string } | null {
   const m = /^(der|die|das) (.+)$/.exec(de);

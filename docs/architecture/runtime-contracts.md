@@ -16,6 +16,7 @@ authoring rules.
 | Profiles and learner storage | `src/lib/profile.ts`, `src/lib/store.ts` | snapshot/store tests |
 | Snapshot compatibility | `src/lib/snapshot-schema.ts`, `src/lib/snapshot-merge.ts` | all-version migration tests |
 | Language selection | `src/lib/prefs.ts`, `packages/schema/src/langcheck.ts` | i18n tests and validator |
+| Shown headword vs keyed headword (reflexive `sich`) | `packages/schema/src/headword.ts` (`shownHeadword`; the validator reads its `reflexivityDeclared`), `src/lib/typing.ts` (`shownAnswer` displays, `checkCardAnswer` grades the raw key) | reflexive-headword tests, validator |
 | Explanation prose shape | `packages/content/src/prose-shape.ts` (authoring-time only; never imported by runtime) | prose-shape tests, validator, `bun scripts/prose-shape.ts` |
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |

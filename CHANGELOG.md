@@ -11,6 +11,22 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Reflexive verbs show *sich* on their cards.** The card for "to get used to" printed
+  *gewöhnen*; it now reads *sich gewöhnen*, and so do 22 other verbs whose Wortliste entry is
+  written without *sich* (*sich freuen*, *sich kümmern*, *sich bewerben* …). Your review history for
+  them is kept.
+- **The Imperativ table in Stadt & Wege (A1) says what to write.** It asks for the verb form only,
+  with *Sie* where it belongs, and accepts *geh* as well as *Geh!* — the right forms typed in lower
+  case were marked wrong.
+- **Leben in Deutschland — Wahlen und Parteien lists the parties in today's Bundestag.** The table
+  adds the AfD and Die Linke, and says which parties have sat in the Bundestag since the 2025
+  election: the FDP has not, and the test still asks what its name means.
+- **Leben in Deutschland — Bayern.** The three Freistaaten have no more rights than the other
+  Länder because the name grants none, not "therefore"; the sentence is corrected in German and in
+  every translation.
+
 ## [0.6.19] — 2026-10-11
 
 ### Fixed
