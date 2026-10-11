@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.2 `leben-veraendern`.
+  Next: B1.3 `gesundheit-wohlbefinden`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -102,6 +102,14 @@ record of what shipped.
   explain teaches; `frage-reihenfolge` can be answered by copying; the reading's EN gloss should
   be "What has Daniel been doing since then?"; `drill-temporal-nebensatz` blames a correct
   *Bevor er heimging* on the tag; the `nachdem` probe's variant-b rejects *ging alles ganz schnell*.
+- `b1/leben-veraendern`: "-es when the noun has one syllable" (required only after an s-sound);
+  *Kurz gesagt* omits weak nouns from the masculine/neuter -s rule; "*who* never changes" against
+  the article's own *whom*; "no colloquial escape hatch" (regional *wo … mit*); a straight `"` in
+  „wessen?"; the EN anti-model "the street we lived in"; `mc-auf-die` tense clash (*seit zwei
+  Wochen warte*); "never *des Gartens Größe*" (literary, not impossible); probe header comments
+  count three families where there are four; the listening set tags comprehension questions
+  `spoken-production` and its scenario is not the unit's; the `gewöhnen` note says "always
+  reflexive"; the `zentral` RU/UK example; the `Gegend` and `Wohngemeinschaft` glosses run long.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
@@ -248,6 +256,12 @@ Triaged from `feedback.md`, which holds only raw capture.
   cloze `cloze-es-umgestellt` word for word, so the probe can be answered from memory of it — but
   the 2026-08-26 ruling accepting exactly that rendering blocks changing the carrier. First step:
   give a ruling an optional `revision` and check `accept` only against that revision.
+- **A reordered main clause is blamed on the relative pronoun.** The misplaced-token check
+  attributes a correct rendering whose main clause is reordered (*Jetzt helfen mir die Kollegen,
+  denen …*) to the pinned token's focus, because the token count is unchanged. Every
+  relative-clause translate item can hit it; `b1/leben-veraendern-produktion::uebersetzen-transfer-kollegen`
+  now accepts the fronted order by hand. First step: measure how many confirmed rejections in
+  the attempt log are reorderings of an unpinned clause.
 - **P23-3 · Six of the seven tags the runtime prioritises have no drill, all B1.** Cross
   `weakFocuses` (`src/lib/weakness.ts`) with every `role: drill` item's `focus`. `weakFocuses` (last
   ~30 attempts, ≥35% errors) and the audit's `persistent` table disagree, and neither is wrong. Take
