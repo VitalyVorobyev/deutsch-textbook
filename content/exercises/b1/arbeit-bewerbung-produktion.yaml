@@ -61,6 +61,7 @@ items:
     outcomes: [bewerbung-schreiben]
     type: translate
     focus: n-deklination
+    revision: 2
     instruction:
       en: "Translate — put the time phrase first, and use Kollege (a male colleague)."
       ru: "Переведите — вынесите обстоятельство времени вперёд и используйте Kollege (коллега-мужчина)."
@@ -74,6 +75,11 @@ items:
       - "Gestern habe ich mit einem Kollegen über die neue Arbeitsstelle gesprochen."
       - "Gestern sprach ich mit einem Kollegen über die neue Stelle."
       - "Gestern sprach ich mit einem Kollegen über die neue Arbeitsstelle."
+      # «с коллегой» / «із колегою» leave the determiner open; the graded -n is the same.
+      - "Gestern habe ich mit dem Kollegen über die neue Stelle gesprochen."
+      - "Gestern habe ich mit dem Kollegen über die neue Arbeitsstelle gesprochen."
+      - "Gestern sprach ich mit dem Kollegen über die neue Stelle."
+      - "Gestern sprach ich mit dem Kollegen über die neue Arbeitsstelle."
     key_tokens: ["Kollegen"]
     explain:
       en: "Graded is the noun's own ending. mit takes the dative, and Kollege belongs to the n-declension, so outside the nominative singular it wears its -n: mit einem Kollegen. The article einem has already marked the case — the noun marks it a second time anyway, and that doubling is the whole rule. The feminine escapes it: mit einer Kollegin keeps its form, because feminine nouns never join the family."
@@ -85,6 +91,7 @@ items:
     outcomes: [bewerbung-schreiben]
     type: translate
     focus: hoeflich-konjunktiv
+    revision: 2
     instruction:
       en: "Translate the closing line of an application letter with sich freuen über — in Konjunktiv II (würde + infinitive), which is what makes it a request rather than an announcement."
       ru: "Переведите заключительную строку письма-заявления, используя sich freuen über — в Konjunktiv II (würde + инфинитив): именно он превращает фразу в просьбу, а не в утверждение."
@@ -98,6 +105,11 @@ items:
       - "Ich würde mich über eine Einladung zu einem Vorstellungsgespräch freuen."
       - "Über eine Einladung zu einem Gespräch würde ich mich freuen."
       - "Über eine Einladung zu einem Vorstellungsgespräch würde ich mich freuen."
+      # Einladung zum Vorstellungsgespräch is the standard letter collocation.
+      - "Ich würde mich über eine Einladung zum Gespräch freuen."
+      - "Ich würde mich über eine Einladung zum Vorstellungsgespräch freuen."
+      - "Über eine Einladung zum Gespräch würde ich mich freuen."
+      - "Über eine Einladung zum Vorstellungsgespräch würde ich mich freuen."
     key_tokens: ["würde", "freuen"]
     explain:
       en: "Graded are the two ends of the polite frame: würde in position two and the infinitive freuen at the very wall of the sentence — everything else sits between them. The chunk you met at the Ämter counter (Ich würde gern …) is the same machine, and here it does the most formal job German writing has. The plain indicative Ich freue mich über eine Einladung is not wrong German, but it announces the invitation as settled; the Konjunktiv II asks for it. Gespräch and Vorstellungsgespräch are both usual, fronted or not."
@@ -128,16 +140,17 @@ items:
   - id: schreiben-bewerbung
     outcomes: [bewerbung-schreiben]
     type: write
+    revision: 2
     instruction:
       en: "Write the letter yourself — the list shows what to check it against."
       ru: "Напишите письмо сами — список подскажет, что в нём проверить."
       uk: "Напишіть лист самі — список підкаже, що в ньому перевірити."
       de: "Schreib das Schreiben selbst — die Liste zeigt, woran du es prüfen kannst."
     prompt:
-      en: "A shop is advertising: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ The contact person is Herr Weber. Write a short application letter."
-      ru: "Магазин даёт объявление: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактное лицо — Herr Weber. Напишите короткое письмо-заявление."
-      uk: "Магазин дає оголошення: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактна особа — Herr Weber. Напишіть короткий лист-заяву."
-      de: "Ein Geschäft sucht Personal: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ Ansprechpartner ist Herr Weber. Schreib ein kurzes Bewerbungsschreiben."
+      en: "A different shop from the Nordlicht ad above — Modehaus Sommer — is advertising: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ The contact person is Herr Weber. Write a short application letter."
+      ru: "Другой магазин, не Nordlicht из объявления выше, — Modehaus Sommer — даёт объявление: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактное лицо — Herr Weber. Напишите короткое письмо-заявление."
+      uk: "Інший магазин, не Nordlicht з оголошення вище, — Modehaus Sommer — дає оголошення: «Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.» Контактна особа — Herr Weber. Напишіть короткий лист-заяву."
+      de: "Ein anderes Geschäft als Nordlicht oben — das Modehaus Sommer — sucht Personal: „Wir suchen ab September einen zuverlässigen Kollegen für den Verkauf. Voraussetzungen: Erfahrung und gute Deutschkenntnisse.“ Ansprechpartner ist Herr Weber. Schreib ein kurzes Bewerbungsschreiben."
     goal:
       en: "A short, complete application letter: salutation, which position and where you read about it, your experience, your strengths, and the closing formula."
       ru: "Короткое, но полное письмо-заявление: обращение, на какую должность и откуда вы о ней узнали, ваш опыт, ваши сильные стороны и финальная формула."
@@ -156,10 +169,10 @@ items:
         ru: "Хотя бы раз назовите себя прилагательным-существительным, с окончанием: als Angestellter (мужской род, без артикля), als Angestellte (женский) — или скажите, чего вы ищете: etwas Neues."
         uk: "Принаймні раз назвіть себе прикметником-іменником, із закінченням: als Angestellter (чоловічий рід, без артикля), als Angestellte (жіночий) — або скажіть, чого ви шукаєте: etwas Neues."
         de: "Nenne dich mindestens einmal mit einem Adjektiv-Nomen, samt Endung: als Angestellter (maskulin, ohne Artikel), als Angestellte (feminin) — oder sag, was du suchst: etwas Neues."
-      - en: "Two or more fixed noun–verb pairs do the register's work: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — and the letter closes with Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie and Ihr stay capitalized throughout."
-        ru: "Два и более устойчивых оборота «существительное + глагол» несут регистр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закрывает письмо строка Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie и Ihr всюду с большой буквы."
-        uk: "Два й більше стійких звороти «іменник + дієслово» несуть регістр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закриває лист рядок Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie та Ihr усюди з великої літери."
-        de: "Zwei oder mehr feste Nomen-Verb-Verbindungen tragen das Register: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — und am Ende steht Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie und Ihr bleiben durchgehend groß."
+      - en: "Two or more fixed noun–verb pairs do the register's work: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — and you can close with Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie and Ihr stay capitalized throughout."
+        ru: "Два и более устойчивых оборота «существительное + глагол» несут регистр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закрыть письмо можно строкой Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie и Ihr всюду с большой буквы."
+        uk: "Два й більше стійких звороти «іменник + дієслово» несуть регістр: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — а закрити лист можна рядком Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie та Ihr усюди з великої літери."
+        de: "Zwei oder mehr feste Nomen-Verb-Verbindungen tragen das Register: Verantwortung übernehmen, eine Rolle spielen, ein Gespräch führen, Bescheid geben — und zum Schluss passt Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Sie und Ihr bleiben durchgehend groß."
     min_words: 60
     model_answer: "Sehr geehrter Herr Weber, ich habe Ihre Anzeige gelesen und bewerbe mich um die Stelle als Verkäufer. Zurzeit arbeite ich als Angestellter in einem Supermarkt und berate dort jeden Tag Kunden. In meiner letzten Stelle habe ich einem Praktikanten alles gezeigt und viel Verantwortung übernommen. Ich arbeite selbstständig und zuverlässig, und die Zusammenarbeit mit den Kollegen spielt für mich eine große Rolle. Nach fünf Jahren im selben Betrieb möchte ich gern etwas Neues lernen. Für weitere Fragen stehe ich Ihnen gern zur Verfügung. Über eine Einladung zu einem Gespräch würde ich mich sehr freuen. Mit freundlichen Grüßen Jan Nowak"
     model_translation:
