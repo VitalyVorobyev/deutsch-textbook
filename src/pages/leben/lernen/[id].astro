@@ -1,7 +1,8 @@
 ---
 /**
  * One Leben-in-Deutschland lesson (ADR 0021): the MDX article — German sections, `## Kurz gesagt`
- * first, each closed by a collapsed <Translation> in the learner's Lernsprache — its glossary,
+ * first, each closed by a collapsed <Translation> in the learner's Lernsprache, with its maps and
+ * pictures as <Figure> (LidFigure.astro) — its glossary,
  * every exam question of its topics in teaching order, and the way into practising exactly those.
  *
  * Static throughout, no island per row (CLAUDE.md runtime invariant). The glossary obeys the EN
@@ -16,6 +17,7 @@ import En from '../../../components/En.astro';
 import Ru from '../../../components/Ru.astro';
 import Uk from '../../../components/Uk.astro';
 import UebenNav from '../../../components/UebenNav.astro';
+import LidFigure from '../../../components/lid/LidFigure.astro';
 import LidSource from '../../../components/lid/LidSource.astro';
 import Translation from '../../../components/lid/Translation.astro';
 import { lidText, questionAnchor, questionLabel } from '../../../components/lid/shared';
@@ -70,7 +72,7 @@ const draft = lesson.status === 'draft';
     </a>
   </header>
 
-  <article lang="de" class="article-prose mt-6"><Content components={{ Translation, En, Ru, Uk }} /></article>
+  <article lang="de" class="article-prose mt-6"><Content components={{ Translation, Figure: LidFigure, En, Ru, Uk }} /></article>
 
   <section class="mt-10" aria-labelledby="begriffe">
     <h2 id="begriffe" class="text-xl font-bold"><Chrome k="lid.lessonTerms" /></h2>

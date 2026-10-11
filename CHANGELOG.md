@@ -11,6 +11,15 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Added
+
+- **Leben in Deutschland lessons have maps and pictures.** Bayern shows its seven
+  Regierungsbezirke, its coat of arms beside the three it is confused with, both flags, and the
+  exam's own map with Bayern marked. Seven lessons in all gain 18 figures: the Länder and
+  Germany's neighbours, the occupation zones and Berlin's sectors, the Wall, the DDR flag, the
+  EU, the Reichstag and a Stolperstein. Every picture has a German caption with a translation in
+  your language, and names its author and licence.
+
 ### Fixed
 
 - **Reflexive verbs show *sich* on their cards.** The card for "to get used to" printed

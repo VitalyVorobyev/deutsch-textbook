@@ -274,6 +274,23 @@ export function simulatedInstructionalAssetPaths(root: string): string[] {
     }
   }
 
+  // A LiD lesson figure (content/lid/lessons/*.mdx `figures:`) that the course made itself owes
+  // the same record; official, real and adapted ones carry their credit instead.
+  for (const file of filesRecursively(join(root, 'content/lid/lessons')).filter((f) => f.endsWith('.mdx'))) {
+    const data = parseFrontmatter(file);
+    const figures = Array.isArray(data?.figures) ? data.figures : [];
+    for (const figure of figures) {
+      if (
+        figure &&
+        typeof figure === 'object' &&
+        (figure as { sourceClass?: string }).sourceClass === 'simulated' &&
+        typeof (figure as { src?: string }).src === 'string'
+      ) {
+        addPublic((figure as { src: string }).src);
+      }
+    }
+  }
+
   for (const file of filesRecursively(join(root, 'src/components/visuals')).filter((f) => f.endsWith('.astro'))) {
     // A visual may spell the prop as a quoted attribute, an Astro expression, or a
     // forwarded variable. The wrapper call itself is the durable boundary: every

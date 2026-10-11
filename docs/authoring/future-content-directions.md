@@ -37,6 +37,25 @@ maintenance cost exceeds its learning job.
   to the outcome.
 - Every essential visual relationship has an EN/RU/UK text equivalent and a cue beyond colour.
 
+## Leben-in-Deutschland lesson figures
+
+A LiD lesson (`content/lid/lessons/<id>.mdx`, [ADR 0021](../adrs/0021-leben-in-deutschland-trainer.md))
+declares its maps and pictures under `figures:` and shows each with `<Figure id="…" />`, or two or
+three small ones in a row with `<Figure ids="… …" />` (`src/components/lid/LidFigure.astro`).
+
+- The tag stands outside any `<Translation>`, after the German it illustrates and before the
+  section's `<Translation>`, so it shows under every Lernsprache.
+- A figure carries `alt_de` and a `caption` with `de`, `en`, `ru` and `uk`. The caption describes
+  what the picture shows in short B1 German and states no fact the section's text lacks. A map
+  that marks things by flag or colour alone names them in the caption.
+- `sourceClass: official` is a picture of the BAMF catalogue already under `/lid/`, credited as the
+  catalogue, and never one the bank marks `withheld`. `real` and `adapted` files live under
+  `/lid/lessons/` and name `attribution`, `license`, `license_url` and `source_url`. A `simulated`
+  one also needs its `data/asset-provenance.yaml` record.
+- `bun run validate` checks the rest: every tag names a figure of its own lesson, every figure is
+  shown, ids are unique across lessons, the file exists with the declared pixel size, and it is at
+  most 300 KB, because every file ships in the desktop bundle.
+
 ## Entdecken contract
 
 An Entdecken piece lives at `content/discovery/<level>/<id>.mdx`, declares `status: reviewed`,
