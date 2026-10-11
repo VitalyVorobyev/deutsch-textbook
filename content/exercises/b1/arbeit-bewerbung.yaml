@@ -152,6 +152,7 @@ items:
     outcomes: [erfahrung-praesentieren]
     type: translate
     focus: adjektiv-nomen
+    revision: 2
     instruction:
       en: "Translate — the job after als, with no article."
       ru: "Переведите — профессия после als, без артикля."
@@ -163,9 +164,13 @@ items:
     answer: "Mein Bruder arbeitet als Angestellter bei einer Bank."
     accept:
       - "Mein Bruder arbeitet bei einer Bank als Angestellter."
+      # The compound carries the same graded -er; «в банке» leaves the article open.
+      - "Mein Bruder arbeitet als Bankangestellter."
+      - "Mein Bruder arbeitet als Angestellter bei der Bank."
+      - "Mein Bruder arbeitet bei der Bank als Angestellter."
       - "Mein Bruder arbeitet als Angestellter in einer Bank."
       - "Mein Bruder arbeitet in einer Bank als Angestellter."
-    key_tokens: ["Angestellter"]
+    key_tokens: ["Angestellter", "Bankangestellter"]
     explain:
       en: "Graded is the strong -er: after article-free als the adjective-noun shows the masculine itself — als Angestellter, exactly like als netter Mann. als Angestellte would name a woman, als Angestellten would need a den or dem nothing here supplies. bei einer Bank and in einer Bank are both idiomatic, and the phrase order is free — the ending is not."
       ru: "Оценивается сильное -er: после безартиклевого als прилагательное-существительное само показывает мужской род — als Angestellter, ровно как als netter Mann. als Angestellte назвало бы женщину, als Angestellten требовало бы den или dem, которых здесь нет. Русское «служащим» одинаково после любого слова, поэтому единственная опора — немецкое правило. bei einer Bank и in einer Bank равно идиоматичны, и порядок групп свободен — окончание нет."
