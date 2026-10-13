@@ -176,9 +176,9 @@ entries:
     example_ru: "По-моему, фильм лучше книги."
     example_uk: "Як на мене, фільм кращий за книжку."
     note:
-      en: "Stress on the second syllable, and no connection to Rom or to romantisch — a Roman can be a crime story just as well. A short one is die Erzählung; the whole field is die Literatur."
-      ru: "Ударение на втором слоге, и никакой связи ни с Rom, ни с romantisch: ein Roman вполне может быть детективом. Короткая вещь — die Erzählung, вся область — die Literatur."
-      uk: "Наголос на другому складі, і жодного зв'язку ні з Rom, ні з romantisch: ein Roman цілком може бути детективом. Коротка річ — die Erzählung, уся царина — die Literatur."
+      en: "Stress on the second syllable. The plot need not be a love story, whatever romantisch suggests — a Roman can be a crime story just as well. A short one is die Erzählung; the whole field is die Literatur."
+      ru: "Ударение на втором слоге. Сюжет не обязательно любовный, хоть слово и похоже на romantisch: ein Roman вполне может быть детективом. Короткая вещь — die Erzählung, вся область — die Literatur."
+      uk: "Наголос на другому складі. Сюжет не обов'язково любовний, хоч слово й схоже на romantisch: ein Roman цілком може бути детективом. Коротка річ — die Erzählung, уся царина — die Literatur."
 
   - de: "Figur"
     ipa: "fiˈguːɐ̯"
@@ -400,32 +400,39 @@ entries:
   - de: "gratis"
     ipa: "ˈgʁaːtɪs"
     pos: adv
-    en: "free of charge"
-    ru: "бесплатно"
-    uk: "безкоштовно"
+    # The parenthetical is the P22-11 disambiguation: A2 kostenlos answers "free, free of
+    # charge" and A1 umsonst «бесплатно», so the bare prompt had three right answers.
+    en: "free of charge (Latin loanword)"
+    en_compact: "free of charge"
+    ru: "бесплатно (латинское слово)"
+    uk: "безкоштовно (латинське слово)"
     example_de: "Kinder bis zwölf Jahre kommen gratis ins Museum."
     example_en: "Children under twelve get into the museum free."
     example_ru: "Дети до двенадцати лет проходят в музей бесплатно."
     example_uk: "Діти до дванадцяти років проходять у музей безкоштовно."
     note:
-      en: "Never takes an ending: nie ein gratises Konzert. Before a noun German uses kostenlos instead, and a programme line writes Eintritt frei. A Latin word, stressed on the first syllable."
-      ru: "Окончания не получает никогда: nie ein gratises Konzert. Перед существительным немецкий берёт kostenlos, а строка программы пишет Eintritt frei. Слово латинское, ударение на первом слоге."
-      uk: "Закінчення не дістає ніколи: nie ein gratises Konzert. Перед іменником німецька бере kostenlos, а рядок програми пише Eintritt frei. Слово латинське, наголос на першому складі."
+      en: "Never takes an ending: nie ein gratises Konzert. Before a noun German uses kostenlos instead, and a programme line writes Eintritt frei. Everyday speech often says umsonst. Stressed on the first syllable."
+      ru: "Окончания не получает никогда: nie ein gratises Konzert. Перед существительным немецкий берёт kostenlos, а строка программы пишет Eintritt frei. В обиходе часто говорят umsonst. Ударение на первом слоге."
+      uk: "Закінчення не дістає ніколи: nie ein gratises Konzert. Перед іменником німецька бере kostenlos, а рядок програми пише Eintritt frei. У побуті часто кажуть umsonst. Наголос на першому складі."
 
   - de: "Bescheid sagen"
     ipa: "bəˈʃaɪ̯t ˈzaːgn̩"
     pos: phrase
-    en: "to let somebody know"
-    ru: "сообщить, дать знать"
-    uk: "повідомити, дати знати"
+    # The parenthetical is the P22-11 disambiguation: B1 arbeit-bewerbung's Bescheid geben
+    # answers exactly "сообщить, дать знать" / "повідомити, дати знати", and its note calls
+    # this phrase the informal sibling.
+    en: "to let somebody know (informal)"
+    en_compact: "to let somebody know"
+    ru: "сообщить, дать знать (разговорное)"
+    uk: "повідомити, дати знати (розмовне)"
     example_de: "Sag mir bis Donnerstag Bescheid, ob du mitkommst."
     example_en: "Let me know by Thursday whether you are coming."
     example_ru: "Скажи мне до четверга, идёшь ли ты с нами."
     example_uk: "Скажи мені до четверга, чи йдеш ти з нами."
     note:
-      en: "The person told stands in the Dativ: Ich sage dir Bescheid. The second word belongs to the verb and closes the bracket, so a deadline goes before it, never after. Bescheid wissen is the other half of the pair: to be in the know."
-      ru: "Тот, кому сообщают, стоит в Dativ: Ich sage dir Bescheid. Второе слово принадлежит глаголу и закрывает рамку, поэтому срок ставится перед ним, а не после. Парное выражение — Bescheid wissen, «быть в курсе»."
-      uk: "Той, кому повідомляють, стоїть у Dativ: Ich sage dir Bescheid. Друге слово належить дієслову й закриває рамку, тому термін ставлять перед ним, а не після. Парний вислів — Bescheid wissen, «бути в курсі»."
+      en: "The person told stands in the Dativ: Ich sage dir Bescheid. The second word belongs to the verb and closes the bracket, so a deadline goes before it, never after. Bescheid geben says the same a shade more formally, and Bescheid wissen is the other half of the pair: to be in the know."
+      ru: "Тот, кому сообщают, стоит в Dativ: Ich sage dir Bescheid. Второе слово принадлежит глаголу и закрывает рамку, поэтому срок ставится перед ним, а не после. Bescheid geben говорит то же чуть официальнее, а парное выражение — Bescheid wissen, «быть в курсе»."
+      uk: "Той, кому повідомляють, стоїть у Dativ: Ich sage dir Bescheid. Друге слово належить дієслову й закриває рамку, тому термін ставлять перед ним, а не після. Bescheid geben каже те саме трохи офіційніше, а парний вислів — Bescheid wissen, «бути в курсі»."
 
   # --- Receptive tail (cards: recognition) --------------------------------
   # What a programme, a poster and a printed review say to you. Understood,
@@ -481,9 +488,9 @@ entries:
     example_ru: "На воскресный балет ещё есть билеты."
     example_uk: "На недільний балет ще є квитки."
     note:
-      en: "Stress on the last syllable and the final t is spoken: Bal-lett. A French word that German pronounces its own way."
-      ru: "Ударение на последнем слоге, конечное t произносится: Bal-lett. Французское слово, которое немецкий произносит по-своему."
-      uk: "Наголос на останньому складі, кінцеве t вимовляється: Bal-lett. Французьке слово, яке німецька вимовляє по-своєму."
+      en: "Stress on the last syllable and the final t is spoken: Bal-lett. German took the word from Italian balletto, the diminutive of ballo (dance)."
+      ru: "Ударение на последнем слоге, конечное t произносится: Bal-lett. Немецкий взял слово из итальянского: balletto — уменьшительное от ballo, «танец»."
+      uk: "Наголос на останньому складі, кінцеве t вимовляється: Bal-lett. Німецька взяла слово з італійської: balletto — зменшувальне від ballo, «танець»."
 
   - de: "Szene"
     ipa: "ˈstseːnə"
@@ -607,9 +614,9 @@ entries:
     example_ru: "После концерта в зале ещё будут танцы."
     example_uk: "Після концерту в залі ще будуть танці."
     note:
-      en: "Plural with an umlaut: die Tänze. tanzen is the verb, der Tänzer does it for a living. Ein Abend mit Tanz on a poster means the floor is open to everybody."
-      ru: "Множественное с умлаутом: die Tänze. Глагол — tanzen, а der Tänzer делает это профессионально. Ein Abend mit Tanz на афише значит, что танцевать может каждый."
-      uk: "Множина з умлаутом: die Tänze. Дієслово — tanzen, а der Tänzer робить це фахово. Ein Abend mit Tanz на афіші означає, що танцювати може кожен."
+      en: "Plural with an umlaut: die Tänze. tanzen is the verb, der Tänzer anyone who dances — on a programme, usually the people on stage. Ein Abend mit Tanz on a poster means the floor is open to everybody."
+      ru: "Множественное с умлаутом: die Tänze. Глагол — tanzen, а der Tänzer — любой, кто танцует; в программе обычно те, кто на сцене. Ein Abend mit Tanz на афише значит, что танцевать может каждый."
+      uk: "Множина з умлаутом: die Tänze. Дієслово — tanzen, а der Tänzer — будь-хто, хто танцює; у програмі зазвичай ті, хто на сцені. Ein Abend mit Tanz на афіші означає, що танцювати може кожен."
 
   - de: "Langeweile"
     ipa: "ˈlaŋəˌvaɪ̯lə"

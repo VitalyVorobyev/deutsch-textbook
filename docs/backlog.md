@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.12 `kultur-freizeit`.
+  Next: B1.13 `geld-vertraege`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -193,11 +193,22 @@ record of what shipped.
   it; "never *ladet*" (*Feinheiten*, the *aufladen* note) against regional *ladet*; the EN *Häufige
   Fehler*'s "No English verb changes its stem vowel in the third person" (*does*, *says* in sound);
   the *Netz* note and *Feinheiten* row say everyday German does not separate reception, WLAN and
-  internet (*kein WLAN*); the *Akku* note's "die Batterie you throw away" (*Autobatterie*); the two
-  *der Präfix* left in `kultur-freizeit` DE halves (Duden: *das Präfix*; fixed here); *Software*, *Menü* and
+  internet (*kein WLAN*); the *Akku* note's "die Batterie you throw away" (*Autobatterie*); *Software*, *Menü* and
   *sichern* are produced in translate items (named in the instruction) but carded
   recognition-only, and *mitnehmen*, *abschicken* and *Neustart* are named and produced but on no
   Goethe list and in no deck; C6-1 still owed.
+- `b1/kultur-freizeit`: `mc-eintritt-preise`'s key names *Schüler und Studenten*, which its
+  programme line does not say, and its explain says the line defines the group; the speaking
+  checklist's "*Bescheid* … closes the sentence" (an *ob*-clause follows it), the article's
+  "everything else stands before it" and the card's "never after" against colloquial
+  Ausklammerung; the *Vorstellung* note puts the idea sense only in *sich etwas vorstellen*
+  (*keine Vorstellung haben*); the EN *Häufige Fehler* says *Wir haben gut amüsiert* means the
+  audience was amused by us; still rejected, unattributed: the marked orders *Nur eine Stunde
+  dauerte die Führung* and *Wir warteten vor dem Saal lange*, *Sitzplätze* and *Eintrittskarten*
+  in the probe's variant-c, *den ersten Teil* for "the first half"; *Im kleinen Saal war es ein
+  gemütlicherer Abend* (drops the "we" both prompts now carry) is charged with its comparative
+  intact; a cloze charges its gap for a well-built comparative of the wrong adjective
+  (*besseren* for *schöneren*) — no cloze predicates exist; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

@@ -142,6 +142,24 @@ GitHub Release notes.
   - The *einschalten* card now asks for its own word, not *anmachen*'s.
   - Four card notes no longer teach something false (*Taste*, *ausdrucken*, *aufladen*,
     *hochladen*).
+- **B1.12 Kultur & Freizeit — quality pass.**
+  - Correct German is accepted in seven exercises, and no longer counted as a Präteritum or
+    comparative mistake:
+    - another word order (*Um sieben begann das Stück*, *Erst am Abend kauften wir …*,
+      *…, und dann saßen wir ganz hinten*);
+    - the course's own words (*Aufführung*, *Stück*, *Tickets*, *Sitzplätze*);
+    - the Perfekt where no tense is asked (*haben … gehabt*).
+  - In the Präteritum report sentences, only a wrong or missing verb form counts against the
+    Präteritum. A slip in agreement (*wir saß*, *das Publikum fanden*) no longer does.
+  - Two Russian and Ukrainian prompts now say "there is" and "we had", so they ask for the
+    comparison in front of the noun as the instruction does. One delayed check's translation
+    no longer says "better" where the gap wants *schöner*.
+  - The lesson no longer says that *holen* is only for things and *abholen* only for people,
+    that leftover tickets are sold only at the box office, or (RU/UK) that German never
+    compares with *mehr*.
+  - The *Bescheid sagen* and *gratis* cards now ask for their own word, not *Bescheid geben*'s
+    or *kostenlos*'s. Three card notes no longer teach something false (*Roman*, *Ballett*,
+    *Tanz*).
 
 ## [0.6.19] — 2026-10-11
 
