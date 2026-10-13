@@ -87,6 +87,11 @@ items:
       de: "Die beiden Genera verhalten sich verschieden, und eine Rechnung benutzt beide im selben Atemzug. Ein Neutrum trägt den Kasus mit: aus das wird des, und Material bekommt ein -s. Ein Femininum trägt gar nichts: aus die wird der, und Anfahrt bleibt genau wie zuvor. Die Endung ist also keine Regel über den Genitiv, sondern eine Tatsache über das Genus."
 
   - id: uebersetzen-genitiv-datum
+    # revision 2: in dieser Rechnung renders «на этом счёте» / "on this bill" as correctly as
+    # auf dieser Rechnung and was rejected. focus_evidence grades the genitive group behind
+    # Datum, not its position, so a slip elsewhere that shifts it is no longer charged; the
+    # wrong article, a feminine -s, von and the compound the instruction rules out still are.
+    revision: 2
     outcomes: [rechnung-pruefen]
     type: translate
     focus: genitiv-form
@@ -102,7 +107,12 @@ items:
     accept:
       # The place may lead; both are ordinary V2 and the graded pair does not move.
       - "Auf dieser Rechnung fehlt das Datum der Zahlung."
+      - "Das Datum der Zahlung fehlt in dieser Rechnung."
+      - "In dieser Rechnung fehlt das Datum der Zahlung."
     key_tokens: ["der", "Zahlung"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Datum\\s+(?:des|die|dem|den|das|von|vom)(?!\\p{L})", "(?<!\\p{L})Zahlungs(?!\\p{L})", "(?<!\\p{L})Zahlungsdatum"]
+      retained: ["(?<!\\p{L})Datum\\s+der\\s+Zahlung(?!\\p{L})"]
     explain:
       en: "Graded is the genitive group and nothing else: der Zahlung, where the article word changes and the feminine noun does not. Two other renderings are correct German and neither is what a bill prints — von der Zahlung is the spoken route the source languages suggest, and das Zahlungsdatum packs both nouns into one word. The instruction asks for the written form, because that is the form this line is in."
       ru: "Оценивается родительная группа и ничего больше: der Zahlung, где меняется артикль, а существительное женского рода — нет. Два других варианта тоже правильный немецкий, но ни один не печатают на счёте: von der Zahlung — разговорный обход, к которому толкает русский, а das Zahlungsdatum складывает оба существительных в одно слово. Инструкция просит письменную форму, потому что строка стоит именно в ней."
@@ -168,6 +178,12 @@ items:
       de: "Nach einem Modalverb steht jedes Verb im Infinitiv, also schließt der Satz mit zweien davon in fester Reihenfolge: zuerst das Partizip II, werden ganz am Ende. wird in der letzten Lücke ist der Fehler, zu dem diese Form verführt, denn das Ohr erwartet irgendwo ein konjugiertes Verb — diese Arbeit hat das Modalverb schon erledigt. Und es heißt werden, nie sein: sein meldete einen Zustand statt einer Regel."
 
   - id: uebersetzen-passiv-frist
+    # revision 2: bis zum Freitag renders the deadline as correctly as bis Freitag (the B1.7 and
+    # B1.8 precedent). focus_evidence grades the frame, not its position: wird, sein, werden
+    # before the participle or not closing the clause, müssen against die Rechnung, the
+    # infinitive in the participle's slot, and the active with man the instruction rules out.
+    # A slip elsewhere, or another verb in the right frame, is no longer charged to the tag.
+    revision: 2
     outcomes: [vertrag-nachfragen]
     type: translate
     focus: passiv-modal
@@ -183,7 +199,12 @@ items:
     accept:
       # The deadline may lead; both are ordinary V2 and the closing pair is untouched.
       - "Bis Freitag muss die Rechnung bezahlt werden."
+      - "Die Rechnung muss bis zum Freitag bezahlt werden."
+      - "Bis zum Freitag muss die Rechnung bezahlt werden."
     key_tokens: ["muss", "bezahlt", "werden"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})werden(?!\\p{L}))", "(?<!\\p{L})wird(?!\\p{L})", "(?<!\\p{L})werden\\s+\\p{L}", "(?<!\\p{L})müssen(?!\\p{L})", "(?<!\\p{L})sein$", "(?<!\\p{L})bezahlen\\s+werden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})muss(?!\\p{L})", "(?<!\\p{L})bezahlt\\s+werden$"]
     explain:
       en: "Graded are the three anchors of the form: muss agreeing with die Rechnung, and the passive infinitive bezahlt werden closing the clause in exactly that order. Everything between them is carrier. The alternative a hand reaches for is the active with man — Man muss die Rechnung bis Freitag bezahlen — which says the same thing and is not how a condition is written down."
       ru: "Оцениваются три якоря формы: muss, согласованный с die Rechnung, и пассивный инфинитив bezahlt werden, закрывающий предложение именно в этом порядке. Всё между ними — носитель. Вариант, к которому тянется рука, — актив с man: Man muss die Rechnung bis Freitag bezahlen. Смысл тот же, но условие записывают не так."
@@ -191,6 +212,12 @@ items:
       de: "Bewertet werden die drei Anker der Form: muss, passend zu die Rechnung, und der Passiv-Infinitiv bezahlt werden, der den Satz genau in dieser Reihenfolge schließt. Alles dazwischen ist Träger. Die Fassung, zu der die Hand greift, ist das Aktiv mit man — Man muss die Rechnung bis Freitag bezahlen —, dasselbe Sagen und nicht die Schreibweise einer Bedingung."
 
   - id: uebersetzen-nachfrage-indirekt
+    # revision 2: wie lang is accepted beside wie lange — the course's own A2 card
+    # (zeitadverbien-a2 `lang`) teaches the two as interchangeable time adverbs, and the item
+    # was showing a spelling correction for it. focus_evidence grades where the finite verb
+    # stands, not which one: gilt at the end keeps the rule the tag names, while ist or gilt
+    # before anything else — the direct-question order — is the error.
+    revision: 2
     outcomes: [vertrag-nachfragen]
     type: translate
     focus: indirekte-frage
@@ -206,7 +233,12 @@ items:
     accept:
       # bitte is ordinary counter politeness and moves nothing that is graded.
       - "Können Sie mir bitte sagen, wie lange der Preis gültig ist?"
+      - "Können Sie mir sagen, wie lang der Preis gültig ist?"
+      - "Können Sie mir bitte sagen, wie lang der Preis gültig ist?"
     key_tokens: ["ist"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:ist|gilt)\\s+\\p{L}"]
+      retained: ["(?<!\\p{L})(?:ist|gilt)$"]
     explain:
       en: "Graded is the position of ist. A direct question puts the verb second — Wie lange ist der Preis gültig? — but the moment it is packed behind Können Sie mir sagen it becomes a Nebensatz, and the finite verb drops to the very end. English keeps its word order in both, so nothing warns the hand. The wrapper is worth the trouble at a counter: it turns a demand into a request."
       ru: "Оценивается позиция ist. В прямом вопросе глагол стоит на втором месте — Wie lange ist der Preis gültig? — но, попав за Können Sie mir sagen, вопрос становится придаточным, и спрягаемый глагол уходит в самый конец. По-русски порядок слов при этом не меняется, так что рука ничего не подсказывает. Обёртка у стойки стоит усилий: она превращает требование в просьбу."
@@ -235,6 +267,13 @@ items:
       de: "der Kunde gehört zu der kleinen Familie maskuliner Personennomen, die mit ihrem Artikel mitdeklinieren: -(e)n in jedem Kasus außer dem Nominativ Singular, weshalb den Kunden und dem Kunden gleich aussehen und nur das Artikelwort sie trennt. Die zweite Person im Satz macht das nicht mit — der Anbieter endet auf -er und bleibt der Anbieter, dem Anbieter, den Anbieter."
 
   - id: uebersetzen-kunde-tarif
+    # revision 2: the English prompt's order, den zweiten Tarif dem Kunden (a known object
+    # before the person), is correct German and was charged to the tag with dem Kunden intact.
+    # focus_evidence grades the noun's ending and nothing else: bare Kunde fails, Kunden is
+    # retained, so a case slip on the article (den Kunden — dativ-artikel's error) or an order
+    # that moves the pair is no longer logged as n-deklination. A misspelt stem with the -en
+    # in place (Kinden) is not the tag's error either and goes unattributed.
+    revision: 2
     outcomes: [kosten-vergleichen]
     type: translate
     focus: n-deklination
@@ -247,7 +286,12 @@ items:
     prompt_ru: "Оператор объясняет клиенту второй тариф."
     prompt_uk: "Оператор пояснює клієнтові другий тариф."
     answer: "Der Anbieter erklärt dem Kunden den zweiten Tarif."
+    accept:
+      - "Der Anbieter erklärt den zweiten Tarif dem Kunden."
     key_tokens: ["dem", "Kunden"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Kunde(?!\\p{L})"]
+      retained: ["(?<!\\p{L})Kunden(?!\\p{L})"]
     explain:
       en: "Graded is the dative of der Kunde, both halves of it: the article word dem and the -n the noun itself takes. English marks the case with a preposition and nothing on the noun, so the ending never gets typed — dem Kunde is the miss. The ending is fixed to the word rather than to the article, so it stays put after einem, diesem or unserem alike."
       ru: "Оценивается датив der Kunde, обе его половины: артикль dem и то -n, которое берёт само существительное. Русский показывает падеж окончанием, но немецкое -n при этом всё равно исчезает — dem Kunde и есть промах. Окончание закреплено за словом, а не за артиклем, поэтому остаётся и после einem, diesem или unserem."
@@ -255,14 +299,24 @@ items:
       de: "Bewertet wird der Dativ von der Kunde, und zwar beide Hälften: das Artikelwort dem und das -n, das das Nomen selbst nimmt. Die Ausgangssprachen markieren den Kasus anders, also fällt die Endung beim Tippen weg — dem Kunde ist der Fehlgriff. Die Endung hängt am Wort und nicht am Artikel, sie bleibt also auch nach einem, diesem oder unserem."
 
   - id: uebersetzen-tarif-vergleich
+    # revision 2: "over the year" / «за год» / «за рік» left the time phrase open (pro Jahr,
+    # jährlich, übers Jahr — the DE instruction itself said übers ganze Jahr; logged: Jahrig,
+    # Bei zweitern Jahr), so the instruction now names im Jahr. billig is the course's own card
+    # for «дешёвый» and its placement item accepts billiger for this comparison, so both
+    # adjectives are named and accepted, and als der erste Tarif — the noun repeated — is
+    # correct German that was rejected (logged with den ersten Tarif, a case error, ruled
+    # 2026-08-11). focus_evidence grades the comparison only: wie, mehr + Adjektiv, the
+    # positive before als, or no als at all fail; a comparative with als is retained, so the
+    # logged billiger als, which was charged, is not.
+    revision: 2
     outcomes: [kosten-vergleichen]
     type: translate
     focus: komparativ-als
     instruction:
-      en: "Compare the two plans over a whole year. For 'cheap' take günstig, for 'plan' der Tarif."
-      ru: "Сравните два тарифа за целый год. Для «дешёвый» возьмите günstig, для «тариф» — der Tarif."
-      uk: "Порівняйте два тарифи за цілий рік. Для «дешевий» візьміть günstig, для «тариф» — der Tarif."
-      de: "Vergleich die beiden Angebote übers ganze Jahr. Für preiswert nimm günstig, für das Angebot der Tarif."
+      en: "Compare the two plans over a whole year — write 'over the year' as im Jahr. For 'cheap' take günstig or billig, for 'plan' der Tarif."
+      ru: "Сравните два тарифа за целый год — «за год» передайте как im Jahr. Для «дешёвый» возьмите günstig или billig, для «тариф» — der Tarif."
+      uk: "Порівняйте два тарифи за цілий рік — «за рік» передайте як im Jahr. Для «дешевий» візьміть günstig або billig, для «тариф» — der Tarif."
+      de: "Vergleich die beiden Angebote übers ganze Jahr — schreib dafür im Jahr. Für preiswert nimm günstig oder billig, für das Angebot der Tarif."
     prompt_en: "Over the year the second plan is cheaper than the first."
     prompt_ru: "За год второй тариф дешевле первого."
     prompt_uk: "За рік другий тариф дешевший за перший."
@@ -270,12 +324,21 @@ items:
     accept:
       # The time phrase may lead; both are ordinary V2 and the graded pair does not move.
       - "Im Jahr ist der zweite Tarif günstiger als der erste."
-    key_tokens: ["günstiger", "als"]
+      - "Der zweite Tarif ist im Jahr günstiger als der erste Tarif."
+      - "Im Jahr ist der zweite Tarif günstiger als der erste Tarif."
+      - "Der zweite Tarif ist im Jahr billiger als der erste."
+      - "Im Jahr ist der zweite Tarif billiger als der erste."
+      - "Der zweite Tarif ist im Jahr billiger als der erste Tarif."
+      - "Im Jahr ist der zweite Tarif billiger als der erste Tarif."
+    key_tokens: ["günstiger", "billiger", "als"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})wie(?!\\p{L})", "(?<!\\p{L})mehr\\s+(?:günstig|billig)", "(?<!\\p{L})(?:günstig|billig)\\s+als(?!\\p{L})", "^(?!.*(?<!\\p{L})als(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})(?:günstiger|billiger)\\s+als(?!\\p{L})"]
     explain:
-      en: "Graded are the comparative and the word that carries the comparison: günstig plus -er, and als in front of what it is measured against. English keeps both words too, but several other languages fold the comparison into a case ending and need no separate word at all, so als is what goes missing; wie is the other miss, and it means as … as rather than more than."
-      ru: "Оцениваются сравнительная степень и слово, несущее сравнение: günstig плюс -er и als перед тем, с чем сравнивают. Русский сравнивает падежом — «дешевле первого» — и отдельного слова не требует вовсе, поэтому als и пропадает; второй промах — wie, но оно значит «такой же, как», а не «более чем»."
-      uk: "Оцінюються вищий ступінь і слово, що несе порівняння: günstig плюс -er і als перед тим, із чим порівнюють. Українська порівнює прийменником — «дешевший за перший» — і окремого слова не потребує зовсім, тому als і зникає; другий промах — wie, але воно означає «такий самий, як», а не «більш ніж»."
-      de: "Bewertet werden der Komparativ und das Wort, das den Vergleich trägt: günstig plus -er und als vor dem, womit verglichen wird. Die Ausgangssprachen vergleichen mit einer Endung oder einer Präposition und brauchen gar kein eigenes Wort, also fällt als weg; der zweite Fehlgriff ist wie, das so … wie meint und nicht mehr als."
+      en: "Graded are the comparative and the word that carries the comparison: günstig or billig plus -er, and als in front of what it is measured against. English keeps both words too, but several other languages fold the comparison into a case ending and need no separate word at all, so als is what goes missing; wie is the other miss, and it means as … as rather than more than."
+      ru: "Оцениваются сравнительная степень и слово, несущее сравнение: günstig или billig плюс -er и als перед тем, с чем сравнивают. Русский сравнивает падежом — «дешевле первого» — и отдельного слова не требует вовсе, поэтому als и пропадает; второй промах — wie, но оно значит «такой же, как», а не «более чем»."
+      uk: "Оцінюються вищий ступінь і слово, що несе порівняння: günstig або billig плюс -er і als перед тим, із чим порівнюють. Українська часто обходиться прийменником — «дешевший за перший», — без сполучника на кшталт «ніж», тому als і зникає; другий промах — wie, але воно означає «такий самий, як», а не «більш ніж»."
+      de: "Bewertet werden der Komparativ und das Wort, das den Vergleich trägt: günstig oder billig plus -er und als vor dem, womit verglichen wird. Die Ausgangssprachen kommen oft mit einer Kasusendung oder einer Präposition aus, also fällt als weg; der zweite Fehlgriff ist wie, das so … wie meint und nicht mehr als."
 
   - id: mc-vergleich-basis
     outcomes: [kosten-vergleichen]

@@ -33,6 +33,14 @@
 # modal, the Partizip II and werden. What stands between them is free, and the fronted
 # rendering is accepted where the prompt invites it — that is Position 1 being filled, the
 # A1 verbzweit rule and not this tag.
+# Pins are also graded by position, so a verb-second slip that moved the modal was charged
+# here too. Every variant therefore carries `focus_evidence` read off the frame the tag
+# names: no werden at all (the active with man the instruction rules out included), a
+# conjugated wird, werden before the participle or not closing the clause, sein for werden,
+# the modal not agreeing, the infinitive in the participle's slot, and in variant-c the
+# modal anywhere but last. The frame with the exact participle is retained; a misspelt
+# participle in an intact frame (logged: unterschieben, ünerweisen) is partizip2-form's
+# question, not this tag's, and stays unattributed.
 #
 # Content fresh against the taught surface, checked by grepping each participle across the
 # unit's six files rather than by re-reading this list. The unit's taught modal passives
@@ -63,6 +71,10 @@ arming:
   - b1/geld-vertraege-produktion::uebersetzen-bedingung-passiv
 items:
   - id: variant-a
+    # revision 2: Online kann der Vertrag auch unterschrieben werden — the manner phrase
+    # fronted and auch left in the middle field — is correct German and was charged to the
+    # tag with all three anchors intact.
+    revision: 2
     outcomes: [vertrag-nachfragen]
     type: translate
     focus: passiv-modal
@@ -78,7 +90,11 @@ items:
     accept:
       # The manner phrase may lead; both are ordinary V2 and the closing pair is untouched.
       - "Auch online kann der Vertrag unterschrieben werden."
+      - "Online kann der Vertrag auch unterschrieben werden."
     key_tokens: ["kann", "unterschrieben", "werden"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})werden(?!\\p{L}))", "(?<!\\p{L})wird(?!\\p{L})", "(?<!\\p{L})werden\\s+\\p{L}", "(?<!\\p{L})können(?!\\p{L})", "(?<!\\p{L})sein$", "(?<!\\p{L})unterschreiben\\s+werden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})kann(?!\\p{L})", "(?<!\\p{L})unterschrieben\\s+werden$"]
     explain:
       en: "Three graded forms. kann is the only conjugated verb and agrees with der Vertrag; unterschrieben is the participle of an inseparable verb, so no ge- appears anywhere in it; and werden closes the clause behind it, in its dictionary form, because after a modal every verb is an infinitive. wird there is the standing error — the ear wants a second conjugated verb, and the modal has already been it."
       ru: "Три оцениваемые формы. kann — единственный спрягаемый глагол, и он согласуется с der Vertrag; unterschrieben — причастие неотделяемого глагола, поэтому никакого ge- в нём нет; а werden закрывает предложение следом, в словарной форме, потому что после модального глагола все глаголы стоят в инфинитиве. wird на этом месте — постоянная ошибка: слух требует второго спрягаемого глагола, а им уже был модальный."
@@ -86,6 +102,10 @@ items:
       de: "Drei bewertete Formen. kann ist das einzige konjugierte Verb und richtet sich nach der Vertrag; unterschrieben ist das Partizip eines untrennbaren Verbs, also taucht darin kein ge- auf; und werden schließt den Satz dahinter, in der Grundform, denn nach einem Modalverb steht jedes Verb im Infinitiv. wird an dieser Stelle ist der stehende Fehler — das Ohr will ein zweites konjugiertes Verb, und das war das Modalverb schon."
 
   - id: variant-b
+    # revision 2: «Обе суммы» / «Обидві суми» / "Both amounts" leave die beiden as open as
+    # beide, and bis zum Montag renders the deadline as correctly as bis Montag; all were
+    # rejected, the reordered ones charged to the tag.
+    revision: 2
     outcomes: [vertrag-nachfragen]
     type: translate
     focus: passiv-modal
@@ -101,7 +121,16 @@ items:
     accept:
       # The deadline may lead; both are ordinary V2 and the closing pair does not move.
       - "Bis Montag müssen beide Beträge überwiesen werden."
+      - "Die beiden Beträge müssen bis Montag überwiesen werden."
+      - "Bis Montag müssen die beiden Beträge überwiesen werden."
+      - "Beide Beträge müssen bis zum Montag überwiesen werden."
+      - "Bis zum Montag müssen beide Beträge überwiesen werden."
+      - "Die beiden Beträge müssen bis zum Montag überwiesen werden."
+      - "Bis zum Montag müssen die beiden Beträge überwiesen werden."
     key_tokens: ["müssen", "überwiesen", "werden"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})werden(?!\\p{L}))", "(?<!\\p{L})wird(?!\\p{L})", "(?<!\\p{L})werden\\s+\\p{L}", "(?<!\\p{L})muss(?!\\p{L})", "(?<!\\p{L})sein$", "(?<!\\p{L})überweisen\\s+werden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})müssen(?!\\p{L})", "(?<!\\p{L})überwiesen\\s+werden$"]
     explain:
       en: "The number is the cell here: the modal agrees with what the sentence is about, and that is beide Beträge, so it is müssen and not muss. Nothing else in the frame moves with it — überwiesen werden closes the clause exactly as it did in the singular, because both of them are infinitives and infinitives do not agree with anything."
       ru: "Здесь проверяется число: модальный глагол согласуется с тем, о чём предложение, а это beide Beträge, значит müssen, а не muss. Всё остальное в рамке за ним не меняется — überwiesen werden закрывает предложение ровно так же, как и в единственном числе, потому что оба стоят в инфинитиве, а инфинитивы ни с чем не согласуются."
@@ -125,6 +154,9 @@ items:
       # jedes Jahr and jährlich name the same interval and neither touches the graded three.
       - "Ich möchte wissen, ob der Preis jährlich erhöht werden darf."
     key_tokens: ["erhöht", "werden", "darf"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})werden(?!\\p{L}))", "(?<!\\p{L})wird(?!\\p{L})", "(?<!\\p{L})(?:darf|dürfen)\\s+\\p{L}", "(?<!\\p{L})werden\\s+(?!darf(?!\\p{L}))\\p{L}", "(?<!\\p{L})dürfen(?!\\p{L})", "(?<!\\p{L})sein\\s+darf(?!\\p{L})", "(?<!\\p{L})erhöhen\\s+werden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})erhöht\\s+werden\\s+darf$"]
     explain:
       en: "Inside a Nebensatz the whole stack moves to the wall and the order inverts: the pair erhöht werden stays glued exactly as it was, and the conjugated darf goes behind it, last of the three. That is the one place where the modal is not the second word of anything, and it is the shape a question about a contract usually arrives in — wrapped in Ich möchte wissen, ob …"
       ru: "В придаточном вся стопка уезжает к стене, и порядок внутри неё переворачивается: пара erhöht werden остаётся склеенной точно как была, а спрягаемое darf становится за ней, последним из трёх. Это единственное место, где модальный глагол не стоит вторым, — и именно так обычно и приходит вопрос о договоре, завёрнутый в Ich möchte wissen, ob …"
