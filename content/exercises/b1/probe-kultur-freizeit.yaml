@@ -31,6 +31,16 @@
 # errors to this one. Each variant holds one strong verb and one weak, so the two halves
 # of the rule — the bare vowel change and the -te — are measured at every delay.
 #
+# Revision 2 (topic-quality pass): the pins also graded *position*, so a correct line in
+# another order (*…, und dann saßen wir ganz hinten*; *Erst am Abend kauften wir …*) was
+# charged to this tag with both forms intact, and the course's own siblings (*Aufführung*,
+# *Stück*, *Tickets*, *eine Tasse Kaffee*) were rejected. The accepts now close over the
+# fronted adverbial, the und-clause with its own subject and those carriers, and every
+# variant carries `focus_evidence`: it fails only when a verb's Präteritum stem is
+# missing — a weak -te on a strong verb, a wrong vowel, the Perfekt the instruction rules
+# out, a misspelt stem (*sassen*: the course writes ß) — and reads the stem with either
+# number ending as retained, because agreement (*wir saß*) is not this tag's decision.
+#
 # Content fresh against the taught surface, checked by grepping each verb across the unit's
 # six files rather than by re-reading this list. The unit's taught Präteritum runs on war,
 # klatschte, spielte, gefiel, gingen/ging, sprach, lobte, kritisierten, standen and dauerte
@@ -60,6 +70,7 @@ arming:
   - b1/kultur-freizeit-produktion::uebersetzen-bericht-plaetze
 items:
   - id: variant-a
+    revision: 2
     outcomes: [erlebnis-bewerten]
     type: translate
     focus: praeteritum-vollverben
@@ -73,11 +84,25 @@ items:
     prompt_uk: "Ми довго чекали перед залою, а потім сиділи в самому кінці."
     answer: "Wir warteten lange vor dem Saal und saßen dann ganz hinten."
     accept:
-      # danach says the same thing as dann and neither touches the graded pair.
+      # danach says the same thing as dann and neither touches the graded pair. The
+      # duration or the place may lead the first half, and the second half may be its own
+      # clause behind und, with dann or danach in front — every cell of that grid is
+      # ordinary German (the und-clause was logged charged to this tag with saßen intact).
       - "Wir warteten lange vor dem Saal und saßen danach ganz hinten."
-      # The duration may lead; both are ordinary V2.
+      - "Wir warteten lange vor dem Saal, und dann saßen wir ganz hinten."
+      - "Wir warteten lange vor dem Saal, und danach saßen wir ganz hinten."
       - "Lange warteten wir vor dem Saal und saßen dann ganz hinten."
+      - "Lange warteten wir vor dem Saal und saßen danach ganz hinten."
+      - "Lange warteten wir vor dem Saal, und dann saßen wir ganz hinten."
+      - "Lange warteten wir vor dem Saal, und danach saßen wir ganz hinten."
+      - "Vor dem Saal warteten wir lange und saßen dann ganz hinten."
+      - "Vor dem Saal warteten wir lange und saßen danach ganz hinten."
+      - "Vor dem Saal warteten wir lange, und dann saßen wir ganz hinten."
+      - "Vor dem Saal warteten wir lange, und danach saßen wir ganz hinten."
     key_tokens: ["warteten", "saßen"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})wartete(?:n)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})saß(?:en)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})wartete(?:n)?(?!\\p{L})", "(?<!\\p{L})saß(?:en)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs, one of each class. warten is weak: the stem stays and takes -te, with an extra e because the stem ends in t — warteten. sitzen is strong: the vowel changes to a and no ending is added at all — saßen. A hand that writes sitzten has applied the weak rule to a strong verb, which is the single error this check exists to see."
       ru: "Оцениваются два полнозначных глагола, по одному каждого класса. warten — слабый: основа сохраняется и берёт -te, с добавочным e, потому что основа кончается на t: warteten. sitzen — сильный: гласная меняется на a, и никакого окончания не добавляется вовсе: saßen. Рука, написавшая sitzten, применила слабое правило к сильному глаголу — ровно ту ошибку, ради которой эта проверка и существует."
@@ -85,6 +110,7 @@ items:
       de: "Bewertet werden die zwei Vollverben, je eines pro Klasse. warten ist schwach: Der Stamm bleibt und nimmt -te, mit einem zusätzlichen e, weil der Stamm auf t endet — warteten. sitzen ist stark: Der Vokal wird zu a, und eine Endung kommt gar nicht dazu — saßen. Wer sitzten schreibt, hat die schwache Regel auf ein starkes Verb angewandt, und genau dafür gibt es diese Kontrolle."
 
   - id: variant-b
+    revision: 2
     outcomes: [erlebnis-bewerten]
     type: translate
     focus: praeteritum-vollverben
@@ -98,13 +124,32 @@ items:
     prompt_uk: "Після вистави ми випили кави і багато сміялися."
     answer: "Nach der Vorstellung tranken wir einen Kaffee und lachten viel."
     accept:
-      # The subject may lead; the graded pair does not move with it.
+      # The subject may lead; the graded pair does not move with it. RU and UK mark no
+      # article on the drink, and German drinks coffee with and without one, or by the cup.
+      # «спектакль» / «вистава» is das Stück in this unit's own instruction
+      # (uebersetzen-stueck-begann), and die Aufführung is the noun its deck gives to
+      # aufführen — so the grid is three nouns × three coffees × two subject positions.
       - "Wir tranken nach der Vorstellung einen Kaffee und lachten viel."
-      # RU and UK mark no article on the drink, and German drinks coffee with and without
-      # one; the graded pair is untouched either way.
       - "Nach der Vorstellung tranken wir Kaffee und lachten viel."
       - "Wir tranken nach der Vorstellung Kaffee und lachten viel."
+      - "Nach der Vorstellung tranken wir eine Tasse Kaffee und lachten viel."
+      - "Wir tranken nach der Vorstellung eine Tasse Kaffee und lachten viel."
+      - "Nach der Aufführung tranken wir einen Kaffee und lachten viel."
+      - "Wir tranken nach der Aufführung einen Kaffee und lachten viel."
+      - "Nach der Aufführung tranken wir Kaffee und lachten viel."
+      - "Wir tranken nach der Aufführung Kaffee und lachten viel."
+      - "Nach der Aufführung tranken wir eine Tasse Kaffee und lachten viel."
+      - "Wir tranken nach der Aufführung eine Tasse Kaffee und lachten viel."
+      - "Nach dem Stück tranken wir einen Kaffee und lachten viel."
+      - "Wir tranken nach dem Stück einen Kaffee und lachten viel."
+      - "Nach dem Stück tranken wir Kaffee und lachten viel."
+      - "Wir tranken nach dem Stück Kaffee und lachten viel."
+      - "Nach dem Stück tranken wir eine Tasse Kaffee und lachten viel."
+      - "Wir tranken nach dem Stück eine Tasse Kaffee und lachten viel."
     key_tokens: ["tranken", "lachten"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})trank(?:en)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})lachte(?:n)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})trank(?:en)?(?!\\p{L})", "(?<!\\p{L})lachte(?:n)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs. trinken is strong, so the vowel changes and nothing is added — tranken, never trinkte. lachen is weak and keeps its stem under the -te — lachten. The two forms look nothing alike, and that is the point: German decides between them per verb, and the ending you know from lachen is the one that gets put on trinken by mistake."
       ru: "Оцениваются два полнозначных глагола. trinken — сильный, поэтому меняется гласная и ничего не добавляется: tranken, но никогда trinkte. lachen — слабый и сохраняет основу под -te: lachten. Формы совсем не похожи, и в этом всё дело: немецкий решает по каждому глаголу отдельно, а окончание, знакомое по lachen, по ошибке приставляют к trinken."
@@ -112,6 +157,7 @@ items:
       de: "Bewertet werden die zwei Vollverben. trinken ist stark, also wechselt der Vokal und es kommt nichts dazu — tranken, nie trinkte. lachen ist schwach und behält seinen Stamm unter dem -te — lachten. Die beiden Formen sehen einander gar nicht ähnlich, und genau darum geht es: Deutsch entscheidet pro Verb, und die Endung von lachen wandert irrtümlich an trinken."
 
   - id: variant-c
+    revision: 2
     outcomes: [erlebnis-bewerten]
     type: translate
     focus: praeteritum-vollverben
@@ -125,13 +171,42 @@ items:
     prompt_uk: "Квитки ми купили лише ввечері і все одно дістали гарні місця."
     answer: "Wir kauften die Karten erst am Abend und bekamen trotzdem gute Plätze."
     accept:
-      # RU and UK front the object and mark no definiteness on a bare noun; both
-      # renderings leave the graded pair exactly where it is.
+      # RU and UK front the object and mark no definiteness on a bare noun; erst am Abend
+      # may lead too; the second half may be its own clause behind und, with trotzdem
+      # first or mid-clause (both logged forms charged this tag with bekamen intact at
+      # revision 1); and das Ticket is the course's own card for an event ticket (A1
+      # reisen-urlaub — its Karte card is a greeting card). Four first halves × three
+      # second halves × two nouns. Sitzplätze is left out on purpose: gute Plätze
+      # bekommen is the unit's collocation, and focus_evidence keeps it unattributed.
+      - "Wir kauften die Karten erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Wir kauften die Karten erst am Abend, und wir bekamen trotzdem gute Plätze."
       - "Die Karten kauften wir erst am Abend und bekamen trotzdem gute Plätze."
+      - "Die Karten kauften wir erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Die Karten kauften wir erst am Abend, und wir bekamen trotzdem gute Plätze."
+      - "Erst am Abend kauften wir die Karten und bekamen trotzdem gute Plätze."
+      - "Erst am Abend kauften wir die Karten, und trotzdem bekamen wir gute Plätze."
+      - "Erst am Abend kauften wir die Karten, und wir bekamen trotzdem gute Plätze."
       - "Wir kauften Karten erst am Abend und bekamen trotzdem gute Plätze."
+      - "Wir kauften Karten erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Wir kauften Karten erst am Abend, und wir bekamen trotzdem gute Plätze."
+      - "Wir kauften die Tickets erst am Abend und bekamen trotzdem gute Plätze."
+      - "Wir kauften die Tickets erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Wir kauften die Tickets erst am Abend, und wir bekamen trotzdem gute Plätze."
+      - "Die Tickets kauften wir erst am Abend und bekamen trotzdem gute Plätze."
+      - "Die Tickets kauften wir erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Die Tickets kauften wir erst am Abend, und wir bekamen trotzdem gute Plätze."
+      - "Erst am Abend kauften wir die Tickets und bekamen trotzdem gute Plätze."
+      - "Erst am Abend kauften wir die Tickets, und trotzdem bekamen wir gute Plätze."
+      - "Erst am Abend kauften wir die Tickets, und wir bekamen trotzdem gute Plätze."
+      - "Wir kauften Tickets erst am Abend und bekamen trotzdem gute Plätze."
+      - "Wir kauften Tickets erst am Abend, und trotzdem bekamen wir gute Plätze."
+      - "Wir kauften Tickets erst am Abend, und wir bekamen trotzdem gute Plätze."
     key_tokens: ["kauften", "bekamen"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})kaufte(?:n)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})bekam(?:en)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})kaufte(?:n)?(?!\\p{L})", "(?<!\\p{L})bekam(?:en)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs. kaufen is weak: stem plus -te, kauften. bekommen is strong and inseparable, so the vowel changes and no ge- and no -te appear anywhere — bekamen. The prefix hides the strong verb inside it, which is why bekommte is the form a hand reaches for: kommen is visibly strong, bekommen is the same verb wearing a prefix."
       ru: "Оцениваются два полнозначных глагола. kaufen — слабый: основа плюс -te, kauften. bekommen — сильный и неотделяемый, поэтому гласная меняется, а никакого ge- и никакого -te не появляется: bekamen. Приставка прячет сильный глагол внутри, и потому рука тянется к bekommte: kommen сильный на вид, а bekommen — тот же глагол под приставкой."
       uk: "Оцінюються два повнозначні дієслова. kaufen — слабке: основа плюс -te, kauften. bekommen — сильне й невідокремлюване, тому голосний змінюється, а жодного ge- і жодного -te не з'являється: bekamen. Префікс ховає сильне дієслово всередині, і тому рука тягнеться до bekommte: kommen сильне на вигляд, а bekommen — те саме дієслово під префіксом."
-      de: "Bewertet werden die zwei Vollverben. kaufen ist schwach: Stamm plus -te, kauften. bekommen ist stark und untrennbar, also wechselt der Vokal, und weder ein ge- noch ein -te taucht auf — bekamen. Der Präfix versteckt das starke Verb, und deshalb greift die Hand zu bekommte: kommen sieht stark aus, bekommen ist dasselbe Verb mit einer Vorsilbe."
+      de: "Bewertet werden die zwei Vollverben. kaufen ist schwach: Stamm plus -te, kauften. bekommen ist stark und untrennbar, also wechselt der Vokal, und weder ein ge- noch ein -te taucht auf — bekamen. Das Präfix versteckt das starke Verb, und deshalb greift die Hand zu bekommte: kommen sieht stark aus, bekommen ist dasselbe Verb mit einer Vorsilbe."
