@@ -9,30 +9,46 @@ title:
 # whether a general plural takes an article, and what a form label looks like. Two are non-mc.
 items:
   - id: genitiv-nach-wegen
+    # revision 2: the noun gap named nothing, so «заявление» left the noun open and a correct
+    # genitive with another noun (logged: der / Meldung) was marked wrong; der Antrag is now
+    # named, and des Antrages, the same genitive in its long form, is accepted.
+    revision: 2
     outcomes: [frist-nennen]
     type: cloze
     instruction:
-      en: "Fill in the article and the noun in the form a written application uses."
-      ru: "Вставьте артикль и существительное в форме, которую использует письменное заявление."
-      uk: "Вставте артикль та іменник у формі, яку вживає письмова заява."
-    text: "Wegen {{des}} {{Antrags}} brauchen wir noch Unterlagen."
+      en: "Fill in the article and the noun der Antrag in the form a written application uses."
+      ru: "Вставьте артикль и существительное der Antrag в форме, которую использует письменное заявление."
+      uk: "Вставте артикль та іменник der Antrag у формі, яку вживає письмова заява."
+    text: "Wegen {{des}} {{Antrags|Antrages}} brauchen wir noch Unterlagen."
     translation:
       en: "Because of the application we still need documents."
       ru: "В связи с заявлением нам ещё нужны документы."
       uk: "У зв'язку із заявою нам ще потрібні документи."
     explain:
-      en: "*Wegen* governs the genitive in written German, and a masculine noun shows it twice — on the article (*des*) and on the noun itself (*Antrags*). Dropping the *-s* is the commonest wrong form. You will hear *wegen dem Antrag* constantly in speech; that is the spoken register, not an error, and not what a letter uses."
-      ru: "*Wegen* в письменном немецком управляет генитивом, и существительное мужского рода показывает это дважды — на артикле (*des*) и на самом слове (*Antrags*). Потеря *-s* — самая частая неверная форма. В речи вы постоянно будете слышать *wegen dem Antrag*: это разговорный регистр, не ошибка, — но и не то, чем пишут письма."
-      uk: "*Wegen* у писемній німецькій керує родовим, і іменник чоловічого роду показує це двічі — на артиклі (*des*) і на самому слові (*Antrags*). Втрата *-s* — найчастіша хибна форма. У мовленні ви постійно чутимете *wegen dem Antrag*: це розмовний регістр, не помилка, — але й не те, чим пишуть листи."
+      en: "*Wegen* governs the genitive in written German, and a masculine noun shows it twice — on the article (*des*) and on the noun itself (*Antrags*). Dropping the *-s* is the error to watch for. You will hear *wegen dem Antrag* constantly in speech; that is the spoken register, not an error, and not what a letter uses."
+      ru: "*Wegen* в письменном немецком управляет генитивом, и существительное мужского рода показывает это дважды — на артикле (*des*) и на самом слове (*Antrags*). За потерей *-s* и стоит следить. В речи вы постоянно будете слышать *wegen dem Antrag*: это разговорный регистр, не ошибка, — но и не то, чем пишут письма."
+      uk: "*Wegen* у писемній німецькій керує родовим, і іменник чоловічого роду показує це двічі — на артиклі (*des*) і на самому слові (*Antrags*). За втратою *-s* і варто стежити. У мовленні ви постійно чутимете *wegen dem Antrag*: це розмовний регістр, не помилка, — але й не те, чим пишуть листи."
 
   - id: nullartikel-plural
+    # revision 2: Nachweis is on no Goethe list and in no deck, EN "evidence" leaves the number
+    # open, and RU/UK mark no definiteness, so «подтверждения» admitted die Nachweise — the very
+    # decision the item asks about. The instruction now names the noun and its plural and says
+    # what the reader knows; zu and the genitive are accepted beside über.
+    revision: 2
     outcomes: [behoerdenbrief-verstehen]
     type: translate
     key_tokens: ["Nachweise"]
+    instruction:
+      en: "Use the plural of der Nachweis (proof). It is the office's first letter: no particular documents have been named yet."
+      ru: "Используйте множественное число от der Nachweis (подтверждение). Это первое письмо учреждения: никакие конкретные документы ещё не назывались."
+      uk: "Використайте множину від der Nachweis (підтвердження). Це перший лист установи: жодні конкретні документи ще не називалися."
     prompt_en: "We need evidence of your income."
     prompt_ru: "Нам нужны подтверждения вашего дохода."
     prompt_uk: "Нам потрібні підтвердження вашого доходу."
     answer: "Wir brauchen Nachweise über Ihr Einkommen."
+    accept:
+      - "Wir brauchen Nachweise zu Ihrem Einkommen."
+      - "Wir brauchen Nachweise Ihres Einkommens."
     explain:
       en: "A general plural takes no article at all. *Die Nachweise* would point at particular documents both sides already know about, which in a first letter is not yet true — so the bare plural is the one that means *some, whichever apply*. The bare form has to be chosen deliberately, because there is nothing in the source sentence to translate it from."
       ru: "Обобщающее множественное не берёт артикля вовсе. *Die Nachweise* указывало бы на конкретные документы, уже известные обеим сторонам, а в первом письме это ещё не так, — поэтому голое множественное и значит «какие-то, те, что подойдут». Голую форму приходится выбирать сознательно: в русской фразе переводить её не из чего."
@@ -48,6 +64,6 @@ items:
       - "Ihr Geschlecht ist"
     correct: 0
     explain:
-      en: "A field label is a slot, not a statement, so it carries no article and no verb — *Geschlecht*, exactly as *Name*, *Geburtsort* and *Staatsangehörigkeit* do. These are words to recognise and fill in beside; nobody says them aloud at a counter."
-      ru: "Название графы — это ячейка, а не высказывание, поэтому ни артикля, ни глагола в нём нет: *Geschlecht*, ровно как *Name*, *Geburtsort* и *Staatsangehörigkeit*. Эти слова нужно узнавать и заполнять клетку рядом; вслух у окошка их никто не произносит."
-      uk: "Назва графи — це комірка, а не висловлювання, тому ні артикля, ні дієслова в ній немає: *Geschlecht*, рівно як *Name*, *Geburtsort* і *Staatsangehörigkeit*. Ці слова треба впізнавати й заповнювати клітинку поруч; уголос біля віконця їх ніхто не вимовляє."
+      en: "A field label is a slot, not a statement, so it carries no article and no verb — *Geschlecht*, exactly as *Name*, *Geburtsort* and *Staatsangehörigkeit* do. These are words to recognise and fill in beside."
+      ru: "Название графы — это ячейка, а не высказывание, поэтому ни артикля, ни глагола в нём нет: *Geschlecht*, ровно как *Name*, *Geburtsort* и *Staatsangehörigkeit*. Эти слова нужно узнавать и заполнять клетку рядом."
+      uk: "Назва графи — це комірка, а не висловлювання, тому ні артикля, ні дієслова в ній немає: *Geschlecht*, рівно як *Name*, *Geburtsort* і *Staatsangehörigkeit*. Ці слова треба впізнавати й заповнювати клітинку поруч."

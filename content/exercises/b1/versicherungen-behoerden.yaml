@@ -11,14 +11,20 @@ title:
 # The topic's primary practice set, so its item list is frozen once this ships.
 #
 # Eleven items over the article's three sections: the genitive prepositions
-# (cloze-wegen-genitiv, uebersetzen-innerhalb, table-genitiv, order-trotz), the article-less
-# form and the general plural (cloze-nullartikel, uebersetzen-nachweise, table-formular) and
-# insurance itself (mc-wogegen, cloze-versichert, match-behoerde, uebersetzen-weiss-nicht).
+# (cloze-wegen-genitiv, uebersetzen-innerhalb, table-genitiv), the verb-second order a
+# fronted genitive phrase forces (order-trotz), the article-less form and the general plural
+# (cloze-nullartikel, uebersetzen-nachweise, table-formular) and insurance itself (mc-wogegen,
+# cloze-versichert, match-behoerde, uebersetzen-weiss-nicht).
 #
 # Two tags, both recycled and both taken from `bun scripts/grammar-depth.ts B1 --thin`, where
 # each was living in one practice file: `praeposition-genitiv` (reisen-probleme) and
 # `adjektiv-nullartikel` (gesundheit-wohlbefinden). This set is their second file, and an
-# official letter is the register that needs both at once.
+# official letter is the register that needs both at once. `adjektiv-nullartikel` grades the
+# strong ending of an adjective that has no article in front, so its items put an adjective
+# before the letter's bare plurals (aktuelle Nachweise, weitere Unterlagen); a bare plural
+# with no adjective has no ending for the tag to read. order-trotz hands over every word of
+# the genitive phrase, so the one decision it leaves is verb-second, and it carries
+# `verbzweit`.
 #
 # Mix over this file: 1 mc of 11 (9%), mc+match+order 3 of 11 (27%), 3 translate, 1 order.
 #
@@ -26,25 +32,31 @@ title:
 # A1/A2/B1 deck — checked with the YAML parser against every deck rather than by eye: Behörde,
 # Beamte, Bürger, Versicherung, Versichertenkarte, Steuer, Unterstützung, Wohnsitz, Herkunft,
 # Geschlecht, Personalien, Personenstand, Daten, Original, Rufnummer, Vorwahl, genehmigen,
-# Antrag, Frist, Mahnung, Nachweis, Unterlagen, Einkommen, Formular, Termin, Woche, Monat.
+# Antrag, Frist, Mahnung, Unterlagen, Einkommen, Formular, Termin, Woche, Monat, Zahl, Krankheit.
+# Nachweis is the exception: it is on no Goethe list and in no deck, so it is printed, glossed
+# or named wherever it appears and never left to be recalled.
 items:
   - id: cloze-wegen-genitiv
+    # revision 2: the noun gap named nothing, and «встреча» / «зустріч» is just as much
+    # das Treffen — a correct genitive with another noun was charged to the tag. der Termin is
+    # now named, and des Termines, the same genitive in its long form, is accepted.
+    revision: 2
     outcomes: [frist-nennen]
     type: cloze
     focus: praeposition-genitiv
     instruction:
-      en: "Fill in the article and the noun in the written register."
-      ru: "Вставьте артикль и существительное в письменном регистре."
-      uk: "Вставте артикль та іменник у писемному регістрі."
-    text: "Wegen {{des}} {{Termins}} kann ich nicht kommen. Trotz {{der}} Mahnung ist nichts passiert."
+      en: "Fill in the article and the noun der Termin in the written register."
+      ru: "Вставьте артикль и существительное der Termin в письменном регистре."
+      uk: "Вставте артикль та іменник der Termin у писемному регістрі."
+    text: "Wegen {{des}} {{Termins|Termines}} kann ich nicht kommen. Trotz {{der}} Mahnung ist nichts passiert."
     translation:
       en: "Because of the appointment I cannot come. In spite of the reminder nothing has happened."
       ru: "Из-за встречи я не могу прийти. Несмотря на напоминание, ничего не произошло."
       uk: "Через зустріч я не можу прийти. Попри нагадування нічого не сталося."
     explain:
-      en: "Both prepositions govern the genitive, and the two nouns show it differently. *Termin* is masculine, so the case appears twice — on *des* and as the *-s* on the noun. *Mahnung* is feminine, so only the article changes, to *der*: feminine nouns take no genitive ending at all. Dropping the masculine *-s* is the commonest error and the reason the two are drilled side by side."
-      ru: "Оба предлога управляют генитивом, и два существительных показывают это по-разному. *Termin* мужского рода, поэтому падеж виден дважды — на *des* и как *-s* у самого слова. *Mahnung* женского рода, поэтому меняется только артикль, на *der*: существительные женского рода генитивного окончания не берут вовсе. Потеря мужского *-s* — самая частая ошибка, потому эти два случая и стоят рядом."
-      uk: "Обидва прийменники керують родовим, і два іменники показують це по-різному. *Termin* чоловічого роду, тому відмінок видно двічі — на *des* і як *-s* у самого слова. *Mahnung* жіночого роду, тому змінюється лише артикль, на *der*: іменники жіночого роду родового закінчення не беруть зовсім. Втрата чоловічого *-s* — найчастіша помилка, тому ці два випадки й стоять поруч."
+      en: "Both prepositions govern the genitive, and the two nouns show it differently. *Termin* is masculine, so the case appears twice — on *des* and as the *-s* on the noun. *Mahnung* is feminine, so only the article changes, to *der*: feminine nouns take no genitive ending at all. Dropping the masculine *-s* is the error to watch for, and the reason the two are drilled side by side."
+      ru: "Оба предлога управляют генитивом, и два существительных показывают это по-разному. *Termin* мужского рода, поэтому падеж виден дважды — на *des* и как *-s* у самого слова. *Mahnung* женского рода, поэтому меняется только артикль, на *der*: существительные женского рода генитивного окончания не берут вовсе. За потерей мужского *-s* и стоит следить — потому эти два случая и стоят рядом."
+      uk: "Обидва прийменники керують родовим, і два іменники показують це по-різному. *Termin* чоловічого роду, тому відмінок видно двічі — на *des* і як *-s* у самого слова. *Mahnung* жіночого роду, тому змінюється лише артикль, на *der*: іменники жіночого роду родового закінчення не беруть зовсім. За втратою чоловічого *-s* і варто стежити — тому ці два випадки й стоять поруч."
 
   - id: uebersetzen-innerhalb
     outcomes: [frist-nennen]
@@ -61,10 +73,17 @@ items:
     answer: "Bitte antworten Sie innerhalb der Frist."
     accept:
       - "Antworten Sie bitte innerhalb der Frist."
+    # The pins graded position, so the fronted Innerhalb der Frist antworten Sie bitte — the
+    # genitive intact, the order not what a letter writes — was charged to the tag. The
+    # predicates read the case behind innerhalb and the feminine noun's form, wherever they
+    # stand.
+    focus_evidence:
+      failed: ["(?<!\\p{L})innerhalb\\s+(?:dem|den|die|des|das|von|vom)(?!\\p{L})", "(?<!\\p{L})Frists(?!\\p{L})"]
+      retained: ["(?<!\\p{L})innerhalb\\s+der\\s+Frist(?!\\p{L})"]
     explain:
-      en: "*Innerhalb* is one of the four genitive prepositions that carry official writing, and *Frist* is feminine, so the article is *der* and the noun is unchanged. Note the sentence shape too: only one element may stand in front of the verb, and in a written request that element is *Bitte* — the genitive phrase goes behind."
-      ru: "*Innerhalb* — один из четырёх генитивных предлогов, на которых держится официальное письмо, а *Frist* женского рода, поэтому артикль *der*, а слово не меняется. Обратите внимание и на форму предложения: перед глаголом может стоять только один элемент, и в письменной просьбе это *Bitte*, а генитивное сочетание идёт за ним."
-      uk: "*Innerhalb* — один із чотирьох родових прийменників, на яких тримається офіційне письмо, а *Frist* жіночого роду, тому артикль *der*, а слово не змінюється. Зверніть увагу й на форму речення: перед дієсловом може стояти лише один елемент, і в письмовому проханні це *Bitte*, а родове сполучення йде за ним."
+      en: "*Innerhalb* is one of the four genitive prepositions that carry official writing, and *Frist* is feminine, so the article is *der* and the noun is unchanged. Note the sentence shape too: a written request opens with *Bitte* and the imperative, *Bitte antworten Sie …*, and the genitive phrase follows the verb."
+      ru: "*Innerhalb* — один из четырёх генитивных предлогов, на которых держится официальное письмо, а *Frist* женского рода, поэтому артикль *der*, а слово не меняется. Обратите внимание и на форму предложения: письменная просьба начинается с *Bitte* и императива, *Bitte antworten Sie …*, а генитивное сочетание идёт после глагола."
+      uk: "*Innerhalb* — один із чотирьох родових прийменників, на яких тримається офіційне письмо, а *Frist* жіночого роду, тому артикль *der*, а слово не змінюється. Зверніть увагу й на форму речення: письмове прохання починається з *Bitte* та імперативу, *Bitte antworten Sie …*, а родове сполучення йде після дієслова."
 
   - id: table-genitiv
     outcomes: [frist-nennen, behoerdenbrief-verstehen]
@@ -98,9 +117,14 @@ items:
       uk: "П'ять рядків, одне питання: що родовий насправді змінює? Артикль — завжди. Іменник — лише якщо він чоловічого чи середнього роду: *des Antrags*, *des Verfahrens*, але *der Mahnung* і *der Woche* без змін. Рядок із множиною і є той, на якому спотикаються: знову *der*, слово не зачеплене, і виглядає це точнісінько як жіночий рід однини."
 
   - id: order-trotz
+    # revision 2: the chips hand over Trotz, der and Mahnung, so no answer can get the
+    # genitive wrong, and the order island charges every miss to the item's tag — the very
+    # error the explain names (… die Zahlung ist nicht angekommen) was logged against
+    # praeposition-genitiv. The decision left is verb-second after a fronted element.
+    revision: 2
     outcomes: [frist-nennen]
     type: order
-    focus: praeposition-genitiv
+    focus: verbzweit
     instruction:
       en: "Build the sentence with the genitive phrase in front."
       ru: "Составьте предложение с генитивным сочетанием впереди."
@@ -116,45 +140,76 @@ items:
       uk: "Родове сполучення рахується одним елементом, тому винесення його вперед ставить відмінюване дієслово на друге місце, а підмет за нього: *Trotz der Mahnung **ist** die Zahlung …*. Варіант *Trotz der Mahnung die Zahlung ist nicht angekommen* зберігає порядок вихідної мови і ламає правило другого місця — заради того, щоб це стало видно, завдання й існує."
 
   - id: cloze-nullartikel
+    # revision 2: the gaps asked whether an article stands at all (— or das), a decision
+    # `adjektiv-nullartikel` does not name — it grades the strong ending of an adjective with
+    # no article in front, and the item had no adjective — and the — answer could only be
+    # typed as an em dash, which is on no keyboard and not on the insert bar. Both gaps are
+    # now adjectives in front of an article-less plural, accusative and dative.
+    revision: 2
     outcomes: [behoerdenbrief-verstehen]
     type: cloze
     focus: adjektiv-nullartikel
     instruction:
-      en: "One gap takes an article, the other takes none. Fill in what belongs, or write — for nothing."
-      ru: "В один пропуск идёт артикль, в другой — ничего. Впишите нужное или поставьте —, если артикля нет."
-      uk: "В один пропуск іде артикль, в інший — нічого. Впишіть потрібне або поставте —, якщо артикля немає."
-    text: "Wir brauchen {{—}} Nachweise über Ihr Einkommen. Schicken Sie bitte auch {{das}} Original der Urkunde."
+      en: "Fill in aktuell and alt with their endings — no article stands in front of either."
+      ru: "Впишите aktuell и alt с окончаниями — артикля нет ни перед тем, ни перед другим."
+      uk: "Впишіть aktuell і alt із закінченнями — артикля немає ні перед тим, ні перед іншим."
+    text: "Wir brauchen {{aktuelle}} Nachweise über Ihr Einkommen. Mit {{alten}} Zahlen können wir leider nicht arbeiten."
     translation:
-      en: "We need evidence of your income. Please also send the original of the certificate."
-      ru: "Нам нужны подтверждения вашего дохода. Пришлите, пожалуйста, также оригинал документа."
-      uk: "Нам потрібні підтвердження вашого доходу. Надішліть, будь ласка, також оригінал документа."
+      en: "We need current evidence of your income. Unfortunately we cannot work with old figures."
+      ru: "Нам нужны актуальные подтверждения вашего дохода. Со старыми цифрами мы, к сожалению, работать не можем."
+      uk: "Нам потрібні актуальні підтвердження вашого доходу. Зі старими цифрами ми, на жаль, працювати не можемо."
     explain:
-      en: "The two halves differ in how definite the thing is. *Nachweise* is a general plural — some documents, whichever apply — and a general plural takes no article at all. *Das Original* is one specific object both sides can point at, and the genitive phrase *der Urkunde* says which. The rule is not about the plural as such: it is about whether the reader already knows which ones you mean."
-      ru: "Половины различаются степенью определённости. *Nachweise* — обобщающее множественное: какие-то документы, те, что подойдут, — а обобщающее множественное не берёт артикля вовсе. *Das Original* — один конкретный предмет, на который могут указать обе стороны, и генитивное сочетание *der Urkunde* говорит, какой именно. Правило не про множественное число как таковое: оно про то, знает ли уже читатель, о каких именно идёт речь."
-      uk: "Половини різняться ступенем означеності. *Nachweise* — узагальнювальна множина: якісь документи, ті, що підійдуть, — а узагальнювальна множина не бере артикля взагалі. *Das Original* — один конкретний предмет, на який можуть указати обидві сторони, і родове сполучення *der Urkunde* каже, який саме. Правило не про множину як таку: воно про те, чи знає вже читач, про які саме йдеться."
+      en: "No article stands in front of either adjective, so each one wears the ending the missing article would have shown. *Nachweise* is the object of *brauchen*, an accusative plural: the article would be *die*, so *aktuelle*. After *mit* the plural is dative: the article would be *den*, so *alten*. *aktuellen* in the first gap is the ending that belongs after *die* (*die aktuellen Nachweise*); with no article in front it marks nothing."
+      ru: "Ни перед одним прилагательным артикля нет, поэтому каждое надевает то окончание, которое показал бы отсутствующий артикль. *Nachweise* — дополнение к *brauchen*, винительный множественного: артикль был бы *die*, значит *aktuelle*. После *mit* множественное стоит в дативе: артикль был бы *den*, отсюда *alten*. *aktuellen* в первом пропуске — окончание, которое стоит после *die* (*die aktuellen Nachweise*); без артикля впереди оно ничего не показывает. Русскому тут проще: прилагательное и так всегда несёт падеж само."
+      uk: "Перед жодним прикметником артикля немає, тому кожен надягає те закінчення, яке показав би відсутній артикль. *Nachweise* — додаток до *brauchen*, знахідний множини: артикль був би *die*, отже *aktuelle*. Після *mit* множина стоїть у давальному: артикль був би *den*, звідси *alten*. *aktuellen* у першому пропуску — закінчення, яке стоїть після *die* (*die aktuellen Nachweise*); без артикля попереду воно нічого не показує. Українській тут простіше: прикметник і так завжди несе відмінок сам."
 
   - id: uebersetzen-nachweise
+    # revision 2: the item had no adjective, so `adjektiv-nullartikel` could not see its own
+    # error and was charged instead for an added die — which «документы» leaves open — or for
+    # any rendering without the pinned Unterlagen (Dokumente, fordert, bittet um). It now asks
+    # for weitere in front of the bare plural and names the verb, the adjective and the noun;
+    # das Amt (the course's card for «учреждение») and zu meiner Wohnung are accepted.
+    revision: 2
     outcomes: [behoerdenbrief-verstehen]
     type: translate
     focus: adjektiv-nullartikel
-    key_tokens: ["Unterlagen"]
-    prompt_en: "The office is asking for documents about my apartment."
-    prompt_ru: "Учреждение запрашивает документы о моей квартире."
-    prompt_uk: "Установа запитує документи про мою квартиру."
-    answer: "Die Behörde verlangt Unterlagen über meine Wohnung."
+    key_tokens: ["weitere"]
+    instruction:
+      en: "Use verlangen, weiter and Unterlagen."
+      ru: "Используйте verlangen, weiter и Unterlagen."
+      uk: "Використайте verlangen, weiter і Unterlagen."
+    prompt_en: "The office is asking for further documents about my apartment."
+    prompt_ru: "Учреждение запрашивает дополнительные документы о моей квартире."
+    prompt_uk: "Установа запитує додаткові документи про мою квартиру."
+    answer: "Die Behörde verlangt weitere Unterlagen über meine Wohnung."
+    accept:
+      - "Die Behörde verlangt weitere Unterlagen zu meiner Wohnung."
+      - "Das Amt verlangt weitere Unterlagen über meine Wohnung."
+      - "Das Amt verlangt weitere Unterlagen zu meiner Wohnung."
+    # Failed: weiter with no article in front and any ending but the strong -e (the weak
+    # -en above all). An article with the weak ending (die weiteren Unterlagen) is not this
+    # tag's error and stays unattributed.
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?<!(?:die|den|der|diese|keine|meine|ihre|seine|alle)\\s)weiter(?:en|er|es|em)?\\s+Unterlagen(?!\\p{L})"]
+      retained: ["(?<!\\p{L})(?<!(?:die|den|der|diese|keine|meine|ihre|seine|alle)\\s)weitere\\s+Unterlagen(?!\\p{L})"]
     explain:
-      en: "*Unterlagen* stands bare because it is a general plural — unspecified documents, whichever the office decides it needs. Adding *die* would claim the reader already knows which, and in a first request that is not the case. The subject *die Behörde* keeps its article precisely because it is one particular office."
-      ru: "*Unterlagen* стоит голым, потому что это обобщающее множественное — неопределённые документы, те, которые учреждение сочтёт нужными. Добавить *die* значило бы утверждать, что читатель уже знает, какие именно, а при первом запросе это не так. Подлежащее *die Behörde* артикль сохраняет как раз потому, что это одно конкретное учреждение."
-      uk: "*Unterlagen* стоїть голим, бо це узагальнювальна множина — невизначені документи, ті, які установа вважатиме потрібними. Додати *die* означало б стверджувати, що читач уже знає, які саме, а при першому запиті це не так. Підмет *die Behörde* артикль зберігає саме тому, що це одна конкретна установа."
+      en: "No article stands before *Unterlagen* — they are further documents in general, not ones already named — so *weiter* wears the ending the missing *die* would have shown: *weitere*. *weiteren* is the ending that belongs after an article (*die weiteren Unterlagen*), and here there is none. The subject keeps its article because it is one particular office."
+      ru: "Перед *Unterlagen* артикля нет — это какие-то ещё документы, а не уже названные, — поэтому *weiter* надевает окончание, которое показал бы отсутствующий *die*: *weitere*. *weiteren* — окончание после артикля (*die weiteren Unterlagen*), а здесь его нет. Подлежащее артикль сохраняет, потому что это одно конкретное учреждение."
+      uk: "Перед *Unterlagen* артикля немає — це якісь іще документи, а не вже названі, — тому *weiter* надягає закінчення, яке показав би відсутній *die*: *weitere*. *weiteren* — закінчення після артикля (*die weiteren Unterlagen*), а тут його немає. Підмет артикль зберігає, бо це одна конкретна установа."
 
   - id: table-formular
+    # revision 2: the Geburtsort cell keys the German exonym Krakau, which no deck teaches,
+    # while the EN instruction printed Kraków — a learner who copied it, or wrote the city
+    # from «Краков», was marked wrong on a row that is about reading the label. The
+    # instruction now gives the German name.
+    revision: 2
     outcomes: [personalien-angeben]
     type: table
     title: "Angaben zur Person"
     instruction:
-      en: "Fill in the form for Anna Petrova, born in Kraków on 12 March 1990, Polish, married, living at Hauptstraße 14 in Bremen."
-      ru: "Заполните бланк на Анну Петрову, родившуюся в Кракове 12 марта 1990 года, гражданку Польши, замужем, проживающую по адресу Hauptstraße 14 в Бремене."
-      uk: "Заповніть бланк на Анну Петрову, яка народилася в Кракові 12 березня 1990 року, громадянку Польщі, одружену, що мешкає за адресою Hauptstraße 14 у Бремені."
+      en: "Fill in the form for Anna Petrova, born in Kraków (German: Krakau) on 12 March 1990, Polish, married, living at Hauptstraße 14 in Bremen."
+      ru: "Заполните бланк на Анну Петрову, родившуюся в Кракове (по-немецки Krakau) 12 марта 1990 года, гражданку Польши, замужем, проживающую по адресу Hauptstraße 14 в Бремене."
+      uk: "Заповніть бланк на Анну Петрову, яка народилася в Кракові (німецькою Krakau) 12 березня 1990 року, громадянку Польщі, одружену, що мешкає за адресою Hauptstraße 14 у Бремені."
     columns: ["Eintrag"]
     rows:
       - label: "Name, Vorname"
@@ -190,26 +245,30 @@ items:
       - "Habe ich einen Diebstahl versichert?"
     correct: 0
     explain:
-      en: "Insurance is *gegen* the bad thing — *gegen Diebstahl*, *gegen Unfall* — and the noun stands bare, because it names a type of risk rather than one event. *Für* would say you are insured in favour of theft, and *Habe ich einen Diebstahl versichert?* makes you the one doing the insuring rather than the one covered."
-      ru: "Страхование идёт *gegen* — против плохого: *gegen Diebstahl*, *gegen Unfall*, — и существительное стоит голым, потому что называет вид риска, а не одно событие. *Für* сказало бы, что вы застрахованы в пользу кражи, а *Habe ich einen Diebstahl versichert?* делает вас тем, кто страхует, а не тем, кто застрахован."
-      uk: "Страхування йде *gegen* — проти поганого: *gegen Diebstahl*, *gegen Unfall*, — і іменник стоїть голим, бо називає вид ризику, а не одну подію. *Für* сказало б, що ви застраховані на користь крадіжки, а *Habe ich einen Diebstahl versichert?* робить вас тим, хто страхує, а не тим, хто застрахований."
+      en: "Insurance is *gegen* the bad thing — *gegen Diebstahl*, *gegen Unfall* — and the noun stands bare, because it names a type of risk rather than one event. *Für* names what is insured or for how much (*eine Versicherung für das Fahrrad*, *für 500 Euro versichert*), not the risk, and *Habe ich einen Diebstahl versichert?* makes you the one doing the insuring rather than the one covered."
+      ru: "Страхование идёт *gegen* — против плохого: *gegen Diebstahl*, *gegen Unfall*, — и существительное стоит голым, потому что называет вид риска, а не одно событие. *Für* называет то, что застраховано, или сумму (*eine Versicherung für das Fahrrad*, *für 500 Euro versichert*), а не риск, а *Habe ich einen Diebstahl versichert?* делает вас тем, кто страхует, а не тем, кто застрахован."
+      uk: "Страхування йде *gegen* — проти поганого: *gegen Diebstahl*, *gegen Unfall*, — і іменник стоїть голим, бо називає вид ризику, а не одну подію. *Für* називає те, що застраховано, або суму (*eine Versicherung für das Fahrrad*, *für 500 Euro versichert*), а не ризик, а *Habe ich einen Diebstahl versichert?* робить вас тим, хто страхує, а не тим, хто застрахований."
 
   - id: cloze-versichert
+    # revision 2: the AOK is a statutory health insurer, so "insured with the AOK against
+    # accident" stated cover it does not sell — the risk is now Krankheit; and «с первого
+    # января» / «з першого січня» is as much seit as ab, so seit is accepted.
+    revision: 2
     outcomes: [versicherung-klaeren]
     type: cloze
     instruction:
       en: "Fill in the preposition each part needs."
       ru: "Вставьте предлог, нужный каждой части."
       uk: "Вставте прийменник, потрібний кожній частині."
-    text: "Ich bin {{bei}} der AOK versichert, {{gegen}} Unfall, und der Schutz gilt {{ab}} dem ersten Januar."
+    text: "Ich bin {{bei}} der AOK versichert, {{gegen}} Krankheit, und der Schutz gilt {{ab|seit}} dem ersten Januar."
     translation:
-      en: "I am insured with the AOK, against accident, and the cover applies from the first of January."
-      ru: "Я застрахован в AOK от несчастного случая, и защита действует с первого января."
-      uk: "Я застрахований в AOK від нещасного випадку, і захист діє з першого січня."
+      en: "I am insured with the AOK, against illness, and the cover applies from the first of January."
+      ru: "Я застрахован в AOK от болезни, и защита действует с первого января."
+      uk: "Я застрахований в AOK від хвороби, і захист діє з першого січня."
     explain:
-      en: "Three prepositions, three different questions, and none of them is guessable from the other language. *Bei* names the company you are with. *Gegen* names the risk you are covered against. *Ab* names the day the cover starts and takes the dative, so *dem ersten Januar*. Learning them as one chunk is faster than deriving each."
-      ru: "Три предлога, три разных вопроса, и ни один не выводится из русского. *Bei* называет компанию, в которой вы застрахованы. *Gegen* называет риск, от которого вы защищены. *Ab* называет день начала действия и требует датива, отсюда *dem ersten Januar*. Выучить их одним блоком быстрее, чем выводить каждый по отдельности: русское «в», «от» и «с» распределены здесь совсем иначе."
-      uk: "Три прийменники, три різні питання, і жоден не виводиться з української. *Bei* називає компанію, у якій ви застраховані. *Gegen* називає ризик, від якого ви захищені. *Ab* називає день початку дії і вимагає давального, звідси *dem ersten Januar*. Вивчити їх одним блоком швидше, ніж виводити кожен окремо: українські «в», «від» і «з» розподілені тут зовсім інакше."
+      en: "Three prepositions, three different questions, and English gives away at most one of them. *Bei* names the company you are with. *Gegen* names the risk you are covered against. *Ab* names the day the cover starts and takes the dative, so *dem ersten Januar*; *seit*, also with the dative, fits when the cover is already running. Learning them as one chunk is faster than deriving each."
+      ru: "Три предлога, три разных вопроса, и ни один не выводится из русского. *Bei* называет компанию, в которой вы застрахованы. *Gegen* называет риск, от которого вы защищены. *Ab* называет день начала действия и требует датива, отсюда *dem ersten Januar*; *seit*, тоже с дативом, подходит, если защита уже действует. Выучить их одним блоком быстрее, чем выводить каждый по отдельности: русское «в», «от» и «с» распределены здесь совсем иначе."
+      uk: "Три прийменники, три різні питання, і жоден не виводиться з української. *Bei* називає компанію, у якій ви застраховані. *Gegen* називає ризик, від якого ви захищені. *Ab* називає день початку дії і вимагає давального, звідси *dem ersten Januar*; *seit*, теж із давальним, підходить, якщо захист уже діє. Вивчити їх одним блоком швидше, ніж виводити кожен окремо: українські «в», «від» і «з» розподілені тут зовсім інакше."
 
   - id: uebersetzen-weiss-nicht
     outcomes: [versicherung-klaeren]
@@ -245,6 +304,6 @@ items:
       - left: "genehmigen"
         right: { en: "to approve officially", ru: "официально одобрить", uk: "офіційно схвалити" }
     explain:
-      en: "*Frist* and *Termin* are the pair to keep apart: a *Frist* runs out and a *Termin* takes place, so you *versäumen* the first and *haben* the second. And *Personalien* exists only in the plural — there is no *die Personalie* on a form — which is why it appears as a heading and never as the subject of a sentence."
-      ru: "Развести стоит *Frist* и *Termin*: *Frist* истекает, а *Termin* состоится, поэтому первое можно *versäumen*, а второе — *haben*. А *Personalien* существует только во множественном числе: никакого *die Personalie* в бланке нет, — потому это слово и встречается как заголовок, а не как подлежащее."
-      uk: "Розвести варто *Frist* і *Termin*: *Frist* спливає, а *Termin* відбувається, тому перше можна *versäumen*, а друге — *haben*. А *Personalien* існує лише в множині: жодного *die Personalie* в бланку немає, — тому це слово й трапляється як заголовок, а не як підмет."
+      en: "*Frist* and *Termin* are the pair to keep apart: a *Frist* runs out and a *Termin* takes place, so you *versäumen* the first and *haben* the second. And *Personalien* exists only in the plural — there is no *die Personalie* on a form."
+      ru: "Развести стоит *Frist* и *Termin*: *Frist* истекает, а *Termin* состоится, поэтому первое можно *versäumen*, а второе — *haben*. А *Personalien* существует только во множественном числе: никакого *die Personalie* в бланке нет."
+      uk: "Розвести варто *Frist* і *Termin*: *Frist* спливає, а *Termin* відбувається, тому перше можна *versäumen*, а друге — *haben*. А *Personalien* існує лише в множині: жодного *die Personalie* в бланку немає."
