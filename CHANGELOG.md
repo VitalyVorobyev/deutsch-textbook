@@ -160,6 +160,25 @@ GitHub Release notes.
   - The *Bescheid sagen* and *gratis* cards now ask for their own word, not *Bescheid geben*'s
     or *kostenlos*'s. Three card notes no longer teach something false (*Roman*, *Ballett*,
     *Tanz*).
+- **B1.13 Geld & Verträge — quality pass.**
+  - Correct German is accepted in nine exercises:
+    - *billiger* beside *günstiger*;
+    - *einmal pro Jahr*, *einmal jährlich*;
+    - *bis zum Freitag*;
+    - *in dieser Rechnung*;
+    - *die beiden Beträge*;
+    - *wie lang*;
+    - the word orders the English prompts use.
+  - A mistake somewhere else in the sentence no longer counts against the rule an exercise
+    drills. In 14 exercises only the drilled form decides it: the genitive, the *-n* of
+    *Kunden*, *als* after a comparative, or the passive with a modal verb.
+  - The comparison exercise now says to write *im Jahr*. The German instruction of the due-date
+    dictation now says to write numbers as words, as the other languages always did.
+  - The lesson no longer says that *enthalten* is never used with *sich*, that a tip never
+    appears on a bill, or that a corrected bill almost never gets a new due date. The spoken
+    model answer no longer picks an offer for a reason both offers share.
+  - The *Alternative* card's note now puts the stress where its pronunciation does, and the
+    *Schulden* note no longer calls *die Schuld* a different word.
 
 ## [0.6.19] — 2026-10-11
 

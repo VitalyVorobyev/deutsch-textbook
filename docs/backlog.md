@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.13 `geld-vertraege`.
+  Next: B1.14 `informationen-vermitteln`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -209,6 +209,17 @@ record of what shipped.
   gemütlicherer Abend* (drops the "we" both prompts now carry) is charged with its comparative
   intact; a cloze charges its gap for a well-built comparative of the wrong adjective
   (*besseren* for *schöneren*) — no cloze predicates exist; C6-1 still owed.
+- `b1/geld-vertraege`: the EN article's "Four lines out of ten are filing" is a ratio nobody
+  counted (the RU/UK/DE halves name the head data instead), and its DE half says a low monthly
+  price *versteckt* the extras where EN says "may"; `cloze-kunde-deklination`'s article gaps log a
+  case slip (*den* for *dem*) under `n-deklination` — no cloze predicates exist; still rejected,
+  unattributed: *Dem Kunden erklärt der Anbieter …* and *Erst prüfe ich …* (invited by no prompt),
+  *ist auf der Quittung* for *steht*, *gezahlt werden* where `uebersetzen-passiv-frist` names
+  *bezahlen* (*die Rechnung zahlen* is correct German and a course card); `pre-mc-tarife` asks
+  what one pays and its options answer which plan is cheaper; the *versäumen* note gives a train
+  only *verpassen*, against Austrian *den Zug versäumen*; the *Kündigung* gloss is definitional;
+  the same missing "numbers as words" DE half sits in `b1/kultur-freizeit-produktion`
+  `hoeren-diktat-treffpunkt` (*acht* typed as *8*).
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
