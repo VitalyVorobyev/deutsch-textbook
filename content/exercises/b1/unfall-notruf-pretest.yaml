@@ -27,6 +27,11 @@ items:
       uk: "*Nachdem* відсуває ранішу подію ще на крок назад — у Plusquamperfekt, а *kommen* будує перфект із *sein*, тому допоміжне тут *war*, а не *hatte*. Пізніша частина лишається в Präteritum: *ging*."
 
   - id: angaben-folge
+    # revision 2 (2026-10-13 quality pass): "walked" asks for no tense, and Ich ging gestern
+    # langsam über die Straße keeps all three details behind the verb as the instruction
+    # asks; it was rejected. (The fronted Gestern ging ich … stays rejected — the 2026-08-26
+    # ruling: the instruction pins all three behind the verb.)
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     key_tokens: ["gestern", "langsam"]
@@ -38,10 +43,12 @@ items:
     prompt_ru: "Вчера я медленно перешёл дорогу."
     prompt_uk: "Учора я повільно перейшов дорогу."
     answer: "Ich bin gestern langsam über die Straße gegangen."
+    accept:
+      - "Ich ging gestern langsam über die Straße."
     explain:
-      en: "German fixes the order of adverbials: time, then manner, then place. *Gestern* comes first even though the English sentence puts it last, and *über die Straße* comes last even though it feels like the main information. Reshuffling the middle is not a stylistic choice here."
-      ru: "Немецкий закрепляет порядок обстоятельств: время, потом образ действия, потом место. *Gestern* идёт первым, хотя по-русски «вчера» может стоять где угодно, а *über die Straße* — последним, хотя кажется главной информацией. Перетасовать середину нельзя."
-      uk: "Німецька закріплює порядок обставин: час, потім спосіб дії, потім місце. *Gestern* іде першим, хоча українською «учора» може стояти будь-де, а *über die Straße* — останнім, хоча здається головною інформацією. Перетасувати середину не можна."
+      en: "German has a default order for adverbials: time, then manner, then place. *Gestern* comes first even though the English sentence puts it last, and *über die Straße* comes last even though it feels like the main information — it says which way you went, and a direction stays right in front of the participle. Reshuffling the middle here does not give you a stylistic variant; it gives you a sentence that sounds wrong."
+      ru: "У немецкого есть порядок обстоятельств по умолчанию: время, потом образ действия, потом место. *Gestern* идёт первым, хотя по-русски «вчера» может стоять где угодно, а *über die Straße* — последним, хотя кажется главной информацией: оно говорит, куда вы шли, а направление стоит прямо перед причастием. Перетасовав середину здесь, вы получите не стилистический вариант, а фразу, которая звучит неправильно."
+      uk: "У німецької є порядок обставин за замовчуванням: час, потім спосіб дії, потім місце. *Gestern* іде першим, хоча українською «учора» може стояти будь-де, а *über die Straße* — останнім, хоча здається головною інформацією: воно каже, куди ви йшли, а напрямок стоїть просто перед дієприкметником. Перетасувавши середину тут, ви отримаєте не стилістичний варіант, а фразу, яка звучить неправильно."
 
   - id: notrufnummer
     outcomes: [notruf-absetzen]
@@ -53,6 +60,6 @@ items:
       - "116117"
     correct: 0
     explain:
-      en: "112 reaches the fire brigade and the ambulance and is the number for anyone who is hurt. 110 is the police — right for a theft, not for an injury. 116117 is the out-of-hours medical service for cases that are not emergencies."
-      ru: "112 — пожарные и скорая, и это номер для любого пострадавшего. 110 — полиция: подходит для кражи, но не для травмы. 116117 — дежурная медицинская служба для случаев, которые не являются экстренными."
-      uk: "112 — пожежні та швидка, і це номер для будь-якого потерпілого. 110 — поліція: підходить для крадіжки, але не для травми. 116117 — чергова медична служба для випадків, які не є екстреними."
+      en: "112 reaches the fire brigade and the ambulance and is the number for an accident with somebody injured. 110 is the police — right for a crime in progress, not for an injury. 116117 is the out-of-hours medical service for cases that are not emergencies."
+      ru: "112 — пожарные и скорая, и это номер для аварии, в которой кто-то пострадал. 110 — полиция: подходит для преступления, которое происходит сейчас, но не для травмы. 116117 — дежурная медицинская служба для случаев, которые не являются экстренными."
+      uk: "112 — пожежні та швидка, і це номер для аварії, у якій хтось постраждав. 110 — поліція: підходить для злочину, що відбувається зараз, але не для травми. 116117 — чергова медична служба для випадків, які не є екстреними."

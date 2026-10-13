@@ -625,17 +625,26 @@ items:
 
   # --- unfall-notruf ---
   - id: unfall-nachdem
+    # revision 2 (2026-10-13 quality pass): the accepts did not close over their own
+    # alternates — angekommen with the Perfekt main clause was rejected — and the correct
+    # main-clause-first rendering was rejected and charged (Nachdem out of its pinned slot);
+    # the instruction now asks for the earlier event first. focus_evidence charges only the
+    # participle not closed by war, and a main clause stepped back as well.
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
-    instruction: { en: "Translate into German.", ru: "Переведите на немецкий.", uk: "Перекладіть німецькою.", de: "Übersetze ins Deutsche." }
+    instruction: { en: "Translate into German, beginning with the earlier event.", ru: "Переведите на немецкий, начав с более раннего события.", uk: "Перекладіть німецькою, почавши з ранішої події.", de: "Übersetze ins Deutsche und beginn mit dem früheren Ereignis." }
     prompt_en: "After the ambulance had arrived, everything went quickly."
     prompt_ru: "После того как приехала скорая, всё пошло быстро."
     prompt_uk: "Після того як приїхала швидка, усе пішло швидко."
     answer: "Nachdem der Krankenwagen gekommen war, ging alles schnell."
-    accept: ["Nachdem der Krankenwagen angekommen war, ging alles schnell.", "Nachdem der Krankenwagen gekommen war, ist alles schnell gegangen."]
+    accept: ["Nachdem der Krankenwagen angekommen war, ging alles schnell.", "Nachdem der Krankenwagen gekommen war, ist alles schnell gegangen.", "Nachdem der Krankenwagen angekommen war, ist alles schnell gegangen."]
     key_tokens: ["Nachdem", "war"]
-    explain: { en: "nachdem names the earlier of two past events and puts it in the Plusquamperfekt; kommen builds its perfect with sein, so the auxiliary is war and it closes the Nebensatz behind the participle. One past tense in both halves loses the sequence, which is the only thing nachdem was used for.", ru: "nachdem называет более раннее из двух прошедших событий и ставит его в Plusquamperfekt; kommen строит перфект с sein, поэтому вспомогательный — war, и он закрывает придаточное за причастием. Одно прошедшее время в обеих половинах теряет последовательность, а ведь только ради неё nachdem и берут.", uk: "nachdem називає ранішу з двох минулих подій і ставить її в Plusquamperfekt; kommen будує перфект із sein, тому допоміжне — war, і воно закриває підрядне за дієприкметником. Один минулий час в обох половинах втрачає послідовність, а саме заради неї nachdem і беруть.", de: "nachdem nennt das frühere von zwei vergangenen Ereignissen und setzt es ins Plusquamperfekt; kommen bildet sein Perfekt mit sein, also lautet das Hilfsverb war und schließt den Nebensatz hinter dem Partizip. Ein einziges Vergangenheitstempus in beiden Hälften verliert die Abfolge — und nur dafür steht nachdem überhaupt da." }
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:an)?(?:gekomm\\p{L}*|kam)(?!\\p{L})(?!\\s+war(?!\\p{L}))", "(?<!\\p{L})war\\s+war(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})(?:an)?gekommen\\s+war(?!\\p{L})"]
+    explain: { en: "nachdem names the earlier of two past events and puts it in the Plusquamperfekt; kommen builds its perfect with sein, so the auxiliary is war and it closes the Nebensatz behind the participle. One past tense in both halves leaves the two events on the same step, and nachdem asks for the earlier one a step further back.", ru: "nachdem называет более раннее из двух прошедших событий и ставит его в Plusquamperfekt; kommen строит перфект с sein, поэтому вспомогательный — war, и он закрывает придаточное за причастием. Одно прошедшее время в обеих половинах ставит оба события на одну ступень, а nachdem требует отодвинуть более раннее на шаг назад.", uk: "nachdem називає ранішу з двох минулих подій і ставить її в Plusquamperfekt; kommen будує перфект із sein, тому допоміжне — war, і воно закриває підрядне за дієприкметником. Один минулий час в обох половинах ставить обидві події на один щабель, а nachdem вимагає відсунути ранішу на крок назад.", de: "nachdem nennt das frühere von zwei vergangenen Ereignissen und setzt es ins Plusquamperfekt; kommen bildet sein Perfekt mit sein, also lautet das Hilfsverb war und schließt den Nebensatz hinter dem Partizip. Ein einziges Vergangenheitstempus in beiden Hälften stellt beide Ereignisse auf dieselbe Stufe, und nachdem verlangt für das frühere eine Stufe zurück." }
 
   - id: unfall-koerperteil
     outcomes: [verletzung-benennen]
