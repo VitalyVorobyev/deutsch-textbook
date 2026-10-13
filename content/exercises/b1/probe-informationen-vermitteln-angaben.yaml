@@ -14,7 +14,7 @@
 # are handed over in the instruction, so no variant grades vocabulary, a preposition case or
 # which noun the author had in mind. What a translate would add here is composition, and
 # composition is already measured by uebersetzen-angaben in the practice set, whose whole
-# argument is that nothing is on screen.
+# argument is that the order is not on screen.
 #
 # The instruction lists the three phrases in REVERSED order every time — lokal, then the
 # middle one, then temporal. That is deliberately the sequence the source languages suggest,
@@ -25,10 +25,18 @@
 # whatever is there rather than about a fixed four: T–K–L, T–M–L and T–K–M. One competence,
 # three subsets.
 #
+# 2026-10-13 quality pass (variant-b, revision 2): the default puts modal before lokal, but
+# a manner phrase also often stands right in front of the participle, so in der Küche
+# in Ruhe is good German and both of variant-b's last two gaps now accept either phrase;
+# what the variant still measures is the time ahead of both. Per-gap alternatives cannot
+# tie the two gaps together (in Ruhe typed twice would pass); no learner has done that.
+# A typo in a phrase the instruction prints is still charged (logged: in de Küche) —
+# the cloze island has no slip rule and no predicates; that remedy is the instrument's.
+#
 # Content fresh against the taught surface, checked by grepping each phrase across the
 # unit's seven files rather than by re-reading this list. The taught rows are gestern /
 # wegen der Reparatur / kurz / im Hof (the article's showcase sentence and its table),
-# am Montag / wegen der Mitteilung / lange / im Büro (the order item), heute Morgen /
+# am Montag / wegen der Mitteilung / zusammen / im Büro (the order item), heute Morgen /
 # schnell / im Hof (the practice cloze), gestern / wegen der Änderung / schnell / im Büro
 # (the practice translate) and morgen / zur Post (the pretest). None of am Wochenende,
 # wegen des Regens, an der Haltestelle, am Sonntag, in Ruhe, in der Küche, letzte Woche,
@@ -73,6 +81,7 @@ items:
       de: "temporal, kausal, lokal — wann, warum, wo. Die Liste oben gibt die Reihenfolge der Ausgangssprachen, und die ist genau umgekehrt: Sie enden mit der Zeit und ziehen den Ort nach vorn, das Deutsche macht es andersherum. Sonst bewegt sich nichts, denn A1 und A2 haben die Satzenden längst festgelegt: habe auf Position 2, gewartet an der Wand. Alles Entscheidbare liegt in den drei Lücken dazwischen."
 
   - id: variant-b
+    revision: 2
     outcomes: [mitteilung-weitergeben]
     type: cloze
     focus: angaben-reihenfolge
@@ -81,16 +90,16 @@ items:
       ru: "Три Angaben, перечисленные здесь в неверном порядке: in der Küche, in Ruhe, am Sonntag. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."
       uk: "Три Angaben, перелічені тут у хибному порядку: in der Küche, in Ruhe, am Sonntag. Поставте кожну у свій пропуск так, щоб речення йшло в німецькому порядку за замовчуванням."
       de: "Drei Angaben, hier in der falschen Reihenfolge: in der Küche, in Ruhe, am Sonntag. Setz jede in ihre Lücke, sodass der Satz der Grundreihenfolge folgt."
-    text: "Sie hat {{am Sonntag}} {{in Ruhe}} {{in der Küche}} gelesen."
+    text: "Sie hat {{am Sonntag}} {{in Ruhe|in der Küche}} {{in der Küche|in Ruhe}} gelesen."
     translation:
       en: "On Sunday she read in peace in the kitchen."
       ru: "В воскресенье она спокойно читала на кухне."
       uk: "У неділю вона спокійно читала на кухні."
     explain:
-      en: "This sentence has no reason in it, so the row is temporal, modal, lokal, and the rule simply skips the cell that is not there — that is what makes te-ka-mo-lo usable, since hardly any real sentence carries all four. in Ruhe is a manner phrase and not a place, however much its preposition looks like one: the question it answers is wie, not wo. Deciding that is the whole of this variant, because the two remaining positions follow from it."
-      ru: "В этом предложении нет причины, поэтому ряд такой: temporal, modal, lokal, — правило просто пропускает отсутствующую клетку, и именно поэтому «те-ка-мо-ло» удобно: все четыре вместе встречаются редко. in Ruhe — обстоятельство образа действия, а не места, как бы ни выглядел его предлог: оно отвечает на wie, а не на wo. В этом весь вариант — остальные две позиции следуют сами."
-      uk: "У цьому реченні немає причини, тому ряд такий: temporal, modal, lokal, — правило просто пропускає відсутню клітинку, і саме тому «те-ка-мо-ло» зручне: усі чотири разом трапляються рідко. in Ruhe — обставина способу, а не місця, хоч би як виглядав його прийменник: воно відповідає на wie, а не на wo. У цьому весь варіант — решта дві позиції випливають самі."
-      de: "In diesem Satz steht kein Grund, die Reihe heißt also temporal, modal, lokal — die Regel überspringt die fehlende Zelle einfach, und genau das macht te-ka-mo-lo brauchbar, denn alle vier stehen selten zusammen. in Ruhe ist eine Modalangabe und kein Ort, so sehr die Präposition auch danach aussieht: Sie antwortet auf wie, nicht auf wo. Darin besteht diese Variante, denn die beiden übrigen Positionen folgen daraus."
+      en: "This sentence has no reason in it, so the row is temporal, modal, lokal, and the rule simply skips the cell that is not there — that is what makes te-ka-mo-lo usable, since hardly any real sentence carries all four. in Ruhe is a manner phrase and not a place, however much its preposition looks like one: the question it answers is wie, not wo. Manner and place may also swap, because a manner phrase often stands right in front of the participle, so in der Küche in Ruhe is accepted too. What does not move is the time: am Sonntag comes before both."
+      ru: "В этом предложении нет причины, поэтому ряд такой: temporal, modal, lokal, — правило просто пропускает отсутствующую клетку, и именно поэтому «те-ка-мо-ло» удобно: все четыре вместе встречаются редко. in Ruhe — обстоятельство образа действия, а не места, как бы ни выглядел его предлог: оно отвечает на wie, а не на wo. Образ действия и место могут и поменяться: такое обстоятельство часто встаёт прямо перед причастием, поэтому in der Küche in Ruhe тоже принимается. Не сдвигается время: am Sonntag стоит раньше обоих."
+      uk: "У цьому реченні немає причини, тому ряд такий: temporal, modal, lokal, — правило просто пропускає відсутню клітинку, і саме тому «те-ка-мо-ло» зручне: усі чотири разом трапляються рідко. in Ruhe — обставина способу, а не місця, хоч би як виглядав його прийменник: воно відповідає на wie, а не на wo. Спосіб і місце можуть і помінятися: така обставина часто стає просто перед дієприкметником, тому in der Küche in Ruhe теж приймається. Не зсувається час: am Sonntag стоїть раніше за обидва."
+      de: "In diesem Satz steht kein Grund, die Reihe heißt also temporal, modal, lokal — die Regel überspringt die fehlende Zelle einfach, und genau das macht te-ka-mo-lo brauchbar, denn alle vier stehen selten zusammen. in Ruhe ist eine Modalangabe und kein Ort, so sehr die Präposition auch danach aussieht: Sie antwortet auf wie, nicht auf wo. Art und Ort dürfen auch tauschen, denn eine Modalangabe steht oft direkt vor dem Partizip, also gilt auch in der Küche in Ruhe. Fest bleibt die Zeit: am Sonntag steht vor beiden."
 
   - id: variant-c
     outcomes: [mitteilung-weitergeben]

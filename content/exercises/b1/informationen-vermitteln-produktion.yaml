@@ -65,10 +65,10 @@ items:
       ru: "Что вы должны передать господину Кляйну?"
       uk: "Що ви маєте передати панові Кляйну?"
     explain:
-      en: "Three facts arrive in three different turns and only two of them change. The day moves — nicht am Dienstag, sondern erst am Donnerstag — and the key gets a deadline of its own, Mittwoch, which is neither the old day nor the new one. The time is settled last and settled the other way: die Uhrzeit bleibt, wie sie war. Swapping Dienstag and Donnerstag is what happens when a listener keeps only one of the two dates; making acht Uhr the news drops the instruction the message was left for."
-      ru: "Три факта приходят в трёх разных репликах, и меняются только два. День сдвигается — nicht am Dienstag, sondern erst am Donnerstag, — а у ключа появляется собственный срок, Mittwoch, который не совпадает ни со старым днём, ни с новым. Время решают последним и решают иначе: die Uhrzeit bleibt, wie sie war. Поменять местами Dienstag и Donnerstag — так бывает, когда в памяти остаётся только одна из дат; сделать новостью acht Uhr — значит потерять указание, ради которого сообщение и оставили."
-      uk: "Три факти приходять у трьох різних репліках, і змінюються лише два. День зсувається — nicht am Dienstag, sondern erst am Donnerstag, — а в ключа з'являється власний строк, Mittwoch, який не збігається ні зі старим днем, ні з новим. Час вирішують останнім і вирішують інакше: die Uhrzeit bleibt, wie sie war. Поміняти місцями Dienstag і Donnerstag — так буває, коли в пам'яті лишається лише одна з дат; зробити новиною acht Uhr — означає згубити вказівку, заради якої повідомлення й лишили."
-      de: "Drei Tatsachen kommen in drei verschiedenen Beiträgen, und nur zwei ändern sich. Der Tag rückt — nicht am Dienstag, sondern erst am Donnerstag —, und der Schlüssel bekommt eine eigene Frist, Mittwoch, die weder der alte noch der neue Tag ist. Die Uhrzeit wird zuletzt geklärt, und zwar andersherum: Sie bleibt, wie sie war. Dienstag und Donnerstag zu vertauschen passiert, wenn nur eines der Daten hängen bleibt; acht Uhr zur Neuigkeit zu machen verliert die Anweisung, wegen der die Nachricht überhaupt hinterlassen wurde."
+      en: "Three facts arrive and only two of them change. The day moves — nicht am Dienstag, sondern erst am Donnerstag — and the key gets a deadline of its own in the same turn, Mittwoch, which is neither the old day nor the new one. The time is settled two turns later and the other way: die Uhrzeit bleibt, wie sie war. Swapping Dienstag and Donnerstag is what happens when a listener keeps only one of the two dates; making acht Uhr the news drops the instruction the message was left for."
+      ru: "Приходят три факта, и меняются только два. День сдвигается — nicht am Dienstag, sondern erst am Donnerstag, — а в той же реплике у ключа появляется собственный срок, Mittwoch, который не совпадает ни со старым днём, ни с новым. Время решают двумя репликами позже и решают иначе: die Uhrzeit bleibt, wie sie war. Поменять местами Dienstag и Donnerstag — так бывает, когда в памяти остаётся только одна из дат; сделать новостью acht Uhr — значит потерять указание, ради которого сообщение и оставили."
+      uk: "Приходять три факти, і змінюються лише два. День зсувається — nicht am Dienstag, sondern erst am Donnerstag, — а в тій самій репліці в ключа з'являється власний строк, Mittwoch, який не збігається ні зі старим днем, ні з новим. Час вирішують двома репліками пізніше і вирішують інакше: die Uhrzeit bleibt, wie sie war. Поміняти місцями Dienstag і Donnerstag — так буває, коли в пам'яті лишається лише одна з дат; зробити новиною acht Uhr — означає згубити вказівку, заради якої повідомлення й лишили."
+      de: "Drei Tatsachen kommen, und nur zwei ändern sich. Der Tag rückt — nicht am Dienstag, sondern erst am Donnerstag —, und im selben Beitrag bekommt der Schlüssel eine eigene Frist, Mittwoch, die weder der alte noch der neue Tag ist. Die Uhrzeit wird zwei Beiträge später geklärt, und zwar andersherum: Sie bleibt, wie sie war. Dienstag und Donnerstag zu vertauschen passiert, wenn nur eines der Daten hängen bleibt; acht Uhr zur Neuigkeit zu machen verliert die Anweisung, wegen der die Nachricht überhaupt hinterlassen wurde."
 
   - id: hoeren-diktat-frage
     outcomes: [indirekt-berichten]
@@ -103,6 +103,12 @@ items:
     prompt_uk: "Сусідка хотіла знати, де висить нова поштова скринька."
     answer: "Die Nachbarin wollte wissen, wo der neue Briefkasten hängt."
     key_tokens: ["wo", "hängt"]
+    # 2026-10-13 quality pass: the tag grades where the verb stands, so the predicates read
+    # position only — the verb straight after wo, or anything after it, fails; a back-shifted
+    # hing or ist in the final slot is another tag's decision and is not charged.
+    focus_evidence:
+      failed: ["(?<!\\p{L})wo\\s+(?:hängt|hing|ist|war)(?!\\p{L})", "(?<!\\p{L})(?:hängt|hing)\\s+\\p{L}"]
+      retained: ["(?<!\\p{L})(?:hängt|hing|ist|war)$"]
     explain:
       en: "Graded are the two ends of the embedded question: the question word that opens it and the finite verb that has to close it. Asked directly it would be Wo hängt der neue Briefkasten? with the verb in position 2 — but packed behind wollte wissen it is a Nebensatz like any other and the verb drops to the wall. The question word itself stays: a reported W-question keeps it, where a yes/no question has to borrow ob."
       ru: "Оцениваются два конца вложенного вопроса: вопросительное слово, которое его открывает, и спрягаемый глагол, который обязан его закрыть. Заданный прямо, он звучал бы Wo hängt der neue Briefkasten? — глагол на второй позиции, — но за wollte wissen это придаточное, как любое другое, и глагол падает к стене. Само вопросительное слово остаётся: переданный вопрос с вопросительным словом его сохраняет, а вопрос без него вынужден брать ob."
@@ -110,6 +116,15 @@ items:
       de: "Bewertet werden die beiden Enden der eingebetteten Frage: das Fragewort, das sie öffnet, und das finite Verb, das sie schließen muss. Direkt gefragt hieße es Wo hängt der neue Briefkasten? mit dem Verb auf Position 2 — hinter wollte wissen ist es ein Nebensatz wie jeder andere, und das Verb fällt an die Wand. Das Fragewort selbst bleibt: Eine berichtete W-Frage behält es, eine Ja/Nein-Frage muss sich ob borgen."
 
   - id: uebersetzen-praeteritum-zusammenfassen
+    # Revision 2 (2026-10-13 quality pass): RU «Собрание» and UK «Збори» are, word for
+    # word, the course's own card for die Versammlung (gesellschaft-zusammenleben, glossed
+    # "meeting, assembly"), and the article uses die Sitzung, yet only das Treffen was
+    # accepted; "at seven" is um sieben or um sieben Uhr. Both are now accepted.
+    # focus_evidence fails only a missing Präteritum of the two full verbs — the logged
+    # sprechte stays charged — and reads another Präteritum in the right frame (fing … an,
+    # redete) as the tag surviving, so a slip elsewhere or a fronted um sieben is no longer
+    # charged.
+    revision: 2
     outcomes: [text-zusammenfassen]
     type: translate
     focus: praeteritum-vollverben
@@ -122,7 +137,16 @@ items:
     prompt_ru: "Собрание началось в семь, и комендант говорил о новых почтовых ящиках."
     prompt_uk: "Збори почалися о сьомій, і комендант говорив про нові поштові скриньки."
     answer: "Das Treffen begann um sieben, und der Hausmeister sprach über die neuen Briefkästen."
+    accept:
+      - "Das Treffen begann um sieben Uhr, und der Hausmeister sprach über die neuen Briefkästen."
+      - "Die Versammlung begann um sieben, und der Hausmeister sprach über die neuen Briefkästen."
+      - "Die Versammlung begann um sieben Uhr, und der Hausmeister sprach über die neuen Briefkästen."
+      - "Die Sitzung begann um sieben, und der Hausmeister sprach über die neuen Briefkästen."
+      - "Die Sitzung begann um sieben Uhr, und der Hausmeister sprach über die neuen Briefkästen."
     key_tokens: ["begann", "sprach"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})(?:begann|fing)(?!\\p{L}))", "^(?!.*(?<!\\p{L})(?:sprach|redete)(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})(?:begann|fing)(?!\\p{L})", "(?<!\\p{L})(?:sprach|redete)(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs, both strong: beginnen changes its vowel and takes no -te at all (begann, never beginnte), and sprechen does the same (sprach). This is the register rather than the tense — spoken German would say hat begonnen and hat gesprochen, and a written summary would not. Note what stays in the present tense elsewhere in this unit: a notice reports what is still ahead, and only what is already over goes into the Präteritum."
       ru: "Оцениваются два полнозначных глагола, оба сильные: beginnen меняет гласный и вовсе не берёт -te (begann, но не beginnte), sprechen делает то же самое (sprach). Дело здесь в регистре, а не во времени: в устной речи сказали бы hat begonnen и hat gesprochen, а письменный пересказ так не пишут. Заметьте, что остаётся в настоящем в других заданиях этой главы: объявление сообщает о том, что ещё впереди, и в Präteritum уходит только уже завершённое."

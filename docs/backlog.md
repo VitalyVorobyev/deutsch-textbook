@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.14 `informationen-vermitteln`.
+  Next: B1.15 `unfall-notruf`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -220,6 +220,15 @@ record of what shipped.
   only *verpassen*, against Austrian *den Zug versäumen*; the *Kündigung* gloss is definitional;
   the same missing "numbers as words" DE half sits in `b1/kultur-freizeit-produktion`
   `hoeren-diktat-treffpunkt` (*acht* typed as *8*).
+- `b1/informationen-vermitteln`: the Angaben probe's variant-b charges *in de Küche*, a typo in a
+  phrase its instruction prints — no cloze slip rule or predicates exist; per-gap alternatives in
+  `cloze-angaben-reihenfolge` and that variant pass a doubled phrase; the article's te-ka-mo-lo
+  section names two forces that move an Angabe, and the items now accept a third (a manner word
+  before the participle); the showcase's *kurz* answers *wie lange?* as readily as *wie?*; the article's DE
+  half and the `mc-konjunktiv1-lesen` DE explain still relay with "dass und Präsens"; the *Vortrag*
+  note's "never *machen*" and the *Ansage* note's platform rule (*Bahnhofsansage*); the production
+  header has the Hören's day and deadline two turns apart (they share one); the write model's
+  "gut zwei Wochen" is a span its prompt never gives; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

@@ -54,23 +54,28 @@ items:
       de: "Sonder- markiert ein besonderes Angebot, Ferien- den Zweck der Wohnung und Süd- die Richtung des Flügels. UG ist die schriftliche Gebäudebezeichnung Untergeschoss. Die Umschreibung bewahrt die zugesagten Tatsachen, ohne etwas zu erfinden."
 
   - id: cloze-stamm-endung
+    # Revision 2 (2026-10-13 quality pass): the instruction gave the stem as heut-, so the
+    # gap asked for the derivational -ig as if it were an ending (heut- + -e gives the
+    # wrong heute), and the explain called -ige an ending the noun phrase demands. The
+    # article's own table lists the stem as heutig-; both gaps take the same -e.
+    revision: 2
     outcomes: [text-zusammenfassen]
     type: cloze
     instruction:
-      en: "The stems are heut- and nächst-. Add the endings required by the two noun phrases."
-      ru: "Основы — heut- и nächst-. Добавьте окончания, которых требуют две именные группы."
-      uk: "Основи — heut- і nächst-. Додайте закінчення, яких вимагають дві іменні групи."
-      de: "Die Stämme heißen heut- und nächst-. Ergänze die Endungen, die beide Nominalgruppen verlangen."
+      en: "The stems are heutig- and nächst-. Add the endings required by the two noun phrases."
+      ru: "Основы — heutig- и nächst-. Добавьте окончания, которых требуют две именные группы."
+      uk: "Основи — heutig- і nächst-. Додайте закінчення, яких вимагають дві іменні групи."
+      de: "Die Stämme heißen heutig- und nächst-. Ergänze die Endungen, die beide Nominalgruppen verlangen."
     text: "Die {{heutige}} Sprechstunde fällt aus. Der {{nächste}} Termin ist am Freitag."
     translation:
       en: "Today's consultation hour is cancelled. The next appointment is on Friday."
       ru: "Сегодняшний приём отменяется. Следующая запись — в пятницу."
       uk: "Сьогоднішній прийом скасовано. Наступний запис — у п’ятницю."
     explain:
-      en: "Both nouns are nominative singular after the definite article: die Sprechstunde and der Termin. The stable pieces carry the lexical meaning, while -ige and -e make the forms fit their noun phrases."
-      ru: "Оба существительных стоят в Nominativ Singular после определённого артикля: die Sprechstunde и der Termin. Устойчивые части несут лексическое значение, а -ige и -e встраивают формы в именные группы."
-      uk: "Обидва іменники стоять у Nominativ Singular після означеного артикля: die Sprechstunde і der Termin. Сталі частини несуть лексичне значення, а -ige та -e вбудовують форми в іменні групи."
-      de: "Beide Nomen stehen im Nominativ Singular nach dem bestimmten Artikel: die Sprechstunde und der Termin. Die stabilen Teile tragen die lexikalische Bedeutung, -ige und -e passen die Formen an ihre Nominalgruppen an."
+      en: "Both nouns are nominative singular after the definite article: die Sprechstunde and der Termin. So both take the same -e, whatever their gender. The stable pieces carry the lexical meaning — the -ig of heutig is part of the stem, turning heute into an adjective — and only the -e makes the form fit its noun phrase."
+      ru: "Оба существительных стоят в Nominativ Singular после определённого артикля: die Sprechstunde и der Termin. Поэтому оба берут одно и то же -e, какого бы рода они ни были. Устойчивые части несут лексическое значение — -ig в heutig входит в основу и делает из heute прилагательное, — а в именную группу форму встраивает только -e."
+      uk: "Обидва іменники стоять у Nominativ Singular після означеного артикля: die Sprechstunde і der Termin. Тому обидва беруть те саме -e, хоч би якого роду вони були. Сталі частини несуть лексичне значення — -ig у heutig належить до основи й робить із heute прикметник, — а в іменну групу форму вбудовує лише -e."
+      de: "Beide Nomen stehen im Nominativ Singular nach dem bestimmten Artikel: die Sprechstunde und der Termin. Beide nehmen deshalb dasselbe -e, gleich welches Genus sie haben. Die stabilen Teile tragen die lexikalische Bedeutung — das -ig von heutig gehört zum Stamm und macht aus heute ein Adjektiv —, und nur das -e passt die Form an ihre Nominalgruppe an."
 
   - id: cloze-korrelative-addition
     outcomes: [mitteilung-weitergeben]
