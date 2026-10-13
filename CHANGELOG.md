@@ -232,6 +232,29 @@ GitHub Release notes.
     - that *Schweiß* and *weiß* have different vowels;
     - that *erkältet* always needs *sein*;
     - that *Herz* is the last irregular noun.
+- **B1.16 Polizei & Anzeige — quality pass.**
+  - Correct German was marked as a reported-speech mistake. It is now accepted in eight
+    exercises:
+    - the Präteritum (*dass sie Lärm hörte*, *dass sie die Geldbörse fand*);
+    - *gewesen ist*;
+    - *sollte*;
+    - *die Geldbörse*, the course's own word for "wallet";
+    - *meine Nachbarin*;
+    - *ein Formular*.
+  - Reported speech is now judged on what it teaches: the word that opens the reported part
+    and its tense. Where the verb stands is judged elsewhere, and the present tense in *ob die
+    Tür offen ist* now counts as the mistake it is.
+  - The reported-questions table no longer asks about *gestanden*, so *ist gestanden* (southern)
+    and *hat gestanden* are no longer marked wrong.
+  - *aufbrechen* is named where "broken door" left the verb open.
+  - The lesson no longer says that:
+    - *wenn* is only for conditions;
+    - a bare participle only follows *sein* or *werden*;
+    - every participle before a noun is passive;
+    - a police report has exactly five questions.
+  - Eight law and crime card notes no longer teach something false. For example:
+    - *einbrechen* takes *haben* as well as *sein*;
+    - the BKA is not "above" the Kriminalpolizei.
 
 ## [0.6.19] — 2026-10-11
 
