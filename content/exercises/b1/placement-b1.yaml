@@ -565,6 +565,12 @@ items:
 
   # --- informationen-vermitteln ---
   - id: informationen-indirekt-uebersetzen
+    # Revision 2 (2026-10-13 quality pass): RU «починят» / UK «полагодять» are the
+    # impersonal active, and dass man den Aufzug … repariert is correct German that keeps
+    # the opener and the tense — and was charged to the tag, because wird was missing; EN
+    # "will be repaired" invites the werden-future. Both are accepted. focus_evidence
+    # charges only the opener and a back-shifted or Konjunktiv verb, not its position.
+    revision: 2
     outcomes: [indirekt-berichten]
     type: translate
     focus: indirekte-rede
@@ -577,23 +583,40 @@ items:
     prompt_ru: "Комендант говорит, что лифт починят в понедельник."
     prompt_uk: "Комендант каже, що ліфт полагодять у понеділок."
     answer: "Der Hausmeister sagt, dass der Aufzug am Montag repariert wird."
+    accept:
+      - "Der Hausmeister sagt, dass der Aufzug am Montag repariert werden wird."
+      - "Der Hausmeister sagt, dass man den Aufzug am Montag repariert."
+      - "Der Hausmeister sagt, dass man den Aufzug am Montag reparieren wird."
     key_tokens: ["dass", "wird"]
-    explain: { en: "Graded are both ends of the reported clause: dass opening it and the finite verb wird standing at the very end. dass reports a statement; a yes/no question would take ob, and wenn does neither — it opens a condition or a repeated time only. The tense stays as the original had it, because Monday is still ahead; changing the tense would change the fact rather than the wording.", ru: "Оцениваются оба конца придаточного: dass, который его открывает, и спрягаемый глагол wird в самом конце. dass передаёт утверждение; вопрос без вопросительного слова взял бы ob, а wenn не годится ни для того, ни для другого — оно вводит только условие или повторяющееся время. Время остаётся как в оригинале, потому что понедельник ещё впереди: смена времени изменила бы не формулировку, а факт.", uk: "Оцінюються обидва кінці підрядного: dass, що його відкриває, і відмінюване дієслово wird у самому кінці. dass передає твердження; питання без питального слова взяло б ob, а wenn не годиться ні для того, ні для іншого — воно вводить лише умову або повторюваний час. Час лишається як в оригіналі, бо понеділок ще попереду: зміна часу змінила б не формулювання, а факт.", de: "Bewertet werden beide Enden des berichteten Satzes: dass am Anfang und das finite Verb wird ganz am Ende. dass berichtet eine Aussage; eine Ja/Nein-Frage nähme ob, und wenn tut keines von beidem — es eröffnet nur Bedingung oder wiederholte Zeit. Die Zeitform bleibt die des Originals, denn der Montag steht noch bevor; eine andere Zeitform wäre eine andere Tatsache, nicht eine andere Formulierung." }
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dass(?!\\p{L}))", "(?<!\\p{L})(?:ob|wenn)(?!\\p{L})", "(?<!\\p{L})(?:wurde|würde|werde|worden|wäre|sei|reparierte)(?!\\p{L})", "(?<!\\p{L})repariert\\s+(?:hat|hatte)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})dass(?!\\p{L})", "(?:(?<!\\p{L})wird|(?<!\\p{L})man(?!\\p{L}).*(?<!\\p{L})repariert)$"]
+    explain: { en: "Graded are both ends of the reported clause: dass opening it and the finite verb wird standing at the very end. dass reports a statement; a yes/no question would take ob, and wenn does neither — it opens a condition or a time ('when') only. The tense stays as the original had it, because Monday is still ahead; changing the tense would change the fact rather than the wording.", ru: "Оцениваются оба конца придаточного: dass, который его открывает, и спрягаемый глагол wird в самом конце. dass передаёт утверждение; вопрос без вопросительного слова взял бы ob, а wenn не годится ни для того, ни для другого — оно вводит только условие или время («когда»). Время остаётся как в оригинале, потому что понедельник ещё впереди: смена времени изменила бы не формулировку, а факт.", uk: "Оцінюються обидва кінці підрядного: dass, що його відкриває, і відмінюване дієслово wird у самому кінці. dass передає твердження; питання без питального слова взяло б ob, а wenn не годиться ні для того, ні для іншого — воно вводить лише умову або час («коли»). Час лишається як в оригіналі, бо понеділок ще попереду: зміна часу змінила б не формулювання, а факт.", de: "Bewertet werden beide Enden des berichteten Satzes: dass am Anfang und das finite Verb wird ganz am Ende. dass berichtet eine Aussage; eine Ja/Nein-Frage nähme ob, und wenn tut keines von beidem — es eröffnet nur Bedingung oder Zeit. Die Zeitform bleibt die des Originals, denn der Montag steht noch bevor; eine andere Zeitform wäre eine andere Tatsache, nicht eine andere Formulierung." }
 
   - id: informationen-angaben-uebersetzen
+    # Revision 2 (2026-10-13 quality pass): three carrier words were the learner's to pick
+    # — RU/UK «встречи» / «зустріч» leave Termin and Treffen free, "travel" fahren and
+    # reisen, "by train" mit dem Zug and the course's own mit der Bahn card, and the pinned
+    # Zug charged mit der Bahn to the tag — so the instruction names them. focus_evidence
+    # charges only the order, counted from the finite verb so the accepted fronted Morgen
+    # is not charged.
+    revision: 2
     outcomes: [mitteilung-weitergeben]
     type: translate
     focus: angaben-reihenfolge
     instruction:
-      en: "Keep the German order of the adverbials: time, then cause, then manner, then place."
-      ru: "Соблюдайте немецкий порядок обстоятельств: время, затем причина, затем образ действия, затем место."
-      uk: "Дотримуйтеся німецького порядку обставин: час, потім причина, потім спосіб дії, потім місце."
-      de: "Halt die deutsche Reihenfolge der Angaben ein: temporal, kausal, modal, lokal."
+      en: "Keep the German order of the adverbials: time, then cause, then manner, then place. For 'travel' take fahren, for 'appointment' der Termin, for 'train' der Zug."
+      ru: "Соблюдайте немецкий порядок обстоятельств: время, затем причина, затем образ действия, затем место. Для «поехать» возьмите fahren, для «встреча» — der Termin, для «поезд» — der Zug."
+      uk: "Дотримуйтеся німецького порядку обставин: час, потім причина, потім спосіб дії, потім місце. Для «поїхати» візьміть fahren, для «зустріч» — der Termin, для «потяг» — der Zug."
+      de: "Halt die deutsche Reihenfolge der Angaben ein: temporal, kausal, modal, lokal. Für die Reise nimm fahren, für die Verabredung der Termin, für die Bahn der Zug."
     prompt_en: "Tomorrow I am travelling to Cologne by train because of an appointment."
     prompt_ru: "Завтра я поеду в Кёльн на поезде из-за встречи."
     prompt_uk: "Завтра я поїду до Кельна потягом через зустріч."
     answer: "Ich fahre morgen wegen eines Termins mit dem Zug nach Köln."
     key_tokens: ["morgen", "wegen", "Zug", "Köln"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})fahre(?!\\p{L}).*(?<!\\p{L})(?:wegen|zug|köln)(?!\\p{L}).*(?<!\\p{L})morgen(?!\\p{L})", "(?<!\\p{L})fahre(?!\\p{L}).*(?<!\\p{L})(?:zug|köln)(?!\\p{L}).*(?<!\\p{L})wegen(?!\\p{L})", "(?<!\\p{L})fahre(?!\\p{L}).*(?<!\\p{L})köln(?!\\p{L}).*(?<!\\p{L})zug(?!\\p{L})"]
+      retained: ["(?<!\\p{L})morgen(?!\\p{L}).*(?<!\\p{L})wegen(?!\\p{L}).*(?<!\\p{L})zug(?!\\p{L}).*(?<!\\p{L})köln(?!\\p{L})"]
     accept:
       # One Angabe may lead as the Vorfeld; the relative order of the remaining three is
       # what the tag grades, and it is unchanged here.

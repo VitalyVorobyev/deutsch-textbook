@@ -420,19 +420,28 @@ items:
     explain: { en: "lassen builds a bracket exactly like a modal verb: lasse in position 2, the bare infinitive at the very end, and no zu anywhere. What the construction adds is who acts — not me. The doctor is never named, and that is the point of the form: Ich lasse meine Augen untersuchen says the examining is arranged, not done by me, while Ich untersuche meine Augen would say I do it myself. The dative variant Ich lasse mir die Augen untersuchen says the same thing and marks whose eyes rather than repeating the possessive.", ru: "lassen строит рамку в точности как модальный глагол: lasse на втором месте, чистый инфинитив в самом конце, и никакого zu. Новое, что вносит конструкция, — кто действует, и это не я. Врача не называют вовсе, в этом и смысл формы: Ich lasse meine Augen untersuchen значит, что проверку организуют, а не что её делаю я, тогда как Ich untersuche meine Augen означало бы «я сам осматриваю свои глаза». Дативный вариант Ich lasse mir die Augen untersuchen говорит то же самое, помечая принадлежность падежом вместо притяжательного местоимения.", uk: "lassen будує рамку точно як модальне дієслово: lasse на другому місці, чистий інфінітив у самому кінці, і жодного zu. Нове, що вносить конструкція, — хто діє, і це не я. Лікаря не називають зовсім, у цьому й суть форми: Ich lasse meine Augen untersuchen означає, що перевірку організують, а не що її роблю я, тоді як Ich untersuche meine Augen означало б «я сам оглядаю свої очі». Давальний варіант Ich lasse mir die Augen untersuchen каже те саме, позначаючи належність відмінком замість присвійного займенника.", de: "lassen baut eine Klammer wie ein Modalverb: lasse auf Position 2, der reine Infinitiv ganz am Ende, nirgends ein zu. Neu ist, wer handelt — nämlich nicht ich. Die Ärztin wird gar nicht genannt, und das ist der Sinn der Form: Ich lasse meine Augen untersuchen heißt, dass die Untersuchung veranlasst wird, nicht dass ich sie mache; Ich untersuche meine Augen hieße genau das. Die Dativvariante Ich lasse mir die Augen untersuchen sagt dasselbe und markiert die Zugehörigkeit über den Kasus statt über das Possessivum." }
 
   - id: uebersetzen-pronomen-stellung
+    # Revision 2 (2026-10-13 quality pass): the carrier words were the learner's to pick —
+    # RU/UK «передал» / «передав» invite weitergegeben or ausgerichtet, «сообщение» this
+    # unit's own Mitteilung card, and EN "your" leaves deine, Ihre and eure open — and the
+    # pinned Nachricht charged die Mitteilung to the tag. The instruction now names geben,
+    # die Nachricht and du; focus_evidence charges only the noun object in front of ihm.
+    revision: 2
     outcomes: [mitteilung-weitergeben]
     type: translate
     focus: pronomen-stellung
     instruction:
-      en: "Translate into German. There are two objects in the sentence — one pronoun and one noun."
-      ru: "Переведите на немецкий. В предложении два дополнения — местоимение и существительное."
-      uk: "Перекладіть німецькою. У реченні два додатки — займенник та іменник."
-      de: "Übersetze ins Deutsche. Der Satz hat zwei Objekte — ein Pronomen und ein Nomen."
+      en: "Translate into German; the message is a friend's, so say du. There are two objects in the sentence — one pronoun and one noun. For 'give' take geben, for 'message' die Nachricht."
+      ru: "Переведите на немецкий. В предложении два дополнения — местоимение и существительное. Для «передать» возьмите geben, для «сообщение» — die Nachricht."
+      uk: "Перекладіть німецькою. У реченні два додатки — займенник та іменник. Для «передати» візьміть geben, для «повідомлення» — die Nachricht."
+      de: "Übersetze ins Deutsche; die Nachricht kommt von einem Freund, also du. Der Satz hat zwei Objekte — ein Pronomen und ein Nomen. Für das Übergeben nimm geben, für die Botschaft die Nachricht."
     prompt_en: "I gave him your message."
     prompt_ru: "Я передал ему твоё сообщение."
     prompt_uk: "Я передав йому твоє повідомлення."
     answer: "Ich habe ihm deine Nachricht gegeben."
     key_tokens: ["ihm", "Nachricht"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})nachricht(?!\\p{L}).*(?<!\\p{L})ihm(?!\\p{L})"]
+      retained: ["(?<!\\p{L})ihm(?!\\p{L}).*(?<!\\p{L})nachricht(?!\\p{L})"]
     accept:
       # Written narrative would use the Präteritum; the graded pair keeps its order.
       - "Ich gab ihm deine Nachricht."
