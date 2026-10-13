@@ -87,6 +87,13 @@ items:
       de: "Diese Zeile entscheidet, ob zwei Leute am selben Ort ankommen, und sie wirkt nur vollständig: ein Ort und eine Zeit, beide genannt, ohne Verb dazwischen. Viertel vor acht ist 19.45 Uhr, nicht 20.15 — vor zählt von der vollen Stunde zurück. Und vor dem Saal heißt davor; die Plätze sind drinnen."
 
   - id: uebersetzen-gemuetlicherer-abend
+    # revision 2: the RU and UK prompts were predicative («вечер у нас вышел уютнее»), so
+    # under an instruction asking for the comparison in front of the noun the frame was
+    # the learner's to invent (logged: *Im kleiner Saal war das gemütlicheres Abend*). Both
+    # now say «у нас был … вечер» / «в нас був … вечір», the hatten the EN "we had" fixes.
+    # The Perfekt haben … gehabt (no tense is asked) and the place phrase beside its als
+    # partner were rejected, the second charged to the tag with gemütlicheren intact.
+    revision: 2
     outcomes: [veranstaltung-empfehlen]
     type: translate
     focus: komparativ-attributiv
@@ -96,8 +103,8 @@ items:
       uk: "Порівняйте два вечори — поставте порівняння перед іменником. Для «затишний» візьміть gemütlich."
       de: "Vergleich die beiden Abende — stell den Vergleich vor das Nomen. Für die Atmosphäre nimm gemütlich."
     prompt_en: "In the small hall we had a cosier evening than in the Stadthalle."
-    prompt_ru: "В малом зале вечер у нас вышел уютнее, чем в Штадтхалле."
-    prompt_uk: "У малій залі вечір у нас вийшов затишніший, ніж у Штадтхалле."
+    prompt_ru: "В малом зале у нас был более уютный вечер, чем в Штадтхалле."
+    prompt_uk: "У малій залі в нас був затишніший вечір, ніж у Штадтхалле."
     answer: "Im kleinen Saal hatten wir einen gemütlicheren Abend als in der Stadthalle."
     accept:
       # The subject may lead; both are ordinary V2 and the graded word does not move.
@@ -105,6 +112,14 @@ items:
       # free: einen Abend haben is the fixed collocation and den Abend haben is not
       # German, so the frame settles the article without an accept doing it.
       - "Wir hatten im kleinen Saal einen gemütlicheren Abend als in der Stadthalle."
+      # The place may stand beside its als partner at the end of the field.
+      - "Wir hatten einen gemütlicheren Abend im kleinen Saal als in der Stadthalle."
+      # No tense is asked, and the Perfekt is the spoken default; the als phrase may stay
+      # inside the bracket or follow gehabt, in both subject positions.
+      - "Im kleinen Saal haben wir einen gemütlicheren Abend gehabt als in der Stadthalle."
+      - "Im kleinen Saal haben wir einen gemütlicheren Abend als in der Stadthalle gehabt."
+      - "Wir haben im kleinen Saal einen gemütlicheren Abend gehabt als in der Stadthalle."
+      - "Wir haben im kleinen Saal einen gemütlicheren Abend als in der Stadthalle gehabt."
     key_tokens: ["gemütlicheren"]
     explain:
       en: "Graded is the one word the tag is about: gemütlicher plus the -en that a masculine accusative asks for. Two endings are stacked in a fixed order — first the -er of the comparison, then the case ending on top of it. A hand that stops at gemütlicher has kept the comparison and dropped the declension; a hand that writes gemütliche has done the opposite."
@@ -113,6 +128,12 @@ items:
       de: "Bewertet wird das eine Wort, um das es dem Tag geht: gemütlicher plus das -en, das ein maskuliner Akkusativ verlangt. Zwei Endungen stapeln sich in fester Reihenfolge — erst das -er des Vergleichs, dann die Kasusendung darauf. Wer bei gemütlicher aufhört, behält den Vergleich ohne Deklination; wer gemütliche schreibt, macht es genau umgekehrt."
 
   - id: uebersetzen-bericht-plaetze
+    # revision 2: Sitzplätze, the course's own card for "seat" (A2 reisen-verkehr), was
+    # rejected. focus_evidence matches the unit's other report lines: a missing Präteritum
+    # stem fails (logged: bliebte, bliebt), agreement (blieb) and order do not. The Perfekt
+    # stays charged — the instruction asks for the Präteritum. eher for früher stays out:
+    # bare, it reads as "rather", and the eher card's time sense lives in Je eher, desto besser.
+    revision: 2
     outcomes: [erlebnis-bewerten]
     type: translate
     focus: praeteritum-vollverben
@@ -128,7 +149,12 @@ items:
     accept:
       # The subject may lead; the two graded forms do not move with it.
       - "Viele Plätze blieben nach der Pause leer, und der Abend endete früher."
+      - "Nach der Pause blieben viele Sitzplätze leer, und der Abend endete früher."
+      - "Viele Sitzplätze blieben nach der Pause leer, und der Abend endete früher."
     key_tokens: ["blieben", "endete"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})blieb(?:en)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})endete(?:n)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})blieb(?:en)?(?!\\p{L})", "(?<!\\p{L})endete(?:n)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs, one of each kind: bleiben is strong and changes its vowel with no ending — blieben — while enden is weak and keeps its stem under the -te. Both are Präteritum, and that is the register: a report is paper. Watch the plural too, since viele Plätze is what blieben agrees with."
       ru: "Оцениваются два полнозначных глагола, по одному каждого типа: bleiben — сильный, меняет гласную и не берёт окончания (blieben), а enden — слабый и сохраняет основу под -te. Оба стоят в Präteritum, и в этом весь регистр: отзыв — это бумага. Следите и за числом: blieben согласуется с viele Plätze."
@@ -169,7 +195,7 @@ items:
       - en: "Name exactly one limitation — Nur der Anfang war zu lang — and close with the verdict the reader came for: Ich kann den Abend empfehlen, or Ich würde wieder hingehen. Do not end by retelling the programme."
         ru: "Назовите ровно одну оговорку — Nur der Anfang war zu lang — и закончите тем выводом, ради которого отзыв и открыли: Ich kann den Abend empfehlen или Ich würde wieder hingehen. Не заканчивайте пересказом программы."
         uk: "Назвіть рівно одне застереження — Nur der Anfang war zu lang — і закінчіть тим висновком, заради якого відгук і відкрили: Ich kann den Abend empfehlen або Ich würde wieder hingehen. Не закінчуйте переказом програми."
-        de: "Nenn genau eine Einschränkung — Nur der Anfang war zu lang — und schließ mit dem Urteil, wegen dem man den Bericht liest: Ich kann den Abend empfehlen oder Ich würde wieder hingehen. Erzähl am Ende nicht das Programm nach."
+        de: "Nenn genau eine Einschränkung — Nur der Anfang war zu lang — und schließ mit dem Urteil, für das man den Bericht liest: Ich kann den Abend empfehlen oder Ich würde wieder hingehen. Erzähl am Ende nicht das Programm nach."
     min_words: 60
     model_answer: "Am vergangenen Samstag war ich im Schulkonzert in der Aula der Gesamtschule. Beginn war um sieben, und Einlass gab es schon ab halb sieben. Der Saal war fast voll, die Stimmung war gut, und das Publikum klatschte nach jedem Stück. Besonders gut gefiel mir die zweite Hälfte, weil der Chor dort ohne Pause sang und die jüngeren Kinder mitmachten. Nur der Anfang war zu lang: Drei Reden vor dem ersten Ton sind zwei zu viel. Der Eintritt war frei, und für die Getränke in der Pause zahlte man zwei Euro. Ich kann den Abend empfehlen und würde wieder hingehen."
     model_translation:

@@ -125,6 +125,12 @@ items:
       de: "Der Komparativ rückt vor das Nomen und bleibt dort ein ganz normales Adjektiv: erst besser und ruhiger bauen, dann die Endung anhängen, die das Nomen ohnehin verlangt. Beide Nomen sind hier feminin, also heißen beide Endungen -e — nach eine wie nach die. Neu ist auf B1 nicht die Form, sondern der Gebrauch: Wer das Bessere benennt, empfiehlt so, dass die andere Seite antworten kann."
 
   - id: uebersetzen-interessantere-fuehrung
+    # revision 2: the RU and UK prompts were predicative («экскурсия интереснее»), so under
+    # an instruction that asks for the comparison in front of the noun the learner had to
+    # invent the frame — and the logged *Am Sonntag ist die interessantere Führung* (ruled
+    # wrong, 2026-08-11) came straight from it. Both now say «есть» / «є», the gibt es the
+    # EN "there is" already fixes. Es gibt … die interessantere closes the accept grid.
+    revision: 2
     outcomes: [veranstaltung-empfehlen]
     type: translate
     focus: komparativ-attributiv
@@ -134,8 +140,8 @@ items:
       uk: "Порекомендуйте один із двох днів — поставте порівняння перед іменником. Для «екскурсія» візьміть die Führung, для «цікавий» — interessant."
       de: "Empfiehl einen der beiden Tage — stell den Vergleich vor das Nomen. Für die Besichtigung nimm die Führung, für interessant interessant."
     prompt_en: "On Sunday there is a more interesting guided tour than on Saturday."
-    prompt_ru: "В воскресенье экскурсия интереснее, чем в субботу."
-    prompt_uk: "У неділю екскурсія цікавіша, ніж у суботу."
+    prompt_ru: "В воскресенье есть экскурсия интереснее, чем в субботу."
+    prompt_uk: "У неділю є цікавіша екскурсія, ніж у суботу."
     answer: "Am Sonntag gibt es eine interessantere Führung als am Samstag."
     accept:
       # The day may follow the frame; both are ordinary V2.
@@ -145,11 +151,12 @@ items:
       # a feminine noun takes -e after eine and after die alike. Accepting it therefore
       # costs the measurement nothing and buys back correct German.
       - "Am Sonntag gibt es die interessantere Führung als am Samstag."
+      - "Es gibt am Sonntag die interessantere Führung als am Samstag."
     key_tokens: ["interessantere"]
     explain:
       en: "Graded is the one word the tag is about: interessanter plus the -e that die Führung asks for. The ordinary gradable adjective interessant forms its comparative with -er, not the source-language frame mehr + adjective: ein interessanteres Programm. Which day you name is carrier material; the ending is not."
-      ru: "Оценивается одно слово, ради которого и стоит тег: interessanter плюс то -e, которого требует die Führung. Немецкий никогда не сравнивает через mehr с прилагательным, каким бы длинным ни было слово: ein mehr interessantes Programm — привычка, которую подсказывает аналитическая модель, и в немецком её нет. Какой день назван — материал-носитель, а окончание нет."
-      uk: "Оцінюється одне слово, заради якого й стоїть тег: interessanter плюс те -e, якого вимагає die Führung. Німецька ніколи не порівнює через mehr з прикметником, хоч би яким довгим було слово: ein mehr interessantes Programm — звичка, яку підказує аналітична модель, і в німецькій її немає. Який день названо — матеріал-носій, а закінчення ні."
+      ru: "Оценивается одно слово, ради которого и стоит тег: interessanter плюс то -e, которого требует die Führung. Обычные качественные прилагательные сравниваются через -er, каким бы длинным ни было слово, а не через mehr: ein mehr interessantes Programm — привычка, которую подсказывает аналитическая модель «более интересная программа». Какой день назван — материал-носитель, а окончание нет."
+      uk: "Оцінюється одне слово, заради якого й стоїть тег: interessanter плюс те -e, якого вимагає die Führung. Звичайні якісні прикметники порівнюються через -er, хоч би яким довгим було слово, а не через mehr: ein mehr interessantes Programm — звичка, яку підказує аналітична модель «більш цікава програма». Який день названо — матеріал-носій, а закінчення ні."
       de: "Bewertet wird das eine Wort, um das es dem Tag geht: interessanter plus das -e, das die Führung verlangt. Das gewöhnliche steigerbare Adjektiv interessant bildet den Komparativ mit -er, nicht mit der aus den Ausgangssprachen übertragenen Form mehr + Adjektiv: ein interessanteres Programm. Welcher Tag genannt wird, ist Trägermaterial; die Endung nicht."
 
   - id: mc-gegenvorschlag
@@ -218,10 +225,10 @@ items:
       - "Um halb acht hole ich dich ab."
     key_tokens: ["hole", "ab"]
     explain:
-      en: "Graded are both halves of the verb: hole in position 2 and its prefix ab at the very end, behind the object and the time. The prefix is not decoration — holen means fetch a thing, abholen means collect a person from where they are. Leave it off and the sentence says you will fetch the other person from nowhere in particular."
-      ru: "Оцениваются обе половины глагола: hole на втором месте и приставка ab в самом конце, за дополнением и временем. Приставка — не украшение: holen значит «принести вещь», abholen — «забрать человека оттуда, где он есть». Без неё фраза сообщает, что вы принесёте собеседника неизвестно откуда."
-      uk: "Оцінюються обидві половини дієслова: hole на другому місці і префікс ab у самому кінці, за додатком і часом. Префікс — не оздоба: holen означає «принести річ», abholen — «забрати людину звідти, де вона є». Без нього фраза повідомляє, що ви принесете співрозмовника невідомо звідки."
-      de: "Bewertet werden beide Hälften des Verbs: hole auf Position 2 und sein Präfix ab ganz am Ende, hinter Objekt und Uhrzeit. Der Präfix ist keine Zierde — holen heißt eine Sache holen, abholen heißt eine Person dort abholen, wo sie ist. Ohne ihn sagt der Satz, du holtest die andere Person von nirgendwo."
+      en: "Graded are both halves of the verb: hole in position 2 and its prefix ab at the very end, behind the object and the time. The prefix is not decoration. holen is going to get someone or something and bringing it here — einen Arzt holen. abholen is collecting a person or a thing where it waits for you, as agreed — a friend at home, a parcel at the post office — and calling for somebody before an evening out is exactly that."
+      ru: "Оцениваются обе половины глагола: hole на втором месте и приставка ab в самом конце, за дополнением и временем. Приставка — не украшение. holen — сходить за кем-то или чем-то и доставить сюда: einen Arzt holen. abholen — забрать человека или вещь там, где они вас ждут, по договорённости: друга из дома, посылку на почте. Заехать за кем-то перед вечером — это как раз abholen."
+      uk: "Оцінюються обидві половини дієслова: hole на другому місці і префікс ab у самому кінці, за додатком і часом. Префікс — не оздоба. holen — сходити по когось чи щось і доставити сюди: einen Arzt holen. abholen — забрати людину чи річ там, де вони на вас чекають, за домовленістю: друга з дому, посилку на пошті. Заїхати по когось перед вечором — це якраз abholen."
+      de: "Bewertet werden beide Hälften des Verbs: hole auf Position 2 und sein Präfix ab ganz am Ende, hinter Objekt und Uhrzeit. Das Präfix ist keine Zierde. holen heißt, hingehen und jemanden oder etwas herbringen — einen Arzt holen. abholen heißt, eine Person oder Sache dort mitnehmen, wo sie wie verabredet wartet — die Freundin zu Hause, das Paket bei der Post —, und wer jemanden vor dem Abend mitnimmt, holt ihn genau so ab."
 
   - id: cloze-bericht-praeteritum
     outcomes: [erlebnis-bewerten]
@@ -244,6 +251,12 @@ items:
       de: "Beide Verben sind stark: Der Vokal wechselt, und ein -te kommt gar nicht dazu — aus geben wird gab, aus gefallen gefiel. Ein schriftlicher Bericht lebt von diesen Formen; mündlich erzählt hieße derselbe Abend es hat gegeben und hat mir gefallen. Richtiger ist keines von beiden; die Wahl steht zwischen Papier und Gespräch."
 
   - id: uebersetzen-stueck-begann
+    # revision 2: the fronted hour (Um sieben begann das Stück, …) was rejected and charged
+    # to this tag with both forms intact. focus_evidence fails only a missing Präteritum
+    # stem and reads begann/fand with either number ending as retained — the explain
+    # already says the Publikum agreement is not what this item grades, and until now the
+    # pins charged *fanden* to the tag.
+    revision: 2
     outcomes: [erlebnis-bewerten]
     type: translate
     focus: praeteritum-vollverben
@@ -257,9 +270,14 @@ items:
     prompt_uk: "Вистава почалася о сьомій, і публіка визнала першу половину задовгою."
     answer: "Das Stück begann um sieben, und das Publikum fand die erste Hälfte zu lang."
     accept:
-      # The hour may be said with or without Uhr; nothing else moves.
+      # The hour may be said with or without Uhr, and it may lead the first clause.
       - "Das Stück begann um sieben Uhr, und das Publikum fand die erste Hälfte zu lang."
+      - "Um sieben begann das Stück, und das Publikum fand die erste Hälfte zu lang."
+      - "Um sieben Uhr begann das Stück, und das Publikum fand die erste Hälfte zu lang."
     key_tokens: ["begann", "fand"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})begann(?:en)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})fand(?:en)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})begann(?:en)?(?!\\p{L})", "(?<!\\p{L})fand(?:en)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs, and both are strong: beginnen gives begann, finden gives fand, each a bare vowel change with no ending. das Publikum is singular however many people it covers, so its verb is singular too — fand, never fanden. That agreement is not what this item grades, but it is what an English or Russian hand gets wrong here."
       ru: "Оцениваются два полнозначных глагола, и оба сильные: beginnen даёт begann, finden даёт fand — чистая смена гласной без окончания. das Publikum стоит в единственном числе, сколько бы людей за ним ни стояло, и глагол при нём тоже: fand, а не fanden. Это согласование данный пункт не оценивает, но именно на нём спотыкается русская рука."
@@ -302,6 +320,11 @@ items:
       # An hour is as readily counted as named; the graded pair is untouched.
       - "Die Führung dauerte nur eine Stunde, aber ich lernte sehr viel."
     key_tokens: ["dauerte", "lernte"]
+    # The same predicates as the other report lines, so one tag reads one way across the
+    # unit: a missing Präteritum stem fails (logged: daurte), agreement and order do not.
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dauerte(?:n)?(?!\\p{L}))", "^(?!.*(?<!\\p{L})lernte(?:n)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})dauerte(?:n)?(?!\\p{L})", "(?<!\\p{L})lernte(?:n)?(?!\\p{L})"]
     explain:
       en: "Graded are the two full verbs, and both are weak: dauern and lernen keep their stem and take -te — dauerte, lernte. That is the other half of the Präteritum, and it is the half that misleads, because the ending looks like the one a hand puts on gehen and finden too. Strong verbs change the vowel instead and take no -te at all."
       ru: "Оцениваются два полнозначных глагола, и оба слабые: dauern и lernen сохраняют основу и берут -te — dauerte, lernte. Это вторая половина Präteritum, и как раз она сбивает с толку: окончание выглядит ровно так, как рука приставляет его и к gehen, и к finden. Сильные глаголы вместо этого меняют гласную и никакого -te не берут."

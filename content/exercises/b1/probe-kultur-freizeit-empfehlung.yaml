@@ -92,11 +92,16 @@ items:
       uk: "У п'ятницю дають захопливішу п'єсу, ніж у суботу."
     explain:
       en: "The ordinary gradable adjective spannend forms its comparative with -er: spannender. Then ein asks a neuter noun for the strong -es, because the article itself does not show the gender — so spannenderes. Two endings, stacked, and neither may be dropped."
-      ru: "Длинные прилагательные берут то же -er, что и короткие: spannend даёт spannender, а конструкции mehr плюс прилагательное в немецком нет вовсе. Дальше ein требует у существительного среднего рода сильного -es, потому что сам артикль род не показывает: получается spannenderes. Два окончания, одно на другом, и выбросить нельзя ни одно."
-      uk: "Довгі прикметники беруть те саме -er, що й короткі: spannend дає spannender, а конструкції mehr плюс прикметник у німецькій немає зовсім. Далі ein вимагає в іменника середнього роду сильного -es, бо сам артикль роду не показує: виходить spannenderes. Два закінчення, одне на одному, і викинути не можна жодне."
+      ru: "Длинные прилагательные берут то же -er, что и короткие: spannend даёт spannender, а не mehr spannend — обычные качественные прилагательные через mehr не сравниваются. Дальше ein требует у существительного среднего рода сильного -es, потому что сам артикль род не показывает: получается spannenderes. Два окончания, одно на другом, и выбросить нельзя ни одно."
+      uk: "Довгі прикметники беруть те саме -er, що й короткі: spannend дає spannender, а не mehr spannend — звичайні якісні прикметники через mehr не порівнюються. Далі ein вимагає в іменника середнього роду сильного -es, бо сам артикль роду не показує: виходить spannenderes. Два закінчення, одне на одному, і викинути не можна жодне."
       de: "Das gewöhnliche steigerbare Adjektiv spannend bildet seinen Komparativ mit -er: spannender. Danach verlangt ein von einem neutralen Nomen das starke -es, weil der Artikel selbst das Genus nicht zeigt — also spannenderes. Zwei Endungen, gestapelt, und keine davon darf fehlen."
 
   - id: variant-c
+    # revision 2: the RU and UK translations, shown beside the gap, said «лучше» /
+    # «кращий» — besser — against the instruction's schön, and the logged *besseren*
+    # (a well-built comparative of the wrong adjective) was charged to the tag. They now
+    # say «красивее» / «гарніший», as the EN "nicer" already did.
+    revision: 2
     outcomes: [veranstaltung-empfehlen]
     type: cloze
     focus: komparativ-attributiv
@@ -108,8 +113,8 @@ items:
     text: "Vorne hat man einen {{schöneren}} Blick auf die Bühne als ganz hinten."
     translation:
       en: "At the front you have a nicer view of the stage than right at the back."
-      ru: "Спереди вид на сцену лучше, чем в самом конце."
-      uk: "Спереду вигляд на сцену кращий, ніж у самому кінці."
+      ru: "Спереди вид на сцену красивее, чем в самом конце."
+      uk: "Спереду вид на сцену гарніший, ніж у самому кінці."
     explain:
       en: "schön plus -er gives schöner, with no umlaut anywhere — the vowel already has one. Then einen puts a masculine noun in the accusative, and that cell takes -en, exactly what schönen would take. So schöneren, with the -er of the comparison first and the case ending on top. The masculine accusative is where a hand that has learned to write -e everywhere shows it."
       ru: "schön плюс -er даёт schöner, и никакого умлаута тут не появляется — он уже есть в самой гласной. Дальше einen ставит существительное мужского рода в аккузатив, а эта клетка берёт -en, ровно то, что взяло бы schönen. Получается schöneren: сначала -er сравнения, потом падежное окончание поверх. Аккузатив мужского рода — именно та клетка, где видно руку, привыкшую писать -e везде."
