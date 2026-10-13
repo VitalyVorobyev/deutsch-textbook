@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.16 `polizei-anzeige`.
+  Next: B1.17 `versicherungen-behoerden`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -241,6 +241,17 @@ record of what shipped.
   not German", the *körperlich* note's "do not use it of a physical object" (*körperliche
   Gegenstände*), the *Infektion* note's computer-virus rule; the `koerper-medizin-b1` header
   still calls the deck unowned, though this topic adopts it; C6-1 still owed.
+- `b1/polizei-anzeige`: the cloze and table islands still charge any wrong gap or cell to the
+  tag — `table-indirekt`'s *commen* for *mitkommen* (a lost prefix, not the opener or the tense)
+  stays charged, and no cell takes an alternative; still rejected, unattributed: *das Geräusch*
+  (off the Wortliste), the Konjunktiv I *gehört habe* / *solle* in practice and probe items,
+  *zuhause* for *zu Hause*, *die Tür auf war*; a victim more often *macht* or *erstattet* an
+  Anzeige than *schreibt* one (the article's example, `cloze-anzeige`, the named
+  `uebersetzen-weitergeben`), and the write task's online report is modelled as a letter; the
+  dictation explain's "miss *wurde* and you have said *ist gestohlen*" describes a mishearing,
+  not an omission; the 2026-09-15 ruling note's "never *einen Lärm*" (*einen Heidenlärm*); the
+  `recht-kriminalitaet-b1` header still calls the deck unowned, though this topic adopts it;
+  C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

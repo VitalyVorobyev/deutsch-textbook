@@ -16,26 +16,56 @@ title:
 # lifts each off the single-file tail.
 items:
   - id: uebersetzen-weitergeben
+    # Revision 2 (2026-10-13 quality pass): three carrier words were open. RU/UK
+    # «Сотрудник»/«Працівник» are the very glosses of the course's Mitarbeiter card, EN "the
+    # officer" is Beamte or Polizist, "file"/«подать» is the machen this set's own models use
+    # (or erstatten), and «заявление» leaves die/eine free — all rejected. The instruction
+    # names der Beamte and die Anzeige schreiben. "should"/«следует» is sollte as readily
+    # as soll, and sollte carries the request through sollen as well, so it is accepted (it
+    # was charged). focus_evidence charges the opener (no dass; ob, wenn) and a request not
+    # carried by sollen (muss, a bare Präsens); soll misplaced is nebensatz-verbende's, and
+    # the Konjunktiv I solle, which no prompt excludes, reads unknown.
     outcomes: [aussage-wiedergeben]
     type: translate
     focus: indirekte-rede
-    key_tokens: ["dass", "soll"]
+    key_tokens: ["dass", "soll", "sollte"]
+    instruction:
+      en: "For 'the officer' take der Beamte, for 'file the report' die Anzeige schreiben."
+      ru: "Для «сотрудник» возьмите der Beamte, для «подать заявление» — die Anzeige schreiben."
+      uk: "Для «працівник» візьміть der Beamte, для «подати заяву» — die Anzeige schreiben."
     prompt_en: "The officer says that I should file the report online."
     prompt_ru: "Сотрудник говорит, что заявление мне следует подать онлайн."
     prompt_uk: "Працівник каже, що заяву мені слід подати онлайн."
     answer: "Der Beamte sagt, dass ich die Anzeige online schreiben soll."
     accept:
       - "Die Beamtin sagt, dass ich die Anzeige online schreiben soll."
+      - "Der Beamte sagt, dass ich die Anzeige online schreiben sollte."
+      - "Die Beamtin sagt, dass ich die Anzeige online schreiben sollte."
+    revision: 2
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dass(?!\\p{L}))", "(?<!\\p{L})(?:ob|wenn)(?!\\p{L})", "^(?!.*(?<!\\p{L})soll(?:e|te)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})dass(?!\\p{L})", "(?<!\\p{L})soll(?:te)?$"]
     explain:
-      en: "An instruction reported inside a *dass*-clause is carried by *sollen* — there is no imperative available there. The modal is the conjugated verb, so it goes last, after the infinitive: *schreiben soll*. Both *Beamte* and *Beamtin* are accepted because the source names no gender."
-      ru: "Указание, переданное внутри придаточного с *dass*, несёт *sollen*: императива там не бывает. Модальный глагол и есть спрягаемый, поэтому он идёт последним, после инфинитива: *schreiben soll*. Принимаются и *Beamte*, и *Beamtin*, потому что в исходной фразе род не назван."
-      uk: "Вказівку, передану всередині підрядного з *dass*, несе *sollen*: імператива там не буває. Модальне дієслово і є відмінюваним, тому воно йде останнім, після інфінітива: *schreiben soll*. Приймаються і *Beamte*, і *Beamtin*, бо у вихідній фразі рід не названо."
+      en: "An instruction reported inside a *dass*-clause is carried by *sollen* — there is no imperative available there. The modal is the conjugated verb, so it goes last, after the infinitive: *schreiben soll*. The softer *sollte* is the same modal and is accepted too, and so are *Beamte* and *Beamtin*, because the source names no gender."
+      ru: "Указание, переданное внутри придаточного с *dass*, несёт *sollen*: императива там не бывает. Модальный глагол и есть спрягаемый, поэтому он идёт последним, после инфинитива: *schreiben soll*. Более мягкое *sollte* — тот же модальный глагол, и оно тоже принимается, как и *Beamte* и *Beamtin*: в исходной фразе род не назван."
+      uk: "Вказівку, передану всередині підрядного з *dass*, несе *sollen*: імператива там не буває. Модальне дієслово і є відмінюваним, тому воно йде останнім, після інфінітива: *schreiben soll*. М'якше *sollte* — те саме модальне дієслово, і воно теж приймається, як і *Beamte* та *Beamtin*: у вихідній фразі рід не названо."
 
   - id: uebersetzen-beschreibung
+    # Revision 2 (2026-10-13 quality pass): two correct renderings were rejected. suchen
+    # nach + Dativ is as good German as suchen + Akkusativ, and nach meinem gestohlenen
+    # Fahrrad — the dative this item's own explain shows — was charged to the tag with the
+    # participle and its ending right; Rad is the course's own card for a bike («велосипед
+    # (разг.)»). gestohlenen is pinned beside gestohlenes. focus_evidence reads the attribute
+    # with its determiner: mein gestohlenes or meinem gestohlenen fails when absent, and a
+    # slip elsewhere is no longer charged.
     outcomes: [diebstahl-melden]
     type: translate
     focus: partizip-adjektiv
-    key_tokens: ["gestohlenes"]
+    key_tokens: ["gestohlenes", "gestohlenen"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})(?:mein\\s+gestohlenes|meinem\\s+gestohlenen)(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})(?:mein\\s+gestohlenes|meinem\\s+gestohlenen)(?!\\p{L})"]
+    revision: 2
     instruction:
       en: "Use a participle in front of the noun."
       ru: "Используйте причастие перед существительным."
@@ -44,6 +74,10 @@ items:
     prompt_ru: "Я ищу свой украденный велосипед."
     prompt_uk: "Я шукаю свій украдений велосипед."
     answer: "Ich suche mein gestohlenes Fahrrad."
+    accept:
+      - "Ich suche nach meinem gestohlenen Fahrrad."
+      - "Ich suche mein gestohlenes Rad."
+      - "Ich suche nach meinem gestohlenen Rad."
     explain:
       en: "This is the ending the core set deliberately postponed. *Mein* is a possessive and belongs to the *ein*-group, which supplies no gender of its own in the neuter — so the adjective has to, and the ending is *-es*: *mein gestohlenes Fahrrad*. Move the same phrase into the dative and the ending changes again — *nach meinem gestohlenen Fahrrad* — which is why the ending has to be read off the case each time rather than memorised with the word."
       ru: "Это то окончание, которое основной блок сознательно отложил. *Mein* — притяжательное и относится к группе *ein*, которая в среднем роде своего рода не показывает, — поэтому показать его должно прилагательное, и окончание будет *-es*: *mein gestohlenes Fahrrad*. Переведите то же сочетание в датив — и окончание снова изменится: *nach meinem gestohlenen Fahrrad*. Поэтому окончание каждый раз читается по падежу, а не запоминается вместе со словом."
@@ -58,9 +92,9 @@ items:
       ru: "Мой велосипед украли ночью."
       uk: "Мій велосипед украли вночі."
     explain:
-      en: "The sentence a counter clerk hears twenty times a day, and the part that is hardest to catch is *wurde* — one unstressed syllable that turns the whole sentence passive. Miss it and you have said *Mein Fahrrad ist gestohlen*, which is a state rather than an event and does not tell them when to look."
-      ru: "Фраза, которую сотрудник слышит двадцать раз в день, и труднее всего расслышать *wurde* — один безударный слог, который делает всё предложение пассивным. Пропустите его — и получится *Mein Fahrrad ist gestohlen*: состояние вместо события, и оно не говорит, когда искать."
-      uk: "Фраза, яку працівник чує двадцять разів на день, і найважче розчути *wurde* — один ненаголошений склад, що робить усе речення пасивним. Пропустите його — і вийде *Mein Fahrrad ist gestohlen*: стан замість події, і воно не каже, коли шукати."
+      en: "The sentence a counter clerk hears twenty times a day, and the part that is hardest to catch is *wurde* — one short unstressed word that turns the whole sentence passive. Miss it and you have said *Mein Fahrrad ist gestohlen*, which is a state rather than an event and does not tell them when to look."
+      ru: "Фраза, которую сотрудник слышит двадцать раз в день, и труднее всего расслышать *wurde* — одно короткое безударное слово, которое делает всё предложение пассивным. Пропустите его — и получится *Mein Fahrrad ist gestohlen*: состояние вместо события, и оно не говорит, когда искать."
+      uk: "Фраза, яку працівник чує двадцять разів на день, і найважче розчути *wurde* — одне коротке ненаголошене слово, що робить усе речення пасивним. Пропустите його — і вийде *Mein Fahrrad ist gestohlen*: стан замість події, і воно не каже, коли шукати."
 
   - id: sprechen-schalter
     outcomes: [diebstahl-melden, aussage-wiedergeben]
