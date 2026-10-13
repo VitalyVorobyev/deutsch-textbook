@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.15 `unfall-notruf`.
+  Next: B1.16 `polizei-anzeige`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -229,6 +229,18 @@ record of what shipped.
   note's "never *machen*" and the *Ansage* note's platform rule (*Bahnhofsansage*); the production
   header has the Hören's day and deadline two turns apart (they share one); the write model's
   "gut zwei Wochen" is a span its prompt never gives; C6-1 still owed.
+- `b1/unfall-notruf`: a cloze, order or table item still charges any wrong gap or chip to its
+  tag (`cloze-nachdem-sein`, `cloze-angaben`, `table-angaben`, `order-nachdem`) — no predicates
+  exist for those islands; `cloze-nachdem-sein`'s *Nachdem wir angekommen waren, war die Straße
+  schon gesperrt* (also in the article's table) reads more naturally with *als*, as its own
+  translations do ("by the time", «к тому времени как»); the reading's third explain says the
+  two tenses carry the sequence "on their own" (*nachdem* says it too); the `uebersetzen-angaben`
+  and `uebersetzen-hergang` instructions keep every detail behind the verb while each accepts the
+  fronted time; still rejected, unattributed: *heute früh* for "this morning", *Mein Kopf tut mir
+  weh* (the course calls the doubled possessive unidiomatic); the *Tod* note's "an tut sterben is
+  not German", the *körperlich* note's "do not use it of a physical object" (*körperliche
+  Gegenstände*), the *Infektion* note's computer-virus rule; the `koerper-medizin-b1` header
+  still calls the deck unowned, though this topic adopts it; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

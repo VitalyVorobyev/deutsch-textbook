@@ -207,6 +207,31 @@ GitHub Release notes.
     One exercise gave *heut-* as the stem of *heutige*; it is *heutig-*.
   - The *Rückmeldung* and *hinterlassen* cards now ask for their own word, not *Antwort*'s
     or *lassen*'s.
+- **B1.15 Unfall & Notruf — quality pass.**
+  - Emergency numbers:
+    - The exercise that keyed 110 for a bicycle stolen overnight now shows a theft
+      happening in front of you. A theft you find later is reported at a police station or
+      online.
+    - 112 is now described as the number for an accident with someone injured, not "for
+      anyone who is hurt".
+  - Correct German is accepted in nine exercises:
+    - the Präteritum (*Ich fuhr …*, *Der Radfahrer stürzte …*);
+    - the main clause first;
+    - *abgefahren*;
+    - *Mein Kopf tut weh*.
+  - Several exercises now name the words they grade around: *untersuchen*, *ein Pflaster
+    anlegen*, *stürzen*, *wehtun*, *abschließen*, *der Beamte*, *der Pass*.
+  - Only the Plusquamperfekt itself now counts against *nachdem*:
+    - a case slip or an unfinished answer no longer does;
+    - the word-order exercise no longer offers two articles to swap.
+  - One delayed check could be answered from memory of a practice sentence. It now has a
+    fresh one. Another one now notices *hat* or *war* in place of *hatte*.
+  - The lesson calls the order of time, reason, manner and place a default rather than a
+    fixed law, and explains why a direction (*über die Straße*) still stays last.
+  - Twelve notes in the body and medicine deck no longer teach something false, for example:
+    - that *Schweiß* and *weiß* have different vowels;
+    - that *erkältet* always needs *sein*;
+    - that *Herz* is the last irregular noun.
 
 ## [0.6.19] — 2026-10-11
 
