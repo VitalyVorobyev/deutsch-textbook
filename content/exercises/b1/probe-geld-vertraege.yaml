@@ -38,6 +38,12 @@
 # Pinned in every accepted rendering are the two halves of the group and nothing else: the
 # article word and the noun. The head noun in front of it is deliberately unpinned — a
 # fumbled Quittung is scored wrong and left unattributed rather than charged to this tag.
+# Pins are also graded by position, so a slip that shifted the group (a verb out of
+# position 2, zuerst at the end) was charged to it. Every variant therefore carries
+# `focus_evidence` read off the group behind its head noun: the wrong article, the missing
+# or the added -s, von and the compound the instruction rules out fail; the right group is
+# retained wherever it stands; a misspelt noun with the right article and ending is not this
+# tag's error and stays unattributed.
 #
 # Content fresh against the taught surface, checked by grepping each phrase across the
 # unit's six files rather than by re-reading this list. The taught genitives are Reparatur
@@ -81,6 +87,9 @@ items:
       # The subject may lead; both are ordinary V2 and the graded pair does not move.
       - "Der Name des Anbieters steht auf der Quittung."
     key_tokens: ["des", "Anbieters"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Name\\s+(?:der|die|dem|den|das|von|vom)(?!\\p{L})", "(?<!\\p{L})des\\s+Anbieter(?!\\p{L})", "(?<!\\p{L})Anbietername"]
+      retained: ["(?<!\\p{L})Name\\s+des\\s+Anbieters(?!\\p{L})"]
     explain:
       en: "Masculine, and it takes two words to build. The article der becomes des — that half most hands keep. The other half is the noun's own ending, because a masculine noun carries the case itself: Anbieter becomes Anbieters. Leaving it off (der Name des Anbieter) is the quiet error, since the article alone already looks like a genitive."
       ru: "Мужской род, и собирается он из двух слов. Артикль der превращается в des — эту половину рука сохраняет почти всегда. Вторая половина — собственное окончание существительного, потому что мужской род несёт падеж сам: Anbieter даёт Anbieters. Пропустить его (der Name des Anbieter) — тихая ошибка: один артикль уже выглядит как генитив."
@@ -88,6 +97,9 @@ items:
       de: "Maskulinum, und es besteht aus zwei Wörtern. Aus dem Artikel der wird des — diese Hälfte behält die Hand fast immer. Die andere Hälfte ist die Endung des Nomens selbst, denn ein Maskulinum trägt den Kasus mit: aus Anbieter wird Anbieters. Sie wegzulassen (der Name des Anbieter) ist der leise Fehler, denn der Artikel allein sieht schon nach Genitiv aus."
 
   - id: variant-b
+    # revision 2: the English prompt's order, Ich prüfe den Preis der Reparatur zuerst, is
+    # correct German and was charged to the tag with der Reparatur intact.
+    revision: 2
     outcomes: [rechnung-pruefen]
     type: translate
     focus: genitiv-form
@@ -103,7 +115,11 @@ items:
     accept:
       # The adverb may lead, as it does in the RU and UK prompts; the graded pair stays put.
       - "Zuerst prüfe ich den Preis der Reparatur."
+      - "Ich prüfe den Preis der Reparatur zuerst."
     key_tokens: ["der", "Reparatur"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Preis\\s+(?:des|die|dem|den|das|von|vom)(?!\\p{L})", "(?<!\\p{L})Reparaturs(?!\\p{L})", "(?<!\\p{L})Reparaturpreis"]
+      retained: ["(?<!\\p{L})Preis\\s+der\\s+Reparatur(?!\\p{L})"]
     explain:
       en: "Feminine, and this is the cell that tempts an ending which does not exist. The article word does all the work — die becomes der — and the noun stays exactly as it was: der Reparatur, never der Reparaturs. The -s belongs to masculine and neuter nouns alone, so the ending is a fact about the gender rather than a rule about the case."
       ru: "Женский род, и это та самая клетка, которая подбивает поставить окончание, которого нет. Всю работу делает артикль — die превращается в der, — а существительное остаётся ровно таким же: der Reparatur, но никогда der Reparaturs. Это -s есть только у мужского и среднего рода, так что окончание — факт о роде, а не правило о падеже."
@@ -127,6 +143,9 @@ items:
       # The time phrase may lead; both are ordinary V2 and the graded pair does not move.
       - "Jeden Monat ist der Betrag des Abos gleich."
     key_tokens: ["des", "Abos"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Betrag\\s+(?:der|die|dem|den|das|von|vom)(?!\\p{L})", "(?<!\\p{L})des\\s+Abo(?!\\p{L})", "(?<!\\p{L})Abobetrag"]
+      retained: ["(?<!\\p{L})Betrag\\s+des\\s+Abos(?!\\p{L})"]
     explain:
       en: "Neuter, and it behaves exactly like the masculine: das becomes des, and the noun takes an -s of its own — Abos. A short loanword makes the second half easy to forget, because des Abo already sounds finished. The three cells together are the whole paradigm: -s twice, nothing once, and the article word every time."
       ru: "Средний род ведёт себя ровно как мужской: das становится des, а существительное берёт собственное -s — Abos. У короткого заимствования вторую половину особенно легко забыть, потому что des Abo уже звучит законченно. Три клетки вместе и составляют всю парадигму: дважды -s, один раз ничего, и артикль каждый раз."

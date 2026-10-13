@@ -68,19 +68,22 @@ items:
       ru: "Что меняется в счёте, а что остаётся?"
       uk: "Що змінюється в рахунку, а що лишається?"
     explain:
-      en: "The two answers arrive two turns apart, and the arithmetic ties them together: the struck line was thirty euros, so hundertvierzig becomes hundertzehn. The date is settled only later, and it is settled the other way — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. A corrected bill almost never moves its own deadline, which is exactly why the caller asks: the new paper arrives with the old day on it."
-      ru: "Два ответа приходят с разницей в две реплики, а связывает их арифметика: вычеркнутая строка стоила тридцать евро, значит hundertvierzig превращается в hundertzehn. Дату решают только потом, и решают иначе — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Исправленный счёт почти никогда не двигает собственный срок, потому звонящий и спрашивает: новая бумага приходит со старым днём."
-      uk: "Дві відповіді приходять із різницею у дві репліки, а пов'язує їх арифметика: викреслений рядок коштував тридцять євро, отже hundertvierzig перетворюється на hundertzehn. Дату вирішують лише потім, і вирішують інакше — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Виправлений рахунок майже ніколи не рухає власний строк, тому той, хто телефонує, і питає: новий папір приходить зі старим днем."
-      de: "Die beiden Antworten kommen zwei Beiträge auseinander, und die Rechnung verbindet sie: Die gestrichene Zeile kostete dreißig Euro, aus hundertvierzig werden also hundertzehn. Das Datum wird erst danach geklärt, und zwar andersherum — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Eine korrigierte Rechnung verschiebt ihre Frist fast nie, und genau deshalb fragt der Anrufer."
+      en: "The two answers arrive two turns apart, and the arithmetic ties them together: the struck line was thirty euros, so hundertvierzig becomes hundertzehn. The date is settled only later, and it is settled the other way — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. A corrected bill may keep its deadline or get a new one, which is exactly why the caller asks: here the new paper arrives with the old day on it."
+      ru: "Два ответа приходят с разницей в две реплики, а связывает их арифметика: вычеркнутая строка стоила тридцать евро, значит hundertvierzig превращается в hundertzehn. Дату решают только потом, и решают иначе — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Исправленный счёт может сохранить срок, а может получить новый, потому звонящий и спрашивает: здесь новая бумага приходит со старым днём."
+      uk: "Дві відповіді приходять із різницею у дві репліки, а пов'язує їх арифметика: викреслений рядок коштував тридцять євро, отже hundertvierzig перетворюється на hundertzehn. Дату вирішують лише потім, і вирішують інакше — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Виправлений рахунок може зберегти строк, а може дістати новий, тому той, хто телефонує, і питає: тут новий папір приходить зі старим днем."
+      de: "Die beiden Antworten kommen zwei Beiträge auseinander, und die Rechnung verbindet sie: Die gestrichene Zeile kostete dreißig Euro, aus hundertvierzig werden also hundertzehn. Das Datum wird erst danach geklärt, und zwar andersherum — das Datum bleibt, wie es ist, fällig am siebzehnten Mai. Eine korrigierte Rechnung kann ihre Frist behalten oder eine neue bekommen, und genau deshalb fragt der Anrufer."
 
   - id: hoeren-diktat-faelligkeit
+    # revision 2: the DE instruction lacked "numbers as words", which the other three halves
+    # carry, so a German-medium learner typing am 30. Juni was marked wrong for following it.
+    revision: 2
     outcomes: [rechnung-pruefen]
     type: listen
     instruction:
       en: "Listen and type what you hear. Write numbers as words."
       ru: "Прослушайте и напишите, что вы слышите. Числа пишите словами."
       uk: "Прослухайте і напишіть, що ви чуєте. Числа пишіть словами."
-      de: "Hör zu und tippe, was du hörst."
+      de: "Hör zu und tippe, was du hörst. Schreib Zahlen als Wörter."
     text: "Der Gesamtbetrag ist am dreißigsten Juni fällig."
     translation:
       en: "The total amount is due on 30 June."
@@ -110,6 +113,13 @@ items:
       # move with it and the sentence stays ordinary V2.
       - "Den Preis der Lieferung kennen wir noch nicht."
     key_tokens: ["der", "Lieferung"]
+    # focus_evidence grades the genitive group behind Preis, not its position: a misplaced
+    # noch nicht that shifts it (Wir kennen noch nicht den Preis der Lieferung) was charged to
+    # the tag. The wrong article, a feminine -s, von and the compound the instruction rules
+    # out still fail.
+    focus_evidence:
+      failed: ["(?<!\\p{L})Preis\\s+(?:des|die|dem|den|das|von|vom)(?!\\p{L})", "(?<!\\p{L})Lieferungs(?!\\p{L})", "(?<!\\p{L})Liefer(?:ungs)?preis"]
+      retained: ["(?<!\\p{L})Preis\\s+der\\s+Lieferung(?!\\p{L})"]
     explain:
       en: "Graded is the genitive group: der Lieferung, the article word carrying the case while the feminine noun stays bare. The estimate is where this form does its work — a line names what a price belongs to before anybody owes anything, and der Preis von der Lieferung says the same thing in the register of speech rather than of paper."
       ru: "Оценивается родительная группа: der Lieferung, где падеж несёт артикль, а существительное женского рода остаётся без окончания. В смете эта форма и работает: строка называет, к чему относится цена, ещё до того, как кто-то что-то должен, — а der Preis von der Lieferung говорит то же самое в регистре речи, а не бумаги."
@@ -117,6 +127,11 @@ items:
       de: "Bewertet wird die Genitivgruppe: der Lieferung, wo das Artikelwort den Kasus trägt und das feminine Nomen leer bleibt. Im Kostenvoranschlag tut diese Form ihre Arbeit — eine Zeile nennt, wozu ein Preis gehört, bevor jemand etwas schuldet —, und der Preis von der Lieferung sagt dasselbe im Register des Sprechens statt des Papiers."
 
   - id: uebersetzen-bedingung-passiv
+    # revision 2: einmal pro Jahr and einmal jährlich render «раз в год» / "once a year" as
+    # correctly as einmal im Jahr, and the course carries jährlich as its own card (zeit-b1);
+    # both were rejected. focus_evidence grades the frame, not its position, as in the
+    # primary set's uebersetzen-passiv-frist.
+    revision: 2
     outcomes: [vertrag-nachfragen]
     type: translate
     focus: passiv-modal
@@ -132,7 +147,14 @@ items:
     accept:
       # The time phrase may lead; both are ordinary V2 and the closing pair is untouched.
       - "Einmal im Jahr kann der Tarif geändert werden."
+      - "Der Tarif kann einmal pro Jahr geändert werden."
+      - "Einmal pro Jahr kann der Tarif geändert werden."
+      - "Der Tarif kann einmal jährlich geändert werden."
+      - "Einmal jährlich kann der Tarif geändert werden."
     key_tokens: ["kann", "geändert", "werden"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})werden(?!\\p{L}))", "(?<!\\p{L})wird(?!\\p{L})", "(?<!\\p{L})werden\\s+\\p{L}", "(?<!\\p{L})können(?!\\p{L})", "(?<!\\p{L})sein$", "(?<!\\p{L})ändern\\s+werden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})kann(?!\\p{L})", "(?<!\\p{L})geändert\\s+werden$"]
     explain:
       en: "Graded are the three anchors: kann agreeing with der Tarif, and the pair geändert werden closing the clause in that order. This is the sentence to turn into a question at the counter, and the turn is mechanical — kann geändert werden becomes Kann ich den Tarif einmal im Jahr ändern? The condition names no person; the question puts you back into it."
       ru: "Оцениваются три якоря: kann, согласованный с der Tarif, и пара geändert werden, закрывающая предложение именно в этом порядке. Это и есть фраза, которую у стойки превращают в вопрос, и превращение механическое: из kann geändert werden получается Kann ich den Tarif einmal im Jahr ändern? Условие не называет человека — вопрос возвращает вас в него."
@@ -210,10 +232,10 @@ items:
         ru: "Вы положили одинаковые строки рядом, прежде чем что-либо складывать: Material, Arbeitszeit, Anfahrt, — и сказали, какую из них вторая смета отдельно не считает."
         uk: "Ви поклали однакові рядки поруч, перш ніж щось складати: Material, Arbeitszeit, Anfahrt, — і сказали, якого з них другий кошторис окремо не рахує."
         de: "Du hast dieselben Zeilen nebeneinandergelegt, bevor du etwas addiert hast: Material, Arbeitszeit, Anfahrt — und gesagt, welche davon der zweite Voranschlag nicht extra berechnet."
-      - en: "The comparison itself used als: Der erste Kostenvoranschlag ist günstiger als der zweite. Never wie, which would say the two cost the same."
-        ru: "Само сравнение прозвучало с als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — оно сказало бы, что обе сметы стоят одинаково."
-        uk: "Саме порівняння прозвучало з als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — воно сказало б, що обидва кошториси коштують однаково."
-        de: "Der Vergleich selbst stand mit als: Der erste Kostenvoranschlag ist günstiger als der zweite. Nie mit wie, das hieße, beide kosten gleich viel."
+      - en: "The comparison itself used als: Der erste Kostenvoranschlag ist günstiger als der zweite. Not wie, which belongs to the comparison of equals — so günstig wie."
+        ru: "Само сравнение прозвучало с als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — оно из сравнения равных: so günstig wie."
+        uk: "Саме порівняння прозвучало з als: Der erste Kostenvoranschlag ist günstiger als der zweite. Не wie — воно з порівняння рівних: so günstig wie."
+        de: "Der Vergleich selbst stand mit als: Der erste Kostenvoranschlag ist günstiger als der zweite. Nicht mit wie, das gehört zum Vergleich von Gleichem: so günstig wie."
       - en: "You named the sums out loud, both of them, and said what the difference consists of: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
         ru: "Вы назвали вслух обе суммы и сказали, из чего складывается разница: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
         uk: "Ви назвали вголос обидві суми і сказали, з чого складається різниця: hundertfünfundsiebzig gegen hundertneunzig Euro, und die Anfahrt ist im zweiten schon drin."
@@ -222,11 +244,11 @@ items:
         ru: "Ваш выбор держался на строке, а не на одном итоге: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
         uk: "Ваш вибір тримався на рядку, а не на самому підсумку: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
         de: "Deine Wahl stand auf einer Zeile und nicht allein auf der Summe: Ich nehme den zweiten, weil die Garantie zwei Jahre gilt und nichts extra dazukommt."
-    model_answer: "Ich habe die beiden Kostenvoranschläge nebeneinandergelegt. Beim ersten stehen Material, Arbeitszeit und Anfahrt einzeln: sechzig, neunzig und fünfundzwanzig Euro, zusammen hundertfünfundsiebzig. Der zweite rechnet alles pauschal, hundertneunzig Euro, und die Anfahrt ist da schon drin. Der erste ist also im Moment günstiger als der zweite, aber nur um fünfzehn Euro. Dafür gilt die Garantie beim zweiten zwei Jahre statt einem. Ich nehme den zweiten Kostenvoranschlag, weil eine zweite Reparatur im ersten Jahr nichts kostet und ich nichts extra bezahlen muss."
+    model_answer: "Ich habe die beiden Kostenvoranschläge nebeneinandergelegt. Beim ersten stehen Material, Arbeitszeit und Anfahrt einzeln: sechzig, neunzig und fünfundzwanzig Euro, zusammen hundertfünfundsiebzig. Der zweite rechnet alles pauschal, hundertneunzig Euro, und die Anfahrt ist da schon drin. Der erste ist also im Moment günstiger als der zweite, aber nur um fünfzehn Euro. Dafür gilt die Garantie beim zweiten zwei Jahre statt einem. Ich nehme den zweiten Kostenvoranschlag, weil eine zweite Reparatur auch im zweiten Jahr nichts kostet und ich nichts extra bezahlen muss."
     model_translation:
-      en: "I have put the two estimates side by side. In the first one material, labour and the call-out are listed separately: sixty, ninety and twenty-five euros, one hundred and seventy-five in total. The second charges everything at a flat rate, one hundred and ninety euros, with the call-out already in it. So the first one is cheaper than the second at the moment, but only by fifteen euros. On the other hand the second one guarantees two years instead of one. I am taking the second estimate, because a second repair in the first year costs nothing and I do not have to pay anything extra."
-      ru: "Я положил обе сметы рядом. В первой материалы, работа и выезд стоят по отдельности: шестьдесят, девяносто и двадцать пять евро, вместе сто семьдесят пять. Вторая считает всё единой суммой — сто девяносто евро, и выезд там уже внутри. Значит, сейчас первая дешевле второй, но всего на пятнадцать евро. Зато во второй гарантия действует два года вместо одного. Я беру вторую смету: повторный ремонт в первый год ничего не стоит, и доплачивать мне не придётся."
-      uk: "Я поклав обидва кошториси поруч. У першому матеріали, робота і виїзд стоять окремо: шістдесят, дев'яносто і двадцять п'ять євро, разом сто сімдесят п'ять. Другий рахує все єдиною сумою — сто дев'яносто євро, і виїзд там уже всередині. Отже, зараз перший дешевший за другий, але лише на п'ятнадцять євро. Зате в другому гарантія діє два роки замість одного. Я беру другий кошторис: повторний ремонт у перший рік нічого не коштує, і доплачувати мені не доведеться."
+      en: "I have put the two estimates side by side. In the first one material, labour and the call-out are listed separately: sixty, ninety and twenty-five euros, one hundred and seventy-five in total. The second charges everything at a flat rate, one hundred and ninety euros, with the call-out already in it. So the first one is cheaper than the second at the moment, but only by fifteen euros. On the other hand the second one guarantees two years instead of one. I am taking the second estimate, because a second repair costs nothing in the second year either and I do not have to pay anything extra."
+      ru: "Я положил обе сметы рядом. В первой материалы, работа и выезд стоят по отдельности: шестьдесят, девяносто и двадцать пять евро, вместе сто семьдесят пять. Вторая считает всё единой суммой — сто девяносто евро, и выезд там уже внутри. Значит, сейчас первая дешевле второй, но всего на пятнадцать евро. Зато во второй гарантия действует два года вместо одного. Я беру вторую смету: повторный ремонт и во второй год ничего не стоит, и доплачивать мне не придётся."
+      uk: "Я поклав обидва кошториси поруч. У першому матеріали, робота і виїзд стоять окремо: шістдесят, дев'яносто і двадцять п'ять євро, разом сто сімдесят п'ять. Другий рахує все єдиною сумою — сто дев'яносто євро, і виїзд там уже всередині. Отже, зараз перший дешевший за другий, але лише на п'ятнадцять євро. Зате в другому гарантія діє два роки замість одного. Я беру другий кошторис: повторний ремонт і в другий рік нічого не коштує, і доплачувати мені не доведеться."
     explain:
       en: "Compare your version against the model's moves, not its words. The lines come first and in the same order on both sides, so the two totals mean the same thing when they finally appear. Then one comparison with als, then the difference in figures, and only at the end the choice — attached to a line of the offer, which is what makes it something the other person can argue with."
       ru: "Сверяйте свой вариант с ходами образца, а не со словами. Сначала строки, и в одном и том же порядке с обеих сторон, — тогда два итога, когда они наконец прозвучат, будут значить одно и то же. Потом одно сравнение с als, потом разница в цифрах, и только в конце выбор, привязанный к строке предложения: именно это и делает его тем, с чем можно спорить."
