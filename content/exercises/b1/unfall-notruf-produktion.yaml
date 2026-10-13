@@ -21,40 +21,70 @@ title:
 # check, not in a form that refuses to advance.
 items:
   - id: uebersetzen-reihenfolge
+    # revision 2 (2026-10-13 quality pass): two correct renderings were rejected and charged
+    # to the tag with its Plusquamperfekt intact — the main clause first (no instruction rules
+    # it out; Nachdem was then out of its pinned slot), and abgefahren, the course's own card
+    # for "to leave" (trennbare-a1-verben). Both are accepted, closed over the two main-clause
+    # tenses. focus_evidence charges only the tag's decision: the participle not closed by
+    # war (Perfekt, Präteritum, hatte, a missing or fronted auxiliary) and a main clause
+    # stepped back as well.
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
     key_tokens: ["Nachdem", "war"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:weg|ab)(?:ge)?f(?:ahr|uhr)\\p{L}*(?!\\p{L})(?!\\s+war(?!\\p{L}))", "(?<!\\p{L})(?:hatte\\s+ich|ich\\s+hatte)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})(?:weg|ab)gefahren\\s+war(?!\\p{L})"]
     prompt_en: "After the ambulance had left, I called my wife."
     prompt_ru: "После того как скорая уехала, я позвонил жене."
     prompt_uk: "Після того як швидка поїхала, я зателефонував дружині."
     answer: "Nachdem der Krankenwagen weggefahren war, habe ich meine Frau angerufen."
     accept:
       - "Nachdem der Krankenwagen weggefahren war, rief ich meine Frau an."
+      - "Nachdem der Krankenwagen abgefahren war, habe ich meine Frau angerufen."
+      - "Nachdem der Krankenwagen abgefahren war, rief ich meine Frau an."
+      - "Ich habe meine Frau angerufen, nachdem der Krankenwagen weggefahren war."
+      - "Ich rief meine Frau an, nachdem der Krankenwagen weggefahren war."
+      - "Ich habe meine Frau angerufen, nachdem der Krankenwagen abgefahren war."
+      - "Ich rief meine Frau an, nachdem der Krankenwagen abgefahren war."
     explain:
-      en: "*Wegfahren* is a change of place, so its Plusquamperfekt is built with *war* — and the separable prefix stays attached in the participle, *weggefahren*, because a participle is one word. The main clause may then be Perfekt or Präteritum; both are accepted."
-      ru: "*Wegfahren* — перемена места, поэтому Plusquamperfekt строится с *war*, а отделяемая приставка в причастии остаётся приклеенной: *weggefahren*, потому что причастие — одно слово. Главное предложение может стоять в Perfekt или Präteritum; принимаются оба."
-      uk: "*Wegfahren* — зміна місця, тому Plusquamperfekt будується з *war*, а відокремлюваний префікс у дієприкметнику лишається приклеєним: *weggefahren*, бо дієприкметник — одне слово. Головне речення може стояти в Perfekt або Präteritum; приймаються обидва."
+      en: "*Wegfahren* is a change of place, so its Plusquamperfekt is built with *war* — and the separable prefix stays attached in the participle, *weggefahren*, because a participle is one word; *abgefahren* works the same way. The main clause may then be Perfekt or Präteritum, and it may come first: the *nachdem* clause holds the earlier event wherever it stands."
+      ru: "*Wegfahren* — перемена места, поэтому Plusquamperfekt строится с *war*, а отделяемая приставка в причастии остаётся приклеенной: *weggefahren*, потому что причастие — одно слово; с *abgefahren* всё так же. Главное предложение может стоять в Perfekt или Präteritum и может идти первым: придаточное с *nachdem* держит более раннее событие, где бы оно ни стояло."
+      uk: "*Wegfahren* — зміна місця, тому Plusquamperfekt будується з *war*, а відокремлюваний префікс у дієприкметнику лишається приклеєним: *weggefahren*, бо дієприкметник — одне слово; з *abgefahren* усе так само. Головне речення може стояти в Perfekt або Präteritum і може йти першим: підрядне з *nachdem* тримає ранішу подію, де б воно не стояло."
 
   - id: uebersetzen-hergang
+    # revision 2 (2026-10-13 quality pass): the instruction counted four details where the
+    # sentence has three (time, cause, place); "fell" / «упал» left the verb open (stürzen,
+    # hinfallen — the 2026-10-11 ruling took stürzen) and "the cyclist" the noun (Radfahrer,
+    # Fahrradfahrer), so the instruction names both; and the
+    # Präteritum — the tense a written report is in, and no prompt asks for another — was
+    # rejected. focus_evidence reads the order counted from the finite verb, so a fronted
+    # cause or place (charged today with the order behind the verb intact) is not charged.
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: angaben-reihenfolge
     key_tokens: ["heute", "wegen"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:ist|stürzte)(?!\\p{L}).*(?<!\\p{L})(?:wegen|kreuz\\p{L}*)(?!\\p{L}).*(?<!\\p{L})heute(?!\\p{L})", "(?<!\\p{L})(?:ist|stürzte)(?!\\p{L}).*(?<!\\p{L})kreuz\\p{L}*(?!\\p{L}).*(?<!\\p{L})wegen(?!\\p{L})"]
+      retained: ["(?<!\\p{L})heute(?!\\p{L}).*(?<!\\p{L})wegen(?!\\p{L}).*(?<!\\p{L})kreuz\\p{L}*(?!\\p{L})"]
     instruction:
-      en: "Four details, all behind the verb."
-      ru: "Четыре обстоятельства, все после глагола."
-      uk: "Чотири обставини, усі після дієслова."
+      en: "Three details, all behind the verb. For 'the cyclist' take der Radfahrer, for 'fell' stürzen."
+      ru: "Три обстоятельства, все после глагола. Для «велосипедист» возьмите der Radfahrer, для «упал» — stürzen."
+      uk: "Три обставини, усі після дієслова. Для «велосипедист» візьміть der Radfahrer, для «упав» — stürzen."
     prompt_en: "The cyclist fell at the crossroads this morning because of the rain."
     prompt_ru: "Сегодня утром из-за дождя велосипедист упал на перекрёстке."
     prompt_uk: "Сьогодні вранці через дощ велосипедист упав на перехресті."
     answer: "Der Radfahrer ist heute Morgen wegen des Regens an der Kreuzung gestürzt."
     accept:
       - "Heute Morgen ist der Radfahrer wegen des Regens an der Kreuzung gestürzt."
+      - "Der Radfahrer stürzte heute Morgen wegen des Regens an der Kreuzung."
+      - "Heute Morgen stürzte der Radfahrer wegen des Regens an der Kreuzung."
     explain:
-      en: "Time, cause, place — and the place comes last even though it is where the reader's attention goes. *Wegen* governs the genitive here, *des Regens*, which is the register a written report expects. Note that the English and the Russian both put the cause and the time wherever the speaker likes; German does not, and that freedom is the error this item is looking for."
-      ru: "Время, причина, место — и место идёт последним, хотя именно туда направлено внимание читателя. *Wegen* управляет здесь генитивом, *des Regens*: это регистр, которого ждёт письменный отчёт. Заметьте, что и по-русски, и по-английски причину и время можно поставить где угодно; по-немецки — нельзя, и именно эту вольность пункт и ищет."
-      uk: "Час, причина, місце — і місце йде останнім, хоча саме туди спрямована увага читача. *Wegen* керує тут родовим, *des Regens*: це регістр, якого чекає письмовий звіт. Зауважте, що й українською причину і час можна поставити будь-де; німецькою — ні, і саме цю вольність пункт і шукає."
+      en: "Time, cause, place — and the place comes last even though it is where the reader's attention goes. *Wegen* governs the genitive here, *des Regens*, which is the register a written report expects. Note that the English and the Russian both put the cause and the time wherever the speaker likes; German has a default order behind the verb, and carrying that freedom across is the error this item is looking for."
+      ru: "Время, причина, место — и место идёт последним, хотя именно туда направлено внимание читателя. *Wegen* управляет здесь генитивом, *des Regens*: это регистр, которого ждёт письменный отчёт. Заметьте, что и по-русски, и по-английски причину и время можно поставить где угодно; у немецкого за глаголом есть порядок по умолчанию, и именно перенос этой вольности пункт и ищет."
+      uk: "Час, причина, місце — і місце йде останнім, хоча саме туди спрямована увага читача. *Wegen* керує тут родовим, *des Regens*: це регістр, якого чекає письмовий звіт. Зауважте, що й українською причину і час можна поставити будь-де; у німецької за дієсловом є порядок за замовчуванням, і саме перенесення цієї вольності пункт і шукає."
 
   - id: diktat-notruf
     outcomes: [notruf-absetzen]
@@ -134,7 +164,7 @@ items:
     model_translation:
       en: "The accident happened on Tuesday at eight o'clock. That morning I was cycling to work slowly because of the rain. At the Hauptstraße crossroads a car suddenly turned right. After the car had turned, I could no longer brake and I fell. I injured my shoulder and went to the emergency department. The doctor examined the injury and put on a plaster."
       ru: "Авария произошла во вторник в восемь часов. В то утро я из-за дождя ехал на работу медленно. На перекрёстке Hauptstraße машина внезапно повернула направо. После того как машина повернула, я уже не смог затормозить и упал. Я повредил плечо и поехал в приёмный покой. Врач осмотрел травму и наложил пластырь."
-      uk: "Аварія сталася у вівторок о восьмій годині. Того ранку я через дощ їхав на роботу повільно. На перехресті Hauptstraße машина раптово повернула праворуч. Після того як машина повернула, я вже не зміг загальмувати і впав. Я пошкодив плече і поїхав до приймального відділення. Лікар оглянув травму і наклав пов'язку."
+      uk: "Аварія сталася у вівторок о восьмій годині. Того ранку я через дощ їхав на роботу повільно. На перехресті Hauptstraße машина раптово повернула праворуч. Після того як машина повернула, я вже не зміг загальмувати і впав. Я пошкодив плече і поїхав до приймального відділення. Лікар оглянув травму і наклав пластир."
     explain:
       en: "Read your draft against the model on three points. First find your *nachdem* clause and check its last two words: the participle must come before the auxiliary, *abgebogen war*, and the auxiliary must be *war* because *abbiegen* is a change of direction. Second, take your longest sentence and ask each adverbial its question in turn — *wann*, *warum*, *wo* — and see whether the answers come in that order; the model's second sentence is the test case. Third, check the injury: *mir die Schulter*, not *meine Schulter*."
       ru: "Сверьте черновик с образцом по трём точкам. Сначала найдите своё придаточное с *nachdem* и проверьте два его последних слова: причастие должно стоять перед вспомогательным, *abgebogen war*, и вспомогательным должно быть *war*, потому что *abbiegen* — смена направления. Затем возьмите самое длинное своё предложение и задайте каждому обстоятельству его вопрос по очереди — *wann*, *warum*, *wo* — и посмотрите, идут ли ответы в этом порядке; второе предложение образца и есть контрольный случай. Наконец проверьте травму: *mir die Schulter*, а не *meine Schulter*."

@@ -11,13 +11,21 @@
 # translate rather than cloze: a cloze prints the gap where the auxiliary belongs and thereby
 # answers the question — whether a step back is needed at all.
 #
-# Pinned is nachdem and the auxiliary the step back requires. The nouns are carrier material: a
-# fumbled Werkstatt is not this confusion. Each pinned token occurs exactly once in every
-# accepted rendering.
+# Pinned is nachdem and the auxiliary the step back requires (variant-c pins its participle).
+# The nouns are carrier material: a fumbled Werkstatt is not this confusion. Each pinned token
+# occurs exactly once in every accepted rendering. All three variants carry focus_evidence
+# (2026-10-13 quality pass), read off the participle of the earlier event: not closed by the
+# auxiliary it needs — a Perfekt, a Präteritum, the other auxiliary, a missing or fronted one —
+# is a failure, and so is a main clause stepped back as well; with the participle closed by
+# its auxiliary the step back survived, and an unfinished answer is unknown. Before this,
+# variant-c pinned no auxiliary and read *abgeschlossen hat* and *abgeschlossen war* as
+# retained.
 #
 # Carrier lexis checked against this topic's two practice sets and its reading by grepping
-# content/, not by re-reading them: Werkstatt, Formular, Nachbar and Schlüssel appear in no
-# arming item, so no variant can be answered from the memory of one.
+# content/, not by re-reading them: Werkstatt, Formular, Nachbar and Unfall appear in no
+# arming item, so no variant can be answered from the memory of one. variant-b's clause was
+# nachdem der Krankenwagen schon weggefahren war until 2026-10-13 — the arming
+# uebersetzen-reihenfolge's own Nebensatz plus schon — and is now a fresh one.
 topic: unfall-notruf
 role: probe
 arming:
@@ -32,10 +40,24 @@ title:
   uk: "Відкладена перевірка — одна минула подія раніше за іншу"
 items:
   - id: variant-a
+    # revision 2 (2026-10-13 quality pass): no instruction fixed the clause order, so the
+    # correct main-clause-first rendering was rejected and charged (Nachdem out of its pinned
+    # slot); and the carrier was open in every language — "the clerk" / «служащий» is der
+    # Beamte, der Angestellte or der Mitarbeiter, "asked for" / «попросил» nach … fragen or
+    # um … bitten, "passport" der Pass or der Reisepass. The instruction now asks for the
+    # family's corner (the Nebensatz first) and names the three.
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
     key_tokens: ["Nachdem", "hatte"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})aus(?:ge)?f\\p{L}*(?!\\p{L})(?!\\s+hatte(?!\\p{L}))", "(?<!\\p{L})hatte\\s+hatte(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})aus(?:ge)?f\\p{L}*\\s+hatte(?!\\p{L})"]
+    instruction:
+      en: "Begin with the earlier event. For 'the clerk' take der Beamte, for 'asked for' nach … fragen, for 'passport' der Pass."
+      ru: "Начните с более раннего события. Для «служащий» возьмите der Beamte, для «попросил» — nach … fragen, для «паспорт» — der Pass."
+      uk: "Почніть із ранішої події. Для «службовець» візьміть der Beamte, для «попросив» — nach … fragen, для «паспорт» — der Pass."
     prompt_en: "After I had filled in the form, the clerk asked for my passport."
     prompt_ru: "После того как я заполнил формуляр, служащий попросил мой паспорт."
     prompt_uk: "Після того як я заповнив формуляр, службовець попросив мій паспорт."
@@ -48,30 +70,55 @@ items:
       uk: "*Ausfüllen* бере *haben*, тому крок назад — це *hatte ausgefüllt*, а всередині підрядного допоміжне йде в кінець, після дієприкметника. Українська фраза позначає послідовність словом («після того як») і одним минулим часом; німецька позначає її двома різними часами, тож інформацію доводиться будувати наново, а не перекладати."
 
   - id: variant-b
+    # revision 2 (2026-10-13 quality pass): its Nebensatz was nachdem der Krankenwagen schon
+    # weggefahren war — the arming uebersetzen-reihenfolge's own clause plus schon, answerable
+    # from the memory of that item — and «Сосед» / «Сусід» left mein/der free. A fresh clause
+    # with a sein verb the topic drills (passieren, named, since geschehen and sich ereignen
+    # say the same), and «Мой сосед» / «Мій сусід».
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
     key_tokens: ["nachdem", "war"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})passier\\p{L}*(?!\\p{L})(?!\\s+war(?!\\p{L}))", "(?<!\\p{L})nachbar\\s+hatte(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})passiert\\s+war(?!\\p{L})"]
     instruction:
-      en: "Begin with the main clause."
-      ru: "Начните с главного предложения."
-      uk: "Почніть із головного речення."
-    prompt_en: "My neighbour called me after the ambulance had already left."
-    prompt_ru: "Сосед позвонил мне после того, как скорая уже уехала."
-    prompt_uk: "Сусід зателефонував мені після того, як швидка вже поїхала."
-    answer: "Mein Nachbar hat mich angerufen, nachdem der Krankenwagen schon weggefahren war."
+      en: "Begin with the main clause. For 'happened' take passieren."
+      ru: "Начните с главного предложения. Для «случилась» возьмите passieren."
+      uk: "Почніть із головного речення. Для «сталася» візьміть passieren."
+    prompt_en: "My neighbour called me after the accident had happened."
+    prompt_ru: "Мой сосед позвонил мне после того, как случилась авария."
+    prompt_uk: "Мій сусід зателефонував мені після того, як сталася аварія."
+    answer: "Mein Nachbar hat mich angerufen, nachdem der Unfall passiert war."
     accept:
-      - "Mein Nachbar rief mich an, nachdem der Krankenwagen schon weggefahren war."
+      - "Mein Nachbar rief mich an, nachdem der Unfall passiert war."
+      # «авария» / «аварія» mark no definiteness, and the article is carrier here.
+      - "Mein Nachbar hat mich angerufen, nachdem ein Unfall passiert war."
+      - "Mein Nachbar rief mich an, nachdem ein Unfall passiert war."
     explain:
-      en: "The clauses are in the reverse order and the rule does not move with them: the *nachdem* clause still holds the earlier event and still takes the Plusquamperfekt, even though it now comes second. *Wegfahren* is a change of place, so the auxiliary is *war*. This is the harder direction, because by the time you reach *nachdem* you have already chosen a tense for the main clause and it is tempting to keep it."
-      ru: "Части стоят в обратном порядке, и правило вместе с ними не сдвигается: придаточное с *nachdem* по-прежнему держит более раннее событие и по-прежнему берёт Plusquamperfekt, хотя теперь идёт вторым. *Wegfahren* — перемена места, поэтому вспомогательный *war*. Это более трудное направление: доходя до *nachdem*, вы уже выбрали время для главного предложения, и его хочется сохранить."
-      uk: "Частини стоять у зворотному порядку, і правило разом із ними не зсувається: підрядне з *nachdem* так само тримає ранішу подію і так само бере Plusquamperfekt, хоча тепер іде другим. *Wegfahren* — зміна місця, тому допоміжне *war*. Це важчий напрямок: доходячи до *nachdem*, ви вже обрали час для головного речення, і його хочеться зберегти."
+      en: "The clauses are in the reverse order and the rule does not move with them: the *nachdem* clause still holds the earlier event and still takes the Plusquamperfekt, even though it now comes second. *Passieren* takes *sein* — nobody does a happening — so the auxiliary is *war*. This is the harder direction, because by the time you reach *nachdem* you have already chosen a tense for the main clause and it is tempting to keep it."
+      ru: "Части стоят в обратном порядке, и правило вместе с ними не сдвигается: придаточное с *nachdem* по-прежнему держит более раннее событие и по-прежнему берёт Plusquamperfekt, хотя теперь идёт вторым. *Passieren* берёт *sein* — никто это событие не совершает, — поэтому вспомогательный *war*. Это более трудное направление: доходя до *nachdem*, вы уже выбрали время для главного предложения, и его хочется сохранить."
+      uk: "Частини стоять у зворотному порядку, і правило разом із ними не зсувається: підрядне з *nachdem* так само тримає ранішу подію і так само бере Plusquamperfekt, хоча тепер іде другим. *Passieren* бере *sein* — ніхто цю подію не здійснює, — тому допоміжне *war*. Це важчий напрямок: доходячи до *nachdem*, ви вже обрали час для головного речення, і його хочеться зберегти."
 
   - id: variant-c
+    # revision 2 (2026-10-13 quality pass): no instruction fixed the clause order, so the
+    # correct main-clause-first rendering was rejected and charged; and "locked" / «заперла»
+    # is abschließen, zuschließen or the inseparable verschließen — the last of which drops
+    # the corner this variant samples. The instruction asks for the Nebensatz first and names
+    # abschließen.
+    revision: 2
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
     key_tokens: ["Nachdem", "abgeschlossen"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:ab|zu)(?:ge)?schl\\p{L}*(?!\\p{L})(?!\\s+hatte(?!\\p{L}))", "(?<!\\p{L})hatte\\s+war(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})(?:ab|zu)geschlossen\\s+hatte(?!\\p{L})"]
+    instruction:
+      en: "Begin with the earlier event. For 'locked' take abschließen."
+      ru: "Начните с более раннего события. Для «заперла» возьмите abschließen."
+      uk: "Почніть із ранішої події. Для «замкнула» візьміть abschließen."
     prompt_en: "After she had locked the workshop, she went home."
     prompt_ru: "После того как она заперла мастерскую, она пошла домой."
     prompt_uk: "Після того як вона замкнула майстерню, вона пішла додому."
