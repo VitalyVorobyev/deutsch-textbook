@@ -2,6 +2,15 @@
 # pronouns accusative precedes dative. The three variants cover both mixed-case directions and
 # the two-pronoun case in fresh contexts. They arm only from the two practice items that teach
 # this decision; the B1 checkpoint is evidence, never the start of a retention clock.
+#
+# 2026-10-13 quality pass (revision 2 on variants a and b): neither instruction named the
+# noun, so the gap graded a form the prompt left open — RU «брату» leaves dem/meinem
+# Bruder free (logged: sie / Brudern, charged), and variant-b's "the noun object" let a
+# learner relay both objects as pronouns (logged: ihn / ihm, the two-pronoun order applied
+# correctly, charged). Both now name the pair, as variant-c and the practice cloze do, so
+# the gaps grade the order and nothing else. Variant-b was also the practice cloze's
+# Er gibt ihr den Schlüssel morgen zurück with one pronoun changed — answerable from
+# memory of the item that arms it — and now carries a fresh sentence.
 topic: informationen-vermitteln
 role: probe
 title:
@@ -14,14 +23,15 @@ arming:
   - b1/informationen-vermitteln::uebersetzen-pronomen-stellung
 items:
   - id: variant-a
+    revision: 2
     outcomes: [mitteilung-weitergeben]
     type: cloze
     focus: pronomen-stellung
     instruction:
-      en: "The invoice is already known. Put its pronoun and the noun recipient into the German order."
-      ru: "Счёт уже упомянут. Поставьте его местоимение и получателя-существительное в немецком порядке."
-      uk: "Рахунок уже згадано. Поставте його займенник і одержувача-іменник у німецькому порядку."
-      de: "Die Rechnung ist schon bekannt. Setz ihr Pronomen und den nominalen Empfänger in die deutsche Reihenfolge."
+      en: "The invoice is already known. Put sie (the invoice) and meinem Bruder into the two gaps in the German order."
+      ru: "Счёт уже упомянут. Поставьте sie (это счёт) и meinem Bruder в два пропуска в немецком порядке."
+      uk: "Рахунок уже згадано. Поставте sie (це рахунок) і meinem Bruder у два пропуски в німецькому порядку."
+      de: "Die Rechnung ist schon bekannt. Setz sie (für die Rechnung) und meinem Bruder in der deutschen Reihenfolge in die beiden Lücken."
     text: "Ich habe {{sie}} {{meinem Bruder}} gezeigt."
     translation:
       en: "I showed it to my brother."
@@ -34,24 +44,25 @@ items:
       de: "sie ist das kurze, bekannte Akkusativobjekt und steht deshalb vor dem neuen Dativnomen meinem Bruder. Die Nomenregel ‚Dativ vor Akkusativ‘ entscheidet nicht mehr, sobald ein Objekt ein Pronomen ist."
 
   - id: variant-b
+    revision: 2
     outcomes: [mitteilung-weitergeben]
     type: cloze
     focus: pronomen-stellung
     instruction:
-      en: "Paul is already known. Put the pronoun referring to him and the noun object into the German order."
-      ru: "Пауль уже упомянут. Поставьте местоимение, которое на него указывает, и дополнение-существительное в немецком порядке."
-      uk: "Пауля вже згадано. Поставте займенник, що на нього вказує, і додаток-іменник у німецькому порядку."
-      de: "Paul ist schon bekannt. Setz das Pronomen für ihn und das nominale Objekt in die deutsche Reihenfolge."
-    text: "Ich gebe {{ihm}} {{den Schlüssel}} morgen zurück."
+      en: "Paul is already known. Put ihm (Paul) and die Regel into the two gaps in the German order."
+      ru: "Пауль уже упомянут. Поставьте ihm (это Пауль) и die Regel в два пропуска в немецком порядке."
+      uk: "Пауля вже згадано. Поставте ihm (це Пауль) і die Regel у два пропуски в німецькому порядку."
+      de: "Paul ist schon bekannt. Setz ihm (für Paul) und die Regel in der deutschen Reihenfolge in die beiden Lücken."
+    text: "Heute Abend erkläre ich {{ihm}} {{die Regel}}."
     translation:
-      en: "I will give him the key back tomorrow."
-      ru: "Завтра я верну ему ключ."
-      uk: "Завтра я поверну йому ключ."
+      en: "This evening I will explain the rule to him."
+      ru: "Сегодня вечером я объясню ему правило."
+      uk: "Сьогодні ввечері я поясню йому правило."
     explain:
-      en: "This time the pronoun is dative, but the result is the same: ihm comes before the accusative noun den Schlüssel. Pronoun before noun is stronger than case order."
-      ru: "На этот раз местоимение стоит в Dativ, но результат тот же: ihm идёт перед существительным в Akkusativ den Schlüssel. Местоимение перед существительным — правило сильнее порядка падежей."
-      uk: "Цього разу займенник стоїть у Dativ, але результат той самий: ihm іде перед іменником в Akkusativ den Schlüssel. Займенник перед іменником — правило сильніше за порядок відмінків."
-      de: "Diesmal steht das Pronomen im Dativ, das Ergebnis bleibt gleich: ihm kommt vor dem Akkusativnomen den Schlüssel. Pronomen vor Nomen schlägt die Kasusreihenfolge."
+      en: "This time the pronoun is dative, but the result is the same: ihm comes before the accusative noun die Regel. Pronoun before noun is stronger than case order."
+      ru: "На этот раз местоимение стоит в Dativ, но результат тот же: ihm идёт перед существительным в Akkusativ die Regel. Местоимение перед существительным — правило сильнее порядка падежей."
+      uk: "Цього разу займенник стоїть у Dativ, але результат той самий: ihm іде перед іменником в Akkusativ die Regel. Займенник перед іменником — правило сильніше за порядок відмінків."
+      de: "Diesmal steht das Pronomen im Dativ, das Ergebnis bleibt gleich: ihm kommt vor dem Akkusativnomen die Regel. Pronomen vor Nomen schlägt die Kasusreihenfolge."
 
   - id: variant-c
     outcomes: [mitteilung-weitergeben]

@@ -179,6 +179,34 @@ GitHub Release notes.
     model answer no longer picks an offer for a reason both offers share.
   - The *Alternative* card's note now puts the stress where its pronunciation does, and the
     *Schulden* note no longer calls *die Schuld* a different word.
+- **B1.14 Informationen vermitteln — quality pass.**
+  - Te-ka-mo-lo is a default, not a law. Four exercises now also accept a manner word right
+    before the participle (*heute Morgen im Hof schnell nachgefragt*).
+    The word-order exercise had a duration (*lange*) where it meant "how", so it now uses
+    *zusammen*.
+  - Correct German is accepted in seven more exercises:
+    - the Präteritum;
+    - the future;
+    - *dass er morgen im Büro den Schlüssel abgibt*;
+    - *die Versammlung* for «собрание»;
+    - *um sieben Uhr*;
+    - *dass man den Aufzug repariert*.
+  - A mistake somewhere else no longer counts against the rule an exercise drills. In 13
+    exercises only the drilled decision counts, so a misspelt verb (*abgebt*, *angeruft*) is
+    no longer a word-order or reported-speech mistake.
+  - The German instructions for passing on a notice now say *Indikativ*, as the other
+    languages did. Five exercises now name the words they grade around: *es*,
+    *im Büro anrufen*, *fahren*, *Termin* and *Zug*. Two delayed checks name the pair to
+    order, and one gets a fresh sentence instead of a near-copy of a practice item.
+  - The lesson no longer says that:
+    - *wenn* is only for a repeated time;
+    - every *sein*-verb makes a participle you can put before a noun (not *der gelaufene
+      Mann*);
+    - English always shifts the tense back.
+
+    One exercise gave *heut-* as the stem of *heutige*; it is *heutig-*.
+  - The *Rückmeldung* and *hinterlassen* cards now ask for their own word, not *Antwort*'s
+    or *lassen*'s.
 
 ## [0.6.19] — 2026-10-11
 
