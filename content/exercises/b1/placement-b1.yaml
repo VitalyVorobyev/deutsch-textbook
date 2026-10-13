@@ -656,6 +656,12 @@ items:
 
   # --- polizei-anzeige ---
   - id: polizei-indirekt
+    # Revision 2 (2026-10-13 quality pass): the prompt asks for no tense, so the Präteritum
+    # sah is accepted beside gesehen hat and the Konjunktiv I habe (it was charged with dass
+    # intact) and pinned. focus_evidence charges the tag for the opener (no dass; ob, wenn)
+    # and the tense (the backshifted hatte, the present sieht); a misplaced hat is
+    # nebensatz-verbende's and reads unknown.
+    revision: 2
     outcomes: [aussage-wiedergeben]
     type: translate
     focus: indirekte-rede
@@ -664,8 +670,11 @@ items:
     prompt_ru: "Свидетель говорит, что ничего не видел."
     prompt_uk: "Свідок каже, що нічого не бачив."
     answer: "Der Zeuge sagt, dass er nichts gesehen hat."
-    accept: ["Der Zeuge sagt, dass er nichts gesehen habe."]
-    key_tokens: ["dass", "hat"]
+    accept: ["Der Zeuge sagt, dass er nichts gesehen habe.", "Der Zeuge sagt, dass er nichts sah."]
+    key_tokens: ["dass", "hat", "sah"]
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dass(?!\\p{L}))", "(?<!\\p{L})(?:ob|wenn)(?!\\p{L})", "(?<!\\p{L})dass(?!\\p{L}).*(?<!\\p{L})(?:hatte|sieht)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})dass(?!\\p{L})", "(?<!\\p{L})(?:hat|habe|sah)$"]
     explain: { en: "dass opens a Nebensatz, so the conjugated verb closes it — in a perfect that is the auxiliary, behind the participle: gesehen hat. The Konjunktiv I habe is accepted because it is the written variant of the same report, but nothing in this course asks you to produce it.", ru: "dass открывает придаточное, поэтому спрягаемый глагол его закрывает — в перфекте это вспомогательный, за причастием: gesehen hat. Форма Konjunktiv I habe принимается как письменный вариант той же передачи, но производить её курс нигде не требует.", uk: "dass відкриває підрядне, тому відмінюване дієслово його закриває — у перфекті це допоміжне, за дієприкметником: gesehen hat. Форма Konjunktiv I habe приймається як писемний варіант того самого передавання, але виробляти її курс ніде не вимагає.", de: "dass eröffnet einen Nebensatz, also schließt ihn das konjugierte Verb — im Perfekt ist das das Hilfsverb, hinter dem Partizip: gesehen hat. Der Konjunktiv I habe wird akzeptiert, weil er die geschriebene Variante derselben Wiedergabe ist; produzieren muss man ihn in diesem Kurs nirgends." }
 
   - id: polizei-partizip
@@ -675,7 +684,7 @@ items:
     instruction: { en: "Fill in the participle with the ending its position requires: stehlen.", ru: "Вставьте причастие с окончанием, которого требует позиция: stehlen.", uk: "Вставте дієприкметник із закінченням, якого вимагає позиція: stehlen.", de: "Ergänze das Partizip mit der Endung, die seine Position verlangt: stehlen." }
     text: "Die Polizei hat das {{gestohlene}} Fahrrad gefunden."
     translation: { en: "The police found the stolen bicycle.", ru: "Полиция нашла украденный велосипед.", uk: "Поліція знайшла украдений велосипед." }
-    explain: { en: "In front of a noun a Partizip II is an adjective and takes the ending its article and case demand — after das in the accusative neuter that is -e. A bare participle stands only after sein or werden: Das Fahrrad wurde gestohlen.", ru: "Перед существительным Partizip II — прилагательное и берёт окончание, которого требуют артикль и падеж: после das в винительном среднего рода это -e. Без окончания причастие стоит только после sein или werden: Das Fahrrad wurde gestohlen.", uk: "Перед іменником Partizip II — прикметник і бере закінчення, якого вимагають артикль і відмінок: після das у знахідному середнього роду це -e. Без закінчення дієприкметник стоїть лише після sein або werden: Das Fahrrad wurde gestohlen.", de: "Vor einem Nomen ist ein Partizip II ein Adjektiv und nimmt die Endung, die Artikel und Kasus verlangen — nach das im Akkusativ Neutrum also -e. Endungslos steht das Partizip nur nach sein oder werden: Das Fahrrad wurde gestohlen." }
+    explain: { en: "In front of a noun a Partizip II is an adjective and takes the ending its article and case demand — after das in the accusative neuter that is -e. Without an ending the participle is not an attribute but part of the verb: Das Fahrrad wurde gestohlen, Man hat es gestohlen.", ru: "Перед существительным Partizip II — прилагательное и берёт окончание, которого требуют артикль и падеж: после das в винительном среднего рода это -e. Без окончания причастие — не определение, а часть глагольной формы: Das Fahrrad wurde gestohlen, Man hat es gestohlen.", uk: "Перед іменником Partizip II — прикметник і бере закінчення, якого вимагають артикль і відмінок: після das у знахідному середнього роду це -e. Без закінчення дієприкметник — не означення, а частина дієслівної форми: Das Fahrrad wurde gestohlen, Man hat es gestohlen.", de: "Vor einem Nomen ist ein Partizip II ein Adjektiv und nimmt die Endung, die Artikel und Kasus verlangen — nach das im Akkusativ Neutrum also -e. Endungslos ist das Partizip kein Attribut, sondern Teil des Verbs: Das Fahrrad wurde gestohlen, Man hat es gestohlen." }
 
   # --- versicherungen-behoerden ---
   - id: behoerden-genitiv

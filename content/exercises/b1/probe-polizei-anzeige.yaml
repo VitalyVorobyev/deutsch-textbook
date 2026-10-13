@@ -12,11 +12,14 @@
 # question this competence asks, which is whether an opener is needed at all.
 #
 # Pinned is the opener and the verb that has to reach the end. The nouns are carrier material:
-# a fumbled Kollegin is not this confusion. Each pinned token occurs exactly once in every
-# accepted rendering.
+# a fumbled Kollegin is not this confusion. Each pinned token occurs at most once in every
+# accepted rendering. Since the 2026-10-13 quality pass each variant also carries
+# focus_evidence read off the tag's own decisions — the opener and the tense or the sollen of
+# the relayed clause — so the verb's slot, which is nebensatz-verbende's and indirekte-frage's,
+# reads unknown rather than charged.
 #
 # Carrier lexis checked against this topic's two practice sets and its reading by grepping
-# content/, not by re-reading them: Kollegin, Portemonnaie, Nachbar and Formular appear in no
+# content/, not by re-reading them: Kollegin, Geldbörse, Nachbar and Formular appear in no
 # arming item, so no variant can be answered from the memory of one.
 topic: polizei-anzeige
 role: probe
@@ -33,15 +36,28 @@ title:
   uk: "Відкладена перевірка — передавання чужих слів"
 items:
   - id: variant-a
+    # Revision 3 (2026-10-13 quality pass): "wallet"/«кошелёк»/«гаманець» is the course's own
+    # production card die Geldbörse (einkaufen-geld-a2), which was rejected, and also the
+    # recognition card Brieftasche; the instruction names die Geldbörse and the answer
+    # follows it. The prompt asks for no tense, so fand is accepted beside gefunden hat (it
+    # was charged with dass intact) and pinned, so findet is never forgiven as its slip.
     outcomes: [aussage-wiedergeben]
     type: translate
     focus: indirekte-rede
-    key_tokens: ["dass", "hat"]
+    key_tokens: ["dass", "hat", "fand"]
+    instruction:
+      en: "For 'wallet' take die Geldbörse."
+      ru: "Для «кошелёк» возьмите die Geldbörse."
+      uk: "Для «гаманець» візьміть die Geldbörse."
     prompt_en: "My colleague says that she found the wallet."
     prompt_ru: "Коллега говорит, что нашла кошелёк."
     prompt_uk: "Колега каже, що знайшла гаманець."
-    answer: "Meine Kollegin sagt, dass sie das Portemonnaie gefunden hat."
+    answer: "Meine Kollegin sagt, dass sie die Geldbörse gefunden hat."
     accept:
+      - "Die Kollegin sagt, dass sie die Geldbörse gefunden hat."
+      - "Meine Kollegin sagt, dass sie die Geldbörse fand."
+      - "Die Kollegin sagt, dass sie die Geldbörse fand."
+      - "Meine Kollegin sagt, dass sie das Portemonnaie gefunden hat."
       # revision 2: same two freedoms the RU and UK prompts leave open as in the practice
       # item this probe checks (b1/polizei-anzeige:uebersetzen-dass) — «Коллега» marks no
       # possessor, and «кошелёк» is Portemonnaie or Geldbeutel, the standard southern word.
@@ -50,38 +66,67 @@ items:
       - "Die Kollegin sagt, dass sie das Portemonnaie gefunden hat."
       - "Meine Kollegin sagt, dass sie den Geldbeutel gefunden hat."
       - "Die Kollegin sagt, dass sie den Geldbeutel gefunden hat."
-    revision: 2
+    revision: 3
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dass(?!\\p{L}))", "(?<!\\p{L})(?:ob|wenn)(?!\\p{L})", "(?<!\\p{L})dass(?!\\p{L}).*(?<!\\p{L})(?:hatte|findet)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})dass(?!\\p{L})", "(?<!\\p{L})(?:hat|fand)$"]
     explain:
       en: "A reported statement opens with *dass*, and the clause it opens puts its conjugated verb last. In a perfect that conjugated part is the auxiliary, so the order is *gefunden hat*. Note what stays unchanged: the reporting verb is present here, but even a past *sagte* would leave the reported tense alone — German does not shift tenses to match."
       ru: "Переданное утверждение открывается словом *dass*, а открытое им придаточное ставит спрягаемый глагол последним. В перфекте спрягаемая часть — вспомогательный, поэтому порядок *gefunden hat*. Обратите внимание на то, что не меняется: глагол передачи здесь в настоящем, но даже прошедшее *sagte* оставило бы время придаточного в покое — согласования времён в немецком нет."
       uk: "Передане твердження відкривається словом *dass*, а відкрите ним підрядне ставить відмінюване дієслово останнім. У перфекті відмінювана частина — допоміжне, тому порядок *gefunden hat*. Зверніть увагу на те, що не змінюється: дієслово передавання тут у теперішньому, але навіть минуле *sagte* лишило б час підрядного в спокої — узгодження часів у німецькій немає."
 
   - id: variant-b
+    # Revision 2 (2026-10-13 quality pass): the Perfekt gewesen ist renders "was" as well as
+    # war and was charged with ob intact; EN "my neighbour" names no sex, so meine Nachbarin
+    # was rejected. Both are accepted, and ist is pinned beside war.
     outcomes: [aussage-wiedergeben]
     type: translate
     focus: indirekte-rede
-    key_tokens: ["ob", "war"]
+    key_tokens: ["ob", "war", "ist"]
     prompt_en: "He asks whether my neighbour was at home."
     prompt_ru: "Он спрашивает, был ли мой сосед дома."
     prompt_uk: "Він питає, чи був мій сусід удома."
     answer: "Er fragt, ob mein Nachbar zu Hause war."
+    accept:
+      - "Er fragt, ob mein Nachbar zu Hause gewesen ist."
+      - "Er fragt, ob meine Nachbarin zu Hause war."
+      - "Er fragt, ob meine Nachbarin zu Hause gewesen ist."
+    revision: 2
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})ob(?!\\p{L}))", "(?<!\\p{L})(?:wenn|dass|falls)(?!\\p{L})", "^(?!.*(?<!\\p{L})gewesen(?!\\p{L})).*(?<!\\p{L})ob(?!\\p{L}).*(?<!\\p{L})ist(?!\\p{L})", "(?<!\\p{L})gewesen\\s+war(?!\\p{L})"]
+      retained: ["(?<!\\p{L})ob(?!\\p{L})", "(?<!\\p{L})(?:war|ist)$"]
     explain:
       en: "A yes/no question carries no question word to keep, so German has to supply one: *ob*. Behind it the clause takes ordinary subject-first order with the verb at the end — there is no inversion, even though the original was a question. The commonest wrong answer keeps the question shape, *ob war mein Nachbar zu Hause*, which is a main clause wearing a conjunction."
       ru: "У вопроса «да/нет» нет вопросительного слова, которое можно сохранить, поэтому немецкий подставляет союз: *ob*. За ним придаточное с обычным порядком «подлежащее первым» и глаголом в конце — никакой инверсии, хотя оригинал был вопросом. Самый частый неверный ответ сохраняет форму вопроса: *ob war mein Nachbar zu Hause* — это главное предложение, надевшее союз."
       uk: "У питання «так/ні» немає питального слова, яке можна зберегти, тому німецька підставляє сполучник: *ob*. За ним підрядне зі звичайним порядком «підмет першим» і дієсловом у кінці — жодної інверсії, хоча оригінал був питанням. Найчастіша хибна відповідь зберігає форму питання: *ob war mein Nachbar zu Hause* — це головне речення, що вдягло сполучник."
 
   - id: variant-c
+    # Revision 2 (2026-10-13 quality pass): the EN prompt had no "that", so the dass-less Sie
+    # sagt, ich soll … — correct German that bypasses the opener this probe measures — was
+    # invited and charged; it now says "that", as RU/UK «что»/«що» do. «формуляр» leaves
+    # das/ein free, and "should"/«следует» is sollte as readily as soll (the same modal):
+    # both are accepted, closed over the two places of zuerst.
     outcomes: [aussage-wiedergeben]
     type: translate
     focus: indirekte-rede
-    key_tokens: ["dass", "soll"]
-    prompt_en: "She says I should fill in the form first."
+    key_tokens: ["dass", "soll", "sollte"]
+    prompt_en: "She says that I should fill in the form first."
     prompt_ru: "Она говорит, что мне сначала следует заполнить формуляр."
     prompt_uk: "Вона каже, що мені спершу слід заповнити формуляр."
     answer: "Sie sagt, dass ich zuerst das Formular ausfüllen soll."
     accept:
       - "Sie sagt, dass ich das Formular zuerst ausfüllen soll."
+      - "Sie sagt, dass ich zuerst ein Formular ausfüllen soll."
+      - "Sie sagt, dass ich ein Formular zuerst ausfüllen soll."
+      - "Sie sagt, dass ich zuerst das Formular ausfüllen sollte."
+      - "Sie sagt, dass ich das Formular zuerst ausfüllen sollte."
+      - "Sie sagt, dass ich zuerst ein Formular ausfüllen sollte."
+      - "Sie sagt, dass ich ein Formular zuerst ausfüllen sollte."
+    revision: 2
+    focus_evidence:
+      failed: ["^(?!.*(?<!\\p{L})dass(?!\\p{L}))", "(?<!\\p{L})(?:ob|wenn)(?!\\p{L})", "^(?!.*(?<!\\p{L})soll(?:e|te)?(?!\\p{L}))"]
+      retained: ["(?<!\\p{L})dass(?!\\p{L})", "(?<!\\p{L})soll(?:te)?$"]
     explain:
-      en: "An instruction cannot be reported as an imperative — there is no imperative inside a Nebensatz — so *sollen* carries it. The modal is then the conjugated verb and lands at the very end, behind its own infinitive: *ausfüllen soll*. Both accepted renderings differ only in where *zuerst* sits, which the focus does not grade."
-      ru: "Указание нельзя передать императивом — внутри придаточного императива не бывает, — поэтому его несёт *sollen*. Модальный глагол оказывается спрягаемым и встаёт в самый конец, за собственным инфинитивом: *ausfüllen soll*. Оба принимаемых варианта различаются лишь местом *zuerst*, а его фокус не оценивает."
-      uk: "Вказівку не можна передати імперативом — усередині підрядного імператива не буває, — тому її несе *sollen*. Модальне дієслово виявляється відмінюваним і стає в самий кінець, за власним інфінітивом: *ausfüllen soll*. Обидва прийняті варіанти різняться лише місцем *zuerst*, а його фокус не оцінює."
+      en: "An instruction cannot be reported as an imperative — there is no imperative inside a Nebensatz — so *sollen* carries it. The modal is then the conjugated verb and lands at the very end, behind its own infinitive: *ausfüllen soll*. The accepted renderings differ only in where *zuerst* sits, in *das* or *ein Formular*, and in *soll* or the softer *sollte* — both forms of *sollen*, which is what the focus grades."
+      ru: "Указание нельзя передать императивом — внутри придаточного императива не бывает, — поэтому его несёт *sollen*. Модальный глагол оказывается спрягаемым и встаёт в самый конец, за собственным инфинитивом: *ausfüllen soll*. Принимаемые варианты различаются лишь местом *zuerst*, артиклем *das* или *ein* при *Formular* и формой *soll* или более мягкой *sollte* — обе это *sollen*, а его фокус и оценивает."
+      uk: "Вказівку не можна передати імперативом — усередині підрядного імператива не буває, — тому її несе *sollen*. Модальне дієслово виявляється відмінюваним і стає в самий кінець, за власним інфінітивом: *ausfüllen soll*. Прийняті варіанти різняться лише місцем *zuerst*, артиклем *das* чи *ein* при *Formular* і формою *soll* чи м'якшою *sollte* — обидві це *sollen*, а його фокус і оцінює."

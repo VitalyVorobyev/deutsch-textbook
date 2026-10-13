@@ -10,13 +10,19 @@ title:
 # Two are non-mc — a pretest is generation, not recognition.
 items:
   - id: dass-verbendstellung
+    # Revision 2 (2026-10-13 quality pass): the prompt asks for no tense, and "did not see"
+    # / «не видел» / «не бачив» are a Präteritum as much as a Perfekt, so sah is accepted
+    # and pinned.
     outcomes: [aussage-wiedergeben]
     type: translate
-    key_tokens: ["dass", "hat"]
+    key_tokens: ["dass", "hat", "sah"]
     prompt_en: "The witness says that he did not see anything."
     prompt_ru: "Свидетель говорит, что ничего не видел."
     prompt_uk: "Свідок каже, що нічого не бачив."
     answer: "Der Zeuge sagt, dass er nichts gesehen hat."
+    accept:
+      - "Der Zeuge sagt, dass er nichts sah."
+    revision: 2
     explain:
       en: "*Dass* opens a Nebensatz, and a Nebensatz puts its conjugated verb at the very end. The conjugated part of a perfect is the auxiliary, so *hat* comes after the participle: *gesehen hat*, not *hat gesehen*."
       ru: "*Dass* открывает придаточное, а придаточное ставит спрягаемый глагол в самый конец. Спрягаемая часть перфекта — вспомогательный глагол, поэтому *hat* идёт после причастия: *gesehen hat*, а не *hat gesehen*."
@@ -35,9 +41,9 @@ items:
       ru: "Она спрашивает, узнал ли я преступника. Он спрашивает, когда произошёл взлом."
       uk: "Вона питає, чи впізнав я злочинця. Він питає, коли стався злам."
     explain:
-      en: "A yes/no question needs *ob* — there is no question word to keep, so German supplies one. A question that already has a question word simply keeps it: *wann*. The trap in the second gap is *wenn*, which means *if* and belongs to conditions."
-      ru: "Вопросу «да/нет» нужен *ob*: сохранять нечего, поэтому немецкий подставляет союз. Вопрос, у которого вопросительное слово уже есть, просто сохраняет его: *wann*. Ловушка второго пропуска — *wenn*: оно значит «если» и относится к условиям, тогда как русское «когда» покрывает оба случая."
-      uk: "Питанню «так/ні» потрібен *ob*: зберігати нічого, тому німецька підставляє сполучник. Питання, у якого питальне слово вже є, просто зберігає його: *wann*. Пастка другого пропуску — *wenn*: воно означає «якщо» і стосується умов, тоді як українське «коли» покриває обидва випадки."
+      en: "A yes/no question needs *ob* — there is no question word to keep, so German supplies one. A question that already has a question word simply keeps it: *wann*. The trap in the second gap is *wenn*, which opens a condition or a time clause, never a question."
+      ru: "Вопросу «да/нет» нужен *ob*: сохранять нечего, поэтому немецкий подставляет союз. Вопрос, у которого вопросительное слово уже есть, просто сохраняет его: *wann*. Ловушка второго пропуска — *wenn*: оно вводит условие или время, но не вопрос, тогда как русское «когда» служит обоим."
+      uk: "Питанню «так/ні» потрібен *ob*: зберігати нічого, тому німецька підставляє сполучник. Питання, у якого питальне слово вже є, просто зберігає його: *wann*. Пастка другого пропуску — *wenn*: воно вводить умову або час, але не питання, тоді як українське «коли» служить обом."
 
   - id: partizip-endung
     outcomes: [diebstahl-melden]
@@ -49,6 +55,6 @@ items:
       - "das gestohlenes Fahrrad"
     correct: 0
     explain:
-      en: "In front of a noun a Partizip II behaves as an adjective, so it takes the ending the article and case require — after *das* in the accusative or nominative singular neuter, that is *-e*. A bare participle stands only after *sein* or *werden*: *Das Fahrrad wurde gestohlen*."
-      ru: "Перед существительным Partizip II ведёт себя как прилагательное и берёт окончание, которого требуют артикль и падеж: после *das* в именительном или винительном среднего рода это *-e*. Без окончания причастие стоит только после *sein* или *werden*: *Das Fahrrad wurde gestohlen*."
-      uk: "Перед іменником Partizip II поводиться як прикметник і бере закінчення, якого вимагають артикль і відмінок: після *das* у називному чи знахідному середнього роду це *-e*. Без закінчення дієприкметник стоїть лише після *sein* або *werden*: *Das Fahrrad wurde gestohlen*."
+      en: "In front of a noun a Partizip II behaves as an adjective, so it takes the ending the article and case require — after *das* in the accusative or nominative singular neuter, that is *-e*. Without an ending the participle is not an attribute but part of the verb: *Das Fahrrad wurde gestohlen*, *Man hat es gestohlen*."
+      ru: "Перед существительным Partizip II ведёт себя как прилагательное и берёт окончание, которого требуют артикль и падеж: после *das* в именительном или винительном среднего рода это *-e*. Без окончания причастие — не определение, а часть глагольной формы: *Das Fahrrad wurde gestohlen*, *Man hat es gestohlen*."
+      uk: "Перед іменником Partizip II поводиться як прикметник і бере закінчення, якого вимагають артикль і відмінок: після *das* у називному чи знахідному середнього роду це *-e*. Без закінчення дієприкметник — не означення, а частина дієслівної форми: *Das Fahrrad wurde gestohlen*, *Man hat es gestohlen*."
