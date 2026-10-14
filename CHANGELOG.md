@@ -271,6 +271,18 @@ GitHub Release notes.
     something must report it, not hand it in.
   - Ten card notes, three card prompts and one pronunciation no longer teach something
     false.
+- **B1.18 Rauchen, Alkohol & Gewohnheiten — quality pass.**
+  - An unreal condition without *wenn* (*Würde er weniger Zucker essen, wäre er
+    schlanker*) is accepted, and so is the main clause first. Before, it was marked as the
+    Konjunktiv mistake.
+  - *Wenn ich nicht rauche, hätte ich …* no longer slips through as a typo for *rauchte*.
+  - Correct German with *lassen* is accepted: a fronted *Auf dem Balkon* or *In der
+    Werkstatt*, *unser*, *das Rad* and *durch eine Firma*.
+  - Fixed facts: a *Droge* is not illegal by definition, since alcohol is one too. Verbs
+    like *käme* do have one-word forms. *gelassen* also occurs after *liegen* or *stehen*,
+    and *zu lassen* exists after *raten*.
+  - Two reading explanations no longer contradict the text, and eleven card notes no
+    longer teach something false.
 
 ## [0.6.19] — 2026-10-11
 

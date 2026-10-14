@@ -49,10 +49,18 @@ items:
       uk: "Konjunktiv II несуть обидві половини, а яка з'явиться форма, вирішує дієслово, а не половина. У *sein* є коротке *wärst*, тому підрядному з *wenn* більше нічого не треба; *stinken* — повнозначне дієслово, тому головне речення будує *würde* + інфінітив. Індикатив у будь-якій половині — *bist* або *stinkt* — стверджував би, що стан справ реальний, а фраза саме це й заперечує."
 
   - id: uebersetzen-irreal-zucker
+    # revision 2: the wenn-less verb-first condition is the same unreal condition with both halves
+    # marked, and was charged to the tag. focus_evidence reads the tag's own decision — fewer than
+    # two Konjunktiv II forms means one half was left indicative; würde + Partizip is not a form —
+    # so a word-order slip inside a half, or würde … sein, is no longer charged.
+    revision: 2
     outcomes: [folgen-abwaegen]
     type: translate
     focus: irreale-bedingung
     key_tokens: ["würde", "wäre"]
+    focus_evidence:
+      failed: ["^(?!(?:.*?(?<!\\p{L})(?:würde|wäre|hätte|äße)(?!\\p{L})){2})", "(?<!\\p{L})gegessen würde(?!\\p{L})"]
+      retained: ["(?:.*?(?<!\\p{L})(?:würde|wäre|hätte|äße)(?!\\p{L})){2}"]
     instruction:
       en: "Translate — for 'sugar' take der Zucker, for 'slimmer' schlanker; the full verb essen goes into würde + infinitive."
       ru: "Переведите — для «сахара» возьмите der Zucker, для «стройнее» — schlanker; полнозначный глагол essen поставьте в würde + инфинитив."
@@ -64,10 +72,13 @@ items:
     accept:
       - "Wenn er weniger Zucker essen würde, dann wäre er schlanker."
       - "Er wäre schlanker, wenn er weniger Zucker essen würde."
+      - "Würde er weniger Zucker essen, wäre er schlanker."
+      - "Würde er weniger Zucker essen, dann wäre er schlanker."
+      - "Er wäre schlanker, würde er weniger Zucker essen."
     explain:
-      en: "Graded are the two markers, one per half: *würde* closing the *wenn*-clause and *wäre* opening the main one. The order of the halves is free and both are accepted, but the marking is not — *ist* in the second half would put the sentence back into the real world, where he is not slimmer at all. Note that *würde* here belongs to *essen*, not to the condition: it is the default form of every full verb."
-      ru: "Оцениваются два маркера, по одному на половину: *würde* закрывает придаточное с *wenn*, *wäre* открывает главное. Порядок частей свободен и принимаются оба, а вот пометка не свободна: *ist* во второй половине вернул бы фразу в реальный мир, где он вовсе не стройнее. Обратите внимание: *würde* здесь принадлежит глаголу *essen*, а не условию — это форма по умолчанию для любого полнозначного глагола."
-      uk: "Оцінюються два маркери, по одному на половину: *würde* закриває підрядне з *wenn*, *wäre* відкриває головне. Порядок частин вільний і приймаються обидва, а от позначка не вільна: *ist* у другій половині повернув би фразу в реальний світ, де він зовсім не стрункіший. Зверніть увагу: *würde* тут належить дієслову *essen*, а не умові — це форма за замовчуванням для будь-якого повнозначного дієслова."
+      en: "Graded are the two markers, one per half: *würde* closing the *wenn*-clause and *wäre* opening the main one. The order of the halves is free and every order is accepted, the *wenn*-less *Würde er …* too, but the marking is not — *ist* in the second half would put the sentence back into the real world, where he is not slimmer at all. Note that *würde* here belongs to *essen*, not to the condition: it is the default form of every full verb."
+      ru: "Оцениваются два маркера, по одному на половину: *würde* закрывает придаточное с *wenn*, *wäre* открывает главное. Порядок частей свободен и принимается любой, в том числе и *Würde er …* без *wenn*, а вот пометка не свободна: *ist* во второй половине вернул бы фразу в реальный мир, где он вовсе не стройнее. Обратите внимание: *würde* здесь принадлежит глаголу *essen*, а не условию — это форма по умолчанию для любого полнозначного глагола."
+      uk: "Оцінюються два маркери, по одному на половину: *würde* закриває підрядне з *wenn*, *wäre* відкриває головне. Порядок частин вільний і приймається будь-який, зокрема й *Würde er …* без *wenn*, а от позначка не вільна: *ist* у другій половині повернув би фразу в реальний світ, де він зовсім не стрункіший. Зверніть увагу: *würde* тут належить дієслову *essen*, а не умові — це форма за замовчуванням для будь-якого повнозначного дієслова."
 
   - id: table-konjunktiv-formen
     outcomes: [folgen-abwaegen]
@@ -93,9 +104,9 @@ items:
         cells:
           - { answer: "würden" }
     explain:
-      en: "Three rows out of four need no *würde* at all: *haben*, *sein* and the modals own short forms and use them. Only the last row has a full verb, and a full verb has no usable short form of its own — *kauften* is spelled exactly like the indicative past — so it borrows *würden* + Infinitiv. That is the whole division, and it holds in the main clause too."
-      ru: "Трём строкам из четырёх *würde* вовсе не нужен: у *haben*, *sein* и модальных есть короткие формы, и они ими и пользуются. Полнозначный глагол только в последней строке, а у полнозначного своей пригодной короткой формы нет — *kauften* пишется ровно как индикативное прошедшее, — поэтому он берёт взаймы *würden* + инфинитив. В этом всё деление, и в главном предложении оно такое же."
-      uk: "Трьом рядкам із чотирьох *würde* зовсім не потрібен: у *haben*, *sein* і модальних є короткі форми, і вони ними й користуються. Повнозначне дієслово лише в останньому рядку, а в повнозначного своєї придатної короткої форми немає — *kauften* пишеться рівно як індикативне минуле, — тому воно позичає *würden* + інфінітив. У цьому весь поділ, і в головному реченні він такий самий."
+      en: "Three rows out of four need no *würde* at all: *haben*, *sein* and the modals own short forms and use them. Only the last row has a full verb, and *kaufen* has no usable short form of its own — *kauften* is spelled exactly like the indicative past — so it borrows *würden* + Infinitiv. That is the whole division, and it holds in the main clause too."
+      ru: "Трём строкам из четырёх *würde* вовсе не нужен: у *haben*, *sein* и модальных есть короткие формы, и они ими и пользуются. Полнозначный глагол только в последней строке, а у *kaufen* своей пригодной короткой формы нет — *kauften* пишется ровно как индикативное прошедшее, — поэтому он берёт взаймы *würden* + инфинитив. В этом всё деление, и в главном предложении оно такое же."
+      uk: "Трьом рядкам із чотирьох *würde* зовсім не потрібен: у *haben*, *sein* і модальних є короткі форми, і вони ними й користуються. Повнозначне дієслово лише в останньому рядку, а в *kaufen* своєї придатної короткої форми немає — *kauften* пишеться рівно як індикативне минуле, — тому воно позичає *würden* + інфінітив. У цьому весь поділ, і в головному реченні він такий самий."
 
   - id: order-irreal-schlafen
     outcomes: [folgen-abwaegen]
@@ -134,10 +145,17 @@ items:
       uk: "*Lassen* відмінюється з умлаутом, як *schlafen → schläft*: *er lässt*, але *ich lasse*. Дві фрази — дві різні роботи одного дієслова: *lässt* лікаря нав'язує мені щось, а моє *lasse* організовує щось для мене. Друге дієслово в обох стоїть голим інфінітивом у кінці — *warten*, *erklären*, без *zu*."
 
   - id: uebersetzen-beraten-lassen
+    # revision 2: the fronted In der Apotheke and einer for the bare «в аптеке» are correct German.
+    # focus_evidence fails only the tag's own errors — a zu, the participle gelassen, lassen before
+    # beraten — so the inserted zu, which no pin can see, is charged and a fronted phrase is not.
+    revision: 2
     outcomes: [hilfe-veranlassen]
     type: translate
     focus: lassen-verwendung
     key_tokens: ["beraten", "lassen"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})zu (?:beraten|lassen)(?!\\p{L})", "(?<!\\p{L})gelassen(?!\\p{L})", "(?<!\\p{L})lassen beraten(?!\\p{L})"]
+      retained: ["(?<!\\p{L})beraten lassen$"]
     instruction:
       en: "Translate in the perfect, with lassen — you arranged it, somebody in the pharmacy did the advising."
       ru: "Переведите в перфекте, через lassen: вы это устроили, а консультировал кто-то в аптеке."
@@ -146,10 +164,14 @@ items:
     prompt_ru: "Я проконсультировался в аптеке."
     prompt_uk: "Я проконсультувався в аптеці."
     answer: "Ich habe mich in der Apotheke beraten lassen."
+    accept:
+      - "In der Apotheke habe ich mich beraten lassen."
+      - "Ich habe mich in einer Apotheke beraten lassen."
+      - "In einer Apotheke habe ich mich beraten lassen."
     explain:
-      en: "Two things have to be right at once. *Beraten* is the bare infinitive at the end, and *lassen* itself stays an infinitive in the perfect — *habe … lassen*, never *habe … gelassen*. German does the same after the modals (*ich habe arbeiten müssen*), and the participle *gelassen* survives only where *lassen* stands alone: *Ich habe das Feuerzeug zu Hause gelassen*."
-      ru: "Одновременно должны быть верны две вещи. *Beraten* — голый инфинитив в конце, а сам *lassen* остаётся в перфекте инфинитивом: *habe … lassen*, а не *habe … gelassen*. Немецкий поступает так же после модальных (*ich habe arbeiten müssen*), а причастие *gelassen* выживает только там, где *lassen* стоит один: *Ich habe das Feuerzeug zu Hause gelassen*."
-      uk: "Водночас мають бути правильні дві речі. *Beraten* — голий інфінітив у кінці, а сам *lassen* лишається в перфекті інфінітивом: *habe … lassen*, а не *habe … gelassen*. Німецька робить так само після модальних (*ich habe arbeiten müssen*), а дієприкметник *gelassen* виживає лише там, де *lassen* стоїть сам: *Ich habe das Feuerzeug zu Hause gelassen*."
+      en: "Two things have to be right at once. *Beraten* is the bare infinitive at the end, and *lassen* itself stays an infinitive in the perfect — *habe … lassen*, not *habe … gelassen*. German does the same after the modals (*ich habe arbeiten müssen*), and the participle *gelassen* is the form for *lassen* standing alone: *Ich habe das Feuerzeug zu Hause gelassen*."
+      ru: "Одновременно должны быть верны две вещи. *Beraten* — голый инфинитив в конце, а сам *lassen* остаётся в перфекте инфинитивом: *habe … lassen*, а не *habe … gelassen*. Немецкий поступает так же после модальных (*ich habe arbeiten müssen*), а причастие *gelassen* — форма для *lassen*, который стоит один: *Ich habe das Feuerzeug zu Hause gelassen*."
+      uk: "Водночас мають бути правильні дві речі. *Beraten* — голий інфінітив у кінці, а сам *lassen* лишається в перфекті інфінітивом: *habe … lassen*, а не *habe … gelassen*. Німецька робить так само після модальних (*ich habe arbeiten müssen*), а дієприкметник *gelassen* — форма для *lassen*, що стоїть сам: *Ich habe das Feuerzeug zu Hause gelassen*."
 
   - id: mc-ersatzinfinitiv
     outcomes: [hilfe-veranlassen]
@@ -162,15 +184,21 @@ items:
       - "zu lassen"
     correct: 0
     explain:
-      en: "In the perfect beside a second verb, *lassen* keeps the shape of an infinitive: *habe rasieren lassen*. *Gelassen* is a real participle, but only where *lassen* has no second verb with it. *Zu lassen* imports the *zu*-infinitive rule from *versuchen* and *anfangen*, and *lassen* never takes it — the same reason there is no *zu* in front of *rasieren* either."
-      ru: "В перфекте рядом со вторым глаголом *lassen* сохраняет вид инфинитива: *habe rasieren lassen*. *Gelassen* — настоящее причастие, но только там, где второго глагола при *lassen* нет. *Zu lassen* переносит правило инфинитива с *zu* от *versuchen* и *anfangen*, а *lassen* его не берёт никогда — по той же причине *zu* нет и перед *rasieren*."
-      uk: "У перфекті поряд із другим дієсловом *lassen* зберігає вигляд інфінітива: *habe rasieren lassen*. *Gelassen* — справжній дієприкметник, але лише там, де другого дієслова при *lassen* немає. *Zu lassen* переносить правило інфінітива із *zu* від *versuchen* і *anfangen*, а *lassen* його не бере ніколи — з тієї самої причини *zu* немає й перед *rasieren*."
+      en: "In the perfect beside a second verb, *lassen* keeps the shape of an infinitive: *habe rasieren lassen*. *Gelassen* is a real participle, the one for *lassen* with no second verb beside it. *Zu lassen* is a real form too, but it follows a verb such as *versuchen* or *raten* (*Ich rate dir, dich beraten zu lassen*); the perfect's *habe* takes no *zu*, and *lassen* puts none in front of *rasieren* either."
+      ru: "В перфекте рядом со вторым глаголом *lassen* сохраняет вид инфинитива: *habe rasieren lassen*. *Gelassen* — настоящее причастие, то, что стоит при *lassen* без второго глагола. *Zu lassen* — тоже настоящая форма, но она идёт после глаголов вроде *versuchen* или *raten* (*Ich rate dir, dich beraten zu lassen*); перфектное *habe* никакого *zu* не берёт, и *lassen* не ставит его перед *rasieren*."
+      uk: "У перфекті поряд із другим дієсловом *lassen* зберігає вигляд інфінітива: *habe rasieren lassen*. *Gelassen* — справжній дієприкметник, той, що стоїть при *lassen* без другого дієслова. *Zu lassen* — теж справжня форма, але вона йде після дієслів на кшталт *versuchen* чи *raten* (*Ich rate dir, dich beraten zu lassen*); перфектне *habe* жодного *zu* не бере, і *lassen* не ставить його перед *rasieren*."
 
   - id: uebersetzen-rat-sein-lassen
     outcomes: [rat-zum-aufhoeren]
     type: translate
     focus: lassen-verwendung
     key_tokens: ["Lass", "sein"]
+    # Predicates read the bracket: a zu, the participle, or sein pulled in front of the noun fail;
+    # Lass … sein retained; Lass das Rauchen! (no sein, which the instruction asks for) and the
+    # imperative's form are other decisions and log no tag.
+    focus_evidence:
+      failed: ["(?<!\\p{L})zu sein(?!\\p{L})", "(?<!\\p{L})gelassen(?!\\p{L})", "(?<!\\p{L})sein(?!\\p{L}).*(?<!\\p{L})Rauchen(?!\\p{L})"]
+      retained: ["^lasse?(?!\\p{L})", "(?<!\\p{L})sein$"]
     instruction:
       en: "Advice to one friend (du) — use the fixed expression etwas sein lassen, with das Rauchen as the noun."
       ru: "Совет одному другу (du) — используйте устойчивое выражение etwas sein lassen, существительное — das Rauchen."
@@ -197,11 +225,14 @@ items:
       ru: "Сначала курение было просто привычкой. Через десять лет он стал зависим от сигарет. Сегодня врач называет это зависимостью. Его брат никогда не курил."
       uk: "Спочатку куріння було просто звичкою. Через десять років він став залежним від цигарок. Сьогодні лікар називає це залежністю. Його брат ніколи не курив."
     explain:
-      en: "The second gap is the one with a grammar attached: *süchtig* takes *nach* plus the dative, so it is *süchtig nach Zigaretten* and never *auf*. Note the difference the first and third gaps make — a *Gewohnheit* is something a person could still decide to stop, and *Sucht* is the word for the point at which that decision no longer works. The last gap uses a bare noun after *sein*, with no article, exactly as German does with professions."
-      ru: "У второго пропуска есть своя грамматика: *süchtig* требует *nach* с дативом, поэтому *süchtig nach Zigaretten*, и никогда не *auf*. Обратите внимание на разницу между первым и третьим пропусками: *Gewohnheit* — то, что человек ещё может решить прекратить, а *Sucht* — слово для точки, где это решение уже не работает. В последнем пропуске существительное после *sein* стоит без артикля — ровно как с названиями профессий."
-      uk: "У другого пропуску є своя граматика: *süchtig* потребує *nach* з давальним, тому *süchtig nach Zigaretten*, і ніколи не *auf*. Зверніть увагу на різницю між першим і третім пропусками: *Gewohnheit* — те, що людина ще може вирішити припинити, а *Sucht* — слово для точки, де це рішення вже не працює. В останньому пропуску іменник після *sein* стоїть без артикля — рівно як із назвами професій."
+      en: "The second gap is the one with a grammar attached: *süchtig* takes *nach* plus the dative, so it is *süchtig nach Zigaretten* and not *auf*. Note the difference the first and third gaps make — a *Gewohnheit* is something a person could still decide to stop, and *Sucht* is the word for the point at which that decision no longer works. The last gap uses a bare noun after *sein*, with no article, exactly as German does with professions."
+      ru: "У второго пропуска есть своя грамматика: *süchtig* требует *nach* с дативом, поэтому *süchtig nach Zigaretten*, а не *auf*. Обратите внимание на разницу между первым и третьим пропусками: *Gewohnheit* — то, что человек ещё может решить прекратить, а *Sucht* — слово для точки, где это решение уже не работает. В последнем пропуске существительное после *sein* стоит без артикля — ровно как с названиями профессий."
+      uk: "У другого пропуску є своя граматика: *süchtig* потребує *nach* з давальним, тому *süchtig nach Zigaretten*, а не *auf*. Зверніть увагу на різницю між першим і третім пропусками: *Gewohnheit* — те, що людина ще може вирішити припинити, а *Sucht* — слово для точки, де це рішення вже не працює. В останньому пропуску іменник після *sein* стоїть без артикля — рівно як із назвами професій."
 
   - id: match-lebensstil
+    # revision 2: die Droge was "forbidden by law" — alcohol and nicotine are drugs too, and
+    # Germany legalised cannabis for adults in 2024.
+    revision: 2
     outcomes: [gesundheitstext-verstehen]
     type: match
     instruction:
@@ -216,15 +247,15 @@ items:
       - left: "der Nichtraucher"
         right: { en: "somebody who does not smoke", ru: "тот, кто не курит", uk: "той, хто не курить" }
       - left: "die Droge"
-        right: { en: "a substance forbidden by law", ru: "вещество, запрещённое законом", uk: "речовина, заборонена законом" }
+        right: { en: "an intoxicating substance, often an illegal one", ru: "одурманивающее вещество, часто запрещённое", uk: "одурманлива речовина, часто заборонена" }
       - left: "das Vitamin"
         right: { en: "what the body takes from its food in small amounts", ru: "то, что организм берёт из пищи в малых количествах", uk: "те, що організм бере з їжі в малих кількостях" }
       - left: "bio"
         right: { en: "grown without chemical fertiliser and certified", ru: "выращенный без химических удобрений и сертифицированный", uk: "вирощений без хімічних добрив і сертифікований" }
     explain:
-      en: "Two of these are easy to swap. *Die Droge* belongs to the crime page and is illegal by definition; the shop called *die Drogerie* sells soap and toothpaste and nothing stronger. And *das Suchtmittel* is the leaflet's word rather than the conversation's — it gathers alcohol, cigarettes and drugs under one heading, which is what a health campaign needs and no speaker says at a kitchen table."
-      ru: "Две из них легко перепутать. *Die Droge* принадлежит криминальной полосе и незаконна по определению; магазин *die Drogerie* продаёт мыло и зубную пасту, и ничего крепче. А *das Suchtmittel* — слово листовки, а не разговора: оно собирает алкоголь, сигареты и наркотики под одну шапку, что и нужно кампании за здоровье и чего никто не говорит за кухонным столом."
-      uk: "Дві з них легко переплутати. *Die Droge* належить кримінальній шпальті й незаконна за визначенням; крамниця *die Drogerie* продає мило й зубну пасту, і нічого міцнішого. А *das Suchtmittel* — слово летючки, а не розмови: воно збирає алкоголь, цигарки й наркотики під одну шапку, що й потрібно кампанії за здоров'я і чого ніхто не каже за кухонним столом."
+      en: "Two of these are easy to swap. *Die Droge* belongs to the crime page and the health page, and is often illegal; the shop called *die Drogerie* sells soap and toothpaste and nothing stronger. And *das Suchtmittel* is the leaflet's word rather than the conversation's — it gathers alcohol, cigarettes and drugs under one heading, which is what a health campaign needs and what you rarely hear at a kitchen table."
+      ru: "Две из них легко перепутать. *Die Droge* принадлежит криминальной и медицинской полосе и часто запрещена законом; магазин *die Drogerie* продаёт мыло и зубную пасту, и ничего крепче. А *das Suchtmittel* — слово листовки, а не разговора: оно собирает алкоголь, сигареты и наркотики под одну шапку, что и нужно кампании за здоровье и что редко услышишь за кухонным столом."
+      uk: "Дві з них легко переплутати. *Die Droge* належить кримінальній і медичній шпальті й часто заборонена законом; крамниця *die Drogerie* продає мило й зубну пасту, і нічого міцнішого. А *das Suchtmittel* — слово летючки, а не розмови: воно збирає алкоголь, цигарки й наркотики під одну шапку, що й потрібно кампанії за здоров'я і що рідко почуєш за кухонним столом."
 
   - id: mc-gewohnheit-sucht
     outcomes: [gesundheitstext-verstehen]

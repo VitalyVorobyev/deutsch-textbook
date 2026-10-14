@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.18 `sucht-lebensstil`.
+  Next: B1.19 `bildungswege`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -268,6 +268,18 @@ record of what shipped.
   *Förderschule* "officially" (it varies by Land), *Bürgerin*'s feminine-first order "fixed";
   the `verwaltung-behoerden-b1` header still calls the deck unowned, though this topic adopts
   it; C6-1 still owed.
+- `b1/sucht-lebensstil`: the cloze, order and table islands still charge any wrong gap, chip or
+  cell to the tag (`cloze-irreal-jacke`, `table-konjunktiv-formen`, `order-irreal-schlafen`,
+  `cloze-lassen-formen`, the placement's `sucht-lassen`); still rejected, unattributed: *würde …
+  sein* and *würde … haben* (the tag keeps the one-word forms), *Lasse das Rauchen sein!*, *Lass
+  doch das Rauchen sein!*, *Lass das Rauchen!* (the instruction asks for *sein lassen*); the
+  pretest and the placement accept the one-word *rauchte*, while the tag's definition and
+  `uebersetzen-irreal-wohnung` hold a full verb to *würde* — one standard across the items is
+  owed; variant-a's RU/UK explains say «отдать в ремонт» / «віддати в ремонт» suggests a
+  participle; vocab notes: *Alkohol*'s "*Alkohol am Steuer* is the offence in the example" (the
+  example avoids it), *Zahnpasta*'s "nobody counts it", the *Suchtmittel* example's superlative
+  "am leichtesten zu bekommen"; the `koerperpflege-lebensstil-b1` header still calls the deck
+  unowned, though this topic adopts it; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

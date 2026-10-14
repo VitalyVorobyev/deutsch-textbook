@@ -10,13 +10,29 @@ title:
 # whether that second verb needs zu. Two are non-mc — a pretest is generation, not recognition.
 items:
   - id: beide-haelften
+    # revision 2: the reversed, dann- and verb-first orders and the one-word rauchte are correct
+    # German, accepted as the placement's sucht-irreal accepts them; rauchte is pinned, or the
+    # indicative rauche would score correct as a one-letter slip.
+    revision: 2
     outcomes: [folgen-abwaegen]
     type: translate
-    key_tokens: ["würde", "hätte"]
+    key_tokens: ["würde", "hätte", "rauchte"]
     prompt_en: "If I did not smoke, I would have more money."
     prompt_ru: "Если бы я не курил, у меня было бы больше денег."
     prompt_uk: "Якби я не курив, у мене було б більше грошей."
     answer: "Wenn ich nicht rauchen würde, hätte ich mehr Geld."
+    accept:
+      - "Wenn ich nicht rauchen würde, dann hätte ich mehr Geld."
+      - "Ich hätte mehr Geld, wenn ich nicht rauchen würde."
+      - "Würde ich nicht rauchen, hätte ich mehr Geld."
+      - "Würde ich nicht rauchen, dann hätte ich mehr Geld."
+      - "Ich hätte mehr Geld, würde ich nicht rauchen."
+      - "Wenn ich nicht rauchte, hätte ich mehr Geld."
+      - "Wenn ich nicht rauchte, dann hätte ich mehr Geld."
+      - "Ich hätte mehr Geld, wenn ich nicht rauchte."
+      - "Rauchte ich nicht, hätte ich mehr Geld."
+      - "Rauchte ich nicht, dann hätte ich mehr Geld."
+      - "Ich hätte mehr Geld, rauchte ich nicht."
     explain:
       en: "An unreal condition marks both halves. *Rauchen* is a full verb, so the *wenn*-clause takes *würde* + Infinitiv; *haben* owns a one-word form, so the main clause takes *hätte*. English marks only the main half with *would* and leaves a plain past in the *if*-half, so the first German marking has to be built rather than copied."
       ru: "Нереальное условие помечает обе половины. *Rauchen* — полнозначный глагол, поэтому придаточное с *wenn* берёт *würde* + инфинитив; у *haben* есть однословная форма, поэтому в главном стоит *hätte*. Обе половины помечены и по-русски, но одним и тем же неизменным «бы», которое не спрягается, — так что каждую немецкую форму приходится строить отдельно."
