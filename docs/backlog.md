@@ -7,10 +7,6 @@ record of what shipped.
 
 ## Doing
 
-- **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
-  [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
-  progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.20 `gespraech-steuern`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -43,7 +39,7 @@ record of what shipped.
   most. Eight B1 units remain — all but `digitales-leben`, `kultur-freizeit`, `geld-vertraege`,
   `erfahrungen-erzaehlen`, `leben-veraendern`, `meinung-medien`. Every unit reviewed so far had a
   material defect, usually a false fact inherited from the EN half. No structural screen predicts
-  it, and authoring order does not either. Rides on P27-3g.
+  it, and authoring order does not either.
 - **A name in a Cyrillic prompt leaves its spelling free.** «Айлин» is Aylin, Ailin or Eilin and
   «Клара» Clara or Klara, so a `translate` item whose answer names a person grades a spelling its
   RU/UK prompt never gave. Two items now write the name in Latin script
@@ -296,6 +292,16 @@ record of what shipped.
   *Feinheiten*' Swiss *Mittelschule* as "das Gymnasium" (it also covers the Fachmittelschule); the
   reading's *Hauptschule* gloss "leading straight into a trade"; the `bildung-schulsystem-b1`
   header still calls the deck unowned, though this topic adopts it; C6-1 still owed.
+- `b1/gespraech-steuern`: the cloze and table islands still charge any wrong gap or cell to the tag
+  (`cloze-konjunktiv2-bitte`, `table-konjunktiv2`, `table-vorfeld`), and `cloze-konjunktiv2-bitte`'s
+  sentence-initial *Könnten* gap rejects and charges the lower-case word (the corpus-wide
+  `answerMatches` question); still rejected, unattributed: *noch mal*, *Könnten Sie es …*,
+  *Hätten Sie kurz Zeit …*, *Mensa*, *was* for *etwas*, *ein Raum*; the placement header's counts
+  (32 tasks, 14 topics, the mix line) predate several B1 topics; the article's *Also* as "the most
+  ordinary" opener and giving the floor that "needs no softening" are unsourced tendencies, as is
+  `table-konjunktiv2`'s "*sagen* has no polite one-word form in everyday use"; the
+  `sprechen-besprechung` explain's stressed *ja* that "turns a reminder into a contradiction";
+  the reading gloss "the polite Konjunktiv II is what asks for the floor"; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 

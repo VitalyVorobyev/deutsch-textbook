@@ -48,17 +48,20 @@ questions:
       ru: Как госпожа Кая получает слово?
       uk: Як пані Кая отримує слово?
     explain:
-      en: "„Entschuldigung, dürfte ich dazu kurz etwas sagen?“ — she asks, and Herr Blum answers „Ja, bitte“ before she goes on. The polite Konjunktiv II is what makes the interruption acceptable; simply starting to talk is the option the text rules out, since nobody had said anything at all up to that point. Herr Blum does invite somebody to speak later in the meeting, but the person he names is not Frau Kaya."
-      ru: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — она просит, и господин Блум отвечает «Ja, bitte», прежде чем она продолжает. Вежливый Konjunktiv II и делает вмешательство приемлемым; вариант «просто начала говорить» текст исключает, потому что до этого не говорил вообще никто. Господин Блум действительно предлагает кому-то высказаться позже, но названо там не имя госпожи Кая."
-      uk: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — вона просить, і пан Блум відповідає «Ja, bitte», перш ніж вона продовжує. Ввічливий Konjunktiv II і робить втручання прийнятним; варіант «просто почала говорити» текст виключає, бо до того не говорив узагалі ніхто. Пан Блум справді пропонує комусь висловитися пізніше, але назване там не ім'я пані Кая."
+      en: "„Entschuldigung, dürfte ich dazu kurz etwas sagen?“ — she asks, and Herr Blum answers „Ja, bitte“ before she goes on. The polite Konjunktiv II softens the interruption; simply starting to talk is the option the text rules out, since she asks first and waits for his answer. Somebody is invited to speak later in the meeting, but the other way round: Frau Kaya asks Herr Blum „Wie sehen Sie das?“"
+      ru: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — она просит, и господин Блум отвечает «Ja, bitte», прежде чем она продолжает. Вежливый Konjunktiv II смягчает вмешательство; вариант «просто начала говорить» текст исключает, потому что она сначала спрашивает и ждёт его ответа. Высказаться позже на собрании действительно предлагают, но наоборот: госпожа Кая спрашивает господина Блума «Wie sehen Sie das?»."
+      uk: "«Entschuldigung, dürfte ich dazu kurz etwas sagen?» — вона просить, і пан Блум відповідає «Ja, bitte», перш ніж вона продовжує. Ввічливий Konjunktiv II пом'якшує втручання; варіант «просто почала говорити» текст виключає, бо вона спершу питає і чекає на його відповідь. Висловитися пізніше на зборах справді пропонують, але навпаки: пані Кая питає пана Блума «Wie sehen Sie das?»."
 
   - id: frage-genau
+    # revision 2: the second option, the others agreeing with Frau Kaya, was as defensible as the
+    # key — Genau after her example confirms it. It is now a proposal accepted, which nobody made.
+    revision: 2
     outcomes: [zuhoeren-anknuepfen]
     type: mc
     prompt: "Was bedeutet „Genau“ hier?"
     options:
       - "Die anderen zeigen, dass sie zuhören."
-      - "Die anderen sind mit Frau Kaya einverstanden."
+      - "Die anderen nehmen einen Vorschlag von Frau Kaya an."
       - "Die anderen möchten selbst sprechen."
     correct: 0
     translation:
@@ -66,9 +69,9 @@ questions:
       ru: "Что значит здесь «Genau»?"
       uk: "Що означає тут «Genau»?"
     explain:
-      en: "*Genau* and *Wirklich?* are listener signals: they say that the line is still open and nothing more. Reading them as agreement is the standing mistake, and it matters — the meeting is about the fees, and nobody in this paragraph has agreed to anything. Wanting to speak would be marked differently, with a request for the floor of the kind Frau Kaya made."
-      ru: "*Genau* и *Wirklich?* — сигналы слушателя: они сообщают, что связь ещё есть, и больше ничего. Прочитать их как согласие — устойчивая ошибка, и она существенна: речь на собрании идёт о взносах, а в этом абзаце никто ни с чем не согласился. Желание высказаться отмечалось бы иначе — просьбой о слове того рода, какую сделала госпожа Кая."
-      uk: "*Genau* та *Wirklich?* — сигнали слухача: вони повідомляють, що зв'язок ще є, і більше нічого. Прочитати їх як згоду — стала помилка, і вона суттєва: на зборах ідеться про внески, а в цьому абзаці ніхто ні з чим не погодився. Бажання висловитися позначалося б інакше — проханням про слово того ґатунку, яке зробила пані Кая."
+      en: "*Genau* and *Wirklich?* are listener signals: they say that the line is still open. *Genau* may confirm what she has just said, but it accepts nothing — and Frau Kaya has not proposed anything yet; the meeting is about the fees, and nobody in this paragraph has agreed to a plan. Wanting to speak would be marked differently, with a request for the floor of the kind Frau Kaya made."
+      ru: "*Genau* и *Wirklich?* — сигналы слушателя: они сообщают, что связь ещё есть. *Genau* может подтвердить только что сказанное, но ничего не принимает, — а госпожа Кая пока ничего и не предлагала; речь на собрании идёт о взносах, и в этом абзаце никто ни на какой план не согласился. Желание высказаться отмечалось бы иначе — просьбой о слове того рода, какую сделала госпожа Кая."
+      uk: "*Genau* та *Wirklich?* — сигнали слухача: вони повідомляють, що зв'язок ще є. *Genau* може підтвердити щойно сказане, але нічого не приймає, — а пані Кая поки нічого й не пропонувала; на зборах ідеться про внески, і в цьому абзаці ніхто на жоден план не погодився. Бажання висловитися позначалося б інакше — проханням про слово того ґатунку, яке зробила пані Кая."
 
   - id: frage-ausweichen
     outcomes: [hoeflich-ausweichen, inhalt-steuern]

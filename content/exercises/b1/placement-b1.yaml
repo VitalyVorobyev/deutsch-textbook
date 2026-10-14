@@ -816,23 +816,40 @@ items:
 
   # --- gespraech-steuern ---
   - id: gespraech-wort-bitten
+    # revision 2: nothing asked for the Konjunktiv, so the polite Darf ich … was charged to the
+    # tag — the instruction now asks for it; the article's own order kurz etwas dazu, kurz dazu
+    # etwas and darüber for "about that" / «об этом» / «про це» were rejected.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
-    instruction: { en: "Ask politely, in the form a meeting expects.", ru: "Попросите вежливо, в форме, которой ждёт совещание.", uk: "Попросіть увічливо, у формі, якої чекає нарада.", de: "Bitte höflich, in der Form, die eine Besprechung erwartet." }
+    instruction: { en: "Ask politely, in Konjunktiv II.", ru: "Попросите вежливо, в Konjunktiv II.", uk: "Попросіть увічливо, у Konjunktiv II.", de: "Bitte höflich, im Konjunktiv II." }
     prompt_en: "Could I say something about that briefly?"
     prompt_ru: "Могу я кратко сказать об этом?"
     prompt_uk: "Чи можу я коротко сказати про це?"
     answer: "Dürfte ich dazu kurz etwas sagen?"
-    accept: ["Könnte ich dazu kurz etwas sagen?"]
+    accept: ["Könnte ich dazu kurz etwas sagen?", "Dürfte ich kurz etwas dazu sagen?", "Könnte ich kurz etwas dazu sagen?", "Dürfte ich kurz dazu etwas sagen?", "Könnte ich kurz dazu etwas sagen?", "Dürfte ich darüber kurz etwas sagen?", "Könnte ich darüber kurz etwas sagen?", "Dürfte ich kurz etwas darüber sagen?", "Könnte ich kurz etwas darüber sagen?"]
     key_tokens: ["Dürfte", "Könnte"]
-    explain: { en: "Asking for the floor is a fixed chunk, and the Konjunktiv II is what makes it a request rather than a claim: Dürfte ich and Könnte ich are both accepted because both are the real formula. The indicative Darf ich is not wrong German — it is a different register, and in a meeting with people you do not know well it lands as taking the floor rather than asking for it.", ru: "Просьба дать слово — устойчивый оборот, и Konjunktiv II превращает её именно в просьбу, а не в заявку: принимаются и Dürfte ich, и Könnte ich, потому что обе формы реальны. Индикатив Darf ich не является ошибкой — это другой регистр, и на совещании с малознакомыми людьми он звучит как «беру слово», а не «прошу слова».", uk: "Прохання дати слово — сталий зворот, і Konjunktiv II перетворює його саме на прохання, а не на заявку: приймаються і Dürfte ich, і Könnte ich, бо обидві форми реальні. Індикатив Darf ich не є помилкою — це інший регістр, і на нараді з малознайомими людьми він звучить як «беру слово», а не «прошу слова».", de: "Um das Wort zu bitten ist eine feste Wendung, und der Konjunktiv II macht daraus eine Bitte statt eines Anspruchs: Dürfte ich und Könnte ich werden beide akzeptiert, weil beide die echte Formel sind. Der Indikativ Darf ich ist kein Fehler — er ist ein anderes Register und klingt in einer Besprechung mit wenig vertrauten Leuten danach, sich das Wort zu nehmen, statt darum zu bitten." }
+    explain: { en: "Asking for the floor is a fixed chunk, and the Konjunktiv II softens the request: Dürfte ich and Könnte ich are both accepted because both are the real formula, with dazu or darüber in any of the usual places. The indicative Darf ich is not wrong — it is polite too, one step less soft — but the instruction asks for the Konjunktiv, and the bare Präteritum durfte would report the past.", ru: "Просьба дать слово — устойчивый оборот, и Konjunktiv II смягчает просьбу: принимаются и Dürfte ich, и Könnte ich, потому что обе формы реальны, с dazu или darüber на любом из привычных мест. Индикатив Darf ich не ошибка — он тоже вежлив, только на ступень менее мягок, — но инструкция просит конъюнктив, а голый Präteritum durfte сообщал бы о прошлом.", uk: "Прохання дати слово — сталий зворот, і Konjunktiv II пом'якшує прохання: приймаються і Dürfte ich, і Könnte ich, бо обидві форми реальні, з dazu чи darüber на будь-якому зі звичних місць. Індикатив Darf ich не помилка — він теж увічливий, лише на щабель менш м'який, — але інструкція просить кон'юнктив, а голий Präteritum durfte повідомляв би про минуле.", de: "Um das Wort zu bitten ist eine feste Wendung, und der Konjunktiv II macht die Bitte weicher: Dürfte ich und Könnte ich werden beide akzeptiert, weil beide die echte Formel sind, mit dazu oder darüber an jeder der üblichen Stellen. Der Indikativ Darf ich ist kein Fehler — auch er ist höflich, nur eine Stufe weniger weich —, aber die Aufgabe verlangt den Konjunktiv, und das bloße Präteritum durfte würde von der Vergangenheit berichten." }
 
   - id: gespraech-anknuepfen
-    outcomes: [zuhoeren-anknuepfen]
-    type: cloze
+    # revision 2: the cloze printed both slots, so it could not see the inversion its tag grades
+    # and charged the tag for a connector or a verb form instead; its gap rejected deswegen,
+    # darum and daher for "that is why"; and deshalb is not this topic's — the item claimed the
+    # listening outcome. Now a translate item on the topic's own übrigens, where the learner
+    # places the verb; focus_evidence fails only a verb that is not second.
+    revision: 2
+    outcomes: [inhalt-steuern]
+    type: translate
     focus: konjunktionaladverb-inversion
-    instruction: { en: "Fill in the connector and put the verb where it belongs.", ru: "Вставьте союзное наречие и поставьте глагол на нужное место.", uk: "Вставте сполучникове прислівник і поставте дієслово на потрібне місце.", de: "Ergänze das Konjunktionaladverb und setze das Verb an die richtige Stelle." }
-    text: "Die Pause ist zu kurz. {{Deshalb}} {{schlage}} ich zwanzig Minuten vor."
-    translation: { en: "The break is too short. That is why I am proposing twenty minutes.", ru: "Перерыв слишком короткий. Поэтому я предлагаю двадцать минут.", uk: "Перерва занадто коротка. Тому я пропоную двадцять хвилин." }
-    explain: { en: "deshalb is an adverb, not a conjunction, so it occupies position 1 and the conjugated verb must follow it immediately — schlage before ich. Writing Deshalb ich schlage vor keeps the source-language order and breaks the verb-second rule; this is the single most common error with deshalb, darum, trotzdem and außerdem.", ru: "deshalb — наречие, а не союз, поэтому оно занимает первое место, и спрягаемый глагол обязан идти сразу за ним: schlage перед ich. Вариант Deshalb ich schlage vor сохраняет русский порядок и ломает правило второго места; это самая частая ошибка с deshalb, darum, trotzdem и außerdem.", uk: "deshalb — прислівник, а не сполучник, тому воно посідає перше місце, і відмінюване дієслово зобов'язане йти одразу за ним: schlage перед ich. Варіант Deshalb ich schlage vor зберігає український порядок і ламає правило другого місця; це найчастіша помилка з deshalb, darum, trotzdem і außerdem.", de: "deshalb ist ein Adverb, keine Konjunktion, besetzt also Position 1, und das konjugierte Verb muss unmittelbar folgen — schlage vor ich. Deshalb ich schlage vor behält die Wortstellung der Ausgangssprache und bricht die Verbzweitregel; das ist der häufigste Fehler mit deshalb, darum, trotzdem und außerdem." }
+    focus_evidence:
+      failed: ["^übrigens (?!ist(?!\\p{L}))(?:\\p{L}+ )+ist(?!\\p{L})"]
+      retained: ["^übrigens ist(?!\\p{L})"]
+    instruction: { en: "Begin the sentence with übrigens.", ru: "Начните предложение со слова übrigens.", uk: "Почніть речення зі слова übrigens.", de: "Beginne den Satz mit übrigens." }
+    prompt_en: "By the way, the room is free on Friday."
+    prompt_ru: "Кстати, в пятницу комната свободна."
+    prompt_uk: "До речі, у п'ятницю кімната вільна."
+    answer: "Übrigens ist der Raum am Freitag frei."
+    accept: ["Übrigens ist am Freitag der Raum frei.", "Übrigens ist das Zimmer am Freitag frei.", "Übrigens ist am Freitag das Zimmer frei."]
+    key_tokens: ["Übrigens", "ist"]
+    explain: { en: "übrigens announces a change of subject, and it is an adverb inside the sentence: it fills position 1, so the finite verb ist comes straight after it and the subject follows. Übrigens der Raum ist … puts the verb third — the order a phrase learned as a label produces. Raum and Zimmer are both accepted, and am Freitag may stand before or after the subject.", ru: "übrigens объявляет смену темы и при этом является наречием внутри предложения: оно занимает первое место, поэтому спрягаемый глагол ist идёт сразу за ним, а подлежащее — следом. Übrigens der Raum ist … ставит глагол третьим — такой порядок даёт оборот, выученный как ярлык. Принимаются и Raum, и Zimmer, а am Freitag может стоять до подлежащего или после него.", uk: "übrigens оголошує зміну теми і водночас є прислівником усередині речення: воно посідає перше місце, тому відмінюване дієслово ist іде одразу за ним, а підмет — слідом. Übrigens der Raum ist … ставить дієслово третім — такий порядок дає зворот, вивчений як ярлик. Приймаються і Raum, і Zimmer, а am Freitag може стояти перед підметом або після нього.", de: "übrigens kündigt einen Themenwechsel an und ist dabei ein Adverb im Satz: Es besetzt Position 1, also folgt das finite Verb ist sofort, und das Subjekt kommt danach. Übrigens der Raum ist … stellt das Verb an die dritte Stelle — die Wortstellung, die eine als Etikett gelernte Wendung erzeugt. Raum und Zimmer werden beide akzeptiert, und am Freitag kann vor oder nach dem Subjekt stehen." }
