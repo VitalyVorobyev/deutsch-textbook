@@ -77,6 +77,9 @@ items:
     outcomes: [wort-nehmen-geben]
     type: cloze
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["(?<!\\p{L})entschuldigung (darf|durfte)(?!\\p{L})", "\\(dürfen\\) (kann|können|konnte|konnten)(?!\\p{L})", "(?<!\\p{L})ich (habe|hab|hatte) dazu(?!\\p{L})"]
+      retained: ["(?<!\\p{L})entschuldigung dürfte(?!\\p{L})", "\\(dürfen\\) könnten(?!\\p{L})", "(?<!\\p{L})ich hätte dazu(?!\\p{L})"]
     instruction:
       en: "Put each named verb into the polite Konjunktiv II form."
       ru: "Поставьте каждый названный глагол в вежливую форму Konjunktiv II."
@@ -100,6 +103,9 @@ items:
     outcomes: [wort-nehmen-geben]
     type: table
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["^(kannst|konntest) du(?!\\p{L})", "^(?:[^/]*/ ){1}ich (habe|hab|hatte)(?!\\p{L})", "^(?:[^/]*/ ){2}ich (sage|sagte)(?!\\p{L})", "^(?:[^/]*/ ){2}ich würde (gern )?sagen(?!\\p{L})", "^(?:[^/]*/ ){3}das (ist|war)(?!\\p{L})"]
+      retained: ["^könntest du(?!\\p{L})", "/ ich hätte(?!\\p{L})", "/ ich würde(?!\\p{L})", "/ das wäre(?!\\p{L})"]
     title: "Vom Indikativ zur höflichen Form"
     instruction:
       en: "Rewrite each sentence in Konjunktiv II so that it asks rather than states. Keep each verb; one without a one-word form takes würde."
@@ -222,6 +228,9 @@ items:
     outcomes: [inhalt-steuern, beitrag-rahmen]
     type: table
     focus: konjunktionaladverb-inversion
+    focus_evidence:
+      failed: ["^übrigens der termin ist(?!\\p{L})", "^(?:[^/]*/ ){2}übrigens wir brauchen(?!\\p{L})"]
+      retained: ["^übrigens ist(?!\\p{L})", "/ übrigens brauchen(?!\\p{L})"]
     title: "Vor dem Satz oder im Satz?"
     instruction:
       en: "Build one sentence per row. The label says whether the marker stands outside the sentence (comma) or inside it (position 1)."

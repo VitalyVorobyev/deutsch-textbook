@@ -31,7 +31,12 @@
  * the grammar the dictation drills.
  */
 
-import { normalizeDictation, normalizeTranslation, sentenceInitialIndices } from '@da/grading/cloze';
+import {
+  capitalizeSentenceHeads,
+  normalizeDictation,
+  normalizeTranslation,
+  sentenceInitialIndices,
+} from '@da/grading/cloze';
 import { diffExpectedWords } from '@da/grading/worddiff';
 
 /** Strip attached punctuation, so `Bahnhof?` and `Bahnhof` are the same token. */
@@ -335,6 +340,22 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
   const candidates = translationCandidates(spec);
   const normalized = normalizeTranslation(given);
   if (candidates.some((c) => normalizeTranslation(c) === normalized)) return { kind: 'correct' };
+
+  /**
+   * A lower-case sentence head is a capital the position demanded, not a grammar error: `wenn ich
+   * Zeit habe, …` has the conjunction right. Before this fold a pinned head token was never
+   * forgiven as a slip, so the missing capital was charged to the very tag the word was correct
+   * for. Graded as the capitalized sentence, and a rendering that is right apart from the capital
+   * is a spelling slip — counted correct, with the capital shown.
+   */
+  const headed = capitalizeSentenceHeads(given);
+  if (normalizeTranslation(headed) !== normalized) {
+    const verdict = gradeTranslation(headed, spec);
+    if (verdict.kind !== 'correct') return verdict;
+    const typed = tokenize(given);
+    const at = tokenize(headed).findIndex((tok, i) => tok !== typed[i]);
+    return { kind: 'spelling', correction: { given: typed[at]!, expected: tokenize(headed)[at]! } };
+  }
 
   const givenTokens = tokenize(given);
   const graded = buildGradedSet(spec);

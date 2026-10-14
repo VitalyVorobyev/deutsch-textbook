@@ -10,7 +10,7 @@
  * built from its own accepted renderings, so a predicate that merely exists does not pass.
  */
 import { describe, expect, test } from 'bun:test';
-import { listenItemSchema, translateItemSchema } from '@da/schema';
+import { clozeItemSchema, listenItemSchema, translateItemSchema } from '@da/schema';
 import { focusEvidenceProblems, insertedRendering } from '@da/content/focus-evidence';
 
 const modalProbe = (focus_evidence?: { retained: string[]; failed: string[] }) =>
@@ -78,6 +78,29 @@ describe('a translate probe whose tag names an added word', () => {
       key_tokens: ['einen'],
     });
     expect(focusEvidenceProblems(item, 'probe')).toEqual([]);
+  });
+});
+
+describe('an island item’s failed predicate is checked against what it accepts', () => {
+  // The filled sentence is what `Cloze` hands its predicates; every alternative of every gap is
+  // a sentence the item accepts, so a `failed` predicate may fire on none of them.
+  const cloze = (failed: string[]) =>
+    clozeItemSchema.parse({
+      id: 'cloze-falls-platz',
+      type: 'cloze',
+      focus: 'falls-wenn',
+      text: '{{Falls|Wenn}} ein Platz frei wird, rufen wir Sie an.',
+      focus_evidence: { retained: [], failed },
+    });
+
+  test('a predicate firing on an accepted alternative is an error', () => {
+    const problems = focusEvidenceProblems(cloze(['^wenn\\b']), 'practice');
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain('"Wenn ein Platz frei wird, rufen wir Sie an."');
+  });
+
+  test('a predicate that fires on neither alternative passes', () => {
+    expect(focusEvidenceProblems(cloze(['^(ob|als)\\b']), 'practice')).toEqual([]);
   });
 });
 

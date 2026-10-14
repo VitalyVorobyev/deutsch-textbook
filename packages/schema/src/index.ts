@@ -333,8 +333,9 @@ const itemBase = {
    * training prioritization aggregate error rates per tag.
    */
   focus: focusTag.optional(),
-  /** Explicit response predicates for focused free-typed items. Regexes run against the
-      normalized German response; unmatched wrong responses remain unknown. */
+  /** Explicit response predicates for focused free-typed items and the cloze/order/table
+      islands. Regexes run against the normalized German response (an island's: the sentence
+      the learner built); unmatched wrong responses remain unknown. */
   focus_evidence: focusEvidenceSchema.optional(),
   /** CEFR skill this task is intended to practise; distinct from the learner's
       actual response mode persisted with the attempt. */

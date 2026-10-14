@@ -510,6 +510,31 @@ describe('progress audit', () => {
   });
 
   /**
+   * The islands log no `key_tokens` verdict, so before predicates every cloze miss read as the
+   * competence failed. A historical miss on a predicate-bearing cloze probe is re-read through
+   * them against the filled sentence, as `islandAttribution` reads a new one.
+   */
+  test('a cloze probe miss is re-read through its predicates against the filled sentence', () => {
+    const items: CatalogItem[] = [
+      { setId: 'b1/probe-falls', id: 'variant-a', type: 'cloze', topic: 'bildungswege',
+        role: 'probe', focus: 'falls-wenn', revision: 1,
+        text: '{{Falls|Wenn}} ein Platz frei {{wird}}, rufen wir Sie an.',
+        focus_evidence: { failed: ['^(ob|als|wann)\\b'], retained: ['^(falls|wenn)\\b'] } },
+    ];
+    const attempts: AuditAttempt[] = [
+      { setId: 'b1/probe-falls', itemId: 'variant-a', itemType: 'cloze', correct: false,
+        given: 'Ob / wird', itemRevision: 1, focus: 'falls-wenn', ts: ts(4) },
+      { setId: 'b1/probe-falls', itemId: 'variant-a', itemType: 'cloze', correct: false,
+        given: 'Falls / wirt', itemRevision: 1, focus: 'falls-wenn', ts: ts(9) },
+    ];
+    const audit = buildAudit(snapshot({ attempts }), {
+      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+    });
+    const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'falls-wenn')!;
+    expect({ failed: row.failed, retained: row.retained }).toEqual({ failed: 1, retained: 1 });
+  });
+
+  /**
    * An `unknown` verdict is a measurement the instrument declined to make. The pooled
    * retention percentage already excludes it; the format split has to as well, or a single
    * unmeasured response renders as `translate 0/1` — the weakest-looking row in the table,

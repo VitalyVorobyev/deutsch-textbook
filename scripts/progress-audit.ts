@@ -21,7 +21,7 @@ import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import YAML from 'yaml';
-import { normalizeTranslation } from '@da/grading/cloze';
+import { fillCloze, normalizeTranslation } from '@da/grading/cloze';
 import { evaluateFocusEvidence } from '@da/grading/evidence';
 import {
   closestTranslationCandidate,
@@ -133,6 +133,8 @@ export interface ExerciseItem {
   prompt_uk?: string;
   answer?: string;
   accept?: string[];
+  /** a cloze item's gapped text */
+  text?: string;
   focus?: string;
   key_tokens?: string[];
   /** As written in the YAML: an omitted list is absent here, not the schema's `[]`. */
@@ -919,8 +921,23 @@ function cardSummary(cards: Record<string, AuditCard>) {
  */
 type ProbeVerdict = 'correct' | 'retained' | 'failed' | 'unknown';
 
+/** The item types with no `key_tokens`, whose predicates read the sentence the learner built. */
+const ISLAND_TYPES = new Set(['cloze', 'order', 'table']);
+
 function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): ProbeVerdict {
   if (!attempt.correct && attempt.focusEvidence) return attempt.focusEvidence;
+  // A cloze, order or table miss logged before its item had predicates: re-read through them, as
+  // `islandAttribution` would read it today, against the sentence the learner built.
+  if (
+    !attempt.correct && item?.focus && item.focus_evidence && ISLAND_TYPES.has(attempt.itemType) &&
+    !revisionKnownMismatch(attempt, item)
+  ) {
+    const { retained = [], failed = [], case_sensitive } = item.focus_evidence;
+    const response = attempt.itemType === 'cloze' && item.text
+      ? fillCloze(item.text, attempt.given.split(' / '))
+      : attempt.given;
+    return evaluateFocusEvidence(response, false, { retained, failed, case_sensitive });
+  }
   if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
     const verdict = gradeTranslation(attempt.given, currentSpec(item));
     if (verdict.kind !== 'wrong') return 'correct';

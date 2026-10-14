@@ -216,8 +216,7 @@ record of what shipped.
   only *verpassen*, against Austrian *den Zug versäumen*; the *Kündigung* gloss is definitional;
   the same missing "numbers as words" DE half sits in `b1/kultur-freizeit-produktion`
   `hoeren-diktat-treffpunkt` (*acht* typed as *8*).
-- `b1/informationen-vermitteln`: the Angaben probe's variant-b charges *in de Küche*, a typo in a
-  phrase its instruction prints — no cloze slip rule or predicates exist; per-gap alternatives in
+- `b1/informationen-vermitteln`: per-gap alternatives in
   `cloze-angaben-reihenfolge` and that variant pass a doubled phrase; the article's te-ka-mo-lo
   section names two forces that move an Angabe, and the items now accept a third (a manner word
   before the participle); the showcase's *kurz* answers *wie lange?* as readily as *wie?*; the article's DE
@@ -225,9 +224,7 @@ record of what shipped.
   note's "never *machen*" and the *Ansage* note's platform rule (*Bahnhofsansage*); the production
   header has the Hören's day and deadline two turns apart (they share one); the write model's
   "gut zwei Wochen" is a span its prompt never gives; C6-1 still owed.
-- `b1/unfall-notruf`: a cloze, order or table item still charges any wrong gap or chip to its
-  tag (`cloze-nachdem-sein`, `cloze-angaben`, `table-angaben`, `order-nachdem`) — no predicates
-  exist for those islands; `cloze-nachdem-sein`'s *Nachdem wir angekommen waren, war die Straße
+- `b1/unfall-notruf`: `cloze-nachdem-sein`'s *Nachdem wir angekommen waren, war die Straße
   schon gesperrt* (also in the article's table) reads more naturally with *als*, as its own
   translations do ("by the time", «к тому времени как»); the reading's third explain says the
   two tenses carry the sequence "on their own" (*nachdem* says it too); the `uebersetzen-angaben`
@@ -237,9 +234,7 @@ record of what shipped.
   not German", the *körperlich* note's "do not use it of a physical object" (*körperliche
   Gegenstände*), the *Infektion* note's computer-virus rule; the `koerper-medizin-b1` header
   still calls the deck unowned, though this topic adopts it; C6-1 still owed.
-- `b1/polizei-anzeige`: the cloze and table islands still charge any wrong gap or cell to the
-  tag — `table-indirekt`'s *commen* for *mitkommen* (a lost prefix, not the opener or the tense)
-  stays charged, and no cell takes an alternative; still rejected, unattributed: *das Geräusch*
+- `b1/polizei-anzeige`: no `table-indirekt` cell takes an alternative; still rejected, unattributed: *das Geräusch*
   (off the Wortliste), the Konjunktiv I *gehört habe* / *solle* in practice and probe items,
   *zuhause* for *zu Hause*, *die Tür auf war*; a victim more often *macht* or *erstattet* an
   Anzeige than *schreibt* one (the article's example, `cloze-anzeige`, the named
@@ -248,10 +243,7 @@ record of what shipped.
   not an omission; the 2026-09-15 ruling note's "never *einen Lärm*" (*einen Heidenlärm*); the
   `recht-kriminalitaet-b1` header still calls the deck unowned, though this topic adopts it;
   C6-1 still owed.
-- `b1/versicherungen-behoerden`: the cloze, order and table islands still charge any wrong gap,
-  chip or cell to the tag (`cloze-wegen-genitiv`, `table-genitiv`, `cloze-nullartikel`,
-  `order-trotz`, the placement's `behoerden-nullartikel`) — no predicates exist for those
-  islands; still rejected, unattributed: *innerhalb der gesetzten Frist* and its siblings for
+- `b1/versicherungen-behoerden`: still rejected, unattributed: *innerhalb der gesetzten Frist* and its siblings for
   «установленного срока», the fronted *Innerhalb der Frist antworten Sie bitte*, *ob es versichert
   ist* for «это»; *Nachweis*, the topic's key noun, is on no Goethe list and in no deck, so it is
   named wherever it must be produced; the article's form table, its example and
@@ -264,38 +256,24 @@ record of what shipped.
   *Förderschule* "officially" (it varies by Land), *Bürgerin*'s feminine-first order "fixed";
   the `verwaltung-behoerden-b1` header still calls the deck unowned, though this topic adopts
   it; C6-1 still owed.
-- `b1/sucht-lebensstil`: the cloze, order and table islands still charge any wrong gap, chip or
-  cell to the tag (`cloze-irreal-jacke`, `table-konjunktiv-formen`, `order-irreal-schlafen`,
-  `cloze-lassen-formen`, the placement's `sucht-lassen`); still rejected, unattributed: *würde …
+- `b1/sucht-lebensstil`: still rejected, unattributed: *würde …
   sein* and *würde … haben* (the tag keeps the one-word forms), *Lasse das Rauchen sein!*, *Lass
-  doch das Rauchen sein!*, *Lass das Rauchen!* (the instruction asks for *sein lassen*); the
-  pretest and the placement accept the one-word *rauchte*, while the tag's definition and
-  `uebersetzen-irreal-wohnung` hold a full verb to *würde* — one standard across the items is
-  owed; variant-a's RU/UK explains say «отдать в ремонт» / «віддати в ремонт» suggests a
+  doch das Rauchen sein!*, *Lass das Rauchen!* (the instruction asks for *sein lassen*); variant-a's RU/UK explains say «отдать в ремонт» / «віддати в ремонт» suggests a
   participle; vocab notes: *Alkohol*'s "*Alkohol am Steuer* is the offence in the example" (the
   example avoids it), *Zahnpasta*'s "nobody counts it", the *Suchtmittel* example's superlative
   "am leichtesten zu bekommen"; the `koerperpflege-lebensstil-b1` header still calls the deck
   unowned, though this topic adopts it; C6-1 still owed.
-- `b1/bildungswege`: the cloze and table islands still charge any wrong gap or cell to the tag
-  (`cloze-wenn-falls-platz`, `cloze-damit-um-zu`, `table-zweck`, the placement's `bildung-falls`),
-  and a sentence-initial gap keyed *Wenn* or *Falls* rejects and charges the lower-case word
-  (`answerMatches` keeps case where the translate grader folds it at a sentence head — a grader
-  question, corpus-wide); still rejected,
-  unattributed: *zehn Jahre alt wird*, *es auf dem Gymnasium nicht schafft*, *noch ein Jahr länger*,
+- `b1/bildungswege`: still rejected, unattributed: *zehn Jahre alt wird*, *es auf dem Gymnasium nicht schafft*, *noch ein Jahr länger*,
   *noch mal*, *nicht den Bus verpasst*, a modal the prompt does not have (*erklären kann*, *lernen
   kann*), and *zuhause* — a spelling the rules allow beside *zu Hause*, owed to the grader rather
-  than to accept lists; `lernen-zukunft`'s *falls*-named items still charge *wenn*, which this
-  topic now leaves uncharged — one standard is owed; the `sprechen-kita` explain says *um besser
+  than to accept lists; the `sprechen-kita` explain says *um besser
   Deutsch zu lernen* would mean you go to the Kita (it means you learn); the reading's *damit sie
   das Zeugnis erklärt* leaves *sie* to context; `mc-falls-eventualitaet`'s option and the reading
   have the family decide the next school, which a binding recommendation limits in some Länder;
   *Feinheiten*' Swiss *Mittelschule* as "das Gymnasium" (it also covers the Fachmittelschule); the
   reading's *Hauptschule* gloss "leading straight into a trade"; the `bildung-schulsystem-b1`
   header still calls the deck unowned, though this topic adopts it; C6-1 still owed.
-- `b1/gespraech-steuern`: the cloze and table islands still charge any wrong gap or cell to the tag
-  (`cloze-konjunktiv2-bitte`, `table-konjunktiv2`, `table-vorfeld`), and `cloze-konjunktiv2-bitte`'s
-  sentence-initial *Könnten* gap rejects and charges the lower-case word (the corpus-wide
-  `answerMatches` question); still rejected, unattributed: *noch mal*, *Könnten Sie es …*,
+- `b1/gespraech-steuern`: still rejected, unattributed: *noch mal*, *Könnten Sie es …*,
   *Hätten Sie kurz Zeit …*, *Mensa*, *was* for *etwas*, *ein Raum*; the placement header's counts
   (32 tasks, 14 topics, the mix line) predate several B1 topics; the article's *Also* as "the most
   ordinary" opener and giving the floor that "needs no softening" are unsourced tendencies, as is
@@ -368,12 +346,6 @@ Triaged from `feedback.md`, which holds only raw capture.
   versus `extensive`.
 - **F-4 · The mastery checklist and Siehe auch belong in a desktop side panel**
   (`src/pages/topics/[...slug].astro`). First step: two columns, or a checklist popover.
-- **F-5 / F-13 · Cloze grades capitalisation the gap position made unpredictable.** `answerMatches`
-  (`packages/grading/src/cloze.ts`) is case-sensitive with no sentence-head fold, unlike
-  `gradeTranslation`; 66 of 645 cloze items open a gap at a sentence head, three hand-patch both
-  cases (`{{Der|der}}`), and `probe-reisen-probleme.yaml:72` gaps *Könnten* after a colon. First
-  step: move `sentenceInitialIndices` into the cloze path or document the hand-patch, then re-author
-  the probe.
 - **F-6 · `-ch` versus `-g` endings.** Ambiguous: `-ig`/`-ich` pronunciation or the `-lich`/`-ig`
   suffixes. First step: ask the learner.
 - **F-7 · Preposition choice as its own task type.** First step: check whether a `table` task

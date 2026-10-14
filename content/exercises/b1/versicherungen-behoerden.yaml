@@ -44,6 +44,9 @@ items:
     outcomes: [frist-nennen]
     type: cloze
     focus: praeposition-genitiv
+    focus_evidence:
+      failed: ["^wegen (dem|den|der|die|das)(?!\\p{L})", "^wegen \\S+ termin(e|en)?(?!\\p{L})", "(?<!\\p{L})trotz (dem|den|die|das|des)(?!\\p{L})"]
+      retained: ["^wegen des termine?s(?!\\p{L})", "(?<!\\p{L})trotz der mahnung(?!\\p{L})"]
     instruction:
       en: "Fill in the article and the noun der Termin in the written register."
       ru: "Вставьте артикль и существительное der Termin в письменном регистре."
@@ -89,6 +92,9 @@ items:
     outcomes: [frist-nennen, behoerdenbrief-verstehen]
     type: table
     focus: praeposition-genitiv
+    focus_evidence:
+      failed: ["(?<!\\p{L})trotz (dem|den|die|das|des)(?!\\p{L})", "(?<!\\p{L})während (dem|den|der|die|das)(?!\\p{L})", "(?<!\\p{L})während des verfahren(?!\\p{L})", "(?<!\\p{L})innerhalb (dem|den|die|das|des)(?!\\p{L})", "(?<!\\p{L})wegen (dem|den|die|das|des)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})trotz der(?!\\p{L})", "(?<!\\p{L})während des(?!\\p{L})", "(?<!\\p{L})innerhalb der(?!\\p{L})", "(?<!\\p{L})wegen der(?!\\p{L})"]
     title: "Genitiv nach wegen, trotz, während, innerhalb"
     instruction:
       en: "Complete each phrase with the article and, where German requires it, the noun ending."
@@ -125,6 +131,9 @@ items:
     outcomes: [frist-nennen]
     type: order
     focus: verbzweit
+    focus_evidence:
+      failed: ["^trotz der \\S+ (?!ist(?!\\p{L}))"]
+      retained: ["^trotz der \\S+ ist(?!\\p{L})"]
     instruction:
       en: "Build the sentence with the genitive phrase in front."
       ru: "Составьте предложение с генитивным сочетанием впереди."
@@ -149,6 +158,9 @@ items:
     outcomes: [behoerdenbrief-verstehen]
     type: cloze
     focus: adjektiv-nullartikel
+    focus_evidence:
+      failed: ["(?<!\\p{L})brauchen aktuell(en|er|es|em)?(?!\\p{L})", "(?<!\\p{L})mit alt(e|er|es|em)?(?!\\p{L})"]
+      retained: ["(?<!\\p{L})aktuelle nachweise(?!\\p{L})", "(?<!\\p{L})mit alten zahlen(?!\\p{L})"]
     instruction:
       en: "Fill in aktuell and alt with their endings — no article stands in front of either."
       ru: "Впишите aktuell и alt с окончаниями — артикля нет ни перед тем, ни перед другим."

@@ -37,6 +37,9 @@ items:
     outcomes: [betreuung-klaeren]
     type: cloze
     focus: falls-wenn
+    focus_evidence:
+      failed: ["^falls(?!\\p{L})"]
+      retained: ["^wenn(?!\\p{L})", "(?<!\\p{L})alt (falls|wenn)(?!\\p{L})"]
     instruction:
       en: "wenn or falls? The first event is on the calendar; the second is a case nobody is counting on. One of the two gaps allows both words."
       ru: "wenn или falls? Первое событие стоит в календаре; второе — случай, на который никто не рассчитывает. Одна из двух лакун допускает оба слова."
@@ -164,6 +167,9 @@ items:
     outcomes: [lernziel-begruenden]
     type: cloze
     focus: damit-um-zu
+    focus_evidence:
+      failed: ["(?<!\\p{L})volkshochschule damit(?!\\p{L})", "(?<!\\p{L})früh an um(?!\\p{L})"]
+      retained: ["(?<!\\p{L})volkshochschule um(?!\\p{L})", "(?<!\\p{L})an damit(?!\\p{L})"]
     instruction:
       en: "Fill in the connector each purpose clause needs. Look at whether the clause has a subject of its own."
       ru: "Впишите союз, которого требует каждое придаточное цели. Смотрите, есть ли у придаточного собственное подлежащее."
@@ -187,6 +193,9 @@ items:
     outcomes: [lernziel-begruenden]
     type: table
     focus: damit-um-zu
+    focus_evidence:
+      failed: ["^um(?!\\p{L})", "^damit es (lernt|lernen)(?!\\p{L})", "^(?:[^/]*/ ){1}um(?!\\p{L})", "^(?:[^/]*/ ){1}damit die lehrerin (erklärt|erklären)(?!\\p{L})"]
+      retained: ["^damit es(?!\\p{L}).*(?<!\\p{L})lernt /", "/ damit die lehrerin(?!\\p{L}).*(?<!\\p{L})erklärt$"]
     title: "Wozu? — damit oder um … zu"
     instruction:
       en: "Turn the second sentence into a purpose clause and leave out its modal verb. Count the subjects before you choose the form."
