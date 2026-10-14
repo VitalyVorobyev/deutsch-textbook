@@ -255,6 +255,22 @@ GitHub Release notes.
   - Eight law and crime card notes no longer teach something false. For example:
     - *einbrechen* takes *haben* as well as *sein*;
     - the BKA is not "above" the Kriminalpolizei.
+- **B1.17 Versicherungen & Behörden — quality pass.**
+  - The exercises on adjectives without an article now contain an adjective
+    (*aktuelle Nachweise*, *weitere Unterlagen*). The lesson explains the ending.
+    Before, an added *die*, or a different word for "documents", was marked as that mistake.
+  - *des Vertrag* and *der Untersuchungs* were accepted as typos. They now count as the
+    genitive mistakes they are, and *des Vertrages* is accepted beside *des Vertrags*.
+  - Correct German is accepted:
+    - the *wegen* phrase after the object;
+    - *meines Vertrags*;
+    - the Präteritum;
+    - *sich verändern*;
+    - *darf man* and *du*.
+  - Fixed facts: the AOK insures against illness, not accidents. Someone who finds
+    something must report it, not hand it in.
+  - Ten card notes, three card prompts and one pronunciation no longer teach something
+    false.
 
 ## [0.6.19] — 2026-10-11
 

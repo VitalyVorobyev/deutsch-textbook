@@ -688,26 +688,51 @@ items:
 
   # --- versicherungen-behoerden ---
   - id: behoerden-genitiv
+    # revision 2: wegen des Umzug — the -s the explain calls "the error proper" — scored correct
+    # as a spelling slip, so a placement could be passed on it; Umzugs and Umzuges are now
+    # pinned and both accepted. The wegen-phrase after the object and meines Umzugs were
+    # charged with the genitive intact, and «прошу продлить срок» opened the frame; the
+    # instruction names it and the accept list is order × article × spelling.
+    revision: 2
     outcomes: [frist-nennen]
     type: translate
     focus: praeposition-genitiv
-    instruction: { en: "Write it in the register of a letter.", ru: "Напишите в регистре письма.", uk: "Напишіть у регістрі листа.", de: "Schreibe es im Briefregister." }
+    instruction: { en: "Write it in the register of a letter, and use um eine längere Frist bitten.", ru: "Напишите в регистре письма и используйте um eine längere Frist bitten.", uk: "Напишіть у регістрі листа й використайте um eine längere Frist bitten.", de: "Schreibe es im Briefregister und verwende um eine längere Frist bitten." }
     prompt_en: "Because of the move I am asking for a longer deadline."
     prompt_ru: "В связи с переездом я прошу продлить срок."
     prompt_uk: "У зв'язку з переїздом я прошу продовжити строк."
     answer: "Wegen des Umzugs bitte ich um eine längere Frist."
-    accept: ["Ich bitte wegen des Umzugs um eine längere Frist."]
-    key_tokens: ["wegen", "des"]
+    accept:
+      - "Ich bitte wegen des Umzugs um eine längere Frist."
+      - "Ich bitte um eine längere Frist wegen des Umzugs."
+      - "Wegen des Umzuges bitte ich um eine längere Frist."
+      - "Ich bitte wegen des Umzuges um eine längere Frist."
+      - "Ich bitte um eine längere Frist wegen des Umzuges."
+      - "Wegen meines Umzugs bitte ich um eine längere Frist."
+      - "Ich bitte wegen meines Umzugs um eine längere Frist."
+      - "Ich bitte um eine längere Frist wegen meines Umzugs."
+      - "Wegen meines Umzuges bitte ich um eine längere Frist."
+      - "Ich bitte wegen meines Umzuges um eine längere Frist."
+      - "Ich bitte um eine längere Frist wegen meines Umzuges."
+    key_tokens: ["wegen", "des", "meines", "Umzugs", "Umzuges"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})Umzug(?!\\p{L})", "(?<!\\p{L})(?:dem|den|der|die|das|meinem|meinen|meiner|meine|mein)\\s+Umzug(?:e?s)?(?!\\p{L})", "(?<!\\p{L})wegen\\s+(?:von|vom)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})wegen\\s+(?:des|meines)\\s+Umzuge?s(?!\\p{L})"]
     explain: { en: "wegen governs the genitive in writing, and Umzug is masculine, so the case shows twice — on des and as the -s on the noun. The spoken wegen dem Umzug is real German and simply the wrong register for a letter; dropping the -s is the error proper.", ru: "wegen на письме управляет генитивом, а Umzug мужского рода, поэтому падеж виден дважды — на des и как -s у самого слова. Разговорное wegen dem Umzug — настоящий немецкий и просто неверный регистр для письма; собственно ошибка — это потеря -s.", uk: "wegen на письмі керує родовим, а Umzug чоловічого роду, тому відмінок видно двічі — на des і як -s у самого слова. Розмовне wegen dem Umzug — справжня німецька і просто неправильний регістр для листа; власне помилка — це втрата -s.", de: "wegen regiert im Schriftlichen den Genitiv, und Umzug ist maskulin, also zeigt sich der Kasus zweimal — an des und als -s am Nomen. Das gesprochene wegen dem Umzug ist echtes Deutsch und schlicht das falsche Register für einen Brief; der eigentliche Fehler ist das fehlende -s." }
 
   - id: behoerden-nullartikel
+    # revision 2: the gaps asked whether an article stands at all (— or das), which
+    # `adjektiv-nullartikel` does not name — it grades an adjective's strong ending with no
+    # article in front — and — could only be typed as an em dash, which is not on the insert
+    # bar. Both gaps are now adjectives in front of an article-less plural.
+    revision: 2
     outcomes: [personalien-angeben]
     type: cloze
     focus: adjektiv-nullartikel
-    instruction: { en: "One gap takes an article, the other takes none. Write — where no article belongs.", ru: "В один пропуск идёт артикль, в другой — ничего. Поставьте — там, где артикля нет.", uk: "В один пропуск іде артикль, в інший — нічого. Поставте — там, де артикля немає.", de: "In eine Lücke gehört ein Artikel, in die andere keiner. Schreibe — wo kein Artikel steht." }
-    text: "Wir brauchen {{—}} Unterlagen über Ihr Einkommen und {{das}} Original der Urkunde."
-    translation: { en: "We need documents about your income and the original of the certificate.", ru: "Нам нужны документы о вашем доходе и оригинал свидетельства.", uk: "Нам потрібні документи про ваш дохід і оригінал свідоцтва." }
-    explain: { en: "A general plural takes no article: unspecified documents, whichever apply. Das Original is one specific object, and the genitive der Urkunde says which one. The rule is about whether the reader already knows which you mean, not about the plural itself.", ru: "Обобщающее множественное артикля не берёт: неопределённые документы, те, что подойдут. Das Original — один конкретный предмет, и генитив der Urkunde говорит какой. Правило про то, знает ли читатель, о каких именно идёт речь, а не про множественное число само по себе.", uk: "Узагальнювальна множина артикля не бере: невизначені документи, ті, що підійдуть. Das Original — один конкретний предмет, і родовий der Urkunde каже який. Правило про те, чи знає читач, про які саме йдеться, а не про множину саму по собі.", de: "Ein verallgemeinernder Plural steht ohne Artikel: irgendwelche Unterlagen, die passenden eben. Das Original ist ein bestimmter Gegenstand, und der Genitiv der Urkunde sagt welcher. Die Regel betrifft das gemeinsame Wissen, nicht den Plural an sich." }
+    instruction: { en: "Fill in genau and aktuell with their endings — no article stands in front of either.", ru: "Впишите genau и aktuell с окончаниями — артикля нет ни перед тем, ни перед другим.", uk: "Впишіть genau і aktuell із закінченнями — артикля немає ні перед тим, ні перед іншим.", de: "Ergänze genau und aktuell mit ihren Endungen — vor keinem der beiden steht ein Artikel." }
+    text: "Bitte machen Sie {{genaue}} Angaben zu Ihrer Person. Wir brauchen auch {{aktuelle}} Fotos."
+    translation: { en: "Please give exact details about yourself. We also need recent photos.", ru: "Пожалуйста, укажите точные данные о себе. Нам также нужны свежие фотографии.", uk: "Будь ласка, вкажіть точні дані про себе. Нам також потрібні свіжі фотографії." }
+    explain: { en: "No article stands in front of either adjective, so each one wears the ending the missing article would have shown. Angaben and Fotos are both accusative plurals, where the article would be die — so genaue and aktuelle. genauen and aktuellen are the endings that belong after die (die genauen Angaben); with no article in front they mark nothing.", ru: "Ни перед одним прилагательным артикля нет, поэтому каждое надевает окончание, которое показал бы отсутствующий артикль. Angaben и Fotos — оба винительный множественного, где артикль был бы die, — отсюда genaue и aktuelle. genauen и aktuellen — окончания после die (die genauen Angaben); без артикля впереди они ничего не показывают.", uk: "Перед жодним прикметником артикля немає, тому кожен надягає закінчення, яке показав би відсутній артикль. Angaben і Fotos — обидва знахідний множини, де артикль був би die, — звідси genaue й aktuelle. genauen і aktuellen — закінчення після die (die genauen Angaben); без артикля попереду вони нічого не показують.", de: "Vor keinem der beiden Adjektive steht ein Artikel, also trägt jedes die Endung, die der fehlende Artikel gezeigt hätte. Angaben und Fotos stehen beide im Akkusativ Plural, wo der Artikel die wäre — also genaue und aktuelle. genauen und aktuellen sind die Endungen nach die (die genauen Angaben); ohne Artikel davor zeigen sie nichts an." }
 
   # --- sucht-lebensstil ---
   - id: sucht-irreal

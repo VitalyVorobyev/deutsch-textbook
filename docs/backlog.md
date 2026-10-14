@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.17 `versicherungen-behoerden`.
+  Next: B1.18 `sucht-lebensstil`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -252,6 +252,22 @@ record of what shipped.
   not an omission; the 2026-09-15 ruling note's "never *einen Lärm*" (*einen Heidenlärm*); the
   `recht-kriminalitaet-b1` header still calls the deck unowned, though this topic adopts it;
   C6-1 still owed.
+- `b1/versicherungen-behoerden`: the cloze, order and table islands still charge any wrong gap,
+  chip or cell to the tag (`cloze-wegen-genitiv`, `table-genitiv`, `cloze-nullartikel`,
+  `order-trotz`, the placement's `behoerden-nullartikel`) — no predicates exist for those
+  islands; still rejected, unattributed: *innerhalb der gesetzten Frist* and its siblings for
+  «установленного срока», the fronted *Innerhalb der Frist antworten Sie bitte*, *ob es versichert
+  ist* for «это»; *Nachweis*, the topic's key noun, is on no Goethe list and in no deck, so it is
+  named wherever it must be produced; the article's form table, its example and
+  `table-formular` label the marital-status box *Personenstand*, while the deck's own note says
+  the box a learner fills in reads *Familienstand*; *Feinheiten*' *Personalien* "immer ohne
+  Artikel im Formularkopf"; the `mc-wogegen` prompt's *ob Ihr Fahrrad … bezahlt wird*; vocab
+  notes: *verboten*'s "capitalised infinitive" pattern led by *Zutritt*, *städtisch*'s urban
+  sense "carried by … *städtisches Leben*", *Vorwahl*'s "Germany writes … which is exactly what
+  the example shows" over a Vienna example, *Bürger*'s *-burg* town names, *Förderung*'s
+  *Förderschule* "officially" (it varies by Land), *Bürgerin*'s feminine-first order "fixed";
+  the `verwaltung-behoerden-b1` header still calls the deck unowned, though this topic adopts
+  it; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
