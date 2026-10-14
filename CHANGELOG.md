@@ -11,20 +11,6 @@ GitHub Release notes.
 
 ## [Unreleased]
 
-### Fixed
-
-- **A missing capital at the start of a sentence is no longer a grammar mistake.** Typing
-  *wenn ich Zeit habe, …* where the answer starts *Wenn* now counts as right in a translation,
-  with the capital shown as a spelling note. A gap or table cell that opens a sentence, or comes
-  after a colon, now takes either case.
-- **Gap, table and word-order exercises blame a grammar point only for its own mistakes.** In 24
-  B1 exercises, a typo in a word the task prints or a slip in an unrelated gap no longer counts
-  against the grammar point. The wrong form the exercise is about still does.
-- **B1 Lernen & Zukunft:** *wenn* where the instruction asks for *falls* is still marked wrong,
-  but no longer counts as a *falls*/*wenn* mistake, since *wenn* is correct German there.
-- **The word-field panel no longer ends with a note about how cards are made.** It was a note
-  for the authors, not for you.
-
 ## [0.6.19] — 2026-10-14
 
 ### Added
@@ -48,6 +34,17 @@ GitHub Release notes.
 
 ### Fixed
 
+- **A missing capital at the start of a sentence is no longer a grammar mistake.** Typing
+  *wenn ich Zeit habe, …* where the answer starts *Wenn* now counts as right in a translation,
+  with the capital shown as a spelling note. A gap or table cell that opens a sentence, or comes
+  after a colon, now takes either case.
+- **Gap, table and word-order exercises blame a grammar point only for its own mistakes.** In 24
+  B1 exercises, a typo in a word the task prints or a slip in an unrelated gap no longer counts
+  against the grammar point. The wrong form the exercise is about still does.
+- **B1 Lernen & Zukunft:** *wenn* where the instruction asks for *falls* is still marked wrong,
+  but no longer counts as a *falls*/*wenn* mistake, since *wenn* is correct German there.
+- **The word-field panel no longer ends with a note about how cards are made.** It was a note
+  for the authors, not for you.
 - **Reflexive verbs show *sich* on their cards.** The card for "to get used to" printed
   *gewöhnen*; it now reads *sich gewöhnen*, and so do 22 other verbs whose Wortliste entry is
   written without *sich* (*sich freuen*, *sich kümmern*, *sich bewerben* …). Your review history for
