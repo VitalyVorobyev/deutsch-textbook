@@ -10,7 +10,7 @@ record of what shipped.
 - **P27-3g · B1 topic-quality pass.** Every B1 topic gets the bounded whole-profile pass of the
   [content-quality contract](authoring/content-quality-audit.md), one topic per PR, in unit order;
   progress and per-topic results: [topic-quality-audit.md](curriculum/topic-quality-audit.md).
-  Next: B1.19 `bildungswege`.
+  Next: B1.20 `gespraech-steuern`.
 - **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
   the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
   (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
@@ -280,6 +280,22 @@ record of what shipped.
   example avoids it), *Zahnpasta*'s "nobody counts it", the *Suchtmittel* example's superlative
   "am leichtesten zu bekommen"; the `koerperpflege-lebensstil-b1` header still calls the deck
   unowned, though this topic adopts it; C6-1 still owed.
+- `b1/bildungswege`: the cloze and table islands still charge any wrong gap or cell to the tag
+  (`cloze-wenn-falls-platz`, `cloze-damit-um-zu`, `table-zweck`, the placement's `bildung-falls`),
+  and a sentence-initial gap keyed *Wenn* or *Falls* rejects and charges the lower-case word
+  (`answerMatches` keeps case where the translate grader folds it at a sentence head — a grader
+  question, corpus-wide); still rejected,
+  unattributed: *zehn Jahre alt wird*, *es auf dem Gymnasium nicht schafft*, *noch ein Jahr länger*,
+  *noch mal*, *nicht den Bus verpasst*, a modal the prompt does not have (*erklären kann*, *lernen
+  kann*), and *zuhause* — a spelling the rules allow beside *zu Hause*, owed to the grader rather
+  than to accept lists; `lernen-zukunft`'s *falls*-named items still charge *wenn*, which this
+  topic now leaves uncharged — one standard is owed; the `sprechen-kita` explain says *um besser
+  Deutsch zu lernen* would mean you go to the Kita (it means you learn); the reading's *damit sie
+  das Zeugnis erklärt* leaves *sie* to context; `mc-falls-eventualitaet`'s option and the reading
+  have the family decide the next school, which a binding recommendation limits in some Länder;
+  *Feinheiten*' Swiss *Mittelschule* as "das Gymnasium" (it also covers the Fachmittelschule); the
+  reading's *Hauptschule* gloss "leading straight into a trade"; the `bildung-schulsystem-b1`
+  header still calls the deck unowned, though this topic adopts it; C6-1 still owed.
 
 **A2 findings below the material bar**, for the next time each file is touched:
 
