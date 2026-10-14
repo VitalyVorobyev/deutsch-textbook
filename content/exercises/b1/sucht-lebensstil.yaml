@@ -34,6 +34,9 @@ items:
     outcomes: [folgen-abwaegen]
     type: cloze
     focus: irreale-bedingung
+    focus_evidence:
+      failed: ["(?<!\\p{L})nichtraucher (bist|warst|bin|ist|war)(?!\\p{L})", "(?<!\\p{L})nichtraucher \\S+ (wird|wurde|hat|ist|stinkt)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})nichtraucher wärst würde(?!\\p{L})"]
     instruction:
       en: "The unreal condition — fill in the one-word Konjunktiv II of sein in the wenn-half and the helper that the full verb stinken needs in the main half."
       ru: "Нереальное условие — впишите однословный Konjunktiv II глагола sein в половине с wenn и вспомогательный глагол, который нужен полнозначному stinken, в главной половине."
@@ -84,6 +87,9 @@ items:
     outcomes: [folgen-abwaegen]
     type: table
     focus: irreale-bedingung
+    focus_evidence:
+      failed: ["^(ist|war|sei|wird|würde)(?: /|$)", "^(?:[^/]*/ ){1}(kann|konnte|könne|würde)(?: /|$)", "^(?:[^/]*/ ){2}(werden|wurden|wird|kaufen|kauften)(?: /|$)"]
+      retained: ["^wäre /", "/ könnte /", "/ würden$"]
     title: "Wirklichkeit → Konjunktiv II"
     instruction:
       en: "Complete each wenn-clause with the Konjunktiv II form its verb requires."
@@ -112,6 +118,11 @@ items:
     outcomes: [folgen-abwaegen]
     type: order
     focus: irreale-bedingung
+    # Every chip is on the tray, so no order of them leaves a half unmarked: a misordered
+    # sentence is a word-order miss, never this tag's.
+    focus_evidence:
+      failed: []
+      retained: ["(?<!\\p{L})würde(?!\\p{L})", "(?<!\\p{L})könnte(?!\\p{L})"]
     instruction:
       en: "Build the unreal condition."
       ru: "Составьте нереальное условие."
@@ -130,6 +141,9 @@ items:
     outcomes: [hilfe-veranlassen]
     type: cloze
     focus: lassen-verwendung
+    focus_evidence:
+      failed: ["(?<!\\p{L})arzt (lasst|lasse|lassen)(?!\\p{L})", "(?<!\\p{L})danach (lässt|lasst|lassen)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})arzt lässt(?!\\p{L})", "(?<!\\p{L})danach lasse(?!\\p{L})"]
     instruction:
       en: "Fill in the right present-tense form of lassen."
       ru: "Впишите нужную форму lassen в настоящем времени."

@@ -7,7 +7,14 @@
  * answer is always displayed fully punctuated, so none of it may cost an answer.
  */
 import { describe, expect, test } from 'bun:test';
-import { answerMatches, normalizeTranslation, sentenceInitialIndices } from '@da/grading/cloze';
+import {
+  answerMatches,
+  capitalizeSentenceHeads,
+  clozeGapHeads,
+  fillCloze,
+  normalizeTranslation,
+  sentenceInitialIndices,
+} from '@da/grading/cloze';
 
 describe('normalizeTranslation — punctuation is not part of the graded surface', () => {
   test('the dialogue dash dissolves, typed as — or - or not at all', () => {
@@ -84,5 +91,50 @@ describe('sentenceInitialIndices', () => {
 
   test('question and exclamation marks close sentences too', () => {
     expect([...sentenceInitialIndices('Kommst du mit? Ja! Dann los.')]).toEqual([0, 3, 4]);
+  });
+});
+
+/**
+ * At a sentence head the capital is the position's, not the grammar's. `{{Wenn}} ich Zeit habe`
+ * typed `wenn` has the conjunction right; before the fold it was rejected and charged to
+ * `falls-wenn` (`b1/bildungswege`), and the learner's log holds two such misses — a probe among
+ * them (`b1/probe-reisen-probleme` variant-b, *hätte* for *Hätte*).
+ */
+describe('sentence-head gaps fold the first letter, and only there', () => {
+  test('clozeGapHeads finds the gaps that open a sentence', () => {
+    expect(clozeGapHeads('{{Wenn}} ich Zeit habe, {{komme}} ich.')).toEqual([true, false]);
+    expect(clozeGapHeads('Ich komme. {{Morgen}} nicht.')).toEqual([true]);
+    expect(clozeGapHeads('Er fragt: {{Könnten}} Sie mir helfen?')).toEqual([true]);
+    expect(clozeGapHeads('Sie fragt: „{{Hätten}} Sie Zeit?“')).toEqual([true]);
+    expect(clozeGapHeads('Ich glaube, {{dass}} er kommt.')).toEqual([false]);
+    // A cue in brackets after a sentence does not hide the boundary before it.
+    expect(clozeGapHeads('Darf ich? (dürfen) {{Könnten}} Sie das wiederholen? (können)')).toEqual([true]);
+    expect(clozeGapHeads('Ich bei {{offenem}} (offen) Fenster.')).toEqual([false]);
+    // An earlier gap is read as its answer, so a sentence it closes still opens the next one.
+    expect(clozeGapHeads('Wir {{warten}}. {{Dann}} gehen wir.')).toEqual([false, true]);
+  });
+
+  test('a lower-case head matches, and so does an upper-case one where the key is lower', () => {
+    expect(answerMatches('wenn', ['Wenn'], { sentenceHead: true })).toBe(true);
+    expect(answerMatches('Wenn', ['wenn'], { sentenceHead: true })).toBe(true);
+    expect(answerMatches('ob', ['Wenn'], { sentenceHead: true })).toBe(false);
+  });
+
+  test('mid-sentence case is still graded — there it is grammar', () => {
+    expect(answerMatches('wenn', ['Wenn'])).toBe(false);
+    expect(answerMatches('sie', ['Sie'])).toBe(false);
+  });
+
+  test('capitalizeSentenceHeads capitalizes every head and nothing else', () => {
+    expect(capitalizeSentenceHeads('wenn ich Zeit habe, komme ich. dann gehen wir.')).toBe(
+      'Wenn ich Zeit habe, komme ich. Dann gehen wir.',
+    );
+    expect(capitalizeSentenceHeads('„wenn du willst“')).toBe('Wenn du willst');
+  });
+
+  test('fillCloze puts the typed values where the gaps were', () => {
+    expect(fillCloze('{{Wenn}} ich Zeit {{habe}}, komme ich.', ['falls ', 'hätte'])).toBe(
+      'falls ich Zeit hätte, komme ich.',
+    );
   });
 });

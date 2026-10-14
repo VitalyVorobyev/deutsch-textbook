@@ -85,6 +85,9 @@ items:
     outcomes: [mitteilung-weitergeben]
     type: cloze
     focus: angaben-reihenfolge
+    focus_evidence:
+      failed: ["(?<!\\p{L})(ruhe|küche)(?!\\p{L}).*(?<!\\p{L})am sonntag(?!\\p{L})"]
+      retained: ["^sie hat am sonntag(?!\\p{L})"]
     instruction:
       en: "Three Angaben, listed here in the wrong order: in der Küche, in Ruhe, am Sonntag. Put each into its slot so the sentence follows the German default order."
       ru: "Три Angaben, перечисленные здесь в неверном порядке: in der Küche, in Ruhe, am Sonntag. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."

@@ -1,4 +1,5 @@
 import type { ExerciseItem } from '@da/schema';
+import { evaluateFocusEvidence } from '@da/grading/evidence';
 import type { Attempt } from './store';
 
 export type ResponseMode = NonNullable<Attempt['responseMode']>;
@@ -8,7 +9,7 @@ export type FocusEvidence = NonNullable<Attempt['focusEvidence']>;
  * The predicate evaluator lives in `@da/grading` (`packages/grading/src/evidence.ts`), because
  * `bun run validate` and `progress:audit` must reach the very function the islands log with.
  */
-export { evaluateFocusEvidence } from '@da/grading/evidence';
+export { evaluateFocusEvidence };
 
 /**
  * The focus tag to log for an attempt.
@@ -48,4 +49,23 @@ export function responseModeForItem(item: ExerciseItem): ResponseMode {
     case 'write':
       return 'writing';
   }
+}
+
+/**
+ * Attribution for the islands whose miss has no `key_tokens` to read — `cloze`, `order` and
+ * `table`. Without `focus_evidence` every wrong gap, chip or cell keeps the item's tag, as it
+ * always has: nearly every gap *is* the confusion (`dem` for `den`), and dropping the tag
+ * wholesale is the inversion `Translate.tsx` measured. Where an item authors predicates they
+ * decide, exactly as they do for `translate` — read against `response`, the sentence the learner
+ * built (`fillCloze` for a cloze, the assembled chips for an order, the asked cells joined by
+ * ` / ` for a table) — and a miss they do not call `failed` is logged unattributed.
+ */
+export function islandAttribution(
+  item: Pick<ExerciseItem, 'focus' | 'focus_evidence'>,
+  correct: boolean,
+  response: string,
+): { focus?: null; focusEvidence?: FocusEvidence } {
+  if (!item.focus || !item.focus_evidence) return {};
+  const focusEvidence = evaluateFocusEvidence(response, correct, item.focus_evidence);
+  return correct || focusEvidence === 'failed' ? { focusEvidence } : { focus: null, focusEvidence };
 }

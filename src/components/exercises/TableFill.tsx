@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { z } from 'zod';
 import type { tableItemSchema } from '@da/schema';
 import { answerMatches } from '@da/grading/cloze';
+import { islandAttribution } from '../../lib/evidence';
 import { acceptedCellAnswers } from '../../lib/table';
 import { ActionRow, Feedback, Instruction, type ItemProps } from './shared';
 
@@ -30,7 +31,7 @@ export function TableFill({
   // see whether the connector belongs in what they type. Both readings are graded — see
   // `acceptedCellAnswers`, which is also what keeps the answer key canonical in `validate.ts`.
   const cellOk = (r: number, c: number) =>
-    answerMatches(values[cellKey(r, c)] ?? '', acceptedCellAnswers(item.rows[r].cells, c));
+    answerMatches(values[cellKey(r, c)] ?? '', acceptedCellAnswers(item.rows[r].cells, c, item.rows[r].label));
 
   const allCorrect = askedCells.every(({ r, c }) => cellOk(r, c));
   const allFilled = askedCells.every(({ r, c }) => (values[cellKey(r, c)] ?? '').trim() !== '');
@@ -38,9 +39,11 @@ export function TableFill({
   function check() {
     if (checked || locked) return;
     setChecked(true);
+    const given = askedCells.map(({ r, c }) => values[cellKey(r, c)] ?? '').join(' / ');
     onResult({
       correct: allCorrect,
-      given: askedCells.map(({ r, c }) => values[cellKey(r, c)] ?? '').join(' / '),
+      given,
+      ...islandAttribution(item, allCorrect, given),
       // guard: a table with only given cells would make totalParts 0
       ...(askedCells.length >= 1
         ? {

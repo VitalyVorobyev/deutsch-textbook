@@ -48,6 +48,8 @@ it is a question about meaning — the text says so, and it is then on the autho
 
   **The match also folds case at sentence heads**, because there capitalization is orthography, not grammar: a pinned lowercase token is graded when it stands capitalized at the head of *any* sentence of a rendering (not just the first — a two-sentence `accept` has two heads), and a pin capitalized at a sentence head derives a lowercase twin that matches **anywhere**. So the string your pin grades is bigger than the string you wrote: `Nach der Arbeit gehe ich nach Hause.` with `Nach` pinned grades the *nach* of *nach Hause* too. The validator asks the grader itself (`gradedTokenPositions`) and **fails any rendering whose graded positions outnumber the pins**. When the extra occurrence really is the same decision twice (an `accept` that repeats the pinned auxiliary after *und*), declare it by pinning the token once per intended slot — `key_tokens: [sind, sind, geflogen, geblieben]` — which changes nothing in grading and tells the guard both slots are meant. Mid-sentence capitalization is never folded: `Sie` and `sie` stay different words.
 
+  **The learner's own lower-case sentence head is folded too.** `gradeTranslation` grades the typed sentence with every head capitalized (`capitalizeSentenceHeads`), so *wenn ich Zeit habe, …* for *Wenn …* is a spelling note even on a pinned token, not a miss charged to the tag the word was right for. The cloze and table graders do the same: a gap that opens a sentence or follows a colon (`clozeGapHeads`), or a cell whose key is a whole sentence or whose row label continues it (`acceptedCellAnswers`), matches with either case on its first letter. So a head gap needs no `{{Der|der}}` hand-patch; the three in A1 are harmless.
+
   **Only pin what the tag grades.** Attribution is all-or-nothing to the single `focus`, so a token that the tag is not about turns an unrelated error into a false entry under that tag: `focus: duerfen-muessen` with `key_tokens: [musst, kommen]` logs a fumbled lexical verb as a dürfen/müssen confusion; `focus: partizip2-form` pinning the auxiliary `habe` logs `bin`-for-`habe` — a `haben-sein` error — as a failure to build the Partizip II. The validator cannot check this (it is a question about meaning), so it is on the author.
 
   **The known exception, recorded rather than papered over:** pinning the participle for `haben-sein` (mandated above, so that a mis-built participle is not forgiven outright as a one-edit slip) does log a `partizip2-form` error under `haben-sein` — `Sie ist nach Spanien geflügen` has the auxiliary exactly right. That is the rule above being violated by the rule above it, and it is a real false entry, live in the log. It is left standing because the alternative — dropping the pin — scores a wrongly-built participle **correct**, which is worse. The fix is to let a token be pinned for *presence without attribution*; until `key_tokens` can say that, prefer the pin and know what it costs.
@@ -85,19 +87,25 @@ it is a question about meaning — the text says so, and it is then on the autho
 
 ## Focus-evidence predicates
 
-A free-typed item (`translate`, `listen`) may declare `focus_evidence`: regexes run against the
-normalized response (`normalizeTranslation` — case kept, punctuation tokens dropped) that decide
-which misses its `focus` owns. `failed` — any match is a failure of the tag; `retained` — all
+A free-typed item (`translate`, `listen`) or an island with no pins (`cloze`, `order`, `table`)
+may declare `focus_evidence`: regexes run against the normalized response (`normalizeTranslation`
+— case kept, punctuation tokens dropped) that decide which misses its `focus` owns. An island's
+response is the sentence the learner built: the cloze text with the typed gaps in place
+(`fillCloze`), the assembled chips, or a table's asked cells joined by ` / ` in reading order
+(`islandAttribution`, `src/lib/evidence.ts`). `failed` — any match is a failure of the tag; `retained` — all
 matching is the tag surviving a miss elsewhere; anything else is `unknown` and logs no tag. The
 evaluator is `evaluateFocusEvidence` (`packages/grading/src/evidence.ts`), shared by the islands,
 the validator and the audit.
 
 - **Where an item declares predicates, they decide, and they replace the other attribution.** On
-  `translate` they replace `key_tokens`; on `listen` an authored `failed` match also **beats
+  `translate` they replace `key_tokens`; on an island they replace "every miss is the tag's"; on `listen` an authored `failed` match also **beats
   `dictationSlip`** — one edit away is exactly what *etwas neues* and *etwas Neue* look like, and
   both are the `adjektiv-nomen` decision. So a predicate set restates the pins' failures (the
   pinned word missing, out of its slot) as well as the error it was written for, or those misses
   go `unknown`.
+- **On an island, reach for them when a gap, chip or cell can be missed for a reason the tag does
+  not name** — a typo in a word the item prints, a lexical slip, a second gap about something else.
+  Where every gap *is* the confusion (`dem` for `den`), leave them off: that miss is the tag's.
 - **Reach for them when a pin cannot see the error.** A pin is attributed when it is absent or
   displaced, never when the learner *adds* a word — so a `translate` probe whose tag names an added
   word must declare a `failed` predicate that catches it (validator-enforced; the tags and their

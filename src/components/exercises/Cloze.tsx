@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { clozeItemSchema } from '@da/schema';
-import { answerMatches, parseCloze } from '@da/grading/cloze';
+import { answerMatches, clozeGapHeads, fillCloze, parseCloze } from '@da/grading/cloze';
+import { islandAttribution } from '../../lib/evidence';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
 
 type ClozeItem = z.infer<typeof clozeItemSchema>;
@@ -39,21 +40,29 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
   const [values, setValues] = useState<string[]>(() => Array(gapCount).fill(''));
   const [checked, setChecked] = useState(false);
 
+  const heads = useMemo(() => clozeGapHeads(item.text), [item]);
   const gapResults = useMemo(() => {
     let gi = 0;
     return parts
       .filter((p) => p.type === 'gap')
-      .map((p) => answerMatches(values[gi++] ?? '', (p as { answers: string[] }).answers));
-  }, [parts, values]);
+      .map((p) => {
+        const g = gi++;
+        return answerMatches(values[g] ?? '', (p as { answers: string[] }).answers, {
+          sentenceHead: heads[g],
+        });
+      });
+  }, [parts, values, heads]);
 
   function check() {
     if (checked || locked) return;
     setChecked(true);
+    const correct = gapResults.every(Boolean);
     onResult({
-      correct: gapResults.every(Boolean),
+      correct,
       given: values.join(' / '),
       correctParts: gapResults.filter(Boolean).length,
       totalParts: gapCount,
+      ...islandAttribution(item, correct, fillCloze(item.text, values)),
     });
   }
 

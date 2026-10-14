@@ -729,6 +729,9 @@ items:
     outcomes: [personalien-angeben]
     type: cloze
     focus: adjektiv-nullartikel
+    focus_evidence:
+      failed: ["(?<!\\p{L})sie genau(en|er|es|em)?(?!\\p{L})", "(?<!\\p{L})auch aktuell(en|er|es|em)?(?!\\p{L})"]
+      retained: ["(?<!\\p{L})genaue angaben(?!\\p{L})", "(?<!\\p{L})aktuelle fotos(?!\\p{L})"]
     instruction: { en: "Fill in genau and aktuell with their endings — no article stands in front of either.", ru: "Впишите genau и aktuell с окончаниями — артикля нет ни перед тем, ни перед другим.", uk: "Впишіть genau і aktuell із закінченнями — артикля немає ні перед тим, ні перед іншим.", de: "Ergänze genau und aktuell mit ihren Endungen — vor keinem der beiden steht ein Artikel." }
     text: "Bitte machen Sie {{genaue}} Angaben zu Ihrer Person. Wir brauchen auch {{aktuelle}} Fotos."
     translation: { en: "Please give exact details about yourself. We also need recent photos.", ru: "Пожалуйста, укажите точные данные о себе. Нам также нужны свежие фотографии.", uk: "Будь ласка, вкажіть точні дані про себе. Нам також потрібні свіжі фотографії." }
@@ -775,6 +778,9 @@ items:
     outcomes: [hilfe-veranlassen]
     type: cloze
     focus: lassen-verwendung
+    focus_evidence:
+      failed: ["(?<!\\p{L})gelassen(?!\\p{L})", "(?<!\\p{L})zu (beraten|lassen)(?!\\p{L})", "(?<!\\p{L})lassen beraten(?!\\p{L})"]
+      retained: ["(?<!\\p{L})beraten lassen$"]
     instruction: { en: "Fill in the verb for getting advice and the form of lassen.", ru: "Впишите глагол со значением «консультировать» и форму lassen.", uk: "Впишіть дієслово зі значенням «консультувати» і форму lassen.", de: "Ergänze das Verb für den Rat und die Form von lassen." }
     text: "Ich habe mich in der Apotheke {{beraten}} {{lassen}}."
     translation: { en: "I got advice at the pharmacy.", ru: "Я проконсультировался в аптеке.", uk: "Я проконсультувався в аптеці." }
@@ -789,6 +795,9 @@ items:
     outcomes: [betreuung-klaeren]
     type: cloze
     focus: falls-wenn
+    focus_evidence:
+      failed: ["(?<!\\p{L})melden wir uns falls(?!\\p{L})"]
+      retained: ["(?<!\\p{L})uns wenn die schule(?!\\p{L})"]
     instruction: { en: "Fill in falls or wenn.", ru: "Вставьте falls или wenn.", uk: "Вставте falls або wenn.", de: "Ergänze falls oder wenn." }
     text: "{{Falls|Wenn}} Ihr Kind einen Platz bekommt, melden wir uns. {{Wenn}} die Schule beginnt, ist es sechs Jahre alt."
     translation: { en: "If your child gets a place, we will be in touch. When school starts, it will be six years old.", ru: "Если ваш ребёнок получит место, мы свяжемся с вами. Когда начнётся школа, ему будет шесть лет.", uk: "Якщо ваша дитина отримає місце, ми зв'яжемося з вами. Коли почнеться школа, їй буде шість років." }

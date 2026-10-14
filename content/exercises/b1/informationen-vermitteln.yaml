@@ -201,6 +201,9 @@ items:
     outcomes: [mitteilung-weitergeben]
     type: cloze
     focus: angaben-reihenfolge
+    focus_evidence:
+      failed: ["(?<!\\p{L})(schnell|hof)(?!\\p{L}).*(?<!\\p{L})heute morgen(?!\\p{L})"]
+      retained: ["^ich habe heute morgen(?!\\p{L})"]
     instruction:
       en: "Three Angaben, listed here in the wrong order: im Hof, schnell, heute Morgen. Put each into its slot so the sentence follows the German default order."
       ru: "Три Angaben, перечисленные здесь в неверном порядке: im Hof, schnell, heute Morgen. Поставьте каждую в свой пропуск так, чтобы предложение шло в немецком порядке по умолчанию."

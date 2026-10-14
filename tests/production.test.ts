@@ -599,6 +599,41 @@ describe('sentence-head case fold — a rendering can have more than one head (P
   });
 });
 
+describe('a lower-case sentence head is a spelling slip, even on a graded token', () => {
+  // A pinned head token was never forgiven as a slip, so `wenn` for `Wenn` was charged to the
+  // very tag the word was right for — while the cloze grader rejected the same capital.
+  const wenn = {
+    answer: 'Wenn ich Zeit habe, komme ich.',
+    accept: ['Ich komme, wenn ich Zeit habe.'],
+    focus: 'falls-wenn',
+    keyTokens: ['Wenn'],
+  };
+
+  test('the missing capital is shown and counted correct', () => {
+    expect(gradeTranslation('wenn ich Zeit habe, komme ich.', wenn)).toEqual({
+      kind: 'spelling',
+      correction: { given: 'wenn', expected: 'Wenn' },
+    });
+  });
+
+  test('a wrong word at the head is still the tag’s error', () => {
+    expect(gradeTranslation('ob ich Zeit habe, komme ich.', wenn)).toEqual({
+      kind: 'wrong',
+      focus: 'falls-wenn',
+    });
+  });
+
+  test('the head capital no longer blames the tag for an error elsewhere', () => {
+    // Before the fold the lower-case `wenn` was itself a diverged pin, so this unrelated slip
+    // pair was logged against falls-wenn.
+    expect(gradeTranslation('wenn ich Zeit hab, kome ich.', wenn)).toEqual({ kind: 'wrong' });
+  });
+
+  test('mid-sentence case is still graded', () => {
+    expect(gradeTranslation('Ich komme, Wenn ich Zeit habe.', wenn).kind).not.toBe('correct');
+  });
+});
+
 describe('gradedTokenPositions — the validator mirror of the grading fold', () => {
   test('a pinned sentence-opener grades its lowercase twin anywhere (the Nach/nach-Hause shape)', () => {
     const positions = gradedTokenPositions('Nach der Arbeit gehe ich nach Hause.', {
