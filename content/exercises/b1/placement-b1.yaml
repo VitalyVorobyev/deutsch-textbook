@@ -782,23 +782,35 @@ items:
 
   # --- bildungswege ---
   - id: bildung-falls
+    # revision 2: the first gap is an eventuality, where wenn stays grammatical — it was rejected
+    # and charged to falls-wenn, whose definition grades only the certain direction. Both words
+    # are accepted there now; the second gap carries the forced choice.
+    revision: 2
     outcomes: [betreuung-klaeren]
     type: cloze
     focus: falls-wenn
     instruction: { en: "Fill in falls or wenn.", ru: "Вставьте falls или wenn.", uk: "Вставте falls або wenn.", de: "Ergänze falls oder wenn." }
-    text: "{{Falls}} Ihr Kind einen Platz bekommt, melden wir uns. {{Wenn}} die Schule beginnt, ist es sechs Jahre alt."
+    text: "{{Falls|Wenn}} Ihr Kind einen Platz bekommt, melden wir uns. {{Wenn}} die Schule beginnt, ist es sechs Jahre alt."
     translation: { en: "If your child gets a place, we will be in touch. When school starts, it will be six years old.", ru: "Если ваш ребёнок получит место, мы свяжемся с вами. Когда начнётся школа, ему будет шесть лет.", uk: "Якщо ваша дитина отримає місце, ми зв'яжемося з вами. Коли почнеться школа, їй буде шість років." }
-    explain: { en: "falls marks a condition that may or may not occur — a place is not certain. wenn in the second half is temporal: school starting is not in doubt, only its date. Both take a Nebensatz and both send the verb to the end, so the choice is about meaning, not about structure.", ru: "falls отмечает условие, которое может и не наступить: место не гарантировано. wenn во второй половине временное: то, что школа начнётся, сомнению не подлежит — под вопросом только дата. Оба открывают придаточное и оба отправляют глагол в конец, так что выбор здесь о смысле, а не о структуре. Русское «если» покрывает и то и другое.", uk: "falls позначає умову, яка може й не настати: місце не гарантоване. wenn у другій половині часове: те, що школа почнеться, сумніву не підлягає — під питанням лише дата. Обидва відкривають підрядне і обидва відправляють дієслово в кінець, тож вибір тут про зміст, а не про структуру. Українське «якщо» покриває і те й інше.", de: "falls markiert eine Bedingung, die eintreten kann oder nicht — ein Platz ist nicht sicher. wenn in der zweiten Hälfte ist temporal: Dass die Schule beginnt, steht außer Frage, nur wann. Beide eröffnen einen Nebensatz und schicken das Verb ans Ende; die Wahl betrifft also die Bedeutung, nicht den Bau." }
+    explain: { en: "falls marks a condition that may or may not occur — a place is not certain — and wenn is grammatical there too, because wenn can stand in for falls. wenn in the second half is temporal: school starting is not in doubt, only its date, and falls has no temporal reading, so only wenn fits. Both take a Nebensatz and both send the verb to the end, so the choice is about meaning, not about structure.", ru: "falls отмечает условие, которое может и не наступить: место не гарантировано, — и wenn там тоже грамматично, потому что wenn может заменить falls. wenn во второй половине временное: то, что школа начнётся, сомнению не подлежит — под вопросом только дата, а у falls временно́го прочтения нет, так что подходит только wenn. Оба открывают придаточное и оба отправляют глагол в конец, так что выбор здесь о смысле, а не о структуре. Русское «если» покрывает и то и другое.", uk: "falls позначає умову, яка може й не настати: місце не гарантоване, — і wenn там теж граматичне, бо wenn може замінити falls. wenn у другій половині часове: те, що школа почнеться, сумніву не підлягає — під питанням лише дата, а falls часового прочитання не має, тож пасує лише wenn. Обидва відкривають підрядне і обидва відправляють дієслово в кінець, тож вибір тут про зміст, а не про структуру. Українське «якщо» покриває і те й інше.", de: "falls markiert eine Bedingung, die eintreten kann oder nicht — ein Platz ist nicht sicher —, und auch wenn ist dort richtig, denn wenn kann falls ersetzen. wenn in der zweiten Hälfte ist temporal: Dass die Schule beginnt, steht außer Frage, nur wann, und falls hat keine zeitliche Lesart, also passt nur wenn. Beide eröffnen einen Nebensatz und schicken das Verb ans Ende; die Wahl betrifft also die Bedeutung, nicht den Bau." }
 
   - id: bildung-damit
+    # revision 2: the fronted damit-clause was rejected and charged to damit-um-zu, as was a
+    # clause ending in lernen kann. focus_evidence fails only the tag's errors — um … zu, and the
+    # verb kept in second position after damit.
+    revision: 2
     outcomes: [lernziel-begruenden]
     type: translate
     focus: damit-um-zu
+    focus_evidence:
+      failed: ["(?<!\\p{L})um (?:\\p{L}+ )*?zu \\p{L}+", "(?<!\\p{L})damit er (?:lernt|kann)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})damit(?!\\p{L})", "(?<!\\p{L})deutsch lernt(?!\\p{L})"]
     instruction: { en: "Two people, so watch which connector the purpose needs.", ru: "Действующих лиц двое — следите, какой союз нужен цели.", uk: "Дійових осіб двоє — стежте, який сполучник потрібен меті.", de: "Zwei Personen — achte darauf, welchen Konnektor der Zweck braucht." }
     prompt_en: "I am registering my son so that he learns German earlier."
     prompt_ru: "Я записываю сына, чтобы он раньше выучил немецкий."
     prompt_uk: "Я записую сина, щоб він раніше вивчив німецьку."
     answer: "Ich melde meinen Sohn an, damit er früher Deutsch lernt."
+    accept: ["Damit er früher Deutsch lernt, melde ich meinen Sohn an."]
     key_tokens: ["damit", "lernt"]
     explain: { en: "The purpose belongs to somebody else — I register, he learns — and two different subjects require damit with a full clause. um … zu is only available when both halves share one subject, so um früher Deutsch zu lernen would say that I am the one learning. The verb closes the damit-clause like any Nebensatz.", ru: "Цель принадлежит другому: записываю я, а учит он, — и два разных подлежащих требуют damit с полным придаточным. Оборот um … zu возможен только при общем подлежащем, поэтому um früher Deutsch zu lernen сказало бы, что учу я. Глагол закрывает придаточное с damit, как всякое придаточное.", uk: "Мета належить іншому: записую я, а вчить він, — і два різні підмети вимагають damit з повним підрядним. Зворот um … zu можливий лише за спільного підмета, тому um früher Deutsch zu lernen сказало б, що вчу я. Дієслово закриває підрядне з damit, як будь-яке підрядне.", de: "Der Zweck gehört jemand anderem — ich melde an, er lernt — und zwei verschiedene Subjekte verlangen damit mit vollem Nebensatz. um … zu ist nur bei gemeinsamem Subjekt möglich, also würde um früher Deutsch zu lernen sagen, dass ich lerne. Das Verb schließt den damit-Satz wie jeden Nebensatz." }
 

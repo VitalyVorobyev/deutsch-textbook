@@ -47,9 +47,9 @@ items:
       ru: "Когда в сентябре начнётся начальная школа, дочери будет шесть лет. Если в саду не освободится место, мы подождём ещё год."
       uk: "Коли у вересні почнеться початкова школа, доньці буде шість років. Якщо в садку не звільниться місце, ми зачекаємо ще рік."
     explain:
-      en: "The asymmetry is the whole lesson. The school year starts in September whatever anybody does, so the first clause is about time — and *falls* has no temporal reading at all, which leaves only *wenn*. The second gap covers a case the family hopes to avoid: *falls* is the precise signal there, but *wenn* stays grammatical, because *wenn* can always stand in for *falls* and never the other way round."
-      ru: "Вся суть — в асимметрии. Учебный год начинается в сентябре независимо ни от чего, поэтому первое придаточное — о времени, а у *falls* временно́го прочтения нет вовсе: остаётся только *wenn*. Второй пропуск страхует случай, которого семья надеется избежать: там *falls* — точный сигнал, но *wenn* остаётся грамматичным, потому что *wenn* всегда может заменить *falls* — и никогда наоборот."
-      uk: "Уся суть — в асиметрії. Навчальний рік починається у вересні незалежно ні від чого, тому перше підрядне — про час, а в *falls* часового прочитання немає взагалі: лишається тільки *wenn*. Другий пропуск страхує випадок, якого родина сподівається уникнути: там *falls* — точний сигнал, але *wenn* лишається граматичним, бо *wenn* завжди може замінити *falls* — і ніколи навпаки."
+      en: "The asymmetry is the whole lesson. The school year starts on its set date whatever anybody does, so the first clause is about time — and *falls* has no temporal reading at all, which leaves only *wenn*. The second gap covers a case the family hopes to avoid: *falls* is the precise signal there, but *wenn* stays grammatical, because *wenn* can always stand in for *falls* and never the other way round."
+      ru: "Вся суть — в асимметрии. Учебный год начинается в свой срок независимо ни от чего, поэтому первое придаточное — о времени, а у *falls* временно́го прочтения нет вовсе: остаётся только *wenn*. Второй пропуск страхует случай, которого семья надеется избежать: там *falls* — точный сигнал, но *wenn* остаётся грамматичным, потому что *wenn* всегда может заменить *falls* — и никогда наоборот."
+      uk: "Уся суть — в асиметрії. Навчальний рік починається у свій термін незалежно ні від чого, тому перше підрядне — про час, а в *falls* часового прочитання немає взагалі: лишається тільки *wenn*. Другий пропуск страхує випадок, якого родина сподівається уникнути: там *falls* — точний сигнал, але *wenn* лишається граматичним, бо *wenn* завжди може замінити *falls* — і ніколи навпаки."
 
   - id: mc-falls-eventualitaet
     outcomes: [betreuung-klaeren]
@@ -66,14 +66,23 @@ items:
       ru: "Какое предложение закладывает случай, на который родители не рассчитывают?"
       uk: "Яке речення закладає випадок, на який батьки не розраховують?"
     explain:
-      en: "The early closing is the only one of the three that may never happen, and *falls* is the word for exactly that — «for the case that». The other two stand on *wenn*'s home ground: the Grundschule ends after four years for every child, and lessons end every single day. Putting *falls* into either of those would claim that the calendar itself is in doubt."
-      ru: "Раннее закрытие сада — единственное из трёх, чего может и не случиться, и *falls* — слово ровно для этого: «на случай, если». Два других стоят на родной территории *wenn*: Grundschule кончается через четыре года у всех детей, а занятия заканчиваются каждый день. Поставить туда *falls* значило бы объявить сомнительным сам календарь."
-      uk: "Раннє зачинення садка — єдине з трьох, чого може й не статися, і *falls* — слово рівно для цього: «на випадок, якщо». Два інші стоять на рідній території *wenn*: Grundschule кінчається через чотири роки в усіх дітей, а заняття закінчуються щодня. Поставити туди *falls* означало б оголосити сумнівним сам календар."
+      en: "The early closing is the only one of the three that may never happen, and *falls* is the word for exactly that — «for the case that». The other two stand on *wenn*'s home ground: the Grundschule ends at a set point for every child, and lessons end every single day. Putting *falls* into either of those would claim that the calendar itself is in doubt."
+      ru: "Раннее закрытие сада — единственное из трёх, чего может и не случиться, и *falls* — слово ровно для этого: «на случай, если». Два других стоят на родной территории *wenn*: Grundschule кончается для всех детей в назначенный срок, а занятия заканчиваются каждый день. Поставить туда *falls* значило бы объявить сомнительным сам календарь."
+      uk: "Раннє зачинення садка — єдине з трьох, чого може й не статися, і *falls* — слово рівно для цього: «на випадок, якщо». Два інші стоять на рідній території *wenn*: Grundschule кінчається для всіх дітей у визначений термін, а заняття закінчуються щодня. Поставити туди *falls* означало б оголосити сумнівним сам календар."
 
   - id: uebersetzen-falls-platz
+    # revision 2: the main clause first, the werden-future for "will stay" and meine for the bare
+    # «дочь» / «донька» were rejected — the first charged to falls-wenn. focus_evidence reads the
+    # tag's own surface: falls with its verb sent to the end, and the main clause opening with its
+    # verb after a fronted condition. wenn is grammatical for an eventuality, so it is constrained
+    # by the instruction and uncharged.
+    revision: 2
     outcomes: [betreuung-klaeren]
     type: translate
     focus: falls-wenn
+    focus_evidence:
+      failed: ["(?<!\\p{L})falls wir (?:bekommen|kriegen) (?:keinen|kein|nicht)(?!\\p{L})", "(?<!\\p{L})bekommen (?:dann )?(?:unsere|meine|die) tochter(?!\\p{L})"]
+      retained: ["(?<!\\p{L})falls(?!\\p{L})", "(?<!\\p{L})platz bekommen(?!\\p{L})"]
     instruction:
       en: "A bare eventuality — attach the condition with falls. For 'get' take bekommen."
       ru: "Голая эвентуальность — присоедините условие союзом falls. Для «получить» возьмите bekommen."
@@ -83,11 +92,32 @@ items:
     prompt_uk: "Якщо місця ми раптом не отримаємо, донька залишиться вдома ще на рік."
     answer: "Falls wir keinen Platz bekommen, bleibt unsere Tochter ein Jahr länger zu Hause."
     accept:
-      # dann may hold position 1 after the fronted condition, and the extra year goes by both
-      # of its ordinary names — the product is 2 × 2 renderings.
+      # Three clause orders (condition first, with or without dann; main clause first), each in
+      # the present and the werden-future; the extra year by both of its ordinary names; unsere
+      # or meine for the bare RU/UK noun — the product is 3 × 2 × 2 × 2 renderings.
       - "Falls wir keinen Platz bekommen, dann bleibt unsere Tochter ein Jahr länger zu Hause."
+      - "Unsere Tochter bleibt ein Jahr länger zu Hause, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, wird unsere Tochter ein Jahr länger zu Hause bleiben."
+      - "Falls wir keinen Platz bekommen, dann wird unsere Tochter ein Jahr länger zu Hause bleiben."
+      - "Unsere Tochter wird ein Jahr länger zu Hause bleiben, falls wir keinen Platz bekommen."
       - "Falls wir keinen Platz bekommen, bleibt unsere Tochter noch ein Jahr zu Hause."
       - "Falls wir keinen Platz bekommen, dann bleibt unsere Tochter noch ein Jahr zu Hause."
+      - "Unsere Tochter bleibt noch ein Jahr zu Hause, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, wird unsere Tochter noch ein Jahr zu Hause bleiben."
+      - "Falls wir keinen Platz bekommen, dann wird unsere Tochter noch ein Jahr zu Hause bleiben."
+      - "Unsere Tochter wird noch ein Jahr zu Hause bleiben, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, bleibt meine Tochter ein Jahr länger zu Hause."
+      - "Falls wir keinen Platz bekommen, dann bleibt meine Tochter ein Jahr länger zu Hause."
+      - "Meine Tochter bleibt ein Jahr länger zu Hause, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, wird meine Tochter ein Jahr länger zu Hause bleiben."
+      - "Falls wir keinen Platz bekommen, dann wird meine Tochter ein Jahr länger zu Hause bleiben."
+      - "Meine Tochter wird ein Jahr länger zu Hause bleiben, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, bleibt meine Tochter noch ein Jahr zu Hause."
+      - "Falls wir keinen Platz bekommen, dann bleibt meine Tochter noch ein Jahr zu Hause."
+      - "Meine Tochter bleibt noch ein Jahr zu Hause, falls wir keinen Platz bekommen."
+      - "Falls wir keinen Platz bekommen, wird meine Tochter noch ein Jahr zu Hause bleiben."
+      - "Falls wir keinen Platz bekommen, dann wird meine Tochter noch ein Jahr zu Hause bleiben."
+      - "Meine Tochter wird noch ein Jahr zu Hause bleiben, falls wir keinen Platz bekommen."
     explain:
       en: "Graded are *falls* and the wall behind it: *bekommen* closes its own clause, exactly as after *wenn* or *weil* — the choice of condition word says something about expectancy and changes no word order at all. The plan does not predict the refusal; it survives it. Note also that the fronted condition fills position 1, so the main clause opens with its verb: *bleibt unsere Tochter*."
       ru: "Оцениваются *falls* и стена за ним: *bekommen* закрывает своё придаточное — ровно как после *wenn* или *weil*, ведь выбор союза говорит об ожидании и порядок слов не меняет вовсе. План не предсказывает отказ — он его переживает. Обратите внимание и на то, что вынесенное условие занимает первую позицию, поэтому главное предложение открывается глаголом: *bleibt unsere Tochter*."
@@ -95,20 +125,40 @@ items:
     key_tokens: ["Falls", "bekommen"]
 
   - id: uebersetzen-wenn-sicher
+    # revision 2: the main clause first (charged to falls-wenn), the werden-future for «сменит» /
+    # «змінить» and unser for the bare «сыну» / «синові» were rejected. focus_evidence fails falls
+    # — the forced error — and the A2 word order the tag keeps, so als for wenn is no longer
+    # charged here.
+    revision: 2
     outcomes: [betreuung-klaeren, bildungsweg-erklaeren]
     type: translate
     focus: falls-wenn
+    focus_evidence:
+      failed: ["(?<!\\p{L})falls(?!\\p{L})", "(?<!\\p{L})wenn (?:mein|unser) sohn wird(?!\\p{L})", "(?<!\\p{L})wenn er wird(?!\\p{L})", "(?<!\\p{L})zehn wird (?:dann )?er (?:wechselt|wird)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})wenn(?!\\p{L})", "(?<!\\p{L})zehn(?: jahre alt)? wird(?!\\p{L})"]
     prompt_en: "When my son turns ten, he changes school."
     prompt_ru: "Когда сыну исполнится десять, он сменит школу."
     prompt_uk: "Коли синові виповниться десять, він змінить школу."
     answer: "Wenn mein Sohn zehn wird, wechselt er die Schule."
     accept:
+      # Three clause orders, each in the present and the werden-future, with mein or unser for
+      # the bare RU/UK noun — 3 × 2 × 2 renderings.
       - "Wenn mein Sohn zehn wird, dann wechselt er die Schule."
+      - "Mein Sohn wechselt die Schule, wenn er zehn wird."
+      - "Wenn mein Sohn zehn wird, wird er die Schule wechseln."
+      - "Wenn mein Sohn zehn wird, dann wird er die Schule wechseln."
+      - "Mein Sohn wird die Schule wechseln, wenn er zehn wird."
+      - "Wenn unser Sohn zehn wird, wechselt er die Schule."
+      - "Wenn unser Sohn zehn wird, dann wechselt er die Schule."
+      - "Unser Sohn wechselt die Schule, wenn er zehn wird."
+      - "Wenn unser Sohn zehn wird, wird er die Schule wechseln."
+      - "Wenn unser Sohn zehn wird, dann wird er die Schule wechseln."
+      - "Unser Sohn wird die Schule wechseln, wenn er zehn wird."
     explain:
       en: "This is the direction that is genuinely forced, and it is the reason the pair has to be learned as a pair. A tenth birthday is not an eventuality — it arrives — so the clause is temporal, and *falls* has no temporal reading whatsoever. *Wenn* is the only possible word here, while in the other direction both are allowed. Graded are that word and the clause-final *wird*."
       ru: "Это то направление, которое действительно обязательно, и именно поэтому пару приходится учить парой. Десятый день рождения — не эвентуальность, он наступит, — значит, придаточное временно́е, а у *falls* временно́го прочтения нет вовсе. Здесь возможно только *wenn*, тогда как в обратную сторону допустимы оба. Оцениваются это слово и *wird* в конце придаточного."
       uk: "Це той напрям, який справді обов'язковий, і саме тому пару доводиться вчити парою. Десятий день народження — не можливість, він настане, — отже, підрядне часове, а в *falls* часового прочитання немає зовсім. Тут можливе лише *wenn*, тоді як у зворотний бік припустимі обидва. Оцінюються це слово і *wird* у кінці підрядного."
-    key_tokens: ["Wenn", "wird"]
+    key_tokens: ["Wenn", "wird", "wird"]
 
   - id: cloze-damit-um-zu
     outcomes: [lernziel-begruenden]
@@ -129,14 +179,19 @@ items:
       uk: "Порахуйте діячів у кожній половині. У першій на курс ходить і атестат здобуває та сама людина, а підрядне закінчується голим *zu machen*, і підмета в ньому немає ніде — така форма буває лише в *um*. У другій підрядне приводить свій підмет *es*, а всередині *um … zu* підметові стояти ніде, тому вмістити його може тільки *damit*; як підрядний сполучник він потім відправляє *bekommt* у самий кінець."
 
   - id: table-zweck
+    # revision 2: a cell takes one answer, and the table charges every miss to damit-um-zu. The
+    # Volkshochschule row asked for um … zu where one subject leaves damit grammatical — the
+    # direction the tag may not grade — so it is now given beside the first row; the Zeugnis row
+    # rejected damit uns die Lehrerin …, as correct as its key, and now has no pronoun to move.
+    revision: 2
     outcomes: [lernziel-begruenden]
     type: table
     focus: damit-um-zu
     title: "Wozu? — damit oder um … zu"
     instruction:
-      en: "Turn the second sentence into a purpose clause. Count the subjects before you choose the form."
-      ru: "Превратите второе предложение в придаточное цели. Сосчитайте подлежащие, прежде чем выбрать форму."
-      uk: "Перетворіть друге речення на підрядне мети. Порахуйте підмети, перш ніж вибрати форму."
+      en: "Turn the second sentence into a purpose clause and leave out its modal verb. Count the subjects before you choose the form."
+      ru: "Превратите второе предложение в придаточное цели и уберите из него модальный глагол. Сосчитайте подлежащие, прежде чем выбрать форму."
+      uk: "Перетворіть друге речення на підрядне мети і приберіть із нього модальне дієслово. Порахуйте підмети, перш ніж вибрати форму."
     columns: ["Finalsatz"]
     rows:
       - label: "Ich lerne Deutsch. Ich will einen Abschluss machen. — Ich lerne Deutsch, …"
@@ -145,21 +200,28 @@ items:
       - label: "Ich melde mein Kind an. Es soll früher Deutsch lernen. — Ich melde mein Kind an, …"
         cells:
           - { answer: "damit es früher Deutsch lernt" }
-      - label: "Wir gehen in die Schule. Die Lehrerin soll uns das Zeugnis erklären. — Wir gehen in die Schule, …"
+      - label: "Wir gehen in die Schule. Die Lehrerin soll das Zeugnis erklären. — Wir gehen in die Schule, …"
         cells:
-          - { answer: "damit die Lehrerin uns das Zeugnis erklärt" }
+          - { answer: "damit die Lehrerin das Zeugnis erklärt" }
       - label: "Sie geht zur Volkshochschule. Sie will einen Kurs besuchen. — Sie geht zur Volkshochschule, …"
         cells:
-          - { answer: "um einen Kurs zu besuchen" }
+          - { answer: "um einen Kurs zu besuchen", given: true }
     explain:
       en: "Two rows keep one doer and compress, two rows have a second doer and cannot. The test is mechanical: if the second sentence has a subject the first one does not supply, *um … zu* is out, because that frame owns no subject slot. Watch what happens to the modal as well — *soll* and *will* only marked the purpose in the source pair and disappear from the clause; *damit* and *um … zu* carry the meaning themselves."
       ru: "Две строки сохраняют одного деятеля и сжимаются, две приводят второго и сжаться не могут. Проверка механическая: если во втором предложении есть подлежащее, которого не даёт первое, *um … zu* отпадает — в этой рамке места для подлежащего нет. Проследите и за модальным глаголом: *soll* и *will* лишь помечали цель в исходной паре и из придаточного исчезают, потому что смысл несут сами *damit* и *um … zu*."
       uk: "Два рядки зберігають одного діяча і стискаються, два приводять другого і стиснутися не можуть. Перевірка механічна: якщо в другому реченні є підмет, якого не дає перше, *um … zu* відпадає — у цій рамці місця для підмета немає. Простежте і за модальним дієсловом: *soll* і *will* лише позначали мету у вихідній парі і з підрядного зникають, бо зміст несуть самі *damit* і *um … zu*."
 
   - id: uebersetzen-damit-zeugnis
+    # revision 2: the fronted damit-clause was rejected and charged to damit-um-zu, as was a
+    # damit-clause ending in erklären kann. focus_evidence fails only the tag's two errors — the
+    # second doer squeezed into um … zu, the verb kept in main-clause position after damit.
+    revision: 2
     outcomes: [lernziel-begruenden, bildungsweg-erklaeren]
     type: translate
     focus: damit-um-zu
+    focus_evidence:
+      failed: ["(?<!\\p{L})um (?:\\p{L}+ )*?zu \\p{L}+", "(?<!\\p{L})damit (?:\\p{L}+ ){0,3}?erklärt (?:mir|das|uns|ihr)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})damit(?!\\p{L})", "(?<!\\p{L})zeugnis erklärt(?!\\p{L})"]
     instruction:
       en: "Count the subjects before you choose the form. For 'explain' take erklären, and for the teacher die Lehrerin."
       ru: "Сосчитайте подлежащие, прежде чем выбрать форму. Для «объяснить» возьмите erklären, для учительницы — die Lehrerin."
@@ -169,11 +231,15 @@ items:
     prompt_uk: "Я йду до школи, щоб учителька пояснила мені табель."
     answer: "Ich gehe in die Schule, damit die Lehrerin mir das Zeugnis erklärt."
     accept:
-      # Pronoun before or after the subject in the Mittelfeld, and both ordinary ways of naming
-      # the destination — the product is 2 × 2 renderings.
-      - "Ich gehe in die Schule, damit mir die Lehrerin das Zeugnis erklärt."
+      # Pronoun before or after the subject in the Mittelfeld, both ordinary ways of naming the
+      # destination, and the damit-clause after or before the main clause — 2 × 2 × 2 renderings.
+      - "Damit die Lehrerin mir das Zeugnis erklärt, gehe ich in die Schule."
       - "Ich gehe zur Schule, damit die Lehrerin mir das Zeugnis erklärt."
+      - "Damit die Lehrerin mir das Zeugnis erklärt, gehe ich zur Schule."
+      - "Ich gehe in die Schule, damit mir die Lehrerin das Zeugnis erklärt."
+      - "Damit mir die Lehrerin das Zeugnis erklärt, gehe ich in die Schule."
       - "Ich gehe zur Schule, damit mir die Lehrerin das Zeugnis erklärt."
+      - "Damit mir die Lehrerin das Zeugnis erklärt, gehe ich zur Schule."
     explain:
       en: "Graded are the two ends of the forced form: *damit* and the clause-final *erklärt*. I go, the teacher explains — two doers, so the subjectless frame has nowhere to put the second one (*um die Lehrerin mir das Zeugnis zu erklären* is exactly the impossible sentence, and it would also say that I do the explaining). Inside the clause, *mir* and *die Lehrerin* may stand in either order."
       ru: "Оцениваются два конца обязательной формы: *damit* и *erklärt* в самом конце. Иду я, объясняет учительница — два деятеля, поэтому бессубъектной рамке второго деть некуда (*um die Lehrerin mir das Zeugnis zu erklären* — ровно то невозможное предложение, и оно к тому же сказало бы, что объясняю я). Внутри придаточного *mir* и *die Lehrerin* могут стоять в любом порядке."
@@ -200,6 +266,9 @@ items:
       uk: "Працює лише *damit es einen Platz bekommt*. Варіант *um es einen Platz zu bekommen* неможливий, бо в рамці немає місця для підмета: навіть із втиснутим *es* речення все одно сказало б, що місце отримую **я**. А *damit es einen Platz zu bekommen* змішує дві машини: *damit* відкриває повноцінний Nebensatz і тому потребує відмінюваного дієслова (*bekommt*), а не інфінітива з *zu*."
 
   - id: match-schulen
+    # revision 2: the Grundschule is four years in most Länder and six in Berlin and Brandenburg,
+    # and a Volkshochschule is neither always run by the town nor only in the evening.
+    revision: 2
     outcomes: [bildungsweg-erklaeren]
     type: match
     instruction:
@@ -210,7 +279,7 @@ items:
       - left: "die Krippe"
         right: { en: "day care for children under three", ru: "присмотр за детьми младше трёх лет", uk: "догляд за дітьми, молодшими за три роки" }
       - left: "die Grundschule"
-        right: { en: "the first four years, which every child shares", ru: "первые четыре класса, которые проходят все дети", uk: "перші чотири класи, які проходять усі діти" }
+        right: { en: "the first school years — four in most Länder", ru: "первые школьные годы — в большинстве земель четыре", uk: "перші шкільні роки — у більшості земель чотири" }
       - left: "die Realschule"
         right: { en: "the middle branch, ending after year ten", ru: "средняя ветвь, заканчивается после десятого класса", uk: "середня гілка, закінчується після десятого класу" }
       - left: "das Gymnasium"
@@ -218,28 +287,32 @@ items:
       - left: "die Fachhochschule"
         right: { en: "higher education with a work placement built into the course", ru: "вуз, где практика входит в программу", uk: "виш, де практика входить до програми" }
       - left: "die Volkshochschule"
-        right: { en: "evening courses for adults, run by the town", ru: "вечерние курсы для взрослых от города", uk: "вечірні курси для дорослих від міста" }
+        right: { en: "courses for adults, often in the evening", ru: "курсы для взрослых, часто вечерние", uk: "курси для дорослих, часто вечірні" }
     explain:
-      en: "The list is a ladder, and the two long words at the bottom are the ones to keep apart. A *Fachhochschule* really is higher education and awards degrees; a *Volkshochschule*, despite the same *-hochschule* inside it, awards none — it is the town's evening school, and it is where most language courses are taught. Between them sits the ordinary university, which everybody calls *die Uni*."
-      ru: "Список — это лестница, и два длинных слова внизу как раз надо развести. *Fachhochschule* действительно относится к высшему образованию и выдаёт дипломы; *Volkshochschule*, несмотря на то же *-hochschule* внутри, не выдаёт ничего — это вечерняя школа города, и именно там идёт большинство языковых курсов. Между ними стоит обычный университет, который все зовут *die Uni*."
-      uk: "Список — це драбина, і два довгі слова внизу якраз треба розвести. *Fachhochschule* справді належить до вищої освіти і видає дипломи; *Volkshochschule*, попри те саме *-hochschule* всередині, не видає нічого — це вечірня школа міста, і саме там іде більшість мовних курсів. Між ними стоїть звичайний університет, який усі звуть *die Uni*."
+      en: "The list is a ladder, and the two long words at the bottom are the ones to keep apart. A *Fachhochschule* really is higher education and awards degrees; a *Volkshochschule*, despite the same *-hochschule* inside it, awards none — it is adult education, often in the evening, and many language and integration courses are taught there. Between them sits the ordinary university, which everybody calls *die Uni*."
+      ru: "Список — это лестница, и два длинных слова внизу как раз надо развести. *Fachhochschule* действительно относится к высшему образованию и выдаёт дипломы; *Volkshochschule*, несмотря на то же *-hochschule* внутри, вузовских дипломов не выдаёт — это образование для взрослых, часто вечернее, и там идут многие языковые и интеграционные курсы. Между ними стоит обычный университет, который все зовут *die Uni*."
+      uk: "Список — це драбина, і два довгі слова внизу якраз треба розвести. *Fachhochschule* справді належить до вищої освіти і видає дипломи; *Volkshochschule*, попри те саме *-hochschule* всередині, вишівських дипломів не видає — це освіта для дорослих, часто вечірня, і там ідуть чимало мовних та інтеграційних курсів. Між ними стоїть звичайний університет, який усі звуть *die Uni*."
 
   - id: cloze-hochschule
+    # revision 2: the first gap took only Hochschule, though an jeder Uni and an jeder
+    # Fachhochschule are as true; the instruction now asks for each word once, which leaves one
+    # word per gap.
+    revision: 2
     outcomes: [bildungsweg-erklaeren]
     type: cloze
     instruction:
-      en: "Fill in the missing institution: Hochschule, Fachhochschule, Uni, Volkshochschule."
-      ru: "Вставьте пропущенное учреждение: Hochschule, Fachhochschule, Uni, Volkshochschule."
-      uk: "Вставте пропущений заклад: Hochschule, Fachhochschule, Uni, Volkshochschule."
+      en: "Fill in the missing institution, using each word once: Hochschule, Fachhochschule, Uni, Volkshochschule."
+      ru: "Вставьте пропущенное учреждение, каждое слово один раз: Hochschule, Fachhochschule, Uni, Volkshochschule."
+      uk: "Вставте пропущений заклад, кожне слово один раз: Hochschule, Fachhochschule, Uni, Volkshochschule."
     text: "Nach dem Abitur kann man an jeder {{Hochschule}} studieren. An einer {{Fachhochschule}} macht man im Studium ein Praktikum. Unter Studenten heißt die Universität einfach die {{Uni}}. Kurse für Erwachsene am Abend gibt es an der {{Volkshochschule}}."
     translation:
       en: "After the Abitur you may study at any institution of higher education. At a college of applied sciences you do a work placement as part of the course. Among students the university is simply called the Uni. Evening courses for adults are held at the adult education centre."
       ru: "После Abitur можно учиться в любом вузе. В прикладном вузе практика входит в программу обучения. Между собой студенты называют университет просто die Uni. Вечерние курсы для взрослых есть в народном университете."
       uk: "Після Abitur можна вчитися в будь-якому виші. У прикладному виші практика входить до програми навчання. Між собою студенти звуть університет просто die Uni. Вечірні курси для дорослих є в народному університеті."
     explain:
-      en: "*Hochschule* is the umbrella over all four gaps, which is why the first sentence says *jeder Hochschule* rather than naming one kind. The false friend is worth saying out loud once: it is not a high school, and nobody under eighteen attends one. *Uni* is a clipped word that keeps the gender of its long form, and *Volkshochschule* is the odd one out — the *-hochschule* in its name is historical and it awards no degree."
-      ru: "*Hochschule* — зонт над всеми четырьмя пропусками, поэтому в первом предложении стоит *jeder Hochschule*, а не название конкретного вида. Ложного друга стоит проговорить один раз вслух: это не средняя школа, и никто младше восемнадцати туда не ходит. *Uni* — усечённое слово, сохраняющее род полного, а *Volkshochschule* выпадает из ряда: *-hochschule* в её названии историческое, и никакой степени она не даёт."
-      uk: "*Hochschule* — парасоля над усіма чотирма пропусками, тому в першому реченні стоїть *jeder Hochschule*, а не назва конкретного виду. Фальшивого друга варто проговорити один раз уголос: це не середня школа, і ніхто, молодший за вісімнадцять, туди не ходить. *Uni* — усічене слово, що зберігає рід повного, а *Volkshochschule* випадає з ряду: *-hochschule* в її назві історичне, і жодного ступеня вона не дає."
+      en: "*Hochschule* is the umbrella over all four gaps, which is why the first sentence says *jeder Hochschule* rather than naming one kind. The false friend is worth saying out loud once: it is not a high school — it comes after school. *Uni* is a clipped word that keeps the gender of its long form, and *Volkshochschule* is the odd one out — the *-hochschule* in its name is historical and it awards no degree."
+      ru: "*Hochschule* — зонт над всеми четырьмя пропусками, поэтому в первом предложении стоит *jeder Hochschule*, а не название конкретного вида. Ложного друга стоит проговорить один раз вслух: это не средняя школа — туда идут после школы. *Uni* — усечённое слово, сохраняющее род полного, а *Volkshochschule* выпадает из ряда: *-hochschule* в её названии историческое, и никакой степени она не даёт."
+      uk: "*Hochschule* — парасоля над усіма чотирма пропусками, тому в першому реченні стоїть *jeder Hochschule*, а не назва конкретного виду. Фальшивого друга варто проговорити один раз уголос: це не середня школа — туди йдуть після школи. *Uni* — усічене слово, що зберігає рід повного, а *Volkshochschule* випадає з ряду: *-hochschule* в її назві історичне, і жодного ступеня вона не дає."
 
   - id: cloze-noten
     outcomes: [schulinfo-verstehen]

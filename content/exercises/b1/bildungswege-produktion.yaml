@@ -17,9 +17,17 @@ title:
 # that `bun scripts/grammar-depth.ts B1 --thin` reports.
 items:
   - id: uebersetzen-falls-gymnasium
+    # revision 2: the main clause first (charged to falls-wenn), the werden-future for "will
+    # change" and unser for the bare «сын» / «син» were rejected. focus_evidence reads the tag's
+    # own surface: the verb at the end of the falls-clause, and the main clause opening with its
+    # verb after it; wenn, grammatical for an eventuality, is constrained and uncharged.
+    revision: 2
     outcomes: [bildungsweg-erklaeren]
     type: translate
     focus: falls-wenn
+    focus_evidence:
+      failed: ["(?<!\\p{L})falls (?:mein|unser) sohn schafft(?!\\p{L})", "(?<!\\p{L})falls er schafft(?!\\p{L})", "(?<!\\p{L})nicht schafft (?:dann )?er (?:wechselt|wird)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})falls(?!\\p{L})", "(?<!\\p{L})nicht schafft(?!\\p{L})"]
     instruction:
       en: "A bare eventuality — attach the condition with falls. For 'manage' take schaffen, for the move auf … wechseln."
       ru: "Голая эвентуальность — присоедините условие союзом falls. Для «справиться» возьмите schaffen, для перехода — auf … wechseln."
@@ -29,18 +37,36 @@ items:
     prompt_uk: "Якщо син раптом не впорається з гімназією, він перейде до Realschule."
     answer: "Falls mein Sohn das Gymnasium nicht schafft, wechselt er auf die Realschule."
     accept:
-      # dann may hold position 1 after the fronted condition.
+      # Three clause orders (condition first, with or without dann; main clause first), each in
+      # the present and the werden-future, with mein or unser — 3 × 2 × 2 renderings.
       - "Falls mein Sohn das Gymnasium nicht schafft, dann wechselt er auf die Realschule."
+      - "Mein Sohn wechselt auf die Realschule, falls er das Gymnasium nicht schafft."
+      - "Falls mein Sohn das Gymnasium nicht schafft, wird er auf die Realschule wechseln."
+      - "Falls mein Sohn das Gymnasium nicht schafft, dann wird er auf die Realschule wechseln."
+      - "Mein Sohn wird auf die Realschule wechseln, falls er das Gymnasium nicht schafft."
+      - "Falls unser Sohn das Gymnasium nicht schafft, wechselt er auf die Realschule."
+      - "Falls unser Sohn das Gymnasium nicht schafft, dann wechselt er auf die Realschule."
+      - "Unser Sohn wechselt auf die Realschule, falls er das Gymnasium nicht schafft."
+      - "Falls unser Sohn das Gymnasium nicht schafft, wird er auf die Realschule wechseln."
+      - "Falls unser Sohn das Gymnasium nicht schafft, dann wird er auf die Realschule wechseln."
+      - "Unser Sohn wird auf die Realschule wechseln, falls er das Gymnasium nicht schafft."
     explain:
-      en: "Graded are *falls* and the clause-final *schafft*. The word choice is a statement about expectancy and nothing else: the parents are not predicting the failure, they are naming a case the plan has to survive — which is exactly what a school decision at the age of ten needs. Word order is unchanged from *wenn*: verb at the end of the condition, and the fronted condition then pushes the main verb in front of its subject."
-      ru: "Оцениваются *falls* и *schafft* в конце придаточного. Выбор слова говорит только об ожидании: родители не предсказывают неудачу, а называют случай, который плану надо пережить, — ровно то, что нужно решению о школе в десять лет. Порядок слов такой же, как с *wenn*: глагол в конце условия, а вынесенное вперёд условие ставит главный глагол перед подлежащим."
-      uk: "Оцінюються *falls* і *schafft* у кінці підрядного. Вибір слова говорить лише про очікування: батьки не передбачають невдачу, а називають випадок, який планові треба пережити, — рівно те, що потрібно рішенню про школу в десять років. Порядок слів такий самий, як із *wenn*: дієслово в кінці умови, а винесена наперед умова ставить головне дієслово перед підметом."
+      en: "Graded are *falls* and the clause-final *schafft*. The word choice is a statement about expectancy and nothing else: the parents are not predicting the failure, they are naming a case the plan has to survive — which is exactly what a school decision at the end of the Grundschule needs. Word order is unchanged from *wenn*: verb at the end of the condition, and the fronted condition then pushes the main verb in front of its subject."
+      ru: "Оцениваются *falls* и *schafft* в конце придаточного. Выбор слова говорит только об ожидании: родители не предсказывают неудачу, а называют случай, который плану надо пережить, — ровно то, что нужно решению о школе в конце Grundschule. Порядок слов такой же, как с *wenn*: глагол в конце условия, а вынесенное вперёд условие ставит главный глагол перед подлежащим."
+      uk: "Оцінюються *falls* і *schafft* у кінці підрядного. Вибір слова говорить лише про очікування: батьки не передбачають невдачу, а називають випадок, який планові треба пережити, — рівно те, що потрібно рішенню про школу наприкінці Grundschule. Порядок слів такий самий, як із *wenn*: дієслово в кінці умови, а винесена наперед умова ставить головне дієслово перед підметом."
     key_tokens: ["Falls", "schafft"]
 
   - id: uebersetzen-damit-studium
+    # revision 2: the fronted damit-clause was rejected and charged to damit-um-zu, and das
+    # Studium for the bare «учёбу» / «навчання» was rejected. focus_evidence fails only the tag's
+    # errors: um … zu, and main-clause order after damit (kann before its infinitive).
+    revision: 2
     outcomes: [lernziel-begruenden]
     type: translate
     focus: damit-um-zu
+    focus_evidence:
+      failed: ["(?<!\\p{L})um (?:\\p{L}+ )*?zu \\p{L}+", "(?<!\\p{L})damit ich kann(?!\\p{L})", "(?<!\\p{L})kann beenden(?!\\p{L})"]
+      retained: ["(?<!\\p{L})damit(?!\\p{L})", "(?<!\\p{L})beenden kann(?!\\p{L})"]
     instruction:
       en: "Count the subjects before you choose the form. For 'finish' take beenden."
       ru: "Сосчитайте подлежащие, прежде чем выбрать форму. Для «закончить» возьмите beenden."
@@ -50,10 +76,19 @@ items:
     prompt_uk: "Моя дружина працює вечорами, щоб я міг закінчити навчання."
     answer: "Meine Frau arbeitet am Abend, damit ich mein Studium beenden kann."
     accept:
-      # The time phrase may take position 1, and the evening goes by both of its ordinary names.
+      # The time phrase may take position 1 and the evening goes by both of its ordinary names;
+      # the damit-clause may also come first; mein or das Studium — (4 + 2) × 2 renderings.
       - "Am Abend arbeitet meine Frau, damit ich mein Studium beenden kann."
       - "Meine Frau arbeitet abends, damit ich mein Studium beenden kann."
       - "Abends arbeitet meine Frau, damit ich mein Studium beenden kann."
+      - "Damit ich mein Studium beenden kann, arbeitet meine Frau am Abend."
+      - "Damit ich mein Studium beenden kann, arbeitet meine Frau abends."
+      - "Meine Frau arbeitet am Abend, damit ich das Studium beenden kann."
+      - "Am Abend arbeitet meine Frau, damit ich das Studium beenden kann."
+      - "Meine Frau arbeitet abends, damit ich das Studium beenden kann."
+      - "Abends arbeitet meine Frau, damit ich das Studium beenden kann."
+      - "Damit ich das Studium beenden kann, arbeitet meine Frau am Abend."
+      - "Damit ich das Studium beenden kann, arbeitet meine Frau abends."
     explain:
       en: "Graded are *damit* and the clause-final *kann*. She works, I finish — two doers, so the subjectless frame is simply unavailable, and the sentence has to open a full Nebensatz. With a modal the clause ends in two verbs and the order inside that pair is fixed: infinitive first, conjugated modal last — *beenden kann*, never *kann beenden*."
       ru: "Оцениваются *damit* и *kann* в конце придаточного. Работает она, заканчиваю я — два деятеля, поэтому бессубъектная рамка попросту недоступна, и предложению приходится открывать полноценный Nebensatz. С модальным глаголом придаточное заканчивается двумя глаголами, и порядок внутри пары закреплён: сначала инфинитив, спрягаемый модальный — последним: *beenden kann*, а не *kann beenden*."
@@ -69,9 +104,9 @@ items:
       ru: "Запись в детский сад начинается в сентябре."
       uk: "Запис до дитячого садка починається у вересні."
     explain:
-      en: "The sentence every notice board in the town carries once a year, and the hard part is *für die Kita*: the preposition takes the accusative, so it is *für die* and never *für der*. Note also that *Anmeldung* is capitalised — it is a noun built from the verb *anmelden*, and German writes the noun with a capital letter even where the source language would not."
-      ru: "Фраза, которая раз в год висит на каждой доске объявлений, и труднее всего в ней *für die Kita*: предлог требует аккузатива, поэтому *für die*, а не *für der*. Обратите внимание и на заглавную букву в *Anmeldung*: это существительное от глагола *anmelden*, и немецкий пишет его с большой буквы там, где исходный язык этого не делает."
-      uk: "Фраза, яка раз на рік висить на кожній дошці оголошень, і найважче в ній *für die Kita*: прийменник вимагає знахідного, тому *für die*, а не *für der*. Зверніть увагу й на велику літеру в *Anmeldung*: це іменник від дієслова *anmelden*, і німецька пише його з великої там, де вихідна мова цього не робить."
+      en: "A sentence a notice board in the town might carry, and the hard part is *für die Kita*: the preposition takes the accusative, so it is *für die* and never *für der*. Note also that *Anmeldung* is capitalised — it is a noun built from the verb *anmelden*, and German writes the noun with a capital letter even where the source language would not."
+      ru: "Фраза, которая вполне может висеть на доске объявлений, и труднее всего в ней *für die Kita*: предлог требует аккузатива, поэтому *für die*, а не *für der*. Обратите внимание и на заглавную букву в *Anmeldung*: это существительное от глагола *anmelden*, и немецкий пишет его с большой буквы там, где исходный язык этого не делает."
+      uk: "Фраза, яка цілком може висіти на дошці оголошень, і найважче в ній *für die Kita*: прийменник вимагає знахідного, тому *für die*, а не *für der*. Зверніть увагу й на велику літеру в *Anmeldung*: це іменник від дієслова *anmelden*, і німецька пише його з великої там, де вихідна мова цього не робить."
 
   - id: sprechen-kita
     outcomes: [betreuung-klaeren, lernziel-begruenden]
@@ -120,9 +155,9 @@ items:
       ru: "Напишите подруге за границей и объясните, какой путь пройдёт через немецкую школьную систему ваш девятилетний сын: что идёт после Grundschule, что вы будете делать, если с гимназией не сложится, и ради чего он старается. Шесть-семь предложений."
       uk: "Напишіть подрузі за кордон і поясніть, який шлях пройде через німецьку шкільну систему ваш дев'ятирічний син: що йде після Grundschule, що ви робитимете, якщо з гімназією не складеться, і заради чого він старається. Шість-сім речень."
     goal:
-      en: "Make a system the reader has never seen understandable in six sentences, without leaving out the branch that is chosen at ten."
-      ru: "Сделать понятной за шесть предложений систему, которой читатель никогда не видел, не пропустив развилку, которую проходят в десять лет."
-      uk: "Зробити зрозумілою за шість речень систему, якої читач ніколи не бачив, не пропустивши розвилку, яку проходять у десять років."
+      en: "Make a system the reader has never seen understandable in six sentences, without leaving out the branch that is chosen after the Grundschule."
+      ru: "Сделать понятной за шесть предложений систему, которой читатель никогда не видел, не пропустив развилку, которую проходят после Grundschule."
+      uk: "Зробити зрозумілою за шість речень систему, якої читач ніколи не бачив, не пропустивши розвилку, яку проходять після Grundschule."
     requirements:
       - en: "Name at least three institutions by their German names (Grundschule, Realschule, Gymnasium, Gesamtschule, Ausbildung)."
         ru: "Назовите не меньше трёх учреждений их немецкими именами (Grundschule, Realschule, Gymnasium, Gesamtschule, Ausbildung)."
@@ -134,11 +169,11 @@ items:
         ru: "Назовите одну цель через damit или um … zu, сосчитав подлежащие, прежде чем выбрать."
         uk: "Назвіть одну мету через damit або um … zu, порахувавши підмети, перш ніж вибрати."
     min_words: 55
-    model_answer: "Liebe Anna, in Deutschland geht ein Kind zuerst in die Kita und dann vier Jahre in die Grundschule. Danach wählen die Eltern zwischen Hauptschule, Realschule, Gymnasium und Gesamtschule. Mein Sohn ist jetzt neun. Wir gehen bald in die Schule, damit die Lehrerin uns die Noten erklärt. Falls er das Gymnasium nicht schafft, wechselt er auf die Realschule und macht danach eine Ausbildung. Er lernt jeden Abend, um ein gutes Zeugnis zu bekommen. Viele Grüße, Marta"
+    model_answer: "Liebe Anna, bei uns in Nordrhein-Westfalen geht ein Kind meistens zuerst in die Kita und dann vier Jahre in die Grundschule. Danach wählen die Eltern zwischen Hauptschule, Realschule, Gymnasium und Gesamtschule. Mein Sohn ist jetzt neun. Wir gehen bald in die Schule, damit die Lehrerin uns die Noten erklärt. Falls er das Gymnasium nicht schafft, wechselt er auf die Realschule und macht danach eine Ausbildung. Er lernt jeden Abend, um ein gutes Zeugnis zu bekommen. Viele Grüße, Marta"
     model_translation:
-      en: "Dear Anna, in Germany a child first goes to a day-care centre and then spends four years at primary school. After that the parents choose between Hauptschule, Realschule, Gymnasium and Gesamtschule. My son is nine now. We are going to the school soon so that the teacher explains the marks to us. In case he does not manage the Gymnasium, he will move to the Realschule and then do an apprenticeship. He studies every evening in order to get a good report. Kind regards, Marta"
-      ru: "Дорогая Анна, в Германии ребёнок сначала ходит в Kita, а потом четыре года в Grundschule. После этого родители выбирают между Hauptschule, Realschule, Gymnasium и Gesamtschule. Сыну сейчас девять. Скоро мы пойдём в школу, чтобы учительница объяснила нам оценки. Если он не справится с гимназией, он перейдёт в Realschule и потом пойдёт на профессиональное обучение. Он учит каждый вечер, чтобы получить хороший табель. С приветом, Марта"
-      uk: "Дорога Анно, у Німеччині дитина спершу ходить до Kita, а потім чотири роки до Grundschule. Після цього батьки обирають між Hauptschule, Realschule, Gymnasium і Gesamtschule. Синові зараз дев'ять. Невдовзі ми підемо до школи, щоб учителька пояснила нам оцінки. Якщо він не впорається з гімназією, він перейде до Realschule і потім піде на професійне навчання. Він учить щовечора, щоб отримати гарний табель. З вітанням, Марта"
+      en: "Dear Anna, here in North Rhine-Westphalia a child usually goes to a day-care centre first and then spends four years at primary school. After that the parents choose between Hauptschule, Realschule, Gymnasium and Gesamtschule. My son is nine now. We are going to the school soon so that the teacher explains the marks to us. In case he does not manage the Gymnasium, he will move to the Realschule and then do an apprenticeship. He studies every evening in order to get a good report. Kind regards, Marta"
+      ru: "Дорогая Анна, у нас в Северном Рейне-Вестфалии ребёнок обычно сначала ходит в Kita, а потом четыре года в Grundschule. После этого родители выбирают между Hauptschule, Realschule, Gymnasium и Gesamtschule. Сыну сейчас девять. Скоро мы пойдём в школу, чтобы учительница объяснила нам оценки. Если он не справится с гимназией, он перейдёт в Realschule и потом пойдёт на профессиональное обучение. Он учит каждый вечер, чтобы получить хороший табель. С приветом, Марта"
+      uk: "Дорога Анно, у нас у Північному Рейні-Вестфалії дитина зазвичай спершу ходить до Kita, а потім чотири роки до Grundschule. Після цього батьки обирають між Hauptschule, Realschule, Gymnasium і Gesamtschule. Синові зараз дев'ять. Невдовзі ми підемо до школи, щоб учителька пояснила нам оцінки. Якщо він не впорається з гімназією, він перейде до Realschule і потім піде на професійне навчання. Він учить щовечора, щоб отримати гарний табель. З вітанням, Марта"
     explain:
       en: "Check the two clauses that carry this topic. The condition: *falls* plus a verb at the very end, and after the comma the main clause opens with its own verb, because the fronted condition already fills position 1. The purpose: the model uses both forms on purpose — *damit die Lehrerin … erklärt* has a second doer and could not be compressed, while *um ein gutes Zeugnis zu bekommen* keeps one doer and therefore may be. Then read the institution names once more: they stay German inside a foreign-language letter, because there is no equivalent to translate them into."
       ru: "Проверьте два придаточных, на которых стоит эта тема. Условие: *falls* и глагол в самом конце, а после запятой главное предложение открывается своим глаголом, потому что вынесенное условие уже заняло первую позицию. Цель: в образце нарочно стоят обе формы — у *damit die Lehrerin … erklärt* есть второй деятель, и сжаться она не могла бы, а *um ein gutes Zeugnis zu bekommen* держит одного деятеля и потому может. Затем ещё раз прочтите названия учреждений: в письме на другом языке они остаются немецкими, потому что переводить их не во что."
