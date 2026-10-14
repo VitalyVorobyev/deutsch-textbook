@@ -53,12 +53,17 @@ items:
     explain:
       en: "Her last sentence begins with *Übrigens*, which announces that what follows belongs to a different point — the missing answer has nothing to do with the breaks they were discussing. Ending the meeting is Herr Blum's move, and it is not made here; inviting somebody to speak is also his, and he does it in the last turn, to Frau Weber. Two things are worth catching by ear: *Übrigens* is followed immediately by the verb (*fehlt*), and Frau Kaya's opening line is the Konjunktiv II request for the floor."
       ru: "Её последняя фраза начинается с *Übrigens*, а это объявление, что дальше идёт другой пункт: недостающий ответ никак не связан с перерывами, о которых шла речь. Закончить совещание — ход господина Блума, и здесь он его не делает; предложить высказаться — тоже его ход, и он делает его в последней реплике, обращаясь к госпоже Вебер. Уловить на слух стоит две вещи: за *Übrigens* сразу идёт глагол (*fehlt*), а первая реплика госпожи Кая — это просьба о слове в Konjunktiv II."
-      uk: "Її остання фраза починається з *Übrigens*, а це оголошення, що далі йде інший пункт: відповіді, якої бракує, не стосуються перерв, про які йшлося. Завершити нараду — хід пана Блума, і тут він його не робить; запропонувати висловитися — теж його хід, і він робить його в останній репліці, звертаючись до пані Вебер. Уловити на слух варто дві речі: за *Übrigens* одразу йде дієслово (*fehlt*), а перша репліка пані Кая — це прохання про слово в Konjunktiv II."
+      uk: "Її остання фраза починається з *Übrigens*, а це оголошення, що далі йде інший пункт: відповідь, якої бракує, не стосується перерв, про які йшлося. Завершити нараду — хід пана Блума, і тут він його не робить; запропонувати висловитися — теж його хід, і він робить його в останній репліці, звертаючись до пані Вебер. Уловити на слух варто дві речі: за *Übrigens* одразу йде дієслово (*fehlt*), а перша репліка пані Кая — це прохання про слово в Konjunktiv II."
 
   - id: uebersetzen-themenwechsel
     outcomes: [inhalt-steuern]
     type: translate
     focus: konjunktionaladverb-inversion
+    # focus_evidence fails only a verb that is not second after Übrigens, so a sentence that does
+    # not begin with übrigens is no longer charged to the tag.
+    focus_evidence:
+      failed: ["^übrigens (?!treffen(?!\\p{L}))(?:\\p{L}+ )+treffen(?!\\p{L})"]
+      retained: ["^übrigens treffen wir(?!\\p{L})"]
     key_tokens: ["Übrigens", "treffen"]
     instruction:
       en: "Begin the sentence with übrigens."
@@ -74,9 +79,21 @@ items:
       uk: "Цього разу ніщо на екрані не підказує, де стоїть дієслово. *Übrigens* міститься всередині речення і тому на першому місці, тож відмінюване *treffen* іде одразу за ним, а підмет *wir* — слідом: *Übrigens **treffen wir** uns …*. Зворотне *uns* залишається при своєму дієслові. Якби фраза починалася з *Also,*, кома залишила б усе інше на місці — це те протиставлення, яке відпрацьовувала таблиця і яке тут треба відтворити без неї."
 
   - id: uebersetzen-koennten
+    # revision 2: nothing asked for the Konjunktiv, so the polite indicative Können Sie … was
+    # charged to the tag — the instruction now asks for it; the RU/UK prompts have no bitte, and
+    # a rendering without bitte, with bitte at the end or with mir was rejected. focus_evidence
+    # fails the indicative, the bare Präteritum and the infinitive pulled forward.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["^(?:können|konnten|werden|wurden)(?!\\p{L})", "(?<!\\p{L})erklären (?!bitte$)"]
+      retained: ["^(?:könnten|würden) sie(?!\\p{L})", "(?<!\\p{L})erklären(?: bitte)?$"]
+    instruction:
+      en: "Ask in Konjunktiv II."
+      ru: "Попросите в Konjunktiv II."
+      uk: "Попросіть у Konjunktiv II."
     key_tokens: ["Könnten", "Würden"]
     prompt_en: "Could you please explain that once more?"
     prompt_ru: "Не могли бы вы объяснить это ещё раз?"
@@ -84,10 +101,22 @@ items:
     answer: "Könnten Sie das bitte noch einmal erklären?"
     accept:
       - "Würden Sie das bitte noch einmal erklären?"
+      - "Könnten Sie das noch einmal erklären?"
+      - "Würden Sie das noch einmal erklären?"
+      - "Könnten Sie das noch einmal erklären, bitte?"
+      - "Würden Sie das noch einmal erklären, bitte?"
+      - "Könnten Sie mir das bitte noch einmal erklären?"
+      - "Würden Sie mir das bitte noch einmal erklären?"
+      - "Könnten Sie mir das noch einmal erklären?"
+      - "Würden Sie mir das noch einmal erklären?"
+      - "Könnten Sie mir das noch einmal erklären, bitte?"
+      - "Würden Sie mir das noch einmal erklären, bitte?"
+      - "Könnten Sie bitte das noch einmal erklären?"
+      - "Würden Sie bitte das noch einmal erklären?"
     explain:
-      en: "Both openings are accepted because both are Konjunktiv II — *könnten* from *konnte* with an umlaut, *würden* as the all-purpose polite auxiliary. What is graded is that the form is Konjunktiv II at all: *Können Sie das wiederholen?* is a question about ability and, addressed to somebody who has just finished explaining, it lands as a complaint. Note that the infinitive still closes the sentence, exactly as it does after *können* in the indicative."
-      ru: "Приняты оба начала, потому что оба — Konjunktiv II: *könnten* из *konnte* с умлаутом, *würden* — универсальный вежливый вспомогательный глагол. Оценивается то, что форма вообще стоит в Konjunktiv II: *Können Sie das wiederholen?* — вопрос о способности, и, обращённый к тому, кто только что объяснял, он звучит как претензия. Обратите внимание: инфинитив по-прежнему закрывает предложение — ровно так же, как после *können* в изъявительном наклонении."
-      uk: "Прийняті обидва початки, бо обидва — Konjunktiv II: *könnten* із *konnte* з умлаутом, *würden* — універсальне ввічливе допоміжне дієслово. Оцінюється те, що форма взагалі стоїть у Konjunktiv II: *Können Sie das wiederholen?* — питання про спроможність, і, звернене до того, хто щойно пояснював, воно звучить як докір. Зверніть увагу: інфінітив, як і раніше, закриває речення — рівно так само, як після *können* в дійсному способі."
+      en: "Both openings are accepted because both are Konjunktiv II — *könnten* from *konnte* with an umlaut, *würden* as the all-purpose polite auxiliary. What is graded is that the form is Konjunktiv II at all, as the instruction asks: the indicative *Können Sie das bitte noch einmal erklären?* is polite German too, and the Konjunktiv softens it one step further, while *Konnten Sie …?* asks about the past. *bitte* and *mir* may be left in or out, and *bitte* may also follow *Sie* or close the sentence. Note that the infinitive still closes the sentence, exactly as it does after *können* in the indicative."
+      ru: "Приняты оба начала, потому что оба — Konjunktiv II: *könnten* из *konnte* с умлаутом, *würden* — универсальный вежливый вспомогательный глагол. Оценивается то, что форма вообще стоит в Konjunktiv II, как просит инструкция: индикатив *Können Sie das bitte noch einmal erklären?* — тоже вежливый немецкий, а конъюнктив смягчает просьбу ещё на ступень; *Konnten Sie …?* же спрашивает о прошлом. *bitte* и *mir* можно добавить или опустить, а *bitte* может стоять и сразу после *Sie*, и в конце фразы. Обратите внимание: инфинитив по-прежнему закрывает предложение — ровно так же, как после *können* в изъявительном наклонении."
+      uk: "Прийняті обидва початки, бо обидва — Konjunktiv II: *könnten* із *konnte* з умлаутом, *würden* — універсальне ввічливе допоміжне дієслово. Оцінюється те, що форма взагалі стоїть у Konjunktiv II, як просить інструкція: індикатив *Können Sie das bitte noch einmal erklären?* — теж увічлива німецька, а кон'юнктив пом'якшує прохання ще на щабель; *Konnten Sie …?* же питає про минуле. *bitte* і *mir* можна додати або пропустити, а *bitte* може стояти й одразу після *Sie*, і в кінці фрази. Зверніть увагу: інфінітив, як і раніше, закриває речення — рівно так само, як після *können* в дійсному способі."
 
   - id: schreiben-forumsbeitrag
     outcomes: [inhalt-steuern, beitrag-rahmen]
@@ -122,6 +151,11 @@ items:
       uk: "Звірте чернетку зі зразком за трьома точками. Спершу знайдіть свій зачин і свою кінцівку: якщо текст починається просто зі скарги й обривається після останнього факту, читачеві не зрозуміти, де почалася ваша репліка і чи вона завершилася. Потім перевірте речення після *übrigens*: у зразку *Übrigens **fehlt** uns …*, дієслово другим; *Übrigens uns fehlt …* — стандартний збій. І третє — подивіться на *vor allem*: усе сполучення *Vor allem für die Teilnehmer aus der Abteilung* є одним членом, тому дієслово *ist* іде одразу за ним. Останній рядок зразка необов'язковий і робить дещо понад завдання — передає слово."
 
   - id: sprechen-besprechung
+    # revision 2: the prompt said the colleague does not know that the department starts later,
+    # while the task and the model refer to it with ja as something everybody knows — the
+    # particle this topic teaches for shared knowledge. Now everybody was told and she has
+    # forgotten.
+    revision: 2
     outcomes: [wort-nehmen-geben, zuhoeren-anknuepfen]
     type: speak
     mode: spoken-interaction
@@ -130,9 +164,9 @@ items:
       ru: "Скажите вслух — и, если можете, запишите себя. Здесь никто не отвечает, поэтому проверяется одно: успевает ли оборот прийти вовремя, а не умеете ли вы вести разговор."
       uk: "Скажіть уголос — і, якщо можете, запишіть себе. Тут ніхто не відповідає, тому перевіряється одне: чи встигає зворот прийти вчасно, а не чи вмієте ви вести розмову."
     prompt:
-      en: "You are in a meeting at work. A colleague has been talking about the new break times for several minutes and is about to move on. You know something she does not: the department starts an hour later. Break in politely, say your piece, refer to what everybody already knows, and hand the floor to the colleague who has not spoken yet."
-      ru: "Вы на совещании на работе. Коллега уже несколько минут говорит о новом расписании перерывов и вот-вот перейдёт дальше. Вы знаете то, чего не знает она: отдел начинает на час позже. Вежливо вклиньтесь, скажите своё, сошлитесь на то, что известно всем, и передайте слово коллеге, который ещё не говорил."
-      uk: "Ви на нараді на роботі. Колега вже кілька хвилин говорить про новий розклад перерв і ось-ось перейде далі. Ви знаєте те, чого не знає вона: відділ починає на годину пізніше. Ввічливо вклиньтеся, скажіть своє, зішліться на те, що відоме всім, і передайте слово колезі, який ще не говорив."
+      en: "You are in a meeting at work. A colleague has been talking about the new break times for several minutes and is about to move on. Everybody was told last week that the department starts an hour later, but she seems to have forgotten. Break in politely, say your piece, refer to what everybody already knows, and hand the floor to the colleague who has not spoken yet."
+      ru: "Вы на совещании на работе. Коллега уже несколько минут говорит о новом расписании перерывов и вот-вот перейдёт дальше. На прошлой неделе всем сообщили, что отдел начинает на час позже, но она, похоже, об этом забыла. Вежливо вклиньтесь, скажите своё, сошлитесь на то, что известно всем, и передайте слово коллеге, который ещё не говорил."
+      uk: "Ви на нараді на роботі. Колега вже кілька хвилин говорить про новий розклад перерв і ось-ось перейде далі. Минулого тижня всім повідомили, що відділ починає на годину пізніше, але вона, здається, про це забула. Ввічливо вклиньтеся, скажіть своє, зішліться на те, що відоме всім, і передайте слово колезі, який ще не говорив."
     goal:
       en: "Get into the conversation without anyone feeling interrupted, and get back out of it by giving the floor away."
       ru: "Войти в разговор так, чтобы никто не почувствовал себя перебитым, и выйти из него, передав слово."

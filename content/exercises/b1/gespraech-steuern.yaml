@@ -54,21 +54,24 @@ items:
       uk: "Жоден із шести зворотів не несе змісту — вони організують розмову. Тому їх і вчать цілком, а не будують: *Dürfte ich dazu kurz etwas sagen?* — це одна одиниця, яку дістають із пам'яті, а не фраза, яку збирають у цейтноті. Відзначте два, які легко переплутати: *Wie sehen Sie das?* передає слово іншому, а *Ich möchte kurz etwas dazu sagen* його бере — тема та сама, напрямки протилежні."
 
   - id: cloze-rahmen
+    # revision 2: the first gap rejected Nun, as correct a one-word opener before the comma as
+    # Also.
+    revision: 2
     outcomes: [beitrag-rahmen]
     type: cloze
     instruction:
       en: "First gap: the one-word opener that stands outside the sentence, before the comma. Second gap: sein in Konjunktiv II."
       ru: "Первый пропуск: односложный зачин, который стоит вне предложения, перед запятой. Второй: sein в Konjunktiv II."
       uk: "Перший пропуск: односкладовий зачин, що стоїть поза реченням, перед комою. Другий: sein у Konjunktiv II."
-    text: "{{Also}}, ich sehe das so: Wir brauchen mehr Zeit. Mehr wollte ich dazu nicht sagen. Das {{wäre}} alles von mir."
+    text: "{{Also|Nun}}, ich sehe das so: Wir brauchen mehr Zeit. Mehr wollte ich dazu nicht sagen. Das {{wäre}} alles von mir."
     translation:
       en: "Well, I see it like this: we need more time. That was all I wanted to say about it. That would be all from me."
       ru: "Так вот, я вижу это так: нам нужно больше времени. Больше мне сказать нечего. У меня всё."
       uk: "Отже, я бачу це так: нам потрібно більше часу. Більше мені сказати нема чого. У мене все."
     explain:
-      en: "Both ends of a turn are marked, and both markers are empty of content. *Also* opens; it is followed by a comma because it stands outside the sentence, which is why *ich* keeps first position and the verb still comes second. *Das wäre alles von mir* closes; the Konjunktiv II *wäre* is what makes it an offer to stop rather than an announcement. *Das ist alles* is not wrong, but it sounds like a full stop somebody else has to accept."
-      ru: "Оба конца реплики отмечаются, и оба маркера пусты по содержанию. *Also* открывает; после него запятая, потому что он стоит вне предложения, — поэтому *ich* сохраняет первое место, а глагол по-прежнему второй. *Das wäre alles von mir* закрывает; именно Konjunktiv II *wäre* делает это предложением закончить, а не объявлением. *Das ist alles* не ошибка, но звучит как точка, с которой другим остаётся только согласиться."
-      uk: "Обидва кінці репліки позначаються, і обидва маркери порожні за змістом. *Also* відкриває; після нього кома, бо він стоїть поза реченням, — тому *ich* зберігає перше місце, а дієслово так само друге. *Das wäre alles von mir* закриває; саме Konjunktiv II *wäre* робить це пропозицією завершити, а не оголошенням. *Das ist alles* не помилка, але звучить як крапка, з якою іншим лишається тільки погодитися."
+      en: "Both ends of a turn are marked, and both markers are empty of content. *Also* opens; it is followed by a comma because it stands outside the sentence, which is why *ich* keeps first position and the verb still comes second. *Das wäre alles von mir* closes; the Konjunktiv II *wäre* is what makes it an offer to stop rather than an announcement. *Nun,* works as the opener too. *Das ist alles* is not wrong, but it sounds like a full stop somebody else has to accept."
+      ru: "Оба конца реплики отмечаются, и оба маркера пусты по содержанию. *Also* открывает; после него запятая, потому что он стоит вне предложения, — поэтому *ich* сохраняет первое место, а глагол по-прежнему второй. *Das wäre alles von mir* закрывает; именно Konjunktiv II *wäre* делает это предложением закончить, а не объявлением. Зачином годится и *Nun,*. *Das ist alles* не ошибка, но звучит как точка, с которой другим остаётся только согласиться."
+      uk: "Обидва кінці репліки позначаються, і обидва маркери порожні за змістом. *Also* відкриває; після нього кома, бо він стоїть поза реченням, — тому *ich* зберігає перше місце, а дієслово так само друге. *Das wäre alles von mir* закриває; саме Konjunktiv II *wäre* робить це пропозицією завершити, а не оголошенням. Зачином годиться і *Nun,*. *Das ist alles* не помилка, але звучить як крапка, з якою іншим лишається тільки погодитися."
 
   - id: cloze-konjunktiv2-bitte
     outcomes: [wort-nehmen-geben]
@@ -89,14 +92,19 @@ items:
       uk: "Три дієслова, одне правило: Konjunktiv II цих слів — це Präteritum із доданим умлаутом: *durfte* → *dürfte*, *konnte* → *könnte*, *hatte* → *hätte*. Закінчення *-e* у Präteritum уже є, тому весь видимий зсув — умлаут, а без нього виходить *durfte ich* — висловлювання про минуле, а не прохання. Усі три варто тримати напоготові: виводити їх посеред розмови буде ніколи."
 
   - id: table-konjunktiv2
+    # revision 2: a cell takes one answer, and the table charges every miss to konjunktiv2-form.
+    # The sagen row keyed gern etwas dazu and rejected the article's own dazu gern etwas, so the
+    # row has no dazu to move; the instruction keeps each verb, which rules out Würdest du … and
+    # Ich möchte … in advance rather than rejecting them unannounced.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: table
     focus: konjunktiv2-form
     title: "Vom Indikativ zur höflichen Form"
     instruction:
-      en: "Rewrite each sentence in Konjunktiv II so that it asks rather than states."
-      ru: "Перепишите каждое предложение в Konjunktiv II так, чтобы оно спрашивало, а не утверждало."
-      uk: "Перепишіть кожне речення в Konjunktiv II так, щоб воно питало, а не стверджувало."
+      en: "Rewrite each sentence in Konjunktiv II so that it asks rather than states. Keep each verb; one without a one-word form takes würde."
+      ru: "Перепишите каждое предложение в Konjunktiv II так, чтобы оно спрашивало, а не утверждало. Глагол сохраните; если однословной формы у него нет, он берёт würde."
+      uk: "Перепишіть кожне речення в Konjunktiv II так, щоб воно питало, а не стверджувало. Дієслово збережіть; якщо однослівної форми в нього немає, воно бере würde."
     columns: ["höflich"]
     rows:
       - label: "Darf ich etwas fragen?"
@@ -108,9 +116,9 @@ items:
       - label: "Ich habe eine Bitte."
         cells:
           - { answer: "Ich hätte eine Bitte." }
-      - label: "Ich sage gern etwas dazu."
+      - label: "Ich sage gern etwas."
         cells:
-          - { answer: "Ich würde gern etwas dazu sagen." }
+          - { answer: "Ich würde gern etwas sagen." }
       - label: "Das ist alles."
         cells:
           - { answer: "Das wäre alles." }
@@ -120,24 +128,29 @@ items:
       uk: "Чотири рядки з п'яти залишаються одним словом: у *durfte*, *konntest* і *hatte* закінчення вже на місці, тому вся зміна — умлаут, а *war* отримує і те й інше і стає *wäre*. Четвертий рядок змінює саму конструкцію, бо в *sagen* однослівної ввічливої форми в побуті немає: він бере *würde*, яке стає на друге місце, а інфінітив *sagen* закриває речення. Ця рамка — та сама, що будують *können* і *müssen*; новим є лише слово перед нею. Зверніть увагу: *könntest* зберігає закінчення для du — Konjunktiv II відмінюється як звичайно."
 
   - id: uebersetzen-wort-bitten
+    # revision 2: "add" left the verb open (hinzufügen) — the instruction names ergänzen — and
+    # Entschuldigen Sie for "Excuse me" was rejected.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
     key_tokens: ["dürfte", "könnte"]
     instruction:
-      en: "Ask politely — the request has to be in Konjunktiv II."
-      ru: "Попросите вежливо — просьба должна стоять в Konjunktiv II."
-      uk: "Попросіть ввічливо — прохання має стояти в Konjunktiv II."
+      en: "Ask politely with ergänzen — the request has to be in Konjunktiv II."
+      ru: "Попросите вежливо, с глаголом ergänzen, — просьба должна стоять в Konjunktiv II."
+      uk: "Попросіть ввічливо, з дієсловом ergänzen, — прохання має стояти в Konjunktiv II."
     prompt_en: "Excuse me, could I add something briefly?"
     prompt_ru: "Извините, можно мне коротко кое-что добавить?"
     prompt_uk: "Перепрошую, чи можна мені коротко дещо додати?"
     answer: "Entschuldigung, dürfte ich kurz etwas ergänzen?"
     accept:
       - "Entschuldigung, könnte ich kurz etwas ergänzen?"
+      - "Entschuldigen Sie, dürfte ich kurz etwas ergänzen?"
+      - "Entschuldigen Sie, könnte ich kurz etwas ergänzen?"
     explain:
-      en: "Both *dürfte* and *könnte* are correct here and both are accepted — the point being drilled is the form, not the choice of modal. What is not accepted is *darf* or *kann*: those ask flatly for permission or ability, and in the middle of somebody else's turn that is what sounds abrupt. *Entschuldigung* stands outside the sentence with a comma, so the modal still holds first position in the question."
-      ru: "И *dürfte*, и *könnte* здесь верны, и оба принимаются: отрабатывается форма, а не выбор модального глагола. Не принимается *darf* или *kann*: они прямо спрашивают о разрешении или возможности, и посреди чужой реплики это звучит резко. *Entschuldigung* стоит вне предложения, через запятую, поэтому модальный глагол сохраняет первое место в вопросе."
-      uk: "І *dürfte*, і *könnte* тут правильні, і обидва приймаються: відпрацьовується форма, а не вибір модального дієслова. Не приймається *darf* чи *kann*: вони прямо питають про дозвіл або можливість, і посеред чужої репліки це звучить різко. *Entschuldigung* стоїть поза реченням, через кому, тому модальне дієслово зберігає перше місце в питанні."
+      en: "Both *dürfte* and *könnte* are correct here and both are accepted — the point being drilled is the form, not the choice of modal. *darf* and *kann* are not accepted because the instruction asks for Konjunktiv II — they are polite too, and *dürfte* or *könnte* softens the request one step further. *Entschuldigung* and *Entschuldigen Sie* are both accepted; either stands outside the sentence with a comma, so the modal still holds first position in the question."
+      ru: "И *dürfte*, и *könnte* здесь верны, и оба принимаются: отрабатывается форма, а не выбор модального глагола. *darf* и *kann* не принимаются, потому что инструкция требует Konjunktiv II; они тоже вежливы, а *dürfte* или *könnte* смягчает просьбу ещё на ступень. Приняты и *Entschuldigung*, и *Entschuldigen Sie*; любое из них стоит вне предложения, через запятую, поэтому модальный глагол сохраняет первое место в вопросе."
+      uk: "І *dürfte*, і *könnte* тут правильні, і обидва приймаються: відпрацьовується форма, а не вибір модального дієслова. *darf* і *kann* не приймаються, бо інструкція вимагає Konjunktiv II; вони теж увічливі, а *dürfte* чи *könnte* пом'якшує прохання ще на щабель. Прийняті і *Entschuldigung*, і *Entschuldigen Sie*; будь-яке з них стоїть поза реченням, через кому, тому модальне дієслово зберігає перше місце в питанні."
 
   - id: mc-sprechen-auffordern
     outcomes: [wort-nehmen-geben]
@@ -163,26 +176,29 @@ items:
       - "Das mache ich gern."
     correct: 0
     explain:
-      en: "A listener signal says only that the line is still open. *Verstehe. Und dann?* does exactly that and commits you to nothing. *Ja, einverstanden* is agreement to a proposal, and *Das mache ich gern* promises to do something — both answer a question that has not been asked. The distinction matters at a counter and in a meeting alike: in German, saying nothing at all reads as disagreement, so the signal has to be there, but it must not accidentally be a yes."
-      ru: "Сигнал слушателя сообщает только, что связь ещё есть. *Verstehe. Und dann?* делает ровно это и ни к чему вас не обязывает. *Ja, einverstanden* — согласие с предложением, а *Das mache ich gern* — обещание что-то сделать; и то и другое отвечает на не заданный вопрос. Различие важно и у окошка, и на совещании: в немецком полное молчание читается как несогласие, поэтому сигнал нужен — но он не должен случайно оказаться согласием."
-      uk: "Сигнал слухача повідомляє лише, що зв'язок ще є. *Verstehe. Und dann?* робить рівно це і ні до чого вас не зобов'язує. *Ja, einverstanden* — згода з пропозицією, а *Das mache ich gern* — обіцянка щось зробити; і те й інше відповідає на непоставлене питання. Різниця важлива і біля віконця, і на нараді: у німецькій цілковите мовчання читається як незгода, тому сигнал потрібен — але він не має випадково виявитися згодою."
+      en: "A listener signal says only that the line is still open. *Verstehe. Und dann?* does exactly that and commits you to nothing. *Ja, einverstanden* is agreement to a proposal, and *Das mache ich gern* promises to do something — both answer a question that has not been asked. The distinction matters at a counter and in a meeting alike: in German, saying nothing at all can read as disagreement, so the signal should be there, but it must not accidentally be a yes."
+      ru: "Сигнал слушателя сообщает только, что связь ещё есть. *Verstehe. Und dann?* делает ровно это и ни к чему вас не обязывает. *Ja, einverstanden* — согласие с предложением, а *Das mache ich gern* — обещание что-то сделать; и то и другое отвечает на не заданный вопрос. Различие важно и у окошка, и на совещании: в немецком полное молчание может читаться как несогласие, поэтому сигнал нужен — но он не должен случайно оказаться согласием."
+      uk: "Сигнал слухача повідомляє лише, що зв'язок ще є. *Verstehe. Und dann?* робить рівно це і ні до чого вас не зобов'язує. *Ja, einverstanden* — згода з пропозицією, а *Das mache ich gern* — обіцянка щось зробити; і те й інше відповідає на непоставлене питання. Різниця важлива і біля віконця, і на нараді: у німецькій цілковите мовчання може читатися як незгода, тому сигнал потрібен — але він не має випадково виявитися згодою."
 
   - id: cloze-partikel-ja
+    # revision 2: the first gap rejected doch, the other unstressed particle that appeals to what
+    # the listener already knows.
+    revision: 2
     outcomes: [zuhoeren-anknuepfen]
     type: cloze
     instruction:
       en: "First gap: the unstressed particle that means „as you know“. Second gap: fehlen, in the slot the comma leaves for it."
       ru: "Первый пропуск: безударная частица со значением «как вы знаете». Второй: fehlen — на месте, которое оставляет для него запятая."
       uk: "Перший пропуск: ненаголошена частка зі значенням «як ви знаєте». Другий: fehlen — на місці, яке залишає для нього кома."
-    text: "Sie kennen {{ja}} unsere Regeln. Wie Sie wissen, {{fehlt}} uns noch ein Mitglied."
+    text: "Sie kennen {{ja|doch}} unsere Regeln. Wie Sie wissen, {{fehlt}} uns noch ein Mitglied."
     translation:
       en: "You know our rules, of course. As you know, we are still one member short."
       ru: "Вы ведь знаете наши правила. Как вы знаете, нам не хватает ещё одного члена."
       uk: "Ви ж знаєте наші правила. Як ви знаєте, нам бракує ще одного члена."
     explain:
-      en: "Two ways of saying the same thing. The particle *ja* sits unstressed inside the sentence and means *as you both know* — it is not the answer word *yes*, and moving it to the front would turn it into one. The long form is a clause in first position, *Wie Sie wissen*, and after its comma the finite verb of the main clause comes immediately: *…, **fehlt** uns noch ein Mitglied*. Writing *…, uns fehlt noch ein Mitglied* is the mistake that follows from reading the comma as a full stop."
-      ru: "Два способа сказать одно и то же. Частица *ja* стоит без ударения внутри предложения и значит «как мы оба знаем» — это не слово-ответ «да», и вынос её в начало превратил бы её именно в него. Длинная форма — придаточное на первом месте, *Wie Sie wissen*, и после запятой сразу идёт спрягаемый глагол главного предложения: *…, **fehlt** uns noch ein Mitglied*. Вариант *…, uns fehlt noch ein Mitglied* — ошибка, которая следует из чтения запятой как точки."
-      uk: "Два способи сказати те саме. Частка *ja* стоїть без наголосу всередині речення і означає «як ми обидва знаємо» — це не слово-відповідь «так», і винесення її на початок перетворило б її саме на нього. Довга форма — підрядне на першому місці, *Wie Sie wissen*, і після коми одразу йде відмінюване дієслово головного речення: *…, **fehlt** uns noch ein Mitglied*. Варіант *…, uns fehlt noch ein Mitglied* — помилка, що випливає з читання коми як крапки."
+      en: "Two ways of saying the same thing. The particle *ja* sits unstressed inside the sentence and means *as you both know* — it is not the answer word *yes*, and moving it to the front would turn it into one; unstressed *doch* appeals to the same shared knowledge and is accepted too. The long form is a clause in first position, *Wie Sie wissen*, and after its comma the finite verb of the main clause comes immediately: *…, **fehlt** uns noch ein Mitglied*. Writing *…, uns fehlt noch ein Mitglied* is the mistake that follows from reading the comma as a full stop."
+      ru: "Два способа сказать одно и то же. Частица *ja* стоит без ударения внутри предложения и значит «как мы оба знаем» — это не слово-ответ «да», и вынос её в начало превратил бы её именно в него; безударное *doch* тоже отсылает к общему знанию и тоже принимается. Длинная форма — придаточное на первом месте, *Wie Sie wissen*, и после запятой сразу идёт спрягаемый глагол главного предложения: *…, **fehlt** uns noch ein Mitglied*. Вариант *…, uns fehlt noch ein Mitglied* — ошибка, которая следует из чтения запятой как точки."
+      uk: "Два способи сказати те саме. Частка *ja* стоїть без наголосу всередині речення і означає «як ми обидва знаємо» — це не слово-відповідь «так», і винесення її на початок перетворило б її саме на нього; ненаголошене *doch* теж відсилає до спільного знання і теж приймається. Довга форма — підрядне на першому місці, *Wie Sie wissen*, і після коми одразу йде відмінюване дієслово головного речення: *…, **fehlt** uns noch ein Mitglied*. Варіант *…, uns fehlt noch ein Mitglied* — помилка, що випливає з читання коми як крапки."
 
   - id: order-uebrigens
     outcomes: [inhalt-steuern]
@@ -234,9 +250,16 @@ items:
       uk: "Одне питання, п'ять рядків: чи рахується маркер першим членом речення? *Also*, *Genau* та *Entschuldigung* — ні: вони відділені комою, а речення за ними не зачеплене, тому підмет зберігає своє місце. *Übrigens* — так: це звичайний прислівник усередині речення, тому він посідає перше місце, а відмінюване дієслово йде одразу за ним, відтісняючи підмет: *Übrigens **ist** der Termin …*, *Übrigens **brauchen** wir …*. Уся підказка — у комі в підписі."
 
   - id: uebersetzen-vor-allem
+    # revision 2: vor allem alone in position 1 (Vor allem ist es am Abend zu laut) — the order
+    # the article's own rule describes — was rejected and charged to the tag. focus_evidence
+    # fails only es standing before the verb after the front.
+    revision: 2
     outcomes: [inhalt-steuern]
     type: translate
     focus: konjunktionaladverb-inversion
+    focus_evidence:
+      failed: ["^vor allem (?:am abend |abends )?es(?!\\p{L})"]
+      retained: ["^vor allem (?:am abend |abends )?ist es(?!\\p{L})"]
     key_tokens: ["Vor", "ist"]
     instruction:
       en: "Begin the sentence with vor allem."
@@ -248,12 +271,17 @@ items:
     answer: "Vor allem am Abend ist es zu laut."
     accept:
       - "Vor allem abends ist es zu laut."
+      - "Vor allem ist es am Abend zu laut."
+      - "Vor allem ist es abends zu laut."
     explain:
-      en: "*Vor allem am Abend* is one element, however many words it contains, so it fills position 1 on its own and the finite verb comes second: *… **ist** es zu laut*. Counting the phrase as two or three elements and writing *Vor allem am Abend es ist zu laut* is the standard collapse. The instruction fixes the front because *Es ist vor allem am Abend zu laut* is equally good German — with the emphasis in a different place, which is exactly what this item is about."
-      ru: "*Vor allem am Abend* — один член предложения, сколько бы слов в нём ни было, поэтому он сам занимает первое место, а спрягаемый глагол идёт вторым: *… **ist** es zu laut*. Посчитать это сочетание за два-три члена и написать *Vor allem am Abend es ist zu laut* — стандартный сбой. Инструкция закрепляет начало, потому что *Es ist vor allem am Abend zu laut* — столь же хороший немецкий, только с другим местом выделения, а именно о нём это задание."
-      uk: "*Vor allem am Abend* — один член речення, скільки б слів у ньому не було, тому він сам посідає перше місце, а відмінюване дієслово йде другим: *… **ist** es zu laut*. Порахувати це сполучення за два-три члени і написати *Vor allem am Abend es ist zu laut* — стандартний збій. Інструкція закріплює початок, бо *Es ist vor allem am Abend zu laut* — так само добра німецька, лише з іншим місцем виділення, а саме про нього це завдання."
+      en: "*Vor allem am Abend* is one element, however many words it contains, so it fills position 1 on its own and the finite verb comes second: *… **ist** es zu laut*. *Vor allem* can also fill position 1 alone — *Vor allem **ist** es am Abend zu laut* — and that is accepted too. Counting the phrase as two or three elements and writing *Vor allem am Abend es ist zu laut* is the standard collapse. The instruction fixes the front because *Es ist vor allem am Abend zu laut* is equally good German — with the emphasis in a different place, which is exactly what this item is about."
+      ru: "*Vor allem am Abend* — один член предложения, сколько бы слов в нём ни было, поэтому он сам занимает первое место, а спрягаемый глагол идёт вторым: *… **ist** es zu laut*. *Vor allem* может занять первое место и само — *Vor allem **ist** es am Abend zu laut*, — это тоже принимается. Посчитать это сочетание за два-три члена и написать *Vor allem am Abend es ist zu laut* — стандартный сбой. Инструкция закрепляет начало, потому что *Es ist vor allem am Abend zu laut* — столь же хороший немецкий, только с другим местом выделения, а именно о нём это задание."
+      uk: "*Vor allem am Abend* — один член речення, скільки б слів у ньому не було, тому він сам посідає перше місце, а відмінюване дієслово йде другим: *… **ist** es zu laut*. *Vor allem* може посісти перше місце й саме — *Vor allem **ist** es am Abend zu laut*, — це теж приймається. Порахувати це сполучення за два-три члени і написати *Vor allem am Abend es ist zu laut* — стандартний збій. Інструкція закріплює початок, бо *Es ist vor allem am Abend zu laut* — так само добра німецька, лише з іншим місцем виділення, а саме про нього це завдання."
 
   - id: uebersetzen-ausweichen
+    # revision 2: leider in position 1, nichts before dazu and darüber for "about that" / «об
+    # этом» / «про це» were rejected.
+    revision: 2
     outcomes: [hoeflich-ausweichen]
     type: translate
     key_tokens: ["dazu", "nichts"]
@@ -263,7 +291,17 @@ items:
     answer: "Dazu kann ich leider nichts sagen."
     accept:
       - "Ich kann dazu leider nichts sagen."
+      - "Ich kann leider dazu nichts sagen."
+      - "Ich kann leider nichts dazu sagen."
+      - "Leider kann ich dazu nichts sagen."
+      - "Leider kann ich nichts dazu sagen."
+      - "Darüber kann ich leider nichts sagen."
+      - "Ich kann darüber leider nichts sagen."
+      - "Ich kann leider darüber nichts sagen."
+      - "Ich kann leider nichts darüber sagen."
+      - "Leider kann ich darüber nichts sagen."
+      - "Leider kann ich nichts darüber sagen."
     explain:
-      en: "A refusal in German is softened by *leider* rather than explained: nobody is owed a reason. *Dazu* points back at whatever was just raised and saves you naming it again — put it first and the finite verb follows it, put it in the middle and the subject leads; both renderings are accepted. What does not work is a bare *Nein*: the phrase exists precisely so that declining does not sound like refusing the person."
-      ru: "Отказ по-немецки смягчается словом *leider*, а не объясняется: причина никому не должна. *Dazu* указывает назад на только что поднятое и избавляет от повторного называния; поставьте его первым — за ним пойдёт спрягаемый глагол, поставьте в середину — впереди будет подлежащее: приняты оба варианта. Не работает голое *Nein*: оборот и существует затем, чтобы уход от ответа не звучал как отказ человеку."
-      uk: "Відмова німецькою пом'якшується словом *leider*, а не пояснюється: причина нікому не належить. *Dazu* вказує назад на щойно порушене і позбавляє повторного називання; поставте його першим — за ним піде відмінюване дієслово, поставте в середину — попереду буде підмет: прийняті обидва варіанти. Не працює голе *Nein*: зворот і існує для того, щоб ухилення від відповіді не звучало як відмова людині."
+      en: "Here the refusal is softened by *leider* rather than explained. *Dazu* points back at whatever was just raised and saves you naming it again — put it first and the finite verb follows it, put *leider* or the subject first and the verb still comes second; every one of those orders is accepted, and so is *darüber*. What does not work is a bare *Nein*: the phrase exists precisely so that declining does not sound like refusing the person."
+      ru: "Здесь отказ смягчается словом *leider*, а не объясняется. *Dazu* указывает назад на только что поднятое и избавляет от повторного называния; поставьте его первым — за ним пойдёт спрягаемый глагол, поставьте первым *leider* или подлежащее — глагол всё равно будет вторым: приняты все эти порядки, а также *darüber*. Не работает голое *Nein*: оборот и существует затем, чтобы уход от ответа не звучал как отказ человеку."
+      uk: "Тут відмова пом'якшується словом *leider*, а не пояснюється. *Dazu* вказує назад на щойно порушене і позбавляє повторного називання; поставте його першим — за ним піде відмінюване дієслово, поставте першим *leider* чи підмет — дієслово однаково буде другим: прийняті всі ці порядки, а також *darüber*. Не працює голе *Nein*: зворот і існує для того, щоб ухилення від відповіді не звучало як відмова людині."

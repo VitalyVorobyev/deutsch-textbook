@@ -296,6 +296,20 @@ GitHub Release notes.
   - In the placement test, *Wenn* is accepted where a place may or may not come free.
   - The purpose table no longer asks for the one row where *damit* would also be correct.
   - Twelve card notes no longer teach something false.
+- **B1.20 Gespräche steuern — quality pass.**
+  - The lesson no longer calls *Darf ich …?* and *Können Sie …?* impolite. Both are polite,
+    and the Konjunktiv II makes them one step softer.
+  - Items that want the Konjunktiv II now say so. Before, a polite *Darf ich* was marked as
+    the Konjunktiv mistake.
+  - Correct German is accepted:
+    - *bitte* and *mal* in other positions;
+    - *darüber* for "about that";
+    - *Vor allem ist es …*;
+    - *Nun* and *doch* in two gaps.
+  - The placement test checks *übrigens* + verb as a translation. Before, it was a gap
+    that showed both words.
+  - Several lines no longer state a tendency as a rule: a missing listener signal, and
+    *Ich weiß nicht* on its own. Two reading explanations no longer contradict the text.
 
 ## [0.6.19] — 2026-10-11
 
