@@ -28,7 +28,8 @@ export function clozeGaps(text: string): string[][] {
     .map((p) => p.answers);
 }
 
-/** Normalize a learner answer for comparison (whitespace only — case matters in German). */
+/** Normalize a learner answer for comparison (whitespace only — case matters in German, except
+    for the first letter of a gap at a sentence head; see `answerMatches`). */
 export function normalizeAnswer(s: string): string {
   return s.trim().replace(/\s+/g, ' ');
 }
@@ -70,28 +71,113 @@ function stripTokenPunctuation(w: string): string {
 export function sentenceInitialIndices(s: string): Set<number> {
   const heads = new Set<number>();
   let index = 0;
+  walkTokens(s, (_raw, head) => {
+    if (head) heads.add(index);
+    index += 1;
+  });
+  return heads;
+}
+
+/**
+ * The one walk both functions above and below share: every raw token that survives
+ * normalization, with whether it opens a sentence. Returns the raw tokens, typography folded.
+ */
+function walkTokens(s: string, visit: (raw: string, head: boolean) => string | void): string[] {
+  const out: string[] = [];
   let boundary = true;
   for (const raw of foldTypography(s).split(/\s+/)) {
     if (!raw) continue;
+    let token = raw;
     if (stripTokenPunctuation(raw)) {
-      if (boundary) heads.add(index);
-      index += 1;
+      token = visit(raw, boundary) ?? raw;
       boundary = false;
     }
+    out.push(token);
     if (/[.!?…]['")\]]*$/.test(raw)) boundary = true;
+  }
+  return out;
+}
+
+/**
+ * `s` with the first letter of every sentence head capitalized — what German orthography makes
+ * of it whatever the learner typed. Only a lower-case letter moves, and only when it upper-cases
+ * to one character (`ß` does not), so the result normalizes token for token as `s` does.
+ */
+export function capitalizeSentenceHeads(s: string): string {
+  return walkTokens(s, (raw, head) =>
+    head
+      ? raw.replace(/^([^\p{L}\p{N}]*)(\p{Ll})/u, (whole, lead: string, letter: string) => {
+          const upper = letter.toUpperCase();
+          return upper.length === 1 ? lead + upper : whole;
+        })
+      : raw,
+  ).join(' ');
+}
+
+/**
+ * The text before a cloze gap ends a sentence — or a colon, after which German capitalizes a
+ * full sentence and lower-cases a fragment, so a learner cannot know which the author chose. A
+ * quote or a dialogue dash may stand between the boundary and the gap.
+ */
+const OPENS_SENTENCE = /(?:^|[.!?…:])[\s"'„“”»«‚‘’()[\]–—-]*$/u;
+
+/**
+ * Which gaps of a cloze text open a sentence, in gap order.
+ *
+ * At a sentence head the capital is orthography, not grammar: `{{Wenn}} ich Zeit habe, …` typed
+ * `wenn` has the conjunction right, and charging it to `falls-wenn` blames the tag for a capital
+ * the gap's position demanded. Each earlier gap is read as its first answer, because that is the
+ * text the learner sees once they have filled it.
+ */
+export function clozeGapHeads(text: string): boolean[] {
+  const heads: boolean[] = [];
+  let before = '';
+  for (const part of parseCloze(text)) {
+    if (part.type === 'text') {
+      before += part.value;
+      continue;
+    }
+    // A cue in brackets closes the sentence it glosses — `… unterbrechen? (dürfen) {{Könnten}}` —
+    // so it is read past, back to the punctuation before it.
+    heads.push(OPENS_SENTENCE.test(before.replace(/\s*\([^()]*\)\s*$/u, ' ')));
+    before += part.answers[0] ?? '';
   }
   return heads;
 }
 
-export function answerMatches(given: string, accepted: string[]): boolean {
-  const g = normalizeTranslation(given);
+const lowerFirst = (w: string) => w.charAt(0).toLowerCase() + w.slice(1);
+
+/**
+ * Does a typed gap or cell match one of its accepted answers?
+ *
+ * `sentenceHead` folds the case of the first letter on both sides, for a gap `clozeGapHeads`
+ * puts at a sentence head. Everywhere else case stays graded: mid-sentence it is grammar.
+ */
+export function answerMatches(
+  given: string,
+  accepted: string[],
+  { sentenceHead = false }: { sentenceHead?: boolean } = {},
+): boolean {
+  const fold = sentenceHead ? lowerFirst : (s: string) => s;
+  const g = fold(normalizeTranslation(given));
   return accepted.some((a) => {
     const key = normalizeTranslation(a);
     // An answer that IS punctuation would dissolve to '' and match empty input —
     // no such gap exists today, but if one is authored it must stay exact.
     if (key.length === 0) return normalizeAnswer(a) === normalizeAnswer(given);
-    return key === g;
+    return fold(key) === g;
   });
+}
+
+/**
+ * A cloze text with the learner's gap values in place of its gaps — the sentence an item's
+ * `focus_evidence` predicates read, as a translate item's read the typed sentence.
+ */
+export function fillCloze(text: string, values: readonly string[]): string {
+  let gap = 0;
+  return parseCloze(text)
+    .map((part) => (part.type === 'text' ? part.value : (values[gap++] ?? '').trim()))
+    .join('');
 }
 
 /** Normalize an assembled sentence: join tokens, tidy space before punctuation. */

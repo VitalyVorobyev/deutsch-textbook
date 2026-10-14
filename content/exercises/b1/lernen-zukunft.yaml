@@ -183,6 +183,12 @@ items:
     outcomes: [plan-formulieren]
     type: translate
     focus: falls-wenn
+    # The instruction names falls, so wenn is rejected — but the tag's own definition lets wenn
+    # stand in for falls, so the predicates leave it uncharged and charge only the wall and the
+    # verb after the fronted condition (the b1/bildungswege standard).
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:falls|wenn) die schule antwortet(?!\\p{L})", "(?<!\\p{L})antwortet (?:dann )?ich (?:rufe|werde)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})falls(?!\\p{L})", "(?<!\\p{L})nicht antwortet(?!\\p{L})"]
     instruction:
       en: "A mere eventuality — attach the condition with falls. For 'call' take anrufen."
       ru: "Голая эвентуальность — присоедините условие союзом falls. Для «позвонить» возьмите anrufen."

@@ -1,11 +1,12 @@
 /**
- * `focus_evidence`: authored response predicates that decide which of a free-typed item's misses
- * its `focus` tag owns.
+ * `focus_evidence`: authored response predicates that decide which of an item's misses its `focus`
+ * tag owns — a free-typed item's, or a cloze, order or table island's.
  *
  * It lives beside the grader because the same verdict has to be reachable from three places that
- * must never disagree about one attempt: the `Translate`/`Listen` islands that log it, `bun run
- * validate` checking each predicate against the item's own accepted renderings, and
- * `progress:audit` re-reading a logged probe attempt.
+ * must never disagree about one attempt: the islands that log it (`Translate`, `Listen`, and the
+ * cloze/order/table ones through `islandAttribution`), `bun run validate` checking each predicate
+ * against the item's own accepted renderings, and `progress:audit` re-reading a logged probe
+ * attempt.
  */
 import { normalizeTranslation } from './cloze';
 

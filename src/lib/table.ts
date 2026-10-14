@@ -72,8 +72,28 @@ function capitalized(answer: string): string | undefined {
 }
 
 /**
+ * Does `cells[index]` open a sentence the learner can see? When its key is a whole sentence
+ * (`Ich hätte eine Bitte.`), or when it is the row's first cell and the row label continues it
+ * (`… Sie mir bitte helfen?` beside a `Könnten` cell). There the key's capital is the position's,
+ * not the grammar's, and a typed `könnten` has the form right.
+ */
+function opensSentence(cells: readonly TableCellLike[], index: number, label: string | undefined): boolean {
+  if (/[.!?]$/u.test(cells[index].answer.trim())) return true;
+  return index === 0 && label !== undefined && /^\s*…/u.test(label);
+}
+
+/** The same string with its first letter lower-cased, or `undefined` when it does not start
+    with an upper-case letter. */
+function decapitalized(answer: string): string | undefined {
+  const first = answer[0];
+  if (!first || !/\p{Lu}/u.test(first)) return undefined;
+  return first.toLowerCase() + answer.slice(1);
+}
+
+/**
  * Every rendering of `cells[index]` the grader accepts: the authored answer, plus the same answer
- * with the stub's trailing word restated in front of it, plus either one capitalized.
+ * with the stub's trailing word restated in front of it, plus either one capitalized — and, where
+ * the cell opens a sentence (`opensSentence`), either one lower-cased.
  *
  * Exactly one word of tolerance, and only the word the learner was just shown. Retyping more of
  * the stub (`Ich komme nicht, weil ich heute arbeite`) still fails — the instruction asks for the
@@ -82,12 +102,15 @@ function capitalized(answer: string): string | undefined {
 export function acceptedCellAnswers(
   cells: readonly TableCellLike[],
   index: number,
+  label?: string,
 ): string[] {
   const answer = cells[index].answer;
   const word = continuationWord(cells, index);
   const keys = word ? [answer, `${word} ${answer}`] : [answer];
+  const head = opensSentence(cells, index, label);
   return keys.flatMap((key) => {
     const upper = capitalized(key);
-    return upper ? [key, upper] : [key];
+    const lower = head ? decapitalized(key) : undefined;
+    return [key, ...(upper ? [upper] : []), ...(lower ? [lower] : [])];
   });
 }

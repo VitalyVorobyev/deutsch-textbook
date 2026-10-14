@@ -100,6 +100,9 @@ items:
     outcomes: [aussage-wiedergeben]
     type: table
     focus: indirekte-rede
+    focus_evidence:
+      failed: ["^(dass|wenn|falls|wo|was)(?!\\p{L})", "^\\S+ sie(?!\\p{L})", "^ob ich (habe|hätte)(?!\\p{L})", "^(?:[^/]*/ ){1}(dass|ob|wenn)(?!\\p{L})", "^(?:[^/]*/ ){1}\\S+ sie(?!\\p{L})", "^(?:[^/]*/ ){1}wo ich (habe|hätte)(?!\\p{L})", "^(?:[^/]*/ ){1}wo \\S+ das fahrrad (gekauft )?hat(?!\\p{L})", "^(?:[^/]*/ ){2}(ob|wenn|falls)(?!\\p{L})", "^(?:[^/]*/ ){2}\\S+ sie(?!\\p{L})", "^(?:[^/]*/ ){2}dass ich soll(?!\\p{L})", "^(?:[^/]*/ ){2}dass ich mitkomme(?!\\p{L})", "^(?:[^/]*/ ){2}dass ich mit ?kommen (muss|kann|darf|will|sollte)(?!\\p{L})"]
+      retained: ["^ob ich den täter erkannt habe /", "/ wo ich das fahrrad gekauft habe /", "/ dass ich mitkommen soll$"]
     revision: 2
     title: "Direkt → indirekt"
     instruction:

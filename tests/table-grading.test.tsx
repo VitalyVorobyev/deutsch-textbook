@@ -128,6 +128,31 @@ describe('acceptedCellAnswers tolerates a capitalized fragment', () => {
 });
 
 /**
+ * A cell that opens a sentence has its capital from the position, as a cloze gap at a sentence
+ * head does: `b1/gespraech-steuern:table-konjunktiv2` keys whole sentences (`Ich hätte eine
+ * Bitte.`), and `a2/aemter-dienstleistungen:table-hoefliche-chunks` a `Könnten` its row label
+ * continues (`… Sie mir bitte helfen?`). Typed lower-case, each had the form right.
+ */
+describe('acceptedCellAnswers folds the head of a cell that opens a sentence', () => {
+  const sentence = [{ answer: 'Ich habe eine Bitte.', given: true }, { answer: 'Ich hätte eine Bitte.' }];
+  const opener = [{ answer: 'Könnten' }];
+
+  test('a whole-sentence cell takes its lower-case head', () => {
+    expect(answerMatches('ich hätte eine Bitte', acceptedCellAnswers(sentence, 1))).toBe(true);
+    expect(answerMatches('ich habe eine Bitte', acceptedCellAnswers(sentence, 1))).toBe(false);
+  });
+
+  test('a first cell its row label continues takes its lower-case head', () => {
+    expect(answerMatches('könnten', acceptedCellAnswers(opener, 0, '… Sie mir bitte helfen?'))).toBe(true);
+  });
+
+  test('a fragment keeps its capital graded — there it is a noun’s', () => {
+    expect(answerMatches('schnee', acceptedCellAnswers([{ answer: 'Schnee' }], 0, 'schneien'))).toBe(false);
+    expect(answerMatches('könnten', acceptedCellAnswers(opener, 0, 'bitten'))).toBe(false);
+  });
+});
+
+/**
  * End to end through the component, because that is where the miss was scored: the attempt log
  * gets `correct` and `correctParts` from `TableFill`, not from `acceptedCellAnswers`.
  */

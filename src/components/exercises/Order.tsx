@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import type { z } from 'zod';
 import type { orderItemSchema } from '@da/schema';
 import { normalizeSentence } from '@da/grading/cloze';
+import { islandAttribution } from '../../lib/evidence';
 import { shuffle } from '../../lib/shuffle';
 import { pick } from '../../lib/prefs';
 import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from './shared';
@@ -35,7 +36,11 @@ export function Order({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
   function check() {
     if (checked || locked) return;
     setChecked(true);
-    onResult({ correct: isCorrect, given: givenSentence });
+    onResult({
+      correct: isCorrect,
+      given: givenSentence,
+      ...islandAttribution(item, isCorrect, givenSentence),
+    });
   }
 
   const chipCls =

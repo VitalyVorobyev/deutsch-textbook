@@ -7,14 +7,40 @@
  * differently in the app — case sensitivity included.
  */
 import type { ExerciseItem } from '@da/schema';
-import { normalizeTranslation } from '@da/grading/cloze';
+import { clozeGaps, fillCloze, normalizeSentence, normalizeTranslation } from '@da/grading/cloze';
 import { evaluateFocusEvidence, focusPredicate } from '@da/grading/evidence';
 import { insertionErrors } from './focus-tags';
 
-/** The sentences an item accepts as correct, where its predicates are evaluated against text. */
+/** Every combination of one choice per slot, or `undefined` past `cap` — no item comes near it. */
+function combinations(slots: readonly (readonly string[])[], cap = 512): string[][] | undefined {
+  let out: string[][] = [[]];
+  for (const slot of slots) {
+    out = out.flatMap((prefix) => slot.map((choice) => [...prefix, choice]));
+    if (out.length > cap) return undefined;
+  }
+  return out;
+}
+
+/**
+ * The responses an item accepts as correct, in the shape its predicates read: the typed sentence
+ * for `translate` and `listen`, the filled sentence for `cloze`, the assembled chips for `order`,
+ * and the asked cells joined by ` / ` for `table` (the islands' `response`, `src/lib/evidence.ts`).
+ * A table cell is read as its authored answer; the case and stub-word variants `TableFill` also
+ * takes differ only in case, which predicates ignore by default, or by a word the stub prints.
+ */
 function acceptedRenderings(item: ExerciseItem): string[] {
   if (item.type === 'translate') return [item.answer, ...item.accept];
   if (item.type === 'listen') return [item.text, ...item.accept];
+  if (item.type === 'cloze')
+    return (combinations(clozeGaps(item.text)) ?? []).map((values) => fillCloze(item.text, values));
+  if (item.type === 'order')
+    return [normalizeSentence(item.words), ...item.accept.map((s) => normalizeSentence(s.split(/\s+/)))];
+  if (item.type === 'table')
+    return [
+      item.rows
+        .flatMap((row) => row.cells.filter((cell) => !cell.given).map((cell) => cell.answer))
+        .join(' / '),
+    ];
   return [];
 }
 

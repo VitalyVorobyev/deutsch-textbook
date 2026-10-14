@@ -135,6 +135,9 @@ items:
     outcomes: [unfallhergang-schildern]
     type: order
     focus: plusquamperfekt-nachdem
+    focus_evidence:
+      failed: ["(?<!\\p{L})hatte(?!\\p{L}).*(?<!\\p{L})gewählt(?!\\p{L})"]
+      retained: ["(?<!\\p{L})gewählt hatte(?!\\p{L})"]
     instruction:
       en: "Build the Nebensatz."
       ru: "Составьте придаточное предложение."
@@ -159,6 +162,9 @@ items:
     outcomes: [unfallhergang-schildern]
     type: cloze
     focus: plusquamperfekt-nachdem
+    focus_evidence:
+      failed: ["(?<!\\p{L})angekommen (sind|seid|haben|hatten|hätten|wären)(?!\\p{L})", "(?<!\\p{L})angekommen \\S+ (ist|hat|wird|wurde|wäre)(?!\\p{L})"]
+      retained: ["(?<!\\p{L})angekommen waren war(?!\\p{L})"]
     instruction:
       en: "Fill in the auxiliary, then the form of sein the main clause takes."
       ru: "Вставьте вспомогательный глагол, затем форму sein, которая нужна главному предложению."
@@ -177,6 +183,9 @@ items:
     outcomes: [unfallhergang-schildern]
     type: cloze
     focus: angaben-reihenfolge
+    focus_evidence:
+      failed: ["(?<!\\p{L})langsam(?!\\p{L}).*(?<!\\p{L})gestern(?!\\p{L})", "(?<!\\p{L})straße(?!\\p{L}).*(?<!\\p{L})gestern(?!\\p{L})", "(?<!\\p{L})straße(?!\\p{L}).*(?<!\\p{L})langsam(?!\\p{L})"]
+      retained: ["(?<!\\p{L})gestern(?!\\p{L}).*(?<!\\p{L})langsam(?!\\p{L}).*(?<!\\p{L})straße(?!\\p{L})"]
     instruction:
       en: "Put the three details in the order German requires: langsam, gestern, über die Straße."
       ru: "Расставьте три обстоятельства в порядке, которого требует немецкий: langsam, gestern, über die Straße."
@@ -237,6 +246,9 @@ items:
     outcomes: [unfallhergang-schildern]
     type: table
     focus: angaben-reihenfolge
+    focus_evidence:
+      failed: ["^(schnell|an der kreuzung|heute morgen)(?: /|$)", "^(?:[^/]*/ ){1}(wegen des regens|an der kreuzung|heute morgen)(?: /|$)", "^(?:[^/]*/ ){2}(wegen des regens|schnell|heute morgen)(?: /|$)", "^(?:[^/]*/ ){3}(aus angst|zu fuß|zur klinik)(?: /|$)", "^(?:[^/]*/ ){4}(sofort|zu fuß|zur klinik)(?: /|$)", "^(?:[^/]*/ ){5}(sofort|aus angst|zur klinik)(?: /|$)", "^(?:[^/]*/ ){6}(sofort|aus angst|zu fuß)(?: /|$)"]
+      retained: []
     title: "Welche Angabe steht wo?"
     instruction:
       en: "Sort each phrase into its slot."
