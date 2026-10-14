@@ -17,14 +17,24 @@ title:
 # single-file tail reported by `bun scripts/grammar-depth.ts B1 --thin`.
 items:
   - id: uebersetzen-irreal-wohnung
+    # revision 2: the wenn-less verb-first condition (charged to the tag) and unsere Wohnung for
+    # the bare RU/UK «квартира» are correct German. The instruction now puts rauchen into würde, as
+    # the core set's essen item does, so the one-word rauchten is constrained rather than charged;
+    # the main half's marking is still the learner's. focus_evidence fails fewer than two
+    # Konjunktiv II forms — one half left indicative — and würde + Partizip; agreement and word
+    # order inside a half are other tags' decisions.
+    revision: 2
     outcomes: [folgen-abwaegen]
     type: translate
     focus: irreale-bedingung
     key_tokens: ["würden", "würde"]
+    focus_evidence:
+      failed: ["^(?!(?:.*?(?<!\\p{L})(?:würden?|hätten?|rauchten|stänke)(?!\\p{L})){2})", "(?<!\\p{L})geraucht würden?(?!\\p{L})", "(?<!\\p{L})würden?(?!\\p{L})(?:(?!(?<!\\p{L})hätten?(?!\\p{L})).)*(?<!\\p{L})gestunken$"]
+      retained: ["(?:.*?(?<!\\p{L})(?:würden?|hätten?|rauchten|stänke)(?!\\p{L})){2}"]
     instruction:
-      en: "Translate — for 'smell of' take nach etwas stinken; both halves need a full verb."
-      ru: "Переведите — для «пахнуть чем-либо» возьмите nach etwas stinken; в обеих половинах полнозначный глагол."
-      uk: "Перекладіть — для «пахнути чимось» візьміть nach etwas stinken; в обох половинах повнозначне дієслово."
+      en: "Translate — for 'smell of' take nach etwas stinken, and put rauchen into würde + infinitive."
+      ru: "Переведите — для «пахнуть чем-либо» возьмите nach etwas stinken, а rauchen поставьте в würde + инфинитив."
+      uk: "Перекладіть — для «пахнути чимось» візьміть nach etwas stinken, а rauchen поставте у würde + інфінітив."
     prompt_en: "If we did not smoke, the flat would not stink of cigarettes."
     prompt_ru: "Если бы мы не курили, квартира не воняла бы сигаретами."
     prompt_uk: "Якби ми не курили, квартира не смерділа б цигарками."
@@ -32,16 +42,33 @@ items:
     accept:
       - "Wenn wir nicht rauchen würden, dann würde die Wohnung nicht nach Zigaretten stinken."
       - "Die Wohnung würde nicht nach Zigaretten stinken, wenn wir nicht rauchen würden."
+      - "Würden wir nicht rauchen, würde die Wohnung nicht nach Zigaretten stinken."
+      - "Würden wir nicht rauchen, dann würde die Wohnung nicht nach Zigaretten stinken."
+      - "Die Wohnung würde nicht nach Zigaretten stinken, würden wir nicht rauchen."
+      - "Wenn wir nicht rauchen würden, würde unsere Wohnung nicht nach Zigaretten stinken."
+      - "Wenn wir nicht rauchen würden, dann würde unsere Wohnung nicht nach Zigaretten stinken."
+      - "Unsere Wohnung würde nicht nach Zigaretten stinken, wenn wir nicht rauchen würden."
+      - "Würden wir nicht rauchen, würde unsere Wohnung nicht nach Zigaretten stinken."
+      - "Würden wir nicht rauchen, dann würde unsere Wohnung nicht nach Zigaretten stinken."
+      - "Unsere Wohnung würde nicht nach Zigaretten stinken, würden wir nicht rauchen."
     explain:
       en: "The cell the core set never showed: both verbs are full verbs, so both halves build *würde* + Infinitiv and the sentence carries the helper twice. The two forms are not the same word — *würden* agrees with *wir*, *würde* with *die Wohnung* — and a learner who writes one of them twice has stopped agreeing with the subject. *Stinken* takes what it smells of through *nach* plus the dative."
       ru: "Ячейка, которой основной блок не показывал: оба глагола полнозначные, поэтому обе половины строят *würde* + инфинитив, и вспомогательный стоит в предложении дважды. Это не одна и та же форма — *würden* согласовано с *wir*, *würde* с *die Wohnung*, — и тот, кто напишет одну из них дважды, перестал согласовывать с подлежащим. Источник запаха *stinken* вводит через *nach* с дативом."
       uk: "Клітинка, якої основний блок не показував: обидва дієслова повнозначні, тому обидві половини будують *würde* + інфінітив, і допоміжне стоїть у реченні двічі. Це не та сама форма — *würden* узгоджене з *wir*, *würde* з *die Wohnung*, — і той, хто напише одну з них двічі, перестав узгоджувати з підметом. Джерело запаху *stinken* вводить через *nach* з давальним."
 
   - id: uebersetzen-lassen-balkon
+    # revision 2: the fronted Auf dem Balkon (charged to the tag) and unserem for the bare
+    # «на балконе» are correct German. focus_evidence fails only the bracket lässt opens — a zu, a
+    # participle, rauchen not at the end — so the inserted zu no pin could see is charged and a
+    # fronted phrase is not.
+    revision: 2
     outcomes: [hilfe-veranlassen]
     type: translate
     focus: lassen-verwendung
     key_tokens: ["lässt", "rauchen"]
+    focus_evidence:
+      failed: ["(?<!\\p{L})l(?:ä|a)sst(?!\\p{L}).*(?<!\\p{L})(?:zu rauchen|geraucht)(?!\\p{L})", "^(?=.*(?<!\\p{L})l(?:ä|a)sst(?!\\p{L}))(?!.*(?<!\\p{L})rauchen$)"]
+      retained: ["(?<!\\p{L})lässt(?!\\p{L})", "(?<!\\p{L})rauchen$"]
     instruction:
       en: "Translate with lassen — for 'the landlord' take der Vermieter."
       ru: "Переведите через lassen — для «арендодателя» возьмите der Vermieter."
@@ -52,10 +79,16 @@ items:
     answer: "Der Vermieter lässt uns auf dem Balkon nicht rauchen."
     accept:
       - "Der Vermieter lässt uns nicht auf dem Balkon rauchen."
+      - "Auf dem Balkon lässt uns der Vermieter nicht rauchen."
+      - "Auf dem Balkon lässt der Vermieter uns nicht rauchen."
+      - "Der Vermieter lässt uns auf unserem Balkon nicht rauchen."
+      - "Der Vermieter lässt uns nicht auf unserem Balkon rauchen."
+      - "Auf unserem Balkon lässt uns der Vermieter nicht rauchen."
+      - "Auf unserem Balkon lässt der Vermieter uns nicht rauchen."
     explain:
-      en: "This is *lassen*'s second job — allowing, and here refusing — and the syntax does not change with the job: *lässt* in position 2, the bare infinitive *rauchen* at the very end, the person affected in the accusative as *uns*. Where *nicht* stands only shifts the emphasis; both accepted renderings deny the same thing. English agrees for once — *let us smoke* takes a bare infinitive too — so there is no reason at all to insert a *zu* here."
-      ru: "Это вторая работа *lassen* — разрешать, а здесь не разрешать, — и синтаксис от работы не меняется: *lässt* на втором месте, голый инфинитив *rauchen* в самом конце, затронутое лицо в аккузативе как *uns*. Место *nicht* лишь смещает акцент; оба принимаемых варианта отрицают одно и то же."
-      uk: "Це друга робота *lassen* — дозволяти, а тут не дозволяти, — і синтаксис від роботи не змінюється: *lässt* на другому місці, голий інфінітив *rauchen* у самому кінці, зачеплена особа в акузативі як *uns*. Місце *nicht* лише зміщує акцент; обидва прийняті варіанти заперечують одне й те саме."
+      en: "This is *lassen*'s second job — allowing, and here refusing — and the syntax does not change with the job: *lässt* in position 2, the bare infinitive *rauchen* at the very end, the person affected in the accusative as *uns*. Where *nicht* stands only shifts the emphasis; every accepted rendering denies the same thing. English agrees for once — *let us smoke* takes a bare infinitive too — so there is no reason at all to insert a *zu* here."
+      ru: "Это вторая работа *lassen* — разрешать, а здесь не разрешать, — и синтаксис от работы не меняется: *lässt* на втором месте, голый инфинитив *rauchen* в самом конце, затронутое лицо в аккузативе как *uns*. Место *nicht* лишь смещает акцент; все принимаемые варианты отрицают одно и то же."
+      uk: "Це друга робота *lassen* — дозволяти, а тут не дозволяти, — і синтаксис від роботи не змінюється: *lässt* на другому місці, голий інфінітив *rauchen* у самому кінці, зачеплена особа в акузативі як *uns*. Місце *nicht* лише зміщує акцент; усі прийняті варіанти заперечують одне й те саме."
 
   - id: diktat-sein-lassen
     outcomes: [gesundheitstext-verstehen]
@@ -66,9 +99,9 @@ items:
       ru: "Мой брат бросил курить."
       uk: "Мій брат кинув курити."
     explain:
-      en: "Two unstressed syllables at the end carry the whole grammar, and they are the hardest part to catch: *sein lassen*, not *sein gelassen*. If you heard a *ge-* that is not there, you have written the participle German only uses when *lassen* stands alone. *Das Rauchen* is capitalised because the infinitive is being used as a neuter noun."
-      ru: "Два безударных слога в конце несут всю грамматику, и расслышать их труднее всего: *sein lassen*, а не *sein gelassen*. Если вам послышалось *ge-*, которого там нет, вы записали причастие, которое немецкий употребляет лишь тогда, когда *lassen* стоит один. *Das Rauchen* пишется с большой буквы, потому что инфинитив здесь работает существительным среднего рода."
-      uk: "Два ненаголошені склади в кінці несуть усю граматику, і розчути їх найважче: *sein lassen*, а не *sein gelassen*. Якщо вам почулося *ge-*, якого там немає, ви записали дієприкметник, що його німецька вживає лише тоді, коли *lassen* стоїть сам. *Das Rauchen* пишеться з великої літери, бо інфінітив тут працює іменником середнього роду."
+      en: "Two unstressed syllables at the end carry the whole grammar, and they are the hardest part to catch: *sein lassen*, not *sein gelassen*. If you heard a *ge-* that is not there, you have written the participle that belongs to *lassen* standing alone. *Das Rauchen* is capitalised because the infinitive is being used as a neuter noun."
+      ru: "Два безударных слога в конце несут всю грамматику, и расслышать их труднее всего: *sein lassen*, а не *sein gelassen*. Если вам послышалось *ge-*, которого там нет, вы записали причастие, которое принадлежит *lassen*, стоящему в одиночку. *Das Rauchen* пишется с большой буквы, потому что инфинитив здесь работает существительным среднего рода."
+      uk: "Два ненаголошені склади в кінці несуть усю граматику, і розчути їх найважче: *sein lassen*, а не *sein gelassen*. Якщо вам почулося *ge-*, якого там немає, ви записали дієприкметник, що належить *lassen*, який стоїть сам. *Das Rauchen* пишеться з великої літери, бо інфінітив тут працює іменником середнього роду."
 
   - id: sprechen-gewohnheit
     outcomes: [folgen-abwaegen, rat-zum-aufhoeren]
@@ -137,6 +170,6 @@ items:
       ru: "Дорогая Соня, я наконец решилась. С понедельника я бросаю курить. Двенадцать лет это была просто привычка, но теперь я зависима от сигарет. Неделю назад я проконсультировалась в аптеке, и теперь каждый вечер по полчаса бегаю. Если бы через год я была некурящей, у меня было бы больше воздуха и больше тысячи евро. Ещё я ем больше фруктов, потому что мне нужно больше витаминов. Пожелай мне удачи! Твоя Анна"
       uk: "Люба Соню, я нарешті наважилася. Від понеділка я кидаю курити. Дванадцять років це була просто звичка, але тепер я залежна від цигарок. Тиждень тому я проконсультувалася в аптеці, і тепер щовечора по пів години бігаю. Якби через рік я була тією, хто не курить, у мене було б більше повітря і більше тисячі євро. Ще я їм більше фруктів, бо мені потрібно більше вітамінів. Побажай мені щастя! Твоя Анна"
     explain:
-      en: "Check three things against the model. Your two *lassen*: one should arrange something somebody else does (*beraten lassen*) and one should stop something (*das Rauchen sein lassen*) — and in the perfect *lassen* itself stays an infinitive. Your unreal condition: both halves marked, and *würde* only where the verb is a full verb. And the field words: *süchtig* takes *nach* plus the dative, and after *sein* a category noun goes without an article — *ich bin Nichtraucherin*, not *eine Nichtraucherin*."
-      ru: "Сверьте с образцом три вещи. Два ваших *lassen*: одно должно организовывать то, что делает кто-то другой (*beraten lassen*), а другое — прекращать (*das Rauchen sein lassen*); в перфекте сам *lassen* остаётся инфинитивом. Ваше нереальное условие: помечены обе половины, а *würde* стоит только там, где глагол полнозначный. И слова поля: *süchtig* требует *nach* с дативом, а после *sein* существительное-разряд идёт без артикля — *ich bin Nichtraucherin*, а не *eine Nichtraucherin*."
-      uk: "Звірте зі зразком три речі. Два ваші *lassen*: одне має організовувати те, що робить хтось інший (*beraten lassen*), а друге — припиняти (*das Rauchen sein lassen*); у перфекті сам *lassen* лишається інфінітивом. Ваша нереальна умова: позначені обидві половини, а *würde* стоїть лише там, де дієслово повнозначне. І слова поля: *süchtig* потребує *nach* з давальним, а після *sein* іменник-розряд іде без артикля — *ich bin Nichtraucherin*, а не *eine Nichtraucherin*."
+      en: "Check three things against the model. Your two *lassen*: one should arrange something somebody else does (*beraten lassen*) and one should stop something (*das Rauchen sein lassen*) — and in the perfect *lassen* itself stays an infinitive. Your unreal condition: both halves marked, and *würde* only where the verb is a full verb. And the field words: *süchtig* takes *nach* plus the dative, and after *sein* a category noun usually goes without an article — *ich bin Nichtraucherin*, as with a profession."
+      ru: "Сверьте с образцом три вещи. Два ваших *lassen*: одно должно организовывать то, что делает кто-то другой (*beraten lassen*), а другое — прекращать (*das Rauchen sein lassen*); в перфекте сам *lassen* остаётся инфинитивом. Ваше нереальное условие: помечены обе половины, а *würde* стоит только там, где глагол полнозначный. И слова поля: *süchtig* требует *nach* с дативом, а после *sein* существительное-разряд обычно идёт без артикля — *ich bin Nichtraucherin*, как с названием профессии."
+      uk: "Звірте зі зразком три речі. Два ваші *lassen*: одне має організовувати те, що робить хтось інший (*beraten lassen*), а друге — припиняти (*das Rauchen sein lassen*); у перфекті сам *lassen* лишається інфінітивом. Ваша нереальна умова: позначені обидві половини, а *würde* стоїть лише там, де дієслово повнозначне. І слова поля: *süchtig* потребує *nach* з давальним, а після *sein* іменник-розряд зазвичай іде без артикля — *ich bin Nichtraucherin*, як із назвою професії."

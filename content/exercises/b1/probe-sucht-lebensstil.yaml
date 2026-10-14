@@ -33,6 +33,7 @@ title:
   uk: "Відкладена перевірка — голий інфінітив після lassen"
 items:
   - id: variant-a
+    revision: 2
     outcomes: [hilfe-veranlassen]
     type: translate
     focus: lassen-verwendung
@@ -43,10 +44,12 @@ items:
     # as the competence surviving; the sibling family probe-gesundheit-wohlbefinden-lassen-
     # verwendung already caught it this way. The predicates decide instead, and because they
     # replace key_tokens attribution they restate its failures: the bracket's last word not
-    # the bare infinitive (a participle, a zu-form, or the verb pulled forward), and the
-    # pinned finite lassen out of position 2.
+    # the bare infinitive (a participle, a zu-form, or the verb pulled forward). Revision 2:
+    # a third predicate counted lasse's position in tokens and so failed the correct fronted
+    # In der Werkstatt lasse ich …; it is gone, and a lasse sent to the end still fails the
+    # second. The bare «велосипед» leaves das Fahrrad open, and Rad is the course's own card.
     focus_evidence:
-      failed: ["\\bzu reparieren\\b", "^(?!.*\\breparieren$)", "^(?!(\\S+ ){1,2}lasse\\b)"]
+      failed: ["\\bzu reparieren\\b", "^(?!.*\\breparieren$)"]
       retained: ["\\blasse\\b.*\\breparieren$"]
     instruction:
       en: "Translate with lassen — for 'the workshop' take die Werkstatt."
@@ -58,12 +61,29 @@ items:
     answer: "Ich lasse mein Fahrrad in der Werkstatt reparieren."
     accept:
       - "Mein Fahrrad lasse ich in der Werkstatt reparieren."
+      - "In der Werkstatt lasse ich mein Fahrrad reparieren."
+      - "Ich lasse in der Werkstatt mein Fahrrad reparieren."
+      - "Ich lasse das Fahrrad in der Werkstatt reparieren."
+      - "Das Fahrrad lasse ich in der Werkstatt reparieren."
+      - "In der Werkstatt lasse ich das Fahrrad reparieren."
+      - "Ich lasse in der Werkstatt das Fahrrad reparieren."
+      - "Ich lasse mein Rad in der Werkstatt reparieren."
+      - "Mein Rad lasse ich in der Werkstatt reparieren."
+      - "In der Werkstatt lasse ich mein Rad reparieren."
+      - "Ich lasse in der Werkstatt mein Rad reparieren."
+      - "Ich lasse das Rad in der Werkstatt reparieren."
+      - "Das Rad lasse ich in der Werkstatt reparieren."
+      - "In der Werkstatt lasse ich das Rad reparieren."
+      - "Ich lasse in der Werkstatt das Rad reparieren."
     explain:
-      en: "*Lassen* is the finite verb here, so it stands in position 2 and *reparieren* goes to the very end as a bare infinitive. No *zu* — that rule belongs to *versuchen* and *anfangen* and never reaches this verb — and no participle either, however much the English *have something repaired* suggests one. Both clause orders are accepted; the bracket is what is graded."
-      ru: "*Lassen* здесь — спрягаемый глагол, поэтому он стоит на втором месте, а *reparieren* уходит в самый конец голым инфинитивом. Никакого *zu*: это правило принадлежит *versuchen* и *anfangen* и до этого глагола не дотягивается. И никакого причастия, как бы ни подсказывала его русская конструкция «отдать в ремонт». Оба порядка частей принимаются; оценивается рамка."
-      uk: "*Lassen* тут — відмінюване дієслово, тому воно стоїть на другому місці, а *reparieren* іде в самий кінець голим інфінітивом. Жодного *zu*: це правило належить *versuchen* і *anfangen* і до цього дієслова не дотягується. І жодного дієприкметника, хоч би як підказувала його українська конструкція «віддати в ремонт». Обидва порядки частин приймаються; оцінюється рамка."
+      en: "*Lassen* is the finite verb here, so it stands in position 2 and *reparieren* goes to the very end as a bare infinitive. No *zu* — that rule belongs to *versuchen* and *anfangen* and never reaches this verb — and no participle either, however much the English *have something repaired* suggests one. Several word orders are accepted; the bracket is what is graded."
+      ru: "*Lassen* здесь — спрягаемый глагол, поэтому он стоит на втором месте, а *reparieren* уходит в самый конец голым инфинитивом. Никакого *zu*: это правило принадлежит *versuchen* и *anfangen* и до этого глагола не дотягивается. И никакого причастия, как бы ни подсказывала его русская конструкция «отдать в ремонт». Принимаются разные порядки слов; оценивается рамка."
+      uk: "*Lassen* тут — відмінюване дієслово, тому воно стоїть на другому місці, а *reparieren* іде в самий кінець голим інфінітивом. Жодного *zu*: це правило належить *versuchen* і *anfangen* і до цього дієслова не дотягується. І жодного дієприкметника, хоч би як підказувала його українська конструкція «віддати в ремонт». Приймаються різні порядки слів; оцінюється рамка."
 
   - id: variant-b
+    # revision 2: gestern may stand before the object, the object may be fronted, and the bare
+    # «детям» leaves unsere Kinder open.
+    revision: 2
     outcomes: [hilfe-veranlassen]
     type: translate
     focus: lassen-verwendung
@@ -83,12 +103,21 @@ items:
     answer: "Gestern haben wir die Kinder länger fernsehen lassen."
     accept:
       - "Wir haben die Kinder gestern länger fernsehen lassen."
+      - "Wir haben gestern die Kinder länger fernsehen lassen."
+      - "Die Kinder haben wir gestern länger fernsehen lassen."
+      - "Gestern haben wir unsere Kinder länger fernsehen lassen."
+      - "Wir haben unsere Kinder gestern länger fernsehen lassen."
+      - "Wir haben gestern unsere Kinder länger fernsehen lassen."
+      - "Unsere Kinder haben wir gestern länger fernsehen lassen."
     explain:
-      en: "The auxiliary is the finite verb now, so *lassen* has been pushed to the end — and there it keeps the shape of an infinitive: *fernsehen lassen*, never *fernsehen gelassen*. German does the same after the modals, *ich habe arbeiten müssen*. The two infinitives keep their order: the second verb first, *lassen* last, closing the clause."
+      en: "The auxiliary is the finite verb now, so *lassen* has been pushed to the end — and there it keeps the shape of an infinitive: *fernsehen lassen*, not *fernsehen gelassen*. German does the same after the modals, *ich habe arbeiten müssen*. The two infinitives keep their order: the second verb first, *lassen* last, closing the clause."
       ru: "Спрягаемый теперь вспомогательный, поэтому *lassen* вытеснен в конец — и там он сохраняет вид инфинитива: *fernsehen lassen*, а не *fernsehen gelassen*. Немецкий поступает так же после модальных: *ich habe arbeiten müssen*. Порядок двух инфинитивов закреплён: сначала второй глагол, *lassen* последним, закрывая предложение."
       uk: "Відмінюване тепер допоміжне, тому *lassen* витіснений у кінець — і там він зберігає вигляд інфінітива: *fernsehen lassen*, а не *fernsehen gelassen*. Німецька робить так само після модальних: *ich habe arbeiten müssen*. Порядок двох інфінітивів закріплений: спершу друге дієслово, *lassen* останнім, закриваючи речення."
 
   - id: variant-c
+    # revision 2: the bare «за садом» leaves unseren Garten open, and durch names the doer as
+    # well as von.
+    revision: 2
     outcomes: [hilfe-veranlassen]
     type: translate
     focus: lassen-verwendung
@@ -107,7 +136,13 @@ items:
     answer: "Wir wollen den Garten von einer Firma pflegen lassen."
     accept:
       - "Den Garten wollen wir von einer Firma pflegen lassen."
+      - "Wir wollen den Garten durch eine Firma pflegen lassen."
+      - "Den Garten wollen wir durch eine Firma pflegen lassen."
+      - "Wir wollen unseren Garten von einer Firma pflegen lassen."
+      - "Unseren Garten wollen wir von einer Firma pflegen lassen."
+      - "Wir wollen unseren Garten durch eine Firma pflegen lassen."
+      - "Unseren Garten wollen wir durch eine Firma pflegen lassen."
     explain:
-      en: "Three verbs, and only the modal is finite: *wollen* takes position 2 and the other two queue up at the end in the fixed order *pflegen lassen*. The source sentence uses a whole subordinate clause for what German packs into that pair, so nothing in it tells you where the two infinitives go — the bracket has to be built. Who does the work is named with *von* plus the dative."
-      ru: "Три глагола, и спрягаемый только модальный: *wollen* занимает второе место, а два других выстраиваются в конце в закреплённом порядке *pflegen lassen*. Русская фраза тратит на это целое придаточное, так что подсказки о месте двух инфинитивов в ней нет — рамку приходится строить. Исполнителя вводит *von* с дативом."
-      uk: "Три дієслова, і відмінюване лише модальне: *wollen* займає друге місце, а два інші шикуються в кінці в закріпленому порядку *pflegen lassen*. Українська фраза витрачає на це ціле підрядне, тож підказки про місце двох інфінітивів у ній немає — рамку доводиться будувати. Виконавця вводить *von* з давальним."
+      en: "Three verbs, and only the modal is finite: *wollen* takes position 2 and the other two queue up at the end in the fixed order *pflegen lassen*. The source sentence uses a whole subordinate clause for what German packs into that pair, so nothing in it tells you where the two infinitives go — the bracket has to be built. Who does the work is named with *von* plus the dative, or with *durch*."
+      ru: "Три глагола, и спрягаемый только модальный: *wollen* занимает второе место, а два других выстраиваются в конце в закреплённом порядке *pflegen lassen*. Русская фраза тратит на это целое придаточное, так что подсказки о месте двух инфинитивов в ней нет — рамку приходится строить. Исполнителя вводит *von* с дативом или *durch*."
+      uk: "Три дієслова, і відмінюване лише модальне: *wollen* займає друге місце, а два інші шикуються в кінці в закріпленому порядку *pflegen lassen*. Українська фраза витрачає на це ціле підрядне, тож підказки про місце двох інфінітивів у ній немає — рамку доводиться будувати. Виконавця вводить *von* з давальним або *durch*."
