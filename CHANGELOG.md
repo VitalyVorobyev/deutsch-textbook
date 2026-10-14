@@ -287,13 +287,12 @@ GitHub Release notes.
   - Fixed facts: the Grundschule lasts six years in Berlin and Brandenburg, not four
     everywhere. The Fachhochschule does not require the Abitur, and the Volkshochschule
     also offers school certificates.
-  - Correct German is accepted:
+  - Correct German is accepted, where several renderings were marked as the
+    *falls*/*damit* mistake before:
     - the main clause before the *falls* or *wenn* clause;
     - a *damit* clause at the start;
     - the *werden*-future;
     - *unser*, *das Studium*, *die Dokumente*.
-    
-    Before, several of these were marked as the *falls*/*damit* mistake.
   - In the placement test, *Wenn* is accepted where a place may or may not come free.
   - The purpose table no longer asks for the one row where *damit* would also be correct.
   - Twelve card notes no longer teach something false.
