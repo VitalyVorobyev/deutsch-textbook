@@ -11,6 +11,8 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+## [0.6.19] — 2026-10-14
+
 ### Added
 
 - **Three B1 drills for weak spots your answers show.** Each has 8 exercises:
@@ -69,6 +71,11 @@ GitHub Release notes.
   - *Wenn der Zug pünktlich wäre, könnten wir …* is now accepted alongside *würden*.
   - The *sich gewöhnen an* gap now gives *das Aufstehen* with its article. Before, a wrong gender
     counted against the verb's preposition.
+- **Meinung & Medien (B1.5), checked end to end.** An explanation showed the word order after
+  *denn* backwards; it is *denn sie ist*. A delayed check printed its own answer in the
+  instructions. Two exercises accept correct answers they rejected (*In der Meldung geht es um …*,
+  *am Morgen*, *sich die Nachrichten ansehen*). Explanations no longer claim a reason someone asks
+  for is always new information.
 - **B1.6 Konsum & Umwelt — quality pass.**
   - The lesson no longer says German always keeps the verb in a *je … desto* half. A short line
     can drop both verbs: *Je billiger das Produkt, desto schlechter die Qualität*.
@@ -310,16 +317,6 @@ GitHub Release notes.
     that showed both words.
   - Several lines no longer state a tendency as a rule: a missing listener signal, and
     *Ich weiß nicht* on its own. Two reading explanations no longer contradict the text.
-
-## [0.6.19] — 2026-10-11
-
-### Fixed
-
-- **Meinung & Medien (B1.5), checked end to end.** An explanation showed the word order after
-  *denn* backwards; it is *denn sie ist*. A delayed check printed its own answer in the
-  instructions. Two exercises accept correct answers they rejected (*In der Meldung geht es um …*,
-  *am Morgen*, *sich die Nachrichten ansehen*). Explanations no longer claim a reason someone asks
-  for is always new information.
 
 ## [0.6.18] — 2026-10-11
 
