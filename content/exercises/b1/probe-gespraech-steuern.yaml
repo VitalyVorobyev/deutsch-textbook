@@ -11,8 +11,8 @@
 # The three variants sample three corners rather than repeating one. variant-a is haben, where
 # the Konjunktiv II is a bare umlaut on a Präteritum that is otherwise identical. variant-b is a
 # modal, where the same umlaut has to survive a Sie-form ending. variant-c is the periphrasis:
-# no one-word form exists for a full verb, so *würde* takes position 2 and the infinitive closes
-# the sentence — a word-order consequence the one-word forms never show.
+# a full verb has no one-word form this course produces, so *würde* takes position 2 and the
+# infinitive closes the sentence — a word-order consequence the one-word forms never show.
 #
 # translate rather than cloze: a cloze prints the slot and thereby concedes that a special form
 # is called for at all, which is the decision being measured. The learner has to reject the
@@ -39,9 +39,16 @@ title:
   uk: "Відкладена перевірка — ввічлива форма, без підготовки"
 items:
   - id: variant-a
+    # revision 2: einen Augenblick (the course's twin of Moment), eine Minute for «минутки» /
+    # «хвилинки», vielleicht and Zeit were rejected. focus_evidence fails the indicative and the
+    # bare Präteritum.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["^(?:haben|hatten)(?!\\p{L})"]
+      retained: ["^hätten sie(?!\\p{L})"]
     key_tokens: ["Hätten"]
     instruction:
       en: "Ask with haben in Konjunktiv II."
@@ -51,15 +58,33 @@ items:
     prompt_ru: "Не найдётся ли у вас минутки для меня?"
     prompt_uk: "Чи не знайдеться у вас хвилинки для мене?"
     answer: "Hätten Sie einen Moment für mich?"
+    accept:
+      - "Hätten Sie einen Augenblick für mich?"
+      - "Hätten Sie eine Minute für mich?"
+      - "Hätten Sie vielleicht einen Moment für mich?"
+      - "Hätten Sie vielleicht einen Augenblick für mich?"
+      - "Hätten Sie vielleicht eine Minute für mich?"
+      - "Hätten Sie einen Moment Zeit für mich?"
+      - "Hätten Sie einen Augenblick Zeit für mich?"
+      - "Hätten Sie eine Minute Zeit für mich?"
+      - "Hätten Sie vielleicht einen Moment Zeit für mich?"
+      - "Hätten Sie vielleicht einen Augenblick Zeit für mich?"
+      - "Hätten Sie vielleicht eine Minute Zeit für mich?"
     explain:
       en: "*Hätten* is the Präteritum *hatten* with an umlaut and nothing else — which is why it is so easy to leave as *Hatten Sie einen Moment für mich?*, a question about the past that makes no sense here. One dot pair carries the whole difference between asking and reporting. The phrase itself is worth having ready: it buys you the other person's attention before you say what you want."
       ru: "*Hätten* — это Präteritum *hatten* с умлаутом и больше ничем, поэтому его так легко оставить как *Hatten Sie einen Moment für mich?* — вопрос о прошлом, здесь бессмысленный. Две точки несут всю разницу между просьбой и рассказом. Сам оборот стоит держать наготове: он покупает вам внимание собеседника прежде, чем вы скажете, чего хотите."
       uk: "*Hätten* — це Präteritum *hatten* з умлаутом і більше нічим, тому його так легко залишити як *Hatten Sie einen Moment für mich?* — питання про минуле, тут безглузде. Дві крапки несуть усю різницю між проханням і розповіддю. Сам зворот варто тримати напоготові: він купує вам увагу співрозмовника перш ніж ви скажете, чого хочете."
 
   - id: variant-b
+    # revision 2: bitte, mal and vielleicht were rejected. focus_evidence fails the indicative and
+    # the bare Präteritum.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["^(?:können|konnten)(?!\\p{L})"]
+      retained: ["^könnten sie(?!\\p{L})"]
     key_tokens: ["Könnten"]
     instruction:
       en: "Ask with können in Konjunktiv II."
@@ -69,25 +94,43 @@ items:
     prompt_ru: "Не могли бы вы мне ненадолго помочь?"
     prompt_uk: "Чи не могли б ви мені ненадовго допомогти?"
     answer: "Könnten Sie mir kurz helfen?"
+    accept:
+      - "Könnten Sie mir bitte kurz helfen?"
+      - "Könnten Sie mir kurz helfen, bitte?"
+      - "Könnten Sie mir mal kurz helfen?"
+      - "Könnten Sie mir bitte mal kurz helfen?"
+      - "Könnten Sie mir vielleicht kurz helfen?"
     explain:
       en: "The umlaut has to survive the ending here: *konnte* → *könnte*, and the Sie-form adds *-n* on top, giving *könnten*. Dropping the umlaut leaves *Konnten Sie mir kurz helfen?* — a question about whether you managed it in the past. Note that *helfen* takes the dative, so it is *mir* and never *mich*; that is not what this item grades, but it is what the sentence needs."
       ru: "Умлаут здесь должен уцелеть под окончанием: *konnte* → *könnte*, а форма для Sie добавляет сверху *-n*, давая *könnten*. Без умлаута остаётся *Konnten Sie mir kurz helfen?* — вопрос о том, удалось ли вам это в прошлом. Обратите внимание: *helfen* требует датива, поэтому *mir*, а не *mich*; это задание оценивает не его, но предложению он нужен."
       uk: "Умлаут тут має вціліти під закінченням: *konnte* → *könnte*, а форма для Sie додає згори *-n*, даючи *könnten*. Без умлаута лишається *Konnten Sie mir kurz helfen?* — питання про те, чи вдалося вам це в минулому. Зверніть увагу: *helfen* вимагає давального, тому *mir*, а не *mich*; це завдання оцінює не його, але реченню він потрібен."
 
   - id: variant-c
+    # revision 2: "give an example" / «привести пример» left the verb open, and ein Beispiel
+    # nennen was charged to the tag — the instruction names geben; ein weiteres Beispiel for
+    # "one more" was rejected and gerne was taken for a slip. focus_evidence fails the bare
+    # Präteritum, the indicative werde and the infinitive pulled forward.
+    revision: 2
     outcomes: [wort-nehmen-geben]
     type: translate
     focus: konjunktiv2-form
+    focus_evidence:
+      failed: ["(?<!\\p{L})(?:wurde|werde)(?!\\p{L})", "(?<!\\p{L})geben \\p{L}"]
+      retained: ["^ich würde(?!\\p{L})", "(?<!\\p{L})geben$"]
     key_tokens: ["würde", "geben"]
     instruction:
-      en: "Use würde + Infinitiv."
-      ru: "Используйте würde + инфинитив."
-      uk: "Використайте würde + інфінітив."
+      en: "Use würde + Infinitiv, with geben."
+      ru: "Используйте würde + инфинитив, с глаголом geben."
+      uk: "Використайте würde + інфінітив, з дієсловом geben."
     prompt_en: "I would like to give one more example."
     prompt_ru: "Я хотел бы привести ещё один пример."
     prompt_uk: "Я хотів би навести ще один приклад."
     answer: "Ich würde gern noch ein Beispiel geben."
+    accept:
+      - "Ich würde gern ein weiteres Beispiel geben."
+      - "Ich würde gerne noch ein Beispiel geben."
+      - "Ich würde gerne ein weiteres Beispiel geben."
     explain:
-      en: "A full verb has no polite one-word form in everyday German, so it borrows *würde*: position 2 for the auxiliary, and the infinitive *geben* at the very end. That bracket is the whole difference from the modal variants, and it is where the source languages mislead — they keep *would like to give* side by side, and the hand writes *Ich würde gern geben noch ein Beispiel*. The instruction names *würde* because *Ich möchte gern noch ein Beispiel geben* says the same thing and would not show the form."
-      ru: "У полнозначного глагола однословной вежливой формы в обиходном немецком нет, поэтому он берёт *würde*: вспомогательный на второе место, инфинитив *geben* — в самый конец. Эта рамка и есть всё отличие от модальных вариантов, и именно здесь исходный язык сбивает: «хотел бы привести» держит два глагола рядом, и рука пишет *Ich würde gern geben noch ein Beispiel*. Инструкция называет *würde*, потому что *Ich möchte gern noch ein Beispiel geben* говорит то же самое и форму не показало бы."
-      uk: "У повнозначного дієслова однослівної ввічливої форми в побутовій німецькій немає, тому воно бере *würde*: допоміжне на друге місце, інфінітив *geben* — у самий кінець. Ця рамка і є вся відмінність від модальних варіантів, і саме тут вихідна мова збиває: «хотів би навести» тримає два дієслова поруч, і рука пише *Ich würde gern geben noch ein Beispiel*. Інструкція називає *würde*, бо *Ich möchte gern noch ein Beispiel geben* каже те саме і форми не показало б."
+      en: "*geben* has no one-word polite form this course produces, so it borrows *würde*: position 2 for the auxiliary, and the infinitive *geben* at the very end. That bracket is the whole difference from the modal variants, and it is where the source languages mislead — they keep *would like to give* side by side, and the hand writes *Ich würde gern geben noch ein Beispiel*. The instruction names *würde* because *Ich möchte gern noch ein Beispiel geben* says the same thing and would not show the form."
+      ru: "У *geben* нет однословной вежливой формы, которую производит этот курс, поэтому он берёт *würde*: вспомогательный на второе место, инфинитив *geben* — в самый конец. Эта рамка и есть всё отличие от модальных вариантов, и именно здесь исходный язык сбивает: «хотел бы привести» держит два глагола рядом, и рука пишет *Ich würde gern geben noch ein Beispiel*. Инструкция называет *würde*, потому что *Ich möchte gern noch ein Beispiel geben* говорит то же самое и форму не показало бы."
+      uk: "У *geben* немає однослівної ввічливої форми, яку виробляє цей курс, тому воно бере *würde*: допоміжне на друге місце, інфінітив *geben* — у самий кінець. Ця рамка і є вся відмінність від модальних варіантів, і саме тут вихідна мова збиває: «хотів би навести» тримає два дієслова поруч, і рука пише *Ich würde gern geben noch ein Beispiel*. Інструкція називає *würde*, бо *Ich möchte gern noch ein Beispiel geben* каже те саме і форми не показало б."

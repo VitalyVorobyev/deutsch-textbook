@@ -16,14 +16,9 @@ transfer to a new context, not content volume or page views. Five boundaries hol
 
 ## Current sequence
 
-1. **The B1 topic-quality pass (P27-3g).** A1–B1 is authored and every coverage denominator is
-   closed (the figures and their commands are in [`CLAUDE.md`](../CLAUDE.md)). What stands between
-   B1 and being called complete is the whole-profile pass each A1 and A2 topic already received —
-   and both earlier waves found material defects that no instrument could see. One topic per PR, in
-   unit order. B1 may be called `100% des DTZ-Inventars`, never "all conceivable B1 grammar".
-2. **Evidence between the windows (P5-11).** Drain the grading queue to zero, rerun the audit, and
+1. **Evidence between the windows (P5-11).** Drain the grading queue to zero, rerun the audit, and
    only then read the weak-focus table. The A2 checkpoint read is the next revision trigger.
-3. **The open tracks below**, in the order the owner sets.
+2. **The open tracks below**, in the order the owner sets.
 
 Two standing constraints: add a semantic figure only when a named relation is clearer spatially than
 in prose or a table, and keep the authentic-document and extensive-reading streams growing without
@@ -88,5 +83,6 @@ completion state. Language quality — the RU/UK calque review (C6-1) and EN/RU/
 
 All fourteen contracted units and the six further B1 topics have shipped with their grammar,
 outcome-valid practice, readings, probes and vocabulary, and the coverage commands pass. What is
-left: the B1 topic-quality pass, an empty grading queue, and an honest read of the delayed evidence.
+left, now that every B1 topic has had its topic-quality pass: an empty grading queue and an honest
+read of the delayed evidence.
 Shipping the catalogue was never a claim that a competence was retained.
