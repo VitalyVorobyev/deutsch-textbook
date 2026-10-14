@@ -283,6 +283,20 @@ GitHub Release notes.
     and *zu lassen* exists after *raten*.
   - Two reading explanations no longer contradict the text, and eleven card notes no
     longer teach something false.
+- **B1.19 Bildungswege — quality pass.**
+  - Fixed facts: the Grundschule lasts six years in Berlin and Brandenburg, not four
+    everywhere. The Fachhochschule does not require the Abitur, and the Volkshochschule
+    also offers school certificates.
+  - Correct German is accepted:
+    - the main clause before the *falls* or *wenn* clause;
+    - a *damit* clause at the start;
+    - the *werden*-future;
+    - *unser*, *das Studium*, *die Dokumente*.
+    
+    Before, several of these were marked as the *falls*/*damit* mistake.
+  - In the placement test, *Wenn* is accepted where a place may or may not come free.
+  - The purpose table no longer asks for the one row where *damit* would also be correct.
+  - Twelve card notes no longer teach something false.
 
 ## [0.6.19] — 2026-10-11
 
