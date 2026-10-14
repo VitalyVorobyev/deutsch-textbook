@@ -22,6 +22,8 @@ GitHub Release notes.
   against the grammar point. The wrong form the exercise is about still does.
 - **B1 Lernen & Zukunft:** *wenn* where the instruction asks for *falls* is still marked wrong,
   but no longer counts as a *falls*/*wenn* mistake, since *wenn* is correct German there.
+- **The word-field panel no longer ends with a note about how cards are made.** It was a note
+  for the authors, not for you.
 
 ## [0.6.19] — 2026-10-14
 
