@@ -156,15 +156,15 @@ export default function LidOverview({ modules, state, lessons }: Props) {
         ? modules.map((m) => {
             const own = m.topics.flatMap((topic) => topic.ids);
             const r = lidReadiness(loaded.lid, own, loaded.now);
-            // `mistakes` counts the seen questions whose last answer was wrong, so the rest of
-            // the seen ones are exactly those whose last answer was right.
+            // The three statuses partition the seen questions (`lidQuestionStatus`).
             return {
               id: m.id,
               title: m.title,
               total: r.total,
               seen: r.seen,
-              right: r.seen - r.mistakes,
-              wrong: r.mistakes,
+              secure: r.secure,
+              shaky: r.shaky,
+              missed: r.missed,
             };
           })
         : null,
@@ -261,13 +261,14 @@ export default function LidOverview({ modules, state, lessons }: Props) {
 
       {readiness && !fresh && (
         <section className={`${CARD} p-5`}>
-          <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-4 sm:grid-cols-5">
             {(
               [
                 ['lid.statSeen', `${readiness.seen}/${readiness.total}`],
-                ['lid.statLastTwo', readiness.lastTwoCorrect],
+                ['lid.statSecure', readiness.secure],
+                ['lid.statShaky', readiness.shaky],
+                ['lid.statMissed', readiness.missed],
                 ['lid.statDue', readiness.due],
-                ['lid.statMistakes', readiness.mistakes],
               ] as const
             ).map(([key, value]) => (
               <div key={key}>
@@ -289,14 +290,21 @@ export default function LidOverview({ modules, state, lessons }: Props) {
                   aria-hidden="true"
                   className="mr-1 inline-block h-2 w-3 rounded-sm bg-green-600 dark:bg-green-500"
                 />
-                {t('lid.legendRight', uiLang)}
+                {t('lid.legendSecure', uiLang)}
+              </span>
+              <span>
+                <span
+                  aria-hidden="true"
+                  className="mr-1 inline-block h-2 w-3 rounded-sm bg-amber-400"
+                />
+                {t('lid.legendShaky', uiLang)}
               </span>
               <span>
                 <span
                   aria-hidden="true"
                   className="mr-1 inline-block h-2 w-3 rounded-sm bg-red-500"
                 />
-                {t('lid.legendWrong', uiLang)}
+                {t('lid.legendMissed', uiLang)}
               </span>
               <span>
                 <span
@@ -305,6 +313,11 @@ export default function LidOverview({ modules, state, lessons }: Props) {
                 />
                 {t('lid.legendUnseen', uiLang)}
               </span>
+            </p>
+          )}
+          {!fresh && (
+            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+              {t('lid.statusRule', uiLang)}
             </p>
           )}
           <ul className="mt-3 space-y-3">
@@ -326,18 +339,22 @@ export default function LidOverview({ modules, state, lessons }: Props) {
                     >
                       <div
                         className="bg-green-600 dark:bg-green-500"
-                        style={{ width: `${(row.right / row.total) * 100}%` }}
+                        style={{ width: `${(row.secure / row.total) * 100}%` }}
+                      />
+                      <div
+                        className="bg-amber-400"
+                        style={{ width: `${(row.shaky / row.total) * 100}%` }}
                       />
                       <div
                         className="bg-red-500"
-                        style={{ width: `${(row.wrong / row.total) * 100}%` }}
+                        style={{ width: `${(row.missed / row.total) * 100}%` }}
                       />
                     </div>
                     {row.seen > 0 && (
                       <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-                        {lidText('lid.moduleRight', uiLang, {
-                          right: row.right,
-                          pct: Math.round((row.right / row.seen) * 100),
+                        {lidText('lid.moduleSecure', uiLang, {
+                          secure: row.secure,
+                          pct: Math.round((row.secure / row.seen) * 100),
                         })}
                       </p>
                     )}

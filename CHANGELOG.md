@@ -13,6 +13,18 @@ GitHub Release notes.
 
 ### Changed
 
+- **Leben in Deutschland: practice deals its questions in random order** — the due ones first, then
+  today's new ones, each group shuffled — instead of walking the catalogue topic by topic.
+- **Leben in Deutschland: each question now shows whether you really know it.** "Right last time"
+  was right almost always, because a missed question comes back until you answer it. Now each day
+  counts once, and a day is right only if every answer that day was: a question is *sicher* when
+  you got it right on two days running, *unsicher* when right once, and a *Fehler* when you got it
+  wrong on its last day — even if you put it right a few questions later. The overview shows the
+  three per subject area, and *Fehler wiederholen* brings a mistake back the next day until you
+  answer it right again.
+
+### Changed
+
 - **B1 articles are being rewritten to read in German first.** The explanation is German text, and
   each section ends with two folds: *Übersetzung*, an English translation of the German, and
   *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache

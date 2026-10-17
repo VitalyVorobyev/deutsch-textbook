@@ -1439,25 +1439,44 @@ describe('Leben in Deutschland section', () => {
     ],
   };
 
-  test('reports latest-answer accuracy by module and topic, the most missed, and mocks against both marks', () => {
+  test('reports per-day status by module and topic, the most missed, and mocks against both marks', () => {
     const audit = buildAudit(snapshot({ version: 8, lid }), {
       snapshotPath: 'snapshot.json',
       catalog: catalog(),
       lid: context,
       now: ts(13),
     });
-    expect(audit.lid).toMatchObject({ answers: 5, total: 4, seen: 3, lastTwoCorrect: 0 });
+    // general-001: wrong, wrong, right on three days → shaky; general-002: wrong → missed;
+    // BY-01: right once → shaky. A status needs a second right day to become secure.
+    expect(audit.lid).toMatchObject({
+      answers: 5,
+      total: 4,
+      seen: 3,
+      secure: 0,
+      shaky: 2,
+      missed: 1,
+    });
     expect(audit.lid!.byGroup).toEqual([
-      { module: 'Leben in der Demokratie', questions: 3, seen: 2, latestCorrect: 1 },
+      { module: 'Leben in der Demokratie', questions: 3, seen: 2, secure: 0, shaky: 1, missed: 1 },
       {
         module: 'Leben in der Demokratie',
         topic: 'Grundrechte',
         questions: 2,
         seen: 2,
-        latestCorrect: 1,
+        secure: 0,
+        shaky: 1,
+        missed: 1,
       },
-      { module: 'Bayern', questions: 1, seen: 1, latestCorrect: 1 },
-      { module: 'Bayern', topic: 'Freistaat Bayern', questions: 1, seen: 1, latestCorrect: 1 },
+      { module: 'Bayern', questions: 1, seen: 1, secure: 0, shaky: 1, missed: 0 },
+      {
+        module: 'Bayern',
+        topic: 'Freistaat Bayern',
+        questions: 1,
+        seen: 1,
+        secure: 0,
+        shaky: 1,
+        missed: 0,
+      },
     ]);
     expect(audit.lid!.mostMissed).toEqual([
       { id: 'general-001', wrong: 2, answers: 3, question: 'Frage general-001?' },

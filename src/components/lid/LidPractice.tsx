@@ -1,7 +1,7 @@
 /**
- * Leben-in-Deutschland practice (ADR 0021): due questions first, then today's new ones in
- * teaching order (`planLidPractice`), or — in `fehler` mode — every question whose last answer
- * was wrong (`lidMistakes`). `?lektion=<id>` narrows practice to one lesson's questions and deals
+ * Leben-in-Deutschland practice (ADR 0021): the due questions first, then today's new ones
+ * (`planLidPractice`), or — in `fehler` mode — every open mistake (`lidMistakes`). Within each
+ * group the order is random, so the sequence never walks the catalogue topic by topic. `?lektion=<id>` narrows practice to one lesson's questions and deals
  * all of them (`planLidScopedPractice`): the page is static, so the scope is read here, on the
  * client, and an unknown id falls back to ordinary practice with a quiet note.
  *
@@ -21,6 +21,7 @@ import {
   lidMistakes,
   planLidPractice,
   planLidScopedPractice,
+  shuffleQueue,
   type LidAnswer,
   type LidState,
 } from '../../lib/lid';
@@ -52,6 +53,8 @@ interface Props {
   lessons?: LidLessonScopes;
   /** Shuffle source for the options, injectable so a test can pin an order. */
   rng?: () => number;
+  /** Shuffle source for the queue, injectable so a test can pin the question order. */
+  queueRng?: () => number;
 }
 
 interface Planned {
@@ -81,6 +84,7 @@ export default function LidPractice({
   mode = 'practice',
   lessons,
   rng,
+  queueRng,
 }: Props) {
   const uiLang = useUiLang();
   const byId = useMemo(
@@ -110,6 +114,9 @@ export default function LidPractice({
   const misses = useRef(new Map<string, MissRecord>());
   const [tally, setTally] = useState({ right: 0, wrong: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
+  // Read when a queue is dealt, never a reason to deal again: a new generator must not reshuffle
+  // a sitting in progress.
+  const queueRngRef = useRef(queueRng);
 
   useEffect(() => {
     let cancelled = false;
@@ -129,12 +136,19 @@ export default function LidPractice({
           return;
         }
         const now = new Date();
+        const shuffle = queueRngRef.current ?? Math.random;
         const plan =
           mode === 'fehler'
-            ? lidMistakes(state, ids)
+            ? shuffleQueue(lidMistakes(state, ids, now), shuffle)
             : scope.kind === 'lesson'
-              ? planLidScopedPractice({ questionIds: ids, state, now })
-              : planLidPractice({ questionIds: ids, state, now, newPerDay: readNewPerDay() });
+              ? planLidScopedPractice({ questionIds: ids, state, now, rng: shuffle })
+              : planLidPractice({
+                  questionIds: ids,
+                  state,
+                  now,
+                  newPerDay: readNewPerDay(),
+                  rng: shuffle,
+                });
         const due = plan.filter((id) => state.cards[id]).length;
         setLoadError(false);
         setLid(state);
