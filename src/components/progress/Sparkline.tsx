@@ -44,7 +44,14 @@ export function Sparkline({ values, width = 88, height = 24, className = '' }: P
       className={className}
       aria-hidden
     >
-      <line x1="0" y1={height - 1} x2={width} y2={height - 1} stroke="currentColor" strokeOpacity="0.15" />
+      <line
+        x1="0"
+        y1={height - 1}
+        x2={width}
+        y2={height - 1}
+        stroke="currentColor"
+        strokeOpacity="0.15"
+      />
       {pts.length > 1 && <path d={path} fill="none" stroke="currentColor" strokeWidth="1.5" />}
       {pts.map((p) => (
         <circle key={p.i} cx={x(p.i)} cy={y(p.v)} r="1.6" fill="currentColor" />

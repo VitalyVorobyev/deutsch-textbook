@@ -34,7 +34,10 @@ function acceptedRenderings(item: ExerciseItem): string[] {
   if (item.type === 'cloze')
     return (combinations(clozeGaps(item.text)) ?? []).map((values) => fillCloze(item.text, values));
   if (item.type === 'order')
-    return [normalizeSentence(item.words), ...item.accept.map((s) => normalizeSentence(s.split(/\s+/)))];
+    return [
+      normalizeSentence(item.words),
+      ...item.accept.map((s) => normalizeSentence(s.split(/\s+/))),
+    ];
   if (item.type === 'table')
     return [
       item.rows
@@ -91,10 +94,18 @@ export function focusEvidenceProblems(item: ExerciseItem, role: string | undefin
     // item itself accepts the moment a learner pairs it with any unrelated slip.
     for (const rendering of acceptedRenderings(item)) {
       for (const pattern of evidence.failed) {
-        if (evaluateFocusEvidence(rendering, false, { ...evidence, retained: [], failed: [pattern] }) === 'failed')
+        if (
+          evaluateFocusEvidence(rendering, false, {
+            ...evidence,
+            retained: [],
+            failed: [pattern],
+          }) === 'failed'
+        )
           problems.push(
             `focus_evidence.failed "${pattern}" fires on the accepted rendering "${rendering}"` +
-              (evidence.case_sensitive ? '' : ' (predicates match case-insensitively unless case_sensitive: true)'),
+              (evidence.case_sensitive
+                ? ''
+                : ' (predicates match case-insensitively unless case_sensitive: true)'),
           );
       }
     }

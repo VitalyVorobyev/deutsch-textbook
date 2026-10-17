@@ -34,7 +34,10 @@ export function imageDimensions(bytes: Uint8Array): { width: number; height: num
       if (chunk === 'VP8X') return { width: u24(24) + 1, height: u24(27) + 1 };
       // VP8 (lossy): a 3-byte frame tag and the start code 9d 01 2a, then 14-bit sizes.
       if (chunk === 'VP8 ' && bytes[23] === 0x9d && bytes[24] === 0x01 && bytes[25] === 0x2a)
-        return { width: view.getUint16(26, true) & 0x3fff, height: view.getUint16(28, true) & 0x3fff };
+        return {
+          width: view.getUint16(26, true) & 0x3fff,
+          height: view.getUint16(28, true) & 0x3fff,
+        };
       // VP8L (lossless): signature 0x2f, then width − 1 and height − 1 packed in 14 bits each.
       if (chunk === 'VP8L' && bytes[20] === 0x2f) {
         const bits = view.getUint32(21, true);
@@ -64,7 +67,8 @@ function svgDimensions(bytes: Uint8Array): { width: number; height: number } | u
   const rest = text.slice(SVG_PROLOGUE.exec(text)![0].length);
   const root = /^<svg\b([^>]*)>/.exec(rest);
   if (!root) return rest.startsWith('<svg') ? undefined : null;
-  const attr = (name: string) => new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`).exec(root[1]!);
+  const attr = (name: string) =>
+    new RegExp(`\\s${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`).exec(root[1]!);
   const pixels = (name: string) => {
     const match = attr(name);
     const value = match && SVG_PIXELS.exec(match[1] ?? match[2]!);
@@ -74,7 +78,12 @@ function svgDimensions(bytes: Uint8Array): { width: number; height: number } | u
   const height = pixels('height');
   if (width && height) return { width, height };
   const box = attr('viewBox');
-  const numbers = box ? (box[1] ?? box[2]!).trim().split(/[\s,]+/).map(Number) : [];
+  const numbers = box
+    ? (box[1] ?? box[2]!)
+        .trim()
+        .split(/[\s,]+/)
+        .map(Number)
+    : [];
   if (numbers.length !== 4 || numbers.some((n) => !Number.isFinite(n))) return undefined;
   const [, , boxWidth, boxHeight] = numbers as [number, number, number, number];
   if (boxWidth <= 0 || boxHeight <= 0) return undefined;

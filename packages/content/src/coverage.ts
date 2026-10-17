@@ -41,8 +41,7 @@ const VOCAB_DIR = 'content/vocab';
 export const MEASURED_LEVELS = ['A1', 'A2', 'B1'] as const;
 export type MeasuredLevel = (typeof MEASURED_LEVELS)[number];
 
-const manifestPath = (level: Level): string =>
-  `data/goethe-${level.toLowerCase()}-wortliste.txt`;
+const manifestPath = (level: Level): string => `data/goethe-${level.toLowerCase()}-wortliste.txt`;
 
 export interface CoverageSection {
   name: string;
@@ -127,7 +126,10 @@ function deckLevels(root: string): Map<string, Level> {
   if (cached) return cached;
   const levels = new Map<string, Level>();
   for (const file of readdirSync(join(root, VOCAB_DIR)).filter((f) => f.endsWith('.yaml'))) {
-    const data = YAML.parse(readFileSync(join(root, VOCAB_DIR, file), 'utf8')) as { id: string; level: Level };
+    const data = YAML.parse(readFileSync(join(root, VOCAB_DIR, file), 'utf8')) as {
+      id: string;
+      level: Level;
+    };
     levels.set(data.id, data.level);
   }
   deckLevelsCache.set(root, levels);
@@ -140,7 +142,9 @@ function deckHeadwords(root: string): Map<string, string[]> {
   if (cached) return cached;
   const ownedBy = new Map<string, string[]>();
   const vocabDir = join(root, VOCAB_DIR);
-  for (const file of readdirSync(vocabDir).filter((f) => f.endsWith('.yaml')).sort()) {
+  for (const file of readdirSync(vocabDir)
+    .filter((f) => f.endsWith('.yaml'))
+    .sort()) {
     const data = YAML.parse(readFileSync(join(vocabDir, file), 'utf8')) as {
       id: string;
       entries: Array<{ de: string }>;
@@ -527,7 +531,9 @@ export function goetheCoverage(level: Level, root = repoRoot()): Coverage {
   const order: Record<Level, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
   const late = sections
     .flatMap((section) => section.covered)
-    .filter((word) => (ownedBy.get(word) ?? []).every((deck) => order[levels.get(deck) ?? 'B2'] > order[level]));
+    .filter((word) =>
+      (ownedBy.get(word) ?? []).every((deck) => order[levels.get(deck) ?? 'B2'] > order[level]),
+    );
   return {
     level,
     sections,

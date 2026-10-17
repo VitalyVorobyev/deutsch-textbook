@@ -57,7 +57,12 @@ export function structureCoverage(level: Level, root = repoRoot()): StructureCov
     level,
     points
       .filter((point) => LEVELS.includes(productionLevel(point) as Level))
-      .map((point) => ({ id: point.id, level: productionLevel(point) as Level, claims: point.claims, label: point.de })),
+      .map((point) => ({
+        id: point.id,
+        level: productionLevel(point) as Level,
+        claims: point.claims,
+        label: point.de,
+      })),
     root,
   );
   const byId = new Map(points.map((p) => [p.id, p]));

@@ -17,18 +17,42 @@
  * more, because a number in a module header has no gate: measure it with
  * `JSON.stringify(graphPayload(contentGraph())).length` when you need one.
  */
-import { listeningAudioPath, type AtlasGroup, type AtlasUnit, type Level, type Outcome } from '@da/schema';
+import {
+  listeningAudioPath,
+  type AtlasGroup,
+  type AtlasUnit,
+  type Level,
+  type Outcome,
+} from '@da/schema';
 import { CEFR_LEVELS, LEVELS } from '@da/schema';
 import type { ContentGraph } from './graph';
 import type { Element } from './elements';
-import { levelMedians, problems, readingWords, topicProfile, type LevelMedians, type Problem, type TopicProfile } from './profile';
-import { grammarCoverage, type GrammarCoverage, type GrammarPoint, type GrammarTrack } from './grammar-coverage';
+import {
+  levelMedians,
+  problems,
+  readingWords,
+  topicProfile,
+  type LevelMedians,
+  type Problem,
+  type TopicProfile,
+} from './profile';
+import {
+  grammarCoverage,
+  type GrammarCoverage,
+  type GrammarPoint,
+  type GrammarTrack,
+} from './grammar-coverage';
 import { goetheCoverage, hasManifest, type Coverage } from './coverage';
 import { structureCoverage, type StructureCoverage, type StructureSource } from './structures';
 import { levelDepth, type LevelDepth } from './grammar-depth';
 import { focusIntroducedBy } from './focus-tags';
 import type { Diagnostic } from './editor';
-import { loadAnchorSources, type AnchorCoverage, type AnchorDimension, type AnchorSource } from './anchors';
+import {
+  loadAnchorSources,
+  type AnchorCoverage,
+  type AnchorDimension,
+  type AnchorSource,
+} from './anchors';
 import { handlungCoverage } from './handlungen';
 import { themaCoverage } from './themen';
 import { languageCoverage, type TopicLanguageCoverage } from './preview';
@@ -196,7 +220,10 @@ function buildPayload(graph: ContentGraph): GraphPayload {
   topics.sort((a, b) => a.spine - b.spine);
 
   const tags: TagSummary[] = [];
-  const allTags = new Set<string>([...Object.keys(focusIntroducedBy), ...graph.elementsByTag.keys()]);
+  const allTags = new Set<string>([
+    ...Object.keys(focusIntroducedBy),
+    ...graph.elementsByTag.keys(),
+  ]);
   for (const tag of [...allTags].sort()) {
     const elements = graph.elementsByTag.get(tag) ?? [];
     tags.push({
@@ -260,33 +287,46 @@ function buildPayload(graph: ContentGraph): GraphPayload {
   // one. Add a key here only when nothing renders it; a view that needs one of these should get
   // its own chunk instead, the way `items`/`vocab`/`texts` already do.
   const DROP_ON_WIRE = new Set(['ownedBy', 'byType']);
-  const wireSafe = <T,>(value: T): T => JSON.parse(JSON.stringify(value, (key, v) => {
-    if (DROP_ON_WIRE.has(key)) return undefined;
-    return v instanceof Map ? Object.fromEntries(v) : v;
-  })) as T;
+  const wireSafe = <T>(value: T): T =>
+    JSON.parse(
+      JSON.stringify(value, (key, v) => {
+        if (DROP_ON_WIRE.has(key)) return undefined;
+        return v instanceof Map ? Object.fromEntries(v) : v;
+      }),
+    ) as T;
   const reports: LevelReport[] = LEVELS.map((level) => {
     const report: LevelReport = { level, medians: medians.get(level) };
     // Each measurement is imported, never reimplemented. A figure here that disagrees with
     // `bun scripts/<name>.ts` means this payload is wrong and the script is right.
     try {
       report.grammar = grammarCoverage(level, graph.root);
-    } catch { /* a level with no inventory rows simply has no grammar report */ }
+    } catch {
+      /* a level with no inventory rows simply has no grammar report */
+    }
     try {
       if (hasManifest(level, graph.root)) report.wortliste = goetheCoverage(level, graph.root);
-    } catch { /* no Wortliste manifest at this level */ }
+    } catch {
+      /* no Wortliste manifest at this level */
+    }
     try {
       report.depth = levelDepth(level, graph.root);
-    } catch { /* no tags at this level */ }
+    } catch {
+      /* no tags at this level */
+    }
     try {
       report.structures = structureCoverage(level, graph.root);
-    } catch { /* no external anchor at this level */ }
+    } catch {
+      /* no external anchor at this level */
+    }
     return wireSafe(report);
   });
-  const anchorReports: AnchorLevelReport[] = LEVELS.map((level) => wireSafe({
-    level,
-    handlung: handlungCoverage(level, graph.root),
-    thema: themaCoverage(level, graph.root),
-  }));
+  const anchorReports: AnchorLevelReport[] = LEVELS.map((level) =>
+    wireSafe({
+      level,
+      handlung: handlungCoverage(level, graph.root),
+      thema: themaCoverage(level, graph.root),
+    }),
+  );
   const anchorSources = (['struktur', 'handlung', 'thema'] as const).flatMap((dimension) =>
     loadAnchorSources(dimension, graph.root).map((source) => ({ dimension, source })),
   );

@@ -59,8 +59,25 @@ export function glossWordCount(gloss: string): number {
     "foot", are different prompts — an over-eager list would merge glosses that
     differ in a real content word. */
 const STOPWORDS = new Set([
-  'a', 'an', 'the', 'to', 'of', 'and', 'or', 'that', 'which', 'who', 'you',
-  'it', 'is', 'are', 'be', 'one', 'someone', 'something', 'somebody',
+  'a',
+  'an',
+  'the',
+  'to',
+  'of',
+  'and',
+  'or',
+  'that',
+  'which',
+  'who',
+  'you',
+  'it',
+  'is',
+  'are',
+  'be',
+  'one',
+  'someone',
+  'something',
+  'somebody',
 ]);
 
 function contentWordKey(gloss: string): string {
@@ -91,9 +108,14 @@ export function duplicateGlossPairs(entries: VocabGlossEntry[]): Array<[string, 
   return pairs;
 }
 
-export function deckGlossShape(id: string, file: string, entries: VocabGlossEntry[]): DeckGlossShape {
+export function deckGlossShape(
+  id: string,
+  file: string,
+  entries: VocabGlossEntry[],
+): DeckGlossShape {
   const counts = entries.map((e) => glossWordCount(e.en ?? '')).sort((a, b) => a - b);
-  const at = (q: number) => (counts.length ? counts[Math.min(counts.length - 1, Math.floor(counts.length * q))] : 0);
+  const at = (q: number) =>
+    counts.length ? counts[Math.min(counts.length - 1, Math.floor(counts.length * q))] : 0;
   return {
     id,
     file,
@@ -110,7 +132,9 @@ export function deckGlossShape(id: string, file: string, entries: VocabGlossEntr
 export function glossShapeReport(root: string, level?: string): DeckGlossShape[] {
   const dir = join(root, 'content', 'vocab');
   const out: DeckGlossShape[] = [];
-  for (const file of readdirSync(dir).filter((f) => f.endsWith('.yaml')).sort()) {
+  for (const file of readdirSync(dir)
+    .filter((f) => f.endsWith('.yaml'))
+    .sort()) {
     const doc = YAML.parse(readFileSync(join(dir, file), 'utf8')) as {
       id?: string;
       level?: string;
