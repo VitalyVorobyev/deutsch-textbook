@@ -12,12 +12,14 @@ import {
   EMPTY_LID_STATE,
   lidExamAnswers,
   lidMistakes,
+  lidQuestionStatus,
   lidReadiness,
   mulberry32,
   planLidPractice,
   planLidScopedPractice,
   scoreMock,
   shouldShuffleOptions,
+  shuffleQueue,
   type LidAnswer,
   type LidExamRun,
   type LidState,
@@ -428,12 +430,78 @@ describe('lidMistakes', () => {
     answer('BY-01', false, t + 5),
   );
 
-  test('lists questions whose most recent answer was wrong, most recent first', () => {
-    expect(lidMistakes(state)).toEqual(['BY-01', 'general-003', 'general-002']);
+  test('lists questions missed on their latest day, most recent first', () => {
+    expect(lidMistakes(state, undefined, new Date(t))).toEqual([
+      'BY-01',
+      'general-003',
+      'general-002',
+    ]);
+  });
+
+  test('a miss put right today waits until tomorrow, then comes back', () => {
+    // general-001 was missed and then answered right on the same day: done for today ...
+    expect(lidMistakes(state, undefined, new Date(t))).not.toContain('general-001');
+    // ... but the right retry did not close it, so it is a mistake again the next day.
+    expect(lidMistakes(state, undefined, new Date(t + DAY))).toEqual([
+      'BY-01',
+      'general-003',
+      'general-001',
+      'general-002',
+    ]);
   });
 
   test('restricts to the given questions', () => {
-    expect(lidMistakes(state, ['general-002', 'general-001'])).toEqual(['general-002']);
+    expect(lidMistakes(state, ['general-002', 'general-001'], new Date(t))).toEqual([
+      'general-002',
+    ]);
+  });
+});
+
+describe('lidQuestionStatus — one verdict per day', () => {
+  const t = Date.parse('2026-10-01T10:00:00Z');
+  const of = (...answers: LidAnswer[]) => answers;
+
+  test('unseen without answers', () => {
+    expect(lidQuestionStatus(undefined)).toBe('unseen');
+    expect(lidQuestionStatus([])).toBe('unseen');
+  });
+
+  test('a right retry after a miss does not rescue the day', () => {
+    expect(lidQuestionStatus(of(answer('q', false, t), answer('q', true, t + 60_000)))).toBe(
+      'missed',
+    );
+  });
+
+  test('a wrong answer later in the day fails the day too', () => {
+    expect(lidQuestionStatus(of(answer('q', true, t), answer('q', false, t + 60_000)))).toBe(
+      'missed',
+    );
+  });
+
+  test('right on one day is shaky; right on two days running is secure', () => {
+    expect(lidQuestionStatus(of(answer('q', true, t)))).toBe('shaky');
+    expect(lidQuestionStatus(of(answer('q', true, t), answer('q', true, t + 60_000)))).toBe(
+      'shaky',
+    );
+    expect(lidQuestionStatus(of(answer('q', true, t), answer('q', true, t + DAY)))).toBe('secure');
+  });
+
+  test('a miss closes on a later day, and becomes secure only on the day after', () => {
+    const missed = answer('q', false, t);
+    expect(lidQuestionStatus(of(missed, answer('q', true, t + DAY)))).toBe('shaky');
+    expect(
+      lidQuestionStatus(of(missed, answer('q', true, t + DAY), answer('q', true, t + 2 * DAY))),
+    ).toBe('secure');
+  });
+});
+
+describe('shuffleQueue', () => {
+  test('a permutation, reproducible for a seed', () => {
+    const ids = ['a', 'b', 'c', 'd', 'e', 'f'];
+    const once = shuffleQueue(ids, mulberry32(7));
+    expect([...once].sort()).toEqual(ids);
+    expect(shuffleQueue(ids, mulberry32(7))).toEqual(once);
+    expect(once).not.toEqual(ids);
   });
 });
 
@@ -457,7 +525,7 @@ describe('lidReadiness — facts, no probability', () => {
   const t = Date.parse('2026-10-01T10:00:00Z');
   const ids = ['general-001', 'general-002', 'general-003', 'general-004'];
 
-  test('counts seen, last-two-correct, due, mistakes and the last ten mocks', () => {
+  test('counts seen, the three statuses, due, mistakes and the last ten mocks', () => {
     let state = replay(
       EMPTY_LID_STATE,
       answer('general-001', true, t),
@@ -472,7 +540,15 @@ describe('lidReadiness — facts, no probability', () => {
       state = applyLidExam(state, mockRun(`run-${i}`, t + i * DAY, 10 + i));
 
     const readiness = lidReadiness(state, ids, new Date(t + 30 * DAY));
-    expect(readiness).toMatchObject({ total: 4, seen: 3, lastTwoCorrect: 1, due: 3, mistakes: 0 });
+    expect(readiness).toMatchObject({
+      total: 4,
+      seen: 3,
+      secure: 1,
+      shaky: 2,
+      missed: 0,
+      due: 3,
+      mistakes: 0,
+    });
     expect(readiness.exams).toHaveLength(10);
     expect(readiness.exams[0]).toEqual({ submittedAt: t + 2 * DAY, correct: 12 });
     expect(readiness.exams.at(-1)).toEqual({ submittedAt: t + 11 * DAY, correct: 21 });

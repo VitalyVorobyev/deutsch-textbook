@@ -1123,19 +1123,10 @@ export const STRINGS = {
     uk: 'Усі питання ({n}) з відповідями',
   },
   'lid.statSeen': { de: 'gesehen', en: 'seen', ru: 'встречено', uk: 'траплялося' },
-  'lid.statLastTwo': {
-    de: 'zuletzt zweimal richtig',
-    en: 'right the last two times',
-    ru: 'дважды подряд верно',
-    uk: 'двічі поспіль правильно',
-  },
+  'lid.statSecure': { de: 'sicher', en: 'secure', ru: 'уверенно', uk: 'впевнено' },
+  'lid.statShaky': { de: 'unsicher', en: 'shaky', ru: 'неуверенно', uk: 'невпевнено' },
+  'lid.statMissed': { de: 'Fehler', en: 'mistakes', ru: 'ошибки', uk: 'помилки' },
   'lid.statDue': { de: 'fällig', en: 'due', ru: 'к повторению', uk: 'до повторення' },
-  'lid.statMistakes': {
-    de: 'offene Fehler',
-    en: 'open mistakes',
-    ru: 'открытые ошибки',
-    uk: 'відкриті помилки',
-  },
   'lid.modulesTitle': {
     de: 'Themenbereiche',
     en: 'Subject areas',
@@ -1154,23 +1145,35 @@ export const STRINGS = {
     ru: 'встречено {seen}/{total}',
     uk: 'траплялося {seen}/{total}',
   },
-  'lid.moduleRight': {
-    de: 'davon {right} zuletzt richtig ({pct} %)',
-    en: '{right} of them right last time ({pct}%)',
-    ru: 'из них в последний раз верно: {right} ({pct} %)',
-    uk: 'з них останнього разу правильно: {right} ({pct} %)',
+  'lid.moduleSecure': {
+    de: 'davon {secure} sicher ({pct} %)',
+    en: '{secure} of them secure ({pct}%)',
+    ru: 'из них уверенно: {secure} ({pct} %)',
+    uk: 'з них впевнено: {secure} ({pct} %)',
   },
-  'lid.legendRight': {
-    de: 'zuletzt richtig',
-    en: 'right last time',
-    ru: 'в последний раз верно',
-    uk: 'останнього разу правильно',
+  'lid.legendSecure': {
+    de: 'sicher — an zwei Tagen nacheinander richtig',
+    en: 'secure — right on two days running',
+    ru: 'уверенно — верно два дня подряд',
+    uk: 'впевнено — правильно два дні поспіль',
   },
-  'lid.legendWrong': {
-    de: 'zuletzt falsch',
-    en: 'wrong last time',
-    ru: 'в последний раз неверно',
-    uk: 'останнього разу неправильно',
+  'lid.legendShaky': {
+    de: 'unsicher — zuletzt richtig, aber noch nicht zweimal',
+    en: 'shaky — right last day, not yet twice',
+    ru: 'неуверенно — в последний день верно, но ещё не дважды',
+    uk: 'невпевнено — останнього дня правильно, але ще не двічі',
+  },
+  'lid.legendMissed': {
+    de: 'Fehler — am letzten Tag falsch',
+    en: 'mistake — wrong on the last day',
+    ru: 'ошибка — в последний день неверно',
+    uk: 'помилка — останнього дня неправильно',
+  },
+  'lid.statusRule': {
+    de: 'Jeder Tag zählt einmal: Ein Tag ist nur richtig, wenn jede Antwort an diesem Tag richtig war. Eine Wiederholung nach einem Fehler zählt also erst an einem anderen Tag.',
+    en: 'Each day counts once: a day is right only if every answer that day was right. So a retry after a mistake only counts on another day.',
+    ru: 'Каждый день считается один раз: день засчитывается, только если все ответы в этот день были верны. Повтор после ошибки засчитывается лишь в другой день.',
+    uk: 'Кожен день рахується один раз: день зараховується, лише якщо всі відповіді того дня були правильні. Повтор після помилки зараховується лише іншого дня.',
   },
   'lid.legendUnseen': {
     de: 'noch nicht gesehen',

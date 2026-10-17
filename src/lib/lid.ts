@@ -10,12 +10,14 @@
  *
  * The mock exam is calibration, never mastery: its score is reported against BOTH published
  * thresholds, which are different pass marks for different tests and are never merged. Readiness
- * is facts — seen, correct on the last two answers, due, mock scores — never a pass probability.
+ * is facts — seen, each question's status (`lidQuestionStatus`), due, mock scores — never a pass
+ * probability.
  *
  * Pure: no `node:fs` and no store access, because React islands import it. (`./store` appears
  * below for its types only.)
  */
 import { LID_EXAM, type LidBank, type LidOptionKey, type LidQuestion } from '@da/schema/lid';
+import { localDateString } from './local-date';
 import { mergeCards } from './snapshot-merge';
 import { applyGradeAt, introducedToday, Rating } from './srs';
 import type { StoredCard } from './store';
@@ -142,6 +144,8 @@ export interface LidPracticeInput {
   /** new questions per local day — counted against LiD's own cards, never the course's budget */
   newPerDay: number;
   limit?: number;
+  /** Given, each group (due, then new) is dealt in random order; omitted, the order below. */
+  rng?: () => number;
 }
 
 /**
@@ -159,6 +163,7 @@ export function planLidPractice({
   now,
   newPerDay,
   limit,
+  rng,
 }: LidPracticeInput): string[] {
   const due: string[] = [];
   const fresh: string[] = [];
@@ -169,7 +174,8 @@ export function planLidPractice({
   }
   due.sort((a, b) => Date.parse(state.cards[a]!.due) - Date.parse(state.cards[b]!.due));
   const allowance = Math.max(0, newPerDay - practiceIntroducedToday(state, now));
-  const queue = [...due, ...fresh.slice(0, allowance)];
+  // The allowance picks today's new questions in teaching order; only their order is shuffled.
+  const queue = [...within(due, rng), ...within(fresh.slice(0, allowance), rng)];
   return limit === undefined ? queue : queue.slice(0, Math.max(0, limit));
 }
 
@@ -183,6 +189,8 @@ export interface LidScopedPracticeInput {
    * puts the most overdue first — but the call reads one clock like every other planner here.
    */
   now: Date;
+  /** Given, each of the three groups is dealt in random order; omitted, the order below. */
+  rng?: () => number;
 }
 
 /**
@@ -198,7 +206,11 @@ export interface LidScopedPracticeInput {
  * A question first met here still gets its card through `applyLidAnswer`, so this queue spends
  * the day's new-question allowance like any practice — what it skips is only the cap.
  */
-export function planLidScopedPractice({ questionIds, state }: LidScopedPracticeInput): string[] {
+export function planLidScopedPractice({
+  questionIds,
+  state,
+  rng,
+}: LidScopedPracticeInput): string[] {
   const ids = [...new Set(questionIds)];
   const wrong = lidMistakes(state, ids);
   const wrongSet = new Set(wrong);
@@ -219,7 +231,7 @@ export function planLidScopedPractice({ questionIds, state }: LidScopedPracticeI
     const [x, y] = [due(a), due(b)];
     return x === y ? 0 : x < y ? -1 : 1;
   });
-  return [...wrong, ...fresh, ...rest];
+  return [...within(wrong, rng), ...within(fresh, rng), ...within(rest, rng)];
 }
 
 /**
@@ -238,16 +250,86 @@ function practiceIntroducedToday(state: LidState, now: Date): number {
   return introducedToday(practiced, now);
 }
 
-/** Questions whose MOST RECENT answer was wrong, most recent first — optionally within a set. */
-export function lidMistakes(state: LidState, questionIds?: readonly string[]): string[] {
+/**
+ * Where a question stands, read one local DAY at a time: a day is right only when every answer the
+ * question got that day was right.
+ *
+ * Practice re-asks a missed question later in the same sitting until it is answered right
+ * (`recordMiss`), so a question's latest answer is right almost by construction, and "wrong last
+ * time" read off it was close to zero however many questions had been missed. The retry is
+ * answered with the feedback still fresh — it shows the learner saw the answer, not that they know
+ * it — so a right retry cannot rescue its day, while a wrong answer always counts:
+ *
+ *  - `unseen` — never answered;
+ *  - `missed` — wrong on the latest day it came up;
+ *  - `shaky` — right on the latest day, but not on two days running;
+ *  - `secure` — right on the last two days it came up.
+ *
+ * A mistake therefore closes only on a later day, when the question is answered right again.
+ */
+export type LidStatus = 'unseen' | 'missed' | 'shaky' | 'secure';
+
+/** A question's answers, oldest first, reduced to one verdict per local day, oldest first. */
+function dayVerdicts(answers: readonly LidAnswer[]): Array<{ day: string; correct: boolean }> {
+  const out: Array<{ day: string; correct: boolean }> = [];
+  for (const answer of answers) {
+    const day = localDateString(new Date(answer.ts));
+    const last = out.at(-1);
+    if (last?.day === day) last.correct &&= answer.correct;
+    else out.push({ day, correct: answer.correct });
+  }
+  return out;
+}
+
+/** One question's status from its answers, oldest first (as `answersByQuestion` gives them). */
+export function lidQuestionStatus(answers: readonly LidAnswer[] | undefined): LidStatus {
+  if (!answers?.length) return 'unseen';
+  const days = dayVerdicts(answers);
+  if (!days.at(-1)!.correct) return 'missed';
+  return days.at(-2)?.correct ? 'secure' : 'shaky';
+}
+
+/** Every question's status within `questionIds`. */
+export function lidStatuses(
+  state: LidState,
+  questionIds: readonly string[],
+): Map<string, LidStatus> {
+  const answered = answersByQuestion(state.answers);
+  return new Map(questionIds.map((id) => [id, lidQuestionStatus(answered.get(id))]));
+}
+
+/**
+ * The questions to review as mistakes, most recently answered first — optionally within a set:
+ * status `missed`, less those missed today whose latest answer is already right again. Those stay
+ * `missed` until a later day, but asking them again today would only re-ask what the learner has
+ * just put right.
+ */
+export function lidMistakes(
+  state: LidState,
+  questionIds?: readonly string[],
+  now: Date = new Date(),
+): string[] {
   const within = questionIds ? new Set(questionIds) : undefined;
+  const today = localDateString(now);
   const latest: LidAnswer[] = [];
   for (const [q, answers] of answersByQuestion(state.answers)) {
     if (within && !within.has(q)) continue;
+    if (lidQuestionStatus(answers) !== 'missed') continue;
     const last = answers.at(-1)!;
-    if (!last.correct) latest.push(last);
+    if (last.correct && localDateString(new Date(last.ts)) === today) continue;
+    latest.push(last);
   }
   return latest.sort((a, b) => b.ts - a.ts).map((a) => a.q);
+}
+
+/** A practice queue in random order — the order says nothing about the answers. */
+export function shuffleQueue<T>(items: readonly T[], rng: () => number = Math.random): T[] {
+  return seededShuffle(items, rng);
+}
+
+/** One group of a queue: shuffled when a generator is given, as it stands when not. */
+function within<T>(items: T[], rng: (() => number) | undefined): T[] {
+  return rng ? seededShuffle(items, rng) : items;
 }
 
 /** A small seeded PRNG (mulberry32): uniform in [0, 1), the same sequence for the same seed. */
@@ -371,11 +453,15 @@ export interface LidReadiness {
   total: number;
   /** answered at least once */
   seen: number;
-  /** whose two most recent answers are both correct */
-  lastTwoCorrect: number;
+  /** status `secure`: right at the first try on the last two days it came up */
+  secure: number;
+  /** status `shaky`: right at the latest first try, not yet two days running */
+  shaky: number;
+  /** status `missed`: wrong at the latest first try */
+  missed: number;
   /** with a question state due now */
   due: number;
-  /** whose most recent answer was wrong */
+  /** still to review as mistakes today (`lidMistakes`) */
   mistakes: number;
   /** the last ten mocks, oldest first */
   exams: Array<{ submittedAt: number; correct: number }>;
@@ -389,25 +475,21 @@ export function lidReadiness(
 ): LidReadiness {
   const ids = new Set(questionIds);
   const answered = answersByQuestion(state.answers);
-  let seen = 0;
-  let lastTwoCorrect = 0;
+  const count = { unseen: 0, missed: 0, shaky: 0, secure: 0 };
   let due = 0;
   for (const id of ids) {
-    const answers = answered.get(id);
-    if (answers) {
-      seen++;
-      const [before, last] = answers.slice(-2);
-      if (before?.correct && last?.correct) lastTwoCorrect++;
-    }
+    count[lidQuestionStatus(answered.get(id))]++;
     const card = state.cards[id];
     if (card && Date.parse(card.due) <= now.getTime()) due++;
   }
   return {
     total: ids.size,
-    seen,
-    lastTwoCorrect,
+    seen: ids.size - count.unseen,
+    secure: count.secure,
+    shaky: count.shaky,
+    missed: count.missed,
     due,
-    mistakes: lidMistakes(state, questionIds).length,
+    mistakes: lidMistakes(state, questionIds, now).length,
     exams: [...state.exams]
       .sort(bySubmitted)
       .slice(-10)
