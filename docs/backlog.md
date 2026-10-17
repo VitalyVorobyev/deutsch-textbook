@@ -34,13 +34,12 @@ record of what shipped.
 
 ### Content
 
-- **C6-2 · B1 German-first conversion and its RU/UK translations** ([ADR 0023](adrs/0023-b1-articles-german-first.md)).
-  Converted: 8 of 20 (`grep -l '<Translation' content/topics/b1/*.mdx`). Next: the other six
-  articles with a `<De>` half, by script plus an English translation from the German; then the
-  six with none (`bildungswege`, `gespraech-steuern`, `polizei-anzeige`, `sucht-lebensstil`,
-  `unfall-notruf`, `versicherungen-behoerden`) get German written, and their exercise and reading
-  `explain` fields a `de` half; then the rule turns required for all of B1. After that, `<Ru>` and
-  `<Uk>` translation halves, written from the German.
+- **C6-3 · B1 German-first conversion and its RU/UK translations**
+  ([ADR 0023](adrs/0023-b1-articles-german-first.md)). Converted: 14 of 20 (`grep -l '<Translation'
+  content/topics/b1/*.mdx`). Next: the six with no `<De>` half (`bildungswege`, `gespraech-steuern`,
+  `polizei-anzeige`, `sucht-lebensstil`, `unfall-notruf`, `versicherungen-behoerden`) get German
+  written, and their exercise and reading `explain` fields a `de` half; then the rule turns
+  required for all of B1. After that, `<Ru>` and `<Uk>` translation halves, written from the German.
 - **C6-1 · RU/UK calque review.** Instrument: the `textbook-text-reviewer` → `textbook-text-editor`
   loop ([article-prose.md](authoring/article-prose.md)), then a fresh verify; two edit cycles at
   most. Eight B1 units remain — all but `digitales-leben`, `kultur-freizeit`, `geld-vertraege`,
