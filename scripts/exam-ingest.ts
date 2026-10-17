@@ -115,7 +115,12 @@ export interface Options {
 }
 
 export function parseArgs(argv: string[]): Options {
-  const options: Options = { sourcesPath: DEFAULT_SOURCES, check: false, force: false, help: false };
+  const options: Options = {
+    sourcesPath: DEFAULT_SOURCES,
+    check: false,
+    force: false,
+    help: false,
+  };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === '--sources') {
@@ -226,7 +231,8 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
     return { config: null, errors, warnings };
   }
   const top = raw as Record<string, unknown>;
-  if (top.version !== 1) errors.push(`${label}: "version" must be 1, got ${JSON.stringify(top.version)}`);
+  if (top.version !== 1)
+    errors.push(`${label}: "version" must be 1, got ${JSON.stringify(top.version)}`);
   if (!Array.isArray(top.sets) || top.sets.length === 0) {
     errors.push(`${label}: "sets" must be a non-empty array`);
     return { config: null, errors, warnings };
@@ -253,8 +259,10 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
     seenSetIds.add(s.id);
     const setWhere = `set "${s.id}"`;
 
-    if (typeof s.title !== 'string' || !s.title) errors.push(`${setWhere}: title must be a non-empty string`);
-    if (typeof s.level !== 'string' || !s.level) errors.push(`${setWhere}: level must be a non-empty string`);
+    if (typeof s.title !== 'string' || !s.title)
+      errors.push(`${setWhere}: title must be a non-empty string`);
+    if (typeof s.level !== 'string' || !s.level)
+      errors.push(`${setWhere}: level must be a non-empty string`);
     if (typeof s.pdf !== 'string' || !s.pdf) {
       errors.push(`${setWhere}: pdf must be a non-empty string, relative to ${label}`);
       return;
@@ -275,7 +283,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
       }
       const m = rawModule as Record<string, unknown>;
       if (typeof m.module !== 'string' || !MODULE_IDS.includes(m.module as ExamModuleId)) {
-        errors.push(`${mWhere}.module must be one of ${MODULE_IDS.join('|')}, got ${JSON.stringify(m.module)}`);
+        errors.push(
+          `${mWhere}.module must be one of ${MODULE_IDS.join('|')}, got ${JSON.stringify(m.module)}`,
+        );
         return;
       }
       const moduleId = m.module as ExamModuleId;
@@ -286,8 +296,10 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
       seenModuleIds.add(moduleId);
       const mWhere2 = `${setWhere}/${moduleId}`;
 
-      if (!isPositiveNumber(m.timeLimitMin)) errors.push(`${mWhere2}: timeLimitMin must be a positive number`);
-      if (!isPositiveNumber(m.maxScaled)) errors.push(`${mWhere2}: maxScaled must be a positive number`);
+      if (!isPositiveNumber(m.timeLimitMin))
+        errors.push(`${mWhere2}: timeLimitMin must be a positive number`);
+      if (!isPositiveNumber(m.maxScaled))
+        errors.push(`${mWhere2}: maxScaled must be a positive number`);
       if (m.audio !== undefined && (typeof m.audio !== 'string' || !m.audio)) {
         errors.push(`${mWhere2}: audio must be a non-empty string when present`);
       }
@@ -299,7 +311,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
           return;
         }
         if (m.audio === undefined) {
-          errors.push(`${mWhere2}: cues need an audio track to jump into — this module has no "audio"`);
+          errors.push(
+            `${mWhere2}: cues need an audio track to jump into — this module has no "audio"`,
+          );
           return;
         }
         const parsed: ExamCue[] = [];
@@ -326,7 +340,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
           }
           const at = parseCueAt(c.at);
           if (at === null) {
-            errors.push(`${cWhere}.at must be "m:ss"/"mm:ss" or seconds, got ${JSON.stringify(c.at)}`);
+            errors.push(
+              `${cWhere}.at must be "m:ss"/"mm:ss" or seconds, got ${JSON.stringify(c.at)}`,
+            );
             broken = true;
             return;
           }
@@ -348,7 +364,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         m.pdfPages.length === 0 ||
         m.pdfPages.some((p) => !isPositiveInt(p))
       ) {
-        errors.push(`${mWhere2}: pdfPages must be a non-empty array of positive 1-based page numbers`);
+        errors.push(
+          `${mWhere2}: pdfPages must be a non-empty array of positive 1-based page numbers`,
+        );
         return;
       }
       if (
@@ -363,7 +381,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         return;
       }
       if (!Array.isArray(m.teile)) {
-        errors.push(`${mWhere2}: teile must be an array (empty only for a practice-only module like Sprechen)`);
+        errors.push(
+          `${mWhere2}: teile must be an array (empty only for a practice-only module like Sprechen)`,
+        );
         return;
       }
 
@@ -482,7 +502,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
                 it.accept.length === 0 ||
                 it.accept.some((a) => typeof a !== 'string' || !a))
             ) {
-              errors.push(`${iWhere}.accept must be a non-empty array of non-empty strings when present`);
+              errors.push(
+                `${iWhere}.accept must be a non-empty array of non-empty strings when present`,
+              );
               return;
             }
             items.push({
@@ -493,7 +515,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
             });
           } else if (it.shape === 'abc' || it.shape === 'ab' || it.shape === 'rf') {
             if (!isAnswer(it.key) || !shapeAllows(it.shape, it.key)) {
-              errors.push(`${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"`);
+              errors.push(
+                `${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"`,
+              );
               return;
             }
             items.push({ nr: it.nr, shape: it.shape, key: it.key });
@@ -521,7 +545,9 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
           if (sorted[i]! - sorted[i - 1]! > 1) gaps.push(`${sorted[i - 1]}→${sorted[i]}`);
         }
         if (gaps.length) {
-          warnings.push(`${mWhere2}: item numbering has gap(s) ${gaps.join(', ')} — check against the Kandidatenblätter`);
+          warnings.push(
+            `${mWhere2}: item numbering has gap(s) ${gaps.join(', ')} — check against the Kandidatenblätter`,
+          );
         }
       }
 
@@ -538,7 +564,13 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
     });
 
     if (modules.length) {
-      sets.push({ id: s.id, title: s.title as string, level: s.level as string, pdf: s.pdf, modules });
+      sets.push({
+        id: s.id,
+        title: s.title as string,
+        level: s.level as string,
+        pdf: s.pdf,
+        modules,
+      });
     }
   });
 
@@ -581,7 +613,8 @@ function resolveBinary(name: string, fallback: string): string | null {
 // Output paths (pure — no I/O)
 // ---------------------------------------------------------------------------
 
-const pagePngName = (module: ExamModuleId, page: number) => `${module}-p${String(page).padStart(2, '0')}.png`;
+const pagePngName = (module: ExamModuleId, page: number) =>
+  `${module}-p${String(page).padStart(2, '0')}.png`;
 const pagesDirFor = (setId: string) => join(OUT_DIR, setId, 'pages');
 const pagePngUrl = (setId: string, module: ExamModuleId, page: number) =>
   `/exams/${setId}/pages/${pagePngName(module, page)}`;
@@ -625,7 +658,9 @@ function renderPage(
     throw new Error(`pdftoppm failed on page ${page} of ${pdfPath}: ${(err as Error).message}`);
   }
 
-  const produced = readdirSync(dir).filter((f) => f.startsWith(`${tempBase}-`) && f.endsWith('.png'));
+  const produced = readdirSync(dir).filter(
+    (f) => f.startsWith(`${tempBase}-`) && f.endsWith('.png'),
+  );
   if (produced.length !== 1) {
     for (const f of produced) rmSync(join(dir, f));
     throw new Error(
@@ -669,18 +704,32 @@ function ingest(
   sourcesDir: string,
   opts: { force: boolean; pdftoppmBin: string; ffmpegBin: string | null },
 ): IngestStats {
-  const stats: IngestStats = { pagesRendered: 0, pagesSkipped: 0, audioExtracted: 0, audioSkipped: 0 };
+  const stats: IngestStats = {
+    pagesRendered: 0,
+    pagesSkipped: 0,
+    audioExtracted: 0,
+    audioSkipped: 0,
+  };
   for (const set of config.sets) {
     const pdfPath = resolve(sourcesDir, set.pdf);
     for (const module of set.modules) {
       for (const page of [...module.pdfPages, ...(module.answerPdfPages ?? [])]) {
-        const result = renderPage(opts.pdftoppmBin, pdfPath, page, set.id, module.module, opts.force);
+        const result = renderPage(
+          opts.pdftoppmBin,
+          pdfPath,
+          page,
+          set.id,
+          module.module,
+          opts.force,
+        );
         if (result === 'rendered') stats.pagesRendered++;
         else stats.pagesSkipped++;
       }
       if (module.audio) {
         if (!opts.ffmpegBin) {
-          throw new Error(`ffmpeg is required for set "${set.id}"/${module.module} (audio: ${module.audio})`);
+          throw new Error(
+            `ffmpeg is required for set "${set.id}"/${module.module} (audio: ${module.audio})`,
+          );
         }
         const videoPath = resolve(sourcesDir, module.audio);
         const result = extractAudio(opts.ffmpegBin, videoPath, set.id, module.module, opts.force);
@@ -788,7 +837,8 @@ if (missingFiles.length) {
 const totalSets = config.sets.length;
 const totalModules = config.sets.reduce((n, s) => n + s.modules.length, 0);
 const totalPages = config.sets.reduce(
-  (n, s) => n + s.modules.reduce((mn, m) => mn + m.pdfPages.length + (m.answerPdfPages?.length ?? 0), 0),
+  (n, s) =>
+    n + s.modules.reduce((mn, m) => mn + m.pdfPages.length + (m.answerPdfPages?.length ?? 0), 0),
   0,
 );
 const totalAudio = config.sets.reduce((n, s) => n + s.modules.filter((m) => m.audio).length, 0);
@@ -817,11 +867,18 @@ if (options.check) {
 }
 
 const pdftoppmBin = resolveBinary('pdftoppm', PDFTOPPM_FALLBACK);
-if (!pdftoppmBin) fail('pdftoppm not found on PATH or at ' + PDFTOPPM_FALLBACK + '. Install it with:  brew install poppler');
+if (!pdftoppmBin)
+  fail(
+    'pdftoppm not found on PATH or at ' +
+      PDFTOPPM_FALLBACK +
+      '. Install it with:  brew install poppler',
+  );
 
 const ffmpegBin = totalAudio > 0 ? resolveBinary('ffmpeg', FFMPEG_FALLBACK) : null;
 if (totalAudio > 0 && !ffmpegBin) {
-  fail('ffmpeg not found on PATH or at ' + FFMPEG_FALLBACK + '. Install it with:  brew install ffmpeg');
+  fail(
+    'ffmpeg not found on PATH or at ' + FFMPEG_FALLBACK + '. Install it with:  brew install ffmpeg',
+  );
 }
 
 let stats: IngestStats;

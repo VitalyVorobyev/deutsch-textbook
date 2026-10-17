@@ -25,7 +25,11 @@ const ROOT = new URL('..', import.meta.url).pathname;
 const REF = process.argv[2] ?? 'HEAD';
 
 const show = (path: string): string =>
-  execFileSync('git', ['show', `${REF}:${path}`], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 << 20 });
+  execFileSync('git', ['show', `${REF}:${path}`], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    maxBuffer: 64 << 20,
+  });
 const read = (p: string) => readFileSync(join(ROOT, p), 'utf8');
 
 /** Only the shape this script reads back — the schema is `topicManifestSchema`. */
@@ -45,7 +49,13 @@ interface Manifest {
   deepens: string[];
   related: string[];
   outcomes: unknown[];
-  elements: { article: string; pretest?: string; exercises: string[]; reading: string[]; vocab: string[] };
+  elements: {
+    article: string;
+    pretest?: string;
+    exercises: string[];
+    reading: string[];
+    vocab: string[];
+  };
 }
 
 const problems: string[] = [];
@@ -57,7 +67,11 @@ const canonical = (v: unknown): unknown =>
   Array.isArray(v)
     ? v.map(canonical)
     : v && typeof v === 'object'
-      ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => [k, canonical(x)]))
+      ? Object.fromEntries(
+          Object.entries(v)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([k, x]) => [k, canonical(x)]),
+        )
       : v;
 
 const differs = (what: string, before: unknown, after: unknown): void => {
@@ -65,7 +79,15 @@ const differs = (what: string, before: unknown, after: unknown): void => {
   const b = JSON.stringify(canonical(after), null, 1);
   if (a === b) return;
   const at = a.split('\n').findIndex((line, i) => line !== b.split('\n')[i]);
-  problems.push(`${what}\n    before: …${a.split('\n').slice(Math.max(0, at - 1), at + 3).join(' ')}\n    after:  …${b.split('\n').slice(Math.max(0, at - 1), at + 3).join(' ')}`);
+  problems.push(
+    `${what}\n    before: …${a
+      .split('\n')
+      .slice(Math.max(0, at - 1), at + 3)
+      .join(' ')}\n    after:  …${b
+      .split('\n')
+      .slice(Math.max(0, at - 1), at + 3)
+      .join(' ')}`,
+  );
 };
 
 // --- the old atlas, as it was ------------------------------------------------
@@ -74,7 +96,11 @@ const before = YAML.parse(show('content/atlas.yaml')) as {
   nodes: Record<string, unknown>[];
   units: unknown[];
 };
-const after = YAML.parse(read('content/atlas.yaml')) as { groups: unknown[]; units: unknown[]; nodes?: unknown };
+const after = YAML.parse(read('content/atlas.yaml')) as {
+  groups: unknown[];
+  units: unknown[];
+  nodes?: unknown;
+};
 
 differs('atlas groups:', before.groups, after.groups);
 differs('atlas units:', before.units, after.units);
@@ -141,12 +167,15 @@ for (const level of readdirSync(join(ROOT, 'content/topics'))) {
   }
 }
 
-for (const id of oldNodes.keys()) if (!seen.has(id)) problems.push(`${id}: node in ${REF} has no manifest`);
+for (const id of oldNodes.keys())
+  if (!seen.has(id)) problems.push(`${id}: node in ${REF} has no manifest`);
 
 if (problems.length) {
   console.log(`\n${problems.length} difference(s) against ${REF} — this is NOT a relocation:\n`);
   for (const p of problems) console.log(`  ✗ ${p}`);
   process.exitCode = 1;
 } else {
-  console.log(`\n✓ ${seen.size} manifests re-derive ${REF}'s atlas nodes and frontmatter exactly; every body is unchanged.\n`);
+  console.log(
+    `\n✓ ${seen.size} manifests re-derive ${REF}'s atlas nodes and frontmatter exactly; every body is unchanged.\n`,
+  );
 }

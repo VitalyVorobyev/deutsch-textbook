@@ -34,7 +34,8 @@ export const AUDIO_BUNDLE_ENV = 'PUBLIC_ATLAS_AUDIO_BUNDLE';
  * index, so `import.meta.env[AUDIO_BUNDLE_ENV]` would silently be `undefined` in the browser
  * bundle and every recording would fall back to TTS in a build that shipped the WAVs.
  */
-export const bundlesAudio = (value: string | undefined): boolean => value === '1' || value === 'true';
+export const bundlesAudio = (value: string | undefined): boolean =>
+  value === '1' || value === 'true';
 
 /** The URL a built site serves a reviewed recording at, before `withBase`. */
 export const listeningAudioUrl = (id: string): string => `/audio/${id}.mp3`;

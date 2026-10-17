@@ -50,19 +50,12 @@ export function SkriptModus({
   const sequentiell = istSequentiell(entwurf);
   const bekannt = new Set(original.script.map((utterance) => utterance.id));
   const zeiten = new Map(
-    entwurf.timeline
-      .filter(istSprache)
-      .map((entry) => [entry.utterance_id, entry.at_ms] as const),
+    entwurf.timeline.filter(istSprache).map((entry) => [entry.utterance_id, entry.at_ms] as const),
   );
 
   return (
     <>
-      <Besetzung
-        entwurf={entwurf}
-        setEntwurf={setEntwurf}
-        figuren={figuren}
-        stimmen={stimmen}
-      />
+      <Besetzung entwurf={entwurf} setEntwurf={setEntwurf} figuren={figuren} stimmen={stimmen} />
 
       <Platte
         titel="Skript"
@@ -172,7 +165,10 @@ function Besetzung({
                 wert={member.character?.id ?? ''}
                 optionen={[
                   { wert: '', name: '– keine Figur –' },
-                  ...figuren.map((row) => ({ wert: row.id, name: `${row.display_name} · ${row.id}` })),
+                  ...figuren.map((row) => ({
+                    wert: row.id,
+                    name: `${row.display_name} · ${row.id}`,
+                  })),
                 ]}
                 onWert={(id) => {
                   const gewaehlt = katalog.get(id);
@@ -283,7 +279,11 @@ function Besetzung({
       })}
 
       <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-        <button type="button" className="knopf" onClick={() => setEntwurf(besetzungHinzufuegen(entwurf))}>
+        <button
+          type="button"
+          className="knopf"
+          onClick={() => setEntwurf(besetzungHinzufuegen(entwurf))}
+        >
           Rolle hinzufügen
         </button>
       </div>
@@ -360,7 +360,9 @@ function Aeusserung({
   return (
     <div className="aeusserung">
       <div className="aeusserung-kopf">
-        <span className="zahl entfernt aeusserung-nummer">{String(index + 1).padStart(2, '0')}</span>
+        <span className="zahl entfernt aeusserung-nummer">
+          {String(index + 1).padStart(2, '0')}
+        </span>
         <WahlFeld
           legende="Rolle"
           wert={utterance.role}
@@ -437,11 +439,7 @@ function Aeusserung({
           onWert={(text) => aendern({ synthesis_text: text.trim() ? text : null })}
         />
       ) : (
-        <button
-          type="button"
-          className="knopf aeusserung-mehr"
-          onClick={() => setAussprache(true)}
-        >
+        <button type="button" className="knopf aeusserung-mehr" onClick={() => setAussprache(true)}>
           Abweichenden Sprechtext setzen
         </button>
       )}
@@ -488,42 +486,42 @@ function Aeusserung({
           <>
             <span className="tafel">Aussprache</span>
             {overrides.map((paar, position) => (
-            <div className="aussprache-paar" key={position}>
-              <Feld
-                legende="Geschrieben"
-                wert={paar.display}
-                onWert={(display) =>
-                  aendern({
-                    pronunciation_overrides: overrides.map((row, other) =>
-                      other === position ? { ...row, display } : row,
-                    ),
-                  })
-                }
-              />
-              <Feld
-                legende="Gesprochen"
-                wert={paar.synthesis}
-                onWert={(synthesis) =>
-                  aendern({
-                    pronunciation_overrides: overrides.map((row, other) =>
-                      other === position ? { ...row, synthesis } : row,
-                    ),
-                  })
-                }
-              />
-              <button
-                type="button"
-                className="knopf"
-                aria-label={`Aussprache ${position + 1} entfernen`}
-                onClick={() =>
-                  aendern({
-                    pronunciation_overrides: overrides.filter((_, other) => other !== position),
-                  })
-                }
-              >
-                ×
-              </button>
-            </div>
+              <div className="aussprache-paar" key={position}>
+                <Feld
+                  legende="Geschrieben"
+                  wert={paar.display}
+                  onWert={(display) =>
+                    aendern({
+                      pronunciation_overrides: overrides.map((row, other) =>
+                        other === position ? { ...row, display } : row,
+                      ),
+                    })
+                  }
+                />
+                <Feld
+                  legende="Gesprochen"
+                  wert={paar.synthesis}
+                  onWert={(synthesis) =>
+                    aendern({
+                      pronunciation_overrides: overrides.map((row, other) =>
+                        other === position ? { ...row, synthesis } : row,
+                      ),
+                    })
+                  }
+                />
+                <button
+                  type="button"
+                  className="knopf"
+                  aria-label={`Aussprache ${position + 1} entfernen`}
+                  onClick={() =>
+                    aendern({
+                      pronunciation_overrides: overrides.filter((_, other) => other !== position),
+                    })
+                  }
+                >
+                  ×
+                </button>
+              </div>
             ))}
           </>
         )}
@@ -575,7 +573,9 @@ function Stimmquelle({
   setEntwurf(next: Scene): void;
 }): React.JSX.Element {
   const geklont = Boolean(member.voice.voice_ref);
-  const waehlbar = stimmen.filter((row) => row.revoked_at === null || row.id === member.voice.voice_ref);
+  const waehlbar = stimmen.filter(
+    (row) => row.revoked_at === null || row.id === member.voice.voice_ref,
+  );
 
   function besetzeStimme(id: string): void {
     const gewaehlt = stimmen.find((row) => row.id === id);
@@ -619,7 +619,9 @@ function Stimmquelle({
           aria-pressed={geklont}
           disabled={!geklont && waehlbar.length === 0}
           title={
-            waehlbar.length === 0 ? 'Es gibt keine eingewilligte Stimme in diesem Studio.' : undefined
+            waehlbar.length === 0
+              ? 'Es gibt keine eingewilligte Stimme in diesem Studio.'
+              : undefined
           }
           onClick={() => {
             if (geklont) return;
@@ -631,7 +633,9 @@ function Stimmquelle({
         </button>
         {geklont && stimme ? (
           <Marke
-            ton={stimme.revoked_at ? 'alarm' : stimme.scope === 'publication' ? 'signal' : 'messung'}
+            ton={
+              stimme.revoked_at ? 'alarm' : stimme.scope === 'publication' ? 'signal' : 'messung'
+            }
           >
             {stimme.scope === 'publication' ? 'Veröffentlichung' : 'Evaluation'}
           </Marke>
@@ -649,7 +653,14 @@ function Stimmquelle({
             }
             wert={member.voice.voice_ref ?? ''}
             optionen={[
-              ...(stimme ? [] : [{ wert: member.voice.voice_ref ?? '', name: `${member.voice.voice_ref} (unbekannt)` }]),
+              ...(stimme
+                ? []
+                : [
+                    {
+                      wert: member.voice.voice_ref ?? '',
+                      name: `${member.voice.voice_ref} (unbekannt)`,
+                    },
+                  ]),
               ...waehlbar.map((row) => ({
                 wert: row.id,
                 name: `${row.subject_display_name} · ${row.id}`,
@@ -660,8 +671,8 @@ function Stimmquelle({
           {stimme?.revoked_at ? (
             <p className="hinweis hinweis-alarm" role="alert">
               Die Einwilligung für {stimme.subject_display_name} wurde am{' '}
-              {stimme.revoked_at.slice(0, 10)} widerrufen. Diese Rolle lässt sich nicht mehr
-              rendern — besetze sie um.
+              {stimme.revoked_at.slice(0, 10)} widerrufen. Diese Rolle lässt sich nicht mehr rendern
+              — besetze sie um.
             </p>
           ) : (
             <p className="feld-hinweis">

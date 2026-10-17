@@ -7,13 +7,7 @@
  * long-lived string pasted into a desktop app; it exists so a Tauri webview can
  * sync, and it must never be able to approve accounts or delete people.
  */
-import {
-  deleteUser,
-  findUserById,
-  listUsers,
-  setUserStatus,
-  type UserStatus,
-} from '../db';
+import { deleteUser, findUserById, listUsers, setUserStatus, type UserStatus } from '../db';
 import { authenticate } from '../auth/session';
 import { isSameOrigin, json, methodNotAllowed, noContent, problem, readJson } from '../http';
 import type { Env } from '../env';
@@ -60,7 +54,8 @@ export async function handleAdmin(
   }
 
   if (segments.length !== 2 || !userId) return problem(404, 'not-found', 'Unknown admin route.');
-  if (!isSameOrigin(request, url)) return problem(403, 'cross-origin', 'Cross-origin request refused.');
+  if (!isSameOrigin(request, url))
+    return problem(403, 'cross-origin', 'Cross-origin request refused.');
 
   const target = await findUserById(env.DB, userId);
   if (!target) return problem(404, 'not-found', 'No such account.');

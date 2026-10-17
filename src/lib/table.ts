@@ -45,7 +45,12 @@ export function continuationWord(
 ): string | undefined {
   const stub = index > 0 ? cells[index - 1] : undefined;
   if (!stub?.given || !/…\s*$/u.test(stub.answer)) return undefined;
-  return stub.answer.replace(/[…\s]+$/u, '').split(/\s+/).pop() || undefined;
+  return (
+    stub.answer
+      .replace(/[…\s]+$/u, '')
+      .split(/\s+/)
+      .pop() || undefined
+  );
 }
 
 /**
@@ -77,7 +82,11 @@ function capitalized(answer: string): string | undefined {
  * (`… Sie mir bitte helfen?` beside a `Könnten` cell). There the key's capital is the position's,
  * not the grammar's, and a typed `könnten` has the form right.
  */
-function opensSentence(cells: readonly TableCellLike[], index: number, label: string | undefined): boolean {
+function opensSentence(
+  cells: readonly TableCellLike[],
+  index: number,
+  label: string | undefined,
+): boolean {
   if (/[.!?]$/u.test(cells[index].answer.trim())) return true;
   return index === 0 && label !== undefined && /^\s*…/u.test(label);
 }

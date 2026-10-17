@@ -92,7 +92,9 @@ async function listAccounts(s3: Bun.S3Client): Promise<string[]> {
   if (fromPrefixes.length > 0) return fromPrefixes;
   // Some S3 implementations omit commonPrefixes; derive them from the keys.
   const keys = (listed.contents ?? []).map((entry) => entry.key);
-  return [...new Set(keys.map((key) => key.slice(PREFIX.length).split('/')[0]).filter(Boolean))] as string[];
+  return [
+    ...new Set(keys.map((key) => key.slice(PREFIX.length).split('/')[0]).filter(Boolean)),
+  ] as string[];
 }
 
 async function resolveAccount(s3: Bun.S3Client, explicit?: string): Promise<string> {
@@ -108,9 +110,7 @@ async function resolveAccount(s3: Bun.S3Client, explicit?: string): Promise<stri
 }
 
 function snapshotKey(account: string, date?: string): string {
-  return date
-    ? `${PREFIX}${account}/daily/${date}.json.gz`
-    : `${PREFIX}${account}/current.json.gz`;
+  return date ? `${PREFIX}${account}/daily/${date}.json.gz` : `${PREFIX}${account}/current.json.gz`;
 }
 
 interface MinimalSnapshot {
@@ -127,7 +127,10 @@ interface MinimalSnapshot {
  * a file the audit will choke on — not to re-implement `parseProgressSnapshot`,
  * which stays the single import boundary in the app.
  */
-function assertSnapshot(parsed: MinimalSnapshot, source: string): asserts parsed is MinimalSnapshot & {
+function assertSnapshot(
+  parsed: MinimalSnapshot,
+  source: string,
+): asserts parsed is MinimalSnapshot & {
   version: number;
   attempts: unknown[];
 } {
@@ -185,7 +188,8 @@ async function main(): Promise<void> {
       const listed = await s3.list({ prefix: `${PREFIX}${account}/` });
       const keys = (listed.contents ?? []).map((entry) => entry.key);
       console.log(`${account}  (${keys.length} object${keys.length === 1 ? '' : 's'})`);
-      for (const key of keys.sort()) console.log(`  ${key.slice(PREFIX.length + account.length + 1)}`);
+      for (const key of keys.sort())
+        console.log(`  ${key.slice(PREFIX.length + account.length + 1)}`);
     }
     return;
   }
@@ -195,7 +199,9 @@ async function main(): Promise<void> {
 
   const file = s3.file(key);
   if (!(await file.exists())) {
-    throw new Error(`No object at ${key}. Run \`bun run progress:pull --list\` to see what is stored.`);
+    throw new Error(
+      `No object at ${key}. Run \`bun run progress:pull --list\` to see what is stored.`,
+    );
   }
 
   const compressed = Buffer.from(await file.arrayBuffer());
@@ -208,7 +214,8 @@ async function main(): Promise<void> {
   mkdirSync(dir, { recursive: true });
   // The date the file is filed under is the snapshot's own export date, so a
   // pull done on Tuesday for Monday's state does not claim to be Tuesday's.
-  const date = options.date ?? localDate(parsed.exportedAt ? new Date(parsed.exportedAt) : new Date());
+  const date =
+    options.date ?? localDate(parsed.exportedAt ? new Date(parsed.exportedAt) : new Date());
   const target = options.out ? resolve(root, options.out) : join(dir, `${date}.json`);
 
   const attempts = parsed.attempts.length;

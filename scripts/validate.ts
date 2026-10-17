@@ -43,7 +43,11 @@ import {
   CEFR_LEVELS,
   PRODUCTION_TYPES,
 } from '@da/schema';
-import { GRAMMAR_STRANDS, type GrammarPoint, type GrammarTrack } from '@da/content/grammar-coverage';
+import {
+  GRAMMAR_STRANDS,
+  type GrammarPoint,
+  type GrammarTrack,
+} from '@da/content/grammar-coverage';
 import { entryRef, loadStructureSources } from '@da/content/structures';
 import { SHUFFLED_OPTION_TYPES, positionalReference } from '../src/lib/option-references';
 import { clozeGaps, normalizeDictation, normalizeTranslation } from '@da/grading/cloze';
@@ -140,7 +144,12 @@ const introducesClause = (text: string, word: string) =>
  * correct by design ("topic does not list this set", or an error on every item of a set
  * that spans twenty-two topics).
  */
-const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'placement', 'exam-practice']);
+const STANDALONE_ROLES = new Set<ExerciseSet['role']>([
+  'checkpoint',
+  'probe',
+  'placement',
+  'exam-practice',
+]);
 
 /**
  * Roles that assess a whole level and so may reference any topic's outcomes.
@@ -149,7 +158,6 @@ const STANDALONE_ROLES = new Set<ExerciseSet['role']>(['checkpoint', 'probe', 'p
  * ones whose job is to span the level.
  */
 const CROSS_TOPIC_ROLES = STANDALONE_ROLES;
-
 
 const fail = (file: string, msg: string) => errors.push(`${file}: ${msg}`);
 const warn = (file: string, msg: string) => warnings.push(`${file}: ${msg}`);
@@ -202,7 +210,10 @@ const rel = (f: string) => relative(ROOT, f);
  * this block used to do (directory vs frontmatter vs atlas node) has nothing left to reconcile.
  * What remains is the two things a filename can still disagree with.
  */
-const topics = new Map<string, { file: string; article: string; data: TopicManifest; body: string }>();
+const topics = new Map<
+  string,
+  { file: string; article: string; data: TopicManifest; body: string }
+>();
 for (const file of manifestFiles(ROOT)) {
   const raw = YAML.parse(readFileSync(file, 'utf8'));
   const data = validateWith(topicManifestSchema, raw, rel(file));
@@ -225,7 +236,8 @@ for (const file of manifestFiles(ROOT)) {
   // The article carries prose only. A leftover frontmatter block is a half-finished edit that
   // Astro's strict empty schema would reject at build time — say so here, where the message can
   // name the file it belongs to.
-  if (/^---\r?\n/.test(body)) fail(rel(article), 'article has a frontmatter block; it belongs in the manifest');
+  if (/^---\r?\n/.test(body))
+    fail(rel(article), 'article has a frontmatter block; it belongs in the manifest');
   topics.set(data.id, { file: rel(file), article: rel(article), data, body });
 }
 
@@ -325,7 +337,10 @@ function checkGlossDoesNotLeakAnswer(where: string, e: VocabEntry): void {
       // handed over the answer AND then marked `lange` wrong. Measured: the
       // widening adds exactly that one entry and no false positive anywhere in
       // the 1619-entry corpus.
-      const re = new RegExp(`(^|[^A-Za-zÄÖÜäöüß])${w}[A-Za-zÄÖÜäöüß]{0,3}([^A-Za-zÄÖÜäöüß]|$)`, 'i');
+      const re = new RegExp(
+        `(^|[^A-Za-zÄÖÜäöüß])${w}[A-Za-zÄÖÜäöüß]{0,3}([^A-Za-zÄÖÜäöüß]|$)`,
+        'i',
+      );
       if (asides.some((aside) => re.test(aside)))
         fail(
           `${where} → "${e.de}"`,
@@ -437,10 +452,14 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
     const points = inventory.points ?? [];
     const trackIds = new Set<string>();
     for (const track of tracks) {
-      if (trackIds.has(track.id)) fail('data/grammar-inventory.yaml', `duplicate grammar track id "${track.id}"`);
+      if (trackIds.has(track.id))
+        fail('data/grammar-inventory.yaml', `duplicate grammar track id "${track.id}"`);
       trackIds.add(track.id);
       if (!(GRAMMAR_STRANDS as readonly string[]).includes(track.strand))
-        fail('data/grammar-inventory.yaml', `track "${track.id}" has unknown strand "${track.strand}"`);
+        fail(
+          'data/grammar-inventory.yaml',
+          `track "${track.id}" has unknown strand "${track.strand}"`,
+        );
       if (!track.de || !track.en || !Number.isFinite(track.order))
         fail('data/grammar-inventory.yaml', `track "${track.id}" needs de, en and a numeric order`);
     }
@@ -454,7 +473,8 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
         for (const entry of section.entries) knownRefs.add(entryRef(src.source.id, entry.key));
     const seen = new Set<string>();
     for (const point of points) {
-      if (seen.has(point.id)) fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
+      if (seen.has(point.id))
+        fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
       seen.add(point.id);
 
       // `level: {reception, production}` replaced `standard_level` on 2026-08-14. Both shapes are
@@ -463,17 +483,27 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
       const production = point.level?.production ?? point.standard_level;
       const reception = point.level?.reception ?? production;
       if (!production)
-        fail('data/grammar-inventory.yaml', `point "${point.id}" declares no level: {reception, production}`);
-      for (const [field, value] of [['production', production], ['reception', reception]] as const)
+        fail(
+          'data/grammar-inventory.yaml',
+          `point "${point.id}" declares no level: {reception, production}`,
+        );
+      for (const [field, value] of [
+        ['production', production],
+        ['reception', reception],
+      ] as const)
         if (value && !(CEFR_LEVELS as readonly string[]).includes(value))
-          fail('data/grammar-inventory.yaml', `point "${point.id}" has unknown level.${field} "${value}"`);
+          fail(
+            'data/grammar-inventory.yaml',
+            `point "${point.id}" has unknown level.${field} "${value}"`,
+          );
       // You do not produce a structure before you can recognise it. A row asserting otherwise has
       // its two levels swapped, which would make the reception view report the opposite of reality.
       // Guarded on both being *known* levels: `indexOf` returns -1 for an unknown one, so an
       // already-reported typo would otherwise also report itself as an ordering defect.
       const known = (v?: string) => !!v && (CEFR_LEVELS as readonly string[]).includes(v);
       if (
-        known(production) && known(reception) &&
+        known(production) &&
+        known(reception) &&
         CEFR_LEVELS.indexOf(reception as (typeof CEFR_LEVELS)[number]) >
           CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
       )
@@ -501,12 +531,16 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
         if (target === point.id)
           fail('data/grammar-inventory.yaml', `point "${point.id}" deepens itself`);
         else if (!ids.has(target))
-          fail('data/grammar-inventory.yaml', `point "${point.id}" deepens unknown point "${target}"`);
+          fail(
+            'data/grammar-inventory.yaml',
+            `point "${point.id}" deepens unknown point "${target}"`,
+          );
         else {
           const base = points.find((p) => p.id === target)!;
           const baseLevel = base.level?.production ?? base.standard_level;
           if (
-            production && baseLevel &&
+            production &&
+            baseLevel &&
             CEFR_LEVELS.indexOf(baseLevel as (typeof CEFR_LEVELS)[number]) >
               CEFR_LEVELS.indexOf(production as (typeof CEFR_LEVELS)[number])
           )
@@ -540,7 +574,10 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
         );
       for (const topic of point.taught_in ?? [])
         if (!topics.has(topic))
-          fail('data/grammar-inventory.yaml', `point "${point.id}" is taught_in unknown topic "${topic}"`);
+          fail(
+            'data/grammar-inventory.yaml',
+            `point "${point.id}" is taught_in unknown topic "${topic}"`,
+          );
     }
   } catch (e) {
     fail('data/grammar-inventory.yaml', `unreadable: ${e instanceof Error ? e.message : e}`);
@@ -558,7 +595,10 @@ for (const file of listFiles(join(CONTENT, 'exercises'), '.yaml')) {
   }
   const data = validateWith(exerciseSetSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'exercises'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const id = relative(join(CONTENT, 'exercises'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   exerciseSets.set(id, { file: rel(file), data });
 }
 
@@ -595,11 +635,15 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
   const data = validateWith(listeningArtifactSchema, raw, rel(file));
   if (!data) continue;
-  const path = relative(join(CONTENT, 'listening'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const path = relative(join(CONTENT, 'listening'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   const basename = path.split('/').at(-1)!;
   const levelDir = path.split('/')[0]!;
   if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
-  if (data.level.toLowerCase() !== levelDir) fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
+  if (data.level.toLowerCase() !== levelDir)
+    fail(rel(file), `level directory "${levelDir}" ≠ level "${data.level}"`);
   // Artifact ids are globally unique by construction — the plan rejects duplicates and every
   // committed artifact must be planned — so items may reference one by bare id. Checked rather
   // than assumed, because the failure would be a silent overwrite.
@@ -607,10 +651,14 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   if (listeningArtifacts.has(id)) fail(rel(file), `duplicate listening artifact id "${id}"`);
   const planned = plannedListening.get(data.id);
   if (!planned) fail(rel(file), `artifact "${data.id}" is absent from ${LISTENING_PLAN_FILE}`);
-  else if (planned.unit.level !== data.level) fail(rel(file), 'artifact level differs from the listening plan');
+  else if (planned.unit.level !== data.level)
+    fail(rel(file), 'artifact level differs from the listening plan');
   const audioFile = join(ROOT, listeningAudioPath(data.level, data.id));
   if (!existsSync(audioFile))
-    fail(rel(file), `published audio ${listeningAudioPath(data.level, data.id)} is missing — a committed artifact record means its approved recording is committed too`);
+    fail(
+      rel(file),
+      `published audio ${listeningAudioPath(data.level, data.id)} is missing — a committed artifact record means its approved recording is committed too`,
+    );
   const provenance = join(ROOT, data.provenance);
   if (!existsSync(provenance)) fail(rel(file), `provenance "${data.provenance}" does not resolve`);
   else {
@@ -628,15 +676,20 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
         voice_cloning_used?: boolean;
         reference_audio_used?: boolean;
       };
-      models?: Record<string, { license?: string; revision?: string; training_data_provenance?: string }>;
+      models?: Record<
+        string,
+        { license?: string; revision?: string; training_data_provenance?: string }
+      >;
       contextual_sources?: Array<{
         sound_id?: number;
         license?: string;
         original_sha256?: string;
       }>;
     };
-    if (manifest.id !== data.id) fail(rel(file), 'provenance id does not match the listening artifact');
-    if (manifest.approval?.status !== 'complete') fail(rel(file), 'committed listening audio requires completed human approval');
+    if (manifest.id !== data.id)
+      fail(rel(file), 'provenance id does not match the listening artifact');
+    if (manifest.approval?.status !== 'complete')
+      fail(rel(file), 'committed listening audio requires completed human approval');
     if (!manifest.approval?.editor || (manifest.approval.checklist?.length ?? 0) < 6)
       fail(rel(file), 'human approval identity and full listening checklist are required');
     // Two hashes, two jobs: `master_audio_sha256` is the WAV the editor approved and QA ran
@@ -654,24 +707,40 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
       manifest.claims.voice_cloning_used !== false ||
       manifest.claims.reference_audio_used !== false
     )
-      fail(rel(file), 'provenance must separate licence evidence and forbid cloning/reference audio');
+      fail(
+        rel(file),
+        'provenance must separate licence evidence and forbid cloning/reference audio',
+      );
     if (
       !manifest.models ||
       Object.values(manifest.models).some(
         (model) => !model.license || !model.revision || !model.training_data_provenance,
       )
     )
-      fail(rel(file), 'every model requires an immutable revision, licence, and training-data note');
+      fail(
+        rel(file),
+        'every model requires an immutable revision, licence, and training-data note',
+      );
     for (const source of manifest.contextual_sources ?? []) {
-      if (!source.sound_id || !source.original_sha256 || !['CC0-1.0', 'CC-BY-4.0'].includes(source.license ?? '')) {
-        fail(rel(file), 'contextual source requires a Freesound id, allowed licence, and original hash');
+      if (
+        !source.sound_id ||
+        !source.original_sha256 ||
+        !['CC0-1.0', 'CC-BY-4.0'].includes(source.license ?? '')
+      ) {
+        fail(
+          rel(file),
+          'contextual source requires a Freesound id, allowed licence, and original hash',
+        );
         continue;
       }
       const sourceDir = join(ROOT, 'data', 'audio-sources', 'freesound', String(source.sound_id));
       const originals = existsSync(sourceDir)
         ? readdirSync(sourceDir).filter((name) => name.startsWith('original.'))
         : [];
-      if (originals.length !== 1 || fileSha256(join(sourceDir, originals[0]!)) !== source.original_sha256)
+      if (
+        originals.length !== 1 ||
+        fileSha256(join(sourceDir, originals[0]!)) !== source.original_sha256
+      )
         fail(rel(file), `contextual source ${source.sound_id} is missing or changed`);
     }
     const brief = manifest.generation_brief?.path ? join(ROOT, manifest.generation_brief.path) : '';
@@ -693,7 +762,10 @@ for (const file of listFiles(join(CONTENT, 'reading'), '.yaml')) {
   }
   const data = validateWith(readingSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'reading'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const id = relative(join(CONTENT, 'reading'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   readings.set(id, { file: rel(file), data });
 }
 
@@ -702,7 +774,10 @@ for (const file of listFiles(join(CONTENT, 'documents'), '.yaml')) {
   const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
   const data = validateWith(visualDocumentSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'documents'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const id = relative(join(CONTENT, 'documents'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   documents.set(id, { file: rel(file), data });
   if (!existsSync(join(ROOT, 'public', data.asset.replace(/^\//, ''))))
     fail(rel(file), `asset "${data.asset}" does not exist under public/`);
@@ -713,7 +788,10 @@ for (const file of listFiles(join(CONTENT, 'wortfelder'), '.yaml')) {
   const raw = YAML.parse(readFileSync(file, 'utf8')) as unknown;
   const data = validateWith(wordFieldSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'wortfelder'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const id = relative(join(CONTENT, 'wortfelder'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
   wordFields.set(id, { file: rel(file), data });
 }
@@ -729,7 +807,10 @@ for (const file of listFiles(join(CONTENT, 'wortnetze'), '.yaml')) {
   }
   const data = validateWith(wortnetzSchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'wortnetze'), file).split(sep).join('/').replace(/\.yaml$/, '');
+  const id = relative(join(CONTENT, 'wortnetze'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.yaml$/, '');
   if (data.id !== id) fail(rel(file), `id "${data.id}" ≠ filename "${id}"`);
   wortnetze.set(id, { file: rel(file), data });
 }
@@ -741,14 +822,20 @@ for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
   if (raw === undefined) continue;
   const data = validateWith(discoverySchema, raw, rel(file));
   if (!data) continue;
-  const id = relative(join(CONTENT, 'discovery'), file).split(sep).join('/').replace(/\.mdx$/, '');
+  const id = relative(join(CONTENT, 'discovery'), file)
+    .split(sep)
+    .join('/')
+    .replace(/\.mdx$/, '');
   const basename = id.split('/').at(-1)!;
   const levelDir = id.split('/')[0]?.toUpperCase();
   if (data.id !== basename) fail(rel(file), `id "${data.id}" ≠ filename "${basename}"`);
   if (data.level !== levelDir) fail(rel(file), `level ${data.level} ≠ directory ${levelDir}`);
   for (const image of data.images) {
     if (!image.src.startsWith('/'))
-      fail(rel(file), `image src "${image.src}" must be a local /path under public/ (committed asset, never a hotlink)`);
+      fail(
+        rel(file),
+        `image src "${image.src}" must be a local /path under public/ (committed asset, never a hotlink)`,
+      );
     else if (!existsSync(join(ROOT, 'public', image.src.replace(/^\//, ''))))
       fail(rel(file), `image "${image.src}" does not exist under public/`);
   }
@@ -789,7 +876,10 @@ for (const { file, data } of references.values()) {
   for (const template of data.templates) {
     for (const line of template.lines) {
       if (!sectionIds.has(line.section))
-        fail(file, `template "${template.id}" has a line in section "${line.section}", which is not one of: ${[...sectionIds].join(', ')}`);
+        fail(
+          file,
+          `template "${template.id}" has a line in section "${line.section}", which is not one of: ${[...sectionIds].join(', ')}`,
+        );
     }
   }
 }
@@ -801,7 +891,10 @@ for (const { file, data } of references.values()) {
   const pageFocus = (data as { focus?: string[] }).focus ?? [];
   for (const tag of pageFocus) {
     if (!focusIntroducedBy[tag])
-      fail(file, `page-level focus "${tag}" is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
+      fail(
+        file,
+        `page-level focus "${tag}" is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`,
+      );
   }
 }
 
@@ -818,12 +911,18 @@ for (const { file, data } of references.values()) {
     for (const tag of form.focus) {
       const owner = focusIntroducedBy[tag];
       if (!owner) {
-        fail(file, `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`);
+        fail(
+          file,
+          `form "${form.id}" names focus "${tag}", which is not in focusIntroducedBy (packages/content/src/focus-tags.ts)`,
+        );
         continue;
       }
       const topic = topics.get(owner);
       if (!topic) {
-        fail(file, `form "${form.id}": focus "${tag}" is introduced by "${owner}", which is not a topic`);
+        fail(
+          file,
+          `form "${form.id}": focus "${tag}" is introduced by "${owner}", which is not a topic`,
+        );
         continue;
       }
       const rank = LEVELS.indexOf(topic.data.level);
@@ -856,10 +955,12 @@ for (const [id, { file, data }] of topics) {
     if (p === id) fail(file, `topic lists itself as a prerequisite`);
   }
   for (const v of data.elements.vocab) {
-    if (!vocabFiles.has(v)) fail(file, `vocab ref "${v}" does not resolve to content/vocab/${v}.yaml`);
+    if (!vocabFiles.has(v))
+      fail(file, `vocab ref "${v}" does not resolve to content/vocab/${v}.yaml`);
   }
   for (const ex of data.elements.exercises) {
-    if (!exerciseSets.has(ex)) fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
+    if (!exerciseSets.has(ex))
+      fail(file, `exercise ref "${ex}" does not resolve to content/exercises/${ex}.yaml`);
   }
   if (data.elements.article !== `${id}.mdx`)
     fail(file, `elements.article "${data.elements.article}" must be "${id}.mdx"`);
@@ -868,7 +969,10 @@ for (const [id, { file, data }] of topics) {
   // primaryPractice in src/lib/content.ts). A topic without one can never be
   // completed, so the Lernpfad would stop on it forever.
   if (!data.elements.exercises.some((ex) => exerciseSets.get(ex)?.data.role === 'practice'))
-    fail(file, 'topic owns no role: practice exercise set — the Lernpfad could never advance past it');
+    fail(
+      file,
+      'topic owns no role: practice exercise set — the Lernpfad could never advance past it',
+    );
 
   /**
    * `primary_practice` decides what completing the Lernpfad step means, so it must be one of the
@@ -889,17 +993,15 @@ for (const [id, { file, data }] of topics) {
     (setId) => exerciseSets.get(setId)?.data.activity === 'core',
   );
   if (coreActivities.length !== 1) {
-    fail(
-      file,
-      `topic must own exactly one activity: core set; found ${coreActivities.length}`,
-    );
+    fail(file, `topic must own exactly one activity: core set; found ${coreActivities.length}`);
   } else if (primary && coreActivities[0] !== primary) {
     fail(
       file,
       `activity: core set "${coreActivities[0]}" must equal primary_practice "${primary}"`,
     );
   }
-  const coreSet = coreActivities.length === 1 ? exerciseSets.get(coreActivities[0]!)?.data : undefined;
+  const coreSet =
+    coreActivities.length === 1 ? exerciseSets.get(coreActivities[0]!)?.data : undefined;
   if (coreSet && (coreSet.items.length < 8 || coreSet.items.length > 15)) {
     fail(
       file,
@@ -919,8 +1021,10 @@ for (const [id, { file, data }] of topics) {
 
   for (const probe of data.elements.probes) {
     const set = exerciseSets.get(probe);
-    if (!set) fail(file, `probe ref "${probe}" does not resolve to content/exercises/${probe}.yaml`);
-    else if (set.data.role !== 'probe') fail(file, `elements.probes lists "${probe}", which is role: ${set.data.role}`);
+    if (!set)
+      fail(file, `probe ref "${probe}" does not resolve to content/exercises/${probe}.yaml`);
+    else if (set.data.role !== 'probe')
+      fail(file, `elements.probes lists "${probe}", which is role: ${set.data.role}`);
   }
 
   // Item mix (see "Item mix" in CLAUDE.md).
@@ -992,14 +1096,21 @@ for (const [id, { file, data }] of topics) {
       );
   }
   for (const r of data.elements.reading) {
-    if (!readings.has(r)) fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
+    if (!readings.has(r))
+      fail(file, `reading ref "${r}" does not resolve to content/reading/${r}.yaml`);
   }
   if (data.elements.pretest !== undefined) {
     const pre = exerciseSets.get(data.elements.pretest);
     if (!pre) {
-      fail(file, `pretest ref "${data.elements.pretest}" does not resolve to content/exercises/${data.elements.pretest}.yaml`);
+      fail(
+        file,
+        `pretest ref "${data.elements.pretest}" does not resolve to content/exercises/${data.elements.pretest}.yaml`,
+      );
     } else if (pre.data.topic !== id) {
-      fail(file, `pretest set "${data.elements.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`);
+      fail(
+        file,
+        `pretest set "${data.elements.pretest}" has topic backref "${pre.data.topic}", expected "${id}"`,
+      );
     } else if (pre.data.role !== 'pretest') {
       fail(file, `pretest set "${data.elements.pretest}" must declare role: pretest`);
     }
@@ -1013,10 +1124,9 @@ const vocabHeadwords = new Map(
   [...vocabFiles].map(([id, entry]) => [id, new Set(entry.data.entries.map((word) => word.de))]),
 );
 for (const { file, data } of wortnetze.values()) {
-  const members = new Map(data.members.map((member) => [
-    member.id,
-    member.kind === 'card' ? member.ref.de : member.de,
-  ]));
+  const members = new Map(
+    data.members.map((member) => [member.id, member.kind === 'card' ? member.ref.de : member.de]),
+  );
   for (const problem of wortnetzCardRefProblems(data, vocabHeadwords)) fail(file, problem);
   for (const relation of data.relations) {
     const key = `${members.get(relation.from)}::${members.get(relation.to)}::${relation.type}`;
@@ -1043,9 +1153,16 @@ for (const { file, data } of wortnetze.values()) {
       const dir = setId.split('/')[0]!;
       const level = topics.get(data.topic)?.data.level;
       if (level && dir.toUpperCase() !== level)
-        fail(file, `${role} directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /${route}/<level> route reads the level off the directory`);
+        fail(
+          file,
+          `${role} directory "${dir}" ≠ the level of its topic "${data.topic}" (${level}) — the /${route}/<level> route reads the level off the directory`,
+        );
       const other = byLevel.get(dir);
-      if (other) fail(file, `a second ${dir.toUpperCase()} ${role} ("${other}" already exists) — both would claim /${route}/${dir}`);
+      if (other)
+        fail(
+          file,
+          `a second ${dir.toUpperCase()} ${role} ("${other}" already exists) — both would claim /${route}/${dir}`,
+        );
       byLevel.set(dir, setId);
     }
   }
@@ -1069,7 +1186,10 @@ for (const [setId, { file, data }] of exerciseSets) {
     if (!owner.data.elements.probes.includes(setId))
       fail(file, `topic "${data.topic}" does not list this probe ("${setId}") in elements.probes`);
     if (owner.data.elements.exercises.includes(setId) || owner.data.elements.pretest === setId)
-      fail(file, 'a role: probe set must not be listed in exercises or as the pretest — it opens the session, not the page');
+      fail(
+        file,
+        'a role: probe set must not be listed in exercises or as the pretest — it opens the session, not the page',
+      );
   } else if (standalone) {
     // Checkpoints and placements anchor to a topic for spine position only — they get their own
     // pages, belong to a level rather than a topic, and must never be embedded in lesson flow.
@@ -1078,15 +1198,25 @@ for (const [setId, { file, data }] of exerciseSets) {
       owner.data.elements.pretest === setId ||
       owner.data.elements.probes.includes(setId)
     )
-      fail(file, `a role: ${data.role} set belongs to a level, not a topic — it must not appear in any topic's elements`);
-  } else if (!owner.data.elements.exercises.includes(setId) && owner.data.elements.pretest !== setId) {
-    fail(file, `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`);
+      fail(
+        file,
+        `a role: ${data.role} set belongs to a level, not a topic — it must not appear in any topic's elements`,
+      );
+  } else if (
+    !owner.data.elements.exercises.includes(setId) &&
+    owner.data.elements.pretest !== setId
+  ) {
+    fail(
+      file,
+      `topic "${data.topic}" does not list this set ("${setId}") in its exercises or as its pretest`,
+    );
   }
   if (owner?.data.elements.exercises.includes(setId) && data.role === 'pretest')
     fail(file, 'a role: pretest set must be referenced through topic.pretest, not topic.exercises');
 
   if (data.role === 'probe') {
-    if (data.arming.length === 0) fail(file, 'a probe family requires at least one explicit arming item key');
+    if (data.arming.length === 0)
+      fail(file, 'a probe family requires at least one explicit arming item key');
     const probeFocus = data.items[0]?.focus;
     for (const key of data.arming) {
       const split = key.lastIndexOf('::');
@@ -1103,7 +1233,10 @@ for (const [setId, { file, data }] of exerciseSets) {
       if (sourceItem.type === 'write' || sourceItem.type === 'speak')
         fail(file, `arming key "${key}" points to unverified open production`);
       if (probeFocus && sourceItem.focus !== probeFocus)
-        fail(file, `arming key "${key}" carries focus "${sourceItem.focus ?? '-'}", expected "${probeFocus}"`);
+        fail(
+          file,
+          `arming key "${key}" carries focus "${sourceItem.focus ?? '-'}", expected "${probeFocus}"`,
+        );
     }
   } else if (data.arming.length > 0) {
     fail(file, `role: ${data.role} must not declare probe arming keys`);
@@ -1114,15 +1247,24 @@ for (const [setId, { file, data }] of exerciseSets) {
   // weakness signal, and an attempt carries no role. Checked in both directions so the
   // runtime predicate can never quietly disagree with the declared role.
   if (data.role === 'pretest' && !setId.endsWith('-pretest'))
-    fail(file, `a role: pretest set must be named "<topic-id>-pretest" — the weakness signal identifies pretests by that suffix, since an attempt records no role`);
+    fail(
+      file,
+      `a role: pretest set must be named "<topic-id>-pretest" — the weakness signal identifies pretests by that suffix, since an attempt records no role`,
+    );
   if (data.role !== 'pretest' && setId.endsWith('-pretest'))
-    fail(file, `set is named "-pretest" but declares role: ${data.role} — the weakness signal would silently drop its attempts`);
+    fail(
+      file,
+      `set is named "-pretest" but declares role: ${data.role} — the weakness signal would silently drop its attempts`,
+    );
   // A pretest is diagnostic *generation*: at least one item must ask the learner to produce,
   // not recognise. All 96 pretest items were once `mc` — the format the pilot scores ~93% on —
   // so the diagnostic returned "you already know this" for 85% of pretests and told the lesson
   // nothing. At least one non-`mc` item keeps that from silently returning.
   if (data.role === 'pretest' && data.items.length > 0 && data.items.every((i) => i.type === 'mc'))
-    fail(file, `pretest "${setId}" is all mc — a pretest is diagnostic generation, so at least one item must be non-mc (cloze/translate); the learner scores ~93% on mc and it discriminates nothing`);
+    fail(
+      file,
+      `pretest "${setId}" is all mc — a pretest is diagnostic generation, so at least one item must be non-mc (cloze/translate); the learner scores ~93% on mc and it discriminates nothing`,
+    );
   if (data.stimulus) {
     const document = documents.get(data.stimulus);
     if (!document) fail(file, `stimulus "${data.stimulus}" does not resolve to content/documents`);
@@ -1132,9 +1274,16 @@ for (const [setId, { file, data }] of exerciseSets) {
   for (const item of data.items) {
     if (!item.stimulus) continue;
     const document = documents.get(item.stimulus);
-    if (!document) fail(`${file} → item "${item.id}"`, `stimulus "${item.stimulus}" does not resolve to content/documents`);
+    if (!document)
+      fail(
+        `${file} → item "${item.id}"`,
+        `stimulus "${item.stimulus}" does not resolve to content/documents`,
+      );
     else if (data.role !== 'exam-practice' && document.data.topic !== data.topic)
-      fail(`${file} → item "${item.id}"`, `stimulus topic "${document.data.topic}" ≠ exercise topic "${data.topic}"`);
+      fail(
+        `${file} → item "${item.id}"`,
+        `stimulus topic "${document.data.topic}" ≠ exercise topic "${data.topic}"`,
+      );
   }
 
   // A probe family's items are PARALLEL VARIANTS: different tasks, one competence.
@@ -1203,7 +1352,10 @@ for (const [setId, { file, data }] of exerciseSets) {
     switch (item.type) {
       case 'mc': {
         if (item.correct >= item.options.length)
-          fail(where, `correct index ${item.correct} out of range (${item.options.length} options)`);
+          fail(
+            where,
+            `correct index ${item.correct} out of range (${item.options.length} options)`,
+          );
         if (new Set(item.options).size !== item.options.length) fail(where, 'duplicate options');
         break;
       }
@@ -1362,7 +1514,10 @@ for (const [setId, { file, data }] of exerciseSets) {
         let asked = 0;
         for (const row of item.rows) {
           if (row.cells.length !== item.columns.length)
-            fail(where, `row "${row.label}" has ${row.cells.length} cells, expected ${item.columns.length}`);
+            fail(
+              where,
+              `row "${row.label}" has ${row.cells.length} cells, expected ${item.columns.length}`,
+            );
           asked += row.cells.filter((c) => !c.given).length;
 
           // **A trailing ellipsis in a `given` cell declares a continuation prompt.** That
@@ -1409,7 +1564,10 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
       case 'listen': {
         if (/\d/.test(item.text))
-          fail(where, 'listen text contains digits — write numbers as words so audio and answer agree');
+          fail(
+            where,
+            'listen text contains digits — write numbers as words so audio and answer agree',
+          );
         /**
          * The other half of that rule, which was missing for four years' worth of items:
          * the author is forbidden to write digits, and until now nothing told the LEARNER.
@@ -1438,7 +1596,10 @@ for (const [setId, { file, data }] of exerciseSets) {
         }
         const words = item.text.trim().split(/\s+/).length;
         if (words > 12)
-          warn(where, `listen text has ${words} words — dictation beyond ~12 words overloads working memory`);
+          warn(
+            where,
+            `listen text has ${words} words — dictation beyond ~12 words overloads working memory`,
+          );
         const canonical = normalizeDictation(item.text);
         const seen = new Set<string>();
         for (const a of item.accept) {
@@ -1461,7 +1622,10 @@ for (const [setId, { file, data }] of exerciseSets) {
       }
       case 'audio-comprehension': {
         if (item.correct >= item.options.length)
-          fail(where, `correct index ${item.correct} out of range (${item.options.length} options)`);
+          fail(
+            where,
+            `correct index ${item.correct} out of range (${item.options.length} options)`,
+          );
         if (new Set(item.options).size !== item.options.length) fail(where, 'duplicate options');
         // A reviewed recording supersedes browser TTS where the build ships it. The item keeps
         // its `turns` — that is the script the recording was made from AND the TTS fallback the
@@ -1471,17 +1635,31 @@ for (const [setId, { file, data }] of exerciseSets) {
         // in both builds, and only one of them has the file on disk.
         if (item.recording) {
           const artifact = listeningArtifacts.get(item.recording);
-          if (!artifact) fail(where, `recording "${item.recording}" does not resolve to content/listening/<level>/<id>.yaml`);
+          if (!artifact)
+            fail(
+              where,
+              `recording "${item.recording}" does not resolve to content/listening/<level>/<id>.yaml`,
+            );
           else {
             // A set carries no level of its own — the route reads it off the directory, as
             // the pretest/probe checks above do.
             const setLevel = setId.split('/')[0]!.toUpperCase();
             if (artifact.data.level !== setLevel)
-              fail(where, `recording "${item.recording}" is ${artifact.data.level}, but the set is ${setLevel}`);
-            const script = JSON.stringify(item.source.turns.map(({ speaker, text }) => ({ speaker, text })));
-            const canonical = JSON.stringify(artifact.data.transcript.map(({ speaker, text }) => ({ speaker, text })));
+              fail(
+                where,
+                `recording "${item.recording}" is ${artifact.data.level}, but the set is ${setLevel}`,
+              );
+            const script = JSON.stringify(
+              item.source.turns.map(({ speaker, text }) => ({ speaker, text })),
+            );
+            const canonical = JSON.stringify(
+              artifact.data.transcript.map(({ speaker, text }) => ({ speaker, text })),
+            );
             if (script !== canonical)
-              fail(where, `the item's turns differ from recording "${item.recording}" — revise and reapprove the artifact, never the item`);
+              fail(
+                where,
+                `the item's turns differ from recording "${item.recording}" — revise and reapprove the artifact, never the item`,
+              );
           }
         }
         break;
@@ -1546,7 +1724,10 @@ for (const [readingId, { file, data }] of readings) {
   if (!owner) {
     fail(file, `topic backref "${data.topic}" does not resolve`);
   } else if (!owner.data.elements.reading.includes(readingId)) {
-    fail(file, `topic "${data.topic}" does not list this reading ("${readingId}") in its reading refs`);
+    fail(
+      file,
+      `topic "${data.topic}" does not list this reading ("${readingId}") in its reading refs`,
+    );
   }
 
   let glossCount = 0;
@@ -1678,7 +1859,9 @@ for (const [setId, { file, data }] of exerciseSets) {
       const nodeIds = new Set(nodes.map((n) => n.id));
       const groupById = new Map(atlas.groups.map((group) => [group.id, group]));
       if (groupById.size !== atlas.groups.length) fail(AT, 'duplicate group id');
-      const parentGroups = new Set(atlas.groups.flatMap((group) => group.parent ? [group.parent] : []));
+      const parentGroups = new Set(
+        atlas.groups.flatMap((group) => (group.parent ? [group.parent] : [])),
+      );
       for (const group of atlas.groups) {
         if (group.parent) {
           const parent = groupById.get(group.parent);
@@ -1717,7 +1900,8 @@ for (const [setId, { file, data }] of exerciseSets) {
       for (const node of nodes) {
         for (const outcome of node.outcomes) {
           const previous = outcomeOwner.get(outcome.id);
-          if (previous) fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
+          if (previous)
+            fail(AT, `outcome id "${outcome.id}" is used by both "${previous}" and "${node.id}"`);
           else outcomeOwner.set(outcome.id, node.id);
           outcomeById.set(outcome.id, outcome);
         }
@@ -1751,7 +1935,10 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (prev) fail(AT, `topic "${t}" appears in two units ("${prev}" and "${unit.id}")`);
           else unitOf.set(t, unit.id);
           if (node.level !== unit.level)
-            fail(AT, `unit "${unit.id}" (${unit.level}) contains topic "${t}" of level ${node.level}`);
+            fail(
+              AT,
+              `unit "${unit.id}" (${unit.level}) contains topic "${t}" of level ${node.level}`,
+            );
         }
       }
       for (const node of nodes) {
@@ -1778,19 +1965,36 @@ for (const [setId, { file, data }] of exerciseSets) {
               fail(LISTENING_PLAN_FILE, `duplicate artifact id "${artifact.id}"`);
             artifactIds.add(artifact.id);
             if (artifact.id !== `ls-${plannedUnit.unit}-01`)
-              fail(LISTENING_PLAN_FILE, `first artifact for "${plannedUnit.unit}" must be ls-${plannedUnit.unit}-01`);
+              fail(
+                LISTENING_PLAN_FILE,
+                `first artifact for "${plannedUnit.unit}" must be ls-${plannedUnit.unit}-01`,
+              );
             for (const outcome of artifact.outcomes) {
               const owner = outcomeOwner.get(outcome);
-              if (!owner) fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" names unknown outcome "${outcome}"`);
+              if (!owner)
+                fail(
+                  LISTENING_PLAN_FILE,
+                  `artifact "${artifact.id}" names unknown outcome "${outcome}"`,
+                );
               else if (!allowedTopics.has(owner))
-                fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" outcome "${outcome}" belongs outside its unit`);
-              if (artifact.purpose === 'listening-outcome' && outcomeById.get(outcome)?.mode !== 'listening')
-                fail(LISTENING_PLAN_FILE, `artifact "${artifact.id}" claims listening evidence for non-listening outcome "${outcome}"`);
+                fail(
+                  LISTENING_PLAN_FILE,
+                  `artifact "${artifact.id}" outcome "${outcome}" belongs outside its unit`,
+                );
+              if (
+                artifact.purpose === 'listening-outcome' &&
+                outcomeById.get(outcome)?.mode !== 'listening'
+              )
+                fail(
+                  LISTENING_PLAN_FILE,
+                  `artifact "${artifact.id}" claims listening evidence for non-listening outcome "${outcome}"`,
+                );
             }
           }
         }
         for (const unit of atlas.units) {
-          if (!planUnits.has(unit.id)) fail(LISTENING_PLAN_FILE, `live Atlas unit "${unit.id}" has no listening plan`);
+          if (!planUnits.has(unit.id))
+            fail(LISTENING_PLAN_FILE, `live Atlas unit "${unit.id}" has no listening plan`);
         }
       }
 
@@ -1799,7 +2003,10 @@ for (const [setId, { file, data }] of exerciseSets) {
         const prev = atlas.units[i - 1]!;
         const cur = atlas.units[i]!;
         if (LEVEL_ORDER[cur.level]! < LEVEL_ORDER[prev.level]!)
-          fail(AT, `unit "${cur.id}" (${cur.level}) comes after ${prev.level} unit "${prev.id}" — group units by ascending level`);
+          fail(
+            AT,
+            `unit "${cur.id}" (${cur.level}) comes after ${prev.level} unit "${prev.id}" — group units by ascending level`,
+          );
       }
 
       const spinePos = new Map(atlas.units.flatMap((u) => u.topics).map((t, i) => [t, i]));
@@ -1835,7 +2042,10 @@ for (const [setId, { file, data }] of exerciseSets) {
             const owns = outcomeOwner.get(outcome);
             if (!owns) fail(`${file} → item "${item.id}"`, `unknown outcome "${outcome}"`);
             else if (!crossTopic && owns !== data.topic)
-              fail(`${file} → item "${item.id}"`, `outcome "${outcome}" belongs to topic "${owns}"`);
+              fail(
+                `${file} → item "${item.id}"`,
+                `outcome "${outcome}" belongs to topic "${owns}"`,
+              );
           }
         }
       }
@@ -1845,7 +2055,10 @@ for (const [setId, { file, data }] of exerciseSets) {
             const owns = outcomeOwner.get(outcome);
             if (!owns) fail(`${file} → question "${question.id}"`, `unknown outcome "${outcome}"`);
             else if (owns !== data.topic)
-              fail(`${file} → question "${question.id}"`, `outcome "${outcome}" belongs to topic "${owns}"`);
+              fail(
+                `${file} → question "${question.id}"`,
+                `outcome "${outcome}" belongs to topic "${owns}"`,
+              );
           }
         }
       }
@@ -1868,10 +2081,11 @@ for (const [setId, { file, data }] of exerciseSets) {
         };
         for (const { data } of exerciseSets.values()) {
           if (data.role !== 'practice' && data.role !== 'drill') continue;
-          for (const item of data.items) for (const outcome of item.outcomes) {
-            measured.add(outcome);
-            rememberMode(outcome, item.target_mode ?? responseModeForItem(item));
-          }
+          for (const item of data.items)
+            for (const outcome of item.outcomes) {
+              measured.add(outcome);
+              rememberMode(outcome, item.target_mode ?? responseModeForItem(item));
+            }
         }
         for (const { data } of readings.values()) {
           for (const question of data.questions)
@@ -1935,7 +2149,7 @@ for (const [setId, { file, data }] of exerciseSets) {
             fail(
               at(item.id),
               `outcomes span ${owners.length} topics (${owners.join(', ')}) — a placement item ` +
-                'decides one topic\'s verdict, so it must reference outcomes of exactly one',
+                "decides one topic's verdict, so it must reference outcomes of exactly one",
             );
             continue;
           }
@@ -2040,7 +2254,7 @@ for (const [setId, { file, data }] of exerciseSets) {
               `${file} → item "${item.id}"`,
               `focus "${item.focus}" is not in the focus-tag table — add it to docs/authoring/focus-tags.md ` +
                 'and to focusIntroducedBy in packages/content/src/focus-tags.ts, naming the topic that introduces it — ' +
-                  'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
+                'tests/focus-tags.test.ts holds the two equal, so one without the other fails too',
             );
             continue;
           }
@@ -2081,7 +2295,8 @@ for (const [setId, { file, data }] of exerciseSets) {
         for (const item of data.items) {
           if (!item.focus) continue;
           remember(focusOfTopic, data.topic, item.focus);
-          if (TRAINABLE_ROLES.has(data.role)) remember(trainableFocusOfTopic, data.topic, item.focus);
+          if (TRAINABLE_ROLES.has(data.role))
+            remember(trainableFocusOfTopic, data.topic, item.focus);
         }
       }
       for (const node of nodes) {
@@ -2151,7 +2366,8 @@ for (const { file, data } of wordFields.values()) checkLangDiscipline(file, data
 // applies; German explanations remain optional for this reference layer.
 for (const { file, data } of wortnetze.values())
   checkLangDiscipline(file, data, { deParity: false });
-for (const { file, data } of references.values()) checkLangDiscipline(file, data, { deParity: false });
+for (const { file, data } of references.values())
+  checkLangDiscipline(file, data, { deParity: false });
 
 /**
  * MDX files: frontmatter and body are ONE parity scope — the contract is per

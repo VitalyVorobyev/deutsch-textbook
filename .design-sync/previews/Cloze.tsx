@@ -49,7 +49,14 @@ const adjectiveEndings = {
 export function SingleGap() {
   return (
     <div className="max-w-xl">
-      <Cloze item={auxiliary} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Cloze
+        item={auxiliary}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -58,7 +65,14 @@ export function SingleGap() {
 export function MultipleGaps() {
   return (
     <div className="max-w-2xl">
-      <Cloze item={adjectiveEndings} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Cloze
+        item={adjectiveEndings}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -67,7 +81,14 @@ export function MultipleGaps() {
 export function RussianExplanationLanguage() {
   return (
     <div className="max-w-xl">
-      <Cloze item={auxiliary} lang="ru" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Cloze
+        item={auxiliary}
+        lang="ru"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }

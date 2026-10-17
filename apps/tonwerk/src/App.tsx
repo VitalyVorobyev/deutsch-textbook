@@ -73,7 +73,10 @@ export function App(): React.JSX.Element {
   // The client reads the token from this state and is rebuilt when it changes. Reading the module
   // store instead would leave the dependency invisible: the old client would keep sending the
   // rejected string, and its own `reportedUnauthorized` latch would swallow the next report of it.
-  const api = useMemo(() => createApi({ token: () => token, onUnauthorized }), [onUnauthorized, token]);
+  const api = useMemo(
+    () => createApi({ token: () => token, onUnauthorized }),
+    [onUnauthorized, token],
+  );
 
   const annehmen = useCallback((next: string) => {
     setToken(next);

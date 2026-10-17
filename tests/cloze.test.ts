@@ -108,7 +108,9 @@ describe('sentence-head gaps fold the first letter, and only there', () => {
     expect(clozeGapHeads('Sie fragt: „{{Hätten}} Sie Zeit?“')).toEqual([true]);
     expect(clozeGapHeads('Ich glaube, {{dass}} er kommt.')).toEqual([false]);
     // A cue in brackets after a sentence does not hide the boundary before it.
-    expect(clozeGapHeads('Darf ich? (dürfen) {{Könnten}} Sie das wiederholen? (können)')).toEqual([true]);
+    expect(clozeGapHeads('Darf ich? (dürfen) {{Könnten}} Sie das wiederholen? (können)')).toEqual([
+      true,
+    ]);
     expect(clozeGapHeads('Ich bei {{offenem}} (offen) Fenster.')).toEqual([false]);
     // An earlier gap is read as its answer, so a sentence it closes still opens the next one.
     expect(clozeGapHeads('Wir {{warten}}. {{Dann}} gehen wir.')).toEqual([false, true]);

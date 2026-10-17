@@ -40,8 +40,18 @@ import { repoRoot } from '@da/content/repo-root';
 
 const ANCHOR_DIRS = ['strukturenlisten', 'handlungslisten', 'themenlisten'];
 
-interface Entry { key: string; de: string; printed?: string; note?: string }
-interface Section { id: string; de: string; page?: number; entries: Entry[] }
+interface Entry {
+  key: string;
+  de: string;
+  printed?: string;
+  note?: string;
+}
+interface Section {
+  id: string;
+  de: string;
+  page?: number;
+  entries: Entry[];
+}
 interface Anchor {
   source: {
     id: string;
@@ -116,8 +126,18 @@ function parsePages(spec: string): number[] {
 function pdfText(pdf: string, pages: number[]): string {
   return pages
     .map((page) => {
-      const out = Bun.spawnSync(['pdftotext', '-f', String(page), '-l', String(page), '-layout', pdf, '-']);
-      if (out.exitCode !== 0) throw new Error(`pdftotext failed on ${pdf} p.${page}: ${out.stderr.toString()}`);
+      const out = Bun.spawnSync([
+        'pdftotext',
+        '-f',
+        String(page),
+        '-l',
+        String(page),
+        '-layout',
+        pdf,
+        '-',
+      ]);
+      if (out.exitCode !== 0)
+        throw new Error(`pdftotext failed on ${pdf} p.${page}: ${out.stderr.toString()}`);
       return out.stdout.toString();
     })
     .join('\n');
@@ -141,7 +161,18 @@ function unaccounted(anchor: Anchor, pdf: string, pages: number[]): string[] | u
   if (!bands?.length) return undefined;
 
   const xml = pages
-    .map((page) => Bun.spawnSync(['pdftotext', '-f', String(page), '-l', String(page), '-bbox-layout', pdf, '-']).stdout.toString())
+    .map((page) =>
+      Bun.spawnSync([
+        'pdftotext',
+        '-f',
+        String(page),
+        '-l',
+        String(page),
+        '-bbox-layout',
+        pdf,
+        '-',
+      ]).stdout.toString(),
+    )
     .join('\n');
 
   const known = new Set<string>();
@@ -182,15 +213,25 @@ function unaccounted(anchor: Anchor, pdf: string, pages: number[]): string[] | u
   return rows;
 }
 
-const norm = (text: string): string => text.toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.,;:]$/, '');
+const norm = (text: string): string =>
+  text
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.,;:]$/, '');
 
 function loadAnchors(root: string): { file: string; anchor: Anchor }[] {
   const found: { file: string; anchor: Anchor }[] = [];
   for (const dir of ANCHOR_DIRS) {
     const path = join(root, 'data', dir);
     if (!existsSync(path)) continue;
-    for (const name of readdirSync(path).filter((f) => f.endsWith('.yaml')).sort()) {
-      found.push({ file: join('data', dir, name), anchor: YAML.parse(readFileSync(join(path, name), 'utf8')) as Anchor });
+    for (const name of readdirSync(path)
+      .filter((f) => f.endsWith('.yaml'))
+      .sort()) {
+      found.push({
+        file: join('data', dir, name),
+        anchor: YAML.parse(readFileSync(join(path, name), 'utf8')) as Anchor,
+      });
     }
   }
   return found;
@@ -214,7 +255,9 @@ function main() {
     const { source } = anchor;
     if (only && source.id !== only) continue;
 
-    const entries = anchor.sections.flatMap((s) => s.entries.map((e) => ({ section: s, entry: e })));
+    const entries = anchor.sections.flatMap((s) =>
+      s.entries.map((e) => ({ section: s, entry: e })),
+    );
     const pdf = source.local ? join(root, source.local) : undefined;
     const pages = parsePages(source.pdf_pages ?? '');
 
@@ -224,22 +267,30 @@ function main() {
         : !existsSync(pdf)
           ? 'source absent locally (ADR 0009)'
           : 'no source.pdf_pages — nothing to read it against';
-      console.log(`⏭  ${source.id.padEnd(22)} ${String(entries.length).padStart(3)} entries — skipped: ${why}`);
+      console.log(
+        `⏭  ${source.id.padEnd(22)} ${String(entries.length).padStart(3)} entries — skipped: ${why}`,
+      );
       continue;
     }
 
     checked += 1;
     const text = pdfText(pdf, pages);
     const haystack = new Set(words(text));
-    const stems = [...haystack].filter((w) => w.endsWith('-') && w.length > 2).map((w) => w.slice(0, -1));
+    const stems = [...haystack]
+      .filter((w) => w.endsWith('-') && w.length > 2)
+      .map((w) => w.slice(0, -1));
 
     const invented: string[] = [];
     const leaked: string[] = [];
     for (const { section, entry } of entries) {
       // `printed` wins where the page and the label differ, and says so in the file.
       const missing = words(entry.printed ?? entry.de).filter((w) => !onPage(w, haystack, stems));
-      if (missing.length) invented.push(`${section.id}/${entry.key}: “${entry.de}” — not on the page: ${missing.join(', ')}`);
-      if (looksLikeSentence(entry.printed ?? entry.de)) leaked.push(`${section.id}/${entry.key}: “${entry.de}”`);
+      if (missing.length)
+        invented.push(
+          `${section.id}/${entry.key}: “${entry.de}” — not on the page: ${missing.join(', ')}`,
+        );
+      if (looksLikeSentence(entry.printed ?? entry.de))
+        leaked.push(`${section.id}/${entry.key}: “${entry.de}”`);
     }
 
     const status = invented.length || leaked.length ? '✗' : '✓';
@@ -253,7 +304,9 @@ function main() {
     if (showUnaccounted) {
       const rows = unaccounted(anchor, pdf, pages);
       if (!rows) {
-        console.log('     --unaccounted needs source.label_columns — see data/strukturenlisten/README.md');
+        console.log(
+          '     --unaccounted needs source.label_columns — see data/strukturenlisten/README.md',
+        );
       } else {
         console.log(`     ${rows.length} label-column line(s) matching no transcribed entry:`);
         for (const row of rows) console.log(`       · ${row}`);
@@ -262,7 +315,10 @@ function main() {
   }
 
   if (!checked) console.log('\nNothing checked — the sources are local-only (ADR 0009).');
-  else console.log(`\n${failures === 0 ? 'No fabricated labels and no leaked examples.' : `${failures} problem(s).`}`);
+  else
+    console.log(
+      `\n${failures === 0 ? 'No fabricated labels and no leaked examples.' : `${failures} problem(s).`}`,
+    );
   process.exit(failures > 0 ? 1 : 0);
 }
 

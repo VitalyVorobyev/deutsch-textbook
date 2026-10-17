@@ -76,9 +76,12 @@ export function revisionLookup(sets: readonly TrainingSet[]): RevisionLookup {
  * topic is opened (readAt) or already practiced (≥1 logged non-pretest attempt
  * — profiles that predate readAt tracking must not lose their pool).
  */
-export function eligibleTrainingSets<
-  T extends { setId: string; topicId: string; role?: string },
->(sets: T[], spine: string[], nodes: TopicNode[], ctx: TopicContext): T[] {
+export function eligibleTrainingSets<T extends { setId: string; topicId: string; role?: string }>(
+  sets: T[],
+  spine: string[],
+  nodes: TopicNode[],
+  ctx: TopicContext,
+): T[] {
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
   const attempted = new Set(ctx.attempts.map((a) => a.setId));
   const practiced = (topicId: string): boolean => {
@@ -223,8 +226,8 @@ export function buildSession(
       topicId: s.topicId,
       title_de: s.title_de,
       level: s.level,
-        item,
-        document: s.document,
+      item,
+      document: s.document,
     })),
   );
 

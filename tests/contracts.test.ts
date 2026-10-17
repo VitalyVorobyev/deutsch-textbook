@@ -24,7 +24,10 @@ function contentFiles<T>(dir: string): (T & { setId: string })[] {
     .filter((f) => f.endsWith('.yaml'))
     .map((f) => ({
       ...(YAML.parse(readFileSync(join(root, f), 'utf8')) as T),
-      setId: f.split(sep).join('/').replace(/\.yaml$/, ''),
+      setId: f
+        .split(sep)
+        .join('/')
+        .replace(/\.yaml$/, ''),
     }));
 }
 
@@ -33,7 +36,9 @@ describe('scoring and curriculum contracts', () => {
     expect(attemptScore({ correct: false, correctParts: 5, totalParts: 6 })).toBeCloseTo(5 / 6);
     expect(attemptScore({ correct: false, correctParts: 9, totalParts: 6 })).toBe(1);
     expect(attemptScore({ correct: true, evidence: 'practice' })).toBe(0);
-    expect(verifiedOnly([{ correct: true }, { correct: true, evidence: 'practice' }])).toHaveLength(1);
+    expect(verifiedOnly([{ correct: true }, { correct: true, evidence: 'practice' }])).toHaveLength(
+      1,
+    );
   });
 
   test('the real spine respects prerequisites and deepening order', () => {
@@ -41,7 +46,9 @@ describe('scoring and curriculum contracts', () => {
     const position = new Map(curriculum.spine.map((id, index) => [id, index]));
     const outcomes = new Set<string>();
     const groupIds = new Set(curriculum.groups.map((group) => group.id));
-    const parentGroups = new Set(curriculum.groups.flatMap((group) => group.parent ? [group.parent] : []));
+    const parentGroups = new Set(
+      curriculum.groups.flatMap((group) => (group.parent ? [group.parent] : [])),
+    );
     for (const node of curriculum.nodes) {
       expect(groupIds.has(node.group)).toBe(true);
       expect(parentGroups.has(node.group)).toBe(false);
@@ -54,7 +61,9 @@ describe('scoring and curriculum contracts', () => {
         outcomes.add(outcome.id);
       }
       for (const related of node.related)
-        expect(curriculum.nodes.find((candidate) => candidate.id === related)?.related).toContain(node.id);
+        expect(curriculum.nodes.find((candidate) => candidate.id === related)?.related).toContain(
+          node.id,
+        );
     }
   });
 
@@ -64,19 +73,29 @@ describe('scoring and curriculum contracts', () => {
   // the learner-led module's neighbours and its frozen outcome ids.
   test('the learner-led module keeps its required position in the A2 spine', () => {
     const curriculum = getCurriculum();
-    const a2 = curriculum.spine.filter((id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2');
+    const a2 = curriculum.spine.filter(
+      (id) => curriculum.nodes.find((node) => node.id === id)?.level === 'A2',
+    );
     expect(a2).toHaveLength(25);
     const position = a2.indexOf('verben-mit-praepositionen');
     expect(a2[position - 1]).toBe('gesundheit-arzttermin');
     expect(a2[position + 1]).toBe('arbeit-beruf');
-    expect(curriculum.nodes.find((node) => node.id === 'verben-mit-praepositionen')?.outcomes.map((outcome) => outcome.id)).toEqual([
-      'verb-praeposition-waehlen', 'da-wort-sache', 'wo-wort-fragen', 'person-sache-unterscheiden',
+    expect(
+      curriculum.nodes
+        .find((node) => node.id === 'verben-mit-praepositionen')
+        ?.outcomes.map((outcome) => outcome.id),
+    ).toEqual([
+      'verb-praeposition-waehlen',
+      'da-wort-sache',
+      'wo-wort-fragen',
+      'person-sache-unterscheiden',
     ]);
   });
 
   test('the current A2 checkpoint has twenty-two stable item ids including both additive checks', () => {
-    const checkpoint = contentFiles<{ topic: string; role: string; items: { id: string }[] }>('exercises')
-      .find((set) => set.role === 'checkpoint' && set.topic === 'aemter-dienstleistungen')!;
+    const checkpoint = contentFiles<{ topic: string; role: string; items: { id: string }[] }>(
+      'exercises',
+    ).find((set) => set.role === 'checkpoint' && set.topic === 'aemter-dienstleistungen')!;
     expect(checkpoint.items).toHaveLength(22);
     expect(checkpoint.items.map((item) => item.id)).toContain('tabelle-da-wo');
     expect(checkpoint.items.map((item) => item.id)).toContain('uebersetzen-sache-person');
@@ -112,7 +131,10 @@ describe('scoring and curriculum contracts', () => {
     // pretest to all-mc fails here and not only in the validator.
     const allMc = contentFiles<{ role?: string; items?: { type?: string }[] }>('exercises')
       .filter((set) => set.role === 'pretest')
-      .filter((set) => (set.items ?? []).length > 0 && (set.items ?? []).every((i) => (i.type ?? 'mc') === 'mc'))
+      .filter(
+        (set) =>
+          (set.items ?? []).length > 0 && (set.items ?? []).every((i) => (i.type ?? 'mc') === 'mc'),
+      )
       .map((set) => set.setId);
     expect(allMc).toEqual([]);
   });
@@ -148,11 +170,14 @@ describe('scoring and curriculum contracts', () => {
         if (item.type !== 'translate' || !item.answer) continue;
         const ref = `${set.setId}:${item.id}`;
         const renderings = [item.answer, ...(item.accept ?? [])];
-        const instruction = Object.values(item.instruction ?? {}).join(' ').toLowerCase();
+        const instruction = Object.values(item.instruction ?? {})
+          .join(' ')
+          .toLowerCase();
         for (const group of GROUPS) {
           const pinned = group.filter((c) => renderings.every((r) => introduces(r, c)));
           if (pinned.length !== 1) continue;
-          if (group.some((c) => c !== pinned[0] && renderings.some((r) => introduces(r, c)))) continue;
+          if (group.some((c) => c !== pinned[0] && renderings.some((r) => introduces(r, c))))
+            continue;
           // whole word: `dennoch` contains `denn`
           if (new RegExp(`\\b${pinned[0]}\\b`, 'iu').test(instruction)) continue;
           offenders.push(`${ref} pins "${pinned[0]}"`);
@@ -181,7 +206,12 @@ describe('scoring and curriculum contracts', () => {
             const stub = row.cells[i]!;
             const next = row.cells[i + 1]!;
             if (!stub.given || next.given || !/[…]\s*$/u.test(stub.answer)) continue;
-            const last = bare(stub.answer.replace(/[…\s]+$/u, '').split(/\s+/).pop() ?? '');
+            const last = bare(
+              stub.answer
+                .replace(/[…\s]+$/u, '')
+                .split(/\s+/)
+                .pop() ?? '',
+            );
             const first = bare(next.answer.trim().split(/\s+/)[0] ?? '');
             if (last && last === first)
               offenders.push(`${set.setId}:${item.id} row "${row.label}" repeats "${last}"`);
@@ -341,8 +371,7 @@ describe('scoring and curriculum contracts', () => {
       .filter((set) => set.topic === 'stadt-wege')
       .flatMap((set) => set.items ?? [])
       .find((item) => item.id === 'translate-bahnhof');
-    expect(station?.prompt_en)
-      .toBe('Excuse me, where is the train station?');
+    expect(station?.prompt_en).toBe('Excuse me, where is the train station?');
   });
 
   test('vocabulary distinguishes clothing frames and the two senses of live', () => {
@@ -365,10 +394,10 @@ describe('scoring and curriculum contracts', () => {
       accept: ['sich ausziehen'],
       valence: '+ Akk / sich',
     });
-    expect(firstSteps.entries.find((entry) => entry.de === 'wohnen')?.en)
-      .toContain('home or place');
-    expect(firstSteps.entries.find((entry) => entry.de === 'leben')?.en)
-      .toContain('be alive');
+    expect(firstSteps.entries.find((entry) => entry.de === 'wohnen')?.en).toContain(
+      'home or place',
+    );
+    expect(firstSteps.entries.find((entry) => entry.de === 'leben')?.en).toContain('be alive');
   });
 
   // Pinned here as well as in the validator, deliberately: the same redundancy
@@ -452,8 +481,9 @@ describe('scoring and curriculum contracts', () => {
   // keep carrying it, or the pressure that produced the leak comes back.
   test('a usage note reaches the card, where it can only be read after answering', () => {
     type Entry = Parameters<typeof buildDeck>[1][number];
-    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab')
-      .find((candidate) => candidate.id === 'freizeit-koennen')!;
+    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab').find(
+      (candidate) => candidate.id === 'freizeit-koennen',
+    )!;
     const cards = buildDeck(deck.id, deck.entries);
     const production = cards.find((c) => c.de === 'gern' && c.dir === 'x-de')!;
     expect(production.note?.en).toContain('after the conjugated verb');
@@ -467,11 +497,18 @@ describe('scoring and curriculum contracts', () => {
 
   test('the da/wo deck creates exactly sixteen contextual cards with stable phrase identities', () => {
     type Entry = Parameters<typeof buildDeck>[1][number];
-    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab')
-      .find((candidate) => candidate.id === 'verben-mit-praepositionen')!;
+    const deck = contentFiles<{ id: string; entries: Entry[] }>('vocab').find(
+      (candidate) => candidate.id === 'verben-mit-praepositionen',
+    )!;
     expect(deck.entries.map((entry) => entry.de)).toEqual([
-      'daran denken', 'darauf warten', 'darüber sprechen', 'davon träumen',
-      'sich dafür interessieren', 'damit arbeiten', 'sich daran erinnern', 'sich darauf freuen',
+      'daran denken',
+      'darauf warten',
+      'darüber sprechen',
+      'davon träumen',
+      'sich dafür interessieren',
+      'damit arbeiten',
+      'sich daran erinnern',
+      'sich darauf freuen',
     ]);
     expect(buildDeck(deck.id, deck.entries)).toHaveLength(16);
     for (const entry of deck.entries) {
@@ -484,8 +521,14 @@ describe('scoring and curriculum contracts', () => {
     for (const version of [1, 2, 3, 4, 5])
       expect(isValidSnapshot({ version, exportedAt: '', attempts: [], cards: {} })).toBe(true);
     const bad: Attempt = {
-      setId: 'x', itemId: 'y', itemType: 'table', correct: false,
-      correctParts: 2, totalParts: 0, given: '', ts: 1,
+      setId: 'x',
+      itemId: 'y',
+      itemType: 'table',
+      correct: false,
+      correctParts: 2,
+      totalParts: 0,
+      given: '',
+      ts: 1,
     };
     expect(sanitizeAttempts([bad])[0]?.totalParts).toBeUndefined();
   });
@@ -501,11 +544,22 @@ describe('scoring and curriculum contracts', () => {
       cards: {},
       attempts: [
         {
-          setId: 'a1/artikel', itemId: 'bad', itemType: 'table', correct: false,
-          correctParts: 2, totalParts: 0, given: '', ts: 1,
+          setId: 'a1/artikel',
+          itemId: 'bad',
+          itemType: 'table',
+          correct: false,
+          correctParts: 2,
+          totalParts: 0,
+          given: '',
+          ts: 1,
         },
         {
-          setId: 'a1/artikel', itemId: 'good', itemType: 'mc', correct: true, given: 'der', ts: 2,
+          setId: 'a1/artikel',
+          itemId: 'good',
+          itemType: 'mc',
+          correct: true,
+          given: 'der',
+          ts: 2,
         },
       ],
     };
@@ -1015,8 +1069,13 @@ describe('cards: recognition | both', () => {
   test('a recognition entry builds the DE→meaning card alone, with a stable id', () => {
     type Entry = Parameters<typeof buildDeck>[1][number];
     const base = {
-      de: 'Zuschlag', pos: 'noun', gender: 'm', plural: 'die Zuschläge', ipa: 'ˈtsuːʃlaːk',
-      en: 'surcharge', ru: 'доплата',
+      de: 'Zuschlag',
+      pos: 'noun',
+      gender: 'm',
+      plural: 'die Zuschläge',
+      ipa: 'ˈtsuːʃlaːk',
+      en: 'surcharge',
+      ru: 'доплата',
       example_de: 'Der Zuschlag kostet drei Euro.',
       example_en: 'The surcharge costs three euros.',
       example_ru: 'Доплата стоит три евро.',

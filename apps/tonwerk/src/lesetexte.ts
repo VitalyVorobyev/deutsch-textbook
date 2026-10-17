@@ -117,10 +117,7 @@ export interface LesetextFilter {
   status: string;
 }
 
-export function filtern(
-  zeilen: readonly LesetextZeile[],
-  filter: LesetextFilter,
-): LesetextZeile[] {
+export function filtern(zeilen: readonly LesetextZeile[], filter: LesetextFilter): LesetextZeile[] {
   return zeilen.filter((zeile) => {
     if (filter.ebene !== ALLE && zeile.level !== filter.ebene.toUpperCase()) return false;
     if (filter.status !== ALLE && zeile.status !== filter.status) return false;
@@ -150,7 +147,9 @@ export function ebenen(zeilen: readonly LesetextZeile[]): string[] {
  * anyway — an undo is a repair, not a licence to let a held-down key create eighty-five projects
  * a reviewer then has to delete one at a time.
  */
-export function ziel(zeile: LesetextZeile): { art: 'freigabe' | 'szene'; slug: string } | { art: 'anlegen' } {
+export function ziel(
+  zeile: LesetextZeile,
+): { art: 'freigabe' | 'szene'; slug: string } | { art: 'anlegen' } {
   if (!zeile.szene) return { art: 'anlegen' };
   if (zeile.szene.stage === 'automatically_checked') {
     return { art: 'freigabe', slug: zeile.slug };

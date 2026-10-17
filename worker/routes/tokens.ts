@@ -59,7 +59,8 @@ export async function handleTokens(
     }
 
     if (request.method === 'POST') {
-      if (!isSameOrigin(request, url)) return problem(403, 'cross-origin', 'Cross-origin request refused.');
+      if (!isSameOrigin(request, url))
+        return problem(403, 'cross-origin', 'Cross-origin request refused.');
       const existing = await listDeviceTokens(env.DB, principal.user.id);
       if (existing.length >= MAX_TOKENS) {
         return problem(409, 'too-many', `At most ${MAX_TOKENS} devices. Revoke one first.`);
@@ -77,8 +78,10 @@ export async function handleTokens(
 
   if (segments.length === 1 && ref) {
     if (request.method !== 'DELETE') return methodNotAllowed(['DELETE']);
-    if (!isSameOrigin(request, url)) return problem(403, 'cross-origin', 'Cross-origin request refused.');
-    if (ref.length !== TOKEN_REF_LENGTH) return problem(400, 'bad-ref', 'Malformed device reference.');
+    if (!isSameOrigin(request, url))
+      return problem(403, 'cross-origin', 'Cross-origin request refused.');
+    if (ref.length !== TOKEN_REF_LENGTH)
+      return problem(400, 'bad-ref', 'Malformed device reference.');
     const removed = await deleteDeviceToken(env.DB, principal.user.id, ref);
     if (removed === 0) return problem(404, 'not-found', 'No such device.');
     return noContent();

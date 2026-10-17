@@ -65,11 +65,16 @@ function seenDataKey(kind: SeenDataKind, profileId = getActiveProfileId()): stri
 /** Identity of an op, for removal after its write settles. */
 export function journalOpKey(op: JournalOp): string {
   switch (op.kind) {
-    case 'session': return `session|${op.entry.date}|${op.entry.ts}`;
-    case 'attempt': return `attempt|${op.attempt.setId}|${op.attempt.itemId}|${op.attempt.ts}`;
-    case 'grade': return `grade|${op.cardId}|${op.ts}`;
-    case 'lid-answer': return `lid-answer|${op.answer.q}|${op.answer.ts}`;
-    case 'lid-exam': return `lid-exam|${op.run.id}`;
+    case 'session':
+      return `session|${op.entry.date}|${op.entry.ts}`;
+    case 'attempt':
+      return `attempt|${op.attempt.setId}|${op.attempt.itemId}|${op.attempt.ts}`;
+    case 'grade':
+      return `grade|${op.cardId}|${op.ts}`;
+    case 'lid-answer':
+      return `lid-answer|${op.answer.q}|${op.answer.ts}`;
+    case 'lid-exam':
+      return `lid-exam|${op.run.id}`;
   }
 }
 
@@ -138,7 +143,10 @@ export function journalAppend(op: JournalOp, profileId = getActiveProfileId()): 
 
 export function journalRemove(op: JournalOp, profileId = getActiveProfileId()): void {
   const key = journalOpKey(op);
-  writeOps(journalPending(profileId).filter((o) => journalOpKey(o) !== key), profileId);
+  writeOps(
+    journalPending(profileId).filter((o) => journalOpKey(o) !== key),
+    profileId,
+  );
 }
 
 /**
@@ -194,7 +202,9 @@ function journalPoison(op: JournalOp, err: unknown, profileId: string): boolean 
     const next = [...journalPoisoned(profileId), { op, error: String(err), at: Date.now() }];
     if (next.length > POISON_CAP) return false;
     localStorage.setItem(poisonKey(profileId), JSON.stringify(next));
-  } catch { return false; }
+  } catch {
+    return false;
+  }
   journalRemove(op, profileId);
   return !journalPending(profileId).some((o) => journalOpKey(o) === journalOpKey(op));
 }
@@ -239,7 +249,11 @@ export async function replayJournal(retry: RetryOptions = {}): Promise<ReplayRes
     run = drainJournal(profileId);
     flights.set(profileId, run);
     const owned = run;
-    void run.finally(() => { if (flights.get(profileId) === owned) flights.delete(profileId); }).catch(() => {});
+    void run
+      .finally(() => {
+        if (flights.get(profileId) === owned) flights.delete(profileId);
+      })
+      .catch(() => {});
   }
   try {
     // A caller's clock starts here, not when its operation eventually reaches the head.
@@ -269,12 +283,20 @@ async function drainJournal(profileId: string): Promise<ReplayResult> {
       }
       confirmOp(op, profileId);
       if (journalPending(profileId).some((pending) => journalOpKey(pending) === journalOpKey(op)))
-        return { replayed, poisoned, failed: journalPending(profileId).length, error: new Error('Journal storage blocked') };
+        return {
+          replayed,
+          poisoned,
+          failed: journalPending(profileId).length,
+          error: new Error('Journal storage blocked'),
+        };
       replayed++;
     } catch (err) {
       // Only deterministic data/programming errors qualify as poison. DOMException storage
       // failures (quota, abort, closed connection) are recoverable and stay in the journal.
-      if ((err instanceof TypeError || err instanceof RangeError) && journalPoison(op, err, profileId)) {
+      if (
+        (err instanceof TypeError || err instanceof RangeError) &&
+        journalPoison(op, err, profileId)
+      ) {
         poisoned++;
         continue;
       }
@@ -283,18 +305,27 @@ async function drainJournal(profileId: string): Promise<ReplayResult> {
   }
 }
 
-export async function logAttemptDurably(attempt: NewAttempt, retry: RetryOptions = {}): Promise<void> {
+export async function logAttemptDurably(
+  attempt: NewAttempt,
+  retry: RetryOptions = {},
+): Promise<void> {
   journalAppend({ kind: 'attempt', attempt });
   await replayJournal(retry);
 }
 
-export async function logSessionDurably(entry: SessionLogEntry, retry: RetryOptions = {}): Promise<void> {
+export async function logSessionDurably(
+  entry: SessionLogEntry,
+  retry: RetryOptions = {},
+): Promise<void> {
   journalAppend({ kind: 'session', entry });
   await replayJournal(retry);
 }
 
 /** A LiD answer: journaled, then graded into the `lid` key by the one drain (ADR 0021). */
-export async function logLidAnswerDurably(answer: LidAnswer, retry: RetryOptions = {}): Promise<void> {
+export async function logLidAnswerDurably(
+  answer: LidAnswer,
+  retry: RetryOptions = {},
+): Promise<void> {
   journalAppend({ kind: 'lid-answer', answer });
   await replayJournal(retry);
 }
@@ -306,7 +337,9 @@ export async function logLidAnswerDurably(answer: LidAnswer, retry: RetryOptions
  * pending together and replay together.
  */
 export async function logLidExamDurably(
-  run: LidExamRun, answers: LidAnswer[], retry: RetryOptions = {},
+  run: LidExamRun,
+  answers: LidAnswer[],
+  retry: RetryOptions = {},
 ): Promise<void> {
   journalAppend({ kind: 'lid-exam', run });
   for (const answer of answers) journalAppend({ kind: 'lid-answer', answer });
@@ -314,7 +347,10 @@ export async function logLidExamDurably(
 }
 
 export async function gradeCardDurably(
-  cardId: string, grade: Grade, ts = Date.now(), retry: RetryOptions = {},
+  cardId: string,
+  grade: Grade,
+  ts = Date.now(),
+  retry: RetryOptions = {},
 ): Promise<StoredCard | null> {
   const op: JournalOp = { kind: 'grade', cardId, grade, ts };
   const key = `${getActiveProfileId()}|${journalOpKey(op)}`;

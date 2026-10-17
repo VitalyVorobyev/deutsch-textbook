@@ -88,7 +88,9 @@ describe('inventory anchors', () => {
       for (const source of loadAnchorSources(dimension)) {
         expect(source.source.levels.length).toBeGreaterThan(0);
         // Every source says who sits it and what it governs — never assumed from the level.
-        expect(typeof source.source.audience === 'string' || source.source.status === 'retired').toBe(true);
+        expect(
+          typeof source.source.audience === 'string' || source.source.status === 'retired',
+        ).toBe(true);
       }
     }
     // *Anchored* levels only, and the distinction is the point: B2 has no source at all, because

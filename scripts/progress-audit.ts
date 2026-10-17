@@ -118,7 +118,10 @@ export interface AuditSnapshot {
   cards: Record<string, AuditCard>;
   sessions?: Array<{ date: string; reviewed: number | null; trained: number; ts: number }>;
   topics?: Record<string, unknown>;
-  feedback?: Record<string, { artifactId: string; difficulty?: string; useful?: boolean; wantsMore?: boolean; ts: number }>;
+  feedback?: Record<
+    string,
+    { artifactId: string; difficulty?: string; useful?: boolean; wantsMore?: boolean; ts: number }
+  >;
   /** Leben in Deutschland (v8+); absent from older snapshots */
   lid?: LidState;
 }
@@ -372,13 +375,14 @@ export interface AuditOptions {
 const itemRef = (setId: string, itemId: string) => `${setId}:${itemId}`;
 const iso = (ts: number) => new Date(ts).toISOString();
 const compareAttempts = (a: AuditAttempt, b: AuditAttempt) =>
-  a.ts - b.ts || a.setId.localeCompare(b.setId) || a.itemId.localeCompare(b.itemId) ||
+  a.ts - b.ts ||
+  a.setId.localeCompare(b.setId) ||
+  a.itemId.localeCompare(b.itemId) ||
   a.given.localeCompare(b.given);
 const pct = (score: number, possible: number) =>
   possible === 0 ? '—' : `${Math.round((score / possible) * 100)}%`;
 const bare = (word: string) => word.replace(/[.,!?;:]+$/, '');
-const tokens = (text: string) =>
-  normalizeTranslation(text).split(/\s+/).filter(Boolean).map(bare);
+const tokens = (text: string) => normalizeTranslation(text).split(/\s+/).filter(Boolean).map(bare);
 
 function parseItemRef(ref: string): { setId: string; itemId: string } {
   const at = ref.lastIndexOf(':');
@@ -393,7 +397,9 @@ export function resolveSnapshotPath(root: string, profile?: string, explicit?: s
   const dir = join(root, 'progress', profile);
   let files: string[];
   try {
-    files = readdirSync(dir).filter((file) => file.endsWith('.json')).sort();
+    files = readdirSync(dir)
+      .filter((file) => file.endsWith('.json'))
+      .sort();
   } catch {
     throw new Error(`Progress profile not found: ${profile}`);
   }
@@ -427,10 +433,19 @@ export function readSnapshot(path: string): AuditSnapshot {
   };
 }
 
-function hasLidAnswers(snapshot: Partial<AuditSnapshot>): snapshot is Partial<AuditSnapshot> & { lid: LidState } {
+function hasLidAnswers(
+  snapshot: Partial<AuditSnapshot>,
+): snapshot is Partial<AuditSnapshot> & { lid: LidState } {
   const lid = snapshot.lid;
-  return !!lid && typeof lid === 'object' && Array.isArray(lid.answers) && lid.answers.length > 0 &&
-    !!lid.cards && typeof lid.cards === 'object' && Array.isArray(lid.exams);
+  return (
+    !!lid &&
+    typeof lid === 'object' &&
+    Array.isArray(lid.answers) &&
+    lid.answers.length > 0 &&
+    !!lid.cards &&
+    typeof lid.cards === 'object' &&
+    Array.isArray(lid.exams)
+  );
 }
 
 /**
@@ -439,7 +454,12 @@ function hasLidAnswers(snapshot: Partial<AuditSnapshot>): snapshot is Partial<Au
  * knows, and pooling would keep reporting it as weak. The most-missed list is the opposite
  * question — which items keep costing answers — so it counts every wrong answer.
  */
-function lidSummary(lid: LidState, context: LidAuditContext, exportedAt: number, limit: number): LidAudit {
+function lidSummary(
+  lid: LidState,
+  context: LidAuditContext,
+  exportedAt: number,
+  limit: number,
+): LidAudit {
   const ids = context.bank.questions.map((q) => q.id);
   const text = new Map(context.bank.questions.map((q) => [q.id, q.question]));
   const readiness = lidReadiness(lid, ids, new Date(exportedAt));
@@ -448,7 +468,8 @@ function lidSummary(lid: LidState, context: LidAuditContext, exportedAt: number,
   const tally = new Map<string, { wrong: number; answers: number; lastWrong: number }>();
   for (const answer of lid.answers) {
     const prior = latest.get(answer.q);
-    if (!prior || answer.ts >= prior.ts) latest.set(answer.q, { correct: answer.correct, ts: answer.ts });
+    if (!prior || answer.ts >= prior.ts)
+      latest.set(answer.q, { correct: answer.correct, ts: answer.ts });
     const row = tally.get(answer.q) ?? { wrong: 0, answers: 0, lastWrong: 0 };
     row.answers += 1;
     if (!answer.correct) {
@@ -462,7 +483,13 @@ function lidSummary(lid: LidState, context: LidAuditContext, exportedAt: number,
   const byGroup: LidAudit['byGroup'] = [];
   for (const module of context.topics.modules) {
     const total = { module: module.title_de, questions: 0, seen: 0, latestCorrect: 0 };
-    const rows = module.topics.map((topic) => ({ module: module.title_de, topic: topic.title_de, questions: 0, seen: 0, latestCorrect: 0 }));
+    const rows = module.topics.map((topic) => ({
+      module: module.title_de,
+      topic: topic.title_de,
+      questions: 0,
+      seen: 0,
+      latestCorrect: 0,
+    }));
     for (const id of ids) {
       const topic = context.placement.get(id);
       const place = topic ? topicOf.get(topic) : undefined;
@@ -490,9 +517,16 @@ function lidSummary(lid: LidState, context: LidAuditContext, exportedAt: number,
     byGroup,
     mostMissed: [...tally.entries()]
       .filter(([, row]) => row.wrong > 0)
-      .sort(([a, x], [b, y]) => y.wrong - x.wrong || y.lastWrong - x.lastWrong || a.localeCompare(b))
+      .sort(
+        ([a, x], [b, y]) => y.wrong - x.wrong || y.lastWrong - x.lastWrong || a.localeCompare(b),
+      )
       .slice(0, limit)
-      .map(([id, row]) => ({ id, wrong: row.wrong, answers: row.answers, question: text.get(id) ?? '(not in the bank)' })),
+      .map(([id, row]) => ({
+        id,
+        wrong: row.wrong,
+        answers: row.answers,
+        question: text.get(id) ?? '(not in the bank)',
+      })),
     exams: exams.slice(0, limit).map((run) => ({
       date: iso(run.submittedAt).slice(0, 10),
       correct: run.correct,
@@ -543,7 +577,9 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
   const catalog = new Map<string, CatalogItem>();
   for (const file of files) {
     const setId = relative(exerciseRoot, join(exerciseRoot, file))
-      .split(sep).join('/').replace(/\.yaml$/, '');
+      .split(sep)
+      .join('/')
+      .replace(/\.yaml$/, '');
     const data = YAML.parse(readFileSync(join(exerciseRoot, file), 'utf8')) as {
       topic?: string;
       role?: string;
@@ -551,7 +587,13 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
       items?: ExerciseItem[];
     };
     for (const item of data.items ?? [])
-      catalog.set(itemRef(setId, item.id), { ...item, setId, topic: data.topic, role: data.role, arming: data.arming });
+      catalog.set(itemRef(setId, item.id), {
+        ...item,
+        setId,
+        topic: data.topic,
+        role: data.role,
+        arming: data.arming,
+      });
   }
 
   const readingRoot = join(root, 'content', 'reading');
@@ -560,7 +602,9 @@ export function loadExerciseCatalog(root: string): Map<string, CatalogItem> {
     .sort();
   for (const file of readings) {
     const pathId = relative(readingRoot, join(readingRoot, file))
-      .split(sep).join('/').replace(/\.yaml$/, '');
+      .split(sep)
+      .join('/')
+      .replace(/\.yaml$/, '');
     const setId = `reading:${pathId}`;
     const data = YAML.parse(readFileSync(join(readingRoot, file), 'utf8')) as {
       topic?: string;
@@ -610,10 +654,15 @@ function keyTokensIntact(given: string, item: CatalogItem): boolean {
   if (keys.has(answerHead)) {
     keys.add(answerHead.charAt(0).toLowerCase() + answerHead.slice(1));
   }
-  return target.length === got.length && target.every((token, index) => {
-    if (!keys.has(token) && !(index === 0 && keys.has(token.toLowerCase()))) return true;
-    return token === got[index] || (index === 0 && token.toLowerCase() === got[index]?.toLowerCase());
-  });
+  return (
+    target.length === got.length &&
+    target.every((token, index) => {
+      if (!keys.has(token) && !(index === 0 && keys.has(token.toLowerCase()))) return true;
+      return (
+        token === got[index] || (index === 0 && token.toLowerCase() === got[index]?.toLowerCase())
+      );
+    })
+  );
 }
 
 function attemptKey(attempt: AuditAttempt): string {
@@ -741,10 +790,14 @@ function gradingReview(
       accept: item.accept ?? [],
       keyTokens: item.key_tokens ?? [],
       focus: item.focus,
-      rejected: queuedRenderings.map(({ attempts: _attempts, ...rendering }) => rendering).sort(
-        (a, b) => b.count - a.count || b.latestAt.localeCompare(a.latestAt) ||
-          a.given.localeCompare(b.given),
-      ),
+      rejected: queuedRenderings
+        .map(({ attempts: _attempts, ...rendering }) => rendering)
+        .sort(
+          (a, b) =>
+            b.count - a.count ||
+            b.latestAt.localeCompare(a.latestAt) ||
+            a.given.localeCompare(b.given),
+        ),
     });
   }
   candidates.sort((a, b) => {
@@ -754,8 +807,9 @@ function gradingReview(
     const bLatest = b.rejected[0]?.latestAt ?? '';
     return bCount - aCount || bLatest.localeCompare(aLatest) || a.ref.localeCompare(b.ref);
   });
-  const ruled = decisions
-    .filter((decision) => matchable.has(decisionKey(decision.item, decision.given))).length;
+  const ruled = decisions.filter((decision) =>
+    matchable.has(decisionKey(decision.item, decision.given)),
+  ).length;
   return { candidates, excluded, refocused, ruled, undecided, orphaned: decisions.length - ruled };
 }
 
@@ -810,10 +864,14 @@ function focusSignals(
       };
     })
     .filter((row): row is FocusSignal => row !== undefined)
-    .sort((a, b) =>
-      Number(b.status === 'persistent') - Number(a.status === 'persistent') ||
-      b.recentWrong - a.recentWrong || b.probeWrong - a.probeWrong || b.wrong - a.wrong ||
-      a.focus.localeCompare(b.focus))
+    .sort(
+      (a, b) =>
+        Number(b.status === 'persistent') - Number(a.status === 'persistent') ||
+        b.recentWrong - a.recentWrong ||
+        b.probeWrong - a.probeWrong ||
+        b.wrong - a.wrong ||
+        a.focus.localeCompare(b.focus),
+    )
     .slice(0, limit);
 }
 
@@ -832,9 +890,15 @@ function cardSummary(cards: Record<string, AuditCard>) {
    * row is identical to the card's own; only a duplicated headword merges, and its row then
    * names both decks, because reviewing that lexeme means reviewing both entries.
    */
-  const production = new Map<string, {
-    decks: Set<string>; lapses: number; reps: number; stability?: number;
-  }>();
+  const production = new Map<
+    string,
+    {
+      decks: Set<string>;
+      lapses: number;
+      reps: number;
+      stability?: number;
+    }
+  >();
   let lapses = 0;
   let withLapses = 0;
   for (const [id, card] of Object.entries(cards)) {
@@ -854,9 +918,8 @@ function cardSummary(cards: Record<string, AuditCard>) {
       row.reps += card.reps ?? 0;
       // The least consolidated of the two is the one worth reporting.
       if (card.stability !== undefined)
-        row.stability = row.stability === undefined
-          ? card.stability
-          : Math.min(row.stability, card.stability);
+        row.stability =
+          row.stability === undefined ? card.stability : Math.min(row.stability, card.stability);
       production.set(headword, row);
     }
     const dir = directions.get(direction) ?? { direction, cards: 0, lapses: 0 };
@@ -929,13 +992,17 @@ function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): Pr
   // A cloze, order or table miss logged before its item had predicates: re-read through them, as
   // `islandAttribution` would read it today, against the sentence the learner built.
   if (
-    !attempt.correct && item?.focus && item.focus_evidence && ISLAND_TYPES.has(attempt.itemType) &&
+    !attempt.correct &&
+    item?.focus &&
+    item.focus_evidence &&
+    ISLAND_TYPES.has(attempt.itemType) &&
     !revisionKnownMismatch(attempt, item)
   ) {
     const { retained = [], failed = [], case_sensitive } = item.focus_evidence;
-    const response = attempt.itemType === 'cloze' && item.text
-      ? fillCloze(item.text, attempt.given.split(' / '))
-      : attempt.given;
+    const response =
+      attempt.itemType === 'cloze' && item.text
+        ? fillCloze(item.text, attempt.given.split(' / '))
+        : attempt.given;
     return evaluateFocusEvidence(response, false, { retained, failed, case_sensitive });
   }
   if (attempt.itemType === 'translate' && item?.answer && !revisionKnownMismatch(attempt, item)) {
@@ -1057,22 +1124,33 @@ function delayedSummary(
     const ref = itemRef(attempt.setId, attempt.itemId);
     firstByItem.set(ref, Math.min(firstByItem.get(ref) ?? attempt.ts, attempt.ts));
   }
-  const delayed = attempts.filter((attempt) =>
-    isVerifiedEvidence(attempt) &&
-    attempt.ts - (firstByItem.get(itemRef(attempt.setId, attempt.itemId)) ?? attempt.ts) >= 2 * DAY);
-  const probes = attempts.filter((attempt) =>
-    /(^|\/)probe-/.test(attempt.setId) && isVerifiedEvidence(attempt));
-  const sets = new Map<string, {
-    setId: string;
-    topicId: string;
-    role?: string;
-    arming?: string[];
-    items: Array<{ id: string; outcomes: string[] }>;
-  }>();
+  const delayed = attempts.filter(
+    (attempt) =>
+      isVerifiedEvidence(attempt) &&
+      attempt.ts - (firstByItem.get(itemRef(attempt.setId, attempt.itemId)) ?? attempt.ts) >=
+        2 * DAY,
+  );
+  const probes = attempts.filter(
+    (attempt) => /(^|\/)probe-/.test(attempt.setId) && isVerifiedEvidence(attempt),
+  );
+  const sets = new Map<
+    string,
+    {
+      setId: string;
+      topicId: string;
+      role?: string;
+      arming?: string[];
+      items: Array<{ id: string; outcomes: string[] }>;
+    }
+  >();
   for (const item of catalog.values()) {
     if (!item.topic || !item.role) continue;
     const set = sets.get(item.setId) ?? {
-      setId: item.setId, topicId: item.topic, role: item.role, arming: item.arming, items: [],
+      setId: item.setId,
+      topicId: item.topic,
+      role: item.role,
+      arming: item.arming,
+      items: [],
     };
     set.items.push({ id: item.id, outcomes: item.outcomes ?? [] });
     sets.set(item.setId, set);
@@ -1113,8 +1191,17 @@ function delayedSummary(
     const label = focus ?? item?.outcomes?.[0] ?? '(unattributed outcome)';
     const key = `${level}\u0000${label}`;
     const row = competences.get(key) ?? {
-      level, focus, label, families: 0, attempts: 0, correct: 0, retained: 0, failed: 0,
-      retentionPct: 0, maxElapsedDays: 0, readable: false,
+      level,
+      focus,
+      label,
+      families: 0,
+      attempts: 0,
+      correct: 0,
+      retained: 0,
+      failed: 0,
+      retentionPct: 0,
+      maxElapsedDays: 0,
+      readable: false,
       formats: {} as Record<string, { attempts: number; survived: number; unknown: number }>,
     };
     row.attempts += 1;
@@ -1147,16 +1234,16 @@ function delayedSummary(
     .map(([key, row]) => ({
       ...row,
       families: familiesPerCompetence.get(key)?.size ?? 0,
-      retentionPct: row.attempts - (row.unknown ?? 0)
-        ? Math.round((100 * (row.correct + row.retained)) / (row.attempts - (row.unknown ?? 0)))
-        : 0,
+      retentionPct:
+        row.attempts - (row.unknown ?? 0)
+          ? Math.round((100 * (row.correct + row.retained)) / (row.attempts - (row.unknown ?? 0)))
+          : 0,
       // An untagged family cannot fail its target by construction — `classifyProbe` has no tag to
       // attribute a miss to, so every miss lands in `retained` and the row reads 100%. That is an
       // instrument gap, not retention, so it is never readable however many attempts it holds.
       readable: row.focus !== undefined && row.attempts - (row.unknown ?? 0) >= PROBE_READABLE_MIN,
     }))
-    .sort((a, b) =>
-      a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
+    .sort((a, b) => a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
 
   const owed = dueProbes(families, schedulableAttempts, at);
   const takenPerDay = new Map<string, number>();
@@ -1196,8 +1283,17 @@ function delayedSummary(
     const level = family.setId.split('/')[0]!.toUpperCase();
     const key = `${level}\u0000${label}`;
     const row = readability.get(key) ?? {
-      level, focus, label, families: 0, attempts: 0, ceilingEver: 0, ceilingByTarget: 0,
-      dueNow: 0, unarmedFamilies: 0, readableToday: false, reachableByTarget: false,
+      level,
+      focus,
+      label,
+      families: 0,
+      attempts: 0,
+      ceilingEver: 0,
+      ceilingByTarget: 0,
+      dueNow: 0,
+      unarmedFamilies: 0,
+      readableToday: false,
+      reachableByTarget: false,
     };
     row.families += 1;
     row.ceilingEver += PROBE_INTERVALS_DAYS.length;
@@ -1211,7 +1307,8 @@ function delayedSummary(
     if (armed === undefined) row.unarmedFamilies += 1;
     const start = armed ?? at;
     row.ceilingByTarget += PROBE_INTERVALS_DAYS.filter(
-      (days) => start + days * DAY <= projectTo).length;
+      (days) => start + days * DAY <= projectTo,
+    ).length;
     row.attempts += probeAttempts(family, schedulableAttempts).length;
     if (dueSetIds.has(family.setId)) row.dueNow += 1;
     readability.set(key, row);
@@ -1223,11 +1320,9 @@ function delayedSummary(
       // An untagged family can never fail its target, so it is never readable however many
       // attempts it holds — the same exclusion the retention rows make, applied here so a
       // projection cannot promise readability the verdict will refuse.
-      reachableByTarget:
-        row.focus !== undefined && row.ceilingByTarget >= PROBE_READABLE_MIN,
+      reachableByTarget: row.focus !== undefined && row.ceilingByTarget >= PROBE_READABLE_MIN,
     }))
-    .sort((a, b) =>
-      a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
+    .sort((a, b) => a.level.localeCompare(b.level) || (a.focus ?? '').localeCompare(b.focus ?? ''));
 
   return {
     attempts: delayed.length,
@@ -1264,11 +1359,16 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
   });
   const writing = attempts.filter((attempt) => attempt.practice?.kind === 'writing');
   const cycleByTopic: Record<string, string> = {
-    'reisen-verkehr': '1 · Reisen + Einkaufen', 'einkaufen-reklamation': '1 · Reisen + Einkaufen',
-    'gesundheit-arzttermin': '2 · Gesundheit + Präpositionen', 'verben-mit-praepositionen': '2 · Gesundheit + Präpositionen',
-    'arbeit-beruf': '3 · Arbeit + Nebensätze', 'nebensaetze-plaene': '3 · Arbeit + Nebensätze',
-    'biografie-erfahrungen': '4 · Biografie + Freunde', 'freunde-feste': '4 · Biografie + Freunde',
-    'lernen-verstehen': '5 · Lernen + Ämter', 'aemter-dienstleistungen': '5 · Lernen + Ämter',
+    'reisen-verkehr': '1 · Reisen + Einkaufen',
+    'einkaufen-reklamation': '1 · Reisen + Einkaufen',
+    'gesundheit-arzttermin': '2 · Gesundheit + Präpositionen',
+    'verben-mit-praepositionen': '2 · Gesundheit + Präpositionen',
+    'arbeit-beruf': '3 · Arbeit + Nebensätze',
+    'nebensaetze-plaene': '3 · Arbeit + Nebensätze',
+    'biografie-erfahrungen': '4 · Biografie + Freunde',
+    'freunde-feste': '4 · Biografie + Freunde',
+    'lernen-verstehen': '5 · Lernen + Ämter',
+    'aemter-dienstleistungen': '5 · Lernen + Ämter',
   };
   let detail: ItemDetail | undefined;
   if (options.itemRef) {
@@ -1277,8 +1377,9 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
     detail = {
       ref,
       item: options.catalog.get(ref),
-      attempts: attempts.filter((attempt) =>
-        attempt.setId === parsed.setId && attempt.itemId === parsed.itemId),
+      attempts: attempts.filter(
+        (attempt) => attempt.setId === parsed.setId && attempt.itemId === parsed.itemId,
+      ),
     };
   }
   return {
@@ -1299,40 +1400,55 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
       gradingReviewExcluded: review.excluded.size,
       revisionKnown: attempts.filter((attempt) => attempt.itemRevision !== undefined).length,
       revisionMismatch: withCatalog.filter(({ attempt, item }) =>
-        revisionKnownMismatch(attempt, item)).length,
+        revisionKnownMismatch(attempt, item),
+      ).length,
       writingRevisions: writing.length,
-      writingChanged: writing.filter((attempt) =>
-        attempt.practice?.kind === 'writing' &&
-        normalizeTranslation(attempt.practice.draft ?? '') !== normalizeTranslation(attempt.practice.revision ?? '')).length,
+      writingChanged: writing.filter(
+        (attempt) =>
+          attempt.practice?.kind === 'writing' &&
+          normalizeTranslation(attempt.practice.draft ?? '') !==
+            normalizeTranslation(attempt.practice.revision ?? ''),
+      ).length,
     },
     byItemType: performance(attempts, (attempt) => attempt.itemType || 'unknown'),
-    byResponseMode: performance(attempts, (attempt) =>
-      attempt.responseMode ?? 'unknown (historical)'),
-    byTopic: performance(attempts, (attempt) =>
-      options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? attempt.setId)
+    byResponseMode: performance(
+      attempts,
+      (attempt) => attempt.responseMode ?? 'unknown (historical)',
+    ),
+    byTopic: performance(
+      attempts,
+      (attempt) =>
+        options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? attempt.setId,
+    )
       .sort((a, b) => b.attempts - a.attempts || a.name.localeCompare(b.name))
       .slice(0, limit),
-    byCycle: performance(attempts.filter((attempt) => {
-      const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic;
-      return !!topic && !!cycleByTopic[topic];
-    }), (attempt) => {
-      const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? '';
-      return cycleByTopic[topic] ?? 'other';
-    }),
+    byCycle: performance(
+      attempts.filter((attempt) => {
+        const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic;
+        return !!topic && !!cycleByTopic[topic];
+      }),
+      (attempt) => {
+        const topic = options.catalog.get(itemRef(attempt.setId, attempt.itemId))?.topic ?? '';
+        return cycleByTopic[topic] ?? 'other';
+      },
+    ),
     cards: cardSummary(snapshot.cards),
     delayed: delayedSummary(
       attempts,
       options.catalog,
       exportedAt,
-      options.projectTo ?? exportedAt + PROBE_INTERVALS_DAYS[PROBE_INTERVALS_DAYS.length - 1]! * DAY,
+      options.projectTo ??
+        exportedAt + PROBE_INTERVALS_DAYS[PROBE_INTERVALS_DAYS.length - 1]! * DAY,
     ),
     sessionWorkload: {
       sessions: snapshot.sessions?.length ?? 0,
       averageReviewed: snapshot.sessions?.length
-        ? snapshot.sessions.reduce((sum, session) => sum + (session.reviewed ?? 0), 0) / snapshot.sessions.length
+        ? snapshot.sessions.reduce((sum, session) => sum + (session.reviewed ?? 0), 0) /
+          snapshot.sessions.length
         : 0,
       averageTrained: snapshot.sessions?.length
-        ? snapshot.sessions.reduce((sum, session) => sum + session.trained, 0) / snapshot.sessions.length
+        ? snapshot.sessions.reduce((sum, session) => sum + session.trained, 0) /
+          snapshot.sessions.length
         : 0,
     },
     // Never capped: a queue that hides rows cannot drain — the top-10 display cap is
@@ -1346,11 +1462,17 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
     },
     // An item missing from the catalog resolves to `undefined`, not 1 — unknown is never a
     // mismatch, and `?? 1` here would retire every pre-`revision` attempt on a deleted item.
-    focusSignals: focusSignals(attempts, exportedAt, limit, review.excluded, review.refocused,
+    focusSignals: focusSignals(
+      attempts,
+      exportedAt,
+      limit,
+      review.excluded,
+      review.refocused,
       (setId, itemId) => {
         const item = options.catalog.get(itemRef(setId, itemId));
-        return item ? item.revision ?? 1 : undefined;
-      }),
+        return item ? (item.revision ?? 1) : undefined;
+      },
+    ),
     feedback: snapshot.feedback ?? {},
     ...(snapshot.lid?.answers.length
       ? { lid: lidSummary(snapshot.lid, requireLidContext(options.lid), exportedAt, limit) }
@@ -1360,12 +1482,16 @@ export function buildAudit(snapshot: AuditSnapshot, options: AuditOptions): Prog
 }
 
 function requireLidContext(context: LidAuditContext | undefined): LidAuditContext {
-  if (!context) throw new Error('The snapshot holds LiD answers; pass the LiD bank and topics (options.lid).');
+  if (!context)
+    throw new Error('The snapshot holds LiD answers; pass the LiD bank and topics (options.lid).');
   return context;
 }
 
 const md = (value: unknown) =>
-  String(value ?? '').replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
+  String(value ?? '')
+    .replace(/\|/g, '\\|')
+    .replace(/\s+/g, ' ')
+    .trim();
 
 /**
  * One line per authored prompt half, labelled by language.
@@ -1386,8 +1512,10 @@ function performanceTable(rows: PerformanceRow[]): string[] {
   return [
     '| Kind | Attempts | Verified | Score |',
     '| --- | ---: | ---: | ---: |',
-    ...rows.map((row) =>
-      `| ${md(row.name)} | ${row.attempts} | ${row.verified} | ${pct(row.score, row.possible)} |`),
+    ...rows.map(
+      (row) =>
+        `| ${md(row.name)} | ${row.attempts} | ${row.verified} | ${pct(row.score, row.possible)} |`,
+    ),
   ];
 }
 
@@ -1403,8 +1531,10 @@ function performanceTable(rows: PerformanceRow[]): string[] {
 function formatSplit(row: CompetenceRetention): string {
   return Object.entries(row.formats)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([type, { attempts, survived, unknown }]) =>
-      `${type} ${survived}/${attempts}${unknown ? ` (+${unknown} unknown)` : ''}`)
+    .map(
+      ([type, { attempts, survived, unknown }]) =>
+        `${type} ${survived}/${attempts}${unknown ? ` (+${unknown} unknown)` : ''}`,
+    )
     .join(' · ');
 }
 
@@ -1414,16 +1544,20 @@ function retentionSection(rows: CompetenceRetention[]): string[] {
     '## Retention by competence',
     '',
     'A probe is *retained* when the graded target survived the interval, whether or not the rest ' +
-      'of the sentence did. Readable = at least ' + PROBE_READABLE_MIN + ' attempts (one per ' +
+      'of the sentence did. Readable = at least ' +
+      PROBE_READABLE_MIN +
+      ' attempts (one per ' +
       'scheduled interval); below that the row is pending and is excluded from the verdict ' +
       'rather than counted as a pass.',
     '',
     '| Level | Competence | Families | n | Correct | Retained | Failed | Unknown | Retention | Max delay | By format | Readable |',
     '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |',
-    ...rows.map((row) =>
-      `| ${md(row.level)} | ${md(row.label)} | ${row.families} | ${row.attempts} ` +
-      `| ${row.correct} | ${row.retained} | ${row.failed} | ${row.unknown ?? 0} | ${row.retentionPct}% ` +
-      `| ${row.maxElapsedDays}d | ${md(formatSplit(row))} | ${row.readable ? 'yes' : 'pending'} |`),
+    ...rows.map(
+      (row) =>
+        `| ${md(row.level)} | ${md(row.label)} | ${row.families} | ${row.attempts} ` +
+        `| ${row.correct} | ${row.retained} | ${row.failed} | ${row.unknown ?? 0} | ${row.retentionPct}% ` +
+        `| ${row.maxElapsedDays}d | ${md(formatSplit(row))} | ${row.readable ? 'yes' : 'pending'} |`,
+    ),
     '',
   ];
   if (rows.some((row) => Object.keys(row.formats).length > 1)) {
@@ -1443,14 +1577,14 @@ function retentionSection(rows: CompetenceRetention[]): string[] {
     out.push(
       readable.length
         ? `**${level}: ${passing.length}/${readable.length} readable competences at ` +
-          `≥${RETENTION_BAR}% retention** ` +
-          `(${own.length - readable.length} pending` +
-          (untagged.length ? `, of which ${untagged.length} untagged — an instrument gap` : '') +
-          ').'
+            `≥${RETENTION_BAR}% retention** ` +
+            `(${own.length - readable.length} pending` +
+            (untagged.length ? `, of which ${untagged.length} untagged — an instrument gap` : '') +
+            ').'
         : `**${level}: no competence is readable yet** — all ${own.length} row(s) are below ` +
-          `${PROBE_READABLE_MIN} attempts` +
-          (untagged.length ? ` or carry no focus tag (${untagged.length})` : '') +
-          '. The gate cannot be read at this depth.',
+            `${PROBE_READABLE_MIN} attempts` +
+            (untagged.length ? ` or carry no focus tag (${untagged.length})` : '') +
+            '. The gate cannot be read at this depth.',
     );
   }
   out.push('');
@@ -1484,9 +1618,11 @@ function readabilitySection(
           : row.reachableByTarget
             ? `needs ${PROBE_READABLE_MIN - row.attempts} more${unarmed}`
             : `**unreachable by date**${unarmed}`;
-      return `| ${md(row.level)} | ${md(row.label)} | ${row.families} ` +
+      return (
+        `| ${md(row.level)} | ${md(row.label)} | ${row.families} ` +
         `| ${row.attempts} | ${row.ceilingByTarget} | ${row.ceilingEver} | ${row.dueNow} ` +
-        `| ${verdict} |`;
+        `| ${verdict} |`
+      );
     }),
     '',
   ];
@@ -1496,7 +1632,9 @@ function readabilitySection(
     const reachable = own.filter((row) => !row.readableToday && row.reachableByTarget);
     const blocked = own.filter((row) => !row.readableToday && !row.reachableByTarget);
     const owed = reachable.reduce(
-      (sum, row) => sum + Math.max(0, PROBE_READABLE_MIN - row.attempts), 0);
+      (sum, row) => sum + Math.max(0, PROBE_READABLE_MIN - row.attempts),
+      0,
+    );
     out.push(
       `**${level}: ${readable.length} readable now, ${reachable.length} still reachable by ` +
         `${projectTo}, ${blocked.length} not.** Reaching them needs ${owed} more probe ` +
@@ -1540,14 +1678,16 @@ function lidSection(lid: LidAudit | undefined): string[] {
     ...lid.byGroup.map((row) =>
       row.topic === undefined
         ? `| **${md(row.module)}** | all | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`
-        : `| ${md(row.module)} | ${md(row.topic)} | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`),
+        : `| ${md(row.module)} | ${md(row.topic)} | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`,
+    ),
     '',
     ...(lid.mostMissed.length
       ? [
           '| Most often wrong | Wrong / answers | Question |',
           '| --- | ---: | --- |',
-          ...lid.mostMissed.map((row) =>
-            `| ${md(row.id)} | ${row.wrong}/${row.answers} | ${md(row.question)} |`),
+          ...lid.mostMissed.map(
+            (row) => `| ${md(row.id)} | ${row.wrong}/${row.answers} | ${md(row.question)} |`,
+          ),
           '',
         ]
       : ['No LiD question answered wrong yet.', '']),
@@ -1560,9 +1700,11 @@ function lidSection(lid: LidAudit | undefined): string[] {
           '',
           '| Date | Score | Einbürgerung | Orientierungskurs | Timed out |',
           '| --- | ---: | --- | --- | --- |',
-          ...lid.exams.map((run) =>
-            `| ${run.date} | ${run.correct}/${run.items} | ${run.passEinbuergerung ? 'pass' : 'fail'} | ` +
-            `${run.passOrientierungskurs ? 'pass' : 'fail'} | ${run.timedOut ? 'yes' : 'no'} |`),
+          ...lid.exams.map(
+            (run) =>
+              `| ${run.date} | ${run.correct}/${run.items} | ${run.passEinbuergerung ? 'pass' : 'fail'} | ` +
+              `${run.passOrientierungskurs ? 'pass' : 'fail'} | ${run.timedOut ? 'yes' : 'no'} |`,
+          ),
           '',
         ]
       : ['No mock exam taken yet.', '']),
@@ -1581,8 +1723,7 @@ function lapseReviewSection(
           '',
         ]
       : [];
-  if (!rows.length)
-    return [`No production card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
+  if (!rows.length) return [`No production card has reached ${LAPSE_REVIEW_THRESHOLD} lapses.`, ''];
   return [
     `${rows.length} production card(s) at ${LAPSE_REVIEW_THRESHOLD}+ lapses — the entry-review ` +
       'trigger. Low stability against high reps says the card is not consolidating; it does ' +
@@ -1661,8 +1802,10 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     `Actual probe intervals (nominal ${PROBE_INTERVALS_DAYS.join('/')}): ` +
       (audit.delayed.probes.actualIntervals.length
         ? audit.delayed.probes.actualIntervals
-            .map((row) => `${row.days}d ×${row.count}`).join(' · ')
-        : 'none taken yet') + '.',
+            .map((row) => `${row.days}d ×${row.count}`)
+            .join(' · ')
+        : 'none taken yet') +
+      '.',
     `Session workload: ${audit.sessionWorkload.averageReviewed.toFixed(1)} cards reviewed and ` +
       `${audit.sessionWorkload.averageTrained.toFixed(1)} training items on average across ` +
       `${audit.sessionWorkload.sessions} session(s).`,
@@ -1671,8 +1814,9 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     '',
     '| Direction | Cards | Lapses |',
     '| --- | ---: | ---: |',
-    ...audit.cards.byDirection.map((row) =>
-      `| ${md(row.direction)} | ${row.cards} | ${row.lapses} |`),
+    ...audit.cards.byDirection.map(
+      (row) => `| ${md(row.direction)} | ${row.cards} | ${row.lapses} |`,
+    ),
     '',
     '| Deck (top 10 by lapses) | Cards | Lapses |',
     '| --- | ---: | ---: |',
@@ -1701,9 +1845,11 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
       '',
       '| Rejected rendering | Count | Latest | Why queued |',
       '| --- | ---: | --- | --- |',
-      ...candidate.rejected.map((row) =>
-        `| ${md(row.given)} | ${row.count} | ${row.latestAt} | ` +
-          `${row.reasons.map(md).join('; ')} |`),
+      ...candidate.rejected.map(
+        (row) =>
+          `| ${md(row.given)} | ${row.count} | ${row.latestAt} | ` +
+          `${row.reasons.map(md).join('; ')} |`,
+      ),
       '',
     );
   }
@@ -1715,20 +1861,26 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     '',
     '| Focus | Status | Wrong / attempts | Recent | Items | Probe | Recovery after last error |',
     '| --- | --- | ---: | ---: | ---: | ---: | --- |',
-    ...audit.focusSignals.map((row) =>
-      `| ${md(row.focus)} | ${row.status} | ${row.wrong}/${row.attempts} | ${row.recentWrong} | ` +
-      `${row.distinctWrongItems} | ${row.probeWrong} | ${row.recovered ? 'yes' : 'no'} |`),
+    ...audit.focusSignals.map(
+      (row) =>
+        `| ${md(row.focus)} | ${row.status} | ${row.wrong}/${row.attempts} | ${row.recentWrong} | ` +
+        `${row.distinctWrongItems} | ${row.probeWrong} | ${row.recovered ? 'yes' : 'no'} |`,
+    ),
     '',
   );
   const feedback = Object.values(audit.feedback ?? {}).sort((a, b) => b.ts - a.ts);
   out.push('## Optional-content feedback', '');
   if (!feedback.length) out.push('No optional-artifact feedback logged yet.', '');
-  else out.push(
-    '| Artifact | Difficulty | Useful | Wants more |',
-    '| --- | --- | --- | --- |',
-    ...feedback.map((entry) => `| ${md(entry.artifactId)} | ${md(entry.difficulty ?? '—')} | ${entry.useful === undefined ? '—' : entry.useful ? 'yes' : 'no'} | ${entry.wantsMore === undefined ? '—' : entry.wantsMore ? 'yes' : 'no'} |`),
-    '',
-  );
+  else
+    out.push(
+      '| Artifact | Difficulty | Useful | Wants more |',
+      '| --- | --- | --- | --- |',
+      ...feedback.map(
+        (entry) =>
+          `| ${md(entry.artifactId)} | ${md(entry.difficulty ?? '—')} | ${entry.useful === undefined ? '—' : entry.useful ? 'yes' : 'no'} | ${entry.wantsMore === undefined ? '—' : entry.wantsMore ? 'yes' : 'no'} |`,
+      ),
+      '',
+    );
   out.push(...lidSection(audit.lid));
   if (audit.detail) {
     out.push(`## Item detail — \`${audit.detail.ref}\``, '');
@@ -1743,9 +1895,11 @@ export function renderMarkdown(audit: ProgressAudit, showLapses = false): string
     out.push(
       '| Time | Result | Given | Logged focus |',
       '| --- | --- | --- | --- |',
-      ...audit.detail.attempts.map((attempt) =>
-        `| ${iso(attempt.ts)} | ${attempt.correct ? 'correct' : 'wrong'} | ${md(attempt.given)} | ` +
-        `${md(attempt.focus ?? '—')} |`),
+      ...audit.detail.attempts.map(
+        (attempt) =>
+          `| ${iso(attempt.ts)} | ${attempt.correct ? 'correct' : 'wrong'} | ${md(attempt.given)} | ` +
+          `${md(attempt.focus ?? '—')} |`,
+      ),
       '',
     );
   }
@@ -1797,9 +1951,13 @@ function pullFirst(profile: string | undefined): void {
     throw new Error('--pull needs --profile <slug>; --snapshot names a file, not a cloud account.');
   // `process.execPath` is the Bun binary already running this file — no PATH lookup,
   // no shell; stdio is inherited so the pull's own guidance reaches the terminal.
-  const result = spawnSync(process.execPath, [join(import.meta.dirname, 'progress-pull.ts'), '--profile', profile], {
-    stdio: 'inherit',
-  });
+  const result = spawnSync(
+    process.execPath,
+    [join(import.meta.dirname, 'progress-pull.ts'), '--profile', profile],
+    {
+      stdio: 'inherit',
+    },
+  );
   if (result.status !== 0)
     throw new Error(
       `progress:pull exited ${result.status ?? 'without a status'} — auditing a snapshot it could not refresh would report stale evidence as current.`,

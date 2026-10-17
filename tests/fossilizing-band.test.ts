@@ -21,7 +21,16 @@ const NOW = 1_780_000_000_000;
 const HOUR = 3_600_000;
 
 const item = (id: string, focus?: string): ExerciseItem =>
-  ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0, focus }) as ExerciseItem;
+  ({
+    id,
+    type: 'mc',
+    outcomes: [],
+    preview: false,
+    prompt: '?',
+    options: ['a', 'b'],
+    correct: 0,
+    focus,
+  }) as ExerciseItem;
 
 const set = (ids: [string, string | undefined][]): TrainingSet => ({
   setId: 's1',
@@ -37,7 +46,14 @@ const attempt = (itemId: string, correct: boolean, ts: number, focus?: string): 
 
 describe('P25-9: fossilizing band-1 items yield to their never-seen same-focus siblings', () => {
   test('a fossilizing item with untried same-focus siblings: siblings dealt first, it drops last', () => {
-    const sets = [set([['A', 'foo'], ['B1', 'foo'], ['B2', 'foo'], ['C', 'bar']])];
+    const sets = [
+      set([
+        ['A', 'foo'],
+        ['B1', 'foo'],
+        ['B2', 'foo'],
+        ['C', 'bar'],
+      ]),
+    ];
     // Three consecutive wrongs on A — fossilizing, and only 3 attempts on 'foo' so the
     // tag itself never crosses the weak-focus threshold (minAttempts 4) and cannot pull
     // B1/B2 into the weak-focus band instead of untried.
@@ -55,7 +71,12 @@ describe('P25-9: fossilizing band-1 items yield to their never-seen same-focus s
   });
 
   test('a single recent wrong (not two consecutive) keeps band-1 behavior exactly', () => {
-    const sets = [set([['A', 'foo'], ['B', 'foo']])];
+    const sets = [
+      set([
+        ['A', 'foo'],
+        ['B', 'foo'],
+      ]),
+    ];
     const attempts = [attempt('A', false, NOW - HOUR, 'foo')];
     const queue = buildSession(sets, 2, attempts);
 
@@ -65,7 +86,12 @@ describe('P25-9: fossilizing band-1 items yield to their never-seen same-focus s
   });
 
   test('a fossilizing item with NO untried same-focus sibling stays in band 1', () => {
-    const sets = [set([['A', 'foo'], ['C', 'bar']])];
+    const sets = [
+      set([
+        ['A', 'foo'],
+        ['C', 'bar'],
+      ]),
+    ];
     // Exactly two consecutive wrongs — the ">= 2" boundary.
     const attempts = [
       attempt('A', false, NOW - 2 * HOUR, 'foo'),

@@ -16,7 +16,9 @@ const count = (predicate: (element: (typeof teaching)[number]) => boolean) =>
   teaching.filter(predicate).length;
 
 const topics = [...graph.topics.values()].map((topic) => {
-  const elements = (graph.elementsByTopic.get(topic.id) ?? []).filter((element) => element.activity);
+  const elements = (graph.elementsByTopic.get(topic.id) ?? []).filter(
+    (element) => element.activity,
+  );
   const core = elements.find((element) => element.activity === 'core');
   return {
     id: topic.id,
@@ -40,7 +42,10 @@ const topics = [...graph.topics.values()].map((topic) => {
 const report = {
   sets: teaching.length,
   byActivity: Object.fromEntries(
-    LEARNING_ACTIVITIES.map((activity) => [activity, count((element) => element.activity === activity)]),
+    LEARNING_ACTIVITIES.map((activity) => [
+      activity,
+      count((element) => element.activity === activity),
+    ]),
   ),
   byMedium: Object.fromEntries(
     media.map((medium) => [medium, count((element) => element.medium === medium)]),
@@ -67,7 +72,11 @@ console.log(
 );
 console.log(`  ${media.map((medium) => `${medium} ${report.byMedium[medium]}`).join(' · ')}`);
 
-const section = (title: string, rows: typeof topics, detail: (topic: (typeof topics)[number]) => string) => {
+const section = (
+  title: string,
+  rows: typeof topics,
+  detail: (topic: (typeof topics)[number]) => string,
+) => {
   console.log(`\n${title} (${rows.length})`);
   for (const topic of rows) console.log(`  ${topic.level} ${topic.id}: ${detail(topic)}`);
 };

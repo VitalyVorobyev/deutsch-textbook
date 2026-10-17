@@ -188,10 +188,7 @@ async function probe(origin: string, check: Check): Promise<Probe> {
     method: check.method,
     // Manual, because a redirect *is* the answer for the two sign-in checks.
     redirect: 'manual',
-    headers:
-      check.method === 'POST'
-        ? { 'content-type': 'application/json', origin }
-        : { origin },
+    headers: check.method === 'POST' ? { 'content-type': 'application/json', origin } : { origin },
     body: check.method === 'POST' ? '{"label":"deploy:smoke"}' : undefined,
   });
   const headers: Record<string, string> = {};

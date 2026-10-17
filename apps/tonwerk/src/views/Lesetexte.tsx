@@ -238,7 +238,10 @@ export function Lesetexte(): React.JSX.Element {
                         <span className="zahl leise">{row.id}</span>
                         {row.art ? <Marke>{row.art}</Marke> : null}
                         {row.quelleAbgewichen ? (
-                          <Marke ton="alarm" titel="Die Szene vertont eine ältere Fassung des Lesetexts, als das Repository jetzt hält.">
+                          <Marke
+                            ton="alarm"
+                            titel="Die Szene vertont eine ältere Fassung des Lesetexts, als das Repository jetzt hält."
+                          >
                             Quelle abgewichen
                           </Marke>
                         ) : null}
@@ -386,7 +389,9 @@ function Schritt({
       <a className="knopf" href={href('szene', row.slug)}>
         {row.szene.stage === 'draft' ? 'Rendern' : 'Szene öffnen'}
       </a>
-      {row.loeschbar ? <Loeschen row={row} gesperrt={gesperrt} laeuft={laeuft} loeschen={loeschen} /> : null}
+      {row.loeschbar ? (
+        <Loeschen row={row} gesperrt={gesperrt} laeuft={laeuft} loeschen={loeschen} />
+      ) : null}
     </div>
   );
 }

@@ -52,7 +52,14 @@ const longerSentence = {
 export function ShortSentence() {
   return (
     <div className="max-w-xl">
-      <Order item={satzklammer} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Order
+        item={satzklammer}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -61,7 +68,14 @@ export function ShortSentence() {
 export function LongerSentence() {
   return (
     <div className="max-w-xl">
-      <Order item={longerSentence} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Order
+        item={longerSentence}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -70,7 +84,14 @@ export function LongerSentence() {
 export function RussianExplanationLanguage() {
   return (
     <div className="max-w-xl">
-      <Order item={satzklammer} lang="ru" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Order
+        item={satzklammer}
+        lang="ru"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }

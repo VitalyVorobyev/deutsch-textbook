@@ -50,7 +50,12 @@ export const THEMEN_RESUME_DEFAULTS: ThemenResume = {
 const DRAWER_STATES: readonly DrawerState[] = ['closed', 'collapsed', 'open'];
 // Mirrors OverviewTable's STATUSES filter ids ('all' | 'open' | Tier).
 const STATUS_FILTERS: readonly StatusFilter[] = [
-  'all', 'open', 'untouched', 'read', 'practiced', 'mastered',
+  'all',
+  'open',
+  'untouched',
+  'read',
+  'practiced',
+  'mastered',
 ];
 
 function record(value: unknown): Record<string, unknown> {
@@ -75,8 +80,7 @@ export function sanitizeThemenResume(saved: unknown, ctx: ThemenResumeContext): 
     atlas: {
       level: level(atlas.level),
       strand:
-        typeof atlas.strand === 'string' &&
-        (STRANDS as readonly string[]).includes(atlas.strand)
+        typeof atlas.strand === 'string' && (STRANDS as readonly string[]).includes(atlas.strand)
           ? (atlas.strand as CurriculumStrand)
           : 'all',
       selectedId: knownId(atlas.selectedId, ctx.topicIds),
@@ -97,8 +101,6 @@ export function sanitizeThemenResume(saved: unknown, ctx: ThemenResumeContext): 
       expandedId: knownId(overview.expandedId, ctx.topicIds),
     },
     scrollY:
-      typeof s.scrollY === 'number' && Number.isFinite(s.scrollY) && s.scrollY > 0
-        ? s.scrollY
-        : 0,
+      typeof s.scrollY === 'number' && Number.isFinite(s.scrollY) && s.scrollY > 0 ? s.scrollY : 0,
   };
 }

@@ -103,7 +103,9 @@ describe('the write controller writes', () => {
 
     const after = read(SET);
     // Placed after `role`, which is where `after: ['role', 'topic']` says it goes.
-    expect(after).toContain('role: practice   # trailing comment on the line being read\nstage: transfer\n');
+    expect(after).toContain(
+      'role: practice   # trailing comment on the line being read\nstage: transfer\n',
+    );
     // And the rest of the file is the fixture, byte for byte.
     expect(after.replace('stage: transfer\n', '')).toBe(SET_SOURCE);
   });
@@ -121,11 +123,15 @@ describe('the write controller writes', () => {
   test('a required teaching-contract key cannot be removed', () => {
     reset();
     applyPatch({ file: SET, field: 'stage', value: 'transfer' }, ROOT);
-    expect(applyPatch({ file: SET, field: 'stage', value: null }, ROOT)).toMatchObject({ ok: false });
-    expect(read(SET)).toBe(SET_SOURCE.replace(
-      'role: practice   # trailing comment on the line being read\n',
-      'role: practice   # trailing comment on the line being read\nstage: transfer\n',
-    ));
+    expect(applyPatch({ file: SET, field: 'stage', value: null }, ROOT)).toMatchObject({
+      ok: false,
+    });
+    expect(read(SET)).toBe(
+      SET_SOURCE.replace(
+        'role: practice   # trailing comment on the line being read\n',
+        'role: practice   # trailing comment on the line being read\nstage: transfer\n',
+      ),
+    );
   });
 
   test('an unchanged write touches nothing', () => {
@@ -148,10 +154,12 @@ describe('the write controller refuses', () => {
   };
 
   test('a path that escapes content/', () => {
-    expect(refused({ file: '../../.ssh/config', field: 'stage', value: 'transfer' })).toContain('outside content/');
-    expect(refused({ file: 'content/../package.json', field: 'stage', value: 'transfer' })).toContain(
+    expect(refused({ file: '../../.ssh/config', field: 'stage', value: 'transfer' })).toContain(
       'outside content/',
     );
+    expect(
+      refused({ file: 'content/../package.json', field: 'stage', value: 'transfer' }),
+    ).toContain('outside content/');
   });
 
   test('a file class it does not know', () => {
@@ -159,12 +167,12 @@ describe('the write controller refuses', () => {
     expect(refused({ file: 'content/atlas.yaml', field: 'status', value: 'reviewed' })).toContain(
       'no writable file class',
     );
-    expect(refused({ file: 'content/vocab/wohnen.yaml', field: 'status', value: 'reviewed' })).toContain(
-      'no writable file class',
-    );
-    expect(refused({ file: 'content/topics/a2/fixture-topic.mdx', field: 'status', value: 'reviewed' })).toContain(
-      'no writable file class',
-    );
+    expect(
+      refused({ file: 'content/vocab/wohnen.yaml', field: 'status', value: 'reviewed' }),
+    ).toContain('no writable file class');
+    expect(
+      refused({ file: 'content/topics/a2/fixture-topic.mdx', field: 'status', value: 'reviewed' }),
+    ).toContain('no writable file class');
   });
 
   test('a field that is not on the allowlist', () => {
@@ -179,19 +187,23 @@ describe('the write controller refuses', () => {
     expect(refused({ file: SET, field: 'stage', value: 'scaffold' })).toContain('is not one of');
     // English is not the vocabulary here — the stages are German, like the rest of the editorial
     // surface, and a near-miss must fail rather than land as a typo'd enum.
-    expect(refused({ file: TOPIC, field: 'status', value: 'published' })).toContain('is not one of');
+    expect(refused({ file: TOPIC, field: 'status', value: 'published' })).toContain(
+      'is not one of',
+    );
   });
 
   test('a file that does not exist', () => {
-    expect(refused({ file: 'content/exercises/a2/no-such-set.yaml', field: 'stage', value: 'transfer' })).toContain(
-      'does not exist',
-    );
+    expect(
+      refused({ file: 'content/exercises/a2/no-such-set.yaml', field: 'stage', value: 'transfer' }),
+    ).toContain('does not exist');
   });
 
   test('a stale reviewed transition cannot overwrite an external change', () => {
     reset();
     const expectedRevision = '0'.repeat(64);
-    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { expectedRevision });
+    const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, {
+      expectedRevision,
+    });
     expect(result.ok).toBe(false);
     expect(result.ok ? '' : result.error).toContain('changed on disk');
     expect(read(TOPIC)).toBe(TOPIC_SOURCE);
@@ -222,7 +234,11 @@ describe('the corpus check can undo a write the schema accepted', () => {
     const result = applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, {
       verify: (root) => {
         // It runs on the written tree, not on the old one: the reason it can catch anything.
-        seen.push(readFileSync(join(root, TOPIC), 'utf8').includes('status: reviewed') ? 'written' : 'not-written');
+        seen.push(
+          readFileSync(join(root, TOPIC), 'utf8').includes('status: reviewed')
+            ? 'written'
+            : 'not-written',
+        );
         return 'content/topics/a2/fixture-topic.topic.yaml: a reviewed B1 topic needs provenance';
       },
     });
@@ -239,12 +255,16 @@ describe('the corpus check can undo a write the schema accepted', () => {
       calls += 1;
       return undefined;
     };
-    expect(applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify })).toMatchObject({ ok: true });
+    expect(
+      applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify }),
+    ).toMatchObject({ ok: true });
     expect(read(TOPIC)).toContain('status: reviewed');
     expect(calls).toBe(1);
     // Writing the same value again changes no bytes, so there is nothing to verify — six seconds
     // of validator for a no-op is the kind of cost that gets a feature turned off.
-    expect(applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify })).toMatchObject({
+    expect(
+      applyPatch({ file: TOPIC, field: 'status', value: 'reviewed' }, ROOT, { verify }),
+    ).toMatchObject({
       ok: true,
       changed: false,
     });

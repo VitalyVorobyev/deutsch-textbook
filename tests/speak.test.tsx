@@ -17,7 +17,9 @@ class FakeMediaRecorder {
   ondataavailable: ((event: { data: Blob }) => void) | null = null;
   onstop: (() => void) | null = null;
   constructor(readonly stream: MediaStream) {}
-  start() { this.state = 'recording'; }
+  start() {
+    this.state = 'recording';
+  }
   stop() {
     this.state = 'inactive';
     this.ondataavailable?.({ data: new Blob(['ich spreche'], { type: 'audio/webm' }) });
@@ -42,7 +44,9 @@ beforeEach(() => {
   Object.defineProperty(navigator, 'mediaDevices', {
     configurable: true,
     value: {
-      getUserMedia: mock(async () => ({ getTracks: () => [{ stop: () => {} }] }) as unknown as MediaStream),
+      getUserMedia: mock(
+        async () => ({ getTracks: () => [{ stop: () => {} }] }) as unknown as MediaStream,
+      ),
     },
   });
   URL.createObjectURL = mock(() => {
@@ -50,7 +54,9 @@ beforeEach(() => {
     createdUrls.push(url);
     return url;
   }) as unknown as typeof realCreateObjectURL;
-  URL.revokeObjectURL = mock((url: string) => { revokedUrls.push(url); }) as unknown as typeof realRevokeObjectURL;
+  URL.revokeObjectURL = mock((url: string) => {
+    revokedUrls.push(url);
+  }) as unknown as typeof realRevokeObjectURL;
 });
 
 afterEach(() => {
@@ -78,18 +84,23 @@ const item = {
   goal: { en: 'Say your name and where you live.', ru: 'Назовите имя и где вы живёте.' },
   checklist: [{ en: 'I said my name.', ru: 'Я назвал(а) имя.' }],
   model_answer: 'Ich heiße Anna und wohne in Bremen.',
-  model_translation: { en: 'My name is Anna and I live in Bremen.', ru: 'Меня зовут Анна, я живу в Бремене.' },
+  model_translation: {
+    en: 'My name is Anna and I live in Bremen.',
+    ru: 'Меня зовут Анна, я живу в Бремене.',
+  },
 };
 
 function renderSpeak(onResult = mock()) {
-  const view = render(<Speak
-    item={item}
-    lang="en"
-    onResult={onResult}
-    locked={false}
-    onNext={() => {}}
-    nextLabel="Next"
-  />);
+  const view = render(
+    <Speak
+      item={item}
+      lang="en"
+      onResult={onResult}
+      locked={false}
+      onNext={() => {}}
+      nextLabel="Next"
+    />,
+  );
   return { onResult, view };
 }
 
@@ -194,7 +205,9 @@ describe('Speak minimal-ceremony flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Show model' }));
     expect(onResult).toHaveBeenCalledTimes(1);
-    expect((onResult.mock.calls[0]![0] as { practice: { recorded: boolean } }).practice.recorded).toBe(false);
+    expect(
+      (onResult.mock.calls[0]![0] as { practice: { recorded: boolean } }).practice.recorded,
+    ).toBe(false);
     expect(screen.getByText(item.model_answer)).toBeTruthy();
   });
 });

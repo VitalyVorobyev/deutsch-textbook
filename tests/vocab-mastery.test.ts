@@ -5,13 +5,27 @@ import type { StoredCard } from '../src/lib/store';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import YAML from 'yaml';
-import { deckCardRefs, deckWords, decksOf, rollupWords, STRONG_INTERVAL_DAYS, wordMastery } from '../src/lib/vocab-mastery';
+import {
+  deckCardRefs,
+  deckWords,
+  decksOf,
+  rollupWords,
+  STRONG_INTERVAL_DAYS,
+  wordMastery,
+} from '../src/lib/vocab-mastery';
 
 function state(overrides: Partial<StoredCard> = {}): StoredCard {
   return {
-    due: '2026-01-01T00:00:00.000Z', stability: 10, difficulty: 5,
-    elapsed_days: 1, scheduled_days: 7, learning_steps: 0, reps: 2,
-    lapses: 0, state: State.Review, last_review: '2025-12-25T00:00:00.000Z',
+    due: '2026-01-01T00:00:00.000Z',
+    stability: 10,
+    difficulty: 5,
+    elapsed_days: 1,
+    scheduled_days: 7,
+    learning_steps: 0,
+    reps: 2,
+    lapses: 0,
+    state: State.Review,
+    last_review: '2025-12-25T00:00:00.000Z',
     ...overrides,
   };
 }
@@ -22,16 +36,26 @@ describe('combined vocabulary mastery', () => {
     expect(wordMastery(state(), undefined)).toBe('learning');
     expect(wordMastery(state(), state({ state: State.Relearning }))).toBe('learning');
     expect(wordMastery(state(), state())).toBe('established');
-    expect(wordMastery(
-      state({ scheduled_days: STRONG_INTERVAL_DAYS }),
-      state({ scheduled_days: STRONG_INTERVAL_DAYS + 10 }),
-    )).toBe('strong');
+    expect(
+      wordMastery(
+        state({ scheduled_days: STRONG_INTERVAL_DAYS }),
+        state({ scheduled_days: STRONG_INTERVAL_DAYS + 10 }),
+      ),
+    ).toBe('strong');
   });
 
   test('due ranking is deterministic and puts the most overdue card first', () => {
     const card = (id: string): CardDef => ({
-      id, deckId: 'd', dir: 'de-x', de: id, en: id, ru: id,
-      exampleDe: '', exampleEn: '', exampleRu: '', pos: 'noun',
+      id,
+      deckId: 'd',
+      dir: 'de-x',
+      de: id,
+      en: id,
+      ru: id,
+      exampleDe: '',
+      exampleEn: '',
+      exampleRu: '',
+      pos: 'noun',
     });
     const cards = [card('later'), card('earlier')];
     const states = {
@@ -55,12 +79,15 @@ describe('recognition-only entries', () => {
     expect(wordMastery(undefined, undefined, opts)).toBe('new');
     expect(wordMastery(state({ state: State.Learning }), undefined, opts)).toBe('learning');
     expect(wordMastery(state({ scheduled_days: 7 }), undefined, opts)).toBe('established');
-    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined, opts))
-      .toBe('strong');
+    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined, opts)).toBe(
+      'strong',
+    );
   });
 
   test('an ordinary entry is unaffected — the missing production card still means learning', () => {
-    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined)).toBe('learning');
+    expect(wordMastery(state({ scheduled_days: STRONG_INTERVAL_DAYS }), undefined)).toBe(
+      'learning',
+    );
   });
 });
 
@@ -71,8 +98,13 @@ describe('recognition-only entries', () => {
 // permanently half-finished. The rollup has to carry the flag for the UI to act on.
 describe('rollupWords reports which words have no production card', () => {
   const entry = {
-    de: 'Zuschlag', pos: 'noun', gender: 'm', plural: 'die Zuschläge', ipa: 'ˈtsuːʃlaːk',
-    en: 'surcharge', ru: 'доплата',
+    de: 'Zuschlag',
+    pos: 'noun',
+    gender: 'm',
+    plural: 'die Zuschläge',
+    ipa: 'ˈtsuːʃlaːk',
+    en: 'surcharge',
+    ru: 'доплата',
     example_de: 'Der Zuschlag kostet drei Euro.',
     example_en: 'The surcharge costs three euros.',
     example_ru: 'Доплата стоит три евро.',
@@ -99,14 +131,31 @@ describe('rollupWords reports which words have no production card', () => {
 describe('deckWords → deckCardRefs rebuilds exactly the built cards', () => {
   const ids = (cards: readonly { id: string }[]) => cards.map((card) => card.id);
   const entry = (de: string, cards: 'both' | 'recognition') => ({
-    de, pos: 'noun', gender: 'm', plural: `die ${de}e`, ipa: 'x', en: de, ru: 'слово', cards,
-    example_de: `Der ${de}.`, example_en: `The ${de}.`, example_ru: 'Слово.',
+    de,
+    pos: 'noun',
+    gender: 'm',
+    plural: `die ${de}e`,
+    ipa: 'x',
+    en: de,
+    ru: 'слово',
+    cards,
+    example_de: `Der ${de}.`,
+    example_en: `The ${de}.`,
+    example_ru: 'Слово.',
   });
 
   test('a mixed deck: one card for a recognition-only word, two for the rest, in deck order', () => {
-    const built = buildDeck('d', [entry('Tisch', 'both'), entry('Zuschlag', 'recognition'), entry('Stuhl', 'both')] as never);
+    const built = buildDeck('d', [
+      entry('Tisch', 'both'),
+      entry('Zuschlag', 'recognition'),
+      entry('Stuhl', 'both'),
+    ] as never);
     const deck = deckWords('d', built);
-    expect(deck).toEqual({ id: 'd', words: ['Tisch', 'Zuschlag', 'Stuhl'], recognitionOnly: ['Zuschlag'] });
+    expect(deck).toEqual({
+      id: 'd',
+      words: ['Tisch', 'Zuschlag', 'Stuhl'],
+      recognitionOnly: ['Zuschlag'],
+    });
     expect(ids(deckCardRefs(deck))).toEqual(ids(built));
   });
 
@@ -126,9 +175,15 @@ describe('deckWords → deckCardRefs rebuilds exactly the built cards', () => {
     const files = readdirSync(root).filter((f) => f.endsWith('.yaml'));
     expect(files.length).toBeGreaterThan(100);
     for (const f of files) {
-      const { id, entries } = YAML.parse(readFileSync(join(root, f), 'utf8')) as { id: string; entries: Entry[] };
+      const { id, entries } = YAML.parse(readFileSync(join(root, f), 'utf8')) as {
+        id: string;
+        entries: Entry[];
+      };
       const built = buildDeck(id, entries);
-      expect({ id, cards: ids(deckCardRefs(deckWords(id, built))) }).toEqual({ id, cards: ids(built) });
+      expect({ id, cards: ids(deckCardRefs(deckWords(id, built))) }).toEqual({
+        id,
+        cards: ids(built),
+      });
     }
   });
 });

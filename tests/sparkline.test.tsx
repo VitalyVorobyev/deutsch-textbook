@@ -60,9 +60,7 @@ describe('Sparkline', () => {
   });
 
   test('a dot is rendered for every bucket that has data, gaps included', () => {
-    const { container } = render(
-      <Sparkline values={[0.6, null, null, 0.55, 0.7, null, 0.85]} />,
-    );
+    const { container } = render(<Sparkline values={[0.6, null, null, 0.55, 0.7, null, 0.85]} />);
     expect(container.querySelectorAll('circle')).toHaveLength(4);
   });
 

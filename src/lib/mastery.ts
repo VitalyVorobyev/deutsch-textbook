@@ -277,7 +277,7 @@ export function pathDone(node: TopicNode, ctx: TopicContext): boolean {
   // topicCompletion, not topicTier: `reopened` caps the tier at practiced, so
   // this branch correctly does not fire for a topic the learner just reopened.
   if (topicCompletion(node, ctx).tier === 'mastered') return true;
-  const since = state?.manual === 'reopened' ? state.manualAt ?? 0 : 0;
+  const since = state?.manual === 'reopened' ? (state.manualAt ?? 0) : 0;
   return lessonCompleted(node, ctx, since);
 }
 

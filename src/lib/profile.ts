@@ -92,7 +92,10 @@ export function listProfiles(): Profile[] {
   return Array.isArray(parsed)
     ? parsed.filter(
         (p): p is Profile =>
-          !!p && typeof p.id === 'string' && typeof p.label === 'string' && /^[a-z0-9-]+$/.test(p.id),
+          !!p &&
+          typeof p.id === 'string' &&
+          typeof p.label === 'string' &&
+          /^[a-z0-9-]+$/.test(p.id),
       )
     : [];
 }
@@ -132,7 +135,9 @@ function createProfile(label: string, opts: { db?: string } = {}): Profile {
 }
 
 export function renameProfile(id: string, label: string): void {
-  const next = listProfiles().map((p) => (p.id === id ? { ...p, label: label.trim() || p.label } : p));
+  const next = listProfiles().map((p) =>
+    p.id === id ? { ...p, label: label.trim() || p.label } : p,
+  );
   persist(next);
   const renamed = next.find((p) => p.id === id);
   if (renamed) void writeIdentity(renamed);
@@ -244,7 +249,11 @@ type CreateStore = typeof import('idb-keyval').createStore;
 type Get = typeof import('idb-keyval').get;
 
 /** Read a database's identity and volume; null when it holds nothing worth reconnecting. */
-async function inspect(db: string, createStore: CreateStore, get: Get): Promise<DiscoveredProfile | null> {
+async function inspect(
+  db: string,
+  createStore: CreateStore,
+  get: Get,
+): Promise<DiscoveredProfile | null> {
   const store = createStore(db, STORE_NAME);
   const record = await get<ProfileRecord>('profile', store);
   const attempts = (await get<{ ts: number }[]>('attempts', store)) ?? [];

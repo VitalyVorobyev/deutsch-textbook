@@ -38,10 +38,9 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
   const [loadRound, setLoadRound] = useState(0);
 
   useEffect(() => {
-    void withReadRetry(
-      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
-      { surface: 'heute/next-topic' },
-    ).then(
+    void withReadRetry(() => Promise.all([getAttempts(), getCardStates(), getTopicsState()]), {
+      surface: 'heute/next-topic',
+    }).then(
       ([attempts, cards, topics]) => {
         // A veteran profile reading back empty is a stalled store — recommending
         // unit 1 from it is the "shows no progress" defect. Error out instead.
@@ -77,17 +76,27 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
             {pick(lang, UI.nextTopic)}
           </p>
           <a href={suggestion.path} className="mt-1 block">
-            <span lang="de" className="text-xl font-bold text-amber-700 hover:underline dark:text-amber-400">
+            <span
+              lang="de"
+              className="text-xl font-bold text-amber-700 hover:underline dark:text-amber-400"
+            >
               {suggestion.title_de}
             </span>
             <span className="mt-0.5 block text-sm text-stone-500 dark:text-stone-400">
-              {pick(lang, { en: suggestion.title_en, ru: suggestion.title_ru, uk: suggestion.title_uk })} · {suggestion.level}
+              {pick(lang, {
+                en: suggestion.title_en,
+                ru: suggestion.title_ru,
+                uk: suggestion.title_uk,
+              })}{' '}
+              · {suggestion.level}
             </span>
           </a>
         </>
       )}
       {checkpoint && (
-        <div className={suggestion ? 'mt-4 border-t border-stone-200 pt-3 dark:border-stone-700' : ''}>
+        <div
+          className={suggestion ? 'mt-4 border-t border-stone-200 pt-3 dark:border-stone-700' : ''}
+        >
           <p className="text-xs uppercase tracking-wide text-stone-400">
             {pick(lang, UI.allLessons)}
           </p>
@@ -102,7 +111,9 @@ export default function NextTopic({ spine, nodes, checkpoints = NO_CHECKPOINTS }
         </div>
       )}
       <p className="mt-3 text-xs text-stone-400">
-        {pick(lang, UI.masteredOf).replace('{done}', String(mastered)).replace('{total}', String(nodes.length))}
+        {pick(lang, UI.masteredOf)
+          .replace('{done}', String(mastered))
+          .replace('{total}', String(nodes.length))}
       </p>
     </div>
   );

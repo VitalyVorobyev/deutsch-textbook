@@ -32,7 +32,11 @@ function langOfKey(key: string): Lang | undefined {
 
 const snippet = (value: string) => value.slice(0, 70);
 
-function walkObjects(node: unknown, path: string, visit: (obj: object, path: string) => void): void {
+function walkObjects(
+  node: unknown,
+  path: string,
+  visit: (obj: object, path: string) => void,
+): void {
   if (Array.isArray(node)) {
     node.forEach((v, i) => walkObjects(v, `${path}[${i}]`, visit));
     return;

@@ -25,20 +25,24 @@ export function Anmeldung({ grund, onToken }: AnmeldungProps): React.JSX.Element
         <Wortmarke />
 
         <div className="stapel-eng">
-          <h1 className="tafel" style={{ fontSize: 'var(--ton-grad-13)', color: 'var(--ton-schrift)' }}>
+          <h1
+            className="tafel"
+            style={{ fontSize: 'var(--ton-grad-13)', color: 'var(--ton-schrift)' }}
+          >
             Mit der Engine verbinden
           </h1>
           <p className="leise">
-            Tonwerk liest die lokale Render-Engine unter <code className="pfad">127.0.0.1:8765</code>.
-            Starte sie mit <code className="pfad">atlas-listening serve</code> und füge den Token ein,
-            den der Befehl ausgibt. Er gilt nur für diesen Lauf.
+            Tonwerk liest die lokale Render-Engine unter{' '}
+            <code className="pfad">127.0.0.1:8765</code>. Starte sie mit{' '}
+            <code className="pfad">atlas-listening serve</code> und füge den Token ein, den der
+            Befehl ausgibt. Er gilt nur für diesen Lauf.
           </p>
         </div>
 
         {grund ? (
           <p className="hinweis hinweis-alarm" role="alert">
-            {grund} Der Token wird bei jedem Start der Engine neu erzeugt — hol dir den aktuellen aus
-            der Ausgabe von <code className="pfad">atlas-listening serve</code>.
+            {grund} Der Token wird bei jedem Start der Engine neu erzeugt — hol dir den aktuellen
+            aus der Ausgabe von <code className="pfad">atlas-listening serve</code>.
           </p>
         ) : null}
 

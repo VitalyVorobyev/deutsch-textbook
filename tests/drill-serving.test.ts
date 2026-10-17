@@ -51,19 +51,42 @@ const woWohinDrill = load('a2/drill-wo-wohin.yaml');
 const satzklammerDrill = load('a1/drill-modal-satzklammer.yaml');
 const drills = [dativDrill, verbDrill, endungenDrill, woWohinDrill, satzklammerDrill];
 
-const WEAK_TAGS = ['dativ-artikel', 'modal-konjugation', 'verb-endungen', 'wo-wohin', 'modal-satzklammer'];
+const WEAK_TAGS = [
+  'dativ-artikel',
+  'modal-konjugation',
+  'verb-endungen',
+  'wo-wohin',
+  'modal-satzklammer',
+];
 
 const mc = (id: string): ExerciseItem =>
-  ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0 }) as ExerciseItem;
+  ({
+    id,
+    type: 'mc',
+    outcomes: [],
+    preview: false,
+    prompt: '?',
+    options: ['a', 'b'],
+    correct: 0,
+  }) as ExerciseItem;
 
 /** A big untagged pool: without the weak-focus band these would flood the session. */
 const distractor: TrainingSet = {
-  setId: 'a2/other', topicId: 'other', title_de: 'Other', level: 'A2', role: 'practice',
+  setId: 'a2/other',
+  topicId: 'other',
+  title_de: 'Other',
+  level: 'A2',
+  role: 'practice',
   items: Array.from({ length: 20 }, (_, i) => mc(`f${i}`)),
 };
 
-const attempt = (setId: string, itemId: string, correct: boolean, ts: number, focus?: string): Attempt =>
-  ({ setId, itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
+const attempt = (
+  setId: string,
+  itemId: string,
+  correct: boolean,
+  ts: number,
+  focus?: string,
+): Attempt => ({ setId, itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
 
 // The evidence that armed P6-4/P6-5: repeated errors on the drilled tags. Logged under
 // sets that are NOT in this pool — weakness is aggregated per tag and is blind to the
@@ -77,7 +100,9 @@ const weakTagged = (set: TrainingSet, tag: string) => set.items.filter((i) => i.
 
 describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
   test('the drilled tags come out weak from the evidence', () => {
-    const weak = weakFocuses(weakEvidence).map((w) => w.focus).sort();
+    const weak = weakFocuses(weakEvidence)
+      .map((w) => w.focus)
+      .sort();
     expect(weak).toEqual([...WEAK_TAGS].sort());
   });
 
@@ -101,7 +126,9 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
     expect(endungenDrill.topicId).toBe('praesens-wortstellung');
     expect(new Set(woWohinDrill.items.map((i) => i.focus))).toEqual(new Set(['wo-wohin']));
     expect(woWohinDrill.topicId).toBe('wohnen-umzug');
-    expect(new Set(satzklammerDrill.items.map((i) => i.focus))).toEqual(new Set(['modal-satzklammer']));
+    expect(new Set(satzklammerDrill.items.map((i) => i.focus))).toEqual(
+      new Set(['modal-satzklammer']),
+    );
     expect(satzklammerDrill.topicId).toBe('freizeit-koennen');
   });
 
@@ -166,7 +193,13 @@ describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
  */
 describe('pretest attempts are not weakness evidence', () => {
   const attempt = (setId: string, id: string, correct: boolean, ts: number): Attempt => ({
-    setId, itemId: id, itemType: 'mc', correct, given: 'x', ts, focus: 'dativ-artikel',
+    setId,
+    itemId: id,
+    itemType: 'mc',
+    correct,
+    given: 'x',
+    ts,
+    focus: 'dativ-artikel',
   });
 
   test('easy pretest passes cannot dilute a weak tag below the threshold', () => {
@@ -179,7 +212,9 @@ describe('pretest attempts are not weakness evidence', () => {
     // changed. They are excluded, so it stays weak.
     const padded = [
       ...real,
-      ...Array.from({ length: 12 }, (_, n) => attempt('a2/dativ-pretest', `p${n}`, true, NOW + 10 + n)),
+      ...Array.from({ length: 12 }, (_, n) =>
+        attempt('a2/dativ-pretest', `p${n}`, true, NOW + 10 + n),
+      ),
     ];
     expect(weakFocuses(padded).map((w) => w.focus)).toEqual(['dativ-artikel']);
   });
@@ -206,8 +241,13 @@ describe('pretest attempts are not weakness evidence', () => {
  */
 describe('attempts against a retired revision are not weakness evidence', () => {
   const attempt = (revision: number | undefined, correct: boolean, ts: number): Attempt => ({
-    setId: 'a2/verbindungen-folgen', itemId: `i${ts}`, itemType: 'table',
-    correct, given: 'weil ich heute arbeite', ts, focus: 'konjunktionaladverb-inversion',
+    setId: 'a2/verbindungen-folgen',
+    itemId: `i${ts}`,
+    itemType: 'table',
+    correct,
+    given: 'weil ich heute arbeite',
+    ts,
+    focus: 'konjunktionaladverb-inversion',
     ...(revision === undefined ? {} : { itemRevision: revision }),
   });
   const current = () => 3;
@@ -245,7 +285,10 @@ describe('attempts against a retired revision are not weakness evidence', () => 
     // than any evidence supports. Four current errors are weak; twelve retired passes
     // alongside must not dilute them below the 35% bar.
     const real = [0, 1, 2, 3].map((n) => attempt(3, false, NOW + n));
-    const padded = [...real, ...Array.from({ length: 12 }, (_, n) => attempt(2, true, NOW + 10 + n))];
+    const padded = [
+      ...real,
+      ...Array.from({ length: 12 }, (_, n) => attempt(2, true, NOW + 10 + n)),
+    ];
     expect(weakFocuses(padded, { current }).map((w) => w.focus)).toEqual([
       'konjunktionaladverb-inversion',
     ]);

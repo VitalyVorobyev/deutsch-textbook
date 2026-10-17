@@ -70,7 +70,11 @@ const clockTone = (remaining: number): string =>
 
 /** How often the recording presents this Teil, as its instruction line states it. */
 const playsCaption = (teil: ExamTeilSpec): string | null =>
-  teil.plays === 'twice' ? 'Sie hören zweimal.' : teil.plays === 'once' ? 'Sie hören einmal.' : null;
+  teil.plays === 'twice'
+    ? 'Sie hören zweimal.'
+    : teil.plays === 'once'
+      ? 'Sie hören einmal.'
+      : null;
 
 function OptionRow({
   item,
@@ -86,7 +90,11 @@ function OptionRow({
 }) {
   const settled = reveal && chosen !== undefined;
   return (
-    <div className="flex flex-wrap items-center gap-2 py-1" role="group" aria-label={`Aufgabe ${item.nr}`}>
+    <div
+      className="flex flex-wrap items-center gap-2 py-1"
+      role="group"
+      aria-label={`Aufgabe ${item.nr}`}
+    >
       <span className="w-6 shrink-0 tabular-nums text-sm text-stone-400">{item.nr}</span>
       <div className="flex flex-wrap gap-1.5">
         {OPTIONS[item.shape].map((option) => {
@@ -354,7 +362,11 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
           </p>
         </div>
         {mode === 'pruefung' && (
-          <span role="timer" aria-label="Verbleibende Zeit" className={`tabular-nums text-3xl font-bold ${clockTone(remainingMs)}`}>
+          <span
+            role="timer"
+            aria-label="Verbleibende Zeit"
+            className={`tabular-nums text-3xl font-bold ${clockTone(remainingMs)}`}
+          >
             {formatClock(remainingMs)}
           </span>
         )}
@@ -403,7 +415,8 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
                 {playState === 'ended' ? 'Aufnahme beendet' : examAudioLabel}
               </button>
               <p className="text-xs text-stone-500 dark:text-stone-400">
-                Die Aufnahme läuft einmal durch. Alle Wiederholungen und Pausen sind darin enthalten.
+                Die Aufnahme läuft einmal durch. Alle Wiederholungen und Pausen sind darin
+                enthalten.
               </p>
             </div>
           )}
@@ -435,7 +448,9 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
           </div>
         </div>
 
-        <div className={`${CARD} self-start p-4 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto`}>
+        <div
+          className={`${CARD} self-start p-4 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto`}
+        >
           <h2 className="text-sm font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
             Antwortbogen
           </h2>
@@ -516,7 +531,11 @@ export default function ExamRunner({ set, module, mode, onFinish }: Props) {
                   <button type="button" onClick={() => finish(false)} className={PRIMARY_BUTTON}>
                     Ja, abgeben
                   </button>
-                  <button type="button" onClick={() => setConfirming(false)} className={QUIET_BUTTON}>
+                  <button
+                    type="button"
+                    onClick={() => setConfirming(false)}
+                    className={QUIET_BUTTON}
+                  >
                     Weiter bearbeiten
                   </button>
                 </div>

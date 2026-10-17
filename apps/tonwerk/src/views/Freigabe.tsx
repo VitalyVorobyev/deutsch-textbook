@@ -132,18 +132,13 @@ function Ablauf({
   const variante = data.qa?.variant ?? data.renders.find((row) => row.rendered)?.variant ?? null;
   const render = data.renders.find((row) => row.variant === variante) ?? null;
 
-  const [stand, setStand] = useState<FreigabeStand>(
-    data.approval ? 'entschieden' : 'hoeren',
-  );
+  const [stand, setStand] = useState<FreigabeStand>(data.approval ? 'entschieden' : 'hoeren');
   const [angekreuzt, setAngekreuzt] = useState<ReadonlySet<string>>(new Set());
   const [pruefer, setPruefer] = useState(gemerkterPruefer);
   const [grundOffen, setGrundOffen] = useState(false);
   const [grund, setGrund] = useState('');
 
-  const noetig = useMemo(
-    () => erforderlich(scene, data.exercise != null),
-    [scene, data.exercise],
-  );
+  const noetig = useMemo(() => erforderlich(scene, data.exercise != null), [scene, data.exercise]);
   const fehlt = useMemo(() => fehlende(noetig, angekreuzt), [noetig, angekreuzt]);
 
   const freigeben = useVorgang(
@@ -209,9 +204,7 @@ function Ablauf({
               freigeben.laeuft ||
               ablehnen.laeuft
             }
-            title={
-              fehlt.length > 0 ? `Noch nicht bestätigt: ${fehlt.join(', ')}` : undefined
-            }
+            title={fehlt.length > 0 ? `Noch nicht bestätigt: ${fehlt.join(', ')}` : undefined}
             onClick={freigeben.starten}
           >
             {freigeben.laeuft ? (
@@ -258,7 +251,10 @@ function Ablauf({
       <SkriptSchleier scene={scene} />
 
       {gezeigterStand === 'hoeren' ? (
-        <Platte titel="Bericht und Checkliste" erklaerung="Erst hören. Der Bericht der Maschine und die acht Punkte stehen danach.">
+        <Platte
+          titel="Bericht und Checkliste"
+          erklaerung="Erst hören. Der Bericht der Maschine und die acht Punkte stehen danach."
+        >
           <Zustand
             art="leer"
             text="Verschlossen, bis das Hören bestätigt ist — mit den Zahlen vor Augen hört man, was dort steht."
@@ -445,7 +441,13 @@ function SkriptSchleier({ scene }: { scene: Scene }): React.JSX.Element {
 }
 
 /** The machine's report, in full and in measurement cyan. Nothing here is a verdict about people. */
-function Bericht({ qa, variante }: { qa: QaReport | null; variante: string | null }): React.JSX.Element {
+function Bericht({
+  qa,
+  variante,
+}: {
+  qa: QaReport | null;
+  variante: string | null;
+}): React.JSX.Element {
   const zeilen = qa?.transcripts?.lines ?? [];
   return (
     <Platte
@@ -536,7 +538,13 @@ function Bericht({ qa, variante }: { qa: QaReport | null; variante: string | nul
  * A WER says a turn is wrong; a marked word says what to listen for again. The alignment is
  * computed here because the engine reports the strings and the percentage and not the mapping.
  */
-function Gegenueber({ erwartet, erkannt }: { erwartet: string; erkannt: string }): React.JSX.Element {
+function Gegenueber({
+  erwartet,
+  erkannt,
+}: {
+  erwartet: string;
+  erkannt: string;
+}): React.JSX.Element {
   const diff = useMemo(() => wortDiff(erwartet, erkannt), [erwartet, erkannt]);
   if (erwartet === erkannt) {
     return (
@@ -582,7 +590,10 @@ function Sprecher({ speaker }: { speaker: SpeakerQa | undefined }): React.JSX.El
       <Marke ton="messung" titel="Kleinste gemessene Ähnlichkeit einer Figur mit sich selbst.">
         Stimme min {werte.length ? Math.min(...werte).toFixed(3) : '–'}
       </Marke>
-      <Marke ton="messung" titel="Größte gemessene Ähnlichkeit zwischen zwei verschiedenen Figuren.">
+      <Marke
+        ton="messung"
+        titel="Größte gemessene Ähnlichkeit zwischen zwei verschiedenen Figuren."
+      >
         Figuren max {fremd.length ? Math.max(...fremd).toFixed(3) : '–'}
       </Marke>
     </>
@@ -712,7 +723,12 @@ function Konflikt({ fehler, neuLaden }: { fehler: Error; neuLaden(): void }): Re
         {text}
       </p>
       {bytes ? (
-        <button type="button" className="knopf" style={{ marginTop: 'var(--ton-mass-3)' }} onClick={neuLaden}>
+        <button
+          type="button"
+          className="knopf"
+          style={{ marginTop: 'var(--ton-mass-3)' }}
+          onClick={neuLaden}
+        >
           Neu laden und noch einmal hören
         </button>
       ) : null}
@@ -739,7 +755,13 @@ export interface Urteilssatz {
 }
 
 /** The record, in brass: a person acted, and this is what was written down. */
-function Urteil({ approval, slug }: { approval: Urteilssatz | null; slug: string }): React.JSX.Element {
+function Urteil({
+  approval,
+  slug,
+}: {
+  approval: Urteilssatz | null;
+  slug: string;
+}): React.JSX.Element {
   const abgelehnt = approval?.status === 'declined';
   return (
     <Platte
@@ -762,7 +784,10 @@ function Urteil({ approval, slug }: { approval: Urteilssatz | null; slug: string
         </div>
         <div className="wert">
           <dt>{abgelehnt ? 'Szenen-Sha' : 'Audio-Sha'}</dt>
-          <dd className="zahl" title={(abgelehnt ? approval?.scene_sha256 : approval?.audio_sha256) ?? undefined}>
+          <dd
+            className="zahl"
+            title={(abgelehnt ? approval?.scene_sha256 : approval?.audio_sha256) ?? undefined}
+          >
             {kurzSha(abgelehnt ? approval?.scene_sha256 : approval?.audio_sha256)}
           </dd>
         </div>

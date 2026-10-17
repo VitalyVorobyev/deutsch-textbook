@@ -15,7 +15,13 @@
 import { Database } from 'bun:sqlite';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { createDeviceToken, createSession, createUser, type UserRole, type UserStatus } from '../worker/db';
+import {
+  createDeviceToken,
+  createSession,
+  createUser,
+  type UserRole,
+  type UserStatus,
+} from '../worker/db';
 import { DEVICE_TOKEN_PREFIX } from '../worker/auth/session';
 import { randomToken } from '../worker/crypto';
 
@@ -72,7 +78,9 @@ export function makeBucket(): FakeR2 {
 
   const head = (key: string) => {
     const stored = objects.get(key);
-    return stored ? { key, etag: stored.etag, uploaded: stored.uploaded, size: stored.body.byteLength } : null;
+    return stored
+      ? { key, etag: stored.etag, uploaded: stored.uploaded, size: stored.body.byteLength }
+      : null;
   };
 
   const bucket = {
@@ -91,10 +99,15 @@ export function makeBucket(): FakeR2 {
         arrayBuffer: async () => stored.body.buffer,
       };
     },
-    async put(key: string, value: ArrayBuffer | Uint8Array, options?: { onlyIf?: Record<string, string> }) {
+    async put(
+      key: string,
+      value: ArrayBuffer | Uint8Array,
+      options?: { onlyIf?: Record<string, string> },
+    ) {
       const existing = objects.get(key);
       const condition = options?.onlyIf;
-      if (condition?.etagMatches !== undefined && existing?.etag !== condition.etagMatches) return null;
+      if (condition?.etagMatches !== undefined && existing?.etag !== condition.etagMatches)
+        return null;
       if (condition?.etagDoesNotMatch !== undefined) {
         const blocked =
           condition.etagDoesNotMatch === '*'
@@ -113,7 +126,9 @@ export function makeBucket(): FakeR2 {
     async list(options?: { prefix?: string }) {
       const prefix = options?.prefix ?? '';
       return {
-        objects: [...objects.keys()].filter((key) => key.startsWith(prefix)).map((key) => ({ key })),
+        objects: [...objects.keys()]
+          .filter((key) => key.startsWith(prefix))
+          .map((key) => ({ key })),
         truncated: false as const,
       };
     },
@@ -178,7 +193,10 @@ export async function seedUser(
  * every authenticated test would silently run as an anonymous request and pass
  * for the wrong reason.
  */
-export function makeRequest(url: string, init: RequestInit & { cookie?: string; origin?: string } = {}): Request {
+export function makeRequest(
+  url: string,
+  init: RequestInit & { cookie?: string; origin?: string } = {},
+): Request {
   const { cookie, origin, ...rest } = init;
   const request = new Request(url, rest);
   if (cookie) request.headers.set('cookie', cookie);

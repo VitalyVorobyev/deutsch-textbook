@@ -14,11 +14,32 @@
  * the delayed check is what closes the cycle), and it now leads.
  */
 import { useState } from 'react';
-import { Button, Callout, Chip, Empty, Filter, Label, Panel, SearchBox, Section, Stat, StatGroup } from '@da/ui/primitives';
+import {
+  Button,
+  Callout,
+  Chip,
+  Empty,
+  Filter,
+  Label,
+  Panel,
+  SearchBox,
+  Section,
+  Stat,
+  StatGroup,
+} from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
 import { Befundleiste } from '../components/Befundleiste';
-import { Gruppentabelle, Mehrere, Primaer, Quelllink, Quer, Zahl, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import {
+  Gruppentabelle,
+  Mehrere,
+  Primaer,
+  Quelllink,
+  Quer,
+  Zahl,
+  Zeilentabelle,
+  type Spalte,
+} from '../components/Zeilentabelle';
 import { href } from '../router';
 
 type Level = GraphPayload['levels'][number];
@@ -66,7 +87,12 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
   const maxTeaching = Math.max(1, ...graph.tags.map((t) => t.teaching));
 
   const columns: Spalte<Tag>[] = [
-    { key: 'tag', head: 'Tag', sort: (t) => t.tag, cell: (t) => <Primaer href={href('fokus', t.tag)}>{t.tag}</Primaer> },
+    {
+      key: 'tag',
+      head: 'Tag',
+      sort: (t) => t.tag,
+      cell: (t) => <Primaer href={href('fokus', t.tag)}>{t.tag}</Primaer>,
+    },
     {
       key: 'introducedBy',
       head: 'eingeführt von',
@@ -75,7 +101,10 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
         t.introducedBy ? (
           <Quer href={href('thema', t.introducedBy)}>{topicTitle(t.introducedBy)}</Quer>
         ) : (
-          <span className="text-warn-ink" title="Nicht in focusIntroducedBy — kein Thema führt ihn ein">
+          <span
+            className="text-warn-ink"
+            title="Nicht in focusIntroducedBy — kein Thema führt ihn ein"
+          >
             nicht registriert
           </span>
         ),
@@ -127,7 +156,12 @@ function FokusListe({ graph }: { graph: GraphPayload }) {
         </p>
       </header>
 
-      <Befundleiste befunde={befunde} aktiv={befund} onWaehlen={setBefund} leer="jeder Tag wird später erneut gefragt" />
+      <Befundleiste
+        befunde={befunde}
+        aktiv={befund}
+        onWaehlen={setBefund}
+        leer="jeder Tag wird später erneut gefragt"
+      />
 
       <div className="mb-5 flex flex-wrap items-center gap-3">
         <div className="min-w-56 flex-1">
@@ -151,7 +185,9 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
 
   // Distinct practice files, because a confusion drilled in one sitting is met once and never
   // interleaved again — the number `grammar-depth.ts` exists to make visible.
-  const files = new Set(elements.filter((e) => e.kind === 'praxis' || e.kind === 'drill').map((e) => e.file));
+  const files = new Set(
+    elements.filter((e) => e.kind === 'praxis' || e.kind === 'drill').map((e) => e.file),
+  );
 
   const gruppen = [...new Set(elements.map((e) => e.topic))].map((tid) => ({
     id: tid,
@@ -168,7 +204,15 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
+    {
+      key: 'file',
+      head: 'Datei',
+      cell: (e) => (
+        <Quelllink href={href('quelle', undefined, { pfad: e.file })}>
+          {e.id.split('#')[0]}
+        </Quelllink>
+      ),
+    },
   ];
 
   return (
@@ -190,18 +234,35 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
       <div className="mt-5 grid gap-4 md:grid-cols-3">
         <Panel title="Tiefe">
           <StatGroup columns={3}>
-            <Stat label="Lehre" value={tag.teaching} hint="praxis + drill" tone={tag.teaching ? 'neutral' : 'warn'} />
+            <Stat
+              label="Lehre"
+              value={tag.teaching}
+              hint="praxis + drill"
+              tone={tag.teaching ? 'neutral' : 'warn'}
+            />
             <Stat label="Proben" value={tag.probes} tone={tag.probes ? 'neutral' : 'warn'} />
-            <Stat label="Dateien" value={files.size} hint={files.size === 1 ? 'nur eine Sitzung' : undefined} tone={files.size === 1 ? 'warn' : 'neutral'} />
+            <Stat
+              label="Dateien"
+              value={files.size}
+              hint={files.size === 1 ? 'nur eine Sitzung' : undefined}
+              tone={files.size === 1 ? 'warn' : 'neutral'}
+            />
           </StatGroup>
         </Panel>
 
-        <Panel title={`Strukturen (${points.length})`} tone={points.length ? 'neutral' : 'leer'} className="md:col-span-2">
+        <Panel
+          title={`Strukturen (${points.length})`}
+          tone={points.length ? 'neutral' : 'leer'}
+          className="md:col-span-2"
+        >
           {points.length ? (
             <ul className="space-y-1 text-sm">
               {points.map((p) => (
                 <li key={p.id}>
-                  <a href={href('struktur', p.id)} className="text-ink hover:text-brand-ink hover:underline">
+                  <a
+                    href={href('struktur', p.id)}
+                    className="text-ink hover:text-brand-ink hover:underline"
+                  >
                     {p.de}
                   </a>
                   <span className="text-xs text-ink-muted"> · {p.id}</span>
@@ -210,7 +271,8 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
             </ul>
           ) : (
             <p className="text-xs text-ink-muted">
-              Gehört zu keiner Inventarzeile — die Verwechslung wird geübt, aber keine Struktur nennt sie.
+              Gehört zu keiner Inventarzeile — die Verwechslung wird geübt, aber keine Struktur
+              nennt sie.
             </p>
           )}
         </Panel>
@@ -224,9 +286,14 @@ function FokusDetail({ graph, id }: { graph: GraphPayload; id: string }) {
         empty={
           <Panel tone="leer">
             <p className="text-sm font-medium text-ink">Kein Material trägt diesen Fokus-Tag.</p>
-            <p className="mt-1 max-w-2xl text-sm text-ink-muted">Das ist ein Befund, kein Navigationsende. Öffne die registrierte Einführung oder kehre zur Liste aller Fokus-Tags zurück.</p>
+            <p className="mt-1 max-w-2xl text-sm text-ink-muted">
+              Das ist ein Befund, kein Navigationsende. Öffne die registrierte Einführung oder kehre
+              zur Liste aller Fokus-Tags zurück.
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {tag.introducedBy ? <Button href={href('thema', tag.introducedBy)}>Einführendes Thema</Button> : null}
+              {tag.introducedBy ? (
+                <Button href={href('thema', tag.introducedBy)}>Einführendes Thema</Button>
+              ) : null}
               <Button href={href('fokus')}>Alle Fokus-Tags</Button>
             </div>
           </Panel>

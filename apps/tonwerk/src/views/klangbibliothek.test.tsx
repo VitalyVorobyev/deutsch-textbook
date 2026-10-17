@@ -64,10 +64,7 @@ describe('the transport', () => {
     // player on a hundred-row page downloads a hundred WAVs over the socket that is also running
     // the synthesis model.
     const objectUrl = vi.fn(async () => 'blob:tonwerk/klang');
-    mount(
-      <Klangbibliothek />,
-      stubApi({ sounds: async () => soundsFixture as never, objectUrl }),
-    );
+    mount(<Klangbibliothek />, stubApi({ sounds: async () => soundsFixture as never, objectUrl }));
 
     await screen.findByText('Cafe room tone');
     expect(objectUrl).not.toHaveBeenCalled();

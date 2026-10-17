@@ -4,7 +4,11 @@ import { join, resolve } from 'node:path';
 import { contentGraph } from '@da/content/graph';
 import { getCurriculum } from '@da/content/curriculum';
 import { goetheCoverage } from '@da/content/coverage';
-import { grammarCoverage, loadGrammarInventory, productionLevel } from '@da/content/grammar-coverage';
+import {
+  grammarCoverage,
+  loadGrammarInventory,
+  productionLevel,
+} from '@da/content/grammar-coverage';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 
 /**
@@ -95,7 +99,10 @@ describe('published progress claims match the content', () => {
     // test equated the live B1 unit count with the contract length. That equation broke the
     // moment B1 gained units the contract never named: the five Themen-Nachtrag topics that
     // closed the DTZ denominator. They are two facts now, and both are checked.
-    const b1 = /(\S+) B1 units are live — the (\S+) of\s+the frozen contract plus (\S+) that close/.exec(readme);
+    const b1 =
+      /(\S+) B1 units are live — the (\S+) of\s+the frozen contract plus (\S+) that close/.exec(
+        readme,
+      );
     expect(b1).not.toBeNull();
     expect(numeral(b1![1])).toBe(count('B1'));
     expect(numeral(b1![2])).toBe(contractedB1Units());

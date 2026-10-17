@@ -54,7 +54,11 @@ async function hmacKey(secret: string): Promise<CryptoKey> {
 }
 
 export async function hmacSign(secret: string, message: string): Promise<string> {
-  const signature = await crypto.subtle.sign('HMAC', await hmacKey(secret), encoder.encode(message));
+  const signature = await crypto.subtle.sign(
+    'HMAC',
+    await hmacKey(secret),
+    encoder.encode(message),
+  );
   return base64UrlEncode(new Uint8Array(signature));
 }
 

@@ -24,7 +24,14 @@
  */
 import type { AstroIntegration } from 'astro';
 import { repoRoot } from '@da/content/repo-root';
-import { existsSync, mkdirSync, readdirSync, readFileSync, copyFileSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  copyFileSync,
+  writeFileSync,
+} from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
@@ -145,7 +152,8 @@ export function audioBundle(): AstroIntegration {
         const shipped = bundle ? available : [];
         // Flat target: ids are globally unique, and the component has no level to build a
         // path from. See lib/audio.ts.
-        for (const rec of shipped) copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.mp3`));
+        for (const rec of shipped)
+          copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.mp3`));
         const readingDir = join(audioDir, 'readings');
         const shippedReadings = bundle ? availableReadings : [];
         for (const rec of shippedReadings) {
@@ -158,7 +166,9 @@ export function audioBundle(): AstroIntegration {
           `${JSON.stringify({ bundled: bundle, recordings: shipped, readings: shippedReadings }, null, 2)}\n`,
         );
 
-        const megabytes = ([...shipped, ...shippedReadings].reduce((sum, r) => sum + r.bytes, 0) / 1e6).toFixed(1);
+        const megabytes = (
+          [...shipped, ...shippedReadings].reduce((sum, r) => sum + r.bytes, 0) / 1e6
+        ).toFixed(1);
         logger.info(
           bundle
             ? `shipped ${shipped.length} dialogue(s) and ${shippedReadings.length} reading narration(s), ${megabytes} MB → ${relative(root, audioDir)}`

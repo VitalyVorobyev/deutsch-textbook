@@ -141,7 +141,11 @@ export function Mehrere({ children, zeige = 2 }: { children: ReactNode[]; zeige?
         </button>
       ) : null}
       {offen && all.length > zeige ? (
-        <button type="button" onClick={() => setOffen(false)} className="text-xs text-ink-muted hover:text-ink">
+        <button
+          type="button"
+          onClick={() => setOffen(false)}
+          className="text-xs text-ink-muted hover:text-ink"
+        >
           weniger
         </button>
       ) : null}
@@ -165,7 +169,9 @@ export function Zahl({ value, max, warnBei }: { value: number; max: number; warn
           style={{ width: `${percent}%` }}
         />
       </span>
-      <span className={`tabular w-8 text-right ${tone === 'warn' ? 'text-warn-ink' : 'text-ink'}`}>{value}</span>
+      <span className={`tabular w-8 text-right ${tone === 'warn' ? 'text-warn-ink' : 'text-ink'}`}>
+        {value}
+      </span>
     </span>
   );
 }
@@ -202,7 +208,9 @@ export function Zeilentabelle<Row>({
   if (!rows.length) return typeof empty === 'string' ? <Empty>{empty}</Empty> : <>{empty}</>;
 
   const toggle = (key: string) =>
-    setSort((s) => (s?.key === key ? { key, dir: s.dir === 'auf' ? 'ab' : 'auf' } : { key, dir: 'auf' }));
+    setSort((s) =>
+      s?.key === key ? { key, dir: s.dir === 'auf' ? 'ab' : 'auf' } : { key, dir: 'auf' },
+    );
 
   return (
     /*
@@ -222,14 +230,23 @@ export function Zeilentabelle<Row>({
     <div>
       <ul className="space-y-2 min-[900px]:hidden" aria-label="Ergebnisliste">
         {sorted.map((row) => (
-          <li key={rowKey(row)} className="rounded-lg border border-border-subtle bg-surface-raised p-3">
+          <li
+            key={rowKey(row)}
+            className="rounded-lg border border-border-subtle bg-surface-raised p-3"
+          >
             <dl className="grid grid-cols-[minmax(6.5rem,0.35fr)_minmax(0,1fr)] gap-x-3 gap-y-2 text-sm">
-              {columns.filter((column) => !column.nurBreit).map((column) => (
-                <div key={column.key} className="contents">
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-ink-muted">{column.head}</dt>
-                  <dd className={`${column.numeric ? 'tabular' : ''} min-w-0 text-ink`}>{column.cell(row)}</dd>
-                </div>
-              ))}
+              {columns
+                .filter((column) => !column.nurBreit)
+                .map((column) => (
+                  <div key={column.key} className="contents">
+                    <dt className="text-xs font-semibold uppercase tracking-wide text-ink-muted">
+                      {column.head}
+                    </dt>
+                    <dd className={`${column.numeric ? 'tabular' : ''} min-w-0 text-ink`}>
+                      {column.cell(row)}
+                    </dd>
+                  </div>
+                ))}
             </dl>
           </li>
         ))}
@@ -243,7 +260,9 @@ export function Zeilentabelle<Row>({
               return (
                 <th
                   key={column.key}
-                  aria-sort={active ? (sort!.dir === 'auf' ? 'ascending' : 'descending') : undefined}
+                  aria-sort={
+                    active ? (sort!.dir === 'auf' ? 'ascending' : 'descending') : undefined
+                  }
                   className={`whitespace-nowrap px-2 py-2 font-semibold uppercase tracking-wide first:pl-0 last:pr-0 ${
                     column.numeric ? 'text-right' : ''
                   } ${column.nurBreit ? 'hidden xl:table-cell' : ''}`}
@@ -257,7 +276,10 @@ export function Zeilentabelle<Row>({
                       }`}
                     >
                       {column.head}
-                      <span aria-hidden="true" className={active ? '' : 'opacity-0 group-hover:opacity-40'}>
+                      <span
+                        aria-hidden="true"
+                        className={active ? '' : 'opacity-0 group-hover:opacity-40'}
+                      >
                         {active ? (sort!.dir === 'auf' ? '↑' : '↓') : '↕'}
                       </span>
                     </button>

@@ -1,5 +1,4 @@
 {
-  "//": "Redaktion — the editorial navigator. A separate app on purpose: it is a single-page tool with a client router, no SEO and no static pages, so Astro buys it nothing, and it can never leak into the learner build by construction. It reads the corpus through @da/content and never re-derives a measurement.",
   "name": "@da/redaktion",
   "version": "0.4.0",
   "private": true,
@@ -19,10 +18,11 @@
     "@da/renderers": "workspace:*",
     "@da/schema": "workspace:*",
     "@da/ui": "workspace:*",
-    "@tauri-apps/api": "^2.12.2",
-    "@tauri-apps/plugin-dialog": "^2.8.1",
     "@radix-ui/react-tabs": "^1.1.22",
     "@radix-ui/react-tooltip": "^1.3.0",
+    "@tauri-apps/api": "^2.12.2",
+    "@tauri-apps/plugin-dialog": "^2.8.1",
     "yaml": "^2.9.1"
-  }
+  },
+  "//": "Redaktion — the editorial navigator. A separate app on purpose: it is a single-page tool with a client router, no SEO and no static pages, so Astro buys it nothing, and it can never leak into the learner build by construction. It reads the corpus through @da/content and never re-derives a measurement."
 }

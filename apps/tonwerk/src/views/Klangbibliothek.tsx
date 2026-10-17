@@ -68,10 +68,7 @@ export function Klangbibliothek(): React.JSX.Element {
         </p>
       </header>
 
-      <Erzeugen
-        api={api}
-        neuLaden={() => setStand((wert) => wert + 1)}
-      />
+      <Erzeugen api={api} neuLaden={() => setStand((wert) => wert + 1)} />
 
       {laedt ? <Zustand art="laedt" text="Bibliothek wird gelesen …" /> : null}
       {error ? (
@@ -146,9 +143,7 @@ function Klang({ row }: { row: SoundRow }): React.JSX.Element {
     <article className="platte klang">
       <div className="klang-titel">
         <div style={{ minWidth: 0 }}>
-          <p className="skript klang-name">
-            {erzeugt ? row.prompt : (row.title ?? kurzSha(sha))}
-          </p>
+          <p className="skript klang-name">{erzeugt ? row.prompt : (row.title ?? kurzSha(sha))}</p>
           <p className="zahl entfernt klang-kennung" title={sha}>
             {kurzSha(sha)}
             {row.duration_seconds ? ` · ${sekunden(row.duration_seconds * 1000)}` : ''}
@@ -162,7 +157,11 @@ function Klang({ row }: { row: SoundRow }): React.JSX.Element {
       </div>
 
       <div className="klang-fuss">
-        <Spieler pfad={`/api/sounds/${encodeURIComponent(sha)}/audio`} name={kurzSha(sha)} kompakt />
+        <Spieler
+          pfad={`/api/sounds/${encodeURIComponent(sha)}/audio`}
+          name={kurzSha(sha)}
+          kompakt
+        />
       </div>
 
       <dl className="werte platte-leib klang-werte">
@@ -232,7 +231,9 @@ function Klang({ row }: { row: SoundRow }): React.JSX.Element {
           ))}
           {row.editorial.loop_quality ? <Marke>Schleife {row.editorial.loop_quality}</Marke> : null}
           <Marke ton={row.editorial.review_status === 'reviewed' ? 'signal' : 'ruhig'}>
-            {row.editorial.review_status === 'reviewed' ? 'geprüft' : (row.editorial.review_status ?? '–')}
+            {row.editorial.review_status === 'reviewed'
+              ? 'geprüft'
+              : (row.editorial.review_status ?? '–')}
           </Marke>
         </div>
       ) : null}
@@ -338,7 +339,11 @@ function Erzeugen({
       </div>
 
       {vorgang.fehler ? (
-        <p className="hinweis hinweis-alarm" role="alert" style={{ marginTop: 'var(--ton-mass-3)' }}>
+        <p
+          className="hinweis hinweis-alarm"
+          role="alert"
+          style={{ marginTop: 'var(--ton-mass-3)' }}
+        >
           {fehlerText(vorgang.fehler)}
         </p>
       ) : null}

@@ -13,13 +13,7 @@
  *   attaches it automatically, so it is not forgeable cross-site — and it is
  *   deliberately **sync-only**: `via` is checked before every admin route.
  */
-import {
-  cookieName,
-  parseCookies,
-  readCookie,
-  serializeCookie,
-  clearCookie,
-} from '../http';
+import { cookieName, parseCookies, readCookie, serializeCookie, clearCookie } from '../http';
 import {
   SESSION_REFRESH_MS,
   SESSION_TTL_MS,

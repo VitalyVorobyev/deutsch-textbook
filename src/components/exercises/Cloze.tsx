@@ -117,9 +117,7 @@ export function Cloze({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
             .join(', ')}
           explain={item.explain}
           lang={lang}
-          speakText={parts
-            .map((p) => (p.type === 'text' ? p.value : p.answers[0]))
-            .join('')}
+          speakText={parts.map((p) => (p.type === 'text' ? p.value : p.answers[0])).join('')}
         />
       )}
     </div>

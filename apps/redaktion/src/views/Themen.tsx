@@ -55,7 +55,10 @@ export function Themen({ graph }: { graph: GraphPayload }) {
   const shown = graph.topics.filter(
     (t) =>
       (level === 'alle' || t.level === level) &&
-      (track === 'alle' || (graph.profiles.find((profile) => profile.topic === t.id)?.points ?? []).some((id) => graph.inventory.find((point) => point.id === id)?.track === track)) &&
+      (track === 'alle' ||
+        (graph.profiles.find((profile) => profile.topic === t.id)?.points ?? []).some(
+          (id) => graph.inventory.find((point) => point.id === id)?.track === track,
+        )) &&
       (!q || t.title.toLowerCase().includes(q) || t.id.includes(q)) &&
       (!nurBefunde || (problemsByTopic.get(t.id)?.length ?? 0) > 0),
   );
@@ -74,7 +77,9 @@ export function Themen({ graph }: { graph: GraphPayload }) {
     else levels.push({ level: topic.level, topics: [topic] });
   }
 
-  const withFindings = graph.topics.filter((t) => (problemsByTopic.get(t.id)?.length ?? 0) > 0).length;
+  const withFindings = graph.topics.filter(
+    (t) => (problemsByTopic.get(t.id)?.length ?? 0) > 0,
+  ).length;
 
   return (
     <>
@@ -90,7 +95,12 @@ export function Themen({ graph }: { graph: GraphPayload }) {
           <SearchBox value={search} onChange={setSearch} placeholder="Thema suchen …" />
         </div>
         <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
-        <Filter label="Grammatiklinie" value={track} options={graph.grammarTracks.map((item) => item.id)} onChange={setTrack} />
+        <Filter
+          label="Grammatiklinie"
+          value={track}
+          options={graph.grammarTracks.map((item) => item.id)}
+          onChange={setTrack}
+        />
         <label className="flex items-center gap-1.5 text-xs text-ink-muted">
           <input
             type="checkbox"
@@ -200,7 +210,8 @@ function ThemaKarte({
         <span className={par !== undefined && met < par ? 'text-warn-ink' : 'text-ink'}>
           {met}/{total}
         </span>{' '}
-        Anforderungen · {profile?.depth.items ?? 0} Aufgaben, {profile?.depth.production ?? 0} produktiv
+        Anforderungen · {profile?.depth.items ?? 0} Aufgaben, {profile?.depth.production ?? 0}{' '}
+        produktiv
       </p>
 
       <div className="flex flex-wrap gap-1" aria-label="Verfasste Erklärungssprachen">
@@ -230,7 +241,8 @@ function ThemaKarte({
           }
         >
           <p className="w-fit text-xs text-ink-muted underline decoration-dotted underline-offset-2">
-            <span className="tabular text-warn-ink">{problems.length}</span> Befunde in {kinds.length} Klasse
+            <span className="tabular text-warn-ink">{problems.length}</span> Befunde in{' '}
+            {kinds.length} Klasse
             {kinds.length === 1 ? '' : 'n'}
           </p>
         </Hinweis>
@@ -243,14 +255,18 @@ function ThemaKarte({
 
 /** `&` and `und` are the same word, and a card that prints both has told the reader nothing. */
 function gleicherName(a: string, b: string): boolean {
-  const norm = (s: string) => s.toLowerCase().replace(/&/g, 'und').replace(/[^a-zäöüß]/g, '');
+  const norm = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/&/g, 'und')
+      .replace(/[^a-zäöüß]/g, '');
   return norm(a) === norm(b);
 }
 
 /** The dots are decorative to a screen reader; this is what they say. */
 function activityLabel(profile?: GraphPayload['profiles'][number]): string {
-  const present = ACTIVITIES
-    .filter((activity) => (profile?.activities[activity] ?? 0) > 0)
-    .map((activity) => ACTIVITY_LABEL[activity]);
+  const present = ACTIVITIES.filter((activity) => (profile?.activities[activity] ?? 0) > 0).map(
+    (activity) => ACTIVITY_LABEL[activity],
+  );
   return `Lernaktivitäten: ${present.join(', ')}`;
 }

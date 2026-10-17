@@ -1,12 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { ApiContext } from '../useEngine';
-import {
-  sceneDetailFixture,
-  scenesFixture,
-  stubApi,
-  warteschlangeFixture,
-} from '../test/fixtures';
+import { sceneDetailFixture, scenesFixture, stubApi, warteschlangeFixture } from '../test/fixtures';
 import { Freigabe } from './Freigabe';
 import { Pruefung } from './Pruefung';
 import type { Api } from '../api';
@@ -70,14 +65,18 @@ describe('the queue', () => {
 
     const bereich = await screen.findByRole('grid', { name: /Freigabe warten/ });
     // Nothing chosen yet resolves to the head of the queue: the row that has waited longest.
-    await waitFor(() => expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-ls-frueh-02'));
+    await waitFor(() =>
+      expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-ls-frueh-02'),
+    );
 
     fireEvent.keyDown(bereich, { key: 'j' });
     await waitFor(() =>
       expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-ls-durchgefallen-03'),
     );
     fireEvent.keyDown(bereich, { key: 'k' });
-    await waitFor(() => expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-ls-frueh-02'));
+    await waitFor(() =>
+      expect(bereich.getAttribute('aria-activedescendant')).toBe('zeile-ls-frueh-02'),
+    );
 
     fireEvent.keyDown(bereich, { key: 'Enter' });
     await waitFor(() => expect(window.location.hash).toBe('#/pruefung/ls-frueh-02'));
@@ -166,7 +165,9 @@ describe('the Freigabe flow', () => {
       target: { value: 'Vitaly Vorobyev' },
     });
     await waitFor(() =>
-      expect(screen.getByRole('button', { name: 'Freigeben' }).hasAttribute('disabled')).toBe(false),
+      expect(screen.getByRole('button', { name: 'Freigeben' }).hasAttribute('disabled')).toBe(
+        false,
+      ),
     );
   });
 
@@ -196,12 +197,15 @@ describe('the Freigabe flow', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Freigeben' }));
 
     await waitFor(() => expect(approveScene).toHaveBeenCalledTimes(1));
-    const [slug, submission] = approveScene.mock.calls[0] as unknown as [string, {
-      master_sha256: string;
-      variant: string;
-      checklist: string[];
-      editor: string;
-    }];
+    const [slug, submission] = approveScene.mock.calls[0] as unknown as [
+      string,
+      {
+        master_sha256: string;
+        variant: string;
+        checklist: string[];
+        editor: string;
+      },
+    ];
     expect(slug).toBe('ls-wohnen-01');
     // Read off the render row this page played — not fetched again at submit time, which would be
     // a digest of whatever is on disk now rather than of what was heard.

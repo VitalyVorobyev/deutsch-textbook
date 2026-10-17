@@ -90,9 +90,15 @@ export function parseRoute(hash: string): Route {
   return { view: view || 'uebersicht', id: id ? decodeURIComponent(id) : undefined, query };
 }
 
-export function href(view: string, id?: string, query?: Record<string, string | undefined>): string {
+export function href(
+  view: string,
+  id?: string,
+  query?: Record<string, string | undefined>,
+): string {
   const path = id ? `#/${view}/${encodeURIComponent(id)}` : `#/${view}`;
-  const entries = Object.entries(query ?? {}).filter((entry): entry is [string, string] => Boolean(entry[1]));
+  const entries = Object.entries(query ?? {}).filter((entry): entry is [string, string] =>
+    Boolean(entry[1]),
+  );
   return entries.length ? `${path}?${new URLSearchParams(entries).toString()}` : path;
 }
 
@@ -117,7 +123,9 @@ export function useQueryState(key: string, fallback: string): [string, (next: st
   const route = useRoute();
   const set = useCallback(
     (next: string) => {
-      navigate(href(route.view, route.id, { ...route.query, [key]: next === fallback ? undefined : next }));
+      navigate(
+        href(route.view, route.id, { ...route.query, [key]: next === fallback ? undefined : next }),
+      );
     },
     [route.view, route.id, route.query, key, fallback],
   );

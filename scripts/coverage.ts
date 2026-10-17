@@ -107,14 +107,18 @@ for (const section of sections) {
   }
   for (const w of section.missing) console.log(`  ✗ ${w}`);
   for (const w of section.unearned)
-    console.log(`  ! ${w}  (claimed as grammar — no article, reading or practice item addresses it)`);
+    console.log(
+      `  ! ${w}  (claimed as grammar — no article, reading or practice item addresses it)`,
+    );
 }
 
 console.log(
   `\n=== Goethe-${level} coverage: ${cards + grammar}/${total} (${percent}%) — ` +
     `${cards} as cards, ${grammar} as grammar, ${missing} missing ===`,
 );
-console.log(`    Level boundary: ${onTimeCards}/${cards} card headwords on time · ${late.length} late.`);
+console.log(
+  `    Level boundary: ${onTimeCards}/${cards} card headwords on time · ${late.length} late.`,
+);
 for (const word of late) console.log(`  ↗ ${word}  (first taught above ${level})`);
 
 if (unearned.length) {

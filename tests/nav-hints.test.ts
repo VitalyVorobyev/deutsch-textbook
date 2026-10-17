@@ -56,7 +56,9 @@ describe('applyHints', () => {
 describe('NAV_HINTS', () => {
   test('every hint has all three halves', () => {
     const empty = Object.entries(NAV_HINTS).flatMap(([key, hint]) =>
-      (['en', 'ru', 'uk'] as const).filter((lang) => !hint[lang].trim()).map((lang) => `${key}.${lang}`),
+      (['en', 'ru', 'uk'] as const)
+        .filter((lang) => !hint[lang].trim())
+        .map((lang) => `${key}.${lang}`),
     );
     expect(empty).toEqual([]);
   });

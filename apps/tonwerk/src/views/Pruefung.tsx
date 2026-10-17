@@ -125,7 +125,10 @@ export function Pruefung(): React.JSX.Element {
                     </td>
                     <td>
                       {row.has_exercise ? (
-                        <Marke ton="signal" titel="An dieser Szene hängt eine Hörverstehens-Aufgabe; dann ist auch der Punkt „questions“ zu bestätigen.">
+                        <Marke
+                          ton="signal"
+                          titel="An dieser Szene hängt eine Hörverstehens-Aufgabe; dann ist auch der Punkt „questions“ zu bestätigen."
+                        >
                           vorhanden
                         </Marke>
                       ) : (

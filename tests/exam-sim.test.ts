@@ -202,13 +202,22 @@ describe('scoreModule', () => {
 
   test('a free part stays outside the automatic score — its share never inflates it', () => {
     // Schreiben: maxScaled 15 with a 10-point free part → the 5 blanks scale to 5, not 15.
-    const score = scoreModule(schreiben, { 1: 'lyon, frankreich', 2: 'Spanisch', 3: 'sechs Monate' });
+    const score = scoreModule(schreiben, {
+      1: 'lyon, frankreich',
+      2: 'Spanisch',
+      3: 'sechs Monate',
+    });
     expect(score).toEqual({ raw: 2, rawMax: 5, scaled: 2, scaledMax: 5 });
   });
 });
 
 describe('itemCorrect', () => {
-  const blank: ExamTextItemSpec = { nr: 5, shape: 'text', answer: '9 - 12 Uhr', accept: ['von 9 bis 12 Uhr'] };
+  const blank: ExamTextItemSpec = {
+    nr: 5,
+    shape: 'text',
+    answer: '9 - 12 Uhr',
+    accept: ['von 9 bis 12 Uhr'],
+  };
 
   test('typed blanks compare case-insensitively, over hyphen spacing and trailing punctuation', () => {
     expect(itemCorrect(blank, '9-12 uhr.')).toBe(true);

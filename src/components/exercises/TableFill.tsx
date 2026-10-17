@@ -31,7 +31,10 @@ export function TableFill({
   // see whether the connector belongs in what they type. Both readings are graded — see
   // `acceptedCellAnswers`, which is also what keeps the answer key canonical in `validate.ts`.
   const cellOk = (r: number, c: number) =>
-    answerMatches(values[cellKey(r, c)] ?? '', acceptedCellAnswers(item.rows[r].cells, c, item.rows[r].label));
+    answerMatches(
+      values[cellKey(r, c)] ?? '',
+      acceptedCellAnswers(item.rows[r].cells, c, item.rows[r].label),
+    );
 
   const allCorrect = askedCells.every(({ r, c }) => cellOk(r, c));
   const allFilled = askedCells.every(({ r, c }) => (values[cellKey(r, c)] ?? '').trim() !== '');
@@ -57,7 +60,11 @@ export function TableFill({
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      {item.title && <p lang="de" className="mb-2 font-medium">{item.title}</p>}
+      {item.title && (
+        <p lang="de" className="mb-2 font-medium">
+          {item.title}
+        </p>
+      )}
       <div className="-mx-2 overflow-x-auto px-2 sm:mx-0 sm:px-0">
         <table lang="de" className="w-full border-collapse text-sm">
           <thead>

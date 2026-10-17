@@ -70,8 +70,18 @@ const perfekt = {
 
 const topics = [
   perfekt,
-  courseTopic('praesens-regelmaessig', 'Präsens regelmäßig', 'Regular present tense', 'Настоящее время'),
-  courseTopic('praeteritum-sein-haben', 'Präteritum von sein und haben', 'Past of sein and haben', 'Претерит sein и haben'),
+  courseTopic(
+    'praesens-regelmaessig',
+    'Präsens regelmäßig',
+    'Regular present tense',
+    'Настоящее время',
+  ),
+  courseTopic(
+    'praeteritum-sein-haben',
+    'Präteritum von sein und haben',
+    'Past of sein and haben',
+    'Претерит sein и haben',
+  ),
   courseTopic('plusquamperfekt', 'Plusquamperfekt', 'Past perfect', 'Плюсквамперфект', {
     deepens: ['perfekt-haben-sein'],
   }),
@@ -81,7 +91,13 @@ const topics = [
 ];
 
 const groups = [
-  { id: 'verbformen', strand: 'grammar' as const, title_de: 'Verbformen', title_en: 'Verb forms', title_ru: 'Формы глагола' },
+  {
+    id: 'verbformen',
+    strand: 'grammar' as const,
+    title_de: 'Verbformen',
+    title_en: 'Verb forms',
+    title_ru: 'Формы глагола',
+  },
 ];
 
 /** The standalone card, as the atlas drawer renders it. */

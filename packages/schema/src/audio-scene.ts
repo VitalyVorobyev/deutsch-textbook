@@ -271,7 +271,8 @@ export const AUDIO_SCENE_SHAPES = {
 } as const;
 
 /** The `$id` the published JSON Schema carries. Held equal by the drift test. */
-export const AUDIO_SCENE_SCHEMA_ID = 'https://deutsch-atlas.local/schemas/audio-scene.v1.schema.json';
+export const AUDIO_SCENE_SCHEMA_ID =
+  'https://deutsch-atlas.local/schemas/audio-scene.v1.schema.json';
 
 /** True when the sound is a library reference rather than something still to be generated. */
 export function isAssetRef(sound: Sound): sound is AssetRef {

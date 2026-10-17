@@ -132,7 +132,9 @@ describe('authorship provenance', () => {
     const manifest = authorshipManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
     );
-    expect(reviewedTopicAuthorshipProblems(manifest, new Map([['arbeit-bewerbung', 'reviewed']]))).toContain(
+    expect(
+      reviewedTopicAuthorshipProblems(manifest, new Map([['arbeit-bewerbung', 'reviewed']])),
+    ).toContain(
       'data/authorship-provenance.yaml: reviewed topic "arbeit-bewerbung" requires explicit completed human review',
     );
   });
@@ -164,11 +166,9 @@ describe('authorship provenance', () => {
       YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
     );
     expect(
-      reviewedTopicAuthorshipProblems(
-        manifest,
-        new Map([['future-b1-topic', 'draft']]),
-        ['future-b1-topic'],
-      ),
+      reviewedTopicAuthorshipProblems(manifest, new Map([['future-b1-topic', 'draft']]), [
+        'future-b1-topic',
+      ]),
     ).toContain(
       'data/authorship-provenance.yaml: B1.4+ topic "future-b1-topic" has no authorship record',
     );
@@ -178,9 +178,12 @@ describe('authorship provenance', () => {
     const manifest = authorshipManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/authorship-provenance.yaml'), 'utf8')),
     );
-    expect(manifest.topics.filter((topic) => topic.legacy).map((topic) => topic.topic).sort()).toEqual(
-      [...LEGACY_TOPIC_IDS].sort(),
-    );
+    expect(
+      manifest.topics
+        .filter((topic) => topic.legacy)
+        .map((topic) => topic.topic)
+        .sort(),
+    ).toEqual([...LEGACY_TOPIC_IDS].sort());
 
     const forged = structuredClone(manifest);
     const b14 = forged.topics.find((topic) => topic.topic === 'arbeit-bewerbung');
@@ -205,9 +208,12 @@ describe('authorship provenance', () => {
     const manifest = assetProvenanceManifestSchema.parse(
       YAML.parse(readFileSync(resolve(root, 'data/asset-provenance.yaml'), 'utf8')),
     );
-    expect(manifest.assets.filter((asset) => asset.legacy).map((asset) => asset.path).sort()).toEqual(
-      [...LEGACY_ASSET_PATHS].sort(),
-    );
+    expect(
+      manifest.assets
+        .filter((asset) => asset.legacy)
+        .map((asset) => asset.path)
+        .sort(),
+    ).toEqual([...LEGACY_ASSET_PATHS].sort());
   });
 
   test('a changed legacy asset needs provenance for its current hash', () => {

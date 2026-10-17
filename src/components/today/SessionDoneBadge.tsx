@@ -29,9 +29,7 @@ export default function SessionDoneBadge() {
   return (
     <p className="mt-2 text-sm font-semibold text-amber-100">
       ✓ <span lang={uiLang}>{t('session.doneToday', uiLang)}</span>
-      <span className="ml-1 font-normal text-amber-200">
-        {pick(lang, UI.repeatFine)}
-      </span>
+      <span className="ml-1 font-normal text-amber-200">{pick(lang, UI.repeatFine)}</span>
     </p>
   );
 }

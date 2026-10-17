@@ -107,7 +107,9 @@ describe('positional references to a shuffled option', () => {
   });
 
   test('the report names the phrase, so the author can find it', () => {
-    expect(positionalReference('The second option leaves muss in the middle.')).toBe('The second option');
+    expect(positionalReference('The second option leaves muss in the middle.')).toBe(
+      'The second option',
+    );
     expect(positionalReference('Die zweite Option kopiert das.')).toBe('zweite Option');
     expect(positionalReference('nothing positional here')).toBeUndefined();
   });

@@ -36,11 +36,17 @@ const real = {
   logLidExamDurably: journal.logLidExamDurably,
 };
 let lidState: LidState | Error = EMPTY_LID_STATE;
-const getLidState = mock(() => (lidState instanceof Error ? Promise.reject(lidState) : Promise.resolve(lidState)));
+const getLidState = mock(() =>
+  lidState instanceof Error ? Promise.reject(lidState) : Promise.resolve(lidState),
+);
 const logLidAnswerDurably = mock(() => Promise.resolve());
 const logLidExamDurably = mock(() => Promise.resolve());
 mock.module('../src/lib/store', () => ({ ...store, getLidState }));
-mock.module('../src/lib/write-journal', () => ({ ...journal, logLidAnswerDurably, logLidExamDurably }));
+mock.module('../src/lib/write-journal', () => ({
+  ...journal,
+  logLidAnswerDurably,
+  logLidExamDurably,
+}));
 
 afterAll(() => {
   getLidState.mockImplementation(real.getLidState as never);
@@ -48,7 +54,12 @@ afterAll(() => {
   logLidExamDurably.mockImplementation(real.logLidExamDurably as never);
 });
 
-function question(id: string, answers: Record<LidOptionKey, string>, solution: LidOptionKey, images: LidQuestionData['images'] = []): LidQuestionData {
+function question(
+  id: string,
+  answers: Record<LidOptionKey, string>,
+  solution: LidOptionKey,
+  images: LidQuestionData['images'] = [],
+): LidQuestionData {
   const n = Number(id.split('-')[1]);
   return {
     id,
@@ -67,7 +78,12 @@ function question(id: string, answers: Record<LidOptionKey, string>, solution: L
 const TEXT: LidEntry = {
   question: question(
     'general-001',
-    { a: 'hier Religionsfreiheit gilt.', b: 'die Menschen Steuern zahlen.', c: 'die Menschen das Wahlrecht haben.', d: 'hier Meinungsfreiheit gilt.' },
+    {
+      a: 'hier Religionsfreiheit gilt.',
+      b: 'die Menschen Steuern zahlen.',
+      c: 'die Menschen das Wahlrecht haben.',
+      d: 'hier Meinungsfreiheit gilt.',
+    },
     'd',
   ),
   topic: 'grundrechte',
@@ -77,9 +93,15 @@ const TEXT: LidEntry = {
     status: 'draft',
     rationale_de: 'Das Grundgesetz schützt die Meinungsfreiheit.',
     source: 'GG Art. 5',
-    question: { en: 'People may openly criticise the government because …', ru: 'Люди могут открыто критиковать правительство, потому что …' },
+    question: {
+      en: 'People may openly criticise the government because …',
+      ru: 'Люди могут открыто критиковать правительство, потому что …',
+    },
     options: {
-      a: { en: 'freedom of religion applies here.', ru: 'здесь действует свобода вероисповедания.' },
+      a: {
+        en: 'freedom of religion applies here.',
+        ru: 'здесь действует свобода вероисповедания.',
+      },
       b: { en: 'people pay taxes.', ru: 'люди платят налоги.' },
       c: { en: 'people have the right to vote.', ru: 'у людей есть право голоса.' },
       d: { en: 'freedom of opinion applies here.', ru: 'здесь действует свобода мнений.' },
@@ -138,12 +160,25 @@ afterEach(() => {
 
 /** The option buttons' visible texts, top to bottom. */
 const optionTexts = () =>
-  [...document.querySelectorAll<HTMLButtonElement>('button[data-lid-option]')].map((b) => b.textContent ?? '');
+  [...document.querySelectorAll<HTMLButtonElement>('button[data-lid-option]')].map(
+    (b) => b.textContent ?? '',
+  );
 const optionKeys = () =>
-  [...document.querySelectorAll<HTMLButtonElement>('button[data-lid-option]')].map((b) => b.dataset.lidOption);
+  [...document.querySelectorAll<HTMLButtonElement>('button[data-lid-option]')].map(
+    (b) => b.dataset.lidOption,
+  );
 
 function practice(entry: LidEntry, onAnswer = mock(() => {})) {
-  render(<LidQuestion mode="practice" entry={entry} pdfUrl={PDF} onAnswer={onAnswer} onNext={() => {}} rng={ZERO} />);
+  render(
+    <LidQuestion
+      mode="practice"
+      entry={entry}
+      pdfUrl={PDF}
+      onAnswer={onAnswer}
+      onNext={() => {}}
+      rng={ZERO}
+    />,
+  );
   return onAnswer;
 }
 
@@ -152,7 +187,9 @@ describe('LidQuestion — option order', () => {
     practice(TEXT);
     expect(optionKeys()).toEqual(['b', 'c', 'd', 'a']);
     // No letter in practice: each button reads exactly as the catalogue prints the option.
-    expect(optionTexts()).toEqual(['b', 'c', 'd', 'a'].map((k) => TEXT.question.answers[k as LidOptionKey]));
+    expect(optionTexts()).toEqual(
+      ['b', 'c', 'd', 'a'].map((k) => TEXT.question.answers[k as LidOptionKey]),
+    );
   });
 
   test('practice never shuffles Bild 1…4 options — they point at numbered pictures', () => {
@@ -160,7 +197,8 @@ describe('LidQuestion — option order', () => {
     expect(optionKeys()).toEqual(['a', 'b', 'c', 'd']);
     expect(optionTexts()).toEqual(['Bild 1', 'Bild 2', 'Bild 3', 'Bild 4']);
     // …and the pictures are labelled to match.
-    for (const k of [1, 2, 3, 4]) expect(screen.getByText(`Bild ${k}`, { selector: 'figcaption' })).toBeTruthy();
+    for (const k of [1, 2, 3, 4])
+      expect(screen.getByText(`Bild ${k}`, { selector: 'figcaption' })).toBeTruthy();
   });
 
   test('the exam keeps source order, lettered a–d', () => {
@@ -179,12 +217,24 @@ describe('LidQuestion — option order', () => {
       question: {
         ...TEXT.question,
         sourcePage: 21,
-        images: [{ path: '/lid/general-055.jpeg', sha256: '0'.repeat(64), width: 1200, height: 857, withheld: '© Deutscher Bundestag/Achim Melde' }],
+        images: [
+          {
+            path: '/lid/general-055.jpeg',
+            sha256: '0'.repeat(64),
+            width: 1200,
+            height: 857,
+            withheld: '© Deutscher Bundestag/Achim Melde',
+          },
+        ],
       },
     };
     practice(withheld);
     expect(document.querySelector('img')).toBeNull();
-    expect(screen.getByText(/Foto im offiziellen Fragenkatalog \(S\. 21\) — © Deutscher Bundestag\/Achim Melde/)).toBeTruthy();
+    expect(
+      screen.getByText(
+        /Foto im offiziellen Fragenkatalog \(S\. 21\) — © Deutscher Bundestag\/Achim Melde/,
+      ),
+    ).toBeTruthy();
     const link = screen.getByRole('link', { name: /BAMF-Katalog/ }) as HTMLAnchorElement;
     expect(link.href).toBe(`${PDF}#page=21`);
     expect(link.target).toBe('_blank');
@@ -230,14 +280,24 @@ describe('LidQuestion — translation', () => {
       ...TEXT,
       note: {
         ...TEXT.note!,
-        question: { ...TEXT.note!.question!, uk: 'Люди можуть відкрито критикувати уряд, тому що …' },
+        question: {
+          ...TEXT.note!.question!,
+          uk: 'Люди можуть відкрито критикувати уряд, тому що …',
+        },
         options: {
           a: { ...TEXT.note!.options!.a, uk: 'тут діє свобода віросповідання.' },
           b: { ...TEXT.note!.options!.b, uk: 'люди сплачують податки.' },
           c: { ...TEXT.note!.options!.c, uk: 'люди мають право голосу.' },
           d: { ...TEXT.note!.options!.d, uk: 'тут діє свобода думки.' },
         },
-        terms: [{ de: 'die Meinungsfreiheit', en: 'freedom of opinion', ru: 'свобода мнений', uk: 'свобода думки' }],
+        terms: [
+          {
+            de: 'die Meinungsfreiheit',
+            en: 'freedom of opinion',
+            ru: 'свобода мнений',
+            uk: 'свобода думки',
+          },
+        ],
       },
     };
     document.documentElement.dataset.explainLang = 'uk';
@@ -247,7 +307,9 @@ describe('LidQuestion — translation', () => {
     expect(screen.getByText(uk.note!.question!.en)).toBeTruthy();
     expect(screen.getByText(uk.note!.question!.uk!).getAttribute('lang')).toBe('uk');
     expect(screen.getByText(uk.note!.options!.b.uk!).getAttribute('lang')).toBe('uk');
-    expect(screen.getByText('свобода думки', { selector: 'dd span' }).getAttribute('lang')).toBe('uk');
+    expect(screen.getByText('свобода думки', { selector: 'dd span' }).getAttribute('lang')).toBe(
+      'uk',
+    );
     expect(screen.queryByText(uk.note!.question!.ru)).toBeNull();
     expect(screen.queryByText(uk.note!.options!.b.ru)).toBeNull();
     expect(screen.queryByText('свобода мнений')).toBeNull();
@@ -256,7 +318,9 @@ describe('LidQuestion — translation', () => {
 
 describe('LidPractice', () => {
   test('a choice shows feedback and is logged exactly once', async () => {
-    render(<LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    render(
+      <LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />,
+    );
     await screen.findByText(TEXT.question.question);
     expect(screen.getByText('0 fällig · 2 neu heute')).toBeTruthy();
 
@@ -275,7 +339,13 @@ describe('LidPractice', () => {
     fireEvent.keyDown(window, { key: '3' });
     expect(logLidAnswerDurably).toHaveBeenCalledTimes(1);
     const [answer] = logLidAnswerDurably.mock.calls[0] as unknown as [Record<string, unknown>];
-    expect(answer).toMatchObject({ q: 'general-001', chosen: 'b', correct: false, mode: 'practice', bank: 'test-bank' });
+    expect(answer).toMatchObject({
+      q: 'general-001',
+      chosen: 'b',
+      correct: false,
+      mode: 'practice',
+      bank: 'test-bank',
+    });
     expect(typeof answer.ts).toBe('number');
 
     // Enter is Weiter. The missed question returns later in the sitting; the image one is next,
@@ -299,7 +369,9 @@ describe('LidPractice', () => {
     fireEvent.keyDown(window, { key: '3' }); // displayed b, c, d, a → d, the key
     expect(screen.getByText('Richtig! ✓')).toBeTruthy();
     expect(logLidAnswerDurably).toHaveBeenCalledTimes(1);
-    expect((logLidAnswerDurably.mock.calls[0] as unknown as [{ chosen: string }])[0].chosen).toBe('d');
+    expect((logLidAnswerDurably.mock.calls[0] as unknown as [{ chosen: string }])[0].chosen).toBe(
+      'd',
+    );
   });
 
   test('a failed read renders the load error, never a fresh queue', async () => {
@@ -319,22 +391,28 @@ describe('LidPractice', () => {
 
 describe('lessons', () => {
   const LESSON = { id: 'staat-symbole', title: 'Staatssymbole' };
-  const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } }).happyDOM;
+  const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } })
+    .happyDOM;
   const at = (search: string) => happyDom.setURL(`http://localhost/leben/ueben${search}`);
   const IN_LESSON: LidEntry = { ...IMAGES, lesson: LESSON };
-  const lessonLink = () => screen.queryByRole('link', { name: /Mehr dazu: Lektion „Staatssymbole“/ });
+  const lessonLink = () =>
+    screen.queryByRole('link', { name: /Mehr dazu: Lektion „Staatssymbole“/ });
 
   afterEach(() => happyDom.setURL('about:blank'));
 
-  test('practice feedback links the lesson on the question\'s topic', () => {
+  test("practice feedback links the lesson on the question's topic", () => {
     practice(IN_LESSON);
     expect(lessonLink()).toBeNull(); // feedback only, after the answer
     fireEvent.click(screen.getByText('Bild 2', { selector: 'button span' }));
-    expect((lessonLink() as HTMLAnchorElement).getAttribute('href')).toBe('/leben/lernen/staat-symbole');
+    expect((lessonLink() as HTMLAnchorElement).getAttribute('href')).toBe(
+      '/leben/lernen/staat-symbole',
+    );
   });
 
   test('the exam never links a lesson — not while answering, not in its results', () => {
-    render(<LidQuestion mode="exam" entry={IN_LESSON} pdfUrl={PDF} chosen="b" onChoose={() => {}} />);
+    render(
+      <LidQuestion mode="exam" entry={IN_LESSON} pdfUrl={PDF} chosen="b" onChoose={() => {}} />,
+    );
     expect(lessonLink()).toBeNull();
     cleanup();
     render(<LidQuestion mode="exam" entry={IN_LESSON} pdfUrl={PDF} chosen="b" reveal />);
@@ -342,22 +420,44 @@ describe('lessons', () => {
     expect(lessonLink()).toBeNull();
   });
 
-  test('?lektion=<id> deals only that lesson\'s questions, names it and links back', async () => {
+  test("?lektion=<id> deals only that lesson's questions, names it and links back", async () => {
     at('?lektion=staat-symbole');
-    const lessons: LidLessonScopes = { 'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] } };
-    render(<LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} lessons={lessons} rng={ZERO} />);
+    const lessons: LidLessonScopes = {
+      'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] },
+    };
+    render(
+      <LidPractice
+        entries={[TEXT, IMAGES]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        lessons={lessons}
+        rng={ZERO}
+      />,
+    );
     await screen.findByText(IMAGES.question.question);
     expect(screen.getByText('Lektion „Staatssymbole“')).toBeTruthy();
     expect(screen.getByText('1 Fragen dieser Lektion')).toBeTruthy();
     expect(screen.getByText('1 von 1')).toBeTruthy();
-    expect(screen.getByRole('link', { name: '← Zur Lektion' }).getAttribute('href')).toBe('/leben/lernen/staat-symbole');
+    expect(screen.getByRole('link', { name: '← Zur Lektion' }).getAttribute('href')).toBe(
+      '/leben/lernen/staat-symbole',
+    );
     expect(screen.queryByText(TEXT.question.question)).toBeNull();
   });
 
   test('an unknown lesson falls back to ordinary practice, with a quiet note', async () => {
     at('?lektion=gibt-es-nicht');
-    const lessons: LidLessonScopes = { 'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] } };
-    render(<LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} lessons={lessons} rng={ZERO} />);
+    const lessons: LidLessonScopes = {
+      'staat-symbole': { title: 'Staatssymbole', ids: [IMAGES.question.id] },
+    };
+    render(
+      <LidPractice
+        entries={[TEXT, IMAGES]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        lessons={lessons}
+        rng={ZERO}
+      />,
+    );
     await screen.findByText(TEXT.question.question);
     expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
     expect(screen.getByText('0 fällig · 2 neu heute')).toBeTruthy();
@@ -366,7 +466,9 @@ describe('lessons', () => {
 
   test('?lektion=constructor names no lesson — only own keys count', async () => {
     at('?lektion=constructor');
-    render(<LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} lessons={{}} rng={ZERO} />);
+    render(
+      <LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} lessons={{}} rng={ZERO} />,
+    );
     await screen.findByText(TEXT.question.question);
     expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
   });
@@ -375,7 +477,10 @@ describe('lessons', () => {
 describe('LidPractice — a missed question comes back later, not next', () => {
   /** n fresh copies of TEXT (key d), numbered from 101. */
   const copies = (n: number): LidEntry[] =>
-    Array.from({ length: n }, (_, i) => ({ ...TEXT, question: question(`general-${101 + i}`, TEXT.question.answers, 'd') }));
+    Array.from({ length: n }, (_, i) => ({
+      ...TEXT,
+      question: question(`general-${101 + i}`, TEXT.question.answers, 'd'),
+    }));
 
   /** Answers `count` presentations, wrong at the 1-based positions in `wrongAt`; returns the ids asked. */
   async function sitThrough(count: number, wrongAt: number[]): Promise<number[]> {
@@ -384,7 +489,9 @@ describe('LidPractice — a missed question comes back later, not next', () => {
     const asked: number[] = [];
     for (let p = 1; p <= count; p++) {
       asked.push(Number(screen.getByText(/^Testfrage \d+\?$/).textContent!.match(/\d+/)![0]));
-      fireEvent.click(screen.getByText(wrongAt.includes(p) ? TEXT.question.answers.b : TEXT.question.answers.d));
+      fireEvent.click(
+        screen.getByText(wrongAt.includes(p) ? TEXT.question.answers.b : TEXT.question.answers.d),
+      );
       fireEvent.keyDown(document.body, { key: 'Enter' });
       await act(async () => {});
     }
@@ -406,8 +513,15 @@ describe('LidPractice — a missed question comes back later, not next', () => {
       ...EMPTY_LID_STATE,
       cards: {
         [learned]: {
-          due: '2026-01-01T00:00:00.000Z', stability: 10, difficulty: 5, elapsed_days: 10,
-          scheduled_days: 10, learning_steps: 0, reps: 3, lapses: 0, state: 2, // State.Review
+          due: '2026-01-01T00:00:00.000Z',
+          stability: 10,
+          difficulty: 5,
+          elapsed_days: 10,
+          scheduled_days: 10,
+          learning_steps: 0,
+          reps: 3,
+          lapses: 0,
+          state: 2, // State.Review
           last_review: '2025-12-22T00:00:00.000Z',
         },
       },

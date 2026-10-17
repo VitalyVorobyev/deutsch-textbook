@@ -58,8 +58,10 @@ describe('placementResults — the per-topic verdict', () => {
     expect(results([])).toBeNull();
     // …and distinguishes that from "taken and failed everything"
     const failed = results([
-      attempt('a1', false), attempt('a2', false),
-      attempt('b1', false), attempt('b2', false),
+      attempt('a1', false),
+      attempt('a2', false),
+      attempt('b1', false),
+      attempt('b2', false),
     ]);
     expect(failed).not.toBeNull();
     expect(failed!.topics.every((row) => !row.placed)).toBe(true);
@@ -96,8 +98,10 @@ describe('placementResults — the per-topic verdict', () => {
 
   test('scores each topic independently — one placed, one not', () => {
     const taken = results([
-      attempt('a1', true), attempt('a2', true),
-      attempt('b1', true), attempt('b2', false),
+      attempt('a1', true),
+      attempt('a2', true),
+      attempt('b1', true),
+      attempt('b2', false),
     ])!;
     expect(taken.topics.find((r) => r.topicId === 'erste-schritte')!.placed).toBe(true);
     expect(taken.topics.find((r) => r.topicId === 'praesens')!.placed).toBe(false);
@@ -107,8 +111,10 @@ describe('placementResults — the per-topic verdict', () => {
 
   test('a retake replaces the earlier answer, it never averages', () => {
     const attempts = [
-      attempt('a1', false, 1), attempt('a2', false, 1),
-      attempt('a1', true, 2), attempt('a2', true, 2),
+      attempt('a1', false, 1),
+      attempt('a2', false, 1),
+      attempt('a1', true, 2),
+      attempt('a2', true, 2),
     ];
     expect(rowFor(attempts, 'erste-schritte')!.placed).toBe(true);
   });
@@ -144,9 +150,17 @@ describe('placementResults — the per-topic verdict', () => {
 // ---------------------------------------------------------------------------
 
 const node: TopicNode = {
-  id: 'basis', path: '/topics/a1/basis', level: 'A1', kind: 'grammar',
-  title_de: 'Basis', title_en: 'Basics', title_ru: 'База', prerequisites: [],
-  exerciseSets: ['a1/basis'], vocabIds: ['basis-deck'], readingIds: [],
+  id: 'basis',
+  path: '/topics/a1/basis',
+  level: 'A1',
+  kind: 'grammar',
+  title_de: 'Basis',
+  title_en: 'Basics',
+  title_ru: 'База',
+  prerequisites: [],
+  exerciseSets: ['a1/basis'],
+  vocabIds: ['basis-deck'],
+  readingIds: [],
   pretestId: 'a1/basis-pretest',
 };
 
@@ -170,9 +184,12 @@ describe('placement as evidence', () => {
     expect(topicEvidence(node, ctx).placed).toBe(true);
     // and it is not one of the four mastery chips
     const evidence = topicEvidence(node, ctx);
-    expect([evidence.read, evidence.practiced, evidence.spaced, evidence.vocab]).toEqual(
-      [false, false, false, false],
-    );
+    expect([evidence.read, evidence.practiced, evidence.spaced, evidence.vocab]).toEqual([
+      false,
+      false,
+      false,
+      false,
+    ]);
   });
 
   test('a retake that goes better is still applicable; one that goes worse changes nothing', () => {
@@ -203,15 +220,24 @@ describe('placement as evidence', () => {
 
 describe('fresh cards for a learner who placed out', () => {
   const card: CardDef = {
-    id: 'basis-deck::Haus::de-x', deckId: 'basis-deck', de: 'Haus',
-    front: 'Haus', back: 'house', direction: 'de-x', pos: 'noun',
+    id: 'basis-deck::Haus::de-x',
+    deckId: 'basis-deck',
+    de: 'Haus',
+    front: 'Haus',
+    back: 'house',
+    direction: 'de-x',
+    pos: 'noun',
   } as CardDef;
 
   test('a placed topic opens its deck, exactly as reading it would', () => {
     const closed: TopicContext = { attempts: [], cards: {}, topics: {} };
     expect(eligibleFreshCards([card], [], [node], { 'basis-deck': 'A1' }, closed)).toHaveLength(0);
 
-    const byPlacement: TopicContext = { attempts: [], cards: {}, topics: { basis: { placement: placed } } };
+    const byPlacement: TopicContext = {
+      attempts: [],
+      cards: {},
+      topics: { basis: { placement: placed } },
+    };
     expect(
       eligibleFreshCards([card], [], [node], { 'basis-deck': 'A1' }, byPlacement),
     ).toHaveLength(1);
@@ -222,7 +248,11 @@ describe('fresh cards for a learner who placed out', () => {
     // had no opened level, so openedLevels was empty and the completion decks — which no
     // topic owns — dealt nothing, forever.
     const unowned: CardDef = { ...card, id: 'wortliste::Tag::de-x', deckId: 'wortliste' };
-    const byPlacement: TopicContext = { attempts: [], cards: {}, topics: { basis: { placement: placed } } };
+    const byPlacement: TopicContext = {
+      attempts: [],
+      cards: {},
+      topics: { basis: { placement: placed } },
+    };
     expect(
       eligibleFreshCards([unowned], [], [node], { wortliste: 'A1' }, byPlacement),
     ).toHaveLength(1);

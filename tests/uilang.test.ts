@@ -106,7 +106,9 @@ describe('chrome strings table', () => {
     expect(t('session.noProbesDue', 'de')).toBe('Keine Rückfragen fällig — weiter …');
     expect(t('session.probesDone', 'de')).toBe('Rückblick abgeschlossen');
     // Training empty states.
-    expect(t('training.emptyNext', 'de')).toBe('Noch keine Übungen — weiter zum nächsten Schritt …');
+    expect(t('training.emptyNext', 'de')).toBe(
+      'Noch keine Übungen — weiter zum nächsten Schritt …',
+    );
     expect(t('training.emptyTitle', 'de')).toBe('Noch nichts zu üben');
     // Reading section headers.
     expect(t('reading.questions', 'de')).toBe('Fragen zum Text');
@@ -181,7 +183,9 @@ describe('chrome strings table', () => {
     expect(t('vocab.byArea', 'de')).toBe('Wortschatz nach Bereichen');
     expect(t('vocab.dueChip', 'de')).toBe('fällig');
     expect(t('vocab.deckSummary', 'de')).toBe('{due} Wörter fällig · {strong} sicher');
-    expect(t('vocab.cardStats', 'de')).toBe('{reps} Wiederholungen · Intervall {days} T. · {lapses} Fehler');
+    expect(t('vocab.cardStats', 'de')).toBe(
+      '{reps} Wiederholungen · Intervall {days} T. · {lapses} Fehler',
+    );
     // Mastery gate.
     expect(t('mastery.missingHeader', 'de')).toBe('Für „Gemeistert“ fehlt noch:');
     expect(t('mastery.reqDays', 'de')).toBe('an 2 Tagen geübt');

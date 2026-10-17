@@ -8,7 +8,12 @@
  *
  * No router dependency: the whole contract is "read the hash, split it, subscribe to changes".
  */
-import { useCallback, useEffect, useSyncExternalStore, type MouseEvent as ReactMouseEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useSyncExternalStore,
+  type MouseEvent as ReactMouseEvent,
+} from 'react';
 
 export interface Route {
   /** The view: `themen`, `thema`, `fokus`, `struktur`, `luecken`, … */
@@ -39,9 +44,14 @@ function initialiseHistory(): void {
   const position = Number(state?.[HISTORY_POSITION]);
   const existingEntry = Number.isFinite(position);
   historyPosition = existingEntry ? position : 0;
-  historyMaximum = existingEntry && Number.isFinite(stored) ? Math.max(historyPosition, stored) : historyPosition;
+  historyMaximum =
+    existingEntry && Number.isFinite(stored) ? Math.max(historyPosition, stored) : historyPosition;
   if (!existingEntry) {
-    window.history.replaceState({ ...state, [HISTORY_POSITION]: historyPosition }, '', window.location.href);
+    window.history.replaceState(
+      { ...state, [HISTORY_POSITION]: historyPosition },
+      '',
+      window.location.href,
+    );
   }
   historyReady = true;
 }
@@ -125,7 +135,15 @@ export function navigateHref(target: string): boolean {
 
 /** Delegate every ordinary internal anchor click to `navigateHref`; modified clicks stay native. */
 export function handleInternalLinkClick(event: ReactMouseEvent<HTMLElement>): void {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  )
+    return;
   const target = event.target;
   if (!(target instanceof Element)) return;
   const anchor = target.closest('a');
@@ -168,17 +186,29 @@ export function parseRoute(hash: string): Route {
   return { view: view || 'uebersicht', id: id ? decodeURIComponent(id) : undefined, query };
 }
 
-export function href(view: string, id?: string, query?: Record<string, string | undefined>): string {
+export function href(
+  view: string,
+  id?: string,
+  query?: Record<string, string | undefined>,
+): string {
   const path = id ? `#/${view}/${encodeURIComponent(id)}` : `#/${view}`;
-  const entries = Object.entries(query ?? {}).filter((e): e is [string, string] => e[1] !== undefined);
+  const entries = Object.entries(query ?? {}).filter(
+    (e): e is [string, string] => e[1] !== undefined,
+  );
   return entries.length ? `${path}?${new URLSearchParams(entries).toString()}` : path;
 }
 
-export function useRoute(): [Route, (view: string, id?: string, query?: Record<string, string | undefined>) => void] {
+export function useRoute(): [
+  Route,
+  (view: string, id?: string, query?: Record<string, string | undefined>) => void,
+] {
   const hash = useSyncExternalStore(subscribe, getSnapshot, () => '');
-  const go = useCallback((view: string, id?: string, query?: Record<string, string | undefined>) => {
-    navigateHref(href(view, id, query));
-  }, []);
+  const go = useCallback(
+    (view: string, id?: string, query?: Record<string, string | undefined>) => {
+      navigateHref(href(view, id, query));
+    },
+    [],
+  );
   return [parseRoute(hash), go];
 }
 
@@ -190,13 +220,11 @@ export function useRoute(): [Route, (view: string, id?: string, query?: Record<s
  * moment the reader uses the back button. Here the hash IS the state, so a scoped list is
  * addressable, shareable and survives a reload for free.
  */
-export function useQueryState(
-  key: string,
-  fallback: string,
-): [string, (next: string) => void] {
+export function useQueryState(key: string, fallback: string): [string, (next: string) => void] {
   const [route, go] = useRoute();
   const set = useCallback(
-    (next: string) => go(route.view, route.id, { ...route.query, [key]: next === fallback ? undefined : next }),
+    (next: string) =>
+      go(route.view, route.id, { ...route.query, [key]: next === fallback ? undefined : next }),
     [go, route.view, route.id, route.query, key, fallback],
   );
   return [route.query[key] ?? fallback, set];

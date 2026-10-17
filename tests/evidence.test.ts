@@ -19,7 +19,12 @@ describe('actual response mode', () => {
   });
 
   test('separates listening, writing and spoken practice', () => {
-    const listen = { ...base, type: 'listen', text: 'Guten Morgen', accept: [] } satisfies ExerciseItem;
+    const listen = {
+      ...base,
+      type: 'listen',
+      text: 'Guten Morgen',
+      accept: [],
+    } satisfies ExerciseItem;
     const write = {
       ...base,
       type: 'translate',
@@ -42,7 +47,6 @@ describe('actual response mode', () => {
     expect(responseModeForItem(write)).toBe('writing');
     expect(responseModeForItem(speak)).toBe('spoken-interaction');
   });
-
 });
 
 describe('explicit focus evidence', () => {
@@ -52,13 +56,16 @@ describe('explicit focus evidence', () => {
   };
 
   test('distinguishes retained, failed and unknown instead of guessing from whole-answer correctness', () => {
-    expect(evaluateFocusEvidence('Willst du mitkommen, oder musst du arbeiten?', true, modal))
-      .toBe('retained');
-    expect(evaluateFocusEvidence('Willst du zu mitkommen, oder musst du arbeiten?', false, modal))
-      .toBe('failed');
+    expect(evaluateFocusEvidence('Willst du mitkommen, oder musst du arbeiten?', true, modal)).toBe(
+      'retained',
+    );
+    expect(
+      evaluateFocusEvidence('Willst du zu mitkommen, oder musst du arbeiten?', false, modal),
+    ).toBe('failed');
     // The lexical substitution is wrong, but it is not evidence about the presence of zu.
-    expect(evaluateFocusEvidence('Willst du kommen, oder musst du arbeiten?', false, modal))
-      .toBe('unknown');
+    expect(evaluateFocusEvidence('Willst du kommen, oder musst du arbeiten?', false, modal)).toBe(
+      'unknown',
+    );
   });
 
   test('a focused free-typed miss without predicates is unknown', () => {
@@ -79,17 +86,22 @@ describe('case-sensitive predicates', () => {
     // Folded, the lower-case predicate fires on the correct capital — which is exactly why the
     // validator refuses it on this item unless `case_sensitive` is declared.
     expect(evaluateFocusEvidence(target, false, neues)).toBe('failed');
-    expect(evaluateFocusEvidence(target, false, { ...neues, case_sensitive: false })).toBe('failed');
+    expect(evaluateFocusEvidence(target, false, { ...neues, case_sensitive: false })).toBe(
+      'failed',
+    );
   });
 
   test('opted in, they tell the capital from its slip', () => {
     const strict = { ...neues, case_sensitive: true };
-    expect(evaluateFocusEvidence('Als Verkäufer habe ich immer etwas neues gelernt.', false, strict))
-      .toBe('failed');
-    expect(evaluateFocusEvidence('Als Verkäufer habe ich immer etwas Neue gelernt.', false, strict))
-      .toBe('failed');
+    expect(
+      evaluateFocusEvidence('Als Verkäufer habe ich immer etwas neues gelernt.', false, strict),
+    ).toBe('failed');
+    expect(
+      evaluateFocusEvidence('Als Verkäufer habe ich immer etwas Neue gelernt.', false, strict),
+    ).toBe('failed');
     // The noun phrase survived; the miss is elsewhere (a mishearing of Verkäufer).
-    expect(evaluateFocusEvidence('Als Verkaufer habe ich immer etwas Neues gelernt.', false, strict))
-      .toBe('retained');
+    expect(
+      evaluateFocusEvidence('Als Verkaufer habe ich immer etwas Neues gelernt.', false, strict),
+    ).toBe('retained');
   });
 });

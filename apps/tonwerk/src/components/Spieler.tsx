@@ -13,7 +13,15 @@
  * text field — the key is left alone, because a control that stops doing what it says is worse
  * than no shortcut.
  */
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type { ReactNode } from 'react';
 import { useEngineBlob } from '../useEngine';
 import { dauer } from '../format';

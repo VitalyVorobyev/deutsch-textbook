@@ -79,7 +79,11 @@ const bySubmitted = (a: LidExamRun, b: LidExamRun) => a.submittedAt - b.submitte
 export function applyLidAnswer(state: LidState, answer: LidAnswer): LidState {
   const key = lidAnswerKey(answer);
   if (state.answers.some((a) => lidAnswerKey(a) === key)) return state;
-  const card = applyGradeAt(state.cards[answer.q], answer.correct ? Rating.Good : Rating.Again, answer.ts);
+  const card = applyGradeAt(
+    state.cards[answer.q],
+    answer.correct ? Rating.Good : Rating.Again,
+    answer.ts,
+  );
   const last = state.answers.at(-1);
   const answers = [...state.answers, answer];
   if (last && last.ts > answer.ts) answers.sort(byTs);
@@ -149,7 +153,13 @@ export interface LidPracticeInput {
  * time. Due ties keep teaching order rather than breaking at random — a LiD question has no
  * sibling card whose answer it could hand over, so determinism costs nothing here.
  */
-export function planLidPractice({ questionIds, state, now, newPerDay, limit }: LidPracticeInput): string[] {
+export function planLidPractice({
+  questionIds,
+  state,
+  now,
+  newPerDay,
+  limit,
+}: LidPracticeInput): string[] {
   const due: string[] = [];
   const fresh: string[] = [];
   for (const id of new Set(questionIds)) {
@@ -220,8 +230,11 @@ export function planLidScopedPractice({ questionIds, state }: LidScopedPracticeI
  */
 function practiceIntroducedToday(state: LidState, now: Date): number {
   const metInExam = new Set<string>();
-  for (const [q, answers] of answersByQuestion(state.answers)) if (answers[0]!.mode === 'exam') metInExam.add(q);
-  const practiced = Object.fromEntries(Object.entries(state.cards).filter(([q]) => !metInExam.has(q)));
+  for (const [q, answers] of answersByQuestion(state.answers))
+    if (answers[0]!.mode === 'exam') metInExam.add(q);
+  const practiced = Object.fromEntries(
+    Object.entries(state.cards).filter(([q]) => !metInExam.has(q)),
+  );
   return introducedToday(practiced, now);
 }
 
@@ -266,16 +279,28 @@ function seededShuffle<T>(items: readonly T[], rng: () => number): T[] {
  * The real Fragebögen are not published (EinbTestV §1 Abs. 2), so a draw is a simulation and must
  * never be presented as an official sheet.
  */
-export function drawMockExam(bank: Pick<LidBank, 'questions'>, state: string, rng: () => number): string[] {
+export function drawMockExam(
+  bank: Pick<LidBank, 'questions'>,
+  state: string,
+  rng: () => number,
+): string[] {
   const generalCount = LID_EXAM.questions - LID_EXAM.stateQuestions;
-  const general = [...new Set(bank.questions.filter((q) => q.scope === 'general').map((q) => q.id))];
+  const general = [
+    ...new Set(bank.questions.filter((q) => q.scope === 'general').map((q) => q.id)),
+  ];
   const local = [
-    ...new Set(bank.questions.filter((q) => q.scope === 'state' && q.stateCode === state).map((q) => q.id)),
+    ...new Set(
+      bank.questions.filter((q) => q.scope === 'state' && q.stateCode === state).map((q) => q.id),
+    ),
   ];
   if (general.length < generalCount)
-    throw new Error(`A mock exam needs ${generalCount} general questions; the bank has ${general.length}.`);
+    throw new Error(
+      `A mock exam needs ${generalCount} general questions; the bank has ${general.length}.`,
+    );
   if (local.length < LID_EXAM.stateQuestions)
-    throw new Error(`A mock exam needs ${LID_EXAM.stateQuestions} questions for ${state}; the bank has ${local.length}.`);
+    throw new Error(
+      `A mock exam needs ${LID_EXAM.stateQuestions} questions for ${state}; the bank has ${local.length}.`,
+    );
   const drawn = [
     ...seededShuffle(general, rng).slice(0, generalCount),
     ...seededShuffle(local, rng).slice(0, LID_EXAM.stateQuestions),
@@ -313,10 +338,20 @@ export function scoreMock(
 
 /** The exam-mode answer per mock item, journaled beside the run so a missed mock question is
     scheduled for review like a missed practice one. Each carries the run's `submittedAt`. */
-export function lidExamAnswers(run: LidExamRun, solutions: Readonly<Record<string, LidOptionKey>>): LidAnswer[] {
+export function lidExamAnswers(
+  run: LidExamRun,
+  solutions: Readonly<Record<string, LidOptionKey>>,
+): LidAnswer[] {
   return run.items.map((q) => {
     const chosen = run.answers[q] ?? null;
-    return { q, chosen, correct: chosen !== null && chosen === solutions[q], ts: run.submittedAt, mode: 'exam', bank: run.bank };
+    return {
+      q,
+      chosen,
+      correct: chosen !== null && chosen === solutions[q],
+      ts: run.submittedAt,
+      mode: 'exam',
+      bank: run.bank,
+    };
   });
 }
 
@@ -347,7 +382,11 @@ export interface LidReadiness {
 }
 
 /** Readiness as plain facts over `questionIds` — no probability, no composite score (ADR 0021). */
-export function lidReadiness(state: LidState, questionIds: readonly string[], now: Date): LidReadiness {
+export function lidReadiness(
+  state: LidState,
+  questionIds: readonly string[],
+  now: Date,
+): LidReadiness {
   const ids = new Set(questionIds);
   const answered = answersByQuestion(state.answers);
   let seen = 0;

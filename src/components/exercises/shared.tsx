@@ -55,26 +55,41 @@ export interface ItemProps<T> {
 }
 
 /** Honest criterion review: every row must be considered, but none must be claimed as met. */
-export function CriterionReview({ entries, values, onChange, lang }: {
+export function CriterionReview({
+  entries,
+  values,
+  onChange,
+  lang,
+}: {
   entries: Bilingual[];
   values: Array<CriterionAssessment | undefined>;
   onChange: (values: Array<CriterionAssessment | undefined>) => void;
   lang: ExplainLang;
 }) {
-  return <div className="space-y-3">
-    {entries.map((entry, index) => <div key={index} className="rounded-md border border-stone-200 p-3 dark:border-stone-700">
-      <p className="text-sm">{pick(lang, entry)}</p>
-      <div className="mt-2 flex gap-2" role="group" aria-label={pick(lang, entry)}>
-        {(['met', 'needs-work'] as const).map((value) => <button
-          key={value}
-          type="button"
-          aria-pressed={values[index] === value}
-          onClick={() => onChange(values.map((current, i) => i === index ? value : current))}
-          className={`rounded-md border px-3 py-1.5 text-xs font-medium ${values[index] === value ? value === 'met' ? 'border-green-600 bg-green-50 text-green-800 dark:bg-green-950/30 dark:text-green-300' : 'border-amber-600 bg-amber-50 text-amber-800 dark:bg-amber-950/30 dark:text-amber-300' : 'border-stone-300 text-stone-500 dark:border-stone-600'}`}
-        >{value === 'met' ? pick(lang, UI.criterionMet) : pick(lang, UI.criterionNeedsWork)}</button>)}
-      </div>
-    </div>)}
-  </div>;
+  return (
+    <div className="space-y-3">
+      {entries.map((entry, index) => (
+        <div key={index} className="rounded-md border border-stone-200 p-3 dark:border-stone-700">
+          <p className="text-sm">{pick(lang, entry)}</p>
+          <div className="mt-2 flex gap-2" role="group" aria-label={pick(lang, entry)}>
+            {(['met', 'needs-work'] as const).map((value) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={values[index] === value}
+                onClick={() =>
+                  onChange(values.map((current, i) => (i === index ? value : current)))
+                }
+                className={`rounded-md border px-3 py-1.5 text-xs font-medium ${values[index] === value ? (value === 'met' ? 'border-green-600 bg-green-50 text-green-800 dark:bg-green-950/30 dark:text-green-300' : 'border-amber-600 bg-amber-50 text-amber-800 dark:bg-amber-950/30 dark:text-amber-300') : 'border-stone-300 text-stone-500 dark:border-stone-600'}`}
+              >
+                {value === 'met' ? pick(lang, UI.criterionMet) : pick(lang, UI.criterionNeedsWork)}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export function Instruction({ text, lang }: { text?: Bilingual; lang: ExplainLang }) {
@@ -84,11 +99,14 @@ export function Instruction({ text, lang }: { text?: Bilingual; lang: ExplainLan
 
 export function Translation({ text, lang }: { text?: Bilingual; lang: ExplainLang }) {
   if (!text) return null;
-  return <p className="mt-2 text-sm italic text-stone-400 dark:text-stone-500">{pick(lang, text)}</p>;
+  return (
+    <p className="mt-2 text-sm italic text-stone-400 dark:text-stone-500">{pick(lang, text)}</p>
+  );
 }
 
 /** Prüfen and Weiter share these metrics, so swapping one for the other moves nothing. */
-const ACTION_BUTTON = 'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-40 sm:min-h-0 sm:py-1.5';
+const ACTION_BUTTON =
+  'min-h-11 rounded-md px-4 py-2 text-sm font-semibold disabled:opacity-40 sm:min-h-0 sm:py-1.5';
 
 /**
  * Because Weiter takes over the very pixels Prüfen occupied, a double-click or
@@ -223,7 +241,9 @@ export function Feedback({
       {showAnswer && (
         <p>
           {correctAnswerLabel ?? pick(lang, UI.correctAnswer)}
-          <span lang="de" className="font-medium">{correctAnswer}</span>
+          <span lang="de" className="font-medium">
+            {correctAnswer}
+          </span>
           {speakText && <SpeakerButton text={speakText} className="ml-1" />}
         </p>
       )}
@@ -232,11 +252,17 @@ export function Feedback({
         <div className={showAnswer || note ? 'mt-2' : undefined}>
           <p className="font-medium">{pick(lang, UI.alsoPossible)}</p>
           <ul className="mt-1 list-disc space-y-0.5 pl-5" lang="de">
-            {alternatives.map((alternative) => <li key={alternative}>{alternative}</li>)}
+            {alternatives.map((alternative) => (
+              <li key={alternative}>{alternative}</li>
+            ))}
           </ul>
         </div>
       )}
-      {!correct && explain && <p className={showAnswer || note || showAlternatives ? 'mt-2' : undefined}>{pick(lang, explain)}</p>}
+      {!correct && explain && (
+        <p className={showAnswer || note || showAlternatives ? 'mt-2' : undefined}>
+          {pick(lang, explain)}
+        </p>
+      )}
       {correct && explain && (
         <details>
           <summary className="cursor-pointer text-xs font-medium opacity-70 hover:opacity-100">

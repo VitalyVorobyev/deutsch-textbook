@@ -242,10 +242,7 @@ describe('the Mischung run buttons', () => {
       renders: [{ ...sceneDetailFixture.renders[0], rendered: false, has_master: false }],
     };
     window.location.hash = '#/szene/ls-wohnen-01?modus=mischung';
-    mount(
-      <Szene slug="ls-wohnen-01" />,
-      editor({ scene: async () => ohneRender as never }),
-    );
+    mount(<Szene slug="ls-wohnen-01" />, editor({ scene: async () => ohneRender as never }));
 
     const knopf = await screen.findByRole('button', { name: 'Automatisch prüfen' });
     expect(knopf.hasAttribute('disabled')).toBe(true);

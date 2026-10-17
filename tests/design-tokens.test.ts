@@ -60,8 +60,13 @@ describe('the shared package reaches Tailwind’s scanner', () => {
    * type-check, not in the console.
    */
   test('every .tsx in packages/ui/src is covered by an @source glob in tokens.css', () => {
-    const globs = [...tokens.matchAll(/@source\s+'([^']+)'/g)].map((m) => resolve(join(root, 'packages/ui/src'), m[1]!));
-    expect(globs.length, 'tokens.css declares no @source — the package will not be scanned').toBeGreaterThan(0);
+    const globs = [...tokens.matchAll(/@source\s+'([^']+)'/g)].map((m) =>
+      resolve(join(root, 'packages/ui/src'), m[1]!),
+    );
+    expect(
+      globs.length,
+      'tokens.css declares no @source — the package will not be scanned',
+    ).toBeGreaterThan(0);
 
     const sources: string[] = [];
     const walk = (dir: string) => {
@@ -74,7 +79,9 @@ describe('the shared package reaches Tailwind’s scanner', () => {
     walk(join(root, 'packages/ui/src'));
     expect(sources.length, 'no .tsx found — this test would pass vacuously').toBeGreaterThan(0);
 
-    const uncovered = sources.filter((file) => !globs.some((glob) => !relative(glob, file).startsWith('..')));
+    const uncovered = sources.filter(
+      (file) => !globs.some((glob) => !relative(glob, file).startsWith('..')),
+    );
     expect(uncovered.map((f) => relative(root, f))).toEqual([]);
   });
 });
@@ -122,12 +129,24 @@ describe('design tokens', () => {
    * below its floor, this goes red with the measured number in the failure.
    */
   const HEX: Record<string, string> = {
-    'amber-300': '#fcd34d', 'amber-600': '#d97706', 'amber-700': '#b45309',
-    'emerald-400': '#34d399', 'emerald-600': '#059669', 'emerald-700': '#047857',
-    'sky-400': '#38bdf8', 'sky-600': '#0284c7', 'sky-700': '#0369a1',
-    'rose-400': '#fb7185', 'rose-600': '#e11d48', 'rose-700': '#be123c',
-    'stone-50': '#fafaf9', 'stone-100': '#f5f5f4', 'stone-700': '#44403c',
-    'stone-800': '#292524', 'stone-900': '#1c1917', 'stone-950': '#0c0a09',
+    'amber-300': '#fcd34d',
+    'amber-600': '#d97706',
+    'amber-700': '#b45309',
+    'emerald-400': '#34d399',
+    'emerald-600': '#059669',
+    'emerald-700': '#047857',
+    'sky-400': '#38bdf8',
+    'sky-600': '#0284c7',
+    'sky-700': '#0369a1',
+    'rose-400': '#fb7185',
+    'rose-600': '#e11d48',
+    'rose-700': '#be123c',
+    'stone-50': '#fafaf9',
+    'stone-100': '#f5f5f4',
+    'stone-700': '#44403c',
+    'stone-800': '#292524',
+    'stone-900': '#1c1917',
+    'stone-950': '#0c0a09',
     white: '#ffffff',
   };
   const channel = (c: number): number => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -152,7 +171,8 @@ describe('design tokens', () => {
         expect(token, `${theme} --color-${role}-ink is not declared`).toBeDefined();
         for (const ground of grounds) {
           const ratio = contrast(token!, ground);
-          if (ratio < 4.5) failures.push(`${theme} ${role}-ink (${token}) on ${ground}: ${ratio.toFixed(2)}`);
+          if (ratio < 4.5)
+            failures.push(`${theme} ${role}-ink (${token}) on ${ground}: ${ratio.toFixed(2)}`);
         }
       }
     }
@@ -169,7 +189,8 @@ describe('design tokens', () => {
         ['dark', darkToken(role) ?? lightToken(role), 'stone-900'],
       ] as const) {
         const ratio = contrast(token!, ground);
-        if (ratio < 3) failures.push(`${theme} ${role} fill (${token}) on ${ground}: ${ratio.toFixed(2)}`);
+        if (ratio < 3)
+          failures.push(`${theme} ${role} fill (${token}) on ${ground}: ${ratio.toFixed(2)}`);
       }
     }
     expect(failures).toEqual([]);

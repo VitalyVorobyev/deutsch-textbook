@@ -20,8 +20,16 @@ const item = formItemSchema.parse({
 describe('form items', () => {
   test('grade each open field independently and retain stable field ids in the attempt', () => {
     const onResult = mock(() => {});
-    render(<FormFill item={item} lang="en" onResult={onResult} locked={false}
-      onNext={mock(() => {})} nextLabel="Weiter →" />);
+    render(
+      <FormFill
+        item={item}
+        lang="en"
+        onResult={onResult}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
+    );
 
     const inputs = screen.getAllByRole('textbox');
     expect(inputs).toHaveLength(2); // the given field is displayed, never re-asked

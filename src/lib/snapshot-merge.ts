@@ -85,7 +85,7 @@ export function mergeTopics(a: TopicsState, b: TopicsState): TopicsState {
         ? topic.placement.score > previous.placement.score
           ? topic.placement
           : previous.placement
-        : previous.placement ?? topic.placement;
+        : (previous.placement ?? topic.placement);
     out[id] = {
       ...(readAt ? { readAt } : {}),
       ...(manual ? { manual, manualAt } : {}),

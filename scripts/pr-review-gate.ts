@@ -71,7 +71,11 @@ function ghJson<T>(args: string[]): T {
   return JSON.parse(execFileSync('gh', args, { encoding: 'utf8' })) as T;
 }
 
-function fetchThreads(owner: string, repo: string, number: number): PullRequestGateInput['threads'] {
+function fetchThreads(
+  owner: string,
+  repo: string,
+  number: number,
+): PullRequestGateInput['threads'] {
   const query = `
     query($owner: String!, $repo: String!, $number: Int!, $after: String) {
       repository(owner: $owner, name: $repo) {

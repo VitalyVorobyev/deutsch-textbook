@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-  placementResults,
-  placementSettled,
-  type PlacementTopicResult,
-} from '../../lib/placement';
+import { placementResults, placementSettled, type PlacementTopicResult } from '../../lib/placement';
 import type { CheckpointItemRef } from '../../lib/checkpoint';
 import {
   ATTEMPT_EVENT,
@@ -125,10 +121,9 @@ export default function PlacementResults({
   // A stalled read must therefore stop the page, not seed it.
   const reload = useCallback(
     () =>
-      withReadRetry(
-        () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
-        { surface: 'einstufung' },
-      ).then(
+      withReadRetry(() => Promise.all([getAttempts(), getCardStates(), getTopicsState()]), {
+        surface: 'einstufung',
+      }).then(
         ([attempts, cards, topics]) => {
           setLoadError(false);
           setCtx({ attempts, cards, topics });
@@ -145,7 +140,15 @@ export default function PlacementResults({
     return () => window.removeEventListener(ATTEMPT_EVENT, onAttempt);
   }, [reload]);
 
-  if (loadError) return <ProgressLoadError onRetry={() => { setLoadError(false); void reload(); }} />;
+  if (loadError)
+    return (
+      <ProgressLoadError
+        onRetry={() => {
+          setLoadError(false);
+          void reload();
+        }}
+      />
+    );
 
   const summary = placementResults(items, ctx.attempts as Attempt[], setId, level, outcomeTopics);
   if (!summary) return null;

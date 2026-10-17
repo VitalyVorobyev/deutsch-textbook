@@ -35,11 +35,7 @@ const knowing = (...words: string[]) => {
 
 describe('tokenization', () => {
   test('folds to bare lowercase German, dropping digits and punctuation', () => {
-    expect(tokens('Die Rechnung: 160,00 € — bezahlt!')).toEqual([
-      'die',
-      'rechnung',
-      'bezahlt',
-    ]);
+    expect(tokens('Die Rechnung: 160,00 € — bezahlt!')).toEqual(['die', 'rechnung', 'bezahlt']);
   });
 
   test('emphasis inside a word does not cut the word in two', () => {
@@ -242,7 +238,9 @@ describe('sentence shape', () => {
   });
 
   test('mean and max are over the sentences, not the lines', () => {
-    const stats = sentenceStats(['Ich komme aus Polen. Ich wohne jetzt in Hamburg und lerne Deutsch.']);
+    const stats = sentenceStats([
+      'Ich komme aus Polen. Ich wohne jetzt in Hamburg und lerne Deutsch.',
+    ]);
     expect(stats.sentences).toBe(2);
     expect(stats.maxWords).toBe(8);
     expect(stats.meanWords).toBe(6);

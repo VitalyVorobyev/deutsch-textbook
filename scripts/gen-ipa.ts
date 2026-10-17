@@ -273,7 +273,9 @@ function fill(file: string, opts: { force: boolean; check: boolean }): void {
   const text = readFileSync(file, 'utf8');
   const document: unknown = YAML.parse(text);
   const entries =
-    document && typeof document === 'object' && Array.isArray((document as { entries?: unknown }).entries)
+    document &&
+    typeof document === 'object' &&
+    Array.isArray((document as { entries?: unknown }).entries)
       ? (document as { entries: Array<{ de?: unknown; pos?: unknown }> }).entries
       : null;
   if (
@@ -337,7 +339,9 @@ function fill(file: string, opts: { force: boolean; check: boolean }): void {
     process.exit(1);
   }
   if (!opts.check && added > 0) writeFileSync(file, out.join('\n'));
-  console.log(`${opts.check ? 'would fill' : 'filled'} ${added} entr${added === 1 ? 'y' : 'ies'} — ${file.split('/').pop()}`);
+  console.log(
+    `${opts.check ? 'would fill' : 'filled'} ${added} entr${added === 1 ? 'y' : 'ies'} — ${file.split('/').pop()}`,
+  );
 }
 
 // --- main -------------------------------------------------------------------
@@ -357,5 +361,6 @@ if (args === null) {
     console.error('no vocab files matched');
     process.exit(1);
   }
-  for (const f of files) fill(f, { force: args.includes('--force'), check: args.includes('--check') });
+  for (const f of files)
+    fill(f, { force: args.includes('--force'), check: args.includes('--check') });
 }

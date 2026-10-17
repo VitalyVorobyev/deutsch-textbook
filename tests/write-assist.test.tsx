@@ -35,14 +35,17 @@ function jsonResponse(body: unknown): Response {
 }
 
 /** Ollama with one gemma model that returns a fixed review. */
-function mockOllama(review: unknown = {
-  praise: PRAISE,
-  hints: [{ quote: 'Ich komme', category: 'grammar', nudge: 'Check the verb form.' }],
-}) {
+function mockOllama(
+  review: unknown = {
+    praise: PRAISE,
+    hints: [{ quote: 'Ich komme', category: 'grammar', nudge: 'Check the verb form.' }],
+  },
+) {
   const fetchMock = mock(async (input: unknown) => {
     const url = String(input);
     if (url.endsWith('/api/tags')) return jsonResponse({ models: [{ name: 'gemma4:e4b' }] });
-    if (url.endsWith('/api/chat')) return jsonResponse({ message: { content: JSON.stringify(review) } });
+    if (url.endsWith('/api/chat'))
+      return jsonResponse({ message: { content: JSON.stringify(review) } });
     throw new Error(`unexpected fetch: ${url}`);
   });
   globalThis.fetch = fetchMock as unknown as typeof fetch;
@@ -50,23 +53,29 @@ function mockOllama(review: unknown = {
 }
 
 function renderWrite(onResult = mock()) {
-  render(<Write
-    item={{
-      id: 'message', revision: 1, outcomes: [], preview: false, type: 'write',
-      prompt: { en: 'Write.', ru: 'Напишите.' },
-      goal: { en: 'Give a reason.', ru: 'Назовите причину.' },
-      requirements: [{ en: 'I gave a reason.', ru: 'Я назвал(а) причину.' }],
-      min_words: 2,
-      model_answer: 'Ich komme später.',
-      model_translation: { en: 'I am coming later.', ru: 'Я приду позже.' },
-    }}
-    lang="en"
-    onResult={onResult}
-    locked={false}
-    onNext={() => {}}
-    nextLabel="Next"
-    storageKey="a2/test-produktion::message"
-  />);
+  render(
+    <Write
+      item={{
+        id: 'message',
+        revision: 1,
+        outcomes: [],
+        preview: false,
+        type: 'write',
+        prompt: { en: 'Write.', ru: 'Напишите.' },
+        goal: { en: 'Give a reason.', ru: 'Назовите причину.' },
+        requirements: [{ en: 'I gave a reason.', ru: 'Я назвал(а) причину.' }],
+        min_words: 2,
+        model_answer: 'Ich komme später.',
+        model_translation: { en: 'I am coming later.', ru: 'Я приду позже.' },
+      }}
+      lang="en"
+      onResult={onResult}
+      locked={false}
+      onNext={() => {}}
+      nextLabel="Next"
+      storageKey="a2/test-produktion::message"
+    />,
+  );
   return onResult;
 }
 
@@ -132,7 +141,10 @@ describe('Write assist panel', () => {
 
   test('unusable output twice: one-line apology, and the feature stays hidden this session', async () => {
     // every quote hallucinated — reviewDraft retries once internally, then null
-    mockOllama({ praise: 'Gut!', hints: [{ quote: 'nie geschrieben', category: 'task', nudge: 'x' }] });
+    mockOllama({
+      praise: 'Gut!',
+      hints: [{ quote: 'nie geschrieben', category: 'task', nudge: 'x' }],
+    });
     renderWrite();
     walkToCompare();
 
@@ -205,23 +217,28 @@ describe('Write assist panel', () => {
     // A legacy record from the retired staged flow, whose hints were generated
     // for a different text than the one being restored.
     const draftKey = `da:write:${getActiveProfileId()}:a2/test-produktion::message`;
-    localStorage.setItem(draftKey, JSON.stringify({
-      stage: 'revise',
-      draft: 'Ich komme heute.',
-      revision: 'Ich komme heute.',
-      before: ['met'],
-      after: [],
-      assist: {
-        forText: 'Ich komme morgen zu dir.',
-        praise: PRAISE,
-        hints: [{ quote: 'Ich komme', category: 'grammar', nudge: 'Check the verb form.' }],
-      },
-    }));
+    localStorage.setItem(
+      draftKey,
+      JSON.stringify({
+        stage: 'revise',
+        draft: 'Ich komme heute.',
+        revision: 'Ich komme heute.',
+        before: ['met'],
+        after: [],
+        assist: {
+          forText: 'Ich komme morgen zu dir.',
+          praise: PRAISE,
+          hints: [{ quote: 'Ich komme', category: 'grammar', nudge: 'Check the verb form.' }],
+        },
+      }),
+    );
     mockOllama();
     renderWrite();
 
     // the legacy record resumes on the compare screen with the revision text …
-    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe('Ich komme heute.');
+    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe(
+      'Ich komme heute.',
+    );
     // … and the stale hints are gone; the panel offers a fresh request instead
     expect(await screen.findByRole('button', { name: ASSIST_BUTTON })).toBeTruthy();
     expect(screen.queryByText(PRAISE)).toBeNull();

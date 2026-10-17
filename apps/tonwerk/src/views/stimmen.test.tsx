@@ -61,7 +61,8 @@ afterEach(() => {
  * signature of exactly that.
  */
 async function klonKnopf(): Promise<HTMLButtonElement> {
-  const knopf = () => screen.getAllByRole('button', { name: 'Geklonte Stimme' })[0] as HTMLButtonElement;
+  const knopf = () =>
+    screen.getAllByRole('button', { name: 'Geklonte Stimme' })[0] as HTMLButtonElement;
   await waitFor(() => expect(knopf().disabled).toBe(false));
   return knopf();
 }
@@ -128,13 +129,17 @@ describe('der Klon-Assistent', () => {
     mount(<Figuren />, stub());
     await screen.findByText('Der Klon-Assistent');
 
-    expect(screen.getByText(/erlaubt ausdrücklich die Veröffentlichung in diesem Kurs/)).toBeTruthy();
+    expect(
+      screen.getByText(/erlaubt ausdrücklich die Veröffentlichung in diesem Kurs/),
+    ).toBeTruthy();
     expect(screen.queryByText(/schließt Upload, Veröffentlichung und Git/)).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'Evaluation' }));
 
     expect(screen.getByText(/schließt Upload, Veröffentlichung und Git/)).toBeTruthy();
-    expect(screen.queryByText(/erlaubt ausdrücklich die Veröffentlichung in diesem Kurs/)).toBeNull();
+    expect(
+      screen.queryByText(/erlaubt ausdrücklich die Veröffentlichung in diesem Kurs/),
+    ).toBeNull();
   });
 
   test('the minor toggle adds the two rules it is about', async () => {
@@ -151,7 +156,9 @@ describe('der Klon-Assistent', () => {
     mount(<Figuren />, stub());
     await screen.findByText('Der Klon-Assistent');
 
-    const stufe = () => screen.getByLabelText('Ablauf des Klon-Assistenten').querySelector('[aria-current="step"]')?.textContent;
+    const stufe = () =>
+      screen.getByLabelText('Ablauf des Klon-Assistenten').querySelector('[aria-current="step"]')
+        ?.textContent;
     expect(stufe()).toBe('Aufnahme');
 
     const datei = new File(['reference bytes'], 'mara.wav', { type: 'audio/wav' });
@@ -171,7 +178,10 @@ describe('der Klon-Assistent', () => {
 
     const dokument = screen.getByText(/Dokument ansehen/).parentElement as HTMLElement;
     const text = within(dokument).getByText(/"scope": "publication"/).textContent ?? '';
-    const gelesen = JSON.parse(text) as { subject: { display_name: string }; reference: { sha256: string } };
+    const gelesen = JSON.parse(text) as {
+      subject: { display_name: string };
+      reference: { sha256: string };
+    };
     expect(gelesen.subject.display_name).toBe('Mara H.');
     expect(gelesen.reference.sha256).toMatch(/^[0-9a-f]{64}$/);
   });
@@ -179,7 +189,10 @@ describe('der Klon-Assistent', () => {
   test('a refusal names its rule on the rule’s own row', async () => {
     const { EngineError } = await import('../api');
     const createVoice = vi.fn(async () => {
-      throw new EngineError(400, 'publication-permits-course: a publication consent must name a permitted use');
+      throw new EngineError(
+        400,
+        'publication-permits-course: a publication consent must name a permitted use',
+      );
     });
     mount(<Figuren />, stub({ createVoice: createVoice as never }));
     await screen.findByText('Der Klon-Assistent');
