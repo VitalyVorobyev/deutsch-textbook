@@ -16,8 +16,11 @@ GitHub Release notes.
 - **B1 articles are being rewritten to read in German first.** The explanation is German text, and
   each section ends with two folds: *Übersetzung*, an English translation of the German, and
   *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache
-  to *Deutsch* to hide both. Fourteen of the twenty are done; the six newest units follow once their
-  German text is written.
+  to *Deutsch* to hide both. Seventeen of the twenty are done. *Bildungswege*, *Gespräche steuern*
+  and *Polizei und Anzeige* had no German explanation at all before; they now have one, and their
+  exercises and readings explain themselves in German too when the Lernsprache is *Deutsch*.
+- ***Gespräche steuern*: *sollte* and *wollte* take no umlaut in the Konjunktiv II** — the article
+  had said every modal does.
 - ***Gesellschaft und Zusammenleben* no longer says the A2 pronouns *man* and *jemand* never change**
   — they decline (*jemanden*, *niemandem*); what sets them apart is that they stand without a noun.
 - **Smaller corrections in B1 articles:** a stray comma in a corrected *Präteritum* sentence
