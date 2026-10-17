@@ -11,6 +11,25 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Exercises that asked you to guess the author's word now name it.** The A1 imperative and
+  separable-verb checks give the infinitive (*Kinder, ___ hier rechts! (gehen)*), the *als*-clause
+  exercise names *kommen* and *wohnen* and also takes *wohnten*, the bike-and-taxi exercise gives
+  both genders, and the *nachdem* check names *die Werkstatt*.
+- **The *wo-* and *da-* dialogues no longer print the preposition** you are meant to recall —
+  *Woran denkst du? — ___ die Tickets* — and a translation under each fixes the meaning.
+- **More correct answers count:** *Ich bringe dir die Getränke* without *mit*, *Als ich ein Kind
+  war …* with *zur Oma*, and *In Hamburg ist das Wetter kälter als in Berlin*.
+- **The weil-clause table no longer retypes names**, so a typo in *Nina* is not marked as a word-order
+  error.
+- ***losfahren* and *abfahren* cards ask different questions** — *to set off, to get going* against
+  *to depart (bus, train)* — so the prompt says which word it wants.
+- **Articles:** the *deshalb* table in *Verbindungen und Folgen* now sits where the text points to it;
+  the *zwei Objekte* table in *Freunde und Feste* follows the section that explains it; *Natur und
+  Wetter* drops two claims it could not back; the Leben-in-Deutschland lesson *Europa* says
+  «граничит с девятью странами» in natural Russian (and Ukrainian).
+
 ## [0.6.19] — 2026-10-14
 
 ### Added

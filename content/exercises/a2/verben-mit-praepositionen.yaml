@@ -38,8 +38,13 @@ items:
     type: cloze
     outcomes: [da-wort-sache, wo-wort-fragen]
     focus: da-wo-woerter
-    instruction: { en: "Complete the mini-dialogues.", ru: "Дополните мини-диалоги.", uk: "Доповніть міні-діалоги." }
-    text: "{{Woran}} denkst du? — An die Tickets. Ich denke {{daran}}. {{Womit}} arbeitet ihr? — Mit einer App. Wir arbeiten {{damit}}."
+    # revision 2 (2026-10-17, learner feedback): every answer printed its preposition, so the item
+    # asked only for wo(r)-/da(r)- + the word already on screen. The preposition is a gap now, and
+    # the translation fixes the meaning — without it Woran arbeitet ihr? — An einer App would fit.
+    revision: 2
+    instruction: { en: "Complete the mini-dialogues: the question word, the preposition, the da-word.", ru: "Дополните мини-диалоги: вопросительное слово, предлог, da-слово.", uk: "Доповніть міні-діалоги: питальне слово, прийменник, da-слово." }
+    text: "{{Woran}} denkst du? — {{An}} die Tickets. Ich denke {{daran}}. {{Womit}} arbeitet ihr? — {{Mit}} einer App. Wir arbeiten {{damit}}."
+    translation: { en: "What are you thinking about? — The tickets. I am thinking about them. What are you working with? — With an app. We work with it.", ru: "О чём ты думаешь? — О билетах. Я думаю о них. С помощью чего вы работаете? — С приложением. Мы работаем с ним.", uk: "Про що ти думаєш? — Про квитки. Я думаю про них. За допомогою чого ви працюєте? — З застосунком. Ми працюємо з ним." }
     explain: { en: "an begins with a vowel and takes linking r; mit begins with a consonant and does not.", ru: "an начинается с гласной и требует связующего r; mit начинается с согласной и обходится без него.", uk: "an починається з голосної і вимагає сполучного r; mit починається з приголосної та обходиться без нього." }
   - id: mc-sache-person
     type: mc
@@ -54,7 +59,12 @@ items:
     type: cloze
     outcomes: [wo-wort-fragen, verb-praeposition-waehlen]
     focus: da-wo-woerter
-    text: "{{Worauf}} wartet ihr? — Auf Mias Antwort. {{Wofür}} interessiert sich Lea? — Für Fotografie. {{Wovon}} träumt Amir? — Von einer Radtour."
+    # revision 2 (2026-10-17, learner feedback): the answers printed auf, für and von, which gave
+    # away the very preposition the verb selects. They are gaps now, fixed by the translation.
+    revision: 2
+    instruction: { en: "Complete the mini-dialogues: the question word and the preposition the verb takes.", ru: "Дополните мини-диалоги: вопросительное слово и предлог, которого требует глагол.", uk: "Доповніть міні-діалоги: питальне слово і прийменник, якого вимагає дієслово." }
+    text: "{{Worauf}} wartet ihr? — {{Auf}} Mias Antwort. {{Wofür}} interessiert sich Lea? — {{Für}} Fotografie. {{Wovon}} träumt Amir? — {{Von}} einer Radtour."
+    translation: { en: "What are you waiting for? — Mia's answer. What is Lea interested in? — Photography. What does Amir dream of? — A bike tour.", ru: "Чего вы ждёте? — Ответа Мии. Чем интересуется Леа? — Фотографией. О чём мечтает Амир? — О велопоходе.", uk: "На що ви чекаєте? — На відповідь Мії. Чим цікавиться Леа? — Фотографією. Про що мріє Амір? — Про велопохід." }
     explain: { en: "The verb selects the preposition; wo(r)- turns that preposition into a question about a thing.", ru: "Глагол выбирает предлог; wo(r)- превращает его в вопрос о предмете.", uk: "Дієслово вибирає прийменник; wo(r)- перетворює його на питання про предмет." }
   - id: hoeren-darueber
     type: listen

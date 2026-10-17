@@ -211,8 +211,11 @@ items:
     prompt_ru: "В Гамбурге холоднее, чем в Берлине."
     prompt_uk: "У Гамбурзі холодніше, ніж у Берліні."
     answer: "In Hamburg ist es kälter als in Berlin."
+    # «холоднее» names no subject, so das Wetter fills the slot as well as es (ruling 2026-10-17)
+    revision: 2
     accept:
       - "Es ist in Hamburg kälter als in Berlin."
+      - "In Hamburg ist das Wetter kälter als in Berlin."
     explain:
       en: "Three things have to be right at once and only two of them are the comparison. *Kalt* umlauts to *kälter*; the difference takes *als*; and the second city keeps its *in*, because the sentence compares two places, not a temperature and a place. The empty *es* is here too — *In Hamburg ist es kälter*, never ❌ *In Hamburg ist kälter* — which is why the placeholder is worth having drilled before this item."
       ru: "Три вещи должны быть верны одновременно, и только две из них — про сравнение. *Kalt* даёт умлаут: *kälter*; различие берёт *als*; и второй город сохраняет свой *in*, потому что предложение сравнивает два места, а не температуру с местом. Пустое *es* тоже здесь — *In Hamburg ist es kälter*, а не ❌ *In Hamburg ist kälter*: русская фраза без подлежащего обходится, немецкая — нет."

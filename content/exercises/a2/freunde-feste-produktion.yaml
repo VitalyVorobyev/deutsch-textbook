@@ -86,6 +86,7 @@ items:
     prompt_ru: "Ты можешь принести мне салат? А я принесу тебе напитки."
     prompt_uk: "Ти можеш принести мені салат? А я принесу тобі напої."
     answer: "Kannst du mir einen Salat mitbringen? Ich bringe dir die Getränke mit."
+    revision: 2
     key_tokens: ["mir", "dir"]
     accept:
       - "Kannst du mir bitte einen Salat mitbringen? Ich bringe dir die Getränke mit."
@@ -95,10 +96,15 @@ items:
       - "Kannst du mir bitte einen Salat mitbringen? Und ich bringe dir die Getränke mit."
       - "Kannst du mir den Salat mitbringen? Ich bringe dir die Getränke mit."
       - "Kannst du mir den Salat mitbringen? Und ich bringe dir die Getränke mit."
+      # «принесу тебе» / "I'll bring you" is plain bringen; mit only adds "along" (ruling 2026-10-17).
+      - "Kannst du mir einen Salat mitbringen? Ich bringe dir die Getränke."
+      - "Kannst du mir einen Salat mitbringen? Und ich bringe dir die Getränke."
+      - "Kannst du mir den Salat mitbringen? Ich bringe dir die Getränke."
+      - "Kannst du mir den Salat mitbringen? Und ich bringe dir die Getränke."
     explain:
-      en: "Two sentences and two shapes of the same verb. The first has a modal, so mitbringen stays whole at the end and kannst opens the question. The second has none, so the verb splits: bringe in position 2, mit at the very end. Through both of them the person keeps the same slot and the same case — mir when the salad comes to me, dir when the drinks go to you. Neither is mich or dich: the accusative belongs to the thing, and it is already taken."
-      ru: "Два предложения — две формы одного глагола. В первом есть модальный, поэтому mitbringen остаётся целым в конце, а вопрос открывает kannst. Во втором модального нет, и глагол распадается: bringe на втором месте, mit в самом конце. И в том и в другом человек сохраняет и своё место, и свой падеж: mir — когда салат несут мне, dir — когда напитки достаются тебе. Ни в коем случае не mich и не dich: Akkusativ принадлежит предмету, и он уже занят."
-      uk: "Два речення — дві форми одного дієслова. У першому є модальне, тому mitbringen залишається цілим у кінці, а питання відкриває kannst. У другому модального немає, і дієслово розпадається: bringe на другому місці, mit у самому кінці. І в тому і в іншому людина зберігає і своє місце, і свій відмінок: mir — коли салат несуть мені, dir — коли напої дістаються тобі. У жодному разі не mich і не dich: Akkusativ належить предмету, і він уже зайнятий."
+      en: "Two sentences and two shapes of the same verb. The first has a modal, so mitbringen stays whole at the end and kannst opens the question. The second has none, so the verb splits: bringe in position 2, mit at the very end (plain bringe dir die Getränke is good German too; mit only adds \"along\"). Through both of them the person keeps the same slot and the same case — mir when the salad comes to me, dir when the drinks go to you. Neither is mich or dich: the accusative belongs to the thing, and it is already taken."
+      ru: "Два предложения — две формы одного глагола. В первом есть модальный, поэтому mitbringen остаётся целым в конце, а вопрос открывает kannst. Во втором модального нет, и глагол распадается: bringe на втором месте, mit в самом конце (просто bringe dir die Getränke — тоже правильный немецкий; mit лишь добавляет «с собой»). И в том и в другом человек сохраняет и своё место, и свой падеж: mir — когда салат несут мне, dir — когда напитки достаются тебе. Ни в коем случае не mich и не dich: Akkusativ принадлежит предмету, и он уже занят."
+      uk: "Два речення — дві форми одного дієслова. У першому є модальне, тому mitbringen залишається цілим у кінці, а питання відкриває kannst. У другому модального немає, і дієслово розпадається: bringe на другому місці, mit у самому кінці (просто bringe dir die Getränke — теж правильна німецька; mit лише додає «із собою»). І в тому і в іншому людина зберігає і своє місце, і свій відмінок: mir — коли салат несуть мені, dir — коли напої дістаються тобі. У жодному разі не mich і не dich: Akkusativ належить предмету, і він уже зайнятий."
 
   - id: cloze-plan-aendert-sich
     outcomes: [absprachen-aushandeln, einladen-zusagen-absagen]

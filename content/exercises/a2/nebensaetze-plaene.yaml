@@ -12,6 +12,10 @@ items:
     outcomes: [weil-grund]
     type: table
     focus: nebensatz-verbende
+    # revision 2: four of five misses had every clause right and one retyped name wrong ("Nine"
+    # for Nina) — a table cell has no slip allowance, so a typo charged nebensatz-verbende. Every
+    # row now speaks for the ich of the column head, and nothing has to be copied but grammar.
+    revision: 2
     title: "Aus dem Hauptsatz wird ein Nebensatz"
     instruction:
       en: "Turn each main clause into a weil-clause. Write only the clause itself, starting with weil (no comma, no full stop)."
@@ -25,20 +29,20 @@ items:
           - { answer: "weil ich am Sonntag keine Zeit habe" }
       - label: "Modalverb"
         cells:
-          - { answer: "Yusuf muss am Sonntag arbeiten.", given: true }
-          - { answer: "weil Yusuf am Sonntag arbeiten muss" }
+          - { answer: "Ich muss am Sonntag arbeiten.", given: true }
+          - { answer: "weil ich am Sonntag arbeiten muss" }
       - label: "Trennbares Verb"
         cells:
-          - { answer: "Nina steht um sechs Uhr auf.", given: true }
-          - { answer: "weil Nina um sechs Uhr aufsteht" }
+          - { answer: "Ich stehe um sechs Uhr auf.", given: true }
+          - { answer: "weil ich um sechs Uhr aufstehe" }
       - label: "Perfekt"
         cells:
-          - { answer: "Tobias hat den Zug verpasst.", given: true }
-          - { answer: "weil Tobias den Zug verpasst hat" }
+          - { answer: "Ich habe den Zug verpasst.", given: true }
+          - { answer: "weil ich den Zug verpasst habe" }
     explain:
-      en: "One rule, four shapes: the conjugated verb goes to the very end of the clause. In the present tense that is the whole verb (habe). With a modal, the conjugated verb is the modal, so the infinitive comes first and muss closes the clause: arbeiten muss — never muss arbeiten. A separable verb has nothing to separate from any more, because there is no position 2 left to leave behind, so the prefix rejoins it: aufsteht. And in the Perfekt the conjugated word is the auxiliary, so the participle comes first and habe/hat closes the clause: verpasst hat."
-      ru: "Одно правило, четыре формы: спрягаемый глагол уходит в самый конец придаточного. В настоящем времени это сам глагол (habe). При модальном спрягается модальный, поэтому сначала идёт инфинитив, а muss закрывает придаточное: arbeiten muss — но никогда muss arbeiten. Отделяемой приставке отделяться больше не от чего, ведь второго места, которое она покидала бы, здесь нет: приставка возвращается к глаголу — aufsteht. А в Perfekt спрягается вспомогательный глагол, поэтому сначала причастие, а закрывает придаточное habe/hat: verpasst hat."
-      uk: "Одне правило, чотири форми: відмінюване дієслово йде в самий кінець підрядного. У теперішньому часі це саме дієслово (habe). При модальному відмінюється модальне, тому спочатку йде інфінітив, а muss закриває підрядне: arbeiten muss — але ніколи muss arbeiten. Відокремлюваному префіксу відокремлюватися більше нема від чого, адже другого місця, яке він покидав би, тут немає: префікс повертається до дієслова — aufsteht. А в Perfekt відмінюється допоміжне дієслово, тому спочатку дієприкметник, а закриває підрядне habe/hat: verpasst hat."
+      en: "One rule, four shapes: the conjugated verb goes to the very end of the clause. In the present tense that is the whole verb (habe). With a modal, the conjugated verb is the modal, so the infinitive comes first and muss closes the clause: arbeiten muss — never muss arbeiten. A separable verb has nothing to separate from any more, because there is no position 2 left to leave behind, so the prefix rejoins it: aufstehe. And in the Perfekt the conjugated word is the auxiliary, so the participle comes first and habe closes the clause: verpasst habe."
+      ru: "Одно правило, четыре формы: спрягаемый глагол уходит в самый конец придаточного. В настоящем времени это сам глагол (habe). При модальном спрягается модальный, поэтому сначала идёт инфинитив, а muss закрывает придаточное: arbeiten muss — но никогда muss arbeiten. Отделяемой приставке отделяться больше не от чего, ведь второго места, которое она покидала бы, здесь нет: приставка возвращается к глаголу — aufstehe. А в Perfekt спрягается вспомогательный глагол, поэтому сначала причастие, а закрывает придаточное habe: verpasst habe."
+      uk: "Одне правило, чотири форми: відмінюване дієслово йде в самий кінець підрядного. У теперішньому часі це саме дієслово (habe). При модальному відмінюється модальне, тому спочатку йде інфінітив, а muss закриває підрядне: arbeiten muss — але ніколи muss arbeiten. Відокремлюваному префіксу відокремлюватися більше нема від чого, адже другого місця, яке він покидав би, тут немає: префікс повертається до дієслова — aufstehe. А в Perfekt відмінюється допоміжне дієслово, тому спочатку дієприкметник, а закриває підрядне habe: verpasst habe."
 
   - id: cloze-weil-verb-ans-ende
     outcomes: [weil-grund]
