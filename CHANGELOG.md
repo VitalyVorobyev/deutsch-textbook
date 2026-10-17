@@ -16,11 +16,14 @@ GitHub Release notes.
 - **B1 articles are being rewritten to read in German first.** The explanation is German text, and
   each section ends with two folds: *Übersetzung*, an English translation of the German, and
   *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache
-  to *Deutsch* to hide both. Eight articles so far: *Arbeit und Bewerbung*, *Digitales Leben*,
-  *Erfahrungen erzählen*, *Geld und Verträge*, *Gesellschaft und Zusammenleben*, *Gesundheit und
-  Wohlbefinden*, *Informationen vermitteln* and *Konsum und Umwelt*; the rest follow.
+  to *Deutsch* to hide both. Fourteen of the twenty are done; the six newest units follow once their
+  German text is written.
 - ***Gesellschaft und Zusammenleben* no longer says the A2 pronouns *man* and *jemand* never change**
   — they decline (*jemanden*, *niemandem*); what sets them apart is that they stand without a noun.
+- **Smaller corrections in B1 articles:** a stray comma in a corrected *Präteritum* sentence
+  (*Kultur und Freizeit*); the genitive *-es* is common, not required, on one-syllable nouns, and
+  *-s* is the usual, not the only, ending (*Leben verändern*); *über* in a fixed verb combination is
+  almost always, not always, accusative (*Meinung und Medien*).
 
 ### Fixed
 
