@@ -51,7 +51,9 @@ export type LidLessonScopes = Record<string, { title: string; ids: string[] }>;
 
 /** The lessons as the practice island's scope map. */
 export const lessonScopes = (lessons: readonly LidLessonView[]): LidLessonScopes =>
-  Object.fromEntries(lessons.map((lesson) => [lesson.id, { title: lesson.title, ids: lesson.ids }]));
+  Object.fromEntries(
+    lessons.map((lesson) => [lesson.id, { title: lesson.title, ids: lesson.ids }]),
+  );
 
 export interface LidModuleView {
   id: string;
@@ -80,7 +82,11 @@ const STATE_NAMES: Record<string, string> = { BY: 'Bayern' };
 export const stateName = (code: string): string => STATE_NAMES[code] ?? code;
 
 /** A chrome string with its `{name}` placeholders filled. */
-export function lidText(key: StringKey, uiLang: UiLang, vars: Record<string, string | number> = {}): string {
+export function lidText(
+  key: StringKey,
+  uiLang: UiLang,
+  vars: Record<string, string | number> = {},
+): string {
   return t(key, uiLang).replace(/\{(\w+)\}/g, (whole, name: string) =>
     name in vars ? String(vars[name]) : whole,
   );
@@ -103,7 +109,8 @@ export const topicAnchor = (id: string): string => `thema-${id}`;
 export const NEW_PER_DAY_CHOICES = [15, 30, 50] as const;
 export const DEFAULT_NEW_PER_DAY = 30;
 
-export const newPerDayKey = (profileId = getActiveProfileId()): string => `da:lid-new-per-day:${profileId}`;
+export const newPerDayKey = (profileId = getActiveProfileId()): string =>
+  `da:lid-new-per-day:${profileId}`;
 
 /** The stored allowance, or the default when storage is blocked, empty or holds anything else. */
 export function readNewPerDay(): number {
@@ -141,7 +148,8 @@ export function revealTop(element: HTMLElement | null): void {
 // Furniture — the same Tailwind strings the Goethe simulator uses, so the two exam surfaces
 // look like one product.
 
-export const CARD = 'rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800';
+export const CARD =
+  'rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800';
 
 export const PRIMARY_BUTTON =
   'inline-flex min-h-11 items-center justify-center rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-40';

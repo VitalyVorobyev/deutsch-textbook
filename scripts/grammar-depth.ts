@@ -62,8 +62,12 @@ for (const level of levels) {
   }
 
   const m = { teaching: d.medianTeaching, production: d.medianProduction, files: d.medianFiles };
-  console.log('   confusion                      items  prod  sel  files  probe  chkpt  · below median / unseen');
-  for (const t of [...d.tags].sort((a, b) => a.teaching - b.teaching || a.tag.localeCompare(b.tag))) {
+  console.log(
+    '   confusion                      items  prod  sel  files  probe  chkpt  · below median / unseen',
+  );
+  for (const t of [...d.tags].sort(
+    (a, b) => a.teaching - b.teaching || a.tag.localeCompare(b.tag),
+  )) {
     if (thinOnly && t.teaching > d.medianTeaching) continue;
     if (noProbeOnly && t.probe > 0) continue;
     console.log(

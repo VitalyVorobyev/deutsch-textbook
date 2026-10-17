@@ -41,7 +41,8 @@ describe('which build ships the reviewed recordings', () => {
     expect(bundlesAudio('true')).toBe(true);
     // Anything else is off — an unset variable must never accidentally ship 40 MB of audio,
     // and a stray "0" or "false" must not read as truthy the way a bare presence check would.
-    for (const off of [undefined, '', '0', 'false', 'yes', 'no']) expect(bundlesAudio(off)).toBe(false);
+    for (const off of [undefined, '', '0', 'false', 'yes', 'no'])
+      expect(bundlesAudio(off)).toBe(false);
   });
 
   test('a recording counts only when its audio is actually on disk beside the record', () => {

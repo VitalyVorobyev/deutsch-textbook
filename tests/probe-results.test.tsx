@@ -40,7 +40,9 @@ const midLadderFamily: ProbeFamily = {
   ],
 };
 
-function attempt(over: Partial<Attempt> & { setId: string; itemId: string; ts: number; correct: boolean }): Attempt {
+function attempt(
+  over: Partial<Attempt> & { setId: string; itemId: string; ts: number; correct: boolean },
+): Attempt {
   return { itemType: 'translate', given: '', outcomes: [], ...over };
 }
 
@@ -60,7 +62,9 @@ describe('ProbeResults exhausted-failed line', () => {
         lang="en"
       />,
     );
-    expect(screen.getByText('gemessen, nicht bestanden — braucht eine neue Probefamilie')).toBeDefined();
+    expect(
+      screen.getByText('gemessen, nicht bestanden — braucht eine neue Probefamilie'),
+    ).toBeDefined();
   });
 
   test('a family still mid-ladder (rungs remain) never shows the exhausted line', () => {
@@ -76,7 +80,9 @@ describe('ProbeResults exhausted-failed line', () => {
         lang="en"
       />,
     );
-    expect(screen.queryByText('gemessen, nicht bestanden — braucht eine neue Probefamilie')).toBeNull();
+    expect(
+      screen.queryByText('gemessen, nicht bestanden — braucht eine neue Probefamilie'),
+    ).toBeNull();
   });
 
   test('a family with every stage passed never shows the exhausted line', () => {
@@ -94,6 +100,8 @@ describe('ProbeResults exhausted-failed line', () => {
         lang="en"
       />,
     );
-    expect(screen.queryByText('gemessen, nicht bestanden — braucht eine neue Probefamilie')).toBeNull();
+    expect(
+      screen.queryByText('gemessen, nicht bestanden — braucht eine neue Probefamilie'),
+    ).toBeNull();
   });
 });

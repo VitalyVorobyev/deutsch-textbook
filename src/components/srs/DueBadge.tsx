@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { planReview, type ReviewGate, type ReviewPlanResult } from '../../lib/decks';
 import type { CardRef } from '../../lib/srs';
-import { getAttempts, getCardStates, getLearningGoal, getTopicsState, withReadRetry } from '../../lib/store';
+import {
+  getAttempts,
+  getCardStates,
+  getLearningGoal,
+  getTopicsState,
+  withReadRetry,
+} from '../../lib/store';
 import { deckCardRefs, type DeckWords } from '../../lib/vocab-mastery';
 import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
@@ -42,8 +48,8 @@ export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 
 
   useEffect(() => {
     // A stalled read leaves `plan` null and the badge renders nothing. That is the
-     // honest state for a badge — but only the retries make it recoverable without a
-     // reload, and `planReview` must never be handed a read that did not come back.
+    // honest state for a badge — but only the retries make it recoverable without a
+    // reload, and `planReview` must never be handed a read that did not come back.
     void withReadRetry(
       () =>
         Promise.all([
@@ -53,12 +59,15 @@ export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 
           gate ? getLearningGoal() : undefined,
         ]),
       { surface: 'due-badge' },
-    ).then(([s, attempts, topics, goal]) => {
-      setStarted(Object.keys(s).length > 0);
-      setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }));
-    }, () => {
-      setPlan(null);
-    });
+    ).then(
+      ([s, attempts, topics, goal]) => {
+        setStarted(Object.keys(s).length > 0);
+        setPlan(planReview(cards, gate, { attempts, cards: s, topics, goal }, { newLimit }));
+      },
+      () => {
+        setPlan(null);
+      },
+    );
   }, [cards, gate, newLimit]);
 
   if (!plan) return null;
@@ -88,8 +97,10 @@ export default function DueBadge({ decks, variant = 'compact', gate, newLimit = 
   }
 
   const parts: string[] = [];
-  if (plan.dueCount > 0) parts.push(t('flashcards.due', uiLang).replace('{n}', String(plan.dueCount)));
-  if (plan.freshCount > 0) parts.push(t('flashcards.new', uiLang).replace('{n}', String(plan.freshCount)));
+  if (plan.dueCount > 0)
+    parts.push(t('flashcards.due', uiLang).replace('{n}', String(plan.dueCount)));
+  if (plan.freshCount > 0)
+    parts.push(t('flashcards.new', uiLang).replace('{n}', String(plan.freshCount)));
 
   return (
     <div>

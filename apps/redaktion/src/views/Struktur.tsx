@@ -16,7 +16,15 @@ import { useState } from 'react';
 import { Button, Callout, Chip, Empty, Filter, Label, Panel, Section } from '@da/ui/primitives';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import type { GraphPayload } from '../data';
-import { Gruppentabelle, Mehrere, Primaer, Quelllink, Quer, Zeilentabelle, type Spalte } from '../components/Zeilentabelle';
+import {
+  Gruppentabelle,
+  Mehrere,
+  Primaer,
+  Quelllink,
+  Quer,
+  Zeilentabelle,
+  type Spalte,
+} from '../components/Zeilentabelle';
 import { href, useQueryState } from '../router';
 
 type Level = GraphPayload['cefrLevels'][number];
@@ -42,7 +50,9 @@ function reception(p: GrammarPoint): Level | undefined {
 function teachingTopics(graph: GraphPayload, point: GrammarPoint): string[] {
   const tags = new Set(point.focus ?? []);
   if (!tags.size) return [];
-  return [...new Set(graph.elements.filter((e) => e.focus.some((f) => tags.has(f))).map((e) => e.topic))];
+  return [
+    ...new Set(graph.elements.filter((e) => e.focus.some((f) => tags.has(f))).map((e) => e.topic)),
+  ];
 }
 
 export function Struktur({ graph, id }: { graph: GraphPayload; id?: string }) {
@@ -60,7 +70,9 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
   const taught = new Set(graph.elements.flatMap((e) => e.focus));
   const isTaught = (p: GrammarPoint) => (p.focus ?? []).some((tag) => taught.has(tag));
 
-  const trackOptions = [...graph.grammarTracks].sort((a, b) => a.order - b.order).map((item) => item.id);
+  const trackOptions = [...graph.grammarTracks]
+    .sort((a, b) => a.order - b.order)
+    .map((item) => item.id);
 
   const filtered = graph.inventory.filter(
     (p) =>
@@ -79,13 +91,32 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
       sort: (p) => p.de,
       cell: (p) => (
         <span className="flex items-center gap-2">
-          {!isTaught(p) ? <span className="h-2 w-2 shrink-0 rounded-[2px] border border-warn/70" title="ungelehrt" /> : null}
+          {!isTaught(p) ? (
+            <span
+              className="h-2 w-2 shrink-0 rounded-[2px] border border-warn/70"
+              title="ungelehrt"
+            />
+          ) : null}
           <Primaer href={href('struktur', p.id)}>{p.de}</Primaer>
         </span>
       ),
     },
-    { key: 'id', head: 'Kennung', sort: (p) => p.id, cell: (p) => <span className="text-xs text-ink-muted">{p.id}</span> },
-    { key: 'track', head: 'Linie', sort: (p) => p.track ?? '', cell: (p) => <span className="text-ink-muted">{graph.grammarTracks.find((track) => track.id === p.track)?.de ?? p.track ?? '—'}</span> },
+    {
+      key: 'id',
+      head: 'Kennung',
+      sort: (p) => p.id,
+      cell: (p) => <span className="text-xs text-ink-muted">{p.id}</span>,
+    },
+    {
+      key: 'track',
+      head: 'Linie',
+      sort: (p) => p.track ?? '',
+      cell: (p) => (
+        <span className="text-ink-muted">
+          {graph.grammarTracks.find((track) => track.id === p.track)?.de ?? p.track ?? '—'}
+        </span>
+      ),
+    },
     {
       key: 'level',
       head: 'Niveau',
@@ -97,7 +128,10 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
           <span className="flex items-center gap-1.5 whitespace-nowrap">
             <span className="text-ink">{prod ?? '—'}</span>
             {rec && rec !== prod ? (
-              <Chip tone="info" title="Der Standard erwartet Verstehen ein Niveau vor der Produktion">
+              <Chip
+                tone="info"
+                title="Der Standard erwartet Verstehen ein Niveau vor der Produktion"
+              >
                 Rez. {rec}
               </Chip>
             ) : null}
@@ -162,7 +196,12 @@ function StrukturListe({ graph }: { graph: GraphPayload }) {
 
       <div className="my-5 flex flex-wrap items-center gap-3">
         <Filter label="Linie" value={track} options={trackOptions} onChange={setTrack} />
-        <Filter label="Produktionsniveau" value={level as Level | 'alle'} options={graph.cefrLevels} onChange={setLevel} />
+        <Filter
+          label="Produktionsniveau"
+          value={level as Level | 'alle'}
+          options={graph.cefrLevels}
+          onChange={setLevel}
+        />
       </div>
 
       <Zeilentabelle rows={filtered} rowKey={(p) => p.id} columns={columns} sortKey="de" />
@@ -186,14 +225,25 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
     { key: 'stage', head: 'Stufe', cell: (e) => <Chip>{STAGE_LABEL[e.stage] ?? e.stage}</Chip> },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
-    { key: 'file', head: 'Datei', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
+    {
+      key: 'file',
+      head: 'Datei',
+      cell: (e) => (
+        <Quelllink href={href('quelle', undefined, { pfad: e.file })}>
+          {e.id.split('#')[0]}
+        </Quelllink>
+      ),
+    },
   ];
 
   return (
     <>
       <header className="mb-5">
         <Label>
-          {graph.grammarTracks.find((track) => track.id === point.track)?.de ?? point.strand ?? 'keine Linie'} · {point.id}
+          {graph.grammarTracks.find((track) => track.id === point.track)?.de ??
+            point.strand ??
+            'keine Linie'}{' '}
+          · {point.id}
         </Label>
         <h1 className="mt-1 text-2xl font-bold tracking-tight text-ink">{point.de}</h1>
         <p className="mt-1 text-sm text-ink-muted">{point.en}</p>
@@ -213,7 +263,11 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
             <dt className="text-ink-muted">Rezeption</dt>
             <dd className={rec && rec !== prod ? 'text-info-ink' : 'text-ink'}>{rec ?? '—'}</dd>
           </dl>
-          {point.note ? <p className="mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">{point.note}</p> : null}
+          {point.note ? (
+            <p className="mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
+              {point.note}
+            </p>
+          ) : null}
         </Panel>
 
         <Panel title="Fokus-Tags">
@@ -226,15 +280,22 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
               ))}
             </span>
           ) : (
-            <p className="text-xs text-warn-ink">Keine — nichts kann diese Struktur einer Übung zuordnen.</p>
+            <p className="text-xs text-warn-ink">
+              Keine — nichts kann diese Struktur einer Übung zuordnen.
+            </p>
           )}
           {point.deepens?.length ? (
             <>
-              <p className="mb-1 mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">vertieft</p>
+              <p className="mb-1 mt-3 border-t border-border-subtle pt-2 text-xs text-ink-muted">
+                vertieft
+              </p>
               <ul className="space-y-0.5 text-xs">
                 {point.deepens.map((d) => (
                   <li key={d}>
-                    <a href={href('struktur', d)} className="text-ink hover:text-brand-ink hover:underline">
+                    <a
+                      href={href('struktur', d)}
+                      className="text-ink hover:text-brand-ink hover:underline"
+                    >
                       {d}
                     </a>
                   </li>
@@ -255,7 +316,9 @@ function StrukturDetail({ graph, id }: { graph: GraphPayload; id: string }) {
                 const [sourceId, ...rest] = ref.split(':');
                 const key = rest.join(':');
                 const source = graph.sources.find((s) => s.source.id === sourceId);
-                const section = source?.sections.find((sec) => sec.entries.some((entry) => entry.key === key));
+                const section = source?.sections.find((sec) =>
+                  sec.entries.some((entry) => entry.key === key),
+                );
                 const entry = section?.entries.find((e) => e.key === key);
                 return (
                   <li key={ref}>

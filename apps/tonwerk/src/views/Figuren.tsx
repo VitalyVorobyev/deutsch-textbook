@@ -57,13 +57,17 @@ export function Figuren(): React.JSX.Element {
         <span className="tafel kopf-eyebrow">Katalog</span>
         <h1>Figuren</h1>
         <p>
-          Die Sprecherinnen und Sprecher des Kurses. Eine Szene bindet eine Figur samt Version, damit
-          sie nicht leise die Stimme wechselt, wenn der Katalog weiterzieht.
+          Die Sprecherinnen und Sprecher des Kurses. Eine Szene bindet eine Figur samt Version,
+          damit sie nicht leise die Stimme wechselt, wenn der Katalog weiterzieht.
         </p>
       </header>
 
       {laedt ? <Zustand art="laedt" text="Katalog wird gelesen …" /> : null}
-      {error ? <p className="hinweis hinweis-alarm" role="alert">{fehlerText(error)}</p> : null}
+      {error ? (
+        <p className="hinweis hinweis-alarm" role="alert">
+          {fehlerText(error)}
+        </p>
+      ) : null}
 
       {data ? (
         <div className="figuren">
@@ -74,7 +78,9 @@ export function Figuren(): React.JSX.Element {
       ) : null}
 
       {stimmen.error ? (
-        <p className="hinweis hinweis-alarm" role="alert">{fehlerText(stimmen.error)}</p>
+        <p className="hinweis hinweis-alarm" role="alert">
+          {fehlerText(stimmen.error)}
+        </p>
       ) : null}
       {gezeigt ? (
         <Stimmen
@@ -96,7 +102,11 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
     <article className="platte">
       <div className="figur-kopf">
         {portrait ? (
-          <img className="figur-portraet" src={portrait} alt={`Porträt von ${character.display_name}`} />
+          <img
+            className="figur-portraet"
+            src={portrait}
+            alt={`Porträt von ${character.display_name}`}
+          />
         ) : (
           <div className="figur-portraet figur-portraet-leer" aria-hidden="true">
             kein Porträt
@@ -107,9 +117,14 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
           <p className="zahl entfernt" style={{ fontSize: 'var(--ton-grad-11)' }}>
             {character.id} · v{zahl(character.version)}
           </p>
-          <div className="reihe" style={{ gap: 'var(--ton-mass-1)', marginTop: 'var(--ton-mass-2)' }}>
+          <div
+            className="reihe"
+            style={{ gap: 'var(--ton-mass-1)', marginTop: 'var(--ton-mass-2)' }}
+          >
             {character.narration_capable ? (
-              <Marke ton="signal" titel="Kann einen Lesetext allein tragen.">Erzählstimme</Marke>
+              <Marke ton="signal" titel="Kann einen Lesetext allein tragen.">
+                Erzählstimme
+              </Marke>
             ) : null}
             <Marke titel="In wie vielen Projekten diese Figur besetzt ist.">
               {zahl(character.usage_count)}× besetzt
@@ -119,11 +134,17 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
       </div>
 
       <div className="platte-leib stapel-eng">
-        {character.persona ? <p className="skript" style={{ fontSize: 'var(--ton-grad-14)' }}>{character.persona}</p> : null}
+        {character.persona ? (
+          <p className="skript" style={{ fontSize: 'var(--ton-grad-14)' }}>
+            {character.persona}
+          </p>
+        ) : null}
 
         <div className="reihe" style={{ gap: 'var(--ton-mass-1)' }}>
           {character.registers.map((register) => (
-            <Marke key={register} ton="messung">{REGISTER[register] ?? register}</Marke>
+            <Marke key={register} ton="messung">
+              {REGISTER[register] ?? register}
+            </Marke>
           ))}
           {character.age_band ? <Marke>{character.age_band}</Marke> : null}
         </div>
@@ -143,15 +164,27 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
           </div>
           <div className="wert">
             <dt>Nicht besetzen mit</dt>
-            <dd className="zahl" style={{ fontSize: 'var(--ton-grad-13)', color: character.incompatible_with.length ? 'var(--ton-alarm)' : undefined }}>
-              {character.incompatible_with.length ? character.incompatible_with.join(', ') : <span className="leer" />}
+            <dd
+              className="zahl"
+              style={{
+                fontSize: 'var(--ton-grad-13)',
+                color: character.incompatible_with.length ? 'var(--ton-alarm)' : undefined,
+              }}
+            >
+              {character.incompatible_with.length ? (
+                character.incompatible_with.join(', ')
+              ) : (
+                <span className="leer" />
+              )}
             </dd>
           </div>
           <div className="wert">
             <dt>Stimme</dt>
             <dd className="zahl" style={{ fontSize: 'var(--ton-grad-13)' }}>
               {character.voice_profile?.voice ?? '–'}
-              {character.voice_profile?.seed === undefined ? '' : ` · Seed ${character.voice_profile.seed}`}
+              {character.voice_profile?.seed === undefined
+                ? ''
+                : ` · Seed ${character.voice_profile.seed}`}
             </dd>
           </div>
         </dl>
@@ -163,14 +196,27 @@ function Figur({ character }: { character: Character }): React.JSX.Element {
         </p>
       ) : (
         character.demo_urls.map((url, index) => (
-          <Hoerprobe key={url} url={url} phrase={character.demo_phrases[index]} nummer={index + 1} />
+          <Hoerprobe
+            key={url}
+            url={url}
+            phrase={character.demo_phrases[index]}
+            nummer={index + 1}
+          />
         ))
       )}
     </article>
   );
 }
 
-function Hoerprobe({ url, phrase, nummer }: { url: string; phrase?: string; nummer: number }): React.JSX.Element {
+function Hoerprobe({
+  url,
+  phrase,
+  nummer,
+}: {
+  url: string;
+  phrase?: string;
+  nummer: number;
+}): React.JSX.Element {
   const blob = useEngineBlob(url);
   return (
     <div className="demo">
@@ -180,7 +226,9 @@ function Hoerprobe({ url, phrase, nummer }: { url: string; phrase?: string; numm
       {blob ? (
         <audio controls preload="none" src={blob} aria-label={`Hörprobe ${nummer}`} />
       ) : (
-        <p className="entfernt" style={{ fontSize: 'var(--ton-grad-11)' }}>wird geladen …</p>
+        <p className="entfernt" style={{ fontSize: 'var(--ton-grad-11)' }}>
+          wird geladen …
+        </p>
       )}
     </div>
   );

@@ -54,7 +54,9 @@ describe('semantic learning visuals', () => {
     expect(document.transcript).toEqual(
       expect.arrayContaining([
         expect.stringContaining('Voraussetzungen: Erfahrung im Verkauf · gute Deutschkenntnisse'),
-        expect.stringContaining('Wir bieten: eine Stelle in Teilzeit · jedes Jahr eine Weiterbildung'),
+        expect.stringContaining(
+          'Wir bieten: eine Stelle in Teilzeit · jedes Jahr eine Weiterbildung',
+        ),
       ]),
     );
   });

@@ -22,7 +22,13 @@ import { withBase } from '../../lib/url';
 import { ActionRow } from '../exercises/shared';
 import { useExplainLang, useUiLang } from '../hooks';
 import SpeakerButton from '../SpeakerButton';
-import { LID_OPTION_ORDER, lidText, questionLabel, type LidEntry, type LidNoteView } from './shared';
+import {
+  LID_OPTION_ORDER,
+  lidText,
+  questionLabel,
+  type LidEntry,
+  type LidNoteView,
+} from './shared';
 
 interface CommonProps {
   entry: LidEntry;
@@ -86,7 +92,12 @@ export function LidImages({ question, pdfUrl }: { question: LidQuestionData; pdf
     if (image.withheld) {
       return (
         <div className="rounded-md border border-dashed border-stone-300 bg-stone-50 px-4 py-3 text-sm text-stone-600 dark:border-stone-600 dark:bg-stone-900/50 dark:text-stone-300">
-          <p>{lidText('lid.imageWithheld', uiLang, { page: question.sourcePage, credit: image.withheld })}</p>
+          <p>
+            {lidText('lid.imageWithheld', uiLang, {
+              page: question.sourcePage,
+              credit: image.withheld,
+            })}
+          </p>
           <a
             href={`${pdfUrl}#page=${question.sourcePage}`}
             target="_blank"
@@ -116,7 +127,11 @@ export function LidImages({ question, pdfUrl }: { question: LidQuestionData; pdf
           // A lone picture gets a definite width before it loads (its own, the column's, or what
           // 55vh of height allows), so the height follows from the width/height attributes and
           // nothing below it jumps when the file arrives. Grid pictures sit in a fixed box.
-          style={several ? undefined : { width: `min(100%, ${image.width}px, calc(55vh * ${image.width / image.height}))` }}
+          style={
+            several
+              ? undefined
+              : { width: `min(100%, ${image.width}px, calc(55vh * ${image.width / image.height}))` }
+          }
           className={`mx-auto h-auto max-w-full rounded-md border border-stone-200 bg-white object-contain dark:border-stone-700 ${
             several ? 'max-h-full w-auto' : ''
           }`}
@@ -148,7 +163,9 @@ function Rationale({ note }: { note: LidNoteView | undefined }) {
       <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
         {t('lid.explanation', uiLang)}
         {note?.rationale_de && note.status === 'draft' && (
-          <span className="ml-2 font-normal normal-case tracking-normal">({t('lid.draft', uiLang)})</span>
+          <span className="ml-2 font-normal normal-case tracking-normal">
+            ({t('lid.draft', uiLang)})
+          </span>
         )}
       </p>
       {note?.rationale_de ? (
@@ -267,7 +284,8 @@ export default function LidQuestion(props: LidQuestionProps) {
 
   const chosen = props.mode === 'practice' ? practiceChoice : props.chosen;
   const reveal = props.mode === 'practice' ? practiceChoice !== null : props.reveal === true;
-  const interactive = props.mode === 'practice' ? practiceChoice === null : !props.reveal && !!props.onChoose;
+  const interactive =
+    props.mode === 'practice' ? practiceChoice === null : !props.reveal && !!props.onChoose;
 
   function choose(key: LidOptionKey) {
     if (props.mode === 'practice') {
@@ -332,12 +350,16 @@ export default function LidQuestion(props: LidQuestionProps) {
 
   return (
     <article lang="de" aria-labelledby={textId}>
-      <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">{header}</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">
+        {header}
+      </p>
       <div className="mt-2 flex items-start gap-1">
         <p id={textId} className="text-lg font-semibold leading-snug">
           {question.question}
         </p>
-        {mode === 'practice' && <SpeakerButton text={question.question} className="-mt-1 shrink-0" />}
+        {mode === 'practice' && (
+          <SpeakerButton text={question.question} className="-mt-1 shrink-0" />
+        )}
       </div>
 
       <LidImages question={question} pdfUrl={pdfUrl} />
@@ -348,10 +370,15 @@ export default function LidQuestion(props: LidQuestionProps) {
           const isKey = key === question.solution;
           let tone =
             'border-stone-300 hover:border-amber-500 dark:border-stone-600 dark:hover:border-amber-400';
-          if (reveal && isKey) tone = 'border-green-600 bg-green-50 text-green-900 dark:border-green-500 dark:bg-green-950/40 dark:text-green-200';
-          else if (reveal && isChosen) tone = 'border-red-500 bg-red-50 text-red-900 dark:bg-red-950/40 dark:text-red-200';
-          else if (reveal) tone = 'border-stone-200 text-stone-500 dark:border-stone-700 dark:text-stone-400';
-          else if (isChosen) tone = 'border-amber-600 bg-amber-50 ring-1 ring-amber-600 dark:bg-amber-950/40';
+          if (reveal && isKey)
+            tone =
+              'border-green-600 bg-green-50 text-green-900 dark:border-green-500 dark:bg-green-950/40 dark:text-green-200';
+          else if (reveal && isChosen)
+            tone = 'border-red-500 bg-red-50 text-red-900 dark:bg-red-950/40 dark:text-red-200';
+          else if (reveal)
+            tone = 'border-stone-200 text-stone-500 dark:border-stone-700 dark:text-stone-400';
+          else if (isChosen)
+            tone = 'border-amber-600 bg-amber-50 ring-1 ring-amber-600 dark:bg-amber-950/40';
           return (
             <button
               key={key}

@@ -60,8 +60,16 @@ const translateItem = (focus_evidence?: typeof PREDICATES) =>
 function answer(item: ReturnType<typeof translateItem>, typed: string) {
   cleanup(); // several answers per test — each needs its own mount
   const onResult = mock(() => {});
-  render(<Translate item={item} lang="en" onResult={onResult} locked={false}
-    onNext={mock(() => {})} nextLabel="Weiter →" />);
+  render(
+    <Translate
+      item={item}
+      lang="en"
+      onResult={onResult}
+      locked={false}
+      onNext={mock(() => {})}
+      nextLabel="Weiter →"
+    />,
+  );
   fireEvent.change(screen.getByRole('textbox'), { target: { value: typed } });
   fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
   const result = (onResult.mock.calls[0] as unknown[])[0] as { focus?: string | null };
@@ -108,8 +116,16 @@ describe('dictation focus attribution', () => {
   function hear(item: ReturnType<typeof listenItem>, typed: string) {
     cleanup();
     const onResult = mock(() => {});
-    render(<Listen item={item} lang="en" onResult={onResult} locked={false}
-      onNext={mock(() => {})} nextLabel="Weiter →" />);
+    render(
+      <Listen
+        item={item}
+        lang="en"
+        onResult={onResult}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
+    );
     fireEvent.change(screen.getByRole('textbox'), { target: { value: typed } });
     fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
     const result = (onResult.mock.calls[0] as unknown[])[0] as { focus?: string | null };
@@ -139,7 +155,11 @@ describe('dictation focus attribution', () => {
 describe('an authored failed predicate beats the dictation slip', () => {
   // Both of this item's own errors are one letter off the target and outside the closed class,
   // so `dictationSlip` calls each a typo. `adjektiv-nomen` is the capital and the -es.
-  const neuesItem = (focus_evidence?: { retained: string[]; failed: string[]; case_sensitive?: boolean }) =>
+  const neuesItem = (focus_evidence?: {
+    retained: string[];
+    failed: string[];
+    case_sensitive?: boolean;
+  }) =>
     listenItemSchema.parse({
       id: 'hoeren-diktat-neues',
       type: 'listen',
@@ -156,33 +176,54 @@ describe('an authored failed predicate beats the dictation slip', () => {
   function hear(item: ReturnType<typeof neuesItem>, typed: string) {
     cleanup();
     const onResult = mock(() => {});
-    render(<Listen item={item} lang="en" onResult={onResult} locked={false}
-      onNext={mock(() => {})} nextLabel="Weiter →" />);
+    render(
+      <Listen
+        item={item}
+        lang="en"
+        onResult={onResult}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
+    );
     fireEvent.change(screen.getByRole('textbox'), { target: { value: typed } });
     fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
-    const result = (onResult.mock.calls[0] as unknown[])[0] as { focus?: string | null; correct: boolean };
+    const result = (onResult.mock.calls[0] as unknown[])[0] as {
+      focus?: string | null;
+      correct: boolean;
+    };
     return { correct: result.correct, focus: focusForAttempt(item, result) };
   }
 
   test('a slip the predicate names is logged against the tag', () => {
     const item = neuesItem(PREDICATES);
-    expect(hear(item, 'Als Verkäufer habe ich immer etwas neues gelernt.'))
-      .toEqual({ correct: false, focus: 'adjektiv-nomen' });
-    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neue gelernt.'))
-      .toEqual({ correct: false, focus: 'adjektiv-nomen' });
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas neues gelernt.')).toEqual({
+      correct: false,
+      focus: 'adjektiv-nomen',
+    });
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neue gelernt.')).toEqual({
+      correct: false,
+      focus: 'adjektiv-nomen',
+    });
   });
 
   test('a slip elsewhere stays disclaimed, and the target keeps its tag', () => {
     const item = neuesItem(PREDICATES);
-    expect(hear(item, 'Als Verkaufer habe ich immer etwas Neues gelernt.'))
-      .toEqual({ correct: false, focus: undefined });
-    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neues gelernt.'))
-      .toEqual({ correct: true, focus: 'adjektiv-nomen' });
+    expect(hear(item, 'Als Verkaufer habe ich immer etwas Neues gelernt.')).toEqual({
+      correct: false,
+      focus: undefined,
+    });
+    expect(hear(item, 'Als Verkäufer habe ich immer etwas Neues gelernt.')).toEqual({
+      correct: true,
+      focus: 'adjektiv-nomen',
+    });
   });
 
   test('without predicates the same slip is still forgiven — the override is opt-in', () => {
-    expect(hear(neuesItem(), 'Als Verkäufer habe ich immer etwas neues gelernt.'))
-      .toEqual({ correct: false, focus: undefined });
+    expect(hear(neuesItem(), 'Als Verkäufer habe ich immer etwas neues gelernt.')).toEqual({
+      correct: false,
+      focus: undefined,
+    });
   });
 });
 
@@ -201,7 +242,9 @@ describe('island focus attribution', () => {
     typed.forEach((value, n) => fireEvent.change(inputs[n]!, { target: { value } }));
     fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
     return (onResult.mock.calls[0] as unknown[])[0] as {
-      correct: boolean; focus?: string | null; focusEvidence?: string;
+      correct: boolean;
+      focus?: string | null;
+      focusEvidence?: string;
     };
   }
 
@@ -214,15 +257,28 @@ describe('island focus attribution', () => {
       ...(focus_evidence ? { focus_evidence } : {}),
     });
   const clozeFocus = (item: ReturnType<typeof clozeItem>, typed: string[]) => {
-    const result = submit((onResult) => (
-      <Cloze item={item} lang="en" onResult={onResult} locked={false} onNext={mock(() => {})} nextLabel="Weiter →" />
-    ), typed);
+    const result = submit(
+      (onResult) => (
+        <Cloze
+          item={item}
+          lang="en"
+          onResult={onResult}
+          locked={false}
+          onNext={mock(() => {})}
+          nextLabel="Weiter →"
+        />
+      ),
+      typed,
+    );
     return { correct: result.correct, focus: focusForAttempt(item, result) };
   };
   const PREDICATES = { retained: ['^(falls|wenn)\\b'], failed: ['^(ob|als|wann|dass)\\b'] };
 
   test('a lower-case conjunction at the sentence head is correct', () => {
-    expect(clozeFocus(clozeItem(), ['falls', 'wird'])).toEqual({ correct: true, focus: 'falls-wenn' });
+    expect(clozeFocus(clozeItem(), ['falls', 'wird'])).toEqual({
+      correct: true,
+      focus: 'falls-wenn',
+    });
   });
 
   test('predicates decide: the wrong conjunction is charged, a slip in another gap is not', () => {
@@ -232,7 +288,10 @@ describe('island focus attribution', () => {
   });
 
   test('without predicates every miss keeps the tag, as before', () => {
-    expect(clozeFocus(clozeItem(), ['Falls', 'wirt'])).toEqual({ correct: false, focus: 'falls-wenn' });
+    expect(clozeFocus(clozeItem(), ['Falls', 'wirt'])).toEqual({
+      correct: false,
+      focus: 'falls-wenn',
+    });
   });
 
   test('an order item reads its predicates off the assembled sentence', () => {
@@ -247,11 +306,23 @@ describe('island focus attribution', () => {
     // word-order miss, and the genitive survived it.
     cleanup();
     const onResult = mock(() => {});
-    render(<Order item={item} lang="en" onResult={onResult} locked={false} onNext={mock(() => {})} nextLabel="Weiter →" />);
+    render(
+      <Order
+        item={item}
+        lang="en"
+        onResult={onResult}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
+    );
     for (const word of ['wir', 'gehen', 'Trotz', 'des', 'Regens', 'spazieren.'])
       fireEvent.click(screen.getByRole('button', { name: word }));
     fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
-    const result = (onResult.mock.calls[0] as unknown[])[0] as { correct: boolean; focus?: string | null };
+    const result = (onResult.mock.calls[0] as unknown[])[0] as {
+      correct: boolean;
+      focus?: string | null;
+    };
     expect(result.correct).toBe(false);
     expect(focusForAttempt(item, result)).toBeUndefined();
   });
@@ -262,14 +333,28 @@ describe('island focus attribution', () => {
       type: 'table',
       focus: 'indirekte-rede',
       columns: ['direkt', 'indirekt'],
-      rows: [{ label: 'kommen', cells: [
-        { answer: '„Kommst du mit?“', given: true }, { answer: 'ob du mitkommst' }] }],
+      rows: [
+        {
+          label: 'kommen',
+          cells: [{ answer: '„Kommst du mit?“', given: true }, { answer: 'ob du mitkommst' }],
+        },
+      ],
       focus_evidence: { retained: ['^ob\\b'], failed: ['^(dass|wenn)\\b'] },
     });
     const table = (typed: string[]) => {
-      const result = submit((onResult) => (
-        <TableFill item={item} lang="en" onResult={onResult} locked={false} onNext={mock(() => {})} nextLabel="Weiter →" />
-      ), typed);
+      const result = submit(
+        (onResult) => (
+          <TableFill
+            item={item}
+            lang="en"
+            onResult={onResult}
+            locked={false}
+            onNext={mock(() => {})}
+            nextLabel="Weiter →"
+          />
+        ),
+        typed,
+      );
       return focusForAttempt(item, result);
     };
     expect(table(['dass du mitkommst'])).toBe('indirekte-rede');

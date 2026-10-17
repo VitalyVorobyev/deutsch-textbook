@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  dueProbes,
-  probeFamilies,
-  remainingProbeBudget,
-  type DueProbe,
-} from '../../lib/probes';
+import { dueProbes, probeFamilies, remainingProbeBudget, type DueProbe } from '../../lib/probes';
 import { getAttempts, withReadRetry } from '../../lib/store';
 import ProgressLoadError from '../ProgressLoadError';
 import { withBase } from '../../lib/url';
@@ -40,25 +35,35 @@ export default function ProbeCatchUp({ sets }: { sets: TrainingSet[] }) {
 
   useEffect(() => {
     let cancelled = false;
-    void withReadRetry(() => getAttempts(), { surface: 'proben' }).then((attempts) => {
-      if (cancelled) return;
-      setLoadError(false);
-      setState({
-        due: dueProbes(families, attempts),
-        budget: remainingProbeBudget(families, attempts),
-      });
-    }, () => {
-      // "Keine Rückfragen fällig" from a stalled read is the one answer this page must
-      // never give: the probes stay due and the learner is told they are not.
-      if (!cancelled) setLoadError(true);
-    });
+    void withReadRetry(() => getAttempts(), { surface: 'proben' }).then(
+      (attempts) => {
+        if (cancelled) return;
+        setLoadError(false);
+        setState({
+          due: dueProbes(families, attempts),
+          budget: remainingProbeBudget(families, attempts),
+        });
+      },
+      () => {
+        // "Keine Rückfragen fällig" from a stalled read is the one answer this page must
+        // never give: the probes stay due and the learner is told they are not.
+        if (!cancelled) setLoadError(true);
+      },
+    );
     return () => {
       cancelled = true;
     };
   }, [families, loadRound]);
 
   if (loadError) {
-    return <ProgressLoadError onRetry={() => { setLoadError(false); setLoadRound((r) => r + 1); }} />;
+    return (
+      <ProgressLoadError
+        onRetry={() => {
+          setLoadError(false);
+          setLoadRound((r) => r + 1);
+        }}
+      />
+    );
   }
 
   if (state === null) {

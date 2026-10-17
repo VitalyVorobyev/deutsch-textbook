@@ -51,7 +51,11 @@ describe('sanitizeThemenResume — never trust a stored shape', () => {
       ctx,
     );
     expect(s.atlas).toEqual({
-      level: 'all', strand: 'all', selectedId: undefined, expandedGroup: undefined, drawer: 'closed',
+      level: 'all',
+      strand: 'all',
+      selectedId: undefined,
+      expandedGroup: undefined,
+      drawer: 'closed',
     });
     expect(s.overview).toEqual({ level: 'all', status: 'all', expandedId: undefined });
     expect(s.query).toBe('x');

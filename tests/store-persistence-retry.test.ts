@@ -31,7 +31,10 @@ describe('withPersistenceRetry late settle', () => {
   test('an attempt that settles after the deadline calls onLateSettle with its value', async () => {
     const { withPersistenceRetry, StoreStallError } = await import('../src/lib/store');
     let release: ((v: string) => void) | undefined;
-    const op = () => new Promise<string>((res) => { release = res; });
+    const op = () =>
+      new Promise<string>((res) => {
+        release = res;
+      });
     const late: string[] = [];
 
     const settled = withPersistenceRetry(op, {
@@ -52,11 +55,17 @@ describe('withPersistenceRetry late settle', () => {
     const { readStallLog } = await import('../src/lib/stall-log');
     let release: ((v: string) => void) | undefined;
 
-    const settled = withPersistenceRetry(() => new Promise<string>((res) => { release = res; }), {
-      surface: 'grade',
-      schedule: [],
-      deadlineMs: 30,
-    });
+    const settled = withPersistenceRetry(
+      () =>
+        new Promise<string>((res) => {
+          release = res;
+        }),
+      {
+        surface: 'grade',
+        schedule: [],
+        deadlineMs: 30,
+      },
+    );
     await settled.catch(() => {});
 
     const afterStall = readStallLog();
@@ -74,12 +83,18 @@ describe('withPersistenceRetry late settle', () => {
     let fail: ((e: unknown) => void) | undefined;
     const late: unknown[] = [];
 
-    const settled = withPersistenceRetry(() => new Promise<string>((_r, rej) => { fail = rej; }), {
-      surface: 'grade',
-      schedule: [],
-      deadlineMs: 30,
-      onLateSettle: (v) => late.push(v),
-    });
+    const settled = withPersistenceRetry(
+      () =>
+        new Promise<string>((_r, rej) => {
+          fail = rej;
+        }),
+      {
+        surface: 'grade',
+        schedule: [],
+        deadlineMs: 30,
+        onLateSettle: (v) => late.push(v),
+      },
+    );
     await settled.catch(() => {});
 
     fail!(new Error('aborted'));
@@ -93,7 +108,10 @@ describe('withPersistenceRetry late settle', () => {
     const late: string[] = [];
 
     const settled = withPersistenceRetry(
-      () => new Promise<string>((res) => { releases.push(res); }),
+      () =>
+        new Promise<string>((res) => {
+          releases.push(res);
+        }),
       { surface: 'grade', schedule: [10], deadlineMs: 40, onLateSettle: (v) => late.push(v) },
     );
     await settled.catch(() => {});

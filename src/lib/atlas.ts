@@ -3,12 +3,13 @@ import type { TopicNode } from './mastery';
 
 export function groupChildren(groups: AtlasGroup[]): Map<string | undefined, AtlasGroup[]> {
   const children = new Map<string | undefined, AtlasGroup[]>();
-  for (const group of groups) children.set(group.parent, [...(children.get(group.parent) ?? []), group]);
+  for (const group of groups)
+    children.set(group.parent, [...(children.get(group.parent) ?? []), group]);
   return children;
 }
 
 export function leafGroups(groups: AtlasGroup[]): AtlasGroup[] {
-  const parents = new Set(groups.flatMap((group) => group.parent ? [group.parent] : []));
+  const parents = new Set(groups.flatMap((group) => (group.parent ? [group.parent] : [])));
   return groups.filter((group) => !parents.has(group.id));
 }
 
@@ -36,7 +37,10 @@ export function crossGroupDependencies(groupId: string, topics: TopicNode[]) {
   }
   for (const topic of topics) {
     if (topic.group === groupId) continue;
-    if (topic.prerequisites.some((id) => own.some((candidate) => candidate.id === id)) && topic.group)
+    if (
+      topic.prerequisites.some((id) => own.some((candidate) => candidate.id === id)) &&
+      topic.group
+    )
       outgoing.add(topic.group);
   }
   return { incoming: [...incoming], outgoing: [...outgoing] };

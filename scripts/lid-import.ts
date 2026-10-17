@@ -25,7 +25,9 @@ import { repoRoot } from '@da/content/repo-root';
 
 const DATASET = 'https://yehoraltshuler.github.io/bamf-lid-dataset/';
 /** Which states' ten questions to carry. A second state is `--states BY,BE` and a topic for it. */
-const STATES = (process.argv.includes('--states') ? process.argv[process.argv.indexOf('--states') + 1]! : 'BY').split(',');
+const STATES = (
+  process.argv.includes('--states') ? process.argv[process.argv.indexOf('--states') + 1]! : 'BY'
+).split(',');
 const ALL_STATES = 16;
 const ROOT = repoRoot();
 const BANK = join(ROOT, 'data/lid/bank.yaml');
@@ -53,19 +55,37 @@ async function fetchBytes(path: string): Promise<Uint8Array> {
 }
 
 // --- the upstream shapes, read defensively: this is a third party's schema ---
-interface UpstreamImage { path: string; sha256: string; width: number; height: number; mime_type: string }
+interface UpstreamImage {
+  path: string;
+  sha256: string;
+  width: number;
+  height: number;
+  mime_type: string;
+}
 interface UpstreamQuestion {
-  id: string; officialNumber: number; scope: 'general' | 'state'; stateCode: string | null;
-  question: string; answers: Record<string, string>; images: UpstreamImage[];
-  sourcePage: number; solution: string; bamfInternalId: string;
+  id: string;
+  officialNumber: number;
+  scope: 'general' | 'state';
+  stateCode: string | null;
+  question: string;
+  answers: Record<string, string>;
+  images: UpstreamImage[];
+  sourcePage: number;
+  solution: string;
+  bamfInternalId: string;
 }
 
 const manifest = JSON.parse(new TextDecoder().decode(await fetchBytes('manifest.json')));
-if (manifest.schemaVersion !== 1) die(`unsupported dataset schemaVersion ${manifest.schemaVersion}`);
+if (manifest.schemaVersion !== 1)
+  die(`unsupported dataset schemaVersion ${manifest.schemaVersion}`);
 const questionsBytes = await fetchBytes(manifest.questions.url);
 if (sha(questionsBytes) !== manifest.questions.sha256)
-  die(`questions.json SHA-256 ${sha(questionsBytes)} does not match the manifest's ${manifest.questions.sha256}`);
-const upstream = JSON.parse(new TextDecoder().decode(questionsBytes)) as { questions: UpstreamQuestion[] };
+  die(
+    `questions.json SHA-256 ${sha(questionsBytes)} does not match the manifest's ${manifest.questions.sha256}`,
+  );
+const upstream = JSON.parse(new TextDecoder().decode(questionsBytes)) as {
+  questions: UpstreamQuestion[];
+};
 const all = upstream.questions;
 
 // --- counts and shape over the WHOLE dataset, before selecting anything ---
@@ -78,17 +98,25 @@ for (const q of all.filter((q) => q.scope === 'state')) {
   byState.set(q.stateCode, [...(byState.get(q.stateCode) ?? []), q]);
 }
 if (all.length !== 460 || general.length !== 300 || byState.size !== ALL_STATES)
-  die(`expected 460 = 300 general + 16 × 10, got ${all.length} = ${general.length} + ${byState.size} states`);
-for (const [state, qs] of byState) if (qs.length !== 10) die(`${state} has ${qs.length} questions, not 10`);
+  die(
+    `expected 460 = 300 general + 16 × 10, got ${all.length} = ${general.length} + ${byState.size} states`,
+  );
+for (const [state, qs] of byState)
+  if (qs.length !== 10) die(`${state} has ${qs.length} questions, not 10`);
 for (const q of all) {
   const keys = Object.keys(q.answers).sort().join('');
   if (keys !== 'abcd') die(`${q.id}: answers are ${keys}, not a–d`);
-  if (!LID_OPTION_KEYS.includes(q.solution as never)) die(`${q.id}: solution "${q.solution}" is not a–d`);
-  if (!q.question.trim() || LID_OPTION_KEYS.some((k) => !q.answers[k]!.trim())) die(`${q.id}: empty text`);
+  if (!LID_OPTION_KEYS.includes(q.solution as never))
+    die(`${q.id}: solution "${q.solution}" is not a–d`);
+  if (!q.question.trim() || LID_OPTION_KEYS.some((k) => !q.answers[k]!.trim()))
+    die(`${q.id}: empty text`);
 }
 
 // --- select, then fetch and verify every image the selection needs ---
-const selected = [...general, ...STATES.flatMap((s) => byState.get(s) ?? die(`no questions for ${s}`))];
+const selected = [
+  ...general,
+  ...STATES.flatMap((s) => byState.get(s) ?? die(`no questions for ${s}`)),
+];
 const imageBytes = new Map<string, Uint8Array>();
 for (const q of selected) {
   for (const image of q.images) {
@@ -172,14 +200,16 @@ const bank: LidBank = lidBankSchema.parse({
     url: DATASET,
     version: manifest.datasetVersion,
     questionsSha256: manifest.questions.sha256,
-    retrievedAt: previous && previous.dataset.version === manifest.datasetVersion
-      ? previous.dataset.retrievedAt
-      : new Date().toISOString().slice(0, 10),
+    retrievedAt:
+      previous && previous.dataset.version === manifest.datasetVersion
+        ? previous.dataset.retrievedAt
+        : new Date().toISOString().slice(0, 10),
   },
   states: STATES,
   questions: selected.map(toBank),
 });
-if (bank.questions.length !== 300 + 10 * STATES.length) die(`selected ${bank.questions.length} questions`);
+if (bank.questions.length !== 300 + 10 * STATES.length)
+  die(`selected ${bank.questions.length} questions`);
 
 // --- the diff a re-import must survive ---
 const blockers: string[] = [];
@@ -190,13 +220,20 @@ if (previous) {
   for (const id of before.keys()) if (!after.has(id)) blockers.push(`${id}: removed`);
   for (const [id, q] of after) {
     const old = before.get(id);
-    if (!old) { report.push(`${id}: added`); continue; }
+    if (!old) {
+      report.push(`${id}: added`);
+      continue;
+    }
     if (old.bamfInternalId !== q.bamfInternalId)
-      blockers.push(`${id}: BAMF id ${old.bamfInternalId} → ${q.bamfInternalId} (a different question under the same number?)`);
+      blockers.push(
+        `${id}: BAMF id ${old.bamfInternalId} → ${q.bamfInternalId} (a different question under the same number?)`,
+      );
     if (old.solution !== q.solution) blockers.push(`${id}: ANSWER ${old.solution} → ${q.solution}`);
     if (old.question !== q.question) report.push(`${id}: question text changed`);
-    for (const k of LID_OPTION_KEYS) if (old.answers[k] !== q.answers[k]) report.push(`${id}: option ${k} changed`);
-    if (JSON.stringify(old.images) !== JSON.stringify(q.images)) report.push(`${id}: images changed`);
+    for (const k of LID_OPTION_KEYS)
+      if (old.answers[k] !== q.answers[k]) report.push(`${id}: option ${k} changed`);
+    if (JSON.stringify(old.images) !== JSON.stringify(q.images))
+      report.push(`${id}: images changed`);
   }
 }
 
@@ -211,13 +248,16 @@ for (const line of blockers) console.log(`  ✗ ${line}`);
 const pdf = value('--pdf');
 if (pdf) {
   const actual = sha(readFileSync(pdf));
-  if (actual !== bank.source.pdfSha256) die(`${pdf} is ${actual}; the dataset was built from ${bank.source.pdfSha256}`);
+  if (actual !== bank.source.pdfSha256)
+    die(`${pdf} is ${actual}; the dataset was built from ${bank.source.pdfSha256}`);
   console.log(`✓ ${pdf} is the PDF the dataset was extracted from`);
 }
 if (flag('--crosscheck')) await crosscheck(bank);
 
 if (blockers.length && !flag('--accept-changes'))
-  die(`${blockers.length} change(s) need review — verify each against the BAMF online test centre, then rerun with --accept-changes`);
+  die(
+    `${blockers.length} change(s) need review — verify each against the BAMF online test centre, then rerun with --accept-changes`,
+  );
 if (flag('--check')) {
   console.log('✓ check only — nothing written');
   process.exit(0);
@@ -232,7 +272,9 @@ for (const q of bank.questions)
       rmSync(target, { force: true });
       continue;
     }
-    const upstreamPath = selected.find((s) => s.id === q.id)!.images.find((i) => i.sha256 === image.sha256)!.path;
+    const upstreamPath = selected
+      .find((s) => s.id === q.id)!
+      .images.find((i) => i.sha256 === image.sha256)!.path;
     writeFileSync(target, imageBytes.get(upstreamPath)!);
     written++;
   }
@@ -253,7 +295,11 @@ console.log(
  * is reported as unmatched rather than guessed at.
  */
 async function crosscheck(b: LidBank): Promise<void> {
-  const norm = (s: string) => s.normalize('NFKC').toLowerCase().replace(/[^0-9a-zäöüß]+/g, '');
+  const norm = (s: string) =>
+    s
+      .normalize('NFKC')
+      .toLowerCase()
+      .replace(/[^0-9a-zäöüß]+/g, '');
   type Key = { question: string; options: string[]; correct: number };
   const sources: { name: string; url: string; keys: (json: unknown) => Map<string, Key> }[] = [
     {
@@ -264,13 +310,23 @@ async function crosscheck(b: LidBank): Promise<void> {
         const map = new Map<string, Key>();
         // 300 general questions in catalogue order, then each state's ten.
         list.slice(0, 300).forEach((q, i) =>
-          map.set(`general-${String(i + 1).padStart(3, '0')}`, { question: q.question, options: q.answers, correct: q.correct }));
+          map.set(`general-${String(i + 1).padStart(3, '0')}`, {
+            question: q.question,
+            options: q.answers,
+            correct: q.correct,
+          }),
+        );
         for (const state of b.states) {
           const first = b.questions.find((q) => q.id === `${state}-01`)!;
           const start = list.findIndex((q) => norm(q.question) === norm(first.question));
           if (start >= 0)
             list.slice(start, start + 10).forEach((q, i) =>
-              map.set(`${state}-${String(i + 1).padStart(2, '0')}`, { question: q.question, options: q.answers, correct: q.correct }));
+              map.set(`${state}-${String(i + 1).padStart(2, '0')}`, {
+                question: q.question,
+                options: q.answers,
+                correct: q.correct,
+              }),
+            );
         }
         return map;
       },
@@ -281,11 +337,18 @@ async function crosscheck(b: LidBank): Promise<void> {
       keys: (json) => {
         const data = json as {
           general: { id: number; de: string; options: { de: string }[]; correct: number }[];
-          states: Record<string, { questions: { de: string; options: (string | { de: string })[]; correct: number }[] }>;
+          states: Record<
+            string,
+            { questions: { de: string; options: (string | { de: string })[]; correct: number }[] }
+          >;
         };
         const map = new Map<string, Key>();
         for (const q of data.general)
-          map.set(`general-${String(q.id).padStart(3, '0')}`, { question: q.de, options: q.options.map((o) => o.de), correct: q.correct });
+          map.set(`general-${String(q.id).padStart(3, '0')}`, {
+            question: q.de,
+            options: q.options.map((o) => o.de),
+            correct: q.correct,
+          });
         const names: Record<string, string> = { BY: 'bayern' };
         for (const state of b.states)
           data.states[names[state] ?? '']?.questions.forEach((q, i) =>
@@ -293,14 +356,18 @@ async function crosscheck(b: LidBank): Promise<void> {
               question: q.de,
               options: q.options.map((o) => (typeof o === 'string' ? o : o.de)),
               correct: q.correct,
-            }));
+            }),
+          );
         return map;
       },
     },
   ];
   for (const source of sources) {
     const res = await fetch(source.url);
-    if (!res.ok) { console.log(`  ? ${source.name}: HTTP ${res.status}, skipped`); continue; }
+    if (!res.ok) {
+      console.log(`  ? ${source.name}: HTTP ${res.status}, skipped`);
+      continue;
+    }
     const keys = source.keys(await res.json());
     let agree = 0;
     const unmatched: string[] = [];
@@ -313,13 +380,17 @@ async function crosscheck(b: LidBank): Promise<void> {
         continue;
       }
       if (norm(k.options[k.correct]!) === norm(q.answers[q.solution])) agree++;
-      else disagree.push(`${q.id} (ours ${q.solution}: "${q.answers[q.solution]}", theirs "${k.options[k.correct]}")`);
+      else
+        disagree.push(
+          `${q.id} (ours ${q.solution}: "${q.answers[q.solution]}", theirs "${k.options[k.correct]}")`,
+        );
     }
     console.log(
       `  ${disagree.length ? '✗' : '✓'} ${source.name}: ${agree} agree · ${disagree.length} disagree · ` +
         `${unmatched.length} worded differently, not compared`,
     );
     for (const d of disagree) console.log(`      ${d}`);
-    if (unmatched.length && unmatched.length <= 10) console.log(`      not compared: ${unmatched.join(', ')}`);
+    if (unmatched.length && unmatched.length <= 10)
+      console.log(`      not compared: ${unmatched.join(', ')}`);
   }
 }

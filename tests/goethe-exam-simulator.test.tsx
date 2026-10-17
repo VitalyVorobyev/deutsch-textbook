@@ -191,7 +191,9 @@ describe('Üben', () => {
     fireEvent.click(richtig[0]!); // item 1, key 'r'
     expect(screen.getByText('richtig: 1/1')).toBeTruthy();
     // the key is on screen and the item is settled — a second choice would only edit the score
-    expect(screen.getAllByRole('button', { name: 'Richtig' })[0]!.hasAttribute('disabled')).toBe(true);
+    expect(screen.getAllByRole('button', { name: 'Richtig' })[0]!.hasAttribute('disabled')).toBe(
+      true,
+    );
 
     fireEvent.click(screen.getByRole('button', { name: 'Beenden' }));
 

@@ -12,7 +12,8 @@ import type { Attempt } from '../src/lib/store';
 
 // Local-time constructors on purpose: "today" is a *local* calendar day, the same
 // convention probesTakenToday/sameLocalDay already use (see tests/probes.test.ts).
-const at = (day: number, hour: number, minute = 0) => new Date(2026, 5, day, hour, minute).getTime();
+const at = (day: number, hour: number, minute = 0) =>
+  new Date(2026, 5, day, hour, minute).getTime();
 
 const family: ProbeFamily = {
   setId: 'a1/probe-akkusativ',
@@ -40,7 +41,9 @@ const other: ProbeFamily = {
   ],
 };
 
-function attempt(over: Partial<Attempt> & { setId: string; itemId: string; ts: number; correct: boolean }): Attempt {
+function attempt(
+  over: Partial<Attempt> & { setId: string; itemId: string; ts: number; correct: boolean },
+): Attempt {
   return {
     itemType: 'translate',
     given: '',

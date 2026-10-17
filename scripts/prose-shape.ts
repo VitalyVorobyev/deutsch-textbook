@@ -69,12 +69,18 @@ if (worstOnly) {
   const lines = rows
     .map((row) => ({ ...row, max: worstOf(row.stats) }))
     .sort((a, b) => b.max - a.max)
-    .map((row) => `${String(row.max).padStart(5)}w  ${row.max > MAX_PARAGRAPH_WORDS ? '✗' : '·'}  ${row.file}`);
+    .map(
+      (row) =>
+        `${String(row.max).padStart(5)}w  ${row.max > MAX_PARAGRAPH_WORDS ? '✗' : '·'}  ${row.file}`,
+    );
   process.stdout.write(
     [`Longest paragraph per file (cap ${MAX_PARAGRAPH_WORDS}):`, ...lines, ''].join('\n'),
   );
 } else {
-  const out: string[] = ['| File | half | paras | mean | p90 | max | >30w |', '| --- | --- | ---: | ---: | ---: | ---: | ---: |'];
+  const out: string[] = [
+    '| File | half | paras | mean | p90 | max | >30w |',
+    '| --- | --- | ---: | ---: | ---: | ---: | ---: |',
+  ];
   for (const { file, stats } of rows) {
     for (const lang of PROSE_LANGS) {
       const s = stats[lang];

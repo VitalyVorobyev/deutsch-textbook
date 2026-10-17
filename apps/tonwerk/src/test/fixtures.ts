@@ -77,8 +77,20 @@ export const registryFixture = {
   ],
   recordings_without_exercises: ['ls-arbeit-02'],
   exercises_without_recordings: [
-    { set: 'wohnen-uebung', level: 'A1', item: 'hoeren-1', recording: null, reason: 'no-recording' },
-    { set: 'arbeit-drill', level: 'A2', item: 'hoeren-3', recording: 'ls-nicht-geplant', reason: 'unknown-recording' },
+    {
+      set: 'wohnen-uebung',
+      level: 'A1',
+      item: 'hoeren-1',
+      recording: null,
+      reason: 'no-recording',
+    },
+    {
+      set: 'arbeit-drill',
+      level: 'A2',
+      item: 'hoeren-3',
+      recording: 'ls-nicht-geplant',
+      reason: 'unknown-recording',
+    },
   ],
   summary: {
     listening: 2,
@@ -205,7 +217,10 @@ export const charactersFixture = {
       narration_capable: true,
       incompatible_with: ['klara'],
       status: 'draft-profile',
-      demo_phrases: ['Heute treffen wir uns um halb sechs am Bahnhof.', 'Hast du alles verstanden?'],
+      demo_phrases: [
+        'Heute treffen wir uns um halb sechs am Bahnhof.',
+        'Hast du alles verstanden?',
+      ],
       voice_profile: { voice: 'Vivian', seed: 100, style: 'Sprich warm.', pace: 0.96 },
       usage_count: 3,
       demo_urls: ['/api/characters/lena/demos/0', '/api/characters/lena/demos/1'],
@@ -267,7 +282,13 @@ export const sceneDocumentFixture = {
       // `voice_ref` is stated rather than left to the schema's default: the cast panel branches on
       // it, and a fixture that omitted it would be testing what `undefined` does instead of what a
       // preset-voice cast member does.
-      voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: 'Sprich freundlich.', voice_ref: null },
+      voice: {
+        engine: 'qwen_tts',
+        voice: 'Vivian',
+        seed: 100,
+        style: 'Sprich freundlich.',
+        voice_ref: null,
+      },
     },
     {
       role: 'Mieter',
@@ -352,7 +373,14 @@ export const sceneDetailFixture = {
     },
   ],
   history: [
-    { number: 4, scene_sha256: 'abc1234def5678', created_at: '2026-08-14T09:00:00+00:00', has_qa: true, has_approval: true, has_exercise: true },
+    {
+      number: 4,
+      scene_sha256: 'abc1234def5678',
+      created_at: '2026-08-14T09:00:00+00:00',
+      has_qa: true,
+      has_approval: true,
+      has_exercise: true,
+    },
   ],
   qa: {
     passed: true,
@@ -519,15 +547,62 @@ export const voicesFixture = {
     },
   ],
   rules: [
-    { id: 'subject-named', applies: 'always', minors_only: false, requirement: 'The consent names the person whose voice was recorded.' },
-    { id: 'purpose-stated', applies: 'always', minors_only: false, requirement: 'The authorised purpose is written out, not implied.' },
-    { id: 'retention-stated', applies: 'always', minors_only: false, requirement: 'The consent states how long the reference recording is kept.' },
-    { id: 'reference-sha-binding', applies: 'always', minors_only: false, requirement: 'The consent names the SHA-256 of exactly this recording.' },
-    { id: 'minor-guardian', applies: 'always', minors_only: true, requirement: "A minor's guardian has given consent and attested it." },
-    { id: 'minor-assent', applies: 'always', minors_only: true, requirement: "A minor's own assent is confirmed and attested by the guardian." },
-    { id: 'evaluation-bars-publication', applies: 'evaluation', minors_only: false, requirement: 'Evaluation scope: the consent explicitly prohibits upload, publication and git.' },
-    { id: 'publication-permits-course', applies: 'publication', minors_only: false, requirement: 'Publication scope: a permitted use explicitly allows publishing in this course.' },
-    { id: 'publication-bars-redistribution', applies: 'publication', minors_only: false, requirement: 'Publication scope: redistribution outside the course is still prohibited.' },
+    {
+      id: 'subject-named',
+      applies: 'always',
+      minors_only: false,
+      requirement: 'The consent names the person whose voice was recorded.',
+    },
+    {
+      id: 'purpose-stated',
+      applies: 'always',
+      minors_only: false,
+      requirement: 'The authorised purpose is written out, not implied.',
+    },
+    {
+      id: 'retention-stated',
+      applies: 'always',
+      minors_only: false,
+      requirement: 'The consent states how long the reference recording is kept.',
+    },
+    {
+      id: 'reference-sha-binding',
+      applies: 'always',
+      minors_only: false,
+      requirement: 'The consent names the SHA-256 of exactly this recording.',
+    },
+    {
+      id: 'minor-guardian',
+      applies: 'always',
+      minors_only: true,
+      requirement: "A minor's guardian has given consent and attested it.",
+    },
+    {
+      id: 'minor-assent',
+      applies: 'always',
+      minors_only: true,
+      requirement: "A minor's own assent is confirmed and attested by the guardian.",
+    },
+    {
+      id: 'evaluation-bars-publication',
+      applies: 'evaluation',
+      minors_only: false,
+      requirement:
+        'Evaluation scope: the consent explicitly prohibits upload, publication and git.',
+    },
+    {
+      id: 'publication-permits-course',
+      applies: 'publication',
+      minors_only: false,
+      requirement:
+        'Publication scope: a permitted use explicitly allows publishing in this course.',
+    },
+    {
+      id: 'publication-bars-redistribution',
+      applies: 'publication',
+      minors_only: false,
+      requirement: 'Publication scope: redistribution outside the course is still prohibited.',
+    },
   ],
   engines: ['qwen_tts_base'],
   demo_phrases: [
@@ -538,7 +613,8 @@ export const voicesFixture = {
 };
 
 export function stubApi(overrides: Partial<Api> = {}): Api {
-  const refuse = (name: string) => () => Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
+  const refuse = (name: string) => () =>
+    Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
   return {
     registry: refuse('registry'),
     scenes: refuse('scenes'),

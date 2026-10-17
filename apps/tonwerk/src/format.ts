@@ -52,5 +52,7 @@ export function zeitpunkt(iso: string | null | undefined): string {
 
 /** A plain integer with a German thousands separator. */
 export function zahl(value: number | null | undefined): string {
-  return value === null || value === undefined || !Number.isFinite(value) ? '–' : value.toLocaleString('de-DE');
+  return value === null || value === undefined || !Number.isFinite(value)
+    ? '–'
+    : value.toLocaleString('de-DE');
 }

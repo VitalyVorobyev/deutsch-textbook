@@ -39,15 +39,13 @@ function snapshot(over: Partial<AuditSnapshot> = {}): AuditSnapshot {
     ...over,
   };
   value.attempts = value.attempts.map((attempt) =>
-    'itemRevision' in attempt ? attempt : { ...attempt, itemRevision: 1 });
+    'itemRevision' in attempt ? attempt : { ...attempt, itemRevision: 1 },
+  );
   return value;
 }
 
 function catalog(...items: CatalogItem[]) {
-  return new Map(items.map((item) => [
-    `${item.setId}:${item.id}`,
-    { revision: 1, ...item },
-  ]));
+  return new Map(items.map((item) => [`${item.setId}:${item.id}`, { revision: 1, ...item }]));
 }
 
 describe('progress audit', () => {
@@ -58,8 +56,9 @@ describe('progress audit', () => {
     writeFileSync(join(dir, '2026-07-10.json'), '{}');
     writeFileSync(join(dir, '2026-07-13.json'), '{}');
     expect(resolveSnapshotPath(root, 'vitaly')).toBe(join(dir, '2026-07-13.json'));
-    expect(resolveSnapshotPath(root, undefined, 'progress/vitaly/2026-07-10.json'))
-      .toBe(join(dir, '2026-07-10.json'));
+    expect(resolveSnapshotPath(root, undefined, 'progress/vitaly/2026-07-10.json')).toBe(
+      join(dir, '2026-07-10.json'),
+    );
   });
 
   // Iterates the schema's own version list: when a v7 is added there, this test starts
@@ -70,12 +69,15 @@ describe('progress audit', () => {
     expect(SUPPORTED_SNAPSHOT_VERSIONS).toContain(6);
     for (const version of SUPPORTED_SNAPSHOT_VERSIONS) {
       const path = join(root, `${version}.json`);
-      writeFileSync(path, JSON.stringify({
-        version,
-        exportedAt: new Date(ts(13)).toISOString(),
-        attempts: [],
-        cards: {},
-      }));
+      writeFileSync(
+        path,
+        JSON.stringify({
+          version,
+          exportedAt: new Date(ts(13)).toISOString(),
+          attempts: [],
+          cards: {},
+        }),
+      );
       const parsed = readSnapshot(path);
       expect(parsed.version).toBe(version);
       expect(parsed.sessions).toEqual([]);
@@ -85,13 +87,31 @@ describe('progress audit', () => {
 
   test('never replays an attempt whose revision is known to have changed', () => {
     const item: CatalogItem = {
-      setId: 'a2/x', id: 'changed', revision: 2, type: 'translate',
-      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+      setId: 'a2/x',
+      id: 'changed',
+      revision: 2,
+      type: 'translate',
+      answer: 'Ich fahre morgen.',
+      key_tokens: ['fahre'],
+      focus: 'verb-position',
     };
-    const audit = buildAudit(snapshot({ attempts: [{
-      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: 1, ts: ts(11),
-    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Ich fahre morgen.',
+            focus: item.focus,
+            itemRevision: 1,
+            ts: ts(11),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     // The learner answered revision 1; the item ships revision 2. Grading that answer against
     // today's key would grade a question they were never asked, so it keeps its logged result.
@@ -106,13 +126,30 @@ describe('progress audit', () => {
   // rejections that today's grader accepts back into the focus signal.
   test('keeps legacy attempts without a revision in the grading review', () => {
     const item: CatalogItem = {
-      setId: 'a2/x', id: 'stable', type: 'translate',
-      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+      setId: 'a2/x',
+      id: 'stable',
+      type: 'translate',
+      answer: 'Ich fahre morgen.',
+      key_tokens: ['fahre'],
+      focus: 'verb-position',
     };
-    const audit = buildAudit(snapshot({ attempts: [{
-      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: undefined, ts: ts(10),
-    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Ich fahre morgen.',
+            focus: item.focus,
+            itemRevision: undefined,
+            ts: ts(10),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     // logged wrong, but the current grader accepts it verbatim: surfaced for review …
     expect(audit.gradingCandidates).toHaveLength(1);
@@ -127,13 +164,30 @@ describe('progress audit', () => {
     // `delayedSummary` selects probes with /(^|\/)probe-/ — a setId that cannot match makes
     // every probe assertion below vacuously true, which is how this path went untested.
     const item: CatalogItem = {
-      setId: 'a2/probe-x', id: 'p1', type: 'translate',
-      answer: 'Ich fahre morgen.', key_tokens: ['fahre'], focus: 'verb-position',
+      setId: 'a2/probe-x',
+      id: 'p1',
+      type: 'translate',
+      answer: 'Ich fahre morgen.',
+      key_tokens: ['fahre'],
+      focus: 'verb-position',
     };
-    const audit = buildAudit(snapshot({ attempts: [{
-      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-      given: 'Ich fahre morgen.', focus: item.focus, itemRevision: undefined, ts: ts(10),
-    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Ich fahre morgen.',
+            focus: item.focus,
+            itemRevision: undefined,
+            ts: ts(10),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     expect(audit.delayed.probes.attempts).toBe(1);
     expect(audit.delayed.probes.loggedCorrect).toBe(0);
@@ -146,16 +200,33 @@ describe('progress audit', () => {
   // it scores 59%. Those are different findings, and the audit must not conflate them.
   test('counts a target-retained miss as retention, not as a failure', () => {
     const item: CatalogItem = {
-      setId: 'a1/probe-x', id: 'p1', type: 'translate',
-      answer: 'Ich fahre mit dem Bus.', key_tokens: ['fahre'], focus: 'verbzweit',
+      setId: 'a1/probe-x',
+      id: 'p1',
+      type: 'translate',
+      answer: 'Ich fahre mit dem Bus.',
+      key_tokens: ['fahre'],
+      focus: 'verbzweit',
     };
-    const audit = buildAudit(snapshot({ attempts: [{
-      // `fahre` — the token `verbzweit` grades — is right and in position 2. The error is `den`
-      // for `dem`: a real one (closed-class swaps are never forgiven as typos), but a dative
-      // error, not a word-order one. So the attempt is wrong, and `verbzweit` was retained.
-      setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-      given: 'Ich fahre mit den Bus.', focus: item.focus, itemRevision: undefined, ts: ts(10),
-    }] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            // `fahre` — the token `verbzweit` grades — is right and in position 2. The error is `den`
+            // for `dem`: a real one (closed-class swaps are never forgiven as typos), but a dative
+            // error, not a word-order one. So the attempt is wrong, and `verbzweit` was retained.
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Ich fahre mit den Bus.',
+            focus: item.focus,
+            itemRevision: undefined,
+            ts: ts(10),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     expect(audit.delayed.probes.focusFailed).toBe(0);
     expect(audit.delayed.probes.focusRetained).toBe(1);
@@ -170,18 +241,51 @@ describe('progress audit', () => {
   // data points, never a 100% pass.
   test('reports a competence below the interval count as pending, never as a pass', () => {
     const items: CatalogItem[] = [
-      { setId: 'a1/probe-a', id: 'v1', type: 'translate', answer: 'Ich bin da.', focus: 'kopula-sein' },
-      { setId: 'a1/probe-a', id: 'v2', type: 'translate', answer: 'Du bist da.', focus: 'kopula-sein' },
-      { setId: 'a1/probe-b', id: 'v1', type: 'translate', answer: 'Ich habe Zeit.', focus: 'genus' },
+      {
+        setId: 'a1/probe-a',
+        id: 'v1',
+        type: 'translate',
+        answer: 'Ich bin da.',
+        focus: 'kopula-sein',
+      },
+      {
+        setId: 'a1/probe-a',
+        id: 'v2',
+        type: 'translate',
+        answer: 'Du bist da.',
+        focus: 'kopula-sein',
+      },
+      {
+        setId: 'a1/probe-b',
+        id: 'v1',
+        type: 'translate',
+        answer: 'Ich habe Zeit.',
+        focus: 'genus',
+      },
       { setId: 'a1/probe-b', id: 'v2', type: 'translate', answer: 'Er hat Zeit.', focus: 'genus' },
-      { setId: 'a1/probe-b', id: 'v3', type: 'translate', answer: 'Wir haben Zeit.', focus: 'genus' },
+      {
+        setId: 'a1/probe-b',
+        id: 'v3',
+        type: 'translate',
+        answer: 'Wir haben Zeit.',
+        focus: 'genus',
+      },
     ];
-    const audit = buildAudit(snapshot({
-      attempts: items.map((item, i) => ({
-        setId: item.setId, itemId: item.id, itemType: 'translate' as const, correct: true,
-        given: item.answer!, focus: item.focus, itemRevision: undefined, ts: ts(8 + i),
-      })),
-    }), { snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: items.map((item, i) => ({
+          setId: item.setId,
+          itemId: item.id,
+          itemType: 'translate' as const,
+          correct: true,
+          given: item.answer!,
+          focus: item.focus,
+          itemRevision: undefined,
+          ts: ts(8 + i),
+        })),
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13) },
+    );
 
     const kopula = audit.delayed.probes.byCompetence.find((r) => r.focus === 'kopula-sein');
     const genus = audit.delayed.probes.byCompetence.find((r) => r.focus === 'genus');
@@ -200,14 +304,26 @@ describe('progress audit', () => {
   // the row reads 100% however badly it went. That is an instrument gap and must never be readable.
   test('never lets an untagged probe family count toward the gate', () => {
     const item: CatalogItem = {
-      setId: 'a1/probe-untagged', id: 'p1', type: 'translate', answer: 'Hallo, ich heiße Marta.',
+      setId: 'a1/probe-untagged',
+      id: 'p1',
+      type: 'translate',
+      answer: 'Hallo, ich heiße Marta.',
     };
-    const audit = buildAudit(snapshot({
-      attempts: [10, 11, 12].map((day) => ({
-        setId: item.setId, itemId: item.id, itemType: 'translate' as const, correct: false,
-        given: 'völlig falsch', focus: undefined, itemRevision: undefined, ts: ts(day),
-      })),
-    }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [10, 11, 12].map((day) => ({
+          setId: item.setId,
+          itemId: item.id,
+          itemType: 'translate' as const,
+          correct: false,
+          given: 'völlig falsch',
+          focus: undefined,
+          itemRevision: undefined,
+          ts: ts(day),
+        })),
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     const row = audit.delayed.probes.byCompetence.find((r) => r.focus === undefined);
     expect(row?.attempts).toBe(3); // enough attempts …
@@ -220,22 +336,56 @@ describe('progress audit', () => {
   });
 
   test('aggregates partial credit, response modes, cards, probes and delayed evidence', () => {
-    const audit = buildAudit(snapshot({
-      attempts: [
-        { setId: 'a1/x', itemId: 'table', itemType: 'table', correct: false,
-          correctParts: 3, totalParts: 4, given: '', responseMode: 'writing', ts: ts(1) },
-        { setId: 'a1/x', itemId: 'table', itemType: 'table', correct: true,
-          given: '', responseMode: 'writing', ts: ts(4) },
-        { setId: 'a1/probe-x', itemId: 'variant-a', itemType: 'translate', correct: true,
-          given: 'Gut.', responseMode: 'writing', ts: ts(4) },
-        { setId: 'a1/x', itemId: 'speak', itemType: 'speak', correct: true,
-          evidence: 'practice', given: '', responseMode: 'spoken-production', ts: ts(4) },
-      ],
-      cards: {
-        'deck::wort::de-x': { lapses: 1 },
-        'deck::wort::x-de': { lapses: 2 },
-      },
-    }), { snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: 'a1/x',
+            itemId: 'table',
+            itemType: 'table',
+            correct: false,
+            correctParts: 3,
+            totalParts: 4,
+            given: '',
+            responseMode: 'writing',
+            ts: ts(1),
+          },
+          {
+            setId: 'a1/x',
+            itemId: 'table',
+            itemType: 'table',
+            correct: true,
+            given: '',
+            responseMode: 'writing',
+            ts: ts(4),
+          },
+          {
+            setId: 'a1/probe-x',
+            itemId: 'variant-a',
+            itemType: 'translate',
+            correct: true,
+            given: 'Gut.',
+            responseMode: 'writing',
+            ts: ts(4),
+          },
+          {
+            setId: 'a1/x',
+            itemId: 'speak',
+            itemType: 'speak',
+            correct: true,
+            evidence: 'practice',
+            given: '',
+            responseMode: 'spoken-production',
+            ts: ts(4),
+          },
+        ],
+        cards: {
+          'deck::wort::de-x': { lapses: 1 },
+          'deck::wort::x-de': { lapses: 2 },
+        },
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13) },
+    );
 
     const table = audit.byItemType.find((row) => row.name === 'table')!;
     expect(table.score).toBe(1.75);
@@ -257,12 +407,22 @@ describe('progress audit', () => {
         currentCorrect: 1,
         focusRetained: 0,
         focusFailed: 0,
-        byCompetence: [{
-          level: 'A1', focus: undefined, label: '(unattributed outcome)', families: 1, attempts: 1,
-          correct: 1, retained: 0, failed: 0,
-          retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } },
-        }],
+        byCompetence: [
+          {
+            level: 'A1',
+            focus: undefined,
+            label: '(unattributed outcome)',
+            families: 1,
+            attempts: 1,
+            correct: 1,
+            retained: 0,
+            failed: 0,
+            retentionPct: 100,
+            maxElapsedDays: 0,
+            readable: false,
+            formats: { translate: { attempts: 1, survived: 1, unknown: 0 } },
+          },
+        ],
         byReadability: [],
         projectTo: '2026-08-03',
         dueNow: 0,
@@ -292,10 +452,15 @@ describe('progress audit', () => {
       given: 'Gestern haben wir die Pizza gegessen.',
       focus: 'haben-sein',
     };
-    const audit = buildAudit(snapshot({ attempts: [
-      { ...rejected, ts: ts(10) },
-      { ...rejected, ts: ts(11) },
-    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          { ...rejected, ts: ts(10) },
+          { ...rejected, ts: ts(11) },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     expect(audit.gradingCandidates).toHaveLength(1);
     expect(audit.gradingCandidates[0]?.rejected[0]?.count).toBe(2);
@@ -310,15 +475,38 @@ describe('progress audit', () => {
 
   test('keeps review reasons on the rendering that earned them', () => {
     const item: CatalogItem = {
-      setId: 'a2/perfekt', id: 'pizza', type: 'translate', focus: 'haben-sein',
-      answer: 'Gestern haben wir eine Pizza gegessen.', key_tokens: ['haben', 'gegessen'],
+      setId: 'a2/perfekt',
+      id: 'pizza',
+      type: 'translate',
+      focus: 'haben-sein',
+      answer: 'Gestern haben wir eine Pizza gegessen.',
+      key_tokens: ['haben', 'gegessen'],
     };
-    const audit = buildAudit(snapshot({ attempts: [
-      { setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-        given: 'Gestern haben wir die Pizza gegessen.', focus: 'haben-sein', ts: ts(10) },
-      { setId: item.setId, itemId: item.id, itemType: 'translate', correct: false,
-        given: 'Gestern sind wir eine Pizza gegessen.', focus: 'haben-sein', ts: ts(11) },
-    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Gestern haben wir die Pizza gegessen.',
+            focus: 'haben-sein',
+            ts: ts(10),
+          },
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Gestern sind wir eine Pizza gegessen.',
+            focus: 'haben-sein',
+            ts: ts(11),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     const rows = audit.gradingCandidates[0]!.rejected;
     const queued = rows.find((row) => row.given.includes('haben'));
@@ -339,49 +527,94 @@ describe('progress audit', () => {
       accept: ['Ich mache am Donnerstag um sechs Uhr Sport.'],
       key_tokens: ['Am', 'um'],
     };
-    const audit = buildAudit(snapshot({ attempts: [
-      {
-        setId: item.setId,
-        itemId: item.id,
-        itemType: 'translate',
-        correct: false,
-        given: 'Ich mache im Donnerstag um sechs Uhr Sport.',
-        focus: item.focus,
-        ts: ts(12),
-      },
-    ] }), { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: item.setId,
+            itemId: item.id,
+            itemType: 'translate',
+            correct: false,
+            given: 'Ich mache im Donnerstag um sechs Uhr Sport.',
+            focus: item.focus,
+            ts: ts(12),
+          },
+        ],
+      }),
+      { snapshotPath: 'snapshot.json', catalog: catalog(item), now: ts(13) },
+    );
 
     expect(audit.gradingCandidates).toEqual([]);
     expect(audit.counts.gradingReviewExcluded).toBe(0);
-    expect(audit.focusSignals).toContainEqual(expect.objectContaining({
-      focus: 'um-am-zeit',
-      wrong: 1,
-      distinctWrongItems: 1,
-    }));
+    expect(audit.focusSignals).toContainEqual(
+      expect.objectContaining({
+        focus: 'um-am-zeit',
+        wrong: 1,
+        distinctWrongItems: 1,
+      }),
+    );
   });
 
   test('replays probe translations against the current grading contract', () => {
     const items: CatalogItem[] = [
-      { setId: 'a2/probe-time', id: 'accepted', type: 'translate', focus: 'um-am-zeit',
+      {
+        setId: 'a2/probe-time',
+        id: 'accepted',
+        type: 'translate',
+        focus: 'um-am-zeit',
         answer: 'Am Donnerstag mache ich um sechs Uhr Sport.',
-        accept: ['Am Donnerstag um sechs Uhr mache ich Sport.'], key_tokens: ['Am', 'um'] },
-      { setId: 'a2/probe-case', id: 'retained', type: 'translate',
-        focus: 'trennbar-wortstellung', answer: 'Am Samstag bringt meine Freundin ihre Kinder mit.',
-        key_tokens: ['bringt', 'mit'] },
-      { setId: 'a2/probe-case', id: 'failed', type: 'translate', focus: 'dativ-artikel',
+        accept: ['Am Donnerstag um sechs Uhr mache ich Sport.'],
+        key_tokens: ['Am', 'um'],
+      },
+      {
+        setId: 'a2/probe-case',
+        id: 'retained',
+        type: 'translate',
+        focus: 'trennbar-wortstellung',
+        answer: 'Am Samstag bringt meine Freundin ihre Kinder mit.',
+        key_tokens: ['bringt', 'mit'],
+      },
+      {
+        setId: 'a2/probe-case',
+        id: 'failed',
+        type: 'translate',
+        focus: 'dativ-artikel',
         answer: 'Am Samstag spreche ich mit meinen Freunden.',
-        key_tokens: ['meinen', 'Freunden'] },
+        key_tokens: ['meinen', 'Freunden'],
+      },
     ];
     const attempts: AuditAttempt[] = [
-      { setId: items[0]!.setId, itemId: 'accepted', itemType: 'translate', correct: false,
-        given: 'Am Donnerstag um sechs Uhr mache ich Sport.', focus: 'um-am-zeit', ts: ts(10) },
-      { setId: items[1]!.setId, itemId: 'retained', itemType: 'translate', correct: false,
-        given: 'Am Samstag bringt meine Freundin den Kindern mit.', ts: ts(10) },
-      { setId: items[2]!.setId, itemId: 'failed', itemType: 'translate', correct: false,
-        given: 'Am Samstag spreche ich mit meine Freunde.', focus: 'dativ-artikel', ts: ts(10) },
+      {
+        setId: items[0]!.setId,
+        itemId: 'accepted',
+        itemType: 'translate',
+        correct: false,
+        given: 'Am Donnerstag um sechs Uhr mache ich Sport.',
+        focus: 'um-am-zeit',
+        ts: ts(10),
+      },
+      {
+        setId: items[1]!.setId,
+        itemId: 'retained',
+        itemType: 'translate',
+        correct: false,
+        given: 'Am Samstag bringt meine Freundin den Kindern mit.',
+        ts: ts(10),
+      },
+      {
+        setId: items[2]!.setId,
+        itemId: 'failed',
+        itemType: 'translate',
+        correct: false,
+        given: 'Am Samstag spreche ich mit meine Freunde.',
+        focus: 'dativ-artikel',
+        ts: ts(10),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(13),
     });
 
     expect(audit.delayed.probes).toEqual({
@@ -393,18 +626,48 @@ describe('progress audit', () => {
       // The same three verdicts, split by the competence each was aimed at — one row per focus,
       // and each row is one attempt deep, so none of them is readable.
       byCompetence: [
-        { level: 'A2', focus: 'dativ-artikel', label: 'dativ-artikel', families: 1, attempts: 1,
-          correct: 0, retained: 0, failed: 1,
-          retentionPct: 0, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 0, unknown: 0 } } },
-        { level: 'A2', focus: 'trennbar-wortstellung', label: 'trennbar-wortstellung', families: 1, attempts: 1,
-          correct: 0, retained: 1, failed: 0,
-          retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } } },
-        { level: 'A2', focus: 'um-am-zeit', label: 'um-am-zeit', families: 1, attempts: 1,
-          correct: 1, retained: 0, failed: 0,
-          retentionPct: 100, maxElapsedDays: 0, readable: false,
-          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } } },
+        {
+          level: 'A2',
+          focus: 'dativ-artikel',
+          label: 'dativ-artikel',
+          families: 1,
+          attempts: 1,
+          correct: 0,
+          retained: 0,
+          failed: 1,
+          retentionPct: 0,
+          maxElapsedDays: 0,
+          readable: false,
+          formats: { translate: { attempts: 1, survived: 0, unknown: 0 } },
+        },
+        {
+          level: 'A2',
+          focus: 'trennbar-wortstellung',
+          label: 'trennbar-wortstellung',
+          families: 1,
+          attempts: 1,
+          correct: 0,
+          retained: 1,
+          failed: 0,
+          retentionPct: 100,
+          maxElapsedDays: 0,
+          readable: false,
+          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } },
+        },
+        {
+          level: 'A2',
+          focus: 'um-am-zeit',
+          label: 'um-am-zeit',
+          families: 1,
+          attempts: 1,
+          correct: 1,
+          retained: 0,
+          failed: 0,
+          retentionPct: 100,
+          maxElapsedDays: 0,
+          readable: false,
+          formats: { translate: { attempts: 1, survived: 1, unknown: 0 } },
+        },
       ],
       byReadability: [],
       projectTo: '2026-08-03',
@@ -426,26 +689,65 @@ describe('progress audit', () => {
    */
   test('splits a competence by response format so a format effect cannot hide', () => {
     const items: CatalogItem[] = [
-      { setId: 'a1/probe-zeit', id: 'variant-a', type: 'translate', topic: 'alltag-zeit',
-        role: 'probe', focus: 'um-am-zeit', answer: 'Der Bus fährt um elf Uhr.',
-        key_tokens: ['um'] },
-      { setId: 'a1/probe-zeit-luecken', id: 'variant-a', type: 'cloze', topic: 'alltag-zeit',
-        role: 'probe', focus: 'um-am-zeit' },
-      { setId: 'a1/probe-zeit-luecken', id: 'variant-b', type: 'cloze', topic: 'alltag-zeit',
-        role: 'probe', focus: 'um-am-zeit' },
+      {
+        setId: 'a1/probe-zeit',
+        id: 'variant-a',
+        type: 'translate',
+        topic: 'alltag-zeit',
+        role: 'probe',
+        focus: 'um-am-zeit',
+        answer: 'Der Bus fährt um elf Uhr.',
+        key_tokens: ['um'],
+      },
+      {
+        setId: 'a1/probe-zeit-luecken',
+        id: 'variant-a',
+        type: 'cloze',
+        topic: 'alltag-zeit',
+        role: 'probe',
+        focus: 'um-am-zeit',
+      },
+      {
+        setId: 'a1/probe-zeit-luecken',
+        id: 'variant-b',
+        type: 'cloze',
+        topic: 'alltag-zeit',
+        role: 'probe',
+        focus: 'um-am-zeit',
+      },
     ];
     const attempts: AuditAttempt[] = [
       // the hard format missed the target …
-      { setId: 'a1/probe-zeit', itemId: 'variant-a', itemType: 'translate', correct: false,
-        given: 'Der Bus fährt am elf Uhr.', ts: ts(4) },
+      {
+        setId: 'a1/probe-zeit',
+        itemId: 'variant-a',
+        itemType: 'translate',
+        correct: false,
+        given: 'Der Bus fährt am elf Uhr.',
+        ts: ts(4),
+      },
       // … while the easy one carried it twice
-      { setId: 'a1/probe-zeit-luecken', itemId: 'variant-a', itemType: 'cloze', correct: true,
-        given: 'um', ts: ts(4) },
-      { setId: 'a1/probe-zeit-luecken', itemId: 'variant-b', itemType: 'cloze', correct: true,
-        given: 'im', ts: ts(9) },
+      {
+        setId: 'a1/probe-zeit-luecken',
+        itemId: 'variant-a',
+        itemType: 'cloze',
+        correct: true,
+        given: 'um',
+        ts: ts(4),
+      },
+      {
+        setId: 'a1/probe-zeit-luecken',
+        itemId: 'variant-b',
+        itemType: 'cloze',
+        correct: true,
+        given: 'im',
+        ts: ts(9),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(10),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(10),
     });
 
     const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'um-am-zeit')!;
@@ -472,9 +774,14 @@ describe('progress audit', () => {
    */
   test('an inserted zu on a predicate-bearing probe is a failure, not retention', () => {
     const lassen = {
-      setId: 'b1/probe-lassen', type: 'translate', topic: 'gesundheit-wohlbefinden',
-      role: 'probe', focus: 'lassen-verwendung', revision: 1,
-      answer: 'Ich lasse meine Wohnung jeden Monat putzen.', accept: [],
+      setId: 'b1/probe-lassen',
+      type: 'translate',
+      topic: 'gesundheit-wohlbefinden',
+      role: 'probe',
+      focus: 'lassen-verwendung',
+      revision: 1,
+      answer: 'Ich lasse meine Wohnung jeden Monat putzen.',
+      accept: [],
       key_tokens: ['lasse', 'putzen'],
     } as const;
     const predicates = {
@@ -489,24 +796,53 @@ describe('progress audit', () => {
     const inserted = 'Ich lasse meine Wohnung jeden Monat zu putzen.';
     const attempts: AuditAttempt[] = [
       // historical: logged before the item had predicates, so no stored verdict
-      { setId: 'b1/probe-lassen', itemId: 'variant-a', itemType: 'translate', correct: false,
-        given: inserted, itemRevision: 1, focus: undefined, ts: ts(4) },
+      {
+        setId: 'b1/probe-lassen',
+        itemId: 'variant-a',
+        itemType: 'translate',
+        correct: false,
+        given: inserted,
+        itemRevision: 1,
+        focus: undefined,
+        ts: ts(4),
+      },
       // answered to revision 1 of an item now at 2: never replayed against the changed contract
-      { setId: 'b1/probe-lassen', itemId: 'variant-b', itemType: 'translate', correct: false,
-        given: inserted, itemRevision: 1, focus: undefined, ts: ts(9) },
-      { setId: 'b1/probe-lassen', itemId: 'variant-c', itemType: 'translate', correct: false,
-        given: inserted, itemRevision: 1, focus: undefined, ts: ts(12) },
+      {
+        setId: 'b1/probe-lassen',
+        itemId: 'variant-b',
+        itemType: 'translate',
+        correct: false,
+        given: inserted,
+        itemRevision: 1,
+        focus: undefined,
+        ts: ts(9),
+      },
+      {
+        setId: 'b1/probe-lassen',
+        itemId: 'variant-c',
+        itemType: 'translate',
+        correct: false,
+        given: inserted,
+        itemRevision: 1,
+        focus: undefined,
+        ts: ts(12),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(13),
     });
 
     const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'lassen-verwendung')!;
     expect(row.attempts).toBe(3);
     // variant-a reads failed through its predicates; b keeps its logged (unattributed) reading
     // under the revision gate, and c — no predicates — is the gap the predicates close.
-    expect({ failed: row.failed, retained: row.retained, unknown: row.unknown ?? 0 })
-      .toEqual({ failed: 1, retained: 2, unknown: 0 });
+    expect({ failed: row.failed, retained: row.retained, unknown: row.unknown ?? 0 }).toEqual({
+      failed: 1,
+      retained: 2,
+      unknown: 0,
+    });
   });
 
   /**
@@ -516,19 +852,44 @@ describe('progress audit', () => {
    */
   test('a cloze probe miss is re-read through its predicates against the filled sentence', () => {
     const items: CatalogItem[] = [
-      { setId: 'b1/probe-falls', id: 'variant-a', type: 'cloze', topic: 'bildungswege',
-        role: 'probe', focus: 'falls-wenn', revision: 1,
+      {
+        setId: 'b1/probe-falls',
+        id: 'variant-a',
+        type: 'cloze',
+        topic: 'bildungswege',
+        role: 'probe',
+        focus: 'falls-wenn',
+        revision: 1,
         text: '{{Falls|Wenn}} ein Platz frei {{wird}}, rufen wir Sie an.',
-        focus_evidence: { failed: ['^(ob|als|wann)\\b'], retained: ['^(falls|wenn)\\b'] } },
+        focus_evidence: { failed: ['^(ob|als|wann)\\b'], retained: ['^(falls|wenn)\\b'] },
+      },
     ];
     const attempts: AuditAttempt[] = [
-      { setId: 'b1/probe-falls', itemId: 'variant-a', itemType: 'cloze', correct: false,
-        given: 'Ob / wird', itemRevision: 1, focus: 'falls-wenn', ts: ts(4) },
-      { setId: 'b1/probe-falls', itemId: 'variant-a', itemType: 'cloze', correct: false,
-        given: 'Falls / wirt', itemRevision: 1, focus: 'falls-wenn', ts: ts(9) },
+      {
+        setId: 'b1/probe-falls',
+        itemId: 'variant-a',
+        itemType: 'cloze',
+        correct: false,
+        given: 'Ob / wird',
+        itemRevision: 1,
+        focus: 'falls-wenn',
+        ts: ts(4),
+      },
+      {
+        setId: 'b1/probe-falls',
+        itemId: 'variant-a',
+        itemType: 'cloze',
+        correct: false,
+        given: 'Falls / wirt',
+        itemRevision: 1,
+        focus: 'falls-wenn',
+        ts: ts(9),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(13),
     });
     const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'falls-wenn')!;
     expect({ failed: row.failed, retained: row.retained }).toEqual({ failed: 1, retained: 1 });
@@ -542,16 +903,32 @@ describe('progress audit', () => {
    */
   test('an unknown verdict stays out of the format denominator', () => {
     const items: CatalogItem[] = [
-      { setId: 'a1/probe-zeit', id: 'variant-a', type: 'translate', topic: 'alltag-zeit',
-        role: 'probe', focus: 'um-am-zeit', answer: 'Der Bus fährt um elf Uhr.',
-        key_tokens: ['um'] },
+      {
+        setId: 'a1/probe-zeit',
+        id: 'variant-a',
+        type: 'translate',
+        topic: 'alltag-zeit',
+        role: 'probe',
+        focus: 'um-am-zeit',
+        answer: 'Der Bus fährt um elf Uhr.',
+        key_tokens: ['um'],
+      },
     ];
     const attempts: AuditAttempt[] = [
-      { setId: 'a1/probe-zeit', itemId: 'variant-a', itemType: 'translate', correct: false,
-        given: 'Der Bus fährt um zehn Uhr.', focusEvidence: 'unknown', ts: ts(4) },
+      {
+        setId: 'a1/probe-zeit',
+        itemId: 'variant-a',
+        itemType: 'translate',
+        correct: false,
+        given: 'Der Bus fährt um zehn Uhr.',
+        focusEvidence: 'unknown',
+        ts: ts(4),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(10),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(10),
     });
 
     const row = audit.delayed.probes.byCompetence.find((r) => r.focus === 'um-am-zeit')!;
@@ -566,25 +943,90 @@ describe('progress audit', () => {
     // everything below is computed from the attempt log, exactly like the scheduler does.
     const items: CatalogItem[] = [
       { setId: 'a1/akkusativ', id: 'p1', type: 'cloze', topic: 'akkusativ', role: 'practice' },
-      { setId: 'a1/probe-akkusativ', id: 'variant-a', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
-      { setId: 'a1/probe-akkusativ', id: 'variant-b', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
-      { setId: 'a1/probe-akkusativ', id: 'variant-c', type: 'mc', topic: 'akkusativ', role: 'probe', arming: ['a1/akkusativ::p1'] },
+      {
+        setId: 'a1/probe-akkusativ',
+        id: 'variant-a',
+        type: 'mc',
+        topic: 'akkusativ',
+        role: 'probe',
+        arming: ['a1/akkusativ::p1'],
+      },
+      {
+        setId: 'a1/probe-akkusativ',
+        id: 'variant-b',
+        type: 'mc',
+        topic: 'akkusativ',
+        role: 'probe',
+        arming: ['a1/akkusativ::p1'],
+      },
+      {
+        setId: 'a1/probe-akkusativ',
+        id: 'variant-c',
+        type: 'mc',
+        topic: 'akkusativ',
+        role: 'probe',
+        arming: ['a1/akkusativ::p1'],
+      },
       { setId: 'a1/wohnen', id: 'p1', type: 'cloze', topic: 'wohnen', role: 'practice' },
-      { setId: 'a1/probe-wohnen', id: 'variant-a', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
-      { setId: 'a1/probe-wohnen', id: 'variant-b', type: 'mc', topic: 'wohnen', role: 'probe', arming: ['a1/wohnen::p1'] },
+      {
+        setId: 'a1/probe-wohnen',
+        id: 'variant-a',
+        type: 'mc',
+        topic: 'wohnen',
+        role: 'probe',
+        arming: ['a1/wohnen::p1'],
+      },
+      {
+        setId: 'a1/probe-wohnen',
+        id: 'variant-b',
+        type: 'mc',
+        topic: 'wohnen',
+        role: 'probe',
+        arming: ['a1/wohnen::p1'],
+      },
     ];
     const attempts: AuditAttempt[] = [
       // both topics practised on day 1 → both families armed at ts(1)
-      { setId: 'a1/akkusativ', itemId: 'p1', itemType: 'cloze', correct: true, given: '', ts: ts(1) },
+      {
+        setId: 'a1/akkusativ',
+        itemId: 'p1',
+        itemType: 'cloze',
+        correct: true,
+        given: '',
+        ts: ts(1),
+      },
       { setId: 'a1/wohnen', itemId: 'p1', itemType: 'cloze', correct: true, given: '', ts: ts(1) },
       // the 2-day probes actually happened after 3 days …
-      { setId: 'a1/probe-akkusativ', itemId: 'variant-a', itemType: 'mc', correct: true, given: '', ts: ts(4) },
-      { setId: 'a1/probe-wohnen', itemId: 'variant-a', itemType: 'mc', correct: true, given: '', ts: ts(4) },
+      {
+        setId: 'a1/probe-akkusativ',
+        itemId: 'variant-a',
+        itemType: 'mc',
+        correct: true,
+        given: '',
+        ts: ts(4),
+      },
+      {
+        setId: 'a1/probe-wohnen',
+        itemId: 'variant-a',
+        itemType: 'mc',
+        correct: true,
+        given: '',
+        ts: ts(4),
+      },
       // … and akkusativ's 7-day probe after 11
-      { setId: 'a1/probe-akkusativ', itemId: 'variant-b', itemType: 'mc', correct: false, given: '', ts: ts(12) },
+      {
+        setId: 'a1/probe-akkusativ',
+        itemId: 'variant-b',
+        itemType: 'mc',
+        correct: false,
+        given: '',
+        ts: ts(12),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(...items), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(...items),
+      now: ts(13),
     });
 
     expect(audit.delayed.probes).toMatchObject({
@@ -598,36 +1040,84 @@ describe('progress audit', () => {
         { days: 11, count: 1 },
       ],
     });
-    expect(renderMarkdown(audit))
-      .toContain('Actual probe intervals (nominal 2/7/21): 3d ×2 · 11d ×1.');
+    expect(renderMarkdown(audit)).toContain(
+      'Actual probe intervals (nominal 2/7/21): 3d ×2 · 11d ×1.',
+    );
   });
 
   test('requires distinct items plus recency or a probe for a persistent focus', () => {
     const attempts: AuditAttempt[] = [
-      { setId: 'a2/x', itemId: 'one', itemType: 'cloze', correct: false,
-        given: '', focus: 'dativ-artikel', ts: ts(10) },
-      { setId: 'a2/x', itemId: 'two', itemType: 'translate', correct: false,
-        given: '', focus: 'dativ-artikel', ts: ts(11) },
-      { setId: 'a2/x', itemId: 'two', itemType: 'translate', correct: true,
-        given: '', focus: 'dativ-artikel', ts: ts(12) },
-      { setId: 'a1/y', itemId: 'one', itemType: 'mc', correct: false,
-        given: '', focus: 'genus', ts: ts(1) },
+      {
+        setId: 'a2/x',
+        itemId: 'one',
+        itemType: 'cloze',
+        correct: false,
+        given: '',
+        focus: 'dativ-artikel',
+        ts: ts(10),
+      },
+      {
+        setId: 'a2/x',
+        itemId: 'two',
+        itemType: 'translate',
+        correct: false,
+        given: '',
+        focus: 'dativ-artikel',
+        ts: ts(11),
+      },
+      {
+        setId: 'a2/x',
+        itemId: 'two',
+        itemType: 'translate',
+        correct: true,
+        given: '',
+        focus: 'dativ-artikel',
+        ts: ts(12),
+      },
+      {
+        setId: 'a1/y',
+        itemId: 'one',
+        itemType: 'mc',
+        correct: false,
+        given: '',
+        focus: 'genus',
+        ts: ts(1),
+      },
     ];
     const audit = buildAudit(snapshot({ attempts }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(),
+      now: ts(13),
     });
     expect(audit.focusSignals[0]).toMatchObject({
-      focus: 'dativ-artikel', status: 'persistent', distinctWrongItems: 2, recovered: true,
+      focus: 'dativ-artikel',
+      status: 'persistent',
+      distinctWrongItems: 2,
+      recovered: true,
     });
     expect(audit.focusSignals.find((row) => row.focus === 'genus')?.status).toBe('historical');
   });
 
   test('is deterministic when snapshot attempts arrive in a different order', () => {
     const attempts: AuditAttempt[] = [
-      { setId: 'a2/z', itemId: 'two', itemType: 'cloze', correct: false,
-        given: 'z', focus: 'dativ-artikel', ts: ts(10) },
-      { setId: 'a2/a', itemId: 'one', itemType: 'cloze', correct: true,
-        given: 'a', focus: 'dativ-artikel', ts: ts(10) },
+      {
+        setId: 'a2/z',
+        itemId: 'two',
+        itemType: 'cloze',
+        correct: false,
+        given: 'z',
+        focus: 'dativ-artikel',
+        ts: ts(10),
+      },
+      {
+        setId: 'a2/a',
+        itemId: 'one',
+        itemType: 'cloze',
+        correct: true,
+        given: 'a',
+        focus: 'dativ-artikel',
+        ts: ts(10),
+      },
     ];
     const options = { snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13) };
     const forward = buildAudit(snapshot({ attempts }), options);
@@ -640,16 +1130,30 @@ describe('progress audit', () => {
     const attempts: AuditAttempt[] = [];
     for (let index = 0; index < 12; index++) {
       items.push({
-        setId: 'a2/x', id: `i${index}`, type: 'translate', answer: 'Ich bin hier.',
-        focus: `focus-${index}`, key_tokens: ['bin'],
+        setId: 'a2/x',
+        id: `i${index}`,
+        type: 'translate',
+        answer: 'Ich bin hier.',
+        focus: `focus-${index}`,
+        key_tokens: ['bin'],
       });
       attempts.push({
-        setId: 'a2/x', itemId: `i${index}`, itemType: 'translate', correct: false,
-        given: 'Ich bin dort.', focus: `focus-${index}`, ts: ts(10) + index,
+        setId: 'a2/x',
+        itemId: `i${index}`,
+        itemType: 'translate',
+        correct: false,
+        given: 'Ich bin dort.',
+        focus: `focus-${index}`,
+        ts: ts(10) + index,
       });
       attempts.push({
-        setId: 'a2/y', itemId: `i${index}`, itemType: 'translate', correct: false,
-        given: 'Ich bin dort.', focus: `focus-${index}`, ts: ts(11) + index,
+        setId: 'a2/y',
+        itemId: `i${index}`,
+        itemType: 'translate',
+        correct: false,
+        given: 'Ich bin dort.',
+        focus: `focus-${index}`,
+        ts: ts(11) + index,
       });
     }
     const audit = buildAudit(snapshot({ attempts }), {
@@ -674,30 +1178,73 @@ describe('progress audit', () => {
 // the gate can be read at all is decided by arming dates and the schedule, not by effort.
 describe('the readability projection', () => {
   const probeItems: CatalogItem[] = [
-    { setId: 'a1/probe-a', id: 'v1', type: 'translate', answer: 'Ich bin da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
-    { setId: 'a1/probe-a', id: 'v2', type: 'translate', answer: 'Du bist da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
-    { setId: 'a1/probe-a', id: 'v3', type: 'translate', answer: 'Er ist da.', focus: 'kopula-sein', topic: 't1', role: 'probe', outcomes: ['o1'] },
+    {
+      setId: 'a1/probe-a',
+      id: 'v1',
+      type: 'translate',
+      answer: 'Ich bin da.',
+      focus: 'kopula-sein',
+      topic: 't1',
+      role: 'probe',
+      outcomes: ['o1'],
+    },
+    {
+      setId: 'a1/probe-a',
+      id: 'v2',
+      type: 'translate',
+      answer: 'Du bist da.',
+      focus: 'kopula-sein',
+      topic: 't1',
+      role: 'probe',
+      outcomes: ['o1'],
+    },
+    {
+      setId: 'a1/probe-a',
+      id: 'v3',
+      type: 'translate',
+      answer: 'Er ist da.',
+      focus: 'kopula-sein',
+      topic: 't1',
+      role: 'probe',
+      outcomes: ['o1'],
+    },
   ];
   const practice: CatalogItem = {
-    setId: 'a1/t1-practice', id: 'p1', type: 'translate', answer: 'Ich bin hier.',
-    focus: 'kopula-sein', topic: 't1', role: 'practice', outcomes: ['o1'],
+    setId: 'a1/t1-practice',
+    id: 'p1',
+    type: 'translate',
+    answer: 'Ich bin hier.',
+    focus: 'kopula-sein',
+    topic: 't1',
+    role: 'practice',
+    outcomes: ['o1'],
   };
 
   test('an armed family that cannot serve its longest interval is unreachable by that date', () => {
     // Armed on day 12, projected to day 20: the 2- and 7-day probes fit, the 21-day one
     // cannot. No amount of studying changes that, and the retention table would call it
     // "pending" — the same word it uses for a row that effort would fix.
-    const audit = buildAudit(snapshot({
-      attempts: [{
-        setId: practice.setId, itemId: practice.id, itemType: 'translate' as const,
-        correct: true, given: 'Ich bin hier.', focus: 'kopula-sein', ts: ts(12),
-      }],
-    }), {
-      snapshotPath: 'snapshot.json',
-      catalog: catalog(...probeItems, practice),
-      now: ts(13),
-      projectTo: ts(20),
-    });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: practice.setId,
+            itemId: practice.id,
+            itemType: 'translate' as const,
+            correct: true,
+            given: 'Ich bin hier.',
+            focus: 'kopula-sein',
+            ts: ts(12),
+          },
+        ],
+      }),
+      {
+        snapshotPath: 'snapshot.json',
+        catalog: catalog(...probeItems, practice),
+        now: ts(13),
+        projectTo: ts(20),
+      },
+    );
     const row = audit.delayed.probes.byReadability.find((r) => r.focus === 'kopula-sein');
     expect(row?.ceilingEver).toBe(3);
     expect(row?.ceilingByTarget).toBe(2);
@@ -706,17 +1253,27 @@ describe('the readability projection', () => {
   });
 
   test('the same family reaches the floor when the horizon is far enough out', () => {
-    const audit = buildAudit(snapshot({
-      attempts: [{
-        setId: practice.setId, itemId: practice.id, itemType: 'translate' as const,
-        correct: true, given: 'Ich bin hier.', focus: 'kopula-sein', ts: ts(12),
-      }],
-    }), {
-      snapshotPath: 'snapshot.json',
-      catalog: catalog(...probeItems, practice),
-      now: ts(13),
-      projectTo: ts(40),
-    });
+    const audit = buildAudit(
+      snapshot({
+        attempts: [
+          {
+            setId: practice.setId,
+            itemId: practice.id,
+            itemType: 'translate' as const,
+            correct: true,
+            given: 'Ich bin hier.',
+            focus: 'kopula-sein',
+            ts: ts(12),
+          },
+        ],
+      }),
+      {
+        snapshotPath: 'snapshot.json',
+        catalog: catalog(...probeItems, practice),
+        now: ts(13),
+        projectTo: ts(40),
+      },
+    );
     const row = audit.delayed.probes.byReadability.find((r) => r.focus === 'kopula-sein');
     expect(row?.ceilingByTarget).toBe(3);
     expect(row?.reachableByTarget).toBe(true);
@@ -742,7 +1299,9 @@ describe('the readability projection', () => {
 
   test('an untagged family is never reachable, however much time is left', () => {
     const untagged: CatalogItem[] = probeItems.map((item) => ({
-      ...item, setId: 'a1/probe-untagged', focus: undefined,
+      ...item,
+      setId: 'a1/probe-untagged',
+      focus: undefined,
     }));
     const audit = buildAudit(snapshot({ attempts: [] }), {
       snapshotPath: 'snapshot.json',
@@ -799,41 +1358,104 @@ describe('--project rejects a date that does not exist', () => {
 describe('Leben in Deutschland section', () => {
   const iso = (value: number) => new Date(value).toISOString().slice(0, 10);
   const question = (id: string, scope: 'general' | 'state' = 'general') => ({
-    id, officialNumber: 1, scope, stateCode: scope === 'state' ? 'BY' : null, bamfInternalId: id,
-    sourcePage: 1, question: `Frage ${id}?`, answers: { a: 'a', b: 'b', c: 'c', d: 'd' },
-    solution: 'a' as const, images: [],
+    id,
+    officialNumber: 1,
+    scope,
+    stateCode: scope === 'state' ? 'BY' : null,
+    bamfInternalId: id,
+    sourcePage: 1,
+    question: `Frage ${id}?`,
+    answers: { a: 'a', b: 'b', c: 'c', d: 'd' },
+    solution: 'a' as const,
+    images: [],
   });
   const context = {
-    bank: { questions: [question('general-001'), question('general-002'), question('general-003'), question('BY-01', 'state')] },
-    topics: { modules: [
-      { id: 'demokratie', title_de: 'Leben in der Demokratie', topics: [
-        { id: 'grundrechte', title_de: 'Grundrechte' }, { id: 'wahlen', title_de: 'Wahlen' }] },
-      { id: 'bayern', title_de: 'Bayern', topics: [{ id: 'bayern', title_de: 'Freistaat Bayern' }] },
-    ] },
-    placement: new Map([['general-001', 'grundrechte'], ['general-002', 'grundrechte'], ['general-003', 'wahlen'], ['BY-01', 'bayern']]),
+    bank: {
+      questions: [
+        question('general-001'),
+        question('general-002'),
+        question('general-003'),
+        question('BY-01', 'state'),
+      ],
+    },
+    topics: {
+      modules: [
+        {
+          id: 'demokratie',
+          title_de: 'Leben in der Demokratie',
+          topics: [
+            { id: 'grundrechte', title_de: 'Grundrechte' },
+            { id: 'wahlen', title_de: 'Wahlen' },
+          ],
+        },
+        {
+          id: 'bayern',
+          title_de: 'Bayern',
+          topics: [{ id: 'bayern', title_de: 'Freistaat Bayern' }],
+        },
+      ],
+    },
+    placement: new Map([
+      ['general-001', 'grundrechte'],
+      ['general-002', 'grundrechte'],
+      ['general-003', 'wahlen'],
+      ['BY-01', 'bayern'],
+    ]),
   };
-  const answer = (q: string, correct: boolean, day: number, mode: 'practice' | 'exam' = 'practice') =>
-    ({ q, chosen: correct ? 'a' as const : 'b' as const, correct, ts: ts(day), mode, bank: 'test' });
+  const answer = (
+    q: string,
+    correct: boolean,
+    day: number,
+    mode: 'practice' | 'exam' = 'practice',
+  ) => ({
+    q,
+    chosen: correct ? ('a' as const) : ('b' as const),
+    correct,
+    ts: ts(day),
+    mode,
+    bank: 'test',
+  });
   const lid = {
     cards: {},
     answers: [
-      answer('general-001', false, 1), answer('general-001', false, 2), answer('general-001', true, 3),
-      answer('general-002', false, 4), answer('BY-01', true, 5, 'exam'),
+      answer('general-001', false, 1),
+      answer('general-001', false, 2),
+      answer('general-001', true, 3),
+      answer('general-002', false, 4),
+      answer('BY-01', true, 5, 'exam'),
     ],
-    exams: [{
-      id: 'm1', state: 'BY', bank: 'test', startedAt: ts(5) - 1000, submittedAt: ts(5),
-      items: Array.from({ length: 33 }, (_, i) => `q${i}`), answers: {}, correct: 16, timedOut: true,
-    }],
+    exams: [
+      {
+        id: 'm1',
+        state: 'BY',
+        bank: 'test',
+        startedAt: ts(5) - 1000,
+        submittedAt: ts(5),
+        items: Array.from({ length: 33 }, (_, i) => `q${i}`),
+        answers: {},
+        correct: 16,
+        timedOut: true,
+      },
+    ],
   };
 
   test('reports latest-answer accuracy by module and topic, the most missed, and mocks against both marks', () => {
     const audit = buildAudit(snapshot({ version: 8, lid }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(), lid: context, now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(),
+      lid: context,
+      now: ts(13),
     });
     expect(audit.lid).toMatchObject({ answers: 5, total: 4, seen: 3, lastTwoCorrect: 0 });
     expect(audit.lid!.byGroup).toEqual([
       { module: 'Leben in der Demokratie', questions: 3, seen: 2, latestCorrect: 1 },
-      { module: 'Leben in der Demokratie', topic: 'Grundrechte', questions: 2, seen: 2, latestCorrect: 1 },
+      {
+        module: 'Leben in der Demokratie',
+        topic: 'Grundrechte',
+        questions: 2,
+        seen: 2,
+        latestCorrect: 1,
+      },
       { module: 'Bayern', questions: 1, seen: 1, latestCorrect: 1 },
       { module: 'Bayern', topic: 'Freistaat Bayern', questions: 1, seen: 1, latestCorrect: 1 },
     ]);
@@ -842,9 +1464,16 @@ describe('Leben in Deutschland section', () => {
       { id: 'general-002', wrong: 1, answers: 1, question: 'Frage general-002?' },
     ]);
     // 16 of 33 passes the Orientierungskurs test and fails the Einbürgerungstest: two marks.
-    expect(audit.lid!.exams).toEqual([{
-      date: iso(ts(5)), correct: 16, items: 33, passEinbuergerung: false, passOrientierungskurs: true, timedOut: true,
-    }]);
+    expect(audit.lid!.exams).toEqual([
+      {
+        date: iso(ts(5)),
+        correct: 16,
+        items: 33,
+        passEinbuergerung: false,
+        passOrientierungskurs: true,
+        timedOut: true,
+      },
+    ]);
     const rendered = renderMarkdown(audit);
     expect(rendered).toContain('## Leben in Deutschland');
     expect(rendered).toContain('| 16/33 | fail | pass | yes |');
@@ -852,12 +1481,18 @@ describe('Leben in Deutschland section', () => {
 
   test('is absent without LiD answers, and refuses to guess when the bank was not loaded', () => {
     const none = buildAudit(snapshot({ version: 8, lid: { cards: {}, answers: [], exams: [] } }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13),
+      snapshotPath: 'snapshot.json',
+      catalog: catalog(),
+      now: ts(13),
     });
     expect(none.lid).toBeUndefined();
     expect(renderMarkdown(none)).not.toContain('Leben in Deutschland');
-    expect(() => buildAudit(snapshot({ version: 8, lid }), {
-      snapshotPath: 'snapshot.json', catalog: catalog(), now: ts(13),
-    })).toThrow('LiD');
+    expect(() =>
+      buildAudit(snapshot({ version: 8, lid }), {
+        snapshotPath: 'snapshot.json',
+        catalog: catalog(),
+        now: ts(13),
+      }),
+    ).toThrow('LiD');
   });
 });

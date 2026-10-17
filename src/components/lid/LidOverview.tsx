@@ -68,7 +68,15 @@ function MockChart({ exams }: { exams: LidReadiness['exams'] }) {
       <line x1="0" y1={TOP + H} x2={W} y2={TOP + H} stroke="currentColor" strokeOpacity="0.2" />
       {marks.map(({ score, dy }) => (
         <g key={score}>
-          <line x1="0" y1={y(score)} x2={W} y2={y(score)} stroke="currentColor" strokeOpacity="0.45" strokeDasharray="3 3" />
+          <line
+            x1="0"
+            y1={y(score)}
+            x2={W}
+            y2={y(score)}
+            stroke="currentColor"
+            strokeOpacity="0.45"
+            strokeDasharray="3 3"
+          />
           <text x={W + 4} y={y(score) + dy} fontSize="10" fill="currentColor" fillOpacity="0.75">
             {score}
           </text>
@@ -82,7 +90,11 @@ function MockChart({ exams }: { exams: LidReadiness['exams'] }) {
           width={slot * 0.6}
           height={Math.max(1, TOP + H - y(exam.correct))}
           rx="2"
-          className={exam.correct >= LID_EXAM.passEinbuergerung ? 'fill-amber-600 dark:fill-amber-400' : 'fill-stone-400 dark:fill-stone-500'}
+          className={
+            exam.correct >= LID_EXAM.passEinbuergerung
+              ? 'fill-amber-600 dark:fill-amber-400'
+              : 'fill-stone-400 dark:fill-stone-500'
+          }
         >
           <title>{`${exam.correct}/${max} · ${new Date(exam.submittedAt).toLocaleDateString('de-DE')}`}</title>
         </rect>
@@ -93,7 +105,10 @@ function MockChart({ exams }: { exams: LidReadiness['exams'] }) {
 
 export default function LidOverview({ modules, state, lessons }: Props) {
   const uiLang = useUiLang();
-  const ids = useMemo(() => modules.flatMap((m) => m.topics.flatMap((topic) => topic.ids)), [modules]);
+  const ids = useMemo(
+    () => modules.flatMap((m) => m.topics.flatMap((topic) => topic.ids)),
+    [modules],
+  );
   const [newPerDay, setNewPerDay] = useState(() => readNewPerDay());
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [loadError, setLoadError] = useState(false);
@@ -120,10 +135,18 @@ export default function LidOverview({ modules, state, lessons }: Props) {
     };
   }, [round]);
 
-  const readiness = useMemo(() => (loaded ? lidReadiness(loaded.lid, ids, loaded.now) : null), [loaded, ids]);
+  const readiness = useMemo(
+    () => (loaded ? lidReadiness(loaded.lid, ids, loaded.now) : null),
+    [loaded, ids],
+  );
   const plan = useMemo(() => {
     if (!loaded) return null;
-    const queue = planLidPractice({ questionIds: ids, state: loaded.lid, now: loaded.now, newPerDay });
+    const queue = planLidPractice({
+      questionIds: ids,
+      state: loaded.lid,
+      now: loaded.now,
+      newPerDay,
+    });
     const due = queue.filter((id) => loaded.lid.cards[id]).length;
     return { due, fresh: queue.length - due };
   }, [loaded, ids, newPerDay]);
@@ -135,7 +158,14 @@ export default function LidOverview({ modules, state, lessons }: Props) {
             const r = lidReadiness(loaded.lid, own, loaded.now);
             // `mistakes` counts the seen questions whose last answer was wrong, so the rest of
             // the seen ones are exactly those whose last answer was right.
-            return { id: m.id, title: m.title, total: r.total, seen: r.seen, right: r.seen - r.mistakes, wrong: r.mistakes };
+            return {
+              id: m.id,
+              title: m.title,
+              total: r.total,
+              seen: r.seen,
+              right: r.seen - r.mistakes,
+              wrong: r.mistakes,
+            };
           })
         : null,
     [loaded, modules],
@@ -155,7 +185,10 @@ export default function LidOverview({ modules, state, lessons }: Props) {
     <div className="space-y-8">
       {/* The way in comes first: this page is opened every day to start, not to read. */}
       <section className="space-y-3">
-        <a href={withBase('/leben/ueben')} className="block rounded-lg bg-amber-600 p-5 text-white shadow-sm hover:bg-amber-700">
+        <a
+          href={withBase('/leben/ueben')}
+          className="block rounded-lg bg-amber-600 p-5 text-white shadow-sm hover:bg-amber-700"
+        >
           <span className="block text-xl font-bold">{t('lid.practice', uiLang)} →</span>
           <span className="mt-1 block text-sm text-amber-100">
             {plan ? lidText('lid.queueCounts', uiLang, { due: plan.due, fresh: plan.fresh }) : ' '}
@@ -163,7 +196,9 @@ export default function LidOverview({ modules, state, lessons }: Props) {
         </a>
         <div className="grid gap-3 sm:grid-cols-2">
           <a href={withBase('/leben/fehler')} className={entryLink}>
-            <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.mistakes', uiLang)}</span>
+            <span className="font-semibold text-amber-700 dark:text-amber-400">
+              {t('lid.mistakes', uiLang)}
+            </span>
             {readiness && (
               <span className="text-sm text-stone-500 dark:text-stone-400">
                 {lidText('lid.mistakesOpen', uiLang, { n: readiness.mistakes })}
@@ -171,7 +206,9 @@ export default function LidOverview({ modules, state, lessons }: Props) {
             )}
           </a>
           <a href={withBase('/leben/pruefung')} className={entryLink}>
-            <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.mock', uiLang)}</span>
+            <span className="font-semibold text-amber-700 dark:text-amber-400">
+              {t('lid.mock', uiLang)}
+            </span>
             <span className="text-sm text-stone-500 dark:text-stone-400">
               {lidText('lid.mockFacts', uiLang, {
                 questions: LID_EXAM.questions,
@@ -183,13 +220,19 @@ export default function LidOverview({ modules, state, lessons }: Props) {
             </span>
           </a>
           <a href={withBase('/leben/lernen')} className={entryLink}>
-            <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.learn', uiLang)}</span>
+            <span className="font-semibold text-amber-700 dark:text-amber-400">
+              {t('lid.learn', uiLang)}
+            </span>
             <span className="text-sm text-stone-500 dark:text-stone-400">
-              {lessons > 0 ? lidText('lid.learnHint', uiLang, { n: lessons }) : t('lid.lessonsNone', uiLang)}
+              {lessons > 0
+                ? lidText('lid.learnHint', uiLang, { n: lessons })
+                : t('lid.lessonsNone', uiLang)}
             </span>
           </a>
           <a href={withBase('/leben/fragen')} className={entryLink}>
-            <span className="font-semibold text-amber-700 dark:text-amber-400">{t('lid.catalogue', uiLang)}</span>
+            <span className="font-semibold text-amber-700 dark:text-amber-400">
+              {t('lid.catalogue', uiLang)}
+            </span>
             <span className="text-sm text-stone-500 dark:text-stone-400">
               {lidText('lid.catalogueHint', uiLang, { n: ids.length })}
             </span>
@@ -241,9 +284,27 @@ export default function LidOverview({ modules, state, lessons }: Props) {
           <h2 className="text-lg font-bold">{t('lid.modulesTitle', uiLang)}</h2>
           {!fresh && (
             <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
-              <span><span aria-hidden="true" className="mr-1 inline-block h-2 w-3 rounded-sm bg-green-600 dark:bg-green-500" />{t('lid.legendRight', uiLang)}</span>
-              <span><span aria-hidden="true" className="mr-1 inline-block h-2 w-3 rounded-sm bg-red-500" />{t('lid.legendWrong', uiLang)}</span>
-              <span><span aria-hidden="true" className="mr-1 inline-block h-2 w-3 rounded-sm bg-stone-200 dark:bg-stone-700" />{t('lid.legendUnseen', uiLang)}</span>
+              <span>
+                <span
+                  aria-hidden="true"
+                  className="mr-1 inline-block h-2 w-3 rounded-sm bg-green-600 dark:bg-green-500"
+                />
+                {t('lid.legendRight', uiLang)}
+              </span>
+              <span>
+                <span
+                  aria-hidden="true"
+                  className="mr-1 inline-block h-2 w-3 rounded-sm bg-red-500"
+                />
+                {t('lid.legendWrong', uiLang)}
+              </span>
+              <span>
+                <span
+                  aria-hidden="true"
+                  className="mr-1 inline-block h-2 w-3 rounded-sm bg-stone-200 dark:bg-stone-700"
+                />
+                {t('lid.legendUnseen', uiLang)}
+              </span>
             </p>
           )}
           <ul className="mt-3 space-y-3">
@@ -259,13 +320,25 @@ export default function LidOverview({ modules, state, lessons }: Props) {
                 </div>
                 {!fresh && (
                   <>
-                    <div className="mt-2 flex h-2 gap-0.5 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700" aria-hidden="true">
-                      <div className="bg-green-600 dark:bg-green-500" style={{ width: `${(row.right / row.total) * 100}%` }} />
-                      <div className="bg-red-500" style={{ width: `${(row.wrong / row.total) * 100}%` }} />
+                    <div
+                      className="mt-2 flex h-2 gap-0.5 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700"
+                      aria-hidden="true"
+                    >
+                      <div
+                        className="bg-green-600 dark:bg-green-500"
+                        style={{ width: `${(row.right / row.total) * 100}%` }}
+                      />
+                      <div
+                        className="bg-red-500"
+                        style={{ width: `${(row.wrong / row.total) * 100}%` }}
+                      />
                     </div>
                     {row.seen > 0 && (
                       <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-                        {lidText('lid.moduleRight', uiLang, { right: row.right, pct: Math.round((row.right / row.seen) * 100) })}
+                        {lidText('lid.moduleRight', uiLang, {
+                          right: row.right,
+                          pct: Math.round((row.right / row.seen) * 100),
+                        })}
                       </p>
                     )}
                   </>
@@ -280,27 +353,34 @@ export default function LidOverview({ modules, state, lessons }: Props) {
         <section>
           <h2 className="text-lg font-bold">{t('lid.mocksTitle', uiLang)}</h2>
           {readiness.exams.length === 0 ? (
-            <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{t('lid.mocksNone', uiLang)}</p>
+            <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
+              {t('lid.mocksNone', uiLang)}
+            </p>
           ) : (
             <div className={`${CARD} mt-3 flex flex-col gap-4 p-4 sm:flex-row sm:items-center`}>
               <MockChart exams={readiness.exams} />
               <ol className="space-y-1 text-sm">
-                {[...readiness.exams].reverse().slice(0, 3).map((exam) => (
-                  <li key={exam.submittedAt}>
-                    <span className="font-semibold tabular-nums">
-                      {exam.correct}/{LID_EXAM.questions}
-                    </span>
-                    <span className="text-stone-500 dark:text-stone-400">
-                      {' · '}
-                      {new Date(exam.submittedAt).toLocaleDateString('de-DE')}
-                    </span>
-                    <span className="block text-xs text-stone-500 dark:text-stone-400">
-                      {t('lid.einbuergerung', uiLang)} {exam.correct >= LID_EXAM.passEinbuergerung ? '✓' : '✗'}
-                      {' · '}
-                      {t('lid.orientierungskurs', uiLang)} {exam.correct >= LID_EXAM.passOrientierungskurs ? '✓' : '✗'}
-                    </span>
-                  </li>
-                ))}
+                {[...readiness.exams]
+                  .reverse()
+                  .slice(0, 3)
+                  .map((exam) => (
+                    <li key={exam.submittedAt}>
+                      <span className="font-semibold tabular-nums">
+                        {exam.correct}/{LID_EXAM.questions}
+                      </span>
+                      <span className="text-stone-500 dark:text-stone-400">
+                        {' · '}
+                        {new Date(exam.submittedAt).toLocaleDateString('de-DE')}
+                      </span>
+                      <span className="block text-xs text-stone-500 dark:text-stone-400">
+                        {t('lid.einbuergerung', uiLang)}{' '}
+                        {exam.correct >= LID_EXAM.passEinbuergerung ? '✓' : '✗'}
+                        {' · '}
+                        {t('lid.orientierungskurs', uiLang)}{' '}
+                        {exam.correct >= LID_EXAM.passOrientierungskurs ? '✓' : '✗'}
+                      </span>
+                    </li>
+                  ))}
               </ol>
             </div>
           )}

@@ -52,7 +52,14 @@ const shortItem = {
 export function ShortPrompt() {
   return (
     <div className="max-w-xl">
-      <Translate item={shortItem} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Translate
+        item={shortItem}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -61,7 +68,14 @@ export function ShortPrompt() {
 export function LongerPrompt() {
   return (
     <div className="max-w-2xl">
-      <Translate item={biografie} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Translate
+        item={biografie}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -70,7 +84,14 @@ export function LongerPrompt() {
 export function RussianSourcePrompt() {
   return (
     <div className="max-w-2xl">
-      <Translate item={biografie} lang="ru" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Translate
+        item={biografie}
+        lang="ru"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }

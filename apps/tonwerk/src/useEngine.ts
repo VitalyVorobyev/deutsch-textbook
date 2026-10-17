@@ -29,7 +29,10 @@ export interface Resource<T> {
  * matters more here than usual: `/api/registry` walks 437 exercise files and two project tables, so
  * a fast click through the nav can otherwise leave three of them in flight.
  */
-export function useEngineRead<T>(load: (signal: AbortSignal) => Promise<T>, keys: readonly unknown[]): Resource<T> {
+export function useEngineRead<T>(
+  load: (signal: AbortSignal) => Promise<T>,
+  keys: readonly unknown[],
+): Resource<T> {
   const [state, setState] = useState<Resource<T>>({ data: null, error: null, laedt: true });
   const [gemerkt, setGemerkt] = useState<readonly unknown[]>(keys);
 
@@ -50,7 +53,11 @@ export function useEngineRead<T>(load: (signal: AbortSignal) => Promise<T>, keys
       (error: unknown) => {
         if (controller.signal.aborted) return;
         if (error instanceof DOMException && error.name === 'AbortError') return;
-        setState({ data: null, error: error instanceof Error ? error : new Error(String(error)), laedt: false });
+        setState({
+          data: null,
+          error: error instanceof Error ? error : new Error(String(error)),
+          laedt: false,
+        });
       },
     );
     return () => controller.abort();

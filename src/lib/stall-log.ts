@@ -79,22 +79,30 @@ function write(entries: StallEntry[], profileId = getActiveProfileId()): void {
 
 /** Record a read that hit its deadline. Returns the entry id, so the caller can
     mark it recovered if a late attempt settles after all. */
-export function recordStall(input: { surface?: string; waitedMs: number; attempts: number; profileId?: string } & Pick<StallEntry, 'phase' | 'outcome' | 'queueDepth'>): string {
+export function recordStall(
+  input: { surface?: string; waitedMs: number; attempts: number; profileId?: string } & Pick<
+    StallEntry,
+    'phase' | 'outcome' | 'queueDepth'
+  >,
+): string {
   const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-  write([
-    ...readStallLog(input.profileId),
-    {
-      id,
-      surface: input.surface ?? 'read',
-      waitedMs: Math.round(input.waitedMs),
-      attempts: input.attempts,
-      at: Date.now(),
-      phase: input.phase,
-      outcome: input.outcome,
-      queueDepth: input.queueDepth,
-      build: version,
-    },
-  ], input.profileId);
+  write(
+    [
+      ...readStallLog(input.profileId),
+      {
+        id,
+        surface: input.surface ?? 'read',
+        waitedMs: Math.round(input.waitedMs),
+        attempts: input.attempts,
+        at: Date.now(),
+        phase: input.phase,
+        outcome: input.outcome,
+        queueDepth: input.queueDepth,
+        build: version,
+      },
+    ],
+    input.profileId,
+  );
   return id;
 }
 

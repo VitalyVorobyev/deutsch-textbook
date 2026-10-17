@@ -242,7 +242,9 @@ async function handleDocument(request) {
     const cached = await caches.match(request, { ignoreSearch: true });
     if (cached) return cached;
     const offline = await caches.match(OFFLINE_URL);
-    return offline ?? new Response('Offline', { status: 503, headers: { 'content-type': 'text/plain' } });
+    return (
+      offline ?? new Response('Offline', { status: 503, headers: { 'content-type': 'text/plain' } })
+    );
   }
 }
 

@@ -38,8 +38,14 @@ const item = (text: string) =>
 
 const widths = (text: string): string[] => {
   render(
-    <Cloze item={item(text)} lang="en" onResult={mock(() => {})} locked={false}
-      onNext={mock(() => {})} nextLabel="Weiter →" />,
+    <Cloze
+      item={item(text)}
+      lang="en"
+      onResult={mock(() => {})}
+      locked={false}
+      onNext={mock(() => {})}
+      nextLabel="Weiter →"
+    />,
   );
   return screen.getAllByRole('textbox').map((el) => (el as HTMLInputElement).style.width);
 };
@@ -56,14 +62,22 @@ describe('a gap reveals nothing about the answer it hides', () => {
 
   test('several gaps in one sentence are indistinguishable from each other', () => {
     // `a2/wohnen-umzug` shape: a 3-character and a 7-character answer side by side.
-    expect(widths('Tobias stellt {{den}} Schrank {{auf den}} Tisch.'))
-      .toEqual([`${GAP_REST_CH}ch`, `${GAP_REST_CH}ch`]);
+    expect(widths('Tobias stellt {{den}} Schrank {{auf den}} Tisch.')).toEqual([
+      `${GAP_REST_CH}ch`,
+      `${GAP_REST_CH}ch`,
+    ]);
   });
 
   test('the box grows with what the learner types, not with the answer', () => {
     render(
-      <Cloze item={item('Ich bin heute früh {{aufgestanden}}.')} lang="en"
-        onResult={mock(() => {})} locked={false} onNext={mock(() => {})} nextLabel="Weiter →" />,
+      <Cloze
+        item={item('Ich bin heute früh {{aufgestanden}}.')}
+        lang="en"
+        onResult={mock(() => {})}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
     );
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input.style.width).toBe(`${GAP_REST_CH}ch`);

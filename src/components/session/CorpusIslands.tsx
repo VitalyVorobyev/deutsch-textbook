@@ -54,7 +54,9 @@ export function CorpusGate<T extends unknown[]>({
         role="alert"
         className="rounded-lg border border-red-300 bg-red-50 p-6 text-center dark:border-red-800 dark:bg-red-950"
       >
-        <p className="text-sm font-medium text-red-800 dark:text-red-200">{t('corpus.loadError', uiLang)}</p>
+        <p className="text-sm font-medium text-red-800 dark:text-red-200">
+          {t('corpus.loadError', uiLang)}
+        </p>
         <button
           type="button"
           onClick={() => {
@@ -99,7 +101,9 @@ export function MixedTrainingIsland({
 
 export function ProbeCatchUpIsland({ setsUrl }: { setsUrl: string }) {
   return (
-    <CorpusGate<[TrainingSet[]]> urls={[setsUrl]}>{([sets]) => <ProbeCatchUp sets={sets} />}</CorpusGate>
+    <CorpusGate<[TrainingSet[]]> urls={[setsUrl]}>
+      {([sets]) => <ProbeCatchUp sets={sets} />}
+    </CorpusGate>
   );
 }
 
@@ -107,7 +111,10 @@ export function SessionFlowIsland({
   cardsUrl,
   setsUrl,
   ...props
-}: Omit<ComponentProps<typeof SessionFlow>, 'cards' | 'sets'> & { cardsUrl: string; setsUrl: string }) {
+}: Omit<ComponentProps<typeof SessionFlow>, 'cards' | 'sets'> & {
+  cardsUrl: string;
+  setsUrl: string;
+}) {
   return (
     <CorpusGate<[CardDef[], TrainingSet[]]> urls={[cardsUrl, setsUrl]}>
       {([cards, sets]) => <SessionFlow {...props} cards={cards} sets={sets} />}

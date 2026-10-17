@@ -6,7 +6,11 @@
  * the production budget asserted before the chain had finished (`managed-store`, 0.6.1). The bound
  * here is generous on purpose: it only costs time when the code is actually broken.
  */
-export async function eventually(condition: () => boolean, timeoutMs = 3000, stepMs = 5): Promise<void> {
+export async function eventually(
+  condition: () => boolean,
+  timeoutMs = 3000,
+  stepMs = 5,
+): Promise<void> {
   const deadline = Date.now() + timeoutMs;
   while (!condition()) {
     if (Date.now() > deadline) throw new Error(`condition did not hold within ${timeoutMs} ms`);

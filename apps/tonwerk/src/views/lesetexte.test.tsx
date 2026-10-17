@@ -308,8 +308,15 @@ describe('die stille Rücknahme (P28-6)', () => {
   });
 
   test('two presses, and the armed state is the only thing that wears the alarm hue', async () => {
-    const deleteScene = vi.fn(async () => ({ slug: 'a1-erste-schritte', deleted: true, project_id: 9 }));
-    mount(<Lesetexte />, api({ scenes: async () => entwurfFixture as never, deleteScene: deleteScene as never }));
+    const deleteScene = vi.fn(async () => ({
+      slug: 'a1-erste-schritte',
+      deleted: true,
+      project_id: 9,
+    }));
+    mount(
+      <Lesetexte />,
+      api({ scenes: async () => entwurfFixture as never, deleteScene: deleteScene as never }),
+    );
 
     const knopf = await screen.findByRole('button', { name: 'Löschen' });
     // Resting: no hue, no border — an offer is not a verdict.

@@ -73,7 +73,9 @@ if (rank) {
   ];
 
   for (const level of levels) {
-    const rows = loads.filter((l) => l.level === level).sort((a, b) => b.overall.per100 - a.overall.per100);
+    const rows = loads
+      .filter((l) => l.level === level)
+      .sort((a, b) => b.overall.per100 - a.overall.per100);
     if (rows.length === 0) continue;
     const width = Math.max(20, ...rows.map((r) => r.id.length));
     out.push(
@@ -206,7 +208,9 @@ out.push(
 for (const half of HALVES) {
   const t = load.terminology[half];
   if (!t) continue;
-  out.push(pad(half, 8) + String(t.words).padStart(8) + String(t.terms).padStart(8) + num(t.per100, 9, 2));
+  out.push(
+    pad(half, 8) + String(t.words).padStart(8) + String(t.terms).padStart(8) + num(t.per100, 9, 2),
+  );
 }
 out.push(
   '',

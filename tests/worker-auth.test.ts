@@ -171,10 +171,14 @@ function stubGithub(user: { id: number; name?: string }, emails: unknown[]): voi
       });
     }
     if (url === 'https://api.github.com/user') {
-      return new Response(JSON.stringify(user), { headers: { 'content-type': 'application/json' } });
+      return new Response(JSON.stringify(user), {
+        headers: { 'content-type': 'application/json' },
+      });
     }
     if (url === 'https://api.github.com/user/emails') {
-      return new Response(JSON.stringify(emails), { headers: { 'content-type': 'application/json' } });
+      return new Response(JSON.stringify(emails), {
+        headers: { 'content-type': 'application/json' },
+      });
     }
     throw new Error(`unexpected fetch: ${url}`);
   }) as typeof fetch;

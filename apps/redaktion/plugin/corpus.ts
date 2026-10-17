@@ -41,14 +41,23 @@ const MAX_SOURCE_BYTES = 2 * 1024 * 1024;
  * screen saying so. About six seconds; the write is undone if it reports anything.
  */
 function validateCorpus(root: string): string | undefined {
-  const run = spawnSync('bun', ['scripts/validate.ts'], { cwd: root, encoding: 'utf8', timeout: 120_000 });
+  const run = spawnSync('bun', ['scripts/validate.ts'], {
+    cwd: root,
+    encoding: 'utf8',
+    timeout: 120_000,
+  });
   if (run.status === 0) return undefined;
   const output = `${run.stdout ?? ''}${run.stderr ?? ''}`;
-  const first = output.split('\n').find((line) => line.trim().startsWith('content/') || line.trim().startsWith('data/'));
+  const first = output
+    .split('\n')
+    .find((line) => line.trim().startsWith('content/') || line.trim().startsWith('data/'));
   return (first ?? output.split('\n').filter(Boolean).at(-1) ?? 'validate failed').trim();
 }
 
-function json(res: { setHeader: (k: string, v: string) => void; end: (body: string) => void }, body: unknown): void {
+function json(
+  res: { setHeader: (k: string, v: string) => void; end: (body: string) => void },
+  body: unknown,
+): void {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   // No caching: the whole point is that an edit on disk is visible on the next request.
   res.setHeader('Cache-Control', 'no-store');
@@ -71,10 +80,17 @@ function readBody(req: NodeJS.ReadableStream, max: number): Promise<string> {
 
 function validateWorkspace(root: string): Promise<{ ok: boolean; output: string }> {
   return new Promise((resolveRun) => {
-    const child = spawn('bun', ['scripts/validate.ts'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
+    const child = spawn('bun', ['scripts/validate.ts'], {
+      cwd: root,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
     let output = '';
-    child.stdout.on('data', (chunk: Buffer) => { output += chunk.toString('utf8'); });
-    child.stderr.on('data', (chunk: Buffer) => { output += chunk.toString('utf8'); });
+    child.stdout.on('data', (chunk: Buffer) => {
+      output += chunk.toString('utf8');
+    });
+    child.stderr.on('data', (chunk: Buffer) => {
+      output += chunk.toString('utf8');
+    });
     child.on('error', (error) => resolveRun({ ok: false, output: error.message }));
     child.on('close', (code) => resolveRun({ ok: code === 0, output }));
   });
@@ -135,7 +151,11 @@ export function corpus(): Plugin {
           try {
             const checkout = realpathSync(root);
             const target = realpathSync(resolve(checkout, path));
-            if (!target.startsWith(resolve(checkout, 'content', 'listening') + sep) || !target.endsWith('.mp3') || !statSync(target).isFile())
+            if (
+              !target.startsWith(resolve(checkout, 'content', 'listening') + sep) ||
+              !target.endsWith('.mp3') ||
+              !statSync(target).isFile()
+            )
               throw new Error('only committed listening MP3 files are served');
             res.setHeader('Content-Type', 'audio/mpeg');
             res.setHeader('Cache-Control', 'no-store');
@@ -216,7 +236,9 @@ export function corpus(): Plugin {
             return json(res, { error: 'POST only' });
           }
           const startedAt = new Date().toISOString();
-          void validateWorkspace(root).then((result) => json(res, { ...result, startedAt, finishedAt: new Date().toISOString() }));
+          void validateWorkspace(root).then((result) =>
+            json(res, { ...result, startedAt, finishedAt: new Date().toISOString() }),
+          );
           return;
         }
         if (url === '/__review') {
@@ -228,7 +250,8 @@ export function corpus(): Plugin {
             .then((raw) => JSON.parse(raw) as { topicId?: string; expectedRevision?: string })
             .then(({ topicId, expectedRevision }) => {
               const topic = topicId ? contentGraph(root).topics.get(topicId) : undefined;
-              if (!topic || !expectedRevision) return { ok: false, error: 'topicId and expectedRevision are required' } as const;
+              if (!topic || !expectedRevision)
+                return { ok: false, error: 'topicId and expectedRevision are required' } as const;
               return applyPatch({ file: topic.file, field: 'status', value: 'reviewed' }, root, {
                 expectedRevision,
                 verify: validateCorpus,

@@ -77,12 +77,18 @@ function entry(fields: Partial<VocabEntry> & Pick<VocabEntry, 'de' | 'pos'>): Vo
 
 describe('the flashcard shows sich, keeps its identity and grades as before', () => {
   const deck = buildDeck('fixture-deck', [
-    entry({ pos: 'verb', de: 'gewöhnen', valence: 'sich gewöhnen an + Akk', accept: ['sich gewöhnen'] }),
+    entry({
+      pos: 'verb',
+      de: 'gewöhnen',
+      valence: 'sich gewöhnen an + Akk',
+      accept: ['sich gewöhnen'],
+    }),
     entry({ pos: 'verb', de: 'sich bewerben', valence: 'sich + Akk; um + Akk' }),
     entry({ pos: 'verb', de: 'anziehen', valence: '+ Akk / sich', accept: ['sich anziehen'] }),
     entry({ pos: 'noun', de: 'Apfel', gender: 'm' }),
   ]);
-  const card = (de: string, dir: 'de-x' | 'x-de') => deck.find((c) => c.de === de && c.dir === dir)!;
+  const card = (de: string, dir: 'de-x' | 'x-de') =>
+    deck.find((c) => c.de === de && c.dir === dir)!;
 
   test('both directions of gewöhnen show and speak sich gewöhnen', () => {
     expect(shownAnswer(card('gewöhnen', 'de-x'))).toBe('sich gewöhnen');

@@ -7,7 +7,12 @@ import {
   type CheckpointItemRef,
   type CheckpointRef,
 } from '../src/lib/checkpoint';
-import { levelPathDone, levelRemaining, type TopicContext, type TopicNode } from '../src/lib/mastery';
+import {
+  levelPathDone,
+  levelRemaining,
+  type TopicContext,
+  type TopicNode,
+} from '../src/lib/mastery';
 import type { Attempt } from '../src/lib/store';
 
 const SET = 'a1/checkpoint-a1';
@@ -29,12 +34,20 @@ const modes = {
 };
 
 const attempt = (itemId: string, ts: number, over: Partial<Attempt> = {}): Attempt => ({
-  setId: SET, itemId, itemType: 'mc', correct: true, given: 'x', ts, ...over,
+  setId: SET,
+  itemId,
+  itemType: 'mc',
+  correct: true,
+  given: 'x',
+  ts,
+  ...over,
 });
 
 describe('checkpointOutcomeResults', () => {
   test('null while the checkpoint has never been attempted', () => {
-    expect(checkpointOutcomeResults(items, [attempt('x', 1, { setId: 'a1/other' })], SET)).toBeNull();
+    expect(
+      checkpointOutcomeResults(items, [attempt('x', 1, { setId: 'a1/other' })], SET),
+    ).toBeNull();
   });
 
   test('the latest attempt per item wins in both directions', () => {
@@ -106,9 +119,17 @@ describe('checkpointOutcomeResults', () => {
 // every A1 topic never saw the checkpoint once a practice set had grown.
 describe('level checkpoint gate', () => {
   const topic = (id: string, itemIds: string[]): TopicNode => ({
-    id, path: `/topics/a1/${id}`, level: 'A1', kind: 'grammar',
-    title_de: id, title_en: id, title_ru: id, prerequisites: [],
-    exerciseSets: [`a1/${id}`], vocabIds: [], readingIds: [],
+    id,
+    path: `/topics/a1/${id}`,
+    level: 'A1',
+    kind: 'grammar',
+    title_de: id,
+    title_en: id,
+    title_ru: id,
+    prerequisites: [],
+    exerciseSets: [`a1/${id}`],
+    vocabIds: [],
+    readingIds: [],
     primaryPractice: { setId: `a1/${id}`, itemIds },
   });
   const mastery = (setId: string): Attempt[] => {
@@ -149,13 +170,33 @@ describe('level checkpoint gate', () => {
 // sees a *list*. dueCheckpoint is the one rule for which of them to offer.
 describe('dueCheckpoint', () => {
   const checkpoints: CheckpointRef[] = [
-    { setId: 'a2/checkpoint-a2', level: 'A2', path: '/checkpoint/a2', title: 'Checkpoint A2', items: [{ id: 'old-1' }, { id: 'old-2' }, { id: 'new-1' }, { id: 'new-2' }] },
-    { setId: 'a1/checkpoint-a1', level: 'A1', path: '/checkpoint/a1', title: 'Checkpoint A1', items: [{ id: 'hoeren-1' }] },
+    {
+      setId: 'a2/checkpoint-a2',
+      level: 'A2',
+      path: '/checkpoint/a2',
+      title: 'Checkpoint A2',
+      items: [{ id: 'old-1' }, { id: 'old-2' }, { id: 'new-1' }, { id: 'new-2' }],
+    },
+    {
+      setId: 'a1/checkpoint-a1',
+      level: 'A1',
+      path: '/checkpoint/a1',
+      title: 'Checkpoint A1',
+      items: [{ id: 'hoeren-1' }],
+    },
   ];
   const lesson = (id: string, level: string): TopicNode => ({
-    id, path: `/topics/${level.toLowerCase()}/${id}`, level, kind: 'grammar',
-    title_de: id, title_en: id, title_ru: id, prerequisites: [],
-    exerciseSets: [`${level.toLowerCase()}/${id}`], vocabIds: [], readingIds: [],
+    id,
+    path: `/topics/${level.toLowerCase()}/${id}`,
+    level,
+    kind: 'grammar',
+    title_de: id,
+    title_en: id,
+    title_ru: id,
+    prerequisites: [],
+    exerciseSets: [`${level.toLowerCase()}/${id}`],
+    vocabIds: [],
+    readingIds: [],
     primaryPractice: { setId: `${level.toLowerCase()}/${id}`, itemIds: ['i1', 'i2'] },
   });
   const nodes = [lesson('erste-schritte', 'A1'), lesson('dativ', 'A2')];
@@ -246,7 +287,8 @@ describe('dueCheckpoint', () => {
     expect(dueCheckpoint(checkpoints, nodes, ctx)?.setId).toBe('a2/checkpoint-a2');
 
     // …and it flips to covered exactly when the new items are answered, in step with dueCheckpoint
-    const complete = [...attempts,
+    const complete = [
+      ...attempts,
       attempt('new-1', 400, { setId: 'a2/checkpoint-a2' }),
       attempt('new-2', 401, { setId: 'a2/checkpoint-a2' }),
     ];

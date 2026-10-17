@@ -60,9 +60,7 @@ export function Order({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
         }`}
       >
         {answer.length === 0 && (
-          <span className="text-sm text-stone-400">
-            {pick(lang, UI.emptyState)}
-          </span>
+          <span className="text-sm text-stone-400">{pick(lang, UI.emptyState)}</span>
         )}
         {answer.map((chip) => (
           <button

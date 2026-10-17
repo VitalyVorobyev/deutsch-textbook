@@ -79,7 +79,9 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
         <div className="flex flex-col gap-2">
           {rights.map((right) => {
             const key = rightKey(right);
-            const isMatched = item.pairs.some((p) => rightKey(p.right) === key && matched.has(p.left));
+            const isMatched = item.pairs.some(
+              (p) => rightKey(p.right) === key && matched.has(p.left),
+            );
             return (
               <button
                 key={key}
@@ -105,12 +107,7 @@ export function Match({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
       <p className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400">
         {errors > 0 && !done && `${pick(lang, UI.errors)}: ${errors}`}
       </p>
-      <ActionRow
-        checked={done}
-        correct={errors === 0}
-        onNext={onNext}
-        nextLabel={nextLabel}
-      />
+      <ActionRow checked={done} correct={errors === 0} onNext={onNext} nextLabel={nextLabel} />
       {done && <Feedback correct={errors === 0} explain={item.explain} lang={lang} />}
     </div>
   );

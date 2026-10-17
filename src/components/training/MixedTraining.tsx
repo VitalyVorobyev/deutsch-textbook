@@ -142,10 +142,9 @@ export default function MixedTraining({
 
   useEffect(() => {
     let cancelled = false;
-    void withReadRetry(
-      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
-      { surface: 'training/mixed' },
-    ).then(
+    void withReadRetry(() => Promise.all([getAttempts(), getCardStates(), getTopicsState()]), {
+      surface: 'training/mixed',
+    }).then(
       ([attempts, cards, topics]) => {
         if (cancelled) return;
         // Building a queue from a stalled read means interleaving what the learner has
@@ -246,15 +245,18 @@ export default function MixedTraining({
   }
 
   if (loadError) {
-    return <ProgressLoadError onRetry={() => { setLoadError(false); setRound((r) => r + 1); }} />;
+    return (
+      <ProgressLoadError
+        onRetry={() => {
+          setLoadError(false);
+          setRound((r) => r + 1);
+        }}
+      />
+    );
   }
 
   if (!session) {
-    return (
-      <p className="text-sm text-stone-500 dark:text-stone-400">
-        {pick(lang, UI.building)}
-      </p>
-    );
+    return <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.building)}</p>;
   }
 
   if (session.length === 0) {
@@ -343,7 +345,9 @@ export default function MixedTraining({
                     : 'text-stone-600 dark:text-stone-300'
                 }`}
               >
-                {row.total > 0 ? `${formatScore(row.score, lang)} / ${row.total}` : pick(lang, UI.practice)}
+                {row.total > 0
+                  ? `${formatScore(row.score, lang)} / ${row.total}`
+                  : pick(lang, UI.practice)}
               </span>
             </li>
           ))}
@@ -396,7 +400,13 @@ export default function MixedTraining({
               <span
                 key={`${round}-${s.uid}`}
                 className={`h-2 w-2 rounded-full ${
-                  a ? (a.correct ? 'bg-green-500' : 'bg-red-400') : i === index ? 'bg-amber-500' : 'bg-stone-300 dark:bg-stone-600'
+                  a
+                    ? a.correct
+                      ? 'bg-green-500'
+                      : 'bg-red-400'
+                    : i === index
+                      ? 'bg-amber-500'
+                      : 'bg-stone-300 dark:bg-stone-600'
                 }`}
               />
             );
@@ -405,21 +415,27 @@ export default function MixedTraining({
       </div>
 
       {entry && (
-          <div className={entry.document ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
-          {entry.document && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={entry.document} /></div>}
+        <div
+          className={entry.document ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}
+        >
+          {entry.document && (
+            <div className="lg:sticky lg:top-4 lg:self-start">
+              <DocumentStimulus document={entry.document} />
+            </div>
+          )}
           <ItemView
-          instanceKey={`${round}-${entry.uid}`}
-          item={entry.item}
-          lang={lang}
-          onResult={handleResult}
-          locked={currentDone}
-          onNext={next}
-          nextLabel={
-            index + 1 < session.length ? t('action.next', uiLang) : pick(lang, UI.results)
-          }
-          storageKey={entry.uid}
+            instanceKey={`${round}-${entry.uid}`}
+            item={entry.item}
+            lang={lang}
+            onResult={handleResult}
+            locked={currentDone}
+            onNext={next}
+            nextLabel={
+              index + 1 < session.length ? t('action.next', uiLang) : pick(lang, UI.results)
+            }
+            storageKey={entry.uid}
           />
-          </div>
+        </div>
       )}
     </div>
   );

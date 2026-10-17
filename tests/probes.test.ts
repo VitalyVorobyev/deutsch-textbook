@@ -56,13 +56,30 @@ describe('a topic with two probe families arms them separately', () => {
   // practice set contains items for both families' outcomes. So "the sets that teach this
   // family" is not a discriminating question — only "the items that do" is.
   const sets = [
-    { setId: 'a2/t', topicId: 't', role: 'practice', items: [
-      { id: 'i1', outcomes: ['one'] },
-      { id: 'i2', outcomes: ['two'] },
-      { id: 'i3', outcomes: ['three'] },
-    ] },
-    { setId: 'a2/probe-t-one', topicId: 't', role: 'probe', arming: ['a2/t::i1'], items: [{ id: 'v', outcomes: ['one'] }] },
-    { setId: 'a2/probe-t-two', topicId: 't', role: 'probe', arming: ['a2/t::i2'], items: [{ id: 'v', outcomes: ['two'] }] },
+    {
+      setId: 'a2/t',
+      topicId: 't',
+      role: 'practice',
+      items: [
+        { id: 'i1', outcomes: ['one'] },
+        { id: 'i2', outcomes: ['two'] },
+        { id: 'i3', outcomes: ['three'] },
+      ],
+    },
+    {
+      setId: 'a2/probe-t-one',
+      topicId: 't',
+      role: 'probe',
+      arming: ['a2/t::i1'],
+      items: [{ id: 'v', outcomes: ['one'] }],
+    },
+    {
+      setId: 'a2/probe-t-two',
+      topicId: 't',
+      role: 'probe',
+      arming: ['a2/t::i2'],
+      items: [{ id: 'v', outcomes: ['two'] }],
+    },
   ];
 
   test('neither family falls back to the whole topic', () => {
@@ -173,9 +190,19 @@ describe('arming — practice starts the retention clock', () => {
 describe('deriving families from the set list', () => {
   test('arms from the topic’s practice and drill sets, never its pretest or itself', () => {
     const [derived] = probeFamilies([
-      { setId: 'a1/akkusativ', topicId: 'akkusativ', role: 'practice', items: [{ id: 'i1', outcomes: ['akk-objekt-bilden'] }] },
+      {
+        setId: 'a1/akkusativ',
+        topicId: 'akkusativ',
+        role: 'practice',
+        items: [{ id: 'i1', outcomes: ['akk-objekt-bilden'] }],
+      },
       { setId: 'a1/akkusativ-pretest', topicId: 'akkusativ', role: 'pretest', items: [] },
-      { setId: 'a2/drill-der-dem-den', topicId: 'akkusativ', role: 'drill', items: [{ id: 'd1', outcomes: ['akk-objekt-bilden'] }] },
+      {
+        setId: 'a2/drill-der-dem-den',
+        topicId: 'akkusativ',
+        role: 'drill',
+        items: [{ id: 'd1', outcomes: ['akk-objekt-bilden'] }],
+      },
       { setId: 'a1/checkpoint-a1', topicId: 'akkusativ', role: 'checkpoint', items: [] },
       { setId: 'a1/wohnen', topicId: 'wohnen', role: 'practice', items: [] },
       {
@@ -186,10 +213,7 @@ describe('deriving families from the set list', () => {
         items: [{ id: 'variant-a', outcomes: ['akk-objekt-bilden'] }],
       },
     ]);
-    expect(derived!.armingItemKeys).toEqual([
-      'a1/akkusativ::i1',
-      'a2/drill-der-dem-den::d1',
-    ]);
+    expect(derived!.armingItemKeys).toEqual(['a1/akkusativ::i1', 'a2/drill-der-dem-den::d1']);
     expect(derived!.outcomes).toEqual(['akk-objekt-bilden']);
   });
 });
@@ -247,7 +271,10 @@ describe('parallel variants — a probe is never the item it checks', () => {
   });
 
   test('never re-presents a variant the learner has already answered', () => {
-    const log = [practised, attempt({ setId: family.setId, itemId: 'variant-a', ts: T0 + 2 * DAY })];
+    const log = [
+      practised,
+      attempt({ setId: family.setId, itemId: 'variant-a', ts: T0 + 2 * DAY }),
+    ];
     expect(nextVariant(family, log)).toBe('variant-b');
   });
 
@@ -286,7 +313,22 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
   // Fourteen families armed an hour apart → fourteen due probes with strictly increasing
   // dueAt, so "most overdue first" has one right answer — and enough debt that even the
   // twelve-probe catch-up cap still truncates.
-  const topics = ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12', 't13', 't14'];
+  const topics = [
+    't1',
+    't2',
+    't3',
+    't4',
+    't5',
+    't6',
+    't7',
+    't8',
+    't9',
+    't10',
+    't11',
+    't12',
+    't13',
+    't14',
+  ];
   const families: ProbeFamily[] = topics.map((topic) => ({
     setId: `a1/probe-${topic}`,
     topicId: topic,
@@ -295,7 +337,8 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
     items: [{ id: 'v1', outcomes: [`${topic}-o1`] }],
   }));
   const log = topics.map((topic, i) =>
-    attempt({ setId: `a1/${topic}`, ts: T0 + i * HOUR, outcomes: [`${topic}-o1`] }));
+    attempt({ setId: `a1/${topic}`, ts: T0 + i * HOUR, outcomes: [`${topic}-o1`] }),
+  );
   // all fourteen 2-day probes are due; none of the 7-day ones is anywhere near
   const now = T0 + 2 * DAY + 14 * HOUR;
 
@@ -311,8 +354,20 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
 
   test('a catch-up visit drains the most overdue probes first', () => {
     const served = servedProbes(dueProbes(families, log, now), MAX_PROBES_PER_CATCHUP);
-    expect(served.map((d) => d.family.topicId))
-      .toEqual(['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12']);
+    expect(served.map((d) => d.family.topicId)).toEqual([
+      't1',
+      't2',
+      't3',
+      't4',
+      't5',
+      't6',
+      't7',
+      't8',
+      't9',
+      't10',
+      't11',
+      't12',
+    ]);
     const dueAts = served.map((d) => d.dueAt);
     expect([...dueAts].sort((a, b) => a - b)).toEqual(dueAts);
   });
@@ -327,8 +382,7 @@ describe('visit caps — the serving is bounded, the debt is not', () => {
       ...log,
       ...served.map((d) => attempt({ setId: d.family.setId, itemId: d.itemId, ts: now })),
     ];
-    expect(dueProbes(families, answered, now).map((d) => d.family.topicId))
-      .toEqual(['t13', 't14']);
+    expect(dueProbes(families, answered, now).map((d) => d.family.topicId)).toEqual(['t13', 't14']);
   });
 });
 
@@ -357,7 +411,8 @@ describe('daily probe budget — derived from the attempt log, never stored', ()
         setId: i % 2 === 0 ? family.setId : wohnen.setId,
         itemId: `p${i}`,
         ts: at(day, hour, i * 4),
-      }));
+      }),
+    );
 
   test('a full catch-up spends the budget — the card gate closes, the route serves nothing', () => {
     const catchUp = fullDay(15, 9);

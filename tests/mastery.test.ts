@@ -1,22 +1,54 @@
 import { describe, expect, test } from 'bun:test';
 import { State } from 'ts-fsrs';
-import { goalRoute, lessonCompleted, masteryGaps, pathDone, recommendedForGoal, recommendedNext, topicCompletion, topicTier, type TopicContext, type TopicNode } from '../src/lib/mastery';
+import {
+  goalRoute,
+  lessonCompleted,
+  masteryGaps,
+  pathDone,
+  recommendedForGoal,
+  recommendedNext,
+  topicCompletion,
+  topicTier,
+  type TopicContext,
+  type TopicNode,
+} from '../src/lib/mastery';
 import type { Attempt, StoredCard } from '../src/lib/store';
 
 const node: TopicNode = {
-  id: 'basis', path: '/topics/a1/basis', level: 'A1', kind: 'grammar',
-  title_de: 'Basis', title_en: 'Basics', title_ru: 'База', prerequisites: [],
-  exerciseSets: ['a1/basis'], vocabIds: [], readingIds: [], pretestId: 'a1/basis-pretest',
+  id: 'basis',
+  path: '/topics/a1/basis',
+  level: 'A1',
+  kind: 'grammar',
+  title_de: 'Basis',
+  title_en: 'Basics',
+  title_ru: 'База',
+  prerequisites: [],
+  exerciseSets: ['a1/basis'],
+  vocabIds: [],
+  readingIds: [],
+  pretestId: 'a1/basis-pretest',
 };
 
 const attempt = (setId: string, ts: number, correct = true): Attempt => ({
-  setId, itemId: `i-${ts}`, itemType: 'mc', correct, given: 'x', ts,
+  setId,
+  itemId: `i-${ts}`,
+  itemType: 'mc',
+  correct,
+  given: 'x',
+  ts,
 });
 
 const reviewedCard = (): StoredCard => ({
-  due: '2026-01-05T00:00:00.000Z', stability: 10, difficulty: 5,
-  elapsed_days: 1, scheduled_days: 7, learning_steps: 0, reps: 3,
-  lapses: 0, state: State.Review, last_review: '2026-01-02T00:00:00.000Z',
+  due: '2026-01-05T00:00:00.000Z',
+  stability: 10,
+  difficulty: 5,
+  elapsed_days: 1,
+  scheduled_days: 7,
+  learning_steps: 0,
+  reps: 3,
+  lapses: 0,
+  state: State.Review,
+  last_review: '2026-01-02T00:00:00.000Z',
 });
 
 describe('measured mastery', () => {
@@ -47,7 +79,13 @@ describe('measured mastery', () => {
   });
 
   test('recommendedNext uses measured tiers', () => {
-    const second = { ...node, id: 'next', path: '/topics/a1/next', title_de: 'Next', exerciseSets: ['a1/next'] };
+    const second = {
+      ...node,
+      id: 'next',
+      path: '/topics/a1/next',
+      title_de: 'Next',
+      exerciseSets: ['a1/next'],
+    };
     const ctx: TopicContext = { attempts: [], cards: {}, topics: {} };
     expect(recommendedNext(['basis', 'next'], [node, second], ctx)?.id).toBe('basis');
   });
@@ -84,7 +122,8 @@ describe('measured mastery', () => {
         { ...attempt('a1/basis', 1), itemId: 'one' },
         { ...attempt('a1/basis-pretest', 2), itemId: 'two' },
       ],
-      cards: {}, topics: { basis: { readAt: 1 } },
+      cards: {},
+      topics: { basis: { readAt: 1 } },
     };
     expect(lessonCompleted(first, ctx)).toBe(false);
     expect(recommendedNext(['basis'], [first], ctx)?.id).toBe('basis');
@@ -97,7 +136,10 @@ describe('measured mastery', () => {
     const day1 = new Date(2026, 0, 1, 10).getTime();
     const day2 = new Date(2026, 0, 2, 10).getTime();
     // five verified attempts across two days on the items that existed back then …
-    const attempts = [0, 1, 2, 3].map((n) => ({ ...attempt('a1/basis', day1 + n), itemId: `old-${n}` }));
+    const attempts = [0, 1, 2, 3].map((n) => ({
+      ...attempt('a1/basis', day1 + n),
+      itemId: `old-${n}`,
+    }));
     attempts.push({ ...attempt('a1/basis', day2), itemId: 'old-4' });
     // … while the set has since gained "new-1", which the learner never saw.
     const first: TopicNode = {
@@ -200,9 +242,12 @@ describe('measured mastery', () => {
     const words = { ...node, id: 'words', prerequisites: [] };
     const goal = { ...node, id: 'goal', prerequisites: ['grammar', 'words'] };
     const nodes = [node, grammar, words, goal];
-    expect(goalRoute('goal', ['basis', 'words', 'grammar', 'goal'], nodes).map((n) => n.id))
-      .toEqual(['basis', 'words', 'grammar', 'goal']);
+    expect(
+      goalRoute('goal', ['basis', 'words', 'grammar', 'goal'], nodes).map((n) => n.id),
+    ).toEqual(['basis', 'words', 'grammar', 'goal']);
     const ctx: TopicContext = { attempts: [], cards: {}, topics: {} };
-    expect(recommendedForGoal('goal', ['basis', 'words', 'grammar', 'goal'], nodes, ctx)?.id).toBe('basis');
+    expect(recommendedForGoal('goal', ['basis', 'words', 'grammar', 'goal'], nodes, ctx)?.id).toBe(
+      'basis',
+    );
   });
 });

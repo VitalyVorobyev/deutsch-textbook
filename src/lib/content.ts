@@ -23,12 +23,16 @@ import type { LidCatalogue, LidEntry, LidLessonView } from '../components/lid/sh
  * does not have is a build error: `elements:` is closed, so validation already refuses it.
  */
 export async function getTrainingSets(): Promise<TrainingSet[]> {
-  const [exercises, documents] = await Promise.all([getCollection('exercises'), getCollection('documents')]);
+  const [exercises, documents] = await Promise.all([
+    getCollection('exercises'),
+    getCollection('documents'),
+  ]);
   const topicById = new Map(getCurriculum().nodes.map((t) => [t.id, t]));
   const documentById = new Map(documents.map((document) => [document.id, document.data]));
   return exercises.map((e) => {
     const topic = topicById.get(e.data.topic);
-    if (!topic) throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
+    if (!topic)
+      throw new Error(`exercise set "${e.id}" references unknown topic "${e.data.topic}"`);
     return {
       setId: e.id,
       topicId: topic.id,
@@ -188,7 +192,9 @@ export function getLidCatalogue(): LidCatalogue {
   const notes = new Map(loadLidNotes().map((note) => [note.id, note]));
   const lessonFiles = loadLidLessons();
   const lessonOf = new Map(
-    lessonFiles.flatMap((lesson) => lesson.topics.map((topic) => [topic, { id: lesson.id, title: lesson.title_de }] as const)),
+    lessonFiles.flatMap((lesson) =>
+      lesson.topics.map((topic) => [topic, { id: lesson.id, title: lesson.title_de }] as const),
+    ),
   );
   const state = bank.states[0]!;
   const inScope = bank.questions.filter((q) => q.scope === 'general' || q.stateCode === state);
@@ -204,12 +210,15 @@ export function getLidCatalogue(): LidCatalogue {
     }),
   }));
   const topicInfo = new Map(
-    topics.modules.flatMap((m) => m.topics.map((topic) => [topic.id, { module: m.id, title: topic.title_de }] as const)),
+    topics.modules.flatMap((m) =>
+      m.topics.map((topic) => [topic.id, { module: m.id, title: topic.title_de }] as const),
+    ),
   );
   for (const question of inScope) {
     const note = notes.get(question.id);
     const info = note ? topicInfo.get(note.topic) : undefined;
-    if (!note || !info) throw new Error(`LiD: ${question.id} belongs to no topic (run bun run validate)`);
+    if (!note || !info)
+      throw new Error(`LiD: ${question.id} belongs to no topic (run bun run validate)`);
     // A note that only places its question carries nothing to show — leave it out of the payload.
     const said = !!(note.rationale_de || note.source || note.question || note.terms?.length);
     const lesson = lessonOf.get(note.topic);
@@ -224,7 +233,9 @@ export function getLidCatalogue(): LidCatalogue {
           status: note.status,
           ...(note.rationale_de ? { rationale_de: note.rationale_de } : {}),
           ...(note.source ? { source: note.source } : {}),
-          ...(note.question && note.options ? { question: note.question, options: note.options } : {}),
+          ...(note.question && note.options
+            ? { question: note.question, options: note.options }
+            : {}),
           ...(note.terms?.length ? { terms: note.terms } : {}),
         },
       }),
@@ -234,7 +245,9 @@ export function getLidCatalogue(): LidCatalogue {
   const entries: LidEntry[] = [];
   for (const m of modules)
     for (const topic of m.topics) {
-      const own = byTopic.get(topic.id)!.sort((a, b) => a.question.officialNumber - b.question.officialNumber);
+      const own = byTopic
+        .get(topic.id)!
+        .sort((a, b) => a.question.officialNumber - b.question.officialNumber);
       topic.ids = own.map((entry) => entry.question.id);
       entries.push(...own);
     }
@@ -250,5 +263,12 @@ export function getLidCatalogue(): LidCatalogue {
       ids: entries.filter((entry) => own.has(entry.topic)).map((entry) => entry.question.id),
     };
   });
-  return { source: bank.source, bankVersion: bank.dataset.version, state, modules, entries, lessons };
+  return {
+    source: bank.source,
+    bankVersion: bank.dataset.version,
+    state,
+    modules,
+    entries,
+    lessons,
+  };
 }

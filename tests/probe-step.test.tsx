@@ -44,7 +44,11 @@ function probeItem(id: string, prompt: string, answer: string) {
   });
 }
 
-const ITEM_A = probeItem('v1', 'On Saturday my friend brings her children.', 'Am Samstag bringt meine Freundin ihre Kinder mit.');
+const ITEM_A = probeItem(
+  'v1',
+  'On Saturday my friend brings her children.',
+  'Am Samstag bringt meine Freundin ihre Kinder mit.',
+);
 const ITEM_B = probeItem('v1', 'I do sport at six.', 'Um sechs Uhr mache ich Sport.');
 
 // Same item id in both families on purpose: probe variant ids are unique only inside

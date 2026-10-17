@@ -171,12 +171,24 @@ export function parseExamManifest(value: unknown): ExamManifest | null {
   for (const set of manifest.sets as unknown[]) {
     if (typeof set !== 'object' || set === null) return null;
     const s = set as Record<string, unknown>;
-    if (typeof s.id !== 'string' || !s.id || typeof s.title !== 'string' || typeof s.level !== 'string') return null;
+    if (
+      typeof s.id !== 'string' ||
+      !s.id ||
+      typeof s.title !== 'string' ||
+      typeof s.level !== 'string'
+    )
+      return null;
     if (!Array.isArray(s.modules)) return null;
     for (const module of s.modules as unknown[]) {
       if (typeof module !== 'object' || module === null) return null;
       const m = module as Record<string, unknown>;
-      if (m.module !== 'hoeren' && m.module !== 'lesen' && m.module !== 'schreiben' && m.module !== 'sprechen') return null;
+      if (
+        m.module !== 'hoeren' &&
+        m.module !== 'lesen' &&
+        m.module !== 'schreiben' &&
+        m.module !== 'sprechen'
+      )
+        return null;
       if (typeof m.timeLimitMin !== 'number' || m.timeLimitMin <= 0) return null;
       if (typeof m.maxScaled !== 'number' || m.maxScaled <= 0) return null;
       if (!Array.isArray(m.pages) || m.pages.some((p) => typeof p !== 'string')) return null;
@@ -274,7 +286,10 @@ export interface ExamModuleScore {
  * outside this number: its points exist only as a criteria-based self-assessment, recorded
  * separately (`selfScore`) and never silently summed into the automatic score.
  */
-export function scoreModule(module: ExamModuleSpec, answers: Record<number, string | undefined>): ExamModuleScore {
+export function scoreModule(
+  module: ExamModuleSpec,
+  answers: Record<number, string | undefined>,
+): ExamModuleScore {
   const items = moduleItems(module);
   const scaledMax = module.maxScaled - moduleFreeMax(module);
   const raw = items.filter((item) => itemCorrect(item, answers[item.nr])).length;
@@ -330,7 +345,10 @@ export function loadExamHistory(storage: StorageLike | null = defaultStorage()):
   }
 }
 
-export function recordExamRun(run: ExamRunRecord, storage: StorageLike | null = defaultStorage()): ExamRunRecord[] {
+export function recordExamRun(
+  run: ExamRunRecord,
+  storage: StorageLike | null = defaultStorage(),
+): ExamRunRecord[] {
   const history = [...loadExamHistory(storage), run].slice(-HISTORY_LIMIT);
   storage?.setItem(EXAM_HISTORY_KEY, JSON.stringify(history));
   return history;
@@ -355,5 +373,8 @@ export function updateExamRun(
 }
 
 /** Earlier finished runs of this set+module — the repeat warning reads this. */
-export const priorRuns = (history: ExamRunRecord[], setId: string, module: ExamModuleId): ExamRunRecord[] =>
-  history.filter((run) => run.setId === setId && run.module === module);
+export const priorRuns = (
+  history: ExamRunRecord[],
+  setId: string,
+  module: ExamModuleId,
+): ExamRunRecord[] => history.filter((run) => run.setId === setId && run.module === module);

@@ -13,11 +13,19 @@ import { afterAll, describe, expect, test } from 'bun:test';
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { LID_LESSONS_DIR, LID_TOPICS_FILE, lidLessonProblems, loadLidLessons } from '@da/content/lid';
+import {
+  LID_LESSONS_DIR,
+  LID_TOPICS_FILE,
+  lidLessonProblems,
+  loadLidLessons,
+} from '@da/content/lid';
 import { ukHalfCoverage } from '@da/content/coverage';
 import { repoRoot } from '@da/content/repo-root';
 
-const FIXTURE = readFileSync(join(import.meta.dir, 'fixtures', 'lid-lessons', 'zz-fixture.mdx'), 'utf8');
+const FIXTURE = readFileSync(
+  join(import.meta.dir, 'fixtures', 'lid-lessons', 'zz-fixture.mdx'),
+  'utf8',
+);
 const roots: string[] = [];
 
 afterAll(() => {
@@ -32,7 +40,8 @@ function rootWith(lessons: Record<string, string> | null): string {
   cpSync(join(repoRoot(), LID_TOPICS_FILE), join(root, LID_TOPICS_FILE));
   if (lessons) {
     mkdirSync(join(root, LID_LESSONS_DIR), { recursive: true });
-    for (const [id, text] of Object.entries(lessons)) writeFileSync(join(root, LID_LESSONS_DIR, `${id}.mdx`), text);
+    for (const [id, text] of Object.entries(lessons))
+      writeFileSync(join(root, LID_LESSONS_DIR, `${id}.mdx`), text);
   }
   return root;
 }
@@ -67,7 +76,11 @@ describe('a valid lesson', () => {
   });
 
   test('loadLidLessons sorts by order, not by file name', () => {
-    const second = edit(edit(FIXTURE, 'order: 99', 'order: 2'), 'topics: [staatssymbole]', 'topics: [europa]');
+    const second = edit(
+      edit(FIXTURE, 'order: 99', 'order: 2'),
+      'topics: [staatssymbole]',
+      'topics: [europa]',
+    );
     const first = edit(FIXTURE, 'order: 99', 'order: 1');
     const root = rootWith({ 'aa-second': second, 'zz-first': first });
     expect(lidLessonProblems(root)).toEqual([]);
@@ -103,12 +116,18 @@ describe('the cross-file rules', () => {
   });
 
   test('the file name is the id, and it is kebab-case ASCII', () => {
-    expect(problemsOf({ Staatssymbole: FIXTURE }).join('\n')).toContain('"Staatssymbole" is not a lesson id');
+    expect(problemsOf({ Staatssymbole: FIXTURE }).join('\n')).toContain(
+      '"Staatssymbole" is not a lesson id',
+    );
   });
 
   test('the frontmatter schema: sources and terms are required, a status is draft or reviewed', () => {
     expect(only(edit(FIXTURE, 'status: draft', 'status: final')).join('\n')).toContain('status');
-    const noSources = edit(FIXTURE, 'sources:\n  - { title: "Grundgesetz, Art. 22", url: "https://www.gesetze-im-internet.de/gg/art_22.html" }\n', '');
+    const noSources = edit(
+      FIXTURE,
+      'sources:\n  - { title: "Grundgesetz, Art. 22", url: "https://www.gesetze-im-internet.de/gg/art_22.html" }\n',
+      '',
+    );
     expect(only(noSources).join('\n')).toContain('sources');
   });
 });
@@ -123,72 +142,102 @@ describe('the body: German, "## Kurz gesagt" first, every section closed by a <T
   });
 
   test('misplaced: another heading comes first', () => {
-    expect(only(edit(FIXTURE, '## Kurz gesagt\n', '## Einleitung\n\nText.\n\n## Kurz gesagt\n')).join('\n')).toContain(
-      'the first heading must be "## Kurz gesagt", found "## Einleitung"',
-    );
+    expect(
+      only(edit(FIXTURE, '## Kurz gesagt\n', '## Einleitung\n\nText.\n\n## Kurz gesagt\n')).join(
+        '\n',
+      ),
+    ).toContain('the first heading must be "## Kurz gesagt", found "## Einleitung"');
   });
 
   test('misplaced: prose before it — though an MDX comment may stand there', () => {
-    expect(only(edit(FIXTURE, '## Kurz gesagt\n', 'Ein Satz davor.\n\n## Kurz gesagt\n')).join('\n')).toContain(
-      'nothing but MDX comments may precede',
-    );
-    expect(only(edit(FIXTURE, '## Kurz gesagt\n', '{/* Quelle geprüft */}\n\n## Kurz gesagt\n'))).toEqual([]);
+    expect(
+      only(edit(FIXTURE, '## Kurz gesagt\n', 'Ein Satz davor.\n\n## Kurz gesagt\n')).join('\n'),
+    ).toContain('nothing but MDX comments may precede');
+    expect(
+      only(edit(FIXTURE, '## Kurz gesagt\n', '{/* Quelle geprüft */}\n\n## Kurz gesagt\n')),
+    ).toEqual([]);
   });
 
   test('a section with German text and no translation, or two', () => {
     const [, flag] = blocks();
-    expect(only(edit(FIXTURE, flag!, '')).join('\n')).toContain('"## Die Flagge" closes with exactly one <Translation>, found 0');
+    expect(only(edit(FIXTURE, flag!, '')).join('\n')).toContain(
+      '"## Die Flagge" closes with exactly one <Translation>, found 0',
+    );
     expect(only(edit(FIXTURE, flag!, `${flag}\n\n${flag}`)).join('\n')).toContain('found 2');
     // Kurz gesagt is a section like any other: its German needs its translation too.
-    expect(only(edit(FIXTURE, blocks()[0]!, '')).join('\n')).toContain('"## Kurz gesagt" closes with exactly one <Translation>, found 0');
+    expect(only(edit(FIXTURE, blocks()[0]!, '')).join('\n')).toContain(
+      '"## Kurz gesagt" closes with exactly one <Translation>, found 0',
+    );
   });
 
   test('the translation comes after the German it translates', () => {
     const [, flag] = blocks();
-    const moved = edit(edit(FIXTURE, flag!, ''), '## Die Flagge\n\n', `## Die Flagge\n\n${flag}\n\n`);
+    const moved = edit(
+      edit(FIXTURE, flag!, ''),
+      '## Die Flagge\n\n',
+      `## Die Flagge\n\n${flag}\n\n`,
+    );
     expect(only(moved).join('\n')).toContain('"## Die Flagge": the <Translation> comes last');
   });
 
   test('a heading with only a subsection under it needs none, and may not have one', () => {
-    const bare = edit(edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', ''), blocks()[1]!, '');
+    const bare = edit(
+      edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', ''),
+      blocks()[1]!,
+      '',
+    );
     expect(only(bare)).toEqual([]);
-    const stray = edit(FIXTURE, 'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n', '');
-    expect(only(stray).join('\n')).toContain('"## Die Flagge" has a <Translation> but no German text to translate');
+    const stray = edit(
+      FIXTURE,
+      'Die Bundesflagge ist schwarz-rot-gold. So steht es im Grundgesetz.\n\n',
+      '',
+    );
+    expect(only(stray).join('\n')).toContain(
+      '"## Die Flagge" has a <Translation> but no German text to translate',
+    );
   });
 
-  test('the summary\'s translation is open, and only the summary\'s', () => {
+  test("the summary's translation is open, and only the summary's", () => {
     expect(only(edit(FIXTURE, '<Translation open>', '<Translation>')).join('\n')).toContain(
       '"## Kurz gesagt": the summary\'s translation is <Translation open>',
     );
     const [, flag] = blocks();
-    expect(only(edit(FIXTURE, flag!, flag!.replace('<Translation>', '<Translation open>'))).join('\n')).toContain(
-      '"## Die Flagge": only "## Kurz gesagt" opens its <Translation>',
-    );
+    expect(
+      only(edit(FIXTURE, flag!, flag!.replace('<Translation>', '<Translation open>'))).join('\n'),
+    ).toContain('"## Die Flagge": only "## Kurz gesagt" opens its <Translation>');
   });
 
   test('every translation has an <En> and a <Ru> half', () => {
     const [, flag] = blocks();
     const noRu = flag!.replace(/<Ru>[\s\S]*?<\/Ru>\n/, '');
-    expect(only(edit(FIXTURE, flag!, noRu)).join('\n')).toContain('"## Die Flagge": its <Translation> has no <Ru> half');
+    expect(only(edit(FIXTURE, flag!, noRu)).join('\n')).toContain(
+      '"## Die Flagge": its <Translation> has no <Ru> half',
+    );
   });
 
   test('no <Bilingual> block — the old orientation-only shape is gone', () => {
     const bilingual = '<Bilingual>\n<En>\nOld.\n</En>\n<Ru>\nСтарое.\n</Ru>\n</Bilingual>';
-    expect(only(edit(FIXTURE, '### Die Hauptstadt\n', `### Die Hauptstadt\n\n${bilingual}\n`)).join('\n')).toContain(
-      '1 <Bilingual> block(s)',
-    );
+    expect(
+      only(edit(FIXTURE, '### Die Hauptstadt\n', `### Die Hauptstadt\n\n${bilingual}\n`)).join(
+        '\n',
+      ),
+    ).toContain('1 <Bilingual> block(s)');
   });
 
   test('at least one German section follows, and no "#" heading', () => {
     const stub = FIXTURE.slice(0, FIXTURE.indexOf('## Die Flagge'));
     expect(only(stub).join('\n')).toContain('at least one "##" section');
-    expect(only(edit(FIXTURE, '## Die Flagge', '# Die Flagge')).join('\n')).toContain('no "#" heading');
+    expect(only(edit(FIXTURE, '## Die Flagge', '# Die Flagge')).join('\n')).toContain(
+      'no "#" heading',
+    );
   });
 });
 
 describe('language discipline', () => {
   test('Cyrillic in <En>', () => {
-    const problems = only(edit(FIXTURE, 'not teaching material.', 'not teaching material (не учебный).'));
+    const problems = only(
+      edit(FIXTURE, 'not teaching material.', 'not teaching material (не учебный).'),
+    );
     expect(problems.join('\n')).toContain('Cyrillic inside <En> block 1');
   });
 
@@ -199,12 +248,18 @@ describe('language discipline', () => {
 
   test('a paragraph over the prose-shape cap', () => {
     const wall = Array.from({ length: 125 }, () => 'word').join(' ');
-    const problems = only(edit(FIXTURE, 'not teaching material.', `not teaching material. ${wall}`));
+    const problems = only(
+      edit(FIXTURE, 'not teaching material.', `not teaching material. ${wall}`),
+    );
     expect(problems.join('\n')).toContain('words (max 120)');
   });
 
   test('uk is all-or-none per file, across frontmatter and body', () => {
-    const someUk = edit(FIXTURE, 'ru: федеральный флаг }', 'ru: федеральный флаг, uk: федеральний прапор }');
+    const someUk = edit(
+      FIXTURE,
+      'ru: федеральный флаг }',
+      'ru: федеральный флаг, uk: федеральний прапор }',
+    );
     const problems = only(someUk).join('\n');
     expect(problems).toContain('terms[1].ru has no uk sibling');
     expect(problems).toContain('"## Kurz gesagt": its <Translation> has no <Uk> half');

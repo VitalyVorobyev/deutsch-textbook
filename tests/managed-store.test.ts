@@ -1,7 +1,11 @@
 import { describe, expect, test } from 'bun:test';
 import { IDBFactory } from 'fake-indexeddb';
 import { get, set } from 'idb-keyval';
-import { createManagedStore, StorageRestartRequiredError, type StorageDiagnostic } from '../src/lib/managed-store';
+import {
+  createManagedStore,
+  StorageRestartRequiredError,
+  type StorageDiagnostic,
+} from '../src/lib/managed-store';
 import { eventually } from './eventually';
 
 // Every deadline these tests drive is crossed by a transaction that never finishes, so its
@@ -17,7 +21,10 @@ function fixture() {
   const factory = new IDBFactory();
   const events: StorageDiagnostic[] = [];
   const manager = createManagedStore('managed-test', {
-    factory: () => factory, transactionMs: 100, openMs: 2000, abortMs: 250,
+    factory: () => factory,
+    transactionMs: 100,
+    openMs: 2000,
+    abortMs: 250,
     report: (event) => events.push(event),
   });
   return { ...manager, factory, events };
@@ -31,7 +38,9 @@ function keepAlive(store: IDBObjectStore, running: () => boolean) {
       const req = store.get('tick');
       req.onsuccess = next;
       req.onerror = () => {};
-    } catch { /* abort ended the transaction */ }
+    } catch {
+      /* abort ended the transaction */
+    }
   };
   next();
 }
@@ -45,7 +54,9 @@ describe('managed IndexedDB recovery', () => {
       calls++;
       if (calls === 1) {
         store.put('must roll back', 'value');
-        store.transaction.addEventListener('abort', () => { aborted = true; });
+        store.transaction.addEventListener('abort', () => {
+          aborted = true;
+        });
         keepAlive(store, () => !aborted);
         return new Promise<void>(() => {});
       }
@@ -69,8 +80,13 @@ describe('managed IndexedDB recovery', () => {
       calls++;
       const tx = store.transaction;
       const abort = tx.abort.bind(tx);
-      stop = () => { running = false; abort(); };
-      tx.abort = () => { throw new DOMException('Engine stuck', 'InvalidStateError'); };
+      stop = () => {
+        running = false;
+        abort();
+      };
+      tx.abort = () => {
+        throw new DOMException('Engine stuck', 'InvalidStateError');
+      };
       keepAlive(store, () => running);
       return new Promise<void>(() => {});
     });
@@ -92,7 +108,11 @@ describe('managed IndexedDB recovery', () => {
     let calls = 0;
     await use('readwrite', (store) => {
       calls++;
-      store.transaction.abort = () => { setTimeout(() => { running = false; }, 5); };
+      store.transaction.abort = () => {
+        setTimeout(() => {
+          running = false;
+        }, 5);
+      };
       store.put('landed', 'value');
       keepAlive(store, () => running);
       return Promise.resolve();
@@ -140,7 +160,10 @@ describe('managed IndexedDB recovery', () => {
       // Delay delivery to the manager, while letting IndexedDB create the real database.
       let handler: ((event: Event) => void) | null = null;
       Object.defineProperty(request, 'onsuccess', {
-        set: (fn) => { handler = fn; }, get: () => null,
+        set: (fn) => {
+          handler = fn;
+        },
+        get: () => null,
       });
       request.addEventListener('success', (event) => {
         setTimeout(() => handler?.(event), 60);
@@ -150,7 +173,12 @@ describe('managed IndexedDB recovery', () => {
     const { use } = createManagedStore('late-open', { factory: () => factory, openMs: 20 });
     await set('value', 'fresh', use);
     await eventually(() => {
-      try { first!.result.transaction('progress'); return false; } catch { return true; }
+      try {
+        first!.result.transaction('progress');
+        return false;
+      } catch {
+        return true;
+      }
     });
     expect(() => first!.result.transaction('progress')).toThrow();
     expect(await get('value', use)).toBe('fresh');

@@ -21,11 +21,7 @@ export function isVerifiedEvidence(a: Pick<Scorable, 'evidence'>): boolean {
  */
 export function attemptScore(a: Scorable): number {
   if (!isVerifiedEvidence(a)) return 0;
-  if (
-    typeof a.correctParts === 'number' &&
-    typeof a.totalParts === 'number' &&
-    a.totalParts >= 1
-  ) {
+  if (typeof a.correctParts === 'number' && typeof a.totalParts === 'number' && a.totalParts >= 1) {
     return Math.min(1, Math.max(0, a.correctParts) / a.totalParts);
   }
   return a.correct ? 1 : 0;

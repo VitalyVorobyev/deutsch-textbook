@@ -26,7 +26,8 @@ export function useWritable(): WritableField[] {
   const [fields, setFields] = useState<WritableField[]>([]);
   useEffect(() => {
     let cancelled = false;
-    corpusClient.writableFields()
+    corpusClient
+      .writableFields()
       .then((next) => {
         if (!cancelled) setFields(next);
       })

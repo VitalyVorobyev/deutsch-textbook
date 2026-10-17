@@ -31,7 +31,10 @@ for (const level of LEVELS) {
   const dir = join('content/exercises', level);
   for (const name of readdirSync(dir)) {
     if (!name.endsWith('.yaml')) continue;
-    sets.set(`${level}/${name.replace(/\.yaml$/, '')}`, YAML.parse(readFileSync(join(dir, name), 'utf8')));
+    sets.set(
+      `${level}/${name.replace(/\.yaml$/, '')}`,
+      YAML.parse(readFileSync(join(dir, name), 'utf8')),
+    );
   }
 }
 

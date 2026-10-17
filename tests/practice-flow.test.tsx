@@ -30,23 +30,29 @@ afterEach(() => {
 });
 
 function renderWrite(onResult = mock(), minWords = 2) {
-  render(<Write
-    item={{
-      id: 'message', revision: 1, outcomes: [], preview: false, type: 'write',
-      prompt: { en: 'Write.', ru: 'Напишите.' },
-      goal: { en: 'Give a reason.', ru: 'Назовите причину.' },
-      requirements: [{ en: 'I gave a reason.', ru: 'Я назвал(а) причину.' }],
-      min_words: minWords,
-      model_answer: 'Ich komme später.',
-      model_translation: { en: 'I am coming later.', ru: 'Я приду позже.' },
-    }}
-    lang="en"
-    onResult={onResult}
-    locked={false}
-    onNext={() => {}}
-    nextLabel="Next"
-    storageKey="test:message"
-  />);
+  render(
+    <Write
+      item={{
+        id: 'message',
+        revision: 1,
+        outcomes: [],
+        preview: false,
+        type: 'write',
+        prompt: { en: 'Write.', ru: 'Напишите.' },
+        goal: { en: 'Give a reason.', ru: 'Назовите причину.' },
+        requirements: [{ en: 'I gave a reason.', ru: 'Я назвал(а) причину.' }],
+        min_words: minWords,
+        model_answer: 'Ich komme später.',
+        model_translation: { en: 'I am coming later.', ru: 'Я приду позже.' },
+      }}
+      lang="en"
+      onResult={onResult}
+      locked={false}
+      onNext={() => {}}
+      nextLabel="Next"
+      storageKey="test:message"
+    />,
+  );
   return onResult;
 }
 
@@ -73,7 +79,9 @@ describe('minimal-ceremony writing flow', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Compare with model' }));
     expect(onResult).not.toHaveBeenCalled();
 
-    fireEvent.change(screen.getByLabelText('Your text'), { target: { value: 'Ich komme später.' } });
+    fireEvent.change(screen.getByLabelText('Your text'), {
+      target: { value: 'Ich komme später.' },
+    });
     fireEvent.click(screen.getByRole('button', { name: 'Save' }));
 
     // Exact equality: the payload is the whole contract — no checklist fields,
@@ -94,20 +102,27 @@ describe('minimal-ceremony writing flow', () => {
 
   test('a legacy staged record resumes on the compare screen with its revision text', () => {
     const draftKey = `da:write:${getActiveProfileId()}:test:message`;
-    localStorage.setItem(draftKey, JSON.stringify({
-      stage: 'reassess',
-      draft: 'Ich komme.',
-      revision: 'Ich komme später.',
-      before: ['met'],
-      after: [],
-    }));
+    localStorage.setItem(
+      draftKey,
+      JSON.stringify({
+        stage: 'reassess',
+        draft: 'Ich komme.',
+        revision: 'Ich komme später.',
+        before: ['met'],
+        after: [],
+      }),
+    );
     const onResult = renderWrite();
 
-    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe('Ich komme später.');
+    expect((screen.getByLabelText('Your text') as HTMLTextAreaElement).value).toBe(
+      'Ich komme später.',
+    );
     expect(screen.getByText('Ich komme später.', { selector: 'p' })).toBeTruthy();
 
     fireEvent.click(screen.getByRole('button', { name: 'Save' }));
     expect(onResult).toHaveBeenCalledTimes(1);
-    expect((onResult.mock.calls[0]![0] as { practice: { draft: string } }).practice.draft).toBe('Ich komme.');
+    expect((onResult.mock.calls[0]![0] as { practice: { draft: string } }).practice.draft).toBe(
+      'Ich komme.',
+    );
   });
 });

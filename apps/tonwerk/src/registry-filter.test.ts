@@ -1,12 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import {
-  ANY,
-  levelsOf,
-  matches,
-  overCount,
-  selectRows,
-  statusCounts,
-} from './registry-filter';
+import { ANY, levelsOf, matches, overCount, selectRows, statusCounts } from './registry-filter';
 import type { RegistryRow } from './contracts';
 import { registryFixture } from './test/fixtures';
 
@@ -34,9 +27,9 @@ describe('slicing', () => {
   });
 
   test('the kind filter separates Hörszenen from Lesetexten', () => {
-    expect(selectRows(rows, { ebene: ANY, status: ANY, art: 'reading' }).map((row) => row.id)).toEqual([
-      'a1/erste-schritte',
-    ]);
+    expect(
+      selectRows(rows, { ebene: ANY, status: ANY, art: 'reading' }).map((row) => row.id),
+    ).toEqual(['a1/erste-schritte']);
   });
 
   test('filters compose, and an empty result is a legitimate answer', () => {
@@ -55,16 +48,16 @@ describe('ordering', () => {
   test('the most alarming row is first, and `published` is last', () => {
     // The registry is opened to find what is wrong. Sorting by id would make the reader do the
     // scanning the sort should have done.
-    expect(selectRows(rows, { ebene: ANY, status: ANY, art: ANY }).map((row) => row.status)).toEqual([
-      'stale',
-      'planned',
-      'published',
-    ]);
+    expect(
+      selectRows(rows, { ebene: ANY, status: ANY, art: ANY }).map((row) => row.status),
+    ).toEqual(['stale', 'planned', 'published']);
   });
 
   test('a status this build does not know sorts to the top rather than the bottom', () => {
     const seltsam: RegistryRow = { ...rows[0]!, id: 'ls-neu', status: 'quarantined' };
-    expect(selectRows([...rows, seltsam], { ebene: ANY, status: ANY, art: ANY })[0]?.id).toBe('ls-neu');
+    expect(selectRows([...rows, seltsam], { ebene: ANY, status: ANY, art: ANY })[0]?.id).toBe(
+      'ls-neu',
+    );
   });
 });
 

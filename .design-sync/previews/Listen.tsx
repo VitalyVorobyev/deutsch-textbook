@@ -48,7 +48,14 @@ const termin = {
 export function Default() {
   return (
     <div className="max-w-xl">
-      <Listen item={haende} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Listen
+        item={haende}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -64,7 +71,14 @@ export function Default() {
 export function RussianExplanationLanguage() {
   return (
     <div className="max-w-xl">
-      <Listen item={termin} lang="ru" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Listen
+        item={termin}
+        lang="ru"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }

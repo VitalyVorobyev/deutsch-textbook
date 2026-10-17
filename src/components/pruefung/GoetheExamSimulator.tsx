@@ -68,11 +68,19 @@ type Screen =
 function AbsenceCard() {
   return (
     <div lang="de" className={`${CARD} p-6`}>
-      <p className="font-medium">Die offiziellen Materialien sind auf diesem Gerät nicht vorhanden.</p>
+      <p className="font-medium">
+        Die offiziellen Materialien sind auf diesem Gerät nicht vorhanden.
+      </p>
       <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-        Sie bleiben absichtlich lokal: Dateien ablegen, <code className="rounded bg-stone-100 px-1 py-0.5 text-xs dark:bg-stone-900">bun run exam:ingest</code>{' '}
+        Sie bleiben absichtlich lokal: Dateien ablegen,{' '}
+        <code className="rounded bg-stone-100 px-1 py-0.5 text-xs dark:bg-stone-900">
+          bun run exam:ingest
+        </code>{' '}
         ausführen — die Anleitung steht in{' '}
-        <code className="rounded bg-stone-100 px-1 py-0.5 text-xs dark:bg-stone-900">docs/architecture/exam-trainer.md</code>.
+        <code className="rounded bg-stone-100 px-1 py-0.5 text-xs dark:bg-stone-900">
+          docs/architecture/exam-trainer.md
+        </code>
+        .
       </p>
     </div>
   );
@@ -168,12 +176,17 @@ export default function GoetheExamSimulator() {
   );
 
   if (load.status === 'loading') {
-    return <p lang="de" className="text-sm text-stone-500 dark:text-stone-400">Lade…</p>;
+    return (
+      <p lang="de" className="text-sm text-stone-500 dark:text-stone-400">
+        Lade…
+      </p>
+    );
   }
   if (load.status === 'absent') return <AbsenceCard />;
 
   const sets = load.manifest.sets;
-  const activeSet = screen.kind === 'picker' ? undefined : sets.find((set) => set.id === screen.setId);
+  const activeSet =
+    screen.kind === 'picker' ? undefined : sets.find((set) => set.id === screen.setId);
   // A screen naming a set or module the manifest no longer has (a re-ingest between visits)
   // falls back to the picker rather than rendering half a session.
   if (screen.kind !== 'picker' && !activeSet) {
@@ -272,7 +285,9 @@ export default function GoetheExamSimulator() {
                   key={module.module}
                   type="button"
                   aria-pressed={picked}
-                  onClick={() => setScreen({ kind: 'setup', setId: activeSet.id, module: module.module })}
+                  onClick={() =>
+                    setScreen({ kind: 'setup', setId: activeSet.id, module: module.module })
+                  }
                   className={`min-h-11 rounded-full border px-4 text-sm font-medium ${
                     picked
                       ? 'border-amber-600 bg-amber-600 text-white'
@@ -297,7 +312,9 @@ export default function GoetheExamSimulator() {
               <div className="mt-3">
                 <button
                   type="button"
-                  onClick={() => setScreen({ kind: 'practice', setId: activeSet.id, module: active.module })}
+                  onClick={() =>
+                    setScreen({ kind: 'practice', setId: activeSet.id, module: active.module })
+                  }
                   className={PRIMARY_BUTTON}
                 >
                   Aufgabenkarten ansehen & üben
@@ -313,8 +330,9 @@ export default function GoetheExamSimulator() {
               </h3>
               {last && (
                 <p className="mt-2 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-                  Zuletzt bearbeitet am {formatDay(last.finishedAt)}, Ergebnis {formatRunScore(last)}. Eine
-                  Wiederholung misst auch das Gedächtnis für die Aufgaben, nicht nur die Kompetenz.
+                  Zuletzt bearbeitet am {formatDay(last.finishedAt)}, Ergebnis{' '}
+                  {formatRunScore(last)}. Eine Wiederholung misst auch das Gedächtnis für die
+                  Aufgaben, nicht nur die Kompetenz.
                 </p>
               )}
               <div className="mt-3 flex flex-wrap gap-3">
@@ -322,7 +340,12 @@ export default function GoetheExamSimulator() {
                   type="button"
                   onClick={() => {
                     setRunNonce((n) => n + 1);
-                    setScreen({ kind: 'run', setId: activeSet.id, module: active.module, mode: 'pruefung' });
+                    setScreen({
+                      kind: 'run',
+                      setId: activeSet.id,
+                      module: active.module,
+                      mode: 'pruefung',
+                    });
                   }}
                   className={PRIMARY_BUTTON}
                 >
@@ -332,7 +355,12 @@ export default function GoetheExamSimulator() {
                   type="button"
                   onClick={() => {
                     setRunNonce((n) => n + 1);
-                    setScreen({ kind: 'run', setId: activeSet.id, module: active.module, mode: 'ueben' });
+                    setScreen({
+                      kind: 'run',
+                      setId: activeSet.id,
+                      module: active.module,
+                      mode: 'ueben',
+                    });
                   }}
                   className={QUIET_BUTTON}
                 >
@@ -340,8 +368,8 @@ export default function GoetheExamSimulator() {
                 </button>
               </div>
               <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">
-                Im Prüfungsmodus läuft die Uhr und die Aufnahme läuft einmal durch. Beim Üben wird jede
-                Antwort sofort aufgelöst.
+                Im Prüfungsmodus läuft die Uhr und die Aufnahme läuft einmal durch. Beim Üben wird
+                jede Antwort sofort aufgelöst.
               </p>
             </>
           )}
@@ -352,8 +380,8 @@ export default function GoetheExamSimulator() {
                 Ganze schriftliche Prüfung
               </h3>
               <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">
-                Hören → Lesen → Schreiben nacheinander im Prüfungsmodus — Ergebnis erst am Ende,
-                wie in der Prüfung.
+                Hören → Lesen → Schreiben nacheinander im Prüfungsmodus — Ergebnis erst am Ende, wie
+                in der Prüfung.
               </p>
               <div className="mt-3">
                 <button
@@ -361,13 +389,18 @@ export default function GoetheExamSimulator() {
                   onClick={() => setScreen({ kind: 'fullrun', setId: activeSet.id })}
                   className={QUIET_BUTTON}
                 >
-                  Komplett starten · ca. {writtenFull.reduce((sum, module) => sum + module.timeLimitMin, 0)} Min.
+                  Komplett starten · ca.{' '}
+                  {writtenFull.reduce((sum, module) => sum + module.timeLimitMin, 0)} Min.
                 </button>
               </div>
             </>
           )}
 
-          <button type="button" onClick={() => setScreen({ kind: 'picker' })} className={`mt-6 ${QUIET_BUTTON}`}>
+          <button
+            type="button"
+            onClick={() => setScreen({ kind: 'picker' })}
+            className={`mt-6 ${QUIET_BUTTON}`}
+          >
             Zurück zur Übersicht
           </button>
         </div>

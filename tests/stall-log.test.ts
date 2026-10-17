@@ -73,7 +73,15 @@ describe('stall log', () => {
     const stored = Object.keys(readStallLog()[0]).sort();
     // Extending this list is a deliberate act: every field here goes to disk on a machine
     // whose learner is not expecting a diagnostic to hold their answers.
-    expect(stored).toEqual(['at', 'attempts', 'build', 'id', 'recoveredAfterMs', 'surface', 'waitedMs']);
+    expect(stored).toEqual([
+      'at',
+      'attempts',
+      'build',
+      'id',
+      'recoveredAfterMs',
+      'surface',
+      'waitedMs',
+    ]);
   });
 
   test('recentStalls windows by age and returns newest first', () => {

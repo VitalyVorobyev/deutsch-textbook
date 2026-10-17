@@ -26,14 +26,29 @@ function note(id: string, topic: string, withUk: boolean): PlacedLidNote {
 
 describe('lidNotesUkProblems', () => {
   test('a file with no uk at all passes, and so does a file with uk throughout', () => {
-    expect(lidNotesUkProblems([note('general-001', 'grundrechte', false), note('general-002', 'grundrechte', false)])).toEqual([]);
-    expect(lidNotesUkProblems([note('general-001', 'grundrechte', true), note('general-002', 'grundrechte', true)])).toEqual([]);
+    expect(
+      lidNotesUkProblems([
+        note('general-001', 'grundrechte', false),
+        note('general-002', 'grundrechte', false),
+      ]),
+    ).toEqual([]);
+    expect(
+      lidNotesUkProblems([
+        note('general-001', 'grundrechte', true),
+        note('general-002', 'grundrechte', true),
+      ]),
+    ).toEqual([]);
   });
 
   test('one uk in a file obliges every ru in it — another note, an option, a term', () => {
-    const missingNote = lidNotesUkProblems([note('general-001', 'grundrechte', true), note('general-002', 'grundrechte', false)]);
+    const missingNote = lidNotesUkProblems([
+      note('general-001', 'grundrechte', true),
+      note('general-002', 'grundrechte', false),
+    ]);
     expect(missingNote.length).toBe(6); // question, four options, one term of general-002
-    expect(missingNote.every((p) => p.startsWith('content/lid/notes/grundrechte.yaml: general-002: '))).toBe(true);
+    expect(
+      missingNote.every((p) => p.startsWith('content/lid/notes/grundrechte.yaml: general-002: ')),
+    ).toBe(true);
 
     const partial = note('general-003', 'europa', true);
     delete partial.options!.c.uk;
@@ -45,6 +60,11 @@ describe('lidNotesUkProblems', () => {
   });
 
   test('the scope is the file: uk in one topic obliges nothing in another', () => {
-    expect(lidNotesUkProblems([note('general-001', 'grundrechte', true), note('general-002', 'europa', false)])).toEqual([]);
+    expect(
+      lidNotesUkProblems([
+        note('general-001', 'grundrechte', true),
+        note('general-002', 'europa', false),
+      ]),
+    ).toEqual([]);
   });
 });

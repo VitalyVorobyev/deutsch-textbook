@@ -7,9 +7,14 @@ import { readSource, resolveEditableSource, saveSource } from '@da/content/edito
 function fixture(): string {
   const root = mkdtempSync(join(tmpdir(), 'redaktion-editor-'));
   mkdirSync(join(root, 'content', 'topics', 'a1'), { recursive: true });
-  writeFileSync(join(root, 'content', 'topics', 'a1', 'probe.mdx'), '## Erklärung\n\n### Form\n\nText.\n');
-  const topic = readFileSync(join(import.meta.dir, '..', 'content', 'topics', 'a1', 'erste-schritte.topic.yaml'), 'utf8')
-    .replace('status: reviewed', 'status: draft');
+  writeFileSync(
+    join(root, 'content', 'topics', 'a1', 'probe.mdx'),
+    '## Erklärung\n\n### Form\n\nText.\n',
+  );
+  const topic = readFileSync(
+    join(import.meta.dir, '..', 'content', 'topics', 'a1', 'erste-schritte.topic.yaml'),
+    'utf8',
+  ).replace('status: reviewed', 'status: draft');
   writeFileSync(join(root, 'content', 'topics', 'a1', 'probe.topic.yaml'), topic);
   return root;
 }
@@ -20,7 +25,11 @@ describe('Redaktion source editor', () => {
     try {
       const before = await readSource(root, 'content/topics/a1/probe.mdx');
       const text = `${before.text}\n## Beispiele\n`;
-      const result = await saveSource(root, { path: before.path, text, expectedRevision: before.revision });
+      const result = await saveSource(root, {
+        path: before.path,
+        text,
+        expectedRevision: before.revision,
+      });
       expect(result.ok).toBe(true);
       if (!result.ok) return;
       expect(result.changed).toBe(true);
@@ -36,7 +45,11 @@ describe('Redaktion source editor', () => {
     try {
       const before = await readSource(root, 'content/topics/a1/probe.mdx');
       writeFileSync(join(root, before.path), '# external\n');
-      const result = await saveSource(root, { path: before.path, text: '# editor\n', expectedRevision: before.revision });
+      const result = await saveSource(root, {
+        path: before.path,
+        text: '# editor\n',
+        expectedRevision: before.revision,
+      });
       expect(result.ok).toBe(false);
       expect(result.ok ? undefined : result.conflict?.text).toBe('# external\n');
       expect(readFileSync(join(root, before.path), 'utf8')).toBe('# external\n');
@@ -72,7 +85,9 @@ describe('Redaktion source editor', () => {
         expectedRevision: before.revision,
       });
       expect(result.ok).toBe(false);
-      expect(result.ok ? '' : result.diagnostics[0]?.message).toContain('strict corpus-wide reviewed gate');
+      expect(result.ok ? '' : result.diagnostics[0]?.message).toContain(
+        'strict corpus-wide reviewed gate',
+      );
       expect(readFileSync(join(root, path), 'utf8')).toBe(before.text);
     } finally {
       rmSync(root, { recursive: true, force: true });
@@ -84,7 +99,10 @@ describe('Redaktion source editor', () => {
     const outside = mkdtempSync(join(tmpdir(), 'redaktion-outside-'));
     try {
       writeFileSync(join(outside, 'secret.yaml'), 'secret: true\n');
-      symlinkSync(join(outside, 'secret.yaml'), join(root, 'content', 'topics', 'a1', 'escape.yaml'));
+      symlinkSync(
+        join(outside, 'secret.yaml'),
+        join(root, 'content', 'topics', 'a1', 'escape.yaml'),
+      );
       expect(() => resolveEditableSource(root, '../secret.yaml')).toThrow();
       expect(() => resolveEditableSource(root, 'content/topics/a1/escape.yaml')).toThrow();
     } finally {

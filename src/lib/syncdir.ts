@@ -162,7 +162,8 @@ export async function newestSnapshotBackup(
     try {
       const parsed = JSON.parse(raw) as { attempts?: unknown[]; cards?: Record<string, unknown> };
       attempts = Array.isArray(parsed.attempts) ? parsed.attempts.length : 0;
-      cards = parsed.cards && typeof parsed.cards === 'object' ? Object.keys(parsed.cards).length : 0;
+      cards =
+        parsed.cards && typeof parsed.cards === 'object' ? Object.keys(parsed.cards).length : 0;
     } catch {
       // A file that does not parse is still evidence that a backup exists; report its size
       // and zero counts rather than pretending there is nothing there.

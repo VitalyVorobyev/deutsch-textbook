@@ -12,7 +12,10 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from 'bun:test';
 import { act, cleanup, render, screen } from '@testing-library/react';
-import PersistenceAlert, { ALERT_GRACE_MS, ALERT_LATE_MS } from '../src/components/PersistenceAlert';
+import PersistenceAlert, {
+  ALERT_GRACE_MS,
+  ALERT_LATE_MS,
+} from '../src/components/PersistenceAlert';
 import { PERSISTENCE_DEADLINE_MS } from '../src/lib/store';
 import { Rating } from '../src/lib/srs';
 import { journalAppend } from '../src/lib/write-journal';

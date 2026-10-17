@@ -94,7 +94,7 @@ describe('grade() with a never-resolving store write', () => {
     render(<FlashcardSession cards={[CARD_A, CARD_B]} queue={[CARD_A, CARD_B]} />);
 
     // Card A loads (queue resolves via the mocked, fast getCardStates) and offers its input.
-    const firstInput = await screen.findByRole('textbox') as HTMLInputElement;
+    const firstInput = (await screen.findByRole('textbox')) as HTMLInputElement;
     expect(screen.getByText(/Remaining: 2/)).toBeTruthy();
 
     fireEvent.change(firstInput, { target: { value: 'gehen' } });
@@ -105,7 +105,7 @@ describe('grade() with a never-resolving store write', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Gut' }));
 
     // The click is not dead: card B's input appears, freshly blank, and the counter dropped.
-    const secondInput = await screen.findByRole('textbox') as HTMLInputElement;
+    const secondInput = (await screen.findByRole('textbox')) as HTMLInputElement;
     expect(secondInput).not.toBe(firstInput);
     expect(secondInput.value).toBe('');
     expect(screen.getByText(/Remaining: 1/)).toBeTruthy();
