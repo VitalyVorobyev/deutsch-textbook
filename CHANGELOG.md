@@ -30,6 +30,10 @@ GitHub Release notes.
   Wetter* drops two claims it could not back; the Leben-in-Deutschland lesson *Europa* says
   «граничит с девятью странами» in natural Russian (and Ukrainian).
 
+### Changed
+
+- Tooling: TypeScript 7, Astro 7.4, Oxlint 1.88 and current dependency patches.
+
 ## [0.6.19] — 2026-10-14
 
 ### Added
