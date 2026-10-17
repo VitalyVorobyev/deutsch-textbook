@@ -44,7 +44,9 @@ export function SessionLog({
   return (
     <details className="group rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-stone-600 hover:text-amber-700 dark:text-stone-300 dark:hover:text-amber-400 sm:min-h-0">
-        <span aria-hidden className="text-xs font-normal transition-transform group-open:rotate-90">▸</span>
+        <span aria-hidden className="text-xs font-normal transition-transform group-open:rotate-90">
+          ▸
+        </span>
         {pick(lang, UI.title)}
       </summary>
       <div className="mt-3 overflow-x-auto">

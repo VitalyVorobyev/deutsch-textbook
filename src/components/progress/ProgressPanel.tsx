@@ -16,7 +16,11 @@ import ProgressLoadError from '../ProgressLoadError';
 import { scoreTotal, verifiedOnly } from '../../lib/scoring';
 import { getActiveProfileId, getActiveProfile } from '../../lib/profile';
 import {
-  isTauri, getSyncDir, newestSnapshotBackup, pickSyncDir, writeSnapshotToSyncDir,
+  isTauri,
+  getSyncDir,
+  newestSnapshotBackup,
+  pickSyncDir,
+  writeSnapshotToSyncDir,
   type SnapshotBackup,
 } from '../../lib/syncdir';
 import { legacyWebkitContainer, type LegacyStoreInfo } from '../../lib/legacy-store';
@@ -338,9 +342,7 @@ export default function ProgressPanel({
         await mergeSnapshot(snapshot);
       }
     } catch (e) {
-      setMessage(
-        pick(lang, UI.importFailed).replace('{reason}', pick(lang, importErrorReason(e))),
-      );
+      setMessage(pick(lang, UI.importFailed).replace('{reason}', pick(lang, importErrorReason(e))));
       return;
     }
     await refresh();
@@ -370,7 +372,11 @@ export default function ProgressPanel({
   for (const attempt of data?.attempts ?? []) {
     const actualModes = attempt.responseMode
       ? [attempt.responseMode]
-      : [...new Set((attempt.outcomes ?? []).map((outcome) => outcomeModes[outcome]).filter(Boolean))];
+      : [
+          ...new Set(
+            (attempt.outcomes ?? []).map((outcome) => outcomeModes[outcome]).filter(Boolean),
+          ),
+        ];
     for (const mode of actualModes) {
       const count = modeEvidence.get(mode) ?? { verified: 0, practice: 0 };
       count[attempt.evidence === 'practice' ? 'practice' : 'verified']++;
@@ -379,8 +385,7 @@ export default function ProgressPanel({
   }
   // Nothing measured yet: an empty heatmap over empty charts says "broken", not
   // "new". Say what will fill them instead. Import stays reachable below.
-  const untouched =
-    !!data && data.attempts.length === 0 && Object.keys(data.cards).length === 0;
+  const untouched = !!data && data.attempts.length === 0 && Object.keys(data.cards).length === 0;
 
   return (
     <div className="space-y-8">
@@ -416,11 +421,15 @@ export default function ProgressPanel({
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">
             <div>
-              <dt className="text-xs uppercase tracking-wide text-stone-400">{pick(lang, UI.answers)}</dt>
+              <dt className="text-xs uppercase tracking-wide text-stone-400">
+                {pick(lang, UI.answers)}
+              </dt>
               <dd className="mt-1 text-2xl font-bold">{data.attempts.length}</dd>
             </div>
             <div>
-              <dt className="text-xs uppercase tracking-wide text-stone-400">{pick(lang, UI.accuracy)}</dt>
+              <dt className="text-xs uppercase tracking-wide text-stone-400">
+                {pick(lang, UI.accuracy)}
+              </dt>
               <dd className="mt-1 text-2xl font-bold">{accuracy}%</dd>
             </div>
             <div>
@@ -440,20 +449,27 @@ export default function ProgressPanel({
         <VocabularyProgress cards={cardRefs} groups={vocabularyGroups} states={data.cards} />
       )}
 
-      {view === 'uebersicht' && data && <SessionLog attempts={data.attempts} sessions={data.sessions} />}
+      {view === 'uebersicht' && data && (
+        <SessionLog attempts={data.attempts} sessions={data.sessions} />
+      )}
 
       {view === 'nachweise' && data && modeEvidence.size > 0 && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
-          <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{pick(lang, UI.evidenceTitle)}</h2>
+          <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+            {pick(lang, UI.evidenceTitle)}
+          </h2>
           <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
             {pick(lang, UI.evidenceNote)}
           </p>
           <dl className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[...modeEvidence.entries()].map(([mode, count]) => (
               <div key={mode} className="rounded-md bg-stone-50 px-3 py-2 dark:bg-stone-900/50">
-                <dt className="text-sm font-medium">{MODE_LABELS[mode] ? pick(lang, MODE_LABELS[mode]) : mode}</dt>
+                <dt className="text-sm font-medium">
+                  {MODE_LABELS[mode] ? pick(lang, MODE_LABELS[mode]) : mode}
+                </dt>
                 <dd className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-                  {count.verified} {pick(lang, UI.verified)} · {count.practice} {pick(lang, UI.practice)}
+                  {count.verified} {pick(lang, UI.verified)} · {count.practice}{' '}
+                  {pick(lang, UI.practice)}
                 </dd>
               </div>
             ))}
@@ -527,7 +543,9 @@ export default function ProgressPanel({
                 }}
               />
             </div>
-            <p className="mt-3 text-center text-xs text-stone-400">{pick(lang, UI.importCloudNote)}</p>
+            <p className="mt-3 text-center text-xs text-stone-400">
+              {pick(lang, UI.importCloudNote)}
+            </p>
             {isTauri() && (
               <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-stone-500 dark:text-stone-400">
                 <span className="font-semibold">{pick(lang, UI.syncFolder)}</span>
@@ -555,7 +573,9 @@ export default function ProgressPanel({
               )
             )}
             {message && (
-              <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">{message}</p>
+              <p className="mt-4 text-center text-sm text-stone-500 dark:text-stone-400">
+                {message}
+              </p>
             )}
           </section>
 
@@ -574,7 +594,9 @@ export default function ProgressPanel({
             ) : (
               <dl className="mt-2 space-y-1 text-stone-600 dark:text-stone-300">
                 <div className="flex justify-between gap-4">
-                  <dt className="text-stone-500 dark:text-stone-400">{t('persist.diagCount', uiLang)}</dt>
+                  <dt className="text-stone-500 dark:text-stone-400">
+                    {t('persist.diagCount', uiLang)}
+                  </dt>
                   <dd className="font-semibold tabular-nums">{stalls.length}</dd>
                 </div>
                 {/* Three rows, not one: reads and writes share this log since ADR 0019, so a
@@ -595,9 +617,11 @@ export default function ProgressPanel({
                         <span className="font-mono text-xs">
                           {e.phase} · {e.outcome} · queue {e.queueDepth ?? 0} · v{e.build}
                         </span>
-                      ) : e.recoveredAfterMs === undefined
-                        ? t('persist.diagNeverSettled', uiLang)
-                        : t('persist.diagRecovered', uiLang)}
+                      ) : e.recoveredAfterMs === undefined ? (
+                        t('persist.diagNeverSettled', uiLang)
+                      ) : (
+                        t('persist.diagRecovered', uiLang)
+                      )}
                     </dd>
                   </div>
                 ))}
@@ -617,7 +641,9 @@ export default function ProgressPanel({
                     </span>{' '}
                     · <span className="tabular-nums">{Math.round(backup.bytes / 1024)} KB</span>
                     <br />
-                    <span className="break-all font-mono text-xs text-stone-400">{backup.path}</span>
+                    <span className="break-all font-mono text-xs text-stone-400">
+                      {backup.path}
+                    </span>
                   </>
                 ) : (
                   t('persist.diagBackupNone', uiLang)

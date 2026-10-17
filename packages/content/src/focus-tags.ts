@@ -90,7 +90,7 @@ export const focusIntroducedBy: Record<string, string> = {
   'als-wenn-vergangenheit': 'verbindungen-folgen',
   'futur-werden': 'infinitiv-mit-zu',
   'reflexiv-dativ': 'gesundheit-arzttermin',
-  'indefinitpronomen': 'man-und-besitz',
+  indefinitpronomen: 'man-und-besitz',
   'genitiv-eigenname': 'man-und-besitz',
   'passiv-rezeptiv': 'man-und-besitz',
   interrogativartikel: 'einkaufen-reklamation',

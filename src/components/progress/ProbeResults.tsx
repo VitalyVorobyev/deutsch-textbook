@@ -1,5 +1,10 @@
 import type { Attempt } from '../../lib/store';
-import { exhaustedFailed, probeResults, PROBE_INTERVALS_DAYS, type ProbeFamily } from '../../lib/probes';
+import {
+  exhaustedFailed,
+  probeResults,
+  PROBE_INTERVALS_DAYS,
+  type ProbeFamily,
+} from '../../lib/probes';
 import { pick, type ExplainLang } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
@@ -59,9 +64,7 @@ export function ProbeResults({ families, labels, topicPaths, attempts, lang }: P
 
   return (
     <section className="mt-10">
-      <h2 className="text-lg font-semibold">
-        {pick(lang, UI.title)}
-      </h2>
+      <h2 className="text-lg font-semibold">{pick(lang, UI.title)}</h2>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
         {pick(lang, UI.intro).replace('{days}', PROBE_INTERVALS_DAYS.join(', '))}
       </p>
@@ -83,52 +86,68 @@ export function ProbeResults({ families, labels, topicPaths, attempts, lang }: P
               const anyWrong = r.taken.some((x) => !x.correct);
               const exhausted = exhaustedFailed(r.family, attempts);
               return (
-              <li
-                key={r.family.setId}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-800"
-              >
-                <span className="text-sm">
-                  <span lang="de" className="font-medium">{labels[r.family.setId] ?? r.family.topicId}</span>
-                  {anyWrong && topicPaths[r.family.topicId] && (
-                    <a href={topicPaths[r.family.topicId]} className="ml-2 text-xs text-amber-700 hover:underline dark:text-amber-400">
-                      {pick(lang, UI.reviewTopic)}
-                    </a>
-                  )}
-                  {exhausted && (
-                    <span
-                      lang="de"
-                      className="ml-2 rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200"
-                    >
-                      {t('probe.remediationExhausted', uiLang)}
+                <li
+                  key={r.family.setId}
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-stone-200 bg-white px-4 py-3 dark:border-stone-700 dark:bg-stone-800"
+                >
+                  <span className="text-sm">
+                    <span lang="de" className="font-medium">
+                      {labels[r.family.setId] ?? r.family.topicId}
                     </span>
-                  )}
-                </span>
-                <span className="flex flex-wrap items-center gap-2">
-                  {r.stages.map((stage) => (
-                    <span
-                      key={stage.stage}
-                      title={stage.actualDays === undefined ? undefined
-                        : pick(lang, UI.actualDays).replace('{n}', String(stage.actualDays))}
-                      className={`rounded px-2 py-0.5 text-xs font-semibold ${
-                        stage.status === 'passed'
-                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                    {anyWrong && topicPaths[r.family.topicId] && (
+                      <a
+                        href={topicPaths[r.family.topicId]}
+                        className="ml-2 text-xs text-amber-700 hover:underline dark:text-amber-400"
+                      >
+                        {pick(lang, UI.reviewTopic)}
+                      </a>
+                    )}
+                    {exhausted && (
+                      <span
+                        lang="de"
+                        className="ml-2 rounded bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800 dark:bg-amber-900 dark:text-amber-200"
+                      >
+                        {t('probe.remediationExhausted', uiLang)}
+                      </span>
+                    )}
+                  </span>
+                  <span className="flex flex-wrap items-center gap-2">
+                    {r.stages.map((stage) => (
+                      <span
+                        key={stage.stage}
+                        title={
+                          stage.actualDays === undefined
+                            ? undefined
+                            : pick(lang, UI.actualDays).replace('{n}', String(stage.actualDays))
+                        }
+                        className={`rounded px-2 py-0.5 text-xs font-semibold ${
+                          stage.status === 'passed'
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                            : stage.status === 'failed'
+                              ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                              : stage.status === 'due'
+                                ? 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
+                                : 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300'
+                        }`}
+                      >
+                        {stage.scheduledDays}
+                        {pick(lang, UI.dayAbbrev)}{' '}
+                        {stage.status === 'passed'
+                          ? '✓'
                           : stage.status === 'failed'
-                            ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                            ? '✗'
                             : stage.status === 'due'
-                              ? 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200'
-                              : 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300'
-                      }`}
-                    >
-                      {stage.scheduledDays}{pick(lang, UI.dayAbbrev)}{' '}
-                      {stage.status === 'passed' ? '✓' : stage.status === 'failed' ? '✗' : stage.status === 'due'
-                        ? pick(lang, UI.due)
-                        : stage.status === 'scheduled' && stage.dueAt
-                          ? new Date(stage.dueAt).toLocaleDateString(pick(lang, DATE_LOCALE), { day: '2-digit', month: '2-digit' })
-                          : pick(lang, UI.later)}
-                    </span>
-                  ))}
-                </span>
-              </li>
+                              ? pick(lang, UI.due)
+                              : stage.status === 'scheduled' && stage.dueAt
+                                ? new Date(stage.dueAt).toLocaleDateString(
+                                    pick(lang, DATE_LOCALE),
+                                    { day: '2-digit', month: '2-digit' },
+                                  )
+                                : pick(lang, UI.later)}
+                      </span>
+                    ))}
+                  </span>
+                </li>
               );
             })}
           </ul>

@@ -136,43 +136,197 @@ const ROMAN = /^[ivx]{1,4}$/;
  */
 export const FUNCTION_WORDS = [
   // definite article and contractions
-  'der', 'die', 'das', 'den', 'dem', 'des',
-  'im', 'am', 'ins', 'ans', 'aufs', 'beim', 'vom', 'zum', 'zur', 'fürs', 'ums', 'durchs',
+  'der',
+  'die',
+  'das',
+  'den',
+  'dem',
+  'des',
+  'im',
+  'am',
+  'ins',
+  'ans',
+  'aufs',
+  'beim',
+  'vom',
+  'zum',
+  'zur',
+  'fürs',
+  'ums',
+  'durchs',
   // personal, reflexive and indefinite pronouns
-  'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'mich', 'dich', 'ihn', 'uns', 'euch',
-  'mir', 'dir', 'ihm', 'ihnen', 'sich', 'man', 'einander',
+  'ich',
+  'du',
+  'er',
+  'sie',
+  'es',
+  'wir',
+  'ihr',
+  'mich',
+  'dich',
+  'ihn',
+  'uns',
+  'euch',
+  'mir',
+  'dir',
+  'ihm',
+  'ihnen',
+  'sich',
+  'man',
+  'einander',
   // determiners and possessives — the manifests carry the citation form only
   // (`~euer`), and no text ever shows it: this is the same set, and the same
   // argument, as INFLECTIONS in packages/content/src/coverage.ts
-  'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
-  'kein', 'keine', 'keinen', 'keinem', 'keiner', 'keines',
-  'mein', 'meine', 'meinen', 'meinem', 'meiner', 'meines',
-  'dein', 'deine', 'deinen', 'deinem', 'deiner', 'deines',
-  'seine', 'seinen', 'seinem', 'seiner', 'seines',
-  'ihre', 'ihren', 'ihrem', 'ihrer', 'ihres',
-  'unser', 'unsere', 'unseren', 'unserem', 'unserer', 'unseres',
-  'euer', 'eure', 'euren', 'eurem', 'eurer', 'eures',
-  'dieser', 'diese', 'dieses', 'diesen', 'diesem',
-  'welcher', 'welche', 'welches', 'welchen', 'welchem',
-  'jeder', 'jede', 'jedes', 'jeden', 'jedem',
+  'ein',
+  'eine',
+  'einen',
+  'einem',
+  'einer',
+  'eines',
+  'kein',
+  'keine',
+  'keinen',
+  'keinem',
+  'keiner',
+  'keines',
+  'mein',
+  'meine',
+  'meinen',
+  'meinem',
+  'meiner',
+  'meines',
+  'dein',
+  'deine',
+  'deinen',
+  'deinem',
+  'deiner',
+  'deines',
+  'seine',
+  'seinen',
+  'seinem',
+  'seiner',
+  'seines',
+  'ihre',
+  'ihren',
+  'ihrem',
+  'ihrer',
+  'ihres',
+  'unser',
+  'unsere',
+  'unseren',
+  'unserem',
+  'unserer',
+  'unseres',
+  'euer',
+  'eure',
+  'euren',
+  'eurem',
+  'eurer',
+  'eures',
+  'dieser',
+  'diese',
+  'dieses',
+  'diesen',
+  'diesem',
+  'welcher',
+  'welche',
+  'welches',
+  'welchen',
+  'welchem',
+  'jeder',
+  'jede',
+  'jedes',
+  'jeden',
+  'jedem',
   // sein
-  'bin', 'bist', 'ist', 'sind', 'seid', 'war', 'warst', 'waren', 'wart', 'gewesen',
-  'sei', 'seien', 'wäre', 'wären', 'wärst',
+  'bin',
+  'bist',
+  'ist',
+  'sind',
+  'seid',
+  'war',
+  'warst',
+  'waren',
+  'wart',
+  'gewesen',
+  'sei',
+  'seien',
+  'wäre',
+  'wären',
+  'wärst',
   // haben
-  'habe', 'hast', 'hat', 'habt', 'hatte', 'hattest', 'hatten', 'hattet', 'gehabt',
-  'hätte', 'hätten', 'hättest',
+  'habe',
+  'hast',
+  'hat',
+  'habt',
+  'hatte',
+  'hattest',
+  'hatten',
+  'hattet',
+  'gehabt',
+  'hätte',
+  'hätten',
+  'hättest',
   // werden
-  'werde', 'wirst', 'wird', 'werdet', 'wurde', 'wurdest', 'wurden', 'wurdet',
-  'geworden', 'worden', 'würde', 'würden', 'würdest',
+  'werde',
+  'wirst',
+  'wird',
+  'werdet',
+  'wurde',
+  'wurdest',
+  'wurden',
+  'wurdet',
+  'geworden',
+  'worden',
+  'würde',
+  'würden',
+  'würdest',
   // modals
-  'kann', 'kannst', 'könnt', 'konnte', 'konnten', 'gekonnt',
-  'muss', 'musst', 'müsst', 'musste', 'mussten', 'gemusst',
-  'will', 'willst', 'wollt', 'wollte', 'wollten', 'gewollt',
-  'soll', 'sollst', 'sollt', 'sollte', 'sollten', 'gesollt',
-  'darf', 'darfst', 'dürft', 'durfte', 'durften', 'gedurft',
-  'mag', 'magst', 'mögt', 'mochte', 'mochten', 'gemocht', 'möchte', 'möchten', 'möchtest',
+  'kann',
+  'kannst',
+  'könnt',
+  'konnte',
+  'konnten',
+  'gekonnt',
+  'muss',
+  'musst',
+  'müsst',
+  'musste',
+  'mussten',
+  'gemusst',
+  'will',
+  'willst',
+  'wollt',
+  'wollte',
+  'wollten',
+  'gewollt',
+  'soll',
+  'sollst',
+  'sollt',
+  'sollte',
+  'sollten',
+  'gesollt',
+  'darf',
+  'darfst',
+  'dürft',
+  'durfte',
+  'durften',
+  'gedurft',
+  'mag',
+  'magst',
+  'mögt',
+  'mochte',
+  'mochten',
+  'gemocht',
+  'möchte',
+  'möchten',
+  'möchtest',
   // weiß / wissen is irregular in exactly this way
-  'weiß', 'weißt', 'wusste', 'wussten', 'gewusst',
+  'weiß',
+  'weißt',
+  'wusste',
+  'wussten',
+  'gewusst',
 ] as const;
 
 const FUNCTION_WORD_SET = new Set<string>(FUNCTION_WORDS.map((w) => normalize(w)));
@@ -214,17 +368,61 @@ export function isKnown(token: string, has: (t: string) => boolean): boolean {
  * to be acted on.
  */
 const NUMBER_STEMS = [
-  'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn',
-  'milliarde', 'million', 'tausend', 'hundert',
-  'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig',
-  'zwölf', 'zehn', 'elf', 'null', 'eins', 'zwei', 'drei', 'vier', 'fünf', 'sechs',
-  'sieben', 'acht', 'neun', 'ein', 'und',
+  'dreizehn',
+  'vierzehn',
+  'fünfzehn',
+  'sechzehn',
+  'siebzehn',
+  'achtzehn',
+  'neunzehn',
+  'milliarde',
+  'million',
+  'tausend',
+  'hundert',
+  'zwanzig',
+  'dreißig',
+  'vierzig',
+  'fünfzig',
+  'sechzig',
+  'siebzig',
+  'achtzig',
+  'neunzig',
+  'zwölf',
+  'zehn',
+  'elf',
+  'null',
+  'eins',
+  'zwei',
+  'drei',
+  'vier',
+  'fünf',
+  'sechs',
+  'sieben',
+  'acht',
+  'neun',
+  'ein',
+  'und',
 ];
 
 /** Ordinal and inflected tails, allowed only *after* a stem — `dreißig|sten`,
     `siebzehn|te`. Letting them peel from the front too made `ersten` and
     `Enten` numbers. */
-const NUMBER_TAILS = ['', 'sten', 'ster', 'stem', 'ste', 'st', 'ten', 'ter', 'tem', 'te', 'en', 'er', 'em', 's'];
+const NUMBER_TAILS = [
+  '',
+  'sten',
+  'ster',
+  'stem',
+  'ste',
+  'st',
+  'ten',
+  'ter',
+  'tem',
+  'te',
+  'en',
+  'er',
+  'em',
+  's',
+];
 
 /** Is this token a German number written out in words? Peel stems off the front,
     then allow one tail. `Achtung` survives (`ung` is no tail) and `einsam`
@@ -298,7 +496,8 @@ export function halfBlocks(body: string, half: Half): string[] {
  */
 export function articleGerman(source: string): string {
   let body = stripFrontmatter(source);
-  for (const half of HALVES) body = body.replace(new RegExp(`<${half}>[\\s\\S]*?</${half}>`, 'g'), ' ');
+  for (const half of HALVES)
+    body = body.replace(new RegExp(`<${half}>[\\s\\S]*?</${half}>`, 'g'), ' ');
   return reduceGlosses(body)
     .split('\n')
     .filter((line) => {
@@ -322,7 +521,13 @@ export function articleSentenceLines(source: string): string[] {
     .split('\n')
     .map((line) => line.trim())
     .filter((line) => line !== '' && !line.startsWith('|') && !line.startsWith('#'))
-    .map((line) => line.replace(/^[>\-*+]\s*/, '').replace(/\*\*/g, '').replace(/\*/g, '').trim())
+    .map((line) =>
+      line
+        .replace(/^[>\-*+]\s*/, '')
+        .replace(/\*\*/g, '')
+        .replace(/\*/g, '')
+        .trim(),
+    )
     .filter((line) => line !== '');
 }
 
@@ -415,8 +620,26 @@ export function itemGerman(item: Record<string, unknown>): string[] {
  * because the same list runs over all of them, and means nothing on its own.
  */
 export const SUBORDINATORS = [
-  'dass', 'weil', 'wenn', 'als', 'ob', 'obwohl', 'damit', 'während', 'nachdem', 'bevor',
-  'seit', 'seitdem', 'sobald', 'solange', 'falls', 'da', 'indem', 'denen', 'deren', 'dessen',
+  'dass',
+  'weil',
+  'wenn',
+  'als',
+  'ob',
+  'obwohl',
+  'damit',
+  'während',
+  'nachdem',
+  'bevor',
+  'seit',
+  'seitdem',
+  'sobald',
+  'solange',
+  'falls',
+  'da',
+  'indem',
+  'denen',
+  'deren',
+  'dessen',
 ] as const;
 
 const SUBORDINATOR_SET = new Set<string>(SUBORDINATORS);
@@ -430,8 +653,28 @@ const RELATIVE = /,\s*(?:der|die|das|dem|den)(?![a-zäöüßA-ZÄÖÜ])/g;
 
 /** Abbreviations whose full stop is not a sentence boundary. */
 const ABBREVIATIONS = [
-  'z', 'b', 'd', 'h', 'u', 'a', 'ca', 'bzw', 'usw', 'evtl', 'ggf', 'bspw', 'inkl', 'ggü',
-  'nr', 'hr', 'fr', 'dr', 'st', 'mio', 'mrd', 'tel',
+  'z',
+  'b',
+  'd',
+  'h',
+  'u',
+  'a',
+  'ca',
+  'bzw',
+  'usw',
+  'evtl',
+  'ggf',
+  'bspw',
+  'inkl',
+  'ggü',
+  'nr',
+  'hr',
+  'fr',
+  'dr',
+  'st',
+  'mio',
+  'mrd',
+  'tel',
 ];
 
 /**
@@ -512,22 +755,83 @@ export function sentenceStats(lines: string[]): SentenceStats {
  */
 export const GRAMMAR_TERMS = [
   // German
-  'kasus', 'nominativ', 'akkusativ', 'dativ', 'genitiv', 'artikel', 'verb', 'nomen',
-  'substantiv', 'adjektiv', 'adverb', 'pronomen', 'präposition', 'konjunktion', 'präsens',
-  'präteritum', 'perfekt', 'plusquamperfekt', 'futur', 'partizip', 'infinitiv', 'konjunktiv',
-  'passiv', 'aktiv', 'nebensatz', 'nebensätz', 'hauptsatz', 'hauptsätz', 'relativsatz',
-  'relativsätz', 'endung', 'deklination', 'konjugation', 'singular', 'plural', 'modalverb',
-  'reflexiv', 'trennbar',
+  'kasus',
+  'nominativ',
+  'akkusativ',
+  'dativ',
+  'genitiv',
+  'artikel',
+  'verb',
+  'nomen',
+  'substantiv',
+  'adjektiv',
+  'adverb',
+  'pronomen',
+  'präposition',
+  'konjunktion',
+  'präsens',
+  'präteritum',
+  'perfekt',
+  'plusquamperfekt',
+  'futur',
+  'partizip',
+  'infinitiv',
+  'konjunktiv',
+  'passiv',
+  'aktiv',
+  'nebensatz',
+  'nebensätz',
+  'hauptsatz',
+  'hauptsätz',
+  'relativsatz',
+  'relativsätz',
+  'endung',
+  'deklination',
+  'konjugation',
+  'singular',
+  'plural',
+  'modalverb',
+  'reflexiv',
+  'trennbar',
   // English
-  'case', 'tense', 'clause', 'participle', 'infinitive', 'subjunctive', 'passive',
-  'declension', 'conjugation', 'subordinate', 'auxiliary',
+  'case',
+  'tense',
+  'clause',
+  'participle',
+  'infinitive',
+  'subjunctive',
+  'passive',
+  'declension',
+  'conjugation',
+  'subordinate',
+  'auxiliary',
   // Russian (stems)
-  'падеж', 'глагол', 'существительн', 'прилагательн', 'местоимени', 'предлог', 'союз',
-  'окончани', 'склонени', 'спряжени', 'причасти', 'инфинитив', 'залог', 'наклонени',
+  'падеж',
+  'глагол',
+  'существительн',
+  'прилагательн',
+  'местоимени',
+  'предлог',
+  'союз',
+  'окончани',
+  'склонени',
+  'спряжени',
+  'причасти',
+  'инфинитив',
+  'залог',
+  'наклонени',
   'придаточн',
   // Ukrainian (stems)
-  'відмін', 'дієслов', 'іменник', 'прикметник', 'займенник', 'прийменник', 'сполучник',
-  'закінченн', 'дієвідмінюванн', 'дієприкметник',
+  'відмін',
+  'дієслов',
+  'іменник',
+  'прикметник',
+  'займенник',
+  'прийменник',
+  'сполучник',
+  'закінченн',
+  'дієвідмінюванн',
+  'дієприкметник',
 ] as const;
 
 /** The one ending a Latin-script term root may carry and still count. */
@@ -557,9 +861,7 @@ export function terminologyDensity(text: string): TerminologyStats {
     .replace(/<[^>]*>/g, ' ')
     .replace(/[`*]+/g, ' ');
   const words = countWords(plain);
-  const terms = plain
-    .split(/[^\p{L}]+/u)
-    .filter((w) => w !== '' && isGrammarTerm(w)).length;
+  const terms = plain.split(/[^\p{L}]+/u).filter((w) => w !== '' && isGrammarTerm(w)).length;
   return { words, terms, per100: words === 0 ? 0 : (terms / words) * 100 };
 }
 
@@ -662,11 +964,18 @@ export function loadCorpus(root = repoRoot()): Corpus {
   // medians from this instrument that no command could reproduce any more.
   const byId = new Map<string, Omit<TopicSource, 'position'>>();
   for (const file of walk(join(root, 'content/topics'), '.topic.yaml')) {
-    const manifest = YAML.parse(readFileSync(file, 'utf8')) as {
-      id?: string;
-      level?: Level;
-      elements?: { article?: string; vocab?: string[]; exercises?: string[]; reading?: string[] };
-    } | undefined;
+    const manifest = YAML.parse(readFileSync(file, 'utf8')) as
+      | {
+          id?: string;
+          level?: Level;
+          elements?: {
+            article?: string;
+            vocab?: string[];
+            exercises?: string[];
+            reading?: string[];
+          };
+        }
+      | undefined;
     if (!manifest?.id || !manifest.level) continue;
     const article = manifest.elements?.article;
     const articleFile = article ? join(dirname(file), article) : undefined;
@@ -749,7 +1058,11 @@ export function loadCorpus(root = repoRoot()): Corpus {
 /** `content/reading/b1/geld-vertraege.yaml` → `b1/geld-vertraege`, the id shape
     topic frontmatter refers to a reading or an exercise set by. */
 function refOf(base: string, file: string): string {
-  return file.slice(base.length + 1).replace(/\.yaml$/, '').split(/[\\/]/).join('/');
+  return file
+    .slice(base.length + 1)
+    .replace(/\.yaml$/, '')
+    .split(/[\\/]/)
+    .join('/');
 }
 
 // ---------------------------------------------------------------------------
@@ -825,7 +1138,8 @@ export function measureSpine(corpus: Corpus): TopicLoad[] {
   for (const topic of corpus.topics) {
     // Own decks first: a word the topic's own deck teaches is support, not load.
     for (const deck of topic.vocab) {
-      for (const form of corpus.decks.get(deck) ?? []) for (const t of tokens(form)) deckTokens.add(t);
+      for (const form of corpus.decks.get(deck) ?? [])
+        for (const t of tokens(form)) deckTokens.add(t);
     }
     let wortliste = wortlisteCache.get(topic.level);
     if (!wortliste) {

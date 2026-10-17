@@ -219,12 +219,16 @@ export function itemParts(item: ExerciseItem): number {
       return (item as { pairs?: unknown[] }).pairs?.length ?? 1;
     case 'table':
       return (
-        (item as { rows?: { cells?: { given?: boolean }[] }[] }).rows ?? []
-      ).reduce((sum, row) => sum + (row.cells ?? []).filter((c) => !c.given).length, 0) || 1;
+        ((item as { rows?: { cells?: { given?: boolean }[] }[] }).rows ?? []).reduce(
+          (sum, row) => sum + (row.cells ?? []).filter((c) => !c.given).length,
+          0,
+        ) || 1
+      );
     case 'form':
       return (
-        (item as { fields?: { given?: boolean }[] }).fields ?? []
-      ).filter((f) => !f.given).length || 1;
+        ((item as { fields?: { given?: boolean }[] }).fields ?? []).filter((f) => !f.given)
+          .length || 1
+      );
     default:
       return 1;
   }

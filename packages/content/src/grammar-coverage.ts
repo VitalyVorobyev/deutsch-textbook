@@ -150,7 +150,10 @@ function walk(dir: string): string[] {
 export function exerciseLevelFromPath(file: string, base: string): Level {
   // `join()` follows the host platform. Accept both separators here so the
   // coverage result is also testable independently of the machine running it.
-  return file.slice(base.length + 1).split(/[\\/]/)[0].toUpperCase() as Level;
+  return file
+    .slice(base.length + 1)
+    .split(/[\\/]/)[0]
+    .toUpperCase() as Level;
 }
 
 /**
@@ -226,12 +229,17 @@ export function loadGrammarMap(root = repoRoot()): GrammarInventory {
   const points = parsed.points ?? [];
   const ids = new Set(tracks.map((track) => track.id));
   const badLevel = points.find((point) => {
-    const level = point.level ?? (point.standard_level
-      ? { reception: point.standard_level, production: point.standard_level }
-      : undefined);
-    return !level || !CEFR_LEVELS.includes(level.reception) || !CEFR_LEVELS.includes(level.production);
+    const level =
+      point.level ??
+      (point.standard_level
+        ? { reception: point.standard_level, production: point.standard_level }
+        : undefined);
+    return (
+      !level || !CEFR_LEVELS.includes(level.reception) || !CEFR_LEVELS.includes(level.production)
+    );
   });
-  if (badLevel) throw new Error(`point "${badLevel.id}" has no valid A1–C2 reception/production level`);
+  if (badLevel)
+    throw new Error(`point "${badLevel.id}" has no valid A1–C2 reception/production level`);
   const untracked = points.find((point) => !point.track || !ids.has(point.track));
   if (untracked) throw new Error(`point "${untracked.id}" names no declared grammar track`);
   // Memoised only after validation, so a malformed inventory throws on every call rather than
@@ -294,8 +302,8 @@ export function grammarCoverage(level: Level, root = repoRoot()): GrammarCoverag
       // level that happens to carry *every* tag would return nothing at all for
       // a point whose tags are split across two levels, and report a taught
       // structure as untaught.
-      const perTag = declared.map(
-        (tag) => LEVEL_ORDER.findIndex((lvl) => drilled.get(tag)!.has(lvl)),
+      const perTag = declared.map((tag) =>
+        LEVEL_ORDER.findIndex((lvl) => drilled.get(tag)!.has(lvl)),
       );
       const taughtAt = LEVEL_ORDER[Math.max(...perTag)];
       const onTime = LEVEL_ORDER.indexOf(taughtAt) <= LEVEL_ORDER.indexOf(level);

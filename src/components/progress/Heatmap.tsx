@@ -1,6 +1,18 @@
 import { useMemo } from 'react';
-import { dailyActivity, activeDateSet, currentStreak, mondayOf, addDays, parseLocalDate } from '../../lib/trends';
-import { localDateString, type Attempt, type CardStates, type SessionLogEntry } from '../../lib/store';
+import {
+  dailyActivity,
+  activeDateSet,
+  currentStreak,
+  mondayOf,
+  addDays,
+  parseLocalDate,
+} from '../../lib/trends';
+import {
+  localDateString,
+  type Attempt,
+  type CardStates,
+  type SessionLogEntry,
+} from '../../lib/store';
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
@@ -54,7 +66,11 @@ export function Heatmap({
 
   const mondayToday = mondayOf(today);
   const weeks: string[][] = [];
-  for (let w = 0, cursor = start; w < WEEKS && cursor <= mondayToday; w++, cursor = addDays(cursor, 7)) {
+  for (
+    let w = 0, cursor = start;
+    w < WEEKS && cursor <= mondayToday;
+    w++, cursor = addDays(cursor, 7)
+  ) {
     const col: string[] = [];
     for (let d = 0; d < 7; d++) col.push(localDateString(addDays(cursor, d)));
     weeks.push(col);
@@ -67,9 +83,7 @@ export function Heatmap({
           {pick(lang, UI.title)}
         </h2>
         <p className="text-sm text-stone-500 dark:text-stone-400">
-          🔥{' '}
-          <span className="font-semibold tabular-nums">{streak}</span>{' '}
-          {pick(lang, UI.dayStreak)}
+          🔥 <span className="font-semibold tabular-nums">{streak}</span> {pick(lang, UI.dayStreak)}
         </p>
       </div>
       <div className="mt-3 overflow-x-auto">

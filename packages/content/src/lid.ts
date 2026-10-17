@@ -21,7 +21,12 @@ import {
   type LidQuestion,
   type LidTopics,
 } from '@da/schema/lid';
-import { hasUkField, langFieldProblems, mdxLangProblems, ukParityProblems } from '@da/schema/langcheck';
+import {
+  hasUkField,
+  langFieldProblems,
+  mdxLangProblems,
+  ukParityProblems,
+} from '@da/schema/langcheck';
 import { imageDimensions } from './image-size';
 import { proseShapeProblems } from './prose-shape';
 import { repoRoot } from './repo-root';
@@ -56,10 +61,13 @@ export function loadLidNotes(root = repoRoot()): PlacedLidNote[] {
 }
 
 /** The topic → module map, for grouping accuracy and building the overview. */
-export function lidTopicModules(topics: LidTopics): Map<string, { module: string; moduleTitle: string; title: string }> {
+export function lidTopicModules(
+  topics: LidTopics,
+): Map<string, { module: string; moduleTitle: string; title: string }> {
   const map = new Map<string, { module: string; moduleTitle: string; title: string }>();
   for (const m of topics.modules)
-    for (const t of m.topics) map.set(t.id, { module: m.id, moduleTitle: m.title_de, title: t.title_de });
+    for (const t of m.topics)
+      map.set(t.id, { module: m.id, moduleTitle: m.title_de, title: t.title_de });
   return map;
 }
 
@@ -79,13 +87,15 @@ export function lidProblems(root = repoRoot()): string[] {
 
   // The bank: the published counts, unique ids, every image present and unchanged.
   const general = bank.questions.filter((q) => q.scope === 'general');
-  if (general.length !== 300) at(LID_BANK_FILE, `${general.length} general questions, expected 300`);
+  if (general.length !== 300)
+    at(LID_BANK_FILE, `${general.length} general questions, expected 300`);
   for (const state of bank.states) {
     const n = bank.questions.filter((q) => q.stateCode === state).length;
     if (n !== 10) at(LID_BANK_FILE, `${state} has ${n} questions, expected 10`);
   }
   const stray = bank.questions.filter((q) => q.stateCode && !bank.states.includes(q.stateCode));
-  if (stray.length) at(LID_BANK_FILE, `questions for undeclared states: ${stray.map((q) => q.id).join(', ')}`);
+  if (stray.length)
+    at(LID_BANK_FILE, `questions for undeclared states: ${stray.map((q) => q.id).join(', ')}`);
   const ids = new Set<string>();
   for (const q of bank.questions) {
     if (ids.has(q.id)) at(LID_BANK_FILE, `duplicate id ${q.id}`);
@@ -94,7 +104,8 @@ export function lidProblems(root = repoRoot()): string[] {
       const file = join(root, 'public', image.path);
       if (image.withheld) {
         // A credited third-party photo must never reach the deployed build (ADR 0021).
-        if (existsSync(file)) at(LID_BANK_FILE, `${q.id}: ${image.path} is withheld (${image.withheld}) but present`);
+        if (existsSync(file))
+          at(LID_BANK_FILE, `${q.id}: ${image.path} is withheld (${image.withheld}) but present`);
         continue;
       }
       if (!existsSync(file)) at(LID_BANK_FILE, `${q.id}: ${image.path} does not exist`);
@@ -138,7 +149,10 @@ export function lidProblems(root = repoRoot()): string[] {
   problems.push(...lidNotesUkProblems(notes));
   const unplaced = bank.questions.filter((q) => !placed.has(q.id)).map((q) => q.id);
   if (unplaced.length)
-    at(LID_NOTES_DIR, `${unplaced.length} question(s) belong to no topic: ${unplaced.slice(0, 12).join(', ')}${unplaced.length > 12 ? ' …' : ''}`);
+    at(
+      LID_NOTES_DIR,
+      `${unplaced.length} question(s) belong to no topic: ${unplaced.slice(0, 12).join(', ')}${unplaced.length > 12 ? ' …' : ''}`,
+    );
   return problems;
 }
 
@@ -154,13 +168,16 @@ export function lidNotesUkProblems(notes: PlacedLidNote[]): string[] {
     const inFile = notes.filter((n) => n.topic === topic);
     if (!hasUkField(inFile)) continue;
     for (const note of inFile)
-      for (const p of ukParityProblems(note, { forceUk: true })) problems.push(`${LID_NOTES_DIR}/${topic}.yaml: ${note.id}: ${p}`);
+      for (const p of ukParityProblems(note, { forceUk: true }))
+        problems.push(`${LID_NOTES_DIR}/${topic}.yaml: ${note.id}: ${p}`);
   }
   return problems;
 }
 
 /** The one place a question meets its note — pages and the audit join through this. */
-export function lidQuestionsWithNotes(root = repoRoot()): { question: LidQuestion; note: PlacedLidNote | undefined }[] {
+export function lidQuestionsWithNotes(
+  root = repoRoot(),
+): { question: LidQuestion; note: PlacedLidNote | undefined }[] {
   const bank = loadLidBank(root);
   const notes = new Map(loadLidNotes(root).map((n) => [n.id, n]));
   return bank.questions.map((question) => ({ question, note: notes.get(question.id) }));
@@ -202,7 +219,10 @@ function readLidLessonSources(root: string): LidLessonSource[] {
         try {
           frontmatter = { ok: true, data: YAML.parse(match[1]!) as unknown };
         } catch (err) {
-          frontmatter = { ok: false, error: `frontmatter YAML parse error: ${err instanceof Error ? err.message : String(err)}` };
+          frontmatter = {
+            ok: false,
+            error: `frontmatter YAML parse error: ${err instanceof Error ? err.message : String(err)}`,
+          };
         }
       }
       return { id: basename(name, '.mdx'), file: `${LID_LESSONS_DIR}/${name}`, frontmatter, body };
@@ -239,7 +259,12 @@ export function loadLidLessons(root = repoRoot()): LoadedLidLesson[] {
 export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } = {}): string[] {
   const problems: string[] = [];
   const heading = /^(#{1,6})[ \t]+(.+?)[ \t]*$/gm;
-  const headings = [...body.matchAll(heading)].map((m) => ({ depth: m[1]!.length, text: m[2]!, at: m.index, end: m.index + m[0].length }));
+  const headings = [...body.matchAll(heading)].map((m) => ({
+    depth: m[1]!.length,
+    text: m[2]!,
+    at: m.index,
+    end: m.index + m[0].length,
+  }));
   const first = headings[0];
   if (!first || first.depth !== 2 || first.text !== 'Kurz gesagt') {
     problems.push(
@@ -249,12 +274,19 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
   }
   const comments = /\{\/\*[\s\S]*?\*\/\}/g;
   const before = body.slice(0, first.at).replace(comments, '').trim();
-  if (before) problems.push(`nothing but MDX comments may precede "## Kurz gesagt": "${before.slice(0, 60)}"`);
-  if (headings.some((h) => h.depth === 1)) problems.push('no "#" heading — the page renders the lesson title itself');
+  if (before)
+    problems.push(
+      `nothing but MDX comments may precede "## Kurz gesagt": "${before.slice(0, 60)}"`,
+    );
+  if (headings.some((h) => h.depth === 1))
+    problems.push('no "#" heading — the page renders the lesson title itself');
   if (!headings.some((h) => h.at > first.at && h.depth === 2))
     problems.push('after "## Kurz gesagt" comes at least one "##" section in German');
   const bilinguals = (body.match(/<Bilingual\b/g) ?? []).length;
-  if (bilinguals) problems.push(`${bilinguals} <Bilingual> block(s) — the lesson is German, and each section closes with a <Translation>`);
+  if (bilinguals)
+    problems.push(
+      `${bilinguals} <Bilingual> block(s) — the lesson is German, and each section closes with a <Translation>`,
+    );
 
   const halves = ['En', 'Ru', ...(opts.forceUk || body.includes('<Uk>') ? ['Uk'] : [])];
   const translation = /<Translation(?: open)?>[\s\S]*?<\/Translation>/g;
@@ -263,9 +295,14 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
     const label = `"${'#'.repeat(h.depth)} ${h.text}"`;
     const blocks = section.match(translation) ?? [];
     // A <Figure> carries its own translated caption: it is not German text that needs a block.
-    const german = section.replace(translation, '').replace(comments, '').replace(FIGURE_TAG, '').trim();
+    const german = section
+      .replace(translation, '')
+      .replace(comments, '')
+      .replace(FIGURE_TAG, '')
+      .trim();
     if (!german) {
-      if (blocks.length) problems.push(`${label} has a <Translation> but no German text to translate`);
+      if (blocks.length)
+        problems.push(`${label} has a <Translation> but no German text to translate`);
       return;
     }
     if (blocks.length !== 1) {
@@ -275,11 +312,17 @@ export function lidLessonBodyProblems(body: string, opts: { forceUk?: boolean } 
     if (!section.replace(comments, '').trimEnd().endsWith('</Translation>'))
       problems.push(`${label}: the <Translation> comes last, after the German it translates`);
     for (const half of halves)
-      if (!blocks[0]!.includes(`<${half}>`)) problems.push(`${label}: its <Translation> has no <${half}> half`);
+      if (!blocks[0]!.includes(`<${half}>`))
+        problems.push(`${label}: its <Translation> has no <${half}> half`);
     const open = blocks[0]!.startsWith('<Translation open>');
     if (h === first && !open)
-      problems.push(`${label}: the summary's translation is <Translation open> — it is read in both languages at once`);
-    if (h !== first && open) problems.push(`${label}: only "## Kurz gesagt" opens its <Translation>; a section translates on demand`);
+      problems.push(
+        `${label}: the summary's translation is <Translation open> — it is read in both languages at once`,
+      );
+    if (h !== first && open)
+      problems.push(
+        `${label}: only "## Kurz gesagt" opens its <Translation>; a section translates on demand`,
+      );
   });
   return problems;
 }
@@ -299,8 +342,10 @@ export function lidFigureRefs(body: string): { ids: string[]; problems: string[]
       continue;
     }
     const named = form[2]!.split(/\s+/).filter(Boolean);
-    if (form[1] === 'id' && named.length !== 1) problems.push(`${tag}: id names one figure — a row is ids="… …"`);
-    if (form[1] === 'ids' && (named.length < 2 || named.length > 3)) problems.push(`${tag}: a row holds two or three figures`);
+    if (form[1] === 'id' && named.length !== 1)
+      problems.push(`${tag}: id names one figure — a row is ids="… …"`);
+    if (form[1] === 'ids' && (named.length < 2 || named.length > 3))
+      problems.push(`${tag}: a row holds two or three figures`);
     ids.push(...named);
   }
   return { ids, problems };
@@ -341,17 +386,27 @@ interface LidFigureSource {
  * `svgFigureHazards` names; and an `official` figure is a
  * picture of the bank that is not withheld (ADR 0021). The credit fields are the schema's.
  */
-export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank: LidBank | undefined): string[] {
+export function lidFigureProblems(
+  root: string,
+  lessons: LidFigureSource[],
+  bank: LidBank | undefined,
+): string[] {
   const problems: string[] = [];
   const at = (file: string, msg: string) => problems.push(`${file}: ${msg}`);
   const owner = new Map<string, string>();
   for (const { file, figures } of lessons)
     for (const figure of figures) {
       const other = owner.get(figure.id);
-      if (other) at(file, `figure "${figure.id}" is already declared in ${other} — figure ids are unique across lessons`);
+      if (other)
+        at(
+          file,
+          `figure "${figure.id}" is already declared in ${other} — figure ids are unique across lessons`,
+        );
       else owner.set(figure.id, file);
     }
-  const bankImages = bank && new Map(bank.questions.flatMap((q) => q.images.map((image) => [image.path, image] as const)));
+  const bankImages =
+    bank &&
+    new Map(bank.questions.flatMap((q) => q.images.map((image) => [image.path, image] as const)));
 
   for (const { file, body, figures } of lessons) {
     const refs = lidFigureRefs(body);
@@ -359,7 +414,10 @@ export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank
     const declared = new Set(figures.map((f) => f.id));
     for (const id of refs.ids)
       if (!declared.has(id))
-        at(file, `<Figure> "${id}" is not one of this lesson's figures${owner.has(id) ? ` (it is declared in ${owner.get(id)})` : ''}`);
+        at(
+          file,
+          `<Figure> "${id}" is not one of this lesson's figures${owner.has(id) ? ` (it is declared in ${owner.get(id)})` : ''}`,
+        );
     const shown = new Set(refs.ids);
 
     for (const figure of figures) {
@@ -370,20 +428,38 @@ export function lidFigureProblems(root: string, lessons: LidFigureSource[], bank
       else {
         const bytes = readFileSync(path);
         if (bytes.length > LID_FIGURE_MAX_BYTES)
-          at(file, `${label}: ${figure.src} is ${bytes.length} bytes, over the ${LID_FIGURE_MAX_BYTES}-byte ceiling`);
+          at(
+            file,
+            `${label}: ${figure.src} is ${bytes.length} bytes, over the ${LID_FIGURE_MAX_BYTES}-byte ceiling`,
+          );
         const size = imageDimensions(bytes);
-        if (!size) at(file, `${label}: ${figure.src} has no PNG, JPEG, WebP or SVG header to read its size from`);
+        if (!size)
+          at(
+            file,
+            `${label}: ${figure.src} has no PNG, JPEG, WebP or SVG header to read its size from`,
+          );
         else if (size.width !== figure.width || size.height !== figure.height)
-          at(file, `${label}: ${figure.src} is ${size.width}×${size.height}, the figure says ${figure.width}×${figure.height}`);
+          at(
+            file,
+            `${label}: ${figure.src} is ${size.width}×${size.height}, the figure says ${figure.width}×${figure.height}`,
+          );
         if (figure.src.endsWith('.svg'))
           for (const hazard of svgFigureHazards(new TextDecoder().decode(bytes)))
-            at(file, `${label}: ${figure.src} carries ${hazard} — an SVG figure also opens on its own, so it holds no script and no external reference`);
+            at(
+              file,
+              `${label}: ${figure.src} carries ${hazard} — an SVG figure also opens on its own, so it holds no script and no external reference`,
+            );
       }
       if (figure.sourceClass !== 'official') continue;
       const image = bankImages?.get(figure.src);
-      if (!bankImages) at(file, `${label} is official, but there is no ${LID_BANK_FILE} to find it in`);
+      if (!bankImages)
+        at(file, `${label} is official, but there is no ${LID_BANK_FILE} to find it in`);
       else if (!image) at(file, `${label}: ${figure.src} is not a picture of the official bank`);
-      else if (image.withheld) at(file, `${label}: ${figure.src} is withheld (${image.withheld}) — a withheld photo never ships`);
+      else if (image.withheld)
+        at(
+          file,
+          `${label}: ${figure.src} is withheld (${image.withheld}) — a withheld photo never ships`,
+        );
     }
   }
   return problems;
@@ -408,7 +484,9 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics, bank?: 
 
   let known: Set<string>;
   try {
-    known = new Set((topics ?? loadLidTopics(root)).modules.flatMap((m) => m.topics.map((t) => t.id)));
+    known = new Set(
+      (topics ?? loadLidTopics(root)).modules.flatMap((m) => m.topics.map((t) => t.id)),
+    );
   } catch (err) {
     at(LID_TOPICS_FILE, String(err));
     return problems;
@@ -419,7 +497,8 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics, bank?: 
   const withFigures: LidFigureSource[] = [];
   for (const source of sources) {
     const { file, body } = source;
-    if (!LID_LESSON_ID.test(source.id)) at(file, `"${source.id}" is not a lesson id — the file name is the id, kebab-case ASCII`);
+    if (!LID_LESSON_ID.test(source.id))
+      at(file, `"${source.id}" is not a lesson id — the file name is the id, kebab-case ASCII`);
     const fm = source.frontmatter.ok ? source.frontmatter.data : undefined;
     for (const p of lidLessonBodyProblems(body, { forceUk: hasUkField(fm) })) at(file, p);
 
@@ -433,14 +512,19 @@ export function lidLessonProblems(root = repoRoot(), topics?: LidTopics, bank?: 
 
     const parsed = lidLessonSchema.safeParse(fm);
     if (!parsed.success) {
-      for (const issue of parsed.error.issues) at(file, `${issue.path.join('.') || '(root)'}: ${issue.message}`);
+      for (const issue of parsed.error.issues)
+        at(file, `${issue.path.join('.') || '(root)'}: ${issue.message}`);
       continue;
     }
     const lesson = parsed.data;
     for (const topic of new Set(lesson.topics)) {
       if (!known.has(topic)) at(file, `"${topic}" is not a topic in ${LID_TOPICS_FILE}`);
       const owner = topicOwner.get(topic);
-      if (owner) at(file, `topic "${topic}" already belongs to lesson "${owner}" — a topic belongs to at most one lesson`);
+      if (owner)
+        at(
+          file,
+          `topic "${topic}" already belongs to lesson "${owner}" — a topic belongs to at most one lesson`,
+        );
       else topicOwner.set(topic, source.id);
     }
     const sameOrder = orderOwner.get(lesson.order);

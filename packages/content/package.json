@@ -1,5 +1,4 @@
 {
-  "//": "This package READS the corpus (content/, data/) — every measurement (coverage, structures, grammar depth, comprehensibility, prose shape, authorship provenance) lives here. @da/schema holds the shapes and stays pure. Exports are per-module, never a single barrel, because some of these modules import node:fs and some are imported by browser React components; a barrel would drag node:fs into the client bundle.",
   "name": "@da/content",
   "version": "0.4.0",
   "private": true,
@@ -42,5 +41,6 @@
   "peerDependencies": {
     "yaml": "^2.9.1",
     "zod": "^4.6.5"
-  }
+  },
+  "//": "This package READS the corpus (content/, data/) — every measurement (coverage, structures, grammar depth, comprehensibility, prose shape, authorship provenance) lives here. @da/schema holds the shapes and stays pure. Exports are per-module, never a single barrel, because some of these modules import node:fs and some are imported by browser React components; a barrel would drag node:fs into the client bundle."
 }

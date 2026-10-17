@@ -79,7 +79,12 @@ export type SaveFileResult =
   | { ok: true; snapshot: FileSnapshot; changed: boolean }
   | { ok: false; conflict?: FileSnapshot; diagnostics: Diagnostic[] };
 
-type Schema = { safeParse: (value: unknown) => { success: boolean; error?: { issues?: { path: PropertyKey[]; message: string }[] } } };
+type Schema = {
+  safeParse: (value: unknown) => {
+    success: boolean;
+    error?: { issues?: { path: PropertyKey[]; message: string }[] };
+  };
+};
 
 const MAX_SOURCE_BYTES = 2 * 1024 * 1024;
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/;
@@ -102,18 +107,21 @@ const sourceKind = (path: string): SourceKind => {
   return 'text';
 };
 
-const schemaFor = (kind: SourceKind): Schema | undefined => ({
-  'topic-manifest': topicManifestSchema,
-  'exercise-set': exerciseSetSchema,
-  reading: readingSchema,
-  vocabulary: vocabFileSchema,
-  listening: listeningArtifactSchema,
-  document: visualDocumentSchema,
-  reference: referenceDataSchema,
-  wortfeld: wordFieldSchema,
-  wortnetz: wortnetzSchema,
-  atlas: atlasSchema,
-} as Partial<Record<SourceKind, Schema>>)[kind];
+const schemaFor = (kind: SourceKind): Schema | undefined =>
+  (
+    {
+      'topic-manifest': topicManifestSchema,
+      'exercise-set': exerciseSetSchema,
+      reading: readingSchema,
+      vocabulary: vocabFileSchema,
+      listening: listeningArtifactSchema,
+      document: visualDocumentSchema,
+      reference: referenceDataSchema,
+      wortfeld: wordFieldSchema,
+      wortnetz: wortnetzSchema,
+      atlas: atlasSchema,
+    } as Partial<Record<SourceKind, Schema>>
+  )[kind];
 
 const revisionOf = (text: string): string => createHash('sha256').update(text).digest('hex');
 const cefrLevels = new Set<string>(CEFR_LEVELS);
@@ -129,7 +137,8 @@ function diagnostic(path: string, message: string): Diagnostic {
 }
 
 function validateGrammarInventory(path: string, value: unknown): Diagnostic[] {
-  if (!value || typeof value !== 'object') return [diagnostic(path, 'grammar inventory must be a mapping')];
+  if (!value || typeof value !== 'object')
+    return [diagnostic(path, 'grammar inventory must be a mapping')];
   const inventory = value as { tracks?: unknown; points?: unknown };
   if (!Array.isArray(inventory.tracks) || !Array.isArray(inventory.points))
     return [diagnostic(path, 'grammar inventory needs tracks and points arrays')];
@@ -137,17 +146,22 @@ function validateGrammarInventory(path: string, value: unknown): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
   for (const [index, raw] of inventory.tracks.entries()) {
     const track = raw as Record<string, unknown>;
-    if (typeof track?.id !== 'string' || !track.id) diagnostics.push(diagnostic(path, `tracks.${index}.id: required`));
-    else if (trackIds.has(track.id)) diagnostics.push(diagnostic(path, `tracks.${index}.id: duplicate "${track.id}"`));
+    if (typeof track?.id !== 'string' || !track.id)
+      diagnostics.push(diagnostic(path, `tracks.${index}.id: required`));
+    else if (trackIds.has(track.id))
+      diagnostics.push(diagnostic(path, `tracks.${index}.id: duplicate "${track.id}"`));
     else trackIds.add(track.id);
     for (const field of ['strand', 'title_de', 'title_en', 'order'])
-      if (track?.[field] === undefined) diagnostics.push(diagnostic(path, `tracks.${index}.${field}: required`));
+      if (track?.[field] === undefined)
+        diagnostics.push(diagnostic(path, `tracks.${index}.${field}: required`));
   }
   const pointIds = new Set<string>();
   for (const [index, raw] of inventory.points.entries()) {
     const point = raw as Record<string, unknown>;
-    if (typeof point?.id !== 'string' || !point.id) diagnostics.push(diagnostic(path, `points.${index}.id: required`));
-    else if (pointIds.has(point.id)) diagnostics.push(diagnostic(path, `points.${index}.id: duplicate "${point.id}"`));
+    if (typeof point?.id !== 'string' || !point.id)
+      diagnostics.push(diagnostic(path, `points.${index}.id: required`));
+    else if (pointIds.has(point.id))
+      diagnostics.push(diagnostic(path, `points.${index}.id: duplicate "${point.id}"`));
     else pointIds.add(point.id);
     if (typeof point?.track !== 'string' || !trackIds.has(point.track))
       diagnostics.push(diagnostic(path, `points.${index}.track: unknown grammar track`));
@@ -156,9 +170,16 @@ function validateGrammarInventory(path: string, value: unknown): Diagnostic[] {
       diagnostics.push(diagnostic(path, `points.${index}.level.reception: expected A1–C2`));
     if (!level || !cefrLevels.has(String(level.production)))
       diagnostics.push(diagnostic(path, `points.${index}.level.production: expected A1–C2`));
-    if (level && cefrLevels.has(String(level.reception)) && cefrLevels.has(String(level.production)) &&
-        CEFR_LEVELS.indexOf(level.reception as (typeof CEFR_LEVELS)[number]) > CEFR_LEVELS.indexOf(level.production as (typeof CEFR_LEVELS)[number]))
-      diagnostics.push(diagnostic(path, `points.${index}.level: reception must not follow production`));
+    if (
+      level &&
+      cefrLevels.has(String(level.reception)) &&
+      cefrLevels.has(String(level.production)) &&
+      CEFR_LEVELS.indexOf(level.reception as (typeof CEFR_LEVELS)[number]) >
+        CEFR_LEVELS.indexOf(level.production as (typeof CEFR_LEVELS)[number])
+    )
+      diagnostics.push(
+        diagnostic(path, `points.${index}.level: reception must not follow production`),
+      );
   }
   return diagnostics;
 }
@@ -167,14 +188,20 @@ function validateGrammarInventory(path: string, value: unknown): Diagnostic[] {
 export function resolveEditableSource(root: string, relativePath: string): string {
   if (!relativePath || isAbsolute(relativePath) || relativePath.includes('\\'))
     throw new Error('source path must be a repo-relative POSIX path');
-  if (!/^(?:content|data)\//.test(relativePath) || !/\.(?:yaml|yml|mdx|md|txt|json)$/.test(relativePath))
+  if (
+    !/^(?:content|data)\//.test(relativePath) ||
+    !/\.(?:yaml|yml|mdx|md|txt|json)$/.test(relativePath)
+  )
     throw new Error('only existing editorial sources under content/ or data/ are writable');
   const resolvedRoot = realpathSync(root);
   const lexical = resolve(resolvedRoot, relativePath);
-  if (!lexical.startsWith(resolvedRoot + sep)) throw new Error('source path escapes the selected checkout');
-  if (!existsSync(lexical) || !statSync(lexical).isFile()) throw new Error('source file does not exist');
+  if (!lexical.startsWith(resolvedRoot + sep))
+    throw new Error('source path escapes the selected checkout');
+  if (!existsSync(lexical) || !statSync(lexical).isFile())
+    throw new Error('source file does not exist');
   const physical = realpathSync(lexical);
-  if (!physical.startsWith(resolvedRoot + sep)) throw new Error('source symlink escapes the selected checkout');
+  if (!physical.startsWith(resolvedRoot + sep))
+    throw new Error('source symlink escapes the selected checkout');
   return physical;
 }
 
@@ -198,7 +225,12 @@ export async function validateSource(path: string, text: string): Promise<Diagno
             diagnostic(path, `${issue.path.join('.') || 'frontmatter'}: ${issue.message}`),
           );
       } catch (error) {
-        return [diagnostic(path, `frontmatter YAML: ${error instanceof Error ? error.message : String(error)}`)];
+        return [
+          diagnostic(
+            path,
+            `frontmatter YAML: ${error instanceof Error ? error.message : String(error)}`,
+          ),
+        ];
       }
     }
     return [];
@@ -217,7 +249,9 @@ export async function validateSource(path: string, text: string): Promise<Diagno
         );
     }
   } else if (path.endsWith('.json')) {
-    try { JSON.parse(text); } catch (error) {
+    try {
+      JSON.parse(text);
+    } catch (error) {
       return [diagnostic(path, `JSON: ${error instanceof Error ? error.message : String(error)}`)];
     }
   }
@@ -227,7 +261,13 @@ export async function validateSource(path: string, text: string): Promise<Diagno
 export async function readSource(root: string, path: string): Promise<FileSnapshot> {
   const file = resolveEditableSource(root, path);
   const text = readFileSync(file, 'utf8');
-  return { path, kind: sourceKind(path), text, revision: revisionOf(text), diagnostics: await validateSource(path, text) };
+  return {
+    path,
+    kind: sourceKind(path),
+    text,
+    revision: revisionOf(text),
+    diagnostics: await validateSource(path, text),
+  };
 }
 
 export async function saveSource(root: string, input: SaveFileInput): Promise<SaveFileResult> {
@@ -235,10 +275,19 @@ export async function saveSource(root: string, input: SaveFileInput): Promise<Sa
   try {
     before = await readSource(root, input.path);
   } catch (error) {
-    return { ok: false, diagnostics: [diagnostic(input.path, error instanceof Error ? error.message : String(error))] };
+    return {
+      ok: false,
+      diagnostics: [diagnostic(input.path, error instanceof Error ? error.message : String(error))],
+    };
   }
   if (before.revision !== input.expectedRevision)
-    return { ok: false, conflict: before, diagnostics: [diagnostic(input.path, 'the file changed on disk; reload or merge before saving')] };
+    return {
+      ok: false,
+      conflict: before,
+      diagnostics: [
+        diagnostic(input.path, 'the file changed on disk; reload or merge before saving'),
+      ],
+    };
   const diagnostics = await validateSource(input.path, input.text);
   if (diagnostics.some((item) => item.severity === 'blocking')) return { ok: false, diagnostics };
   // A generic source save may leave cross-file diagnostics behind, but it must never smuggle a
@@ -250,7 +299,12 @@ export async function saveSource(root: string, input: SaveFileInput): Promise<Sa
     if (previousStatus !== 'reviewed' && nextStatus === 'reviewed')
       return {
         ok: false,
-        diagnostics: [diagnostic(input.path, 'use “Als geprüft markieren” for the strict corpus-wide reviewed gate')],
+        diagnostics: [
+          diagnostic(
+            input.path,
+            'use “Als geprüft markieren” for the strict corpus-wide reviewed gate',
+          ),
+        ],
       };
   }
   if (before.text === input.text) return { ok: true, snapshot: before, changed: false };
