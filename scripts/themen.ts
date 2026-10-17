@@ -28,7 +28,9 @@ for (const level of levels) {
 
   if (!coverage.anchored) {
     console.log(`\n## ${level} Themen — no external anchor`);
-    console.log('   No file in data/themenlisten/ covers this level, so nothing here can be measured.');
+    console.log(
+      '   No file in data/themenlisten/ covers this level, so nothing here can be measured.',
+    );
     continue;
   }
 

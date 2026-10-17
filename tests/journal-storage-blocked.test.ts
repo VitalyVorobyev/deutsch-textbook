@@ -15,7 +15,12 @@
  * within the process and would leave every later test file writing into a throwing store.
  */
 import { afterEach, describe, expect, test } from 'bun:test';
-import { journalAppend, journalRemove, journalPending, journalWriteBlocked } from '../src/lib/write-journal';
+import {
+  journalAppend,
+  journalRemove,
+  journalPending,
+  journalWriteBlocked,
+} from '../src/lib/write-journal';
 import { Rating } from '../src/lib/srs';
 
 afterEach(() => {

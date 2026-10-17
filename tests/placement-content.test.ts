@@ -58,10 +58,7 @@ function loadPlacement(level: string) {
 }
 
 /** Answer every item, `wrongTopics` getting a wrong answer on every one of their items. */
-function take(
-  p: ReturnType<typeof loadPlacement>,
-  wrongTopics: string[] = [],
-): Attempt[] {
+function take(p: ReturnType<typeof loadPlacement>, wrongTopics: string[] = []): Attempt[] {
   const wrong = new Set(wrongTopics);
   return p.items.map((item, n) => ({
     setId: p.setId,
@@ -131,7 +128,12 @@ describe('the shipped A1 placement test, end to end', () => {
 
     const ctx: TopicContext = { attempts, cards: {}, topics: apply(summary, p.setId) };
     expect(levelPathDone('A1', nodes, ctx)).toBe(false);
-    expect(pathDone(nodes.find((n) => n.id === failed)!, ctx)).toBe(false);
+    expect(
+      pathDone(
+        nodes.find((n) => n.id === failed)!,
+        ctx,
+      ),
+    ).toBe(false);
     expect(recommendedNext(spine, nodes, ctx)?.id).toBe(failed);
   });
 

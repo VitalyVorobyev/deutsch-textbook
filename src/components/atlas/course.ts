@@ -84,7 +84,9 @@ export function overviewChips(tier: Tier, evidence: TopicEvidence): EvidenceChip
     all.push({ label: 'evidence.vocab', state: evidence.vocab ? 'earned' : 'missing' });
   }
   if (tier === 'practiced') {
-    return all.filter((chip) => chip.state === 'missing').map((chip) => ({ ...chip, state: 'open' as const }));
+    return all
+      .filter((chip) => chip.state === 'missing')
+      .map((chip) => ({ ...chip, state: 'open' as const }));
   }
   return all;
 }

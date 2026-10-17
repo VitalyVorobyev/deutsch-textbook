@@ -180,27 +180,30 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
     let cancelled = false;
     // Probe state is derived from the attempt log and nowhere else, so a stalled read
     // here does not "show no probes" — it silently skips a delayed check that was due.
-    void withReadRetry(() => getAttempts(), { surface: 'session/probes' }).then((attempts) => {
-      if (cancelled) return;
-      const owed = dueProbes(families, attempts);
-      // The daily ceiling holds across surfaces: a catch-up run earlier today shrinks
-      // what this session's step 0 may serve, possibly to zero (sessionProbeCap).
-      const cap = sessionProbeCap(families, attempts);
-      setDue(owed);
-      setProbeCap(cap);
-      // A due probe opens the session, unless the learner already dealt with it today.
-      // `owed` is itself the record of that: answering a probe logs an attempt, which
-      // advances its stage, so it stops being due. The flag only covers a deliberate skip.
-      if (owed.length > 0 && cap > 0) {
-        if (!probesDone) setStep(0);
-      } else {
-        // a resume saved at step 0 earlier today may point at a step that no longer
-        // exists (probes all taken, or the budget spent by a catch-up run in between)
-        setStep((s) => (s === 0 ? 1 : s));
-      }
-    }, () => {
-      if (!cancelled) setLoadError(true);
-    });
+    void withReadRetry(() => getAttempts(), { surface: 'session/probes' }).then(
+      (attempts) => {
+        if (cancelled) return;
+        const owed = dueProbes(families, attempts);
+        // The daily ceiling holds across surfaces: a catch-up run earlier today shrinks
+        // what this session's step 0 may serve, possibly to zero (sessionProbeCap).
+        const cap = sessionProbeCap(families, attempts);
+        setDue(owed);
+        setProbeCap(cap);
+        // A due probe opens the session, unless the learner already dealt with it today.
+        // `owed` is itself the record of that: answering a probe logs an attempt, which
+        // advances its stage, so it stops being due. The flag only covers a deliberate skip.
+        if (owed.length > 0 && cap > 0) {
+          if (!probesDone) setStep(0);
+        } else {
+          // a resume saved at step 0 earlier today may point at a step that no longer
+          // exists (probes all taken, or the budget spent by a catch-up run in between)
+          setStep((s) => (s === 0 ? 1 : s));
+        }
+      },
+      () => {
+        if (!cancelled) setLoadError(true);
+      },
+    );
     return () => {
       cancelled = true;
     };
@@ -233,7 +236,11 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
             cards,
             { spine, nodes, deckLevels },
             { attempts, cards: states, topics, goal },
-            { maxDue: MAX_CARDS, maxTotal: MAX_CARDS, freshPolicy: { kind: 'top-up', minDue: MIN_DUE } },
+            {
+              maxDue: MAX_CARDS,
+              maxTotal: MAX_CARDS,
+              freshPolicy: { kind: 'top-up', minDue: MIN_DUE },
+            },
           ),
         );
       },
@@ -351,7 +358,10 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
           >
             {t('session.repeat', uiLang)}
           </button>
-          <a href={withBase('/')} className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300">
+          <a
+            href={withBase('/')}
+            className="text-sm text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+          >
             {t('session.toHome', uiLang)}
           </a>
         </div>
@@ -440,7 +450,10 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                     >
                       {plan.dueRemaining === 1
                         ? t('session.oneCardDue', uiLang)
-                        : t('session.moreCardsDue', uiLang).replace('{n}', String(plan.dueRemaining))}
+                        : t('session.moreCardsDue', uiLang).replace(
+                            '{n}',
+                            String(plan.dueRemaining),
+                          )}
                     </button>
                   )}
                 </div>
@@ -471,10 +484,16 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                   {failedToday.map(({ family, exhausted }) => {
                     const node = nodeById.get(family.topicId);
                     const recommended = family.focus
-                      ? remediationSetFor(family.focus, family.topicId, orderedSetsForTopic(family.topicId))
+                      ? remediationSetFor(
+                          family.focus,
+                          family.topicId,
+                          orderedSetsForTopic(family.topicId),
+                        )
                       : undefined;
                     const recTitle = recommended
-                      ? (recommended.title ? pick(lang, recommended.title) : recommended.setId)
+                      ? recommended.title
+                        ? pick(lang, recommended.title)
+                        : recommended.setId
                       : undefined;
                     return (
                       <li key={family.setId}>
@@ -487,7 +506,9 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
                             {node.title_de}
                           </a>
                         ) : (
-                          <span lang="de" className="font-medium">{family.topicId}</span>
+                          <span lang="de" className="font-medium">
+                            {family.topicId}
+                          </span>
                         )}{' '}
                         <span lang="de">{t('probe.remediationFailed', uiLang)}</span>
                         {node && recTitle && (

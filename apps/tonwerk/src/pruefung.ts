@@ -88,9 +88,7 @@ export const PRUEFPUNKTE: readonly Pruefpunkt[] = [
  * reading.
  */
 export function erforderlich(scene: Scene, hatAufgabe: boolean): Set<string> {
-  const punkte = new Set(
-    PRUEFPUNKTE.filter((punkt) => !punkt.bedingt).map((punkt) => punkt.key),
-  );
+  const punkte = new Set(PRUEFPUNKTE.filter((punkt) => !punkt.bedingt).map((punkt) => punkt.key));
   if (scene.timeline.some((eintrag) => eintrag.type === 'ambience' || eintrag.type === 'sfx')) {
     punkte.add('context');
   }
@@ -161,7 +159,10 @@ export interface DiffWort {
  * punctuation reliably and a comma the model omitted is not a pronunciation defect. Both lists are
  * short (an utterance, not a document), so the quadratic table costs nothing.
  */
-export function wortDiff(erwartet: string, erkannt: string): { erwartet: DiffWort[]; erkannt: DiffWort[] } {
+export function wortDiff(
+  erwartet: string,
+  erkannt: string,
+): { erwartet: DiffWort[]; erkannt: DiffWort[] } {
   const links = erwartet.split(/\s+/).filter(Boolean);
   const rechts = erkannt.split(/\s+/).filter(Boolean);
   const a = links.map(normalisieren);
@@ -173,7 +174,9 @@ export function wortDiff(erwartet: string, erkannt: string): { erwartet: DiffWor
   for (let i = a.length - 1; i >= 0; i -= 1) {
     for (let j = b.length - 1; j >= 0; j -= 1) {
       tabelle[i]![j]! =
-        a[i] === b[j] ? tabelle[i + 1]![j + 1]! + 1 : Math.max(tabelle[i + 1]![j]!, tabelle[i]![j + 1]!);
+        a[i] === b[j]
+          ? tabelle[i + 1]![j + 1]! + 1
+          : Math.max(tabelle[i + 1]![j]!, tabelle[i]![j + 1]!);
     }
   }
 

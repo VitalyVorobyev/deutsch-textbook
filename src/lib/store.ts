@@ -1,13 +1,27 @@
 /** IndexedDB-backed progress store (client-side only), namespaced per profile. */
 import { get, set, update, clear, type UseStore } from 'idb-keyval';
-import { getActiveProfileId, dbNameFor, resolveProfileState, listProfiles, type ProfileRecord } from './profile';
+import {
+  getActiveProfileId,
+  dbNameFor,
+  resolveProfileState,
+  listProfiles,
+  type ProfileRecord,
+} from './profile';
 import { scheduleAutoSync } from './autosync';
 import { isProgressSnapshot, parseProgressSnapshot } from './snapshot-schema';
 import { migrateCardIds, needsCardIdMigration } from './a1-card-id-migration';
 import { recordRecovery, recordStall } from './stall-log';
 import { createManagedStore } from './managed-store';
 import { localDateString } from './local-date';
-import { applyLidAnswer, applyLidExam, EMPTY_LID_STATE, mergeLid, type LidAnswer, type LidExamRun, type LidState } from './lid';
+import {
+  applyLidAnswer,
+  applyLidExam,
+  EMPTY_LID_STATE,
+  mergeLid,
+  type LidAnswer,
+  type LidExamRun,
+  type LidState,
+} from './lid';
 import {
   attemptKey,
   mergeAttempts,
@@ -40,7 +54,8 @@ async function getStore(profileId?: string): Promise<UseStore> {
   let s = stores.get(id);
   if (!s) {
     s = createManagedStore(dbNameFor(id), {
-      report: (entry) => recordStall({ ...entry, surface: 'storage', queueDepth: writeQueue.length, profileId: id }),
+      report: (entry) =>
+        recordStall({ ...entry, surface: 'storage', queueDepth: writeQueue.length, profileId: id }),
     });
     stores.set(id, s);
   }
@@ -490,11 +505,11 @@ export function __resetWriteQueueForTests(): void {
 /** The commit primitive, injectable for tests — the same reason `migrateStoredCardIds` takes
     its updater as a parameter: the test environment has no IndexedDB, and the queue's ordering
     and coalescing are exactly what deserves pinning without one. */
-let commitBatch: (key: StoreKey, apply: (current: unknown) => unknown, profileId?: string) => Promise<void> = async (
-  key,
-  apply,
-  profileId,
-) => {
+let commitBatch: (
+  key: StoreKey,
+  apply: (current: unknown) => unknown,
+  profileId?: string,
+) => Promise<void> = async (key, apply, profileId) => {
   await update<unknown>(key, apply, await getStore(profileId));
 };
 
@@ -517,7 +532,9 @@ export function __setCommitBatchForTests(fn: typeof commitBatch): () => void {
  */
 function enqueueUpdate<V>(key: StoreKey, mutate: (current: V | undefined) => V): Promise<void> {
   const activeId = getActiveProfileId();
-  const profileId = listProfiles().some((profile) => profile.id === activeId) ? activeId : undefined;
+  const profileId = listProfiles().some((profile) => profile.id === activeId)
+    ? activeId
+    : undefined;
   return new Promise<void>((resolve, reject) => {
     writeQueue.push({ profileId, key, mutate: mutate as (c: unknown) => unknown, resolve, reject });
     if (!draining) {
@@ -545,7 +562,8 @@ async function drainWriteQueue(): Promise<void> {
       const { key, profileId } = writeQueue[0]!;
       const batch: PendingWrite[] = [];
       const rest: PendingWrite[] = [];
-      for (const w of writeQueue) (w.key === key && w.profileId === profileId ? batch : rest).push(w);
+      for (const w of writeQueue)
+        (w.key === key && w.profileId === profileId ? batch : rest).push(w);
       writeQueue = rest;
 
       // The managed adapter aborts and retries this batch BEFORE the next one starts.
@@ -562,20 +580,24 @@ async function drainWriteQueue(): Promise<void> {
 async function runBatch(key: StoreKey, batch: PendingWrite[]): Promise<void> {
   const failures = new Map<PendingWrite, unknown>();
   try {
-    await commitBatch(key, (current) => {
-      failures.clear();
-      let acc = current;
-      for (const w of batch) {
-        // A mutate that throws must not abort the transaction: the other writes in this batch
-        // are innocent, and an abort would fail them all.
-        try {
-          acc = w.mutate(acc);
-        } catch (err) {
-          failures.set(w, err);
+    await commitBatch(
+      key,
+      (current) => {
+        failures.clear();
+        let acc = current;
+        for (const w of batch) {
+          // A mutate that throws must not abort the transaction: the other writes in this batch
+          // are innocent, and an abort would fail them all.
+          try {
+            acc = w.mutate(acc);
+          } catch (err) {
+            failures.set(w, err);
+          }
         }
-      }
-      return acc;
-    }, batch[0]!.profileId);
+        return acc;
+      },
+      batch[0]!.profileId,
+    );
   } catch (err) {
     for (const w of batch) w.reject(failures.has(w) ? failures.get(w) : err);
     return;
@@ -673,7 +695,9 @@ export async function logAttempt(attempt: NewAttempt): Promise<void> {
 }
 
 export async function getAttempts(): Promise<Attempt[]> {
-  return withVisibilityRetry(async () => (await get<Attempt[]>('attempts', await getStore())) ?? []);
+  return withVisibilityRetry(
+    async () => (await get<Attempt[]>('attempts', await getStore())) ?? [],
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -826,7 +850,9 @@ export interface TopicProgress {
 export type TopicsState = Record<string, TopicProgress>;
 
 export async function getTopicsState(): Promise<TopicsState> {
-  return withVisibilityRetry(async () => (await get<TopicsState>('topics', await getStore())) ?? {});
+  return withVisibilityRetry(
+    async () => (await get<TopicsState>('topics', await getStore())) ?? {},
+  );
 }
 
 /** Mark a topic's article as read. Idempotent — keeps the earliest readAt. */
@@ -923,7 +949,9 @@ export async function setArtifactFeedback(
  * question is none of those things. The shape and its rules live in `lid.ts`.
  */
 export async function getLidState(): Promise<LidState> {
-  return withVisibilityRetry(async () => (await get<LidState>('lid', await getStore())) ?? EMPTY_LID_STATE);
+  return withVisibilityRetry(
+    async () => (await get<LidState>('lid', await getStore())) ?? EMPTY_LID_STATE,
+  );
 }
 
 /** Append one answer and grade its question — idempotent by `q|ts` (`applyLidAnswer`), which is

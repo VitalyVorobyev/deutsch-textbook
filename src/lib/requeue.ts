@@ -51,7 +51,8 @@ export function recordMiss(
 ): MissRecord & { gap: number } {
   const learnedBefore = prior?.state === State.Review || prior?.state === State.Relearning;
   const nearlyRight = verdict?.kind === 'article' || verdict?.kind === 'umlaut';
-  const base = prev?.base ?? (learnedBefore || nearlyRight ? AGAIN_GAP_PARTIAL : AGAIN_GAP_UNFAMILIAR);
+  const base =
+    prev?.base ?? (learnedBefore || nearlyRight ? AGAIN_GAP_PARTIAL : AGAIN_GAP_UNFAMILIAR);
   const misses = (prev?.misses ?? 0) + 1;
   return { base, misses, gap: Math.max(AGAIN_GAP_MIN, Math.round(base / 2 ** (misses - 1))) };
 }

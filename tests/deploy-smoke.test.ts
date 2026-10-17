@@ -111,7 +111,9 @@ describe('the checks that are not about auth', () => {
       'not the site 404 page',
     );
     expect(
-      notFound.verify(probe({ status: 404, body: '<title>Seite nicht gefunden · Deutsch-Atlas</title>' })),
+      notFound.verify(
+        probe({ status: 404, body: '<title>Seite nicht gefunden · Deutsch-Atlas</title>' }),
+      ),
     ).toBeNull();
   });
 
@@ -135,7 +137,9 @@ describe('--deep', () => {
 
   test('it fails when the pairing table is missing rather than reporting success', () => {
     const d1 = check('D1 is reachable and migrated', true);
-    expect(d1.verify(probe({ status: 500, body: '{"error":"internal"}' }))).toContain('expected 201');
+    expect(d1.verify(probe({ status: 500, body: '{"error":"internal"}' }))).toContain(
+      'expected 201',
+    );
     const body = JSON.stringify({ deviceCode: 'dpc_abc', userCode: 'U33W2UX2' });
     expect(d1.verify(probe({ status: 201, body }))).toBeNull();
   });

@@ -269,7 +269,11 @@ export function deserializeCard(stored: StoredCard): Card {
  * so it adds no snapshot key and no merge rule. Absent on pre-existing cards, which
  * is correct — they were not introduced today.
  */
-export function gradeCard(stored: StoredCard | undefined, grade: Grade, now = new Date()): StoredCard {
+export function gradeCard(
+  stored: StoredCard | undefined,
+  grade: Grade,
+  now = new Date(),
+): StoredCard {
   const card = stored ? deserializeCard(stored) : createEmptyCard(now);
   const next = scheduler.next(card, now, grade);
   const out = serializeCard(next.card);
@@ -358,7 +362,10 @@ export function splitQueue<C extends CardRef>(
  * instead of recalling words. Array.sort is stable, so shuffling first is what
  * randomizes the ties while the overdue ranking above them stays exact.
  */
-export function rankDueCards<C extends CardRef>(cards: readonly C[], states: Record<string, StoredCard>): C[] {
+export function rankDueCards<C extends CardRef>(
+  cards: readonly C[],
+  states: Record<string, StoredCard>,
+): C[] {
   return shuffle(cards).sort((a, b) => {
     const sa = states[a.id];
     const sb = states[b.id];
@@ -397,10 +404,12 @@ export function spaceSiblings<C extends CardRef>(cards: readonly C[], gap = 4): 
     // tail with nothing left to separate them; spending the doubled words early
     // is what keeps the queue solvable. Counts tie for every ordinary word, and
     // the reduce keeps the first — so the overdue/curriculum order above survives.
-    const pick = free.length > 0
-      ? free.reduce((best, card) =>
-        (waiting.get(wordKey(card)) ?? 0) > (waiting.get(wordKey(best)) ?? 0) ? card : best)
-      : pool[0]!; // a deck too small to separate: keep the card rather than drop it
+    const pick =
+      free.length > 0
+        ? free.reduce((best, card) =>
+            (waiting.get(wordKey(card)) ?? 0) > (waiting.get(wordKey(best)) ?? 0) ? card : best,
+          )
+        : pool[0]!; // a deck too small to separate: keep the card rather than drop it
 
     waiting.set(wordKey(pick), (waiting.get(wordKey(pick)) ?? 1) - 1);
     pool.splice(pool.indexOf(pick), 1);

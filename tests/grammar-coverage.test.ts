@@ -13,11 +13,17 @@ import {
 function fixture(points: unknown[], topics: Record<string, string[]> = {}): string {
   const root = mkdtempSync(join(tmpdir(), 'grammar-coverage-'));
   mkdirSync(join(root, 'data'), { recursive: true });
-  const tracked = points.map((point) => ({ track: 'fixture', ...(point as Record<string, unknown>) }));
-  writeFileSync(join(root, 'data', 'grammar-inventory.yaml'), JSON.stringify({
-    tracks: [{ id: 'fixture', strand: 'verbformen', de: 'Fixture', en: 'Fixture', order: 1 }],
-    points: tracked,
+  const tracked = points.map((point) => ({
+    track: 'fixture',
+    ...(point as Record<string, unknown>),
   }));
+  writeFileSync(
+    join(root, 'data', 'grammar-inventory.yaml'),
+    JSON.stringify({
+      tracks: [{ id: 'fixture', strand: 'verbformen', de: 'Fixture', en: 'Fixture', order: 1 }],
+      points: tracked,
+    }),
+  );
   mkdirSync(join(root, 'content', 'exercises'), { recursive: true });
   for (const [level, ids] of Object.entries(topics)) {
     mkdirSync(join(root, 'content', 'topics', level), { recursive: true });
@@ -29,10 +35,7 @@ function fixture(points: unknown[], topics: Record<string, string[]> = {}): stri
 describe('grammar coverage', () => {
   test('exercise levels resolve with POSIX and Windows path separators', () => {
     expect(
-      exerciseLevelFromPath(
-        '/repo/content/exercises/a2/practice.yaml',
-        '/repo/content/exercises',
-      ),
+      exerciseLevelFromPath('/repo/content/exercises/a2/practice.yaml', '/repo/content/exercises'),
     ).toBe('A2');
     expect(
       exerciseLevelFromPath(
@@ -58,7 +61,10 @@ describe('grammar coverage', () => {
   // adding an inventory row without evidence must reopen it visibly.
   test('A1 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A1');
-    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
+    const missing = coverage.points
+      .filter((p) => p.status === 'missing')
+      .map((p) => p.point.id)
+      .sort();
     expect(missing).toEqual([]);
     expect(coverage.covered).toBe(28);
     expect(coverage.percent).toBe(100);
@@ -72,7 +78,10 @@ describe('grammar coverage', () => {
   // learner-facing evidence must make the test fail.
   test('A2 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A2');
-    const missing = coverage.points.filter((p) => p.status === 'missing').map((p) => p.point.id).sort();
+    const missing = coverage.points
+      .filter((p) => p.status === 'missing')
+      .map((p) => p.point.id)
+      .sort();
     expect(missing).toEqual([]);
     expect(coverage.covered).toBe(46);
     expect(coverage.percent).toBe(100);
@@ -127,7 +136,10 @@ describe('grammar coverage', () => {
     expect(coverage.covered).toBe(32);
     expect(coverage.late).toBe(0);
     expect(coverage.percent).toBe(100);
-    const covered = coverage.points.filter((p) => p.status !== 'missing').map((p) => p.point.id).sort();
+    const covered = coverage.points
+      .filter((p) => p.status !== 'missing')
+      .map((p) => p.point.id)
+      .sort();
     expect(covered).toEqual([
       'adjektiv-nomen',
       'adjektiv-nullartikel',
@@ -181,13 +193,23 @@ describe('grammar coverage', () => {
   // `preview: true` remains exposure rather than teaching evidence even though
   // du/Sie now also has genuine A1 practice elsewhere in the real curriculum.
   test('a preview item is exposure, not teaching evidence', () => {
-    const root = fixture([{
-      id: 'preview-only', standard_level: 'A1', de: 'x', en: 'x', focus: ['preview-focus'],
-    }]);
+    const root = fixture([
+      {
+        id: 'preview-only',
+        standard_level: 'A1',
+        de: 'x',
+        en: 'x',
+        focus: ['preview-focus'],
+      },
+    ]);
     mkdirSync(join(root, 'content', 'exercises', 'a1'), { recursive: true });
-    writeFileSync(join(root, 'content', 'exercises', 'a1', 'preview.yaml'), JSON.stringify({
-      role: 'practice', items: [{ id: 'p', focus: 'preview-focus', preview: true }],
-    }));
+    writeFileSync(
+      join(root, 'content', 'exercises', 'a1', 'preview.yaml'),
+      JSON.stringify({
+        role: 'practice',
+        items: [{ id: 'p', focus: 'preview-focus', preview: true }],
+      }),
+    );
     try {
       expect(grammarCoverage('A1', root).points[0]?.status).toBe('missing');
     } finally {

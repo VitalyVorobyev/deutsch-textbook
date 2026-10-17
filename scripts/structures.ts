@@ -12,11 +12,7 @@
  * Usage:
  *   bun scripts/structures.ts [A1|A2|B1] [--unclaimed-only] [--beyond]
  */
-import {
-  structureCoverage,
-  loadStructureSources,
-  type EntryResult,
-} from '@da/content/structures';
+import { structureCoverage, loadStructureSources, type EntryResult } from '@da/content/structures';
 import type { Level } from '@da/schema';
 
 const args = process.argv.slice(2);
@@ -104,7 +100,8 @@ for (const level of levels) {
   if (coverage.dangling.length) {
     anyDangling = true;
     console.log('### DANGLING claims — always a defect');
-    for (const d of coverage.dangling) console.log(`  ✗ ${d.claimant} claims "${d.ref}", which no source defines`);
+    for (const d of coverage.dangling)
+      console.log(`  ✗ ${d.claimant} claims "${d.ref}", which no source defines`);
     console.log();
   }
 
@@ -131,7 +128,7 @@ console.log(
   !anyAnchored
     ? '\nNo level in this run has an external anchor, so nothing was measured.\n'
     : anyUnclaimed
-      ? '\nUnclaimed entries are structures a published standard lists and this course\'s inventory does not contain.\n'
+      ? "\nUnclaimed entries are structures a published standard lists and this course's inventory does not contain.\n"
       : '\nEvery source entry is claimed by an inventory row.\n',
 );
 if (anyDangling) process.exitCode = 1;

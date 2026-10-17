@@ -38,9 +38,10 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
    * validator holds `source.turns` equal to the recording's transcript — so this changes the
    * voice, never the question or the score.
    */
-  const configuredUrl = item.recording && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE)
-    ? withBase(listeningAudioUrl(item.recording))
-    : undefined;
+  const configuredUrl =
+    item.recording && bundlesAudio(import.meta.env.PUBLIC_ATLAS_AUDIO_BUNDLE)
+      ? withBase(listeningAudioUrl(item.recording))
+      : undefined;
   // A configured URL is a promise, not a guarantee: a file missing or corrupt in a shipped
   // build would otherwise leave the learner with a Play button that does nothing at all.
   // Failing over to TTS keeps the task answerable, and the fallback below stays the last resort.
@@ -93,11 +94,17 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
       )}
       {audioAvailable ? (
         <div className="mb-4 flex items-center gap-3">
-          <button type="button" onClick={play} disabled={playing || plays >= item.max_replays}
-            className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 dark:bg-stone-200 dark:text-stone-900 sm:min-h-0">
+          <button
+            type="button"
+            onClick={play}
+            disabled={playing || plays >= item.max_replays}
+            className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 dark:bg-stone-200 dark:text-stone-900 sm:min-h-0"
+          >
             {playing ? '…' : t('action.play', uiLang)}
           </button>
-          <span className="text-xs text-stone-400">{plays} / {item.max_replays}</span>
+          <span className="text-xs text-stone-400">
+            {plays} / {item.max_replays}
+          </span>
         </div>
       ) : (
         <p className="mb-3 rounded-md bg-sky-50 px-3 py-2 text-sm text-sky-800 dark:bg-sky-950 dark:text-sky-200">
@@ -106,21 +113,39 @@ export function AudioComprehension(props: ItemProps<AudioItem>) {
       )}
       {(!audioAvailable || checked) && (
         <div className="mb-4 space-y-1 rounded-md border border-stone-200 p-3 text-sm dark:border-stone-700">
-          {turns.map((turn, i) => <p key={i} lang="de"><strong>{turn.speaker}:</strong> {turn.text}</p>)}
+          {turns.map((turn, i) => (
+            <p key={i} lang="de">
+              <strong>{turn.speaker}:</strong> {turn.text}
+            </p>
+          ))}
         </div>
       )}
-      <p lang="de" className="mb-3 text-lg font-medium">{item.question}</p>
+      <p lang="de" className="mb-3 text-lg font-medium">
+        {item.question}
+      </p>
       <div className="space-y-2">
         {order.map((index) => (
-          <button key={index} type="button" disabled={checked} onClick={() => choose(index)}
-            className={`block min-h-11 w-full rounded-md border px-4 py-2 text-left ${checked && index === item.correct ? 'border-green-500 bg-green-50 dark:bg-green-950' : checked && index === chosen ? 'border-red-500 bg-red-50 dark:bg-red-950' : 'border-stone-300 hover:border-amber-500 dark:border-stone-600'}`}>
+          <button
+            key={index}
+            type="button"
+            disabled={checked}
+            onClick={() => choose(index)}
+            className={`block min-h-11 w-full rounded-md border px-4 py-2 text-left ${checked && index === item.correct ? 'border-green-500 bg-green-50 dark:bg-green-950' : checked && index === chosen ? 'border-red-500 bg-red-50 dark:bg-red-950' : 'border-stone-300 hover:border-amber-500 dark:border-stone-600'}`}
+          >
             {item.options[index]}
           </button>
         ))}
       </div>
       <Translation text={item.translation} lang={lang} />
       <ActionRow checked={checked} correct={correct} onNext={onNext} nextLabel={nextLabel} />
-      {checked && <Feedback correct={correct} correctAnswer={item.options[item.correct]} explain={item.explain} lang={lang} />}
+      {checked && (
+        <Feedback
+          correct={correct}
+          correctAnswer={item.options[item.correct]}
+          explain={item.explain}
+          lang={lang}
+        />
+      )}
     </div>
   );
 }

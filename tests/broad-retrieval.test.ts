@@ -7,7 +7,15 @@ const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_780_000_000_000;
 
 const mc = (id: string): ExerciseItem =>
-  ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0 }) as ExerciseItem;
+  ({
+    id,
+    type: 'mc',
+    outcomes: [],
+    preview: false,
+    prompt: '?',
+    options: ['a', 'b'],
+    correct: 0,
+  }) as ExerciseItem;
 
 const set = (setId: string, topicId: string, ids: string[]): TrainingSet => ({
   setId,
@@ -29,7 +37,9 @@ describe('broad-retrieval share', () => {
   const newTopic = set('a1/new', 'new', ['n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8']);
 
   // everything in the old topic was answered correctly a month ago; the new topic is untouched
-  const attempts = oldTopic.items.map((i, k) => attempt('a1/old', i.id, true, NOW - (30 - k) * DAY));
+  const attempts = oldTopic.items.map((i, k) =>
+    attempt('a1/old', i.id, true, NOW - (30 - k) * DAY),
+  );
 
   test('never-seen items cannot take the whole session', () => {
     const queue = buildSession([oldTopic, newTopic], 8, attempts);

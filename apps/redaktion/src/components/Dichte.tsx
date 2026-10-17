@@ -43,7 +43,15 @@ export interface Zelle {
  * `slots` is the matrix-wide maximum, passed in rather than derived per cell: alignment across
  * columns is the comparison, so a cell cannot be allowed to size itself.
  */
-export function Dichte({ items, slots, title }: { items: Zelle['items']; slots: number; title?: string }) {
+export function Dichte({
+  items,
+  slots,
+  title,
+}: {
+  items: Zelle['items'];
+  slots: number;
+  title?: string;
+}) {
   const off = items.filter((i) => !i.on).length;
   if (!items.length) return <span className="text-ink-muted/40">·</span>;
   return (
@@ -59,7 +67,10 @@ export function Dichte({ items, slots, title }: { items: Zelle['items']; slots: 
                 <>
                   {item.label}
                   {item.on ? null : (
-                    <span className="text-warn-ink"> — kein Element trägt einen ihrer Fokus-Tags</span>
+                    <span className="text-warn-ink">
+                      {' '}
+                      — kein Element trägt einen ihrer Fokus-Tags
+                    </span>
                   )}
                 </>
               }

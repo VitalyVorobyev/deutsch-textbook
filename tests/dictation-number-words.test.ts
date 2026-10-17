@@ -61,7 +61,11 @@ describe('dictations that spell a number', () => {
     expect(numeric.length).toBeGreaterThanOrEqual(10);
     // …and not every dictation does, or the clause would just be boilerplate.
     expect(numeric.length).toBeLessThan(dictations.length);
-    for (const text of ['Ich habe einen Apfel und ein Brot.', 'Er isst ein Brötchen.', 'Er kauft am Samstag ein.'])
+    for (const text of [
+      'Ich habe einen Apfel und ein Brot.',
+      'Er isst ein Brötchen.',
+      'Er kauft am Samstag ein.',
+    ])
       expect(NUMBER_WORDS.test(text)).toBe(false);
     expect(NUMBER_WORDS.test('Meine Telefonnummer ist null vier acht sieben neun.')).toBe(true);
   });

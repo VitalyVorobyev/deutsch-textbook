@@ -47,7 +47,9 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
   // cell must never size itself.
   const slots = Math.max(
     1,
-    ...tracks.flatMap((track) => graph.cefrLevels.map((level) => cellPoints(track.id, level).length)),
+    ...tracks.flatMap((track) =>
+      graph.cefrLevels.map((level) => cellPoints(track.id, level).length),
+    ),
   );
 
   const untaught = graph.problems.filter((p) => p.kind === 'punkt-ohne-thema');
@@ -62,9 +64,18 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
   return (
     <>
       <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
-        <div><h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Grammatikatlas</h1>
-        <p className="mt-1 text-sm text-ink-muted">{graph.inventory.length} Strukturen in {tracks.length} Linien · {late} davon erwarten Rezeption ein Niveau vor der Produktion</p></div>
-        <Button href={href('quelle', undefined, { pfad: 'data/grammar-inventory.yaml' })}>Inventar bearbeiten</Button>
+        <div>
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">
+            Grammatikatlas
+          </h1>
+          <p className="mt-1 text-sm text-ink-muted">
+            {graph.inventory.length} Strukturen in {tracks.length} Linien · {late} davon erwarten
+            Rezeption ein Niveau vor der Produktion
+          </p>
+        </div>
+        <Button href={href('quelle', undefined, { pfad: 'data/grammar-inventory.yaml' })}>
+          Inventar bearbeiten
+        </Button>
       </header>
 
       {untaught.length ? (
@@ -77,7 +88,11 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
           {PROBLEM_LABELS['punkt-ohne-thema']?.why}
         </Callout>
       ) : (
-        <Callout tone="ok" eyebrow="Inventar" title="Jede Struktur wird von einem Thema unterrichtet" />
+        <Callout
+          tone="ok"
+          eyebrow="Inventar"
+          title="Jede Struktur wird von einem Thema unterrichtet"
+        />
       )}
 
       <Section>Gelehrt und ungelehrt</Section>
@@ -98,7 +113,9 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
             items: points.map((p) => ({ id: p.id, label: p.de, on: isTaught(p) })),
             // The cell hands over its own six rows rather than the whole inventory — the point of
             // making filter state addressable.
-            href: points.length ? href('struktur', undefined, { track: row.id, niveau: level }) : undefined,
+            href: points.length
+              ? href('struktur', undefined, { track: row.id, niveau: level })
+              : undefined,
           };
         }}
       />
@@ -128,7 +145,10 @@ export function Sprachkarte({ graph }: { graph: GraphPayload }) {
 function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
   const { level, grammar, wortliste, structures, depth, medians } = report;
   return (
-    <Panel title={level} action={<span className="text-xs text-ink-muted">{medians?.topics ?? 0} Themen</span>}>
+    <Panel
+      title={level}
+      action={<span className="text-xs text-ink-muted">{medians?.topics ?? 0} Themen</span>}
+    >
       <StatGroup columns={2}>
         <Stat
           label="Wortliste"
@@ -158,7 +178,9 @@ function NiveauPanel({ report }: { report: GraphPayload['reports'][number] }) {
                 teenagers, and nothing in the report said whose exam it was. */}
             {structures.sources.map((s) => s.audience).filter(Boolean).length ? (
               <p className="mt-0.5 text-xs text-ink-muted">
-                {[...new Set(structures.sources.map((s) => s.audience).filter(Boolean))].join(' · ')}
+                {[...new Set(structures.sources.map((s) => s.audience).filter(Boolean))].join(
+                  ' · ',
+                )}
               </p>
             ) : null}
           </>

@@ -29,14 +29,7 @@ const UI = {
  * matching; capitalization counts. Without TTS the sentence is shown and the
  * item degrades to a copy/spelling task.
  */
-export function Listen({
-  item,
-  lang,
-  onResult,
-  locked,
-  onNext,
-  nextLabel,
-}: ItemProps<ListenItem>) {
+export function Listen({ item, lang, onResult, locked, onNext, nextLabel }: ItemProps<ListenItem>) {
   const uiLang = useUiLang();
   const [value, setValue] = useState('');
   const [checked, setChecked] = useState(false);
@@ -54,9 +47,10 @@ export function Listen({
     const slipped =
       !isCorrect && [item.text, ...item.accept].some((target) => dictationSlip(value, target));
     // Only where the item declares predicates — see the note in Translate.tsx.
-    const focusEvidence = item.focus && item.focus_evidence
-      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
-      : undefined;
+    const focusEvidence =
+      item.focus && item.focus_evidence
+        ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+        : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
@@ -118,9 +112,7 @@ export function Listen({
         </div>
       ) : (
         <div className="mb-4">
-          <p className="text-xs text-stone-400">
-            {pick(lang, UI.noTts)}
-          </p>
+          <p className="text-xs text-stone-400">{pick(lang, UI.noTts)}</p>
           <p lang="de" className="mt-1 text-lg font-medium">
             {item.text}
           </p>

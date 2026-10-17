@@ -34,7 +34,10 @@ function Spalte({ label, items, leer }: { label: string; items: Nachbar[]; leer:
         <ul className="mt-1.5 space-y-1">
           {items.map((n) => (
             <li key={n.id} className="truncate text-sm">
-              <a href={n.href} className="text-ink underline-offset-2 hover:text-brand-ink hover:underline">
+              <a
+                href={n.href}
+                className="text-ink underline-offset-2 hover:text-brand-ink hover:underline"
+              >
                 {n.title}
               </a>
             </li>

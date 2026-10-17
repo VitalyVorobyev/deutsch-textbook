@@ -47,11 +47,7 @@ export function RussianExplanationLanguage() {
 export function CorrectWithANote() {
   return (
     <div className="max-w-xl">
-      <Feedback
-        correct
-        note="Achte auf die Großschreibung: Brot, nicht brot."
-        lang="en"
-      />
+      <Feedback correct note="Achte auf die Großschreibung: Brot, nicht brot." lang="en" />
     </div>
   );
 }
@@ -62,10 +58,7 @@ export function WithAlternatives() {
     <div className="max-w-xl">
       <Feedback
         correct
-        alternatives={[
-          'Ich habe gestern ein Brot gekauft.',
-          'Gestern habe ich ein Brot gekauft.',
-        ]}
+        alternatives={['Ich habe gestern ein Brot gekauft.', 'Gestern habe ich ein Brot gekauft.']}
         lang="en"
       />
     </div>

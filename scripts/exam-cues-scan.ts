@@ -84,7 +84,8 @@ export function parseArgs(argv: string[]): Options {
     else if (arg === '--noise') options.noiseDb = numberArg(argv, ++i, '--noise');
     else if (arg === '--detect') options.detectS = numberArg(argv, ++i, '--detect');
     else if (arg.startsWith('-')) throw new Error(`Unknown argument: ${arg}`);
-    else if (target !== null) throw new Error(`Only one <setId>/<module> target at a time (got "${target}" and "${arg}").`);
+    else if (target !== null)
+      throw new Error(`Only one <setId>/<module> target at a time (got "${target}" and "${arg}").`);
     else target = arg;
   }
   if (options.help) return options;
@@ -256,13 +257,19 @@ const totalS = durationMatch
   ? Number(durationMatch[1]) * 3600 + Number(durationMatch[2]) * 60 + Number(durationMatch[3])
   : 0;
 
-console.log(`# ${options.setId}/${options.module} — ${clock(totalS)} total, ${silences.length} silence(s)`);
+console.log(
+  `# ${options.setId}/${options.module} — ${clock(totalS)} total, ${silences.length} silence(s)`,
+);
 console.log(
   `# proposed from silence scan (exam-cues-scan.ts): gaps ≥ ${options.minGapS}s at ` +
     `${options.noiseDb}dB/${options.detectS}s, cue placed ${LEAD_IN_S}s before the audio returns.`,
 );
-console.log('# LABELS AND BOUNDARIES ARE PROPOSALS — listen before pasting into exam-sources.yaml.');
-console.log('# Rename "Marke N" to "Teil N" / "Nr. N" by ear: the Beispiel pause looks like a Nummer pause.');
+console.log(
+  '# LABELS AND BOUNDARIES ARE PROPOSALS — listen before pasting into exam-sources.yaml.',
+);
+console.log(
+  '# Rename "Marke N" to "Teil N" / "Nr. N" by ear: the Beispiel pause looks like a Nummer pause.',
+);
 
 if (found.length === 0) {
   console.log(

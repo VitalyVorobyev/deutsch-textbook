@@ -3,7 +3,12 @@ import { FOLD_MIN_RUN, foldableMasteredRun, overviewChips } from '../src/compone
 import type { Tier, TopicEvidence } from '../src/lib/mastery';
 
 const evidence = (over: Partial<TopicEvidence> = {}): TopicEvidence => ({
-  read: false, practiced: false, spaced: false, hasVocab: false, vocab: false, ...over,
+  read: false,
+  practiced: false,
+  spaced: false,
+  hasVocab: false,
+  vocab: false,
+  ...over,
 });
 
 describe('foldableMasteredRun', () => {
@@ -36,7 +41,13 @@ describe('foldableMasteredRun', () => {
 
 describe('overviewChips', () => {
   test('a mastered row shows no chips — the badge already implies them all', () => {
-    const full = evidence({ read: true, practiced: true, spaced: true, hasVocab: true, vocab: true });
+    const full = evidence({
+      read: true,
+      practiced: true,
+      spaced: true,
+      hasVocab: true,
+      vocab: true,
+    });
     expect(overviewChips('mastered', full)).toEqual([]);
   });
 
@@ -51,7 +62,13 @@ describe('overviewChips', () => {
   test('a practiced row with nothing left shows no chips (the reopened cap)', () => {
     // effectiveTier caps a reopened mastered topic at practiced; every metric
     // is earned, so there is nothing "left to do" to chip.
-    const full = evidence({ read: true, practiced: true, spaced: true, hasVocab: true, vocab: true });
+    const full = evidence({
+      read: true,
+      practiced: true,
+      spaced: true,
+      hasVocab: true,
+      vocab: true,
+    });
     expect(overviewChips('practiced', full)).toEqual([]);
   });
 

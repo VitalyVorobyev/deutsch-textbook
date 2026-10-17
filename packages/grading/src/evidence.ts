@@ -26,7 +26,10 @@ export interface FocusPredicates {
 export type FocusVerdict = 'retained' | 'failed' | 'unknown';
 
 /** The regex a predicate compiles to — the one place its flags are decided. */
-export function focusPredicate(pattern: string, predicates: Pick<FocusPredicates, 'case_sensitive'>): RegExp {
+export function focusPredicate(
+  pattern: string,
+  predicates: Pick<FocusPredicates, 'case_sensitive'>,
+): RegExp {
   return new RegExp(pattern, predicates.case_sensitive ? 'u' : 'iu');
 }
 

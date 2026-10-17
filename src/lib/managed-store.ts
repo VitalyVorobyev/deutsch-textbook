@@ -83,12 +83,19 @@ export function createManagedStore(
       };
     });
     opening = promise;
-    void promise.finally(() => { if (opening === promise) opening = undefined; }).catch(() => {});
+    void promise
+      .finally(() => {
+        if (opening === promise) opening = undefined;
+      })
+      .catch(() => {});
     return promise;
   }
 
-  function transact<T>(connection: IDBDatabase, mode: IDBTransactionMode,
-    callback: (store: IDBObjectStore) => T | PromiseLike<T>): Promise<T> {
+  function transact<T>(
+    connection: IDBDatabase,
+    mode: IDBTransactionMode,
+    callback: (store: IDBObjectStore) => T | PromiseLike<T>,
+  ): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       const tx = connection.transaction('progress', mode);
       active.add(tx);
@@ -112,41 +119,69 @@ export function createManagedStore(
         timedOut = true;
         // A committed transaction cannot be aborted. Retrying its missing callback is safe
         // for our idempotent operations; it must not be mistaken for a rolled-back write.
-        if (committed) { settle(new RetryableStorageError('Callback did not settle')); return; }
+        if (committed) {
+          settle(new RetryableStorageError('Callback did not settle'));
+          return;
+        }
         abortTimer = setTimeout(() => {
           blocked = true;
-          report({ phase: 'abort', waitedMs: transactionMs + abortMs, attempts: 1, outcome: 'restart-required' });
+          report({
+            phase: 'abort',
+            waitedMs: transactionMs + abortMs,
+            attempts: 1,
+            outcome: 'restart-required',
+          });
           retire();
           // Keep this operation owned: the caller has its own deadline, but a late
           // complete event is still proof of a commit and must be allowed to confirm it.
           // All NEW operations fail fast through `blocked` above.
         }, abortMs);
-        try { tx.abort(); } catch { /* wait for complete/abort, then require restart */ }
+        try {
+          tx.abort();
+        } catch {
+          /* wait for complete/abort, then require restart */
+        }
       }, transactionMs);
       tx.addEventListener('complete', () => {
         committed = true;
         if (valueReady) settle();
       });
       tx.addEventListener('abort', () => {
-        settle(callbackError ?? (timedOut
-          ? new RetryableStorageError('Transaction watchdog aborted stalled write')
-          : tx.error ?? new DOMException('Transaction aborted', 'AbortError')));
+        settle(
+          callbackError ??
+            (timedOut
+              ? new RetryableStorageError('Transaction watchdog aborted stalled write')
+              : (tx.error ?? new DOMException('Transaction aborted', 'AbortError'))),
+        );
       });
       // Install terminal handlers BEFORE issuing the first request. idb-keyval's update
       // itself only starts listening for abort after its read succeeds.
       try {
-        Promise.resolve(callback(tx.objectStore('progress'))).then((result) => {
-          value = result;
-          valueReady = true;
-          if (committed) settle();
-        }, (error: unknown) => {
-          callbackError = error;
-          if (committed) settle(error);
-          else { try { tx.abort(); } catch { /* watchdog owns the terminal bound */ } }
-        });
+        Promise.resolve(callback(tx.objectStore('progress'))).then(
+          (result) => {
+            value = result;
+            valueReady = true;
+            if (committed) settle();
+          },
+          (error: unknown) => {
+            callbackError = error;
+            if (committed) settle(error);
+            else {
+              try {
+                tx.abort();
+              } catch {
+                /* watchdog owns the terminal bound */
+              }
+            }
+          },
+        );
       } catch (error) {
         callbackError = error;
-        try { tx.abort(); } catch { /* watchdog owns the terminal bound */ }
+        try {
+          tx.abort();
+        } catch {
+          /* watchdog owns the terminal bound */
+        }
       }
     });
   }
@@ -160,21 +195,42 @@ export function createManagedStore(
         const connection = await open();
         phase = 'transaction';
         const result = await transact(connection, mode, callback);
-        if (attempt > 1) report({ phase, waitedMs: Date.now() - started, attempts: attempt, outcome: 'recovered' });
+        if (attempt > 1)
+          report({
+            phase,
+            waitedMs: Date.now() - started,
+            attempts: attempt,
+            outcome: 'recovered',
+          });
         return result;
       } catch (error) {
         if (error instanceof StorageRestartRequiredError) throw error;
-        const retryable = error instanceof RetryableStorageError ||
-          (error instanceof Error && ['AbortError', 'InvalidStateError', 'UnknownError'].includes(error.name));
+        const retryable =
+          error instanceof RetryableStorageError ||
+          (error instanceof Error &&
+            ['AbortError', 'InvalidStateError', 'UnknownError'].includes(error.name));
         if (!retryable) throw error;
-        report({ phase, waitedMs: Date.now() - started, attempts: attempt,
-          outcome: attempt === 3 ? 'restart-required' : 'retry' });
+        report({
+          phase,
+          waitedMs: Date.now() - started,
+          attempts: attempt,
+          outcome: attempt === 3 ? 'restart-required' : 'retry',
+        });
         retire();
-        if (attempt === 3) { blocked = true; throw new StorageRestartRequiredError(); }
+        if (attempt === 3) {
+          blocked = true;
+          throw new StorageRestartRequiredError();
+        }
       }
     }
     throw new StorageRestartRequiredError();
   };
   // Read retry timers must never replace a connection that owns a live write.
-  return { use, needsRestart: () => blocked, reset: () => { if (active.size === 0 && !blocked) retire(); } };
+  return {
+    use,
+    needsRestart: () => blocked,
+    reset: () => {
+      if (active.size === 0 && !blocked) retire();
+    },
+  };
 }

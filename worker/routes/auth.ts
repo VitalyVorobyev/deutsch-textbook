@@ -93,7 +93,8 @@ export async function handleAuth(
 
   if (first === 'logout' && segments.length === 1) {
     if (request.method !== 'POST') return methodNotAllowed(['POST']);
-    if (!isSameOrigin(request, url)) return problem(403, 'cross-origin', 'Cross-origin request refused.');
+    if (!isSameOrigin(request, url))
+      return problem(403, 'cross-origin', 'Cross-origin request refused.');
     const token = readSessionToken(request, secure);
     if (token) await deleteSession(env.DB, token);
     return json({ signedIn: false }, { cookies: [clearedSessionCookie(secure)] });
@@ -114,7 +115,12 @@ export async function handleAuth(
   return problem(404, 'not-found', 'Unknown auth route.');
 }
 
-async function sessionInfo(request: Request, env: Env, secure: boolean, now: number): Promise<Response> {
+async function sessionInfo(
+  request: Request,
+  env: Env,
+  secure: boolean,
+  now: number,
+): Promise<Response> {
   const providers = configuredProviders(env);
   const principal = await authenticate(request, env, secure, now);
   if (!principal) {
@@ -136,11 +142,13 @@ async function deleteOwnAccount(
   secure: boolean,
   now: number,
 ): Promise<Response> {
-  if (!isSameOrigin(request, url)) return problem(403, 'cross-origin', 'Cross-origin request refused.');
+  if (!isSameOrigin(request, url))
+    return problem(403, 'cross-origin', 'Cross-origin request refused.');
   const principal = await authenticate(request, env, secure, now);
   if (!principal) return problem(401, 'signed-out', 'Not signed in.');
   // Deleting an account is not something a pasted device token should be able to do.
-  if (principal.via !== 'cookie') return problem(403, 'cookie-required', 'Sign in in a browser to delete the account.');
+  if (principal.via !== 'cookie')
+    return problem(403, 'cookie-required', 'Sign in in a browser to delete the account.');
   await deleteAllSnapshots(env, principal.user.id);
   await deleteUser(env.DB, principal.user.id);
   return json({ signedIn: false }, { cookies: [clearedSessionCookie(secure)] });

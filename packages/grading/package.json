@@ -1,5 +1,4 @@
 {
-  "//": "Does this answer count? Pure, browser-safe, zero dependencies — the same decision has to be reachable from a React island grading a learner's typing, from `bun run validate` checking that a committed grading ruling still passes today's grader, and from progress:audit re-attributing an old attempt. It is the most load-bearing runtime contract in the repo: a change here moves the gate every recorded attempt was measured against, so it gets its own name rather than hiding inside the app.",
   "name": "@da/grading",
   "version": "0.4.0",
   "private": true,
@@ -9,5 +8,6 @@
     "./evidence": "./src/evidence.ts",
     "./production": "./src/production.ts",
     "./worddiff": "./src/worddiff.ts"
-  }
+  },
+  "//": "Does this answer count? Pure, browser-safe, zero dependencies — the same decision has to be reachable from a React island grading a learner's typing, from `bun run validate` checking that a committed grading ruling still passes today's grader, and from progress:audit re-attributing an old attempt. It is the most load-bearing runtime contract in the repo: a change here moves the gate every recorded attempt was measured against, so it gets its own name rather than hiding inside the app."
 }

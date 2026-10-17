@@ -122,8 +122,7 @@ describe('live card-id migration', () => {
     // A map entry whose target is also a source would rename twice under a different
     // iteration order — the one way `migrateCardIds` could stop being idempotent.
     const targets = new Set(Object.values(A1_CARD_ID_MIGRATION));
-    for (const source of Object.keys(A1_CARD_ID_MIGRATION))
-      expect(targets.has(source)).toBe(false);
+    for (const source of Object.keys(A1_CARD_ID_MIGRATION)) expect(targets.has(source)).toBe(false);
 
     const all = Object.fromEntries(Object.keys(A1_CARD_ID_MIGRATION).map((id) => [id, card()]));
     const once = migrateCardIds(all, mergeCards);

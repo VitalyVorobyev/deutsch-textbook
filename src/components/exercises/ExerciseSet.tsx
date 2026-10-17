@@ -212,8 +212,8 @@ export default function ExerciseSet({ setId, set, document, documents = {} }: Pr
           {verified.length === 0
             ? pick(lang, UI.practiceSaved)
             : pct >= 80
-            ? pick(lang, UI.scoreHigh)
-            : pick(lang, UI.scoreLow)}
+              ? pick(lang, UI.scoreHigh)
+              : pick(lang, UI.scoreLow)}
         </p>
         <button
           type="button"
@@ -234,14 +234,23 @@ export default function ExerciseSet({ setId, set, document, documents = {} }: Pr
             {pick(lang, set.title)}
           </p>
         )}
-        <div className="ml-auto flex max-w-[45%] flex-wrap items-center justify-end gap-1" aria-label="progress">
+        <div
+          className="ml-auto flex max-w-[45%] flex-wrap items-center justify-end gap-1"
+          aria-label="progress"
+        >
           {items.map((it, i) => {
             const a = answered[i];
             return (
               <span
                 key={`${round}-${it.id}`}
                 className={`h-2 w-2 rounded-full ${
-                  a ? (a.correct ? 'bg-green-500' : 'bg-red-400') : i === index ? 'bg-amber-500' : 'bg-stone-300 dark:bg-stone-600'
+                  a
+                    ? a.correct
+                      ? 'bg-green-500'
+                      : 'bg-red-400'
+                    : i === index
+                      ? 'bg-amber-500'
+                      : 'bg-stone-300 dark:bg-stone-600'
                 }`}
               />
             );
@@ -249,21 +258,27 @@ export default function ExerciseSet({ setId, set, document, documents = {} }: Pr
         </div>
       </div>
 
-      {item && <div className={activeDocument ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}>
-        {activeDocument && <div className="lg:sticky lg:top-4 lg:self-start"><DocumentStimulus document={activeDocument} /></div>}
-        <ItemView
-          instanceKey={`${round}-${item.id}`}
-          item={item}
-          lang={lang}
-          onResult={handleResult}
-          locked={currentDone}
-          onNext={next}
-          nextLabel={
-            index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)
-          }
-          storageKey={`${setId}::${item.id}`}
-        />
-      </div>}
+      {item && (
+        <div
+          className={activeDocument ? 'grid gap-5 lg:grid-cols-[minmax(18rem,0.85fr)_1.15fr]' : ''}
+        >
+          {activeDocument && (
+            <div className="lg:sticky lg:top-4 lg:self-start">
+              <DocumentStimulus document={activeDocument} />
+            </div>
+          )}
+          <ItemView
+            instanceKey={`${round}-${item.id}`}
+            item={item}
+            lang={lang}
+            onResult={handleResult}
+            locked={currentDone}
+            onNext={next}
+            nextLabel={index + 1 < items.length ? t('action.next', uiLang) : pick(lang, UI.results)}
+            storageKey={`${setId}::${item.id}`}
+          />
+        </div>
+      )}
     </div>
   );
 }

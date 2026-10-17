@@ -153,8 +153,9 @@ describe('the rules the form prints', () => {
   });
 
   test('a rule this build has no German for still appears, in the engine’s own words', () => {
-    expect(regelText({ id: 'purpose-stated', applies: 'always', minors_only: false, requirement: 'x' }))
-      .toBe('Der Zweck steht ausgeschrieben da — mindestens ein ganzer Satz.');
+    expect(
+      regelText({ id: 'purpose-stated', applies: 'always', minors_only: false, requirement: 'x' }),
+    ).toBe('Der Zweck steht ausgeschrieben da — mindestens ein ganzer Satz.');
     expect(
       regelText({
         id: 'eine-neue-regel',

@@ -14,7 +14,8 @@ const half = (tag: string, n: number) => `<${tag}>\n${Array(n).fill('Wort').join
 
 describe('paragraph extraction', () => {
   test('splits a half on blank lines, and only inside the half', () => {
-    const body = 'Outside the block entirely, in German, always visible.\n\n<En>\nOne two three.\n\nFour five six seven.\n</En>';
+    const body =
+      'Outside the block entirely, in German, always visible.\n\n<En>\nOne two three.\n\nFour five six seven.\n</En>';
     const paragraphs = proseParagraphs(body);
     expect(paragraphs.map((p) => p.words)).toEqual([3, 4]);
     expect(paragraphs.map((p) => p.index)).toEqual([1, 2]);
@@ -42,7 +43,8 @@ describe('paragraph extraction', () => {
   });
 
   test('markup carries no words: emphasis, code, MDX tags and glosses', () => {
-    const body = '<En>\n**Bold** *italic* `code` [[der Kollege::the colleague::коллега]] plain\n</En>';
+    const body =
+      '<En>\n**Bold** *italic* `code` [[der Kollege::the colleague::коллега]] plain\n</En>';
     const [paragraph] = proseParagraphs(body);
     expect(paragraph!.words).toBe(6); // Bold italic code der Kollege plain
     expect(paragraph!.text).toBe('Bold italic code der Kollege plain');
@@ -89,7 +91,9 @@ describe('sentence statistics', () => {
   // Cyrillic capital — the RU and UK halves came back as a single sentence each
   // and their long-sentence share read 56–69% where EN read 10%.
   test('sentences split in Cyrillic as well as Latin', () => {
-    expect(sentences('Первое предложение тут. Второе предложение тут. Третье тоже тут.')).toHaveLength(3);
+    expect(
+      sentences('Первое предложение тут. Второе предложение тут. Третье тоже тут.'),
+    ).toHaveLength(3);
     expect(sentences('First sentence here. Second sentence here.')).toHaveLength(2);
   });
 

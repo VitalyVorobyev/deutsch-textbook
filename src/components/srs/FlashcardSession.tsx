@@ -12,7 +12,13 @@ import {
 import { gradeCardDurably, hasSeenData } from '../../lib/write-journal';
 import { recordMiss, requeueAfter, type MissRecord } from '../../lib/requeue';
 import ProgressLoadError from '../ProgressLoadError';
-import { cardMeaning, getCardInputMode, pick, setCardInputMode, type CardInputMode } from '../../lib/prefs';
+import {
+  cardMeaning,
+  getCardInputMode,
+  pick,
+  setCardInputMode,
+  type CardInputMode,
+} from '../../lib/prefs';
 import { t, type StringKey } from '../../lib/strings';
 import {
   checkCardAnswer,
@@ -161,8 +167,7 @@ export default function FlashcardSession({
   // 'listen' turns recognition (de-x) cards into dictation; production (x-de)
   // cards fall back to typed there — hearing the answer would spoil recall.
   const listening = !!card && card.dir === 'de-x' && inputMode === 'listen' && canTts;
-  const typing =
-    !!card && ((card.dir === 'x-de' && inputMode !== 'reveal') || listening);
+  const typing = !!card && ((card.dir === 'x-de' && inputMode !== 'reveal') || listening);
   const answered = typing ? verdict !== null : revealed;
   // The direction label only where nothing else on the card says it: a German word on the front
   // is plainly German, and the typed answer's placeholder already reads "Auf Deutsch …". Listening
@@ -235,9 +240,7 @@ export default function FlashcardSession({
     return (
       <div className="rounded-lg border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-800">
         <p className="text-2xl">🎉</p>
-        <p className="mt-2 font-semibold">
-          {pick(lang, UI.allDone)}
-        </p>
+        <p className="mt-2 font-semibold">{pick(lang, UI.allDone)}</p>
         <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
           {stats.reviewed > 0
             ? `${pick(lang, UI.cardsReviewed)}: ${stats.reviewed}`
@@ -272,7 +275,11 @@ export default function FlashcardSession({
     const ts = Date.now();
     let missGap = 0;
     if (g === Rating.Again) {
-      const miss = recordMiss(misses.current.get(card.id), states[card.id], typing ? verdict : null);
+      const miss = recordMiss(
+        misses.current.get(card.id),
+        states[card.id],
+        typing ? verdict : null,
+      );
       misses.current.set(card.id, miss);
       missGap = miss.gap;
     }
@@ -286,7 +293,10 @@ export default function FlashcardSession({
     // write is journaled before it starts: a stall keeps the op in the journal,
     // PersistenceAlert goes loud, and the next launch replays it.
     setStates((s) => ({ ...s, [card.id]: nextState }));
-    setStats((st) => ({ reviewed: st.reviewed + 1, again: st.again + (g === Rating.Again ? 1 : 0) }));
+    setStats((st) => ({
+      reviewed: st.reviewed + 1,
+      again: st.again + (g === Rating.Again ? 1 : 0),
+    }));
     setQueue((q) => {
       if (!q) return q;
       const rest = q.slice(1);
@@ -364,18 +374,40 @@ export default function FlashcardSession({
           {pick(lang, card.note)}
         </p>
       )}
-      {card.context?.length ? <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
-        {card.context.slice(0, 2).map((context, index) => <div key={`${context.type}-${index}`} className="text-sm">
-          <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">{context.type}</span>
-          <strong lang="de">{context.de}</strong>
-          {/* Destructured, never pick(lang, context): the context record's `de`
+      {card.context?.length ? (
+        <div className="mt-4 space-y-2 border-t border-stone-200 pt-3 text-left dark:border-stone-700">
+          {card.context.slice(0, 2).map((context, index) => (
+            <div key={`${context.type}-${index}`} className="text-sm">
+              <span className="mr-2 rounded bg-stone-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-stone-500 dark:bg-stone-700 dark:text-stone-300">
+                {context.type}
+              </span>
+              <strong lang="de">{context.de}</strong>
+              {/* Destructured, never pick(lang, context): the context record's `de`
               key is the related German word itself, and under ExplainLang 'de'
               pick() would show it as its own gloss (same trap as reading
               glosses). The German explanation half travels as explanationDe. */}
-          <span className="ml-2 text-stone-500 dark:text-stone-400">{pick(lang, { en: context.en, ru: context.ru, uk: context.uk, de: context.explanationDe })}</span>
-          {context.exampleDe && <p lang="de" className="mt-1 text-xs italic text-stone-500">{context.exampleDe} — {pick(lang, { en: context.exampleEn ?? '', ru: context.exampleRu ?? '', uk: context.exampleUk })}</p>}
-        </div>)}
-      </div> : null}
+              <span className="ml-2 text-stone-500 dark:text-stone-400">
+                {pick(lang, {
+                  en: context.en,
+                  ru: context.ru,
+                  uk: context.uk,
+                  de: context.explanationDe,
+                })}
+              </span>
+              {context.exampleDe && (
+                <p lang="de" className="mt-1 text-xs italic text-stone-500">
+                  {context.exampleDe} —{' '}
+                  {pick(lang, {
+                    en: context.exampleEn ?? '',
+                    ru: context.exampleRu ?? '',
+                    uk: context.exampleUk,
+                  })}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : null}
     </>
   );
 
@@ -414,7 +446,11 @@ export default function FlashcardSession({
     <div>
       <div className="mb-2 flex items-center justify-between gap-2">
         {/* The three modes explain themselves; the group's label is for assistive tech only. */}
-        <div role="group" aria-label={t('flashcards.input', uiLang)} className="flex items-center gap-1 text-xs">
+        <div
+          role="group"
+          aria-label={t('flashcards.input', uiLang)}
+          className="flex items-center gap-1 text-xs"
+        >
           {(
             [
               ['typed', 'flashcards.modeTyped'],
@@ -428,9 +464,7 @@ export default function FlashcardSession({
               onClick={() => switchMode(mode)}
               disabled={mode === 'listen' && !canTts}
               title={
-                mode === 'listen' && !canTts
-                  ? t('flashcards.ttsUnavailable', uiLang)
-                  : undefined
+                mode === 'listen' && !canTts ? t('flashcards.ttsUnavailable', uiLang) : undefined
               }
               className={`rounded px-2 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40 sm:py-0.5 ${
                 inputMode === mode
@@ -448,7 +482,9 @@ export default function FlashcardSession({
       </div>
       <div className="rounded-lg border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-800 sm:p-8">
         {dirLabel && (
-          <p className="text-center text-xs uppercase tracking-wide text-stone-400">{t(dirLabel, uiLang)}</p>
+          <p className="text-center text-xs uppercase tracking-wide text-stone-400">
+            {t(dirLabel, uiLang)}
+          </p>
         )}
         {listening && verdict === null ? (
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
@@ -576,7 +612,10 @@ export default function FlashcardSession({
                 </p>
               )}
               {hint && (
-                <p lang="de" className="mt-2 text-sm font-medium text-amber-700 dark:text-amber-400">
+                <p
+                  lang="de"
+                  className="mt-2 text-sm font-medium text-amber-700 dark:text-amber-400"
+                >
                   {hint}
                 </p>
               )}

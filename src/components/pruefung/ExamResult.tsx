@@ -46,7 +46,16 @@ interface Props {
   onOverview: () => void;
 }
 
-export default function ExamResult({ set, module, run, timedOut, earlier, onSelfScore, onAgain, onOverview }: Props) {
+export default function ExamResult({
+  set,
+  module,
+  run,
+  timedOut,
+  earlier,
+  onSelfScore,
+  onAgain,
+  onOverview,
+}: Props) {
   const freeMax = moduleFreeMax(module);
   const freeSpec = module.teile.find((teil) => teil.free)?.free;
   // Shown only when the source actually rescales. In the Start Deutsch 1 booklets the
@@ -116,33 +125,48 @@ export default function ExamResult({ set, module, run, timedOut, earlier, onSelf
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-400 dark:border-stone-700">
-                    <th scope="col" className="py-1 pr-3 font-medium">Nr.</th>
-                    <th scope="col" className="py-1 pr-3 font-medium">Deine Antwort</th>
-                    <th scope="col" className="py-1 pr-3 font-medium">Lösung</th>
-                    <th scope="col" className="py-1 font-medium"><span className="sr-only">Bewertung</span></th>
+                    <th scope="col" className="py-1 pr-3 font-medium">
+                      Nr.
+                    </th>
+                    <th scope="col" className="py-1 pr-3 font-medium">
+                      Deine Antwort
+                    </th>
+                    <th scope="col" className="py-1 pr-3 font-medium">
+                      Lösung
+                    </th>
+                    <th scope="col" className="py-1 font-medium">
+                      <span className="sr-only">Bewertung</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {module.teile.flatMap((teil) => teil.items).map((item) => {
-                    const given = run.answers[item.nr] ?? null;
-                    const correct = itemCorrect(item, given);
-                    return (
-                      <tr key={item.nr} className="border-b border-stone-100 last:border-0 dark:border-stone-700/60">
-                        <td className="py-1.5 pr-3 tabular-nums text-stone-400">{item.nr}</td>
-                        <td className="py-1.5 pr-3">
-                          {isTextItem(item) ? (given ?? '—') : answerLabel(item.shape, given as ExamAnswer | null)}
-                        </td>
-                        <td className="py-1.5 pr-3 text-stone-500 dark:text-stone-400">
-                          {isTextItem(item) ? item.answer : answerLabel(item.shape, item.key)}
-                        </td>
-                        <td
-                          className={`py-1.5 font-semibold ${correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}
+                  {module.teile
+                    .flatMap((teil) => teil.items)
+                    .map((item) => {
+                      const given = run.answers[item.nr] ?? null;
+                      const correct = itemCorrect(item, given);
+                      return (
+                        <tr
+                          key={item.nr}
+                          className="border-b border-stone-100 last:border-0 dark:border-stone-700/60"
                         >
-                          {correct ? '✓' : '✗'}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                          <td className="py-1.5 pr-3 tabular-nums text-stone-400">{item.nr}</td>
+                          <td className="py-1.5 pr-3">
+                            {isTextItem(item)
+                              ? (given ?? '—')
+                              : answerLabel(item.shape, given as ExamAnswer | null)}
+                          </td>
+                          <td className="py-1.5 pr-3 text-stone-500 dark:text-stone-400">
+                            {isTextItem(item) ? item.answer : answerLabel(item.shape, item.key)}
+                          </td>
+                          <td
+                            className={`py-1.5 font-semibold ${correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}
+                          >
+                            {correct ? '✓' : '✗'}
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>
@@ -179,14 +203,23 @@ export default function ExamResult({ set, module, run, timedOut, earlier, onSelf
           <table className="mt-2 w-full text-sm">
             <thead>
               <tr className="text-left text-xs uppercase tracking-wide text-stone-400">
-                <th scope="col" className="py-1 pr-3 font-medium">Datum</th>
-                <th scope="col" className="py-1 pr-3 font-medium">Modus</th>
-                <th scope="col" className="py-1 font-medium">Ergebnis</th>
+                <th scope="col" className="py-1 pr-3 font-medium">
+                  Datum
+                </th>
+                <th scope="col" className="py-1 pr-3 font-medium">
+                  Modus
+                </th>
+                <th scope="col" className="py-1 font-medium">
+                  Ergebnis
+                </th>
               </tr>
             </thead>
             <tbody>
               {[...earlier].reverse().map((previous, index) => (
-                <tr key={`${previous.finishedAt}-${index}`} className="text-stone-600 dark:text-stone-300">
+                <tr
+                  key={`${previous.finishedAt}-${index}`}
+                  className="text-stone-600 dark:text-stone-300"
+                >
                   <td className="py-1 pr-3">{formatDay(previous.finishedAt)}</td>
                   <td className="py-1 pr-3">{MODE_SHORT[previous.mode]}</td>
                   <td className="py-1 tabular-nums">{formatRunScore(previous)}</td>

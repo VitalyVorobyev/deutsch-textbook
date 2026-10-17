@@ -63,7 +63,9 @@ describe('CorpusGate', () => {
   test('a failed download shows an error, and retry fetches again', async () => {
     respond = () => Promise.resolve(new Response('', { status: 503 }));
     render(
-      <CorpusGate<[string[]]> urls={['/data/cards-a.json']}>{([cards]) => <p>{cards.join()}</p>}</CorpusGate>,
+      <CorpusGate<[string[]]> urls={['/data/cards-a.json']}>
+        {([cards]) => <p>{cards.join()}</p>}
+      </CorpusGate>,
     );
     await waitFor(() => expect(screen.getByRole('alert')).toBeTruthy());
 
@@ -77,7 +79,10 @@ describe('CorpusGate', () => {
 describe('fetchCorpus', () => {
   test('two consumers of one file share one request', async () => {
     respond = () => ok(['card']);
-    const [a, b] = await Promise.all([fetchCorpus('/data/cards-a.json'), fetchCorpus('/data/cards-a.json')]);
+    const [a, b] = await Promise.all([
+      fetchCorpus('/data/cards-a.json'),
+      fetchCorpus('/data/cards-a.json'),
+    ]);
     expect(a).toEqual(['card']);
     expect(b).toBe(a);
     expect(calls).toHaveLength(1);

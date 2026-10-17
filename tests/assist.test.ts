@@ -50,11 +50,15 @@ function jsonResponse(body: unknown): Response {
 /** An Ollama /api/chat reply whose message content is the given JSON. */
 function chatReply(content: unknown): Response {
   return jsonResponse({
-    message: { role: 'assistant', content: typeof content === 'string' ? content : JSON.stringify(content) },
+    message: {
+      role: 'assistant',
+      content: typeof content === 'string' ? content : JSON.stringify(content),
+    },
   });
 }
 
-const DRAFT = 'Hallo Jonas! Ich aufstehe um halb sieben. Meine Bruder hilft mir nicht mit die Küche.';
+const DRAFT =
+  'Hallo Jonas! Ich aufstehe um halb sieben. Meine Bruder hilft mir nicht mit die Küche.';
 
 const request = {
   draft: DRAFT,
@@ -107,7 +111,8 @@ describe('probeAssist', () => {
   });
 
   test('https page outside Tauri: the probe never runs at all', async () => {
-    const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } }).happyDOM;
+    const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } })
+      .happyDOM;
     happyDom.setURL('https://deutsch-atlas.example/');
     const fetchMock = mock(async () => jsonResponse({ models: [{ name: 'gemma4:e4b' }] }));
     globalThis.fetch = fetchMock as unknown as typeof fetch;
@@ -125,7 +130,9 @@ describe('writeHintsSchema', () => {
   test('rejects more than four hints', () => {
     const five = { praise: 'Gut!', hints: [1, 2, 3, 4, 5].map(() => hint('Ich aufstehe')) };
     expect(writeHintsSchema.safeParse(five).success).toBe(false);
-    expect(writeHintsSchema.safeParse({ ...five, hints: five.hints.slice(0, 4) }).success).toBe(true);
+    expect(writeHintsSchema.safeParse({ ...five, hints: five.hints.slice(0, 4) }).success).toBe(
+      true,
+    );
   });
 
   test('rejects a category outside the enum', () => {
@@ -145,7 +152,10 @@ describe('reviewDraft', () => {
 
     expect(result).toEqual({ praise: 'Nice rhythm!', hints: [hint('mit die Küche')] });
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    const [url, init] = fetchMock.mock.calls[0]! as unknown as [string, { method: string; body: string }];
+    const [url, init] = fetchMock.mock.calls[0]! as unknown as [
+      string,
+      { method: string; body: string },
+    ];
     expect(String(url)).toBe('http://localhost:11434/api/chat');
     expect(init.method).toBe('POST');
     const body = JSON.parse(init.body);

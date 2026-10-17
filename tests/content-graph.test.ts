@@ -41,7 +41,11 @@ describe('content graph', () => {
     // evidence; they are inventory rows rather than aliases on broader existing structures.
     expect(graph.inventory.length).toBe(106);
     expect(graph.grammarTracks).toHaveLength(10);
-    expect(graph.inventory.every((point) => graph.grammarTracks.some((track) => track.id === point.track))).toBe(true);
+    expect(
+      graph.inventory.every((point) =>
+        graph.grammarTracks.some((track) => track.id === point.track),
+      ),
+    ).toBe(true);
   });
 
   test('no element outranks the topic it belongs to', () => {
@@ -54,13 +58,17 @@ describe('content graph', () => {
     // topic's level — a set, a reading, an article, a recording or a document one level up is
     // how above-level German reaches a learner who has not met it.
     const spine = graph.elements.filter((e) => e.kind !== 'entdecken' && e.kind !== 'wortschatz');
-    expect(spine.filter((e) => e.level !== graph.topics.get(e.topic)!.data.level).map((e) => e.id)).toEqual([]);
+    expect(
+      spine.filter((e) => e.level !== graph.topics.get(e.topic)!.data.level).map((e) => e.id),
+    ).toEqual([]);
 
     // Two deliberate exemptions, and they are exemptions in opposite directions.
     // A deck may sit BELOW its topic — "A2 vocabulary recycles, never adopts" (CLAUDE.md), so the
     // A1 modal-verb deck hanging off the A2 modal-verb topic is the rule working, not a defect.
     const decks = graph.elements.filter((e) => e.kind === 'wortschatz');
-    expect(decks.filter((e) => rank(e.level) > rank(graph.topics.get(e.topic)!.data.level))).toEqual([]);
+    expect(
+      decks.filter((e) => rank(e.level) > rank(graph.topics.get(e.topic)!.data.level)),
+    ).toEqual([]);
 
     // Entdecken may sit ABOVE: it is outside the spine, carries no mastery and obligates the
     // learner to nothing, so a B1 piece is allowed to enrich an A2 topic. Six do today — and one
@@ -69,7 +77,9 @@ describe('content graph', () => {
     const off = graph.elements.filter(
       (e) => e.kind === 'entdecken' && e.level !== graph.topics.get(e.topic)!.data.level,
     );
-    expect(off.filter((e) => rank(e.level) > rank(graph.topics.get(e.topic)!.data.level)).length).toBe(6);
+    expect(
+      off.filter((e) => rank(e.level) > rank(graph.topics.get(e.topic)!.data.level)).length,
+    ).toBe(6);
     expect(off.length).toBe(7);
   });
 
@@ -78,7 +88,8 @@ describe('content graph', () => {
     expect(new Set(ids).size).toBe(ids.length);
 
     const counts = new Map<ElementKind, number>();
-    for (const element of graph.elements) counts.set(element.kind, (counts.get(element.kind) ?? 0) + 1);
+    for (const element of graph.elements)
+      counts.set(element.kind, (counts.get(element.kind) ?? 0) + 1);
     expect(Object.fromEntries([...counts].sort())).toEqual({
       artikel: 57,
       checkpoint: 3,
@@ -101,7 +112,8 @@ describe('content graph', () => {
 
   test('the lesson cycle and activity architecture are explicit', () => {
     const byStage = new Map<LessonStage, number>();
-    for (const element of graph.elements) byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
+    for (const element of graph.elements)
+      byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
     expect(byStage.get('transfer')).toBe(118);
@@ -110,15 +122,23 @@ describe('content graph', () => {
 
     const teaching = graph.elements.filter((element) => element.activity);
     expect(teaching).toHaveLength(223);
-    expect(Object.fromEntries(LEARNING_ACTIVITIES.map((activity) => [
-      activity,
-      teaching.filter((element) => element.activity === activity).length,
-    ]))).toEqual({ core: 57, extension: 29, application: 115, remediation: 22 });
-    expect([...graph.topics.keys()].filter((topic) =>
-      !(graph.elementsByTopic.get(topic) ?? []).some(
-        (element) => element.activity === 'application' && element.touches.includes('produktion'),
+    expect(
+      Object.fromEntries(
+        LEARNING_ACTIVITIES.map((activity) => [
+          activity,
+          teaching.filter((element) => element.activity === activity).length,
+        ]),
       ),
-    )).toEqual([]);
+    ).toEqual({ core: 57, extension: 29, application: 115, remediation: 22 });
+    expect(
+      [...graph.topics.keys()].filter(
+        (topic) =>
+          !(graph.elementsByTopic.get(topic) ?? []).some(
+            (element) =>
+              element.activity === 'application' && element.touches.includes('produktion'),
+          ),
+      ),
+    ).toEqual([]);
   });
 
   test('every touch a topic delivers is one of the four, and production is reachable everywhere', () => {
@@ -191,7 +211,8 @@ describe('item references', () => {
           continue;
         }
         const target = graph.sets.get(ref.setId);
-        if (!target?.data.items?.some((i) => i.id === ref.itemId)) unresolved.push(`${set.id}: ${key}`);
+        if (!target?.data.items?.some((i) => i.id === ref.itemId))
+          unresolved.push(`${set.id}: ${key}`);
       }
     }
     expect(unresolved).toEqual([]);

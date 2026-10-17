@@ -1,8 +1,6 @@
 /** Parsing for cloze texts with inline gaps: "Ich {{habe}} Fußball {{gespielt|gemacht}}." */
 
-export type ClozePart =
-  | { type: 'text'; value: string }
-  | { type: 'gap'; answers: string[] };
+export type ClozePart = { type: 'text'; value: string } | { type: 'gap'; answers: string[] };
 
 const GAP_RE = /\{\{([^{}]+)\}\}/g;
 
@@ -182,7 +180,10 @@ export function fillCloze(text: string, values: readonly string[]): string {
 
 /** Normalize an assembled sentence: join tokens, tidy space before punctuation. */
 export function normalizeSentence(tokens: string[]): string {
-  return tokens.join(' ').replace(/\s+([.,!?;:])/g, '$1').trim();
+  return tokens
+    .join(' ')
+    .replace(/\s+([.,!?;:])/g, '$1')
+    .trim();
 }
 
 /**
@@ -193,11 +194,7 @@ export function normalizeSentence(tokens: string[]): string {
  * dash consumed the one-slip budget that exists for real typos.
  */
 export function normalizeTranslation(s: string): string {
-  return foldTypography(s)
-    .split(/\s+/)
-    .map(stripTokenPunctuation)
-    .filter(Boolean)
-    .join(' ');
+  return foldTypography(s).split(/\s+/).map(stripTokenPunctuation).filter(Boolean).join(' ');
 }
 
 /** True if a typed translation matches any of the accepted German sentences. */

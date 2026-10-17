@@ -182,7 +182,8 @@ export function Regler({
   onWert,
   ...rest
 }: Gemeinsam & { wert: number; onWert(next: number): void }): React.JSX.Element {
-  const seite = wert === 0 ? 'Mitte' : `${wert < 0 ? 'L' : 'R'} ${Math.round(Math.abs(wert) * 100)}`;
+  const seite =
+    wert === 0 ? 'Mitte' : `${wert < 0 ? 'L' : 'R'} ${Math.round(Math.abs(wert) * 100)}`;
   return (
     <Rahmen {...rest}>
       <span className="regler">

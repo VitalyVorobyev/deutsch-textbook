@@ -177,10 +177,7 @@ export function probeAttempts(family: ProbeFamily, attempts: readonly Attempt[])
  * repeating the one seen last week, and it keeps a family usable past its variant
  * count rather than going silent.
  */
-export function nextVariant(
-  family: ProbeFamily,
-  attempts: readonly Attempt[],
-): string | undefined {
+export function nextVariant(family: ProbeFamily, attempts: readonly Attempt[]): string | undefined {
   if (family.items.length === 0) return undefined;
   const taken = probeAttempts(family, attempts);
   const seen = new Map<string, number>();
@@ -189,9 +186,7 @@ export function nextVariant(
   const fresh = family.items.find((i) => !seen.has(i.id));
   if (fresh) return fresh.id;
 
-  return [...family.items].sort(
-    (a, b) => (seen.get(a.id) ?? 0) - (seen.get(b.id) ?? 0),
-  )[0]!.id;
+  return [...family.items].sort((a, b) => (seen.get(a.id) ?? 0) - (seen.get(b.id) ?? 0))[0]!.id;
 }
 
 /**
@@ -367,25 +362,30 @@ export function probeResults(
       days: armed === undefined ? 0 : Math.round((a.ts - armed) / DAY_MS),
     }));
     const nextStage = taken.length < PROBE_INTERVALS_DAYS.length ? taken.length : undefined;
-    const nextDueAt = armed === undefined || nextStage === undefined
-      ? undefined
-      : armed + PROBE_INTERVALS_DAYS[nextStage]! * DAY_MS;
+    const nextDueAt =
+      armed === undefined || nextStage === undefined
+        ? undefined
+        : armed + PROBE_INTERVALS_DAYS[nextStage]! * DAY_MS;
     const stages = PROBE_INTERVALS_DAYS.map((scheduledDays, stage) => {
       const completed = taken[stage];
-      if (completed) return {
-        stage,
-        scheduledDays,
-        status: completed.correct ? 'passed' as const : 'failed' as const,
-        takenAt: completed.ts,
-        actualDays: completed.days,
-      };
+      if (completed)
+        return {
+          stage,
+          scheduledDays,
+          status: completed.correct ? ('passed' as const) : ('failed' as const),
+          takenAt: completed.ts,
+          actualDays: completed.days,
+        };
       const dueAt = armed === undefined ? undefined : armed + scheduledDays * DAY_MS;
       return {
         stage,
         scheduledDays,
-        status: stage === nextStage
-          ? dueAt !== undefined && dueAt <= now ? 'due' as const : 'scheduled' as const
-          : 'later' as const,
+        status:
+          stage === nextStage
+            ? dueAt !== undefined && dueAt <= now
+              ? ('due' as const)
+              : ('scheduled' as const)
+            : ('later' as const),
         dueAt,
       };
     });

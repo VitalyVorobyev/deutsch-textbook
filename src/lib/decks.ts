@@ -1,6 +1,13 @@
 /** Which decks may feed never-graded flashcards into review (client-side — "opened" lives in IndexedDB). */
 import type { TopicContext, TopicNode } from './mastery';
-import { introducedToday, rankDueCards, spaceSiblings, splitQueue, type CardDef, type CardRef } from './srs';
+import {
+  introducedToday,
+  rankDueCards,
+  spaceSiblings,
+  splitQueue,
+  type CardDef,
+  type CardRef,
+} from './srs';
 import { goalRoute, pathDone, recommendedForGoal, recommendedNext } from './mastery';
 import { shuffle } from './shuffle';
 import type { LearningGoal } from './store';
@@ -69,7 +76,7 @@ export function prioritizeFreshCards<C extends CardRef>(
       .flatMap((node) => node.vocabIds),
   );
   const next = goal?.topicId
-    ? recommendedForGoal(goal.topicId, spine, nodes, ctx) ?? recommendedNext(spine, nodes, ctx)
+    ? (recommendedForGoal(goal.topicId, spine, nodes, ctx) ?? recommendedNext(spine, nodes, ctx))
     : recommendedNext(spine, nodes, ctx);
   const nextDecks = new Set(next?.vocabIds ?? []);
   // A learner who placed out of every topic has no next lesson, so `next.level` is

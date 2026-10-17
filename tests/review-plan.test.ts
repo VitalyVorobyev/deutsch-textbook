@@ -5,9 +5,18 @@ import { gradeCard, Rating, type CardDef } from '../src/lib/srs';
 import type { StoredCard } from '../src/lib/store';
 
 const topicNode = (id: string, deckId: string): TopicNode => ({
-  id, path: `/topics/a1/${id}`, level: 'A1', kind: 'grammar',
-  title_de: id, title_en: id, title_ru: id, prerequisites: [],
-  exerciseSets: [`a1/${id}`], vocabIds: [deckId], readingIds: [], pretestId: `a1/${id}-pretest`,
+  id,
+  path: `/topics/a1/${id}`,
+  level: 'A1',
+  kind: 'grammar',
+  title_de: id,
+  title_en: id,
+  title_ru: id,
+  prerequisites: [],
+  exerciseSets: [`a1/${id}`],
+  vocabIds: [deckId],
+  readingIds: [],
+  pretestId: `a1/${id}-pretest`,
 });
 
 const basis = topicNode('basis', 'basis-deck');
@@ -19,24 +28,42 @@ const gate: ReviewGate = {
 };
 
 const card = (deckId: string, de: string, dir: 'de-x' | 'x-de' = 'de-x'): CardDef => ({
-  id: `${deckId}::${de}::${dir}`, deckId, dir, de, en: 'word', ru: 'слово',
-  exampleDe: 'Ein Wort.', exampleEn: 'A word.', exampleRu: 'Слово.', pos: 'noun',
+  id: `${deckId}::${de}::${dir}`,
+  deckId,
+  dir,
+  de,
+  en: 'word',
+  ru: 'слово',
+  exampleDe: 'Ein Wort.',
+  exampleEn: 'A word.',
+  exampleRu: 'Слово.',
+  pos: 'noun',
 });
 
 /** Both flashcards a vocabulary entry produces — recognition and production. */
-const bothDirections = (deckId: string, de: string): CardDef[] =>
-  [card(deckId, de, 'de-x'), card(deckId, de, 'x-de')];
+const bothDirections = (deckId: string, de: string): CardDef[] => [
+  card(deckId, de, 'de-x'),
+  card(deckId, de, 'x-de'),
+];
 
 /** a graded card whose review fell due `daysAgo` days ago */
 const dueState = (daysAgo: number): StoredCard => ({
   due: new Date(Date.now() - daysAgo * 86_400_000).toISOString(),
-  stability: 1, difficulty: 5, elapsed_days: 1, scheduled_days: 1,
-  learning_steps: 0, reps: 2, lapses: 0, state: 2,
+  stability: 1,
+  difficulty: 5,
+  elapsed_days: 1,
+  scheduled_days: 1,
+  learning_steps: 0,
+  reps: 2,
+  lapses: 0,
+  state: 2,
 });
 
 /** ctx with the basis topic opened, so basis-deck fresh cards are eligible */
 const ctx = (cards: Record<string, StoredCard>): ReviewContext => ({
-  attempts: [], cards, topics: { basis: { readAt: 1 } },
+  attempts: [],
+  cards,
+  topics: { basis: { readAt: 1 } },
 });
 
 const fresh = (n: number, deckId = 'basis-deck') =>
@@ -91,7 +118,9 @@ describe('planReview', () => {
       { newLimit: 7 },
     );
     const positions = plan.queue.map((c) => c.id);
-    expect(Math.abs(positions.indexOf(recognition!.id) - positions.indexOf(production!.id))).toBeGreaterThan(1);
+    expect(
+      Math.abs(positions.indexOf(recognition!.id) - positions.indexOf(production!.id)),
+    ).toBeGreaterThan(1);
   });
 
   test('a queue too small to separate a word still keeps both cards', () => {
@@ -105,7 +134,9 @@ describe('planReview', () => {
     const cards = Array.from({ length: 12 }, (_, i) => card('basis-deck', `Neu${i}`));
     const orders = new Set(
       Array.from({ length: 25 }, () =>
-        planReview(cards, gate, ctx({}), { newLimit: 12 }).queue.map((c) => c.de).join(),
+        planReview(cards, gate, ctx({}), { newLimit: 12 })
+          .queue.map((c) => c.de)
+          .join(),
       ),
     );
     expect(orders.size).toBeGreaterThan(1);
@@ -114,7 +145,9 @@ describe('planReview', () => {
   test('random ties never disturb the overdue ranking', () => {
     const cards = ['Alt', 'Mittel', 'Frisch'].map((de) => card('basis-deck', de));
     const states = {
-      [cards[0]!.id]: dueState(9), [cards[1]!.id]: dueState(5), [cards[2]!.id]: dueState(1),
+      [cards[0]!.id]: dueState(9),
+      [cards[1]!.id]: dueState(5),
+      [cards[2]!.id]: dueState(1),
     };
     for (let run = 0; run < 10; run++) {
       const plan = planReview(cards, gate, ctx(states), { newLimit: 0 });
@@ -131,7 +164,10 @@ describe('planReview', () => {
 
   test('top-up with nothing due adds no fresh cards (SessionFlow skips to training)', () => {
     const plan = planReview(fresh(10), gate, ctx({}), {
-      newLimit: 15, maxDue: 15, maxTotal: 15, freshPolicy: { kind: 'top-up', minDue: 5 },
+      newLimit: 15,
+      maxDue: 15,
+      maxTotal: 15,
+      freshPolicy: { kind: 'top-up', minDue: 5 },
     });
     expect(plan.total).toBe(0);
     expect(plan.queue).toEqual([]);
@@ -141,7 +177,10 @@ describe('planReview', () => {
     const dueCards = [card('basis-deck', 'Alt0'), card('basis-deck', 'Alt1')];
     const states = { [dueCards[0].id]: dueState(1), [dueCards[1].id]: dueState(1) };
     const plan = planReview([...dueCards, ...fresh(20)], gate, ctx(states), {
-      newLimit: 15, maxDue: 15, maxTotal: 15, freshPolicy: { kind: 'top-up', minDue: 5 },
+      newLimit: 15,
+      maxDue: 15,
+      maxTotal: 15,
+      freshPolicy: { kind: 'top-up', minDue: 5 },
     });
     expect(plan.dueCount).toBe(2);
     expect(plan.freshCount).toBe(13); // maxTotal − dueCount
@@ -152,7 +191,10 @@ describe('planReview', () => {
     const dueCards = Array.from({ length: 5 }, (_, i) => card('basis-deck', `Alt${i}`));
     const states = Object.fromEntries(dueCards.map((c) => [c.id, dueState(1)]));
     const plan = planReview([...dueCards, ...fresh(20)], gate, ctx(states), {
-      newLimit: 15, maxDue: 15, maxTotal: 15, freshPolicy: { kind: 'top-up', minDue: 5 },
+      newLimit: 15,
+      maxDue: 15,
+      maxTotal: 15,
+      freshPolicy: { kind: 'top-up', minDue: 5 },
     });
     expect(plan.dueCount).toBe(5);
     expect(plan.freshCount).toBe(0);
@@ -163,7 +205,9 @@ describe('planReview', () => {
     const dueCards = Array.from({ length: 8 }, (_, i) => card('basis-deck', `Alt${i}`));
     const states = Object.fromEntries(dueCards.map((c) => [c.id, dueState(1)]));
     const plan = planReview([...dueCards, ...fresh(5)], gate, ctx(states), {
-      newLimit: 15, maxDue: 6, maxTotal: 6,
+      newLimit: 15,
+      maxDue: 6,
+      maxTotal: 6,
     });
     expect(plan.dueCount).toBe(6);
     expect(plan.freshCount).toBe(0); // 'always', but maxTotal is already spent on due
@@ -194,8 +238,14 @@ describe('planReview', () => {
 /** a card introduced (first graded) on `date`, still in learning */
 const introduced = (date: string): StoredCard => ({
   due: new Date(Date.now() + 600_000).toISOString(),
-  stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0,
-  learning_steps: 1, reps: 1, lapses: 0, state: 1,
+  stability: 1,
+  difficulty: 5,
+  elapsed_days: 0,
+  scheduled_days: 0,
+  learning_steps: 1,
+  reps: 1,
+  lapses: 0,
+  state: 1,
   last_review: new Date().toISOString(),
   introducedAt: date,
 });
@@ -223,18 +273,14 @@ describe('the daily new-card budget survives a reload', () => {
 
   test('a partly spent day deals only the remainder', () => {
     const pool = fresh(60);
-    const states = Object.fromEntries(
-      fresh(4).map((c) => [c.id, introduced(today())]),
-    );
+    const states = Object.fromEntries(fresh(4).map((c) => [c.id, introduced(today())]));
     const plan = planReview(pool, gate, ctx(states), { newLimit: 15 });
     expect(plan.freshCount).toBe(11); // DAILY_NEW_CARDS(15) − 4 already introduced
   });
 
   test("yesterday's introductions do not spend today's budget", () => {
     const pool = fresh(60);
-    const states = Object.fromEntries(
-      fresh(15).map((c) => [c.id, introduced('2020-01-01')]),
-    );
+    const states = Object.fromEntries(fresh(15).map((c) => [c.id, introduced('2020-01-01')]));
     const plan = planReview(pool, gate, ctx(states), { newLimit: 15 });
     expect(plan.freshCount).toBe(15);
   });
@@ -282,7 +328,8 @@ describe('completion decks rank behind the lesson decks', () => {
     };
     // basis is read (so it is behind the learner), making zweit the recommended next.
     const context: ReviewContext = {
-      attempts: [], cards: {},
+      attempts: [],
+      cards: {},
       topics: { basis: { readAt: 1, learned: true, manualAt: 1 }, zweit: { readAt: 1 } },
     };
     const pool = [...fresh(10, 'zweit-deck'), ...fresh(10, 'wortliste-deck')];
@@ -310,7 +357,7 @@ describe('gradeCard stamps introducedAt exactly once, and only on a real introdu
     expect(graded.introducedAt).toBeUndefined();
   });
 
-  test("an already-stamped card keeps its original date, it is not re-stamped", () => {
+  test('an already-stamped card keeps its original date, it is not re-stamped', () => {
     const graded = gradeCard({ ...dueState(3), introducedAt: '2020-01-01' }, Rating.Good);
     expect(graded.introducedAt).toBe('2020-01-01');
   });
@@ -347,8 +394,12 @@ describe('planReview over card refs', () => {
   function seeded<T>(run: () => T): T {
     const original = Math.random;
     let s = 20261010;
-    Math.random = () => ((s = (s * 1664525 + 1013904223) % 2 ** 32) / 2 ** 32);
-    try { return run(); } finally { Math.random = original; }
+    Math.random = () => (s = (s * 1664525 + 1013904223) % 2 ** 32) / 2 ** 32;
+    try {
+      return run();
+    } finally {
+      Math.random = original;
+    }
   }
 
   test('deals exactly the queue the built cards do', () => {
@@ -362,8 +413,11 @@ describe('planReview over card refs', () => {
     const fromCards = seeded(() => planReview(built, gate, ctx(states), { newLimit: 8 }));
     const fromRefs = seeded(() => planReview(refs, gate, ctx(states), { newLimit: 8 }));
     expect(fromRefs.queue.map((c) => c.id)).toEqual(fromCards.queue.map((c) => c.id));
-    expect([fromRefs.dueCount, fromRefs.freshCount, fromRefs.dueRemaining])
-      .toEqual([fromCards.dueCount, fromCards.freshCount, fromCards.dueRemaining]);
+    expect([fromRefs.dueCount, fromRefs.freshCount, fromRefs.dueRemaining]).toEqual([
+      fromCards.dueCount,
+      fromCards.freshCount,
+      fromCards.dueRemaining,
+    ]);
     expect(fromCards.dueCount).toBe(6);
     expect(fromCards.freshCount).toBe(8);
   });

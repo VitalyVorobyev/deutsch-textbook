@@ -75,14 +75,20 @@ export function Befundleiste({
                     : 'bg-surface-raised text-ink-muted ring-border-subtle hover:text-ink hover:ring-warn/50'
                 }`}
               >
-                <span className={`tabular font-semibold ${on ? '' : 'text-warn-ink'}`}>{count}</span>
+                <span className={`tabular font-semibold ${on ? '' : 'text-warn-ink'}`}>
+                  {count}
+                </span>
                 <span>{label?.de ?? kind}</span>
               </button>
             </Hinweis>
           );
         })}
         {aktiv ? (
-          <button type="button" onClick={() => onWaehlen(undefined)} className="ml-1 text-xs text-ink-muted hover:text-ink">
+          <button
+            type="button"
+            onClick={() => onWaehlen(undefined)}
+            className="ml-1 text-xs text-ink-muted hover:text-ink"
+          >
             Filter aufheben
           </button>
         ) : null}

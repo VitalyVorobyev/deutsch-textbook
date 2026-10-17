@@ -63,10 +63,7 @@ export function isOneEdit(a: string, b: string): boolean {
       if (at >= 0) {
         // A second divergence is only forgivable as one adjacent transposition.
         return (
-          at === i - 1 &&
-          a[at] === b[i] &&
-          a[i] === b[at] &&
-          a.slice(i + 1) === b.slice(i + 1)
+          at === i - 1 && a[at] === b[i] && a[i] === b[at] && a.slice(i + 1) === b.slice(i + 1)
         );
       }
       at = i;
@@ -107,21 +104,74 @@ export function isOneEdit(a: string, b: string): boolean {
  */
 const CLOSED_CLASS = new Set([
   // definite / indefinite / negative determiners
-  'der', 'die', 'das', 'dem', 'den', 'des',
-  'ein', 'eine', 'einen', 'einem', 'einer', 'eines',
-  'kein', 'keine', 'keinen', 'keinem', 'keiner', 'keines',
+  'der',
+  'die',
+  'das',
+  'dem',
+  'den',
+  'des',
+  'ein',
+  'eine',
+  'einen',
+  'einem',
+  'einer',
+  'eines',
+  'kein',
+  'keine',
+  'keinen',
+  'keinem',
+  'keiner',
+  'keines',
   // possessives (nominative + the endings that differ by one character)
-  'mein', 'meine', 'meinen', 'meinem', 'meiner',
-  'dein', 'deine', 'deinen', 'deinem', 'deiner',
-  'sein', 'seine', 'seinen', 'seinem', 'seiner',
-  'ihre', 'ihren', 'ihrem', 'ihrer',
-  'unser', 'unsere', 'unseren', 'unserem',
+  'mein',
+  'meine',
+  'meinen',
+  'meinem',
+  'meiner',
+  'dein',
+  'deine',
+  'deinen',
+  'deinem',
+  'deiner',
+  'sein',
+  'seine',
+  'seinen',
+  'seinem',
+  'seiner',
+  'ihre',
+  'ihren',
+  'ihrem',
+  'ihrer',
+  'unser',
+  'unsere',
+  'unseren',
+  'unserem',
   // personal pronouns
-  'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
-  'mich', 'dich', 'ihn', 'uns', 'euch',
-  'mir', 'dir', 'ihm', 'ihnen',
+  'ich',
+  'du',
+  'er',
+  'sie',
+  'es',
+  'wir',
+  'ihr',
+  'mich',
+  'dich',
+  'ihn',
+  'uns',
+  'euch',
+  'mir',
+  'dir',
+  'ihm',
+  'ihnen',
   // contracted prepositions
-  'zum', 'zur', 'beim', 'vom', 'im', 'am', 'ins', 'ans',
+  'zum',
+  'zur',
+  'beim',
+  'vom',
+  'im',
+  'am',
+  'ins',
+  'ans',
 ]);
 
 const isClosedClass = (token: string) => CLOSED_CLASS.has(bare(token).toLowerCase());
@@ -233,13 +283,15 @@ export function closestTranslationCandidate(
   spec: Pick<TranslationSpec, 'answer' | 'accept'>,
 ): string {
   const givenTokens = tokenize(given);
-  return translationCandidates(spec)
-    .map((candidate) => ({
-      candidate,
-      matched: diffExpectedWords(tokenize(candidate), givenTokens).filter((d) => !d).length,
-    }))
-    // Stable sort: the canonical answer wins a genuine tie.
-    .sort((a, b) => b.matched - a.matched)[0]!.candidate;
+  return (
+    translationCandidates(spec)
+      .map((candidate) => ({
+        candidate,
+        matched: diffExpectedWords(tokenize(candidate), givenTokens).filter((d) => !d).length,
+      }))
+      // Stable sort: the canonical answer wins a genuine tie.
+      .sort((a, b) => b.matched - a.matched)[0]!.candidate
+  );
 }
 
 export interface SpellingCorrection {
@@ -279,7 +331,9 @@ const lowerFirst = (w: string) => w.charAt(0).toLowerCase() + w.slice(1);
  * capitalization *is* grammar in German — `Sie` and `sie` are different words — so
  * nothing else is folded together.
  */
-function buildGradedSet(spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>): Set<string> {
+function buildGradedSet(
+  spec: Pick<TranslationSpec, 'answer' | 'accept' | 'keyTokens'>,
+): Set<string> {
   const graded = new Set((spec.keyTokens ?? []).map(bare));
   for (const candidate of translationCandidates(spec)) {
     const tokens = tokenize(candidate);
@@ -437,7 +491,5 @@ export function gradeTranslation(given: string, spec: TranslationSpec): Translat
     target.length === givenTokens.length &&
     target.some((tok, i) => tok !== givenTokens[i] && isGraded(target, targetHeads, i));
 
-  return absentGraded || misplacedGraded
-    ? { kind: 'wrong', focus: spec.focus }
-    : { kind: 'wrong' };
+  return absentGraded || misplacedGraded ? { kind: 'wrong', focus: spec.focus } : { kind: 'wrong' };
 }

@@ -8,13 +8,22 @@ const noop = () => {};
 
 /** Before submission: the amber Prüfen button. */
 export function BeforeChecking() {
-  return <ActionRow checked={false} correct={false} onCheck={noop} onNext={noop} nextLabel="Weiter →" />;
+  return (
+    <ActionRow checked={false} correct={false} onCheck={noop} onNext={noop} nextLabel="Weiter →" />
+  );
 }
 
 /** Prüfen disabled — nothing has been entered yet. */
 export function CheckDisabled() {
   return (
-    <ActionRow checked={false} correct={false} onCheck={noop} checkDisabled onNext={noop} nextLabel="Weiter →" />
+    <ActionRow
+      checked={false}
+      correct={false}
+      onCheck={noop}
+      checkDisabled
+      onNext={noop}
+      nextLabel="Weiter →"
+    />
   );
 }
 

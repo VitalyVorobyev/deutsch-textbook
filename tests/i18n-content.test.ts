@@ -105,9 +105,7 @@ describe('pick over the four explanation languages', () => {
       'train station · вокзал (железнодорожный, не автобусная остановка)',
     );
     expect(cardMeaning('en', card)).toBe('train station (a railway station, not a bus stop)');
-    expect(cardMeaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe(
-      'train station · вокзал (uk)',
-    );
+    expect(cardMeaning('uk', { ...card, uk: 'вокзал (uk)' })).toBe('train station · вокзал (uk)');
     // no uk gloss → EN alone, never `en · en` and never RU
     expect(cardMeaning('uk', card)).toBe('train station (a railway station, not a bus stop)');
     expect(cardMeaning('de', { ...card, uk: 'вокзал (uk)' })).toBe(
@@ -189,7 +187,9 @@ describe('explain-language preference with uk/de', () => {
 
 describe('parseGlosses with an optional fourth field', () => {
   test('a 3-field gloss parses exactly as before, uk undefined', () => {
-    const { segments, errors } = parseGlosses('Er hat [[den Termin::the appointment::встречу]] verpasst.');
+    const { segments, errors } = parseGlosses(
+      'Er hat [[den Termin::the appointment::встречу]] verpasst.',
+    );
     expect(errors).toEqual([]);
     expect(segments).toEqual([
       { kind: 'text', text: 'Er hat ' },
@@ -303,7 +303,10 @@ describe('deParityProblems', () => {
   test('silent when no record or every record carries de', () => {
     expect(deParityProblems({ a: { en: 'e', ru: 'r' }, b: { en: 'e', ru: 'r' } })).toEqual([]);
     expect(
-      deParityProblems({ a: { en: 'e', ru: 'r', de: 'd' }, b: { en: 'e', ru: 'r', uk: 'u', de: 'd' } }),
+      deParityProblems({
+        a: { en: 'e', ru: 'r', de: 'd' },
+        b: { en: 'e', ru: 'r', uk: 'u', de: 'd' },
+      }),
     ).toEqual([]);
   });
 
@@ -430,8 +433,24 @@ describe('schema widening', () => {
     });
     expect(meaning.pairs[1]!.right).toEqual({ en: 'permission', ru: 'разрешение', uk: 'дозвіл' });
     // A record right must be complete (en + ru) and closed — no stray keys, no de.
-    expect(matchItemSchema.safeParse({ ...base, pairs: [{ left: 'x', right: { en: 'a' } }, { left: 'y', right: 'z' }] }).success).toBe(false);
-    expect(matchItemSchema.safeParse({ ...base, pairs: [{ left: 'x', right: { en: 'a', ru: 'б', de: 'c' } }, { left: 'y', right: 'z' }] }).success).toBe(false);
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'x', right: { en: 'a' } },
+          { left: 'y', right: 'z' },
+        ],
+      }).success,
+    ).toBe(false);
+    expect(
+      matchItemSchema.safeParse({
+        ...base,
+        pairs: [
+          { left: 'x', right: { en: 'a', ru: 'б', de: 'c' } },
+          { left: 'y', right: 'z' },
+        ],
+      }).success,
+    ).toBe(false);
   });
 
   test('match pair identities must be unique on both columns', () => {
@@ -500,12 +519,24 @@ describe('schema widening', () => {
     // parity — the slash-hack string ("ability / умение") was invisible to this check.
     const file = {
       title: { en: 'T', ru: 'Т', uk: 'Т' },
-      items: [{ id: 'm', type: 'match', pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение' } }] }],
+      items: [
+        {
+          id: 'm',
+          type: 'match',
+          pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение' } }],
+        },
+      ],
     };
     expect(ukParityProblems(file).length).toBeGreaterThan(0);
     const done = {
       ...file,
-      items: [{ id: 'm', type: 'match', pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение', uk: 'вміння' } }] }],
+      items: [
+        {
+          id: 'm',
+          type: 'match',
+          pairs: [{ left: 'können', right: { en: 'ability', ru: 'умение', uk: 'вміння' } }],
+        },
+      ],
     };
     expect(ukParityProblems(done)).toEqual([]);
   });
@@ -634,9 +665,18 @@ describe('uk reaches the runtime surfaces', () => {
             {
               type: 'collocation',
               de: 'am Bahnhof',
-              explanation: { en: 'at the station', ru: 'на вокзале', uk: 'на вокзалі', de: 'ein fester Ausdruck des Ortes' },
+              explanation: {
+                en: 'at the station',
+                ru: 'на вокзале',
+                uk: 'на вокзалі',
+                de: 'ein fester Ausdruck des Ortes',
+              },
               example_de: 'Wir treffen uns am Bahnhof.',
-              example: { en: 'We meet at the station.', ru: 'Встречаемся на вокзале.', uk: 'Зустрічаємось на вокзалі.' },
+              example: {
+                en: 'We meet at the station.',
+                ru: 'Встречаемся на вокзале.',
+                uk: 'Зустрічаємось на вокзалі.',
+              },
             },
           ],
         },
@@ -650,9 +690,9 @@ describe('uk reaches the runtime surfaces', () => {
     // reads { …, de: context.explanationDe }
     expect(context.de).toBe('am Bahnhof');
     expect(context.explanationDe).toBe('ein fester Ausdruck des Ortes');
-    expect(pick('de', { en: context.en, ru: context.ru, uk: context.uk, de: context.explanationDe })).toBe(
-      'ein fester Ausdruck des Ortes',
-    );
+    expect(
+      pick('de', { en: context.en, ru: context.ru, uk: context.uk, de: context.explanationDe }),
+    ).toBe('ein fester Ausdruck des Ortes');
   });
 
   test('Fortschritt outcome labels carry all four halves — de is the can-do itself', () => {
@@ -683,14 +723,24 @@ describe('uk reaches the runtime surfaces', () => {
           question: 'Worauf?',
           thing: 'darauf',
           person: 'auf wen',
-          example: { de: 'Ich warte darauf.', en: 'I am waiting for it.', ru: 'Я жду этого.', uk: 'Я чекаю на це.' },
+          example: {
+            de: 'Ich warte darauf.',
+            en: 'I am waiting for it.',
+            ru: 'Я жду этого.',
+            uk: 'Я чекаю на це.',
+          },
         },
       ],
       temporal: (['vorher', 'zuvor', 'danach'] as const).map((form) => ({
         form,
         status: 'productive',
         meaning: { en: 'before/after', ru: 'до/после', uk: 'до/після' },
-        example: { de: 'Vorher esse ich.', en: 'I eat before.', ru: 'Сначала я ем.', uk: 'Спершу я їм.' },
+        example: {
+          de: 'Vorher esse ich.',
+          en: 'I eat before.',
+          ru: 'Сначала я ем.',
+          uk: 'Спершу я їм.',
+        },
       })),
     };
     // the P2 regression: zod used to strip example.uk, so parity on the PARSED
@@ -901,7 +951,8 @@ describe('uk reaches the runtime surfaces', () => {
       seq.forEach((lang, i) => {
         if (lang !== 'ru') return;
         seen += 1;
-        if (seq[i + 1] !== 'uk') gaps.push(`${path}: lang-ru #${i} followed by ${seq[i + 1] ?? 'nothing'}`);
+        if (seq[i + 1] !== 'uk')
+          gaps.push(`${path}: lang-ru #${i} followed by ${seq[i + 1] ?? 'nothing'}`);
       });
     }
     expect(seen).toBeGreaterThan(50); // guard against a glob that silently matched nothing
@@ -961,8 +1012,9 @@ describe('de parity bridges frontmatter and body, like uk', () => {
     expect(mdxLangProblems(body, { forceDe: true }).parity).toHaveLength(1);
     // …and the message names the frontmatter as the carrier, not a stray body tag.
     const noDeAnywhere = `${block(enRu)}\n${block(enRu)}`;
-    expect(mdxLangProblems(noDeAnywhere, { forceDe: true }).parity[0])
-      .toContain('de in its frontmatter');
+    expect(mdxLangProblems(noDeAnywhere, { forceDe: true }).parity[0]).toContain(
+      'de in its frontmatter',
+    );
   });
 
   test('with neither, nothing is demanded — the halves stay optional', () => {
@@ -979,9 +1031,9 @@ describe('de parity bridges frontmatter and body, like uk', () => {
    * A1 Ampelmännchen piece failed instantly. That is how this was caught.
    */
   test('title_de alone is German content, not a German explanation half', () => {
-    expect(hasDeExplanation({ title_de: 'Das Ampelmännchen', summary: { en: 'a', ru: 'б' } }))
-      .toBe(false);
-    expect(hasDeExplanation({ title_de: 'x', summary: { en: 'a', ru: 'б', de: 'c' } }))
-      .toBe(true);
+    expect(hasDeExplanation({ title_de: 'Das Ampelmännchen', summary: { en: 'a', ru: 'б' } })).toBe(
+      false,
+    );
+    expect(hasDeExplanation({ title_de: 'x', summary: { en: 'a', ru: 'б', de: 'c' } })).toBe(true);
   });
 });

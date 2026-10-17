@@ -50,8 +50,19 @@ const BAYERN = Array.from({ length: 10 }, (_, i) => question(`BY-${pad(i + 1, 2)
 const BERLIN = Array.from({ length: 10 }, (_, i) => question(`BE-${pad(i + 1, 2)}`));
 const BANK = { questions: [...GENERAL, ...BAYERN, ...BERLIN] };
 
-const answer = (q: string, correct: boolean, ts: number, over: Partial<LidAnswer> = {}): LidAnswer => ({
-  q, chosen: correct ? 'a' : 'b', correct, ts, mode: 'practice', bank: 'test', ...over,
+const answer = (
+  q: string,
+  correct: boolean,
+  ts: number,
+  over: Partial<LidAnswer> = {},
+): LidAnswer => ({
+  q,
+  chosen: correct ? 'a' : 'b',
+  correct,
+  ts,
+  mode: 'practice',
+  bank: 'test',
+  ...over,
 });
 
 const replay = (state: LidState, ...answers: LidAnswer[]) => answers.reduce(applyLidAnswer, state);
@@ -67,8 +78,12 @@ describe('drawMockExam', () => {
   });
 
   test('the same seed gives the same draw; different seeds differ', () => {
-    expect(drawMockExam(BANK, 'BY', mulberry32(42))).toEqual(drawMockExam(BANK, 'BY', mulberry32(42)));
-    expect(drawMockExam(BANK, 'BY', mulberry32(42))).not.toEqual(drawMockExam(BANK, 'BY', mulberry32(43)));
+    expect(drawMockExam(BANK, 'BY', mulberry32(42))).toEqual(
+      drawMockExam(BANK, 'BY', mulberry32(42)),
+    );
+    expect(drawMockExam(BANK, 'BY', mulberry32(42))).not.toEqual(
+      drawMockExam(BANK, 'BY', mulberry32(43)),
+    );
   });
 
   test('50 seeds never break the counts, and the state questions do not sit in fixed slots', () => {
@@ -87,17 +102,27 @@ describe('drawMockExam', () => {
   });
 
   test('throws rather than draw a short exam', () => {
-    expect(() => drawMockExam({ questions: [...GENERAL.slice(0, 29), ...BAYERN] }, 'BY', mulberry32(1))).toThrow('30 general');
-    expect(() => drawMockExam({ questions: [...GENERAL, ...BAYERN.slice(0, 2)] }, 'BY', mulberry32(1))).toThrow('BY');
+    expect(() =>
+      drawMockExam({ questions: [...GENERAL.slice(0, 29), ...BAYERN] }, 'BY', mulberry32(1)),
+    ).toThrow('30 general');
+    expect(() =>
+      drawMockExam({ questions: [...GENERAL, ...BAYERN.slice(0, 2)] }, 'BY', mulberry32(1)),
+    ).toThrow('BY');
     expect(() => drawMockExam(BANK, 'HH', mulberry32(1))).toThrow('HH');
   });
 });
 
 describe('scoreMock — two different pass marks, never merged', () => {
   const items = drawMockExam(BANK, 'BY', mulberry32(3));
-  const solutions = Object.fromEntries(BANK.questions.map((q) => [q.id, q.solution])) as Record<string, LidOptionKey>;
+  const solutions = Object.fromEntries(BANK.questions.map((q) => [q.id, q.solution])) as Record<
+    string,
+    LidOptionKey
+  >;
   const answering = (right: number) =>
-    Object.fromEntries(items.map((id, at) => [id, at < right ? 'a' : 'c'])) as Record<string, LidOptionKey>;
+    Object.fromEntries(items.map((id, at) => [id, at < right ? 'a' : 'c'])) as Record<
+      string,
+      LidOptionKey
+    >;
 
   test.each([
     [0, false, false],
@@ -120,7 +145,9 @@ describe('scoreMock — two different pass marks, never merged', () => {
     answers[items[0]!] = null;
     delete answers[items[1]!];
     expect(scoreMock(items, answers, solutions)).toEqual({
-      correct: 15, passEinbuergerung: false, passOrientierungskurs: true,
+      correct: 15,
+      passEinbuergerung: false,
+      passOrientierungskurs: true,
     });
   });
 
@@ -172,20 +199,35 @@ describe('applyLidAnswer / applyLidExam', () => {
   test('lidExamAnswers gives one exam-mode answer per item; unanswered is wrong', () => {
     const run = mockRun('run-1', ts, 0);
     run.answers = { [run.items[0]!]: 'a', [run.items[1]!]: 'b', [run.items[2]!]: null };
-    const solutions = Object.fromEntries(BANK.questions.map((q) => [q.id, q.solution])) as Record<string, LidOptionKey>;
+    const solutions = Object.fromEntries(BANK.questions.map((q) => [q.id, q.solution])) as Record<
+      string,
+      LidOptionKey
+    >;
     const answers = lidExamAnswers(run, solutions);
     expect(answers).toHaveLength(33);
-    expect(answers.every((a) => a.mode === 'exam' && a.ts === run.submittedAt && a.bank === run.bank)).toBe(true);
+    expect(
+      answers.every((a) => a.mode === 'exam' && a.ts === run.submittedAt && a.bank === run.bank),
+    ).toBe(true);
     expect(answers.slice(0, 4).map((a) => [a.chosen, a.correct])).toEqual([
-      ['a', true], ['b', false], [null, false], [null, false],
+      ['a', true],
+      ['b', false],
+      [null, false],
+      [null, false],
     ]);
   });
 });
 
 function mockRun(id: string, submittedAt: number, correct: number): LidExamRun {
   return {
-    id, state: 'BY', bank: 'test', startedAt: submittedAt - 30 * 60_000, submittedAt,
-    items: drawMockExam(BANK, 'BY', mulberry32(submittedAt % 1000)), answers: {}, correct, timedOut: false,
+    id,
+    state: 'BY',
+    bank: 'test',
+    startedAt: submittedAt - 30 * 60_000,
+    submittedAt,
+    items: drawMockExam(BANK, 'BY', mulberry32(submittedAt % 1000)),
+    answers: {},
+    correct,
+    timedOut: false,
   };
 }
 
@@ -195,9 +237,17 @@ describe('planLidPractice', () => {
 
   function card(due: number, introducedAt?: string): StoredCard {
     return {
-      due: new Date(due).toISOString(), stability: 1, difficulty: 5, elapsed_days: 0,
-      scheduled_days: 1, learning_steps: 0, reps: 1, lapses: 0, state: 2,
-      last_review: new Date(due - DAY).toISOString(), ...(introducedAt ? { introducedAt } : {}),
+      due: new Date(due).toISOString(),
+      stability: 1,
+      difficulty: 5,
+      elapsed_days: 0,
+      scheduled_days: 1,
+      learning_steps: 0,
+      reps: 1,
+      lapses: 0,
+      state: 2,
+      last_review: new Date(due - DAY).toISOString(),
+      ...(introducedAt ? { introducedAt } : {}),
     };
   }
 
@@ -210,8 +260,12 @@ describe('planLidPractice', () => {
         'general-003': card(now.getTime() + DAY),
       },
     };
-    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10 }))
-      .toEqual(['general-001', 'general-004', 'general-005', 'general-002']);
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10 })).toEqual([
+      'general-001',
+      'general-004',
+      'general-005',
+      'general-002',
+    ]);
   });
 
   test('new questions follow the given teaching order, capped by what today has left', () => {
@@ -219,10 +273,16 @@ describe('planLidPractice', () => {
     const state: LidState = {
       ...EMPTY_LID_STATE,
       // Introduced today and not due yet: they spend the allowance without entering the queue.
-      cards: { 'general-099': card(now.getTime() + DAY, today), 'general-098': card(now.getTime() + DAY, today) },
+      cards: {
+        'general-099': card(now.getTime() + DAY, today),
+        'general-098': card(now.getTime() + DAY, today),
+      },
     };
-    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 5 }))
-      .toEqual(['general-005', 'general-001', 'general-003']);
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 5 })).toEqual([
+      'general-005',
+      'general-001',
+      'general-003',
+    ]);
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual([]);
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 1 })).toEqual([]);
   });
@@ -230,25 +290,47 @@ describe('planLidPractice', () => {
   test('questions first met in a mock exam today do not spend the practice allowance', () => {
     const today = '2026-10-10';
     const examAnswer = (q: string) => ({
-      q, chosen: 'a' as const, correct: false, ts: now.getTime() - 1000, mode: 'exam' as const, bank: 'v',
+      q,
+      chosen: 'a' as const,
+      correct: false,
+      ts: now.getTime() - 1000,
+      mode: 'exam' as const,
+      bank: 'v',
     });
     const state: LidState = {
       ...EMPTY_LID_STATE,
-      cards: { 'general-099': card(now.getTime() + DAY, today), 'general-098': card(now.getTime() + DAY, today) },
+      cards: {
+        'general-099': card(now.getTime() + DAY, today),
+        'general-098': card(now.getTime() + DAY, today),
+      },
       answers: [examAnswer('general-099'), examAnswer('general-098')],
     };
-    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual(['general-005', 'general-001']);
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual([
+      'general-005',
+      'general-001',
+    ]);
   });
 
   test('a card introduced on another day does not spend today', () => {
-    const state: LidState = { ...EMPTY_LID_STATE, cards: { 'general-099': card(now.getTime() + DAY, '2026-10-09') } };
-    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual(['general-005', 'general-001']);
+    const state: LidState = {
+      ...EMPTY_LID_STATE,
+      cards: { 'general-099': card(now.getTime() + DAY, '2026-10-09') },
+    };
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 2 })).toEqual([
+      'general-005',
+      'general-001',
+    ]);
   });
 
   test('limit trims the tail, so new questions are dropped before due ones', () => {
-    const state: LidState = { ...EMPTY_LID_STATE, cards: { 'general-002': card(now.getTime() - DAY) } };
-    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10, limit: 2 }))
-      .toEqual(['general-002', 'general-005']);
+    const state: LidState = {
+      ...EMPTY_LID_STATE,
+      cards: { 'general-002': card(now.getTime() - DAY) },
+    };
+    expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10, limit: 2 })).toEqual([
+      'general-002',
+      'general-005',
+    ]);
     expect(planLidPractice({ questionIds: ids, state, now, newPerDay: 10, limit: 0 })).toEqual([]);
   });
 });
@@ -260,9 +342,17 @@ describe('planLidScopedPractice — a lesson drill deals every question', () => 
 
   function card(due: number, introducedAt?: string): StoredCard {
     return {
-      due: new Date(due).toISOString(), stability: 1, difficulty: 5, elapsed_days: 0,
-      scheduled_days: 1, learning_steps: 0, reps: 1, lapses: 0, state: 2,
-      last_review: new Date(due - DAY).toISOString(), ...(introducedAt ? { introducedAt } : {}),
+      due: new Date(due).toISOString(),
+      stability: 1,
+      difficulty: 5,
+      elapsed_days: 0,
+      scheduled_days: 1,
+      learning_steps: 0,
+      reps: 1,
+      lapses: 0,
+      state: 2,
+      last_review: new Date(due - DAY).toISOString(),
+      ...(introducedAt ? { introducedAt } : {}),
     };
   }
 
@@ -285,9 +375,14 @@ describe('planLidScopedPractice — a lesson drill deals every question', () => 
       },
     };
     expect(planLidScopedPractice({ questionIds: ids, state, now })).toEqual([
-      'general-006', 'general-002',
-      'general-001', 'general-003', 'general-005',
-      'general-007', 'general-008', 'general-004',
+      'general-006',
+      'general-002',
+      'general-001',
+      'general-003',
+      'general-005',
+      'general-007',
+      'general-008',
+      'general-004',
     ]);
   });
 
@@ -307,8 +402,13 @@ describe('planLidScopedPractice — a lesson drill deals every question', () => 
       ...EMPTY_LID_STATE,
       cards: { 'general-003': card(t), 'general-001': card(t), 'general-002': card(t - DAY) },
     };
-    expect(planLidScopedPractice({ questionIds: ['general-003', 'general-001', 'general-003', 'general-002'], state, now }))
-      .toEqual(['general-002', 'general-003', 'general-001']);
+    expect(
+      planLidScopedPractice({
+        questionIds: ['general-003', 'general-001', 'general-003', 'general-002'],
+        state,
+        now,
+      }),
+    ).toEqual(['general-002', 'general-003', 'general-001']);
   });
 
   test('an empty scope is an empty queue', () => {
@@ -339,7 +439,11 @@ describe('lidMistakes', () => {
 
 describe('shouldShuffleOptions', () => {
   test('false when the options name numbered pictures', () => {
-    expect(shouldShuffleOptions(question('general-021', { a: 'Bild 1', b: 'Bild 2', c: 'Bild 3', d: 'Bild 4' }))).toBe(false);
+    expect(
+      shouldShuffleOptions(
+        question('general-021', { a: 'Bild 1', b: 'Bild 2', c: 'Bild 3', d: 'Bild 4' }),
+      ),
+    ).toBe(false);
   });
 
   test('true for text options, including ones that merely mention a picture', () => {
@@ -364,7 +468,8 @@ describe('lidReadiness — facts, no probability', () => {
       answer('general-099', true, t), // outside the scope
       answer('general-099', true, t + DAY),
     );
-    for (let i = 0; i < 12; i++) state = applyLidExam(state, mockRun(`run-${i}`, t + i * DAY, 10 + i));
+    for (let i = 0; i < 12; i++)
+      state = applyLidExam(state, mockRun(`run-${i}`, t + i * DAY, 10 + i));
 
     const readiness = lidReadiness(state, ids, new Date(t + 30 * DAY));
     expect(readiness).toMatchObject({ total: 4, seen: 3, lastTwoCorrect: 1, due: 3, mistakes: 0 });

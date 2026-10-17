@@ -57,7 +57,11 @@ export function Uebersicht(): React.JSX.Element {
       </header>
 
       {laedt ? <Zustand art="laedt" text="Register wird gelesen …" /> : null}
-      {error ? <p className="hinweis hinweis-alarm" role="alert">{fehlerText(error)}</p> : null}
+      {error ? (
+        <p className="hinweis hinweis-alarm" role="alert">
+          {fehlerText(error)}
+        </p>
+      ) : null}
 
       {data ? (
         <>
@@ -82,7 +86,10 @@ export function Uebersicht(): React.JSX.Element {
               randlos
             >
               {data.recordings_without_exercises.length === 0 ? (
-                <Zustand art="leer" text="Jede geplante Aufnahme wird von mindestens einer Aufgabe benutzt." />
+                <Zustand
+                  art="leer"
+                  text="Jede geplante Aufnahme wird von mindestens einer Aufgabe benutzt."
+                />
               ) : (
                 <ul className="platte-leib stapel-eng">
                   {data.recordings_without_exercises.map((id) => (
@@ -101,7 +108,10 @@ export function Uebersicht(): React.JSX.Element {
               randlos
             >
               {data.exercises_without_recordings.length === 0 ? (
-                <Zustand art="leer" text="Jede Hörverstehens-Aufgabe nennt eine geplante Aufnahme." />
+                <Zustand
+                  art="leer"
+                  text="Jede Hörverstehens-Aufgabe nennt eine geplante Aufnahme."
+                />
               ) : (
                 <div className="tabelle-rahmen">
                   <table className="tabelle">
@@ -143,9 +153,16 @@ export function Uebersicht(): React.JSX.Element {
             randlos
           >
             <div className="platte-leib reihe" style={{ paddingBottom: 0 }}>
-              <label className="tafel" style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)', alignItems: 'center' }}>
+              <label
+                className="tafel"
+                style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)', alignItems: 'center' }}
+              >
                 Ebene
-                <select className="wahl" value={ebene} onChange={(event) => setEbene(event.target.value)}>
+                <select
+                  className="wahl"
+                  value={ebene}
+                  onChange={(event) => setEbene(event.target.value)}
+                >
                   <option value={ANY}>alle</option>
                   {levelsOf(alle).map((level) => (
                     <option key={level} value={level}>
@@ -154,9 +171,16 @@ export function Uebersicht(): React.JSX.Element {
                   ))}
                 </select>
               </label>
-              <label className="tafel" style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)', alignItems: 'center' }}>
+              <label
+                className="tafel"
+                style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)', alignItems: 'center' }}
+              >
                 Art
-                <select className="wahl" value={art} onChange={(event) => setArt(event.target.value)}>
+                <select
+                  className="wahl"
+                  value={art}
+                  onChange={(event) => setArt(event.target.value)}
+                >
                   <option value={ANY}>alle</option>
                   <option value="listening">Hörszene</option>
                   <option value="reading">Lesetext</option>
@@ -178,8 +202,12 @@ export function Uebersicht(): React.JSX.Element {
                     <th scope="col">Kennung</th>
                     <th scope="col">Status</th>
                     <th scope="col">Projekt</th>
-                    <th scope="col" className="zahl-rechts">Aufgaben</th>
-                    <th scope="col" className="zahl-rechts">Umfang</th>
+                    <th scope="col" className="zahl-rechts">
+                      Aufgaben
+                    </th>
+                    <th scope="col" className="zahl-rechts">
+                      Umfang
+                    </th>
                     <th scope="col">Stand</th>
                   </tr>
                 </thead>
@@ -209,18 +237,28 @@ function Zeile({ row }: { row: RegistryRow }): React.JSX.Element {
       <td className="leise">{kontext || <span className="leer" />}</td>
       <td>
         <div className="zahl">{row.id}</div>
-        {row.title ? <div className="skript" style={{ fontSize: 'var(--ton-grad-13)' }}>{row.title}</div> : null}
+        {row.title ? (
+          <div className="skript" style={{ fontSize: 'var(--ton-grad-13)' }}>
+            {row.title}
+          </div>
+        ) : null}
         <div className="reihe" style={{ gap: 'var(--ton-mass-1)', marginTop: 'var(--ton-mass-1)' }}>
           <Marke ton={row.kind === 'listening' ? 'messung' : 'ruhig'}>
             {row.kind === 'listening' ? 'Hörszene' : 'Lesetext'}
           </Marke>
           {row.superseded_by_scene ? (
-            <Marke ton="messung" titel="Es gibt sowohl ein altes Dialogprojekt als auch eine Szene mit dieser Kennung; bearbeitet wird die Szene.">
+            <Marke
+              ton="messung"
+              titel="Es gibt sowohl ein altes Dialogprojekt als auch eine Szene mit dieser Kennung; bearbeitet wird die Szene."
+            >
               Szene löst Dialog ab
             </Marke>
           ) : null}
           {row.source_drift ? (
-            <Marke ton="alarm" titel="Das Projekt vertont eine ältere Fassung des Lesetexts, als das Repository jetzt hält.">
+            <Marke
+              ton="alarm"
+              titel="Das Projekt vertont eine ältere Fassung des Lesetexts, als das Repository jetzt hält."
+            >
               Quelle abgewichen
             </Marke>
           ) : null}
@@ -249,7 +287,9 @@ function Zeile({ row }: { row: RegistryRow }): React.JSX.Element {
       <td className="zahl-rechts zahl leise">
         {row.word_count ? `${zahl(row.word_count)} W` : <span className="leer" />}
       </td>
-      <td className="zahl entfernt">{row.project?.updated ? zeitpunkt(row.project.updated) : <span className="leer" />}</td>
+      <td className="zahl entfernt">
+        {row.project?.updated ? zeitpunkt(row.project.updated) : <span className="leer" />}
+      </td>
     </tr>
   );
 }

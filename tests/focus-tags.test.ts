@@ -39,7 +39,10 @@ function documentedTags(): string[] {
 /** Rows shaped `| \`tag\` | \`word\` … | site |` from "Errors that add a word". */
 function documentedInsertions(): Record<string, string> {
   return Object.fromEntries(
-    [...docParts().insertions.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|\s*`([^`]+)`/gm)].map((m) => [m[1]!, m[2]!]),
+    [...docParts().insertions.matchAll(/^\|\s*`([a-z0-9-]+)`\s*\|\s*`([^`]+)`/gm)].map((m) => [
+      m[1]!,
+      m[2]!,
+    ]),
   );
 }
 

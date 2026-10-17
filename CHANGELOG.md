@@ -32,7 +32,7 @@ GitHub Release notes.
 
 ### Changed
 
-- Tooling: TypeScript 7, Astro 7.4, Oxlint 1.88 and current dependency patches.
+- Tooling: TypeScript 7, Astro 7.4, Oxlint 1.88, Oxfmt formatting and current dependency patches.
 
 ## [0.6.19] — 2026-10-14
 

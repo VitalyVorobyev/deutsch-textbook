@@ -5,9 +5,15 @@ import { useUiLang } from '../hooks';
 // Labels live in the chrome strings table (tier.* — singular forms; the plural
 // topics.status* keys are the OverviewTable filter labels).
 const META: Record<Tier, { label: StringKey; cls: string }> = {
-  untouched: { label: 'tier.untouched', cls: 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300' },
+  untouched: {
+    label: 'tier.untouched',
+    cls: 'bg-stone-100 text-stone-500 dark:bg-stone-700 dark:text-stone-300',
+  },
   read: { label: 'tier.read', cls: 'bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-200' },
-  practiced: { label: 'tier.practiced', cls: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200' },
+  practiced: {
+    label: 'tier.practiced',
+    cls: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
+  },
   mastered: {
     label: 'tier.mastered',
     cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200',

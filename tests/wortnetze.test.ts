@@ -8,7 +8,12 @@ function text() {
 }
 
 function example() {
-  return { de: 'Ich benutze das.', en: 'I use it.', ru: 'Я это использую.', uk: 'Я це використовую.' };
+  return {
+    de: 'Ich benutze das.',
+    en: 'I use it.',
+    ru: 'Я это использую.',
+    uk: 'Я це використовую.',
+  };
 }
 
 type MutableTestNetwork = {
@@ -45,13 +50,15 @@ function network(over: Record<string, unknown> = {}): unknown {
         example: { ...example(), de: 'Ich verwende das.' },
       },
     ],
-    relations: [{
-      from: 'benutzen',
-      to: 'verwenden',
-      type: 'meaning-contrast',
-      basis: 'current-meaning',
-      explanation: text(),
-    }],
+    relations: [
+      {
+        from: 'benutzen',
+        to: 'verwenden',
+        type: 'meaning-contrast',
+        basis: 'current-meaning',
+        explanation: text(),
+      },
+    ],
     ...over,
   };
 }
@@ -68,8 +75,12 @@ describe('wortnetz schema', () => {
     const result = wortnetzSchema.safeParse(value);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues.map((issue) => issue.message)).toContain('duplicate member id "benutzen"');
-      expect(result.error.issues.map((issue) => issue.message)).toContain('unknown member "missing"');
+      expect(result.error.issues.map((issue) => issue.message)).toContain(
+        'duplicate member id "benutzen"',
+      );
+      expect(result.error.issues.map((issue) => issue.message)).toContain(
+        'unknown member "missing"',
+      );
     }
   });
 
@@ -85,8 +96,9 @@ describe('wortnetz schema', () => {
     const result = wortnetzSchema.safeParse(value);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues.map((issue) => issue.message))
-        .toContain('historical relations require an authoring source note');
+      expect(result.error.issues.map((issue) => issue.message)).toContain(
+        'historical relations require an authoring source note',
+      );
     }
   });
 });
@@ -98,9 +110,9 @@ describe('wortnetz catalog integration', () => {
     expect(wortnetzCardRefProblems(parsed, new Map())).toEqual([
       'card member "benutzen" references unknown deck "handlungen"',
     ]);
-    expect(wortnetzCardRefProblems(parsed, new Map([['handlungen', new Set(['machen'])]]))).toEqual([
-      'card member "benutzen" references missing headword "benutzen" in deck "handlungen"',
-    ]);
+    expect(wortnetzCardRefProblems(parsed, new Map([['handlungen', new Set(['machen'])]]))).toEqual(
+      ['card member "benutzen" references missing headword "benutzen" in deck "handlungen"'],
+    );
   });
 
   test('adds context only to existing card refs', () => {

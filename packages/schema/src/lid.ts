@@ -49,7 +49,10 @@ export const lidQuestionSchema = z
     /** The catalogue's own number: 1–300 for general questions, 1–10 within a state. */
     officialNumber: z.number().int().positive(),
     scope: z.enum(['general', 'state']),
-    stateCode: z.string().regex(/^[A-Z]{2}$/).nullable(),
+    stateCode: z
+      .string()
+      .regex(/^[A-Z]{2}$/)
+      .nullable(),
     /** BAMF's internal id, recorded so a re-import can tell a renumbered question from a new one. */
     bamfInternalId: z.string().min(1),
     sourcePage: z.number().int().positive(),
@@ -63,11 +66,15 @@ export const lidQuestionSchema = z
   .superRefine((q, ctx) => {
     const general = q.scope === 'general';
     if (general !== (q.stateCode === null))
-      ctx.addIssue({ code: 'custom', message: 'a general question has no stateCode; a state question has one' });
+      ctx.addIssue({
+        code: 'custom',
+        message: 'a general question has no stateCode; a state question has one',
+      });
     const expected = general
       ? `general-${String(q.officialNumber).padStart(3, '0')}`
       : `${q.stateCode}-${String(q.officialNumber).padStart(2, '0')}`;
-    if (q.id !== expected) ctx.addIssue({ code: 'custom', message: `id ${q.id} should be ${expected}` });
+    if (q.id !== expected)
+      ctx.addIssue({ code: 'custom', message: `id ${q.id} should be ${expected}` });
   });
 export type LidQuestion = z.infer<typeof lidQuestionSchema>;
 
@@ -112,7 +119,9 @@ export const lidTopicsSchema = z
             title_de: z.string().min(1),
             topics: z
               .array(
-                z.object({ id: z.string().regex(/^[a-z0-9-]+$/), title_de: z.string().min(1) }).strict(),
+                z
+                  .object({ id: z.string().regex(/^[a-z0-9-]+$/), title_de: z.string().min(1) })
+                  .strict(),
               )
               .min(1),
           })
@@ -128,7 +137,9 @@ export type LidTopics = z.infer<typeof lidTopicsSchema>;
  * every Ukrainian half it is all-or-none per file (`lidProblems` → `ukParityProblems`), and
  * `tests/i18n-content.test.ts` holds every notes file to carrying it.
  */
-const enRuUk = z.object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() }).strict();
+const enRuUk = z
+  .object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+  .strict();
 
 export const lidNoteSchema = z
   .object({
@@ -142,7 +153,12 @@ export const lidNoteSchema = z
     terms: z
       .array(
         z
-          .object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+          .object({
+            de: z.string().min(1),
+            en: z.string().min(1),
+            ru: z.string().min(1),
+            uk: z.string().min(1).optional(),
+          })
           .strict(),
       )
       .optional(),
@@ -153,7 +169,10 @@ export const lidNoteSchema = z
   .strict()
   .superRefine((n, ctx) => {
     if (!!n.question !== !!n.options)
-      ctx.addIssue({ code: 'custom', message: 'a translation covers the question and all four options, or neither' });
+      ctx.addIssue({
+        code: 'custom',
+        message: 'a translation covers the question and all four options, or neither',
+      });
     if (n.status === 'reviewed' && !n.rationale_de)
       ctx.addIssue({ code: 'custom', message: 'a reviewed note has a rationale' });
   });
@@ -172,7 +191,12 @@ export const LID_LESSON_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
  * `## Kurz gesagt`); the page renders a Ukrainian column only when the lesson carries one.
  */
 export const lidLessonTermSchema = z
-  .object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+  .object({
+    de: z.string().min(1),
+    en: z.string().min(1),
+    ru: z.string().min(1),
+    uk: z.string().min(1).optional(),
+  })
   .strict();
 export type LidLessonTerm = z.infer<typeof lidLessonTermSchema>;
 
@@ -210,7 +234,14 @@ export const lidFigureSchema = z
     width: z.number().int().positive(),
     height: z.number().int().positive(),
     alt_de: z.string().min(1),
-    caption: z.object({ de: z.string().min(1), en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1) }).strict(),
+    caption: z
+      .object({
+        de: z.string().min(1),
+        en: z.string().min(1),
+        ru: z.string().min(1),
+        uk: z.string().min(1),
+      })
+      .strict(),
     sourceClass: z.enum(['official', 'real', 'adapted', 'simulated']),
     attribution: z.string().min(1).optional(),
     license: z.string().min(1).optional(),
@@ -222,18 +253,32 @@ export const lidFigureSchema = z
   .superRefine((figure, ctx) => {
     if (figure.sourceClass === 'official') {
       if (!LID_BANK_IMAGE_PATH.test(figure.src))
-        ctx.addIssue({ code: 'custom', path: ['src'], message: 'an official figure is a bank picture at /lid/<file>.png|jpeg' });
+        ctx.addIssue({
+          code: 'custom',
+          path: ['src'],
+          message: 'an official figure is a bank picture at /lid/<file>.png|jpeg',
+        });
       const credit = LID_FIGURE_CREDIT.filter((key) => figure[key] !== undefined);
       if (credit.length)
-        ctx.addIssue({ code: 'custom', message: `an official figure is credited as the catalogue — drop ${credit.join(', ')}` });
+        ctx.addIssue({
+          code: 'custom',
+          message: `an official figure is credited as the catalogue — drop ${credit.join(', ')}`,
+        });
       return;
     }
     if (!figure.src.startsWith(LID_FIGURE_DIR))
-      ctx.addIssue({ code: 'custom', path: ['src'], message: `a course figure lives under ${LID_FIGURE_DIR}` });
+      ctx.addIssue({
+        code: 'custom',
+        path: ['src'],
+        message: `a course figure lives under ${LID_FIGURE_DIR}`,
+      });
     if (figure.sourceClass === 'real' || figure.sourceClass === 'adapted') {
       const missing = LID_FIGURE_CREDIT.filter((key) => !figure[key]);
       if (missing.length)
-        ctx.addIssue({ code: 'custom', message: `real/adapted figures require attribution, license, license_url and source_url — missing ${missing.join(', ')}` });
+        ctx.addIssue({
+          code: 'custom',
+          message: `real/adapted figures require attribution, license, license_url and source_url — missing ${missing.join(', ')}`,
+        });
     }
   });
 export type LidFigure = z.infer<typeof lidFigureSchema>;
@@ -256,7 +301,9 @@ export const lidLessonSchema = z
     summary_de: z.string().min(1),
     /** A draft ships, marked „Entwurf“ — the trainer's notes follow the same rule. */
     status: z.enum(['draft', 'reviewed']).default('draft'),
-    sources: z.array(z.object({ title: z.string().min(1), url: z.url().startsWith('https://') }).strict()).min(1),
+    sources: z
+      .array(z.object({ title: z.string().min(1), url: z.url().startsWith('https://') }).strict())
+      .min(1),
     terms: z.array(lidLessonTermSchema).min(1),
     /** Pictures the body shows with `<Figure>`; every one is used (`lidProblems`). */
     figures: z.array(lidFigureSchema).default([]),
@@ -265,17 +312,32 @@ export const lidLessonSchema = z
   .superRefine((lesson, ctx) => {
     const figures = new Set<string>();
     for (const figure of lesson.figures) {
-      if (figures.has(figure.id)) ctx.addIssue({ code: 'custom', path: ['figures'], message: `figure "${figure.id}" is listed twice` });
+      if (figures.has(figure.id))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['figures'],
+          message: `figure "${figure.id}" is listed twice`,
+        });
       figures.add(figure.id);
     }
     const seen = new Set<string>();
     for (const topic of lesson.topics) {
-      if (seen.has(topic)) ctx.addIssue({ code: 'custom', path: ['topics'], message: `topic "${topic}" is listed twice` });
+      if (seen.has(topic))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['topics'],
+          message: `topic "${topic}" is listed twice`,
+        });
       seen.add(topic);
     }
     const terms = new Set<string>();
     for (const term of lesson.terms) {
-      if (terms.has(term.de)) ctx.addIssue({ code: 'custom', path: ['terms'], message: `term "${term.de}" is listed twice` });
+      if (terms.has(term.de))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['terms'],
+          message: `term "${term.de}" is listed twice`,
+        });
       terms.add(term.de);
     }
   });

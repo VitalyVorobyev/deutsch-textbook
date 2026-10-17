@@ -82,9 +82,7 @@ export function MischungModus({
   // than only in a table underneath.
   const urteile = useMemo(
     () =>
-      new Map(
-        (qa?.transcripts?.lines ?? []).map((line) => [line.line_id, line.passed] as const),
-      ),
+      new Map((qa?.transcripts?.lines ?? []).map((line) => [line.line_id, line.passed] as const)),
     [qa],
   );
 
@@ -98,7 +96,10 @@ export function MischungModus({
         erklaerung="Ein Renderstand gilt für genau diese Szenen-Bytes. Nach einer Revision steht hier überall wieder „nicht gerendert“ — das alte Audio gehört zu einem anderen Text."
       >
         {renders.length === 0 ? (
-          <Zustand art="leer" text="Diese Szene erklärt keine Variante, also gibt es nichts zu rendern." />
+          <Zustand
+            art="leer"
+            text="Diese Szene erklärt keine Variante, also gibt es nichts zu rendern."
+          />
         ) : (
           <div className="variantenwahl" role="group" aria-label="Variante">
             {renders.map((row) => (
@@ -321,9 +322,7 @@ function Spuren({
     reihenfolge.map((rolle) => ({
       name: rolle,
       art: 'speech' as const,
-      spans: spans.filter(
-        (span) => span.type === 'speech' && rollen.get(span.entry_id) === rolle,
-      ),
+      spans: spans.filter((span) => span.type === 'speech' && rollen.get(span.entry_id) === rolle),
     }));
   const betten = spans.filter((span) => span.type === 'ambience');
   const ereignisse = spans.filter((span) => span.type === 'sfx');
@@ -345,42 +344,36 @@ function Spuren({
         aria-label={`Gerenderte Zeitleiste, ${spuren.length} Spuren, Länge ${dauer(gesamt)}`}
       >
         {/* The scale plate: engraved ticks with their seconds printed, the way a meter is ruled. */}
-        {Array.from({ length: Math.floor(gesamt / schritt) + 1 }, (_, index) => index * schritt).map(
-          (ms) => (
-            <g key={ms}>
-              <line
-                x1={x(ms)}
-                x2={x(ms)}
-                y1={KOPF - 6}
-                y2={hoehe - 4}
-                stroke="var(--ton-kante)"
-                strokeWidth={1}
-              />
-              <text
-                x={x(ms) + 3}
-                y={KOPF - 10}
-                className="spur-skala"
-                fill="var(--ton-schrift-weg)"
-                fontSize={10}
-              >
-                {sekunden(ms)}
-              </text>
-            </g>
-          ),
-        )}
+        {Array.from(
+          { length: Math.floor(gesamt / schritt) + 1 },
+          (_, index) => index * schritt,
+        ).map((ms) => (
+          <g key={ms}>
+            <line
+              x1={x(ms)}
+              x2={x(ms)}
+              y1={KOPF - 6}
+              y2={hoehe - 4}
+              stroke="var(--ton-kante)"
+              strokeWidth={1}
+            />
+            <text
+              x={x(ms) + 3}
+              y={KOPF - 10}
+              className="spur-skala"
+              fill="var(--ton-schrift-weg)"
+              fontSize={10}
+            >
+              {sekunden(ms)}
+            </text>
+          </g>
+        ))}
 
         {spuren.map((spur, index) => {
           const y = KOPF + index * SPUR_HOEHE;
           return (
             <g key={`${spur.art}-${spur.name}`}>
-              <line
-                x1={0}
-                x2={BREITE}
-                y1={y}
-                y2={y}
-                stroke="var(--ton-kante)"
-                strokeWidth={1}
-              />
+              <line x1={0} x2={BREITE} y1={y} y2={y} stroke="var(--ton-kante)" strokeWidth={1} />
               <text
                 x={0}
                 y={y + 16}
@@ -491,7 +484,11 @@ function Bericht({ qa }: { qa: QaReport | null }): React.JSX.Element {
                   </td>
                   <td className="zahl-rechts zahl">{prozent(line.wer)}</td>
                   <td>
-                    {line.passed ? <Marke ton="messung">ok</Marke> : <Marke ton="alarm">Abweichung</Marke>}
+                    {line.passed ? (
+                      <Marke ton="messung">ok</Marke>
+                    ) : (
+                      <Marke ton="alarm">Abweichung</Marke>
+                    )}
                     {(line.missing_protected ?? []).length > 0 ? (
                       <div className="zeile-neben">
                         fehlt: {(line.missing_protected ?? []).join(', ')}
@@ -563,7 +560,9 @@ function Stuecke({
               {stuecke.map((stueck) => (
                 <tr key={stueck.path}>
                   <td>
-                    <Marke ton={stueck.kind === 'master' ? 'messung' : 'ruhig'}>{stueck.kind}</Marke>
+                    <Marke ton={stueck.kind === 'master' ? 'messung' : 'ruhig'}>
+                      {stueck.kind}
+                    </Marke>
                   </td>
                   <td className="zahl leise">{stueck.path}</td>
                   <td className="zahl entfernt" title={stueck.sha256}>

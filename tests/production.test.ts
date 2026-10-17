@@ -43,7 +43,9 @@ describe('grading a typed German sentence', () => {
   };
 
   test('an exact answer is correct', () => {
-    expect(gradeTranslation('Gestern sind wir zu Hause geblieben.', habenSein).kind).toBe('correct');
+    expect(gradeTranslation('Gestern sind wir zu Hause geblieben.', habenSein).kind).toBe(
+      'correct',
+    );
   });
 
   test('trailing punctuation stays optional', () => {
@@ -51,7 +53,10 @@ describe('grading a typed German sentence', () => {
   });
 
   test('an accepted variant is correct', () => {
-    const spec = { answer: 'Gestern haben wir eine Pizza gegessen.', accept: ['Wir haben gestern eine Pizza gegessen.'] };
+    const spec = {
+      answer: 'Gestern haben wir eine Pizza gegessen.',
+      accept: ['Wir haben gestern eine Pizza gegessen.'],
+    };
     expect(gradeTranslation('Wir haben gestern eine Pizza gegessen.', spec).kind).toBe('correct');
   });
 });
@@ -86,13 +91,17 @@ describe('rule 1 — a slipped token is a spelling note, not a grammar error', (
       keyTokens: ['spreche', 'Russisch', 'Deutsch'],
     };
 
-    expect(gradeTranslation('Ich spreche Rusisch und ein bisschen Deutsch.', introduction)).toEqual({
-      kind: 'wrong',
-    });
-    expect(gradeTranslation('Ich spreche Russisch und ein bischen Deutsch.', introduction)).toEqual({
-      kind: 'spelling',
-      correction: { given: 'bischen', expected: 'bisschen' },
-    });
+    expect(gradeTranslation('Ich spreche Rusisch und ein bisschen Deutsch.', introduction)).toEqual(
+      {
+        kind: 'wrong',
+      },
+    );
+    expect(gradeTranslation('Ich spreche Russisch und ein bischen Deutsch.', introduction)).toEqual(
+      {
+        kind: 'spelling',
+        correction: { given: 'bischen', expected: 'bisschen' },
+      },
+    );
   });
 
   test('an unpinned placement item forgives a misspelled infinitive', () => {
@@ -137,9 +146,10 @@ describe('rule 1 — a slipped token is a spelling note, not a grammar error', (
       // The bracket is perfect; only the adverb is wrong, and it is no typo of `gut`.
       const unrelated = 'Ich kann besonders schwimmen.';
       expect(gradeTranslation(unrelated, shipped)).toEqual({ kind: 'wrong' });
-      expect(
-        gradeTranslation(unrelated, { ...shipped, keyTokens: undefined }),
-      ).toEqual({ kind: 'wrong', focus: 'modal-satzklammer' });
+      expect(gradeTranslation(unrelated, { ...shipped, keyTokens: undefined })).toEqual({
+        kind: 'wrong',
+        focus: 'modal-satzklammer',
+      });
     });
 
     test('and the pins are what let the collapse be attributed at all', () => {
@@ -401,7 +411,9 @@ describe('a displaced graded token is a word-order error, not an absent one', ()
   };
 
   test('the canonical verb-final error is blamed on the rule it breaks', () => {
-    expect(gradeTranslation('Ich komme nicht mit, weil ich am Samstag muss arbeiten.', weilClause)).toEqual({
+    expect(
+      gradeTranslation('Ich komme nicht mit, weil ich am Samstag muss arbeiten.', weilClause),
+    ).toEqual({
       kind: 'wrong',
       focus: 'nebensatz-verbende',
     });
@@ -410,7 +422,9 @@ describe('a displaced graded token is a word-order error, not an absent one', ()
   test('an error that leaves the graded verb in place is not blamed on word order', () => {
     // `Sonntag` for `Samstag` is a lexical slip two edits away. The verb is exactly where it
     // belongs, so nothing about the verb-final rule was got wrong, and the tag must stay off.
-    expect(gradeTranslation('Ich komme nicht mit, weil ich am Sonntag arbeiten muss.', weilClause)).toEqual({
+    expect(
+      gradeTranslation('Ich komme nicht mit, weil ich am Sonntag arbeiten muss.', weilClause),
+    ).toEqual({
       kind: 'wrong',
     });
   });

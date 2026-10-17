@@ -33,7 +33,9 @@ for (const level of levels) {
 
   if (!coverage.anchored) {
     console.log(`\n## ${level} Sprachhandlungen — no external anchor`);
-    console.log('   No file in data/handlungslisten/ covers this level, so nothing here can be measured.');
+    console.log(
+      '   No file in data/handlungslisten/ covers this level, so nothing here can be measured.',
+    );
     continue;
   }
 

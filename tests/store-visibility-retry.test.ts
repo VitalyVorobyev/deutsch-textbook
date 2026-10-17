@@ -218,9 +218,8 @@ describe('the store path, decomposed (CI-safe)', () => {
       JSON.stringify([{ id: 'decomposed-test', label: 'Decomposed' }]),
     );
     localStorage.setItem('da:profile', 'decomposed-test');
-    const { __resetProfileStateCacheForTests, resolveProfileState, dbNameFor } = await import(
-      '../src/lib/profile'
-    );
+    const { __resetProfileStateCacheForTests, resolveProfileState, dbNameFor } =
+      await import('../src/lib/profile');
     __resetProfileStateCacheForTests();
     expect(await resolveProfileState()).toBe('ready');
 
@@ -233,7 +232,6 @@ describe('the store path, decomposed (CI-safe)', () => {
     );
     expect(await withVisibilityRetry(async () => get('cards', s))).toEqual({ c1: 'v1' });
   });
-
 });
 
 describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
@@ -261,9 +259,8 @@ describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-
         JSON.stringify([{ id: 'retry-wrapper-test', label: 'Retry Wrapper Test' }]),
       );
       localStorage.setItem('da:profile', 'retry-wrapper-test');
-      const { __resetProfileStateCacheForTests, resolveProfileState } = await import(
-        '../src/lib/profile'
-      );
+      const { __resetProfileStateCacheForTests, resolveProfileState } =
+        await import('../src/lib/profile');
       __resetProfileStateCacheForTests();
       // If this ever reports 'first-run', the park would otherwise show up as
       // an opaque 5s timeout — fail here with the real reason instead.

@@ -87,15 +87,21 @@ export default function OwnerUsers({ lang, selfId }: { lang: ExplainLang; selfId
                 <td className="py-2 pr-2">
                   <span className="block truncate font-medium">{user.email}</span>
                   {user.displayName && (
-                    <span className="block truncate text-xs text-stone-400">{user.displayName}</span>
+                    <span className="block truncate text-xs text-stone-400">
+                      {user.displayName}
+                    </span>
                   )}
                 </td>
                 <td className="py-2 pr-2 whitespace-nowrap">
-                  <span className={`rounded px-1.5 py-0.5 text-xs font-semibold ${STATUS_CLASS[user.status]}`}>
+                  <span
+                    className={`rounded px-1.5 py-0.5 text-xs font-semibold ${STATUS_CLASS[user.status]}`}
+                  >
                     {t(STATUS_KEY[user.status], uiLang)}
                   </span>
                   {user.role === 'owner' && (
-                    <span className="ml-1 text-xs text-stone-400">{t('account.owner', uiLang)}</span>
+                    <span className="ml-1 text-xs text-stone-400">
+                      {t('account.owner', uiLang)}
+                    </span>
                   )}
                 </td>
                 <td className="py-2 text-right whitespace-nowrap">

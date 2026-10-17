@@ -39,7 +39,10 @@ export async function findUserById(db: D1Database, id: string): Promise<UserRow 
 }
 
 export async function findUserByEmail(db: D1Database, email: string): Promise<UserRow | null> {
-  return db.prepare('SELECT * FROM users WHERE email = ?').bind(normalizeEmail(email)).first<UserRow>();
+  return db
+    .prepare('SELECT * FROM users WHERE email = ?')
+    .bind(normalizeEmail(email))
+    .first<UserRow>();
 }
 
 export async function findUserByIdentity(
@@ -204,11 +207,7 @@ export async function findSession(
   return { user, expiresAt };
 }
 
-export async function touchSession(
-  db: D1Database,
-  token: string,
-  now: number,
-): Promise<void> {
+export async function touchSession(db: D1Database, token: string, now: number): Promise<void> {
   await db
     .prepare('UPDATE sessions SET expires_at = ? WHERE id = ?')
     .bind(now + SESSION_TTL_MS, await sha256Hex(token))
@@ -216,7 +215,10 @@ export async function touchSession(
 }
 
 export async function deleteSession(db: D1Database, token: string): Promise<void> {
-  await db.prepare('DELETE FROM sessions WHERE id = ?').bind(await sha256Hex(token)).run();
+  await db
+    .prepare('DELETE FROM sessions WHERE id = ?')
+    .bind(await sha256Hex(token))
+    .run();
 }
 
 /**
@@ -242,17 +244,19 @@ export async function createDeviceToken(
     .run();
 }
 
-export async function findDeviceTokenUser(
-  db: D1Database,
-  token: string,
-): Promise<UserRow | null> {
+export async function findDeviceTokenUser(db: D1Database, token: string): Promise<UserRow | null> {
   const id = await sha256Hex(token);
   const user = await db
-    .prepare('SELECT users.* FROM users JOIN device_tokens ON device_tokens.user_id = users.id WHERE device_tokens.id = ?')
+    .prepare(
+      'SELECT users.* FROM users JOIN device_tokens ON device_tokens.user_id = users.id WHERE device_tokens.id = ?',
+    )
     .bind(id)
     .first<UserRow>();
   if (user) {
-    await db.prepare('UPDATE device_tokens SET last_used_at = ? WHERE id = ?').bind(Date.now(), id).run();
+    await db
+      .prepare('UPDATE device_tokens SET last_used_at = ? WHERE id = ?')
+      .bind(Date.now(), id)
+      .run();
   }
   return user;
 }
@@ -271,7 +275,11 @@ export async function listDeviceTokens(db: D1Database, userId: string): Promise<
  * enough to reconstruct the token. Scoped to the owner of the row, so a ref
  * guessed from another account matches nothing.
  */
-export async function deleteDeviceToken(db: D1Database, userId: string, ref: string): Promise<number> {
+export async function deleteDeviceToken(
+  db: D1Database,
+  userId: string,
+  ref: string,
+): Promise<number> {
   const result = await db
     .prepare('DELETE FROM device_tokens WHERE user_id = ? AND substr(id, 1, 12) = ?')
     .bind(userId, ref)

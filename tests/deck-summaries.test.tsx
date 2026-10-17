@@ -40,14 +40,23 @@ const DECKS: DeckWords[] = [
 
 /** The static deck cards as wortschatz.astro renders them, before the island mounts. */
 function staticSlots() {
-  document.body.innerHTML = DECKS.map((d) => `<a><p>${d.id}</p><div data-deck-summary="${d.id}"></div></a>`).join('');
+  document.body.innerHTML = DECKS.map(
+    (d) => `<a><p>${d.id}</p><div data-deck-summary="${d.id}"></div></a>`,
+  ).join('');
 }
 const slot = (id: string) => document.querySelector<HTMLElement>(`[data-deck-summary="${id}"]`)!;
 const bar = (id: string) => slot(id).querySelector('[role="img"]')?.getAttribute('aria-label');
 
 const learning = (): store.StoredCard => ({
-  due: '2099-01-01T00:00:00.000Z', stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 1,
-  learning_steps: 0, reps: 1, lapses: 0, state: State.Learning,
+  due: '2099-01-01T00:00:00.000Z',
+  stability: 1,
+  difficulty: 5,
+  elapsed_days: 0,
+  scheduled_days: 1,
+  learning_steps: 0,
+  reps: 1,
+  lapses: 0,
+  state: State.Learning,
 });
 
 beforeEach(() => {
@@ -66,14 +75,18 @@ afterEach(() => {
 describe('DeckMasterySummaries', () => {
   test("each slot gets its own deck's bar, read through the rebuilt card ids", async () => {
     getCardStates.mockImplementation(() => Promise.resolve({ 'essen::Käse::x-de': learning() }));
-    render(<DeckMasterySummaries decks={DECKS} />, { container: document.body.appendChild(document.createElement('div')) });
+    render(<DeckMasterySummaries decks={DECKS} />, {
+      container: document.body.appendChild(document.createElement('div')),
+    });
     await waitFor(() => expect(bar('essen')).toBeTruthy());
     expect(bar('essen')).toBe('New 1, Learning 1, Established 0, Strong 0');
     expect(bar('reste')).toBe('New 1, Learning 0, Established 0, Strong 0');
   });
 
   test('while the read is in flight every slot shows a placeholder, never a bar', () => {
-    render(<DeckMasterySummaries decks={DECKS} />, { container: document.body.appendChild(document.createElement('div')) });
+    render(<DeckMasterySummaries decks={DECKS} />, {
+      container: document.body.appendChild(document.createElement('div')),
+    });
     for (const id of ['essen', 'reste']) {
       expect(bar(id)).toBeUndefined();
       expect(slot(id).querySelector('.h-2')).toBeTruthy();
@@ -82,7 +95,9 @@ describe('DeckMasterySummaries', () => {
 
   test('a failed read renders one error above the list and leaves the slots empty', async () => {
     getCardStates.mockImplementation(() => Promise.reject(new Error('NotFoundError')));
-    render(<DeckMasterySummaries decks={DECKS} />, { container: document.body.appendChild(document.createElement('div')) });
+    render(<DeckMasterySummaries decks={DECKS} />, {
+      container: document.body.appendChild(document.createElement('div')),
+    });
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(1));
     expect(slot('essen').childElementCount).toBe(0);
     expect(slot('reste').childElementCount).toBe(0);

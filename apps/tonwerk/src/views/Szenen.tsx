@@ -24,7 +24,9 @@ export function Szenen(): React.JSX.Element {
 
   const zeilen = useMemo(
     () =>
-      [...(data ?? [])].sort((a, b) => String(b.updated ?? '').localeCompare(String(a.updated ?? ''))),
+      [...(data ?? [])].sort((a, b) =>
+        String(b.updated ?? '').localeCompare(String(a.updated ?? '')),
+      ),
     [data],
   );
 
@@ -40,7 +42,11 @@ export function Szenen(): React.JSX.Element {
       </header>
 
       {laedt ? <Zustand art="laedt" text="Szenen werden gelesen …" /> : null}
-      {error ? <p className="hinweis hinweis-alarm" role="alert">{fehlerText(error)}</p> : null}
+      {error ? (
+        <p className="hinweis hinweis-alarm" role="alert">
+          {fehlerText(error)}
+        </p>
+      ) : null}
 
       {data ? (
         <Platte titel="Szenenprojekte" zaehler={`${zahl(zeilen.length)}`} randlos>
@@ -55,7 +61,9 @@ export function Szenen(): React.JSX.Element {
                     <th scope="col">Art</th>
                     <th scope="col">Ebene</th>
                     <th scope="col">Stufe</th>
-                    <th scope="col" className="zahl-rechts">Revision</th>
+                    <th scope="col" className="zahl-rechts">
+                      Revision
+                    </th>
                     <th scope="col">Szenen-Sha</th>
                     <th scope="col">Aufgabe</th>
                     <th scope="col">Zuletzt bearbeitet</th>
@@ -65,7 +73,11 @@ export function Szenen(): React.JSX.Element {
                   {zeilen.map((row) => (
                     <tr key={row.project_id}>
                       <td>
-                        <a className="zahl" href={href('szene', row.slug)} style={{ color: 'var(--ton-messung)' }}>
+                        <a
+                          className="zahl"
+                          href={href('szene', row.slug)}
+                          style={{ color: 'var(--ton-messung)' }}
+                        >
                           {row.slug}
                         </a>
                         <div className="skript" style={{ fontSize: 'var(--ton-grad-13)' }}>
@@ -74,7 +86,11 @@ export function Szenen(): React.JSX.Element {
                       </td>
                       <td>
                         <Marke ton={row.kind === 'narration' ? 'ruhig' : 'messung'}>
-                          {row.kind === 'narration' ? 'Narration' : row.kind === 'dialogue' ? 'Dialog' : row.kind}
+                          {row.kind === 'narration'
+                            ? 'Narration'
+                            : row.kind === 'dialogue'
+                              ? 'Dialog'
+                              : row.kind}
                         </Marke>
                       </td>
                       <td className="zahl">{row.level ?? <span className="leer" />}</td>
@@ -85,7 +101,10 @@ export function Szenen(): React.JSX.Element {
                       </td>
                       <td>
                         {row.has_exercise ? (
-                          <Marke ton="signal" titel="An dieser Szene hängt eine Hörverstehens-Aufgabe.">
+                          <Marke
+                            ton="signal"
+                            titel="An dieser Szene hängt eine Hörverstehens-Aufgabe."
+                          >
                             vorhanden
                           </Marke>
                         ) : (

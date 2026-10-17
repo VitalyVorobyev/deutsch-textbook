@@ -145,7 +145,10 @@ describe('the write queue', () => {
     ) => {
       started.push(key);
       apply(undefined);
-      if (started.length === 1) await new Promise<void>((r) => { releaseFirst = r; });
+      if (started.length === 1)
+        await new Promise<void>((r) => {
+          releaseFirst = r;
+        });
     }) as never);
     try {
       const first = store.updateCardState('a', () => card(1));
@@ -211,5 +214,4 @@ describe('the write queue', () => {
       restore();
     }
   });
-
 });

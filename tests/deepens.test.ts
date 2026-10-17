@@ -20,20 +20,42 @@ const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_780_000_000_000;
 
 const item = (id: string, focus?: string): ExerciseItem =>
-  ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0, focus }) as ExerciseItem;
+  ({
+    id,
+    type: 'mc',
+    outcomes: [],
+    preview: false,
+    prompt: '?',
+    options: ['a', 'b'],
+    correct: 0,
+    focus,
+  }) as ExerciseItem;
 
-const attempt = (setId: string, itemId: string, correct: boolean, ts: number, focus?: string): Attempt =>
-  ({ setId, itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
+const attempt = (
+  setId: string,
+  itemId: string,
+  correct: boolean,
+  ts: number,
+  focus?: string,
+): Attempt => ({ setId, itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
 
 describe('deepening topics resurface their base through the focus tag', () => {
   // The A2 topic deepens the A1 one: both drill `wechsel-akk-dat`, and the base also owns
   // items about a confusion the deepening topic never touches.
   const deep: TrainingSet = {
-    setId: 'a2/deep', topicId: 'deep', title_de: 'Deep', level: 'A2', role: 'practice',
+    setId: 'a2/deep',
+    topicId: 'deep',
+    title_de: 'Deep',
+    level: 'A2',
+    role: 'practice',
     items: ['d1', 'd2', 'd3', 'd4'].map((id) => item(id, 'wechsel-akk-dat')),
   };
   const base: TrainingSet = {
-    setId: 'a1/base', topicId: 'base', title_de: 'Base', level: 'A1', role: 'practice',
+    setId: 'a1/base',
+    topicId: 'base',
+    title_de: 'Base',
+    level: 'A1',
+    role: 'practice',
     items: [
       item('shared1', 'wechsel-akk-dat'),
       item('shared2', 'wechsel-akk-dat'),
@@ -47,7 +69,9 @@ describe('deepening topics resurface their base through the focus tag', () => {
     ...['u1', 'u2', 'u3', 'u4', 'u5', 'u6'].map((id, k) =>
       attempt('a1/base', id, true, NOW - (30 - k) * DAY, 'du-sie'),
     ),
-    ...['shared1', 'shared2'].map((id) => attempt('a1/base', id, true, NOW - 2 * DAY, 'wechsel-akk-dat')),
+    ...['shared1', 'shared2'].map((id) =>
+      attempt('a1/base', id, true, NOW - 2 * DAY, 'wechsel-akk-dat'),
+    ),
   ];
   const errsInDeep: Attempt[] = ['d1', 'd2', 'd3', 'd4'].map((id, k) =>
     attempt('a2/deep', id, false, NOW - (4 - k) * 3600_000, 'wechsel-akk-dat'),
@@ -63,7 +87,9 @@ describe('deepening topics resurface their base through the focus tag', () => {
 
   test('an error in the deepening topic resurfaces the applicable base items', () => {
     const queue = buildSession([deep, base], 8, [...history, ...errsInDeep]);
-    const fromBase = queue.filter((entry) => entry.setId === 'a1/base').map((entry) => entry.item.id);
+    const fromBase = queue
+      .filter((entry) => entry.setId === 'a1/base')
+      .map((entry) => entry.item.id);
 
     // Both base items on the weak confusion come back, though the learner had answered
     // them correctly — a passed drill is exactly what a resurfaced drill looks like.
@@ -95,7 +121,9 @@ describe('every declared deepens edge has a tag to travel on', () => {
   const EXERCISES = join(process.cwd(), 'content', 'exercises');
   const sets = readdirSync(EXERCISES, { recursive: true, encoding: 'utf8' })
     .filter((file) => file.endsWith('.yaml'))
-    .map((file) => exerciseSetSchema.parse(YAML.parse(readFileSync(join(EXERCISES, file), 'utf8'))));
+    .map((file) =>
+      exerciseSetSchema.parse(YAML.parse(readFileSync(join(EXERCISES, file), 'utf8'))),
+    );
 
   const TRAINABLE_ROLES = new Set(['practice', 'drill']);
   const tagsOf = (topic: string, trainableOnly: boolean): Set<string> =>

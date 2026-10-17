@@ -21,7 +21,9 @@ const MARK: Record<string, string> = { covered: '✓', late: '~', missing: '✗'
 let anyMissing = false;
 for (const level of levels) {
   const coverage = grammarCoverage(level);
-  console.log(`\n## ${level} grammar — ${coverage.taught}/${coverage.total} (${coverage.percent}%)`);
+  console.log(
+    `\n## ${level} grammar — ${coverage.taught}/${coverage.total} (${coverage.percent}%)`,
+  );
   console.log(
     `   ${coverage.covered} covered · ${coverage.late} taught late · ${coverage.missing} missing\n`,
   );
@@ -36,13 +38,14 @@ for (const level of levels) {
           ? `  → no practice/drill item carries: ${result.unmetTags.join(', ')}`
           : '';
     console.log(`${mark} ${result.point.id.padEnd(26)} ${result.point.de}${where}`);
-    if (result.point.note && result.status !== 'covered') console.log(`    note: ${result.point.note}`);
+    if (result.point.note && result.status !== 'covered')
+      console.log(`    note: ${result.point.note}`);
   }
   if (coverage.missing) anyMissing = true;
 }
 
 console.log(
   anyMissing
-    ? '\nMissing points are structures the level\'s standard expects and no practice or drill item teaches.\n'
+    ? "\nMissing points are structures the level's standard expects and no practice or drill item teaches.\n"
     : '\nEvery point in the inventory is taught.\n',
 );

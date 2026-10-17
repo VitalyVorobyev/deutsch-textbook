@@ -23,8 +23,7 @@ import { isTauri } from './syncdir';
 import { withBase } from './url';
 
 /** Absolute origin the desktop app talks to. The web app uses same-origin paths and ignores this. */
-export const SYNC_ORIGIN =
-  import.meta.env.PUBLIC_SYNC_ORIGIN ?? 'https://deutsch.vitavision.dev';
+export const SYNC_ORIGIN = import.meta.env.PUBLIC_SYNC_ORIGIN ?? 'https://deutsch.vitavision.dev';
 
 export const SYNC_STATE_KEY = 'da:sync';
 export const DEVICE_TOKEN_KEY = 'da:sync:token';

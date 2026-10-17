@@ -57,11 +57,16 @@ export const ALERT_LATE_MS = PERSISTENCE_DEADLINE_MS;
 /** Exhaustive on purpose: a new op kind without a case here is a type error, not an age of NaN. */
 function opTs(op: JournalOp): number {
   switch (op.kind) {
-    case 'attempt': return op.attempt.ts;
-    case 'session': return op.entry.ts;
-    case 'grade': return op.ts;
-    case 'lid-answer': return op.answer.ts;
-    case 'lid-exam': return op.run.submittedAt;
+    case 'attempt':
+      return op.attempt.ts;
+    case 'session':
+      return op.entry.ts;
+    case 'grade':
+      return op.ts;
+    case 'lid-answer':
+      return op.answer.ts;
+    case 'lid-exam':
+      return op.run.submittedAt;
   }
 }
 
@@ -168,7 +173,15 @@ export default function PersistenceAlert() {
         <div className="pointer-events-auto flex flex-wrap items-center gap-3 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm shadow-lg dark:border-red-800 dark:bg-red-950">
           {unsaved > 0 && (
             <span className="font-medium text-red-800 dark:text-red-200">
-              {unsaved} {t(restartRequired && !blocked ? 'persist.pendingRestart' : unsaved === 1 ? 'persist.unsavedOne' : 'persist.unsavedMany', uiLang)}
+              {unsaved}{' '}
+              {t(
+                restartRequired && !blocked
+                  ? 'persist.pendingRestart'
+                  : unsaved === 1
+                    ? 'persist.unsavedOne'
+                    : 'persist.unsavedMany',
+                uiLang,
+              )}
             </span>
           )}
           {poisoned > 0 && (
@@ -188,7 +201,10 @@ export default function PersistenceAlert() {
           )}
           {(retryFailed || restartRequired) && (
             <span className="text-xs text-red-700 dark:text-red-300">
-              {t(restartRequired && !blocked ? 'persist.restartRequired' : 'persist.retryFailed', uiLang)}
+              {t(
+                restartRequired && !blocked ? 'persist.restartRequired' : 'persist.retryFailed',
+                uiLang,
+              )}
             </span>
           )}
           {unsaved > 0 && (
