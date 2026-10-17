@@ -19,7 +19,7 @@
  */
 import { proseShapeProblems } from './prose-shape';
 
-/** A file is German-first when it uses the fold; until all of B1 is converted, that opts it in. */
+/** A file is German-first when it uses the fold. Every B1 article must be (`scripts/validate.ts`). */
 export function isGermanFirst(body: string): boolean {
   return /<Translation(?: open)?>/.test(body);
 }
