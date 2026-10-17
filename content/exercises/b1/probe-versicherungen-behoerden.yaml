@@ -38,6 +38,7 @@ title:
   en: "Delayed check — the genitive an office writes in"
   ru: "Отложенная проверка — генитив, которым пишет учреждение"
   uk: "Відкладена перевірка — родовий, яким пише установа"
+  de: "Kontrolle mit Abstand — der Genitiv, in dem ein Amt schreibt"
 items:
   - id: variant-a
     # revision 2: des Vertrag scored correct as a slip (now pinned); the wegen-phrase after
@@ -52,6 +53,7 @@ items:
       en: "Write it as a letter would."
       ru: "Напишите так, как написали бы в письме."
       uk: "Напишіть так, як написали б у листі."
+      de: "Schreib es so, wie man es in einem Brief schreiben würde."
     prompt_en: "Because of the contract I have a question."
     prompt_ru: "В связи с договором у меня есть вопрос."
     prompt_uk: "У зв'язку з договором у мене є питання."
@@ -75,6 +77,7 @@ items:
       en: "*Vertrag* is masculine, so the genitive shows twice — on the article and as the *-s* on the noun. Dropping the *-s* gives *wegen des Vertrag*, an easy slip because the article already looks like enough marking. The spoken *wegen dem Vertrag* is real German and the wrong register for anything written."
       ru: "*Vertrag* мужского рода, поэтому генитив виден дважды — на артикле и как *-s* у самого слова. Потеря *-s* даёт *wegen des Vertrag*: ошибиться так легко, потому что артикль уже кажется достаточной пометой. Разговорное *wegen dem Vertrag* — настоящий немецкий и неверный регистр для всего письменного."
       uk: "*Vertrag* чоловічого роду, тому родовий видно двічі — на артиклі і як *-s* у самого слова. Втрата *-s* дає *wegen des Vertrag*: помилитися так легко, бо артикль уже здається достатньою позначкою. Розмовне *wegen dem Vertrag* — справжня німецька і неправильний регістр для всього писемного."
+      de: "*Vertrag* ist maskulin, also zeigt sich der Genitiv zweimal — am Artikel und als *-s* am Nomen. Ohne *-s* entsteht *wegen des Vertrag*, ein leichter Fehler, weil der Artikel schon wie genug Markierung aussieht. Das gesprochene *wegen dem Vertrag* ist echtes Deutsch, aber für alles Geschriebene der falsche Stil."
 
   - id: variant-b
     # revision 2: der Untersuchungs — the mirror error this variant is built for — scored
@@ -90,6 +93,7 @@ items:
       en: "Use die Untersuchung."
       ru: "Используйте die Untersuchung."
       uk: "Використайте die Untersuchung."
+      de: "Benutze die Untersuchung."
     prompt_en: "During the examination you may not eat anything."
     prompt_ru: "Во время обследования ничего есть нельзя."
     prompt_uk: "Під час обстеження нічого їсти не можна."
@@ -115,6 +119,7 @@ items:
       en: "The mirror of the first variant: *Untersuchung* is feminine, so the article *der* carries the whole marking and the noun takes nothing at all. Adding an ending — *während der Untersuchungs* — is the error that follows from over-learning the masculine rule. Note also that *während* is a preposition here; the identical-looking conjunction opens a Nebensatz instead and is a different word."
       ru: "Зеркало первого варианта: *Untersuchung* женского рода, поэтому всю пометку несёт артикль *der*, а существительное не берёт ничего. Приписать окончание — *während der Untersuchungs* — та ошибка, которая следует из переученного мужского правила. Обратите внимание и на то, что *während* здесь предлог; одинаково выглядящий союз открывает придаточное и является другим словом."
       uk: "Дзеркало першого варіанта: *Untersuchung* жіночого роду, тому всю позначку несе артикль *der*, а іменник не бере нічого. Приписати закінчення — *während der Untersuchungs* — та помилка, що випливає з перевченого чоловічого правила. Зверніть увагу й на те, що *während* тут прийменник; однаково виглядний сполучник відкриває підрядне і є іншим словом."
+      de: "Das Spiegelbild der ersten Variante: *Untersuchung* ist feminin, also trägt der Artikel *der* die ganze Markierung, und das Nomen bekommt gar nichts. Eine Endung anzuhängen — *während der Untersuchungs* — ist der Fehler, der kommt, wenn man die maskuline Regel zu gut gelernt hat. Beachte auch: *während* ist hier eine Präposition; die gleich aussehende Konjunktion eröffnet einen Nebensatz und ist ein anderes Wort."
 
   - id: variant-c
     # revision 2: des Gespräch scored correct as a slip (now pinned); the Präteritum, which
@@ -129,6 +134,7 @@ items:
       en: "Begin with the genitive phrase."
       ru: "Начните с генитивного сочетания."
       uk: "Почніть із родового сполучення."
+      de: "Beginn mit dem Genitiv-Ausdruck."
     prompt_en: "In spite of the conversation nothing has changed."
     prompt_ru: "Несмотря на разговор, ничего не изменилось."
     prompt_uk: "Попри розмову нічого не змінилося."
@@ -148,3 +154,4 @@ items:
       en: "*Gespräch* is neuter and behaves like the masculine: article *des* and an *-s* on the noun. The instruction fronts the phrase on purpose, because that is where a second rule has to survive alongside the first — the genitive phrase counts as one element, so the conjugated verb takes second position and the reflexive follows it: *Trotz des Gesprächs **hat sich** nichts geändert*, never *… nichts hat sich geändert*."
       ru: "*Gespräch* среднего рода и ведёт себя как мужской: артикль *des* и *-s* у существительного. Инструкция намеренно выносит сочетание вперёд, потому что именно там рядом с первым правилом должно уцелеть второе: генитивное сочетание считается одним элементом, поэтому спрягаемый глагол занимает второе место, а возвратное местоимение идёт за ним: *Trotz des Gesprächs **hat sich** nichts geändert*, а не *… nichts hat sich geändert*."
       uk: "*Gespräch* середнього роду і поводиться як чоловічий: артикль *des* і *-s* в іменника. Інструкція навмисно виносить сполучення вперед, бо саме там поряд із першим правилом має вціліти друге: родове сполучення рахується одним елементом, тому відмінюване дієслово посідає друге місце, а зворотний займенник іде за ним: *Trotz des Gesprächs **hat sich** nichts geändert*, а не *… nichts hat sich geändert*."
+      de: "*Gespräch* ist neutral und verhält sich wie ein maskulines Nomen: Artikel *des* und ein *-s* am Nomen. Die Aufgabe stellt den Ausdruck mit Absicht nach vorn, denn dort muss neben der ersten Regel eine zweite halten — der Genitiv-Ausdruck zählt als ein Satzglied, also steht das konjugierte Verb auf Position 2 und das Reflexivpronomen folgt ihm: *Trotz des Gesprächs **hat sich** nichts geändert*, nie *… nichts hat sich geändert*."

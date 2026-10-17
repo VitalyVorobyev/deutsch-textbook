@@ -2420,6 +2420,15 @@ function checkMdxLangDiscipline(
 
 for (const { file, article, data, body } of topics.values())
   checkMdxLangDiscipline(file, data, body, warn, article);
+// Every B1 article is German-first (ADR 0023): German body, each section closed by <Translation>
+// and <Erklaerung>. Until a file uses the fold, germanFirstTopicProblems never sees it — so the
+// level itself is the trigger, and a new B1 article written in <Bilingual> halves fails here.
+for (const { article, data, body } of topics.values())
+  if (data.level === 'B1' && !isGermanFirst(body))
+    fail(
+      article,
+      'a B1 article is German-first (ADR 0023): German body, each section closed by <Translation> then <Erklaerung> — not <Bilingual> halves',
+    );
 for (const { file, data, body } of discoveries.values())
   checkMdxLangDiscipline(file, data, body, fail);
 

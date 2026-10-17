@@ -88,6 +88,6 @@ describe('safe editorial article preview', () => {
     expect(totals.en).toEqual({ complete: 57, partial: 0, unsupported: 0 });
     expect(totals.ru).toEqual({ complete: 57, partial: 0, unsupported: 0 });
     expect(totals.uk).toEqual({ complete: 57, partial: 0, unsupported: 0 });
-    expect(totals.de).toEqual({ complete: 17, partial: 0, unsupported: 40 });
+    expect(totals.de).toEqual({ complete: 20, partial: 0, unsupported: 37 });
   });
 });

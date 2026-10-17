@@ -4,6 +4,7 @@ title:
   en: "Before you read — reporting what happened"
   ru: "Перед чтением — как сообщить о случившемся"
   uk: "Перед читанням — як повідомити про те, що сталося"
+  de: "Vor dem Lesen — berichten, was passiert ist"
 
 # Three guesses, one per decision the article has to answer: the tense nachdem forces, the fixed
 # order of the adverbials, and the number you dial. Two of the three are non-mc, because a
@@ -16,6 +17,7 @@ items:
       en: "Fill in the auxiliary the earlier event needs."
       ru: "Вставьте вспомогательный глагол, которого требует более раннее событие."
       uk: "Вставте допоміжне дієслово, якого потребує раніша подія."
+      de: "Ergänze das Hilfsverb, das das frühere Ereignis braucht."
     text: "Nachdem der Krankenwagen gekommen {{war}}, ging alles sehr schnell."
     translation:
       en: "Once the ambulance had arrived, everything went very quickly."
@@ -25,6 +27,7 @@ items:
       en: "*Nachdem* puts the earlier event one step further back, into the Plusquamperfekt — and *kommen* builds its perfect with *sein*, so the auxiliary is *war*, not *hatte*. The later clause then stays in the Präteritum: *ging*."
       ru: "*Nachdem* отодвигает более раннее событие ещё на шаг назад — в Plusquamperfekt, а *kommen* строит перфект с *sein*, поэтому вспомогательный здесь *war*, а не *hatte*. Более поздняя часть остаётся в Präteritum: *ging*."
       uk: "*Nachdem* відсуває ранішу подію ще на крок назад — у Plusquamperfekt, а *kommen* будує перфект із *sein*, тому допоміжне тут *war*, а не *hatte*. Пізніша частина лишається в Präteritum: *ging*."
+      de: "*Nachdem* schiebt das frühere Ereignis einen Schritt weiter zurück, ins Plusquamperfekt — und *kommen* bildet sein Perfekt mit *sein*, also ist das Hilfsverb *war*, nicht *hatte*. Der spätere Satz bleibt dann im Präteritum: *ging*."
 
   - id: angaben-folge
     # revision 2 (2026-10-13 quality pass): "walked" asks for no tense, and Ich ging gestern
@@ -39,6 +42,7 @@ items:
       en: "Keep all three details after the verb."
       ru: "Оставьте все три обстоятельства после глагола."
       uk: "Залиште всі три обставини після дієслова."
+      de: "Lass alle drei Angaben hinter dem Verb."
     prompt_en: "I walked across the road slowly yesterday."
     prompt_ru: "Вчера я медленно перешёл дорогу."
     prompt_uk: "Учора я повільно перейшов дорогу."
@@ -49,6 +53,7 @@ items:
       en: "German has a default order for adverbials: time, then manner, then place. *Gestern* comes first even though the English sentence puts it last, and *über die Straße* comes last even though it feels like the main information — it says which way you went, and a direction stays right in front of the participle. Reshuffling the middle here does not give you a stylistic variant; it gives you a sentence that sounds wrong."
       ru: "У немецкого есть порядок обстоятельств по умолчанию: время, потом образ действия, потом место. *Gestern* идёт первым, хотя по-русски «вчера» может стоять где угодно, а *über die Straße* — последним, хотя кажется главной информацией: оно говорит, куда вы шли, а направление стоит прямо перед причастием. Перетасовав середину здесь, вы получите не стилистический вариант, а фразу, которая звучит неправильно."
       uk: "У німецької є порядок обставин за замовчуванням: час, потім спосіб дії, потім місце. *Gestern* іде першим, хоча українською «учора» може стояти будь-де, а *über die Straße* — останнім, хоча здається головною інформацією: воно каже, куди ви йшли, а напрямок стоїть просто перед дієприкметником. Перетасувавши середину тут, ви отримаєте не стилістичний варіант, а фразу, яка звучить неправильно."
+      de: "Für Angaben hat das Deutsche eine normale Reihenfolge: Zeit, dann Art und Weise, dann Ort. *Gestern* kommt zuerst, und *über die Straße* kommt zuletzt, obwohl es wie die wichtigste Information wirkt — es sagt, wohin du gegangen bist, und eine Richtung steht direkt vor dem Partizip. Wer das Mittelfeld hier umstellt, bekommt keine stilistische Variante, sondern einen Satz, der falsch klingt."
 
   - id: notrufnummer
     outcomes: [notruf-absetzen]
@@ -63,3 +68,4 @@ items:
       en: "112 reaches the fire brigade and the ambulance and is the number for an accident with somebody injured. 110 is the police — right for a crime in progress, not for an injury. 116117 is the out-of-hours medical service for cases that are not emergencies."
       ru: "112 — пожарные и скорая, и это номер для аварии, в которой кто-то пострадал. 110 — полиция: подходит для преступления, которое происходит сейчас, но не для травмы. 116117 — дежурная медицинская служба для случаев, которые не являются экстренными."
       uk: "112 — пожежні та швидка, і це номер для аварії, у якій хтось постраждав. 110 — поліція: підходить для злочину, що відбувається зараз, але не для травми. 116117 — чергова медична служба для випадків, які не є екстреними."
+      de: "Mit der 112 erreicht man Feuerwehr und Krankenwagen; das ist die Nummer für einen Unfall mit einer verletzten Person. Die 110 ist die Polizei — richtig für eine Straftat, die gerade passiert, nicht für eine Verletzung. Die 116117 ist der ärztliche Bereitschaftsdienst für Fälle, die kein Notfall sind."

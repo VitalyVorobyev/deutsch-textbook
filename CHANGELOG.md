@@ -28,9 +28,14 @@ GitHub Release notes.
 - **B1 articles are being rewritten to read in German first.** The explanation is German text, and
   each section ends with two folds: *Übersetzung*, an English translation of the German, and
   *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache
-  to *Deutsch* to hide both. Seventeen of the twenty are done. *Bildungswege*, *Gespräche steuern*
-  and *Polizei und Anzeige* had no German explanation at all before; they now have one, and their
-  exercises and readings explain themselves in German too when the Lernsprache is *Deutsch*.
+  to *Deutsch* to hide both. All twenty B1 articles read this way now. Six of them — *Bildungswege*,
+  *Gespräche steuern*, *Polizei und Anzeige*, *Sucht und Lebensstil*, *Unfall und Notruf* and
+  *Versicherungen und Behörden* — had no German explanation at all before; they have one now, and
+  every B1 exercise, reading and listening set explains itself in German too when the Lernsprache is
+  *Deutsch*.
+- ***Unfall und Notruf*:** *passieren* takes *sein* because nobody does a happening — not because it
+  is a "change of state"; *nachdem* says one event came first, not that it made the other possible;
+  *Ich habe meinen Arm verletzt* is possible, just less usual than *mir den Arm*.
 - ***Gespräche steuern*: *sollte* and *wollte* take no umlaut in the Konjunktiv II** — the article
   had said every modal does.
 - ***Gesellschaft und Zusammenleben* no longer says the A2 pronouns *man* and *jemand* never change**
