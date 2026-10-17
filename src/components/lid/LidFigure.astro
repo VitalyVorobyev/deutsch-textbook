@@ -6,7 +6,7 @@
  * lesson's `figures` (ids are unique across lessons; `lidProblems` holds that and the rest).
  *
  * The caption follows the lesson: German always, the learner's language beneath it through the
- * `.lang-*` classes, and hidden with the section translations under `de` (`.lid-translation`).
+ * `.lang-*` classes, and hidden with the section translations under `de` (`.translation-fold`).
  * The picture sits on a white panel, so a transparent map stays readable in dark mode; it has its
  * size before it loads, and opens full size in a new tab. The credit names author, licence and
  * source page — or, for a catalogue picture, the catalogue — once per row.
@@ -80,7 +80,7 @@ const link = 'underline decoration-dotted hover:text-stone-700 dark:hover:text-s
           </a>
           <figcaption class="mt-1.5 text-sm leading-snug break-words hyphens-auto">
             <span lang="de" class="block text-stone-800 dark:text-stone-200">{f.caption.de}</span>
-            <span class="lid-translation block text-stone-500 dark:text-stone-400">
+            <span class="translation-fold block text-stone-500 dark:text-stone-400">
               <span lang="en" class="lang-en">{f.caption.en}</span><span lang="ru" class="lang-ru">{f.caption.ru}</span><span lang="uk" class="lang-uk">{f.caption.uk}</span>
             </span>
           </figcaption>

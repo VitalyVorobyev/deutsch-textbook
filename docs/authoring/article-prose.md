@@ -93,7 +93,7 @@ what "independently authored from the German" exists to prevent.
 
 - Reviewer and editor are separate invocations, and the reviewer that verifies a revision is a fresh
   context, never the editor grading itself. Subagents run one at a time.
-- **The factual specification is the German material** — the `<De>` half, the example sentences,
+- **The factual specification is the German material** — the `<De>` half (in a German-first B1 article, the body), the example sentences,
   the tables. **Never hand the sibling half over as the reference**: halves are independent by
   design and may diverge, so "matches the EN" is not meaning preservation. Give the EN half as
   context labelled as suspect, or not at all.

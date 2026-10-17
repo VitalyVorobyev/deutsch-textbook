@@ -1,18 +1,20 @@
 ---
 /**
- * A lesson section's translation, collapsed (ADR 0021). The German above it is the lesson — the
- * exam is in German, so it stays the text the learner reads — and this opens on demand when a
+ * A section's translation, collapsed: the German above it is the text — a Leben-in-Deutschland
+ * lesson (ADR 0021) or a German-first B1 article (ADR 0023) — and this opens on demand when a
  * paragraph does not land, showing the half of the learner's Lernsprache (`.lang-*`, global.css).
- * Under `de` there is nothing to translate into, and global.css hides the whole block.
+ * Under `de` there is nothing to translate into, and global.css hides the whole block. Where a
+ * translation has no half in the learner's language yet, global.css falls back to its English.
  *
- * Holds an <En>, a <Ru> and, once the lesson carries Ukrainian, a <Uk> half — the validator's
- * rule (`lidLessonBodyProblems`), one block at the end of every section that has German text.
+ * Its halves and its place are the validators' rules — `lidLessonBodyProblems` for a lesson,
+ * `germanFirstTopicProblems` for an article: one block at the end of every section with German
+ * prose.
  *
  * `open` is for `## Kurz gesagt` alone (validator-enforced): the summary is read in both languages
  * at once — German, then the learner's own — so it starts expanded, while every later section
  * translates on demand. It can still be collapsed.
  */
-import Chrome from '../Chrome.astro';
+import Chrome from './Chrome.astro';
 
 interface Props {
   open?: boolean;
@@ -20,9 +22,9 @@ interface Props {
 const { open = false } = Astro.props;
 ---
 
-<details open={open} class="lid-translation mb-6 rounded-md border border-stone-200 dark:border-stone-700">
+<details open={open} class="translation-fold mb-6 rounded-md border border-stone-200 dark:border-stone-700">
   <summary class="cursor-pointer select-none px-3 py-1.5 text-sm font-medium text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-200">
-    <Chrome k="lid.lessonTranslation" />
+    <Chrome k="fold.translation" />
   </summary>
   <div class="border-t border-stone-200 px-3 text-[0.95em] text-stone-700 dark:border-stone-700 dark:text-stone-300">
     <slot />

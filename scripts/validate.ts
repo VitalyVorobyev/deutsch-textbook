@@ -63,6 +63,7 @@ import {
   ukParityProblems,
 } from '@da/schema/langcheck';
 import { proseShapeProblems } from '@da/content/prose-shape';
+import { germanFirstTopicProblems, isGermanFirst } from '@da/content/german-first';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '@da/content/coverage';
 import {
   checkGradingDecisions,
@@ -2398,7 +2399,10 @@ function checkMdxLangDiscipline(
   // an English summary card, and validate said nothing — while the comment above and
   // docs/adrs/0001-bilingual-explanation-halves.md both claimed frontmatter and body were ONE parity scope. They were,
   // for uk alone.
-  const bodyHasDe = body.includes('<De>');
+  // A German-first article (ADR 0023) carries German as its body rather than in <De> halves,
+  // and that is the same promise to the manifest: its `de` fields stay all-or-none.
+  const germanFirst = isGermanFirst(body);
+  const bodyHasDe = body.includes('<De>') || germanFirst;
   for (const p of deParityProblems(data, { forceDe: bodyHasDe })) fail(file, p);
   const report = mdxLangProblems(body, {
     forceUk: hasUkField(data),
@@ -2411,6 +2415,7 @@ function checkMdxLangDiscipline(
   // Unlike `<En>` balance it has no topics-warn/discovery-fail split: a
   // paragraph too big to read is the same defect wherever it is authored.
   for (const p of proseShapeProblems(body)) fail(bodyFile, p);
+  if (germanFirst) for (const p of germanFirstTopicProblems(body)) fail(bodyFile, p);
 }
 
 for (const { file, article, data, body } of topics.values())
