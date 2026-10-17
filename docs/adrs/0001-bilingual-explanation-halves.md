@@ -123,6 +123,9 @@ so they move into the strings table rather than gaining `uk` fields.
 
 ### The German explanation half (`de`)
 
+> For B1 topic articles this section is partially superseded by [ADR 0023](0023-b1-articles-german-first.md):
+> the German is the body, and the authored halves move into a folded `<Erklaerung>`.
+
 Added to P8-4 by an owner decision (2026-07-15). The objective: advanced learners read German
 explanations. A hide-the-EN/RU-prose mode was considered and **rejected** — an article stripped of
 its explanation prose is not immersion, it is a table collection.

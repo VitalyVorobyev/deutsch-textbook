@@ -312,10 +312,15 @@ Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for t
 card surface. The compact form is used only when `pickSecond` resolves an actual RU/UK half;
 EN/DE modes and a missing-UK fallback continue to show full English.
 
+B1 articles invert the default ([ADR 0023](adrs/0023-b1-articles-german-first.md)): German is the body, and each
+section closes with a folded `<Translation>` (English first; a Russian-mode reader falls back to it)
+and a folded `<Erklaerung>` holding the authored halves. Under `de` both folds are hidden.
+
 German examples are source language, not proof that a record has a German-medium explanation.
 This distinction matters in reference data and Wortnetze.
 
-Redaktion derives per-topic language coverage from authored `<Bilingual>` blocks. A language is
+Redaktion derives per-topic language coverage from authored `<Bilingual>` and `<Erklaerung>` blocks (a
+German-first article is complete in `de`; its optional `<Translation>` halves do not count). A language is
 `complete` only when every block carries its half, `partial` when some do, and `unsupported` when
 none do. The count is editorial visibility, not a request to backfill German.
 

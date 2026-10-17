@@ -52,10 +52,17 @@ html:not([data-tts="ready"]) [data-speak] {
   display: none;
 }
 
-/* A Leben-in-Deutschland lesson's per-section translation (src/components/lid/Translation.astro):
-   under Lernsprache `de` the German above it is all there is to read. */
-[data-explain-lang="de"] .lid-translation {
+/* A section's folds under German text — a Leben-in-Deutschland lesson's translation, a German-first
+   article's translation and explanation (src/components/Translation.astro, Erklaerung.astro):
+   under Lernsprache `de` the German above them is all there is to read. */
+[data-explain-lang="de"] :is(.translation-fold, .erklaerung-fold) {
   display: none;
+}
+/* A translation is authored in English first (ADR 0023). Until a fold has a Russian half, a
+   Russian-mode reader gets its English rather than an empty box; Ukrainian already falls back to
+   English everywhere (the :has() rules above). */
+[data-explain-lang="ru"] .translation-fold :not(:has(> .lang-ru)) > .lang-en {
+  display: block;
 }
 
 /* Inside the installed app (Tauri shell or standalone PWA — the pre-paint script in

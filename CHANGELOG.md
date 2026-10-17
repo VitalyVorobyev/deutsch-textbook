@@ -11,6 +11,13 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Changed
+
+- **B1 articles are being rewritten to read in German first.** The explanation is German text, and
+  each section ends with two folds: *Übersetzung*, an English translation of the German, and
+  *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache
+  to *Deutsch* to hide both. *Arbeit und Bewerbung* is the first; the other B1 articles follow.
+
 ### Fixed
 
 - **Exercises that asked you to guess the author's word now name it.** The A1 imperative and

@@ -109,12 +109,15 @@ function parse(text: string): Ast {
   return createProcessor({ format: 'mdx', remarkPlugins: [remarkGfm] }).parse(text) as Ast;
 }
 
+/** The blocks that hold language halves: `<Bilingual>`, and a German-first article's two folds (ADR 0023). */
+const HALF_BLOCKS = new Set(['Bilingual', 'Translation', 'Erklaerung']);
+
 function bilinguals(tree: Ast): Ast[] {
   const result: Ast[] = [];
   const walk = (node: Ast) => {
     if (
       (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') &&
-      node.name === 'Bilingual'
+      HALF_BLOCKS.has(node.name ?? '')
     )
       result.push(node);
     for (const child of node.children ?? []) walk(child);
@@ -147,12 +150,20 @@ export function languageCoverage(
   } catch {
     /* syntax diagnostics belong to renderSource/validateSource */
   }
+  // In a German-first article the German is the body, so every block has its German. Its
+  // <Translation> halves are optional by design (English first, ADR 0023), so they leave the
+  // language contract to the <Erklaerung> blocks, which keep every authored half.
+  const germanFirst = blocks.some((block) => block.name === 'Translation');
+  blocks = blocks.filter((block) => block.name !== 'Translation');
   const required = blocks.length;
   return {
     topicId,
     languages: LANGUAGES.map((language) => {
       const tag = LANG_TAG[language];
-      const authored = blocks.filter((block) => languageNodes(block, tag).length > 0).length;
+      const authored =
+        language === 'de' && germanFirst
+          ? required
+          : blocks.filter((block) => languageNodes(block, tag).length > 0).length;
       return {
         language,
         status:
@@ -243,7 +254,7 @@ function project(
 
   if (node.type === 'yaml') return [];
   if (node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') {
-    if (node.name === 'Bilingual') {
+    if (HALF_BLOCKS.has(node.name ?? '')) {
       const chosen = languageNodes(node, LANG_TAG[language]);
       return chosen.flatMap((entry) =>
         (entry.children ?? []).flatMap((child) => project(child, language, diagnostics, path)),
