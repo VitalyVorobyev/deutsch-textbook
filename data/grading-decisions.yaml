@@ -1000,9 +1000,9 @@
 
 - item: a2/freunde-feste-produktion:uebersetzen-absprache-chat
   given: "Kannst du mir den Salat mitbringen? Und ich bringe dir die Getränke."
-  decision: confirm
-  note: "The second clause drops the separable prefix: bringe … mit is the verb, and without mit the sentence says I am bringing you the drinks somewhere else entirely. The dativ-pronomen targets mir and dir were both correct, which is exactly why this one is worth recording — the error is a deletion, and a deletion is the attribution case the grader still cannot charge to trennbar-wortstellung."
-  decidedAt: 2026-08-02
+  decision: accept
+  note: "Reverses the 2026-08-02 confirm. «принесу тебе напитки» and \"I'll bring you the drinks\" are plain bringen: ich bringe dir die Getränke is a faithful, natural rendering, and mit only adds along (to the party) — it does not move the drinks anywhere else. The 2026-07-21 ruling on the same item already said bringen without mit- is fine German. mir and dir, the graded tokens, are right. Now accepted (revision 2), with and without Und."
+  decidedAt: 2026-10-17
 
 - item: a2/probe-dativ:variant-c
   given: "Nach dem Konzert gehen wir mit meiner Schwester nach Hause."
@@ -1916,3 +1916,45 @@
   decision: confirm
   note: "The short answer needs its article: Auf die Antwort or Auf eine Antwort. Russian has none to carry over. Worauf is right. drill note: the zero-article reflex."
   decidedAt: 2026-10-11
+
+- item: a1/alltag-zeit-trennbar:einkaufen-klammer
+  given: "Am Samstag kaufen wir ins Supermarkt ein"
+  decision: confirm
+  note: "kaufen … ein is right — the bracket the tag grades. ins is in das, a direction; shopping happens in a place, so it is im Supermarkt (dative, der Supermarkt). drill note: wo → Dativ (im), wohin → Akkusativ (in den), and Supermarkt is masculine."
+  decidedAt: 2026-10-17
+
+- item: a1/alltag-zeit-trennbar:einkaufen-klammer
+  given: "Am Samstag kaufen wir ein"
+  decision: confirm
+  note: "The bracket is right, but im Supermarkt is left out: a translation that drops a phrase of the prompt is incomplete."
+  decidedAt: 2026-10-17
+
+- item: a2/natur-wetter:uebersetzen-vergleich
+  given: "In Hamburg ist das Wetter kälter als in Berlin"
+  decision: accept
+  note: "«холоднее» / \"it is colder\" names no subject, and das Wetter fills the slot as faithfully as the empty es. kälter als, the graded comparison, is right. Accepted (revision 2)."
+  decidedAt: 2026-10-17
+
+- item: a1/drill-modal-satzklammer:uebersetzen-arbeiten
+  given: "Heute kann ich nich lang arbeiten"
+  decision: confirm
+  note: "kann … arbeiten, the bracket, is right. nich is a spelling of spoken German, not of written German: nicht. lang for lange is colloquial and would pass alone; nich does not."
+  decidedAt: 2026-10-17
+
+- item: a2/verbindungen-folgen:uebersetzen-als-kindheit
+  given: "Als ich ein Kind war, bin ich oft zur Oma gefahren"
+  decision: accept
+  note: "«когда я был маленьким» is als ich ein Kind war as much as als ich klein war, and zur Oma is the everyday contraction of zu der Oma (family words also go without article, ruling 2026-07-24). Als, the graded token, is right. Accepted with both openings (revision 3)."
+  decidedAt: 2026-10-17
+
+- item: a2/verben-mit-praepositionen:translate-davon
+  given: "Mia träumt von die Reise. Sie träumt oft davon"
+  decision: confirm
+  note: "von and davon, the graded tokens, are right. von always takes the dative: von der Reise. drill note: the article after a dative-only preposition."
+  decidedAt: 2026-10-17
+
+- item: a2/drill-zu-infinitiv:uebersetzen-zeit-abzuholen
+  given: "Hast du morgen Zeit mir um acht abzuholen?"
+  decision: confirm
+  note: "abzuholen is right. abholen takes an accusative object, so mich, not mir; morgen is not in the prompt."
+  decidedAt: 2026-10-17

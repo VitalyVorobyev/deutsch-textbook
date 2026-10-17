@@ -106,8 +106,10 @@ items:
     # correct main-clause-first rendering was rejected and charged; and "locked" / «заперла»
     # is abschließen, zuschließen or the inseparable verschließen — the last of which drops
     # the corner this variant samples. The instruction asks for the Nebensatz first and names
-    # abschließen.
-    revision: 2
+    # abschließen. revision 3 (2026-10-17, learner feedback): «мастерская» is Werkstatt, Werkstätte
+    # or Atelier, and no card this topic owns teaches it, so a carrier noun stood between the
+    # learner and the competence. The instruction names it too.
+    revision: 3
     outcomes: [unfallhergang-schildern]
     type: translate
     focus: plusquamperfekt-nachdem
@@ -116,9 +118,9 @@ items:
       failed: ["(?<!\\p{L})(?:ab|zu)(?:ge)?schl\\p{L}*(?!\\p{L})(?!\\s+hatte(?!\\p{L}))", "(?<!\\p{L})hatte\\s+war(?!\\p{L})"]
       retained: ["(?<!\\p{L})nachdem(?!\\p{L}).*(?<!\\p{L})(?:ab|zu)geschlossen\\s+hatte(?!\\p{L})"]
     instruction:
-      en: "Begin with the earlier event. For 'locked' take abschließen."
-      ru: "Начните с более раннего события. Для «заперла» возьмите abschließen."
-      uk: "Почніть із ранішої події. Для «замкнула» візьміть abschließen."
+      en: "Begin with the earlier event. For 'locked' take abschließen; the workshop is die Werkstatt."
+      ru: "Начните с более раннего события. Для «заперла» возьмите abschließen; мастерская — die Werkstatt."
+      uk: "Почніть із ранішої події. Для «замкнула» візьміть abschließen; майстерня — die Werkstatt."
     prompt_en: "After she had locked the workshop, she went home."
     prompt_ru: "После того как она заперла мастерскую, она пошла домой."
     prompt_uk: "Після того як вона замкнула майстерню, вона пішла додому."

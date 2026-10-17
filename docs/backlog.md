@@ -46,11 +46,14 @@ record of what shipped.
   (`a1/wortbildung-ausblenden:translate-fahrerin`,
   `a2/freunde-feste-produktion:uebersetzen-transfer-blumen-karte`). First step: list the translate
   items whose answer holds a name with more than one German spelling.
-- **P26-11 · B1 has one drill set** against A2's thirteen (`grep -l '^role: drill'
-  content/exercises/b1/*.yaml`), so the remediation channel is unbuilt there; P23-3 sees it from the
-  other end. B1 depth now reads median 6 items per confusion, 2 tags at ≤3 items, 1 tag in a single
+- **P26-11 · B1 has four drill sets** against A2's thirteen (`grep -l '^role: drill'
+  content/exercises/b1/*.yaml`), so the remediation channel is thin there; P23-3 sees it from the
+  other end. B1 depth reads median 6 items per confusion, 2 tags at ≤3 items, 1 tag in a single
   file (`bun scripts/grammar-depth.ts B1`). New drills also raise the floors in
-  `tests/grammar-depth.test.ts`.
+  `tests/grammar-depth.test.ts`. Stable misconceptions in the 2026-10-17 audit, each a candidate:
+  *zu* after a modal (`a2/infinitiv-mit-zu:mc-modal-ohne-zu`, 8/10 wrong), verb second after
+  *während* (`b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen`, 11/12), a dropped copula in
+  *zwar … aber* (`b1/meinung-medien:uebersetzen-zwar-aber`, 7/8), *einladen an/auf* for *zu*.
 - **P26-12 · B1 pretests carry no focus tags** (A1 27, A2 72, B1 0 tagged items). Nothing is
   mis-measured — pretests are never weakness evidence — but an instrument reading pretest tags sees
   one blind level. Decide the convention, then make the three levels match.
@@ -367,6 +370,10 @@ Triaged from `feedback.md`, which holds only raw capture.
   (`a1/stadt-wege-a1-grammatik:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
   First step: an optional `accept` on a cell, read by `acceptedCellAnswers` (`src/lib/table.ts`) so
   `validate.ts` and `TableFill` cannot disagree.
+- **F-15 · A `table` cell has no slip allowance**, so a retyped word charges the row's focus: four
+  of five misses on `a2/nebensaetze-plaene:table-hauptsatz-zu-nebensatz` had every clause right
+  and one name wrong ("Nine" for *Nina*); that item now avoids names. First step: give cells the
+  dictation slip rule, with F-14's `acceptedCellAnswers` as the one reader.
 
 **Ruled, no change** — so they are not re-triaged:
 
