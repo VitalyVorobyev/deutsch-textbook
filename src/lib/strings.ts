@@ -1487,7 +1487,13 @@ export const STRINGS = {
     ru: 'Важные термины',
     uk: 'Важливі терміни',
   },
-  'lid.lessonTranslation': { de: 'Übersetzung', en: 'Translation', ru: 'Перевод', uk: 'Переклад' },
+  'fold.translation': { de: 'Übersetzung', en: 'Translation', ru: 'Перевод', uk: 'Переклад' },
+  'fold.erklaerung': {
+    de: 'Ausführliche Erklärung',
+    en: 'Full explanation',
+    ru: 'Подробное объяснение',
+    uk: 'Докладне пояснення',
+  },
   'lid.lessonQuestionsTitle': {
     de: 'Fragen zu diesem Thema',
     en: 'Questions on this topic',

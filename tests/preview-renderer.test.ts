@@ -43,6 +43,27 @@ describe('safe editorial article preview', () => {
     }
   }, 30_000);
 
+  test('a German-first article shows its German body with the folds of the chosen language', () => {
+    const text =
+      '## Kurz gesagt\n\nDeutscher Text.\n\n<Translation open>\n<En>\nEnglish translation.\n</En>\n</Translation>\n\n<Erklaerung>\n<En>\nEnglish explanation.\n</En>\n<Ru>\nРусское объяснение.\n</Ru>\n</Erklaerung>\n';
+    const ru = JSON.stringify(
+      renderSource({ path: 'content/topics/b1/test.mdx', language: 'ru', text }).root,
+    );
+    expect(ru).toContain('Deutscher Text.');
+    expect(ru).toContain('Русское объяснение.');
+    expect(ru).not.toContain('English explanation.');
+    const coverage = languageCoverage('test', 'content/topics/b1/test.mdx', text);
+    const status = (language: string) =>
+      coverage.languages.find((entry) => entry.language === language)?.status;
+    // German is the body; the English-only translation leaves ru to the explanation's halves.
+    expect([status('de'), status('en'), status('ru'), status('uk')]).toEqual([
+      'complete',
+      'complete',
+      'complete',
+      'unsupported',
+    ]);
+  });
+
   test('language coverage distinguishes authored German halves from German examples', () => {
     const text =
       '<Bilingual><En>EN</En><Ru>RU</Ru><Uk>UK</Uk></Bilingual>\n\nDeutsch bleibt im Beispiel.';
