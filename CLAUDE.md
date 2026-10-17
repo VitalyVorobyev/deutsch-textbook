@@ -43,7 +43,7 @@ is a rule to go read**, not a rule to guess at. The full doc map is [`docs/READM
 - `bun run dev` — dev server
 - `bun run validate` — content validation (**run after every content change; it must pass before you are done**)
 - `bun test` — domain regression tests
-- `bun run check` — Astro/TypeScript diagnostics
+- `bun run check` — TypeScript 7 `tsc` over the root and Worker projects, then `.astro` diagnostics on TypeScript 6 (`tools/astro-check`, until `@astrojs/check` supports 7)
 - `bun run lint` — Oxlint (`.oxlintrc.json`), with `--deny-warnings`: a warning fails it too
 - `bun run build` — production build (also type-checks content against schemas)
 - `bun run review:gate` — read-only merge gate: non-draft PR, green CI, no unresolved actionable threads, no outstanding change request. **It waits for no reviewer** — merge when it passes; a later review is answered in its threads.
