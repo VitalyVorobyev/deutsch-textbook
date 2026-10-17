@@ -110,6 +110,10 @@ export function germanFirstTopicProblems(body: string): string[] {
     for (const half of erklaerungHalves)
       if (!es[0]!.includes(`<${half}>`))
         problems.push(`${label}: its <Erklaerung> has no <${half}> half`);
+    if (/<En>\s*TODO\s*<\/En>/.test(ts[0]!))
+      problems.push(
+        `${label}: its <Translation> is still a TODO stub — translate the German above it`,
+      );
     const open = ts[0]!.startsWith('<Translation open>');
     if (h === first && !open)
       problems.push(

@@ -35,8 +35,8 @@ record of what shipped.
 ### Content
 
 - **C6-2 · B1 German-first conversion and its RU/UK translations** ([ADR 0023](adrs/0023-b1-articles-german-first.md)).
-  Converted: `arbeit-bewerbung` (`grep -l '<Translation' content/topics/b1/*.mdx`). Next: the other
-  13 articles with a `<De>` half, by script plus an English translation from the German; then the
+  Converted: 8 of 20 (`grep -l '<Translation' content/topics/b1/*.mdx`). Next: the other six
+  articles with a `<De>` half, by script plus an English translation from the German; then the
   six with none (`bildungswege`, `gespraech-steuern`, `polizei-anzeige`, `sucht-lebensstil`,
   `unfall-notruf`, `versicherungen-behoerden`) get German written, and their exercise and reading
   `explain` fields a `de` half; then the rule turns required for all of B1. After that, `<Ru>` and
