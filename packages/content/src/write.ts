@@ -100,7 +100,14 @@ export interface WritePatch {
 }
 
 export type WriteResult =
-  | { ok: true; file: string; field: string; before: string | null; after: string | null; changed: boolean }
+  | {
+      ok: true;
+      file: string;
+      field: string;
+      before: string | null;
+      after: string | null;
+      changed: boolean;
+    }
   | { ok: false; error: string };
 
 /** Every (class, field, values) the controller will write — a UI reads this, never a copy of it. */
@@ -129,14 +136,19 @@ export interface WriteOptions {
   verify?: (root: string) => string | undefined;
 }
 
-export function applyPatch(patch: WritePatch, root = repoRoot(), opts: WriteOptions = {}): WriteResult {
+export function applyPatch(
+  patch: WritePatch,
+  root = repoRoot(),
+  opts: WriteOptions = {},
+): WriteResult {
   const { file, field, value } = patch;
 
   // 1. Containment. Resolve first, compare after: a `..` segment or an absolute path is only
   //    visible once resolved, and comparing raw strings is the classic way to miss both.
   const contentDir = resolve(root, 'content');
   const target = resolve(root, file);
-  if (!target.startsWith(contentDir + sep)) return { ok: false, error: `"${file}" is outside content/` };
+  if (!target.startsWith(contentDir + sep))
+    return { ok: false, error: `"${file}" is outside content/` };
 
   // 2. Class.
   const klass = CLASSES.find((c) => c.match.test(file));
@@ -147,13 +159,20 @@ export function applyPatch(patch: WritePatch, root = repoRoot(), opts: WriteOpti
   const spec = klass.fields[field];
   if (!spec) return { ok: false, error: `field "${field}" is not writable on a ${klass.id}` };
   if (value !== null && !spec.values.includes(value))
-    return { ok: false, error: `"${value}" is not one of ${spec.values.join(', ')} for ${klass.id}.${field}` };
+    return {
+      ok: false,
+      error: `"${value}" is not one of ${spec.values.join(', ')} for ${klass.id}.${field}`,
+    };
 
   const source = readFileSync(target, 'utf8');
-  if (opts.expectedRevision && createHash('sha256').update(source).digest('hex') !== opts.expectedRevision)
+  if (
+    opts.expectedRevision &&
+    createHash('sha256').update(source).digest('hex') !== opts.expectedRevision
+  )
     return { ok: false, error: `"${file}" changed on disk; reload it before writing ${field}` };
   const doc = YAML.parseDocument(source);
-  if (doc.errors.length) return { ok: false, error: `"${file}" is not valid YAML: ${doc.errors[0]!.message}` };
+  if (doc.errors.length)
+    return { ok: false, error: `"${file}" is not valid YAML: ${doc.errors[0]!.message}` };
   if (!YAML.isMap(doc.contents)) return { ok: false, error: `"${file}" is not a mapping` };
 
   const pairs = doc.contents.items;
@@ -184,7 +203,10 @@ export function applyPatch(patch: WritePatch, root = repoRoot(), opts: WriteOpti
   // 4. Schema — on the text that would actually be written, not on an in-memory object.
   const reparsed = YAML.parseDocument(next);
   if (reparsed.errors.length)
-    return { ok: false, error: `the result would not be valid YAML: ${reparsed.errors[0]!.message}` };
+    return {
+      ok: false,
+      error: `the result would not be valid YAML: ${reparsed.errors[0]!.message}`,
+    };
   const parsed = klass.schema.safeParse(reparsed.toJS());
   if (!parsed.success)
     return {
@@ -196,7 +218,10 @@ export function applyPatch(patch: WritePatch, root = repoRoot(), opts: WriteOpti
   //    the wrong range, and this is what says so rather than committing the damage.
   const touched = changedKeys(doc.toJS(), reparsed.toJS());
   if (touched.length > 1 || (touched.length === 1 && touched[0] !== field))
-    return { ok: false, error: `the write would also change ${touched.filter((k) => k !== field).join(', ')}` };
+    return {
+      ok: false,
+      error: `the write would also change ${touched.filter((k) => k !== field).join(', ')}`,
+    };
 
   const changed = next !== source;
   if (!changed) return { ok: true, file, field, before, after: value, changed: false };

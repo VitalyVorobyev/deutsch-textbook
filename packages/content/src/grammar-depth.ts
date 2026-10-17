@@ -36,11 +36,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { repoRoot } from './repo-root';
 import { join } from 'node:path';
 import * as YAML from 'yaml';
-import {
-  loadGrammarInventory,
-  productionLevel,
-  type GrammarPoint,
-} from './grammar-coverage';
+import { loadGrammarInventory, productionLevel, type GrammarPoint } from './grammar-coverage';
 import { focusIntroducedBy } from './focus-tags';
 import type { CefrLevel, Level } from '@da/schema';
 
@@ -233,9 +229,7 @@ export function pointDepths(root = repoRoot()): PointDepth[] {
       production: sum((t) => t.production),
       probe: sum((t) => t.probe),
       checkpoint: sum((t) => t.checkpoint),
-      thinnest: mine.length
-        ? mine.reduce((a, b) => (a.teaching <= b.teaching ? a : b))
-        : undefined,
+      thinnest: mine.length ? mine.reduce((a, b) => (a.teaching <= b.teaching ? a : b)) : undefined,
     };
   });
 }

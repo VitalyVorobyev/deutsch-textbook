@@ -218,10 +218,15 @@ export function anchorCoverage(
         // A levelled source answers "what does the standard require AT this level"; a cumulative
         // one answers "what must still be in the repertoire BY this level", so its A2 entries are
         // measured at B1 too. Both readings are the source's own — never inferred.
-        const inScope = src.source.cumulative ? rank(entry.level) <= rank(level) : entry.level === level;
+        const inScope = src.source.cumulative
+          ? rank(entry.level) <= rank(level)
+          : entry.level === level;
         if (!inScope) continue;
         const owners = claimedBy.get(entryRef(src.source.id, entry.key)) ?? [];
-        const levels = owners.map((id) => byId.get(id)).filter(Boolean).map((c) => c!.level);
+        const levels = owners
+          .map((id) => byId.get(id))
+          .filter(Boolean)
+          .map((c) => c!.level);
         results.push({
           sourceId: src.source.id,
           section,
@@ -244,6 +249,8 @@ export function anchorCoverage(
     beyond: anchored ? claimants.filter((c) => c.level === level && !(c.claims ?? []).length) : [],
     dangling,
     total: results.length,
-    percent: results.length ? Math.round((results.filter((r) => r.claimedBy.length).length / results.length) * 100) : 0,
+    percent: results.length
+      ? Math.round((results.filter((r) => r.claimedBy.length).length / results.length) * 100)
+      : 0,
   };
 }

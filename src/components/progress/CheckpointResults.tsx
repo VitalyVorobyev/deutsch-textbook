@@ -53,7 +53,10 @@ function OutcomeRow({ result, label }: { result: CheckpointOutcomeResult; label?
         </span>
       </div>
       <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-stone-100 dark:bg-stone-700">
-        <div className={`h-full ${barColor(ratio)}`} style={{ width: `${Math.round(ratio * 100)}%` }} />
+        <div
+          className={`h-full ${barColor(ratio)}`}
+          style={{ width: `${Math.round(ratio * 100)}%` }}
+        />
       </div>
     </li>
   );
@@ -75,7 +78,9 @@ export function CheckpointResults({ checkpoint, outcomeModes, outcomeLabels, att
   return (
     <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">{checkpoint.title}</h2>
+        <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
+          {checkpoint.title}
+        </h2>
         <a
           href={checkpoint.path}
           className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"

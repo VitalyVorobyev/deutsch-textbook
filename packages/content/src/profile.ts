@@ -130,7 +130,9 @@ export function readingWords(graph: ContentGraph, element: Element): number {
  */
 export function itemMix(graph: ContentGraph, topicId: string) {
   const practice = (graph.elementsByTopic.get(topicId) ?? []).filter((e) => e.kind === 'praxis');
-  const items = practice.flatMap((e) => itemsOf(graph, e)).filter((i) => i.type !== 'audio-comprehension');
+  const items = practice
+    .flatMap((e) => itemsOf(graph, e))
+    .filter((i) => i.type !== 'audio-comprehension');
   const total = items.length;
   const count = (predicate: (i: ExerciseItem) => boolean) => items.filter(predicate).length;
   const translate = count((i) => i.type === 'translate');
@@ -165,7 +167,8 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
     ]),
   ) as Record<LearningActivity, number>;
   const touches = {} as Record<Touch, number>;
-  for (const element of elements) for (const t of element.touches) touches[t] = (touches[t] ?? 0) + 1;
+  for (const element of elements)
+    for (const t of element.touches) touches[t] = (touches[t] ?? 0) + 1;
 
   const teaching = elements.filter((e) => TEACHING_KINDS.has(e.kind));
   const depth = {
@@ -197,7 +200,9 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
   const unmeasured = (node?.outcomes ?? [])
     .map((o) => o.id)
     .filter((id) => !elements.some((e) => TEACHING_KINDS.has(e.kind) && e.outcomes.includes(id)))
-    .filter((id) => !elements.some((e) => e.kind.startsWith('lesetext') && e.outcomes.includes(id)));
+    .filter(
+      (id) => !elements.some((e) => e.kind.startsWith('lesetext') && e.outcomes.includes(id)),
+    );
 
   const checks: Check[] = [
     {
@@ -280,7 +285,9 @@ export function topicProfile(graph: ContentGraph, topicId: string): TopicProfile
       id: 'transfer',
       label: 'mindestens eine produktive Anwendung im neuen Kontext',
       ok: productiveApplication,
-      detail: productiveApplication ? `${activities.application} Anwendung(en)` : 'geübt oder nur gehört, aber nie produktiv in neuem Kontext verlangt',
+      detail: productiveApplication
+        ? `${activities.application} Anwendung(en)`
+        : 'geübt oder nur gehört, aber nie produktiv in neuem Kontext verlangt',
     },
   ];
 
@@ -370,28 +377,50 @@ export const PROBLEM_LABELS: Record<string, { de: string; why: string }> = {
     de: 'translate ohne key_tokens',
     why: 'Eine leere Liste schreibt jeden Fehler im Satz dem Fokus-Tag zu.',
   },
-  'outcome-ohne-aufgabe': { de: 'Outcome ohne messende Aufgabe', why: 'Ein nur geprüftes Outcome wurde nie geübt.' },
-  'modus-fehlt': { de: 'beanspruchter Modus wird nicht geübt', why: 'Das Outcome nennt Sprechen; nichts im Thema lässt sprechen.' },
-  'tag-ohne-probe': { de: 'Fokus-Tag ohne Probe', why: 'Die Verwechslung wird geübt, aber nie später erneut gefragt.' },
+  'outcome-ohne-aufgabe': {
+    de: 'Outcome ohne messende Aufgabe',
+    why: 'Ein nur geprüftes Outcome wurde nie geübt.',
+  },
+  'modus-fehlt': {
+    de: 'beanspruchter Modus wird nicht geübt',
+    why: 'Das Outcome nennt Sprechen; nichts im Thema lässt sprechen.',
+  },
+  'tag-ohne-probe': {
+    de: 'Fokus-Tag ohne Probe',
+    why: 'Die Verwechslung wird geübt, aber nie später erneut gefragt.',
+  },
   'tag-ohne-aufgabe': {
     de: 'Fokus-Tag ohne Aufgabe',
     why: 'Der Tag existiert, aber keine praxis-/drill-Aufgabe trägt ihn — eine benannte Verwechslung, die nichts übt.',
   },
-  'punkt-ohne-thema': { de: 'Struktur ohne Thema', why: 'Eine Inventarzeile, die kein Thema unterrichtet.' },
-  'deck-ohne-thema': { de: 'Deck ohne Thema', why: 'Wortlisten-Deck: bewusst frei, hier nur zur Übersicht.' },
+  'punkt-ohne-thema': {
+    de: 'Struktur ohne Thema',
+    why: 'Eine Inventarzeile, die kein Thema unterrichtet.',
+  },
+  'deck-ohne-thema': {
+    de: 'Deck ohne Thema',
+    why: 'Wortlisten-Deck: bewusst frei, hier nur zur Übersicht.',
+  },
 };
 
 export function problems(graph: ContentGraph): Problem[] {
   const out: Problem[] = [];
   const add = (kind: string, message: string, topic?: string, file?: string) =>
-    out.push({ kind, message, topic, level: topic ? graph.topics.get(topic)?.data.level : undefined, file });
+    out.push({
+      kind,
+      message,
+      topic,
+      level: topic ? graph.topics.get(topic)?.data.level : undefined,
+      file,
+    });
 
   for (const topic of graph.topics.values()) {
     const profile = topicProfile(graph, topic.id);
     if (!profile) continue;
     const fail = (id: string) => profile.checks.find((c) => c.id === id && !c.ok);
 
-    if (fail('artikel-abschnitte')) add('artikel-ohne-abschnitte', topic.data.title_de, topic.id, topic.article);
+    if (fail('artikel-abschnitte'))
+      add('artikel-ohne-abschnitte', topic.data.title_de, topic.id, topic.article);
     if (fail('transfer')) add('kein-transfer', topic.data.title_de, topic.id, topic.file);
     if (fail('probe')) add('keine-probe', topic.data.title_de, topic.id, topic.file);
 
@@ -409,9 +438,11 @@ export function problems(graph: ContentGraph): Problem[] {
     }
 
     const unmeasured = profile.checks.find((c) => c.id === 'outcomes-gemessen');
-    if (unmeasured && !unmeasured.ok) add('outcome-ohne-aufgabe', unmeasured.detail ?? '', topic.id, topic.file);
+    if (unmeasured && !unmeasured.ok)
+      add('outcome-ohne-aufgabe', unmeasured.detail ?? '', topic.id, topic.file);
     const modes = profile.checks.find((c) => c.id === 'modi');
-    if (modes && !modes.ok) add('modus-fehlt', `${topic.data.title_de}: ${modes.detail}`, topic.id, topic.file);
+    if (modes && !modes.ok)
+      add('modus-fehlt', `${topic.data.title_de}: ${modes.detail}`, topic.id, topic.file);
   }
 
   // A confusion that is drilled and never re-asked. Probe elements carry their family's tags.

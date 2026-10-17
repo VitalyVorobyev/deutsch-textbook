@@ -187,7 +187,10 @@ function levelFromPath(root: string, file: string): Level {
 
 /** Path-id as the rest of the repo spells it: `a2/perfekt-haben-sein`, level dir included. */
 function pathId(base: string, file: string, ext: string): string {
-  return relative(base, file).split(sep).join('/').replace(new RegExp(`${ext}$`), '');
+  return relative(base, file)
+    .split(sep)
+    .join('/')
+    .replace(new RegExp(`${ext}$`), '');
 }
 
 interface Loader {
@@ -212,7 +215,9 @@ function coerce<T>(
 ): T {
   const result = schema.safeParse(raw);
   if (result.success) return result.data as T;
-  loader.notes.push(`${where}: does not match its schema — read from raw YAML (run bun run validate)`);
+  loader.notes.push(
+    `${where}: does not match its schema — read from raw YAML (run bun run validate)`,
+  );
   return raw as T;
 }
 
@@ -224,7 +229,9 @@ function readYaml<T>(
   try {
     return coerce<T>(loader, schema, YAML.parse(readFileSync(file, 'utf8')), loader.rel(file));
   } catch (e) {
-    loader.notes.push(`${loader.rel(file)}: YAML parse error: ${e instanceof Error ? e.message : e}`);
+    loader.notes.push(
+      `${loader.rel(file)}: YAML parse error: ${e instanceof Error ? e.message : e}`,
+    );
     return undefined;
   }
 }
@@ -244,10 +251,15 @@ function readMdx<T>(
     try {
       raw = YAML.parse(match[1]!);
     } catch (e) {
-      loader.notes.push(`${loader.rel(file)}: frontmatter parse error: ${e instanceof Error ? e.message : e}`);
+      loader.notes.push(
+        `${loader.rel(file)}: frontmatter parse error: ${e instanceof Error ? e.message : e}`,
+      );
     }
   }
-  return { data: coerce<T>(loader, schema, raw, loader.rel(file)), body: src.replace(FRONTMATTER, '') };
+  return {
+    data: coerce<T>(loader, schema, raw, loader.rel(file)),
+    body: src.replace(FRONTMATTER, ''),
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -317,16 +329,29 @@ function build(root: string): ContentGraph {
   for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
     const data = readYaml<VocabFile>(loader, file, vocabFileSchema);
     if (!data) continue;
-    const id = data.id ?? file.split(sep).at(-1)!.replace(/\.yaml$/, '');
+    const id =
+      data.id ??
+      file
+        .split(sep)
+        .at(-1)!
+        .replace(/\.yaml$/, '');
     vocab.set(id, { id, data, file: rel(file) });
   }
 
   // --- listening, documents, discovery, lexical overlays ------------------
-  const listening = new Map<string, { id: string; data: ListeningArtifact; file: string; level: Level }>();
+  const listening = new Map<
+    string,
+    { id: string; data: ListeningArtifact; file: string; level: Level }
+  >();
   for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
     const data = readYaml<ListeningArtifact>(loader, file, listeningArtifactSchema);
     if (!data) continue;
-    listening.set(data.id, { id: data.id, data, file: rel(file), level: data.level ?? levelFromPath(root, file) });
+    listening.set(data.id, {
+      id: data.id,
+      data,
+      file: rel(file),
+      level: data.level ?? levelFromPath(root, file),
+    });
   }
 
   const documents = new Map<string, { id: string; data: VisualDocument; file: string }>();
@@ -334,13 +359,22 @@ function build(root: string): ContentGraph {
   for (const file of listFiles(documentsBase, '.yaml')) {
     const data = readYaml<VisualDocument>(loader, file, visualDocumentSchema);
     if (!data) continue;
-    documents.set(pathId(documentsBase, file, '.yaml'), { id: pathId(documentsBase, file, '.yaml'), data, file: rel(file) });
+    documents.set(pathId(documentsBase, file, '.yaml'), {
+      id: pathId(documentsBase, file, '.yaml'),
+      data,
+      file: rel(file),
+    });
   }
 
   const discovery = new Map<string, { id: string; data: Discovery; file: string }>();
   for (const file of listFiles(join(CONTENT, 'discovery'), '.mdx')) {
     const { data } = readMdx<Discovery>(loader, file, discoverySchema);
-    const id = data?.id ?? file.split(sep).at(-1)!.replace(/\.mdx$/, '');
+    const id =
+      data?.id ??
+      file
+        .split(sep)
+        .at(-1)!
+        .replace(/\.mdx$/, '');
     discovery.set(id, { id, data, file: rel(file) });
   }
 
@@ -421,7 +455,6 @@ function build(root: string): ContentGraph {
 // ---------------------------------------------------------------------------
 // Elements
 // ---------------------------------------------------------------------------
-
 
 function element(
   kind: ElementKind,
@@ -535,22 +568,36 @@ function buildElements(graph: ContentGraph): void {
   for (const field of graph.wortfelder.values()) {
     if (!field.data?.topic) continue;
     out.push(
-      element('wortfeld', `${field.id}#wortfeld`, field.data.topic, field.data.level ?? 'A1', field.file, {
-        touches: ['input'],
-        depth: { items: 1, production: 0, parts: field.data.members?.length ?? 0 },
-        title: field.data.title_de,
-      }),
+      element(
+        'wortfeld',
+        `${field.id}#wortfeld`,
+        field.data.topic,
+        field.data.level ?? 'A1',
+        field.file,
+        {
+          touches: ['input'],
+          depth: { items: 1, production: 0, parts: field.data.members?.length ?? 0 },
+          title: field.data.title_de,
+        },
+      ),
     );
   }
 
   for (const piece of graph.discovery.values()) {
     for (const topic of piece.data?.topics ?? []) {
       out.push(
-        element('entdecken', `${piece.id}#entdecken@${topic}`, topic, piece.data.level ?? 'A1', piece.file, {
-          touches: ['input'],
-          modes: ['reading'],
-          title: piece.data.title_de,
-        }),
+        element(
+          'entdecken',
+          `${piece.id}#entdecken@${topic}`,
+          topic,
+          piece.data.level ?? 'A1',
+          piece.file,
+          {
+            touches: ['input'],
+            modes: ['reading'],
+            title: piece.data.title_de,
+          },
+        ),
       );
     }
   }
@@ -562,11 +609,22 @@ function buildElements(graph: ContentGraph): void {
       const entries = deck.data?.entries ?? [];
       const productive = entries.filter((e) => (e.cards ?? 'both') === 'both').length;
       out.push(
-        element('wortschatz', `${deckId}#wortschatz@${topic.id}`, topic.id, deck.data?.level ?? topic.data.level, deck.file, {
-          touches: productive ? ['abruf', 'produktion'] : ['abruf'],
-          depth: { items: entries.length, production: productive, parts: entries.length + productive },
-          title: deck.data?.title_de,
-        }),
+        element(
+          'wortschatz',
+          `${deckId}#wortschatz@${topic.id}`,
+          topic.id,
+          deck.data?.level ?? topic.data.level,
+          deck.file,
+          {
+            touches: productive ? ['abruf', 'produktion'] : ['abruf'],
+            depth: {
+              items: entries.length,
+              production: productive,
+              parts: entries.length + productive,
+            },
+            title: deck.data?.title_de,
+          },
+        ),
       );
     }
   }
@@ -615,7 +673,8 @@ function buildIndexes(graph: ContentGraph): void {
   // The manifest IS the node: `graph.nodes` used to be a second map of the same 49 things, read
   // from `atlas.yaml`'s `nodes:` array, and keeping the two in step was a job for the validator.
   for (const { id, data } of graph.topics.values()) {
-    for (const outcome of data.outcomes ?? []) graph.outcomes.set(outcome.id, { outcome, topic: id });
+    for (const outcome of data.outcomes ?? [])
+      graph.outcomes.set(outcome.id, { outcome, topic: id });
     for (const prerequisite of data.prerequisites ?? []) push(graph.neededBy, prerequisite, id);
     for (const base of data.deepens ?? []) push(graph.deepenedBy, base, id);
     for (const other of data.related ?? []) push(graph.relatedFrom, other, id);
@@ -650,7 +709,10 @@ const cache = new Map<string, ContentGraph>();
  * whole point. Pass `{ fresh: true }` where a rebuild is the intent — the write path, and the
  * dev server after a file changes.
  */
-export function contentGraph(root: string = repoRoot(), options: { fresh?: boolean } = {}): ContentGraph {
+export function contentGraph(
+  root: string = repoRoot(),
+  options: { fresh?: boolean } = {},
+): ContentGraph {
   if (!options.fresh) {
     const hit = cache.get(root);
     if (hit) return hit;
