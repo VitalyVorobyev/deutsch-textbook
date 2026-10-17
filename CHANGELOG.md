@@ -16,7 +16,11 @@ GitHub Release notes.
 - **B1 articles are being rewritten to read in German first.** The explanation is German text, and
   each section ends with two folds: *Übersetzung*, an English translation of the German, and
   *Ausführliche Erklärung*, the full explanation in your language as before. Switch the Lernsprache
-  to *Deutsch* to hide both. *Arbeit und Bewerbung* is the first; the other B1 articles follow.
+  to *Deutsch* to hide both. Eight articles so far: *Arbeit und Bewerbung*, *Digitales Leben*,
+  *Erfahrungen erzählen*, *Geld und Verträge*, *Gesellschaft und Zusammenleben*, *Gesundheit und
+  Wohlbefinden*, *Informationen vermitteln* and *Konsum und Umwelt*; the rest follow.
+- ***Gesellschaft und Zusammenleben* no longer says the A2 pronouns *man* and *jemand* never change**
+  — they decline (*jemanden*, *niemandem*); what sets them apart is that they stand without a noun.
 
 ### Fixed
 

@@ -149,6 +149,13 @@ describe('germanFirstTopicProblems', () => {
     ]);
   });
 
+  test('an untranslated stub fails', () => {
+    const stub = edit(FIXTURE, 'The rule is here.', 'TODO');
+    expect(germanFirstTopicProblems(stub)).toEqual([
+      '"### Die Regel": its <Translation> is still a TODO stub — translate the German above it',
+    ]);
+  });
+
   test('the Erklaerung keeps its Russian half', () => {
     const noRu = edit(FIXTURE, '<Ru>\nПравило по-русски.\n</Ru>\n', '');
     expect(germanFirstTopicProblems(noRu)).toEqual([
