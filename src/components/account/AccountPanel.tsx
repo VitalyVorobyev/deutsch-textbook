@@ -89,8 +89,18 @@ const UI = {
     uk: 'Видалити обліковий запис і всі його дані? Прогрес на цьому пристрої не змінюється. Скасувати буде неможливо.',
     de: 'Konto und alle gespeicherten Daten löschen? Dein Fortschritt auf diesem Gerät bleibt unberührt. Das lässt sich nicht rückgängig machen.',
   },
-  syncing: { en: 'Syncing…', ru: 'Синхронизация…', uk: 'Синхронізація…', de: 'Wird synchronisiert…' },
-  syncOk: { en: 'Up to date.', ru: 'Всё синхронизировано.', uk: 'Усе синхронізовано.', de: 'Auf dem neuesten Stand.' },
+  syncing: {
+    en: 'Syncing…',
+    ru: 'Синхронизация…',
+    uk: 'Синхронізація…',
+    de: 'Wird synchronisiert…',
+  },
+  syncOk: {
+    en: 'Up to date.',
+    ru: 'Всё синхронизировано.',
+    uk: 'Усе синхронізовано.',
+    de: 'Auf dem neuesten Stand.',
+  },
   syncFailed: {
     en: 'Sync could not finish ({reason}). It will try again automatically.',
     ru: 'Синхронизация не завершилась ({reason}). Повтор произойдёт автоматически.',
@@ -223,7 +233,9 @@ export default function AccountPanel() {
         <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.localFirst)}</p>
         {isTauri() ? (
           <>
-            <p className="text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.desktopSignIn)}</p>
+            <p className="text-sm text-stone-500 dark:text-stone-400">
+              {pick(lang, UI.desktopSignIn)}
+            </p>
             <DeviceTokens lang={lang} />
           </>
         ) : session.providers.length === 0 ? (
@@ -240,7 +252,9 @@ export default function AccountPanel() {
             {session.providers.map((provider) => (
               <a
                 key={provider}
-                href={withBase(`/api/auth/${provider}/start?returnTo=${encodeURIComponent('/progress?tab=daten')}`)}
+                href={withBase(
+                  `/api/auth/${provider}/start?returnTo=${encodeURIComponent('/progress?tab=daten')}`,
+                )}
                 className="min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
               >
                 {t('account.signIn', uiLang)} · {PROVIDER_LABEL[provider] ?? provider}
@@ -282,7 +296,9 @@ export default function AccountPanel() {
           </dd>
           <dt className="font-semibold">{t('account.lastSync', uiLang)}</dt>
           <dd className="flex flex-wrap items-center gap-x-2">
-            <span>{lastSync ? new Date(lastSync).toLocaleString('de-DE') : t('account.never', uiLang)}</span>
+            <span>
+              {lastSync ? new Date(lastSync).toLocaleString('de-DE') : t('account.never', uiLang)}
+            </span>
             {/* The force button, demoted to an escape hatch beside the value it
                 refreshes (ADR 0004e): sync is automatic, this is for certainty. */}
             {bound && user.status === 'approved' && compressionSupported() && (
@@ -341,10 +357,14 @@ export default function AccountPanel() {
       {user.status === 'approved' && compressionSupported() && (
         <section className="rounded-lg border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-800">
           {!boundProfile && (
-            <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.unbound)}</p>
+            <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">
+              {pick(lang, UI.unbound)}
+            </p>
           )}
           {boundProfile && !bound && (
-            <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.otherProfile)}</p>
+            <p className="mb-3 text-sm text-stone-500 dark:text-stone-400">
+              {pick(lang, UI.otherProfile)}
+            </p>
           )}
 
           <div className="flex flex-wrap items-center gap-2">

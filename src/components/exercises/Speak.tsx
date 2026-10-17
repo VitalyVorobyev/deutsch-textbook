@@ -48,7 +48,12 @@ const UI = {
  * activation may have expired, especially in WKWebView), so a refusal falls back
  * to a prominent play button rather than a silent nothing.
  */
-function RecordingPlayer({ src, label, lang, played }: {
+function RecordingPlayer({
+  src,
+  label,
+  lang,
+  played,
+}: {
   src: string;
   label: string;
   lang: ExplainLang;
@@ -68,13 +73,19 @@ function RecordingPlayer({ src, label, lang, played }: {
     if (!el || played.has(src)) return;
     played.add(src);
     let cancelled = false;
-    el.play().catch(() => { if (!cancelled) setBlocked(true); });
-    return () => { cancelled = true; };
+    el.play().catch(() => {
+      if (!cancelled) setBlocked(true);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [src, played]);
 
   return (
     <div className="min-w-0 flex-1 rounded-md border border-stone-200 px-3 py-2 dark:border-stone-700">
-      <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{label}</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
+        {label}
+      </p>
       <audio
         ref={audio}
         controls
@@ -120,13 +131,19 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
   // State, not a ref, because it is read during render (passed as a prop); the
   // Set identity is stable and only its contents mutate, inside effects.
   const [played] = useState(() => new Set<string>());
-  const canRecord = typeof window !== 'undefined' && Boolean(navigator.mediaDevices?.getUserMedia) && typeof MediaRecorder !== 'undefined';
+  const canRecord =
+    typeof window !== 'undefined' &&
+    Boolean(navigator.mediaDevices?.getUserMedia) &&
+    typeof MediaRecorder !== 'undefined';
 
-  useEffect(() => () => {
-    stream.current?.getTracks().forEach((track) => track.stop());
-    urls.current.forEach((url) => URL.revokeObjectURL(url));
-    urls.current.clear();
-  }, []);
+  useEffect(
+    () => () => {
+      stream.current?.getTracks().forEach((track) => track.stop());
+      urls.current.forEach((url) => URL.revokeObjectURL(url));
+      urls.current.clear();
+    },
+    [],
+  );
 
   async function startRecording() {
     if (!canRecord || recording) return;
@@ -141,9 +158,13 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
     chunks.current = [];
     const next = new MediaRecorder(media);
     recorder.current = next;
-    next.ondataavailable = (event) => { if (event.data.size) chunks.current.push(event.data); };
+    next.ondataavailable = (event) => {
+      if (event.data.size) chunks.current.push(event.data);
+    };
     next.onstop = () => {
-      const url = URL.createObjectURL(new Blob(chunks.current, { type: next.mimeType || 'audio/webm' }));
+      const url = URL.createObjectURL(
+        new Blob(chunks.current, { type: next.mimeType || 'audio/webm' }),
+      );
       urls.current.add(url);
       setAudioUrl(url);
       media.getTracks().forEach((track) => track.stop());
@@ -173,11 +194,19 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
   const recordControls = supported && (
     <div className="flex flex-wrap items-center gap-3">
       {!recording ? (
-        <button type="button" onClick={() => void startRecording()} className="min-h-11 rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800">
+        <button
+          type="button"
+          onClick={() => void startRecording()}
+          className="min-h-11 rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800"
+        >
           ● {audioUrl ? pick(lang, UI.recordAgain) : pick(lang, UI.record)}
         </button>
       ) : (
-        <button type="button" onClick={stopRecording} className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900">
+        <button
+          type="button"
+          onClick={stopRecording}
+          className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900"
+        >
           ■ {pick(lang, UI.stop)}
         </button>
       )}
@@ -206,8 +235,12 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
               />
             </div>
           )}
-          <button type="button" onClick={showModel} disabled={recording}
-            className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">
+          <button
+            type="button"
+            onClick={showModel}
+            disabled={recording}
+            className="mt-4 min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40"
+          >
             {pick(lang, UI.showModel)}
           </button>
         </div>
@@ -231,7 +264,9 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
                 </p>
                 <SpeakerButton text={item.model_answer} />
               </div>
-              <p lang="de" className="mt-2">{item.model_answer}</p>
+              <p lang="de" className="mt-2">
+                {item.model_answer}
+              </p>
               <Translation text={item.model_translation} lang={lang} />
             </div>
           </div>
@@ -239,20 +274,24 @@ export function Speak({ item, lang, onResult, locked, onNext, nextLabel }: ItemP
           <div className="mt-4 rounded-md border border-stone-200 p-4 dark:border-stone-700">
             <p className="text-sm font-semibold">{pick(lang, UI.checkYourself)}</p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-300">
-              {item.checklist.map((entry, index) => <li key={index}>{pick(lang, entry)}</li>)}
+              {item.checklist.map((entry, index) => (
+                <li key={index}>{pick(lang, entry)}</li>
+              ))}
             </ul>
-            {!locked && supported && (
-              <div className="mt-3">
-                {recordControls}
-              </div>
-            )}
+            {!locked && supported && <div className="mt-3">{recordControls}</div>}
           </div>
 
           <div className="mt-4">
             <p className="mb-3 text-xs text-stone-500 dark:text-stone-400">
               {pick(lang, UI.privacyNote)}
             </p>
-            <button type="button" onClick={onNext} className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900">{nextLabel}</button>
+            <button
+              type="button"
+              onClick={onNext}
+              className="min-h-11 rounded-md bg-stone-800 px-4 py-2 text-sm font-semibold text-white dark:bg-stone-200 dark:text-stone-900"
+            >
+              {nextLabel}
+            </button>
           </div>
         </>
       )}

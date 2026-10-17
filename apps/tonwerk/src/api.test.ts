@@ -68,7 +68,9 @@ describe('a 401 ends the session rather than failing one request', () => {
     // Three views mount at the same time against a dead token. The shell must return to the token
     // screen once; three reports would race three state updates and could clear a token the user
     // had just typed in between.
-    const fetchImpl = vi.fn(async () => respond({ detail: 'Invalid bearer token' }, { status: 401 }));
+    const fetchImpl = vi.fn(async () =>
+      respond({ detail: 'Invalid bearer token' }, { status: 401 }),
+    );
     const onUnauthorized = vi.fn();
     const api = createApi({ token: () => 'falsch', fetchImpl, onUnauthorized });
 
@@ -79,7 +81,9 @@ describe('a 401 ends the session rather than failing one request', () => {
   });
 
   test('a 403 is not a 401: the engine says that to a browser presenting no bearer at all', async () => {
-    const fetchImpl = vi.fn(async () => respond({ detail: 'Invalid local session token' }, { status: 403 }));
+    const fetchImpl = vi.fn(async () =>
+      respond({ detail: 'Invalid local session token' }, { status: 403 }),
+    );
     const onUnauthorized = vi.fn();
     const api = createApi({ token: () => '', fetchImpl, onUnauthorized });
 
@@ -93,7 +97,9 @@ describe('the other three failures are told apart', () => {
     const fetchImpl = vi.fn(async () => {
       throw new TypeError('Failed to fetch');
     });
-    await expect(createApi({ token: () => 't', fetchImpl }).registry()).rejects.toBeInstanceOf(OfflineError);
+    await expect(createApi({ token: () => 't', fetchImpl }).registry()).rejects.toBeInstanceOf(
+      OfflineError,
+    );
   });
 
   test('an answer this build cannot read is ShapeError, naming the path', async () => {
@@ -110,7 +116,9 @@ describe('the other three failures are told apart', () => {
       throw new DOMException('aborted', 'AbortError');
     });
     controller.abort();
-    const error = await createApi({ token: () => 't', fetchImpl }).registry(controller.signal).catch((caught: unknown) => caught);
+    const error = await createApi({ token: () => 't', fetchImpl })
+      .registry(controller.signal)
+      .catch((caught: unknown) => caught);
     expect(error).toBeInstanceOf(DOMException);
     expect(error).not.toBeInstanceOf(OfflineError);
   });
@@ -138,7 +146,13 @@ describe('the scene document is parsed against the contract, and never silently 
     acoustics: { lead_in_ms: 0, room: null },
     variants: [],
     title: { en: 'A flat viewing', ru: 'Осмотр квартиры', uk: null },
-    cast: [{ role: 'Maklerin', character: null, voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: null } }],
+    cast: [
+      {
+        role: 'Maklerin',
+        character: null,
+        voice: { engine: 'qwen_tts', voice: 'Vivian', seed: 100, style: null },
+      },
+    ],
     script: [
       {
         id: 'line-1',
@@ -220,19 +234,25 @@ describe('the write endpoints', () => {
     const api = createApi({ token: () => 't', fetchImpl });
 
     await api.renderScene('a', 'natural');
-    expect(JSON.parse(String((fetchImpl.mock.calls[0] as unknown as [string, RequestInit])[1].body))).toEqual({
+    expect(
+      JSON.parse(String((fetchImpl.mock.calls[0] as unknown as [string, RequestInit])[1].body)),
+    ).toEqual({
       variant: 'natural',
     });
 
     await api.renderScene('a', 'natural', 'fake');
-    expect(JSON.parse(String((fetchImpl.mock.calls[1] as unknown as [string, RequestInit])[1].body))).toEqual({
+    expect(
+      JSON.parse(String((fetchImpl.mock.calls[1] as unknown as [string, RequestInit])[1].body)),
+    ).toEqual({
       variant: 'natural',
       sound_engine: 'fake',
     });
   });
 
   test('a generation posts the SoundSpec fields the scene contract already uses', async () => {
-    const fetchImpl = vi.fn(async () => respond({ origin: 'generated', asset_sha256: 'a', peaks: [] }));
+    const fetchImpl = vi.fn(async () =>
+      respond({ origin: 'generated', asset_sha256: 'a', peaks: [] }),
+    );
     const api = createApi({ token: () => 't', fetchImpl });
 
     await api.generateSound({
@@ -270,7 +290,10 @@ describe('a refusal carries the engine’s own words, in both shapes it uses', (
       respond(
         {
           detail: [
-            { loc: ['body', 'scene', 'script', 1, 'pace'], msg: 'Input should be less than or equal to 1.3' },
+            {
+              loc: ['body', 'scene', 'script', 1, 'pace'],
+              msg: 'Input should be less than or equal to 1.3',
+            },
             { loc: ['body', 'scene', 'cast'], msg: 'List should have at least 1 item' },
           ],
         },

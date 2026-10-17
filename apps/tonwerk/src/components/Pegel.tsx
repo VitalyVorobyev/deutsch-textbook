@@ -32,7 +32,9 @@ function label(status: string): string {
 }
 
 function meaning(status: string): string {
-  return isRegistryStatus(status) ? STATUS_MEANING[status] : 'Ein Status, den dieser Build nicht kennt.';
+  return isRegistryStatus(status)
+    ? STATUS_MEANING[status]
+    : 'Ein Status, den dieser Build nicht kennt.';
 }
 
 const SEGMENT_COLOUR: Record<string, string> = {

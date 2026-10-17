@@ -10,7 +10,12 @@
  * worker keeps waiting and takes over on the next natural navigation.
  */
 import { useEffect, useState } from 'react';
-import { applyUpdate, onUpdateReady, registerServiceWorker, requestPersistentStorage } from '../lib/pwa';
+import {
+  applyUpdate,
+  onUpdateReady,
+  registerServiceWorker,
+  requestPersistentStorage,
+} from '../lib/pwa';
 import { useUiLang } from './hooks';
 import { t } from '../lib/strings';
 

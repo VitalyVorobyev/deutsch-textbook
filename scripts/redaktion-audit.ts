@@ -108,7 +108,9 @@ async function startServer(port: number): Promise<{ base: string; stop: () => vo
       throw new Error(`the dev server did not answer on ${base} within 60 s`);
     }
     try {
-      const html = await fetch(`${base}/`, { signal: AbortSignal.timeout(2_000) }).then((r) => r.text());
+      const html = await fetch(`${base}/`, { signal: AbortSignal.timeout(2_000) }).then((r) =>
+        r.text(),
+      );
       if (html.includes('<title>Redaktion · Deutsch-Atlas</title>')) break;
       child.kill();
       throw new Error(`something else is serving ${base} — free the port or pass --port`);
@@ -122,14 +124,21 @@ async function startServer(port: number): Promise<{ base: string; stop: () => vo
 
 async function measureRows(page: Page) {
   return page.evaluate(() => {
-    const tableRows = [...document.querySelectorAll('tbody tr')].filter((row) => row.getBoundingClientRect().height > 0);
+    const tableRows = [...document.querySelectorAll('tbody tr')].filter(
+      (row) => row.getBoundingClientRect().height > 0,
+    );
     const rows = tableRows.length
       ? tableRows
-      : [...document.querySelectorAll('ul[aria-label="Ergebnisliste"] > li')].filter((row) => row.getBoundingClientRect().height > 0);
+      : [...document.querySelectorAll('ul[aria-label="Ergebnisliste"] > li')].filter(
+          (row) => row.getBoundingClientRect().height > 0,
+        );
     return {
       n: rows.length,
       heights: rows.map((r) => Math.round(r.getBoundingClientRect().height)),
-      primaryMax: Math.max(0, ...rows.map((r) => r.querySelectorAll('a[data-primary="true"]').length)),
+      primaryMax: Math.max(
+        0,
+        ...rows.map((r) => r.querySelectorAll('a[data-primary="true"]').length),
+      ),
       anchorMax: Math.max(0, ...rows.map((r) => r.querySelectorAll('a').length)),
     };
   });
@@ -155,7 +164,9 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(400);
 
-    const heading = (await page.locator('h1').count()) ? await page.locator('h1').first().innerText() : '';
+    const heading = (await page.locator('h1').count())
+      ? await page.locator('h1').first().innerText()
+      : '';
     const missing = await page.getByText('Kein Thema mit der Kennung').count();
     check(!!heading && !missing, `${route} resolves`, heading.slice(0, 40));
 
@@ -214,7 +225,11 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(400);
   const after = await page.locator('tbody tr').count();
-  check(before === after && before > 0, 'permalink survives reload', `${before} rows before, ${after} after`);
+  check(
+    before === after && before > 0,
+    'permalink survives reload',
+    `${before} rows before, ${after} after`,
+  );
 
   // A source link is internal navigation, not an external provenance action. The first desktop
   // slice used `Extern` for both; `target=_blank` made “Artikel öffnen” appear to do nothing in the
@@ -227,30 +242,48 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   await page.waitForLoadState('networkidle');
   await page.getByRole('link', { name: 'Artikel öffnen' }).click();
   await page.waitForTimeout(200);
-  check(page.url().includes('#/quelle?pfad=content%2Ftopics%2Fa1%2Ferste-schritte.mdx'), 'article opens in the source editor');
-  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'source editor names the opened article');
+  check(
+    page.url().includes('#/quelle?pfad=content%2Ftopics%2Fa1%2Ferste-schritte.mdx'),
+    'article opens in the source editor',
+  );
+  check(
+    (await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count()) === 1,
+    'source editor names the opened article',
+  );
 
   const back = page.getByRole('button', { name: 'Zurück' });
   const forward = page.getByRole('button', { name: 'Vorwärts' });
   check(await back.isEnabled(), 'back becomes available after internal navigation');
   await back.click();
   await page.waitForTimeout(100);
-  check(await page.getByRole('heading', { name: 'Erste Schritte' }).count() === 1, 'back returns to the topic');
+  check(
+    (await page.getByRole('heading', { name: 'Erste Schritte' }).count()) === 1,
+    'back returns to the topic',
+  );
   check(await forward.isEnabled(), 'forward becomes available after going back');
   await forward.click();
   await page.waitForTimeout(100);
-  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'forward returns to the source');
+  check(
+    (await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count()) === 1,
+    'forward returns to the source',
+  );
 
   const editor = page.getByRole('textbox', { name: /Quelltext von/ });
   await editor.fill(`${await editor.inputValue()}\n`);
   page.once('dialog', (dialog) => void dialog.dismiss());
   await back.click();
   await page.waitForTimeout(100);
-  check(await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count() === 1, 'dismissed draft warning keeps the editor open');
+  check(
+    (await page.getByRole('heading', { name: 'erste-schritte.mdx' }).count()) === 1,
+    'dismissed draft warning keeps the editor open',
+  );
   page.once('dialog', (dialog) => void dialog.accept());
   await back.click();
   await page.waitForTimeout(100);
-  check(await page.getByRole('heading', { name: 'Erste Schritte' }).count() === 1, 'confirmed draft discard permits back navigation');
+  check(
+    (await page.getByRole('heading', { name: 'Erste Schritte' }).count()) === 1,
+    'confirmed draft discard permits back navigation',
+  );
 
   // Exercise the empty-detail recovery when the corpus actually has an orphan focus tag. Do not
   // pin this to a named tag: a quality wave is supposed to give that tag material, and doing so
@@ -264,10 +297,19 @@ async function run(browser: Browser, base: string, width: number, offsite: strin
   if (orphan) {
     await page.goto(`${base}/#/fokus/${orphan.tag}`);
     await page.waitForLoadState('networkidle');
-    check(await page.getByText('Das ist ein Befund, kein Navigationsende.').count() === 1, 'empty focus detail explains the recovery path');
-    check(await page.getByRole('link', { name: 'Einführendes Thema' }).count() === 1, 'empty focus detail links to its introducing topic');
+    check(
+      (await page.getByText('Das ist ein Befund, kein Navigationsende.').count()) === 1,
+      'empty focus detail explains the recovery path',
+    );
+    check(
+      (await page.getByRole('link', { name: 'Einführendes Thema' }).count()) === 1,
+      'empty focus detail links to its introducing topic',
+    );
   } else {
-    check(tags.length > 0 && tags.every((tag) => tag.elements.length > 0), 'every registered focus tag has material');
+    check(
+      tags.length > 0 && tags.every((tag) => tag.elements.length > 0),
+      'every registered focus tag has material',
+    );
   }
 
   await ctx.close();
@@ -278,7 +320,11 @@ const browser = await chromium.launch();
 const offsite: string[] = [];
 try {
   for (const width of widths) await run(browser, server.base, width, offsite);
-  check(!offsite.length, 'no request leaves the origin', [...new Set(offsite)].slice(0, 3).join(', '));
+  check(
+    !offsite.length,
+    'no request leaves the origin',
+    [...new Set(offsite)].slice(0, 3).join(', '),
+  );
 } finally {
   await browser.close();
   server.stop();

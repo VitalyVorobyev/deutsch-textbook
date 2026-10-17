@@ -63,13 +63,15 @@ export default function ExamFullRun({ set, modules, onRecord, onSelfScore, onExi
     return (
       <section lang="de" className="space-y-4">
         <div className={`${CARD} p-6`}>
-          <p className="text-sm text-stone-500 dark:text-stone-400">{set.title} · Ganze schriftliche Prüfung</p>
+          <p className="text-sm text-stone-500 dark:text-stone-400">
+            {set.title} · Ganze schriftliche Prüfung
+          </p>
           <h2 className="mt-1 text-lg font-bold">
             Modul {step + 1} von {modules.length}: {MODULE_LABEL[current.module]}
           </h2>
           <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">
-            {current.timeLimitMin} Minuten, Prüfungsmodus. Ergebnisse gibt es erst nach dem
-            letzten Modul — wie in der Prüfung.
+            {current.timeLimitMin} Minuten, Prüfungsmodus. Ergebnisse gibt es erst nach dem letzten
+            Modul — wie in der Prüfung.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button type="button" onClick={() => setRunning(true)} className={PRIMARY_BUTTON}>
@@ -91,8 +93,14 @@ export default function ExamFullRun({ set, modules, onRecord, onSelfScore, onExi
     const module = moduleFor(run);
     return module ? moduleFreeMax(module) : 0;
   };
-  const total = finished.reduce((sum, entry) => sum + entry.run.raw + (entry.run.selfScore ?? 0), 0);
-  const totalMax = finished.reduce((sum, entry) => sum + entry.run.rawMax + freeMaxFor(entry.run), 0);
+  const total = finished.reduce(
+    (sum, entry) => sum + entry.run.raw + (entry.run.selfScore ?? 0),
+    0,
+  );
+  const totalMax = finished.reduce(
+    (sum, entry) => sum + entry.run.rawMax + freeMaxFor(entry.run),
+    0,
+  );
   const pendingSelf = finished.some(
     (entry) => freeMaxFor(entry.run) > 0 && entry.run.selfScore === undefined,
   );
@@ -124,7 +132,10 @@ export default function ExamFullRun({ set, modules, onRecord, onSelfScore, onExi
             const module = moduleFor(entry.run);
             const freeMax = module ? moduleFreeMax(module) : 0;
             return (
-              <li key={entry.run.module} className="flex items-baseline justify-between gap-3 text-sm">
+              <li
+                key={entry.run.module}
+                className="flex items-baseline justify-between gap-3 text-sm"
+              >
                 <span>
                   {MODULE_LABEL[entry.run.module]}
                   {entry.timedOut && ' · Zeit abgelaufen'}
@@ -161,7 +172,9 @@ export default function ExamFullRun({ set, modules, onRecord, onSelfScore, onExi
                 onApply={(score, max) => {
                   const patched = onSelfScore(entry.run, score, max);
                   setFinished((entries) =>
-                    entries.map((item) => (item.run.module === patched.module ? { ...item, run: patched } : item)),
+                    entries.map((item) =>
+                      item.run.module === patched.module ? { ...item, run: patched } : item,
+                    ),
                   );
                 }}
               />

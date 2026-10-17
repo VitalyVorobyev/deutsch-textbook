@@ -78,10 +78,9 @@ export default function FirstSteps({ first, placement }: Props) {
     // covers the read that "succeeds" empty — a veteran profile must never be
     // greeted as a beginner by a stalled store.
     if (hasSeenData('cards') || hasSeenData('attempts')) return;
-    void withReadRetry(
-      () => Promise.all([getAttempts(), getCardStates(), getTopicsState()]),
-      { surface: 'heute/first-steps' },
-    ).then(
+    void withReadRetry(() => Promise.all([getAttempts(), getCardStates(), getTopicsState()]), {
+      surface: 'heute/first-steps',
+    }).then(
       ([attempts, cards, topics]) => {
         // The rule itself lives in `hasStartedLearning` (src/lib/placement.ts), pure and
         // tested: a placement attempt is not evidence of having started learning, and
@@ -104,9 +103,7 @@ export default function FirstSteps({ first, placement }: Props) {
       <h2 lang={uiLang} className="text-lg font-bold">
         {t('today.howItWorks', uiLang)}
       </h2>
-      <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-        {pick(lang, UI.loop)}
-      </p>
+      <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.loop)}</p>
       <ol className="mt-5 grid gap-5 sm:grid-cols-3">
         {STEPS.map((step, i) => (
           <li key={step.label}>
@@ -129,7 +126,11 @@ export default function FirstSteps({ first, placement }: Props) {
           href={first.path}
           className="mt-6 inline-flex rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700"
         >
-          {pick(lang, UI.startWith)} <span lang="de" className="ml-1">{first.title_de}</span> →
+          {pick(lang, UI.startWith)}{' '}
+          <span lang="de" className="ml-1">
+            {first.title_de}
+          </span>{' '}
+          →
         </a>
       )}
       {/* Deliberately here and not in FirstRunGate: that gate is a blocking identity dialog

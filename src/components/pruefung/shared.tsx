@@ -110,18 +110,23 @@ export const moduleKind = (module: ExamModuleSpec): ModuleKind =>
 
 /** Modules a learner can open: every scored one, plus practice modules that bring pages. */
 export const runnableModules = (set: ExamSetSpec): ExamModuleSpec[] =>
-  set.modules.filter((module) => (moduleKind(module) === 'scored' ? true : module.pages.length > 0));
+  set.modules.filter((module) =>
+    moduleKind(module) === 'scored' ? true : module.pages.length > 0,
+  );
 
 /** The full written exam in booklet order, when this set can offer it end to end. */
 export function writtenModules(set: ExamSetSpec): ExamModuleSpec[] {
   const order: ExamModuleId[] = ['hoeren', 'lesen', 'schreiben'];
   const found = order
     .map((id) => set.modules.find((module) => module.module === id))
-    .filter((module): module is ExamModuleSpec => module !== undefined && moduleKind(module) === 'scored');
+    .filter(
+      (module): module is ExamModuleSpec => module !== undefined && moduleKind(module) === 'scored',
+    );
   return found.length === order.length ? found : [];
 }
 
-export const CARD = 'rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800';
+export const CARD =
+  'rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800';
 
 export const PRIMARY_BUTTON =
   'min-h-11 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-40';

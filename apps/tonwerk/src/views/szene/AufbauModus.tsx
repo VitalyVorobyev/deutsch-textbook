@@ -187,7 +187,10 @@ export function AufbauModus({
         randlos
       >
         {entwurf.variants.length === 0 ? (
-          <Zustand art="leer" text="Diese Szene erklärt keine Variante. Gerendert wird dann nichts." />
+          <Zustand
+            art="leer"
+            text="Diese Szene erklärt keine Variante. Gerendert wird dann nichts."
+          />
         ) : (
           entwurf.variants.map((variant, index) => (
             <div className="variante" key={`${variant.id}-${index}`}>
@@ -289,12 +292,7 @@ export function AufbauModus({
         </div>
       </Platte>
 
-      <Zeitleiste
-        entwurf={entwurf}
-        setEntwurf={setEntwurf}
-        akustik={akustik}
-        importe={importe}
-      />
+      <Zeitleiste entwurf={entwurf} setEntwurf={setEntwurf} akustik={akustik} importe={importe} />
     </>
   );
 }
@@ -617,7 +615,9 @@ function Klangquelle({
               }
               wert={sound.ref}
               optionen={[
-                ...(gewaehlt ? [] : [{ wert: sound.ref, name: `${kurzSha(sound.ref)} (unbekannt)` }]),
+                ...(gewaehlt
+                  ? []
+                  : [{ wert: sound.ref, name: `${kurzSha(sound.ref)} (unbekannt)` }]),
                 ...importe.map((row) => ({
                   wert: klangSha(row),
                   name: `${row.title ?? klangSha(row)} · ${sekunden((row.duration_seconds ?? 0) * 1000)}`,
@@ -631,7 +631,9 @@ function Klangquelle({
               wert={sound.source_start_ms}
               min={0}
               schritt={100}
-              onWert={(source_start_ms) => setSound({ ...sound, source_start_ms: source_start_ms ?? 0 })}
+              onWert={(source_start_ms) =>
+                setSound({ ...sound, source_start_ms: source_start_ms ?? 0 })
+              }
             />
             <ZahlFeld
               legende="Ausschnittlänge"

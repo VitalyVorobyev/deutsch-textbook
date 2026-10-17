@@ -99,9 +99,10 @@ export function Translate({
     // while `key_tokens` had in fact attributed it — two instruments disagreeing about the
     // same row. Absent means "no ruling", which is what every historical attempt carries and
     // what the audit already knows how to fall back from.
-    const focusEvidence = item.focus && item.focus_evidence
-      ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
-      : undefined;
+    const focusEvidence =
+      item.focus && item.focus_evidence
+        ? evaluateFocusEvidence(value, isCorrect, item.focus_evidence)
+        : undefined;
     onResult({
       correct: isCorrect,
       given: normalizeAnswer(value),
@@ -161,15 +162,16 @@ export function Translate({
    * field above has just been disabled. `diffExpectedWords` is symmetric in shape, so
    * swapping the arguments needs no new code.
    */
-  const givenDiffers =
-    checked && !isCorrect ? diffExpectedWords(givenWords, answerWords) : null;
+  const givenDiffers = checked && !isCorrect ? diffExpectedWords(givenWords, answerWords) : null;
 
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
       {/* No prompt_de exists by design (German→German is nonsense): 'de' mode
           falls back to the EN prompt inside pick(). */}
-      <p className="mb-4 text-lg font-medium">{pick(lang, { en: item.prompt_en, ru: item.prompt_ru, uk: item.prompt_uk })}</p>
+      <p className="mb-4 text-lg font-medium">
+        {pick(lang, { en: item.prompt_en, ru: item.prompt_ru, uk: item.prompt_uk })}
+      </p>
       <textarea
         ref={inputRef}
         rows={1}

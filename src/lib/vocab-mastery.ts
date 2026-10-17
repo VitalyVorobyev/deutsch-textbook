@@ -39,10 +39,14 @@ function started(card?: StoredCard): boolean {
  * The caller says which case it is by passing the directions the entry actually has;
  * `rollupWords` reads that off the built deck rather than re-reading the schema.
  */
-export function wordMastery(recognition?: StoredCard, production?: StoredCard, options: {
-  /** false for a `cards: recognition` entry, whose x-de card was never built */
-  hasProduction?: boolean;
-} = {}): WordMastery {
+export function wordMastery(
+  recognition?: StoredCard,
+  production?: StoredCard,
+  options: {
+    /** false for a `cards: recognition` entry, whose x-de card was never built */
+    hasProduction?: boolean;
+  } = {},
+): WordMastery {
   const hasProduction = options.hasProduction ?? true;
   const evidence = hasProduction ? [recognition, production] : [recognition];
   if (!evidence.some(started)) return 'new';
@@ -53,7 +57,11 @@ export function wordMastery(recognition?: StoredCard, production?: StoredCard, o
     : 'established';
 }
 
-export function rollupWords(cards: readonly CardRef[], states: CardStates, now = new Date()): WordRollup[] {
+export function rollupWords(
+  cards: readonly CardRef[],
+  states: CardStates,
+  now = new Date(),
+): WordRollup[] {
   const grouped = new Map<string, CardRef[]>();
   for (const card of cards) {
     const key = `${card.deckId}::${card.de}`;

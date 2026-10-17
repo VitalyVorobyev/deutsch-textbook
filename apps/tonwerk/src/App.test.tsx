@@ -74,7 +74,10 @@ describe('the session', () => {
 describe('routing', () => {
   test('an unknown hash says so rather than rendering the overview under a broken link', () => {
     setToken('geheim');
-    vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort(registryFixture)),
+    );
     window.location.hash = '#/archiv';
 
     render(<App />);
@@ -84,7 +87,10 @@ describe('routing', () => {
 
   test('every section on the rail is a link now — nothing is listed as “Folgt”', () => {
     setToken('geheim');
-    vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort(registryFixture)),
+    );
 
     render(<App />);
 
@@ -101,7 +107,10 @@ describe('routing', () => {
 
   test('a Freigabe is a place inside Prüfung, so the rail keeps Prüfung lit', () => {
     setToken('geheim');
-    vi.stubGlobal('fetch', vi.fn(async () => antwort({ detail: 'no scene project x' }, { status: 404 })));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort({ detail: 'no scene project x' }, { status: 404 })),
+    );
     window.location.hash = '#/pruefung/ls-wohnen-01';
 
     render(<App />);
@@ -111,7 +120,10 @@ describe('routing', () => {
 
   test('the Klangbibliothek is a real section now, and it is reachable', () => {
     setToken('geheim');
-    vi.stubGlobal('fetch', vi.fn(async () => antwort([])));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort([])),
+    );
 
     render(<App />);
 
@@ -121,7 +133,10 @@ describe('routing', () => {
 
   test('the shortcuts are printed on the rail rather than hidden in a help page', () => {
     setToken('geheim');
-    vi.stubGlobal('fetch', vi.fn(async () => antwort(registryFixture)));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort(registryFixture)),
+    );
 
     render(<App />);
 

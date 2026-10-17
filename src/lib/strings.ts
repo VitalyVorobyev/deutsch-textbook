@@ -92,7 +92,12 @@ export const STRINGS = {
     ru: 'Позаниматься ещё',
     uk: 'Позайматися ще',
   },
-  'session.toHome': { de: 'Zur Startseite', en: 'To the home page', ru: 'На главную', uk: 'На головну' },
+  'session.toHome': {
+    de: 'Zur Startseite',
+    en: 'To the home page',
+    ru: 'На главную',
+    uk: 'На головну',
+  },
   'session.noCardsDue': {
     de: 'Keine Karten fällig — weiter zum Training …',
     en: 'No cards due — on to training …',
@@ -145,7 +150,12 @@ export const STRINGS = {
     ru: 'Вопросы к тексту',
     uk: 'Питання до тексту',
   },
-  'reading.gist': { de: 'Worum geht es?', en: 'What is it about?', ru: 'О чём текст?', uk: 'Про що текст?' },
+  'reading.gist': {
+    de: 'Worum geht es?',
+    en: 'What is it about?',
+    ru: 'О чём текст?',
+    uk: 'Про що текст?',
+  },
 
   // Flashcard session furniture.
   'flashcards.input': { de: 'Eingabe', en: 'Input', ru: 'Ввод', uk: 'Введення' },
@@ -171,7 +181,12 @@ export const STRINGS = {
     ru: 'По-немецки …',
     uk: 'Німецькою …',
   },
-  'flashcards.typedCorrect': { de: '✓ Richtig!', en: '✓ Correct!', ru: '✓ Правильно!', uk: '✓ Правильно!' },
+  'flashcards.typedCorrect': {
+    de: '✓ Richtig!',
+    en: '✓ Correct!',
+    ru: '✓ Правильно!',
+    uk: '✓ Правильно!',
+  },
   'flashcards.typedWrong': { de: '✗ Falsch', en: '✗ Wrong', ru: '✗ Неверно', uk: '✗ Неправильно' },
   'flashcards.yourInput': {
     de: 'Deine Eingabe:',
@@ -182,7 +197,12 @@ export const STRINGS = {
   // Full `{n}` templates, not bare labels: Russian and Ukrainian cannot append an
   // invariant word after a count ("1 новых" is agrammatical), so they flip to the
   // tabular colon form while de/en keep today's exact "3 fällig · 1 neu" shape.
-  'flashcards.due': { de: '{n} fällig', en: '{n} due', ru: 'к повторению: {n}', uk: 'до повторення: {n}' },
+  'flashcards.due': {
+    de: '{n} fällig',
+    en: '{n} due',
+    ru: 'к повторению: {n}',
+    uk: 'до повторення: {n}',
+  },
   'flashcards.new': { de: '{n} neu', en: '{n} new', ru: 'новых: {n}', uk: 'нових: {n}' },
 
   // Exercise widgets.
@@ -249,7 +269,12 @@ export const STRINGS = {
   'progress.tabUebersicht': { de: 'Übersicht', en: 'Overview', ru: 'Обзор', uk: 'Огляд' },
   'progress.tabNachweise': { de: 'Nachweise', en: 'Evidence', ru: 'Показатели', uk: 'Показники' },
   'progress.tabDaten': { de: 'Daten', en: 'Data', ru: 'Данные', uk: 'Дані' },
-  'progress.datenLocal': { de: 'Dieses Gerät', en: 'This device', ru: 'Это устройство', uk: 'Цей пристрій' },
+  'progress.datenLocal': {
+    de: 'Dieses Gerät',
+    en: 'This device',
+    ru: 'Это устройство',
+    uk: 'Цей пристрій',
+  },
   'progress.viewsAria': {
     de: 'Fortschrittsansicht',
     en: 'Progress view',
@@ -273,7 +298,12 @@ export const STRINGS = {
   'account.connect': { de: 'Verbinden', en: 'Connect', ru: 'Связать', uk: "Пов'язати" },
   'account.disconnect': { de: 'Trennen', en: 'Disconnect', ru: 'Отвязать', uk: "Від'єднати" },
   'account.devices': { de: 'Geräte', en: 'Devices', ru: 'Устройства', uk: 'Пристрої' },
-  'account.newDevice': { de: 'Neues Gerät', en: 'New device', ru: 'Новое устройство', uk: 'Новий пристрій' },
+  'account.newDevice': {
+    de: 'Neues Gerät',
+    en: 'New device',
+    ru: 'Новое устройство',
+    uk: 'Новий пристрій',
+  },
   'account.revoke': { de: 'Widerrufen', en: 'Revoke', ru: 'Отозвать', uk: 'Відкликати' },
   'account.users': { de: 'Nutzer', en: 'Users', ru: 'Пользователи', uk: 'Користувачі' },
   'account.approve': { de: 'Freigeben', en: 'Approve', ru: 'Одобрить', uk: 'Схвалити' },
@@ -285,7 +315,12 @@ export const STRINGS = {
     ru: 'Удалить копию в облаке',
     uk: 'Видалити копію в хмарі',
   },
-  'account.deleteAccount': { de: 'Konto löschen', en: 'Delete account', ru: 'Удалить аккаунт', uk: 'Видалити обліковий запис' },
+  'account.deleteAccount': {
+    de: 'Konto löschen',
+    en: 'Delete account',
+    ru: 'Удалить аккаунт',
+    uk: 'Видалити обліковий запис',
+  },
   'account.statusPending': {
     de: 'Wartet auf Freigabe',
     en: 'Waiting for approval',
@@ -293,8 +328,18 @@ export const STRINGS = {
     uk: 'Очікує схвалення',
   },
   'account.statusApproved': { de: 'Aktiv', en: 'Active', ru: 'Активен', uk: 'Активний' },
-  'account.statusBlocked': { de: 'Gesperrt', en: 'Blocked', ru: 'Заблокирован', uk: 'Заблокований' },
-  'account.accountId': { de: 'Konto-ID', en: 'Account ID', ru: 'ID аккаунта', uk: 'ID облікового запису' },
+  'account.statusBlocked': {
+    de: 'Gesperrt',
+    en: 'Blocked',
+    ru: 'Заблокирован',
+    uk: 'Заблокований',
+  },
+  'account.accountId': {
+    de: 'Konto-ID',
+    en: 'Account ID',
+    ru: 'ID аккаунта',
+    uk: 'ID облікового запису',
+  },
   'account.boundProfile': {
     de: 'Verbundenes Profil',
     en: 'Connected profile',
@@ -313,10 +358,20 @@ export const STRINGS = {
   'account.owner': { de: 'Eigentümer', en: 'Owner', ru: 'Владелец', uk: 'Власник' },
 
   // Themen island (CurriculumPath / TopicDetail / OverviewTable).
-  'topics.tabPath': { de: 'Lernpfad', en: 'Learning path', ru: 'Учебный путь', uk: 'Навчальний шлях' },
+  'topics.tabPath': {
+    de: 'Lernpfad',
+    en: 'Learning path',
+    ru: 'Учебный путь',
+    uk: 'Навчальний шлях',
+  },
   'topics.tabAtlas': { de: 'Atlas', en: 'Atlas', ru: 'Атлас', uk: 'Атлас' },
   'topics.tabOverview': { de: 'Alle Themen', en: 'All topics', ru: 'Все темы', uk: 'Усі теми' },
-  'topics.viewsAria': { de: 'Themenansicht', en: 'Topics view', ru: 'Вид списка тем', uk: 'Вигляд списку тем' },
+  'topics.viewsAria': {
+    de: 'Themenansicht',
+    en: 'Topics view',
+    ru: 'Вид списка тем',
+    uk: 'Вигляд списку тем',
+  },
   'topics.goal': { de: 'Ziel', en: 'Goal', ru: 'Цель', uk: 'Мета' },
   'topics.clearGoalAria': {
     de: 'Lernziel löschen',
@@ -330,7 +385,12 @@ export const STRINGS = {
     ru: 'Все доступные темы освоены.',
     uk: 'Усі доступні теми опановано.',
   },
-  'topics.nextStep': { de: 'Nächster Schritt', en: 'Next step', ru: 'Следующий шаг', uk: 'Наступний крок' },
+  'topics.nextStep': {
+    de: 'Nächster Schritt',
+    en: 'Next step',
+    ru: 'Следующий шаг',
+    uk: 'Наступний крок',
+  },
   'topics.goalRouteTitle': {
     de: 'Weg zu deinem Ziel',
     en: 'The way to your goal',
@@ -367,7 +427,12 @@ export const STRINGS = {
     ru: 'освоено: {done}/{total}',
     uk: 'опановано: {done}/{total}',
   },
-  'topics.masteredCount': { de: '{n} gemeistert', en: '{n} mastered', ru: 'освоено: {n}', uk: 'опановано: {n}' },
+  'topics.masteredCount': {
+    de: '{n} gemeistert',
+    en: '{n} mastered',
+    ru: 'освоено: {n}',
+    uk: 'опановано: {n}',
+  },
   // The folded leading-mastered run in the overview table: "✓ 7 gemeistert — anzeigen".
   'topics.foldShow': { de: 'anzeigen', en: 'show', ru: 'показать', uk: 'показати' },
   'topics.foldHide': { de: 'ausblenden', en: 'hide', ru: 'скрыть', uk: 'приховати' },
@@ -383,11 +448,26 @@ export const STRINGS = {
     ru: 'предварительных тем: {n}',
     uk: 'попередніх тем: {n}',
   },
-  'topics.unlocksCount': { de: 'öffnet {n}', en: 'unlocks {n}', ru: 'открывает {n}', uk: 'відкриває {n}' },
+  'topics.unlocksCount': {
+    de: 'öffnet {n}',
+    en: 'unlocks {n}',
+    ru: 'открывает {n}',
+    uk: 'відкриває {n}',
+  },
   'topics.current': { de: 'aktuell', en: 'current', ru: 'сейчас', uk: 'зараз' },
-  'topics.openDetails': { de: 'Details öffnen ↑', en: 'Open details ↑', ru: 'Открыть детали ↑', uk: 'Відкрити деталі ↑' },
+  'topics.openDetails': {
+    de: 'Details öffnen ↑',
+    en: 'Open details ↑',
+    ru: 'Открыть детали ↑',
+    uk: 'Відкрити деталі ↑',
+  },
   'topics.collapse': { de: 'Einklappen', en: 'Collapse', ru: 'Свернуть', uk: 'Згорнути' },
-  'topics.closeDetailsAria': { de: 'Details schließen', en: 'Close details', ru: 'Закрыть детали', uk: 'Закрити деталі' },
+  'topics.closeDetailsAria': {
+    de: 'Details schließen',
+    en: 'Close details',
+    ru: 'Закрыть детали',
+    uk: 'Закрити деталі',
+  },
   'topics.relPrereqs': {
     de: 'Voraussetzungen',
     en: 'Prerequisites',
@@ -407,16 +487,36 @@ export const STRINGS = {
     ru: 'Углубляется темами',
     uk: 'Поглиблюється темами',
   },
-  'topics.relRelated': { de: 'Verwandte Themen', en: 'Related topics', ru: 'Связанные темы', uk: 'Пов’язані теми' },
+  'topics.relRelated': {
+    de: 'Verwandte Themen',
+    en: 'Related topics',
+    ru: 'Связанные темы',
+    uk: 'Пов’язані теми',
+  },
   'topics.none': { de: 'Keine', en: 'None', ru: 'Нет', uk: 'Немає' },
-  'topics.openTopic': { de: 'Thema öffnen', en: 'Open the topic', ru: 'Открыть тему', uk: 'Відкрити тему' },
-  'topics.setGoal': { de: 'Als Ziel setzen', en: 'Set as goal', ru: 'Сделать целью', uk: 'Зробити метою' },
+  'topics.openTopic': {
+    de: 'Thema öffnen',
+    en: 'Open the topic',
+    ru: 'Открыть тему',
+    uk: 'Відкрити тему',
+  },
+  'topics.setGoal': {
+    de: 'Als Ziel setzen',
+    en: 'Set as goal',
+    ru: 'Сделать целью',
+    uk: 'Зробити метою',
+  },
   // Status filter options (OverviewTable) — deliberately their own keys, not a
   // future TierBadge's: filter options read plural in ru/uk, a badge reads singular.
   'topics.statusOpen': { de: 'Offen', en: 'Open', ru: 'Открытые', uk: 'Відкриті' },
   'topics.statusNew': { de: 'Neu', en: 'New', ru: 'Новые', uk: 'Нові' },
   'topics.statusRead': { de: 'Gelesen', en: 'Read', ru: 'Прочитанные', uk: 'Прочитані' },
-  'topics.statusPracticed': { de: 'Geübt', en: 'Practiced', ru: 'Отработанные', uk: 'Відпрацьовані' },
+  'topics.statusPracticed': {
+    de: 'Geübt',
+    en: 'Practiced',
+    ru: 'Отработанные',
+    uk: 'Відпрацьовані',
+  },
   'topics.statusMastered': { de: 'Gemeistert', en: 'Mastered', ru: 'Освоенные', uk: 'Опановані' },
   'topics.search': { de: 'Thema suchen', en: 'Search topics', ru: 'Поиск темы', uk: 'Пошук теми' },
   'topics.countAll': { de: '{n} Themen', en: '{n} topics', ru: 'тем: {n}', uk: 'тем: {n}' },
@@ -474,7 +574,12 @@ export const STRINGS = {
   },
 
   // First-steps onboarding card (Heute).
-  'today.howItWorks': { de: "So funktioniert's", en: 'How it works', ru: 'Как это работает', uk: 'Як це працює' },
+  'today.howItWorks': {
+    de: "So funktioniert's",
+    en: 'How it works',
+    ru: 'Как это работает',
+    uk: 'Як це працює',
+  },
   // Onboarding step names — their own keys, not nav.ueben/session.stepReview:
   // the role differs (loop step, imperative in ru/uk) and the translations diverge.
   'today.stepRead': { de: 'Lesen', en: 'Read', ru: 'Читайте', uk: 'Читайте' },
@@ -488,8 +593,18 @@ export const STRINGS = {
     ru: 'Загрузка прогресса…',
     uk: 'Завантаження прогресу…',
   },
-  'vocab.search': { de: 'Wort suchen…', en: 'Search words…', ru: 'Поиск слова…', uk: 'Пошук слова…' },
-  'vocab.allStatuses': { de: 'Alle Lernstände', en: 'All statuses', ru: 'Все статусы', uk: 'Усі статуси' },
+  'vocab.search': {
+    de: 'Wort suchen…',
+    en: 'Search words…',
+    ru: 'Поиск слова…',
+    uk: 'Пошук слова…',
+  },
+  'vocab.allStatuses': {
+    de: 'Alle Lernstände',
+    en: 'All statuses',
+    ru: 'Все статусы',
+    uk: 'Усі статуси',
+  },
   'vocab.allPos': {
     de: 'Alle Wortarten',
     en: 'All parts of speech',
@@ -515,8 +630,18 @@ export const STRINGS = {
     ru: 'повторений: {reps} · интервал: {days} дн. · ошибок: {lapses}',
     uk: 'повторень: {reps} · інтервал: {days} дн. · помилок: {lapses}',
   },
-  'vocab.notStarted': { de: 'Noch nicht begonnen', en: 'Not started yet', ru: 'Ещё не начато', uk: 'Ще не розпочато' },
-  'vocab.dueDate': { de: 'Fällig: {date}', en: 'Due: {date}', ru: 'Повторить: {date}', uk: 'Повторити: {date}' },
+  'vocab.notStarted': {
+    de: 'Noch nicht begonnen',
+    en: 'Not started yet',
+    ru: 'Ещё не начато',
+    uk: 'Ще не розпочато',
+  },
+  'vocab.dueDate': {
+    de: 'Fällig: {date}',
+    en: 'Due: {date}',
+    ru: 'Повторить: {date}',
+    uk: 'Повторити: {date}',
+  },
   'vocab.emptyFilter': {
     de: 'Keine Wörter entsprechen den Filtern.',
     en: 'No words match the filters.',
@@ -549,10 +674,25 @@ export const STRINGS = {
     ru: 'Для «Освоено» ещё не хватает:',
     uk: 'Для «Опановано» ще бракує:',
   },
-  'mastery.reqAttempts': { de: 'Aufgaben gelöst', en: 'items answered', ru: 'заданий решено', uk: 'завдань розв’язано' },
+  'mastery.reqAttempts': {
+    de: 'Aufgaben gelöst',
+    en: 'items answered',
+    ru: 'заданий решено',
+    uk: 'завдань розв’язано',
+  },
   'mastery.reqAccuracy': { de: 'richtig', en: 'correct', ru: 'верно', uk: 'правильно' },
-  'mastery.reqDays': { de: 'an 2 Tagen geübt', en: 'practised on 2 days', ru: 'занятия в 2 разных дня', uk: 'заняття у 2 різні дні' },
-  'mastery.reqCards': { de: 'Vokabeln wiederholt', en: 'flashcards reviewed', ru: 'карточки повторены', uk: 'картки повторено' },
+  'mastery.reqDays': {
+    de: 'an 2 Tagen geübt',
+    en: 'practised on 2 days',
+    ru: 'занятия в 2 разных дня',
+    uk: 'заняття у 2 різні дні',
+  },
+  'mastery.reqCards': {
+    de: 'Vokabeln wiederholt',
+    en: 'flashcards reviewed',
+    ru: 'карточки повторены',
+    uk: 'картки повторено',
+  },
 
   // Chrome residue (P8-5): components that never had a language ternary, and
   // static .astro page furniture.
@@ -573,7 +713,12 @@ export const STRINGS = {
   // Placement (Einstufungstest) — a passed topic is green but is NOT a tier, so these
   // labels must never read like `tier.mastered`. "eingestuft"/"placed" says what happened:
   // the course stopped teaching it, not that the learner was measured as having mastered it.
-  'placement.title': { de: 'Einstufungstest', en: 'Placement test', ru: 'Тест на уровень', uk: 'Тест на рівень' },
+  'placement.title': {
+    de: 'Einstufungstest',
+    en: 'Placement test',
+    ru: 'Тест на уровень',
+    uk: 'Тест на рівень',
+  },
   'placement.badge': { de: 'eingestuft', en: 'placed', ru: 'зачтено', uk: 'зараховано' },
   'placement.badgeTitle': {
     de: 'Im Einstufungstest bestanden – ändert den gemessenen Stand nicht',
@@ -581,8 +726,18 @@ export const STRINGS = {
     ru: 'Зачтено по тесту на уровень — не меняет измеренный статус',
     uk: 'Зараховано за тестом на рівень — не змінює виміряний стан',
   },
-  'placement.apply': { de: 'Ergebnis übernehmen', en: 'Apply result', ru: 'Применить результат', uk: 'Застосувати результат' },
-  'placement.applied': { de: 'Ergebnis übernommen', en: 'Result applied', ru: 'Результат применён', uk: 'Результат застосовано' },
+  'placement.apply': {
+    de: 'Ergebnis übernehmen',
+    en: 'Apply result',
+    ru: 'Применить результат',
+    uk: 'Застосувати результат',
+  },
+  'placement.applied': {
+    de: 'Ergebnis übernommen',
+    en: 'Result applied',
+    ru: 'Результат применён',
+    uk: 'Результат застосовано',
+  },
   'placement.entry': {
     de: 'Ich kann schon etwas Deutsch',
     en: 'I already know some German',
@@ -604,10 +759,30 @@ export const STRINGS = {
   'evidence.spaced': { de: '2 Tage', en: '2 days', ru: '2 дня', uk: '2 дні' },
   'evidence.vocab': { de: 'Vokabeln', en: 'Vocab', ru: 'Слова', uk: 'Слова' },
   // Static pages: Heute, Session, Üben, topic/vocab/discovery furniture, footer.
-  'today.startSession': { de: 'Session starten →', en: 'Start session →', ru: 'Начать сессию →', uk: 'Почати сесію →' },
-  'session.pageTitle': { de: 'Tägliche Session', en: 'Daily session', ru: 'Ежедневная сессия', uk: 'Щоденна сесія' },
-  'training.pageTitle': { de: 'Gemischtes Training', en: 'Mixed training', ru: 'Смешанная тренировка', uk: 'Змішане тренування' },
-  'about.pageTitle': { de: 'Über Deutsch-Atlas', en: 'About Deutsch-Atlas', ru: 'О Deutsch-Atlas', uk: 'Про Deutsch-Atlas' },
+  'today.startSession': {
+    de: 'Session starten →',
+    en: 'Start session →',
+    ru: 'Начать сессию →',
+    uk: 'Почати сесію →',
+  },
+  'session.pageTitle': {
+    de: 'Tägliche Session',
+    en: 'Daily session',
+    ru: 'Ежедневная сессия',
+    uk: 'Щоденна сесія',
+  },
+  'training.pageTitle': {
+    de: 'Gemischtes Training',
+    en: 'Mixed training',
+    ru: 'Смешанная тренировка',
+    uk: 'Змішане тренування',
+  },
+  'about.pageTitle': {
+    de: 'Über Deutsch-Atlas',
+    en: 'About Deutsch-Atlas',
+    ru: 'О Deutsch-Atlas',
+    uk: 'Про Deutsch-Atlas',
+  },
   'ueben.tabWiederholen': { de: 'Wiederholen', en: 'Review', ru: 'Повторение', uk: 'Повторення' },
   'ueben.tabTraining': { de: 'Training', en: 'Training', ru: 'Тренировка', uk: 'Тренування' },
   'ueben.tabWortschatz': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
@@ -626,11 +801,31 @@ export const STRINGS = {
   },
   'vocab.groupTopic': { de: 'Thema', en: 'Topic', ru: 'Тема', uk: 'Тема' },
   'vocab.groupPos': { de: 'Wortart', en: 'Part of speech', ru: 'Часть речи', uk: 'Частина мови' },
-  'topic.prerequisites': { de: 'Voraussetzungen:', en: 'Prerequisites:', ru: 'Предварительные темы:', uk: 'Попередні теми:' },
+  'topic.prerequisites': {
+    de: 'Voraussetzungen:',
+    en: 'Prerequisites:',
+    ru: 'Предварительные темы:',
+    uk: 'Попередні теми:',
+  },
   'topic.draft': { de: 'Entwurf', en: 'Draft', ru: 'Черновик', uk: 'Чернетка' },
-  'topic.pretestTitle': { de: 'Was weißt du schon?', en: 'What do you already know?', ru: 'Что вы уже знаете?', uk: 'Що ви вже знаєте?' },
-  'topic.sectionReading': { de: 'Lesetext', en: 'Reading', ru: 'Текст для чтения', uk: 'Текст для читання' },
-  'topic.sectionWordField': { de: 'Wortfeld', en: 'Word field', ru: 'Лексическое поле', uk: 'Лексичне поле' },
+  'topic.pretestTitle': {
+    de: 'Was weißt du schon?',
+    en: 'What do you already know?',
+    ru: 'Что вы уже знаете?',
+    uk: 'Що ви вже знаєте?',
+  },
+  'topic.sectionReading': {
+    de: 'Lesetext',
+    en: 'Reading',
+    ru: 'Текст для чтения',
+    uk: 'Текст для читання',
+  },
+  'topic.sectionWordField': {
+    de: 'Wortfeld',
+    en: 'Word field',
+    ru: 'Лексическое поле',
+    uk: 'Лексичне поле',
+  },
   'topic.sectionVocab': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
   'topic.sectionExercises': { de: 'Übungen', en: 'Exercises', ru: 'Упражнения', uk: 'Вправи' },
   'topic.activityIntro': {
@@ -639,7 +834,12 @@ export const STRINGS = {
     ru: 'Начните с основной практики. Затем откройте только то, что вам сейчас нужно.',
     uk: 'Почніть з основної практики. Потім відкрийте лише те, що вам зараз потрібно.',
   },
-  'topic.activityCore': { de: 'Grundübung', en: 'Core practice', ru: 'Основная практика', uk: 'Основна практика' },
+  'topic.activityCore': {
+    de: 'Grundübung',
+    en: 'Core practice',
+    ru: 'Основная практика',
+    uk: 'Основна практика',
+  },
   'topic.activityCoreHint': {
     de: 'Der verpflichtende nächste Schritt im Lernpfad.',
     en: 'The required next step on the learning path.',
@@ -660,7 +860,12 @@ export const STRINGS = {
     ru: 'Самостоятельно применить структуру в новом контексте.',
     uk: 'Самостійно застосувати структуру в новому контексті.',
   },
-  'topic.activityRemediation': { de: 'Gezielt üben', en: 'Targeted practice', ru: 'Точечная тренировка', uk: 'Точкове тренування' },
+  'topic.activityRemediation': {
+    de: 'Gezielt üben',
+    en: 'Targeted practice',
+    ru: 'Точечная тренировка',
+    uk: 'Точкове тренування',
+  },
   'topic.activityRemediationHint': {
     de: 'Nur für eine konkrete Verwechslung; auch im gemischten Training verfügbar.',
     en: 'For a specific confusion only; also available in mixed training.',
@@ -672,7 +877,12 @@ export const STRINGS = {
   // taxonomies that merely share three German words today.
   'kind.grammar': { de: 'Grammatik', en: 'Grammar', ru: 'Грамматика', uk: 'Граматика' },
   'kind.vocabField': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
-  'kind.communication': { de: 'Kommunikation', en: 'Communication', ru: 'Коммуникация', uk: 'Комунікація' },
+  'kind.communication': {
+    de: 'Kommunikation',
+    en: 'Communication',
+    ru: 'Коммуникация',
+    uk: 'Комунікація',
+  },
   'kind.phonetics': { de: 'Aussprache', en: 'Pronunciation', ru: 'Произношение', uk: 'Вимова' },
   'discovery.links': { de: 'Links', en: 'Links', ru: 'Ссылки', uk: 'Посилання' },
 
@@ -862,7 +1072,12 @@ export const STRINGS = {
   // Leben in Deutschland trainer (/leben, ADR 0021). `{…}` placeholders are filled by the caller
   // (`lidText`, src/components/lid/shared.ts). The two pass marks are different tests with
   // different purposes, so every string that names one names which.
-  'lid.title': { de: 'Leben in Deutschland', en: 'Life in Germany', ru: 'Жизнь в Германии', uk: 'Життя в Німеччині' },
+  'lid.title': {
+    de: 'Leben in Deutschland',
+    en: 'Life in Germany',
+    ru: 'Жизнь в Германии',
+    uk: 'Життя в Німеччині',
+  },
   'lid.practice': { de: 'Üben', en: 'Practise', ru: 'Тренировка', uk: 'Тренування' },
   'lid.queueCounts': {
     de: '{due} fällig · {fresh} neu heute',
@@ -870,7 +1085,12 @@ export const STRINGS = {
     ru: 'К повторению: {due} · новых сегодня: {fresh}',
     uk: 'До повторення: {due} · нових сьогодні: {fresh}',
   },
-  'lid.mistakes': { de: 'Fehler wiederholen', en: 'Review mistakes', ru: 'Повторить ошибки', uk: 'Повторити помилки' },
+  'lid.mistakes': {
+    de: 'Fehler wiederholen',
+    en: 'Review mistakes',
+    ru: 'Повторить ошибки',
+    uk: 'Повторити помилки',
+  },
   'lid.mistakesOpen': { de: '{n} offen', en: '{n} open', ru: 'Открыто: {n}', uk: 'Відкрито: {n}' },
   'lid.mistakesQueue': {
     de: '{n} Fehler zu wiederholen',
@@ -878,14 +1098,24 @@ export const STRINGS = {
     ru: 'Ошибок к повторению: {n}',
     uk: 'Помилок до повторення: {n}',
   },
-  'lid.mock': { de: 'Prüfungssimulation', en: 'Mock exam', ru: 'Пробный экзамен', uk: 'Пробний іспит' },
+  'lid.mock': {
+    de: 'Prüfungssimulation',
+    en: 'Mock exam',
+    ru: 'Пробный экзамен',
+    uk: 'Пробний іспит',
+  },
   'lid.mockFacts': {
     de: '{questions} Fragen ({general} + {local} {state}) · {minutes} Minuten',
     en: '{questions} questions ({general} + {local} {state}) · {minutes} minutes',
     ru: 'Вопросов: {questions} ({general} + {local} {state}) · минут: {minutes}',
     uk: 'Питань: {questions} ({general} + {local} {state}) · хвилин: {minutes}',
   },
-  'lid.catalogue': { de: 'Fragenkatalog', en: 'Question catalogue', ru: 'Каталог вопросов', uk: 'Каталог питань' },
+  'lid.catalogue': {
+    de: 'Fragenkatalog',
+    en: 'Question catalogue',
+    ru: 'Каталог вопросов',
+    uk: 'Каталог питань',
+  },
   'lid.catalogueHint': {
     de: 'Alle {n} Fragen mit Lösung',
     en: 'All {n} questions with answers',
@@ -900,9 +1130,24 @@ export const STRINGS = {
     uk: 'двічі поспіль правильно',
   },
   'lid.statDue': { de: 'fällig', en: 'due', ru: 'к повторению', uk: 'до повторення' },
-  'lid.statMistakes': { de: 'offene Fehler', en: 'open mistakes', ru: 'открытые ошибки', uk: 'відкриті помилки' },
-  'lid.modulesTitle': { de: 'Themenbereiche', en: 'Subject areas', ru: 'Тематические блоки', uk: 'Тематичні блоки' },
-  'lid.moduleQuestions': { de: '{n} Fragen', en: '{n} questions', ru: 'Вопросов: {n}', uk: 'Питань: {n}' },
+  'lid.statMistakes': {
+    de: 'offene Fehler',
+    en: 'open mistakes',
+    ru: 'открытые ошибки',
+    uk: 'відкриті помилки',
+  },
+  'lid.modulesTitle': {
+    de: 'Themenbereiche',
+    en: 'Subject areas',
+    ru: 'Тематические блоки',
+    uk: 'Тематичні блоки',
+  },
+  'lid.moduleQuestions': {
+    de: '{n} Fragen',
+    en: '{n} questions',
+    ru: 'Вопросов: {n}',
+    uk: 'Питань: {n}',
+  },
   'lid.moduleSeen': {
     de: '{seen}/{total} gesehen',
     en: '{seen}/{total} seen',
@@ -915,9 +1160,24 @@ export const STRINGS = {
     ru: 'из них в последний раз верно: {right} ({pct} %)',
     uk: 'з них останнього разу правильно: {right} ({pct} %)',
   },
-  'lid.legendRight': { de: 'zuletzt richtig', en: 'right last time', ru: 'в последний раз верно', uk: 'останнього разу правильно' },
-  'lid.legendWrong': { de: 'zuletzt falsch', en: 'wrong last time', ru: 'в последний раз неверно', uk: 'останнього разу неправильно' },
-  'lid.legendUnseen': { de: 'noch nicht gesehen', en: 'not seen yet', ru: 'ещё не встречалось', uk: 'ще не траплялося' },
+  'lid.legendRight': {
+    de: 'zuletzt richtig',
+    en: 'right last time',
+    ru: 'в последний раз верно',
+    uk: 'останнього разу правильно',
+  },
+  'lid.legendWrong': {
+    de: 'zuletzt falsch',
+    en: 'wrong last time',
+    ru: 'в последний раз неверно',
+    uk: 'останнього разу неправильно',
+  },
+  'lid.legendUnseen': {
+    de: 'noch nicht gesehen',
+    en: 'not seen yet',
+    ru: 'ещё не встречалось',
+    uk: 'ще не траплялося',
+  },
   'lid.mocksTitle': {
     de: 'Letzte Prüfungssimulationen',
     en: 'Recent mock exams',
@@ -930,7 +1190,12 @@ export const STRINGS = {
     ru: 'Пробных экзаменов ещё не было. Они показывают, где вы находитесь относительно обоих проходных баллов.',
     uk: 'Пробних іспитів ще не було. Вони показують, де ви перебуваєте відносно обох прохідних балів.',
   },
-  'lid.newPerDay': { de: 'Neue Fragen pro Tag', en: 'New questions per day', ru: 'Новых вопросов в день', uk: 'Нових питань на день' },
+  'lid.newPerDay': {
+    de: 'Neue Fragen pro Tag',
+    en: 'New questions per day',
+    ru: 'Новых вопросов в день',
+    uk: 'Нових питань на день',
+  },
   'lid.emptyTitle': {
     de: 'Noch keine Frage beantwortet',
     en: 'No question answered yet',
@@ -944,9 +1209,19 @@ export const STRINGS = {
     uk: 'Почніть з «Üben»: щодня додаються нові питання ({n}), тема за темою. Питання до повторення завжди йдуть першими.',
   },
   'lid.progress': { de: '{k} von {n}', en: '{k} of {n}', ru: '{k} из {n}', uk: '{k} з {n}' },
-  'lid.questionNumber': { de: 'Frage {n}', en: 'Question {n}', ru: 'Вопрос {n}', uk: 'Питання {n}' },
+  'lid.questionNumber': {
+    de: 'Frage {n}',
+    en: 'Question {n}',
+    ru: 'Вопрос {n}',
+    uk: 'Питання {n}',
+  },
   // The exam shows its own position ("Frage 4 / 33"); the catalogue's number must not read as a second one.
-  'lid.catalogueRef': { de: 'Katalog: {label}', en: 'Catalogue: {label}', ru: 'Каталог: {label}', uk: 'Каталог: {label}' },
+  'lid.catalogueRef': {
+    de: 'Katalog: {label}',
+    en: 'Catalogue: {label}',
+    ru: 'Каталог: {label}',
+    uk: 'Каталог: {label}',
+  },
   'lid.explanation': { de: 'Erklärung', en: 'Explanation', ru: 'Объяснение', uk: 'Пояснення' },
   'lid.noExplanation': {
     de: 'Noch keine Erklärung',
@@ -963,7 +1238,12 @@ export const STRINGS = {
     uk: 'Переклад (неофіційний)',
   },
   'lid.terms': { de: 'Begriffe', en: 'Terms', ru: 'Термины', uk: 'Терміни' },
-  'lid.imageLabel': { de: 'Bild {n}', en: 'Image {n}', ru: 'Изображение {n}', uk: 'Зображення {n}' },
+  'lid.imageLabel': {
+    de: 'Bild {n}',
+    en: 'Image {n}',
+    ru: 'Изображение {n}',
+    uk: 'Зображення {n}',
+  },
   'lid.imageAlt': {
     de: 'Abbildung zu {question}',
     en: 'Illustration for {question}',
@@ -989,7 +1269,12 @@ export const STRINGS = {
     ru: 'Официальный документ (§ 5 UrhG): BAMF, полный каталог вопросов',
     uk: 'Офіційний документ (§ 5 UrhG): BAMF, повний каталог питань',
   },
-  'lid.doneTitle': { de: 'Fertig für jetzt', en: 'Done for now', ru: 'На сейчас всё', uk: 'Наразі все' },
+  'lid.doneTitle': {
+    de: 'Fertig für jetzt',
+    en: 'Done for now',
+    ru: 'На сейчас всё',
+    uk: 'Наразі все',
+  },
   'lid.doneCounts': {
     de: '{n} Antworten · {right} richtig · {wrong} falsch',
     en: '{n} answers · {right} right · {wrong} wrong',
@@ -1033,9 +1318,24 @@ export const STRINGS = {
     ru: 'Тест «Жизнь в Германии» (ориентационный курс): сдан от {n} верных ответов',
     uk: 'Тест «Життя в Німеччині» (орієнтаційний курс): складено від {n} правильних відповідей',
   },
-  'lid.mockStart': { de: 'Simulation starten', en: 'Start the mock exam', ru: 'Начать пробный экзамен', uk: 'Почати пробний іспит' },
-  'lid.mockQuestionOf': { de: 'Frage {k} / {n}', en: 'Question {k} / {n}', ru: 'Вопрос {k} / {n}', uk: 'Питання {k} / {n}' },
-  'lid.answeredOf': { de: 'beantwortet: {k}/{n}', en: 'answered: {k}/{n}', ru: 'отвечено: {k}/{n}', uk: 'відповідено: {k}/{n}' },
+  'lid.mockStart': {
+    de: 'Simulation starten',
+    en: 'Start the mock exam',
+    ru: 'Начать пробный экзамен',
+    uk: 'Почати пробний іспит',
+  },
+  'lid.mockQuestionOf': {
+    de: 'Frage {k} / {n}',
+    en: 'Question {k} / {n}',
+    ru: 'Вопрос {k} / {n}',
+    uk: 'Питання {k} / {n}',
+  },
+  'lid.answeredOf': {
+    de: 'beantwortet: {k}/{n}',
+    en: 'answered: {k}/{n}',
+    ru: 'отвечено: {k}/{n}',
+    uk: 'відповідено: {k}/{n}',
+  },
   'lid.prev': { de: '← Zurück', en: '← Back', ru: '← Назад', uk: '← Назад' },
   'lid.grid': { de: 'Alle Fragen', en: 'All questions', ru: 'Все вопросы', uk: 'Усі питання' },
   'lid.gridCell': {
@@ -1060,8 +1360,18 @@ export const STRINGS = {
     uk: 'Питань без відповіді: {n} — все одно здати?',
   },
   'lid.confirmYes': { de: 'Ja, abgeben', en: 'Yes, submit', ru: 'Да, сдать', uk: 'Так, здати' },
-  'lid.confirmNo': { de: 'Weiter bearbeiten', en: 'Keep working', ru: 'Продолжить', uk: 'Продовжити' },
-  'lid.timeLeft': { de: 'Verbleibende Zeit', en: 'Time left', ru: 'Осталось времени', uk: 'Залишилося часу' },
+  'lid.confirmNo': {
+    de: 'Weiter bearbeiten',
+    en: 'Keep working',
+    ru: 'Продолжить',
+    uk: 'Продовжити',
+  },
+  'lid.timeLeft': {
+    de: 'Verbleibende Zeit',
+    en: 'Time left',
+    ru: 'Осталось времени',
+    uk: 'Залишилося часу',
+  },
   'lid.resultScore': {
     de: '{n} von {total} richtig',
     en: '{n} of {total} correct',
@@ -1070,7 +1380,12 @@ export const STRINGS = {
   },
   'lid.passed': { de: 'bestanden', en: 'passed', ru: 'сдан', uk: 'складено' },
   'lid.failed': { de: 'nicht bestanden', en: 'not passed', ru: 'не сдан', uk: 'не складено' },
-  'lid.einbuergerung': { de: 'Einbürgerungstest', en: 'Citizenship test', ru: 'Тест на гражданство', uk: 'Тест на громадянство' },
+  'lid.einbuergerung': {
+    de: 'Einbürgerungstest',
+    en: 'Citizenship test',
+    ru: 'Тест на гражданство',
+    uk: 'Тест на громадянство',
+  },
   'lid.einbuergerungContext': {
     de: 'ab {n} richtigen Antworten — der Nachweis für die Einbürgerung',
     en: 'from {n} correct answers — the proof required for naturalisation',
@@ -1089,20 +1404,55 @@ export const STRINGS = {
     ru: 'от {n} верных ответов — итоговый тест ориентационного курса',
     uk: 'від {n} правильних відповідей — підсумковий тест орієнтаційного курсу',
   },
-  'lid.timeUsed': { de: 'Zeit: {min} Min.', en: 'Time: {min} min', ru: 'Время: {min} мин', uk: 'Час: {min} хв' },
-  'lid.timedOut': { de: 'Zeit abgelaufen', en: 'Time ran out', ru: 'Время вышло', uk: 'Час вийшов' },
-  'lid.bankVersion': { de: 'Fragenstand {v}', en: 'Question bank {v}', ru: 'Версия базы вопросов {v}', uk: 'Версія бази питань {v}' },
+  'lid.timeUsed': {
+    de: 'Zeit: {min} Min.',
+    en: 'Time: {min} min',
+    ru: 'Время: {min} мин',
+    uk: 'Час: {min} хв',
+  },
+  'lid.timedOut': {
+    de: 'Zeit abgelaufen',
+    en: 'Time ran out',
+    ru: 'Время вышло',
+    uk: 'Час вийшов',
+  },
+  'lid.bankVersion': {
+    de: 'Fragenstand {v}',
+    en: 'Question bank {v}',
+    ru: 'Версия базы вопросов {v}',
+    uk: 'Версія бази питань {v}',
+  },
   'lid.reviewTitle': {
     de: 'Falsch oder ohne Antwort ({n})',
     en: 'Wrong or unanswered ({n})',
     ru: 'Неверно или без ответа ({n})',
     uk: 'Неправильно або без відповіді ({n})',
   },
-  'lid.allCorrect': { de: 'Alle Fragen richtig.', en: 'Every question correct.', ru: 'Все ответы верны.', uk: 'Усі відповіді правильні.' },
-  'lid.yourAnswer': { de: 'Deine Antwort', en: 'Your answer', ru: 'Ваш ответ', uk: 'Ваша відповідь' },
+  'lid.allCorrect': {
+    de: 'Alle Fragen richtig.',
+    en: 'Every question correct.',
+    ru: 'Все ответы верны.',
+    uk: 'Усі відповіді правильні.',
+  },
+  'lid.yourAnswer': {
+    de: 'Deine Antwort',
+    en: 'Your answer',
+    ru: 'Ваш ответ',
+    uk: 'Ваша відповідь',
+  },
   'lid.noAnswer': { de: 'ohne Antwort', en: 'unanswered', ru: 'без ответа', uk: 'без відповіді' },
-  'lid.correctAnswer': { de: 'richtige Antwort', en: 'correct answer', ru: 'правильный ответ', uk: 'правильна відповідь' },
-  'lid.newMock': { de: 'Neue Simulation', en: 'New mock exam', ru: 'Новый пробный экзамен', uk: 'Новий пробний іспит' },
+  'lid.correctAnswer': {
+    de: 'richtige Antwort',
+    en: 'correct answer',
+    ru: 'правильный ответ',
+    uk: 'правильна відповідь',
+  },
+  'lid.newMock': {
+    de: 'Neue Simulation',
+    en: 'New mock exam',
+    ru: 'Новый пробный экзамен',
+    uk: 'Новий пробний іспит',
+  },
   'lid.contents': { de: 'Inhalt', en: 'Contents', ru: 'Содержание', uk: 'Зміст' },
   'lid.aboutTest': { de: 'Der Test', en: 'The test', ru: 'Об экзамене', uk: 'Про іспит' },
   'lid.pdfLink': {
@@ -1119,14 +1469,24 @@ export const STRINGS = {
     ru: 'Уроков о том, что стоит за вопросами: {n}',
     uk: 'Уроків про те, що стоїть за питаннями: {n}',
   },
-  'lid.lessonsNone': { de: 'Noch keine Lektionen.', en: 'No lessons yet.', ru: 'Уроков пока нет.', uk: 'Уроків поки немає.' },
+  'lid.lessonsNone': {
+    de: 'Noch keine Lektionen.',
+    en: 'No lessons yet.',
+    ru: 'Уроков пока нет.',
+    uk: 'Уроків поки немає.',
+  },
   'lid.lessonQuestions': {
     de: '{n} Prüfungsfragen',
     en: '{n} exam questions',
     ru: 'Экзаменационных вопросов: {n}',
     uk: 'Екзаменаційних питань: {n}',
   },
-  'lid.lessonTerms': { de: 'Wichtige Begriffe', en: 'Key terms', ru: 'Важные термины', uk: 'Важливі терміни' },
+  'lid.lessonTerms': {
+    de: 'Wichtige Begriffe',
+    en: 'Key terms',
+    ru: 'Важные термины',
+    uk: 'Важливі терміни',
+  },
   'lid.lessonTranslation': { de: 'Übersetzung', en: 'Translation', ru: 'Перевод', uk: 'Переклад' },
   'lid.lessonQuestionsTitle': {
     de: 'Fragen zu diesem Thema',
@@ -1141,14 +1501,24 @@ export const STRINGS = {
     uk: 'Тренувати ці питання ({n})',
   },
   'lid.lessonSources': { de: 'Quellen', en: 'Sources', ru: 'Источники', uk: 'Джерела' },
-  'lid.scopeLesson': { de: 'Lektion „{title}“', en: 'Lesson “{title}”', ru: 'Урок «{title}»', uk: 'Урок «{title}»' },
+  'lid.scopeLesson': {
+    de: 'Lektion „{title}“',
+    en: 'Lesson “{title}”',
+    ru: 'Урок «{title}»',
+    uk: 'Урок «{title}»',
+  },
   'lid.scopeQueue': {
     de: '{n} Fragen dieser Lektion',
     en: '{n} questions of this lesson',
     ru: 'Вопросов этого урока: {n}',
     uk: 'Питань цього уроку: {n}',
   },
-  'lid.backToLesson': { de: '← Zur Lektion', en: '← Back to the lesson', ru: '← К уроку', uk: '← До уроку' },
+  'lid.backToLesson': {
+    de: '← Zur Lektion',
+    en: '← Back to the lesson',
+    ru: '← К уроку',
+    uk: '← До уроку',
+  },
   'lid.scopeUnknown': {
     de: 'Diese Lektion gibt es nicht – hier übst du alle Fragen.',
     en: 'There is no such lesson — you are practising all questions here.',

@@ -172,14 +172,22 @@ function asV8(snapshot: NormalizedSnapshot, lid: LidState): ProgressSnapshot {
 }
 
 /** Explicit compatibility steps. Keep these visible even while a step only adds defaults. */
-export const migrateSnapshotV1 = (snapshot: z.infer<typeof snapshotSchemas[1]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV2 = (snapshot: z.infer<typeof snapshotSchemas[2]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV3 = (snapshot: z.infer<typeof snapshotSchemas[3]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV4 = (snapshot: z.infer<typeof snapshotSchemas[4]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV5 = (snapshot: z.infer<typeof snapshotSchemas[5]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV6 = (snapshot: z.infer<typeof snapshotSchemas[6]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV7 = (snapshot: z.infer<typeof snapshotSchemas[7]>) => asV8(snapshot, emptyLid());
-export const migrateSnapshotV8 = (snapshot: z.infer<typeof snapshotSchemas[8]>) => asV8(snapshot, snapshot.lid);
+export const migrateSnapshotV1 = (snapshot: z.infer<(typeof snapshotSchemas)[1]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV2 = (snapshot: z.infer<(typeof snapshotSchemas)[2]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV3 = (snapshot: z.infer<(typeof snapshotSchemas)[3]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV4 = (snapshot: z.infer<(typeof snapshotSchemas)[4]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV5 = (snapshot: z.infer<(typeof snapshotSchemas)[5]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV6 = (snapshot: z.infer<(typeof snapshotSchemas)[6]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV7 = (snapshot: z.infer<(typeof snapshotSchemas)[7]>) =>
+  asV8(snapshot, emptyLid());
+export const migrateSnapshotV8 = (snapshot: z.infer<(typeof snapshotSchemas)[8]>) =>
+  asV8(snapshot, snapshot.lid);
 
 /** Parse and normalize every supported snapshot version at the import boundary. */
 export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
@@ -187,14 +195,22 @@ export function parseProgressSnapshot(input: unknown): ProgressSnapshot {
     throw new Error('Progress snapshot has no version.');
   }
   switch ((input as { version?: unknown }).version) {
-    case 1: return migrateSnapshotV1(snapshotSchemas[1].parse(input));
-    case 2: return migrateSnapshotV2(snapshotSchemas[2].parse(input));
-    case 3: return migrateSnapshotV3(snapshotSchemas[3].parse(input));
-    case 4: return migrateSnapshotV4(snapshotSchemas[4].parse(input));
-    case 5: return migrateSnapshotV5(snapshotSchemas[5].parse(input));
-    case 6: return migrateSnapshotV6(snapshotSchemas[6].parse(input));
-    case 7: return migrateSnapshotV7(snapshotSchemas[7].parse(input));
-    case 8: return migrateSnapshotV8(snapshotSchemas[8].parse(input));
+    case 1:
+      return migrateSnapshotV1(snapshotSchemas[1].parse(input));
+    case 2:
+      return migrateSnapshotV2(snapshotSchemas[2].parse(input));
+    case 3:
+      return migrateSnapshotV3(snapshotSchemas[3].parse(input));
+    case 4:
+      return migrateSnapshotV4(snapshotSchemas[4].parse(input));
+    case 5:
+      return migrateSnapshotV5(snapshotSchemas[5].parse(input));
+    case 6:
+      return migrateSnapshotV6(snapshotSchemas[6].parse(input));
+    case 7:
+      return migrateSnapshotV7(snapshotSchemas[7].parse(input));
+    case 8:
+      return migrateSnapshotV8(snapshotSchemas[8].parse(input));
     default:
       throw new Error(
         `Unsupported progress snapshot version: ${String((input as { version?: unknown }).version)}`,

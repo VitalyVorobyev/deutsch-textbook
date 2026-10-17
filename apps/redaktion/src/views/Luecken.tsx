@@ -18,7 +18,11 @@ const SEVERITY_LABEL: Record<Diagnostic['severity'], string> = {
   info: 'Hinweis',
 };
 
-const STATUS_LABEL: Record<string, string> = { reviewed: 'geprüft', draft: 'Entwurf', workspace: 'korpusweit' };
+const STATUS_LABEL: Record<string, string> = {
+  reviewed: 'geprüft',
+  draft: 'Entwurf',
+  workspace: 'korpusweit',
+};
 
 /** One shape for every class, so the eye keeps its place moving down thirteen groups. */
 const COLUMNS = (topicTitle: (id: string) => string): Spalte<WorkItem>[] => [
@@ -27,15 +31,44 @@ const COLUMNS = (topicTitle: (id: string) => string): Spalte<WorkItem>[] => [
     key: 'topic',
     head: 'Thema',
     cell: (p) =>
-      p.topic ? <Quer href={href('thema', p.topic)}>{topicTitle(p.topic)}</Quer> : <span className="text-ink-muted">—</span>,
+      p.topic ? (
+        <Quer href={href('thema', p.topic)}>{topicTitle(p.topic)}</Quer>
+      ) : (
+        <span className="text-ink-muted">—</span>
+      ),
   },
-  { key: 'level', head: 'Niveau', cell: (p) => <span className="text-ink-muted">{p.level ?? '—'}</span> },
+  {
+    key: 'level',
+    head: 'Niveau',
+    cell: (p) => <span className="text-ink-muted">{p.level ?? '—'}</span>,
+  },
   {
     key: 'status',
     head: 'Status',
-    cell: (p) => <Chip tone={p.diagnostic.severity === 'blocking' ? 'warn' : p.topicStatus === 'reviewed' ? 'brand' : 'neutral'}>{p.diagnostic.severity === 'blocking' ? SEVERITY_LABEL.blocking : STATUS_LABEL[p.topicStatus ?? ''] ?? SEVERITY_LABEL[p.diagnostic.severity]}</Chip>,
+    cell: (p) => (
+      <Chip
+        tone={
+          p.diagnostic.severity === 'blocking'
+            ? 'warn'
+            : p.topicStatus === 'reviewed'
+              ? 'brand'
+              : 'neutral'
+        }
+      >
+        {p.diagnostic.severity === 'blocking'
+          ? SEVERITY_LABEL.blocking
+          : (STATUS_LABEL[p.topicStatus ?? ''] ?? SEVERITY_LABEL[p.diagnostic.severity])}
+      </Chip>
+    ),
   },
-  { key: 'file', head: 'Datei', cell: (p) => (p.file ? <Quelllink href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Quelllink> : null) },
+  {
+    key: 'file',
+    head: 'Datei',
+    cell: (p) =>
+      p.file ? (
+        <Quelllink href={href('quelle', undefined, { pfad: p.file })}>{p.file}</Quelllink>
+      ) : null,
+  },
 ];
 
 export function Luecken({ graph }: { graph: GraphPayload }) {
@@ -74,19 +107,46 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
       <header className="mb-5">
         <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Qualität</h1>
         <p className="mt-1 text-sm text-ink-muted">
-          {filtered.length} von {graph.problems.length} Befunden · redaktionelle Arbeitsliste, kein Validatorbericht
+          {filtered.length} von {graph.problems.length} Befunden · redaktionelle Arbeitsliste, kein
+          Validatorbericht
         </p>
       </header>
 
-      <Callout tone="info" eyebrow="Wie diese Liste zu lesen ist" title="„Geprüft“ beschreibt den Themenstatus, nicht die technische Schwere">
-        Ein Befund in einem geprüften Thema ist ältere redaktionelle Schuld. Nur ein ausdrücklich als „technisch blockierend“ markierter Fehler verhindert Speichern oder Freigabe; die aktuellen Profilbefunde tun das nicht.
+      <Callout
+        tone="info"
+        eyebrow="Wie diese Liste zu lesen ist"
+        title="„Geprüft“ beschreibt den Themenstatus, nicht die technische Schwere"
+      >
+        Ein Befund in einem geprüften Thema ist ältere redaktionelle Schuld. Nur ein ausdrücklich
+        als „technisch blockierend“ markierter Fehler verhindert Speichern oder Freigabe; die
+        aktuellen Profilbefunde tun das nicht.
       </Callout>
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <Filter label="Niveau" value={level} options={graph.levels} onChange={setLevel} />
-        <Filter label="Art" value={kind} options={kindOptions} labels={Object.fromEntries(kindOptions.map((value) => [value, PROBLEM_LABELS[value]?.de ?? value]))} onChange={setKind} />
-        <Filter label="Arbeitsbereich" value={status} options={['reviewed', 'draft', 'workspace']} labels={STATUS_LABEL} onChange={setStatus} />
-        <Filter label="Schwere" value={severity} options={['blocking', 'attention', 'info']} labels={SEVERITY_LABEL} onChange={setSeverity} />
+        <Filter
+          label="Art"
+          value={kind}
+          options={kindOptions}
+          labels={Object.fromEntries(
+            kindOptions.map((value) => [value, PROBLEM_LABELS[value]?.de ?? value]),
+          )}
+          onChange={setKind}
+        />
+        <Filter
+          label="Arbeitsbereich"
+          value={status}
+          options={['reviewed', 'draft', 'workspace']}
+          labels={STATUS_LABEL}
+          onChange={setStatus}
+        />
+        <Filter
+          label="Schwere"
+          value={severity}
+          options={['blocking', 'attention', 'info']}
+          labels={SEVERITY_LABEL}
+          onChange={setSeverity}
+        />
       </div>
 
       {sorted.length === 0 ? (
@@ -102,7 +162,15 @@ export function Luecken({ graph }: { graph: GraphPayload }) {
               title={
                 <span className="flex items-center gap-2">
                   {label?.de ?? k}
-                  <Chip tone={rows.some((row) => row.diagnostic.severity === 'blocking') ? 'warn' : 'neutral'}>{rows.length}</Chip>
+                  <Chip
+                    tone={
+                      rows.some((row) => row.diagnostic.severity === 'blocking')
+                        ? 'warn'
+                        : 'neutral'
+                    }
+                  >
+                    {rows.length}
+                  </Chip>
                 </span>
               }
             >

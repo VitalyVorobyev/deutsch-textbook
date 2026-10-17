@@ -1,10 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript",
-    "unicorn",
-    "oxc"
-  ],
+  "plugins": ["typescript", "unicorn", "oxc"],
   "categories": {
     "correctness": "error"
   },
@@ -122,12 +118,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts"
-      ],
+      "files": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "rules": {
         "constructor-super": "off",
         "getter-return": "off",
@@ -152,10 +143,7 @@
       }
     },
     {
-      "files": [
-        "*.astro",
-        "**/*.astro"
-      ],
+      "files": ["*.astro", "**/*.astro"],
       "globals": {
         "AsyncDisposableStack": "readonly",
         "DisposableStack": "readonly",
@@ -168,9 +156,7 @@
       }
     },
     {
-      "files": [
-        "**/*.tsx"
-      ],
+      "files": ["**/*.tsx"],
       "rules": {
         "react/display-name": "error",
         "react/jsx-key": "error",
@@ -190,14 +176,10 @@
         "react/no-unsafe": "off",
         "react/react-in-jsx-scope": "off"
       },
-      "plugins": [
-        "react"
-      ]
+      "plugins": ["react"]
     },
     {
-      "files": [
-        "**/*.{ts,tsx}"
-      ],
+      "files": ["**/*.{ts,tsx}"],
       "rules": {
         "react/rules-of-hooks": "error",
         "react/exhaustive-deps": "warn",
@@ -214,50 +196,34 @@
         "react/set-state-in-render": "error",
         "react/unsupported-syntax": "warn"
       },
-      "plugins": [
-        "react"
-      ]
+      "plugins": ["react"]
     },
     {
-      "files": [
-        "src/**"
-      ],
+      "files": ["src/**"],
       "env": {
         "browser": true
       }
     },
     {
-      "files": [
-        "scripts/**",
-        "src/integrations/**",
-        "*.{js,mjs,ts}",
-        ".design-sync/*.mjs"
-      ],
+      "files": ["scripts/**", "src/integrations/**", "*.{js,mjs,ts}", ".design-sync/*.mjs"],
       "env": {
         "node": true
       }
     },
     {
-      "files": [
-        "src/integrations/service-worker.js"
-      ],
+      "files": ["src/integrations/service-worker.js"],
       "env": {
         "serviceworker": true
       }
     },
     {
-      "files": [
-        "**/*.{js,mjs,cjs}",
-        "**/*.astro"
-      ],
+      "files": ["**/*.{js,mjs,cjs}", "**/*.astro"],
       "rules": {
         "no-undef": "error"
       }
     },
     {
-      "files": [
-        "src/pages/konto.astro"
-      ],
+      "files": ["src/pages/konto.astro"],
       "globals": {
         "target": "readonly"
       }

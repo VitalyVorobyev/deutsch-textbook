@@ -1,12 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import {
-  PRUEFPUNKTE,
-  erforderlich,
-  fehlende,
-  satzFuer,
-  standIndex,
-  wortDiff,
-} from './pruefung';
+import { PRUEFPUNKTE, erforderlich, fehlende, satzFuer, standIndex, wortDiff } from './pruefung';
 import { sceneDocumentFixture } from './test/fixtures';
 import type { Scene } from '@da/schema/audio-scene';
 
@@ -23,7 +16,14 @@ const scene = sceneDocumentFixture as unknown as Scene;
 describe('what a scene requires', () => {
   test('the six unconditional points are always required', () => {
     const noetig = erforderlich(scene, false);
-    for (const key of ['accent', 'naturalness', 'intelligibility', 'identity', 'speakers', 'pace']) {
+    for (const key of [
+      'accent',
+      'naturalness',
+      'intelligibility',
+      'identity',
+      'speakers',
+      'pace',
+    ]) {
       expect(noetig.has(key)).toBe(true);
     }
   });

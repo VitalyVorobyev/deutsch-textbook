@@ -128,11 +128,21 @@ export default function TopicProgress(props: Props) {
   }
 
   if (loadError) {
-    return <ProgressLoadError compact onRetry={() => { setLoadError(false); void refresh(); }} />;
+    return (
+      <ProgressLoadError
+        compact
+        onRetry={() => {
+          setLoadError(false);
+          void refresh();
+        }}
+      />
+    );
   }
 
   if (!done) {
-    return <span className="inline-block h-5 w-16 animate-pulse rounded-full bg-stone-200 dark:bg-stone-700" />;
+    return (
+      <span className="inline-block h-5 w-16 animate-pulse rounded-full bg-stone-200 dark:bg-stone-700" />
+    );
   }
 
   const isMastered = done.tier === 'mastered';

@@ -111,9 +111,8 @@ afterAll(() => {
 });
 
 // Imported after the mock so the dynamic import inside syncNow resolves to it.
-const { bindActiveProfile, forgetSession, readSyncState, syncNow, SYNC_STATE_KEY } = await import(
-  '../src/lib/sync-remote'
-);
+const { bindActiveProfile, forgetSession, readSyncState, syncNow, SYNC_STATE_KEY } =
+  await import('../src/lib/sync-remote');
 
 // ---------------------------------------------------------------------------
 // Wiring

@@ -44,7 +44,8 @@ describe('safe editorial article preview', () => {
   }, 30_000);
 
   test('language coverage distinguishes authored German halves from German examples', () => {
-    const text = '<Bilingual><En>EN</En><Ru>RU</Ru><Uk>UK</Uk></Bilingual>\n\nDeutsch bleibt im Beispiel.';
+    const text =
+      '<Bilingual><En>EN</En><Ru>RU</Ru><Uk>UK</Uk></Bilingual>\n\nDeutsch bleibt im Beispiel.';
     const coverage = languageCoverage('test', 'content/topics/a1/test.mdx', text);
     expect(coverage.languages.find((entry) => entry.language === 'de')?.status).toBe('unsupported');
     expect(coverage.languages.find((entry) => entry.language === 'en')?.status).toBe('complete');
@@ -52,7 +53,12 @@ describe('safe editorial article preview', () => {
 
   test('reports the current corpus language contract without treating German examples as translations', () => {
     const graph = contentGraph();
-    const totals = { de: { complete: 0, partial: 0, unsupported: 0 }, en: { complete: 0, partial: 0, unsupported: 0 }, ru: { complete: 0, partial: 0, unsupported: 0 }, uk: { complete: 0, partial: 0, unsupported: 0 } };
+    const totals = {
+      de: { complete: 0, partial: 0, unsupported: 0 },
+      en: { complete: 0, partial: 0, unsupported: 0 },
+      ru: { complete: 0, partial: 0, unsupported: 0 },
+      uk: { complete: 0, partial: 0, unsupported: 0 },
+    };
     for (const topic of graph.topics.values()) {
       const text = readFileSync(resolve(graph.root, topic.article), 'utf8');
       const coverage = languageCoverage(topic.id, topic.article, text);

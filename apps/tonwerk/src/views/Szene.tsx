@@ -359,11 +359,23 @@ function Verlauf({ data }: { data: SceneDetail }): React.JSX.Element {
                       {kurzSha(row.scene_sha256)}
                     </td>
                     <td className="zahl entfernt">{zeitpunkt(row.created_at)}</td>
-                    <td>{row.has_qa ? <Marke ton="messung">geprüft</Marke> : <span className="leer" />}</td>
                     <td>
-                      {row.has_approval ? <Marke ton="signal">freigegeben</Marke> : <span className="leer" />}
+                      {row.has_qa ? (
+                        <Marke ton="messung">geprüft</Marke>
+                      ) : (
+                        <span className="leer" />
+                      )}
                     </td>
-                    <td>{row.has_exercise ? <Marke>vorhanden</Marke> : <span className="leer" />}</td>
+                    <td>
+                      {row.has_approval ? (
+                        <Marke ton="signal">freigegeben</Marke>
+                      ) : (
+                        <span className="leer" />
+                      )}
+                    </td>
+                    <td>
+                      {row.has_exercise ? <Marke>vorhanden</Marke> : <span className="leer" />}
+                    </td>
                   </tr>
                 ))}
             </tbody>

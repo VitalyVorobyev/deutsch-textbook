@@ -120,9 +120,8 @@ describe('replay through the real store (fake-indexeddb)', () => {
         JSON.stringify([{ id: 'journal-test', label: 'Journal Test' }]),
       );
       localStorage.setItem('da:profile', 'journal-test');
-      const { __resetProfileStateCacheForTests, resolveProfileState } = await import(
-        '../src/lib/profile'
-      );
+      const { __resetProfileStateCacheForTests, resolveProfileState } =
+        await import('../src/lib/profile');
       __resetProfileStateCacheForTests();
       expect(await resolveProfileState()).toBe('ready');
 
@@ -172,7 +171,9 @@ describe('a journal entry never outlives its own write', () => {
       _key: string,
       apply: (c: unknown) => unknown,
     ) => {
-      await new Promise<void>((r) => { release = r; });
+      await new Promise<void>((r) => {
+        release = r;
+      });
       apply(undefined);
     }) as never);
 
@@ -198,9 +199,8 @@ describe('a journal entry never outlives its own write', () => {
 
   test('an op that can never be applied is quarantined, and the ops behind it still replay', async () => {
     const store = await import('../src/lib/store');
-    const { journalAppend, journalPoisoned, replayJournal } = await import(
-      '../src/lib/write-journal'
-    );
+    const { journalAppend, journalPoisoned, replayJournal } =
+      await import('../src/lib/write-journal');
 
     journalAppend(gradeOp('poison::card::de-x', ts));
     journalAppend(gradeOp('healthy::card::de-x', ts + 1));
@@ -259,5 +259,4 @@ describe('a journal entry never outlives its own write', () => {
       restore();
     }
   });
-
 });

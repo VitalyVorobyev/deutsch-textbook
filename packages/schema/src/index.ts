@@ -19,7 +19,12 @@ export const cefrLevelSchema = z.enum(CEFR_LEVELS);
 export type CefrLevel = z.infer<typeof cefrLevelSchema>;
 
 export const TOPIC_KINDS = ['grammar', 'vocab-field', 'communication', 'phonetics'] as const;
-export const CURRICULUM_STRANDS = ['foundations', 'grammar', 'communication', 'vocabulary'] as const;
+export const CURRICULUM_STRANDS = [
+  'foundations',
+  'grammar',
+  'communication',
+  'vocabulary',
+] as const;
 export type CurriculumStrand = (typeof CURRICULUM_STRANDS)[number];
 export const topicKindSchema = z.enum(TOPIC_KINDS);
 export type TopicKind = z.infer<typeof topicKindSchema>;
@@ -78,8 +83,7 @@ export const posSchema = z.enum(POS);
     loans (ʁɛstoˈʁɑ̃ː). The three combining marks (U+0303 nasal, U+032F
     non-syllabic, U+0329 syllabic) are standalone members of the set and written
     as escapes so they don't render glued onto the preceding letter. */
-export const IPA_CHARS =
-  /^[aɐɑbçdeəɛfghiɪjklmnŋoøœɔpʁsʃtuʊvxyʏzʒʔˈˌː\u0303\u032F\u0329 ]+$/u;
+export const IPA_CHARS = /^[aɐɑbçdeəɛfghiɪjklmnŋoøœɔpʁsʃtuʊvxyʏzʒʔˈˌː\u0303\u032F\u0329 ]+$/u;
 
 /** Combining marks may only sit on a base that can carry them. */
 const IPA_MARK_BASE: Array<[string, RegExp, string]> = [
@@ -216,11 +220,7 @@ export const vocabEntrySchema = z
   .superRefine((entry, ctx) => {
     const extendedGloss = (text: string | undefined): boolean =>
       !!text && (/\([^)]{8,}\)/.test(text) || /\s[—–]\s/.test(text));
-    if (
-      extendedGloss(entry.en) &&
-      [entry.ru, entry.uk].some(extendedGloss) &&
-      !entry.en_compact
-    ) {
+    if (extendedGloss(entry.en) && [entry.ru, entry.uk].some(extendedGloss) && !entry.en_compact) {
       ctx.addIssue({
         code: 'custom',
         path: ['en_compact'],
@@ -303,17 +303,19 @@ const focusTag = z
   .string()
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'must be a kebab-case ASCII focus tag');
 
-export const focusEvidenceSchema = z.object({
-  /** All retained predicates must match the normalized response. */
-  retained: z.array(z.string().min(1)).default([]),
-  /** Any failed predicate matching the normalized response is explicit focus failure. */
-  failed: z.array(z.string().min(1)).default([]),
-  /** Opt-in: match case-sensitively (default: case-insensitive). For an item whose graded
+export const focusEvidenceSchema = z
+  .object({
+    /** All retained predicates must match the normalized response. */
+    retained: z.array(z.string().min(1)).default([]),
+    /** Any failed predicate matching the normalized response is explicit focus failure. */
+    failed: z.array(z.string().min(1)).default([]),
+    /** Opt-in: match case-sensitively (default: case-insensitive). For an item whose graded
       decision is a capital — `etwas Neues` against the slip `etwas neues`. */
-  case_sensitive: z.boolean().optional(),
-}).refine((value) => value.retained.length + value.failed.length > 0, {
-  message: 'focus_evidence needs at least one retained or failed predicate',
-});
+    case_sensitive: z.boolean().optional(),
+  })
+  .refine((value) => value.retained.length + value.failed.length > 0, {
+    message: 'focus_evidence needs at least one retained or failed predicate',
+  });
 
 const itemBase = {
   id: slug,
@@ -380,7 +382,11 @@ export const matchItemSchema = z.object({
         right: z.union([
           z.string().min(1),
           z
-            .object({ en: z.string().min(1), ru: z.string().min(1), uk: z.string().min(1).optional() })
+            .object({
+              en: z.string().min(1),
+              ru: z.string().min(1),
+              uk: z.string().min(1).optional(),
+            })
             .strict(),
         ]),
       }),
@@ -396,7 +402,10 @@ export const matchItemSchema = z.object({
       const lefts = new Set<string>();
       for (const p of pairs) {
         if (lefts.has(p.left))
-          ctx.addIssue({ code: 'custom', message: `duplicate left "${p.left}" — pair identity must be unique` });
+          ctx.addIssue({
+            code: 'custom',
+            message: `duplicate left "${p.left}" — pair identity must be unique`,
+          });
         lefts.add(p.left);
       }
       for (const mode of ['en', 'ru', 'uk'] as const) {
@@ -655,12 +664,7 @@ export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
  * activity explains why this particular stable file exists and how several files are presented as
  * one coherent lesson. See ADR 0014.
  */
-export const LEARNING_ACTIVITIES = [
-  'core',
-  'extension',
-  'application',
-  'remediation',
-] as const;
+export const LEARNING_ACTIVITIES = ['core', 'extension', 'application', 'remediation'] as const;
 export const learningActivitySchema = z.enum(LEARNING_ACTIVITIES);
 export type LearningActivity = z.infer<typeof learningActivitySchema>;
 
@@ -683,59 +687,73 @@ export const LESSON_STAGES = [
 ] as const;
 export type LessonStage = (typeof LESSON_STAGES)[number];
 
-export const exerciseSetSchema = z.object({
-  /** back-reference to the owning topic id */
-  topic: slug,
-  /** explicit learning role; controls training eligibility and evidence use */
-  role: exerciseRoleSchema.default('practice'),
-  /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0014. */
-  stage: z.enum(LESSON_STAGES).optional(),
-  /** Learner-facing purpose; presentation groups files by this value, never by filename. */
-  activity: learningActivitySchema.optional(),
-  /** German editorial/activity label; separate from explanation-language parity on A1/A2. */
-  title_de: z.string().min(1).optional(),
-  title: bilingualSchema.optional(),
-  /** Reusable document kept visible while every item in this set is answered. */
-  stimulus: z.string().optional(),
-  /** Exact `setId::itemId` sources that arm a delayed probe family. Probe sets require it. */
-  arming: z.array(z.string().min(1)).default([]),
-  items: z.array(exerciseItemSchema).min(1),
-}).superRefine((set, ctx) => {
-  if (set.role !== 'practice' && set.role !== 'drill') return;
+export const exerciseSetSchema = z
+  .object({
+    /** back-reference to the owning topic id */
+    topic: slug,
+    /** explicit learning role; controls training eligibility and evidence use */
+    role: exerciseRoleSchema.default('practice'),
+    /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0014. */
+    stage: z.enum(LESSON_STAGES).optional(),
+    /** Learner-facing purpose; presentation groups files by this value, never by filename. */
+    activity: learningActivitySchema.optional(),
+    /** German editorial/activity label; separate from explanation-language parity on A1/A2. */
+    title_de: z.string().min(1).optional(),
+    title: bilingualSchema.optional(),
+    /** Reusable document kept visible while every item in this set is answered. */
+    stimulus: z.string().optional(),
+    /** Exact `setId::itemId` sources that arm a delayed probe family. Probe sets require it. */
+    arming: z.array(z.string().min(1)).default([]),
+    items: z.array(exerciseItemSchema).min(1),
+  })
+  .superRefine((set, ctx) => {
+    if (set.role !== 'practice' && set.role !== 'drill') return;
 
-  if (!set.activity) {
-    ctx.addIssue({ code: 'custom', path: ['activity'], message: 'practice/drill sets require activity (ADR 0014)' });
-    return;
-  }
-  if (!set.stage) {
-    ctx.addIssue({ code: 'custom', path: ['stage'], message: 'practice/drill sets require an authored stage (ADR 0014)' });
-  }
-  if (!set.title_de && !set.title?.de) {
-    ctx.addIssue({ code: 'custom', path: ['title_de'], message: 'practice/drill sets require a German activity title (ADR 0014)' });
-  }
+    if (!set.activity) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['activity'],
+        message: 'practice/drill sets require activity (ADR 0014)',
+      });
+      return;
+    }
+    if (!set.stage) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['stage'],
+        message: 'practice/drill sets require an authored stage (ADR 0014)',
+      });
+    }
+    if (!set.title_de && !set.title?.de) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['title_de'],
+        message: 'practice/drill sets require a German activity title (ADR 0014)',
+      });
+    }
 
-  const contract: Record<LearningActivity, { role: ExerciseRole; stages: LessonStage[] }> = {
-    core: { role: 'practice', stages: ['geruest'] },
-    extension: { role: 'practice', stages: ['geruest', 'ausblenden'] },
-    application: { role: 'practice', stages: ['transfer'] },
-    remediation: { role: 'drill', stages: ['ausblenden'] },
-  };
-  const expected = contract[set.activity];
-  if (set.role !== expected.role) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['role'],
-      message: `${set.activity} requires role: ${expected.role}`,
-    });
-  }
-  if (set.stage && !expected.stages.includes(set.stage)) {
-    ctx.addIssue({
-      code: 'custom',
-      path: ['stage'],
-      message: `${set.activity} requires stage: ${expected.stages.join(' or ')}`,
-    });
-  }
-});
+    const contract: Record<LearningActivity, { role: ExerciseRole; stages: LessonStage[] }> = {
+      core: { role: 'practice', stages: ['geruest'] },
+      extension: { role: 'practice', stages: ['geruest', 'ausblenden'] },
+      application: { role: 'practice', stages: ['transfer'] },
+      remediation: { role: 'drill', stages: ['ausblenden'] },
+    };
+    const expected = contract[set.activity];
+    if (set.role !== expected.role) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['role'],
+        message: `${set.activity} requires role: ${expected.role}`,
+      });
+    }
+    if (set.stage && !expected.stages.includes(set.stage)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['stage'],
+        message: `${set.activity} requires stage: ${expected.stages.join(' or ')}`,
+      });
+    }
+  });
 export type ExerciseSet = z.infer<typeof exerciseSetSchema>;
 
 // ---------------------------------------------------------------------------
@@ -780,47 +798,66 @@ export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
 // Editorial listening plan (data/listening-plan.yaml)
 // ---------------------------------------------------------------------------
 
-export const listeningPlanArtifactSchema = z.object({
-  id: slug,
-  wave: z.union([z.literal(1), z.literal(2)]),
-  purpose: z.enum(['listening-outcome', 'model-input']),
-  scenario: z.string().min(1),
-  outcomes: z.array(slug).min(1),
-  required_vocabulary: z.array(z.string().min(1)).default([]),
-  grammar_target: z.string().default(''),
-  duration_seconds: z.object({ min: z.number().int().positive(), max: z.number().int().positive() }),
-  speakers: z.object({ min: z.number().int().min(1).max(4), max: z.number().int().min(1).max(4) }),
-  register: z.string().min(1),
-  /**
-   * Which existing exercise item types will carry this artifact's questions.
-   *
-   * This was `question_kinds`, a six-member response union belonging to a `listening` item
-   * type that no longer exists — single-choice was `mc`, ordering was `order`, dictation was
-   * `listen`, and a parallel grading path for the same four tasks is a second place for every
-   * grading rule to be forgotten. Naming a real type keeps the plan answerable against the
-   * catalog: `bun run validate` rejects a value that is not an item type the app can render.
-   */
-  item_types: z.array(z.enum(EXERCISE_ITEM_TYPES)).min(1),
-  /** How many independently scored questions the artifact should carry. Every planned
+export const listeningPlanArtifactSchema = z
+  .object({
+    id: slug,
+    wave: z.union([z.literal(1), z.literal(2)]),
+    purpose: z.enum(['listening-outcome', 'model-input']),
+    scenario: z.string().min(1),
+    outcomes: z.array(slug).min(1),
+    required_vocabulary: z.array(z.string().min(1)).default([]),
+    grammar_target: z.string().default(''),
+    duration_seconds: z.object({
+      min: z.number().int().positive(),
+      max: z.number().int().positive(),
+    }),
+    speakers: z.object({
+      min: z.number().int().min(1).max(4),
+      max: z.number().int().min(1).max(4),
+    }),
+    register: z.string().min(1),
+    /**
+     * Which existing exercise item types will carry this artifact's questions.
+     *
+     * This was `question_kinds`, a six-member response union belonging to a `listening` item
+     * type that no longer exists — single-choice was `mc`, ordering was `order`, dictation was
+     * `listen`, and a parallel grading path for the same four tasks is a second place for every
+     * grading rule to be forgotten. Naming a real type keeps the plan answerable against the
+     * catalog: `bun run validate` rejects a value that is not an item type the app can render.
+     */
+    item_types: z.array(z.enum(EXERCISE_ITEM_TYPES)).min(1),
+    /** How many independently scored questions the artifact should carry. Every planned
       artifact declared exactly three response kinds, so three is what that encoded. */
-  questions: z.number().int().min(1).max(6).default(3),
-  context_sound: z.string().min(1).nullable(),
-}).superRefine((artifact, ctx) => {
-  if (artifact.duration_seconds.min > artifact.duration_seconds.max)
-    ctx.addIssue({ code: 'custom', path: ['duration_seconds'], message: 'min must not exceed max' });
-  if (artifact.speakers.min > artifact.speakers.max)
-    ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
-  if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
-    ctx.addIssue({ code: 'custom', message: 'Wave 1 requires vocabulary and a grammar/focus target' });
-});
+    questions: z.number().int().min(1).max(6).default(3),
+    context_sound: z.string().min(1).nullable(),
+  })
+  .superRefine((artifact, ctx) => {
+    if (artifact.duration_seconds.min > artifact.duration_seconds.max)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['duration_seconds'],
+        message: 'min must not exceed max',
+      });
+    if (artifact.speakers.min > artifact.speakers.max)
+      ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
+    if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Wave 1 requires vocabulary and a grammar/focus target',
+      });
+  });
 
 export const listeningPlanSchema = z.object({
   version: z.literal(1),
-  units: z.array(z.object({
-    unit: slug,
-    level: levelSchema,
-    artifacts: z.array(listeningPlanArtifactSchema).min(1),
-  })).min(1),
+  units: z
+    .array(
+      z.object({
+        unit: slug,
+        level: levelSchema,
+        artifacts: z.array(listeningPlanArtifactSchema).min(1),
+      }),
+    )
+    .min(1),
 });
 export type ListeningPlan = z.infer<typeof listeningPlanSchema>;
 
@@ -830,57 +867,62 @@ export type ListeningPlan = z.infer<typeof listeningPlanSchema>;
 
 export const READING_KINDS = ['intensive', 'extensive'] as const;
 
-export const readingSchema = z.object({
-  /** back-reference to the owning topic id */
-  topic: slug,
-  title_de: z.string().min(1),
-  /**
-   * What the text is *for*, which decides how it is read — not merely how long it is.
-   *
-   * `intensive` (the default, and every reading before this field existed): ~90–130 words,
-   * densely glossed, followed by comprehension questions. The learner works through it.
-   *
-   * `extensive`: 250–400 words at late A1, very high known-word coverage and sparse glosses,
-   * read for meaning at volume. It is deliberately NOT quizzed line by line — being asked to
-   * account for every sentence is what turns reading back into a test, and the whole point of
-   * this track is the reading itself. A couple of gist questions are allowed; none is fine.
-   */
-  kind: z.enum(READING_KINDS).default('intensive'),
-  /**
-   * Paragraphs of German text. Inline gloss markers:
-   * `[[German phrase::en gloss::ru gloss]]` (see src/lib/gloss.ts).
-   */
-  text: z.array(z.string().min(1)).min(1),
-  /** comprehension questions shown after the text — 2–4 for intensive, 0–2 for extensive */
-  questions: z.array(mcItemSchema).max(4).default([]),
-  /**
-   * Provenance for a reading adapted from someone else's work, mirroring
-   * `visualDocumentSchema` (ADR 0006): the credit line is data on the reading,
-   * rendered with it — never a YAML comment no gate can see. E.g.
-   * "Nach einem gemeinfreien Werk der Brüder Grimm. Didaktische Bearbeitung
-   * für Niveau A2. Historischer Originaltext: <Wikisource URL>" — URLs render
-   * as links. A reading with no external source keeps both fields absent.
-   */
-  attribution: z.string().min(1).optional(),
-  license: z.string().min(1).optional(),
-}).superRefine((reading, ctx) => {
-  // Readings carry no sourceClass (unlike documents), so the reachable rule is
-  // pairing: one field without the other is half a provenance record.
-  if (!reading.attribution !== !reading.license) {
-    ctx.addIssue({
-      code: 'custom',
-      message: 'attribution and license come together — an adapted reading ships with both or is not adapted',
-    });
-  }
-});
+export const readingSchema = z
+  .object({
+    /** back-reference to the owning topic id */
+    topic: slug,
+    title_de: z.string().min(1),
+    /**
+     * What the text is *for*, which decides how it is read — not merely how long it is.
+     *
+     * `intensive` (the default, and every reading before this field existed): ~90–130 words,
+     * densely glossed, followed by comprehension questions. The learner works through it.
+     *
+     * `extensive`: 250–400 words at late A1, very high known-word coverage and sparse glosses,
+     * read for meaning at volume. It is deliberately NOT quizzed line by line — being asked to
+     * account for every sentence is what turns reading back into a test, and the whole point of
+     * this track is the reading itself. A couple of gist questions are allowed; none is fine.
+     */
+    kind: z.enum(READING_KINDS).default('intensive'),
+    /**
+     * Paragraphs of German text. Inline gloss markers:
+     * `[[German phrase::en gloss::ru gloss]]` (see src/lib/gloss.ts).
+     */
+    text: z.array(z.string().min(1)).min(1),
+    /** comprehension questions shown after the text — 2–4 for intensive, 0–2 for extensive */
+    questions: z.array(mcItemSchema).max(4).default([]),
+    /**
+     * Provenance for a reading adapted from someone else's work, mirroring
+     * `visualDocumentSchema` (ADR 0006): the credit line is data on the reading,
+     * rendered with it — never a YAML comment no gate can see. E.g.
+     * "Nach einem gemeinfreien Werk der Brüder Grimm. Didaktische Bearbeitung
+     * für Niveau A2. Historischer Originaltext: <Wikisource URL>" — URLs render
+     * as links. A reading with no external source keeps both fields absent.
+     */
+    attribution: z.string().min(1).optional(),
+    license: z.string().min(1).optional(),
+  })
+  .superRefine((reading, ctx) => {
+    // Readings carry no sourceClass (unlike documents), so the reachable rule is
+    // pairing: one field without the other is half a provenance record.
+    if (!reading.attribution !== !reading.license) {
+      ctx.addIssue({
+        code: 'custom',
+        message:
+          'attribution and license come together — an adapted reading ships with both or is not adapted',
+      });
+    }
+  });
 export type Reading = z.infer<typeof readingSchema>;
 
-export const readingParagraphCueSchema = z.object({
-  paragraph_index: z.number().int().nonnegative(),
-  start_ms: z.number().int().nonnegative(),
-  end_ms: z.number().int().positive(),
-  text_sha256: z.string().regex(/^[0-9a-f]{64}$/),
-}).refine((cue) => cue.end_ms > cue.start_ms, 'cue end must follow cue start');
+export const readingParagraphCueSchema = z
+  .object({
+    paragraph_index: z.number().int().nonnegative(),
+    start_ms: z.number().int().nonnegative(),
+    end_ms: z.number().int().positive(),
+    text_sha256: z.string().regex(/^[0-9a-f]{64}$/),
+  })
+  .refine((cue) => cue.end_ms > cue.start_ms, 'cue end must follow cue start');
 
 export const readingAudioArtifactSchema = z.object({
   id: slug,
@@ -1148,11 +1190,20 @@ export const caseReferenceSchema = z.object({
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
-  articles: z.array(z.object({
-    case: z.enum(['Nominativ', 'Akkusativ', 'Dativ']),
-    masculine: z.string(), feminine: z.string(), neuter: z.string(), plural: z.string(),
-  })).min(3),
-  pronouns: z.array(z.object({ nominative: z.string(), accusative: z.string(), dative: z.string() })).min(1),
+  articles: z
+    .array(
+      z.object({
+        case: z.enum(['Nominativ', 'Akkusativ', 'Dativ']),
+        masculine: z.string(),
+        feminine: z.string(),
+        neuter: z.string(),
+        plural: z.string(),
+      }),
+    )
+    .min(3),
+  pronouns: z
+    .array(z.object({ nominative: z.string(), accusative: z.string(), dative: z.string() }))
+    .min(1),
   prepositions: z.object({
     accusative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
     dative: z.array(z.object({ form: z.string(), example: z.string().optional() })),
@@ -1165,12 +1216,14 @@ export const caseReferenceSchema = z.object({
         because here the contrast rides on the verb — legen/liegen,
         stellen/stehen, setzen/sitzen — and a learner who cannot read the verb
         cannot see the distinction the row exists to draw. */
-    two_way: z.array(z.object({
-      form: z.string(),
-      example: z.string().optional(),
-      wohin: referenceExampleSchema.optional(),
-      wo: referenceExampleSchema.optional(),
-    })),
+    two_way: z.array(
+      z.object({
+        form: z.string(),
+        example: z.string().optional(),
+        wohin: referenceExampleSchema.optional(),
+        wo: referenceExampleSchema.optional(),
+      }),
+    ),
   }),
 });
 export type CaseReference = z.infer<typeof caseReferenceSchema>;
@@ -1181,21 +1234,29 @@ export const pronominalAdverbReferenceSchema = z.object({
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
-  entries: z.array(z.object({
-    preposition: z.string().min(1),
-    status: z.enum(['productive', 'receptive']),
-    construction: z.string().min(1),
-    question: z.string().min(1),
-    thing: z.string().min(1),
-    person: z.string().min(1),
-    example: referenceExampleSchema,
-  })).min(1),
-  temporal: z.array(z.object({
-    form: z.enum(['vorher', 'zuvor', 'danach']),
-    status: z.enum(['productive', 'receptive']),
-    meaning: bilingualSchema,
-    example: referenceExampleSchema,
-  })).length(3),
+  entries: z
+    .array(
+      z.object({
+        preposition: z.string().min(1),
+        status: z.enum(['productive', 'receptive']),
+        construction: z.string().min(1),
+        question: z.string().min(1),
+        thing: z.string().min(1),
+        person: z.string().min(1),
+        example: referenceExampleSchema,
+      }),
+    )
+    .min(1),
+  temporal: z
+    .array(
+      z.object({
+        form: z.enum(['vorher', 'zuvor', 'danach']),
+        status: z.enum(['productive', 'receptive']),
+        meaning: bilingualSchema,
+        example: referenceExampleSchema,
+      }),
+    )
+    .length(3),
 });
 export type PronominalAdverbReference = z.infer<typeof pronominalAdverbReferenceSchema>;
 
@@ -1210,19 +1271,27 @@ export const zahlenDatumZeitReferenceSchema = z.object({
   /** ordinal numbers: "1." → "erste" */
   ordinals: z.array(z.object({ value: z.string().min(1), word: z.string().min(1) })).min(1),
   /** clock times: 24-hour value, its formal reading, and the everyday one */
-  clock: z.array(z.object({
-    time: z.string().min(1),
-    formal: z.string().min(1),
-    colloquial: z.string().min(1).optional(),
-  })).min(1),
+  clock: z
+    .array(
+      z.object({
+        time: z.string().min(1),
+        formal: z.string().min(1),
+        colloquial: z.string().min(1).optional(),
+      }),
+    )
+    .min(1),
   weekdays: z.array(z.string().min(1)).length(7),
   months: z.array(z.string().min(1)).length(12),
   /** the formation rules — bilingual, with an optional German example */
-  notes: z.array(z.object({
-    heading: bilingualSchema,
-    body: bilingualSchema,
-    example: referenceExampleSchema.optional(),
-  })).min(1),
+  notes: z
+    .array(
+      z.object({
+        heading: bilingualSchema,
+        body: bilingualSchema,
+        example: referenceExampleSchema.optional(),
+      }),
+    )
+    .min(1),
 });
 export type ZahlenDatumZeitReference = z.infer<typeof zahlenDatumZeitReferenceSchema>;
 
@@ -1240,27 +1309,39 @@ export const sentenceConnectorsReferenceSchema = z.object({
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
-  relations: z.array(z.object({
-    id: slug,
-    title: bilingualSchema,
-    cue: bilingualSchema,
-    description: bilingualSchema,
-    entries: z.array(z.object({
-      form: z.string().min(1),
-      level: levelSchema,
-      syntax: connectorSyntaxSchema,
-      register: z.enum(['neutral', 'spoken', 'written', 'formal']).default('neutral'),
-      meaning: bilingualSchema,
-      note: bilingualSchema.optional(),
-      example: referenceExampleSchema,
-    })).min(1),
-  })).min(1),
-  comparisons: z.array(z.object({
-    id: slug,
-    title: bilingualSchema,
-    explanation: bilingualSchema,
-    examples: z.array(referenceExampleSchema).min(2),
-  })).min(1),
+  relations: z
+    .array(
+      z.object({
+        id: slug,
+        title: bilingualSchema,
+        cue: bilingualSchema,
+        description: bilingualSchema,
+        entries: z
+          .array(
+            z.object({
+              form: z.string().min(1),
+              level: levelSchema,
+              syntax: connectorSyntaxSchema,
+              register: z.enum(['neutral', 'spoken', 'written', 'formal']).default('neutral'),
+              meaning: bilingualSchema,
+              note: bilingualSchema.optional(),
+              example: referenceExampleSchema,
+            }),
+          )
+          .min(1),
+      }),
+    )
+    .min(1),
+  comparisons: z
+    .array(
+      z.object({
+        id: slug,
+        title: bilingualSchema,
+        explanation: bilingualSchema,
+        examples: z.array(referenceExampleSchema).min(2),
+      }),
+    )
+    .min(1),
 });
 export type SentenceConnectorsReference = z.infer<typeof sentenceConnectorsReferenceSchema>;
 
@@ -1284,36 +1365,52 @@ export const briefeReferenceSchema = z.object({
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
-  sections: z.array(z.object({
-    id: slug,
-    title: bilingualSchema.extend({ de: z.string().min(1) }),
-    description: bilingualSchema,
-    entries: z.array(z.object({
-      /** the German, verbatim and with its own punctuation — including the comma that
+  sections: z
+    .array(
+      z.object({
+        id: slug,
+        title: bilingualSchema.extend({ de: z.string().min(1) }),
+        description: bilingualSchema,
+        entries: z
+          .array(
+            z.object({
+              /** the German, verbatim and with its own punctuation — including the comma that
           forces a lowercase start on the next line, which is the page's main point */
-      form: z.string().min(1),
-      register: z.enum(['formal', 'neutral', 'vertraut']),
-      channel: z.array(z.enum(['brief', 'email', 'nachricht'])).min(1),
-      level: levelSchema,
-      use: bilingualSchema,
-      note: bilingualSchema.optional(),
-    })).min(1),
-  })).min(1),
-  templates: z.array(z.object({
-    id: slug,
-    title: bilingualSchema.extend({ de: z.string().min(1) }),
-    situation: bilingualSchema,
-    register: z.enum(['formal', 'neutral', 'vertraut']),
-    channel: z.enum(['brief', 'email', 'nachricht']),
-    lines: z.array(z.object({
-      /** id of the section this line instantiates — validated against `sections` */
-      section: slug,
-      de: z.string().min(1),
-      en: z.string().min(1),
-      ru: z.string().min(1),
-      uk: z.string().min(1).optional(),
-    })).min(1),
-  })).min(1),
+              form: z.string().min(1),
+              register: z.enum(['formal', 'neutral', 'vertraut']),
+              channel: z.array(z.enum(['brief', 'email', 'nachricht'])).min(1),
+              level: levelSchema,
+              use: bilingualSchema,
+              note: bilingualSchema.optional(),
+            }),
+          )
+          .min(1),
+      }),
+    )
+    .min(1),
+  templates: z
+    .array(
+      z.object({
+        id: slug,
+        title: bilingualSchema.extend({ de: z.string().min(1) }),
+        situation: bilingualSchema,
+        register: z.enum(['formal', 'neutral', 'vertraut']),
+        channel: z.enum(['brief', 'email', 'nachricht']),
+        lines: z
+          .array(
+            z.object({
+              /** id of the section this line instantiates — validated against `sections` */
+              section: slug,
+              de: z.string().min(1),
+              en: z.string().min(1),
+              ru: z.string().min(1),
+              uk: z.string().min(1).optional(),
+            }),
+          )
+          .min(1),
+      }),
+    )
+    .min(1),
 });
 export type BriefeReference = z.infer<typeof briefeReferenceSchema>;
 
@@ -1368,72 +1465,102 @@ const tenseFormSchema = z.object({
 const tenseParadigmSchema = z.object({
   id: slug,
   caption: bilingualSchema.extend({ de: z.string().min(1) }),
-  verbs: z.array(z.object({
-    infinitive: z.string().min(1),
-    kind: z.enum(['schwach', 'stark', 'hilfsverb', 'modalverb']),
-    /** the subject the column's cells are written for, when it is not a bare pronoun */
-    subject: z.string().min(1).optional(),
-  })).min(1),
-  rows: z.array(z.object({
-    /** id of the `forms[]` entry this row conjugates */
-    form: slug,
-    /** the German person the cells are written in ("ich", "du", "es") */
-    person: z.string().min(1),
-    /** one cell per entry of `verbs`, in the same order */
-    cells: z.array(z.string().min(1)).min(1),
-  })).min(1),
+  verbs: z
+    .array(
+      z.object({
+        infinitive: z.string().min(1),
+        kind: z.enum(['schwach', 'stark', 'hilfsverb', 'modalverb']),
+        /** the subject the column's cells are written for, when it is not a bare pronoun */
+        subject: z.string().min(1).optional(),
+      }),
+    )
+    .min(1),
+  rows: z
+    .array(
+      z.object({
+        /** id of the `forms[]` entry this row conjugates */
+        form: slug,
+        /** the German person the cells are written in ("ich", "du", "es") */
+        person: z.string().min(1),
+        /** one cell per entry of `verbs`, in the same order */
+        cells: z.array(z.string().min(1)).min(1),
+      }),
+    )
+    .min(1),
 });
 
-export const zeitformenReferenceSchema = z.object({
-  id: z.literal('zeitformen'),
-  /** Tempus, Modus, Genus verbi — the frame the rest of the page fills in. */
-  axes: z.array(z.object({
-    id: tenseAxisSchema,
-    title: bilingualSchema.extend({ de: z.string().min(1) }),
-    description: bilingualSchema,
-    /** the German names of the cells on this axis */
-    values: z.array(z.string().min(1)).min(2),
-  })).length(3),
-  forms: z.array(tenseFormSchema).min(1),
-  paradigms: z.array(tenseParadigmSchema).min(1),
-  /** the named confusions, each with an explanation and its minimal pairs */
-  comparisons: z.array(z.object({
-    id: slug,
-    title: bilingualSchema.extend({ de: z.string().min(1) }),
-    explanation: bilingualSchema,
-    examples: z.array(referenceExampleSchema).min(2),
-  })).min(1),
-}).superRefine((data, ctx) => {
-  const formIds = new Set(data.forms.map((form) => form.id));
-  const conjugated = new Set<string>();
-  for (const [p, paradigm] of data.paradigms.entries()) {
-    for (const [r, row] of paradigm.rows.entries()) {
-      const at = ['paradigms', p, 'rows', r] as const;
-      if (!formIds.has(row.form))
-        ctx.addIssue({ code: 'custom', path: [...at, 'form'], message: `unknown form "${row.form}"` });
-      else conjugated.add(row.form);
-      if (row.cells.length !== paradigm.verbs.length)
+export const zeitformenReferenceSchema = z
+  .object({
+    id: z.literal('zeitformen'),
+    /** Tempus, Modus, Genus verbi — the frame the rest of the page fills in. */
+    axes: z
+      .array(
+        z.object({
+          id: tenseAxisSchema,
+          title: bilingualSchema.extend({ de: z.string().min(1) }),
+          description: bilingualSchema,
+          /** the German names of the cells on this axis */
+          values: z.array(z.string().min(1)).min(2),
+        }),
+      )
+      .length(3),
+    forms: z.array(tenseFormSchema).min(1),
+    paradigms: z.array(tenseParadigmSchema).min(1),
+    /** the named confusions, each with an explanation and its minimal pairs */
+    comparisons: z
+      .array(
+        z.object({
+          id: slug,
+          title: bilingualSchema.extend({ de: z.string().min(1) }),
+          explanation: bilingualSchema,
+          examples: z.array(referenceExampleSchema).min(2),
+        }),
+      )
+      .min(1),
+  })
+  .superRefine((data, ctx) => {
+    const formIds = new Set(data.forms.map((form) => form.id));
+    const conjugated = new Set<string>();
+    for (const [p, paradigm] of data.paradigms.entries()) {
+      for (const [r, row] of paradigm.rows.entries()) {
+        const at = ['paradigms', p, 'rows', r] as const;
+        if (!formIds.has(row.form))
+          ctx.addIssue({
+            code: 'custom',
+            path: [...at, 'form'],
+            message: `unknown form "${row.form}"`,
+          });
+        else conjugated.add(row.form);
+        if (row.cells.length !== paradigm.verbs.length)
+          ctx.addIssue({
+            code: 'custom',
+            path: [...at, 'cells'],
+            message: `${row.cells.length} cell(s) for ${paradigm.verbs.length} verb column(s)`,
+          });
+      }
+    }
+    for (const [f, form] of data.forms.entries()) {
+      const at = ['forms', f] as const;
+      if (form.status === 'productive' && !conjugated.has(form.id))
         ctx.addIssue({
           code: 'custom',
-          path: [...at, 'cells'],
-          message: `${row.cells.length} cell(s) for ${paradigm.verbs.length} verb column(s)`,
+          path: [...at],
+          message: `"${form.id}" is productive but no paradigm conjugates it — the page promises a complete picture`,
+        });
+      if (form.status === 'productive' && form.focus.length === 0)
+        ctx.addIssue({
+          code: 'custom',
+          path: [...at, 'focus'],
+          message: 'a productive form must name the tags that drill it',
+        });
+      if (form.status === 'later' && form.focus.length > 0)
+        ctx.addIssue({
+          code: 'custom',
+          path: [...at, 'focus'],
+          message: 'a form marked "later" may not claim drilled tags',
         });
     }
-  }
-  for (const [f, form] of data.forms.entries()) {
-    const at = ['forms', f] as const;
-    if (form.status === 'productive' && !conjugated.has(form.id))
-      ctx.addIssue({
-        code: 'custom',
-        path: [...at],
-        message: `"${form.id}" is productive but no paradigm conjugates it — the page promises a complete picture`,
-      });
-    if (form.status === 'productive' && form.focus.length === 0)
-      ctx.addIssue({ code: 'custom', path: [...at, 'focus'], message: 'a productive form must name the tags that drill it' });
-    if (form.status === 'later' && form.focus.length > 0)
-      ctx.addIssue({ code: 'custom', path: [...at, 'focus'], message: 'a form marked "later" may not claim drilled tags' });
-  }
-});
+  });
 export type ZeitformenReference = z.infer<typeof zeitformenReferenceSchema>;
 
 /**
@@ -1460,68 +1587,100 @@ export const praepositionenReferenceSchema = z.object({
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
   /** Decision 1: the type of place chooses the preposition, before any case question. */
-  place_types: z.array(z.object({
-    label: z.string().min(1),
-    meaning: bilingualSchema,
-    wohin: z.string().min(1),
-    wo: z.string().min(1),
-    woher: z.string().min(1),
-    /** the triple as one German chunk — how the place is meant to be learnt */
-    triple: z.string().min(1),
-  })).min(1),
+  place_types: z
+    .array(
+      z.object({
+        label: z.string().min(1),
+        meaning: bilingualSchema,
+        wohin: z.string().min(1),
+        wo: z.string().min(1),
+        woher: z.string().min(1),
+        /** the triple as one German chunk — how the place is meant to be learnt */
+        triple: z.string().min(1),
+      }),
+    )
+    .min(1),
   /** Decision 2: only the nine two-way prepositions let the direction pick the case. */
   two_way: z.object({
     forms: z.array(z.string().min(1)).min(1),
-    test: z.array(z.object({
-      question: z.string().min(1),
-      case: z.enum(['Akkusativ', 'Dativ']),
-      meaning: bilingualSchema,
-      example: referenceExampleSchema,
-    })).min(2),
+    test: z
+      .array(
+        z.object({
+          question: z.string().min(1),
+          case: z.enum(['Akkusativ', 'Dativ']),
+          meaning: bilingualSchema,
+          example: referenceExampleSchema,
+        }),
+      )
+      .min(2),
     /** the movement ≠ accusative caveat, which the two-row test cannot state by itself */
     note: bilingualSchema,
   }),
   /** Decision 3: zu / bei / von — three prepositions, one case, no alternation. */
-  zu_bei_von: z.array(z.object({
-    question: z.string().min(1),
-    form: z.string().min(1),
-    example: referenceExampleSchema,
-  })).min(3),
+  zu_bei_von: z
+    .array(
+      z.object({
+        question: z.string().min(1),
+        form: z.string().min(1),
+        example: referenceExampleSchema,
+      }),
+    )
+    .min(3),
   /** The origin column in detail: inside-out (aus) against away-from (von). */
-  aus_von: z.array(z.object({
-    form: z.enum(['aus', 'von']),
-    use: bilingualSchema,
-    examples: z.array(z.string().min(1)).min(1),
-  })).min(2),
-  contractions: z.array(z.object({
-    long: z.string().min(1),
-    short: z.string().min(1),
-    case: z.enum(['Akkusativ', 'Dativ']),
-    example: z.string().min(1),
-  })).min(1),
+  aus_von: z
+    .array(
+      z.object({
+        form: z.enum(['aus', 'von']),
+        use: bilingualSchema,
+        examples: z.array(z.string().min(1)).min(1),
+      }),
+    )
+    .min(2),
+  contractions: z
+    .array(
+      z.object({
+        long: z.string().min(1),
+        short: z.string().min(1),
+        case: z.enum(['Akkusativ', 'Dativ']),
+        example: z.string().min(1),
+      }),
+    )
+    .min(1),
   /** The same prepositions used on the time axis, with the case each one governs. */
-  temporal: z.array(z.object({
-    form: z.string().min(1),
-    case: z.string().min(1),
-    use: bilingualSchema,
-    example: referenceExampleSchema,
-  })).min(1),
+  temporal: z
+    .array(
+      z.object({
+        form: z.string().min(1),
+        case: z.string().min(1),
+        use: bilingualSchema,
+        example: referenceExampleSchema,
+      }),
+    )
+    .min(1),
   /** B1 layer: the genitive prepositions, with the dative form spoken German uses. */
-  genitive: z.array(z.object({
-    form: z.string().min(1),
-    level: levelSchema,
-    meaning: bilingualSchema,
-    example: referenceExampleSchema,
-    note: bilingualSchema.optional(),
-  })).min(1),
+  genitive: z
+    .array(
+      z.object({
+        form: z.string().min(1),
+        level: levelSchema,
+        meaning: bilingualSchema,
+        example: referenceExampleSchema,
+        note: bilingualSchema.optional(),
+      }),
+    )
+    .min(1),
   /** Pointers into verb government, where the preposition carries no spatial meaning. */
-  verb_government: z.array(z.object({
-    verb: z.string().min(1),
-    frame: z.string().min(1),
-    question: z.string().min(1),
-    level: levelSchema,
-    example: referenceExampleSchema,
-  })).min(1),
+  verb_government: z
+    .array(
+      z.object({
+        verb: z.string().min(1),
+        frame: z.string().min(1),
+        question: z.string().min(1),
+        level: levelSchema,
+        example: referenceExampleSchema,
+      }),
+    )
+    .min(1),
 });
 export type PraepositionenReference = z.infer<typeof praepositionenReferenceSchema>;
 

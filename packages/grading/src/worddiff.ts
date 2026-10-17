@@ -4,7 +4,10 @@
     diff, folding the typographic variants the grader also folds. A word that was
     nothing but punctuation (the dialogue "—") keys to '' and is never marked. */
 const wordKey = (w: string) => {
-  const folded = w.replace(/[’‚‘]/g, "'").replace(/[„“”«»]/g, '').replace(/[–—]/g, '-');
+  const folded = w
+    .replace(/[’‚‘]/g, "'")
+    .replace(/[„“”«»]/g, '')
+    .replace(/[–—]/g, '-');
   if (/^[-.,!?;:…']*$/.test(folded)) return '';
   return folded.replace(/[.,!?;:…]+$/, '');
 };

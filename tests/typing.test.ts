@@ -42,7 +42,13 @@ describe('an adjectival noun has no single citation form', () => {
   const shown = articledForm('Deutsche', 'f'); // "die Deutsche"
 
   test('every real form is accepted', () => {
-    for (const form of ['die Deutsche', 'der Deutsche', 'ein Deutscher', 'eine Deutsche', 'Deutsche']) {
+    for (const form of [
+      'die Deutsche',
+      'der Deutsche',
+      'ein Deutscher',
+      'eine Deutsche',
+      'Deutsche',
+    ]) {
       expect(checkTypedAnswer(form, shown, 'noun', accept).kind).toBe('correct');
     }
   });
@@ -74,7 +80,7 @@ describe('an article-free country name demands no article', () => {
 
 describe('typography folds to what the keyboard produces', () => {
   test('a typographic apostrophe matches the straight one', () => {
-    expect(checkTypedAnswer("Wie geht’s?", "Wie geht's?", 'phrase').kind).toBe('correct');
+    expect(checkTypedAnswer('Wie geht’s?', "Wie geht's?", 'phrase').kind).toBe('correct');
   });
 
   test('an en/em dash matches the plain hyphen', () => {
@@ -114,7 +120,9 @@ describe('a German answer must be typeable on a non-German keyboard', () => {
     // medial lowercase `a`, so the case-sensitive alignment kept only `ngebot` and the
     // card taught a segmentation German does not have. The missing piece is `Sonder`.
     const missed = (expected: string, given: string) =>
-      diffExpected(expected, given).filter((s) => s.miss).map((s) => s.text);
+      diffExpected(expected, given)
+        .filter((s) => s.miss)
+        .map((s) => s.text);
     expect(missed('das Sonderangebot', 'das Angebot')).toEqual(['Sonder']);
     expect(missed('die Haustür', 'die Tür')).toEqual(['Haus']);
 

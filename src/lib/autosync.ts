@@ -144,10 +144,7 @@ async function flushForExit(): Promise<void> {
     await sync();
     window.clearTimeout(remoteTimer);
     remoteTimer = undefined;
-    await Promise.race([
-      runRemoteSync(true),
-      new Promise((resolve) => setTimeout(resolve, 1200)),
-    ]);
+    await Promise.race([runRemoteSync(true), new Promise((resolve) => setTimeout(resolve, 1200))]);
   } catch {
     // flushing is best-effort on the way out; the journal (write-journal.ts)
     // still holds anything a stalled store never confirmed

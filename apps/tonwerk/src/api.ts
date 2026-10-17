@@ -196,9 +196,19 @@ export interface SceneDocument {
 const looseSceneSchema = z.looseObject({
   slug: z.string().default(''),
   kind: z.string().default('custom'),
-  title: z.looseObject({ en: z.string().default(''), ru: z.string().default('') }).default({ en: '', ru: '' }),
+  title: z
+    .looseObject({ en: z.string().default(''), ru: z.string().default('') })
+    .default({ en: '', ru: '' }),
   cast: z.array(z.looseObject({ role: z.string().default('') })).default([]),
-  script: z.array(z.looseObject({ id: z.string().default(''), role: z.string().default(''), display_text: z.string().default('') })).default([]),
+  script: z
+    .array(
+      z.looseObject({
+        id: z.string().default(''),
+        role: z.string().default(''),
+        display_text: z.string().default(''),
+      }),
+    )
+    .default([]),
   timeline: z.array(z.looseObject({ type: z.string().default('speech') })).default([]),
   variants: z.array(z.looseObject({ id: z.string().default('') })).default([]),
 });
@@ -269,7 +279,11 @@ export function createApi(options: ApiOptions = {}): Api {
       }
       throw new UnauthorizedError(reason);
     }
-    if (!response.ok) throw new EngineError(response.status, await detail(response, `${response.status} ${response.statusText}`));
+    if (!response.ok)
+      throw new EngineError(
+        response.status,
+        await detail(response, `${response.status} ${response.statusText}`),
+      );
     reportedUnauthorized = false;
     return response;
   }
@@ -283,7 +297,11 @@ export function createApi(options: ApiOptions = {}): Api {
     const response = await send(path, signal, write);
     const body: unknown = await response.json();
     const parsed = schema.safeParse(body);
-    if (!parsed.success) throw new ShapeError(path, parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join('; '));
+    if (!parsed.success)
+      throw new ShapeError(
+        path,
+        parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`).join('; '),
+      );
     return parsed.data;
   }
 
@@ -346,11 +364,17 @@ export function createApi(options: ApiOptions = {}): Api {
       }),
 
     async scene(slug, signal) {
-      const detailResponse = await read(`/api/scenes/${encodeURIComponent(slug)}`, sceneDetailSchema, signal);
+      const detailResponse = await read(
+        `/api/scenes/${encodeURIComponent(slug)}`,
+        sceneDetailSchema,
+        signal,
+      );
       const strict = sceneSchema.safeParse(detailResponse.scene);
-      if (strict.success) return { ...detailResponse, document: { valid: true, scene: strict.data } };
+      if (strict.success)
+        return { ...detailResponse, document: { valid: true, scene: strict.data } };
       const lenient = looseSceneSchema.safeParse(detailResponse.scene);
-      if (!lenient.success) throw new ShapeError(`/api/scenes/${slug}`, 'Das Szenendokument ist unlesbar.');
+      if (!lenient.success)
+        throw new ShapeError(`/api/scenes/${slug}`, 'Das Szenendokument ist unlesbar.');
       return {
         ...detailResponse,
         document: {
@@ -427,9 +451,7 @@ async function detail(response: Response, fallback: string): Promise<string> {
         const { loc, msg } = eintrag as { loc?: unknown; msg?: unknown };
         if (typeof msg !== 'string') return [];
         // `loc` starts with "body" on every request FastAPI validated; the reader knows.
-        const pfad = Array.isArray(loc)
-          ? loc.filter((teil) => teil !== 'body').join('.')
-          : '';
+        const pfad = Array.isArray(loc) ? loc.filter((teil) => teil !== 'body').join('.') : '';
         return [pfad ? `${pfad}: ${msg}` : msg];
       });
       if (zeilen.length) return zeilen.join(' · ');

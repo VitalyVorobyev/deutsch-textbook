@@ -45,7 +45,9 @@ const mb = (bytes: number) => (bytes / 1e6).toFixed(2).padStart(6);
 for (const p of process.argv.includes('--all') ? sized : sized.slice(0, 10)) {
   console.log(`${mb(p.bytes)} MB  ${p.page}`);
 }
-console.log(`${sized.length} pages, ${mb(total).trim()} MB in total; ceiling ${mb(CEILING_BYTES).trim()} MB per page.`);
+console.log(
+  `${sized.length} pages, ${mb(total).trim()} MB in total; ceiling ${mb(CEILING_BYTES).trim()} MB per page.`,
+);
 
 const over = sized.filter((p) => p.bytes > CEILING_BYTES);
 if (over.length > 0) {

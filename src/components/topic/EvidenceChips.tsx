@@ -49,7 +49,9 @@ export function EvidenceChips({
       <Seg state={state(evidence.read)} label="evidence.read" uiLang={uiLang} />
       <Seg state={state(evidence.practiced)} label="evidence.practiced" uiLang={uiLang} />
       <Seg state={state(evidence.spaced)} label="evidence.spaced" uiLang={uiLang} />
-      {evidence.hasVocab && <Seg state={state(evidence.vocab)} label="evidence.vocab" uiLang={uiLang} />}
+      {evidence.hasVocab && (
+        <Seg state={state(evidence.vocab)} label="evidence.vocab" uiLang={uiLang} />
+      )}
     </div>
   );
 }

@@ -10,11 +10,7 @@
  * that never touches mastery, tiers or weakness.
  */
 import { useState } from 'react';
-import type {
-  ExamFreeSpec,
-  ExamModuleSpec,
-  ExamRunRecord,
-} from '../../lib/exam-sim';
+import type { ExamFreeSpec, ExamModuleSpec, ExamRunRecord } from '../../lib/exam-sim';
 import { withBase } from '../../lib/url';
 import { countWords, formatPoints, PRIMARY_BUTTON } from './shared';
 
@@ -68,7 +64,9 @@ export function FreeTexts({ module, run }: { module: ExamModuleSpec; run: ExamRu
                 <p className="mt-1 text-xs text-stone-400">Wörter: {countWords(text)}</p>
               </>
             ) : (
-              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Kein Text geschrieben.</p>
+              <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+                Kein Text geschrieben.
+              </p>
             )}
           </div>
         );
@@ -184,7 +182,9 @@ export function SelfScorePanel({
           onClick={() => onApply(sum, free.points)}
           className={PRIMARY_BUTTON}
         >
-          {structured ? `Übernehmen · ${formatPoints(sum)}/${formatPoints(free.points)}` : 'Übernehmen'}
+          {structured
+            ? `Übernehmen · ${formatPoints(sum)}/${formatPoints(free.points)}`
+            : 'Übernehmen'}
         </button>
         {current !== undefined && (
           <span className="text-sm text-stone-500 dark:text-stone-400">

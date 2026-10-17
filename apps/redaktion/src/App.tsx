@@ -20,7 +20,14 @@ import { useState } from 'react';
 import { Chip, Empty } from '@da/ui/primitives';
 import { Hinweis } from './components/Hinweis';
 import { useCorpus } from './data';
-import { handleInternalLinkClick, href, navigateHref, useRoute, useRouteHistory, useScrollReset } from './router';
+import {
+  handleInternalLinkClick,
+  href,
+  navigateHref,
+  useRoute,
+  useRouteHistory,
+  useScrollReset,
+} from './router';
 import { Themen } from './views/Themen';
 import { Thema } from './views/Thema';
 import { Bestand } from './views/Bestand';
@@ -42,16 +49,22 @@ interface NavItem {
 
 const NAV: { group?: string; items: NavItem[] }[] = [
   { items: [{ view: 'uebersicht', label: 'Übersicht' }] },
-  { group: 'Kurs', items: [
-    { view: 'grammatik', label: 'Grammatikatlas', also: ['sprachkarte', 'struktur', 'fokus'] },
-    { view: 'themen', label: 'Themen', also: ['thema'] },
-    { view: 'materialien', label: 'Materialien', also: ['bestand', 'quelle'] },
-  ] },
-  { group: 'Redaktion', items: [
-    { view: 'qualitaet', label: 'Qualität', also: ['luecken'] },
-    { view: 'referenzen', label: 'Referenzen', also: ['quellen'] },
-    { view: 'einstellungen', label: 'Einstellungen' },
-  ] },
+  {
+    group: 'Kurs',
+    items: [
+      { view: 'grammatik', label: 'Grammatikatlas', also: ['sprachkarte', 'struktur', 'fokus'] },
+      { view: 'themen', label: 'Themen', also: ['thema'] },
+      { view: 'materialien', label: 'Materialien', also: ['bestand', 'quelle'] },
+    ],
+  },
+  {
+    group: 'Redaktion',
+    items: [
+      { view: 'qualitaet', label: 'Qualität', also: ['luecken'] },
+      { view: 'referenzen', label: 'Referenzen', also: ['quellen'] },
+      { view: 'einstellungen', label: 'Einstellungen' },
+    ],
+  },
 ];
 
 /**
@@ -88,14 +101,35 @@ function ThemeButton() {
       >
         {dark ? (
           // Sun — what you switch TO from the dark theme.
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            aria-hidden="true"
+          >
             <circle cx="12" cy="12" r="4" />
-            <path strokeLinecap="round" d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" />
+            <path
+              strokeLinecap="round"
+              d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"
+            />
           </svg>
         ) : (
           // Moon.
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M20 13.4A8.2 8.2 0 1 1 10.6 4a6.6 6.6 0 0 0 9.4 9.4Z" />
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M20 13.4A8.2 8.2 0 1 1 10.6 4a6.6 6.6 0 0 0 9.4 9.4Z"
+            />
           </svg>
         )}
       </button>
@@ -103,7 +137,15 @@ function ThemeButton() {
   );
 }
 
-function HistoryButton({ direction, disabled, onClick }: { direction: 'back' | 'forward'; disabled: boolean; onClick: () => void }) {
+function HistoryButton({
+  direction,
+  disabled,
+  onClick,
+}: {
+  direction: 'back' | 'forward';
+  disabled: boolean;
+  onClick: () => void;
+}) {
   const back = direction === 'back';
   const label = back ? 'Zurück' : 'Vorwärts';
   return (
@@ -115,8 +157,19 @@ function HistoryButton({ direction, disabled, onClick }: { direction: 'back' | '
         aria-label={label}
         className="grid h-8 w-8 place-items-center rounded text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink focus-visible:outline-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink-muted"
       >
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" d={back ? 'm14.5 6-6 6 6 6' : 'm9.5 6 6 6-6 6'} />
+        <svg
+          viewBox="0 0 24 24"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d={back ? 'm14.5 6-6 6 6 6' : 'm9.5 6 6 6-6 6'}
+          />
         </svg>
       </button>
     </Hinweis>
@@ -134,7 +187,8 @@ export function App() {
     if (error) {
       return (
         <Empty>
-          Der Korpus ließ sich nicht laden: {error}. Läuft der Entwicklungsserver (<code>bun run redaktion</code>)?
+          Der Korpus ließ sich nicht laden: {error}. Läuft der Entwicklungsserver (
+          <code>bun run redaktion</code>)?
         </Empty>
       );
     }
@@ -172,7 +226,8 @@ export function App() {
     }
   };
 
-  const active = (item: NavItem) => route.view === item.view || (item.also ?? []).includes(route.view);
+  const active = (item: NavItem) =>
+    route.view === item.view || (item.also ?? []).includes(route.view);
   const flat = NAV.flatMap((g) => g.items);
 
   return (
@@ -180,17 +235,48 @@ export function App() {
       {/* h-14, and `Zeilentabelle` sticks its header to `top-14` under it. */}
       <header className="sticky top-0 z-30 h-14 border-b border-border-subtle bg-surface/95 backdrop-blur">
         <div className="flex h-full items-center gap-4 px-4 lg:px-6">
-          <a href={href('uebersicht')} className="shrink-0 font-serif text-base font-semibold tracking-tight text-ink">
+          <a
+            href={href('uebersicht')}
+            className="shrink-0 font-serif text-base font-semibold tracking-tight text-ink"
+          >
             Redaktion
-            <span className="ml-2 font-sans text-xs font-normal uppercase tracking-[0.14em] text-ink-muted">Deutsch-Atlas</span>
+            <span className="ml-2 font-sans text-xs font-normal uppercase tracking-[0.14em] text-ink-muted">
+              Deutsch-Atlas
+            </span>
           </a>
-          <div className="flex shrink-0 items-center rounded-md border border-border-subtle p-0.5" aria-label="Navigationsverlauf">
-            <HistoryButton direction="back" disabled={!routeHistory.canBack} onClick={routeHistory.back} />
-            <HistoryButton direction="forward" disabled={!routeHistory.canForward} onClick={routeHistory.forward} />
+          <div
+            className="flex shrink-0 items-center rounded-md border border-border-subtle p-0.5"
+            aria-label="Navigationsverlauf"
+          >
+            <HistoryButton
+              direction="back"
+              disabled={!routeHistory.canBack}
+              onClick={routeHistory.back}
+            />
+            <HistoryButton
+              direction="forward"
+              disabled={!routeHistory.canForward}
+              onClick={routeHistory.forward}
+            />
           </div>
-          <form className="mx-auto hidden w-full max-w-xl md:block" onSubmit={(event) => { event.preventDefault(); if (globalSearch.trim()) navigateHref(href('materialien', undefined, { q: globalSearch.trim() })); }}>
-            <label className="sr-only" htmlFor="globale-suche">Kurs durchsuchen</label>
-            <input id="globale-suche" value={globalSearch} onChange={(event) => setGlobalSearch(event.target.value)} placeholder="Themen, Materialien, Fokus-Tags suchen …" className="w-full rounded-md border border-border-subtle bg-surface-sunken px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-muted focus-visible:ring-2 focus-visible:ring-brand" />
+          <form
+            className="mx-auto hidden w-full max-w-xl md:block"
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (globalSearch.trim())
+                navigateHref(href('materialien', undefined, { q: globalSearch.trim() }));
+            }}
+          >
+            <label className="sr-only" htmlFor="globale-suche">
+              Kurs durchsuchen
+            </label>
+            <input
+              id="globale-suche"
+              value={globalSearch}
+              onChange={(event) => setGlobalSearch(event.target.value)}
+              placeholder="Themen, Materialien, Fokus-Tags suchen …"
+              className="w-full rounded-md border border-border-subtle bg-surface-sunken px-3 py-1.5 text-sm text-ink outline-none placeholder:text-ink-muted focus-visible:ring-2 focus-visible:ring-brand"
+            />
           </form>
           <div className="ml-auto flex items-center gap-3">
             {graph?.problems.length ? (
@@ -237,8 +323,15 @@ export function App() {
             </p>
           ) : null}
           <div className="mt-auto border-t border-border-subtle pt-4">
-            <p className="truncate text-[0.68rem] text-ink-muted" title={workspace?.root ?? graph?.root}>{workspace?.root ?? graph?.root}</p>
-            {revision > 0 ? <p className="mt-1 text-[0.65rem] text-ink-muted">Korpus neu gelesen ({revision})</p> : null}
+            <p
+              className="truncate text-[0.68rem] text-ink-muted"
+              title={workspace?.root ?? graph?.root}
+            >
+              {workspace?.root ?? graph?.root}
+            </p>
+            {revision > 0 ? (
+              <p className="mt-1 text-[0.65rem] text-ink-muted">Korpus neu gelesen ({revision})</p>
+            ) : null}
           </div>
         </nav>
 

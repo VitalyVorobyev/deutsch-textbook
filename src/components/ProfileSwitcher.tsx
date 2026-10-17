@@ -39,7 +39,10 @@ const UI = {
     en: 'Awaiting approval — everything stays on this device',
     ru: 'Ожидает одобрения — всё хранится на этом устройстве',
   },
-  syncBlocked: { en: 'Account blocked — not syncing', ru: 'Аккаунт заблокирован — без синхронизации' },
+  syncBlocked: {
+    en: 'Account blocked — not syncing',
+    ru: 'Аккаунт заблокирован — без синхронизации',
+  },
   syncUnbound: { en: 'Cloud sync not connected', ru: 'Облачная синхронизация не подключена' },
   syncOtherProfile: { en: 'Syncing a different profile', ru: 'Синхронизируется другой профиль' },
   syncNever: { en: 'Not synced yet', ru: 'Ещё не синхронизировано' },
@@ -161,13 +164,20 @@ export default function ProfileSwitcher() {
 
   function syncStatusText(status: SyncMenuStatus): string | null {
     switch (status.kind) {
-      case 'pending': return pick(lang, UI.syncPending);
-      case 'blocked': return pick(lang, UI.syncBlocked);
-      case 'unbound': return pick(lang, UI.syncUnbound);
-      case 'other-profile': return pick(lang, UI.syncOtherProfile);
-      case 'never': return pick(lang, UI.syncNever);
-      case 'synced': return pick(lang, UI.syncedAgo).replace('{when}', relWhen(status.at));
-      default: return null;
+      case 'pending':
+        return pick(lang, UI.syncPending);
+      case 'blocked':
+        return pick(lang, UI.syncBlocked);
+      case 'unbound':
+        return pick(lang, UI.syncUnbound);
+      case 'other-profile':
+        return pick(lang, UI.syncOtherProfile);
+      case 'never':
+        return pick(lang, UI.syncNever);
+      case 'synced':
+        return pick(lang, UI.syncedAgo).replace('{when}', relWhen(status.at));
+      default:
+        return null;
     }
   }
 
@@ -197,8 +207,12 @@ export default function ProfileSwitcher() {
         <span aria-hidden>👤</span>
         {/* Below 640px the header is one row, and the name is what does not fit: it stays in
             the accessibility tree and in the open menu. */}
-        <span className="sr-only sm:not-sr-only sm:max-w-24 sm:truncate">{active?.label ?? '…'}</span>
-        <span aria-hidden className="text-stone-400">▾</span>
+        <span className="sr-only sm:not-sr-only sm:max-w-24 sm:truncate">
+          {active?.label ?? '…'}
+        </span>
+        <span aria-hidden className="text-stone-400">
+          ▾
+        </span>
       </button>
 
       {open && (
@@ -247,7 +261,9 @@ export default function ProfileSwitcher() {
               {session?.signedIn && session.user ? (
                 <span className="block truncate">{session.user.email}</span>
               ) : (
-                <span className="text-stone-600 dark:text-stone-300">{t('account.signIn', uiLang)}</span>
+                <span className="text-stone-600 dark:text-stone-300">
+                  {t('account.signIn', uiLang)}
+                </span>
               )}
             </a>
             {menuSync.kind !== 'hidden' && (
@@ -261,7 +277,11 @@ export default function ProfileSwitcher() {
             <p className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-stone-400">
               {pick(lang, UI.learningLanguage)}
             </p>
-            <div className="flex gap-1 px-2 pb-1" role="group" aria-label={pick(lang, UI.learningLanguage)}>
+            <div
+              className="flex gap-1 px-2 pb-1"
+              role="group"
+              aria-label={pick(lang, UI.learningLanguage)}
+            >
               {EXPLAIN_LANGS.map((l) => (
                 <button
                   key={l}

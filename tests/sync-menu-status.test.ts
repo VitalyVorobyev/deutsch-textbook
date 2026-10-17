@@ -54,8 +54,8 @@ describe('syncMenuStatus', () => {
   });
 
   test('bound with a completed sync reports its timestamp', () => {
-    expect(syncMenuStatus(session('approved'), { profileId: 'p1', at: 1754350000000 }, 'p1')).toEqual(
-      { kind: 'synced', at: 1754350000000 },
-    );
+    expect(
+      syncMenuStatus(session('approved'), { profileId: 'p1', at: 1754350000000 }, 'p1'),
+    ).toEqual({ kind: 'synced', at: 1754350000000 });
   });
 });

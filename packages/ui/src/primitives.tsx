@@ -48,7 +48,15 @@ const TONE_CHIP: Record<Tone, string> = {
   warn: 'bg-warn-soft text-warn-ink ring-warn/25',
 };
 
-export function Chip({ tone = 'neutral', children, title }: { tone?: Tone; children: ReactNode; title?: string }) {
+export function Chip({
+  tone = 'neutral',
+  children,
+  title,
+}: {
+  tone?: Tone;
+  children: ReactNode;
+  title?: string;
+}) {
   return (
     <span
       title={title}
@@ -78,12 +86,22 @@ export function Heading({ children, sub }: { children: ReactNode; sub?: ReactNod
 }
 
 /** A section of a page. `CurriculumPath.tsx:274` — `font-semibold` at body size, not a shrunken h1. */
-export function Section({ children, count, action }: { children: ReactNode; count?: number; action?: ReactNode }) {
+export function Section({
+  children,
+  count,
+  action,
+}: {
+  children: ReactNode;
+  count?: number;
+  action?: ReactNode;
+}) {
   return (
     <div className="mb-3 mt-10 flex items-baseline justify-between gap-3">
       <h2 className="text-base font-semibold text-ink">
         {children}
-        {count === undefined ? null : <span className="ml-1.5 tabular text-sm font-normal text-ink-muted">{count}</span>}
+        {count === undefined ? null : (
+          <span className="ml-1.5 tabular text-sm font-normal text-ink-muted">{count}</span>
+        )}
       </h2>
       {action}
     </div>
@@ -95,7 +113,11 @@ export function Section({ children, count, action }: { children: ReactNode; coun
  * one label style that reads as structural rather than as content.
  */
 export function Label({ children }: { children: ReactNode }) {
-  return <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink-muted">{children}</p>;
+  return (
+    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink-muted">
+      {children}
+    </p>
+  );
 }
 
 /* ------------------------------------------------------------------ containers */
@@ -243,7 +265,9 @@ export function Stat({
 }
 
 export function StatGroup({ children, columns = 3 }: { children: ReactNode; columns?: 2 | 3 | 4 }) {
-  const cols = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[columns];
+  const cols = { 2: 'sm:grid-cols-2', 3: 'sm:grid-cols-3', 4: 'sm:grid-cols-2 lg:grid-cols-4' }[
+    columns
+  ];
   return <dl className={`grid grid-cols-1 gap-5 ${cols}`}>{children}</dl>;
 }
 
@@ -251,7 +275,17 @@ export function StatGroup({ children, columns = 3 }: { children: ReactNode; colu
  * A proportion, drawn. Deliberately without a "good" colour threshold: the caller passes the tone,
  * because whether 60 % is good depends on what is being measured and this component cannot know.
  */
-export function Bar({ value, max, tone = 'brand', label }: { value: number; max: number; tone?: Tone; label?: string }) {
+export function Bar({
+  value,
+  max,
+  tone = 'brand',
+  label,
+}: {
+  value: number;
+  max: number;
+  tone?: Tone;
+  label?: string;
+}) {
   const percent = max > 0 ? Math.min(100, (value / max) * 100) : 0;
   const fill: Record<Tone, string> = {
     neutral: 'bg-stone-400',
@@ -361,7 +395,13 @@ export function Button({
       {children}
     </a>
   ) : (
-    <button type="button" onClick={onClick} aria-pressed={pressed} disabled={disabled} className={className}>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={pressed}
+      disabled={disabled}
+      className={className}
+    >
       {children}
     </button>
   );

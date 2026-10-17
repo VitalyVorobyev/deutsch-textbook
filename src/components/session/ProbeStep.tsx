@@ -65,13 +65,12 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
 
   const queue = useMemo<Queued[]>(() => {
     const bySetId = new Map(sets.map((s) => [s.setId, s]));
-    return servedProbes(due, cap)
-      .flatMap((d) => {
-        const item = bySetId.get(d.family.setId)?.items.find((i) => i.id === d.itemId);
-        return item
-          ? [{ setId: d.family.setId, item, stage: d.stage, overdueDays: d.overdueDays }]
-          : [];
-      });
+    return servedProbes(due, cap).flatMap((d) => {
+      const item = bySetId.get(d.family.setId)?.items.find((i) => i.id === d.itemId);
+      return item
+        ? [{ setId: d.family.setId, item, stage: d.stage, overdueDays: d.overdueDays }]
+        : [];
+    });
   }, [due, sets, cap]);
 
   const [index, setIndex] = useState(0);
@@ -126,8 +125,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
           {t('session.probesDone', uiLang)}
         </p>
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-          {correct} / {answered.length}{' '}
-          {pick(lang, UI.probeResult)}
+          {correct} / {answered.length} {pick(lang, UI.probeResult)}
         </p>
         <button
           type="button"
@@ -154,9 +152,7 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
             pick(lang, UI.overdue).replace('{n}', String(current!.overdueDays))}
         </p>
       </div>
-      <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
-        {pick(lang, UI.fromMemory)}
-      </p>
+      <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.fromMemory)}</p>
 
       <div className="mt-5">
         <ItemView
@@ -168,7 +164,9 @@ export default function ProbeStep({ due, sets, cap = MAX_PROBES_PER_SESSION, onF
           onResult={handleResult}
           locked={currentDone}
           onNext={next}
-          nextLabel={index === queue.length - 1 ? t('action.doneArrow', uiLang) : t('action.next', uiLang)}
+          nextLabel={
+            index === queue.length - 1 ? t('action.doneArrow', uiLang) : t('action.next', uiLang)
+          }
         />
       </div>
     </div>

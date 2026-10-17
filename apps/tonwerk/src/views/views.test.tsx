@@ -92,21 +92,30 @@ describe('Figuren', () => {
    * makes an unscoped `getByText('Heute treffen wir uns …')` ambiguous, and rightly so: these
    * assertions are about the roster and now have to say which section they mean.
    */
-  const roster = (container: HTMLElement) => within(container.querySelector('.figuren') as HTMLElement);
+  const roster = (container: HTMLElement) =>
+    within(container.querySelector('.figuren') as HTMLElement);
 
   test('renders the roster with casting facts and a demo player per phrase', async () => {
-    const { container } = mount(<Figuren />, stubApi({ characters: async () => charactersFixture as never }));
+    const { container } = mount(
+      <Figuren />,
+      stubApi({ characters: async () => charactersFixture as never }),
+    );
 
     await screen.findByText('Lena');
     expect(roster(container).getByText('Erzählstimme')).toBeTruthy();
-    expect(roster(container).getByText('Heute treffen wir uns um halb sechs am Bahnhof.')).toBeTruthy();
+    expect(
+      roster(container).getByText('Heute treffen wir uns um halb sechs am Bahnhof.'),
+    ).toBeTruthy();
     // An incompatibility is a casting rule, so it must be on the card and not in a tooltip.
     expect(roster(container).getByText('klara')).toBeTruthy();
     await waitFor(() => expect(roster(container).getAllByLabelText(/^Hörprobe/)).toHaveLength(2));
   });
 
   test('a character with no portrait and no demo shows both empty states', async () => {
-    const { container } = mount(<Figuren />, stubApi({ characters: async () => charactersFixture as never }));
+    const { container } = mount(
+      <Figuren />,
+      stubApi({ characters: async () => charactersFixture as never }),
+    );
 
     await screen.findByText('Jonas');
     expect(roster(container).getAllByText('kein Porträt').length).toBeGreaterThan(0);

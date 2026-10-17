@@ -109,7 +109,11 @@ interface Harness {
 function load(
   shell: string[] = [],
   base = '/',
-  { data = [] as string[], version = 'testbuild', storage: shared }: { data?: string[]; version?: string; storage?: FakeCacheStorage } = {},
+  {
+    data = [] as string[],
+    version = 'testbuild',
+    storage: shared,
+  }: { data?: string[]; version?: string; storage?: FakeCacheStorage } = {},
 ): Harness {
   const network = new Map<string, () => Response>();
   const fetched: string[] = [];
@@ -221,8 +225,9 @@ describe('media: cache-first with Range', () => {
 
   function withAudio() {
     const h = load();
-    h.network.set('/audio/ls-wohnen-umzug-01.mp3', () =>
-      new Response(BODY, { status: 200, headers: { 'content-type': 'audio/mpeg' } }),
+    h.network.set(
+      '/audio/ls-wohnen-umzug-01.mp3',
+      () => new Response(BODY, { status: 200, headers: { 'content-type': 'audio/mpeg' } }),
     );
     return h;
   }
@@ -297,16 +302,15 @@ describe('media: cache-first with Range', () => {
 describe('documents: network-first with an offline fallback', () => {
   test('a reachable page is served from the network and cached', async () => {
     const h = load([]);
-    h.network.set('/topics/a2/wohnen-umzug/', () => new Response('<html>fresh</html>', { status: 200 }));
-    const res = await h.handle(
-      navigation(`${ORIGIN}/topics/a2/wohnen-umzug/`),
+    h.network.set(
+      '/topics/a2/wohnen-umzug/',
+      () => new Response('<html>fresh</html>', { status: 200 }),
     );
+    const res = await h.handle(navigation(`${ORIGIN}/topics/a2/wohnen-umzug/`));
     expect(await res!.text()).toBe('<html>fresh</html>');
 
     h.network.clear();
-    const offlineHit = await h.handle(
-      navigation(`${ORIGIN}/topics/a2/wohnen-umzug/`),
-    );
+    const offlineHit = await h.handle(navigation(`${ORIGIN}/topics/a2/wohnen-umzug/`));
     expect(await offlineHit!.text()).toBe('<html>fresh</html>');
   });
 
@@ -353,7 +357,9 @@ describe('byte-budgeted eviction', () => {
 
     const docs = h.storage.caches.get('da-docs-testbuild')!;
     const pages = () =>
-      [...docs.entries.keys()].filter((k) => !k.includes('__sw-index')).map((k) => new URL(k).pathname);
+      [...docs.entries.keys()]
+        .filter((k) => !k.includes('__sw-index'))
+        .map((k) => new URL(k).pathname);
 
     // 75 MB asked, 60 MB budget — the first page is already gone.
     expect(pages()).toEqual(['/p/b/', '/p/c/']);
@@ -390,7 +396,10 @@ describe('data: content files, precached and cache-first across deploys', () => 
   const CARDS = `${ORIGIN}/data/cards-aaaaaaaaaaaa.json`;
   const SETS = `${ORIGIN}/data/sets-bbbbbbbbbbbb.json`;
   const json = (body: unknown) => () =>
-    new Response(JSON.stringify(body), { status: 200, headers: { 'content-type': 'application/json' } });
+    new Response(JSON.stringify(body), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    });
 
   function withData(data = [CARDS, SETS], storage?: FakeCacheStorage) {
     const h = load([], '/', { data, storage });

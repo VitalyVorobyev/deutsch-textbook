@@ -19,14 +19,27 @@ export interface PlatteProps {
   children: ReactNode;
 }
 
-export function Platte({ titel, zaehler, erklaerung, randlos, children }: PlatteProps): React.JSX.Element {
+export function Platte({
+  titel,
+  zaehler,
+  erklaerung,
+  randlos,
+  children,
+}: PlatteProps): React.JSX.Element {
   return (
     <section className="platte">
       <header className="platte-kopf">
         <div>
           <h2 className="tafel">{titel}</h2>
           {erklaerung ? (
-            <p className="entfernt" style={{ fontSize: 'var(--ton-grad-12)', marginTop: 'var(--ton-mass-1)', maxWidth: '62ch' }}>
+            <p
+              className="entfernt"
+              style={{
+                fontSize: 'var(--ton-grad-12)',
+                marginTop: 'var(--ton-mass-1)',
+                maxWidth: '62ch',
+              }}
+            >
               {erklaerung}
             </p>
           ) : null}
@@ -39,7 +52,13 @@ export function Platte({ titel, zaehler, erklaerung, randlos, children }: Platte
 }
 
 /** The three things a read can be doing, said in one place so no view invents its own wording. */
-export function Zustand({ art, text }: { art: 'laedt' | 'leer' | 'fehler'; text: string }): React.JSX.Element {
+export function Zustand({
+  art,
+  text,
+}: {
+  art: 'laedt' | 'leer' | 'fehler';
+  text: string;
+}): React.JSX.Element {
   return (
     <p className="zustand" data-art={art} role={art === 'fehler' ? 'alert' : undefined}>
       {text}

@@ -35,8 +35,17 @@ describe('learning-activity contract', () => {
   test('purpose constrains role and stage instead of acting as a decorative label', () => {
     expect(exerciseSetSchema.safeParse(base).success).toBe(true);
     expect(exerciseSetSchema.safeParse({ ...base, activity: 'application' }).success).toBe(false);
-    expect(exerciseSetSchema.safeParse({ ...base, role: 'drill', activity: 'remediation', stage: 'ausblenden' }).success).toBe(true);
-    expect(exerciseSetSchema.safeParse({ ...base, role: 'drill', activity: 'core' }).success).toBe(false);
+    expect(
+      exerciseSetSchema.safeParse({
+        ...base,
+        role: 'drill',
+        activity: 'remediation',
+        stage: 'ausblenden',
+      }).success,
+    ).toBe(true);
+    expect(exerciseSetSchema.safeParse({ ...base, role: 'drill', activity: 'core' }).success).toBe(
+      false,
+    );
   });
 
   test('medium is derived independently from pedagogical purpose', () => {
@@ -44,17 +53,21 @@ describe('learning-activity contract', () => {
       ...base,
       activity: 'application',
       stage: 'transfer',
-      items: [{
-        id: 'listen-item',
-        type: 'listen',
-        revision: 1,
-        outcomes: ['fixture-outcome'],
-        text: 'Ich bin hier.',
-        translation: { en: 'I am here.', ru: 'Я здесь.' },
-      }],
+      items: [
+        {
+          id: 'listen-item',
+          type: 'listen',
+          revision: 1,
+          outcomes: ['fixture-outcome'],
+          text: 'Ich bin hier.',
+          translation: { en: 'I am here.', ru: 'Я здесь.' },
+        },
+      ],
     });
     expect(learningMedium(listening)).toBe('listening');
-    expect(learningMedium(exerciseSetSchema.parse({ ...base, stimulus: 'fixture-document' }))).toBe('document');
+    expect(learningMedium(exerciseSetSchema.parse({ ...base, stimulus: 'fixture-document' }))).toBe(
+      'document',
+    );
     expect(learningMedium(exerciseSetSchema.parse(base))).toBe('mixed');
   });
 });

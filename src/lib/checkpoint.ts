@@ -32,7 +32,9 @@ export function checkpointCovered(
   attempts: readonly Attempt[],
 ): boolean {
   const attempted = new Set(
-    attempts.filter((attempt) => attempt.setId === checkpoint.setId).map((attempt) => attempt.itemId),
+    attempts
+      .filter((attempt) => attempt.setId === checkpoint.setId)
+      .map((attempt) => attempt.itemId),
   );
   return checkpoint.items.every((item) => attempted.has(item.id));
 }
@@ -52,8 +54,7 @@ export function dueCheckpoint<T extends CheckpointRef>(
     .sort((a, b) => a.level.localeCompare(b.level))
     .find(
       (checkpoint) =>
-        levelPathDone(checkpoint.level, nodes, ctx) &&
-        !checkpointCovered(checkpoint, ctx.attempts),
+        levelPathDone(checkpoint.level, nodes, ctx) && !checkpointCovered(checkpoint, ctx.attempts),
     );
 }
 
@@ -74,11 +75,7 @@ export function blockedByEarlier<T extends CheckpointRef>(
 ): T | undefined {
   return [...checkpoints]
     .sort((a, b) => a.level.localeCompare(b.level))
-    .find(
-      (other) =>
-        other.level < checkpoint.level &&
-        !checkpointCovered(other, ctx.attempts),
-    );
+    .find((other) => other.level < checkpoint.level && !checkpointCovered(other, ctx.attempts));
 }
 
 /**

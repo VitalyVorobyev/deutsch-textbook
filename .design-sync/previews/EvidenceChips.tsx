@@ -46,8 +46,8 @@ export function WaitingOnTheSecondDay() {
         evidence={{ read: true, practiced: true, spaced: false, hasVocab: true, vocab: true }}
       />
       <p className="max-w-md text-xs text-stone-500 dark:text-stone-400">
-        Mastery must survive a night&apos;s sleep — this is why an otherwise complete row is
-        still badged Geübt.
+        Mastery must survive a night&apos;s sleep — this is why an otherwise complete row is still
+        badged Geübt.
       </p>
     </div>
   );

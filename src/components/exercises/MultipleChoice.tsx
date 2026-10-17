@@ -26,13 +26,16 @@ export function MultipleChoice({
   return (
     <div>
       <Instruction text={item.instruction} lang={lang} />
-      <p lang="de" className="mb-4 text-lg font-medium">{item.prompt}</p>
+      <p lang="de" className="mb-4 text-lg font-medium">
+        {item.prompt}
+      </p>
       <div className="flex flex-col gap-2">
         {order.map((idx) => {
           const answered = chosen !== null;
           const isCorrect = idx === item.correct;
           const isChosen = idx === chosen;
-          let cls = 'border-stone-300 hover:border-amber-500 dark:border-stone-600 dark:hover:border-amber-400';
+          let cls =
+            'border-stone-300 hover:border-amber-500 dark:border-stone-600 dark:hover:border-amber-400';
           if (answered && isCorrect) cls = 'border-green-500 bg-green-50 dark:bg-green-950';
           else if (answered && isChosen) cls = 'border-red-500 bg-red-50 dark:bg-red-950';
           else if (answered) cls = 'border-stone-200 opacity-60 dark:border-stone-700';

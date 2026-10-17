@@ -39,11 +39,16 @@ describe('a translate probe whose tag names an added word', () => {
   });
 
   test('fails when the predicates exist but none of them catches the insertion', () => {
-    const blind = modalProbe({ failed: ['^(?!.*\\bmuss\\b)'], retained: ['\\bmuss\\b.*\\bgehen$'] });
+    const blind = modalProbe({
+      failed: ['^(?!.*\\bmuss\\b)'],
+      retained: ['\\bmuss\\b.*\\bgehen$'],
+    });
     const problems = focusEvidenceProblems(blind, 'probe');
     // one per accepted rendering — the answer and the subject-first accept
     expect(problems).toHaveLength(2);
-    expect(problems.every((p) => p.startsWith('no focus_evidence.failed predicate catches'))).toBe(true);
+    expect(problems.every((p) => p.startsWith('no focus_evidence.failed predicate catches'))).toBe(
+      true,
+    );
   });
 
   test('applies only to probes: a practice item gets the honest gap, not a false pass', () => {
@@ -63,8 +68,13 @@ describe('a translate probe whose tag names an added word', () => {
       key_tokens: ['seit'],
     });
     expect(focusEvidenceProblems(seit, 'probe')).toEqual([]);
-    expect(insertedRendering('Ab Oktober fahre ich jeden Tag mit dem Zug.', ['Ab', 'jeden'], 'zeitangaben-system'))
-      .toBe('Ab Oktober fahre ich am jeden Tag mit dem Zug');
+    expect(
+      insertedRendering(
+        'Ab Oktober fahre ich jeden Tag mit dem Zug.',
+        ['Ab', 'jeden'],
+        'zeitangaben-system',
+      ),
+    ).toBe('Ab Oktober fahre ich am jeden Tag mit dem Zug');
   });
 
   test('a tag that names no added word is untouched', () => {
@@ -109,7 +119,9 @@ describe('every focus_evidence item', () => {
     const item = modalProbe({ failed: ['\\bzu gehen\\b', '\\bzum\\b'], retained: [] });
     const problems = focusEvidenceProblems(item, 'probe');
     expect(problems).toHaveLength(2);
-    expect(problems[0]).toContain('"\\bzum\\b" fires on the accepted rendering "Am Montag muss ich zum Arzt gehen."');
+    expect(problems[0]).toContain(
+      '"\\bzum\\b" fires on the accepted rendering "Am Montag muss ich zum Arzt gehen."',
+    );
   });
 
   test('is evaluated in the case mode it declares', () => {
@@ -142,6 +154,8 @@ describe('every focus_evidence item', () => {
     });
     const problems = focusEvidenceProblems(item, 'practice');
     expect(problems).toContain('focus_evidence requires a focus tag');
-    expect(problems.some((p) => p.startsWith('invalid focus_evidence regex "(unclosed"'))).toBe(true);
+    expect(problems.some((p) => p.startsWith('invalid focus_evidence regex "(unclosed"'))).toBe(
+      true,
+    );
   });
 });

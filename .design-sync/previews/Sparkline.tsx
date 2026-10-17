@@ -36,8 +36,8 @@ export function MissingDays() {
         />
       </span>
       <p className="max-w-sm text-xs text-stone-500 dark:text-stone-400">
-        Same ten days: above with three missing, below complete. The line stops at
-        every gap; the dots mark the days that have data.
+        Same ten days: above with three missing, below complete. The line stops at every gap; the
+        dots mark the days that have data.
       </p>
     </div>
   );

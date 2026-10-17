@@ -22,7 +22,13 @@ import {
   type ReviewedHints,
   type WriteHintCategory,
 } from '../../lib/assist';
-import { getAssistEnabled, pick, setAssistEnabled, setAssistModel, type ExplainLang } from '../../lib/prefs';
+import {
+  getAssistEnabled,
+  pick,
+  setAssistEnabled,
+  setAssistModel,
+  type ExplainLang,
+} from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useUiLang } from '../hooks';
 
@@ -70,7 +76,14 @@ const CATEGORY_LABELS: Record<WriteHintCategory, string> = {
 
 type Status = 'idle' | 'loading' | 'shown' | 'failed' | 'gone';
 
-export function AssistPanel({ item, text, lang, level, hints, onHints }: {
+export function AssistPanel({
+  item,
+  text,
+  lang,
+  level,
+  hints,
+  onHints,
+}: {
   item: WriteItem;
   /** the revision as it currently stands — what the model reviews */
   text: string;
@@ -205,7 +218,9 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
                 className="mt-1 w-full rounded-md border border-stone-300 bg-transparent px-2 py-1 text-sm dark:border-stone-600"
               >
                 {probe.models.map((tag) => (
-                  <option key={tag} value={tag}>{tag}</option>
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
                 ))}
               </select>
               <button
@@ -254,9 +269,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
 
       {status === 'failed' && (
         <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
-          <span className="text-stone-500 dark:text-stone-400">
-            {pick(lang, UI.noAnswer)}
-          </span>
+          <span className="text-stone-500 dark:text-stone-400">{pick(lang, UI.noAnswer)}</span>
           <button
             type="button"
             onClick={() => void request()}
@@ -268,32 +281,36 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
       )}
 
       {status === 'gone' && (
-        <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
-          {pick(lang, UI.gone)}
-        </p>
+        <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{pick(lang, UI.gone)}</p>
       )}
 
       {status === 'shown' && hints && (
         <div className="mt-2">
-          {hints.praise && <p className="text-sm text-green-800 dark:text-green-300">{hints.praise}</p>}
+          {hints.praise && (
+            <p className="text-sm text-green-800 dark:text-green-300">{hints.praise}</p>
+          )}
           {hints.hints.length === 0 ? (
             <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
               {pick(lang, UI.nothingFlagged)}
             </p>
           ) : liveHints.length === 0 ? (
             <p className="mt-1 text-sm text-green-800 dark:text-green-300">
-              {t('assist.allDone', uiLang)}{' '}
-              {pick(lang, UI.allResolved)}
+              {t('assist.allDone', uiLang)} {pick(lang, UI.allResolved)}
             </p>
           ) : (
             <ul className="mt-2 space-y-2">
               {liveHints.map((hint, index) => (
-                <li key={index} className="rounded-md border border-stone-200 px-3 py-2 dark:border-stone-700">
+                <li
+                  key={index}
+                  className="rounded-md border border-stone-200 px-3 py-2 dark:border-stone-700"
+                >
                   <span className="text-[10px] font-semibold uppercase tracking-wide text-stone-400 dark:text-stone-500">
                     {CATEGORY_LABELS[hint.category]}
                   </span>
                   <p className="mt-0.5 text-sm">
-                    <q lang="de" className="italic">{hint.quote}</q>
+                    <q lang="de" className="italic">
+                      {hint.quote}
+                    </q>
                   </p>
                   <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{hint.nudge}</p>
                 </li>
@@ -301,8 +318,7 @@ export function AssistPanel({ item, text, lang, level, hints, onHints }: {
             </ul>
           )}
           <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
-            {t('assist.disclaimer', uiLang)}{' '}
-            {pick(lang, UI.advisory)}
+            {t('assist.disclaimer', uiLang)} {pick(lang, UI.advisory)}
           </p>
         </div>
       )}

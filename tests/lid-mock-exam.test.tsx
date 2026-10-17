@@ -48,8 +48,12 @@ function entry(id: string, n: number, stateCode: string | null): LidEntry {
   return { question, topic: 't', topicTitle: 'Thema', module: 'm' };
 }
 const ENTRIES: LidEntry[] = [
-  ...Array.from({ length: 32 }, (_, i) => entry(`general-${String(i + 1).padStart(3, '0')}`, i + 1, null)),
-  ...Array.from({ length: 4 }, (_, i) => entry(`BY-${String(i + 1).padStart(2, '0')}`, i + 1, 'BY')),
+  ...Array.from({ length: 32 }, (_, i) =>
+    entry(`general-${String(i + 1).padStart(3, '0')}`, i + 1, null),
+  ),
+  ...Array.from({ length: 4 }, (_, i) =>
+    entry(`BY-${String(i + 1).padStart(2, '0')}`, i + 1, 'BY'),
+  ),
 ];
 
 type Props = { entries: LidEntry[]; bankVersion: string; state: string; pdfUrl: string };
@@ -66,7 +70,14 @@ afterEach(() => {
 });
 
 const mount = () =>
-  render(<LidMockExam entries={ENTRIES} bankVersion="test-bank" state="BY" pdfUrl="https://example.invalid/k.pdf" />);
+  render(
+    <LidMockExam
+      entries={ENTRIES}
+      bankVersion="test-bank"
+      state="BY"
+      pdfUrl="https://example.invalid/k.pdf"
+    />,
+  );
 
 /** Answer the question on screen correctly, then go on. */
 function answerRightAndNext() {
@@ -86,7 +97,8 @@ function savedRun(): { run: LidExamRun; answers: LidAnswer[] } {
 }
 
 /** The result line for one pass mark — its test's name and its verdict. */
-const verdictFor = (name: string) => screen.getByText(name, { selector: 'span.font-semibold' }).parentElement!.textContent;
+const verdictFor = (name: string) =>
+  screen.getByText(name, { selector: 'span.font-semibold' }).parentElement!.textContent;
 
 describe('LidMockExam', () => {
   test('a started mock draws 33 questions, 3 of them from the state', () => {
@@ -94,7 +106,9 @@ describe('LidMockExam', () => {
     expect(screen.getByText(/Simulation — kein offizieller Fragebogen/)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Simulation starten' }));
     expect(screen.getByText('Frage 1 / 33')).toBeTruthy();
-    expect(screen.getAllByRole('button', { name: /^Frage \d+, (beantwortet|offen)$/ })).toHaveLength(33);
+    expect(
+      screen.getAllByRole('button', { name: /^Frage \d+, (beantwortet|offen)$/ }),
+    ).toHaveLength(33);
     // No translation and no read-aloud anywhere in the exam.
     expect(screen.queryByRole('button', { name: /Übersetzung/ })).toBeNull();
     expect(screen.queryByRole('button', { name: /Anhören/ })).toBeNull();
@@ -163,7 +177,13 @@ describe('LidMockExam', () => {
     const startedAt = Date.now() - 61 * 60_000;
     localStorage.setItem(
       'da:lid-mock:local',
-      JSON.stringify({ seed: 7, items, answers: { [items[0]!]: 'a', [items[1]!]: 'b' }, startedAt, current: 1 }),
+      JSON.stringify({
+        seed: 7,
+        items,
+        answers: { [items[0]!]: 'a', [items[1]!]: 'b' },
+        startedAt,
+        current: 1,
+      }),
     );
     mount();
     expect(screen.getByText('1 von 33 richtig')).toBeTruthy();

@@ -206,7 +206,12 @@ function Stimme({
       )}
 
       <div className="reihe stimme-knoepfe">
-        <button type="button" className="knopf" disabled={widerrufen || laeuft !== null} onClick={demo}>
+        <button
+          type="button"
+          className="knopf"
+          disabled={widerrufen || laeuft !== null}
+          onClick={demo}
+        >
           {laeuft === 'demo' ? 'Hörprobe läuft …' : 'Hörprobe erzeugen'}
         </button>
         <button
@@ -241,7 +246,9 @@ export function Hoerprobe({
       {blob ? (
         <audio controls preload="none" src={blob} aria-label={`Hörprobe ${nummer}`} />
       ) : (
-        <p className="entfernt" style={{ fontSize: 'var(--ton-grad-11)' }}>wird geladen …</p>
+        <p className="entfernt" style={{ fontSize: 'var(--ton-grad-11)' }}>
+          wird geladen …
+        </p>
       )}
     </div>
   );
@@ -499,9 +506,7 @@ function Text({
         <input
           type="checkbox"
           checked={entwurf.xVectorOnly}
-          onChange={(event) =>
-            setEntwurf((alt) => ({ ...alt, xVectorOnly: event.target.checked }))
-          }
+          onChange={(event) => setEntwurf((alt) => ({ ...alt, xVectorOnly: event.target.checked }))}
         />
         <span className="feld-hinweis">
           Nur Sprecher-Embedding (x-Vektor): ohne Referenztext, andere Klangfarbe. Gehört zur
@@ -665,9 +670,7 @@ function Einwilligung({
       <Regeln regeln={regeln} verletzt={verletzt} />
 
       <details className="assistent-dokument">
-        <summary>
-          Dokument ansehen — das ist genau der Text, der abgeschickt wird
-        </summary>
+        <summary>Dokument ansehen — das ist genau der Text, der abgeschickt wird</summary>
         <pre className="zahl">{konsentText(entwurf)}</pre>
       </details>
     </Abschnitt>

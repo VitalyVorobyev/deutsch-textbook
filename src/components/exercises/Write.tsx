@@ -76,7 +76,12 @@ function restoreSaved(raw: string | null): SavedWriting | null {
     const legacy = parsed as LegacySavedWriting;
     return legacy.stage === 'draft'
       ? { stage: 'draft', draft: '', text: legacy.draft, assist: legacy.assist }
-      : { stage: 'compare', draft: legacy.draft, text: legacy.revision || legacy.draft, assist: legacy.assist };
+      : {
+          stage: 'compare',
+          draft: legacy.draft,
+          text: legacy.revision || legacy.draft,
+          assist: legacy.assist,
+        };
   } catch {
     // Back compatibility: the oldest component stored the draft as a plain string.
     return { stage: 'draft', draft: '', text: raw };
@@ -102,8 +107,9 @@ export function Write({
   // resume state tracks where you are in a lesson, but a draft is work, and silently
   // deleting someone's unfinished paragraph overnight is worse than keeping it.
   const draftKey = `da:write:${getActiveProfileId()}:${storageKey}`;
-  const saved = typeof localStorage === 'undefined' ? null : restoreSaved(localStorage.getItem(draftKey));
-  const [stage, setStage] = useState<Stage>(locked ? 'done' : saved?.stage ?? 'draft');
+  const saved =
+    typeof localStorage === 'undefined' ? null : restoreSaved(localStorage.getItem(draftKey));
+  const [stage, setStage] = useState<Stage>(locked ? 'done' : (saved?.stage ?? 'draft'));
   const [draft, setDraft] = useState(saved?.draft ?? '');
   const [text, setText] = useState(saved?.text ?? '');
   const [assist, setAssist] = useState<ReviewedHints | null>(() => {
@@ -119,7 +125,10 @@ export function Write({
 
   useEffect(() => {
     if (stage === 'done') return;
-    localStorage.setItem(draftKey, JSON.stringify({ stage, draft, text, assist } satisfies SavedWriting));
+    localStorage.setItem(
+      draftKey,
+      JSON.stringify({ stage, draft, text, assist } satisfies SavedWriting),
+    );
   }, [assist, draft, draftKey, stage, text]);
 
   function beginComparison() {
@@ -151,7 +160,9 @@ export function Write({
       <p className="text-lg font-medium">{pick(lang, item.prompt)}</p>
       <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{pick(lang, item.goal)}</p>
       <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-300">
-        {item.requirements.map((r, i) => <li key={i}>{pick(lang, r)}</li>)}
+        {item.requirements.map((r, i) => (
+          <li key={i}>{pick(lang, r)}</li>
+        ))}
       </ul>
 
       {stage !== 'draft' && (
@@ -159,7 +170,9 @@ export function Write({
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
             {pick(lang, UI.modelHeading)}
           </p>
-          <p lang="de" className="mt-2">{item.model_answer}</p>
+          <p lang="de" className="mt-2">
+            {item.model_answer}
+          </p>
           <Translation text={item.model_translation} lang={lang} />
         </div>
       )}
@@ -205,9 +218,7 @@ export function Write({
             {pick(lang, UI.save)}
           </ActionButton>
         )}
-        {stage === 'done' && (
-          <ActionButton onClick={onNext}>{nextLabel}</ActionButton>
-        )}
+        {stage === 'done' && <ActionButton onClick={onNext}>{nextLabel}</ActionButton>}
       </div>
       {stage === 'done' && (
         <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">
@@ -218,7 +229,16 @@ export function Write({
   );
 }
 
-function WritingArea({ id, value, onChange, words, minWords, lang, label, disabled }: {
+function WritingArea({
+  id,
+  value,
+  onChange,
+  words,
+  minWords,
+  lang,
+  label,
+  disabled,
+}: {
   id: string;
   value: string;
   onChange: (value: string) => void;
@@ -231,7 +251,9 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
   const uiLang = useUiLang();
   return (
     <div className="mt-4">
-      <label htmlFor={id} className="text-sm font-semibold">{label}</label>
+      <label htmlFor={id} className="text-sm font-semibold">
+        {label}
+      </label>
       {/* Autocorrect must not rewrite free German production; spellCheck stays ON
           deliberately — write is advisory-only assist territory, and whether the
           browser may flag spelling is a policy call (P24-6), not a device bug. */}
@@ -247,14 +269,20 @@ function WritingArea({ id, value, onChange, words, minWords, lang, label, disabl
         placeholder={pick(lang, UI.placeholder)}
       />
       <div className="mt-2 flex items-center justify-between text-xs text-stone-400">
-        <span>{words} / {minWords} {t('exercise.words', uiLang)}</span>
+        <span>
+          {words} / {minWords} {t('exercise.words', uiLang)}
+        </span>
         {!disabled && <span>{pick(lang, UI.draftSaved)}</span>}
       </div>
     </div>
   );
 }
 
-function ActionButton({ children, onClick, disabled = false }: {
+function ActionButton({
+  children,
+  onClick,
+  disabled = false,
+}: {
   children: ReactNode;
   onClick: () => void;
   disabled?: boolean;

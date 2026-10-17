@@ -36,12 +36,13 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
 
   if (!graph.anchorSources.length) return <Empty>Keine externen Quellen im Korpus.</Empty>;
 
-  if (dimension !== 'struktur') return (
-    <>
-      <QuellenKopf graph={graph} dimension={dimension} setDimension={setDimension} />
-      <AnkerDimension graph={graph} dimension={dimension} />
-    </>
-  );
+  if (dimension !== 'struktur')
+    return (
+      <>
+        <QuellenKopf graph={graph} dimension={dimension} setDimension={setDimension} />
+        <AnkerDimension graph={graph} dimension={dimension} />
+      </>
+    );
 
   const claimedRefs = new Set(graph.inventory.flatMap((p) => p.claims ?? []));
   const src = graph.sources.find((s) => s.source.id === active) ?? graph.sources[0]!;
@@ -54,7 +55,9 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
   const open = entries.filter((e) => !claimed(e));
   const shown = nurOffen ? open : entries;
 
-  const uncovered = graph.levels.filter((l) => !graph.sources.some((s) => s.source.levels.includes(l)));
+  const uncovered = graph.levels.filter(
+    (l) => !graph.sources.some((s) => s.source.levels.includes(l)),
+  );
 
   const columns: Spalte<Entry>[] = [
     {
@@ -70,7 +73,12 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
         </Kurz>
       ),
     },
-    { key: 'section', head: 'Abschnitt', sort: (e) => e.section, cell: (e) => <span className="text-ink-muted">{e.section}</span> },
+    {
+      key: 'section',
+      head: 'Abschnitt',
+      sort: (e) => e.section,
+      cell: (e) => <span className="text-ink-muted">{e.section}</span>,
+    },
     {
       key: 'key',
       head: 'Schlüssel',
@@ -100,7 +108,8 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
         <Panel tone="warn" className="mb-5">
           <Label>ohne externen Anker</Label>
           <p className="mt-1 text-sm text-ink">
-            {uncovered.join(', ')} — für diese Niveaus existiert keine Quelle, also gibt es auch keine Zahl.
+            {uncovered.join(', ')} — für diese Niveaus existiert keine Quelle, also gibt es auch
+            keine Zahl.
           </p>
         </Panel>
       ) : null}
@@ -116,13 +125,19 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
 
       <Panel className="mb-5" title={meta.title}>
         <StatGroup columns={4}>
-          <Stat label="Einträge" value={entries.length} hint={`${src.sections.length} Abschnitte`} />
+          <Stat
+            label="Einträge"
+            value={entries.length}
+            hint={`${src.sections.length} Abschnitte`}
+          />
           <Stat label="beansprucht" value={entries.length - open.length} tone="ok" />
           <Stat label="offen" value={open.length} tone={open.length ? 'warn' : 'neutral'} />
           <Stat
             label="Niveaus"
             value={meta.levels.join(' ')}
-            hint={meta.cumulative ? 'kumulativ — die Liste stuft nichts ein' : 'je Eintrag eingestuft'}
+            hint={
+              meta.cumulative ? 'kumulativ — die Liste stuft nichts ein' : 'je Eintrag eingestuft'
+            }
           />
         </StatGroup>
 
@@ -167,40 +182,132 @@ export function Quellen({ graph }: { graph: GraphPayload }) {
         ) : null}
       </div>
 
-      <Zeilentabelle rows={shown} rowKey={(e) => `${meta.id}:${e.key}`} columns={columns} sortKey="de" />
+      <Zeilentabelle
+        rows={shown}
+        rowKey={(e) => `${meta.id}:${e.key}`}
+        columns={columns}
+        sortKey="de"
+      />
     </>
   );
 }
 
-function QuellenKopf({ graph, dimension, setDimension }: { graph: GraphPayload; dimension: 'struktur' | 'handlung' | 'thema'; setDimension: (value: 'struktur' | 'handlung' | 'thema') => void }) {
+function QuellenKopf({
+  graph,
+  dimension,
+  setDimension,
+}: {
+  graph: GraphPayload;
+  dimension: 'struktur' | 'handlung' | 'thema';
+  setDimension: (value: 'struktur' | 'handlung' | 'thema') => void;
+}) {
   return (
     <>
       <header className="mb-5">
         <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Referenzen</h1>
-        <p className="mt-1 text-sm text-ink-muted">{graph.anchorSources.length} veröffentlichte Listen · Strukturen, Sprachhandlungen und Themen bleiben getrennte Aussagen</p>
+        <p className="mt-1 text-sm text-ink-muted">
+          {graph.anchorSources.length} veröffentlichte Listen · Strukturen, Sprachhandlungen und
+          Themen bleiben getrennte Aussagen
+        </p>
       </header>
-      <div className="mb-5"><Reiter ariaLabel="Referenzdimension" value={dimension} onChange={setDimension} options={[{ id: 'struktur', label: 'Strukturen' }, { id: 'handlung', label: 'Sprachhandlungen' }, { id: 'thema', label: 'Themen' }]} /></div>
+      <div className="mb-5">
+        <Reiter
+          ariaLabel="Referenzdimension"
+          value={dimension}
+          onChange={setDimension}
+          options={[
+            { id: 'struktur', label: 'Strukturen' },
+            { id: 'handlung', label: 'Sprachhandlungen' },
+            { id: 'thema', label: 'Themen' },
+          ]}
+        />
+      </div>
     </>
   );
 }
 
-function AnkerDimension({ graph, dimension }: { graph: GraphPayload; dimension: 'handlung' | 'thema' }) {
+function AnkerDimension({
+  graph,
+  dimension,
+}: {
+  graph: GraphPayload;
+  dimension: 'handlung' | 'thema';
+}) {
   const reports = graph.anchorReports.filter((report) => report[dimension].anchored);
-  const sources = graph.anchorSources.filter((item) => item.dimension === dimension).map((item) => item.source.source);
-  const open = reports.flatMap((report) => report[dimension].unclaimed.map((item) => ({ ...item, level: report.level })));
+  const sources = graph.anchorSources
+    .filter((item) => item.dimension === dimension)
+    .map((item) => item.source.source);
+  const open = reports.flatMap((report) =>
+    report[dimension].unclaimed.map((item) => ({ ...item, level: report.level })),
+  );
   return (
     <>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {reports.map((report) => {
           const coverage = report[dimension];
-          return <Panel key={report.level} title={`${report.level} · ${coverage.percent}%`} tone={coverage.unclaimed.length ? 'warn' : 'ok'}><StatGroup columns={3}><Stat label="beansprucht" value={coverage.claimed.length} /><Stat label="offen" value={coverage.unclaimed.length} tone={coverage.unclaimed.length ? 'warn' : 'neutral'} /><Stat label="beyond" value={coverage.beyond.length} /></StatGroup><p className="mt-4 text-xs leading-5 text-ink-muted">{coverage.sources.map((source) => `${source.title}${source.audience ? ` · ${source.audience}` : ''}`).join('\n')}</p></Panel>;
+          return (
+            <Panel
+              key={report.level}
+              title={`${report.level} · ${coverage.percent}%`}
+              tone={coverage.unclaimed.length ? 'warn' : 'ok'}
+            >
+              <StatGroup columns={3}>
+                <Stat label="beansprucht" value={coverage.claimed.length} />
+                <Stat
+                  label="offen"
+                  value={coverage.unclaimed.length}
+                  tone={coverage.unclaimed.length ? 'warn' : 'neutral'}
+                />
+                <Stat label="beyond" value={coverage.beyond.length} />
+              </StatGroup>
+              <p className="mt-4 text-xs leading-5 text-ink-muted">
+                {coverage.sources
+                  .map(
+                    (source) => `${source.title}${source.audience ? ` · ${source.audience}` : ''}`,
+                  )
+                  .join('\n')}
+              </p>
+            </Panel>
+          );
         })}
       </div>
-      <Panel className="mt-5" title={`Offene Einträge (${open.length})`} tone={open.length ? 'warn' : 'ok'}>
-        {open.length ? <ul className="divide-y divide-border-subtle">{open.map((item) => <li key={`${item.sourceId}:${item.entry.key}:${item.level}`} className="grid gap-1 py-2 text-sm md:grid-cols-[4rem_1fr_1fr]"><span className="text-ink-muted">{item.level}</span><span className="text-ink">{item.entry.de}</span><span className="text-xs text-ink-muted">{item.section.de} · {item.sourceId}</span></li>)}</ul> : <p className="text-sm text-ok-ink">Jeder veröffentlichte Eintrag wird beansprucht.</p>}
+      <Panel
+        className="mt-5"
+        title={`Offene Einträge (${open.length})`}
+        tone={open.length ? 'warn' : 'ok'}
+      >
+        {open.length ? (
+          <ul className="divide-y divide-border-subtle">
+            {open.map((item) => (
+              <li
+                key={`${item.sourceId}:${item.entry.key}:${item.level}`}
+                className="grid gap-1 py-2 text-sm md:grid-cols-[4rem_1fr_1fr]"
+              >
+                <span className="text-ink-muted">{item.level}</span>
+                <span className="text-ink">{item.entry.de}</span>
+                <span className="text-xs text-ink-muted">
+                  {item.section.de} · {item.sourceId}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-sm text-ok-ink">Jeder veröffentlichte Eintrag wird beansprucht.</p>
+        )}
       </Panel>
       <Panel className="mt-5" title="Quellenmetadaten">
-        <ul className="space-y-3">{sources.map((source) => <li key={source.id} className="border-b border-border-subtle pb-3 last:border-0"><p className="text-sm font-medium text-ink">{source.title}</p><p className="mt-1 text-xs text-ink-muted">{source.publisher ?? '—'} · {source.edition ?? 'Ausgabe nicht angegeben'} · {source.audience ?? 'Publikum nicht angegeben'} · {source.mode ?? 'Modus nicht angegeben'}</p></li>)}</ul>
+        <ul className="space-y-3">
+          {sources.map((source) => (
+            <li key={source.id} className="border-b border-border-subtle pb-3 last:border-0">
+              <p className="text-sm font-medium text-ink">{source.title}</p>
+              <p className="mt-1 text-xs text-ink-muted">
+                {source.publisher ?? '—'} · {source.edition ?? 'Ausgabe nicht angegeben'} ·{' '}
+                {source.audience ?? 'Publikum nicht angegeben'} ·{' '}
+                {source.mode ?? 'Modus nicht angegeben'}
+              </p>
+            </li>
+          ))}
+        </ul>
       </Panel>
     </>
   );

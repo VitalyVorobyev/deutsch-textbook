@@ -89,9 +89,7 @@ export default function FirstRunGate() {
       // Session is asked for only once the gate is actually shown — an install
       // with a profile never pays this request. Signing in from the gate must
       // land back in the gate (ADR 0004a), so returnTo is the current page.
-      queueMicrotask(() =>
-        setReturnTo(window.location.pathname + window.location.search),
-      );
+      queueMicrotask(() => setReturnTo(window.location.pathname + window.location.search));
       if (!isTauri()) {
         const s = await getSession();
         setSession(s);
@@ -142,9 +140,7 @@ export default function FirstRunGate() {
         }}
         className="w-full max-w-sm rounded-lg border border-stone-200 bg-white p-6 shadow-xl dark:border-stone-700 dark:bg-stone-800"
       >
-        <h2 className="text-lg font-bold">
-          {pick(lang, UI.welcome)}
-        </h2>
+        <h2 className="text-lg font-bold">{pick(lang, UI.welcome)}</h2>
 
         {named.length > 0 && (
           <>
@@ -211,9 +207,7 @@ export default function FirstRunGate() {
             {pick(lang, UI.startFresh)}
           </button>
         ) : (
-          <p className="mt-2 text-xs text-stone-400">
-            {pick(lang, UI.reconnectHint)}
-          </p>
+          <p className="mt-2 text-xs text-stone-400">{pick(lang, UI.reconnectHint)}</p>
         )}
 
         {/* Optional sign-in offer (ADR 0004a/d): visually below the local path,
@@ -230,7 +224,9 @@ export default function FirstRunGate() {
               {session.providers.map((provider) => (
                 <a
                   key={provider}
-                  href={withBase(`/api/auth/${provider}/start?returnTo=${encodeURIComponent(returnTo)}`)}
+                  href={withBase(
+                    `/api/auth/${provider}/start?returnTo=${encodeURIComponent(returnTo)}`,
+                  )}
                   className="inline-flex min-h-11 items-center rounded-md border border-stone-300 px-3 py-1.5 text-sm font-semibold hover:border-amber-500 dark:border-stone-600 sm:min-h-0"
                 >
                   {t('account.signIn', uiLang)} · {PROVIDER_LABEL[provider] ?? provider}

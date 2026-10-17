@@ -23,34 +23,50 @@ describe('discoverySchema images', () => {
     expect(discoverySchema.safeParse({ ...base, images: [image({})] }).success).toBe(true);
   });
 
-  test.each(['real', 'adapted'])('%s image without attribution and license is rejected', (sourceClass) => {
-    expect(discoverySchema.safeParse({ ...base, images: [image({ sourceClass })] }).success).toBe(false);
-    expect(
-      discoverySchema.safeParse({ ...base, images: [image({ sourceClass, attribution: 'BVG archive' })] }).success,
-    ).toBe(false);
-    expect(
-      discoverySchema.safeParse({
-        ...base,
-        images: [image({ sourceClass, attribution: 'BVG archive', license: 'CC BY-SA 4.0' })],
-      }).success,
-    ).toBe(true);
-  });
+  test.each(['real', 'adapted'])(
+    '%s image without attribution and license is rejected',
+    (sourceClass) => {
+      expect(discoverySchema.safeParse({ ...base, images: [image({ sourceClass })] }).success).toBe(
+        false,
+      );
+      expect(
+        discoverySchema.safeParse({
+          ...base,
+          images: [image({ sourceClass, attribution: 'BVG archive' })],
+        }).success,
+      ).toBe(false);
+      expect(
+        discoverySchema.safeParse({
+          ...base,
+          images: [image({ sourceClass, attribution: 'BVG archive', license: 'CC BY-SA 4.0' })],
+        }).success,
+      ).toBe(true);
+    },
+  );
 
   test('the retired bare image field fails loudly instead of being stripped', () => {
-    expect(discoverySchema.safeParse({ ...base, image: '/discovery/test.svg' }).success).toBe(false);
+    expect(discoverySchema.safeParse({ ...base, image: '/discovery/test.svg' }).success).toBe(
+      false,
+    );
   });
 });
 
 describe('discoverySchema links', () => {
   test('https link with a label passes; note is optional', () => {
     expect(
-      discoverySchema.safeParse({ ...base, links: [{ url: 'https://example.org/karte', label: 'Beispiel' }] }).success,
+      discoverySchema.safeParse({
+        ...base,
+        links: [{ url: 'https://example.org/karte', label: 'Beispiel' }],
+      }).success,
     ).toBe(true);
   });
 
   test('http link is rejected', () => {
     expect(
-      discoverySchema.safeParse({ ...base, links: [{ url: 'http://example.org', label: 'Beispiel' }] }).success,
+      discoverySchema.safeParse({
+        ...base,
+        links: [{ url: 'http://example.org', label: 'Beispiel' }],
+      }).success,
     ).toBe(false);
   });
 });
@@ -75,8 +91,9 @@ describe('the topic link is navigation, never obligation', () => {
   });
 
   test('topics accepts kebab-case slugs and rejects anything else', () => {
-    expect(discoverySchema.parse({ ...base, topics: ['stadt-wege'] }).topics)
-      .toEqual(['stadt-wege']);
+    expect(discoverySchema.parse({ ...base, topics: ['stadt-wege'] }).topics).toEqual([
+      'stadt-wege',
+    ]);
     expect(discoverySchema.safeParse({ ...base, topics: ['Stadt Wege'] }).success).toBe(false);
   });
 

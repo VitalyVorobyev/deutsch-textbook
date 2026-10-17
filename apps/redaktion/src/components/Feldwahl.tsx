@@ -87,7 +87,9 @@ export function Feldwahl({
           (shown === null ? 'text-ink-muted' : 'text-ink')
         }
       >
-        {derived !== undefined && <option value="">abgeleitet: {labels[derived] ?? derived}</option>}
+        {derived !== undefined && (
+          <option value="">abgeleitet: {labels[derived] ?? derived}</option>
+        )}
         {options.map((option) => (
           <option key={option} value={option}>
             {labels[option] ?? option}
@@ -95,7 +97,9 @@ export function Feldwahl({
         ))}
       </select>
       {waiting && !error && (
-        <span className="text-[0.65rem] leading-tight text-ink-muted">geschrieben — Korpus wird neu gelesen…</span>
+        <span className="text-[0.65rem] leading-tight text-ink-muted">
+          geschrieben — Korpus wird neu gelesen…
+        </span>
       )}
       {error && (
         <span role="alert" className="max-w-64 text-[0.65rem] leading-tight text-warn-ink">

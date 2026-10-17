@@ -59,7 +59,10 @@ interface Planned {
   fresh: number;
 }
 
-type Scope = { kind: 'all' } | { kind: 'lesson'; id: string; title: string; ids: string[] } | { kind: 'unknown' };
+type Scope =
+  | { kind: 'all' }
+  | { kind: 'lesson'; id: string; title: string; ids: string[] }
+  | { kind: 'unknown' };
 
 /** The `?lektion=` scope, read once from the URL. Only own keys count: `?lektion=constructor`
     names no lesson. */
@@ -71,12 +74,25 @@ function readScope(lessons: LidLessonScopes | undefined, mode: Props['mode']): S
   return lesson ? { kind: 'lesson', id, ...lesson } : { kind: 'unknown' };
 }
 
-export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'practice', lessons, rng }: Props) {
+export default function LidPractice({
+  entries,
+  bankVersion,
+  pdfUrl,
+  mode = 'practice',
+  lessons,
+  rng,
+}: Props) {
   const uiLang = useUiLang();
-  const byId = useMemo(() => new Map(entries.map((entry) => [entry.question.id, entry])), [entries]);
+  const byId = useMemo(
+    () => new Map(entries.map((entry) => [entry.question.id, entry])),
+    [entries],
+  );
   const [scope] = useState<Scope>(() => readScope(lessons, mode));
   const ids = useMemo(
-    () => (scope.kind === 'lesson' ? scope.ids.filter((id) => byId.has(id)) : entries.map((entry) => entry.question.id)),
+    () =>
+      scope.kind === 'lesson'
+        ? scope.ids.filter((id) => byId.has(id))
+        : entries.map((entry) => entry.question.id),
     [scope, entries, byId],
   );
 
@@ -97,12 +113,18 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
 
   useEffect(() => {
     let cancelled = false;
-    void withReadRetry(() => getLidState(), { surface: mode === 'fehler' ? 'leben/fehler' : 'leben/ueben' }).then(
+    void withReadRetry(() => getLidState(), {
+      surface: mode === 'fehler' ? 'leben/fehler' : 'leben/ueben',
+    }).then(
       (state) => {
         if (cancelled) return;
         // This profile has saved LiD answers before, and the read says there are none: a stalled
         // store or the wrong database. Dealing from it would re-teach every question as new.
-        if (state.answers.length === 0 && Object.keys(state.cards).length === 0 && hasSeenData('lid')) {
+        if (
+          state.answers.length === 0 &&
+          Object.keys(state.cards).length === 0 &&
+          hasSeenData('lid')
+        ) {
           setLoadError(true);
           return;
         }
@@ -144,7 +166,8 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
       />
     );
   }
-  if (queue === null || lid === null) return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;
+  if (queue === null || lid === null)
+    return <p className="text-sm text-stone-500 dark:text-stone-400">…</p>;
 
   const answered = tally.right + tally.wrong;
   const current = queue[0] ? byId.get(queue[0]) : undefined;
@@ -177,7 +200,11 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
             <>
               <p className="text-lg font-semibold">{t('lid.doneTitle', uiLang)}</p>
               <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">
-                {lidText('lid.doneCounts', uiLang, { n: answered, right: tally.right, wrong: tally.wrong })}
+                {lidText('lid.doneCounts', uiLang, {
+                  n: answered,
+                  right: tally.right,
+                  wrong: tally.wrong,
+                })}
               </p>
             </>
           ) : (
@@ -256,7 +283,9 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
               ? lidText('lid.scopeQueue', uiLang, { n: planned.due + planned.fresh })
               : lidText('lid.queueCounts', uiLang, { due: planned.due, fresh: planned.fresh })}
         </span>
-        <span className="tabular-nums">{lidText('lid.progress', uiLang, { k: presentation + 1, n: total })}</span>
+        <span className="tabular-nums">
+          {lidText('lid.progress', uiLang, { k: presentation + 1, n: total })}
+        </span>
       </div>
       <div
         className="h-1.5 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700"
@@ -265,7 +294,10 @@ export default function LidPractice({ entries, bankVersion, pdfUrl, mode = 'prac
         aria-valuemax={total}
         aria-valuenow={presentation}
       >
-        <div className="h-full bg-amber-500" style={{ width: `${(presentation / total) * 100}%` }} />
+        <div
+          className="h-full bg-amber-500"
+          style={{ width: `${(presentation / total) * 100}%` }}
+        />
       </div>
       <div ref={cardRef} className={`${CARD} scroll-mt-32 p-4 sm:p-6`}>
         <LidQuestion

@@ -16,7 +16,17 @@
  * level median the header prints beside it.
  */
 import { useState } from 'react';
-import { Bar, Callout, Chip, Empty, Label, Panel, Stat, StatGroup, type Tone } from '@da/ui/primitives';
+import {
+  Bar,
+  Callout,
+  Chip,
+  Empty,
+  Label,
+  Panel,
+  Stat,
+  StatGroup,
+  type Tone,
+} from '@da/ui/primitives';
 import { defaultStage } from '@da/content/elements';
 import { PROBLEM_LABELS } from '@da/content/profile';
 import { Reiter } from '../components/Hinweis';
@@ -94,9 +104,13 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
           <Label>
             {topic.level} · {topic.unitTitle ?? 'ohne Einheit'}
           </Label>
-          <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">{topic.title}</h1>
+          <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight text-ink">
+            {topic.title}
+          </h1>
           <p className="mt-1 text-sm">
-            <Quelllink href={href('quelle', undefined, { pfad: topic.file })}>{topic.file}</Quelllink>
+            <Quelllink href={href('quelle', undefined, { pfad: topic.file })}>
+              {topic.file}
+            </Quelllink>
           </p>
         </div>
         <div className="flex items-center gap-2 text-xs">
@@ -129,7 +143,13 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
       </div>
 
       {reiter === 'ueberblick' ? (
-        <Ueberblick graph={graph} topic={topic} profile={profile} median={median} elements={elements} />
+        <Ueberblick
+          graph={graph}
+          topic={topic}
+          profile={profile}
+          median={median}
+          elements={elements}
+        />
       ) : null}
       {reiter === 'elemente' ? <Elemente graph={graph} elements={elements} /> : null}
       {reiter === 'pruefungen' ? <Pruefungen profile={profile} /> : null}
@@ -142,13 +162,24 @@ export function Thema({ graph, id }: { graph: GraphPayload; id: string }) {
  * The write control exists only if the controller would accept the write — the allowlist is
  * fetched, never copied. No endpoint (a built bundle, a server without the plugin) means a chip.
  */
-function StatusFeld({ graph, topic }: { graph: GraphPayload; topic: GraphPayload['topics'][number] }) {
+function StatusFeld({
+  graph,
+  topic,
+}: {
+  graph: GraphPayload;
+  topic: GraphPayload['topics'][number];
+}) {
   void graph;
   return (
     <span className="inline-flex items-center gap-2">
-      <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>{STATUS_LABEL[topic.status] ?? topic.status}</Chip>
+      <Chip tone={topic.status === 'reviewed' ? 'ok' : 'warn'}>
+        {STATUS_LABEL[topic.status] ?? topic.status}
+      </Chip>
       {topic.status !== 'reviewed' ? (
-        <a className="text-xs text-info-ink underline underline-offset-2" href={href('quelle', undefined, { pfad: topic.file })}>
+        <a
+          className="text-xs text-info-ink underline underline-offset-2"
+          href={href('quelle', undefined, { pfad: topic.file })}
+        >
           Gate öffnen
         </a>
       ) : null}
@@ -185,8 +216,13 @@ function Ueberblick({
           kein eigener Pflicht-Dateibaustein nötig.
         </Callout>
       ) : (
-        <Callout tone="ok" eyebrow="Lernaktivitäten" title="Grundübung und Anwendung sind vorhanden">
-          Erweiterungen und gezielte Remediation bleiben optional und werden nur bei Bedarf geöffnet.
+        <Callout
+          tone="ok"
+          eyebrow="Lernaktivitäten"
+          title="Grundübung und Anwendung sind vorhanden"
+        >
+          Erweiterungen und gezielte Remediation bleiben optional und werden nur bei Bedarf
+          geöffnet.
         </Callout>
       )}
 
@@ -213,8 +249,20 @@ function Ueberblick({
               const n = profile.activities[activity] ?? 0;
               return (
                 <li key={activity} className="flex items-center justify-between gap-2 text-xs">
-                  <span className={n || activity === 'extension' || activity === 'remediation' ? 'text-ink' : 'text-warn-ink'}>{ACTIVITY_LABEL[activity]}</span>
-                  <span className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-ink-muted' : 'text-warn-ink'}`}>{n || '—'}</span>
+                  <span
+                    className={
+                      n || activity === 'extension' || activity === 'remediation'
+                        ? 'text-ink'
+                        : 'text-warn-ink'
+                    }
+                  >
+                    {ACTIVITY_LABEL[activity]}
+                  </span>
+                  <span
+                    className={`tabular ${n || activity === 'extension' || activity === 'remediation' ? 'text-ink-muted' : 'text-warn-ink'}`}
+                  >
+                    {n || '—'}
+                  </span>
                 </li>
               );
             })}
@@ -228,7 +276,9 @@ function Ueberblick({
           <ul className="space-y-2">
             {(['input', 'abruf', 'interaktion', 'produktion'] as const).map((touch) => (
               <li key={touch} className="flex items-center justify-between gap-2 text-xs">
-                <span className={profile.touches[touch] ? 'text-ink' : 'text-warn-ink'}>{TOUCH_LABEL[touch]}</span>
+                <span className={profile.touches[touch] ? 'text-ink' : 'text-warn-ink'}>
+                  {TOUCH_LABEL[touch]}
+                </span>
                 <Bar
                   value={profile.touches[touch] ?? 0}
                   max={elements.length}
@@ -250,7 +300,9 @@ function Ueberblick({
           <ul className="space-y-1.5 text-xs">
             {topic.outcomes.map((outcome) => (
               <li key={outcome.id} className="flex items-start gap-2">
-                <Chip tone={profile.modesDelivered.includes(outcome.mode) ? 'neutral' : 'warn'}>{outcome.mode}</Chip>
+                <Chip tone={profile.modesDelivered.includes(outcome.mode) ? 'neutral' : 'warn'}>
+                  {outcome.mode}
+                </Chip>
                 <span className="text-ink">{outcome.de}</span>
               </li>
             ))}
@@ -265,10 +317,18 @@ function Ueberblick({
               ))}
             </ol>
           ) : (
-            <p className="text-xs text-warn-ink">{PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}</p>
+            <p className="text-xs text-warn-ink">
+              {PROBLEM_LABELS['artikel-ohne-abschnitte']?.why}
+            </p>
           )}
           <p className="mt-3 border-t border-border-subtle pt-2 text-xs">
-            <Quelllink href={href('quelle', undefined, { pfad: graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ?? topic.file })}>
+            <Quelllink
+              href={href('quelle', undefined, {
+                pfad:
+                  graph.elements.find((e) => e.topic === topic.id && e.kind === 'artikel')?.file ??
+                  topic.file,
+              })}
+            >
               Artikel öffnen
             </Quelllink>
           </p>
@@ -278,25 +338,76 @@ function Ueberblick({
         <Panel title="Sprachfassungen">
           <div className="flex flex-wrap gap-2">
             {topic.languageCoverage.map((entry) => (
-              <Chip key={entry.language} tone={entry.status === 'complete' ? 'ok' : entry.status === 'partial' ? 'brand' : 'neutral'}>
-                {entry.language.toUpperCase()} · {entry.status === 'complete' ? 'vollständig' : entry.status === 'partial' ? 'teilweise' : 'fehlt'} · {entry.authored}/{entry.required}
+              <Chip
+                key={entry.language}
+                tone={
+                  entry.status === 'complete'
+                    ? 'ok'
+                    : entry.status === 'partial'
+                      ? 'brand'
+                      : 'neutral'
+                }
+              >
+                {entry.language.toUpperCase()} ·{' '}
+                {entry.status === 'complete'
+                  ? 'vollständig'
+                  : entry.status === 'partial'
+                    ? 'teilweise'
+                    : 'fehlt'}{' '}
+                · {entry.authored}/{entry.required}
               </Chip>
             ))}
           </div>
-          <p className="mt-2 text-xs text-ink-muted">Gezählt werden verfasste Erklärungshälften; deutsche Beispiele allein gelten nicht als DE-Fassung.</p>
+          <p className="mt-2 text-xs text-ink-muted">
+            Gezählt werden verfasste Erklärungshälften; deutsche Beispiele allein gelten nicht als
+            DE-Fassung.
+          </p>
         </Panel>
       </div>
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <Panel title="Grammatiklinien und Fokus">
           <div className="flex flex-wrap gap-1.5">
-            {[...new Set(profile.points.map((id) => graph.inventory.find((point) => point.id === id)?.track).filter((id): id is string => !!id))].map((track) => <Chip key={track} tone="brand">{graph.grammarTracks.find((item) => item.id === track)?.de ?? track}</Chip>)}
-            {profile.focus.map((tag) => <a key={tag} href={href('fokus', tag)}><Chip>{tag}</Chip></a>)}
+            {[
+              ...new Set(
+                profile.points
+                  .map((id) => graph.inventory.find((point) => point.id === id)?.track)
+                  .filter((id): id is string => !!id),
+              ),
+            ].map((track) => (
+              <Chip key={track} tone="brand">
+                {graph.grammarTracks.find((item) => item.id === track)?.de ?? track}
+              </Chip>
+            ))}
+            {profile.focus.map((tag) => (
+              <a key={tag} href={href('fokus', tag)}>
+                <Chip>{tag}</Chip>
+              </a>
+            ))}
           </div>
-          {topic.tags.length ? <p className="mt-3 text-xs text-ink-muted">Themen-Tags: {topic.tags.join(' · ')}</p> : null}
+          {topic.tags.length ? (
+            <p className="mt-3 text-xs text-ink-muted">Themen-Tags: {topic.tags.join(' · ')}</p>
+          ) : null}
         </Panel>
         <Panel title="Referenzansprüche" tone={topic.claims.length ? 'neutral' : 'leer'}>
-          {topic.claims.length ? <ul className="space-y-1 text-xs text-ink">{topic.claims.map((claim) => <li key={claim}>{claim}</li>)}</ul> : <p className="text-xs text-ink-muted">Keine Themenliste beansprucht; bei reinen Grammatikthemen ist das erwartbar.</p>}
-          <p className="mt-3"><a href={href('referenzen')} className="text-xs text-info-ink underline underline-offset-2">in Referenzen prüfen</a></p>
+          {topic.claims.length ? (
+            <ul className="space-y-1 text-xs text-ink">
+              {topic.claims.map((claim) => (
+                <li key={claim}>{claim}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-xs text-ink-muted">
+              Keine Themenliste beansprucht; bei reinen Grammatikthemen ist das erwartbar.
+            </p>
+          )}
+          <p className="mt-3">
+            <a
+              href={href('referenzen')}
+              className="text-xs text-info-ink underline underline-offset-2"
+            >
+              in Referenzen prüfen
+            </a>
+          </p>
         </Panel>
       </div>
     </>
@@ -311,7 +422,9 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
     {
       key: 'activity',
       head: 'Funktion',
-      cell: (e) => <span className="text-ink">{e.activity ? ACTIVITY_LABEL[e.activity] : '—'}</span>,
+      cell: (e) => (
+        <span className="text-ink">{e.activity ? ACTIVITY_LABEL[e.activity] : '—'}</span>
+      ),
     },
     {
       key: 'stage',
@@ -334,8 +447,22 @@ function Elemente({ graph, elements }: { graph: GraphPayload; elements: Element[
         ),
     },
     { key: 'kind', head: 'Art', cell: (e) => <span className="text-ink-muted">{e.kind}</span> },
-    { key: 'medium', head: 'Medium', cell: (e) => <span className="text-ink-muted">{e.medium ? MEDIUM_LABEL[e.medium] : '—'}</span> },
-    { key: 'id', head: 'Element', cell: (e) => <Quelllink href={href('quelle', undefined, { pfad: e.file })}>{e.id.split('#')[0]}</Quelllink> },
+    {
+      key: 'medium',
+      head: 'Medium',
+      cell: (e) => (
+        <span className="text-ink-muted">{e.medium ? MEDIUM_LABEL[e.medium] : '—'}</span>
+      ),
+    },
+    {
+      key: 'id',
+      head: 'Element',
+      cell: (e) => (
+        <Quelllink href={href('quelle', undefined, { pfad: e.file })}>
+          {e.id.split('#')[0]}
+        </Quelllink>
+      ),
+    },
     { key: 'items', head: 'Aufgaben', numeric: true, cell: (e) => e.depth.items || '' },
     { key: 'prod', head: 'produktiv', numeric: true, cell: (e) => e.depth.production || '' },
     {
@@ -399,7 +526,9 @@ function Befunde({ problems }: { problems: GraphPayload['problems'] }) {
     <ul className="space-y-3">
       {problems.map((p, i) => (
         <li key={`${p.kind}-${i}`}>
-          <p className="text-sm font-medium text-warn-ink">{PROBLEM_LABELS[p.kind]?.de ?? p.kind}</p>
+          <p className="text-sm font-medium text-warn-ink">
+            {PROBLEM_LABELS[p.kind]?.de ?? p.kind}
+          </p>
           <p className="text-sm text-ink">{p.message}</p>
           <p className="mt-0.5 text-xs text-ink-muted">{PROBLEM_LABELS[p.kind]?.why}</p>
           {p.file ? (

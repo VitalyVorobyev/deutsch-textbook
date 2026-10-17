@@ -49,7 +49,14 @@ const meaningSide = {
 export function GermanToGerman() {
   return (
     <div className="max-w-xl">
-      <Match item={germanToGerman} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Match
+        item={germanToGerman}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -58,7 +65,14 @@ export function GermanToGerman() {
 export function MeaningSide() {
   return (
     <div className="max-w-xl">
-      <Match item={meaningSide} lang="en" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Match
+        item={meaningSide}
+        lang="en"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }
@@ -67,7 +81,14 @@ export function MeaningSide() {
 export function MeaningSideInRussian() {
   return (
     <div className="max-w-xl">
-      <Match item={meaningSide} lang="ru" onResult={noop} onNext={noop} locked={false} nextLabel="Weiter →" />
+      <Match
+        item={meaningSide}
+        lang="ru"
+        onResult={noop}
+        onNext={noop}
+        locked={false}
+        nextLabel="Weiter →"
+      />
     </div>
   );
 }

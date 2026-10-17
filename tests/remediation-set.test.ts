@@ -11,7 +11,16 @@ import type { ExerciseItem, ExerciseRole } from '@da/schema';
 const FOCUS = 'dativ-praepositionen';
 
 const mcItem = (id: string, focus?: string): ExerciseItem =>
-  ({ id, type: 'mc', outcomes: [], preview: false, prompt: '?', options: ['a', 'b'], correct: 0, focus }) as ExerciseItem;
+  ({
+    id,
+    type: 'mc',
+    outcomes: [],
+    preview: false,
+    prompt: '?',
+    options: ['a', 'b'],
+    correct: 0,
+    focus,
+  }) as ExerciseItem;
 
 const translateItem = (id: string, focus?: string): ExerciseItem =>
   ({
@@ -27,7 +36,12 @@ const translateItem = (id: string, focus?: string): ExerciseItem =>
     focus,
   }) as ExerciseItem;
 
-function set(over: { setId: string; role: ExerciseRole; items: ExerciseItem[]; topicId?: string }): TrainingSet {
+function set(over: {
+  setId: string;
+  role: ExerciseRole;
+  items: ExerciseItem[];
+  topicId?: string;
+}): TrainingSet {
   return {
     setId: over.setId,
     topicId: over.topicId ?? 't1',
@@ -63,8 +77,16 @@ describe('remediationSetFor (R4)', () => {
   });
 
   test('a translate item carrying a DIFFERENT focus does not count toward the tie-break', () => {
-    const setA = set({ setId: 'a', role: 'drill', items: [mcItem('a1', FOCUS), translateItem('a2', 'other-focus')] });
-    const setB = set({ setId: 'b', role: 'drill', items: [mcItem('b1', FOCUS), translateItem('b2', FOCUS)] });
+    const setA = set({
+      setId: 'a',
+      role: 'drill',
+      items: [mcItem('a1', FOCUS), translateItem('a2', 'other-focus')],
+    });
+    const setB = set({
+      setId: 'b',
+      role: 'drill',
+      items: [mcItem('b1', FOCUS), translateItem('b2', FOCUS)],
+    });
     expect(remediationSetFor(FOCUS, 't1', [setA, setB])?.setId).toBe('b');
   });
 
@@ -84,7 +106,12 @@ describe('remediationSetFor (R4)', () => {
   });
 
   test('ignores sets belonging to a different topic', () => {
-    const other = set({ setId: 'other', topicId: 't2', role: 'drill', items: [mcItem('o1', FOCUS)] });
+    const other = set({
+      setId: 'other',
+      topicId: 't2',
+      role: 'drill',
+      items: [mcItem('o1', FOCUS)],
+    });
     expect(remediationSetFor(FOCUS, 't1', [other])).toBeUndefined();
   });
 

@@ -1,5 +1,11 @@
 import { describe, expect, test } from 'bun:test';
-import { levelDepth, pointDepths, tagDepths, PRODUCTION_TYPES, SELECTION_TYPES } from '@da/content/grammar-depth';
+import {
+  levelDepth,
+  pointDepths,
+  tagDepths,
+  PRODUCTION_TYPES,
+  SELECTION_TYPES,
+} from '@da/content/grammar-depth';
 import { invalidateContentGraph } from '@da/content/graph';
 import { focusIntroducedBy } from '@da/content/focus-tags';
 
@@ -32,7 +38,10 @@ describe('grammar depth', () => {
     B1: { teaching: 6, production: 5, files: 3 },
   } as const;
 
-  for (const [level, floor] of Object.entries(FLOORS) as [keyof typeof FLOORS, typeof FLOORS.A1][]) {
+  for (const [level, floor] of Object.entries(FLOORS) as [
+    keyof typeof FLOORS,
+    typeof FLOORS.A1,
+  ][]) {
     test(`${level} median practice per confusion does not fall`, () => {
       const d = levelDepth(level);
       expect([
@@ -64,11 +73,11 @@ describe('grammar depth', () => {
     // The A2 wave closed the three zero-item structures and all eight structure-level probe gaps.
     // Keep the corpus-wide ceilings honest: thin tags in later levels still remain editorial work,
     // but A2 may not silently recreate the debt this wave removed.
-    expect([
-      totals.thin <= 7,
-      totals.singleFile <= 7,
-      totals.noProbe <= 0,
-    ]).toEqual([true, true, true]);
+    expect([totals.thin <= 7, totals.singleFile <= 7, totals.noProbe <= 0]).toEqual([
+      true,
+      true,
+      true,
+    ]);
   });
 
   test('every allowlisted tag appears, including ones nothing drills yet', () => {
@@ -111,7 +120,9 @@ describe('grammar depth', () => {
     expect(afterwards).not.toBe(first);
     // Same corpus, so the same answer — the memo is a speed-up, never a different measurement.
     expect(afterwards.size).toBe(first.size);
-    expect(afterwards.get('akkusativ-artikel')?.teaching).toBe(first.get('akkusativ-artikel')?.teaching);
+    expect(afterwards.get('akkusativ-artikel')?.teaching).toBe(
+      first.get('akkusativ-artikel')?.teaching,
+    );
   });
 
   test('a point with no teaching items is not counted as missing its delayed check', () => {
@@ -119,7 +130,10 @@ describe('grammar depth', () => {
     // have no items and no probes, and are excluded by construction.
     const untaught = pointDepths().filter((p) => p.teaching === 0);
     expect(untaught.length).toBeGreaterThan(0);
-    const counted = (['A1', 'A2', 'B1'] as const).reduce((n, l) => n + levelDepth(l).pointsWithoutProbe, 0);
+    const counted = (['A1', 'A2', 'B1'] as const).reduce(
+      (n, l) => n + levelDepth(l).pointsWithoutProbe,
+      0,
+    );
     const allWithoutProbe = pointDepths().filter((p) => p.probe === 0).length;
     expect(counted).toBeLessThan(allWithoutProbe);
   });

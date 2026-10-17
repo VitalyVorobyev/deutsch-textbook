@@ -15,10 +15,7 @@ import { tableItemSchema } from '@da/schema';
 afterEach(cleanup);
 
 /** The three rows of `a2/verbindungen-folgen:table-drei-wortarten`, restated. */
-const weil = [
-  { answer: 'Ich komme nicht, weil …', given: true },
-  { answer: 'ich heute arbeite' },
-];
+const weil = [{ answer: 'Ich komme nicht, weil …', given: true }, { answer: 'ich heute arbeite' }];
 const deshalb = [
   { answer: 'Ich arbeite heute. Deshalb …', given: true },
   { answer: 'komme ich nicht' },
@@ -102,10 +99,7 @@ describe('acceptedCellAnswers tolerates a capitalized fragment', () => {
     { answer: 'Das Auto gehört meinem Bruder.', given: true },
     { answer: 'das Auto von meinem Bruder' },
   ];
-  const name = [
-    { answer: 'Das Fahrrad gehört Anna.', given: true },
-    { answer: 'Annas Fahrrad' },
-  ];
+  const name = [{ answer: 'Das Fahrrad gehört Anna.', given: true }, { answer: 'Annas Fahrrad' }];
 
   test('accepts the key as authored', () => {
     expect(graded(vonDativ, 'das Auto von meinem Bruder')).toBe(true);
@@ -134,7 +128,10 @@ describe('acceptedCellAnswers tolerates a capitalized fragment', () => {
  * continues (`… Sie mir bitte helfen?`). Typed lower-case, each had the form right.
  */
 describe('acceptedCellAnswers folds the head of a cell that opens a sentence', () => {
-  const sentence = [{ answer: 'Ich habe eine Bitte.', given: true }, { answer: 'Ich hätte eine Bitte.' }];
+  const sentence = [
+    { answer: 'Ich habe eine Bitte.', given: true },
+    { answer: 'Ich hätte eine Bitte.' },
+  ];
   const opener = [{ answer: 'Könnten' }];
 
   test('a whole-sentence cell takes its lower-case head', () => {
@@ -143,11 +140,15 @@ describe('acceptedCellAnswers folds the head of a cell that opens a sentence', (
   });
 
   test('a first cell its row label continues takes its lower-case head', () => {
-    expect(answerMatches('könnten', acceptedCellAnswers(opener, 0, '… Sie mir bitte helfen?'))).toBe(true);
+    expect(
+      answerMatches('könnten', acceptedCellAnswers(opener, 0, '… Sie mir bitte helfen?')),
+    ).toBe(true);
   });
 
   test('a fragment keeps its capital graded — there it is a noun’s', () => {
-    expect(answerMatches('schnee', acceptedCellAnswers([{ answer: 'Schnee' }], 0, 'schneien'))).toBe(false);
+    expect(
+      answerMatches('schnee', acceptedCellAnswers([{ answer: 'Schnee' }], 0, 'schneien')),
+    ).toBe(false);
     expect(answerMatches('könnten', acceptedCellAnswers(opener, 0, 'bitten'))).toBe(false);
   });
 });
@@ -162,37 +163,67 @@ describe('TableFill grades a submitted continuation', () => {
     type: 'table',
     columns: ['Verbindung', 'Ich arbeite heute. / Ich komme nicht.'],
     rows: [
-      { label: 'weil (Nebensatz)', cells: [
-        { answer: 'Ich komme nicht, weil …', given: true }, { answer: 'ich heute arbeite' }] },
-      { label: 'denn (Hauptsatz)', cells: [
-        { answer: 'Ich komme nicht, denn …', given: true }, { answer: 'ich arbeite heute' }] },
-      { label: 'deshalb (Adverb)', cells: [
-        { answer: 'Ich arbeite heute. Deshalb …', given: true }, { answer: 'komme ich nicht' }] },
+      {
+        label: 'weil (Nebensatz)',
+        cells: [
+          { answer: 'Ich komme nicht, weil …', given: true },
+          { answer: 'ich heute arbeite' },
+        ],
+      },
+      {
+        label: 'denn (Hauptsatz)',
+        cells: [
+          { answer: 'Ich komme nicht, denn …', given: true },
+          { answer: 'ich arbeite heute' },
+        ],
+      },
+      {
+        label: 'deshalb (Adverb)',
+        cells: [
+          { answer: 'Ich arbeite heute. Deshalb …', given: true },
+          { answer: 'komme ich nicht' },
+        ],
+      },
     ],
   });
 
   const submit = (typed: string[]) => {
     const onResult = mock(() => {});
     render(
-      <TableFill item={item} lang="en" onResult={onResult} locked={false}
-        onNext={mock(() => {})} nextLabel="Weiter →" />,
+      <TableFill
+        item={item}
+        lang="en"
+        onResult={onResult}
+        locked={false}
+        onNext={mock(() => {})}
+        nextLabel="Weiter →"
+      />,
     );
     const inputs = screen.getAllByRole('textbox');
     expect(inputs).toHaveLength(3);
     typed.forEach((value, n) => fireEvent.change(inputs[n]!, { target: { value } }));
     fireEvent.click(screen.getByRole('button', { name: /prüfen|check/i }));
     return onResult.mock.calls[0]![0] as {
-      correct: boolean; correctParts: number; totalParts: number; given: string;
+      correct: boolean;
+      correctParts: number;
+      totalParts: number;
+      given: string;
     };
   };
 
   test('the rendering scored 0/3 on 2026-07-24 is 3/3', () => {
-    const result = submit(['weil ich heute arbeite', 'denn ich arbeite heute', 'Deshalb komme ich nicht']);
+    const result = submit([
+      'weil ich heute arbeite',
+      'denn ich arbeite heute',
+      'Deshalb komme ich nicht',
+    ]);
     expect(result.correct).toBe(true);
     expect(result.correctParts).toBe(3);
     expect(result.totalParts).toBe(3);
     // The learner's own text still reaches the log verbatim — the grader widened, not the record.
-    expect(result.given).toBe('weil ich heute arbeite / denn ich arbeite heute / Deshalb komme ich nicht');
+    expect(result.given).toBe(
+      'weil ich heute arbeite / denn ich arbeite heute / Deshalb komme ich nicht',
+    );
   });
 
   test('and so is the continuation the answer key states', () => {
@@ -202,7 +233,11 @@ describe('TableFill grades a submitted continuation', () => {
   });
 
   test('a wrong word order is still wrong, connector or not', () => {
-    const result = submit(['weil ich arbeite heute', 'denn ich arbeite heute', 'Deshalb ich komme nicht']);
+    const result = submit([
+      'weil ich arbeite heute',
+      'denn ich arbeite heute',
+      'Deshalb ich komme nicht',
+    ]);
     expect(result.correct).toBe(false);
     expect(result.correctParts).toBe(1);
   });

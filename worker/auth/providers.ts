@@ -77,7 +77,11 @@ function decodeIdTokenPayload(idToken: string): Record<string, unknown> {
 async function postForm(url: string, body: Record<string, string>, headers: HeadersInit = {}) {
   const response = await fetch(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/x-www-form-urlencoded', accept: 'application/json', ...headers },
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+      accept: 'application/json',
+      ...headers,
+    },
     body: new URLSearchParams(body).toString(),
   });
   if (!response.ok) {
@@ -170,12 +174,20 @@ const github: Provider = {
     const userResponse = await fetch('https://api.github.com/user', { headers: apiHeaders });
     if (!userResponse.ok) throw new Error(`github /user failed (${userResponse.status})`);
     const profile = (await userResponse.json()) as Record<string, unknown>;
-    const subject = typeof profile.id === 'number' || typeof profile.id === 'string' ? String(profile.id) : '';
+    const subject =
+      typeof profile.id === 'number' || typeof profile.id === 'string' ? String(profile.id) : '';
     if (!subject) throw new Error('github /user returned no id');
 
-    const emailsResponse = await fetch('https://api.github.com/user/emails', { headers: apiHeaders });
-    if (!emailsResponse.ok) throw new Error(`github /user/emails failed (${emailsResponse.status})`);
-    const emails = (await emailsResponse.json()) as { email?: string; primary?: boolean; verified?: boolean }[];
+    const emailsResponse = await fetch('https://api.github.com/user/emails', {
+      headers: apiHeaders,
+    });
+    if (!emailsResponse.ok)
+      throw new Error(`github /user/emails failed (${emailsResponse.status})`);
+    const emails = (await emailsResponse.json()) as {
+      email?: string;
+      primary?: boolean;
+      verified?: boolean;
+    }[];
     const chosen =
       emails.find((entry) => entry.primary && entry.verified && entry.email) ??
       emails.find((entry) => entry.verified && entry.email);

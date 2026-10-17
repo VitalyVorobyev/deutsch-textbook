@@ -30,7 +30,13 @@ import {
  * transcribed a second time — a test that restates every `minimum` is a fourth mirror.
  */
 
-const SCHEMA_PATH = join(process.cwd(), 'packages', 'schema', 'schemas', 'audio-scene.v1.schema.json');
+const SCHEMA_PATH = join(
+  process.cwd(),
+  'packages',
+  'schema',
+  'schemas',
+  'audio-scene.v1.schema.json',
+);
 const FIXTURE_DIR = join(process.cwd(), 'packages', 'schema', 'schemas', 'fixtures');
 
 interface JsonSchemaObject {
@@ -45,7 +51,10 @@ const published = JSON.parse(readFileSync(SCHEMA_PATH, 'utf8')) as JsonSchemaObj
 };
 
 /** The definitions of the published schema, plus its root under the name the mirror uses. */
-const publishedDefinitions: Record<string, JsonSchemaObject> = { ...published.$defs, Scene: published };
+const publishedDefinitions: Record<string, JsonSchemaObject> = {
+  ...published.$defs,
+  Scene: published,
+};
 
 /**
  * The property names a Zod object accepts, and the ones it requires.
@@ -73,7 +82,9 @@ describe('Scene v1: the Zod mirror against the published JSON Schema', () => {
   });
 
   test('both mirrors define the same set of types', () => {
-    expect(Object.keys(AUDIO_SCENE_SHAPES).sort()).toEqual(Object.keys(publishedDefinitions).sort());
+    expect(Object.keys(AUDIO_SCENE_SHAPES).sort()).toEqual(
+      Object.keys(publishedDefinitions).sort(),
+    );
   });
 
   for (const [name, definition] of Object.entries(publishedDefinitions)) {
@@ -141,7 +152,9 @@ describe('Scene v1: the Zod mirror against the committed fixtures', () => {
     // `type` is defaulted in the contract, so a hand-written scene may omit it. Zod discriminates
     // before defaults apply, which is why `timelineEntrySchema` fills it first — this is that
     // branch, and without it every such entry would fail with "no matching discriminator".
-    const scene = loadFixture('narration-a1-erste-schritte') as { timeline: Record<string, unknown>[] };
+    const scene = loadFixture('narration-a1-erste-schritte') as {
+      timeline: Record<string, unknown>[];
+    };
     const stripped = {
       ...scene,
       timeline: scene.timeline.map(({ type: _type, ...rest }) => rest),
@@ -160,12 +173,24 @@ describe('Scene v1: the Zod mirror against the committed fixtures', () => {
 
 describe('Scene v1: the helpers a reader needs', () => {
   test('synthesis_text wins over display_text when it is set', () => {
-    expect(spokenText({ ...utterance(), synthesis_text: 'null eins sieben' })).toBe('null eins sieben');
+    expect(spokenText({ ...utterance(), synthesis_text: 'null eins sieben' })).toBe(
+      'null eins sieben',
+    );
   });
 
   test('a library reference and a generation prompt are told apart by shape', () => {
-    expect(isAssetRef({ ref: 'a'.repeat(64), source_start_ms: 0, source_duration_ms: null })).toBe(true);
-    expect(isAssetRef({ prompt: 'Bahnhofshalle', seed: 0, params: {}, duration_seconds: null, negative_prompt: null })).toBe(false);
+    expect(isAssetRef({ ref: 'a'.repeat(64), source_start_ms: 0, source_duration_ms: null })).toBe(
+      true,
+    );
+    expect(
+      isAssetRef({
+        prompt: 'Bahnhofshalle',
+        seed: 0,
+        params: {},
+        duration_seconds: null,
+        negative_prompt: null,
+      }),
+    ).toBe(false);
   });
 });
 

@@ -27,15 +27,27 @@ if (decks.length === 0) {
   process.exit(1);
 }
 
-const shown = (longOnly ? decks.filter((d) => d.long > 0) : decks).slice().sort((a, b) => b.long - a.long || b.median - a.median);
+const shown = (longOnly ? decks.filter((d) => d.long > 0) : decks)
+  .slice()
+  .sort((a, b) => b.long - a.long || b.median - a.median);
 
 const medians = decks.map((d) => d.median).sort((a, b) => a - b);
 const corpusMedian = medians[Math.floor(medians.length / 2)];
 const totalLong = decks.reduce((n, d) => n + d.long, 0);
 
 console.log(`gloss shape · ${decks.length} deck(s) · long = EN gloss ≥ ${LONG_GLOSS_WORDS} words`);
-console.log(`corpus median of deck medians: ${corpusMedian} word(s) · long entries in total: ${totalLong}\n`);
-console.log('deck'.padEnd(36) + 'entries'.padStart(8) + 'median'.padStart(8) + 'p90'.padStart(6) + 'max'.padStart(6) + 'long'.padStart(6) + '  duplicates');
+console.log(
+  `corpus median of deck medians: ${corpusMedian} word(s) · long entries in total: ${totalLong}\n`,
+);
+console.log(
+  'deck'.padEnd(36) +
+    'entries'.padStart(8) +
+    'median'.padStart(8) +
+    'p90'.padStart(6) +
+    'max'.padStart(6) +
+    'long'.padStart(6) +
+    '  duplicates',
+);
 for (const d of shown) {
   const dup = d.duplicates.length ? d.duplicates.map(([a, b]) => `${a}≈${b}`).join(', ') : '';
   console.log(

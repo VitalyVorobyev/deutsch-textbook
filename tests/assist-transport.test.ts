@@ -9,11 +9,13 @@ import { probeAssist, resetAssistForTests } from '../src/lib/assist';
 
 const realFetch = globalThis.fetch;
 
-const pluginFetch = mock(async () =>
-  new Response(JSON.stringify({ models: [{ name: 'gemma4:e4b' }] }), {
-    status: 200,
-    headers: { 'content-type': 'application/json' },
-  }));
+const pluginFetch = mock(
+  async () =>
+    new Response(JSON.stringify({ models: [{ name: 'gemma4:e4b' }] }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+);
 
 // The mock module is only ever reached while __TAURI_INTERNALS__ exists, so
 // removing the key in afterEach contains it to this file.
@@ -48,11 +50,13 @@ test('under Tauri the probe uses the plugin fetch and never touches the global f
 });
 
 test('outside Tauri the probe keeps using the global fetch', async () => {
-  const globalFetch = mock(async () =>
-    new Response(JSON.stringify({ models: [] }), {
-      status: 200,
-      headers: { 'content-type': 'application/json' },
-    }));
+  const globalFetch = mock(
+    async () =>
+      new Response(JSON.stringify({ models: [] }), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      }),
+  );
   globalThis.fetch = globalFetch as unknown as typeof fetch;
 
   const probe = await probeAssist();
