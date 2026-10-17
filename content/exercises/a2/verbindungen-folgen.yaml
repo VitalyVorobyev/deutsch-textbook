@@ -151,19 +151,23 @@ items:
     outcomes: [vergangenheit-erzaehlen]
     type: cloze
     focus: nebensatz-verbende
+    # revision 2: 8 of 8 misses (2026-08 – 09) chose the verb, not its place — the gap fixes the
+    # position, so the item graded which verb the author meant. The infinitives are named now, and
+    # gap 2 also takes the Präteritum wohnten, which keeps the verb at the end just as well.
+    revision: 2
     instruction:
-      en: "Put the verb where an als-clause needs it."
-      ru: "Поставьте глагол туда, где его требует придаточное с als."
-      uk: "Поставте дієслово туди, де його вимагає підрядне з als."
-    text: "Als ich gestern nach Hause {{kam}}, war niemand da. Als wir in Bremen {{gewohnt haben}}, hatten wir einen großen Garten."
+      en: "Put the verb where an als-clause needs it (kommen, wohnen)."
+      ru: "Поставьте глагол туда, где его требует придаточное с als (kommen, wohnen)."
+      uk: "Поставте дієслово туди, де його вимагає підрядне з als (kommen, wohnen)."
+    text: "Als ich gestern nach Hause {{kam}}, war niemand da. Als wir in Bremen {{gewohnt haben|wohnten}}, hatten wir einen großen Garten."
     translation:
       en: "When I got home yesterday, nobody was there. When we lived in Bremen, we had a big garden."
       ru: "Когда я вчера пришёл домой, никого не было. Когда мы жили в Бремене, у нас был большой сад."
       uk: "Коли я вчора прийшов додому, нікого не було. Коли ми жили в Бремені, у нас був великий сад."
     explain:
-      en: "als is a conjunction, so its clause is a Nebensatz and the conjugated verb waits at the very end — the rule you already have from weil and dass. In the Perfekt that means the participle first and the auxiliary last: gewohnt haben, never haben gewohnt. And because the als-clause comes first here, it fills position 1 of the whole sentence, so war and hatten follow straight after the comma."
-      ru: "als — союз, поэтому его придаточное это Nebensatz, и спрягаемый глагол ждёт в самом конце по уже знакомому правилу от weil и dass. В Perfekt это значит: сначала причастие, вспомогательный последним — gewohnt haben, а не haben gewohnt. А поскольку придаточное с als стоит здесь первым, оно занимает первое место всего предложения, и war и hatten идут сразу после запятой."
-      uk: "als — сполучник, тому його підрядне це Nebensatz, і відмінюване дієслово чекає в самому кінці за вже знайомим правилом від weil і dass. У Perfekt це значить: спочатку дієприкметник, допоміжне останнім — gewohnt haben, а не haben gewohnt. А оскільки підрядне з als стоїть тут першим, воно займає перше місце всього речення, і war та hatten ідуть одразу після коми."
+      en: "als is a conjunction, so its clause is a Nebensatz and the conjugated verb waits at the very end — the rule you already have from weil and dass. In the Perfekt that means the participle first and the auxiliary last: gewohnt haben, never haben gewohnt (wohnten counts too). And because the als-clause comes first here, it fills position 1 of the whole sentence, so war and hatten follow straight after the comma."
+      ru: "als — союз, поэтому его придаточное это Nebensatz, и спрягаемый глагол ждёт в самом конце по уже знакомому правилу от weil и dass. В Perfekt это значит: сначала причастие, вспомогательный последним — gewohnt haben, а не haben gewohnt (wohnten тоже засчитывается). А поскольку придаточное с als стоит здесь первым, оно занимает первое место всего предложения, и war и hatten идут сразу после запятой."
+      uk: "als — сполучник, тому його підрядне це Nebensatz, і відмінюване дієслово чекає в самому кінці за вже знайомим правилом від weil і dass. У Perfekt це значить: спочатку дієприкметник, допоміжне останнім — gewohnt haben, а не haben gewohnt (wohnten теж зараховується). А оскільки підрядне з als стоїть тут першим, воно займає перше місце всього речення, і war та hatten ідуть одразу після коми."
 
   - id: uebersetzen-deshalb-inversion
     revision: 2
@@ -201,7 +205,11 @@ items:
       - "Ich bin oft zu meiner Oma gefahren, als ich klein war."
       - "Als ich klein war, bin ich oft zu Oma gefahren."
       - "Ich bin oft zu Oma gefahren, als ich klein war."
-    revision: 2
+      # «маленьким» is also «ein Kind», and zur Oma is the everyday contraction (ruling 2026-10-17)
+      - "Als ich ein Kind war, bin ich oft zu meiner Oma gefahren."
+      - "Als ich ein Kind war, bin ich oft zur Oma gefahren."
+      - "Als ich klein war, bin ich oft zur Oma gefahren."
+    revision: 3
     key_tokens: ["Als"]
     explain:
       en: "The trap is oft. Going to your grandmother's happened many times — but als does not describe the visits, it describes being little, and you were little exactly once. The rule looks at the als-clause itself, not at what the main clause says about frequency. Both orders are good German; the accepted variant simply puts the main clause first."

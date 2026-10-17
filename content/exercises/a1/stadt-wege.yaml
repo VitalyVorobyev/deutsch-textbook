@@ -44,7 +44,10 @@ items:
     outcomes: [stadt-verkehrsmittel-nennen]
     type: cloze
     focus: akkusativ-artikel
-    instruction: { en: "Fill in the accusative article.", ru: "Вставьте артикль в аккузативе.", uk: "Вставте артикль в Akkusativ." }
+    # revision 2: 7 of 7 misses wrote den/einen — the gender of Fahrrad, not the case. The genders
+    # are named now, so the gaps grade the accusative alone.
+    revision: 2
+    instruction: { en: "Fill in the accusative article (das Taxi, das Fahrrad).", ru: "Вставьте артикль в аккузативе (das Taxi, das Fahrrad).", uk: "Вставте артикль в Akkusativ (das Taxi, das Fahrrad)." }
     text: "Der Bahnhof ist weit. Wir nehmen {{ein}} Taxi. — Nein, ich nehme {{das}} Fahrrad."
     translation: { en: "The station is far away. We are taking a taxi. — No, I am taking the bike.", ru: "Вокзал далеко. Мы возьмём такси. — Нет, я поеду на велосипеде.", uk: "Вокзал далеко. Ми візьмемо таксі. — Ні, я поїду велосипедом." }
     explain: { en: "In the accusative only the masculine changes (der → den, ein → einen). Taxi and Fahrrad are neuter, so ein and das stay unchanged — do not add -en where nothing changes.", ru: "В аккузативе меняется только мужской род (der → den, ein → einen). Taxi и Fahrrad — средний род: ein и das не меняются; не добавляйте -en там, где ничего не меняется.", uk: "В Akkusativ змінюється лише чоловічий рід (der → den, ein → einen). Taxi і Fahrrad — середній рід: ein і das не змінюються; не додавайте -en там, де нічого не змінюється." }
