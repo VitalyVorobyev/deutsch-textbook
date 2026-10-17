@@ -421,13 +421,14 @@ Triaged from `feedback.md`, which holds only raw capture.
 
 ### Instruments and gates
 
-- **P30-3 · TypeScript 7 waits on `astro check`.** TS 7.0.2 already checks the four projects with
-  0 errors (`for p in tsconfig.json worker/tsconfig.json apps/tonwerk/tsconfig.json
-  apps/redaktion/tsconfig.json; do bunx --package typescript@7.0.2 tsc --noEmit -p $p; done`), but
-  `@astrojs/check` peers `^5 || ^6` (withastro/roadmap#1321;
-  `npm view @astrojs/check peerDependencies`). When it allows 7, bump `typescript` in both
-  `package.json` files. `bun audit` reports one moderate build-time advisory,
-  `postcss-selector-parser` 6 via `@tailwindcss/typography`.
+- **P30-3 · Type-aware Oxlint.** `oxlint --type-aware` (needs `oxlint-tsgolint`, which runs on TS
+  7) reports 117 findings across 9 rules: `unbound-method` 57 (mostly destructured React hooks in
+  `apps/tonwerk/src/views/`), `restrict-template-expressions` 14, `await-thenable` 13,
+  `no-base-to-string` 12, `no-floating-promises` 9, `no-misused-spread` 6, three rules at ≤ 2.
+  First step: triage `await-thenable` and `no-floating-promises` — either can hide a real ordering
+  bug — switch off what fires only on React idiom, then add `--type-aware` to `lint`. `bun audit`
+  still reports one moderate build-time advisory, `postcss-selector-parser` 6 via
+  `@tailwindcss/typography`.
 - **Grading rulings carry no item revision, so a probe cannot be repaired past one.** An
   `accept` ruling must pass today's grader (`packages/content/src/grading-decisions.ts`), so
   once a ruling accepts a rendering, the item can never stop accepting it. Found on

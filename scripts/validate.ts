@@ -175,7 +175,7 @@ function parseFrontmatter(src: string, file: string): unknown {
   }
 }
 
-function validateWith<S extends z.ZodTypeAny>(
+function validateWith<S extends z.ZodType>(
   schema: S,
   data: unknown,
   file: string,
