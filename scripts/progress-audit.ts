@@ -34,7 +34,7 @@ import { decisionKey, loadGradingDecisions } from '@da/content/grading-decisions
 import { loadLidBank, loadLidNotes, loadLidTopics, lidTopicModules } from '@da/content/lid';
 import type { GradingDecision } from '@da/schema';
 import { LID_EXAM, type LidBank, type LidTopics } from '@da/schema/lid';
-import { lidReadiness, type LidState } from '../src/lib/lid';
+import { lidReadiness, lidStatuses, type LidState } from '../src/lib/lid';
 import { SUPPORTED_SNAPSHOT_VERSIONS } from '../src/lib/snapshot-schema';
 import {
   armedAt,
@@ -318,18 +318,22 @@ export interface LidAudit {
   /** questions in the bank */
   total: number;
   seen: number;
-  /** questions whose two most recent answers are both correct */
-  lastTwoCorrect: number;
+  /** each question's status (`lidQuestionStatus`: one verdict per day, a retry cannot rescue it) */
+  secure: number;
+  shaky: number;
+  missed: number;
   /** question states due at the snapshot's export time */
   due: number;
-  /** most recent answer per question, by module and then by topic, in topics.yaml order */
+  /** the statuses by module and then by topic, in topics.yaml order */
   byGroup: Array<{
     module: string;
     /** absent on a module's own total row */
     topic?: string;
     questions: number;
     seen: number;
-    latestCorrect: number;
+    secure: number;
+    shaky: number;
+    missed: number;
   }>;
   /** answered wrong most often, every mode counted */
   mostMissed: Array<{ id: string; wrong: number; answers: number; question: string }>;
@@ -464,12 +468,9 @@ function lidSummary(
   const text = new Map(context.bank.questions.map((q) => [q.id, q.question]));
   const readiness = lidReadiness(lid, ids, new Date(exportedAt));
 
-  const latest = new Map<string, { correct: boolean; ts: number }>();
+  const status = lidStatuses(lid, ids);
   const tally = new Map<string, { wrong: number; answers: number; lastWrong: number }>();
   for (const answer of lid.answers) {
-    const prior = latest.get(answer.q);
-    if (!prior || answer.ts >= prior.ts)
-      latest.set(answer.q, { correct: answer.correct, ts: answer.ts });
     const row = tally.get(answer.q) ?? { wrong: 0, answers: 0, lastWrong: 0 };
     row.answers += 1;
     if (!answer.correct) {
@@ -482,25 +483,24 @@ function lidSummary(
   const topicOf = lidTopicModules(context.topics);
   const byGroup: LidAudit['byGroup'] = [];
   for (const module of context.topics.modules) {
-    const total = { module: module.title_de, questions: 0, seen: 0, latestCorrect: 0 };
+    const empty = { questions: 0, seen: 0, secure: 0, shaky: 0, missed: 0 };
+    const total = { module: module.title_de, ...empty };
     const rows = module.topics.map((topic) => ({
       module: module.title_de,
       topic: topic.title_de,
-      questions: 0,
-      seen: 0,
-      latestCorrect: 0,
+      ...empty,
     }));
     for (const id of ids) {
       const topic = context.placement.get(id);
       const place = topic ? topicOf.get(topic) : undefined;
       if (!place || place.module !== module.id) continue;
       const row = rows[module.topics.findIndex((t) => t.id === topic)]!;
-      const answer = latest.get(id);
+      const own = status.get(id)!;
       for (const r of [total, row]) {
         r.questions += 1;
-        if (answer) {
+        if (own !== 'unseen') {
           r.seen += 1;
-          if (answer.correct) r.latestCorrect += 1;
+          r[own] += 1;
         }
       }
     }
@@ -512,7 +512,9 @@ function lidSummary(
     answers: lid.answers.length,
     total: readiness.total,
     seen: readiness.seen,
-    lastTwoCorrect: readiness.lastTwoCorrect,
+    secure: readiness.secure,
+    shaky: readiness.shaky,
+    missed: readiness.missed,
     due: readiness.due,
     byGroup,
     mostMissed: [...tally.entries()]
@@ -1667,18 +1669,22 @@ function lidSection(lid: LidAudit | undefined): string[] {
   return [
     '## Leben in Deutschland',
     '',
-    `Coverage: ${lid.seen}/${lid.total} questions answered at least once; ${lid.lastTwoCorrect} ` +
-      `correct on their last two answers; ${lid.due} due at export. ${lid.answers} answer(s) in all.`,
+    `Coverage: ${lid.seen}/${lid.total} questions answered at least once — ${lid.secure} secure, ` +
+      `${lid.shaky} shaky, ${lid.missed} missed; ${lid.due} due at export. ` +
+      `${lid.answers} answer(s) in all.`,
     '',
-    'Accuracy is each question’s most recent answer. A module row covers all its questions; ' +
-      'topic rows appear once one of theirs has been answered.',
+    'Status reads one verdict per question per local day — right only if every answer that day ' +
+      'was right, so a retry after a miss cannot rescue its day. Secure = right on the last two ' +
+      'days it came up; shaky = right on the last, not yet twice; missed = wrong on the last. ' +
+      'A module row covers all its questions; topic rows appear once one of theirs has been answered.',
     '',
-    '| Module | Topic | Seen | Latest correct |',
-    '| --- | --- | ---: | ---: |',
-    ...lid.byGroup.map((row) =>
-      row.topic === undefined
-        ? `| **${md(row.module)}** | all | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`
-        : `| ${md(row.module)} | ${md(row.topic)} | ${row.seen}/${row.questions} | ${share(row.latestCorrect, row.seen)} |`,
+    '| Module | Topic | Seen | Secure | Shaky | Missed |',
+    '| --- | --- | ---: | ---: | ---: | ---: |',
+    ...lid.byGroup.map(
+      (row) =>
+        `| ${row.topic === undefined ? `**${md(row.module)}**` : md(row.module)} | ` +
+        `${row.topic === undefined ? 'all' : md(row.topic)} | ${row.seen}/${row.questions} | ` +
+        `${share(row.secure, row.seen)} | ${row.shaky} | ${row.missed} |`,
     ),
     '',
     ...(lid.mostMissed.length

@@ -129,6 +129,8 @@ const IMAGES: LidEntry = {
 const PDF = 'https://example.invalid/katalog.pdf';
 /** rng() = 0 makes Fisher–Yates rotate a,b,c,d into b,c,d,a — a known, non-identity order. */
 const ZERO = () => 0;
+/** Keeps a queue in its planned order: Fisher–Yates swaps each slot with itself. */
+const KEEP = () => 0.999999;
 
 let LidQuestion: ComponentType<LidQuestionProps>;
 let LidPractice: ComponentType<{
@@ -137,6 +139,7 @@ let LidPractice: ComponentType<{
   pdfUrl: string;
   lessons?: LidLessonScopes;
   rng?: () => number;
+  queueRng?: () => number;
 }>;
 
 beforeAll(async () => {
@@ -317,9 +320,30 @@ describe('LidQuestion — translation', () => {
 });
 
 describe('LidPractice', () => {
+  test('the queue is dealt in random order', async () => {
+    // ZERO swaps every slot with the first: [TEXT, IMAGES] is dealt IMAGES first.
+    render(
+      <LidPractice
+        entries={[TEXT, IMAGES]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        rng={ZERO}
+        queueRng={ZERO}
+      />,
+    );
+    await screen.findByText(IMAGES.question.question);
+    expect(screen.queryByText(TEXT.question.question)).toBeNull();
+  });
+
   test('a choice shows feedback and is logged exactly once', async () => {
     render(
-      <LidPractice entries={[TEXT, IMAGES]} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />,
+      <LidPractice
+        entries={[TEXT, IMAGES]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        rng={ZERO}
+        queueRng={KEEP}
+      />,
     );
     await screen.findByText(TEXT.question.question);
     expect(screen.getByText('0 fällig · 2 neu heute')).toBeTruthy();
@@ -360,7 +384,15 @@ describe('LidPractice', () => {
   });
 
   test('keys 1–4 choose the option in that displayed position', async () => {
-    render(<LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    render(
+      <LidPractice
+        entries={[TEXT]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        rng={ZERO}
+        queueRng={KEEP}
+      />,
+    );
     await screen.findByText(TEXT.question.question);
     // The question can be in the DOM before the effect that binds the keyboard has run: the read
     // resolves outside act, so React may defer that passive effect. A slow runner (the Windows
@@ -432,6 +464,7 @@ describe('lessons', () => {
         pdfUrl={PDF}
         lessons={lessons}
         rng={ZERO}
+        queueRng={KEEP}
       />,
     );
     await screen.findByText(IMAGES.question.question);
@@ -456,6 +489,7 @@ describe('lessons', () => {
         pdfUrl={PDF}
         lessons={lessons}
         rng={ZERO}
+        queueRng={KEEP}
       />,
     );
     await screen.findByText(TEXT.question.question);
@@ -467,7 +501,14 @@ describe('lessons', () => {
   test('?lektion=constructor names no lesson — only own keys count', async () => {
     at('?lektion=constructor');
     render(
-      <LidPractice entries={[TEXT]} bankVersion="test-bank" pdfUrl={PDF} lessons={{}} rng={ZERO} />,
+      <LidPractice
+        entries={[TEXT]}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        lessons={{}}
+        rng={ZERO}
+        queueRng={KEEP}
+      />,
     );
     await screen.findByText(TEXT.question.question);
     expect(screen.getByText(/Diese Lektion gibt es nicht/)).toBeTruthy();
@@ -499,7 +540,15 @@ describe('LidPractice — a missed question comes back later, not next', () => {
   }
 
   test('a new question returns after 8 others, then after half that', async () => {
-    render(<LidPractice entries={copies(14)} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    render(
+      <LidPractice
+        entries={copies(14)}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        rng={ZERO}
+        queueRng={KEEP}
+      />,
+    );
     const asked = await sitThrough(16, [1, 10]);
     const missed = asked[0];
     expect(asked.flatMap((id, i) => (id === missed ? [i + 1] : []))).toEqual([1, 10, 15]);
@@ -526,7 +575,15 @@ describe('LidPractice — a missed question comes back later, not next', () => {
         },
       },
     };
-    render(<LidPractice entries={entries} bankVersion="test-bank" pdfUrl={PDF} rng={ZERO} />);
+    render(
+      <LidPractice
+        entries={entries}
+        bankVersion="test-bank"
+        pdfUrl={PDF}
+        rng={ZERO}
+        queueRng={KEEP}
+      />,
+    );
     const asked = await sitThrough(13, [1]);
     expect(asked[0]).toBe(101); // due before new
     // After 8 others it would be the 10th; a lapse waits 50, which here is the end.
