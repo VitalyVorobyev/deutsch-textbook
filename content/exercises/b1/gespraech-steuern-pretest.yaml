@@ -4,6 +4,7 @@ title:
   en: "Before you read — three moves a conversation needs"
   ru: "Перед чтением — три хода, без которых разговор не идёт"
   uk: "Перед читанням — три ходи, без яких розмова не йде"
+  de: "Vor dem Lesen — drei Schritte, die ein Gespräch braucht"
 
 # Three guesses, one per decision the article answers: whether a discourse adverb counts as the
 # first element of the sentence, what you actually say to show you are listening, and which form
@@ -17,6 +18,7 @@ items:
       en: "Begin the sentence with übrigens."
       ru: "Начните предложение со слова übrigens."
       uk: "Почніть речення зі слова übrigens."
+      de: "Beginn den Satz mit übrigens."
     prompt_en: "By the way, I still have a question."
     prompt_ru: "Кстати, у меня есть ещё вопрос."
     prompt_uk: "До речі, у мене є ще питання."
@@ -25,6 +27,7 @@ items:
       en: "*Übrigens* is an adverb standing inside the sentence, so it fills position 1 and the finite verb has to come immediately after it: *Übrigens **habe** ich …*. A phrase learned as a label gets written in front of a finished sentence — *Übrigens ich habe …* — and the verb then lands third, which German does not allow. The same rule you already know from *deshalb* and *trotzdem*."
       ru: "*Übrigens* — наречие внутри предложения, поэтому оно занимает первое место, а спрягаемый глагол обязан идти сразу за ним: *Übrigens **habe** ich …*. Оборот, выученный как ярлык, приписывается перед готовым предложением — *Übrigens ich habe …*, — и глагол оказывается третьим, чего немецкий не допускает. То же правило, что вы уже знаете по *deshalb* и *trotzdem*."
       uk: "*Übrigens* — прислівник усередині речення, тому він посідає перше місце, а відмінюване дієслово мусить іти одразу за ним: *Übrigens **habe** ich …*. Зворот, вивчений як ярлик, дописується перед готовим реченням — *Übrigens ich habe …*, — і дієслово опиняється третім, чого німецька не допускає. Те саме правило, що ви вже знаєте з *deshalb* і *trotzdem*."
+      de: "*Übrigens* ist ein Adverb im Satz, es füllt also Position 1, und das konjugierte Verb muss direkt danach kommen: *Übrigens **habe** ich …*. Wer einen Ausdruck als Etikett lernt, schreibt ihn vor einen fertigen Satz — *Übrigens ich habe …* —, und dann steht das Verb an dritter Stelle, was das Deutsche nicht erlaubt. Es ist dieselbe Regel, die du schon von *deshalb* und *trotzdem* kennst."
 
   - id: hoerersignal
     outcomes: [zuhoeren-anknuepfen]
@@ -39,6 +42,7 @@ items:
       en: "*Wirklich?* is the signal for information that is new to you, and it is what keeps the other person talking. *Genau* is also a listener signal but the wrong one here: it confirms something you already knew, and claiming that you said it yourself is simply false. *Bitte schön* answers a thank-you, so it belongs to a different exchange altogether. German speakers usually expect one of these sounds while they talk; long silence can read as disagreement."
       ru: "*Wirklich?* — сигнал о том, что для вас это новость, и именно он побуждает собеседника говорить дальше. *Genau* — тоже сигнал слушателя, но здесь неверный: он подтверждает уже известное, а утверждение, что вы это сами говорили, попросту неправда. *Bitte schön* — ответ на благодарность, то есть реплика из другого обмена. Немец, который говорит, обычно ждёт от вас одного из таких звуков; долгое молчание может читаться как несогласие."
       uk: "*Wirklich?* — сигнал про те, що для вас це новина, і саме він спонукає співрозмовника говорити далі. *Genau* — теж сигнал слухача, але тут хибний: він підтверджує вже відоме, а твердження, що ви це самі казали, просто неправда. *Bitte schön* — відповідь на подяку, тобто репліка з іншого обміну. Німець, який говорить, зазвичай чекає від вас одного з таких звуків; довге мовчання може читатися як незгода."
+      de: "*Wirklich?* ist das Signal für eine Information, die für dich neu ist, und es sorgt dafür, dass die andere Person weitererzählt. *Genau* ist auch ein Hörersignal, aber hier das falsche: Es bestätigt etwas, das man schon wusste, und zu behaupten, man habe es selbst gesagt, ist einfach falsch. *Bitte schön* antwortet auf ein Danke und gehört zu einem ganz anderen Austausch. Wer auf Deutsch erzählt, erwartet meist eines dieser Signale; langes Schweigen kann wie Widerspruch wirken."
 
   - id: hoeflich-um-wort-bitten
     outcomes: [wort-nehmen-geben]
@@ -47,6 +51,7 @@ items:
       en: "Put the named verb into the polite Konjunktiv II form."
       ru: "Поставьте названный глагол в вежливую форму Konjunktiv II."
       uk: "Поставте назване дієслово у ввічливу форму Konjunktiv II."
+      de: "Setze das genannte Verb in die höfliche Form des Konjunktiv II."
     text: "Entschuldigung, {{dürfte}} ich dazu kurz etwas sagen? (dürfen)"
     translation:
       en: "Excuse me, could I say something about that briefly?"
@@ -56,3 +61,4 @@ items:
       en: "Breaking into somebody else's turn is the move here that most needs softening, and Konjunktiv II softens it. The form is the Präteritum plus an umlaut: *durfte* → *dürfte*. *Darf ich …?* is not wrong, but it asks for permission flatly; *Dürfte ich …?* asks whether permission would be given, which makes it softer still."
       ru: "Вклиниться в чужую реплику — ход, который здесь больше всего нуждается в смягчении, и Konjunktiv II его смягчает. Форма — это Präteritum плюс умлаут: *durfte* → *dürfte*. *Darf ich …?* не ошибка, но это прямой запрос разрешения; *Dürfte ich …?* спрашивает, было бы разрешение дано, — и от этого звучит ещё мягче."
       uk: "Уклинитися в чужу репліку — хід, який тут найбільше потребує пом'якшення, і Konjunktiv II його пом'якшує. Форма — це Präteritum плюс умлаут: *durfte* → *dürfte*. *Darf ich …?* не помилка, але це прямий запит дозволу; *Dürfte ich …?* питає, чи був би дозвіл даний, — і від цього звучить ще м'якше."
+      de: "Jemanden in seinem Beitrag zu unterbrechen ist der Schritt, der am meisten Höflichkeit braucht, und der Konjunktiv II macht ihn weicher. Die Form ist das Präteritum mit Umlaut: *durfte* → *dürfte*. *Darf ich …?* ist nicht falsch, fragt aber direkt um Erlaubnis; *Dürfte ich …?* fragt, ob die Erlaubnis gegeben würde, und ist dadurch noch weicher."
