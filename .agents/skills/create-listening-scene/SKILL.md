@@ -9,7 +9,7 @@ Create the first complete version with the existing local Studio. Stop before hu
 
 ## Workflow
 
-1. Read `CLAUDE.md`, `docs/design.md`, the matching unit in `data/listening-plan.yaml`, `data/listening-characters.yaml`, and the available source list from `atlas-listening sources list`.
+1. Read `CLAUDE.md`, `docs/overview.md`, the matching unit in `data/listening-plan.yaml`, `data/listening-characters.yaml`, and the available source list from `atlas-listening sources list`.
 2. Preserve the planned level, outcomes, vocabulary, duration window, register and speaker count. Keep every German turn inside that CEFR level.
 3. Select versioned characters by role, register and usage balance. Reject every pair named in `incompatible_with`; never use a Research/private voice.
 4. Write a complete structured draft. Use one identity profile per character; vary only delivery, pronunciation, pace and pause per line.

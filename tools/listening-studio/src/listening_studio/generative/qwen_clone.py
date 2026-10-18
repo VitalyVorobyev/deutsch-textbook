@@ -131,7 +131,7 @@ class QwenBaseClone:
             # Device and dtype stated, never inherited — the identical decision `QwenSpeech`
             # documents at length. float16 on MPS overflows the talker's sampling logits and dies
             # with `probability tensor contains either inf, nan or element < 0`; float32 on MPS is
-            # what ran clean. Measurements: docs/quality/tts-reliability.md.
+            # what ran clean. Measurements: docs/architecture/tts-reliability.md.
             self._model = Qwen3TTSModel.from_pretrained(
                 locked_snapshot(self.model_id, self.revision),
                 device_map="mps" if torch.backends.mps.is_available() else "cpu",

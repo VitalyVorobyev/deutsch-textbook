@@ -18,7 +18,7 @@ const { spine } = getCurriculum();
 <Base title="Wiederholen" preload={[cardsUrl]}>
   <UebenNav active="wiederholen" />
   <!-- The active tab names the page, so the H1 is for the accessibility tree only, and the
-       description is the tab's tooltip (docs/design.md, "Page chrome"). -->
+       description is the tab's tooltip (docs/overview.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="ueben.tabWiederholen" /></h1>
   <FlashcardSessionIsland client:only="react" cardsUrl={cardsUrl} newLimit={15} gate={{ spine, nodes, deckLevels }} />
 </Base>

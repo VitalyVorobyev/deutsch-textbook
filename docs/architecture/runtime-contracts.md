@@ -1,6 +1,6 @@
 # Runtime contracts
 
-Status: active engineering checklist. [design.md](../design.md) is the system map; `CLAUDE.md` owns
+Status: active engineering checklist. [overview.md](../overview.md) is the system map; `CLAUDE.md` owns
 authoring rules.
 
 | Contract | Source of truth | Required companion checks |

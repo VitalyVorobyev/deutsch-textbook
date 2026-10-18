@@ -24,14 +24,13 @@ reader needs to cross, and copies nothing — duplicated text drifts.
 
 | Document | What it is for |
 | --- | --- |
-| [`design.md`](design.md) | The system map: boundaries, pipelines, identities, evidence, storage, delivery |
+| [`overview.md`](overview.md) | The system map: boundaries, pipelines, identities, evidence, storage, delivery |
 | [`roadmap.md`](roadmap.md) | Current direction and the gates in front of it |
-| [`backlog.md`](backlog.md) | The executable queue |
+| [`backlog/`](backlog/README.md) | The executable queue, one file per area |
 | [`adrs/`](adrs/README.md) | Foundational decisions, numbered, superseded rather than edited |
 | [`proposals/`](proposals/README.md) | Directions under discussion; each ends in an ADR or is deleted |
 | **Curriculum** | |
 | [`curriculum/a2-b1.md`](curriculum/a2-b1.md) | What A2 and B1 teach, which unit owns what, what each may not touch |
-| [`curriculum/topic-quality-audit.md`](curriculum/topic-quality-audit.md) | The topic-by-topic quality pass: where it stands |
 | **Authoring** | |
 | [`authoring/article-prose.md`](authoring/article-prose.md) | How an explanation article is shaped; the paragraph ceiling |
 | [`authoring/item-authoring.md`](authoring/item-authoring.md) | Exercise and vocabulary contracts: `key_tokens`, item mix, placement, vocab entries |
@@ -48,7 +47,7 @@ reader needs to cross, and copies nothing — duplicated text drifts.
 | [`architecture/cloud-sync.md`](architecture/cloud-sync.md) | Accounts and snapshot sync: operations, setup, the sign-in runbook |
 | [`architecture/exam-trainer.md`](architecture/exam-trainer.md) | The Goethe exam trainer and its local-only materials |
 | [`architecture/lid-trainer.md`](architecture/lid-trainer.md) | The Leben-in-Deutschland bank: legal basis, import, answer key, progress, lessons |
-| [`quality/tts-reliability.md`](quality/tts-reliability.md) | What the synthesis engine measurably does on this machine |
+| [`architecture/tts-reliability.md`](architecture/tts-reliability.md) | What Tonwerk's synthesis engine measurably does on this machine |
 
 `Goethe-Zertifikat_B1_Wortliste.pdf` (gitignored) and `ui.png` at this level are supporting files,
 not documents. `GeotheInstitute/` holds the local-only official exam materials

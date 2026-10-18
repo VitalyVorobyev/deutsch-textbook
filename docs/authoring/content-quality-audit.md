@@ -135,11 +135,33 @@ are engagement signals and never stand in for learning.
 
 ## Closing a topic pass
 
-1. Record every artifact class checked and every correction or deliberate no-change decision in the
-   [topic-quality ledger](../curriculum/topic-quality-audit.md).
+1. Record every artifact class checked, every correction and every deliberate no-change decision
+   in the commit message, which is the archive. A finding below the material bar becomes a line in
+   [`backlog/content.md`](../backlog/content.md).
 2. Run `bun run validate`, `bun run activity:audit`, grammar and Wortliste coverage, tests, checks,
    lint and both application builds.
 3. Confirm Redaction's derived queue has not grown and preview the touched article/exercises in each
    supported language.
 4. Leave a `draft` topic as `draft` until a human editor explicitly completes the review/provenance
    transaction. Coverage delivery and editorial approval are separate facts.
+
+## Where the pass stands
+
+`Pass complete` means a topic's surfaces were read together and every material defect found was
+corrected. It is **not** human editorial approval and not a claim about learning. The manifest's
+`status` and the provenance records stay the approval source of truth, so a pass never sets
+`reviewed`.
+
+| Level | Topics | Pass |
+| --- | ---: | --- |
+| A1 | 12 | complete |
+| A2 | 25 | complete |
+| B1 | 20 | complete |
+
+An empty derived findings queue is never the stop condition: the A1 and A2 waves each found
+material defects that no instrument could see. **Five or more sets on one topic** is a review
+trigger, not a defect. Each set must name its own learning activity, stage and decision or medium;
+a set that cannot is merged or removed, even when the topic's item count then falls. A B1.4+
+topic's pass also checks its provenance record in `data/authorship-provenance.yaml`, keeping the
+human sign-off distinct from agent assistance.
+
