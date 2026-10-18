@@ -2,7 +2,7 @@
 // Plugins exist only for the progress autosync (write snapshots to a
 // user-chosen folder — see src/lib/autosync.ts and src/lib/syncdir.ts) and the
 // Schreib-Assistent's Ollama transport (http, capability-scoped to exactly
-// http://localhost:11434/* — see src/lib/assist.ts and docs/assist-design.md).
+// http://localhost:11434/* — see src/lib/assist.ts and docs/adrs/0003-the-evidence-model.md).
 //
 // Three guards were added with ADR 0006, all of them about the webview's storage
 // rather than about the app: the single-instance lock (two processes on one WebKit

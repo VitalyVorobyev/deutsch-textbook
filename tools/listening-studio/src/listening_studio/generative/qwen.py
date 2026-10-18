@@ -21,7 +21,7 @@ class QwenSpeech:
     # `tts_model_size` is exactly `"0b6"` — so every style instruction is discarded before it
     # reaches the model. The instruction is still passed below (a larger checkpoint would use
     # it), but this engine must not claim a capability its audio does not carry.
-    # Source, code and rejected alternatives: docs/quality/tts-reliability.md.
+    # Source, code and rejected alternatives: docs/architecture/tts-reliability.md.
     supports_style = False
 
     def __init__(self) -> None:
@@ -59,7 +59,7 @@ class QwenSpeech:
             # second, on every line it was given, and it is the signature the 2026-08-01 run
             # recorded as "Qwen is unreliable on this machine". float32 on MPS ran 74 generations
             # with no failure and no NaN. Numbers, method and the rejected alternatives (bfloat16
-            # is faster and was still declined): docs/quality/tts-reliability.md.
+            # is faster and was still declined): docs/architecture/tts-reliability.md.
             self._model = Qwen3TTSModel.from_pretrained(
                 model_path,
                 device_map="mps" if torch.backends.mps.is_available() else "cpu",

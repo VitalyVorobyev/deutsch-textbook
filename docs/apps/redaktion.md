@@ -149,4 +149,4 @@ learner app.
 
 The architecture and security boundary are recorded in
 [ADR 0010](../adrs/0010-editorial-tools-are-separate-apps.md); remaining milestones live in the
-[roadmap](../roadmap.md) and [backlog](../backlog.md).
+[roadmap](../roadmap.md) and [backlog](../backlog/redaktion.md).

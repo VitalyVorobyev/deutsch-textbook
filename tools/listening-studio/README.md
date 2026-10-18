@@ -494,7 +494,7 @@ with zero failures at warm RTF ≈ 1.0 and 3.3 GB resident. The 2026-08-01 "unre
 machine" verdict was a dtype accident — `from_pretrained` without arguments never stated a device
 or dtype, and float16 on MPS fails deterministically with the recorded error. Full record,
 per-config numbers and the probe that reproduces them:
-[`docs/quality/tts-reliability.md`](../../docs/quality/tts-reliability.md).
+[`docs/architecture/tts-reliability.md`](../../docs/architecture/tts-reliability.md).
 
 The fake adapter is only for automated workflow tests. Production generation, QA and approval
 reject it.

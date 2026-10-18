@@ -34,7 +34,7 @@ is a rule to go read**, not a rule to guess at. The full doc map is [`docs/READM
 | deciding **what a unit owns** and what it may not touch, with which frozen identities | [`docs/curriculum/a2-b1.md`](docs/curriculum/a2-b1.md) |
 | adding a **grammar-inventory row**, a `claims:` citation or an external **Strukturenliste** | [`data/strukturenlisten/README.md`](data/strukturenlisten/README.md) · [ADR 0004](docs/adrs/0004-completeness-is-evidence-contracts.md) |
 | writing or changing **any document** — developer or user-facing | [`docs/README.md`](docs/README.md) |
-| looking for the **system map** or **the queue** | [`docs/design.md`](docs/design.md) · [`docs/backlog.md`](docs/backlog.md) |
+| looking for the **system map** or **the queue** | [`docs/overview.md`](docs/overview.md) · [`docs/backlog/`](docs/backlog/README.md) |
 
 ## Commands
 
@@ -124,7 +124,7 @@ written down.
 Load-bearing, and each one silent when broken. Mechanism: [`docs/architecture/runtime-contracts.md`](docs/architecture/runtime-contracts.md).
 
 - **`planReview()` (`src/lib/decks.ts`) is the ONE rule for what a review queue contains.** New cards are rationed **per day, not per queue** (`DAILY_NEW_CARDS = 15`), because `planReview` re-runs on every mount. Fresh-card ties break at random, never by card id.
-- **A page header never repeats the navigation.** An H1 the active tab, nav link or breadcrumb already says is `sr-only`; a page's "what this is for" line is its nav link's `title` (`src/lib/nav-hints.ts`), never a standing paragraph. Content titles stay. → [`docs/design.md`](docs/design.md#page-chrome)
+- **A page header never repeats the navigation.** An H1 the active tab, nav link or breadcrumb already says is `sr-only`; a page's "what this is for" line is its nav link's `title` (`src/lib/nav-hints.ts`), never a standing paragraph. Content titles stay. → [`docs/overview.md`](docs/overview.md#page-chrome)
 - **A missed card is retried later, not next.** "Again" shows the answer at once and re-queues the card after 8 cards (not retrieved at all) or 50 (a lapse or near miss), halved per further miss, floor 3 — `recordMiss` in `src/lib/requeue.ts`. The counts are heuristics; the delay is the finding. FSRS alone schedules across sessions. A missed LiD question follows the same rule.
 - **A page never inlines the corpus.** The session pages pass `corpusUrl('cards' | 'sets')` and fetch content-hashed `data/*.json` files ([ADR 0008](docs/adrs/0008-delivery-static-site-desktop-shell-worker.md)); an island never mounts on a file that has not arrived. `bun scripts/page-weight.ts` fails CI on any page over 1.5 MB.
 - **Never mount a React island per table row.** In `.astro` templates use `src/components/SpeakButton.astro` — one hoisted, delegated listener for the whole page.

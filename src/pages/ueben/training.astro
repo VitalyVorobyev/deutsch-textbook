@@ -13,7 +13,7 @@ const { spine } = getCurriculum();
 
 <Base title="Gemischtes Training" preload={[setsUrl]}>
   <UebenNav active="training" />
-  <!-- The active tab names the page; the description is its tooltip (docs/design.md, "Page chrome"). -->
+  <!-- The active tab names the page; the description is its tooltip (docs/overview.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="training.pageTitle" /></h1>
   <MixedTrainingIsland client:only="react" setsUrl={setsUrl} spine={spine} nodes={nodes} resumeKey="mixed" />
 </Base>

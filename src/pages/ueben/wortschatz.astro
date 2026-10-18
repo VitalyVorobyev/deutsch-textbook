@@ -18,7 +18,7 @@ const decks = vocab
 
 <Base title="Wortschatz">
   <UebenNav active="wortschatz" />
-  <!-- The active tab names the page; the description is its tooltip (docs/design.md, "Page chrome"). -->
+  <!-- The active tab names the page; the description is its tooltip (docs/overview.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="ueben.tabWortschatz" /></h1>
   <DeckMasterySummaries client:only="react" decks={decks.map(({ data, cards }) => deckWords(data.id, cards))} />
   <div class="grid gap-3 sm:grid-cols-2">

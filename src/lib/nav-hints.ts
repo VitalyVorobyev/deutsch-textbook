@@ -3,7 +3,7 @@
  *
  * These were standing descriptions under each page's H1 — a line of explanation the learner read
  * on every visit, beneath a heading that only repeated the tab they had just clicked. A page
- * header now says only what the navigation does not (docs/design.md, "Page chrome"), and the
+ * header now says only what the navigation does not (docs/overview.md, "Page chrome"), and the
  * description moved here, where it answers the question before the click rather than after it.
  *
  * Explanation-language text, so it follows Lernsprache rather than the pinned German chrome: the

@@ -20,7 +20,7 @@ const { questions, stateQuestions, minutes, passEinbuergerung, passOrientierungs
 <Base title={t('lid.title', 'de')} description="Training für den Einbürgerungstest und den Test „Leben in Deutschland“">
   <UebenNav active="leben" />
   <!-- The active tab names the page (its tooltip spells out the abbreviation); the state shows in
-       the Prüfungssimulation card and the section below (docs/design.md, "Page chrome"). -->
+       the Prüfungssimulation card and the section below (docs/overview.md, "Page chrome"). -->
   <h1 class="sr-only"><Chrome k="lid.title" /></h1>
 
   <LidOverview client:only="react" modules={modules} state={state} lessons={lessons.length} />
