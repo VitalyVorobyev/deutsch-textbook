@@ -13,7 +13,7 @@ until owner approval, why pairing types a code, why `progress:pull` reads R2 ove
 | --- | --- | --- |
 | Attempts, cards, sessions, topics, feedback | **IndexedDB**, one database per local profile (`deutsch-atlas--<id>`) | The source of truth. Everything else is a copy. |
 | Which profiles exist, which is active, explanation language, sync state | **localStorage** (`da:profiles`, `da:profile`, `da:lang:*`, `da:sync`) | Device-level, never uploaded. |
-| Account, identities, sessions, device tokens | **D1** (`migrations/0001_init.sql`) | Four tables. No progress data of any kind. |
+| Account, identities, sessions, device tokens | **D1** (`worker/migrations/0001_init.sql`) | Four tables. No progress data of any kind. |
 | The snapshot | **R2**, `snapshots/<accountId>/current.json.gz` | Plus `daily/<YYYY-MM-DD>.json.gz`, filed under the learner's local date. |
 | The evidence read | `progress/<profile>/<date>.json` in the repo | Written by the dev middleware, the desktop folder sync, or `bun run progress:pull`. |
 
@@ -199,7 +199,7 @@ It writes with the dev writer's refuse-to-shrink rule, parking a smaller snapsho
 ## Testing notes
 
 `tests/worker-fakes.ts` backs D1 with **`bun:sqlite` loaded from the real
-`migrations/0001_init.sql`**, not a hand-written fake. `ON CONFLICT DO UPDATE`, the `CHECK`
+`worker/migrations/0001_init.sql`**, not a hand-written fake. `ON CONFLICT DO UPDATE`, the `CHECK`
 constraints and `ON DELETE CASCADE` are the parts of the schema most worth testing, and a fake
 would have got them right by not having them.
 
