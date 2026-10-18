@@ -53,5 +53,5 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0011`](0011-shared-ui-from-vitavision-packages.md) | Shared UI comes from the `@vitavision/*` packages, and each app's identity is a theme |
 
 All eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions of an
-earlier series of 22 records. That series is in git history (`git show fa110bd:docs/adrs/`), and
+earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`), and
 none of it is in force except as restated here.

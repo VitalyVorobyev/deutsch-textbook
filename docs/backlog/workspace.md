@@ -19,7 +19,3 @@ Repository structure, toolchain and agent tooling. The format and the ID rule ar
   (`find packages -name '*.test.*' -not -path '*/node_modules/*'` finds none). A package's tests cannot run, move or be read with the
   package. First step: move `@da/grading`'s tests beside its sources and make `bun test` pick both
   up. Then decide per package.
-- **WS-3 · The learner snapshots are still in git history.** `progress/<profile>/` is untracked
-  since #301, but 16 MB of personal history remains reachable in a public repository. Purging it
-  rewrites history and invalidates every clone: an owner decision. First step: the decision. Then
-  `git filter-repo --path progress/vitaly --invert-paths` on a fresh mirror, with a force-push.

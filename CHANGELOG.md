@@ -22,8 +22,9 @@ GitHub Release notes.
   wrong on its last day — even if you put it right a few questions later. The overview shows the
   three per subject area, and *Fehler wiederholen* brings a mistake back the next day until you
   answer it right again.
-- Repository housekeeping: learner snapshots are no longer committed, the Worker's D1 migrations
-  moved to `worker/migrations/`, and Tonwerk's own tests now run in CI.
+- Repository housekeeping: learner snapshots are no longer committed and are purged from the
+  repository history (existing clones must be re-cloned), oversized files are refused, the
+  Worker's D1 migrations moved to `worker/migrations/`, and Tonwerk's own tests now run in CI.
 - Developer docs: the architecture decisions are rewritten as eleven foundational records, and
   open directions (lesson tasks, characters and stories, the shared UI) become proposals. The
   roadmap now runs past B1, and the backlog is split by area.
