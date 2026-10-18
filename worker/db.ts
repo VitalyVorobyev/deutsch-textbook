@@ -163,7 +163,7 @@ export async function listUsers(db: D1Database): Promise<UserRow[]> {
 }
 
 export async function deleteUser(db: D1Database, userId: string): Promise<void> {
-  // identities/sessions/device_tokens cascade (migrations/0001_init.sql).
+  // identities/sessions/device_tokens cascade (worker/migrations/0001_init.sql).
   await db.prepare('DELETE FROM users WHERE id = ?').bind(userId).run();
 }
 
@@ -294,7 +294,7 @@ export function tokenRef(hashedId: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// Pairing requests (migrations/0002_pairing.sql)
+// Pairing requests (worker/migrations/0002_pairing.sql)
 // ---------------------------------------------------------------------------
 
 export interface PairingRow {

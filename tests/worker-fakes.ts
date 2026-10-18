@@ -2,7 +2,7 @@
  * Test doubles for the Worker's two bindings.
  *
  * **D1 is not faked.** It is `bun:sqlite` loaded with the real
- * `migrations/0001_init.sql`, wrapped in D1's prepare/bind/first/all/run shape.
+ * `worker/migrations/0001_init.sql`, wrapped in D1's prepare/bind/first/all/run shape.
  * A hand-written fake would have had to re-implement `ON CONFLICT DO UPDATE`,
  * the `CHECK` constraints and `ON DELETE CASCADE` — which are exactly the parts
  * of the schema most worth testing, and the parts a fake would quietly get right
@@ -25,7 +25,7 @@ import {
 import { DEVICE_TOKEN_PREFIX } from '../worker/auth/session';
 import { randomToken } from '../worker/crypto';
 
-const MIGRATIONS_DIR = join(import.meta.dir, '..', 'migrations');
+const MIGRATIONS_DIR = join(import.meta.dir, '..', 'worker', 'migrations');
 
 /**
  * Every migration, in the order wrangler applies them — discovered rather than

@@ -82,7 +82,7 @@ is a rule to go read**, not a rule to guess at. The full doc map is [`docs/READM
 | `content/discovery/`, `content/reference-data/` | optional Entdecken material; canonical lookup data |
 | `content/atlas.yaml` | the `groups:` taxonomy **and the curriculum spine** (`units:`) |
 | `data/lid/bank.yaml`, `content/lid/` | the official LiD questions (generated, verbatim) and the course's notes: `topics.yaml`, and `notes/<topic>.yaml`, whose file **is** each question's topic; `lessons/<id>.mdx` are reading lessons over 1+ topics (a topic in **at most one** lesson) — German throughout, `## Kurz gesagt` first, and **every section with German text closes with one `<Translation>`** (EN/RU/UK, translated from the German, nothing added; hidden under `de`), collapsed except the summary's `<Translation open>`. A lesson's maps and pictures are its `figures:`, shown by `<Figure id>` outside any `<Translation>` — a bank picture (`official`, never `withheld`) or a credited file under `public/lid/lessons/`, ≤ 300 KB → [`docs/authoring/future-content-directions.md`](docs/authoring/future-content-directions.md#leben-in-deutschland-lesson-figures). Notes and lessons carry the UK half like every other file |
-| `progress/<profile>/*.json` | learner snapshots, one folder per local profile |
+| `progress/<profile>/*.json` | learner snapshots, one folder per local profile — **local only, gitignored** |
 | `packages/schema/src/index.ts` | Zod schemas — the single source of truth for all content shapes |
 
 **Where the code lives.** A Bun workspace. `content/` and `data/` stay at the root because they

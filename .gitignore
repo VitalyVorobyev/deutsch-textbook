@@ -59,3 +59,9 @@ feedback.md
 # Screenshots attached to the feedback inbox — private, like feedback.md itself.
 /IMG_*.jpeg
 /IMG_*.png
+
+# Learner snapshots are personal data and stay local; the live state syncs through R2
+# (`bun run progress:pull`). Only the synthetic `test` profile and the README are tracked.
+/progress/*
+!/progress/README.md
+!/progress/test/
