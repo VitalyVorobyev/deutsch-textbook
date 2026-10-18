@@ -1,5 +1,5 @@
 /**
- * The journal's OWN storage can fail, and before ADR 0019 that failure was indistinguishable
+ * The journal's OWN storage can fail, and before ADR 0006 that failure was indistinguishable
  * from a stalled IndexedDB.
  *
  * `writeOps` (src/lib/write-journal.ts) swallowed its failure with a bare `catch {}` and the

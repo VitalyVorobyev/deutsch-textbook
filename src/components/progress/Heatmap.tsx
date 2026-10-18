@@ -16,7 +16,7 @@ import {
 import { pick } from '../../lib/prefs';
 import { useExplainLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   title: { en: 'Activity', ru: 'Активность' },
   dayStreak: { en: 'day streak', ru: 'дн. подряд' },

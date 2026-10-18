@@ -2,7 +2,7 @@
  * The write journal (src/lib/write-journal.ts) is the safety net under every progress
  * write: journaled synchronously to localStorage BEFORE the IndexedDB attempt starts,
  * removed after it settles, replayed on the next launch when it never did. The desktop
- * forensics that motivated it (docs/adrs/0016-durable-progress-writes.md): whole
+ * forensics that motivated it (docs/adrs/0006-local-first-durable-learner-state.md): whole
  * sessions' writes silently never landed — 2026-08-19 has no daily backup at all —
  * while the UI advanced normally.
  *
@@ -153,7 +153,7 @@ describe('replay through the real store (fake-indexeddb)', () => {
 });
 
 /**
- * ADR 0019: the three ways a journal entry could outlive the write it describes, each of which
+ * ADR 0006: the three ways a journal entry could outlive the write it describes, each of which
  * pinned `PersistenceAlert` at a count that could never fall. Driven through the REAL store
  * path — `__setCommitBatchForTests` stands in for the IndexedDB transaction — because the bug
  * lived in the seam between the retry wrapper and the journal, and a fake journal would not
@@ -189,7 +189,7 @@ describe('a journal entry never outlives its own write', () => {
 
       release!();
       await Bun.sleep(20);
-      // The transaction committed after all. Before ADR 0019 this entry stayed forever and the
+      // The transaction committed after all. Before ADR 0006 this entry stayed forever and the
       // banner claimed "noch nicht gespeichert" about a card that was on disk.
       expect(journalPending()).toEqual([]);
     } finally {
@@ -238,7 +238,7 @@ describe('a journal entry never outlives its own write', () => {
     journalAppend(gradeOp('b::card::de-x', ts + 1));
 
     // Wedged, but releasable — and released for good. The profile's journal drain outlives this
-    // caller's deadline by design (ADR 0020), so once the held commit is let go it moves on to
+    // caller's deadline by design (ADR 0006), so once the held commit is let go it moves on to
     // the next op; a mock that wedged that one too would leave a drain no test can finish, and
     // every durable write in every later file would queue behind it.
     const releases: (() => void)[] = [];

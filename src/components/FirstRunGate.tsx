@@ -13,7 +13,7 @@ import { t } from '../lib/strings';
 import { withBase } from '../lib/url';
 import { useExplainLang, useUiLang } from './hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   welcome: { en: 'Welcome to Deutsch-Atlas', ru: 'Добро пожаловать в Deutsch-Atlas' },
@@ -54,7 +54,7 @@ const UI = {
     en: 'After you pick a name, connect this profile to the account under Fortschritt → Daten.',
     ru: 'После выбора имени свяжите профиль с аккаунтом в разделе Fortschritt → Daten.',
   },
-  // Same wording as AccountPanel's pending copy (ADR 0004c): stated wherever the
+  // Same wording as AccountPanel's pending copy (ADR 0007): stated wherever the
   // pending state is reachable, and it changes nothing about local work.
   pendingGate: {
     en: 'Your account exists but is waiting to be approved. Nothing is stored in the cloud yet — keep learning, everything is saved on this device and will be uploaded once the account is approved.',
@@ -88,13 +88,13 @@ export default function FirstRunGate() {
       setShow(true);
       // Session is asked for only once the gate is actually shown — an install
       // with a profile never pays this request. Signing in from the gate must
-      // land back in the gate (ADR 0004a), so returnTo is the current page.
+      // land back in the gate (ADR 0007), so returnTo is the current page.
       queueMicrotask(() => setReturnTo(window.location.pathname + window.location.search));
       if (!isTauri()) {
         const s = await getSession();
         setSession(s);
         // An OAuth display name may prefill the name field and nothing more
-        // (ADR 0004b): fully editable, no profile created, discovery untouched.
+        // (ADR 0007): fully editable, no profile created, discovery untouched.
         const displayName = s.signedIn ? s.user?.displayName : undefined;
         if (displayName) setName((prev) => prev || displayName);
       }
@@ -210,7 +210,7 @@ export default function FirstRunGate() {
           <p className="mt-2 text-xs text-stone-400">{pick(lang, UI.reconnectHint)}</p>
         )}
 
-        {/* Optional sign-in offer (ADR 0004a/d): visually below the local path,
+        {/* Optional sign-in offer (ADR 0007): visually below the local path,
             which stays first-class and one-click. Absent entirely when the
             deployment has no providers or in the desktop app (pairing is its
             route in, on Fortschritt → Daten). */}

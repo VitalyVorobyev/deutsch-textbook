@@ -1,6 +1,6 @@
 /**
- * The German-first article (ADR 0023): a B1 topic whose explanation is written in German and read
- * as German, like a Leben-in-Deutschland lesson (ADR 0021), with the learner's language one click
+ * The German-first article (ADR 0005): a B1 topic whose explanation is written in German and read
+ * as German, like a Leben-in-Deutschland lesson (ADR 0009), with the learner's language one click
  * away instead of in place.
  *
  * Every `##`/`###` section with German prose closes with two collapsed blocks, in this order:

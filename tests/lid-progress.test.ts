@@ -1,6 +1,6 @@
 /**
- * The Leben-in-Deutschland trainer's persistence (ADR 0021): its own `lid` store key written
- * through the ADR 0020 journal, snapshot v8, and the merge. The pure logic is tests/lid.test.ts.
+ * The Leben-in-Deutschland trainer's persistence (ADR 0009): its own `lid` store key written
+ * through the ADR 0006 journal, snapshot v8, and the merge. The pure logic is tests/lid.test.ts.
  *
  * The store is driven through `__setCommitBatchForTests` with an in-memory map — the same seam
  * tests/progress-transition.test.ts uses — so nothing here opens an IndexedDB. Every drain is

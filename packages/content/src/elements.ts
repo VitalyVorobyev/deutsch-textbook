@@ -86,7 +86,7 @@ export interface Element {
   topic: string;
   level: Level;
   stage: LessonStage;
-  /** Learner-facing purpose of a topic-owned practice/drill file (ADR 0014). */
+  /** Learner-facing purpose of a topic-owned practice/drill file (ADR 0002). */
   activity?: LearningActivity;
   /** Derived delivery medium; only teaching sets carry it. */
   medium?: LearningMedium;

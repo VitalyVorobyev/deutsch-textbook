@@ -9,7 +9,7 @@
  *
  * WHY IT LANDED LAST. A theme is claimed by a **topic**, and until 2026-08-14 a topic had nowhere
  * to declare anything: its identity was split across a directory, an MDX frontmatter and an atlas
- * node, none of them authoritative. ADR 0012's manifests gave it a home, and this is the first
+ * node, none of them authoritative. ADR 0002's manifests gave it a home, and this is the first
  * thing that home was used for.
  *
  * WHAT `beyond` MEANS HERE. A topic citing no theme is usually a grammar topic, and that is not a

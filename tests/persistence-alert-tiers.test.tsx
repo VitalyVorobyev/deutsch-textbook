@@ -1,10 +1,10 @@
 /**
- * `PersistenceAlert`'s two tiers (ADR 0019).
+ * `PersistenceAlert`'s two tiers (ADR 0006).
  *
  * One flat 10 s grace against a 45 s write deadline meant a healthy-but-slow 12 s write spent
  * 35 seconds showing `Antworten noch nicht gespeichert — Fenster nicht schließen`, and then
  * vanished with nothing wrong. A warning that cries wolf stops being read, which is precisely
- * what ADR 0016 was protecting against when it made this alert non-dismissible.
+ * what ADR 0006 was protecting against when it made this alert non-dismissible.
  *
  * So: nothing under the grace, a calm line while the write path still has budget left, and the
  * red banner only once the deadline it names has actually passed. The boundary is imported from
@@ -72,7 +72,7 @@ describe('the alert tiers', () => {
     expect(screen.queryByRole('status')).toBeNull();
   });
 
-  test('neither tier offers a way to dismiss it (ADR 0016)', () => {
+  test('neither tier offers a way to dismiss it (ADR 0006)', () => {
     journalAged('a::card::de-x', ALERT_LATE_MS + 5000);
     const { container } = render(<PersistenceAlert />);
     const buttons = [...container.querySelectorAll('button')].map((b) => b.textContent ?? '');
@@ -81,7 +81,7 @@ describe('the alert tiers', () => {
   });
 
   test('a confirmed write clears the banner without the learner pressing anything', () => {
-    // The last link of the ADR 0019 chain: a write that lands after its deadline calls
+    // The last link of the ADR 0006 chain: a write that lands after its deadline calls
     // `confirmOp` -> `journalRemove` -> `writeOps` -> `notify()`, and THIS listener is what
     // turns that into a banner that disappears on its own. Without it the red bar would sit
     // there until the next navigation, which is how it looked permanent in the first place.

@@ -58,7 +58,7 @@ html:not([data-tts="ready"]) [data-speak] {
 [data-explain-lang="de"] :is(.translation-fold, .erklaerung-fold) {
   display: none;
 }
-/* A translation is authored in English first (ADR 0023). Until a fold has a Russian half, a
+/* A translation is authored in English first (ADR 0005). Until a fold has a Russian half, a
    Russian-mode reader gets its English rather than an empty box; Ukrainian already falls back to
    English everywhere (the :has() rules above). */
 [data-explain-lang="ru"] .translation-fold :not(:has(> .lang-ru)) > .lang-en {

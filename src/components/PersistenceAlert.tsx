@@ -2,13 +2,13 @@
  * "Your answers are not saved yet" alert.
  *
  * Mounted once in Base.astro. It owns two jobs, both sides of the same contract
- * (a stalled store must be loud, never silent — docs/adrs/0016-durable-progress-writes.md):
+ * (a stalled store must be loud, never silent — docs/adrs/0006-local-first-durable-learner-state.md):
  *
  *   1. On launch, replay the write journal: ops a previous page view journaled but
  *      never confirmed into IndexedDB (a stalled write, an abrupt quit) are applied
  *      now; idempotency at the store layer makes replaying an op that actually
  *      landed a no-op. The result is reported, never discarded.
- *   2. Show the journal's state — in TWO tiers, which is ADR 0019's amendment.
+ *   2. Show the journal's state — in TWO tiers, per ADR 0006.
  *
  * **Three ages, three answers.** Under `ALERT_GRACE_MS` an op is an ordinary IndexedDB round
  * trip and shows nothing. Between there and `ALERT_LATE_MS` it is slow but still inside the
@@ -48,7 +48,7 @@ export const ALERT_GRACE_MS = 10000;
  * **Imported, not typed as a number here.** Two unrelated constants in two files was the
  * defect: a 10 s grace against a 45 s deadline is how a slow-but-fine 12 s write spent 35
  * seconds telling the learner not to close the window, and a warning that cries wolf is one
- * the learner stops reading — which defeats the whole reason ADR 0016 made this alert
+ * the learner stops reading — which defeats the whole reason ADR 0006 made this alert
  * non-dismissible. The import is the fix; shortening the deadline now shortens the amber
  * window with it, by construction.
  */

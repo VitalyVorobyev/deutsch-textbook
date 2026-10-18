@@ -5,7 +5,7 @@ sign-in outage runbook. Read this before changing anything under `worker/`,
 `src/lib/sync-remote.ts` or `scripts/progress-pull.ts`. The *decisions* — why the server stores
 opaque bytes and never merges, why an unconditional PUT does not exist, why sign-in grants nothing
 until owner approval, why pairing types a code, why `progress:pull` reads R2 over S3 — live in
-[ADR 0003](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md).
+[ADR 0007](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md).
 
 ## Where each piece of data lives
 
@@ -33,7 +33,7 @@ current etag**, and the client pulls, merges locally via `mergeSnapshot`
 (`src/lib/store.ts:436` over `src/lib/snapshot-merge.ts`), and writes again (`syncNow`, up to
 three rounds). GET answers 304 to a matching `If-None-Match`. The merge rules per field, and the
 two regression-tested retry-loop failure modes, are in the
-[ADR](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md).
+[ADR](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md).
 
 ## Offline
 
@@ -94,7 +94,7 @@ empty store).
 Anyone may sign in. A new account is created **`pending`**, and pending grants no storage at all —
 `/api/sync/snapshot` answers 403 with `{"error":"pending"}` and the client renders it as a status
 line, never as a broken app. The owner approves on `/konto`; the why is in the
-[ADR](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md). `OWNER_EMAILS` is a Worker
+[ADR](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md). `OWNER_EMAILS` is a Worker
 secret, not a hand-written D1 row, and is re-applied on every sign-in.
 
 ### Which account a callback lands on
@@ -109,7 +109,7 @@ Step 2 is why signing in with GitHub after Google finds the existing progress in
 second account. It is sound only **because the email is verified** — Google's `email_verified`,
 GitHub's `/user/emails` `verified: true`; an unverified address is refused outright
 (`?auth=email-unverified`). Why the verification is load-bearing:
-[ADR 0003](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md).
+[ADR 0007](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md).
 
 ### Sessions and CSRF
 
@@ -137,7 +137,7 @@ shown exactly once (only its sha256 is stored). It goes through `@tauri-apps/plu
 Rust-side and exempt from CORS; the origin is allowlisted in `src-tauri/capabilities/default.json`.
 
 **A device token grants sync and nothing else** — `/api/admin/*`, `/api/tokens` and account deletion
-all require the cookie ([ADR 0003](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md)).
+all require the cookie ([ADR 0007](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md)).
 
 The token sits in the desktop app's `localStorage`, which is a plain file on disk. That is a real
 limitation and the reason revocation is one click on `/konto`.
@@ -146,7 +146,7 @@ limitation and the reason revocation is one click on `/konto`.
 
 `worker/routes/pairing.ts` implements the shape of the **OAuth 2.0 Device Authorization Grant**
 (RFC 8628), minus the OAuth — the why, including the typed-code anti-phishing argument, is in the
-[ADR](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md). The desktop opens a pairing,
+[ADR](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md). The desktop opens a pairing,
 shows an eight-symbol code, and polls; the learner types that code on `/konto` in a browser where
 they are already signed in. Two credentials doing two different jobs:
 
@@ -189,7 +189,7 @@ from disk. Once sync moves off this machine, something has to put a file there.
 
 It reads the R2 object **directly over the S3 API** with the credentials already in the gitignored
 `setenv.sh`, rather than through `/api/sync/snapshot` — the reasons are in the
-[ADR](../adrs/0003-opaque-snapshot-sync-and-approval-accounts.md). The endpoint in `setenv.sh` is
+[ADR](../adrs/0007-opaque-snapshot-sync-and-approval-accounts.md). The endpoint in `setenv.sh` is
 **EU-jurisdiction** (`…eu.r2.cloudflarestorage.com`), so the bucket must be created with
 `--jurisdiction eu` or those credentials cannot reach it.
 

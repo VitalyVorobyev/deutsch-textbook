@@ -1,5 +1,5 @@
 /**
- * Leben in Deutschland — the trainer's pure logic. ADR 0021.
+ * Leben in Deutschland — the trainer's pure logic. ADR 0009.
  *
  * Practising the official bank is learning, so every answer is graded by FSRS and synced — but
  * into its OWN store key (`lid`), never `cards` or `attempts`. Question states in `cards` would
@@ -467,7 +467,7 @@ export interface LidReadiness {
   exams: Array<{ submittedAt: number; correct: number }>;
 }
 
-/** Readiness as plain facts over `questionIds` — no probability, no composite score (ADR 0021). */
+/** Readiness as plain facts over `questionIds` — no probability, no composite score (ADR 0009). */
 export function lidReadiness(
   state: LidState,
   questionIds: readonly string[],

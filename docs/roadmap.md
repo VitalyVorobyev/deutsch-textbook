@@ -44,14 +44,14 @@ evidence that covers part of a level.
 ### Redaktion · P27
 
 A local, repository-backed editorial workstation, built vertically: each milestone leaves one
-complete editorial path usable. Standing: ADR 0013 and the A1–C2 grammar contract, the checkout
+complete editorial path usable. Standing: ADR 0010 and the A1–C2 grammar contract, the checkout
 picker and restricted Bun sidecar, the Grammatikatlas from a point through focus, topic and
 material, the shared non-executable preview, editor mode, revision conflicts and atomic Save.
 Next, in order: Themen workspaces (P27-3), the Materialien index (P27-4), Qualität and Referenzen
 (P27-5), hardening and macOS delivery (P27-6); renderer parity is owed before pixel parity can be
 claimed. Done means the full editor journey: locate a grammar line, follow its course evidence,
 edit YAML/MDX with conflict protection, read local and corpus diagnostics, and mark a topic
-reviewed only through the green gate. [ADR 0013](adrs/0013-redaction-repository-workbench.md).
+reviewed only through the green gate. [ADR 0010](adrs/0010-editorial-tools-are-separate-apps.md).
 
 ### Mobile and performance
 
@@ -60,7 +60,7 @@ The phone is where the daily loop runs. Open: the seven-tab navigation (P25-8), 
 ### Cross-links, Referenz and readings
 
 Every "see also" edge is derived from data the curriculum already owns, never hand-maintained
-([ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md)). Open: in-page navigation for
+([ADR 0001](adrs/0001-repository-is-the-content-database.md)). Open: in-page navigation for
 the long reference pages and finer edges (P24-5), in-text references as links (F-1), search (F-2),
 a system for readings (F-3), and the written-forms practice surface with its index (P21-1, P21-2).
 
@@ -70,7 +70,7 @@ The planned listening corpus is published and approved. The studio is Tonwerk pl
 engine; what it owes is in the backlog's Tonwerk section. Volume never substitutes for
 intelligibility, and automatic transcription is a defect detector, never proof of natural
 pronunciation. A recurring character ensemble remains **proposed**
-([ADR 0008](adrs/0008-character-ensemble-and-audio-studio.md)).
+([the characters proposal](proposals/characters-and-stories.md)).
 
 ### Standing streams
 

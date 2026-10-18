@@ -6,7 +6,7 @@
  * props: 7–18 MB of HTML per page, re-downloaded on every visit because HTML is network-first in
  * the service worker. The same bytes now ship once, as `data/cards-<hash>.json` and
  * `data/sets-<hash>.json`, which every page shares and the service worker keeps until the content
- * changes (docs/adrs/0022-session-content-as-shared-data-files.md).
+ * changes (docs/adrs/0008-delivery-static-site-desktop-shell-worker.md).
  *
  * The name carries a hash of the body, so a file is immutable: a changed corpus is a new URL, and
  * an unchanged one keeps its URL — and its cached copy — across deploys.

@@ -63,7 +63,7 @@ const VIEWS = [
   ['overview', 'topics.tabOverview'],
 ] as const;
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   checkpointResult: {
@@ -294,7 +294,7 @@ export default function CurriculumPath({
   //
   // And a read that never comes back is not "still loading": this was the only load
   // surface with no deadline and no rejection handler, so `ctx` stayed null and that
-  // loading line was permanent — the learner-visible half of ADR 0018. The error state
+  // loading line was permanent — the learner-visible half of ADR 0006. The error state
   // is checked FIRST, so a retry drops back into loading rather than the other way round.
   if (loadError) {
     return (

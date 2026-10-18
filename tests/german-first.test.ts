@@ -1,5 +1,5 @@
 /**
- * The German-first article (ADR 0023): what `germanFirstTopicProblems` holds a converted B1 topic
+ * The German-first article (ADR 0005): what `germanFirstTopicProblems` holds a converted B1 topic
  * to, through `bun run validate`.
  *
  * Every case is the inline fixture below with one edit, never a real article — a test reading

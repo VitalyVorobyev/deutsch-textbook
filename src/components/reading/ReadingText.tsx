@@ -20,7 +20,7 @@ interface Props {
   narration?: ReadingAudioArtifact;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   extensiveNote: {
     en: 'A longer text, meant to be read for pleasure. Read it straight through once. Not knowing every word is fine — leave the glosses closed while the meaning still carries.',
@@ -317,7 +317,7 @@ export default function ReadingText({ readingId, reading, narration }: Props) {
         </div>
       )}
 
-      {/* Provenance for adapted texts (ADR 0006) — data on the reading, always visible. */}
+      {/* Provenance for adapted texts (ADR 0009) — data on the reading, always visible. */}
       {reading.attribution && (
         <p lang="de" className="mt-4 text-xs text-stone-400 dark:text-stone-500">
           {renderCredit(reading.attribution)} · {reading.license}

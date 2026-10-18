@@ -24,6 +24,8 @@ GitHub Release notes.
   answer it right again.
 - Repository housekeeping: learner snapshots are no longer committed, the Worker's D1 migrations
   moved to `worker/migrations/`, and Tonwerk's own tests now run in CI.
+- Developer docs: the architecture decisions are rewritten as eleven foundational records, and
+  open directions (lesson tasks, characters and stories, the shared UI) become proposals.
 
 ### Changed
 

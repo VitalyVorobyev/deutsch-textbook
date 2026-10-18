@@ -3,7 +3,7 @@
 The operational half: what the trainer is, the expected local layout of the official materials,
 how to run ingestion, and where its outputs land. The *decision* — why the materials never enter
 the repository, why a build without them degrades honestly instead of failing, why exam results
-are calibration and never mastery — is [ADR 0009](../adrs/0009-official-exam-materials-local-only.md).
+are calibration and never mastery — is [ADR 0009](../adrs/0009-third-party-and-official-material.md).
 Read that first if you are about to change anything here.
 
 ## What it is

@@ -460,7 +460,7 @@ export interface UkCoverage {
  *   per the earned-claims rule, rather than trusting the bridge.
  *
  * `content/lid/` counts like everything else. Its notes' `.yaml` translations and its lessons'
- * `.mdx` were exempt from 2026-10-10 until their Ukrainian half shipped (ADR 0021).
+ * `.mdx` were exempt from 2026-10-10 until their Ukrainian half shipped (ADR 0009).
  */
 export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;

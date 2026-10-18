@@ -1,5 +1,5 @@
 /**
- * The Leben-in-Deutschland question component and the practice island (ADR 0021) — the half
+ * The Leben-in-Deutschland question component and the practice island (ADR 0009) — the half
  * tests/lid.test.ts cannot reach. Four things here are silent when broken:
  *
  *  - **Order.** Practice shuffles so a position cannot be memorised — but never `Bild 1…4`

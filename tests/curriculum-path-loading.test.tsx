@@ -12,7 +12,7 @@
  * correct.** There was no deadline and no rejection handler here — the only daily-loop
  * surface without either — so a stalled read left the Russian "Загружаем ваш прогресс…"
  * on screen forever, while 824 cards and 3919 attempts sat in the store on disk. The three
- * cases below the first one are ADR 0018: a failed read reaches an error state with a way
+ * cases below the first one are ADR 0006: a failed read reaches an error state with a way
  * back, the retry re-issues the reads, and a read that comes back *empty* for a profile
  * that has persisted progress before is treated as a failure rather than as a beginner.
  *

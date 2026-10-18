@@ -72,7 +72,7 @@ const readingAudio = defineCollection({
   schema: readingAudioArtifactSchema,
 });
 
-// Leben-in-Deutschland lessons (ADR 0021): reading over the official questions' topics. The file
+// Leben-in-Deutschland lessons (ADR 0009): reading over the official questions' topics. The file
 // name is the lesson id; `bun run validate` (`lidProblems`) holds the cross-file rules. The
 // directory may hold no lesson at all — `.gitkeep` keeps it present in a clean checkout.
 const lidLessons = defineCollection({

@@ -16,7 +16,7 @@
  *      label assembled from two printed lines still passes (that is a reading of the layout, and
  *      each file records the ones it had to make); a label containing a word the page does not
  *      contain is a fabrication and fails.
- *   2. LEAKED — no entry label may be an example sentence. ADR 0011's boundary is labels only:
+ *   2. LEAKED — no entry label may be an example sentence. ADR 0004's boundary is labels only:
  *      *that* the exam tests `wegen` with two cases is a fact, and the sentence the booklet chose
  *      to illustrate it with is not ours to take.
  *   3. UNACCOUNTED — source lines in the page range that look like a label and that no entry
