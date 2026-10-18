@@ -48,12 +48,12 @@ setenv.sh
 .design-sync/learnings/
 .design-sync/node_modules
 
-# Listening Studio local Python state
-tools/listening-studio/.venv/
-tools/listening-studio/.mypy_cache/
-tools/listening-studio/.pytest_cache/
-tools/listening-studio/.ruff_cache/
-tools/listening-studio/**/__pycache__/
+# Tonwerk engine: local Python state
+apps/tonwerk/engine/.venv/
+apps/tonwerk/engine/.mypy_cache/
+apps/tonwerk/engine/.pytest_cache/
+apps/tonwerk/engine/.ruff_cache/
+apps/tonwerk/engine/**/__pycache__/
 
 feedback.md
 # Screenshots attached to the feedback inbox — private, like feedback.md itself.

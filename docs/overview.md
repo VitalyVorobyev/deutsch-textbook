@@ -174,9 +174,9 @@ absent or fails to load (`src/integrations/audio-bundle.ts`, `src/lib/audio.ts`)
 
 ## Listening authoring boundary
 
-`tools/listening-studio/` is a local Python editorial service, not a learner service. SQLite keeps
-immutable revisions outside the repository, and [Tonwerk](apps/tonwerk.md) is the only interface to
-it.
+Tonwerk is one app in two halves: `apps/tonwerk/engine/`, a local Python editorial service (not a
+learner service), and `apps/tonwerk/ui/`, its only interface ([guide](apps/tonwerk.md)). SQLite keeps
+immutable revisions outside the repository.
 
 **A scene is the one artifact model.** Dialogue and narration are two kinds of one document
 (`@da/schema/audio-scene`, Scene v1): a cast, utterances, an acoustic setting and a soundscape.
