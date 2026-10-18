@@ -1,6 +1,8 @@
 # Progress snapshots
 
-JSON snapshots of a learner's browser state, **one folder per local profile**:
+JSON snapshots of a learner's browser state, **one folder per local profile**. They are personal
+data and **stay local**: `.gitignore` tracks only this README and the synthetic `test/` profile.
+`bun run progress:pull` fetches the newest cloud snapshot into the same layout:
 `progress/<profile>/<date>.json` (e.g. `progress/vitaly/2026-07-10.json`). The folder name is
 the slug of the name the learner gave at first run — there is no default profile. A snapshot
 contains exercise `attempts`, FSRS `cards`, the daily

@@ -39,6 +39,25 @@ jobs:
       - name: Page weight
         run: bun scripts/page-weight.ts
 
+  # Tonwerk's UI has its own tsconfig and a vitest suite that `bun test tests/` never reaches.
+  tonwerk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Type-check
+        run: bun run tonwerk:check
+
+      - name: Test
+        run: bun run tonwerk:test
+
   # The Python audio engine. A separate job because it shares nothing with the Bun one — no
   # lockfile, no toolchain, no failure mode — and a red engine must not read as a red site.
   engine:
