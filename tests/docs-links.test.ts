@@ -122,6 +122,7 @@ describe('documentation links', () => {
 
     const failures: string[] = [];
     for (const name of tracked) {
+      if (!existsSync(join(root, name))) continue; // deleted in the working tree, not yet staged
       const source = readFileSync(join(root, name), 'utf8');
       for (const match of source.matchAll(/\bADRs?\s+(?:(?:\/\/|\*|#)\s*)?(\d{4})/g)) {
         if (!records.has(match[1]!)) failures.push(`${name}: ADR ${match[1]}`);

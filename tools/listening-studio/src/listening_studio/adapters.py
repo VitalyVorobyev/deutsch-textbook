@@ -115,7 +115,7 @@ def warn_if_style_is_inert(engine: SpeechGenerator, styled: bool) -> None:
     if styled and not engine.supports_style:
         log.warning(
             "%s does not apply style instructions: the delivery notes on these lines are stored "
-            "and hashed, but they do not reach the audio (docs/quality/tts-reliability.md)",
+            "and hashed, but they do not reach the audio (docs/architecture/tts-reliability.md)",
             engine.name,
         )
 
@@ -331,7 +331,7 @@ def generate_lines(
     for line, resolved in zip(payload.lines, resolved_lines, strict=True):
         # Style is part of the cache key even where it is inert, so an engine that does honour it
         # cannot be served a take generated without it. Cache identity is restructured by the
-        # render-graph work; until then, see docs/quality/tts-reliability.md for why a 0.6B key
+        # render-graph work; until then, see docs/architecture/tts-reliability.md for why a 0.6B key
         # can differ while the audio cannot.
         key = payload.cache_key(line, engine.revision)
         path = root / "cache" / f"{key}.wav"

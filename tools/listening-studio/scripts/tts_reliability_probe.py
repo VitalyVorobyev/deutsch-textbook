@@ -1,6 +1,6 @@
 """Measure whether Qwen3-TTS generates German reliably on this machine.
 
-Every figure in `docs/quality/tts-reliability.md` comes from this script. It exists because the
+Every figure in `docs/architecture/tts-reliability.md` comes from this script. It exists because the
 engine's failure mode is neither a crash nor a bad file: the talker's sampling logits overflow,
 `generate()` raises `torch.AcceleratorError`, and the run before it looked perfect. One clean
 four-line pass is not evidence of reliability, so the default is a repeated sweep and the pass

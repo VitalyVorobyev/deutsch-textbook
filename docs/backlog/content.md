@@ -1,51 +1,19 @@
-# Backlog
+# Backlog · Content
 
-The executable queue. The [roadmap](roadmap.md) owns direction. An entry is *what*, *why in one
-line*, *where the evidence is* (a command or `file:line`) and *the first step*. A finished entry is
-deleted in the change that finishes it; `git log` and [`../CHANGELOG.md`](../CHANGELOG.md) are the
-record of what shipped.
-
-## Doing
-
-- **P27 · Redaktion.** In [roadmap](roadmap.md#redaktion-p27) order: Themen workspaces (P27-3),
-  the Materialien index (P27-4), Qualität and Referenzen (P27-5), hardening and macOS delivery
-  (P27-6). Also owed: renderer parity — nine image and reference figures still use named semantic
-  editor representations instead of the learner's React components; P27-1 close (subdividing
-  over-broad grammar tracks, a persisted graph cache, point→focus→topic→material desktop tests,
-  watcher tests, a packaged macOS smoke run); P27-2 next (structured controls over the same source
-  buffer, visible background-job status). Track acceptance: traversal, symlink, type and size
-  security tests; byte-exact no-op, stale-revision, invalid YAML/MDX and corpus-invalid-draft tests;
-  all renderer fixtures; checkout, watcher, save, refetch and relaunch integration; keyboard and
-  screen-reader navigation at 1440/1024/768; a `.app`/`.dmg` smoke build.
-- **P9-2 · Entdecken pieces.** Recurring, one or two reviewed pieces per PR, each passing
-  [future-content-directions.md](authoring/future-content-directions.md).
-
-## Calendar gates
-
-- **A2 checkpoint review.** Read the A2 checkpoint's 2/7/21-day evidence as a B1 revision trigger.
-  `bun run progress:audit --profile vitaly --pull` says whether it can be read yet.
-- **P5-11 · Evidence cadence.** Drain the grading queue, rerun `bun run progress:audit --profile
-  vitaly`, then decide whether content or drills need revision — never from a pre-triage weak-focus
-  table. Standing read: every persistent weak tag has a serving drill, so the owed action is the
-  learner taking training; production assembly (`translate` under `cloze` and `mc`) is the durable
-  weakness. Confirm both against the current audit before acting on either.
-
-## Open
-
-### Content
+Course content: articles, items, probes, vocabulary, readings and their language. The format and the ID rule are in the [backlog README](README.md).
 
 - **C6-3 · RU/UK translation halves for the B1 German-first articles**
-  ([ADR 0005](adrs/0005-explanation-languages.md)). All 20 articles carry an English
+  ([ADR 0005](../adrs/0005-explanation-languages.md)). All 20 articles carry an English
   `<Translation>` per section; a Russian or Ukrainian reader falls back to it. Write `<Ru>` and `<Uk>`
   from the German, never from the English, all-or-none per file (`germanFirstTopicProblems`
   enforces it), and give them the same fresh sentence-level check against the German.
 - **C6-1 · RU/UK calque review.** Instrument: the `textbook-text-reviewer` → `textbook-text-editor`
-  loop ([article-prose.md](authoring/article-prose.md)), then a fresh verify; two edit cycles at
+  loop ([article-prose.md](../authoring/article-prose.md)), then a fresh verify; two edit cycles at
   most. Eight B1 units remain — all but `digitales-leben`, `kultur-freizeit`, `geld-vertraege`,
   `erfahrungen-erzaehlen`, `leben-veraendern`, `meinung-medien`. Every unit reviewed so far had a
   material defect, usually a false fact inherited from the EN half. No structural screen predicts
   it, and authoring order does not either.
-- **A name in a Cyrillic prompt leaves its spelling free.** «Айлин» is Aylin, Ailin or Eilin and
+- **CON-1 · A name in a Cyrillic prompt leaves its spelling free.** «Айлин» is Aylin, Ailin or Eilin and
   «Клара» Clara or Klara, so a `translate` item whose answer names a person grades a spelling its
   RU/UK prompt never gave. Two items now write the name in Latin script
   (`a1/wortbildung-ausblenden:translate-fahrerin`,
@@ -68,7 +36,7 @@ record of what shipped.
 - **P18-1 · `explain` prose length.** Mean EN `explain` over `role: practice` sets runs A1 28 words,
   A2 53, about 110 in B1.4/B1.5 (whitespace-separated words over `explain.en`); feedback is read
   after an error, when attention is scarcest. First step: set a target in
-  [item-authoring.md](authoring/item-authoring.md), then revise the B1 non-`produktion` sets.
+  [item-authoring.md](../authoring/item-authoring.md), then revise the B1 non-`produktion` sets.
 - **P19-3 · Irrealer Wunsch (*Wenn … doch/nur …!*) has no retrieval item.** B1.8 drills the
   two-clause condition only. First step: one `translate` in a later Konjunktiv II unit pinning the
   one-word form beside *doch*/*nur*.
@@ -92,7 +60,7 @@ record of what shipped.
 - **C6-2 · `tatsächlich` stress.** `content/vocab/meinung-medien.yaml` has initial `ˈtaːtzɛçlɪç`; a
   review argued for `taːtˈzɛçlɪç`. Settle against Duden's primary entry, then apply to other
   `-lich` adjectives built on a compound.
-- **Three Sprachhandlungen have no outcome** — interkulturelle Begegnung, Wissensdivergenz, Gefühle
+- **CON-2 · Three Sprachhandlungen have no outcome** — interkulturelle Begegnung, Wissensdivergenz, Gefühle
   ausdrücken (`bun scripts/handlungen.ts B1 --unclaimed-only`). Not turn management, so not
   `gespraech-steuern`'s; they want a topic of their own.
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
@@ -103,7 +71,9 @@ record of what shipped.
   (`SOURCES.md`); extending `exam:ingest` is config plus a cue pass whose labels and boundaries must
   be verified by ear or word-level ASR. ADR 0009 holds: nothing from these files enters the repo.
 
-**B1 findings below the material bar**, from the topic-quality pass:
+## B1 findings below the material bar
+
+From the topic-quality pass, for the next time each file is touched.
 
 - `b1/erfahrungen-erzaehlen`: "the thirteen verbs … cover most narration" overreaches; the
   `-produktion` header comments describe an interview no longer in the set; `hoeren-diktat-zug`
@@ -289,7 +259,9 @@ record of what shipped.
   `sprechen-besprechung` explain's stressed *ja* that "turns a reminder into a contradiction";
   the reading gloss "the polite Konjunktiv II is what asks for the floor"; C6-1 still owed.
 
-**A2 findings below the material bar**, for the next time each file is touched:
+## A2 findings below the material bar
+
+For the next time each file is touched.
 
 - `a2/natur-wetter`: *Kurz gesagt* says every weather kind offers three words (its own table
   disagrees) and omits the comparison outcome; the table's Wind row has no verb while *weht*
@@ -339,248 +311,3 @@ record of what shipped.
 - `a2/lernen-verstehen::cloze-du-oder-sie-fragen` rejects the politer *könnten Sie*.
 - `a2/aemter-dienstleistungen::table-hoefliche-chunks` scores the article's own *Ich möchte* wrong;
   the `anmelden` note describes only the reflexive use.
-
-### Learner feedback
-
-Triaged from `feedback.md`, which holds only raw capture.
-
-- **F-1 · In-text references are not links** ("Präteritum from B1.1",
-  `content/topics/b1/kultur-freizeit.mdx:291`); `SeeAlso.astro` is a footer, not in-prose links.
-  First step: authored markup or derived from the unit id it names — and a way back.
-- **F-2 · There is no search** (`find src -iname "*search*"` is empty), and no `⌘F` on a phone.
-  First step: scope — in-page find is a component, cross-page search a build-time index.
-- **F-3 · Readings have no system** — no index, no stated role, an undecided boundary with
-  Entdecken and Üben. First step: inventory what each reading is for, against `kind: intensive`
-  versus `extensive`.
-- **F-4 · The mastery checklist and Siehe auch belong in a desktop side panel**
-  (`src/pages/topics/[...slug].astro`). First step: two columns, or a checklist popover.
-- **F-6 · `-ch` versus `-g` endings.** Ambiguous: `-ig`/`-ich` pronunciation or the `-lich`/`-ig`
-  suffixes. First step: ask the learner.
-- **F-7 · Preposition choice as its own task type.** First step: check whether a `table` task
-  already covers it before adding an eleventh item type.
-- **F-8 · The separable-verb cloze answers itself** — separable verbs get two gaps, inseparable one
-  (`content/exercises/a2/trennbare-verben.yaml`, `cloze-trennbar-untrennbar`). Re-author to one shape.
-- **F-10 · No topic teaches that an event noun takes *zu*** (*zur Führung*). First step:
-  `bun scripts/grammar-depth.ts --thin` for a tag to recycle.
-- **F-11 · Mobile sweep.** A phone-width pass over Heute, Üben, a topic page and Fortschritt,
-  listing what a hand reaches; with P25-3.
-- **F-12 · Eight reflexive verbs ship two cards, one per Wortliste key** — an A2 bare key and a
-  B1 `sich` key (`bewerben`, `bedanken`, `verlieben`, `beschweren`, `beeilen`, `freuen`, `kümmern`,
-  `entscheiden`), all `cards: both`. Since the shown headword is derived (`shownHeadword`,
-  `@da/schema/headword`), both cards of a pair read `sich freuen`. Flipping to recognition is not
-  retrofittable. First step: disambiguating glosses versus merging; plain `entscheiden` is
-  *to settle*, not *to make up one's mind*.
-- **F-14 · A `table` cell has no `accept`**, so a correct alternative form is wrong: the
-  du-imperative *gehe*, *trinke*, *bleibe* beside *geh*, *trink*, *bleib*
-  (`a1/stadt-wege-a1-grammatik:imperativ-drei-formen`, `a2/gesundheit-arzttermin:table-imperativ`).
-  First step: an optional `accept` on a cell, read by `acceptedCellAnswers` (`src/lib/table.ts`) so
-  `validate.ts` and `TableFill` cannot disagree.
-- **F-15 · A `table` cell has no slip allowance**, so a retyped word charges the row's focus: four
-  of five misses on `a2/nebensaetze-plaene:table-hauptsatz-zu-nebensatz` had every clause right
-  and one name wrong ("Nine" for *Nina*); that item now avoids names. First step: give cells the
-  dictation slip rule, with F-14's `acceptedCellAnswers` as the one reader.
-
-**Ruled, no change** — so they are not re-triaged:
-
-- *in die Führung* vs *zur Führung* is a curriculum gap (F-10), not an accept-list gap.
-- `freunde-feste.yaml:266` rightly rejects a time outside the reason clause.
-- *Katze*, *Hund*, *Pferd* stay at A2: the Goethe A2 Wortliste places them, and moving a word
-  resets its cards.
-- A Wortliste key stays bare even when the verb is used reflexively (`gewöhnen`, `kümmern`): the
-  key is the manifest's. What the learner reads is derived — a `valence` that leads with `sich`
-  shows `sich gewöhnen`; a dual valence (`beschäftigen`: `+ Akk / sich …`) stays bare.
-- `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` asks two questions on purpose.
-- "Fortschritt konnte nicht geladen werden" is a local IndexedDB read, never the network
-  ([ADR 0006](adrs/0006-local-first-durable-learner-state.md)).
-
-### Product surfaces
-
-- **P25-8 · Seven top-level nav tabs** (Heute, Themen, Entdecken, Referenz, Üben, Fortschritt,
-  Über; `src/layouts/Base.astro`) is still too many, by owner ruling; required before the release
-  that reports B1 complete. First step: inventory the seven and propose merges or demotions.
-- **P25-1 · `/ueben/wortschatz` is ~22 viewport-heights at 390 px**, one card per deck. Group by
-  level with collapsed sections, or a filter row; the Fortschritt per-level summary is the precedent.
-- **P25-3 · Sub-44 px touch targets on the daily loop.** Re-measure at 390 px, then apply the
-  `min-h-11 sm:min-h-0` pattern; one pass, no redesign.
-- **P24-5 · Cross-links and Referenz IA, what remains.** In-page anchor navigation for the long
-  reference pages, and finer per-section edges where the data supports them
-  ([ADR 0001](adrs/0001-repository-is-the-content-database.md): add the datum, never a link).
-- **P26-14 · The topic → reference-page route table is hand-written** (`REFERENZ_ROUTES`,
-  `src/pages/topics/[...slug].astro`), so a new reference page links from nowhere. Fix with a
-  `route:`/`title:` pair on each reference-data file. First: is `praepositionen.yaml`'s absence a
-  gap or a fold into `/referenz/kasus-praepositionen`?
-- **P26-15 · Topic `tags:` has no consumer.** Give it a job (a Redaktion facet) or delete the field
-  from `topicManifestSchema` and every manifest in one change.
-- **P21-1 · Written forms are taught but never practised as forms** (Bewerbung, Beschwerde, formal
-  e-mail; `content/reference-data/briefe.yaml`). An item grading structure, never wording, is the
-  open design question.
-- **P21-2 · The written-forms material has no index.** An Entdecken piece; small.
-- **P20-1 · `/pruefung/a1` has one entry point**, and its sets declare `topic: freizeit-koennen`
-  while their items span six topics — a navigation call and a schema question.
-- **P26-16 · Redaktion rebuilds the whole corpus after a one-field write** — ~6.6 s for the next
-  `/__graph` plus ~6 s of validation. Invalidate per file and verify only the touched file's rules,
-  before the editable-field allowlist grows.
-- **Schreiben helper.** A learner-facing Goethe A1 Schreiben scoring and strategy note lived in the
-  dev docs (`git show 2fbdfa2:docs/a1-goethe-schreiben-helper.md`). If it is wanted, it becomes an
-  in-app page.
-
-### Instruments and gates
-
-- **P30-3 · Type-aware Oxlint.** `oxlint --type-aware` (needs `oxlint-tsgolint`, which runs on TS
-  7) reports 117 findings across 9 rules: `unbound-method` 57 (mostly destructured React hooks in
-  `apps/tonwerk/src/views/`), `restrict-template-expressions` 14, `await-thenable` 13,
-  `no-base-to-string` 12, `no-floating-promises` 9, `no-misused-spread` 6, three rules at ≤ 2.
-  First step: triage `await-thenable` and `no-floating-promises` — either can hide a real ordering
-  bug — switch off what fires only on React idiom, then add `--type-aware` to `lint`. `bun audit`
-  still reports one moderate build-time advisory, `postcss-selector-parser` 6 via
-  `@tailwindcss/typography`.
-- **Grading rulings carry no item revision, so a probe cannot be repaired past one.** An
-  `accept` ruling must pass today's grader (`packages/content/src/grading-decisions.ts`), so
-  once a ruling accepts a rendering, the item can never stop accepting it. Found on
-  `a2/probe-natur-wetter:variant-a`: *Am Dienstag regnet es den ganzen Tag* is almost the practice
-  cloze `cloze-es-umgestellt` word for word, so the probe can be answered from memory of it — but
-  the 2026-08-26 ruling accepting exactly that rendering blocks changing the carrier. First step:
-  give a ruling an optional `revision` and check `accept` only against that revision.
-- **Owner decision: does the `da-weil` probe grade a preference?** `focus-tags.md` says *weil* is
-  grammatical wherever *da* is, so an item may grade only a forced choice, and practice
-  (`cloze-da-weil-bekannt-neu`, `-produktion::cloze-da-weil-transfer`) accepts *Weil*; but
-  `probe-meinung-medien-da-weil` variants b and c, under the same instruction, accept only *Da*.
-  Either key the practice gaps `{{Da}}` and amend the tag rule to "or the direction the instruction
-  constrains", or let the probe accept *Weil* (then only variant-a measures). Also: who drafted
-  this unit's UK/DE halves and ran its C6-1 review is not in its provenance record.
-- **The grader's closed-class guard lacks *dies-*, *jed-*, *welch-* and *euer*.** `CLOSED_CLASS`
-  (`packages/grading/src/production.ts`) lists articles, possessives and pronouns, so `den` for
-  `dem` is a choice; but *dieser* for *dieses* is one edit and forgiven as a slip, although
-  `demonstrativartikel` and `interrogativartikel` grade exactly that ending. Found on
-  `b1/drill-irreale-bedingung:uebersetzen-zimmer-balkon`. First step: add the four paradigms and
-  run the determiner-twin sweep for renderings the change newly rejects.
-- **The grading queue reads predicate-bearing items through `key_tokens` alone.** `gradingReview`
-  (`scripts/progress-audit.ts`) queues a rejected rendering and re-attributes a confirmed one with
-  `gradeTranslation`, while the runtime logs the item's `focus_evidence` verdict. Routing it through
-  the predicates queues 2 more renderings today, both on `a2/drill-zu-infinitiv:uebersetzen-formular-auszufuellen`
-  (a misspelt pin the predicates call `unknown`); no probe row moves. Decide whether such a miss
-  belongs in the review queue before wiring it.
-- **A probe's arming contract pins a tag on an item that should not carry it.**
-  `b1/arbeit-bewerbung-produktion::hoeren-interview-verstehen` is a speaker-attribution listening
-  item tagged `nomen-verb-verbindung` (its own explain says so), but it is in that probe family's
-  `arming:` list, and the validator requires arming items to carry the family's focus. Removing it
-  moves the family's clock: measure `armedAt` on a current snapshot before changing either.
-- **A reordered main clause is blamed on the relative pronoun.** The misplaced-token check
-  attributes a correct rendering whose main clause is reordered (*Jetzt helfen mir die Kollegen,
-  denen …*) to the pinned token's focus, because the token count is unchanged. Every
-  relative-clause translate item can hit it; `b1/leben-veraendern-produktion::uebersetzen-transfer-kollegen`
-  now accepts the fronted order by hand. First step: measure how many confirmed rejections in
-  the attempt log are reorderings of an unpinned clause.
-- **P23-3 · Six of the seven tags the runtime prioritises have no drill, all B1.** Cross
-  `weakFocuses` (`src/lib/weakness.ts`) with every `role: drill` item's `focus`. `weakFocuses` (last
-  ~30 attempts, ≥35% errors) and the audit's `persistent` table disagree, and neither is wrong. Take
-  one drill per evidence read, never six at once.
-- **P25-9 · Band 1 re-deals a failed item ahead of its own drill.** `buildSession`
-  (`src/lib/training.ts`) serves last-wrong items first, so `uebersetzen-waehrend-regen` was failed
-  in nine sessions running while all eight items of `drill-temporal-nebensatz` sat unserved; the
-  delayed probe on the same competence runs 2/2. The fix is selection — cap re-deals, or let a due
-  drill item of the same weak focus preempt band 1 — measured on the deal distribution before and
-  after.
-- **P25-7 · Slip-forgiveness stops at `key_tokens`.** Four confirmed rows where every graded token
-  was right and one typo elsewhere sank the rendering (`data/grading-decisions.yaml`, decided
-  2026-08-11). Measure every historical confirm whose only divergence is outside `key_tokens` before
-  changing the scorer — invented fixtures got this trade-off wrong twice.
-- **P25-15 · A probe family logs a sub-confusion on its umbrella tag.** The validator holds variant
-  `focus` equal to the arming set's, so `a2/probe-zeit-praepositionen` variant-a (seit/vor) and
-  variant-b (am/um) both log as `zeitangaben-system`.
-- **P23-2 · A revision bump that only widens `accept` stops the retention table re-grading.**
-  `classifyProbe` (`scripts/progress-audit.ts`) replays an attempt only when `itemRevision` matches,
-  else falls back to the stored tag. One measurement found no row affected; verify before acting.
-- **P5-11b · Mode coverage is checked at A1 only** — items declare `target_mode` and validation
-  requires each A1 outcome's mode to be practised. First step: decide whether an outcome must name
-  the mode it is measured in, then extend the check to A2 and B1.
-- **P12-6 · Dictation focus attribution at A2/B1** keeps `dictationSlip`; silencing unmatched misses
-  without predicates inverted the weakness signal. First step: `focus_evidence` predicates for the
-  ~50 focused A2/B1 `listen` items.
-- **P12-7 · An accept list is closed by its declared product**, never by enumeration: the
-  dimensions the item's own answer, accept and explain present as equivalent, each verified through
-  `gradeTranslation`. Beyond that, name the token in the `instruction` when it carries the focus, or
-  accept the sibling.
-- **P5-11c · The connector-determinacy check does not reach cloze gaps.** Read the comment above
-  `INTERCHANGEABLE_CONNECTORS` first (`da` is absent on purpose); a cloze version needs sense
-  disambiguation.
-- **P22-9 · Markdown emphasis in a YAML text field renders as asterisks.** `*` is also the
-  ungrammaticality marker (64 correct uses); emphasis *closes*, the marker never does. Verify a rule
-  against both sets.
-- **P22-11 · No detector for two vocab entries answering one production prompt**
-  (`Angebot`/`Sonderangebot` was found by the learner). Respect parentheticals, require mutual
-  overlap, triage against the lapse table; `Stock`/`Stockwerk`/`Etage` needs an editorial ruling.
-- **P22-19 · An audio-only topic escapes the item-mix bar** (`scripts/validate.ts`: the
-  `practiceItems` guard runs on the audio-filtered list). Unreachable today. Decide *whether the topic
-  has practice* from the unfiltered list.
-- **P22-12 · The positional-option rule cannot see a bare ordinal**
-  (`src/lib/option-references.ts`); needs sense disambiguation.
-- **P24-8 · `bun run gen:ipa` writes a duplicate `ipa:` key when a comment precedes the field**, and
-  YAML keeps the last one, silently replacing a reviewed transcription. Until fixed, run it with
-  `--only <deck>`. Make the writer idempotent, and make duplicate keys fail `bun run validate`.
-- **P24-9 · Article comprehensibility is measured but uncalibrated.**
-  `bun scripts/comprehensibility.ts --rank` has never been checked against the owner's
-  felt-difficulty list. Then learner evidence: a per-topic pretest → first-practice accuracy delta in
-  `progress:audit`.
-- **P25-13 · The real store round-trip test is skipped on CI** (`test.skipIf(CI)`): a fake-indexeddb
-  scheduling race on Linux runners, never on macOS. On each bun upgrade, drop the `skipIf` in a draft
-  PR and see whether it is gone.
-- **P20-3 · The live card-id migration call site has no automated coverage.** Add `fake-indexeddb`
-  coverage the next time profile-scoped storage changes.
-- **P12-8 · The two answer highlights come from two LCS runs** in `Translate`, so a transposition
-  can mark different words on each side. Display only; return both arrays from one traversal in
-  `packages/grading/src/worddiff.ts`.
-
-### Desktop and storage
-
-- **P29-1 · A bundle-less run uses a second WebKit container** (`~/Library/WebKit/deutsch-atlas/`
-  instead of `dev.nonvision.deutsch-atlas/`), holding a frozen copy of the profile. It is detected
-  and reported on Fortschritt → Daten (`legacy_webkit_container`, `src-tauri/src/main.rs`); what the
-  learner should do about it is undecided, and merging two histories must never be automatic.
-- **P29-3 · `AccountPanel.bind()` decides a warning from an unguarded read.** A stalled
-  `getAttempts()` reads as "nothing to merge" and binds a device with history silently. Fix with
-  `withReadRetry` and an explicit failure that decides between warning and refusing.
-- **P30-1 · A card grade rewrites the whole `cards` blob** (~784 KB), because progress lives under
-  six keys. Per-record keys would touch every read path, the snapshot format and sync — worth it
-  only if measured write latency says so.
-- **P30-2 · `scheduleAutoSync()` fires once per queued waiter, not once per commit.** The debounce
-  absorbs it; move the call to the batch boundary.
-
-### Tonwerk and audio
-
-- **P28-8 · `scripts/validate.ts` predates consented cloning and manifest v2.** Allow
-  `voice_cloning_used: true` with a non-empty `consent_sha256` list, and check a v2 manifest's
-  `version`/`scene_sha256`. Lands with the first real scene publish.
-- **P28-3 · One `qa_json` per scene revision, but renders are per variant.** Key it by variant in
-  `scene_revisions` before difficulty variants ship.
-- **P28-4 · `renders/` has no reaper and no disk figure.** First a `renders du` figure in the
-  dashboard, then a keep-last-N decision.
-- **P28-2 · A scene ending on its last word has no reverb tail** (`afir` truncates at EOF). Pad the
-  dialogue bus with silence ≥ the room's decay before convolution (`graph/render.py`).
-- **P28-1 · Legacy `--json` CLI verbs can emit corrupted JSON** under a real engine (a banner on
-  stdout). Apply `_only_json_on_stdout` (`scene/cli.py`) to the legacy verbs that survive, drop the
-  rest.
-- **P22-14 / P22-16 · Delivery timing.** Per-line lead and trail silence compound with
-  `pause_after_ms` (~1.4 s dead air at a normal turn), and pace and pause do not vary by level.
-  Both re-synthesise and invalidate approvals, so pay for them in one between-waves pass. Measure
-  words per second of voiced audio (median 2.96).
-- **P22-10 · Nothing compares a recording's length to its planned window**
-  (`data/listening-plan.yaml` `duration_seconds`; `tools/listening-studio/authoring/audio_report.py`).
-  Fix the script, never the window; start with `ls-lernen-zukunft-01` and `ls-arbeit-beruf-01`.
-- **P22-20 · The Qwen download is unpinned** (`scripts/download-qwen3-tts.py` calls
-  `snapshot_download` with no `revision`) while the loader accepts one revision only. Pass it.
-- **P22-18 · `soundfile` is pinned at two versions** (`pyproject.toml`/`uv.lock` 0.13.1,
-  `requirements-qwen-runtime.txt` 0.14.0). Pick one; do not refresh the committed manifests'
-  `dependency_lock_sha256`.
-- **P22-15 · The Studio cannot author a `uk` half**, so the 246 hand-authored `uk` fields exist only
-  in the published YAML. Add the column to the question editor and `uk` to `draft_prompt`.
-- **P22-5 · A rebuilt export keeps the previous revision's files.** Build into a clean directory.
-- **P22-6 · Freesound URLs are matched by prefix** (`sources.py`). Parse the URL and require the
-  sound-id segment to equal `sound_id`.
-
-## Deferred
-
-Each needs a measured learning or usability need first: committed neural-TTS expansion,
-pronunciation assistance, runtime and branching missions, spoken-mode placement (P13-1), a
-next-level placement offer (P13-2), the listening retention pilot after the A1 gate (P5-7), and the
-DTZ §9.2 Wortliste cross-check (P26-17 — a one-off report whose extraction is a project).

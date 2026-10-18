@@ -1,4 +1,4 @@
-# Deutsch-Atlas technical design
+# Deutsch-Atlas system overview
 
 This document is the stable map of the implemented system. It explains where contracts live and
 how data moves through the product. It deliberately does not repeat the authoring rules in
@@ -363,4 +363,4 @@ Adding such context must not change card ids, SRS scheduling or snapshot state.
   learning activity with a separately designed evidence contract.
 
 The active product sequence is maintained in [`roadmap.md`](roadmap.md) and executable tasks in
-[`backlog.md`](backlog.md).
+[`backlog/`](backlog/README.md).

@@ -33,7 +33,7 @@ this skill is the procedure that gets you to them with clean inputs.
 
 A surprising number is guilty until the instrument that produced it is cleared. Both of P4-4's
 review findings and the Wortliste `~` audit were "content" defects that turned out to live in the
-scorer, the validator or the manifest check (see backlog.md). Order of suspicion:
+scorer, the validator or the manifest check (see docs/backlog/). Order of suspicion:
 
 1. **Instrument** — could the scorer, validator or audit itself have produced this number?
 2. **Grading-review queue** — rulings on rejected renderings (below). Withheld attempts distort

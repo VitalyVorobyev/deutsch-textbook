@@ -9,7 +9,7 @@ Produce one reviewed-ready narration candidate. Stop before human approval or pu
 
 ## Workflow
 
-1. Read `CLAUDE.md`, `docs/design.md`, the source YAML, `data/listening-characters.yaml`, and `data/listening-narration-profiles.yaml`.
+1. Read `CLAUDE.md`, `docs/overview.md`, the source YAML, `data/listening-characters.yaml`, and `data/listening-narration-profiles.yaml`.
 2. Strip gloss markers to their German surface. Never speak translations, questions or hidden gloss text. Bind the project to the normalized source hash.
 3. Choose one profile:
    - `didactic-clear` for especially clear intensive A1/A2 input;

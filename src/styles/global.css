@@ -36,7 +36,7 @@
 
 /* UI-language toggle: <html data-ui-lang="de|en|ru|uk"> controls which .ui-*
    chrome spans are visible — same mechanism as .lang-*, but the other axis
-   (docs/i18n-design.md): chrome, not explanations. Default 'de' is today's
+   (docs/adrs/0005-explanation-languages.md): chrome, not explanations. Default 'de' is today's
    exact chrome. */
 [data-ui-lang="de"] :is(.ui-en, .ui-ru, .ui-uk),
 [data-ui-lang="en"] :is(.ui-de, .ui-ru, .ui-uk),

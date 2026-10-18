@@ -244,7 +244,7 @@ describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-
   // (getCardStates once, setCardState later) — a scheduling race in the
   // fake-indexeddb/bun event loop on Linux, not app logic; macOS passes every
   // time on the same bun version (1.3.14). Decomposed CI coverage lives above;
-  // revisit on bun upgrades (docs/backlog.md).
+  // revisit on bun upgrades (docs/backlog/).
   test.skipIf(!!process.env.CI)(
     'getCardStates/setCardState round-trip through the real getStore()',
     async () => {
