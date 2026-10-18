@@ -1,7 +1,7 @@
 /**
  * Lesetexte — 85 texts, one pass, driven from the keyboard.
  *
- * This is the surface PR 12's narration wave runs on, so it is built for the fiftieth row rather
+ * This is the surface a narration wave runs on, so it is built for the fiftieth row rather
  * than the first. Three decisions follow from that and nothing else on this screen matters as
  * much:
  *

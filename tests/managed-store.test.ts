@@ -12,8 +12,8 @@ import { eventually } from './eventually';
 // length changes nothing they assert. What a short deadline does break is the work that IS
 // meant to finish inside one, on a loaded runner. At 20 ms, two such misses failed the Windows
 // release build:
-// - v0.6.7: the re-open after a retry missed `openMs` and added a second 'retry' event;
-// - v0.6.9: the late-completion test's commit, 5 ms after the abort, missed the 20 ms
+// - the re-open after a retry missed `openMs` and added a second 'retry' event;
+// - the late-completion test's commit, 5 ms after the abort, missed the 20 ms
 //   `abortMs` grace and blocked the store.
 // Both are reproduced by delaying the open or the commit 30 ms. The late-open test builds its
 // own store with a short `openMs`, because that deadline is the one it drives.

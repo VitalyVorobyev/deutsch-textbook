@@ -34,6 +34,8 @@ GitHub Release notes.
 - Agent instructions are layered: a short root `CLAUDE.md` plus one per working directory, and all
   project skills live in `.claude/skills/`, with new ones for the PR cycle, releases, shipping a
   topic and translating from the German.
+- Code and content comments no longer cite development milestones — backlog IDs, PR numbers,
+  release versions, dated passes — and a test keeps it that way.
 
 ### Changed
 

@@ -21,7 +21,7 @@
 # fail in a way worth drilling, it wants a tag, not this escape hatch.
 #
 # ---------------------------------------------------------------------------
-# THE FOUR FIELDS THAT MAKE A ROW TRACEABLE (added 2026-08-14)
+# THE FOUR FIELDS THAT MAKE A ROW TRACEABLE
 # ---------------------------------------------------------------------------
 #
 # `level: {reception, production}` REPLACES the old single `standard_level`.
@@ -727,8 +727,8 @@ points:
       - goethe-dtz:temp-vor
       - goethe-start-deutsch-2:praep-temp-seit
 
-  # P26-8, ruled 2026-08-14. The A1 Prüfungsziele left `über` as the level's one unclaimed entry,
-  # and the backlog asked whether it is a temporal preposition at all or "closer to a quantifier"
+  # The A1 Prüfungsziele left `über` as the level's one unclaimed entry, and the open question
+  # was whether it is a temporal preposition at all or "closer to a quantifier"
   # — a ruling was needed before a row was. The DTZ handbook settles it from the outside: §8.4 5.1
   # files `über + Akkusativ` under **temporal**, beside während, zwischen and zu, and illustrates
   # it with a duration. Two independent published standards classify it the same way, so it is a
@@ -1243,17 +1243,15 @@ points:
 
   # ---------------------------------------------------------------- B1
   #
-  # Authored 2026-07-20, before any B1 content exists, and that is the point: this
-  # section reports 0% and makes the size of the B1 job visible. The A2 story is the
-  # argument for it — A2 was called content-complete for months on the strength of its
-  # Wortliste figure, and turned out to be at 67% of its structural standard with six
-  # points unwritten, several of them scheduled inside B1 units where they would never
-  # have shown up as A2 debt. A level with no manifest cannot notice that happening.
+  # A level's rows are written before its content, so the size of the job is visible before
+  # the first unit ships. A Wortliste figure alone can call a level complete while points of
+  # its structural standard are unwritten, or scheduled inside a later level's units where
+  # they never show up as this level's debt. A level with no manifest cannot notice that.
   #
-  # The tags below are PROPOSED and none is registered in `focusIntroducedBy` yet, so
-  # every point reports `missing`. That is the normal way an unwritten structure shows
-  # up (see the validator's inventory block); a tag becomes real in the commit that
-  # ships the unit teaching it, and the B1 figure rises by exactly that much.
+  # A point whose tag is not yet registered in `focusIntroducedBy` reports `missing`. That
+  # is the normal way an unwritten structure shows up (see the validator's inventory block);
+  # a tag becomes real in the commit that ships the unit teaching it, and the level's figure
+  # rises by exactly that much.
   #
   # Scope boundary: six structures once believed to be B1 are taught at A2 here and are
   # listed in the A2 section — relative clauses (Nom/Akk), Infinitiv mit zu, um … zu,

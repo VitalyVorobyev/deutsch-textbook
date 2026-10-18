@@ -315,8 +315,8 @@ export function withPersistenceRetry<T>(
       // only the fact is kept (`withReadRetry`, below). For a WRITE the fact is that it
       // COMMITTED — idb-keyval resolves on `transaction.oncomplete`, so a resolve is a commit
       // — and the caller has to be told, or its journal entry outlives the write it describes
-      // and the alert claims "noch nicht gespeichert" about data that is on disk. That was the
-      // permanently red banner of 2026-09-15, frozen at a count that could never fall.
+      // and the alert claims "noch nicht gespeichert" about data that is on disk. That is a
+      // permanently red banner, frozen at a count that can never fall.
       if (settled) {
         if (stallId) recordRecovery(stallId, Date.now() - startedAt);
         if (!lateFired) {

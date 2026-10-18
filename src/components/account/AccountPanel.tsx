@@ -241,8 +241,8 @@ export default function AccountPanel() {
         ) : session.providers.length === 0 ? (
           // No configured provider means the Worker has no OAuth secrets. Mapping
           // over the empty list rendered *nothing*, so /konto ended after the
-          // paragraph above and read as a broken page — which is exactly how the
-          // 2026-08-03 outage presented. `bun run deploy:smoke` catches the same
+          // paragraph above and read as a broken page — which is exactly how a
+          // secrets-less deploy presents. `bun run deploy:smoke` catches the same
           // state from outside; this is what the learner sees meanwhile.
           <p className="text-sm text-stone-500 dark:text-stone-400">
             {pick(lang, UI.signInUnavailable)}

@@ -14,7 +14,7 @@
  * what makes the 'de' default zero-visual-change by construction.
  *
  * Every entry carries all four languages (`satisfies` enforces it), so chrome
- * needs no uk→en fallback — unlike content, where uk is optional (P8-4).
+ * needs no uk→en fallback — unlike content, where uk is optional.
  */
 
 export type UiLang = 'de' | 'en' | 'ru' | 'uk';
@@ -694,7 +694,7 @@ export const STRINGS = {
     uk: 'картки повторено',
   },
 
-  // Chrome residue (P8-5): components that never had a language ternary, and
+  // Chrome residue: components that never had a language ternary, and
   // static .astro page furniture.
   // Tier badge on a single topic — singular forms; topics.status* above are
   // the OverviewTable filter labels and deliberately plural.
@@ -788,7 +788,7 @@ export const STRINGS = {
   'ueben.tabWortschatz': { de: 'Wortschatz', en: 'Vocabulary', ru: 'Лексика', uk: 'Лексика' },
   'ueben.tabPruefung': { de: 'Prüfung', en: 'Exam', ru: 'Экзамен', uk: 'Іспит' },
   // A sub-tab, not a top-level one: the owner ruled that eight tabs is too many and that exam
-  // training is training (backlog P25-8). Abbreviated so the sub-nav still fits at 375 px.
+  // training is training. Abbreviated so the sub-nav still fits at 375 px.
   'ueben.tabLeben': { de: 'Leben in D.', en: 'Life in G.', ru: 'Жизнь в Г.', uk: 'Життя в Н.' },
   'vocab.allWords': { de: 'Alle Wörter', en: 'All words', ru: 'Все слова', uk: 'Усі слова' },
   // Colon style in ru/uk on purpose: it sidesteps numeral agreement, which a

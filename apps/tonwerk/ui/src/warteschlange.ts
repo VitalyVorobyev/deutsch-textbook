@@ -1,7 +1,7 @@
 /**
  * A queue you work through with the keyboard, and the two rules that make it one.
  *
- * PR 12's narration wave is 85 Lesetexte reviewed in a row. A list you drive with a mouse is a
+ * A narration wave is 85 Lesetexte reviewed in a row. A list you drive with a mouse is a
  * list you review 85 times *slowly*, and — more to the point — a list where the pointer is the
  * only record of where you are, so a reload starts you at the top again. Both are fixed by the
  * same two decisions:

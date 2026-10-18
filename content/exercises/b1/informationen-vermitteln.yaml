@@ -83,7 +83,7 @@ items:
       de: "habe dort, wo der Indikativ hat sagt, ist ein Konjunktiv I, und er hat genau eine Aufgabe: Er markiert den Satz als die Worte des Handwerkers und nicht als eigene Behauptung. Der Schlüssel ist also weiterhin bei ihm; ihn als Meldung der Verwaltung über den eigenen Schlüssel zu lesen, gibt ihn der falschen Person — gerade das verhindert die Form. Ihn als längst zurückgegebenen Schlüssel zu lesen, ändert nicht die Form, sondern die Tatsache: Hier ist nichts vorbei. Auf B1 wird das gelesen und mit dass und Präsens weitergegeben: Der Handwerker schreibt, dass er den Schlüssel noch hat."
 
   - id: uebersetzen-relais-konjunktiv
-    # Revision 2 (2026-10-13 quality pass): the DE instruction said "mit dass und Präsens",
+    # Revision 2: the DE instruction said "mit dass und Präsens",
     # and werde is a Präsens too (Konjunktiv Präsens), so in German-medium mode the mood was
     # the learner's to pick; it now names the Indikativ, as "the ordinary present" does in
     # the other three. focus_evidence charges the tag only for its own decisions — the
@@ -116,7 +116,7 @@ items:
       de: "Bewertet werden die beiden Enden des berichteten Nebensatzes: dass, womit eine Aussage weitergegeben wird, und wird, das finite Verb — im Präsens und ganz am Ende. Der Aushang schreibt werde, und der ganze B1-Schritt besteht darin, das als fremde Worte zu lesen und in der Zeitform weiterzugeben, die der Sprecher gewählt hat. wurde wäre kein anderer Stil, sondern eine andere Tatsache: Die Prüfung wäre schon vorbei."
 
   - id: uebersetzen-dass-verbende
-    # Revision 3 (2026-10-13 quality pass): the prompt asks for no tense, and RU/UK «сдаст» /
+    # Revision 3: the prompt asks for no tense, and RU/UK «сдаст» /
     # «здасть» are a future, so the werden-future is accepted (wird is then the verb at the
     # wall and is pinned beside abgibt), and so is the third ordinary order, morgen before
     # the object. focus_evidence grades where the finite verb stands, not how it is spelt:
@@ -138,7 +138,7 @@ items:
     answer: "Er sagt, dass er den Schlüssel morgen im Büro abgibt."
     accept:
       # Ordinary Mittelfeld scrambling inside the dass-clause — object and locative may
-      # swap; the graded dass…abgibt bracket is unaffected (2026-08-11 triage, row 7a).
+      # swap; the graded dass…abgibt bracket is unaffected.
       - "Er sagt, dass er morgen im Büro den Schlüssel abgibt."
       - "Er sagt, dass er morgen den Schlüssel im Büro abgibt."
       # The werden-future, in the same three orders: the finite verb still closes the clause.
@@ -156,7 +156,7 @@ items:
       de: "Bewertet werden die beiden Enden der Klammer: das dass, das den Satz öffnet, und das finite Verb, das ihn schließen muss. Alles, was der Satz trägt — Objekt, Zeit, Ort —, steht dazwischen, und ein trennbares Verb setzt sich an der Wand wieder zu einem Wort zusammen: abgibt, nie gibt … ab. Die Ausgangssprachen behalten im dass-Satz ihre gewohnte Stellung, warnen die Hand also nicht; die Regel gilt dem Nebensatz und nicht diesem Verb."
 
   - id: order-angaben-tekamolo
-    # Revision 2 (2026-10-13 quality pass): the "how" of the row was lange, which answers
+    # Revision 2: the "how" of the row was lange, which answers
     # wie lange? — a duration, the course's own A2 card in zeitadverbien-a2 — so the
     # instruction's when/why/how/where had no "how" in it, and the logged …im Büro lange
     # gewartet (good German: a duration likes the slot by the participle) was charged to
@@ -192,7 +192,7 @@ items:
       de: "temporal, kausal, modal, lokal — te-ka-mo-lo, und es sitzt: am Montag, wegen der Mitteilung, zusammen, im Büro. Alle vier stehen selten zusammen; dann gilt die Regel für die, die da sind. Art und Ort dürfen auch tauschen, denn eine Angabe der Art steht oft direkt vor dem Partizip: im Büro zusammen gewartet gilt ebenfalls. Die Satzenden sind aus A1 und A2 gesichert: haben auf Position 2, gewartet ganz am Ende. Die Aufgabe gibt dir jedes Wort, ist also Stütze für die Reihenfolge — geprüft wird sie in der Übersetzung darunter."
 
   - id: cloze-angaben-reihenfolge
-    # Revision 2 (2026-10-13 quality pass): the logged heute Morgen / im Hof / schnell is
+    # Revision 2: the logged heute Morgen / im Hof / schnell is
     # good German — a manner word often stands right in front of the participle — and was
     # charged to the tag, so the last two gaps accept either order. Per-gap alternatives
     # cannot tie the two gaps together: schnell typed twice would pass. No learner has done
@@ -221,11 +221,11 @@ items:
       de: "Erst die Zeit, dann das Wie, dann das Wo: heute Morgen, schnell, im Hof. Die Liste oben gibt absichtlich die Reihenfolge, zu der die Ausgangssprachen verführen — sie schieben die Zeitangabe ans Satzende und den Ort nach vorn, und genau das dreht das Deutsche um. Wie und Wo dürfen allerdings tauschen: Eine Angabe der Art steht oft direkt vor dem Partizip, also gilt auch im Hof schnell. Fest bleibt die Zeit vor beiden, habe auf Position 2 und nachgefragt an der Wand."
 
   - id: uebersetzen-angaben
-    # Revision 2 (2026-10-13 quality pass): the explain called im Büro the Angabe that has
+    # Revision 2: the explain called im Büro the Angabe that has
     # to come last, but a manner word often stands right in front of the participle, so
     # …im Büro schnell angerufen is good German and is accepted; the prompt asks for no
     # tense, so the Präteritum is too. The place phrase is now named (im Büro anrufen):
-    # RU/UK «в контору» invite ins/zum Büro, which the 2026-08-11 triage ruled wrong, and
+    # RU/UK «в контору» invite ins/zum Büro, which a grading ruling rejected, and
     # EN "rang the office" das Büro — a preposition the tag does not grade. focus_evidence
     # charges only the order — the time after the reason, manner or place, the reason
     # after the manner or place, counted from the finite verb so a fronted Angabe is not
@@ -280,7 +280,7 @@ items:
       de: "Das Pronomen steht vorn, und der Kasus spielt dabei keine Rolle. es ist Akkusativ und steht vor einem Dativnomen; ihr ist Dativ und steht vor einem Akkusativnomen. Entscheidend sind Kürze und Neuigkeitswert: Kurzes, Bekanntes, schon Genanntes kommt früh, und ein Pronomen ist alles drei. Zwei Nomen behielten die Reihenfolge aus dem Dativ — erst Dativ —, und genau diese Gewohnheit erzeugt ❌ Ich habe dem Hausmeister es schon gesagt."
 
   - id: uebersetzen-pronomen-stellung
-    # Revision 2 (2026-10-13 quality pass): RU/UK «это» / «це» invite the demonstrative
+    # Revision 2: RU/UK «это» / «це» invite the demonstrative
     # das, and ihr das is correct German that sidesteps the two-pronoun order this item
     # grades, so the instruction names es; the prompt asks for no tense, so the Präteritum
     # is accepted. focus_evidence charges only the order — ihr before es, or the Angabe in
@@ -347,7 +347,7 @@ items:
     accept:
       # bitte may follow the imperative; the graded attribute does not move with it.
       - "Legen Sie bitte die unterschriebene Liste in den Briefkasten."
-      # …or stand in the middle field after the object (2026-10-13 quality pass: the pin
+      # …or stand in the middle field after the object (the pin
       # charged this correct order to the tag, because unterschriebene moved one slot).
       - "Legen Sie die unterschriebene Liste bitte in den Briefkasten."
     key_tokens: ["unterschriebene"]

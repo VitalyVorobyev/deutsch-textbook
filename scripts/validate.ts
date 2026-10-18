@@ -411,11 +411,9 @@ for (const file of listFiles(join(CONTENT, 'vocab'), '.yaml')) {
 }
 
 // Every headword lives in exactly one deck: a duplicate means the learner
-// grinds two SRS histories for one word and coverage counts it twice. Empty
-// since 2026-08-06: the five legacy pairs that predated the rule were all
-// consolidated by the A1 boundary migration (#128), so the corpus now has no
-// exceptions — the record stays as the one place a future deliberate pair
-// would have to be declared and argued for.
+// grinds two SRS histories for one word and coverage counts it twice. Empty:
+// the corpus has no exceptions — the record stays as the one place a future
+// deliberate pair would have to be declared and argued for.
 const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
 {
   const decksOf = new Map<string, string[]>();
@@ -478,7 +476,7 @@ const LEGACY_DUPLICATE_PAIRS: Record<string, string> = {};
         fail('data/grammar-inventory.yaml', `duplicate point id "${point.id}"`);
       seen.add(point.id);
 
-      // `level: {reception, production}` replaced `standard_level` on 2026-08-14. Both shapes are
+      // `level: {reception, production}` replaced `standard_level`. Both shapes are
       // read by packages/content/src/grammar-coverage.ts so the migration did not have to be atomic, but a row
       // carrying neither can be placed at no level at all and must not pass.
       const production = point.level?.production ?? point.standard_level;
@@ -1486,7 +1484,7 @@ for (const [setId, { file, data }] of exerciseSets) {
                   `Rewrite the rendering or pin tokens whose case twins stay unique.`,
               );
             }
-            // The inverse defect (P25-21): an accepted rendering with NO graded token.
+            // The inverse defect: an accepted rendering with NO graded token.
             // A learner who reaches for that rendering and commits the item's signature
             // error gets `wrong` with no focus — absentGraded and misplacedGraded are
             // both false — so the confusion the item exists to measure is never logged,

@@ -5,10 +5,9 @@
  * `onUnauthorized`; the shell clears the stored token and renders `Anmeldung` with the engine's own
  * reason. No view needs an auth branch, and there is no state in which a screen is half-signed-in.
  *
- * **The nav lists six sections and nothing else.** It used to carry a *Folgt* group naming the two
- * surfaces that had not arrived — the shape of the tool being part of what the tool says about
- * itself — and both arrived in PR 9b. An empty "coming" list is not a statement, so the group is
- * gone rather than kept as a heading over nothing.
+ * **The nav lists six sections and nothing else.** There is no *Folgt* group naming surfaces that
+ * have not arrived: an empty "coming" list is not a statement, so it is not kept as a heading over
+ * nothing.
  *
  * **Tasten** is on the rail and not in a help page. Four keys, and every one of them is something
  * this tool does all day — save, play, and the two that walk a review queue — so they are printed

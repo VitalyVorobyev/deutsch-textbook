@@ -84,7 +84,7 @@ items:
     # revision 2: «стул» / «стілець» are bare, and here the free determiner IS the
     # graded token — einen Stuhl was correct accusative logged against
     # akkusativ-artikel. The instruction pins the definite reading; an accept would
-    # defeat the focus. (Batch-3 audit, 2026-08-12.)
+    # defeat the focus.
     instruction:
       en: "Translate into German. It is a specific chair — you know which one."
       ru: "Переведите на немецкий. Стул — конкретный: вы знаете, о каком речь."
@@ -115,7 +115,6 @@ items:
     key_tokens: ["den"]
     # revision 2: «лампу» / «лампу» mark no definiteness, so the indefinite reading
     # answers the RU/UK prompt too. The graded token is den (neben den Schrank).
-    # (Batch-3 audit, 2026-08-12.)
     accept:
       - "Nina stellt eine Lampe neben den Schrank."
     revision: 2

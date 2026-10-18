@@ -1,7 +1,7 @@
 /**
  * Post-deploy smoke check against a live origin.
  *
- * It exists because of a failure with no symptom: on 2026-08-03 a build of the
+ * It exists because of a failure with no symptom: a build of the
  * *old*, assets-only `wrangler.toml` landed on the same Worker and replaced its
  * whole binding set, taking all six secrets with it. Every gate stayed green —
  * `bun test`, `astro check`, the build, and the Cloudflare deploy — and the
@@ -85,7 +85,7 @@ export function checks(deep: boolean): Check[] {
         if (!body) return `expected JSON, got ${probe.body.slice(0, 60)}`;
         if (body.signedIn !== false) return `expected signedIn:false, got ${String(body.signedIn)}`;
         if (!Array.isArray(body.providers)) return 'no providers array in the session response';
-        // The one that would have caught 2026-08-03: an empty list is a Worker
+        // The one that catches a secrets-less deploy: an empty list is a Worker
         // with no OAuth secrets, and /konto then offers nothing to click.
         if (body.providers.length === 0) {
           return 'providers is empty — the Worker has no OAuth secrets (bunx wrangler secret list --name deutsch-textbook)';

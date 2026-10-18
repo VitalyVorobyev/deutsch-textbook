@@ -193,8 +193,8 @@ describe('the shipped A2 placement test, end to end', () => {
     const ctx: TopicContext = { attempts, cards: {}, topics };
     expect(levelPathDone('A1', nodes, ctx)).toBe(true);
     expect(levelPathDone('A2', nodes, ctx)).toBe(true);
-    // Until B1.1 shipped (2026-07-24) this was undefined — a placed-out learner had no
-    // next lesson. Now the path continues where the placements end.
+    // A placed-out learner still has a next lesson: the path continues where the placements
+    // end.
     expect(recommendedNext(spine, nodes, ctx)?.id).toBe('erfahrungen-erzaehlen');
   });
 });

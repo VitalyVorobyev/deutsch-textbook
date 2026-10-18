@@ -167,7 +167,7 @@ items:
     # rendered just as well by *Kaltes Wetter gefällt mir nicht* — correct German that
     # replaces the weak ending after *das* with a strong one and so answers a different
     # question from the one the explain below argues. The construction is named rather
-    # than guessed at. (Grading ruling, 2026-09-15.)
+    # than guessed at.
     instruction:
       en: "Translate both sentences. In the second, use mögen and the definite article: das … Wetter."
       ru: "Переведите оба предложения. Во втором используйте mögen и определённый артикль: das … Wetter."
@@ -211,7 +211,7 @@ items:
     prompt_ru: "В Гамбурге холоднее, чем в Берлине."
     prompt_uk: "У Гамбурзі холодніше, ніж у Берліні."
     answer: "In Hamburg ist es kälter als in Berlin."
-    # «холоднее» names no subject, so das Wetter fills the slot as well as es (ruling 2026-10-17)
+    # «холоднее» names no subject, so das Wetter fills the slot as well as es
     revision: 2
     accept:
       - "Es ist in Hamburg kälter als in Berlin."

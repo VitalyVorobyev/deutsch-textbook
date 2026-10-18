@@ -83,7 +83,7 @@ describe('pick over the four explanation languages', () => {
     const gloss = { ru: 'вокзал', uk: 'вокзал (uk)' };
     const ruOnly = { ru: 'вокзал' };
     // ru shows the Russian gloss; en shows nothing — an EN-mode learner is
-    // never assumed to read Russian or Ukrainian (owner ruling 2026-07-16)
+    // never assumed to read Russian or Ukrainian (owner ruling)
     expect(pickSecond('ru', gloss)).toBe('вокзал');
     expect(pickSecond('en', gloss)).toBeUndefined();
     // uk shows the Ukrainian gloss only where authored — never RU for a UK reader
@@ -633,7 +633,7 @@ describe('uk reaches the runtime surfaces', () => {
   });
 
   test('display-only language fields never enter card identity', () => {
-    // The P8-5 meaning side (`${en} · ${pickSecond(...)}`) is display-only:
+    // The dual meaning side (`${en} · ${pickSecond(...)}`) is display-only:
     // identity stays <deck>::<de>::<direction>, no gloss language, so no SRS
     // history resets when a wave adds uk or a learner switches ExplainLang.
     const withUk = buildDeck('reisen', [entry]).map((c) => c.id);
@@ -867,9 +867,9 @@ describe('uk reaches the runtime surfaces', () => {
    * counting, and it is exactly what a fixture cannot tell you: whether any real file
    * is missing its half.
    *
-   * It exists because two files got through. `sentence-connectors.yaml` (2026-07-19) and
-   * `briefe.yaml` (2026-07-21) both landed after the C3 waves closed, carried 241 `ru`
-   * fields with no `uk` sibling, and validated cleanly for two months — per-file uk parity
+   * It exists because two files got through. `sentence-connectors.yaml` and `briefe.yaml`
+   * both landed after the Ukrainian waves closed, carried 241 `ru` fields with no `uk`
+   * sibling, and validated cleanly for two months — per-file uk parity
    * only fires once a file carries *some* uk, so a file with none is silently conformant
    * and `/about` just quietly reported 371/373. That is the right behaviour mid-wave and
    * the wrong behaviour now that every level in the repo is at parity.
@@ -909,8 +909,8 @@ describe('uk reaches the runtime surfaces', () => {
    * relationship `global.css` requires (`parent:has(> .lang-uk) > .lang-en`); it is not a
    * DOM proof, and a determined author could still split a pair across two parents.
    *
-   * A trailing `lang-de` after the `uk` is fine — chrome `de` is deliberately out of scope
-   * (see the PR 3 note in the roadmap), so only the ru→uk edge is enforced.
+   * A trailing `lang-de` after the `uk` is fine — chrome `de` is deliberately out of scope,
+   * so only the ru→uk edge is enforced.
    *
    * Excluded, because they define the mechanism rather than use it: `Ru.astro`/`Uk.astro`
    * (the paired component definitions, one class each) and `global.css` (the selectors).

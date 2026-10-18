@@ -2,9 +2,9 @@
  * The denominator's own denominator, for any dimension of it.
  *
  * `grammar-coverage.ts` answers "does content teach every row of `data/grammar-inventory.yaml`". It
- * cannot answer "is that the right list", and for as long as nothing did, the answer was no: on
- * 2026-08-12 the A1 rows turned out to be missing entries the Goethe A1 exam tests, and 100% had
- * been measuring an incomplete list. This module reads the published lists.
+ * cannot answer "is that the right list", and for as long as nothing did, the answer was no: the A1
+ * rows were missing entries the Goethe A1 exam tests, and 100% had been measuring an incomplete
+ * list. This module reads the published lists.
  *
  * WHY IT IS GENERIC. The same failure has more than one shape, because a course makes more than one
  * kind of claim. Grammar rows were only the first:

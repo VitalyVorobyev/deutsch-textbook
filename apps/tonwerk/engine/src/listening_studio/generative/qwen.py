@@ -56,7 +56,7 @@ class QwenSpeech:
             # than a decision. float16 on MPS is the accident that costs something: the talker's
             # sampling logits overflow and generation dies with `torch.AcceleratorError:
             # probability tensor contains either `inf`, `nan` or element < 0` — within half a
-            # second, on every line it was given, and it is the signature the 2026-08-01 run
+            # second, on every line it was given, and it is the signature a run once
             # recorded as "Qwen is unreliable on this machine". float32 on MPS ran 74 generations
             # with no failure and no NaN. Numbers, method and the rejected alternatives (bfloat16
             # is faster and was still declined): docs/architecture/tts-reliability.md.

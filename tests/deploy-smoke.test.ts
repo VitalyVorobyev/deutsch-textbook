@@ -1,7 +1,7 @@
 /**
  * `bun run deploy:smoke` — the assertions, without the network.
  *
- * The check exists for a failure every other gate passed: on 2026-08-03 a deploy
+ * The check exists for a failure every other gate passed: a deploy
  * removed the Worker's secrets, so `/api/auth/session` reported `providers: []`
  * and /konto rendered no sign-in buttons at all. Nothing in the repo was wrong,
  * so nothing in the repo could see it.

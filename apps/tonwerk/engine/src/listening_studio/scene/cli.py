@@ -717,7 +717,7 @@ def delete_command(
     yes: bool = typer.Option(False, "--yes"),
     json_output: bool = typer.Option(False, "--json"),
 ) -> None:
-    """Delete a mis-created scene project: draft, revision 1, never published (backlog P28-6).
+    """Delete a mis-created scene project: draft, revision 1, never published.
 
     The undo an 85-row narration queue needs and did not have. It is the narrowest deletion that
     makes creating from a queue safe, and the three refusals are three different losses — see

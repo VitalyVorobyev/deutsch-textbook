@@ -141,7 +141,7 @@ def test_a_legacy_question_still_loads() -> None:
 
 
 def test_switching_the_model_leaves_a_payload_the_store_can_still_load() -> None:
-    """P22-3: `model_copy(update=...)` skipped `consistent()`, so another engine's voice could be
+    """`model_copy(update=...)` skipped `consistent()`, so another engine's voice could be
     saved under `qwen_tts` — and every later `Store.get()` then refused the project."""
 
     from listening_studio.domain import VOICE_SETS, reassign_voices

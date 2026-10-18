@@ -13,7 +13,7 @@
  *
  * The header used to say the structure tier "is a few hundred kilobytes". It was 2.2 MB — within
  * 12 % of the baked file this design replaced, which is the claim the sentence existed to make.
- * Stripping the dead `ownedBy` maps (2026-08-15) took it to 1.87 MB. No count is written here any
+ * Stripping the dead `ownedBy` maps took it to 1.87 MB. No count is written here any
  * more, because a number in a module header has no gate: measure it with
  * `JSON.stringify(graphPayload(contentGraph())).length` when you need one.
  */
@@ -280,7 +280,7 @@ function buildPayload(graph: ContentGraph): GraphPayload {
   // Strip them here: no view needs them, and an absent field is a type error while an empty one
   // is a wrong answer.
   //
-  // Until 2026-08-15 this comment was aspirational. `wireSafe` *converted* Maps to objects rather
+  // This comment was once aspirational. `wireSafe` *converted* Maps to objects rather
   // than dropping them, so `wortliste.ownedBy` shipped in full — 121 KB per level, the same
   // level-independent map three times, 363 KB of a 2.2 MB payload, with zero readers in
   // apps/redaktion or packages/ui. The `DROP_ON_WIRE` list makes the stated behaviour the real

@@ -62,7 +62,7 @@ items:
       de: "Die Adresse kommt zuerst, weil sie den Krankenwagen losschickt — die Leitstelle kann ein Fahrzeug schicken, während du noch sprichst. Alles andere folgt derselben Logik: was passiert ist, dann wie viele verletzt sind, dann wie schwer, und dein Name zuletzt, weil er an der Hilfe nichts ändert. Man möchte gern mit dem Drama anfangen; die Leitstelle braucht zuerst den Ort."
 
   - id: mc-notrufnummer
-    # revision 2 (2026-10-13 quality pass): the prompt was a bicycle stolen in the night and
+    # revision 2: the prompt was a bicycle stolen in the night and
     # keyed 110, but 110 is the police emergency line — a theft found the next morning is
     # reported at a police station or through the police's online service, which is what
     # polizei-anzeige then does at the counter. The theft now happens while you watch.
@@ -102,7 +102,7 @@ items:
       de: "Beide Nebensätze stehen im Plusquamperfekt, weil *nachdem* das frühere von zwei vergangenen Ereignissen nennt — aber sie wählen verschiedene Hilfsverben. *Bremsen* ist ein normales Handlungsverb und bildet das Perfekt mit *haben*, also *hatte gebremst*. *Ankommen* ist ein Ortswechsel und nimmt *sein*, also *war angekommen*. Das Plusquamperfekt übernimmt diese Wahl unverändert vom Perfekt; man muss nichts Neues lernen."
 
   - id: uebersetzen-nachdem
-    # revision 2 (2026-10-13 quality pass): the two lexical verbs were the learner's to guess —
+    # revision 2: the two lexical verbs were the learner's to guess —
     # «осмотрел» is untersuchen or sich ansehen, "put on a plaster" anlegen or aufkleben, and
     # RU/UK «пластырь» leaves ein/das free — so the instruction names them. focus_evidence
     # charges only the tag's own decision: the participle not closed by hatte (Perfekt,
@@ -134,7 +134,7 @@ items:
       de: "Aus *nachdem* folgen zwei Dinge, und beide werden hier bewertet. Es eröffnet einen Nebensatz, also geht die ganze Verbgruppe ans Ende — *untersucht hatte*, mit dem Hilfsverb zuletzt. Und das frühere Ereignis geht einen Schritt zurück ins Plusquamperfekt, während das spätere im Perfekt oder Präteritum bleibt; beides wird akzeptiert, weil man die zweite Hälfte im Deutschen so oder so erzählen kann."
 
   - id: order-nachdem
-    # revision 2 (2026-10-13 quality pass): the chips held two articles, den and der, so a
+    # revision 2: the chips held two articles, den and der, so a
     # learner could swap them (logged: Nachdem ich der Notruf gewählt hatte, kam den
     # Krankenwagen.) — a case decision the item handed over and then charged to
     # plusquamperfekt-nachdem with the verb group right. The object is now 112, which takes
@@ -163,7 +163,7 @@ items:
       de: "Um die Reihenfolge geht es: *nachdem* eröffnet den Satz, Subjekt und Objekt folgen, und die Verbgruppe schließt ihn, mit dem Partizip vor dem Hilfsverb — *gewählt hatte*, nicht *hatte gewählt*. Diese Umkehrung in der Verbgruppe macht der Nebensatz mit dem Plusquamperfekt, und genau sie fehlt, wenn man die Form immer nur im Hauptsatz sieht."
 
   - id: cloze-nachdem-sein
-    # revision 2 (2026-10-13 quality pass): the second gap asked for "the tense the main
+    # revision 2: the second gap asked for "the tense the main
     # clause takes" without naming its verb, and a cloze charges its tag for any wrong gap —
     # logged: waren / hat, the auxiliary right and the main clause given haben for the sein of
     # a state, which is not the tense staircase. The instruction now names sein for that gap,
@@ -234,14 +234,14 @@ items:
       # the place still closes the middle field.
       - "Ich bin heute vorsichtig bis zur Kreuzung gefahren."
       - "Heute bin ich vorsichtig bis zur Kreuzung gefahren."
-      # revision 3 (2026-10-13 quality pass): no prompt asks for a tense, and "drove" /
+      # revision 3: no prompt asks for a tense, and "drove" /
       # «доехал» are as much fuhr as bin … gefahren; the middle field is the same.
       - "Ich fuhr heute vorsichtig zur Kreuzung."
       - "Heute fuhr ich vorsichtig zur Kreuzung."
       - "Ich fuhr heute vorsichtig bis zur Kreuzung."
       - "Heute fuhr ich vorsichtig bis zur Kreuzung."
     revision: 3
-    # focus_evidence (2026-10-13 quality pass): the order counted from the finite verb — the
+    # focus_evidence: the order counted from the finite verb — the
     # time after the manner or the place, the manner after the direction — so a fronted
     # Angabe is not charged, and a slip in the noun (logged: zum Kreuz) still is not.
     focus_evidence:
@@ -254,7 +254,7 @@ items:
       de: "Wieder Zeit vor Art und Weise vor Ort — und die akzeptierten Varianten zeigen, was die Regel regelt und was nicht. *Heute* vor das Verb zu stellen ist erlaubt und ändert nichts an den zwei Angaben dahinter, und das Präteritum *fuhr* behält dasselbe Mittelfeld. Was der neutrale Satz nicht macht: *vorsichtig* hinter *zur Kreuzung* stellen. Das ist das Ziel der Fahrt, eine Richtung, und eine Richtung steht direkt vor dem Partizip."
 
   - id: table-angaben
-    # revision 2 (2026-10-13 quality pass): each row label listed its phrases in the column
+    # revision 2: each row label listed its phrases in the column
     # order, so the item could be filled by copying the label left to right; the labels are
     # now shuffled. The last column said wo while row two's answer, zur Klinik, answers
     # wohin? — the wo-wohin distinction the course drills — so it is wo / wohin.
@@ -311,7 +311,7 @@ items:
       de: "Wessen Körper es ist, zeigt das Deutsche mit einem Reflexivpronomen im Dativ, nicht mit einem Possessivartikel: *mir … den Arm*, *sich … das Knie*. Der Körperteil behält dann seinen normalen bestimmten Artikel und steht als betroffene Sache im Akkusativ. *Meinen Arm* versteht man, aber es klingt fremd — das *mir* hat schon gesagt, wessen Arm es ist, und der Possessivartikel sagt es noch einmal."
 
   - id: uebersetzen-weh
-    # revision 2 (2026-10-13 quality pass): Mein Kopf tut weh — the English prompt's own shape,
+    # revision 2: Mein Kopf tut weh — the English prompt's own shape,
     # and correct German — was rejected; it is accepted now. Ich habe Kopfschmerzen is correct
     # too and bypasses wehtun, which every line of the explain is about, so the instruction
     # names the verb.

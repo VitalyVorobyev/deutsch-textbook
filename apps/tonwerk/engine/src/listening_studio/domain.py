@@ -197,7 +197,7 @@ class SingleChoice(BaseModel):
 # Legacy response shapes — readable, never exportable
 # ---------------------------------------------------------------------------
 #
-# These five fed the `listening` item type, which was removed on 2026-08-02 because each
+# These five fed the `listening` item type, which was removed because each
 # duplicated an item type the app already had (`mc`, `order`, `listen`). A reviewed recording
 # now feeds `audio-comprehension`, which is single-choice, so nothing below can ship.
 #

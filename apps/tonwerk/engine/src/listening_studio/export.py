@@ -183,7 +183,7 @@ def manifest(
     A `RevisionPayload` has no cast and therefore no `voice_ref`; the adapter name is the whole of
     what it can say. That is the ceiling of this path and the reason the next one is different:
 
-    **The scene publisher (PR 11) writes its claims from `render.json`, not from here.** That
+    **The scene publisher writes its claims from `render.json`, not from here.** That
     manifest carries a top-level `voices` map — cast role → the bound `VoiceRef` — filled in by
     `graph.render`, so the two claims are one expression each and neither needs a node walk:
 

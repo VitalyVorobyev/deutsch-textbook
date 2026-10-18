@@ -164,7 +164,7 @@ function importErrorReason(error: unknown): { en: string; ru: string } {
 interface Props {
   outcomeModes: Record<string, string>;
   /** Every deck as headwords: the vocabulary bars need card identities, never card content.
-      The built cards inlined here made /progress a 12.2 MB page (backlog P23-1). */
+      The built cards inlined here made /progress a 12.2 MB page. */
   decks: DeckWords[];
   /** group titles are chrome-string keys, rendered by VocabularyProgress */
   vocabularyGroups: Array<{ title: StringKey; items: VocabGroup[] }>;
@@ -416,7 +416,7 @@ export default function ProgressPanel({
 
       {/* One activity card: the stat tiles and the calendar answer the same
           "how am I doing" question, and splitting them buried the calendar at
-          the bottom of the page (P24-3). */}
+          the bottom of the page. */}
       {view === 'uebersicht' && data && (
         <section className="rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
           <dl className="grid grid-cols-1 gap-3 text-center sm:grid-cols-3 sm:gap-4">

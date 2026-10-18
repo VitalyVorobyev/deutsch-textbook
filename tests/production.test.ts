@@ -122,13 +122,13 @@ describe('rule 1 — a slipped token is a spelling note, not a grammar error', (
    *
    * `a1/freizeit-koennen:translate-kann-schwimmen` really does pin both bracket ends, so
    * the real attempt above is scored wrong and blamed on `modal-satzklammer` in production.
-   * That is a false entry and it is the known residual of P12-4 — but the obvious fix of
+   * That is a false entry and the known residual of pinning both ends — but the obvious fix of
    * dropping the pins is ~10× worse, because `graded.size === 0` then blanket-attributes
    * every real error to the tag. Reviewed one by one over this repo's log: 5 wrong
    * attributions with the pins, 52 without. Both halves are asserted here so neither can
    * be changed in isolation.
    */
-  describe('pinning both bracket ends — the measured trade behind P12-4', () => {
+  describe('pinning both bracket ends — the measured trade', () => {
     const shipped = {
       answer: 'Ich kann gut schwimmen.',
       focus: 'modal-satzklammer',
@@ -567,7 +567,7 @@ describe('punctuation and typography are not part of the graded surface', () => 
   });
 });
 
-describe('sentence-head case fold — a rendering can have more than one head (P25-15)', () => {
+describe('sentence-head case fold — a rendering can have more than one head', () => {
   // The live shape: a2/zeit-praepositionen::uebersetzen-vor-nach-pruefung. The pinned
   // lowercase `nach` opens sentence 2 of the two-sentence accept rendering capitalized —
   // a different string, so before the fix that rendering silently stopped grading it.

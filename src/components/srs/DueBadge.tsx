@@ -25,8 +25,7 @@ const UI = {
 
 interface Props {
   /** The decks to count, as headwords: the badge plans from card ids alone. Handing it the built
-      cards inlined every gloss and example of the corpus into Heute — 9.2 MB to show a number
-      (backlog P23-1). */
+      cards inlined every gloss and example of the corpus into Heute — 9.2 MB to show a number. */
   decks: DeckWords[];
   /** compact renders just "n due" text; full renders the Today-page call to action */
   variant?: 'compact' | 'full';

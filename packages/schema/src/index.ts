@@ -561,7 +561,7 @@ const audioTurnSchema = z.object({
 /**
  * The spoken script of an audio-comprehension item.
  *
- * `kind` was a two-branch union until 2026-08-02, the second branch pointing at a bare file
+ * `kind` was once a two-branch union, the second branch pointing at a bare file
  * path. It carried no item in its whole life — all 57 shipped audio items are `tts` — and the
  * moment a reviewed recording existed it was the wrong shape anyway: a file path records no
  * approval, no hashes and no provenance. `recording` on the item replaces it. The literal
@@ -1157,7 +1157,7 @@ export const discoverySchema = z
      * The structural gap was bigger than the content gap. Five pieces shipped with no way
      * to reach any of them except by going looking, which is a likelier reading of the one
      * "useful: no" datum than the writing was — and that datum is itself untrustworthy
-     * (recorded 4h38m before #85 fixed the toggles it was entered through).
+     * (recorded hours before the toggles it was entered through were fixed).
      *
      * This changes NOTHING about the evidence model: opening a piece still writes no
      * attempt, no card, no `readAt` and no mastery, and the topic page renders the link as

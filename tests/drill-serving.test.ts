@@ -1,5 +1,5 @@
 /**
- * P6-4/P6-5's instrument check: a drill authored against a weak focus is only worth
+ * The instrument check for drills from progress: a drill authored against a weak focus is only worth
  * shipping if the training loop actually serves it. `dativ-artikel` stayed the worst
  * weak focus *while a drill for it sat in rotation*, so these tests pin — against the
  * real shipped YAML, not fixtures — that when the drilled tags are weak, the drill
@@ -44,7 +44,7 @@ const load = (rel: string): TrainingSet => {
 const dativDrill = load('a2/drill-dativ-ausloeser.yaml');
 const verbDrill = load('a2/drill-verbformen.yaml');
 const endungenDrill = load('a1/drill-verbendungen.yaml');
-// The 2026-07-16 triage's drills: wo-wohin (worst post-triage signal, no drill existed)
+// Two triage drills: wo-wohin (worst post-triage signal, no drill existed)
 // and modal-satzklammer (the zu-after-modal confusion, unattributed by design so it can
 // never surface in the weak-focus table — the ruling drill notes are its evidence).
 const woWohinDrill = load('a2/drill-wo-wohin.yaml');
@@ -88,7 +88,7 @@ const attempt = (
   focus?: string,
 ): Attempt => ({ setId, itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
 
-// The evidence that armed P6-4/P6-5: repeated errors on the drilled tags. Logged under
+// The evidence that armed those drills: repeated errors on the drilled tags. Logged under
 // sets that are NOT in this pool — weakness is aggregated per tag and is blind to the
 // topic (or set) an attempt came from, which is exactly what lets a new drill be pulled
 // in by errors made elsewhere.
@@ -98,7 +98,7 @@ const weakEvidence: Attempt[] = WEAK_TAGS.flatMap((focus, n) =>
 
 const weakTagged = (set: TrainingSet, tag: string) => set.items.filter((i) => i.focus === tag);
 
-describe('P6-4/P6-5 drills are served through the weak-focus band', () => {
+describe('drills from progress are served through the weak-focus band', () => {
   test('the drilled tags come out weak from the evidence', () => {
     const weak = weakFocuses(weakEvidence)
       .map((w) => w.focus)

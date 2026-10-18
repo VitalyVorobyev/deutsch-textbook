@@ -94,8 +94,7 @@ describe('routing', () => {
 
     render(<App />);
 
-    // The two that used to be disabled placeholders arrived in PR 9b. A heading over an empty
-    // "coming" list says nothing, so the group went with them rather than staying as a label.
+    // A heading over an empty "coming" list says nothing, so there is no such group.
     expect(screen.queryByText('Folgt')).toBeNull();
     for (const [name, ziel] of [
       ['Lesetexte', '#/lesetexte'],

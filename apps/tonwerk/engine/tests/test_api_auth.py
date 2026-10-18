@@ -1,9 +1,9 @@
 """One secret, one way to present it, and the three things that are open on purpose.
 
 Every row of the table in `web.local_only`'s docstring has a test here, because an auth rule that
-is only *described* is a rule nobody notices the day it stops holding. Since PR 9b the table is
-four rows rather than seven: the cookie, `?token=` and the origin check went with the HTML forms,
-and this file is what proves they are gone rather than merely unused.
+is only *described* is a rule nobody notices the day it stops holding. The table is four rows: the cookie, `?token=` and
+the origin check went with the HTML forms, and this file is what proves they are gone rather than
+merely unused.
 """
 
 from __future__ import annotations
@@ -155,7 +155,7 @@ def test_the_only_routes_outside_api_are_health_and_the_workbench(tmp_path: Path
     which is the right behaviour and a useless assertion. The route table is the fact.
 
     It matters beyond tidiness: `/projects/{id}/script` and its siblings wrote a `RevisionPayload`
-    through an HTML form, and those projects are frozen data until PR 11 converts them.
+    through an HTML form, and those projects are frozen data until they are converted to scenes.
     """
 
     store = Store(tmp_path / "db.sqlite3")

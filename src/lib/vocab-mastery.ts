@@ -101,7 +101,7 @@ export function masteryCounts(words: WordRollup[]): MasteryCounts {
  * A deck reduced to what its mastery summary needs: the headwords, and which of them have no
  * production card. A page listing every deck ships this instead of the built cards — the cards
  * carry glosses, examples and notes, and /ueben/wortschatz once inlined 9 MB of them as island
- * props to draw one bar per deck (backlog P23-1).
+ * props to draw one bar per deck.
  */
 export interface DeckWords {
   id: string;

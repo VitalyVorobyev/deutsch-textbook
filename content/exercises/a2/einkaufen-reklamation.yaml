@@ -241,7 +241,7 @@ items:
     prompt_uk: "Які черевики подобаються тобі найбільше?"
     answer: "Welche Schuhe gefallen dir am besten?"
     # English "you" fixes no person and the shelf context fixes no register, so the polite
-    # form is just as faithful — the same reasoning as translate-worauf (ruling 2026-07-24).
+    # form is just as faithful — the same reasoning as translate-worauf.
     accept:
       - "Welche Schuhe gefallen Ihnen am besten?"
     revision: 2
@@ -275,7 +275,7 @@ items:
     outcomes: [umtausch-begruenden, reklamation-schreiben]
     type: translate
     focus: akkusativ-artikel
-    # revision 2: accept gained the idiomatic "zu eng" pair (grading decision, 2026-07-14)
+    # revision 2: accept gained the idiomatic "zu eng" pair (grading decision)
     revision: 2
     instruction:
       en: "Translate into German. You are at the returns counter."

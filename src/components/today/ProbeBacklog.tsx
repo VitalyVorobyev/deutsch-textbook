@@ -34,7 +34,7 @@ interface Props {
  * Without the budget gate, finishing a catch-up run landed right back on Heute with a
  * still-over-cap backlog re-showing the card, and the whole debt could be chained
  * back-to-back in one sitting — exactly the exam the daily ceiling exists to prevent.
- * Both caps and their 2026-07-24 sizing rationale live in src/lib/probes.ts. Links to
+ * Both caps and their sizing rationale live in src/lib/probes.ts. Links to
  * the probes-only catch-up run at /ueben/proben. Like all probe state, everything here
  * is derived from the attempt log.
  */

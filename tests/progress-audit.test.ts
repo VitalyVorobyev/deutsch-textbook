@@ -1315,7 +1315,7 @@ describe('the readability projection', () => {
   });
 });
 
-// Codex review, PR #91. `Date.parse` does not reject a date that does not exist — it rolls
+// `Date.parse` does not reject a date that does not exist — it rolls
 // over, silently: 2026-02-30 becomes 2026-03-02 and 2026-02-29 becomes 2026-03-01. The
 // readability section is a projection *to a named date*, so a typo would publish figures
 // for a horizon nobody asked about.

@@ -349,7 +349,7 @@ function combineWithTimeout(
 
 // ---------------------------------------------------------------------------
 // Prompt design (English: small local models follow English instructions most
-// reliably). The rules were earned in the 2026-07-15 pilot against gemma4:e4b —
+// reliably). The rules were earned in a pilot against gemma4:e4b —
 // see docs/adrs/0003-the-evidence-model.md — where the model quoted flawlessly but padded a
 // near-perfect draft with invented problems until told that an empty hints
 // array is a good outcome.

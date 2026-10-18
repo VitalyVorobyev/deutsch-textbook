@@ -46,7 +46,7 @@ export interface DeckGlossShape {
   /** entries whose EN gloss runs to LONG_GLOSS_WORDS or more */
   long: number;
   /** same-deck pairs whose EN glosses reduce to the same content-word set —
-      two correct answers to one production prompt (the P22-11 hazard) */
+      two correct answers to one production prompt */
   duplicates: Array<[string, string]>;
 }
 

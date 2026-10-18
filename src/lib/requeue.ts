@@ -2,8 +2,8 @@
  * When a card graded "Again" comes back within the same review session.
  *
  * The learner sees the right answer at once — typed answers get their verdict with the target,
- * revealed cards their back — but the next *retrieval* is delayed: a retry four cards later, the
- * rule from v1 until 2026-10-10, came back within about a minute and was answered from working
+ * revealed cards their back — but the next *retrieval* is delayed: a retry four cards later
+ * came back within about a minute and was answered from working
  * memory. Delaying the first retrieval is what carries to long-term retention (Karpicke &
  * Roediger 2007, JEP:LMC 33(4)); a harder successful retrieval at a longer lag is remembered
  * better (Pyc & Rawson 2009, JML 60(4)); spacing helps L2 vocabulary specifically (Nakata 2015,

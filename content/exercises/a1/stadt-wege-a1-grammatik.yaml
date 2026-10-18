@@ -28,7 +28,7 @@ items:
     answer: "Gehen Sie geradeaus und dann links."
     key_tokens: ["Gehen", "Sie"]
     explain: { en: "The polite imperative keeps the infinitive-looking verb and places Sie directly after it: Gehen Sie …", ru: "Вежливый Imperativ сохраняет форму, похожую на инфинитив, а Sie ставится сразу после глагола: Gehen Sie …", uk: "Ввічливий Imperativ зберігає форму, схожу на інфінітив, а Sie стоїть одразу після дієслова: Gehen Sie …" }
-  # Revision 2 (2026-10-11): the key read `Geh!` / `Geht!` / `Gehen Sie!`, and nothing said whether
+  # Revision 2: the key read `Geh!` / `Geht!` / `Gehen Sie!`, and nothing said whether
   # to write a bare form or a command. The grader strips the `!` but keeps case, so `geh / geht`
   # — the right forms — scored wrong twice. Keys are now the forms in lowercase, which accepts
   # `geh`, `Geh` and `Geh!` alike; the instruction says what to write, as `table-imperativ` in
@@ -62,7 +62,7 @@ items:
       # Two renderings carry this tag — Hier dürfen Sie … and the impersonal Man darf … —
       # so the predicates ask what duerfen-muessen actually grades (a dürfen-form, and the
       # infinitive still last) rather than naming one word order. `retained` is conjunctive,
-      # so it is one pattern per claim, never one per rendering. (2026-09-15.)
+      # so it is one pattern per claim, never one per rendering.
       retained: ["\\b(dürfen|darf|darfst|dürft)\\b", "\\bnicht parken$"]
       failed: ["\\b(müssen|muss|musst|müsst)\\b"]
     instruction: { en: "Translate the prohibition using dürfen.", ru: "Переведите запрет с dürfen.", uk: "Перекладіть заборону з dürfen." }
@@ -75,7 +75,7 @@ items:
       # impersonal rendering is the one this course itself teaches — it is the *answer* of
       # a2/man-und-besitz-produktion:uebersetzen-man-hier. It keeps dürfen, the negation and
       # the final infinitive, which is everything the tag grades; darf joins the pins so the
-      # wrong modal is still attributed in that rendering. (2026-09-15.)
+      # wrong modal is still attributed in that rendering.
       - "Man darf hier nicht parken."
     key_tokens: ["dürfen", "darf", "nicht", "parken"]
     revision: 2

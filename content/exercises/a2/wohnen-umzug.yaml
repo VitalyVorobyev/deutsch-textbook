@@ -179,7 +179,6 @@ items:
     key_tokens: ["die"]
     # revision 2: «картину» / «картину» mark no definiteness, so the indefinite
     # reading answers the RU/UK prompt too. The graded token is die (an die Wand).
-    # (Batch-3 audit, 2026-08-12.)
     accept:
       - "Nina hängt ein Bild an die Wand."
     revision: 2
@@ -203,7 +202,6 @@ items:
     key_tokens: ["stellt"]
     # revision 2: «коробку» / «коробку» mark no definiteness, so the indefinite
     # reading answers the RU/UK prompt too. The graded token is stellt.
-    # (Batch-3 audit, 2026-08-12.)
     accept:
       - "Tobias stellt eine Kiste in den Keller."
     revision: 2
@@ -216,7 +214,7 @@ items:
     outcomes: [wo-wohin-position]
     type: translate
     focus: wechsel-akk-dat
-    # revision 2: accept gained the idiomatic "steht" locative (grading decision, 2026-07-14)
+    # revision 2: accept gained the idiomatic "steht" locative (grading decision)
     revision: 2
     instruction:
       en: "Translate both sentences into German."

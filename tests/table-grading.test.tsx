@@ -60,7 +60,7 @@ describe('acceptedCellAnswers', () => {
   });
 
   test('accepts the same answer with the connector restated', () => {
-    // The rendering the learner submitted on 2026-07-24 and was scored 0/3 for.
+    // A logged rendering, once scored 0/3.
     expect(graded(weil, 'weil ich heute arbeite')).toBe(true);
     expect(graded(deshalb, 'Deshalb komme ich nicht')).toBe(true);
   });
@@ -106,7 +106,7 @@ describe('acceptedCellAnswers tolerates a capitalized fragment', () => {
   });
 
   test('accepts the same answer with a capital first letter', () => {
-    // The rendering scored wrong on 2026-08-02, on the D alone.
+    // A logged rendering, once scored wrong on the D alone.
     expect(graded(vonDativ, 'Das Auto von meinem Bruder')).toBe(true);
   });
 

@@ -21,7 +21,7 @@
 # discourse move, and a false tag sends training after a confusion the learner does not
 # have.
 # Outcome discipline, because probe families arm by their own explicit item list
-# (src/lib/probes.ts, P19-4): every item on `programm-verstehen` asks for one of the four
+# (src/lib/probes.ts): every item on `programm-verstehen` asks for one of the four
 # answers a Programm holds; every item on `veranstaltung-empfehlen` is one move of the
 # agreement — propose, recommend, counter, accept; every item on `erlebnis-bewerten` is a
 # line of the report, and each of those names a fact and judges it.
@@ -128,7 +128,7 @@ items:
     # revision 2: the RU and UK prompts were predicative («экскурсия интереснее»), so under
     # an instruction that asks for the comparison in front of the noun the learner had to
     # invent the frame — and the logged *Am Sonntag ist die interessantere Führung* (ruled
-    # wrong, 2026-08-11) came straight from it. Both now say «есть» / «є», the gibt es the
+    # wrong) came straight from it. Both now say «есть» / «є», the gibt es the
     # EN "there is" already fixes. Es gibt … die interessantere closes the accept grid.
     revision: 2
     outcomes: [veranstaltung-empfehlen]
@@ -195,7 +195,7 @@ items:
     accept:
       # The subject may lead; the bracket is unchanged and so is the graded pair.
       - "Wir können am Sonntag zusammen zur Führung gehen."
-      # zusammen may also trail the goal PP (2026-08-11 triage, row 1a): marked but
+      # zusammen may also trail the goal PP: marked but
       # grammatical adjunct order, and the graded können…gehen bracket is unaffected. Both
       # subject positions get the closure.
       - "Am Sonntag können wir zur Führung zusammen gehen."

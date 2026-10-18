@@ -62,7 +62,7 @@ items:
     accept:
       - "Können Sie mir sagen, welche Unterlagen ich mitbringen soll?"
     # revision 2: soll occupies the same wall position in the accepted rendering, so
-    # it carries the graded decision and joins the pins. (Batch-6 audit, 2026-08-12.)
+    # it carries the graded decision and joins the pins.
     key_tokens: ["muss", "soll"]
     revision: 2
     explain:
@@ -75,7 +75,7 @@ items:
     type: translate
     focus: nebensatz-verbende
     # revision 3: will occupies the same wall position in the accepted rendering, so
-    # it carries the graded decision and joins the pins. (Batch-6 audit, 2026-08-12.)
+    # it carries the graded decision and joins the pins.
     revision: 3
     instruction:
       en: "Say why you have come, with weil. Translate into German."
@@ -169,7 +169,7 @@ items:
       - "Könnten Sie mir bitte das Formular schicken? Ich würde gerne am Montag vorbeikommen."
       - "Könnten Sie mir das Formular bitte schicken? Ich würde gerne am Montag vorbeikommen."
       # RU carries no «пожалуйста», so dropping bitte is faithful, and kommen is a looser
-      # but legitimate rendering of «зайти» (2026-08-11 triage, row 2b); Könnten/würde
+      # but legitimate rendering of «зайти»; Könnten/würde
       # unaffected.
       - "Könnten Sie mir das Formular schicken? Ich würde gern am Montag kommen."
       - "Könnten Sie mir das Formular schicken? Ich würde gerne am Montag kommen."

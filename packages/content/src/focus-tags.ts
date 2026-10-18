@@ -184,6 +184,6 @@ export const insertionErrors: Record<string, InsertionError> = {
     word: 'am',
     before: /^(jeden|jede|jedes|nächste|nächsten|nächstes|letzte|letzten|letztes)$/iu,
   },
-  // ❌ die Mareks Wohnung — the -s name takes the article's place (logged 2026-07-26).
+  // ❌ die Mareks Wohnung — the -s name takes the article's place (logged).
   'genitiv-eigenname': { word: 'das', before: /^\p{Lu}\p{Ll}*s$/u },
 };

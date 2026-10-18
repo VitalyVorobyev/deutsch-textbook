@@ -5,8 +5,8 @@
  * reading" from "confirmed empty" — WebKit is documented to stall IDB transactions opened
  * in a backgrounded tab. This file pins the wrapper's own contract directly, plus one
  * real-IndexedDB round trip through the actual `getCardStates`/`setCardState` it now wraps
- * (fake-indexeddb, added for exactly this — P20-3: the test environment previously had no
- * IndexedDB at all, so store.ts's real `getStore()` path had zero coverage).
+ * (fake-indexeddb: without it the test environment has no IndexedDB at all, and store.ts's
+ * real `getStore()` path has zero coverage).
  *
  * `timeoutMs` is a parameter on `withVisibilityRetry` (default ~4s in production) purely so
  * these tests can exercise the retry path in milliseconds rather than waiting on a real
@@ -234,13 +234,13 @@ describe('the store path, decomposed (CI-safe)', () => {
   });
 });
 
-describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb, P20-3)', () => {
-  // Quarantined on CI (2026-08-12): on ubuntu runners this composition dies at
+describe('withVisibilityRetry wraps the real store.ts path (fake-indexeddb)', () => {
+  // Quarantined on CI: on ubuntu runners this composition dies at
   // bun test's 5000ms budget with a promise that never settles, while every
   // ingredient passes there in milliseconds — raw fake-indexeddb, a fresh
   // IDBFactory, idb-keyval get/set/update, the getStore body rebuilt inline,
   // and the same op through withVisibilityRetry at the production timeout
-  // (PR #179's diagnostic-ladder runs). The hang point even moved between runs
+  // (a diagnostic ladder of CI runs). The hang point even moved between runs
   // (getCardStates once, setCardState later) — a scheduling race in the
   // fake-indexeddb/bun event loop on Linux, not app logic; macOS passes every
   // time on the same bun version (1.3.14). Decomposed CI coverage lives above;

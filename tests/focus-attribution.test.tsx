@@ -6,7 +6,7 @@
  * produced. The rule has two halves and both are load-bearing:
  *
  *   - where an item authors `focus_evidence`, the predicates decide, and anything they do
- *     not call a failure is unknown (P12-5/P12-6 — an inserted `zu` or a mishearing must
+ *     not call a failure is unknown (an inserted `zu` or a mishearing must
  *     not be charged to the item's grammar tag);
  *   - where an item authors none, attribution stays exactly as it was — `key_tokens` for
  *     `translate`, `dictationSlip` for `listen`.
@@ -82,8 +82,8 @@ describe('free-typed focus attribution', () => {
     // The inserted `zu` is the confusion the drill exists to catch — and `key_tokens` is
     // blind to it, because attribution fires on a token that diverges, not one added.
     expect(answer(item, 'Willst du zu mitkommen, oder musst du arbeiten?')).toBe('zu-infinitiv');
-    // A lexical substitution gets the grammar right; charging it to the tag is the
-    // false attribution P12-5 named.
+    // A lexical substitution gets the grammar right; charging it to the tag would be
+    // a false attribution.
     expect(answer(item, 'Willst du kommen, oder musst du arbeiten?')).toBeUndefined();
   });
 

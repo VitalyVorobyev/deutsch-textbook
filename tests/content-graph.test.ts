@@ -37,8 +37,8 @@ describe('content graph', () => {
     expect(graph.wortnetze.size).toBe(10);
     expect(graph.units.length).toBe(57);
     expect(graph.outcomes.size).toBe(221);
-    // 106 since 2026-08-15: the eight exact source-led A2 slices closed the DTZ tail with learner
-    // evidence; they are inventory rows rather than aliases on broader existing structures.
+    // The source-led A2 slices that close the DTZ tail are inventory rows of their own, not
+    // aliases on broader existing structures.
     expect(graph.inventory.length).toBe(106);
     expect(graph.grammarTracks).toHaveLength(10);
     expect(

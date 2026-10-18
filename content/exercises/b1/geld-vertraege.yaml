@@ -20,7 +20,7 @@
 # compares: two are comprehension and two are a discourse or an arithmetic move, and a
 # false tag sends training after a confusion the learner does not have.
 # Outcome discipline, because probe families arm by their own explicit item list
-# (src/lib/probes.ts, P19-4): every item on `rechnung-pruefen` reads or writes one line of
+# (src/lib/probes.ts): every item on `rechnung-pruefen` reads or writes one line of
 # a bill; every item on `vertrag-nachfragen` is a condition or the question it turns into;
 # every item on `kosten-vergleichen` compares two offers line against line and names the
 # line the choice rests on.
@@ -304,8 +304,8 @@ items:
     # Bei zweitern Jahr), so the instruction now names im Jahr. billig is the course's own card
     # for «дешёвый» and its placement item accepts billiger for this comparison, so both
     # adjectives are named and accepted, and als der erste Tarif — the noun repeated — is
-    # correct German that was rejected (logged with den ersten Tarif, a case error, ruled
-    # 2026-08-11). focus_evidence grades the comparison only: wie, mehr + Adjektiv, the
+    # correct German that was rejected (logged with den ersten Tarif, a case error).
+    # focus_evidence grades the comparison only: wie, mehr + Adjektiv, the
     # positive before als, or no als at all fail; a comparative with als is retained, so the
     # logged billiger als, which was charged, is not.
     revision: 2

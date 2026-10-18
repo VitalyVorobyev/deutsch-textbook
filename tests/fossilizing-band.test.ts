@@ -1,5 +1,5 @@
 /**
- * P25-9: `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and failed nine
+ * `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and failed nine
  * sessions running (band 1 re-dealing a failed item on the same footing every time) while
  * the eight never-seen items of `b1/drill-temporal-nebensatz`, sharing its focus tag, sat
  * untouched in band 3. These tests pin the fix directly on `buildSession`: a "fossilizing"
@@ -44,7 +44,7 @@ const set = (ids: [string, string | undefined][]): TrainingSet => ({
 const attempt = (itemId: string, correct: boolean, ts: number, focus?: string): Attempt =>
   ({ setId: 's1', itemId, itemType: 'mc', correct, given: '', ts, focus }) as Attempt;
 
-describe('P25-9: fossilizing band-1 items yield to their never-seen same-focus siblings', () => {
+describe('fossilizing band-1 items yield to their never-seen same-focus siblings', () => {
   test('a fossilizing item with untried same-focus siblings: siblings dealt first, it drops last', () => {
     const sets = [
       set([

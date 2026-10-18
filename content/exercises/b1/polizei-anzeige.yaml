@@ -50,13 +50,13 @@ items:
       de: "Drei wiedergegebene Sätze, drei verschiedene Anfänge — und die Wahl hängt davon ab, was gesagt wurde, nicht vom Verb davor. Eine Aussage bekommt *dass*. Eine Ja-Nein-Frage hat kein Fragewort, das man behalten könnte, also setzt man *ob* ein. Eine Frage, die schon ein Fragewort hat, behält es — *wann*, und nie *wenn*, denn *wenn* eröffnet eine Bedingung oder einen Zeitsatz, keine Frage. Alle drei enden mit dem konjugierten Verb."
 
   - id: uebersetzen-dass
-    # Revision 3 (2026-10-13 quality pass): the prompt asks for no tense, and "heard" /
+    # Revision 3: the prompt asks for no tense, and "heard" /
     # «слышала» / «чула» are a Präteritum as much as a Perfekt, so hörte is accepted beside
     # gehört hat (it was charged to indirekte-rede with dass intact) and pinned, so the
     # present hört is never forgiven as its slip. focus_evidence charges the tag only for its
     # own decisions: the opener (no dass, ob, wenn) and the tense of the relayed clause (the
     # backshifted hatte, the present hört). A misplaced hat is nebensatz-verbende's and reads
-    # unknown; einen Lärm (ruled 2026-09-15) stays unattributed. das Geräusch is not added:
+    # unknown; einen Lärm stays unattributed. das Geräusch is not added:
     # Geräusch is on no Wortliste and in no deck, and «шум» is the course's Lärm card.
     outcomes: [aussage-wiedergeben]
     type: translate
@@ -71,7 +71,6 @@ items:
       # possessor, so Die Nachbarin renders them as faithfully as Meine does, and «шум» is
       # Lärm, den Lärm or ein Geräusch alike. None of that is what indirekte-rede grades:
       # dass opens the clause and the auxiliary closes it in every rendering below.
-      # (2026-09-15.)
       - "Die Nachbarin sagt, dass sie Lärm gehört hat."
       - "Meine Nachbarin sagt, dass sie den Lärm gehört hat."
       - "Die Nachbarin sagt, dass sie den Lärm gehört hat."
@@ -95,7 +94,7 @@ items:
       de: "Das Hilfsverb schließt den Nebensatz, hinter dem Partizip — oder im Präteritum schließt *hörte* ihn allein. Beachte auch, was *nicht* passiert: Das Verb des Sagens steht im Präsens, aber auch mit *sagte* bliebe die Zeit im wiedergegebenen Satz, wie sie ist. Im Deutschen verschiebt man die Zeit nicht, damit sie zum Hauptsatz passt."
 
   - id: table-indirekt
-    # Revision 2 (2026-10-13 quality pass): the third row asked "„Wo ist Ihr Fahrrad
+    # Revision 2: the third row asked "„Wo ist Ihr Fahrrad
     # gestanden?“" and keyed wo mein Fahrrad gestanden ist. A table cell takes one answer
     # and the island charges every wrong cell to the tag, so the logged wo das Fahrrad
     # gestanden ist (a correct report) was charged to indirekte-rede, and so would the
@@ -135,7 +134,7 @@ items:
       de: "Die letzte Zeile muss man als festes Muster lernen, nicht ableiten: Ein Imperativ kann in einem Nebensatz nicht stehen, also trägt *sollen* die Aufforderung, und es landet dann wie jedes andere konjugierte Verb am Ende. Die zweite und dritte Zeile zeigen den Personenwechsel, den jeder Bericht still macht — aus dem *Sie* der Polizei wird *ich*, weil die berichtende Person die ist, die gefragt wurde."
 
   - id: uebersetzen-frage
-    # Revision 3 (2026-10-13 quality pass): EN "The police officer" names no sex, so the
+    # Revision 3: EN "The police officer" names no sex, so the
     # correct Die Polizistin fragt, … was rejected; the EN prompt now says "policeman", as
     # RU/UK «Полицейский»/«Поліцейський» already do. war, the verb that closes the answer,
     # was never pinned (ist only closes the gewesen accepts) and now is. focus_evidence
@@ -208,7 +207,7 @@ items:
       de: "Beide Partizipien stehen vor einem Nomen nach einem bestimmten Artikel, also bekommen beide im Nominativ Singular die schwache Endung *-e*. Beachte, dass *festgenommen* sein trennbares Präfix behält und das *ge-* in die Mitte setzt — das Partizip ist ein Wort, und die Endung kommt an das Ende dieses einen Worts."
 
   - id: uebersetzen-partizip
-    # Revision 2 (2026-10-13 quality pass): the verb was not named, and "broken" / UK
+    # Revision 2: the verb was not named, and "broken" / UK
     # «зламані» leave aufbrechen, zerbrechen, kaputt and beschädigt open — the logged die
     # gebrochene Tür was charged to the tag for picking another verb. The instruction names
     # aufbrechen. focus_evidence reads the attribute's own form: aufgebrochene missing (a

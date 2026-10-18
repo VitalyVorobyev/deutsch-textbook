@@ -8,7 +8,7 @@ import { EngineError, type Api } from '../api';
 import type { ReactNode } from 'react';
 
 /**
- * The surface PR 12's 85-text wave runs on.
+ * The surface a narration wave of 85 texts runs on.
  *
  * Two of these specs are about the join and one is about a key. All three are the same kind of
  * defect: silent. A scene looked up under the wrong slug simply never matches, so every converted
@@ -84,7 +84,7 @@ const szenenFixture = [
     updated: '2026-08-19T10:00:00+00:00',
     title: { en: 'At the registration office', ru: 'В ведомстве', uk: null },
     level: 'A2',
-    // P28-5: which profile directed this narration. Version 1 of an id this build's catalog knows.
+    // Which profile directed this narration. Version 1 of an id this build's catalog knows.
     narration: { profile_id: 'formal-informational', profile_version: 1 },
     // Past `draft` and at revision 2, so the engine would refuse a deletion twice over.
     deletable: false,
@@ -273,7 +273,7 @@ describe('the queue', () => {
   });
 });
 
-describe('the narration profile in use (P28-5)', () => {
+describe('the narration profile in use', () => {
   test('the catalog label and the pinned version, and “–” where nothing was recorded', async () => {
     mount(<Lesetexte />, api());
 
@@ -299,7 +299,7 @@ describe('the narration profile in use (P28-5)', () => {
   });
 });
 
-describe('die stille Rücknahme (P28-6)', () => {
+describe('die stille Rücknahme', () => {
   test('offered only where the engine says it would accept one', async () => {
     mount(<Lesetexte />, api());
     await screen.findByText('Beim Bürgeramt');

@@ -7,10 +7,7 @@
  * enumerates, and never once mention Versicherungen, Polizei or Kinderbetreuung — three of the
  * seventy sub-topics the DTZ names for an adult building a life in Germany.
  *
- * WHY IT LANDED LAST. A theme is claimed by a **topic**, and until 2026-08-14 a topic had nowhere
- * to declare anything: its identity was split across a directory, an MDX frontmatter and an atlas
- * node, none of them authoritative. ADR 0002's manifests gave it a home, and this is the first
- * thing that home was used for.
+ * A theme is claimed by a **topic**, through its manifest (ADR 0002).
  *
  * WHAT `beyond` MEANS HERE. A topic citing no theme is usually a grammar topic, and that is not a
  * defect — "Der Akkusativ" is about the accusative, not about a slice of life. Read `beyond` as

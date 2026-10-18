@@ -15,8 +15,8 @@ buys two things beyond not forking 900 lines: this package never imports `mlx` a
 import to get wrong, and the CI environment stays free of an ML runtime by construction — and the
 banner it prints cannot corrupt `scene render --json`, because the default runner captures the
 child's real fd 1 and re-emits it on stderr. `redirect_stdout` would not have: it rebinds
-`sys.stdout` inside this process and a child writes to the file descriptor. That is P28-1's
-failure, seen coming rather than shipped.
+`sys.stdout` inside this process and a child writes to the file descriptor. That failure was
+seen coming rather than shipped.
 
 **Reproducibility.** Measured on this machine (M4 Pro, MLX 0.32.1, `--dit-dtype fp16`): three runs
 of one prompt at seed 4242 produced three **byte-identical** WAVs. Sampling is keyed

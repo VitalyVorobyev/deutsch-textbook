@@ -4,8 +4,8 @@
  * This exists because the defect it catches took production down for seven commits while every
  * gate stayed green. npm refuses an `overrides` entry aimed at a package the root also depends
  * on directly unless the two specs match **character for character**; Bun does not enforce that
- * rule at all. So on 2026-08-26 #233 bumped `dependencies.sharp` to `^0.35.4`, left
- * `overrides.sharp` at `^0.35.0`, and `bun install`, `bun run validate`, `bun test`,
+ * rule at all. So a bump of `dependencies.sharp` to `^0.35.4` that left
+ * `overrides.sharp` at `^0.35.0` passed `bun install`, `bun run validate`, `bun test`,
  * `bun run check`, `bun run lint`, `bun run build` and CI all passed — while every Cloudflare
  * deploy died before wrangler started:
  *

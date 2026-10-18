@@ -51,7 +51,7 @@ items:
       uk: "Обидва питання вже в рамці. Поставте дієслово туди, де його вимагає підрядне."
     # The tag grades the wall, not the lexeme: anfängt renders "starts" and heißt renders
     # "means" exactly as well, and the translations do not choose. Rejecting either would
-    # write a false indirekte-frage error for a word choice (the P12-6 determinacy rule).
+    # write a false indirekte-frage error for a word choice (the determinacy rule).
     text: "Weißt du, wann der Unterricht {{beginnt|anfängt}}? Ich weiß nicht, was dieses Wort {{bedeutet|heißt}}."
     translation:
       en: "Do you know when the lesson starts? I do not know what this word means."
@@ -71,11 +71,11 @@ items:
       en: "Two yes/no questions, wrapped. Fill in the word that opens the clause — and the verb that closes it."
       ru: "Два вопроса «да/нет» в рамке. Вставьте слово, которое открывает придаточное, и глагол, который его закрывает."
       uk: "Два питання «так/ні» в рамці. Вставте слово, яке відкриває підрядне, і дієслово, яке його закриває."
-    # haben was rejected live (2026-07-21) and it is correct German the RU translation
+    # haben was rejected live and it is correct German the RU translation
     # actively suggests: «будет ли у нас экзамен» is eine Prüfung haben as directly as
     # "writing an exam" is eine Prüfung schreiben. The tag grades ob and the wall, not
     # which of the two the learner reached for. The logged rejection stays as recorded —
-    # there is no retraction mechanism for cloze attempts, the P12-6/P14-1 gap.
+    # there is no retraction mechanism for cloze attempts.
     text: "Wissen Sie, {{ob}} der Kurs heute stattfindet? Ich möchte wissen, {{ob}} wir am Freitag eine Prüfung {{schreiben|haben}}."
     translation:
       en: "Do you know whether the course is taking place today? I would like to know whether we are writing an exam on Friday."
@@ -220,7 +220,7 @@ items:
     answer: "Können Sie mir sagen, wie lange der Kurs dauert?"
     # The focus grades where the wrapped verb lands, not which verb it is — so the
     # ist-variant (Der Kurs ist zwei Wochen lang → wie lang der Kurs ist, bare lang)
-    # and the Konjunktiv wrapper are siblings, accepted per the 2026-08-05 ruling in
+    # and the Konjunktiv wrapper are siblings, accepted per its ruling in
     # data/grading-decisions.yaml.
     accept:
       - "Können Sie mir bitte sagen, wie lange der Kurs dauert?"
@@ -232,7 +232,7 @@ items:
       - "Ich möchte wissen, wie lange der Kurs dauert."
     # revision 3: ist occupies the wall in the accepted ist-renderings, so it carries
     # the graded decision and joins the pins — an accepted rendering with no graded
-    # token lets the tag stop firing. (Batch-6 audit, 2026-08-12.)
+    # token lets the tag stop firing.
     key_tokens: ["dauert", "ist"]
     explain:
       en: "One sentence, two verbs, two addresses. The wrapper's verb Können keeps position 2, exactly as it would in any main clause. The wrapped verb dauert has to go all the way to the end, because everything after the comma is a Nebensatz. Never … wie lange dauert der Kurs: that is the bare question with its inversion still standing inside the wrapper, and it is the mistake this whole topic is about. The graded token is the wrapped verb — dauert, or ist in the wie-lang variant: the rule is about where it lands."

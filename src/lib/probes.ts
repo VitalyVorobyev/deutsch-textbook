@@ -46,7 +46,7 @@ export const MAX_PROBES_PER_SESSION = 5;
  * contains nothing else, but still bounded: a long unbroken probe run is an exam, and
  * fatigue confounds the very measurement a probe exists to make.
  *
- * Both caps were raised 3/5 → 5/12 on 2026-07-24. The old sizes were set for a learner
+ * Both caps were raised 3/5 → 5/12. The old sizes were set for a learner
  * pacing one unit at a time — and the comment here used to say the session cap is
  * deliberately never raised. At the A2 study finish that sizing became the bottleneck:
  * `bun run progress:audit --profile vitaly` showed 33 probes due (30 overdue) and actual
