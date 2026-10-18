@@ -30,6 +30,9 @@ GitHub Release notes.
 - Tonwerk is one folder: the UI moved to `apps/tonwerk/ui/` and the engine to
   `apps/tonwerk/engine/` (was `tools/listening-studio/`). Run the engine from there with
   `--repo ../../..`.
+- Agent instructions are layered: a short root `CLAUDE.md` plus one per working directory, and all
+  project skills live in `.claude/skills/`, with new ones for the PR cycle, releases, shipping a
+  topic and translating from the German.
 
 ### Changed
 

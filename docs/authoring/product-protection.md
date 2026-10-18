@@ -57,7 +57,7 @@ decisions. Legacy assets keep frozen baseline hashes; any later edit requires it
 change record with the real tool, saved brief and human direction. `sourceClass` and the manifest
 together describe process; neither predicts a court's copyright assessment.
 
-The repository skill [`.agents/skills/authorship-provenance/SKILL.md`](../../.agents/skills/authorship-provenance/SKILL.md)
+The repository skill [`.claude/skills/authorship-provenance/SKILL.md`](../../.claude/skills/authorship-provenance/SKILL.md)
 is the operational handoff for authors and visual generators.
 
 Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.

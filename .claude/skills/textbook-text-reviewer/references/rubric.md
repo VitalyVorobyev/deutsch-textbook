@@ -1,4 +1,4 @@
-# `textbook-quality-rubric.md`
+# Textbook quality rubric
 
 ## Purpose
 

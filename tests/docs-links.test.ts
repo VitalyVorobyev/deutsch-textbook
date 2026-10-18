@@ -22,7 +22,29 @@ describe('documentation links', () => {
   const activeDocs = (readdirSync(join(root, 'docs'), { recursive: true }) as string[])
     .filter((name) => name.endsWith('.md') && !excluded.some((dir) => name.startsWith(dir)))
     .map((name) => join(root, 'docs', name));
-  const files = [join(root, 'README.md'), join(root, 'CLAUDE.md'), ...activeDocs];
+  // The agent layer is documentation too: the per-directory CLAUDE.md files and the skills link
+  // into docs/ and are read by every session, so a dead link there misleads silently.
+  const nestedRules = [
+    'content',
+    'data',
+    'src',
+    'packages',
+    'worker',
+    'apps/redaktion',
+    'apps/tonwerk',
+  ]
+    .map((dir) => join(root, dir, 'CLAUDE.md'))
+    .filter((file) => existsSync(file));
+  const skills = (readdirSync(join(root, '.claude', 'skills'), { recursive: true }) as string[])
+    .filter((name) => name.endsWith('.md'))
+    .map((name) => join(root, '.claude', 'skills', name));
+  const files = [
+    join(root, 'README.md'),
+    join(root, 'CLAUDE.md'),
+    ...nestedRules,
+    ...skills,
+    ...activeDocs,
+  ];
 
   test('every local Markdown target and heading fragment resolves', () => {
     const failures: string[] = [];

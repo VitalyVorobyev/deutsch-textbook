@@ -2,7 +2,7 @@
 
 Report:
 
-- reading id, source hash and local Studio URL;
+- reading id, source hash and local Tonwerk URL;
 - narration profile and narrator versions;
 - word, paragraph and cue counts;
 - duration and voiced words per second;

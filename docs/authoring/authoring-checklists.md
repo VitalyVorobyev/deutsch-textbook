@@ -10,7 +10,7 @@ hazards that are invisible until they fire, and the full drills-from-progress pr
 
 New topic — a topic is not done until every line here is:
 0. For B1.4 and later, read the
-   [`authorship-provenance` skill](../../.agents/skills/authorship-provenance/SKILL.md) and maintain
+   [`authorship-provenance` skill](../../.claude/skills/authorship-provenance/SKILL.md) and maintain
    the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
    is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
    `status: reviewed`.

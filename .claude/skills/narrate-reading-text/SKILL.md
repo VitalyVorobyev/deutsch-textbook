@@ -9,7 +9,7 @@ Produce one reviewed-ready narration candidate. Stop before human approval or pu
 
 ## Workflow
 
-1. Read `CLAUDE.md`, `docs/overview.md`, the source YAML, `data/listening-characters.yaml`, and `data/listening-narration-profiles.yaml`.
+1. Read `CLAUDE.md`, `apps/tonwerk/CLAUDE.md`, `docs/overview.md`, the source YAML, `data/listening-characters.yaml`, and `data/listening-narration-profiles.yaml`.
 2. Strip gloss markers to their German surface. Never speak translations, questions or hidden gloss text. Bind the project to the normalized source hash.
 3. Choose one profile:
    - `didactic-clear` for especially clear intensive A1/A2 input;
@@ -21,14 +21,14 @@ Produce one reviewed-ready narration candidate. Stop before human approval or pu
 6. Assemble the master with the profile's paragraph pause and derive monotonic, non-overlapping cue points from actual boundaries.
 7. Run per-paragraph/full-text Whisper, protected-token, voiced-pace, silence, loudness, clipping, cue and WavLM consistency QA.
 8. Repair pronunciation through synthesis text or overrides. A profile change invalidates every paragraph; a text change invalidates that paragraph cache and the assembled master approval.
-9. Finish before human approval. Return the local Studio link, selected profile, source hash, duration, QA warnings and cue coverage.
+9. Finish before human approval. Return the local Tonwerk link, selected profile, source hash, duration, QA warnings and cue coverage.
 
 ## Hard boundaries
 
 - Publish only one selected narration per Lesetext.
 - Never generate or claim a slow alternate recording; learner speed is playback behavior.
 - Never mark prosody, naturalness or exact-byte approval as human-reviewed.
-- Never upload text or audio. Keep WAV masters in Studio and publish only through the guarded exporter.
+- Never upload text or audio. Keep WAV masters in the engine and publish only through the guarded exporter.
 
 Read [references/handoff.md](references/handoff.md) before handing narration to the editor.
 

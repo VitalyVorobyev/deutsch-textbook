@@ -152,7 +152,7 @@ The revision is complete only when:
 - the central rule precedes secondary qualifications;
 - references are unambiguous;
 - examples directly support the rule;
-- the revised text passes the shared rubric ([`../textbook-quality-rubric.md`](../textbook-quality-rubric.md));
+- the revised text passes the shared rubric ([`../textbook-text-reviewer/references/rubric.md`](../textbook-text-reviewer/references/rubric.md));
 - three comprehension questions can be answered without guessing.
 
 ---
