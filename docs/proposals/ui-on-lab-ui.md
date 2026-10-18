@@ -9,7 +9,7 @@ scheduled.
 1. **Redaktion first.** It is a professional tool, closest to lab-ui's *instrument* direction, and
    already uses `@da/ui` plus Radix. `@vitavision/workbench` provides the app shell, split panes and
    tree view it hand-builds today.
-2. **Tonwerk second.** Its design thesis (`apps/tonwerk/DESIGN.md`) spends hue only on
+2. **Tonwerk second.** Its design thesis (`apps/tonwerk/ui/DESIGN.md`) spends hue only on
    machine-measured versus person-approved. Decide whether that palette becomes a lab-ui theme, or
    whether lab-ui's own signal/normal/defect roles already carry it.
 3. **The learner app last.** It is Astro with React islands, and its look is the one to keep.

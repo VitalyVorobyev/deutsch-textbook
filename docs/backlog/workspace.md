@@ -4,7 +4,7 @@ Repository structure, toolchain and agent tooling. The format and the ID rule ar
 
 - **P30-3 · Type-aware Oxlint.** `oxlint --type-aware` (needs `oxlint-tsgolint`, which runs on TS
   7) reports 117 findings across 9 rules: `unbound-method` 57 (mostly destructured React hooks in
-  `apps/tonwerk/src/views/`), `restrict-template-expressions` 14, `await-thenable` 13,
+  `apps/tonwerk/ui/src/views/`), `restrict-template-expressions` 14, `await-thenable` 13,
   `no-base-to-string` 12, `no-floating-promises` 9, `no-misused-spread` 6, three rules at ≤ 2.
   First step: triage `await-thenable` and `no-floating-promises` — either can hide a real ordering
   bug — switch off what fires only on React idiom, then add `--type-aware` to `lint`. `bun audit`

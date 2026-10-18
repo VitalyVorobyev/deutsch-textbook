@@ -27,6 +27,9 @@ GitHub Release notes.
 - Developer docs: the architecture decisions are rewritten as eleven foundational records, and
   open directions (lesson tasks, characters and stories, the shared UI) become proposals. The
   roadmap now runs past B1, and the backlog is split by area.
+- Tonwerk is one folder: the UI moved to `apps/tonwerk/ui/` and the engine to
+  `apps/tonwerk/engine/` (was `tools/listening-studio/`). Run the engine from there with
+  `--repo ../../..`.
 
 ### Changed
 
