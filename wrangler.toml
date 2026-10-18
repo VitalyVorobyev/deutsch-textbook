@@ -18,9 +18,9 @@
 #                      default. npm requires an `overrides` entry that is also a
 #                      direct dependency to carry the identical spec string; Bun
 #                      does not, so a manifest Bun installs happily can be one npm
-#                      refuses outright. On 2026-08-26 #233 bumped
-#                      dependencies.sharp to ^0.35.4 and left overrides.sharp at
-#                      ^0.35.0, and seven commits built green and never deployed —
+#                      refuses outright. A bump of dependencies.sharp to ^0.35.4
+#                      that left overrides.sharp at ^0.35.0 built green for
+#                      seven commits and never deployed —
 #                      the build succeeded, then `npx` died with EOVERRIDE before
 #                      wrangler started. This step was the only npm in an
 #                      otherwise all-Bun pipeline. `tests/package-manifest.test.ts`
@@ -29,8 +29,8 @@
 #   Branch control     build **`main` only**. Workers Builds will otherwise build
 #                      every pushed branch and deploy it to *production* — an
 #                      unreviewed PR branch on the live domain, reported as a
-#                      green check on the PR. Corrected in the dashboard on
-#                      2026-08-03; nothing in this repo can enforce or detect it,
+#                      green check on the PR. Set in the dashboard; nothing in
+#                      this repo can enforce or detect it,
 #                      which is the whole reason it is written down here.
 #   NODE_VERSION       22   — package.json requires >=22.12.0 and Astro 7 needs
 #                            >=20; the platform default is older.
@@ -57,8 +57,8 @@
 #                         so an empty D1 never locks you out of /konto.
 #
 # **A deploy from a config without `main` removes all six.** Cloudflare's docs
-# say wrangler will not delete secrets; that did not hold across this path. On
-# 2026-08-03 a build of the *old*, assets-only wrangler.toml landed on this
+# say wrangler will not delete secrets; that did not hold across this path. Once,
+# a build of the *old*, assets-only wrangler.toml landed on this
 # Worker while branch control was still building every branch, and replaced the
 # entire binding set: version 02e21b05 (6 secrets + DB + SNAPSHOTS + ASSETS) →
 # c2f78b7e (no bindings at all). Every later build restored the three bindings

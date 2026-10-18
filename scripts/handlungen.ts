@@ -6,8 +6,7 @@
  * The sibling of `scripts/structures.ts`, asking the same question of a different claim. That one
  * measures `data/grammar-inventory.yaml` against `data/strukturenlisten/`; this one measures the
  * 179 `outcomes` in `content/atlas.yaml` against `data/handlungslisten/`. Both exist because a
- * completeness figure measured against a list nobody checked drifts toward flattery — and outcomes
- * had no external list at all until 2026-08-14.
+ * completeness figure measured against a list nobody checked drifts toward flattery.
  *
  * The two are not substitutes. A course can teach every structure the exam tests and never ask the
  * learner to refuse an offer or say they did not understand; grammar coverage cannot see that by

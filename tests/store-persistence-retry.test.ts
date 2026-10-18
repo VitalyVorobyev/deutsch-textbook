@@ -6,8 +6,8 @@
  * (`if (settled) return`). But idb-keyval resolves on `transaction.oncomplete`, so a resolve is
  * a COMMIT — the write is on disk. The caller never learned that, so `journalRemove` never ran,
  * and `PersistenceAlert` claimed "N Antworten noch nicht gespeichert" about data that had
- * landed, for the rest of the profile's life. That is the banner in the 2026-09-15 report:
- * a count frozen at 2 in an app that was otherwise grading normally.
+ * landed, for the rest of the profile's life: a count frozen at 2 in an app that was otherwise
+ * grading normally.
  *
  * `withReadRetry` already had the late-settle branch (ADR 0006) — it records a recovery and
  * drops the value, which is right for a read, where the value is worthless once nobody waits.

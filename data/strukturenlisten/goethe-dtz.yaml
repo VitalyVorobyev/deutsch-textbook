@@ -59,8 +59,7 @@
 #
 # COMPLETENESS, checked rather than felt. `bun scripts/anchor-check.ts goethe-dtz --unaccounted`
 # reads every line printed inside the two label columns and lists the ones no entry accounts for.
-# On 2026-08-14 that list was 71 rows and every one of them is a section heading, a bare group
-# number, the running title, the Seite-99 footnote, the overview's phantom "Adjektive" group, or one
+# Every row it prints is a section heading, a bare group number, the running title, the Seite-99 footnote, the overview's phantom "Adjektive" group, or one
 # half of a label this file transcribes whole ("Komposita – gleiches Bestimmungs-" / "wort";
 # "an" / "+ Dativ"). **No printed structure label is missing.** The check is deliberately left
 # noisy rather than tuned until it prints nothing: an instrument trained to be quiet is one that

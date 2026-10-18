@@ -80,7 +80,6 @@ items:
     # tag already rules so), and the soll renderings keep the graded verb at the wall —
     # a probe that marks correct German wrong corrupts the retention curve. The pin
     # list is the union over renderings; an absent pin has no effect in a candidate.
-    # (Batch-4 audit, 2026-08-12.)
     accept:
       - "Lena geht heute nicht ins Kino, weil sie ihre Tochter abholen muss."
       - "Heute kommt Lena nicht ins Kino, weil sie ihre Tochter abholen muss."
@@ -112,7 +111,7 @@ items:
     # none of what this family measures. Accepting it would score the competence as
     # retained on evidence that never tested it.
     # revision 2: «ему нужно» / «йому треба» underdetermine the modal; the soll rendering
-    # keeps dass + the graded verb at the wall, so it joins accept. (Batch-4 audit, 2026-08-12.)
+    # keeps dass + the graded verb at the wall, so it joins accept.
     accept:
       - "Herr Bauer sagt, dass er mehr Deutsch lernen soll."
     key_tokens: ["muss", "soll"]
@@ -139,8 +138,7 @@ items:
       - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein musst."
       - "Wenn du um sechs Uhr im Büro sein musst, nehmen wir ein Taxi."
       - "Wenn du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
-      # falls is a fully grammatical conditional synonym of wenn (2026-08-11 triage, row
-      # 18a); musst still closes the clause, so the graded rule is untouched. Closed over
+      # falls is a fully grammatical conditional synonym of wenn; musst still closes the clause, so the graded rule is untouched. Closed over
       # both existing variant dimensions (fahren-mit-dem-Taxi wording, fronted clause).
       - "Wir nehmen ein Taxi, falls du um sechs Uhr im Büro sein musst."
       - "Wir fahren mit dem Taxi, falls du um sechs Uhr im Büro sein musst."
@@ -148,7 +146,7 @@ items:
       - "Falls du um sechs Uhr im Büro sein musst, fahren wir mit dem Taxi."
       # revision 3: «тебе нужно» / «тобі треба» underdetermine the modal; the sollst
       # renderings keep the graded verb at the wall. Closed over the same wording and
-      # fronting dimensions as the musst set. (Batch-4 audit, 2026-08-12.)
+      # fronting dimensions as the musst set.
       - "Wir nehmen ein Taxi, wenn du um sechs Uhr im Büro sein sollst."
       - "Wir fahren mit dem Taxi, wenn du um sechs Uhr im Büro sein sollst."
       - "Wenn du um sechs Uhr im Büro sein sollst, nehmen wir ein Taxi."

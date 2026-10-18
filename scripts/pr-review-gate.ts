@@ -2,9 +2,8 @@
  * Read-only merge gate for the current pull request: not a draft, CI green, no unresolved review
  * thread and no outstanding change request.
  *
- * It does NOT wait for any reviewer. A required Codex review of HEAD used to be part of the gate;
- * the owner retired it on 2026-10-10 ("do not wait for codex") — a review that never arrives held
- * green PRs for no evidence. A review that does arrive still binds through its threads.
+ * It does NOT wait for any reviewer: a review that never arrives would hold green PRs for no
+ * evidence. A review that does arrive still binds through its threads.
  *
  * It intentionally uses thread-aware GraphQL data: `gh pr view` flattens review
  * comments and cannot tell whether an inline thread was resolved.

@@ -256,7 +256,7 @@ function WritingArea({
       </label>
       {/* Autocorrect must not rewrite free German production; spellCheck stays ON
           deliberately — write is advisory-only assist territory, and whether the
-          browser may flag spelling is a policy call (P24-6), not a device bug. */}
+          browser may flag spelling is a policy call, not a device bug. */}
       <textarea
         id={id}
         lang="de"

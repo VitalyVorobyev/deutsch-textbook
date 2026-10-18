@@ -8,9 +8,8 @@
  * and `docs/authoring/product-protection.md` is the reason this app exists at all.
  *
  * **The eight keys are the engine's vocabulary** (`api/workflow.APPROVAL_CHECKLIST`); the German
- * beside them is Tonwerk's, because Tonwerk is the surface that speaks German. Until PR 9b the
- * sentences lived in the engine's `ui.py` and a Python test held the two lists equal. That test is
- * gone with that file, and the seam that replaces it is the engine itself: an unknown key is
+ * beside them is Tonwerk's, because Tonwerk is the surface that speaks German. The seam
+ * between the two is the engine itself: an unknown key is
  * refused with the vocabulary named, a missing required one with the missing keys named. A drift
  * here fails at the first approval, loudly, rather than silently dropping a point.
  */
@@ -29,7 +28,7 @@ export interface Pruefpunkt {
  * The eight, in the order a reviewer meets them: voice first, then the ensemble, then the material.
  *
  * The wording is carried over from the deleted HTML form unchanged. It was rewritten once already,
- * on 2026-08-02, when the form showed the bare English keys and asked a named human to vouch for
+ * when the form showed the bare English keys and asked a named human to vouch for
  * them — a checklist that shows nothing it asks about is a rubber stamp.
  */
 export const PRUEFPUNKTE: readonly Pruefpunkt[] = [

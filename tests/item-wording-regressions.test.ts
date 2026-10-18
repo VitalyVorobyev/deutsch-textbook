@@ -10,7 +10,7 @@ function exercise(path: string): ExerciseSet {
   return exerciseSetSchema.parse(YAML.parse(readFileSync(join(root, path), 'utf8')));
 }
 
-describe('late PR #113 regressions', () => {
+describe('item wording regressions', () => {
   test('the floor-plan task asks for only relations visible in the plan', () => {
     const set = exercise('content/exercises/a2/wohnen-umzug-dokument.yaml');
     const item = set.items.find((candidate) => candidate.id === 'dokument-wohnung-grundriss');

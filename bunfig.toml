@@ -6,6 +6,6 @@ preload = ["./tests/setup-dom.ts"]
 # also collects apps/tonwerk/ui's *.test.tsx — which run under vitest
 # (`bun run tonwerk:test`) and fail under bun's runner on vitest-only
 # APIs (vi.stubGlobal). That artifact read as a 61-failure baseline locally and
-# broke the v0.5.0 release workflow, whose gate runs `bun test` while ci.yml
+# broke a release workflow, whose gate runs `bun test` while ci.yml
 # runs `bun test tests/` — same suite, now by construction.
 root = "tests"

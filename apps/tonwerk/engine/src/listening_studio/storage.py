@@ -621,9 +621,9 @@ class Store:
     def scene_rows(self) -> list[tuple[SceneProject, SceneRevision]]:
         """Every scene project with its head revision, in **one** query.
 
-        `GET /api/scenes` used to call `scene_projects()` and then `get_scene()` per row, which is
-        one statement plus one per project — invisible at eleven scenes and a hundred-and-thirty
-        statements per page load once the corpus converts (backlog P28-4). The join is on
+        One statement rather than `scene_projects()` and then `get_scene()` per row — one per project
+        is invisible at eleven scenes and a hundred-and-thirty statements per page load once the
+        corpus converts. The join is on
         `current_revision_id`, so a project whose head is missing is simply absent rather than
         raising: that state means a half-written creation, and a list view must render the other
         rows.
@@ -662,8 +662,7 @@ class Store:
 
         Nothing outside the database is touched. Renders live under `renders/<scene sha>/` and are
         shared by every revision that hashes to those bytes, so deleting them here would remove
-        audio another project may still be reviewing; `renders/` has its own reaper question
-        (backlog P28-4).
+        audio another project may still be reviewing; `renders/` has its own reaper question.
         """
 
         with Session(self.engine) as session:

@@ -183,9 +183,9 @@ items:
     model_translation: { en: "At seven o'clock I drink coffee and eat a roll. In the morning I work at home. At one o'clock I cook soup, because I like eating soup. In the evening I read or listen to music.", ru: "В семь часов я пью кофе и ем булочку. До обеда я работаю дома. В час я готовлю суп — я люблю суп. Вечером я читаю или слушаю музыку.", uk: "О сьомій годині я п'ю каву та їм булочку. До обіду я працюю вдома. О першій я варю суп — я люблю суп. Увечері я читаю або слухаю музику." }
     explain: { en: "Pattern: a time phrase first, the verb right after it in position 2 — Um sieben Uhr trinke ich Kaffee. Liking food or drink is essen/trinken + gern.", ru: "Схема: сначала указание времени, сразу за ним глагол на втором месте — Um sieben Uhr trinke ich Kaffee. Любимая еда и напитки — это essen/trinken + gern.", uk: "Схема: спочатку позначення часу, одразу за ним дієслово на другому місці — Um sieben Uhr trinke ich Kaffee. Улюблена їжа та напої — це essen/trinken + gern." }
   # --- A1 boundary additions (new ids deliberately reopen this checkpoint) ---
-  # The eight P19-1 backfill items below shipped 2026-07-31 without instruction or
+  # The eight boundary items below first shipped without instruction or
   # translation — unlike every older item in this file. On a phone that renders as two bare
-  # gaps and no task (owner report, 2026-08-04). Five of the eight were also indeterminate:
+  # gaps and no task. Five of the eight were also indeterminate:
   # the gap asked for a lexical verb nothing named (aufräumen, aufstehen, kochen, spielen,
   # nehmen), so the item graded which word the author had in mind. Each now names its task
   # the way the older items do; revision bumped because the prompt changed. Logged attempts

@@ -348,7 +348,7 @@ describe('syncNow', () => {
   });
 
   test('a 5xx on the session probe reports an error, is never cached as signed-out, and the next sync recovers', async () => {
-    // The #143 class: a transient server failure on /api/auth/session used to be
+    // A transient server failure on /api/auth/session used to be
     // memoized as SIGNED_OUT for the whole page view — and a desktop "page view"
     // lasts as long as the app is open, so a whole session silently never synced.
     local.attempts = [attempt('a', 1)];

@@ -65,7 +65,7 @@ export const authorshipManifestSchema = z.object({
 });
 export type AuthorshipManifest = z.infer<typeof authorshipManifestSchema>;
 
-// Frozen on 2026-07-26. These topics predate the provenance workflow; no later topic may
+// Frozen. These topics predate the provenance workflow; no later topic may
 // inherit their exemption by changing a mutable manifest flag.
 export const LEGACY_TOPIC_IDS = new Set([
   'erfahrungen-erzaehlen',
@@ -194,7 +194,7 @@ export const assetProvenanceManifestSchema = z.object({
 });
 export type AssetProvenanceManifest = z.infer<typeof assetProvenanceManifestSchema>;
 
-// Frozen on 2026-07-26. These are the pre-workflow bytes, not merely a path
+// Frozen. These are the pre-workflow bytes, not merely a path
 // allowlist. A legacy path whose current hash diverges owes a matching change
 // record, so unavailable creation history never exempts later edits.
 export const LEGACY_ASSET_BASELINE_SHA256: Readonly<Record<string, string>> = {

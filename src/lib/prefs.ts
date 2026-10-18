@@ -60,7 +60,7 @@ export function resolveExplainLang(profileId: string): ExplainLang | null {
   return null;
 }
 
-/** The chrome language is pinned to German (owner decision 2026-07-16: one
+/** The chrome language is pinned to German (owner decision: one
     Lernsprache selector; German chrome is deliberate immersion — nav labels
     are high-frequency sight vocabulary). The strings table keeps its four
     languages as dormant data so this stays a one-line reversal; stored legacy
@@ -159,7 +159,7 @@ export function pick(lang: ExplainLang, text: ExplainText | undefined): string {
  * it chose: 'ru' shows the Russian gloss; 'uk' shows the Ukrainian one where
  * a translation wave has authored it — never Russian for a Ukrainian reader.
  * 'en' shows nothing: an EN-mode learner is never assumed to read Russian or
- * Ukrainian (owner ruling 2026-07-16 — the earlier `en · ru` view leaked
+ * Ukrainian (owner ruling — an `en · ru` view leaked
  * Russian into the EN surface). 'de' shows nothing — a card's meaning side is
  * never German by construction (docs/adrs/0005-explanation-languages.md). `undefined` means "no
  * second half": the caller renders EN alone, with no separator — never

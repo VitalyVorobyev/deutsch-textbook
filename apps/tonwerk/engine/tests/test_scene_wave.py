@@ -229,7 +229,7 @@ def test_a_failure_is_a_row_and_the_run_carries_on(waved: Any) -> None:
     assert "gibt-es-nicht" in rows[1]["message"]
 
 
-# -- P28-6: deletion ----------------------------------------------------------
+# -- deletion ----------------------------------------------------------------
 
 
 def test_only_a_never_published_draft_at_revision_one_may_be_deleted(waved: Any) -> None:

@@ -40,7 +40,7 @@ export function SessionLog({
   if (rows.length === 0) return null;
 
   // Closed by default: the heatmap already answers "when was I active", so the
-  // per-day table is detail on demand, not part of the overview (P24-3).
+  // per-day table is detail on demand, not part of the overview.
   return (
     <details className="group rounded-lg border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800">
       <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-stone-600 hover:text-amber-700 dark:text-stone-300 dark:hover:text-amber-400 sm:min-h-0">

@@ -327,7 +327,7 @@ export function introducedToday(states: Record<string, StoredCard>, now = new Da
 /**
  * What queue planning reads of a card: its identity, never its content. Planning is generic
  * over it so a surface that only counts (Heute's due tile) can plan from ids alone instead of
- * inlining every gloss and example of the corpus (backlog P23-1).
+ * inlining every gloss and example of the corpus.
  */
 export type CardRef = Pick<CardDef, 'id' | 'deckId' | 'de' | 'dir'>;
 

@@ -1,6 +1,6 @@
 """The app factory: one JSON API, one bearer token, and the built workbench in front of it.
 
-Since PR 9b this module is small on purpose. Everything a person does with the studio happens in
+This module is small on purpose. Everything a person does with the studio happens in
 **Tonwerk** (`apps/tonwerk`), a React app that talks to `/api` and nothing else; the server-rendered
 HTML that used to live here and in `ui.py` — the index, the project page, the script and question
 forms, the two approval pages — is gone, along with the cookie and `?token=` credentials that

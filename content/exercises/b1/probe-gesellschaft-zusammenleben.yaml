@@ -6,7 +6,7 @@
 # Translate rather than cloze, and that is this family's whole point. A cloze grades a
 # form, never a position: the gap is a slot, so the learner cannot put the verb anywhere
 # else and a cloze family would pass someone who writes obwohl and keeps main-clause
-# order behind it. That is P18-6 (filed against probe-konsum-umwelt, where passiv-bildung
+# order behind it. That is the cloze position gap (seen first in probe-konsum-umwelt, where passiv-bildung
 # is cloze ×3 and its position half has no delayed evidence), and this tag is a word-order
 # contrast end to end. In a translate the collapse is scored wrong and attributed: the
 # pinned clause-final verb sits at a different index, so misplacedGraded fires
@@ -126,7 +126,7 @@ items:
   - id: variant-c
     # revision 2: the RU/UK prompts write the name in Latin script (Каминский /
     # Камінський left Kaminski, Kaminskij and Kaminskyj open). The logged *stellt … sein
-    # Fahrrad im Hof* (2026-10-11 ruling) loses no pinned token and stays unattributed.
+    # Fahrrad im Hof* loses no pinned token and stays unattributed.
     revision: 2
     outcomes: [einwand-ausdruecken]
     type: translate

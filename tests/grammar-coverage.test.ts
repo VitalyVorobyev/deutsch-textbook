@@ -55,10 +55,8 @@ describe('grammar coverage', () => {
       expect(Boolean(point.reference_only) || (point.focus?.length ?? 0) > 0).toBe(true);
   });
 
-  // The 2026-08-14 anchor pass reopened four honest gaps: coordinating conjunctions, both
-  // Wortbildung sections and the demonstrative determiner. The A1 quality wave closed them with
-  // owner articles, scaffold/fade/transfer practice and delayed probes. This is a ratchet again:
-  // adding an inventory row without evidence must reopen it visibly.
+  // A ratchet: every A1 row has an owner article, scaffold/fade/transfer practice and a delayed
+  // probe. Adding an inventory row without that evidence must reopen it visibly.
   test('A1 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A1');
     const missing = coverage.points
@@ -71,11 +69,9 @@ describe('grammar coverage', () => {
     expect(coverage.late).toBe(0);
   });
 
-  // The 2026-08-14 anchor pass deliberately reopened reciprocal pronouns, interrogative
-  // determiners and temporal `über`: the rows existed before their teaching evidence. The A2
-  // source-led wave then paid for each with an addressable article section, scaffold, transfer and
-  // a parallel three-variant probe family. This is a ratchet again: a new internal row without
-  // learner-facing evidence must make the test fail.
+  // A ratchet: every A2 row has an addressable article section, scaffold, transfer and a
+  // parallel three-variant probe family. A new internal row without learner-facing evidence
+  // must make the test fail.
   test('A2 is complete against its explicit internal inventory', () => {
     const coverage = grammarCoverage('A2');
     const missing = coverage.points
@@ -88,51 +84,14 @@ describe('grammar coverage', () => {
     expect(coverage.late).toBe(0);
   });
 
-  // The B1 counterpart of the A2 ratchet, pointing the other way. A2's number was lowered
-  // ten times, once per unit; B1's `covered` gets *raised* the same way. What is pinned here
-  // is that the instrument exists and is honest about being empty — the failure this whole
-  // file guards against is a level calling itself complete with nothing measuring it, and a
-  // level with no manifest cannot even notice the question. When the first B1 unit ships,
-  // the tags it registers close their points and this assertion comes up with them.
+  // The B1 ratchet. A point counts only when every tag it names is drilled — wortstellung-angaben
+  // needs angaben-reihenfolge AND pronomen-stellung — and genre units (B1.11–B1.13) own no point
+  // and move nothing. The denominator moves when the manifest is wrong: a point whose tag covers
+  // only some of its frames is split, never left covered.
   test('B1 reports exactly what has shipped — units 1–14 cover all thirty-two points', () => {
     const coverage = grammarCoverage('B1');
     expect(coverage.total).toBeGreaterThanOrEqual(30);
-    // The ratchet: raised in the same commit that ships a unit, never ahead of content.
-    // Unit B1.1 (erfahrungen-erzaehlen, 2026-07-24) closed its three contract points;
-    // unit B1.2 (leben-veraendern, 2026-07-24) closed genitiv-vollstaendig,
-    // komparativ-attributiv and relativsatz-dativ; unit B1.3 (gesundheit-wohlbefinden,
-    // 2026-07-24) closed adjektiv-nullartikel, konjunktiv2-ratschlag, lassen and
-    // reflexiv-praeposition; unit B1.4 (arbeit-bewerbung, 2026-07-26) closed
-    // n-deklination, adjektiv-nomen and nomen-verb-verbindungen; unit B1.5 (meinung-medien,
-    // 2026-07-26) closed verb-praeposition-erweitert, kausalsatz-da and
-    // zweiteilige-konnektoren. That last point also *gained* a sibling in the same
-    // commit: je … desto was split out as proportionalsatz-je-desto, because the tag
-    // B1.5 drills covers the three coordinating pairs only, and a covered point would
-    // have hidden the fourth frame from --missing-only for good. So 16 of 32, not 31 —
-    // the denominator moves when the manifest is wrong, and it moved the honest way.
-    // Unit B1.6 (konsum-umwelt, 2026-07-29) closed passiv-produktion (passiv-bildung),
-    // passiv-vergangenheit and proportionalsatz-je-desto (je-desto) — the split point's
-    // debt paid by the unit the amendment assigned it to. Unit B1.7 (regeln-verantwortung,
-    // 2026-07-29) closed passiv-modal and konsekutivsatz-sodass (sodass-folge). Unit B1.8
-    // (reisen-probleme, 2026-07-30) closed konjunktiv2-irreal (konjunktiv2-form,
-    // irreale-bedingung — the paradigm B1.3's chunks were waiting for) and
-    // praeposition-genitiv. Unit B1.9 (lernen-zukunft, 2026-07-31) closed
-    // finalsatz-damit (damit-um-zu), konditionalsatz-falls (falls-wenn) and
-    // infinitivsatz-ohne-statt (ohne-statt-zu) — the purpose clause under the subject
-    // test, expectancy against A2's wenn, and um … zu's two siblings. Unit B1.10
-    // (gesellschaft-zusammenleben, 2026-08-03) closed konzessivsatz-obwohl
-    // (obwohl-trotzdem), indefinitpronomen-erweitert and relativ-was-wo — the
-    // conjunction beside A2's trotzdem adverb, the quantifiers that decline beside A2's
-    // invariant set, and the two relative words that are not der/die/das. Units B1.11–B1.13
-    // (digitales-leben, kultur-freizeit, geld-vertraege, 2026-08-04) are genre units and
-    // moved this number by design: they own no manifest point, register no tag, and recycle
-    // the ones earlier units drilled. Unit B1.14 (informationen-vermitteln, 2026-08-04)
-    // closes the last three and the level with them: indirekte-rede (indirekte-rede — the
-    // connector a report opens with and the tense it keeps, with Konjunktiv I receptive
-    // only), wortstellung-angaben (angaben-reihenfolge AND pronomen-stellung — the point
-    // whose two tags must BOTH be drilled before it counts) and partizip-adjektiv
-    // (partizip-adjektiv). This assertion has now stopped being a countdown for B1 too, and
-    // becomes a ratchet of the A2 kind: 32/32 is where it stays.
+    // Raised in the same commit that ships a unit, never ahead of content.
     expect(coverage.covered).toBe(32);
     expect(coverage.late).toBe(0);
     expect(coverage.percent).toBe(100);

@@ -517,8 +517,8 @@ function Bericht({ qa }: { qa: QaReport | null }): React.JSX.Element {
 /**
  * What the render wrote, and every piece of it playable.
  *
- * Until PR 9b only the master had a path, so the stems were a list of digests: a mix could be
- * judged whole and never taken apart, which is the wrong way round — a masked syllable or a voice
+ * Every stem has a path, not only the master: a mix that can be judged whole and never taken
+ * apart is the wrong way round — a masked syllable or a voice
  * that drifts is audible on its own take and inaudible under a bed.
  * `GET …/renders/{variant}/artifact/{path}` serves anything the manifest declares, so the file
  * names printed here are also the addresses they are fetched from, and the two cannot disagree.

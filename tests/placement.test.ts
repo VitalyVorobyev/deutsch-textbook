@@ -260,7 +260,7 @@ describe('fresh cards for a learner who placed out', () => {
 });
 
 describe('hasStartedLearning — what keeps the entry test reachable', () => {
-  // Codex found this on PR #89: `FirstSteps` gated on `attempts.length === 0`, and
+  // `FirstSteps` once gated on `attempts.length === 0`, and
   // `logAttempt` fires per item, so answering one placement question hid the card that
   // holds the only link to the test. The answers were never lost — `ExerciseSet` saves
   // them through `resume.ts` — so a half-finished test sat there with no route back.
@@ -296,7 +296,7 @@ describe('hasStartedLearning — what keeps the entry test reachable', () => {
 });
 
 describe('placementSettled — finishing a test that placed you out of nothing', () => {
-  // Codex, second pass on PR #89. The panel gated its completion state on
+  // The panel once gated its completion state on
   // `pending.length === 0 && alreadyApplied`, so a learner who answered every item and
   // passed no topic hit `pending: []` with `alreadyApplied: false` — a permanently
   // disabled Apply button and no link onward. That is not an edge case: it is the ordinary

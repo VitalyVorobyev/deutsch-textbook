@@ -13,7 +13,7 @@
 #
 # Pinned is the opener and the verb that has to reach the end. The nouns are carrier material:
 # a fumbled Kollegin is not this confusion. Each pinned token occurs at most once in every
-# accepted rendering. Since the 2026-10-13 quality pass each variant also carries
+# accepted rendering. Each variant also carries
 # focus_evidence read off the tag's own decisions — the opener and the tense or the sollen of
 # the relayed clause — so the verb's slot, which is nebensatz-verbende's and indirekte-frage's,
 # reads unknown rather than charged.
@@ -37,7 +37,7 @@ title:
   de: "Kontrolle mit Abstand — weitergeben, was gesagt wurde"
 items:
   - id: variant-a
-    # Revision 3 (2026-10-13 quality pass): "wallet"/«кошелёк»/«гаманець» is the course's own
+    # Revision 3: "wallet"/«кошелёк»/«гаманець» is the course's own
     # production card die Geldbörse (einkaufen-geld-a2), which was rejected, and also the
     # recognition card Brieftasche; the instruction names die Geldbörse and the answer
     # follows it. The prompt asks for no tense, so fand is accepted beside gefunden hat (it
@@ -64,7 +64,7 @@ items:
       # item this probe checks (b1/polizei-anzeige:uebersetzen-dass) — «Коллега» marks no
       # possessor, and «кошелёк» is Portemonnaie or Geldbeutel, the standard southern word.
       # dass and the closing auxiliary, which is all indirekte-rede grades, are intact in
-      # every rendering. (2026-09-15.)
+      # every rendering.
       - "Die Kollegin sagt, dass sie das Portemonnaie gefunden hat."
       - "Meine Kollegin sagt, dass sie den Geldbeutel gefunden hat."
       - "Die Kollegin sagt, dass sie den Geldbeutel gefunden hat."
@@ -79,7 +79,7 @@ items:
       de: "Eine wiedergegebene Aussage beginnt mit *dass*, und der Nebensatz stellt sein konjugiertes Verb ans Ende. Im Perfekt ist dieser konjugierte Teil das Hilfsverb, also *gefunden hat*. Beachte, was gleich bleibt: Das Verb des Sagens steht hier im Präsens, aber auch ein vergangenes *sagte* ließe die Zeit im wiedergegebenen Satz unverändert — im Deutschen verschiebt man die Zeit nicht."
 
   - id: variant-b
-    # Revision 2 (2026-10-13 quality pass): the Perfekt gewesen ist renders "was" as well as
+    # Revision 2: the Perfekt gewesen ist renders "was" as well as
     # war and was charged with ob intact; EN "my neighbour" names no sex, so meine Nachbarin
     # was rejected. Both are accepted, and ist is pinned beside war.
     outcomes: [aussage-wiedergeben]
@@ -105,7 +105,7 @@ items:
       de: "Eine Ja-Nein-Frage hat kein Fragewort, das man behalten könnte, also muss man eins einsetzen: *ob*. Dahinter hat der Nebensatz die normale Reihenfolge mit dem Subjekt zuerst und dem Verb am Ende — keine Umstellung, obwohl das Original eine Frage war. Die häufigste falsche Antwort behält die Form der Frage, *ob war mein Nachbar zu Hause*: ein Hauptsatz mit einer Konjunktion davor."
 
   - id: variant-c
-    # Revision 2 (2026-10-13 quality pass): the EN prompt had no "that", so the dass-less Sie
+    # Revision 2: the EN prompt had no "that", so the dass-less Sie
     # sagt, ich soll … — correct German that bypasses the opener this probe measures — was
     # invited and charged; it now says "that", as RU/UK «что»/«що» do. «формуляр» leaves
     # das/ein free, and "should"/«следует» is sollte as readily as soll (the same modal):

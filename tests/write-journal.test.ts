@@ -3,8 +3,8 @@
  * write: journaled synchronously to localStorage BEFORE the IndexedDB attempt starts,
  * removed after it settles, replayed on the next launch when it never did. The desktop
  * forensics that motivated it (docs/adrs/0006-local-first-durable-learner-state.md): whole
- * sessions' writes silently never landed — 2026-08-19 has no daily backup at all —
- * while the UI advanced normally.
+ * sessions' writes silently never landed, with no daily backup at all, while the UI
+ * advanced normally.
  *
  * Replay safety rests on two idempotency guarantees pinned here:
  *   - `applyGradeAt` (srs.ts): the `last_review >= ts` guard makes N applications of
@@ -110,7 +110,7 @@ describe('journal round trip', () => {
 });
 
 describe('replay through the real store (fake-indexeddb)', () => {
-  // Same CI quarantine as the store round-trip suite (P25-13): the fake-indexeddb/bun
+  // Same CI quarantine as the store round-trip suite: the fake-indexeddb/bun
   // event loop races on Linux runners; the journal logic itself is covered above.
   test.skipIf(!!process.env.CI)(
     'a journaled grade replays into the store once, and a second replay is a no-op',

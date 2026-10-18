@@ -13,10 +13,11 @@ An entry states:
 - **where the evidence is**: a command or a `file:line`;
 - **the first step**.
 
-**IDs are stable identities.** An entry keeps the ID it was filed under, because code comments and
-commits cite them. The `P`, `C` and `F` series are the older numbering and stay as they are. A new
-entry takes its area's prefix and the next free number in that file: `CON`, `APP`, `INS`, `STO`,
-`TON`, `RED` or `WS`. A number is never reused.
+**IDs are stable identities.** An entry keeps the ID it was filed under, because commits and docs
+cite them. Code and content never do: a comment states what is true and why, and the entry is
+deleted when the work is done (`tests/source-hygiene.test.ts`). The `P`, `C` and `F` series are the
+older numbering and stay as they are. A new entry takes its area's prefix and the next free number
+in that file: `CON`, `APP`, `INS`, `STO`, `TON`, `RED` or `WS`. A number is never reused.
 
 | Area | File |
 | --- | --- |

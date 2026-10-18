@@ -38,7 +38,7 @@ items:
     type: cloze
     outcomes: [da-wort-sache, wo-wort-fragen]
     focus: da-wo-woerter
-    # revision 2 (2026-10-17, learner feedback): every answer printed its preposition, so the item
+    # revision 2 (learner feedback): every answer printed its preposition, so the item
     # asked only for wo(r)-/da(r)- + the word already on screen. The preposition is a gap now, and
     # the translation fixes the meaning — without it Woran arbeitet ihr? — An einer App would fit.
     revision: 2
@@ -59,7 +59,7 @@ items:
     type: cloze
     outcomes: [wo-wort-fragen, verb-praeposition-waehlen]
     focus: da-wo-woerter
-    # revision 2 (2026-10-17, learner feedback): the answers printed auf, für and von, which gave
+    # revision 2 (learner feedback): the answers printed auf, für and von, which gave
     # away the very preposition the verb selects. They are gaps now, fixed by the translation.
     revision: 2
     instruction: { en: "Complete the mini-dialogues: the question word and the preposition the verb takes.", ru: "Дополните мини-диалоги: вопросительное слово и предлог, которого требует глагол.", uk: "Доповніть міні-діалоги: питальне слово і прийменник, якого вимагає дієслово." }
@@ -103,7 +103,7 @@ items:
     # person the prompt never fixed teaches them nothing about da-/wo- words.
     # revision 3: «Ответа» / «Відповіді» mark no definiteness, and waiting for
     # an answer is the idiomatic first-mention reading; the graded Worauf is
-    # identical. Closed over the person dimension. (Batch-4 audit, 2026-08-12.)
+    # identical. Closed over the person dimension.
     accept:
       - "Worauf warten Sie? — Auf die Antwort."
       - "Worauf wartest du? — Auf die Antwort."
@@ -147,7 +147,7 @@ items:
     # governs, not where `oft` sits, so the middle-field order must not decide the score.
     # revision 2: «о путешествии» / «про подорож» mark no definiteness, and dreaming of
     # a trip is the natural first-mention reading; the graded von/davon are identical.
-    # Closed over the fronting dimension. (Batch-4 audit, 2026-08-12.)
+    # Closed over the fronting dimension.
     accept:
       - "Mia träumt von der Reise. Oft träumt sie davon."
       - "Mia träumt von einer Reise. Sie träumt oft davon."

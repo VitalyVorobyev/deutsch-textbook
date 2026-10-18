@@ -171,7 +171,7 @@ items:
     outcomes: [zu-oder-ohne-zu]
     type: translate
     focus: zu-infinitiv
-    # P12-5's worked example: a spurious `zu` (inserted, so `key_tokens` is blind to it)
+    # The worked example of an inserted token: a spurious `zu` (inserted, so `key_tokens` is blind to it)
     # and `mitzukommen` are the tag failing; `kommen` for `mitkommen` is a lexical
     # substitution that gets the grammar right, and must stay unknown rather than be
     # charged to zu-infinitiv.

@@ -53,10 +53,8 @@ Transcriber = Callable[[Path], str]
 
 #: What a human certifies when they approve a scene, key by key — **and this is its one home.**
 #:
-#: Until PR 9b the same eight keys were also declared in `ui.py`, which stated each of them as a
-#: full German sentence for the HTML approval form, and `tests/test_api_scenes.py` held the two
-#: lists equal. `ui.py` is deleted; the sentences moved to Tonwerk, which is the surface that
-#: speaks German, and this tuple is the vocabulary they are keyed on. A Tonwerk checklist that
+#: The German sentences live in Tonwerk, which is the surface that speaks German, and this tuple
+#: is the vocabulary they are keyed on. A Tonwerk checklist that
 #: drifted from it does not fail silently: an unknown key is refused with the vocabulary named,
 #: and a missing required one is refused with the missing keys named.
 #:

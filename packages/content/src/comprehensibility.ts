@@ -14,7 +14,7 @@
  * CEFR discipline ("an A2 article must be readable by an A2 learner") binds only
  * at authoring time, by judgement, one file at a time. This measures the other
  * side — the **German** the learner has to get through — against what the spine
- * says they have already met at that point. Backlog P24-9(a).
+ * says they have already met at that point.
  *
  * ## The known set — the counting method the numbers carry
  *
@@ -956,7 +956,7 @@ export function loadCorpus(root = repoRoot()): Corpus {
 
   // Identity comes from the manifest, not from the article.
   //
-  // This read MDX frontmatter until 2026-08-15, and had therefore been resolving **zero topics**
+  // This once read MDX frontmatter, and had therefore been resolving **zero topics**
   // since ADR 0002 moved identity into `<id>.topic.yaml` and made the article prose-only. The
   // failure was silent in the worst way the repo knows: `--rank` printed its legend and no rows,
   // the detail form answered "No topic X on the spine" for topics that were plainly on it, and

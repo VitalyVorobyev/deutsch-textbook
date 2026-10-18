@@ -18,7 +18,7 @@ only surface that named them was a run log nobody re-read.
    words per second cannot be used: short utterances are dominated by fixed lead-in and trail,
    so it ranks "Und heute?" as the slowest line in the corpus when it is perfectly normal.
 4. **Length against the plan** — `data/listening-plan.yaml` states a window per artifact and
-   nothing else reads it (P22-10).
+   nothing else reads it.
 
 Usage: `uv run python authoring/audio_report.py [slug ...]` (default: every artifact).
 """

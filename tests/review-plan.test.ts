@@ -386,7 +386,7 @@ describe('gradeCard stamps introducedAt exactly once, and only on a real introdu
 });
 
 // Heute's due tile plans from card refs (ids rebuilt from headwords), not from the built
-// cards, so the page stops inlining the corpus (backlog P23-1). The tile's numbers and the
+// cards, so the page stops inlining the corpus. The tile's numbers and the
 // queue /ueben/wiederholen deals must still be the same plan: same input order, same random
 // draws, same queue.
 describe('planReview over card refs', () => {

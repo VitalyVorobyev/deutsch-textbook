@@ -16,7 +16,7 @@
 # Trainer or Ausflug is scored wrong and left unattributed rather than charged to this
 # tag.
 #
-# 2026-10-13 quality pass (revision 2 on all three): the DE instructions said "mit dass und
+# Revision 2 on all three: the DE instructions said "mit dass und
 # Präsens", and the Konjunktiv I is a Präsens too, so German-medium mode left the mood
 # free; they now name the Indikativ. Each variant carries focus_evidence for the tag's own
 # two decisions — the opener (no dass, ob, wenn) and the mood or tense of the relayed verb
@@ -45,8 +45,8 @@
 #
 # arming: the three items in which the learner chooses the connector of a reported clause or
 # relays a written Konjunktiv I. Nothing else in the unit carries this tag. All three
-# families on this topic are new and each arms from its own literal list (P19-4,
-# src/lib/probes.ts reads `arming` and nothing else), so no family's `armedAt` can be moved
+# families on this topic are new and each arms from its own literal list
+# (src/lib/probes.ts reads `arming` and nothing else), so no family's `armedAt` can be moved
 # by another — measured before and after by reading the three lists, which share no item.
 # The pretest's dass-cloze is excluded by role: a pretest is a guess taken before the lesson
 # and arms nothing.
@@ -63,7 +63,7 @@ arming:
   - b1/informationen-vermitteln::uebersetzen-relais-konjunktiv
 items:
   - id: variant-a
-    # Revision 2 (2026-10-13 quality pass): see the header — the DE instruction now names
+    # Revision 2: see the header — the DE instruction now names
     # the Indikativ, and "at ten" is um zehn or um zehn Uhr, both accepted.
     revision: 2
     outcomes: [indirekt-berichten]

@@ -11,10 +11,10 @@ a reading id contains a slash. Anything registered after it that lives under `/a
 would be shadowed. Scenes and the registry are registered before it for that reason, and the
 readings router is last.
 
-Since PR 9b this is the **whole** surface: the server-rendered forms that used to sit beside it
-are deleted, and Tonwerk reads nothing else. `projects.py` and the reading half of `readings.py`
+This is the **whole** surface: there are no server-rendered forms beside it, and Tonwerk reads
+nothing else. `projects.py` and the reading half of `readings.py`
 stay because the pre-scene `RevisionPayload` projects are still in the database — frozen data,
-readable through `GET /api/projects` and `GET /api/projects/{id}`, awaiting the PR 11 conversion.
+readable through `GET /api/projects` and `GET /api/projects/{id}`, awaiting conversion to scenes.
 """
 
 from __future__ import annotations

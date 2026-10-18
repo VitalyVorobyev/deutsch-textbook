@@ -3,7 +3,7 @@
  *
  * Every topic declares 2–5 learner-facing `outcomes` in `content/atlas.yaml`; 179 of them exist,
  * each a can-do statement in up to four languages, each required to be measured by a practice or
- * drill item. What no outcome had until 2026-08-14 is an **outside**. `bun run validate` checks
+ * drill item. What an outcome also needs is an **outside**. `bun run validate` checks
  * that an outcome is *exercised*; nothing checked that the set of can-dos this course teaches is
  * the set an adult learner is actually expected to perform, and a self-authored list of
  * communicative goals drifts exactly the way the self-authored grammar list drifted — silently, and

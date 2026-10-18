@@ -44,12 +44,12 @@ than parse a sentence, and Tonwerk can render German for a gate id it knows:
 | `speakers` | a cast outside the 1–4 the artifact schema allows |
 | `voice-unknown` | a cast voice reference this studio does not have |
 | `voice-revoked` | a cast voice whose consent was withdrawn |
-| `voice-scope` | a cast voice consented for `evaluation`, not `publication` (P28-7) |
+| `voice-scope` | a cast voice consented for `evaluation`, not `publication` |
 | `audio-source` | a Freesound original this repository does not carry |
 | `exercise-turns` | a transcript that would contradict the items already asking about it |
 | `backup` | a replacement with nowhere to put the bytes it is replacing (raised at write time) |
 
-`voice-scope` is the whole of backlog P28-7. Casting an evaluation-scope voice stays legal — the
+Casting an evaluation-scope voice stays legal — the
 editor deliberately allows it, because casting is not publishing — and this is the gate that was
 missing on the other side.
 """
@@ -448,7 +448,7 @@ def _resolve_level(scene: Scene, level: str | None) -> str:
 
 
 def _check_voices(store: Store, scene: Scene) -> None:
-    """P28-7: every cast voice reference is consented **for publication** and not withdrawn.
+    """Every cast voice reference is consented **for publication** and not withdrawn.
 
     Casting an evaluation-scope voice is deliberately allowed — a disabled picker would imply a
     gate that does not exist, and auditioning is not publishing. This is the other side of that
@@ -888,7 +888,7 @@ def published_slugs(repo: Path) -> set[str]:
 
 
 def deletion_refusal(project: Any, revision: Any) -> str | None:
-    """Why this scene project may **not** be deleted, or None when it may (backlog P28-6).
+    """Why this scene project may **not** be deleted, or None when it may.
 
     Two conditions here and a third at the caller, and each one is a different kind of loss. A
     scene past `draft` has audio rendered against its sha and may carry a QA report or a

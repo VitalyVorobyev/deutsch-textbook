@@ -63,8 +63,8 @@ items:
     prompt_uk: "Чи не могли б ви надіслати мені документи? Я хотів(ла) би замовити картку."
     answer: "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gern eine Karte bestellen."
     # revision 2: RU/UK carry no «пожалуйста» / «будь ласка», so dropping bitte is
-    # faithful (2026-08-11 ruling) — the graded Könnten and würde survive intact.
-    # Closed over the gern/gerne dimension. (Batch-6 audit, 2026-08-12.)
+    # faithful — the graded Könnten and würde survive intact.
+    # Closed over the gern/gerne dimension.
     accept:
       - "Könnten Sie mir die Unterlagen bitte schicken? Ich würde gern eine Karte bestellen."
       - "Könnten Sie mir bitte die Unterlagen schicken? Ich würde gerne eine Karte bestellen."
@@ -93,7 +93,7 @@ items:
     # revision 2: RU/UK carry no «пожалуйста», so dropping bitte is faithful; and both
     # prompts say a LIBRARY card («читательский билет» / "library card"), so the more
     # faithful einen Bibliotheksausweis must not score worse than the generic Ausweis.
-    # Closed over the bitte and gern/gerne dimensions. (Batch-6 audit, 2026-08-12.)
+    # Closed over the bitte and gern/gerne dimensions.
     accept:
       - "Könnten Sie mir die Öffnungszeiten bitte sagen? Ich würde gern einen Ausweis beantragen."
       - "Könnten Sie mir bitte die Öffnungszeiten sagen? Ich würde gerne einen Ausweis beantragen."
@@ -125,7 +125,6 @@ items:
     # this topic's own deck teaches — while only buchen was accepted; the RU/UK prompts
     # now say «забронировать»/«забронювати», which selects buchen. And dropping bitte
     # is faithful (no «пожалуйста» in RU/UK), closed over gern/gerne.
-    # (Batch-6 audit, 2026-08-12.)
     prompt_en: "Could you show me the prices, please? I would like to book a course."
     prompt_ru: "Не могли бы вы показать мне цены? Я хотел(а) бы забронировать курс."
     prompt_uk: "Чи не могли б ви показати мені ціни? Я хотів(ла) би забронювати курс."

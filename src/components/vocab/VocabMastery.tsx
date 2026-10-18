@@ -41,7 +41,7 @@ const UI = {
   // A `cards: recognition` word has one card, not two, so it can never show production
   // evidence. Saying so HERE matters more than in VocabTable.astro: an unowned completion
   // deck — exactly what recognition-only entries are for — is only ever reached through
-  // /vocab/[id], which renders this component and not that table. (Codex review, PR #92.)
+  // /vocab/[id], which renders this component and not that table.
   recognitionOnly: { en: 'understand only', ru: 'только на понимание' },
   recognitionOnlyWhy: {
     en: 'One card only: this word is here to be understood, not produced.',
@@ -151,7 +151,7 @@ function DeckSummary({ words }: { words: WordRollup[] }) {
  * Every deck's mastery line on /ueben/wortschatz, from one island and one store read. The deck
  * cards stay static HTML; each line renders into its card's `[data-deck-summary]` slot through a
  * portal. It was one island per deck, 133 of them, each handed its deck's full built cards, and
- * the page weighed 11.1 MB (backlog P23-1). A failed read shows one error above the list, not
+ * the page weighed 11.1 MB. A failed read shows one error above the list, not
  * one per deck.
  */
 export function DeckMasterySummaries({ decks }: { decks: DeckWords[] }) {
@@ -326,7 +326,7 @@ export interface VocabGroup {
 }
 // Card states come in as a prop (not via useStates) so the Fortschritt import
 // flow's refresh() re-renders the bars with the merged data. Group titles are
-// chrome-string keys (P8-5): the .astro page passes keys, this island renders
+// chrome-string keys: the .astro page passes keys, this island renders
 // them in the profile's UI language.
 //
 // Only the first group (the per-level bars) is open by default; the per-topic

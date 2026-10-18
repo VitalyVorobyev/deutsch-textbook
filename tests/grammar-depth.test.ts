@@ -13,7 +13,7 @@ import { focusIntroducedBy } from '@da/content/focus-tags';
  * The depth ratchet.
  *
  * `tests/grammar-coverage.test.ts` guards BREADTH — that every structure the inventory lists is
- * taught by something. It cannot see how much. On 2026-08-14 all three levels published 100%
+ * taught by something. It cannot see how much. All three levels once published 100%
  * coverage while median practice per confusion ran A1 12 · A2 8 · B1 4 and production items
  * 6 · 6 · 3: a fourfold drop that no published figure could express.
  *

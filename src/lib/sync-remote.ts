@@ -256,8 +256,8 @@ let sessionCache: Promise<RemoteSession> | undefined;
 
 /** The session probe got an answer that is a fact about the MOMENT, not the account —
     a 5xx, a gateway page, an unparseable body. Never cached: caching it once made a
-    whole desktop session silently never sync (#143's four-hour outage was this class,
-    and in the desktop app a "page load" lasts as long as the app is open). */
+    whole desktop session silently never sync for hours (in the desktop app a "page load"
+    lasts as long as the app is open). */
 export class TransientSessionError extends Error {
   constructor(detail: string) {
     super(`session probe failed transiently: ${detail}`);
@@ -368,7 +368,7 @@ export async function syncNow(): Promise<SyncOutcome> {
   if (!compressionSupported()) return { state: 'off', reason: 'unsupported' };
 
   // Strict probe: a transient failure must surface as an error, not as `off /
-  // signed-out` — the cached-signed-out misreport is how #143's outage stayed
+  // signed-out` — a cached signed-out misreport once kept an outage
   // invisible for four hours with every gate green.
   let session: RemoteSession;
   try {

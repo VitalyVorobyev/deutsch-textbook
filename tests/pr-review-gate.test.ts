@@ -15,8 +15,7 @@ describe('pull-request review gate', () => {
     expect(pullRequestGateProblems(passing)).toEqual([]);
   });
 
-  // The owner retired the required Codex review on 2026-10-10: the gate never waits for a
-  // reviewer that has not answered.
+  // The gate never waits for a reviewer that has not answered.
   test('passes with no review at all', () => {
     expect(pullRequestGateProblems({ ...passing, threads: [] })).toEqual([]);
   });

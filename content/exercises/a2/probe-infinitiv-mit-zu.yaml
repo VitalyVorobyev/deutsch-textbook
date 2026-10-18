@@ -39,7 +39,6 @@ items:
     # revision 2: sich entscheiden is taught by this topic's own deck and renders
     # «решили» / «вирішили» just as faithfully; the graded umzuziehen is identical.
     # A probe that marks correct German wrong corrupts the retention curve.
-    # (Batch-4 audit, 2026-08-12.)
     accept:
       - "Wir haben uns entschieden, nach Bremen umzuziehen."
     revision: 2
@@ -55,7 +54,7 @@ items:
     # revision 2: «Хочешь …?» rendered as Willst du … kochen? — a correct modal with
     # correctly NO zu — and was logged as a zu-infinitiv failure. Only the EN prompt
     # named the Lust-haben frame; the RU/UK prompts now select it too («есть
-    # настроение» / «є настрій»). (Batch-4 audit, 2026-08-12.)
+    # настроение» / «є настрій»).
     prompt_en: "Do you feel like cooking together this evening?"
     prompt_ru: "Есть настроение сегодня вечером вместе приготовить еду?"
     prompt_uk: "Є настрій сьогодні ввечері разом приготувати їжу?"
@@ -79,7 +78,6 @@ items:
     # revision 2: «пирог» / «пиріг» mark no definiteness — the promised cake reads
     # definite as readily as indefinite — and the graded mitzubringen is identical.
     # A probe that marks correct German wrong corrupts the retention curve.
-    # (Batch-4 audit, 2026-08-12.)
     accept:
       - "Sie hat versprochen, den Kuchen mitzubringen."
     revision: 2

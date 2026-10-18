@@ -96,7 +96,7 @@ export interface ExamModuleSpec {
   /**
    * Maximum as the source's Antwortbogen states it. In the Start Deutsch 1 booklets on hand
    * that is the raw count — 15 per written module, "Ergebnis (Hören+Lesen+Schreiben) …/45" —
-   * with no rescaling printed anywhere in them (extraction read of 2026-08-11). Carried in
+   * with no rescaling printed anywhere in them (read at extraction). Carried in
    * data, never hardcoded, so the number on screen is always the number the source states.
    */
   maxScaled: number;

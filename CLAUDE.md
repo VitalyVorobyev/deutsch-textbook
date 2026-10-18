@@ -106,6 +106,7 @@ one.
 ### Documents → [`docs/README.md`](docs/README.md)
 
 - **A developer doc states the current contract, the current queue or how to do a job — never history.** Delete a finished backlog entry, a closed-finding ledger or a dated pass log; `git log` is the archive. ADRs are the exception and are superseded, never edited.
+- **Code and content comments say what is true and why, never when or in which work item.** No backlog IDs, PR numbers, release versions, phase names or dates of development events: an ID dangles once its entry is done, and `git log` keeps the rest. Dates that are data (a snapshot's name, a fixture) stay. `tests/source-hygiene.test.ts` enforces the IDs.
 - **User documents (README, CHANGELOG, NOTICE, `docs/apps/`, `/about`, `/install`) and developer documents never restate each other.** Link across; copy nothing. A CHANGELOG entry says what a learner sees; a tooling-only release gets one plain line.
 
 ### Review rounds end when a round finds nothing material

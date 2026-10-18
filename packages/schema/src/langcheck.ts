@@ -161,7 +161,7 @@ function isExplainRecord(obj: object): boolean {
     explanation record but never carries de by design — a meaning gloss is not
     an explanation, and the strict schema forbids the key, so counting it here
     would make de parity unsatisfiable for any set that has both a de half and
-    a record right (the P8-4 satisfiability trap). */
+    a record right. */
 const MATCH_RIGHT_PATH = /\.pairs\[\d+\]\.right$/;
 
 /** A `translation` / `model_translation` is the item's own German rendered into the

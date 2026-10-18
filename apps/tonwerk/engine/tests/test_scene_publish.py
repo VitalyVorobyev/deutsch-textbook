@@ -418,7 +418,7 @@ def test_a_transcript_that_contradicts_a_committed_exercise_item_is_refused(appr
     assert refusal(store, repo, scene.slug) == "exercise-turns"
 
 
-# -- P28-7: the consent scope gate --------------------------------------------
+# -- the consent scope gate ----------------------------------------------------
 
 
 def cloned_fixture(tmp_path: Path, *, scope: str) -> Any:
@@ -495,7 +495,7 @@ def test_a_publication_scope_clone_publishes_and_states_its_consent(tmp_path: Pa
 
 
 def test_an_evaluation_scope_voice_cannot_be_published(tmp_path: Path) -> None:
-    """Backlog P28-7. Casting one stays legal; publishing in one does not.
+    """Casting one stays legal; publishing in one does not.
 
     The scope is read from the **live store row**, not from the render's voices map, so a consent
     downgraded between render and publish refuses — which is also what makes this test possible

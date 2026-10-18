@@ -58,7 +58,7 @@ export function Listen({ item, lang, onResult, locked, onNext, nextLabel }: Item
       // is unknown. Where it does not, `dictationSlip` stays the only disclaimer — silencing
       // every unmatched miss corpus-wide inverts the weakness signal rather than honesty-gapping
       // it (see the measurement in Translate.tsx). A1 dictations all carry predicates; the
-      // validator enforces it, which is P12-6's A1 half.
+      // validator enforces it.
       //
       // An authored `failed` predicate also beats the slip. One edit away is exactly what the
       // item's own error can look like: `etwas neues` and `etwas Neue` are each one letter off

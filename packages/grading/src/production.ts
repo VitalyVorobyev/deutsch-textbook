@@ -240,7 +240,7 @@ export interface TranslationSpec {
    * dropping the pins buys 52 false entries. The pins' own cost is 5. Ten times better,
    * and that is why they stay.
    *
-   * Those 5 are the known residual (P12-4) and are of three kinds:
+   * Those 5 are the known residual of pinning both bracket ends and are of three kinds:
    *
    *  - A typo inside a pinned *open-class* word is scored wrong and blamed on the tag —
    *    `schimmen` for `schwimmen` logged against `modal-satzklammer`. There the token is
@@ -326,7 +326,7 @@ const lowerFirst = (w: string) => w.charAt(0).toLowerCase() + w.slice(1);
  * one-directional.
  *
  * Every sentence head of every accepted rendering derives a twin, not just the first
- * token of `answer` as before P25-15: a pin capitalized because it opens the SECOND
+ * token of `answer`: a pin capitalized because it opens the SECOND
  * sentence of a rendering is capitalized by the same orthography. Mid-sentence
  * capitalization *is* grammar in German — `Sie` and `sie` are different words — so
  * nothing else is folded together.
@@ -356,8 +356,8 @@ function buildGradedSet(
  * spelling slip and never logged against `um-am-zeit`, the confusion the item exists to
  * measure. The forgiveness rule would be silently inverted by an `accept` line.
  *
- * So every sentence-head position (`heads`, computed per rendering — before P25-15 this
- * was index 0 only, which a two-sentence rendering escapes) matches case-insensitively.
+ * So every sentence-head position (`heads`, computed per rendering — index 0 alone
+ * is escaped by a two-sentence rendering) matches case-insensitively.
  * Everywhere else the comparison stays exact, because mid-sentence capitalization *is*
  * grammar in German: `Sie` (formal you) and `sie` (she) are different words, and a
  * `du-sie` item that graded both would blame the register tag for a pronoun error that

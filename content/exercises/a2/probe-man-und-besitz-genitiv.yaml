@@ -18,7 +18,7 @@ items:
     focus: genitiv-eigenname
     # A translate miss with no attributed token reads as RETAINED in the probe table
     # (classifyProbe), and key_tokens cannot attribute an INSERTED token — so `Das ist die
-    # Mareks Wohnung` (logged 2026-07-26) scored as the -s genitive surviving, though the
+    # Mareks Wohnung` (logged) scored as the -s genitive surviving, though the
     # article teaches that the name takes the article's place (never das Annas Auto). The
     # predicates decide instead and restate the pin: Mareks missing (an apostrophe, von).
     focus_evidence:
@@ -70,7 +70,7 @@ items:
     answer: "Ich lese das Buch von meiner Kollegin."
     # revision 3: «книгу» is bare, and "a book of my colleague's" is as natural a
     # reading as the definite one; every rendering carries the graded von. Closed
-    # over the possessive/article dimension. (Batch-5 audit, 2026-08-12.)
+    # over the possessive/article dimension.
     accept:
       - "Ich lese das Buch von der Kollegin."
       - "Ich lese ein Buch von meiner Kollegin."

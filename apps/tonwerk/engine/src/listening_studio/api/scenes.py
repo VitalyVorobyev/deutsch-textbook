@@ -128,7 +128,7 @@ def scene_row(
     and a take waiting for a rewrite. `api/registry._project_status` makes the same split from the
     same field; this is the scene list's own copy of the answer, not a second rule.
 
-    `narration` is the profile the scene was directed by (backlog P28-5), so the Lesetexte queue
+    `narration` is the profile the scene was directed by, so the Lesetexte queue
     can show what is *in use* instead of only offering a picker. Null for every dialogue and for
     any narration converted before the field existed — the honest answer in both cases, and a
     different one from "the default profile", which is what a queue that guessed would print.
@@ -174,9 +174,8 @@ def router(store: Store, repo: Path) -> APIRouter:
     def scenes() -> list[dict[str, Any]]:
         """Every scene project, in one query and one directory walk.
 
-        It used to be one query plus one per project (`scene_projects()` then `get_scene()` in the
-        loop) — unremarkable at eleven scenes and 131 statements once the corpus converts, which is
-        the half of backlog P28-4 this closes.
+        One query rather than one per project (`scene_projects()` then `get_scene()` in the
+        loop) — unremarkable at eleven scenes, 131 statements once the corpus converts.
         """
 
         published = published_slugs(repo)
@@ -301,7 +300,7 @@ def router(store: Store, repo: Path) -> APIRouter:
 
     @api.delete("/scenes/{slug}", status_code=200)
     def delete_scene(slug: str) -> dict[str, Any]:
-        """Undo a mis-created scene. Draft, revision 1, never published — nothing else (P28-6).
+        """Undo a mis-created scene. Draft, revision 1, never published — nothing else.
 
         An 85-row narration wave and a 40-row regeneration wave both create scenes from a queue,
         and until now every creation was irreversible: the Lesetexte queue's Enter key deliberately

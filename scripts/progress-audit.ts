@@ -96,7 +96,7 @@ interface AuditCard {
  *
  * The `--lapses` view exists because the deck table cannot answer the question the rule
  * asks. `wohnen-umzug | 14 cards | 10 lapses` is unreadable: it is either ten mildly
- * awkward cards or one broken one. The 2026-07-26 pass found the latter — 22 cards over
+ * awkward cards or one broken one. One pass found the latter — 22 cards over
  * the threshold, 21 of them the production direction, and the worst sitting at 0.0–0.4
  * days of stability after 14–25 repetitions. `stability` is reported beside the lapse count
  * rather than instead of it because the pair narrows the question — a card that will not
@@ -167,7 +167,7 @@ export interface PromptHalves {
  * лампу` leaves both `eine Lampe` and `die Lampe` open where *Tomorrow I am buying a lamp*
  * does not. An audit that printed only the English half sent a whole line of determiner
  * rulings against text the learner never saw — `a1/akkusativ:uebersetzen-lampe` was ruled
- * `confirm` on 2026-08-02 and reversed on 2026-08-03 for exactly that reason. The ruling
+ * `confirm` and reversed for exactly that reason. The ruling
  * author has to be shown the prompt the learner answered.
  */
 export function promptHalves(item: ExerciseItem): PromptHalves {
@@ -270,8 +270,8 @@ export interface ProgressAudit {
       focusUnknown?: number;
       /**
        * The same three verdicts split by the competence each probe was aimed at, which is the
-       * grouping the P3-6 bar is stated in. The pooled counters above cannot answer it: they mix
-       * both levels, and P3-6 is an A1 gate.
+       * grouping the retention gate is stated in. The pooled counters above cannot answer it: they
+       * mix both levels, and the gate is per level.
        */
       byCompetence: CompetenceRetention[];
       /**
@@ -290,7 +290,7 @@ export interface ProgressAudit {
        * Distribution of the intervals that actually elapsed for taken probes (days from
        * arming to the probe attempt), vs the nominal 2/7/21. An overdue probe is valid
        * data — the elapsed interval is the one reported — but the drift between the two
-       * is what the P5-11 window audits and the P5-7 expansion decision read.
+       * is what any decision about the schedule has to read.
        */
       actualIntervals: Array<{ days: number; count: number }>;
     };
@@ -1034,7 +1034,7 @@ function classifyProbe(attempt: AuditAttempt, item: CatalogItem | undefined): Pr
  */
 const PROBE_READABLE_MIN = PROBE_INTERVALS_DAYS.length;
 
-/** The P3-6 exit bar, in percent. Stated here so the report and the roadmap cite one number. */
+/** The A1 retention gate, in percent. Stated here so the report and the roadmap cite one number. */
 const RETENTION_BAR = 80;
 
 export interface CompetenceRetention {
@@ -1184,8 +1184,8 @@ function delayedSummary(
     else if (verdict === 'retained') focusRetained += 1;
     else focusUnknown += 1;
 
-    // Level comes off the set-id directory, the same convention `getCheckpoints()` uses. P3-6 is
-    // an A1 gate, and a figure pooled across both levels cannot answer it.
+    // Level comes off the set-id directory, the same convention `getCheckpoints()` uses. The
+    // retention gate is per level, and a figure pooled across levels cannot answer it.
     const level = attempt.setId.split('/')[0]!.toUpperCase();
     // The instrument's own declaration, not the stored attempt tag: a historical tag may come from
     // an older scorer, and grouping by it would sort the same item into two competences.
@@ -1522,7 +1522,7 @@ function performanceTable(rows: PerformanceRow[]): string[] {
 }
 
 /**
- * The P3-6 gate, rendered so it can be read rather than inferred.
+ * The A1 retention gate, rendered so it can be read rather than inferred.
  *
  * Deliberately reports two different things and keeps them apart: the retention percentage over
  * competences with enough evidence to have one, and a named list of the competences that do not
@@ -1978,7 +1978,7 @@ function pullFirst(profile: string | undefined): void {
  * `2026-02-29` in a non-leap year rolls to 2026-03-01 (measured, not assumed — the ISO
  * branch of the spec should return NaN, but V8's fallback parser normalizes instead). The
  * whole section is a projection *to a named date*, so a typo would publish reachability
- * figures for a horizon nobody asked about. Codex review, PR #91.
+ * figures for a horizon nobody asked about.
  *
  * The round-trip is the check: reformat what was parsed and require it to equal the input.
  */

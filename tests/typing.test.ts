@@ -93,7 +93,7 @@ describe('typography folds to what the keyboard produces', () => {
 });
 
 describe('punctuation inside a phrase card is not graded', () => {
-  // Codex review finding on PR #82: the normalizer only stripped punctuation at
+  // The normalizer once stripped punctuation at
   // the string end, so `Ja, gern!` typed as `Ja gern` was still wrong.
   test('an internal comma does not fail the phrase', () => {
     expect(checkTypedAnswer('Ja gern', 'Ja, gern!', 'phrase').kind).toBe('correct');

@@ -103,7 +103,7 @@ items:
     prompt_uk: "Сусідка хотіла знати, де висить нова поштова скринька."
     answer: "Die Nachbarin wollte wissen, wo der neue Briefkasten hängt."
     key_tokens: ["wo", "hängt"]
-    # 2026-10-13 quality pass: the tag grades where the verb stands, so the predicates read
+    # The tag grades where the verb stands, so the predicates read
     # position only — the verb straight after wo, or anything after it, fails; a back-shifted
     # hing or ist in the final slot is another tag's decision and is not charged.
     focus_evidence:
@@ -116,7 +116,7 @@ items:
       de: "Bewertet werden die beiden Enden der eingebetteten Frage: das Fragewort, das sie öffnet, und das finite Verb, das sie schließen muss. Direkt gefragt hieße es Wo hängt der neue Briefkasten? mit dem Verb auf Position 2 — hinter wollte wissen ist es ein Nebensatz wie jeder andere, und das Verb fällt an die Wand. Das Fragewort selbst bleibt: Eine berichtete W-Frage behält es, eine Ja/Nein-Frage muss sich ob borgen."
 
   - id: uebersetzen-praeteritum-zusammenfassen
-    # Revision 2 (2026-10-13 quality pass): RU «Собрание» and UK «Збори» are, word for
+    # Revision 2: RU «Собрание» and UK «Збори» are, word for
     # word, the course's own card for die Versammlung (gesellschaft-zusammenleben, glossed
     # "meeting, assembly"), and the article uses die Sitzung, yet only das Treffen was
     # accepted; "at seven" is um sieben or um sieben Uhr. Both are now accepted.

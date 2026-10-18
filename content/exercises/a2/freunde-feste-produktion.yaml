@@ -96,7 +96,7 @@ items:
       - "Kannst du mir bitte einen Salat mitbringen? Und ich bringe dir die Getränke mit."
       - "Kannst du mir den Salat mitbringen? Ich bringe dir die Getränke mit."
       - "Kannst du mir den Salat mitbringen? Und ich bringe dir die Getränke mit."
-      # «принесу тебе» / "I'll bring you" is plain bringen; mit only adds "along" (ruling 2026-10-17).
+      # «принесу тебе» / "I'll bring you" is plain bringen; mit only adds "along".
       - "Kannst du mir einen Salat mitbringen? Ich bringe dir die Getränke."
       - "Kannst du mir einen Salat mitbringen? Und ich bringe dir die Getränke."
       - "Kannst du mir den Salat mitbringen? Ich bringe dir die Getränke."
@@ -140,7 +140,7 @@ items:
     key_tokens: ["sondern", "aber"]
     # aber den Kuchen nicht is the literal shape of the RU prompt («но торт — нет») and
     # correct German ellipsis; kein vs nicht is not what this tag grades. Its uncontracted
-    # expansion is equally valid and paired here (Codex, #94).
+    # expansion is equally valid and paired here.
     accept:
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber ich bringe keinen Kuchen mit."
       - "Wir treffen uns nicht um acht, sondern um neun. Ich bringe die Getränke mit, aber den Kuchen nicht."

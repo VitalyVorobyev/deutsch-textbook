@@ -411,7 +411,7 @@ export default function FlashcardSession({
     </>
   );
 
-  // Sticky on phones (P24-10): a long card back — example, translations, note —
+  // Sticky on phones: a long card back — example, translations, note —
   // pushed this row below the fold, where Safari's bottom bar covered it; the
   // learner who had just answered could not see how to proceed. Sticky beats
   // scroll-into-view because it also holds when the back is taller than one

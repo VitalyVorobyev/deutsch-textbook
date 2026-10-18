@@ -91,7 +91,7 @@ describe('recognition-only entries', () => {
   });
 });
 
-// Codex review, PR #92: `recognitionOnly` was computed and never consumed. The per-deck
+// `recognitionOnly` was once computed and never consumed. The per-deck
 // page (/vocab/[id] → VocabWordTable) iterated both directions unconditionally and rendered
 // the absent x-de card as "not started", so exactly the words this feature exists for —
 // the unowned Wortliste completion decks, which never render VocabTable.astro — looked
@@ -125,7 +125,7 @@ describe('rollupWords reports which words have no production card', () => {
 });
 
 // /ueben/wortschatz ships each deck as headwords plus its recognition-only list and rebuilds the
-// card ids in the browser, instead of inlining the built cards (9 MB of island props, P23-1).
+// card ids in the browser, instead of inlining the built cards (9 MB of island props).
 // A rebuilt id that differs from the built one would read no state and show a mastered word as
 // new — silently, since the bar still renders.
 describe('deckWords → deckCardRefs rebuilds exactly the built cards', () => {

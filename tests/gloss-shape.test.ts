@@ -11,8 +11,8 @@
  * regressed one) cannot ship definitional glosses without an author consciously
  * adding a row here — the focus-tag allowlist pattern.
  *
- * The baseline was measured on 2026-08-26 (`bun scripts/gloss-shape.ts`),
- * the day the learner reported the B1 lexis waves' riddle-style glosses
+ * The baseline was measured with `bun scripts/gloss-shape.ts` when the
+ * learner reported the B1 lexis waves' riddle-style glosses
  * ("das Herz → the organ in the chest that pumps…"). The 31 tail decks carry
  * the bulk (19–46 each); the small counts on A1/A2 decks are mostly legitimate
  * disambiguating parentheticals — a wave may leave a row at a small non-zero

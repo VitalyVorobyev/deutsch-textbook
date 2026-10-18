@@ -135,7 +135,7 @@ describe('audit with grading decisions', () => {
    * answered. «пиццу» is a bare Russian noun and marks no definiteness — `die Pizza` and
    * `eine Pizza` both render it — where *a pizza* does not. A queue printing only the
    * English half produced a line of determiner rulings against text the learner never saw
-   * (`a1/akkusativ:uebersetzen-lampe`, ruled confirm 2026-08-02, reversed 2026-08-03).
+   * (`a1/akkusativ:uebersetzen-lampe`, ruled confirm and then reversed).
    *
    * Every prompt half the assertions read is stated on the fixture, so tightening the real
    * corpus can never turn this test red.

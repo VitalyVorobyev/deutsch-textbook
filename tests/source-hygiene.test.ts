@@ -98,3 +98,37 @@ test('every commit the repository cites exists', () => {
 
   expect(missing).toEqual([]);
 });
+
+// Code and content say what is true and why, never when it happened or which work item it was.
+// A backlog ID in a comment points at an entry that is deleted when the work is done, so it
+// dangles by design. A PR number, a release version or a phase name is the same thing — history,
+// which `git log` and `git blame` already keep. Markdown is exempt (docs may cite the queue), and so are the records
+// whose content is history by nature: the changelog, the blame-ignore list and the provenance and
+// ruling ledgers.
+const MILESTONE =
+  /\b(?:P\d{1,2}-\d+[a-z]?|C\d{1,2}-\d+|F-\d+|(?:CON|APP|INS|WS|TON|RED|STO)-\d+|Phase \d+|PR ?#?\d+|v0\.\d+\.\d+)\b|\(#\d+\)|#\d+'s\b/;
+const MILESTONE_EXEMPT =
+  /\.mdx?$|^CHANGELOG\.md$|^\.git-blame-ignore-revs$|^data\/(?:grading-decisions|authorship-provenance|asset-provenance)\.yaml$|^data\/prompts\/|^sources\//;
+
+test('no code or content names a development milestone', () => {
+  const files = execSync('git ls-files -co --exclude-standard', { encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter((f) => !MILESTONE_EXEMPT.test(f) && !MEDIA.test(f) && !UNCOMPRESSED_AUDIO.test(f));
+  expect(files.length).toBeGreaterThan(100);
+
+  const offenders = files.flatMap((f) => {
+    let source: string;
+    try {
+      source = readFileSync(f, 'utf8');
+    } catch {
+      return []; // deleted between listing and reading
+    }
+    return source.split('\n').flatMap((line, i) => {
+      const match = MILESTONE.exec(line);
+      return match ? [`${f}:${i + 1}: ${match[0]}`] : [];
+    });
+  });
+
+  expect(offenders).toEqual([]);
+});

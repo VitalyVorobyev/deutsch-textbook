@@ -1,7 +1,7 @@
 /**
  * /ueben/wortschatz draws every deck's mastery bar from ONE island (`DeckMasterySummaries`),
  * portalled into each static deck card's `[data-deck-summary]` slot. It replaced one island per
- * deck, each handed its deck's full built cards — 11.1 MB of HTML for the page (backlog P23-1).
+ * deck, each handed its deck's full built cards — 11.1 MB of HTML for the page.
  * Three things here are silent when broken:
  *
  *  - **Every slot gets its own deck's bar**, read from card ids the island rebuilds from

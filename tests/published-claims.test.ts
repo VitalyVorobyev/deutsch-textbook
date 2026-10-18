@@ -16,10 +16,8 @@ import { focusIntroducedBy } from '@da/content/focus-tags';
  *
  * `/about` computes every figure it prints, and `tests/grammar-coverage.test.ts` ratchets the
  * instrument — but the README bullet, the CLAUDE.md rule digest and the coverage-instruments
- * paragraph are prose, and prose has no gate. On 2026-07-29 all three were wrong at once: the
- * README said seventeen A2 units (22) and three live B1 units (7), CLAUDE.md said B1 19/32 (21),
- * and the instrument doc said B1.1–B1.6 was the shipped range (B1.1–B1.7). Every one of them had
- * been true when written, and nothing anywhere noticed them stop being true.
+ * paragraph are prose, and prose has no gate. All three were once wrong at the same time, each
+ * true when written, and nothing anywhere noticed them stop being true.
  *
  * So each claim below is parsed back out of the file and checked against the same function the
  * page uses. No new counting logic lives here on purpose: a second implementation could be wrong
@@ -95,10 +93,9 @@ describe('published progress claims match the content', () => {
     //   const c={}; for (const u of getCurriculum().units) c[u.level]=(c[u.level]??0)+1; console.log(c)'
     expect([numeral(spine![1]), numeral(spine![2])]).toEqual([count('A1'), count('A2')]);
 
-    // Until 2026-08-15 this was one claim — "N of the N contracted B1 units are live" — and the
-    // test equated the live B1 unit count with the contract length. That equation broke the
-    // moment B1 gained units the contract never named: the five Themen-Nachtrag topics that
-    // closed the DTZ denominator. They are two facts now, and both are checked.
+    // The live B1 unit count and the contract length are two facts, and both are checked: B1
+    // has units the contract never named (the Themen-Nachtrag topics that close the DTZ
+    // denominator).
     const b1 =
       /(\S+) B1 units are live — the (\S+) of\s+the frozen contract plus (\S+) that close/.exec(
         readme,
@@ -127,11 +124,9 @@ describe('published progress claims match the content', () => {
   });
 
   /**
-   * The headline sentence of the project index is a published figure and had no guard, which is
-   * exactly how it went on saying "B1 Wortliste coverage stands at 3343/3416 (98%), and the 73 open
-   * rows are cardless" for the nine days after P27-3f closed the tail at 3416/3416. The grammar
-   * digest one screen below it *was* guarded and stayed correct the whole time — one claim in a
-   * paragraph being checked does not protect its neighbours.
+   * The headline sentence of the project index is a published figure. Without a guard it went on
+   * stating a superseded Wortliste figure for days, while the guarded grammar digest one screen
+   * below stayed correct — one claim in a paragraph being checked does not protect its neighbours.
    */
   test('the CLAUDE.md Wortliste headline matches the coverage instrument', () => {
     // "Wortliste 673/673 · 1449/1449 · 3416/3416" — re-derive with `bun scripts/coverage.ts <level>`.
@@ -148,8 +143,8 @@ describe('published progress claims match the content', () => {
     }
     // 30s, not the 5s default: `goetheCoverage` re-reads and re-parses all 129 vocab decks twice
     // and the entire taught surface once, per level — ~1.2 s locally and past 3 s on CI, three
-    // times over. That is the layering defect P27-4 fixes (the function should read the already
-    // built ContentGraph), not a slow test. Drop this argument once it does.
+    // times over. That is a layering defect (the function should read the already built
+    // ContentGraph), not a slow test. Drop this argument once it does.
   }, 30_000);
 
   /**
@@ -187,9 +182,8 @@ describe('published progress claims match the content', () => {
     expect(doc).toContain(`with the contracted units B1.1–B1.${contractedB1Units()} shipped`);
 
     // "(22 of the 35 tags the B1 points name are registered so far …)"
-    // `standard_level` was replaced by `level: {reception, production}` on 2026-08-14, and this
-    // filter silently matched nothing afterwards — a test that reads a field the data no longer
-    // has does not fail loudly, it just stops testing. Use the accessor the instruments use.
+    // A test that reads a field the data no longer has does not fail loudly, it just stops
+    // testing. Use the accessor the instruments use.
     const tags = new Set(
       loadGrammarInventory()
         .filter((p) => productionLevel(p) === 'B1')

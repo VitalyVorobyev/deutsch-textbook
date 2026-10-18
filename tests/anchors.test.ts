@@ -31,8 +31,8 @@ describe('inventory anchors', () => {
    * Ratchets on measured reality, the `grammar-depth.test.ts` pattern: today's figures pinned so
    * they may only improve. Raising one is a commit that added a citation or shipped a topic.
    *
-   * B1 was `anchored: false` until the DTZ Prüfungshandbuch landed on 2026-08-14 — its own
-   * Prüfungsziele is a book, and the free A1/A2 inventories stop below it.
+   * B1 is anchored by the DTZ Prüfungshandbuch — its own Prüfungsziele is a book, and the free
+   * A1/A2 inventories stop below it.
    */
   test('structure coverage does not fall', () => {
     expect(structureCoverage('A1').percent).toBeGreaterThanOrEqual(100);
@@ -53,7 +53,7 @@ describe('inventory anchors', () => {
 
   /**
    * 63%, and nine of the fifteen holes are the whole of §8.3 Redeorganisation — this course teaches
-   * a learner to build sentences and never to manage a conversation (backlog P26-10). The floor is
+   * a learner to build sentences and never to manage a conversation. The floor is
    * deliberately today's number and not a target: closing that block is authoring work, and a
    * threshold invented here would either be met by accident or ignored.
    */

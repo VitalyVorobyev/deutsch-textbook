@@ -165,8 +165,8 @@ export function resumedQueueIsEligible(
  * Bands 1–4 are each shuffled within themselves.
  *
  * An item is FOSSILIZING when its last two attempts were both wrong: it has already
- * failed a retry, and dealing it again on the same footing is exactly how P25-9
- * happened — `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and
+ * failed a retry, and dealing it again on the same footing is exactly how
+ * `b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen` was dealt and
  * failed nine sessions running while the eight never-seen items of
  * `b1/drill-temporal-nebensatz`, sharing its focus tag, sat untouched in band 3. A
  * fossilizing band-1 item with at least one never-seen same-focus sibling in the pool
@@ -201,7 +201,7 @@ export function buildSession(
   }
 
   // every attempt per item, oldest→newest — only used to test the last two for
-  // "fossilizing" (P25-9) below; `lastAttempt` above stays the single source of
+  // "fossilizing" below; `lastAttempt` above stays the single source of
   // truth for correctness/recency everywhere else.
   const attemptsByItem = new Map<string, Attempt[]>();
   for (const a of attempts) {

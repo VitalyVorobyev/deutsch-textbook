@@ -88,7 +88,6 @@ items:
     # revision 2: abfährt occupies the same wall position, so it carries the graded
     # decision — without the pin, an accepted abfährt-rendering with the inversion
     # left inside the wrapper came back unattributed on the retention curve.
-    # (Batch-6 audit, 2026-08-12.)
     key_tokens: ["fährt", "abfährt"]
     revision: 2
     explain:
@@ -117,7 +116,7 @@ items:
       # revision 2: zumacht is ordinary German for «закрывается» and the sibling
       # variant-c pairs öffnet/aufmacht — the colloquial twin was missing here, so a
       # correct rendering was rejected AND logged against indirekte-frage. Closed over
-      # the same wrapper and noun dimensions; pin union. (Batch-6 audit, 2026-08-12.)
+      # the same wrapper and noun dimensions; pin union.
       - "Können Sie mir sagen, wann das Geschäft am Samstag zumacht?"
       - "Können Sie mir bitte sagen, wann das Geschäft am Samstag zumacht?"
       - "Können Sie mir sagen, wann der Supermarkt am Samstag zumacht?"
@@ -150,7 +149,7 @@ items:
       - "Wissen Sie, wann die Praxis am Freitag öffnet?"
       - "Wissen Sie, wann die Praxis am Freitag aufmacht?"
     # revision 2: aufmacht occupies the same wall position, so it carries the graded
-    # decision and joins the pins — same ruling as variant-a. (Batch-6 audit, 2026-08-12.)
+    # decision and joins the pins — same ruling as variant-a.
     key_tokens: ["öffnet", "aufmacht"]
     revision: 2
     explain:

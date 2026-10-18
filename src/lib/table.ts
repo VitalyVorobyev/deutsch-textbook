@@ -60,7 +60,7 @@ export function continuationWord(
  * A cell is a box the learner types a **fragment** into, not a line they write a sentence on.
  * Shown `Das Auto gehört meinem Bruder.` beside an input, a learner who typed `Das Auto von
  * meinem Bruder` against a key of `das Auto von meinem Bruder` was scored wrong on one character
- * (`a2/man-und-besitz:table-wem-gehoert`, 2026-08-02) — correct German, rejected for something no
+ * (`a2/man-und-besitz:table-wem-gehoert`) — correct German, rejected for something no
  * `focus` tag grades. 198 of the 232 asked cells in the corpus start lower-case, so the hazard is
  * the shape of the item type rather than one author's slip.
  *

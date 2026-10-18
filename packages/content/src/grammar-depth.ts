@@ -4,8 +4,8 @@
  *
  * `grammar-coverage.ts` is binary by design — one `practice`/`drill` item carrying the tag marks a
  * point taught — and that was the right bar for the question it answers ("is this structure in the
- * course at all"). It is the wrong bar for the question it kept being *read* as answering. On
- * 2026-08-14 all three levels published the same 100% while the median practice/drill items per
+ * course at all"). It is the wrong bar for the question it kept being *read* as answering. All
+ * three levels once published the same 100% while the median practice/drill items per
  * focus tag ran A1 12 · A2 8 · B1 4, production items 6 · 6 · 3, and 29% of B1 tags lived in
  * exactly one practice file against 15% at A1. A fourfold drop in practice depth was invisible to
  * every published figure, because breadth was the only thing anything measured.

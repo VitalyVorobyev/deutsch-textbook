@@ -459,8 +459,7 @@ export interface UkCoverage {
  *   a half-done file cannot ship; this rule keeps the figure robust on its own,
  *   per the earned-claims rule, rather than trusting the bridge.
  *
- * `content/lid/` counts like everything else. Its notes' `.yaml` translations and its lessons'
- * `.mdx` were exempt from 2026-10-10 until their Ukrainian half shipped (ADR 0009).
+ * `content/lid/` counts like everything else (ADR 0009).
  */
 export function ukHalfCoverage(root = repoRoot()): UkCoverage {
   let authored = 0;

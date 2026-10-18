@@ -291,7 +291,7 @@ class NarrationRef(Strict):
     composed `style` string is `"<character style> <profile instruction>"`, from which neither
     half can be recovered, and the pace is a number that several profiles could have produced.
     So "which profile narrated this" was unanswerable from a scene, and the Lesetexte queue
-    could offer a picker and never show what was already chosen (backlog P28-5).
+    could offer a picker and never show what was already chosen.
 
     Version, not just id, for `CharacterRef`'s reason: the catalog advances, and a scene storing
     only the id would silently claim to have been directed by a profile that has since changed.
