@@ -98,4 +98,39 @@ describe('documentation links', () => {
       );
     expect(dated).toEqual([]);
   });
+
+  // Code comments cite decisions as "ADR 0006" or by path, and the link test above reads only
+  // Markdown. When the ADR set was rewritten, 355 such mentions in 162 files had to move, and
+  // nothing but this test would notice one that pointed at a number that no longer exists — or
+  // that wrapped "ADR" and its number across a line break. CHANGELOG.md is history and exempt.
+  test('every ADR mention names an existing record', () => {
+    const adrDir = join(root, 'docs', 'adrs');
+    const records = new Map(
+      readdirSync(adrDir)
+        .filter((name) => /^\d{4}-.+\.md$/.test(name))
+        .map((name) => [name.slice(0, 4), name]),
+    );
+    const tracked = Bun.spawnSync(['git', 'ls-files'], { cwd: root })
+      .stdout.toString()
+      .split('\n')
+      .filter(
+        (name) =>
+          name &&
+          name !== 'CHANGELOG.md' &&
+          /\.(md|mdx|ts|tsx|astro|yaml|rs|toml|css|py)$/.test(name),
+      );
+
+    const failures: string[] = [];
+    for (const name of tracked) {
+      const source = readFileSync(join(root, name), 'utf8');
+      for (const match of source.matchAll(/\bADRs?\s+(?:(?:\/\/|\*|#)\s*)?(\d{4})/g)) {
+        if (!records.has(match[1]!)) failures.push(`${name}: ADR ${match[1]}`);
+      }
+      for (const match of source.matchAll(/adrs\/(\d{4}-[a-z0-9-]+\.md)/g)) {
+        if (records.get(match[1]!.slice(0, 4)) !== match[1])
+          failures.push(`${name}: adrs/${match[1]}`);
+      }
+    }
+    expect(failures).toEqual([]);
+  });
 });

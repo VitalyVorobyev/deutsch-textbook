@@ -1,5 +1,5 @@
 /**
- * The Leben-in-Deutschland trainer's pure logic (src/lib/lid.ts, ADR 0021): the mock draw, the
+ * The Leben-in-Deutschland trainer's pure logic (src/lib/lid.ts, ADR 0009): the mock draw, the
  * two pass marks, idempotent grading, the practice queue and the readiness facts. Store, journal
  * and snapshot wiring are tests/lid-progress.test.ts.
  */

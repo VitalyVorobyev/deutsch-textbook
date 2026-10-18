@@ -33,7 +33,7 @@ interface Props {
   nextLevel?: { level: string; path: string };
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   heading: { en: 'Your result', ru: 'Ваш результат' },
   lead: {

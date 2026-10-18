@@ -14,7 +14,7 @@
  *   bun run progress:audit --profile vitaly --project 2026-08-02
  *   bun run progress:audit --profile vitaly --lapses
  *
- * A snapshot holding Leben-in-Deutschland answers (v8, ADR 0021) gets one more section at the
+ * A snapshot holding Leben-in-Deutschland answers (v8, ADR 0009) gets one more section at the
  * end. That trainer keeps its own store key, so nothing above it counts a LiD answer.
  */
 import { spawnSync } from 'node:child_process';
@@ -312,7 +312,7 @@ export interface ProgressAudit {
   detail?: ItemDetail;
 }
 
-/** The Leben-in-Deutschland trainer, reported as facts (ADR 0021): no pass probability. */
+/** The Leben-in-Deutschland trainer, reported as facts (ADR 0009): no pass probability. */
 export interface LidAudit {
   answers: number;
   /** questions in the bank */

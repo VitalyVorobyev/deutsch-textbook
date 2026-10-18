@@ -14,7 +14,7 @@ New topic — a topic is not done until every line here is:
    the topic record in `data/authorship-provenance.yaml`. Drafting may proceed while human review
    is pending; only Vitaly's explicit editorial sign-off can complete that record and permit
    `status: reviewed`.
-1. `content/topics/<level>/<id>.topic.yaml` — the manifest — and `<id>.mdx` beside it: the article following the skeleton, prose only, no frontmatter ([ADR 0012](../adrs/0012-topic-manifests.md)).
+1. `content/topics/<level>/<id>.topic.yaml` — the manifest — and `<id>.mdx` beside it: the article following the skeleton, prose only, no frontmatter ([ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md)).
 2. Learning activities in `content/exercises/<level>/` — every topic has exactly one
    `role: practice`, `activity: core`, `stage: geruest` Grundübung of 8–15 items, named explicitly by
    `primary_practice`; and at least one productive `activity: application`, `stage: transfer` in a
@@ -57,7 +57,7 @@ Each topic implements **pretest → model → explanation → scaffold → fade 
 6. Checkpoints/probes use separate roles. Probe **items** never re-enter ordinary
    training (`trainableRoles` in `training.ts`); probe **results** deliberately do —
    a wrong probe attempt raises its focus tag's `weakFocuses` error rate like any
-   other attempt, on purpose (docs/adrs/0010-probe-failure-remediation.md).
+   other attempt, on purpose (docs/adrs/0003-the-evidence-model.md).
 
 ## Decision rules
 

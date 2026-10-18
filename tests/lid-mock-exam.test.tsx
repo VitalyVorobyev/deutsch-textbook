@@ -1,5 +1,5 @@
 /**
- * The Leben-in-Deutschland mock exam island (ADR 0021). tests/lid.test.ts proves the draw and
+ * The Leben-in-Deutschland mock exam island (ADR 0009). tests/lid.test.ts proves the draw and
  * the scoring as functions; this file proves the island wires them up the way the learner meets
  * them, and each of these is silent when broken:
  *

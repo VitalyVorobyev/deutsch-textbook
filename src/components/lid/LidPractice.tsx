@@ -1,5 +1,5 @@
 /**
- * Leben-in-Deutschland practice (ADR 0021): the due questions first, then today's new ones
+ * Leben-in-Deutschland practice (ADR 0009): the due questions first, then today's new ones
  * (`planLidPractice`), or — in `fehler` mode — every open mistake (`lidMistakes`). Within each
  * group the order is random, so the sequence never walks the catalogue topic by topic. `?lektion=<id>` narrows practice to one lesson's questions and deals
  * all of them (`planLidScopedPractice`): the page is static, so the scope is read here, on the

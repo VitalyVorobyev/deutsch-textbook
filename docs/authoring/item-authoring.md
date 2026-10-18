@@ -78,7 +78,7 @@ it is a question about meaning — the text says so, and it is then on the autho
   or `remediation`. `stage` says scaffold/fade/transfer. The graph derives `medium: listening` from
   all-listening items and `medium: document` from a stimulus; neither is an activity. A two-question
   recording may be a complete application, while a two-item addendum with no independent job should
-  be merged or retired. See [ADR 0014](../adrs/0014-learning-activity-architecture.md).
+  be merged or retired. See [ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md).
 - Every item declares `outcomes: [stable-outcome-id]`; ids, modes and domains live in `content/atlas.yaml`. Use `preview: true` only when an item intentionally uses a focus introduced later in the spine; the validator otherwise rejects curriculum-order leakage.
 - Every exercise item should have an `explain` (bilingual) — it is shown on wrong answers and is where the teaching happens.
 - Every exercise item that clearly drills one confusion gets a `focus` tag (kebab-case ASCII, validated against `/^[a-z0-9]+(-[a-z0-9]+)*$/`) from the canonical table below. Leave genuinely mixed or pure-comprehension items (dialogue matching, lexical MC) untagged. Attempts carry the tag into progress snapshots; weakness detection and training prioritization aggregate per tag.

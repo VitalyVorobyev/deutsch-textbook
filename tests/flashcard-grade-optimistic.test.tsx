@@ -4,7 +4,7 @@
  * stalled IndexedDB write (a backgrounded tab; WebKit is documented to stall IDB transactions
  * there) made "Nochmal"/"Gut" a dead button: nothing on screen moved until the write settled,
  * which could be never. `grade()` is optimistic — every UI update lands synchronously — and the
- * write is now DURABLE (docs/adrs/0016-durable-progress-writes.md): journaled to localStorage
+ * write is now DURABLE (docs/adrs/0006-local-first-durable-learner-state.md): journaled to localStorage
  * before the IndexedDB attempt starts, so a write that never settles is never silently lost.
  * This test stalls the store write and proves the click still advances the session AND the
  * journal is holding the op for replay.

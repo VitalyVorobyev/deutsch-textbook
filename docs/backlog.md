@@ -35,7 +35,7 @@ record of what shipped.
 ### Content
 
 - **C6-3 · RU/UK translation halves for the B1 German-first articles**
-  ([ADR 0023](adrs/0023-b1-articles-german-first.md)). All 20 articles carry an English
+  ([ADR 0005](adrs/0005-explanation-languages.md)). All 20 articles carry an English
   `<Translation>` per section; a Russian or Ukrainian reader falls back to it. Write `<Ru>` and `<Uk>`
   from the German, never from the English, all-or-none per file (`germanFirstTopicProblems`
   enforces it), and give them the same fresh sentence-level check against the German.
@@ -391,7 +391,7 @@ Triaged from `feedback.md`, which holds only raw capture.
   shows `sich gewöhnen`; a dual valence (`beschäftigen`: `+ Akk / sich …`) stays bare.
 - `a2/lernen-verstehen-produktion:uebersetzen-anfrage-sprachschule` asks two questions on purpose.
 - "Fortschritt konnte nicht geladen werden" is a local IndexedDB read, never the network
-  ([ADR 0018](adrs/0018-progress-reads-recover.md)).
+  ([ADR 0006](adrs/0006-local-first-durable-learner-state.md)).
 
 ### Product surfaces
 
@@ -404,7 +404,7 @@ Triaged from `feedback.md`, which holds only raw capture.
   `min-h-11 sm:min-h-0` pattern; one pass, no redesign.
 - **P24-5 · Cross-links and Referenz IA, what remains.** In-page anchor navigation for the long
   reference pages, and finer per-section edges where the data supports them
-  ([ADR 0007](adrs/0007-derived-cross-links-never-hand-maintained.md): add the datum, never a link).
+  ([ADR 0001](adrs/0001-repository-is-the-content-database.md): add the datum, never a link).
 - **P26-14 · The topic → reference-page route table is hand-written** (`REFERENZ_ROUTES`,
   `src/pages/topics/[...slug].astro`), so a new reference page links from nowhere. Fix with a
   `route:`/`title:` pair on each reference-data file. First: is `praepositionen.yaml`'s absence a

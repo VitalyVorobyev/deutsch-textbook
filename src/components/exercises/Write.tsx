@@ -12,7 +12,7 @@ import { AssistPanel } from './AssistPanel';
 type WriteItem = z.infer<typeof writeItemSchema>;
 type Stage = 'draft' | 'compare' | 'done';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   modelHeading: {
     en: 'Model — compare content and form',
@@ -53,7 +53,7 @@ interface SavedWriting {
    * generation — but only while `forText` still matches the saved text, so
    * hints never outlive the text they quote. Display-only: submit never reads
    * this field, so it can never reach attempts or the snapshot
-   * (docs/adrs/0002-advisory-only-writing-assistant.md).
+   * (docs/adrs/0003-the-evidence-model.md).
    */
   assist?: ReviewedHints | null;
 }
@@ -195,7 +195,7 @@ export function Write({
       )}
 
       {/* Compare screen only, on demand: hints while drafting would replace the
-          learner's own retrieval attempt (docs/adrs/0002-advisory-only-writing-assistant.md). */}
+          learner's own retrieval attempt (docs/adrs/0003-the-evidence-model.md). */}
       {stage === 'compare' && (
         <AssistPanel
           item={item}

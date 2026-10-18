@@ -109,7 +109,7 @@ function parse(text: string): Ast {
   return createProcessor({ format: 'mdx', remarkPlugins: [remarkGfm] }).parse(text) as Ast;
 }
 
-/** The blocks that hold language halves: `<Bilingual>`, and a German-first article's two folds (ADR 0023). */
+/** The blocks that hold language halves: `<Bilingual>`, and a German-first article's two folds (ADR 0005). */
 const HALF_BLOCKS = new Set(['Bilingual', 'Translation', 'Erklaerung']);
 
 function bilinguals(tree: Ast): Ast[] {
@@ -151,7 +151,7 @@ export function languageCoverage(
     /* syntax diagnostics belong to renderSource/validateSource */
   }
   // In a German-first article the German is the body, so every block has its German. Its
-  // <Translation> halves are optional by design (English first, ADR 0023), so they leave the
+  // <Translation> halves are optional by design (English first, ADR 0005), so they leave the
   // language contract to the <Erklaerung> blocks, which keep every authored half.
   const germanFirst = blocks.some((block) => block.name === 'Translation');
   blocks = blocks.filter((block) => block.name !== 'Translation');

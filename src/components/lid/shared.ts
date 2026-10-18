@@ -1,5 +1,5 @@
 /**
- * Shared pieces of the Leben-in-Deutschland islands (ADR 0021): the build-time data shapes the
+ * Shared pieces of the Leben-in-Deutschland islands (ADR 0009): the build-time data shapes the
  * pages hand them, the per-profile "new questions per day" setting, the in-progress mock's
  * storage key, and the furniture all three islands draw with.
  *
@@ -77,7 +77,7 @@ export interface LidCatalogue {
 
 export const LID_OPTION_ORDER: readonly LidOptionKey[] = ['a', 'b', 'c', 'd'];
 
-/** The state names the bank can carry. A second state is data (ADR 0021); its name joins here. */
+/** The state names the bank can carry. A second state is data (ADR 0009); its name joins here. */
 const STATE_NAMES: Record<string, string> = { BY: 'Bayern' };
 export const stateName = (code: string): string => STATE_NAMES[code] ?? code;
 

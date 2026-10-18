@@ -1,6 +1,6 @@
 /**
- * `withReadRetry` (src/lib/store.ts) is the read half of ADR 0016's write repair, added by
- * ADR 0018.
+ * `withReadRetry` (src/lib/store.ts) is the read half of ADR 0006's write repair, added by
+ * ADR 0006.
  *
  * The gap it closes, stated so this file cannot pass by accident: writes got timed retries
  * (`withPersistenceRetry`) and reads got a deadline plus `withVisibilityRetry`, whose only

@@ -21,14 +21,14 @@ authoring rules.
 | Positional references to shuffled options | `src/lib/option-references.ts` (authoring-time only; never imported by runtime) | option-reference tests, validator |
 | Answer-shaped rendering of an input | `src/components/exercises/Cloze.tsx` (`gapWidthCh`) | cloze gap-width tests |
 | Same-day lesson resume | `src/lib/resume.ts` | resume tests |
-| Durable write path (journal, replay, retry deadline, late-settle confirmation) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0016](../adrs/0016-durable-progress-writes.md), amended by [ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)) | write-journal, store-persistence-retry and journal-storage-blocked tests |
-| Managed transaction recovery | `src/lib/managed-store.ts` ([ADR 0020](../adrs/0020-owned-storage-recovery.md)) | managed-store and progress-transition tests |
-| Single-flight coalescing write queue | `src/lib/store.ts` (`enqueueUpdate`) ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)) | store-write-queue and persistence-alert-tiers tests |
-| Recovering read path (timed retries, deadline, stall log) | `src/lib/store.ts` (`withReadRetry`), `src/lib/stall-log.ts` ([ADR 0018](../adrs/0018-progress-reads-recover.md)) | store-read-retry, stall-log and curriculum-path-loading tests |
+| Durable write path (journal, replay, retry deadline, late-settle confirmation) | `src/lib/write-journal.ts`, `src/lib/store.ts` ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)) | write-journal, store-persistence-retry and journal-storage-blocked tests |
+| Managed transaction recovery | `src/lib/managed-store.ts` ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)) | managed-store and progress-transition tests |
+| Single-flight coalescing write queue | `src/lib/store.ts` (`enqueueUpdate`) ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)) | store-write-queue and persistence-alert-tiers tests |
+| Recovering read path (timed retries, deadline, stall log) | `src/lib/store.ts` (`withReadRetry`), `src/lib/stall-log.ts` ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)) | store-read-retry, stall-log and curriculum-path-loading tests |
 | Tauri filesystem integration | `src/lib/syncdir.ts` | browser path plus Tauri guard, syncdir-shrink tests |
 | Desktop exit flush | `src-tauri/src/main.rs`, `src/lib/autosync.ts` (`initExitFlush`/`flushForExit`) | `cargo check`; manual Cmd+Q smoke (needs a webview) |
 | Session-probe caching | `src/lib/sync-remote.ts` (`classifySessionResponse`) | sync-remote session-probe tests |
-| Session content files and their cache | `src/lib/corpus-payload.ts`, `src/components/session/CorpusIslands.tsx`, `src/integrations/service-worker.js` ([ADR 0022](../adrs/0022-session-content-as-shared-data-files.md)) | corpus-gate and service-worker tests; `bun scripts/page-weight.ts` after a build |
+| Session content files and their cache | `src/lib/corpus-payload.ts`, `src/components/session/CorpusIslands.tsx`, `src/integrations/service-worker.js` ([ADR 0008](../adrs/0008-delivery-static-site-desktop-shell-worker.md)) | corpus-gate and service-worker tests; `bun scripts/page-weight.ts` after a build |
 
 ## Non-negotiable invariants
 
@@ -56,20 +56,20 @@ authoring rules.
 - Persisted UI choices receive migrations when their value domain changes.
 - Build-time claims on `/about` are computed from content, never typed by hand.
 - A progress write is journaled synchronously before it is attempted, retried on a timer, and
-  loud in the UI once it is late — silence is never an outcome ([ADR 0016](../adrs/0016-durable-progress-writes.md)).
+  loud in the UI once it is late — silence is never an outcome ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)).
   Every write behind `withPersistenceRetry` or the journal must be idempotent (`attemptKey`
   dedupe, `applyGradeAt` ts-guard); a non-idempotent write may not use them.
 - A write that settles **after** its deadline still confirms itself: `withPersistenceRetry` calls
   `onLateSettle`, the journal helpers pass `confirmOp`, and the entry comes off. idb-keyval
   resolves on `transaction.oncomplete`, so a resolve is a commit — an entry that outlives its own
   landed write is the alert claiming the learner's data is unsaved when it is on disk. A late
-  *rejection* is not a settle ([ADR 0019](../adrs/0019-writes-single-flight-and-confirm-late.md)).
+  *rejection* is not a settle ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)).
 - Store writes go through `enqueueUpdate`; the managed adapter owns the live connection and
   transaction. Its 10-second watchdog aborts stalled transactions and retries only after an
   observed terminal event. An unconfirmed abort blocks further operations until restart.
   The 45-second journal caller deadline never releases the active drain or enqueues duplicates.
   Daily completion, grades and attempts share an ordered, profile-scoped journal drain.
-  See [ADR 0020](../adrs/0020-owned-storage-recovery.md).
+  See [ADR 0006](../adrs/0006-local-first-durable-learner-state.md).
 - Storage failures remain journaled. Deterministic invalid operations may be quarantined only
   after their evidence is saved; a full/unwritable quarantine leaves the original pending.
   Journal overflow warns without discarding entries. Refused journal updates retain an in-memory
@@ -78,7 +78,7 @@ authoring rules.
   fresh-profile view, and never feeds `planReview`. "Implausibly empty" means empty against the
   profile's one-way `da:seen-data` marker.
 - **Reads get the same timed retries writes do, and every load surface distinguishes three
-  states**: still reading, read failed, confirmed empty ([ADR 0018](../adrs/0018-progress-reads-recover.md)).
+  states**: still reading, read failed, confirmed empty ([ADR 0006](../adrs/0006-local-first-durable-learner-state.md)).
   Every critical-path read goes through `withReadRetry(op, { surface })` — attempts at 0/2/5 s,
   `StoreStallError` at 10 s, the stall written to `da:stall-log:<profileId>` with counters only.
   A read that *rejects* is not retried; only silence is. A surface making a claim about progress

@@ -1,5 +1,5 @@
 /**
- * One official Leben-in-Deutschland question (ADR 0021), in one of two instruments:
+ * One official Leben-in-Deutschland question (ADR 0009), in one of two instruments:
  *
  *  - **practice** — options shuffled per presentation when `shouldShuffleOptions` allows (so a
  *    position cannot be memorised), no letters, answered by the first choice, then feedback:
@@ -78,7 +78,7 @@ function isTyping(target: EventTarget | null): boolean {
 
 /**
  * The question's pictures. One image sits above the options; several form a grid labelled
- * "Bild 1…n", which is what options reading "Bild 1"… point at. A withheld press photo (ADR 0021)
+ * "Bild 1…n", which is what options reading "Bild 1"… point at. A withheld press photo (ADR 0009)
  * is never requested: its credit and a link to the catalogue page stand in its place.
  */
 export function LidImages({ question, pdfUrl }: { question: LidQuestionData; pdfUrl: string }) {

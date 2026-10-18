@@ -6,7 +6,7 @@ what it lets the learner *do*. Neither can see the third question a language cou
 communicative function it enumerates, and never once mention Versicherungen.
 
 The claimant here is a **topic** — `content/topics/<level>/<id>.topic.yaml`. That is why this
-dimension landed last: until [ADR 0012](../../docs/adrs/0012-topic-manifests.md) a topic had nowhere
+dimension landed last: until [ADR 0002](../../docs/adrs/0002-topic-manifests-and-learning-activities.md) a topic had nowhere
 to declare anything, its identity split across a directory, an MDX frontmatter and an atlas node.
 
 | file | level | audience | mode | entries | free |

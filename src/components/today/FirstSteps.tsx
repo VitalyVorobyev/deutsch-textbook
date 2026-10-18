@@ -19,7 +19,7 @@ interface Props {
   placement?: { path: string; setIds: string[] };
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   loop: {
     en: 'Three moves, in a loop. Everything you do stays on this device.',

@@ -3,7 +3,7 @@
  *
  * Rendered by Write.tsx in the **revise stage only, on demand** — the stage
  * machine guarantees the before-assessment is already complete, so the hints
- * can never anchor the calibration ratings (docs/adrs/0002-advisory-only-writing-assistant.md). Everything
+ * can never anchor the calibration ratings (docs/adrs/0003-the-evidence-model.md). Everything
  * shown here is advisory: hints live in component state (plus the SavedWriting
  * record, via onHints) and never reach onResult, attempts or the snapshot.
  */
@@ -34,7 +34,7 @@ import { useUiLang } from '../hooks';
 
 type WriteItem = z.infer<typeof writeItemSchema>;
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   reenableTitle: {
     en: 'Turn local assistant hints back on',

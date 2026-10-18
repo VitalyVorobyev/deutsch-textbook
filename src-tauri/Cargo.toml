@@ -9,7 +9,7 @@ publish = false
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-# devtools ships an inspector in release builds too (ADR 0018): the app whose storage
+# devtools ships an inspector in release builds too (ADR 0006): the app whose storage
 # can stall is the installed one, and the release bundle had no way to be looked at.
 tauri = { version = "2", features = ["devtools"] }
 tauri-plugin-fs = "2"

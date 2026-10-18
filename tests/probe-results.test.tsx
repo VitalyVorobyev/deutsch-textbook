@@ -1,6 +1,6 @@
 /**
  * ProbeResults.tsx gains an explicit line for the exhausted-and-failed family (R3,
- * docs/adrs/0010-probe-failure-remediation.md): every scheduled stage taken, at least
+ * docs/adrs/0003-the-evidence-model.md): every scheduled stage taken, at least
  * one of them wrong. `useUiLang` is pinned to 'de' (src/lib/hooks.ts), so the line
  * renders in German regardless of the `lang` (explanation-language) prop.
  */

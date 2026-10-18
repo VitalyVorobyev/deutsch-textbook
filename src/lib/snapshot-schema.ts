@@ -95,7 +95,7 @@ const feedbackSchema = z.object({
   ts: z.number(),
 });
 
-// Leben in Deutschland (ADR 0021): its own key, with the course's card shape reused for the
+// Leben in Deutschland (ADR 0009): its own key, with the course's card shape reused for the
 // question states — the same FSRS record, kept out of `cards` so it never counts as vocabulary.
 const lidAnswerSchema = z.object({
   q: z.string().min(1),

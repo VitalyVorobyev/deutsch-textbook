@@ -4,7 +4,7 @@
  * Exists because page weight regrew past its recorded sizes with nothing to notice: the session
  * pages reached 7–18 MB each by inlining the corpus into an island's props, while every gate
  * stayed green. Course content a page needs in bulk is fetched from a shared data file instead
- * (src/lib/corpus-payload.ts, ADR 0022); this holds the line.
+ * (src/lib/corpus-payload.ts, ADR 0008); this holds the line.
  *
  * Usage (after `bun run build`, which CI runs first):
  *   bun scripts/page-weight.ts            # the ten heaviest pages, exit 1 over the ceiling

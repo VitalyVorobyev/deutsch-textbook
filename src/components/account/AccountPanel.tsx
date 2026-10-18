@@ -21,7 +21,7 @@ import { useExplainLang, useUiLang } from '../hooks';
 import DeviceTokens from './DeviceTokens';
 import OwnerUsers from './OwnerUsers';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   localFirst: {
     en: 'Deutsch-Atlas works without an account. Everything you do is stored in this browser first; signing in only adds a copy in the cloud so a second device can pick it up.',
@@ -225,7 +225,7 @@ export default function AccountPanel() {
   if (!session.signedIn || !user) {
     return (
       <div className="space-y-4">
-        {/* Its own heading since ADR 0005: the panel sits on the Daten tab now,
+        {/* Its own heading since ADR 0007: the panel sits on the Daten tab now,
             no longer under a /konto page h1. */}
         <h2 className="text-sm font-semibold text-stone-600 dark:text-stone-300">
           {t('account.title', uiLang)}
@@ -300,7 +300,7 @@ export default function AccountPanel() {
               {lastSync ? new Date(lastSync).toLocaleString('de-DE') : t('account.never', uiLang)}
             </span>
             {/* The force button, demoted to an escape hatch beside the value it
-                refreshes (ADR 0004e): sync is automatic, this is for certainty. */}
+                refreshes (ADR 0007): sync is automatic, this is for certainty. */}
             {bound && user.status === 'approved' && compressionSupported() && (
               <button
                 type="button"

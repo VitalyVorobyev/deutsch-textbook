@@ -8,7 +8,7 @@
  * The managed store (`managed-store.ts`) owns transaction aborts and retries; a caller's deadline
  * stops the caller waiting and never releases the live drain. Only a confirmed commit removes
  * an entry. A failed journal write keeps a volatile copy and reports it — never as durable
- * across a restart. ADR 0020; ADR 0016 and 0019 for the history.
+ * across a restart (ADR 0006).
  *
  * **Every op must be idempotent**, because both layers re-run them: the managed store retries an
  * aborted transaction up to three times, and a page that dies between commit and removal
@@ -321,7 +321,7 @@ export async function logSessionDurably(
   await replayJournal(retry);
 }
 
-/** A LiD answer: journaled, then graded into the `lid` key by the one drain (ADR 0021). */
+/** A LiD answer: journaled, then graded into the `lid` key by the one drain (ADR 0009). */
 export async function logLidAnswerDurably(
   answer: LidAnswer,
   retry: RetryOptions = {},

@@ -1,6 +1,6 @@
 /**
  * Reads the Leben-in-Deutschland bank and the course's notes on it, and says what is wrong with
- * them. ADR 0021. One reader for the validator, the pages and the progress audit, so the three
+ * them. ADR 0009. One reader for the validator, the pages and the progress audit, so the three
  * can never disagree about which question belongs to which topic.
  */
 import { createHash } from 'node:crypto';
@@ -103,7 +103,7 @@ export function lidProblems(root = repoRoot()): string[] {
     for (const image of q.images) {
       const file = join(root, 'public', image.path);
       if (image.withheld) {
-        // A credited third-party photo must never reach the deployed build (ADR 0021).
+        // A credited third-party photo must never reach the deployed build (ADR 0009).
         if (existsSync(file))
           at(LID_BANK_FILE, `${q.id}: ${image.path} is withheld (${image.withheld}) but present`);
         continue;
@@ -185,7 +185,7 @@ export function lidQuestionsWithNotes(
 
 // ---------------------------------------------------------------------------
 // Lessons — `content/lid/lessons/<lesson-id>.mdx`, compact reading in simple German that teaches
-// the system behind a group of questions. Reading material, not spine topics (ADR 0021): no
+// the system behind a group of questions. Reading material, not spine topics (ADR 0009): no
 // exercises, no probes, no Themen or grammar denominators. A topic belongs to at most one lesson,
 // so a question has at most one lesson to point back to.
 
@@ -248,7 +248,7 @@ export function loadLidLessons(root = repoRoot()): LoadedLidLesson[] {
 }
 
 /**
- * The body's shape (ADR 0021). The lesson is German — the exam's language — and it opens with
+ * The body's shape (ADR 0009). The lesson is German — the exam's language — and it opens with
  * `## Kurz gesagt` (only MDX comments may precede it). Every section with German text, each
  * `##`/`###` up to the next heading, closes with exactly one `<Translation>`: an `<En>` and a
  * `<Ru>` half, and a `<Uk>` half once the file carries Ukrainian anywhere (`forceUk` bridges the
@@ -384,7 +384,7 @@ interface LidFigureSource {
  * component resolves one without knowing its lesson; the file exists under `public/`, its pixel
  * size is the declared one and it stays under the bundle ceiling; an SVG carries nothing
  * `svgFigureHazards` names; and an `official` figure is a
- * picture of the bank that is not withheld (ADR 0021). The credit fields are the schema's.
+ * picture of the bank that is not withheld (ADR 0009). The credit fields are the schema's.
  */
 export function lidFigureProblems(
   root: string,

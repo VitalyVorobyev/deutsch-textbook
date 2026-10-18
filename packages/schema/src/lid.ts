@@ -1,6 +1,6 @@
 /**
  * Leben in Deutschland (Einbürgerungstest) — the official question bank and the course's own
- * notes on it. ADR 0021.
+ * notes on it. ADR 0009.
  *
  * Two layers, kept in two places on purpose:
  *
@@ -33,7 +33,7 @@ export const lidImageSchema = z
      * Set when the catalogue credits the picture to a third-party photographer (`© Deutscher
      * Bundestag/…`, `© Bundesregierung/…`). §5 UrhG frees the official text, not a press photo
      * placed in it, so the file is NOT shipped: the value is the credit, and the page links the
-     * question's page in BAMF's own PDF instead. ADR 0021.
+     * question's page in BAMF's own PDF instead. ADR 0009.
      */
     withheld: z.string().min(1).optional(),
   })
@@ -287,7 +287,7 @@ export type LidFigure = z.infer<typeof lidFigureSchema>;
  * The frontmatter of `content/lid/lessons/<lesson-id>.mdx` — a compact reading lesson in simple
  * German that teaches the system behind a group of exam questions. Reading material, not a spine
  * topic: it owns no exercises, probes or denominators, and its practice is the official
- * questions of its `topics` (ADR 0021). The body opens with `## Kurz gesagt` and one bilingual
+ * questions of its `topics` (ADR 0009). The body opens with `## Kurz gesagt` and one bilingual
  * orientation; the rest is German. `bun run validate` holds the cross-file rules (`lidProblems`):
  * every topic exists, a topic belongs to at most one lesson, `order` is unique.
  */

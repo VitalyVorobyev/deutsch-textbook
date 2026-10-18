@@ -13,7 +13,7 @@ import { pick } from '../../lib/prefs';
 import { t } from '../../lib/strings';
 import { useExplainLang, useUiLang } from '../hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   due: { en: 'due', ru: 'к повторению' },
   cardsDue: { en: 'cards due for review', ru: 'карточек к повторению' },
