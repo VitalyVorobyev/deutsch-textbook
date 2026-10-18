@@ -2,7 +2,7 @@
  * Chrome strings — the UI's own furniture (navigation, buttons, section
  * labels), as opposed to the content's explanation language.
  *
- * Two independent axes (docs/adrs/0001-bilingual-explanation-halves.md), never conflated: `UiLang` picks
+ * Two independent axes (docs/adrs/0005-explanation-languages.md), never conflated: `UiLang` picks
  * the chrome language per profile and defaults to 'de' — today's exact UI —
  * while `ExplainLang` (src/lib/prefs.ts) picks which half of a Bilingual
  * block is shown. Full immersion is simply uiLang 'de' over any explanation
@@ -549,7 +549,7 @@ export const STRINGS = {
     uk: 'Черга відкладених перевірок',
   },
 
-  // Probe-failure remediation (docs/adrs/0010-probe-failure-remediation.md).
+  // Probe-failure remediation (docs/adrs/0003-the-evidence-model.md).
   // `remediationTitle`/`remediationFailed` are the session-end card only (R1);
   // `remediationExhausted` is shared verbatim with ProbeResults.tsx (R3 — "says the
   // same" in both places), which is why it lives in the chrome table rather than as a
@@ -927,7 +927,7 @@ export const STRINGS = {
   // The calm tier: past the ordinary round trip but still inside the write path's own retry
   // budget. Not an incident — and quitting here is safe, because the journal is synchronous
   // localStorage and replays at the next launch. Red at 10 s against a 45 s deadline is how a
-  // slow-but-fine write spent 35 seconds telling the learner not to close the window (ADR 0019).
+  // slow-but-fine write spent 35 seconds telling the learner not to close the window (ADR 0006).
   'persist.savingOne': {
     de: 'Antwort wird noch gespeichert …',
     en: 'answer still saving …',
@@ -981,7 +981,7 @@ export const STRINGS = {
   // Names the LOCAL store on purpose. The learner who met this banner asked whether
   // Cloudflare was down and whether the app was being too quick to give up; it is
   // neither — nothing here touches the network, and the read has already been retried
-  // at 0/2/5 s and waited out a 10 s deadline (ADR 0018) before the banner appears.
+  // at 0/2/5 s and waited out a 10 s deadline (ADR 0006) before the banner appears.
   // A message that says only "progress could not be loaded" invites the learner to
   // debug the wrong system.
   'persist.loadError': {
@@ -1069,7 +1069,7 @@ export const STRINGS = {
     uk: 'Виявлено друге сховище даних. Воно з’являється, коли виконуваний файл запускають без пакета застосунку, і містить власний окремий прогрес. Цей застосунок його не читає — і не змінює.',
   },
 
-  // Leben in Deutschland trainer (/leben, ADR 0021). `{…}` placeholders are filled by the caller
+  // Leben in Deutschland trainer (/leben, ADR 0009). `{…}` placeholders are filled by the caller
   // (`lidText`, src/components/lid/shared.ts). The two pass marks are different tests with
   // different purposes, so every string that names one names which.
   'lid.title': {
@@ -1265,7 +1265,7 @@ export const STRINGS = {
     ru: 'Открыть страницу в каталоге BAMF ↗',
     uk: 'Відкрити сторінку в каталозі BAMF ↗',
   },
-  // The credit of a lesson figure taken from the catalogue (ADR 0021: an official work, §5 UrhG).
+  // The credit of a lesson figure taken from the catalogue (ADR 0009: an official work, §5 UrhG).
   'lid.figureOfficial': {
     de: 'Amtliches Werk (§ 5 UrhG): BAMF, Gesamtfragenkatalog',
     en: 'Official work (§ 5 UrhG): BAMF, full question catalogue',

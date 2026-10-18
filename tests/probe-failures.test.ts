@@ -1,6 +1,6 @@
 /**
  * `probeFailuresOn` and `exhaustedFailed` (src/lib/probes.ts) are R1/R3 of PR-8
- * (docs/adrs/0010-probe-failure-remediation.md): the session-end remediation card's
+ * (docs/adrs/0003-the-evidence-model.md): the session-end remediation card's
  * "failed today" derivation, and the named state for a family with no rungs left and
  * at least one failure among the stages it took. Neither touches `dueProbe`,
  * `armedAt`, `nextVariant` or the interval ladder — this file only exercises the two

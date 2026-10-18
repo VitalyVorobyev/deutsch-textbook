@@ -98,7 +98,7 @@ export function eligibleTrainingSets<T extends { setId: string; topicId: string;
 
 /**
  * Which of a topic's own exercise sets to point a learner back at after a failed
- * delayed probe (R4, docs/adrs/0010-probe-failure-remediation.md).
+ * delayed probe (docs/adrs/0003-the-evidence-model.md).
  *
  * Candidates are the topic's own `TRAINABLE_ROLES` sets whose items carry the given
  * `focus` tag — the same tag a probe family exposes on `ProbeFamily.focus`

@@ -1,11 +1,11 @@
 /**
- * The session pages fetch their cards and exercise sets (ADR 0022) instead of receiving them as
+ * The session pages fetch their cards and exercise sets (ADR 0008) instead of receiving them as
  * props, and `CorpusGate` is the one place that decides what a page shows meanwhile. Two things
  * here are silent when broken:
  *
  *  - **A session never mounts on an empty list.** Mounted early, a flashcard session plans
  *    "nothing due" and training "nothing to practise" — confident claims a slow or failed download
- *    must not make (the ADR 0018 rule, applied to content). So the children render only once
+ *    must not make (the ADR 0006 rule, applied to content). So the children render only once
  *    every file has arrived.
  *  - **A failure can be retried.** A rejected request that stayed cached would turn one dropped
  *    connection into a page that can never load.

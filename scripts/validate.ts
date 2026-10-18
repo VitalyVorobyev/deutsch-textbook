@@ -886,7 +886,7 @@ for (const { file, data } of references.values()) {
 }
 
 // Every page-level `focus` list on a reference file is the derived Referenz→topic edge
-// (ADR 0007): tags only, resolved through focusIntroducedBy at build time. A tag the
+// (ADR 0001): tags only, resolved through focusIntroducedBy at build time. A tag the
 // allowlist does not know would render no chip and no error, so it is rejected here.
 for (const { file, data } of references.values()) {
   const pageFocus = (data as { focus?: string[] }).focus ?? [];
@@ -2373,7 +2373,7 @@ for (const { file, data } of references.values())
 /**
  * MDX files: frontmatter and body are ONE parity scope — the contract is per
  * file ("any uk in a file means every ru-bearing field in that file carries
- * uk", docs/adrs/0001-bilingual-explanation-halves.md), and the frontmatter/body split must not open a
+ * uk", docs/adrs/0005-explanation-languages.md), and the frontmatter/body split must not open a
  * hole in it. So uk on either side forces parity on both — the same bridge as
  * reading glosses ↔ YAML above: `title_uk` alone demands a <Uk> half in every
  * <Bilingual> block, and a <Uk> block alone demands `title_uk`. Otherwise a
@@ -2397,9 +2397,9 @@ function checkMdxLangDiscipline(
   // (content/discovery/b1/sonntagsruhe.mdx) was written to look for exactly this: a file
   // could carry `summary.de` with a wholly English article, or German article halves under
   // an English summary card, and validate said nothing — while the comment above and
-  // docs/adrs/0001-bilingual-explanation-halves.md both claimed frontmatter and body were ONE parity scope. They were,
+  // docs/adrs/0005-explanation-languages.md both claimed frontmatter and body were ONE parity scope. They were,
   // for uk alone.
-  // A German-first article (ADR 0023) carries German as its body rather than in <De> halves,
+  // A German-first article (ADR 0005) carries German as its body rather than in <De> halves,
   // and that is the same promise to the manifest: its `de` fields stay all-or-none.
   const germanFirst = isGermanFirst(body);
   const bodyHasDe = body.includes('<De>') || germanFirst;
@@ -2420,14 +2420,14 @@ function checkMdxLangDiscipline(
 
 for (const { file, article, data, body } of topics.values())
   checkMdxLangDiscipline(file, data, body, warn, article);
-// Every B1 article is German-first (ADR 0023): German body, each section closed by <Translation>
+// Every B1 article is German-first (ADR 0005): German body, each section closed by <Translation>
 // and <Erklaerung>. Until a file uses the fold, germanFirstTopicProblems never sees it — so the
 // level itself is the trigger, and a new B1 article written in <Bilingual> halves fails here.
 for (const { article, data, body } of topics.values())
   if (data.level === 'B1' && !isGermanFirst(body))
     fail(
       article,
-      'a B1 article is German-first (ADR 0023): German body, each section closed by <Translation> then <Erklaerung> — not <Bilingual> halves',
+      'a B1 article is German-first (ADR 0005): German body, each section closed by <Translation> then <Erklaerung> — not <Bilingual> halves',
     );
 for (const { file, data, body } of discoveries.values())
   checkMdxLangDiscipline(file, data, body, fail);
@@ -2548,7 +2548,7 @@ for (const word of a1Boundary.late) {
   );
 }
 
-// Leben in Deutschland (ADR 0021): the official bank exactly as imported — counts, ids, image
+// Leben in Deutschland (ADR 0009): the official bank exactly as imported — counts, ids, image
 // bytes — and every question placed in exactly one topic, with language discipline on the notes.
 for (const problem of lidProblems(ROOT)) errors.push(problem);
 

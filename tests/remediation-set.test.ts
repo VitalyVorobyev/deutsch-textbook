@@ -1,6 +1,6 @@
 /**
  * `remediationSetFor` (src/lib/training.ts) is R4 of PR-8
- * (docs/adrs/0010-probe-failure-remediation.md): which of a failed probe family's
+ * (docs/adrs/0003-the-evidence-model.md): which of a failed probe family's
  * topic's own sets the session-end card should point at. Pure and stateless — every
  * case here is a fixture, not the corpus.
  */

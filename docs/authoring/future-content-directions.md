@@ -39,7 +39,7 @@ maintenance cost exceeds its learning job.
 
 ## Leben-in-Deutschland lesson figures
 
-A LiD lesson (`content/lid/lessons/<id>.mdx`, [ADR 0021](../adrs/0021-leben-in-deutschland-trainer.md))
+A LiD lesson (`content/lid/lessons/<id>.mdx`, [ADR 0009](../adrs/0009-third-party-and-official-material.md))
 declares its maps and pictures under `figures:` and shows each with `<Figure id="…" />`, or two or
 three small ones in a row with `<Figure ids="… …" />` (`src/components/lid/LidFigure.astro`).
 

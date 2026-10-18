@@ -662,7 +662,7 @@ export type ExerciseRole = z.infer<typeof exerciseRoleSchema>;
  *
  * This is deliberately orthogonal to `role`: role controls evidence/runtime semantics, while an
  * activity explains why this particular stable file exists and how several files are presented as
- * one coherent lesson. See ADR 0014.
+ * one coherent lesson. See ADR 0002.
  */
 export const LEARNING_ACTIVITIES = ['core', 'extension', 'application', 'remediation'] as const;
 export const learningActivitySchema = z.enum(LEARNING_ACTIVITIES);
@@ -693,7 +693,7 @@ export const exerciseSetSchema = z
     topic: slug,
     /** explicit learning role; controls training eligibility and evidence use */
     role: exerciseRoleSchema.default('practice'),
-    /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0014. */
+    /** Authored learning intent. Required for topic-owned practice and drill sets by ADR 0002. */
     stage: z.enum(LESSON_STAGES).optional(),
     /** Learner-facing purpose; presentation groups files by this value, never by filename. */
     activity: learningActivitySchema.optional(),
@@ -713,7 +713,7 @@ export const exerciseSetSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['activity'],
-        message: 'practice/drill sets require activity (ADR 0014)',
+        message: 'practice/drill sets require activity (ADR 0002)',
       });
       return;
     }
@@ -721,14 +721,14 @@ export const exerciseSetSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['stage'],
-        message: 'practice/drill sets require an authored stage (ADR 0014)',
+        message: 'practice/drill sets require an authored stage (ADR 0002)',
       });
     }
     if (!set.title_de && !set.title?.de) {
       ctx.addIssue({
         code: 'custom',
         path: ['title_de'],
-        message: 'practice/drill sets require a German activity title (ADR 0014)',
+        message: 'practice/drill sets require a German activity title (ADR 0002)',
       });
     }
 
@@ -893,7 +893,7 @@ export const readingSchema = z
     questions: z.array(mcItemSchema).max(4).default([]),
     /**
      * Provenance for a reading adapted from someone else's work, mirroring
-     * `visualDocumentSchema` (ADR 0006): the credit line is data on the reading,
+     * `visualDocumentSchema` (ADR 0009): the credit line is data on the reading,
      * rendered with it — never a YAML comment no gate can see. E.g.
      * "Nach einem gemeinfreien Werk der Brüder Grimm. Didaktische Bearbeitung
      * für Niveau A2. Historischer Originaltext: <Wikisource URL>" — URLs render
@@ -1186,7 +1186,7 @@ const referenceExampleSchema = z.object({
 
 export const caseReferenceSchema = z.object({
   id: z.literal('cases'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
@@ -1230,7 +1230,7 @@ export type CaseReference = z.infer<typeof caseReferenceSchema>;
 
 export const pronominalAdverbReferenceSchema = z.object({
   id: z.literal('pronominal-adverbs'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
@@ -1262,7 +1262,7 @@ export type PronominalAdverbReference = z.infer<typeof pronominalAdverbReference
 
 export const zahlenDatumZeitReferenceSchema = z.object({
   id: z.literal('zahlen-datum-zeit'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
@@ -1305,7 +1305,7 @@ const connectorSyntaxSchema = z.enum([
 
 export const sentenceConnectorsReferenceSchema = z.object({
   id: z.literal('sentence-connectors'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
@@ -1361,7 +1361,7 @@ export type SentenceConnectorsReference = z.infer<typeof sentenceConnectorsRefer
  */
 export const briefeReferenceSchema = z.object({
   id: z.literal('briefe'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),
@@ -1582,7 +1582,7 @@ export type ZeitformenReference = z.infer<typeof zeitformenReferenceSchema>;
  */
 export const praepositionenReferenceSchema = z.object({
   id: z.literal('praepositionen'),
-  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0007).
+  /** Focus tags this page tabulates — the derived Referenz→topic edge (ADR 0001).
    * Tags only, never a topic id: `focusIntroducedBy` resolves them at build time,
    * and the validator rejects a tag it does not know. */
   focus: z.array(slug).default([]),

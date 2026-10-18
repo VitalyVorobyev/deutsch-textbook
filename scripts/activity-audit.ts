@@ -1,5 +1,5 @@
 /**
- * Reproducible inventory for ADR 0014.
+ * Reproducible inventory for ADR 0002.
  *
  * This reports architecture and review queues; it never turns activity counts into a quality
  * score. Use `--json` when another tool needs the data.

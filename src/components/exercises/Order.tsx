@@ -9,7 +9,7 @@ import { ActionRow, Feedback, Instruction, Translation, type ItemProps } from '.
 
 type OrderItem = z.infer<typeof orderItemSchema>;
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   emptyState: { en: 'Build the sentence…', ru: 'Соберите предложение…' },
 } as const satisfies Record<string, { en: string; ru: string }>;

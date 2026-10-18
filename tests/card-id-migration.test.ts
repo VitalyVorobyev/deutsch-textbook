@@ -11,7 +11,7 @@
  * It does not execute `getStore`'s call site; only `bun run dev` against a seeded profile
  * does.
  *
- * One contract moved here in the ADR 0018 change: the migration used to run on every store
+ * One contract moved here in the ADR 0006 change: the migration used to run on every store
  * open, so "writes nothing when nothing needs renaming" was the guard that kept it cheap.
  * It now runs at most once per profile behind `runCardIdMigration`'s marker and commits its
  * read-modify-write in ONE transaction (the previous get-then-set could drop a grade written

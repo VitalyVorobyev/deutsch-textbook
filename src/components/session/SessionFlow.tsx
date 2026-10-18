@@ -64,7 +64,7 @@ const STEP_LABELS: Record<Step, StringKey> = {
   3: 'session.stepLearn',
 };
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md). */
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md). */
 const UI = {
   skipped: { en: 'skipped', ru: 'пропущено' },
   doneTodayHint: {
@@ -149,7 +149,7 @@ export default function SessionFlow({ cards, sets, spine, nodes, deckLevels }: P
   // Every failed-today probe, re-derived from the log the moment step 3 renders —
   // never from `probedCount`/step-0 component state, so a family that failed in an
   // earlier visit today (or the one just taken) shows up the same way either way, and
-  // a reload lands on the same card (R1, docs/adrs/0010-probe-failure-remediation.md).
+  // a reload lands on the same card (docs/adrs/0003-the-evidence-model.md).
   useEffect(() => {
     if (step !== 3) return;
     let cancelled = false;

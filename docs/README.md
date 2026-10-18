@@ -11,6 +11,7 @@ Dated pass logs, ledgers of closed findings, superseded rationale and notes on s
 deleted rather than archived: `git log` is the archive. A doc that has to explain how a rule came
 to be is carrying history, and a reader pays for it on every visit. ADRs are the one exception,
 because a decision record is dated by nature; they are superseded by a new ADR, never edited.
+A direction still being argued is a proposal, not an ADR.
 
 **User documents and developer documents never restate each other.** The user side is
 [`README.md`](../README.md), [`CHANGELOG.md`](../CHANGELOG.md), [`NOTICE.md`](../NOTICE.md), the
@@ -26,7 +27,8 @@ reader needs to cross, and copies nothing — duplicated text drifts.
 | [`design.md`](design.md) | The system map: boundaries, pipelines, identities, evidence, storage, delivery |
 | [`roadmap.md`](roadmap.md) | Current direction and the gates in front of it |
 | [`backlog.md`](backlog.md) | The executable queue |
-| [`adrs/`](adrs/README.md) | Architecture decisions, numbered, superseded rather than edited |
+| [`adrs/`](adrs/README.md) | Foundational decisions, numbered, superseded rather than edited |
+| [`proposals/`](proposals/README.md) | Directions under discussion; each ends in an ADR or is deleted |
 | **Curriculum** | |
 | [`curriculum/a2-b1.md`](curriculum/a2-b1.md) | What A2 and B1 teach, which unit owns what, what each may not touch |
 | [`curriculum/topic-quality-audit.md`](curriculum/topic-quality-audit.md) | The topic-by-topic quality pass: where it stands |
@@ -45,8 +47,9 @@ reader needs to cross, and copies nothing — duplicated text drifts.
 | [`architecture/content-graph.md`](architecture/content-graph.md) | The content graph, the package boundaries and Redaktion's write path |
 | [`architecture/cloud-sync.md`](architecture/cloud-sync.md) | Accounts and snapshot sync: operations, setup, the sign-in runbook |
 | [`architecture/exam-trainer.md`](architecture/exam-trainer.md) | The Goethe exam trainer and its local-only materials |
+| [`architecture/lid-trainer.md`](architecture/lid-trainer.md) | The Leben-in-Deutschland bank: legal basis, import, answer key, progress, lessons |
 | [`quality/tts-reliability.md`](quality/tts-reliability.md) | What the synthesis engine measurably does on this machine |
 
 `Goethe-Zertifikat_B1_Wortliste.pdf` (gitignored) and `ui.png` at this level are supporting files,
 not documents. `GeotheInstitute/` holds the local-only official exam materials
-([ADR 0009](adrs/0009-official-exam-materials-local-only.md)).
+([ADR 0009](adrs/0009-third-party-and-official-material.md)).

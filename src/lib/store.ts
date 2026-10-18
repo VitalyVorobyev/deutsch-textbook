@@ -106,7 +106,7 @@ export async function runCardIdMigration(id: string, handle: UseStore): Promise<
     // marker-stays-unset-on-failure path can be driven without an IndexedDB
     // (tests/store-visibility-retry.test.ts), and the queue resolves its own handle. It is a
     // once-per-profile repair off the critical path, so the serialization the queue would buy
-    // is not worth giving up the seam. The race ADR 0018 left open stays open, and stays filed.
+    // is not worth giving up the seam. The race ADR 0006 left open stays open, and stays filed.
     await migrateStoredCardIds((mutate) => update<CardStates>('cards', mutate, handle));
     localStorage.setItem(cardIdMigrationKey(id), '1');
   } catch {
@@ -367,7 +367,7 @@ export function withPersistenceRetry<T>(
  * offset (ms from start), another attempt is fired.
  *
  * A read needs no idempotency argument — that is exactly why it should have had
- * this from the start. ADR 0016 gave writes `withPersistenceRetry` and left reads
+ * this from the start. ADR 0006 gave writes `withPersistenceRetry` and left reads
  * with a deadline and `withVisibilityRetry`, whose only trigger is
  * `visibilitychange`; a stall while the window stays visible therefore had no
  * automatic recovery at all, and the retry button was the whole mechanism. That
@@ -471,7 +471,7 @@ export function withReadRetry<T>(
  * was never concurrent, only queued invisibly, each holding its own full-blob read-modify-write
  * of a ~784 KB `cards` record. The queue models what the database does anyway and adds the one
  * thing the database cannot — several mutations inside ONE transaction — so a burst of eight
- * grades costs one read and one write rather than eight of each. ADR 0019.
+ * grades costs one read and one write rather than eight of each. ADR 0006.
  *
  * What it deliberately does NOT do is make the spread cheaper: each mutator still copies the
  * record it was handed. That is a few thousand pointer copies against a structured clone of
@@ -525,7 +525,7 @@ export function __setCommitBatchForTests(fn: typeof commitBatch): () => void {
 /**
  * Enqueue one read-modify-write.
  *
- * The mutate runs INSIDE the transaction against the freshest stored value (ADR 0016's
+ * The mutate runs INSIDE the transaction against the freshest stored value (ADR 0006's
  * invariant — a cloud merge that landed mid-session is written on top of, never clobbered) and
  * against the accumulated result of every earlier mutate in the same batch, so two grades of
  * one card in one batch compose exactly as they would in two transactions.
@@ -940,7 +940,7 @@ export async function setArtifactFeedback(
 }
 
 // ---------------------------------------------------------------------------
-// Leben in Deutschland (ADR 0021): question states, the answer log and mock runs
+// Leben in Deutschland (ADR 0009): question states, the answer log and mock runs
 // ---------------------------------------------------------------------------
 
 /**
@@ -983,7 +983,7 @@ export interface ProgressSnapshot {
   topics: TopicsState;
   goal?: LearningGoal;
   feedback: ArtifactFeedbackState;
-  /** Leben in Deutschland (ADR 0021) — the reason for v8: a v7 client would strip it silently
+  /** Leben in Deutschland (ADR 0009) — the reason for v8: a v7 client would strip it silently
       and push the stripped copy, where a v8 snapshot makes that client refuse instead. */
   lid: LidState;
 }
@@ -1034,7 +1034,7 @@ export function sanitizeAttempts(attempts: Attempt[]): Attempt[] {
 export async function mergeSnapshot(snapshot: unknown): Promise<void> {
   const migrated = parseProgressSnapshot(snapshot);
   // Through the queue like every other write: a merge is seven back-to-back readwrites, which is
-  // exactly the backlog a grade issued mid-sync used to find itself behind (ADR 0019). Queued
+  // exactly the backlog a grade issued mid-sync used to find itself behind (ADR 0006). Queued
   // together they interleave with the session's own writes instead of monopolising the store.
   await enqueueUpdate<Attempt[]>('attempts', (cur) =>
     mergeAttempts(cur ?? [], sanitizeAttempts(migrated.attempts)),

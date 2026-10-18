@@ -6,7 +6,7 @@
  *
  *  - **Every slot gets its own deck's bar**, read from card ids the island rebuilds from
  *    headwords. A wrong id reads no state, and a learned word would show as new.
- *  - **Still reading is not confirmed empty** (ADR 0018): each slot shows a placeholder until
+ *  - **Still reading is not confirmed empty** (ADR 0006): each slot shows a placeholder until
  *    the read resolves, never a confident all-new bar.
  *  - **A failed read is one error, not 129**: the error renders once, in the island's own
  *    place above the list, and the slots stay empty.

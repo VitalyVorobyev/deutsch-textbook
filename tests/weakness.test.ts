@@ -2,7 +2,7 @@
  * `weakFocuses` (src/lib/weakness.ts) excludes unverified evidence and pretest
  * attempts, and nothing else — it applies no role filter, so a probe attempt is
  * counted exactly like an ordinary practice attempt. That is a deliberate ruling
- * (docs/adrs/0010-probe-failure-remediation.md, R2): a failed delayed check is
+ * (docs/adrs/0003-the-evidence-model.md): a failed delayed check is
  * stronger evidence of a live confusion than a same-session miss, not weaker, and it
  * should raise same-focus practice priority. Before this pin, that behavior was
  * correct but untested — a claim without a test is how a role filter could have been

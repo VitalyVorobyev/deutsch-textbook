@@ -1,12 +1,12 @@
 /**
  * The session pages' islands, fed from the shared content files instead of inline props
- * (src/lib/corpus-payload.ts, ADR 0022).
+ * (src/lib/corpus-payload.ts, ADR 0008).
  *
  * Each wrapper fetches its file(s) and only then mounts the component it wraps, with the same
  * props that component always had. Until then it says it is loading; if the fetch fails it says
  * so, with a retry. It never mounts the session on an empty list: an empty card list would plan
  * "nothing due" and an empty set list "nothing to practise", and both are confident claims a
- * failed download must not make (the ADR 0018 rule, applied to content).
+ * failed download must not make (the ADR 0006 rule, applied to content).
  */
 import { useEffect, useState, type ComponentProps, type ReactNode } from 'react';
 import { fetchCorpus } from '../../lib/corpus-client';

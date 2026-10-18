@@ -23,7 +23,7 @@ there were eight partial ones — and a question spanning two of them had nowher
 
 ## The Element, and the two properties nothing recorded
 
-*Since [ADR 0012](../adrs/0012-topic-manifests.md) a topic answers half of this itself: its
+*Since [ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md) a topic answers half of this itself: its
 manifest's `elements:` block names every part it owns, and the validator holds that list closed
 against every artifact's `topic:` back-pointer. What follows is why the Element layer is still
 needed on top of it — the manifest says **which** files a topic owns, and the Element says **what
@@ -64,7 +64,7 @@ distributional figure is read against the level median the report computes — t
 `grammar-depth.ts` / `comprehensibility.ts` discipline.
 
 Checks that measure file shape or inferred metadata rather than learning quality do not belong
-here ([ADR 0014](../adrs/0014-learning-activity-architecture.md)). Reading length is one: it is a
+here ([ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md)). Reading length is one: it is a
 cognitive-load judgement, so the intensive-reading band is an authoring target that no check holds.
 The queue size is a command, never a figure pasted into this file:
 

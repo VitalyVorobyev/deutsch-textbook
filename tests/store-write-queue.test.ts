@@ -1,5 +1,5 @@
 /**
- * The write queue (src/lib/store.ts, ADR 0019): one readwrite transaction at a time, N
+ * The write queue (src/lib/store.ts, ADR 0006): one readwrite transaction at a time, N
  * mutations per commit.
  *
  * Why it exists, stated so this file cannot pass by accident: all six progress keys live in ONE
@@ -100,7 +100,7 @@ describe('the write queue', () => {
     }
   });
 
-  test('the mutate runs against STORED state (ADR 0016 read-modify-write invariant)', async () => {
+  test('the mutate runs against STORED state (ADR 0006 read-modify-write invariant)', async () => {
     const store = await import('../src/lib/store');
     const { data, commit } = fakeCommits({ cards: { a: card(7) } });
     const restore = store.__setCommitBatchForTests(commit as never);

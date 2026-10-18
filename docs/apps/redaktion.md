@@ -83,7 +83,7 @@ totals.
    architecture is coherent and the validator is green — not when every topic has the same number of
    files.
 
-The durable contract and its trade-offs are in [ADR 0014](../adrs/0014-learning-activity-architecture.md).
+The durable contract and its trade-offs are in [ADR 0002](../adrs/0002-topic-manifests-and-learning-activities.md).
 
 ## Edit a source
 
@@ -148,5 +148,5 @@ editor representation, so check consequential image composition and custom-figur
 learner app.
 
 The architecture and security boundary are recorded in
-[ADR 0013](../adrs/0013-redaction-repository-workbench.md); remaining milestones live in the
+[ADR 0010](../adrs/0010-editorial-tools-are-separate-apps.md); remaining milestones live in the
 [roadmap](../roadmap.md) and [backlog](../backlog.md).

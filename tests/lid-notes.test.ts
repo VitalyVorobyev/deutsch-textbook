@@ -1,5 +1,5 @@
 /**
- * Leben-in-Deutschland notes (`content/lid/notes/<topic>.yaml`, ADR 0021): the Ukrainian half is
+ * Leben-in-Deutschland notes (`content/lid/notes/<topic>.yaml`, ADR 0009): the Ukrainian half is
  * all-or-none per file, as it is for every other content file. `lidNotesUkProblems` is the rule
  * `lidProblems` applies; it runs here on invented notes, never on the real ones — the corpus-wide
  * "every file carries its uk" ratchet is `tests/i18n-content.test.ts`.

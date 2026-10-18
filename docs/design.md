@@ -15,7 +15,7 @@ without changing the learning model.
 Redaktion is a separate React/Tauri workbench for that same repository. Its webview has no direct
 filesystem or shell authority: a compiled Bun sidecar loads `@da/content`, watches the selected
 checkout and accepts the narrow read, revision-checked save and validation contract in
-[ADR 0013](adrs/0013-redaction-repository-workbench.md). Browser development implements the same
+[ADR 0010](adrs/0010-editorial-tools-are-separate-apps.md). Browser development implements the same
 `CorpusClient` through Vite middleware. Neither transport creates a second content store.
 
 Editorial MDX preview crosses that boundary as data, never executable code. `@da/content/preview`
@@ -94,7 +94,7 @@ teach, and the two are deliberately separate dimensions. Each inventory row carr
 reception standards and this is a production course, so one number could not hold both — `deepens:`
 edges naming the rows it is the deeper pass over, and `claims:` citations into
 `data/strukturenlisten/`, the external inventories the denominator is measured against
-([ADR 0011](adrs/0011-external-grammar-anchors.md)). Grammar uses a dedicated A1–C2 CEFR contract;
+([ADR 0004](adrs/0004-completeness-is-evidence-contracts.md)). Grammar uses a dedicated A1–C2 CEFR contract;
 this does not extend the levels the learner runtime publishes. The explicit track catalog supplies
 the stable rows of Redaktion's Grammatikatlas. Nothing in the learner runtime reads any of it: the
 fields exist so the curriculum can be audited along the language's own axes rather than only along
@@ -149,7 +149,7 @@ focus-tag errors. High recognition or ordering scores do not override weak produ
 the progress audit is the decision surface for remediation.
 
 Topic-owned teaching sets follow the learning-activity contract in [ADR
-0014](adrs/0014-learning-activity-architecture.md). `role` controls runtime/evidence semantics;
+0002](adrs/0002-topic-manifests-and-learning-activities.md). `role` controls runtime/evidence semantics;
 `stage` states scaffold, fade or transfer intent; `activity` states purpose (`core`, `extension`,
 `application`, `remediation`); and the graph derives medium (`mixed`, `listening`, `document`). Every
 topic has exactly one 8–15-item core matching `primary_practice` and at least one productive
@@ -241,13 +241,13 @@ provenance, model-lock and export-safeguard decision.
 `src/lib/profile.ts` resolves local profiles. Each profile owns an IndexedDB database managed by
 `src/lib/store.ts`; same-day UI resume state lives separately in localStorage.
 `src/lib/managed-store.ts` owns connection and transaction recovery; the ordered localStorage
-journal protects grades, attempts, session completion and Leben-in-Deutschland answers ([ADR 0020](adrs/0020-owned-storage-recovery.md)). Snapshot validation
+journal protects grades, attempts, session completion and Leben-in-Deutschland answers ([ADR 0006](adrs/0006-local-first-durable-learner-state.md)). Snapshot validation
 and explicit v1–v8 migrations live in `src/lib/snapshot-schema.ts`, with deterministic merge
 semantics in `src/lib/snapshot-merge.ts`. Snapshot v7 relocates the A1 Wortliste card identities
 through the committed old-id → new-id inventory; collision merging preserves the most advanced
 FSRS record and never duplicates a direction. Snapshot v8 adds the `lid` key — the LiD trainer's
 question states, answer log and mock runs, kept out of `cards` and `attempts`
-([ADR 0021](adrs/0021-leben-in-deutschland-trainer.md)); v1–v7 migrate to an empty one.
+([ADR 0009](adrs/0009-third-party-and-official-material.md)); v1–v7 migrate to an empty one.
 
 The web app exports snapshots. Development middleware and the Tauri filesystem path can
 automatically write them to `progress/<profile>/`. `bun run progress:audit` reads the latest
@@ -258,7 +258,7 @@ An optional account adds a third destination: `src/lib/sync-remote.ts` uploads a
 to `/api/sync/snapshot` and pulls the other device's before merging it locally. Local-first is
 unchanged by it — with no account every call is a no-op. `bun run progress:pull` brings the cloud
 copy back to `progress/<profile>/` so the personalization loop is unaffected. The reasoning is
-[ADR 0003](adrs/0003-opaque-snapshot-sync-and-approval-accounts.md); the operations are
+[ADR 0007](adrs/0007-opaque-snapshot-sync-and-approval-accounts.md); the operations are
 [`cloud-sync.md`](architecture/cloud-sync.md).
 
 ## Delivery and offline
@@ -279,7 +279,7 @@ precached, so a no-op rebuild does not invalidate a learner's cache.
 read every card from `data/cards-<hash>.json` and every exercise set from `data/sets-<hash>.json`,
 built once per build by `src/lib/corpus-payload.ts`; the pages carry only the URLs. A file's name
 is its content hash, so it is immutable and shared by every page that needs it
-([ADR 0022](adrs/0022-session-content-as-shared-data-files.md)). `scripts/page-weight.ts` holds
+([ADR 0008](adrs/0008-delivery-static-site-desktop-shell-worker.md)). `scripts/page-weight.ts` holds
 every HTML page under 1.5 MB in CI.
 
 Four caches on four lifecycles. The **shell** is precached and versioned — content-hashed
@@ -312,7 +312,7 @@ Vocabulary keeps a complete standalone `en` gloss and may add `en_compact` for t
 card surface. The compact form is used only when `pickSecond` resolves an actual RU/UK half;
 EN/DE modes and a missing-UK fallback continue to show full English.
 
-B1 articles invert the default ([ADR 0023](adrs/0023-b1-articles-german-first.md)): German is the body, and each
+B1 articles invert the default ([ADR 0005](adrs/0005-explanation-languages.md)): German is the body, and each
 section closes with a folded `<Translation>` (English first; a Russian-mode reader falls back to it)
 and a folded `<Erklaerung>` holding the authored halves. Under `de` both folds are hidden.
 

@@ -957,7 +957,7 @@ export function loadCorpus(root = repoRoot()): Corpus {
   // Identity comes from the manifest, not from the article.
   //
   // This read MDX frontmatter until 2026-08-15, and had therefore been resolving **zero topics**
-  // since ADR 0012 moved identity into `<id>.topic.yaml` and made the article prose-only. The
+  // since ADR 0002 moved identity into `<id>.topic.yaml` and made the article prose-only. The
   // failure was silent in the worst way the repo knows: `--rank` printed its legend and no rows,
   // the detail form answered "No topic X on the spine" for topics that were plainly on it, and
   // both exited 0. Meanwhile CLAUDE.md and coverage-instruments.md carried a table of level

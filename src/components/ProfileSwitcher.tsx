@@ -15,7 +15,7 @@ import { t } from '../lib/strings';
 import { withBase } from '../lib/url';
 import { useExplainLang, useUiLang } from './hooks';
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md).
     `{label}` is replaced by the caller. */
 const UI = {
   switchProfile: { en: 'Switch learner profile', ru: 'Сменить профиль' },
@@ -50,10 +50,10 @@ const UI = {
 
 /**
  * The sync state the profile menu can show without a single network request
- * (ADR 0004e): pending/blocked come from the session the menu already fetches
+ * (ADR 0007): pending/blocked come from the session the menu already fetches
  * on open, everything else from the locally persisted sync state. No error
  * variant on purpose — outcomes are not persisted, and a *stale* "synced N ago"
- * is the honest outage signal ADR 0004 wants the learner to see.
+ * is the honest outage signal ADR 0007 wants the learner to see.
  */
 export type SyncMenuStatus =
   | { kind: 'hidden' }

@@ -101,7 +101,7 @@ export interface AnchorEntry {
    * It exists because `anchor-check.ts` forces every label word to appear on the page, and without
    * an escape hatch that pressure degrades the labels themselves: a first pass at it shipped
    * `Nachsilbe los` and `Nominalisierung er`, which are worse German than what the booklet prints,
-   * and re-broke a typo an earlier author had deliberately corrected and documented. ADR 0011's
+   * and re-broke a typo an earlier author had deliberately corrected and documented. ADR 0004's
    * rule is that a source is not improved by being quietly corrected — the operative word is
    * *quietly*. `de` is what the structure is; `printed` is what the page says; the check reads
    * `printed ?? de`, so the correction is stated, machine-verified, and impossible to lose.

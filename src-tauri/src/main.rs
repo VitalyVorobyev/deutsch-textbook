@@ -4,10 +4,10 @@
 // Schreib-Assistent's Ollama transport (http, capability-scoped to exactly
 // http://localhost:11434/* — see src/lib/assist.ts and docs/assist-design.md).
 //
-// Three guards were added with ADR 0018, all of them about the webview's storage
+// Three guards were added with ADR 0006, all of them about the webview's storage
 // rather than about the app: the single-instance lock (two processes on one WebKit
 // container contend for its SQLite files, a plausible cause of the IndexedDB stall
-// that produced ADR 0018), `legacy_webkit_container` (a second container from
+// that produced ADR 0006), `legacy_webkit_container` (a second container from
 // bundle-less runs of this binary — reported, never touched) and the `devtools`
 // feature, on in release builds because a single-learner app whose storage can stall
 // is worth being able to inspect where it actually runs.
@@ -50,7 +50,7 @@ fn begin_flush<E: Emitter<tauri::Wry>>(emitter: &E, app: tauri::AppHandle) {
 /// A Tauri app's webview storage lives under a container named after the bundle
 /// identifier; launching the release *binary* without its `.app` gets one named after
 /// the executable instead. That second container is a whole separate IndexedDB *and*
-/// localStorage — its own profile registry, cards and attempts. ADR 0016 recorded the
+/// localStorage — its own profile registry, cards and attempts. ADR 0006 recorded the
 /// hazard and deferred the warning; this is it.
 ///
 /// **Metadata only, and read-only.** Returns the path and a modification time so the

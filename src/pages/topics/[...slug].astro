@@ -104,7 +104,7 @@ const pretestSet = data.pretest ? await getEntry('exercises', data.pretest) : un
 // have not learnt this yet — …"); the aside's explanation would say it a second time, right above.
 const pretestSaysGuess = /^Guess\b/.test(pretestSet?.data.items[0]?.instruction?.en ?? '');
 
-// --- "Siehe auch": every edge derived from data the curriculum owns (ADR 0007) ---
+// --- "Siehe auch": every edge derived from data the curriculum owns (ADR 0001) ---
 const introducedHere = Object.entries(focusIntroducedBy)
   .filter(([, owner]) => owner === data.id)
   .map(([tag]) => tag);

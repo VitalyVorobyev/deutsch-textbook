@@ -1,5 +1,5 @@
 /**
- * Leben-in-Deutschland lesson figures (`figures:` + `<Figure>`, ADR 0021): the pixel-size reader,
+ * Leben-in-Deutschland lesson figures (`figures:` + `<Figure>`, ADR 0009): the pixel-size reader,
  * the schema's provenance rules, and the cross-file rules `bun run validate` runs through
  * `lidLessonProblems` → `lidFigureProblems`.
  *

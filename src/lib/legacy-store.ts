@@ -5,7 +5,7 @@
  * container named after the bundle identifier — `~/Library/WebKit/dev.nonvision.deutsch-atlas`.
  * Launching the release *binary* without its `.app` bundle gets a container named after the
  * executable instead (`~/Library/WebKit/deutsch-atlas`), which is a completely separate
- * profile registry, a separate card store and a separate attempt log. ADR 0016 named this as
+ * profile registry, a separate card store and a separate attempt log. ADR 0006 named this as
  * a real, unfixed hazard and deferred a detect-and-warn to the backlog; this is that warning.
  *
  * Two rules it never breaks: it **reports**, and it reports **metadata only** — a path and a

@@ -1,5 +1,5 @@
 /**
- * `withPersistenceRetry` (src/lib/store.ts) is the write half of ADR 0016, amended by ADR 0019.
+ * `withPersistenceRetry` (src/lib/store.ts) is the write half of ADR 0006.
  *
  * The gap this file closes, stated so it cannot pass by accident: the wrapper rejects with
  * `StoreStallError` at its deadline and then DROPS any attempt that settles afterwards
@@ -9,7 +9,7 @@
  * landed, for the rest of the profile's life. That is the banner in the 2026-09-15 report:
  * a count frozen at 2 in an app that was otherwise grading normally.
  *
- * `withReadRetry` already had the late-settle branch (ADR 0018) — it records a recovery and
+ * `withReadRetry` already had the late-settle branch (ADR 0006) — it records a recovery and
  * drops the value, which is right for a read, where the value is worthless once nobody waits.
  * For a write the value is worthless too, but the FACT that it committed is not.
  *

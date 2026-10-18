@@ -28,7 +28,7 @@
  * role filter to it — so a wrong probe attempt deliberately raises its focus tag's
  * error rate. That is correct, not an oversight: a failed delayed check is exactly the
  * evidence that should raise same-focus practice priority. See
- * docs/adrs/0010-probe-failure-remediation.md.
+ * docs/adrs/0003-the-evidence-model.md.
  */
 import type { Attempt } from './store';
 import { isVerifiedEvidence } from './scoring';
@@ -241,7 +241,7 @@ export function dueProbes(
 
 /**
  * A family that has used every scheduled stage and failed at least one of them — the
- * gap PR-8 names (docs/adrs/0010-probe-failure-remediation.md). Mid-ladder failures
+ * gap PR-8 names (docs/adrs/0003-the-evidence-model.md). Mid-ladder failures
  * already get re-checked, on schedule, by the next rung: `dueProbe` keeps serving this
  * family until `PROBE_INTERVALS_DAYS.length` stages are taken. Once they are, there is
  * no further rung to re-check it — the family needs an authored successor, not another
@@ -400,7 +400,7 @@ export function probeResults(
   });
 }
 
-/** One family's probes answered wrong today (docs/adrs/0010-probe-failure-remediation.md). */
+/** One family's probes answered wrong today (docs/adrs/0003-the-evidence-model.md). */
 export interface ProbeFailureToday {
   family: ProbeFamily;
   /** 0-based stage indices answered wrong today (usually one; a family can log at
@@ -412,7 +412,7 @@ export interface ProbeFailureToday {
 
 /**
  * Every probe family with a wrong attempt logged today — the session-end remediation
- * card's source of truth (R1, docs/adrs/0010-probe-failure-remediation.md). Derived
+ * card's source of truth (docs/adrs/0003-the-evidence-model.md). Derived
  * fresh from the attempt log on every call, like every other piece of probe state: no
  * transient "answered wrong just now" flag to thread through the session, so the card
  * renders the same whether the failure happened a minute ago or the learner reloaded

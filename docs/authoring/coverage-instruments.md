@@ -64,7 +64,7 @@ bun scripts/structures.ts A1 A2 [--unclaimed-only] [--beyond]
 
 `data/strukturenlisten/<source-id>.yaml` holds one file per **source document** — structure labels
 only, in the document's own section order, no example sentences
-([ADR 0011](../adrs/0011-external-grammar-anchors.md)). An inventory row cites entries as
+([ADR 0004](../adrs/0004-completeness-is-evidence-contracts.md)). An inventory row cites entries as
 `claims: [<source-id>:<entry-key>]`, and every published entry is **claimed**, **unclaimed** (a
 hole in the denominator) or **beyond** (a row citing no source — legitimate, since this course
 follows a coursebook progression, but visible rather than assumed). A dangling `claims:` ref fails
@@ -75,7 +75,7 @@ state. The DTZ is cumulative and names an A2–B1 production repertoire, so its 
 scope at B1. `data/strukturenlisten/README.md` names the missing higher-level documents.
 
 Today: **A1 93/93 · A2 300/300 · B1 164/164** claimed. B1 is `100% des DTZ-Inventars`, never "all
-conceivable B1 grammar". Per [ADR 0015](../adrs/0015-provable-course-completeness.md), external
+conceivable B1 grammar". Per [ADR 0004](../adrs/0004-completeness-is-evidence-contracts.md), external
 alignment, internal coverage, teaching depth and learner mastery are never merged into one
 percentage.
 

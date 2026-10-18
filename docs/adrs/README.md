@@ -1,59 +1,57 @@
 # Architecture Decision Records
 
-An ADR here is an **accepted decision with its reasoning attached**: what the situation was, what
-was decided, and what follows from it — including the costs. It is the durable half of a design
-doc: the operational half (endpoints, commands, runbooks) lives with the subsystem it operates
-(e.g. [`../architecture/cloud-sync.md`](../architecture/cloud-sync.md)), while the ADR holds the
-part that stays true after the code moves.
+An ADR records a **foundational decision**: one that a new contributor must know before changing
+the system, that holds after the code moves, and whose reversal would change what the product is.
+It states the decision as it stands, with the forces behind it and the costs accepted.
+
+**What is not an ADR:**
+- an incident fix or its post-mortem — the mechanism goes in `architecture/`, and the lesson in a
+  test;
+- an operational runbook — it lives with its subsystem;
+- a feature spec;
+- a direction still under discussion — that is a [proposal](../proposals/README.md).
+
+If a record needs function names, constants or line numbers to make its point, it is in the wrong
+place.
 
 ## Format
 
-Every ADR is one file:
+Every ADR is one file, `NNNN-<slug>.md`:
 
-1. **H1 title** — `ADR NNNN: <decision>`.
-2. **Status line** — `Status: accepted · YYYY-MM-DD`, dated from the decision recorded in the
-   source material; where no decision date was recorded, `Status: accepted · reframed <date> from
-   <original path>`. Never invent a date.
-3. `## Context` — the situation and the forces; what made a decision necessary.
-4. `## Decision` — what was decided, stated as the rule it is.
-5. `## Consequences` — what follows: the guarantees bought, the costs accepted, the things the
-   decision deliberately does not do.
+1. **H1 title**: `ADR NNNN: <the decision, stated as a rule>`.
+2. **Status line**: `Status: accepted · YYYY-MM-DD`, or `superseded by NNNN · YYYY-MM-DD`.
+3. `## Context`: the situation and the forces that made a decision necessary.
+4. `## Decision`: what was decided, as the rule it is.
+5. `## Consequences`: the guarantees bought, the costs accepted, and what the decision
+   deliberately does not do.
 
-## Numbering
+Keep one under ~80 lines. Link operational detail; do not carry it.
 
-Four digits, zero-padded, next free number — **never reuse a number**, including a withdrawn
-one. A reversed decision is not edited or deleted: a new ADR supersedes it and both note the
-relationship.
+## Numbering and change
+
+Four digits, zero-padded, next free number. **Never reuse a number.** An accepted ADR is not edited
+for substance: a changed decision is a new ADR that supersedes it, and the old one's status line
+names its successor. Fixing a broken link or a typo is not a change of substance.
+
+Every `ADR NNNN` mention anywhere in the repository must name an existing record, and
+`tests/docs-links.test.ts` fails if one does not.
 
 ## Index
 
-| ADR | Decision | Status |
-| --- | --- | --- |
-| [`0001`](0001-bilingual-explanation-halves.md) | Bilingual explanation halves — Sprachen, Ukrainian and the German-medium half | accepted · 2026-07-14 |
-| [`0002`](0002-advisory-only-writing-assistant.md) | Schreib-Assistent — local, advisory-only writing feedback, never evidence | accepted · 2026-07-14 |
-| [`0003`](0003-opaque-snapshot-sync-and-approval-accounts.md) | Opaque snapshot sync and approval accounts | accepted · reframed 2026-08-04 |
-| [`0004`](0004-first-run-accounts-and-automatic-sync.md) | Accounts at first run, sync already automatic, cloud recommended | accepted · 2026-08-04 |
-| [`0005`](0005-one-surface-for-fortschritt-and-konto.md) | One surface for Fortschritt and Konto | accepted · 2026-08-04 |
-| [`0006`](0006-public-domain-classics-as-extensive-reading-corpus.md) | Public-domain classics as the second extensive-reading strand | accepted · 2026-08-04 |
-| [`0007`](0007-derived-cross-links-never-hand-maintained.md) | Cross-links are derived, never hand-maintained | accepted · 2026-08-04 |
-| [`0008`](0008-character-ensemble-and-audio-studio.md) | A recurring character ensemble, and productizing the audio studio | **proposed** · 2026-08-04 |
-| [`0009`](0009-official-exam-materials-local-only.md) | Official exam materials are local-only; the trainer degrades honestly without them | accepted · 2026-08-11 |
-| [`0010`](0010-probe-failure-remediation.md) | Probe-failure remediation — a session-end card, a documented weakness channel, and a named exhausted state | accepted · 2026-08-12 |
-| [`0011`](0011-external-grammar-anchors.md) | The grammar denominator is anchored to published inventories, labels only | accepted · 2026-08-14 |
-| [`0012`](0012-topic-manifests.md) | A topic declares itself in one manifest; the article keeps prose only | accepted · 2026-08-14 |
-| [`0013`](0013-redaction-repository-workbench.md) | Redaction is a repository-backed desktop workbench | accepted · 2026-08-14 |
-| [`0014`](0014-learning-activity-architecture.md) | Exercise files retain identity; learning activities own purpose and presentation | accepted · 2026-08-14 |
-| [`0015`](0015-provable-course-completeness.md) | Course completeness is a set of evidence contracts, never one score | accepted · 2026-08-14 |
-| [`0016`](0016-durable-progress-writes.md) | A progress write is journaled, retried on a timer, and loud when late | accepted · 2026-08-26 |
-| [`0018`](0018-progress-reads-recover.md) | Reads recover on a timer, and no surface renders a stall as emptiness | accepted · 2026-09-03 |
-| [`0019`](0019-writes-single-flight-and-confirm-late.md) | A write that lands late still confirms itself, and only one runs at a time | accepted · 2026-09-15 |
-| [`0020`](0020-owned-storage-recovery.md) | A stalled transaction is aborted before a retry, and one ordered journal drain owns every durable write | accepted · 2026-09-17 |
-| [`0021`](0021-leben-in-deutschland-trainer.md) | The Leben-in-Deutschland bank ships verbatim, and practising it is learning, not calibration | accepted · 2026-10-10 |
-| [`0022`](0022-session-content-as-shared-data-files.md) | The session pages fetch the corpus as two shared, content-hashed data files | accepted · 2026-10-11 |
-| [`0023`](0023-b1-articles-german-first.md) | B1 articles are German-first, with the translation and the authored explanation folded | accepted · 2026-10-17 |
+| ADR | Decision |
+| --- | --- |
+| [`0001`](0001-repository-is-the-content-database.md) | The repository is the content database |
+| [`0002`](0002-topic-manifests-and-learning-activities.md) | A topic is one manifest, and its exercises are organised as learning activities |
+| [`0003`](0003-the-evidence-model.md) | What counts as learning evidence, and what never does |
+| [`0004`](0004-completeness-is-evidence-contracts.md) | Course completeness is a set of evidence contracts against named anchors |
+| [`0005`](0005-explanation-languages.md) | Explanations are authored per language, and B1 reads German first |
+| [`0006`](0006-local-first-durable-learner-state.md) | Learner state is local-first, and the store never fails silently |
+| [`0007`](0007-opaque-snapshot-sync-and-approval-accounts.md) | Sync stores opaque snapshots, and an account grants nothing until approved |
+| [`0008`](0008-delivery-static-site-desktop-shell-worker.md) | The course ships as a static site, a thin desktop shell and one Worker |
+| [`0009`](0009-third-party-and-official-material.md) | What third-party and official material may enter the repository |
+| [`0010`](0010-editorial-tools-are-separate-apps.md) | Editorial tools are separate applications over the checkout |
+| [`0011`](0011-shared-ui-from-vitavision-packages.md) | Shared UI comes from the `@vitavision/*` packages, and each app's identity is a theme |
 
-A `proposed` ADR records a direction and its open questions; it authorizes nothing, and it is
-superseded by a new ADR rather than edited into an acceptance.
-
-Rationale that predates this ADR practice — completed roadmaps, superseded design notes, dated
-evidence reviews — lives only in git history.
+All eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions of an
+earlier series of 22 records. That series is in git history (`git show fa110bd:docs/adrs/`), and
+none of it is in force except as restated here.

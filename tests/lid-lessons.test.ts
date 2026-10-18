@@ -1,5 +1,5 @@
 /**
- * Leben-in-Deutschland lessons (`content/lid/lessons/<id>.mdx`, ADR 0021): what `bun run validate`
+ * Leben-in-Deutschland lessons (`content/lid/lessons/<id>.mdx`, ADR 0009): what `bun run validate`
  * holds them to through `lidProblems` → `lidLessonProblems`, and how `loadLidLessons` reads them.
  *
  * Every case runs against a throwaway root holding the real `content/lid/topics.yaml` and one

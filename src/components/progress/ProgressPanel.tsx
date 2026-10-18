@@ -68,7 +68,7 @@ function savedProgressView(value: string | null): ProgressView | undefined {
   return value === 'uebersicht' || value === 'nachweise' || value === 'daten' ? value : undefined;
 }
 
-/** Explanation-language strings — one hoisted record per file (docs/adrs/0001-bilingual-explanation-halves.md).
+/** Explanation-language strings — one hoisted record per file (docs/adrs/0005-explanation-languages.md).
     `{…}` placeholders are replaced by the caller. */
 const UI = {
   writtenTo: { en: 'Written to {path}', ru: 'Сохранено в {path}' },
@@ -347,7 +347,7 @@ export default function ProgressPanel({
     }
     await refresh();
     // Whether the applied file then reaches the cloud is a property of the
-    // account state, never of which button was pressed (ADR 0005). A failed
+    // account state, never of which button was pressed (ADR 0007). A failed
     // push keeps the plain local message: the Konto section below already
     // explains a pending or blocked account.
     if (readSyncState().profileId === getActiveProfileId()) {
@@ -599,7 +599,7 @@ export default function ProgressPanel({
                   </dt>
                   <dd className="font-semibold tabular-nums">{stalls.length}</dd>
                 </div>
-                {/* Three rows, not one: reads and writes share this log since ADR 0019, so a
+                {/* Three rows, not one: reads and writes share this log since ADR 0006, so a
                     single most-recent entry is weak evidence — a stalled grade and a stalled
                     Themen read are different bugs and both want to be visible. */}
                 {stalls.slice(0, 3).map((e, i) => (
@@ -667,7 +667,7 @@ export default function ProgressPanel({
               </p>
             )}
           </section>
-          {/* The whole account surface, moved here from /konto (ADR 0005). It
+          {/* The whole account surface, moved here from /konto (ADR 0007). It
               renders its own cards and asks for the session only when mounted,
               so the request happens per Daten view, not per page load. */}
           <AccountPanel />

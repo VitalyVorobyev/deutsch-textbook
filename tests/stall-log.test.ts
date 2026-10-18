@@ -1,5 +1,5 @@
 /**
- * The stall log (src/lib/stall-log.ts) is the evidence the failure behind ADR 0018 did not
+ * The stall log (src/lib/stall-log.ts) is the evidence the failure behind ADR 0006 did not
  * leave. The learner saw "Fortschritt konnte nicht geladen werden"; every fact that said
  * what was *not* wrong — a 1.7 MB backup two hours old, an empty write journal, an intact
  * profile registry, a sync API answering in 41 ms — had to be dug out of the machine

@@ -205,8 +205,8 @@ engine rule.
 
 - [`../../apps/tonwerk/DESIGN.md`](../../apps/tonwerk/DESIGN.md) — the visual language, and why the
   app spends colour on exactly one distinction.
-- [ADR 0008](../adrs/0008-character-ensemble-and-audio-studio.md) — the character ensemble and the
-  audio studio as a product.
+- [the characters proposal](../proposals/characters-and-stories.md) — a recurring cast with voices
+  and stories, still open.
 - [`../authoring/product-protection.md`](../authoring/product-protection.md) — the consent and
   licensing policy behind cloned voices and imported sound.
 - [`../../tools/listening-studio/README.md`](../../tools/listening-studio/README.md) — the engine:
