@@ -2,7 +2,7 @@
 
 Report:
 
-- project slug and local Studio URL;
+- project slug and local Tonwerk URL;
 - level, outcome and measured duration against the plan;
 - character ids and pinned versions;
 - source hashes, roles, gains and placement reasons;

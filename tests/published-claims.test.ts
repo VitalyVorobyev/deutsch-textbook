@@ -109,9 +109,11 @@ describe('published progress claims match the content', () => {
     expect(numeral(b1![3])).toBe(count('B1') - contractedB1Units());
   });
 
-  test('the CLAUDE.md grammar digest matches the grammar-coverage instrument', () => {
+  test('the content/CLAUDE.md grammar digest matches the grammar-coverage instrument', () => {
     // "A1 22/22, A2 30/30, B1 21/32." — re-derive with `bun scripts/grammar-coverage.ts <level>`.
-    const line = /A1 (\d+)\/(\d+), A2 (\d+)\/(\d+), B1 (\d+)\/(\d+)\./.exec(read('CLAUDE.md'));
+    const line = /A1 (\d+)\/(\d+), A2 (\d+)\/(\d+), B1 (\d+)\/(\d+)\./.exec(
+      read('content/CLAUDE.md'),
+    );
     expect(line).not.toBeNull();
     const [, a1c, a1t, a2c, a2t, b1c, b1t] = line!.map(Number);
     for (const [level, stated, total] of [
@@ -155,8 +157,8 @@ describe('published progress claims match the content', () => {
    * the denominator in prose. A new topic adds outcomes, so this number moves whenever content
    * ships — which is precisely the kind of figure that rots unwatched.
    */
-  test('the CLAUDE.md outcome count matches the corpus', () => {
-    const line = /do the (\d+) `outcomes` contain/.exec(read('CLAUDE.md'));
+  test('the data/CLAUDE.md outcome count matches the corpus', () => {
+    const line = /do the (\d+) `outcomes` contain/.exec(read('data/CLAUDE.md'));
     expect(line).not.toBeNull();
     const outcomes = [...contentGraph().topics.values()].reduce(
       (n, t) => n + (t.data.outcomes?.length ?? 0),

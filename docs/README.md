@@ -16,9 +16,9 @@ A direction still being argued is a proposal, not an ADR.
 **User documents and developer documents never restate each other.** The user side is
 [`README.md`](../README.md), [`CHANGELOG.md`](../CHANGELOG.md), [`NOTICE.md`](../NOTICE.md), the
 app guides in [`apps/`](apps/README.md), and the site's `/about` and `/install` pages. It says what
-the software does and how to use it. The developer side is everything else here, plus `CLAUDE.md`
-and `AGENTS.md`, and says how it works and how to change it. Each side links to the other where a
-reader needs to cross, and copies nothing — duplicated text drifts.
+the software does and how to use it. The developer side is everything else here, plus the root and per-directory `CLAUDE.md` files and
+the skills in `.claude/skills/`; it says how the system works and how to change it. Each side links
+to the other where a reader needs to cross, and copies nothing — duplicated text drifts.
 
 ## Map
 

@@ -13,7 +13,7 @@ packaging: one long block holding many idea units under a single signal, with it
 the prose that explains them.
 
 The evidence, labelled by strength (full catalogue: the `learning-science` skill, §17 in
-`.agents/skills/learning-science/references/learning-principles.md`):
+`.claude/skills/learning-science/references/learning-principles.md`):
 
 - **Segmenting and signalling** — *moderate*. Headings and structural cues improve organised recall
   and let a reader find a rule again (Mayer; Lorch & Lorch 1996; Meyer's structure strategy).
@@ -70,7 +70,7 @@ orthography at once:
 - `.claude/skills/textbook-text-reviewer/` — diagnosis only: findings with severity, learner impact
   and a revision direction. Never rewrites.
 - `.claude/skills/textbook-text-editor/` — repair against the reviewer's findings.
-- `.claude/skills/textbook-quality-rubric.md` — the shared rubric both apply.
+- `.claude/skills/textbook-text-reviewer/references/rubric.md` — the shared rubric both apply.
 
 **The defect class is the calque.** A RU/UK half drafted while the EN half is in view inherits its
 rhetoric sentence-for-sentence, and figures that work in English — antithesis, a unit number as a

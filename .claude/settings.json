@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run validate)",
+      "Bash(bun run check)",
+      "Bash(bun run lint)",
+      "Bash(bun run fmt:check)",
+      "Bash(bun run build)",
+      "Bash(bun run activity:audit)",
+      "Bash(bun run review:gate)",
+      "Bash(bun run tonwerk:check)",
+      "Bash(bun run tonwerk:test)",
+      "Bash(bun run progress:audit *)",
+      "Bash(bun test *)",
+      "Bash(bun scripts/coverage.ts *)",
+      "Bash(bun scripts/grammar-coverage.ts *)",
+      "Bash(bun scripts/grammar-depth.ts *)",
+      "Bash(bun scripts/structures.ts *)",
+      "Bash(bun scripts/handlungen.ts *)",
+      "Bash(bun scripts/themen.ts *)",
+      "Bash(bun scripts/comprehensibility.ts *)",
+      "Bash(bun scripts/prose-shape.ts *)",
+      "Bash(bun scripts/gloss-shape.ts *)",
+      "Bash(bun scripts/lang-cost.ts *)",
+      "Bash(bun scripts/anchor-check.ts *)",
+      "Bash(bun scripts/page-weight.ts)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)"
+    ]
+  }
+}

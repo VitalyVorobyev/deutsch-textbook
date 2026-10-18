@@ -52,7 +52,7 @@ Identify:
 
 ### 3. Apply the shared rubric
 
-The rubric lives at [`../textbook-quality-rubric.md`](../textbook-quality-rubric.md), beside this skill's directory. Score:
+The rubric lives at [`references/rubric.md`](references/rubric.md), inside this skill's directory. Score:
 
 - clarity;
 - referential precision;
