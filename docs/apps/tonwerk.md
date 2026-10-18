@@ -30,12 +30,12 @@ model weights installed at all. You need the models only to **render**.
 
 ```sh
 bun install
-bun run tonwerk:build                      # once, and after any change to apps/tonwerk
+bun run tonwerk:build                      # once, and after any change to apps/tonwerk/ui
 
-cd tools/listening-studio
+cd apps/tonwerk/engine
 uv sync --extra test
 uv run atlas-listening doctor              # ffmpeg, ffprobe, git, python
-uv run atlas-listening serve --repo ../..  # opens http://127.0.0.1:8765/
+uv run atlas-listening serve --repo ../../..  # opens http://127.0.0.1:8765/
 ```
 
 `serve` prints three lines. The second is the one you need:
@@ -46,7 +46,7 @@ API bearer token: <a long random string>
   curl -H "Authorization: Bearer …" http://127.0.0.1:8765/api/registry
 ```
 
-Paste that token into Tonwerk's *Mit der Engine verbinden* screen. If `apps/tonwerk/dist` has not
+Paste that token into Tonwerk's *Mit der Engine verbinden* screen. If `apps/tonwerk/ui/dist` has not
 been built, `serve` says so and `/` answers a plain-text hint instead of the app — the API keeps
 working, so this is a build you forgot, not a broken install.
 
@@ -141,7 +141,7 @@ entschieden* — and the order is part of what it produces.
 Publishing is the engine's, not Tonwerk's, and it takes a deliberate confirmation:
 
 ```sh
-uv run atlas-listening scene publish-approved --repo ../.. --yes
+uv run atlas-listening scene publish-approved --repo ../../.. --yes
 ```
 
 It refuses unapproved revisions, approvals that vouch for no bytes, and existing targets.
@@ -181,13 +181,13 @@ reason the tool looks harder than it is. The short answer:
 The rest — `recast-corpus`, `lock-voice-profiles`, `regenerate-voice-profile-corpus`,
 `benchmark-voice-consistency`, `experiment-human-voice-clone`, the pre-scene `*-reading` verbs — are
 corpus-migration and research tooling, run once under supervision. They are documented in
-[`../../tools/listening-studio/README.md`](../../tools/listening-studio/README.md).
+[`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md).
 
 ## When something is wrong
 
 | Symptom | Cause |
 | --- | --- |
-| `/` shows plain text naming a build command | `apps/tonwerk/dist` is missing. `bun run tonwerk:build`. |
+| `/` shows plain text naming a build command | `apps/tonwerk/ui/dist` is missing. `bun run tonwerk:build`. |
 | Back at the token screen, with a reason | The engine restarted and minted a new token. Copy the current one. |
 | The render button is disabled | The scene declares no variant, or a run is already going. |
 | **Automatisch prüfen** is disabled | There is no master yet — render first. |
@@ -203,11 +203,11 @@ engine rule.
 
 ## Further
 
-- [`../../apps/tonwerk/DESIGN.md`](../../apps/tonwerk/DESIGN.md) — the visual language, and why the
+- [`../../apps/tonwerk/ui/DESIGN.md`](../../apps/tonwerk/ui/DESIGN.md) — the visual language, and why the
   app spends colour on exactly one distinction.
 - [the characters proposal](../proposals/characters-and-stories.md) — a recurring cast with voices
   and stories, still open.
 - [`../authoring/product-protection.md`](../authoring/product-protection.md) — the consent and
   licensing policy behind cloned voices and imported sound.
-- [`../../tools/listening-studio/README.md`](../../tools/listening-studio/README.md) — the engine:
+- [`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md) — the engine:
   synthesis, DSP, model locks and the corpus migrations.

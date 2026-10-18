@@ -80,7 +80,7 @@ human has approved that exact revision and WAV.
 Contextual sound may also be **generated**, and that path is supported on the same terms as the
 imported one. The engine is Stable Audio 3 Small-SFX through Stability's own MLX implementation,
 with the weights repository and its revision, the adapter code repository and its commit, and the
-model licence pinned in `tools/listening-studio/models.lock.json`; the engine refuses to run
+model licence pinned in `apps/tonwerk/engine/models.lock.json`; the engine refuses to run
 against anything else. Every generated asset keeps its own provenance — prompt, negative prompt,
 seed, duration, resolved engine parameters, engine name, model and adapter revisions and the
 licence — in the asset-store sidecar beside the WAV and in the render manifest that shipped it.
@@ -120,7 +120,7 @@ permits the voice to be cast in course audio that ships, and costs more rather t
 - a minor additionally requires explicit guardian consent **and** guardian-attested child assent,
   at either scope.
 
-The full rule vocabulary lives in `tools/listening-studio/src/listening_studio/generative/voices.py`
+The full rule vocabulary lives in `apps/tonwerk/engine/src/listening_studio/generative/voices.py`
 and is served by `GET /api/voices`, so the consent form in Tonwerk prints the rules it will be held
 to. Every refusal names the rule it failed. The rules are enforced in one place and re-implemented
 in none.
@@ -157,7 +157,7 @@ whose runner refuses missing consent, output outside `.private/` and overwriting
 That path authorizes local evaluation only; publication of any voice requires its own
 publication-scope consent under the rules above.
 
-The cloning checkpoint is pinned in `tools/listening-studio/models.lock.json` beside the other
+The cloning checkpoint is pinned in `apps/tonwerk/engine/models.lock.json` beside the other
 production models, with its licence and the same training-data honesty note they all carry. Its
 Apache-2.0 licence says nothing about whose voices it was trained on, and is never presented as
 if it did; consent for the voice it *clones* is the separate record described here.

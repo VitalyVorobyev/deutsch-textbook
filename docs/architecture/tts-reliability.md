@@ -1,7 +1,7 @@
 # Qwen3-TTS reliability on this machine
 
 Status: **measured** (2026-08-21). Supersedes the "Qwen is recorded as unreliable on this machine"
-line in `tools/listening-studio/README.md` (2026-08-01).
+line in `apps/tonwerk/engine/README.md` (2026-08-01).
 
 Machine: MacBook Pro M4 Pro, 12 CPU cores, 24 GB unified memory, macOS 26.5, otherwise idle, on
 mains power. Runtime as pinned by `requirements-qwen-runtime.txt`: Python 3.12, torch 2.13.0,
@@ -10,8 +10,8 @@ torchaudio 2.11.0, transformers 4.57.3, numpy 2.2.6, `qwen-tts` 0.1.1 at the pin
 `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice` at `0c0e3051f131…`. Speaker `Vivian`, language `German`,
 model output 24 kHz.
 
-Every figure below comes from `tools/listening-studio/scripts/tts_reliability_probe.py`, run from
-`tools/listening-studio`. A generation **fails** on an exception, on a NaN/inf sample, or on peak
+Every figure below comes from `apps/tonwerk/engine/scripts/tts_reliability_probe.py`, run from
+`apps/tonwerk/engine`. A generation **fails** on an exception, on a NaN/inf sample, or on peak
 amplitude below `1e-4`; nothing here is a judgement by ear.
 
 ## Conclusion
@@ -212,7 +212,7 @@ if self.model.tts_model_size in "0b6":  # for 0b6 model, instruct is not support
     instruct = None
 ```
 
-The 0.6B checkpoint's `tts_model_size` is exactly `"0b6"`, so **every style instruction the Studio
+The 0.6B checkpoint's `tts_model_size` is exactly `"0b6"`, so **every style instruction the engine
 sends is discarded** — the field is authored, stored, hashed into the cache key, and has no effect
 on the audio. The 1.7B checkpoint reports `"1b7"` and would honour it.
 
@@ -244,7 +244,7 @@ Stated so nothing here is read as covering it:
 ## Reproducing the environment
 
 ```sh
-cd tools/listening-studio
+cd apps/tonwerk/engine
 uv sync --extra test && ./install-qwen.sh     # the generation runtime; nothing else installs it
 uv pip install mlx-whisper==0.4.3             # only for --qa
 ```

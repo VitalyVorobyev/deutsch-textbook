@@ -63,7 +63,7 @@
         "yaml": "^2.9.1",
       },
     },
-    "apps/tonwerk": {
+    "apps/tonwerk/ui": {
       "name": "@da/tonwerk",
       "version": "0.4.0",
       "dependencies": {
@@ -234,7 +234,7 @@
 
     "@da/schema": ["@da/schema@workspace:packages/schema"],
 
-    "@da/tonwerk": ["@da/tonwerk@workspace:apps/tonwerk"],
+    "@da/tonwerk": ["@da/tonwerk@workspace:apps/tonwerk/ui"],
 
     "@da/ui": ["@da/ui@workspace:packages/ui"],
 
