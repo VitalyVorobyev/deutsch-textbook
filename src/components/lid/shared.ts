@@ -46,7 +46,7 @@ export interface LidLessonView {
   ids: string[];
 }
 
-/** What `/leben/ueben?lektion=<id>` needs of each lesson: its title and its questions. */
+/** What `/pruefung/leben/ueben?lektion=<id>` needs of each lesson: its title and its questions. */
 export type LidLessonScopes = Record<string, { title: string; ids: string[] }>;
 
 /** The lessons as the practice island's scope map. */

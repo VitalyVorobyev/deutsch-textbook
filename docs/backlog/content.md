@@ -81,9 +81,6 @@ Course content: articles, items, probes, vocabulary, readings and their language
   978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9); also the adult Goethe A2
   *Prüfungsziele* (the free A2 list is the youth exam). Each becomes one
   `data/strukturenlisten/*.yaml` whose entries start `unclaimed`.
-- **P26-13 · A2 and B1 exam trainers.** The material is in `docs/GeotheInstitute/`
-  (`SOURCES.md`); extending `exam:ingest` is config plus a cue pass whose labels and boundaries must
-  be verified by ear or word-level ASR. ADR 0009 holds: nothing from these files enters the repo.
 
 ## B1 findings below the material bar
 

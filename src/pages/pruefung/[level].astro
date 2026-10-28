@@ -2,54 +2,72 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import UebenNav from '../../components/UebenNav.astro';
+import PruefungCrumbs from '../../components/PruefungCrumbs.astro';
 import ExerciseSetIsland from '../../components/exercises/ExerciseSet';
-import { withBase } from '../../lib/url';
+import GoetheExamSimulator from '../../components/pruefung/GoetheExamSimulator';
+import { GOETHE_EXAMS } from '../../lib/pruefung';
 
-export async function getStaticPaths() {
-  const sets = await getCollection('exercises', ({ data }) => data.role === 'exam-practice');
-  const levels = [...new Set(sets.map((set) => set.id.split('/')[0]!))];
-  return levels.map((level) => ({ params: { level }, props: { level } }));
+export function getStaticPaths() {
+  return GOETHE_EXAMS.map((exam) => ({ params: { level: exam.level }, props: { exam } }));
 }
 
-const { level } = Astro.props as { level: string };
-const allSets = await getCollection('exercises', ({ data }) => data.role === 'exam-practice');
-const sets = allSets.filter((set) => set.id.startsWith(`${level}/`));
+const { exam } = Astro.props as { exam: (typeof GOETHE_EXAMS)[number] };
+const level = exam.level;
+// The course's own Goethe-style sets (A1 only so far) — committed, repeatable, and present in
+// every build, unlike the official sets above them.
+const sets = (await getCollection('exercises', ({ data }) => data.role === 'exam-practice')).filter((set) =>
+  set.id.startsWith(`${level}/`),
+);
 const allDocuments = await getCollection('documents');
 const documentsById = new Map(allDocuments.map((document) => [document.id, document.data]));
-const title = `Prüfungspraxis ${level.toUpperCase()}`;
 ---
 
-<Base title={title}>
+<Base title={`Prüfung ${exam.title}`} description={`Prüfungsvorbereitung ${exam.title}: offizielle Übungssätze und eigene Übungen`}>
   <UebenNav active="pruefung" />
-  <!-- The H1 adds the level to the tab's "Prüfung"; the page's description is the tab's tooltip
-       (docs/overview.md, "Page chrome"). The unverified-practice note stays visible: it is the
-       open-production invariant, said before the learner writes, not after. -->
+  <PruefungCrumbs trail={[]} />
   <header class="mb-6">
-    <h1 lang="de" class="text-2xl font-bold sm:text-3xl">{title}</h1>
-    <p class="mt-2 text-sm text-stone-500 dark:text-stone-400">
-      <span class="lang-en">Open writing and speaking are saved as unverified practice. Compare your response with the model; they do not raise measured mastery.</span>
-      <span class="lang-ru">Свободное письмо и говорение сохраняются как непроверенная практика. Сравнивайте ответ с образцом; эти задания не повышают измеренное освоение.</span>
-      <span class="lang-uk">Вільне письмо й говоріння зберігаються як неперевірена практика. Порівнюйте відповідь зі зразком; ці завдання не підвищують виміряне опанування.</span>
-    </p>
-    {level === 'a1' && (
-      <p class="mt-2 text-sm">
-        <a href={withBase('/pruefung/goethe-a1')} class="font-semibold text-amber-700 hover:underline dark:text-amber-400">Prüfungssimulator →</a>
-        <span class="ml-1 text-stone-500 dark:text-stone-400">
-          <span class="lang-en">Timed runs of the official Goethe practice sets, when their materials are present on this device.</span>
-          <span class="lang-ru">Прогон официальных комплектов Гёте на время — если их материалы есть на этом устройстве.</span>
-          <span class="lang-uk">Проходження офіційних комплектів Ґете на час — якщо їхні матеріали є на цьому пристрої.</span>
-        </span>
-      </p>
-    )}
+    <h1 lang="de" class="text-2xl font-bold sm:text-3xl">
+      {exam.title}
+      {exam.subtitle && <span class="block text-base font-medium text-stone-500 sm:inline sm:text-lg dark:text-stone-400"> · {exam.subtitle}</span>}
+    </h1>
   </header>
-  <div class="space-y-8">
-    {sets.map((entry) => {
-      const ids = [...new Set(entry.data.items.flatMap((item) => item.stimulus ? [item.stimulus] : []))];
-      const documents = Object.fromEntries(ids.flatMap((id) => {
-        const document = documentsById.get(id);
-        return document ? [[id, document]] : [];
-      }));
-      return <ExerciseSetIsland client:only="react" setId={entry.id} set={entry.data} documents={documents} />;
-    })}
-  </div>
+
+  <section aria-labelledby="official">
+    <h2 id="official" lang="de" class="text-lg font-bold">Offizielle Übungssätze</h2>
+    <p class="mb-4 mt-1 text-sm text-stone-500 dark:text-stone-400">
+      <span class="lang-en">Timed runs of the official Goethe-Institut practice sets: Hören, Lesen and Schreiben with the real answer sheets, Sprechen as task cards. The materials stay on this device and are never part of the public site. Results are calibration only: they never count toward mastery, and the free Schreiben part is a self-assessment against the printed criteria, stored as exactly that.</span>
+      <span class="lang-ru">Прогон официальных тренировочных комплектов Гёте-Института на время: Hören, Lesen и Schreiben с настоящими бланками ответов, Sprechen в виде карточек с заданиями. Материалы остаются на этом устройстве и не входят в публичный сайт. Результаты служат только для самооценки и не влияют на освоение тем; свободная часть Schreiben оценивается по печатным критериям самостоятельно и так и сохраняется.</span>
+      <span class="lang-uk">Проходження офіційних тренувальних комплектів Ґете-Інституту на час: Hören, Lesen і Schreiben зі справжніми бланками відповідей, Sprechen у вигляді карток із завданнями. Матеріали залишаються на цьому пристрої й не входять до публічного сайту. Результати слугують лише для самооцінки й не впливають на опанування тем; вільна частина Schreiben оцінюється за друкованими критеріями самостійно й саме так і зберігається.</span>
+    </p>
+    <GoetheExamSimulator client:only="react" level={level} />
+  </section>
+
+  {
+    sets.length > 0 && (
+      <section aria-labelledby="practice" data-exam-aside class="mt-12">
+        <h2 id="practice" lang="de" class="text-lg font-bold">
+          Eigene Übungen im Prüfungsformat
+        </h2>
+        <!-- The unverified-practice note stays visible: it is the open-production invariant,
+             said before the learner writes, not after. -->
+        <p class="mb-6 mt-1 text-sm text-stone-500 dark:text-stone-400">
+          <span class="lang-en">Original tasks in the exam's formats, always available. Open writing and speaking are saved as unverified practice: compare your response with the model; they do not raise measured mastery.</span>
+          <span class="lang-ru">Собственные задания в форматах экзамена, доступные всегда. Свободное письмо и говорение сохраняются как непроверенная практика: сравнивайте ответ с образцом; эти задания не повышают измеренное освоение.</span>
+          <span class="lang-uk">Власні завдання у форматах іспиту, доступні завжди. Вільне письмо й говоріння зберігаються як неперевірена практика: порівнюйте відповідь зі зразком; ці завдання не підвищують виміряне опанування.</span>
+        </p>
+        <div class="space-y-8">
+          {sets.map((entry) => {
+            const ids = [...new Set(entry.data.items.flatMap((item) => (item.stimulus ? [item.stimulus] : [])))];
+            const documents = Object.fromEntries(
+              ids.flatMap((id) => {
+                const document = documentsById.get(id);
+                return document ? [[id, document]] : [];
+              }),
+            );
+            return <ExerciseSetIsland client:only="react" setId={entry.id} set={entry.data} documents={documents} />;
+          })}
+        </div>
+      </section>
+    )
+  }
 </Base>

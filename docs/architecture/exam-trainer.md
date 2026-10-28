@@ -18,13 +18,16 @@ never silently summed with it**. Sprechen, a Gruppenprüfung nothing solo can gr
 task cards with the examiner pages behind a disclosure — no sheet, no history. A set holding all
 three written modules also offers them as one sitting (Hören → Lesen → Schreiben, no scores
 between modules). It sits beside — and does not replace — the committed,
-repeatable `/pruefung/<level>` practice sets (original Goethe-*style* items authored for this
-course), which is where `/pruefung/<level>` already links out to it under "Prüfungssimulator".
+repeatable practice sets (original Goethe-*style* items authored for this course, A1 so far),
+which share its page.
 
 What is committed: the manifest contract and scoring arithmetic (`src/lib/exam-sim.ts`), the
 local result history it defines, the ingestion script below, and the trainer page itself —
-`/pruefung/goethe-a1` with its simulator island, which fetches the manifest at runtime and
-renders the absence state when no build-local materials exist.
+`/pruefung/<level>` for A1, A2 and B1 (`GOETHE_EXAMS`, `src/lib/pruefung.ts`), each with the
+simulator island filtered to its own level. The island fetches the manifest at runtime and renders
+the absence state when no build-local set of that level exists; the hub at `/pruefung` counts each
+level's sets on the device the same way. While a module runs, the island sets `data-exam-run` on
+`<html>` and the page hides its `[data-exam-aside]` sections, so a sitting owns the screen.
 
 ## The local-only boundary
 
@@ -82,6 +85,15 @@ documented in the comment at the top of `scripts/exam-ingest.ts`; the essentials
   `- { label: "Nr. 7", at: "9:05" }`. `at` takes `"m:ss"`/`"mm:ss"` or plain seconds and is
   converted to seconds in the manifest; labels are at most 24 characters and `at` must strictly
   increase within a module. See "Cues" below.
+- Choice items take `shape: abc | ab | rf | jn` (Ja/Nein, B1 Lesen Teil 4) or `shape: letters`
+  with the printed list in `options` — `[a, b, c, d, e, f, x]` for A2 Lesen Teil 4, whose `x`
+  marks "keine Lösung"; `[a, …, j, 0]` for B1 Lesen Teil 3. The key must be one of the options.
+- `scoreTable` (optional) is the source's printed raw → points conversion, one entry per raw
+  score from 0 to the item count (B1: *Umrechnungstabelle Hören und Lesen*). Without it the raw
+  score is scaled linearly and exactly — A2 prints "mit 1,25 multipliziert" and no rounding.
+- `passMark` (optional) is a module pass mark in module points, set only where the booklet prints
+  one (B1: 60 per module). The result screen shows a verdict only then; A1 and A2 modules print
+  none of their own, and the screen says so rather than inventing a percentage.
 - Schreiben Teil 1 blanks are `shape: text` items with `answer` (as the Lösungen print it) plus
   an `accept` list; comparison is literal (case/whitespace/trailing-punctuation-insensitive), so
   the UI always shows the official answer beside a ✗. Teil 2 is a `free:` part — `label`,
@@ -102,8 +114,9 @@ bun run exam:ingest -- --sources <path> # use a config file somewhere other than
 ```
 
 For each module, it renders the listed `pdfPages` to PNG at 150 dpi (`pdftoppm`) and, when
-`audio` is set, extracts the audio stream without re-encoding (`ffmpeg -acodec copy` — the source
-video is already AAC, so there is nothing to transcode). Idempotent: a page or audio file already
+`audio` is set, extracts the audio stream: an AAC soundtrack (the Goethe videos) is copied without
+re-encoding, and any other source — the A2 Übungssatz ships an MP3 — is encoded to AAC, because the
+output is an `.m4a`. Idempotent: a page or audio file already
 newer than its source is left alone, so editing one Teil's answer key and re-running does not
 re-render pages that did not change. `--check` never touches disk and never requires `pdftoppm`
 or `ffmpeg` to be installed — only the config and the referenced source files.
@@ -122,7 +135,8 @@ the page cannot read or that 404s on its own assets.
 
 ## Cues
 
-A Hören module is one ~17–19-minute recording, which is exactly right in Prüfungsmodus and
+A Hören module is one recording (17–19 minutes at A1, 23–24 at A2, 37–39 at B1, by `ffprobe`
+on the local files), which is exactly right in Prüfungsmodus and
 useless when the learner wants Nummer 9 again. `cues` gives the module a list of named jump
 points, and the runner renders them **in Üben only**, as a wrap row of small buttons under the
 audio element; a click seeks and plays from there. Prüfungsmodus never shows them, for the same

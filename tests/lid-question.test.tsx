@@ -425,7 +425,7 @@ describe('lessons', () => {
   const LESSON = { id: 'staat-symbole', title: 'Staatssymbole' };
   const happyDom = (globalThis as unknown as { happyDOM: { setURL: (url: string) => void } })
     .happyDOM;
-  const at = (search: string) => happyDom.setURL(`http://localhost/leben/ueben${search}`);
+  const at = (search: string) => happyDom.setURL(`http://localhost/pruefung/leben/ueben${search}`);
   const IN_LESSON: LidEntry = { ...IMAGES, lesson: LESSON };
   const lessonLink = () =>
     screen.queryByRole('link', { name: /Mehr dazu: Lektion „Staatssymbole“/ });
@@ -437,7 +437,7 @@ describe('lessons', () => {
     expect(lessonLink()).toBeNull(); // feedback only, after the answer
     fireEvent.click(screen.getByText('Bild 2', { selector: 'button span' }));
     expect((lessonLink() as HTMLAnchorElement).getAttribute('href')).toBe(
-      '/leben/lernen/staat-symbole',
+      '/pruefung/leben/lernen/staat-symbole',
     );
   });
 
@@ -472,7 +472,7 @@ describe('lessons', () => {
     expect(screen.getByText('1 Fragen dieser Lektion')).toBeTruthy();
     expect(screen.getByText('1 von 1')).toBeTruthy();
     expect(screen.getByRole('link', { name: '← Zur Lektion' }).getAttribute('href')).toBe(
-      '/leben/lernen/staat-symbole',
+      '/pruefung/leben/lernen/staat-symbole',
     );
     expect(screen.queryByText(TEXT.question.question)).toBeNull();
   });

@@ -194,7 +194,7 @@ export interface LidScopedPracticeInput {
 }
 
 /**
- * A deliberate "drill this topic now" (`/leben/ueben?lektion=<id>`): EVERY question in scope,
+ * A deliberate "drill this topic now" (`/pruefung/leben/ueben?lektion=<id>`): EVERY question in scope,
  * with no daily allowance — the learner chose this set, so holding questions back would only
  * hide part of it. Ordered by what most needs the attention:
  *

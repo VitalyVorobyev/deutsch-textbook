@@ -26,6 +26,15 @@ export default defineConfig({
     '/review': withBase('/ueben/wiederholen'),
     '/training': withBase('/ueben/training'),
     '/vocab': withBase('/ueben/wortschatz'),
+    // Leben in Deutschland moved under Prüfung; the simulator page merged into its level page.
+    '/leben': withBase('/pruefung/leben'),
+    '/leben/ueben': withBase('/pruefung/leben/ueben'),
+    '/leben/fehler': withBase('/pruefung/leben/fehler'),
+    '/leben/pruefung': withBase('/pruefung/leben/pruefung'),
+    '/leben/fragen': withBase('/pruefung/leben/fragen'),
+    '/leben/lernen': withBase('/pruefung/leben/lernen'),
+    '/leben/lernen/[id]': withBase('/pruefung/leben/lernen/[id]'),
+    '/pruefung/goethe-a1': withBase('/pruefung/a1'),
   },
   // Astro 7 changed the default to 'jsx', which strips the indentation after a
   // line-ending expression instead of collapsing it to a space — that silently

@@ -1,5 +1,5 @@
 /**
- * The Goethe exam simulator island (`/pruefung/goethe-a1`).
+ * The Goethe exam simulator island (`/pruefung/<level>`), showing that level's official sets.
  *
  * It owns four screens — set picker, mode picker, run, result — plus the one state that
  * matters most here: **absence**. The official materials never enter the repository
@@ -111,7 +111,7 @@ function SetCard({ set, onChoose }: { set: ExamSetSpec; onChoose: () => void }) 
   );
 }
 
-export default function GoetheExamSimulator() {
+export default function GoetheExamSimulator({ level }: { level?: string } = {}) {
   const [load, setLoad] = useState<Load>({ status: 'loading' });
   // Lazy initializer, not an effect: the island is `client:only`, so localStorage is there on
   // the first render and the repeat warning is correct before the learner can click anything.
@@ -132,7 +132,13 @@ export default function GoetheExamSimulator() {
         const manifest = parseExamManifest(value);
         // A manifest whose sets all lack runnable modules is the absence state too: there is
         // nothing to sit, and a picker with no working card would be worse than saying so.
-        const sets = manifest ? manifest.sets.filter((set) => runnableModules(set).length > 0) : [];
+        // Only this page's level: a level page with no sets of its own says so, whatever else
+        // is on the device.
+        const sets = manifest
+          ? manifest.sets.filter(
+              (set) => runnableModules(set).length > 0 && (!level || set.level === level),
+            )
+          : [];
         settle(
           manifest && sets.length > 0
             ? { status: 'ready', manifest: { ...manifest, sets } }
@@ -143,7 +149,19 @@ export default function GoetheExamSimulator() {
     return () => {
       live = false;
     };
-  }, []);
+  }, [level]);
+
+  // A sitting owns the page: anything the page shows beside the simulator (the A1 practice
+  // sets) hides while a module or the full run is on screen — `[data-exam-aside]` in the page.
+  const sitting = screen.kind === 'run' || screen.kind === 'fullrun';
+  useEffect(() => {
+    const root = document.documentElement;
+    if (sitting) root.dataset.examRun = '';
+    else delete root.dataset.examRun;
+    return () => {
+      delete root.dataset.examRun;
+    };
+  }, [sitting]);
 
   const finish = useCallback((run: ExamRunRecord, timedOut: boolean) => {
     // Read the earlier runs before writing this one, so the result screen's history table

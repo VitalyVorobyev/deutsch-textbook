@@ -1,0 +1,39 @@
+---
+/**
+ * The way up inside Prüfung. The Üben row already names the section, so a page below the hub
+ * says where it sits with a breadcrumb rather than a third row of tabs: Prüfung › Leben in
+ * Deutschland › Lernen. A crumb without `href` is the page itself, as plain text — on the LiD
+ * pages that is the visible name, and the H1 stays for the accessibility tree.
+ */
+import { t, type StringKey } from '../lib/strings';
+import { withBase } from '../lib/url';
+
+interface Crumb {
+  href?: string;
+  /** a chrome string key, or a literal German label */
+  k?: StringKey;
+  label?: string;
+}
+interface Props {
+  trail: Crumb[];
+}
+const { trail } = Astro.props;
+const crumbs: Crumb[] = [{ href: '/pruefung', k: 'ueben.tabPruefung' }, ...trail];
+---
+
+<nav aria-label="Pfad" class="mb-3 flex flex-wrap items-center gap-x-1.5 text-sm text-stone-400">
+  {
+    crumbs.map((crumb, index) => (
+      <>
+        {index > 0 && <span aria-hidden="true">›</span>}
+        {crumb.href ? (
+          <a href={withBase(crumb.href)} class="hover:text-stone-600 dark:hover:text-stone-200">
+            {crumb.k ? t(crumb.k, 'de') : crumb.label}
+          </a>
+        ) : (
+          <span aria-current="page">{crumb.k ? t(crumb.k, 'de') : crumb.label}</span>
+        )}
+      </>
+    ))
+  }
+</nav>

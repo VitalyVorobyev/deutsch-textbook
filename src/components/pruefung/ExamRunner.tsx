@@ -42,7 +42,7 @@ import {
   CARD,
   MODE_LABEL,
   MODULE_LABEL,
-  OPTIONS,
+  optionsFor,
   PRIMARY_BUTTON,
   QUIET_BUTTON,
   type ExamMode,
@@ -97,7 +97,7 @@ function OptionRow({
     >
       <span className="w-6 shrink-0 tabular-nums text-sm text-stone-400">{item.nr}</span>
       <div className="flex flex-wrap gap-1.5">
-        {OPTIONS[item.shape].map((option) => {
+        {optionsFor(item).map((option) => {
           const picked = chosen === option.value;
           const isKey = option.value === item.key;
           const tone = settled
@@ -127,7 +127,7 @@ function OptionRow({
         <span
           className={`text-xs font-medium ${chosen === item.key ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}
         >
-          {chosen === item.key ? '✓' : `✗ Lösung: ${answerLabel(item.shape, item.key)}`}
+          {chosen === item.key ? '✓' : `✗ Lösung: ${answerLabel(item, item.key)}`}
         </span>
       )}
     </div>

@@ -486,10 +486,10 @@ function Results({
           <button type="button" onClick={onRestart} className={PRIMARY_BUTTON}>
             {t('lid.newMock', uiLang)}
           </button>
-          <a href={withBase('/leben/fehler')} className={QUIET_BUTTON}>
+          <a href={withBase('/pruefung/leben/fehler')} className={QUIET_BUTTON}>
             {t('lid.mistakes', uiLang)}
           </a>
-          <a href={withBase('/leben')} className={QUIET_BUTTON}>
+          <a href={withBase('/pruefung/leben')} className={QUIET_BUTTON}>
             {t('lid.toOverview', uiLang)}
           </a>
         </div>

@@ -429,7 +429,7 @@ export default function LidQuestion(props: LidQuestionProps) {
                   results — the same line the translation keeps. */}
               {entry.lesson && (
                 <a
-                  href={withBase(`/leben/lernen/${entry.lesson.id}`)}
+                  href={withBase(`/pruefung/leben/lernen/${entry.lesson.id}`)}
                   className="inline-flex min-h-11 items-center font-medium text-amber-700 hover:underline dark:text-amber-400"
                 >
                   {lidText('lid.moreInLesson', uiLang, { title: entry.lesson.title })}

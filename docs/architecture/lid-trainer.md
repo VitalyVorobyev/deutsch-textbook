@@ -1,6 +1,6 @@
 # Leben-in-Deutschland trainer — operations
 
-The trainer at `/leben` prepares the *Leben in Deutschland* / *Einbürgerungstest* (Bayern): 33
+The trainer at `/pruefung/leben` (old `/leben` URLs redirect) prepares the *Leben in Deutschland* / *Einbürgerungstest* (Bayern): 33
 questions per test — 30 general and 3 from the learner's state — drawn from a published pool of 310
 (EinbTestV §1). 17 correct pass the Einbürgerungstest, 15 the Orientierungskurs test. The decisions
 behind it are [ADR 0009](../adrs/0009-third-party-and-official-material.md) (why the bank may ship
@@ -93,7 +93,7 @@ because the orientation is read in both languages at once; every later one is co
 when a paragraph does not land. Under Lernsprache `de` they are hidden. The German stays
 the visible text because the exam is German. A lesson owns no exercises, probes or
 outcomes and enters no Themen, grammar or Wortliste denominator — its practice is its topics'
-official questions (`/leben/ueben?lektion=<id>`, every one of them, no daily cap). A topic belongs
+official questions (`/pruefung/leben/ueben?lektion=<id>`, every one of them, no daily cap). A topic belongs
 to **at most one** lesson, so a question links back to exactly one lesson or none; `bun run
 validate` enforces that, unique `order`, and the body's shape (`lidLessonProblems`).
 

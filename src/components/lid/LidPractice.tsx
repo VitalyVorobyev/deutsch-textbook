@@ -194,7 +194,7 @@ export default function LidPractice({
           {lidText('lid.scopeLesson', uiLang, { title: scope.title })}
         </span>
         <a
-          href={withBase(`/leben/lernen/${scope.id}`)}
+          href={withBase(`/pruefung/leben/lernen/${scope.id}`)}
           className="inline-flex min-h-11 items-center text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
         >
           {t('lid.backToLesson', uiLang)}
@@ -227,15 +227,15 @@ export default function LidPractice({
             </p>
           )}
           <div className="mt-5 flex flex-wrap gap-2">
-            <a href={withBase('/leben/pruefung')} className={PRIMARY_BUTTON}>
+            <a href={withBase('/pruefung/leben/pruefung')} className={PRIMARY_BUTTON}>
               {t('lid.mock', uiLang)}
             </a>
             {mistakesLeft > 0 && mode !== 'fehler' && (
-              <a href={withBase('/leben/fehler')} className={QUIET_BUTTON}>
+              <a href={withBase('/pruefung/leben/fehler')} className={QUIET_BUTTON}>
                 {t('lid.mistakes', uiLang)} ({mistakesLeft})
               </a>
             )}
-            <a href={withBase('/leben')} className={QUIET_BUTTON}>
+            <a href={withBase('/pruefung/leben')} className={QUIET_BUTTON}>
               {t('lid.toOverview', uiLang)}
             </a>
           </div>

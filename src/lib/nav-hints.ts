@@ -56,11 +56,11 @@ export const NAV_HINTS = {
     uk: 'Колоди карток, зібрані зі словникової бази.',
   },
   pruefung: {
-    en: 'Original reading, writing and speaking practice modelled on common Goethe A1 task families. This is practice, not a readiness score. Listening is not included yet.',
-    ru: 'Оригинальные задания на чтение, письмо и говорение по типам заданий Goethe A1. Это практика, а не оценка готовности. Аудирование пока не включено.',
-    uk: 'Оригінальні завдання на читання, письмо й говоріння за типами завдань Goethe A1. Це практика, а не оцінка готовності. Аудіювання поки не включено.',
+    en: 'Exam preparation: the official Goethe practice sets for A1, A2 and B1 as timed runs, original A1 practice, and the Leben in Deutschland test. Results are for calibration and never change mastery.',
+    ru: 'Подготовка к экзаменам: официальные тренировочные комплекты Гёте для A1, A2 и B1 на время, собственные задания для A1 и тест Leben in Deutschland. Результаты нужны для самооценки и не влияют на освоение тем.',
+    uk: 'Підготовка до іспитів: офіційні тренувальні комплекти Ґете для A1, A2 і B1 на час, власні завдання для A1 і тест Leben in Deutschland. Результати потрібні для самооцінки й не впливають на опанування тем.',
   },
-  // The tab label is abbreviated ("Leben in D."), so its hint also spells the name out.
+  // The hub card's short name ("Leben in D.") is abbreviated, so its hint spells the name out.
   leben: {
     en: 'Leben in Deutschland: practice for the citizenship test and the “Leben in Deutschland” test.',
     ru: 'Leben in Deutschland: подготовка к тесту на гражданство и тесту «Leben in Deutschland».',
