@@ -9,6 +9,7 @@ import Uk from '../../components/Uk.astro';
 import De from '../../components/De.astro';
 import Translation from '../../components/Translation.astro';
 import Erklaerung from '../../components/Erklaerung.astro';
+import Siehe from '../../components/Siehe.astro';
 import ExampleQuote from '../../components/ExampleQuote.astro';
 import CaseTable from '../../components/reference/CaseTable.astro';
 import PronominalAdverbTable from '../../components/reference/PronominalAdverbTable.astro';
@@ -236,7 +237,7 @@ const KIND_KEY: Record<string, StringKey> = {
 
   <article class="article-prose">
     <Content
-      components={{ Bilingual, En, Ru, Uk, De, Translation, Erklaerung, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }}
+      components={{ Bilingual, En, Ru, Uk, De, Translation, Erklaerung, Siehe, CaseTable, PronominalAdverbTable, blockquote: ExampleQuote }}
     />
   </article>
 

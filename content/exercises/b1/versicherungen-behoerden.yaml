@@ -303,11 +303,15 @@ items:
   - id: uebersetzen-weiss-nicht
     outcomes: [versicherung-klaeren]
     type: translate
+    # revision 2: es for «это» / «це» was rejected.
+    revision: 2
     key_tokens: ["ob", "ist"]
     prompt_en: "I do not know whether that is insured."
     prompt_ru: "Я не знаю, застраховано ли это."
     prompt_uk: "Я не знаю, чи це застраховане."
     answer: "Ich weiß nicht, ob das versichert ist."
+    accept:
+      - "Ich weiß nicht, ob es versichert ist."
     explain:
       en: "The most useful sentence in the topic, and it is worth being able to say without hesitating: admitting you do not know gets a better answer at a counter than guessing does. *Ob* opens the clause because there is no question word, and the verb closes it. Note *weiß* with ß and the vowel change — *wissen* is irregular in the singular."
       ru: "Самая полезная фраза темы, и произносить её стоит уметь без запинки: признание, что вы не знаете, приносит у окошка более полезный ответ, чем догадка. *Ob* открывает придаточное, потому что вопросительного слова нет, а глагол его закрывает. Обратите внимание на *weiß* с ß и сменой гласной: *wissen* в единственном числе неправильный."

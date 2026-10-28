@@ -46,22 +46,19 @@ export const STRANDS: readonly CurriculumStrand[] = [
   'vocabulary',
 ];
 
-/** A leading mastered run shorter than this stays unfolded: replacing a single
-    row with a one-row summary hides information without saving space. */
+/** Fewer mastered rows than this stay unfolded: replacing a single row with a one-row
+    summary hides information without saving space. */
 export const FOLD_MIN_RUN = 2;
 
 /**
- * How many leading rows of a level group a fold would hide: the length of the
- * consecutive run of mastered topics at the top of the group, or 0 when the
- * run is too short to be worth folding. Only a *prefix* ever folds — a
- * mastered topic sitting after the first open one stays visible, which is
- * also what keeps the row numbering honest (after a fold of 7, the first
- * visible row is number 8).
+ * Which rows of a level group a fold would hide: the positions of every mastered topic in the
+ * group, wherever it sits, or none when there are too few to be worth folding. Each visible row
+ * keeps its curriculum number (`Row` reads it from the full topic list), so a gap in the
+ * numbering is where folded rows are, and the summary row says how many.
  */
-export function foldableMasteredRun(tiers: readonly Tier[]): number {
-  let run = 0;
-  while (run < tiers.length && tiers[run] === 'mastered') run += 1;
-  return run >= FOLD_MIN_RUN ? run : 0;
+export function foldableMastered(tiers: readonly Tier[]): Set<number> {
+  const mastered = tiers.flatMap((tier, index) => (tier === 'mastered' ? [index] : []));
+  return new Set(mastered.length >= FOLD_MIN_RUN ? mastered : []);
 }
 
 /**

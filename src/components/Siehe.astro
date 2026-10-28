@@ -1,0 +1,20 @@
+---
+/**
+ * `<Siehe to="a2/einkaufen-reklamation#…">` in an article: an inline link to the topic or
+ * Referenz page a sentence builds on. Targets are checked by `bun run validate`
+ * (`@da/content/siehe`). Following one leaves a way back to this exact spot: `src/lib/siehe.ts`
+ * records the link and the target page offers "Zurück zu …".
+ */
+import { withBase } from '../lib/url';
+
+interface Props {
+  to: string;
+}
+const { to } = Astro.props;
+const [path = '', anchor] = to.split('#');
+const [section = '', id = ''] = path.split('/');
+const route = section === 'referenz' ? `/referenz/${id}` : `/topics/${section}/${id}`;
+const href = withBase(route) + (anchor ? `#${anchor}` : '');
+---
+
+<a href={href} data-siehe class="siehe-link"><slot /></a>

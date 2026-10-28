@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { FOLD_MIN_RUN, foldableMasteredRun, overviewChips } from '../src/components/atlas/course';
+import { FOLD_MIN_RUN, foldableMastered, overviewChips } from '../src/components/atlas/course';
 import type { Tier, TopicEvidence } from '../src/lib/mastery';
 
 const evidence = (over: Partial<TopicEvidence> = {}): TopicEvidence => ({
@@ -11,31 +11,30 @@ const evidence = (over: Partial<TopicEvidence> = {}): TopicEvidence => ({
   ...over,
 });
 
-describe('foldableMasteredRun', () => {
-  test('counts only the leading consecutive mastered run', () => {
-    const tiers: Tier[] = ['mastered', 'mastered', 'mastered', 'practiced', 'mastered'];
-    expect(foldableMasteredRun(tiers)).toBe(3);
+describe('foldableMastered', () => {
+  const positions = (tiers: Tier[]) => [...foldableMastered(tiers)];
+
+  test('folds every mastered row, not only a leading run', () => {
+    expect(positions(['mastered', 'mastered', 'mastered', 'practiced', 'mastered'])).toEqual([
+      0, 1, 2, 4,
+    ]);
   });
 
-  test('a mastered topic after the first open one never folds', () => {
-    // Folding it would break the "first visible row after a fold of n is n+1" rule.
-    expect(foldableMasteredRun(['mastered', 'mastered', 'read', 'mastered', 'mastered'])).toBe(2);
+  test('a mastered topic after an open one folds too', () => {
+    expect(positions(['practiced', 'mastered', 'mastered'])).toEqual([1, 2]);
+    expect(positions(['mastered', 'read', 'mastered'])).toEqual([0, 2]);
   });
 
-  test('a run below FOLD_MIN_RUN reports 0 — a one-row summary saves nothing', () => {
+  test('fewer than FOLD_MIN_RUN mastered rows fold nothing — a one-row summary saves nothing', () => {
     expect(FOLD_MIN_RUN).toBe(2);
-    expect(foldableMasteredRun([])).toBe(0);
-    expect(foldableMasteredRun(['mastered'])).toBe(0);
-    expect(foldableMasteredRun(['mastered', 'practiced', 'mastered', 'mastered'])).toBe(0);
-  });
-
-  test('a level with no leading mastered topic reports 0', () => {
-    expect(foldableMasteredRun(['practiced', 'mastered', 'mastered'])).toBe(0);
-    expect(foldableMasteredRun(['untouched', 'untouched'])).toBe(0);
+    expect(positions([])).toEqual([]);
+    expect(positions(['mastered'])).toEqual([]);
+    expect(positions(['practiced', 'mastered', 'read'])).toEqual([]);
+    expect(positions(['untouched', 'untouched'])).toEqual([]);
   });
 
   test('a fully mastered level folds entirely', () => {
-    expect(foldableMasteredRun(['mastered', 'mastered', 'mastered'])).toBe(3);
+    expect(positions(['mastered', 'mastered', 'mastered'])).toEqual([0, 1, 2]);
   });
 });
 

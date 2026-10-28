@@ -33,11 +33,15 @@ items:
   - id: zweck-mit-zwei-subjekten
     outcomes: [lernziel-begruenden]
     type: translate
+    # revision 2: einschreiben, as good a «записываю» as anmelden, was rejected.
+    revision: 2
     key_tokens: ["damit", "lernt"]
     prompt_en: "I am registering my daughter so that she learns German sooner."
     prompt_ru: "Я записываю дочь, чтобы она раньше выучила немецкий."
     prompt_uk: "Я записую доньку, щоб вона раніше вивчила німецьку."
     answer: "Ich melde meine Tochter an, damit sie früher Deutsch lernt."
+    accept:
+      - "Ich schreibe meine Tochter ein, damit sie früher Deutsch lernt."
     explain:
       en: "Two different people act here: I register, she learns. The compact *um … zu* frame has no subject slot at all, so it cannot hold the second doer — *damit* is the only form left, and as a subordinating conjunction it sends the finite verb to the very end: *Deutsch lernt*, never *lernt Deutsch*."
       ru: "Здесь действуют два разных человека: записываю я, учит она. В компактной рамке *um … zu* места для подлежащего нет вовсе, поэтому второго деятеля она не вмещает — остаётся только *damit*, а как подчинительный союз он отправляет спрягаемый глагол в самый конец: *Deutsch lernt*, а не *lernt Deutsch*."

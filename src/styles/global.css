@@ -127,3 +127,37 @@ body {
 .article-prose blockquote p::after {
   content: none;
 }
+
+/* Inline German inside explanation prose. Plain italic was the only cue, and in this face it
+   sits too close to the upright text for a learner to see where an example starts and ends:
+   the German now also takes weight and the amber the example blockquotes use. */
+.article-prose em {
+  @apply font-medium text-amber-800 dark:text-amber-300;
+}
+
+/* <Siehe>: an inline link to the place a sentence builds on (src/components/Siehe.astro). */
+.article-prose .siehe-link {
+  @apply font-medium text-inherit underline decoration-amber-500 decoration-2 underline-offset-2
+    hover:text-amber-700 dark:hover:text-amber-400;
+}
+/* The link a learner came back to, marked once so the eye finds it. */
+.siehe-returned {
+  animation: siehe-flash 2.4s ease-out 1;
+  border-radius: 0.25rem;
+}
+@keyframes siehe-flash {
+  from {
+    background-color: rgb(251 191 36 / 0.45);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+/* The way back (src/lib/siehe.ts): one pill, bottom centre, clear of the iOS home bar. */
+.siehe-return {
+  @apply fixed left-1/2 z-30 max-w-[calc(100vw-2rem)] -translate-x-1/2 truncate rounded-full border
+    border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-800 shadow-lg
+    hover:bg-amber-100 dark:border-amber-700 dark:bg-stone-900 dark:text-amber-300
+    dark:hover:bg-stone-800;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}

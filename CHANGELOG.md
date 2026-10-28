@@ -13,6 +13,19 @@ GitHub Release notes.
 
 ### Changed
 
+- **Articles link back to what they build on.** "Auf A2 stand der Komparativ nach *ist*" now opens
+  the A2 section it means, and a *Zurück zu …* button there returns you to the same sentence,
+  even inside a folded explanation. Twelve back-references in the B1 articles are linked.
+- **German inside the explanations is easier to spot**: inline examples are now set in a darker
+  amber at medium weight, not just in italic.
+- **Alle Themen folds every mastered topic**, not only those at the top of a level.
+- ***Erste Schritte* lists the letter names you cannot guess** (*Ha, Jot, Vau, We, Ypsilon, Zett,
+  Eszett*), and its spelling exercise now gives the letters and asks for the name.
+- ***Konsum und Umwelt* shows the three questions every verb form answers** — when (Zeitform), how
+  it is meant (Modus), who acts (Genus Verbi) — with a link to the full overview in the Referenz.
+- **Russian and Ukrainian explanations no longer call a form "безопасный" / "безпечний"** (an
+  English "safe choice" in disguise); they say what they mean. *Biografie und Erfahrungen* no
+  longer claims Russian differs from German in *Seit wann wohnst du hier?* — it works the same.
 - **Leben in Deutschland: practice deals its questions in random order** — the due ones first, then
   today's new ones, each group shuffled — instead of walking the catalogue topic by topic.
 - **Leben in Deutschland: each question now shows whether you really know it.** "Right last time"
@@ -64,6 +77,14 @@ GitHub Release notes.
 
 ### Fixed
 
+- **Correct answers that were marked wrong are accepted now:** *…, und ich kann heute nicht zur
+  Arbeit kommen*; *mit meinem Kollegen*; *den Anschluss verpasst*; *ob es versichert ist*;
+  *Ich schreibe meine Tochter ein*; *damit die Kinder alles verstehen*. The sick-note exercise also
+  explains where *nicht* goes: before *zur Arbeit kommen*, not between them.
+- **Exercises that printed their own answer ask for it now:** the spelling gap that showed *Lena*,
+  the email question that named *Punkt*, the *rein* question that quoted *rein*, the plural gap
+  whose instruction stated the rule, and a reading question whose right option was the only exact
+  quote. The bus-driver exercise asks for one compound word.
 - **Desktop app: no more “Einträge warten auf Wiederherstellung” after switching pages quickly.**
   Clicking to another page while an answer was still being saved could lock local storage for up
   to half an hour, and a restart helped only if you waited before the first click. Now the save is

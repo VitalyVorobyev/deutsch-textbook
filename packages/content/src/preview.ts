@@ -262,6 +262,15 @@ function project(
     }
     if (Object.values(LANG_TAG).includes(node.name ?? ''))
       return node.name === LANG_TAG[language] ? nested() : [];
+    // <Siehe to="a2/topic#heading"> is a link and nothing more, so it previews as one — to the
+    // same route src/components/Siehe.astro builds.
+    if (node.name === 'Siehe') {
+      const to = String(props(node, diagnostics, path).to ?? '');
+      const [route = '', anchor] = to.split('#');
+      const [section = '', target = ''] = route.split('/');
+      const url = `${section === 'referenz' ? `/referenz/${target}` : `/topics/${section}/${target}`}${anchor ? `#${anchor}` : ''}`;
+      return [{ type: 'link', url, children: nested() }];
+    }
     if (node.name && COMPONENTS.has(node.name))
       return [{ type: 'component', name: node.name, props: props(node, diagnostics, path) }];
     const label = node.name ? `<${node.name}>` : 'anonymes MDX-Element';

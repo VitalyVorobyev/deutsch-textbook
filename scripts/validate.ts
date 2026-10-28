@@ -64,6 +64,7 @@ import {
 } from '@da/schema/langcheck';
 import { proseShapeProblems } from '@da/content/prose-shape';
 import { germanFirstTopicProblems, isGermanFirst } from '@da/content/german-first';
+import { sieheProblems } from '@da/content/siehe';
 import { goetheCoverage, hasManifest, MEASURED_LEVELS } from '@da/content/coverage';
 import {
   checkGradingDecisions,
@@ -1364,6 +1365,23 @@ for (const [setId, { file, data }] of exerciseSets) {
         if (gaps.some((g) => g.length === 0)) fail(where, 'cloze gap with no answers');
         if (/\{\{|\}\}/.test(item.text.replace(/\{\{[^{}]+\}\}/g, '')))
           fail(where, 'unbalanced {{ }} braces in cloze text');
+        // Gaps that together spell a word printed on the same item answer themselves: the
+        // learner copies "Lena" into L – E – N – A. Every gate passed on exactly that item.
+        // (scripts/giveaway-audit.ts lists the softer cases, which need reading, not a rule.)
+        if (gaps.length > 1) {
+          const joined = gaps.map((g) => g[0] ?? '').join('');
+          const shown = [
+            item.text.replace(/\{\{[^{}]+\}\}/g, ' '),
+            ...Object.values(item.instruction ?? {}),
+            ...Object.values(item.translation ?? {}),
+          ].join(' \n ');
+          const escaped = joined.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          if (joined.length >= 3 && new RegExp(`(?<!\\p{L})${escaped}(?!\\p{L})`, 'iu').test(shown))
+            fail(
+              where,
+              `cloze gaps join to "${joined}", which is printed on the item — the item answers itself`,
+            );
+        }
         break;
       }
       case 'match': {
@@ -2418,6 +2436,19 @@ function checkMdxLangDiscipline(
 
 for (const { file, article, data, body } of topics.values())
   checkMdxLangDiscipline(file, data, body, warn, article);
+// An inline <Siehe> link renders whether or not its target exists; only this check sees a
+// topic that was renamed or a heading whose wording changed under it.
+{
+  const bodies = new Map(
+    [...topics.values()].map((t) => [`${t.data.level.toLowerCase()}/${t.data.id}`, t.body]),
+  );
+  const targets = {
+    topicBody: (key: string) => bodies.get(key),
+    referenzPage: (id: string) => existsSync(join(ROOT, 'src', 'pages', 'referenz', `${id}.astro`)),
+  };
+  for (const { article, body } of topics.values())
+    for (const p of sieheProblems(body, targets)) fail(article, p);
+}
 // Every B1 article is German-first (ADR 0005): German body, each section closed by <Translation>
 // and <Erklaerung>. Until a file uses the fold, germanFirstTopicProblems never sees it — so the
 // level itself is the trigger, and a new B1 article written in <Bilingual> halves fails here.

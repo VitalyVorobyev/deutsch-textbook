@@ -49,6 +49,24 @@ The evidence, labelled by strength (full catalogue: the `learning-science` skill
    the article will fill in, not a summary of its details. A **target, not a gate**; the files that
    exceed it are a backlog line (P18-2).
 
+## Links back
+
+An article that says *Auf A2 stand der Komparativ nach ist* sends the learner looking for that
+page, and without a link they either give up or lose their place. Such a back-reference is a
+`<Siehe>` link, in the German body where B1 has one, so it is visible in every Lernsprache:
+
+```mdx
+<Siehe to="a2/einkaufen-reklamation#ungleich-gleich-und-am-höchsten">Das A2-Kapitel zum Einkaufen</Siehe>
+```
+
+`to` is `<level>/<topic-id>`, optionally `#` and the heading's id (its text lowercased, punctuation
+dropped, spaces as hyphens — `headingSlug` in `packages/content/src/siehe.ts`), or
+`referenz/<page>`. `bun run validate` fails a target topic, heading or Referenz page that does not
+exist, so a renamed heading cannot strand a link. Following a link leaves one "Zurück zu …" pill on
+the target page, and the pill returns to the link itself, opening any fold around it
+(`src/lib/siehe.ts`). Link where the sentence points back; a topic's full set of relations is
+already the derived *Siehe auch* footer.
+
 ## The instrument
 
 - `bun scripts/prose-shape.ts <file.mdx|directory> [--worst]` — paragraph count, mean, p90, max and

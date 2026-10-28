@@ -433,7 +433,7 @@ export const STRINGS = {
     ru: 'освоено: {n}',
     uk: 'опановано: {n}',
   },
-  // The folded leading-mastered run in the overview table: "✓ 7 gemeistert — anzeigen".
+  // The folded mastered topics of an overview level group: "✓ 7 gemeistert — anzeigen".
   'topics.foldShow': { de: 'anzeigen', en: 'show', ru: 'показать', uk: 'показати' },
   'topics.foldHide': { de: 'ausblenden', en: 'hide', ru: 'скрыть', uk: 'приховати' },
   'topics.prereqCountOne': {
