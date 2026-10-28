@@ -67,6 +67,14 @@ authoring rules.
 - Store writes go through `enqueueUpdate`; the managed adapter owns the live connection and
   transaction. Its 10-second watchdog aborts stalled transactions and retries only after an
   observed terminal event. An unconfirmed abort blocks further operations until restart.
+  A page that enters the back/forward cache (`pagehide` with `persisted`) aborts its live
+  transactions and refuses new ones; one restored from the cache reloads if it had any.
+  WebKit commits an IndexedDB transaction only when the page says so, so a transaction frozen
+  in a cached page keeps its lock on `progress` until the page is evicted (30 min). Every
+  transaction on the next page queues behind it, and the watchdog's abort of a queued
+  transaction is never acknowledged. On the desktop app that turned one quick click during the
+  launch replay into the restart banner. A two-page probe in the system `WKWebView` reproduces
+  it: the second page's write stalls past 20 s without the abort and lands at once with it.
   The 45-second journal caller deadline never releases the active drain or enqueues duplicates.
   Daily completion, grades and attempts share an ordered, profile-scoped journal drain.
   See [ADR 0006](../adrs/0006-local-first-durable-learner-state.md).

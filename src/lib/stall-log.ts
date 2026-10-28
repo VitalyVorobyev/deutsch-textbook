@@ -42,7 +42,7 @@ export interface StallEntry {
   /** Set once a late attempt settled: ms from the first attempt to that settle. */
   recoveredAfterMs?: number;
   phase?: 'open' | 'transaction' | 'abort';
-  outcome?: 'retry' | 'restart-required' | 'recovered';
+  outcome?: 'retry' | 'restart-required' | 'recovered' | 'released';
   queueDepth?: number;
   build?: string;
 }
