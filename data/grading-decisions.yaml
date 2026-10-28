@@ -1958,3 +1958,225 @@
   decision: confirm
   note: "abzuholen is right. abholen takes an accusative object, so mich, not mir; morgen is not in the prompt."
   decidedAt: 2026-10-17
+
+- item: a2/infinitiv-mit-zu:uebersetzen-vorhaben-wien
+  given: "Im Sommer fahre ich nach Wien"
+  decision: confirm
+  note: "Good German, but it states the trip as a fact and drops the plan the prompt is about — the item grades vorhaben + zu + Infinitiv (Ich habe vor, … zu fahren). drill note: planning verbs (vorhaben, planen) with zu-Infinitiv."
+  decidedAt: 2026-10-28
+
+- item: b1/drill-damit-um-zu:uebersetzen-damit-umziehen
+  given: "Nächstes Jahr ziehen wir um, damit unsere Kinder in eine bessere Schule gehen können."
+  decision: confirm
+  note: "Idiomatic German and the graded damit … können is right, but the instruction names eine Schule besuchen; in eine Schule gehen sets that aside."
+  decidedAt: 2026-10-28
+
+- item: b1/drill-damit-um-zu:uebersetzen-damit-umziehen
+  given: "Nächstes Jahr umziehen wir, damit unser Kindern eine bessere Schule besuchen können"
+  decision: confirm
+  note: "damit and können are right. umziehen is separable, so in a main clause the prefix goes to the end (ziehen wir … um); and unsere Kinder, the subject, is nominative plural. drill note: separable verb in V2 after a fronted time phrase."
+  decidedAt: 2026-10-28
+
+- item: b1/gespraech-steuern:uebersetzen-ausweichen
+  given: "Daran kann ich leider nichts sagen"
+  decision: confirm
+  note: "etwas sagen goes with zu (dazu) or über (darüber); daran belongs to denken an or ändern an — Daran kann ich nichts ändern is a different sentence. drill note: da-word after the verb's own preposition."
+  decidedAt: 2026-10-28
+
+- item: b1/gespraech-steuern:uebersetzen-ausweichen
+  given: "Leider, könnte ich daran nichts sagen"
+  decision: confirm
+  note: "Three departures: leider is part of the sentence, so no comma after it; könnte turns I cannot into I could not; and daran is the wrong da-word for etwas sagen (dazu, darüber)."
+  decidedAt: 2026-10-28
+
+- item: b1/gespraech-steuern:uebersetzen-vor-allem
+  given: "Vor allem abends ist zu laut"
+  decision: confirm
+  note: "Vor allem and V2 ist are right, but the sentence has no subject: a statement about the weather, noise or time needs the placeholder es — ist es zu laut. drill note: es as the subject of impersonal statements (es ist laut, es regnet)."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege:uebersetzen-falls-platz
+  given: "Falls wir den Platz nicht bekommen, bleibt unsere Tochter noch einen Jahr zu Hause"
+  decision: confirm
+  note: "The falls clause and V2 bleibt are right. das Jahr is neuter, so noch ein Jahr, not einen Jahr."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege:uebersetzen-falls-platz
+  given: "Falls wir keinen Platz bekommen, die Tochter bliebt noch einen Jahr zu Hause"
+  decision: confirm
+  note: "The falls clause fills position 1 of the main clause, so its verb comes next: bleibt die Tochter. bliebt is no form of bleiben, and das Jahr makes it ein Jahr. drill note: verb straight after a fronted subordinate clause."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege-pretest:zweck-mit-zwei-subjekten
+  given: "Ich schreibe meine Tochter ein, damit Sie früher Deutsch lernt"
+  decision: confirm
+  note: "einschreiben is as good as anmelden and now joins the accept list (revision 2), and damit … lernt is right. Capital Sie is formal you: the daughter is sie."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege-pretest:zweck-mit-zwei-subjekten
+  given: "Ich schreibe meine Tochter abm um Sie früche Deutsch zu lernen"
+  decision: confirm
+  note: "Two people act — I register, she learns — and um … zu has no room for a second subject, so only damit works. A pretest: diagnostic, never weakness evidence."
+  decidedAt: 2026-10-28
+
+- item: b1/sucht-lebensstil:uebersetzen-beraten-lassen
+  given: "Ich lasse mir in der Apotheke beraten"
+  decision: confirm
+  note: "jemanden beraten takes the accusative, so sich beraten lassen is mich, not mir; and got advice is past — Ich habe mich … beraten lassen, with lassen as the infinitive at the end. drill note: lassen in the Perfekt (Ersatzinfinitiv) and the accusative reflexive."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege:uebersetzen-damit-zeugnis
+  given: "Ich gehe in die Schule, damit die Lehrerin mir die Zeugniss erklärt"
+  decision: confirm
+  note: "damit … erklärt is right. das Zeugnis is neuter and spelled with one final s."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege:uebersetzen-damit-zeugnis
+  given: "Ich gehe in die Schule, damit die Lehrerin mir die Zeugnis erklärt"
+  decision: confirm
+  note: "damit … erklärt is right. das Zeugnis is neuter: das Zeugnis erklären. drill note: Genus of das Zeugnis — second sighting."
+  decidedAt: 2026-10-28
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-waehrend-regen
+  given: "Während warteten wir, begann es zu regnen"
+  decision: confirm
+  note: "während here opens a subordinate clause, so its verb goes to the end: Während wir warteten. Read as a main clause after a fronted adverb, it is exactly the error the temporal-nebensatz tag grades."
+  decidedAt: 2026-10-28
+
+- item: b1/informationen-vermitteln:uebersetzen-angaben
+  given: "Sie hat gestern wegen die Änderung schnell im Büro anrufen"
+  decision: confirm
+  note: "The order of the Angaben, the graded point, is right. wegen takes the genitive (der Änderung), and the Perfekt needs the participle angerufen, not the infinitive."
+  decidedAt: 2026-10-28
+
+- item: b1/probe-sucht-lebensstil:variant-b
+  given: "Gestern haben wir unseren Kindern länger fernsehen lassen."
+  decision: confirm
+  note: "fernsehen … lassen with the Ersatzinfinitiv is right. The person who is allowed to do something is the accusative object of lassen: unsere Kinder, not unseren Kindern. drill note: lassen + accusative person."
+  decidedAt: 2026-10-28
+
+- item: a2/biografie-erfahrungen-produktion:uebersetzen-interview-frage
+  given: "Wo bist du aufgewachsend? Warst du dort glucklich?"
+  decision: confirm
+  note: "Warst is right. The participle of aufwachsen is aufgewachsen (no -d), and glücklich needs its umlaut — ü is on the insert bar."
+  decidedAt: 2026-10-28
+
+- item: b1/gespraech-steuern-pretest:vorfeld-uebrigens
+  given: "Übrigens, ich habe noch eine Frage"
+  decision: confirm
+  note: "Speech has Übrigens, … with a pause, but in a written sentence übrigens is an adverb in position 1 and the verb follows it: Übrigens habe ich noch eine Frage — the Vorfeld point this pretest diagnoses."
+  decidedAt: 2026-10-28
+
+- item: b1/leben-veraendern:uebersetzen-denen
+  given: "Die Freunde, denen wir oft helfen, wohnen gerade an der Ecke"
+  decision: confirm
+  note: "denen, the graded relative pronoun, is right. gerade an der Ecke means at the corner right now; just around the corner is gleich (or direkt) um die Ecke."
+  decidedAt: 2026-10-28
+
+- item: a2/verbindungen-folgen:uebersetzen-als-kindheit
+  given: "Als ich klein war, bin ich zur Oma oft gefahren"
+  decision: confirm
+  note: "The als clause is right. A direction belongs to its verb and stays next to it at the end of the Mittelfeld: oft zur Oma gefahren. drill note: the direction phrase stays beside the verb — the same slip as nicht zur Arbeit kommen in gesundheit-arzttermin-produktion."
+  decidedAt: 2026-10-28
+
+- item: a2/biografie-erfahrungen:uebersetzen-perfekt-station
+  given: "Nach dem Schule bin ich nach Berlin umgezogen und habe dort zwei Jahren gearbeitet"
+  decision: confirm
+  note: "Both auxiliaries and participles, the graded tokens, are right. die Schule makes nach der Schule, and a span of time is accusative: zwei Jahre, not Jahren."
+  decidedAt: 2026-10-28
+
+- item: a2/biografie-erfahrungen:uebersetzen-damals-war-hatte
+  given: "Damals war ich Student, und ich hatte keine Geld"
+  decision: confirm
+  note: "war and hatte are right. das Geld is neuter: kein Geld."
+  decidedAt: 2026-10-28
+
+- item: a2/drill-mir-mich:uebersetzen-abholen-dich
+  given: "Ich nehme dich am Bahnhof an"
+  decision: confirm
+  note: "dich is right, but annehmen means accept; to pick someone up is abholen: Ich hole dich vom Bahnhof ab."
+  decidedAt: 2026-10-28
+
+- item: b1/probe-bildungswege:variant-a
+  given: "Ich erkläre alles noch einmal, damit die Kinder alles verstehen"
+  decision: accept
+  note: "alles for «это» / «це» names the same everything a second time — meaning-preserving, and damit … verstehen is right. The accept list gains it in both orders of noch einmal alles (revision 3)."
+  decidedAt: 2026-10-28
+
+- item: b1/bildungswege:uebersetzen-wenn-sicher
+  given: "Wenn der Sohn zehn wird, wechselt er die Schulle"
+  decision: confirm
+  note: "Wenn … wird is right. Schulle is a misspelling of Schule, and a family speaking of its own son says mein or unser Sohn."
+  decidedAt: 2026-10-28
+
+- item: a1/erste-schritte:uebersetzen-wohne-berlin
+  given: "Ich wuhne in Berlin und spreche ein bisschen Deutsch"
+  decision: confirm
+  note: "Dropping the second ich is fine and accepted; wohne, a graded token, is misspelled."
+  decidedAt: 2026-10-28
+
+- item: a2/termine-produktion:uebersetzen-termin-verschieben
+  given: "Können wir den Termin am Freitag verschieben?"
+  decision: confirm
+  note: "The modal bracket is right, but am Freitag says when the moving happens; the new date is auf Freitag (на пятницу)."
+  decidedAt: 2026-10-28
+
+- item: b1/erfahrungen-erzaehlen:uebersetzen-nachdem-bericht
+  given: "Nachdem ich den Bericht geschrieben hatte, ging ich zu Hause"
+  decision: confirm
+  note: "The Plusquamperfekt is right. zu Hause is where you are; going there is nach Hause."
+  decidedAt: 2026-10-28
+
+- item: b1/arbeit-bewerbung-produktion:uebersetzen-transfer-kollegen
+  given: "Gestern habe ich mit meinem Kollegen über die neue Stelle gesprochen"
+  decision: accept
+  note: "«с коллегой» / «із колегою» leave the determiner open, and a colleague of one's own is the natural reading; the graded -n is right. The accept list gains meinem in every authored frame (revision 3)."
+  decidedAt: 2026-10-28
+
+- item: b1/versicherungen-behoerden:uebersetzen-weiss-nicht
+  given: "Ich weiß nicht, ob es versichert ist"
+  decision: accept
+  note: "es for «это» / «це» is as good as das; ob … ist is right (revision 2)."
+  decidedAt: 2026-10-28
+
+- item: b1/versicherungen-behoerden-pretest:nullartikel-plural
+  given: "Wir brauchen Ihere Einkome Nachweis"
+  decision: confirm
+  note: "The pretest asks for the plural without an article, Nachweise, and the object of the evidence follows with über: Nachweise über Ihr Einkommen. A pretest: diagnostic, never weakness evidence."
+  decidedAt: 2026-10-28
+
+- item: b1/reisen-probleme:uebersetzen-anschluss-perfekt
+  given: "Wir haben den Anschluss in Hannover verpasst."
+  decision: accept
+  note: "German says the article where English and Russian say our — den Anschluss verpassen is the usual phrase. haben … verpasst, the graded bracket, is right. The accept list gains den in all three orders (revision 3)."
+  decidedAt: 2026-10-28
+
+- item: b1/reisen-probleme:uebersetzen-wegen-verspaetung
+  given: "Wegen der Verspättung sind wir den letzten Zug nach Hamburg verpassen."
+  decision: confirm
+  note: "Wegen der is right. verpassen takes haben, and the Perfekt needs the participle: haben … verpasst. Verspätung has one t."
+  decidedAt: 2026-10-28
+
+- item: a2/gesundheit-arzttermin-produktion:uebersetzen-krankmeldung-seit
+  given: "Ich habe seit drei Tagen Fieber, und ich kann heute zur Arbeit nicht kommen."
+  decision: confirm
+  note: "seit and the repeated ich are right — und ich kann … now joins the accept list (revision 2). nicht goes in front of zur Arbeit kommen: a direction belongs to its verb, and putting nicht between them sounds as if work were set against somewhere else. drill note: nicht before the direction phrase — the third nicht-position slip on this item."
+  decidedAt: 2026-10-28
+
+- item: b1/lernen-zukunft:uebersetzen-wissen-ob
+  given: "Ich möchte wissen, ob den Abendkurs im September beginnt"
+  decision: confirm
+  note: "ob … beginnt is right. der Abendkurs is the subject of beginnt, so nominative: der, not den."
+  decidedAt: 2026-10-28
+
+- item: b1/lernen-zukunft:uebersetzen-um-zu-ziel
+  given: "Ich wiederhole Grammatik jeden Tag, um die Prüfung zu bestehen"
+  decision: confirm
+  note: "um … zu bestehen is right, but jeden Tag is not every evening (каждый вечер)."
+  decidedAt: 2026-10-28
+
+- item: a1/wortbildung-ausblenden:translate-fahrerin
+  given: "Die Fahrerin von dem Bus heißt Aylin."
+  decision: constrain
+  note: "Understandable German that describes the person rather than naming the job (and would be vom Bus). The item grades the compound Busfahrerin, so the instruction now asks for one compound word (revision 3)."
+  decidedAt: 2026-10-28

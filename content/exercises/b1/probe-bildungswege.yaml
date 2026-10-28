@@ -37,7 +37,8 @@ items:
     # revision 2: das for «это» / «це», and noch einmal before alles, were rejected. focus_evidence
     # fails only the tag's errors — um … zu, or the verb pulled in front of its object after damit —
     # so a wrong verb ending (versteht) is no longer read as a failed purpose clause.
-    revision: 2
+    # revision 3: alles for «это» / «це» — the same everything, said twice — was rejected.
+    revision: 3
     outcomes: [lernziel-begruenden]
     type: translate
     focus: damit-um-zu
@@ -57,6 +58,8 @@ items:
       - "Ich erkläre noch einmal alles, damit die Kinder es verstehen."
       - "Ich erkläre noch einmal alles, damit es die Kinder verstehen."
       - "Ich erkläre noch einmal alles, damit die Kinder das verstehen."
+      - "Ich erkläre alles noch einmal, damit die Kinder alles verstehen."
+      - "Ich erkläre noch einmal alles, damit die Kinder alles verstehen."
     explain:
       en: "I explain, the children understand — two different doers, and the compact *um … zu* frame owns no subject slot at all, so it could never hold the second one. *Damit* is the only form available, and as a subordinating conjunction it sends *verstehen* to the very end, behind the object *es*."
       ru: "Объясняю я, понимают дети — два разных деятеля, а у компактной рамки *um … zu* места для подлежащего нет вовсе, так что второго она вместить не может. Остаётся только *damit*, и как подчинительный союз он отправляет *verstehen* в самый конец, за дополнение *es*."

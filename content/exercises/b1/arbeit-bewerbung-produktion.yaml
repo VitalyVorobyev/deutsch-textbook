@@ -61,7 +61,7 @@ items:
     outcomes: [bewerbung-schreiben]
     type: translate
     focus: n-deklination
-    revision: 2
+    revision: 3
     instruction:
       en: "Translate — put the time phrase first, and use Kollege (a male colleague)."
       ru: "Переведите — вынесите обстоятельство времени вперёд и используйте Kollege (коллега-мужчина)."
@@ -80,6 +80,11 @@ items:
       - "Gestern habe ich mit dem Kollegen über die neue Arbeitsstelle gesprochen."
       - "Gestern sprach ich mit dem Kollegen über die neue Stelle."
       - "Gestern sprach ich mit dem Kollegen über die neue Arbeitsstelle."
+      # A colleague of one's own is the natural Russian reading of «с коллегой» too.
+      - "Gestern habe ich mit meinem Kollegen über die neue Stelle gesprochen."
+      - "Gestern habe ich mit meinem Kollegen über die neue Arbeitsstelle gesprochen."
+      - "Gestern sprach ich mit meinem Kollegen über die neue Stelle."
+      - "Gestern sprach ich mit meinem Kollegen über die neue Arbeitsstelle."
     key_tokens: ["Kollegen"]
     explain:
       en: "Graded is the noun's own ending. mit takes the dative, and Kollege belongs to the n-declension, so outside the nominative singular it wears its -n: mit einem Kollegen. The article einem has already marked the case — the noun marks it a second time anyway, and that doubling is the whole rule. The feminine escapes it: mit einer Kollegin keeps its form, because feminine nouns never join the family."

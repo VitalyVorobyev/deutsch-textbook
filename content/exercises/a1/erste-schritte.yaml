@@ -46,10 +46,14 @@ items:
     key_tokens: ["spreche", "Russisch", "Deutsch"]
     explain: { en: "Language names are capitalized: Russisch, Deutsch.", ru: "Названия языков пишутся с заглавной буквы: Russisch, Deutsch.", uk: "Назви мов пишуться з великої літери: Russisch, Deutsch." }
   - id: cloze-spell
+    # revision 2: the name being spelled was printed in the sentence, so every gap answered itself.
+    # Now the letters are given by name and the learner writes the name they spell.
+    revision: 2
     outcomes: [erste-buchstabieren]
     type: cloze
-    text: "— Wie schreibt man das? — Lena: {{L}} – {{E}} – {{N}} – {{A}}."
-    explain: { en: "Say one letter at a time when spelling a name.", ru: "При диктовке имени произносите каждую букву отдельно.", uk: "Диктуючи ім'я, вимовляйте кожну літеру окремо." }
+    instruction: { en: "Write the surname Klara spells out.", ru: "Напишите фамилию, которую Klara диктует по буквам.", uk: "Напишіть прізвище, яке Klara диктує по літерах." }
+    text: "— Wie heißen Sie? — Klara {{Vogel}}. Ich buchstabiere: Vau – O – Ge – E – El."
+    explain: { en: "Vau is V, Ge is G, El is L: V-o-g-e-l. A surname starts with a capital letter.", ru: "Vau — это V, Ge — G, El — L: V-o-g-e-l. Фамилия пишется с большой буквы.", uk: "Vau — це V, Ge — G, El — L: V-o-g-e-l. Прізвище пишеться з великої літери." }
   - id: audio-phone
     outcomes: [erste-zahlen-verstehen]
     type: audio-comprehension
@@ -65,12 +69,14 @@ items:
     translation: { en: "Which digit comes after five?", ru: "Какая цифра идёт после пяти?", uk: "Яка цифра йде після п'яти?" }
     explain: { en: "The number begins null – eins – fünf – sieben.", ru: "Номер начинается: null – eins – fünf – sieben.", uk: "Номер починається: null – eins – fünf – sieben." }
   - id: mc-email
+    # revision 2: the question named the answer (den Punkt).
+    revision: 2
     outcomes: [erste-buchstabieren]
     type: mc
-    prompt: "maria@example.de: Wie spricht man den Punkt?"
+    prompt: "maria@example.de: Was sagt man zwischen example und de?"
     options: ["Punkt", "Komma", "Strich"]
     correct: 0
-    translation: { en: "How do you say the dot?", ru: "Как произносится точка?", uk: "Як вимовляється крапка?" }
+    translation: { en: "What do you say between example and de?", ru: "Что говорят между example и de?", uk: "Що кажуть між example і de?" }
     explain: { en: "A dot in an email address is Punkt.", ru: "Точка в электронном адресе — Punkt.", uk: "Крапка в електронній адресі — Punkt." }
   - id: write-profile
     outcomes: [erste-sich-vorstellen]

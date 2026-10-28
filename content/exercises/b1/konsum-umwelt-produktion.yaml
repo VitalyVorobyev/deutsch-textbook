@@ -31,10 +31,12 @@ items:
     type: mc
     focus: passiv-rezeptiv
     prompt: "Am Aushang im Hof steht: „Ab Montag werden die Wege im Hof neu gemacht. Die Fahrräder werden bitte bis Sonntag in den Keller gestellt. Die Arbeiten werden ungefähr zwei Wochen dauern.“ — In welchem Satz ist werden kein Passiv, sondern nur Zukunft?"
+    # revision 2: only the right option quoted the notice word for word; now all three do.
+    revision: 2
     options:
       - "Die Arbeiten werden ungefähr zwei Wochen dauern."
-      - "Die Wege im Hof werden neu gemacht."
-      - "Die Fahrräder werden in den Keller gestellt."
+      - "Ab Montag werden die Wege im Hof neu gemacht."
+      - "Die Fahrräder werden bitte bis Sonntag in den Keller gestellt."
     correct: 0
     translation:
       en: "The notice in the courtyard says: \"From Monday the paths in the courtyard will be redone. Please put bicycles in the cellar by Sunday. The work will take about two weeks.\" — In which sentence is werden not a passive but only future?"

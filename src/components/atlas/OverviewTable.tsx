@@ -14,7 +14,7 @@ import { EvidenceChipRow } from '../topic/EvidenceChips';
 import { PlacedMark, TierBadge } from '../topic/TierBadge';
 import { Filter, TopicDetail } from './TopicDetail';
 import {
-  foldableMasteredRun,
+  foldableMastered,
   overviewChips,
   type ActiveGoal,
   type CourseTopic,
@@ -73,8 +73,8 @@ const STATUSES: Array<readonly [StatusFilter, StringKey]> = [
   ['mastered', 'topics.statusMastered'],
 ];
 
-/** localStorage: 'folded' | 'expanded' — whether the leading mastered run of
-    each level group is collapsed into its summary row. Default folded. */
+/** localStorage: 'folded' | 'expanded' — whether the mastered topics of
+    each level group are collapsed into its summary row. Default folded. */
 const FOLD_KEY = 'da:topics-fold-mastered';
 
 /**
@@ -226,10 +226,11 @@ export default function OverviewTable({
               (t) => t.level === lvl && completions.get(t.id)?.tier === 'mastered',
             ).length;
             const lvlTotal = topics.filter((t) => t.level === lvl).length;
-            const run = foldActive
-              ? foldableMasteredRun(rows.map((t) => completions.get(t.id)?.tier ?? 'untouched'))
-              : 0;
-            const visibleRows = run > 0 && folded ? rows.slice(run) : rows;
+            const hidden = foldActive
+              ? foldableMastered(rows.map((t) => completions.get(t.id)?.tier ?? 'untouched'))
+              : new Set<number>();
+            const run = hidden.size;
+            const visibleRows = run > 0 && folded ? rows.filter((_, i) => !hidden.has(i)) : rows;
             return (
               <section key={lvl} aria-labelledby={`overview-${lvl}`}>
                 <h2
@@ -245,9 +246,9 @@ export default function OverviewTable({
                   </span>
                 </h2>
                 <ul>
-                  {/* The folded leading mastered run: one quiet summary row instead
-                  of n badge-only ones. Row numbers stay true to curriculum
-                  position — after a fold of 7 the first visible row shows 8. */}
+                  {/* Every mastered topic of the group folds into one quiet summary
+                  row instead of n badge-only ones. Row numbers stay true to curriculum
+                  position, so a skipped number is a folded row. */}
                   {run > 0 && (
                     <li className="border-t border-stone-200 bg-stone-50/80 first:border-t-0 dark:border-stone-700 dark:bg-stone-900/40">
                       <button

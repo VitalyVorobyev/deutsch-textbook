@@ -98,3 +98,8 @@ Graders, validators, measurements and the progress audit. The format and the ID 
 - **P12-8 · The two answer highlights come from two LCS runs** in `Translate`, so a transposition
   can mark different words on each side. Display only; return both arrays from one traversal in
   `packages/grading/src/worddiff.ts`.
+- **INS-7 · A placed-out topic never arms its probes.** 19 competences read "unarmed — needs the
+  lesson opened" (`bun run progress:audit --profile vitaly`, *Can the gate be read?*), A1
+  `nicht-position` among them, and that is exactly the error the learner still makes. A passed
+  placement never raises the tier, by design, but it also leaves retention unmeasurable. First
+  step: a proposal on whether a passed placement arms the topic's probe families.

@@ -54,7 +54,9 @@ items:
     outcomes: [wortbildung-nomenformen]
     type: cloze
     focus: wortbildung-nomen
-    instruction: {en: "Complete the order. Singular and plural have the same noun form.", ru: "Дополните заказ. Форма существительного одинакова в единственном и множественном числе.", uk: "Доповніть замовлення. Форма іменника однакова в однині й множині."}
+    # revision 2: the instruction stated the rule the gap tests (same form in both numbers).
+    revision: 2
+    instruction: {en: "Complete the order with the plural.", ru: "Дополните заказ формой множественного числа.", uk: "Доповніть замовлення формою множини."}
     text: "Ein Brötchen für mich und zwei {{Brötchen}} für euch."
     explain: {en: "-chen diminutives add no plural ending: ein Brötchen, zwei Brötchen. The number carries the contrast.", ru: "Уменьшительные на -chen не получают окончания множественного числа: ein Brötchen, zwei Brötchen. Разницу показывает число.", uk: "Зменшувальні на -chen не отримують закінчення множини: ein Brötchen, zwei Brötchen. Різницю показує число."}
   - id: mc-kuchen-grenze

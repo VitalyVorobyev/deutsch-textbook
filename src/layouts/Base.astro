@@ -197,6 +197,14 @@ const activeItem = nav.find(isActive);
     <script>
       import { setTheme } from '../lib/prefs';
       import { applyHints } from '../lib/nav-hints';
+      import { initSiehe } from '../lib/siehe';
+
+      // Navigation state only; a refused sessionStorage costs the way back, never the page.
+      try {
+        initSiehe();
+      } catch {
+        /* storage unavailable */
+      }
 
       document.getElementById('theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';

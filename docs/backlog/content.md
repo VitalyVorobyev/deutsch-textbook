@@ -63,6 +63,20 @@ Course content: articles, items, probes, vocabulary, readings and their language
 - **CON-2 · Three Sprachhandlungen have no outcome** — interkulturelle Begegnung, Wissensdivergenz, Gefühle
   ausdrücken (`bun scripts/handlungen.ts B1 --unclaimed-only`). Not turn management, so not
   `gespraech-steuern`'s; they want a topic of their own.
+- **CON-3 · B1 competences that do not survive the delay.** Seven B1 rows retain 0–17% at 21–30
+  days: adjektiv-nomen, irreale-bedingung, lassen-verwendung, partizip-adjektiv,
+  relativ-praeposition, passiv-modal, praeteritum-vollverben (`bun run progress:audit --profile
+  vitaly`, *Retention by competence*). Each is carried by one probe family, so it caps at three
+  attempts. First step: `bun scripts/grammar-depth.ts B1 --thin` for these tags, then a drill set
+  per confusion that is thin.
+- **CON-4 · A direction phrase stays beside its verb.** Four rulings in `data/grading-decisions.yaml`
+  show the same slip — *heute zur Arbeit nicht kommen*, *zur Oma oft gefahren* — and no item
+  grades it outside A1's `nicht-position`. First step: a drill under `nicht-position` with
+  adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
+- **CON-5 · Original Goethe-style A2 and B1 practice sets**, as `content/exercises/a1/pruefung-a1-*.yaml`
+  are for A1. `/pruefung/a2` and `/pruefung/b1` serve the official sets only where the materials
+  are local; a clean build has nothing to practise there. First step: the A2 Lesen/Schreiben task
+  families from the A2 Modellsatz structure (labels only, ADR 0009).
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
   978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9); also the adult Goethe A2
   *Prüfungsziele* (the free A2 list is the youth exam). Each becomes one

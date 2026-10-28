@@ -312,8 +312,9 @@ items:
 
   - id: uebersetzen-anschluss-perfekt
     # revision 2: in Hannover before the object is the commonest middle-field order and was
+    # rejected. revision 3: den Anschluss — German says the article where English says our — was
     # rejected.
-    revision: 2
+    revision: 3
     outcomes: [panne-berichten]
     type: translate
     focus: perfekt-satzklammer
@@ -329,6 +330,9 @@ items:
     accept:
       - "In Hannover haben wir unseren Anschluss verpasst."
       - "Wir haben in Hannover unseren Anschluss verpasst."
+      - "Wir haben den Anschluss in Hannover verpasst."
+      - "In Hannover haben wir den Anschluss verpasst."
+      - "Wir haben in Hannover den Anschluss verpasst."
     key_tokens: ["haben", "verpasst"]
     explain:
       en: "The A2 bracket carrying this unit's central mishap: haben conjugated in position 2, the participle verpasst at the very end, everything else in between. That frame is what every spoken Panne report stands on before any genitive preposition joins it. verpassen is inseparable, so its participle takes no ge-: verpasst."

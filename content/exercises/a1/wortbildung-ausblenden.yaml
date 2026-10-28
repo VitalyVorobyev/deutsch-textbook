@@ -16,15 +16,17 @@ items:
     outcomes: [wortbildung-nomenformen]
     type: translate
     focus: wortbildung-nomen
-    instruction: {en: "Translate the profession.", ru: "Переведите название профессии.", uk: "Перекладіть назву професії."}
+    instruction: {en: "Translate, naming the profession with one compound word.", ru: "Переведите, назвав профессию одним сложным словом.", uk: "Перекладіть, назвавши професію одним складним словом."}
     prompt_en: "The bus driver is called Aylin."
     # revision 2: the name is written as German writes it — «Айлин» leaves Aylin, Ailin and Eilin open.
+    # revision 3: the instruction asks for the compound the item grades; Fahrerin von dem Bus
+    # describes the job without naming it.
     prompt_ru: "Водительницу автобуса зовут Aylin."
     prompt_uk: "Водійку автобуса звати Aylin."
-    revision: 2
+    revision: 3
     answer: "Die Busfahrerin heißt Aylin."
     key_tokens: ["Busfahrerin"]
-    explain: {en: "Bus + Fahrer + -in produces the female profession Busfahrerin; the final -in also makes the article die.", ru: "Bus + Fahrer + -in образует женское название Busfahrerin; конечное -in также требует артикль die.", uk: "Bus + Fahrer + -in утворює жіночу назву Busfahrerin; кінцеве -in також вимагає артикль die."}
+    explain: {en: "Bus + Fahrer + -in produces the female profession Busfahrerin; the final -in also makes the article die. German names a job with one compound: die Fahrerin vom Bus is understood, but it describes the person instead of naming the profession.", ru: "Bus + Fahrer + -in образует женское название Busfahrerin; конечное -in также требует артикль die. Профессию немецкий называет одним сложным словом: die Fahrerin vom Bus поймут, но это описание человека, а не название профессии.", uk: "Bus + Fahrer + -in утворює жіночу назву Busfahrerin; кінцеве -in також вимагає артикль die. Професію німецька називає одним складним словом: die Fahrerin vom Bus зрозуміють, але це опис людини, а не назва професії."}
   - id: cloze-kostenlos
     outcomes: [wortbildung-adjektive]
     type: cloze
