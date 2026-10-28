@@ -13,7 +13,8 @@ export interface StorageDiagnostic {
   phase: 'open' | 'transaction' | 'abort';
   waitedMs: number;
   attempts: number;
-  outcome: 'retry' | 'restart-required' | 'recovered';
+  /** `released`: the page entered the back/forward cache and its transactions were aborted. */
+  outcome: 'retry' | 'restart-required' | 'recovered' | 'released';
 }
 
 export function createManagedStore(
@@ -24,19 +25,57 @@ export function createManagedStore(
     transactionMs = 10000,
     abortMs = 1000,
     report = (_entry: StorageDiagnostic) => {},
+    lifecycle = typeof window === 'undefined' ? undefined : window,
+    reload = () => location.reload(),
   }: {
     factory?: () => IDBFactory;
     openMs?: number;
     transactionMs?: number;
     abortMs?: number;
     report?: (entry: StorageDiagnostic) => void;
+    /** Where `pagehide`/`pageshow` are heard; the window, or a stand-in in tests. */
+    lifecycle?: EventTarget;
+    reload?: () => void;
   } = {},
 ): { use: UseStore; reset: () => void; needsRestart: () => boolean } {
   let db: IDBDatabase | undefined;
   let opening: Promise<IDBDatabase> | undefined;
   let generation = 0;
   let blocked = false;
+  let frozen = false;
+  let released = false;
   const active = new Set<IDBTransaction>();
+
+  // WebKit may keep a page it navigates away from in the back/forward cache instead of
+  // destroying it. An IndexedDB commit is sent by the page, so a transaction live at that
+  // moment is frozen with its lock held: every transaction the next page opens on this store
+  // queues behind it until the cached page is evicted (30 min) or the app quits, and the
+  // watchdog's abort of a queued transaction is never acknowledged. Abort it while the page
+  // can still say so: the write journal replays grades, attempts and sessions on the next
+  // page, and only an unjournaled write in flight at that instant (a topic mark) is lost.
+  lifecycle?.addEventListener('pagehide', (event) => {
+    if (!(event as PageTransitionEvent).persisted) return;
+    frozen = true;
+    if (active.size === 0) return;
+    released = true;
+    const attempts = active.size;
+    for (const tx of active) {
+      try {
+        tx.abort();
+      } catch {
+        /* already finished */
+      }
+    }
+    report({ phase: 'abort', waitedMs: 0, attempts, outcome: 'released' });
+    retire();
+  });
+  // A page restored from the cache holds callers whose operations were aborted or refused
+  // above, and state another page may since have rewritten: start it afresh.
+  lifecycle?.addEventListener('pageshow', (event) => {
+    if (!(event as PageTransitionEvent).persisted) return;
+    frozen = false;
+    if (released) reload();
+  });
 
   function retire() {
     generation++;
@@ -186,13 +225,22 @@ export function createManagedStore(
     });
   }
 
+  // A transaction opened between `pagehide` and the freeze would hold the lock again.
+  function refuseWhileFrozen() {
+    if (!frozen) return;
+    released = true;
+    throw new DOMException('Page is in the back/forward cache', 'AbortError');
+  }
+
   const use: UseStore = async (mode, callback) => {
     for (let attempt = 1; attempt <= 3; attempt++) {
       if (blocked) throw new StorageRestartRequiredError();
+      refuseWhileFrozen();
       let phase: StorageDiagnostic['phase'] = 'open';
       const started = Date.now();
       try {
         const connection = await open();
+        refuseWhileFrozen();
         phase = 'transaction';
         const result = await transact(connection, mode, callback);
         if (attempt > 1)
@@ -204,7 +252,8 @@ export function createManagedStore(
           });
         return result;
       } catch (error) {
-        if (error instanceof StorageRestartRequiredError) throw error;
+        // Retrying on a cached page would only open another transaction to freeze.
+        if (error instanceof StorageRestartRequiredError || frozen) throw error;
         const retryable =
           error instanceof RetryableStorageError ||
           (error instanceof Error &&

@@ -183,4 +183,82 @@ describe('managed IndexedDB recovery', () => {
     expect(() => first!.result.transaction('progress')).toThrow();
     expect(await get('value', use)).toBe('fresh');
   });
+
+  describe('a page entering the back/forward cache', () => {
+    const transition = (type: string, persisted: boolean) =>
+      Object.assign(new Event(type), { persisted });
+    function cached() {
+      const lifecycle = new EventTarget();
+      const factory = new IDBFactory();
+      const events: StorageDiagnostic[] = [];
+      let reloads = 0;
+      const manager = createManagedStore('bfcache-test', {
+        factory: () => factory,
+        transactionMs: 100,
+        abortMs: 250,
+        report: (event) => events.push(event),
+        lifecycle,
+        reload: () => reloads++,
+      });
+      return { ...manager, lifecycle, events, reloads: () => reloads };
+    }
+
+    test('releases the lock of a live transaction instead of freezing with it', async () => {
+      const { use, lifecycle, events, needsRestart, reloads } = cached();
+      let aborted = false;
+      let live = false;
+      const write = use('readwrite', (store) => {
+        live = true;
+        store.put('frozen', 'value');
+        store.transaction.addEventListener('abort', () => {
+          aborted = true;
+        });
+        keepAlive(store, () => !aborted);
+        return new Promise<void>(() => {});
+      });
+      await eventually(() => live);
+      lifecycle.dispatchEvent(transition('pagehide', true));
+      await expect(write).rejects.toMatchObject({ name: 'AbortError' });
+      expect(aborted).toBe(true);
+      expect(needsRestart()).toBe(false);
+      expect(events.map((e) => e.outcome)).toEqual(['released']);
+
+      lifecycle.dispatchEvent(transition('pageshow', true));
+      expect(reloads()).toBe(1);
+      expect(await get('value', use)).toBeUndefined();
+    });
+
+    test('refuses new transactions until the page is shown again', async () => {
+      const { use, lifecycle, reloads } = cached();
+      lifecycle.dispatchEvent(transition('pagehide', true));
+      await expect(set('value', 'late', use)).rejects.toMatchObject({ name: 'AbortError' });
+      lifecycle.dispatchEvent(transition('pageshow', true));
+      expect(reloads()).toBe(1);
+      await set('value', 'shown', use);
+      expect(await get('value', use)).toBe('shown');
+    });
+
+    test('an operation still opening its connection at pagehide never starts', async () => {
+      const { use, lifecycle } = cached();
+      let started = false;
+      const write = use('readwrite', (store) => {
+        started = true;
+        store.put('late', 'value');
+        return Promise.resolve();
+      });
+      lifecycle.dispatchEvent(transition('pagehide', true));
+      await expect(write).rejects.toMatchObject({ name: 'AbortError' });
+      expect(started).toBe(false);
+    });
+
+    test('a page that is torn down rather than cached is left alone', async () => {
+      const { use, lifecycle, events, reloads } = cached();
+      lifecycle.dispatchEvent(transition('pagehide', false));
+      await set('value', 'kept', use);
+      lifecycle.dispatchEvent(transition('pageshow', false));
+      expect(await get('value', use)).toBe('kept');
+      expect(events).toEqual([]);
+      expect(reloads()).toBe(0);
+    });
+  });
 });

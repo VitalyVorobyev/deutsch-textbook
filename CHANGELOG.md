@@ -58,9 +58,16 @@ GitHub Release notes.
   (*Kultur und Freizeit*); the genitive *-es* is common, not required, on one-syllable nouns, and
   *-s* is the usual, not the only, ending (*Leben verändern*); *über* in a fixed verb combination is
   almost always, not always, accusative (*Meinung und Medien*).
+- ***Lernen & Zukunft* no longer says *um … zu* and *damit* split one-to-one by subject.** Two
+  subjects require *damit*; with one subject *damit* is correct too, and the course uses the shorter
+  *um … zu*. *Bildungswege* now builds on that rule instead of teaching it a second time.
 
 ### Fixed
 
+- **Desktop app: no more “Einträge warten auf Wiederherstellung” after switching pages quickly.**
+  Clicking to another page while an answer was still being saved could lock local storage for up
+  to half an hour, and a restart helped only if you waited before the first click. Now the save is
+  handed back as you leave the page and finishes on the next one.
 - **Exercises that asked you to guess the author's word now name it.** The A1 imperative and
   separable-verb checks give the infinitive (*Kinder, ___ hier rechts! (gehen)*), the *als*-clause
   exercise names *kommen* and *wohnen* and also takes *wohnten*, the bike-and-taxi exercise gives
