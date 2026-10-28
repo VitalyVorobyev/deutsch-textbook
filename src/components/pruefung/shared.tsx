@@ -12,13 +12,14 @@
  */
 import type {
   ExamAnswer,
+  ExamChoiceItemSpec,
   ExamModuleId,
   ExamModuleSpec,
   ExamOptionShape,
   ExamRunRecord,
   ExamSetSpec,
 } from '../../lib/exam-sim';
-import { moduleItems } from '../../lib/exam-sim';
+import { moduleItems, shapeOptions } from '../../lib/exam-sim';
 
 export type ExamMode = 'pruefung' | 'ueben';
 
@@ -43,27 +44,29 @@ interface ExamOption {
   label: string;
 }
 
-/** The answer sheet's buttons, per shape — the same three shapes `parseExamManifest` admits. */
-export const OPTIONS: Record<ExamOptionShape, readonly ExamOption[]> = {
-  abc: [
-    { value: 'a', label: 'a' },
-    { value: 'b', label: 'b' },
-    { value: 'c', label: 'c' },
-  ],
-  ab: [
-    { value: 'a', label: 'a' },
-    { value: 'b', label: 'b' },
-  ],
-  rf: [
-    { value: 'r', label: 'Richtig' },
-    { value: 'f', label: 'Falsch' },
-  ],
-};
+const WORD_LABEL: Record<string, string> = { r: 'Richtig', f: 'Falsch', j: 'Ja', n: 'Nein' };
+
+/** How the sheet prints one mark: words for r/f and j/n, X for "keine Lösung", else the letter. */
+const markLabel = (shape: ExamOptionShape, value: string): string =>
+  shape === 'rf' || shape === 'jn' ? (WORD_LABEL[value] ?? value) : value === 'x' ? 'X' : value;
+
+/** The answer sheet's buttons for one item — the marks `shapeOptions` admits, as printed. */
+export function optionsFor(
+  item: Pick<ExamChoiceItemSpec, 'shape' | 'options'>,
+): readonly ExamOption[] {
+  return shapeOptions(item.shape, item.options).map((value) => ({
+    value,
+    label: markLabel(item.shape, value),
+  }));
+}
 
 /** An answer as the sheet prints it; an unanswered item is an em dash, never a blank. */
-export function answerLabel(shape: ExamOptionShape, answer: ExamAnswer | null | undefined): string {
+export function answerLabel(
+  item: Pick<ExamChoiceItemSpec, 'shape' | 'options'>,
+  answer: ExamAnswer | null | undefined,
+): string {
   if (!answer) return '—';
-  return OPTIONS[shape].find((option) => option.value === answer)?.label ?? answer;
+  return optionsFor(item).find((option) => option.value === answer)?.label ?? answer;
 }
 
 /** mm:ss, never negative — the countdown stops at 0:00 and the run submits itself. */

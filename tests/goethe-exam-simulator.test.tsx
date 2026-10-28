@@ -200,7 +200,7 @@ describe('Üben', () => {
     expect(await screen.findByText('Ergebnis')).toBeTruthy();
     expect(screen.getByText('/3')).toBeTruthy();
     expect(screen.getByText('umgerechnet: 2/6')).toBeTruthy(); // maxScaled 6 over 3 items
-    expect(screen.getByText(/keine Bestehensgrenze/)).toBeTruthy();
+    expect(screen.getByText(/keine eigene Bestehensgrenze/)).toBeTruthy();
     expect(history().length).toBe(1);
     expect(history()[0]!.mode).toBe('ueben');
     expect(history()[0]!.raw).toBe(1);
@@ -221,6 +221,70 @@ describe('Üben', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Nr. 1' }));
     });
     expect(container.querySelector('audio')?.currentTime).toBe(90);
+  });
+});
+
+describe('level pages and the B1 sheet', () => {
+  // A B1-shaped set beside the A1 demo: Ja/Nein, a lettered list with a no-solution mark, a
+  // conversion table and a printed pass mark. Invented keys and table — ADR 0009.
+  const B1_SET = {
+    id: 'demo-b1',
+    title: 'Demo B1',
+    level: 'b1',
+    modules: [
+      {
+        module: 'lesen',
+        timeLimitMin: 65,
+        pages: ['/exams/demo/b1-l1.png'],
+        maxScaled: 100,
+        scoreTable: [0, 40, 70, 100],
+        passMark: 60,
+        teile: [
+          {
+            teil: 3,
+            items: [{ nr: 13, shape: 'letters', options: ['a', 'b', 'c', '0'], key: '0' }],
+          },
+          {
+            teil: 4,
+            items: [
+              { nr: 20, shape: 'jn', key: 'j' },
+              { nr: 21, shape: 'jn', key: 'n' },
+            ],
+          },
+        ],
+      },
+    ],
+  } as const;
+  const both = { ...MANIFEST, sets: [...MANIFEST.sets, B1_SET] };
+
+  test('a level page lists only its own sets', async () => {
+    serveManifest(true, both);
+    render(<GoetheExamSimulator level="b1" />);
+    expect(await screen.findByText('Demo B1')).toBeTruthy();
+    expect(screen.queryByText('Demo Satz')).toBeNull();
+  });
+
+  test('a level with no sets on this device gets the absence card', async () => {
+    serveManifest(true, both);
+    render(<GoetheExamSimulator level="a2" />);
+    expect(await screen.findByText(/nicht vorhanden/)).toBeTruthy();
+  });
+
+  test('lettered and Ja/Nein rows score through the printed table against the printed pass mark', async () => {
+    serveManifest(true, both);
+    render(<GoetheExamSimulator level="b1" />);
+    fireEvent.click(await screen.findByText('Demo B1'));
+    fireEvent.click(await screen.findByRole('button', { name: /Lesen · 65 Min/ }));
+    fireEvent.click(await screen.findByRole('button', { name: /Üben · ohne Zeit/ }));
+
+    expect(screen.getAllByRole('button', { name: '0' }).length).toBe(1);
+    fireEvent.click(screen.getByRole('button', { name: '0' })); // nr 13, key '0'
+    fireEvent.click(screen.getAllByRole('button', { name: 'Ja' })[0]!); // nr 20, key 'j'
+    fireEvent.click(screen.getByRole('button', { name: 'Beenden' }));
+
+    expect(await screen.findByText('Ergebnis')).toBeTruthy();
+    expect(screen.getByText('umgerechnet: 70/100')).toBeTruthy(); // table[2], not 2/3 of 100
+    expect(screen.getByText(/Bestehensgrenze: 60 Punkte — erreicht/)).toBeTruthy();
   });
 });
 

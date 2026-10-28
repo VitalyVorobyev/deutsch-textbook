@@ -10,16 +10,23 @@
  * arithmetic, and the local result history — all testable without any copyrighted byte.
  */
 
-/** a/b/c single choice, a/b two-way matching (Lesen Teil 2), or Richtig/Falsch. */
-export type ExamOptionShape = 'abc' | 'ab' | 'rf';
+/**
+ * a/b/c single choice, a/b two-way matching (SD1 Lesen Teil 2), Richtig/Falsch, Ja/Nein
+ * (B1 Lesen Teil 4), or `letters`: matching against a printed list — a–f, a–i, a–j — where the
+ * list may include a "no solution" mark (`x` in A2 Lesen Teil 4, `0` in B1 Lesen Teil 3).
+ */
+export type ExamOptionShape = 'abc' | 'ab' | 'rf' | 'jn' | 'letters';
 
-export type ExamAnswer = 'a' | 'b' | 'c' | 'r' | 'f';
+/** One mark on the answer sheet: a letter, r/f, j/n, or a no-solution mark (`x`, `0`). */
+export type ExamAnswer = string;
 
 export interface ExamChoiceItemSpec {
   /** Item number as printed on the Kandidatenblätter — stable identity within set+module. */
   nr: number;
   shape: ExamOptionShape;
   key: ExamAnswer;
+  /** `letters` only: the marks the Antwortbogen offers for this item, in printed order. */
+  options?: string[];
 }
 
 /** A typed blank (Schreiben Teil 1) — graded by normalized comparison against the answer(s). */
@@ -100,6 +107,19 @@ export interface ExamModuleSpec {
    * data, never hardcoded, so the number on screen is always the number the source states.
    */
   maxScaled: number;
+  /**
+   * The source's own conversion from raw points to the module score, when it prints one
+   * (B1: "Umrechnungstabelle Hören und Lesen"): `scoreTable[raw]` is the score for `raw`
+   * correct items, so it has one entry per possible raw score. Without it the raw score is
+   * scaled linearly and exactly (A2: "mit 1,25 multipliziert"), never rounded to a grid the
+   * source does not print.
+   */
+  scoreTable?: number[];
+  /**
+   * The module's pass mark in module points, only where the source prints one (B1: 60 per
+   * module). Absent, the result shows no verdict: the UI never invents a pass percentage.
+   */
+  passMark?: number;
   teile: ExamTeilSpec[];
 }
 
@@ -121,15 +141,55 @@ export interface ExamManifest {
 export const EXAM_MANIFEST_URL = '/exams/manifest.json';
 
 export const isExamAnswer = (value: unknown): value is ExamAnswer =>
-  value === 'a' || value === 'b' || value === 'c' || value === 'r' || value === 'f';
+  typeof value === 'string' && /^[a-z0-9]$/.test(value);
 const isAnswer = isExamAnswer;
 
-/** Exported for `scripts/exam-ingest.ts` — one source of truth, so the two cannot drift. */
-export const shapeAllows = (shape: ExamOptionShape, answer: ExamAnswer): boolean => {
-  if (shape === 'abc') return answer === 'a' || answer === 'b' || answer === 'c';
-  if (shape === 'ab') return answer === 'a' || answer === 'b';
-  return answer === 'r' || answer === 'f';
+export const isExamOptionShape = (value: unknown): value is ExamOptionShape =>
+  value === 'abc' || value === 'ab' || value === 'rf' || value === 'jn' || value === 'letters';
+
+/** A `letters` list: 2–12 distinct single marks. */
+export const validLetterOptions = (options: unknown): options is string[] =>
+  Array.isArray(options) &&
+  options.length >= 2 &&
+  options.length <= 12 &&
+  options.every(isExamAnswer) &&
+  new Set(options).size === options.length;
+
+/** The marks an item's sheet offers — the one list the runner, the result and the key share. */
+export const shapeOptions = (
+  shape: ExamOptionShape,
+  options?: readonly string[],
+): readonly string[] => {
+  if (shape === 'abc') return ['a', 'b', 'c'];
+  if (shape === 'ab') return ['a', 'b'];
+  if (shape === 'rf') return ['r', 'f'];
+  if (shape === 'jn') return ['j', 'n'];
+  return options ?? [];
 };
+
+/** Exported for `scripts/exam-ingest.ts` — one source of truth, so the two cannot drift. */
+export const shapeAllows = (
+  shape: ExamOptionShape,
+  answer: ExamAnswer,
+  options?: readonly string[],
+): boolean => shapeOptions(shape, options).includes(answer);
+
+/**
+ * A printed conversion table fits its module: one entry per raw score from 0 to the item
+ * count, never falling, ending at the share of the maximum the items can reach.
+ */
+export const scoreTableFits = (
+  table: unknown,
+  items: number,
+  scaledMax: number,
+): table is number[] =>
+  Array.isArray(table) &&
+  table.length === items + 1 &&
+  table.every(
+    (v, i) => typeof v === 'number' && v >= 0 && (i === 0 || v >= (table[i - 1] as number)),
+  ) &&
+  table[0] === 0 &&
+  table[items] === scaledMax;
 
 export const isTextItem = (item: ExamItemSpec): item is ExamTextItemSpec => item.shape === 'text';
 
@@ -254,12 +314,29 @@ export function parseExamManifest(value: unknown): ExamManifest | null {
               return null;
             }
           } else {
-            if (i.shape !== 'abc' && i.shape !== 'ab' && i.shape !== 'rf') return null;
-            if (!isAnswer(i.key) || !shapeAllows(i.shape, i.key)) return null;
+            if (!isExamOptionShape(i.shape)) return null;
+            if (i.shape === 'letters' && !validLetterOptions(i.options)) return null;
+            if (i.shape !== 'letters' && i.options !== undefined) return null;
+            const options = i.options as string[] | undefined;
+            if (!isAnswer(i.key) || !shapeAllows(i.shape, i.key, options)) return null;
           }
           seen.add(i.nr);
         }
       }
+      const freeMax = (m.teile as ExamTeilSpec[]).reduce(
+        (sum, t) => sum + (t.free?.points ?? 0),
+        0,
+      );
+      if (
+        m.scoreTable !== undefined &&
+        !scoreTableFits(m.scoreTable, seen.size, m.maxScaled - freeMax)
+      )
+        return null;
+      if (
+        m.passMark !== undefined &&
+        (typeof m.passMark !== 'number' || m.passMark <= 0 || m.passMark > m.maxScaled)
+      )
+        return null;
     }
   }
   return value as ExamManifest;
@@ -275,16 +352,17 @@ export const moduleFreeMax = (module: ExamModuleSpec): number =>
 export interface ExamModuleScore {
   raw: number;
   rawMax: number;
-  /** Raw scaled to the auto-gradable share of the maximum, to the half point the sources use. */
+  /** Raw converted to the auto-gradable share of the maximum: the printed table, else exact. */
   scaled: number;
   scaledMax: number;
 }
 
 /**
- * One point per auto-gradable item, scaled to the item share of the module maximum and
- * rounded to the nearest half point. A free part (Schreiben Teil 2) stays deliberately
- * outside this number: its points exist only as a criteria-based self-assessment, recorded
- * separately (`selfScore`) and never silently summed into the automatic score.
+ * One point per auto-gradable item, converted to the item share of the module maximum: through
+ * the source's printed table when the module carries one, otherwise linearly and exactly (to
+ * the hundredth, so A2's ×1,25 shows 16.25, not a rounded 16.5). A free part (Schreiben)
+ * stays deliberately outside this number: its points exist only as a criteria-based
+ * self-assessment, recorded separately (`selfScore`) and never silently summed into it.
  */
 export function scoreModule(
   module: ExamModuleSpec,
@@ -293,7 +371,10 @@ export function scoreModule(
   const items = moduleItems(module);
   const scaledMax = module.maxScaled - moduleFreeMax(module);
   const raw = items.filter((item) => itemCorrect(item, answers[item.nr])).length;
-  const scaled = items.length === 0 ? 0 : Math.round(((raw * scaledMax) / items.length) * 2) / 2;
+  const scaled =
+    items.length === 0
+      ? 0
+      : (module.scoreTable?.[raw] ?? Math.round(((raw * scaledMax) / items.length) * 100) / 100);
   return { raw, rawMax: items.length, scaled, scaledMax };
 }
 

@@ -5,15 +5,15 @@
  * React island per row (CLAUDE.md runtime invariant). The official text is shown verbatim, the
  * options in source order a–d with the key marked (ADR 0009).
  */
-import Base from '../../layouts/Base.astro';
-import Chrome from '../../components/Chrome.astro';
-import UebenNav from '../../components/UebenNav.astro';
-import LidImages from '../../components/lid/LidImages.astro';
-import LidSource from '../../components/lid/LidSource.astro';
-import { LID_OPTION_ORDER, questionAnchor, questionLabel, topicAnchor } from '../../components/lid/shared';
-import { getLidCatalogue } from '../../lib/content';
-import { t } from '../../lib/strings';
-import { withBase } from '../../lib/url';
+import Base from '../../../layouts/Base.astro';
+import Chrome from '../../../components/Chrome.astro';
+import UebenNav from '../../../components/UebenNav.astro';
+import PruefungCrumbs from '../../../components/PruefungCrumbs.astro';
+import LidImages from '../../../components/lid/LidImages.astro';
+import LidSource from '../../../components/lid/LidSource.astro';
+import { LID_OPTION_ORDER, questionAnchor, questionLabel, topicAnchor } from '../../../components/lid/shared';
+import { getLidCatalogue } from '../../../lib/content';
+import { t } from '../../../lib/strings';
 
 const { source, modules, entries } = getLidCatalogue();
 const byId = new Map(entries.map((entry) => [entry.question.id, entry]));
@@ -22,11 +22,8 @@ const topicsOf = (m: (typeof modules)[number]) =>
 ---
 
 <Base title={`${t('lid.catalogue', 'de')} · ${t('lid.title', 'de')}`}>
-  <UebenNav active="leben" />
-  <nav class="mb-2 text-sm text-stone-400">
-    <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
-    <span> / <Chrome k="lid.catalogue" /></span>
-  </nav>
+  <UebenNav active="pruefung" />
+  <PruefungCrumbs trail={[{ href: '/pruefung/leben', k: 'lid.title' }, { k: 'lid.catalogue' }]} />
   <!-- The breadcrumb names the page, and the overview card that leads here says what it holds. -->
   <h1 class="sr-only"><Chrome k="lid.catalogue" /></h1>
 

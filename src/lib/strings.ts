@@ -1069,7 +1069,7 @@ export const STRINGS = {
     uk: 'Виявлено друге сховище даних. Воно з’являється, коли виконуваний файл запускають без пакета застосунку, і містить власний окремий прогрес. Цей застосунок його не читає — і не змінює.',
   },
 
-  // Leben in Deutschland trainer (/leben, ADR 0009). `{…}` placeholders are filled by the caller
+  // Leben in Deutschland trainer (/pruefung/leben, ADR 0009). `{…}` placeholders are filled by the caller
   // (`lidText`, src/components/lid/shared.ts). The two pass marks are different tests with
   // different purposes, so every string that names one names which.
   'lid.title': {
@@ -1464,7 +1464,7 @@ export const STRINGS = {
     ru: 'Полный каталог вопросов (PDF, BAMF)',
     uk: 'Повний каталог питань (PDF, BAMF)',
   },
-  // Lessons (/leben/lernen): reading material over the topics; the questions remain the exam.
+  // Lessons (/pruefung/leben/lernen): reading material over the topics; the questions remain the exam.
   'lid.learn': { de: 'Lernen', en: 'Learn', ru: 'Изучение', uk: 'Вивчення' },
   'lid.learnHint': {
     de: '{n} Lektionen zum Hintergrund der Fragen',

@@ -32,7 +32,7 @@ interface Props {
   modules: LidModuleView[];
   /** `bank.states[0]` */
   state: string;
-  /** how many lessons there are (`/leben/lernen`) */
+  /** how many lessons there are (`/pruefung/leben/lernen`) */
   lessons: number;
 }
 
@@ -186,7 +186,7 @@ export default function LidOverview({ modules, state, lessons }: Props) {
       {/* The way in comes first: this page is opened every day to start, not to read. */}
       <section className="space-y-3">
         <a
-          href={withBase('/leben/ueben')}
+          href={withBase('/pruefung/leben/ueben')}
           className="block rounded-lg bg-amber-600 p-5 text-white shadow-sm hover:bg-amber-700"
         >
           <span className="block text-xl font-bold">{t('lid.practice', uiLang)} →</span>
@@ -195,7 +195,7 @@ export default function LidOverview({ modules, state, lessons }: Props) {
           </span>
         </a>
         <div className="grid gap-3 sm:grid-cols-2">
-          <a href={withBase('/leben/fehler')} className={entryLink}>
+          <a href={withBase('/pruefung/leben/fehler')} className={entryLink}>
             <span className="font-semibold text-amber-700 dark:text-amber-400">
               {t('lid.mistakes', uiLang)}
             </span>
@@ -205,7 +205,7 @@ export default function LidOverview({ modules, state, lessons }: Props) {
               </span>
             )}
           </a>
-          <a href={withBase('/leben/pruefung')} className={entryLink}>
+          <a href={withBase('/pruefung/leben/pruefung')} className={entryLink}>
             <span className="font-semibold text-amber-700 dark:text-amber-400">
               {t('lid.mock', uiLang)}
             </span>
@@ -219,7 +219,7 @@ export default function LidOverview({ modules, state, lessons }: Props) {
               })}
             </span>
           </a>
-          <a href={withBase('/leben/lernen')} className={entryLink}>
+          <a href={withBase('/pruefung/leben/lernen')} className={entryLink}>
             <span className="font-semibold text-amber-700 dark:text-amber-400">
               {t('lid.learn', uiLang)}
             </span>
@@ -229,7 +229,7 @@ export default function LidOverview({ modules, state, lessons }: Props) {
                 : t('lid.lessonsNone', uiLang)}
             </span>
           </a>
-          <a href={withBase('/leben/fragen')} className={entryLink}>
+          <a href={withBase('/pruefung/leben/fragen')} className={entryLink}>
             <span className="font-semibold text-amber-700 dark:text-amber-400">
               {t('lid.catalogue', uiLang)}
             </span>

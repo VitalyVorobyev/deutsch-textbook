@@ -5,24 +5,22 @@
  * remain the exam, and every lesson ends in practice of exactly its questions. Server-rendered,
  * no island: nothing here depends on progress.
  */
-import Base from '../../../layouts/Base.astro';
-import Chrome from '../../../components/Chrome.astro';
-import UebenNav from '../../../components/UebenNav.astro';
-import LidSource from '../../../components/lid/LidSource.astro';
-import { lidText } from '../../../components/lid/shared';
-import { getLidCatalogue } from '../../../lib/content';
-import { t } from '../../../lib/strings';
-import { withBase } from '../../../lib/url';
+import Base from '../../../../layouts/Base.astro';
+import Chrome from '../../../../components/Chrome.astro';
+import UebenNav from '../../../../components/UebenNav.astro';
+import PruefungCrumbs from '../../../../components/PruefungCrumbs.astro';
+import LidSource from '../../../../components/lid/LidSource.astro';
+import { lidText } from '../../../../components/lid/shared';
+import { getLidCatalogue } from '../../../../lib/content';
+import { t } from '../../../../lib/strings';
+import { withBase } from '../../../../lib/url';
 
 const { source, lessons } = getLidCatalogue();
 ---
 
 <Base title={`${t('lid.learn', 'de')} · ${t('lid.title', 'de')}`} description="Lektionen zum Hintergrund der Fragen im Test „Leben in Deutschland“">
-  <UebenNav active="leben" />
-  <nav class="mb-2 text-sm text-stone-400">
-    <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
-    <span> / <Chrome k="lid.learn" /></span>
-  </nav>
+  <UebenNav active="pruefung" />
+  <PruefungCrumbs trail={[{ href: '/pruefung/leben', k: 'lid.title' }, { k: 'lid.learn' }]} />
   <!-- The breadcrumb names the page, and the overview card that leads here says what it holds. -->
   <h1 class="sr-only"><Chrome k="lid.learn" /></h1>
 
@@ -36,7 +34,7 @@ const { source, lessons } = getLidCatalogue();
         {lessons.map((lesson, i) => (
           <li>
             <a
-              href={withBase(`/leben/lernen/${lesson.id}`)}
+              href={withBase(`/pruefung/leben/lernen/${lesson.id}`)}
               class="flex gap-4 rounded-lg border border-stone-200 bg-white px-4 py-4 hover:border-amber-400 dark:border-stone-700 dark:bg-stone-800 dark:hover:border-amber-500"
             >
               <span class="mt-0.5 w-6 shrink-0 text-right font-semibold tabular-nums text-stone-400">{i + 1}</span>

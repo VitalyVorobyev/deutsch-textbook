@@ -13,6 +13,16 @@ GitHub Release notes.
 
 ### Changed
 
+- **Prüfung is one place for every exam.** Üben now has four tabs (Wiederholen, Training,
+  Wortschatz, Prüfung) that fit a phone without sideways scrolling. Prüfung opens an overview with
+  Goethe A1, A2, B1 and Leben in Deutschland. Leben in Deutschland moved there; old links still
+  work, and your LiD progress is untouched. Pages inside Prüfung show a breadcrumb instead of
+  another row of tabs.
+- **Goethe-Zertifikat A2 and B1 in the exam simulator**, when the official practice sets are on
+  your device: timed Hören, Lesen and Schreiben with the real answer sheets, Sprechen as task cards.
+  The answer sheet now offers Ja/Nein and lettered matching with "keine Lösung". B1 converts your
+  points with the booklet's own table and shows the 60-point pass mark; A1 and A2 modules show
+  none, because the booklets print none per module.
 - **Articles link back to what they build on.** "Auf A2 stand der Komparativ nach *ist*" now opens
   the A2 section it means, and a *Zurück zu …* button there returns you to the same sentence,
   even inside a folded explanation. Twelve back-references in the B1 articles are linked.

@@ -175,7 +175,7 @@ export function getPlacements(): Promise<PlacementDescriptor[]> {
 }
 
 /**
- * The Leben-in-Deutschland bank joined with the course's notes, for the /leben pages (ADR 0009).
+ * The Leben-in-Deutschland bank joined with the course's notes, for the /pruefung/leben pages (ADR 0009).
  *
  * Scope is the general questions plus the learner's state (`bank.states[0]`) — the 33 a real
  * test draws from. Order is TEACHING order, the order `planLidPractice` deals new questions in:

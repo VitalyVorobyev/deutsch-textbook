@@ -161,3 +161,9 @@ body {
     dark:hover:bg-stone-800;
   bottom: calc(1rem + env(safe-area-inset-bottom));
 }
+
+/* A Goethe sitting owns the page: what the page shows beside the simulator hides while a module
+   runs (GoetheExamSimulator sets `data-exam-run` on <html>). */
+html[data-exam-run] [data-exam-aside] {
+  display: none;
+}

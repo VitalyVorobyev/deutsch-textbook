@@ -1,6 +1,6 @@
 /**
  * Exam simulator contract (ADR 0009): the manifest instance lives outside the repo, so this
- * file is the only committed proof the schema, the half-point scaling and the local result
+ * file is the only committed proof the schema, the score conversion and the local result
  * history behave — everything here runs against constructed fixtures, no copyrighted byte.
  */
 import { describe, expect, test } from 'bun:test';
@@ -12,6 +12,7 @@ import {
   priorRuns,
   recordExamRun,
   scoreModule,
+  shapeAllows,
   updateExamRun,
   type ExamChoiceItemSpec,
   type ExamManifest,
@@ -182,14 +183,85 @@ describe('parseExamManifest', () => {
   });
 });
 
+describe('answer shapes', () => {
+  const lettered: ExamModuleSpec = {
+    ...hoeren,
+    teile: [
+      {
+        teil: 4,
+        items: [
+          { nr: 20, shape: 'jn', key: 'j' },
+          { nr: 21, shape: 'letters', options: ['a', 'b', 'c', 'd', 'e', 'f', 'x'], key: 'x' },
+        ],
+      },
+    ],
+  };
+  const manifest = (module: ExamModuleSpec): unknown => ({
+    version: 1,
+    sets: [{ id: 'demo', title: 'Demo', level: 'b1', modules: [module] }],
+  });
+
+  test('Ja/Nein and a printed letter list with a no-solution mark parse and score', () => {
+    expect(parseExamManifest(manifest(lettered))).not.toBeNull();
+    expect(scoreModule(lettered, { 20: 'j', 21: 'x' }).raw).toBe(2);
+    expect(shapeAllows('letters', 'x', ['a', 'b', 'x'])).toBe(true);
+    expect(shapeAllows('letters', 'g', ['a', 'b', 'x'])).toBe(false);
+    expect(shapeAllows('jn', 'r')).toBe(false);
+  });
+
+  test('a letters item without its list, or a key outside it, is rejected', () => {
+    const noList = {
+      ...lettered,
+      teile: [{ teil: 1, items: [{ nr: 1, shape: 'letters', key: 'a' }] }],
+    };
+    const offList = {
+      ...lettered,
+      teile: [{ teil: 1, items: [{ nr: 1, shape: 'letters', options: ['a', 'b'], key: 'c' }] }],
+    };
+    const stray = {
+      ...lettered,
+      teile: [{ teil: 1, items: [{ nr: 1, shape: 'abc', options: ['a'], key: 'a' }] }],
+    };
+    expect(parseExamManifest(manifest(noList as ExamModuleSpec))).toBeNull();
+    expect(parseExamManifest(manifest(offList as ExamModuleSpec))).toBeNull();
+    expect(parseExamManifest(manifest(stray as ExamModuleSpec))).toBeNull();
+  });
+
+  test('a score table must fit its module, and a pass mark its maximum', () => {
+    const fits = {
+      ...hoeren,
+      maxScaled: 100,
+      scoreTable: [0, 10, 30, 50, 70, 90, 100],
+      passMark: 60,
+    };
+    expect(parseExamManifest(manifest(fits))).not.toBeNull();
+    expect(parseExamManifest(manifest({ ...fits, scoreTable: [0, 50, 100] }))).toBeNull();
+    expect(
+      parseExamManifest(manifest({ ...fits, scoreTable: [0, 10, 5, 50, 70, 90, 100] })),
+    ).toBeNull();
+    expect(parseExamManifest(manifest({ ...fits, passMark: 120 }))).toBeNull();
+  });
+});
+
 describe('scoreModule', () => {
-  test('scales raw points to the official maximum in half points', () => {
-    // 4 of 6 at max 25 → 16.666… → 16.5, the Prüferblätter's half-point grid.
+  test('scales raw points to the official maximum exactly, never to a grid the source lacks', () => {
+    // 4 of 6 at max 25 → 16.67. A2 prints "× 1,25" and no rounding: 13 of 20 is 16.25.
     const score = scoreModule(hoeren, { 1: 'b', 2: 'a', 3: 'a', 4: 'r', 5: 'r', 6: 'r' });
     expect(score.raw).toBe(4);
     expect(score.rawMax).toBe(6);
-    expect(score.scaled).toBe(16.5);
+    expect(score.scaled).toBe(16.67);
     expect(score.scaledMax).toBe(25);
+  });
+
+  test('a printed conversion table decides the score when the module has one', () => {
+    // Invented table, not B1's: the shape is what is under test.
+    const tabled: ExamModuleSpec = {
+      ...hoeren,
+      maxScaled: 100,
+      scoreTable: [0, 10, 30, 50, 70, 90, 100],
+    };
+    expect(scoreModule(tabled, { 1: 'b', 2: 'a' }).scaled).toBe(30);
+    expect(scoreModule(tabled, {}).scaled).toBe(0);
   });
 
   test('unanswered items score zero, full sheet scores the maximum', () => {

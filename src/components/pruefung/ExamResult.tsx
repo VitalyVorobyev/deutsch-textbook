@@ -32,6 +32,44 @@ import {
 } from './shared';
 import { AnswerPages, FreeTexts, SelfScorePanel } from './review';
 
+/**
+ * The pass mark, only where the booklet prints one for this module (B1: 60 of 100). The score it
+ * reads is the converted one, plus the self-assessed free part once entered — and a verdict that
+ * rests on a self-assessment says so. Without a printed mark the line says the result is a raw
+ * value; it never invents a percentage.
+ */
+function PassLine({
+  module,
+  run,
+  freeMax,
+}: {
+  module: ExamModuleSpec;
+  run: ExamRunRecord;
+  freeMax: number;
+}) {
+  const muted = 'mt-3 text-sm text-stone-500 dark:text-stone-400';
+  if (module.passMark === undefined)
+    return <p className={muted}>Für dieses Modul nennt das Heft keine eigene Bestehensgrenze.</p>;
+  if (freeMax > 0 && run.selfScore === undefined)
+    return (
+      <p className={muted}>
+        Bestehensgrenze: {formatPoints(module.passMark)} Punkte — lesbar erst nach der
+        Selbstbewertung unten.
+      </p>
+    );
+  const total = run.scaled + (run.selfScore ?? 0);
+  const passed = total >= module.passMark;
+  return (
+    <p
+      className={`mt-3 text-sm font-medium ${passed ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}
+    >
+      Bestehensgrenze: {formatPoints(module.passMark)} Punkte —{' '}
+      {passed ? 'erreicht' : 'nicht erreicht'} ({formatPoints(total)})
+      {freeMax > 0 && ', mit Selbstbewertung'}
+    </p>
+  );
+}
+
 interface Props {
   set: ExamSetSpec;
   module: ExamModuleSpec;
@@ -94,9 +132,7 @@ export default function ExamResult({
             umgerechnet: {formatPoints(run.scaled)}/{formatPoints(run.scaledMax)}
           </p>
         )}
-        <p className="mt-3 text-sm text-stone-500 dark:text-stone-400">
-          Die Hefte nennen keine Bestehensgrenze; das Ergebnis ist ein Rohwert.
-        </p>
+        <PassLine module={module} run={run} freeMax={freeMax} />
 
         <h3 className="mt-6 text-sm font-bold uppercase tracking-wide text-stone-500 dark:text-stone-400">
           Nach Teilen
@@ -154,10 +190,10 @@ export default function ExamResult({
                           <td className="py-1.5 pr-3">
                             {isTextItem(item)
                               ? (given ?? '—')
-                              : answerLabel(item.shape, given as ExamAnswer | null)}
+                              : answerLabel(item, given as ExamAnswer | null)}
                           </td>
                           <td className="py-1.5 pr-3 text-stone-500 dark:text-stone-400">
-                            {isTextItem(item) ? item.answer : answerLabel(item.shape, item.key)}
+                            {isTextItem(item) ? item.answer : answerLabel(item, item.key)}
                           </td>
                           <td
                             className={`py-1.5 font-semibold ${correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}

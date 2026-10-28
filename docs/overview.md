@@ -335,6 +335,11 @@ rather than on every visit after it. Content headers stay visible — a topic, d
 discovery piece or reference table is named by its title, not by the navigation — and so do
 instructions a learner needs before acting (Checkpoint, Einstufung, the unverified-practice note).
 
+**Two rows of navigation at most.** Üben has four tabs and stays at four, so they fit a 320 px
+phone without scrolling. Everything exam-shaped lives under Prüfung: its hub (`/pruefung`) is the
+map — one card per Goethe level and one for Leben in Deutschland — and every page below it says
+where it sits with a breadcrumb (`src/components/PruefungCrumbs.astro`), never a third row of tabs.
+
 The header is one row at every width: a sticky header that wraps charges that row on every screen
 of every page (it was 103 px on a phone and 83 px at 700 px before 0.6.6, 57 px after). Inside
 the installed app, the footer does not offer to install it.

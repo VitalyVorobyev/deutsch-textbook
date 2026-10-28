@@ -1,0 +1,21 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Chrome from '../../../components/Chrome.astro';
+import UebenNav from '../../../components/UebenNav.astro';
+import PruefungCrumbs from '../../../components/PruefungCrumbs.astro';
+import LidMockExam from '../../../components/lid/LidMockExam';
+import LidSource from '../../../components/lid/LidSource.astro';
+import { getLidCatalogue } from '../../../lib/content';
+import { t } from '../../../lib/strings';
+
+const { source, bankVersion, state, entries } = getLidCatalogue();
+---
+
+<Base title={`${t('lid.mock', 'de')} · ${t('lid.title', 'de')}`}>
+  <UebenNav active="pruefung" />
+  <PruefungCrumbs trail={[{ href: '/pruefung/leben', k: 'lid.title' }, { k: 'lid.mock' }]} />
+  <!-- The breadcrumb names the page; the H1 is for the accessibility tree. -->
+  <h1 class="sr-only"><Chrome k="lid.mock" /></h1>
+  <LidMockExam client:only="react" entries={entries} bankVersion={bankVersion} state={state} pdfUrl={source.pdfUrl} />
+  <LidSource source={source} />
+</Base>

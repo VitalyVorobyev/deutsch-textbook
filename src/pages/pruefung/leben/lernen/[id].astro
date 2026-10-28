@@ -11,19 +11,20 @@
  * only under `uk` — and only when the lesson carries one, which the UK ratchet makes every lesson do.
  */
 import { getCollection, render } from 'astro:content';
-import Base from '../../../layouts/Base.astro';
-import Chrome from '../../../components/Chrome.astro';
-import En from '../../../components/En.astro';
-import Ru from '../../../components/Ru.astro';
-import Uk from '../../../components/Uk.astro';
-import UebenNav from '../../../components/UebenNav.astro';
-import LidFigure from '../../../components/lid/LidFigure.astro';
-import LidSource from '../../../components/lid/LidSource.astro';
-import Translation from '../../../components/Translation.astro';
-import { lidText, questionAnchor, questionLabel } from '../../../components/lid/shared';
-import { getLidCatalogue } from '../../../lib/content';
-import { t } from '../../../lib/strings';
-import { withBase } from '../../../lib/url';
+import Base from '../../../../layouts/Base.astro';
+import Chrome from '../../../../components/Chrome.astro';
+import En from '../../../../components/En.astro';
+import Ru from '../../../../components/Ru.astro';
+import Uk from '../../../../components/Uk.astro';
+import UebenNav from '../../../../components/UebenNav.astro';
+import PruefungCrumbs from '../../../../components/PruefungCrumbs.astro';
+import LidFigure from '../../../../components/lid/LidFigure.astro';
+import LidSource from '../../../../components/lid/LidSource.astro';
+import Translation from '../../../../components/Translation.astro';
+import { lidText, questionAnchor, questionLabel } from '../../../../components/lid/shared';
+import { getLidCatalogue } from '../../../../lib/content';
+import { t } from '../../../../lib/strings';
+import { withBase } from '../../../../lib/url';
 
 export async function getStaticPaths() {
   // The catalogue joins each lesson to its questions; the collection renders its body. Both read
@@ -55,12 +56,8 @@ const draft = lesson.status === 'draft';
 ---
 
 <Base title={`${lesson.title} · ${t('lid.title', 'de')}`} description={lesson.summary}>
-  <UebenNav active="leben" />
-  <nav class="mb-2 text-sm text-stone-400">
-    <a href={withBase('/leben')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.title" /></a>
-    <span> / </span>
-    <a href={withBase('/leben/lernen')} class="hover:text-stone-600 dark:hover:text-stone-200"><Chrome k="lid.learn" /></a>
-  </nav>
+  <UebenNav active="pruefung" />
+  <PruefungCrumbs trail={[{ href: '/pruefung/leben', k: 'lid.title' }, { href: '/pruefung/leben/lernen', k: 'lid.learn' }]} />
   <header>
     <h1 lang="de" class="text-3xl font-bold tracking-tight">
       {lesson.title}
@@ -103,7 +100,7 @@ const draft = lesson.status === 'draft';
   </section>
 
   <a
-    href={withBase(`/leben/ueben?lektion=${lesson.id}`)}
+    href={withBase(`/pruefung/leben/ueben?lektion=${lesson.id}`)}
     class="mt-10 block rounded-lg bg-amber-600 p-5 text-white shadow-sm hover:bg-amber-700"
   >
     <span class="block text-xl font-bold">{lidText('lid.lessonPractice', 'de', { n: questions.length })} →</span>
@@ -119,7 +116,7 @@ const draft = lesson.status === 'draft';
             {group.questions.map(({ question }) => (
               <li>
                 <a
-                  href={withBase(`/leben/fragen#${questionAnchor(question.id)}`)}
+                  href={withBase(`/pruefung/leben/fragen#${questionAnchor(question.id)}`)}
                   class="flex min-h-11 gap-3 px-4 py-2.5 hover:bg-stone-50 dark:hover:bg-stone-700/50"
                 >
                   <span class="w-20 shrink-0 pt-0.5 text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">

@@ -4,7 +4,7 @@
  * Reads docs/GeotheInstitute/exam-sources.yaml (override: --sources <path>) — a config that
  * exists only on a machine holding the official materials and is never committed. For every
  * set/module it lists, renders the named Kandidatenblätter pages to PNG (`pdftoppm`) and, when
- * a recording is named, extracts its audio without re-encoding (`ffmpeg -acodec copy`). Writes
+ * a recording is named, extracts its audio (an AAC soundtrack copied as is, anything else encoded to AAC). Writes
  * public/exams/<setId>/pages/<module>-p<NN>.png, public/exams/<setId>/<module>.m4a, and
  * public/exams/manifest.json — the one shape src/lib/exam-sim.ts's `parseExamManifest` reads.
  * Both docs/GeotheInstitute/ and public/exams/ are gitignored; nothing this script produces
@@ -43,11 +43,14 @@
  *           answerPdfPages: [33, 34]        # optional Prüferblätter pages (Transkriptionen,
  *                                           # Bewertung, Leistungsbeispiele) — shown after a run
  *           maxScaled: 25                   # module maximum as the source's Antwortbogen states it
+ *           scoreTable: [0, 3, 7, …, 100]     # optional: the printed raw → points table (B1)
+ *           passMark: 60                      # optional: only where the source prints one
  *           teile:
  *             - teil: 1
  *               plays: twice                # once | twice, per the instruction line
  *               items:
- *                 - { nr: 1, shape: abc, key: b }   # shape: abc | ab | rf; key: a/b/c, a/b, or r/f
+ *                 - { nr: 1, shape: abc, key: b }   # shape: abc | ab | rf | jn; key: a/b/c, a/b, r/f, j/n
+ *                 - { nr: 16, shape: letters, options: [a, b, c, d, e, f, x], key: x }  # matching
  *                 - { nr: 2, shape: abc, key: a }
  *
  *   Schreiben Teil 1 blanks are text items, compared against `answer` + `accept` variants:
@@ -81,6 +84,9 @@ import { dirname, join, relative, resolve } from 'node:path';
 import YAML from 'yaml';
 import {
   isExamAnswer,
+  isExamOptionShape,
+  scoreTableFits,
+  validLetterOptions,
   parseExamManifest,
   shapeAllows,
   type ExamCue,
@@ -171,6 +177,10 @@ interface SourceModule {
   /** Prüferblätter pages, rendered like task pages but surfaced only after a run. */
   answerPdfPages?: number[];
   maxScaled: number;
+  /** The printed raw → points conversion, when the source has one (B1). */
+  scoreTable?: number[];
+  /** The module pass mark, only where the source prints one. */
+  passMark?: number;
   teile: ExamTeilSpec[];
 }
 
@@ -513,16 +523,32 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
               answer: it.answer,
               ...(it.accept !== undefined ? { accept: it.accept as string[] } : {}),
             });
-          } else if (it.shape === 'abc' || it.shape === 'ab' || it.shape === 'rf') {
-            if (!isAnswer(it.key) || !shapeAllows(it.shape, it.key)) {
+          } else if (isExamOptionShape(it.shape)) {
+            if (it.shape === 'letters' && !validLetterOptions(it.options)) {
               errors.push(
-                `${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"`,
+                `${iWhere}.options must list 2–12 distinct single marks (a–z, 0–9) for shape "letters"`,
               );
               return;
             }
-            items.push({ nr: it.nr, shape: it.shape, key: it.key });
+            if (it.shape !== 'letters' && it.options !== undefined) {
+              errors.push(`${iWhere}.options belongs to shape "letters" only`);
+              return;
+            }
+            const options = it.options as string[] | undefined;
+            if (!isAnswer(it.key) || !shapeAllows(it.shape, it.key, options)) {
+              errors.push(
+                `${iWhere}.key ${JSON.stringify(it.key)} is not a valid answer for shape "${it.shape}"${options ? ` (${options.join('/')})` : ''}`,
+              );
+              return;
+            }
+            items.push({
+              nr: it.nr,
+              shape: it.shape,
+              key: it.key,
+              ...(options ? { options } : {}),
+            });
           } else {
-            errors.push(`${iWhere}.shape must be "abc", "ab", "rf" or "text"`);
+            errors.push(`${iWhere}.shape must be "abc", "ab", "rf", "jn", "letters" or "text"`);
             return;
           }
           allNrs.push(it.nr);
@@ -551,10 +577,29 @@ export function validateConfig(raw: unknown, label: string): ValidationResult {
         }
       }
 
+      const itemCount = teile.reduce((n, t) => n + t.items.length, 0);
+      const freeMax = teile.reduce((n, t) => n + (t.free?.points ?? 0), 0);
+      if (
+        m.scoreTable !== undefined &&
+        !scoreTableFits(m.scoreTable, itemCount, (m.maxScaled as number) - freeMax)
+      ) {
+        errors.push(
+          `${mWhere2}: scoreTable must have ${itemCount + 1} non-decreasing entries from 0 to ${(m.maxScaled as number) - freeMax} — one per raw score, as the Umrechnungstabelle prints them`,
+        );
+      }
+      if (
+        m.passMark !== undefined &&
+        (!isPositiveNumber(m.passMark) || m.passMark > (m.maxScaled as number))
+      ) {
+        errors.push(`${mWhere2}: passMark must be a positive number no larger than maxScaled`);
+      }
+
       modules.push({
         module: moduleId,
         timeLimitMin: m.timeLimitMin as number,
         maxScaled: m.maxScaled as number,
+        ...(m.scoreTable !== undefined ? { scoreTable: m.scoreTable as number[] } : {}),
+        ...(m.passMark !== undefined ? { passMark: m.passMark as number } : {}),
         audio: m.audio as string | undefined,
         cues,
         pdfPages: m.pdfPages as number[],
@@ -682,8 +727,14 @@ function extractAudio(
   if (!force && isFresh(outPath, videoPath)) return 'skipped';
 
   mkdirSync(dirname(outPath), { recursive: true });
+  // The output is an .m4a, so its stream must be AAC. A video's soundtrack already is and is
+  // copied untouched; a bare MP3 (the A2 Übungssatz ships one) would copy into a container
+  // that not every WebView plays, so it is encoded instead.
+  const codec = /\.(mp4|m4a|m4v|mov)$/i.test(videoPath)
+    ? ['-acodec', 'copy']
+    : ['-c:a', 'aac', '-b:a', '128k'];
   try {
-    execFileSync(ffmpegBin, ['-y', '-i', videoPath, '-vn', '-acodec', 'copy', outPath], {
+    execFileSync(ffmpegBin, ['-y', '-i', videoPath, '-vn', ...codec, outPath], {
       stdio: ['ignore', 'ignore', 'pipe'],
     });
   } catch (err) {
@@ -757,6 +808,8 @@ export function buildManifest(config: SourceConfig): ExamManifest {
       audio: module.audio ? audioUrl(set.id, module.module) : undefined,
       cues: module.cues,
       maxScaled: module.maxScaled,
+      ...(module.scoreTable ? { scoreTable: module.scoreTable } : {}),
+      ...(module.passMark !== undefined ? { passMark: module.passMark } : {}),
       teile: module.teile,
     }));
     return { id: set.id, title: set.title, level: set.level, modules };
