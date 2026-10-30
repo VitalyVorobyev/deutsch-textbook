@@ -1,8 +1,7 @@
 """Publishing one approved scene into the course repository.
 
-The legacy publisher (`export.write_bundle` + `cli.publish`) writes a **bundle** — eighteen files,
-two PDFs, a zip — and then copies five of them into the repo. This one writes what the repo needs
-and nothing else, because a scene already *is* the editorial document the bundle existed to carry:
+It writes what the repo needs and nothing else — a scene already *is* the editorial document, so
+there is no bundle beside it:
 
 | Target | What it is |
 | --- | --- |
@@ -14,8 +13,8 @@ and nothing else, because a scene already *is* the editorial document the bundle
 The fourth is not in the brief for this publisher and is written anyway, for one measured reason:
 `scripts/validate.ts` fails a listening artifact whose provenance names no resolvable
 `generation_brief`, so a publisher that skipped it would leave the repository invalid. It is
-derived from the **scene's own** `authoring`/`generation_prompt` — the three branches
-`export.write_bundle` uses — and never reconstructed from the finished script.
+derived from the **scene's own** `authoring`/`generation_prompt` (`generation_brief`'s three
+branches) and never reconstructed from the finished script.
 
 **Every field of every target is derived from the scene and the render.** Nothing is read out of
 the artifact record already in the repository: a publisher that copied a field forward would keep
@@ -65,8 +64,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+import yaml
+
 from ..domain import Stage
-from ..export import dump_yaml, sha256
 from ..storage import Store
 from .convert import exercise_sets_for, load_yaml
 from .model import Scene
@@ -81,14 +81,14 @@ LEVELS: tuple[str, ...] = ("A1", "A2", "B1", "B2")
 #: see in a diff.
 PUBLISHED_VARIANT = "natural"
 
-#: The provenance manifest's own version. 1 is `export.manifest` — a `RevisionPayload`, its resolved
-#: lines and its per-line cache keys. 2 is a **scene**: `scene_sha256`, the render's node hashes, its
-#: voices map and its timing. They are different documents about different things and a reader has
-#: to be able to tell which it is holding; `api.registry._published_revision` already keys on it,
-#: which is how a converted artifact stops reporting `stale` forever.
+#: The provenance manifest's own version. 1 is the pre-scene dialogue manifest — a resolved line
+#: list and per-line cache keys, which the published corpus still carries until each artifact is
+#: republished. 2 is a **scene**: `scene_sha256`, the render's node hashes, its voices map and its
+#: timing. A reader has to be able to tell which it is holding; `api.registry._published_revision`
+#: compares only a version-2 `scene_sha256`.
 MANIFEST_VERSION = 2
 
-#: Where the package's two lock files live — the same pair `cli.bundle_project` hashes.
+#: Where the package's two lock files live: `uv.lock` and `models.lock.json`.
 PACKAGE_ROOT = Path(__file__).resolve().parents[3]
 
 #: The artifact schema's bound (`listeningArtifactSchema.speakers`, `.min(1).max(4)`).
@@ -163,7 +163,7 @@ def render_dir(store_root: Path, scene: Scene, variant: str = PUBLISHED_VARIANT)
 
 
 def default_backup_root(store_root: Path, slug: str) -> Path:
-    """Where the bytes a replacement overwrites are kept: `cli.republish`'s answer, unchanged.
+    """Where the bytes a replacement overwrites are kept: `replaced/<slug>/<timestamp>`.
 
     Under **app-data**, never under the repository. A backup inside the tree being published to is
     a file the next `bun run validate` has to be taught to ignore, and one somebody eventually
@@ -202,7 +202,7 @@ def _published_bitrate(render: Mapping[str, Any]) -> str | None:
 
 
 def _lock_hashes() -> dict[str, str]:
-    """The dependency and model lock digests, exactly as `cli.bundle_project` computes them."""
+    """The dependency and model lock digests a manifest records."""
 
     return {
         "dependency_lock_sha256": hashlib.sha256(
@@ -212,6 +212,26 @@ def _lock_hashes() -> dict[str, str]:
             (PACKAGE_ROOT / "models.lock.json").read_bytes()
         ).hexdigest(),
     }
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+class _NoAliases(yaml.SafeDumper):  # type: ignore[misc]
+    """Dump repeated objects in full instead of as YAML anchors and aliases.
+
+    A record that hands one list to two fields would otherwise be written `&id001` / `*id001`:
+    valid YAML that round-trips, and the wrong shape for a file a human edits — a reviewer reading
+    `outcomes: *id001` learns nothing, and an editor changing one changes both without being told.
+    """
+
+    def ignore_aliases(self, data: object) -> bool:
+        return True
+
+
+def dump_yaml(data: object) -> str:
+    return str(yaml.dump(data, Dumper=_NoAliases, allow_unicode=True, sort_keys=False))
 
 
 # -- the artifact record ------------------------------------------------------
@@ -225,7 +245,7 @@ def listening_record(
     Three fields are worth their comment.
 
     `duration_seconds` is measured off the render, never off the brief. The brief states the
-    window the plan *asked* for; twelve of the forty-one legacy takes do not land inside theirs.
+    window the plan *asked* for; twelve of the forty-one published takes do not land inside theirs.
 
     `transcript` is ordered by **when each turn was heard**, from the render's own timing table,
     rather than by the order the script happens to be stored in. For every scene shipped so far
@@ -263,10 +283,9 @@ def listening_record(
 def generation_brief(scene: Scene) -> str:
     """The brief document, in the scene's own words about its own authoring.
 
-    `export.write_bundle`'s three branches, unchanged, because the failure they encode has not
-    moved: printing a prompt rebuilt from the finished script publishes a generation history that
-    did not happen, and calling a model-drafted script "manually authored" is the same fabrication
-    pointed the other way. A converted dialogue takes the middle branch and that is the truth —
+    Three branches, because printing a prompt rebuilt from the finished script publishes a
+    generation history that did not happen, and calling a model-drafted script "manually authored"
+    is the same fabrication pointed the other way. A converted dialogue takes the middle branch and that is the truth —
     the 40 published scripts were drafted by a model whose prompt was not retained.
     """
 
@@ -304,9 +323,9 @@ def contextual_sources(render: Mapping[str, Any]) -> list[dict[str, Any]]:
 
     `AssetStore.resolve_source` writes `{kind: "imported-source", source_sha256, sound_id,
     license, source_record}` beside an imported Freesound original, and `render.json` copies every
-    asset sidecar into `assets`. So the licence trail survives the move from `RevisionPayload`'s
-    `context_sounds` to a scene's `AssetRef` without the publisher knowing anything about
-    Freesound — which is the point, because a scene names a sha and nothing else.
+    asset sidecar into `assets`. So the licence trail reaches the manifest without the publisher
+    knowing anything about Freesound — which is the point, because a scene's `AssetRef` names a
+    sha and nothing else.
 
     The key is `original_sha256` rather than `source_sha256`: `scripts/validate.ts` reads this
     block, and renaming a field the course repo already checks would be a silent hole in a check
@@ -351,13 +370,11 @@ def scene_manifest(
     and `reference_audio_used` is the same boolean, because in this design a reference recording is
     the only thing a cloned voice can come from. Computing them any other way — from the scene
     document, from the engine name, from an editor's checkbox — would answer a question about what
-    was *rendered* with something that is not the render. `export.manifest` says the same thing
-    about its own ceiling and points here.
+    was *rendered* with something that is not the render.
 
     The scene document itself is embedded. `scene_sha256` is the manifest's whole claim to identity
     and the registry's `stale` signal is computed from it, and a hash naming a document that lives
-    only in one machine's SQLite is a hash nobody else can check. The legacy bundle carried
-    `project.json` for the same reason; the difference is that this one lands in the repository.
+    only in one machine's SQLite is a hash nobody else can check.
     """
 
     voices = {
@@ -493,8 +510,8 @@ def _check_audio_sources(repo: Path, sources: Sequence[Mapping[str, Any]]) -> No
     `scripts/validate.ts` checks the same thing from the other end — it hashes
     `data/audio-sources/freesound/<id>/original.*` against the manifest — and fails the whole
     corpus if it does not match. This publisher does not write that directory (the regeneration
-    wave reuses sources the legacy publisher already committed), so an uncommitted source is
-    refused here rather than published into a repository that then fails to validate.
+    wave reuses sources the repository already carries), so an uncommitted source is refused here
+    rather than published into a repository that then fails to validate.
     """
 
     for source in sources:
@@ -598,10 +615,10 @@ def plan_publish(
             f"{scene.slug} carries no completed human approval "
             f"(status {approval.get('status') or 'none'})",
         )
-    qa: dict[str, Any] = json.loads(revision.qa_json or "{}")
+    qa = store.scene_qa_report(revision.id, variant) or {}
     if qa.get("passed") is not True:
         raise PublishRefusal(
-            "qa", f"{scene.slug} has no passing automatic QA report for this revision"
+            "qa", f"{scene.slug} has no passing automatic QA report for its {variant} render"
         )
     # Level **before** scenario, and the order is load-bearing rather than tidy: a scene with no
     # brief lacks both, and `--level` is the documented escape hatch for exactly that scene. Asking
@@ -766,12 +783,13 @@ def stage_publish(plan: PublishPlan, stage: Path) -> list[tuple[Path, Path]]:
 def write_publish(plan: PublishPlan, repo: Path, *, backup_root: Path | None = None) -> list[Path]:
     """Stage every file, back up what is being replaced, then rename them all into place.
 
-    `cli.republish`'s discipline, kept whole and applied to every publish rather than only to a
-    replacement. Three properties, each of which has cost something when it was absent:
+    The same discipline for a first publish and a replacement. Three properties, each of which has
+    cost something when it was absent:
 
     * **Stage all, then rename.** A `shutil.copy2` straight to the target leaves a half-written
       file if the process dies mid-copy, and a half-published recording is worse than none — it
-      validates as an artifact and plays as noise.
+      validates as an artifact and plays as noise. The staging directory is a fresh temporary one
+      per publish, so nothing from an earlier attempt can ride along.
     * **Roll back on failure.** If the fourth rename fails the first three are put back, from the
       backup where there was one and by deletion where there was not.
     * **Back up before replacing.** Under app-data, not under the repository: a backup inside the
@@ -840,7 +858,7 @@ def publish_scene(
     `backup_root` is **derived when it is not given and the publish replaces something**, rather
     than refused. A caller that has to remember to pass one is a caller that publishes a
     replacement without a backup on the day they forget, and there is exactly one right answer:
-    `replaced/<slug>/<timestamp>` under app-data, which is where `cli.republish` has always put it.
+    `replaced/<slug>/<timestamp>` under app-data (`default_backup_root`).
     """
 
     plan = plan_publish(store, repo, slug, level=level, variant=variant)

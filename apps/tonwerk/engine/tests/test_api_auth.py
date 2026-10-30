@@ -154,8 +154,8 @@ def test_the_only_routes_outside_api_are_health_and_the_workbench(tmp_path: Path
     built, the static mount at `/` answers 404 for `/projects/1` and **405** for a POST to it,
     which is the right behaviour and a useless assertion. The route table is the fact.
 
-    It matters beyond tidiness: `/projects/{id}/script` and its siblings wrote a `RevisionPayload`
-    through an HTML form, and those projects are frozen data until they are converted to scenes.
+    It matters beyond tidiness: a form route is a second way to write a project, and a scene
+    project is the only kind there is.
     """
 
     store = Store(tmp_path / "db.sqlite3")
@@ -176,35 +176,31 @@ def test_the_only_routes_outside_api_are_health_and_the_workbench(tmp_path: Path
     assert not [path for path in paths if path.startswith(("/projects", "/readings"))]
 
 
-def test_the_dashboard_endpoints_answer_the_same_shape_as_before(tmp_path: Path) -> None:
-    """The pre-scene projects are frozen data, and they stay readable.
+def test_the_pre_scene_project_routes_are_gone_and_the_libraries_answer(tmp_path: Path) -> None:
+    """A scene project is the only project, so nothing under `/api` lists or edits another kind.
 
-    Read against the real course repository, because both endpoints join the plan, the character
-    catalog and the Lesetext corpus — a fixture repo would exercise the empty branch of all
-    three. The store is still a throwaway, so nothing here depends on the editor's own database.
+    The libraries a scene draws on still answer, read against the real course repository because
+    they join the character catalog, the narration profiles and the sound store — a fixture repo
+    would exercise the empty branch of each.
     """
 
     store = Store(tmp_path / "db.sqlite3")
-    http = TestClient(app(store, REPO, token="test"), raise_server_exceptions=False)
-    auth = {"Authorization": "Bearer test"}
-    dashboard = http.get("/api/dashboard", headers=auth)
-    assert dashboard.status_code == 200
-    assert set(dashboard.json()) == {"dialogues", "readings", "issues", "summary"}
-    assert set(dashboard.json()["summary"]) == {
-        "dialogues",
-        "dialogues_approved",
-        "readings",
-        "readings_approved",
-        "paragraphs",
-        "characters",
-        "sounds",
-    }
-    assert dashboard.json()["summary"]["dialogues"] > 0
-    assert dashboard.json()["summary"]["readings"] > 0
+    api = app(store, REPO, token="test")
+    paths = {str(getattr(route, "path", "")) for route in api.routes}
+    assert not [
+        path
+        for path in paths
+        if path.startswith(("/api/projects", "/api/readings", "/api/dashboard"))
+    ]
 
+    http = TestClient(api, raise_server_exceptions=False)
+    auth = {"Authorization": "Bearer test"}
+    assert http.get("/api/dashboard", headers=auth).status_code == 404
+    assert http.get("/api/projects", headers=auth).status_code == 404
     sounds = http.get("/api/sounds", headers=auth)
     assert sounds.status_code == 200 and sounds.json() == []
-    projects = http.get("/api/projects", headers=auth)
-    assert projects.status_code == 200
-    assert {row["kind"] for row in projects.json()} == {"dialogue", "reading"}
-    assert http.get("/api/narration-profiles", headers=auth).status_code == 200
+    profiles = http.get("/api/narration-profiles", headers=auth)
+    assert profiles.status_code == 200 and profiles.json()["profiles"]
+    characters = http.get("/api/characters", headers=auth)
+    assert characters.status_code == 200
+    assert {row["usage_count"] for row in characters.json()["characters"]} == {0}

@@ -87,11 +87,13 @@ def test_an_impl_version_bump_changes_the_hash() -> None:
     assert node().node_hash() != node(impl_version=2).node_hash()
 
 
-def test_every_node_type_starts_at_impl_version_one() -> None:
+def test_every_node_type_has_a_version_and_only_the_mix_has_moved() -> None:
+    """`mix` is at 2 because a room mix now pads its send before `afir`; nothing else changed."""
+
     assert set(IMPL_VERSIONS) == {
         "synth", "pace", "sound-gen", "import", "ir", "track", "mix", "loudnorm", "encode"
     }
-    assert set(IMPL_VERSIONS.values()) == {1}
+    assert {name: version for name, version in IMPL_VERSIONS.items() if version != 1} == {"mix": 2}
 
 
 def test_the_ir_node_takes_its_version_from_the_generator_that_writes_it() -> None:
@@ -262,7 +264,7 @@ def test_the_room_is_a_send_return_with_one_convolution_for_the_whole_mix() -> N
             ),
             MixInput(stem_id="sfx-1", bus="sfx", send_db=0.0),
         ],
-        room=RoomMix(room_id="cafe", version=1, wet=0.35, ir_asset="c" * 64),
+        room=RoomMix(room_id="cafe", version=1, wet=0.35, ir_asset="c" * 64, tail_ms=880),
     )
     assert graph == ";".join(
         [
@@ -274,7 +276,8 @@ def test_the_room_is_a_send_return_with_one_convolution_for_the_whole_mix() -> N
             "[d0][d1]amix=inputs=2:duration=longest:normalize=0[dialogue]",
             "[s2]amix=inputs=1:duration=longest:normalize=0[ambience]",
             "[d3]amix=inputs=1:duration=longest:normalize=0[sfx]",
-            "[w0][x1][w3]amix=inputs=3:duration=longest:normalize=0[send]",
+            # Padded by the IR's length, so the room rings out past the last word.
+            "[w0][x1][w3]amix=inputs=3:duration=longest:normalize=0,apad=pad_dur=0.880[send]",
             # The IR is input 4: after every stem, which is the one thing `evaluate_mix` and this
             # builder have to agree on.
             "[4:a]pan=stereo|c0=c0|c1=c0[ir]",
@@ -294,7 +297,7 @@ def test_a_bed_is_never_sent_into_the_room_it_already_is() -> None:
             MixInput(stem_id="line-1", bus="dialogue", send_db=0.0),
             MixInput(stem_id="ambience-1", bus="ambience", send_db=None),
         ],
-        room=RoomMix(room_id="cafe", version=1, wet=0.2, ir_asset="c" * 64),
+        room=RoomMix(room_id="cafe", version=1, wet=0.2, ir_asset="c" * 64, tail_ms=880),
     )
     # Exactly one split, and it is the dialogue stem's.
     assert graph.count("asplit") == 1
@@ -306,7 +309,7 @@ def test_the_wet_return_is_added_rather_than_crossfaded_against_the_dry_sum() ->
 
     graph = mix_filtergraph(
         [MixInput(stem_id="line-1", bus="dialogue", send_db=0.0)],
-        room=RoomMix(room_id="studio", version=1, wet=0.04, ir_asset="c" * 64),
+        room=RoomMix(room_id="studio", version=1, wet=0.04, ir_asset="c" * 64, tail_ms=262),
     )
     assert "[dialogue][wet]amix=inputs=2" in graph
     assert "[dialogue]volume" not in graph

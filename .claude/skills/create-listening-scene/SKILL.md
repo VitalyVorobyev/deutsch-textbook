@@ -23,7 +23,7 @@ Create the first complete version with Tonwerk's engine (`apps/tonwerk/engine`, 
 - Never mark a human checklist, approval or publication complete.
 - Never upload source, generated or private audio.
 - Never use VoiceDesign, and never clone a voice except through a consent record the engine checks: one recording, one scope, publication consent ([`docs/authoring/product-protection.md`](../../../docs/authoring/product-protection.md#consent-gated-voice-cloning)). Never add reference audio or a consent document to the repository.
-- Never overwrite a published artifact directly; use the guarded republish workflow after exact-byte approval.
+- Never overwrite a published artifact directly; republish only through `scene publish` of a re-approved revision, which backs up the bytes it replaces.
 - Keep the private child clone outside casting. Use only the fictional synthetic child profile when a child is pedagogically necessary.
 
 Read [references/handoff.md](references/handoff.md) before handing the scene to the editor.

@@ -1,6 +1,6 @@
 """The DSP layer: acoustic profiles as data, and the filter chains they translate into.
 
-Three modules, and the split is the boundary the concept document draws in §2 and §15. Nothing
+Four modules, and the split is the boundary the concept document draws in §2 and §15. Nothing
 here generates audio; everything here *shapes* audio that a model or the library already produced.
 
 * `profiles` — what a room, a device and a difficulty preset **are**. Pydantic models over
@@ -12,6 +12,8 @@ here generates audio; everything here *shapes* audio that a model or the library
   of the same room.
 * `chains` — pure builders. A device profile, a distance and a room become ffmpeg filter strings
   and nothing else, so the whole layer can be asserted exactly in a test that needs no audio.
+* `audio` — the two operations on a WAV that are not acoustics: `wav_duration`, and `conform`
+  (pace and PCM format), which a sound engine applies to its own output before the graph sees it.
 
 **No module here imports from `graph`.** The dependency runs one way: the render graph knows about
 DSP profiles, and DSP profiles know nothing about nodes, caches or asset stores. That is what lets

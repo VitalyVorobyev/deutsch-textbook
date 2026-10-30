@@ -6,7 +6,7 @@ Three rules hold the whole file together, and each one has a failure behind it:
   and a JSON Schema in another language. A field silently dropped on load is a rendering
   decision that disappears without a diagnostic.
 * **Identity is in the cast, delivery is in the utterance, DSP is nowhere near the engine.**
-  `VoiceSpec` carries no `pace` because pace is `atempo` in ffmpeg (`adapters.conform`), not a
+  `VoiceSpec` carries no `pace` because pace is `atempo` in ffmpeg (`dsp.audio.conform`), not a
   generation parameter — asking a speech model for it regenerates a take for every variant it
   appears in.
 * **Nothing here names an engine for sound.** A `SoundSpec` says what should be heard; which
@@ -421,8 +421,7 @@ class Scene(Strict):
     def canonical_json(self) -> str:
         """Sorted keys, no whitespace, UTF-8 as itself.
 
-        `RevisionPayload.canonical_json()`'s rule, and for the same reason: two documents that
-        differ only in key order are the same scene and must hash the same.
+        Two documents that differ only in key order are the same scene and must hash the same.
         """
 
         return json.dumps(

@@ -28,7 +28,7 @@ from pydantic import BaseModel, Field
 
 
 def _canonical_json(value: object) -> str:
-    """Sorted keys, no whitespace, UTF-8 as itself — `RevisionPayload.canonical_json()`'s rule.
+    """Sorted keys, no whitespace, UTF-8 as itself — `Scene.canonical_json()`'s rule.
 
     Two requests that differ only in the order their `params` were written are the same request,
     so they must hash the same. `sort_keys=True` recurses, which is what makes that true of the

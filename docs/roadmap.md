@@ -42,7 +42,10 @@ Each goes **proposal → ADR → backlog** and starts only when its ADR is accep
 the order. The suggested order follows the dependencies:
 
 1. **The tools on lab-ui** ([proposal](proposals/ui-on-lab-ui.md)). Redaktion first, then Tonwerk.
-   The authoring work below will be done in these tools, so they come first.
+   The authoring work below will be done in these tools, so they come first. The owner has started
+   the **Tonwerk studio** ahead of the rest
+   ([ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md), [queue](backlog/tonwerk.md)).
+   Its editor is the first Tonwerk surface built on lab-ui.
 2. **The lesson task system** ([proposal](proposals/lesson-task-system.md)) and **characters and
    stories** ([proposal](proposals/characters-and-stories.md)), decided together. A story is a
    kind of input inside a lesson, so neither design is complete without the other. Tonwerk's cast
@@ -69,10 +72,12 @@ YAML and MDX with conflict protection, read local and corpus diagnostics, and ma
 `reviewed` only through the green gate, in the packaged macOS app. The open milestones are in
 [`backlog/redaktion.md`](backlog/redaktion.md).
 
-**Tonwerk** is done when a scene goes from script to published audio entirely in the UI and the
-engine's publish command: cast from content-level characters, every explanation half editable,
-renders measured and approved by exact bytes, and no CLI-only step left except installation and
-publishing. The open work is in [`backlog/tonwerk.md`](backlog/tonwerk.md).
+**Tonwerk** is done when it starts as one app and a scene goes from script to published audio
+entirely in the UI and the engine's publish command. That means a roster with stable voices, a
+library of everything it made, edits on a timeline that only ever change the scene document,
+every explanation half editable, renders measured and approved by exact bytes, and no CLI-only
+step left except installation and publishing. Content-level characters follow once the tracks
+are good enough to carry them. The open work is in [`backlog/tonwerk.md`](backlog/tonwerk.md).
 
 ## Retention gate
 

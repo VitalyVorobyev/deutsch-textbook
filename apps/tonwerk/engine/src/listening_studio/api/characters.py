@@ -1,6 +1,8 @@
-"""The character roster: usage counts, voice demos and portrait selection.
+"""The character roster and the narration profiles cast from it.
 
-Unchanged from `studio_api.py`; the React dashboard reads every one of these paths.
+`GET /api/characters` is the roster with how many scenes cast each character, its audition demos
+and its portrait; `GET /api/narration-profiles` is the catalog the Lesetexte queue picks a
+narration profile from.
 """
 
 from __future__ import annotations
@@ -16,7 +18,7 @@ from fastapi.responses import FileResponse, Response
 from PIL import Image
 from pydantic import BaseModel, Field
 
-from ..catalogs import load_character_catalog
+from ..catalogs import load_character_catalog, load_narration_catalog
 from ..storage import Store
 
 
@@ -47,16 +49,25 @@ def _portrait_crop(source: Path, index: int) -> bytes:
 def router(store: Store, repo: Path) -> APIRouter:
     api = APIRouter(prefix="/api", tags=["characters"])
 
+    @api.get("/narration-profiles")
+    def narration_profiles() -> dict[str, Any]:
+        return load_narration_catalog(repo).model_dump(mode="json")
+
     @api.get("/characters")
     def characters() -> dict[str, Any]:
         catalog = load_character_catalog(repo)
         usage: dict[str, int] = {row.id: 0 for row in catalog.characters}
-        for project in store.projects():
-            _, _, payload = store.get(project.id)
-            for cast in getattr(payload, "cast", []) or []:
-                character_id = getattr(cast, "character_id", None)
-                if character_id in usage:
-                    usage[character_id] += 1
+        # Read off the stored documents rather than validated: a usage count needs one field per
+        # cast member, and one document a newer build wrote must not fail the whole roster.
+        for _, revision in store.scene_rows():
+            document = json.loads(revision.scene_json)
+            cast = {
+                member["character"]["id"]
+                for member in document.get("cast") or []
+                if isinstance(member, dict) and isinstance(member.get("character"), dict)
+            }
+            for character_id in cast & usage.keys():
+                usage[character_id] += 1
         candidate_manifest = store.root / "characters" / "portrait-candidates.json"
         candidate_ids = [
             str(item["id"])

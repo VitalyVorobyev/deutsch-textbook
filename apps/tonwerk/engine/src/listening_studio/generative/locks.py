@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
+from typing import cast
 
 from huggingface_hub import snapshot_download
 
@@ -14,8 +16,8 @@ def _derived_models_root() -> Path:
     `<repo>/apps/tonwerk/engine/src/listening_studio/generative/`, and it says nothing when it
     is wrong: a moved package, an installed wheel or a `uv tool` shim resolves to some other
     directory, `.models/` is not there, and `locked_snapshot` reports the checkpoint as missing
-    rather than as mislocated. It exists because commands that never take `--repo`
-    (`generate-reading`, `qa-reading`) still have to find weights.
+    rather than as mislocated. It exists for callers that are never given a repository root, such
+    as a test constructing an engine directly.
     """
 
     return Path(__file__).resolve().parents[6]
@@ -80,3 +82,9 @@ def locked_snapshot(
         raise RuntimeError(
             f"{model_id}@{revision} is not installed; run atlas-listening models fetch first"
         ) from exc
+
+
+def model_lock(path: Path) -> dict[str, object]:
+    """A `models.lock.json`, parsed. The pins a render manifest and `models fetch` both read."""
+
+    return cast(dict[str, object], json.loads(path.read_text()))

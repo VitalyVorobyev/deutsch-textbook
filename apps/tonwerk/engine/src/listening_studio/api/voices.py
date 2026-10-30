@@ -25,7 +25,6 @@ from typing import Any, Mapping, cast
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 
-from ..adapters import CLONING_ENGINES, ENGINES, engine_for, transcribe
 from ..catalogs import load_character_catalog
 from ..generative.gateway import (
     ClonableVoice,
@@ -35,6 +34,7 @@ from ..generative.gateway import (
     supports_cloning,
 )
 from ..generative.locks import set_models_root
+from ..generative.registry import CLONING_ENGINES, ENGINES, engine_for
 from ..generative.voices import (
     CONSENT_RULES,
     ConsentViolation,
@@ -46,6 +46,7 @@ from ..generative.voices import (
     store_reference,
     voice_row,
 )
+from ..qa import transcribe
 from ..storage import Store
 from .workflow import Transcriber
 

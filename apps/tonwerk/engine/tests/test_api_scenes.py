@@ -20,7 +20,7 @@ from fastapi.testclient import TestClient
 
 from listening_studio.api.workflow import APPROVAL_CHECKLIST, _required_checks
 from listening_studio.domain import Stage
-from listening_studio.scene.model import Scene
+from listening_studio.scene.model import DifficultyVariant, Scene
 from listening_studio.storage import Store
 from listening_studio.web import app
 from test_graph_render import cafe_scene, tone_in_store
@@ -144,7 +144,7 @@ def test_the_full_scene_lifecycle_reaches_a_human_approval(client: Any) -> None:
     assert {row["kind"] for row in natural["artifacts"]} == {
         "master", "qa", "publish", "dry", "stem"
     }
-    assert detail["qa"] is None and detail["approval"] is None
+    assert detail["qa_reports"] == {} and detail["approval"] is None
 
     checked_qa = http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH)
     assert checked_qa.status_code == 200, checked_qa.text
@@ -197,10 +197,10 @@ def test_the_full_scene_lifecycle_reaches_a_human_approval(client: Any) -> None:
 def test_an_approval_naming_other_bytes_is_refused(client: Any) -> None:
     """The signature is bound to the audio, or it vouches for whatever is on disk later.
 
-    The dialogue pipeline learned this on 2026-08-02: an approval that recorded who and when but
-    nothing about the bytes let a regenerated WAV be published carrying it unchanged, and no
-    downstream gate could see it. Here the reviewer states the digest they listened to, and a
-    disagreement is the server's to refuse — before anything is stored.
+    An approval that recorded who and when but nothing about the bytes would let a regenerated WAV
+    be published carrying it unchanged, and no downstream gate could see it. Here the reviewer
+    states the digest they listened to, and a disagreement is the server's to refuse — before
+    anything is stored.
     """
 
     http, store, scene = client
@@ -317,7 +317,7 @@ def test_declining_returns_the_scene_to_draft_with_the_reason_recorded(client: A
     assert detail["approval"]["status"] == "declined"
     assert detail["approval"]["reason"].startswith("Jonas drifts")
     # The machine's measurement of these bytes is not invalidated by a human disliking them.
-    assert detail["qa"]["passed"] is True
+    assert detail["qa_reports"]["natural"]["passed"] is True
     # And the render is still there: declining does not delete audio, it refuses to sign it.
     assert next(row for row in detail["renders"] if row["variant"] == "natural")["rendered"] is True
 
@@ -355,7 +355,7 @@ def test_revising_a_scene_returns_it_to_draft_and_unrenders_it(client: Any) -> N
 
     detail = http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()
     assert detail["stage"] == str(Stage.DRAFT)
-    assert detail["qa"] is None and detail["approval"] is None
+    assert detail["qa_reports"] == {} and detail["approval"] is None
     # The old render still exists on disk under the old sha; it is simply not this scene's.
     assert all(row["rendered"] is False for row in detail["renders"])
 
@@ -397,6 +397,63 @@ def test_qa_before_a_render_and_a_render_of_an_unknown_variant_are_both_refused(
     )
     assert bad_engine.status_code == 400
     assert "known: fake, stable_audio_sfx" in bad_engine.json()["detail"]
+
+
+def test_each_variant_keeps_its_own_qa_report_and_approval_reads_its_own(client: Any) -> None:
+    """Checking `challenging` first must neither stand in for `natural` nor lock it out.
+
+    With one report per revision, the `challenging` report would take the only slot, and QA on
+    `natural` — the variant approved and published — would be refused once the scene had left
+    `audio_generated`.
+    """
+
+    http, store, plain = client
+    scene = plain.model_copy(
+        update={
+            "variants": [
+                DifficultyVariant(id="natural", preset="natural"),
+                DifficultyVariant(id="challenging", preset="challenging"),
+            ]
+        }
+    )
+    assert create(http, scene).status_code == 201
+    for variant in ("challenging", "natural"):
+        rendered = http.post(
+            f"/api/scenes/{scene.slug}/render", json={"variant": variant}, headers=AUTH
+        )
+        assert rendered.status_code == 200, rendered.text
+
+    first = http.post(f"/api/scenes/{scene.slug}/qa", json={"variant": "challenging"}, headers=AUTH)
+    assert first.status_code == 200, first.text
+    assert first.json()["stage"] == str(Stage.AUTOMATICALLY_CHECKED)
+    assert http.get(f"/api/scenes/{scene.slug}/renders/natural/qa-report", headers=AUTH).status_code == 404
+    assert http.get("/api/scenes", headers=AUTH).json()[0]["qa_passed"] is None
+
+    master = store.root / "renders" / scene.sha256() / "natural" / "master.wav"
+    approval = {
+        "editor": "Vitaly Vorobyev",
+        "master_sha256": hashlib.sha256(master.read_bytes()).hexdigest(),
+        "checklist": [
+            "accent", "naturalness", "intelligibility", "identity", "speakers", "pace", "context",
+        ],
+    }
+    early = http.post(f"/api/scenes/{scene.slug}/approve", json=approval, headers=AUTH)
+    assert early.status_code == 409 and "natural render has no QA report" in early.json()["detail"]
+
+    second = http.post(f"/api/scenes/{scene.slug}/qa", json={"variant": "natural"}, headers=AUTH)
+    assert second.status_code == 200, second.text
+    detail = http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()
+    assert set(detail["qa_reports"]) == {"challenging", "natural"}
+    assert {row["variant"] for row in detail["qa_reports"].values()} == {"challenging", "natural"}
+    assert http.get("/api/scenes", headers=AUTH).json()[0]["qa_passed"] is True
+
+    approved = http.post(f"/api/scenes/{scene.slug}/approve", json=approval, headers=AUTH)
+    assert approved.status_code == 200, approved.text
+    # Past approval a new measurement would sit under a signature nobody re-gave.
+    late = http.post(
+        f"/api/scenes/{scene.slug}/qa", json={"variant": "challenging"}, headers=AUTH
+    )
+    assert late.status_code == 409 and "human_approved" in late.json()["detail"]
 
 
 def test_qa_says_so_when_the_local_asr_runtime_is_missing(tmp_path: Path) -> None:

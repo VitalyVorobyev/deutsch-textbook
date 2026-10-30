@@ -15,8 +15,8 @@ the ones that file exports.
 * `data/listening-plan.yaml` — what was commissioned. Alone: nothing about whether it exists.
 * `content/listening/**` + `data/audio-provenance/**` — what is published. Alone: nothing about
   work in progress, and nothing about whether the published bytes are still current.
-* the studio database — what is being worked on, dialogue projects and scene projects alike.
-  Alone: nothing about what was planned or what shipped.
+* the studio database — what is being worked on: the scene projects. Alone: nothing about what
+  was planned or what shipped.
 * `content/exercises/**` — what actually *uses* a recording. Alone: nothing about audio at all.
 
 That last join is why `stale`, `recordings_without_exercises` and `exercises_without_recordings`
@@ -33,9 +33,10 @@ from typing import Any, Literal
 import yaml
 from fastapi import APIRouter
 
-from ..reading_audio import load_reading_sources
 from ..scene.convert import reading_slug
-from ..storage import Store
+from ..scene.publish import PUBLISHED_VARIANT
+from ..scene.reading_source import load_reading_sources
+from ..storage import SceneProject, SceneRevision, Store
 
 #: The status vocabulary, and the one addition to it.
 #:
@@ -124,26 +125,36 @@ def _status(
     return _manifest_status(manifest, brief)
 
 
-def _published_revision(manifest: dict[str, Any] | None, project_kind: str | None) -> str | None:
-    """The revision sha the published provenance was written from, when it is comparable.
+def _published_revision(manifest: dict[str, Any] | None) -> str | None:
+    """The scene sha the published provenance was written from, when it names one.
 
-    Comparable is the whole point of this function. A dialogue project's revision sha is
-    `RevisionPayload.sha256()` and a scene project's is `Scene.sha256()`; they are hashes of
-    different documents and will never be equal, so comparing a scene's sha against a manifest
-    written by the dialogue publisher would report every converted artifact `stale` on the day it
-    was converted — a hundred percent false-positive rate for a signal whose only value is that
-    it is rare. So: a `scene_sha256` in the manifest (which the regeneration PR will write) is
-    compared against a scene project, `revision_sha256` against a dialogue project, and a scene
-    project beside a pre-scene manifest is not compared at all.
+    Only a version-2 manifest — one the scene publisher wrote — carries `scene_sha256`. A
+    pre-scene manifest hashes a different document, and comparing it against a scene project
+    would report every converted artifact `stale` on the day it was converted: a hundred percent
+    false-positive rate for a signal whose only value is that it is rare. So it is not compared.
     """
 
     if manifest is None:
         return None
-    if project_kind == "scene":
-        scene_sha = manifest.get("scene_sha256")
-        return str(scene_sha) if isinstance(scene_sha, str) else None
-    revision = manifest.get("revision_sha256")
-    return str(revision) if isinstance(revision, str) else None
+    scene_sha = manifest.get("scene_sha256")
+    return str(scene_sha) if isinstance(scene_sha, str) else None
+
+
+def _scene_project(
+    project: SceneProject, revision: SceneRevision, verdicts: dict[int, bool | None]
+) -> dict[str, Any]:
+    """A scene project as a registry row's `project`, with the published variant's QA verdict."""
+
+    return {
+        "kind": "scene",
+        "id": project.id,
+        "stage": project.stage,
+        "revision": revision.number,
+        "revision_sha256": revision.scene_sha256,
+        "qa_passed": verdicts.get(revision.id),
+        "has_exercise": revision.exercise_json is not None,
+        "updated": revision.created_at,
+    }
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
@@ -194,10 +205,13 @@ def audio_exercise_items(repo: Path) -> list[dict[str, Any]]:
     return found
 
 
-def listening_rows(store: Store, repo: Path, exercise_counts: dict[str, int]) -> list[dict[str, Any]]:
+def listening_rows(
+    repo: Path,
+    exercise_counts: dict[str, int],
+    scenes: dict[str, tuple[SceneProject, SceneRevision]],
+    verdicts: dict[int, bool | None],
+) -> list[dict[str, Any]]:
     plan = yaml.safe_load((repo / "data" / "listening-plan.yaml").read_text())
-    dialogues = {project.slug: project for project in store.projects()}
-    scenes = {project.slug: project for project in store.scene_projects()}
     prompts_dir = repo / "data" / "prompts"
     prompts = [path.name for path in prompts_dir.iterdir()] if prompts_dir.is_dir() else []
 
@@ -215,43 +229,7 @@ def listening_rows(store: Store, repo: Path, exercise_counts: dict[str, int]) ->
                 manifest.get("approval"), dict
             ) and manifest["approval"].get("status") == "complete"
 
-            # A scene project with the same slug supersedes the legacy dialogue project: the
-            # scene is the artifact model everything is converging on, and while both exist the
-            # scene is the one being edited. The dialogue project is still reported, so nothing
-            # disappears from view the moment it is converted.
-            project: dict[str, Any] | None = None
-            if slug in scenes:
-                scene_project = scenes[slug]
-                _, revision, _, exercise = store.get_scene(scene_project.id)
-                project = {
-                    "kind": "scene",
-                    "id": scene_project.id,
-                    "stage": scene_project.stage,
-                    "revision": revision.number,
-                    "revision_sha256": revision.scene_sha256,
-                    "qa_passed": (
-                        json.loads(revision.qa_json).get("passed") if revision.qa_json else None
-                    ),
-                    "has_exercise": exercise is not None,
-                    "updated": revision.created_at,
-                }
-            elif slug in dialogues:
-                dialogue = dialogues[slug]
-                _, dialogue_revision, _ = store.get(dialogue.id)
-                project = {
-                    "kind": "dialogue",
-                    "id": dialogue.id,
-                    "stage": dialogue.stage,
-                    "revision": dialogue_revision.number,
-                    "revision_sha256": dialogue_revision.payload_sha256,
-                    "qa_passed": (
-                        json.loads(dialogue_revision.qa_json).get("passed")
-                        if dialogue_revision.qa_json
-                        else None
-                    ),
-                    "updated": dialogue_revision.created_at,
-                }
-
+            project = _scene_project(*scenes[slug], verdicts) if slug in scenes else None
             rows.append(
                 {
                     "kind": "listening",
@@ -266,15 +244,12 @@ def listening_rows(store: Store, repo: Path, exercise_counts: dict[str, int]) ->
                         brief=any(name.endswith(f"-{slug}-listening.md") for name in prompts),
                         project_stage=project["stage"] if project else None,
                         project_qa_passed=project["qa_passed"] if project else None,
-                        published_revision=_published_revision(
-                            manifest, project["kind"] if project else None
-                        ),
+                        published_revision=_published_revision(manifest) if project else None,
                         current_revision=project["revision_sha256"] if project else None,
                     ),
                     "artifact": record,
                     "audio": audio,
                     "has_provenance": manifest is not None,
-                    "superseded_by_scene": slug in scenes and slug in dialogues,
                     "project": project,
                     "exercise_items": exercise_counts.get(slug, 0),
                 }
@@ -282,9 +257,22 @@ def listening_rows(store: Store, repo: Path, exercise_counts: dict[str, int]) ->
     return rows
 
 
-def reading_rows(store: Store, repo: Path) -> list[dict[str, Any]]:
-    projects = {project.reading_id: project for project in store.reading_projects()}
-    scenes = {project.slug: project for project in store.scene_projects()}
+def _narrated_paragraphs(revision: SceneRevision) -> list[str]:
+    """The display text of a stored narration scene, utterance by utterance, unvalidated."""
+
+    document = json.loads(revision.scene_json)
+    return [
+        str(utterance.get("display_text", ""))
+        for utterance in document.get("script") or []
+        if isinstance(utterance, dict)
+    ]
+
+
+def reading_rows(
+    repo: Path,
+    scenes: dict[str, tuple[SceneProject, SceneRevision]],
+    verdicts: dict[int, bool | None],
+) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for source in load_reading_sources(repo):
         level = source.level.lower()
@@ -298,57 +286,19 @@ def reading_rows(store: Store, repo: Path) -> list[dict[str, Any]]:
             manifest.get("approval"), dict
         ) and manifest["approval"].get("status") == "complete"
 
+        # The narration scene for this Lesetext is `reading_slug(source.id)` — the id with the
+        # slash flattened, level and all — and **not** `Path(id).name`, which is what the
+        # published file is named after. Getting that wrong is silent: the lookup simply never
+        # matches, and every narration keeps reporting as unstarted.
+        slug = reading_slug(source.id)
         project: dict[str, Any] | None = None
         source_drift = False
-        current_revision: str | None = None
-        published_revision: str | None = None
-        # A narration scene converted from this Lesetext supersedes the reading project for the
-        # same reason a dialogue scene does. Its slug is `reading_slug(source.id)` — the id with
-        # the slash flattened, level and all — and **not** `Path(id).name`, which is what the
-        # published file is named after. Getting that wrong is silent: the lookup simply never
-        # matches, and every converted narration keeps reporting as an unconverted reading.
-        slug = reading_slug(source.id)
         if slug in scenes:
-            scene_project = scenes[slug]
-            _, revision, _, _ = store.get_scene(scene_project.id)
-            project = {
-                "kind": "scene",
-                "id": scene_project.id,
-                "stage": scene_project.stage,
-                "revision": revision.number,
-                "revision_sha256": revision.scene_sha256,
-                "qa_passed": (
-                    json.loads(revision.qa_json).get("passed") if revision.qa_json else None
-                ),
-                "updated": revision.created_at,
-            }
-            published_revision = _published_revision(manifest, "scene")
-            current_revision = revision.scene_sha256
-        elif source.id in projects:
-            reading_project = projects[source.id]
-            _, reading_revision, payload = store.get_reading(reading_project.id)
-            project = {
-                "kind": "reading",
-                "id": reading_project.id,
-                "stage": reading_project.stage,
-                "revision": reading_revision.number,
-                "revision_sha256": reading_revision.payload_sha256,
-                "qa_passed": (
-                    json.loads(reading_revision.qa_json).get("passed")
-                    if reading_revision.qa_json
-                    else None
-                ),
-                "updated": reading_revision.created_at,
-            }
-            source_drift = payload.source_sha256 != source.source_sha256
-            # A reading's published provenance records the *Lesetext* it narrated rather than a
-            # payload hash, so that is what "the revision this was published from" means here.
-            published_revision = (
-                str(manifest.get("source_sha256"))
-                if manifest and isinstance(manifest.get("source_sha256"), str)
-                else None
-            )
-            current_revision = payload.source_sha256
+            scene_project, revision = scenes[slug]
+            project = _scene_project(scene_project, revision, verdicts)
+            # The narration scene says different words from the Lesetext the repository now
+            # holds: the text was edited after the scene was created from it.
+            source_drift = _narrated_paragraphs(revision) != source.paragraphs
 
         rows.append(
             {
@@ -367,14 +317,14 @@ def reading_rows(store: Store, repo: Path) -> list[dict[str, Any]]:
                     brief=False,
                     project_stage=project["stage"] if project else None,
                     project_qa_passed=project["qa_passed"] if project else None,
-                    published_revision=published_revision,
-                    current_revision=current_revision,
+                    published_revision=_published_revision(manifest) if project else None,
+                    current_revision=project["revision_sha256"] if project else None,
                 ),
                 "artifact": record,
                 "audio": audio,
                 "has_provenance": manifest is not None,
                 # A different disagreement from `stale`, and deliberately a separate field: this
-                # says the *project* narrates an older Lesetext than the repository now holds,
+                # says the *scene* narrates other words than the repository's Lesetext now holds,
                 # whether or not anything was ever published.
                 "source_drift": source_drift,
                 "source_sha256": source.source_sha256,
@@ -392,8 +342,11 @@ def registry(store: Store, repo: Path) -> dict[str, Any]:
     for item in items:
         if item["recording"] is not None:
             counts[item["recording"]] = counts.get(item["recording"], 0) + 1
-    listening = listening_rows(store, repo, counts)
-    readings = reading_rows(store, repo)
+    # One query for the projects and one for the verdicts, shared by both halves.
+    scenes = {project.slug: (project, revision) for project, revision in store.scene_rows()}
+    verdicts = store.scene_qa_verdicts(PUBLISHED_VARIANT)
+    listening = listening_rows(repo, counts, scenes, verdicts)
+    readings = reading_rows(repo, scenes, verdicts)
     planned = {row["id"] for row in listening}
     rows = listening + readings
     return {

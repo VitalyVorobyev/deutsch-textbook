@@ -20,11 +20,11 @@ from fastapi.testclient import TestClient
 
 from conftest import RUNNER, flat
 
-from listening_studio.adapters import ENGINES, SOUND_ENGINES, sound_engine_for
 from listening_studio.domain import Bilingual
 from listening_studio.generative.fake import FakeSpeech
 from listening_studio.generative.gateway import AudioAsset, SoundRequest
 from listening_studio.generative.locks import set_models_root
+from listening_studio.generative.registry import ENGINES, SOUND_ENGINES, sound_engine_for
 from listening_studio.generative.stable_audio_mlx import (
     ADAPTER_CODE_REVISION,
     ADAPTER_DIRNAME,

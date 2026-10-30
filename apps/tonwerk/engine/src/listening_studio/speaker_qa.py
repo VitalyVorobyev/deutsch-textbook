@@ -1,3 +1,10 @@
+"""Speaker identity QA: pinned WavLM embeddings, compared within and across a scene's roles.
+
+The scene QA's identity check (`graph.scene_qa`). `derive_calibration` turns a human-reviewed
+corpus of these reports into warning bounds; until a corpus has been reviewed, every score is a
+warning and never a verdict.
+"""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -8,7 +15,6 @@ import numpy.typing as npt
 from pydantic import BaseModel, Field
 
 from .generative.locks import locked_snapshot
-from .domain import RevisionPayload
 
 
 MODEL_ID = "microsoft/wavlm-base-plus-sv"
@@ -174,21 +180,6 @@ def _median_f0(audio: npt.NDArray[np.float32], rate: int) -> float | None:
     return float(np.median(values)) if values else None
 
 
-def check_speaker_consistency(
-    payload: RevisionPayload,
-    paths: dict[str, Path],
-    backend: EmbeddingBackend | None = None,
-    calibration: SpeakerQACalibration | None = None,
-) -> SpeakerConsistencyReport:
-    return check_unit_consistency(
-        [(line.id, line.speaker) for line in payload.lines],
-        payload.speakers,
-        paths,
-        backend=backend,
-        calibration=calibration,
-    )
-
-
 def check_unit_consistency(
     units: Sequence[tuple[str, str]],
     speakers: Sequence[str],
@@ -198,11 +189,9 @@ def check_unit_consistency(
 ) -> SpeakerConsistencyReport:
     """Rank identity drift without pretending an uncalibrated score is a verdict.
 
-    A "unit" is `(id, speaker)`: a line of a `RevisionPayload` or an utterance of a `Scene`. The
-    two models name the same two facts differently and nothing else here depends on either, so
-    the measurement takes the pair rather than a payload — building a synthetic `RevisionPayload`
-    to reach this function would mean inventing a brief, a question and an adapter name that no
-    editor chose, in order to ask about a voice.
+    A "unit" is `(id, speaker)`: an utterance of a scene and the role speaking it. The measurement
+    takes the pair rather than a scene, so it depends on nothing but the audio and who is meant to
+    be speaking it.
     """
 
     embedder = backend or WavLMSpeakerEmbedder()

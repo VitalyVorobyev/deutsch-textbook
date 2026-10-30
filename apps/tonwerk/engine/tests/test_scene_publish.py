@@ -360,12 +360,9 @@ def test_a_level_that_cannot_be_derived_is_refused_and_an_explicit_one_is_accept
     repo = fixture_repo(tmp_path)
     scene = fixture_scene(brief=None)
     project = store.create_scene(scene, None)
-    for expected, target in (
-        (Stage.DRAFT, Stage.VALIDATED),
-        (Stage.VALIDATED, Stage.AUDIO_GENERATED),
-        (Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED),
-    ):
-        store.transition_scene(project.id, expected, target, qa={"passed": True})
+    store.transition_scene(project.id, Stage.DRAFT, Stage.VALIDATED)
+    store.transition_scene(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+    store.record_scene_qa(project.id, "natural", {"passed": True})
     store.transition_scene(
         project.id,
         Stage.AUTOMATICALLY_CHECKED,

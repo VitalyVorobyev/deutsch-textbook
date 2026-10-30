@@ -32,6 +32,8 @@ in that file: `CON`, `APP`, `INS`, `STO`, `TON`, `RED` or `WS`. A number is neve
 ## Doing
 
 - **P27 · Redaktion**: the milestones in [`redaktion.md`](redaktion.md), in order.
+- **TON-1…TON-5 · Tonwerk studio**: one app, Bibliothek, Figuren and voice quality, the timeline
+  editor, then production and the learner integration ([`tonwerk.md`](tonwerk.md)), in order.
 - **P9-2 · Entdecken pieces.** Recurring, one or two reviewed pieces per PR, each passing
   [future-content-directions.md](../authoring/future-content-directions.md).
 

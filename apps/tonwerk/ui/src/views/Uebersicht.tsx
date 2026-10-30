@@ -246,14 +246,6 @@ function Zeile({ row }: { row: RegistryRow }): React.JSX.Element {
           <Marke ton={row.kind === 'listening' ? 'messung' : 'ruhig'}>
             {row.kind === 'listening' ? 'Hörszene' : 'Lesetext'}
           </Marke>
-          {row.superseded_by_scene ? (
-            <Marke
-              ton="messung"
-              titel="Es gibt sowohl ein altes Dialogprojekt als auch eine Szene mit dieser Kennung; bearbeitet wird die Szene."
-            >
-              Szene löst Dialog ab
-            </Marke>
-          ) : null}
           {row.source_drift ? (
             <Marke
               ton="alarm"

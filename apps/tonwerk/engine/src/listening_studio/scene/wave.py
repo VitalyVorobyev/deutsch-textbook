@@ -103,9 +103,9 @@ def run_wave(
 ) -> list[dict[str, Any]]:
     """Walk the targets, one row per artifact. Returns the rows; writes nothing to `content/`."""
 
-    # Imported here, not at module scope: this pulls the adapters, huggingface-hub and soundfile,
+    # Imported here, not at module scope: this pulls the engines, huggingface-hub and soundfile,
     # and `scene/cli.py`'s whole argument is that reaching `scene validate` costs none of that.
-    from ..adapters import CLONING_ENGINES, engine_for
+    from ..generative.registry import CLONING_ENGINES, engine_for
     from ..generative.gateway import ClonableVoice, SpeechGenerator
     from ..generative.voices import resolve_voices
     from ..graph.render import render_scene
@@ -114,7 +114,7 @@ def run_wave(
     say: Progress = progress or (lambda _line: None)
     transcriber = transcribe_fn
     if transcriber is None:
-        from ..adapters import transcribe as transcriber_impl
+        from ..qa import transcribe as transcriber_impl
 
         transcriber = transcriber_impl
 
@@ -213,9 +213,7 @@ def run_wave(
             report = scene_qa(
                 scene, result.directory, transcribe_fn=transcriber, speaker_qa=speaker_qa
             )
-            store.transition_scene(
-                project.id, Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED, qa=report
-            )
+            store.record_scene_qa(project.id, variant, report)
             identity = report["speaker_qa"]
             row |= {
                 "outcome": "checked",

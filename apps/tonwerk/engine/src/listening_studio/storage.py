@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import hashlib
 import json
-import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -19,15 +17,13 @@ from sqlalchemy import (
     inspect,
     select,
 )
-from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, Session, mapped_column
 
-from .domain import RevisionPayload, Stage
-from .reading_audio import ReadingProjectState, ReadingRevisionPayload
+from .domain import Stage
 from .scene import ExerciseAttachment, Scene
 
 
-#: The one stage machine. Dialogue, reading and scene projects all step through it, and each one
-#: used to carry its own copy of this dict — three places for a new stage to be added to two of.
+#: The one stage machine a scene project steps through.
 STAGE_TRANSITIONS: dict[Stage, Stage] = {
     Stage.DRAFT: Stage.VALIDATED,
     Stage.VALIDATED: Stage.AUDIO_GENERATED,
@@ -39,56 +35,6 @@ STAGE_TRANSITIONS: dict[Stage, Stage] = {
 
 class Base(DeclarativeBase):
     pass
-
-
-class Project(Base):
-    __tablename__ = "projects"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    slug: Mapped[str] = mapped_column(String(120), unique=True)
-    stage: Mapped[str] = mapped_column(String(40), default=Stage.DRAFT)
-    current_revision_id: Mapped[int | None] = mapped_column(
-        ForeignKey("revisions.id"), nullable=True
-    )
-    created_at: Mapped[str] = mapped_column(String(40))
-    revisions: Mapped[list[Revision]] = relationship(
-        back_populates="project", foreign_keys="Revision.project_id"
-    )
-
-
-class Revision(Base):
-    __tablename__ = "revisions"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    project_id: Mapped[int] = mapped_column(ForeignKey("projects.id"))
-    number: Mapped[int] = mapped_column(Integer)
-    payload_json: Mapped[str] = mapped_column(Text)
-    payload_sha256: Mapped[str] = mapped_column(String(64))
-    qa_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    approval_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[str] = mapped_column(String(40))
-    project: Mapped[Project] = relationship(back_populates="revisions", foreign_keys=[project_id])
-
-
-class ReadingProject(Base):
-    __tablename__ = "reading_projects"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    reading_id: Mapped[str] = mapped_column(String(160), unique=True)
-    stage: Mapped[str] = mapped_column(String(40), default=Stage.DRAFT)
-    current_revision_id: Mapped[int | None] = mapped_column(
-        ForeignKey("reading_revisions.id"), nullable=True
-    )
-    created_at: Mapped[str] = mapped_column(String(40))
-
-
-class ReadingRevision(Base):
-    __tablename__ = "reading_revisions"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    project_id: Mapped[int] = mapped_column(ForeignKey("reading_projects.id"))
-    number: Mapped[int] = mapped_column(Integer)
-    payload_json: Mapped[str] = mapped_column(Text)
-    payload_sha256: Mapped[str] = mapped_column(String(64))
-    qa_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    approval_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[str] = mapped_column(String(40))
 
 
 class SceneProject(Base):
@@ -120,8 +66,23 @@ class SceneRevision(Base):
     scene_json: Mapped[str] = mapped_column(Text)
     scene_sha256: Mapped[str] = mapped_column(String(64))
     exercise_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    qa_json: Mapped[str | None] = mapped_column(Text, nullable=True)
     approval_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[str] = mapped_column(String(40))
+
+
+class SceneQAReport(Base):
+    """The machine's report on one render: one revision, **one variant**.
+
+    Keyed by variant because a render is: `renders/<scene sha>/<variant>/` holds one master per
+    variant, and a report stored per revision would answer "did the challenging mix pass" with the
+    natural mix's numbers, or lock the natural mix out of QA because another variant was checked
+    first.
+    """
+
+    __tablename__ = "scene_qa_reports"
+    revision_id: Mapped[int] = mapped_column(ForeignKey("scene_revisions.id"), primary_key=True)
+    variant: Mapped[str] = mapped_column(String(60), primary_key=True)
+    qa_json: Mapped[str] = mapped_column(Text)
     created_at: Mapped[str] = mapped_column(String(40))
 
 
@@ -187,11 +148,10 @@ def remember_editor(root: Path, editor: str) -> None:
 #: migrations are found whatever directory the CLI was started in.
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 
-#: The revision a database created by `Base.metadata.create_all` corresponds to. Every deployed
-#: database predates Alembic adoption: `Store.__init__` called `create_all`, so the tables exist
-#: and `alembic_version` does not. Running `upgrade head` against one of those would try to
-#: `CREATE TABLE projects` and fail — so a legacy database is stamped at this revision first,
-#: and the migrations after it are written to be safe on a database that already has the tables.
+#: The revision a database created by `Base.metadata.create_all` before Alembic corresponds to:
+#: it has a `projects` table and no `alembic_version`. Running `upgrade head` against one would try
+#: to `CREATE TABLE projects` and fail — so such a database is stamped at this revision first, and
+#: the migrations after it are written to be safe on a database that already has their tables.
 LEGACY_REVISION = "0001"
 
 
@@ -227,333 +187,9 @@ class Store:
             command.stamp(config, LEGACY_REVISION)
         command.upgrade(config, "head")
 
-    def backup_database(self, target: Path) -> Path:
-        """Create a consistent SQLite backup without copying a live WAL piecemeal."""
-
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if target.exists():
-            raise FileExistsError(target)
-        with sqlite3.connect(self.database) as source, sqlite3.connect(target) as destination:
-            source.backup(destination)
-        return target
-
-    def create(self, slug: str, payload: RevisionPayload) -> Project:
-        now = datetime.now(UTC).isoformat()
-        with Session(self.engine) as session:
-            project = Project(slug=slug, stage=Stage.DRAFT, created_at=now)
-            session.add(project)
-            session.flush()
-            revision = Revision(
-                project_id=project.id,
-                number=1,
-                payload_json=payload.canonical_json(),
-                payload_sha256=payload.sha256(),
-                created_at=now,
-            )
-            session.add(revision)
-            session.flush()
-            project.current_revision_id = revision.id
-            session.commit()
-            session.refresh(project)
-            return project
-
-    def create_reading(self, payload: ReadingRevisionPayload) -> ReadingProject:
-        now = datetime.now(UTC).isoformat()
-        canonical = payload.model_dump_json()
-        digest = hashlib.sha256(canonical.encode()).hexdigest()
-        with Session(self.engine) as session:
-            existing = session.scalar(
-                select(ReadingProject).where(ReadingProject.reading_id == payload.reading_id)
-            )
-            if existing:
-                raise ValueError(f"reading project {payload.reading_id} already exists")
-            project = ReadingProject(
-                reading_id=payload.reading_id, stage=Stage.DRAFT, created_at=now
-            )
-            session.add(project)
-            session.flush()
-            revision = ReadingRevision(
-                project_id=project.id,
-                number=1,
-                payload_json=canonical,
-                payload_sha256=digest,
-                created_at=now,
-            )
-            session.add(revision)
-            session.flush()
-            project.current_revision_id = revision.id
-            session.commit()
-            session.refresh(project)
-            session.expunge(project)
-            return project
-
-    def reading_projects(self) -> list[ReadingProject]:
-        with Session(self.engine) as session:
-            projects = list(session.scalars(select(ReadingProject).order_by(ReadingProject.id)))
-            for project in projects:
-                session.expunge(project)
-            return projects
-
-    def get_reading(
-        self, project_id: int
-    ) -> tuple[ReadingProject, ReadingRevision, ReadingRevisionPayload]:
-        with Session(self.engine) as session:
-            project = session.get(ReadingProject, project_id)
-            if not project or not project.current_revision_id:
-                raise KeyError(project_id)
-            revision = session.get(ReadingRevision, project.current_revision_id)
-            assert revision
-            payload = ReadingRevisionPayload.model_validate_json(revision.payload_json)
-            session.expunge(project)
-            session.expunge(revision)
-            return project, revision, payload
-
-    def get_reading_by_source(
-        self, reading_id: str
-    ) -> tuple[ReadingProject, ReadingRevision, ReadingRevisionPayload] | None:
-        with Session(self.engine) as session:
-            project = session.scalar(
-                select(ReadingProject).where(ReadingProject.reading_id == reading_id)
-            )
-            if not project or not project.current_revision_id:
-                return None
-            revision = session.get(ReadingRevision, project.current_revision_id)
-            assert revision
-            payload = ReadingRevisionPayload.model_validate_json(revision.payload_json)
-            session.expunge(project)
-            session.expunge(revision)
-            return project, revision, payload
-
-    def revise_reading(
-        self, project_id: int, payload: ReadingRevisionPayload
-    ) -> ReadingRevision:
-        project, current, _ = self.get_reading(project_id)
-        if project.reading_id != payload.reading_id:
-            raise ValueError("a reading revision cannot change its source identity")
-        now = datetime.now(UTC).isoformat()
-        canonical = payload.model_dump_json()
-        digest = hashlib.sha256(canonical.encode()).hexdigest()
-        with Session(self.engine) as session:
-            revision = ReadingRevision(
-                project_id=project_id,
-                number=current.number + 1,
-                payload_json=canonical,
-                payload_sha256=digest,
-                created_at=now,
-            )
-            session.add(revision)
-            session.flush()
-            stored = session.get(ReadingProject, project_id)
-            assert stored
-            stored.current_revision_id = revision.id
-            stored.stage = Stage.DRAFT
-            session.commit()
-            session.refresh(revision)
-            session.expunge(revision)
-            return revision
-
-    def reading_state(self, project_id: int) -> ReadingProjectState:
-        project, revision, payload = self.get_reading(project_id)
-        return ReadingProjectState(
-            reading_id=project.reading_id,
-            stage=Stage(project.stage),
-            revision=revision.number,
-            payload=payload,
-            qa=json.loads(revision.qa_json) if revision.qa_json else None,
-            approval=json.loads(revision.approval_json) if revision.approval_json else None,
-        )
-
-    def reading_history(self, project_id: int) -> list[dict[str, object]]:
-        with Session(self.engine) as session:
-            revisions = list(
-                session.scalars(
-                    select(ReadingRevision)
-                    .where(ReadingRevision.project_id == project_id)
-                    .order_by(ReadingRevision.number.desc())
-                )
-            )
-            return [
-                {
-                    "number": row.number,
-                    "payload_sha256": row.payload_sha256,
-                    "created_at": row.created_at,
-                    "has_qa": row.qa_json is not None,
-                    "has_approval": row.approval_json is not None,
-                }
-                for row in revisions
-            ]
-
-    def update_reading_qa(self, project_id: int, qa: dict[str, object]) -> None:
-        """Replace diagnostics for current bytes without manufacturing a workflow transition."""
-
-        with Session(self.engine) as session:
-            project = session.get(ReadingProject, project_id)
-            if not project or Stage(project.stage) not in {
-                Stage.AUTOMATICALLY_CHECKED,
-                Stage.HUMAN_APPROVED,
-            }:
-                raise ValueError("only generated, checked reading bytes can be re-audited")
-            revision = session.get(ReadingRevision, project.current_revision_id)
-            assert revision
-            revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)
-            # A changed diagnostic cannot silently preserve an approval if the new report fails.
-            if qa.get("passed") is not True and project.stage == Stage.HUMAN_APPROVED:
-                revision.approval_json = None
-                project.stage = Stage.AUTOMATICALLY_CHECKED
-            session.commit()
-
-    def transition_reading(
-        self,
-        project_id: int,
-        expected: Stage,
-        target: Stage,
-        *,
-        payload: ReadingRevisionPayload | None = None,
-        qa: dict[str, object] | None = None,
-        approval: dict[str, object] | None = None,
-    ) -> None:
-        if STAGE_TRANSITIONS.get(expected) != target:
-            raise ValueError(f"invalid reading transition {expected} → {target}")
-        with Session(self.engine) as session:
-            project = session.get(ReadingProject, project_id)
-            if not project or Stage(project.stage) != expected:
-                raise ValueError("reading project stage changed while the action was running")
-            revision = session.get(ReadingRevision, project.current_revision_id)
-            assert revision
-            if payload is not None:
-                canonical = payload.model_dump_json()
-                revision.payload_json = canonical
-                revision.payload_sha256 = hashlib.sha256(canonical.encode()).hexdigest()
-            if qa is not None:
-                revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)
-            if approval is not None:
-                revision.approval_json = json.dumps(approval, ensure_ascii=False, sort_keys=True)
-            project.stage = target
-            session.commit()
-
-    def projects(self) -> list[Project]:
-        with Session(self.engine) as session:
-            return list(session.scalars(select(Project).order_by(Project.id.desc())))
-
-    def get(self, project_id: int) -> tuple[Project, Revision, RevisionPayload]:
-        with Session(self.engine) as session:
-            project = session.get(Project, project_id)
-            if not project or not project.current_revision_id:
-                raise KeyError(project_id)
-            revision = session.get(Revision, project.current_revision_id)
-            assert revision
-            session.expunge(project)
-            session.expunge(revision)
-            return project, revision, RevisionPayload.model_validate_json(revision.payload_json)
-
-    def revision_history(self, project_id: int) -> list[dict[str, object]]:
-        with Session(self.engine) as session:
-            revisions = list(
-                session.scalars(
-                    select(Revision)
-                    .where(Revision.project_id == project_id)
-                    .order_by(Revision.number.desc())
-                )
-            )
-            return [
-                {
-                    "number": row.number,
-                    "payload_sha256": row.payload_sha256,
-                    "created_at": row.created_at,
-                    "has_qa": row.qa_json is not None,
-                    "has_approval": row.approval_json is not None,
-                }
-                for row in revisions
-            ]
-
-    def revise(self, project_id: int, payload: RevisionPayload) -> Revision:
-        project, current, _ = self.get(project_id)
-        now = datetime.now(UTC).isoformat()
-        with Session(self.engine) as session:
-            revision = Revision(
-                project_id=project_id,
-                number=current.number + 1,
-                payload_json=payload.canonical_json(),
-                payload_sha256=payload.sha256(),
-                created_at=now,
-            )
-            session.add(revision)
-            session.flush()
-            stored = session.get(Project, project_id)
-            assert stored
-            stored.current_revision_id = revision.id
-            stored.stage = Stage.DRAFT
-            session.commit()
-            session.refresh(revision)
-            session.expunge(revision)
-            return revision
-
-    def reset_to(self, project_id: int, target: Stage) -> None:
-        """Move a project *back* to an earlier stage so a take can be produced again.
-
-        `transition` only ever steps forward, which left a generated take with nothing to do:
-        approval refuses a failed QA, and every earlier step is an illegal transition, so the
-        only escape was editing the script — which is not what a bad *voice* needs. The
-        revision is untouched, so the line cache still covers everything unchanged, and any QA
-        or approval attached to the old take is cleared because it described other audio.
-        """
-
-        order = list(Stage)
-        with Session(self.engine) as session:
-            project = session.get(Project, project_id)
-            if not project:
-                raise ValueError(f"project {project_id} does not exist")
-            if order.index(target) >= order.index(Stage(project.stage)):
-                raise ValueError(f"{target} is not earlier than {project.stage}")
-            revision = session.get(Revision, project.current_revision_id)
-            assert revision
-            revision.qa_json = None
-            revision.approval_json = None
-            project.stage = target
-            session.commit()
-
-    def transition(
-        self,
-        project_id: int,
-        expected: Stage,
-        target: Stage,
-        *,
-        qa: dict[str, object] | None = None,
-        approval: dict[str, object] | None = None,
-    ) -> None:
-        # Say what the stage actually is and what may follow it. The old message named only
-        # the rejected pair, which in the UI meant a bare 500 on every button that was not the
-        # one legal next step — and the legal step is exactly what the editor needed told.
-        if STAGE_TRANSITIONS.get(expected) != target:
-            following = STAGE_TRANSITIONS.get(expected)
-            raise ValueError(
-                f"this project is at {expected}; "
-                + (f"the next step is {following}, not {target}" if following else f"{expected} is the final stage")
-            )
-        with Session(self.engine) as session:
-            project = session.get(Project, project_id)
-            if not project:
-                raise ValueError(f"project {project_id} does not exist")
-            if Stage(project.stage) != expected:
-                raise ValueError(
-                    f"this project moved to {Stage(project.stage)} while the page was open; reload it"
-                )
-            revision = session.get(Revision, project.current_revision_id)
-            assert revision
-            if qa is not None:
-                revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)
-            if approval is not None:
-                revision.approval_json = json.dumps(approval, ensure_ascii=False, sort_keys=True)
-            project.stage = target
-            session.commit()
-
     # ------------------------------------------------------------------
-    # Scene projects (Scene v1)
+    # Scene projects
     # ------------------------------------------------------------------
-    #
-    # Deliberately the same shape as the two above rather than a better one: the point of Scene
-    # v1 is that the dialogue and reading tables eventually collapse into this one, and a store
-    # that behaved differently would make that a migration of behaviour as well as of rows.
 
     def create_scene(
         self, scene: Scene, exercise: ExerciseAttachment | None = None
@@ -657,8 +293,8 @@ class Store:
         class is written the same way: the store is the record, and a store that enforced "draft,
         revision 1, never published" would be a second place for that rule to be stated and a
         second place for it to drift from the first. What the store *does* guarantee is that a
-        deletion is whole — the revisions go with the project, so nothing is left pointing at a
-        row that is not there.
+        deletion is whole — the revisions and their QA reports go with the project, so nothing is
+        left pointing at a row that is not there.
 
         Nothing outside the database is touched. Renders live under `renders/<scene sha>/` and are
         shared by every revision that hashes to those bytes, so deleting them here would remove
@@ -676,6 +312,10 @@ class Store:
             for revision in session.scalars(
                 select(SceneRevision).where(SceneRevision.project_id == project_id)
             ):
+                for report in session.scalars(
+                    select(SceneQAReport).where(SceneQAReport.revision_id == revision.id)
+                ):
+                    session.delete(report)
                 session.delete(revision)
             session.delete(project)
             session.commit()
@@ -702,7 +342,7 @@ class Store:
             assert stored
             stored.current_revision_id = revision.id
             # New bytes, so any QA or approval attached to the previous revision describes other
-            # audio. Back to draft, exactly as the two older stores do.
+            # audio. QA reports are keyed by revision, so the new one starts with none.
             stored.stage = Stage.DRAFT
             session.commit()
             session.refresh(revision)
@@ -724,7 +364,13 @@ class Store:
                     "scene_sha256": row.scene_sha256,
                     "created_at": row.created_at,
                     "has_exercise": row.exercise_json is not None,
-                    "has_qa": row.qa_json is not None,
+                    "qa_variants": sorted(
+                        session.scalars(
+                            select(SceneQAReport.variant).where(
+                                SceneQAReport.revision_id == row.id
+                            )
+                        )
+                    ),
                     "has_approval": row.approval_json is not None,
                 }
                 for row in revisions
@@ -845,7 +491,6 @@ class Store:
         expected: Stage,
         target: Stage,
         *,
-        qa: dict[str, object] | None = None,
         approval: dict[str, object] | None = None,
     ) -> None:
         if STAGE_TRANSITIONS.get(expected) != target:
@@ -868,9 +513,78 @@ class Store:
                 )
             revision = session.get(SceneRevision, project.current_revision_id)
             assert revision
-            if qa is not None:
-                revision.qa_json = json.dumps(qa, ensure_ascii=False, sort_keys=True)
             if approval is not None:
                 revision.approval_json = json.dumps(approval, ensure_ascii=False, sort_keys=True)
             project.stage = target
             session.commit()
+
+    def record_scene_qa(self, project_id: int, variant: str, report: dict[str, object]) -> Stage:
+        """Store one variant's QA report on the head revision; return the stage it leaves.
+
+        The first report steps `audio_generated` → `automatically_checked`. A later one — another
+        variant, or the same variant measured again — is stored at `automatically_checked` without
+        a transition. Past that, a report is refused: a signature vouches for the bytes as they were
+        measured when it was given, and replacing the measurement underneath it would let a
+        failing report sit beside an approval nobody re-gave.
+        """
+
+        allowed = {Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED}
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project or project.current_revision_id is None:
+                raise ValueError(f"scene project {project_id} does not exist")
+            stage = Stage(project.stage)
+            if stage not in allowed:
+                raise ValueError(
+                    f"this scene is at {stage}; QA runs on {Stage.AUDIO_GENERATED} or "
+                    f"{Stage.AUTOMATICALLY_CHECKED}"
+                )
+            body = json.dumps(report, ensure_ascii=False, sort_keys=True)
+            now = datetime.now(UTC).isoformat()
+            row = session.get(SceneQAReport, (project.current_revision_id, variant))
+            if row is None:
+                session.add(
+                    SceneQAReport(
+                        revision_id=project.current_revision_id,
+                        variant=variant,
+                        qa_json=body,
+                        created_at=now,
+                    )
+                )
+            else:
+                row.qa_json = body
+                row.created_at = now
+            project.stage = Stage.AUTOMATICALLY_CHECKED
+            session.commit()
+            return Stage.AUTOMATICALLY_CHECKED
+
+    def scene_qa_reports(self, revision_id: int) -> dict[str, dict[str, object]]:
+        """Every stored QA report of one revision, by variant."""
+
+        with Session(self.engine) as session:
+            rows = session.scalars(
+                select(SceneQAReport).where(SceneQAReport.revision_id == revision_id)
+            )
+            return {row.variant: json.loads(row.qa_json) for row in rows}
+
+    def scene_qa_verdicts(self, variant: str) -> dict[int, bool | None]:
+        """`passed` of every stored report on `variant`, by revision id, in one query."""
+
+        with Session(self.engine) as session:
+            rows = session.execute(
+                select(SceneQAReport.revision_id, SceneQAReport.qa_json).where(
+                    SceneQAReport.variant == variant
+                )
+            ).all()
+        verdicts: dict[int, bool | None] = {}
+        for revision_id, body in rows:
+            passed = json.loads(body).get("passed")
+            verdicts[int(revision_id)] = passed if isinstance(passed, bool) else None
+        return verdicts
+
+    def scene_qa_report(self, revision_id: int, variant: str) -> dict[str, object] | None:
+        """The report on exactly this revision's render of exactly this variant, or None."""
+
+        with Session(self.engine) as session:
+            row = session.get(SceneQAReport, (revision_id, variant))
+            return json.loads(row.qa_json) if row is not None else None

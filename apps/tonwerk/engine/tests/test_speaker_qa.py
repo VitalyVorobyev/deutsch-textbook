@@ -6,16 +6,14 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from listening_studio.domain import Line, lock_voice_profiles
 from listening_studio.speaker_qa import (
     CharacterPairSimilarity,
     CharacterSimilarity,
     SpeakerConsistencyReport,
     WavLMSpeakerEmbedder,
-    check_speaker_consistency,
+    check_unit_consistency,
     derive_calibration,
 )
-from test_domain import payload
 
 
 class QueueBackend:
@@ -39,22 +37,16 @@ def wav(path: Path, seconds: float = 1.0) -> Path:
     return path
 
 
-def four_line_payload():  # type: ignore[no-untyped-def]
-    base = payload()
-    lines = [
-        Line(id="lea-1", speaker="Lea", display_text="Guten Morgen."),
-        Line(id="lea-2", speaker="Lea", display_text="Bis später."),
-        Line(id="tom-1", speaker="Tom", display_text="Hallo Lea."),
-        Line(id="tom-2", speaker="Tom", display_text="Bis morgen."),
-    ]
-    return lock_voice_profiles(base.model_copy(update={"lines": lines}))
+#: Four utterances, two per role: `(utterance id, role)`, the pair the measurement takes.
+UNITS = [("lea-1", "Lea"), ("lea-2", "Lea"), ("tom-1", "Tom"), ("tom-2", "Tom")]
+SPEAKERS = ["Lea", "Tom"]
 
 
 def test_similarity_report_compares_characters_and_their_lines(tmp_path: Path) -> None:
-    project = four_line_payload()
-    paths = {line.id: wav(tmp_path / f"{line.id}.wav") for line in project.lines}
-    report = check_speaker_consistency(
-        project,
+    paths = {unit: wav(tmp_path / f"{unit}.wav") for unit, _ in UNITS}
+    report = check_unit_consistency(
+        UNITS,
+        SPEAKERS,
         paths,
         QueueBackend([[1, 0], [0.98, 0.2], [0, 1], [0.1, 0.99]]),
     )
@@ -69,13 +61,12 @@ def test_similarity_report_compares_characters_and_their_lines(tmp_path: Path) -
 
 
 def test_short_lines_are_sent_to_manual_review(tmp_path: Path) -> None:
-    project = four_line_payload()
     paths = {
-        line.id: wav(tmp_path / f"{line.id}.wav", 0.1 if line.id == "lea-1" else 1.0)
-        for line in project.lines
+        unit: wav(tmp_path / f"{unit}.wav", 0.1 if unit == "lea-1" else 1.0) for unit, _ in UNITS
     }
-    report = check_speaker_consistency(
-        project,
+    report = check_unit_consistency(
+        UNITS,
+        SPEAKERS,
         paths,
         QueueBackend([[1, 0], [0, 1], [0.1, 0.99]]),
     )

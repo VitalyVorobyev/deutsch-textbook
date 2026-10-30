@@ -6,9 +6,8 @@ render can be silently wrong.
 **Timing is resolved after synthesis, never before.** A sequential speech entry (`at_ms=None`)
 starts when the previous one has finished, and how long the previous one takes is a property of
 the take — pace included. So the graph is evaluated in two passes: every synth and pace node
-first, then the timeline, then everything that needs to know where things sit. This is the
-generalization of `reading_pipeline.generate_reading`'s cue loop, which measured each paragraph
-WAV for exactly this reason; the difference is that a scene has non-speech on the same axis.
+first, then the timeline, then everything that needs to know where things sit — speech and
+non-speech on the same axis.
 
 **A node is evaluated only when its hash is not in the cache.** `cache/nodes/<hash>.json` maps a
 node hash to the asset it produced, so re-rendering a scene after one line was rewritten costs
@@ -29,6 +28,7 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 import shutil
 import tempfile
 from dataclasses import dataclass, field
@@ -37,7 +37,7 @@ from functools import partial
 from pathlib import Path
 from typing import Any, Callable, Mapping, Protocol, Sequence
 
-from ..adapters import model_lock, warn_if_style_is_inert, wav_duration
+from ..dsp.audio import wav_duration
 from ..dsp.chains import clamp, distance_send_db, stem_chain
 from ..dsp.profiles import (
     AcousticProfiles,
@@ -48,6 +48,8 @@ from ..dsp.profiles import (
     load_acoustic_profiles,
     load_difficulty_presets,
 )
+from ..generative.locks import model_lock
+from ..generative.registry import warn_if_style_is_inert
 from ..generative.gateway import (
     SoundGenerator,
     SoundRequest,
@@ -149,9 +151,8 @@ class NodeRun:
 class UtteranceTiming:
     """Where one turn of speech sits in the finished mix.
 
-    This is the cue table. `reading_pipeline` derived the same thing per paragraph and published
-    it as `ParagraphCue`; a scene produces it for every utterance regardless of kind, which is
-    what lets a narration scene keep publishing paragraph cues without a second code path.
+    This is the cue table. A scene produces it for every utterance regardless of kind, which is
+    what lets a narration scene publish paragraph cues without a second code path.
     """
 
     utterance_id: str
@@ -333,8 +334,13 @@ class ResolvedAcoustics:
     def room_mix(self, ir_asset: str) -> RoomMix | None:
         if self.room is None or self.room_id is None or self.wet <= 0.0:
             return None
+        spec = self.room.ir
         return RoomMix(
-            room_id=self.room_id, version=self.room.version, wet=self.wet, ir_asset=ir_asset
+            room_id=self.room_id,
+            version=self.room.version,
+            wet=self.wet,
+            ir_asset=ir_asset,
+            tail_ms=spec.pre_delay_ms + math.ceil(spec.decay_s * 1000),
         )
 
     def manifest(self) -> dict[str, Any]:

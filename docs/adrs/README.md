@@ -49,9 +49,10 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0007`](0007-opaque-snapshot-sync-and-approval-accounts.md) | Sync stores opaque snapshots, and an account grants nothing until approved |
 | [`0008`](0008-delivery-static-site-desktop-shell-worker.md) | The course ships as a static site, a thin desktop shell and one Worker |
 | [`0009`](0009-third-party-and-official-material.md) | What third-party and official material may enter the repository |
-| [`0010`](0010-editorial-tools-are-separate-apps.md) | Editorial tools are separate applications over the checkout |
+| [`0010`](0010-editorial-tools-are-separate-apps.md) | *Superseded by 0012* |
 | [`0011`](0011-shared-ui-from-vitavision-packages.md) | Shared UI comes from the `@vitavision/*` packages, and each app's identity is a theme |
+| [`0012`](0012-editorial-tools-and-the-tonwerk-studio.md) | Editorial tools are separate applications over the checkout, and Tonwerk is one studio whose shell owns its engine |
 
-All eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions of an
-earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`), and
-none of it is in force except as restated here.
+The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
+of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),
+and none of it is in force except as restated here.

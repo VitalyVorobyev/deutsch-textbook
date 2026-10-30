@@ -1,7 +1,7 @@
 """The `scene` verbs — headless, and every one of them `--json`-able.
 
 Separate from `cli.py` on purpose. The main CLI module imports the whole render stack
-(huggingface-hub, uvicorn, the adapters) to define its commands; the scene verbs read files,
+(huggingface-hub, uvicorn, the engines) to define its commands; the scene verbs read files,
 validate a model and write rows, and none of that should cost a model download to reach. It is
 registered as `app.add_typer(scene_app, name="scene")` there, so `atlas-listening scene …` is
 one command surface however the modules are split.
@@ -9,24 +9,26 @@ one command surface however the modules are split.
 
 from __future__ import annotations
 
+import functools
 import json
 import sys
 import tempfile
 import time
 from contextlib import contextmanager, redirect_stdout
+from contextvars import ContextVar
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any, Callable, Iterator, ParamSpec, TextIO, TypeVar
 
 import typer
 
 from ..catalogs import load_character_catalog, load_narration_catalog
 from ..domain import Stage
-from ..reading_audio import default_profile_id, load_reading_sources
 from ..storage import Store
 from .checks import catalog_warnings
 from .convert import dialogue_scene, reading_scene
 from .exercise import ExerciseAttachment
 from .model import Scene
+from .reading_source import default_profile_id, load_reading_sources
 from .publish import (
     PUBLISHED_VARIANT,
     PublishPlan,
@@ -41,18 +43,35 @@ from .publish import (
 from .schema_export import SCHEMA_PATH, scene_schema_json, write_scene_schema
 from .wave import DEFAULT_VARIANT, run_wave, wave_summary, wave_targets
 
+#: The stages a QA report may be recorded at: the first one checks the take, a later one another
+#: variant of it (`Store.record_scene_qa`).
+QA_STAGES = (Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED)
+
 app = typer.Typer(
     no_args_is_help=True,
     help="Scene v1: convert, validate, store, render, QA, publish — and the corpus-wide wave",
 )
 
 
+#: The stdout a `--json` verb's envelope goes to while library output is diverted to stderr.
+_json_stdout: ContextVar[TextIO | None] = ContextVar("_json_stdout", default=None)
+
+P = ParamSpec("P")
+R = TypeVar("R")
+
+
+def emit_text(text: str) -> None:
+    """Write a verb's machine-readable answer to the stdout it was started with."""
+
+    typer.echo(text, file=_json_stdout.get() or sys.stdout)
+
+
 def _emit(payload: dict[str, Any]) -> None:
-    typer.echo(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
+    emit_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
 
 
 @contextmanager
-def _only_json_on_stdout(active: bool) -> Iterator[None]:
+def only_json_on_stdout(active: bool) -> Iterator[None]:
     """Keep the `--json` envelope the only thing a caller has to parse.
 
     Measured, not anticipated: the pinned Qwen adapter prints a flash-attn banner to **stdout**
@@ -60,13 +79,35 @@ def _only_json_on_stdout(active: bool) -> Iterator[None]:
     then a JSON document, and `json.loads` on the result fails. It lands there only when a real
     engine runs, which is exactly where no test on `FakeSpeech` could ever see it. Library output
     goes to stderr for the duration; it is diagnostics, and stderr is where diagnostics belong.
+    The envelope itself still reaches the original stdout through `emit_text`.
     """
 
     if not active:
         yield
         return
-    with redirect_stdout(sys.stderr):
-        yield
+    token = _json_stdout.set(_json_stdout.get() or sys.stdout)
+    try:
+        with redirect_stdout(sys.stderr):
+            yield
+    finally:
+        _json_stdout.reset(token)
+
+
+def json_verb(command: Callable[P, R]) -> Callable[P, R]:
+    """Run a whole `--json`-able verb under `only_json_on_stdout` when it was asked for JSON.
+
+    The whole verb rather than the step that is known to print: which import or constructor
+    reaches a chatty library is a property of the installed packages, not of this code, and a
+    guard around one call leaves the next one unguarded. Typer reads the wrapped signature through
+    `functools.wraps`, so the options stay exactly as declared.
+    """
+
+    @functools.wraps(command)
+    def run(*args: P.args, **kwargs: P.kwargs) -> R:
+        with only_json_on_stdout(bool(kwargs.get("json_output"))):
+            return command(*args, **kwargs)
+
+    return run
 
 
 def _import(scene: Scene, exercise: ExerciseAttachment | None, slug: str | None) -> dict[str, Any]:
@@ -90,6 +131,7 @@ def _import(scene: Scene, exercise: ExerciseAttachment | None, slug: str | None)
 
 
 @app.command("validate")
+@json_verb
 def validate_scene(
     file: Path,
     repo: Path | None = typer.Option(
@@ -127,6 +169,7 @@ def validate_scene(
 
 
 @app.command("create")
+@json_verb
 def create_scene(
     from_file: Path = typer.Option(..., "--from", exists=True, dir_okay=False),
     exercise: Path | None = typer.Option(None, "--exercise", exists=True, dir_okay=False),
@@ -179,6 +222,7 @@ def _write_or_import(
 
 
 @app.command("from-dialogue")
+@json_verb
 def from_dialogue(
     artifact: str,
     repo: Path = typer.Option(Path.cwd()),
@@ -193,6 +237,7 @@ def from_dialogue(
 
 
 @app.command("from-reading")
+@json_verb
 def from_reading(
     reading: str,
     repo: Path = typer.Option(Path.cwd()),
@@ -217,6 +262,7 @@ def from_reading(
 
 
 @app.command("show")
+@json_verb
 def show_scene(slug: str, json_output: bool = typer.Option(False, "--json")) -> None:
     """Print the current revision of one stored scene."""
 
@@ -252,6 +298,7 @@ def _stored(slug: str) -> tuple[Any, Any, Scene]:
 
 
 @app.command("render")
+@json_verb
 def render_command(
     slug: str,
     variant: str = typer.Option("natural", "--variant"),
@@ -268,8 +315,8 @@ def render_command(
     """Render the current revision of one stored scene through the node graph."""
 
     # Imported here, not at module scope: these pull the whole render stack (huggingface-hub, the
-    # adapters, soundfile), and the point of this module is that `scene validate` costs none of it.
-    from ..adapters import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
+    # engines, soundfile), and the point of this module is that `scene validate` costs none of it.
+    from ..generative.registry import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
     from ..generative.fake import FakeSound
     from ..generative.gateway import SoundGenerator, SpeechGenerator
     from ..generative.locks import set_models_root
@@ -327,16 +374,15 @@ def render_command(
     else:
         sound_engine = FakeSound() if test_adapter else None
 
-    with _only_json_on_stdout(json_output):
-        result = render_scene(
-            scene,
-            store.root,
-            variant=variant,
-            speech_engines=speech_engines,
-            sound_engine=sound_engine,
-            repo=repo.resolve(),
-            voices=resolved.refs,
-        )
+    result = render_scene(
+        scene,
+        store.root,
+        variant=variant,
+        speech_engines=speech_engines,
+        sound_engine=sound_engine,
+        repo=repo.resolve(),
+        voices=resolved.refs,
+    )
 
     stage = Stage(project.stage)
     if stage == Stage.DRAFT:
@@ -375,6 +421,7 @@ def render_command(
 
 
 @app.command("qa")
+@json_verb
 def qa_command(
     slug: str,
     variant: str = typer.Option("natural", "--variant"),
@@ -383,7 +430,7 @@ def qa_command(
 ) -> None:
     """Transcript, speaker and soundscape QA over one rendered scene."""
 
-    from ..adapters import transcribe
+    from ..qa import transcribe
     from ..generative.locks import set_models_root
     from ..graph.scene_qa import scene_qa
 
@@ -395,21 +442,19 @@ def qa_command(
         raise typer.BadParameter(
             f"{scene.slug} has no {variant} render of these bytes; run `scene render` first"
         )
-    if Stage(project.stage) != Stage.AUDIO_GENERATED:
+    if Stage(project.stage) not in QA_STAGES:
         raise typer.BadParameter(
-            f"this scene is at {project.stage}; QA runs on {Stage.AUDIO_GENERATED}"
+            f"this scene is at {project.stage}; QA runs on "
+            + " or ".join(str(stage) for stage in QA_STAGES)
         )
     try:
-        with _only_json_on_stdout(json_output):
-            report = scene_qa(scene, directory, transcribe_fn=transcribe)
+        report = scene_qa(scene, directory, transcribe_fn=transcribe)
     except RuntimeError as error:
         # Whisper here is MLX and macOS-local. Say so once, clearly, rather than letting an
         # ImportError traceback out of a verb an agent is calling.
         typer.echo(f"scene qa needs the local ASR runtime: {error}", err=True)
         raise typer.Exit(1) from error
-    store.transition_scene(
-        project.id, Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED, qa=report
-    )
+    store.record_scene_qa(project.id, variant, report)
     manifest = json.loads((directory / "render.json").read_text())
     payload = {
         "task": "scene.qa",
@@ -442,6 +487,7 @@ def qa_command(
 
 
 @app.command("regenerate-corpus")
+@json_verb
 def regenerate_corpus(
     repo: Path = typer.Option(Path.cwd()),
     level: str | None = typer.Option(None, "--level", help="A1, A2 or B1; default all three"),
@@ -467,7 +513,7 @@ def regenerate_corpus(
     flags, the progress lines and the final table.
     """
 
-    from ..adapters import ENGINES
+    from ..generative.registry import ENGINES
     from ..generative.locks import set_models_root
 
     if engine is not None and engine not in ENGINES:
@@ -489,18 +535,17 @@ def regenerate_corpus(
     started = time.monotonic()
     # Progress goes to **stderr** even without `--json`: it is a running commentary on a job that
     # takes half an hour, and a table printed at the end is what a caller parses.
-    with _only_json_on_stdout(json_output):
-        rows = run_wave(
-            store,
-            root,
-            targets,
-            variant=variant,
-            engine=engine,
-            test_adapter=test_adapter,
-            speaker_qa=speaker_qa,
-            dry_run=dry_run,
-            progress=lambda line: typer.echo(line, err=True),
-        )
+    rows = run_wave(
+        store,
+        root,
+        targets,
+        variant=variant,
+        engine=engine,
+        test_adapter=test_adapter,
+        speaker_qa=speaker_qa,
+        dry_run=dry_run,
+        progress=lambda line: typer.echo(line, err=True),
+    )
 
     outcomes = wave_summary(rows)
     payload = {
@@ -576,6 +621,7 @@ def _print_plan(plan: PublishPlan, *, dry_run: bool) -> None:
 
 
 @app.command("publish")
+@json_verb
 def publish_command(
     slug: str,
     repo: Path = typer.Option(Path.cwd()),
@@ -638,6 +684,7 @@ def publish_command(
 
 
 @app.command("publish-approved")
+@json_verb
 def publish_approved_command(
     repo: Path = typer.Option(Path.cwd()),
     level: str | None = typer.Option(None, "--level", help="A1, A2 or B1; default every level"),
@@ -711,6 +758,7 @@ def publish_approved_command(
 
 
 @app.command("delete")
+@json_verb
 def delete_command(
     slug: str,
     repo: Path = typer.Option(Path.cwd()),

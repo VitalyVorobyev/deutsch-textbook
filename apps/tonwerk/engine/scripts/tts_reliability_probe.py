@@ -83,7 +83,7 @@ def peak_rss_gb() -> float:
 
 
 def corpus_texts(mode: str, reading_id: str | None) -> list[tuple[str, str]]:
-    from listening_studio.reading_audio import load_reading_sources, spoken_paragraph
+    from listening_studio.scene.reading_source import load_reading_sources, spoken_paragraph
 
     sources = load_reading_sources(REPO_ROOT)
     if mode == "paragraph":
@@ -209,7 +209,7 @@ def main() -> int:
         del model, parameter
         if hasattr(torch, "mps"):
             torch.mps.empty_cache()
-        from listening_studio.adapters import transcribe
+        from listening_studio.qa import transcribe
 
         for entry in results:
             if not entry.get("wav"):

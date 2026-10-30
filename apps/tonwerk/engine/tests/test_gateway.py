@@ -6,11 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from listening_studio.adapters import generate_lines, speech_request
-from listening_studio.domain import VoiceProfile
 from listening_studio.generative.fake import FakeSound, FakeSpeech
 from listening_studio.generative.gateway import SoundRequest, SpeechRequest
-from test_domain import payload
+from listening_studio.generative.registry import warn_if_style_is_inert
 
 
 def test_a_request_hashes_the_same_however_its_params_were_written() -> None:
@@ -34,7 +32,7 @@ def test_a_request_hashes_the_same_however_its_params_were_written() -> None:
     )
     assert first.sha256() == second.sha256()
     assert first.canonical_json() == second.canonical_json()
-    # No whitespace, sorted keys — the RevisionPayload rule, so the two are comparable by eye.
+    # No whitespace, sorted keys — `Scene.canonical_json`'s rule, so the two are comparable by eye.
     assert ", " not in first.canonical_json()
 
     # And a request that differs in anything at all hashes differently.
@@ -109,38 +107,31 @@ def test_an_engine_refuses_parameters_it_would_only_drop(tmp_path: Path) -> None
 def test_pace_never_reaches_the_engine() -> None:
     """Pace is DSP. An engine that saw it would have to re-generate for every tempo."""
 
-    line = payload().lines[0].model_copy(update={"pace": 0.9, "style": "ruhig"})
-    request = speech_request(line)
+    assert "pace" not in SpeechRequest.model_fields
+    request = SpeechRequest(text="Hallo.", voice="Ryan", style="ruhig")
     assert "pace" not in request.model_dump()
     assert request.style == "ruhig"
 
 
-def test_an_inert_style_warns_once_per_run(tmp_path: Path, caplog: pytest.LogCaptureFixture) -> None:
+def test_an_inert_style_warns_and_no_style_stays_silent(caplog: pytest.LogCaptureFixture) -> None:
     """`supports_style = False` must be audible to the editor, not just true in the code.
 
-    One warning per generation run, not per line: twelve identical warnings in a dialogue is how
-    an editor learns to scroll past them.
+    The render graph calls this once per engine per render, not per utterance: twelve identical
+    warnings in a dialogue is how an editor learns to scroll past them.
     """
 
-    base = payload()
-    project = base.model_copy(
-        update={
-            "voice_profiles": [
-                VoiceProfile(speaker="Lea", voice="Ryan", seed=100, style="freundlich"),
-                VoiceProfile(speaker="Tom", voice="Aiden", seed=105, style="freundlich"),
-            ]
-        }
-    )
-    with caplog.at_level(logging.WARNING, logger="listening_studio.adapters"):
-        generate_lines(project, tmp_path / "styled", FakeSpeech())
+    engine = FakeSpeech()
+    assert not engine.supports_style
+    with caplog.at_level(logging.WARNING, logger="listening_studio.generative.registry"):
+        warn_if_style_is_inert(engine, True)
     warnings = [record for record in caplog.records if record.levelno == logging.WARNING]
     assert len(warnings) == 1
     assert "fake" in warnings[0].getMessage()
 
     # No style, no warning — the message has to mean something when it appears.
     caplog.clear()
-    with caplog.at_level(logging.WARNING, logger="listening_studio.adapters"):
-        generate_lines(base, tmp_path / "plain", FakeSpeech())
+    with caplog.at_level(logging.WARNING, logger="listening_studio.generative.registry"):
+        warn_if_style_is_inert(engine, False)
     assert not [record for record in caplog.records if record.levelno == logging.WARNING]
 
 

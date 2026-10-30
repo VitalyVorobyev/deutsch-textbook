@@ -18,14 +18,11 @@
  * apply. A frontend that computed its own default would be a second copy of a rule that lives in
  * one place, and the copy is the one nobody updates.
  *
- * There is no per-profile preview here, and that is a real difference from the legacy reading
- * flow. `POST /api/readings/{id}/previews` synthesised one paragraph in every profile so a
- * reviewer could choose by ear — but it is keyed to a *reading project*, the pre-scene model this
- * queue does not create, and it renders the whole catalogue through the local model before the
- * first choice is made. What replaces it is cheaper and already exists: a narration profile is a
- * character plus an instruction, Figuren plays every character's demo takes, and the profile a
- * scene was made with can be heard by rendering it. The panel says so rather than leaving the
- * picker looking like a guess.
+ * There is no per-profile preview here: rendering one paragraph in every profile would run the
+ * whole catalogue through the local model before the first choice is made. What stands in for it
+ * is cheaper and already exists: a narration profile is a character plus an instruction, Figuren
+ * plays every character's demo takes, and the profile a scene was made with can be heard by
+ * rendering it. The panel says so rather than leaving the picker looking like a guess.
  */
 import { useCallback, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';

@@ -1,16 +1,17 @@
 """Transcript QA: what counts as a take the machine may pass on to a human.
 
-The thresholds live in `check_units` and nothing else may restate them. `check_transcripts` is
-the `RevisionPayload` caller and `graph.scene_qa` is the `Scene` one; both ask the same question
-about the same kind of evidence, and two copies of "0.12 per line, 0.08 overall, and never lose a
-protected token" is two places for one of them to drift.
+The thresholds live in `check_units` and nothing else may restate them; `graph.scene_qa` is the
+caller. `transcribe` is the pinned local ASR the scene QA, the wave runner and a voice
+registration's best-effort reference transcript all use.
 """
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Mapping, Sequence
 
-from .domain import LineQA, QAReport, RevisionPayload, normalized_words, word_error_rate
+from .domain import LineQA, QAReport, normalized_words, word_error_rate
+from .generative.locks import locked_snapshot
 
 #: A line may mishear this fraction of its words, or one word, whichever is more forgiving. The
 #: "or one word" clause is what keeps a four-word greeting from failing on a single article.
@@ -35,8 +36,7 @@ def check_units(
 ) -> QAReport:
     """Score one transcript per unit of speech, plus one for the whole recording.
 
-    A "unit" is a line in the dialogue pipeline and an utterance in a scene. The shapes differ;
-    the evidence does not.
+    A "unit" is one utterance of a scene: its id and the text it was asked to say.
     """
 
     lines: list[LineQA] = []
@@ -98,15 +98,29 @@ def check_units(
     )
 
 
-def check_transcripts(
-    payload: RevisionPayload,
-    transcripts: dict[str, str],
-    full_transcript: str | None = None,
-) -> QAReport:
-    return check_units(
-        [(line.id, line.spoken_text()) for line in payload.lines],
-        transcripts,
-        vocabulary=payload.brief.vocabulary,
-        grammar_target=payload.brief.grammar_target or None,
-        full_transcript=full_transcript,
+
+def transcribe(path: Path) -> str:
+    """One file through the pinned MLX Whisper checkout. Raises RuntimeError when it is absent."""
+
+    try:
+        import mlx_whisper
+    except ImportError as exc:
+        raise RuntimeError("Install the pinned MLX Whisper adapter before running QA") from exc
+    model_path = locked_snapshot(
+        "mlx-community/whisper-large-v3-turbo",
+        "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
     )
+    # `condition_on_previous_text=False` is the guard against Whisper's long-form repetition
+    # loop. Takes have transcribed their whole script correctly and then degenerated — "ist mir
+    # klar, ist mir klar, ist mir klar…" for hundreds of characters — which scored full WER 1.6 to
+    # 1.9 while every individual line passed at 0.00. That signature is unmistakable: the speech
+    # is fine and the decoder is feeding its own output back to itself. Conditioning on previous
+    # text buys fluency across segment boundaries, which is worth nothing here — the comparison
+    # is against a script we already have, word by word.
+    result = mlx_whisper.transcribe(
+        str(path),
+        path_or_hf_repo=model_path,
+        language="de",
+        condition_on_previous_text=False,
+    )
+    return str(result["text"]).strip()

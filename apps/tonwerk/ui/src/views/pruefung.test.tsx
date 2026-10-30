@@ -252,7 +252,7 @@ describe('the Freigabe flow', () => {
   test('a failed automatic check refuses the signature and still allows a refusal', async () => {
     const durchgefallen = {
       ...wartend,
-      qa: { ...wartend.qa, passed: false },
+      qa_reports: { natural: { ...wartend.qa_reports.natural, passed: false } },
     };
     mount(<Freigabe slug="ls-wohnen-01" />, stubApi({ scene: async () => durchgefallen as never }));
 
