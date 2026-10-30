@@ -12,7 +12,7 @@ Three diagnostics, and each one answers a question the other two cannot.
   alone, loudness-normalised the same way), plus the configured coverage the scene asked for.
 
 Whisper here is MLX and macOS-local. `transcribe_fn` is injected so the unit tests can run in an
-environment that has never seen torch; the CLI passes `adapters.transcribe` and fails fast with a
+environment that has never seen torch; the CLI passes `qa.transcribe` and fails fast with a
 readable message when that import is not available.
 """
 
@@ -60,7 +60,7 @@ def _slice(source: Path, target: Path, start_ms: int, end_ms: int) -> None:
 
 
 def scene_soundscape(scene: Scene, render: Mapping[str, Any], directory: Path) -> SoundscapeReport:
-    """The scene's own soundscape report, in the shape the dialogue pipeline already publishes.
+    """The scene's soundscape report: configured beds and events, and the measured bed level.
 
     The numbers are read off the scene rather than off a `ContextSound` list: beds are ambience
     entries and events are sfx entries, which is the distinction the legacy manifests had to
@@ -88,8 +88,7 @@ def scene_soundscape(scene: Scene, render: Mapping[str, Any], directory: Path) -
     #
     # One caveat this figure carries, stated rather than hidden: the two files are loudness-
     # normalised independently, so the level it reports is the bed's level in the *master*, not
-    # the bed-to-speech ratio. It ranks scenes against each other; it is not an absolute claim,
-    # which is the same footing the dialogue pipeline's copy of this number stands on.
+    # the bed-to-speech ratio. It ranks scenes against each other; it is not an absolute claim.
     measured = (
         ambience_rms_dbfs(directory / "dry.wav", directory / "master.wav", 0)
         if beds or events

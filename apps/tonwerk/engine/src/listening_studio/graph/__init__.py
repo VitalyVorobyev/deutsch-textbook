@@ -7,9 +7,6 @@ string in this pipeline. `render` builds the graph for one scene, evaluates only
 and writes the manifest that makes the result a reproducible build artifact rather than a WAV
 somebody has. The acoustic profiles those nodes are parameterised from live one level up, in
 `listening_studio.dsp`, which knows nothing about nodes — the dependency runs one way.
-
-Nothing here touches the legacy `RevisionPayload` pipeline (`adapters.generate_lines`,
-`assemble`, `mix_context`), which keeps rendering the 41 published dialogues exactly as it did.
 """
 
 from .assets import AssetStore, sha256_file

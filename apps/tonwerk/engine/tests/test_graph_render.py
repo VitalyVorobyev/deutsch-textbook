@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import numpy as np
 import pytest
 import soundfile as sf
 
@@ -19,7 +20,7 @@ from listening_studio.generative.gateway import SoundRequest, SpeechRequest
 from listening_studio.graph.assets import AssetStore
 from listening_studio.graph.nodes import QA_RATE, WORKING_RATE
 from listening_studio.graph.render import render_scene
-from listening_studio.reading_audio import ReadingSource
+from listening_studio.scene.reading_source import ReadingSource
 from listening_studio.scene.convert import scene_from_reading
 from listening_studio.scene.model import (
     AmbienceEntry,
@@ -363,6 +364,48 @@ def test_a_room_convolves_once_and_the_manifest_names_the_impulse_response(
         row for row in mixes[0].params["inputs"] if row["stem_id"] == "ambience-1"
     )
     assert bed["send_db"] is None
+
+
+class ToneSpeech(FakeSpeech):
+    """`FakeSpeech` that says something: a 220 Hz tone, so a room has a signal to ring with."""
+
+    revision = "tone-v1"
+
+    def generate(self, request: SpeechRequest, target: Path):  # type: ignore[no-untyped-def]
+        asset = super().generate(request, target)
+        frames = sf.info(str(target)).frames
+        seconds = np.arange(frames) / 16_000
+        sf.write(str(target), 0.3 * np.sin(2 * np.pi * 220 * seconds), 16_000, subtype="PCM_16")
+        return asset
+
+
+def test_a_scene_ending_on_its_last_word_keeps_the_rooms_reverb_tail(tmp_path: Path) -> None:
+    """`afir` stops when its input does, so the send is padded by the IR's length first.
+
+    Watched failing without the pad: the master ended within a few milliseconds of the timeline
+    and the station hall's 2.6 s decay was cut off at the last word.
+    """
+
+    scene = Scene(
+        slug="fixture-hall",
+        kind="dialogue",
+        title=Bilingual(en="In the hall", ru="В зале"),
+        cast=[CastMember(role="Mara", voice=VoiceSpec(engine="fake", voice="Vivian", seed=1))],
+        script=[Utterance(id="line-1", role="Mara", display_text="Der Zug fährt ab.")],
+        timeline=[SpeechEntry(utterance_id="line-1")],
+        acoustics=SceneAcoustics(room="station-hall"),
+    )
+    result = render_scene(scene, tmp_path, speech_engines={"fake": ToneSpeech()})
+    mix = next(row for row in result.nodes if row.type == "mix")
+    tail_ms = mix.params["room"]["tail_ms"]
+    assert tail_ms == 28 + 2600  # pre-delay + RT60 of `station-hall`
+
+    audio, rate = sf.read(str(result.directory / "master.wav"), always_2d=True)
+    assert len(audio) / rate * 1000 >= result.duration_ms + tail_ms - 50
+    after = audio[int(result.duration_ms / 1000 * rate) + rate // 20 :]
+    # The first half-second after the last word still carries the room, well above silence.
+    ringing = float(np.sqrt(np.mean(after[: rate // 2] ** 2)))
+    assert 20 * np.log10(max(ringing, 1e-12)) > -60
 
 
 def test_a_variant_with_an_unknown_override_key_is_refused_with_the_vocabulary(

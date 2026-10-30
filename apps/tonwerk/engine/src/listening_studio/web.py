@@ -126,10 +126,9 @@ def app(
         nothing caught it — so a project already at `automatically_checked` answered a bare 500
         traceback to Validate, Generate and QA alike.
 
-        Every route now under this handler is JSON, so the HTML branch it used to carry went with
-        the forms. It stays as the backstop for the paths where a `model_validate` can raise
-        inside a legacy `api/projects` or `api/readings` write: those answer a readable 409
-        instead of a traceback the desktop app cannot parse.
+        It stays as the backstop for any path where a `model_validate` or a store transition can
+        raise inside a write: those answer a readable 409 instead of a traceback the desktop app
+        cannot parse.
         """
 
         return JSONResponse({"detail": str(exc)}, status_code=409)

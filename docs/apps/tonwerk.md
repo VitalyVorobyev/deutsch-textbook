@@ -33,7 +33,8 @@ bun install
 bun run tonwerk:build                      # once, and after any change to apps/tonwerk/ui
 
 cd apps/tonwerk/engine
-uv sync --extra test
+uv sync --extra test --extra mlx
+./install-qwen.sh                          # the speech runtime; again after every `uv sync`
 uv run atlas-listening doctor              # ffmpeg, ffprobe, git, python
 uv run atlas-listening serve --repo ../../..  # opens http://127.0.0.1:8765/
 ```
@@ -173,15 +174,18 @@ Both installers pin a revision, and both pins are checked before a generation ru
 
 ## Which CLI commands you actually type
 
-`atlas-listening` exposes about thirty-five commands and a `scene` sub-app, which is the main
-reason the tool looks harder than it is. The short answer:
-
 > **`doctor`, `models`, `serve`, and `scene publish-approved`. Everything else happens in Tonwerk.**
 
-The rest — `recast-corpus`, `lock-voice-profiles`, `regenerate-voice-profile-corpus`,
-`benchmark-voice-consistency`, `experiment-human-voice-clone`, the pre-scene `*-reading` verbs — are
-corpus-migration and research tooling, run once under supervision. They are documented in
-[`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md).
+The rest of `atlas-listening` serves the same scene pipeline from a shell:
+
+- `sources import|list` brings in a licensed Freesound sound.
+- `voices create|list|demo|revoke` manages consented cloned voices.
+- `generate-character-demos` makes the demo takes Figuren plays.
+- The `scene` sub-app validates, creates, renders, checks and publishes one scene.
+  `scene regenerate-corpus` re-renders and checks the published dialogue corpus in one process,
+  and it stops before approval.
+
+They are documented in [`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md).
 
 ## When something is wrong
 

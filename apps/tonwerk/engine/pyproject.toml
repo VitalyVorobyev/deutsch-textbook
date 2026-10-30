@@ -7,22 +7,20 @@ dependencies = [
   "alembic==1.16.5",
   "fastapi==0.116.1",
   "huggingface-hub==0.36.2",
-  "jinja2==3.1.6",
   # WavLM QA imports NumPy directly; <=2.2 is also required by Qwen's pinned Numba runtime.
   "numpy==2.2.6",
   "platformdirs==4.4.0",
   "pillow==11.3.0",
   "pydantic==2.11.9",
   "python-multipart==0.0.20",
-  "reportlab==4.4.3",
   "sqlalchemy==2.0.43",
   "typer==0.17.4",
   "uvicorn==0.35.0",
   "pyyaml==6.0.2",
-  # Base, not `mlx`. `wav_duration` swallows an ImportError and returns None, and the publisher
-  # then falls back to the brief's *requested* length — silently writing the number that the
-  # measured duration exists to replace. Reading a WAV header is not an ML concern; it is what
-  # the approval page states against the plan and what `listening.yaml` publishes.
+  # Base, not `mlx`. `wav_duration` swallows an ImportError and returns None, and the render
+  # graph measures every take's length with it to lay out the timeline. Reading a WAV header is
+  # not an ML concern. `requirements-qwen-runtime.txt` pins the same version, so installing the
+  # Qwen runtime never moves it.
   "soundfile==0.13.1",
 ]
 
@@ -55,7 +53,6 @@ packages = ["listening_studio"]
 [[tool.mypy.overrides]]
 module = [
   "yaml",
-  "reportlab.*",
   "soundfile",
   "torch",
   "qwen_tts",

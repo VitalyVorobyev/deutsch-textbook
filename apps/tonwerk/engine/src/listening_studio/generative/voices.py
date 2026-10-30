@@ -1,8 +1,7 @@
 """Consented voice references: the record, the rules it must satisfy, and where the bytes live.
 
-This is the promotion of `human_voice_experiment`'s consent machinery from a research path into a
-**production-capable** one. Everything that made the research path safe is kept and made stricter,
-not bypassed:
+Consent here is **production-capable**: a recording may be cloned and published, and every rule
+that keeps that safe is stated and checked:
 
 * a consent binds the **exact reference SHA-256**, so a record cannot be re-pointed at other audio;
 * a minor needs guardian consent **and** guardian-attested child assent;
@@ -165,7 +164,7 @@ _PUBLICATION_WORDS = ("publication", "publish", "veröffentlich", "veroeffentlic
 _COURSE_WORDS = ("course", "kurs", "deutsch-atlas")
 #: What publication scope must still forbid.
 _REDISTRIBUTION_WORDS = ("redistribution", "redistribute", "weitergabe", "weiterverbreitung")
-#: The three the evaluation scope inherits unchanged from `human_voice_experiment`.
+#: What an evaluation-scope consent must prohibit.
 _EVALUATION_PROHIBITIONS = ("upload", "publication", "git")
 
 
@@ -213,11 +212,10 @@ class ConsentSubject(Strict):
 class VoiceConsent(Strict):
     """One person's consent to have their voice cloned, at one scope.
 
-    Promoted from `human_voice_experiment.HumanVoiceConsent`. Two shapes differ, and both because
-    this record can now authorise publication: the subject is typed (a minor is a field rather than
-    a convention inside a free dict), and `permitted_uses` exists beside `prohibited_uses`, because
-    a document that only lists prohibitions cannot express a permission and publication scope is a
-    permission.
+    Two shapes are worth naming, and both because this record can authorise publication: the
+    subject is typed (a minor is a field rather than a convention inside a free dict), and
+    `permitted_uses` exists beside `prohibited_uses`, because a document that only lists
+    prohibitions cannot express a permission and publication scope is a permission.
     """
 
     version: int = 1

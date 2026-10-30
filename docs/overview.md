@@ -15,8 +15,8 @@ without changing the learning model.
 Redaktion is a separate React/Tauri workbench for that same repository. Its webview has no direct
 filesystem or shell authority: a compiled Bun sidecar loads `@da/content`, watches the selected
 checkout and accepts the narrow read, revision-checked save and validation contract in
-[ADR 0010](adrs/0010-editorial-tools-are-separate-apps.md). Browser development implements the same
-`CorpusClient` through Vite middleware. Neither transport creates a second content store.
+[ADR 0012](adrs/0012-editorial-tools-and-the-tonwerk-studio.md). Browser development implements the
+same `CorpusClient` through Vite middleware. Neither transport creates a second content store.
 
 Editorial MDX preview crosses that boundary as data, never executable code. `@da/content/preview`
 parses the in-memory buffer into a serializable allowlisted tree, selects exactly one authored

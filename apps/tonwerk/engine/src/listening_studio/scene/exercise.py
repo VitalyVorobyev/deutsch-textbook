@@ -3,9 +3,8 @@
 A scene is *audio*: a cast, a script, a timeline. What a learner is asked about it afterwards is
 a different artifact with a different lifecycle — the questions are revised, translated and
 re-tagged long after the audio is approved, and a question edit must not invalidate an approval
-that vouched for specific bytes. `RevisionPayload` merged the two (`questions` sat beside
-`lines`, inside the hash the approval covered), which is why editing a distractor returned an
-approved dialogue to draft and threw its QA away.
+that vouched for specific bytes. Kept inside the hash the approval covers, editing a distractor
+would return an approved scene to draft and throw its QA away.
 
 A studio scene project is therefore three things: the scene, an optional attachment, and the
 review state around them.

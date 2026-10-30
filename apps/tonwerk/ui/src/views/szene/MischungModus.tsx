@@ -249,16 +249,9 @@ export function MischungModus({
         erklaerung="Erkannte Wörter gegen erwartete, je Äußerung. Eine bestandene Prüfung ist keine Freigabe."
       >
         {qa === null ? (
-          <Zustand art="leer" text="Für diese Revision liegt keine automatische Prüfung vor." />
+          <Zustand art="leer" text="Für diese Variante liegt keine automatische Prüfung vor." />
         ) : (
           <>
-            {qa.variant && qa.variant !== variante ? (
-              <p className="hinweis" style={{ marginBottom: 'var(--ton-mass-4)' }}>
-                Der gespeicherte Bericht gehört zur Variante{' '}
-                <span className="zahl">{qa.variant}</span>, nicht zu{' '}
-                <span className="zahl">{variante}</span>. Je Revision wird ein Bericht gespeichert.
-              </p>
-            ) : null}
             <div className="reihe">
               <Marke ton={(qa.transcripts?.full_wer ?? 0) > 0.08 ? 'alarm' : 'ruhig'}>
                 Gesamt-WER {prozent(qa.transcripts?.full_wer)}

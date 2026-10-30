@@ -20,7 +20,6 @@ from pydantic import BaseModel, Field
 
 from ..catalogs import CharacterDefinition, NarrationProfile
 from ..domain import Bilingual, Question, SingleChoice
-from ..reading_audio import ReadingSource
 from .exercise import ExerciseAttachment
 from .model import (
     AmbienceEntry,
@@ -39,6 +38,7 @@ from .model import (
     VoiceSpec,
     SfxEntry,
 )
+from .reading_source import ReadingSource
 
 
 #: Published provenance manifests predate the `role` field on a context sound entirely — the
@@ -48,8 +48,8 @@ from .model import (
 #: Anything under this threshold is an event; the gap either side of it is a factor of five.
 EVENT_MAX_DURATION_MS = 5_000
 
-#: The narration engine. `ReadingRevisionPayload` stores no adapter name — it was written when
-#: there was exactly one — so the value is stated here rather than guessed per reading.
+#: The engine a new narration scene is cast on. A narration profile names a character and a
+#: delivery, never an engine, so the value is stated here rather than guessed per reading.
 NARRATION_ENGINE = "qwen_tts"
 
 #: The single role a narration scene casts. Not the character's display name: an utterance names
@@ -129,8 +129,7 @@ def _audio_items(
 def _question(item: dict[str, Any]) -> Question:
     """One published `audio-comprehension` item as the studio's question shape.
 
-    `audio-comprehension` is single-choice and nothing else, which is why the legacy response
-    union is not reachable from here: those five shapes are readable history, never new input.
+    `audio-comprehension` is single-choice and nothing else, and so is `Question.response`.
     """
 
     return Question(
@@ -286,9 +285,8 @@ def scene_from_dialogue(
         acoustics=SceneAcoustics(lead_in_ms=int(settings["assembly"]["lead_in_ms"])),
         # Every manifest names and hashes a generation brief, so a model drafted the script and
         # `generated` is earned. `generation_prompt` stays None on purpose: the brief document is
-        # not the prompt string, and rebuilding one from the published payload is exactly the
-        # "provenance that states a generation history which did not happen" failure recorded on
-        # `RevisionPayload.authoring`.
+        # not the prompt string, and rebuilding one from the published payload would be
+        # provenance stating a generation history that did not happen.
         authoring="generated",
         generation_prompt=None,
     )
@@ -317,8 +315,8 @@ def scene_from_reading(
 ) -> Scene:
     """One Lesetext as a single-voice narration scene.
 
-    The paragraph texts arrive already gloss-stripped: `load_reading_sources` applies
-    `spoken_paragraph` when it reads `content/reading/`, so `[[Wort::word::слово]]` is `Wort`
+    The paragraph texts arrive already gloss-stripped: `reading_source.load_reading_sources`
+    applies `spoken_paragraph` when it reads `content/reading/`, so `[[Wort::word::слово]]` is `Wort`
     before it gets here. That makes display and synthesis text the same string, and
     `synthesis_text` stays None rather than repeating it — the field exists for a genuine
     difference, and filling it with a copy would make every reading look like it had one.
@@ -369,9 +367,8 @@ def scene_from_reading(
         # cannot be taken apart again and the pace is a number several profiles could produce.
         # See `NarrationRef`.
         narration=NarrationRef(profile_id=profile.id, profile_version=profile.version),
-        # Matches `ReadingRevisionPayload.authoring`, whose default is the same value for the
-        # same corpus. Changing the answer on the way through a converter would make the two
-        # models disagree about the identical text.
+        # The narrations published from this corpus were recorded as generated, and a scene
+        # converted from the same text says the same thing about it.
         authoring="generated",
     )
 

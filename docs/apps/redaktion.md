@@ -148,5 +148,5 @@ editor representation, so check consequential image composition and custom-figur
 learner app.
 
 The architecture and security boundary are recorded in
-[ADR 0010](../adrs/0010-editorial-tools-are-separate-apps.md); remaining milestones live in the
+[ADR 0012](../adrs/0012-editorial-tools-and-the-tonwerk-studio.md); remaining milestones live in the
 [roadmap](../roadmap.md) and [backlog](../backlog/redaktion.md).

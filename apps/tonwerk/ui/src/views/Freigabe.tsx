@@ -52,6 +52,9 @@ import type { Api, SceneDocument } from '../api';
 import type { QaReport, RenderRow, SceneDetail, SpeakerQa } from '../contracts';
 import type { Scene } from '@da/schema/audio-scene';
 
+/** The one variant the engine publishes (`scene.publish.PUBLISHED_VARIANT`). */
+const VEROEFFENTLICHTE_VARIANTE = 'natural';
+
 export function Freigabe({ slug }: { slug: string }): React.JSX.Element {
   const api = useApi();
   const [stand, setStand] = useState(0);
@@ -126,10 +129,15 @@ function Ablauf({
   neuLaden(): void;
 }): React.JSX.Element {
   const scene = data.document.scene;
-  // The variant under review is the one the stored QA report ran on. A page that let the reviewer
-  // pick would let them listen to `challenging` and sign the `natural` report — which is what the
-  // engine's own variant check refuses, and refusing it here means never composing the request.
-  const variante = data.qa?.variant ?? data.renders.find((row) => row.rendered)?.variant ?? null;
+  // The variant under review is the published one when it has been checked, else the one that
+  // was. The reviewer hears that variant's master and reads that variant's report — never one
+  // variant's audio beside another's numbers, which the engine refuses at approval anyway.
+  const geprueft = Object.keys(data.qa_reports);
+  const variante =
+    (geprueft.includes(VEROEFFENTLICHTE_VARIANTE) ? VEROEFFENTLICHTE_VARIANTE : geprueft[0]) ??
+    data.renders.find((row) => row.rendered)?.variant ??
+    null;
+  const qa = variante === null ? null : (data.qa_reports[variante] ?? null);
   const render = data.renders.find((row) => row.variant === variante) ?? null;
 
   const [stand, setStand] = useState<FreigabeStand>(data.approval ? 'entschieden' : 'hoeren');
@@ -164,7 +172,7 @@ function Ablauf({
   const gezeigterStand: FreigabeStand = entschieden ? 'entschieden' : stand;
 
   // Everything that can make this page not a review, said once and in the order that matters.
-  const sperre = warum(data, render, variante);
+  const sperre = warum(data, qa, render, variante);
 
   return (
     <Spielbereich>
@@ -262,7 +270,7 @@ function Ablauf({
         </Platte>
       ) : (
         <>
-          <Bericht qa={data.qa ?? null} variante={variante} />
+          <Bericht qa={qa} variante={variante} />
           <Checkliste
             scene={scene}
             noetig={noetig}
@@ -329,6 +337,7 @@ function Ablauf({
  */
 function warum(
   data: SceneDetail,
+  qa: QaReport | null,
   render: RenderRow | null,
   variante: string | null,
 ): string | null {
@@ -338,7 +347,7 @@ function warum(
   if (data.stage !== STUFE_WARTET) {
     return `Diese Szene steht auf „${STUFE_LABEL[data.stage] ?? data.stage}“. Eine Freigabe folgt auf die automatische Prüfung — rendern und prüfen Sie sie in der Szene.`;
   }
-  if (data.qa?.passed !== true) {
+  if (qa?.passed !== true) {
     return 'Die automatische Prüfung ist durchgefallen. Freigeben ist hier nicht möglich; ablehnen schon, und der Grund geht an die nächste Fassung.';
   }
   if (variante === null || render?.has_master !== true) {

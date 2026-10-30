@@ -116,7 +116,7 @@ def test_qa_stores_its_report_and_advances_the_stage(
         return spoken[path.stem]
 
     # Patched where the verb imports it from, because the import is inside the command body.
-    monkeypatch.setattr("listening_studio.adapters.transcribe", transcribe)
+    monkeypatch.setattr("listening_studio.qa.transcribe", transcribe)
     monkeypatch.setattr("listening_studio.graph.scene_qa.weights_available", lambda: False)
     result = runner.invoke(scene_cli.app, ["qa", scene.slug, "--json"])
     assert result.exit_code == 0, result.output
@@ -129,7 +129,10 @@ def test_qa_stores_its_report_and_advances_the_stage(
 
     project, revision, _scene, _exercise = studio.get_scene_by_slug(scene.slug)  # type: ignore[misc]
     assert project.stage == Stage.AUTOMATICALLY_CHECKED
-    assert json.loads(revision.qa_json or "{}")["passed"] is True
+    # Stored under the variant it measured, and under no other.
+    reports = studio.scene_qa_reports(revision.id)
+    assert set(reports) == {"natural"}
+    assert reports["natural"]["passed"] is True
 
 
 def test_qa_fails_fast_when_the_local_asr_runtime_is_absent(
@@ -145,7 +148,7 @@ def test_qa_fails_fast_when_the_local_asr_runtime_is_absent(
     def absent(path: Path) -> str:
         raise RuntimeError("Install the pinned MLX Whisper adapter before running QA")
 
-    monkeypatch.setattr("listening_studio.adapters.transcribe", absent)
+    monkeypatch.setattr("listening_studio.qa.transcribe", absent)
     result = runner.invoke(scene_cli.app, ["qa", scene.slug])
     assert result.exit_code == 1
     assert "scene qa needs the local ASR runtime" in flat(result.output)

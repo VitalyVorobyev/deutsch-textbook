@@ -190,14 +190,12 @@ dependencies = [
     { name = "alembic" },
     { name = "fastapi" },
     { name = "huggingface-hub" },
-    { name = "jinja2" },
     { name = "numpy" },
     { name = "pillow" },
     { name = "platformdirs" },
     { name = "pydantic" },
     { name = "python-multipart" },
     { name = "pyyaml" },
-    { name = "reportlab" },
     { name = "soundfile" },
     { name = "sqlalchemy" },
     { name = "typer" },
@@ -222,7 +220,6 @@ requires-dist = [
     { name = "fastapi", specifier = "==0.116.1" },
     { name = "httpx", marker = "extra == 'test'", specifier = "==0.28.1" },
     { name = "huggingface-hub", specifier = "==0.36.2" },
-    { name = "jinja2", specifier = "==3.1.6" },
     { name = "mlx-lm", marker = "extra == 'mlx'", specifier = "==0.28.3" },
     { name = "mlx-whisper", marker = "extra == 'mlx'", specifier = "==0.4.3" },
     { name = "mypy", marker = "extra == 'test'", specifier = "==1.18.2" },
@@ -233,7 +230,6 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'test'", specifier = "==8.4.2" },
     { name = "python-multipart", specifier = "==0.0.20" },
     { name = "pyyaml", specifier = "==6.0.2" },
-    { name = "reportlab", specifier = "==4.4.3" },
     { name = "ruff", marker = "extra == 'test'", specifier = "==0.13.1" },
     { name = "soundfile", specifier = "==0.13.1" },
     { name = "sqlalchemy", specifier = "==2.0.43" },
@@ -953,19 +949,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/5d/47/e02db4015d424fc83c00ea0ac8c5e5ec14397943de9abf909d5ce3a25931/regex-2026.7.19-cp312-cp312-win32.whl", hash = "sha256:ddd67571c10869f65a5d7dde536d1e066e306cc90de57d7de4d5f34802428bb5", size = 267157, upload-time = "2026-07-19T00:17:31.051Z" },
     { url = "https://files.pythonhosted.org/packages/08/8e/c780c131f79b42ed22d1bd7da4096c2c35f813e835acd02ef0f018bd892c/regex-2026.7.19-cp312-cp312-win_amd64.whl", hash = "sha256:e30d40268a28d54ce0437031750497004c22602b8e3ab891f759b795a003b312", size = 277777, upload-time = "2026-07-19T00:17:32.848Z" },
     { url = "https://files.pythonhosted.org/packages/3e/4c/e4d7e086449bdf379d89774bf1f89dc4a41943f3c5a6125a03905b34b5fb/regex-2026.7.19-cp312-cp312-win_arm64.whl", hash = "sha256:de9208bb427130c82a5dbfd104f92c8876fc9559278c880b3002755bbbe9c83d", size = 277136, upload-time = "2026-07-19T00:17:34.803Z" },
-]
-
-[[package]]
-name = "reportlab"
-version = "4.4.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "charset-normalizer" },
-    { name = "pillow" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/2f/83/3d44b873fa71ddc7d323c577fe4cfb61e05b34d14e64b6a232f9cfbff89d/reportlab-4.4.3.tar.gz", hash = "sha256:073b0975dab69536acd3251858e6b0524ed3e087e71f1d0d1895acb50acf9c7b", size = 3887532, upload-time = "2025-07-23T11:18:23.799Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/52/c8/aaf4e08679e7b1dc896ad30de0d0527f0fd55582c2e6deee4f2cc899bf9f/reportlab-4.4.3-py3-none-any.whl", hash = "sha256:df905dc5ec5ddaae91fc9cb3371af863311271d555236410954961c5ee6ee1b5", size = 1953896, upload-time = "2025-07-23T11:18:20.572Z" },
 ]
 
 [[package]]

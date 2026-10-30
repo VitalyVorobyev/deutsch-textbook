@@ -377,11 +377,10 @@ def test_the_same_voice_at_a_different_consent_is_a_different_node(tmp_path: Pat
 
 
 def test_the_cloning_checkpoint_is_pinned_in_the_production_lock() -> None:
-    """It moved out of the benchmark lock when cloning stopped being research-only.
+    """The engine's own constants and the lock row are the same pin.
 
-    Two claims, and the second is the one a reader of a published manifest depends on: the engine's
-    own constants and the lock row are the same pin, and the benchmark lock no longer carries a
-    second copy of it to drift from.
+    That is the claim a reader of a published manifest depends on: the manifest copies the lock
+    row, and the engine loads the constants.
     """
 
     lock = json.loads((PACKAGE_ROOT / "models.lock.json").read_text())["models"]["qwen_tts_base"]
@@ -390,9 +389,6 @@ def test_the_cloning_checkpoint_is_pinned_in_the_production_lock() -> None:
     assert lock["license"] == QwenBaseClone.license
     assert lock["adapter_code"] == QwenBaseClone.adapter_code_revision
     assert "not independently verified" in lock["training_data_provenance"]
-
-    benchmark = json.loads((PACKAGE_ROOT / "benchmark-models.lock.json").read_text())["models"]
-    assert set(benchmark) == {"voice_design"}
 
 
 def _register(

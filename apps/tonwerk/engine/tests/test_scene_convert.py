@@ -20,7 +20,7 @@ from listening_studio.catalogs import (
     load_character_catalog,
     load_narration_catalog,
 )
-from listening_studio.reading_audio import default_profile_id, load_reading_sources
+from listening_studio.scene.reading_source import default_profile_id, load_reading_sources
 from listening_studio.scene.convert import (
     EVENT_MAX_DURATION_MS,
     dialogue_scene,

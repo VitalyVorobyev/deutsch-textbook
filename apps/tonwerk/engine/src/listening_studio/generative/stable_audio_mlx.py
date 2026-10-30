@@ -263,10 +263,9 @@ class StableAudioSfx:
             self._runner(build_argv(script, request, params, raw))
             if not raw.exists():
                 raise RuntimeError(f"sa3_mlx reported success but wrote no audio at {raw}")
-            # Imported lazily: `adapters` imports this package, so a module-scope import would
-            # close the cycle. `conform` is the one pace/format computation in the studio and
-            # re-implementing an ffmpeg call beside it is how two behaviours start to diverge.
-            from ..adapters import conform
+            # `conform` is the one pace/format computation in the studio, and re-implementing an
+            # ffmpeg call beside it is how two behaviours start to diverge.
+            from ..dsp.audio import conform
 
             conform(
                 raw,

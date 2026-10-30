@@ -38,4 +38,4 @@ application keeps an editorial database, an import step or a cache that outlives
 - A browser module never imports a filesystem module: `@da/content` exports per module, and pure
   values live in `@da/schema`.
 - Redaktion and Tonwerk write files the learner build will read. Their write paths are part of
-  this contract ([ADR 0010](0010-editorial-tools-are-separate-apps.md)).
+  this contract ([ADR 0012](0012-editorial-tools-and-the-tonwerk-studio.md)).

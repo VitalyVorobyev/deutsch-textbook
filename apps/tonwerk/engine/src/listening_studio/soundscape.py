@@ -1,3 +1,5 @@
+"""The soundscape diagnostic: how loud the non-speech material sits in a finished mix."""
+
 from __future__ import annotations
 
 import math
@@ -6,9 +8,6 @@ from pathlib import Path
 import numpy as np
 import numpy.typing as npt
 from pydantic import BaseModel, Field
-
-from .adapters import wav_duration
-from .domain import RevisionPayload
 
 
 class SoundscapeReport(BaseModel):
@@ -85,9 +84,8 @@ def _aligned_ambience_rms(
 def ambience_rms_dbfs(dry: Path, final: Path, lead_in_ms: int) -> float | None:
     """The bed level in the finished mix, measured against the speech-only reference.
 
-    Public because a scene render measures the same thing from a different manifest shape
-    (`graph.scene_qa`). The *measurement* is what must stay single-sourced — it is the part with
-    the limiter-latency correction in it — not the payload model it happens to be asked about.
+    `graph.scene_qa` reads the configured counts and gains off the scene and asks this function
+    for the one number only the audio can give.
     """
 
     if not dry.exists() or not final.exists():
@@ -100,30 +98,3 @@ def ambience_rms_dbfs(dry: Path, final: Path, lead_in_ms: int) -> float | None:
         dry_audio, final_audio, dry_rate, round(lead_in_ms * dry_rate / 1000)
     )
 
-
-def soundscape_report(
-    payload: RevisionPayload, dry: Path, final: Path
-) -> SoundscapeReport:
-    beds = [sound for sound in payload.context_sounds if sound.role == "bed"]
-    events = [sound for sound in payload.context_sounds if sound.role == "event"]
-    duration = wav_duration(final) or wav_duration(dry) or 0
-    event_seconds = sum(sound.duration_ms / 1000 for sound in events)
-    coverage = 1.0 if beds else min(1.0, event_seconds / duration) if duration else 0.0
-    warnings: list[str] = []
-    if not beds:
-        warnings.append("no continuous environment bed; the scene falls silent between events")
-
-    ambience_rms: float | None = None
-    if payload.context_sounds:
-        ambience_rms = ambience_rms_dbfs(dry, final, payload.lead_in_ms)
-    gains = [sound.gain_db for sound in payload.context_sounds]
-    return SoundscapeReport(
-        bed_count=len(beds),
-        event_count=len(events),
-        continuous_ambience=bool(beds),
-        configured_coverage_ratio=coverage,
-        configured_gain_min_db=min(gains) if gains else None,
-        configured_gain_max_db=max(gains) if gains else None,
-        measured_ambience_rms_dbfs=ambience_rms,
-        warnings=warnings,
-    )

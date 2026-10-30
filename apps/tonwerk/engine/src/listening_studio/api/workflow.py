@@ -8,10 +8,9 @@ test take reaches a learner.
 
 **Approval is the one thing in this file that is not a wrapper.** It is the human signature, and
 it is bound to the exact bytes the reviewer heard: the request must name the sha256 of the master
-it is approving, and a mismatch is refused. Until 2026-08-02 the dialogue approval recorded who
-and when but nothing about the audio, so a WAV regenerated after approval was published carrying
-an approval that never covered it — `cli.verify_approval` exists because of that, and this
-endpoint keeps its discipline on the request side, before anything is stored.
+it is approving, and a mismatch is refused before anything is stored. An approval that recorded
+who and when but nothing about the audio would let a WAV regenerated after approval be published
+carrying a signature that never covered it.
 """
 
 from __future__ import annotations
@@ -26,13 +25,13 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
-from ..adapters import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
 from ..domain import Stage
-from ..export import sha256
 from ..generative.fake import FakeSound
 from ..generative.gateway import SoundGenerator, SpeechGenerator
 from ..generative.locks import set_models_root
+from ..generative.registry import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
 from ..generative.voices import ResolvedVoices, resolve_voices
+from ..graph.assets import sha256_file as sha256
 from ..graph.render import render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
@@ -45,6 +44,9 @@ from ..scene.publish import (
     write_publish,
 )
 from ..storage import Store, remember_editor
+
+#: The stages QA may run at: the first report checks the take, a later one another variant of it.
+QA_STAGES = (Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED)
 
 #: One transcription of one file. The seam `graph.scene_qa` already defines and documents: the
 #: real implementation is MLX Whisper and macOS-local, so the tests inject a fake and run in an
@@ -200,9 +202,7 @@ def _required_checks(scene: Scene, has_exercise: bool) -> set[str]:
     Two of them are conditional, and both would otherwise be a signature on something that does
     not exist. `context` is about background sound masking a syllable, so it applies only to a
     scene that has non-speech material; `questions` is about the answer key, so it applies only
-    to a scene that carries an exercise. The legacy dialogue form made the same `context`
-    decision — it certified `context` only when the payload had context sounds — and could not
-    make the `questions` one, because a `RevisionPayload` always had questions.
+    to a scene that carries an exercise.
     """
 
     conditional = {"context", "questions"}
@@ -258,11 +258,10 @@ def router(
         except Exception as error:
             # The engine itself fell over. Recorded, then reported as itself.
             #
-            # This is the dialogue pipeline's rule, moved to the path that still exists: there is
-            # no second engine to revise the scene onto, and a synthesis failure was never
-            # evidence that the script needed rewriting. So the project stays exactly where it
-            # was and the failure is written down beside the render it was trying to produce —
-            # under the scene sha, so a failure and the audio it failed to make share an address.
+            # A synthesis failure is not evidence that the script needs rewriting, so the project
+            # stays exactly where it was and the failure is written down beside the render it was
+            # trying to produce — under the scene sha, so a failure and the audio it failed to make
+            # share an address.
             names = "-".join(sorted(speech)) or "render"
             directory = render_dir(scene, request.variant)
             directory.mkdir(parents=True, exist_ok=True)
@@ -328,22 +327,24 @@ def router(
                 409,
                 f"{scene.slug} has no {request.variant} render of these bytes; render it first",
             )
-        if Stage(project.stage) != Stage.AUDIO_GENERATED:
+        if Stage(project.stage) not in QA_STAGES:
             raise HTTPException(
-                409, f"this scene is at {project.stage}; QA runs on {Stage.AUDIO_GENERATED}"
+                409,
+                f"this scene is at {project.stage}; QA runs on "
+                + " or ".join(str(stage) for stage in QA_STAGES),
             )
         set_models_root(repo)
         transcriber = transcribe_fn
         if transcriber is None:
             # Imported at call time, not at module scope: the real transcriber is MLX Whisper,
             # macOS-local, and every other endpoint in this file has to keep working without it.
-            from ..adapters import transcribe as transcriber_impl
+            from ..qa import transcribe as transcriber_impl
 
             transcriber = transcriber_impl
         try:
             report = scene_qa(scene, directory, transcribe_fn=transcriber)
         except RuntimeError as error:
-            # `adapters.transcribe` raises this when the pinned MLX Whisper adapter is not
+            # `qa.transcribe` raises this when the pinned MLX Whisper adapter is not
             # installed. Said once, clearly, rather than as a 500 with an ImportError in it: on
             # a machine without the ASR runtime this is the expected answer, not a fault.
             raise HTTPException(
@@ -351,9 +352,7 @@ def router(
             ) from error
         except ValueError as error:
             raise HTTPException(409, str(error)) from error
-        store.transition_scene(
-            project.id, Stage.AUDIO_GENERATED, Stage.AUTOMATICALLY_CHECKED, qa=report
-        )
+        store.record_scene_qa(project.id, request.variant, report)
         return {
             "slug": scene.slug,
             "revision": revision.number,
@@ -413,21 +412,17 @@ def router(
 
     @api.get("/scenes/{slug}/renders/{variant}/qa-report")
     def qa_report(slug: str, variant: str) -> dict[str, Any]:
-        """The stored QA report, when it is a report about *this* variant.
+        """The stored QA report on this revision's render of *this* variant.
 
-        One report is stored per revision, and it names the variant it ran on. Serving it under
-        another variant's URL would answer "did the challenging mix pass" with the natural mix's
-        numbers, which is worse than answering nothing.
+        Reports are stored per variant, so a variant that was never checked is a 404 rather than
+        another variant's numbers.
         """
 
         _, revision, scene, _ = stored(slug)
-        if not revision.qa_json:
-            raise HTTPException(404, f"{scene.slug} has no QA report for this revision")
-        report: dict[str, Any] = json.loads(revision.qa_json)
-        if report.get("variant") != variant:
+        report = store.scene_qa_report(revision.id, variant)
+        if report is None:
             raise HTTPException(
-                404,
-                f"the stored QA report is for variant {report.get('variant')}, not {variant}",
+                404, f"{scene.slug} has no QA report on its {variant} render of this revision"
             )
         return report
 
@@ -438,15 +433,13 @@ def router(
             raise HTTPException(
                 409, f"this scene is at {project.stage}; approval follows automatic QA"
             )
-        report = json.loads(revision.qa_json or "{}")
+        report = store.scene_qa_report(revision.id, request.variant)
+        if report is None:
+            raise HTTPException(
+                409, f"the {request.variant} render has no QA report; run QA on it first"
+            )
         if report.get("passed") is not True:
             raise HTTPException(409, "automatic QA failed; revise or re-render before approval")
-        if report.get("variant") != request.variant:
-            raise HTTPException(
-                409,
-                f"the passing QA report is for variant {report.get('variant')}, "
-                f"not {request.variant}",
-            )
         # startswith, not equality: fake_clone is as much a test engine as fake, and a guard
         # naming one engine exactly is a guard the next test engine walks past.
         if any(
@@ -496,9 +489,8 @@ def router(
             "checklist": sorted(certified),
             "audio_sha256": actual,
             "dry_audio_sha256": sha256(dry) if dry.exists() else None,
-            # A scene has variants and a `RevisionPayload` did not, so the legacy approval shape
-            # gains exactly these two fields: without them an approval names bytes but not which
-            # rendering of which document produced them.
+            # Without these two an approval names bytes but not which rendering of which document
+            # produced them.
             "scene_sha256": scene.sha256(),
             "variant": request.variant,
         }

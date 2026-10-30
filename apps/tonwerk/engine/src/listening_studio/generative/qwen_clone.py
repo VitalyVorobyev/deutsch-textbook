@@ -5,12 +5,10 @@ speaks nine preset speakers and cannot clone; `Base` clones and has no presets. 
 flag would have had to answer "which voice does this engine offer" with "it depends", and that
 question is asked by the cast editor, the render path and the manifest.
 
-**What is pinned, and where.** The checkpoint used to live in `benchmark-models.lock.json` under
-`purpose: research-only … forbidden from production export`. That is no longer the policy
-(`docs/authoring/product-protection.md`), so the pin moved into `models.lock.json` beside the other
-production models, with its licence and the same training-data honesty note they all carry. The
-benchmark lock keeps VoiceDesign, which really is research-only. The revision is stated **here**
-once and read from there by `voice_benchmark`, so there is one pin rather than two that can drift.
+**What is pinned, and where.** The checkpoint is a production model
+(`docs/authoring/product-protection.md`), pinned in `models.lock.json` beside the others with its
+licence and the same training-data honesty note they all carry. The revision is stated **here**
+once, and `tests/test_voices.py` holds the lock entry equal to it.
 
 **This engine never decides whether a clone is allowed.** It is handed a `ClonableVoice` whose
 consent was validated by `generative.voices` before the store wrote a row. See `VoiceCloning`.
@@ -24,9 +22,8 @@ from typing import Any, Mapping
 from .gateway import AudioAsset, ClonableVoice, SpeechRequest, VoiceRef
 from .locks import locked_snapshot
 
-#: 20 seconds at the 12 Hz codec. The same cap `human_voice_experiment` set, and for the reason it
-#: recorded: a 2048-token runaway continuation was observed on this checkpoint, and an unbounded
-#: generation is a take that keeps talking after the line ended.
+#: 20 seconds at the 12 Hz codec: a 2048-token runaway continuation was observed on this
+#: checkpoint, and an unbounded generation is a take that keeps talking after the line ended.
 MAX_NEW_TOKENS = 240
 
 

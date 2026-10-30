@@ -12,11 +12,11 @@ Sibling of `download-qwen3-tts.py` and deliberately the same shape: `snapshot_do
 `listening_studio.generative.locks.local_checkout` looks for them and can read the pinned commit
 back out of the download metadata `huggingface_hub` writes beside them.
 
-Two differences from the Qwen script, both load-bearing:
+Two properties, both load-bearing:
 
-* **`revision=` is passed.** The Qwen download predates the check; here the engine refuses to run
-  against a directory whose metadata does not say exactly this commit, so downloading `main`
-  would produce an install that looks complete and is rejected.
+* **`revision=` is passed**, as in the Qwen script: the engine refuses to run against a directory
+  whose metadata does not say exactly this commit, so downloading `main` would produce an install
+  that looks complete and is rejected.
 * **`allow_patterns` is narrow.** `stabilityai/stable-audio-3-optimized` also carries the medium
   DiT, the music DiT, the SAME-L codec and the CPU-AMX shared objects — some 30 GB nothing here
   loads. The sm-sfx bundle plus the shared T5Gemma encoder is 1.8 GB.

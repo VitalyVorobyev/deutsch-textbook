@@ -139,7 +139,6 @@ export const registryRowSchema = z.looseObject({
   unit: z.union([z.string(), z.number()]).nullable().optional(),
   wave: z.union([z.string(), z.number()]).nullable().optional(),
   scenario: z.string().nullable().optional(),
-  superseded_by_scene: z.boolean().optional(),
   exercise_items: z.number().optional(),
 
   // Readings only.
@@ -380,7 +379,8 @@ export const historyRowSchema = z.looseObject({
   scene_sha256: z.string(),
   created_at: z.string().nullable().optional(),
   has_exercise: z.boolean().optional(),
-  has_qa: z.boolean().optional(),
+  /** The variants this revision has a QA report for; one report per variant. */
+  qa_variants: z.array(z.string()).default([]),
   has_approval: z.boolean().optional(),
 });
 export type HistoryRow = z.infer<typeof historyRowSchema>;
@@ -403,7 +403,11 @@ export const sceneDetailSchema = z.looseObject({
   scene_sha256: z.string(),
   scene: z.unknown(),
   exercise: z.unknown().nullable().optional(),
-  qa: qaReportSchema.nullable().optional(),
+  /**
+   * One QA report per variant that has been checked, keyed by variant id. A report measures one
+   * render, so a view reads the report of the variant it is showing and never another's.
+   */
+  qa_reports: z.record(z.string(), qaReportSchema).default({}),
   approval: approvalSchema.nullable().optional(),
   renders: z.array(renderRowSchema).default([]),
   history: z.array(historyRowSchema).default([]),

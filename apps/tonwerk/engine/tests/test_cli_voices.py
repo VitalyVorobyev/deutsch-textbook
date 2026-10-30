@@ -148,3 +148,40 @@ def test_an_empty_list_says_what_to_do_rather_than_nothing(studio: Path) -> None
     listed = RUNNER.invoke(app, ["voices", "list"])
     assert listed.exit_code == 0
     assert "atlas-listening voices create" in flat(listed.output)
+
+
+def test_a_library_banner_never_reaches_the_json_on_stdout(
+    studio: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The pinned Qwen adapter prints to stdout when it loads; `--json` must still parse.
+
+    Every step that can reach an engine prints a banner here — constructing the voice, generating
+    a demo — because which call reaches a chatty library is a property of the installed packages.
+    Watched failing with the guard switched off: the banner lands in front of the envelope and
+    `json.loads` refuses the output.
+    """
+
+    from listening_studio.generative.fake import FakeClone
+
+    make_voice, generate = FakeClone.make_voice, FakeClone.generate
+
+    def chatty_make_voice(self: FakeClone, **kwargs: object) -> object:
+        print("flash-attn is not installed; falling back")
+        return make_voice(self, **kwargs)  # type: ignore[arg-type]
+
+    def chatty_generate(self: FakeClone, request: object, target: Path) -> object:
+        print("flash-attn is not installed; falling back")
+        return generate(self, request, target)  # type: ignore[arg-type]
+
+    monkeypatch.setattr(FakeClone, "make_voice", chatty_make_voice)
+    monkeypatch.setattr(FakeClone, "generate", chatty_generate)
+
+    created = create(tmp_path, "--json")
+    assert created.exit_code == 0, created.output
+    assert json.loads(created.stdout)["voice"]["id"] == "testperson"
+    assert "flash-attn" in created.stderr
+
+    demo = RUNNER.invoke(app, ["voices", "demo", "testperson", "--repo", str(REPO), "--json"])
+    assert demo.exit_code == 0, demo.output
+    assert json.loads(demo.stdout)["task"] == "voices.demo"
+    assert "flash-attn" in demo.stderr

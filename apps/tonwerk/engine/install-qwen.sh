@@ -12,7 +12,7 @@ uv pip install --constraint model-constraints.txt --no-deps --requirement requir
 uv pip install --constraint model-constraints.txt --requirement requirements-qwen-runtime.txt
 
 # Weights: scripts/download-qwen3-tts.py puts them in <repo>/.models/, which the Hub cache does
-# not index — `adapters.local_checkout` finds them there and verifies the pinned revision from
+# not index — `generative.locks.local_checkout` finds them there and verifies the pinned revision from
 # the download metadata before use.
 uv run python -c "
 from listening_studio.generative.locks import local_checkout

@@ -1,181 +1,45 @@
+"""The shared vocabulary: questions, the voice list, model pins and the WER comparison."""
 
 import pytest
 from pydantic import ValidationError
 
-from listening_studio.domain import (
-    Brief,
-    Bilingual,
-    Line,
-    Question,
-    RevisionPayload,
-    SingleChoice,
-    VoiceProfile,
-    lock_voice_profiles,
-    line_cache_key,
-    word_error_rate,
-)
-from listening_studio.qa import check_transcripts
+from listening_studio.domain import Bilingual, Question, SingleChoice, word_error_rate
+from listening_studio.qa import check_units
 
 
-def payload() -> RevisionPayload:
-    return RevisionPayload(
-        title=Bilingual(en="Test", ru="Тест"),
-        brief=Brief(
-            scenario="Termin",
-            topic="termine-vereinbaren",
-            outcomes=["termine-aushandeln"],
-            vocabulary=["Termin"],
-        ),
-        speakers=["Lea", "Tom"],
-        lines=[
-            Line(id="l1", speaker="Lea", display_text="Der Termin ist am Freitag."),
-            Line(id="l2", speaker="Tom", display_text="Das passt gut."),
-        ],
-        questions=[
-            Question(
-                id="q1",
-                instruction=Bilingual(en="Listen.", ru="Слушайте."),
-                response=SingleChoice(
-                    kind="single-choice", prompt="Wann?", options=["Freitag", "Montag"], correct=0
-                ),
-                explain=Bilingual(en="Friday is stated.", ru="Названа пятница."),
-            )
-        ],
-        tts_adapter="fake",
-    )
-
-
-def test_wer_and_cache_key() -> None:
+def test_an_exact_transcript_scores_zero_and_passes() -> None:
     assert word_error_rate("Der Termin ist Freitag", "Der Termin ist Freitag") == 0
-    a = payload().lines[0]
-    b = a.model_copy(update={"voice": "Aiden"})
-    assert line_cache_key(a, "x") != line_cache_key(b, "x")
-
-
-def test_locking_identity_is_additive_and_deterministic() -> None:
-    legacy = payload()
-    assert legacy.voice_profiles is None
-    locked = lock_voice_profiles(legacy)
-    assert [(p.speaker, p.seed) for p in locked.voice_profiles or []] == [
-        ("Lea", 100),
-        ("Tom", 105),
-    ]
-    # The immutable legacy payload still parses exactly as it did before profiles existed.
-    assert RevisionPayload.model_validate_json(legacy.canonical_json()) == legacy
-
-
-def test_profile_cache_changes_only_the_affected_character() -> None:
-    locked = lock_voice_profiles(payload())
-    before = {line.id: locked.cache_key(line, "adapter") for line in locked.lines}
-    assert locked.voice_profiles is not None
-    changed_profiles = [
-        profile.model_copy(update={"seed": 999}) if profile.speaker == "Lea" else profile
-        for profile in locked.voice_profiles
-    ]
-    changed = locked.model_copy(update={"voice_profiles": changed_profiles})
-    after = {line.id: changed.cache_key(line, "adapter") for line in changed.lines}
-    assert before["l1"] != after["l1"]
-    assert before["l2"] == after["l2"]
-
-
-def test_legacy_dialogue_payload_gets_additive_artifact_discriminator() -> None:
-    raw = payload().model_dump(mode="json")
-    raw.pop("artifact_kind")
-    loaded = RevisionPayload.model_validate(raw)
-    assert loaded.artifact_kind == "dialogue"
-
-
-def test_profile_revision_never_reuses_a_matching_legacy_cache_key() -> None:
-    legacy = payload()
-    legacy.lines[0].seed = 100
-    locked = lock_voice_profiles(legacy)
-    assert legacy.cache_key(legacy.lines[0], "adapter") != locked.cache_key(
-        locked.lines[0], "adapter"
+    report = check_units(
+        [("u1", "Der Termin ist am Freitag."), ("u2", "Das passt gut.")],
+        {"u1": "Der Termin ist am Freitag.", "u2": "Das passt gut."},
+        vocabulary=["Termin"],
     )
-
-
-def test_profile_identity_overrides_legacy_line_identity() -> None:
-    locked = lock_voice_profiles(payload())
-    assert locked.voice_profiles is not None
-    profiles = [
-        VoiceProfile(speaker="Lea", voice="Serena", seed=44, style="Sprich ruhig."),
-        locked.voice_profiles[1],
-    ]
-    updated = locked.model_copy(update={"voice_profiles": profiles})
-    resolved = updated.resolved_line(updated.lines[0])
-    assert (resolved.voice, resolved.seed, resolved.style) == ("Serena", 44, "Sprich ruhig.")
-
-
-def test_qa_passes_exact_transcript() -> None:
-    p = payload()
-    report = check_transcripts(p, {line.id: line.spoken_text() for line in p.lines})
     assert report.passed and report.full_wer == 0
 
 
-def test_authoring_provenance_defaults_to_manual() -> None:
-    """An unmarked payload claims no generation history — see write_bundle in export.py."""
+def test_a_question_is_single_choice_and_nothing_else() -> None:
+    """`audio-comprehension` is single-choice, so a question of any other shape is refused."""
 
-    assert payload().authoring == "manual"
-    assert payload().generation_prompt is None
-
-
-def test_a_legacy_question_still_loads() -> None:
-    """A store must be able to read its own history.
-
-    The first pass at removing the `listening` item type narrowed `Question.response` to
-    SingleChoice outright, which made 12 of 13 already-drafted projects unloadable — every
-    action in the editor answered a wall of pydantic errors with real authored German behind
-    it. The shapes stay parseable; `exercise_yaml` is what refuses them.
-    """
-
-    base = payload().model_dump(mode="json")
-    for legacy in [
-        {"kind": "multi-select", "prompt": "?", "options": ["a", "b"], "correct": [0]},
-        {"kind": "true-false", "statement": "?", "correct": True},
-        {"kind": "ordering", "prompt": "?", "units": ["a", "b"]},
-        {"kind": "short-answer", "prompt": "?", "answers": ["ja"]},
-        {"kind": "dictation", "line_id": "l1", "accept": []},
-    ]:
-        candidate = {**base, "questions": [{**base["questions"][0], "response": legacy}]}
-        assert RevisionPayload.model_validate(candidate).questions[0].response.kind == legacy["kind"]
-
-
-def test_switching_the_model_leaves_a_payload_the_store_can_still_load() -> None:
-    """`model_copy(update=...)` skipped `consistent()`, so another engine's voice could be
-    saved under `qwen_tts` — and every later `Store.get()` then refused the project."""
-
-    from listening_studio.domain import VOICE_SETS, reassign_voices
-
-    base = payload()
-    # The fake engine publishes no voice list, so it is the one that can carry names Qwen has
-    # never heard of — which is exactly the state the form used to store under `qwen_tts`.
-    other = base.model_copy(
-        update={
-            "tts_adapter": "fake",
-            "lines": [
-                base.lines[0].model_copy(update={"voice": "Nicole"}),
-                base.lines[1].model_copy(update={"voice": "Christopher"}),
-            ],
-        }
+    question = {
+        "id": "q1",
+        "instruction": {"en": "Listen.", "ru": "Слушайте."},
+        "response": {
+            "kind": "single-choice",
+            "prompt": "Wann?",
+            "options": ["Freitag", "Montag"],
+            "correct": 0,
+        },
+        "explain": {"en": "Friday is stated.", "ru": "Названа пятница."},
+    }
+    loaded = Question.model_validate(question)
+    assert loaded.response == SingleChoice(
+        kind="single-choice", prompt="Wann?", options=["Freitag", "Montag"], correct=0
     )
-
-    # Watching it fail: the unvalidated copy the form used to build is not loadable.
-    broken = other.model_copy(update={"tts_adapter": "qwen_tts"})
+    assert loaded.instruction == Bilingual(en="Listen.", ru="Слушайте.")
     with pytest.raises(ValidationError):
-        RevisionPayload.model_validate_json(broken.canonical_json())
-
-    lines = reassign_voices(list(other.lines), "qwen_tts")
-    fixed = RevisionPayload.model_validate(
-        other.model_dump() | {"tts_adapter": "qwen_tts", "lines": [line.model_dump() for line in lines]}
-    )
-    assert RevisionPayload.model_validate_json(fixed.canonical_json()) == fixed
-    # Two speakers still sound like two people — that is the property the reassignment keeps.
-    assert len({line.voice for line in fixed.lines}) == 2
-    assert all(line.voice in VOICE_SETS["qwen_tts"] for line in fixed.lines)
-
-    # A voice the new adapter already offers is left where it is.
-    kept = reassign_voices(list(fixed.lines), "qwen_tts")
-    assert [line.voice for line in kept] == [line.voice for line in fixed.lines]
+        Question.model_validate(
+            question | {"response": {"kind": "true-false", "statement": "Freitag.", "correct": True}}
+        )
 
 
 def test_the_voice_lists_match_the_provenance_record() -> None:
@@ -328,3 +192,21 @@ def test_a_compound_split_by_the_asr_is_not_a_misheard_word() -> None:
     # Watched failing: dropping a word is not a boundary difference.
     assert word_error_rate("Ist etwas kaputtgegangen?", "Ist etwas kaputt.") > 0
     assert word_error_rate("Ist etwas kaputtgegangen?", "Ist nichts kaputtgegangen?") > 0
+
+
+def test_the_qwen_download_script_fetches_the_revision_the_engine_loads() -> None:
+    """`local_checkout` refuses a directory at any other commit, so `main` would be rejected."""
+
+    import importlib.util
+    from pathlib import Path
+
+    from listening_studio.generative.qwen import QwenSpeech
+    from listening_studio.generative.qwen_clone import QwenBaseClone
+
+    path = Path(__file__).resolve().parents[4] / "scripts" / "download-qwen3-tts.py"
+    spec = importlib.util.spec_from_file_location("download_qwen3_tts", path)
+    assert spec is not None and spec.loader is not None
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
+    assert script.pinned("custom-voice") == (QwenSpeech.model_id, QwenSpeech.revision)
+    assert script.pinned("base") == (QwenBaseClone.model_id, QwenBaseClone.revision)

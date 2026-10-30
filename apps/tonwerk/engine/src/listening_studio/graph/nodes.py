@@ -18,9 +18,8 @@ Two nodes with the same hash compute the same audio, so the result is cached und
 **The cache-invalidation contract.** `IMPL_VERSIONS` maps each node type to the version of *its
 own* computation. Bumping one entry invalidates exactly that class of node and nothing else: a
 change to how a take is paced must not re-run synthesis, and a change to the limiter must not
-re-run either. This is the discipline `domain.line_cache_key`'s `processor_version` established
-with a single global number — one number for the whole render meant every DSP fix threw away
-every take. Change the audio a node produces, bump that node's version in the same commit; a
+re-run either — one number for the whole render would mean every DSP fix threw away every take.
+Change the audio a node produces, bump that node's version in the same commit; a
 change that cannot alter the bytes (a comment, a refactor with identical ffmpeg arguments) does
 not touch it.
 
@@ -45,7 +44,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from ..adapters import conform
+from ..dsp.audio import conform
 from ..dsp.chains import reverb_chains
 from ..dsp.ir import IR_IMPL_VERSION, IR_RATE, write_ir
 from ..dsp.profiles import RoomProfile
@@ -73,9 +72,9 @@ QA_CODEC = "pcm_s16le"
 
 #: The published derivative. 48 kHz because the master already is — resampling to 44.1 kHz on the
 #: way out would be one more conversion for no listener-audible gain — and 128 kbps because the
-#: shipped corpus encodes at 64 kbps *mono* (`export.MP3_BITRATE`, with its measured argument
-#: about 16 kHz speech), and two channels at that same per-channel rate is 128 kbps. The number is
-#: the corpus's, doubled for the channel count it was never asked about.
+#: pre-scene corpus was encoded at 64 kbps *mono* from 16 kHz speech, and two channels at that same
+#: per-channel rate is 128 kbps. The number is the corpus's, doubled for the channel count it was
+#: never asked about.
 PUBLISH_BITRATE = "128k"
 PUBLISH_RATE = 48_000
 
@@ -94,10 +93,10 @@ BUSES = ("dialogue", "ambience", "sfx")
 
 # -- identity -----------------------------------------------------------------
 
-#: The cache-invalidation contract; see the module docstring. All nine start at 1 — including
-#: `ir`, whose version is `dsp.ir.IR_IMPL_VERSION` rather than a second number: the impulse
-#: response generator lives in `dsp` because it touches no node, and two versions for one
-#: computation would be two things to remember to bump.
+#: The cache-invalidation contract; see the module docstring. `ir`'s version is
+#: `dsp.ir.IR_IMPL_VERSION` rather than a second number: the impulse response generator lives in
+#: `dsp` because it touches no node, and two versions for one computation would be two things to
+#: remember to bump.
 IMPL_VERSIONS: dict[str, int] = {
     "synth": 1,
     "pace": 1,
@@ -105,7 +104,9 @@ IMPL_VERSIONS: dict[str, int] = {
     "import": 1,
     "ir": IR_IMPL_VERSION,
     "track": 1,
-    "mix": 1,
+    # 2: a room mix pads its send bus by the impulse response's length before `afir`, so the
+    # reverb rings out after the last word instead of being cut off at the end of the input.
+    "mix": 2,
     "loudnorm": 1,
     "encode": 1,
 }
@@ -234,12 +235,18 @@ class MixInput:
 
 @dataclass(frozen=True)
 class RoomMix:
-    """The scene's room, as the mixer needs it: which profile, how wet, and which IR asset."""
+    """The scene's room, as the mixer needs it: which profile, how wet, which IR, how long it rings.
+
+    `tail_ms` is the impulse response's own length — pre-delay plus RT60. `afir` produces exactly
+    as many samples as its input, so a send bus that ends on the last word would cut the room off
+    mid-decay; the mixer pads the send by this much first (`mix_filtergraph`).
+    """
 
     room_id: str
     version: int
     wet: float
     ir_asset: str
+    tail_ms: int
 
 
 def mix_filtergraph(inputs: Sequence[MixInput], room: RoomMix | None = None) -> str:
@@ -310,8 +317,12 @@ def mix_filtergraph(inputs: Sequence[MixInput], room: RoomMix | None = None) -> 
         )
         bus_labels.append(f"[{bus}]")
     if room is not None and sends:
+        # Padded before convolution: `afir` stops when its input does, so without the silence the
+        # reverb of a scene's last word is truncated at the word's end.
         chains.append(
-            "".join(sends) + f"amix=inputs={len(sends)}:duration=longest:normalize=0[send]"
+            "".join(sends)
+            + f"amix=inputs={len(sends)}:duration=longest:normalize=0,"
+            + f"apad=pad_dur={_seconds(room.tail_ms)}[send]"
         )
         # The IR is the last ffmpeg input, after every stem — `evaluate_mix` appends it in the
         # same order, and the index is the one thing the two sides have to agree on.
@@ -383,7 +394,7 @@ def pace_node(pace: float, source_hash: str) -> Node:
 
 
 def evaluate_pace(source: Path, target: Path, pace: float) -> None:
-    """`adapters.conform` at the working rate. The pace computation itself is not duplicated."""
+    """`dsp.audio.conform` at the working rate. The pace computation itself is not duplicated."""
 
     conform(source, target, pace, rate=WORKING_RATE, channels=1, codec=WORKING_CODEC)
 
@@ -620,6 +631,7 @@ def mix_node(
             "version": room.version,
             "wet": room.wet,
             "ir": room.ir_asset,
+            "tail_ms": room.tail_ms,
         }
         hashes.append(room.ir_asset)
     return _node("mix", params, hashes)

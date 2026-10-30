@@ -17,10 +17,11 @@ from typing import Any
 import yaml
 from fastapi.testclient import TestClient
 
-from listening_studio.domain import Stage
+from listening_studio.domain import Bilingual, Stage
+from listening_studio.scene.model import Scene
 from listening_studio.storage import Store
 from listening_studio.web import app
-from test_domain import payload
+from test_graph_render import cafe_scene, narration_scene, tone_in_store
 
 AUTH = {"Authorization": "Bearer test"}
 
@@ -37,13 +38,17 @@ def plan_entry(slug: str, wave: int = 1) -> dict[str, Any]:
     }
 
 
-def provenance(slug: str, revision_sha: str, *, approved: bool = True) -> dict[str, Any]:
-    """A published provenance manifest, cut down to the four fields the registry reads."""
+def provenance(slug: str, scene_sha: str | None, *, approved: bool = True) -> dict[str, Any]:
+    """A published provenance manifest, cut down to the fields the registry reads.
+
+    `scene_sha=None` is a pre-scene manifest: version 1, which hashes another document and names
+    no scene at all.
+    """
 
     return {
-        "version": 1,
+        "version": 2 if scene_sha else 1,
         "id": slug,
-        "revision_sha256": revision_sha,
+        **({"scene_sha256": scene_sha} if scene_sha else {"revision_sha256": "f" * 64}),
         "qa": {"passed": True},
         "approval": {
             "status": "complete" if approved else "declined",
@@ -137,34 +142,35 @@ def course_repo(tmp_path: Path) -> Path:
     return repo
 
 
+def scene_for(store: Store, slug: str) -> Scene:
+    return cafe_scene(tone_in_store(store.root)).model_copy(update={"slug": slug})
+
+
 def registry_of(tmp_path: Path) -> tuple[dict[str, Any], Store, Path]:
     repo = course_repo(tmp_path)
     store = Store(tmp_path / "db.sqlite3")
 
-    # `ls-published-01`: published, and the studio holds exactly the revision it was published
+    # `ls-published-01`: published, and the studio holds exactly the scene it was published
     # from — the ordinary healthy row.
-    published = store.create("ls-published-01", payload())
-    _, revision, _ = store.get(published.id)
-    publish(repo, "ls-published-01", "A1", provenance("ls-published-01", revision.payload_sha256))
+    published = scene_for(store, "ls-published-01")
+    store.create_scene(published)
+    publish(repo, "ls-published-01", "A1", provenance("ls-published-01", published.sha256()))
 
     # `ls-stale-01`: published, and then revised in the studio. Both files are present and
     # internally consistent, so `listening-inventory.ts` reads this as `published`; only the
     # database says otherwise.
-    stale = store.create("ls-stale-01", payload())
-    _, stale_revision, _ = store.get(stale.id)
-    publish(repo, "ls-stale-01", "A1", provenance("ls-stale-01", stale_revision.payload_sha256))
-    store.revise(stale.id, payload().model_copy(update={"lead_in_ms": 1500}))
+    stale = scene_for(store, "ls-stale-01")
+    stale_project = store.create_scene(stale)
+    publish(repo, "ls-stale-01", "A1", provenance("ls-stale-01", stale.sha256()))
+    store.revise_scene(
+        stale_project.id, stale.model_copy(update={"title": Bilingual(en="Later", ru="Позже")})
+    )
 
     # `ls-working-01`: a take the machine has measured and failed. Nothing published.
-    working = store.create("ls-working-01", payload())
-    store.transition(working.id, Stage.DRAFT, Stage.VALIDATED)
-    store.transition(working.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
-    store.transition(
-        working.id,
-        Stage.AUDIO_GENERATED,
-        Stage.AUTOMATICALLY_CHECKED,
-        qa={"passed": False},
-    )
+    working = store.create_scene(scene_for(store, "ls-working-01"))
+    store.transition_scene(working.id, Stage.DRAFT, Stage.VALIDATED)
+    store.transition_scene(working.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+    store.record_scene_qa(working.id, "natural", {"passed": False, "variant": "natural"})
 
     # `ls-planned-01`: commissioned and nothing else.
 
@@ -183,7 +189,7 @@ def test_every_row_carries_the_status_the_four_sources_agree_on(tmp_path: Path) 
     rows = by_id(document)
 
     assert rows["ls-published-01"]["status"] == "published"
-    assert rows["ls-published-01"]["project"]["kind"] == "dialogue"
+    assert rows["ls-published-01"]["project"]["kind"] == "scene"
     assert rows["ls-published-01"]["audio"] is True
     assert rows["ls-published-01"]["artifact"] is True
 
@@ -193,10 +199,11 @@ def test_every_row_carries_the_status_the_four_sources_agree_on(tmp_path: Path) 
         rows["ls-stale-01"]["project"]["revision_sha256"]
         != json.loads(
             (_repo / "data" / "audio-provenance" / "a1" / "ls-stale-01.json").read_text()
-        )["revision_sha256"]
+        )["scene_sha256"]
     )
 
     assert rows["ls-working-01"]["status"] == "qa_failed"
+    assert rows["ls-working-01"]["project"]["qa_passed"] is False
     assert rows["ls-working-01"]["audio"] is False
 
     assert rows["ls-planned-01"]["status"] == "planned"
@@ -246,36 +253,28 @@ def test_both_linkage_directions_are_reported(tmp_path: Path) -> None:
     assert document["summary"]["audio_comprehension_items"] == 4
 
 
-def test_a_scene_project_supersedes_a_dialogue_project_of_the_same_slug(tmp_path: Path) -> None:
-    """Both exist during the conversion; the scene is the one being edited, and says so.
+def test_a_pre_scene_manifest_is_never_compared_with_a_scene(tmp_path: Path) -> None:
+    """A version-1 manifest hashes another document, so a scene beside it reads `published`.
 
-    And the scene's sha is deliberately *not* compared against a manifest the dialogue publisher
-    wrote: they hash different documents, so comparing them would report every artifact `stale`
-    on the day it was converted — a hundred-percent false-positive rate for a signal whose only
-    value is that it is rare.
+    Comparing them would report every artifact `stale` on the day it was converted — a
+    hundred-percent false-positive rate for a signal whose only value is that it is rare. Once the
+    scene publisher writes a `scene_sha256`, the comparison is possible, and a scene revised after
+    publication reads `stale`.
     """
-
-    from test_graph_render import cafe_scene, tone_in_store
 
     repo = course_repo(tmp_path)
     store = Store(tmp_path / "db.sqlite3")
-    legacy = store.create("ls-published-01", payload())
-    _, revision, _ = store.get(legacy.id)
-    publish(repo, "ls-published-01", "A1", provenance("ls-published-01", revision.payload_sha256))
-    scene = cafe_scene(tone_in_store(store.root)).model_copy(update={"slug": "ls-published-01"})
+    scene = scene_for(store, "ls-published-01")
     store.create_scene(scene)
+    publish(repo, "ls-published-01", "A1", provenance("ls-published-01", None))
 
     http = TestClient(app(store, repo, token="test"))
     row = by_id(http.get("/api/registry", headers=AUTH).json())["ls-published-01"]
     assert row["project"]["kind"] == "scene"
     assert row["project"]["revision_sha256"] == scene.sha256()
-    assert row["superseded_by_scene"] is True
     assert row["status"] == "published"
 
-    # Once the regeneration PR writes a `scene_sha256` into the provenance, the comparison
-    # becomes possible — and a scene revised after publication reads `stale`.
-    manifest = provenance("ls-published-01", revision.payload_sha256)
-    manifest["scene_sha256"] = hashlib.sha256(b"an earlier scene").hexdigest()
+    manifest = provenance("ls-published-01", hashlib.sha256(b"an earlier scene").hexdigest())
     publish(repo, "ls-published-01", "A1", manifest)
     later = by_id(http.get("/api/registry", headers=AUTH).json())["ls-published-01"]
     assert later["status"] == "stale"
@@ -307,3 +306,38 @@ def test_a_narration_scene_is_joined_to_its_lesetext_by_the_flattened_slug(
     assert row["project"]["kind"] == "scene"
     assert row["project"]["revision_sha256"] == scene.sha256()
     assert row["status"] == "drafted"
+    # The fixture scene narrates other words than the repository's Lesetext.
+    assert row["source_drift"] is True
+
+
+def test_a_narration_scene_of_the_current_lesetext_has_no_source_drift(tmp_path: Path) -> None:
+    """`source_drift` compares the scene's script with the Lesetext the repository holds now."""
+
+    from listening_studio.scene.convert import reading_slug
+
+    repo = course_repo(tmp_path)
+    store = Store(tmp_path / "db.sqlite3")
+    base = narration_scene()
+    paragraphs = ["Lena kommt an.", "Sie sucht das Büro."]
+    script = [
+        base.script[index].model_copy(update={"display_text": text})
+        for index, text in enumerate(paragraphs)
+    ]
+    scene = Scene.model_validate(
+        base.model_dump(mode="json")
+        | {
+            "slug": reading_slug("a1/lena-erster-tag"),
+            "script": [row.model_dump(mode="json") for row in script],
+            "timeline": [{"type": "speech", "utterance_id": row.id} for row in script],
+        }
+    )
+    store.create_scene(scene)
+
+    http = TestClient(app(store, repo, token="test"))
+    row = by_id(http.get("/api/registry", headers=AUTH).json())["a1/lena-erster-tag"]
+    assert row["source_drift"] is False
+
+    # Watched failing: edit the Lesetext and the same scene drifts.
+    reading(repo, "A1", "lena-erster-tag", ["Lena kommt an.", "Sie sucht die Küche."])
+    row = by_id(http.get("/api/registry", headers=AUTH).json())["a1/lena-erster-tag"]
+    assert row["source_drift"] is True

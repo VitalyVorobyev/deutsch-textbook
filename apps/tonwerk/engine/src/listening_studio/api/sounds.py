@@ -15,14 +15,17 @@ written once, and the library shows one row rather than two.
 
 from __future__ import annotations
 
+import json
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Literal
 
+import numpy as np
+import soundfile as sf
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
-from ..adapters import SOUND_ENGINES, sound_engine_for
 from ..catalogs import (
     SourceEditorial,
     load_source_editorial,
@@ -31,6 +34,7 @@ from ..catalogs import (
 )
 from ..generative.gateway import SoundRequest
 from ..generative.locks import set_models_root
+from ..generative.registry import SOUND_ENGINES, sound_engine_for
 from ..graph.render import generate_sound
 from ..sources import (
     GeneratedSound,
@@ -41,7 +45,19 @@ from ..sources import (
     load_source,
 )
 from ..storage import Store
-from .rows import peaks
+
+
+@lru_cache(maxsize=256)
+def peaks(path: Path, bins: int = 96) -> list[float]:
+    """A waveform overview: the peak of each of `bins` equal slices, scaled to the loudest."""
+
+    audio, _ = sf.read(path, dtype="float32", always_2d=True)
+    mono = np.max(np.abs(audio), axis=1)
+    if len(mono) == 0:
+        return []
+    chunks = np.array_split(mono, min(bins, len(mono)))
+    maximum = max(float(np.max(chunk)) for chunk in chunks) or 1.0
+    return [round(float(np.max(chunk)) / maximum, 4) for chunk in chunks]
 
 
 class SoundGenerationRequest(BaseModel):
@@ -87,17 +103,25 @@ def router(store: Store, repo: Path, *, allow_test_adapters: bool = False) -> AP
     def sounds() -> list[dict[str, Any]]:
         """The whole sound library, imported and generated, each row saying which it is.
 
-        `origin` is on every row and is what a caller filters on. The soundscape picker still
-        wants Freesound rows only — a `ContextSound` names an imported `sound_id` and the
-        soundscape endpoint refuses anything else — so the field is not decoration: it is how a
-        second origin joins the list without the picker offering a sound it cannot place.
+        `origin` is on every row and is what a caller filters on: an imported row carries a
+        reviewed licence and a Freesound id, a generated one a prompt, a seed and a model
+        revision, and a picker that needs one kind must be able to tell them apart.
         """
 
+        # How many scenes place each asset, read off the stored documents: an `AssetRef` is the
+        # one `sound` shape with a `ref`, and a scene placing one room tone twice is one usage.
         usage: dict[str, int] = {}
-        for project in store.projects():
-            _, _, payload = store.get(project.id)
-            for sound in payload.context_sounds:
-                usage[sound.source_sha256] = usage.get(sound.source_sha256, 0) + 1
+        for _, revision in store.scene_rows():
+            document = json.loads(revision.scene_json)
+            refs = {
+                str(entry["sound"]["ref"])
+                for entry in document.get("timeline") or []
+                if isinstance(entry, dict)
+                and isinstance(entry.get("sound"), dict)
+                and entry["sound"].get("ref")
+            }
+            for ref in refs:
+                usage[ref] = usage.get(ref, 0) + 1
         rows = []
         for source in list_sources(store.root):
             _, path = load_source(store.root, source.original_sha256)
@@ -183,9 +207,8 @@ def router(store: Store, repo: Path, *, allow_test_adapters: bool = False) -> AP
     def source_audio(source_hash: str) -> FileResponse:
         """Audition one library row, whichever origin it came from.
 
-        The import is tried first because that is the older meaning of this path and the only
-        one a stored `ContextSound` ever refers to; a generated asset is looked up by the same
-        digest in the asset store. Both lookups verify the bytes against the hash before serving.
+        The import is tried first; a generated asset is looked up by the same digest in the asset
+        store. Both lookups verify the bytes against the hash before serving.
         """
 
         try:

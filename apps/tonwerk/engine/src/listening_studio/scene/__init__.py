@@ -1,14 +1,10 @@
 """Scene v1 — the one artifact model.
 
-`RevisionPayload` describes a dialogue and `ReadingRevisionPayload` describes a narration, and
-the two have been diverging field by field: both carry a voice identity, a per-turn pace, a
-pause, a pronunciation override list and a synthesis text, under different names, validated by
-different rules, stored in different tables. A `Scene` is the shape both of them are special
-cases of — a cast, a script, and a timeline that places speech and sound in one time axis.
-
-Nothing here replaces anything yet. The old models keep their forms, their export and their QA
-until later PRs reach parity; this package adds the model, its storage, its published JSON
-Schema and lossless converters from the shipped corpus.
+A dialogue and a narration are the same shape: a cast, a script, and a timeline that places
+speech and sound on one time axis. This package is that model (`model`), its exercise attachment
+(`exercise`), its published JSON Schema (`schema_export`), the lossless converters from the shipped
+corpus (`convert`, `reading_source`), the repository checks (`checks`), the publisher (`publish`),
+the corpus regeneration wave (`wave`) and the `scene` verbs (`cli`).
 """
 
 from .exercise import ExerciseAttachment

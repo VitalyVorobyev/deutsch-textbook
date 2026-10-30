@@ -1,7 +1,19 @@
 # Proposal: a recurring cast, with voices and stories, as part of the course
 
-Status: open · 2026-10-18. Authorizes nothing. It carries forward the critical analysis first
+Status: open · 2026-10-30. Authorizes nothing. It carries forward the critical analysis first
 recorded in August 2026, now that the owner wants characters to be integral rather than optional.
+
+## The owner's direction
+
+- **A stable cast carries the listening material through the course**, A1 to B2, with relations
+  between its members.
+- **Existing material may be rewritten** so that the cast and its relations run through it.
+- **Learners see the characters**, portraits included.
+- **The sequence is fixed: tracks first.** High-quality recordings, and a dependable process that
+  makes them, come before any character enters a lesson. That work is the Tonwerk studio
+  ([ADR 0012](../adrs/0012-editorial-tools-and-the-tonwerk-studio.md),
+  [backlog](../backlog/tonwerk.md)). This proposal is decided only after it, with the evidence it
+  produces about voice stability.
 
 ## Where things stand
 
@@ -36,11 +48,12 @@ recorded in August 2026, now that the owner wants characters to be integral rath
    a named manual pass with its cost stated.
 4. **No game mechanics.** No unlockable episodes, relationship meters, XP or streaks.
 5. **Character proper nouns earn nothing.** No cards, no Wortliste coverage, no `~` exclusions.
-6. **Decorative character art stays rejected**
-   ([future-content-directions](../authoring/future-content-directions.md)). Generated pixels need
-   a semantic job and carry no load-bearing words.
+6. **A portrait needs a semantic job.** Decorative art stays rejected
+   ([future-content-directions](../authoring/future-content-directions.md)). The owner wants
+   learners to see portraits, so the design must name the job: telling speakers apart in a
+   speaker-attribution task, for instance. Generated pixels carry no load-bearing words.
 7. **Every recorded voice is a provenance object.** Exact-byte approval and consented cloning only
-   ([ADR 0010](../adrs/0010-editorial-tools-are-separate-apps.md)).
+   ([ADR 0012](../adrs/0012-editorial-tools-and-the-tonwerk-studio.md)).
 
 ## Open decisions
 
@@ -54,3 +67,14 @@ recorded in August 2026, now that the owner wants characters to be integral rath
    together.
 4. **What would falsify it.** It needs a cheap, countable read: for instance, whether cast-carried
    texts sustain more reading or listening volume than self-contained ones.
+5. **Which material is rewritten, and in what order.** The candidates are the 40 recorded
+   dialogues, the 85 Lesetexte and the 36 A2 Hören scripts (`bun run listening:inventory`,
+   `content/reading/`, `content/exercises/a2/pruefung-a2-*-hoeren.yaml`). A rewrite re-records,
+   and every re-recording needs a fresh approval. The cost has to be stated per batch.
+6. **How a voice stays the same person.** A preset speaker plus a seed drifts between model
+   versions. A fixed reference clip per character may not. The studio's voice-quality work
+   measures this with the speaker-identity check. That figure, not a listening impression,
+   decides whether a stable cast is technically possible.
+7. **How large the unfamiliar share is.** Constraint 2 and a stable cast pull in opposite
+   directions. The design names the share of listening time that stays with voices outside the
+   cast, and how it is counted.

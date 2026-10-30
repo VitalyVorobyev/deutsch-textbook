@@ -70,6 +70,9 @@ GitHub Release notes.
   topic and translating from the German.
 - Code and content comments no longer cite development milestones — backlog IDs, PR numbers,
   release versions, dated passes — and a test keeps it that way.
+- Tonwerk runs on one pipeline: the pre-scene export, narration and experiment code is gone, a QA
+  report belongs to the variant it measured, and a scene ending on its last word keeps its reverb
+  tail.
 
 ### Changed
 

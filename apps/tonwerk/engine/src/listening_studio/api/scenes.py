@@ -9,7 +9,7 @@ returns in milliseconds and one that runs a model.
 Two rules are inherited from `Store` and restated here because a caller has to know them:
 
 * **A revision is immutable and a new one returns the project to `draft`.** New scene bytes mean
-  the QA report and the approval attached to the previous revision describe audio nobody has any
+  the QA reports and the approval attached to the previous revision describe audio nobody has any
   more, so they do not follow it forward.
 * **A scene revision cannot change its slug.** The slug is the project's identity; renaming means
   a new project, and `PUT /api/scenes/{slug}` refuses a body that disagrees with its path.
@@ -26,12 +26,12 @@ from pydantic import BaseModel
 
 from ..catalogs import load_character_catalog, load_narration_catalog
 from ..domain import Stage
-from ..reading_audio import default_profile_id, load_reading_sources
 from ..scene.checks import catalog_warnings
 from ..scene.convert import reading_scene
 from ..scene.exercise import ExerciseAttachment
 from ..scene.model import Scene
-from ..scene.publish import deletion_refusal, published_slugs
+from ..scene.publish import PUBLISHED_VARIANT, deletion_refusal, published_slugs
+from ..scene.reading_source import default_profile_id, load_reading_sources
 from ..storage import Store
 
 
@@ -114,7 +114,12 @@ def render_availability(store: Store, scene: Scene) -> list[dict[str, Any]]:
 
 
 def scene_row(
-    project: Any, revision: Any, document: Mapping[str, Any], *, published: bool = False
+    project: Any,
+    revision: Any,
+    document: Mapping[str, Any],
+    *,
+    published: bool = False,
+    qa_passed: bool | None = None,
 ) -> dict[str, Any]:
     """One row of `GET /api/scenes`.
 
@@ -125,8 +130,9 @@ def scene_row(
     `qa_passed` is here because `automatically_checked` is the one stage that splits, and a list
     that cannot split it cannot be a review queue: "the machine measured this" is the same stage
     whether the verdict was yes or no, and the difference is between a take waiting for a human
-    and a take waiting for a rewrite. `api/registry._project_status` makes the same split from the
-    same field; this is the scene list's own copy of the answer, not a second rule.
+    and a take waiting for a rewrite. It is the verdict on the **published** variant's render —
+    the one an approval needs — and None when that variant has not been checked.
+    `api/registry._project_status` makes the same split from the same verdict.
 
     `narration` is the profile the scene was directed by, so the Lesetexte queue
     can show what is *in use* instead of only offering a picker. Null for every dialogue and for
@@ -148,9 +154,7 @@ def scene_row(
         "revision": revision.number,
         "scene_sha256": revision.scene_sha256,
         "has_exercise": revision.exercise_json is not None,
-        "qa_passed": (
-            json.loads(revision.qa_json).get("passed") if revision.qa_json else None
-        ),
+        "qa_passed": qa_passed,
         # The head revision's timestamp, not the project's: "when was this last edited" is a
         # property of the newest bytes, and `created_at` on the project answers a question nobody
         # in a list view is asking.
@@ -179,12 +183,14 @@ def router(store: Store, repo: Path) -> APIRouter:
         """
 
         published = published_slugs(repo)
+        verdicts = store.scene_qa_verdicts(PUBLISHED_VARIANT)
         return [
             scene_row(
                 project,
                 revision,
                 json.loads(revision.scene_json),
                 published=project.slug in published,
+                qa_passed=verdicts.get(revision.id),
             )
             for project, revision in store.scene_rows()
         ]
@@ -204,7 +210,9 @@ def router(store: Store, repo: Path) -> APIRouter:
             "scene_sha256": revision.scene_sha256,
             "scene": scene.model_dump(mode="json"),
             "exercise": exercise.model_dump(mode="json") if exercise else None,
-            "qa": json.loads(revision.qa_json) if revision.qa_json else None,
+            # One report per variant that has been checked, keyed by variant id: a report is a
+            # measurement of one render, and every variant has its own.
+            "qa_reports": store.scene_qa_reports(revision.id),
             "approval": json.loads(revision.approval_json) if revision.approval_json else None,
             "renders": render_availability(store, scene),
             "history": store.scene_history(project.id),
@@ -311,8 +319,8 @@ def router(store: Store, repo: Path) -> APIRouter:
         has audio rendered against its sha and may carry a QA report or a signature. A scene at
         revision 2 has edit history. And a published slug is named by a provenance manifest in the
         course repository — deleting the project would leave that manifest's `scene_sha256`
-        pointing at a document nobody has, and the registry would report the row as an unconverted
-        legacy artifact for ever.
+        pointing at a document nobody has, and the registry would report the row as published with
+        no project behind it for ever.
 
         **Nothing outside the database is deleted.** A render tree is keyed by scene sha and shared
         by every project that hashes to those bytes; reaping it is `renders/`' own question.

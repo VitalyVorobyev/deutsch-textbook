@@ -1,6 +1,6 @@
 # ADR 0010: Editorial tools are separate applications over the checkout
 
-Status: accepted · 2026-10-18
+Status: superseded by 0012 · 2026-10-30
 
 ## Context
 

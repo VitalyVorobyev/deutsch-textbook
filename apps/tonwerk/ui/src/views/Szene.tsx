@@ -307,7 +307,7 @@ function Editor({
           scene={original}
           slug={data.slug}
           renders={data.renders}
-          qa={data.qa ?? null}
+          qa={data.qa_reports[variante] ?? null}
           approval={data.approval ?? null}
           sceneSha={data.scene_sha256}
           variante={variante}
@@ -360,8 +360,10 @@ function Verlauf({ data }: { data: SceneDetail }): React.JSX.Element {
                     </td>
                     <td className="zahl entfernt">{zeitpunkt(row.created_at)}</td>
                     <td>
-                      {row.has_qa ? (
-                        <Marke ton="messung">geprüft</Marke>
+                      {row.qa_variants.length > 0 ? (
+                        <Marke ton="messung" titel={row.qa_variants.join(', ')}>
+                          geprüft
+                        </Marke>
                       ) : (
                         <span className="leer" />
                       )}
