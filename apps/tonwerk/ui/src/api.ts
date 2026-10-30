@@ -31,6 +31,10 @@ import {
   renderResultSchema,
   reviseResultSchema,
   sceneDeletionSchema,
+  sceneArchiveSchema,
+  sceneForkSchema,
+  diskSchema,
+  reapSchema,
   sceneDetailSchema,
   sceneRowSchema,
   sceneSchema,
@@ -51,6 +55,10 @@ import {
   type ReviseResult,
   type SceneDetail,
   type SceneDeletion,
+  type SceneArchive,
+  type SceneFork,
+  type Disk,
+  type Reap,
   type SceneRow,
   type SoundRow,
   type Revocation,
@@ -170,6 +178,14 @@ export interface Api {
    * reloads it either way.
    */
   deleteScene(slug: string): Promise<SceneDeletion>;
+  /** Out of the library's default view and the review queue, or back. Never a deletion. */
+  archiveScene(slug: string, archived: boolean): Promise<SceneArchive>;
+  /** A new draft project from this one's head revision. 409 when the new slug is taken. */
+  forkScene(slug: string, newSlug: string): Promise<SceneFork>;
+  /** The studio's trees on disk, with what keeping the newest `keep` revisions would free. */
+  disk(keep: number, signal?: AbortSignal): Promise<Disk>;
+  /** Remove the render trees `disk` counts as reapable. */
+  reap(keep: number): Promise<Reap>;
 
   /** Stored voice references, plus the consent rules a new one is held to. */
   voices(signal?: AbortSignal): Promise<Voices>;
@@ -357,6 +373,23 @@ export function createApi(options: ApiOptions = {}): Api {
         method: 'DELETE',
         body: undefined,
       }),
+
+    archiveScene: (slug, archived) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/archive`, sceneArchiveSchema, undefined, {
+        method: 'POST',
+        body: { archived },
+      }),
+
+    forkScene: (slug, newSlug) =>
+      read(`/api/scenes/${encodeURIComponent(slug)}/fork`, sceneForkSchema, undefined, {
+        method: 'POST',
+        body: { slug: newSlug },
+      }),
+
+    disk: (keep, signal) => read(`/api/library/disk?keep=${keep}`, diskSchema, signal),
+
+    reap: (keep) =>
+      read('/api/library/reap', reapSchema, undefined, { method: 'POST', body: { keep } }),
 
     sceneFromReading: (readingId, profile) =>
       read('/api/scenes/from-reading', sceneRowSchema, undefined, {

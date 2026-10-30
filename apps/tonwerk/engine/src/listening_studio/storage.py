@@ -49,6 +49,10 @@ class SceneProject(Base):
         ForeignKey("scene_revisions.id"), nullable=True
     )
     created_at: Mapped[str] = mapped_column(String(40))
+    #: Out of the library's default view and the review queue. Not a deletion: see `archive_scene`.
+    archived_at: Mapped[str | None] = mapped_column(String(40), nullable=True, default=None)
+    #: `<slug>@<revision>` of the take a fork was copied from, or None for an original.
+    forked_from: Mapped[str | None] = mapped_column(String(200), nullable=True, default=None)
 
 
 class SceneRevision(Base):
@@ -320,6 +324,44 @@ class Store:
             session.delete(project)
             session.commit()
 
+    def archive_scene(self, project_id: int, archived: bool) -> SceneProject:
+        """Put a project out of sight, or back. Nothing else about it changes.
+
+        Archiving is the library's answer to "I no longer want to see this", and deliberately
+        not a deletion: a project with revisions has a history that a provenance manifest, an
+        approval or a fork may point at, and only `delete_scene`'s narrow undo may remove one.
+        """
+
+        with Session(self.engine) as session:
+            project = session.get(SceneProject, project_id)
+            if not project:
+                raise ValueError(f"scene project {project_id} does not exist")
+            project.archived_at = datetime.now(UTC).isoformat() if archived else None
+            session.commit()
+            session.refresh(project)
+            session.expunge(project)
+            return project
+
+    def fork_scene(self, project_id: int, slug: str) -> SceneProject:
+        """A new project at revision 1, from the head revision of another.
+
+        The copy is a draft whatever stage its origin had reached: an approval vouches for one
+        project's audio, and a fork is a different scene from the moment it has a different slug.
+        The exercise attachment comes along, since a variant of a take is asked the same
+        questions until someone edits them.
+        """
+
+        origin, revision, scene, exercise = self.get_scene(project_id)
+        project = self.create_scene(scene.model_copy(update={"slug": slug}), exercise)
+        with Session(self.engine) as session:
+            stored = session.get(SceneProject, project.id)
+            assert stored
+            stored.forked_from = f"{origin.slug}@{revision.number}"
+            session.commit()
+            session.refresh(stored)
+            session.expunge(stored)
+            return stored
+
     def revise_scene(
         self, project_id: int, scene: Scene, exercise: ExerciseAttachment | None = None
     ) -> SceneRevision:
@@ -348,6 +390,25 @@ class Store:
             session.refresh(revision)
             session.expunge(revision)
             return revision
+
+    def revision_index(self) -> list[tuple[int, int, str, bool]]:
+        """Every revision as `(project id, number, scene sha, signed)`, in one query.
+
+        `signed` is a completed approval. What the render reaper needs to decide which render
+        trees still describe a take someone may play, sign or publish.
+        """
+
+        with Session(self.engine) as session:
+            return [
+                (
+                    row.project_id,
+                    row.number,
+                    row.scene_sha256,
+                    row.approval_json is not None
+                    and json.loads(row.approval_json).get("status") == "complete",
+                )
+                for row in session.scalars(select(SceneRevision))
+            ]
 
     def scene_history(self, project_id: int) -> list[dict[str, object]]:
         with Session(self.engine) as session:

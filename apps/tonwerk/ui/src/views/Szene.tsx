@@ -68,7 +68,7 @@ export function Szene({ slug }: { slug: string }): React.JSX.Element {
           {fehlerText(error)}
         </p>
         <div>
-          <a className="knopf" href={href('szenen')}>
+          <a className="knopf" href={href('bibliothek')}>
             Zurück zur Liste
           </a>
         </div>
@@ -185,8 +185,8 @@ function Editor({
     <>
       <header className="kopf">
         <span className="tafel kopf-eyebrow">
-          <a href={href('szenen')} style={{ color: 'inherit' }}>
-            Szenen
+          <a href={href('bibliothek')} style={{ color: 'inherit' }}>
+            Bibliothek
           </a>{' '}
           · {data.kind === 'narration' ? 'Narration' : 'Dialog'}
         </span>
@@ -385,7 +385,7 @@ function Verlauf({ data }: { data: SceneDetail }): React.JSX.Element {
         </div>
       )}
       <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-        <button type="button" className="knopf" onClick={() => navigate(href('szenen'))}>
+        <button type="button" className="knopf" onClick={() => navigate(href('bibliothek'))}>
           Zurück zur Liste
         </button>
       </div>

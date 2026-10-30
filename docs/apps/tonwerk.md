@@ -24,7 +24,7 @@ it and for the jobs Tonwerk deliberately does not carry.
 - **Apple Silicon**, for the real synthesis and sound engines — both run through MLX.
 - **Rust**, only to build the desktop app.
 
-You can start the engine and browse Übersicht, Szenen, Prüfung, Klangbibliothek and Figuren with no
+You can start the engine and browse Übersicht, Bibliothek, Prüfung, Klangbibliothek and Figuren with no
 model weights installed at all. You need the models only to **render**.
 
 ## Install it once
@@ -92,15 +92,35 @@ The rail lists them in the order the work runs.
 | Section | What it answers |
 | --- | --- |
 | **Übersicht** | the registry: what was commissioned, what is published, what the studio is working on, and what the exercises actually use — joined, so the disagreements are visible. Three panels are only findable in that join: `stale` published audio, recordings nothing asks a question about, and `audio-comprehension` items that fall back to browser TTS. |
-| **Szenen** | every scene project, newest edit first. Dialogue and narration are two kinds of one document, so they are one list. |
+| **Bibliothek** | everything the studio has made or was asked to make, in one searchable table: planned recordings (owned by a unit, or by an exam practice set), Lesetext narrations, and studio scenes no plan owns, such as a fork. |
 | **Lesetexte** | the narration queue: one row per Lesetext, keyboard-driven, your position kept in the address. |
 | **Prüfung** | the approval queue — every scene the machine has measured and nobody has judged, longest wait first. |
 | **Klangbibliothek** | every sound that can be placed, imported or generated, and the one place to make a new one. |
 | **Figuren** | the casting roster, its demo takes, and the consented cloned voices under it. |
 
-On Übersicht the level meter's legend **is** the status filter: click a tick to scope the table,
-click it again to clear. Filters live in the URL, so "every stale B1 row" is a link rather than a
-set of instructions.
+On Übersicht a tick on the level meter opens the Bibliothek filtered to that status. Every
+Bibliothek filter lives in the URL, so "every stale B1 row" is a link rather than a set of
+instructions.
+
+### The Bibliothek
+
+- **Search** reads what a row says: the published transcript, else the studio's script, else the
+  script the exercise items were written with. Every word you type must occur. A hit in the text is
+  shown under the row.
+- **Sammlung** is what owns a row: a unit, an exam practice set (`pruefung-a2-1-hoeren`, …), a
+  Lesetext's topic, or *Studio* for a scene no plan owns.
+- **Länge** is the published length beside the window the plan asked for, marked *zu kurz* or *zu
+  lang* when it misses. Fix the script, not the window.
+- **Aufgaben** counts the items that play a recording. An exam recording that is not published yet
+  shows *für N*: the items it is planned for.
+- **Abzweigen** copies a scene's newest revision into a new draft project, for a variant or a
+  rewrite. The copy starts unsigned and remembers where it came from.
+- **Archivieren** puts a studio scene out of the default view and out of the Prüfung queue.
+  Nothing is deleted; *Archiv zeigen* brings it back. Planned rows cannot be archived, because a
+  plan entry is work still owed.
+- **Speicher** shows what the studio holds on disk. *Alte Renders entfernen* removes the renders of
+  older revisions. It keeps each project's two newest, every signed revision and every published
+  one; the removed ones can be rendered again from their revision.
 
 ## Walkthrough: narrate a Lesetext
 
@@ -200,7 +220,8 @@ The rest of `atlas-listening` serves the same scene pipeline from a shell:
 - `generate-character-demos` makes the demo takes Figuren plays.
 - The `scene` sub-app validates, creates, renders, checks and publishes one scene.
   `scene regenerate-corpus` re-renders and checks the published dialogue corpus in one process,
-  and it stops before approval.
+  and it stops before approval. `scene archive`, `scene fork` and `scene reap` are the
+  Bibliothek's three operations.
 
 They are documented in [`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md).
 
@@ -219,7 +240,8 @@ They are documented in [`../../apps/tonwerk/engine/README.md`](../../apps/tonwer
 ## What Tonwerk deliberately does not do
 
 It never records a person's voice in the browser (a re-encode would silently break the consent
-document's binding to exact bytes), never deletes a scene project, never signs audio on the page
+document's binding to exact bytes), never deletes a scene project with history (archiving hides
+one), never signs audio on the page
 that produced it, and never computes a consent verdict itself — it prints the rules and lets the
 engine rule.
 

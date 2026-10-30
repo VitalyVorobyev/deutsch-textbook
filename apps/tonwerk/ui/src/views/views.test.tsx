@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { ApiContext } from '../useEngine';
-import { charactersFixture, registryFixture, scenesFixture, stubApi } from '../test/fixtures';
+import { bibliothekFixture, charactersFixture, registryFixture, stubApi } from '../test/fixtures';
 import { Figuren } from './Figuren';
-import { Szenen } from './Szenen';
+import { Bibliothek } from './Bibliothek';
 import { Uebersicht } from './Uebersicht';
 import type { Api } from '../api';
 import type { ReactNode } from 'react';
@@ -33,17 +33,6 @@ describe('Übersicht', () => {
     // Both ways an exercise ends up on browser TTS, kept apart.
     expect(screen.getByText('keine genannt')).toBeTruthy();
     expect(screen.getByText('unbekannt')).toBeTruthy();
-  });
-
-  test('renders each row with a German status label over the engine’s English word', async () => {
-    mount(<Uebersicht />, stubApi({ registry: async () => registryFixture as never }));
-
-    await screen.findByText('Register');
-    // Each label appears twice by design — once as a tick on the Pegel's legend, once as the row's
-    // own lamp — so the assertion counts rather than demanding uniqueness.
-    for (const label of ['überholt', 'veröffentlicht', 'geplant']) {
-      expect(screen.getAllByText(label).length).toBeGreaterThanOrEqual(2);
-    }
   });
 
   test('the Pegel reads the whole set, with `stale` counted off the scale', async () => {
@@ -101,22 +90,53 @@ describe('Übersicht', () => {
   });
 });
 
-describe('Szenen', () => {
-  test('lists dialogue and narration in one table, newest edit first', async () => {
-    mount(<Szenen />, stubApi({ scenes: async () => scenesFixture as never }));
+describe('Bibliothek', () => {
+  const bibliothek = () => stubApi({ registry: async () => bibliothekFixture as never });
 
-    await screen.findByText('ls-wohnen-01');
-    const rows = screen.getAllByRole('row').slice(1);
-    expect(rows[0]?.textContent).toContain('a1-erste-schritte');
-    expect(screen.getByText('Narration')).toBeTruthy();
-    expect(screen.getByText('Dialog')).toBeTruthy();
+  test('renders each row with a German status label over the engine’s English word', async () => {
+    mount(<Bibliothek />, bibliothek());
+
+    await screen.findByText('Bestand');
+    // Each label appears twice by design — once as a tick on the Pegel's legend, once as the row's
+    // own lamp — so the assertion counts rather than demanding uniqueness.
+    for (const label of ['überholt', 'veröffentlicht', 'geplant']) {
+      expect(screen.getAllByText(label).length).toBeGreaterThanOrEqual(2);
+    }
   });
 
-  test('a scene links to its own address', async () => {
-    mount(<Szenen />, stubApi({ scenes: async () => scenesFixture as never }));
+  test('an exam recording is listed under its set, with the items it is planned for', async () => {
+    mount(<Bibliothek />, bibliothek());
 
-    const link = await screen.findByRole('link', { name: 'ls-wohnen-01' });
-    expect(link.getAttribute('href')).toBe('#/szene/ls-wohnen-01');
+    const row = (await screen.findByText('ls-pruefung-a2-1-hoeren-04')).closest('tr')!;
+    expect(row.textContent).toContain('pruefung-a2-1-hoeren');
+    // Planned for one item, and marked as a plan rather than counted as a use.
+    expect(within(row).getByText('für 1')).toBeTruthy();
+    expect(within(row).getByText('11–19 s')).toBeTruthy();
+  });
+
+  test('a fork shows its origin, and an archived trial stays out of sight until asked for', async () => {
+    window.location.hash = '#/bibliothek';
+    mount(<Bibliothek />, bibliothek());
+
+    const link = await screen.findByRole('link', { name: 'ls-wohnen-01-v2' });
+    expect(link.getAttribute('href')).toBe('#/szene/ls-wohnen-01-v2');
+    expect(screen.getByText('aus ls-wohnen-01@4')).toBeTruthy();
+    expect(screen.queryByText('ls-probe-alt')).toBeNull();
+
+    fireEvent.click(screen.getByLabelText('Archiv zeigen'));
+    expect(await screen.findByText('ls-probe-alt')).toBeTruthy();
+    expect(screen.getByText('archiviert')).toBeTruthy();
+    window.location.hash = '';
+  });
+
+  test('the search finds a recording by a line it says, and shows the line', async () => {
+    window.location.hash = '#/bibliothek?suche=gleis';
+    mount(<Bibliothek />, bibliothek());
+
+    await screen.findByText('ls-pruefung-a2-1-hoeren-04');
+    expect(screen.queryByText('ls-wohnen-01')).toBeNull();
+    expect(screen.getByText(/Achtung an Gleis drei/)).toBeTruthy();
+    window.location.hash = '';
   });
 });
 

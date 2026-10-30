@@ -33,7 +33,7 @@ from typing import Any, Literal
 import yaml
 from fastapi import APIRouter
 
-from ..scene.convert import reading_slug
+from ..scene.convert import load_yaml, planned_artifacts, reading_slug
 from ..scene.publish import PUBLISHED_VARIANT
 from ..scene.reading_source import load_reading_sources
 from ..storage import SceneProject, SceneRevision, Store
@@ -154,7 +154,17 @@ def _scene_project(
         "qa_passed": verdicts.get(revision.id),
         "has_exercise": revision.exercise_json is not None,
         "updated": revision.created_at,
+        "archived": project.archived_at is not None,
+        "forked_from": project.forked_from,
     }
+
+
+def _read_yaml(path: Path) -> dict[str, Any] | None:
+    try:
+        loaded = yaml.safe_load(path.read_text())
+    except (OSError, yaml.YAMLError):
+        return None
+    return loaded if isinstance(loaded, dict) else None
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
@@ -181,7 +191,7 @@ def audio_exercise_items(repo: Path) -> list[dict[str, Any]]:
     root = repo / "content" / "exercises"
     for path in sorted(root.glob("*/*.yaml")):
         try:
-            document = yaml.safe_load(path.read_text())
+            document = load_yaml(path)
         except yaml.YAMLError:
             # A set that does not parse is a defect the content validator owns, not this
             # read-only overview: skipping it keeps the other 437 rows renderable.
@@ -200,60 +210,110 @@ def audio_exercise_items(repo: Path) -> list[dict[str, Any]]:
                     "recording": (
                         recording if isinstance(recording, str) and recording else None
                     ),
+                    "script": _turns_text((item.get("source") or {}).get("turns")),
                 }
             )
     return found
 
 
+def _turns_text(turns: object) -> str:
+    """The words of a list of `{speaker, text}` turns, as one searchable string."""
+
+    if not isinstance(turns, list):
+        return ""
+    return " ".join(
+        str(turn.get("text", "")) for turn in turns if isinstance(turn, dict)
+    )
+
+
+def _scene_text(revision: SceneRevision) -> str:
+    """What a stored scene says, utterance by utterance, unvalidated."""
+
+    return " ".join(_narrated_paragraphs(revision))
+
+
 def listening_rows(
     repo: Path,
-    exercise_counts: dict[str, int],
+    items: list[dict[str, Any]],
     scenes: dict[str, tuple[SceneProject, SceneRevision]],
     verdicts: dict[int, bool | None],
 ) -> list[dict[str, Any]]:
+    exercise_counts: dict[str, int] = {}
+    scripts: dict[str, str] = {}
+    for item in items:
+        scripts[f"{item['set']}/{item['item']}"] = item["script"]
+        if item["recording"] is not None:
+            exercise_counts[item["recording"]] = exercise_counts.get(item["recording"], 0) + 1
+            scripts.setdefault(item["recording"], item["script"])
     plan = yaml.safe_load((repo / "data" / "listening-plan.yaml").read_text())
     prompts_dir = repo / "data" / "prompts"
     prompts = [path.name for path in prompts_dir.iterdir()] if prompts_dir.is_dir() else []
 
     rows: list[dict[str, Any]] = []
-    for unit in plan["units"]:
-        level = str(unit["level"])
-        for artifact in unit["artifacts"]:
-            slug = str(artifact["id"])
-            manifest = _read_json(
-                repo / "data" / "audio-provenance" / level.lower() / f"{slug}.json"
-            )
-            record = (repo / "content" / "listening" / level.lower() / f"{slug}.yaml").exists()
-            audio = (repo / "content" / "listening" / level.lower() / f"{slug}.mp3").exists()
-            approved_manifest = isinstance(manifest, dict) and isinstance(
-                manifest.get("approval"), dict
-            ) and manifest["approval"].get("status") == "complete"
+    for owner, artifact in planned_artifacts(plan):
+        level = str(owner["level"])
+        slug = str(artifact["id"])
+        manifest = _read_json(
+            repo / "data" / "audio-provenance" / level.lower() / f"{slug}.json"
+        )
+        record = (repo / "content" / "listening" / level.lower() / f"{slug}.yaml").exists()
+        audio = (repo / "content" / "listening" / level.lower() / f"{slug}.mp3").exists()
+        approved_manifest = isinstance(manifest, dict) and isinstance(
+            manifest.get("approval"), dict
+        ) and manifest["approval"].get("status") == "complete"
 
-            project = _scene_project(*scenes[slug], verdicts) if slug in scenes else None
-            rows.append(
-                {
-                    "kind": "listening",
-                    "id": slug,
-                    "level": level,
-                    "unit": unit["unit"],
-                    "wave": artifact.get("wave"),
-                    "scenario": artifact.get("scenario"),
-                    "status": _status(
-                        published=approved_manifest and record and audio,
-                        manifest=manifest,
-                        brief=any(name.endswith(f"-{slug}-listening.md") for name in prompts),
-                        project_stage=project["stage"] if project else None,
-                        project_qa_passed=project["qa_passed"] if project else None,
-                        published_revision=_published_revision(manifest) if project else None,
-                        current_revision=project["revision_sha256"] if project else None,
-                    ),
-                    "artifact": record,
-                    "audio": audio,
-                    "has_provenance": manifest is not None,
-                    "project": project,
-                    "exercise_items": exercise_counts.get(slug, 0),
-                }
-            )
+        project = _scene_project(*scenes[slug], verdicts) if slug in scenes else None
+        published_record = (
+            _read_yaml(repo / "content" / "listening" / level.lower() / f"{slug}.yaml")
+            if record
+            else None
+        )
+        serves = [str(item) for item in artifact.get("serves") or []]
+        # The words this row is about, for the library's search: what was published, else what
+        # the studio's scene says, else the script the exercise items were written with.
+        text = (
+            _turns_text(published_record.get("transcript")) if published_record else ""
+        ) or (_scene_text(scenes[slug][1]) if slug in scenes else "") or (
+            scripts.get(f"{owner['collection']}/{serves[0]}", "")
+            if serves
+            else scripts.get(slug, "")
+        )
+        window = artifact.get("duration_seconds") or {}
+        rows.append(
+            {
+                "kind": "listening",
+                "id": slug,
+                "level": level,
+                "unit": owner.get("unit"),
+                "collection": owner.get("collection"),
+                "wave": artifact.get("wave"),
+                "scenario": artifact.get("scenario"),
+                "status": _status(
+                    published=approved_manifest and record and audio,
+                    manifest=manifest,
+                    brief=any(name.endswith(f"-{slug}-listening.md") for name in prompts),
+                    project_stage=project["stage"] if project else None,
+                    project_qa_passed=project["qa_passed"] if project else None,
+                    published_revision=_published_revision(manifest) if project else None,
+                    current_revision=project["revision_sha256"] if project else None,
+                ),
+                "artifact": record,
+                "audio": audio,
+                "has_provenance": manifest is not None,
+                "project": project,
+                "exercise_items": exercise_counts.get(slug, 0),
+                # The items a collection's recording is planned for, which name it only once it
+                # is published. A unit's artifact plans no items, only a count of questions.
+                "serves": serves,
+                # The window the plan asked for beside the length that was published, so a take
+                # that overran its brief shows in the row rather than only in the script.
+                "window": [window.get("min"), window.get("max")] if window else None,
+                "duration_seconds": (
+                    published_record.get("duration_seconds") if published_record else None
+                ),
+                "text": text,
+            }
+        )
     return rows
 
 
@@ -329,6 +389,44 @@ def reading_rows(
                 "source_drift": source_drift,
                 "source_sha256": source.source_sha256,
                 "project": project,
+                "text": " ".join(source.paragraphs),
+            }
+        )
+    return rows
+
+
+def studio_rows(
+    scenes: dict[str, tuple[SceneProject, SceneRevision]],
+    verdicts: dict[int, bool | None],
+    owned: set[str],
+) -> list[dict[str, Any]]:
+    """Scene projects no plan entry and no Lesetext owns: forks, variants, trials.
+
+    Without these rows a fork would exist only in the database, and a library that cannot show
+    something the studio holds is a library with a blind spot exactly where editing happens.
+    """
+
+    rows: list[dict[str, Any]] = []
+    for slug, (project, revision) in sorted(scenes.items()):
+        if slug in owned:
+            continue
+        document = json.loads(revision.scene_json)
+        brief = document.get("brief") if isinstance(document.get("brief"), dict) else {}
+        title = document.get("title") if isinstance(document.get("title"), dict) else {}
+        scene = _scene_project(project, revision, verdicts)
+        rows.append(
+            {
+                "kind": "scene",
+                "id": slug,
+                "level": str(brief.get("level") or ""),
+                "scene_kind": project.kind,
+                "scenario": title.get("en"),
+                "status": _project_status(project.stage, scene["qa_passed"]),
+                "artifact": False,
+                "audio": False,
+                "has_provenance": False,
+                "project": scene,
+                "text": _scene_text(revision),
             }
         )
     return rows
@@ -338,24 +436,23 @@ def registry(store: Store, repo: Path) -> dict[str, Any]:
     """The whole join, as one document."""
 
     items = audio_exercise_items(repo)
-    counts: dict[str, int] = {}
-    for item in items:
-        if item["recording"] is not None:
-            counts[item["recording"]] = counts.get(item["recording"], 0) + 1
-    # One query for the projects and one for the verdicts, shared by both halves.
+    # One query for the projects and one for the verdicts, shared by every half.
     scenes = {project.slug: (project, revision) for project, revision in store.scene_rows()}
     verdicts = store.scene_qa_verdicts(PUBLISHED_VARIANT)
-    listening = listening_rows(repo, counts, scenes, verdicts)
+    listening = listening_rows(repo, items, scenes, verdicts)
     readings = reading_rows(repo, scenes, verdicts)
     planned = {row["id"] for row in listening}
-    rows = listening + readings
+    rows = listening + readings + studio_rows(
+        scenes, verdicts, planned | {reading_slug(str(row["id"])) for row in readings}
+    )
+    items = [{key: value for key, value in item.items() if key != "script"} for item in items]
     return {
         "rows": rows,
         # A planned recording nothing asks a question about. Not a defect by itself — several
         # artifacts are `purpose: model-input` and exist to be listened to rather than tested on
         # — but it is the list an author needs when deciding what the next exercise wave is for.
         "recordings_without_exercises": [
-            row["id"] for row in listening if row["exercise_items"] == 0
+            row["id"] for row in listening if row["exercise_items"] == 0 and not row["serves"]
         ],
         # The other direction, and two failures under one name because the fix is the same: an
         # item that names no recording plays browser TTS, and an item that names one the plan
@@ -373,6 +470,7 @@ def registry(store: Store, repo: Path) -> dict[str, Any]:
         "summary": {
             "listening": len(listening),
             "readings": len(readings),
+            "studio": len(rows) - len(listening) - len(readings),
             "by_status": {
                 status: sum(1 for row in rows if row["status"] == status)
                 for status in sorted({str(row["status"]) for row in rows})

@@ -341,3 +341,34 @@ def test_a_narration_scene_of_the_current_lesetext_has_no_source_drift(tmp_path:
     reading(repo, "A1", "lena-erster-tag", ["Lena kommt an.", "Sie sucht die Küche."])
     row = by_id(http.get("/api/registry", headers=AUTH).json())["a1/lena-erster-tag"]
     assert row["source_drift"] is True
+
+
+def test_a_collection_recording_is_owned_by_its_set_and_planned_for_its_items(
+    tmp_path: Path,
+) -> None:
+    """An exam set's recording has no unit, and is not a recording nothing asks about.
+
+    Its items name it only once it is published, so before that the plan's `serves` is the only
+    link — and without it every planned exam recording would be listed as unused.
+    """
+
+    repo = course_repo(tmp_path)
+    plan_path = repo / "data" / "listening-plan.yaml"
+    plan = yaml.safe_load(plan_path.read_text())
+    plan["collections"] = [
+        {
+            "collection": "pruefung-fixture-hoeren",
+            "level": "A1",
+            "artifacts": [plan_entry("ls-pruefung-fixture-hoeren-01") | {"serves": ["t1", "t2"]}],
+        }
+    ]
+    plan_path.write_text(yaml.safe_dump(plan))
+    store = Store(tmp_path / "db.sqlite3")
+    document = TestClient(app(store, repo, token="test")).get("/api/registry", headers=AUTH).json()
+
+    row = by_id(document)["ls-pruefung-fixture-hoeren-01"]
+    assert (row["unit"], row["collection"], row["level"]) == (None, "pruefung-fixture-hoeren", "A1")
+    assert row["serves"] == ["t1", "t2"]
+    assert row["status"] == "planned"
+    assert "ls-pruefung-fixture-hoeren-01" not in document["recordings_without_exercises"]
+    assert by_id(document)["ls-planned-01"]["collection"] is None

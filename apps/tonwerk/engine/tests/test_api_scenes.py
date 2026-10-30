@@ -645,6 +645,8 @@ def test_a_lesetext_becomes_a_narration_scene_and_only_once(tmp_path: Path) -> N
         "level",
         "narration",
         "deletable",
+        "archived",
+        "forked_from",
     }
     assert row["slug"] == "a1-erste-schritte"
     assert row["kind"] == "narration"

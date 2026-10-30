@@ -76,6 +76,9 @@ GitHub Release notes.
 - Tonwerk starts with one command, as a desktop app (`bun run tonwerk:app`) or a browser tab
   (`bun run tonwerk:start`), signed in without pasting a token, and shows what the machine is
   missing to render.
+- Tonwerk's Bibliothek lists everything the studio has made or was asked to make, searchable by
+  what a recording says, with forking, archiving and a cleanup of old renders; the 36 A2 Hören
+  scripts are planned for recording.
 
 ### Changed
 

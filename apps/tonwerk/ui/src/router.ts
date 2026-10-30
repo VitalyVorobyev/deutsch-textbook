@@ -18,7 +18,7 @@
 import { useCallback, useEffect, useSyncExternalStore } from 'react';
 
 export interface Route {
-  /** `uebersicht` · `szenen` · `szene` · `figuren` */
+  /** `uebersicht` · `bibliothek` · `szene` · `lesetexte` · `pruefung` · … */
   view: string;
   /** The node the view addresses, when it addresses one. */
   id?: string;

@@ -22,14 +22,14 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..catalogs import load_character_catalog, load_narration_catalog
 from ..domain import Stage
 from ..scene.checks import catalog_warnings
 from ..scene.convert import reading_scene
 from ..scene.exercise import ExerciseAttachment
-from ..scene.model import Scene
+from ..scene.model import KEBAB, Scene
 from ..scene.publish import PUBLISHED_VARIANT, deletion_refusal, published_slugs
 from ..scene.reading_source import default_profile_id, load_reading_sources
 from ..storage import Store
@@ -45,6 +45,14 @@ class SceneDocument(BaseModel):
 
     scene: Scene
     exercise: ExerciseAttachment | None = None
+
+
+class ArchiveRequest(BaseModel):
+    archived: bool
+
+
+class ForkRequest(BaseModel):
+    slug: str = Field(pattern=KEBAB)
 
 
 class FromReadingRequest(BaseModel):
@@ -166,6 +174,8 @@ def scene_row(
         # the row says so rather than making the client re-derive the rule. `published` is the
         # half a client cannot see: it is a file in the course repository, not a stage.
         "deletable": not published and deletion_refusal(project, revision) is None,
+        "archived": project.archived_at is not None,
+        "forked_from": project.forked_from,
     }
 
 
@@ -341,6 +351,28 @@ def router(store: Store, repo: Path) -> APIRouter:
             )
         store.delete_scene(project.id)
         return {"slug": slug, "deleted": True, "project_id": project.id}
+
+    @api.post("/scenes/{slug}/archive")
+    def archive_scene(slug: str, request: ArchiveRequest) -> dict[str, Any]:
+        """Out of the library's default view and the review queue, or back. Never a deletion."""
+
+        found = store.get_scene_by_slug(slug)
+        if found is None:
+            raise HTTPException(404, f"no scene project {slug}")
+        project = store.archive_scene(found[0].id, request.archived)
+        return {"slug": slug, "archived": project.archived_at is not None}
+
+    @api.post("/scenes/{slug}/fork", status_code=201)
+    def fork_scene(slug: str, request: ForkRequest) -> dict[str, Any]:
+        """A new draft project from this one's head revision: a variant, or a rewrite to try."""
+
+        found = store.get_scene_by_slug(slug)
+        if found is None:
+            raise HTTPException(404, f"no scene project {slug}")
+        if store.get_scene_by_slug(request.slug) is not None:
+            raise HTTPException(409, f"scene project {request.slug} already exists")
+        project = store.fork_scene(found[0].id, request.slug)
+        return {"slug": project.slug, "forked_from": project.forked_from, "stage": project.stage}
 
     @api.post("/scenes/{slug}/validate")
     def validate_scene(slug: str) -> dict[str, Any]:

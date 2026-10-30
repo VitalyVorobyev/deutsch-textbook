@@ -75,9 +75,10 @@ Course content: articles, items, probes, vocabulary, readings and their language
   adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
 - **CON-5 · Recorded audio for the A2 Hören sets, and original B1 practice sets.** The three A2
   Hören sets (`content/exercises/a2/pruefung-a2-*-hoeren.yaml`, 36 scripts) play on browser TTS
-  only; Tonwerk recordings need `data/listening-plan.yaml` to accept artifacts that belong to no
-  unit, since every plan id is `ls-<unit>-01` today. `/pruefung/b1` serves the official sets only
-  where the materials are local, so a clean build has nothing to practise there.
+  only. All 36 are planned as collection recordings in `data/listening-plan.yaml`
+  (`ls-pruefung-a2-<n>-hoeren-01`…`-12`) and are recorded in TON-5. `/pruefung/b1` serves the
+  official sets only where the materials are local, so a clean build has nothing to practise
+  there.
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
   978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9); also the adult Goethe A2
   *Prüfungsziele* (the free A2 list is the youth exam). Each becomes one

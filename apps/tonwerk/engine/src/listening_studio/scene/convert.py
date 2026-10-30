@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Iterable, Sequence, cast
+from typing import Any, Iterable, Iterator, Sequence, cast
 
 import yaml
 from pydantic import BaseModel, Field
@@ -64,9 +64,13 @@ def _parsed(path: str, mtime_ns: int) -> dict[str, Any]:
     Converting the whole dialogue corpus reads every exercise set of a level once per artifact:
     40 artifacts against 200 A2 sets is 100 MB of YAML and half a minute, for 40 conversions.
     The returned document is shared and nothing here mutates it.
+
+    libyaml's parser when the installed PyYAML has it: the registry reads all 450 exercise sets on
+    a cold start, and the pure-Python parser spends three seconds of a library load doing it.
     """
 
-    return cast(dict[str, Any], yaml.safe_load(Path(path).read_text()))
+    loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+    return cast(dict[str, Any], yaml.load(Path(path).read_text(), Loader=loader))
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -90,21 +94,34 @@ class DialoguePlanEntry(BaseModel):
     duration_seconds: tuple[int, int]
 
 
+def planned_artifacts(plan: dict[str, Any]) -> Iterator[tuple[dict[str, Any], dict[str, Any]]]:
+    """Every planned recording with its owner: a unit (`unit`) or an exercise set (`collection`).
+
+    The two keys are the whole difference; level, scenario and window read the same for both.
+    """
+
+    for owner in plan["units"]:
+        for artifact in owner["artifacts"]:
+            yield owner, artifact
+    for owner in plan.get("collections") or []:
+        for artifact in owner["artifacts"]:
+            yield owner, artifact
+
+
 def load_dialogue_plan(repo: Path) -> dict[str, DialoguePlanEntry]:
     plan = load_yaml(repo / "data" / "listening-plan.yaml")
     entries: dict[str, DialoguePlanEntry] = {}
-    for unit in plan["units"]:
-        for artifact in unit["artifacts"]:
-            window = artifact["duration_seconds"]
-            entries[artifact["id"]] = DialoguePlanEntry(
-                id=artifact["id"],
-                level=unit["level"],
-                scenario=artifact["scenario"],
-                outcomes=list(artifact.get("outcomes", [])),
-                required_vocabulary=list(artifact.get("required_vocabulary", [])),
-                grammar_target=str(artifact.get("grammar_target", "")),
-                duration_seconds=(int(window["min"]), int(window["max"])),
-            )
+    for owner, artifact in planned_artifacts(plan):
+        window = artifact["duration_seconds"]
+        entries[artifact["id"]] = DialoguePlanEntry(
+            id=artifact["id"],
+            level=owner["level"],
+            scenario=artifact["scenario"],
+            outcomes=list(artifact.get("outcomes", [])),
+            required_vocabulary=list(artifact.get("required_vocabulary", [])),
+            grammar_target=str(artifact.get("grammar_target", "")),
+            duration_seconds=(int(window["min"]), int(window["max"])),
+        )
     return entries
 
 

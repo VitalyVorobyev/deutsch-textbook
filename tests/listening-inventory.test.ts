@@ -9,10 +9,21 @@ describe('listening production inventory', () => {
   // genre's spoken form and claims no listening evidence — the honest shape when the unit never
   // asked for any.
   test('covers every live Atlas unit exactly once', () => {
-    const rows = inventory(import.meta.dir + '/..');
+    const rows = inventory(import.meta.dir + '/..').filter((row) => row.unit);
     expect(rows).toHaveLength(57);
     expect(new Set(rows.map((row) => row.unit)).size).toBe(57);
     expect(rows.filter((row) => row.wave === 1)).toHaveLength(12);
+  });
+
+  // One recording per script of the three A2 Hören sets: twelve each, because Teil 2 and Teil 4
+  // ask five questions about one conversation.
+  test('plans the exam sets as collections, apart from the units', () => {
+    const rows = inventory(import.meta.dir + '/..').filter((row) => row.collection);
+    expect(rows).toHaveLength(36);
+    expect(rows.every((row) => row.unit === null)).toBe(true);
+    expect(
+      Object.values(Object.groupBy(rows, (row) => row.collection!)).map((g) => g!.length),
+    ).toEqual([12, 12, 12]);
   });
 
   test('derives editorial state without a second mutable status field', () => {
