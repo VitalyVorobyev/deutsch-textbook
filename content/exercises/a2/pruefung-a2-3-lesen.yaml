@@ -1,0 +1,214 @@
+topic: reisen-verkehr
+role: exam-practice
+title_de: "Übungssatz 3 · Lesen"
+title: { en: "Goethe-style practice set 3 — Reading", ru: "Пробный комплект 3 в формате Goethe — чтение", uk: "Пробний комплект 3 у форматі Goethe — читання" }
+# Four Teile of five items, in the exam's order: newspaper article, medical-centre directory,
+# e-mail, ads. Every wrong option is named in its text and then ruled out, as the exam's are.
+items:
+  # --- Teil 1: Zeitungsartikel ---
+  - id: teil1-grund
+    type: mc
+    target_mode: reading
+    outcomes: [wetterbericht-verstehen]
+    stimulus: a2/pruefung-a2-3-zeitung
+    instruction: &t1 { en: "Teil 1 · Read the newspaper article. Which answer is correct?", ru: "Teil 1 · Прочитайте газетную статью. Какой ответ правильный?", uk: "Teil 1 · Прочитайте газетну статтю. Яка відповідь правильна?" }
+    prompt: "Die Stadt pflanzt neue Bäume, …"
+    options: ["weil der Herbst sehr warm war.", "weil es im Sommer oft sehr heiß ist.", "weil viele alte Bäume krank sind."]
+    correct: 1
+    explain: { en: "Im Sommer ist es in der Stadt oft sehr heiß … Deshalb will die Stadt … Bäume pflanzen. Autumn is only when the planting happens, and no sick trees are mentioned.", ru: "Im Sommer ist es in der Stadt oft sehr heiß … Deshalb will die Stadt … Bäume pflanzen. Осень — это лишь время посадки, а о больных деревьях в статье нет ни слова.", uk: "Im Sommer ist es in der Stadt oft sehr heiß … Deshalb will die Stadt … Bäume pflanzen. Осінь — це лише час висадки, а про хворі дерева в статті немає ні слова." }
+  - id: teil1-treffen
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-3-zeitung
+    instruction: *t1
+    prompt: "Am 12. Oktober …"
+    options: ["gibt es ein Fest am Rathaus.", "kaufen die Helfer Werkzeug.", "fahren die Helfer vom Rathaus mit Bussen in die Stadtteile."]
+    correct: 2
+    explain: { en: "The helpers meet um neun Uhr am Rathaus, and von dort fahren Busse in die verschiedenen Stadtteile. The city provides the tools.", ru: "Помощники встречаются um neun Uhr am Rathaus, и von dort fahren Busse in die verschiedenen Stadtteile. Инструменты даёт город.", uk: "Помічники зустрічаються um neun Uhr am Rathaus, і von dort fahren Busse in die verschiedenen Stadtteile. Інструменти дає місто." }
+  - id: teil1-schuhe
+    type: mc
+    target_mode: reading
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    stimulus: a2/pruefung-a2-3-zeitung
+    instruction: *t1
+    prompt: "Die Helfer müssen … mitbringen."
+    options: ["feste Schuhe", "Werkzeug", "Getränke"]
+    correct: 0
+    explain: { en: "Werkzeug und Getränke bekommen alle von der Stadt. Man muss nur feste Schuhe mitbringen.", ru: "Werkzeug und Getränke bekommen alle von der Stadt. Man muss nur feste Schuhe mitbringen — принести нужно только крепкую обувь.", uk: "Werkzeug und Getränke bekommen alle von der Stadt. Man muss nur feste Schuhe mitbringen — принести треба лише міцне взуття." }
+  - id: teil1-schild
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-3-zeitung
+    instruction: *t1
+    prompt: "Wer 50 Euro bezahlt, …"
+    options: ["bekommt einen Baum für den eigenen Garten.", "bekommt ein Schild mit einem Namen am Baum.", "muss den Baum selbst pflanzen."]
+    correct: 1
+    explain: { en: "Dann bekommt der Baum ein kleines Schild mit dem Namen. The tree stays in the city, and paying is the way to help without planting yourself.", ru: "Dann bekommt der Baum ein kleines Schild mit dem Namen. Дерево остаётся в городе, а платят как раз те, кто не может сажать сам.", uk: "Dann bekommt der Baum ein kleines Schild mit dem Namen. Дерево залишається в місті, а платять саме ті, хто не може садити сам." }
+  - id: teil1-wasser
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-3-zeitung
+    instruction: *t1
+    prompt: "Im Sommer …"
+    options: ["geben nur Mitarbeiter der Stadt den Bäumen Wasser.", "brauchen junge Bäume kein Wasser.", "können auch Nachbarn den Bäumen Wasser geben."]
+    correct: 2
+    explain: { en: "Im Sommer geben Mitarbeiter der Stadt den Bäumen Wasser, aber auch Nachbarn können helfen — not only city staff. Young trees need a lot of water: Junge Bäume brauchen viel Wasser.", ru: "Im Sommer geben Mitarbeiter der Stadt den Bäumen Wasser, aber auch Nachbarn können helfen — значит, не только сотрудники города. А молодым деревьям воды нужно много: Junge Bäume brauchen viel Wasser.", uk: "Im Sommer geben Mitarbeiter der Stadt den Bäumen Wasser, aber auch Nachbarn können helfen — отже, не лише працівники міста. А молодим деревам води треба багато: Junge Bäume brauchen viel Wasser." }
+
+  # --- Teil 2: Wegweiser im Ärztehaus ---
+  - id: teil2-fieber
+    type: mc
+    target_mode: reading
+    outcomes: [beschwerden-beschreiben]
+    stimulus: a2/pruefung-a2-3-aerztehaus
+    instruction: &t2 { en: "Teil 2 · You are at a medical centre. Read the directory: where do you go? If the right floor is not among the options, choose anderer Stock.", ru: "Teil 2 · Вы в медицинском центре. Прочитайте указатель: куда вам нужно? Если нужного этажа среди вариантов нет, выберите anderer Stock.", uk: "Teil 2 · Ви в медичному центрі. Прочитайте покажчик: куди вам треба? Якщо потрібного поверху серед варіантів немає, оберіть anderer Stock." }
+    prompt: "Ihr Sohn ist drei Jahre alt und hat seit gestern Fieber."
+    options: ["1. Stock", "4. Stock", "anderer Stock"]
+    correct: 1
+    explain: { en: "A three-year-old goes to the Kinderärztin, Dr. Yilmaz, on the 4. Stock. The 1st floor has the doctors for adults.", ru: "С трёхлетним ребёнком идут к детскому врачу — Kinderärztin Dr. Yilmaz на 4. Stock. На первом этаже принимают врачи для взрослых.", uk: "З трирічною дитиною йдуть до дитячої лікарки — Kinderärztin Dr. Yilmaz на 4. Stock. На першому поверсі приймають лікарі для дорослих." }
+  - id: teil2-lesen
+    type: mc
+    target_mode: reading
+    outcomes: [beschwerden-beschreiben]
+    stimulus: a2/pruefung-a2-3-aerztehaus
+    instruction: *t2
+    prompt: "Sie können seit ein paar Tagen nicht mehr gut lesen. Die Buchstaben sind nicht klar."
+    options: ["2. Stock", "Erdgeschoss", "anderer Stock"]
+    correct: 2
+    explain: { en: "Eyes are the Augenarzt's job — Dr. Hofmann on the 3. Stock, which is not offered, so anderer Stock.", ru: "Глазами занимается Augenarzt — Dr. Hofmann на 3. Stock. Такого варианта нет, поэтому anderer Stock.", uk: "Очима займається Augenarzt — Dr. Hofmann на 3. Stock. Такого варіанта немає, тому anderer Stock." }
+  - id: teil2-zahn
+    type: mc
+    target_mode: reading
+    outcomes: [beschwerden-beschreiben]
+    stimulus: a2/pruefung-a2-3-aerztehaus
+    instruction: *t2
+    prompt: "Beim Essen tut Ihnen ein Zahn weh."
+    options: ["2. Stock", "3. Stock", "anderer Stock"]
+    correct: 0
+    explain: { en: "A tooth is the Zahnarzt's job — Dr. Schneider on the 2. Stock. The 3rd floor has the eye doctor and the ear-nose-throat doctor.", ru: "С зубом идут к стоматологу — Zahnarzt Dr. Schneider на 2. Stock. На третьем этаже — окулист и ЛОР.", uk: "Із зубом ідуть до стоматолога — Zahnarzt Dr. Schneider на 2. Stock. На третьому поверсі — окуліст і ЛОР." }
+  - id: teil2-rezept
+    type: mc
+    target_mode: reading
+    outcomes: [praxis-anweisungen-verstehen]
+    stimulus: a2/pruefung-a2-3-aerztehaus
+    instruction: *t2
+    prompt: "Ihr Arzt hat Ihnen ein Rezept gegeben. Jetzt brauchen Sie das Medikament."
+    options: ["Erdgeschoss", "1. Stock", "anderer Stock"]
+    correct: 0
+    explain: { en: "With a prescription you go to the pharmacy: Apotheke am Park, on the Erdgeschoss.", ru: "С рецептом идут в аптеку: Apotheke am Park на Erdgeschoss.", uk: "Із рецептом ідуть до аптеки: Apotheke am Park на Erdgeschoss." }
+  - id: teil2-schwanger
+    type: mc
+    target_mode: reading
+    outcomes: [beschwerden-beschreiben]
+    stimulus: a2/pruefung-a2-3-aerztehaus
+    instruction: *t2
+    prompt: "Ihre Frau ist schwanger und möchte einen Termin bei ihrer Ärztin."
+    options: ["3. Stock", "4. Stock", "anderer Stock"]
+    correct: 2
+    explain: { en: "A pregnant woman sees the Frauenärztin, Dr. Frank, on the 1. Stock — not offered, so anderer Stock. The Kinderärztin on the 4th floor is for the child once it is born.", ru: "Беременная идёт к гинекологу — Frauenärztin Dr. Frank на 1. Stock. Такого варианта нет, поэтому anderer Stock. Детский врач на четвёртом этаже понадобится уже ребёнку.", uk: "Вагітна йде до гінекологині — Frauenärztin Dr. Frank на 1. Stock. Такого варіанта немає, тому anderer Stock. Дитяча лікарка на четвертому поверсі знадобиться вже дитині." }
+
+  # --- Teil 3: E-Mail ---
+  - id: teil3-wohnung
+    type: mc
+    target_mode: reading
+    outcomes: [reise-problem-loesen]
+    stimulus: a2/pruefung-a2-3-email
+    instruction: &t3 { en: "Teil 3 · Read the e-mail. Which answer is correct?", ru: "Teil 3 · Прочитайте электронное письмо. Какой ответ правильный?", uk: "Teil 3 · Прочитайте електронного листа. Яка відповідь правильна?" }
+    prompt: "Herr Ivanov bekommt …"
+    options: ["die Wohnung im Erdgeschoss.", "sein Geld zurück.", "eine andere Wohnung als gebucht."]
+    correct: 2
+    explain: { en: "Leider können wir Ihnen die Wohnung im Erdgeschoss nicht geben … Sie bekommen deshalb die Wohnung im ersten Stock. Nothing is refunded: der Preis bleibt gleich.", ru: "Leider können wir Ihnen die Wohnung im Erdgeschoss nicht geben … Sie bekommen deshalb die Wohnung im ersten Stock. Деньги не возвращают: der Preis bleibt gleich.", uk: "Leider können wir Ihnen die Wohnung im Erdgeschoss nicht geben … Sie bekommen deshalb die Wohnung im ersten Stock. Гроші не повертають: der Preis bleibt gleich." }
+  - id: teil3-preis
+    type: mc
+    target_mode: reading
+    outcomes: [reise-problem-loesen]
+    stimulus: a2/pruefung-a2-3-email
+    instruction: *t3
+    prompt: "Die Wohnung im ersten Stock …"
+    options: ["ist teurer.", "kostet gleich viel.", "hat ein kaputtes Bad."]
+    correct: 1
+    explain: { en: "Der Preis bleibt gleich, although the flat is etwas größer. The broken bathroom is in the ground-floor flat.", ru: "Der Preis bleibt gleich, хотя квартира etwas größer. Сломано что-то в ванной квартиры на первом этаже (Erdgeschoss).", uk: "Der Preis bleibt gleich, хоча квартира etwas größer. Зламано щось у ванній квартири на першому поверсі (Erdgeschoss)." }
+  - id: teil3-abholen
+    type: mc
+    target_mode: reading
+    outcomes: [reise-problem-loesen]
+    stimulus: a2/pruefung-a2-3-email
+    instruction: *t3
+    prompt: "Wenn Frau Berger Herrn Ivanov vom Bahnhof abholen soll, muss er …"
+    options: ["vorher anrufen.", "eine E-Mail schreiben.", "an der Haltestelle „Seestraße“ warten."]
+    correct: 0
+    explain: { en: "Bitte rufen Sie uns dann eine Stunde vorher an. Seestraße is the stop for guests who take bus number 4.", ru: "Bitte rufen Sie uns dann eine Stunde vorher an. Seestraße — остановка для тех, кто едет на автобусе номер 4.", uk: "Bitte rufen Sie uns dann eine Stunde vorher an. Seestraße — зупинка для тих, хто їде автобусом номер 4." }
+  - id: teil3-handtuch
+    type: mc
+    target_mode: reading
+    outcomes: [reise-problem-loesen]
+    stimulus: a2/pruefung-a2-3-email
+    instruction: *t3
+    prompt: "Handtücher …"
+    options: ["muss Herr Ivanov mitbringen.", "kosten Geld.", "sind schon in der Wohnung."]
+    correct: 2
+    explain: { en: "Handtücher liegen in der Wohnung — they are already there, and nothing is said about a charge.", ru: "Handtücher liegen in der Wohnung — полотенца уже на месте, и о доплате ничего не сказано.", uk: "Handtücher liegen in der Wohnung — рушники вже на місці, і про доплату нічого не сказано." }
+  - id: teil3-fruehstueck
+    type: mc
+    target_mode: reading
+    outcomes: [reise-problem-loesen]
+    stimulus: a2/pruefung-a2-3-email
+    instruction: *t3
+    prompt: "Frühstück …"
+    options: ["gibt es in der Ferienwohnung.", "kann man in einer Bäckerei in der Nähe kaufen.", "bringt Frau Berger jeden Morgen."]
+    correct: 1
+    explain: { en: "Frühstück gibt es bei uns nicht, aber zur nächsten Bäckerei geht man nur fünf Minuten.", ru: "Frühstück gibt es bei uns nicht, aber zur nächsten Bäckerei geht man nur fünf Minuten — завтрака нет, но пекарня рядом.", uk: "Frühstück gibt es bei uns nicht, aber zur nächsten Bäckerei geht man nur fünf Minuten — сніданку немає, але пекарня поруч." }
+
+  # --- Teil 4: Anzeigen ---
+  - id: teil4-schiff
+    type: mc
+    target_mode: reading
+    outcomes: [verbindung-waehlen]
+    stimulus: a2/pruefung-a2-3-anzeigen
+    instruction: &t4 { en: "Teil 4 · Read ads a–f. Which ad fits the person? For one person no ad fits — then choose keine passende Anzeige.", ru: "Teil 4 · Прочитайте объявления a–f. Какое объявление подходит человеку? Одному человеку не подходит ни одно — тогда выберите keine passende Anzeige.", uk: "Teil 4 · Прочитайте оголошення a–f. Яке оголошення підходить людині? Одній людині не підходить жодне — тоді оберіть keine passende Anzeige." }
+    prompt: "Sie möchten mit Ihren Kindern (vier und sieben Jahre) einen Ausflug auf dem Wasser machen."
+    options: &ads ["Anzeige a", "Anzeige b", "Anzeige c", "Anzeige d", "Anzeige e", "Anzeige f", "keine passende Anzeige"]
+    correct: 1
+    explain: { en: "Ad b: a day on a ship on the Rhine, and Kinder unter 6 Jahren fahren kostenlos.", ru: "Объявление b: день на теплоходе по Рейну, и Kinder unter 6 Jahren fahren kostenlos.", uk: "Оголошення b: день на теплоході Рейном, і Kinder unter 6 Jahren fahren kostenlos." }
+  - id: teil4-eltern
+    type: mc
+    target_mode: reading
+    outcomes: [verbindung-waehlen]
+    stimulus: a2/pruefung-a2-3-anzeigen
+    instruction: *t4
+    prompt: "Ihre Eltern möchten am Wochenende eine Stadt in einem anderen Land sehen. Sie möchten nicht selbst Auto fahren."
+    options: *ads
+    correct: 4
+    explain: { en: "Ad e: Busreise nach Prag, Friday to Sunday — another country, and someone else drives. The site in f finds drivers going to your own town; it offers no trip to see a foreign city.", ru: "Объявление e: Busreise nach Prag, с пятницы по воскресенье — другая страна, и за рулём кто-то другой. Сайт f ищет водителей, которые едут в ваш город, а не предлагает поездку, чтобы посмотреть другую страну.", uk: "Оголошення e: Busreise nach Prag, з п'ятниці до неділі — інша країна, і кермує хтось інший. Сайт f шукає водіїв, які їдуть до вашого міста, а не пропонує поїздку, щоб побачити іншу країну." }
+  - id: teil4-freund
+    type: mc
+    target_mode: reading
+    outcomes: [verbindung-waehlen]
+    stimulus: a2/pruefung-a2-3-anzeigen
+    instruction: *t4
+    prompt: "Ein Freund aus London besucht Sie in Dresden. Er möchte etwas über die Stadt lernen, spricht aber kein Deutsch."
+    options: *ads
+    correct: 3
+    explain: { en: "Ad d: Stadtführung in Dresden, um 14 Uhr auf Englisch.", ru: "Объявление d: Stadtführung in Dresden, um 14 Uhr auf Englisch — экскурсия на английском.", uk: "Оголошення d: Stadtführung in Dresden, um 14 Uhr auf Englisch — екскурсія англійською." }
+  - id: teil4-berge
+    type: mc
+    target_mode: reading
+    outcomes: [verbindung-waehlen]
+    stimulus: a2/pruefung-a2-3-anzeigen
+    instruction: *t4
+    prompt: "Sie möchten in den Bergen wandern. Ihr Sohn ist zehn und kommt mit."
+    options: *ads
+    correct: 6
+    explain: { en: "Ad c is a hiking weekend in the mountains, but nur für Erwachsene — a ten-year-old cannot come. No other ad offers hiking.", ru: "Объявление c — походные выходные в горах, но nur für Erwachsene: десятилетнему туда нельзя. Других походов в объявлениях нет.", uk: "Оголошення c — похідні вихідні в горах, але nur für Erwachsene: десятирічному туди не можна. Інших походів в оголошеннях немає." }
+  - id: teil4-rad
+    type: mc
+    target_mode: reading
+    outcomes: [verbindung-waehlen]
+    stimulus: a2/pruefung-a2-3-anzeigen
+    instruction: *t4
+    prompt: "Sie möchten ein paar Tage mit dem Rad fahren, haben aber kein eigenes Fahrrad."
+    options: *ads
+    correct: 0
+    explain: { en: "Ad a: a three-day cycling tour, and Fahrräder kann man bei uns mieten.", ru: "Объявление a: трёхдневный велотур, и Fahrräder kann man bei uns mieten — велосипед можно взять напрокат.", uk: "Оголошення a: триденний велотур, і Fahrräder kann man bei uns mieten — велосипед можна взяти напрокат." }

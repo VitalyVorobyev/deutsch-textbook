@@ -1,0 +1,32 @@
+topic: lernen-verstehen
+role: exam-practice
+title_de: "Übungssatz 2 · Schreiben"
+title: { en: "Goethe-style practice set 2 — Writing", ru: "Пробный комплект 2 в формате Goethe — письмо", uk: "Пробний комплект 2 у форматі Goethe — письмо" }
+# The exam's two Teile: a 20–30-word SMS and a 30–40-word e-mail, three content points each.
+items:
+  - id: teil1-sms-krank
+    type: write
+    target_mode: writing
+    outcomes: [krankmeldung-schreiben]
+    prompt: { en: "Teil 1 · Every morning you drive to work with your colleague Sabine. Tomorrow you are ill. Write Sabine a text message (SMS).", ru: "Teil 1 · Каждое утро вы ездите на работу вместе с коллегой Сабиной. Завтра вы заболели. Напишите Сабине SMS.", uk: "Teil 1 · Щоранку ви їздите на роботу разом із колегою Сабіною. Завтра ви захворіли. Напишіть Сабіні SMS." }
+    goal: { en: "Write 20–30 words and cover all three points.", ru: "Напишите 20–30 слов и раскройте все три пункта.", uk: "Напишіть 20–30 слів і розкрийте всі три пункти." }
+    requirements:
+      - { en: "Say that you cannot come tomorrow, and why.", ru: "Сообщите, что завтра не поедете, и объясните почему.", uk: "Повідомте, що завтра не поїдете, і поясніть чому." }
+      - { en: "Say how long you will stay at home.", ru: "Напишите, как долго пробудете дома.", uk: "Напишіть, як довго будете вдома." }
+      - { en: "Ask her to tell your boss, Herr Lang.", ru: "Попросите её передать это начальнику, господину Лангу.", uk: "Попросіть її передати це начальникові, панові Лангу." }
+    min_words: 20
+    model_answer: "Hallo Sabine, morgen kann ich nicht mit dir fahren. Ich habe Fieber und bleibe bis Freitag zu Hause. Kannst du bitte Herrn Lang sagen, dass ich krank bin? Danke! Mehmet"
+    explain: { en: "A colleague you drive with every day gets du. The request to pass on the message is the point most often forgotten — a question with Kannst du bitte … ? covers it in one sentence. The model is one possible answer, not a key.", ru: "К коллеге, с которой вы каждый день ездите на работу, обращаются на du. Чаще всего забывают просьбу передать сообщение, а вопрос Kannst du bitte … ? закрывает этот пункт одним предложением. Образец — один из возможных ответов, а не ключ.", uk: "До колеги, з якою ви щодня їздите на роботу, звертаються на du. Найчастіше забувають прохання передати повідомлення, а запитання Kannst du bitte … ? закриває цей пункт одним реченням. Зразок — одна з можливих відповідей, а не ключ." }
+  - id: teil2-mail-fest
+    type: write
+    target_mode: writing
+    outcomes: [einladung-schreiben]
+    prompt: { en: "Teil 2 · Your friend Maria has invited you to her summer party in Hamburg on 15 June. Write Maria an e-mail.", ru: "Teil 2 · Подруга Мария пригласила вас на летний праздник в Гамбург 15 июня. Напишите Марии электронное письмо.", uk: "Teil 2 · Подруга Марія запросила вас на літнє свято до Гамбурга 15 червня. Напишіть Марії електронного листа." }
+    goal: { en: "Write 30–40 words and cover all three points. Maria is a friend: write informally (du).", ru: "Напишите 30–40 слов и раскройте все три пункта. Мария — подруга, поэтому пишите неофициально (на du).", uk: "Напишіть 30–40 слів і розкрийте всі три пункти. Марія — подруга, тож пишіть неофіційно (на du)." }
+    requirements:
+      - { en: "Thank her and say that you will come.", ru: "Поблагодарите и скажите, что придёте.", uk: "Подякуйте й скажіть, що прийдете." }
+      - { en: "Offer to bring something.", ru: "Предложите что-нибудь принести.", uk: "Запропонуйте щось принести." }
+      - { en: "Ask about a cheap hotel nearby.", ru: "Спросите о недорогой гостинице поблизости.", uk: "Запитайте про недорогий готель поблизу." }
+    min_words: 30
+    model_answer: "Liebe Maria, vielen Dank für die Einladung zu deinem Sommerfest! Ich komme sehr gern. Soll ich etwas mitbringen, vielleicht einen Salat? Und kennst du ein günstiges Hotel in der Nähe? Ich bleibe zwei Nächte. Liebe Grüße, Elena"
+    explain: { en: "Informal from the first word to the last: Liebe Maria, du and dein, Liebe Grüße. Soll ich … mitbringen? is the natural way to offer something.", ru: "Неофициальный тон от первого до последнего слова: Liebe Maria, du и dein, Liebe Grüße. Soll ich … mitbringen? — естественный способ что-то предложить.", uk: "Неофіційний тон від першого до останнього слова: Liebe Maria, du і dein, Liebe Grüße. Soll ich … mitbringen? — природний спосіб щось запропонувати." }

@@ -11,6 +11,13 @@ GitHub Release notes.
 
 ## [Unreleased]
 
+### Added
+
+- **Three Goethe-style practice sets for A2**, on the A2 exam page: Lesen in the exam's four parts
+  (newspaper article, store or office directory, e-mail, ads with one "keine passende Anzeige"),
+  each beside its document, and Schreiben with an SMS and an e-mail and a model answer for each.
+  They are original tasks, always available, and work without the official materials.
+
 ### Changed
 
 - **Prüfung is one place for every exam.** Üben now has four tabs (Wiederholen, Training,

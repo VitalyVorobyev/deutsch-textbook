@@ -73,10 +73,11 @@ Course content: articles, items, probes, vocabulary, readings and their language
   show the same slip — *heute zur Arbeit nicht kommen*, *zur Oma oft gefahren* — and no item
   grades it outside A1's `nicht-position`. First step: a drill under `nicht-position` with
   adverbs and *nicht* placed against *zu/nach/in* + noun phrases.
-- **CON-5 · Original Goethe-style A2 and B1 practice sets**, as `content/exercises/a1/pruefung-a1-*.yaml`
-  are for A1. `/pruefung/a2` and `/pruefung/b1` serve the official sets only where the materials
-  are local; a clean build has nothing to practise there. First step: the A2 Lesen/Schreiben task
-  families from the A2 Modellsatz structure (labels only, ADR 0009).
+- **CON-5 · Original Goethe-style A2 Hören and B1 practice sets.** A2 has three Lesen and
+  Schreiben sets (`content/exercises/a2/pruefung-a2-*.yaml`) and no Hören; `/pruefung/b1` serves
+  the official sets only where the materials are local, so a clean build has nothing to practise
+  there. First step: the three A2 Hören sets on browser TTS, then their Tonwerk recordings, which
+  need `data/listening-plan.yaml` to accept artifacts that belong to no unit.
 - **P26-7 · Buy the stronger higher-level anchors:** the Goethe/ÖSD B1 *Prüfungsziele* (ISBN
   978-3-19-031868-1) and *Profile deutsch* (ISBN 978-3-468-49410-9); also the adult Goethe A2
   *Prüfungsziele* (the free A2 list is the youth exam). Each becomes one

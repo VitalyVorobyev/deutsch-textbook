@@ -1,0 +1,32 @@
+topic: reisen-verkehr
+role: exam-practice
+title_de: "Übungssatz 3 · Schreiben"
+title: { en: "Goethe-style practice set 3 — Writing", ru: "Пробный комплект 3 в формате Goethe — письмо", uk: "Пробний комплект 3 у форматі Goethe — письмо" }
+# The exam's two Teile: a 20–30-word SMS and a 30–40-word e-mail, three content points each.
+items:
+  - id: teil1-sms-kuchen
+    type: write
+    target_mode: writing
+    outcomes: [produkte-vergleichen]
+    prompt: { en: "Teil 1 · You are buying the cake for your friend Nora's party, but the supermarket has no chocolate cake left. Write Nora a text message (SMS).", ru: "Teil 1 · Вы покупаете торт для вечеринки подруги Норы, но шоколадного торта в супермаркете уже нет. Напишите Норе SMS.", uk: "Teil 1 · Ви купуєте торт для вечірки подруги Нори, але шоколадного торта в супермаркеті вже немає. Напишіть Норі SMS." }
+    goal: { en: "Write 20–30 words and cover all three points.", ru: "Напишите 20–30 слов и раскройте все три пункта.", uk: "Напишіть 20–30 слів і розкрийте всі три пункти." }
+    requirements:
+      - { en: "Say what the problem is.", ru: "Сообщите, в чём проблема.", uk: "Повідомте, у чому проблема." }
+      - { en: "Say what you are buying instead.", ru: "Напишите, что купите вместо него.", uk: "Напишіть, що купите замість нього." }
+      - { en: "Ask whether she needs anything else.", ru: "Спросите, не нужно ли ей что-нибудь ещё.", uk: "Запитайте, чи не потрібно їй ще щось." }
+    min_words: 20
+    model_answer: "Hallo Nora, im Supermarkt gibt es keinen Schokoladenkuchen mehr. Ich nehme jetzt einen Apfelkuchen, okay? Brauchst du noch etwas für die Party, vielleicht Getränke? Bis gleich, Lukas"
+    explain: { en: "kein … mehr says something has run out — one short sentence covers the problem. Each further point gets its own sentence. The model is one possible answer, not a key.", ru: "kein … mehr значит «больше нет, закончился» — одно короткое предложение раскрывает проблему. Каждому следующему пункту — своё предложение. Образец — один из возможных ответов, а не ключ.", uk: "kein … mehr означає «більше немає, закінчився» — одне коротке речення розкриває проблему. Кожному наступному пункту — окреме речення. Зразок — одна з можливих відповідей, а не ключ." }
+  - id: teil2-mail-heizung
+    type: write
+    target_mode: writing
+    outcomes: [formelle-nachricht-schreiben]
+    prompt: { en: "Teil 2 · The heating in your flat has not been working since Monday. Write an e-mail to your landlord, Herr Schulz.", ru: "Teil 2 · С понедельника в вашей квартире не работает отопление. Напишите электронное письмо арендодателю, господину Шульцу.", uk: "Teil 2 · Від понеділка у вашій квартирі не працює опалення. Напишіть електронного листа орендодавцеві, панові Шульцу." }
+    goal: { en: "Write 30–40 words, cover all three points and stay formal (Sie).", ru: "Напишите 30–40 слов, раскройте все три пункта и пишите официально (на Sie).", uk: "Напишіть 30–40 слів, розкрийте всі три пункти й пишіть офіційно (на Sie)." }
+    requirements:
+      - { en: "Describe the problem and say since when.", ru: "Опишите проблему и с какого времени она есть.", uk: "Опишіть проблему й відколи вона є." }
+      - { en: "Ask him to send someone soon.", ru: "Попросите поскорее прислать кого-нибудь.", uk: "Попросіть якнайшвидше когось прислати." }
+      - { en: "Say when you are at home.", ru: "Напишите, когда вы бываете дома.", uk: "Напишіть, коли ви буваєте вдома." }
+    min_words: 30
+    model_answer: "Sehr geehrter Herr Schulz, seit Montag funktioniert die Heizung in meiner Wohnung nicht. Es ist sehr kalt, besonders am Abend. Können Sie bitte schnell jemanden schicken? Ich bin jeden Tag ab 16 Uhr zu Hause. Mit freundlichen Grüßen, Olga Petrova"
+    explain: { en: "To a landlord: Sehr geehrter Herr Schulz … Mit freundlichen Grüßen, and Sie throughout. seit Montag answers since when in two words; a polite question with Können Sie bitte … ? makes the request.", ru: "Арендодателю пишут Sehr geehrter Herr Schulz … Mit freundlichen Grüßen и всё письмо на Sie. seit Montag в двух словах отвечает, с какого времени; вежливый вопрос Können Sie bitte … ? передаёт просьбу.", uk: "Орендодавцеві пишуть Sehr geehrter Herr Schulz … Mit freundlichen Grüßen і весь лист на Sie. seit Montag двома словами відповідає, відколи; увічливе запитання Können Sie bitte … ? передає прохання." }

@@ -1,0 +1,214 @@
+topic: lernen-verstehen
+role: exam-practice
+title_de: "Übungssatz 2 · Lesen"
+title: { en: "Goethe-style practice set 2 — Reading", ru: "Пробный комплект 2 в формате Goethe — чтение", uk: "Пробний комплект 2 у форматі Goethe — читання" }
+# Four Teile of five items, in the exam's order: newspaper article, town-hall directory, e-mail, ads.
+# Every wrong option is named in its text and then ruled out, as the exam's distractors are.
+items:
+  # --- Teil 1: Zeitungsartikel ---
+  - id: teil1-halt
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-2-zeitung
+    instruction: &t1 { en: "Teil 1 · Read the newspaper article. Which answer is correct?", ru: "Teil 1 · Прочитайте газетную статью. Какой ответ правильный?", uk: "Teil 1 · Прочитайте газетну статтю. Яка відповідь правильна?" }
+    prompt: "Der Bücherbus …"
+    options: ["fährt nur in der Stadt Celle.", "kommt jede Woche in die Dörfer.", "hält jeden Tag in zwölf Dörfern."]
+    correct: 1
+    explain: { en: "Er hält jede Woche in zwölf Dörfern — every week, not every day — and he drives durch die Dörfer um Celle, not around the town itself.", ru: "Er hält jede Woche in zwölf Dörfern — каждую неделю, а не каждый день, — и ездит durch die Dörfer um Celle, а не по самому городу.", uk: "Er hält jede Woche in zwölf Dörfern — щотижня, а не щодня, — і їздить durch die Dörfer um Celle, а не самим містом." }
+  - id: teil1-mitnehmen
+    type: mc
+    target_mode: reading
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    stimulus: a2/pruefung-a2-2-zeitung
+    instruction: *t1
+    prompt: "Aus dem Bus kann man …"
+    options: ["Zeitungen mitnehmen.", "Bücher kaufen.", "Spiele für Kinder mitnehmen."]
+    correct: 2
+    explain: { en: "The bus has Filme und Spiele für Kinder, and alles andere darf man kostenlos für drei Wochen mitnehmen. Newspapers are the exception: lesen, aber nicht mitnehmen. Nothing is sold.", ru: "В автобусе есть Filme und Spiele für Kinder, и alles andere darf man kostenlos für drei Wochen mitnehmen. Исключение — газеты: lesen, aber nicht mitnehmen. Ничего не продаётся.", uk: "В автобусі є Filme und Spiele für Kinder, і alles andere darf man kostenlos für drei Wochen mitnehmen. Виняток — газети: lesen, aber nicht mitnehmen. Нічого не продається." }
+  - id: teil1-ausweis
+    type: mc
+    target_mode: reading
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    stimulus: a2/pruefung-a2-2-zeitung
+    instruction: *t1
+    prompt: "Für die Bücher aus dem Bus …"
+    options: ["bezahlt man jeden Monat etwas.", "muss man zuerst in die Stadtbibliothek fahren.", "braucht man einen Ausweis."]
+    correct: 2
+    explain: { en: "Man braucht nur einen Ausweis der Stadtbibliothek Celle. Den bekommt man direkt im Bus — so nobody has to go to town first, and the books cost nothing.", ru: "Man braucht nur einen Ausweis der Stadtbibliothek Celle. Den bekommt man direkt im Bus — значит, ехать в город не нужно, а книги ничего не стоят.", uk: "Man braucht nur einen Ausweis der Stadtbibliothek Celle. Den bekommt man direkt im Bus — отже, їхати до міста не треба, а книжки нічого не коштують." }
+  - id: teil1-fahrer
+    type: mc
+    target_mode: reading
+    outcomes: [praeteritum-war-hatte]
+    stimulus: a2/pruefung-a2-2-zeitung
+    instruction: *t1
+    prompt: "Peter Lorenz …"
+    options: ["ist früher in der Stadt Bus gefahren.", "hat früher in einer Bibliothek gearbeitet.", "wartet an der Haltestelle auf die Kinder."]
+    correct: 0
+    explain: { en: "Früher war er Busfahrer in der Stadt. It is the children who wait for him at the stop — die Kinder warten … auf mich — not the other way round.", ru: "Früher war er Busfahrer in der Stadt. На остановке ждут дети — die Kinder warten … auf mich, — а не он их.", uk: "Früher war er Busfahrer in der Stadt. На зупинці чекають діти — die Kinder warten … auf mich, — а не він на них." }
+  - id: teil1-zuhause
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-2-zeitung
+    instruction: *t1
+    prompt: "Wer nicht zum Bus kommen kann, …"
+    options: ["bekommt die Bücher nach Hause.", "fährt mit dem Bus in die Stadt.", "muss die Bücher in der Stadt holen."]
+    correct: 0
+    explain: { en: "Wer gar nicht zum Bus kommen kann, bekommt die Bücher sogar nach Hause gebracht — a phone call to the library is enough. The way into town is named only as the problem: zu weit.", ru: "Wer gar nicht zum Bus kommen kann, bekommt die Bücher sogar nach Hause gebracht — достаточно позвонить в библиотеку. Дорога в город упомянута только как проблема: zu weit.", uk: "Wer gar nicht zum Bus kommen kann, bekommt die Bücher sogar nach Hause gebracht — досить зателефонувати до бібліотеки. Дорогу до міста згадано лише як проблему: zu weit." }
+
+  # --- Teil 2: Wegweiser im Bürgerhaus ---
+  - id: teil2-anmelden
+    type: mc
+    target_mode: reading
+    outcomes: [formular-verstehen]
+    stimulus: a2/pruefung-a2-2-rathaus
+    instruction: &t2 { en: "Teil 2 · You are at the town's Bürgerhaus. Read the directory: where do you go? If the right floor is not among the options, choose anderer Stock.", ru: "Teil 2 · Вы в городском Bürgerhaus. Прочитайте указатель: куда вам нужно? Если нужного этажа среди вариантов нет, выберите anderer Stock.", uk: "Teil 2 · Ви в міському Bürgerhaus. Прочитайте покажчик: куди вам треба? Якщо потрібного поверху серед варіантів немає, оберіть anderer Stock." }
+    prompt: "Sie sind in eine neue Wohnung umgezogen und müssen sich anmelden."
+    options: ["Erdgeschoss", "1. Stock", "anderer Stock"]
+    correct: 1
+    explain: { en: "Anmeldung der Wohnung is part of the Bürgerbüro on the 1. Stock. The Anmeldung on the 2nd floor is for schools and kindergartens.", ru: "Anmeldung der Wohnung входит в Bürgerbüro на 1. Stock. Anmeldung на втором этаже — это запись в школы и детские сады.", uk: "Anmeldung der Wohnung входить до Bürgerbüro на 1. Stock. Anmeldung на другому поверсі — це запис до шкіл і дитячих садків." }
+  - id: teil2-tasche
+    type: mc
+    target_mode: reading
+    outcomes: [formular-verstehen]
+    stimulus: a2/pruefung-a2-2-rathaus
+    instruction: *t2
+    prompt: "Sie haben gestern im Bus Ihre Tasche vergessen."
+    options: ["1. Stock", "2. Stock", "anderer Stock"]
+    correct: 0
+    explain: { en: "A lost or forgotten bag is a job for the Fundbüro, on the 1. Stock next to the Bürgerbüro.", ru: "Потерянной или забытой сумкой занимается Fundbüro — на 1. Stock рядом с Bürgerbüro.", uk: "Загубленою чи забутою сумкою займається Fundbüro — на 1. Stock поруч із Bürgerbüro." }
+  - id: teil2-heiraten
+    type: mc
+    target_mode: reading
+    outcomes: [formular-verstehen]
+    stimulus: a2/pruefung-a2-2-rathaus
+    instruction: *t2
+    prompt: "Sie möchten im Sommer heiraten und brauchen einen Termin."
+    options: ["2. Stock", "3. Stock", "anderer Stock"]
+    correct: 1
+    explain: { en: "Standesamt: Heiraten — the registry office on the 3. Stock is where weddings are arranged.", ru: "Standesamt: Heiraten — загс на 3. Stock, там договариваются о дате свадьбы.", uk: "Standesamt: Heiraten — РАЦС на 3. Stock, там домовляються про дату весілля." }
+  - id: teil2-fuehrerschein
+    type: mc
+    target_mode: reading
+    outcomes: [formular-verstehen]
+    stimulus: a2/pruefung-a2-2-rathaus
+    instruction: *t2
+    prompt: "Ihr Sohn ist 18 und möchte den Führerschein machen. Er braucht Informationen dazu."
+    options: ["Erdgeschoss", "3. Stock", "anderer Stock"]
+    correct: 0
+    explain: { en: "The Führerscheinstelle is on the Erdgeschoss, next to the Information desk.", ru: "Führerscheinstelle — на Erdgeschoss, рядом со справочной (Information).", uk: "Führerscheinstelle — на Erdgeschoss, поруч із довідковою (Information)." }
+  - id: teil2-kindergarten
+    type: mc
+    target_mode: reading
+    outcomes: [formular-verstehen]
+    stimulus: a2/pruefung-a2-2-rathaus
+    instruction: *t2
+    prompt: "Ihre Tochter ist drei Jahre alt und soll bald in einen Kindergarten gehen."
+    options: ["Erdgeschoss", "3. Stock", "anderer Stock"]
+    correct: 2
+    explain: { en: "Schulen und Kindergärten: Anmeldung und Informationen is on the 2. Stock — not among the options, so anderer Stock.", ru: "Schulen und Kindergärten: Anmeldung und Informationen — на 2. Stock. Такого варианта нет, поэтому anderer Stock.", uk: "Schulen und Kindergärten: Anmeldung und Informationen — на 2. Stock. Такого варіанта немає, тому anderer Stock." }
+
+  # --- Teil 3: E-Mail ---
+  - id: teil3-urlaub
+    type: mc
+    target_mode: reading
+    outcomes: [berufliche-nachricht-schreiben]
+    stimulus: a2/pruefung-a2-2-email
+    instruction: &t3 { en: "Teil 3 · Read the e-mail. Which answer is correct?", ru: "Teil 3 · Прочитайте электронное письмо. Какой ответ правильный?", uk: "Teil 3 · Прочитайте електронного листа. Яка відповідь правильна?" }
+    prompt: "Markus …"
+    options: ["ist ab morgen krank.", "trifft morgen Herrn Kaya.", "macht ab morgen Urlaub."]
+    correct: 2
+    explain: { en: "Ich bin ab morgen eine Woche im Urlaub. Herr Kaya comes on Tuesday, and Sara will meet him, not Markus.", ru: "Ich bin ab morgen eine Woche im Urlaub. Господин Кая придёт во вторник, и встретится с ним Сара, а не Маркус.", uk: "Ich bin ab morgen eine Woche im Urlaub. Пан Кая прийде у вівторок, і зустрінеться з ним Сара, а не Маркус." }
+  - id: teil3-termin
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-2-email
+    instruction: *t3
+    prompt: "Der Termin mit Herrn Kaya ist …"
+    options: ["um elf Uhr.", "um zehn Uhr.", "am Mittwoch."]
+    correct: 1
+    explain: { en: "Der Termin ist um zehn Uhr, nicht um elf, wie im Kalender steht — the calendar is wrong. Wednesday is Frau Roth's birthday.", ru: "Der Termin ist um zehn Uhr, nicht um elf, wie im Kalender steht — в календаре ошибка. Среда — это день рождения госпожи Рот.", uk: "Der Termin ist um zehn Uhr, nicht um elf, wie im Kalender steht — у календарі помилка. Середа — це день народження пані Рот." }
+  - id: teil3-geschenk
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-2-email
+    instruction: *t3
+    prompt: "Für das Geschenk für Frau Roth …"
+    options: ["sammelt Petra das Geld.", "muss Sara Blumen kaufen.", "bezahlt Markus."]
+    correct: 0
+    explain: { en: "Petra sammelt das Geld, du musst also nichts organisieren — Sara has nothing to do for the flowers.", ru: "Petra sammelt das Geld, du musst also nichts organisieren — Саре ничего делать не нужно.", uk: "Petra sammelt das Geld, du musst also nichts organisieren — Сарі нічого робити не треба." }
+  - id: teil3-drucker
+    type: mc
+    target_mode: reading
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    stimulus: a2/pruefung-a2-2-email
+    instruction: *t3
+    prompt: "Bis Freitag kann Sara …"
+    options: ["gar nicht drucken.", "im zweiten Stock drucken.", "bei Thomas drucken."]
+    correct: 1
+    explain: { en: "Bis Freitag kannst du den Drucker im zweiten Stock benutzen. Friday is only when the technician comes to repair their own printer.", ru: "Bis Freitag kannst du den Drucker im zweiten Stock benutzen. Пятница — это лишь день, когда придёт техник чинить их принтер.", uk: "Bis Freitag kannst du den Drucker im zweiten Stock benutzen. П'ятниця — це лише день, коли прийде технік лагодити їхній принтер." }
+  - id: teil3-fragen
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-2-email
+    instruction: *t3
+    prompt: "Wenn Sara Fragen hat, soll sie …"
+    options: ["Markus eine E-Mail schreiben.", "Thomas anrufen.", "Markus anrufen."]
+    correct: 1
+    explain: { en: "Schreib mir bitte keine E-Mail … Ruf lieber Thomas an — lieber points to the person to ask instead of Markus.", ru: "Schreib mir bitte keine E-Mail … Ruf lieber Thomas an — lieber указывает, к кому обратиться вместо Маркуса.", uk: "Schreib mir bitte keine E-Mail … Ruf lieber Thomas an — lieber вказує, до кого звернутися замість Маркуса." }
+
+  # --- Teil 4: Kleinanzeigen ---
+  - id: teil4-umzug
+    type: mc
+    target_mode: reading
+    outcomes: [wohnungsanzeige-lesen]
+    stimulus: a2/pruefung-a2-2-anzeigen
+    instruction: &t4 { en: "Teil 4 · Read ads a–f. Which ad fits the person? For one person no ad fits — then choose keine passende Anzeige.", ru: "Teil 4 · Прочитайте объявления a–f. Какое объявление подходит человеку? Одному человеку не подходит ни одно — тогда выберите keine passende Anzeige.", uk: "Teil 4 · Прочитайте оголошення a–f. Яке оголошення підходить людині? Одній людині не підходить жодне — тоді оберіть keine passende Anzeige." }
+    prompt: "Sie ziehen nächsten Monat um. Allein können Sie die schweren Möbel nicht tragen."
+    options: &ads ["Anzeige a", "Anzeige b", "Anzeige c", "Anzeige d", "Anzeige e", "Anzeige f", "keine passende Anzeige"]
+    correct: 1
+    explain: { en: "Ad b: Umzug? Wir helfen! — two strong students with a van, 25 € an hour.", ru: "Объявление b: Umzug? Wir helfen! — два сильных студента с фургоном, 25 € в час.", uk: "Оголошення b: Umzug? Wir helfen! — двоє сильних студентів із фургоном, 25 € за годину." }
+  - id: teil4-sofa
+    type: mc
+    target_mode: reading
+    outcomes: [wohnungsanzeige-lesen]
+    stimulus: a2/pruefung-a2-2-anzeigen
+    instruction: *t4
+    prompt: "Sie brauchen ein Sofa, haben aber fast kein Geld."
+    options: *ads
+    correct: 3
+    explain: { en: "Ad d: Sofa und Schrank – Sie bezahlen nichts! You only have to collect it by Saturday.", ru: "Объявление d: Sofa und Schrank – Sie bezahlen nichts! Нужно только забрать мебель до субботы.", uk: "Оголошення d: Sofa und Schrank – Sie bezahlen nichts! Треба лише забрати меблі до суботи." }
+  - id: teil4-deutsch
+    type: mc
+    target_mode: reading
+    outcomes: [wohnungsanzeige-lesen]
+    stimulus: a2/pruefung-a2-2-anzeigen
+    instruction: *t4
+    prompt: "Ihr Sohn ist zwölf. Er hat schlechte Noten in Deutsch und braucht Hilfe."
+    options: *ads
+    correct: 6
+    explain: { en: "Ad e helps pupils of his age, but only in Mathematik und Englisch. No ad offers help with German, so none fits.", ru: "Объявление e подходит школьникам его возраста, но только по Mathematik und Englisch. С немецким не помогает никто, поэтому не подходит ни одно.", uk: "Оголошення e підходить школярам його віку, але лише з Mathematik und Englisch. З німецькою не допомагає ніхто, тому не підходить жодне." }
+  - id: teil4-theater
+    type: mc
+    target_mode: reading
+    outcomes: [wohnungsanzeige-lesen]
+    stimulus: a2/pruefung-a2-2-anzeigen
+    instruction: *t4
+    prompt: "Sie möchten am Samstagabend ins Theater gehen. Ihre Kinder sind zwei und vier Jahre alt."
+    options: *ads
+    correct: 5
+    explain: { en: "Ad f: the babysitter hat abends und am Wochenende Zeit and has experience with children ab einem Jahr.", ru: "Объявление f: няня hat abends und am Wochenende Zeit, и у неё есть опыт с детьми ab einem Jahr.", uk: "Оголошення f: няня hat abends und am Wochenende Zeit і має досвід із дітьми ab einem Jahr." }
+  - id: teil4-kueche
+    type: mc
+    target_mode: reading
+    outcomes: [wohnungsanzeige-lesen]
+    stimulus: a2/pruefung-a2-2-anzeigen
+    instruction: *t4
+    prompt: "In Ihrer neuen Küche ist viel Platz. Sie möchten dort mit der Familie essen, aber Sie haben noch keine Möbel dafür."
+    options: *ads
+    correct: 2
+    explain: { en: "Ad c: a Holztisch mit vier Stühlen — furniture for eating. The free furniture in d is a sofa and a wardrobe.", ru: "Объявление c: Holztisch mit vier Stühlen — мебель, за которой едят. Бесплатная мебель в d — это диван и шкаф.", uk: "Оголошення c: Holztisch mit vier Stühlen — меблі, за якими їдять. Безкоштовні меблі в d — це диван і шафа." }
