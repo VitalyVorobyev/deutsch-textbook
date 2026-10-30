@@ -1,0 +1,318 @@
+topic: lernen-verstehen
+role: exam-practice
+title_de: "Übungssatz 2 · Hören"
+title: { en: "Goethe-style practice set 2 — Listening", ru: "Пробный комплект 2 в формате Goethe — аудирование", uk: "Пробний комплект 2 у форматі Goethe — аудіювання" }
+# Four Teile of five items, in the exam's order: five short texts heard twice, one conversation
+# heard once (five people matched to nine options), five short conversations heard once, an
+# interview heard twice with Ja/Nein. The play budget is per item, so the five items on one
+# recording each carry it; the instruction asks for the exam's single or double hearing.
+items:
+  # --- Teil 1: fünf kurze Texte, zweimal ---
+  - id: teil1-verkehr
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [durchsage-verstehen]
+    instruction: &t1 { en: "Teil 1 · Listen to the short text and choose the right answer. In the exam you hear each text twice.", ru: "Teil 1 · Прослушайте короткий текст и выберите правильный ответ. На экзамене каждый текст звучит дважды.", uk: "Teil 1 · Прослухайте короткий текст і оберіть правильну відповідь. На іспиті кожен текст звучить двічі." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Radio, text: "Und nun die Informationen für alle Autofahrer." }
+        - { speaker: Radio, text: "Auf der A drei zwischen Frankfurt und Würzburg hat es einen Unfall gegeben. Dort geht es nur sehr langsam weiter." }
+        - { speaker: Radio, text: "Fahren Sie bitte über die A sieben." }
+        - { speaker: Radio, text: "In Frankfurt ist die Mainzer Straße noch bis Freitag geschlossen." }
+    question: "Was sollen die Autofahrer tun?"
+    options: ["auf der A drei bleiben", "über die A sieben fahren", "bis Freitag warten"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Fahren Sie bitte über die A sieben — the A3 is slow after an accident. Friday concerns a closed street in Frankfurt, not the motorway.", ru: "Fahren Sie bitte über die A sieben — на A3 после аварии всё едет очень медленно. Пятница относится к закрытой улице во Франкфурте, а не к автобану.", uk: "Fahren Sie bitte über die A sieben — на A3 після аварії рух дуже повільний. П'ятниця стосується зачиненої вулиці у Франкфурті, а не автобану." }
+  - id: teil1-werkstatt
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Werkstatt, text: "Guten Tag, Herr Novak, hier ist die Autowerkstatt Müller." }
+        - { speaker: Werkstatt, text: "Ihr Auto ist fertig. Die Reparatur hat leider etwas mehr gekostet: nicht zweihundert, sondern zweihundertvierzig Euro." }
+        - { speaker: Werkstatt, text: "Sie können das Auto heute bis achtzehn Uhr abholen. Morgen sind wir ab acht Uhr da." }
+    question: "Wie viel kostet die Reparatur?"
+    options: ["zweihundert Euro", "zweihundertachtzig Euro", "zweihundertvierzig Euro"]
+    correct: 2
+    max_replays: 2
+    explain: { en: "Nicht zweihundert, sondern zweihundertvierzig Euro — the corrected price follows sondern.", ru: "Nicht zweihundert, sondern zweihundertvierzig Euro — правильная цена стоит после sondern.", uk: "Nicht zweihundert, sondern zweihundertvierzig Euro — правильна ціна стоїть після sondern." }
+  - id: teil1-supermarkt
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Durchsage, text: "Liebe Kundinnen und Kunden," }
+        - { speaker: Durchsage, text: "unser Markt schließt heute schon um achtzehn Uhr, denn morgen ist Feiertag." }
+        - { speaker: Durchsage, text: "Am Freitag sind wir wie immer von sieben bis zweiundzwanzig Uhr für Sie da." }
+    question: "Wann schließt der Supermarkt heute?"
+    options: ["um achtzehn Uhr", "um zweiundzwanzig Uhr", "um sieben Uhr"]
+    correct: 0
+    max_replays: 2
+    explain: { en: "Heute schon um achtzehn Uhr, because tomorrow is a holiday. Seven to twenty-two are the usual hours, wie immer, on Friday.", ru: "Heute schon um achtzehn Uhr — потому что завтра праздник. С семи до двадцати двух — обычные часы работы (wie immer) в пятницу.", uk: "Heute schon um achtzehn Uhr — бо завтра свято. Із сьомої до двадцять другої — звичайні години роботи (wie immer) у п'ятницю." }
+  - id: teil1-fest
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [wetterbericht-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Radio, text: "Und hier noch ein Tipp für das Wochenende." }
+        - { speaker: Radio, text: "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei." }
+        - { speaker: Radio, text: "Wenn es regnet, findet das Fest in der Stadthalle statt." }
+    question: "Was passiert, wenn es regnet?"
+    options: ["Das Fest ist am Sonntag.", "Das Fest ist in der Stadthalle.", "Das Fest findet nicht statt."]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Wenn es regnet, findet das Fest in der Stadthalle statt — rain moves the party indoors; it is neither cancelled nor postponed.", ru: "Wenn es regnet, findet das Fest in der Stadthalle statt — в дождь праздник переносят под крышу, а не отменяют и не откладывают.", uk: "Wenn es regnet, findet das Fest in der Stadthalle statt — у дощ свято переносять під дах, а не скасовують і не відкладають." }
+  - id: teil1-paket
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [nachbarn-bitte]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Sara, text: "Hi Tom, hier ist Sara." }
+        - { speaker: Sara, text: "Ich bin morgen leider nicht zu Hause, ich muss nach Hamburg fahren. Dein Paket kommt aber morgen bei mir an." }
+        - { speaker: Sara, text: "Mein Nachbar, Herr Becker, ist den ganzen Tag zu Hause und nimmt es für mich an. Du kannst es am Abend bei ihm holen. Er wohnt im zweiten Stock." }
+    question: "Wo kann Tom das Paket holen?"
+    options: ["bei Sara", "bei Herrn Becker", "in Hamburg"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Du kannst es am Abend bei ihm holen — bei Herrn Becker, the neighbour. Sara herself is in Hamburg.", ru: "Du kannst es am Abend bei ihm holen — у соседа, господина Беккера. Сама Сара будет в Гамбурге.", uk: "Du kannst es am Abend bei ihm holen — у сусіда, пана Беккера. Сама Сара буде в Гамбурзі." }
+
+  # --- Teil 2: ein Gespräch, einmal; fünf Personen, neun Möglichkeiten ---
+  - id: teil2-oma
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: &t2 { en: "Teil 2 · Lukas and his mother plan the Christmas presents. Who gets what? In the exam you hear the conversation once and answer for all five people.", ru: "Teil 2 · Лукас и мама планируют рождественские подарки. Кто что получит? На экзамене разговор звучит один раз, и за это время нужно ответить про всех пятерых.", uk: "Teil 2 · Лукас і мама планують різдвяні подарунки. Хто що отримає? На іспиті розмова звучить один раз, і за цей час треба відповісти про всіх п'ятьох." }
+    source: &t2src
+      kind: tts
+      turns:
+        - { speaker: Mutter, text: "Lukas, wir müssen noch die Geschenke für Weihnachten planen. Was schenken wir Oma?" }
+        - { speaker: Lukas, text: "Oma hört doch so gern Musik. Vielleicht eine CD?" }
+        - { speaker: Mutter, text: "CDs hat sie genug. Aber sie hat gesagt, dass ihr warmer Pullover kaputt ist. Wir schenken ihr einen neuen Pullover." }
+        - { speaker: Lukas, text: "Gut. Und Opa?" }
+        - { speaker: Mutter, text: "Opa wünscht sich einen Kalender mit Fotos von uns allen. Den mache ich selbst." }
+        - { speaker: Lukas, text: "Und Tante Eva? Ihr können wir doch Blumen schenken." }
+        - { speaker: Mutter, text: "Blumen bekommt sie jedes Jahr. Sie kocht so gern – ein Kochbuch ist besser." }
+        - { speaker: Lukas, text: "Und Papa? Er braucht doch eine neue Uhr." }
+        - { speaker: Mutter, text: "Die hat er sich schon selbst gekauft. Er wünscht sich eine Tasche für die Arbeit." }
+        - { speaker: Lukas, text: "Und was bekommt Mia?" }
+        - { speaker: Mutter, text: "Mia spielt so gern mit uns allen. Wir schenken ihr ein Spiel für die ganze Familie." }
+    question: "Was bekommt Oma?"
+    options: &t2opts ["eine CD", "einen Pullover", "einen Kalender", "Blumen", "ein Kochbuch", "eine Uhr", "eine Tasche", "ein Spiel", "Schokolade"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "CDs hat sie genug … Wir schenken ihr einen neuen Pullover. Lukas's CD idea is turned down.", ru: "CDs hat sie genug … Wir schenken ihr einen neuen Pullover. Идею Лукаса с диском мама отклоняет.", uk: "CDs hat sie genug … Wir schenken ihr einen neuen Pullover. Ідею Лукаса з диском мама відхиляє." }
+  - id: teil2-opa
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t2
+    source: *t2src
+    question: "Was bekommt Opa?"
+    options: *t2opts
+    correct: 2
+    max_replays: 1
+    explain: { en: "Opa wünscht sich einen Kalender mit Fotos von uns allen.", ru: "Opa wünscht sich einen Kalender mit Fotos von uns allen — дедушка хочет календарь с семейными фото.", uk: "Opa wünscht sich einen Kalender mit Fotos von uns allen — дідусь хоче календар із сімейними фото." }
+  - id: teil2-tante
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t2
+    source: *t2src
+    question: "Was bekommt Tante Eva?"
+    options: *t2opts
+    correct: 4
+    max_replays: 1
+    explain: { en: "Blumen bekommt sie jedes Jahr … ein Kochbuch ist besser. The flowers are Lukas's idea, and his mother turns it down.", ru: "Blumen bekommt sie jedes Jahr … ein Kochbuch ist besser. Цветы — идея Лукаса, которую мама отклоняет.", uk: "Blumen bekommt sie jedes Jahr … ein Kochbuch ist besser. Квіти — ідея Лукаса, яку мама відхиляє." }
+  - id: teil2-papa
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t2
+    source: *t2src
+    question: "Was bekommt Papa?"
+    options: *t2opts
+    correct: 6
+    max_replays: 1
+    explain: { en: "The watch he has already bought himself — Die hat er sich schon selbst gekauft. Er wünscht sich eine Tasche für die Arbeit.", ru: "Часы он уже купил сам — Die hat er sich schon selbst gekauft. Er wünscht sich eine Tasche für die Arbeit.", uk: "Годинник він уже купив сам — Die hat er sich schon selbst gekauft. Er wünscht sich eine Tasche für die Arbeit." }
+  - id: teil2-mia
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t2
+    source: *t2src
+    question: "Was bekommt Mia?"
+    options: *t2opts
+    correct: 7
+    max_replays: 1
+    explain: { en: "Wir schenken ihr ein Spiel für die ganze Familie.", ru: "Wir schenken ihr ein Spiel für die ganze Familie — Мие подарят игру для всей семьи.", uk: "Wir schenken ihr ein Spiel für die ganze Familie — Мії подарують гру для всієї родини." }
+
+  # --- Teil 3: fünf kurze Gespräche, einmal ---
+  - id: teil3-restaurant
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [modal-hoefliche-wuensche]
+    instruction: &t3 { en: "Teil 3 · Listen to the short conversation and choose the right answer. In the exam you hear it once.", ru: "Teil 3 · Прослушайте короткий разговор и выберите правильный ответ. На экзамене он звучит один раз.", uk: "Teil 3 · Прослухайте коротку розмову й оберіть правильну відповідь. На іспиті вона звучить один раз." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Kellnerin, text: "Haben Sie schon gewählt?" }
+        - { speaker: Gast, text: "Ja, ich nehme das Schnitzel mit Pommes." }
+        - { speaker: Kellnerin, text: "Das Schnitzel ist leider schon aus. Wir haben noch Fisch oder Hähnchen mit Reis." }
+        - { speaker: Gast, text: "Hm, Fisch esse ich nicht so gern. Dann nehme ich das Hähnchen." }
+    question: "Was isst der Mann?"
+    options: ["Schnitzel", "Hähnchen", "Fisch"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Das Schnitzel ist leider schon aus — sold out. He does not like fish, so: Dann nehme ich das Hähnchen.", ru: "Das Schnitzel ist leider schon aus — шницель закончился. Рыбу он не любит, поэтому: Dann nehme ich das Hähnchen.", uk: "Das Schnitzel ist leider schon aus — шніцель закінчився. Рибу він не любить, тому: Dann nehme ich das Hähnchen." }
+  - id: teil3-kurs
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [kursanweisungen-verstehen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Frau, text: "Guten Tag, ich möchte mich für den Deutschkurs B eins anmelden." }
+        - { speaker: Mann, text: "Gern. Der Abendkurs beginnt am zehnten September, immer montags und mittwochs." }
+        - { speaker: Frau, text: "Gibt es auch einen Kurs am Vormittag?" }
+        - { speaker: Mann, text: "Ja, der beginnt aber erst am ersten Oktober." }
+        - { speaker: Frau, text: "Das ist mir zu spät. Dann nehme ich den Abendkurs." }
+    question: "Wann beginnt der Kurs der Frau?"
+    options: ["am ersten September", "am ersten Oktober", "am zehnten September"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "She takes the evening course — Dann nehme ich den Abendkurs — which starts am zehnten September. The first of October is the morning course she finds too late.", ru: "Она выбирает вечерний курс — Dann nehme ich den Abendkurs, — а он начинается am zehnten September. Первое октября — утренний курс, который для неё слишком поздно.", uk: "Вона обирає вечірній курс — Dann nehme ich den Abendkurs, — а він починається am zehnten September. Перше жовтня — ранковий курс, який для неї запізно." }
+  - id: teil3-pullover
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [gefallen-passen-sagen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Verkäufer, text: "Und? Passt der Pullover?" }
+        - { speaker: Kundin, text: "Die Größe ist gut, und das Blau gefällt mir auch. Aber neunundachtzig Euro – das ist mir zu teuer." }
+        - { speaker: Verkäufer, text: "Wir haben ihn auch in Grau, für neunundfünfzig Euro." }
+        - { speaker: Kundin, text: "Grau steht mir nicht. Danke, ich schaue noch in einem anderen Geschäft." }
+    question: "Warum kauft die Frau den blauen Pullover nicht?"
+    options: ["Er ist zu klein.", "Er ist zu teuer.", "Die Farbe gefällt ihr nicht."]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Size and colour are fine — Die Größe ist gut, und das Blau gefällt mir auch — but neunundachtzig Euro … das ist mir zu teuer. The colour she dislikes is the grey.", ru: "Размер и цвет подходят — Die Größe ist gut, und das Blau gefällt mir auch, — но neunundachtzig Euro … das ist mir zu teuer. Не нравится ей серый цвет, а не синий.", uk: "Розмір і колір підходять — Die Größe ist gut, und das Blau gefällt mir auch, — але neunundachtzig Euro … das ist mir zu teuer. Не подобається їй сірий колір, а не синій." }
+  - id: teil3-heizung
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [wohnung-beschreiben]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Mieterin, text: "Guten Tag, Herr Wolf. Die Heizung in meiner Wohnung funktioniert nicht richtig." }
+        - { speaker: Hausmeister, text: "In allen Zimmern?" }
+        - { speaker: Mieterin, text: "Nein, in der Küche und im Wohnzimmer ist es warm. Nur im Bad ist die Heizung kalt." }
+        - { speaker: Hausmeister, text: "Gut, ich komme heute Nachmittag vorbei." }
+    question: "Wo ist das Problem?"
+    options: ["in der Küche", "im Wohnzimmer", "im Bad"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "Nur im Bad ist die Heizung kalt. The kitchen and the living room are warm.", ru: "Nur im Bad ist die Heizung kalt. В кухне и гостиной тепло.", uk: "Nur im Bad ist die Heizung kalt. У кухні й вітальні тепло." }
+  - id: teil3-fahrkarte
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [verbindung-waehlen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Mann, text: "Eine Fahrkarte nach Köln, bitte. Hin und zurück." }
+        - { speaker: Frau, text: "Gern. Wann möchten Sie zurückfahren?" }
+        - { speaker: Mann, text: "Am Sonntag. Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin." }
+    question: "Welche Fahrkarte kauft der Mann?"
+    options: ["eine Fahrkarte hin und zurück", "eine Fahrkarte nur hin", "eine Fahrkarte für Sonntag"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "He changes his mind: Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin.", ru: "Он передумывает: Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin.", uk: "Він передумує: Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin." }
+
+  # --- Teil 4: Interview, zweimal; Ja oder Nein ---
+  - id: teil4-hotel
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [aufgaben-beschreiben]
+    instruction: &t4 { en: "Teil 4 · Listen to the radio interview. Is the statement right? Choose Ja or Nein. In the exam you hear the interview twice.", ru: "Teil 4 · Прослушайте радиоинтервью. Верно ли утверждение? Выберите Ja или Nein. На экзамене интервью звучит дважды.", uk: "Teil 4 · Прослухайте радіоінтерв'ю. Чи правильне твердження? Оберіть Ja або Nein. На іспиті інтерв'ю звучить двічі." }
+    source: &t4src
+      kind: tts
+      turns:
+        - { speaker: Moderatorin, text: "Herzlich willkommen zu „Junge Leute im Beruf“. Heute ist Daniel Weber bei uns. Daniel, du bist zwanzig und machst eine Ausbildung. Was lernst du?" }
+        - { speaker: Daniel, text: "Ich werde Koch. Meine Ausbildung mache ich in einem Hotel in Hamburg, jetzt bin ich im zweiten Jahr." }
+        - { speaker: Moderatorin, text: "Wolltest du schon immer Koch werden?" }
+        - { speaker: Daniel, text: "Nein, gar nicht. Nach der Schule wollte ich eigentlich Mechaniker werden. Ich habe ein Praktikum in einer Autowerkstatt gemacht, aber das war nichts für mich. Zu Hause habe ich aber immer gern gekocht." }
+        - { speaker: Moderatorin, text: "Wie sieht dein Arbeitstag aus?" }
+        - { speaker: Daniel, text: "Ich fange um zehn Uhr an und arbeite oft bis zehn Uhr abends. Am Nachmittag habe ich zwei Stunden Pause. Am Wochenende muss ich meistens arbeiten, dafür habe ich am Montag und am Dienstag frei." }
+        - { speaker: Moderatorin, text: "Und die Berufsschule?" }
+        - { speaker: Daniel, text: "Die ist einmal pro Woche, immer am Mittwoch. Das finde ich gut. Da lerne ich viel über Lebensmittel und Gesundheit." }
+        - { speaker: Moderatorin, text: "Was möchtest du nach der Ausbildung machen?" }
+        - { speaker: Daniel, text: "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant." }
+        - { speaker: Moderatorin, text: "Daniel, vielen Dank und viel Glück!" }
+    question: "Daniel macht seine Ausbildung in einem Hotel."
+    options: &jn ["Ja", "Nein"]
+    correct: 0
+    max_replays: 2
+    explain: { en: "Meine Ausbildung mache ich in einem Hotel in Hamburg.", ru: "Meine Ausbildung mache ich in einem Hotel in Hamburg — он учится на повара в гамбургском отеле.", uk: "Meine Ausbildung mache ich in einem Hotel in Hamburg — він навчається на кухаря в гамбурзькому готелі." }
+  - id: teil4-mechaniker
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [aufgaben-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Nach der Schule wollte Daniel Koch werden."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Nach der Schule wollte ich eigentlich Mechaniker werden. Cooking was his hobby at home.", ru: "Nach der Schule wollte ich eigentlich Mechaniker werden. Готовка была его домашним увлечением.", uk: "Nach der Schule wollte ich eigentlich Mechaniker werden. Куховарство було його домашнім захопленням." }
+  - id: teil4-wochenende
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [aufgaben-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Am Wochenende arbeitet Daniel nicht."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Am Wochenende muss ich meistens arbeiten; his days off are Monday and Tuesday.", ru: "Am Wochenende muss ich meistens arbeiten; выходные у него — понедельник и вторник.", uk: "Am Wochenende muss ich meistens arbeiten; вихідні в нього — понеділок і вівторок." }
+  - id: teil4-mittwoch
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [aufgaben-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Daniel geht jeden Mittwoch in die Berufsschule."
+    options: *jn
+    correct: 0
+    max_replays: 2
+    explain: { en: "Die ist einmal pro Woche, immer am Mittwoch.", ru: "Die ist einmal pro Woche, immer am Mittwoch — раз в неделю, всегда в среду.", uk: "Die ist einmal pro Woche, immer am Mittwoch — раз на тиждень, завжди в середу." }
+  - id: teil4-ausland
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [aufgaben-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Nach der Ausbildung möchte Daniel im Ausland arbeiten."
+    options: *jn
+    correct: 0
+    max_replays: 2
+    explain: { en: "Ich möchte ein Jahr im Ausland arbeiten. His own restaurant is only a vague later idea: vielleicht … einmal.", ru: "Ich möchte ein Jahr im Ausland arbeiten. Свой ресторан — лишь смутная мысль на потом: vielleicht … einmal.", uk: "Ich möchte ein Jahr im Ausland arbeiten. Власний ресторан — лише невиразна думка на потім: vielleicht … einmal." }

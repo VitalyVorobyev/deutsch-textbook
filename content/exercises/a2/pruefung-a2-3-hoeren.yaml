@@ -1,0 +1,318 @@
+topic: reisen-verkehr
+role: exam-practice
+title_de: "Übungssatz 3 · Hören"
+title: { en: "Goethe-style practice set 3 — Listening", ru: "Пробный комплект 3 в формате Goethe — аудирование", uk: "Пробний комплект 3 у форматі Goethe — аудіювання" }
+# Four Teile of five items, in the exam's order: five short texts heard twice, one conversation
+# heard once (five days matched to nine options), five short conversations heard once, an
+# interview heard twice with Ja/Nein. The play budget is per item, so the five items on one
+# recording each carry it; the instruction asks for the exam's single or double hearing.
+items:
+  # --- Teil 1: fünf kurze Texte, zweimal ---
+  - id: teil1-flug
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [durchsage-verstehen]
+    instruction: &t1 { en: "Teil 1 · Listen to the short text and choose the right answer. In the exam you hear each text twice.", ru: "Teil 1 · Прослушайте короткий текст и выберите правильный ответ. На экзамене каждый текст звучит дважды.", uk: "Teil 1 · Прослухайте короткий текст і оберіть правильну відповідь. На іспиті кожен текст звучить двічі." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Durchsage, text: "Achtung, eine Information zum Flug L H zweihundertdreißig nach Wien." }
+        - { speaker: Durchsage, text: "Der Flug startet heute nicht von Gate B zwölf, sondern von Gate C vier." }
+        - { speaker: Durchsage, text: "Die Zeit bleibt gleich: dreizehn Uhr fünfzig." }
+    question: "Wohin müssen die Reisenden nach Wien gehen?"
+    options: ["zu Gate B zwölf", "zu Gate C zwölf", "zu Gate C vier"]
+    correct: 2
+    max_replays: 2
+    explain: { en: "Nicht von Gate B zwölf, sondern von Gate C vier — the new gate follows sondern. The departure time does not change.", ru: "Nicht von Gate B zwölf, sondern von Gate C vier — новый выход назван после sondern. Время вылета не меняется.", uk: "Nicht von Gate B zwölf, sondern von Gate C vier — новий вихід названо після sondern. Час вильоту не змінюється." }
+  - id: teil1-sprachschule
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [kursanweisungen-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Sprachschule, text: "Guten Tag, Frau Ahmadi, hier ist die Sprachschule Lingua." }
+        - { speaker: Sprachschule, text: "Ihr Kurs am Dienstag findet leider nicht statt, die Lehrerin ist krank." }
+        - { speaker: Sprachschule, text: "Die Stunde ist dann am nächsten Montag, zur gleichen Zeit. Bitte bringen Sie dann auch Ihr Buch mit." }
+    question: "Was ist mit dem Kurs am Dienstag?"
+    options: ["Er findet nicht statt.", "Er beginnt eine Stunde später.", "Er ist in einem anderen Raum."]
+    correct: 0
+    max_replays: 2
+    explain: { en: "Ihr Kurs am Dienstag findet leider nicht statt — the teacher is ill, and the lesson moves to next Monday at the same time.", ru: "Ihr Kurs am Dienstag findet leider nicht statt — преподавательница заболела, и занятие переносится на следующий понедельник, на то же время.", uk: "Ihr Kurs am Dienstag findet leider nicht statt — викладачка захворіла, і заняття переносять на наступний понеділок, на той самий час." }
+  - id: teil1-konzert
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Radio, text: "Und jetzt ein Tipp für alle Musikfreunde." }
+        - { speaker: Radio, text: "Die Band „Nordwind“ spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr." }
+        - { speaker: Radio, text: "Aber keine Sorge: Am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse, ab neunzehn Uhr." }
+    question: "Für welches Konzert kann man noch Karten kaufen?"
+    options: ["für das Konzert am Freitag", "für das Konzert am Samstag", "für das Konzert am Sonntag"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Friday is sold out — keine Karten mehr — but am Samstag gibt es ein zweites Konzert, with tickets at the box office on Saturday from 19:00.", ru: "На пятницу билетов уже нет — keine Karten mehr, — но am Samstag gibt es ein zweites Konzert, и билеты продают в кассе в субботу с 19:00.", uk: "На п'ятницю квитків уже немає — keine Karten mehr, — але am Samstag gibt es ein zweites Konzert, і квитки продають у касі в суботу з 19:00." }
+  - id: teil1-anschluss
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [durchsage-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Durchsage, text: "Meine Damen und Herren, in wenigen Minuten erreichen wir Nürnberg Hauptbahnhof." }
+        - { speaker: Durchsage, text: "Sie haben Anschluss an den I C E nach München, Abfahrt elf Uhr fünf von Gleis sechs, und an die S-Bahn zum Flughafen von Gleis zwei." }
+        - { speaker: Durchsage, text: "Der Regionalzug nach Bamberg fährt heute leider nicht." }
+    question: "Von welchem Gleis fährt der Zug nach München?"
+    options: ["von Gleis zwei", "von Gleis sechs", "von Gleis elf"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Der ICE nach München … von Gleis sechs. Platform two is the S-Bahn to the airport, and elf is part of the time, 11:05.", ru: "Der ICE nach München … von Gleis sechs. Второй путь — электричка в аэропорт, а elf — часть времени отправления, 11:05.", uk: "Der ICE nach München … von Gleis sechs. Друга колія — електричка до аеропорту, а elf — частина часу відправлення, 11:05." }
+  - id: teil1-julia
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Julia, text: "Hallo Mama, ich bin's, Julia." }
+        - { speaker: Julia, text: "Ich komme am Sonntag zum Mittagessen, aber nicht allein: Ich bringe Max mit. Du weißt ja, er isst kein Fleisch." }
+        - { speaker: Julia, text: "Kannst du vielleicht eine Gemüsesuppe machen? Den Kuchen bringe ich mit. Bis Sonntag!" }
+    question: "Was soll die Mutter kochen?"
+    options: ["Fleisch", "einen Kuchen", "eine Gemüsesuppe"]
+    correct: 2
+    max_replays: 2
+    explain: { en: "Kannst du vielleicht eine Gemüsesuppe machen? — because Max eats no meat. Julia brings the cake herself.", ru: "Kannst du vielleicht eine Gemüsesuppe machen? — потому что Макс не ест мяса. Пирог Юлия принесёт сама.", uk: "Kannst du vielleicht eine Gemüsesuppe machen? — бо Макс не їсть м'яса. Пиріг Юлія принесе сама." }
+
+  # --- Teil 2: ein Gespräch, einmal; fünf Tage, neun Möglichkeiten ---
+  - id: teil2-montag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [reise-berichten]
+    instruction: &t2 { en: "Teil 2 · Katrin tells a colleague about her week in Berlin. What did she do on which day? In the exam you hear the conversation once and answer all five days.", ru: "Teil 2 · Катрин рассказывает коллеге о неделе в Берлине. Что она делала в какой день? На экзамене разговор звучит один раз, и за это время нужно ответить про все пять дней.", uk: "Teil 2 · Катрін розповідає колезі про тиждень у Берліні. Що вона робила якого дня? На іспиті розмова звучить один раз, і за цей час треба відповісти про всі п'ять днів." }
+    source: &t2src
+      kind: tts
+      turns:
+        - { speaker: Kollege, text: "Hallo Katrin! Wie war denn deine Woche in Berlin?" }
+        - { speaker: Katrin, text: "Super! Am Montag sind wir angekommen, und am Nachmittag haben wir gleich eine Fahrt mit dem Bus durch die ganze Stadt gemacht. So sieht man am ersten Tag schon viel." }
+        - { speaker: Kollege, text: "Gute Idee. Und am Dienstag? Du wolltest doch ins Museum." }
+        - { speaker: Katrin, text: "Ja, das wollten wir. Aber am Dienstag hat es den ganzen Tag geregnet, und vor dem Museum haben so viele Leute gewartet! Wir sind dann einkaufen gegangen." }
+        - { speaker: Kollege, text: "Und das Museum?" }
+        - { speaker: Katrin, text: "Das haben wir am Mittwoch besucht, ganz früh am Morgen. Da war es leer." }
+        - { speaker: Kollege, text: "Und am Donnerstag?" }
+        - { speaker: Katrin, text: "Am Donnerstag hatte meine Freundin Sabine Geburtstag, sie wohnt ja in Berlin. Wir haben sie und ihre Freunde in einem Restaurant getroffen. Danach wollten wir noch ins Theater, aber es war schon zu spät." }
+        - { speaker: Kollege, text: "Schade. Und der letzte Tag?" }
+        - { speaker: Katrin, text: "Am Freitag war endlich schönes Wetter. Wir haben Fahrräder gemietet und sind den ganzen Tag gefahren." }
+    question: "Was hat Katrin am Montag gemacht?"
+    options: &t2opts ["eine Busfahrt durch die Stadt gemacht", "ein Museum besucht", "eingekauft", "Freunde getroffen", "Fahrrad gefahren", "ins Theater gegangen", "im Hotel geblieben", "in den Zoo gegangen", "schwimmen gegangen"]
+    correct: 0
+    max_replays: 1
+    explain: { en: "Am Montag … haben wir gleich eine Fahrt mit dem Bus durch die ganze Stadt gemacht.", ru: "Am Montag … haben wir gleich eine Fahrt mit dem Bus durch die ganze Stadt gemacht — в понедельник была автобусная поездка по городу.", uk: "Am Montag … haben wir gleich eine Fahrt mit dem Bus durch die ganze Stadt gemacht — у понеділок була автобусна поїздка містом." }
+  - id: teil2-dienstag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [reise-berichten]
+    instruction: *t2
+    source: *t2src
+    question: "Was hat Katrin am Dienstag gemacht?"
+    options: *t2opts
+    correct: 2
+    max_replays: 1
+    explain: { en: "The museum was the plan — das wollten wir — but it rained and the queue was long: Wir sind dann einkaufen gegangen.", ru: "Музей был в планах — das wollten wir, — но шёл дождь и у входа стояла толпа: Wir sind dann einkaufen gegangen.", uk: "Музей був у планах — das wollten wir, — але йшов дощ і біля входу стояв натовп: Wir sind dann einkaufen gegangen." }
+  - id: teil2-mittwoch
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [reise-berichten]
+    instruction: *t2
+    source: *t2src
+    question: "Was hat Katrin am Mittwoch gemacht?"
+    options: *t2opts
+    correct: 1
+    max_replays: 1
+    explain: { en: "Das haben wir am Mittwoch besucht — das is the museum, visited early in the morning.", ru: "Das haben wir am Mittwoch besucht — das здесь — это музей, в который они пошли рано утром.", uk: "Das haben wir am Mittwoch besucht — das тут — це музей, до якого вони пішли рано-вранці." }
+  - id: teil2-donnerstag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [reise-berichten]
+    instruction: *t2
+    source: *t2src
+    question: "Was hat Katrin am Donnerstag gemacht?"
+    options: *t2opts
+    correct: 3
+    max_replays: 1
+    explain: { en: "Wir haben sie und ihre Freunde in einem Restaurant getroffen. The theatre was only planned: es war schon zu spät.", ru: "Wir haben sie und ihre Freunde in einem Restaurant getroffen. Театр остался только в планах: es war schon zu spät.", uk: "Wir haben sie und ihre Freunde in einem Restaurant getroffen. Театр лишився тільки в планах: es war schon zu spät." }
+  - id: teil2-freitag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [reise-berichten]
+    instruction: *t2
+    source: *t2src
+    question: "Was hat Katrin am Freitag gemacht?"
+    options: *t2opts
+    correct: 4
+    max_replays: 1
+    explain: { en: "Wir haben Fahrräder gemietet und sind den ganzen Tag gefahren.", ru: "Wir haben Fahrräder gemietet und sind den ganzen Tag gefahren — в пятницу они весь день катались на велосипедах.", uk: "Wir haben Fahrräder gemietet und sind den ganzen Tag gefahren — у п'ятницю вони весь день каталися на велосипедах." }
+
+  # --- Teil 3: fünf kurze Gespräche, einmal ---
+  - id: teil3-augenarzt
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-hoeflich-telefonieren]
+    instruction: &t3 { en: "Teil 3 · Listen to the short conversation and choose the right answer. In the exam you hear it once.", ru: "Teil 3 · Прослушайте короткий разговор и выберите правильный ответ. На экзамене он звучит один раз.", uk: "Teil 3 · Прослухайте коротку розмову й оберіть правильну відповідь. На іспиті вона звучить один раз." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Praxis, text: "Praxis Doktor Hofmann, guten Tag." }
+        - { speaker: Mann, text: "Guten Tag, ich brauche bitte einen Termin. Ich kann seit ein paar Tagen nicht mehr gut sehen." }
+        - { speaker: Praxis, text: "Diese Woche ist leider alles voll. Geht es nächsten Dienstag um acht Uhr?" }
+        - { speaker: Mann, text: "Um acht muss ich arbeiten. Geht es auch später?" }
+        - { speaker: Praxis, text: "Am Dienstag um sechzehn Uhr dreißig." }
+        - { speaker: Mann, text: "Ja, das passt. Vielen Dank!" }
+    question: "Wann hat der Mann einen Termin?"
+    options: ["am Dienstag um acht Uhr", "am Dienstag um halb fünf", "noch diese Woche"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Sechzehn Uhr dreißig is half past four in the afternoon — halb fünf. Eight is when he works, and this week is full.", ru: "Sechzehn Uhr dreißig — это половина пятого дня, halb fünf. В восемь он работает, а на этой неделе мест нет.", uk: "Sechzehn Uhr dreißig — це пів на п'яту дня, halb fünf. О восьмій він працює, а цього тижня місць немає." }
+  - id: teil3-mittag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [absprachen-aushandeln]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Frau, text: "Gehen wir heute in die Kantine?" }
+        - { speaker: Mann, text: "Heute gibt es da nur Fisch. Lass uns lieber zum Italiener gehen." }
+        - { speaker: Frau, text: "Der hat montags geschlossen." }
+        - { speaker: Mann, text: "Stimmt. Dann holen wir uns etwas beim Bäcker und essen im Park?" }
+        - { speaker: Frau, text: "Gute Idee, das Wetter ist ja schön." }
+    question: "Wo holen die beiden ihr Mittagessen?"
+    options: ["in der Kantine", "beim Italiener", "beim Bäcker"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "The canteen only has fish and the Italian place is closed on Mondays, so: Dann holen wir uns etwas beim Bäcker.", ru: "В столовой сегодня только рыба, а итальянский ресторан по понедельникам закрыт, поэтому: Dann holen wir uns etwas beim Bäcker.", uk: "У їдальні сьогодні лише риба, а італійський ресторан по понеділках зачинений, тому: Dann holen wir uns etwas beim Bäcker." }
+  - id: teil3-post
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [nachbarn-bitte]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Frau, text: "Herr Schmitt, ich fahre morgen für eine Woche weg. Können Sie bitte meine Post aus dem Briefkasten holen?" }
+        - { speaker: Mann, text: "Ja, gern. Und Ihre Katze?" }
+        - { speaker: Frau, text: "Die nimmt meine Schwester. Nur die Post, bitte. Den Schlüssel für den Briefkasten bringe ich Ihnen heute Abend." }
+    question: "Was soll Herr Schmitt machen?"
+    options: ["die Post holen", "die Katze nehmen", "den Schlüssel bringen"]
+    correct: 0
+    max_replays: 1
+    explain: { en: "Nur die Post, bitte. The sister takes the cat, and the woman brings the key herself.", ru: "Nur die Post, bitte. Кошку берёт сестра, а ключ соседка принесёт сама.", uk: "Nur die Post, bitte. Кішку бере сестра, а ключ сусідка принесе сама." }
+  - id: teil3-schuhe
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [produkte-vergleichen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Mann, text: "Entschuldigung, wo finde ich Schuhe für Kinder?" }
+        - { speaker: Verkäuferin, text: "Schuhe sind im Erdgeschoss. Aber Schuhe für Kinder haben wir in der Kinderabteilung, im zweiten Stock." }
+        - { speaker: Mann, text: "Und gibt es hier einen Aufzug?" }
+        - { speaker: Verkäuferin, text: "Ja, dort hinten links." }
+    question: "Wo findet der Mann Schuhe für Kinder?"
+    options: ["im Erdgeschoss", "im zweiten Stock", "hinten links"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Schuhe für Kinder haben wir in der Kinderabteilung, im zweiten Stock. The ground floor has shoes for adults; hinten links is the lift.", ru: "Schuhe für Kinder haben wir in der Kinderabteilung, im zweiten Stock. На первом этаже обувь для взрослых, а hinten links — это лифт.", uk: "Schuhe für Kinder haben wir in der Kinderabteilung, im zweiten Stock. На першому поверсі взуття для дорослих, а hinten links — це ліфт." }
+  - id: teil3-joggen
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [absprachen-aushandeln]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Frau, text: "Wollen wir am Samstag zusammen joggen? Um acht?" }
+        - { speaker: Mann, text: "Um acht? Das ist mir zu früh. Am Wochenende schlafe ich gern lange. Geht es um zehn?" }
+        - { speaker: Frau, text: "Um zehn spiele ich Tennis. Wie wäre es mit neun?" }
+        - { speaker: Mann, text: "Na gut, dann um neun." }
+    question: "Wann treffen sich die beiden?"
+    options: ["um acht Uhr", "um zehn Uhr", "um neun Uhr"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "Eight is too early for him and at ten she plays tennis, so they agree: Na gut, dann um neun.", ru: "Восемь для него слишком рано, в десять у неё теннис, поэтому договариваются: Na gut, dann um neun.", uk: "Восьма для нього зарано, о десятій у неї теніс, тож домовляються: Na gut, dann um neun." }
+
+  # --- Teil 4: Interview, zweimal; Ja oder Nein ---
+  - id: teil4-parkplatz
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [landschaft-beschreiben]
+    instruction: &t4 { en: "Teil 4 · Listen to the radio interview. Is the statement right? Choose Ja or Nein. In the exam you hear the interview twice.", ru: "Teil 4 · Прослушайте радиоинтервью. Верно ли утверждение? Выберите Ja или Nein. На экзамене интервью звучит дважды.", uk: "Teil 4 · Прослухайте радіоінтерв'ю. Чи правильне твердження? Оберіть Ja або Nein. На іспиті інтерв'ю звучить двічі." }
+    source: &t4src
+      kind: tts
+      turns:
+        - { speaker: Moderatorin, text: "Hallo und herzlich willkommen! Bei uns ist heute Yusuf Demir. Herr Demir, in Köln gibt es seit drei Jahren Ihren Garten für alle. Was ist das genau?" }
+        - { speaker: Yusuf Demir, text: "Das ist ein großer Garten mitten in der Stadt, auf einem alten Parkplatz. Jeder kann mitmachen. Wir pflanzen zusammen Gemüse, Obst und Blumen." }
+        - { speaker: Moderatorin, text: "Wie viele Leute machen mit?" }
+        - { speaker: Yusuf Demir, text: "Am Anfang waren wir nur fünf. Jetzt sind es über sechzig, aus zwanzig Ländern. Viele haben zu Hause keinen Garten, nur eine kleine Wohnung." }
+        - { speaker: Moderatorin, text: "Kostet das etwas?" }
+        - { speaker: Yusuf Demir, text: "Man bezahlt zehn Euro im Jahr. Davon kaufen wir Pflanzen und Werkzeug. Aber wer kein Geld hat, kann trotzdem mitmachen." }
+        - { speaker: Moderatorin, text: "Und wer bekommt das Gemüse?" }
+        - { speaker: Yusuf Demir, text: "Alle, die mitarbeiten. Wenn wir zu viel haben, verkaufen wir es samstags auf dem Markt. Das Geld ist dann für neue Pflanzen." }
+        - { speaker: Moderatorin, text: "Was gefällt Ihnen am meisten?" }
+        - { speaker: Yusuf Demir, text: "Die Menschen. Ich habe hier viele Freunde gefunden. Und ich habe viel gelernt: Ich komme aus einer großen Stadt und wusste vorher nichts über Gemüse." }
+        - { speaker: Moderatorin, text: "Herr Demir, vielen Dank für das Gespräch." }
+    question: "Der Garten ist auf einem alten Parkplatz."
+    options: &jn ["Ja", "Nein"]
+    correct: 0
+    max_replays: 2
+    explain: { en: "Ein großer Garten mitten in der Stadt, auf einem alten Parkplatz.", ru: "Ein großer Garten mitten in der Stadt, auf einem alten Parkplatz — сад разбит на месте старой парковки.", uk: "Ein großer Garten mitten in der Stadt, auf einem alten Parkplatz — сад розбито на місці старої парковки." }
+  - id: teil4-anfang
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [landschaft-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Am Anfang haben schon sechzig Leute mitgemacht."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Am Anfang waren wir nur fünf — sixty is today's number.", ru: "Am Anfang waren wir nur fünf — шестьдесят человек их стало только сейчас.", uk: "Am Anfang waren wir nur fünf — шістдесят людей їх стало лише тепер." }
+  - id: teil4-geld
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [landschaft-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Wer kein Geld hat, darf nicht mitmachen."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Aber wer kein Geld hat, kann trotzdem mitmachen — the ten euros are not a condition.", ru: "Aber wer kein Geld hat, kann trotzdem mitmachen — десять евро не обязательное условие.", uk: "Aber wer kein Geld hat, kann trotzdem mitmachen — десять євро не є обов'язковою умовою." }
+  - id: teil4-markt
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [landschaft-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Manchmal verkaufen sie Gemüse auf dem Markt."
+    options: *jn
+    correct: 0
+    max_replays: 2
+    explain: { en: "Wenn wir zu viel haben, verkaufen wir es samstags auf dem Markt — whenever there is more than they can use.", ru: "Wenn wir zu viel haben, verkaufen wir es samstags auf dem Markt — когда урожая больше, чем нужно.", uk: "Wenn wir zu viel haben, verkaufen wir es samstags auf dem Markt — коли врожаю більше, ніж треба." }
+  - id: teil4-erfahrung
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [landschaft-beschreiben]
+    instruction: *t4
+    source: *t4src
+    question: "Herr Demir wusste schon immer viel über Gemüse."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Ich … wusste vorher nichts über Gemüse — he learned it all in the garden.", ru: "Ich … wusste vorher nichts über Gemüse — всему он научился уже в саду.", uk: "Ich … wusste vorher nichts über Gemüse — усього він навчився вже в саду." }
