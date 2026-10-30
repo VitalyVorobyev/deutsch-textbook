@@ -18,7 +18,7 @@ never silently summed with it**. Sprechen, a Gruppenprüfung nothing solo can gr
 task cards with the examiner pages behind a disclosure — no sheet, no history. A set holding all
 three written modules also offers them as one sitting (Hören → Lesen → Schreiben, no scores
 between modules). It sits beside — and does not replace — the committed,
-repeatable practice sets (original Goethe-*style* items authored for this course, A1 so far),
+repeatable practice sets (original Goethe-*style* items authored for this course, A1 and A2),
 which share its page.
 
 What is committed: the manifest contract and scoring arithmetic (`src/lib/exam-sim.ts`), the

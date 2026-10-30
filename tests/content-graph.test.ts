@@ -27,11 +27,11 @@ describe('content graph', () => {
     // the graph agrees with it, because the graph deliberately does not throw on a bad file.
     expect(graph.notes).toEqual([]);
     expect(graph.topics.size).toBe(57);
-    expect(graph.sets.size).toBe(441);
+    expect(graph.sets.size).toBe(447);
     expect(graph.readings.size).toBe(85);
     expect(graph.vocab.size).toBe(129);
     expect(graph.listening.size).toBe(40);
-    expect(graph.documents.size).toBe(5);
+    expect(graph.documents.size).toBe(17);
     expect(graph.discovery.size).toBe(12);
     expect(graph.wortfelder.size).toBe(2);
     expect(graph.wortnetze.size).toBe(10);
@@ -93,7 +93,7 @@ describe('content graph', () => {
     expect(Object.fromEntries([...counts].sort())).toEqual({
       artikel: 57,
       checkpoint: 3,
-      dokument: 5,
+      dokument: 17,
       drill: 22,
       einstufung: 3,
       entdecken: 19,
@@ -103,11 +103,11 @@ describe('content graph', () => {
       praxis: 201,
       pretest: 57,
       probe: 152,
-      pruefungspraxis: 3,
+      pruefungspraxis: 9,
       wortfeld: 2,
       wortschatz: 47,
     });
-    expect(graph.elements.length).toBe(696);
+    expect(graph.elements.length).toBe(714);
   });
 
   test('the lesson cycle and activity architecture are explicit', () => {
@@ -116,7 +116,7 @@ describe('content graph', () => {
       byStage.set(element.stage, (byStage.get(element.stage) ?? 0) + 1);
     for (const stage of byStage.keys()) expect(LESSON_STAGES).toContain(stage);
 
-    expect(byStage.get('transfer')).toBe(118);
+    expect(byStage.get('transfer')).toBe(124);
     expect(byStage.get('geruest')).toBe(77);
     expect(byStage.get('nachpruefung')).toBe(155);
 

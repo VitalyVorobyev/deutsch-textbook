@@ -13,7 +13,7 @@ export function getStaticPaths() {
 
 const { exam } = Astro.props as { exam: (typeof GOETHE_EXAMS)[number] };
 const level = exam.level;
-// The course's own Goethe-style sets (A1 only so far) — committed, repeatable, and present in
+// The course's own Goethe-style sets — committed, repeatable, and present in
 // every build, unlike the official sets above them.
 const sets = (await getCollection('exercises', ({ data }) => data.role === 'exam-practice')).filter((set) =>
   set.id.startsWith(`${level}/`),

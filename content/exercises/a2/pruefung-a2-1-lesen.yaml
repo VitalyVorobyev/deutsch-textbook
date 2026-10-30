@@ -1,0 +1,214 @@
+topic: freunde-feste
+role: exam-practice
+title_de: "Übungssatz 1 · Lesen"
+title: { en: "Goethe-style practice set 1 — Reading", ru: "Пробный комплект 1 в формате Goethe — чтение", uk: "Пробний комплект 1 у форматі Goethe — читання" }
+# Four Teile of five items, in the exam's order: newspaper article, store directory, e-mail, ads.
+# Every wrong option is named in its text and then ruled out, as the exam's distractors are.
+items:
+  # --- Teil 1: Zeitungsartikel ---
+  - id: teil1-oeffnung
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-1-zeitung
+    instruction: &t1 { en: "Teil 1 · Read the newspaper article. Which answer is correct?", ru: "Teil 1 · Прочитайте газетную статью. Какой ответ правильный?", uk: "Teil 1 · Прочитайте газетну статтю. Яка відповідь правильна?" }
+    prompt: "Das Reparatur-Café ist …"
+    options: ["einmal im Monat geöffnet.", "jeden Samstag geöffnet.", "seit März geschlossen."]
+    correct: 0
+    explain: { en: "Jeden ersten Samstag im Monat — only the first Saturday of each month. Seit März is when the café opened, not when it closed.", ru: "Jeden ersten Samstag im Monat — только в первую субботу каждого месяца. Seit März говорит о том, когда кафе открылось, а не закрылось.", uk: "Jeden ersten Samstag im Monat — лише першої суботи кожного місяця. Seit März каже про те, коли кафе відкрилося, а не закрилося." }
+  - id: teil1-geraete
+    type: mc
+    target_mode: reading
+    outcomes: [rektion-verstehen]
+    stimulus: a2/pruefung-a2-1-zeitung
+    instruction: *t1
+    prompt: "Das Team im Reparatur-Café …"
+    options: ["repariert auch Fahrräder.", "repariert zum Beispiel Lampen und Radios.", "verkauft alte Lampen und Radios."]
+    correct: 1
+    explain: { en: "The helpers fix what visitors bring: eine kaputte Lampe, ein altes Radio oder eine Kaffeemaschine. Bicycles are ruled out in so many words — Fahrräder repariert das Team aber nicht — and nothing is sold.", ru: "Помощники чинят то, что приносят посетители: eine kaputte Lampe, ein altes Radio oder eine Kaffeemaschine. Велосипеды исключены прямо — Fahrräder repariert das Team aber nicht, — а продажи нет вовсе.", uk: "Помічники лагодять те, що приносять відвідувачі: eine kaputte Lampe, ein altes Radio oder eine Kaffeemaschine. Велосипеди виключено прямо — Fahrräder repariert das Team aber nicht, — а продажу немає взагалі." }
+  - id: teil1-brandt
+    type: mc
+    target_mode: reading
+    outcomes: [praeteritum-war-hatte]
+    stimulus: a2/pruefung-a2-1-zeitung
+    instruction: *t1
+    prompt: "Monika Brandt …"
+    options: ["arbeitet in der Bibliothek.", "repariert seit 64 Jahren Lampen.", "hat früher in einer Firma für Elektrogeräte gearbeitet."]
+    correct: 2
+    explain: { en: "The article says so directly: hat früher in einer Firma für Elektrogeräte gearbeitet. The café meets in the library, but she does not work there, and 64 is her age.", ru: "В статье это сказано прямо: hat früher in einer Firma für Elektrogeräte gearbeitet. Кафе собирается в библиотеке, но она там не работает, а 64 — это её возраст.", uk: "У статті це сказано прямо: hat früher in einer Firma für Elektrogeräte gearbeitet. Кафе збирається в бібліотеці, але вона там не працює, а 64 — це її вік." }
+  - id: teil1-kosten
+    type: mc
+    target_mode: reading
+    outcomes: [modal-erlaubnis-notwendigkeit]
+    stimulus: a2/pruefung-a2-1-zeitung
+    instruction: *t1
+    prompt: "Die Besucher …"
+    options: ["müssen neue Teile selbst bezahlen.", "bezahlen für die Reparatur.", "kaufen Werkzeuge für das Team."]
+    correct: 0
+    explain: { en: "Die Reparatur ist kostenlos — the work itself is free — but Neue Teile muss man aber selbst bezahlen. The team buys tools itself, from money visitors give if they want to.", ru: "Die Reparatur ist kostenlos — сама работа бесплатна, но Neue Teile muss man aber selbst bezahlen. Инструменты команда покупает сама, на деньги, которые посетители оставляют по желанию.", uk: "Die Reparatur ist kostenlos — сама робота безкоштовна, але Neue Teile muss man aber selbst bezahlen. Інструменти команда купує сама, за гроші, які відвідувачі залишають за бажанням." }
+  - id: teil1-helfer
+    type: mc
+    target_mode: reading
+    outcomes: [folge-ausdruecken]
+    stimulus: a2/pruefung-a2-1-zeitung
+    instruction: *t1
+    prompt: "Frau Brandt sucht jetzt …"
+    options: ["mehr Gäste.", "einen größeren Raum.", "Leute, die beim Reparieren helfen."]
+    correct: 2
+    explain: { en: "Deshalb sucht Frau Brandt jetzt noch Helferinnen und Helfer — because more than forty guests now come. The room is called too small only for bicycles; nobody is looking for another one.", ru: "Deshalb sucht Frau Brandt jetzt noch Helferinnen und Helfer — потому что гостей уже больше сорока. Помещение названо маленьким только для велосипедов; другое никто не ищет.", uk: "Deshalb sucht Frau Brandt jetzt noch Helferinnen und Helfer — бо гостей уже понад сорок. Приміщення назване замалим лише для велосипедів; іншого ніхто не шукає." }
+
+  # --- Teil 2: Wegweiser im Kaufhaus ---
+  - id: teil2-spiel
+    type: mc
+    target_mode: reading
+    outcomes: [produkte-vergleichen]
+    stimulus: a2/pruefung-a2-1-kaufhaus
+    instruction: &t2 { en: "Teil 2 · You are in a department store. Read the directory: where do you go? If the right floor is not among the options, choose anderer Stock.", ru: "Teil 2 · Вы в универмаге. Прочитайте указатель: куда вам нужно? Если нужного этажа среди вариантов нет, выберите anderer Stock.", uk: "Teil 2 · Ви в універмазі. Прочитайте покажчик: куди вам треба? Якщо потрібного поверху серед варіантів немає, оберіть anderer Stock." }
+    prompt: "Ihre Tochter hat bald Geburtstag. Sie möchten ihr ein Spiel schenken."
+    options: ["1. Stock", "3. Stock", "anderer Stock"]
+    correct: 1
+    explain: { en: "Spielwaren are on the 3. Stock. The Kinderkleidung on the 1st floor is for children too, but it is clothing, not games.", ru: "Spielwaren — на третьем этаже (3. Stock). Kinderkleidung на первом этаже тоже для детей, но это одежда, а не игры.", uk: "Spielwaren — на третьому поверсі (3. Stock). Kinderkleidung на першому поверсі теж для дітей, але це одяг, а не ігри." }
+  - id: teil2-uhr
+    type: mc
+    target_mode: reading
+    outcomes: [umtausch-begruenden]
+    stimulus: a2/pruefung-a2-1-kaufhaus
+    instruction: *t2
+    prompt: "Sie haben hier eine Uhr gekauft. Sie geht nicht richtig, und Sie möchten sie umtauschen."
+    options: ["Erdgeschoss", "3. Stock", "anderer Stock"]
+    correct: 2
+    explain: { en: "Watches are sold on the ground floor, but Umtausch und Reparaturen belong to the Kundenservice on the 4. Stock — a floor not offered here, so anderer Stock.", ru: "Часы продаются на первом этаже (Erdgeschoss), но обмен — Umtausch und Reparaturen — это Kundenservice на 4. Stock. Такого варианта нет, поэтому anderer Stock.", uk: "Годинники продають на першому поверсі (Erdgeschoss), але обмін — Umtausch und Reparaturen — це Kundenservice на 4. Stock. Такого варіанта немає, тому anderer Stock." }
+  - id: teil2-laufen
+    type: mc
+    target_mode: reading
+    outcomes: [produkte-vergleichen]
+    stimulus: a2/pruefung-a2-1-kaufhaus
+    instruction: *t2
+    prompt: "Sie möchten mit dem Laufen anfangen und brauchen passende Schuhe."
+    options: ["Erdgeschoss", "1. Stock", "anderer Stock"]
+    correct: 2
+    explain: { en: "Sportschuhe are on the 2. Stock, which is not among the options. The 1st floor has women's clothing and bags, not sports shoes.", ru: "Sportschuhe — на 2. Stock, а такого варианта нет. На 1. Stock — женская одежда и сумки, а не спортивная обувь.", uk: "Sportschuhe — на 2. Stock, а такого варіанта немає. На 1. Stock — жіночий одяг і сумки, а не спортивне взуття." }
+  - id: teil2-teller
+    type: mc
+    target_mode: reading
+    outcomes: [produkte-vergleichen]
+    stimulus: a2/pruefung-a2-1-kaufhaus
+    instruction: *t2
+    prompt: "Sie haben Gäste zum Essen eingeladen und brauchen noch sechs Teller."
+    options: ["Untergeschoss", "4. Stock", "anderer Stock"]
+    correct: 0
+    explain: { en: "Haushalt — Töpfe, Teller, Tassen, Gläser — is in the Untergeschoss. The restaurant on the 4th floor serves food; it does not sell plates.", ru: "Отдел Haushalt — Töpfe, Teller, Tassen, Gläser — в Untergeschoss. Ресторан на 4. Stock кормит, а тарелки не продаёт.", uk: "Відділ Haushalt — Töpfe, Teller, Tassen, Gläser — в Untergeschoss. Ресторан на 4. Stock годує, а тарілок не продає." }
+  - id: teil2-zeitschrift
+    type: mc
+    target_mode: reading
+    outcomes: [produkte-vergleichen]
+    stimulus: a2/pruefung-a2-1-kaufhaus
+    instruction: *t2
+    prompt: "Ihr Vater möchte eine Zeitschrift über Autos lesen."
+    options: ["Erdgeschoss", "3. Stock", "anderer Stock"]
+    correct: 1
+    explain: { en: "Zeitungen und Zeitschriften are on the 3. Stock, next to the books. The Information on the ground floor is a desk for questions, not a place to buy magazines.", ru: "Zeitungen und Zeitschriften — на 3. Stock, рядом с книгами. Information на первом этаже — это справочная стойка, а не место, где продают журналы.", uk: "Zeitungen und Zeitschriften — на 3. Stock, поруч із книжками. Information на першому поверсі — це довідкова стійка, а не місце, де продають журнали." }
+
+  # --- Teil 3: E-Mail ---
+  - id: teil3-wohnung
+    type: mc
+    target_mode: reading
+    outcomes: [wohnung-beschreiben]
+    stimulus: a2/pruefung-a2-1-email
+    instruction: &t3 { en: "Teil 3 · Read the e-mail. Which answer is correct?", ru: "Teil 3 · Прочитайте электронное письмо. Какой ответ правильный?", uk: "Teil 3 · Прочитайте електронного листа. Яка відповідь правильна?" }
+    prompt: "Janas neue Wohnung …"
+    options: ["ist größer als die alte Wohnung.", "liegt in Köln.", "hat einen großen Balkon."]
+    correct: 2
+    explain: { en: "Die Wohnung ist kleiner als meine alte in Köln, aber sie hat einen großen Balkon. Cologne is where she lived before, and the new flat is smaller, not bigger.", ru: "Die Wohnung ist kleiner als meine alte in Köln, aber sie hat einen großen Balkon. В Кёльне она жила раньше, а новая квартира меньше, а не больше.", uk: "Die Wohnung ist kleiner als meine alte in Köln, aber sie hat einen großen Balkon. У Кельні вона жила раніше, а нова квартира менша, а не більша." }
+  - id: teil3-umzug
+    type: mc
+    target_mode: reading
+    outcomes: [praeteritum-war-hatte]
+    stimulus: a2/pruefung-a2-1-email
+    instruction: *t3
+    prompt: "Beim Umzug hat … geholfen."
+    options: ["Janas Bruder", "Janas neue Nachbarin", "Tom"]
+    correct: 1
+    explain: { en: "Mein Bruder wollte mir helfen, aber dann war er krank — wollte is the plan that fell through. The neighbour is the one who carried the boxes.", ru: "Mein Bruder wollte mir helfen, aber dann war er krank — wollte означает лишь намерение, которое не сбылось. Коробки носила соседка.", uk: "Mein Bruder wollte mir helfen, aber dann war er krank — wollte означає лише намір, який не здійснився. Коробки носила сусідка." }
+  - id: teil3-arbeit
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-1-email
+    instruction: *t3
+    prompt: "Jana fängt jeden Tag … mit der Arbeit an."
+    options: ["um halb neun", "um neun", "um sieben"]
+    correct: 0
+    explain: { en: "Ich fange jeden Tag um halb neun an: halb neun is 8:30, half an hour before nine. Seven o'clock was her start in Cologne.", ru: "Ich fange jeden Tag um halb neun an: halb neun — это 8:30, «половина девятого», а не половина после девяти. В семь она начинала в Кёльне.", uk: "Ich fange jeden Tag um halb neun an: halb neun — це 8:30, «пів на дев'яту», а не пів на десяту. О сьомій вона починала в Кельні." }
+  - id: teil3-besuch
+    type: mc
+    target_mode: reading
+    outcomes: [zeitangabe-verstehen]
+    stimulus: a2/pruefung-a2-1-email
+    instruction: *t3
+    prompt: "Tom kann Jana … besuchen."
+    options: ["im Juni", "im Mai", "in Berlin"]
+    correct: 1
+    explain: { en: "Hast du im Mai Zeit? Dann kannst du mich besuchen. In June she is away on a course in Berlin, so neither June nor Berlin works.", ru: "Hast du im Mai Zeit? Dann kannst du mich besuchen. В июне она на курсе в Берлине, так что не подходят ни июнь, ни Берлин.", uk: "Hast du im Mai Zeit? Dann kannst du mich besuchen. У червні вона на курсі в Берліні, тож не підходять ні червень, ні Берлін." }
+  - id: teil3-schlafen
+    type: mc
+    target_mode: reading
+    outcomes: [wo-wohin-position]
+    stimulus: a2/pruefung-a2-1-email
+    instruction: *t3
+    prompt: "Bei Jana schläft Tom …"
+    options: ["im Gästezimmer.", "auf dem Sofa im Wohnzimmer.", "auf dem Balkon."]
+    correct: 1
+    explain: { en: "Ein Gästezimmer habe ich nicht, aber im Wohnzimmer steht ein Sofa für Gäste. The guest room is named only to say there is none.", ru: "Ein Gästezimmer habe ich nicht, aber im Wohnzimmer steht ein Sofa für Gäste. Гостевая комната упомянута только затем, чтобы сказать, что её нет.", uk: "Ein Gästezimmer habe ich nicht, aber im Wohnzimmer steht ein Sofa für Gäste. Гостьову кімнату згадано лише для того, щоб сказати, що її немає." }
+
+  # --- Teil 4: Anzeigen ---
+  - id: teil4-instrument
+    type: mc
+    target_mode: reading
+    outcomes: [adjektiv-anzeige-verstehen]
+    stimulus: a2/pruefung-a2-1-anzeigen
+    instruction: &t4 { en: "Teil 4 · Read ads a–f. Which ad fits the person? For one person no ad fits — then choose keine passende Anzeige.", ru: "Teil 4 · Прочитайте объявления a–f. Какое объявление подходит человеку? Одному человеку не подходит ни одно — тогда выберите keine passende Anzeige.", uk: "Teil 4 · Прочитайте оголошення a–f. Яке оголошення підходить людині? Одній людині не підходить жодне — тоді оберіть keine passende Anzeige." }
+    prompt: "Ihr Freund möchte ein Instrument lernen. Er möchte aber nicht in eine Musikschule gehen."
+    options: &ads ["Anzeige a", "Anzeige b", "Anzeige c", "Anzeige d", "Anzeige e", "Anzeige f", "keine passende Anzeige"]
+    correct: 2
+    explain: { en: "Ad c: guitar lessons, gern auch bei Ihnen zu Hause — so he does not have to go to a school.", ru: "Объявление c: уроки гитары, gern auch bei Ihnen zu Hause — значит, ходить в школу ему не придётся.", uk: "Оголошення c: уроки гітари, gern auch bei Ihnen zu Hause — отже, ходити до школи йому не доведеться." }
+  - id: teil4-tochter
+    type: mc
+    target_mode: reading
+    outcomes: [adjektiv-anzeige-verstehen]
+    stimulus: a2/pruefung-a2-1-anzeigen
+    instruction: *t4
+    prompt: "Sie möchten am Samstag mit Ihrer Tochter (8 Jahre) etwas zusammen machen."
+    options: *ads
+    correct: 1
+    explain: { en: "Ad b is für Eltern mit Kindern ab 6 Jahren and runs on Saturdays. The photo course in d is a weekend course too, but on Sunday.", ru: "Объявление b — für Eltern mit Kindern ab 6 Jahren, по субботам. Фотокурс d тоже по выходным, но в воскресенье.", uk: "Оголошення b — für Eltern mit Kindern ab 6 Jahren, по суботах. Фотокурс d теж на вихідних, але в неділю." }
+  - id: teil4-kollegin
+    type: mc
+    target_mode: reading
+    outcomes: [adjektiv-anzeige-verstehen]
+    stimulus: a2/pruefung-a2-1-anzeigen
+    instruction: *t4
+    prompt: "Ihre Kollegin möchte vor der Arbeit Sport machen. Sie möchte dafür nichts bezahlen."
+    options: *ads
+    correct: 5
+    explain: { en: "Ad f: jeden Morgen um 6:30 Uhr … Kostenlos! The swimming course in a is in the evening and costs 60 €.", ru: "Объявление f: jeden Morgen um 6:30 Uhr … Kostenlos! Курс плавания a проходит вечером и стоит 60 €.", uk: "Оголошення f: jeden Morgen um 6:30 Uhr … Kostenlos! Курс плавання a відбувається ввечері й коштує 60 €." }
+  - id: teil4-italien
+    type: mc
+    target_mode: reading
+    outcomes: [adjektiv-anzeige-verstehen]
+    stimulus: a2/pruefung-a2-1-anzeigen
+    instruction: *t4
+    prompt: "Sie fahren im Urlaub nach Italien und möchten dort mit den Leuten sprechen."
+    options: *ads
+    correct: 6
+    explain: { en: "Ad e is a language course for a trip, but for Spanish and Spain. No ad teaches Italian, so none fits.", ru: "Объявление e — языковой курс для поездки, но испанского и для Испании. Итальянского нет ни в одном объявлении, поэтому не подходит ни одно.", uk: "Оголошення e — мовний курс для подорожі, але іспанської й для Іспанії. Італійської немає в жодному оголошенні, тому не підходить жодне." }
+  - id: teil4-nachbar
+    type: mc
+    target_mode: reading
+    outcomes: [adjektiv-anzeige-verstehen]
+    stimulus: a2/pruefung-a2-1-anzeigen
+    instruction: *t4
+    prompt: "Ihr Nachbar ist 40. Er war nie im Schwimmbad, weil er Angst vor dem Wasser hat. Jetzt möchte er es lernen."
+    options: *ads
+    correct: 0
+    explain: { en: "Ad a: Schwimmkurs für Erwachsene — Sie können nicht schwimmen? Kein Problem!", ru: "Объявление a: Schwimmkurs für Erwachsene — Sie können nicht schwimmen? Kein Problem!", uk: "Оголошення a: Schwimmkurs für Erwachsene — Sie können nicht schwimmen? Kein Problem!" }

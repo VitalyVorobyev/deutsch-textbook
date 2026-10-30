@@ -1,0 +1,32 @@
+topic: freunde-feste
+role: exam-practice
+title_de: "Übungssatz 1 · Schreiben"
+title: { en: "Goethe-style practice set 1 — Writing", ru: "Пробный комплект 1 в формате Goethe — письмо", uk: "Пробний комплект 1 у форматі Goethe — письмо" }
+# The exam's two Teile: a 20–30-word SMS and a 30–40-word e-mail, three content points each.
+items:
+  - id: teil1-sms-kino
+    type: write
+    target_mode: writing
+    outcomes: [alltag-zeitpraepositionen]
+    prompt: { en: "Teil 1 · You are meeting your friend Lisa at the cinema at eight, but you will be late. Write Lisa a text message (SMS).", ru: "Teil 1 · Вы договорились встретиться с подругой Лизой в кино в восемь, но опаздываете. Напишите Лизе SMS.", uk: "Teil 1 · Ви домовилися зустрітися з подругою Лізою в кіно о восьмій, але запізнюєтеся. Напишіть Лізі SMS." }
+    goal: { en: "Write 20–30 words and cover all three points.", ru: "Напишите 20–30 слов и раскройте все три пункта.", uk: "Напишіть 20–30 слів і розкрийте всі три пункти." }
+    requirements:
+      - { en: "Apologise.", ru: "Извинитесь.", uk: "Вибачтеся." }
+      - { en: "Say why you are late.", ru: "Объясните, почему опаздываете.", uk: "Поясніть, чому запізнюєтеся." }
+      - { en: "Say when you will be there.", ru: "Напишите, когда будете на месте.", uk: "Напишіть, коли будете на місці." }
+    min_words: 20
+    model_answer: "Hallo Lisa, es tut mir leid, ich komme zu spät. Mein Bus ist nicht gekommen. Ich bin um Viertel nach acht am Kino. Geh schon rein! Bis gleich, Anna"
+    explain: { en: "The exam marks Aufgabenerfüllung — is every point there? — and Sprache separately, so a short, correct sentence per point beats one long, risky one. Greeting and sign-off belong in an SMS too. The model is one possible answer, not a key.", ru: "На экзамене отдельно оценивают Aufgabenerfüllung — раскрыт ли каждый пункт — и Sprache, поэтому короткое правильное предложение на каждый пункт лучше одного длинного и рискованного. Приветствие и подпись нужны и в SMS. Образец — один из возможных ответов, а не ключ.", uk: "На іспиті окремо оцінюють Aufgabenerfüllung — чи розкрито кожен пункт — і Sprache, тому коротке правильне речення на кожен пункт краще за одне довге й ризиковане. Привітання й підпис потрібні і в SMS. Зразок — одна з можливих відповідей, а не ключ." }
+  - id: teil2-mail-kurs
+    type: write
+    target_mode: writing
+    outcomes: [kursanfrage-schreiben]
+    prompt: { en: "Teil 2 · Next week you cannot come to your German course. Write an e-mail to your course teacher, Frau Weber.", ru: "Teil 2 · На следующей неделе вы не сможете прийти на курс немецкого. Напишите электронное письмо преподавательнице, госпоже Вебер.", uk: "Teil 2 · Наступного тижня ви не зможете прийти на курс німецької. Напишіть електронного листа викладачці, пані Вебер." }
+    goal: { en: "Write 30–40 words, cover all three points and stay formal (Sie).", ru: "Напишите 30–40 слов, раскройте все три пункта и пишите официально (на Sie).", uk: "Напишіть 30–40 слів, розкрийте всі три пункти й пишіть офіційно (на Sie)." }
+    requirements:
+      - { en: "Say that you cannot come, and why.", ru: "Сообщите, что не придёте, и объясните почему.", uk: "Повідомте, що не прийдете, і поясніть чому." }
+      - { en: "Ask her to send you the homework.", ru: "Попросите прислать вам домашнее задание.", uk: "Попросіть надіслати вам домашнє завдання." }
+      - { en: "Ask when the next test is.", ru: "Спросите, когда следующий тест.", uk: "Запитайте, коли наступний тест." }
+    min_words: 30
+    model_answer: "Liebe Frau Weber, leider kann ich nächste Woche nicht zum Deutschkurs kommen, denn ich muss für meine Firma nach Hamburg fahren. Können Sie mir bitte die Hausaufgaben schicken? Und wann ist der nächste Test? Viele Grüße, Paul Novak"
+    explain: { en: "To a teacher you know, Liebe Frau Weber … Viele Grüße is polite enough; what makes it formal is Sie and Ihnen throughout. Each of the three points gets its own sentence, so the examiner can tick them off.", ru: "Знакомой преподавательнице можно написать Liebe Frau Weber … Viele Grüße — это достаточно вежливо; официальным письмо делает обращение на Sie и Ihnen от начала до конца. Каждому из трёх пунктов — своё предложение, чтобы экзаменатор мог их отметить.", uk: "Знайомій викладачці можна написати Liebe Frau Weber … Viele Grüße — це досить увічливо; офіційним лист робить звертання на Sie та Ihnen від початку до кінця. Кожному з трьох пунктів — окреме речення, щоб екзаменатор міг їх відзначити." }
