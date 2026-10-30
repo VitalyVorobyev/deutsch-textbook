@@ -1,9 +1,10 @@
 """The JSON API, one module per concern, all under `/api`.
 
 The split is by *what a caller is doing* rather than by what the data is: reading the corpus
-overview (`registry`), editing a scene document (`scenes`), acting on one (`workflow`), and the
-libraries a scene draws on — characters and narration profiles (`characters`), consented voices
-(`voices`), acoustic profiles (`acoustics`) and sounds (`sounds`).
+overview (`registry`), editing a scene document (`scenes`), acting on one (`workflow`), what the
+studio holds on disk (`library`), and the libraries a scene draws on — characters and narration
+profiles (`characters`), consented voices (`voices`), acoustic profiles (`acoustics`) and sounds
+(`sounds`).
 
 This is the **whole** surface: there are no server-rendered forms beside it, and Tonwerk reads
 nothing else.
@@ -19,6 +20,7 @@ from ..storage import Store
 from . import (
     acoustics,
     characters,
+    library,
     registry,
     scenes,
     sounds,
@@ -41,6 +43,7 @@ def router(
 
     api = APIRouter()
     api.include_router(registry.router(store, repo))
+    api.include_router(library.router(store, repo))
     api.include_router(scenes.router(store, repo))
     api.include_router(
         workflow.router(

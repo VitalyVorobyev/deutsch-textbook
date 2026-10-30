@@ -612,6 +612,84 @@ export const voicesFixture = {
   ],
 };
 
+/**
+ * The registry with the two row families the library adds: an exam recording owned by a practice
+ * set rather than a unit, and two studio scenes nothing plans — one forked, one archived.
+ */
+export const bibliothekFixture = {
+  ...registryFixture,
+  rows: [
+    ...registryFixture.rows,
+    {
+      kind: 'listening' as const,
+      id: 'ls-pruefung-a2-1-hoeren-04',
+      level: 'A2',
+      unit: null,
+      collection: 'pruefung-a2-1-hoeren',
+      wave: 2,
+      scenario: 'Bahnsteig-Durchsage: Regionalexpress mit Verspätung',
+      status: 'planned',
+      artifact: false,
+      audio: false,
+      has_provenance: false,
+      exercise_items: 0,
+      serves: ['teil1-zug'],
+      window: [11, 19] as [number, number],
+      duration_seconds: null,
+      text: 'Achtung an Gleis drei. Der Regionalexpress nach Würzburg hat heute Verspätung.',
+      project: null,
+    },
+    {
+      kind: 'scene' as const,
+      id: 'ls-wohnen-01-v2',
+      level: 'A1',
+      scene_kind: 'dialogue',
+      scenario: 'Viewing a flat',
+      status: 'drafted',
+      artifact: false,
+      audio: false,
+      has_provenance: false,
+      text: 'Und wo ist die Küche?',
+      project: {
+        kind: 'scene',
+        id: 11,
+        stage: 'draft',
+        revision: 1,
+        revision_sha256: '5555555566666666',
+        qa_passed: null,
+        has_exercise: true,
+        updated: '2026-10-30T10:00:00+00:00',
+        archived: false,
+        forked_from: 'ls-wohnen-01@4',
+      },
+    },
+    {
+      kind: 'scene' as const,
+      id: 'ls-probe-alt',
+      level: 'A1',
+      scene_kind: 'dialogue',
+      scenario: 'An abandoned trial',
+      status: 'drafted',
+      artifact: false,
+      audio: false,
+      has_provenance: false,
+      text: 'Guten Tag.',
+      project: {
+        kind: 'scene',
+        id: 12,
+        stage: 'draft',
+        revision: 1,
+        revision_sha256: '7777777788888888',
+        qa_passed: null,
+        has_exercise: false,
+        updated: '2026-10-01T10:00:00+00:00',
+        archived: true,
+        forked_from: null,
+      },
+    },
+  ],
+};
+
 export function stubApi(overrides: Partial<Api> = {}): Api {
   const refuse = (name: string) => () =>
     Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
@@ -636,6 +714,19 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     declineScene: refuse('declineScene'),
     sceneFromReading: refuse('sceneFromReading'),
     deleteScene: refuse('deleteScene'),
+    archiveScene: refuse('archiveScene'),
+    forkScene: refuse('forkScene'),
+    // Read by the Bibliothek beside the registry, and stubbed with data for the same reason the
+    // doctor is: a spec about the table must not fail on the disk panel.
+    disk: () =>
+      Promise.resolve({
+        root: '/studio',
+        areas: { renders: 0, assets: 0, cache: 0, replaced: 0 },
+        renders: 0,
+        keep: 2,
+        reapable: { renders: 0, bytes: 0 },
+      }),
+    reap: refuse('reap'),
     objectUrl: () => Promise.resolve('blob:tonwerk/stub'),
     // Read on mount by both Figuren and the scene editor's cast panel, so it is stubbed with data
     // rather than a refusal — for the same reason the three catalogs above are.

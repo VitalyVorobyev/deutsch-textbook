@@ -17,12 +17,13 @@ import time
 from contextlib import contextmanager, redirect_stdout
 from contextvars import ContextVar
 from pathlib import Path
-from typing import Any, Callable, Iterator, ParamSpec, TextIO, TypeVar
+from typing import Any, Callable, Iterator, ParamSpec, TextIO, TypeVar, cast
 
 import typer
 
 from ..catalogs import load_character_catalog, load_narration_catalog
 from ..domain import Stage
+from ..library import DEFAULT_KEEP, disk_usage, reap_renders
 from ..storage import Store
 from .checks import catalog_warnings
 from .convert import dialogue_scene, reading_scene
@@ -792,6 +793,81 @@ def delete_command(
         _emit({"task": "scene.delete", "slug": slug, "project_id": project.id, "deleted": True})
         return
     typer.echo(f"Deleted scene project {project.id}: {slug}")
+
+
+@app.command("archive")
+@json_verb
+def archive_command(
+    slug: str,
+    undo: bool = typer.Option(False, "--undo", help="Bring an archived project back."),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Put a scene project out of the library's default view and the review queue, or back."""
+
+    store = Store()
+    found = store.get_scene_by_slug(slug)
+    if found is None:
+        raise typer.BadParameter(f"no scene project {slug}")
+    project = store.archive_scene(found[0].id, not undo)
+    if json_output:
+        _emit({"task": "scene.archive", "slug": slug, "archived": project.archived_at is not None})
+        return
+    typer.echo(f"{slug}: {'archived' if project.archived_at else 'back in the library'}")
+
+
+@app.command("fork")
+@json_verb
+def fork_command(
+    slug: str,
+    new_slug: str,
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Copy a project's head revision into a new draft project, for a variant or a rewrite."""
+
+    store = Store()
+    found = store.get_scene_by_slug(slug)
+    if found is None:
+        raise typer.BadParameter(f"no scene project {slug}")
+    if store.get_scene_by_slug(new_slug) is not None:
+        raise typer.BadParameter(f"scene project {new_slug} already exists")
+    project = store.fork_scene(found[0].id, new_slug)
+    if json_output:
+        _emit({"task": "scene.fork", "slug": project.slug, "forked_from": project.forked_from})
+        return
+    typer.echo(f"{project.slug}: forked from {project.forked_from}")
+
+
+@app.command("reap")
+@json_verb
+def reap_command(
+    keep: int = typer.Option(DEFAULT_KEEP, min=1, help="Newest revisions per project to keep."),
+    repo: Path = typer.Option(Path.cwd()),
+    yes: bool = typer.Option(False, "--yes", help="Remove; without it, only report."),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Report what the studio holds on disk, and with --yes remove the renders it can remake.
+
+    Kept: each project's newest `--keep` revisions, every signed revision, and every revision a
+    provenance manifest in `--repo` says was published. See `library.py`.
+    """
+
+    store = Store()
+    usage = disk_usage(store, repo.resolve(), keep)
+    result = reap_renders(store, repo.resolve(), keep) if yes else None
+    if json_output:
+        _emit({"task": "scene.reap", "usage": usage, "reaped": result})
+        return
+    areas = cast(dict[str, int], usage["areas"])
+    for area, size in areas.items():
+        typer.echo(f"{area:<9} {size / 1e6:9.1f} MB")
+    reapable = cast(dict[str, int], usage["reapable"])
+    if result is None:
+        typer.echo(
+            f"{reapable['renders']} of {usage['renders']} renders can go "
+            f"({reapable['bytes'] / 1e6:.1f} MB); repeat with --yes to remove them"
+        )
+    else:
+        typer.echo(f"Removed {len(cast(list[str], result['removed']))} renders")
 
 
 @app.command("schema")

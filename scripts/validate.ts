@@ -623,11 +623,14 @@ try {
 } catch (e) {
   fail(LISTENING_PLAN_FILE, `unreadable: ${e instanceof Error ? e.message : e}`);
 }
-const plannedListening = new Map(
-  (listeningPlan?.units ?? []).flatMap((unit) =>
-    unit.artifacts.map((artifact) => [artifact.id, { unit, artifact }] as const),
+const plannedListening = new Map<string, { level: string }>([
+  ...(listeningPlan?.units ?? []).flatMap((unit) =>
+    unit.artifacts.map((artifact) => [artifact.id, { level: unit.level }] as const),
   ),
-);
+  ...(listeningPlan?.collections ?? []).flatMap((collection) =>
+    collection.artifacts.map((artifact) => [artifact.id, { level: collection.level }] as const),
+  ),
+]);
 
 const listeningArtifacts = new Map<string, { file: string; data: ListeningArtifact }>();
 const fileSha256 = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
@@ -651,7 +654,7 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   if (listeningArtifacts.has(id)) fail(rel(file), `duplicate listening artifact id "${id}"`);
   const planned = plannedListening.get(data.id);
   if (!planned) fail(rel(file), `artifact "${data.id}" is absent from ${LISTENING_PLAN_FILE}`);
-  else if (planned.unit.level !== data.level)
+  else if (planned.level !== data.level)
     fail(rel(file), 'artifact level differs from the listening plan');
   const audioFile = join(ROOT, listeningAudioPath(data.level, data.id));
   if (!existsSync(audioFile))
@@ -1986,6 +1989,11 @@ for (const [setId, { file, data }] of exerciseSets) {
                 LISTENING_PLAN_FILE,
                 `first artifact for "${plannedUnit.unit}" must be ls-${plannedUnit.unit}-01`,
               );
+            if (artifact.purpose === 'exam-practice')
+              fail(
+                LISTENING_PLAN_FILE,
+                `artifact "${artifact.id}" is exam-practice, which only a collection may plan`,
+              );
             for (const outcome of artifact.outcomes) {
               const owner = outcomeOwner.get(outcome);
               if (!owner)
@@ -2013,6 +2021,7 @@ for (const [setId, { file, data }] of exerciseSets) {
           if (!planUnits.has(unit.id))
             fail(LISTENING_PLAN_FILE, `live Atlas unit "${unit.id}" has no listening plan`);
         }
+        checkListeningCollections(listeningPlan, artifactIds);
       }
 
       const LEVEL_ORDER: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
@@ -2350,6 +2359,76 @@ for (const [setId, { file, data }] of exerciseSets) {
 // ---------------------------------------------------------------------------
 // Language discipline: letter-set purity and uk/de parity (packages/schema/src/langcheck.ts)
 // ---------------------------------------------------------------------------
+
+/**
+ * A collection is an exercise set that owns its recordings. Every check here keeps the plan
+ * answerable against the set: the recordings cover each audio item exactly once, the items that
+ * share a recording share its script, and the plan's outcomes and speaker count are the items'.
+ */
+function checkListeningCollections(plan: ListeningPlan, artifactIds: Set<string>): void {
+  const seen = new Set<string>();
+  for (const collection of plan.collections) {
+    const where = `${LISTENING_PLAN_FILE} → collection "${collection.collection}"`;
+    if (seen.has(collection.collection)) fail(where, 'duplicate collection');
+    seen.add(collection.collection);
+    const set = exerciseSets.get(`${collection.level.toLowerCase()}/${collection.collection}`);
+    if (!set) {
+      fail(
+        where,
+        `no exercise set content/exercises/${collection.level.toLowerCase()}/${collection.collection}.yaml`,
+      );
+      continue;
+    }
+    const audioItems = new Map(
+      set.data.items.flatMap((item) =>
+        item.type === 'audio-comprehension' ? [[item.id, item] as const] : [],
+      ),
+    );
+    const served = new Set<string>();
+    collection.artifacts.forEach((artifact, index) => {
+      const at = `${where} → artifact "${artifact.id}"`;
+      if (artifactIds.has(artifact.id)) fail(at, 'duplicate artifact id');
+      artifactIds.add(artifact.id);
+      const expected = `ls-${collection.collection}-${String(index + 1).padStart(2, '0')}`;
+      if (artifact.id !== expected) fail(at, `must be ${expected}, in the order the set plays it`);
+      if (artifact.purpose === 'exam-practice' && set.data.role !== 'exam-practice')
+        fail(at, `exam-practice needs a set whose role is exam-practice, not ${set.data.role}`);
+      const items = artifact.serves.flatMap((id) => {
+        const item = audioItems.get(id);
+        if (!item) fail(at, `serves "${id}", which is no audio-comprehension item of the set`);
+        else if (served.has(id)) fail(at, `serves "${id}", which another recording already serves`);
+        served.add(id);
+        return item ? [item] : [];
+      });
+      const [first] = items;
+      if (!first) return;
+      const script = (item: typeof first) =>
+        JSON.stringify(item.source.turns.map(({ speaker, text }) => ({ speaker, text })));
+      for (const item of items.slice(1))
+        if (script(item) !== script(first))
+          fail(at, `"${item.id}" and "${first.id}" are one recording but differ in their turns`);
+      for (const item of items)
+        if (item.recording && item.recording !== artifact.id)
+          fail(at, `"${item.id}" plays recording "${item.recording}", not this one`);
+      const outcomes = new Set(items.flatMap((item) => item.outcomes));
+      if (
+        outcomes.size !== artifact.outcomes.length ||
+        artifact.outcomes.some((outcome) => !outcomes.has(outcome))
+      )
+        fail(at, `outcomes must be its items' outcomes: ${[...outcomes].join(', ')}`);
+      if (artifact.questions !== items.length)
+        fail(at, `questions is ${artifact.questions}, but it serves ${items.length} items`);
+      const speakers = new Set(first.source.turns.map((turn) => turn.speaker)).size;
+      if (speakers < artifact.speakers.min || speakers > artifact.speakers.max)
+        fail(
+          at,
+          `the script has ${speakers} speakers, outside ${artifact.speakers.min}–${artifact.speakers.max}`,
+        );
+    });
+    for (const id of audioItems.keys())
+      if (!served.has(id)) fail(where, `audio-comprehension item "${id}" has no planned recording`);
+  }
+}
 
 /**
  * Letter sets and parity for one YAML/frontmatter tree. `deParity: false`

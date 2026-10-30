@@ -1,7 +1,21 @@
 import { describe, expect, test } from 'vitest';
-import { ANY, levelsOf, matches, overCount, selectRows, statusCounts } from './registry-filter';
+import {
+  ANY,
+  NO_FILTER,
+  STUDIO,
+  laengeImFenster,
+  levelsOf,
+  matches,
+  overCount,
+  sammlungOf,
+  sammlungen,
+  selectRows,
+  snippet,
+  statusCounts,
+  type RegistryFilter,
+} from './registry-filter';
 import type { RegistryRow } from './contracts';
-import { registryFixture } from './test/fixtures';
+import { bibliothekFixture, registryFixture } from './test/fixtures';
 
 const rows = registryFixture.rows as unknown as RegistryRow[];
 
@@ -96,5 +110,53 @@ describe('the level list', () => {
   test('a level the curriculum order does not know is kept, at the end', () => {
     const row: RegistryRow = { ...rows[0]!, level: 'A0' };
     expect(levelsOf([...rows, row])).toEqual(['A1', 'A2', 'A0']);
+  });
+});
+
+describe('the library', () => {
+  const library = bibliothekFixture.rows as unknown as RegistryRow[];
+  const ids = (filter: Partial<RegistryFilter>) =>
+    selectRows(library, { ...NO_FILTER, ...filter }).map((row) => row.id);
+
+  test('a row belongs to its exam set, its unit, its topic, or the studio', () => {
+    const owner = Object.fromEntries(library.map((row) => [row.id, sammlungOf(row)]));
+    expect(owner['ls-pruefung-a2-1-hoeren-04']).toBe('pruefung-a2-1-hoeren');
+    expect(owner['ls-wohnen-01']).toBe('A1.4');
+    expect(owner['a1/erste-schritte']).toBe('erste-schritte');
+    expect(owner['ls-wohnen-01-v2']).toBe(STUDIO);
+    // Exam sets first, the studio last.
+    const order = sammlungen(library);
+    expect(order[0]).toBe('pruefung-a2-1-hoeren');
+    expect(order.at(-1)).toBe(STUDIO);
+    expect(ids({ sammlung: 'pruefung-a2-1-hoeren' })).toEqual(['ls-pruefung-a2-1-hoeren-04']);
+  });
+
+  test('an archived studio scene is hidden unless asked for; a planned row never is', () => {
+    expect(ids({})).not.toContain('ls-probe-alt');
+    expect(ids({ archiv: true })).toContain('ls-probe-alt');
+    const archivedPlan = { ...library[0]!, project: { ...library[0]!.project!, archived: true } };
+    expect(selectRows([archivedPlan], NO_FILTER)).toHaveLength(1);
+  });
+
+  test('every search word must occur, in any case, in what the row says or is called', () => {
+    expect(ids({ suche: 'GLEIS würzburg' })).toEqual(['ls-pruefung-a2-1-hoeren-04']);
+    expect(ids({ suche: 'gleis paris' })).toEqual([]);
+    expect(ids({ suche: 'teil1-zug' })).toEqual(['ls-pruefung-a2-1-hoeren-04']);
+    expect(ids({ suche: '  ' })).toHaveLength(ids({}).length);
+  });
+
+  test('a snippet is the text around the hit, trimmed at both ends', () => {
+    const row = library.find((r) => r.id === 'ls-pruefung-a2-1-hoeren-04')!;
+    expect(snippet(row, 'würzburg', 10)).toBe('…ress nach Würzburg hat heute…');
+    expect(snippet(row, 'teil1-zug')).toBeNull();
+  });
+
+  test('a published length is judged against the window the plan asked for', () => {
+    const row = (duration: number | null) =>
+      ({ ...library[0]!, window: [20, 30], duration_seconds: duration }) as RegistryRow;
+    expect(laengeImFenster(row(19))).toBe('kurz');
+    expect(laengeImFenster(row(20))).toBe('passt');
+    expect(laengeImFenster(row(31))).toBe('lang');
+    expect(laengeImFenster(row(null))).toBeNull();
   });
 });

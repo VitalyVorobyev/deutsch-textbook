@@ -166,7 +166,7 @@ def test_a_new_store_is_at_alembic_head(tmp_path: Path) -> None:
     assert not tables & {"projects", "revisions", "reading_projects", "reading_revisions"}
     with engine.connect() as connection:
         version = connection.execute(text("select version_num from alembic_version"))
-        assert version.scalar() == "0006"
+        assert version.scalar() == "0007"
 
 
 #: What `Base.metadata.create_all` left behind before Alembic: the pre-scene project tables and no
@@ -204,7 +204,7 @@ def test_an_empty_pre_alembic_database_is_stamped_and_brought_to_head(tmp_path: 
     assert "projects" not in tables and "reading_projects" not in tables
     with upgraded.engine.connect() as connection:
         version = connection.execute(text("select version_num from alembic_version"))
-        assert version.scalar() == "0006"
+        assert version.scalar() == "0007"
 
 
 def test_a_pre_scene_project_row_stops_the_upgrade_and_survives_it(tmp_path: Path) -> None:

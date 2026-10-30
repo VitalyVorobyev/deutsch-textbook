@@ -23,13 +23,13 @@ import { Wortmarke } from './components/Wortmarke';
 import { ApiContext } from './useEngine';
 import { href, navigate, useRoute, useScrollReset } from './router';
 import { Anmeldung } from './views/Anmeldung';
+import { Bibliothek } from './views/Bibliothek';
 import { Figuren } from './views/Figuren';
 import { Freigabe } from './views/Freigabe';
 import { Klangbibliothek } from './views/Klangbibliothek';
 import { Lesetexte } from './views/Lesetexte';
 import { Pruefung } from './views/Pruefung';
 import { Szene } from './views/Szene';
-import { Szenen } from './views/Szenen';
 import { Uebersicht } from './views/Uebersicht';
 
 /**
@@ -38,7 +38,7 @@ import { Uebersicht } from './views/Uebersicht';
  */
 const WEGE = [
   { view: 'uebersicht', name: 'Übersicht' },
-  { view: 'szenen', name: 'Szenen' },
+  { view: 'bibliothek', name: 'Bibliothek' },
   { view: 'lesetexte', name: 'Lesetexte' },
   { view: 'pruefung', name: 'Prüfung' },
   { view: 'klangbibliothek', name: 'Klangbibliothek' },
@@ -184,18 +184,20 @@ export function App({ anmeldung }: AppProps): React.JSX.Element {
   );
 }
 
-/** A detail is a place inside its list, not a section of its own: `szene/<slug>` keeps Szenen lit. */
+/** A detail is a place inside its list, not a section of its own: `szene/<slug>` keeps it lit. */
 function istAktiv(view: string, weg: string): boolean {
-  if (weg === 'szenen') return view === 'szenen' || view === 'szene';
+  if (weg === 'bibliothek') return view === 'bibliothek' || view === 'szenen' || view === 'szene';
   return view === weg;
 }
 
 function render(view: string, id?: string): React.JSX.Element {
   switch (view) {
+    // `szenen` is the list this one replaced, so an address saved before the move still opens it.
+    case 'bibliothek':
     case 'szenen':
-      return <Szenen />;
+      return <Bibliothek />;
     case 'szene':
-      return id ? <Szene slug={id} /> : <Szenen />;
+      return id ? <Szene slug={id} /> : <Bibliothek />;
     case 'lesetexte':
       return <Lesetexte />;
     case 'pruefung':

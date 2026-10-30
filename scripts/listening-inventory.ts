@@ -32,33 +32,50 @@ export function inventory(root: string) {
   );
   const promptsDir = join(root, 'data/prompts');
   const prompts = existsSync(promptsDir) ? readdirSync(promptsDir) : [];
-  return plan.units.flatMap((unit) =>
-    unit.artifacts.map((artifact) => {
-      const level = unit.level.toLowerCase();
-      const manifestPath = join(root, 'data/audio-provenance', level, `${artifact.id}.json`);
-      const manifest = existsSync(manifestPath)
-        ? (JSON.parse(readFileSync(manifestPath, 'utf8')) as {
-            qa?: { passed?: boolean };
-            approval?: { status?: string };
-          })
-        : undefined;
-      const status = deriveStatus({
-        brief: prompts.some((name) => name.endsWith(`-${artifact.id}-listening.md`)),
-        manifest,
-        artifact: existsSync(join(root, 'content/listening', level, `${artifact.id}.yaml`)),
-        // The published derivative, not the studio's WAV master — `listeningAudioPath` is the
-        // one place that spells the layout, so this cannot drift from what publish writes again.
-        audio: existsSync(join(root, listeningAudioPath(unit.level, artifact.id))),
-      });
-      return {
+  const owned = [
+    ...plan.units.flatMap((unit) =>
+      unit.artifacts.map((artifact) => ({
         level: unit.level,
-        unit: unit.unit,
-        artifact: artifact.id,
-        wave: artifact.wave,
-        status,
-      };
-    }),
-  );
+        unit: unit.unit as string | null,
+        collection: null as string | null,
+        artifact,
+      })),
+    ),
+    ...plan.collections.flatMap((collection) =>
+      collection.artifacts.map((artifact) => ({
+        level: collection.level,
+        unit: null as string | null,
+        collection: collection.collection as string | null,
+        artifact,
+      })),
+    ),
+  ];
+  return owned.map(({ level: planLevel, unit, collection, artifact }) => {
+    const level = planLevel.toLowerCase();
+    const manifestPath = join(root, 'data/audio-provenance', level, `${artifact.id}.json`);
+    const manifest = existsSync(manifestPath)
+      ? (JSON.parse(readFileSync(manifestPath, 'utf8')) as {
+          qa?: { passed?: boolean };
+          approval?: { status?: string };
+        })
+      : undefined;
+    const status = deriveStatus({
+      brief: prompts.some((name) => name.endsWith(`-${artifact.id}-listening.md`)),
+      manifest,
+      artifact: existsSync(join(root, 'content/listening', level, `${artifact.id}.yaml`)),
+      // The published derivative, not the studio's WAV master — `listeningAudioPath` is the
+      // one place that spells the layout, so this cannot drift from what publish writes again.
+      audio: existsSync(join(root, listeningAudioPath(planLevel, artifact.id))),
+    });
+    return {
+      level: planLevel,
+      unit,
+      collection,
+      artifact: artifact.id,
+      wave: artifact.wave,
+      status,
+    };
+  });
 }
 
 if (import.meta.main) {
@@ -66,9 +83,11 @@ if (import.meta.main) {
   const rows = inventory(root);
   if (process.argv.includes('--json')) console.log(JSON.stringify(rows, null, 2));
   else {
-    console.log('LEVEL\tWAVE\tSTATUS\tUNIT\tARTIFACT');
+    console.log('LEVEL\tWAVE\tSTATUS\tOWNER\tARTIFACT');
     for (const row of rows)
-      console.log(`${row.level}\t${row.wave}\t${row.status}\t${row.unit}\t${row.artifact}`);
+      console.log(
+        `${row.level}\t${row.wave}\t${row.status}\t${row.unit ?? row.collection}\t${row.artifact}`,
+      );
     const totals = Object.groupBy(rows, (row) => row.status);
     console.log(
       `\n${rows.length} planned · ${Object.entries(totals)

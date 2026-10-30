@@ -122,7 +122,7 @@ describe('the dirty guard', () => {
     fireEvent.change(feld, { target: { value: 'anders' } });
 
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
-    window.location.hash = '#/szenen';
+    window.location.hash = '#/bibliothek';
     window.dispatchEvent(new Event('hashchange'));
 
     await waitFor(() => expect(confirm).toHaveBeenCalledTimes(1));
@@ -137,10 +137,10 @@ describe('the dirty guard', () => {
     fireEvent.change(feld, { target: { value: 'anders' } });
 
     vi.spyOn(window, 'confirm').mockReturnValue(true);
-    window.location.hash = '#/szenen';
+    window.location.hash = '#/bibliothek';
     window.dispatchEvent(new Event('hashchange'));
 
-    await waitFor(() => expect(window.location.hash).toBe('#/szenen'));
+    await waitFor(() => expect(window.location.hash).toBe('#/bibliothek'));
   });
 });
 

@@ -798,54 +798,79 @@ export type ListeningArtifact = z.infer<typeof listeningArtifactSchema>;
 // Editorial listening plan (data/listening-plan.yaml)
 // ---------------------------------------------------------------------------
 
-export const listeningPlanArtifactSchema = z
-  .object({
-    id: slug,
-    wave: z.union([z.literal(1), z.literal(2)]),
-    purpose: z.enum(['listening-outcome', 'model-input']),
-    scenario: z.string().min(1),
-    outcomes: z.array(slug).min(1),
-    required_vocabulary: z.array(z.string().min(1)).default([]),
-    grammar_target: z.string().default(''),
-    duration_seconds: z.object({
-      min: z.number().int().positive(),
-      max: z.number().int().positive(),
-    }),
-    speakers: z.object({
-      min: z.number().int().min(1).max(4),
-      max: z.number().int().min(1).max(4),
-    }),
-    register: z.string().min(1),
-    /**
-     * Which existing exercise item types will carry this artifact's questions.
-     *
-     * This was `question_kinds`, a six-member response union belonging to a `listening` item
-     * type that no longer exists — single-choice was `mc`, ordering was `order`, dictation was
-     * `listen`, and a parallel grading path for the same four tasks is a second place for every
-     * grading rule to be forgotten. Naming a real type keeps the plan answerable against the
-     * catalog: `bun run validate` rejects a value that is not an item type the app can render.
-     */
-    item_types: z.array(z.enum(EXERCISE_ITEM_TYPES)).min(1),
-    /** How many independently scored questions the artifact should carry. Every planned
-      artifact declared exactly three response kinds, so three is what that encoded. */
-    questions: z.number().int().min(1).max(6).default(3),
-    context_sound: z.string().min(1).nullable(),
-  })
-  .superRefine((artifact, ctx) => {
-    if (artifact.duration_seconds.min > artifact.duration_seconds.max)
-      ctx.addIssue({
-        code: 'custom',
-        path: ['duration_seconds'],
-        message: 'min must not exceed max',
-      });
-    if (artifact.speakers.min > artifact.speakers.max)
-      ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
-    if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
-      ctx.addIssue({
-        code: 'custom',
-        message: 'Wave 1 requires vocabulary and a grammar/focus target',
-      });
-  });
+/**
+ * What a planned recording is for. `listening-outcome` is evidence for a listening outcome of its
+ * unit; `model-input` exists to be heard rather than tested on; `exam-practice` rehearses an
+ * exam's Hören, so its outcomes are the content its items are tagged with, in any mode.
+ */
+export const LISTENING_PLAN_PURPOSES = [
+  'listening-outcome',
+  'model-input',
+  'exam-practice',
+] as const;
+
+const listeningPlanArtifactFields = z.object({
+  id: slug,
+  wave: z.union([z.literal(1), z.literal(2)]),
+  purpose: z.enum(LISTENING_PLAN_PURPOSES),
+  scenario: z.string().min(1),
+  outcomes: z.array(slug).min(1),
+  required_vocabulary: z.array(z.string().min(1)).default([]),
+  grammar_target: z.string().default(''),
+  duration_seconds: z.object({
+    min: z.number().int().positive(),
+    max: z.number().int().positive(),
+  }),
+  speakers: z.object({
+    min: z.number().int().min(1).max(4),
+    max: z.number().int().min(1).max(4),
+  }),
+  register: z.string().min(1),
+  /**
+   * Which existing exercise item types will carry this artifact's questions.
+   *
+   * This was `question_kinds`, a six-member response union belonging to a `listening` item
+   * type that no longer exists — single-choice was `mc`, ordering was `order`, dictation was
+   * `listen`, and a parallel grading path for the same four tasks is a second place for every
+   * grading rule to be forgotten. Naming a real type keeps the plan answerable against the
+   * catalog: `bun run validate` rejects a value that is not an item type the app can render.
+   */
+  item_types: z.array(z.enum(EXERCISE_ITEM_TYPES)).min(1),
+  /** How many independently scored questions the artifact should carry. Every planned
+    artifact declared exactly three response kinds, so three is what that encoded. */
+  questions: z.number().int().min(1).max(6).default(3),
+  context_sound: z.string().min(1).nullable(),
+});
+
+type PlanArtifactFields = z.infer<typeof listeningPlanArtifactFields>;
+
+function checkPlanArtifact(artifact: PlanArtifactFields, ctx: z.RefinementCtx) {
+  if (artifact.duration_seconds.min > artifact.duration_seconds.max)
+    ctx.addIssue({
+      code: 'custom',
+      path: ['duration_seconds'],
+      message: 'min must not exceed max',
+    });
+  if (artifact.speakers.min > artifact.speakers.max)
+    ctx.addIssue({ code: 'custom', path: ['speakers'], message: 'min must not exceed max' });
+  if (artifact.wave === 1 && (!artifact.required_vocabulary.length || !artifact.grammar_target))
+    ctx.addIssue({
+      code: 'custom',
+      message: 'Wave 1 requires vocabulary and a grammar/focus target',
+    });
+}
+
+export const listeningPlanArtifactSchema =
+  listeningPlanArtifactFields.superRefine(checkPlanArtifact);
+
+/**
+ * A recording an exercise set owns rather than a unit: one script of an exam practice set.
+ * `serves` names the set's items that play it — several when the exam asks five questions about
+ * one conversation — which is what lets the validator check that they share one script.
+ */
+export const listeningCollectionArtifactSchema = listeningPlanArtifactFields
+  .extend({ serves: z.array(slug).min(1) })
+  .superRefine(checkPlanArtifact);
 
 export const listeningPlanSchema = z.object({
   version: z.literal(1),
@@ -858,6 +883,20 @@ export const listeningPlanSchema = z.object({
       }),
     )
     .min(1),
+  /**
+   * Recordings that belong to an exercise set and to no unit. `collection` is the set's id under
+   * `content/exercises/<level>/`; its artifacts are `ls-<collection>-01`, `-02`, … in the order
+   * the set plays them.
+   */
+  collections: z
+    .array(
+      z.object({
+        collection: slug,
+        level: levelSchema,
+        artifacts: z.array(listeningCollectionArtifactSchema).min(1),
+      }),
+    )
+    .default([]),
 });
 export type ListeningPlan = z.infer<typeof listeningPlanSchema>;
 

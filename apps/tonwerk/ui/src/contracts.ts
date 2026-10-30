@@ -114,19 +114,23 @@ const registryProjectSchema = z.looseObject({
   qa_passed: z.boolean().nullable().optional(),
   has_exercise: z.boolean().optional(),
   updated: z.string().nullable().optional(),
+  archived: z.boolean().optional(),
+  /** `<slug>@<revision>` of the take this project was forked from, or null for an original. */
+  forked_from: z.string().nullable().optional(),
 });
 export type RegistryProject = z.infer<typeof registryProjectSchema>;
 
 /**
- * One planned audio artifact, joined across the plan, the published files, the studio database and
- * the exercises that use it.
+ * One audio artifact, joined across the plan, the published files, the studio database and the
+ * exercises that use it.
  *
- * Listening rows and reading rows are one schema with two optional halves rather than a
- * discriminated union: the table shows them together, sorts them together and filters them
- * together, and a union would mean narrowing on `kind` in every cell.
+ * Three families share one schema with optional halves rather than a discriminated union: the
+ * table shows them together, sorts them together and filters them together, and a union would mean
+ * narrowing on `kind` in every cell. `listening` and `reading` are planned; `scene` is a studio
+ * project nothing plans — a fork, a variant, a trial.
  */
 export const registryRowSchema = z.looseObject({
-  kind: z.enum(['listening', 'reading']),
+  kind: z.enum(['listening', 'reading', 'scene']),
   id: z.string(),
   level: z.string(),
   status: statusSchema,
@@ -140,6 +144,20 @@ export const registryRowSchema = z.looseObject({
   wave: z.union([z.string(), z.number()]).nullable().optional(),
   scenario: z.string().nullable().optional(),
   exercise_items: z.number().optional(),
+  /** The exercise set that owns this recording, when no unit does: an exam practice set. */
+  collection: z.string().nullable().optional(),
+  /** The set's items a collection recording is planned for. They name it once it is published. */
+  serves: z.array(z.string()).optional(),
+  /** The plan's duration window in seconds, `[min, max]`. */
+  window: z.tuple([z.number(), z.number()]).nullable().optional(),
+  /** The published recording's measured length, when one is published. */
+  duration_seconds: z.number().nullable().optional(),
+
+  // Studio-only rows.
+  scene_kind: z.string().optional(),
+
+  /** What the row says, in German: the transcript, the scene's script or the Lesetext. */
+  text: z.string().optional(),
 
   // Readings only.
   topic: z.string().nullable().optional(),
@@ -174,6 +192,7 @@ export const registrySchema = z.looseObject({
   summary: z.looseObject({
     listening: z.number(),
     readings: z.number(),
+    studio: z.number().optional(),
     by_status: z.record(z.string(), z.number()),
     audio_comprehension_items: z.number(),
   }),
@@ -240,10 +259,45 @@ export const sceneRowSchema = z.looseObject({
    * not, so a client that computed its own would offer the affordance on rows the engine refuses.
    */
   deletable: z.boolean().optional(),
+  /** Out of the library's default view and the review queue. */
+  archived: z.boolean().optional(),
+  forked_from: z.string().nullable().optional(),
 });
 export type SceneRow = z.infer<typeof sceneRowSchema>;
 
 /** What a deletion answers with. Small on purpose: the useful part is that it happened. */
+export const sceneArchiveSchema = z.looseObject({ slug: z.string(), archived: z.boolean() });
+export type SceneArchive = z.infer<typeof sceneArchiveSchema>;
+
+export const sceneForkSchema = z.looseObject({
+  slug: z.string(),
+  forked_from: z.string().nullable(),
+  stage: z.string(),
+});
+export type SceneFork = z.infer<typeof sceneForkSchema>;
+
+/**
+ * What the studio holds on disk, per tree, and what the render reaper could remove.
+ *
+ * `renders` is the tree that grows with editing; `assets` and `cache` make a re-render cheap and
+ * are never reaped; `replaced` holds published bytes a republish backed up.
+ */
+export const diskSchema = z.looseObject({
+  root: z.string(),
+  areas: z.record(z.string(), z.number()),
+  renders: z.number(),
+  keep: z.number(),
+  reapable: z.looseObject({ renders: z.number(), bytes: z.number() }),
+});
+export type Disk = z.infer<typeof diskSchema>;
+
+export const reapSchema = z.looseObject({
+  keep: z.number(),
+  removed: z.array(z.string()),
+  bytes: z.number(),
+});
+export type Reap = z.infer<typeof reapSchema>;
+
 export const sceneDeletionSchema = z.looseObject({
   slug: z.string(),
   deleted: z.boolean(),

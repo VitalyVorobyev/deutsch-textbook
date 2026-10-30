@@ -35,7 +35,8 @@ export function Pruefung(): React.JSX.Element {
   const zeilen = useMemo(
     () =>
       (data ?? [])
-        .filter((row) => row.stage === STUFE_WARTET)
+        // An archived project is one its editor has put out of sight, so it waits on nobody.
+        .filter((row) => row.stage === STUFE_WARTET && !row.archived)
         // Ascending: the head of the queue is what has waited longest. `localeCompare` on ISO
         // strings is a byte comparison and correct — the engine writes them all in UTC.
         .sort((a, b) => String(a.updated ?? '').localeCompare(String(b.updated ?? ''))),

@@ -5,20 +5,11 @@ The studio's contract is [ADR 0012](../adrs/0012-editorial-tools-and-the-tonwerk
 
 ## Doing, in order
 
-The owner has put the studio first and the learner integration after it. The roster, the library
-and the editor come first so that the course's audio is produced in the finished tool. Characters
-enter lessons only after this queue
+The owner has put the studio first and the learner integration after it. The roster and the editor
+come first so that the course's audio is produced in the finished tool. Characters enter lessons
+only after this queue
 ([proposal](../proposals/characters-and-stories.md)).
 
-- **TON-2 · Bibliothek.** Nothing lists everything the studio has made: scenes, published
-  recordings, narrations and sounds, with what uses each one. The registry join in
-  `api/registry.py` already holds most of it.
-  - One library view with collections, archiving, forking, transcript search and a disk figure.
-    It replaces the Szenen list.
-  - A keep-last-N render reaper.
-  - **First step:** extend `data/listening-plan.yaml` so a plan entry may belong to a collection
-    instead of a unit. Today every id is `ls-<unit>-01`, which is what blocks the 36 A2 Hören
-    scripts (CON-5).
 - **TON-3 · Figuren and voice quality.** The installed `Qwen3-TTS-12Hz-0.6B-CustomVoice` has nine
   preset speakers and discards every `style` prompt (`supports_style = False` in
   `generative/qwen.py`).
@@ -59,14 +50,14 @@ enter lessons only after this queue
 - **P28-8 · `scripts/validate.ts` predates consented cloning and manifest v2.** Allow
   `voice_cloning_used: true` with a non-empty `consent_sha256` list, and check a v2 manifest's
   `version`/`scene_sha256`. Lands with the first real scene publish (TON-5).
-- **P28-4 · `renders/` has no reaper and no disk figure.** Part of TON-2.
 - **P22-14 / P22-16 · Delivery timing.** Per-line lead and trail silence compound with
   `pause_after_ms` (~1.4 s dead air at a normal turn), and pace and pause do not vary by level.
   Both re-synthesise and invalidate approvals, so pay for them in the TON-3 voice pass. Measure
   words per second of voiced audio (median 2.96).
-- **P22-10 · Nothing compares a recording's length to its planned window**
-  (`data/listening-plan.yaml` `duration_seconds`). Fix the script, never the window; start with
-  `ls-lernen-zukunft-01` and `ls-arbeit-beruf-01`. Belongs in the TON-2 library row.
+- **P22-10 · Twelve of the 40 published recordings miss their planned window.** The Bibliothek
+  marks them *zu kurz* or *zu lang* (`ls-arbeit-beruf-01` runs 24 s against 40–50,
+  `ls-lernen-zukunft-01` 44 s against 65–85). Fix the script, never the window, in the TON-3 voice
+  pass that re-synthesises them anyway.
 - **P22-15 · Tonwerk cannot author a `uk` half**, so the 246 hand-authored `uk` fields exist only
   in the published YAML. Add the column to the question editor and `uk` to `draft_prompt`.
 - **P22-6 · Freesound URLs are matched by prefix** (`sources.py`). Parse the URL and require the

@@ -843,3 +843,450 @@ units:
         register: "beruflich-informell, Besprechung"
         item_types: [audio-comprehension]
         context_sound: "leiser Besprechungsraum"
+collections:
+  # The A2 Hören practice sets. One recording per script: Teil 1 and Teil 3 ask one question each,
+  # Teil 2 and Teil 4 ask five about one conversation. The duration window is the script's word
+  # count at 2.4 to 1.5 words per second, the fastest and slowest pace of the forty recordings
+  # published before these. Every numeral is a protected token of the QA already; the words an
+  # answer turns on are added as required_vocabulary when the scene is drafted.
+  - collection: pruefung-a2-1-hoeren
+    level: A2
+    artifacts:
+      - id: ls-pruefung-a2-1-hoeren-01
+        serves: [teil1-kaufhaus]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Kaufhaus-Durchsage: Angebote am Familientag"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 19, max: 32 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Kaufhaus-Hintergrund"
+      - id: ls-pruefung-a2-1-hoeren-02
+        serves: [teil1-praxis]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Arztpraxis auf dem Anrufbeantworter: Termin wird verschoben"
+        outcomes: [praxis-anweisungen-verstehen]
+        duration_seconds: { min: 23, max: 38 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-1-hoeren-03
+        serves: [teil1-wetter]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Wetterbericht im Radio für das Wochenende"
+        outcomes: [wetterbericht-verstehen]
+        duration_seconds: { min: 18, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "Radio, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-1-hoeren-04
+        serves: [teil1-zug]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Bahnsteig-Durchsage: Regionalexpress mit Verspätung"
+        outcomes: [durchsage-verstehen]
+        duration_seconds: { min: 11, max: 19 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Bahnhofshalle"
+      - id: ls-pruefung-a2-1-hoeren-05
+        serves: [teil1-kemal]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Kemal sagt auf dem Anrufbeantworter den Schwimmbadbesuch ab"
+        outcomes: [einladen-zusagen-absagen]
+        duration_seconds: { min: 18, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, informell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-1-hoeren-06
+        serves: [teil2-montag, teil2-dienstag, teil2-mittwoch, teil2-donnerstag, teil2-freitag]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Anna sucht für ihren Umzug einen freien Abend; Ben nennt seine Woche"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 50, max: 82 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagstempo"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null
+      - id: ls-pruefung-a2-1-hoeren-07
+        serves: [teil3-baeckerei]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Einkauf in der Bäckerei"
+        outcomes: [produkte-vergleichen]
+        duration_seconds: { min: 17, max: 28 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Laden-Hintergrund"
+      - id: ls-pruefung-a2-1-hoeren-08
+        serves: [teil3-besprechung]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Kollegen klären die Uhrzeit einer Besprechung"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 15, max: 26 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, beruflich"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-1-hoeren-09
+        serves: [teil3-post]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Eine Frau fragt auf der Straße nach der Post"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 14, max: 23 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leise Straße"
+      - id: ls-pruefung-a2-1-hoeren-10
+        serves: [teil3-tabletten]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Apothekerin erklärt, wie man die Tabletten nimmt"
+        outcomes: [praxis-anweisungen-verstehen]
+        duration_seconds: { min: 15, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-formell, klar"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-1-hoeren-11
+        serves: [teil3-geschenk]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Zwei Freunde suchen ein Geburtstagsgeschenk für Jonas"
+        outcomes: [einladen-zusagen-absagen]
+        duration_seconds: { min: 17, max: 29 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-1-hoeren-12
+        serves: [teil4-buero, teil4-haus, teil4-mittag, teil4-winter, teil4-freunde]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Radiointerview „Neu anfangen“: Sandra Klein über ihr neues Leben"
+        outcomes: [lebensstationen-ordnen]
+        duration_seconds: { min: 92, max: 148 }
+        speakers: { min: 2, max: 2 }
+        register: "Radiointerview, neutral"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null
+  - collection: pruefung-a2-2-hoeren
+    level: A2
+    artifacts:
+      - id: ls-pruefung-a2-2-hoeren-01
+        serves: [teil1-verkehr]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Verkehrsfunk: Unfall auf der A3"
+        outcomes: [durchsage-verstehen]
+        duration_seconds: { min: 18, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "Radio, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-2-hoeren-02
+        serves: [teil1-werkstatt]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Autowerkstatt auf dem Anrufbeantworter: Reparatur ist fertig"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 17, max: 28 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-2-hoeren-03
+        serves: [teil1-supermarkt]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Supermarkt-Durchsage vor dem Feiertag"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 12, max: 20 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Supermarkt-Hintergrund"
+      - id: ls-pruefung-a2-2-hoeren-04
+        serves: [teil1-fest]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Radiotipp: Sommerfest im Stadtpark"
+        outcomes: [wetterbericht-verstehen]
+        duration_seconds: { min: 17, max: 28 }
+        speakers: { min: 1, max: 1 }
+        register: "Radio, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-2-hoeren-05
+        serves: [teil1-paket]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Sara bittet Tom auf dem Anrufbeantworter, sein Paket abzuholen"
+        outcomes: [nachbarn-bitte]
+        duration_seconds: { min: 22, max: 36 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, informell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-2-hoeren-06
+        serves: [teil2-oma, teil2-opa, teil2-tante, teil2-papa, teil2-mia]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Mutter und Lukas planen die Weihnachtsgeschenke für die Familie"
+        outcomes: [einladen-zusagen-absagen]
+        duration_seconds: { min: 52, max: 84 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagstempo"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null
+      - id: ls-pruefung-a2-2-hoeren-07
+        serves: [teil3-restaurant]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Bestellung im Restaurant"
+        outcomes: [modal-hoefliche-wuensche]
+        duration_seconds: { min: 15, max: 25 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leises Restaurant"
+      - id: ls-pruefung-a2-2-hoeren-08
+        serves: [teil3-kurs]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Anmeldung für einen Deutschkurs"
+        outcomes: [kursanweisungen-verstehen]
+        duration_seconds: { min: 19, max: 32 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-2-hoeren-09
+        serves: [teil3-pullover]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Ein Pullover im Geschäft: Größe, Farbe, Preis"
+        outcomes: [gefallen-passen-sagen]
+        duration_seconds: { min: 18, max: 30 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Laden-Hintergrund"
+      - id: ls-pruefung-a2-2-hoeren-10
+        serves: [teil3-heizung]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Eine Mieterin meldet dem Hausmeister die kaputte Heizung"
+        outcomes: [wohnung-beschreiben]
+        duration_seconds: { min: 15, max: 26 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-2-hoeren-11
+        serves: [teil3-fahrkarte]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Fahrkartenkauf am Schalter"
+        outcomes: [verbindung-waehlen]
+        duration_seconds: { min: 11, max: 18 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral-formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Bahnhofshalle"
+      - id: ls-pruefung-a2-2-hoeren-12
+        serves: [teil4-hotel, teil4-mechaniker, teil4-wochenende, teil4-mittwoch, teil4-ausland]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Radiointerview „Junge Leute im Beruf“: Daniel Weber über seine Ausbildung"
+        outcomes: [aufgaben-beschreiben]
+        duration_seconds: { min: 75, max: 121 }
+        speakers: { min: 2, max: 2 }
+        register: "Radiointerview, informell"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null
+  - collection: pruefung-a2-3-hoeren
+    level: A2
+    artifacts:
+      - id: ls-pruefung-a2-3-hoeren-01
+        serves: [teil1-flug]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Flughafen-Durchsage: neues Gate"
+        outcomes: [durchsage-verstehen]
+        duration_seconds: { min: 12, max: 21 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Flughafenhalle"
+      - id: ls-pruefung-a2-3-hoeren-02
+        serves: [teil1-sprachschule]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Sprachschule auf dem Anrufbeantworter: Kurs fällt aus"
+        outcomes: [kursanweisungen-verstehen]
+        duration_seconds: { min: 16, max: 26 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-3-hoeren-03
+        serves: [teil1-konzert]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Radiotipp: Konzert im Kulturhaus"
+        outcomes: [termine-zeit-verstehen]
+        duration_seconds: { min: 19, max: 32 }
+        speakers: { min: 1, max: 1 }
+        register: "Radio, neutral"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-04
+        serves: [teil1-anschluss]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Zugdurchsage vor Nürnberg: Anschlusszüge"
+        outcomes: [durchsage-verstehen]
+        duration_seconds: { min: 18, max: 30 }
+        speakers: { min: 1, max: 1 }
+        register: "Durchsage, formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Zuggeräusch, leise"
+      - id: ls-pruefung-a2-3-hoeren-05
+        serves: [teil1-julia]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Julia kündigt ihrer Mutter den Sonntagsbesuch mit Max an"
+        outcomes: [einladen-zusagen-absagen]
+        duration_seconds: { min: 15, max: 26 }
+        speakers: { min: 1, max: 1 }
+        register: "telefonisch, informell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "Anrufbeantworter-Signalton"
+      - id: ls-pruefung-a2-3-hoeren-06
+        serves: [teil2-montag, teil2-dienstag, teil2-mittwoch, teil2-donnerstag, teil2-freitag]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Katrin erzählt einem Kollegen von ihrer Woche in Berlin"
+        outcomes: [reise-berichten]
+        duration_seconds: { min: 62, max: 101 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagstempo"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-07
+        serves: [teil3-augenarzt]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Telefonat mit der Augenarztpraxis: einen Termin finden"
+        outcomes: [termine-hoeflich-telefonieren]
+        duration_seconds: { min: 22, max: 37 }
+        speakers: { min: 2, max: 2 }
+        register: "telefonisch, neutral-formell"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-08
+        serves: [teil3-mittag]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Kollegen entscheiden, wo sie zu Mittag essen"
+        outcomes: [absprachen-aushandeln]
+        duration_seconds: { min: 17, max: 28 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-09
+        serves: [teil3-post]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Eine Nachbarin bittet Herrn Schmitt, die Post zu holen"
+        outcomes: [nachbarn-bitte]
+        duration_seconds: { min: 17, max: 28 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-10
+        serves: [teil3-schuhe]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Im Kaufhaus nach Kinderschuhen fragen"
+        outcomes: [produkte-vergleichen]
+        duration_seconds: { min: 13, max: 22 }
+        speakers: { min: 2, max: 2 }
+        register: "neutral, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: "leiser Kaufhaus-Hintergrund"
+      - id: ls-pruefung-a2-3-hoeren-11
+        serves: [teil3-joggen]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Zwei Freunde verabreden sich zum Joggen"
+        outcomes: [absprachen-aushandeln]
+        duration_seconds: { min: 16, max: 27 }
+        speakers: { min: 2, max: 2 }
+        register: "informell, Alltagsgespräch"
+        item_types: [audio-comprehension]
+        questions: 1
+        context_sound: null
+      - id: ls-pruefung-a2-3-hoeren-12
+        serves: [teil4-parkplatz, teil4-anfang, teil4-geld, teil4-markt, teil4-erfahrung]
+        wave: 2
+        purpose: exam-practice
+        scenario: "Radiointerview: Yusuf Demir über seinen Garten für alle in Köln"
+        outcomes: [landschaft-beschreiben]
+        duration_seconds: { min: 69, max: 111 }
+        speakers: { min: 2, max: 2 }
+        register: "Radiointerview, neutral"
+        item_types: [audio-comprehension]
+        questions: 5
+        context_sound: null

@@ -56,6 +56,7 @@ Model weights are never downloaded implicitly. `models list` prints `models.lock
 | `scene validate` · `create` · `from-dialogue` · `from-reading` · `show` | the scene document |
 | `scene render` · `qa` · `regenerate-corpus` | audio and its automatic QA |
 | `scene publish` · `publish-approved` · `delete` · `schema` | the repository side |
+| `scene archive` · `fork` · `reap` | the library: hide a project, copy one into a new draft, report and remove old renders (`reap` without `--yes` only reports) |
 
 Every verb that takes `--json` prints exactly one JSON document on stdout. The whole verb runs
 under `scene.cli.json_verb`, which sends library output to stderr: the pinned Qwen adapter prints
@@ -73,6 +74,7 @@ unguarded.
 | `qa.py` · `speaker_qa.py` · `soundscape.py` | transcript thresholds and the pinned Whisper; WavLM identity; the bed-level measurement |
 | `domain.py` | the shared vocabulary: the stage machine, bilingual text, single-choice questions, the QA report and the WER comparison |
 | `storage.py` | the SQLite store and its Alembic migrations |
+| `library.py` | what the studio holds on disk, and the render reaper |
 | `api/` · `web.py` | the JSON API, one module per concern, and the app factory |
 | `catalogs.py` · `sources.py` | the character and narration catalogs; imported and generated sounds |
 
@@ -215,11 +217,18 @@ a test take reaches a learner.
 | `GET …/renders/{variant}/artifact/{path}` | any file the render **declared it wrote**; the allowlist is `render.json`'s `artifacts`, never the filesystem |
 | `POST /api/scenes/{slug}/approve` | the eight-point checklist, the reviewer's name, **the sha256 of the master they listened to** and the variant; a mismatch or a variant with no passing report is 409 |
 | `POST /api/scenes/{slug}/decline` · `/publish` | with a reason, back to `draft`; publish one approved scene, or 409 naming the gate |
+| `POST /api/scenes/{slug}/archive` · `/fork` | `{archived}` — out of the library's default view and the review queue, or back; `{slug}` — a new draft project from the head revision, recording `forked_from` as `<slug>@<revision>`, 409 when the slug is taken |
 
 **Libraries** — `GET /api/characters` (the roster, how many scenes cast each character, demos and
 portraits) and `GET /api/narration-profiles` (`api/characters.py`); `/api/voices` (`api/voices.py`);
 `/api/acoustics` (`api/acoustics.py`); `/api/sounds` with each source's scene usage, and
 `POST /api/sounds/generate` (`api/sounds.py`).
+
+**Library** (`api/library.py`, `library.py`) — `GET /api/library/disk?keep=N` sizes the studio's
+trees (`renders`, `assets`, `cache`, `replaced`) and counts the render trees the reaper may remove;
+`POST /api/library/reap {keep}` removes them. A tree stays when its scene sha is one of a project's
+newest `keep` revisions (default 2), a signed revision, or one a provenance manifest names as
+published. `assets/` and `cache/` are never reaped: they are what makes a re-render cheap.
 
 **Registry** (`api/registry.py`) — `GET /api/registry` is `scripts/listening-inventory.ts` joined
 with the studio's scene projects and the exercise corpus. That script stays as it is, because CI and
@@ -227,11 +236,15 @@ the authoring loop need an answer with no studio installed; `tests/test_api_regi
 two status vocabularies equal. The join buys three findings no single source can see: `stale` —
 published audio whose scene has moved on since the version-2 manifest named its `scene_sha256` —
 `recordings_without_exercises` and `exercises_without_recordings`. A narration row also reports
-`source_drift` when its scene's script no longer says the Lesetext the repository holds. Against the
-real corpus and an empty store, `registry()` reports 57 planned recordings, 17 of them without an
-exercise item and 115 `audio-comprehension` items without a recording (measured with
-`api.registry.registry(Store(<tmp>), <repo>)`); `bun run listening:inventory` prints
-`57 planned · 40 published · 16 planned · 1 drafted`.
+`source_drift` when its scene's script no longer says the Lesetext the repository holds. A planned
+recording belongs to a unit (`unit`) or to an exercise set (`collection`, with the item ids it
+`serves`); a collection recording is never reported as unused, since its items name it only once it
+is published. Rows also carry the plan's duration `window`, the published `duration_seconds` and a
+`text` to search. Scene projects no plan entry or Lesetext owns, such as forks, are rows of kind
+`scene`. Against the real corpus and an empty store, `registry()` reports 93 planned recordings, 17
+of them without an exercise item, and 115 `audio-comprehension` items without a recording
+(measured with `api.registry.registry(Store(<tmp>), <repo>)`); `bun run listening:inventory` prints
+`93 planned · 40 published · 52 planned · 1 drafted`.
 
 ## The render graph
 
@@ -258,7 +271,8 @@ Layout, under the studio work directory: `renders/<scene-sha256>/<variant>/` hol
 manifest carries every node hash and impl version, every asset sha and its provenance, the
 `models.lock.json` rows for the engines that ran, the ffmpeg version, and the **timing table** — one
 `{utterance_id, start_ms, end_ms}` per turn, which is the cue source for publishing. Stems and
-masters are kept per scene sha; nothing here deletes a render.
+masters are kept per scene sha until `scene reap` (or the Bibliothek's disk panel) removes the
+trees of older revisions.
 
 Formats: the working master is stereo 48 kHz `pcm_s24le`. Two derivatives are always produced:
 `qa.wav` (mono 16 kHz, the only format Whisper and WavLM are given) and `publish.mp3` (stereo
