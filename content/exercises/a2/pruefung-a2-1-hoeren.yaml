@@ -1,0 +1,317 @@
+topic: freunde-feste
+role: exam-practice
+title_de: "Übungssatz 1 · Hören"
+title: { en: "Goethe-style practice set 1 — Listening", ru: "Пробный комплект 1 в формате Goethe — аудирование", uk: "Пробний комплект 1 у форматі Goethe — аудіювання" }
+# Four Teile of five items, in the exam's order: five short texts heard twice, one conversation
+# heard once (five people or days matched to nine options), five short conversations heard once,
+# an interview heard twice with Ja/Nein. The play budget is per item, so the five items on one
+# recording each carry it; the instruction asks for the exam's single or double hearing.
+items:
+  # --- Teil 1: fünf kurze Texte, zweimal ---
+  - id: teil1-kaufhaus
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: &t1 { en: "Teil 1 · Listen to the short text and choose the right answer. In the exam you hear each text twice.", ru: "Teil 1 · Прослушайте короткий текст и выберите правильный ответ. На экзамене каждый текст звучит дважды.", uk: "Teil 1 · Прослухайте короткий текст і оберіть правильну відповідь. На іспиті кожен текст звучить двічі." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Durchsage, text: "Liebe Kundinnen und Kunden, heute ist bei uns Familientag!" }
+        - { speaker: Durchsage, text: "Im dritten Stock bekommen alle Kinder bis zwölf Jahre ein kostenloses Eis." }
+        - { speaker: Durchsage, text: "Und für Sie gibt es heute zwanzig Prozent auf alle Schuhe – aber nur bis vierzehn Uhr." }
+        - { speaker: Durchsage, text: "Unser Restaurant im vierten Stock ist heute leider geschlossen." }
+    question: "Bis wann sind die Schuhe heute billiger?"
+    options: ["bis zwölf Uhr", "bis vierzehn Uhr", "bis vier Uhr"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Zwanzig Prozent auf alle Schuhe – aber nur bis vierzehn Uhr. Zwölf is the children's age limit for the ice cream; vier is the floor of the closed restaurant.", ru: "Zwanzig Prozent auf alle Schuhe – aber nur bis vierzehn Uhr. Двенадцать — это возраст детей, которым дают мороженое, а четыре — этаж закрытого ресторана.", uk: "Zwanzig Prozent auf alle Schuhe – aber nur bis vierzehn Uhr. Дванадцять — це вік дітей, яким дають морозиво, а чотири — поверх зачиненого ресторану." }
+  - id: teil1-praxis
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [praxis-anweisungen-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Praxis, text: "Guten Tag, hier ist die Praxis Doktor Berger." }
+        - { speaker: Praxis, text: "Frau Kowalski, Sie haben morgen um neun Uhr einen Termin bei uns. Leider ist Doktor Berger morgen krank." }
+        - { speaker: Praxis, text: "Können Sie vielleicht am Donnerstag um halb elf kommen? Bitte rufen Sie uns bis heute Abend an." }
+        - { speaker: Praxis, text: "Unsere Nummer ist null zwei eins eins, vier fünf sechs sieben acht. Vielen Dank!" }
+    question: "Was soll Frau Kowalski tun?"
+    options: ["morgen um neun Uhr in die Praxis kommen", "die Praxis anrufen", "zu einem anderen Arzt gehen"]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Bitte rufen Sie uns bis heute Abend an. Tomorrow at nine is the appointment that is cancelled, and Thursday is only a suggestion she has to confirm by phone.", ru: "Bitte rufen Sie uns bis heute Abend an. Завтрашний приём в девять отменяется, а четверг — лишь предложение, которое нужно подтвердить по телефону.", uk: "Bitte rufen Sie uns bis heute Abend an. Завтрашній прийом о дев'ятій скасовано, а четвер — лише пропозиція, яку треба підтвердити телефоном." }
+  - id: teil1-wetter
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [wetterbericht-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Radio, text: "Und jetzt das Wetter für das Wochenende." }
+        - { speaker: Radio, text: "Am Samstag ist es noch sonnig und warm, bis fünfundzwanzig Grad." }
+        - { speaker: Radio, text: "Am Sonntag kommt dann Regen aus dem Westen, und es wird kühler: nur noch achtzehn Grad." }
+        - { speaker: Radio, text: "Im Süden kann es am Sonntagabend auch ein Gewitter geben." }
+    question: "Wie ist das Wetter am Sonntag?"
+    options: ["Es ist sonnig und warm.", "Es regnet.", "Es ist fünfundzwanzig Grad warm."]
+    correct: 1
+    max_replays: 2
+    explain: { en: "Am Sonntag kommt dann Regen. Sun and twenty-five degrees belong to Saturday.", ru: "Am Sonntag kommt dann Regen. Солнце и двадцать пять градусов — это суббота.", uk: "Am Sonntag kommt dann Regen. Сонце й двадцять п'ять градусів — це субота." }
+  - id: teil1-zug
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [durchsage-verstehen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Durchsage, text: "Achtung an Gleis drei." }
+        - { speaker: Durchsage, text: "Der Regionalexpress nach Würzburg, Abfahrt zehn Uhr zwölf, hat heute circa fünfzehn Minuten Verspätung." }
+        - { speaker: Durchsage, text: "Grund ist eine Reparatur am Zug. Wir bitten um Entschuldigung." }
+    question: "Wann fährt der Zug heute ab?"
+    options: ["um zehn Uhr zwölf", "um zehn Uhr fünfzehn", "um zehn Uhr siebenundzwanzig"]
+    correct: 2
+    max_replays: 2
+    explain: { en: "Zehn Uhr zwölf is the timetable; with circa fünfzehn Minuten Verspätung the train leaves at about 10:27. Fünfzehn is the length of the delay, not a time.", ru: "Zehn Uhr zwölf — время по расписанию; с опозданием circa fünfzehn Minuten поезд уйдёт примерно в 10:27. Fünfzehn — это длительность опоздания, а не время.", uk: "Zehn Uhr zwölf — час за розкладом; із запізненням circa fünfzehn Minuten потяг вирушить приблизно о 10:27. Fünfzehn — це тривалість запізнення, а не час." }
+  - id: teil1-kemal
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t1
+    source:
+      kind: tts
+      turns:
+        - { speaker: Kemal, text: "Hallo Paula, hier ist Kemal." }
+        - { speaker: Kemal, text: "Wir wollten doch am Samstag zusammen ins Schwimmbad gehen. Aber das Hallenbad ist am Wochenende geschlossen, das habe ich gerade gelesen." }
+        - { speaker: Kemal, text: "Wollen wir lieber Fahrrad fahren? Wir können uns um zwei Uhr am Park treffen. Ruf mich kurz an!" }
+    question: "Was möchte Kemal jetzt am Samstag machen?"
+    options: ["ins Schwimmbad gehen", "im Park spazieren gehen", "Fahrrad fahren"]
+    correct: 2
+    max_replays: 2
+    explain: { en: "Wollen wir lieber Fahrrad fahren? The pool is closed at the weekend, and the park is only where they meet.", ru: "Wollen wir lieber Fahrrad fahren? Бассейн в выходные закрыт, а парк — лишь место встречи.", uk: "Wollen wir lieber Fahrrad fahren? Басейн на вихідних зачинений, а парк — лише місце зустрічі." }
+
+  # --- Teil 2: ein Gespräch, einmal; fünf Tage, neun Möglichkeiten ---
+  - id: teil2-montag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: &t2 { en: "Teil 2 · Anna asks her friend Ben when he can help her move. What does Ben do on which day? In the exam you hear the conversation once and answer all five days.", ru: "Teil 2 · Анна спрашивает друга Бена, когда он сможет помочь ей с переездом. Что Бен делает в какой день? На экзамене разговор звучит один раз, и за это время нужно ответить про все пять дней.", uk: "Teil 2 · Анна питає друга Бена, коли він зможе допомогти їй із переїздом. Що Бен робить якого дня? На іспиті розмова звучить один раз, і за цей час треба відповісти про всі п'ять днів." }
+    source: &t2src
+      kind: tts
+      turns:
+        - { speaker: Anna, text: "Hallo Ben! Du, ich ziehe nächste Woche um. Hast du an einem Abend Zeit? Ich brauche Hilfe." }
+        - { speaker: Ben, text: "Hm, nächste Woche ist schwierig. Am Montag gehe ich um sechs zum Zahnarzt. Danach habe ich bestimmt keine Lust auf Kisten." }
+        - { speaker: Anna, text: "Verstehe. Und am Dienstag?" }
+        - { speaker: Ben, text: "Dienstags spiele ich immer Fußball. Aber diesen Dienstag gibt es kein Training, deshalb gehe ich mit Lisa ins Kino." }
+        - { speaker: Anna, text: "Schade. Und am Mittwoch?" }
+        - { speaker: Ben, text: "Am Mittwoch habe ich normalerweise meinen Deutschkurs. Aber diese Woche ist der Kurs am Donnerstag, die Lehrerin kann am Mittwoch nicht. Und am Mittwoch muss ich lange arbeiten, bis neun Uhr." }
+        - { speaker: Anna, text: "Und am Freitag?" }
+        - { speaker: Ben, text: "Am Freitag fahre ich zu meinen Eltern. Aber am Samstag habe ich Zeit, dann helfe ich dir gern!" }
+        - { speaker: Anna, text: "Super, Samstag passt auch. Danke!" }
+    question: "Was macht Ben am Montag?"
+    options: &t2opts ["zum Zahnarzt gehen", "Fußball spielen", "ins Kino gehen", "lange arbeiten", "zum Deutschkurs gehen", "die Eltern besuchen", "einkaufen", "beim Umzug helfen", "die Wohnung putzen"]
+    correct: 0
+    max_replays: 1
+    explain: { en: "Am Montag gehe ich um sechs zum Zahnarzt.", ru: "Am Montag gehe ich um sechs zum Zahnarzt — в понедельник он идёт к стоматологу.", uk: "Am Montag gehe ich um sechs zum Zahnarzt — у понеділок він іде до стоматолога." }
+  - id: teil2-dienstag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t2
+    source: *t2src
+    question: "Was macht Ben am Dienstag?"
+    options: *t2opts
+    correct: 2
+    max_replays: 1
+    explain: { en: "Football is his usual Tuesday — dienstags … immer — but diesen Dienstag gibt es kein Training, so he goes to the cinema with Lisa.", ru: "Футбол — его обычный вторник (dienstags … immer), но diesen Dienstag gibt es kein Training, поэтому он идёт с Лизой в кино.", uk: "Футбол — його звичайний вівторок (dienstags … immer), але diesen Dienstag gibt es kein Training, тому він іде з Лізою в кіно." }
+  - id: teil2-mittwoch
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t2
+    source: *t2src
+    question: "Was macht Ben am Mittwoch?"
+    options: *t2opts
+    correct: 3
+    max_replays: 1
+    explain: { en: "The course is normally on Wednesday, but this week it moves to Thursday; am Mittwoch muss ich lange arbeiten, bis neun Uhr.", ru: "Обычно курс по средам, но на этой неделе он перенесён на четверг; am Mittwoch muss ich lange arbeiten, bis neun Uhr.", uk: "Зазвичай курс по середах, але цього тижня його перенесено на четвер; am Mittwoch muss ich lange arbeiten, bis neun Uhr." }
+  - id: teil2-donnerstag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t2
+    source: *t2src
+    question: "Was macht Ben am Donnerstag?"
+    options: *t2opts
+    correct: 4
+    max_replays: 1
+    explain: { en: "Diese Woche ist der Kurs am Donnerstag — the German course moves from Wednesday to Thursday.", ru: "Diese Woche ist der Kurs am Donnerstag — курс немецкого переносится со среды на четверг.", uk: "Diese Woche ist der Kurs am Donnerstag — курс німецької переносять із середи на четвер." }
+  - id: teil2-freitag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t2
+    source: *t2src
+    question: "Was macht Ben am Freitag?"
+    options: *t2opts
+    correct: 5
+    max_replays: 1
+    explain: { en: "Am Freitag fahre ich zu meinen Eltern. Helping with the move is Saturday, which is not one of the five days.", ru: "Am Freitag fahre ich zu meinen Eltern. Помощь с переездом — в субботу, а её среди пяти дней нет.", uk: "Am Freitag fahre ich zu meinen Eltern. Допомога з переїздом — у суботу, а її серед п'яти днів немає." }
+
+  # --- Teil 3: fünf kurze Gespräche, einmal ---
+  - id: teil3-baeckerei
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [produkte-vergleichen]
+    instruction: &t3 { en: "Teil 3 · Listen to the short conversation and choose the right answer. In the exam you hear it once.", ru: "Teil 3 · Прослушайте короткий разговор и выберите правильный ответ. На экзамене он звучит один раз.", uk: "Teil 3 · Прослухайте коротку розмову й оберіть правильну відповідь. На іспиті вона звучить один раз." }
+    source:
+      kind: tts
+      turns:
+        - { speaker: Verkäufer, text: "Guten Morgen, was darf es sein?" }
+        - { speaker: Kundin, text: "Ich hätte gern sechs Brötchen, bitte." }
+        - { speaker: Verkäufer, text: "Gern. Sonst noch etwas? Wir haben heute ein sehr gutes Brot mit Käse." }
+        - { speaker: Kundin, text: "Nein danke, Brot habe ich noch zu Hause. Aber geben Sie mir bitte noch zwei Stück Apfelkuchen." }
+    question: "Was kauft die Frau?"
+    options: ["Brötchen und Brot", "Brot und Kuchen", "Brötchen und Kuchen"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "Sechs Brötchen and zwei Stück Apfelkuchen. She turns the bread down: Brot habe ich noch zu Hause.", ru: "Sechs Brötchen и zwei Stück Apfelkuchen. От хлеба она отказывается: Brot habe ich noch zu Hause.", uk: "Sechs Brötchen і zwei Stück Apfelkuchen. Від хліба вона відмовляється: Brot habe ich noch zu Hause." }
+  - id: teil3-besprechung
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Mann, text: "Frau Schmidt, die Besprechung morgen ist doch um zehn, oder?" }
+        - { speaker: Frau, text: "Ja, eigentlich um zehn. Aber Herr Klein kommt erst um elf aus Berlin zurück." }
+        - { speaker: Frau, text: "Wir haben sie deshalb auf halb zwölf verschoben." }
+        - { speaker: Mann, text: "Gut, also um halb zwölf. Danke!" }
+    question: "Wann beginnt die Besprechung?"
+    options: ["um zehn Uhr", "um halb zwölf", "um elf Uhr"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Wir haben sie deshalb auf halb zwölf verschoben — 11:30. Ten was the old time; eleven is when Herr Klein gets back.", ru: "Wir haben sie deshalb auf halb zwölf verschoben — на 11:30. Десять — старое время, а в одиннадцать только возвращается господин Кляйн.", uk: "Wir haben sie deshalb auf halb zwölf verschoben — на 11:30. Десята — старий час, а об одинадцятій лише повертається пан Кляйн." }
+  - id: teil3-post
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [termine-zeit-verstehen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Frau, text: "Entschuldigung, wo ist hier die Post?" }
+        - { speaker: Mann, text: "Die Post? Die war früher hier am Marktplatz, neben dem Café." }
+        - { speaker: Mann, text: "Jetzt ist sie im Einkaufszentrum, gegenüber vom Bahnhof. Gehen Sie hier geradeaus, dann sehen Sie es schon." }
+    question: "Wo ist die Post jetzt?"
+    options: ["am Marktplatz", "im Einkaufszentrum", "neben dem Café"]
+    correct: 1
+    max_replays: 1
+    explain: { en: "Die war früher hier am Marktplatz, neben dem Café — früher is the past. Jetzt ist sie im Einkaufszentrum.", ru: "Die war früher hier am Marktplatz, neben dem Café — früher говорит о прошлом. Jetzt ist sie im Einkaufszentrum.", uk: "Die war früher hier am Marktplatz, neben dem Café — früher каже про минуле. Jetzt ist sie im Einkaufszentrum." }
+  - id: teil3-tabletten
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [praxis-anweisungen-verstehen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Apothekerin, text: "Nehmen Sie die Tabletten dreimal am Tag, immer nach dem Essen." }
+        - { speaker: Mann, text: "Auch am Abend?" }
+        - { speaker: Apothekerin, text: "Ja, morgens, mittags und abends. Aber nicht länger als fünf Tage. Wenn es dann nicht besser ist, gehen Sie bitte wieder zum Arzt." }
+    question: "Wie soll der Mann die Tabletten nehmen?"
+    options: ["dreimal am Tag nach dem Essen", "fünfmal am Tag", "nur am Abend"]
+    correct: 0
+    max_replays: 1
+    explain: { en: "Dreimal am Tag, immer nach dem Essen — morning, noon and evening. Fünf is the number of days, not of tablets.", ru: "Dreimal am Tag, immer nach dem Essen — утром, днём и вечером. Пять — это количество дней, а не таблеток.", uk: "Dreimal am Tag, immer nach dem Essen — уранці, удень і ввечері. П'ять — це кількість днів, а не таблеток." }
+  - id: teil3-geschenk
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [einladen-zusagen-absagen]
+    instruction: *t3
+    source:
+      kind: tts
+      turns:
+        - { speaker: Mann, text: "Was schenken wir Jonas zum Geburtstag? Ein Buch?" }
+        - { speaker: Frau, text: "Er liest doch nicht so gern. Er hört lieber Musik." }
+        - { speaker: Mann, text: "Eine CD? Wer kauft heute noch CDs!" }
+        - { speaker: Frau, text: "Stimmt. Aber er geht doch so gern ins Kino. Wir schenken ihm Kinokarten!" }
+        - { speaker: Mann, text: "Gute Idee, das machen wir." }
+    question: "Was schenken sie Jonas?"
+    options: ["ein Buch", "eine CD", "Kinokarten"]
+    correct: 2
+    max_replays: 1
+    explain: { en: "Wir schenken ihm Kinokarten! — Gute Idee, das machen wir. The book and the CD are both rejected.", ru: "Wir schenken ihm Kinokarten! — Gute Idee, das machen wir. Книгу и диск они оба отвергли.", uk: "Wir schenken ihm Kinokarten! — Gute Idee, das machen wir. Книжку й диск вони обидва відкинули." }
+
+  # --- Teil 4: Interview, zweimal; Ja oder Nein ---
+  - id: teil4-buero
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [lebensstationen-ordnen]
+    instruction: &t4 { en: "Teil 4 · Listen to the radio interview. Is the statement right? Choose Ja or Nein. In the exam you hear the interview twice.", ru: "Teil 4 · Прослушайте радиоинтервью. Верно ли утверждение? Выберите Ja или Nein. На экзамене интервью звучит дважды.", uk: "Teil 4 · Прослухайте радіоінтерв'ю. Чи правильне твердження? Оберіть Ja або Nein. На іспиті інтерв'ю звучить двічі." }
+    source: &t4src
+      kind: tts
+      turns:
+        - { speaker: Moderator, text: "Guten Tag und herzlich willkommen zu unserer Sendung „Neu anfangen“. Heute ist Sandra Klein bei uns. Frau Klein, Sie haben zehn Jahre in Berlin gelebt. Jetzt wohnen Sie in einem kleinen Dorf an der Ostsee. Warum?" }
+        - { speaker: Sandra Klein, text: "In Berlin hatte ich eine gute Arbeit in einem Büro. Aber ich hatte nie Zeit, und die Wohnungen waren sehr teuer. Vor drei Jahren hat mir meine Großmutter ihr altes Haus an der Ostsee geschenkt. Da habe ich gedacht: Jetzt oder nie!" }
+        - { speaker: Moderator, text: "Und was machen Sie jetzt beruflich?" }
+        - { speaker: Sandra Klein, text: "Ich habe im Haus ein kleines Café aufgemacht. Am Anfang wollte ich nur Kaffee und Kuchen verkaufen. Jetzt koche ich auch mittags, denn viele Touristen fragen nach einem Mittagessen." }
+        - { speaker: Moderator, text: "Kommen denn genug Gäste?" }
+        - { speaker: Sandra Klein, text: "Im Sommer ja, da ist das Café jeden Tag voll. Im Winter kommen nur die Leute aus dem Dorf. Deshalb ist das Café von November bis März nur am Wochenende geöffnet." }
+        - { speaker: Moderator, text: "Fehlt Ihnen Berlin manchmal?" }
+        - { speaker: Sandra Klein, text: "Die Kinos und Theater fehlen mir schon ein bisschen. Aber meine Freunde aus Berlin besuchen mich oft, besonders im Sommer. Und hier im Dorf habe ich auch neue Freunde gefunden." }
+        - { speaker: Moderator, text: "Was ist für Sie das Schönste am Leben im Dorf?" }
+        - { speaker: Sandra Klein, text: "Die Ruhe. Und ich gehe jeden Morgen eine Stunde am Meer spazieren, bevor ich das Café aufmache. Das war in Berlin nicht möglich." }
+        - { speaker: Moderator, text: "Frau Klein, vielen Dank für das Gespräch." }
+    question: "Frau Klein hat in Berlin in einem Büro gearbeitet."
+    options: &jn ["Ja", "Nein"]
+    correct: 0
+    max_replays: 2
+    explain: { en: "In Berlin hatte ich eine gute Arbeit in einem Büro.", ru: "In Berlin hatte ich eine gute Arbeit in einem Büro — в Берлине она работала в офисе.", uk: "In Berlin hatte ich eine gute Arbeit in einem Büro — у Берліні вона працювала в офісі." }
+  - id: teil4-haus
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [lebensstationen-ordnen]
+    instruction: *t4
+    source: *t4src
+    question: "Frau Klein hat das Haus an der Ostsee gekauft."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Meine Großmutter hat mir ihr altes Haus … geschenkt — it was a gift, not a purchase.", ru: "Meine Großmutter hat mir ihr altes Haus … geschenkt — дом ей подарили, а не продали.", uk: "Meine Großmutter hat mir ihr altes Haus … geschenkt — будинок їй подарували, а не продали." }
+  - id: teil4-mittag
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [lebensstationen-ordnen]
+    instruction: *t4
+    source: *t4src
+    question: "Im Café gibt es auch ein Mittagessen."
+    options: *jn
+    correct: 0
+    max_replays: 2
+    explain: { en: "Jetzt koche ich auch mittags — at first she only wanted to sell coffee and cake, but now she cooks lunch too.", ru: "Jetzt koche ich auch mittags — сначала она хотела продавать только кофе и пироги, а теперь готовит и обеды.", uk: "Jetzt koche ich auch mittags — спочатку вона хотіла продавати лише каву й пироги, а тепер готує й обіди." }
+  - id: teil4-winter
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [lebensstationen-ordnen]
+    instruction: *t4
+    source: *t4src
+    question: "Im Winter ist das Café jeden Tag geöffnet."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Von November bis März nur am Wochenende geöffnet. Jeden Tag voll is summer.", ru: "Von November bis März nur am Wochenende geöffnet. Jeden Tag voll — это про лето.", uk: "Von November bis März nur am Wochenende geöffnet. Jeden Tag voll — це про літо." }
+  - id: teil4-freunde
+    type: audio-comprehension
+    target_mode: listening
+    outcomes: [lebensstationen-ordnen]
+    instruction: *t4
+    source: *t4src
+    question: "Frau Klein hat im Dorf keine Freunde."
+    options: *jn
+    correct: 1
+    max_replays: 2
+    explain: { en: "Hier im Dorf habe ich auch neue Freunde gefunden — and her Berlin friends visit her too.", ru: "Hier im Dorf habe ich auch neue Freunde gefunden — к тому же её навещают друзья из Берлина.", uk: "Hier im Dorf habe ich auch neue Freunde gefunden — до того ж її навідують друзі з Берліна." }
