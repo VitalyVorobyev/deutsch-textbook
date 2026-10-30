@@ -9,8 +9,10 @@ validate, store, render, QA, publish — `scene/cli.py`); `voices …` is the co
 from __future__ import annotations
 
 import json
-import shutil
-import subprocess
+import os
+import socket
+import sys
+import threading
 import webbrowser
 from pathlib import Path
 from typing import cast
@@ -20,6 +22,7 @@ import uvicorn
 from huggingface_hub import snapshot_download
 
 from .catalogs import load_character_catalog
+from .doctor import doctor_report
 from .dsp.audio import conform
 from .generative.fake import FakeSpeech
 from .generative.gateway import CloningSpeechGenerator, SpeechRequest, SpeechGenerator
@@ -62,24 +65,104 @@ def repo_root(repo: Path) -> Path:
     return resolved
 
 
+def listening_socket(port: int) -> socket.socket:
+    """A socket already listening on 127.0.0.1, so the port is known before anything is printed.
+
+    `--port 0` asks the kernel for a free one. Listening here rather than inside uvicorn is what
+    makes the handshake safe to act on at once: a connection that arrives before uvicorn's loop
+    starts waits in the backlog instead of being refused.
+    """
+
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        sock.bind(("127.0.0.1", port))
+    except OSError as error:
+        sock.close()
+        raise typer.BadParameter(
+            f"127.0.0.1:{port} is taken ({error.strerror}); is an engine already running? "
+            "`--port 0` picks a free port.",
+            param_hint="--port",
+        ) from error
+    sock.listen(128)
+    return sock
+
+
+def go_offline() -> None:
+    """No model download from inside a running engine, ever.
+
+    Weights arrive only through `models fetch` and the install scripts, at pinned revisions. The
+    environment variable reaches every library imported later and every subprocess; the constant
+    is set as well because `huggingface_hub` read the variable when this module imported it.
+    """
+
+    import huggingface_hub.constants
+
+    os.environ["HF_HUB_OFFLINE"] = "1"
+    huggingface_hub.constants.HF_HUB_OFFLINE = True
+
+
+def exit_on_stdin_eof(server: uvicorn.Server) -> None:
+    """Stop when the process that started this engine goes away.
+
+    The desktop shell holds the other end of stdin and never writes to it. However the shell ends
+    — quit, crash, force-kill — the pipe closes, and the engine follows it instead of living on as
+    an orphan holding the port and a gigabyte of model.
+    """
+
+    def watch() -> None:
+        sys.stdin.buffer.read()
+        server.should_exit = True
+
+    threading.Thread(target=watch, name="stdin-eof", daemon=True).start()
+
+
 @app.command()
-def serve(repo: Path = typer.Option(Path.cwd()), port: int = 8765, no_open: bool = False) -> None:
+def serve(
+    repo: Path = typer.Option(Path.cwd()),
+    port: int = typer.Option(8765, help="0 binds a free port."),
+    no_browser: bool = typer.Option(False, "--no-browser", help="Do not open a browser tab."),
+    handshake: bool = typer.Option(
+        False,
+        "--handshake",
+        help="For a supervising shell: print one JSON line, log nothing else to stdout, open no "
+        "browser, and stop when stdin closes.",
+    ),
+) -> None:
+    go_offline()
     store = Store()
     api = web_app(store, repo_root(repo))
+    sock = listening_socket(port)
+    bound = int(sock.getsockname()[1])
     token = api.state.session_token
-    url = f"http://127.0.0.1:{port}/"
-    typer.echo(f"Tonwerk: {url}")
-    # The one place the secret exists. It is generated per run and never written to disk, so this
-    # line is the only copy: Tonwerk's token screen is typed into from it, and so is any agent or
-    # CLI. The URL no longer carries it — `?token=` was the legacy HTML pages' way in and went
-    # with them, and a token in an address bar is a token in the shell history of whoever pastes it.
-    typer.echo(f"API bearer token: {token}")
-    typer.echo(f'  curl -H "Authorization: Bearer {token}" http://127.0.0.1:{port}/api/registry')
-    if not TONWERK_DIST.is_dir():
-        typer.echo("Tonwerk is not built; / answers a hint. Build it with: bun run tonwerk:build")
-    if not no_open:
-        webbrowser.open(url)
-    uvicorn.run(api, host="127.0.0.1", port=port)
+    base = f"http://127.0.0.1:{bound}/"
+    server = uvicorn.Server(uvicorn.Config(api, access_log=not handshake))
+
+    if handshake:
+        # The only line on stdout, and the shell's whole contract with this process. The token
+        # in it never touches a disk or an address bar: the shell hands it to its webview
+        # in-process.
+        print(json.dumps({"tonwerk": 1, "url": base, "port": bound, "token": token}), flush=True)
+        exit_on_stdin_eof(server)
+    else:
+        launch = f"{base}#code={api.state.launch_code}"
+        if no_browser:
+            # The link works once. Whoever opens it first is signed in, and the copy left in
+            # this scrollback is spent from then on.
+            typer.echo(f"Tonwerk: {launch}  (valid once)")
+        else:
+            typer.echo(f"Tonwerk: {base}  (opened in your browser)")
+        # The token itself, for an agent, a CLI, or a second tab. It is generated per run and
+        # never written to disk, so this line is its only copy.
+        typer.echo(f"API bearer token: {token}")
+        typer.echo(f'  curl -H "Authorization: Bearer {token}" {base}api/registry')
+        if not TONWERK_DIST.is_dir():
+            typer.echo(
+                "Tonwerk is not built; / answers a hint. Build it with: bun run tonwerk:build"
+            )
+        if not no_browser:
+            webbrowser.open(launch)
+    server.run(sockets=[sock])
 
 
 @app.command("generate-character-demos")
@@ -364,15 +447,17 @@ def revoke_voice(voice_id: str, json_output: bool = typer.Option(False, "--json"
 
 
 @app.command()
-def doctor() -> None:
-    checks = {
-        "ffmpeg": shutil.which("ffmpeg"),
-        "ffprobe": shutil.which("ffprobe"),
-        "git": shutil.which("git"),
-        "python": subprocess.check_output(["python", "--version"], text=True).strip(),
-    }
-    typer.echo(json.dumps(checks, indent=2))
-    raise typer.Exit(0 if all(checks.values()) else 1)
+def doctor(repo: Path = typer.Option(Path.cwd())) -> None:
+    """The toolchain, the model runtimes and the pinned weights, each with the command that fixes it.
+
+    Exits 1 only when a required check fails: without ffmpeg and ffprobe nothing renders, while a
+    missing runtime or checkpoint stops only the stage that loads it.
+    """
+
+    repo_root(repo)
+    report = doctor_report()
+    typer.echo(json.dumps(report, indent=2, ensure_ascii=False))
+    raise typer.Exit(0 if report["ok"] else 1)
 
 
 @models.command("list")

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <title>Tonwerk · Audioregie</title>
+    <!--
+      Shown while the engine starts, and in place of the studio when it cannot. The studio itself
+      is served by the engine; this page is the only one the app bundles. Rust fills in a failure
+      through `zeigeFehler` and opens no other way into this page.
+    -->
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0c1013;
+        color: #e7edf1;
+        font: 14px/1.5 system-ui, -apple-system, sans-serif;
+      }
+      main {
+        width: min(44rem, calc(100vw - 4rem));
+      }
+      .marke {
+        display: flex;
+        gap: 6px;
+        height: 24px;
+        margin-bottom: 1.25rem;
+      }
+      .marke i {
+        width: 6px;
+        background: #46545f;
+      }
+      .marke i:nth-child(3) {
+        background: #c9a44c;
+      }
+      .marke i:nth-child(4) {
+        width: 3px;
+        background: #e4614e;
+      }
+      h1 {
+        margin: 0 0 0.5rem;
+        font: 600 13px ui-monospace, Menlo, monospace;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 0;
+        color: #96a5b0;
+      }
+      pre {
+        display: none;
+        margin: 1rem 0 0;
+        padding: 0.75rem;
+        max-height: 50vh;
+        overflow: auto;
+        background: #13191e;
+        border: 1px solid #35424c;
+        color: #e7edf1;
+        font: 12px/1.45 ui-monospace, Menlo, monospace;
+        white-space: pre-wrap;
+      }
+      body.fehler h1 {
+        color: #e4614e;
+      }
+      body.fehler pre {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="marke" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <h1 id="titel">Tonwerk</h1>
+      <p id="text">Die Engine startet …</p>
+      <pre id="protokoll"></pre>
+    </main>
+    <script>
+      window.zeigeFehler = function (titel, text, protokoll) {
+        document.body.classList.add('fehler');
+        document.getElementById('titel').textContent = titel;
+        document.getElementById('text').textContent = text;
+        document.getElementById('protokoll').textContent = protokoll;
+      };
+    </script>
+  </body>
+</html>

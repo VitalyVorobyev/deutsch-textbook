@@ -9,13 +9,13 @@
  *    and reported once through `onUnauthorized`, so the shell can return to the token screen with
  *    the engine's own reason instead of every view inventing an error message.
  * 3. **Audio and portraits are fetched, not linked.** An `<audio src>` or an `<img src>` cannot
- *    carry an `Authorization` header, and the engine's other way in — a session cookie or
- *    `?token=` — is the legacy browser path its own middleware says nothing new may be built on.
- *    So binary endpoints are fetched with the bearer header and handed to the element as a blob
- *    URL. `objectUrl` is the only correct way to point an element at engine bytes.
+ *    carry an `Authorization` header, and the engine accepts no other credential. So binary
+ *    endpoints are fetched with the bearer header and handed to the element as a blob URL.
+ *    `objectUrl` is the only correct way to point an element at engine bytes.
  *
- * Requests are same-origin: Vite proxies `/api` to 127.0.0.1:8765 (see `vite.config.ts`), so
- * nothing here knows a host or a port, and no CORS configuration is needed on the Python side.
+ * Requests are same-origin: the engine serves this bundle, and in development Vite proxies `/api`
+ * to it (see `vite.config.ts`), so nothing here knows a host or a port, and no CORS configuration
+ * is needed on the Python side.
  */
 import { z } from 'zod';
 import { getToken } from './auth';
@@ -25,6 +25,7 @@ import {
   charactersSchema,
   declineResultSchema,
   narrationProfilesSchema,
+  doctorSchema,
   qaResultSchema,
   registrySchema,
   renderResultSchema,
@@ -42,6 +43,7 @@ import {
   type ApprovalResult,
   type Characters,
   type DeclineResult,
+  type Doctor,
   type NarrationProfiles,
   type QaResult,
   type Registry,
@@ -77,10 +79,10 @@ export class EngineError extends Error {
   }
 }
 
-/** Nothing answered at all. Almost always: `atlas-listening serve` is not running. */
+/** Nothing answered at all. Almost always: the engine is not running any more. */
 export class OfflineError extends Error {
   constructor() {
-    super('Keine Verbindung zur Engine. Läuft `atlas-listening serve`?');
+    super('Keine Verbindung zur Engine. Läuft sie noch?');
     this.name = 'OfflineError';
   }
 }
@@ -131,6 +133,7 @@ export interface ApprovalSubmission {
 
 export interface Api {
   registry(signal?: AbortSignal): Promise<Registry>;
+  doctor(signal?: AbortSignal): Promise<Doctor>;
   scenes(signal?: AbortSignal): Promise<SceneRow[]>;
   scene(slug: string, signal?: AbortSignal): Promise<SceneDetail & { document: SceneDocument }>;
   characters(signal?: AbortSignal): Promise<Characters>;
@@ -307,6 +310,7 @@ export function createApi(options: ApiOptions = {}): Api {
 
   return {
     registry: (signal) => read('/api/registry', registrySchema, signal),
+    doctor: (signal) => read('/api/doctor', doctorSchema, signal),
     scenes: (signal) => read('/api/scenes', z.array(sceneRowSchema), signal),
     acoustics: (signal) => read('/api/acoustics', acousticsSchema, signal),
     sounds: (signal) => read('/api/sounds', z.array(soundRowSchema), signal),

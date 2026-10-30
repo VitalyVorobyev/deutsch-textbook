@@ -14,7 +14,7 @@ that reviewing and fixing are not two tools — and, since Prüfung and Lesetext
 that are done *in bulk* feel like one pass rather than two hundred visits.
 
 It is now the studio's **only** interface. The server-rendered forms it grew up beside are deleted,
-and `atlas-listening serve` hands out this bundle and a bearer token.
+and the engine serves this bundle and signs it in, through the desktop shell or a launch code.
 
 Its language is **German**, with no switcher — the Redaktion precedent. The engine's own vocabulary
 is English (`awaiting_approval`, `stale`); it is translated at the edge and kept in `data-` attributes
@@ -364,5 +364,5 @@ through the flow. Two habits specific to this app:
   is a number or a spelling the check treats as equal rather than a contradiction.
 - **The engine's address is read, not written down.** The rail's footer prints
   `window.location.host`: requests are same-origin either way — Vite proxies `/api` in development
-  and the engine serves this bundle itself in production — and a hardcoded `8765` was wrong on every
-  other `--port`.
+  and the engine serves this bundle itself in production — and the engine's port is a free one
+  picked at start.

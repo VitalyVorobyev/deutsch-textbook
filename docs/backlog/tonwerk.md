@@ -10,17 +10,6 @@ and the editor come first so that the course's audio is produced in the finished
 enter lessons only after this queue
 ([proposal](../proposals/characters-and-stories.md)).
 
-- **TON-1 · One command, one app.** Running the studio means two processes and a token pasted after
-  every restart, and the engine binds a fixed port (`docs/apps/tonwerk.md` "Start it").
-  - **Engine:** `serve --port 0 --no-browser`, a JSON handshake line, a single-use launch code
-    exchanged at `POST /api/session`, `doctor` results over the API, and `HF_HUB_OFFLINE=1` for
-    the whole process.
-  - **Shell:** a Tauri app in `apps/tonwerk/src-tauri/`, modelled on Redaktion's. It starts the
-    engine from the checkout and stops it on quit.
-  - **Root scripts:** `bun run tonwerk:start` for browser mode, `bun run tonwerk:app` for the
-    `.app`.
-  - **First step:** the handshake and launch code in `cli.py serve` and `web.py`, with the
-    reuse-refusal test.
 - **TON-2 · Bibliothek.** Nothing lists everything the studio has made: scenes, published
   recordings, narrations and sounds, with what uses each one. The registry join in
   `api/registry.py` already holds most of it.

@@ -4,6 +4,8 @@
  * **Auth is a shell concern, not a view concern.** `createApi` reports the first 401 through
  * `onUnauthorized`; the shell clears the stored token and renders `Anmeldung` with the engine's own
  * reason. No view needs an auth branch, and there is no state in which a screen is half-signed-in.
+ * A launch code being redeemed is a state of its own, so the token field never flashes up in a
+ * tab that is about to sign itself in.
  *
  * **The nav lists six sections and nothing else.** There is no *Folgt* group naming surfaces that
  * have not arrived: an empty "coming" list is not a statement, so it is not kept as a heading over
@@ -14,9 +16,9 @@
  * where the operator can see them without leaving what they are doing, the way a key legend is
  * silkscreened on a desk.
  */
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { createApi } from './api';
-import { clearToken, getToken, setToken } from './auth';
+import { clearToken, getToken, setToken, type Anmeldeergebnis } from './auth';
 import { Wortmarke } from './components/Wortmarke';
 import { ApiContext } from './useEngine';
 import { href, navigate, useRoute, useScrollReset } from './router';
@@ -57,11 +59,36 @@ const TASTEN = [
   { taste: 'Enter', tut: 'Zeile öffnen' },
 ] as const;
 
-export function App(): React.JSX.Element {
+export interface AppProps {
+  /** A launch code already on its way to the engine, started once by `main.tsx`. */
+  anmeldung?: Promise<Anmeldeergebnis>;
+}
+
+export function App({ anmeldung }: AppProps): React.JSX.Element {
   const [token, setTokenState] = useState(getToken);
   const [abgelehnt, setAbgelehnt] = useState<string | undefined>(undefined);
+  const [verbindet, setVerbindet] = useState(anmeldung !== undefined);
   const route = useRoute();
   useScrollReset(`${route.view}/${route.id ?? ''}`);
+
+  useEffect(() => {
+    if (!anmeldung) return;
+    let aktiv = true;
+    void anmeldung.then((ergebnis) => {
+      if (!aktiv) return;
+      if ('token' in ergebnis) {
+        setToken(ergebnis.token);
+        setTokenState(ergebnis.token);
+        setAbgelehnt(undefined);
+      } else {
+        setAbgelehnt(ergebnis.grund);
+      }
+      setVerbindet(false);
+    });
+    return () => {
+      aktiv = false;
+    };
+  }, [anmeldung]);
 
   const onUnauthorized = useCallback((reason: string) => {
     clearToken();
@@ -83,6 +110,16 @@ export function App(): React.JSX.Element {
     setAbgelehnt(undefined);
   }, []);
 
+  if (verbindet) {
+    return (
+      <main className="anmeldung" aria-busy="true">
+        <div className="anmeldung-platte">
+          <Wortmarke />
+          <p className="leise">Verbinde mit der Engine …</p>
+        </div>
+      </main>
+    );
+  }
   if (!token) return <Anmeldung grund={abgelehnt} onToken={annehmen} />;
 
   return (

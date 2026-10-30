@@ -617,6 +617,9 @@ export function stubApi(overrides: Partial<Api> = {}): Api {
     Promise.reject(new Error(`stubApi: ${name} was not stubbed`));
   return {
     registry: refuse('registry'),
+    // Read by Übersicht beside the registry and shown only when something fails, so a healthy
+    // machine is the stub every Übersicht spec that is not about it wants.
+    doctor: () => Promise.resolve({ ok: true, checks: [] }),
     scenes: refuse('scenes'),
     scene: refuse('scene'),
     characters: refuse('characters'),

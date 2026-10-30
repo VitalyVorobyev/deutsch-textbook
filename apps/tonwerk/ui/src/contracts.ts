@@ -180,6 +180,27 @@ export const registrySchema = z.looseObject({
 });
 export type Registry = z.infer<typeof registrySchema>;
 
+/**
+ * `GET /api/doctor`: what this machine can do, one check per tool, runtime and pinned model.
+ * `required` is the engine's own split — without ffmpeg nothing renders, while a missing model
+ * stops only the stage that loads it.
+ */
+const doctorCheckSchema = z.looseObject({
+  name: z.string(),
+  group: z.string(),
+  ok: z.boolean(),
+  detail: z.string(),
+  fix: z.string().nullable(),
+  required: z.boolean(),
+});
+export type DoctorCheck = z.infer<typeof doctorCheckSchema>;
+
+export const doctorSchema = z.looseObject({
+  ok: z.boolean(),
+  checks: z.array(doctorCheckSchema),
+});
+export type Doctor = z.infer<typeof doctorSchema>;
+
 const sceneTitleSchema = z.looseObject({
   en: z.string(),
   ru: z.string(),

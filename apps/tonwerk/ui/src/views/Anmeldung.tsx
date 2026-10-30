@@ -1,11 +1,11 @@
 /**
- * The token screen — first run, and every time the engine restarts.
+ * The token screen — the fallback when Tonwerk could not sign itself in.
  *
- * `atlas-listening serve` mints a token per run and prints it once; it is never written to disk. So
- * this screen is not an exception path, it is the ordinary start of a session, and the copy says
- * what to do rather than what went wrong. When a request comes back 401, the shell returns here
- * carrying the engine's own reason — the reader learns the token was *refused* rather than watching
- * a table quietly fail to load.
+ * The desktop app and `bun run tonwerk:start` both arrive signed in, so this screen means one of
+ * three things: the page was opened without its launch link, the link was already spent, or the
+ * engine restarted under a tab still holding the last run's token. When a request comes back 401,
+ * the shell returns here carrying the engine's own reason — the reader learns the token was
+ * *refused* rather than watching a table quietly fail to load.
  */
 import { useState } from 'react';
 import { Wortmarke } from '../components/Wortmarke';
@@ -32,17 +32,18 @@ export function Anmeldung({ grund, onToken }: AnmeldungProps): React.JSX.Element
             Mit der Engine verbinden
           </h1>
           <p className="leise">
-            Tonwerk liest die lokale Render-Engine unter{' '}
-            <code className="pfad">127.0.0.1:8765</code>. Starte sie mit{' '}
-            <code className="pfad">atlas-listening serve</code> und füge den Token ein, den der
-            Befehl ausgibt. Er gilt nur für diesen Lauf.
+            Gestartet mit <code className="pfad">bun run tonwerk:start</code> oder als App meldet
+            sich Tonwerk selbst an. Hier geht es weiter mit dem Token, den{' '}
+            <code className="pfad">atlas-listening serve</code> ausgibt. Er gilt nur für diesen
+            Lauf.
           </p>
         </div>
 
         {grund ? (
           <p className="hinweis hinweis-alarm" role="alert">
-            {grund} Der Token wird bei jedem Start der Engine neu erzeugt — hol dir den aktuellen
-            aus der Ausgabe von <code className="pfad">atlas-listening serve</code>.
+            {grund} Der Token wird bei jedem Start der Engine neu erzeugt — starte Tonwerk neu oder
+            hol dir den aktuellen aus der Ausgabe von{' '}
+            <code className="pfad">atlas-listening serve</code>.
           </p>
         ) : null}
 

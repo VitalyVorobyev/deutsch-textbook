@@ -4,16 +4,16 @@ Tonwerk is where the course's listening audio is made: scenes are written, rende
 model, measured by machine, approved by a person, and published into `content/`. It is the **only**
 interface to the studio — the server-rendered forms it grew up beside were deleted.
 
-Two processes are involved and it helps to hold them apart from the first minute:
+Two programs are involved, and one command starts both:
 
 - **the engine** — a Python program (`atlas-listening`) that owns the database, the models, the
-  renders and the publish path. It runs on `127.0.0.1:8765` and nothing else may reach it.
+  renders and the publish path. It listens on `127.0.0.1` only, and nothing else may reach it.
 - **Tonwerk** — a React app that talks to that engine over HTTP with a bearer token. It opens no
   files, knows no host and no port, and imports nothing from the repository except the Scene
   contract.
 
 Everything you do as an operator happens in Tonwerk. The engine's command line is for installing
-it, starting it, and two jobs Tonwerk deliberately does not carry.
+it and for the jobs Tonwerk deliberately does not carry.
 
 ## Before you start
 
@@ -22,52 +22,68 @@ it, starting it, and two jobs Tonwerk deliberately does not carry.
 - **`ffmpeg` and `ffprobe` on the PATH.** `doctor` checks for them; the render pipeline is built on
   them and fails late without them.
 - **Apple Silicon**, for the real synthesis and sound engines — both run through MLX.
+- **Rust**, only to build the desktop app.
 
 You can start the engine and browse Übersicht, Szenen, Prüfung, Klangbibliothek and Figuren with no
 model weights installed at all. You need the models only to **render**.
 
-## Start it
+## Install it once
 
 ```sh
 bun install
-bun run tonwerk:build                      # once, and after any change to apps/tonwerk/ui
-
 cd apps/tonwerk/engine
 uv sync --extra test --extra mlx
 ./install-qwen.sh                          # the speech runtime; again after every `uv sync`
-uv run atlas-listening doctor              # ffmpeg, ffprobe, git, python
-uv run atlas-listening serve --repo ../../..  # opens http://127.0.0.1:8765/
 ```
 
-`serve` prints three lines. The second is the one you need:
+`uv sync` removes the speech runtime, so `install-qwen.sh` comes after every sync. Übersicht shows a
+**Werkzeugkette** panel whenever a tool, runtime or model is missing, with the command that fixes it;
+`uv run atlas-listening doctor` prints the same report.
 
-```text
-Tonwerk: http://127.0.0.1:8765/
-API bearer token: <a long random string>
-  curl -H "Authorization: Bearer …" http://127.0.0.1:8765/api/registry
+## Start it
+
+As a desktop app:
+
+```sh
+bun run tonwerk:app     # builds apps/tonwerk/src-tauri/target/release/bundle/macos/Tonwerk.app
 ```
 
-Paste that token into Tonwerk's *Mit der Engine verbinden* screen. If `apps/tonwerk/ui/dist` has not
-been built, `serve` says so and `/` answers a plain-text hint instead of the app — the API keeps
-working, so this is a build you forgot, not a broken install.
+Open `Tonwerk.app`. It starts the engine of the checkout it was built in, opens the studio signed
+in, and stops the engine when you quit. A first start that cannot find that checkout asks for the
+folder and remembers it. The engine's output goes to
+`~/Library/Logs/dev.nonvision.deutsch-atlas.tonwerk/engine.log`, and a failed start shows its last
+lines in the window.
+
+Or in a browser tab:
+
+```sh
+bun run tonwerk:start   # rebuilds the UI if it changed, then opens a signed-in tab
+```
+
+Both start the engine on a free port. `Ctrl-C` in that terminal stops it.
 
 ### While working on Tonwerk itself
 
-Leave `serve` running and start the Vite dev server in a second shell:
+Start the engine on the port the Vite dev server proxies to, and Vite in a second shell:
 
 ```sh
-bun run tonwerk       # http://localhost:4340
+bun run tonwerk:start --port 8765 --no-browser
+bun run tonwerk         # http://localhost:4340
 ```
 
 Vite proxies `/api` to `127.0.0.1:8765`, which is what makes the bearer token travel same-origin
-with no CORS configuration on the Python side. `TONWERK_ENGINE` points it somewhere else.
+with no CORS configuration on the Python side. `TONWERK_ENGINE` points it somewhere else. To sign
+in, open `http://localhost:4340/` with the `#code=…` of the link the engine printed.
 
 ## The token
 
-It is minted per run and **never written to disk** — the line `serve` prints is the only copy. So it
-goes stale every time you restart the engine, and Tonwerk returning you to the token screen is the
-ordinary end of a session rather than a failure. The screen carries the engine's own reason for the
-refusal. Copy the current token out of the running `serve` output.
+The engine mints it per run and **never writes it to disk**. The desktop app hands it to its window
+directly. In browser mode the engine opens the tab with a launch code that it trades for the token
+**once**. The tab keeps the token until it closes. A second use of the same link is refused.
+
+So the token screen, *Mit der Engine verbinden*, is a fallback. You land there when a tab outlived
+an engine restart, or when a launch link was already spent. Start Tonwerk again, or paste the
+`API bearer token` line the engine printed at start.
 
 ## The six sections
 
@@ -160,8 +176,8 @@ They are printed on the rail rather than in a help page, and each one says where
 
 ## Models
 
-**Nothing is ever downloaded implicitly.** `HF_HUB_OFFLINE=1` on the child process makes that
-enforcement rather than a promise.
+**Nothing is ever downloaded implicitly.** A running engine sets `HF_HUB_OFFLINE=1` for itself
+and every process it starts, which makes that enforcement rather than a promise.
 
 ```sh
 uv run atlas-listening models list
@@ -174,7 +190,8 @@ Both installers pin a revision, and both pins are checked before a generation ru
 
 ## Which CLI commands you actually type
 
-> **`doctor`, `models`, `serve`, and `scene publish-approved`. Everything else happens in Tonwerk.**
+> **`bun run tonwerk:app` or `bun run tonwerk:start`, `models`, and `scene publish-approved`.
+> Everything else happens in Tonwerk.**
 
 The rest of `atlas-listening` serves the same scene pipeline from a shell:
 
@@ -192,11 +209,12 @@ They are documented in [`../../apps/tonwerk/engine/README.md`](../../apps/tonwer
 | Symptom | Cause |
 | --- | --- |
 | `/` shows plain text naming a build command | `apps/tonwerk/ui/dist` is missing. `bun run tonwerk:build`. |
-| Back at the token screen, with a reason | The engine restarted and minted a new token. Copy the current one. |
+| Back at the token screen, with a reason | The engine restarted and minted a new token, or the launch link was already used. Start Tonwerk again. |
+| The app window shows *Engine startet nicht* | The engine exited before its handshake. Its last lines are in the window; the usual cause is a missing install (above). |
 | The render button is disabled | The scene declares no variant, or a run is already going. |
 | **Automatisch prüfen** is disabled | There is no master yet — render first. |
 | The editor is read-only and reports drift | The stored document does not parse against the current Scene contract. A lenient read has already lost what it did not recognise, so writing it back would delete a field; the engine has moved ahead of the committed schema. |
-| `doctor` exits non-zero | `ffmpeg`, `ffprobe`, `git` or `python` is missing from the PATH. |
+| `doctor` exits non-zero | `ffmpeg` or `ffprobe` is missing from the PATH. A missing runtime or model is reported without failing. |
 
 ## What Tonwerk deliberately does not do
 

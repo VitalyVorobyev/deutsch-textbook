@@ -24,6 +24,8 @@
     "redaktion:desktop:build": "bun run --filter @da/redaktion tauri:build",
     "tonwerk": "bun run --cwd apps/tonwerk/ui dev",
     "tonwerk:build": "bun run --cwd apps/tonwerk/ui build",
+    "tonwerk:start": "bun apps/tonwerk/scripts/start.ts",
+    "tonwerk:app": "bun apps/tonwerk/scripts/app.ts",
     "tonwerk:check": "bun run --cwd apps/tonwerk/ui check",
     "tonwerk:test": "bun run --cwd apps/tonwerk/ui test",
     "listening:inventory": "bun scripts/listening-inventory.ts",

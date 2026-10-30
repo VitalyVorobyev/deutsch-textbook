@@ -73,6 +73,9 @@ GitHub Release notes.
 - Tonwerk runs on one pipeline: the pre-scene export, narration and experiment code is gone, a QA
   report belongs to the variant it measured, and a scene ending on its last word keeps its reverb
   tail.
+- Tonwerk starts with one command, as a desktop app (`bun run tonwerk:app`) or a browser tab
+  (`bun run tonwerk:start`), signed in without pasting a token, and shows what the machine is
+  missing to render.
 
 ### Changed
 

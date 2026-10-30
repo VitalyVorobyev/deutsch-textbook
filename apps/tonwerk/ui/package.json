@@ -27,5 +27,5 @@
     "vite": "^8.3.4",
     "vitest": "^5.0.3"
   },
-  "//": "Tonwerk — the audio studio's own workbench. A separate app from Redaktion on purpose: Redaktion reads the checked-out corpus through @da/content and never opens a socket, while Tonwerk talks HTTP to a local render engine and holds a bearer token. They share the repository and nothing else — not a design system, not a transport, not a data layer. Everything it renders comes from `atlas-listening serve` on 127.0.0.1:8765; the only thing it imports from the workspace is the Scene v1 contract in @da/schema."
+  "//": "Tonwerk — the audio studio's own workbench. A separate app from Redaktion on purpose: Redaktion reads the checked-out corpus through @da/content and never opens a socket, while Tonwerk talks HTTP to a local render engine and holds a bearer token. They share the repository and nothing else — not a design system, not a transport, not a data layer. Everything it renders comes from `atlas-listening serve` on 127.0.0.1, which also serves its built bundle; the only thing it imports from the workspace is the Scene v1 contract in @da/schema."
 }
