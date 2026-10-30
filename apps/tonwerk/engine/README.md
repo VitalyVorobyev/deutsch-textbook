@@ -21,21 +21,24 @@ The studio is **a JSON API and one app in front of it**: `serve` publishes `/api
 [Tonwerk](../ui) — a React workbench living in this repository — is what a person uses.
 
 ```sh
-bun run tonwerk:build                    # once, and after any change to apps/tonwerk/ui
 cd apps/tonwerk/engine
 uv sync --extra test --extra mlx
 ./install-qwen.sh                        # the speech runtime; again after every `uv sync`
 uv run atlas-listening doctor
-uv run atlas-listening serve --repo ../../..
+cd ../../.. && bun run tonwerk:start     # or `bun run tonwerk:app` for the desktop app
 ```
 
 `uv sync` is exact: it removes every package the lock does not name, which includes the Qwen and
 Stable Audio runtimes `install-qwen.sh` and `install-stable-audio.sh` add with `uv pip install`.
 Re-run the installers after a sync, or synthesis and WavLM speaker QA report their runtime missing.
 
-`serve` prints the bearer token once — it is minted per run and never written to disk — and opens
-`http://127.0.0.1:8765/`, where Tonwerk's token screen asks for it. If `apps/tonwerk/ui/dist` has not
-been built, `/` answers a plain-text hint naming the command above and the API keeps working.
+`serve` mints the bearer token per run and never writes it to disk. Started plainly, it prints the
+token and opens a tab at `/#code=…`; the tab trades that single-use launch code for the token at
+`POST /api/session`. Started by a shell with `--handshake`, it prints exactly one JSON line
+(`{"tonwerk": 1, "url", "port", "token"}`), writes nothing else to stdout, and stops when its stdin
+closes. `tonwerk:start` and the desktop shell run the venv's `atlas-listening` directly, never
+`uv run`, which would sync the speech runtime away. If `apps/tonwerk/ui/dist` has not been built, `/` answers a plain-text
+hint and the API keeps working.
 
 Model weights are never downloaded implicitly. `models list` prints `models.lock.json`;
 `models fetch <name>` downloads one row at its pinned revision.
@@ -44,8 +47,8 @@ Model weights are never downloaded implicitly. `models list` prints `models.lock
 
 | Verb | What it does |
 | --- | --- |
-| `serve [--repo] [--port] [--no-open]` | the API and the built Tonwerk bundle |
-| `doctor` | ffmpeg, ffprobe, git and python on the PATH |
+| `serve [--repo] [--port] [--no-browser] [--handshake]` | the API and the built Tonwerk bundle; `--port 0` binds a free port |
+| `doctor [--repo]` | the toolchain, the model runtimes and the pinned weights, each with its fix (`doctor.py`, also `GET /api/doctor`) |
 | `models list` · `models fetch <name>` | the model lock, and one pinned download |
 | `sources import <file> --metadata <json>` · `sources list` | reviewed Freesound originals |
 | `voices create` · `list` · `demo` · `revoke` | the consented voice store (mirrors `/api/voices`) |
@@ -180,18 +183,19 @@ human_approved → exported`, in `storage.STAGE_TRANSITIONS`.
 
 ## The JSON API
 
-`src/listening_studio/api/` is the whole surface, one module per concern. `web.py` registers three
-things in order: `/health`, the API router, and the built Tonwerk bundle mounted at `/` (last,
-because a static mount at `/` shadows everything beneath it).
+`src/listening_studio/api/` is the whole surface, one module per concern. `web.py` registers, in
+order: `/health`, `POST /api/session`, `GET /api/doctor`, the API router, and the built Tonwerk
+bundle mounted at `/` (last, because a static mount at `/` shadows everything beneath it).
 
 ```sh
-uv run atlas-listening serve --repo ../../..     # prints the bearer token at startup
-curl -H "Authorization: Bearer $TOKEN" http://127.0.0.1:8765/api/registry
+bun run tonwerk:start --no-browser    # prints the launch link and the bearer token
+curl -H "Authorization: Bearer $TOKEN" http://127.0.0.1:<port>/api/registry
 ```
 
 **Auth.** One secret, one way to present it: `Authorization: Bearer <token>`, on `/api/**`. A wrong
-one and a missing one are both **401 JSON** with `WWW-Authenticate`, never a redirect. `/health` and
-the workbench bundle are open: the bundle is the screen that *asks* for the token, and it carries
+one and a missing one are both **401 JSON** with `WWW-Authenticate`, never a redirect. The one
+exception under `/api` is `POST /api/session`, which answers the token for the run's launch code
+once and 401 to a reused or wrong one. `/health` and the workbench bundle are open: the bundle is the screen that *asks* for the token, and it carries
 no studio data. The table is in `web.local_only`'s docstring and every row of it has a test in
 `tests/test_api_auth.py`.
 

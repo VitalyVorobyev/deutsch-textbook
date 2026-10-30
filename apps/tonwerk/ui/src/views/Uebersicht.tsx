@@ -25,7 +25,7 @@ import { kurzSha, zahl, zeitpunkt } from '../format';
 import { ANY, levelsOf, overCount, rowContext, selectRows, statusCounts } from '../registry-filter';
 import { useQueryState } from '../router';
 import { useApi, useEngineRead } from '../useEngine';
-import type { RegistryRow } from '../contracts';
+import type { DoctorCheck, RegistryRow } from '../contracts';
 import { fehlerText } from './fehler';
 
 export function Uebersicht(): React.JSX.Element {
@@ -62,6 +62,8 @@ export function Uebersicht(): React.JSX.Element {
           {fehlerText(error)}
         </p>
       ) : null}
+
+      <Werkzeugkette />
 
       {data ? (
         <>
@@ -283,5 +285,51 @@ function Zeile({ row }: { row: RegistryRow }): React.JSX.Element {
         {row.project?.updated ? zeitpunkt(row.project.updated) : <span className="leer" />}
       </td>
     </tr>
+  );
+}
+
+/**
+ * What this machine lacks, with the command that fixes it — shown only when something does.
+ *
+ * The desktop app opens no terminal, so a missing ffmpeg or a speech runtime that `uv sync`
+ * removed would otherwise surface as a render failing minutes later. A healthy machine gets no
+ * panel: a list of green ticks is a panel to learn to skip, and then it is skipped on the day it
+ * turns red. A failed read is left to the registry's own error above.
+ */
+function Werkzeugkette(): React.JSX.Element | null {
+  const api = useApi();
+  const { data } = useEngineRead((signal) => api.doctor(signal), [api]);
+  const fehlend: DoctorCheck[] = data ? data.checks.filter((check) => !check.ok) : [];
+  if (fehlend.length === 0) return null;
+  return (
+    <Platte
+      titel="Werkzeugkette"
+      zaehler={`${zahl(fehlend.length)} fehlt`}
+      erklaerung="Was diesem Rechner zum Rendern fehlt, mit dem Befehl, der es behebt, im Wurzelverzeichnis des Repositorys auszuführen. Ohne ffmpeg rendert nichts; ein fehlendes Modell hält nur die Stufe auf, die es lädt."
+      randlos
+    >
+      <div className="tabelle-rahmen">
+        <table className="tabelle">
+          <thead>
+            <tr>
+              <th scope="col">Prüfung</th>
+              <th scope="col">Befund</th>
+              <th scope="col">Befehl</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fehlend.map((check) => (
+              <tr key={check.name}>
+                <td>
+                  <Marke ton={check.required ? 'alarm' : 'ruhig'}>{check.name}</Marke>
+                </td>
+                <td className="leise">{check.detail}</td>
+                <td>{check.fix ? <code className="pfad">{check.fix}</code> : null}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Platte>
   );
 }

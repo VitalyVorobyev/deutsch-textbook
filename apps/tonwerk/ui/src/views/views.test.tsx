@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, render, screen, waitFor, within } from '@testing-library/react';
 import { ApiContext } from '../useEngine';
 import { charactersFixture, registryFixture, scenesFixture, stubApi } from '../test/fixtures';
 import { Figuren } from './Figuren';
@@ -55,12 +55,49 @@ describe('Übersicht', () => {
     expect(pegel.getAttribute('aria-label')).toContain('überholt 1');
   });
 
+  test('a missing tool is shown with its fix, and a healthy machine shows no panel', async () => {
+    const fehlt = {
+      ok: false,
+      checks: [
+        {
+          name: 'ffmpeg',
+          group: 'werkzeug',
+          ok: false,
+          detail: 'nicht gefunden',
+          fix: 'brew install ffmpeg',
+          required: true,
+        },
+        {
+          name: 'git',
+          group: 'werkzeug',
+          ok: true,
+          detail: '/usr/bin/git',
+          fix: null,
+          required: false,
+        },
+      ],
+    };
+    mount(
+      <Uebersicht />,
+      stubApi({ registry: async () => registryFixture as never, doctor: async () => fehlt }),
+    );
+    expect(await screen.findByText('Werkzeugkette')).toBeTruthy();
+    expect(screen.getByText('brew install ffmpeg')).toBeTruthy();
+    // Only what fails is listed.
+    expect(screen.queryByText('/usr/bin/git')).toBeNull();
+
+    cleanup();
+    mount(<Uebersicht />, stubApi({ registry: async () => registryFixture as never }));
+    await screen.findByRole('img', { name: /^Pegel:/ });
+    expect(screen.queryByText('Werkzeugkette')).toBeNull();
+  });
+
   test('a failed read says which of the four failures it was', async () => {
     const { OfflineError } = await import('../api');
     mount(<Uebersicht />, stubApi({ registry: () => Promise.reject(new OfflineError()) }));
 
     const alert = await screen.findByRole('alert');
-    expect(alert.textContent).toContain('atlas-listening serve');
+    expect(alert.textContent).toContain('bun run tonwerk:start');
   });
 });
 

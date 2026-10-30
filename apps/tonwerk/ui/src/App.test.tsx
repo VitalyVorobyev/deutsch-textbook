@@ -1,7 +1,14 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { App } from './App';
-import { clearToken, getToken, setToken } from './auth';
+import {
+  clearToken,
+  getToken,
+  redeemLaunchCode,
+  setToken,
+  shellToken,
+  takeLaunchCode,
+} from './auth';
 import { registryFixture } from './test/fixtures';
 
 /**
@@ -68,6 +75,71 @@ describe('the session', () => {
     // The dead token is discarded, or the next reload would silently fail the same way with no
     // explanation on screen.
     expect(getToken()).toBe('');
+  });
+});
+
+describe('signing in without a token screen', () => {
+  test('a redeemed launch code opens the shell, and the token is kept for this tab only', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => antwort(registryFixture)),
+    );
+    render(<App anmeldung={Promise.resolve({ token: 'vom-startlink' })} />);
+
+    // While the code is in flight the token field must not flash up.
+    expect(screen.queryByLabelText('API-Token')).toBeNull();
+    await waitFor(() => expect(screen.getByRole('navigation', { name: 'Bereiche' })).toBeTruthy());
+    expect(getToken()).toBe('vom-startlink');
+    expect(window.sessionStorage.getItem('tonwerk:token')).toBe('vom-startlink');
+    expect(window.localStorage.getItem('tonwerk:token')).toBeNull();
+  });
+
+  test('a spent launch code lands on the token screen saying why', async () => {
+    render(<App anmeldung={Promise.resolve({ grund: 'Der Startlink gilt nur einmal.' })} />);
+
+    const alert = await screen.findByRole('alert');
+    expect(alert.textContent).toContain('Der Startlink gilt nur einmal.');
+    expect(screen.getByLabelText('API-Token')).toBeTruthy();
+  });
+
+  test('the code is traded at /api/session, and any refusal becomes a reason', async () => {
+    const angenommen = vi.fn(async () => antwort({ token: 'echt' }));
+    expect(await redeemLaunchCode('abc', angenommen)).toEqual({ token: 'echt' });
+    expect(angenommen).toHaveBeenCalledWith(
+      '/api/session',
+      expect.objectContaining({ method: 'POST', body: JSON.stringify({ code: 'abc' }) }),
+    );
+
+    const verbraucht = vi.fn(async () =>
+      antwort({ detail: 'Launch code already used' }, { status: 401 }),
+    );
+    const zweites = await redeemLaunchCode('abc', verbraucht);
+    expect('grund' in zweites && zweites.grund).toContain('nur einmal');
+
+    const offline = vi.fn(async () => {
+      throw new TypeError('Failed to fetch');
+    });
+    expect('grund' in (await redeemLaunchCode('abc', offline))).toBe(true);
+  });
+
+  test('the launch code is taken out of the address, and a route is not a code', () => {
+    window.location.hash = '#code=Ab-9_z';
+    expect(takeLaunchCode()).toBe('Ab-9_z');
+    expect(window.location.hash).toBe('');
+
+    window.location.hash = '#/uebersicht';
+    expect(takeLaunchCode()).toBeNull();
+    expect(window.location.hash).toBe('#/uebersicht');
+  });
+
+  test('the desktop shell’s token is read from the page it injected it into', () => {
+    expect(shellToken()).toBeNull();
+    window.__TONWERK_SESSION__ = { token: ' vom-shell ' };
+    try {
+      expect(shellToken()).toBe('vom-shell');
+    } finally {
+      delete window.__TONWERK_SESSION__;
+    }
   });
 });
 

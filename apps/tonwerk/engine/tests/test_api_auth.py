@@ -10,9 +10,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
 import yaml
 from fastapi.testclient import TestClient
 
+from listening_studio import doctor
 from listening_studio.storage import Store
 from listening_studio.web import app
 
@@ -25,7 +27,9 @@ def studio(tmp_path: Path) -> TestClient:
         yaml.safe_dump({"version": 1, "units": []})
     )
     store = Store(tmp_path / "db.sqlite3")
-    return TestClient(app(store, tmp_path, token="test"), raise_server_exceptions=False)
+    return TestClient(
+        app(store, tmp_path, token="test", launch_code="einmal"), raise_server_exceptions=False
+    )
 
 
 def test_a_valid_bearer_token_is_accepted(tmp_path: Path) -> None:
@@ -204,3 +208,65 @@ def test_the_pre_scene_project_routes_are_gone_and_the_libraries_answer(tmp_path
     characters = http.get("/api/characters", headers=auth)
     assert characters.status_code == 200
     assert {row["usage_count"] for row in characters.json()["characters"]} == {0}
+
+
+def test_a_launch_code_buys_the_token_once_and_a_reused_one_is_refused(tmp_path: Path) -> None:
+    """The browser tab `serve` opens is signed in by its fragment; the same link a second time is not.
+
+    Reuse is the whole risk: the link sits in browser history and terminal scrollback, and a
+    code that kept working would be a token written to both.
+    """
+
+    http = studio(tmp_path)
+    first = http.post("/api/session", json={"code": "einmal"})
+    assert first.status_code == 200
+    assert first.json() == {"token": "test"}
+    assert http.get("/api/scenes", headers={"Authorization": "Bearer test"}).status_code == 200
+
+    again = http.post("/api/session", json={"code": "einmal"})
+    assert again.status_code == 401
+    assert again.json() == {"detail": "Launch code already used"}
+
+
+def test_a_wrong_launch_code_is_refused_and_does_not_spend_the_right_one(tmp_path: Path) -> None:
+    http = studio(tmp_path)
+    for wrong in ("falsch", "", "einmäl"):
+        refused = http.post("/api/session", json={"code": wrong})
+        assert refused.status_code == 401
+        assert refused.json() == {"detail": "Invalid launch code"}
+    assert http.post("/api/session", json={}).status_code == 422
+    assert http.post("/api/session", json={"code": "einmal"}).status_code == 200
+
+
+def test_only_a_post_to_the_session_route_skips_the_bearer_check(tmp_path: Path) -> None:
+    """The exemption is one method on one path, not a prefix a new route could fall under."""
+
+    http = studio(tmp_path)
+    assert http.get("/api/session").status_code == 401
+    assert http.post("/api/session/extra", json={"code": "einmal"}).status_code == 401
+    assert http.post("/api/sessions", json={"code": "einmal"}).status_code == 401
+
+
+def test_the_doctor_report_is_behind_the_token_and_names_a_fix_for_every_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def missing(*_: object, **__: object) -> str:
+        raise RuntimeError("not installed")
+
+    # Stubbed, not left to the fixture: the Hub cache is per user, and a machine that has
+    # fetched the Whisper weights would find them from any repository.
+    monkeypatch.setattr(doctor, "locked_snapshot", missing)
+    http = studio(tmp_path)
+    assert http.get("/api/doctor").status_code == 401
+    report = http.get("/api/doctor", headers={"Authorization": "Bearer test"}).json()
+    names = {check["name"] for check in report["checks"]}
+    assert {"ffmpeg", "ffprobe", "qwen_tts", "asr"} <= names
+    # Every checkpoint missing is the branch worth asserting: a failure the operator cannot act
+    # on is not a report.
+    models = [check for check in report["checks"] if check["group"] == "modell"]
+    assert models and not any(check["ok"] for check in models)
+    assert all(check["fix"] for check in report["checks"] if not check["ok"])
+    # Weights never make a machine "not ok": the studio is browsable without any.
+    assert report["ok"] == all(
+        check["ok"] for check in report["checks"] if check["required"]
+    )

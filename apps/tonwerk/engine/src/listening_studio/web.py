@@ -6,23 +6,27 @@ HTML that used to live here and in `ui.py` — the index, the project page, the 
 forms, the two approval pages — is gone, along with the cookie and `?token=` credentials that
 existed only to carry a browser through them.
 
-What is left is three things, in the order they are registered:
+What is left is four things, in the order they are registered:
 
 1. `/health`, open, so a supervisor can poll it.
-2. `/api/**`, from `api/`, behind `Authorization: Bearer`.
-3. the built Tonwerk bundle at `/`, when there is one — a **mount**, so it must come last: a
-   static mount at `/` matches every path beneath it and would shadow both of the above.
+2. `POST /api/session`, open, which trades the run's single-use launch code for the token once.
+3. `/api/**`, from `api/`, behind `Authorization: Bearer`.
+4. the built Tonwerk bundle at `/`, when there is one — a **mount**, so it must come last: a
+   static mount at `/` matches every path beneath it and would shadow all of the above.
 """
 
 from __future__ import annotations
 
 import secrets
+import threading
 from pathlib import Path
 
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
+from .doctor import doctor_report
 from .generative.locks import set_models_root
 from .storage import Store
 from .api import Transcriber
@@ -46,11 +50,45 @@ NO_BUNDLE = (
 )
 
 
+#: The one path outside the bearer check under `/api`, and only for POST.
+SESSION_PATH = "/api/session"
+
+
+class LaunchCode(BaseModel):
+    code: str
+
+
+class _SingleUse:
+    """A secret that can be presented correctly exactly once.
+
+    The lock is what makes "once" true: two tabs racing the same code would otherwise both read
+    it as unused before either cleared it.
+    """
+
+    def __init__(self, value: str) -> None:
+        self._value: str | None = value
+        self._lock = threading.Lock()
+
+    def redeem(self, presented: str) -> str | None:
+        """None on success; otherwise the refusal, which says whether the code was ever valid."""
+
+        with self._lock:
+            if self._value is None:
+                return "Launch code already used"
+            if not secrets.compare_digest(
+                presented.encode("utf-8", "surrogatepass"), self._value.encode()
+            ):
+                return "Invalid launch code"
+            self._value = None
+            return None
+
+
 def app(
     store: Store,
     repo: Path,
     token: str | None = None,
     *,
+    launch_code: str | None = None,
     allow_test_adapters: bool = False,
     transcribe_fn: Transcriber | None = None,
 ) -> FastAPI:
@@ -59,6 +97,8 @@ def app(
     # for. Stated once here rather than re-derived from this file's position on every lookup.
     set_models_root(repo)
     secret = token or secrets.token_urlsafe(24)
+    code = launch_code or secrets.token_urlsafe(16)
+    pending = _SingleUse(code)
 
     @api.middleware("http")
     async def local_only(request: Request, call_next):  # type: ignore[no-untyped-def]
@@ -69,6 +109,7 @@ def app(
         | `/api/**` | correct bearer | pass |
         | `/api/**` | present, wrong | **401 JSON** |
         | `/api/**` | absent | **401 JSON** |
+        | `POST /api/session` | anything | pass, to the launch-code check |
         | `/health`, `/`, the workbench | anything | pass |
 
         Three rows of the previous table are gone, and each one went for a reason.
@@ -95,12 +136,18 @@ def app(
         `/health` stays exempt so a supervisor can poll it, and it now hands out nothing because
         nothing is handed out to anybody — the session cookie that made the exemption a way in
         does not exist any more.
+
+        *`POST /api/session` is exempt because it is how a browser tab gets the token at all.*
+        `serve` opens the tab at `/#code=…`; the fragment never reaches a server log, and the code
+        it carries buys the token exactly once. A copy left in browser history is spent.
         """
 
         # Returned, not raised. An HTTPException raised inside an http middleware never reaches
         # FastAPI's exception handler — Starlette lets it escape as an unhandled error — so
         # every rejection here was answering 500 while looking like a 403 in the source.
         if not request.url.path.startswith("/api/"):
+            return await call_next(request)
+        if request.url.path == SESSION_PATH and request.method == "POST":
             return await call_next(request)
 
         header = request.headers.get("authorization")
@@ -137,6 +184,21 @@ def app(
     def health() -> dict[str, str]:
         return {"status": "ok"}
 
+    @api.post(SESSION_PATH, response_model=None)
+    def session(body: LaunchCode) -> dict[str, str] | JSONResponse:
+        """Trade the launch code for the bearer token, once per run."""
+
+        refusal = pending.redeem(body.code)
+        if refusal is not None:
+            return JSONResponse({"detail": refusal}, status_code=401)
+        return {"token": secret}
+
+    @api.get("/api/doctor")
+    def doctor() -> dict[str, object]:
+        """The toolchain, runtimes and weights, as `atlas-listening doctor` prints them."""
+
+        return doctor_report()
+
     api.include_router(
         studio_router(
             store,
@@ -158,5 +220,6 @@ def app(
             return PlainTextResponse(NO_BUNDLE, status_code=503)
 
     api.state.session_token = secret
+    api.state.launch_code = code
     api.state.repo = repo
     return api

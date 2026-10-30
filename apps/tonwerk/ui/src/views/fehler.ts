@@ -10,7 +10,7 @@ import { EngineError, OfflineError, ShapeError, UnauthorizedError } from '../api
 
 export function fehlerText(error: Error): string {
   if (error instanceof OfflineError) {
-    return 'Keine Verbindung zur Engine unter 127.0.0.1:8765. Starte sie mit `atlas-listening serve`.';
+    return 'Keine Verbindung zur Engine. Starte Tonwerk neu: `bun run tonwerk:start` oder die App.';
   }
   if (error instanceof UnauthorizedError) {
     return `${error.message} Hol dir den aktuellen Token aus der Ausgabe von \`atlas-listening serve\`.`;

@@ -26,8 +26,10 @@ diagnostics. Known figure imports are recognised by spelling but never resolved 
 progress effects. Both Vite and the Bun sidecar expose the same `renderSource` request.
 
 Tonwerk is the third application and the only one that is not a repository reader. It is a React app
-served by, and talking exclusively to, a local Python engine (`atlas-listening`) on `127.0.0.1:8765`,
-authenticated by a bearer token minted per run and never written to disk. It opens no files and
+served by, and talking exclusively to, a local Python engine (`atlas-listening`) on `127.0.0.1`,
+authenticated by a bearer token minted per run and never written to disk. A Tauri shell in
+`apps/tonwerk/src-tauri/` starts that engine from the checkout and hands the token to its window;
+browser mode trades a single-use launch code for it. It opens no files and
 imports nothing from the workspace except the Scene v1 contract in `@da/schema`; the engine owns the
 database, the models, the renders and the publish path. It is the studio's only interface.
 
