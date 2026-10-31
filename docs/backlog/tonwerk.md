@@ -13,16 +13,31 @@ only after this queue
 - **TON-3 · Figuren and voice quality.** The installed `Qwen3-TTS-12Hz-0.6B-CustomVoice` has nine
   preset speakers and discards every `style` prompt (`supports_style = False` in
   `generative/qwen.py`).
-  - **Voice comparison:** compare the 1.7B CustomVoice, a designed synthetic reference per
-    character through the Base (clone) model, and the current baseline. Measure Whisper WER,
-    speaker-identity consistency across lines and scenes, and words per second, then a blind
-    A/B listening by the owner.
+  - **Voice comparison:** measured, waiting on the owner's blind listen. `atlas-listening evaluate
+    voices --name voices-2026-10-31` spoke each roster character's three demo phrases and four
+    shared lines on four candidates (84 takes each, 40 minutes, 8.3 GB peak RSS on the 24 GB Mac):
+
+    | candidate | WER mean | Whisper misses | words/s | realtime factor | same-character min (median) | other-character similarity (median) |
+    | --- | --- | --- | --- | --- | --- | --- |
+    | preset 0.6B (current) | 0.004 | 0 | 2.92 | 1.01 | 0.917 | 0.773 |
+    | preset 1.7B, style honoured | 0.034 | 2 | 2.70 | 1.25 | 0.910 | 0.700 |
+    | designed voice → 0.6B clone | 0.001 | 0 | 3.57 | 1.19 | 0.922 | 0.490 |
+    | designed voice → 1.7B clone | 0.000 | 0 | 3.47 | 1.69 | 0.938 | 0.475 |
+
+    All 12 designed references passed Whisper on their first seed. The presets put three pairs on
+    one speaker (lena/klara, mira/noa, david/paul), and noa, a child, on an adult voice; the 1.7B
+    preset once ran away into 15 s of babble on a 5 s line. The clones run about 20% faster than the corpus
+    median of 2.96 words/s, so a clone winner needs its `pace` retuned. The WavLM similarities are
+    uncalibrated, so they rank and do not decide. **Next:** the owner listens to `listen/index.html`
+    in the run folder, saves `choices.json`, and `atlas-listening evaluate reveal voices-2026-10-31
+    --choices <file>` unblinds it. A designed-voice winner then needs a production decision (an ADR
+    amending the evaluation-only policy in `docs/authoring/product-protection.md`) before any
+    course audio uses it.
   - **Roster:** a card per character with portrait, legend, voice parameters, demo takes,
     consistency score and the scenes it is cast in, editable through the engine with a version
-    bump.
+    bump. Its voice fields wait for the listen, because a designed voice is a reference clip, not a
+    preset name.
   - **Takes:** render N seeds of a line and pick one.
-  - **First step:** the comparison script over the demo phrases in
-    `data/listening-characters.yaml`.
 - **TON-4 · The timeline editor.** The scene editor is forms, and its Mischung timeline is
   read-only (`apps/tonwerk/ui/src/views/Szene.tsx`). Per line there is no gain or effect, ambience
   has no ducking, and a scene can only name a room or device.

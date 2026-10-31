@@ -149,11 +149,14 @@ directory, or removal from `content/listening/` with its `data/audio-provenance/
 that is not replaced. Either is a deliberate editorial act and not a side effect of pressing
 revoke.
 
-**Evaluation runs outside the production path.** The engine has no evaluation runner today, and
-one must be built before any comparison runs. A VoiceDesign-to-cloning comparison may run only in a
-non-publishing local workspace, with synthetic references, fictional non-imitation descriptions,
-and retained prompts, model revisions and hashes. Its output cannot enter the production cache or
-the publish path. An identifiable human reference may be evaluated only under the gitignored
+**Evaluation runs outside the production path.** A VoiceDesign-to-cloning comparison may run only
+in a non-publishing local workspace, with synthetic references, fictional non-imitation
+descriptions, and retained prompts, model revisions and hashes. Its output cannot enter the
+production cache or the publish path. `atlas-listening evaluate voices` is that runner: each run
+gets a new directory under the studio's `evaluations/`, and the evaluation checkpoints are pinned
+with `"scope": "evaluation"` and are not engines a scene can be cast on
+(`apps/tonwerk/engine/README.md`, *Voice evaluation*). A designed voice entering course audio is a
+production decision that this paragraph does not make. An identifiable human reference may be evaluated only under the gitignored
 `.private/` boundary, by a runner that refuses missing consent, output outside `.private/` and
 overwriting an earlier run. Evaluation authorizes nothing more: publication of any voice requires
 its own publication-scope consent under the rules above.

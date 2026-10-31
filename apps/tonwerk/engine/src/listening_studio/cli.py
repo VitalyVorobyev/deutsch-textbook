@@ -3,7 +3,8 @@
 `serve` starts the API Tonwerk talks to; `scene …` is every operation on a scene project (convert,
 validate, store, render, QA, publish — `scene/cli.py`); `voices …` is the consented voice store;
 `sources …` imports reviewed Freesound originals; `models …` lists and fetches the pinned weights;
-`generate-character-demos` makes the roster's audition takes; `doctor` checks the toolchain.
+`generate-character-demos` makes the roster's audition takes; `evaluate …` compares candidate
+voice checkpoints outside the production path (`evaluation.py`); `doctor` checks the toolchain.
 """
 
 from __future__ import annotations
@@ -47,6 +48,9 @@ voices = typer.Typer()
 app.add_typer(models, name="models")
 app.add_typer(sources, name="sources")
 app.add_typer(voices, name="voices")
+#: Comparisons that never reach a scene, a render cache or a publish (`evaluation.py`).
+evaluate = typer.Typer(no_args_is_help=True)
+app.add_typer(evaluate, name="evaluate")
 # Defined in `scene/cli.py` rather than here so the verbs stay reachable without the render stack
 # this module imports at the top.
 app.add_typer(scene_app, name="scene")
@@ -444,6 +448,114 @@ def revoke_voice(voice_id: str, json_output: bool = typer.Option(False, "--json"
         f"reference deleted: {record['reference_deleted']} · demos deleted: {record['demos_deleted']}"
     )
     typer.echo(str(record["note"]))
+
+
+@evaluate.command("voices")
+def evaluate_voices(
+    repo: Path = typer.Option(Path.cwd()),
+    candidates: str = typer.Option(
+        "preset-0.6b,preset-1.7b,design-clone-0.6b,design-clone-1.7b",
+        help="comma-separated candidate ids (evaluation.CANDIDATES)",
+    ),
+    characters: str = typer.Option("", help="comma-separated roster ids; empty means all"),
+    name: str = typer.Option("", help="the run's directory name; default voices-<UTC time>"),
+    test_adapter: bool = typer.Option(False, help="arithmetic speech, no model; for a dry run"),
+) -> None:
+    """Speak the roster through each candidate, measure it, and write a blind listening page.
+
+    The run lands in a new directory under the studio's `evaluations/` and never overwrites one;
+    nothing it makes enters a scene, the render cache or a publish.
+    """
+
+    from datetime import UTC, datetime
+
+    from .evaluation import QwenEvaluationBackend, load_designs, run_voice_evaluation
+    from .speaker_qa import WavLMSpeakerEmbedder, weights_available
+
+    root = repo_root(repo)
+    go_offline()
+    lock = cast(dict[str, dict[str, object]], model_lock(PACKAGE_ROOT / "models.lock.json")["models"])
+    store = Store()
+    run = name or "voices-" + datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    workspace = store.root / "evaluations" / run
+    backend = _ArithmeticEvaluation() if test_adapter else QwenEvaluationBackend(lock)
+    embedder = None if test_adapter or not weights_available() else WavLMSpeakerEmbedder()
+    if embedder is None and not test_adapter:
+        typer.echo("speaker QA weights are absent: the run has no identity scores", err=True)
+    manifest = run_voice_evaluation(
+        workspace=workspace,
+        catalog=load_character_catalog(root),
+        designs=load_designs(),
+        lock=lock,
+        candidates=[value for value in candidates.split(",") if value],
+        characters=[value for value in characters.split(",") if value] or None,
+        backend=backend,
+        transcribe=(lambda path: "") if test_adapter else transcribe,
+        embedder=embedder,
+    )
+    columns = (
+        ("failed_generation", "gen✗", "{}"),
+        ("failed_transcription", "asr✗", "{}"),
+        ("wer_mean", "WER", "{:.3f}"),
+        ("words_per_second_median", "w/s", "{:.2f}"),
+        ("realtime_factor_median", "RTF", "{:.2f}"),
+        ("within_character_min_median", "same", "{:.3f}"),
+        ("different_character_max", "other", "{:.3f}"),
+        ("reference_similarity_median", "ref", "{:.3f}"),
+    )
+    typer.echo("candidate".ljust(20) + "".join(label.rjust(8) for _, label, _ in columns))
+    for candidate, row in manifest["summary"].items():
+        cells = [
+            "–" if row[field] is None else template.format(row[field])
+            for field, _, template in columns
+        ]
+        typer.echo(candidate.ljust(20) + "".join(cell.rjust(8) for cell in cells))
+    typer.echo(f"run: {workspace}")
+    typer.echo(f"listen blind: {workspace / 'listen' / 'index.html'}")
+
+
+@evaluate.command("reveal")
+def evaluate_reveal(
+    run: str = typer.Argument(..., help="the run's directory name under evaluations/"),
+    choices: Path = typer.Option(..., exists=True, help="the choices.json the listening page saved"),
+) -> None:
+    """Unblind a listener's choices: wins and rejections per candidate, written to `reveal.json`."""
+
+    from .evaluation import reveal
+
+    workspace = Store().root / "evaluations" / run
+    result = reveal(
+        json.loads((workspace / "run.json").read_text()), json.loads(choices.read_text())
+    )
+    (workspace / "reveal.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+
+
+class _ArithmeticEvaluation:
+    """The evaluation backend of `--test-adapter`: `FakeSpeech` silence for every call."""
+
+    def _write(self, text: str, target: Path) -> None:
+        FakeSpeech().generate(
+            SpeechRequest(text=text, voice="Vivian", language="German", seed=0), target
+        )
+
+    def preset(
+        self, lock_key: str, text: str, speaker: str, style: str | None, seed: int, target: Path
+    ) -> None:
+        self._write(text, target)
+
+    def design(self, text: str, instruct: str, seed: int, target: Path) -> None:
+        self._write(text, target)
+
+    def clone(
+        self, lock_key: str, text: str, reference: Path, reference_text: str, seed: int, target: Path
+    ) -> None:
+        self._write(text, target)
+
+    def release(self) -> None:
+        return None
 
 
 @app.command()

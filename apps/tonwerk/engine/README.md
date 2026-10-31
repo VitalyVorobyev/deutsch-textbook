@@ -53,6 +53,7 @@ Model weights are never downloaded implicitly. `models list` prints `models.lock
 | `sources import <file> --metadata <json>` · `sources list` | reviewed Freesound originals |
 | `voices create` · `list` · `demo` · `revoke` | the consented voice store (mirrors `/api/voices`) |
 | `generate-character-demos [--repo] [--test-adapter]` | three audition takes per roster character |
+| `evaluate voices [--candidates] [--characters] [--name]` · `evaluate reveal <run> --choices` | the voice-checkpoint comparison and its blind listen, outside the production path ([below](#voice-evaluation)) |
 | `scene validate` · `create` · `from-dialogue` · `from-reading` · `show` | the scene document |
 | `scene render` · `qa` · `regenerate-corpus` | audio and its automatic QA |
 | `scene publish` · `publish-approved` · `delete` · `schema` | the repository side |
@@ -75,6 +76,7 @@ unguarded.
 | `domain.py` | the shared vocabulary: the stage machine, bilingual text, single-choice questions, the QA report and the WER comparison |
 | `storage.py` | the SQLite store and its Alembic migrations |
 | `library.py` | what the studio holds on disk, and the render reaper |
+| `evaluation.py` | the voice evaluation runner and its blind listening page |
 | `api/` · `web.py` | the JSON API, one module per concern, and the app factory |
 | `catalogs.py` · `sources.py` | the character and narration catalogs; imported and generated sounds |
 
@@ -374,6 +376,38 @@ consent digest — enters the synth node's hash and `render.json`'s top-level `v
 published claim about consent is computed from the render rather than asserted beside it. `revoke`
 marks the row revoked, deletes the recording and every audition made from it, and makes the render
 path, the API and the CLI refuse further synthesis. Renders already produced keep their provenance.
+
+## Voice evaluation
+
+`evaluate voices` speaks every roster character's three demo phrases and the four shared lines of
+[`evaluation/voice-designs.yaml`](evaluation/voice-designs.yaml) through each candidate, one
+checkpoint in memory at a time:
+
+| Candidate | Checkpoint | Voice |
+| --- | --- | --- |
+| `preset-0.6b` | 0.6B CustomVoice, the production engine | the character's preset speaker; style discarded |
+| `preset-1.7b` | 1.7B CustomVoice | the same preset and seed, with the character's style instruction |
+| `design-clone-0.6b` · `design-clone-1.7b` | 0.6B or 1.7B Base | a clone of a reference the 1.7B VoiceDesign checkpoint read in a described, fictional voice |
+
+It measures each take with the scene QA's line rule on Whisper's transcript, words per second of
+voiced audio and the real-time factor, and each candidate with the `speaker_qa` identity report over
+all characters. The run lands in a new directory under the studio's `evaluations/`. That directory
+holds `run.json` (every prompt, seed, pinned revision and hash, the measures and the blind key) and
+`listen/index.html`. The page plays the takes under letters that are shuffled per character, and
+saves the listener's choices as `choices.json`, which `evaluate reveal <run> --choices` unblinds.
+
+**It is not a production path.** A run never overwrites an earlier one, writes no store row and no
+render-cache entry, and nothing reads it at publish. The three evaluation checkpoints are pinned in
+`models.lock.json` with `"scope": "evaluation"`, are not engines of `generative.registry`, and are
+downloaded with `scripts/download-qwen3-tts.py --variant custom-voice-1.7b|voice-design|base-1.7b`
+(about 4.5 GB each). A description that asks for an imitation is refused
+(`evaluation.IMITATION_MARKERS`). The policy is `docs/authoring/product-protection.md`.
+
+```sh
+.venv/bin/atlas-listening evaluate voices --repo ../../..                 # every candidate, the whole roster
+.venv/bin/atlas-listening evaluate voices --repo ../../.. --test-adapter  # arithmetic speech, a dry run
+.venv/bin/atlas-listening evaluate reveal voices-<time> --choices ~/Downloads/choices.json
+```
 
 ## Context sounds and the roster
 
