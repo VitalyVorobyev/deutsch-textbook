@@ -124,7 +124,7 @@ function loadFixture(name: string): unknown {
 }
 
 describe('Scene v1: the Zod mirror against the committed fixtures', () => {
-  for (const name of ['dialogue-ls-wohnen-01', 'narration-a1-erste-schritte']) {
+  for (const name of ['dialogue-ls-wohnen-01', 'narration-a1-erste-schritte', 'dialogue-mixed']) {
     test(`${name} parses, and parses back to itself`, () => {
       const raw = loadFixture(name);
       const parsed = sceneSchema.parse(raw);
@@ -146,6 +146,28 @@ describe('Scene v1: the Zod mirror against the committed fixtures', () => {
       'sfx',
       'speech',
     ]);
+  });
+
+  test('a mixing field the engine left out stays absent rather than gaining a default', () => {
+    // The engine omits a neutral mixing field from a scene's canonical form so the scene's hash,
+    // and the approval bound to it, did not move when the field arrived. A reader that filled in
+    // `gain_db: 0` and wrote the scene back would change that hash for no audible reason.
+    const scene = sceneSchema.parse(loadFixture('dialogue-ls-wohnen-01'));
+    for (const entry of scene.timeline) {
+      expect(Object.keys(entry)).not.toContain(entry.type === 'ambience' ? 'duck_db' : 'effects');
+      if (entry.type === 'speech') expect(entry.gain_db).toBeUndefined();
+    }
+    expect(scene.acoustics.room_overrides).toBeUndefined();
+  });
+
+  test('the mixed fixture carries every mixing field', () => {
+    const scene = sceneSchema.parse(loadFixture('dialogue-mixed'));
+    const [first, second] = scene.timeline.filter((entry) => entry.type === 'speech');
+    expect(first?.gain_db).toBe(-3);
+    expect(first?.effects?.eq?.mid_db).toBe(2.5);
+    expect(second?.placement?.device_overrides?.lowpass_hz).toBe(3000);
+    expect(scene.timeline.find((entry) => entry.type === 'ambience')?.duck_db).toBe(-8);
+    expect(scene.acoustics.room_overrides?.decay_s).toBe(0.6);
   });
 
   test('a timeline entry that leans on the contract default for `type` still parses', () => {

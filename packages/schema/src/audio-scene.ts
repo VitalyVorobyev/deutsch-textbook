@@ -65,9 +65,29 @@ export type SoundSpec = z.infer<typeof soundSpecSchema>;
 export const soundSchema = z.union([assetRefSchema, soundSpecSchema]);
 export type Sound = z.infer<typeof soundSchema>;
 
-/** Where a sound sits in the stereo field and how far away it is. */
+/**
+ * Per-scene changes to the device a placement names. Only the numbers an editor turns; a deeper
+ * change is a different device in `data/acoustic-profiles.yaml`.
+ */
+export const deviceOverridesSchema = z.strictObject({
+  gain_db: z.number().min(-40).max(12).nullable().default(null),
+  highpass_hz: z.number().positive().max(24000).nullable().default(null),
+  lowpass_hz: z.number().positive().max(24000).nullable().default(null),
+  room_send_db: z.number().min(-12).max(12).nullable().default(null),
+});
+export type DeviceOverrides = z.infer<typeof deviceOverridesSchema>;
+
+/**
+ * Where a sound sits in the stereo field and how far away it is.
+ *
+ * `device_overrides` is **optional rather than defaulted**, like every mixing field added after
+ * scenes were stored: the engine leaves it out of a scene's canonical form while it is unset, so
+ * that the scene's hash, and the approval bound to it, did not move when the field arrived. Absent
+ * means "no override", and a reader must not write the field back as `null`.
+ */
 export const placementSchema = z.strictObject({
   device: z.string().nullable().default(null),
+  device_overrides: deviceOverridesSchema.optional(),
   distance: z.number().min(0).default(1),
   pan: z.number().min(-1).max(1).default(0),
 });
@@ -114,6 +134,52 @@ export const castMemberSchema = z.strictObject({
 });
 export type CastMember = z.infer<typeof castMemberSchema>;
 
+/** One band edge; `sections` cascades 2-pole biquads, so 3 is 36 dB per octave. */
+export const bandFilterSchema = z.strictObject({
+  hz: z.number().positive().max(24000),
+  sections: z.number().int().min(1).max(6).default(1),
+});
+export type BandFilter = z.infer<typeof bandFilterSchema>;
+
+/** Levelling, in dB and milliseconds; the engine converts to `acompressor`'s linear units. */
+export const compressionSchema = z.strictObject({
+  attack_ms: z.number().min(0.01).max(2000),
+  makeup_db: z.number().min(0).max(36),
+  ratio: z.number().min(1).max(20),
+  release_ms: z.number().min(0.01).max(9000),
+  threshold_db: z.number().min(-60).max(0),
+});
+export type Compression = z.infer<typeof compressionSchema>;
+
+/** Bit reduction for a codec-ish edge; `mix` keeps it a hint. */
+export const crushSchema = z.strictObject({
+  bits: z.number().min(1).max(64),
+  mix: z.number().min(0).max(1),
+});
+export type Crush = z.infer<typeof crushSchema>;
+
+/** Three fixed bands, in dB: a low shelf at 200 Hz, a bell at 1.5 kHz, a high shelf at 5 kHz. */
+export const equalizerSchema = z.strictObject({
+  high_db: z.number().min(-12).max(12).default(0),
+  low_db: z.number().min(-12).max(12).default(0),
+  mid_db: z.number().min(-12).max(12).default(0),
+});
+export type Equalizer = z.infer<typeof equalizerSchema>;
+
+/**
+ * An insert chain on one stem, after its distance and device: band limits, equalizer, crush,
+ * compressor, in that fixed order. `room_send_db` moves the stem's send into the scene's room.
+ */
+export const effectsSchema = z.strictObject({
+  compression: compressionSchema.nullable().default(null),
+  crush: crushSchema.nullable().default(null),
+  eq: equalizerSchema.nullable().default(null),
+  highpass: bandFilterSchema.nullable().default(null),
+  lowpass: bandFilterSchema.nullable().default(null),
+  room_send_db: z.number().min(-12).max(12).default(0),
+});
+export type Effects = z.infer<typeof effectsSchema>;
+
 /** One spoken unit: what is shown, what is synthesised, and how it is paced. */
 export const utteranceSchema = z.strictObject({
   display_text: z.string().min(1),
@@ -127,9 +193,17 @@ export const utteranceSchema = z.strictObject({
 });
 export type Utterance = z.infer<typeof utteranceSchema>;
 
-/** A script line placed on the timeline. `at_ms: null` means "after the previous one". */
+/**
+ * A script line placed on the timeline. `at_ms: null` means "after the previous one".
+ *
+ * `gain_db` (absent: 0) moves the line against the other lines before the master is
+ * loudness-normalised; `effects` (absent: none) is its insert chain. Both optional for the reason
+ * `placementSchema` gives.
+ */
 export const speechEntrySchema = z.strictObject({
   at_ms: z.number().int().min(0).nullable().default(null),
+  effects: effectsSchema.optional(),
+  gain_db: z.number().min(-24).max(6).optional(),
   placement: placementSchema.nullable().default(null),
   type: z.literal('speech').default('speech'),
   utterance_id: z.string().min(1),
@@ -139,6 +213,7 @@ export type SpeechEntry = z.infer<typeof speechEntrySchema>;
 /** A one-off event: a door, a announcement chime. May be the loudest thing in the room. */
 export const sfxEntrySchema = z.strictObject({
   at_ms: z.number().int().min(0),
+  effects: effectsSchema.optional(),
   gain_db: z.number().min(-40).max(0).default(-18),
   placement: placementSchema.nullable().default(null),
   sound: soundSchema,
@@ -146,8 +221,12 @@ export const sfxEntrySchema = z.strictObject({
 });
 export type SfxEntry = z.infer<typeof sfxEntrySchema>;
 
-/** A continuous bed under some or all of the scene. Capped at -6 dB: a bed at speech level is not a bed. */
+/**
+ * A continuous bed under some or all of the scene. Capped at -6 dB: a bed at speech level is not a
+ * bed. `duck_db` (absent: 0) lowers it by exactly that much while anyone speaks.
+ */
 export const ambienceEntrySchema = z.strictObject({
+  duck_db: z.number().min(-30).max(0).optional(),
   end_ms: z.number().int().min(0).nullable().default(null),
   fade_in_ms: z.number().int().min(0).max(10000).default(350),
   fade_out_ms: z.number().int().min(0).max(10000).default(450),
@@ -184,10 +263,23 @@ export const timelineEntrySchema = z.preprocess(
 );
 export type TimelineEntry = z.infer<typeof timelineEntrySchema>;
 
+/**
+ * Per-scene changes to the room: `wet` replaces the profile's level, the other three the impulse
+ * response's own parameters.
+ */
+export const roomOverridesSchema = z.strictObject({
+  decay_s: z.number().positive().max(10).nullable().default(null),
+  lowpass_hz: z.number().min(500).max(20000).nullable().default(null),
+  pre_delay_ms: z.number().int().min(0).max(200).nullable().default(null),
+  wet: z.number().min(0).max(1).nullable().default(null),
+});
+export type RoomOverrides = z.infer<typeof roomOverridesSchema>;
+
 /** Scene-wide acoustic treatment; `room` is resolved against the repo's catalog at render time. */
 export const sceneAcousticsSchema = z.strictObject({
   lead_in_ms: z.number().int().min(0).max(5000).default(0),
   room: z.string().nullable().default(null),
+  room_overrides: roomOverridesSchema.optional(),
 });
 export type SceneAcoustics = z.infer<typeof sceneAcousticsSchema>;
 
@@ -253,13 +345,20 @@ export type Scene = z.infer<typeof sceneSchema>;
 export const AUDIO_SCENE_SHAPES = {
   AmbienceEntry: ambienceEntrySchema,
   AssetRef: assetRefSchema,
+  BandFilter: bandFilterSchema,
   Bilingual: sceneBilingualSchema,
   CastMember: castMemberSchema,
   CharacterRef: characterRefSchema,
+  Compression: compressionSchema,
+  Crush: crushSchema,
+  DeviceOverrides: deviceOverridesSchema,
   DifficultyVariant: difficultyVariantSchema,
+  Effects: effectsSchema,
+  Equalizer: equalizerSchema,
   NarrationRef: narrationRefSchema,
   Placement: placementSchema,
   PronunciationOverride: pronunciationOverrideSchema,
+  RoomOverrides: roomOverridesSchema,
   SceneAcoustics: sceneAcousticsSchema,
   SceneBrief: sceneBriefSchema,
   SfxEntry: sfxEntrySchema,

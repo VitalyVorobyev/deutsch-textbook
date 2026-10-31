@@ -81,6 +81,8 @@ GitHub Release notes.
   scripts are planned for recording.
 - Tonwerk can compare candidate voice models on the character roster, measure them, and lay the
   takes out for a blind listen; nothing the comparison makes can be published.
+- A Tonwerk scene can set a line's level and effects, duck its background under speech, and adjust
+  its room and device per scene; existing scenes keep their approvals and render as before.
 
 ### Changed
 
