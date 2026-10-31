@@ -21,7 +21,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
@@ -32,6 +32,7 @@ from ..generative.locks import set_models_root
 from ..generative.registry import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
 from ..generative.voices import ResolvedVoices, resolve_voices
 from ..graph.assets import sha256_file as sha256
+from ..graph.peaks import RESOLUTION_MAX_MS, RESOLUTION_MIN_MS, render_peaks
 from ..graph.render import render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
@@ -409,6 +410,24 @@ def router(
             media_type=MEDIA_TYPES.get(target.suffix.lower(), "application/octet-stream"),
             filename=f"{scene.slug}-{variant}-{target.name}",
         )
+
+    @api.get("/scenes/{slug}/renders/{variant}/peaks")
+    def peaks(
+        slug: str,
+        variant: str,
+        resolution_ms: int = Query(20, ge=RESOLUTION_MIN_MS, le=RESOLUTION_MAX_MS),
+    ) -> dict[str, Any]:
+        """The master's waveform and every timeline entry's, over the span it measurably occupies.
+
+        For the editor's timeline: a stem is drawn where the render put it, so its picture comes
+        from the bytes the render wrote. Levels are 0..255 on a 60 dB scale (`graph.peaks`).
+        """
+
+        _, _, scene, _ = stored(slug)
+        directory = render_dir(scene, variant)
+        if not (directory / "render.json").exists():
+            raise HTTPException(404, f"{scene.slug} has no {variant} render of these bytes")
+        return render_peaks(directory, resolution_ms=resolution_ms)
 
     @api.get("/scenes/{slug}/renders/{variant}/qa-report")
     def qa_report(slug: str, variant: str) -> dict[str, Any]:

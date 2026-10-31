@@ -679,3 +679,35 @@ def test_a_lesetext_becomes_a_narration_scene_and_only_once(tmp_path: Path) -> N
     )
     assert unknown_profile.status_code == 409
     assert "gibt-es-nicht" in unknown_profile.json()["detail"]
+
+
+def test_peaks_draw_every_stem_over_its_measured_span_and_are_cached(client: Any) -> None:
+    http, store, scene = client
+    assert create(http, scene).status_code == 201
+    rendered = http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH)
+    assert rendered.status_code == 200, rendered.text
+    base = f"/api/scenes/{scene.slug}/renders"
+
+    answer = http.get(f"{base}/natural/peaks?resolution_ms=50", headers=AUTH)
+    assert answer.status_code == 200, answer.text
+    body = answer.json()
+    directory = store.root / "renders" / scene.sha256() / "natural"
+    timeline = json.loads((directory / "render.json").read_text())["timeline"]
+    assert [row["entry_id"] for row in body["tracks"]] == [row["entry_id"] for row in timeline]
+    for track, span in zip(body["tracks"], timeline, strict=True):
+        # One level per 50 ms window of the span the render measured, never of the whole file.
+        assert len(track["peaks"]) == -(-(span["end_ms"] - span["start_ms"]) // 50), track
+        assert all(0 <= level <= 255 for level in track["peaks"])
+    # The generated bed is a tone at a real level, so it draws above the floor.
+    bed = next(track for track in body["tracks"] if track["type"] == "ambience")
+    assert max(bed["peaks"]) > 0
+    assert len(body["master"]) >= body["duration_ms"] // 50
+
+    cached = directory / "peaks-50ms.json"
+    assert json.loads(cached.read_text()) == body
+    # A second request is answered from that file, not by reading every stem again.
+    cached.write_text(json.dumps({**body, "master": [7]}))
+    assert http.get(f"{base}/natural/peaks?resolution_ms=50", headers=AUTH).json()["master"] == [7]
+
+    assert http.get(f"{base}/natural/peaks?resolution_ms=1", headers=AUTH).status_code == 422
+    assert http.get(f"{base}/nirgends/peaks", headers=AUTH).status_code == 404

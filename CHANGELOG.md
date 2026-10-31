@@ -83,6 +83,8 @@ GitHub Release notes.
   takes out for a blind listen; nothing the comparison makes can be published.
 - A Tonwerk scene can set a line's level and effects, duck its background under speech, and adjust
   its room and device per scene; existing scenes keep their approvals and render as before.
+- Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
+  any one track on its own.
 
 ### Changed
 

@@ -217,6 +217,7 @@ a test take reaches a learner.
 | `POST /api/scenes/{slug}/qa` | `{variant}` — transcript, speaker and soundscape QA of that variant's render; **409 with a sentence** when the local MLX Whisper runtime is absent |
 | `GET …/renders/{variant}/master` · `/qa-report` | the audio, and the machine's report on exactly that variant's render (404 when that variant was never checked) |
 | `GET …/renders/{variant}/artifact/{path}` | any file the render **declared it wrote**; the allowlist is `render.json`'s `artifacts`, never the filesystem |
+| `GET …/renders/{variant}/peaks?resolution_ms=` | the master's waveform and each timeline entry's over its measured span. Levels run 0..255 on a 60 dB scale, the window is 5–1000 ms, and the result is cached per window beside the render (`graph/peaks.py`) |
 | `POST /api/scenes/{slug}/approve` | the eight-point checklist, the reviewer's name, **the sha256 of the master they listened to** and the variant; a mismatch or a variant with no passing report is 409 |
 | `POST /api/scenes/{slug}/decline` · `/publish` | with a reason, back to `draft`; publish one approved scene, or 409 naming the gate |
 | `POST /api/scenes/{slug}/archive` · `/fork` | `{archived}` — out of the library's default view and the review queue, or back; `{slug}` — a new draft project from the head revision, recording `forked_from` as `<slug>@<revision>`, 409 when the slug is taken |

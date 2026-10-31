@@ -835,6 +835,21 @@
   font-variant-numeric: tabular-nums;
 }
 
+.zeitleiste-transport {
+  margin-bottom: var(--ton-mass-3);
+}
+
+/* A piece is a button drawn in SVG. The ring is for the keyboard; a click already says which. */
+.zeitleiste-stueck {
+  cursor: pointer;
+  outline: none;
+}
+
+.zeitleiste-stueck:focus-visible > rect {
+  stroke: var(--ton-schrift);
+  stroke-width: 1.5;
+}
+
 /* --- Spieler ------------------------------------------------------------------------------ */
 
 .spielbereich {
