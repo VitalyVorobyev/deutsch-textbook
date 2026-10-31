@@ -79,6 +79,8 @@ GitHub Release notes.
 - Tonwerk's Bibliothek lists everything the studio has made or was asked to make, searchable by
   what a recording says, with forking, archiving and a cleanup of old renders; the 36 A2 Hören
   scripts are planned for recording.
+- Tonwerk can compare candidate voice models on the character roster, measure them, and lay the
+  takes out for a blind listen; nothing the comparison makes can be published.
 
 ### Changed
 

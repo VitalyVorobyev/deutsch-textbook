@@ -137,7 +137,13 @@ def _normalize(vector: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
     return vector / norm
 
 
-def _trimmed_audio(path: Path) -> tuple[npt.NDArray[np.float32], int]:
+def trimmed_audio(path: Path) -> tuple[npt.NDArray[np.float32], int]:
+    """A 16 kHz take with its leading and trailing silence (below -45 dBFS) cut off.
+
+    The voiced span every identity score is computed on, and the span a speaking rate is divided
+    by: silence the model padded around a line is neither the speaker nor their pace.
+    """
+
     try:
         import soundfile as sf
     except ImportError as exc:  # pragma: no cover - runtime dependency guard
@@ -200,7 +206,7 @@ def check_unit_consistency(
     line_scores: dict[str, LineSimilarity] = {}
     warnings: list[str] = []
     for unit_id, speaker in units:
-        audio, rate = _trimmed_audio(paths[unit_id])
+        audio, rate = trimmed_audio(paths[unit_id])
         if len(audio) < MIN_SPEECH_SAMPLES:
             reason = "less than 0.5 s of voiced audio; listen manually"
             line_scores[unit_id] = LineSimilarity(

@@ -64,7 +64,7 @@ WORKING_RATE = 48_000
 WORKING_CHANNELS = 2
 WORKING_CODEC = "pcm_s24le"
 
-#: What Whisper and WavLM consume. `speaker_qa._trimmed_audio` *refuses* anything else, so this
+#: What Whisper and WavLM consume. `speaker_qa.trimmed_audio` *refuses* anything else, so this
 #: is a contract with the QA layer rather than a preference.
 QA_RATE = 16_000
 QA_CHANNELS = 1

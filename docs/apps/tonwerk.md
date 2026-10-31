@@ -218,6 +218,8 @@ The rest of `atlas-listening` serves the same scene pipeline from a shell:
 - `sources import|list` brings in a licensed Freesound sound.
 - `voices create|list|demo|revoke` manages consented cloned voices.
 - `generate-character-demos` makes the demo takes Figuren plays.
+- `evaluate voices` compares candidate voice checkpoints on the roster and writes a blind
+  listening page; `evaluate reveal` unblinds your choices. Nothing it makes can be published.
 - The `scene` sub-app validates, creates, renders, checks and publishes one scene.
   `scene regenerate-corpus` re-renders and checks the published dialogue corpus in one process,
   and it stops before approval. `scene archive`, `scene fork` and `scene reap` are the

@@ -5,7 +5,7 @@
 # ]
 # ///
 
-"""Download a Qwen3-TTS 0.6B checkpoint, at its pinned revision, for later offline use.
+"""Download a Qwen3-TTS checkpoint, at its pinned revision, for later offline use.
 
 The revision comes from the engine's `models.lock.json` — the same row the engine loads and a
 published manifest names. `listening_studio.generative.locks.local_checkout` accepts a
@@ -26,6 +26,10 @@ from huggingface_hub import snapshot_download
 LOCK_KEYS = {
     "custom-voice": "qwen_tts",
     "base": "qwen_tts_base",
+    # The candidates of `atlas-listening evaluate voices`, pinned with `"scope": "evaluation"`.
+    "custom-voice-1.7b": "qwen_tts_1_7b",
+    "voice-design": "qwen_tts_voice_design",
+    "base-1.7b": "qwen_tts_base_1_7b",
 }
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODEL_LOCK = PROJECT_ROOT / "apps" / "tonwerk" / "engine" / "models.lock.json"
@@ -40,13 +44,14 @@ def pinned(variant: str) -> tuple[str, str]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Download Qwen3-TTS 0.6B weights into a local directory."
+        description="Download pinned Qwen3-TTS weights into a local directory."
     )
     parser.add_argument(
         "--variant",
         choices=LOCK_KEYS,
         default="custom-voice",
-        help="custom-voice uses built-in speakers; base supports voice cloning",
+        help="custom-voice uses built-in speakers; base supports voice cloning; the 1.7B "
+        "variants and voice-design are evaluation candidates",
     )
     parser.add_argument(
         "--output-dir",

@@ -1,0 +1,65 @@
+# The input of `atlas-listening evaluate voices`: one synthetic voice description per roster
+# character, the sentence each designed voice reads as its cloning reference, and the lines every
+# candidate speaks besides the character's own demo phrases.
+#
+# Every description is of a fictional person and imitates nobody: no names, no "sounds like", no
+# public figure, no accent assigned by a character's name. The runner refuses a description that
+# asks for an imitation (`evaluation.IMITATION_MARKERS`), and the policy it serves is the
+# evaluation paragraph of docs/authoring/product-protection.md.
+#
+# Descriptions are English because the VoiceDesign checkpoint's own examples are English and
+# Chinese; the speech they produce is German.
+version: 1
+
+# Read once per character by the VoiceDesign model; the clone candidates condition on it, so its
+# transcript must survive Whisper (the runner retries the next seed when it does not). It shares
+# no sentence with the lines below, so a clone is never scored on words it was shown.
+reference_text: >-
+  Hallo, schön, dass Sie da sind. Ich wohne seit drei Jahren hier in der Stadt, und am Wochenende
+  gehe ich gern im Park spazieren oder treffe Freunde in einem kleinen Café.
+
+# Spoken by every character on every candidate, after its three demo phrases: a date and a time,
+# a polite question, a long clause pair, and an informal exclamation.
+shared_lines:
+  - "Der Termin ist am Dienstag, dem vierzehnten März, um zehn Uhr fünfzehn."
+  - "Könnten Sie mir bitte sagen, wo hier die nächste Apotheke ist?"
+  - "Ich wollte eigentlich früher kommen, aber der Bus hatte zwanzig Minuten Verspätung."
+  - "Ach so, das wusste ich nicht. Dann machen wir es eben morgen!"
+
+designs:
+  lena: >-
+    A woman in her mid-twenties speaking clear standard German. Warm, medium-pitched voice with a
+    soft, friendly timbre; relaxed conversational pace; attentive and direct, never theatrical.
+  mira: >-
+    A woman in her early twenties speaking clear standard German. Bright, slightly higher voice
+    with lively but calm energy; quick, friendly and practical, with clear sentence endings.
+  anna-keller: >-
+    A woman around forty speaking clear standard German. Calm, precise, medium-low voice with a
+    polished, unhurried delivery, like a good radio magazine presenter; neutral and approachable.
+  so-yeon-park: >-
+    A woman in her late thirties speaking clear standard German. Patient, encouraging, medium voice;
+    articulates every phrase cleanly at a moderate pace, warm without sounding slow.
+  jonas: >-
+    A man in his mid-twenties speaking clear standard German. Relaxed, medium-low voice with an
+    easy, thoughtful conversational rhythm; casual but clear.
+  david: >-
+    A man in his late thirties speaking clear standard German. Grounded, medium-low voice; calm,
+    matter-of-fact and friendly, steady pace, no exaggerated authority.
+  emil-wagner: >-
+    A man in his mid-sixties speaking clear standard German. Low, measured, slightly resonant
+    voice; deliberate pace, composed and courteous, informative rather than stern.
+  amir: >-
+    A man in his early twenties speaking clear standard German. Curious, energetic, medium voice
+    with natural enthusiasm; lively but never rushed.
+  herr-wu: >-
+    A man in his late sixties speaking clear standard German. Calm, slightly gravelly low voice;
+    patient and reliable with a dry, understated friendliness; unhurried.
+  klara: >-
+    A woman in her mid-forties speaking clear standard German. Focused, firm, medium-low voice;
+    polite and efficient, brisk steady pace, businesslike without coldness.
+  paul: >-
+    A man in his early forties speaking clear standard German. Open, warm, reassuring medium voice;
+    calm and gentle pace without sounding artificially soft.
+  noa: >-
+    A ten-year-old child speaking clear standard German. Natural, bright child's voice, curious and
+    lively, clearly articulated, not an exaggerated cartoon voice.
