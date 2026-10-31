@@ -237,7 +237,7 @@ def test_the_wave_and_the_publisher_both_refuse_to_act_without_yes(local_store: 
     for argv in (
         ["regenerate-corpus", "--repo", str(REPO), "--level", "A1"],
         ["publish", "ls-erste-schritte-01", "--repo", str(REPO)],
-        ["publish-approved", "--repo", str(REPO)],
+        ["publish-checked", "--repo", str(REPO)],
         ["delete", "ls-erste-schritte-01"],
     ):
         result = runner.invoke(scene_cli.app, argv)
@@ -281,14 +281,14 @@ def test_a_publish_refusal_names_its_gate_in_front_of_its_sentence(local_store: 
     assert "scene: no scene project gibt-es-nicht" in flat(result.output)
 
 
-def test_publish_approved_reports_an_empty_pass_rather_than_failing(local_store: Path) -> None:
+def test_publish_checked_reports_an_empty_pass_rather_than_failing(local_store: Path) -> None:
     result = runner.invoke(
-        scene_cli.app, ["publish-approved", "--repo", str(REPO), "--dry-run", "--json"]
+        scene_cli.app, ["publish-checked", "--repo", str(REPO), "--dry-run", "--json"]
     )
     assert result.exit_code == 0, result.output
     payload = json.loads(result.stdout)
     assert payload == {
-        "task": "scene.publish-approved",
+        "task": "scene.publish-checked",
         "level": None,
         "dry_run": True,
         "published": [],

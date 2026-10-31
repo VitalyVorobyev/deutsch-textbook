@@ -105,10 +105,11 @@ def run_wave(
 
     # Imported here, not at module scope: this pulls the engines, huggingface-hub and soundfile,
     # and `scene/cli.py`'s whole argument is that reaching `scene validate` costs none of that.
-    from ..generative.registry import CLONING_ENGINES, engine_for
-    from ..generative.gateway import ClonableVoice, SpeechGenerator
+    from ..generative.designed import resolve_designed, stored_designed
+    from ..generative.registry import CLONING_ENGINES, DESIGNED_ENGINES, engine_for
+    from ..generative.gateway import ClonableVoice, DesignedVoice, SpeechGenerator
     from ..generative.voices import resolve_voices
-    from ..graph.render import render_scene
+    from ..graph.render import designed_digests, render_scene
     from ..graph.scene_qa import scene_qa
 
     say: Progress = progress or (lambda _line: None)
@@ -121,6 +122,10 @@ def run_wave(
     total = len(targets)
     rows: list[dict[str, Any]] = []
     warm: dict[str, SpeechGenerator] = {}
+    #: Every designed reference in app data, verified once. A designed-voice engine is built warm
+    #: around all of them, so one checkpoint stays loaded for the whole wave; each scene's own
+    #: digests are still resolved below, which is where a missing one is refused by name.
+    every_designed: dict[str, DesignedVoice] | None = None
 
     def speech_for(scene: Scene, clonable: dict[str, ClonableVoice]) -> dict[str, SpeechGenerator]:
         """One engine per engine name the cast uses, reusing the warm ones.
@@ -131,6 +136,7 @@ def run_wave(
         are preset `qwen_tts` — and the exception is written down rather than assumed away.
         """
 
+        nonlocal every_designed
         built: dict[str, SpeechGenerator] = {}
         for name in sorted({member.voice.engine for member in scene.cast}):
             actual = engine or name
@@ -139,8 +145,10 @@ def run_wave(
             if actual in CLONING_ENGINES:
                 built[name] = engine_for(actual, clonable)
                 continue
+            if actual in DESIGNED_ENGINES and every_designed is None:
+                every_designed = stored_designed(store.root)
             if actual not in warm:
-                warm[actual] = engine_for(actual, {})
+                warm[actual] = engine_for(actual, {}, every_designed)
             built[name] = warm[actual]
         return built
 
@@ -189,6 +197,7 @@ def run_wave(
                 store.root,
                 [member.voice.voice_ref for member in scene.cast if member.voice.voice_ref],
             )
+            designed = resolve_designed(store.root, designed_digests(scene))
             result = render_scene(
                 scene,
                 store.root,
@@ -201,6 +210,7 @@ def run_wave(
                 sound_engine=None,
                 repo=repo,
                 voices=resolved.refs,
+                designed=designed,
             )
             # `scene render`'s ladder, verbatim: a re-render of unchanged bytes is a cache walk,
             # and anything past `audio_generated` was left alone above.

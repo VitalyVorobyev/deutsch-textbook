@@ -1,4 +1,4 @@
-"""Publishing one approved scene into the course repository.
+"""Publishing one checked scene into the course repository.
 
 It writes what the repo needs and nothing else — a scene already *is* the editorial document, so
 there is no bundle beside it:
@@ -22,6 +22,12 @@ publishing the old answer after the scene stopped agreeing with it, and no gate 
 course repo can see that. Where a target wants something a scene genuinely lacks, the publish is
 refused by name rather than filled in — see `PublishRefusal` and the gate table below.
 
+**A scene is cleared by its automatic QA** (ADR 0013). One whose `natural` render passed
+transcript, pace and speaker QA may be published at `automatically_checked`, with no person's prior
+listen; the manifest records `cleared_by: automatic-qa`. A human approval stays optional: a scene
+the owner chose to check is published at `human_approved`, `cleared_by: human-approval`, and its
+approval is still held to the exact scene, variant and master it signed — a stale one refuses.
+
 **The gates, each with its own name.** A refusal names the gate so a caller can act on it rather
 than parse a sentence, and Tonwerk can render German for a gate id it knows:
 
@@ -30,27 +36,30 @@ than parse a sentence, and Tonwerk can render German for a gate id it knows:
 | `scene` | no scene project under this slug |
 | `kind` | a `narration`/`custom` scene — `content/listening/` is the dialogue path |
 | `variant` | any variant but `natural`; the others are rendered, never published |
-| `stage` | a scene that is not `human_approved` |
-| `approval` | a missing approval, or one that is a decline |
+| `stage` | a scene that is neither `automatically_checked` nor `human_approved` |
+| `approval` | a scene at `human_approved` with no completed approval |
+| `declined` | a scene whose current revision a person declined; revise it or approve it |
 | `approval-scene-sha` | an approval given for other scene bytes |
 | `approval-variant` | an approval given for another variant |
 | `approval-master-sha` | an approval whose master sha is not this render's master |
-| `render` | no render of these bytes, or one missing an artifact |
+| `render` | no render of these bytes, one missing an artifact, or one with no record of a designed voice its cast names |
 | `render-drift` | a render whose files no longer hash to what its manifest declares |
 | `qa` | no QA report, or one that did not pass |
+| `test-audio` | a render made by a test engine, cleared by QA alone — no person vouched for it |
 | `level` | a level that cannot be derived and was not given |
 | `brief` | no scenario — only the brief carries one |
 | `speakers` | a cast outside the 1–4 the artifact schema allows |
 | `voice-unknown` | a cast voice reference this studio does not have |
 | `voice-revoked` | a cast voice whose consent was withdrawn |
 | `voice-scope` | a cast voice consented for `evaluation`, not `publication` |
+| `voice-designed` | a designed reference missing from app data, or whose clip no longer hashes to its digest |
 | `audio-source` | a Freesound original this repository does not carry |
 | `exercise-turns` | a transcript that would contradict the items already asking about it |
 | `backup` | a replacement with nowhere to put the bytes it is replacing (raised at write time) |
 
 Casting an evaluation-scope voice stays legal — the
-editor deliberately allows it, because casting is not publishing — and this is the gate that was
-missing on the other side.
+editor deliberately allows it, because casting is not publishing — and `voice-scope` is the gate
+on the other side.
 """
 
 from __future__ import annotations
@@ -67,6 +76,8 @@ from typing import Any, Mapping, Sequence
 import yaml
 
 from ..domain import Stage
+from ..generative.designed import load_designed
+from ..generative.registry import DESIGNED_ENGINES
 from ..storage import Store
 from .convert import exercise_sets_for, load_yaml
 from .model import Scene
@@ -93,6 +104,12 @@ PACKAGE_ROOT = Path(__file__).resolve().parents[3]
 
 #: The artifact schema's bound (`listeningArtifactSchema.speakers`, `.min(1).max(4)`).
 MAX_SPEAKERS = 4
+
+#: The stages a scene may be published from, and what cleared it at each.
+PUBLISHABLE_STAGES: dict[Stage, str] = {
+    Stage.AUTOMATICALLY_CHECKED: "automatic-qa",
+    Stage.HUMAN_APPROVED: "human-approval",
+}
 
 
 class PublishRefusal(ValueError):
@@ -135,6 +152,10 @@ class PublishPlan:
     level: str
     variant: str
     scene_sha256: str
+    #: The stage the scene was published from, which is the transition a publish makes to
+    #: `exported`, and what cleared it there (`PUBLISHABLE_STAGES`).
+    stage: Stage
+    cleared_by: str
     render_dir: Path
     artifact: dict[str, Any]
     manifest: dict[str, Any]
@@ -360,47 +381,91 @@ def contextual_sources(render: Mapping[str, Any]) -> list[dict[str, Any]]:
     return found
 
 
+def manifest_voices(scene: Scene, render: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Every voice that is not a preset speaker, as the published manifest states it, by role.
+
+    Two kinds, told apart by `synthetic`. A **consented clone** (`synthetic: false`) is the bound
+    identity in `render.json`'s `voices` map: whose recording, under which consent. A **designed
+    voice** (`synthetic: true`) is the record in its `designed_voices` map: the character, the
+    catalog version the scene cast, the reference digest, the description, the design seed and
+    both model pins. Both come from the render and nothing else, for the reason
+    `scene_manifest` gives.
+    """
+
+    rows: list[dict[str, Any]] = []
+    for role, ref in sorted((render.get("voices") or {}).items()):
+        if isinstance(ref, dict):
+            rows.append({"role": role, **ref, "synthetic": False})
+    for role, record in sorted((render.get("designed_voices") or {}).items()):
+        if not isinstance(record, dict):
+            continue
+        member = next((row for row in scene.cast if row.role == role), None)
+        rows.append(
+            {
+                "role": role,
+                "character": record.get("character"),
+                "version": (
+                    member.character.version
+                    if member is not None and member.character is not None
+                    else None
+                ),
+                "reference_sha256": record.get("reference_sha256"),
+                "instruct": record.get("instruct"),
+                "seed": record.get("seed"),
+                "design_model": record.get("design_model"),
+                "clone_model": record.get("clone_model"),
+                "synthetic": True,
+            }
+        )
+    return rows
+
+
 def scene_manifest(
     scene: Scene,
     revision_number: int,
     render: Mapping[str, Any],
     qa: Mapping[str, Any],
-    approval: Mapping[str, Any],
+    approval: Mapping[str, Any] | None,
     *,
     level: str,
     published_audio_sha256: str,
 ) -> dict[str, Any]:
     """The scene-native provenance manifest — version 2.
 
-    **The claims come from `render.json`'s `voices` map and from nothing else.** That map is cast
-    role → the bound `VoiceRef` a take was actually spoken through, filled in by `graph.render`
-    after `generative.voices.resolve_voices` checked the row, so:
+    **The claims come from `render.json` and from nothing else.** Its `voices` map is cast role →
+    the bound `VoiceRef` a take was actually spoken through, filled in by `graph.render` after
+    `generative.voices.resolve_voices` checked the row, and its `designed_voices` map is the same
+    for designed synthetic references. So:
 
-        voice_cloning_used = bool(manifest["voices"])
-        consent_sha256     = sorted({row["consent_sha256"] for row in ...})
+        voice_cloning_used   = any consented clone
+        consent_sha256       = sorted({row["consent_sha256"] for each consented clone})
+        reference_audio_used = any voice at all, consented or designed
 
-    and `reference_audio_used` is the same boolean, because in this design a reference recording is
-    the only thing a cloned voice can come from. Computing them any other way — from the scene
-    document, from the engine name, from an editor's checkbox — would answer a question about what
-    was *rendered* with something that is not the render.
+    because a reference recording is the only thing either kind of clone comes from, and only a
+    consented one is a person. Computing them any other way — from the scene document, from the
+    engine name, from an editor's checkbox — would answer a question about what was *rendered*
+    with something that is not the render.
+
+    `cleared_by` says what let it out: `automatic-qa`, with no approval in the manifest, or
+    `human-approval` with the approval that cleared it.
 
     The scene document itself is embedded. `scene_sha256` is the manifest's whole claim to identity
     and the registry's `stale` signal is computed from it, and a hash naming a document that lives
     only in one machine's SQLite is a hash nobody else can check.
     """
 
-    voices = {
-        role: row for role, row in (render.get("voices") or {}).items() if isinstance(row, dict)
-    }
+    voices = manifest_voices(scene, render)
+    consented = [row for row in voices if row["synthetic"] is False]
     consent = sorted(
-        {str(row["consent_sha256"]) for row in voices.values() if row.get("consent_sha256")}
+        {str(row["consent_sha256"]) for row in consented if row.get("consent_sha256")}
     )
+    reviewed_at = (approval or {}).get("reviewed_at")
     return {
         "version": MANIFEST_VERSION,
         "id": scene.slug,
         "kind": scene.kind,
         "level": level,
-        "created_at": str(approval.get("reviewed_at") or datetime.now(UTC).isoformat()),
+        "created_at": str(reviewed_at or datetime.now(UTC).isoformat()),
         # The registry compares this against the studio's current revision sha, which is what makes
         # a scene edited after publication read `stale` instead of `published`.
         "scene_sha256": scene.sha256(),
@@ -439,10 +504,11 @@ def scene_manifest(
         "voices": voices,
         "contextual_sources": contextual_sources(render),
         "qa": dict(qa),
-        "approval": dict(approval),
+        "cleared_by": "human-approval" if approval is not None else "automatic-qa",
+        **({"approval": dict(approval)} if approval is not None else {}),
         "claims": {
             "model_license_is_training_data_provenance": False,
-            "voice_cloning_used": bool(voices),
+            "voice_cloning_used": bool(consented),
             "reference_audio_used": bool(voices),
             # A list rather than a bool, because the question a reader asks of a cloned artifact is
             # *which consent*, not *whether*.
@@ -488,9 +554,21 @@ def _check_voices(store: Store, scene: Scene) -> None:
     records the consent *digest* the take was made under, and the scope is a property of the
     consent this studio holds now. A consent downgraded or a voice revoked between render and
     publish must refuse, and only the live row can say so.
+
+    A **designed** voice needs no consent and is still checked against app data: its clip must be
+    there and still hash to the digest the cast names. Publishing a take whose reference this
+    studio no longer holds, or holds in other bytes, would state a provenance nobody can check.
     """
 
     for member in scene.cast:
+        if member.voice.engine in DESIGNED_ENGINES:
+            try:
+                load_designed(store.root, member.voice.voice)
+            except ValueError as error:
+                raise PublishRefusal(
+                    "voice-designed", f"role {member.role}: {error}"
+                ) from error
+            continue
         voice_ref = member.voice.voice_ref
         if voice_ref is None:
             continue
@@ -590,12 +668,16 @@ def plan_publish(
     *,
     level: str | None = None,
     variant: str = PUBLISHED_VARIANT,
+    allow_test_audio: bool = False,
 ) -> PublishPlan:
     """Run every gate and compute every byte, writing nothing.
 
     Order matters in one place only, and it is the cheap-before-expensive one: the document gates
     (stage, approval, level) run before the filesystem gates (render, sources, exercise turns), so
-    a scene nobody approved is refused without reading a render tree.
+    a scene that is not ready is refused without reading a render tree.
+
+    `allow_test_audio` lets a render made by a test engine through when QA alone cleared it. The
+    approval endpoint holds the same line for a person's sign-off; only a test passes it.
     """
 
     if variant != PUBLISHED_VARIANT:
@@ -615,18 +697,31 @@ def plan_publish(
             f"{scene.slug} is a {scene.kind} scene; content/listening/ is the dialogue path and a "
             "narration publishes to content/reading-audio/, which this publisher does not write",
         )
-    if Stage(project.stage) != Stage.HUMAN_APPROVED:
+    stage = Stage(project.stage)
+    if stage not in PUBLISHABLE_STAGES:
         raise PublishRefusal(
             "stage",
-            f"{scene.slug} is at {project.stage}; publishing follows {Stage.HUMAN_APPROVED}",
+            f"{scene.slug} is at {project.stage}; publishing follows "
+            + " or ".join(str(row) for row in PUBLISHABLE_STAGES),
         )
-    approval: dict[str, Any] = json.loads(revision.approval_json or "{}")
-    if approval.get("status") != "complete":
+    verdict: dict[str, Any] = json.loads(revision.approval_json or "{}")
+    if verdict.get("status") == "declined":
+        raise PublishRefusal(
+            "declined",
+            f"{scene.slug} was declined on {str(verdict.get('reviewed_at') or '')[:10]} "
+            f"({verdict.get('reason') or 'no reason given'}); revise it, or approve it on the "
+            "review page",
+        )
+    # An approval is optional, and checked whenever it exists: the scene, the variant and the
+    # master it names must be this publish's.
+    approval: dict[str, Any] | None = verdict if verdict.get("status") == "complete" else None
+    if stage == Stage.HUMAN_APPROVED and approval is None:
         raise PublishRefusal(
             "approval",
-            f"{scene.slug} carries no completed human approval "
-            f"(status {approval.get('status') or 'none'})",
+            f"{scene.slug} is at {Stage.HUMAN_APPROVED} and carries no completed human approval "
+            f"(status {verdict.get('status') or 'none'})",
         )
+    cleared_by = "human-approval" if approval is not None else "automatic-qa"
     qa = store.scene_qa_report(revision.id, variant) or {}
     if qa.get("passed") is not True:
         raise PublishRefusal(
@@ -651,13 +746,13 @@ def plan_publish(
         )
     _check_voices(store, scene)
 
-    if approval.get("scene_sha256") not in (None, scene.sha256()):
+    if approval is not None and approval.get("scene_sha256") not in (None, scene.sha256()):
         raise PublishRefusal(
             "approval-scene-sha",
             f"the approval on record is for scene {str(approval.get('scene_sha256'))[:12]} and "
             f"this revision is {scene.sha256()[:12]}",
         )
-    if approval.get("variant") not in (None, variant):
+    if approval is not None and approval.get("variant") not in (None, variant):
         raise PublishRefusal(
             "approval-variant",
             f"the approval on record is for variant {approval.get('variant')}, not {variant}",
@@ -692,7 +787,7 @@ def plan_publish(
             "render-drift",
             "publish.mp3 does not hash to what render.json declares; re-render before publishing",
         )
-    if approval.get("audio_sha256") != master_sha:
+    if approval is not None and approval.get("audio_sha256") != master_sha:
         # The approval vouches for bytes this render does not have. Either the reviewer signed a
         # render that has since been replaced, or the render was rebuilt after approval — both
         # publish a signature that never covered the recording.
@@ -701,6 +796,27 @@ def plan_publish(
             f"the approval names master {str(approval.get('audio_sha256'))[:12]} and this render's "
             f"master is {master_sha[:12]}; re-approve the current render before publishing it",
         )
+
+    test_engines = sorted(
+        str(name) for name in (render.get("engines") or {}) if str(name).startswith("fake")
+    )
+    if approval is None and test_engines and not allow_test_audio:
+        raise PublishRefusal(
+            "test-audio",
+            f"the {variant} render of {scene.slug} was made by {', '.join(test_engines)}, which "
+            "renders no real audio; automatic QA alone cannot clear it",
+        )
+    recorded = render.get("designed_voices") or {}
+    for member in scene.cast:
+        if member.voice.engine not in DESIGNED_ENGINES:
+            continue
+        record = recorded.get(member.role) if isinstance(recorded, dict) else None
+        if not isinstance(record, dict) or record.get("reference_sha256") != member.voice.voice:
+            raise PublishRefusal(
+                "render",
+                f"the {variant} render of {scene.slug} records no designed reference "
+                f"{member.voice.voice[:12]} for role {member.role}; re-render before publishing",
+            )
 
     provenance_ref = f"data/audio-provenance/{resolved_level.lower()}/{scene.slug}.json"
     artifact = listening_record(scene, render, resolved_level, provenance_ref)
@@ -717,7 +833,9 @@ def plan_publish(
     _check_audio_sources(repo, manifest["contextual_sources"])
     _check_exercise_turns(repo, resolved_level, scene.slug, transcript)
 
-    review_date = str(approval.get("reviewed_at", ""))[:10] or datetime.now(UTC).date().isoformat()
+    review_date = (
+        str((approval or {}).get("reviewed_at", ""))[:10] or datetime.now(UTC).date().isoformat()
+    )
     level_dir = resolved_level.lower()
     targets = PublishTargets(
         artifact=Path("content") / "listening" / level_dir / f"{scene.slug}.yaml",
@@ -753,6 +871,8 @@ def plan_publish(
         level=resolved_level,
         variant=variant,
         scene_sha256=scene.sha256(),
+        stage=stage,
+        cleared_by=cleared_by,
         render_dir=directory,
         artifact=artifact,
         manifest=manifest,
@@ -861,6 +981,7 @@ def publish_scene(
     level: str | None = None,
     variant: str = PUBLISHED_VARIANT,
     backup_root: Path | None = None,
+    allow_test_audio: bool = False,
 ) -> tuple[PublishPlan, list[Path]]:
     """Plan, write, and move the project to `exported`.
 
@@ -873,13 +994,15 @@ def publish_scene(
     `replaced/<slug>/<timestamp>` under app-data (`default_backup_root`).
     """
 
-    plan = plan_publish(store, repo, slug, level=level, variant=variant)
+    plan = plan_publish(
+        store, repo, slug, level=level, variant=variant, allow_test_audio=allow_test_audio
+    )
     if backup_root is None and plan.replaces:
         backup_root = default_backup_root(store.root, plan.slug)
     written = write_publish(plan, repo, backup_root=backup_root)
     found = store.get_scene_by_slug(slug)
     assert found is not None
-    store.transition_scene(found[0].id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+    store.transition_scene(found[0].id, plan.stage, Stage.EXPORTED)
     return plan, written
 
 

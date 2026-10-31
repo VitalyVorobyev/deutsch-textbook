@@ -10,6 +10,7 @@ import {
   eintragHinzufuegen,
   istGeaendert,
   istSequentiell,
+  katalogStimmeUebernehmen,
   mischungSetzen,
   rolleUmbenennen,
   stabilesJson,
@@ -225,5 +226,45 @@ describe('mischungSetzen', () => {
     expect(
       Object.keys(mischungSetzen(geduckt, index, { duck_db: 0 }).timeline[index]!),
     ).not.toContain('duck_db');
+  });
+});
+
+describe('katalogStimmeUebernehmen', () => {
+  const rolle = (scene: Scene): string => scene.cast[0]!.role;
+  const designt = {
+    id: 'lena',
+    version: 2,
+    voice_profile: { engine: 'qwen_tts_designed', voice: 'a'.repeat(64), seed: 100, pace: 0.83 },
+  };
+
+  test('a designed profile brings its engine, drops the style and paces the role’s lines', () => {
+    const neu = katalogStimmeUebernehmen(szene, rolle(szene), designt);
+    const member = neu.cast[0]!;
+    expect(member.voice.engine).toBe('qwen_tts_designed');
+    expect(member.voice.voice).toBe('a'.repeat(64));
+    expect(member.voice.style).toBeNull();
+    expect(member.character).toEqual({ id: 'lena', version: 2 });
+    for (const zeile of neu.script) {
+      const vorher = szene.script.find((alt) => alt.id === zeile.id)!;
+      expect(zeile.pace).toBe(zeile.role === rolle(szene) ? 0.83 : vorher.pace);
+    }
+  });
+
+  test('adopting the same profile twice gives the same scene', () => {
+    const einmal = katalogStimmeUebernehmen(szene, rolle(szene), designt);
+    expect(istGeaendert(einmal, katalogStimmeUebernehmen(einmal, rolle(szene), designt))).toBe(
+      false,
+    );
+  });
+
+  test('a preset profile keeps its style and defaults to the preset engine', () => {
+    const preset = {
+      id: 'klara',
+      version: 1,
+      voice_profile: { voice: 'Vivian', seed: 200, style: 'Ruhig.', pace: 0.95 },
+    };
+    const member = katalogStimmeUebernehmen(szene, rolle(szene), preset).cast[0]!;
+    expect(member.voice.engine).toBe('qwen_tts');
+    expect(member.voice.style).toBe('Ruhig.');
   });
 });

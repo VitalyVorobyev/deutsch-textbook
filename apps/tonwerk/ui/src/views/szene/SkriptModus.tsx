@@ -32,6 +32,7 @@ import {
   istSprache,
   rolleIstFrei,
   rolleUmbenennen,
+  katalogStimmeUebernehmen,
 } from '../../scene-draft';
 import type { Character, Voice } from '../../contracts';
 import type { Scene, Utterance } from '@da/schema/audio-scene';
@@ -241,18 +242,7 @@ function Besetzung({
               {figur && !geklont ? (
                 <Button
                   size="sm"
-                  onClick={() =>
-                    setEntwurf(
-                      besetzungAendern(entwurf, member.role, {
-                        voice: {
-                          ...member.voice,
-                          voice: figur.voice_profile?.voice ?? member.voice.voice,
-                          seed: figur.voice_profile?.seed ?? member.voice.seed,
-                          style: figur.voice_profile?.style ?? member.voice.style,
-                        },
-                      }),
-                    )
-                  }
+                  onClick={() => setEntwurf(katalogStimmeUebernehmen(entwurf, member.role, figur))}
                 >
                   Stimme aus dem Katalog übernehmen
                 </Button>

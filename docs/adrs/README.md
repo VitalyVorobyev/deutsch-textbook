@@ -51,7 +51,8 @@ Every `ADR NNNN` mention anywhere in the repository must name an existing record
 | [`0009`](0009-third-party-and-official-material.md) | What third-party and official material may enter the repository |
 | [`0010`](0010-editorial-tools-are-separate-apps.md) | *Superseded by 0012* |
 | [`0011`](0011-shared-ui-from-vitavision-packages.md) | Shared UI comes from the `@vitavision/*` packages, and each app's identity is a theme |
-| [`0012`](0012-editorial-tools-and-the-tonwerk-studio.md) | Editorial tools are separate applications over the checkout, and Tonwerk is one studio whose shell owns its engine |
+| [`0012`](0012-editorial-tools-and-the-tonwerk-studio.md) | Editorial tools are separate applications over the checkout, and Tonwerk is one studio whose shell owns its engine (its approval clause superseded by 0013) |
+| [`0013`](0013-designed-voices-and-automatic-publishing.md) | The course speaks in designed synthetic voices on one model, and its audio publishes on automatic QA |
 
 The first eleven were accepted on 2026-10-18. They restate, as one foundational set, the decisions
 of an earlier series of 22 records. That series is in git history (`git show bae038e:docs/adrs/`),

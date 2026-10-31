@@ -38,6 +38,7 @@ from .model import (
     VoiceSpec,
     SfxEntry,
 )
+from .casting import catalog_pace, catalog_voice
 from .reading_source import ReadingSource
 
 
@@ -47,10 +48,6 @@ from .reading_source import ReadingSource
 #: bottle in a bottle bank, a landline ring) is 1.6–2.5 s, and every room tone is 12–110 s.
 #: Anything under this threshold is an event; the gap either side of it is a factor of five.
 EVENT_MAX_DURATION_MS = 5_000
-
-#: The engine a new narration scene is cast on. A narration profile names a character and a
-#: delivery, never an engine, so the value is stated here rather than guessed per reading.
-NARRATION_ENGINE = "qwen_tts"
 
 #: The single role a narration scene casts. Not the character's display name: an utterance names
 #: a *part*, and the part a Lesetext has is the narrator, whoever is reading it this month.
@@ -339,18 +336,15 @@ def scene_from_reading(
     difference, and filling it with a copy would make every reading look like it had one.
     """
 
-    style = f"{character.voice_profile.style} {profile.instruction}"
+    # The engine and voice are the character's catalog profile: a narration profile names a
+    # character and a delivery, never an engine. Its reading instruction reaches only a preset
+    # voice, and its level pace is composed with the character's own (`scene.casting`).
     member = CastMember(
         role=NARRATOR_ROLE,
         character=CharacterRef(id=character.id, version=character.version),
-        voice=VoiceSpec(
-            engine=NARRATION_ENGINE,
-            voice=character.voice_profile.voice,
-            seed=character.voice_profile.seed,
-            style=style,
-        ),
+        voice=catalog_voice(character, style=profile.instruction),
     )
-    pace = profile.pace_by_level[source.level]
+    pace = catalog_pace(character, profile.pace_by_level[source.level])
     script = [
         Utterance(
             id=f"p{index + 1}",

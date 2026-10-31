@@ -532,6 +532,8 @@ export const characterSchema = z.looseObject({
   demo_phrases: z.array(z.string()).default([]),
   voice_profile: z
     .looseObject({
+      /** Absent on a preset profile, which the engine defaults to `qwen_tts`. */
+      engine: z.string().optional(),
       voice: z.string().optional(),
       seed: z.number().optional(),
       style: z.string().optional(),

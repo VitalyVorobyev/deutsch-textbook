@@ -264,8 +264,13 @@ def test_reveal_unblinds_through_the_key(tmp_path: Path) -> None:
 
 def test_no_evaluation_checkpoint_is_a_production_engine() -> None:
     evaluation_only = {name for name, spec in LOCK.items() if spec.get("scope") == "evaluation"}
-    assert evaluation_only == {"qwen_tts_1_7b", "qwen_tts_voice_design", "qwen_tts_base_1_7b"}
+    assert evaluation_only == {"qwen_tts_1_7b"}
     assert not evaluation_only & set(ENGINES)
+    # Every real engine a scene can be cast on is a production row of the lock, under its own name:
+    # that is the row a render manifest copies.
+    real = {name for name in ENGINES if not name.startswith("fake")}
+    assert real <= set(LOCK)
+    assert all(LOCK[name].get("scope") != "evaluation" for name in real)
 
 
 def test_the_design_file_describes_every_roster_character() -> None:

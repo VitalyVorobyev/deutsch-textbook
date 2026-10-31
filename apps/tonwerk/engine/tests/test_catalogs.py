@@ -23,3 +23,15 @@ def test_narration_profiles_resolve_to_capable_characters() -> None:
         "formal-informational",
     }
 
+
+
+def test_every_roster_character_speaks_a_designed_voice() -> None:
+    """ADR 0013: one designed voice per character, on one checkpoint, named by its digest."""
+
+    catalog = load_character_catalog(REPO)
+    profiles = [row.voice_profile for row in catalog.characters]
+    assert {profile.engine for profile in profiles} == {"qwen_tts_designed"}
+    assert all(profile.style is None for profile in profiles)
+    # Twelve characters, twelve references: no two share a voice the way the presets did.
+    assert len({profile.voice for profile in profiles}) == len(profiles)
+    assert all(row.version >= 2 for row in catalog.characters)

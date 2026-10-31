@@ -73,7 +73,9 @@ def router(store: Store, repo: Path) -> APIRouter:
             str(item["id"])
             for item in json.loads(candidate_manifest.read_text()).get("candidates", [])
         ] if candidate_manifest.exists() else []
-        return {"version": catalog.version, "characters": [row.model_dump(mode="json") | {"usage_count": usage[row.id], "demo_urls": [f"/api/characters/{row.id}/demos/{index}" for index in range(3) if (store.root / "characters" / row.id / f"demo-{index + 1}.wav").exists()], "portrait_candidate_urls": [f"/api/characters/{row.id}/portrait-candidates/{candidate_id}" for candidate_id in candidate_ids], "selected_portrait_url": f"/api/characters/{row.id}/portrait" if (store.root / "characters" / row.id / "portrait.png").exists() else None} for row in catalog.characters]}
+        # `exclude_none`: a designed profile has no style, and an absent key is what Tonwerk's
+        # character contract reads as "none"; a JSON null there would fail its parse.
+        return {"version": catalog.version, "characters": [row.model_dump(mode="json", exclude_none=True) | {"usage_count": usage[row.id], "demo_urls": [f"/api/characters/{row.id}/demos/{index}" for index in range(3) if (store.root / "characters" / row.id / f"demo-{index + 1}.wav").exists()], "portrait_candidate_urls": [f"/api/characters/{row.id}/portrait-candidates/{candidate_id}" for candidate_id in candidate_ids], "selected_portrait_url": f"/api/characters/{row.id}/portrait" if (store.root / "characters" / row.id / "portrait.png").exists() else None} for row in catalog.characters]}
 
     @api.get("/characters/{character_id}/portrait")
     def selected_character_portrait(character_id: str) -> FileResponse:

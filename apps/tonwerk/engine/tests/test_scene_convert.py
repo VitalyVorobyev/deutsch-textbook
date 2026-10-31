@@ -20,6 +20,7 @@ from listening_studio.catalogs import (
     load_character_catalog,
     load_narration_catalog,
 )
+from listening_studio.scene.casting import catalog_pace
 from listening_studio.scene.reading_source import default_profile_id, load_reading_sources
 from listening_studio.scene.convert import (
     EVENT_MAX_DURATION_MS,
@@ -95,9 +96,20 @@ def test_every_reading_converts_and_round_trips(reading_id: str) -> None:
     assert scene.kind == "narration"
     assert len(scene.cast) == 1 and scene.cast[0].character is not None
     assert [utterance.display_text for utterance in scene.script] == source.paragraphs
-    # Pace is the profile's value for this level, and the pause is the profile's paragraph gap.
+    # Pace is the profile's value for this level times the character's catalog pace, and the
+    # pause is the profile's paragraph gap.
     profile = next(row for row in profiles if row.id == profile_id)
-    assert {utterance.pace for utterance in scene.script} == {profile.pace_by_level[source.level]}
+    character = next(row for row in characters if row.id == profile.character_id)
+    assert {utterance.pace for utterance in scene.script} == {
+        catalog_pace(character, profile.pace_by_level[source.level])
+    }
+    # The narrator speaks the character's catalog voice on its catalog engine.
+    voice = scene.cast[0].voice
+    assert (voice.engine, voice.voice, voice.seed) == (
+        character.voice_profile.engine,
+        character.voice_profile.voice,
+        character.voice_profile.seed,
+    )
     assert {utterance.pause_after_ms for utterance in scene.script} == {
         profile.paragraph_pause_ms
     }

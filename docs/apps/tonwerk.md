@@ -1,7 +1,8 @@
 # Tonwerk: the audio studio
 
 Tonwerk is where the course's listening audio is made: scenes are written, rendered by a local
-model, measured by machine, approved by a person, and published into `content/`. It is the **only**
+model, measured by machine, and published into `content/` once the measurement passes. A person's
+approval is optional, for the scenes you choose to listen to first. It is the **only**
 interface to the studio — the server-rendered forms it grew up beside were deleted.
 
 Two programs are involved, and one command starts both:
@@ -94,7 +95,7 @@ The rail down the left lists them in the order the work runs.
 | **Übersicht** | the registry: what was commissioned, what is published, what the studio is working on, and what the exercises actually use — joined, so the disagreements are visible. Three panels are only findable in that join: `stale` published audio, recordings nothing asks a question about, and `audio-comprehension` items that fall back to browser TTS. |
 | **Bibliothek** | everything the studio has made or was asked to make, in one searchable table: planned recordings (owned by a unit, or by an exam practice set), Lesetext narrations, and studio scenes no plan owns, such as a fork. |
 | **Lesetexte** | the narration queue: one row per Lesetext, keyboard-driven, your position kept in the address. |
-| **Prüfung** | the approval queue — every scene the machine has measured and nobody has judged, longest wait first. |
+| **Prüfung** | the review queue — every scene the machine has measured and nobody has judged, longest wait first. Reviewing is optional: a scene whose check passed can be published without it. |
 | **Klangbibliothek** | every sound that can be placed, imported or generated, and the one place to make a new one. |
 | **Figuren** | the casting roster, its demo takes, and the consented cloned voices under it. |
 
@@ -155,13 +156,16 @@ instructions.
    piece (or Enter on it) plays that track alone, from where it starts.
 7. Read the report. A turn whose transcript check failed is outlined in red; that is the only place
    this app spends a colour on a verdict.
-8. The scene is now `automatically_checked` and appears in **Prüfung**. Approving is not done here:
-   a *freigeben* button beside the render button would put a signature one click away from the thing
-   that invalidates it.
+8. The scene is now `automatically_checked` and appears in **Prüfung**. If the check passed, it can
+   be published as it is ([Publishing](#publishing)). Approving is not done here: a *freigeben*
+   button beside the render button would put a signature one click away from the thing that
+   invalidates it.
 
 ## Walkthrough: approve a scene
 
-Open **Prüfung** and take the head of the queue. The page runs in a fixed order — *hören · prüfen ·
+Approval is optional. Use it for a scene you want to hear before learners do; everything else is
+corrected after use, by a revision and a republish. Open **Prüfung** and take the head of the
+queue. The page runs in a fixed order — *hören · prüfen ·
 entschieden* — and the order is part of what it produces.
 
 1. **Listen, with the script collapsed.** Reading along makes a listener hear words that were never
@@ -175,18 +179,25 @@ entschieden* — and the order is part of what it produces.
    played. If a re-render landed mid-review the engine answers 409 and the page tells you to listen
    again rather than silently re-signing.
 5. Or **Ablehnen**, with a reason. That returns the scene to `draft` and leaves the render and the
-   report where they are. A scene whose automatic check *failed* can only be declined here — the
+   report where they are. A declined take is not published on its check alone: revise the scene,
+   or approve it after all. A scene whose automatic check *failed* can only be declined here — the
    reason travels to the next version.
 
 ## Publishing
 
-Publishing is the engine's, not Tonwerk's, and it takes a deliberate confirmation:
+Publishing is the engine's, not Tonwerk's, and it takes a deliberate confirmation. A dialogue scene
+is ready once its `natural` render passed the automatic check, or once you approved it. Look at the
+plan first, then publish every ready scene:
 
 ```sh
-uv run atlas-listening scene publish-approved --repo ../../.. --yes
+.venv/bin/atlas-listening scene publish-checked --repo ../../.. --dry-run
+.venv/bin/atlas-listening scene publish-checked --repo ../../.. --yes
 ```
 
-It refuses unapproved revisions, approvals that vouch for no bytes, and existing targets.
+`scene publish <slug> --yes` publishes one. Every published recording says what cleared it — the
+automatic check, or your approval. An approval you gave is still held to the exact render you heard,
+and a stale one refuses. A take you declined, a recording made by a test engine, and a designed voice
+whose reference clip is not on this machine are refused too, each by name.
 
 ## Keyboard
 
@@ -208,6 +219,7 @@ and every process it starts, which makes that enforcement rather than a promise.
 uv run atlas-listening models list
 uv run atlas-listening models fetch <generator|qwen_tts|asr|speaker_qa>
 ./install-qwen.sh           # Qwen3-TTS, the speech engine
+uv run ../../../scripts/download-qwen3-tts.py --variant base-1.7b   # the roster's designed voices
 ./install-stable-audio.sh   # Stable Audio 3 Small-SFX, the sound engine (~1.8 GB)
 ```
 
@@ -215,19 +227,21 @@ Both installers pin a revision, and both pins are checked before a generation ru
 
 ## Which CLI commands you actually type
 
-> **`bun run tonwerk:app` or `bun run tonwerk:start`, `models`, and `scene publish-approved`.
+> **`bun run tonwerk:app` or `bun run tonwerk:start`, `models`, and `scene publish-checked`.
 > Everything else happens in Tonwerk.**
 
 The rest of `atlas-listening` serves the same scene pipeline from a shell:
 
 - `sources import|list` brings in a licensed Freesound sound.
-- `voices create|list|demo|revoke` manages consented cloned voices.
+- `voices create|list|demo|revoke` manages consented cloned voices. `voices adopt-designed <run>`
+  makes a voice evaluation's designed voices the roster's: it copies the reference clips into the
+  studio's app data and writes each character's voice and pace into the character catalog.
 - `generate-character-demos` makes the demo takes Figuren plays.
 - `evaluate voices` compares candidate voice checkpoints on the roster and writes a blind
   listening page; `evaluate reveal` unblinds your choices. Nothing it makes can be published.
 - The `scene` sub-app validates, creates, renders, checks and publishes one scene.
   `scene regenerate-corpus` re-renders and checks the published dialogue corpus in one process,
-  and it stops before approval. `scene archive`, `scene fork` and `scene reap` are the
+  and it stops before publishing. `scene archive`, `scene fork` and `scene reap` are the
   Bibliothek's three operations.
 
 They are documented in [`../../apps/tonwerk/engine/README.md`](../../apps/tonwerk/engine/README.md).

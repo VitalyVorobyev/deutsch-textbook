@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
-from typing import Literal
+from typing import Final, Literal
 
 import yaml
 from pydantic import BaseModel, Field, model_validator
@@ -10,11 +11,53 @@ from pydantic import BaseModel, Field, model_validator
 from .domain import VOICE_SETS
 
 
+#: The engine a catalog profile without an `engine` field speaks on: a preset of the 0.6B
+#: CustomVoice checkpoint, which is what every version-1 profile is.
+PRESET_ENGINE: Final = "qwen_tts"
+
+#: The engine a designed profile speaks on (ADR 0013): a designed synthetic reference, named by
+#: its digest, cloned by the 1.7B Base checkpoint.
+DESIGNED_ENGINE: Final = "qwen_tts_designed"
+
+#: The bounds a catalog pace is held to. A designed voice's pace brings its clones back to the
+#: corpus's speaking rate, and a preset's shades a preset speaker; neither is a delivery decision.
+CATALOG_PACE_MIN, CATALOG_PACE_MAX = 0.7, 1.15
+
+
 class CatalogVoiceProfile(BaseModel):
+    """How a character sounds, on one of two engines.
+
+    A **preset** profile (`engine: qwen_tts`, the default) names a CustomVoice speaker and a style
+    sentence. A **designed** profile (`engine: qwen_tts_designed`) names the SHA-256 of a designed
+    synthetic reference held in the studio's app data, and has no style: the Base checkpoint takes
+    no instruction, and the delivery is the one the reference's description gave it. `pace`
+    applies to every line the character speaks once a scene adopts the profile
+    (`scene.casting.adopt_catalog_voice`).
+    """
+
+    engine: Literal["qwen_tts", "qwen_tts_designed"] = PRESET_ENGINE
     voice: str
     seed: int = Field(ge=0)
-    style: str = Field(min_length=1)
-    pace: float = Field(ge=0.7, le=1.15)
+    style: str | None = Field(default=None, min_length=1)
+    pace: float = Field(ge=CATALOG_PACE_MIN, le=CATALOG_PACE_MAX)
+
+    @model_validator(mode="after")
+    def fits_its_engine(self) -> CatalogVoiceProfile:
+        if self.engine == DESIGNED_ENGINE:
+            if not re.fullmatch(r"[0-9a-f]{64}", self.voice):
+                raise ValueError(
+                    "a designed profile's voice is the SHA-256 of its reference clip"
+                )
+            if self.style is not None:
+                raise ValueError(
+                    "a designed profile has no style; the Base checkpoint takes no instruction"
+                )
+            return self
+        if self.voice not in VOICE_SETS[PRESET_ENGINE]:
+            raise ValueError(f"unknown Qwen preset {self.voice}")
+        if self.style is None:
+            raise ValueError("a preset profile needs its style sentence")
+        return self
 
 
 class CharacterDefinition(BaseModel):
@@ -48,8 +91,6 @@ class CharacterCatalog(BaseModel):
             raise ValueError("character ids must be unique")
         known = set(ids)
         for character in self.characters:
-            if character.voice_profile.voice not in VOICE_SETS["qwen_tts"]:
-                raise ValueError(f"unknown Qwen preset for {character.id}")
             missing = set(character.incompatible_with) - known
             if missing:
                 raise ValueError(f"{character.id} references unknown incompatible characters")
