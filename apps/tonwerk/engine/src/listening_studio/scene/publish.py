@@ -256,14 +256,18 @@ def listening_record(
     `speakers` is the cast in cast order, not the set of roles that speak: the cast is the
     declared list and a role with no line is a scene defect, refused by the model, not something
     to hide by deriving the list from the script.
+
+    `cues` are where each transcript turn was placed, straight from the same timing table, so they
+    are the mix's own geometry rather than a measurement of it (`cue_source: render`; compare
+    `cues.measure_cues`). They are the record's last keys, which is what lets `measure-cues
+    --redo` replace a block by cutting there.
     """
 
-    order = {
-        str(row["utterance_id"]): index
-        for index, row in enumerate(
-            sorted(render.get("timing", []), key=lambda row: (int(row["start_ms"]), row["utterance_id"]))
-        )
-    }
+    heard = sorted(
+        render.get("timing", []), key=lambda row: (int(row["start_ms"]), row["utterance_id"])
+    )
+    order = {str(row["utterance_id"]): index for index, row in enumerate(heard)}
+    placed = {str(row["utterance_id"]): row for row in heard}
     script = sorted(scene.script, key=lambda row: order.get(row.id, len(order)))
     assert scene.brief is not None  # guaranteed by the `brief` gate
     return {
@@ -277,6 +281,14 @@ def listening_record(
             {"speaker": utterance.role, "text": utterance.display_text} for utterance in script
         ],
         "provenance": provenance,
+        "cue_source": "render",
+        "cues": [
+            {
+                "start_ms": int(placed[utterance.id]["start_ms"]),
+                "end_ms": int(placed[utterance.id]["end_ms"]),
+            }
+            for utterance in script
+        ],
     }
 
 

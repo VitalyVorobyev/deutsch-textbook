@@ -25,6 +25,7 @@ import {
   discoverySchema,
   referenceDataSchema,
   listeningArtifactSchema,
+  listeningCueProblems,
   listeningPlanSchema,
   listeningAudioPath,
   type ReferenceData,
@@ -751,6 +752,7 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
     else if (manifest.generation_brief?.sha256 !== fileSha256(brief))
       fail(rel(file), 'saved generation brief hash does not match provenance');
   }
+  for (const problem of listeningCueProblems(data)) fail(rel(file), problem);
   listeningArtifacts.set(id, { file: rel(file), data });
 }
 

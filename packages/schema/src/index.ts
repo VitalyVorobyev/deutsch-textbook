@@ -777,7 +777,57 @@ export const listeningArtifactSchema = z.object({
   speakers: z.array(z.string().min(1)).min(1).max(4),
   transcript: z.array(audioTurnSchema).min(1),
   provenance: z.string().min(1),
+  /**
+   * Where each transcript turn sits in the recording, one cue per turn in transcript order. The
+   * learner app uses them after an answer to replay one turn and to follow the transcript.
+   * `render` cues are the scene render's own placement of each take; `whisper-aligned` cues were
+   * measured on the published file for recordings whose assembly kept no times (`atlas-listening
+   * measure-cues`). The validator holds the two fields together and the cues inside the recording.
+   */
+  cue_source: z.enum(['render', 'whisper-aligned']).optional(),
+  cues: z
+    .array(z.object({ start_ms: z.number().int().min(0), end_ms: z.number().int().positive() }))
+    .optional(),
 });
+
+/** One turn's place in a recording, in milliseconds. */
+export type ListeningCue = NonNullable<z.infer<typeof listeningArtifactSchema>['cues']>[number];
+
+/**
+ * What is wrong with a listening record's cues, as sentences; empty when nothing is.
+ *
+ * A cue the app seeks to must name a real turn and a real stretch of the file: one per transcript
+ * turn, each non-empty, in non-decreasing order of start (render cues may overlap where a scene
+ * overlaps two turns, so ends are not ordered), and none past the recording. `duration_seconds`
+ * is rounded, so the bound allows the second it may have been rounded down from.
+ */
+export function listeningCueProblems(record: {
+  transcript: readonly unknown[];
+  duration_seconds: number;
+  cue_source?: string | undefined;
+  cues?: readonly ListeningCue[] | undefined;
+}): string[] {
+  const { cues, cue_source: source } = record;
+  if (cues === undefined && source === undefined) return [];
+  if (cues === undefined || source === undefined)
+    return ['cues and cue_source are written together or not at all'];
+  const problems: string[] = [];
+  if (cues.length !== record.transcript.length)
+    problems.push(`${cues.length} cues for ${record.transcript.length} transcript turns`);
+  const limit = (record.duration_seconds + 1) * 1000;
+  cues.forEach((cue, index) => {
+    const turn = index + 1;
+    if (cue.end_ms <= cue.start_ms) problems.push(`cue ${turn} ends before it starts`);
+    if (cue.end_ms > limit)
+      problems.push(
+        `cue ${turn} ends at ${cue.end_ms} ms, past the ${record.duration_seconds} s recording`,
+      );
+    const previous = cues[index - 1];
+    if (previous && cue.start_ms < previous.start_ms)
+      problems.push(`cue ${turn} starts before cue ${index}`);
+  });
+  return problems;
+}
 
 /**
  * Where a reviewed recording sits on disk. The URL it is served at is in lib/audio.ts.
