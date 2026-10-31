@@ -89,6 +89,8 @@ GitHub Release notes.
   its room and device per scene; existing scenes keep their approvals and render as before.
 - Tonwerk's Mischung timeline shows each track's waveform, plays the mix from any point, and plays
   any one track on its own.
+- Tonwerk's Mischung has a Pult: each line's level, equalizer and room send, and how far a
+  background drops under speech.
 - Tonwerk is built on the `@vitavision/*` design system: its frame, navigation, buttons and fields
   come from the shared packages, with Tonwerk's brass, cyan and red as a theme.
 

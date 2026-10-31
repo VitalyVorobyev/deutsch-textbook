@@ -1305,3 +1305,42 @@
     gap: 2px;
   }
 }
+
+/* --- Das Pult: one channel strip per line ------------------------------------------------- */
+
+.pult th[scope='row'] {
+  /* A row head here is a line of the script, not a column legend: it does not wear the
+     apparatus's uppercase. */
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: inherit;
+  color: var(--ton-schrift);
+  background: transparent;
+  position: static;
+  vertical-align: middle;
+}
+
+.pult-zeile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 14rem;
+  max-width: 28rem;
+}
+
+.pult-text {
+  font-size: var(--ton-grad-13);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pult td {
+  width: 6.5rem;
+}
+
+.pult-zahl {
+  width: 5.5rem;
+}

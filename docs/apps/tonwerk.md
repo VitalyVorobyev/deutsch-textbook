@@ -138,7 +138,10 @@ instructions.
    - **Szene** — everything that is not the words: the room, the device, the difficulty preset and
      the background. Every picker is filled from the engine, so a renamed room disappears here
      rather than failing at render time.
-   - **Mischung** — what the render actually produced, and the two buttons that produce it.
+   - **Mischung** — what the render actually produced, and the two buttons that produce it. Its
+     **Pult** sets each line's level, its three equalizer bands (low, mid, high) and its share of
+     the room, and how far a background drops under speech. The Pult edits the draft like every
+     other field: a change is heard after saving and rendering again.
 4. **Save.** `⌘/Strg + S`, and nothing autosaves. Saving creates a new immutable revision and
    returns the project to `draft`; the previous QA report and any previous approval described the
    audio of the previous text and do not follow it forward.

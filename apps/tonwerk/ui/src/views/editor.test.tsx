@@ -281,3 +281,37 @@ describe('a document that has drifted from the contract', () => {
     expect(screen.queryByText('ungespeichert')).toBeNull();
   });
 });
+
+describe('das Pult', () => {
+  test('a level reaches the PUT body, and moving it back to zero is no edit at all', async () => {
+    window.location.hash = '#/szene/ls-wohnen-01?modus=mischung';
+    const reviseScene = vi.fn(async () => ({
+      project_id: 3,
+      slug: 'ls-wohnen-01',
+      revision: 5,
+      scene_sha256: 'neue-bytes',
+      has_exercise: true,
+      stage: 'draft',
+    }));
+    mount(<Szene slug="ls-wohnen-01" />, editor({ reviseScene: reviseScene as never }));
+
+    const pegel = await screen.findByRole('spinbutton', { name: /^line-1 · .*: Pegel$/ });
+    const speichern = screen.getByRole('button', { name: 'Als neue Revision speichern' });
+    fireEvent.focus(pegel);
+    fireEvent.change(pegel, { target: { value: '-6' } });
+    await waitFor(() => expect(speichern.hasAttribute('disabled')).toBe(false));
+
+    fireEvent.change(pegel, { target: { value: '0' } });
+    await waitFor(() => expect(speichern.hasAttribute('disabled')).toBe(true));
+
+    fireEvent.change(pegel, { target: { value: '-4.5' } });
+    fireEvent.click(speichern);
+    await waitFor(() => expect(reviseScene).toHaveBeenCalledTimes(1));
+    const gesendet = (reviseScene.mock.calls[0] as unknown as [string, Scene])[1];
+    const zeile = gesendet.timeline.find(
+      (entry) => entry.type === 'speech' && entry.utterance_id === 'line-1',
+    );
+    expect(zeile && 'gain_db' in zeile ? zeile.gain_db : undefined).toBe(-4.5);
+    expect(Object.keys(zeile ?? {})).not.toContain('effects');
+  });
+});
