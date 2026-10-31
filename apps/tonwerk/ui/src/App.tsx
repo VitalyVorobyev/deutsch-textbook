@@ -7,21 +7,29 @@
  * A launch code being redeemed is a state of its own, so the token field never flashes up in a
  * tab that is about to sign itself in.
  *
+ * **The frame is `@vitavision/workbench`'s `AppShell`.** The six sections are a `NavRail` of links
+ * (the hash is the route, so an item is an `<a>`, never a button), the wordmark and the engine
+ * sit in the header, and the page scrolls inside `main`, never the window: the shell is fixed to
+ * the viewport, which is what keeps the rail and the key legend in place while a QA table scrolls.
+ *
  * **The nav lists six sections and nothing else.** There is no *Folgt* group naming surfaces that
  * have not arrived: an empty "coming" list is not a statement, so it is not kept as a heading over
  * nothing.
  *
- * **Tasten** is on the rail and not in a help page. Four keys, and every one of them is something
- * this tool does all day — save, play, and the two that walk a review queue — so they are printed
- * where the operator can see them without leaving what they are doing, the way a key legend is
- * silkscreened on a desk.
+ * **Tasten** is the status line at the foot, and not a help page. Four keys, and every one of them
+ * is something this tool does all day — save, play, and the two that walk a review queue — so they
+ * are printed where the operator can see them without leaving what they are doing, the way a key
+ * legend is silkscreened on a desk.
  */
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Button } from '@vitavision/ui';
+import { AppShell, NavRail, NavRailItem, StatusBar } from '@vitavision/workbench';
+import { AudioLines, BookOpenText, ClipboardCheck, Gauge, Library, Users } from 'lucide-react';
 import { createApi } from './api';
 import { clearToken, getToken, setToken, type Anmeldeergebnis } from './auth';
 import { Wortmarke } from './components/Wortmarke';
 import { ApiContext } from './useEngine';
-import { href, navigate, useRoute, useScrollReset } from './router';
+import { BUEHNE_ID, href, navigate, useRoute, useScrollReset } from './router';
 import { Anmeldung } from './views/Anmeldung';
 import { Bibliothek } from './views/Bibliothek';
 import { Figuren } from './views/Figuren';
@@ -37,16 +45,16 @@ import { Uebersicht } from './views/Uebersicht';
  * person, and the two catalogues everything is made out of.
  */
 const WEGE = [
-  { view: 'uebersicht', name: 'Übersicht' },
-  { view: 'bibliothek', name: 'Bibliothek' },
-  { view: 'lesetexte', name: 'Lesetexte' },
-  { view: 'pruefung', name: 'Prüfung' },
-  { view: 'klangbibliothek', name: 'Klangbibliothek' },
-  { view: 'figuren', name: 'Figuren' },
+  { view: 'uebersicht', name: 'Übersicht', icon: <Gauge /> },
+  { view: 'bibliothek', name: 'Bibliothek', icon: <Library /> },
+  { view: 'lesetexte', name: 'Lesetexte', icon: <BookOpenText /> },
+  { view: 'pruefung', name: 'Prüfung', icon: <ClipboardCheck /> },
+  { view: 'klangbibliothek', name: 'Klangbibliothek', icon: <AudioLines /> },
+  { view: 'figuren', name: 'Figuren', icon: <Users /> },
 ] as const;
 
 /**
- * Four shortcuts, printed on the rail.
+ * Four shortcuts, printed on the status line.
  *
  * The first two are what the editor does all day. The last two are what a *queue* does all day,
  * and they say where they work: a legend listing a key that is inert on the screen you are looking
@@ -122,64 +130,66 @@ export function App({ anmeldung }: AppProps): React.JSX.Element {
   }
   if (!token) return <Anmeldung grund={abgelehnt} onToken={annehmen} />;
 
+  const aktiv = WEGE.find((weg) => istAktiv(route.view, weg.view))?.view ?? null;
+
   return (
     <ApiContext.Provider value={api}>
-      <div className="werk">
-        <nav className="schiene" aria-label="Bereiche">
-          <a href={href('uebersicht')}>
-            <Wortmarke />
-          </a>
-
-          <div className="wege">
-            {WEGE.map((weg) => (
-              <a
-                key={weg.view}
-                className="weg"
-                href={href(weg.view)}
-                aria-current={istAktiv(route.view, weg.view) ? 'page' : undefined}
+      <AppShell
+        className="werk"
+        header={
+          <div className="kopfleiste">
+            <a href={href('uebersicht')} aria-label="Tonwerk · Übersicht">
+              <Wortmarke />
+            </a>
+            <div className="kopfleiste-engine">
+              <span className="tafel">Engine</span>
+              {/* Same-origin, always: in development Vite proxies `/api`, and in production the
+                  engine serves this bundle itself. So the host is read rather than written down —
+                  the port is a `--port` flag, and a hardcoded 8765 was wrong on any other one. */}
+              <span className="zahl entfernt">{window.location.host}</span>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  clearToken();
+                  setTokenState('');
+                  setAbgelehnt(undefined);
+                }}
               >
-                {weg.name}
-              </a>
+                Token verwerfen
+              </Button>
+            </div>
+          </div>
+        }
+        railLabel="Bereiche"
+        rail={
+          <NavRail value={aktiv}>
+            {WEGE.map((weg) => (
+              <NavRailItem
+                key={weg.view}
+                value={weg.view}
+                label={weg.name}
+                icon={weg.icon}
+                className="w-24"
+                asChild
+              >
+                <a href={href(weg.view)} />
+              </NavRailItem>
             ))}
+          </NavRail>
+        }
+        main={
+          <div id={BUEHNE_ID} className="buehne">
+            <div className="bahn">{render(route.view, route.id)}</div>
           </div>
-
-          <div className="wege">
-            <span className="tafel" style={{ padding: '0 var(--ton-mass-3)' }}>
-              Tasten
-            </span>
-            {TASTEN.map((eintrag) => (
-              <span key={eintrag.taste} className="taste">
-                <span className="zahl">{eintrag.taste}</span>
-                <span className="entfernt">{eintrag.tut}</span>
-              </span>
-            ))}
-          </div>
-
-          <div className="schiene-fuss">
-            <span className="tafel">Engine</span>
-            {/* Same-origin, always: in development Vite proxies `/api`, and in production the
-                engine serves this bundle itself. So the host is read rather than written down —
-                the port is a `--port` flag, and a hardcoded 8765 was wrong on any other one. */}
-            <span className="zahl entfernt">{window.location.host}</span>
-            <button
-              type="button"
-              className="knopf"
-              style={{ marginTop: 'var(--ton-mass-2)' }}
-              onClick={() => {
-                clearToken();
-                setTokenState('');
-                setAbgelehnt(undefined);
-              }}
-            >
-              Token verwerfen
-            </button>
-          </div>
-        </nav>
-
-        <main className="buehne">
-          <div className="bahn">{render(route.view, route.id)}</div>
-        </main>
-      </div>
+        }
+        bottom={
+          <StatusBar
+            aria-label="Tasten"
+            start={TASTEN.map((eintrag) => ({ label: eintrag.taste, value: eintrag.tut }))}
+          />
+        }
+      />
     </ApiContext.Provider>
   );
 }
@@ -223,9 +233,9 @@ function render(view: string, id?: string): React.JSX.Element {
             </p>
           </header>
           <div>
-            <button type="button" className="knopf" onClick={() => navigate(href('uebersicht'))}>
+            <Button size="sm" onClick={() => navigate(href('uebersicht'))}>
               Zur Übersicht
-            </button>
+            </Button>
           </div>
         </>
       );

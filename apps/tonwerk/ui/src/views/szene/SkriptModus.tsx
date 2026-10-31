@@ -14,6 +14,8 @@
  * by; renaming a shipped one would silently detach three records that have no other way to point
  * at it.
  */
+import { FELD } from '../../components/steuerung';
+import { Button } from '@vitavision/ui';
 import { useState } from 'react';
 import { Marke, Platte } from '../../components/Platte';
 import { Feld, Feldreihe, SkriptFeld, WahlFeld, ZahlFeld } from '../../components/Feld';
@@ -95,14 +97,13 @@ export function SkriptModus({
         ))}
 
         <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-          <button
-            type="button"
-            className="knopf"
+          <Button
+            size="sm"
             disabled={!sequentiell || entwurf.cast.length === 0}
             onClick={() => setEntwurf(aeusserungHinzufuegen(entwurf))}
           >
             Äußerung anhängen
-          </button>
+          </Button>
         </div>
       </Platte>
     </>
@@ -238,9 +239,8 @@ function Besetzung({
 
             <div className="reihe" style={{ marginTop: 'var(--ton-mass-3)' }}>
               {figur && !geklont ? (
-                <button
-                  type="button"
-                  className="knopf"
+                <Button
+                  size="sm"
                   onClick={() =>
                     setEntwurf(
                       besetzungAendern(entwurf, member.role, {
@@ -255,11 +255,10 @@ function Besetzung({
                   }
                 >
                   Stimme aus dem Katalog übernehmen
-                </button>
+                </Button>
               ) : null}
-              <button
-                type="button"
-                className="knopf"
+              <Button
+                size="sm"
                 disabled={!rolleIstFrei(entwurf, member.role) || entwurf.cast.length <= 1}
                 title={
                   rolleIstFrei(entwurf, member.role)
@@ -269,7 +268,7 @@ function Besetzung({
                 onClick={() => setEntwurf(besetzungEntfernen(entwurf, member.role))}
               >
                 Rolle entfernen
-              </button>
+              </Button>
               {rolleIstFrei(entwurf, member.role) ? (
                 <Marke titel="Diese Rolle hat keine Äußerung.">spricht nicht</Marke>
               ) : null}
@@ -279,13 +278,9 @@ function Besetzung({
       })}
 
       <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-        <button
-          type="button"
-          className="knopf"
-          onClick={() => setEntwurf(besetzungHinzufuegen(entwurf))}
-        >
+        <Button size="sm" onClick={() => setEntwurf(besetzungHinzufuegen(entwurf))}>
           Rolle hinzufügen
-        </button>
+        </Button>
       </div>
     </Platte>
   );
@@ -315,7 +310,7 @@ function Rollenfeld({
     <label className="feld-block">
       <span className="tafel feld-legende">Rolle</span>
       <input
-        className="feld"
+        className={FELD}
         type="text"
         value={text}
         onChange={(event) => setText(event.target.value)}
@@ -383,42 +378,38 @@ function Aeusserung({
           </div>
         )}
         <div className="aeusserung-knoepfe">
-          <button
-            type="button"
-            className="knopf"
+          <Button
+            size="sm"
             aria-label={`Äußerung ${index + 1} nach oben`}
             disabled={!sequentiell || index === 0}
             onClick={() => verschieben(-1)}
           >
             ↑
-          </button>
-          <button
-            type="button"
-            className="knopf"
+          </Button>
+          <Button
+            size="sm"
             aria-label={`Äußerung ${index + 1} nach unten`}
             disabled={!sequentiell || letzte}
             onClick={() => verschieben(1)}
           >
             ↓
-          </button>
-          <button
-            type="button"
-            className="knopf"
+          </Button>
+          <Button
+            size="sm"
             aria-label={`Äußerung nach ${index + 1} einfügen`}
             disabled={!sequentiell}
             onClick={einfuegen}
           >
             +
-          </button>
-          <button
-            type="button"
-            className="knopf"
+          </Button>
+          <Button
+            size="sm"
             aria-label={`Äußerung ${index + 1} entfernen`}
             disabled={!sequentiell}
             onClick={entfernen}
           >
             ×
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -439,9 +430,9 @@ function Aeusserung({
           onWert={(text) => aendern({ synthesis_text: text.trim() ? text : null })}
         />
       ) : (
-        <button type="button" className="knopf aeusserung-mehr" onClick={() => setAussprache(true)}>
+        <Button className="aeusserung-mehr" size="sm" onClick={() => setAussprache(true)}>
           Abweichenden Sprechtext setzen
-        </button>
+        </Button>
       )}
 
       <Feldreihe spalten="9rem">
@@ -509,9 +500,8 @@ function Aeusserung({
                     })
                   }
                 />
-                <button
-                  type="button"
-                  className="knopf"
+                <Button
+                  size="sm"
                   aria-label={`Aussprache ${position + 1} entfernen`}
                   onClick={() =>
                     aendern({
@@ -520,14 +510,13 @@ function Aeusserung({
                   }
                 >
                   ×
-                </button>
+                </Button>
               </div>
             ))}
           </>
         )}
-        <button
-          type="button"
-          className="knopf"
+        <Button
+          size="sm"
           onClick={() =>
             aendern({
               pronunciation_overrides: [...overrides, { display: '', synthesis: '' }],
@@ -535,7 +524,7 @@ function Aeusserung({
           }
         >
           {overrides.length === 0 ? 'Aussprache überschreiben' : 'Aussprache hinzufügen'}
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -598,9 +587,9 @@ function Stimmquelle({
   return (
     <div className="stimmquelle">
       <div className="reihe">
-        <button
-          type="button"
-          className={geklont ? 'knopf' : 'knopf knopf-signal'}
+        <Button
+          variant={geklont ? 'secondary' : 'primary'}
+          size="sm"
           aria-pressed={!geklont}
           onClick={() => {
             if (!geklont) return;
@@ -612,10 +601,10 @@ function Stimmquelle({
           }}
         >
           Preset-Stimme
-        </button>
-        <button
-          type="button"
-          className={geklont ? 'knopf knopf-signal' : 'knopf'}
+        </Button>
+        <Button
+          variant={geklont ? 'primary' : 'secondary'}
+          size="sm"
           aria-pressed={geklont}
           disabled={!geklont && waehlbar.length === 0}
           title={
@@ -630,7 +619,7 @@ function Stimmquelle({
           }}
         >
           Geklonte Stimme
-        </button>
+        </Button>
         {geklont && stimme ? (
           <Marke
             ton={

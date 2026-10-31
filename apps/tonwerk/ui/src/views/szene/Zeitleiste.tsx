@@ -17,8 +17,10 @@
  * playhead shows where whichever of the two is playing has got to, and the transport joins the
  * page's `Spielbereich`, so Space pauses it like any other player here.
  */
+import { Button } from '@vitavision/ui';
+import { Pause, Play } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useSpielbereich } from '../../components/Spieler';
+import { transport as transportKlasse, useSpielbereich } from '../../components/Spieler';
 import { dauer, sekunden } from '../../format';
 import { useEngineBlob } from '../../useEngine';
 import type { Api } from '../../api';
@@ -171,16 +173,16 @@ export function Zeitleiste({
   return (
     <div className="spuren">
       <div className="reihe zeitleiste-transport">
-        <button
-          type="button"
-          className="knopf knopf-transport"
+        <Button
+          size="sm"
+          className={transportKlasse()}
           aria-label={transport.laeuft ? 'Zeitleiste anhalten' : 'Zeitleiste abspielen'}
           onClick={() =>
             transport.laeuft ? transport.anhalten() : transport.spielen(master(transport.stelleMs))
           }
         >
-          {transport.laeuft ? '❚❚' : '▶'}
-        </button>
+          {transport.laeuft ? <Pause aria-hidden /> : <Play aria-hidden />}
+        </Button>
         <span className="zahl" aria-live="off">
           {sekunden(transport.stelleMs)} / {sekunden(gesamt)}
         </span>

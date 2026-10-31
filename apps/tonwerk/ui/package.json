@@ -12,20 +12,25 @@
   },
   "dependencies": {
     "@da/schema": "workspace:*",
+    "@vitavision/ui": "0.14.0",
+    "@vitavision/workbench": "0.3.2",
+    "lucide-react": "1.58.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/react": "^16.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "happy-dom": "^20.14.6",
+    "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
     "vitest": "^5.0.3"
   },
-  "//": "Tonwerk — the audio studio's own workbench. A separate app from Redaktion on purpose: Redaktion reads the checked-out corpus through @da/content and never opens a socket, while Tonwerk talks HTTP to a local render engine and holds a bearer token. They share the repository and nothing else — not a design system, not a transport, not a data layer. Everything it renders comes from `atlas-listening serve` on 127.0.0.1, which also serves its built bundle; the only thing it imports from the workspace is the Scene v1 contract in @da/schema."
+  "//": "Tonwerk — the audio studio's own workbench. A separate app from Redaktion on purpose: Redaktion reads the checked-out corpus through @da/content and never opens a socket, while Tonwerk talks HTTP to a local render engine and holds a bearer token. They share the repository and the `@vitavision/*` design system, and nothing else — not a transport, not a data layer. Everything it renders comes from `atlas-listening serve` on 127.0.0.1, which also serves its built bundle; the only thing it imports from the workspace is the Scene v1 contract in @da/schema; its look is a theme of @vitavision/ui (src/styles/tokens.css)."
 }

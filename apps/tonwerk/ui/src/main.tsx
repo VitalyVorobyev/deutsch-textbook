@@ -1,8 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './styles/tokens.css';
-import './styles/base.css';
-import './styles/app.css';
+import './styles/index.css';
 import { App } from './App';
 import { redeemLaunchCode, setToken, shellToken, takeLaunchCode } from './auth';
 

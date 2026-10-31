@@ -15,6 +15,8 @@
  * deletes anything. The disk panel is the third: it shows what the studio holds and offers to
  * remove the renders it can make again.
  */
+import { FELD, WAHL } from '../components/steuerung';
+import { Button } from '@vitavision/ui';
 import { useEffect, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { Pegel } from '../components/Pegel';
@@ -163,9 +165,9 @@ export function Bibliothek(): React.JSX.Element {
                 Archiv zeigen
               </label>
               {status === ANY ? null : (
-                <button type="button" className="knopf" onClick={() => setStatus(ANY)}>
+                <Button size="sm" onClick={() => setStatus(ANY)}>
                   Statusfilter lösen
-                </button>
+                </Button>
               )}
             </div>
 
@@ -239,7 +241,7 @@ function Suche({
     <label className="tafel" style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)' }}>
       Suche
       <input
-        className="feld"
+        className={FELD}
         type="search"
         value={entwurf}
         placeholder="Kennung, Szenario oder ein Satz"
@@ -266,7 +268,7 @@ function Wahl({
       style={{ display: 'inline-flex', gap: 'var(--ton-mass-2)', alignItems: 'center' }}
     >
       {titel}
-      <select className="wahl" value={wert} onChange={(event) => onChange(event.target.value)}>
+      <select className={WAHL} value={wert} onChange={(event) => onChange(event.target.value)}>
         {children}
       </select>
     </label>
@@ -365,13 +367,13 @@ function Zeile({
       <td>
         {szene ? (
           <div className="stapel-eng">
-            <button type="button" className="knopf" onClick={() => onFork(szene)}>
+            <Button size="sm" onClick={() => onFork(szene)}>
               Abzweigen
-            </button>
+            </Button>
             {row.kind === 'scene' ? (
-              <button type="button" className="knopf" onClick={() => onArchive(szene, !archiviert)}>
+              <Button size="sm" onClick={() => onArchive(szene, !archiviert)}>
                 {archiviert ? 'Zurückholen' : 'Archivieren'}
-              </button>
+              </Button>
             ) : null}
           </div>
         ) : null}
@@ -471,14 +473,13 @@ function Speicher(): React.JSX.Element {
             {megabyte(data.reapable.bytes)}).
           </p>
           <div>
-            <button
-              type="button"
-              className="knopf"
+            <Button
+              size="sm"
               disabled={laeuft || data.reapable.renders === 0}
               onClick={() => void aufraeumen()}
             >
               {laeuft ? 'Räumt auf …' : 'Alte Renders entfernen'}
-            </button>
+            </Button>
           </div>
         </div>
       ) : null}

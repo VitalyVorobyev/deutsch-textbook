@@ -6,12 +6,14 @@ scheduled.
 
 ## Order
 
-1. **Redaktion first.** It is a professional tool, closest to lab-ui's *instrument* direction, and
+1. **Tonwerk is on it.** Its shell is `@vitavision/workbench`, its controls are `@vitavision/ui`, and
+   its palette is a theme: the system's own `signal`/`normal`/`defect` roles carry its
+   person/machine/alarm thesis with three values retuned (`apps/tonwerk/ui/DESIGN.md`). The theme
+   lives in the app, not in `@da/ui`, because nothing else renders with it. What is left is its
+   domain components (Platte, Marke, the tables), which still use its own CSS on the system tokens.
+2. **Redaktion next.** It is a professional tool, closest to lab-ui's *instrument* direction, and
    already uses `@da/ui` plus Radix. `@vitavision/workbench` provides the app shell, split panes and
    tree view it hand-builds today.
-2. **Tonwerk second.** Its design thesis (`apps/tonwerk/ui/DESIGN.md`) spends hue only on
-   machine-measured versus person-approved. Decide whether that palette becomes a lab-ui theme, or
-   whether lab-ui's own signal/normal/defect roles already carry it.
 3. **The learner app last.** It is Astro with React islands, and its look is the one to keep.
 
 ## Open decisions

@@ -26,6 +26,7 @@
  * landed mid-review, the engine refuses and this page says re-listen rather than retrying with a
  * digest it fetched a second ago. That refusal is the whole reason the field exists.
  */
+import { Button, ButtonLink } from '@vitavision/ui';
 import { useCallback, useMemo, useState } from 'react';
 import { Feld, SkriptFeld } from '../components/Feld';
 import { Marke, Platte, Zustand } from '../components/Platte';
@@ -112,9 +113,9 @@ function Kopf({ slug, titel }: { slug: string; titel: string | null }): React.JS
 function Zurueck(): React.JSX.Element {
   return (
     <div>
-      <a className="knopf" href={href('pruefung')}>
+      <ButtonLink size="sm" href={href('pruefung')}>
         Zurück zur Warteschlange
-      </a>
+      </ButtonLink>
     </div>
   );
 }
@@ -190,9 +191,8 @@ function Ablauf({
           </span>
         </div>
         <div className="pruefstand-knoepfe">
-          <button
-            type="button"
-            className="knopf"
+          <Button
+            size="sm"
             disabled={gezeigterStand === 'entschieden' || ablehnen.laeuft || freigeben.laeuft}
             onClick={() => {
               setGrundOffen(true);
@@ -200,10 +200,10 @@ function Ablauf({
             }}
           >
             Ablehnen
-          </button>
-          <button
-            type="button"
-            className="knopf knopf-signal"
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
             disabled={
               gezeigterStand !== 'pruefen' ||
               sperre !== null ||
@@ -222,7 +222,7 @@ function Ablauf({
             ) : (
               'Freigeben'
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -297,32 +297,32 @@ function Ablauf({
             onWert={setGrund}
           />
           <div className="reihe" style={{ marginTop: 'var(--ton-mass-4)' }}>
-            <button
-              type="button"
-              className="knopf knopf-signal"
+            <Button
+              variant="primary"
+              size="sm"
               disabled={grund.trim().length < 8 || ablehnen.laeuft}
               onClick={ablehnen.starten}
             >
               {ablehnen.laeuft ? 'Lehnt ab …' : 'Ablehnung senden'}
-            </button>
-            <button type="button" className="knopf" onClick={() => setGrundOffen(false)}>
+            </Button>
+            <Button size="sm" onClick={() => setGrundOffen(false)}>
               Doch nicht
-            </button>
+            </Button>
           </div>
         </Platte>
       ) : null}
 
       <div className="reihe">
-        <a className="knopf" href={href('pruefung')}>
+        <ButtonLink size="sm" href={href('pruefung')}>
           Zurück zur Warteschlange
-        </a>
-        <a className="knopf" href={href('szene', data.slug)}>
+        </ButtonLink>
+        <ButtonLink size="sm" href={href('szene', data.slug)}>
           Szene öffnen
-        </a>
+        </ButtonLink>
         {entschieden ? (
-          <button type="button" className="knopf" onClick={() => navigate(href('pruefung'))}>
+          <Button size="sm" onClick={() => navigate(href('pruefung'))}>
             Nächste Szene
-          </button>
+          </Button>
         ) : null}
       </div>
     </Spielbereich>
@@ -408,9 +408,9 @@ function Abhoere({
             // A plain button: brass is the verdict's, and leaving the listen stage is a step, not
             // a decision. It is also deliberately quieter than the transport beside it — the
             // primary action here is to press play.
-            <button type="button" className="knopf" onClick={weiter}>
+            <Button size="sm" onClick={weiter}>
               Gehört — weiter zum Bericht
-            </button>
+            </Button>
           ) : null}
         </div>
       ) : (
@@ -732,14 +732,9 @@ function Konflikt({ fehler, neuLaden }: { fehler: Error; neuLaden(): void }): Re
         {text}
       </p>
       {bytes ? (
-        <button
-          type="button"
-          className="knopf"
-          style={{ marginTop: 'var(--ton-mass-3)' }}
-          onClick={neuLaden}
-        >
+        <Button size="sm" style={{ marginTop: 'var(--ton-mass-3)' }} onClick={neuLaden}>
           Neu laden und noch einmal hören
-        </button>
+        </Button>
       ) : null}
     </div>
   );

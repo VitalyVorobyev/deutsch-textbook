@@ -28,14 +28,26 @@ stop covering the bytes it was given for.
 
 So hue is spent on exactly that and on nothing else:
 
-| Hue | Token | Means |
-| --- | --- | --- |
-| grey | `--ton-ruhe` | nobody has acted |
-| instrument cyan | `--ton-messung` / `--ton-messung-ab` | **the machine**: rendered, measured, verdict given |
-| brass | `--ton-signal` / `--ton-signal-ab` | **a person**: approved, published |
-| red | `--ton-alarm` | over: a failed check, or an approval that no longer covers the bytes |
+| Hue | Token | System role | Means |
+| --- | --- | --- | --- |
+| grey | `--ton-ruhe` | — | nobody has acted |
+| instrument cyan | `--ton-messung` / `--ton-messung-ab` | `normal` | **the machine**: rendered, measured, verdict given |
+| brass | `--ton-signal` / `--ton-signal-ab` | `signal` | **a person**: approved, published |
+| red | `--ton-alarm` | `defect` | over: a failed check, or an approval that no longer covers the bytes |
 
-Everything else is achromatic: cold graphite surfaces, engraved-white type. The interface is nearly
+**The palette is a theme of `@vitavision/ui`, not a second design system**
+([ADR 0011](../../../docs/adrs/0011-shared-ui-from-vitavision-packages.md)). The system already
+divides colour the way this thesis needs: one accent that means "you can act here", and verdict
+colours reserved for verdicts. So `src/styles/tokens.css` sets three of its variables — `signal` to
+brass, `normal` to cyan, `defect` to red — and every `--ton-*` name points at a system variable.
+The system's `warn` is the alarm too, because Tonwerk has no third verdict. The dimmed and unlit
+states are the lit colour sunk into the panel (`color-mix`), so they cannot drift into a hue of their
+own. The values are held by `src/theme.test.ts` at the system's own floors: text 4.5:1 on every
+surface, and brass at least ΔE 9.3 from every verdict for a reader with any dichromacy. That floor is
+why the brass and red are not the ones this app first used: planted back into `tokens.css`,
+that pair fails the test (7.8 apart for a deuteranope), and a person's brass beside a machine's red is the one pair that must never merge.
+
+Everything else is achromatic: the system's true-neutral greys and its text. The interface is nearly
 colourless on purpose — **the colour is the reading**, the way a meter's is. That is the risk this
 direction takes, and it only pays off if nothing else is allowed to be coloured. Do not introduce a
 fifth hue, and do not use these four decoratively.
@@ -59,16 +71,18 @@ look related to it. Brass reads as metal on a cold panel, not as honey on paper.
 `--ton-raum` (page) → `--ton-platte` (panel) → `--ton-platte-hoch` (table head, hover, inputs), with
 `--ton-kante` for engraved hairlines and `--ton-kante-hell` where a rule must actually be seen.
 
+They are the system's `ground`, `surface` and `raised`, `line` and `line-strong`.
+
 **One theme, dark.** No light mode and no toggle: a colour system whose job is to be read like an
 instrument would need two calibrations, and this is a single-operator tool used in long sessions.
-`color-scheme: dark` is declared on `:root` and in the document head.
+`index.html` puts the system's `dark` class on `<html>`, and nothing removes it.
 
 ## Type: three faces, and the face tells you what kind of thing you are looking at
 
 | Role | Token | Used for |
 | --- | --- | --- |
 | **Apparatus** — mono, uppercase, `0.18em` tracked | `--ton-fassung-tafel` | wordmark, nav, panel legends, column heads, ids, shas, all numbers |
-| **Interface prose** — system humanist sans | `--ton-fassung-text` | the app talking about the work |
+| **Interface prose** — IBM Plex Sans | `--ton-fassung-text` | the app talking about the work |
 | **Script** — Charter serif | `--ton-fassung-skript` | the German being *manufactured*: utterances, titles, personas, demo phrases, expected/heard transcripts |
 
 The third row is the rule worth keeping. **The German content is the product; everything around it
@@ -82,9 +96,12 @@ would make the German one value among ninety.
 Setting *headings* in a tracked mono is the second deliberate move — it is rack silkscreen and
 engraved scale plates, and it is why the app does not need a display serif to have a voice.
 
-No web fonts. Every face is a system stack (Charter ships on macOS and most Linux desktops; Georgia
-is the fallback). **Tonwerk makes no request that does not go to the local engine** — including its
-favicon, which is an inline SVG data URI.
+The apparatus and the prose are the system's IBM Plex Mono and Plex Sans, whose files ship inside
+`@vitavision/ui` and are bundled into the build; the mono's slashed zero matters in an app that prints
+this many shas. The script face is Tonwerk's own (`--font-skript`), a system stack, because the German
+is not the apparatus: Charter ships on macOS and most Linux desktops, and Georgia is the fallback.
+**Tonwerk makes no request that does not go to the local engine** — the fonts come from its own
+bundle, and its favicon is an inline SVG data URI.
 
 ## Der Pegel — the signature
 
@@ -140,16 +157,16 @@ The wordmark repeats the same mark in miniature: four ticks, one brass, one red 
 
 ## Layout
 
-A fixed left rail (`--ton-schiene`, 15rem) carrying the wordmark, the six sections and **Tasten**,
-the key legend. It used to carry a *Folgt* group naming Lesetexte and Prüfung — the shape of the
-tool being part of what the tool says about itself — and both have arrived, so the group is gone
-rather than kept as a heading over nothing. Four shortcuts now (⌘/Strg + S saves, Space plays, J/K
-walks a queue, Enter opens a row) and every one is something this tool does all day, so they are
-silkscreened on the desk rather than filed in a help page — and each legend row says *what* the key
+The frame is `@vitavision/workbench`'s `AppShell`, fixed to the viewport: the wordmark and the
+engine's address in the header, the six sections as a `NavRail` of links down the left, and
+**Tasten**, the key legend, as the `StatusBar` along the foot. Only the stage scrolls, so the rail and
+the legend stay where they are while a QA table moves. Four shortcuts (⌘/Strg + S saves, Space plays,
+J/K walks a queue, Enter opens a row) and every one is something this tool does all day, so they are
+silkscreened on the desk rather than filed in a help page — and each legend entry says *what* the key
 does, not which screen it works on, because a silkscreen that changes per screen is not one.
 Content is a single `--ton-bahn` (82rem) column of panels.
 
-A **Platte** is a rack unit: hairline border, `3px` radius (not zero, not a pill), legend silkscreened
+A **Platte** is a rack unit: hairline border, the system's control radius, legend silkscreened
 on the top rule with its count opposite. Tables are dense — 13px, tabular numerals, sticky heads,
 `--ton-mass-2/3` cells.
 
@@ -174,9 +191,6 @@ once and the control keeps only what reads its own value (`gebunden an Version 1
 `Leer: der Seed der Rolle`). The same logic retires a control nobody asked for: a difficulty
 override exists as a row only where a departure was decided, with a picker to add one, because five
 disabled fields make four decisions that were never made look like four settings.
-
-Below 56rem the rail becomes a strip across the top. That is a floor, not a mobile design: this is a
-desktop tool.
 
 ## The signature, and the two rules its layout is made of
 
@@ -362,7 +376,7 @@ through the flow. Two habits specific to this app:
   identical pair is drawn with no marks at all. The panel states that the marks are the *raw*
   comparison and the WER is measured after the engine's normalisation, so a marked word beside 0 %
   is a number or a spelling the check treats as equal rather than a contradiction.
-- **The engine's address is read, not written down.** The rail's footer prints
+- **The engine's address is read, not written down.** The header prints
   `window.location.host`: requests are same-origin either way — Vite proxies `/api` in development
   and the engine serves this bundle itself in production — and the engine's port is a free one
   picked at start.

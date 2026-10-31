@@ -7,6 +7,8 @@
  * the shell returns here carrying the engine's own reason — the reader learns the token was
  * *refused* rather than watching a table quietly fail to load.
  */
+import { FELD } from '../components/steuerung';
+import { Button } from '@vitavision/ui';
 import { useState } from 'react';
 import { Wortmarke } from '../components/Wortmarke';
 
@@ -57,7 +59,7 @@ export function Anmeldung({ grund, onToken }: AnmeldungProps): React.JSX.Element
           <label>
             <span className="tafel">API-Token</span>
             <input
-              className="feld"
+              className={FELD}
               type="password"
               name="token"
               autoComplete="off"
@@ -69,9 +71,9 @@ export function Anmeldung({ grund, onToken }: AnmeldungProps): React.JSX.Element
             />
           </label>
           <div>
-            <button className="knopf knopf-signal" type="submit" disabled={!wert.trim()}>
+            <Button variant="primary" size="sm" type="submit" disabled={!wert.trim()}>
               Verbinden
-            </button>
+            </Button>
           </div>
         </form>
       </div>
