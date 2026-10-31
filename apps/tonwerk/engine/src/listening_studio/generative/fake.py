@@ -12,7 +12,14 @@ import wave
 from pathlib import Path
 from typing import Mapping
 
-from .gateway import AudioAsset, ClonableVoice, SoundRequest, SpeechRequest, VoiceRef
+from .gateway import (
+    AudioAsset,
+    ClonableVoice,
+    DesignedVoice,
+    SoundRequest,
+    SpeechRequest,
+    VoiceRef,
+)
 
 SAMPLE_RATE = 16000
 
@@ -137,6 +144,42 @@ class FakeClone:
             request_sha256=request.sha256(),
             params=request.params,
             voice=voice.ref,
+        )
+
+
+class FakeDesigned:
+    """A designed-voice engine that speaks nothing, so the path around `qwen_tts_designed` can be
+    tested: it refuses exactly what the real engine refuses, and writes silence otherwise.
+
+    The refusals are the real engine's own (`QwenDesignedClone.voice_for`), not a copy of them, so
+    a test that passes here has exercised the rule production runs. The length differs from the
+    other fakes' by a constant for the reason `FakeClone` gives.
+    """
+
+    name = "fake_designed"
+    revision = "fake-designed-v1"
+    supports_style = False
+
+    def __init__(self, designed: Mapping[str, DesignedVoice] | None = None) -> None:
+        from .qwen_designed import QwenDesignedClone
+
+        self._rules = QwenDesignedClone(designed)
+
+    def generate(self, request: SpeechRequest, target: Path) -> AudioAsset:
+        self._rules.voice_for(request)
+        frames = int(SAMPLE_RATE * max(0.35, len(request.text) / 13))
+        _write_wav(target, b"\0\0" * frames)
+        return AudioAsset.record(
+            target,
+            SAMPLE_RATE,
+            engine=self.name,
+            model_id="none",
+            model_revision=self.revision,
+            adapter_code_revision=self.revision,
+            license="none",
+            seed=request.seed,
+            request_sha256=request.sha256(),
+            params=request.params,
         )
 
 

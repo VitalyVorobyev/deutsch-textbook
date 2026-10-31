@@ -23,13 +23,15 @@ from .domain import Stage
 from .scene import ExerciseAttachment, Scene
 
 
-#: The one stage machine a scene project steps through.
-STAGE_TRANSITIONS: dict[Stage, Stage] = {
-    Stage.DRAFT: Stage.VALIDATED,
-    Stage.VALIDATED: Stage.AUDIO_GENERATED,
-    Stage.AUDIO_GENERATED: Stage.AUTOMATICALLY_CHECKED,
-    Stage.AUTOMATICALLY_CHECKED: Stage.HUMAN_APPROVED,
-    Stage.HUMAN_APPROVED: Stage.EXPORTED,
+#: The one stage machine a scene project steps through, as the stages each one may step to. A
+#: scene that passed automatic QA may be published straight away or first approved by a person
+#: (ADR 0013); the approval is optional and the publisher checks it when it exists.
+STAGE_TRANSITIONS: dict[Stage, tuple[Stage, ...]] = {
+    Stage.DRAFT: (Stage.VALIDATED,),
+    Stage.VALIDATED: (Stage.AUDIO_GENERATED,),
+    Stage.AUDIO_GENERATED: (Stage.AUTOMATICALLY_CHECKED,),
+    Stage.AUTOMATICALLY_CHECKED: (Stage.HUMAN_APPROVED, Stage.EXPORTED),
+    Stage.HUMAN_APPROVED: (Stage.EXPORTED,),
 }
 
 
@@ -554,12 +556,12 @@ class Store:
         *,
         approval: dict[str, object] | None = None,
     ) -> None:
-        if STAGE_TRANSITIONS.get(expected) != target:
-            following = STAGE_TRANSITIONS.get(expected)
+        following = STAGE_TRANSITIONS.get(expected, ())
+        if target not in following:
             raise ValueError(
                 f"this scene is at {expected}; "
                 + (
-                    f"the next step is {following}, not {target}"
+                    f"the next step is {' or '.join(following)}, not {target}"
                     if following
                     else f"{expected} is the final stage"
                 )

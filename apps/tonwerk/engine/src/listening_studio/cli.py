@@ -23,13 +23,13 @@ import typer
 import uvicorn
 from huggingface_hub import snapshot_download
 
+from .adoption import adopt_designed
 from .catalogs import load_character_catalog
 from .doctor import doctor_report
 from .dsp.audio import conform
 from .generative.fake import FakeSpeech
 from .generative.gateway import CloningSpeechGenerator, SpeechRequest, SpeechGenerator
 from .generative.locks import model_lock, set_models_root
-from .generative.qwen import QwenSpeech
 from .generative.registry import CLONING_ENGINES, engine_for
 from .graph.assets import sha256_file
 from .qa import transcribe
@@ -177,18 +177,38 @@ def generate_character_demos(
     """Generate three local audition takes per roster character; never approve them.
 
     What `GET /api/characters/{id}/demos/{n}` serves to the Figuren view. The take is the
-    character's catalog voice, seed, style and pace on each of its comparison phrases, conformed
-    to the 16 kHz mono format every audition is stored in.
+    character's catalog engine, voice, seed, style and pace on each of its comparison phrases,
+    conformed to the 16 kHz mono format every audition is stored in. A designed voice's reference
+    is resolved from app data here and handed to the engine, which never looks it up itself.
     """
 
+    from .generative.designed import resolve_designed
+    from .generative.registry import DESIGNED_ENGINES
+
     store = Store()
-    engine: SpeechGenerator = FakeSpeech() if test_adapter else QwenSpeech()
     catalog = load_character_catalog(repo_root(repo))
+    try:
+        designed = resolve_designed(
+            store.root,
+            [
+                row.voice_profile.voice
+                for row in catalog.characters
+                if row.voice_profile.engine in DESIGNED_ENGINES
+            ],
+        )
+    except ValueError as error:
+        raise typer.BadParameter(str(error)) from error
+    engines: dict[str, SpeechGenerator] = {}
     for character in catalog.characters:
         target = store.root / "characters" / character.id
         target.mkdir(parents=True, exist_ok=True)
         hashes: list[str] = []
         profile = character.voice_profile
+        if profile.engine not in engines:
+            engines[profile.engine] = (
+                FakeSpeech() if test_adapter else engine_for(profile.engine, designed=designed)
+            )
+        engine = engines[profile.engine]
         for index, phrase in enumerate(character.demo_phrases, 1):
             path = target / f"demo-{index}.wav"
             raw = path.with_name(path.name + ".model.wav")
@@ -418,6 +438,59 @@ def demo_voice(
         )
         return
     typer.echo(f"{voice_id}: {len(written)} draft demos under {target}")
+
+
+@voices.command("adopt-designed")
+@json_verb
+def adopt_designed_voices(
+    run: str = typer.Argument(..., help="the evaluation run's directory name under evaluations/"),
+    repo: Path = typer.Option(Path.cwd()),
+    target: float | None = typer.Option(
+        None,
+        "--target-wps",
+        help="words per second of voiced audio each character's clones are paced to; by default "
+        "the median of the run's preset-0.6b takes, the production voice being replaced",
+    ),
+    json_output: bool = typer.Option(False, "--json"),
+) -> None:
+    """Make a voice evaluation's designed references the roster's voices.
+
+    Copies each character's accepted reference from evaluations/<run>/ into app data
+    (voices/designed/<sha256>.wav and .json, never the repository), and writes each character's
+    catalog profile in data/listening-characters.yaml as a designed voice on qwen_tts_designed,
+    bumping its version. The pace is the one that brings the design-clone-1.7b takes' median words
+    per second to --target-wps (by default the run's preset-0.6b median), from the rate the run measured at the pace it used. Adopting the
+    same run twice changes nothing.
+    """
+
+    root = repo_root(repo)
+    store = Store()
+    try:
+        adopted = adopt_designed(store.root / "evaluations" / run, store.root, root, target=target)
+    except (ValueError, FileNotFoundError) as error:
+        raise typer.BadParameter(str(error)) from error
+    if json_output:
+        emit_text(
+            json.dumps(
+                {
+                    "task": "voices.adopt-designed",
+                    "run": run,
+                    "target_words_per_second": target,
+                    "voices": [row.__dict__ for row in adopted],
+                },
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return
+    for row in adopted:
+        typer.echo(
+            f"{row.character}\tv{row.version}\tpace {row.pace:.2f}\t"
+            f"{row.measured_words_per_second:.2f} w/s at {row.measured_at_pace:.2f}\t"
+            f"{row.reference_sha256}"
+            + ("" if row.catalog_changed or row.reference_written else "\tunchanged")
+        )
 
 
 @voices.command("revoke")

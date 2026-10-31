@@ -145,6 +145,24 @@ class ClonableVoice:
 
 
 @dataclass(frozen=True)
+class DesignedVoice:
+    """A designed synthetic reference: what a designed-voice engine clones, and what it came from.
+
+    The sibling of `ClonableVoice` for a voice that belongs to nobody. A cast member names it by
+    the reference's own SHA-256 in `VoiceSpec.voice`, so the synth node's hash covers the reference
+    bytes without a second field. `record` is the sidecar the studio keeps beside the clip (the
+    description, the design seed and both model pins); the engine reads only the path and the
+    text, and a render copies the record into its manifest.
+    """
+
+    reference_sha256: str
+    reference_path: Path
+    #: What the reference clip says. The clone conditions on it, so it is required.
+    reference_text: str
+    record: dict[str, Any]
+
+
+@dataclass(frozen=True)
 class AudioAsset:
     """A WAV an engine wrote, and enough provenance to say where it came from.
 

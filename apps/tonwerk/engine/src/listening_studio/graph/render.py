@@ -49,8 +49,9 @@ from ..dsp.profiles import (
     load_difficulty_presets,
 )
 from ..generative.locks import model_lock
-from ..generative.registry import warn_if_style_is_inert
+from ..generative.registry import DESIGNED_ENGINES, warn_if_style_is_inert
 from ..generative.gateway import (
+    DesignedVoice,
     SoundGenerator,
     SoundRequest,
     SpeechGenerator,
@@ -118,8 +119,9 @@ AMBIENCE_GAIN_MIN, AMBIENCE_GAIN_MAX = -40.0, -6.0
 #: through, keyed by cast role. Additive — a version-1 manifest is a version-2 manifest with an
 #: empty `voices`, which is what every scene rendered before consent-gated cloning existed is —
 #: but a reader that computes a *claim* from this document has to be able to tell "this render had
-#: no cloned voices" from "this manifest predates the field", and only the version says which.
-MANIFEST_VERSION = 2
+#: no cloned voices" from "this manifest predates the field", and only the version says which. 3
+#: adds `designed_voices`, the designed synthetic references by cast role, for the same reason.
+MANIFEST_VERSION = 3
 
 #: Every bus, for the master sum. `graph.nodes.BUSES` states the order they are summed in.
 BUS_ALL = ("dialogue", "ambience", "sfx")
@@ -199,6 +201,9 @@ class RenderResult:
     #: Cast role → the consented voice reference it was synthesized through. Empty for a scene
     #: cast entirely on preset voices, which is every scene shipped so far.
     voices: dict[str, VoiceRef] = field(default_factory=dict)
+    #: Cast role → the designed synthetic reference it was cloned from: its digest and the record
+    #: stored beside it. Empty for a scene with no designed voice.
+    designed_voices: dict[str, dict[str, Any]] = field(default_factory=dict)
 
     @property
     def nodes_evaluated(self) -> int:
@@ -671,6 +676,7 @@ def render_scene(
     sound_engine: SoundGenerator | None = None,
     repo: Path | None = None,
     voices: Mapping[str, VoiceRef] | None = None,
+    designed: Mapping[str, DesignedVoice] | None = None,
 ) -> RenderResult:
     """Render one scene under `store_dir`, reusing every node whose hash is already known.
 
@@ -683,6 +689,10 @@ def render_scene(
     the caller, because resolving one means opening the studio database and this module opens no
     database. A cast member with a `voice_ref` that is not in here is refused rather than rendered:
     a take whose consent hash the manifest cannot state is a take nothing can publish honestly.
+
+    `designed` is the same for designed synthetic references, keyed by digest and resolved from app
+    data by the caller (`generative.designed.resolve_designed`). A role on a designed-voice engine
+    whose digest is not in it is refused before anything is synthesized.
     """
 
     acoustics = _resolve_acoustics(scene, variant, repo or REPO_ROOT)
@@ -712,6 +722,7 @@ def render_scene(
 
         engines = _resolve_engines(scene, speech_engines)
         cast_voices = _resolve_cast_voices(scene, voices or {})
+        cast_designed = _resolve_cast_designed(scene, designed or {})
         paced: dict[str, str] = {}
         for utterance in scene.script:
             member = scene.member(utterance.role)
@@ -811,6 +822,7 @@ def render_scene(
         acoustics=acoustics,
         ir_assets={acoustics.room_id: ir_asset} if ir_asset and acoustics.room_id else {},
         voices=cast_voices,
+        designed_voices=cast_designed,
     )
     _write_manifest(result, scene, assets, engines, sound_engine)
     return result
@@ -839,6 +851,39 @@ def _resolve_cast_voices(
                 f"was not given; resolved: {available}"
             )
         resolved[member.role] = found
+    return resolved
+
+
+def designed_digests(scene: Scene) -> list[str]:
+    """The designed references this cast names, for the caller to resolve from app data."""
+
+    return [
+        member.voice.voice for member in scene.cast if member.voice.engine in DESIGNED_ENGINES
+    ]
+
+
+def _resolve_cast_designed(
+    scene: Scene, designed: Mapping[str, DesignedVoice]
+) -> dict[str, dict[str, Any]]:
+    """One designed-reference record per cast role on a designed-voice engine.
+
+    Keyed by the role's **cast** engine, so a render forced onto another engine still records which
+    designed voice the scene asked for; the manifest's `engines` says what actually ran. Refused
+    here, by role, when the digest was not resolved: the record is what a publisher states about
+    the voice, and a voice it cannot state is a voice it cannot publish.
+    """
+
+    resolved: dict[str, dict[str, Any]] = {}
+    for member in scene.cast:
+        if member.voice.engine not in DESIGNED_ENGINES:
+            continue
+        found = designed.get(member.voice.voice)
+        if found is None:
+            raise ValueError(
+                f"role {member.role} is cast on designed reference {member.voice.voice[:12]}, "
+                "which this render was not given; it is not in this studio's app data"
+            )
+        resolved[member.role] = {"reference_sha256": found.reference_sha256} | dict(found.record)
     return resolved
 
 
@@ -1215,6 +1260,12 @@ def _write_manifest(
         # look at. A claim that is expensive to compute is a claim somebody hardcodes.
         "voices": {
             role: voice.as_json() for role, voice in sorted(result.voices.items())
+        },
+        # Every designed synthetic reference a role was cloned from, with the record stored beside
+        # it. Top-level for the reason `voices` is: the publisher states the designed voices from
+        # this key and nothing else.
+        "designed_voices": {
+            role: record for role, record in sorted(result.designed_voices.items())
         },
         "engines": {
             name: {"name": engine.name, "revision": engine.revision}

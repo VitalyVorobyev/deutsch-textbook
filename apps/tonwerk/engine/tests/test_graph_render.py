@@ -812,8 +812,9 @@ def test_a_cloned_render_states_its_consent_in_the_manifest(tmp_path: Path) -> N
         voices={"testperson": bound},
     )
     manifest = json.loads(result.manifest_path.read_text())
-    assert manifest["version"] == 2
+    assert manifest["version"] == 3
     assert manifest["voices"] == {"erzaehler": bound.as_json()}
+    assert manifest["designed_voices"] == {}
 
     # What the publisher will write, as the publisher will write it.
     assert bool(manifest["voices"]) is True

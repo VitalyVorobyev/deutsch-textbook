@@ -262,7 +262,9 @@ def test_a_published_scene_writes_a_valid_artifact_its_audio_and_a_scene_manifes
 
     # A preset-voice scene: no cloning, no consent, and the claims say so as facts computed from
     # the render's voices map rather than as constants.
-    assert manifest["voices"] == {}
+    assert manifest["voices"] == []
+    # A person signed this one, so that is what cleared it, and the approval travels with it.
+    assert manifest["cleared_by"] == "human-approval"
     assert manifest["claims"] == {
         "model_license_is_training_data_provenance": False,
         "voice_cloning_used": False,
@@ -499,7 +501,11 @@ def test_a_publication_scope_clone_publishes_and_states_its_consent(tmp_path: Pa
         # Sorted and de-duplicated: two roles on one voice is one consent, asked once.
         "consent_sha256": [CONSENT_SHA],
     }
-    assert set(plan.manifest["voices"]) == {"Mara", "Jonas"}
+    assert [row["role"] for row in plan.manifest["voices"]] == ["Jonas", "Mara"]
+    assert all(
+        row["synthetic"] is False and row["consent_sha256"] == CONSENT_SHA
+        for row in plan.manifest["voices"]
+    )
 
 
 def test_an_evaluation_scope_voice_cannot_be_published(tmp_path: Path) -> None:
@@ -642,3 +648,209 @@ def test_stale_lights_up_once_the_manifest_carries_a_scene_sha(approved: Any) ->
     row = next(row for row in registry(store, repo)["rows"] if row["id"] == "fixture-cafe")
     assert row["status"] == "stale"
     assert http.get(f"/api/scenes/{scene.slug}", headers=AUTH).json()["stage"] == str(Stage.DRAFT)
+
+
+# -- cleared by automatic QA --------------------------------------------------
+
+
+def checked_fixture(tmp_path: Path, scene: Scene | None = None) -> Any:
+    """A scene rendered and QA'd, and left at `automatically_checked`: nobody listened to it."""
+
+    store = Store(tmp_path / "db.sqlite3")
+    repo = fixture_repo(tmp_path)
+    scene = scene or fixture_scene()
+    http = TestClient(
+        app(
+            store,
+            repo,
+            token="test",
+            allow_test_adapters=True,
+            transcribe_fn=transcript_of(scene),
+        ),
+        raise_server_exceptions=False,
+    )
+    created = http.post("/api/scenes", json={"scene": scene.model_dump(mode="json")}, headers=AUTH)
+    assert created.status_code == 201, created.text
+    assert http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).status_code == 200
+    checked = http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH)
+    assert checked.status_code == 200 and checked.json()["passed"] is True, checked.text
+    return http, store, repo, scene
+
+
+def test_a_scene_that_passed_automatic_qa_publishes_without_an_approval(tmp_path: Path) -> None:
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    plan, _written = publish_scene(store, repo, scene.slug, allow_test_audio=True)
+    manifest = json.loads((repo / "data/audio-provenance/a2/fixture-cafe.json").read_text())
+    assert manifest["cleared_by"] == "automatic-qa" == plan.cleared_by
+    assert "approval" not in manifest
+    assert manifest["qa"]["passed"] is True
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None and stored[0].stage == Stage.EXPORTED
+
+
+def test_test_audio_cleared_by_qa_alone_is_refused(tmp_path: Path) -> None:
+    """The approval endpoint refuses fake audio; without a person, the publisher has to."""
+
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    assert refusal(store, repo, scene.slug) == "test-audio"
+
+
+def test_a_failed_qa_report_refuses_an_unapproved_scene(tmp_path: Path) -> None:
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None
+    store.record_scene_qa(stored[0].id, "natural", {"passed": False})
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "qa"
+
+
+def test_a_declined_take_is_not_published_by_qa_alone(tmp_path: Path) -> None:
+    """A person said no to these bytes; a later QA pass on the same bytes does not overrule them."""
+
+    http, store, repo, scene = checked_fixture(tmp_path)
+    declined = http.post(
+        f"/api/scenes/{scene.slug}/decline",
+        json={"reason": "Die Betonung kippt.", "editor": "Vitaly Vorobyev"},
+        headers=AUTH,
+    )
+    assert declined.status_code == 200, declined.text
+    assert http.post(f"/api/scenes/{scene.slug}/render", json={}, headers=AUTH).status_code == 200
+    assert http.post(f"/api/scenes/{scene.slug}/qa", json={}, headers=AUTH).status_code == 200
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "declined"
+
+
+def test_an_optional_approval_is_still_held_to_its_master(approved: Any) -> None:
+    """With a person's sign-off on record, a stale one refuses exactly as before."""
+
+    _http, store, repo, scene, _digest = approved
+    stored = store.get_scene_by_slug(scene.slug)
+    assert stored is not None
+    with sqlite3.connect(store.database) as connection:
+        row = connection.execute(
+            "SELECT approval_json FROM scene_revisions WHERE id = ?", (stored[1].id,)
+        ).fetchone()
+        approval = json.loads(row[0]) | {"variant": "challenging"}
+        connection.execute(
+            "UPDATE scene_revisions SET approval_json = ? WHERE id = ?",
+            (json.dumps(approval), stored[1].id),
+        )
+    assert refusal(store, repo, scene.slug) == "approval-variant"
+
+
+# -- designed voices ----------------------------------------------------------
+
+
+DESIGNED_AUDIO = b"RIFF-a-designed-reference"
+DESIGNED_SHA = hashlib.sha256(DESIGNED_AUDIO).hexdigest()
+
+
+def designed_fixture(tmp_path: Path) -> Any:
+    from listening_studio.generative.designed import DesignedRecord, ModelPin, store_designed
+    from listening_studio.scene.model import CharacterRef
+
+    store_designed(
+        tmp_path,
+        DESIGNED_AUDIO,
+        DESIGNED_SHA,
+        DesignedRecord(
+            character="lena",
+            instruct="Eine erfundene junge Frau, warm und aufmerksam.",
+            reference_text="Hallo, schön, dass Sie da sind.",
+            seed=100,
+            design_model=ModelPin(id="Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign", revision="d" * 40),
+            clone_model=ModelPin(id="Qwen/Qwen3-TTS-12Hz-1.7B-Base", revision="b" * 40),
+            source_run="voices-fixture",
+            transcript="Hallo, schön, dass Sie da sind.",
+            wer=0.0,
+        ),
+    )
+    scene = fixture_scene(
+        cast=[
+            CastMember(
+                role="Mara",
+                character=CharacterRef(id="lena", version=2),
+                voice=VoiceSpec(engine="fake_designed", voice=DESIGNED_SHA, seed=100),
+            ),
+            CastMember(role="Jonas", voice=VoiceSpec(engine="fake", voice="Eric", seed=102)),
+        ]
+    )
+    return checked_fixture(tmp_path, scene)
+
+
+def test_a_designed_voice_is_published_as_synthetic_and_needs_no_consent(tmp_path: Path) -> None:
+    _http, store, repo, scene = designed_fixture(tmp_path)
+    plan, _written = publish_scene(store, repo, scene.slug, allow_test_audio=True)
+    assert plan.manifest["voices"] == [
+        {
+            "role": "Mara",
+            "character": "lena",
+            "version": 2,
+            "reference_sha256": DESIGNED_SHA,
+            "instruct": "Eine erfundene junge Frau, warm und aufmerksam.",
+            "seed": 100,
+            "design_model": {"id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign", "revision": "d" * 40},
+            "clone_model": {"id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base", "revision": "b" * 40},
+            "synthetic": True,
+        }
+    ]
+    assert plan.manifest["claims"] == {
+        "model_license_is_training_data_provenance": False,
+        "voice_cloning_used": False,
+        "reference_audio_used": True,
+        "consent_sha256": [],
+    }
+
+
+def test_a_designed_reference_missing_from_app_data_is_refused(tmp_path: Path) -> None:
+    from listening_studio.generative.designed import designed_path
+
+    _http, store, repo, scene = designed_fixture(tmp_path)
+    designed_path(store.root, DESIGNED_SHA).unlink()
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "voice-designed"
+
+
+def test_a_designed_reference_whose_bytes_changed_is_refused(tmp_path: Path) -> None:
+    from listening_studio.generative.designed import designed_path
+
+    _http, store, repo, scene = designed_fixture(tmp_path)
+    designed_path(store.root, DESIGNED_SHA).write_bytes(DESIGNED_AUDIO + b"!")
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "voice-designed"
+
+
+def test_a_render_with_no_record_of_its_designed_voice_is_refused(tmp_path: Path) -> None:
+    _http, store, repo, scene = designed_fixture(tmp_path)
+    manifest = store.root / "renders" / scene.sha256() / "natural" / "render.json"
+    body = json.loads(manifest.read_text())
+    body["designed_voices"] = {}
+    manifest.write_text(json.dumps(body))
+    assert refusal(store, repo, scene.slug, allow_test_audio=True) == "render"
+
+
+def test_the_batch_verb_takes_every_checked_dialogue_and_skips_a_failed_one(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """`scene publish-checked`: a QA pass is a candidate, a QA failure is not.
+
+    The candidate here is test audio, so the batch reports it refused at `test-audio` — which is
+    also the proof that the batch runs every gate `scene publish` does.
+    """
+
+    from conftest import RUNNER
+
+    import listening_studio.scene.cli as scene_cli
+
+    _http, store, repo, scene = checked_fixture(tmp_path)
+    failed = fixture_scene(slug="fixture-failed")
+    project = store.create_scene(failed, None)
+    store.transition_scene(project.id, Stage.DRAFT, Stage.VALIDATED)
+    store.transition_scene(project.id, Stage.VALIDATED, Stage.AUDIO_GENERATED)
+    store.record_scene_qa(project.id, "natural", {"passed": False})
+    monkeypatch.setattr(scene_cli, "Store", lambda: store)
+
+    result = RUNNER.invoke(
+        scene_cli.app, ["publish-checked", "--repo", str(repo), "--dry-run", "--json"]
+    )
+    payload = json.loads(result.stdout)
+    assert payload["published"] == []
+    assert payload["refused"] == [
+        {"slug": scene.slug, "gate": "test-audio", "detail": payload["refused"][0]["detail"]}
+    ]

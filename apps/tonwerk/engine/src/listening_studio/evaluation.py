@@ -3,21 +3,23 @@
 `atlas-listening evaluate voices` speaks every roster character's lines through each candidate,
 measures the takes, and leaves a blind listening page for the owner. The candidates:
 
-- **`preset-0.6b`**, the production engine: a preset speaker on the 0.6B CustomVoice checkpoint,
-  which discards every style instruction.
+- **`preset-0.6b`**, the preset engine existing scenes speak on: a preset speaker on the 0.6B
+  CustomVoice checkpoint, which discards every style instruction.
 - **`preset-1.7b`**, the same preset speaker and seed on the 1.7B CustomVoice checkpoint, which
   honours the character's style instruction.
 - **`design-clone-0.6b`** and **`design-clone-1.7b`**: the VoiceDesign checkpoint reads one
   reference sentence in a voice described in `evaluation/voice-designs.yaml`, and the Base checkpoint of
   that size clones the reference for every line. The reference is a synthetic voice with a stable
-  identity that belongs to no preset speaker.
+  identity that belongs to no preset speaker. `design-clone-1.7b` is the production engine
+  `qwen_tts_designed`'s checkpoint, and `voices adopt-designed` carries a run's accepted
+  references into production (`adoption.py`).
 
 **Nothing here is a production path** (`docs/authoring/product-protection.md`, the evaluation
 paragraph). A run writes only into its own new directory under the studio's `evaluations/`, refuses
 a directory that already exists, writes no store row and no render-cache entry, and is never read
-by `scene publish`. The evaluation checkpoints are pinned in `models.lock.json` with
-`"scope": "evaluation"` and are not engines of `generative.registry`, so no scene can be cast on
-one. Every prompt, seed, model revision and file hash is kept in the run's `run.json`.
+by `scene publish`. A checkpoint only this runner loads is pinned in `models.lock.json` with
+`"scope": "evaluation"` and is not an engine of `generative.registry`, so no scene can be cast on
+it. Every prompt, seed, model revision and file hash is kept in the run's `run.json`.
 
 **What it measures**, per take: Whisper's transcript scored by the scene QA's own line rule
 (`qa.check_units`), speaking rate in words per second of voiced audio, and generation time. Per
@@ -45,7 +47,7 @@ import numpy as np
 import yaml
 from pydantic import BaseModel, Field, field_validator
 
-from .catalogs import CharacterCatalog
+from .catalogs import PRESET_ENGINE, CharacterCatalog
 from .domain import normalized_words
 from .dsp.audio import conform
 from .generative.locks import locked_snapshot
@@ -102,7 +104,7 @@ CANDIDATES: dict[str, Candidate] = {
         Candidate("preset-0.6b", "qwen_tts", "preset"),
         Candidate("preset-1.7b", "qwen_tts_1_7b", "preset", style=True),
         Candidate("design-clone-0.6b", "qwen_tts_base", "design-clone"),
-        Candidate("design-clone-1.7b", "qwen_tts_base_1_7b", "design-clone"),
+        Candidate("design-clone-1.7b", "qwen_tts_designed", "design-clone"),
     )
 }
 
@@ -337,6 +339,14 @@ def run_voice_evaluation(
     missing = sorted(set(characters or ()) - {character.id for character in roster})
     if missing:
         raise ValueError(f"unknown character(s) {missing}")
+    if any(candidate.kind == "preset" for candidate in chosen):
+        designed = [c.id for c in roster if c.voice_profile.engine != PRESET_ENGINE]
+        if designed:
+            raise ValueError(
+                f"a preset candidate speaks a character's preset speaker, and {designed} have "
+                "designed profiles; compare the design-clone candidates, or name characters with "
+                "preset profiles"
+            )
     if any(candidate.kind == "design-clone" for candidate in chosen):
         undesigned = [c.id for c in roster if c.id not in designs.designs]
         if undesigned:

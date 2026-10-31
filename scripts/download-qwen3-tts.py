@@ -26,10 +26,12 @@ from huggingface_hub import snapshot_download
 LOCK_KEYS = {
     "custom-voice": "qwen_tts",
     "base": "qwen_tts_base",
-    # The candidates of `atlas-listening evaluate voices`, pinned with `"scope": "evaluation"`.
-    "custom-voice-1.7b": "qwen_tts_1_7b",
+    # The designed voices: the checkpoint every roster character is cloned on, and the one that
+    # speaks a new designed reference.
+    "base-1.7b": "qwen_tts_designed",
     "voice-design": "qwen_tts_voice_design",
-    "base-1.7b": "qwen_tts_base_1_7b",
+    # A candidate of `atlas-listening evaluate voices` only, pinned with `"scope": "evaluation"`.
+    "custom-voice-1.7b": "qwen_tts_1_7b",
 }
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODEL_LOCK = PROJECT_ROOT / "apps" / "tonwerk" / "engine" / "models.lock.json"
@@ -50,8 +52,9 @@ def parse_args() -> argparse.Namespace:
         "--variant",
         choices=LOCK_KEYS,
         default="custom-voice",
-        help="custom-voice uses built-in speakers; base supports voice cloning; the 1.7B "
-        "variants and voice-design are evaluation candidates",
+        help="custom-voice uses built-in speakers; base clones a consented voice; base-1.7b "
+        "speaks the roster's designed voices and voice-design makes their references; "
+        "custom-voice-1.7b is an evaluation candidate",
     )
     parser.add_argument(
         "--output-dir",

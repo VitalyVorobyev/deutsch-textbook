@@ -22,13 +22,14 @@ from .generative.locks import locked_snapshot, model_lock, models_root
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 
-#: Each pinned model a render or a check loads, and how it gets onto the disk. The two Qwen
+#: Each pinned model a render or a check loads, and how it gets onto the disk. The Qwen
 #: checkpoints and Stable Audio come with their installers; the other two are plain `models fetch`
 #: downloads into the Hub cache. A lock row outside this table is a pin the engine no longer
 #: loads, and reporting it missing would be noise.
 MODELS = {
     "qwen_tts": "uv run scripts/download-qwen3-tts.py",
     "qwen_tts_base": "uv run scripts/download-qwen3-tts.py --variant base",
+    "qwen_tts_designed": "uv run scripts/download-qwen3-tts.py --variant base-1.7b",
     "stable_audio_sfx": "cd apps/tonwerk/engine && ./install-stable-audio.sh",
     "asr": "cd apps/tonwerk/engine && uv run atlas-listening models fetch asr",
     "speaker_qa": "cd apps/tonwerk/engine && uv run atlas-listening models fetch speaker_qa",

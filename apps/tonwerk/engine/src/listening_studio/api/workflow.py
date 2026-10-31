@@ -6,8 +6,9 @@ the operations `atlas-listening scene render` and `scene qa` wrap, with the same
 same order, because two surfaces that disagree about when the fake engine is allowed is how a
 test take reaches a learner.
 
-**Approval is the one thing in this file that is not a wrapper.** It is the human signature, and
-it is bound to the exact bytes the reviewer heard: the request must name the sha256 of the master
+**Approval is the one thing in this file that is not a wrapper.** It is optional — a scene that
+passed automatic QA may be published without it (ADR 0013) — and when the owner gives one it is
+the human signature, bound to the exact bytes the reviewer heard: the request must name the sha256 of the master
 it is approving, and a mismatch is refused before anything is stored. An approval that recorded
 who and when but nothing about the audio would let a WAV regenerated after approval be published
 carrying a signature that never covered it.
@@ -27,13 +28,14 @@ from pydantic import BaseModel, Field
 
 from ..domain import Stage
 from ..generative.fake import FakeSound
-from ..generative.gateway import SoundGenerator, SpeechGenerator
+from ..generative.designed import resolve_designed
+from ..generative.gateway import DesignedVoice, SoundGenerator, SpeechGenerator
 from ..generative.locks import set_models_root
 from ..generative.registry import ENGINES, SOUND_ENGINES, engine_for, sound_engine_for
 from ..generative.voices import ResolvedVoices, resolve_voices
 from ..graph.assets import sha256_file as sha256
 from ..graph.peaks import RESOLUTION_MAX_MS, RESOLUTION_MIN_MS, render_peaks
-from ..graph.render import render_scene
+from ..graph.render import designed_digests, render_scene
 from ..graph.scene_qa import scene_qa
 from ..scene.model import Scene
 from ..scene.publish import (
@@ -136,7 +138,10 @@ class DeclineRequest(BaseModel):
 
 
 def _speech_engines(
-    scene: Scene, allow_test_adapters: bool, resolved: ResolvedVoices
+    scene: Scene,
+    allow_test_adapters: bool,
+    resolved: ResolvedVoices,
+    designed: dict[str, DesignedVoice],
 ) -> dict[str, SpeechGenerator]:
     """One engine per engine name the cast uses, with the same fake-engine gate as the CLI.
 
@@ -145,9 +150,10 @@ def _speech_engines(
     this scene is synthesized with, and letting a request replace it would mean the stored scene
     and the audio under its sha disagree about which model produced it.
 
-    `resolved` is every stored voice the cast names, looked up before this point. It is handed to
-    the engine rather than fetched by it — the store, the app-data root and the revocation check
-    stay on this side of `generative/`.
+    `resolved` is every stored voice the cast names, and `designed` every designed reference,
+    both looked up before this point. They are handed to the engine rather than fetched by it —
+    the store, the app-data root, the digest check and the revocation check stay on this side of
+    `generative/`.
     """
 
     names = sorted({member.voice.engine for member in scene.cast})
@@ -164,7 +170,7 @@ def _speech_engines(
             409,
             f"this scene is cast on the {', '.join(fake)} engine(s); they render no real audio",
         )
-    return {name: engine_for(name, resolved.clonable) for name in names}
+    return {name: engine_for(name, resolved.clonable, designed) for name in names}
 
 
 def _resolved_voices(store: Store, scene: Scene) -> ResolvedVoices:
@@ -178,6 +184,15 @@ def _resolved_voices(store: Store, scene: Scene) -> ResolvedVoices:
     ids = [member.voice.voice_ref for member in scene.cast if member.voice.voice_ref]
     try:
         return resolve_voices(store, store.root, ids)
+    except ValueError as error:
+        raise HTTPException(409, str(error)) from error
+
+
+def _resolved_designed(store: Store, scene: Scene) -> dict[str, DesignedVoice]:
+    """The designed references this cast names, from app data, or a 409 naming the missing one."""
+
+    try:
+        return resolve_designed(store.root, designed_digests(scene))
     except ValueError as error:
         raise HTTPException(409, str(error)) from error
 
@@ -237,7 +252,8 @@ def router(
     def render(slug: str, request: RenderRequest) -> dict[str, Any]:
         project, revision, scene, _ = stored(slug)
         resolved = _resolved_voices(store, scene)
-        speech = _speech_engines(scene, allow_test_adapters, resolved)
+        designed = _resolved_designed(store, scene)
+        speech = _speech_engines(scene, allow_test_adapters, resolved, designed)
         sound = _sound_engine(request.sound_engine, allow_test_adapters)
         # The repository this server was started against is where `.models/` is looked for.
         set_models_root(repo)
@@ -248,6 +264,7 @@ def router(
                 variant=request.variant,
                 speech_engines=speech,
                 voices=resolved.refs,
+                designed=designed,
                 sound_engine=sound,
                 repo=repo,
             )
@@ -525,7 +542,10 @@ def router(
 
     @api.post("/scenes/{slug}/publish")
     def publish(slug: str, request: PublishRequest) -> dict[str, Any]:
-        """Write one approved scene into the course repository, or say which gate refused.
+        """Write one checked scene into the course repository, or say which gate refused.
+
+        A scene is ready at `automatically_checked` once its `natural` QA passed, or at
+        `human_approved`; an approval is optional and checked when it exists (`scene.publish`).
 
         Every refusal is a **409 naming its gate**, because the client's next move differs per
         gate and a sentence is not something a UI can branch on: `voice-scope` sends the editor to
@@ -540,7 +560,14 @@ def router(
         """
 
         try:
-            plan = plan_publish(store, repo, slug, level=request.level, variant=request.variant)
+            plan = plan_publish(
+                store,
+                repo,
+                slug,
+                level=request.level,
+                variant=request.variant,
+                allow_test_audio=allow_test_adapters,
+            )
         except PublishRefusal as refusal:
             raise HTTPException(
                 409, {"gate": refusal.gate, "detail": refusal.detail}
@@ -554,6 +581,7 @@ def router(
             "files": plan.files(),
             "replaces": [path.as_posix() for path in plan.replaces],
             "claims": plan.manifest["claims"],
+            "cleared_by": plan.cleared_by,
             "duration_seconds": plan.artifact["duration_seconds"],
         }
         if request.dry_run:
@@ -570,7 +598,7 @@ def router(
                 409, {"gate": refusal.gate, "detail": refusal.detail}
             ) from refusal
         project, _, _, _ = stored(slug)
-        store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+        store.transition_scene(project.id, plan.stage, Stage.EXPORTED)
         answer["written"] = [str(path) for path in written]
         answer["stage"] = str(Stage.EXPORTED)
         answer["backup"] = str(backup) if backup else None

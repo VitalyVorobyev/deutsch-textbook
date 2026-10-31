@@ -1,6 +1,6 @@
 # ADR 0012: Editorial tools are separate applications over the checkout, and Tonwerk is one studio whose shell owns its engine
 
-Status: accepted · 2026-10-30
+Status: accepted · 2026-10-30 · its approval clause superseded by [0013](0013-designed-voices-and-automatic-publishing.md) · 2026-10-31
 
 ## Context
 

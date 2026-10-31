@@ -1,11 +1,11 @@
 # Tonwerk engine
 
 > **Looking for how to *use* the studio?** A person's guide to the workbench — starting the engine, the six
-> sections, narrating a Lesetext, approving a scene — is [`docs/apps/tonwerk.md`](../../../docs/apps/tonwerk.md).
-> What follows is the engine: the scene model, the render graph, QA, publishing, model locks and the
-> consent mechanism.
+> sections, narrating a Lesetext, publishing a scene — is [`docs/apps/tonwerk.md`](../../../docs/apps/tonwerk.md).
+> What follows is the engine: the scene model, the render graph, QA, publishing, model locks, the
+> designed voices and the consent mechanism.
 
-The engine behind [Tonwerk](../ui): local-first authoring for reviewed, committed listening
+The engine behind [Tonwerk](../ui): local-first authoring for checked, committed listening
 exercises. Its CLI is `atlas-listening`, and its Python package keeps the older name
 `listening_studio`; both are Tonwerk. The CLI starts a private FastAPI server on `127.0.0.1`; scene
 projects and their immutable revisions live in SQLite under the macOS application-data directory.
@@ -52,12 +52,13 @@ Model weights are never downloaded implicitly. `models list` prints `models.lock
 | `models list` · `models fetch <name>` | the model lock, and one pinned download |
 | `sources import <file> --metadata <json>` · `sources list` | reviewed Freesound originals |
 | `voices create` · `list` · `demo` · `revoke` | the consented voice store (mirrors `/api/voices`) |
+| `voices adopt-designed <run> [--target-wps]` | an evaluation run's designed references become the roster's voices ([below](#designed-voices)) |
 | `generate-character-demos [--repo] [--test-adapter]` | three audition takes per roster character |
 | `evaluate voices [--candidates] [--characters] [--name]` · `evaluate reveal <run> --choices` | the voice-checkpoint comparison and its blind listen, outside the production path ([below](#voice-evaluation)) |
 | `measure-cues [ids…] [--repo] [--redo]` | turn cues for recordings published before scenes: Whisper word times aligned to the transcript, then snapped to the nearest pause (`cues.py`). A scene publish writes exact cues from the render instead |
 | `scene validate` · `create` · `from-dialogue` · `from-reading` · `show` | the scene document |
 | `scene render` · `qa` · `regenerate-corpus` | audio and its automatic QA |
-| `scene publish` · `publish-approved` · `delete` · `schema` | the repository side |
+| `scene publish` · `publish-checked` · `delete` · `schema` | the repository side |
 | `scene archive` · `fork` · `reap` | the library: hide a project, copy one into a new draft, report and remove old renders (`reap` without `--yes` only reports) |
 
 Every verb that takes `--json` prints exactly one JSON document on stdout. The whole verb runs
@@ -72,7 +73,7 @@ unguarded.
 | `scene/` | the Scene v1 model, its exercise attachment, the JSON Schema export, the converters from the shipped corpus (`convert`, `reading_source`), repository checks, the publisher, the regeneration wave and the `scene` verbs |
 | `graph/` | the render graph: the content-addressed asset store, the node types, `render_scene`, and the scene QA |
 | `dsp/` | acoustic profiles as data, the impulse-response generator, the filter-chain builders, and `audio` (`wav_duration`, `conform`) |
-| `generative/` | the engine contract (`gateway`), the engines, the engine registry (`registry`: `ENGINES`, `CLONING_ENGINES`, `SOUND_ENGINES`), the model locks (`locks`) and the consented voice store (`voices`) |
+| `generative/` | the engine contract (`gateway`), the engines, the engine registry (`registry`: `ENGINES`, `CLONING_ENGINES`, `DESIGNED_ENGINES`, `SOUND_ENGINES`), the model locks (`locks`), the consented voice store (`voices`) and the designed reference store (`designed`) |
 | `qa.py` · `speaker_qa.py` · `soundscape.py` | transcript thresholds and the pinned Whisper; WavLM identity; the bed-level measurement |
 | `domain.py` | the shared vocabulary: the stage machine, bilingual text, single-choice questions, the QA report and the WER comparison |
 | `storage.py` | the SQLite store and its Alembic migrations |
@@ -80,20 +81,27 @@ unguarded.
 | `evaluation.py` | the voice evaluation runner and its blind listening page |
 | `api/` · `web.py` | the JSON API, one module per concern, and the app factory |
 | `catalogs.py` · `sources.py` | the character and narration catalogs; imported and generated sounds |
+| `adoption.py` · `scene/casting.py` | an evaluation's designed references into app data and the catalog; a role cast from the catalog, pace included |
 
 ## Synthesis engine
 
-**Qwen3-TTS is the engine**, and `./install-qwen.sh` installs it. A narration scene converted from a
-Lesetext is cast on `qwen_tts` (`scene.convert.NARRATION_ENGINE`); `fake` and `fake_clone` are the
-deterministic-silence engines the workflow tests run on and cannot produce approvable audio.
+**Qwen3-TTS is the engine**, and `./install-qwen.sh` installs it. Three checkpoints are engines:
+`qwen_tts_designed` (1.7B Base) speaks every roster character through its designed voice
+([below](#designed-voices)); `qwen_tts` (0.6B CustomVoice) speaks the nine presets the published
+corpus was recorded in, and stays for those scenes until they are recast; `qwen_tts_base` (0.6B
+Base) speaks a consented human clone. A scene cast from the catalog — a Lesetext narration, or a
+role adopted with `scene.casting.adopt_catalog_voice` — takes the character's catalog engine and
+voice. `fake`, `fake_clone` and `fake_designed` are the deterministic-silence engines the workflow
+tests run on; they cannot produce publishable audio.
 
 Every engine is reached through one contract — `generative/gateway.py`: an engine-neutral
 `SpeechRequest`, an `AudioAsset` carrying the WAV's hash and its provenance, and the
 `SpeechGenerator`/`SoundGenerator` protocols. Engines return the model's raw output; pace,
 resampling and mixing happen afterwards in the render graph, so one take can be re-paced or
-re-placed without asking the model again. `QwenSpeech.supports_style` is `False`, and a render
-warns once per engine when a styled role meets it: the 0.6B checkpoint discards `instruct`
-upstream, so a delivery note is stored, hashed and inaudible.
+re-placed without asking the model again. `supports_style` is `False` on every Qwen engine, and a
+render warns once per engine when a styled role meets it: the 0.6B CustomVoice checkpoint discards
+`instruct` upstream and the Base checkpoints take none, so a delivery note is stored, hashed and
+inaudible. A designed voice's delivery is the one its description gave the reference.
 
 The upstream package is installed with `--no-deps` on purpose: its declared dependencies pull
 gradio, which would move `fastapi` and `starlette` past the pins the engine's own web layer uses.
@@ -184,7 +192,8 @@ render is per variant, so its report is too: the first report steps `audio_gener
 report of the variant they act on.
 
 The stage machine is `draft → validated → audio_generated → automatically_checked →
-human_approved → exported`, in `storage.STAGE_TRANSITIONS`.
+[human_approved →] exported`, in `storage.STAGE_TRANSITIONS`: a checked scene is exported
+directly, or after an optional approval.
 
 ## The JSON API
 
@@ -220,7 +229,7 @@ a test take reaches a learner.
 | `GET …/renders/{variant}/artifact/{path}` | any file the render **declared it wrote**; the allowlist is `render.json`'s `artifacts`, never the filesystem |
 | `GET …/renders/{variant}/peaks?resolution_ms=` | the master's waveform and each timeline entry's over its measured span. Levels run 0..255 on a 60 dB scale, the window is 5–1000 ms, and the result is cached per window beside the render (`graph/peaks.py`) |
 | `POST /api/scenes/{slug}/approve` | the eight-point checklist, the reviewer's name, **the sha256 of the master they listened to** and the variant; a mismatch or a variant with no passing report is 409 |
-| `POST /api/scenes/{slug}/decline` · `/publish` | with a reason, back to `draft`; publish one approved scene, or 409 naming the gate |
+| `POST /api/scenes/{slug}/decline` · `/publish` | with a reason, back to `draft`; publish one checked or approved scene, or 409 naming the gate |
 | `POST /api/scenes/{slug}/archive` · `/fork` | `{archived}` — out of the library's default view and the review queue, or back; `{slug}` — a new draft project from the head revision, recording `forked_from` as `<slug>@<revision>`, 409 when the slug is taken |
 
 **Libraries** — `GET /api/characters` (the roster, how many scenes cast each character, demos and
@@ -349,18 +358,79 @@ read exactly like a report that passed identity. Whisper is MLX and macOS-local,
 fails fast with a readable message and the unit tests inject `transcribe_fn`.
 
 `scene regenerate-corpus` converts, renders and QAs the published dialogue corpus in one process,
-so the Qwen warm-up is paid once; it stops before the human, and a failure is a row, not an exit
+so the Qwen warm-up is paid once; it stops before publishing, and a failure is a row, not an exit
 (`scene/wave.py`).
 
-## Approval and publishing
+## Publishing, and the optional approval
 
-An approval is a named person, the eight-point checklist (`api.workflow.APPROVAL_CHECKLIST`), the
-variant, and the sha256 of the master they listened to. **QA is automatic, approval is not**, and
-publishing is the engine's, never a button: `scene publish <slug> --yes` for one scene and
-`scene publish-approved --yes` for every approved one, each with a `--dry-run` that runs every gate
-and stages every byte. The gates are listed in `scene/publish.py`; every refusal names its gate.
-Each publish stages into a fresh temporary directory, backs up what it replaces under app-data,
-renames everything into place, and rolls back on failure.
+**A scene publishes on its automatic QA** ([ADR 0013](../../../docs/adrs/0013-designed-voices-and-automatic-publishing.md)).
+A dialogue at `automatically_checked` whose `natural` report passed is ready, with no person's
+prior listen, and its manifest says `cleared_by: automatic-qa`. An approval is optional: a named
+person, the eight-point checklist (`api.workflow.APPROVAL_CHECKLIST`), the variant, and the sha256
+of the master they listened to. A scene approved that way publishes from `human_approved` with
+`cleared_by: human-approval` and the approval in its manifest, and an approval on record is still
+held to the scene, the variant and the master it names, so a stale one refuses. A take a person
+declined is not published on its QA alone, and a render made by a test engine is refused unless a
+person approved it — the approve endpoint is where that is allowed, and only under the test gate.
+
+Publishing is the engine's, never a button: `scene publish <slug> --yes` for one scene and
+`scene publish-checked --yes` for every ready dialogue — `automatically_checked` with a passing
+`natural` report, or `human_approved` — each with a `--dry-run` that runs every gate and stages
+every byte. One batch verb rather than one per clearance, because "ready" is the single rule
+`plan_publish` decides; a scene whose QA failed is not a candidate and is not reported. The gates
+are listed in `scene/publish.py`; every refusal names its gate. Each publish stages into a fresh
+temporary directory, backs up what it replaces under app-data, renames everything into place, and
+rolls back on failure.
+
+The published manifest is version 2: it names the `scene_sha256`, says what cleared it, and lists
+every voice that is not a preset speaker under `voices`. A designed voice is
+`{role, character, version, reference_sha256, instruct, seed, design_model, clone_model,
+synthetic: true}`; a consented clone is its bound identity with `consent_sha256` and
+`synthetic: false`. The claims are computed from that list: `voice_cloning_used` says whether a
+consented clone is in it, `consent_sha256` lists their consents, and `reference_audio_used` says
+whether any voice was cloned from a reference. `bun run validate` checks the same record
+(`packages/schema/src/audio-provenance.ts`), for version 1 and version 2 alike.
+
+## Designed voices
+
+Every roster character speaks through **one designed synthetic voice on one checkpoint**: a
+reference clip the 1.7B VoiceDesign checkpoint spoke from a written description of a fictional
+person, cloned for every line by the 1.7B Base checkpoint (`generative/qwen_designed.py`, engine
+`qwen_tts_designed`). Both checkpoints are production rows of `models.lock.json`;
+`scripts/download-qwen3-tts.py --variant base-1.7b` fetches the one a render loads.
+
+The clip is nobody's voice and needs no consent record, and it still never enters the repository:
+it lives in app data at `voices/designed/<sha256>.wav`, beside `<sha256>.json` — the character,
+the description, the reference text, the design seed, both model pins, the run it was chosen in,
+Whisper's transcript and its WER, and `synthetic: true` (`generative/designed.py`). Writes are
+atomic, a clip that does not hash to its name is refused, and a stored record is never rewritten.
+
+A cast member names the voice by that digest: `VoiceSpec(engine="qwen_tts_designed",
+voice=<sha256>, style=None)`, `voice_ref` null. The digest is in the synthesis request, so the synth
+node's hash covers the reference bytes. **The engine never looks a reference up.** Every caller that
+builds engines — `scene render`, the render endpoint, the wave, `generate-character-demos` —
+resolves the digests the cast names from app data (`resolve_designed`, which verifies each clip)
+and injects them through `registry.engine_for(name, designed=…)`; a digest that is not there is
+refused by name before anything is synthesized. `render.json` records the reference under
+`designed_voices` by role, and the publisher re-checks the clip against its digest.
+
+`voices adopt-designed <run>` is how a voice evaluation's choice becomes the roster. For every
+catalog character it copies the run's accepted reference — the raw model output the clone
+candidates were conditioned on, not the 16 kHz copy Whisper checked — into app data, and rewrites
+the character's `voice_profile` in `data/listening-characters.yaml` as
+`{engine: qwen_tts_designed, voice: <sha256>, seed, style: null, pace}`, bumping its version. The
+edit is textual, so the file keeps its order and layout; the result is validated before it is
+written, and adopting the same run twice changes nothing.
+
+**The catalog pace** brings each character's clones to the rate learners hear today: the median
+words per second of voiced audio of the run's `preset-0.6b` takes, the production voice the
+designed ones replace, measured by the same rule on the same lines. For `voices-2026-10-31` that is
+2.92, against 3.47 for `design-clone-1.7b` (both medians over the run's 84 takes in `run.json`,
+which `evaluate reveal` reads). The run's takes were already conformed at the character's old
+pace, and `atempo` scales the rate linearly, so the pace is `target × old pace / measured median`,
+rounded to two places and held to the catalog's 0.7–1.15. `--target-wps` sets another target. A role takes the pace on every line it speaks once a scene adopts the catalog voice
+(`scene.casting.adopt_catalog_voice`); a narration composes it with its level's pace
+(`catalog_pace`).
 
 ## Consent-gated voice cloning
 
@@ -402,9 +472,12 @@ checkpoint in memory at a time:
 
 | Candidate | Checkpoint | Voice |
 | --- | --- | --- |
-| `preset-0.6b` | 0.6B CustomVoice, the production engine | the character's preset speaker; style discarded |
+| `preset-0.6b` | 0.6B CustomVoice, the preset engine of the published corpus | the character's preset speaker; style discarded |
 | `preset-1.7b` | 1.7B CustomVoice | the same preset and seed, with the character's style instruction |
 | `design-clone-0.6b` · `design-clone-1.7b` | 0.6B or 1.7B Base | a clone of a reference the 1.7B VoiceDesign checkpoint read in a described, fictional voice |
+
+A preset candidate speaks a character's preset speaker, so it refuses a roster whose profiles are
+designed, as the catalog's now are; compare the design-clone candidates, or a fixture catalog.
 
 It measures each take with the scene QA's line rule on Whisper's transcript, words per second of
 voiced audio and the real-time factor, and each candidate with the `speaker_qa` identity report over
@@ -414,9 +487,11 @@ holds `run.json` (every prompt, seed, pinned revision and hash, the measures and
 saves the listener's choices as `choices.json`, which `evaluate reveal <run> --choices` unblinds.
 
 **It is not a production path.** A run never overwrites an earlier one, writes no store row and no
-render-cache entry, and nothing reads it at publish. The three evaluation checkpoints are pinned in
-`models.lock.json` with `"scope": "evaluation"`, are not engines of `generative.registry`, and are
-downloaded with `scripts/download-qwen3-tts.py --variant custom-voice-1.7b|voice-design|base-1.7b`
+render-cache entry, and nothing reads it at publish; `voices adopt-designed` is the one step that
+carries a run's references out, and it copies them. The 1.7B CustomVoice checkpoint is pinned in
+`models.lock.json` with `"scope": "evaluation"` and is not an engine of `generative.registry`; the
+VoiceDesign and 1.7B Base checkpoints became production rows when the designed voices did. All
+three are downloaded with `scripts/download-qwen3-tts.py --variant custom-voice-1.7b|voice-design|base-1.7b`
 (about 4.5 GB each). A description that asks for an imitation is refused
 (`evaluation.IMITATION_MARKERS`). The policy is `docs/authoring/product-protection.md`.
 
@@ -442,8 +517,8 @@ personal data and uncertain uploads are rejected. A scene places an imported sou
 (`AssetRef`) as an ambience bed or an sfx event; publishing carries the exact source, metadata and
 attribution in the provenance manifest.
 
-`data/listening-characters.yaml` defines the character roster, stable voice profiles, compatibility
-and three comparison phrases each; `data/listening-narration-profiles.yaml` the narration profiles cast from
+`data/listening-characters.yaml` defines the character roster, its designed voice profiles,
+compatibility and three comparison phrases each; `data/listening-narration-profiles.yaml` the narration profiles cast from
 it. `generate-character-demos --repo ../../..` writes three pending audition takes per character,
 which Figuren plays; portrait prompts are retained under `data/prompts/` and catalog portrait paths
 remain empty until a human selects a candidate.
@@ -457,4 +532,5 @@ uv run pytest
 ```
 
 The fake engines are only for automated workflow tests. Approval rejects a scene cast on one unless
-the server was started with the test gate, and no test marks real output human-approved.
+the server was started with the test gate, publishing refuses a fake render that no person
+approved, and no test marks real output human-approved.

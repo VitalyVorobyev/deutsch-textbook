@@ -321,8 +321,9 @@ def render_command(
     from ..generative.fake import FakeSound
     from ..generative.gateway import SoundGenerator, SpeechGenerator
     from ..generative.locks import set_models_root
+    from ..generative.designed import resolve_designed
     from ..generative.voices import resolve_voices
-    from ..graph.render import render_scene
+    from ..graph.render import designed_digests, render_scene
 
     if engine is not None and engine not in ENGINES:
         raise typer.BadParameter(f"unknown engine {engine}; known: {', '.join(sorted(ENGINES))}")
@@ -353,10 +354,11 @@ def render_command(
             store.root,
             [member.voice.voice_ref for member in scene.cast if member.voice.voice_ref],
         )
+        designed = resolve_designed(store.root, designed_digests(scene))
     except ValueError as error:
         raise typer.BadParameter(str(error)) from error
     if engine is not None:
-        forced: SpeechGenerator = engine_for(engine, resolved.clonable)
+        forced: SpeechGenerator = engine_for(engine, resolved.clonable, designed)
         speech_engines: dict[str, SpeechGenerator] = {name: forced for name in names}
     else:
         cast_fake = sorted(name for name in names if name.startswith("fake"))
@@ -364,7 +366,9 @@ def render_command(
             raise typer.BadParameter(
                 f"this scene is cast on the {', '.join(cast_fake)} engine(s); add --test-adapter"
             )
-        speech_engines = {name: engine_for(name, resolved.clonable) for name in names}
+        speech_engines = {
+            name: engine_for(name, resolved.clonable, designed) for name in names
+        }
     # `--sound-engine` names the generator a `SoundSpec` resolves through; with none named a
     # `SoundSpec` is refused by the renderer, not silently dropped. `--test-adapter` alone keeps
     # dealing the fake one, which is what every workflow test written before the flag existed
@@ -383,6 +387,7 @@ def render_command(
         sound_engine=sound_engine,
         repo=repo.resolve(),
         voices=resolved.refs,
+        designed=designed,
     )
 
     stage = Stage(project.stage)
@@ -602,6 +607,7 @@ def _plan_payload(plan: PublishPlan, *, dry_run: bool) -> dict[str, Any]:
         "level": plan.level,
         "variant": plan.variant,
         "scene_sha256": plan.scene_sha256,
+        "cleared_by": plan.cleared_by,
         "dry_run": dry_run,
         "files": plan.files(),
         "replaces": [path.as_posix() for path in plan.replaces],
@@ -614,7 +620,8 @@ def _print_plan(plan: PublishPlan, *, dry_run: bool) -> None:
     verb = "Would write" if dry_run else "Wrote"
     typer.echo(
         f"{plan.slug} · {plan.level} · {plan.variant} · "
-        f"{plan.artifact['duration_seconds']} s · scene {plan.scene_sha256[:12]}"
+        f"{plan.artifact['duration_seconds']} s · scene {plan.scene_sha256[:12]} · "
+        f"cleared by {plan.cleared_by}"
     )
     for target, kind in plan.files().items():
         mark = " (replaces)" if Path(target) in plan.replaces else ""
@@ -640,7 +647,7 @@ def publish_command(
     yes: bool = typer.Option(False, "--yes"),
     json_output: bool = typer.Option(False, "--json"),
 ) -> None:
-    """Publish one human-approved scene into the course repository.
+    """Publish one scene that passed automatic QA, or that a person approved, into the repository.
 
     `--dry-run` runs **every** gate and stages **every** byte, stopping before the rename. It is
     not a lighter check that might disagree with the real one: the plan it prints is the object a
@@ -670,7 +677,7 @@ def publish_command(
     except PublishRefusal as error:
         raise _refusal(error) from error
     project, _, _ = _stored(slug)
-    store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+    store.transition_scene(project.id, plan.stage, Stage.EXPORTED)
     payload = _plan_payload(plan, dry_run=False) | {
         "written": [str(path) for path in written],
         "stage": str(Stage.EXPORTED),
@@ -684,22 +691,27 @@ def publish_command(
         typer.echo(f"  Previous files retained at {backup}")
 
 
-@app.command("publish-approved")
+@app.command("publish-checked")
 @json_verb
-def publish_approved_command(
+def publish_checked_command(
     repo: Path = typer.Option(Path.cwd()),
     level: str | None = typer.Option(None, "--level", help="A1, A2 or B1; default every level"),
     dry_run: bool = typer.Option(False, "--dry-run"),
     yes: bool = typer.Option(False, "--yes"),
     json_output: bool = typer.Option(False, "--json"),
 ) -> None:
-    """Publish every `human_approved` scene in one pass — the content PR, after the review.
+    """Publish every ready scene in one pass — the content PR, after the wave.
 
-    **A refused scene does not stop the pass.** Forty artifacts reviewed over several sittings will
-    contain one whose approval no longer covers its render or whose cast voice was withdrawn, and
-    a run that aborted on the first would make the operator publish the other thirty-nine one at a
-    time. Every refusal is recorded with its gate and printed at the end — the failure-JSON
-    discipline the wave runner uses, applied to the step after it.
+    Ready means what one `scene publish` accepts: `automatically_checked` with a passing QA report
+    on the `natural` render, or `human_approved`, of a dialogue. A scene whose `natural` QA did not
+    pass is not a candidate and is not reported; it waits for a revision. Every candidate runs every gate of
+    `plan_publish`, so a stale approval, a declined take or a withdrawn voice still refuses.
+
+    **A refused scene does not stop the pass.** Forty artifacts will contain one whose approval no
+    longer covers its render or whose cast voice was withdrawn, and a run that aborted on the first
+    would make the operator publish the other thirty-nine one at a time. Every refusal is recorded
+    with its gate and printed at the end — the failure-JSON discipline the wave runner uses,
+    applied to the step after it.
 
     The level filter reads the level the publisher **resolved**, not the slug: `--level A1` and a
     scene whose brief says A2 is not a match however the slug is spelled.
@@ -712,8 +724,17 @@ def publish_approved_command(
     wanted = level.upper() if level else None
     published: list[dict[str, Any]] = []
     refused: list[dict[str, Any]] = []
-    for project, _revision in store.scene_rows():
-        if Stage(project.stage) != Stage.HUMAN_APPROVED:
+    for project, revision in store.scene_rows():
+        # Only a dialogue publishes to `content/listening/`; a narration would be refused by the
+        # `kind` gate on every pass and bury the refusals that need a person.
+        if project.kind != "dialogue":
+            continue
+        stage = Stage(project.stage)
+        if stage == Stage.AUTOMATICALLY_CHECKED:
+            report = store.scene_qa_report(revision.id, PUBLISHED_VARIANT) or {}
+            if report.get("passed") is not True:
+                continue
+        elif stage != Stage.HUMAN_APPROVED:
             continue
         try:
             plan = plan_publish(store, root, project.slug)
@@ -731,12 +752,12 @@ def publish_approved_command(
         except PublishRefusal as error:
             refused.append({"slug": project.slug, "gate": error.gate, "detail": error.detail})
             continue
-        store.transition_scene(project.id, Stage.HUMAN_APPROVED, Stage.EXPORTED)
+        store.transition_scene(project.id, plan.stage, Stage.EXPORTED)
         published.append(
             _plan_payload(plan, dry_run=False) | {"written": [str(path) for path in written]}
         )
     payload = {
-        "task": "scene.publish-approved",
+        "task": "scene.publish-checked",
         "level": wanted,
         "dry_run": dry_run,
         "published": published,

@@ -359,3 +359,67 @@ function setzeOderLoesche(ziel: Record<string, unknown>, feld: string, wert: num
   if (wert === 0) delete ziel[feld];
   else ziel[feld] = wert;
 }
+
+/** The engine a designed catalog profile speaks through; it takes no delivery instruction. */
+export const DESIGNED_ENGINE = 'qwen_tts_designed';
+
+/** The scene model's bounds on a line's pace. */
+const PACE_MIN = 0.7;
+const PACE_MAX = 1.3;
+
+interface Katalogprofil {
+  id: string;
+  version?: number;
+  voice_profile?: {
+    engine?: string;
+    voice?: string;
+    seed?: number;
+    style?: string;
+    pace?: number;
+  };
+}
+
+/**
+ * One role cast from a character's current catalog profile — the engine's
+ * `scene.casting.adopt_catalog_voice`, so the editor and a scripted import cast alike.
+ *
+ * The profile's engine comes with its voice, because a designed voice is named by its reference's
+ * digest and spoken by `qwen_tts_designed`: a digest left on the preset engine names no speaker.
+ * A designed profile takes no style, since its model hears none. The character's pace replaces the
+ * pace of every line the role speaks — it is the voice's rate correction, and adopting the same
+ * profile twice must give the same scene.
+ */
+export function katalogStimmeUebernehmen(scene: Scene, rolle: string, figur: Katalogprofil): Scene {
+  const profil = figur.voice_profile ?? {};
+  const engine = profil.engine ?? 'qwen_tts';
+  const pace =
+    profil.pace === undefined
+      ? undefined
+      : Math.min(PACE_MAX, Math.max(PACE_MIN, Math.round(profil.pace * 1000) / 1000));
+  return {
+    ...scene,
+    cast: scene.cast.map((member) =>
+      member.role === rolle
+        ? {
+            ...member,
+            character:
+              figur.version === undefined
+                ? member.character
+                : { id: figur.id, version: figur.version },
+            voice: {
+              ...member.voice,
+              engine,
+              voice: profil.voice ?? member.voice.voice,
+              seed: profil.seed ?? member.voice.seed,
+              style: engine === DESIGNED_ENGINE ? null : (profil.style ?? member.voice.style),
+              voice_ref: null,
+            },
+          }
+        : member,
+    ),
+    script:
+      pace === undefined
+        ? scene.script
+        : scene.script.map((zeile) => (zeile.role === rolle ? { ...zeile, pace } : zeile)),
+  };
+}

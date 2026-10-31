@@ -78,6 +78,7 @@ import { focusEvidenceProblems } from '@da/content/focus-evidence';
 import { articledForm, GERMAN_INPUT_KEYS, normalizeTyped } from '../src/lib/typing';
 import { responseModeForItem } from '../src/lib/evidence';
 import { authorshipProvenanceProblems } from '@da/content/authorship-provenance';
+import { audioProvenanceProblems } from '@da/schema/audio-provenance';
 import { idFromManifestPath, manifestFiles } from '@da/content/topics';
 import { lidProblems } from '@da/content/lid';
 
@@ -667,64 +668,22 @@ for (const file of listFiles(join(CONTENT, 'listening'), '.yaml')) {
   if (!existsSync(provenance)) fail(rel(file), `provenance "${data.provenance}" does not resolve`);
   else {
     const manifest = JSON.parse(readFileSync(provenance, 'utf8')) as {
-      id?: string;
-      master_audio_sha256?: string;
       published_audio_sha256?: string;
-      dry_audio_sha256?: string;
-      dependency_lock_sha256?: string;
-      model_lock_sha256?: string;
-      approval?: { status?: string; editor?: string; checklist?: string[] };
       generation_brief?: { path?: string; sha256?: string };
-      claims?: {
-        model_license_is_training_data_provenance?: boolean;
-        voice_cloning_used?: boolean;
-        reference_audio_used?: boolean;
-      };
-      models?: Record<
-        string,
-        { license?: string; revision?: string; training_data_provenance?: string }
-      >;
       contextual_sources?: Array<{
         sound_id?: number;
         license?: string;
         original_sha256?: string;
       }>;
     };
-    if (manifest.id !== data.id)
-      fail(rel(file), 'provenance id does not match the listening artifact');
-    if (manifest.approval?.status !== 'complete')
-      fail(rel(file), 'committed listening audio requires completed human approval');
-    if (!manifest.approval?.editor || (manifest.approval.checklist?.length ?? 0) < 6)
-      fail(rel(file), 'human approval identity and full listening checklist are required');
-    // Two hashes, two jobs: `master_audio_sha256` is the WAV the editor approved and QA ran
-    // on, which stays in the studio and is a provenance record only; `published_audio_sha256`
-    // is the MP3 in this repo, which is the one that can be checked against a file here.
-    // Pinning only one would leave the other free to drift.
+    // The manifest's own shape — version, what cleared it, its voices and their claims — is
+    // `audioProvenanceProblems`; what needs a file in this repository is checked here.
+    for (const problem of audioProvenanceProblems(manifest, data.id)) fail(rel(file), problem);
+    // Two hashes, two jobs: `master_audio_sha256` is the WAV QA ran on (and a reviewer heard, when
+    // one did), which stays in the studio and is a provenance record only;
+    // `published_audio_sha256` is the MP3 in this repo, the one that can be checked against a file.
     if (existsSync(audioFile) && manifest.published_audio_sha256 !== fileSha256(audioFile))
       fail(rel(file), 'published audio hash does not match provenance');
-    if (!manifest.master_audio_sha256) fail(rel(file), 'approved master hash is required');
-    if (!manifest.dry_audio_sha256) fail(rel(file), 'dry speech hash is required');
-    if (!manifest.dependency_lock_sha256 || !manifest.model_lock_sha256)
-      fail(rel(file), 'dependency and model lock hashes are required');
-    if (
-      manifest.claims?.model_license_is_training_data_provenance !== false ||
-      manifest.claims.voice_cloning_used !== false ||
-      manifest.claims.reference_audio_used !== false
-    )
-      fail(
-        rel(file),
-        'provenance must separate licence evidence and forbid cloning/reference audio',
-      );
-    if (
-      !manifest.models ||
-      Object.values(manifest.models).some(
-        (model) => !model.license || !model.revision || !model.training_data_provenance,
-      )
-    )
-      fail(
-        rel(file),
-        'every model requires an immutable revision, licence, and training-data note',
-      );
     for (const source of manifest.contextual_sources ?? []) {
       if (
         !source.sound_id ||

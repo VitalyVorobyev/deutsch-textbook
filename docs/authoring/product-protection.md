@@ -63,7 +63,8 @@ is the operational handoff for authors and visual generators.
 Generated listening audio has its own per-artifact manifest under `data/audio-provenance/`.
 It retains the exact generation brief, immutable model and adapter revisions, model licences,
 separate training-data evidence notes, versioned character voice profiles, script and audio hashes,
-speaker-similarity QA model revision/results, and the human identity/separation listening checklist.
+speaker-similarity QA model revision/results, and — when a person approved it — the identity and
+separation listening checklist.
 A permissive model licence is never presented as verified
 training-data or speaker-consent provenance. Unverified voices and music remain outside the
 supported authoring path; voice cloning from a consented reference is a supported path and is
@@ -73,9 +74,10 @@ source page, uploader, licence, retrieval date, hash, processing and an honest r
 retained. CC BY-NC, Sampling+, speech, brands and doubtful uploads are rejected; the uploader's
 licence assertion is never presented as independently verified ownership. Context cannot carry a
 correct answer by itself. Continuous beds and finite events remain distinct, and assisted
-placement stores its actual editorial reason rather than implying human authorship. No generated
-or mixed audio may enter `content/listening/` until a named
-human has approved that exact revision and WAV.
+placement stores its actual editorial reason rather than implying human authorship. Generated or
+mixed audio enters `content/listening/` only once its exact render has passed automatic QA, and its
+manifest says what cleared it: that QA, or a named human's approval of that exact revision and WAV
+([ADR 0013](../adrs/0013-designed-voices-and-automatic-publishing.md)).
 
 Contextual sound may also be **generated**, and that path is supported on the same terms as the
 imported one. The engine is Stable Audio 3 Small-SFX through Stability's own MLX implementation,
@@ -94,7 +96,7 @@ screened out; that is recorded as **their statement, not an independently verifi
 as a permissive model licence is never presented as verified training-data provenance. Generated
 sound is subject to every rule the imported path already carries — a context sound must never
 carry a correct answer by itself, beds and events stay distinct, and nothing enters
-`content/listening/` until a named human has approved that exact revision and WAV. The sound
+`content/listening/` before its exact render has passed automatic QA. The sound
 library lists imported and generated assets side by side, each row labelled with its origin and
 keeping its own record: an import has an uploader, a source page and a reviewed rights note, a
 generated file has a prompt and a seed, and neither is described in the other's terms.
@@ -153,10 +155,17 @@ revoke.
 in a non-publishing local workspace, with synthetic references, fictional non-imitation
 descriptions, and retained prompts, model revisions and hashes. Its output cannot enter the
 production cache or the publish path. `atlas-listening evaluate voices` is that runner: each run
-gets a new directory under the studio's `evaluations/`, and the evaluation checkpoints are pinned
-with `"scope": "evaluation"` and are not engines a scene can be cast on
-(`apps/tonwerk/engine/README.md`, *Voice evaluation*). A designed voice entering course audio is a
-production decision that this paragraph does not make. An identifiable human reference may be evaluated only under the gitignored
+gets a new directory under the studio's `evaluations/`, and a checkpoint only the evaluation loads
+is pinned with `"scope": "evaluation"` and is not an engine a scene can be cast on
+(`apps/tonwerk/engine/README.md`, *Voice evaluation*).
+
+**Designed voices are the course's voices** ([ADR 0013](../adrs/0013-designed-voices-and-automatic-publishing.md)).
+Each roster character speaks through a reference the VoiceDesign model read from a written
+description of a fictional person. The descriptions are subject to the same imitation refusal as
+an evaluation. The reference clips stay in app data. The catalog pins their digests and seeds, the record beside
+each clip keeps its description and model revisions, and every manifest carries all of these and
+marks the voice as synthetic. A designed reference is not
+a person's voice and needs no consent record. Nothing in it relaxes the rules for a human one. An identifiable human reference may be evaluated only under the gitignored
 `.private/` boundary, by a runner that refuses missing consent, output outside `.private/` and
 overwriting an earlier run. Evaluation authorizes nothing more: publication of any voice requires
 its own publication-scope consent under the rules above.
