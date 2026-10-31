@@ -31,6 +31,7 @@ import { dauer, kurzSha, prozent, zahl, zeitpunkt } from '../../format';
 import { href } from '../../router';
 import { useVorgang } from '../../vorgang';
 import { fehlerText } from '../fehler';
+import { Pult } from './Pult';
 import { Zeitleiste } from './Zeitleiste';
 import type { Api } from '../../api';
 import type { Approval, QaReport, RenderRow, SpeakerQa } from '../../contracts';
@@ -38,6 +39,9 @@ import type { Scene } from '@da/schema/audio-scene';
 
 export function MischungModus({
   scene,
+  entwurf,
+  setEntwurf,
+  bearbeitbar,
   slug,
   renders,
   qa,
@@ -51,6 +55,10 @@ export function MischungModus({
   nachLauf,
 }: {
   scene: Scene;
+  /** The draft the pult edits; `scene` is the saved revision the render belongs to. */
+  entwurf: Scene;
+  setEntwurf(next: Scene): void;
+  bearbeitbar: boolean;
   slug: string;
   renders: RenderRow[];
   qa: QaReport | null;
@@ -231,6 +239,8 @@ export function MischungModus({
           />
         )}
       </Platte>
+
+      <Pult entwurf={entwurf} setEntwurf={setEntwurf} bearbeitbar={bearbeitbar} />
 
       <Platte
         titel="Prüfergebnis"

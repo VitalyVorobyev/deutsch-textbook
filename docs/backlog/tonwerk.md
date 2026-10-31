@@ -38,16 +38,15 @@ only after this queue
     bump. Its voice fields wait for the listen, because a designed voice is a reference clip, not a
     preset name.
   - **Takes:** render N seeds of a line and pick one.
-- **TON-4 · The timeline editor.** The scene editor is forms, and its Mischung timeline is
-  read-only (`apps/tonwerk/ui/src/views/Szene.tsx`). The scene contract and the renderer already
-  carry speech gain, effects, ducking and room and device overrides (engine README, "Acoustics"),
-  and Mischung's timeline draws each stem's waveform and plays a stem or the master from any
-  point; no view edits the mixing fields yet.
-  - **UI:** dragging on that timeline, fades, an inspector, a mixer strip, a Web
-    Audio preview of stems, and undo inside the draft. It is built on `@vitavision/*` per
+- **TON-4 · The timeline editor.** Mischung's timeline draws each stem's waveform and plays a
+  stem or the master from any point, and its Pult sets each line's level, equalizer and room send
+  and each bed's ducking (`apps/tonwerk/ui/src/views/szene/Pult.tsx`). What the contract carries
+  and no view edits yet: band filters, compressor and crusher on a line, device overrides on a
+  placement, and room overrides on the scene.
+  - **UI:** dragging on the timeline (a line's `at_ms`, a bed's start and end), fades, a Web Audio
+    preview of stems before a render, and undo inside the draft, on `@vitavision/*` per
     [ADR 0011](../adrs/0011-shared-ui-from-vitavision-packages.md).
-  - **First step:** the clip inspector for one speech entry (gain, effects, the takes), on the
-    `@vitavision/ui` controls Tonwerk now uses.
+  - **First step:** drag a line on the timeline to set its `at_ms`.
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 115 of 195
   `audio-comprehension` items and all 85 `listen` items. No Lesetext has narration, and the 36 A2
   Hören scripts are unrecorded (`grep -rh "recording:" content/exercises | wc -l` gives 80).

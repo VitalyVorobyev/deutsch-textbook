@@ -295,3 +295,67 @@ export function eintragHinzufuegen(scene: Scene, art: 'ambience' | 'sfx'): Scene
       : { type: 'sfx', sound, at_ms: 0, gain_db: -18, placement: null };
   return { ...scene, timeline: [...scene.timeline, neu] };
 }
+
+/**
+ * The mixing fields of one timeline entry — a line's level and inserts, a bed's ducking — set so
+ * that a neutral value leaves the document rather than sitting in it.
+ *
+ * That is the contract's own rule, not tidiness: the engine leaves these fields out of a scene's
+ * canonical form while they are neutral, so a scene approved before they existed keeps its hash,
+ * and it refuses an effects object that says nothing. A pult that wrote `gain_db: 0` back after a
+ * slider returned to zero would move the hash, and with it the approval, for no audible reason.
+ */
+export interface Mischwerte {
+  /** A line's level against the other lines, in dB. */
+  gain_db?: number;
+  /** The three-band equalizer, in dB. */
+  eq?: { low_db?: number; mid_db?: number; high_db?: number };
+  /** The line's send into the scene's room, in dB. */
+  room_send_db?: number;
+  /** How far a bed drops under speech, in dB. */
+  duck_db?: number;
+}
+
+export function mischungSetzen(scene: Scene, index: number, werte: Mischwerte): Scene {
+  return {
+    ...scene,
+    timeline: scene.timeline.map((entry, position) => {
+      if (position !== index) return entry;
+      const neu: Record<string, unknown> = { ...entry };
+      if (entry.type === 'ambience') {
+        if (werte.duck_db !== undefined) setzeOderLoesche(neu, 'duck_db', werte.duck_db);
+        return neu as TimelineEntry;
+      }
+      if (entry.type === 'speech' && werte.gain_db !== undefined) {
+        setzeOderLoesche(neu, 'gain_db', werte.gain_db);
+      }
+      if (werte.eq !== undefined || werte.room_send_db !== undefined) {
+        const alt = entry.effects ?? null;
+        const eq = { low_db: 0, mid_db: 0, high_db: 0, ...alt?.eq, ...werte.eq };
+        const effekte = {
+          compression: alt?.compression ?? null,
+          crush: alt?.crush ?? null,
+          highpass: alt?.highpass ?? null,
+          lowpass: alt?.lowpass ?? null,
+          eq: eq.low_db === 0 && eq.mid_db === 0 && eq.high_db === 0 ? null : eq,
+          room_send_db: werte.room_send_db ?? alt?.room_send_db ?? 0,
+        };
+        const sagtEtwas =
+          effekte.compression !== null ||
+          effekte.crush !== null ||
+          effekte.highpass !== null ||
+          effekte.lowpass !== null ||
+          effekte.eq !== null ||
+          effekte.room_send_db !== 0;
+        if (sagtEtwas) neu.effects = effekte;
+        else delete neu.effects;
+      }
+      return neu as TimelineEntry;
+    }),
+  };
+}
+
+function setzeOderLoesche(ziel: Record<string, unknown>, feld: string, wert: number): void {
+  if (wert === 0) delete ziel[feld];
+  else ziel[feld] = wert;
+}

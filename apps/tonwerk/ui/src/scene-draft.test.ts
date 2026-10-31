@@ -10,6 +10,7 @@ import {
   eintragHinzufuegen,
   istGeaendert,
   istSequentiell,
+  mischungSetzen,
   rolleUmbenennen,
   stabilesJson,
   zeitleisteAusSkript,
@@ -166,3 +167,63 @@ function unterschiede(a: unknown, b: unknown, pfad = ''): string[] {
       ),
     );
 }
+
+describe('mischungSetzen', () => {
+  const ersteZeile = (scene: Scene): number => scene.timeline.findIndex((e) => e.type === 'speech');
+
+  test('a level returned to zero leaves the document, so the hash does not move', () => {
+    const index = ersteZeile(szene);
+    const leiser = mischungSetzen(szene, index, { gain_db: -6 });
+    expect((leiser.timeline[index] as SpeechEntry).gain_db).toBe(-6);
+    const zurueck = mischungSetzen(leiser, index, { gain_db: 0 });
+    expect(Object.keys(zurueck.timeline[index]!)).not.toContain('gain_db');
+    expect(istGeaendert(szene, zurueck)).toBe(false);
+  });
+
+  test('an equalizer back at flat removes the whole effects object', () => {
+    const index = ersteZeile(szene);
+    const hell = mischungSetzen(szene, index, { eq: { high_db: 3 } });
+    const effekte = (hell.timeline[index] as SpeechEntry).effects;
+    expect(effekte?.eq).toEqual({ low_db: 0, mid_db: 0, high_db: 3 });
+    expect(effekte?.room_send_db).toBe(0);
+    const flach = mischungSetzen(hell, index, { eq: { high_db: 0 } });
+    expect(Object.keys(flach.timeline[index]!)).not.toContain('effects');
+  });
+
+  test('a room send keeps a flat equalizer out, and the band filters it found', () => {
+    const index = ersteZeile(szene);
+    const mitFilter = {
+      ...szene,
+      timeline: szene.timeline.map((entry, position) =>
+        position === index
+          ? ({
+              ...entry,
+              effects: {
+                highpass: { hz: 120, sections: 1 },
+                room_send_db: 0,
+                eq: null,
+                lowpass: null,
+                compression: null,
+                crush: null,
+              },
+            } as SpeechEntry)
+          : entry,
+      ),
+    };
+    const nass = mischungSetzen(mitFilter, index, { room_send_db: 4 });
+    const effekte = (nass.timeline[index] as SpeechEntry).effects;
+    expect(effekte?.room_send_db).toBe(4);
+    expect(effekte?.eq).toBeNull();
+    expect(effekte?.highpass).toEqual({ hz: 120, sections: 1 });
+  });
+
+  test('a bed’s ducking is set and cleared the same way', () => {
+    const mitBett = eintragHinzufuegen(szene, 'ambience');
+    const index = mitBett.timeline.length - 1;
+    const geduckt = mischungSetzen(mitBett, index, { duck_db: -12 });
+    expect((geduckt.timeline[index] as { duck_db?: number }).duck_db).toBe(-12);
+    expect(
+      Object.keys(mischungSetzen(geduckt, index, { duck_db: 0 }).timeline[index]!),
+    ).not.toContain('duck_db');
+  });
+});

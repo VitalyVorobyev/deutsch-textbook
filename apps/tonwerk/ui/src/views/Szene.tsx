@@ -305,6 +305,9 @@ function Editor({
       {modus === 'mischung' ? (
         <MischungModus
           scene={original}
+          entwurf={entwurf}
+          setEntwurf={bearbeitbar ? setEntwurf : () => undefined}
+          bearbeitbar={bearbeitbar}
           slug={data.slug}
           renders={data.renders}
           qa={data.qa_reports[variante] ?? null}
