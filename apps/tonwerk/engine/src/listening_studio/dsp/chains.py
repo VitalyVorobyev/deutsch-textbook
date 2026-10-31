@@ -22,7 +22,12 @@ import functools
 import math
 import subprocess
 
+from typing import TYPE_CHECKING, Sequence
+
 from .profiles import BandFilter, Compression, DeviceProfile
+
+if TYPE_CHECKING:  # the scene model imports this package, so the reverse import is type-only
+    from ..scene.model import Effects
 
 # -- distance -----------------------------------------------------------------
 #
@@ -142,14 +147,121 @@ def device_chain(device: DeviceProfile) -> str:
     return ",".join(parts)
 
 
+# -- effects -----------------------------------------------------------------
+
+#: The equalizer's three fixed bands (`scene.model.Equalizer`).
+EQ_LOW_SHELF_HZ = 200.0
+EQ_MID_HZ = 1500.0
+EQ_MID_Q = 1.0
+EQ_HIGH_SHELF_HZ = 5000.0
+
+
+def effects_chain(effects: Effects | None) -> str:
+    """An editor's insert chain on one stem. Empty when there is none.
+
+    Band limits, equalizer, crush, compressor: the device's order, for the device's reason — the
+    compressor levels what the stages before it left, so it comes last. A band at 0 dB emits no
+    filter, so a flattened band costs no cache miss.
+    """
+
+    if effects is None:
+        return ""
+    parts: list[str] = []
+    if effects.highpass is not None:
+        parts.append(_band("highpass", effects.highpass))
+    if effects.lowpass is not None:
+        parts.append(_band("lowpass", effects.lowpass))
+    if effects.eq is not None:
+        if effects.eq.low_db:
+            parts.append(f"lowshelf=f={EQ_LOW_SHELF_HZ:g}:g={effects.eq.low_db:g}")
+        if effects.eq.mid_db:
+            parts.append(
+                f"equalizer=f={EQ_MID_HZ:g}:t=q:w={EQ_MID_Q:g}:g={effects.eq.mid_db:g}"
+            )
+        if effects.eq.high_db:
+            parts.append(f"highshelf=f={EQ_HIGH_SHELF_HZ:g}:g={effects.eq.high_db:g}")
+    if effects.crush is not None:
+        parts.append(f"acrusher=bits={effects.crush.bits:g}:mix={effects.crush.mix:g}:mode=log")
+    if effects.compression is not None:
+        parts.append(_compressor(effects.compression))
+    return ",".join(parts)
+
+
+# -- ducking ------------------------------------------------------------------
+
+#: How long the bed takes to go down before a turn and to come back after it. The fall starts
+#: *before* the first word so the word is never masked; the rise is slower, because a bed that
+#: jumps back the instant a speaker stops is the "pumping" a listener notices.
+DUCK_ATTACK_MS = 150
+DUCK_RELEASE_MS = 400
+
+#: Turns closer together than this are one ducked stretch. An ordinary pause between turns (600
+#: ms by default) is shorter than a full release and attack, so the bed would only half-rise and
+#: fall again on every turn; holding it down through the gap is what a mixer would do by hand.
+DUCK_HOLD_GAP_MS = 1000
+
+#: The envelope is re-evaluated every this many samples (10 ms at 48 kHz). `volume`'s per-frame
+#: evaluation otherwise steps once per decoded frame, whose size depends on the source file.
+DUCK_FRAME_SAMPLES = 480
+
+
+def duck_spans(
+    speech: Sequence[tuple[int, int]], *, window_start_ms: int, window_end_ms: int
+) -> list[tuple[int, int]]:
+    """The speech spans, in the bed's own time, merged across short gaps and clipped to the bed.
+
+    A span that ends before the bed starts or starts after it ends is dropped, but one that is
+    only *near* the window is kept: its attack or release still reaches into the bed.
+    """
+
+    merged: list[list[int]] = []
+    for start, end in sorted(speech):
+        if merged and start - merged[-1][1] < DUCK_HOLD_GAP_MS:
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    length = window_end_ms - window_start_ms
+    spans: list[tuple[int, int]] = []
+    for start, end in merged:
+        local_start, local_end = start - window_start_ms, end - window_start_ms
+        if local_end + DUCK_RELEASE_MS <= 0 or local_start - DUCK_ATTACK_MS >= length:
+            continue
+        spans.append((local_start, local_end))
+    return spans
+
+
+def duck_chain(duck_db: float, spans: Sequence[tuple[int, int]]) -> str:
+    """A gain envelope that sits at `duck_db` over every span and at 0 dB between them.
+
+    Each span contributes a trapezoid — up over `DUCK_ATTACK_MS` ending at the first word, flat,
+    down over `DUCK_RELEASE_MS` after the last — and merged spans are further apart than one
+    attack plus one release, so at most one trapezoid is non-zero at any moment and their sum is
+    the envelope. Empty when there is nothing to duck, so an unducked bed keeps its node hash.
+    """
+
+    if not duck_db or not spans:
+        return ""
+    attack, release = DUCK_ATTACK_MS / 1000, DUCK_RELEASE_MS / 1000
+    terms = [
+        f"clip((t-{start / 1000 - attack:.3f})/{attack:.3f},0,1)"
+        f"*clip(({end / 1000 + release:.3f}-t)/{release:.3f},0,1)"
+        for start, end in spans
+    ]
+    expression = f"pow(10,{duck_db:g}*({'+'.join(terms)})/20)"
+    return f"asetnsamples=n={DUCK_FRAME_SAMPLES},volume='{expression}':eval=frame"
+
+
 # -- the whole stem chain -----------------------------------------------------
 
 
-def stem_chain(device: DeviceProfile | None, distance: float) -> str:
+def stem_chain(
+    device: DeviceProfile | None, distance: float, effects: Effects | None = None
+) -> str:
     """Everything acoustic that happens to one stem before it is panned and delayed.
 
-    Distance first, device second, because that is the signal path: the sound crosses the room to
-    the microphone, and only then does the channel — a phone, a horn, a wall — get hold of it.
+    Distance first, device second, effects last, because that is the signal path: the sound crosses
+    the room to the microphone, the channel — a phone, a horn, a wall — gets hold of it, and only
+    what arrives is in the editor's hands.
     Reversing the two would band-limit the source and then darken it by distance, which double-
     counts the treble loss the device already imposed.
 
@@ -157,7 +269,11 @@ def stem_chain(device: DeviceProfile | None, distance: float) -> str:
     entirely in that case: a no-op filter is a cache key that moves for no audio reason.
     """
 
-    parts = [chain for chain in (distance_chain(distance), device_chain(device) if device else "")]
+    parts = (
+        distance_chain(distance),
+        device_chain(device) if device else "",
+        effects_chain(effects),
+    )
     return ",".join(chain for chain in parts if chain)
 
 

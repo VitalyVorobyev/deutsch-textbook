@@ -309,6 +309,21 @@ the room ring out after the last word: `afir` produces exactly as many samples a
 unpadded send would cut the reverb off at the end of the scene. **The ambience bus is never sent**:
 a recorded room tone already is a room.
 
+A scene can also mix **within** those profiles:
+
+| Field | What it does |
+| --- | --- |
+| `gain_db` on a speech entry (−24…+6) | moves one line against the others before loudness normalisation |
+| `effects` on a speech or sfx entry | inserts a chain after the distance and the device: band edges, a three-band equalizer (200 Hz shelf, 1.5 kHz bell, 5 kHz shelf), crush, a compressor, in that fixed order, and a `room_send_db` |
+| `duck_db` on a bed (−30…0) | lowers the bed by exactly that much while anyone speaks. The envelope comes from the resolved speech times, falls 150 ms before a turn, holds through gaps under 1 s, and recovers over 400 ms |
+| `device_overrides` on a placement | replaces the named device's band edges, gain or room send |
+| `room_overrides` on the acoustics | replaces the room's `wet`, RT60, pre-delay or damping. This produces a new impulse response and so a new IR node |
+
+All five are left out of a scene's canonical form while they hold their neutral default. A scene
+that uses none of them therefore keeps the `scene_sha256` its approval and render tree are bound
+to, and renders to the same nodes. `tests/test_scene_mixing.py` pins the committed fixtures'
+hashes. It also measures the rendered gain and duck depth on the stems, within 0.1 dB and 1 dB.
+
 Node identity carries all of it: a stem with no device and unit distance has no `fx` parameter; a
 `send_db` and the room's `tail_ms` are in the mix hash only when there is a room to send to; and
 each profile's editorial `version` is a hashed parameter. `render.json` gains an `acoustics` block:

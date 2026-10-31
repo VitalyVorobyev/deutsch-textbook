@@ -18,11 +18,12 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import Annotated, Literal
+from typing import Annotated, Any, ClassVar, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ..domain import Bilingual
+from ..dsp.profiles import BandFilter, Compression, Crush
 
 
 #: One kebab-case ASCII identifier. Same shape the corpus already uses for topic and artifact
@@ -39,9 +40,148 @@ PACE_MIN, PACE_MAX = 0.7, 1.3
 
 
 class Strict(BaseModel):
-    """Every model in this file refuses unknown keys. Stated once rather than eleven times."""
+    """Every model in this file refuses unknown keys. Stated once rather than eleven times.
+
+    `OMIT_AT_DEFAULT` names the fields a scene's canonical form leaves out while they hold their
+    default. Those are the mixing fields added after scenes were already stored and approved: an
+    approval is bound to `Scene.sha256()`, so a field that appeared in the canonical form at its
+    neutral value would move the hash of every stored scene and orphan its approval and its
+    render tree, for audio that did not change. Absent means neutral, in every reader.
+    """
 
     model_config = ConfigDict(extra="forbid")
+
+    OMIT_AT_DEFAULT: ClassVar[frozenset[str]] = frozenset()
+
+
+def _neutral_exclusions(model: BaseModel) -> dict[str | int, Any]:
+    """The `exclude` spec that drops every `OMIT_AT_DEFAULT` field still at its default."""
+
+    spec: dict[str | int, Any] = {}
+    omit: frozenset[str] = getattr(type(model), "OMIT_AT_DEFAULT", frozenset())
+    for name, info in type(model).model_fields.items():
+        value = getattr(model, name)
+        if name in omit and value == info.get_default(call_default_factory=True):
+            spec[name] = True
+        elif isinstance(value, BaseModel):
+            if inner := _neutral_exclusions(value):
+                spec[name] = inner
+        elif isinstance(value, list):
+            rows = {
+                index: inner
+                for index, item in enumerate(value)
+                if isinstance(item, BaseModel) and (inner := _neutral_exclusions(item))
+            }
+            if rows:
+                spec[name] = rows
+    return spec
+
+
+def _says_something(model: BaseModel, what: str) -> None:
+    """Refuse an override or effect object that changes nothing: the scene says that as null.
+
+    One spelling per meaning keeps the canonical form, and so the hash, unique: `{}` and null
+    would otherwise be two scenes that render the same bytes under two approvals.
+    """
+
+    fields = type(model).model_fields
+    if all(
+        getattr(model, name) == info.get_default(call_default_factory=True)
+        for name, info in fields.items()
+    ):
+        raise ValueError(f"{what} that changes nothing is written as null")
+
+
+#: How far one line may sit from the others. Speech is the reference the other buses are mixed
+#: against and the master is loudness-normalised afterwards, so this moves a line *relative to its
+#: neighbours* — a mumble, a call from the next room — rather than the scene's loudness.
+SPEECH_GAIN_MIN, SPEECH_GAIN_MAX = -24.0, 6.0
+
+
+class Equalizer(Strict):
+    """Three fixed bands, in dB: a low shelf at 200 Hz, a bell at 1.5 kHz, a high shelf at 5 kHz.
+
+    Fixed frequencies on purpose. What an editor does to a voice line is "less boom", "more
+    presence", "less hiss", and three gains say that; a parametric band per line is a mixing desk
+    nobody here needs, and every free frequency is one more number in the cache key.
+    """
+
+    low_db: float = Field(default=0.0, ge=-12.0, le=12.0)
+    mid_db: float = Field(default=0.0, ge=-12.0, le=12.0)
+    high_db: float = Field(default=0.0, ge=-12.0, le=12.0)
+
+    @model_validator(mode="after")
+    def not_flat(self) -> Equalizer:
+        _says_something(self, "an equalizer")
+        return self
+
+
+class Effects(Strict):
+    """An insert chain on one stem, applied after its distance and its device.
+
+    The device is the channel the sound travelled through; these are what the editor does to what
+    arrived. Signal order is fixed by the renderer (`dsp.chains.effects_chain`): band limits, then
+    the equalizer, then the crush, then the compressor, which therefore levels what the earlier
+    stages left. `room_send_db` raises or lowers this stem's send into the scene's room and does
+    nothing in a scene with no room.
+    """
+
+    highpass: BandFilter | None = None
+    lowpass: BandFilter | None = None
+    eq: Equalizer | None = None
+    crush: Crush | None = None
+    compression: Compression | None = None
+    room_send_db: float = Field(default=0.0, ge=-12.0, le=12.0)
+
+    @model_validator(mode="after")
+    def coherent(self) -> Effects:
+        _says_something(self, "an effects chain")
+        if self.highpass is not None and self.lowpass is not None:
+            if self.lowpass.hz <= self.highpass.hz:
+                raise ValueError(
+                    f"effects: lowpass {self.lowpass.hz} Hz is at or below highpass "
+                    f"{self.highpass.hz} Hz, which passes nothing"
+                )
+        return self
+
+
+class DeviceOverrides(Strict):
+    """Per-scene changes to the device a placement names, by the profile's own field names.
+
+    Only the numbers an editor turns: the band edges, the level and the room send. A band the
+    profile does not have is added as one 2-pole section. Anything deeper is a different device,
+    and belongs in `data/acoustic-profiles.yaml` under its own id and version.
+    """
+
+    highpass_hz: float | None = Field(default=None, gt=0.0, le=24_000.0)
+    lowpass_hz: float | None = Field(default=None, gt=0.0, le=24_000.0)
+    gain_db: float | None = Field(default=None, ge=-40.0, le=12.0)
+    room_send_db: float | None = Field(default=None, ge=-12.0, le=12.0)
+
+    @model_validator(mode="after")
+    def not_empty(self) -> DeviceOverrides:
+        _says_something(self, "a device override")
+        return self
+
+
+class RoomOverrides(Strict):
+    """Per-scene changes to the room `SceneAcoustics.room` names, within the profile's bounds.
+
+    `wet` replaces the profile's send-return level before any difficulty delta is added to it; the
+    other three replace the impulse response's own parameters, so an overridden room is a new IR
+    and a new node hash. The seed and the early-reflection count stay the profile's: they are what
+    makes the room *that* room.
+    """
+
+    wet: float | None = Field(default=None, ge=0.0, le=1.0)
+    decay_s: float | None = Field(default=None, gt=0.0, le=10.0)
+    pre_delay_ms: int | None = Field(default=None, ge=0, le=200)
+    lowpass_hz: float | None = Field(default=None, ge=500.0, le=20_000.0)
+
+    @model_validator(mode="after")
+    def not_empty(self) -> RoomOverrides:
+        _says_something(self, "a room override")
+        return self
 
 
 class PronunciationOverride(Strict):
@@ -150,9 +290,18 @@ class Placement(Strict):
     *warning* for exactly that reason.
     """
 
+    OMIT_AT_DEFAULT = frozenset({"device_overrides"})
+
     pan: float = Field(default=0.0, ge=-1.0, le=1.0)
     distance: float = Field(default=1.0, ge=0.0)
     device: str | None = None
+    device_overrides: DeviceOverrides | None = None
+
+    @model_validator(mode="after")
+    def overrides_need_a_device(self) -> Placement:
+        if self.device_overrides is not None and self.device is None:
+            raise ValueError("device_overrides change a device, and this placement names none")
+        return self
 
 
 class AssetRef(Strict):
@@ -191,6 +340,8 @@ Sound = AssetRef | SoundSpec
 class SpeechEntry(Strict):
     """One utterance, placed."""
 
+    OMIT_AT_DEFAULT = frozenset({"gain_db", "effects"})
+
     type: Literal["speech"] = "speech"
     utterance_id: str = Field(min_length=1)
     #: None means sequential: this turn begins when the previous speech entry has finished and
@@ -198,6 +349,8 @@ class SpeechEntry(Strict):
     #: for overlap, interruption and simultaneous speech, which no shipped artifact has.
     at_ms: int | None = Field(default=None, ge=0)
     placement: Placement | None = None
+    gain_db: float = Field(default=0.0, ge=SPEECH_GAIN_MIN, le=SPEECH_GAIN_MAX)
+    effects: Effects | None = None
 
 
 class SfxEntry(Strict):
@@ -208,11 +361,14 @@ class SfxEntry(Strict):
     anyone talks, which is the whole reason lead-in exists.
     """
 
+    OMIT_AT_DEFAULT = frozenset({"effects"})
+
     type: Literal["sfx"] = "sfx"
     sound: Sound
     at_ms: int = Field(ge=0)
     gain_db: float = Field(default=-18.0, ge=-40.0, le=0.0)
     placement: Placement | None = None
+    effects: Effects | None = None
 
 
 class AmbienceEntry(Strict):
@@ -224,7 +380,14 @@ class AmbienceEntry(Strict):
 
     The gain ceiling is -6 dB rather than 0: a bed at speech level is not a bed. Events may go
     to 0 because a door slam is allowed to be the loudest thing in the room.
+
+    `duck_db` lowers the bed by that much while anyone speaks, and lets it back up in the gaps
+    between turns that are long enough to hear it (`dsp.chains.duck_chain`). The envelope is
+    computed from the resolved speech times rather than by a compressor listening to the dialogue,
+    so the depth is exactly the number written here and the same scene ducks the same way twice.
     """
+
+    OMIT_AT_DEFAULT = frozenset({"duck_db"})
 
     type: Literal["ambience"] = "ambience"
     sound: Sound
@@ -235,6 +398,7 @@ class AmbienceEntry(Strict):
     gain_db: float = Field(default=-24.0, ge=-40.0, le=-6.0)
     fade_in_ms: int = Field(default=350, ge=0, le=10_000)
     fade_out_ms: int = Field(default=450, ge=0, le=10_000)
+    duck_db: float = Field(default=0.0, ge=-30.0, le=0.0)
 
     @model_validator(mode="after")
     def ordered(self) -> AmbienceEntry:
@@ -257,10 +421,19 @@ class SceneAcoustics(Strict):
     tone already is a room. Unvalidated on load for the reason given on `Placement.device`.
     """
 
+    OMIT_AT_DEFAULT = frozenset({"room_overrides"})
+
     room: str | None = None
+    room_overrides: RoomOverrides | None = None
     #: Silence prepended to the speech so a scene-opening sound can be heard before anyone
     #: talks. Capped at 5 s: this buys a ring or a beep, not a musical introduction.
     lead_in_ms: int = Field(default=0, ge=0, le=5000)
+
+    @model_validator(mode="after")
+    def overrides_need_a_room(self) -> SceneAcoustics:
+        if self.room_overrides is not None and self.room is None:
+            raise ValueError("room_overrides change a room, and this scene names none")
+        return self
 
 
 class DifficultyVariant(Strict):
@@ -421,11 +594,18 @@ class Scene(Strict):
     def canonical_json(self) -> str:
         """Sorted keys, no whitespace, UTF-8 as itself.
 
-        Two documents that differ only in key order are the same scene and must hash the same.
+        Two documents that differ only in key order are the same scene and must hash the same, and
+        a mixing field at its neutral default is left out (`Strict.OMIT_AT_DEFAULT`), so a scene
+        that uses none of them hashes exactly as it did before they existed.
         """
 
+        # pydantic's `IncEx` alias does not admit int keys, which a list position needs.
+        neutral: Any = _neutral_exclusions(self)
         return json.dumps(
-            self.model_dump(mode="json"), ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            self.model_dump(mode="json", exclude=neutral),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
         )
 
     def sha256(self) -> str:

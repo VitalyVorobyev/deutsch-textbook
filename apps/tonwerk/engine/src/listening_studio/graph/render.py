@@ -38,7 +38,7 @@ from pathlib import Path
 from typing import Any, Callable, Mapping, Protocol, Sequence
 
 from ..dsp.audio import wav_duration
-from ..dsp.chains import clamp, distance_send_db, stem_chain
+from ..dsp.chains import clamp, distance_send_db, duck_chain, duck_spans, stem_chain
 from ..dsp.profiles import (
     AcousticProfiles,
     DeviceProfile,
@@ -62,8 +62,10 @@ from ..scene.model import (
     PACE_MIN,
     AmbienceEntry,
     AssetRef,
+    DeviceOverrides,
     DifficultyVariant,
     Placement,
+    RoomOverrides,
     Scene,
     SfxEntry,
     Sound,
@@ -316,20 +318,25 @@ class ResolvedAcoustics:
     preset_version: int | None
     deltas: DifficultyDeltas
     room_id: str | None
+    #: The profile with the scene's `room_overrides` already applied, so the IR node hashes the
+    #: room that is actually convolved.
     room: RoomProfile | None
+    room_overrides: RoomOverrides | None
     #: `room.wet` plus the variant's delta, clamped to 0..1. Zero means there is no reverb bus at
     #: all — a room whose wet a preset pulled to nothing costs no convolution.
     wet: float
     profiles: AcousticProfiles | None
 
-    def device(self, device_id: str | None) -> DeviceProfile | None:
+    def device(
+        self, device_id: str | None, overrides: DeviceOverrides | None = None
+    ) -> DeviceProfile | None:
         if device_id is None:
             return None
         if self.profiles is None:  # pragma: no cover - `_needs_profiles` loads when one is named
             raise ValueError(
                 f"placement names device {device_id!r} but the acoustic profiles were not loaded"
             )
-        return self.profiles.device(device_id)
+        return _overridden_device(self.profiles.device(device_id), overrides)
 
     def room_mix(self, ir_asset: str) -> RoomMix | None:
         if self.room is None or self.room_id is None or self.wet <= 0.0:
@@ -355,7 +362,46 @@ class ResolvedAcoustics:
             "room_version": self.room.version if self.room else None,
             "wet": self.wet,
             "profiles_version": self.profiles.version if self.profiles else None,
+            **(
+                {"room_overrides": self.room_overrides.model_dump(mode="json", exclude_none=True)}
+                if self.room_overrides is not None
+                else {}
+            ),
         }
+
+
+def _overridden_room(room: RoomProfile, overrides: RoomOverrides | None) -> RoomProfile:
+    """The profile with a scene's per-field replacements, validated against the profile's bounds."""
+
+    if overrides is None:
+        return room
+    data = room.model_dump()
+    if overrides.wet is not None:
+        data["wet"] = overrides.wet
+    for key in ("decay_s", "pre_delay_ms", "lowpass_hz"):
+        value = getattr(overrides, key)
+        if value is not None:
+            data["ir"][key] = value
+    return RoomProfile.model_validate(data)
+
+
+def _overridden_device(
+    device: DeviceProfile, overrides: DeviceOverrides | None
+) -> DeviceProfile:
+    """The profile with a placement's per-field replacements. A missing band is one section."""
+
+    if overrides is None:
+        return device
+    data = device.model_dump()
+    for key in ("highpass", "lowpass"):
+        hz = getattr(overrides, f"{key}_hz")
+        if hz is not None:
+            data[key] = {"hz": hz, "sections": (data[key] or {}).get("sections", 1)}
+    for key in ("gain_db", "room_send_db"):
+        value = getattr(overrides, key)
+        if value is not None:
+            data[key] = value
+    return DeviceProfile.model_validate(data)
 
 
 def _variant_of(scene: Scene, variant: str) -> DifficultyVariant:
@@ -399,7 +445,11 @@ def _resolve_acoustics(scene: Scene, variant: str, repo: Path) -> ResolvedAcoust
 
     profiles = load_acoustic_profiles(repo) if _needs_profiles(scene) else None
     room_id = scene.acoustics.room
-    room = profiles.room(room_id) if (profiles is not None and room_id is not None) else None
+    room = (
+        _overridden_room(profiles.room(room_id), scene.acoustics.room_overrides)
+        if (profiles is not None and room_id is not None)
+        else None
+    )
     wet = clamp(room.wet + deltas.wet, 0.0, 1.0) if room is not None else 0.0
     return ResolvedAcoustics(
         variant=variant,
@@ -408,6 +458,7 @@ def _resolve_acoustics(scene: Scene, variant: str, repo: Path) -> ResolvedAcoust
         deltas=deltas,
         room_id=room_id,
         room=room,
+        room_overrides=scene.acoustics.room_overrides if room is not None else None,
         wet=round(wet, 6),
         profiles=profiles,
     )
@@ -490,11 +541,14 @@ def _stem_acoustics(
     """
 
     placement = _placement_or_default(entry)
-    device = acoustics.device(placement.device)
+    device = acoustics.device(placement.device, placement.device_overrides)
     distance = round(placement.distance * acoustics.deltas.distance, 6)
-    chain = stem_chain(device, distance)
+    chain = stem_chain(device, distance, entry.effects)
     send_db = round(
-        distance_send_db(distance) + (device.room_send_db if device is not None else 0.0), 3
+        distance_send_db(distance)
+        + (device.room_send_db if device is not None else 0.0)
+        + (entry.effects.room_send_db if entry.effects is not None else 0.0),
+        3,
     )
     readable: dict[str, Any] = {}
     if chain:
@@ -502,6 +556,12 @@ def _stem_acoustics(
         if device is not None:
             readable["device"] = placement.device
             readable["device_version"] = device.version
+            if placement.device_overrides is not None:
+                readable["device_overrides"] = placement.device_overrides.model_dump(
+                    mode="json", exclude_none=True
+                )
+        if entry.effects is not None:
+            readable["effects"] = entry.effects.model_dump(mode="json", exclude_none=True)
     return chain, readable, send_db
 
 
@@ -509,15 +569,16 @@ def _placement_of(
     entry: SpeechEntry | SfxEntry | AmbienceEntry,
     span: EntryTiming,
     acoustics: ResolvedAcoustics,
+    speech: Sequence[tuple[int, int]] = (),
 ) -> _Placed:
-    """Speech carries no gain (it is the reference), and only a bed is windowed and looped."""
+    """Only a bed is windowed, looped and ducked; `speech` is every speech span, in scene time."""
 
     if isinstance(entry, (SpeechEntry, SfxEntry)):
         chain, readable, send_db = _stem_acoustics(entry, acoustics)
         return _Placed(
             bus="dialogue" if isinstance(entry, SpeechEntry) else "sfx",
             pan=_pan_of(entry),
-            gain_db=0.0 if isinstance(entry, SpeechEntry) else entry.gain_db,
+            gain_db=entry.gain_db,
             window_ms=None,
             loop=False,
             fx=chain,
@@ -545,11 +606,32 @@ def _placement_of(
         fade_in_start_ms=span.start_ms,
         fade_out_ms=entry.fade_out_ms,
         fade_out_start_ms=max(0, span.end_ms - entry.fade_out_ms),
+        **_duck(entry, span, speech),
         # A recorded room tone is already a room; sending it through this one would put a second
         # room inside the first. `None` rather than a large negative number, so the mixer skips
         # the split entirely and the bed reaches the master by exactly the path it always did.
         send_db=None,
     )
+
+
+def _duck(
+    entry: AmbienceEntry, span: EntryTiming, speech: Sequence[tuple[int, int]]
+) -> dict[str, Any]:
+    """The bed's ducking envelope as `_Placed` fields, or nothing when it does not duck.
+
+    The envelope rides in the stem's `fx` chain, in the bed's own time (it is applied after the
+    window trim and before the delay), and its spans go into the readable acoustics so the manifest
+    says when the bed was down.
+    """
+
+    spans = duck_spans(speech, window_start_ms=span.start_ms, window_end_ms=span.end_ms)
+    chain = duck_chain(entry.duck_db, spans)
+    if not chain:
+        return {}
+    return {
+        "fx": chain,
+        "acoustics": {"duck_db": entry.duck_db, "duck_spans": [list(row) for row in spans]},
+    }
 
 
 # -- timeline identity --------------------------------------------------------
@@ -673,6 +755,7 @@ def render_scene(
         )
         ids = _entry_ids(scene)
         spans = {row.entry_id: row for row in timeline}
+        speech_spans = [(row.start_ms, row.end_ms) for row in timeline if row.type == "speech"]
 
         # -- pass 3: placement, mix, master, derivatives -----------------------
 
@@ -682,7 +765,7 @@ def render_scene(
             stem_id = ids[index]
             span = spans[stem_id]
             source = paced[entry.utterance_id] if isinstance(entry, SpeechEntry) else sounds[index]
-            placed = _placement_of(entry, span, acoustics)
+            placed = _placement_of(entry, span, acoustics, speech_spans)
             node = track_node(
                 pan=placed.pan,
                 gain_db=placed.gain_db,
