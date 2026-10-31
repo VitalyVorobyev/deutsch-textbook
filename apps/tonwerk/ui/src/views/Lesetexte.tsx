@@ -24,6 +24,8 @@
  * plays every character's demo takes, and the profile a scene was made with can be heard by
  * rendering it. The panel says so rather than leaving the picker looking like a guess.
  */
+import { WAHL } from '../components/steuerung';
+import { Button, ButtonLink } from '@vitavision/ui';
 import { useCallback, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { Statuslampe } from '../components/Statuslampe';
@@ -164,7 +166,7 @@ export function Lesetexte(): React.JSX.Element {
             <label className="tafel wahl-feld">
               Ebene
               <select
-                className="wahl"
+                className={WAHL}
                 value={ebene}
                 onChange={(event) => setEbene(event.target.value)}
               >
@@ -179,7 +181,7 @@ export function Lesetexte(): React.JSX.Element {
             <label className="tafel wahl-feld">
               Status
               <select
-                className="wahl"
+                className={WAHL}
                 value={status}
                 onChange={(event) => setStatus(event.target.value)}
               >
@@ -348,7 +350,7 @@ function Schritt({
     return (
       <div className="schritt">
         <select
-          className="wahl"
+          className={WAHL}
           value={wahl}
           aria-label={`Narrationsprofil für ${row.id}`}
           onChange={(event) => setWahl(event.target.value)}
@@ -360,32 +362,26 @@ function Schritt({
             </option>
           ))}
         </select>
-        <button
-          type="button"
-          className="knopf knopf-signal"
-          data-anlegen=""
-          disabled={gesperrt}
-          onClick={anlegen}
-        >
+        <Button variant="primary" size="sm" data-anlegen="" disabled={gesperrt} onClick={anlegen}>
           {laeuft ? 'Legt an …' : 'Szene anlegen'}
-        </button>
+        </Button>
       </div>
     );
   }
 
   if (row.szene.stage === 'automatically_checked') {
     return (
-      <a className="knopf knopf-signal" href={href('pruefung', row.slug)}>
+      <ButtonLink variant="primary" size="sm" href={href('pruefung', row.slug)}>
         Freigabe öffnen
-      </a>
+      </ButtonLink>
     );
   }
 
   return (
     <div className="schritt">
-      <a className="knopf" href={href('szene', row.slug)}>
+      <ButtonLink size="sm" href={href('szene', row.slug)}>
         {row.szene.stage === 'draft' ? 'Rendern' : 'Szene öffnen'}
-      </a>
+      </ButtonLink>
       {row.loeschbar ? (
         <Loeschen row={row} gesperrt={gesperrt} laeuft={laeuft} loeschen={loeschen} />
       ) : null}

@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 /**
  * Dev server, proxy and test runner in one file.
@@ -30,7 +31,7 @@ export default defineConfig({
       '/health': { target: ENGINE, changeOrigin: false },
     },
   },
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   test: {
     environment: 'happy-dom',
     globals: false,

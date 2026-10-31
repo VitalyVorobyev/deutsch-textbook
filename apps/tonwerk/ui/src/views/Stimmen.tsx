@@ -27,6 +27,8 @@
  * bytes — a re-encode on the way in would break that binding silently, which is the one thing this
  * whole surface exists to prevent.
  */
+import { FELD } from '../components/steuerung';
+import { Button } from '@vitavision/ui';
 import { useCallback, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { Feld, Feldreihe, SkriptFeld, WahlFeld } from '../components/Feld';
@@ -206,23 +208,17 @@ function Stimme({
       )}
 
       <div className="reihe stimme-knoepfe">
-        <button
-          type="button"
-          className="knopf"
-          disabled={widerrufen || laeuft !== null}
-          onClick={demo}
-        >
+        <Button size="sm" disabled={widerrufen || laeuft !== null} onClick={demo}>
           {laeuft === 'demo' ? 'Hörprobe läuft …' : 'Hörprobe erzeugen'}
-        </button>
-        <button
-          type="button"
-          className="knopf"
+        </Button>
+        <Button
+          size="sm"
           disabled={widerrufen || laeuft !== null}
           onClick={widerruf}
           title="Löscht die Aufnahme und die Hörproben und verweigert jede weitere Synthese."
         >
           {laeuft === 'widerruf' ? 'Widerruf läuft …' : 'Einwilligung widerrufen'}
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -352,14 +348,14 @@ function KlonAssistent({
           ) : null}
 
           <div className="reihe" style={{ marginTop: 'var(--ton-mass-4)' }}>
-            <button
-              type="button"
-              className="knopf knopf-signal"
+            <Button
+              variant="primary"
+              size="sm"
               disabled={!absendbar(entwurf) || laeuft}
               onClick={anlegen}
             >
               {laeuft ? 'Stimme wird angelegt …' : 'Stimme anlegen'}
-            </button>
+            </Button>
             <span className="feld-hinweis">
               Die Aufnahme wird in die App-Daten kopiert, niemals ins Repository.
             </span>
@@ -422,7 +418,7 @@ function Aufnahme({
       <label className="feld-block">
         <span className="tafel feld-legende">Referenzaufnahme</span>
         <input
-          className="feld"
+          className={FELD}
           type="file"
           accept="audio/*"
           onChange={(event) => waehlen(event.target.files?.[0] ?? null)}
@@ -468,22 +464,22 @@ function Text({
       hinweis="Der Referenztext entscheidet mit, wie der Klon klingt: das Modell konditioniert darauf. Er wird beim Anlegen festgeschrieben und lässt sich später nicht ändern — sonst klänge die Stimme anders, ohne dass sich ein Hash bewegt."
     >
       <div className="reihe">
-        <button
-          type="button"
-          className={eingeben ? 'knopf knopf-signal' : 'knopf'}
+        <Button
+          variant={eingeben ? 'primary' : 'secondary'}
+          size="sm"
           aria-pressed={eingeben}
           onClick={() => setEntwurf((alt) => ({ ...alt, textQuelle: 'eingeben' }))}
         >
           Text eingeben
-        </button>
-        <button
-          type="button"
-          className={eingeben ? 'knopf' : 'knopf knopf-signal'}
+        </Button>
+        <Button
+          variant={eingeben ? 'secondary' : 'primary'}
+          size="sm"
           aria-pressed={!eingeben}
           onClick={() => setEntwurf((alt) => ({ ...alt, textQuelle: 'engine' }))}
         >
           Von der Engine transkribieren
-        </button>
+        </Button>
       </div>
 
       {eingeben ? (
@@ -570,22 +566,22 @@ function Einwilligung({
       </Feldreihe>
 
       <div className="reihe" style={{ marginTop: 'var(--ton-mass-3)' }}>
-        <button
-          type="button"
-          className={publikation ? 'knopf' : 'knopf knopf-signal'}
+        <Button
+          variant={publikation ? 'secondary' : 'primary'}
+          size="sm"
           aria-pressed={!publikation}
           onClick={() => setEntwurf((alt) => ({ ...alt, scope: 'evaluation' }))}
         >
           Evaluation
-        </button>
-        <button
-          type="button"
-          className={publikation ? 'knopf knopf-signal' : 'knopf'}
+        </Button>
+        <Button
+          variant={publikation ? 'primary' : 'secondary'}
+          size="sm"
           aria-pressed={publikation}
           onClick={() => setEntwurf((alt) => ({ ...alt, scope: 'publication' }))}
         >
           Veröffentlichung
-        </button>
+        </Button>
         <span className="feld-hinweis">
           {publikation
             ? 'Diese Stimme darf in veröffentlichten Kursaufnahmen sprechen.'
@@ -743,9 +739,9 @@ function Fertig({
           </dd>
         </div>
       </dl>
-      <button type="button" className="knopf" onClick={zuruecksetzen}>
+      <Button size="sm" onClick={zuruecksetzen}>
         Nächste Stimme
-      </button>
+      </Button>
     </Abschnitt>
   );
 }

@@ -23,6 +23,7 @@
  * is Prüfung's, on a page whose whole layout is the listen-first discipline. A "freigeben" button
  * beside the render button would put a signature one click from the thing that invalidates it.
  */
+import { Button, ButtonLink } from '@vitavision/ui';
 import { useMemo, useRef } from 'react';
 import { Marke, Platte, Zustand } from '../../components/Platte';
 import { Spielbereich, Spieler } from '../../components/Spieler';
@@ -127,9 +128,9 @@ export function MischungModus({
           </p>
         ) : null}
         <div className="reihe">
-          <button
-            type="button"
-            className="knopf knopf-signal"
+          <Button
+            variant="primary"
+            size="sm"
             disabled={rendern.laeuft || pruefen.laeuft || renders.length === 0}
             onClick={() => {
               rendern.starten();
@@ -143,10 +144,9 @@ export function MischungModus({
             ) : (
               `${variante} rendern`
             )}
-          </button>
-          <button
-            type="button"
-            className="knopf"
+          </Button>
+          <Button
+            size="sm"
             disabled={rendern.laeuft || pruefen.laeuft || !stand?.rendered}
             title={stand?.rendered ? undefined : 'Erst rendern: die Prüfung braucht einen Master.'}
             onClick={() => {
@@ -161,7 +161,7 @@ export function MischungModus({
             ) : (
               'Automatisch prüfen'
             )}
-          </button>
+          </Button>
           {stand?.has_master ? (
             <Spieler
               pfad={`/api/scenes/${encodeURIComponent(slug)}/renders/${encodeURIComponent(variante)}/master`}
@@ -200,14 +200,9 @@ export function MischungModus({
           </p>
         ) : null}
         {fertig ? (
-          <button
-            type="button"
-            className="knopf"
-            style={{ marginTop: 'var(--ton-mass-3)' }}
-            onClick={nachLauf}
-          >
+          <Button size="sm" style={{ marginTop: 'var(--ton-mass-3)' }} onClick={nachLauf}>
             Szene neu lesen
-          </button>
+          </Button>
         ) : null}
       </Platte>
 
@@ -267,14 +262,13 @@ export function MischungModus({
                 </Marke>
               ))}
             </div>
-            <button
-              type="button"
-              className="knopf"
+            <Button
+              size="sm"
               style={{ marginTop: 'var(--ton-mass-4)' }}
               onClick={() => bericht.current?.scrollIntoView({ block: 'start' })}
             >
               Ganzen Bericht lesen
-            </button>
+            </Button>
           </>
         )}
       </Platte>
@@ -465,9 +459,9 @@ function Freigabe({
         <Zustand art="leer" text="Diese Revision ist von niemandem freigegeben." />
         {stage === 'automatically_checked' ? (
           <div className="platte-leib" style={{ paddingTop: 0 }}>
-            <a className="knopf knopf-signal" href={href('pruefung', slug)}>
+            <ButtonLink variant="primary" size="sm" href={href('pruefung', slug)}>
               Freigabe öffnen
-            </a>
+            </ButtonLink>
           </div>
         ) : null}
       </Platte>

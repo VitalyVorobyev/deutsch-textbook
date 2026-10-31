@@ -1,47 +1,69 @@
 /*
- * Tonwerk design tokens. The whole identity is here; nothing below this file invents a colour,
- * a size or a face. The reasoning lives in apps/tonwerk/DESIGN.md — this is the vocabulary.
+ * Tonwerk's theme: the `@vitavision/ui` tokens, retuned where Tonwerk's thesis needs it, and the
+ * Tonwerk names the views were written against, pointed at them. The reasoning lives in
+ * apps/tonwerk/ui/DESIGN.md — this is the vocabulary.
  *
- * One theme, deliberately. Tonwerk is a control room for one person doing long QA sessions, and a
- * light/dark switch would mean two calibrations of a colour system whose whole job is to be read
- * like an instrument. The learner site is warm stone; Tonwerk is cold graphite. They should not
- * look related.
+ * Every colour comes from the system's semantic variables. Tonwerk overrides three of them and
+ * nothing else, because its central argument is the line between what a machine measured and
+ * what a person vouched for:
+ *
+ *   signal  brass  a person: approved, published, selected, unsaved — "you can act here"
+ *   normal  cyan   the machine: rendered, measured, a check passed
+ *   defect  red    over: a failed check, or an approval that no longer covers the bytes
+ *
+ * `warn` is the system's third verdict and Tonwerk has no third verdict, so it is the alarm.
+ * The values are held by `theme.test.ts`: text contrast on every surface, and signal kept apart
+ * from every verdict for a reader with any dichromacy, at the system's own floors.
+ *
+ * One theme, deliberately: `index.html` puts `dark` on <html> and nothing removes it. Tonwerk is
+ * a control room for one person doing long QA sessions, and a colour system read like an
+ * instrument would need two calibrations.
  */
 
-:root {
-  color-scheme: dark;
+html.dark {
+  --signal: #d2ac4b;
+  --signal-strong: #e3c675;
+  --signal-fg: #1d1606;
 
-  /* ---- Das Pult: the surfaces, cold graphite with a faint blue cast ---------------------- */
-  --ton-raum: #0c1013; /* the room — page ground */
-  --ton-platte: #13191e; /* the plate — panels, table body */
-  --ton-platte-hoch: #182027; /* a raised plate — table head, hover, inputs */
-  --ton-kante: #232d35; /* engraved hairline */
-  --ton-kante-hell: #35424c; /* a rule that has to be seen: inputs, focus tracks */
+  --normal: #5fb6c8;
+  --defect: #e16456;
+  --warn: var(--defect);
+}
 
-  /* ---- Die Schrift: engraved white, three weights of quiet ------------------------------- */
-  --ton-schrift: #e7edf1;
-  --ton-schrift-ab: #96a5b0; /* secondary prose, values that are not the point */
-  --ton-schrift-weg: #7a8b96; /* scale ticks, column heads, units */
-
-  /* ---- Die Skala: hue means *who owns this state*, never decoration ---------------------- */
-  --ton-ruhe: #46545f; /* unlit — nobody has acted */
-  --ton-messung: #5fb6c8; /* the machine: rendered, measured, verdict given */
-  --ton-messung-ab: #2f6773; /* the machine, dimmed: work started, nothing measured */
-  --ton-signal: #c9a44c; /* the human: approved, published — brass, not honey */
-  --ton-signal-ab: #6d5a2a;
-  --ton-alarm: #e4614e; /* over: a failed check, or an approval that no longer covers the bytes */
-
-  /* ---- Die Fassung: three faces, and each one says what kind of thing you are looking at -- */
-  /* Apparatus. Uppercase and tracked: rack silkscreen, engraved scale plate, column heads. */
-  --ton-fassung-tafel: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
-    'Liberation Mono', monospace;
-  /* Interface prose: the app talking about the work. */
-  --ton-fassung-text: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+@theme inline {
   /* The German being manufactured — utterances, titles, personas, demo phrases. It is the
      product, not the apparatus, so it does not wear the apparatus's face. */
-  --ton-fassung-skript: Charter, 'Bitstream Charter', 'Iowan Old Style', 'Palatino Linotype',
-    Palatino, Georgia, serif;
+  --font-skript: Charter, 'Bitstream Charter', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    Georgia, serif;
+}
+
+:root {
+  /* ---- Das Pult: the surfaces ------------------------------------------------------------ */
+  --ton-raum: var(--ground); /* the room — page ground */
+  --ton-platte: var(--surface); /* the plate — panels, table body */
+  --ton-platte-hoch: var(--raised); /* a raised plate — table head, hover, inputs */
+  --ton-kante: var(--line); /* engraved hairline */
+  --ton-kante-hell: var(--line-strong); /* a rule that has to be seen: inputs, focus tracks */
+
+  /* ---- Die Schrift ----------------------------------------------------------------------- */
+  --ton-schrift: var(--fg);
+  --ton-schrift-ab: var(--fg-muted); /* secondary prose, values that are not the point */
+  --ton-schrift-weg: var(--fg-subtle); /* scale ticks, column heads, units */
+
+  /* ---- Die Skala: hue means *who owns this state*, never decoration ---------------------- */
+  --ton-messung: var(--normal);
+  --ton-signal: var(--signal);
+  --ton-alarm: var(--defect);
+  /* The dimmed and unlit states of a lamp are the lit colour sunk into the panel, so they can
+     never drift into a hue of their own. */
+  --ton-ruhe: color-mix(in oklab, var(--fg-subtle) 45%, var(--surface));
+  --ton-messung-ab: color-mix(in oklab, var(--normal) 45%, var(--surface));
+  --ton-signal-ab: color-mix(in oklab, var(--signal) 45%, var(--surface));
+
+  /* ---- Die Fassung: three faces, and each one says what kind of thing you are looking at -- */
+  --ton-fassung-tafel: var(--font-mono); /* apparatus: silkscreen, ids, every number */
+  --ton-fassung-text: var(--font-sans); /* the app talking about the work */
+  --ton-fassung-skript: var(--font-skript);
 
   --ton-grad-11: 0.6875rem;
   --ton-grad-12: 0.75rem;
@@ -55,7 +77,7 @@
   --ton-sperr-weit: 0.18em; /* the wordmark, nav, panel legends */
   --ton-sperr-eng: 0.08em; /* column heads, chips, units */
 
-  /* ---- Der Abstand: a 4px grid, because a rack is drilled on one -------------------------- */
+  /* ---- Der Abstand: a 4px grid ------------------------------------------------------------ */
   --ton-mass-1: 0.25rem;
   --ton-mass-2: 0.5rem;
   --ton-mass-3: 0.75rem;
@@ -64,8 +86,7 @@
   --ton-mass-6: 2rem;
   --ton-mass-7: 3rem;
 
-  --ton-rund: 3px; /* a panel corner, not a pill and not a knife edge */
-  --ton-schiene: 15rem; /* the left rail */
+  --ton-rund: var(--radius-control);
   --ton-bahn: 82rem; /* the widest a content column gets */
 
   --ton-regung: 140ms cubic-bezier(0.2, 0, 0.2, 1);

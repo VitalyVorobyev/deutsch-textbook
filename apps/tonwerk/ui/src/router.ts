@@ -135,6 +135,9 @@ export function useQueryState(key: string, fallback: string): [string, (next: st
 /** A long table left mid-scroll after a navigation reads as a broken link. */
 export function useScrollReset(key: string): void {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    document.getElementById(BUEHNE_ID)?.scrollTo(0, 0);
   }, [key]);
 }
+
+/** The element the page scrolls in. The shell is fixed to the viewport, so the window never does. */
+export const BUEHNE_ID = 'buehne';

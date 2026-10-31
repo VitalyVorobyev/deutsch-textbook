@@ -46,8 +46,8 @@ only after this queue
   - **UI:** dragging on that timeline, fades, an inspector, a mixer strip, a Web
     Audio preview of stems, and undo inside the draft. It is built on `@vitavision/*` per
     [ADR 0011](../adrs/0011-shared-ui-from-vitavision-packages.md).
-  - **First step:** the owner's call on whether the editor's controls wait for Tonwerk's move to
-    `@vitavision/*` or are built on Tonwerk's current CSS and migrated with the rest.
+  - **First step:** the clip inspector for one speech entry (gain, effects, the takes), on the
+    `@vitavision/ui` controls Tonwerk now uses.
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 115 of 195
   `audio-comprehension` items and all 85 `listen` items. No Lesetext has narration, and the 36 A2
   Hören scripts are unrecorded (`grep -rh "recording:" content/exercises | wc -l` gives 80).

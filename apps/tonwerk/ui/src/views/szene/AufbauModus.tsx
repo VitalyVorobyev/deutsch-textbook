@@ -13,6 +13,7 @@
  * not exist yet. Switching between them replaces the value rather than merging, because a
  * `{ref, prompt}` is not a thing the contract has a meaning for.
  */
+import { Button } from '@vitavision/ui';
 import { isAssetRef } from '@da/schema/audio-scene';
 import type { AmbienceEntry, Scene, SfxEntry, Sound } from '@da/schema/audio-scene';
 import { Marke, Platte, Zustand } from '../../components/Platte';
@@ -257,9 +258,8 @@ export function AufbauModus({
                 }
               />
 
-              <button
-                type="button"
-                className="knopf"
+              <Button
+                size="sm"
                 style={{ marginTop: 'var(--ton-mass-3)' }}
                 onClick={() =>
                   setEntwurf({
@@ -269,14 +269,13 @@ export function AufbauModus({
                 }
               >
                 Variante entfernen
-              </button>
+              </Button>
             </div>
           ))
         )}
         <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-          <button
-            type="button"
-            className="knopf"
+          <Button
+            size="sm"
             onClick={() =>
               setEntwurf({
                 ...entwurf,
@@ -288,7 +287,7 @@ export function AufbauModus({
             }
           >
             Variante hinzufügen
-          </button>
+          </Button>
         </div>
       </Platte>
 
@@ -345,9 +344,8 @@ function Abweichungen({
                   schritt={0.05}
                   onWert={(next) => setOverrides({ ...overrides, [key]: next ?? 0 })}
                 />
-                <button
-                  type="button"
-                  className="knopf"
+                <Button
+                  size="sm"
                   onClick={() => {
                     const rest = { ...overrides };
                     delete rest[key];
@@ -355,7 +353,7 @@ function Abweichungen({
                   }}
                 >
                   zurück aufs Preset
-                </button>
+                </Button>
               </div>
             );
           })}
@@ -417,20 +415,12 @@ function Zeitleiste({
         ))
       )}
       <div className="platte-leib reihe" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-        <button
-          type="button"
-          className="knopf"
-          onClick={() => setEntwurf(eintragHinzufuegen(entwurf, 'ambience'))}
-        >
+        <Button size="sm" onClick={() => setEntwurf(eintragHinzufuegen(entwurf, 'ambience'))}>
           Bett hinzufügen
-        </button>
-        <button
-          type="button"
-          className="knopf"
-          onClick={() => setEntwurf(eintragHinzufuegen(entwurf, 'sfx'))}
-        >
+        </Button>
+        <Button size="sm" onClick={() => setEntwurf(eintragHinzufuegen(entwurf, 'sfx'))}>
           Ereignis hinzufügen
-        </button>
+        </Button>
       </div>
     </Platte>
   );
@@ -454,9 +444,9 @@ function Eintrag({
     <div className="klang-eintrag">
       <div className="reihe klang-kopf">
         <Marke ton={bett ? 'ruhig' : 'messung'}>{bett ? 'Bett' : 'Ereignis'}</Marke>
-        <button type="button" className="knopf" onClick={entfernen}>
+        <Button size="sm" onClick={entfernen}>
           Eintrag entfernen
-        </button>
+        </Button>
       </div>
 
       <Klangquelle
@@ -568,9 +558,9 @@ function Klangquelle({
   return (
     <div className="klangquelle">
       <div className="reihe">
-        <button
-          type="button"
-          className={referenz ? 'knopf knopf-signal' : 'knopf'}
+        <Button
+          variant={referenz ? 'primary' : 'secondary'}
+          size="sm"
           aria-pressed={referenz}
           onClick={() => {
             if (referenz) return;
@@ -583,10 +573,10 @@ function Klangquelle({
           }}
         >
           Aus der Klangbibliothek
-        </button>
-        <button
-          type="button"
-          className={referenz ? 'knopf' : 'knopf knopf-signal'}
+        </Button>
+        <Button
+          variant={referenz ? 'secondary' : 'primary'}
+          size="sm"
           aria-pressed={!referenz}
           onClick={() => {
             if (!referenz) return;
@@ -600,7 +590,7 @@ function Klangquelle({
           }}
         >
           Als Beschreibung
-        </button>
+        </Button>
       </div>
 
       {referenz ? (
@@ -703,13 +693,9 @@ function Ort({
         <span className="entfernt feld-hinweis">
           Referenzposition: mittig, ein Meter, ohne Gerät.
         </span>
-        <button
-          type="button"
-          className="knopf"
-          onClick={() => setPlacement({ device: null, distance: 1, pan: 0 })}
-        >
+        <Button size="sm" onClick={() => setPlacement({ device: null, distance: 1, pan: 0 })}>
           Ort setzen
-        </button>
+        </Button>
       </div>
     );
   }
@@ -745,9 +731,9 @@ function Ort({
           onWert={(device) => setPlacement({ ...placement, device: device || null })}
         />
       </Feldreihe>
-      <button type="button" className="knopf" onClick={() => setPlacement(null)}>
+      <Button size="sm" onClick={() => setPlacement(null)}>
         Ort zurücksetzen
-      </button>
+      </Button>
     </>
   );
 }

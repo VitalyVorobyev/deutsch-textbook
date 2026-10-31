@@ -87,7 +87,7 @@ an engine restart, or when a launch link was already spent. Start Tonwerk again,
 
 ## The six sections
 
-The rail lists them in the order the work runs.
+The rail down the left lists them in the order the work runs.
 
 | Section | What it answers |
 | --- | --- |
@@ -194,7 +194,7 @@ It refuses unapproved revisions, approvals that vouch for no bytes, and existing
 | `J` / `K` | next / previous row, in Lesetexte and Prüfung |
 | `Enter` | open the row |
 
-They are printed on the rail rather than in a help page, and each one says where it is live.
+They are printed along the foot of the window rather than in a help page, and each one says where it is live.
 
 ## Models
 

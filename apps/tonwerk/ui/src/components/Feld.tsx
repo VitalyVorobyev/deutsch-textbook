@@ -16,6 +16,7 @@
  * `einheit` prints the unit the number is in — ms, dB, ×. A number whose unit is only in the
  * author's head is a number somebody will type seconds into.
  */
+import { FELD, SKRIPT_FELD, WAHL, ZAHL_FELD } from './steuerung';
 import type { ReactNode } from 'react';
 
 interface Gemeinsam {
@@ -57,7 +58,7 @@ export function Feld({
   return (
     <Rahmen {...rest}>
       <input
-        className="feld"
+        className={FELD}
         type="text"
         value={wert}
         placeholder={platzhalter}
@@ -84,7 +85,7 @@ export function SkriptFeld({
   return (
     <Rahmen {...rest}>
       <textarea
-        className="feld feld-skript"
+        className={SKRIPT_FELD}
         rows={zeilen}
         value={wert}
         placeholder={platzhalter}
@@ -121,7 +122,7 @@ export function ZahlFeld({
   return (
     <Rahmen {...rest}>
       <input
-        className="feld feld-zahl"
+        className={ZAHL_FELD}
         type="number"
         value={wert === null ? '' : wert}
         min={min}
@@ -155,7 +156,7 @@ export function WahlFeld({
   return (
     <Rahmen {...rest}>
       <select
-        className="feld feld-wahl"
+        className={WAHL}
         value={wert}
         disabled={rest.disabled}
         onChange={(event) => onWert(event.target.value)}

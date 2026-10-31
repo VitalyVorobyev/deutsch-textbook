@@ -1,0 +1,18 @@
+/*
+ * The one stylesheet entry. `@vitavision/ui` is Tailwind v4 source, resolved by this build, and
+ * each package's stylesheet declares its own `@source`, so their classes are found without a line
+ * here. Tonwerk's theme comes after the system's tokens, unlayered, so its overrides win.
+ *
+ * The view styles are in the `components` layer: unlayered CSS beats every layer whatever its
+ * specificity, so an element rule here (`button { … }`) would otherwise repaint every
+ * `@vitavision` button. In a layer, the system's utilities still win over it.
+ */
+@import 'tailwindcss';
+@import '@vitavision/ui/fonts.css';
+@import '@vitavision/ui/styles.css';
+@import '@vitavision/workbench/styles.css';
+@import './tokens.css';
+@import './base.css' layer(components);
+@import './app.css' layer(components);
+
+@source '../';

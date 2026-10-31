@@ -2,23 +2,21 @@
 
 /* --- Shell -------------------------------------------------------------------------------- */
 
-.werk {
-  display: grid;
-  grid-template-columns: var(--ton-schiene) minmax(0, 1fr);
-  min-height: 100%;
+/* The frame is `AppShell`; Tonwerk adds only the header's contents and the scrolling stage. */
+
+.kopfleiste {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ton-mass-4);
+  padding: var(--ton-mass-2) var(--ton-mass-4);
 }
 
-.schiene {
+.kopfleiste-engine {
   display: flex;
-  flex-direction: column;
-  gap: var(--ton-mass-6);
-  padding: var(--ton-mass-5) var(--ton-mass-4);
-  border-right: 1px solid var(--ton-kante);
-  background: var(--ton-platte);
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
+  align-items: baseline;
+  gap: var(--ton-mass-3);
+  font-size: var(--ton-grad-11);
 }
 
 /* --- Wortmarke ---------------------------------------------------------------------------- */
@@ -70,64 +68,11 @@
 .wortmarke-mark i:nth-child(3) { height: 100%; background: var(--ton-signal); }
 .wortmarke-mark i:nth-child(4) { height: 46%; background: var(--ton-alarm); margin-left: 2px; }
 
-/* --- Navigation --------------------------------------------------------------------------- */
-
-.wege {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.weg {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--ton-mass-2);
-  padding: var(--ton-mass-2) var(--ton-mass-3);
-  border-left: 2px solid transparent;
-  border-radius: 0 var(--ton-rund) var(--ton-rund) 0;
-  font-family: var(--ton-fassung-tafel);
-  text-transform: uppercase;
-  letter-spacing: var(--ton-sperr-eng);
-  font-size: var(--ton-grad-12);
-  color: var(--ton-schrift-ab);
-  transition: color var(--ton-regung), background var(--ton-regung),
-    border-color var(--ton-regung);
-}
-
-.weg:hover {
-  color: var(--ton-schrift);
-  background: var(--ton-platte-hoch);
-}
-
-.weg[aria-current='page'] {
-  color: var(--ton-schrift);
-  background: var(--ton-platte-hoch);
-  border-left-color: var(--ton-signal);
-}
-
-.weg-bald {
-  color: var(--ton-ruhe);
-  cursor: default;
-}
-
-.weg-bald:hover {
-  color: var(--ton-ruhe);
-  background: transparent;
-}
-
-.schiene-fuss {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--ton-mass-2);
-  font-size: var(--ton-grad-11);
-}
-
 /* --- Content ------------------------------------------------------------------------------ */
 
 .buehne {
-  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
   padding: var(--ton-mass-5) var(--ton-mass-6) var(--ton-mass-7);
 }
 
@@ -504,17 +449,6 @@
   height: 2rem;
 }
 
-/* --- Tasten: the key legend on the rail --------------------------------------------------- */
-
-.taste {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--ton-mass-2);
-  padding: 2px var(--ton-mass-3);
-  font-size: var(--ton-grad-11);
-}
-
 /* --- Die Werkbank: the editor's own bar --------------------------------------------------- */
 /*
  * Mode, state and the two write controls in one strip above the panels. It is a rack unit like
@@ -611,41 +545,6 @@
   line-height: 1.4;
 }
 
-.feld {
-  padding: var(--ton-mass-2) var(--ton-mass-3);
-}
-
-.feld:focus {
-  border-color: var(--ton-kante-hell);
-}
-
-/* The German being manufactured wears the script face, in an input as much as in a paragraph. */
-.feld-skript {
-  font-family: var(--ton-fassung-skript);
-  font-size: var(--ton-grad-16);
-  line-height: 1.45;
-  letter-spacing: 0;
-  resize: vertical;
-}
-
-.feld-zahl {
-  font-variant-numeric: tabular-nums;
-}
-
-.feld-wahl {
-  appearance: none;
-  background: var(--ton-platte-hoch);
-  cursor: pointer;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.feld:disabled,
-.feld-wahl:disabled {
-  color: var(--ton-schrift-weg);
-  cursor: not-allowed;
-}
-
 .feldreihe {
   display: grid;
   gap: var(--ton-mass-3) var(--ton-mass-4);
@@ -712,10 +611,6 @@
   display: flex;
   gap: var(--ton-mass-1);
   padding-top: var(--ton-mass-4);
-}
-
-.aeusserung-knoepfe .knopf {
-  padding: var(--ton-mass-1) var(--ton-mass-3);
 }
 
 .aeusserung-mehr {
@@ -872,12 +767,6 @@
 
 .spieler-kompakt audio {
   max-width: 15rem;
-}
-
-.knopf-transport {
-  padding: var(--ton-mass-2) var(--ton-mass-3);
-  min-width: 2.5rem;
-  justify-content: center;
 }
 
 .spieler-stelle {
@@ -1121,14 +1010,6 @@
   height: 2.75rem;
 }
 
-/* The transport is the primary action of the listen stage, so it is sized like one. */
-.spieler-gross .knopf-transport {
-  padding: var(--ton-mass-4) var(--ton-mass-6);
-  font-size: var(--ton-grad-19);
-  border-color: var(--ton-messung-ab);
-  color: var(--ton-messung);
-}
-
 /* --- Der Schleier: the script, closed, with its reason on the outside --------------------- */
 
 .schleier > summary {
@@ -1269,44 +1150,9 @@
   font-size: var(--ton-grad-13);
 }
 
-/* Narrow screens: the rail becomes a strip across the top. This is a desktop tool, so the
-   breakpoint is a floor, not a mobile design. */
+/* Narrow screens: less padding around the stage. This is a desktop tool, so the breakpoint is a
+   floor, not a mobile design. */
 @media (max-width: 56rem) {
-  .werk {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .schiene {
-    position: static;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--ton-mass-4);
-    border-right: 0;
-    border-bottom: 1px solid var(--ton-kante);
-  }
-
-  .wege {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .weg {
-    border-left: 0;
-    border-bottom: 2px solid transparent;
-    border-radius: var(--ton-rund);
-  }
-
-  .weg[aria-current='page'] {
-    border-left-color: transparent;
-    border-bottom-color: var(--ton-signal);
-  }
-
-  .schiene-fuss {
-    margin-top: 0;
-  }
-
   .buehne {
     padding: var(--ton-mass-4);
   }

@@ -21,6 +21,7 @@
  * The three modes are the three questions in the order they are answered: what is said (Skript),
  * how it is heard (Szene), what came out (Mischung).
  */
+import { Button, ButtonLink } from '@vitavision/ui';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { STUFE_LABEL } from '../contracts';
@@ -68,9 +69,9 @@ export function Szene({ slug }: { slug: string }): React.JSX.Element {
           {fehlerText(error)}
         </p>
         <div>
-          <a className="knopf" href={href('bibliothek')}>
+          <ButtonLink size="sm" href={href('bibliothek')}>
             Zurück zur Liste
-          </a>
+          </ButtonLink>
         </div>
       </>
     );
@@ -219,9 +220,8 @@ function Editor({
         </div>
 
         <div className="werkbank-knoepfe">
-          <button
-            type="button"
-            className="knopf"
+          <Button
+            size="sm"
             disabled={!geaendert || speichert}
             onClick={() => {
               setEntwurf(original);
@@ -229,16 +229,16 @@ function Editor({
             }}
           >
             Verwerfen
-          </button>
-          <button
-            type="button"
-            className="knopf knopf-signal"
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
             disabled={!geaendert || speichert}
             title={bearbeitbar ? 'Cmd/Strg + S' : undefined}
             onClick={speichern}
           >
             {speichert ? 'Speichert …' : 'Als neue Revision speichern'}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -385,9 +385,9 @@ function Verlauf({ data }: { data: SceneDetail }): React.JSX.Element {
         </div>
       )}
       <div className="platte-leib" style={{ borderTop: '1px solid var(--ton-kante)' }}>
-        <button type="button" className="knopf" onClick={() => navigate(href('bibliothek'))}>
+        <Button size="sm" onClick={() => navigate(href('bibliothek'))}>
           Zurück zur Liste
-        </button>
+        </Button>
       </div>
     </Platte>
   );

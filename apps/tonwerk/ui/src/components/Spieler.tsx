@@ -13,6 +13,8 @@
  * text field — the key is left alone, because a control that stops doing what it says is worse
  * than no shortcut.
  */
+import { Button } from '@vitavision/ui';
+import { Pause, Play } from 'lucide-react';
 import {
   createContext,
   useCallback,
@@ -148,14 +150,14 @@ export function Spieler({
   if (!geweckt) {
     return (
       <span className={klasse}>
-        <button
-          type="button"
-          className="knopf knopf-transport"
+        <Button
+          size="sm"
+          className={transport(gross)}
           aria-label={`${name} abspielen`}
           onClick={() => setGeweckt(true)}
         >
-          ▶
-        </button>
+          <Play aria-hidden />
+        </Button>
       </span>
     );
   }
@@ -166,9 +168,9 @@ export function Spieler({
 
   return (
     <span className={klasse}>
-      <button
-        type="button"
-        className="knopf knopf-transport"
+      <Button
+        size="sm"
+        className={transport(gross)}
         aria-label={laeuft ? `${name} anhalten` : `${name} abspielen`}
         onClick={() => {
           const audio = element.current;
@@ -179,8 +181,8 @@ export function Spieler({
           } else audio.pause();
         }}
       >
-        {laeuft ? '❙❙' : '▶'}
-      </button>
+        {laeuft ? <Pause aria-hidden /> : <Play aria-hidden />}
+      </Button>
       <span className="zahl spieler-stelle">{dauer(stelle * 1000)}</span>
       <audio
         ref={element}
@@ -197,4 +199,14 @@ export function Spieler({
       />
     </span>
   );
+}
+
+/**
+ * The transport key. The large one is the primary action of the listen stage, so it is sized like
+ * one and drawn in the machine's cyan: what it plays is what the engine rendered.
+ */
+export function transport(gross?: boolean): string {
+  return gross
+    ? 'h-12 px-6 text-normal ring-normal/50 [&_svg]:size-5'
+    : 'w-9 px-0 [&_svg]:size-3.5';
 }

@@ -160,6 +160,26 @@ describe('Scene v1: the Zod mirror against the committed fixtures', () => {
     expect(scene.acoustics.room_overrides).toBeUndefined();
   });
 
+  test('a mixing field the engine sends as null parses, as the contract allows', () => {
+    // The engine's API dumps the whole model, so a scene it serves carries `effects: null` where
+    // its canonical form leaves the key out. Refusing that null turned every scene read-only in
+    // the editor.
+    const raw = loadFixture('dialogue-ls-wohnen-01') as {
+      acoustics: Record<string, unknown>;
+      timeline: Record<string, unknown>[];
+    };
+    raw.acoustics.room_overrides = null;
+    for (const entry of raw.timeline) {
+      if (entry.type !== 'ambience') entry.effects = null;
+      const placement = entry.placement as Record<string, unknown> | null | undefined;
+      if (placement) placement.device_overrides = null;
+    }
+    const parsed = sceneSchema.safeParse(raw);
+    expect(parsed.success ? [] : parsed.error.issues.map((issue) => issue.path.join('.'))).toEqual(
+      [],
+    );
+  });
+
   test('the mixed fixture carries every mixing field', () => {
     const scene = sceneSchema.parse(loadFixture('dialogue-mixed'));
     const [first, second] = scene.timeline.filter((entry) => entry.type === 'speech');

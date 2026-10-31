@@ -87,7 +87,7 @@ export type DeviceOverrides = z.infer<typeof deviceOverridesSchema>;
  */
 export const placementSchema = z.strictObject({
   device: z.string().nullable().default(null),
-  device_overrides: deviceOverridesSchema.optional(),
+  device_overrides: deviceOverridesSchema.nullable().optional(),
   distance: z.number().min(0).default(1),
   pan: z.number().min(-1).max(1).default(0),
 });
@@ -202,7 +202,7 @@ export type Utterance = z.infer<typeof utteranceSchema>;
  */
 export const speechEntrySchema = z.strictObject({
   at_ms: z.number().int().min(0).nullable().default(null),
-  effects: effectsSchema.optional(),
+  effects: effectsSchema.nullable().optional(),
   gain_db: z.number().min(-24).max(6).optional(),
   placement: placementSchema.nullable().default(null),
   type: z.literal('speech').default('speech'),
@@ -213,7 +213,7 @@ export type SpeechEntry = z.infer<typeof speechEntrySchema>;
 /** A one-off event: a door, a announcement chime. May be the loudest thing in the room. */
 export const sfxEntrySchema = z.strictObject({
   at_ms: z.number().int().min(0),
-  effects: effectsSchema.optional(),
+  effects: effectsSchema.nullable().optional(),
   gain_db: z.number().min(-40).max(0).default(-18),
   placement: placementSchema.nullable().default(null),
   sound: soundSchema,
@@ -279,7 +279,7 @@ export type RoomOverrides = z.infer<typeof roomOverridesSchema>;
 export const sceneAcousticsSchema = z.strictObject({
   lead_in_ms: z.number().int().min(0).max(5000).default(0),
   room: z.string().nullable().default(null),
-  room_overrides: roomOverridesSchema.optional(),
+  room_overrides: roomOverridesSchema.nullable().optional(),
 });
 export type SceneAcoustics = z.infer<typeof sceneAcousticsSchema>;
 

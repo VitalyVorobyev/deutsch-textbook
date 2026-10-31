@@ -16,6 +16,7 @@
  * this page is for and reaching for the mouse between each one is the thing that stops people
  * doing it.
  */
+import { Button } from '@vitavision/ui';
 import { useMemo, useState } from 'react';
 import { Marke, Platte, Zustand } from '../components/Platte';
 import { Feld, Feldreihe, SkriptFeld, WahlFeld, ZahlFeld } from '../components/Feld';
@@ -316,9 +317,9 @@ function Erzeugen({
       </Feldreihe>
 
       <div className="reihe" style={{ marginTop: 'var(--ton-mass-4)' }}>
-        <button
-          type="button"
-          className="knopf knopf-signal"
+        <Button
+          variant="primary"
+          size="sm"
           disabled={vorgang.laeuft || prompt.trim().length === 0}
           onClick={vorgang.starten}
         >
@@ -329,7 +330,7 @@ function Erzeugen({
           ) : (
             'Klang erzeugen'
           )}
-        </button>
+        </Button>
         {vorgang.ergebnis ? (
           <span className="zahl leise" role="status">
             {kurzSha(klangSha(vorgang.ergebnis))}
