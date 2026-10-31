@@ -20,6 +20,7 @@ items:
         - { speaker: Radio, text: "Auf der A drei zwischen Frankfurt und Würzburg hat es einen Unfall gegeben. Dort geht es nur sehr langsam weiter." }
         - { speaker: Radio, text: "Fahren Sie bitte über die A sieben." }
         - { speaker: Radio, text: "In Frankfurt ist die Mainzer Straße noch bis Freitag geschlossen." }
+    recording: ls-pruefung-a2-2-hoeren-01
     question: "Was sollen die Autofahrer tun?"
     options: ["auf der A drei bleiben", "über die A sieben fahren", "bis Freitag warten"]
     correct: 1
@@ -36,6 +37,7 @@ items:
         - { speaker: Werkstatt, text: "Guten Tag, Herr Novak, hier ist die Autowerkstatt Müller." }
         - { speaker: Werkstatt, text: "Ihr Auto ist fertig. Die Reparatur hat leider etwas mehr gekostet: nicht zweihundert, sondern zweihundertvierzig Euro." }
         - { speaker: Werkstatt, text: "Sie können das Auto heute bis achtzehn Uhr abholen. Morgen sind wir ab acht Uhr da." }
+    recording: ls-pruefung-a2-2-hoeren-02
     question: "Wie viel kostet die Reparatur?"
     options: ["zweihundert Euro", "zweihundertachtzig Euro", "zweihundertvierzig Euro"]
     correct: 2
@@ -52,6 +54,7 @@ items:
         - { speaker: Durchsage, text: "Liebe Kundinnen und Kunden," }
         - { speaker: Durchsage, text: "unser Markt schließt heute schon um achtzehn Uhr, denn morgen ist Feiertag." }
         - { speaker: Durchsage, text: "Am Freitag sind wir wie immer von sieben bis zweiundzwanzig Uhr für Sie da." }
+    recording: ls-pruefung-a2-2-hoeren-03
     question: "Wann schließt der Supermarkt heute?"
     options: ["um achtzehn Uhr", "um zweiundzwanzig Uhr", "um sieben Uhr"]
     correct: 0
@@ -68,6 +71,7 @@ items:
         - { speaker: Radio, text: "Und hier noch ein Tipp für das Wochenende." }
         - { speaker: Radio, text: "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei." }
         - { speaker: Radio, text: "Wenn es regnet, findet das Fest in der Stadthalle statt." }
+    recording: ls-pruefung-a2-2-hoeren-04
     question: "Was passiert, wenn es regnet?"
     options: ["Das Fest ist am Sonntag.", "Das Fest ist in der Stadthalle.", "Das Fest findet nicht statt."]
     correct: 1
@@ -84,6 +88,7 @@ items:
         - { speaker: Sara, text: "Hi Tom, hier ist Sara." }
         - { speaker: Sara, text: "Ich bin morgen leider nicht zu Hause, ich muss nach Hamburg fahren. Dein Paket kommt aber morgen bei mir an." }
         - { speaker: Sara, text: "Mein Nachbar, Herr Becker, ist den ganzen Tag zu Hause und nimmt es für mich an. Du kannst es am Abend bei ihm holen. Er wohnt im zweiten Stock." }
+    recording: ls-pruefung-a2-2-hoeren-05
     question: "Wo kann Tom das Paket holen?"
     options: ["bei Sara", "bei Herrn Becker", "in Hamburg"]
     correct: 1
@@ -110,6 +115,7 @@ items:
         - { speaker: Mutter, text: "Die hat er sich schon selbst gekauft. Er wünscht sich eine Tasche für die Arbeit." }
         - { speaker: Lukas, text: "Und was bekommt Mia?" }
         - { speaker: Mutter, text: "Mia spielt so gern mit uns allen. Wir schenken ihr ein Spiel für die ganze Familie." }
+    recording: ls-pruefung-a2-2-hoeren-06
     question: "Was bekommt Oma?"
     options: &t2opts ["eine CD", "einen Pullover", "einen Kalender", "Blumen", "ein Kochbuch", "eine Uhr", "eine Tasche", "ein Spiel", "Schokolade"]
     correct: 1
@@ -121,6 +127,7 @@ items:
     outcomes: [einladen-zusagen-absagen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-2-hoeren-06
     question: "Was bekommt Opa?"
     options: *t2opts
     correct: 2
@@ -132,6 +139,7 @@ items:
     outcomes: [einladen-zusagen-absagen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-2-hoeren-06
     question: "Was bekommt Tante Eva?"
     options: *t2opts
     correct: 4
@@ -143,6 +151,7 @@ items:
     outcomes: [einladen-zusagen-absagen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-2-hoeren-06
     question: "Was bekommt Papa?"
     options: *t2opts
     correct: 6
@@ -154,6 +163,7 @@ items:
     outcomes: [einladen-zusagen-absagen]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-2-hoeren-06
     question: "Was bekommt Mia?"
     options: *t2opts
     correct: 7
@@ -173,6 +183,7 @@ items:
         - { speaker: Gast, text: "Ja, ich nehme das Schnitzel mit Pommes." }
         - { speaker: Kellnerin, text: "Das Schnitzel ist leider schon aus. Wir haben noch Fisch oder Hähnchen mit Reis." }
         - { speaker: Gast, text: "Hm, Fisch esse ich nicht so gern. Dann nehme ich das Hähnchen." }
+    recording: ls-pruefung-a2-2-hoeren-07
     question: "Was isst der Mann?"
     options: ["Schnitzel", "Hähnchen", "Fisch"]
     correct: 1
@@ -191,6 +202,7 @@ items:
         - { speaker: Frau, text: "Gibt es auch einen Kurs am Vormittag?" }
         - { speaker: Mann, text: "Ja, der beginnt aber erst am ersten Oktober." }
         - { speaker: Frau, text: "Das ist mir zu spät. Dann nehme ich den Abendkurs." }
+    recording: ls-pruefung-a2-2-hoeren-08
     question: "Wann beginnt der Kurs der Frau?"
     options: ["am ersten September", "am ersten Oktober", "am zehnten September"]
     correct: 2
@@ -208,6 +220,7 @@ items:
         - { speaker: Kundin, text: "Die Größe ist gut, und das Blau gefällt mir auch. Aber neunundachtzig Euro – das ist mir zu teuer." }
         - { speaker: Verkäufer, text: "Wir haben ihn auch in Grau, für neunundfünfzig Euro." }
         - { speaker: Kundin, text: "Grau steht mir nicht. Danke, ich schaue noch in einem anderen Geschäft." }
+    recording: ls-pruefung-a2-2-hoeren-09
     question: "Warum kauft die Frau den blauen Pullover nicht?"
     options: ["Er ist zu klein.", "Er ist zu teuer.", "Die Farbe gefällt ihr nicht."]
     correct: 1
@@ -225,6 +238,7 @@ items:
         - { speaker: Hausmeister, text: "In allen Zimmern?" }
         - { speaker: Mieterin, text: "Nein, in der Küche und im Wohnzimmer ist es warm. Nur im Bad ist die Heizung kalt." }
         - { speaker: Hausmeister, text: "Gut, ich komme heute Nachmittag vorbei." }
+    recording: ls-pruefung-a2-2-hoeren-10
     question: "Wo ist das Problem?"
     options: ["in der Küche", "im Wohnzimmer", "im Bad"]
     correct: 2
@@ -241,6 +255,7 @@ items:
         - { speaker: Mann, text: "Eine Fahrkarte nach Köln, bitte. Hin und zurück." }
         - { speaker: Frau, text: "Gern. Wann möchten Sie zurückfahren?" }
         - { speaker: Mann, text: "Am Sonntag. Ach nein, das weiß ich noch nicht genau. Dann bitte nur hin." }
+    recording: ls-pruefung-a2-2-hoeren-11
     question: "Welche Fahrkarte kauft der Mann?"
     options: ["eine Fahrkarte hin und zurück", "eine Fahrkarte nur hin", "eine Fahrkarte für Sonntag"]
     correct: 1
@@ -267,6 +282,7 @@ items:
         - { speaker: Moderatorin, text: "Was möchtest du nach der Ausbildung machen?" }
         - { speaker: Daniel, text: "Ich möchte ein Jahr im Ausland arbeiten, vielleicht in Italien oder in Spanien. Und später, wer weiß, vielleicht habe ich einmal ein eigenes Restaurant." }
         - { speaker: Moderatorin, text: "Daniel, vielen Dank und viel Glück!" }
+    recording: ls-pruefung-a2-2-hoeren-12
     question: "Daniel macht seine Ausbildung in einem Hotel."
     options: &jn ["Ja", "Nein"]
     correct: 0
@@ -278,6 +294,7 @@ items:
     outcomes: [aufgaben-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-2-hoeren-12
     question: "Nach der Schule wollte Daniel Koch werden."
     options: *jn
     correct: 1
@@ -289,6 +306,7 @@ items:
     outcomes: [aufgaben-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-2-hoeren-12
     question: "Am Wochenende arbeitet Daniel nicht."
     options: *jn
     correct: 1
@@ -300,6 +318,7 @@ items:
     outcomes: [aufgaben-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-2-hoeren-12
     question: "Daniel geht jeden Mittwoch in die Berufsschule."
     options: *jn
     correct: 0
@@ -311,6 +330,7 @@ items:
     outcomes: [aufgaben-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-2-hoeren-12
     question: "Nach der Ausbildung möchte Daniel im Ausland arbeiten."
     options: *jn
     correct: 0

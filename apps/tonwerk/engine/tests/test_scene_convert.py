@@ -259,3 +259,16 @@ def test_an_unreferenced_artifact_is_an_error_not_an_empty_attachment(tmp_path: 
     artifact = _fixture(tmp_path, [])
     with pytest.raises(ValueError, match="no audio-comprehension item references"):
         scene_from_dialogue(artifact, tmp_path / "probe.json", [])
+
+
+def test_an_artifact_published_from_a_scene_is_not_converted_back() -> None:
+    """Its scene is in the studio already, and its manifest has no settings to rebuild one from."""
+
+    listening = REPO / "content" / "listening"
+    every = {str(path.relative_to(listening).with_suffix("")) for path in listening.glob("*/*.yaml")}
+    from_scenes = every - set(PUBLISHED)
+    assert from_scenes, "the corpus has artifacts published from scenes"
+    for artifact_id in from_scenes:
+        artifact = yaml.safe_load((listening / f"{artifact_id}.yaml").read_text())
+        manifest = json.loads((REPO / artifact["provenance"]).read_text())
+        assert manifest["version"] == 2 and "scene_sha256" in manifest

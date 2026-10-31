@@ -1,0 +1,1027 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-10-31T14:00:20.993819+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b",
+  "generation_brief": {
+    "path": "data/prompts/2026-10-31-ls-pruefung-a2-3-hoeren-03-listening.md",
+    "sha256": "6137698f079ebd2e4573b33255bef6b7d4623e72adc40e861cfcb1419ccdd967"
+  },
+  "id": "ls-pruefung-a2-3-hoeren-03",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "b6d83b37d920e7f4a84cde8d69f3a7a22f571be3b8eccffb2acbb4577786ddc5",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "5f97b174095d578c971924931c87fa84aeea11b23c0ac9241b1360ac10e58473",
+    "soundscape": {
+      "bed_count": 0,
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 1,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 3,
+          "measured_lines": 3,
+          "minimum_similarity": 0.9819516724873905,
+          "pitch_max_hz": 128.0,
+          "pitch_min_hz": 104.23563364739834,
+          "pitch_spread_hz": 23.764366352601655,
+          "speaker": "Radio"
+        }
+      ],
+      "different_characters": [],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9819516724873905,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9903152849687871,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9887211411039825,
+          "speaker": "Radio"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 2786,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 11355,
+        "start_ms": 3386,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 22096,
+        "start_ms": 11955,
+        "utterance_id": "line-3"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-10-31T13:41:52.751178+00:00",
+      "failures": [],
+      "full_transcript": "Und jetzt ein Tipp für alle Musikfreunde. Die Band Nordwind spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr. Aber keine Sorge, am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse ab 19 Uhr.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Und jetzt ein Tipp für alle Musikfreunde.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und jetzt ein Tipp für alle Musikfreunde.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Die Band „Nordwind“ spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Die Band Nordwind spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Aber keine Sorge: Am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse, ab neunzehn Uhr.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Aber keine Sorge, am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse ab 19 Uhr.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "studio": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "studio",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.04
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "a80d91c5925e0871dacb5ca21426297c275851efa59f6355752d90436c172273"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "05e5031f8b20767ae5b94c8845c3a8adcd3333ccddb1ec9211c5baaceaf2bff0"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "cfea0f374328c390db89c7de3d1a4ce3dc869f40607e021eff4b050dd24fb3aa"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "02b9e081b1341148f89db5da6c8f1eef9e18cc374346b21686a281b68e15c5ed"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "b6d83b37d920e7f4a84cde8d69f3a7a22f571be3b8eccffb2acbb4577786ddc5"
+      }
+    ],
+    "assets": {
+      "02b9e081b1341148f89db5da6c8f1eef9e18cc374346b21686a281b68e15c5ed": {
+        "encoding": "qa",
+        "file": "02b9e081b1341148f89db5da6c8f1eef9e18cc374346b21686a281b68e15c5ed.wav",
+        "kind": "encode",
+        "source": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b"
+      },
+      "05e5031f8b20767ae5b94c8845c3a8adcd3333ccddb1ec9211c5baaceaf2bff0": {
+        "file": "05e5031f8b20767ae5b94c8845c3a8adcd3333ccddb1ec9211c5baaceaf2bff0.wav",
+        "impl_version": 1,
+        "inputs": [
+          "200e70446ffc485d0d8b011b8bbb9dfd55850f9a7a726d91e7730c15f5fe6f9c"
+        ],
+        "kind": "track",
+        "node_hash": "107ad8b48ea5631c5d89edaa09c9f29a13377233a6b8e81f5c6a84d494611aa1",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 3386,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "172be5bc138458a2f8aa73a75c276109063f2ca8b72f6fcc0ef11b86a4b80ddc": {
+        "file": "172be5bc138458a2f8aa73a75c276109063f2ca8b72f6fcc0ef11b86a4b80ddc.wav",
+        "impl_version": 1,
+        "inputs": [
+          "600f504602274e569866dc4fe65566199f90a6dbeb71b5a05d94b3968906bc08"
+        ],
+        "kind": "pace",
+        "node_hash": "18af0c348a9bcfe256fc86b72c11b20ab5c1d26c273143f849247358c1ee82fa",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "1f32ea93bf006c260ba8f313096944ee316796f497880e6f6dea56f60953bea2": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "1f32ea93bf006c260ba8f313096944ee316796f497880e6f6dea56f60953bea2.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "5c272c09227e5c517f2c89f2e0d860203b9aac4ed39e2a65ab2ec253b9ab7dfc",
+        "seed": 125
+      },
+      "200e70446ffc485d0d8b011b8bbb9dfd55850f9a7a726d91e7730c15f5fe6f9c": {
+        "file": "200e70446ffc485d0d8b011b8bbb9dfd55850f9a7a726d91e7730c15f5fe6f9c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "1f32ea93bf006c260ba8f313096944ee316796f497880e6f6dea56f60953bea2"
+        ],
+        "kind": "pace",
+        "node_hash": "2258f1b5aca2e715a2c493e9de78af0354a82c8cc0bd3ea73407fc2643977b0d",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "57645a7daa98ce253e968367265502ffb0f2a33f691f4814e400a6d24388309c": {
+        "file": "57645a7daa98ce253e968367265502ffb0f2a33f691f4814e400a6d24388309c.wav",
+        "impl_version": 2,
+        "inputs": [
+          "a80d91c5925e0871dacb5ca21426297c275851efa59f6355752d90436c172273",
+          "05e5031f8b20767ae5b94c8845c3a8adcd3333ccddb1ec9211c5baaceaf2bff0",
+          "cfea0f374328c390db89c7de3d1a4ce3dc869f40607e021eff4b050dd24fb3aa",
+          "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+        ],
+        "kind": "mix",
+        "node_hash": "09e946e9d8f54a3d3419e376f4b818d3571fd8aa42b10dd9908a9f5811909164",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        }
+      },
+      "600f504602274e569866dc4fe65566199f90a6dbeb71b5a05d94b3968906bc08": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "600f504602274e569866dc4fe65566199f90a6dbeb71b5a05d94b3968906bc08.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "eab027b406e6dda6bef54e78148a46424ccf98098d94a36209ea061c4646fcba",
+        "seed": 125
+      },
+      "a80d91c5925e0871dacb5ca21426297c275851efa59f6355752d90436c172273": {
+        "file": "a80d91c5925e0871dacb5ca21426297c275851efa59f6355752d90436c172273.wav",
+        "impl_version": 1,
+        "inputs": [
+          "172be5bc138458a2f8aa73a75c276109063f2ca8b72f6fcc0ef11b86a4b80ddc"
+        ],
+        "kind": "track",
+        "node_hash": "4460fce32adafe448355838c51942fe17e2c9c9f1f0178daec9092076d983940",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b": {
+        "file": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b.wav",
+        "impl_version": 1,
+        "inputs": [
+          "57645a7daa98ce253e968367265502ffb0f2a33f691f4814e400a6d24388309c"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "dc53535aac5e20b73f6bc53fdca46b138a3405570e3e937606a4211592b19632",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "b6d83b37d920e7f4a84cde8d69f3a7a22f571be3b8eccffb2acbb4577786ddc5": {
+        "encoding": "publish",
+        "file": "b6d83b37d920e7f4a84cde8d69f3a7a22f571be3b8eccffb2acbb4577786ddc5.mp3",
+        "kind": "encode",
+        "source": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b"
+      },
+      "cfea0f374328c390db89c7de3d1a4ce3dc869f40607e021eff4b050dd24fb3aa": {
+        "file": "cfea0f374328c390db89c7de3d1a4ce3dc869f40607e021eff4b050dd24fb3aa.wav",
+        "impl_version": 1,
+        "inputs": [
+          "e87d64d1cde6442cd528da748432fdb0441825452256a6e311729b8301068de3"
+        ],
+        "kind": "track",
+        "node_hash": "7b38b3c02f49967e86a2af9a1c064e6d9029e1588940442d3c0a3582c2d0e4b0",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 11955,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.25,
+          "early_reflections": 3,
+          "lowpass_hz": 9000.0,
+          "pre_delay_ms": 4,
+          "seed": 1101
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      },
+      "e87d64d1cde6442cd528da748432fdb0441825452256a6e311729b8301068de3": {
+        "file": "e87d64d1cde6442cd528da748432fdb0441825452256a6e311729b8301068de3.wav",
+        "impl_version": 1,
+        "inputs": [
+          "f1cbdd5c925621ff05c28fd642ee22d13984a721b8bbb7bfabef38d3b5b3ecca"
+        ],
+        "kind": "pace",
+        "node_hash": "ec5edcda3a5abf2db6f2a36daeaacef021e07b038749579771f942240612e5cb",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "f1cbdd5c925621ff05c28fd642ee22d13984a721b8bbb7bfabef38d3b5b3ecca": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "f1cbdd5c925621ff05c28fd642ee22d13984a721b8bbb7bfabef38d3b5b3ecca.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "87906d6cc6b650ec21f68560644c5671e17266295926ca25146c41fe1f00b741",
+        "seed": 125
+      }
+    },
+    "created_at": "2026-10-31T13:41:47.732208+00:00",
+    "duration_ms": 22096,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "600f504602274e569866dc4fe65566199f90a6dbeb71b5a05d94b3968906bc08",
+        "cached": false,
+        "hash": "63a097d7990f288d892a283378bbb36f3d3ebfa12a84122a742018e0113ac0ad",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Und jetzt ein Tipp für alle Musikfreunde.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "172be5bc138458a2f8aa73a75c276109063f2ca8b72f6fcc0ef11b86a4b80ddc",
+        "cached": false,
+        "hash": "18af0c348a9bcfe256fc86b72c11b20ab5c1d26c273143f849247358c1ee82fa",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "1f32ea93bf006c260ba8f313096944ee316796f497880e6f6dea56f60953bea2",
+        "cached": false,
+        "hash": "7a7a46b11ea665c393ec304bfd986e19f941c0ad5c0c98bb8eb257a838325c0d",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Die Band „Nordwind“ spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "200e70446ffc485d0d8b011b8bbb9dfd55850f9a7a726d91e7730c15f5fe6f9c",
+        "cached": false,
+        "hash": "2258f1b5aca2e715a2c493e9de78af0354a82c8cc0bd3ea73407fc2643977b0d",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "f1cbdd5c925621ff05c28fd642ee22d13984a721b8bbb7bfabef38d3b5b3ecca",
+        "cached": false,
+        "hash": "b8dc4fdbc70790260db4571620e8f9ff65741f6a8f42f937f96df0a6cfdad4b9",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 125,
+            "style": null,
+            "text": "Aber keine Sorge: Am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse, ab neunzehn Uhr.",
+            "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "e87d64d1cde6442cd528da748432fdb0441825452256a6e311729b8301068de3",
+        "cached": false,
+        "hash": "ec5edcda3a5abf2db6f2a36daeaacef021e07b038749579771f942240612e5cb",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.77,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+        "cached": true,
+        "hash": "e0bf0366e9dbfced2e725932d588bb35635585193efcd4e6c1e2f22378c9172b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.25,
+            "early_reflections": 3,
+            "lowpass_hz": 9000.0,
+            "pre_delay_ms": 4,
+            "seed": 1101
+          },
+          "rate": 48000,
+          "room": "studio",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "a80d91c5925e0871dacb5ca21426297c275851efa59f6355752d90436c172273",
+        "cached": false,
+        "hash": "4460fce32adafe448355838c51942fe17e2c9c9f1f0178daec9092076d983940",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "05e5031f8b20767ae5b94c8845c3a8adcd3333ccddb1ec9211c5baaceaf2bff0",
+        "cached": false,
+        "hash": "107ad8b48ea5631c5d89edaa09c9f29a13377233a6b8e81f5c6a84d494611aa1",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 3386,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "cfea0f374328c390db89c7de3d1a4ce3dc869f40607e021eff4b050dd24fb3aa",
+        "cached": false,
+        "hash": "7b38b3c02f49967e86a2af9a1c064e6d9029e1588940442d3c0a3582c2d0e4b0",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 11955,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "57645a7daa98ce253e968367265502ffb0f2a33f691f4814e400a6d24388309c",
+        "cached": false,
+        "hash": "09e946e9d8f54a3d3419e376f4b818d3571fd8aa42b10dd9908a9f5811909164",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b",
+        "cached": false,
+        "hash": "dc53535aac5e20b73f6bc53fdca46b138a3405570e3e937606a4211592b19632",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "57645a7daa98ce253e968367265502ffb0f2a33f691f4814e400a6d24388309c",
+        "cached": true,
+        "hash": "09e946e9d8f54a3d3419e376f4b818d3571fd8aa42b10dd9908a9f5811909164",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "b683837f088f782d525ed171ee55f1d0ff0c8d3e1caad9c63fe1a07ce87c3b5b",
+        "cached": true,
+        "hash": "dc53535aac5e20b73f6bc53fdca46b138a3405570e3e937606a4211592b19632",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "02b9e081b1341148f89db5da6c8f1eef9e18cc374346b21686a281b68e15c5ed",
+        "cached": false,
+        "hash": "66e69deebbf85fc5dda61eb0c917df35dcc319a86d82eb22342ab8535b28ef76",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "b6d83b37d920e7f4a84cde8d69f3a7a22f571be3b8eccffb2acbb4577786ddc5",
+        "cached": false,
+        "hash": "edb61e04ab95bb07b98d4b91174ce8c0e8d3e48a5a661e64cdc40cb3cda67306",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 3,
+    "nodes_evaluated": 13,
+    "timeline": [
+      {
+        "end_ms": 2786,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 11355,
+        "entry_id": "line-2",
+        "start_ms": 3386,
+        "type": "speech"
+      },
+      {
+        "end_ms": 22096,
+        "entry_id": "line-3",
+        "start_ms": 11955,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 2786,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 11355,
+        "start_ms": 3386,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 22096,
+        "start_ms": 11955,
+        "utterance_id": "line-3"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "studio",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        19,
+        32
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "termine-zeit-verstehen"
+      ],
+      "scenario": "Radiotipp: Konzert im Kulturhaus",
+      "topic": "reisen-verkehr",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "david",
+          "version": 2
+        },
+        "role": "Radio",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 125,
+          "style": null,
+          "voice": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Und jetzt ein Tipp für alle Musikfreunde.",
+        "id": "line-1",
+        "pace": 0.77,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Die Band „Nordwind“ spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr.",
+        "id": "line-2",
+        "pace": 0.77,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Aber keine Sorge: Am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse, ab neunzehn Uhr.",
+        "id": "line-3",
+        "pace": 0.77,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-pruefung-a2-3-hoeren-03",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-3"
+      }
+    ],
+    "title": {
+      "en": "A concert at the Kulturhaus",
+      "ru": "Концерт в Доме культуры",
+      "uk": "Концерт у Будинку культури"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "5f97b174095d578c971924931c87fa84aeea11b23c0ac9241b1360ac10e58473",
+  "script_sha256": "581fb2c16f5661cf3840885dcc72c4ed172765531d6a09a0a8d8fcd8a88f7fbe",
+  "version": 2,
+  "voices": [
+    {
+      "character": "david",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his late thirties speaking clear standard German. Grounded, medium-low voice; calm, matter-of-fact and friendly, steady pace, no exaggerated authority.",
+      "reference_sha256": "a7c3406bff36718379299eb41a7a94663c028a0019d56ebb137745ed25d45288",
+      "role": "Radio",
+      "seed": 125,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

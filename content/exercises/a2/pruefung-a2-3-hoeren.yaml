@@ -19,6 +19,7 @@ items:
         - { speaker: Durchsage, text: "Achtung, eine Information zum Flug L H zweihundertdreißig nach Wien." }
         - { speaker: Durchsage, text: "Der Flug startet heute nicht von Gate B zwölf, sondern von Gate C vier." }
         - { speaker: Durchsage, text: "Die Zeit bleibt gleich: dreizehn Uhr fünfzig." }
+    recording: ls-pruefung-a2-3-hoeren-01
     question: "Wohin müssen die Reisenden nach Wien gehen?"
     options: ["zu Gate B zwölf", "zu Gate C zwölf", "zu Gate C vier"]
     correct: 2
@@ -35,6 +36,7 @@ items:
         - { speaker: Sprachschule, text: "Guten Tag, Frau Ahmadi, hier ist die Sprachschule Lingua." }
         - { speaker: Sprachschule, text: "Ihr Kurs am Dienstag findet leider nicht statt, die Lehrerin ist krank." }
         - { speaker: Sprachschule, text: "Die Stunde ist dann am nächsten Montag, zur gleichen Zeit. Bitte bringen Sie dann auch Ihr Buch mit." }
+    recording: ls-pruefung-a2-3-hoeren-02
     question: "Was ist mit dem Kurs am Dienstag?"
     options: ["Er findet nicht statt.", "Er beginnt eine Stunde später.", "Er ist in einem anderen Raum."]
     correct: 0
@@ -51,6 +53,7 @@ items:
         - { speaker: Radio, text: "Und jetzt ein Tipp für alle Musikfreunde." }
         - { speaker: Radio, text: "Die Band „Nordwind“ spielt am Freitag im Kulturhaus. Für dieses Konzert gibt es leider keine Karten mehr." }
         - { speaker: Radio, text: "Aber keine Sorge: Am Samstag gibt es ein zweites Konzert. Karten dafür gibt es am Samstag noch an der Kasse, ab neunzehn Uhr." }
+    recording: ls-pruefung-a2-3-hoeren-03
     question: "Für welches Konzert kann man noch Karten kaufen?"
     options: ["für das Konzert am Freitag", "für das Konzert am Samstag", "für das Konzert am Sonntag"]
     correct: 1
@@ -67,6 +70,7 @@ items:
         - { speaker: Durchsage, text: "Meine Damen und Herren, in wenigen Minuten erreichen wir Nürnberg Hauptbahnhof." }
         - { speaker: Durchsage, text: "Sie haben Anschluss an den I C E nach München, Abfahrt elf Uhr fünf von Gleis sechs, und an die S-Bahn zum Flughafen von Gleis zwei." }
         - { speaker: Durchsage, text: "Der Regionalzug nach Bamberg fährt heute leider nicht." }
+    recording: ls-pruefung-a2-3-hoeren-04
     question: "Von welchem Gleis fährt der Zug nach München?"
     options: ["von Gleis zwei", "von Gleis sechs", "von Gleis elf"]
     correct: 1
@@ -83,6 +87,7 @@ items:
         - { speaker: Julia, text: "Hallo Mama, ich bin's, Julia." }
         - { speaker: Julia, text: "Ich komme am Sonntag zum Mittagessen, aber nicht allein: Ich bringe Max mit. Du weißt ja, er isst kein Fleisch." }
         - { speaker: Julia, text: "Kannst du vielleicht eine Gemüsesuppe machen? Den Kuchen bringe ich mit. Bis Sonntag!" }
+    recording: ls-pruefung-a2-3-hoeren-05
     question: "Was soll die Mutter kochen?"
     options: ["Fleisch", "einen Kuchen", "eine Gemüsesuppe"]
     correct: 2
@@ -108,6 +113,7 @@ items:
         - { speaker: Katrin, text: "Am Donnerstag hatte meine Freundin Sabine Geburtstag, sie wohnt ja in Berlin. Wir haben sie und ihre Freunde in einem Restaurant getroffen. Danach wollten wir noch ins Theater, aber es war schon zu spät." }
         - { speaker: Kollege, text: "Schade. Und der letzte Tag?" }
         - { speaker: Katrin, text: "Am Freitag war endlich schönes Wetter. Wir haben Fahrräder gemietet und sind den ganzen Tag gefahren." }
+    recording: ls-pruefung-a2-3-hoeren-06
     question: "Was hat Katrin am Montag gemacht?"
     options: &t2opts ["eine Busfahrt durch die Stadt gemacht", "ein Museum besucht", "eingekauft", "Freunde getroffen", "Fahrrad gefahren", "ins Theater gegangen", "im Hotel geblieben", "in den Zoo gegangen", "schwimmen gegangen"]
     correct: 0
@@ -119,6 +125,7 @@ items:
     outcomes: [reise-berichten]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-3-hoeren-06
     question: "Was hat Katrin am Dienstag gemacht?"
     options: *t2opts
     correct: 2
@@ -130,6 +137,7 @@ items:
     outcomes: [reise-berichten]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-3-hoeren-06
     question: "Was hat Katrin am Mittwoch gemacht?"
     options: *t2opts
     correct: 1
@@ -141,6 +149,7 @@ items:
     outcomes: [reise-berichten]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-3-hoeren-06
     question: "Was hat Katrin am Donnerstag gemacht?"
     options: *t2opts
     correct: 3
@@ -152,6 +161,7 @@ items:
     outcomes: [reise-berichten]
     instruction: *t2
     source: *t2src
+    recording: ls-pruefung-a2-3-hoeren-06
     question: "Was hat Katrin am Freitag gemacht?"
     options: *t2opts
     correct: 4
@@ -173,6 +183,7 @@ items:
         - { speaker: Mann, text: "Um acht muss ich arbeiten. Geht es auch später?" }
         - { speaker: Praxis, text: "Am Dienstag um sechzehn Uhr dreißig." }
         - { speaker: Mann, text: "Ja, das passt. Vielen Dank!" }
+    recording: ls-pruefung-a2-3-hoeren-07
     question: "Wann hat der Mann einen Termin?"
     options: ["am Dienstag um acht Uhr", "am Dienstag um halb fünf", "noch diese Woche"]
     correct: 1
@@ -191,6 +202,7 @@ items:
         - { speaker: Frau, text: "Der hat montags geschlossen." }
         - { speaker: Mann, text: "Stimmt. Dann holen wir uns etwas beim Bäcker und essen im Park?" }
         - { speaker: Frau, text: "Gute Idee, das Wetter ist ja schön." }
+    recording: ls-pruefung-a2-3-hoeren-08
     question: "Wo holen die beiden ihr Mittagessen?"
     options: ["in der Kantine", "beim Italiener", "beim Bäcker"]
     correct: 2
@@ -207,6 +219,7 @@ items:
         - { speaker: Frau, text: "Herr Schmitt, ich fahre morgen für eine Woche weg. Können Sie bitte meine Post aus dem Briefkasten holen?" }
         - { speaker: Mann, text: "Ja, gern. Und Ihre Katze?" }
         - { speaker: Frau, text: "Die nimmt meine Schwester. Nur die Post, bitte. Den Schlüssel für den Briefkasten bringe ich Ihnen heute Abend." }
+    recording: ls-pruefung-a2-3-hoeren-09
     question: "Was soll Herr Schmitt machen?"
     options: ["die Post holen", "die Katze nehmen", "den Schlüssel bringen"]
     correct: 0
@@ -224,6 +237,7 @@ items:
         - { speaker: Verkäuferin, text: "Schuhe sind im Erdgeschoss. Aber Schuhe für Kinder haben wir in der Kinderabteilung, im zweiten Stock." }
         - { speaker: Mann, text: "Und gibt es hier einen Aufzug?" }
         - { speaker: Verkäuferin, text: "Ja, dort hinten links." }
+    recording: ls-pruefung-a2-3-hoeren-10
     question: "Wo findet der Mann Schuhe für Kinder?"
     options: ["im Erdgeschoss", "im zweiten Stock", "hinten links"]
     correct: 1
@@ -241,6 +255,7 @@ items:
         - { speaker: Mann, text: "Um acht? Das ist mir zu früh. Am Wochenende schlafe ich gern lange. Geht es um zehn?" }
         - { speaker: Frau, text: "Um zehn spiele ich Tennis. Wie wäre es mit neun?" }
         - { speaker: Mann, text: "Na gut, dann um neun." }
+    recording: ls-pruefung-a2-3-hoeren-11
     question: "Wann treffen sich die beiden?"
     options: ["um acht Uhr", "um zehn Uhr", "um neun Uhr"]
     correct: 2
@@ -267,6 +282,7 @@ items:
         - { speaker: Moderatorin, text: "Was gefällt Ihnen am meisten?" }
         - { speaker: Yusuf Demir, text: "Die Menschen. Ich habe hier viele Freunde gefunden. Und ich habe viel gelernt: Ich komme aus einer großen Stadt und wusste vorher nichts über Gemüse." }
         - { speaker: Moderatorin, text: "Herr Demir, vielen Dank für das Gespräch." }
+    recording: ls-pruefung-a2-3-hoeren-12
     question: "Der Garten ist auf einem alten Parkplatz."
     options: &jn ["Ja", "Nein"]
     correct: 0
@@ -278,6 +294,7 @@ items:
     outcomes: [landschaft-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-3-hoeren-12
     question: "Am Anfang haben schon sechzig Leute mitgemacht."
     options: *jn
     correct: 1
@@ -289,6 +306,7 @@ items:
     outcomes: [landschaft-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-3-hoeren-12
     question: "Wer kein Geld hat, darf nicht mitmachen."
     options: *jn
     correct: 1
@@ -300,6 +318,7 @@ items:
     outcomes: [landschaft-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-3-hoeren-12
     question: "Manchmal verkaufen sie Gemüse auf dem Markt."
     options: *jn
     correct: 0
@@ -311,6 +330,7 @@ items:
     outcomes: [landschaft-beschreiben]
     instruction: *t4
     source: *t4src
+    recording: ls-pruefung-a2-3-hoeren-12
     question: "Herr Demir wusste schon immer viel über Gemüse."
     options: *jn
     correct: 1

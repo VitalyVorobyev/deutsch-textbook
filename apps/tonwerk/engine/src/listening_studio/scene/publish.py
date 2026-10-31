@@ -36,6 +36,7 @@ than parse a sentence, and Tonwerk can render German for a gate id it knows:
 | `scene` | no scene project under this slug |
 | `kind` | a `narration`/`custom` scene — `content/listening/` is the dialogue path |
 | `variant` | any variant but `natural`; the others are rendered, never published |
+| `archived` | a scene project set aside in the library |
 | `stage` | a scene that is neither `automatically_checked` nor `human_approved` |
 | `approval` | a scene at `human_approved` with no completed approval |
 | `declined` | a scene whose current revision a person declined; revise it or approve it |
@@ -691,6 +692,11 @@ def plan_publish(
         raise PublishRefusal("scene", f"no scene project {slug}")
     project, revision, scene, _exercise = found
 
+    if project.archived_at is not None:
+        raise PublishRefusal(
+            "archived",
+            f"{scene.slug} is archived; bring it back (`scene archive --undo`) before publishing it",
+        )
     if scene.kind != "dialogue":
         raise PublishRefusal(
             "kind",

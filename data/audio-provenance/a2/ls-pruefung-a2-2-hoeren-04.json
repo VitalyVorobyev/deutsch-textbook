@@ -1,0 +1,1027 @@
+{
+  "claims": {
+    "consent_sha256": [],
+    "model_license_is_training_data_provenance": false,
+    "reference_audio_used": true,
+    "voice_cloning_used": false
+  },
+  "cleared_by": "automatic-qa",
+  "contextual_sources": [],
+  "created_at": "2026-10-31T14:00:20.782045+00:00",
+  "dependency_lock_sha256": "dd773583725f2485a0ebe172f6ec3bf3d1879619c55f0f4e8dc58cb56948d316",
+  "dry_audio_sha256": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42",
+  "generation_brief": {
+    "path": "data/prompts/2026-10-31-ls-pruefung-a2-2-hoeren-04-listening.md",
+    "sha256": "8782772b34f3750ae69352e03c29114aef9b501d922e4e812fc201bf7bc91eb5"
+  },
+  "id": "ls-pruefung-a2-2-hoeren-04",
+  "kind": "dialogue",
+  "level": "A2",
+  "master_audio_sha256": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42",
+  "model_lock_sha256": "6036a81fc798178d1cd183975d55ea469cf6b5f6db7fcbd5d768444230e2ba70",
+  "models": {
+    "qwen_tts_designed": {
+      "adapter_code": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+      "capability": "voice-clone",
+      "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+      "license": "Apache-2.0",
+      "purpose": "the roster's speech: every character clones its designed synthetic reference, stored in app data by digest; it refuses a reference that is not there",
+      "revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+      "training_data_provenance": "vendor-documented; not independently verified. Like the 0.6B Base, the licence says nothing about whose voices it was trained on."
+    },
+    "stable_audio_sfx": {
+      "adapter_code": "Stability-AI/stable-audio-3@a0b57f5483c4588f827f3552b7d5c6ca2a9687be",
+      "files": [
+        "MLX/dit_sm-sfx_f16.npz",
+        "MLX/same_s_decoder_f32.npz",
+        "MLX/same_s_encoder_f32.npz",
+        "MLX/t5gemma_f16.npz",
+        "LICENSE.md",
+        "LICENSE_GEMMA.md",
+        "NOTICE",
+        "README.md"
+      ],
+      "id": "stabilityai/stable-audio-3-optimized",
+      "license": "Stability AI Community License",
+      "license_condition": "Free for research, non-commercial and limited commercial use; the licence terminates for a licensee generating more than USD $1,000,000 in annual revenue, who must then obtain an enterprise licence from Stability AI. Commercial users must register at https://stability.ai/community-license. The bundled T5Gemma text encoder is redistributed under the Gemma Terms of Use (LICENSE_GEMMA.md).",
+      "original_id": "stabilityai/stable-audio-3-small-sfx",
+      "original_revision": "ae12755283df9d62ca39a9b050a39a0b607b8c20",
+      "purpose": "context sound and ambience for scene renders; never speech",
+      "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513",
+      "training_data_provenance": "vendor-documented, not independently verified: Stability's model card states 1,278,902 recordings — 806,284 licensed from AudioSparx and 472,618 from Freesound under CC0, CC-BY or CC-Sampling+, with music screened by a content-detection service and identified copyrighted material removed. That is Stability's claim about their corpus; nothing in this repository checks it."
+    }
+  },
+  "published_audio_bitrate": "128k",
+  "published_audio_sha256": "50aa0597afb0b827bc9672bb0a6ebf2ae1b1ca4ec3305d61e8641e55b3345c1a",
+  "qa": {
+    "passed": true,
+    "scene_sha256": "61df8ac70af5b9743d9a16b3f263bf762a80f0aec5b7c7b6eb2fd4e618476218",
+    "soundscape": {
+      "bed_count": 0,
+      "configured_coverage_ratio": 0.0,
+      "configured_gain_max_db": null,
+      "configured_gain_min_db": null,
+      "continuous_ambience": false,
+      "event_count": 0,
+      "measured_ambience_rms_dbfs": null,
+      "version": 1,
+      "warnings": [
+        "no continuous environment bed; the scene falls silent between events"
+      ]
+    },
+    "speaker_qa": {
+      "characters": [
+        {
+          "line_count": 3,
+          "measured_lines": 3,
+          "minimum_similarity": 0.9865495458636703,
+          "pitch_max_hz": 141.5929203539823,
+          "pitch_min_hz": 121.21212121212122,
+          "pitch_spread_hz": 20.380799141861075,
+          "speaker": "Radio"
+        }
+      ],
+      "different_characters": [],
+      "lines": [
+        {
+          "line_id": "line-1",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9881406535391635,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-2",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.98845509147396,
+          "speaker": "Radio"
+        },
+        {
+          "line_id": "line-3",
+          "manual_review": false,
+          "reason": null,
+          "similarity_to_character": 0.9865495458636703,
+          "speaker": "Radio"
+        }
+      ],
+      "model_id": "microsoft/wavlm-base-plus-sv",
+      "model_revision": "1ca8d40afff4d98a4356cf2b1a2000f9ba645649",
+      "threshold": null,
+      "threshold_status": "uncalibrated-warning-only",
+      "warnings": []
+    },
+    "timing": [
+      {
+        "end_ms": 2400,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 14021,
+        "start_ms": 3000,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 18607,
+        "start_ms": 14621,
+        "utterance_id": "line-3"
+      }
+    ],
+    "transcripts": {
+      "created_at": "2026-10-31T13:28:20.560088+00:00",
+      "failures": [],
+      "full_transcript": "Und hier noch ein Tipp für das Wochenende. Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei. Wenn es regnet, findet das Fest in der Stadthalle statt.",
+      "full_wer": 0.0,
+      "lines": [
+        {
+          "expected": "Und hier noch ein Tipp für das Wochenende.",
+          "line_id": "line-1",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Und hier noch ein Tipp für das Wochenende.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei.",
+          "line_id": "line-2",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei.",
+          "wer": 0.0
+        },
+        {
+          "expected": "Wenn es regnet, findet das Fest in der Stadthalle statt.",
+          "line_id": "line-3",
+          "missing_protected": [],
+          "passed": true,
+          "transcript": "Wenn es regnet, findet das Fest in der Stadthalle statt.",
+          "wer": 0.0
+        }
+      ],
+      "passed": true,
+      "warnings": []
+    },
+    "variant": "natural"
+  },
+  "render": {
+    "acoustics": {
+      "deltas": {
+        "ambience_gain_db": 0.0,
+        "distance": 1.0,
+        "overlap_ms": 0,
+        "pace": 1.0,
+        "wet": 0.0
+      },
+      "ir_assets": {
+        "studio": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+      },
+      "preset": null,
+      "preset_version": null,
+      "profiles_version": 1,
+      "room": "studio",
+      "room_version": 1,
+      "variant": "natural",
+      "wet": 0.04
+    },
+    "artifacts": [
+      {
+        "kind": "stem",
+        "path": "stems/line-1.wav",
+        "sha256": "19562eb6132df05af60cbc681f23d755193db74ebf00bec5d8ca8ad30a71995c"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-2.wav",
+        "sha256": "8471f0274565f07a6db7a4585deb7dca396e736cba798e129b887bcd110af418"
+      },
+      {
+        "kind": "stem",
+        "path": "stems/line-3.wav",
+        "sha256": "43743bb09e7219edb556f68ed6858ed54644ecc9c7659162adfe90a1ab3eebb3"
+      },
+      {
+        "kind": "master",
+        "path": "master.wav",
+        "sha256": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42"
+      },
+      {
+        "kind": "dry",
+        "path": "dry.wav",
+        "sha256": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42"
+      },
+      {
+        "kind": "qa",
+        "path": "qa.wav",
+        "sha256": "107fe59d37e81ac46ad939f4947f634c1816557de2e1b7a35720fbf0a8501ab7"
+      },
+      {
+        "kind": "publish",
+        "path": "publish.mp3",
+        "sha256": "50aa0597afb0b827bc9672bb0a6ebf2ae1b1ca4ec3305d61e8641e55b3345c1a"
+      }
+    ],
+    "assets": {
+      "03d45f33fcb736bab8932182264e9419a79284ff70f91c99a657c29eaaf7b2e2": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "03d45f33fcb736bab8932182264e9419a79284ff70f91c99a657c29eaaf7b2e2.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "3194dfffb00b97fe55ba8c416ed9e33c7a8cc8baa6c6227c285a8d2b35f513ec",
+        "seed": 120
+      },
+      "06a6d56ca989ac08bb8ef8196f761426c447d1819de6ee35b58aba4dd0412e5f": {
+        "file": "06a6d56ca989ac08bb8ef8196f761426c447d1819de6ee35b58aba4dd0412e5f.wav",
+        "impl_version": 1,
+        "inputs": [
+          "03d45f33fcb736bab8932182264e9419a79284ff70f91c99a657c29eaaf7b2e2"
+        ],
+        "kind": "pace",
+        "node_hash": "14ac3c6cbd30417a00cee315974ffc5f6718d2ed5ed3a957165e03b32544367a",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-3"
+      },
+      "107fe59d37e81ac46ad939f4947f634c1816557de2e1b7a35720fbf0a8501ab7": {
+        "encoding": "qa",
+        "file": "107fe59d37e81ac46ad939f4947f634c1816557de2e1b7a35720fbf0a8501ab7.wav",
+        "kind": "encode",
+        "source": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42"
+      },
+      "19562eb6132df05af60cbc681f23d755193db74ebf00bec5d8ca8ad30a71995c": {
+        "file": "19562eb6132df05af60cbc681f23d755193db74ebf00bec5d8ca8ad30a71995c.wav",
+        "impl_version": 1,
+        "inputs": [
+          "50c832217fcb78e55d0c7620043af5954c7afa6e5c14b01454483af9b4ed98a5"
+        ],
+        "kind": "track",
+        "node_hash": "4ab754f110a2e191c33e628904dac53e9de9f3cdac8408f2446a6ab1a60f0aaf",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "43743bb09e7219edb556f68ed6858ed54644ecc9c7659162adfe90a1ab3eebb3": {
+        "file": "43743bb09e7219edb556f68ed6858ed54644ecc9c7659162adfe90a1ab3eebb3.wav",
+        "impl_version": 1,
+        "inputs": [
+          "06a6d56ca989ac08bb8ef8196f761426c447d1819de6ee35b58aba4dd0412e5f"
+        ],
+        "kind": "track",
+        "node_hash": "29026dfe8c8b49f773ab658368e9807c89872ac8e1fc3a20c2de7a5e4c9f611b",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14621,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "50aa0597afb0b827bc9672bb0a6ebf2ae1b1ca4ec3305d61e8641e55b3345c1a": {
+        "encoding": "publish",
+        "file": "50aa0597afb0b827bc9672bb0a6ebf2ae1b1ca4ec3305d61e8641e55b3345c1a.mp3",
+        "kind": "encode",
+        "source": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42"
+      },
+      "50c832217fcb78e55d0c7620043af5954c7afa6e5c14b01454483af9b4ed98a5": {
+        "file": "50c832217fcb78e55d0c7620043af5954c7afa6e5c14b01454483af9b4ed98a5.wav",
+        "impl_version": 1,
+        "inputs": [
+          "6c01dac173419a8e5d96476aee64ae5bae3401102424dc2120e4bc26a309089a"
+        ],
+        "kind": "pace",
+        "node_hash": "97a6bd32ff42ac700a457331189e9391f97a412dc7bfd4e25ba9799cb64283ac",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-1"
+      },
+      "6c01dac173419a8e5d96476aee64ae5bae3401102424dc2120e4bc26a309089a": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "6c01dac173419a8e5d96476aee64ae5bae3401102424dc2120e4bc26a309089a.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "e6fdd5f6228eda85203b423fad9a3eaf4c1b4866459246de8bbf5e7c22062f48",
+        "seed": 120
+      },
+      "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42": {
+        "file": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42.wav",
+        "impl_version": 1,
+        "inputs": [
+          "8225881de130b29b19f28182348539f5b6037d999f71b63c90b4957c5d04420e"
+        ],
+        "kind": "loudnorm",
+        "node_hash": "2656527ebadc55c0dbd8ac7a90e739f2aecca1f8ef2c09df5f29bf47fccf459f",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        }
+      },
+      "8225881de130b29b19f28182348539f5b6037d999f71b63c90b4957c5d04420e": {
+        "file": "8225881de130b29b19f28182348539f5b6037d999f71b63c90b4957c5d04420e.wav",
+        "impl_version": 2,
+        "inputs": [
+          "19562eb6132df05af60cbc681f23d755193db74ebf00bec5d8ca8ad30a71995c",
+          "8471f0274565f07a6db7a4585deb7dca396e736cba798e129b887bcd110af418",
+          "43743bb09e7219edb556f68ed6858ed54644ecc9c7659162adfe90a1ab3eebb3",
+          "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6"
+        ],
+        "kind": "mix",
+        "node_hash": "e730ff074f3d1a2054a4a43426c26cfd1f31df5f3a8b4f29d81d5e5cb5c689ab",
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        }
+      },
+      "8471f0274565f07a6db7a4585deb7dca396e736cba798e129b887bcd110af418": {
+        "file": "8471f0274565f07a6db7a4585deb7dca396e736cba798e129b887bcd110af418.wav",
+        "impl_version": 1,
+        "inputs": [
+          "936081d4f7687bcbf265dba03600dc655cfeaec607588306b52274611e11d608"
+        ],
+        "kind": "track",
+        "node_hash": "6f77b730dde16f1af037cede0af3810160de1a23d8620ffa6fabe003cada64a5",
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 3000,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        }
+      },
+      "891c4424722b7ab6c7baf9fd6e98aa5663397cb30758b63bd18bac63d0ddc1e1": {
+        "adapter_code_revision": "QwenLM/Qwen3-TTS@022e286b98fbec7e1e916cb940cdf532cd9f488e",
+        "engine": "qwen_tts_designed",
+        "file": "891c4424722b7ab6c7baf9fd6e98aa5663397cb30758b63bd18bac63d0ddc1e1.wav",
+        "kind": "speech-take",
+        "license": "Apache-2.0",
+        "model_id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+        "params": {},
+        "request_sha256": "00513f236ecb92367068f13fed3e9831e476af219053d687893190981dcf91c2",
+        "seed": 120
+      },
+      "936081d4f7687bcbf265dba03600dc655cfeaec607588306b52274611e11d608": {
+        "file": "936081d4f7687bcbf265dba03600dc655cfeaec607588306b52274611e11d608.wav",
+        "impl_version": 1,
+        "inputs": [
+          "891c4424722b7ab6c7baf9fd6e98aa5663397cb30758b63bd18bac63d0ddc1e1"
+        ],
+        "kind": "pace",
+        "node_hash": "535a448789840e92bcf8f6d39fbcba2b24d19a792ff833a6a4ebbd129bf3122c",
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "utterance_id": "line-2"
+      },
+      "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6": {
+        "channels": 1,
+        "energy": 1.0,
+        "file": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6.wav",
+        "generator": "listening_studio.dsp.ir.synthesize_ir",
+        "ir_impl_version": 1,
+        "kind": "impulse-response",
+        "normalisation": "unit-energy",
+        "params": {
+          "decay_s": 0.25,
+          "early_reflections": 3,
+          "lowpass_hz": 9000.0,
+          "pre_delay_ms": 4,
+          "seed": 1101
+        },
+        "rate": 48000,
+        "subtype": "PCM_24"
+      }
+    },
+    "created_at": "2026-10-31T13:28:14.980054+00:00",
+    "duration_ms": 18607,
+    "engines": {
+      "qwen_tts_designed": {
+        "name": "qwen_tts_designed",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "stable_audio_sfx": {
+        "name": "stable_audio_sfx",
+        "revision": "2204d5086475bd5b7e6e2bd720772dd8e8160513"
+      }
+    },
+    "ffmpeg": "ffmpeg version 9.0.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "nodes": [
+      {
+        "asset": "6c01dac173419a8e5d96476aee64ae5bae3401102424dc2120e4bc26a309089a",
+        "cached": false,
+        "hash": "5d0fc4f8daa1aa2793799e8d491d4eff963fc5ec854e103d40ba398126e55a2e",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Und hier noch ein Tipp für das Wochenende.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "50c832217fcb78e55d0c7620043af5954c7afa6e5c14b01454483af9b4ed98a5",
+        "cached": false,
+        "hash": "97a6bd32ff42ac700a457331189e9391f97a412dc7bfd4e25ba9799cb64283ac",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "891c4424722b7ab6c7baf9fd6e98aa5663397cb30758b63bd18bac63d0ddc1e1",
+        "cached": false,
+        "hash": "e08b36dead4809432bab4e2c0ad4927eb635cfaccd186e7a31dc8b2589c08753",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "936081d4f7687bcbf265dba03600dc655cfeaec607588306b52274611e11d608",
+        "cached": false,
+        "hash": "535a448789840e92bcf8f6d39fbcba2b24d19a792ff833a6a4ebbd129bf3122c",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "03d45f33fcb736bab8932182264e9419a79284ff70f91c99a657c29eaaf7b2e2",
+        "cached": false,
+        "hash": "abab3053838f4052fe4f4e8e597686ea010f9804e7914d96018a2d70f63c2e11",
+        "impl_version": 1,
+        "params": {
+          "engine": "qwen_tts_designed",
+          "engine_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+          "request": {
+            "language": "German",
+            "params": {},
+            "seed": 120,
+            "style": null,
+            "text": "Wenn es regnet, findet das Fest in der Stadthalle statt.",
+            "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354"
+          }
+        },
+        "type": "synth"
+      },
+      {
+        "asset": "06a6d56ca989ac08bb8ef8196f761426c447d1819de6ee35b58aba4dd0412e5f",
+        "cached": false,
+        "hash": "14ac3c6cbd30417a00cee315974ffc5f6718d2ed5ed3a957165e03b32544367a",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "pace": 0.76,
+          "rate": 48000
+        },
+        "type": "pace"
+      },
+      {
+        "asset": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+        "cached": true,
+        "hash": "e0bf0366e9dbfced2e725932d588bb35635585193efcd4e6c1e2f22378c9172b",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s24le",
+          "ir": {
+            "decay_s": 0.25,
+            "early_reflections": 3,
+            "lowpass_hz": 9000.0,
+            "pre_delay_ms": 4,
+            "seed": 1101
+          },
+          "rate": 48000,
+          "room": "studio",
+          "room_version": 1
+        },
+        "type": "ir"
+      },
+      {
+        "asset": "19562eb6132df05af60cbc681f23d755193db74ebf00bec5d8ca8ad30a71995c",
+        "cached": false,
+        "hash": "4ab754f110a2e191c33e628904dac53e9de9f3cdac8408f2446a6ab1a60f0aaf",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 0,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "8471f0274565f07a6db7a4585deb7dca396e736cba798e129b887bcd110af418",
+        "cached": false,
+        "hash": "6f77b730dde16f1af037cede0af3810160de1a23d8620ffa6fabe003cada64a5",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 3000,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "43743bb09e7219edb556f68ed6858ed54644ecc9c7659162adfe90a1ab3eebb3",
+        "cached": false,
+        "hash": "29026dfe8c8b49f773ab658368e9807c89872ac8e1fc3a20c2de7a5e4c9f611b",
+        "impl_version": 1,
+        "params": {
+          "acoustics": {
+            "device": "radio",
+            "device_version": 1,
+            "distance": 1.0
+          },
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "delay_ms": 14621,
+          "fx": "highpass=f=120:p=2,highpass=f=120:p=2,lowpass=f=6800:p=2,lowpass=f=6800:p=2,acompressor=threshold=0.050119:ratio=6:attack=3:release=90:makeup=1.995262",
+          "gain_db": 0.0,
+          "loop": false,
+          "pan": 0.0,
+          "rate": 48000,
+          "window_ms": null
+        },
+        "type": "track"
+      },
+      {
+        "asset": "8225881de130b29b19f28182348539f5b6037d999f71b63c90b4957c5d04420e",
+        "cached": false,
+        "hash": "e730ff074f3d1a2054a4a43426c26cfd1f31df5f3a8b4f29d81d5e5cb5c689ab",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42",
+        "cached": false,
+        "hash": "2656527ebadc55c0dbd8ac7a90e739f2aecca1f8ef2c09df5f29bf47fccf459f",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "8225881de130b29b19f28182348539f5b6037d999f71b63c90b4957c5d04420e",
+        "cached": true,
+        "hash": "e730ff074f3d1a2054a4a43426c26cfd1f31df5f3a8b4f29d81d5e5cb5c689ab",
+        "impl_version": 2,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "inputs": [
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-1"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-2"
+            },
+            {
+              "bus": "dialogue",
+              "fade_in_ms": 0,
+              "fade_in_start_ms": 0,
+              "fade_out_ms": 0,
+              "fade_out_start_ms": 0,
+              "send_db": 0.0,
+              "stem_id": "line-3"
+            }
+          ],
+          "rate": 48000,
+          "room": {
+            "id": "studio",
+            "ir": "d0a6754169784bda0337617eac4a4467fe28cac3375463ef084d7b85ce0044a6",
+            "tail_ms": 254,
+            "version": 1,
+            "wet": 0.04
+          }
+        },
+        "type": "mix"
+      },
+      {
+        "asset": "6e0a55f99199b2f04c8082fd4aabe694934601610034417ea29c1b66858bdc42",
+        "cached": true,
+        "hash": "2656527ebadc55c0dbd8ac7a90e739f2aecca1f8ef2c09df5f29bf47fccf459f",
+        "impl_version": 1,
+        "params": {
+          "channels": 2,
+          "codec": "pcm_s24le",
+          "filter": "loudnorm=I=-19:TP=-1.5:LRA=7",
+          "rate": 48000
+        },
+        "type": "loudnorm"
+      },
+      {
+        "asset": "107fe59d37e81ac46ad939f4947f634c1816557de2e1b7a35720fbf0a8501ab7",
+        "cached": false,
+        "hash": "503b2ac0922f0176018b155cb242bd60e1fd0df5b3f6d56f89871743f09ae93f",
+        "impl_version": 1,
+        "params": {
+          "channels": 1,
+          "codec": "pcm_s16le",
+          "encoding": "qa",
+          "rate": 16000,
+          "suffix": ".wav"
+        },
+        "type": "encode"
+      },
+      {
+        "asset": "50aa0597afb0b827bc9672bb0a6ebf2ae1b1ca4ec3305d61e8641e55b3345c1a",
+        "cached": false,
+        "hash": "b0d3f053b2bb3b736b84c458fc8854f22da6a904861e51c093a58d82a6ca75d2",
+        "impl_version": 1,
+        "params": {
+          "bitrate": "128k",
+          "channels": 2,
+          "codec": "libmp3lame",
+          "encoding": "publish",
+          "rate": 48000,
+          "suffix": ".mp3"
+        },
+        "type": "encode"
+      }
+    ],
+    "nodes_cached": 3,
+    "nodes_evaluated": 13,
+    "timeline": [
+      {
+        "end_ms": 2400,
+        "entry_id": "line-1",
+        "start_ms": 0,
+        "type": "speech"
+      },
+      {
+        "end_ms": 14021,
+        "entry_id": "line-2",
+        "start_ms": 3000,
+        "type": "speech"
+      },
+      {
+        "end_ms": 18607,
+        "entry_id": "line-3",
+        "start_ms": 14621,
+        "type": "speech"
+      }
+    ],
+    "timing": [
+      {
+        "end_ms": 2400,
+        "start_ms": 0,
+        "utterance_id": "line-1"
+      },
+      {
+        "end_ms": 14021,
+        "start_ms": 3000,
+        "utterance_id": "line-2"
+      },
+      {
+        "end_ms": 18607,
+        "start_ms": 14621,
+        "utterance_id": "line-3"
+      }
+    ],
+    "variant": "natural"
+  },
+  "scene": {
+    "acoustics": {
+      "lead_in_ms": 0,
+      "room": "studio",
+      "room_overrides": null
+    },
+    "authoring": "generated",
+    "brief": {
+      "duration_seconds": [
+        17,
+        28
+      ],
+      "grammar_target": null,
+      "level": "A2",
+      "outcomes": [
+        "wetterbericht-verstehen"
+      ],
+      "scenario": "Radiotipp: Sommerfest im Stadtpark",
+      "topic": "lernen-verstehen",
+      "vocabulary": []
+    },
+    "cast": [
+      {
+        "character": {
+          "id": "jonas",
+          "version": 2
+        },
+        "role": "Radio",
+        "voice": {
+          "engine": "qwen_tts_designed",
+          "seed": 120,
+          "style": null,
+          "voice": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+          "voice_ref": null
+        }
+      }
+    ],
+    "generation_prompt": null,
+    "kind": "dialogue",
+    "narration": null,
+    "schema_version": 1,
+    "script": [
+      {
+        "display_text": "Und hier noch ein Tipp für das Wochenende.",
+        "id": "line-1",
+        "pace": 0.76,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Am Samstag ist im Stadtpark das große Sommerfest. Es gibt Musik, Essen aus vielen Ländern und ein Programm für Kinder. Der Eintritt ist frei.",
+        "id": "line-2",
+        "pace": 0.76,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      },
+      {
+        "display_text": "Wenn es regnet, findet das Fest in der Stadthalle statt.",
+        "id": "line-3",
+        "pace": 0.76,
+        "pause_after_ms": 600,
+        "pronunciation_overrides": [],
+        "role": "Radio",
+        "seed_override": null,
+        "synthesis_text": null
+      }
+    ],
+    "slug": "ls-pruefung-a2-2-hoeren-04",
+    "timeline": [
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-1"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-2"
+      },
+      {
+        "at_ms": null,
+        "effects": null,
+        "gain_db": 0.0,
+        "placement": {
+          "device": "radio",
+          "device_overrides": null,
+          "distance": 1.0,
+          "pan": 0.0
+        },
+        "type": "speech",
+        "utterance_id": "line-3"
+      }
+    ],
+    "title": {
+      "en": "A summer festival in the city park",
+      "ru": "Летний праздник в городском парке",
+      "uk": "Літнє свято в міському парку"
+    },
+    "variants": [
+      {
+        "id": "natural",
+        "overrides": {},
+        "preset": null
+      }
+    ]
+  },
+  "scene_revision": 1,
+  "scene_sha256": "61df8ac70af5b9743d9a16b3f263bf762a80f0aec5b7c7b6eb2fd4e618476218",
+  "script_sha256": "278975ee85d2cc009250028cf59a202732ae8a51d2b8ee0033dc01d3887c0f46",
+  "version": 2,
+  "voices": [
+    {
+      "character": "jonas",
+      "clone_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "revision": "fd4b254389122332181a7c3db7f27e918eec64e3"
+      },
+      "design_model": {
+        "id": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+        "revision": "5ecdb67327fd37bb2e042aab12ff7391903235d3"
+      },
+      "instruct": "A man in his mid-twenties speaking clear standard German. Relaxed, medium-low voice with an easy, thoughtful conversational rhythm; casual but clear.",
+      "reference_sha256": "ae5e135251bcb66bc00eacee8e9ebae19fdd33621795998402ce05f625fa8354",
+      "role": "Radio",
+      "seed": 120,
+      "synthetic": true,
+      "version": 2
+    }
+  ]
+}

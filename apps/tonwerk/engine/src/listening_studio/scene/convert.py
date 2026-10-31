@@ -390,10 +390,23 @@ def scene_from_reading(
 
 
 def published_dialogue_ids(repo: Path) -> list[str]:
-    """`a1/ls-erste-schritte-01` for every published listening artifact, level dir included."""
+    """`a1/ls-erste-schritte-01` for every published artifact **made before scenes existed**.
+
+    Those are the only artifacts there is anything to convert: their manifest (version 1) carries
+    the resolved `settings.lines` a scene is rebuilt from. An artifact published *from* a scene
+    has a version 2 manifest naming that scene's hash, and its scene is already in the studio —
+    converting it back from its own output would be a second, lossy copy of a document that
+    exists.
+    """
 
     root = repo / "content" / "listening"
-    return [str(path.relative_to(root).with_suffix("")) for path in sorted(root.glob("*/*.yaml"))]
+    ids: list[str] = []
+    for path in sorted(root.glob("*/*.yaml")):
+        provenance = load_yaml(path).get("provenance")
+        manifest = load_yaml(repo / str(provenance)) if provenance else {}
+        if manifest.get("version", 1) == 1:
+            ids.append(str(path.relative_to(root).with_suffix("")))
+    return ids
 
 
 def exercise_sets_for(repo: Path, level: str) -> list[Path]:

@@ -1,0 +1,26 @@
+id: ls-pruefung-a2-3-hoeren-01
+level: A2
+title:
+  en: Gate change for the flight to Vienna
+  ru: Смена выхода на рейс в Вену
+  uk: Зміна виходу на рейс до Відня
+scenario: 'Flughafen-Durchsage: neues Gate'
+duration_seconds: 19
+speakers:
+- Durchsage
+transcript:
+- speaker: Durchsage
+  text: Achtung, eine Information zum Flug L H zweihundertdreißig nach Wien.
+- speaker: Durchsage
+  text: Der Flug startet heute nicht von Gate B zwölf, sondern von Gate C vier.
+- speaker: Durchsage
+  text: 'Die Zeit bleibt gleich: dreizehn Uhr fünfzig.'
+provenance: data/audio-provenance/a2/ls-pruefung-a2-3-hoeren-01.json
+cue_source: render
+cues:
+- start_ms: 2600
+  end_ms: 8342
+- start_ms: 9042
+  end_ms: 14413
+- start_ms: 15113
+  end_ms: 18986
