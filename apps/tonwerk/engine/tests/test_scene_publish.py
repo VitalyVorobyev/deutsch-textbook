@@ -60,6 +60,8 @@ ARTIFACT_KEYS = {
     "speakers",
     "transcript",
     "provenance",
+    "cue_source",
+    "cues",
 }
 
 #: The consent digest the fixture voice is registered under. Never parsed here — `test_voices.py`
@@ -224,6 +226,15 @@ def test_a_published_scene_writes_a_valid_artifact_its_audio_and_a_scene_manifes
         {"speaker": "Mara", "text": "Mit Milch, bitte."},
     ]
     assert record["provenance"] == "data/audio-provenance/a2/fixture-cafe.json"
+    # Cues are the render's own placement of each turn, in transcript order.
+    provenance = json.loads((repo / "data/audio-provenance/a2/fixture-cafe.json").read_text())
+    timing = {row["utterance_id"]: row for row in provenance["render"]["timing"]}
+    assert record["cue_source"] == "render"
+    assert record["cues"] == [
+        {"start_ms": timing[line]["start_ms"], "end_ms": timing[line]["end_ms"]}
+        for line in ("line-1", "line-2", "line-3")
+    ]
+    assert list(record)[-2:] == ["cue_source", "cues"]
 
     # The duration is the render's, never the brief's: the artifact record has to describe the
     # MP3 beside it, and a brief states a window somebody asked for.

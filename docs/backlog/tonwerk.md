@@ -51,12 +51,11 @@ only after this queue
 - **TON-5 · Produce, then wire into learning.** The learner hears browser TTS for 115 of 195
   `audio-comprehension` items and all 85 `listen` items. No Lesetext has narration, and the 36 A2
   Hören scripts are unrecorded (`grep -rh "recording:" content/exercises | wc -l` gives 80).
-  Recordings play whole, with no per-turn cues.
+  After an answer, an `audio-comprehension` item already replays any one line, follows the
+  transcript and plays slower; every published recording carries turn cues.
   - **Production order:** A2 Hören, then TTS-only items, then unstarted plan artifacts, then
     narrations.
-  - **Cues:** `scene/publish.py` writes measured turn cues into the listening YAML.
-  - **Learner app:** `AudioComprehension.tsx` gets a follow-along transcript with tap-to-replay
-    and a slower replay after the answer, and `listen` items may cut a turn from a recording.
+  - **Learner app:** `listen` items may cut a turn from a recording instead of TTS.
   - **First step:** publish the first A2 Hören scene end to end.
 
 ## Open defects

@@ -54,6 +54,7 @@ Model weights are never downloaded implicitly. `models list` prints `models.lock
 | `voices create` · `list` · `demo` · `revoke` | the consented voice store (mirrors `/api/voices`) |
 | `generate-character-demos [--repo] [--test-adapter]` | three audition takes per roster character |
 | `evaluate voices [--candidates] [--characters] [--name]` · `evaluate reveal <run> --choices` | the voice-checkpoint comparison and its blind listen, outside the production path ([below](#voice-evaluation)) |
+| `measure-cues [ids…] [--repo] [--redo]` | turn cues for recordings published before scenes: Whisper word times aligned to the transcript, then snapped to the nearest pause (`cues.py`). A scene publish writes exact cues from the render instead |
 | `scene validate` · `create` · `from-dialogue` · `from-reading` · `show` | the scene document |
 | `scene render` · `qa` · `regenerate-corpus` | audio and its automatic QA |
 | `scene publish` · `publish-approved` · `delete` · `schema` | the repository side |

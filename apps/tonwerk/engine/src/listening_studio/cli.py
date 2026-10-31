@@ -4,7 +4,8 @@
 validate, store, render, QA, publish — `scene/cli.py`); `voices …` is the consented voice store;
 `sources …` imports reviewed Freesound originals; `models …` lists and fetches the pinned weights;
 `generate-character-demos` makes the roster's audition takes; `evaluate …` compares candidate
-voice checkpoints outside the production path (`evaluation.py`); `doctor` checks the toolchain.
+voice checkpoints outside the production path (`evaluation.py`); `measure-cues` times the turns of
+recordings published before scenes (`cues.py`); `doctor` checks the toolchain.
 """
 
 from __future__ import annotations
@@ -556,6 +557,52 @@ class _ArithmeticEvaluation:
 
     def release(self) -> None:
         return None
+
+
+@app.command("measure-cues")
+def measure_cues_command(
+    ids: list[str] = typer.Argument(None, help="Listening ids; all without cues when omitted."),
+    repo: Path = typer.Option(Path.cwd()),
+    redo: bool = typer.Option(False, help="Measure again where cues are already written."),
+) -> None:
+    """Write measured turn cues into published listening records that have none.
+
+    For recordings whose assembly kept no per-turn times. A scene publish writes its own cues from
+    the render (`cue_source: render`); these are Whisper's word times aligned to the transcript
+    (`cue_source: whisper-aligned`). A record whose turns cannot all be found is reported and left
+    unchanged.
+    """
+
+    import yaml
+
+    from .cues import measure_cues
+
+    root = repo_root(repo)
+    go_offline()
+    wanted = set(ids or [])
+    failed = 0
+    for record in sorted((root / "content" / "listening").glob("*/*.yaml")):
+        data = yaml.safe_load(record.read_text())
+        if wanted and data["id"] not in wanted:
+            continue
+        if data.get("cues") and not redo:
+            continue
+        audio = record.with_suffix(".mp3")
+        try:
+            cues = measure_cues(audio, [turn["text"] for turn in data["transcript"]])
+        except ValueError as exc:
+            failed += 1
+            typer.echo(f"{data['id']}: not written: {exc}", err=True)
+            continue
+        # The cue block is always the record's last two keys, so a redo replaces it by cutting there.
+        text = record.read_text().split("\ncue_source:")[0].rstrip("\n") + "\n"
+        block = "cue_source: whisper-aligned\ncues:\n" + "".join(
+            f"- start_ms: {start}\n  end_ms: {end}\n" for start, end in cues
+        )
+        record.write_text(text + block)
+        typer.echo(f"{data['id']}: {len(cues)} cues")
+    if failed:
+        raise typer.Exit(1)
 
 
 @app.command()

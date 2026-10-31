@@ -38,6 +38,7 @@ import YAML from 'yaml';
 import {
   listeningArtifactSchema,
   listeningAudioPath,
+  type ListeningCue,
   readingAudioArtifactSchema,
   readingAudioPath,
 } from '@da/schema';
@@ -51,11 +52,21 @@ interface Shipped {
   bytes: number;
 }
 
+/** A dialogue recording, with the turn cues its record carries (written beside the MP3). */
+interface ShippedRecording extends Shipped {
+  cues?: ListeningCue[];
+}
+
+/** The cue file a recording ships with: what `AudioComprehension` fetches after an answer. */
+function cueFile(rec: ShippedRecording): string | null {
+  return rec.cues ? `${JSON.stringify({ id: rec.id, cues: rec.cues })}\n` : null;
+}
+
 /** Every reviewed recording in the content tree, whether or not this build ships it. */
-export function reviewedRecordings(root: string): Shipped[] {
+export function reviewedRecordings(root: string): ShippedRecording[] {
   const base = join(root, 'content', 'listening');
   if (!existsSync(base)) return [];
-  const out: Shipped[] = [];
+  const out: ShippedRecording[] = [];
   for (const levelDir of readdirSync(base, { withFileTypes: true })) {
     if (!levelDir.isDirectory()) continue;
     for (const name of readdirSync(join(base, levelDir.name))) {
@@ -70,7 +81,13 @@ export function reviewedRecordings(root: string): Shipped[] {
       const source = listeningAudioPath(level, id);
       const wav = join(root, source);
       if (!existsSync(wav)) continue;
-      out.push({ id, level, source, bytes: readFileSync(wav).byteLength });
+      out.push({
+        id,
+        level,
+        source,
+        bytes: readFileSync(wav).byteLength,
+        ...(parsed.data.cues ? { cues: parsed.data.cues } : {}),
+      });
     }
   }
   return out.sort((a, b) => a.id.localeCompare(b.id));
@@ -102,6 +119,46 @@ export function reviewedReadingAudio(root: string): Shipped[] {
   return out.sort((a, b) => a.id.localeCompare(b.id));
 }
 
+/**
+ * Serve audio the way a static host does, with byte ranges.
+ *
+ * A browser can seek only in a file whose server honours `Range`: without `Accept-Ranges` the
+ * seekable range is empty and setting `currentTime` lands back at 0. Replaying one turn of a
+ * recording is a seek, so a dev server that sent whole files would play every turn from the start.
+ */
+export function sendAudio(
+  rangeHeader: string | undefined,
+  bytes: Buffer,
+  res: {
+    statusCode: number;
+    setHeader(name: string, value: string): unknown;
+    end(body?: Buffer): unknown;
+  },
+): void {
+  res.setHeader('Content-Type', 'audio/mpeg');
+  res.setHeader('Accept-Ranges', 'bytes');
+  const range = /^bytes=(\d*)-(\d*)$/.exec(rangeHeader ?? '');
+  if (!range || (range[1] === '' && range[2] === '')) {
+    res.setHeader('Content-Length', String(bytes.byteLength));
+    res.end(bytes);
+    return;
+  }
+  const last = bytes.byteLength - 1;
+  const start =
+    range[1] === '' ? Math.max(0, bytes.byteLength - Number(range[2])) : Number(range[1]);
+  const end = range[1] !== '' && range[2] !== '' ? Math.min(Number(range[2]), last) : last;
+  if (start > end || start > last) {
+    res.statusCode = 416;
+    res.setHeader('Content-Range', `bytes */${bytes.byteLength}`);
+    res.end();
+    return;
+  }
+  res.statusCode = 206;
+  res.setHeader('Content-Range', `bytes ${start}-${end}/${bytes.byteLength}`);
+  res.setHeader('Content-Length', String(end - start + 1));
+  res.end(bytes.subarray(start, end + 1));
+}
+
 export function audioBundle(): AstroIntegration {
   return {
     name: 'audio-bundle',
@@ -124,8 +181,16 @@ export function audioBundle(): AstroIntegration {
               (row) => row.level.toLowerCase() === readingMatch[1] && row.id === readingMatch[2],
             );
             if (!rec) return next();
-            res.setHeader('Content-Type', 'audio/mpeg');
-            res.end(readFileSync(join(root, rec.source)));
+            sendAudio(req.headers.range, readFileSync(join(root, rec.source)), res);
+            return;
+          }
+          const cueMatch = /^\/audio\/([a-z0-9-]+)\.cues\.json$/.exec(path);
+          if (cueMatch) {
+            const rec = reviewedRecordings(root).find((r) => r.id === cueMatch[1]);
+            const body = rec ? cueFile(rec) : null;
+            if (!body) return next();
+            res.setHeader('Content-Type', 'application/json');
+            res.end(body);
             return;
           }
           const match = /^\/audio\/([a-z0-9-]+)\.mp3$/.exec(path);
@@ -133,8 +198,7 @@ export function audioBundle(): AstroIntegration {
           // Re-read per request: a recording republished while the server runs is served fresh.
           const rec = reviewedRecordings(root).find((r) => r.id === match[1]);
           if (!rec) return next();
-          res.setHeader('Content-Type', 'audio/mpeg');
-          res.end(readFileSync(join(root, rec.source)));
+          sendAudio(req.headers.range, readFileSync(join(root, rec.source)), res);
         });
         logger.info(
           `serving ${reviewedRecordings(root).length} dialogue(s) and ${reviewedReadingAudio(root).length} reading narration(s)`,
@@ -152,8 +216,11 @@ export function audioBundle(): AstroIntegration {
         const shipped = bundle ? available : [];
         // Flat target: ids are globally unique, and the component has no level to build a
         // path from. See lib/audio.ts.
-        for (const rec of shipped)
+        for (const rec of shipped) {
           copyFileSync(join(root, rec.source), join(audioDir, `${rec.id}.mp3`));
+          const cues = cueFile(rec);
+          if (cues) writeFileSync(join(audioDir, `${rec.id}.cues.json`), cues);
+        }
         const readingDir = join(audioDir, 'readings');
         const shippedReadings = bundle ? availableReadings : [];
         for (const rec of shippedReadings) {
@@ -163,7 +230,15 @@ export function audioBundle(): AstroIntegration {
         }
         writeFileSync(
           join(audioDir, 'manifest.json'),
-          `${JSON.stringify({ bundled: bundle, recordings: shipped, readings: shippedReadings }, null, 2)}\n`,
+          `${JSON.stringify(
+            {
+              bundled: bundle,
+              recordings: shipped.map(({ cues, ...rec }) => ({ ...rec, cues: cues?.length ?? 0 })),
+              readings: shippedReadings,
+            },
+            null,
+            2,
+          )}\n`,
         );
 
         const megabytes = (

@@ -40,6 +40,9 @@ export const bundlesAudio = (value: string | undefined): boolean =>
 /** The URL a built site serves a reviewed recording at, before `withBase`. */
 export const listeningAudioUrl = (id: string): string => `/audio/${id}.mp3`;
 
+/** Where a shipped recording's turn cues are served, beside its MP3, before `withBase`. */
+export const listeningCuesUrl = (id: string): string => `/audio/${id}.cues.json`;
+
 /** Reviewed long-form narration uses a separate namespace from dialogue recordings. */
 export const readingAudioUrl = (level: string, id: string): string =>
   `/audio/readings/${level.toLowerCase()}/${id}.mp3`;

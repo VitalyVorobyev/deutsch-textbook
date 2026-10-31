@@ -24,6 +24,10 @@ GitHub Release notes.
 
 ### Changed
 
+- **After you answer a listening question, the recording becomes something to study.** Tap any
+  line of the transcript to hear just that line, play the whole conversation as often as you like,
+  and switch on *Slower* to hear it at three-quarter speed in the same voice. Before you answer,
+  nothing changes: the replay limit and the hidden transcript still stand.
 - **Prüfung is one place for every exam.** Üben now has four tabs (Wiederholen, Training,
   Wortschatz, Prüfung) that fit a phone without sideways scrolling. Prüfung opens an overview with
   Goethe A1, A2, B1 and Leben in Deutschland. Leben in Deutschland moved there; old links still
